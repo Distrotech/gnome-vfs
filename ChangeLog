@@ -1,3 +1,26 @@
+2004-11-26  Marco Pesenti Gritti  <marco@gnome.org>
+
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/xdgmime.c: (xdg_mime_init_from_directory),
+	(xdg_mime_init), (xdg_mime_shutdown),
+	(xdg_mime_get_max_buffer_extents), (unalias_mime_type),
+	(xdg_mime_mime_type_equal), (xdg_mime_media_type_equal),
+	(xdg_mime_is_super_type), (xdg_mime_mime_type_subclass),
+	(xdg_mime_dump):
+	* libgnomevfs/xdgmime.h:
+	* libgnomevfs/xdgmimealias.c: (_xdg_mime_alias_list_new),
+	(_xdg_mime_alias_list_free), (alias_entry_cmp),
+	(_xdg_mime_alias_list_lookup), (_xdg_mime_alias_read_from_file),
+	(_xdg_mime_alias_list_dump):
+	* libgnomevfs/xdgmimealias.h:
+	* libgnomevfs/xdgmimeparent.c: (_xdg_mime_parent_list_new),
+	(_xdg_mime_parent_list_free), (parent_entry_cmp),
+	(_xdg_mime_parent_list_lookup), (_xdg_mime_parent_read_from_file),
+	(_xdg_mime_parent_list_dump):
+	* libgnomevfs/xdgmimeparent.h:
+
+	Resync xdgmime
+
 2004-11-25  Marco Pesenti Gritti  <marco@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

@@ -176,6 +176,8 @@ noinst_HEADERS =				\
 	xdgmimeglob.h				\
 	xdgmimemagic.h				\
 	xdgmimeint.h				\
+	xdgmimealias.h				\
+	xdgmimeparent.h				\
 	$(NULL)
 
 
@@ -305,6 +307,8 @@ libgnomevfs_2_la_SOURCES =			\
 	xdgmime.c				\
 	xdgmimeglob.c				\
 	xdgmimeint.c				\
+	xdgmimealias.c				\
+	xdgmimeparent.c				\
 	$(libgnomevfs_built_cfiles)		\
 	$(NULL)
 
