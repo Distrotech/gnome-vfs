@@ -1,3 +1,8 @@
+2002-05-21  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c: Backport a fix for a crash
+	from HEAD. Fix by Michael Meeks <mmeeks@ximian.com>
+	
 2002-03-30  Hasbullah Bin Pit <sebol@ikhlas.com>
 
 	* configure.in: Added Malay (ms)to ALL_LINGUAS.
