@@ -25,6 +25,9 @@
 # * Programming source code is called "<language> source code", unless there's
 #   another standard usage for a given language (e.g. "Perl script")
 
+application/andrew-inset
+	description=Andrew Toolkit inset
+
 application/mac-binhex40
 	description=Macintosh BinHex archive
 
@@ -107,6 +110,9 @@ application/x-bzip-compressed-tar
 application/x-cgi
 	description=CGI program
 
+application/x-chess-pgn
+	description=PGN chess game
+
 application/x-class-file
 	description=class code
 
@@ -159,6 +165,9 @@ application/x-font-dos
 application/x-font-framemaker
 	description=FrameMaker font
 
+application/x-font-libgrx
+	description=LIBGRX font
+
 application/x-font-linux-psf
 	description=Linux psf console font
 
@@ -174,11 +183,17 @@ application/x-font-sunos-news
 application/x-font-tex
 	description=TeX font
 
+application/x-font-tex-tfm
+	description=TeX font metrics
+
 application/x-font-ttf
 	description=TrueType font
 
 application/x-font-type1
 	description=PostScript Type 1 font
+
+application/x-font-vfont
+	description=V font
 
 application/x-gmc-link
 	description=GMC link
@@ -203,6 +218,9 @@ application/x-gzip
 	icon-filename=gnome-compressed.png
 	vfs-method=gzip
 
+application/x-hdf
+	description=HDF document
+
 application/x-java-byte-code
 	description=Java byte code
 
@@ -215,21 +233,39 @@ application/x-lha
 application/x-lhz
 	description=LHA archive
 
+application/x-mif
+	description=FrameMaker interchange document
+
 application/x-ms-dos-executable
 	description=DOS/Windows program
 
 application/x-nautilus-link
 	description=Nautilus link
 
+application/x-netcdf
+	description=Unidata netCDF document
+
 application/x-object-file
 	description=object code
 	icon-filename=gnome-objectfile.png
+
+application/x-pef-executable
+	description=PEF document
 
 application/x-perl
 	description=Perl script
 
 application/x-php
 	description=PHP script
+
+application/x-profile
+	description=profiler results
+
+application/x-rar
+	description=RAR archive
+
+application/x-reject
+	description=rejected patch file
 
 application/x-rpm
 	description=RPM package
@@ -290,6 +326,9 @@ application/x-wais-source
 application/x-wordperfect
 	description=WordPerfect document
 
+application/x-zoo
+	description=zoo archive
+
 application/zip
 	description=zip archive
 	vfs-method=zip
@@ -297,14 +336,20 @@ application/zip
 audio/basic
 	description=basic audio
 
+audio/x-aifc
+	description=AIFC audio
+
 audio/x-aiff
-	description=AIF audio
+	description=AIFF audio
 
 audio/x-it
 	description=Impulse Tracker audio
 
 audio/x-midi
 	description=MIDI audio
+
+audio/x-mod
+	description=MOD audio
 
 audio/x-mp3
 	description=MP3 audio
@@ -322,6 +367,12 @@ audio/x-real-audio
 audio/x-riff
 	description=RIFF audio
 
+audio/x-s3m
+	description=Scream Tracker 3 audio
+
+audio/x-stm
+	description=Scream Tracker audio
+
 audio/x-ulaw
 	description=audio
 
@@ -330,6 +381,12 @@ audio/x-voc
 
 audio/x-wav
 	description=Wave audio
+
+audio/x-xi
+	description=Scream Tracker instrument
+
+audio/x-xm
+	description=FastTracker II audio
 
 image/bmp
 	description=Windows bitmap
@@ -404,7 +461,16 @@ image/tiff
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 
 image/vnd.dwg
-	description=AutoCAD document
+	description=AutoCAD image
+
+image/vnd.dxf
+	description=DXF vector graphic
+
+image/x-3ds
+	description=3D Studio image
+
+image/x-applix-graphic
+	description=Applix image
 
 image/x-bmp
 	default_action_type=component
@@ -418,11 +484,26 @@ image/x-bmp
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 	description=Windows bitmap
 
+image/x-cmu-raster
+	description=CMU raster image
+
 image/x-compressed-xcf
 	description=GIMP image archive
 
-image/x-ico	
+image/x-ico
 	description=Icon image
+
+image/x-iff
+	description=IFF image
+
+image/x-ilbm
+	description=ILBM image
+
+image/x-lwo
+	description=LightWave object
+
+image/x-lws
+	description=LightWave scene
 
 image/x-png
 	description=PNG image	
@@ -485,7 +566,7 @@ image/x-portable-pixmap
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 
 image/x-psd
-	description=Photoshop document
+	description=Photoshop image
 	default_action_type=application
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp
@@ -495,6 +576,9 @@ image/x-psd
 image/x-rgb
 	description=RGB image
 	
+image/x-tga
+	description=TarGA image
+
 image/x-xbitmap
 	description=X bitmap
 	default_action_type=application
@@ -591,6 +675,9 @@ text/*
 text/abiword
 	description=AbiWord document
 
+text/bib
+	description=bibliography record
+
 text/calendar
 	description=calendar information
 
@@ -616,6 +703,9 @@ text/html
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx
 
 
+text/mathml
+	description=MathML document
+
 text/plain
 	description=plain text
 	default_action_type=component
@@ -640,6 +730,12 @@ text/sgml
 text/tab-separated-values
 	description=tab-separated text
 
+# Note that text/tex should be text/x-tex, but a user reported
+# a complaint about text/tex in Nautilus, so some non-gnome-vfs
+# mechanism must be returning it (probably a web server)
+text/tex
+	description=TeX document
+
 text/x-authors
 	description=authors list
 
@@ -660,6 +756,12 @@ text/x-credits
 
 text/x-csh
 	description=C-Shell script
+
+text/x-dcl
+	description=DCL script
+
+text/x-dsl
+	description=DSSSL document
 
 text/x-dtd
 	description=document type definition

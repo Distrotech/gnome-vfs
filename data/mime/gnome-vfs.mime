@@ -366,6 +366,9 @@ model/vrml
 
 
 
+text/bib
+	ext: bib
+
 text/css
 	ext: css
 

@@ -1,3 +1,14 @@
+2000-08-25  John Sullivan  <sullivan@eazel.com>
+
+	Fixed bug 1388 (some MIME types have no description)
+
+	* data/mime/gnome-vfs.mime:
+	* data/mime/gnome-vfs.keys:
+	Added descriptions for all un-descriptioned MIME types
+	from gnome-vfs.mime and mime-magic. The check-mime
+	script now finds no problems. Also added a couple of
+	missing MIME types that were reported by Nautilus users.
+
 2000-08-25  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* modules/Makefile.am: added efs-method.c efs-method.h 
