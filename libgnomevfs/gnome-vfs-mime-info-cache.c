@@ -33,6 +33,7 @@
 #include "gnome-vfs-mime-monitor.h"
 #include "gnome-vfs-monitor.h"
 #include "gnome-vfs-ops.h"
+#include "gnome-vfs-utils.h"
 #include "eggdesktopentries.h"
 #include "eggdirfuncs.h"
 
@@ -56,7 +57,6 @@ typedef struct {
 
 extern void _gnome_vfs_mime_monitor_emit_data_changed (GnomeVFSMIMEMonitor *monitor); 
 
-static void free_mime_info_cache_map_list (GList *list);
 static void gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir);
 static void gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir);
 static GnomeVFSMimeInfoCacheDir *gnome_vfs_mime_info_cache_dir_new (const char *path);
@@ -76,11 +76,19 @@ static void gnome_vfs_mime_info_cache_free (GnomeVFSMimeInfoCache *cache);
 static GnomeVFSMimeInfoCache *mime_info_cache = NULL;
 G_LOCK_DEFINE_STATIC (mime_info_cache);
 
+
 static void
-free_mime_info_cache_map_list (GList *list)
+destroy_info_cache_value (gpointer key, GList *value, gpointer data)
 {
-	g_list_foreach (list, (GFunc) g_free, NULL);
-	g_list_free (list);
+	gnome_vfs_list_deep_free (value);
+}
+
+static void
+destroy_info_cache_map (GHashTable *info_cache_map)
+{
+	g_hash_table_foreach (info_cache_map, (GHFunc)destroy_info_cache_value,
+			      NULL);
+	g_hash_table_destroy (info_cache_map);
 }
 
 static gboolean
@@ -109,7 +117,7 @@ gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 {
 	EggDesktopEntries *entries;
 	GError *load_error;
-	gchar *filename, **desktop_file_ids, **mime_types;
+	gchar *filename, **mime_types;
 	int i;
 	static gchar *allowed_start_groups[] = { "MIME Cache", NULL };
 	struct stat buf;
@@ -125,12 +133,12 @@ gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 		return;
 
 	if (dir->mime_info_cache_map != NULL) {
-		g_hash_table_destroy (dir->mime_info_cache_map);
+		destroy_info_cache_map (dir->mime_info_cache_map);
 	}
 
 	dir->mime_info_cache_map = g_hash_table_new_full (g_str_hash, g_str_equal,
 							  (GDestroyNotify) g_free,
-							  (GDestroyNotify) free_mime_info_cache_map_list);
+							  NULL);
 
 	filename = g_build_filename (dir->path, "mimeinfo.cache", NULL);
 
@@ -162,6 +170,7 @@ gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 		goto error;
 
 	for (i = 0; mime_types[i] != NULL; i++) {
+		gchar **desktop_file_ids;
 		desktop_file_ids = egg_desktop_entries_get_string_list (entries,
 									"MIME Cache",
 									mime_types[i],
@@ -365,7 +374,7 @@ gnome_vfs_mime_info_cache_dir_free (GnomeVFSMimeInfoCacheDir *dir)
 	if (dir == NULL)
 		return;
 	if (dir->mime_info_cache_map != NULL) {
-		g_hash_table_destroy (dir->mime_info_cache_map);
+		destroy_info_cache_map (dir->mime_info_cache_map);
 		dir->mime_info_cache_map = NULL;
 
 	}
