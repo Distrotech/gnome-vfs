@@ -57,13 +57,10 @@ static GList *prune_ids_for_nonexistent_applications (GList *list);
 static GnomeVFSResult gnome_vfs_mime_edit_user_file (const char *mime_type, const char *key, const char *value);
 
 
-
-GnomeVFSMimeActionType
-gnome_vfs_mime_get_default_action_type (const char *mime_type)
+static GnomeVFSMimeActionType
+gnome_vfs_mime_get_default_action_type_without_fallback (const char *mime_type)
 {
 	const char *action_type_string;
-	char *supertype;
-	GnomeVFSMimeActionType action_type;
 
 	action_type_string = gnome_vfs_mime_get_value
 		(mime_type, "default_action_type");
@@ -73,29 +70,37 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
 	} else if (action_type_string != NULL && strcasecmp (action_type_string, "component") == 0) {
 		return GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
 	} else {
-		/* Fall back to the supertype. */
-		supertype = mime_type_get_supertype (mime_type);
-
-		/* Check if already a supertype */
-		if (supertype != NULL && strcmp (supertype, mime_type) != 0) {
-			action_type = gnome_vfs_mime_get_default_action_type (supertype);
-		} else {
-			action_type = GNOME_VFS_MIME_ACTION_TYPE_NONE;
-		}
-
-		g_free (supertype);
-		return action_type;
+		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
 	}
 }
 
+GnomeVFSMimeActionType
+gnome_vfs_mime_get_default_action_type (const char *mime_type)
+{
+	char *supertype;
+	GnomeVFSMimeActionType action_type;
+
+	action_type = gnome_vfs_mime_get_default_action_type_without_fallback (mime_type);
+
+	if (action_type == GNOME_VFS_MIME_ACTION_TYPE_NONE) {
+		/* Fall back to the supertype. */
+		supertype = mime_type_get_supertype (mime_type);
+
+		action_type = gnome_vfs_mime_get_default_action_type_without_fallback (supertype);
+		g_free (supertype);
+	}
+
+	return action_type;
+}
+
 GnomeVFSMimeAction *
-gnome_vfs_mime_get_default_action (const char *mime_type)
+gnome_vfs_mime_get_default_action_without_fallback (const char *mime_type)
 {
 	GnomeVFSMimeAction *action;
 
 	action = g_new0 (GnomeVFSMimeAction, 1);
 
-	action->action_type = gnome_vfs_mime_get_default_action_type (mime_type);
+	action->action_type = gnome_vfs_mime_get_default_action_type_without_fallback (mime_type);
 
 	switch (action->action_type) {
 	case GNOME_VFS_MIME_ACTION_TYPE_APPLICATION:
@@ -124,6 +129,23 @@ gnome_vfs_mime_get_default_action (const char *mime_type)
 		break;
 	default:
 		g_assert_not_reached ();
+	}
+
+	return action;
+}
+
+GnomeVFSMimeAction *
+gnome_vfs_mime_get_default_action (const char *mime_type)
+{
+	GnomeVFSMimeAction *action;
+	char *supertype;
+
+	action = gnome_vfs_mime_get_default_action_without_fallback (mime_type);
+	if (action == NULL) {
+		/* Fall back to the supertype. */
+		supertype = mime_type_get_supertype (mime_type);
+		action = gnome_vfs_mime_get_default_action_without_fallback (supertype);
+		g_free (supertype);
 	}
 
 	return action;

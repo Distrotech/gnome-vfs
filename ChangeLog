@@ -1,3 +1,10 @@
+2000-07-25  Dan Winship  <danw@helixcode.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_get_default_action_without_fallback): New function
+	to get the default action for a MIME type without falling back to
+	its supertype if there is nothing available for the full type.
+
 2000-07-25  Darin Adler  <darin@eazel.com>
 
 	* modules/pipe-method.c: (mime_from_uri):

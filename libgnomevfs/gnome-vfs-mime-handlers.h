@@ -61,6 +61,7 @@ typedef struct {
 GnomeVFSMimeApplication *gnome_vfs_mime_application_copy                   (GnomeVFSMimeApplication *application);
 GnomeVFSMimeActionType   gnome_vfs_mime_get_default_action_type            (const char              *mime_type);
 GnomeVFSMimeAction *     gnome_vfs_mime_get_default_action                 (const char              *mime_type);
+GnomeVFSMimeAction *     gnome_vfs_mime_get_default_action_without_fallback(const char              *mime_type);
 GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application            (const char              *mime_type);
 #ifdef USING_OAF
 OAF_ServerInfo *         gnome_vfs_mime_get_default_component              (const char              *mime_type);
