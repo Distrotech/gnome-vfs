@@ -1,3 +1,10 @@
+2002-10-07  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/vfolder/applications-all-users.vfolder-info.in:
+
+	Don't hardcode displaying evolution and galeon into the
+	top-level menu.
+	
 2002-10-01  Yanko Kaneti <yaneti@declera.com>
 
 	* schemas/system_http_proxy.schemas: reorder some elements so that it 
