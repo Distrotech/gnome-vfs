@@ -1,3 +1,21 @@
+2000-12-21  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Gene Z. Ragan  <gzr@eazel.com>
+
+	* libgnomevfs-pthread/Makefile.am:
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	(gnome_vfs_job_create_slave), (gnome_vfs_thread_backend_shutdown):
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.c: (new_thread_state),
+	(destroy_thread_state), (make_thread_available), (thread_entry),
+	(gnome_vfs_thread_create), (gnome_vfs_thread_pool_shutdown):
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.h:
+	Add a simple thread pool to avoid the overhead of creating new
+	threads. Use the new thread pool calls when creating threads in
+	gnome-vfs-job-slave.
+	Left the old, non-thread pool thread creation in disabled by an
+	#ifdef for now. I'll take it out later when we know everyting is
+	OK about the new code.
+
 2000-12-21  Maciej Stachowiak  <mjs@eazel.com>
 
 	reviewed by: Pavel Cisler  <pavel@eazel.com>

@@ -28,6 +28,7 @@
 #include "gnome-vfs-job-slave.h"
 
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-thread-pool.h"
 #include "gnome-vfs.h"
 #include <gtk/gtk.h>
 #include <pthread.h>
@@ -51,11 +52,16 @@ thread_routine (void *data)
 	return NULL;
 }
 
+#define USE_THREAD_POOL
+
 gboolean
 gnome_vfs_job_create_slave (GnomeVFSJob *job)
 {
-	pthread_attr_t thread_attr;
 	pthread_t thread;
+
+#ifndef USE_THREAD_POOL
+	pthread_attr_t thread_attributes;
+#endif
 	
 	g_return_val_if_fail (job != NULL, FALSE);
 
@@ -72,17 +78,22 @@ gnome_vfs_job_create_slave (GnomeVFSJob *job)
 		return FALSE;
 	}
 	
-	pthread_attr_init (&thread_attr);
-	pthread_attr_setdetachstate (&thread_attr,
-				     PTHREAD_CREATE_DETACHED);
+#ifndef USE_THREAD_POOL
+	pthread_attr_init (&thread_attributes);
+	pthread_attr_setdetachstate (&thread_attributes, PTHREAD_CREATE_DETACHED);
 
-	if (pthread_create (&thread, &thread_attr,
-			    thread_routine, job) != 0) {
+	if (pthread_create (&thread, &thread_attributes, thread_routine, job) != 0) {
 		g_warning ("Impossible to allocate a new GnomeVFSJob thread.");
 		
 		return FALSE;
 	}
-	
+#else
+	if (gnome_vfs_thread_create (&thread, thread_routine, job) != 0) {
+		g_warning ("Impossible to allocate a new GnomeVFSJob thread.");
+		
+		return FALSE;
+	}
+#endif
 	return TRUE;
 }
 
@@ -110,7 +121,7 @@ gnome_vfs_thread_backend_shutdown (void)
 		}
 
 		if (done) {
-			return;
+			break;
 		}
 
 		/* Some threads are still trying to quit, wait a bit until they
@@ -123,4 +134,8 @@ gnome_vfs_thread_backend_shutdown (void)
 #endif
 		usleep (20000);
 	}
+
+#ifdef USE_THREAD_POOL
+	gnome_vfs_thread_pool_shutdown ();
+#endif
 }
