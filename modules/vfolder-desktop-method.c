@@ -1367,14 +1367,14 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 				      scheme, ".vfolder-info",
 				      NULL);
 	info->user_filename = g_strconcat (g_get_home_dir (),
-					   "/" DOT_GNOME "vfolders/",
+					   "/" DOT_GNOME "/vfolders/",
 					   scheme, ".vfolder-info",
 					   NULL);
 	info->desktop_dir = g_strconcat (SYSCONFDIR,
 					 "/gnome-vfs-2.0/vfolders/",
 					 NULL);
 	info->user_desktop_dir = g_strconcat (g_get_home_dir (),
-					      "/" DOT_GNOME "vfolders/",
+					      "/" DOT_GNOME "/vfolders/",
 					      NULL);
 
 	/* Init the desktop paths */
@@ -1395,7 +1395,7 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 	info->item_dirs = g_slist_reverse (list);
 
 	info->user_item_dir = g_strconcat (g_get_home_dir (),
-					   "/" DOT_GNOME "vfolders/",
+					   "/" DOT_GNOME "/vfolders/",
 					   scheme,
 					   NULL);
 
@@ -2676,8 +2676,14 @@ vfolder_info_recheck (VFolderInfo *info,
 			StatLoc *sl = li->data;
 			if ( ! check_statloc (sl, curtime)) {
 				info->entries_valid = FALSE;
-				break;
-			}
+				if ( ! vfolder_info_reload_unlocked (info, result, context)) {
+					/* we have failed, make sure we fail
+					 * next time too */
+					sl->trigger_next = TRUE;
+					return FALSE;
+				}
+				reread = TRUE;
+			}		       
 		}
 	}
 	return TRUE;
@@ -2891,7 +2897,7 @@ make_file_private (VFolderInfo *info, EntryFile *efile)
 
 	newfname = g_build_filename (g_get_home_dir (),
 				     DOT_GNOME,
-				     "vfolders",
+				     "/vfolders",
 				     info->scheme,
 				     efile->entry.name,
 				     NULL);
@@ -3179,6 +3185,11 @@ get_entry_unlocked (GnomeVFSURI *uri,
 	if (parent != NULL)
 		*parent = NULL;
 
+	/* if the request is only for applications: */
+	if (uri->text == NULL) {
+		/* let's use applications:/ */
+		uri = gnome_vfs_uri_append_string (uri, "/");
+	}
 	path = gnome_vfs_uri_get_path (uri);
 	basename = get_basename (uri);
 	scheme = gnome_vfs_uri_get_scheme (uri);

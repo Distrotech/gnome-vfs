@@ -1,3 +1,23 @@
+2002-04-26  Benedikt Roth  <Benedikt.Roth@gmx.net>
+
+	* modules/applications.vfolder-info.in:
+	Added <Desktop> entry for the Applications folder so that nautilus
+	will display applications:/// information in the sidebar (#72718).
+	Moved all <DontShowIfEmpty/> before </Folder> and added one to the
+	Accessibility folder.
+
+	* modules/vfolder-desktop-method.c: (get_entry_unlocked):
+	If the user made a request for 'applications:' (which would fail)
+	use 'applications:/' to be consistent witch eg 'start-here:' (#75033)
+
+	* modules/vfolder-desktop-method.c: (vfolder_info_recheck):
+	Fix monitoring of directories so that eg newly installed 
+	.desktop files will show up. (#75150)
+
+	* modules/vfolder-desktop-method.c: (vfolder_info_init),
+	(make_file_private):
+	Changed ~/.gnome2vfolders/ to ~/.gnome2/vfolders (#78065).
+
 2002-04-25  Jody Goldberg <jody@gnome.org>
 
 	* libgnomevfs/gnome-vfs-application-registry.c
