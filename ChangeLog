@@ -1,5 +1,11 @@
 2003-04-23  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime-info.c (gnome_vfs_mime_type_is_known):
+	Nothing is known if the mime type has been deleted.
+	Fixes bug #109479
+
+2003-04-23  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-handlers.c (gnome_vfs_mime_remove_extension):
 	Handle the case when the last extension is removed.
 

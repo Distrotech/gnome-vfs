@@ -1008,6 +1008,10 @@ gnome_vfs_mime_type_is_known (const char *mime_type)
 
 	reload_if_needed ();
 
+	if (is_mime_type_deleted (mime_type)) {
+		return FALSE;
+	}
+	
 	if (g_hash_table_lookup (specific_types, mime_type)) {
 		return TRUE;
 	}
