@@ -1,3 +1,7 @@
+2002-02-14  Tõivo Leedjärv  <leedjarv@interest.ee>
+
+	* configure.in: Added et to ALL_LINGUAS.
+
 2002-02-12  Morten Welinder  <terra@diku.dk>
 
 	* libgnomevfs/gnome-vfs-method.h, libgnomevfs/gnome-vfs-job.h,
