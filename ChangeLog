@@ -1,3 +1,8 @@
+2000-07-24  Fatih Demir	<kabalak@gmx.net> # which EMAIL_ADDRESS ?
+
+	* mime-type-capplet/nautilus-mime-type.desktop: Added the
+		Turkish desktop entries.
+
 2000-07-21  Mathieu Lacage  <set EMAIL_ADDRESS environment variable>
 
 	Closes bug 1120, 1118, 1176 from buzilla.eazel.com
