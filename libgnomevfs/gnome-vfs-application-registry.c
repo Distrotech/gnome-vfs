@@ -63,6 +63,7 @@ struct _Application {
 	gboolean    user_owned;
 	GHashTable *keys;
 	GList      *mime_types;
+	GList      *supported_uri_schemes;
 	/* The user_owned version of this if this is a system
 	 * version */
 	Application *user_application;
@@ -170,9 +171,6 @@ application_new (const char *app_id, gboolean user_owned)
 	application->app_id = g_strdup(app_id);
 	application->ref_count = 1;
 	application->user_owned = user_owned;
-	application->keys = NULL;
-	application->mime_types = NULL;
-	application->user_application = NULL;
 
 	return application;
 }
@@ -324,20 +322,92 @@ application_compare (Application *application1,
 }
 
 static void
-add_mime_type (Application *application, const char *mime_type)
+add_application_to_mime_type_table (Application *application,
+				    const char *mime_type)
 {
-	GList *app_list;
-	char *old_key;
+	GList *application_list;
 	GHashTable *table;
+	char *old_key;
 
-	g_return_if_fail(application != NULL);
-	g_return_if_fail(mime_type != NULL);
+	if (strstr (mime_type, "/*") != NULL)
+		table = generic_mime_types;
+	else
+		table = specific_mime_types;
+	
+	g_assert (table != NULL);
 
+	if (g_hash_table_lookup_extended (table, mime_type,
+					  (gpointer *)&old_key,
+					  (gpointer *)&application_list)) {
+		/* Sorted order is important as we can then easily
+		 * uniquify the results */
+		application_list = g_list_insert_sorted
+			(application_list,
+			 application_ref (application),
+			 (GCompareFunc) application_compare);
+		g_hash_table_insert (table, old_key, application_list);
+	} else {
+		application_list = g_list_prepend (NULL,
+						   application_ref (application));
+		g_hash_table_insert (table, g_strdup (mime_type), application_list);
+	}
+}
+
+static void
+add_mime_type_to_application (Application *application, const char *mime_type)
+{
 	/* if this exists already, just return */
 	if (g_list_find_custom (application->mime_types,
 				/*glib is const incorrect*/(gpointer)mime_type,
 				(GCompareFunc) strcmp) != NULL)
 		return;
+	
+	application->mime_types =
+		g_list_prepend (application->mime_types,
+				g_strdup (mime_type));
+	
+	add_application_to_mime_type_table (application, mime_type);
+
+}
+
+static void
+add_supported_uri_scheme_to_application (Application *application,
+					 const char *supported_uri_scheme)
+{
+	if (g_list_find_custom (application->supported_uri_schemes,
+				/*glib is const incorrect*/(gpointer) supported_uri_scheme,
+				(GCompareFunc) strcmp) != NULL) {
+		return;
+	}
+	
+	application->supported_uri_schemes =
+		g_list_prepend (application->supported_uri_schemes,
+				g_strdup (supported_uri_scheme));
+
+}
+
+static GList *
+supported_uri_scheme_list_copy (GList *supported_uri_schemes)
+{
+	GList *copied_list, *node;
+
+	copied_list = NULL;
+	for (node = supported_uri_schemes; node != NULL;
+	     node = node->next) {
+		copied_list = g_list_prepend (copied_list,
+					      g_strdup ((char *) node->data));
+	}
+
+	return copied_list;
+}
+
+static void
+remove_application_from_mime_type_table (Application *application,
+					 const char *mime_type)
+{
+	GHashTable *table;
+	char *old_key;
+	GList *application_list, *entry;
 
 	if (strstr (mime_type, "/*") != NULL)
 		table = generic_mime_types;
@@ -346,34 +416,32 @@ add_mime_type (Application *application, const char *mime_type)
 
 	g_assert (table != NULL);
 
-	application->mime_types =
-		g_list_insert_sorted (application->mime_types,
-				      g_strdup (mime_type),
-				      (GCompareFunc) strcmp);
-
 	if (g_hash_table_lookup_extended (table, mime_type,
 					  (gpointer *)&old_key,
-					  (gpointer *)&app_list)) {
-		/* Sorted order is important as we can then easily
-		 * uniquify the results */
-		app_list = g_list_insert_sorted
-			(app_list,
-			 application_ref (application),
-			 (GCompareFunc) application_compare);
-		g_hash_table_insert (table, old_key, app_list);
-	} else {
-		app_list = g_list_prepend (NULL,
-					   application_ref (application));
-		g_hash_table_insert (table, g_strdup (mime_type), app_list);
-	}
+					  (gpointer *)&application_list)) {
+		entry = g_list_find (application_list, application);
+
+		/* if this fails we're in deep doodoo I guess */
+		g_assert (entry != NULL);
+
+		application_list = g_list_remove_link (application_list, entry);
+		entry->data = NULL;
+		application_unref (application);
+
+		if (application_list != NULL) {
+			g_hash_table_insert (table, old_key, application_list);
+		} else {
+			g_hash_table_remove (table, old_key);
+			g_free(old_key);
+		}
+	} else
+		g_assert_not_reached ();
 }
 
 static void
-remove_mime_type (Application *application, const char *mime_type)
+remove_mime_type_for_application (Application *application, const char *mime_type)
 {
-	GList *app_list, *entry;
-	char *old_key;
-	GHashTable *table;
+	GList *entry;
 
 	g_return_if_fail(application != NULL);
 	g_return_if_fail(mime_type != NULL);
@@ -384,43 +452,19 @@ remove_mime_type (Application *application, const char *mime_type)
 		 (GCompareFunc) strcmp);
 
 	/* if this doesn't exist, just return */
-	if (entry == NULL)
+	if (entry == NULL) {
 		return;
-
-	if (strstr (mime_type, "/*") != NULL)
-		table = generic_mime_types;
-	else
-		table = specific_mime_types;
-
-	g_assert (table != NULL);
+	}
 
 	application->mime_types =
 		g_list_remove_link (application->mime_types, entry);
 	g_free (entry->data);
 	entry->data = NULL;
 	g_list_free_1 (entry);
-
-	if (g_hash_table_lookup_extended (table, mime_type,
-					  (gpointer *)&old_key,
-					  (gpointer *)&app_list)) {
-		entry = g_list_find (app_list, application);
-
-		/* if this fails we're in deep doodoo I guess */
-		g_assert (entry != NULL);
-
-		app_list = g_list_remove_link (app_list, entry);
-		entry->data = NULL;
-		application_unref (application);
-
-		if (app_list != NULL) {
-			g_hash_table_insert (table, old_key, app_list);
-		} else {
-			g_hash_table_remove (table, old_key);
-			g_free(old_key);
-		}
-	} else
-		g_assert_not_reached ();
+	
+	remove_application_from_mime_type_table (application, mime_type);
 }
+
 
 static void
 application_clear_mime_types (Application *application)
@@ -428,7 +472,7 @@ application_clear_mime_types (Application *application)
 	g_return_if_fail (application != NULL);
 
 	while (application->mime_types)
-		remove_mime_type (application, application->mime_types->data);
+		remove_mime_type_for_application (application, application->mime_types->data);
 }
 
 static void
@@ -438,12 +482,14 @@ application_remove (Application *application)
 
 	g_return_if_fail (application != NULL);
 
-	if (applications == NULL)
+	if (applications == NULL) {
 		return;
+	}
 
 	main_application = application_lookup (application->app_id);
-	if (main_application == NULL)
+	if (main_application == NULL) {
 		return;
+	}
 
 	/* We make sure the mime types are killed even if the application
 	 * entry lives after unreffing it */
@@ -530,23 +576,32 @@ application_add_key (Application *application, const char *key,
 {
 	int lang_level;
 
-	/* special case */
-	if (strcmp (key, "mime_types") == 0) {
-		char *tmp = g_strdup (value);
-		char *p;
+	g_return_if_fail (application != NULL);
+	g_return_if_fail (key != NULL);
+	g_return_if_fail (value != NULL);
 
-		if (lang != NULL)
-			g_warning ("Trying to \"translate\" mime types, bad!");
-
-		p = strtok (tmp, ", \t");
-		while (p) {
-			add_mime_type(application, p);
-			p = strtok (NULL, ", \t");
+	if (strcmp (key, "mime_types") == 0 ||
+	    strcmp (key, "supported_uri_schemes") == 0) {
+		char *value_copy = g_strdup (value);
+		char *next_value;
+		/* FIXME: There used to be a check here for
+		   the value of "lang", but spamming
+		   the terminal about it is not really
+		   the right way to deal with that, nor
+		   is "MIME Types can't have languages, bad!"
+		   which is what was here before */
+		next_value = strtok (value_copy, ", \t");
+		while (next_value != NULL) {
+			if (strcmp (key, "mime_types") == 0) {
+				add_mime_type_to_application (application, next_value);
+			}
+			else {
+				add_supported_uri_scheme_to_application (application, next_value);
+			}
+			next_value = strtok (NULL, ", \t");
 		}
-
-		g_free(tmp);
-
-		return;
+		g_free(value_copy);
+		return;		   
 	}
 
 	lang_level = language_level (lang);
@@ -1251,6 +1306,45 @@ gnome_vfs_application_registry_get_mime_types (const char *app_id)
 }
 
 gboolean
+gnome_vfs_application_registry_supports_uri_scheme (const char *app_id,
+						    const char *uri_scheme)
+{
+	Application *application;
+
+	g_return_val_if_fail (app_id != NULL, FALSE);
+	g_return_val_if_fail (uri_scheme != NULL, FALSE);
+
+	maybe_reload ();
+
+	application = application_lookup (app_id);
+	if (application == NULL)
+		return FALSE;
+
+	if (strcmp (uri_scheme, "file") == 0 &&
+	    application->supported_uri_schemes == NULL &&
+	    application->user_application->supported_uri_schemes == NULL) {
+		return TRUE;
+	}
+
+	/* check both the application and the user application
+	 * mime_types lists */
+	/* FIXME: This method does not allow a user to override and remove
+	   uri schemes that an application can handle.  Is this an issue? */
+
+	if ((g_list_find_custom (application->supported_uri_schemes,
+				 /*glib is const incorrect*/(gpointer)uri_scheme,
+				(GCompareFunc) strcmp) != NULL) ||
+	    (application->user_application &&
+	     g_list_find_custom (application->user_application->supported_uri_schemes,
+				 /*glib is const incorrect*/(gpointer) uri_scheme,
+				 (GCompareFunc) strcmp) != NULL)) {
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+gboolean
 gnome_vfs_application_registry_supports_mime_type (const char *app_id,
 						   const char *mime_type)
 {
@@ -1267,6 +1361,8 @@ gnome_vfs_application_registry_supports_mime_type (const char *app_id,
 
 	/* check both the application and the user application
 	 * mime_types lists */
+	/* FIXME: This method does not allow a user to override and remove
+	   mime types that an application can handle.  Is this an issue? */
 	if ((g_list_find_custom (application->mime_types,
 				 /*glib is const incorrect*/(gpointer)mime_type,
 				(GCompareFunc) strcmp) != NULL) ||
@@ -1278,6 +1374,7 @@ gnome_vfs_application_registry_supports_mime_type (const char *app_id,
 	else
 		return FALSE;
 }
+
 
 /*
  * Mime type functions
@@ -1307,12 +1404,13 @@ gnome_vfs_application_registry_add_mime_type (const char *app_id,
 	Application *application;
 
 	g_return_if_fail (app_id != NULL);
+	g_return_if_fail (mime_type != NULL);
 
 	maybe_reload ();
 
 	application = application_lookup_or_create (app_id, TRUE/*user_owned*/);
 
-	add_mime_type (application, mime_type);
+	add_mime_type_to_application (application, mime_type);
 
 	user_file_dirty = TRUE;
 }
@@ -1329,7 +1427,7 @@ gnome_vfs_application_registry_remove_mime_type (const char *app_id,
 
 	application = application_lookup_or_create (app_id, TRUE/*user_owned*/);
 
-	remove_mime_type (application, mime_type);
+	remove_mime_type_for_application (application, mime_type);
 
 	user_file_dirty = TRUE;
 }
@@ -1424,11 +1522,14 @@ gnome_vfs_application_registry_get_mime_application (const char *app_id)
 			(i_application,
 			 GNOME_VFS_APPLICATION_REGISTRY_CAN_OPEN_MULTIPLE_FILES,
 			 NULL);
-	application->can_open_uris =
+	application->expects_uris =
 		real_get_bool_value
 			(i_application,
-			 GNOME_VFS_APPLICATION_REGISTRY_CAN_OPEN_URIS,
+			 GNOME_VFS_APPLICATION_REGISTRY_EXPECTS_URIS,
 			 NULL);
+	application->supported_uri_schemes = 
+		supported_uri_scheme_list_copy (i_application->supported_uri_schemes);
+
 	application->requires_terminal =
 		real_get_bool_value
 			(i_application,
@@ -1456,10 +1557,11 @@ gnome_vfs_application_registry_save_mime_application (const GnomeVFSMimeApplicat
 		   application->command);
 	set_bool_value (i_application, GNOME_VFS_APPLICATION_REGISTRY_CAN_OPEN_MULTIPLE_FILES,
 			application->can_open_multiple_files);
-	set_bool_value (i_application, GNOME_VFS_APPLICATION_REGISTRY_CAN_OPEN_URIS,
-			application->can_open_uris);
+	set_bool_value (i_application, GNOME_VFS_APPLICATION_REGISTRY_EXPECTS_URIS,
+			application->expects_uris);
 	set_bool_value (i_application, GNOME_VFS_APPLICATION_REGISTRY_REQUIRES_TERMINAL,
 			application->requires_terminal);
-
+	/* FIXME: Need to save supported_uri_schemes information */
 	user_file_dirty = TRUE;
 }
+

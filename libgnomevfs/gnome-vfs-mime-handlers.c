@@ -39,6 +39,7 @@ static GConfEngine *gconf_engine = NULL;
 static char *         get_user_level                          (void);
 static char *         mime_type_get_supertype                 (const char         *mime_type);
 static GList *        OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
+static GList *        copy_str_list                           (GList *string_list);
 static GList *        comma_separated_str_to_str_list         (const char         *str);
 static GList *        str_list_difference                     (GList              *a,
 							       GList              *b);
@@ -457,7 +458,8 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	short_list_removals = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
 							       (mime_type,
 								"short_list_application_user_removals"));
-
+	/* FIXME: gnome_vfs_mime_get_value also checks the supertype.
+	   This code has no effect */
 	/* Only include the supertype in the short list if we came up empty with
 	   the specific types */
 	supertype = mime_type_get_supertype (mime_type);
@@ -522,6 +524,7 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	
 	return preferred_applications;
 }
+
 
 
 static char *
@@ -1474,6 +1477,8 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 	return gnome_vfs_application_registry_sync ();
 }
 
+
+
 GnomeVFSMimeApplication *
 gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 {
@@ -1488,7 +1493,8 @@ gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 	result->name = g_strdup (application->name);
 	result->command = g_strdup (application->command);
 	result->can_open_multiple_files = application->can_open_multiple_files;
-	result->can_open_uris = application->can_open_uris;
+	result->expects_uris = application->expects_uris;
+	result->supported_uri_schemes = copy_str_list (application->supported_uri_schemes);
 	result->requires_terminal = application->requires_terminal;
 
 	return result;
@@ -1500,6 +1506,10 @@ gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application)
 	if (application != NULL) {
 		g_free (application->name);
 		g_free (application->command);
+		g_list_foreach (application->supported_uri_schemes,
+				(GFunc) g_free,
+				NULL);
+		g_list_free (application->supported_uri_schemes);
 		g_free (application->id);
 		g_free (application);
 	}
@@ -1840,4 +1850,17 @@ str_list_difference (GList *a, GList *b)
 	}
 
 	return g_list_reverse (result);
+}
+
+static GList *
+copy_str_list (GList *string_list)
+{
+	GList *copy, *node;
+       
+	copy = NULL;
+	for (node = string_list; node != NULL; node = node->next) {
+		copy = g_list_prepend (copy, 
+				       g_strdup ((char *) node->data));
+				       }
+	return g_list_reverse (copy);
 }

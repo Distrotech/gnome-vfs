@@ -1,3 +1,73 @@
+2001-01-26  Rebecca Schulman  <rebecka@eazel.com>
+	Add support for the "supported_uri_schemes"
+	attributes in the mime applications file,
+	and changed can_open_uris to "expects_uris"
+	because this attribute is more about
+	the way arguments should be specified than
+	about its capabilities of understanding
+	locations.
+	The supported uri schemes attributes is
+	optional, and if it is not included, the
+	value is assumed to be file.  
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-application-registry.h:
+	Add the new function
+	gnome_vfs_application_registry_supports_uri_scheme to the
+	public api
+	
+	* libgnomevfs/gnome-vfs-application-registry.c: (application_new),
+	(add_application_to_mime_type_table),
+	(add_mime_type_to_application),
+	(add_supported_uri_scheme_to_application),
+	(remove_application_from_mime_type_table),
+	(remove_mime_type_for_application), 
+	(supported_uri_scheme_list_copy),
+	(gnome_vfs_application_registry_supports_uri_scheme),
+	(gnome_vfs_application_registry_supports_mime_type),
+	(gnome_vfs_application_registry_add_mime_type),
+	(gnome_vfs_application_registry_remove_mime_type),
+	Add  supported uri schemes functions to complement
+	the current mime type functions
+	and refactor the mime_type functions to share code with
+	the new supported_uri_schemes functions where 
+	appropriate
+	(application_clear_mime_types),
+	(application_add_key),
+	Add ability to parse the supported_uri_schemes attribute
+	(gnome_vfs_application_registry_get_mime_application),
+	(gnome_vfs_application_registry_save_mime_application):
+	Add supported_uri_schemes to these functions
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_short_list_applications),
+	(gnome_vfs_mime_application_copy),
+	(gnome_vfs_mime_application_free), 
+	(copy_str_list):
+	Add supported_uri_schemes to the MimeApplication
+	structure
+
+	* data/mime/gnome-vfs.applications:
+	Add some new "supported_uri_schemes".
+	What I have added is not complete.
+	* doc/mime-data-specification.txt:
+	Add information about how user files can augment, but
+	not replace information about applications' accepted mime
+	types and supported uri schemes.  Add FIXMEs about
+	how this isn't clearly correct.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(add_or_update_application), (show_new_application_window),
+	(show_edit_application_window):
+	Change can_open_uris to "Expects URIs"
+	
+	* test/test-mime-handlers-set.c: (main):
+	* test/test-mime-handlers.c: (append_comma_and_scheme),
+	(format_supported_uri_schemes_for_display), (print_application):
+	Update tests, by adding new attribute
+
 2001-01-26  Seth Nickell  <seth@eazel.com>
 
 	reviewed by: Gene Z. Ragan <gzr@eazel.com>

@@ -40,7 +40,8 @@ typedef struct {
 	char *name;
 	char *command;
 	gboolean can_open_multiple_files;
-	gboolean can_open_uris;
+	gboolean expects_uris;
+	GList *supported_uri_schemes;
 	gboolean requires_terminal;
 } GnomeVFSMimeApplication;
 
@@ -68,6 +69,7 @@ GnomeVFSResult           gnome_vfs_mime_set_default_application            (cons
 									    const char              *application_id);
 GnomeVFSResult           gnome_vfs_mime_set_default_component              (const char              *mime_type,
 									    const char              *component_iid);
+
 const char  		*gnome_vfs_mime_get_icon 			   (const char 		    *mime_type);
 GnomeVFSResult  	 gnome_vfs_mime_set_icon 			   (const char 		    *mime_type,
 									    const char		    *filename);

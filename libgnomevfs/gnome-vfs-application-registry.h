@@ -35,16 +35,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif /*__cplusplus*/
-
+	
 /* These are the standard string keys to get */
 #define GNOME_VFS_APPLICATION_REGISTRY_COMMAND "command"
 #define GNOME_VFS_APPLICATION_REGISTRY_NAME "name"
 
 /* These are the standard boolean keys to get */
 #define GNOME_VFS_APPLICATION_REGISTRY_CAN_OPEN_MULTIPLE_FILES "can_open_multiple_files"
-#define GNOME_VFS_APPLICATION_REGISTRY_CAN_OPEN_URIS "can_open_uris"
+#define GNOME_VFS_APPLICATION_REGISTRY_EXPECTS_URIS "expects_uris"
 #define GNOME_VFS_APPLICATION_REGISTRY_REQUIRES_TERMINAL "requires_terminal"
-
+	
 /*
  * Existance check
  */
@@ -79,8 +79,10 @@ void		gnome_vfs_application_registry_unset_key	(const char *app_id,
 GList		*gnome_vfs_application_registry_get_applications(const char *mime_type);
 GList		*gnome_vfs_application_registry_get_mime_types	(const char *app_id);
 
-gboolean	gnome_vfs_application_registry_supports_mime_type(const char *app_id,
-								  const char *mime_type);
+gboolean	gnome_vfs_application_registry_supports_mime_type  (const char *app_id,
+								    const char *mime_type);
+gboolean        gnome_vfs_application_registry_supports_uri_scheme (const char *app_id,
+								    const char *uri_scheme);
 
 /*
  * Mime type functions

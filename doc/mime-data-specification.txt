@@ -83,6 +83,12 @@ These files are installed in <gnome-vfs-prefix>/share/mime-info. If
 files by the same names are present in $HOME/.gnome/share/mime-info
 then the ones installed by GNOME VFS are ignored ]Is this true?].
 
+There can be multiple versions of each file.
+User specific applications files are able to add to, but not
+override system settings.
+
+[Known problem: is this ok?]
+
 [Need to correctly explain how other modules extend and override
 here. This is not completely accurate.] There can be multiple versions
 of each file. There is one system file, and applications can submit
@@ -335,7 +341,7 @@ The key value pairs for a .application file are as follows:
    "false" (default), GNOME VFS clients should not attempt to open
    multiple files at once with this application.
 
-4. [to be implemented] can_open_uris: If "false" (default), all file
+4. [to be implemented] expects_uris: If "false" (default), all file
    names should be passed on the command line as path names, and no
    non-"file:" URIs can be opened by this application, regardless of
    the value of other values (like supported_uri_schemes). If "true",
