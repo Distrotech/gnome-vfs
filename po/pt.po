@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-15 00:18+0100\n"
-"PO-Revision-Date: 2004-08-15 00:25+0000\n"
+"POT-Creation-Date: 2004-08-16 00:12+0100\n"
+"PO-Revision-Date: 2004-08-16 00:15+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -290,8 +290,8 @@ msgid "Unknown"
 msgstr "Desconhecido"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "Disco CD"
+msgid "CD-ROM Disc"
+msgstr "Disco CD-ROM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -399,8 +399,8 @@ msgstr "Disco Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
-msgid "Unknown op type %u"
-msgstr "Tipo op %u desconhecido"
+msgid "Unknown operation type %u"
+msgstr "Tipo de operação %u desconhecido"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -1391,6 +1391,9 @@ msgstr "Grupo de trabalho SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "O grupo de trabalho windows a que o utilizador pertence"
+
+#~ msgid "CD Disc"
+#~ msgstr "Disco CD"
 
 #~ msgid "The command used to handle HTTP URLs, if enabled."
 #~ msgstr "O comando utilizado para manipular URLs HTTP, se activo."
