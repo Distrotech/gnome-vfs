@@ -536,6 +536,7 @@ do_info (void)
 	char             *from;
 	GnomeVFSResult    result;
 	GnomeVFSFileInfo *info;
+	const char *mime_type;
 
 	from = get_fname ();
 
@@ -586,10 +587,16 @@ do_info (void)
 	if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE) {
 		long i = info->size;
 		fprintf (stdout, "Size: %ld bytes", i);
-	} else
+	} else {
 		fprintf (stdout, "Size invalid");
+	}
 	fprintf (stdout, "\n");
 
+	mime_type = gnome_vfs_file_info_get_mime_type (info);
+
+	fprintf (stdout, "Mime Type: %s \n", mime_type);
+
+	fprintf (stdout, "\n");
 	/* FIXME bugzilla.eazel.com 2800: hack here; should dump them all */
 	    
 	gnome_vfs_file_info_unref (info);

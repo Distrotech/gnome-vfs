@@ -1,3 +1,13 @@
+2000-11-02  Mathieu Lacage  <mathieu@eael.com>
+
+	Fix bug 4299 hopefully. Need to test on my desktop 
+	machine first.
+	* modules/http-method.c: (cache_check_directory),
+	(do_get_file_info): make it always return text/html 
+	if we did a GET and there was a redirect.
+	* test/test-shell.c: (do_info): add ability to 
+	display mime type.
+
 2000-11-01  Gene Z. Ragan  <gzr@eazel.com>
 
 	* modules/http-method.c: (process_propfind_propstat),

@@ -348,7 +348,7 @@ cache_check_directory (const gchar * uri_string, GList **p_child_file_info_list)
 {
 	FileInfoCacheEntry *entry;
 	utime_t utime_expire;
-	GnomeVFSFileInfo *ret;
+GnomeVFSFileInfo *ret;
 	GList *child_file_info_list = NULL;
 	gboolean cache_incomplete;
 
@@ -2285,6 +2285,11 @@ do_get_file_info (GnomeVFSMethod *method,
 				if (result == GNOME_VFS_OK) {
 					gnome_vfs_file_info_copy (file_info, handle->file_info);
 					http_handle_close (handle, context);
+				}
+				/* evil hack */
+				if (HTTP_REDIRECTED (handle->server_status)) {
+					g_free (file_info->mime_type);
+					file_info->mime_type = g_strdup ("text/html");
 				}
 			}
 			
