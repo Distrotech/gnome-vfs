@@ -1,3 +1,9 @@
+2000-11-16  Rebecca Schulman  <rebecka@eazel.com>
+
+	* modules/ftp-method.c:
+	Change the formatting of some fixmes so that 
+	check-fixme will keep track of them 
+	
 2000-11-16  Mathieu Lacage  <mathieu@eazel.com>
 
 	fix bug 4769

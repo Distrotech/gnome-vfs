@@ -28,12 +28,11 @@
  * All FTP servers deal with LIST <full path>
  */
 
-/* TODO 
- * Make koobera.math.uic.edu work [bugzilla.eazel.com 1463]
- * Make NetPresenz work (eg: uniserver.uwa.edu.au) [bugzilla.eazel.com 1463]
- * FtpUri / FtpConnectionUri refcounting or something. [bugzilla.eazel.com 1465]
- * Fix do_get_file_info_from_handle [bugzilla.eazel.com 1466]
- */
+/* TODO */
+/* FIXME bugzilla.eazel.com 1463: Make koobera.math.uic.edu and 
+   Make NetPresenz work (eg: uniserver.uwa.edu.au)*/
+/* FIXME bugzilla.eazel.com 1465: FtpUri / FtpConnectionUri refcounting or something. */
+/* FIXME bugzilla.eazel.com 1466: do_get_file_info_from_handle */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
