@@ -1,3 +1,8 @@
+2003-10-18  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-xfer.c: only free duplicate_name after 
+	  the GNOME_VFS_XFER_PHASE_COMPLETED state.
+
 2003-10-17  Jody Goldberg <jody@gnome.org>
 
 	* autogen.sh : Add an explicit depend on automake >= 1.6 to get things
