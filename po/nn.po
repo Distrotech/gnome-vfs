@@ -2,12 +2,13 @@
 # Copyright (C) 2000 Gaute Hvoslef Kvalnes.
 # Gaute Hvoslef Kvalnes <ai98ghk@stud.hib.no>, 2000.
 # Kjartan Maraas  <kmaraas@gnome.org>, 2001.
+# Roy-Magne Mo <rmo@sunnmore.net>, 2001.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.0.1\n"
-"POT-Creation-Date: 2001-11-02 16:15-0800\n"
-"PO-Revision-Date: 2001-07-15 21:43+0200\n"
-"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
+"Project-Id-Version: gnome-vfs 1.0.3\n"
+"POT-Creation-Date: 2001-11-30 04:37+0100\n"
+"PO-Revision-Date: 2001-10-28 12:42+0200\n"
+"Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
 "Language-Team: Norwegian (Nynorsk)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -16,38 +17,36 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d inneheld NUL-teikn"
+msgstr "%s:%d inneheld NUL-teikn."
 
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr ""
+msgstr "%s:%d innheld ikkje noke metodenamn."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr ""
+msgstr "%s:%d inneheld ikkje noke modulnamn."
 
 #: libgnomevfs/gnome-vfs-configuration.c:322
-#, fuzzy, c-format
+#, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Øydelagd oppsettfil."
+msgstr "Oppsettfil '%s' vart ikkje funnen: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
-#, fuzzy, c-format
+#, c-format
 msgid "Could not parse: %s"
-msgstr "Kunne ikkje lesa %1"
+msgstr "Kunne ikkje tolke %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
-#, fuzzy
 msgid "More parsing errors will be ignored."
-msgstr "Gir inga åtvaring "
+msgstr "Overser komande tolkningsfeil."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
-#, fuzzy
 msgid "No error"
-msgstr "Ingen feil."
+msgstr "Ingen feil"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
@@ -56,7 +55,6 @@ msgstr "Fann ikkje fil"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
-#, fuzzy
 msgid "Generic error"
 msgstr "Generell feil"
 
@@ -67,7 +65,6 @@ msgstr "Intern feil"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
-#, fuzzy
 msgid "Invalid parameters"
 msgstr "Ugyldig(e) argument"
 
@@ -83,15 +80,13 @@ msgstr "IU-feil"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
-#, fuzzy
 msgid "Data corrupted"
-msgstr "Feil i DVI-fil"
+msgstr "Data korrumpert"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
-#, fuzzy
 msgid "Format not valid"
-msgstr "Sertifikatstatus:"
+msgstr "Formatet er ikkje gyldig"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
@@ -100,59 +95,48 @@ msgstr "Ugyldeg filhandtak"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
-#, fuzzy
 msgid "File too big"
-msgstr "Skriv ut filer"
+msgstr "Fila er for stor"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
-#, fuzzy
 msgid "No space left on device"
-msgstr "Inga hending definert"
+msgstr "Ikkje noke ledig plass på eininga"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
-#, fuzzy
 msgid "Read-only file system"
-msgstr "Bli på filsystem"
+msgstr "Ikkje skrivbart filsystem"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
-#, fuzzy
 msgid "Invalid URI"
-msgstr "Ugyldig URL"
+msgstr "Ugyldig URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
-#, fuzzy
 msgid "File not open"
-msgstr "Opna fil"
+msgstr "Fila ikkje open"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
-#, fuzzy
 msgid "Open mode not valid"
-msgstr "Datoen er ikkje gyldig!"
+msgstr "Modus for opning er ikkje gyldig"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
-#, fuzzy
 msgid "Access denied"
-msgstr ""
-"Nekta tilgang til\n"
-"%1"
+msgstr "Nekta tilgang"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
-#, fuzzy
 msgid "Too many open files"
-msgstr "For mange feil"
+msgstr "For mange opne filer"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
-#, fuzzy
 msgid "End of file"
-msgstr "Slutt på spelet"
+msgstr "Slutt på fila"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -161,46 +145,38 @@ msgstr "Ikkje ein katalog"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
-#, fuzzy
 msgid "Operation in progress"
-msgstr "Kontrollering pågår ..."
+msgstr "Operasjonen pågår"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
-#, fuzzy
 msgid "Operation interrupted"
-msgstr "Brukar avbraut"
+msgstr "Operasjonen avbroten"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
-#, fuzzy
 msgid "File exists"
-msgstr "Fil-liste"
+msgstr "Fila eksisterar"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr ""
+msgstr "Sirkulere lenkjer oppdaga"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
-#, fuzzy
 msgid "Operation not permitted"
-msgstr ""
-"Operasjon ferdig.\n"
-"\n"
+msgstr "Operasjonen ikkje tillaten"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
-#, fuzzy
 msgid "Is a directory"
-msgstr "I katalog"
+msgstr "Er ein katalog"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
-#, fuzzy
 msgid "Not enough memory"
-msgstr "KMix: Ikkje nok minne."
+msgstr "Ikkje nok minne."
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -209,134 +185,123 @@ msgstr "Fann ikkje vert"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
-#, fuzzy
 msgid "Host name not valid"
-msgstr "Datoen er ikkje gyldig!"
+msgstr "Verstnamn er ikkje gyldig!"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
-#, fuzzy
 msgid "Host has no address"
-msgstr "Postadresse"
+msgstr "Verten har ikkje noka addresse"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
-#, fuzzy
 msgid "Login failed"
-msgstr "Feil ved innlogging!"
+msgstr "Feil ved innlogging"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
-#, fuzzy
 msgid "Operation cancelled"
-msgstr "Feil ved operasjon"
+msgstr "Operasjonen vart avbroten"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
-#, fuzzy
 msgid "Directory busy"
-msgstr "Katalog"
+msgstr "Katalog er oppteken"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
-#, fuzzy
 msgid "Directory not empty"
-msgstr "Fann ikkje katalog!"
+msgstr "Katalogen er ikkje tom"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
-#, fuzzy
 msgid "Too many links"
-msgstr "For mange feil"
+msgstr "For mange lenkjer"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
-#, fuzzy
 msgid "Read only file system"
-msgstr "Bli på filsystem"
+msgstr "Kun lesbart filsystem"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
-#, fuzzy
 msgid "Not on the same file system"
-msgstr "Bli på filsystem"
+msgstr "Ikkje på det same filsystemet"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
-#, fuzzy
 msgid "Name too long"
-msgstr "For lang linje"
+msgstr "Namnet er for langt"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
-#, fuzzy
 msgid "Service not available"
-msgstr "Tenesta er ikkje tilgjengeleg."
+msgstr "Tenesta er ikkje tilgjengeleg"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr ""
+msgstr "Spørjing forelda tenesten sine data"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
-#, fuzzy
 msgid "Protocol error"
-msgstr "Ingen feil."
+msgstr "Protokollfeil"
 
 #: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
 msgstr "Ukjend feil"
 
 #: libgnomevfs/gnome-vfs-utils.c:65
-#, fuzzy
 msgid "1 byte"
-msgstr "%1 byte"
+msgstr "1 byte"
 
 #: libgnomevfs/gnome-vfs-utils.c:67
-#, fuzzy, c-format
+#, c-format
 msgid "%u bytes"
-msgstr "%1 byte ="
+msgstr "%u bytes"
 
 #: libgnomevfs/gnome-vfs-utils.c:74
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f K"
-msgstr "%1 KB"
+msgstr "%.1f K"
 
 #: libgnomevfs/gnome-vfs-utils.c:78
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f MB"
-msgstr "%1 MB"
+msgstr "%.1f MB"
 
 #: libgnomevfs/gnome-vfs-utils.c:82
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f GB"
-msgstr "%1 GB"
+msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-job.c:714
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown op type %u"
-msgstr "Ukjend pakketype: %1"
+msgstr "Ukjend op-type %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr ""
+msgstr "Kan ikkje opprette røyr for dem opne GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1596
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown job kind %u"
-msgstr "Ukjend nøkkel-ID"
+msgstr "Ukjend jobbtype %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1632
-#, fuzzy
 msgid "Operation stopped"
 msgstr "Operasjonen vart stoppa"
 
 #: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr ""
+msgstr "Ukjend GnomeVFSSeekPosition %d"
+
+#~ msgid "3D Studio image"
+#~ msgstr "3D Studio bilete"
 
 #~ msgid "AIFC audio"
 #~ msgstr "AIFC-lyd"
@@ -356,8 +321,20 @@ msgstr ""
 #~ msgid "Adobe FrameMaker font"
 #~ msgstr "Adobe FrameMaker skrifttype"
 
+#~ msgid "Adobe font metrics"
+#~ msgstr "Adobe skrifttypemetrikk"
+
+#~ msgid "Andrew Toolkit inset"
+#~ msgstr "Andrew Toolkit innsats"
+
+#~ msgid "ApplixWare Graphics image"
+#~ msgstr "Applixware grafikkobjekt"
+
 #~ msgid "Applixware Words document"
 #~ msgstr "Applixware Words-dokument"
+
+#~ msgid "Applixware spreadsheet"
+#~ msgstr "Applixware reikneark"
 
 #~ msgid "AutoCAD image"
 #~ msgstr "AutoCAD-bilete"
@@ -369,14 +346,13 @@ msgstr ""
 #~ msgstr "BDF-skrifttype"
 
 #~ msgid "C shell script"
-#~ msgstr "C-skall skript"
+#~ msgstr "C-skalskript"
 
 #~ msgid "C source code"
 #~ msgstr "C-kjeldekode"
 
-#, fuzzy
 #~ msgid "C source code header"
-#~ msgstr "C-kjeldekode"
+#~ msgstr "C-kjeldekode header"
 
 #~ msgid "C++ source code"
 #~ msgstr "C++-kjeldekode"
@@ -393,20 +369,32 @@ msgstr ""
 #~ msgid "CPIO archive"
 #~ msgstr "CPIO-arkiv"
 
+#~ msgid "CPIO archive (gzip-compressed)"
+#~ msgstr "CPIO-arkiv (gzip-komprimering)"
+
 #~ msgid "DCL script"
 #~ msgstr "DCL-skript"
 
 #~ msgid "DOS font"
 #~ msgstr "DOS-skrifttype"
 
+#~ msgid "DOS/Windows program"
+#~ msgstr "DOS/Windows program"
+
 #~ msgid "DSSSL document"
 #~ msgstr "DSSSL-dokument"
+
+#~ msgid "DXF vector graphic"
+#~ msgstr "DXF vektorgrafikk"
 
 #~ msgid "Debian package"
 #~ msgstr "Debian pakke"
 
 #~ msgid "Dia diagram"
 #~ msgstr "Dia diagram"
+
+#~ msgid "Dolby Digital audio"
+#~ msgstr "Dolby Digital lyd"
 
 #~ msgid "Emacs Lisp source code"
 #~ msgstr "Emacs Lisp kjeldekode"
@@ -420,11 +408,17 @@ msgstr ""
 #~ msgid "FLI animation"
 #~ msgstr "FLI-animasjon"
 
+#~ msgid "FastTracker II audio"
+#~ msgstr "FastTracker II lyd"
+
 #~ msgid "Fortran source code"
 #~ msgstr "Fortran-kjeldekode"
 
 #~ msgid "FrameMaker interchange document"
 #~ msgstr "FrameMaker interchange dokument"
+
+#~ msgid "G3 fax image"
+#~ msgstr "G3 faksbilete"
 
 #~ msgid "GIF image"
 #~ msgstr "GIF-bilete"
@@ -435,13 +429,11 @@ msgstr ""
 #~ msgid "GMC link"
 #~ msgstr "GMC-lenkje"
 
-#, fuzzy
 #~ msgid "GNOME application details"
-#~ msgstr "KDE-programfinnar"
+#~ msgstr "Detaljar for GNOME applikasjoner"
 
-#, fuzzy
 #~ msgid "GNU Oleo Spreadsheet"
-#~ msgstr "StarOffice-rekneark"
+#~ msgstr "GNU Oleo-rekneark"
 
 #~ msgid "GNU mail message"
 #~ msgstr "GNU e-post melding"
@@ -449,149 +441,164 @@ msgstr ""
 #~ msgid "GTK configuration"
 #~ msgstr "GTK-oppsett"
 
-#, fuzzy
+#~ msgid "Glade project"
+#~ msgstr "Glade prosjekt"
+
+#~ msgid "GnuCash Workbook"
+#~ msgstr "GnuCash arbeidsbok"
+
+#~ msgid "Gnumeric spreadsheet"
+#~ msgstr "Gnumeric reikneark"
+
 #~ msgid "HDF document"
-#~ msgstr "Dra dokument"
+#~ msgstr "HDF-dokument"
 
-#, fuzzy
 #~ msgid "HTML page"
-#~ msgstr "Til side:"
+#~ msgstr "HTML-side"
 
-#, fuzzy
 #~ msgid "IDL document"
-#~ msgstr "Dra dokument"
+#~ msgstr "IDL-dokument"
 
-#, fuzzy
 #~ msgid "IEF image"
-#~ msgstr "Bilete"
+#~ msgstr "IEF-bilete"
 
-#, fuzzy
 #~ msgid "IFF image"
-#~ msgstr "Bilete"
+#~ msgstr "IFF-bilete"
 
-#, fuzzy
 #~ msgid "ILBM image"
-#~ msgstr "Bilete"
+#~ msgstr "ILMB-bilete"
 
-#, fuzzy
+#~ msgid "ISI video"
+#~ msgstr "ISI video"
+
+#~ msgid "Impulse Tracker audio"
+#~ msgstr "Impulse Tracker lyd"
+
+#~ msgid "JBuilder Project"
+#~ msgstr "JBuilder-prosjekt"
+
 #~ msgid "JPEG image"
-#~ msgstr "Comment=JPEG-bilete"
+#~ msgstr "JPEG-bilete"
 
-#, fuzzy
+#~ msgid "Java byte code"
+#~ msgstr "Jave byte-kode"
+
 #~ msgid "Java source code"
-#~ msgstr "Vis kjeldekode"
+#~ msgstr "Java kjeldekode"
 
-#, fuzzy
 #~ msgid "KDE application details"
-#~ msgstr "KDE-programfinnar"
+#~ msgstr "Detaljar for KDE-applikasjonar"
 
-#, fuzzy
 #~ msgid "KIllustrator document"
-#~ msgstr "Comment=Troff-dokument"
+#~ msgstr "KIllustrator-dokument"
 
-#, fuzzy
 #~ msgid "KPresenter presentation"
-#~ msgstr "StarOffice presentasjon"
+#~ msgstr "Kpresenter-presentasjon"
 
-#, fuzzy
 #~ msgid "KSpread spreadsheet"
-#~ msgstr "StarOffice-rekneark"
+#~ msgstr "KSpread-reikneark"
 
-#, fuzzy
 #~ msgid "KWord document"
-#~ msgstr "AbiWord-dokument"
+#~ msgstr "KWord-dokument"
 
-#, fuzzy
 #~ msgid "Korn shell script"
-#~ msgstr "Comment=Skalskript"
+#~ msgstr "Korn skalskript"
 
-#, fuzzy
 #~ msgid "LHA archive"
-#~ msgstr "Arkiv"
+#~ msgstr "LHA-arkiv"
 
-#, fuzzy
 #~ msgid "LHARC archive"
-#~ msgstr "Arkiv"
+#~ msgstr "LHARC-arkiv"
 
-#, fuzzy
+#~ msgid "LIBGRX font"
+#~ msgstr "LIBGRX skrifttype"
+
 #~ msgid "LightWave object"
-#~ msgstr "Lagra prosjekt"
+#~ msgstr "LightWave-objekt"
 
-#, fuzzy
 #~ msgid "LightWave scene"
-#~ msgstr "Lys brikke"
+#~ msgstr "LightWave-scene"
 
-#, fuzzy
+#~ msgid "Linux PSF console font"
+#~ msgstr "Linux PSF konsoll-skrifttype"
+
+#~ msgid "Lotus 1-2-3 spreadsheet"
+#~ msgstr "Lotus 1-2-3 rekneark"
+
 #~ msgid "M3 audio URL"
-#~ msgstr "Postkasse-&URL:"
+#~ msgstr "M3 lyd-URL"
 
-#, fuzzy
 #~ msgid "MIDI audio"
-#~ msgstr "Comment=MIDI-lyd"
+#~ msgstr "MIDI-lyd"
 
-#, fuzzy
+#~ msgid "MOD audio"
+#~ msgstr "MOD-lyd"
+
+#~ msgid "MP3 audio"
+#~ msgstr "MP3-lyd"
+
 #~ msgid "MP3 audio playlist"
-#~ msgstr "m3u-spelelister"
+#~ msgstr "MP3-lyd spelelister"
 
-#, fuzzy
 #~ msgid "MPEG video"
-#~ msgstr "Comment=MPEG-video"
+#~ msgstr "MPEG-video"
 
-#, fuzzy
 #~ msgid "MS ASF video"
-#~ msgstr "AVI-video"
+#~ msgstr "MS ASF-video"
 
-#, fuzzy
+#~ msgid "MS video"
+#~ msgstr "MS-video"
+
+#~ msgid "Macintosh AppleDouble-encoded file"
+#~ msgstr "Macintosh AppleDouble-koda fil"
+
+#~ msgid "Macintosh BinHex-encoded file"
+#~ msgstr "Macintosh BinHex-koda fil"
+
+#~ msgid "Macintosh StuffIt archive"
+#~ msgstr "Macintosh StuffIt arkiv"
+
+#~ msgid "Macromedia Flash file"
+#~ msgstr "Macromedia Flash fil"
+
 #~ msgid "MathML document"
-#~ msgstr "Post dokument"
+#~ msgstr "MathML-dokument"
 
-#, fuzzy
 #~ msgid "Microsoft Excel spreadsheet"
-#~ msgstr "Mest nylege dokument"
+#~ msgstr "Microsoft Excel reikneark"
 
-#, fuzzy
 #~ msgid "Microsoft PowerPoint document"
-#~ msgstr "Comment=Microsoft PowerPoint-dokument"
+#~ msgstr "Microsoft PowerPoint-dokument"
 
-#, fuzzy
 #~ msgid "Microsoft Word document"
-#~ msgstr "Comment=Microsoft Word-dokument"
+#~ msgstr "Microsoft Word-dokument"
 
-#, fuzzy
 #~ msgid "Microsoft video"
-#~ msgstr "Comment=Microsoft AVI-video"
+#~ msgstr "Microsoft video"
 
-#, fuzzy
 #~ msgid "Nautilus link"
-#~ msgstr "Nautisk mil"
+#~ msgstr "Nautilus lenke"
 
-#, fuzzy
 #~ msgid "ODA document"
-#~ msgstr "Dra dokument"
+#~ msgstr "ODA-dokument"
 
-#, fuzzy
 #~ msgid "PBM image"
-#~ msgstr "Nytt bilete"
+#~ msgstr "PBM-bilete"
 
-#, fuzzy
 #~ msgid "PCF font"
-#~ msgstr "Pifont"
+#~ msgstr "PCF-skrifttype"
 
-#, fuzzy
 #~ msgid "PDF document"
-#~ msgstr "Dra dokument"
+#~ msgstr "PDF-dokument"
 
-#, fuzzy
 #~ msgid "PEF program"
-#~ msgstr "Program"
+#~ msgstr "PEF-program"
 
-#, fuzzy
 #~ msgid "PGM image"
-#~ msgstr "Nytt bilete"
+#~ msgstr "PGM-bilete"
 
-#, fuzzy
 #~ msgid "PGN chess game"
-#~ msgstr "Nytt spel"
+#~ msgstr "PGN-sjakkspel"
 
 #~ msgid "PGP keys"
 #~ msgstr "PGP-nøkler"
@@ -602,134 +609,129 @@ msgstr ""
 #~ msgid "PGP signature"
 #~ msgstr "PGP-signatur"
 
-#, fuzzy
+#~ msgid "PGP-encrypted file"
+#~ msgstr "PGP-kryptert fil"
+
 #~ msgid "PHP script"
-#~ msgstr "Senka"
+#~ msgstr "PHP-skript"
 
-#, fuzzy
 #~ msgid "PN RealAudio document"
-#~ msgstr "Les ned dokumentet"
+#~ msgstr "PN RealAudio- dokumentet"
 
-#, fuzzy
 #~ msgid "PNG image"
-#~ msgstr "Nytt bilete"
+#~ msgstr "PNG-bilete"
 
-#, fuzzy
 #~ msgid "PNM image"
-#~ msgstr "Nytt bilete"
+#~ msgstr "PNM-bilete"
 
-#, fuzzy
 #~ msgid "PPM image"
-#~ msgstr "Nytt bilete"
+#~ msgstr "PPM-bilete"
 
 #~ msgid "Palm OS database"
 #~ msgstr "Palm OS database"
 
-#, fuzzy
 #~ msgid "Perl script"
-#~ msgstr "Heva"
+#~ msgstr "Perl skript"
 
-#, fuzzy
 #~ msgid "Photoshop document"
-#~ msgstr "Opna dokument"
+#~ msgstr "Photoshop-dokument"
 
-#, fuzzy
+#~ msgid "PostScript Type 1 font"
+#~ msgstr "Postscript Type 1 skrifttype"
+
 #~ msgid "PostScript document"
-#~ msgstr "Comment=PostScript-dokument"
+#~ msgstr "PostScript-dokument"
 
-#, fuzzy
 #~ msgid "Python source code"
-#~ msgstr "Vis kjeldekode"
+#~ msgstr "Python kjeldekode"
 
-#, fuzzy
+#~ msgid "QuickTime movie"
+#~ msgstr "QuickTime-film"
+
 #~ msgid "Quicken document"
-#~ msgstr "Opna dokument"
+#~ msgstr "Quicken-dokument"
 
-#, fuzzy
 #~ msgid "Quicken for Windows document"
-#~ msgstr "Alle nylege dokument"
+#~ msgstr "Dokument for Quicken for Windows"
 
-#, fuzzy
 #~ msgid "RAR archive"
-#~ msgstr "Arkiv"
+#~ msgstr "RAR-arkiv"
 
-#, fuzzy
 #~ msgid "README document"
-#~ msgstr "Dra dokument"
+#~ msgstr "README-dokument"
 
-#, fuzzy
 #~ msgid "RGB image"
-#~ msgstr "Fjern bilete"
+#~ msgstr "RGB-bilete"
 
-#, fuzzy
+#~ msgid "RIFF audio"
+#~ msgstr "RIFF-lyd"
+
 #~ msgid "RPM package"
-#~ msgstr "Minipakke"
+#~ msgstr "RPM-pakke"
 
-#, fuzzy
 #~ msgid "RealAudio/Video document"
-#~ msgstr "Les ned dokumentet"
+#~ msgstr "RealAudio/Video-dokument"
 
-#, fuzzy
 #~ msgid "RealVideo video"
-#~ msgstr "Verkeleg filvising"
+#~ msgstr "RealVideo-film"
 
-#, fuzzy
 #~ msgid "S/MIME file"
-#~ msgstr "MIME-type"
+#~ msgstr "S/MIME-fil"
 
-#, fuzzy
 #~ msgid "S/MIME signature"
-#~ msgstr "vis signatur"
+#~ msgstr "S/MIME-signatur"
 
-#, fuzzy
+#~ msgid "SGI video"
+#~ msgstr "SGI-video"
+
 #~ msgid "SGML document"
-#~ msgstr "Post dokument"
+#~ msgstr "SGML-dokument"
 
-#, fuzzy
 #~ msgid "SMIL script"
-#~ msgstr "Senka"
+#~ msgstr "SMIL-skript"
 
-#, fuzzy
 #~ msgid "SQL code"
-#~ msgstr "LC-modus"
+#~ msgstr "SQL-kode"
 
-#, fuzzy
 #~ msgid "SV4 CPIO archive"
-#~ msgstr "Comment=CPIO-arkiv"
+#~ msgstr "SV4 CPIO-arkiv"
 
-#, fuzzy
+#~ msgid "SV4 CPIP archive (with CRC)"
+#~ msgstr "SV4 CPIP arkiv (med SRS)"
+
 #~ msgid "SVG art"
-#~ msgstr "Smart"
+#~ msgstr "SVG-bilete"
 
-#, fuzzy
 #~ msgid "Scheme source code"
-#~ msgstr "Vis kjeldekode"
+#~ msgstr "Scheme kjeldekode"
 
-#, fuzzy
+#~ msgid "Scream Tracker 3 audio"
+#~ msgstr "Sream Tracker 3 lyd"
+
+#~ msgid "Scream Tracker audio"
+#~ msgstr "Scream Tracker lyd"
+
+#~ msgid "Scream Tracker instrument"
+#~ msgstr "Scream Tracker instrument"
+
 #~ msgid "Setext document"
-#~ msgstr "Lagrar dokumentet"
+#~ msgstr "Setext-dokument"
 
-#, fuzzy
 #~ msgid "Speech document"
-#~ msgstr "Opna dokument"
+#~ msgstr "Syntetisk tale"
 
-#, fuzzy
 #~ msgid "Speedo font"
-#~ msgstr "Sett skrift"
+#~ msgstr "Speedo-skrifttype"
 
-#, fuzzy
 #~ msgid "Spreadsheet Interchange document"
-#~ msgstr "FrameMaker interchange dokument"
+#~ msgstr "Spreadsheet interchange dokument"
 
-#, fuzzy
 #~ msgid "Stampede package"
-#~ msgstr "Standardpakke"
+#~ msgstr "Stampede-pakke"
 
-#, fuzzy
 #~ msgid "StarOffice Writer document"
-#~ msgstr "KOffice-dokument"
+#~ msgstr "StarOffice Writer-dokument"
 
-#, fuzzy
 #~ msgid "StarOffice presentation"
 #~ msgstr "StarOffice presentasjon"
 
@@ -739,228 +741,203 @@ msgstr ""
 #~ msgid "Sun mu-law audio"
 #~ msgstr "Sun mu-law lyd"
 
-#, fuzzy
 #~ msgid "SunOS News font"
-#~ msgstr "Sett skrift"
+#~ msgstr "SunOS NEWS-skrifttype"
 
-#, fuzzy
 #~ msgid "TIFF image"
-#~ msgstr "Bilete"
+#~ msgstr "TIFF-bilete"
 
-#, fuzzy
 #~ msgid "TarGA image"
-#~ msgstr "&Legg til bilete"
+#~ msgstr "TarGA-bilete"
 
-#, fuzzy
 #~ msgid "Tcl script"
-#~ msgstr "Senka"
+#~ msgstr "Tcl-skript"
 
-#, fuzzy
 #~ msgid "TeX document"
-#~ msgstr "Opna dokument"
+#~ msgstr "TeX-dokument"
 
-#, fuzzy
 #~ msgid "TeX dvi document"
-#~ msgstr "Les ned dokumentet"
+#~ msgstr "TeX dvi-dokument"
 
-#, fuzzy
 #~ msgid "TeX font"
-#~ msgstr "Sett skrift"
+#~ msgstr "TeX-skrifttype"
 
-#, fuzzy
 #~ msgid "TeX font metrics"
-#~ msgstr "Geometrisk"
+#~ msgstr "TeX skrifttypemetrikk"
 
-#, fuzzy
 #~ msgid "TeXInfo document"
-#~ msgstr "Opna dokument"
+#~ msgstr "TeXInfo-dokument"
 
-#, fuzzy
 #~ msgid "ToutDoux document"
-#~ msgstr "Dra dokument"
+#~ msgstr "ToutDoux-dokument"
 
-#, fuzzy
 #~ msgid "TrueType font"
-#~ msgstr "Comment=Truetype-skrifttype"
+#~ msgstr "TrueType-skrifttype"
 
-#, fuzzy
 #~ msgid "USENET news message"
-#~ msgstr "Ingen nye meldingar."
+#~ msgstr "USENET diskusjonsmelding"
 
-#, fuzzy
 #~ msgid "Unidata netCDF document"
-#~ msgstr "Lagar eit nytt dokument"
+#~ msgstr "Unidata netCDF-dokument"
 
-#, fuzzy
 #~ msgid "V font"
-#~ msgstr "skrifttype"
+#~ msgstr "V-skrifttype"
 
-#, fuzzy
+#~ msgid "VOC audio"
+#~ msgstr "VOC-lyd"
+
 #~ msgid "VRML document"
-#~ msgstr "Post dokument"
+#~ msgstr "VRML-dokument"
 
-#, fuzzy
+#~ msgid "Vivo video"
+#~ msgstr "Vivo-film"
+
 #~ msgid "WAIS source code"
-#~ msgstr "Vis kjeldekode"
+#~ msgstr "WAIS-kjeldekode"
 
 #~ msgid "Wavelet video"
 #~ msgstr "Wavelet video"
 
-#, fuzzy
 #~ msgid "Windows bitmap image"
-#~ msgstr "Maksimer vindauge"
+#~ msgstr "Windows bitmap-bilete"
 
-#, fuzzy
 #~ msgid "Windows icon image"
-#~ msgstr "Ikoniser vindauge"
+#~ msgstr "Windows ikonfil"
 
-#, fuzzy
+#~ msgid "Windows metafile graphics"
+#~ msgstr "Windows metafil grafikk"
+
 #~ msgid "WordPerfect document"
-#~ msgstr "Comment=Word Perfect-dokument"
+#~ msgstr "WordPerfect-dokument"
 
-#, fuzzy
 #~ msgid "X bitmap image"
-#~ msgstr "Comment=Bilete i X Bitmap-format"
+#~ msgstr "Bilete i X Bitmap-format"
 
-#, fuzzy
 #~ msgid "X window image"
-#~ msgstr "Vindaugshandsamar for KDE"
+#~ msgstr "X window bilete"
 
-#, fuzzy
 #~ msgid "XML document"
-#~ msgstr "Post dokument"
+#~ msgstr "XML-dokument"
 
-#, fuzzy
 #~ msgid "XPM image"
-#~ msgstr "Nytt bilete"
+#~ msgstr "XPM-bilete"
 
-#, fuzzy
 #~ msgid "Xbase database"
-#~ msgstr "Palm OS database"
+#~ msgstr "Xbase-database"
 
-#, fuzzy
 #~ msgid "active server page"
-#~ msgstr "Linjer per side"
+#~ msgstr "active server side"
 
-#, fuzzy
 #~ msgid "address card"
-#~ msgstr "adresse (A)"
+#~ msgstr "adressekort"
 
-#, fuzzy
 #~ msgid "ar archive"
-#~ msgstr "Pakkearkiv"
+#~ msgstr "ar-arkiv"
 
-#, fuzzy
 #~ msgid "arj archive"
-#~ msgstr "Pakkearkiv"
+#~ msgstr "arj-arkiv"
 
-#, fuzzy
 #~ msgid "authors list"
-#~ msgstr "Brukarliste"
+#~ msgstr "forfattarliste"
 
-#, fuzzy
 #~ msgid "backup file"
-#~ msgstr "Reservekopier filer:"
+#~ msgstr "reservekopi"
 
-#, fuzzy
+#~ msgid "basic audio"
+#~ msgstr "enkel lyd"
+
+#~ msgid "bibliography record"
+#~ msgstr "bibliografi oppføring"
+
 #~ msgid "binary program"
-#~ msgstr "Terminalprogram:"
+#~ msgstr "binærprogram"
 
-#, fuzzy
 #~ msgid "block device"
-#~ msgstr "Name=Blokkeiningar"
+#~ msgstr "blokkeining"
 
-#, fuzzy
 #~ msgid "bzip-compressed file"
-#~ msgstr "Komprimert fil"
+#~ msgstr "bzip-komprimert fil"
 
-#, fuzzy
 #~ msgid "calendar file"
-#~ msgstr "Standardfil"
+#~ msgstr "kalenderfil"
 
-#, fuzzy
 #~ msgid "calendar or event document"
-#~ msgstr "Alle nylege dokument"
+#~ msgstr "kalender eller hendingsfil"
 
-#, fuzzy
 #~ msgid "character device"
-#~ msgstr "Comment=Teikneining"
+#~ msgstr "teikneining"
 
-#, fuzzy
 #~ msgid "comma-separated text document"
-#~ msgstr "Mest nylege dokument"
+#~ msgstr "kommadelt tekstdokument"
 
-#, fuzzy
 #~ msgid "compound document"
-#~ msgstr "Opna dokument"
+#~ msgstr "samansett dokument"
 
-#, fuzzy
 #~ msgid "compress-compressed file"
-#~ msgstr "Komprimert fil"
+#~ msgstr "compress-komprimert fil"
 
-#, fuzzy
+#~ msgid "compressed GIMP document"
+#~ msgstr "komprimert GIMP dokument"
+
 #~ msgid "directory information file"
-#~ msgstr "Min katalog-informasjon"
+#~ msgstr "katalog-informasjons fil"
 
-#, fuzzy
 #~ msgid "document type definition"
 #~ msgstr "dokumenttype definisjon"
 
-#, fuzzy
 #~ msgid "email headers"
-#~ msgstr "alle deklarasjonsfiler"
+#~ msgstr "e-post hovud"
 
-#, fuzzy
 #~ msgid "email message"
-#~ msgstr "loggmelding"
+#~ msgstr "e-post melding"
 
-#, fuzzy
 #~ msgid "encrypted message"
-#~ msgstr "Krypterte meldingar"
+#~ msgstr "kryptert melding"
 
-#, fuzzy
 #~ msgid "enriched text document"
-#~ msgstr "Skriv ut dokumentet"
+#~ msgstr "riktekst tekstdokument"
 
-#, fuzzy
 #~ msgid "folder"
-#~ msgstr "Mappe"
+#~ msgstr "mappe"
 
-#, fuzzy
 #~ msgid "gtar archive"
-#~ msgstr "Comment=Rar-arkiv"
+#~ msgstr "gtar arkiv"
 
-#, fuzzy
 #~ msgid "gzip-compressed file"
-#~ msgstr "Komprimert fil"
+#~ msgstr "gzip-komprimert fil"
 
-#, fuzzy
 #~ msgid "help page"
-#~ msgstr "Bruk &mpage"
+#~ msgstr "hjelpeside"
 
-#, fuzzy
+#~ msgid "mail delivery report"
+#~ msgstr "e-post leveringsrapport"
+
+#~ msgid "mail disposition report"
+#~ msgstr "e-post disposisjonsrapport"
+
 #~ msgid "mail system report"
-#~ msgstr "Vanleg stereo"
+#~ msgstr "e-postsystem rapport"
 
-#, fuzzy
 #~ msgid "makefile"
-#~ msgstr "Pakkefil"
+#~ msgstr "makefil"
 
-#, fuzzy
 #~ msgid "manual page"
-#~ msgstr "Unix manual-sider"
+#~ msgstr "manual-side"
 
-#, fuzzy
+#~ msgid "manual page (compressed)"
+#~ msgstr "manual-side (komprimert)"
+
 #~ msgid "memory dump"
-#~ msgstr "Kjernedump"
+#~ msgstr "minnedump"
 
-#, fuzzy
 #~ msgid "message digest"
-#~ msgstr "Meldingsliste"
+#~ msgstr "meldingsamandrag"
 
-#, fuzzy
+#~ msgid "message in several formats"
+#~ msgstr "meldinga i fleire format"
+
 #~ msgid "multi-part message"
-#~ msgstr "Skriv melding"
+#~ msgstr "melding med fleire delar"
 
 #~ msgid "named pipe"
 #~ msgstr "namngitt røyr"
@@ -974,25 +951,20 @@ msgstr ""
 #~ msgid "partial email message"
 #~ msgstr "del av e-post-melding"
 
-#, fuzzy
 #~ msgid "plain text document"
-#~ msgstr "Stopp lastinga av dokumentet"
+#~ msgstr "rein tekst dokument"
 
-#, fuzzy
 #~ msgid "profiler results"
-#~ msgstr "Fjern resultat"
+#~ msgstr "resultat frå profiler"
 
-#, fuzzy
 #~ msgid "reference to remote file"
-#~ msgstr "Kan ikkje lagra fil over nettverk."
+#~ msgstr "referanse til fil over nettverk."
 
-#, fuzzy
 #~ msgid "rejected patch file"
-#~ msgstr "Slett overvaka variabel"
+#~ msgstr "fil avvist av patch"
 
-#, fuzzy
 #~ msgid "rich text document"
-#~ msgstr "Skriv ut dokument"
+#~ msgstr "rikt tekst dokument"
 
 #~ msgid "search results"
 #~ msgstr "søkeresultat"
@@ -1000,369 +972,83 @@ msgstr ""
 #~ msgid "shared library"
 #~ msgstr "delt bibliotek"
 
-#, fuzzy
 #~ msgid "shell archive"
-#~ msgstr "&Lukk arkivet "
+#~ msgstr "unix-skal arkiv"
 
-#, fuzzy
 #~ msgid "shell script"
-#~ msgstr "Comment=Skalskript"
+#~ msgstr "skalskript"
 
-#, fuzzy
 #~ msgid "signed message"
-#~ msgstr "Signer melding"
+#~ msgstr "signert melding"
 
-#, fuzzy
 #~ msgid "socket"
-#~ msgstr "kjelde"
+#~ msgstr "sokkel"
 
-#, fuzzy
+#~ msgid "software author credits"
+#~ msgstr "forfattarliste for programvare"
+
 #~ msgid "software installation instructions"
-#~ msgstr "Comment=Ulovleg instruksjon."
+#~ msgstr "instruksjonar for å innstallere programvare"
 
-#, fuzzy
+#~ msgid "software license terms"
+#~ msgstr "lisensavtale for programvare"
+
 #~ msgid "source code patch"
-#~ msgstr "kjeldeport"
+#~ msgstr "patchfil for kjeldekode"
 
-#, fuzzy
+#~ msgid "style sheet"
+#~ msgstr "stilark"
+
 #~ msgid "symbolic link"
-#~ msgstr "Symbolske lenkjer"
+#~ msgstr "symbolsk lenkje"
 
-#, fuzzy
 #~ msgid "tab-separated text document"
-#~ msgstr "Kunne ikkje laga nytt dokument"
+#~ msgstr "tabulatordelt tekstdokument"
 
-#, fuzzy
 #~ msgid "tar archive"
-#~ msgstr "Comment=Rar-arkiv"
+#~ msgstr "tar-arkiv"
 
-#, fuzzy
+#~ msgid "tar archive (bzip2-compressed)"
+#~ msgstr "tar-arkiv (bzip2-komprimert)"
+
+#~ msgid "tar archive (gzip-compressed)"
+#~ msgstr "tar-arkiv (gzip-komprimert)"
+
 #~ msgid "theme"
-#~ msgstr "den"
+#~ msgstr "tema"
 
-#, fuzzy
 #~ msgid "troff document"
-#~ msgstr "Comment=Troff-dokument"
+#~ msgstr "troff-dokument"
 
-#, fuzzy
 #~ msgid "troff me input document"
-#~ msgstr "Mest nylege dokument"
+#~ msgstr "troff me inndata dokument"
 
-#, fuzzy
 #~ msgid "troff mm input document"
-#~ msgstr "Skriv ut dokument"
+#~ msgstr "troff mm inndata dokument"
 
-#, fuzzy
 #~ msgid "troff ms input document"
-#~ msgstr "Mest nylege dokument"
+#~ msgstr "troff ms inndata dokument"
 
-#, fuzzy
 #~ msgid "unknown type"
-#~ msgstr "ukjend"
+#~ msgstr "ukjend type"
 
-#, fuzzy
 #~ msgid "ustar archive"
-#~ msgstr "Comment=Rar-arkiv"
+#~ msgstr "ustar-arkiv"
 
-#, fuzzy
+#~ msgid "wave audio"
+#~ msgstr "lydbølge lyd"
+
 #~ msgid "web folder"
-#~ msgstr "Ny mappe"
+#~ msgstr "vevmappe"
 
-#, fuzzy
+#~ msgid "xfig vector graphic"
+#~ msgstr "xfig vektorgrafikk"
+
 #~ msgid "zip archive"
-#~ msgstr "Opna 'arkiv'"
+#~ msgstr "zip-arkiv"
 
-#, fuzzy
 #~ msgid "zoo archive"
-#~ msgstr "Comment=Zoo-arkiv"
+#~ msgstr "zoo-arkiv"
 
-#, fuzzy
-#~ msgid "Dying."
-#~ msgstr "Forseinkar"
-
-#, fuzzy
-#~ msgid "Error reading: %s"
-#~ msgstr "Feil ved lesing av tema:"
-
-#, fuzzy
-#~ msgid "Error writing: %s"
-#~ msgstr "Feil ved skriving til"
-
-#, fuzzy
-#~ msgid "Cannot write: %s"
-#~ msgstr "Kan ikkje laga %1: %2"
-
-#, fuzzy
-#~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Kan ikkje laga mellombels fil."
-
-#, fuzzy
-#~ msgid "Cannot create socket: %s"
-#~ msgstr "Kan ikkje laga sokkel."
-
-#, fuzzy
-#~ msgid "Cannot bind `%s': %s"
-#~ msgstr "Finn ikkje mkdosfs"
-
-#, fuzzy
-#~ msgid "Cannot listen on `%s': %s"
-#~ msgstr "Kan ikkje laga %1: %2"
-
-#, fuzzy
-#~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Kan ikkje lukka SMTP-samband."
-
-#, fuzzy
-#~ msgid "Cannot initialize CORBA."
-#~ msgstr "Kan ikkje initialisera lokale variablar"
-
-#, fuzzy
-#~ msgid "Cannot activate POA manager."
-#~ msgstr "Kan ikkje starta avlusar."
-
-#, fuzzy
-#~ msgid "Cannot open file descriptor %d."
-#~ msgstr "Kan ikkje opna eller lesa katalog."
-
-#, fuzzy
-#~ msgid "Cannot setup Request object."
-#~ msgstr "Kan ikkje setja dato."
-
-#, fuzzy
-#~ msgid "Cannot extract IOR."
-#~ msgstr "Kan ikkje setja dato."
-
-#, fuzzy
-#~ msgid "Cannot get object for `%s'"
-#~ msgstr "Kan ikkje gå inn i katalogen '%1'.\n"
-
-#, fuzzy
-#~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "kan ikkje kopla til sokkel"
-
-#, fuzzy
-#~ msgid "Edit Applications List"
-#~ msgstr "X-program"
-
-#, fuzzy
-#~ msgid "Add Application..."
-#~ msgstr "Legg til program"
-
-#, fuzzy
-#~ msgid "Edit Application..."
-#~ msgstr "Pilot-program"
-
-#, fuzzy
-#~ msgid "Delete Application"
-#~ msgstr "&Fjern handling"
-
-#, fuzzy
-#~ msgid "Edit Components List"
-#~ msgstr "Hendingsliste"
-
-#, fuzzy
-#~ msgid "Add New MIME Type"
-#~ msgstr "MIME-type"
-
-#, fuzzy
-#~ msgid "Add MIME Type"
-#~ msgstr "MIME-type"
-
-#, fuzzy
-#~ msgid "MIME Type:"
-#~ msgstr "MIME-type"
-
-#, fuzzy
-#~ msgid "Type in a description for this mime-type."
-#~ msgstr "Legg til eit nytt program for denne filtypen."
-
-#~ msgid "Description:"
-#~ msgstr "Skildring:"
-
-#, fuzzy
-#~ msgid "File Extensions "
-#~ msgstr "Filetternamn:"
-
-#~ msgid "Add..."
-#~ msgstr "Legg til ..."
-
-#, fuzzy
-#~ msgid "    Remove    "
-#~ msgstr "Fjern ei rad"
-
-#~ msgid "Add New Extension"
-#~ msgstr "Legg til nytt etternamn"
-
-#~ msgid "Extension:"
-#~ msgstr "Etternamn:"
-
-#, fuzzy
-#~ msgid "New Application"
-#~ msgstr "Applikasjon"
-
-#, fuzzy
-#~ msgid "Application Name:"
-#~ msgstr "Program:"
-
-#, fuzzy
-#~ msgid "Application Command:"
-#~ msgstr "Program-manualar"
-
-#, fuzzy
-#~ msgid "Open Behavior"
-#~ msgstr "Åtferd"
-
-#, fuzzy
-#~ msgid "Can open multiple files"
-#~ msgstr "Du kan ikkje sleppa fleire filer!\n"
-
-#, fuzzy
-#~ msgid "Expects URIs as arguments"
-#~ msgstr "Køyr med argument"
-
-#, fuzzy
-#~ msgid "Edit Application"
-#~ msgstr "Pilot-program"
-
-#, fuzzy
-#~ msgid "Can open from URI"
-#~ msgstr "Kom frå toppen"
-
-#, fuzzy
-#~ msgid "MIME Type"
-#~ msgstr "MIME-type"
-
-#, fuzzy
-#~ msgid "Change Icon"
-#~ msgstr "Endra skrift"
-
-#, fuzzy
-#~ msgid "Change File Extensions"
-#~ msgstr "Filetternamn:"
-
-#, fuzzy
-#~ msgid "Default Action:"
-#~ msgstr "Standard posisjon"
-
-#, fuzzy
-#~ msgid "Use Viewer"
-#~ msgstr "Visar"
-
-#, fuzzy
-#~ msgid "Open With Application"
-#~ msgstr "Pilot-program"
-
-#, fuzzy
-#~ msgid "Edit List"
-#~ msgstr "&Endra grense"
-
-#, fuzzy
-#~ msgid "Add new MIME type..."
-#~ msgstr "Legg til ny oppføring ..."
-
-#, fuzzy
-#~ msgid "Delete this MIME type..."
-#~ msgstr "Slett denne teksten"
-
-#, fuzzy
-#~ msgid "Revert to System Defaults"
-#~ msgstr "Gjenopprett standardinnstillingar"
-
-#~ msgid "No Description"
-#~ msgstr "Inga skildring"
-
-#~ msgid "None"
-#~ msgstr "Ingen"
-
-#~ msgid "none"
-#~ msgstr "ingen"
-
-#, fuzzy
-#~ msgid "View as %s"
-#~ msgstr "Visingar"
-
-#~ msgid "Description"
-#~ msgstr "Skildring"
-
-#~ msgid "Extension"
-#~ msgstr "Etternamn"
-
-#, fuzzy
-#~ msgid "Default Action"
-#~ msgstr "Standard posisjon"
-
-#~ msgid "Preview"
-#~ msgstr "Førehandsvising"
-
-#, fuzzy
-#~ msgid "%s to retrieve"
-#~ msgstr "&Ikkje-nedlastbare:"
-
-#, fuzzy
-#~ msgid "Closing connection to %s"
-#~ msgstr "Opnar samband til vert %1"
-
-#, fuzzy
-#~ msgid "%s of %s read"
-#~ msgstr "%1% av %2 "
-
-#, fuzzy
-#~ msgid "%s read"
-#~ msgstr "er lesen"
-
-#~ msgid "Back"
-#~ msgstr "Tilbake"
-
-#, fuzzy
-#~ msgid "Go to the previously visited directory"
-#~ msgstr "Du har oppgitt ein katalog"
-
-#~ msgid "Up"
-#~ msgstr "Opp"
-
-#, fuzzy
-#~ msgid "Go to the parent directory"
-#~ msgstr "Ikkje ein katalog"
-
-#~ msgid "Forward"
-#~ msgstr "Fram"
-
-#, fuzzy
-#~ msgid "Go to the next visited directory"
-#~ msgstr "Du har oppgitt ein katalog"
-
-#, fuzzy
-#~ msgid "Rescan"
-#~ msgstr "Rektangel"
-
-#, fuzzy
-#~ msgid "Rescan the current directory"
-#~ msgstr "Lukkar prosjektet"
-
-#~ msgid "Home"
-#~ msgstr "Heim"
-
-#, fuzzy
-#~ msgid "Go to the home directory"
-#~ msgstr "Opprett heimekatalog"
-
-#~ msgid "Name"
-#~ msgstr "Namn"
-
-#~ msgid "Size"
-#~ msgstr "Storleik"
-
-#~ msgid "Date"
-#~ msgstr "Dato"
-
-#, fuzzy
-#~ msgid "Enter name:"
-#~ msgstr "Skriv inn namn"
-
-#, fuzzy
-#~ msgid "Show:"
-#~ msgstr "Vis"
-
-#, fuzzy
-#~ msgid "Show dotfiles"
-#~ msgstr "Vis detaljar"
+#~ msgid "GNOME VFS already initialized."
+#~ msgstr "GNOME VFS allereie initialisert."
