@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-30 12:13+0100\n"
-"PO-Revision-Date: 2004-01-14 06:30+0100\n"
+"POT-Creation-Date: 2004-02-02 04:11+0100\n"
+"PO-Revision-Date: 2004-02-02 13:00+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -1010,12 +1010,9 @@ msgstr "HTTP proxy gebruiken"
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Te gebruiken naam voor identificatie bij HTTP proxy-gebruik."
 
-# Windows network?
-# Wordt hier MS Windows bedoeld?
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Window netwerk"
+msgstr "Windows netwerk"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
