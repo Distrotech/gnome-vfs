@@ -722,6 +722,13 @@ enum {
 	GNOME_VFS_TEXT_SNIFF_LENGTH = 256
 };
 
+/**
+ * gnome_vfs_sniff_buffer_looks_like_text:
+ * @sniff_buffer: buffer to examine
+ *
+ * Return value: returns %TRUE if the contents of @sniff_buffer appear to
+ * be text.
+ **/
 gboolean
 gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
@@ -837,6 +844,13 @@ enum {
 	GNOME_VFS_MP3_SNIFF_LENGTH = 256
 };
 
+/**
+ * gnome_vfs_sniff_buffer_looks_like_mp3:
+ * @sniff_buffer: buffer to examine
+ *
+ * Return value: returns %TRUE if the contents of @sniff_buffer appear to
+ * be an MP3.
+ **/
 gboolean
 gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
@@ -908,6 +922,13 @@ gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	return FALSE;
 }
 
+/**
+ * gnome_vfs_sniff_buffer_looks_like_gzip:
+ * @sniff_buffer: buffer to examine
+ *
+ * Return value: returns %TRUE if the contents of @sniff_buffer appear to
+ * be in the GZip format.
+ **/
 gboolean
 gnome_vfs_sniff_buffer_looks_like_gzip (GnomeVFSMimeSniffBuffer *sniff_buffer,
 	const char *file_name)

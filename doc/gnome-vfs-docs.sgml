@@ -4,9 +4,7 @@
 <!entity about SYSTEM "about.sgml">
 <!entity gnome-vfs-application-registry SYSTEM "sgml/application-registry.sgml">
 <!entity gnome-vfs-async-ops SYSTEM "sgml/async-ops.sgml">
-<!entity gnome-vfs-cancellable-ops SYSTEM "sgml/cancellable-ops.sgml">
 <!entity gnome-vfs-cancellation SYSTEM "sgml/cancellation.sgml">
-<!entity gnome-vfs-configuration SYSTEM "sgml/configuration.sgml">
 <!entity gnome-vfs-context SYSTEM "sgml/context.sgml">
 <!entity gnome-vfs-directory SYSTEM "sgml/directory.sgml">
 <!entity gnome-vfs-file-info SYSTEM "sgml/file-info.sgml">
@@ -19,9 +17,7 @@
 <!entity gnome-vfs-method SYSTEM "sgml/method.sgml">
 <!entity gnome-vfs-mime-handlers SYSTEM "sgml/mime-handlers.sgml">
 <!entity gnome-vfs-mime-info SYSTEM "sgml/mime-info.sgml">
-<!entity gnome-vfs-mime-magic SYSTEM "sgml/mime-magic.sgml">
 <!entity gnome-vfs-mime-monitor SYSTEM "sgml/mime-monitor.sgml">
-<!entity gnome-vfs-mime-sniff-buffer SYSTEM "sgml/mime-sniff-buffer.sgml">
 <!entity gnome-vfs-mime SYSTEM "sgml/mime.sgml">
 <!entity gnome-vfs-module-callback SYSTEM "sgml/module-callback.sgml">
 <!entity gnome-vfs-module-callback-module-api SYSTEM "sgml/module-callback-module-api.sgml">
@@ -34,7 +30,6 @@
 <!entity gnome-vfs-seekable SYSTEM "sgml/seekable.sgml">
 <!entity gnome-vfs-ssl SYSTEM "sgml/ssl.sgml">
 <!entity gnome-vfs-standard-callbacks SYSTEM "sgml/standard-callbacks.sgml">
-<!entity gnome-vfs-types SYSTEM "sgml/types.sgml">
 <!entity gnome-vfs-uri SYSTEM "sgml/uri.sgml">
 <!entity gnome-vfs-utils SYSTEM "sgml/utils.sgml">
 <!entity gnome-vfs-xfer SYSTEM "sgml/xfer.sgml">
@@ -92,14 +87,12 @@
       &gnome-vfs-directory;
       &gnome-vfs-find-directory;
       &gnome-vfs-async-ops;
-    <!--FIXME: should we display this?gnome-vfs-cancellable-ops-->
       &gnome-vfs-xfer;
       &gnome-vfs-module-callback;
       &gnome-vfs-standard-callbacks;
   </chapter>
   <chapter id="data-types">
     <title>Common Data Types</title>
-      &gnome-vfs-types;
       &gnome-vfs-file-info;
       &gnome-vfs-result;
       &gnome-vfs-uri;
@@ -117,9 +110,7 @@
       appropriate actions when files are activated. 
     </para>
       &installing-mime-data;
-      &gnome-vfs-mime-sniff-buffer;
       &gnome-vfs-application-registry;
-      &gnome-vfs-mime-magic;
       &gnome-vfs-mime;
       &gnome-vfs-mime-handlers;
       &gnome-vfs-mime-info;
@@ -150,7 +141,6 @@
   <chapter id="everything-else">
     <title>Other APIs</title>
       &gnome-vfs-cancellation;
-      &gnome-vfs-configuration;
       &gnome-vfs-context;
       &gnome-vfs-file-size;
       <!--FIXME: I think this should be private: gnome-vfs-handle-->

@@ -25,6 +25,7 @@
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-monitor-private.h"
 #include "gnome-vfs-cancellable-ops.h"
+#include "gnome-vfs-handle-private.h"
 #include <glib/gmessages.h>
 
 /**

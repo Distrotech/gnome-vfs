@@ -25,18 +25,28 @@ CFILE_GLOB=$(top_srcdir)/libgnomevfs/*.c
 
 # Headers to ignore
 IGNORE_HFILES=					\
-	gnome-vfs-async-job-map.h               \
-	gnome-vfs-backend.h                     \
-        gnome-vfs-i18n.h                        \
-	gnome-vfs-job-queue.h                   \
-        gnome-vfs-job-slave.h                   \
-	gnome-vfs-job.h                         \
-	gnome-vfs-mime-private.h                \
-	gnome-vfs-mime-sniff-buffer-private.h   \
-	gnome-vfs-module-callback-private.h     \
-	gnome-vfs-process.h                     \
-	gnome-vfs-pthread.h                     \
-	gnome-vfs-thread-pool.h                 \
+	gnome-vfs-async-job-map.h		\
+	gnome-vfs-backend.h			\
+	gnome-vfs-cancellable-ops.h		\
+	gnome-vfs-configuration.h		\
+	gnome-vfs-handle-private.h		\
+	gnome-vfs-i18n.h			\
+	gnome-vfs-job-queue.h			\
+	gnome-vfs-job-slave.h			\
+	gnome-vfs-job.h				\
+	gnome-vfs-metadata-private.h		\
+	gnome-vfs-mime-magic.h			\
+	gnome-vfs-mime-private.h		\
+	gnome-vfs-mime-sniff-buffer.h		\
+	gnome-vfs-mime-sniff-buffer-private.h	\
+	gnome-vfs-module-callback-private.h	\
+	gnome-vfs-monitor-private.h		\
+	gnome-vfs-private-utils.h		\
+	gnome-vfs-private.h			\
+	gnome-vfs-process.h			\
+	gnome-vfs-pthread.h			\
+	gnome-vfs-ssl-private.h			\
+	gnome-vfs-thread-pool.h
 	$(NULL)
 
 # Extra files to add when scanning

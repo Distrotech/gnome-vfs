@@ -333,6 +333,42 @@ shellpattern-filter
 </para>
 
 
+<!-- ##### MACRO GNOME_VFS_MODULE_INIT ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO GNOME_VFS_MODULE_SHUTDOWN ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO GNOME_VFS_MODULE_TRANSFORM ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GnomeMagicType ##### -->
+<para>
+
+</para>
+
+@T_END: 
+@T_BYTE: 
+@T_SHORT: 
+@T_LONG: 
+@T_STR: 
+@T_DATE: 
+@T_BESHORT: 
+@T_BELONG: 
+@T_BEDATE: 
+@T_LESHORT: 
+@T_LELONG: 
+@T_LEDATE: 
+
 <!-- ##### USER_FUNCTION GnomeVFSCallback ##### -->
 <para>
 
@@ -486,6 +522,27 @@ shellpattern-filter
 @GNOME_VFS_PROCESS_RUN_CANCELLED: 
 @GNOME_VFS_PROCESS_RUN_SIGNALED: 
 @GNOME_VFS_PROCESS_RUN_STOPPED: 
+
+<!-- ##### USER_FUNCTION GnomeVFSSniffBufferReadCall ##### -->
+<para>
+
+</para>
+
+@context: 
+@buffer: 
+@bytes: 
+@bytes_read: 
+@Returns: 
+
+<!-- ##### USER_FUNCTION GnomeVFSSniffBufferSeekCall ##### -->
+<para>
+
+</para>
+
+@context: 
+@whence: 
+@offset: 
+@Returns: 
 
 <!-- ##### USER_FUNCTION GnomeVFSStatusCallback ##### -->
 <para>
@@ -719,6 +776,132 @@ shellpattern-filter
 
 <<<<<<< gnome-vfs-unused.sgml
 
+<!-- ##### FUNCTION gnome_vfs_get_mime_type_for_buffer ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_destroy ##### -->
+<para>
+
+</para>
+
+@handle: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_do_close ##### -->
+<para>
+
+</para>
+
+@handle: 
+@context: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_do_close_directory ##### -->
+<para>
+
+</para>
+
+@handle: 
+@context: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_do_get_file_info ##### -->
+<para>
+
+</para>
+
+@handle: 
+@info: 
+@options: 
+@context: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_do_read ##### -->
+<para>
+
+</para>
+
+@handle: 
+@buffer: 
+@num_bytes: 
+@bytes_read: 
+@context: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_do_read_directory ##### -->
+<para>
+
+</para>
+
+@handle: 
+@file_info: 
+@context: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_do_seek ##### -->
+<para>
+
+</para>
+
+@handle: 
+@whence: 
+@offset: 
+@context: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_do_tell ##### -->
+<para>
+
+</para>
+
+@handle: 
+@offset_return: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_do_truncate ##### -->
+<para>
+
+</para>
+
+@handle: 
+@length: 
+@context: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_do_write ##### -->
+<para>
+
+</para>
+
+@handle: 
+@buffer: 
+@num_bytes: 
+@bytes_written: 
+@context: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_get_open_mode ##### -->
+<para>
+
+</para>
+
+@handle: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_handle_new ##### -->
+<para>
+
+</para>
+
+@uri: 
+@method_handle: 
+@open_mode: 
+@Returns: 
+
 <!-- ##### FUNCTION gnome_vfs_list_sort ##### -->
 >>>>>>> 1.19
 <para>
@@ -735,6 +918,87 @@ shellpattern-filter
 @data: 
 @Returns: 
 >>>>>>> 1.19
+
+<!-- ##### FUNCTION gnome_vfs_mime_clear_magic_table ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_mime_dump_magic_table ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_mime_magic_parse ##### -->
+<para>
+
+</para>
+
+@filename: 
+@nents: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_mime_sniff_buffer_free ##### -->
+<para>
+
+</para>
+
+@buffer: 
+
+<!-- ##### FUNCTION gnome_vfs_mime_sniff_buffer_get ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@size: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_mime_sniff_buffer_new_from_existing_data ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@buffer_size: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_mime_sniff_buffer_new_from_handle ##### -->
+<para>
+
+</para>
+
+@file: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_mime_sniff_buffer_new_from_memory ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@buffer_size: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_mime_sniff_buffer_new_generic ##### -->
+<para>
+
+</para>
+
+@seek_callback: 
+@read_callback: 
+@context: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_mime_test_get_magic_table ##### -->
+<para>
+
+</para>
+
+@table_path: 
+@Returns: 
 
 <!-- ##### FUNCTION gnome_vfs_process_free ##### -->
 <para>
@@ -776,6 +1040,31 @@ shellpattern-filter
 
 <<<<<<< gnome-vfs-unused.sgml
 <<<<<<< gnome-vfs-unused.sgml
+
+<!-- ##### FUNCTION gnome_vfs_sniff_buffer_looks_like_gzip ##### -->
+<para>
+
+</para>
+
+@sniff_buffer: 
+@file_name: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_sniff_buffer_looks_like_mp3 ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_sniff_buffer_looks_like_text ##### -->
+<para>
+
+</para>
+
+@buffer: 
+@Returns: 
 
 <!-- ##### FUNCTION gnome_vfs_ssl_new ##### -->
 >>>>>>> 1.19

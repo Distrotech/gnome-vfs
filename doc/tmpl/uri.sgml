@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-uri
+
+URI
 
 <!-- ##### SECTION Short_Description ##### -->
 
+functions for manipulating GnomeVFURIs, and converting them to and from strings
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

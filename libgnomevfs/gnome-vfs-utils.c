@@ -378,8 +378,8 @@ unescape_character (const char *scanner)
  * gnome_vfs_unescape_string:
  * @escaped_string: an escaped URI, path, or other string
  *
- * Decodes escaped characters (e.g. %xx sequences) in @escaped_string.
- * Characters are encoded in %xy form, where xy is the ASCII hex code 
+ * Decodes escaped characters (e.g. \%xx sequences) in @escaped_string.
+ * Characters are encoded in \%xy form, where xy is the ASCII hex code 
  * for character 16x+y.
  * 
  * Return value: a newly allocated string with the unescaped equivalents

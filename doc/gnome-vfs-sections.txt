@@ -65,32 +65,6 @@ gnome_vfs_async_find_directory
 </SECTION>
 
 <SECTION>
-<FILE>cancellable-ops</FILE>
-<TITLE>Cancellable Ops</TITLE>
-gnome_vfs_open_uri_cancellable
-gnome_vfs_create_uri_cancellable
-gnome_vfs_close_cancellable
-gnome_vfs_read_cancellable
-gnome_vfs_write_cancellable
-gnome_vfs_seek_cancellable
-gnome_vfs_get_file_info_uri_cancellable
-gnome_vfs_get_file_info_from_handle_cancellable
-gnome_vfs_truncate_uri_cancellable
-gnome_vfs_truncate_handle_cancellable
-gnome_vfs_make_directory_for_uri_cancellable
-gnome_vfs_find_directory_cancellable
-gnome_vfs_remove_directory_from_uri_cancellable
-gnome_vfs_unlink_from_uri_cancellable
-gnome_vfs_create_symbolic_link_cancellable
-gnome_vfs_move_uri_cancellable
-gnome_vfs_check_same_fs_uris_cancellable
-gnome_vfs_set_file_info_cancellable
-gnome_vfs_xfer_private
-gnome_vfs_directory_read_next_cancellable
-gnome_vfs_directory_open_from_uri_cancellable
-</SECTION>
-
-<SECTION>
 <FILE>cancellation</FILE>
 <TITLE>Cancellation</TITLE>
 gnome_vfs_cancellation_new
@@ -99,15 +73,6 @@ gnome_vfs_cancellation_cancel
 gnome_vfs_cancellation_check
 gnome_vfs_cancellation_ack
 gnome_vfs_cancellation_get_fd
-</SECTION>
-
-<SECTION>
-<FILE>configuration</FILE>
-<TITLE>Configuration</TITLE>
-gnome_vfs_configuration_add_directory
-gnome_vfs_configuration_init
-gnome_vfs_configuration_uninit
-gnome_vfs_configuration_get_module_path
 </SECTION>
 
 <SECTION>
@@ -172,18 +137,6 @@ gnome_vfs_find_directory
 <SECTION>
 <FILE>handle</FILE>
 <TITLE>Handle</TITLE>
-gnome_vfs_handle_new
-gnome_vfs_handle_destroy
-gnome_vfs_handle_get_open_mode
-gnome_vfs_handle_do_close
-gnome_vfs_handle_do_read
-gnome_vfs_handle_do_write
-gnome_vfs_handle_do_close_directory
-gnome_vfs_handle_do_read_directory
-gnome_vfs_handle_do_seek
-gnome_vfs_handle_do_tell
-gnome_vfs_handle_do_get_file_info
-gnome_vfs_handle_do_truncate
 </SECTION>
 
 <SECTION>
@@ -296,34 +249,9 @@ gnome_vfs_mime_reset
 </SECTION>
 
 <SECTION>
-<FILE>mime-magic</FILE>
-GnomeMagicType
-gnome_vfs_mime_magic_parse
-gnome_vfs_mime_test_get_magic_table
-gnome_vfs_mime_dump_magic_table
-</SECTION>
-
-<SECTION>
 <FILE>mime-monitor</FILE>
 GnomeVFSMIMEMonitor
 gnome_vfs_mime_monitor_get
-</SECTION>
-
-<SECTION>
-<FILE>mime-sniff-buffer</FILE>
-GnomeVFSSniffBufferSeekCall
-GnomeVFSSniffBufferReadCall
-gnome_vfs_mime_clear_magic_table
-gnome_vfs_mime_sniff_buffer_new_from_handle
-gnome_vfs_mime_sniff_buffer_new_from_memory
-gnome_vfs_mime_sniff_buffer_new_from_existing_data
-gnome_vfs_mime_sniff_buffer_new_generic
-gnome_vfs_mime_sniff_buffer_free
-gnome_vfs_mime_sniff_buffer_get
-gnome_vfs_get_mime_type_for_buffer
-gnome_vfs_sniff_buffer_looks_like_text
-gnome_vfs_sniff_buffer_looks_like_mp3
-gnome_vfs_sniff_buffer_looks_like_gzip
 </SECTION>
 
 <SECTION>
@@ -352,9 +280,6 @@ gnome_vfs_get_special_mime_type
 
 <SECTION>
 <FILE>module</FILE>
-GNOME_VFS_MODULE_INIT
-GNOME_VFS_MODULE_TRANSFORM
-GNOME_VFS_MODULE_SHUTDOWN
 vfs_module_init
 vfs_module_transform
 vfs_module_shutdown
@@ -396,19 +321,6 @@ gnome_vfs_set_file_info
 <SECTION>
 <FILE>parse-ls</FILE>
 gnome_vfs_parse_ls_lga
-</SECTION>
-
-<SECTION>
-<FILE>process</FILE>
-GnomeVFSProcessResult
-GnomeVFSProcessRunResult
-GnomeVFSProcessOptions
-GnomeVFSProcess
-GnomeVFSProcessInitFunc
-GnomeVFSProcessCallback
-gnome_vfs_process_init
-gnome_vfs_process_new
-gnome_vfs_process_free
 </SECTION>
 
 <SECTION>

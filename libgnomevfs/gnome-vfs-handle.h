@@ -50,42 +50,6 @@ typedef enum {
 } GnomeVFSSeekPosition;
 
 
-GnomeVFSHandle * gnome_vfs_handle_new                (GnomeVFSURI             *uri,
-						      GnomeVFSMethodHandle    *method_handle,
-						      GnomeVFSOpenMode         open_mode);
-void             gnome_vfs_handle_destroy            (GnomeVFSHandle          *handle);
-GnomeVFSOpenMode gnome_vfs_handle_get_open_mode      (GnomeVFSHandle          *handle);
-GnomeVFSResult   gnome_vfs_handle_do_close           (GnomeVFSHandle          *handle,
-						      GnomeVFSContext         *context);
-GnomeVFSResult   gnome_vfs_handle_do_read            (GnomeVFSHandle          *handle,
-						      gpointer                 buffer,
-						      GnomeVFSFileSize         num_bytes,
-						      GnomeVFSFileSize        *bytes_read,
-						      GnomeVFSContext         *context);
-GnomeVFSResult   gnome_vfs_handle_do_write           (GnomeVFSHandle          *handle,
-						      gconstpointer            buffer,
-						      GnomeVFSFileSize         num_bytes,
-						      GnomeVFSFileSize        *bytes_written,
-						      GnomeVFSContext         *context);
-GnomeVFSResult   gnome_vfs_handle_do_close_directory (GnomeVFSHandle          *handle,
-						      GnomeVFSContext         *context);
-GnomeVFSResult   gnome_vfs_handle_do_read_directory  (GnomeVFSHandle          *handle,
-						      GnomeVFSFileInfo        *file_info,
-						      GnomeVFSContext         *context);
-GnomeVFSResult   gnome_vfs_handle_do_seek            (GnomeVFSHandle          *handle,
-						      GnomeVFSSeekPosition     whence,
-						      GnomeVFSFileSize         offset,
-						      GnomeVFSContext         *context);
-GnomeVFSResult   gnome_vfs_handle_do_tell            (GnomeVFSHandle          *handle,
-						      GnomeVFSFileSize        *offset_return);
-GnomeVFSResult   gnome_vfs_handle_do_get_file_info   (GnomeVFSHandle          *handle,
-						      GnomeVFSFileInfo        *info,
-						      GnomeVFSFileInfoOptions  options,
-						      GnomeVFSContext         *context);
-GnomeVFSResult   gnome_vfs_handle_do_truncate        (GnomeVFSHandle          *handle,
-						      GnomeVFSFileSize         length,
-						      GnomeVFSContext         *context);
-
 G_END_DECLS
 
 #endif /* GNOME_VFS_HANDLE_H */

@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-module
+
+Module Handling Calls
 
 <!-- ##### SECTION Short_Description ##### -->
 
+standard functions modules should implement for loading/unloading
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
@@ -13,27 +15,6 @@ module
 <para>
 
 </para>
-
-<!-- ##### MACRO GNOME_VFS_MODULE_INIT ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### MACRO GNOME_VFS_MODULE_TRANSFORM ##### -->
-<para>
-
-</para>
-
-
-
-<!-- ##### MACRO GNOME_VFS_MODULE_SHUTDOWN ##### -->
-<para>
-
-</para>
-
-
 
 <!-- ##### FUNCTION vfs_module_init ##### -->
 <para>

@@ -187,8 +187,6 @@ typedef struct {
  * @info: GnomeVFSFileInfo struct
  *
  * Determines whether a file is a symbolic link given @info.
- *
- * Return value: %TRUE if @info indicates that the file is a symbolic link
  */
 #define GNOME_VFS_FILE_INFO_SYMLINK(info)		\
 	((info)->flags & GNOME_VFS_FILE_FLAGS_SYMLINK)
@@ -209,8 +207,6 @@ typedef struct {
  * @info: GnomeVFSFileInfo struct
  *
  * Determines whether a file is local given @info.
- *
- * Return value: %TRUE if @info indicates that the file is local
  */
 #define GNOME_VFS_FILE_INFO_LOCAL(info)			\
 	((info)->flags & GNOME_VFS_FILE_FLAGS_LOCAL)
@@ -232,8 +228,6 @@ typedef struct {
  * @info: GnomeVFSFileInfo struct
  *
  * Determines whether a file belongs to the super user.
- *
- * Return value: %TRUE if @info indicates that the file is set SUID.
  */
 #define GNOME_VFS_FILE_INFO_SUID(info)			\
 	((info)->permissions & GNOME_VFS_PERM_SUID)
@@ -243,8 +237,6 @@ typedef struct {
  * @info: GnomeVFSFileInfo struct
  *
  * Determines whether a file belongs to the super user's group.
- *
- * Return value: %TRUE if @info indicates that the file is set SGID.
  */
 #define GNOME_VFS_FILE_INFO_SGID(info)			\
 	((info)->permissions & GNOME_VFS_PERM_SGID)
@@ -254,8 +246,6 @@ typedef struct {
  * @info: GnomeVFSFileInfo struct
  *
  * Determines whether a file has the sticky bit set, given @info
- *
- * Return value: %TRUE if @info indicates that the file has the sticky bit set.
  */
 #define GNOME_VFS_FILE_INFO_STICKY(info)		\
 	((info)->permissions & GNOME_VFS_PERM_STICKY)

@@ -34,6 +34,10 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#define GNOME_VFS_MODULE_INIT      "vfs_module_init"
+#define GNOME_VFS_MODULE_TRANSFORM "vfs_module_transform"
+#define GNOME_VFS_MODULE_SHUTDOWN  "vfs_module_shutdown"
+
 struct _ModuleElement {
 	char *name;
 	const char *args;

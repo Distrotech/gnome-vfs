@@ -1,3 +1,55 @@
+2002-06-16  Seth Nickell  <snickell@stanford.edu>
+
+	* doc/Makefile.am:
+	* doc/gnome-vfs-docs.sgml:
+	* doc/gnome-vfs-sections.txt:
+	* doc/tmpl/cancellable-ops.sgml:
+	* doc/tmpl/configuration.sgml:
+	* doc/tmpl/gnome-vfs-unused.sgml:
+	* doc/tmpl/handle.sgml:
+	* doc/tmpl/mime-magic.sgml:
+	* doc/tmpl/mime-sniff-buffer.sgml:
+	* doc/tmpl/module.sgml:
+	* doc/tmpl/process.sgml:
+	* doc/tmpl/uri.sgml:
+	* doc/tmpl/xfer.sgml:
+
+	Remove some unused sections, add labels to others.
+	
+	* doc/writing-modules.txt:
+
+	Remove since its outdated by the SGML version.
+
+	* libgnomevfs/gnome-vfs-handle-private.h:
+	* libgnomevfs/gnome-vfs-handle.c:
+	* libgnomevfs/gnome-vfs-handle.h:
+
+	Split handle into a type declaration and a GnomeVFS-internal
+	function declaration. The type needs to be installed (since
+	a number of ops use Handles) but the functions for manipulating
+	handles shouldn't be needed by either modules or library users.
+	
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	* libgnomevfs/gnome-vfs-file-info.c:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-method.c:
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	* libgnomevfs/gnome-vfs-module.h:
+	* libgnomevfs/gnome-vfs-ops.c:
+	* libgnomevfs/gnome-vfs-result.c: (gnome_vfs_result_to_string):
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-utils.c:
+
+	Document a bunch of functions.
+
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/check-headers.pl:
+
+	Use noinst_HEADERS instead of including non-installed
+	headers in the source. This makes it easier to find headers
+	that should not be included in documentation.
+	
 2002-06-15  Seth Nickell  <snickell@stanford.edu>
 
 	* doc/tmpl/ops.sgml:
