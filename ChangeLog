@@ -1,3 +1,10 @@
+2001-01-18  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_expand_initial_tilde):
+	Made this new function never return NULL, after discussing with
+	Darin. Now it just returns (a copy of) the original path if it
+	can't expand ~some_user_name/xxx.
+
 2001-01-18  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-directory-list.c:

@@ -333,7 +333,7 @@ gnome_vfs_expand_initial_tilde (const char *path)
 	g_free (user_name);
 
 	if (passwd_file_entry == NULL || passwd_file_entry->pw_dir == NULL) {
-		return NULL;
+		return g_strdup (path);
 	}
 
 	return g_strconcat (passwd_file_entry->pw_dir,
