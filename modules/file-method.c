@@ -36,6 +36,8 @@
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-monitor-private.h>
+#include <libgnomevfs/gnome-vfs-private-utils.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -1818,13 +1820,49 @@ rename_helper (const gchar *old_full_name,
 	gboolean old_exists;
 	struct stat statbuf;
 	gint retval;
+	gchar *temp_name;
+	GnomeVFSHandle *temp_handle;
+	GnomeVFSResult result;
 
 	retval = stat (new_full_name, &statbuf);
 	if (retval == 0) {
-		/* If we are not allowed to replace an existing file, return an
-                   error.  */
-		if (! force_replace)
+		/* Special case for files on case insensitive (vfat) filesystems:
+		 * If the old and the new name only differ by case,
+		 * try renaming via a temp file name.
+		 */
+		if (g_ascii_strcasecmp (old_full_name, new_full_name) == 0
+		    && strcmp (old_full_name, new_full_name) != 0 && ! force_replace) {
+
+			if (gnome_vfs_context_check_cancellation (context))
+				return GNOME_VFS_ERROR_CANCELLED;
+			
+			result = gnome_vfs_create_temp (old_full_name, &temp_name, &temp_handle);
+			if (result != GNOME_VFS_OK)
+				return result;
+			gnome_vfs_close (temp_handle);
+			unlink (temp_name);
+			
+			retval = rename (old_full_name, temp_name);
+			if (retval == 0) {
+				if (stat (new_full_name, &statbuf) != 0 
+				    && rename (temp_name, new_full_name) == 0) {
+					/* Success */
+					return GNOME_VFS_OK;
+				}
+				/* Revert the filename back to original */ 
+				retval = rename (temp_name, old_full_name);
+				if (retval == 0) {
+					return GNOME_VFS_ERROR_FILE_EXISTS;
+				}
+			}
+			return gnome_vfs_result_from_errno_code (retval);
+		
+		} else if (! force_replace) {
+			/* If we are not allowed to replace an existing file, 
+			 * return an error.
+			 */
 			return GNOME_VFS_ERROR_FILE_EXISTS;
+		}
 		old_exists = TRUE;
 	} else {
 		old_exists = FALSE;
