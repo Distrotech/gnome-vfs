@@ -1,3 +1,7 @@
+2000-09-09  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gnome-vfs.spec.in: Fixed installation of man page.
+	
 2000-09-09  Gene Z. Ragan  <gzr@eazel.com>
 
 	* libgnomevfs/Makefile.am:
