@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2000-08-01 02:00+0200\n"
-"PO-Revision-Date: 2000-07-19 19:03+01:00\n"
+"PO-Revision-Date: 2000-11-03 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -35,12 +35,12 @@ msgstr "%s:%d indeholder intet modulnavn."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigurationsfilen '%s' fandtes ikke: %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:269
+#: libgnomevfs/gnome-vfs-file-info.c:342
 #, c-format
 msgid "Unknown sort rule %d"
 msgstr "Ukendt sorteringsregel %d"
 
-#: libgnomevfs/gnome-vfs-init.c:71
+#: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS er allerede initialiseret."
 
@@ -248,30 +248,30 @@ msgstr "Navnet er for langt"
 msgid "Service not available"
 msgstr "Tjeneste ikke tilgængelig"
 
-#: libgnomevfs/gnome-vfs-result.c:134
+#: libgnomevfs/gnome-vfs-result.c:140
 msgid "Unknown error"
 msgstr "Ukendt fejl"
 
-#: libgnomevfs/gnome-vfs-utils.c:41
+#: libgnomevfs/gnome-vfs-utils.c:58
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:43
+#: libgnomevfs/gnome-vfs-utils.c:60
 #, c-format
 msgid "%u bytes"
 msgstr "%u byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:50
+#: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%.1fK"
 msgstr "%.1fK"
 
-#: libgnomevfs/gnome-vfs-utils.c:54
+#: libgnomevfs/gnome-vfs-utils.c:71
 #, c-format
 msgid "%.1fM"
 msgstr "%.1fM"
 
-#: libgnomevfs/gnome-vfs-utils.c:58
+#: libgnomevfs/gnome-vfs-utils.c:75
 #, c-format
 msgid "%.1fG"
 msgstr "%.1fG"
@@ -324,38 +324,38 @@ msgstr "Kan ikke lytte på '%s': %s"
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Kan ikke modtage forbindelser på '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1279
+#: libgnomevfs-corba/gnome-vfs-slave.c:1278
 msgid "Cannot initialize CORBA."
 msgstr "Kan ikke initialisere CORBA"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1286
+#: libgnomevfs-corba/gnome-vfs-slave.c:1285
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Kan ikke læse første reference til RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1293
+#: libgnomevfs-corba/gnome-vfs-slave.c:1292
 msgid "Cannot activate POA manager."
 msgstr "Kan ikke aktivere POA-håndtering"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1318
+#: libgnomevfs-corba/gnome-vfs-slave.c:1317
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Brug: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1329
+#: libgnomevfs-corba/gnome-vfs-slave.c:1328
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Kan ikke åbne filbeskriver %d"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1352
+#: libgnomevfs-corba/gnome-vfs-slave.c:1351
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Meddelelsesgrænsesnit for '%s' ikke fundet."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1362
+#: libgnomevfs-corba/gnome-vfs-slave.c:1361
 msgid "Cannot setup Request object."
 msgstr "Kan ikke opsætte forespørgselsobjekt."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1369
+#: libgnomevfs-corba/gnome-vfs-slave.c:1368
 msgid "Cannot extract IOR."
 msgstr "Kan ikke få IOR."
 
@@ -403,63 +403,63 @@ msgstr "Kan ikke dræbe GNOME::VFS::Slave %s -- undtagelse %s"
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "Kan ikke dræbe GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:161
+#: libgnomevfs-pthread/gnome-vfs-job.c:157
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Fejl ved skrivning til 'wakeup GnomeVFSJob' kanalen."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:605
-#: libgnomevfs-pthread/gnome-vfs-job.c:1589
+#: libgnomevfs-pthread/gnome-vfs-job.c:762
+#: libgnomevfs-pthread/gnome-vfs-job.c:1672
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Ukendt job-ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1007
-#: libgnomevfs-pthread/gnome-vfs-job.c:1128
+#: libgnomevfs-pthread/gnome-vfs-job.c:1061
+#: libgnomevfs-pthread/gnome-vfs-job.c:1189
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1622
+#: libgnomevfs-pthread/gnome-vfs-job.c:1705
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:306
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:333
 msgid "Edit Applications List"
 msgstr "Redigér applikationslisten"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:326
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:353
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
 msgstr "Vælg applikationer som skal være i menuen for MIME-type \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:349
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:377
 msgid "Add Application..."
 msgstr "Tilføj applikation..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:353
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:384
 msgid "Edit Application..."
 msgstr "Redigér applikation..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:357
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:390
 msgid "Delete Application"
 msgstr "Slet applikation"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:382
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:423
 msgid "Edit Components List"
 msgstr "Redigér komponentliste"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:402
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:443
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
 msgstr "Vælg visninger som skal være i menuen for MIME-type \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:575
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:620
 msgid "Add Mime Type"
 msgstr "Tilføj MIME-type"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:576
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:621
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
@@ -467,23 +467,23 @@ msgstr ""
 "Tilføj en ny MIME-type\n"
 "For eksempel:  image/tiff; text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:581
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:626
 msgid "Mime Type:"
 msgstr "MIME-type:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:594
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:638
 msgid "Type in a description for this mime-type."
 msgstr "Indtast en beskrivelse for denne MIME-type."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:600
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
 msgid "Description:"
 msgstr "Beskrivelse:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:628
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:683
 msgid "Add New Extension"
 msgstr "Tilføj ny filtype"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:629
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
@@ -491,141 +491,135 @@ msgstr ""
 "Indtast filtypen for denne MIME-type.\n"
 "For eksempel: .html, .htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:634
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:689
 msgid "Extension:"
 msgstr "Filtype:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:707
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:775
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:848
 msgid "New Application"
 msgstr "Ny applikation"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:716
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:784
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:857
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:961
 msgid "Application Name:"
 msgstr "Applikationsnavn:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:724
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:792
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:865
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:970
 msgid "Application Command:"
 msgstr "Applikationskommando:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:732
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:800
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:873
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:979
 msgid "Open Behavior"
 msgstr "Opførsel ved åbning"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:738
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:806
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:879
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:985
 msgid "Can open multiple files"
 msgstr "Kan åbne flere filer"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:741
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:809
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:882
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:989
 msgid "Can open from URI"
 msgstr "Kan åbne fra URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:371
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:952
+msgid "Edit Application"
+msgstr "Redigér applikation"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:349
 msgid "Change Icon"
 msgstr "Ændr ikon"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:385
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1103
+#: mime-type-capplet/nautilus-mime-type-capplet.c:361
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1216
 msgid "Mime Type"
 msgstr "MIME-type"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:407
+#: mime-type-capplet/nautilus-mime-type-capplet.c:382
 msgid "Add new Mime type..."
 msgstr "Tilføj ny MIME-type..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:414
+#: mime-type-capplet/nautilus-mime-type-capplet.c:389
 msgid "Delete this Mime type..."
 msgstr "Slet denne Mime-type..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:429
+#: mime-type-capplet/nautilus-mime-type-capplet.c:404
 msgid "Use Viewer"
 msgstr "Brug visningsprogram"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:435
+#: mime-type-capplet/nautilus-mime-type-capplet.c:410
 msgid "Open With Application"
 msgstr "Åbn ny applikation"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:447
+#: mime-type-capplet/nautilus-mime-type-capplet.c:422
 msgid "Edit List"
 msgstr "Redigér liste"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:476
+#: mime-type-capplet/nautilus-mime-type-capplet.c:451
 msgid "Add"
 msgstr "Tilføj"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:479
+#: mime-type-capplet/nautilus-mime-type-capplet.c:454
 msgid "Remove"
 msgstr "Fjern"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:657
-#: mime-type-capplet/nautilus-mime-type-capplet.c:799
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1006
+#: mime-type-capplet/nautilus-mime-type-capplet.c:640
+#: mime-type-capplet/nautilus-mime-type-capplet.c:784
+#: mime-type-capplet/nautilus-mime-type-capplet.c:919
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1108
 msgid "None"
 msgstr "Ingen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1102
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1215
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1104
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1217
 msgid "Extension"
 msgstr "Filtype"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1105
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1218
 msgid "Action"
 msgstr "Handling"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:265
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:267
 msgid "Can't find an hbox, using a normal file selection"
 msgstr "Kan ikke finde en hbox, ved brug af normalt filvalg"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:271
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:273
 msgid "Preview"
 msgstr "Smugkig"
 
-#: modules/efs-method.c:493 modules/file-method.c:359
+#: modules/efs-method.c:493 modules/file-method.c:367
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:522
-#, c-format
-msgid "Invalid header `%s'"
-msgstr "Ugyldig header '%s'"
-
-#: modules/http-method.c:539
+#: modules/http-method.c:1145
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:736
+#: modules/http-method.c:1510
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:880
+#: modules/http-method.c:1722
 #, c-format
 msgid "%s of %s read"
 msgstr "%s af %s læst"
 
-#: modules/http-method.c:883
+#: modules/http-method.c:1725
 #, c-format
 msgid "%s read"
 msgstr "%s læst"
-
-#. Multi-Status
-#: modules/http-method.c:1071
-msgid "HTTP server returned an invalid PROPFIND response"
-msgstr "HTTP-tjener returnerede et ugyldig PROPFIND-svar"
 
 #: test/gnome-file-selection/gnome-file-selection.c:671
 msgid "Back"
@@ -690,3 +684,9 @@ msgstr "Vis:"
 #: test/gnome-file-selection/gnome-file-selection.c:887
 msgid "Show dotfiles"
 msgstr "Vis dotfiler"
+
+#~ msgid "Invalid header `%s'"
+#~ msgstr "Ugyldig header '%s'"
+
+#~ msgid "HTTP server returned an invalid PROPFIND response"
+#~ msgstr "HTTP-tjener returnerede et ugyldig PROPFIND-svar"
