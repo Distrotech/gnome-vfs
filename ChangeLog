@@ -1,3 +1,12 @@
+2000-06-15  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_action_type): Fix bug where we would
+	not fall back to the supertype action if the action type string
+	was NULL.
+	(gnome_vfs_mime_get_default_component): Fix bug where we would
+	free an uninitialized variable.
+
 2000-06-15  Gene Z. Ragan  <gzr@eazel.com>
 
 	Work in progress on the FIle Types and Programs Capplet

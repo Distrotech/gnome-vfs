@@ -58,11 +58,9 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
 	action_type_string = gnome_vfs_mime_get_value
 		(mime_type, "default_action_type");
 
-	if (action_type_string == NULL) {
-		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
-	} else if (strcasecmp (action_type_string, "application") == 0) {
+	if (action_type_string != NULL && strcasecmp (action_type_string, "application") == 0) {
 		return GNOME_VFS_MIME_ACTION_TYPE_APPLICATION;
-	} else if (strcasecmp (action_type_string, "component") == 0) {
+	} else if (action_type_string != NULL && strcasecmp (action_type_string, "component") == 0) {
 		return GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
 	} else {
 		/* Fall back to the supertype. */
@@ -168,20 +166,17 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	/* First try the component specified in the mime database, if available. */
 	default_component_iid = gnome_vfs_mime_get_value
 		(mime_type, "default_component_iid");
-
-
-	if (default_component_iid == NULL || strcmp (default_component_iid, "") == 0) {
+	if (default_component_iid == NULL || default_component_iid[0] == '\0') {
 		/* Fall back to the supertype. */
 		/* Check if already a supertype */
 		if (strcmp (supertype, mime_type) != 0) {
 			default_component = gnome_vfs_mime_get_default_component (supertype);
+			if (default_component != NULL) {
+				default_component_iid = g_strdup (default_component->iid);
+				CORBA_free (default_component);
+			}
 		}
-
-		default_component_iid = g_strdup (default_component->iid);
-
-		CORBA_free (default_component);
 	}
-
 
 	/* FIXME bugzilla.eazel.com 1142: should probably check for
            the right interfaces too. Also slightly semantically
