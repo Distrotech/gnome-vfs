@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2001-10-12 01:57-0700\n"
+"POT-Creation-Date: 2001-07-27 23:20+0200\n"
 "PO-Revision-Date: 2000-07-07 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -1009,22 +1009,22 @@ msgstr "arhiv zip"
 msgid "zoo archive"
 msgstr "arhiv zoo"
 
-#: libgnomevfs/gnome-vfs-configuration.c:217
+#: libgnomevfs/gnome-vfs-configuration.c:216
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d vsebuje NIÈELNE znake."
 
-#: libgnomevfs/gnome-vfs-configuration.c:234
+#: libgnomevfs/gnome-vfs-configuration.c:233
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d ne vsebuje imena metode."
 
-#: libgnomevfs/gnome-vfs-configuration.c:263
+#: libgnomevfs/gnome-vfs-configuration.c:262
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ne vsebuje imea modula."
 
-#: libgnomevfs/gnome-vfs-configuration.c:316
+#: libgnomevfs/gnome-vfs-configuration.c:315
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Nastavitvena datoteka `%s' ni bila najdena: %s"
@@ -1275,23 +1275,23 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:713
+#: libgnomevfs-pthread/gnome-vfs-job.c:712
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Neznan tip operacije %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1003
-#: libgnomevfs-pthread/gnome-vfs-job.c:1148
+#: libgnomevfs-pthread/gnome-vfs-job.c:1000
+#: libgnomevfs-pthread/gnome-vfs-job.c:1145
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ne morem ustvariti cevi GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1604
+#: libgnomevfs-pthread/gnome-vfs-job.c:1603
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Neznana vrsta posla %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1640
+#: libgnomevfs-pthread/gnome-vfs-job.c:1639
 msgid "Operation stopped"
 msgstr "Operacija ustavljena"
 
