@@ -4,11 +4,13 @@
 # Christian Meyer <chrisime@gnome.org>, 2002.
 # Christian Neumair <chris@gnome-de.org>, 2002, 2003.
 #
+# TODO: Somebody who's familiar to CDE's terminology needs to sync the
+# CDE-specific strings up with CDE
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.9.x\n"
-"POT-Creation-Date: 2003-05-05 12:39+0200\n"
-"PO-Revision-Date: 2003-01-04 13:24+0100\n"
+"Project-Id-Version: gnome-vfs 2.4.x\n"
+"POT-Creation-Date: 2003-05-05 17:10+0200\n"
+"PO-Revision-Date: 2003-05-05 17:10+0200\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +35,7 @@ msgstr "%s:%d enthält keinen Modulnamen"
 #: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Konfigurationsdatei »%s« wurde nicht gefunden: %s"
+msgstr "Die Konfigurationsdatei »%s« wurde nicht gefunden: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:744
 #, c-format
@@ -43,7 +45,8 @@ msgstr "Unbekannter Operationstyp %u"
 #: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Es kann keine Pipe für offenen GIOChannel angelegt werden: %s"
+msgstr ""
+"Es kann keine Weiterleitungen für den offenen GIOChannel angelegt werden: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1668
 #, c-format
@@ -57,11 +60,11 @@ msgstr "Operation angehalten"
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Parsen war nicht möglich: %s"
+msgstr "Verarbeiten nicht möglich: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Weitere Parsing-Fehler werden ignoriert"
+msgstr "Weitere Verarbeitungsfehler werden ignoriert"
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -111,7 +114,7 @@ msgstr "Format ungültig"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Falscher Dateideskriptor"
+msgstr "Fehlerhafter Dateideskriptor"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
@@ -121,7 +124,7 @@ msgstr "Datei zu groß"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Kein Platz mehr auf dem Gerät"
+msgstr "Kein Platz mehr auf dem Gerät verfügbar"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
@@ -136,7 +139,7 @@ msgstr "Ungültiger URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Datei nicht offen"
+msgstr "Datei nicht geöffnet"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
@@ -151,7 +154,7 @@ msgstr "Zugriff verweigert"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "Zu viele offene Dateien"
+msgstr "Zu viele Dateien geöffnet"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
@@ -181,7 +184,7 @@ msgstr "Datei existiert"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Ringschluss in Links entdeckt"
+msgstr "Ringschluss bei Verknüpfungen entdeckt"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
@@ -226,7 +229,7 @@ msgstr "Operation abgebrochen"
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "Verzeichnis wird verwendet"
+msgstr "Verzeichnis ist belegt"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
@@ -236,7 +239,7 @@ msgstr "Verzeichnis nicht leer"
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "Zu viele Links"
+msgstr "Zu viele Verknüpfungen"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
@@ -276,22 +279,22 @@ msgstr "Bevorzugter Browser konnte nicht gefunden werden"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "Keine Vorgabeaktion festgelegt"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "Kein Handler für URL-Schema"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Fehler beim Verarbeiten der Befehlszeile"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Fehler beim Ausführen des Befehls"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
@@ -340,58 +343,58 @@ msgstr "Es konnte keine gültige Einstellung bei %s gefunden werden\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Die %s Umgebungsvariable zum Angeben eines anderen Ortes verwenden.\n"
+msgstr ""
+"Verwenden Sie die %s Umgebungsvariable, um einen anderen Ort anzugeben.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:163
 msgid "Applications"
-msgstr ""
+msgstr "Anwendungen"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:166
 msgid "Cards"
-msgstr ""
+msgstr "Karten"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:169
-#, fuzzy
 msgid "Files"
-msgstr "Datei existiert"
+msgstr "Dateien"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:172
 msgid "Folders"
-msgstr ""
+msgstr "Ordner"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Help"
-msgstr ""
+msgstr "Hilfe"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Hosts"
-msgstr ""
+msgstr "Rechner"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
 msgid "Links"
-msgstr ""
+msgstr "Verknüpfungen"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Tools"
-msgstr ""
+msgstr "Werkzeuge"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Windows"
-msgstr ""
+msgstr "Fenster"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
