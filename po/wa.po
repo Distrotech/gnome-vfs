@@ -1,66 +1,67 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2001 Free Software Foundation, Inc.
-# Pablo Saratxaga <pablo@mandrakesoft.com>, 2001,2002
+# Pablo Saratxaga <pablo@mandrakesoft.com>, 2001,2002,2003
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2003-03-31 13:23+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-29 03:37+0200\n"
 "PO-Revision-Date: 2002-04-30 13:20MET\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d a des caracteres vudes (NUL) å dvins."
+msgstr "%s:%d a des caracteres vudes (NUL) Ã¥ dvins."
 
 #: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d ni contént nou no d' metôde."
+msgstr "%s:%d ni contÃ©nt nou no d'Â metÃ´de."
 
 #: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d ni contént nou no d' module."
+msgstr "%s:%d ni contÃ©nt nou no d'Â module."
 
 #: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Li fitchî d' apontiaedje «%s» n' a nén stî trové: %s"
+msgstr "Li fitchÃ® d'Â apontiaedje Â«%sÂ» n'Â a nÃ©n stÃ® trovÃ©: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:744
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Sôre op %u nén cnoxhou"
+msgstr "SÃ´re op %u nÃ©n cnoxhou"
 
 #: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Dji n' a savou fé ene buze po drovi l' canå GIOChannel: %s"
+msgstr "Dji n'Â a savou fÃ© ene buze po drovi l'Â canÃ¥ GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1668
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Sôre di bouye %u nén cnoxhowe"
+msgstr "SÃ´re di bouye %u nÃ©n cnoxhowe"
 
 #: libgnomevfs/gnome-vfs-job.c:1701
 msgid "Operation stopped"
-msgstr "Operåcion djokêye"
+msgstr "OperÃ¥cion djokÃªye"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Dji n' sai analijhî: %s"
+msgstr "Dji n'Â sai analijhÃ®: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Les arokes d' analijhaedje ki shuvront sront passêyes houte"
+msgstr "Les arokes d'Â analijhaedje ki shuvront sront passÃªyes houte"
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -70,7 +71,7 @@ msgstr "Nole aroke"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
-msgstr "fitchî nén trové"
+msgstr "fitchÃ® nÃ©n trovÃ©"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
@@ -85,12 +86,12 @@ msgstr "Divintrinne aroke"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Parametes nén valåves"
+msgstr "Parametes nÃ©n valÃ¥ves"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Operåcion nén sopoirtêye"
+msgstr "OperÃ¥cion nÃ©n sopoirtÃªye"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -100,92 +101,92 @@ msgstr "Aroke d' I/R"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Crombès dnêyes"
+msgstr "CrombÃ¨s dnÃªyes"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Cogne nén valåve"
+msgstr "Cogne nÃ©n valÃ¥ve"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr ""
+msgstr "MÃ¥le pougneye di fitchÃ®"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "Fitchî pår trop lådje"
+msgstr "FitchÃ® pÃ¥r trop lÃ¥dje"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "I gn a pupont d' plaece so l' éndjin"
+msgstr "I gn a pupont d'Â plaece so l'Â Ã©ndjin"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Sistinme di fitchîs k' on pout seulmint lere"
+msgstr "Sistinme di fitchÃ®s k'Â on pout seulmint lere"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
-msgstr "Hårdêye nén valåve"
+msgstr "HÃ¥rdÃªye nÃ©n valÃ¥ve"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Fitchî nén drovi"
+msgstr "FitchÃ® nÃ©n drovi"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Môde di drovaedje nén valåve"
+msgstr "MÃ´de di drovaedje nÃ©n valÃ¥ve"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "Accès nén permetou"
+msgstr "AccÃ¨s nÃ©n permetou"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "I gn a pår trop di fitchîs di drovîs"
+msgstr "I gn a pÃ¥r trop di fitchÃ®s di drovÃ®s"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "Fén do fitchî"
+msgstr "FÃ©n do fitchÃ®"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "Nén on ridant"
+msgstr "NÃ©n on ridant"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Avançmint del operåcion"
+msgstr "AvanÃ§mint del operÃ¥cion"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
-msgstr "Operåcion djokêye"
+msgstr "OperÃ¥cion djokÃªye"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "Li fitchî egzisteye ddja"
+msgstr "Li fitchÃ® egzisteye ddja"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Betchfessîs loyéns di trovés"
+msgstr "BetchfessÃ®s loyÃ©ns di trovÃ©s"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "Operåcion nén permetowe"
+msgstr "OperÃ¥cion nÃ©n permetowe"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
@@ -200,67 +201,67 @@ msgstr "I gn a pont del memwere assez"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Lodjoe nén trové"
+msgstr "Lodjoe nÃ©n trovÃ©"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "Li no do lodjoe n' est nén valåve"
+msgstr "Li no do lodjoe n'Â est nÃ©n valÃ¥ve"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "Li lodjoe n' a nole adresse"
+msgstr "Li lodjoe n'Â a nole adresse"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "L' elodjaedje a fwait berwete"
+msgstr "L'Â elodjaedje a fwait berwete"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
-msgstr "Operåcion rinonceye"
+msgstr "OperÃ¥cion rinonceye"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "Ridant ocupé"
+msgstr "Ridant ocupÃ©"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "Ridant nén vude"
+msgstr "Ridant nÃ©n vude"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "I gn a pår trop d' loyéns"
+msgstr "I gn a pÃ¥r trop d'Â loyÃ©ns"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "sistinme di fitchîs k' on pout seulmint lere"
+msgstr "sistinme di fitchÃ®s k'Â on pout seulmint lere"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Nén sol minme sistinme di fitchîs"
+msgstr "NÃ©n sol minme sistinme di fitchÃ®s"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "Li no est pår trop long"
+msgstr "Li no est pÃ¥r trop long"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "Siervice nén disponibe"
+msgstr "Siervice nÃ©n disponibe"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr ""
+msgstr "Li dmande rind obsolete les dnÃªyes do sierveu"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -269,13 +270,12 @@ msgstr "Aroke di protocole"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "Dji n' sai analijhî: %s"
+msgstr "Dji n'Â sai trover on mwaisse foyteu"
 
 #: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
-msgstr "Aroke nén cnoxhowe"
+msgstr "Aroke nÃ©n cnoxhowe"
 
 #: libgnomevfs/gnome-vfs-utils.c:83
 msgid "1 byte"
@@ -301,26 +301,26 @@ msgstr "%.1f Mo"
 msgid "%.1f GB"
 msgstr "%.1f Go"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
+#: libgnomevfs/gnome-vfs-utils.c:1104
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr " (unicÃ´de nÃ©n valide)"
 
 #: modules/file-method.c:382
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "GnomeVFSSeekPosition %d nén cnoxhou"
+msgstr "GnomeVFSSeekPosition %d nÃ©n cnoxhou"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Dji n'Â a nÃ©n trovÃ© di fitchÃ® d'Â apontiaedjes valide e %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr ""
-"Eployî li variåve d' evironmint %s po specifyî on eplaeçmint diferin.\n"
+"EployÃ® li variÃ¥ve d'Â evironmint %s po specifyÃ® on eplaeÃ§mint diferin.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
