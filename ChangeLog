@@ -1,3 +1,8 @@
+2002-03-05  jacob berkman  <jacob@ximian.com>
+
+	* modules/preferences.vfolder-info.in: the capplets apparently
+	moved
+
 2002-02-25  Laszlo Peter  <laca@ireland.sun.com>
 
 	* modules/file-method.c: (do_read_directory): work around a Solaris
