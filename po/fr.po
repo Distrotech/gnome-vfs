@@ -6,9 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.3.1\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-05-17 18:48+0200\n"
+"Project-Id-Version: gnome-vfs 2.3.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-30 11:06+0200\n"
+"PO-Revision-Date: 2003-08-30 11:04+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -309,7 +310,7 @@ msgstr "%u octets"
 #: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
-msgstr "%.1f Ko"
+msgstr "%.1f ko"
 
 #: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
@@ -344,54 +345,54 @@ msgstr ""
 "différent.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
-msgid "Applications"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
-msgid "Cards"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
-msgid "Files"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
-msgid "Folders"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
-msgid "Help"
-msgstr ""
+msgid "Applications"
+msgstr "Applications"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
-msgid "Hosts"
-msgstr ""
+msgid "Cards"
+msgstr "Cartes"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
-msgid "Links"
-msgstr ""
+msgid "Files"
+msgstr "Fichiers"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
-msgid "Mail"
-msgstr ""
+msgid "Folders"
+msgstr "Dossiers"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
+msgid "Help"
+msgstr "Aide"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:190
+msgid "Hosts"
+msgstr "Hôtes"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:193
+msgid "Links"
+msgstr "Liens"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:196
+msgid "Mail"
+msgstr "Courrier"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr ""
+msgstr "Outils"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr ""
+msgstr "Fenêtres"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
