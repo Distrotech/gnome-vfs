@@ -334,6 +334,7 @@ bonobo_storage_vfs_init (GObject *object)
 	/* nothing to do */
 }
 
-BONOBO_TYPE_FUNC (BonoboStorageVfs,
-		  bonobo_object_get_type (),
-		  bonobo_storage_vfs);
+BONOBO_TYPE_FUNC_FULL (BonoboStorageVfs,
+		       Bonobo_Storage,
+		       bonobo_object_get_type (),
+		       bonobo_storage_vfs);

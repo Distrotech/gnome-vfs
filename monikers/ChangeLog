@@ -1,3 +1,10 @@
+2001-10-17  Michael Meeks  <michael@ximian.com>
+
+	* bonobo-storage-fs.c: use the correct type constructor
+	to implement a CORBA interface.
+
+	* bonobo-storage-vfs.c: ditto.
+
 2001-10-05  jacob berkman  <jacob@ximian.com>
 
 	* Makefile.am: set LDFLAGS to -module -avoid-version
