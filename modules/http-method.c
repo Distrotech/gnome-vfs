@@ -2557,7 +2557,7 @@ vfs_module_init (const char *method_name,
 
 	gl_mutex = g_mutex_new ();
 	
-	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_NONE, &gconf_error);
+	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_ONELEVEL, &gconf_error);
 
 	if (gconf_error) {
 		DEBUG_HTTP (("GConf error during client_add_dir '%s'", gconf_error->message));

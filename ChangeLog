@@ -1,3 +1,8 @@
+2002-01-04  Havoc Pennington  <hp@pobox.com>
+
+	* modules/http-method.c (vfs_module_init): preload the GConfClient
+	cache, since we immediately get all the values from it.
+
 2002-01-03  Darin Adler  <darin@bentspoon.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (move_items), (link_items):
