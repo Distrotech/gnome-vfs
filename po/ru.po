@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-02-13 08:18+0300\n"
-"PO-Revision-Date: 2004-02-13 08:22+0300\n"
+"PO-Revision-Date: 2004-02-17 13:01+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr ""
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr "Раздел формата ISO 9660"
+msgstr "Том формата ISO 9660"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -83,15 +83,15 @@ msgstr "Конфигурационный файл \"%s\" не найден: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr "Раздел формата AFFS"
+msgstr "Том формата AFFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr "Сетевой раздел формата AFS"
+msgstr "Сетевой том формата AFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr "Автоопределяемый раздел"
+msgstr "Автоопределяемый том"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
@@ -104,113 +104,113 @@ msgstr "Цифровое аудио качества компакт-диска"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr "Раздел оборудования"
+msgstr "Том оборудования"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr "Раздел ОС Linux формата Ext2"
+msgstr "Том ОС Linux формата Ext2"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr "Раздел ОС Linux формата Ext3"
+msgstr "Том ОС Linux формата Ext3"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr "Раздел ОС MSDOS"
+msgstr "Том ОС MSDOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr "Раздел ОС MacOS"
+msgstr "Том ОС MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr "Раздел компакт-диска"
+msgstr "Том компакт-диска"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr "Раздел компакт-диска формата Hsfs"
+msgstr "Том компакт-диска формата Hsfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr "Раздел формата JFS"
+msgstr "Том формата JFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
-msgstr "Раздел ОС Windows NT"
+msgstr "Том ОС Windows NT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr "Системный раздел"
+msgstr "Системный том"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr "Раздел в памяти"
+msgstr "Том в памяти"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr "Раздел ОС Minix"
+msgstr "Том ОС Minix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr "Сетевой раздел формата NFS"
+msgstr "Сетевой том формата NFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr "Раздел ОС Netware"
+msgstr "Том ОС Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr "Раздел ОС Linux формата ReiserFS"
+msgstr "Том ОС Linux формата ReiserFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr "Разделяемый раздел ОС Windows"
+msgstr "Разделяемый том ОС Windows"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr "Раздел формата SuperMount"
+msgstr "Том формата SuperMount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr "Раздел формата DVD"
+msgstr "Том формата DVD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr "Раздел ОС Solaris/BSD"
+msgstr "Том ОС Solaris/BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr "Раздел ОС Solaris формата Udfs"
+msgstr "Том ОС Solaris формата Udfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr "Раздел ОС Solaris формата Pcfs"
+msgstr "Том ОС Solaris формата Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr "Расширенный раздел ОС DOS"
+msgstr "Расширенный том ОС DOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr "Раздел ОС Windows формата VFAT"
+msgstr "Том ОС Windows формата VFAT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr "Раздел ОС Xenix"
+msgstr "Том ОС Xenix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr "Раздел ОС Linux формата XFS"
+msgstr "Том ОС Linux формата XFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr "Раздел формата XIAFS"
+msgstr "Том формата XIAFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
 msgid "Unknown"
@@ -531,7 +531,7 @@ msgstr "Камера"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
-msgstr "Корневой раздел"
+msgstr "Корневой том"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
@@ -539,7 +539,7 @@ msgstr "Аудио компакт-диск"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
 msgid "Unknown volume"
-msgstr "Неизвестный раздел"
+msgstr "Неизвестный том"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
@@ -556,7 +556,7 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
-"Невозможно подсоединить раздел. Возможно, носитель отсутствует в устройстве."
+"Невозможно подсоединить том. Возможно, носитель отсутствует в устройстве."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
@@ -571,8 +571,8 @@ msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Невозможно подсоединить выбранный раздел. Возможно, раздел в таком формате, "
-"что он не может быть подсоединён."
+"Невозможно подсоединить выбранный том. Возможно, том в таком формате, что он "
+"не может быть подсоединён."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -580,11 +580,11 @@ msgstr "Невозможно подсоединить выбранную дис�
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr "Невозможно подсоединить выбранный раздел."
+msgstr "Невозможно подсоединить выбранный том."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr "Невозможно отсоединить выбранный раздел."
+msgstr "Невозможно отсоединить выбранный том."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
 #: libgnomevfs/gnome-vfs-volume-ops.c:296
@@ -788,69 +788,69 @@ msgstr "Запускать программу в терминале"
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
-"Если включено, то программа, определённая в ключе \"command\", будет "
-"обрабатывать ссылки (URLs) типа H323."
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URLs) типа H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
-"Если включено, то программа, определённая в ключе \"command\", будет "
-"обрабатывать ссылки (URLs) типа HTTP."
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URLs) типа HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
-"Если включено, то программа, определённая в ключе \"command\", будет "
-"обрабатывать ссылки (URLs) типа HTTPS."
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URLs) типа HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
-"Если включено, то программа, определённая в ключе \"command\", будет "
-"обрабатывать ссылки (URLs) типа callto."
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URLs) типа callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
-"Если включено, то программа, определённая в ключе \"command\", будет "
-"обрабатывать ссылки (URLs) типа ghelp."
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URLs) типа ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
-"Если включено, то программа, определённая в ключе \"command\", будет "
-"обрабатывать ссылки (URLs) типа info."
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URLs) типа info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
-"Если включено, то программа, определённая в ключе \"command\", будет "
-"обрабатывать ссылки (URLs) типа mailto."
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URLs) типа mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
-"Если включено, то программа, определённая в ключе \"command\", будет "
-"обрабатывать ссылки (URLs) типа man."
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URLs) типа man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
-"Если включено, то программа, определённая в ключе \"command\", будет "
-"обрабатывать ссылки (URLs) типа trash."
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URLs) типа trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
-"Если включено, то программа,определённая для обработки ссылки (URL), будет "
-"запускаться в терминале."
+"Если этот ключ установлен, то программа,определённая для обработки ссылки "
+"(URL), будет запускаться в терминале."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -918,9 +918,10 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Если включено, то соединения с прокси-сервером требуют авторизации. Пара "
-"значенийимя_пользователя/пароль определяется ключами \"/system/http_proxy/"
-"authentication_user\" и \"/system/http_proxy/authentication_password\"."
+"Если этот ключ установлен, то соединения с прокси-сервером требуют "
+"авторизации. Пара значенийимя_пользователя/пароль определяется ключами \"/"
+"system/http_proxy/authentication_user\" и \"/system/http_proxy/"
+"authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
