@@ -706,8 +706,10 @@ impl_Notify_get_file_info (PortableServer_Servant servant,
 	num_meta_keys = slave->op_info.directory.num_meta_keys;
 
 	info = gnome_vfs_file_info_new ();
+
 	memcpy (info, (GnomeVFSFileInfo *) file_info->data._buffer,
 		file_info->data._length);
+	info->refcount = 1; /* stupid memcpy, doh doh doh */
 
 	if (file_info->name[0] == 0)
 		info->name = NULL;

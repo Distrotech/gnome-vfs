@@ -1,3 +1,10 @@
+2000-02-07  Elliot Lee  <sopwith@redhat.com>
+
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c: When memcpy'ing over a new GnomeVFSFileInfo, reset the refcount to 1
+	so that we can unref it later.
+	* libgnomevfs-corba/gnome-vfs-slave.c: Fix stupid cut & paste bug that was using the wrong loop variable.
+	Also unref the file_info instead of destroying it.
+
 2000-02-02  Elliot Lee  <sopwith@redhat.com>
 
 	* idl/gnome-vfs-slave.idl, libgnomevfs/gnome-vfs-async-ops.h,

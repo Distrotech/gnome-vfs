@@ -1044,7 +1044,7 @@ impl_Request_get_file_info (PortableServer_Servant servant,
 
 		mp = p->metadata_response._buffer + j;
 
-		mp->found = gnome_vfs_file_info_get_metadata(info, meta_key_array[i], &value, &value_size);
+		mp->found = gnome_vfs_file_info_get_metadata(info, meta_key_array[j], &value, &value_size);
 		if(mp->found) {
 			mp->value._length = value_size;
 			mp->value._buffer = (gpointer)value;
@@ -1059,7 +1059,7 @@ impl_Request_get_file_info (PortableServer_Servant servant,
 
 	GNOME_VFS_Slave_Notify_get_file_info (notify_objref, (GNOME_VFS_Result)result, &out_info, ev);
 
-	gnome_vfs_file_info_destroy(info);
+	gnome_vfs_file_info_unref(info);
 }
 
 static void
