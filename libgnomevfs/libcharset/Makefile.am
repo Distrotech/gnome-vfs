@@ -10,7 +10,6 @@ libcharset_la_SOURCES =    	\
 	localcharset.c
 
 EXTRA_DIST = 			\
-	README			\
 	config.charset		\
 	charset.alias		\
 	ref-add.sed		\
@@ -18,9 +17,8 @@ EXTRA_DIST = 			\
 	ref-add.sin		\
 	ref-del.sin		\
 	glibc21.m4		\
-	codeset.m4		\
-	update.sh		\
-	make-patch.sh
+	codeset.m4
+
 
 charset_alias = $(DESTDIR)$(libdir)/charset.alias
 charset_tmp = $(DESTDIR)$(libdir)/charset.tmp
