@@ -32,3 +32,4 @@ test-xfer
 test-callback
 test-module-selftest
 vfs-run
+test-queue
