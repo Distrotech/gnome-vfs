@@ -68,6 +68,7 @@ libfile_la_LDFLAGS = $(module_flags)
 
 libvfs_test_la_SOURCES =			\
 	test-method.c				
+libvfs_test_la_LIBADD = $(XML_LIBS)
 
 ### `gzip' method
 

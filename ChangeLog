@@ -1,3 +1,14 @@
+2000-09-20  Ian McKellar  <yakk@yakk.net.au>
+
+	* modules/Makefile.am:
+	* modules/test-method.c: (load_config_file):
+	Little fixes for test-method.
+
+	* modules/ftp-method.c: (do_path_command_completely),
+	(do_transfer_command), (end_transfer), (do_create), (do_write):
+	* test/test-remote:
+	Fixing FTP issues raised by test-remote.
+
 2000-09-19  Gene Z. Ragan  <gzr@eazel.com>
 
 	Backing out previous change until current work on

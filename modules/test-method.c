@@ -270,7 +270,7 @@ load_config_file (char *filename)
 
 	/* FIXME: the module shouldn't crash when the config file doesn't exist */
 	
-	if(!doc->root || !doc->root->name || g_strcasecmp(doc->root->name,"TestModule")!=0) {
+	if(!doc || !doc->root || !doc->root->name || g_strcasecmp(doc->root->name,"TestModule")!=0) {
 		xmlFreeDoc(doc);
 		return FALSE;
 	}

@@ -14,7 +14,7 @@ RESULT=0
 #FILESIZE=1024
 FILESIZE=$2
 
-LOCAL_TEMP=/tmp/$TEST_IDENTIFIER
+LOCAL_TEMP=/tmp/$TEST_IDENTIFIER-local
 echo Making local temp directory $LOCAL_TEMP
 mkdir $LOCAL_TEMP || RESULT=1
 if [ $RESULT -eq 1 ]; then echo failed; exit; fi

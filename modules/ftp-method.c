@@ -311,7 +311,7 @@ do_path_command_completely (gchar *command,
 		return result;
 	}
 
-	result = do_path_command (conn, "DELE", uri);
+	result = do_path_command (conn, command, uri);
 	ftp_connection_release (conn);
 
 	return result;
@@ -324,6 +324,9 @@ do_transfer_command (FtpConnection *conn,
 	char *host = NULL;
 	gint port;
 	GnomeVFSResult result;
+
+	/* Image mode (binary to the uninitiated) */
+	do_basic_command (conn, "TYPE I");
 
 	/* FIXME bugzilla.eazel.com 1464: implement non-PASV mode */
 
@@ -411,14 +414,15 @@ end_transfer (FtpConnection *conn)
 
 	/*ftp_debug (conn, g_strdup ("end_transfer()"));*/
 
+	if(conn->data_iobuf) {
+		gnome_vfs_iobuf_flush (conn->data_iobuf);
+		gnome_vfs_iobuf_destroy (conn->data_iobuf);
+		conn->data_iobuf = NULL;
+	}
+
 	if (conn->data_connection) {
 	        gnome_vfs_inet_connection_destroy (conn->data_connection, NULL);
 		conn->data_connection = NULL;
-	}
-
-	if(conn->data_iobuf) {
-		gnome_vfs_iobuf_destroy (conn->data_iobuf);
-		conn->data_iobuf = NULL;
 	}
 
 	result = get_response (conn);
@@ -724,6 +728,17 @@ do_open (GnomeVFSMethod *method,
 	return result;
 }
 
+static GnomeVFSResult
+do_create (GnomeVFSMethod *method,
+     GnomeVFSMethodHandle **method_handle,
+     GnomeVFSURI *uri,
+     GnomeVFSOpenMode mode,
+     gboolean exclusive,
+     guint perm,
+     GnomeVFSContext *context) {
+	return do_open(method, method_handle, uri, mode, context);
+}
+
 static GnomeVFSResult 
 do_close (GnomeVFSMethod *method,
 	  GnomeVFSMethodHandle *method_handle,
@@ -766,13 +781,16 @@ do_write (GnomeVFSMethod *method,
 	  GnomeVFSContext *context) 
 {
 	FtpConnection *conn = (FtpConnection *) method_handle;
+	GnomeVFSResult result;
+
 	//g_print ("do_write ()\n");
 
 	if (conn->operation != FTP_WRITE) 
 		return GNOME_VFS_ERROR_NOT_PERMITTED;
 	
-	return gnome_vfs_iobuf_write (conn->data_iobuf, buffer, num_bytes, 
+	result = gnome_vfs_iobuf_write (conn->data_iobuf, buffer, num_bytes, 
 				      bytes_written);
+	return result;
 }
 
 
@@ -1131,7 +1149,7 @@ do_unlink (GnomeVFSMethod *method,
 
 static GnomeVFSMethod method = {
 	do_open,
-	NULL, /* do_create */
+	do_create, /* do_create */
 	do_close,
 	do_read, /* do_read */
 	do_write, /* do_write */
