@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-21 10:31+0300\n"
+"POT-Creation-Date: 2004-08-30 15:33+0200\n"
 "PO-Revision-Date: 2004-08-21 13:22+0300\n"
 "Last-Translator: Maxim Dziumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -112,7 +112,7 @@ msgstr "Значення '%s' неможливо інтерпретувати я
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Значення '%s' неможливо інтерпретувати як логічне значення."
 
-#: libgnomevfs/gnome-vfs-cdrom.c:202
+#: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
 msgstr "Том ISO 9660"
 
@@ -413,23 +413,23 @@ msgstr "Невідомий тип завдання %u"
 msgid "Operation stopped"
 msgstr "Операцію зупинено"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:82
-#: libgnomevfs/gnome-vfs-mime-handlers.c:237
-#: libgnomevfs/gnome-vfs-mime-handlers.c:288
-#: libgnomevfs/gnome-vfs-mime-handlers.c:558
-#: libgnomevfs/gnome-vfs-mime-handlers.c:577
-#: libgnomevfs/gnome-vfs-mime-handlers.c:595
-#: libgnomevfs/gnome-vfs-mime-handlers.c:614
-#: libgnomevfs/gnome-vfs-mime-handlers.c:633
-#: libgnomevfs/gnome-vfs-mime-handlers.c:774
-#: libgnomevfs/gnome-vfs-mime-handlers.c:796
-#: libgnomevfs/gnome-vfs-mime-handlers.c:815
-#: libgnomevfs/gnome-vfs-mime-handlers.c:834
-#: libgnomevfs/gnome-vfs-mime-handlers.c:887
-#: libgnomevfs/gnome-vfs-mime-handlers.c:904
-#: libgnomevfs/gnome-vfs-mime-handlers.c:921
-#: libgnomevfs/gnome-vfs-mime-handlers.c:939
-#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-handlers.c:83
+#: libgnomevfs/gnome-vfs-mime-handlers.c:305
+#: libgnomevfs/gnome-vfs-mime-handlers.c:356
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:645
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:701
+#: libgnomevfs/gnome-vfs-mime-handlers.c:842
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:902
+#: libgnomevfs/gnome-vfs-mime-handlers.c:955
+#: libgnomevfs/gnome-vfs-mime-handlers.c:972
+#: libgnomevfs/gnome-vfs-mime-handlers.c:989
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
 #: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
 #: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
 #: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
@@ -769,11 +769,11 @@ msgstr "Кореневий том"
 msgid "Audio CD"
 msgstr "Аудіо компакт-диск"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
 msgid "Unknown volume"
 msgstr "Невідомий том"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
 msgid "Network server"
 msgstr "Мережний сервер"
 
@@ -1010,11 +1010,13 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Якщо ввімкнено, команда використовується для обробки URL типу \"h323\"."
+msgstr ""
+"Якщо ввімкнено, команда використовується для обробки URL типу \"h323\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Якщо ввімкнено, команда використовується для обробки URL типу \"http\"."
+msgstr ""
+"Якщо ввімкнено, команда використовується для обробки URL типу \"http\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."

@@ -648,8 +648,8 @@ main (int argc, char **argv)
 	/* Test chained uris */
 	test_uri_to_string ("/tmp/t.efs#http:///foobar/", "file:///tmp/t.efs#http:/foobar/", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_parent ("/tmp/t.efs#http:/", "file:///tmp/t.efs");
-	test_uri_to_string ("/tmp/t.efs#zip:/", "file:///tmp/t.efs#zip:/", GNOME_VFS_URI_HIDE_NONE);
-	test_uri_parent ("/tmp/t.efs#zip:/", "file:///tmp/t.efs");
+	test_uri_to_string ("/tmp/t.efs#gzip:/", "file:///tmp/t.efs#gzip:/", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_parent ("/tmp/t.efs#gzip:/", "file:///tmp/t.efs");
 	test_uri_to_string ("/tmp/t.efs#unknownmethod:/", "file:///tmp/t.efs", GNOME_VFS_URI_HIDE_NONE);
 
 	/* Test fragment identifiers. */

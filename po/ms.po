@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2004-08-26 06:03+0800\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-30 15:33+0200\n"
 "PO-Revision-Date: 2004-08-26 06:40+0730\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@my-penguin.org>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -43,8 +44,11 @@ msgstr "Gagal membaca fail  '%s': %s"
 
 #: libgnomevfs/eggdesktopentries.c:578
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr "kemasukan desktop mengandungi baris '%s' dimana ia bukan kemasukan, kumpulan atau komen"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr ""
+"kemasukan desktop mengandungi baris '%s' dimana ia bukan kemasukan, kumpulan "
+"atau komen"
 
 #: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
@@ -60,8 +64,7 @@ msgstr "kemasukan desktop mengandungi baris '%s' dimana ia bukan UTF-8"
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "kemasukan desktop mengendungi pengenkodan tak diketahui '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:924
-#: libgnomevfs/eggdesktopentries.c:1036
+#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
 #: libgnomevfs/eggdesktopentries.c:1221
 #, c-format
 msgid "desktop entries do not have group '%s'"
@@ -72,18 +75,22 @@ msgstr "kemasukan desktop tak mempunyai kumpulan '%s'"
 msgid "desktop entries do not have key '%s'"
 msgstr "kemasukan desktop tak mempunyai kekunci '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1104
-#: libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419
-#: libgnomevfs/eggdesktopentries.c:1544
+#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
+#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "kemasukan desktop mengandungi kekunci '%s' dimana ia mempunyia nilai yang tak dapat ditafsir."
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ""
+"kemasukan desktop mengandungi kekunci '%s' dimana ia mempunyia nilai yang "
+"tak dapat ditafsir."
 
 #: libgnomevfs/eggdesktopentries.c:1302
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "kemasukan desktop tak mengendungi nilai diterjemah bagi kekunci '%s' untuk lokaliti '%s'."
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr ""
+"kemasukan desktop tak mengendungi nilai diterjemah bagi kekunci '%s' untuk "
+"lokaliti '%s'."
 
 #: libgnomevfs/eggdesktopentries.c:2223
 #, c-format
@@ -104,7 +111,7 @@ msgstr "Nilai '%s' tak boleh ditafsirkan sebagai nombor."
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Nilai '%s' tak boleh ditafsirkan sebagai boolean."
 
-#: libgnomevfs/gnome-vfs-cdrom.c:202
+#: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
 msgstr "Volum ISO 9660"
 
@@ -391,8 +398,7 @@ msgstr "Cakera Linux"
 msgid "Unknown operation type %u"
 msgstr "Jenis operasi tidak diketahui %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1024
-#: libgnomevfs/gnome-vfs-job.c:1169
+#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Tidak dapat mencipta paip untuk GIOChannel yang dibuka: %s"
@@ -406,36 +412,35 @@ msgstr "Jenis kerja tidak diketahui %u"
 msgid "Operation stopped"
 msgstr "Operasi dihentikan"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:82
-#: libgnomevfs/gnome-vfs-mime-handlers.c:237
-#: libgnomevfs/gnome-vfs-mime-handlers.c:288
-#: libgnomevfs/gnome-vfs-mime-handlers.c:558
-#: libgnomevfs/gnome-vfs-mime-handlers.c:577
-#: libgnomevfs/gnome-vfs-mime-handlers.c:595
-#: libgnomevfs/gnome-vfs-mime-handlers.c:614
-#: libgnomevfs/gnome-vfs-mime-handlers.c:633
-#: libgnomevfs/gnome-vfs-mime-handlers.c:774
-#: libgnomevfs/gnome-vfs-mime-handlers.c:796
-#: libgnomevfs/gnome-vfs-mime-handlers.c:815
-#: libgnomevfs/gnome-vfs-mime-handlers.c:834
-#: libgnomevfs/gnome-vfs-mime-handlers.c:887
-#: libgnomevfs/gnome-vfs-mime-handlers.c:904
-#: libgnomevfs/gnome-vfs-mime-handlers.c:921
-#: libgnomevfs/gnome-vfs-mime-handlers.c:939
-#: libgnomevfs/gnome-vfs-mime-handlers.c:957
-#: libgnomevfs/gnome-vfs-mime-info.c:630
-#: libgnomevfs/gnome-vfs-mime-info.c:637
-#: libgnomevfs/gnome-vfs-mime-info.c:645
-#: libgnomevfs/gnome-vfs-mime-info.c:652
-#: libgnomevfs/gnome-vfs-mime-info.c:660
-#: libgnomevfs/gnome-vfs-mime-info.c:677
-#: libgnomevfs/gnome-vfs-mime-info.c:684
-#: libgnomevfs/gnome-vfs-mime-info.c:691
-#: libgnomevfs/gnome-vfs-mime-info.c:698
-#: libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-handlers.c:83
+#: libgnomevfs/gnome-vfs-mime-handlers.c:305
+#: libgnomevfs/gnome-vfs-mime-handlers.c:356
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:645
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:701
+#: libgnomevfs/gnome-vfs-mime-handlers.c:842
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:902
+#: libgnomevfs/gnome-vfs-mime-handlers.c:955
+#: libgnomevfs/gnome-vfs-mime-handlers.c:972
+#: libgnomevfs/gnome-vfs-mime-handlers.c:989
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
 #: libgnomevfs/gnome-vfs-mime-info.c:713
-msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
-msgstr "Fungsi telah tiada. Pengubahsuaian pengguna terhadap pangkalan data MIME tak lagi disokong."
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
+"Fungsi telah tiada. Pengubahsuaian pengguna terhadap pangkalan data MIME tak "
+"lagi disokong."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -677,8 +682,7 @@ msgid "Error launching command"
 msgstr "Ralat melancarkan arahan"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: libgnomevfs/gnome-vfs-result.c:84
-#: libgnomevfs/gnome-vfs-result.c:86
+#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
 msgstr "Had masa dijangkau"
 
@@ -702,6 +706,12 @@ msgid "Unknown error"
 msgstr "Ralat yang tidak diketahui"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
+#, c-format
+msgid "%u byte"
+msgid_plural "%u bytes"
+msgstr[0] ""
+msgstr[1] ""
+
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
 msgid "%.1f KB"
@@ -757,17 +767,18 @@ msgstr "Volum Root"
 msgid "Audio CD"
 msgstr "CD Audio"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
 msgid "Unknown volume"
 msgstr "Volum yang tidak diketahui"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
 msgid "Network server"
 msgstr "Pelayan rangkaian"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Tak dapat melekap pemacu liut. Mungkin tiada liut pada pemacu."
 
 #. All others
@@ -776,12 +787,20 @@ msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Tak dapat melekap pemacu volum. Mungkin tiada media pada peranti."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
-msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
-msgstr "Tak dapat melekap pemacu liut. Liut mungkin dalam format yang tidak boleh dilekapkan."
+msgid ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Tak dapat melekap pemacu liut. Liut mungkin dalam format yang tidak boleh "
+"dilekapkan."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
-msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
-msgstr "Tak dapat melekap volum dipilih. Volum mungkin dalam format yang tak boleh dilekapkan."
+msgid ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Tak dapat melekap volum dipilih. Volum mungkin dalam format yang tak boleh "
+"dilekapkan."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
@@ -889,11 +908,13 @@ msgstr "Identiti bagi komputer jauh (%s) tak diketahui."
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
 msgstr ""
 "Ini terjadi bila anda logmasuk ke satu komputer buat pertama kali.\n"
 "\n"
-"Identiti dihantar oleh komputer jauh adalah %s. Jika anda memang pasti ia selamat untuk diteruskan, hubungi pentadbir sistem."
+"Identiti dihantar oleh komputer jauh adalah %s. Jika anda memang pasti ia "
+"selamat untuk diteruskan, hubungi pentadbir sistem."
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
@@ -944,12 +965,22 @@ msgstr "Hujah exec bagi terminal default"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
-msgstr "Aplikasi digunakan untuk melihat fail yang memerlukan komponen untuk melihatnya. Parameter %s akan digantikan dengan URI fail, parameter %c akan digantikan dengan IID komponen."
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"Aplikasi digunakan untuk melihat fail yang memerlukan komponen untuk "
+"melihatnya. Parameter %s akan digantikan dengan URI fail, parameter %c akan "
+"digantikan dengan IID komponen."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
-msgid "The default terminal application to use for applications that require a terminal."
-msgstr "Aplikasi terminal default untuk digunakan bagi aplikasi yg memerlukan terminal."
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+"Aplikasi terminal default untuk digunakan bagi aplikasi yg memerlukan "
+"terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1040,48 +1071,90 @@ msgid "The handler for \"trash\" URLs"
 msgstr "Pengendali bagi URL \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "True if the command specified in the \"command\" key should handle \"aim\" URLs."
-msgstr "Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"aim\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
+msgstr ""
+"Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"aim\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "True if the command specified in the \"command\" key should handle \"callto\" URLs."
-msgstr "Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"callto\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
+msgstr ""
+"Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"callto"
+"\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
-msgstr "Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"ghelp\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
+msgstr ""
+"Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"ghelp"
+"\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the command specified in the \"command\" key should handle \"h323\" URLs."
-msgstr "Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"h323\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr ""
+"Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"h323"
+"\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "True if the command specified in the \"command\" key should handle \"http\" URLs."
-msgstr "Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"http\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"http"
+"\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "True if the command specified in the \"command\" key should handle \"https\" URLs."
-msgstr "Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"https\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"https"
+"\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "True if the command specified in the \"command\" key should handle \"info\" URLs."
-msgstr "Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"info\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
+msgstr ""
+"Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"info"
+"\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
-msgstr "Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"mailto\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"mailto"
+"\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle \"man\" URLs."
-msgstr "Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"man\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "True if the command specified in the \"command\" key should handle \"trash\" URLs."
-msgstr "Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"trash\"."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
+msgstr ""
+"Benar jika arahan dinyatakan pada kekunci \"command\" mengendali URL \"trash"
+"\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "True if the command used to handle this type of URL should be run in a terminal."
-msgstr "Benar jika arahan digunakan untuk mengendali URL ini patut dilaksanakan pada terminal."
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+msgstr ""
+"Benar jika arahan digunakan untuk mengendali URL ini patut dilaksanakan pada "
+"terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1124,8 +1197,12 @@ msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Samada arahan dinyatakan patut mengendali mengendali URL \"trash\""
 
 #: schemas/system_dns_sd.schemas.in.h:1
-msgid "Comma separated list of dns-sd domains that should be visible in the network location."
-msgstr "Senarai dipisahkan koma bagi domain dns-sd yang patut kelihatan pada lokasi rangkaian."
+msgid ""
+"Comma separated list of dns-sd domains that should be visible in the network "
+"location."
+msgstr ""
+"Senarai dipisahkan koma bagi domain dns-sd yang patut kelihatan pada lokasi "
+"rangkaian."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
@@ -1176,8 +1253,14 @@ msgid "HTTP proxy username"
 msgstr "Namapengguna proksi HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-msgid "If true, then connections to the proxy server require authentication. The username/password combo defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr "Jika benar, sambungan ke pelayan proksi memerlukan autentikasi. Kombinasi namapengguna/katalaluan ditakrifkan oleh \"/system/http_proxy/authentication_user\" dan \"/system/http_proxy/authentication_password\"."
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by \"/system/http_proxy/authentication_user"
+"\" and \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Jika benar, sambungan ke pelayan proksi memerlukan autentikasi. Kombinasi "
+"namapengguna/katalaluan ditakrifkan oleh \"/system/http_proxy/"
+"authentication_user\" dan \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1185,7 +1268,8 @@ msgstr "Hos pbukan-proksi"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Katalaluan untuk dihantar sebagai autentikasi bila melakukan pemproksian HTTP"
+msgstr ""
+"Katalaluan untuk dihantar sebagai autentikasi bila melakukan pemproksian HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1208,8 +1292,12 @@ msgid "Secure HTTP proxy port"
 msgstr "Liang proksi HTTP selamat"
 
 #: schemas/system_http_proxy.schemas.in.h:18
-msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
-msgstr "Pilih mod konfigurasi proksi. Nilai disokong adalah \"none\", \"manual\", \"auto\"."
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
+msgstr ""
+"Pilih mod konfigurasi proksi. Nilai disokong adalah \"none\", \"manual\", "
+"\"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1228,24 +1316,47 @@ msgid "The machine name to proxy socks through."
 msgstr "Nama mesin supaya proksi socks melaluinya."
 
 #: schemas/system_http_proxy.schemas.in.h:23
-msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
-msgstr "Liang pada mesin ditakrifkan oleh \"/system/http_proxy/host\" yang anda lalui."
+msgid ""
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
+msgstr ""
+"Liang pada mesin ditakrifkan oleh \"/system/http_proxy/host\" yang anda "
+"lalui."
 
 #: schemas/system_http_proxy.schemas.in.h:24
-msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
-msgstr "Liang pada mesin ditakrifkan oleh \"/system/proxy/ftp_host\" yang anda lalui."
+msgid ""
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
+msgstr ""
+"Liang pada mesin ditakrifkan oleh \"/system/proxy/ftp_host\" yang anda lalui."
 
 #: schemas/system_http_proxy.schemas.in.h:25
-msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
-msgstr "Liang pada mesin ditakrifkan oleh \"/system/proxy/secure_host\" yang anda lalui."
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr ""
+"Liang pada mesin ditakrifkan oleh \"/system/proxy/secure_host\" yang anda "
+"lalui."
 
 #: schemas/system_http_proxy.schemas.in.h:26
-msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
-msgstr "Liang pada mesin ditakrifkan oleh \"/system/proxy/socks_host\" yang anda lalui."
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr ""
+"Liang pada mesin ditakrifkan oleh \"/system/proxy/socks_host\" yang anda "
+"lalui."
 
 #: schemas/system_http_proxy.schemas.in.h:27
-msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "Kekunci ini mengandungi senarai hos yang disambung secara terus, bukannya melalui proksi (jika ia aktif). Nilai boleh jadi namahos, domain (menggunakan wildcard awalan seperti *.sebol.com), Alamat hos IP (kedua-dua IPv4 dan IPv6) dan alamat rangkaian dengan netmask (seperti 192.168.0.0/24)."
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"Kekunci ini mengandungi senarai hos yang disambung secara terus, bukannya "
+"melalui proksi (jika ia aktif). Nilai boleh jadi namahos, domain "
+"(menggunakan wildcard awalan seperti *.sebol.com), Alamat hos IP (kedua-dua "
+"IPv4 dan IPv6) dan alamat rangkaian dengan netmask (seperti 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1257,7 +1368,9 @@ msgstr "Guna proksi HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Nama pengguna untuk dihantar sebagai autentikasi bila melakukan pemproksian HTTP."
+msgstr ""
+"Nama pengguna untuk dihantar sebagai autentikasi bila melakukan pemproksian "
+"HTTP."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1266,4 +1379,3 @@ msgstr "Kumpulankerja SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Kumpulan kerja Windows yang pengguna anggotai"
-

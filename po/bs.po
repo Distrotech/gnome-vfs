@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.bs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-25 20:41+0200\n"
+"POT-Creation-Date: 2004-08-30 15:33+0200\n"
 "PO-Revision-Date: 2004-07-31 17:20+0200\n"
 "Last-Translator: Kenan Hadžiavdić <kenan@bgnett.no>\n"
 "Language-Team: Bosnian <lokal@linux.org.ba>\n"
@@ -29,86 +29,92 @@ msgstr "Nisam mogao inicijalizirati Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Nisam mogao inicijalizirati gnome vfs"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, c-format
 msgid "File could not be opened: %s"
 msgstr "Nisam mogao otvoriti datoteku: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Neuspješno otvaranje datoteke '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 msgid "File is empty"
 msgstr "Datoteka je prazna"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Nisam uspio čitati iz datoteke '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr "unosi desktopa sadrže liniju '%s' koja nije unos, grupa ili komentar"
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
 msgstr "datoteka unosa desktopa ne počinje važećom startnom grupom"
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "unosi desktopa sadrže liniju '%s' koja nije UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "unosi desktopa sadrže nepoznato kodiranje '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
+#: libgnomevfs/eggdesktopentries.c:1221
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "unosi desktopa nemaju grupu '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1048
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "unosi desktopa nemaju ključ '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
+#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "unosi desktopa sadrže ključ '%s' koji ima vrijednost koja se ne može protumačiti."
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ""
+"unosi desktopa sadrže ključ '%s' koji ima vrijednost koja se ne može "
+"protumačiti."
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1302
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "unosi desktopa ne sadrže prevedenu vrijednost za ključ '%s' sa locale '%s'."
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr ""
+"unosi desktopa ne sadrže prevedenu vrijednost za ključ '%s' sa locale '%s'."
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2223
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "unosi desktopa sadrže nevažeću escape-sekvensu '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2240
 msgid "desktop entries contain escape character at end of line"
 msgstr "unosi desktopa sadrže escape-znak na kraju linije"
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2265
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Vrijednost '%s' se ne može tumačiti kao broj."
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2292
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Vrijednost '%s' se ne može tumačiti kao boolean."
 
-#: libgnomevfs/gnome-vfs-cdrom.c:202
+#: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 disk"
 
@@ -282,117 +288,118 @@ msgstr "XIAFS disk"
 msgid "Unknown"
 msgstr "Nepoznato"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "CD disk"
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "CD-R disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:604
+#: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
 msgstr "Prazan CD-R disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:606
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "CD-R Disc"
 msgstr "CD-R disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:609
+#: libgnomevfs/gnome-vfs-hal-mounts.c:619
 msgid "Blank CD-RW Disc"
 msgstr "Prazan CD-RW disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:611
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "CD-RW Disc"
 msgstr "CD-RW disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-ROM Disc"
 msgstr "DVD-ROM disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:616
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-R Disc"
 msgstr "Prazan DVD-R disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-R Disc"
 msgstr "DVD-R disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:621
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD-RAM Disc"
 msgstr "Prazan DVD-RAM disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:623
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD-RAM Disc"
 msgstr "DVD-RAM disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:626
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD-RW Disc"
 msgstr "Prazan DVD-RW disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:628
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD-RW Disc"
 msgstr "DVD-RW disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:631
+#: libgnomevfs/gnome-vfs-hal-mounts.c:641
 msgid "Blank DVD+RW Disc"
 msgstr "Prazan DVD+RW disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:633
+#: libgnomevfs/gnome-vfs-hal-mounts.c:643
 msgid "DVD+RW Disc"
 msgstr "DVD+RW disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:636
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Blank DVD+R Disc"
 msgstr "Prazan DVD+R disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:638
+#: libgnomevfs/gnome-vfs-hal-mounts.c:648
 msgid "DVD+R Disc"
 msgstr "DVD+R disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Optical Disc"
 msgstr "Optički disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:646
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "Audio Disc"
 msgstr "Audio disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:650
+#: libgnomevfs/gnome-vfs-hal-mounts.c:660
 msgid "Compact Flash Media"
 msgstr "Compact flash media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:652
+#: libgnomevfs/gnome-vfs-hal-mounts.c:662
 msgid "Memory Stick Media"
 msgstr "Memory stick media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:654
+#: libgnomevfs/gnome-vfs-hal-mounts.c:664
 msgid "Smart Media Media"
 msgstr "Smart media media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:656
+#: libgnomevfs/gnome-vfs-hal-mounts.c:666
 msgid "SD/MMC Media"
 msgstr "SD/MMC media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:658
+#: libgnomevfs/gnome-vfs-hal-mounts.c:668
 msgid "Floppy Disk"
 msgstr "Disketa"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+#: libgnomevfs/gnome-vfs-hal-mounts.c:675
 msgid "Mac OS disk"
 msgstr "Mac OS disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+#: libgnomevfs/gnome-vfs-hal-mounts.c:677
 msgid "Mac OS X disk"
 msgstr "Mac OS X disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:681
+#: libgnomevfs/gnome-vfs-hal-mounts.c:691
 msgid "Windows Disk"
 msgstr "Windows disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:687
+#: libgnomevfs/gnome-vfs-hal-mounts.c:697
 msgid "Linux Disk"
 msgstr "Linux disk"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "Nepoznat tip operacije %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -409,27 +416,35 @@ msgstr "Nepoznata vrsta posla %u"
 msgid "Operation stopped"
 msgstr "Operacija zaustavljena"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:82
-#: libgnomevfs/gnome-vfs-mime-handlers.c:237
-#: libgnomevfs/gnome-vfs-mime-handlers.c:288
-#: libgnomevfs/gnome-vfs-mime-handlers.c:558
-#: libgnomevfs/gnome-vfs-mime-handlers.c:577
-#: libgnomevfs/gnome-vfs-mime-handlers.c:595
-#: libgnomevfs/gnome-vfs-mime-handlers.c:614
-#: libgnomevfs/gnome-vfs-mime-handlers.c:633
-#: libgnomevfs/gnome-vfs-mime-handlers.c:774
-#: libgnomevfs/gnome-vfs-mime-handlers.c:796
-#: libgnomevfs/gnome-vfs-mime-handlers.c:815
-#: libgnomevfs/gnome-vfs-mime-handlers.c:834
-#: libgnomevfs/gnome-vfs-mime-handlers.c:887
-#: libgnomevfs/gnome-vfs-mime-handlers.c:904
-#: libgnomevfs/gnome-vfs-mime-handlers.c:921
-#: libgnomevfs/gnome-vfs-mime-handlers.c:939
-#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-handlers.c:83
+#: libgnomevfs/gnome-vfs-mime-handlers.c:305
+#: libgnomevfs/gnome-vfs-mime-handlers.c:356
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:645
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:701
+#: libgnomevfs/gnome-vfs-mime-handlers.c:842
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:902
+#: libgnomevfs/gnome-vfs-mime-handlers.c:955
+#: libgnomevfs/gnome-vfs-mime-handlers.c:972
+#: libgnomevfs/gnome-vfs-mime-handlers.c:989
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "Zastarjela funkcija.  Korisničke izmjene u MIME bazi podataka nisu više podržane."
+msgstr ""
+"Zastarjela funkcija.  Korisničke izmjene u MIME bazi podataka nisu više "
+"podržane."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -717,7 +732,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (nevažeći unicode)"
@@ -757,17 +772,18 @@ msgstr "Root disk"
 msgid "Audio CD"
 msgstr "Zvučni CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
 msgid "Unknown volume"
 msgstr "Nepoznati disk"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
 msgid "Network server"
 msgstr "Mrežni server"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Ne mogu montirati disketni uređaj. Vjerovatno nema diskete u uređaju."
 
 #. All others
@@ -887,12 +903,12 @@ msgstr "Nepoznat GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows mreža"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identitet udaljenog računara (%s) je nepoznat."
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -902,13 +918,14 @@ msgid ""
 msgstr ""
 "Ovo se događa tokom prve prijave na računar.\n"
 "\n"
-"Identitet koji je udaljeni računar poslao je %s. Ako se želite potpuno osigurati da je sigurno nastaviti, kontaktirajte administratora sistema."
+"Identitet koji je udaljeni računar poslao je %s. Ako se želite potpuno "
+"osigurati da je sigurno nastaviti, kontaktirajte administratora sistema."
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
 msgstr "Ipak se prijavi"
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
 msgstr "Odustani od prijave"
 
@@ -991,32 +1008,35 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Naredba koja se koristi za \"ghelp\" URL-ove, ako je omogućeno."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+#, fuzzy
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "Naredba koja se koristi za H323 URL-ove, ako je omogućeno."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "Naredba koja se koristi za \"ghelp\" URL-ove, ako je omogućeno."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "Naredba koja se koristi za \"trash\" URL-ove, ako je omogućeno."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "Naredba koja se koristi za \"info\" URL-ove, ako je omogućeno."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr "Naredba koja se koristi za \"mailto\" URL-ove, ako je omogućeno."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr "Naredba koja se koristi za \"man\" URL-ove, ako je omogućeno."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr "Naredba koja se koristi za \"trash\" URL-ove, ako je omogućeno."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr "Naredba koja se koristi za H323 URL-ove, ako je omogućeno."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr "Naredba koja se koristi za HTTP URL-ove, ako je omogućeno."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr "Naredba koja se koristi za HTTPS URL-ove, ako je omogućeno."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1031,94 +1051,126 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "Rukovatelj \"ghelp\" URL-ovima"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#, fuzzy
+msgid "The handler for \"h323\" URLs"
+msgstr "Rukovatelj H323 URL-ovima"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
+msgid "The handler for \"http\" URLs"
+msgstr "Rukovatelj \"ghelp\" URL-ovima"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
+msgid "The handler for \"https\" URLs"
+msgstr "Rukovatelj \"ghelp\" URL-ovima"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "Rukovatelj \"info\" URL-ovima"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
 msgstr "Rukovatelj \"mailto\" URL-ovima"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
 msgstr "Rukovatelj \"man\" URL-ovima"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
 msgstr "Rukovatelj \"trash\" URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "The handler for H323 URLs"
-msgstr "Rukovatelj H323 URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "The handler for HTTP URLs"
-msgstr "Rukovatelj HTTP URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "The handler for HTTPS URLs"
-msgstr "Rukovatelj HTTPS URL-ovima"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"aim\" URL-ovima."
+msgstr ""
+"Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"aim"
+"\" URL-ovima."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"callto\" URL-ovima."
+msgstr ""
+"Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati "
+"\"callto\" URL-ovima."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"ghelp\" URL-ovima."
+msgstr ""
+"Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"ghelp"
+"\" URL-ovima."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#, fuzzy
 msgid ""
-"True if the command specified in the \"command\" key should handle \"info\" "
+"True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"info\" URL-ovima."
+msgstr ""
+"Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati H323 "
+"URL-ovima."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
 msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"mailto\" URL-ovima."
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"ghelp"
+"\" URL-ovima."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
 msgid ""
-"True if the command specified in the \"command\" key should handle \"man\" "
+"True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"man\" URL-ovima."
+msgstr ""
+"Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"ghelp"
+"\" URL-ovima."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
+"True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"trash\" URL-ovima."
+msgstr ""
+"Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"info"
+"\" URL-ovima."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati H323 URL-ovima."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati "
+"\"mailto\" URL-ovima."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati HTTP URL-ovima."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"man"
+"\" URL-ovima."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
+"True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati HTTPS URL-ovima."
+msgstr ""
+"Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati \"trash"
+"\" URL-ovima."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "Ako je postavljeno, naredba koja rukuje ovim tipom URL-a će se pokrenuti u terminalu."
+msgstr ""
+"Ako je postavljeno, naredba koja rukuje ovim tipom URL-a će se pokrenuti u "
+"terminalu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1133,38 +1185,43 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Da li će navedena naredba rukovati \"ghelp\" URL-ovima"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "Da li će navedena naredba rukovati H323 URL-ovima"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "Da li će navedena naredba rukovati \"ghelp\" URL-ovima"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "Da li će navedena naredba rukovati \"trash\" URL-ovima"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "Da li će navedena naredba rukovati \"info\" URL-ovima"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "Da li će navedena naredba rukovati \"mailto\" URL-ovima"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "Da li će navedena naredba rukovati \"man\" URL-ovima"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Da li će navedena naredba rukovati \"trash\" URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "Da li će navedena naredba rukovati H323 URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "Da li će navedena naredba rukovati HTTP URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "Da li će navedena naredba rukovati HTTPS URL-ovima"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr "Lista dns-sd domena odvojenih zarezima koja treba biti vidljiva u lokaciji mreže."
+msgstr ""
+"Lista dns-sd domena odvojenih zarezima koja treba biti vidljiva u lokaciji "
+"mreže."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
@@ -1331,7 +1388,8 @@ msgstr "Koristi HTTP proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Korisničko ime za provjeru autentičnosti tokom obavljanja HTTP proxying."
+msgstr ""
+"Korisničko ime za provjeru autentičnosti tokom obavljanja HTTP proxying."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1341,12 +1399,46 @@ msgstr "Radna grupa SMB"
 msgid "The window workgroup the user is part of"
 msgstr "Radna grupa prozora kojoj pripada korisnik"
 
-msgid "aim URL handler"
-msgstr "rukovatelj aim URL-a"
+#~ msgid "CD Disc"
+#~ msgstr "CD disk"
 
-msgid "mailto URL handler"
-msgstr "mailto URL rukovatelj"
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "Naredba koja se koristi za HTTP URL-ove, ako je omogućeno."
 
-msgid "1 byte"
-msgstr "1 byte"
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "Naredba koja se koristi za HTTPS URL-ove, ako je omogućeno."
 
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "Rukovatelj HTTP URL-ovima"
+
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "Rukovatelj HTTPS URL-ovima"
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr ""
+#~ "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati "
+#~ "HTTP URL-ovima."
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "Ako je postavljeno, naredba navedena u ključu \"command\" će rukovati "
+#~ "HTTPS URL-ovima."
+
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "Da li će navedena naredba rukovati HTTP URL-ovima"
+
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "Da li će navedena naredba rukovati HTTPS URL-ovima"
+
+#~ msgid "aim URL handler"
+#~ msgstr "rukovatelj aim URL-a"
+
+#~ msgid "mailto URL handler"
+#~ msgstr "mailto URL rukovatelj"
+
+#~ msgid "1 byte"
+#~ msgstr "1 byte"

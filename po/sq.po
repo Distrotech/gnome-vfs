@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-19 11:52+0200\n"
+"POT-Creation-Date: 2004-08-30 15:33+0200\n"
 "PO-Revision-Date: 2004-08-18 00:11+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -110,7 +110,7 @@ msgstr "Vlera '%s' nuk mund të interpretohet si një numër."
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Vlera '%s' nuk mund të interpretohet si një boolean."
 
-#: libgnomevfs/gnome-vfs-cdrom.c:202
+#: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
 msgstr "Volum ISO 9660"
 
@@ -372,7 +372,6 @@ msgstr "Njësi Smart Media"
 msgid "SD/MMC Media"
 msgstr "Njësi SD/MMC"
 
-#. GRUT modified this item
 #: libgnomevfs/gnome-vfs-hal-mounts.c:668
 msgid "Floppy Disk"
 msgstr "Disketë Floppy"
@@ -412,23 +411,23 @@ msgstr "Lloj i panjohur pune %u"
 msgid "Operation stopped"
 msgstr "Operacioni u ndërpre"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:82
-#: libgnomevfs/gnome-vfs-mime-handlers.c:237
-#: libgnomevfs/gnome-vfs-mime-handlers.c:288
-#: libgnomevfs/gnome-vfs-mime-handlers.c:558
-#: libgnomevfs/gnome-vfs-mime-handlers.c:577
-#: libgnomevfs/gnome-vfs-mime-handlers.c:595
-#: libgnomevfs/gnome-vfs-mime-handlers.c:614
-#: libgnomevfs/gnome-vfs-mime-handlers.c:633
-#: libgnomevfs/gnome-vfs-mime-handlers.c:774
-#: libgnomevfs/gnome-vfs-mime-handlers.c:796
-#: libgnomevfs/gnome-vfs-mime-handlers.c:815
-#: libgnomevfs/gnome-vfs-mime-handlers.c:834
-#: libgnomevfs/gnome-vfs-mime-handlers.c:887
-#: libgnomevfs/gnome-vfs-mime-handlers.c:904
-#: libgnomevfs/gnome-vfs-mime-handlers.c:921
-#: libgnomevfs/gnome-vfs-mime-handlers.c:939
-#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-handlers.c:83
+#: libgnomevfs/gnome-vfs-mime-handlers.c:305
+#: libgnomevfs/gnome-vfs-mime-handlers.c:356
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:645
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:701
+#: libgnomevfs/gnome-vfs-mime-handlers.c:842
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:902
+#: libgnomevfs/gnome-vfs-mime-handlers.c:955
+#: libgnomevfs/gnome-vfs-mime-handlers.c:972
+#: libgnomevfs/gnome-vfs-mime-handlers.c:989
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
 #: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
 #: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
 #: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
@@ -767,11 +766,11 @@ msgstr "Volum root"
 msgid "Audio CD"
 msgstr "CD Audio"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
 msgid "Unknown volume"
 msgstr "Volum i panjohur"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
 msgid "Network server"
 msgstr "Server rrjeti"
 
@@ -1389,4 +1388,3 @@ msgstr "Grup pune SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Grupi i punës Windows në të cilin bën pjesë përdoruesi"
-

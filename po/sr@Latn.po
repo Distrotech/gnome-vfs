@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-21 14:19+0200\n"
+"POT-Creation-Date: 2004-08-30 15:33+0200\n"
 "PO-Revision-Date: 2004-08-21 14:22+0200\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
@@ -126,7 +126,7 @@ msgstr "Vrednost „%s“ se ne može posmatrati kao broj."
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Vrednost „%s“ se ne može posmatrati kao istinitosna vrednost."
 
-#: libgnomevfs/gnome-vfs-cdrom.c:202
+#: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 disk"
 
@@ -430,23 +430,23 @@ msgstr "Nepoznata vrsta posla %u"
 msgid "Operation stopped"
 msgstr "Operacija zaustavljena"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:82
-#: libgnomevfs/gnome-vfs-mime-handlers.c:237
-#: libgnomevfs/gnome-vfs-mime-handlers.c:288
-#: libgnomevfs/gnome-vfs-mime-handlers.c:558
-#: libgnomevfs/gnome-vfs-mime-handlers.c:577
-#: libgnomevfs/gnome-vfs-mime-handlers.c:595
-#: libgnomevfs/gnome-vfs-mime-handlers.c:614
-#: libgnomevfs/gnome-vfs-mime-handlers.c:633
-#: libgnomevfs/gnome-vfs-mime-handlers.c:774
-#: libgnomevfs/gnome-vfs-mime-handlers.c:796
-#: libgnomevfs/gnome-vfs-mime-handlers.c:815
-#: libgnomevfs/gnome-vfs-mime-handlers.c:834
-#: libgnomevfs/gnome-vfs-mime-handlers.c:887
-#: libgnomevfs/gnome-vfs-mime-handlers.c:904
-#: libgnomevfs/gnome-vfs-mime-handlers.c:921
-#: libgnomevfs/gnome-vfs-mime-handlers.c:939
-#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-handlers.c:83
+#: libgnomevfs/gnome-vfs-mime-handlers.c:305
+#: libgnomevfs/gnome-vfs-mime-handlers.c:356
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:645
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:701
+#: libgnomevfs/gnome-vfs-mime-handlers.c:842
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:902
+#: libgnomevfs/gnome-vfs-mime-handlers.c:955
+#: libgnomevfs/gnome-vfs-mime-handlers.c:972
+#: libgnomevfs/gnome-vfs-mime-handlers.c:989
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
 #: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
 #: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
 #: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
@@ -787,11 +787,11 @@ msgstr "Osnovni disk"
 msgid "Audio CD"
 msgstr "Zvučni CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
 msgid "Unknown volume"
 msgstr "Nepoznati disk"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
 msgid "Network server"
 msgstr "Mrežni server"
 
@@ -1096,8 +1096,8 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „aim“ "
-"adrese."
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„aim“ adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
@@ -1127,13 +1127,17 @@ msgstr ""
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „http“ adrese."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„http“ adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „https“ adrese."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„https“ adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
@@ -1156,8 +1160,8 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „man“ "
-"adrese."
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„man“ adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""

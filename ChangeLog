@@ -1,5 +1,8 @@
 2004-08-30  Alexander Larsson  <alexl@redhat.com>
 
+	* test/test-uri.c (main):
+	Fix tests
+
 	* NEWS:
 	Update for 2.7.92
 
