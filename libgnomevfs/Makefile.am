@@ -44,6 +44,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-directory-filter.h		\
 	gnome-vfs-directory-list.h		\
 	gnome-vfs-file-info.h			\
+	gnome-vfs-file-size.h			\
 	gnome-vfs-find-directory.h		\
 	gnome-vfs-init.h			\
 	gnome-vfs-xfer.h			\
