@@ -121,6 +121,8 @@ close MAGIC;
 
 print STDERR "Reading gnome-vfs.mime.\n";
 
+$previous_type = "";
+$type = "";
 my %in_mime;
 
 open MIME, "data/mime/gnome-vfs.mime" or die;

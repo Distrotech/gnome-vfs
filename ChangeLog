@@ -1,3 +1,15 @@
+2000-08-22  John Sullivan  <sullivan@eazel.com>
+
+	* check-mime.pl: Fixed small bug that was reporting a
+	false out-of-order error for the first MIME type in
+	gnome-vfs.mime.
+	
+	* data/mime/gnome-vfs.keys,
+	* data/mime/gnome-vfs.mime: Fixed many of the problems
+	found by check-mime.pl. I didn't add descriptions for all
+	of the undescribed types yet because that will take a couple
+	of hours of research that I'd rather spend later.
+
 2000-08-21  Darin Adler  <darin@eazel.com>
 
 	* check-mime.pl: Added script to check if the MIME files have

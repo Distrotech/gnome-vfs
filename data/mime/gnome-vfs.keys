@@ -37,9 +37,6 @@ application/octet-stream
 application/oda
 	description=ODA document
 
-application/pgp
-	description=PGP message
-
 application/pdf
 	description=PDF document
 	default_action_type=component
@@ -47,6 +44,9 @@ application/pdf
 	short_list_component_iids_for_novice_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_intermediate_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_hacker_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
+
+application/pgp
+	description=PGP message
 
 application/pgp-encrypted
 	description=PGP encrypted data
@@ -107,11 +107,11 @@ application/x-bzip-compressed-tar
 application/x-cgi
 	description=CGI program
 
-application/x-compress
-	description=archive
-
 application/x-class-file
 	description=class code
+
+application/x-compress
+	description=archive
 
 application/x-compressed-tar
 	description=tar archive
@@ -141,26 +141,26 @@ application/x-dia-diagram
 application/x-dvi
 	description=TeX dvi document
 
-application/x-executable-file
-	description=Binary program
-
 application/x-e-theme
 	description=Enlightenment theme
+
+application/x-executable-file
+	description=Binary program
 
 application/x-font-afm
 	description=Adobe font metrics
 
-application/x-font-linux-psf
-	description=Linux psf console font
-
-application/x-font-ttf
-	description=TrueType font
-
-application/x-font-type1
-	description=PostScript Type 1 font
-
 application/x-font-bdf
 	description=BDF font
+
+application/x-font-dos
+	description=DOS font
+
+application/x-font-framemaker
+	description=FrameMaker font
+
+application/x-font-linux-psf
+	description=Linux psf console font
 
 application/x-font-pcf
 	description=PCF font
@@ -168,17 +168,20 @@ application/x-font-pcf
 application/x-font-speedo
 	description=Speedo font
 
+application/x-font-sunos-news
+	description=SunOS News font
+
+application/x-font-tex
+	description=TeX font
+
+application/x-font-ttf
+	description=TrueType font
+
+application/x-font-type1
+	description=PostScript Type 1 font
+
 application/x-gmc-link
 	description=GMC link
-
-application/x-gtar
-	description=gtar archive
-	icon-filename=gnome-package.png
-
-application/x-gzip
-	description=gzip archive
-	icon-filename=gnome-compressed.png
-	vfs-method=gzip
 
 application/x-gnome-app-info
 	description=GNOME application information
@@ -190,6 +193,15 @@ application/x-gnumeric
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
 	short_list_application_ids_for_hacker_user_level=gnumeric
+
+application/x-gtar
+	description=gtar archive
+	icon-filename=gnome-package.png
+
+application/x-gzip
+	description=gzip archive
+	icon-filename=gnome-compressed.png
+	vfs-method=gzip
 
 application/x-java-byte-code
 	description=Java byte code
@@ -239,11 +251,11 @@ application/x-shared-library-la
 	description=shared library
 	icon-filename=gnome-library.png
 
-application/x-stuffit
-	description=Macintosh StuffIt archive 
-
 application/x-smil
 	description=SMIL script
+
+application/x-stuffit
+	description=Macintosh StuffIt archive 
 
 application/x-sv4cpio
 	description=SV4Cpio document 
@@ -288,11 +300,11 @@ audio/basic
 audio/x-aiff
 	description=AIF audio
 
-audio/x-midi
-	description=MIDI audio
-
 audio/x-it
 	description=Impulse Tracker audio
+
+audio/x-midi
+	description=MIDI audio
 
 audio/x-mp3
 	description=MP3 audio
@@ -303,6 +315,9 @@ audio/x-mp3-playlist
 
 audio/x-pn-realaudio
 	description=PN RealAudio document
+
+audio/x-real-audio
+	description=RealAudio document
 
 audio/x-riff
 	description=RIFF audio
@@ -390,18 +405,6 @@ image/tiff
 
 image/vnd.dwg
 	description=AutoCAD document
-
-image/x-xpixmap
-	description=XPM image	
-	default_action_type=component
-	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_intermediate_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	short_list_component_iids_for_hacker_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
-	default_application_id=gimp
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
 
 image/x-bmp
 	default_action_type=component
@@ -512,7 +515,7 @@ image/x-xfig
 	description=xfig image
 
 image/x-xpixmap
-	description=X pixmap
+	description=XPM image	
 	default_action_type=component
 	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
 	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
@@ -550,11 +553,11 @@ message/x-gnu-rmail
 model/vrml
 	description=VRML data
 
-multipart/appledouble
-	description=Macintosh AppleDouble-encoded document
-
 multipart/alternative
 	description=message in several formats
+
+multipart/appledouble
+	description=Macintosh AppleDouble-encoded document
 
 multipart/digest
 	description=message digest
@@ -637,9 +640,6 @@ text/sgml
 text/tab-separated-values
 	description=tab-separated text
 
-text/xml
-	description=XML document
-
 text/x-authors
 	description=authors list
 
@@ -700,11 +700,11 @@ text/x-readme
 text/x-scheme
 	description=Scheme source code
 
-text/x-sh
-	description=shell script
-
 text/x-setext
 	description=Setext document
+
+text/x-sh
+	description=shell script
 
 text/x-speech
 	description=Speech document
@@ -734,11 +734,14 @@ text/x-troff-me
 text/x-troff-ms
 	description=Troff MS-macros document
 
-text/x-vCalendar
+text/x-vcalendar
 	description=calendar document
 
-text/x-vCard
+text/x-vcard
 	description=address card
+
+text/xml
+	description=XML document
 
 video/isivideo
 	description=ISI video
@@ -773,12 +776,6 @@ video/x-msvideo
 video/x-sgi-movie
 	description=SGI movie
 
-x-special/device-block
-	description=block device
-
-x-special/device-char
-	description=character device
-
 x-directory/normal
 	description=directory
 	default_action_type=component
@@ -795,15 +792,6 @@ x-directory/search
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
 
-x-special/fifo
-	description=named pipe
-
-x-special/socket
-	description=socket
-
-x-special/symlink
-	description=link
-
 x-directory/webdav
 	description=web directory
 	default_action_type=component
@@ -815,4 +803,19 @@ x-directory/webdav
 	short_list_application_ids_for_novice_user_level=mozilla,netscape,lynx
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,lynx
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx
+
+x-special/device-block
+	description=block device
+
+x-special/device-char
+	description=character device
+
+x-special/fifo
+	description=named pipe
+
+x-special/socket
+	description=socket
+
+x-special/symlink
+	description=link
 

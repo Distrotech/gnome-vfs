@@ -41,17 +41,14 @@ application/oda
 application/pdf
 	ext: pdf
 
-application/postscript
-	ext: ps eps
-
 application/pgp
 	ext: pgp
 
+application/postscript
+	ext: ps eps
+
 application/rtf
 	ext: rtf
-
-application/x-smil
-	ext: smil smi sml
 
 application/x-applix-spreadsheet
         ext: as
@@ -59,11 +56,11 @@ application/x-applix-spreadsheet
 application/x-applix-word
         ext: aw
 
-application/x-asp
-        ext: asp
-
 application/x-arj
 	ext: arj
+
+application/x-asp
+        ext: asp
 
 application/x-backup
         ext: bak BAK
@@ -111,23 +108,23 @@ application/x-e-theme
 application/x-font-afm
 	ext: afm
 
-application/x-font-linux-psf
-	ext: psf
-
-application/x-font-ttf
-	ext: ttf TTF
-
-application/x-font-type1
-	ext: pfa pfb
-
 application/x-font-bdf
 	ext: bdf
+
+application/x-font-linux-psf
+	ext: psf
 
 application/x-font-pcf
 	ext: pcf
 
 application/x-font-speedo
 	ext: spd
+
+application/x-font-ttf
+	ext: ttf TTF
+
+application/x-font-type1
+	ext: pfa pfb
 
 application/x-gnome-app-info
 	ext: desktop
@@ -162,6 +159,9 @@ application/x-netcdf
 application/x-object-file
 	ext: o
 
+application/x-php
+        ext: php
+
 application/x-profile
         regex: gmon\.out$
 
@@ -180,6 +180,9 @@ application/x-shared-library
 application/x-shared-library-la
         ext: la
 
+application/x-smil
+	ext: smil smi sml
+
 application/x-sv4cpio
 	ext: sv4cpio
 
@@ -188,9 +191,6 @@ application/x-sv4crc
 
 application/x-tar
 	ext: tar
-
-application/x-php
-        ext: php
 
 application/x-theme
         ext: theme
@@ -387,9 +387,6 @@ text/sgml
 text/tab-separated-values
 	ext: tsv
 
-text/xml
-	ext: xml
-
 text/x-authors
 	regex: AUTHORS
 	
@@ -426,6 +423,9 @@ text/x-emacs-lisp
 text/x-fortran
 	ext: f
 
+text/x-gtkrc
+        regex: [.|]gtkrc
+
 text/x-idl
         ext: idl
 
@@ -434,9 +434,6 @@ text/x-install
 
 text/x-java
 	ext: java
-
-text/x-gtkrc
-        regex: [.|]gtkrc
 
 text/x-makefile
 	regex: [Mm]akefile
@@ -476,8 +473,6 @@ text/x-troff
 
 text/x-troff-man
 	regex: (([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|n)|\.man)$
-
-text/x-troff-man
 	ext: man
 
 text/x-troff-me
@@ -486,11 +481,14 @@ text/x-troff-me
 text/x-troff-ms
 	ext: ms
 
-text/x-vCalendar
+text/x-vcalendar
 	ext: vcs vcf
 
-text/x-vCard
+text/x-vcard
 	ext: gcrd
+
+text/xml
+	ext: xml
 
 video/mpeg
 	ext: mp2 mpe mpeg mpg
@@ -501,32 +499,14 @@ video/quicktime
 video/x-anim
         ext: anim5 anim7
 
-video/x-fli
-	ext: fli
-
 video/x-flc
 	ext: flc
+
+video/x-fli
+	ext: fli
 
 video/x-msvideo
 	ext: avi
 
 video/x-sgi-movie
 	ext: movie
-
-
-
-x-url/ftp
-	regex: ftp://.*
-
-x-url/gopher
-	regex: gopher:.*
-
-x-url/http
-	regex: http://.*
-
-x-url/info
-	regex: info:.*
-
-x-url/news
-	regex: news:.*
-
