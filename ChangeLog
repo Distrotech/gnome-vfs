@@ -1,3 +1,12 @@
+2003-08-03  Danilo Segan  <dsegan@gmx.net>
+
+	* libgnomevfs/gnome-vfs-utils.c: uses ngettext
+	
+	(committed by teuf@gnome.org, please note this makes gnome-vfs
+	depend on a 'new enough' gettext implementation, and compilation 
+	will break if such a gettext impl is not available. Hopefully some
+	gnome module (intltool?) makes sure this is the case(?))
+
 === gnome-vfs 2.3.6 ===
 
 2003-08-01  Christophe Fergeau  <teuf@gnome.org>
