@@ -154,6 +154,12 @@ gnome_vfs_volume_get_device_type (GnomeVFSVolume *volume)
 	return volume->priv->device_type;
 }
 
+gulong
+gnome_vfs_volume_get_id (GnomeVFSVolume *volume)
+{
+	return volume->priv->id;
+}
+
 GnomeVFSDrive *
 gnome_vfs_volume_get_drive (GnomeVFSVolume *volume)
 {
@@ -308,8 +314,8 @@ _gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
 	volume->priv->device_type = corba_volume->device_type;
 
 	if (corba_volume->drive != 0) {
-		volume->priv->drive = _gnome_vfs_volume_monitor_get_drive_by_id (volume_monitor,
-										 corba_volume->drive);
+		volume->priv->drive = gnome_vfs_volume_monitor_get_drive_by_id (volume_monitor,
+										corba_volume->drive);
 		if (volume->priv->drive != NULL) {
 			_gnome_vfs_drive_set_mounted_volume (volume->priv->drive, volume);
 			/* The drive reference is weak */

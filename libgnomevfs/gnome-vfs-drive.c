@@ -177,6 +177,12 @@ gnome_vfs_drive_finalize (GObject *object)
 		(* G_OBJECT_CLASS (parent_class)->finalize) (object);
 }
 
+gulong 
+gnome_vfs_drive_get_id (GnomeVFSDrive *drive)
+{
+	return drive->priv->id;
+}
+
 GnomeVFSDeviceType
 gnome_vfs_drive_get_device_type (GnomeVFSDrive *drive)
 {
@@ -335,8 +341,8 @@ _gnome_vfs_drive_from_corba (const GNOME_VFS_Drive *corba_drive,
 	drive->priv->device_type = corba_drive->device_type;
 
 	if (corba_drive->volume != 0) {
-		drive->priv->volume = _gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor,
-										  corba_drive->volume);
+		drive->priv->volume = gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor,
+										 corba_drive->volume);
 		if (drive->priv->volume != NULL) {
 			_gnome_vfs_volume_set_drive (drive->priv->volume, drive);
 		}

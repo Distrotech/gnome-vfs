@@ -59,6 +59,7 @@ GType gnome_vfs_drive_get_type (void) G_GNUC_CONST;
 GnomeVFSDrive *gnome_vfs_drive_ref   (GnomeVFSDrive *drive);
 void           gnome_vfs_drive_unref (GnomeVFSDrive *drive);
 
+gulong             gnome_vfs_drive_get_id              (GnomeVFSDrive *drive);
 GnomeVFSDeviceType gnome_vfs_drive_get_device_type     (GnomeVFSDrive *drive);
 GnomeVFSVolume *   gnome_vfs_drive_get_mounted_volume  (GnomeVFSDrive *drive);
 char *             gnome_vfs_drive_get_device_path     (GnomeVFSDrive *drive);

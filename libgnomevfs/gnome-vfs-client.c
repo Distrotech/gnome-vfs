@@ -4,6 +4,7 @@
 #include "gnome-vfs-client.h"
 #include "gnome-vfs-cancellation-private.h"
 #include "gnome-vfs-volume-monitor-private.h"
+#include "gnome-vfs-volume-monitor-client.h"
 
 BONOBO_CLASS_BOILERPLATE_FULL(
 	GnomeVFSClient,
@@ -90,7 +91,7 @@ gnome_vfs_client_volume_unmounted (PortableServer_Servant _servant,
 
 	volume_monitor = gnome_vfs_get_volume_monitor ();
 
-	volume = _gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor, id);
+	volume = gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor, id);
 	if (volume != NULL) {
 		_gnome_vfs_volume_monitor_unmounted (volume_monitor, volume);
 		gnome_vfs_volume_unref (volume);
@@ -122,7 +123,7 @@ gnome_vfs_client_drive_disconnected (PortableServer_Servant _servant,
 
 	volume_monitor = gnome_vfs_get_volume_monitor ();
 
-	drive = _gnome_vfs_volume_monitor_get_drive_by_id (volume_monitor, id);
+	drive = gnome_vfs_volume_monitor_get_drive_by_id (volume_monitor, id);
 	if (drive != NULL) {
 		_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
 		gnome_vfs_drive_unref (drive);
@@ -149,6 +150,8 @@ static void
 daemon_connection_broken (gpointer connection,
 			  GnomeVFSClient *client)
 {
+	GnomeVFSVolumeMonitor *volume_monitor;
+
 	/* This is run in an idle, so some code might run between the
 	 * connection going bork and this code running.
 	 */
@@ -168,6 +171,15 @@ daemon_connection_broken (gpointer connection,
 	 */
 
 	G_UNLOCK (the_client);
+
+	volume_monitor = _gnome_vfs_get_volume_monitor_internal (FALSE);
+	if (volume_monitor != NULL) {
+		/* We need to remove all the old volumes/drives since
+		 * their ids are not the same for the next daemon.
+		 */
+		_gnome_vfs_volume_monitor_client_daemon_died (GNOME_VFS_VOLUME_MONITOR_CLIENT (volume_monitor));
+	}
+
 }
 
 

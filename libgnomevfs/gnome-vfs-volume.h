@@ -89,6 +89,7 @@ GType gnome_vfs_volume_get_type (void) G_GNUC_CONST;
 GnomeVFSVolume *gnome_vfs_volume_ref   (GnomeVFSVolume *volume);
 void            gnome_vfs_volume_unref (GnomeVFSVolume *volume);
 
+gulong             gnome_vfs_volume_get_id              (GnomeVFSVolume *volume);
 GnomeVFSVolumeType gnome_vfs_volume_get_volume_type     (GnomeVFSVolume *volume);
 GnomeVFSDeviceType gnome_vfs_volume_get_device_type     (GnomeVFSVolume *volume);
 GnomeVFSDrive *    gnome_vfs_volume_get_drive           (GnomeVFSVolume *volume);

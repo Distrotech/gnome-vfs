@@ -964,7 +964,7 @@ update_connected_servers (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 
 	for (l = removed; l != NULL; l = l->next) {
 		server = l->data;
-		volume = _gnome_vfs_volume_monitor_find_connected_server_by_id (volume_monitor, server->id);
+		volume = _gnome_vfs_volume_monitor_find_connected_server_by_gconf_id (volume_monitor, server->id);
 		
 		if (volume != NULL) {
 			_gnome_vfs_volume_monitor_unmounted (volume_monitor, volume);

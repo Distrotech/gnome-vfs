@@ -67,12 +67,14 @@ GnomeVFSVolumeMonitor *gnome_vfs_get_volume_monitor   (void);
 GnomeVFSVolumeMonitor *gnome_vfs_volume_monitor_ref   (GnomeVFSVolumeMonitor *volume_monitor);
 void                   gnome_vfs_volume_monitor_unref (GnomeVFSVolumeMonitor *volume_monitor);
 
-GList *gnome_vfs_volume_monitor_get_mounted_volumes (GnomeVFSVolumeMonitor *volume_monitor);
-GList *gnome_vfs_volume_monitor_get_connected_drives (GnomeVFSVolumeMonitor *volume_monitor);
-
-GnomeVFSVolume *gnome_vfs_volume_monitor_get_volume_for_path (GnomeVFSVolumeMonitor *volume_monitor,
-							      const char *path);
-
+GList *         gnome_vfs_volume_monitor_get_mounted_volumes  (GnomeVFSVolumeMonitor *volume_monitor);
+GList *         gnome_vfs_volume_monitor_get_connected_drives (GnomeVFSVolumeMonitor *volume_monitor);
+GnomeVFSVolume *gnome_vfs_volume_monitor_get_volume_for_path  (GnomeVFSVolumeMonitor *volume_monitor,
+							       const char            *path);
+GnomeVFSVolume *gnome_vfs_volume_monitor_get_volume_by_id     (GnomeVFSVolumeMonitor *volume_monitor,
+							       gulong                 id);
+GnomeVFSDrive * gnome_vfs_volume_monitor_get_drive_by_id      (GnomeVFSVolumeMonitor *volume_monitor,
+							       gulong                 id);
 
 G_END_DECLS
 

@@ -213,11 +213,12 @@ static GnomeVFSVolumeMonitor *the_volume_monitor = NULL;
 static gboolean volume_monitor_was_shutdown = FALSE;
 
 GnomeVFSVolumeMonitor *
-gnome_vfs_get_volume_monitor (void)
+_gnome_vfs_get_volume_monitor_internal (gboolean create)
 {
 	G_LOCK (the_volume_monitor);
 	
 	if (the_volume_monitor == NULL &&
+	    create &&
 	    !volume_monitor_was_shutdown) {
 		if (gnome_vfs_get_is_daemon ()) {
 			the_volume_monitor = g_object_new (GNOME_VFS_TYPE_VOLUME_MONITOR_DAEMON, NULL);
@@ -229,6 +230,12 @@ gnome_vfs_get_volume_monitor (void)
 	G_UNLOCK (the_volume_monitor);
 
 	return the_volume_monitor;
+}
+
+GnomeVFSVolumeMonitor *
+gnome_vfs_get_volume_monitor (void)
+{
+	return _gnome_vfs_get_volume_monitor_internal (TRUE);
 }
 
 void
@@ -291,8 +298,8 @@ _gnome_vfs_volume_monitor_find_fstab_drive_by_activation_uri (GnomeVFSVolumeMoni
 }
 
 GnomeVFSVolume *
-_gnome_vfs_volume_monitor_find_connected_server_by_id (GnomeVFSVolumeMonitor *volume_monitor,
-						       const char            *id)
+_gnome_vfs_volume_monitor_find_connected_server_by_gconf_id (GnomeVFSVolumeMonitor *volume_monitor,
+							     const char            *id)
 {
 	GList *l;
 	GnomeVFSVolume *vol, *ret;
@@ -313,8 +320,8 @@ _gnome_vfs_volume_monitor_find_connected_server_by_id (GnomeVFSVolumeMonitor *vo
 }
 
 GnomeVFSVolume *
-_gnome_vfs_volume_monitor_get_volume_by_id (GnomeVFSVolumeMonitor *volume_monitor,
-					    gulong                 id)
+gnome_vfs_volume_monitor_get_volume_by_id (GnomeVFSVolumeMonitor *volume_monitor,
+					   gulong                 id)
 {
 	GList *l;
 	GnomeVFSVolume *vol;
@@ -352,8 +359,8 @@ _gnome_vfs_volume_monitor_get_volume_by_id (GnomeVFSVolumeMonitor *volume_monito
 }
 
 GnomeVFSDrive *
-_gnome_vfs_volume_monitor_get_drive_by_id  (GnomeVFSVolumeMonitor *volume_monitor,
-					    gulong                 id)
+gnome_vfs_volume_monitor_get_drive_by_id  (GnomeVFSVolumeMonitor *volume_monitor,
+					   gulong                 id)
 {
 	GList *l;
 	GnomeVFSDrive *drive;
@@ -382,6 +389,35 @@ _gnome_vfs_volume_monitor_get_drive_by_id  (GnomeVFSVolumeMonitor *volume_monito
 	return NULL;
 }
 
+void
+_gnome_vfs_volume_monitor_unmount_all (GnomeVFSVolumeMonitor *volume_monitor)
+{
+	GList *l, *volumes;
+	GnomeVFSVolume *volume;
+
+	volumes = gnome_vfs_volume_monitor_get_mounted_volumes (volume_monitor);
+	
+	for (l = volumes; l != NULL; l = l->next) {
+		volume = l->data;
+		_gnome_vfs_volume_monitor_unmounted (volume_monitor, volume);
+		gnome_vfs_volume_unref (volume);
+	}
+}
+
+void
+_gnome_vfs_volume_monitor_disconnect_all (GnomeVFSVolumeMonitor *volume_monitor)
+{
+	GList *l, *drives;
+	GnomeVFSDrive *drive;
+
+	drives = gnome_vfs_volume_monitor_get_connected_drives (volume_monitor);
+	
+	for (l = drives; l != NULL; l = l->next) {
+		drive = l->data;
+		_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
+		gnome_vfs_drive_unref (drive);
+	}
+}
 
 void
 _gnome_vfs_volume_monitor_mounted (GnomeVFSVolumeMonitor *volume_monitor,
@@ -390,11 +426,20 @@ _gnome_vfs_volume_monitor_mounted (GnomeVFSVolumeMonitor *volume_monitor,
 	gnome_vfs_volume_ref (volume);
 	
 	g_mutex_lock (volume_monitor->priv->mutex);
-	if (volume->priv->volume_type == GNOME_VFS_VOLUME_TYPE_MOUNTPOINT) {
-		volume_monitor->priv->mtab_volumes = g_list_prepend (volume_monitor->priv->mtab_volumes, volume);
-	} else if (volume->priv->volume_type == GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER) {
-		volume_monitor->priv->server_volumes = g_list_prepend (volume_monitor->priv->server_volumes, volume);
-	} else {
+	switch (volume->priv->volume_type) {
+	case GNOME_VFS_VOLUME_TYPE_MOUNTPOINT:
+		volume_monitor->priv->mtab_volumes = g_list_prepend (volume_monitor->priv->mtab_volumes,
+								     volume);
+		break;
+	case GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER:
+		volume_monitor->priv->server_volumes = g_list_prepend (volume_monitor->priv->server_volumes,
+								       volume);
+		break;
+	case GNOME_VFS_VOLUME_TYPE_VFS_MOUNT:
+		volume_monitor->priv->vfs_volumes = g_list_prepend (volume_monitor->priv->vfs_volumes,
+								    volume);
+		break;
+	default:
 		g_assert_not_reached ();
 	}
 		
@@ -413,6 +458,7 @@ _gnome_vfs_volume_monitor_unmounted (GnomeVFSVolumeMonitor *volume_monitor,
 	g_mutex_lock (volume_monitor->priv->mutex);
 	volume_monitor->priv->mtab_volumes = g_list_remove (volume_monitor->priv->mtab_volumes, volume);
 	volume_monitor->priv->server_volumes = g_list_remove (volume_monitor->priv->server_volumes, volume);
+	volume_monitor->priv->vfs_volumes = g_list_remove (volume_monitor->priv->vfs_volumes, volume);
 	volume->priv->is_mounted = 0;
 	g_mutex_unlock (volume_monitor->priv->mutex);
 
@@ -474,6 +520,8 @@ gnome_vfs_volume_monitor_get_mounted_volumes (GnomeVFSVolumeMonitor *volume_moni
 	ret = g_list_copy (volume_monitor->priv->mtab_volumes);
 	ret = g_list_concat (ret,
 			      g_list_copy (volume_monitor->priv->server_volumes));
+	ret = g_list_concat (ret,
+			      g_list_copy (volume_monitor->priv->vfs_volumes));
 	g_list_foreach (ret,
 			(GFunc)gnome_vfs_volume_ref, NULL);
 	g_mutex_unlock (volume_monitor->priv->mutex);

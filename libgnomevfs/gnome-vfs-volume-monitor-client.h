@@ -42,7 +42,6 @@ typedef struct _GnomeVFSVolumeMonitorClientClass GnomeVFSVolumeMonitorClientClas
 
 struct _GnomeVFSVolumeMonitorClient {
 	GnomeVFSVolumeMonitor parent;
-
 };
 
 struct _GnomeVFSVolumeMonitorClientClass {
@@ -50,6 +49,8 @@ struct _GnomeVFSVolumeMonitorClientClass {
 };
 
 GType gnome_vfs_volume_monitor_client_get_type (void) G_GNUC_CONST;
+
+void _gnome_vfs_volume_monitor_client_daemon_died (GnomeVFSVolumeMonitorClient *volume_monitor_client);
 
 G_END_DECLS
 

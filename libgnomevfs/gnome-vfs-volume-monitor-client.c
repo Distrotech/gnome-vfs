@@ -125,9 +125,8 @@ read_drives_from_daemon (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 	for (i = 0; i < list->_length; i++) {
 		drive = _gnome_vfs_drive_from_corba (&list->_buffer[i],
 						     volume_monitor);
-		/* TODO: What about vfs drives? */
-		volume_monitor->priv->fstab_drives = g_list_prepend (volume_monitor->priv->fstab_drives,
-								     drive);
+		_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
+		gnome_vfs_drive_unref (drive);
 	}
 
 	CORBA_free (list);
@@ -163,20 +162,8 @@ read_volumes_from_daemon (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 	for (i = 0; i < list->_length; i++) {
 		volume = _gnome_vfs_volume_from_corba (&list->_buffer[i],
 						       volume_monitor);
-		switch (volume->priv->volume_type) {
-		case GNOME_VFS_VOLUME_TYPE_MOUNTPOINT:
-			volume_monitor->priv->mtab_volumes = g_list_prepend (volume_monitor->priv->mtab_volumes,
-									     volume);
-			break;
-		case GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER:
-			volume_monitor->priv->server_volumes = g_list_prepend (volume_monitor->priv->server_volumes,
-									       volume);
-			break;
-		case GNOME_VFS_VOLUME_TYPE_VFS_MOUNT:
-			volume_monitor->priv->vfs_volumes = g_list_prepend (volume_monitor->priv->vfs_volumes,
-									    volume);
-			break;
-		}
+		_gnome_vfs_volume_monitor_mounted (volume_monitor, volume);
+		gnome_vfs_volume_unref (volume);
 	}
 
 	CORBA_free (list);
@@ -216,4 +203,18 @@ gnome_vfs_volume_monitor_client_finalize (GObject *object)
 	
 	if (G_OBJECT_CLASS (parent_class)->finalize)
 		(* G_OBJECT_CLASS (parent_class)->finalize) (object);
+}
+
+void
+_gnome_vfs_volume_monitor_client_daemon_died (GnomeVFSVolumeMonitorClient *volume_monitor_client)
+{
+	GnomeVFSVolumeMonitor *volume_monitor;
+
+	volume_monitor = GNOME_VFS_VOLUME_MONITOR (volume_monitor_client);
+	
+	_gnome_vfs_volume_monitor_unmount_all (volume_monitor);
+	_gnome_vfs_volume_monitor_disconnect_all (volume_monitor);
+
+	read_drives_from_daemon (volume_monitor_client);
+	read_volumes_from_daemon (volume_monitor_client);
 }
