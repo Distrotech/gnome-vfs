@@ -1,3 +1,9 @@
+2000-10-02  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gnome-vfs.spec.in: Really fix installation of the
+	man page with rpm-4.0. The newer version compresses the
+	man pages by default. Used *.5* instead of *.5.gz
+	
 2000-09-30  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c:

@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/lib/vfs/extfs/*
 %{prefix}/lib/vfs/modules/*.0
 %{prefix}/lib/vfs/modules/*.so
-%{prefix}/man/man5/*.5
+%{prefix}/man/man5/*.5*
 %{prefix}/share/control-center/*.desktop
 %{prefix}/share/gnome/apps/Settings/*.desktop
 %{prefix}/share/gnome/html/*.txt
