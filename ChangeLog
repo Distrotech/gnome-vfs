@@ -1,3 +1,12 @@
+2000-06-01  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (get_user_level): Added
+	fake parameters to the gconf_init call. It just won't put up with
+	0/NULL as argc/argv.
+	
+	* test/test-escape.c: (test_escape), (main): More test code (work
+	in progress).
+
 2000-06-01  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/application-registry-hack.keys:

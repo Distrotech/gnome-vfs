@@ -766,7 +766,8 @@ get_user_level (void)
 	 * GConf won't take care of initializing Gtk.
 	 */
 	if (!gconf_is_initialized ()) {
-		gconf_init (0, NULL, NULL);
+		char *fake_argv[] = { "gnome-vfs", NULL };
+		gconf_init (1, fake_argv, NULL);
 	}
 	gtk_type_init ();
 	gtk_signal_init ();

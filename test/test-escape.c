@@ -68,6 +68,24 @@ test_failed (const char *format, ...)
 	at_least_one_test_failed = TRUE;
 }
 
+static void
+test_escape (const char *input, const char *expected_output)
+{
+	char *output;
+
+	output = gnome_vfs_escape_string (input, GNOME_VFS_URI_ENCODING_XALPHAS);
+	if (strcmp (output, expected_output) == 0) {
+		g_free (output);
+		return;
+	}
+
+	test_failed ("escaping %s resulted in %s intead of %s",
+		     input,
+		     output,
+		     expected_output);
+	g_free (output);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -77,9 +95,13 @@ main (int argc, char **argv)
 	g_thread_init (NULL);
 	gnome_vfs_init ();
 
-	if (0) {
-		test_failed ("oops");
-	}
+	test_escape ("", "");
+	test_escape ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+	test_escape ("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz");
+	test_escape ("0123456789", "0123456789");
+#if 0
+	test_escape ("!@#$%^&*()-=_+", "!@#$%^&*()-=_+");
+#endif
 
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;
