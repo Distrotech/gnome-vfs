@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2001-04-18 13:51+0200\n"
+"POT-Creation-Date: 2001-05-18 11:50+0200\n"
 "PO-Revision-Date: 2000-07-07 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -594,7 +594,7 @@ msgid "StarOffice spreadsheet"
 msgstr "preglednica StarOffice"
 
 #: data/mime/gnome-vfs.keys.in.h:146
-msgid "Sun mu-law audio"
+msgid "Sun µ-law audio"
 msgstr "zvok v obliki Sun µ-law"
 
 #: data/mime/gnome-vfs.keys.in.h:147
@@ -1009,27 +1009,27 @@ msgstr "arhiv zip"
 msgid "zoo archive"
 msgstr "arhiv zoo"
 
-#: libgnomevfs/gnome-vfs-configuration.c:187
+#: libgnomevfs/gnome-vfs-configuration.c:224
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d vsebuje NIÈELNE znake."
 
-#: libgnomevfs/gnome-vfs-configuration.c:204
+#: libgnomevfs/gnome-vfs-configuration.c:241
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d ne vsebuje imena metode."
 
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:270
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ne vsebuje imea modula."
 
-#: libgnomevfs/gnome-vfs-configuration.c:286
+#: libgnomevfs/gnome-vfs-configuration.c:323
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Nastavitvena datoteka `%s' ni bila najdena: %s"
 
-#: libgnomevfs/gnome-vfs-init.c:69
+#: libgnomevfs/gnome-vfs-init.c:80
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS je ¾e inicializiran."
 
@@ -1270,50 +1270,42 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:690
+#: libgnomevfs-pthread/gnome-vfs-job.c:712
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Neznan tip operacije %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:978
-#: libgnomevfs-pthread/gnome-vfs-job.c:1123
+#: libgnomevfs-pthread/gnome-vfs-job.c:1000
+#: libgnomevfs-pthread/gnome-vfs-job.c:1145
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ne morem ustvariti cevi GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1578
+#: libgnomevfs-pthread/gnome-vfs-job.c:1603
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Neznana vrsta posla %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1609
+#: libgnomevfs-pthread/gnome-vfs-job.c:1639
 msgid "Operation stopped"
 msgstr "Operacija ustavljena"
 
-#: modules/efs-method.c:493 modules/file-method.c:380
+#: modules/file-method.c:380
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznan GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1191
-#, c-format
-msgid "%s to retrieve"
-msgstr "%s za prenos sem"
+#~ msgid "%s to retrieve"
+#~ msgstr "%s za prenos sem"
 
-#: modules/http-method.c:1684
-#, c-format
-msgid "Closing connection to %s"
-msgstr "Zapiram povezavo z %s"
+#~ msgid "Closing connection to %s"
+#~ msgstr "Zapiram povezavo z %s"
 
-#: modules/http-method.c:1950
-#, c-format
-msgid "%s of %s read"
-msgstr "%s od %s prebranih"
+#~ msgid "%s of %s read"
+#~ msgstr "%s od %s prebranih"
 
-#: modules/http-method.c:1953
-#, c-format
-msgid "%s read"
-msgstr "%s prebran"
+#~ msgid "%s read"
+#~ msgstr "%s prebran"
 
 #~ msgid "Dying."
 #~ msgstr "Umira."
