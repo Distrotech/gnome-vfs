@@ -1,3 +1,11 @@
+2001-08-23  Anders Carlsson  <andersca@gnu.org>
+
+	* libgnomevfs-pthread/gnome-vfs-pthread.c:
+	(gnome_vfs_pthread_recursive_mutex_init),
+	(gnome_vfs_pthread_recursive_mutex_lock),
+	(gnome_vfs_pthread_recursive_mutex_unlock):
+	Since pthread_t is an integer type, use 0 instead of NULL.
+	
 2001-08-22  Dan Winship  <danw@ximian.com>
 
 	* libgnomevfs-pthread/gnome-vfs-pthread.c: Add calls to wrap

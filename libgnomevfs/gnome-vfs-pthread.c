@@ -41,7 +41,7 @@ gnome_vfs_pthread_recursive_mutex_init (GnomeVFSRecursiveMutex *m)
 		return -1;
 
 	m->count = 0;
-	m->owner = NULL;
+	m->owner = 0;
 	return 0;
 }
 
@@ -57,7 +57,7 @@ gnome_vfs_pthread_recursive_mutex_lock (GnomeVFSRecursiveMutex *m)
 		if (m->owner == self) {
 			m->count++;
 			break;
-		} else if (m->owner == NULL) {
+		} else if (m->owner == 0) {
 			m->owner = self;
 			m->count = 1;
 			break;
@@ -78,7 +78,7 @@ gnome_vfs_pthread_recursive_mutex_unlock (GnomeVFSRecursiveMutex *m)
 	g_assert (m->owner == pthread_self());
 	m->count--;
 	if (m->count == 0) {
-		m->owner = NULL;
+		m->owner = 0;
 		pthread_cond_signal (&m->cond);
 	}
 	return pthread_mutex_unlock (&m->mutex);
