@@ -10,8 +10,8 @@
 #include "pipe-method.h"
 
 struct _FileHandle {
-  GnomeVFSURI *uri;
-  FILE *fh;
+	GnomeVFSURI *uri;
+	FILE *fh;
 };
 typedef struct _FileHandle FileHandle;
 
@@ -19,34 +19,38 @@ static FileHandle *
 file_handle_new (GnomeVFSURI *uri,
 		 FILE *fh)
 {
-  FileHandle *new;
+	FileHandle *new;
 
-  new = g_new (FileHandle, 1);
+	new = g_new (FileHandle, 1);
 
-  new->uri = gnome_vfs_uri_ref (uri);
-  new->fh = fh;
+	new->uri = gnome_vfs_uri_ref (uri);
+	new->fh = fh;
 
-  return new;
+	return new;
 }
 
 static void
 file_handle_destroy (FileHandle *handle)
 {
-  pclose(handle->fh);
-  gnome_vfs_uri_unref (handle->uri);
-  g_free (handle);
+	pclose(handle->fh);
+	gnome_vfs_uri_unref (handle->uri);
+	g_free (handle);
 }
 
 static void
-set_default_file_info (GnomeVFSFileInfo *file_info, GnomeVFSURI *uri)
+set_default_file_info (GnomeVFSFileInfo *file_info,
+		       GnomeVFSURI *uri)
 {
         file_info->name = g_strdup (uri->text);
 	file_info->flags = GNOME_VFS_FILE_FLAGS_NONE;
 	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-	file_info->permissions = GNOME_VFS_PERM_USER_READ|GNOME_VFS_PERM_GROUP_READ|GNOME_VFS_PERM_OTHER_READ;
+	file_info->permissions = (GNOME_VFS_PERM_USER_READ
+				  | GNOME_VFS_PERM_GROUP_READ
+				  | GNOME_VFS_PERM_OTHER_READ);
 
-	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_FLAGS | GNOME_VFS_FILE_INFO_FIELDS_TYPE 
-	  | GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+	file_info->valid_fields = (GNOME_VFS_FILE_INFO_FIELDS_FLAGS
+				   | GNOME_VFS_FILE_INFO_FIELDS_TYPE 
+				   | GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS);
 }
 
 static GnomeVFSResult
@@ -63,12 +67,12 @@ do_open (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
 	if (!(mode & GNOME_VFS_OPEN_READ))
-	  return GNOME_VFS_ERROR_INVALIDOPENMODE;
+		return GNOME_VFS_ERROR_INVALIDOPENMODE;
 
 	fh = popen(uri->text, "r");
 
 	if (!fh)
-	  return gnome_vfs_result_from_errno ();
+		return gnome_vfs_result_from_errno ();
 
 	file_handle = file_handle_new (uri, fh);
 	
@@ -191,31 +195,31 @@ static gboolean
 is_local(GnomeVFSMethod *method,
 	 const GnomeVFSURI *uri)
 {
-  return TRUE;
+	return TRUE;
 }
 
 static GnomeVFSMethod method = {
-  do_open, /* open */
-  NULL, /* create */
-  do_close, /* close */
-  do_read, /* read */
-  NULL, /* write */
-  NULL, /* seek */
-  NULL, /* tell */
-  NULL, /* truncate_handle */
-  NULL, /* open_directory */
-  NULL, /* close_directory */
-  NULL, /* read_directory */
-  (gpointer)do_get_file_info, /* get_file_info */
-  (gpointer)do_get_file_info_from_handle, /* get_file_info_from_handle */
-  is_local, /* is_local */
-  NULL, /* make_directory */
-  NULL, /* remove_directory */
-  NULL, /* move */
-  NULL, /* unlink */
-  NULL, /* check_same_fs */
-  NULL, /* set_file_info */
-  NULL /* truncate */
+	do_open, /* open */
+	NULL, /* create */
+	do_close, /* close */
+	do_read, /* read */
+	NULL, /* write */
+	NULL, /* seek */
+	NULL, /* tell */
+	NULL, /* truncate_handle */
+	NULL, /* open_directory */
+	NULL, /* close_directory */
+	NULL, /* read_directory */
+	(gpointer) do_get_file_info, /* get_file_info */
+	(gpointer) do_get_file_info_from_handle, /* get_file_info_from_handle */
+	is_local, /* is_local */
+	NULL, /* make_directory */
+	NULL, /* remove_directory */
+	NULL, /* move */
+	NULL, /* unlink */
+	NULL, /* check_same_fs */
+	NULL, /* set_file_info */
+	NULL /* truncate */
 };
 
 GnomeVFSMethod *
