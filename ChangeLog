@@ -1,3 +1,29 @@
+2001-01-05  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Darin Adler  <darin@eazel.com>
+
+	Fixed bug 5337 (MIME code hits disk every few seconds
+	to check for changed data)
+
+	I tried a gconf-based approach but was thwarted (see
+	bug 5460). So I just removed the polling code that hits
+	the disk. This leaves behind fairly minor bug 5459. Oh
+	well.
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_init),
+	(reload_if_needed_idle_function):
+	Removed the polling mechanism for checking whether data on
+	disk has changed.
+	(gnome_vfs_mime_info_reload): Added numbered FIXME comment
+	about bugs 5459 and 5460.
+
+	* libgnomevfs/gnome-vfs-mime-monitor.c:
+	(gnome_vfs_mime_monitor_emit_data_changed):
+	Removed debugging spam accidentally left in earlier.
+	
+	* modules/http-method.c: (vfs_module_init): Removed FIXME
+	comment for bug that I fixed recently.
+
 2001-01-05  Rebecca Schulman  <rebecka@eazel.com>
 
 	reviewed by: Pavel Cisler <pavel@eazel.com>

@@ -113,7 +113,6 @@ gnome_vfs_mime_monitor_initialize_class (GnomeVFSMIMEMonitorClass *class)
 void
 gnome_vfs_mime_monitor_emit_data_changed (GnomeVFSMIMEMonitor *monitor)
 {
-	g_message ("emitting data_changed from %p", monitor);
 	gtk_signal_emit (GTK_OBJECT (monitor),
 			 signals[DATA_CHANGED]);	
 }
