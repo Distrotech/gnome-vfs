@@ -79,6 +79,8 @@ GNOME_COMPILE_WARNINGS
 VFS_CFLAGS="$warnCFLAGS $complCFLAGS"
 
 GNOME_PTHREAD_CHECK
+dnl semaphore functions are in librt.so on solaris
+AC_CHECK_LIB(rt, sem_wait)
 
 dnl Don't blindly #define them if they're typedef'ed in <sys/types.h>
 AM_GNOME_SIZE_T

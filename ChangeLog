@@ -1,3 +1,7 @@
+2001-09-10  Frank Belew  <frb@ximian.com>
+	* configure.in: add check for librt for semaphore functions
+	(fixes undefined references on solaris)
+
 2001-09-07  Darin Adler  <darin@bentspoon.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c: Remove a stray include.
