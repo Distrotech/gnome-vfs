@@ -1,13 +1,13 @@
 # gnome-vfs German translation.
 # Copyright (C) 1999-2002 Free Software Foundation, Inc.
 # Matthias Warkus <mawa@iname.com>, 2000.
-# Christian Meyer  <chrisime@gnome.org>, 2002.
+# Christian Meyer <chrisime@gnome.org>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.x\n"
-"POT-Creation-Date: 2002-03-01 00:34+0100\n"
-"PO-Revision-Date: 2002-03-01 00:24+0100\n"
+"POT-Creation-Date: 2002-03-03 21:11+0100\n"
+"PO-Revision-Date: 2002-03-03 21:10+0100\n"
 "Last-Translator: Christian Meyer <chrisime@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "%s:%d enthält keinen Modulnamen"
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Konfigurationsdatei `%s' wurde nicht gefunden: %s"
+msgstr "Konfigurationsdatei »%s« wurde nicht gefunden: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:714
 #, c-format
@@ -300,11 +300,12 @@ msgstr "%.1f GB"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Unbekannte GNOMEVFSSeekPosition %d"
 
+# CHECK
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Es konnte keine gültige Einstellung bei %s gefunden werden\n"
 
 #: modules/test-method.c:592
 #, c-format
