@@ -1,3 +1,9 @@
+2000-08-21  Darin Adler  <darin@eazel.com>
+
+	* check-mime.pl: Added script to check if the MIME files have
+	certain desirable properties. There are 69 errors reported now,
+	and I bet John will fix them now that they are easy to spot.
+
 2000-08-21  John Sullivan  <sullivan@eazel.com>
 
 	More tweaks to match MIME identification problems
