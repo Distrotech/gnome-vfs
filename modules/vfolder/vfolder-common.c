@@ -172,6 +172,7 @@ entry_make_user_private (Entry *entry, Folder *folder)
 		folder_add_include (folder, filename);
 
 		entry_set_filename (entry, filename);
+		entry_set_weight (entry, 1000);
 
 		entry->user_private = TRUE;
 	}
@@ -267,6 +268,12 @@ gushort
 entry_get_weight (Entry *entry)
 {
 	return entry->weight;
+}
+
+void
+entry_set_weight (Entry *entry, gushort weight)
+{
+	entry->weight = weight;
 }
 
 void

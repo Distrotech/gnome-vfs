@@ -93,6 +93,7 @@ gboolean      entry_make_user_private    (Entry *entry, Folder *folder);
 gboolean      entry_is_user_private      (Entry *entry);
 
 gushort       entry_get_weight           (Entry *entry);
+void          entry_set_weight           (Entry *entry, gushort weight);
 
 void          entry_set_dirty            (Entry *entry);
 

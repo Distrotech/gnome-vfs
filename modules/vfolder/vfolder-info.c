@@ -624,13 +624,10 @@ add_keywords_from_relative_path (Entry *new_entry, const gchar *rel_path)
 	g_strfreev (pelems);
 }
 
-static Entry *
-create_mergedir_entry (ItemDir          *id,
-		       const gchar      *rel_path,
-		       GnomeVFSFileInfo *file_info)
+static void
+set_mergedir_entry_keywords (Entry *new_entry, const gchar *rel_path)
 {
-	static GQuark merged, application, core_quark;
-	Entry *new_entry;
+	static GQuark merged = 0, application = 0, core_quark = 0;
 
 	if (!merged) {
 		merged = g_quark_from_static_string ("Merged");
@@ -638,19 +635,28 @@ create_mergedir_entry (ItemDir          *id,
 		core_quark = g_quark_from_static_string ("Core");
 	}
 
-	new_entry = create_itemdir_entry (id, rel_path, file_info);
-	if (new_entry) {
-		/* 
-		 * Mergedirs have the 'Merged' and 'Appliction' keywords added.
-		 */
-		entry_add_implicit_keyword (new_entry, merged);
-		entry_add_implicit_keyword (new_entry, application);
+	/* 
+	 * Mergedirs have the 'Merged' and 'Appliction' keywords added.
+	 */
+	entry_add_implicit_keyword (new_entry, merged);
+	entry_add_implicit_keyword (new_entry, application);
 
-		if (!strcmp (rel_path, file_info->name))
-			entry_add_implicit_keyword (new_entry, core_quark);
-		else
-			add_keywords_from_relative_path (new_entry, rel_path);
-	}
+	if (!strcmp (rel_path, entry_get_displayname (new_entry)))
+		entry_add_implicit_keyword (new_entry, core_quark);
+	else
+		add_keywords_from_relative_path (new_entry, rel_path);
+}
+
+static Entry *
+create_mergedir_entry (ItemDir          *id,
+		       const gchar      *rel_path,
+		       GnomeVFSFileInfo *file_info)
+{
+	Entry *new_entry;
+
+	new_entry = create_itemdir_entry (id, rel_path, file_info);
+	if (new_entry)
+		set_mergedir_entry_keywords (new_entry, rel_path);
 
 	return new_entry;
 }
@@ -1051,15 +1057,15 @@ vfolder_info_reset (VFolderInfo *info)
 		info->has_unallocated_folder = FALSE;
 }
 
-static gchar *
-find_replacement_for_delete (ItemDir *id, const gchar *filename)
+static gboolean
+find_replacement_for_delete (ItemDir *id, Entry *entry)
 {
 	GSList *iter, *miter;
 	gint idx;
 	
 	idx = g_slist_index (id->info->item_dirs, id);
 	if (idx < 0)
-		return NULL;
+		return FALSE;
 
 	iter = g_slist_nth (id->info->item_dirs, idx + 1);
 
@@ -1069,24 +1075,39 @@ find_replacement_for_delete (ItemDir *id, const gchar *filename)
 		for (miter = id_next->monitors; miter; miter = miter->next) {
 			VFolderMonitor *monitor = miter->data;
 			GnomeVFSURI *check_uri;
-			gchar *uristr;
+			gchar *uristr, *rel_path;
+			gboolean exists;
 
-			uristr = vfolder_build_uri (monitor->uri,
-						    filename,
-						    NULL);
+			uristr = 
+				vfolder_build_uri (
+					monitor->uri,
+					entry_get_displayname (entry),
+					NULL);
+
 			check_uri = gnome_vfs_uri_new (uristr);
+			exists = gnome_vfs_uri_exists (check_uri);
+			gnome_vfs_uri_unref (check_uri);
 
-			if (gnome_vfs_uri_exists (check_uri)) {
-				gnome_vfs_uri_unref (check_uri);
-				return uristr;
+			if (!exists) {
+				g_free (uristr);
+				continue;
 			}
 
-			gnome_vfs_uri_unref (check_uri);
+			rel_path  = strstr (uristr, id_next->uri);
+			rel_path += strlen (id_next->uri);
+
+			entry_set_filename (entry, uristr);
+			entry_set_weight (entry, id_next->weight);
+
+			/* Add keywords based on relative path */
+			set_mergedir_entry_keywords (entry, rel_path);
+
 			g_free (uristr);
+			return TRUE;
 		}
 	}
 
-	return NULL;
+	return FALSE;
 }
 
 static void
@@ -1149,7 +1170,11 @@ itemdir_monitor_handle (ItemDir                  *id,
 {
 	Entry *entry;
 	GnomeVFSURI *real_uri;
-	gchar *replace_uri;
+	gboolean replaced;
+	const gchar *rel_path;
+
+	rel_path  = strstr (full_uristr, id->uri);
+	rel_path += strlen (id->uri);
 
 	switch (event_type) {
 	case GNOME_VFS_MONITOR_EVENT_CREATED:
@@ -1169,12 +1194,15 @@ itemdir_monitor_handle (ItemDir                  *id,
 				 * one, so replace.
 				 */
 				entry_set_filename (entry, full_uristr);
+				entry_set_weight (entry, id->weight);
+
+				/* Add keywords based on relative path */
+				set_mergedir_entry_keywords (entry, rel_path);
 			}
 
 			gnome_vfs_uri_unref (real_uri);
 		} 
 		else if (event_type == GNOME_VFS_MONITOR_EVENT_CREATED) {
-			const gchar *rel_path;
 			GnomeVFSFileInfo *file_info;
 			GnomeVFSResult result;
 
@@ -1189,9 +1217,6 @@ itemdir_monitor_handle (ItemDir                  *id,
 				gnome_vfs_file_info_unref (file_info);
 				break;
 			}
-
-			rel_path  = strstr (full_uristr, id->uri);
-			rel_path += strlen (id->uri);
 
 			if (id->is_mergedir)
 				entry = create_mergedir_entry (id,
@@ -1229,20 +1254,15 @@ itemdir_monitor_handle (ItemDir                  *id,
 		}
 		gnome_vfs_uri_unref (real_uri);
 
-		replace_uri = find_replacement_for_delete (id, displayname);
-		if (replace_uri) {
-			entry_set_filename (entry, replace_uri);
-			g_free (replace_uri);
-		}
+		replaced = find_replacement_for_delete (id, entry);
 
 		entry_ref (entry);
 		integrate_entry (id->info->root, 
 				 entry, 
-				 replace_uri != NULL /* do_add */);
+				 replaced /* do_add */);
 		entry_unref (entry);
 
 		id->info->modification_time = time (NULL);
-
 		break;
 	default:
 		break;
@@ -1300,6 +1320,7 @@ static void
 check_monitors_foreach (gpointer key, gpointer val, gpointer user_data)
 {
 	MonitorHandle *handle = key;
+	GSList *children = val;
 	GnomeVFSURI *uri, *curi;
 	const gchar *path;
 
@@ -1308,8 +1329,7 @@ check_monitors_foreach (gpointer key, gpointer val, gpointer user_data)
 
 	if (handle->type == GNOME_VFS_MONITOR_DIRECTORY) {
 		Folder *folder;
-		GSList *children = val, *iter, *found;
-		GSList *new_children;
+		GSList *new_children, *iter, *found;
 
 		folder = vfolder_info_get_folder (handle->info, path);
 		if (!folder) {
@@ -1319,12 +1339,21 @@ check_monitors_foreach (gpointer key, gpointer val, gpointer user_data)
 				GNOME_VFS_MONITOR_EVENT_DELETED);
 			return;
 		}
-			
+
+		/* 
+		 * FIXME: If someone has an <OnlyUnallocated> folder which also
+		 * has a <Query>, we won't receive change events for children
+		 * matching the query... I think this is corner enough to ignore
+		 * though. 
+		 */
+		if (folder->only_unallocated)
+			return;
+
 		new_children = folder_list_children (folder);
 
 		for (iter = children; iter; iter = iter->next) {
 			gchar *child_name = iter->data;
-				
+
 			found = g_slist_find_custom (new_children,
 						     child_name,
 						     (GCompareFunc) strcmp);
@@ -1394,10 +1423,12 @@ filename_monitor_handle (gpointer user_data)
 
 	g_print ("*** PROCESSING .vfolder-info!!! ***\n");
 	
-	VFOLDER_INFO_WRITE_LOCK (info);
-	info->loading = TRUE;
-
 	monitors = g_hash_table_new (g_direct_hash, g_direct_equal);
+
+	VFOLDER_INFO_WRITE_LOCK (info);
+
+	/* Don't emit any events while we load */
+	info->loading = TRUE;
 
 	/* Compose a hash of all existing monitors and their children */
 	for (iter = info->requested_monitors; iter; iter = iter->next) {
@@ -1423,12 +1454,15 @@ filename_monitor_handle (gpointer user_data)
 
 	vfolder_info_read_info (info, NULL, NULL);
 
+	/* Start sending events again */
+	info->loading = FALSE;
+
 	/* Traverse monitor hash and diff with newly read folder structure */
 	g_hash_table_foreach (monitors, check_monitors_foreach, info);
-	g_hash_table_destroy (monitors);
 
-	info->loading = FALSE;
 	VFOLDER_INFO_WRITE_UNLOCK (info);
+
+	g_hash_table_destroy (monitors);
 
 	return FALSE;
 }
