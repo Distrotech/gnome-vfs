@@ -43,6 +43,7 @@ typedef struct {
 	char *command;
 	gboolean can_open_multiple_files;
 	gboolean can_open_uris;
+	gboolean requires_terminal;
 } GnomeVFSMimeApplication;
 
 
