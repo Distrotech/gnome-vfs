@@ -1,555 +1,613 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Italian localisation for gnome-vfs
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# Christopher R. Gabriel <cgabriel@pluto.linux.it>	
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-02-21 16:53-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: gnome-vfs 0.2\n"
+"POT-Creation-Date: 2000-07-21 00:49+0200\n"
+"PO-Revision-Date: 2000-07-21 01:03+02:00\n"
+"Last-Translator: Christopher R. Gabriel <cgabriel@pluto.linux.it>\n"
+"Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr ""
+msgstr "%s:%d contiene caratteri NULL."
 
 #: libgnomevfs/gnome-vfs-configuration.c:204
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr ""
+msgstr "%s:%d non contiene il nome del metodo."
 
 #: libgnomevfs/gnome-vfs-configuration.c:233
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr ""
+msgstr "%s:%d non contiene il nome del modulo."
 
-#: libgnomevfs/gnome-vfs-configuration.c:285
+#: libgnomevfs/gnome-vfs-configuration.c:286
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr ""
+msgstr "Il file di configurazione `%s' non è stato trovato: %s"
 
-#: libgnomevfs/gnome-vfs-init.c:55
+#: libgnomevfs/gnome-vfs-file-info.c:479
+#, c-format
+msgid "Unknown sort rule %d"
+msgstr "Regola di ordinamento %d sconosciuta"
+
+#: libgnomevfs/gnome-vfs-init.c:71
 msgid "GNOME VFS already initialized."
-msgstr ""
+msgstr "GNOME VFS è già stato inizializzato."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:653
 #, c-format
 msgid "Could not parse: %s"
-msgstr ""
+msgstr "Impossibile analizzare: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:654
+#: libgnomevfs/gnome-vfs-parse-ls.c:655
 msgid "More parsing errors will be ignored."
-msgstr ""
+msgstr "Ulteriori errori di analisi verranno ignorati."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "No error"
-msgstr ""
+msgstr "Nessun errore"
 
-#. GNOME_VFS_ERROR_NOTFOUND
+#. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
-msgstr ""
+msgstr "File non trovato"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "Generic error"
-msgstr ""
+msgstr "Errore generico"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Internal error"
-msgstr ""
+msgstr "Errore interno"
 
-#. GNOME_VFS_ERROR_BADPARAMS
+#. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Invalid parameters"
-msgstr ""
+msgstr "Parametri non validi"
 
-#. GNOME_VFS_ERROR_NOTSUPPORTED
+#. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Unsupported operation"
-msgstr ""
+msgstr "Operazione non supportata"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "I/O error"
-msgstr ""
+msgstr "Errore di Input/Output"
 
-#. GNOME_VFS_ERROR_CORRUPTEDDATA
+#. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
-msgstr ""
+msgstr "Dati corrotti"
 
-#. GNOME_VFS_ERROR_WRONGFORMAT
+#. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
-msgstr ""
+msgstr "Formato non valido"
 
-#. GNOME_VFS_ERROR_BADFILE
+#. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
-msgstr ""
+msgstr "Gestore file non corretto"
 
-#. GNOME_VFS_ERROR_TOOBIG
+#. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
-msgstr ""
+msgstr "File troppo grande"
 
-#. GNOME_VFS_ERROR_NOSPACE
+#. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "No space left on device"
-msgstr ""
+msgstr "Spazio insufficiente sulla periferica"
 
-#. GNOME_VFS_ERROR_READONLY
+#. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
-msgstr ""
+msgstr "File system in sola lettura"
 
-#. GNOME_VFS_ERROR_INVALIDURI
+#. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
-msgstr ""
+msgstr "URI invalido"
 
-#. GNOME_VFS_ERROR_NOTOPEN
+#. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
-msgstr ""
+msgstr "File non aperto"
 
-#. GNOME_VFS_ERROR_INVALIDOPENMODE
+#. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
-msgstr ""
+msgstr "Modalità di apertura non valida"
 
-#. GNOME_VFS_ERROR_ACCESSDENIED
+#. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Access denied"
-msgstr ""
+msgstr "Accesso negato"
 
-#. GNOME_VFS_ERROR_TOOMANYOPENFILES
+#. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
-msgstr ""
+msgstr "Troppi file aperti"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "End of file"
-msgstr ""
+msgstr "Fine del file"
 
-#. GNOME_VFS_ERROR_NOTADIRECTORY
+#. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Not a directory"
-msgstr ""
+msgstr "Non è una directory"
 
-#. GNOME_VFS_ERROR_INPROGRESS
+#. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
-msgstr ""
+msgstr "Operazione in corso"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Operation interrupted"
-msgstr ""
+msgstr "Operazione interrotta"
 
-#. GNOME_VFS_ERROR_FILEEXISTS
+#. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "File exists"
-msgstr ""
+msgstr "Il file esiste"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Looping links encountered"
-msgstr ""
+msgstr "Trovati link in loop"
 
-#. GNOME_VFS_ERROR_NOTPERMITTED
+#. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation not permitted"
-msgstr ""
+msgstr "Operazione non permessa"
 
-#. GNOME_VFS_ERROR_ISDIRECTORY
+#. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Is a directory"
-msgstr ""
+msgstr "È una directory"
 
-#. GNOME_VFS_ERROR_NOMEM
+#. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
-msgstr ""
+msgstr "Memoria insufficiente"
 
-#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host not found"
-msgstr ""
+msgstr "Host non trovato"
 
-#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
-msgstr ""
+msgstr "Nome dell'host non valido"
 
-#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
-msgstr ""
+msgstr "L'host non ha un indirizzo"
 
-#. GNOME_VFS_ERROR_LOGINFAILED
+#. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Login failed"
-msgstr ""
+msgstr "Login fallito"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Operation cancelled"
-msgstr ""
+msgstr "Operazione annullata"
 
-#. GNOME_VFS_ERROR_DIRECTORYBUSY
+#. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory busy"
-msgstr ""
+msgstr "Directory occupata"
 
-#. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
+#. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Directory not empty"
-msgstr ""
+msgstr "Directory non vuota"
 
-#. GNOME_VFS_ERROR_TOOMANYLINKS
+#. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
-msgstr ""
+msgstr "Troppi link"
 
-#. GNOME_VFS_ERROR_READONLYFS
+#. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
-msgstr ""
+msgstr "File system in sola lettura"
 
-#. GNOME_VFS_ERROR_NOTSAMEFS
+#. GNOME_VFS_ERROR_NOT_SAME_FFILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
-msgstr ""
+msgstr "Non si trova sulla stesso file system"
 
-#. GNOME_VFS_ERROR_NAMETOOLONG
+#. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Name too long"
-msgstr ""
+msgstr "Nome troppo lungo"
 
 #: libgnomevfs/gnome-vfs-result.c:133
 msgid "Unknown error"
-msgstr ""
+msgstr "Errore sconosciuto"
 
-#: libgnomevfs/gnome-vfs-utils.c:40
+#: libgnomevfs/gnome-vfs-utils.c:41
 msgid "1 byte"
-msgstr ""
+msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:42
+#: libgnomevfs/gnome-vfs-utils.c:43
 #, c-format
 msgid "%u bytes"
-msgstr ""
+msgstr "%u bytes"
 
-#: libgnomevfs/gnome-vfs-utils.c:49
+#: libgnomevfs/gnome-vfs-utils.c:50
 #, c-format
 msgid "%.1fK"
-msgstr ""
+msgstr "%.1fK"
 
-#: libgnomevfs/gnome-vfs-utils.c:53
+#: libgnomevfs/gnome-vfs-utils.c:54
 #, c-format
 msgid "%.1fM"
-msgstr ""
+msgstr "%.1fM"
 
-#: libgnomevfs/gnome-vfs-utils.c:57
+#: libgnomevfs/gnome-vfs-utils.c:58
 #, c-format
 msgid "%.1fG"
-msgstr ""
+msgstr "%.1fG"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
+#: libgnomevfs-corba/gnome-vfs-slave.c:338
 msgid "Dying."
-msgstr ""
+msgstr "Morto."
 
-#. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:503
 #, c-format
 msgid "Error reading: %s"
-msgstr ""
+msgstr "Errore leggendo: %s"
 
-#. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:525
 #, c-format
 msgid "Error writing: %s"
-msgstr ""
+msgstr "Errore scrivendo: %s"
 
-#. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:574
 #, c-format
 msgid "Cannot write: %s"
-msgstr ""
+msgstr "Impossibile scrivere: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#: libgnomevfs-corba/gnome-vfs-slave.c:602
 #, c-format
 msgid "Cannot create temporary file name `%s'"
-msgstr ""
+msgstr "Impossibile creare il file temporanep `%s'"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:193
-#: libgnomevfs-corba/gnome-vfs-slave.c:614
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
+#: libgnomevfs-corba/gnome-vfs-slave.c:616
 #, c-format
 msgid "Cannot create socket: %s"
-msgstr ""
+msgstr "Impossibile creare il socket: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:632
+#: libgnomevfs-corba/gnome-vfs-slave.c:634
 #, c-format
 msgid "Cannot bind `%s': %s"
-msgstr ""
+msgstr "Impossibile collegare `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:639
+#: libgnomevfs-corba/gnome-vfs-slave.c:641
 #, c-format
 msgid "Cannot listen on `%s': %s"
-msgstr ""
+msgstr "Impossibile ascoltare su `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:661
+#: libgnomevfs-corba/gnome-vfs-slave.c:663
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
-msgstr ""
+msgstr "Impossibile accettare connessioni su `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1379
+#: libgnomevfs-corba/gnome-vfs-slave.c:1397
 msgid "Cannot initialize CORBA."
-msgstr ""
+msgstr "Impossibile inizializzare CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1386
+#: libgnomevfs-corba/gnome-vfs-slave.c:1404
 msgid "Cannot resolve initial reference to RootPOA."
-msgstr ""
+msgstr "Impossibile risolvere il riferimento iniziale per RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1393
+#: libgnomevfs-corba/gnome-vfs-slave.c:1411
 msgid "Cannot activate POA manager."
-msgstr ""
+msgstr "Impossibile attivare il gestore di POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1418
+#: libgnomevfs-corba/gnome-vfs-slave.c:1436
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr ""
+msgstr "Uso: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1429
+#: libgnomevfs-corba/gnome-vfs-slave.c:1447
 #, c-format
 msgid "Cannot open file descriptor %d."
-msgstr ""
+msgstr "Impossibile aprire il descrittore di file %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1452
+#: libgnomevfs-corba/gnome-vfs-slave.c:1470
 #, c-format
 msgid "Notify interface for `%s' not found."
-msgstr ""
+msgstr "L'interfaccia di notifica per `%s' non è stata trovata."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1462
+#: libgnomevfs-corba/gnome-vfs-slave.c:1480
 msgid "Cannot setup Request object."
-msgstr ""
+msgstr "Impossibile impostare l'oggetto Request."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1469
+#: libgnomevfs-corba/gnome-vfs-slave.c:1487
 msgid "Cannot extract IOR."
-msgstr ""
+msgstr "Impossibile estrarre IOR."
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #, c-format
 msgid "Got weird string from the slave process: `%s'"
-msgstr ""
+msgstr "Tornata stringa non riconosciuta dal processo figlio: `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
-msgstr ""
+msgstr "Impossibile aprire l'oggetto per `%s'"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:126
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr ""
+msgstr "Impossibile terminare GNOME::VFS::Slave::Notify -- eccezione %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
 #, c-format
 msgid "Cannot connect socket `%s': %s"
-msgstr ""
+msgstr "Impossibile collegare socket `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:801
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr ""
+msgstr "Impossibile inizializzare GNOME::VFS::Slave::Notify"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
+msgstr "Impossibile resettare GNOME::VFS::Slave %s -- eccezione %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
+msgstr "Impossibile resettare GNOME::VFS::Slave (IOR sconosciuto) -- eccezione %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
+msgstr "Impossibile terminare GNOME::VFS::Slave %s -- eccezione %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
+msgstr "Impossibile terminare GNOME::VFS::Slave (IOR sconosciuto) -- eccezione %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:129
+#: libgnomevfs-pthread/gnome-vfs-job.c:161
 msgid "Error writing to the wakeup GnomeVFSJob channel."
-msgstr ""
+msgstr "Errore in scrittura per il canale wakeup GnomeVFSJob."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1247
+#: libgnomevfs-pthread/gnome-vfs-job.c:568
+#: libgnomevfs-pthread/gnome-vfs-job.c:1523
 #, c-format
 msgid "Unknown job ID %d"
-msgstr ""
+msgstr "ID %d del job sconosciuto."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:784
-#: libgnomevfs-pthread/gnome-vfs-job.c:879
+#: libgnomevfs-pthread/gnome-vfs-job.c:972
+#: libgnomevfs-pthread/gnome-vfs-job.c:1093
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr ""
+msgstr "Impossibile creare una pipe per aprire il GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1265
+#: libgnomevfs-pthread/gnome-vfs-job.c:1556
 msgid "Operation stopped"
-msgstr ""
+msgstr "Operazione interrotta"
 
-#: modules/file-method.c:332
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:305
+msgid "Edit Applications List"
+msgstr "Modifica la lista delle applicazioni"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:325
+#, c-format
+msgid "Select applications to appear in menu for mime type \"%s\""
+msgstr "Selezionare le applicazioni che compariranno nel menu per il mime type \"%s\""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:348
+msgid "Add Application..."
+msgstr "Aggiungi applicazione..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:352
+msgid "Edit Application..."
+msgstr "Modifica applicazione..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:356
+msgid "Delete Application"
+msgstr "Elimina applicazione"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:381
+msgid "Edit Components List"
+msgstr "Modifica lista dei componenti"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:401
+#, c-format
+msgid "Select views to appear in menu for mime type \"%s\""
+msgstr "Selezionare visualizzazione che appariranno nel menu per il tipo mime \"%s\""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:574
+msgid "Add Mime Type"
+msgstr "Aggiungi Tipo MIME"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:575
+msgid ""
+"Add a new Mime Type\n"
+"For example:  image/tiff; text/x-scheme"
+msgstr ""
+"Aggiungi un nuovo tipo Mime\n"
+"Ad esempio:  image/tiff; text/x-scheme"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:580
+msgid "Mime Type:"
+msgstr "Tipo Mime:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:593
+msgid "Type in a description for this mime-type."
+msgstr "Digitare la descrizione per questo tipo Mime."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:599
+msgid "Description:"
+msgstr "Descrizione:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:627
+msgid "Add New Extension"
+msgstr "Aggiungi nuova estensione"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:628
+msgid ""
+"Type in the extensions for this mime-type.\n"
+"For example:  .html, .htm"
+msgstr ""
+"Digitare l'estensione per questo tipo Mime.\n"
+"Ad esempio:  .html, .htm"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:633
+msgid "Extension:"
+msgstr "Estensione:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:702
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:770
+msgid "New Application"
+msgstr "Nuova applicazione"
+
+#. Application Name label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
+msgid "Application Name:"
+msgstr "Nome applicazione:"
+
+#. Application Command label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:787
+msgid "Application Command:"
+msgstr "Comando dell'applicazione:"
+
+#. Open Behavior frame
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:795
+msgid "Open Behavior"
+msgstr "Apri comportamento"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:733
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:801
+msgid "Can open multiple files"
+msgstr "Può aprire molteplici file"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:736
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
+msgid "Can open from URI"
+msgstr "Impossibile aprire da URI"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:361
+msgid "Change Icon"
+msgstr "Cambia icona"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:374
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1078
+msgid "Mime Type"
+msgstr "Tipo Mime"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:396
+msgid "Add new Mime type..."
+msgstr "Aggiungi nuovo tipo Mime..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:403
+msgid "Delete this Mime type..."
+msgstr "Cancella questo tipo Mime..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:418
+msgid "Use Viewer"
+msgstr "Utilizza visualizzatore"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:424
+msgid "Open With Application"
+msgstr "Apri con l'applicazione"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:436
+msgid "Edit List"
+msgstr "Modifica lista"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:465
+msgid "Add"
+msgstr "Aggiungi"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:468
+msgid "Remove"
+msgstr "Rimuovi"
+
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:646
+#: mime-type-capplet/nautilus-mime-type-capplet.c:788
+#: mime-type-capplet/nautilus-mime-type-capplet.c:993
+msgid "None"
+msgstr "Nessuno"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1077
+msgid "Description"
+msgstr "Descrizione"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1079
+msgid "Extension"
+msgstr "Estensione"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1080
+msgid "Action"
+msgstr "Azione"
+
+#: modules/file-method.c:357
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr ""
+msgstr "GnomeVFSSeekPosition %d sconociuta."
 
-#: modules/ftp-method.c:353
-msgid "ftpfs: Invalid host name."
-msgstr ""
-
-#: modules/ftp-method.c:376
-msgid "ftpfs: Invalid host address."
-msgstr ""
-
-#: modules/ftp-method.c:396
-#, c-format
-msgid "ftpfs: making connection to %s"
-msgstr ""
-
-#: modules/ftp-method.c:402
-msgid "ftpfs: connection interrupted by user"
-msgstr ""
-
-#: modules/ftp-method.c:404
-#, c-format
-msgid "ftpfs: connection to server failed: %s"
-msgstr ""
-
-#: modules/ftp-method.c:480
-#, c-format
-msgid "Waiting to retry... %d (Control-C to cancel)"
-msgstr ""
-
-#: modules/ftp-method.c:751
-msgid " FTP: Password required for "
-msgstr ""
-
-#: modules/ftp-method.c:790
-msgid "ftpfs: sending login name"
-msgstr ""
-
-#: modules/ftp-method.c:796
-msgid "ftpfs: sending user password"
-msgstr ""
-
-#: modules/ftp-method.c:802
-msgid "ftpfs: logged in"
-msgstr ""
-
-#: modules/ftp-method.c:814
-#, c-format
-msgid "ftpfs: Login incorrect for user %s "
-msgstr ""
-
-#: modules/ftp-method.c:827
-msgid "ftpfs: aborting transfer."
-msgstr ""
-
-#: modules/ftp-method.c:829
-#, c-format
-msgid "ftpfs: abort error: %s"
-msgstr ""
-
-#: modules/ftp-method.c:834
-msgid "ftpfs: abort failed"
-msgstr ""
-
-#: modules/ftp-method.c:911
-msgid "ftpfs: could not setup passive mode"
-msgstr ""
-
-#: modules/ftp-method.c:1088
-#, c-format
-msgid "ftpfs: storing file %d (%d)"
-msgstr ""
-
-#: modules/ftp-method.c:1305 modules/ftp-method.c:1507
-msgid "ftpfs: CWD failed."
-msgstr ""
-
-#: modules/ftp-method.c:1315 modules/ftp-method.c:1322
-msgid "ftpfs: couldn't resolve symlink"
-msgstr ""
-
-#: modules/ftp-method.c:1374
-msgid "Resolving symlink..."
-msgstr ""
-
-#: modules/ftp-method.c:1498
-#, c-format
-msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-msgstr ""
-
-#: modules/ftp-method.c:1502
-#, c-format
-msgid "ftpfs: Reading FTP directory %s..."
-msgstr ""
-
-#: modules/ftp-method.c:1568
-msgid "ftpfs: reading FTP directory interrupt by user"
-msgstr ""
-
-#: modules/ftp-method.c:1592
-msgid "ftpfs: got listing"
-msgstr ""
-
-#: modules/ftp-method.c:1644
-msgid "ftpfs: failed; nowhere to fallback to"
-msgstr ""
-
-#: modules/ftp-method.c:2037
-msgid "Starting linear transfer..."
-msgstr ""
-
-#: modules/ftp-method.c:2107
-msgid "Preparing reget..."
-msgstr ""
-
-#: modules/http-method.c:471
+#: modules/http-method.c:520
 #, c-format
 msgid "Invalid header `%s'"
-msgstr ""
+msgstr "`%s' è una intestazione non valida."
 
-#: modules/http-method.c:488
+#: modules/http-method.c:537
 #, c-format
 msgid "%s to retrieve"
-msgstr ""
+msgstr "%s da prelevare"
 
-#: modules/http-method.c:601
+#: modules/http-method.c:734
 #, c-format
 msgid "Closing connection to %s"
-msgstr ""
+msgstr "Chiusura della connessione con %s"
 
-#: modules/http-method.c:686
+#: modules/http-method.c:878
 #, c-format
 msgid "%s of %s read"
-msgstr ""
+msgstr "%s di %s letti"
 
-#: modules/http-method.c:689
+#: modules/http-method.c:881
 #, c-format
 msgid "%s read"
-msgstr ""
+msgstr "%s letti"
+
+#. Multi-Status
+#: modules/http-method.c:1060
+msgid "HTTP server returned an invalid PROPFIND response"
+msgstr "Il server HTTP ha restituito una risposta PROPFIND non valida"
