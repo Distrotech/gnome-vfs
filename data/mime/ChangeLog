@@ -1,3 +1,7 @@
+2001-06-26  Darin Adler  <darin@bentspoon.com>
+
+	* gnome-vfs.keys.in: Remove ntl_web_browser entries.
+
 2001-06-14  Aaron Brick  <aaron@lithic.org>
 
 	* gnome-vfs.keys.in:
