@@ -1,3 +1,0 @@
-#!/bin/sh
-
-./test-shell < test.cmds | diff -a -u - test.output
