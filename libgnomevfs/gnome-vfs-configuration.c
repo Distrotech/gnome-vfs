@@ -41,22 +41,36 @@
 #include "gnome-vfs-private.h"
 
 
+
+typedef struct _Configuration Configuration;
 struct _Configuration {
 	GHashTable *method_to_module_path;
+	time_t last_checked;
+	GList *directories;
 };
-typedef struct _Configuration Configuration;
 
+typedef struct _ModulePathElement ModulePathElement;
 struct _ModulePathElement {
 	char *method_name;
 	char *path;
 	char *args;
 };
-typedef struct _ModulePathElement ModulePathElement;
 
+typedef struct _VfsDirSource VfsDirSource;
+struct _VfsDirSource {
+	char *dirname;
+	struct stat s;
+	unsigned int valid : 1;
+};
+
+/* Global variable */
 static Configuration *configuration = NULL;
+
 G_LOCK_DEFINE_STATIC (configuration);
+#define MAX_CFG_FILES 128
 
 
+
 static ModulePathElement *
 module_path_element_new (const char *method_name,
 			 const char *path,
@@ -81,7 +95,26 @@ module_path_element_free (ModulePathElement *module_path)
 	g_free (module_path);
 }
 
+static VfsDirSource *
+vfs_dir_source_new (const char *dirname)
+{
+	VfsDirSource *new;
+
+	new = g_new (VfsDirSource, 1);
+	new->dirname = g_strdup (dirname);
+
+	return new;
+}
+
+static void
+vfs_dir_source_free (VfsDirSource *vfs_source)
+{
+	g_free (vfs_source->dirname);
+	g_free (vfs_source);
+}
+
 
+
 static void
 hash_free_module_path (gpointer key,
 		       gpointer value,
@@ -102,10 +135,13 @@ configuration_destroy (Configuration *configuration)
 	g_hash_table_foreach (configuration->method_to_module_path,
 			      hash_free_module_path, NULL);
 	g_hash_table_destroy (configuration->method_to_module_path);
+	g_list_foreach (configuration->directories, (GFunc) vfs_dir_source_free, NULL);
+	g_list_free (configuration->directories);
 	g_free (configuration);
 }
 
 
+
 /* This reads a line and handles backslashes at the end of the line to join
    lines.  */
 static gint
@@ -171,6 +207,7 @@ parse_line (Configuration *configuration,
 	    gchar *line_buffer,
 	    guint line_len,
 	    const gchar *file_name,
+
 	    guint line_number)
 {
 	guint string_len;
@@ -311,38 +348,30 @@ parse_file (Configuration *configuration,
 	return TRUE;
 }
 
-/* Load configuration.  */
-static char **config_dirs = NULL;
-static int num_config_dirs = 0;
-
-#define MAX_CFG_FILES 128
-
-static Configuration *
+static void
 configuration_load (void)
 {
-	Configuration *new;
 	gchar *file_names[MAX_CFG_FILES];
-	int i = 0, dirnum;
+	GList *list;
+	int i = 0;
 	DIR *dirh;
-	char *dirname;
 
-	new = g_new (Configuration, 1);
-	new->method_to_module_path = g_hash_table_new (g_str_hash, g_str_equal);
+	configuration->method_to_module_path = g_hash_table_new (g_str_hash, g_str_equal);
 
 	/* Go through the list of configuration directories and build up a list of config files */
-	for(dirnum = -1;
-	    i < MAX_CFG_FILES
-		    && dirnum < num_config_dirs
-		    && (dirname = (dirnum<0)?GNOME_VFS_MODULE_CFGDIR:config_dirs[dirnum]);
-	    dirnum++) {
+	for (list = configuration->directories; list && i < MAX_CFG_FILES; list = list->next) {
+		VfsDirSource *dir_source = (VfsDirSource *)list->data;
 		struct dirent *dent;
 		int dlen;
 
-		dirh = opendir(dirname);
+		if (stat (dir_source->dirname, &dir_source->s) == -1)
+			continue;
+
+		dirh = opendir (dir_source->dirname);
 		if(!dirh)
 			continue;
 
-		dlen = strlen(dirname) + 2;
+		dlen = strlen(dir_source->dirname) + 2;
 
 		while((dent = readdir(dirh))) {
 			char *ctmp;
@@ -350,7 +379,7 @@ configuration_load (void)
 			if(!ctmp || strcmp(ctmp, ".conf"))
 				continue;
 			file_names[i] = alloca(dlen + strlen(dent->d_name));
-			sprintf(file_names[i], "%s/%s", dirname, dent->d_name);
+			sprintf(file_names[i], "%s/%s", dir_source->dirname, dent->d_name);
 			i++;
 		}
 		closedir(dirh);
@@ -359,42 +388,58 @@ configuration_load (void)
 
 	/* Now read these cfg files */
 	for(i = 0; file_names[i]; i++) {
-		if (! parse_file (new, file_names[i])) {
-			configuration_destroy (new);
-			return NULL;
-		}
+		/* FIXME: should we try to catch errors? */
+		parse_file (configuration, file_names[i]);
 	}
+}
 
-	g_strfreev(config_dirs); config_dirs = NULL;
-	num_config_dirs = 0;
 
-	return new;
+static void
+add_directory_internal (const char *dir)
+{
+	VfsDirSource *dir_source = vfs_dir_source_new (dir);
+
+	configuration->directories = g_list_prepend (configuration->directories, dir_source);
 }
 
 void
 gnome_vfs_configuration_add_directory (const char *dir)
 {
-	if(configuration)
+	G_LOCK (configuration);
+	if (configuration == NULL) {
+		g_warning ("gnome_vfs_configuration_init must be called prior to adding a directory.");
+		G_UNLOCK (configuration);
 		return;
+	}
 
-	if(!strcmp(dir, GNOME_VFS_MODULE_CFGDIR))
-		return;
+	add_directory_internal (dir);
 
-	config_dirs = g_realloc(config_dirs, sizeof(char *) * (++num_config_dirs + 1));
-	config_dirs[num_config_dirs-1] = g_strdup(dir);
-	config_dirs[num_config_dirs] = NULL;
+	G_UNLOCK (configuration);
 }
 
 gboolean
 gnome_vfs_configuration_init (void)
 {
+	gchar *home_config;
+
 	G_LOCK (configuration);
 	if (configuration != NULL) {
 		G_UNLOCK (configuration);
 		return FALSE;
 	}
 
-	configuration = configuration_load ();
+	configuration = g_new0 (Configuration, 1);
+
+	home_config = g_strdup_printf ("%s%c%s",
+				       g_get_home_dir (),
+				       G_DIR_SEPARATOR,
+				       ".gnome/vfs/modules");
+	add_directory_internal (GNOME_VFS_MODULE_CFGDIR);
+	add_directory_internal (home_config);
+	g_free (home_config);
+
+	configuration_load ();
+
 	G_UNLOCK (configuration);
 
 	if (configuration == NULL)
@@ -417,6 +462,41 @@ gnome_vfs_configuration_uninit (void)
 	G_UNLOCK (configuration);
 }
 
+static void
+maybe_reload (void)
+{
+	time_t now = time (NULL);
+	GList *list;
+	gboolean need_reload = FALSE;
+	struct stat s;
+
+	/* only check every 5 seconds minimum */
+	if (configuration->last_checked + 5 >= now)
+		return;
+
+	for (list = configuration->directories; list; list = list->next) {
+		VfsDirSource *dir_source = (VfsDirSource *) list->data;
+		if (stat (dir_source->dirname, &s) == -1)
+			continue;
+		if (s.st_mtime != dir_source->s.st_mtime) {
+			need_reload = TRUE;
+			break;
+		}
+	}
+
+	configuration->last_checked = now;
+
+	if (!need_reload)
+		return;
+
+	configuration->last_checked = time (NULL);
+
+	g_hash_table_foreach (configuration->method_to_module_path,
+			      hash_free_module_path, NULL);
+	g_hash_table_destroy (configuration->method_to_module_path);
+	configuration_load ();
+}
+
 const gchar *
 gnome_vfs_configuration_get_module_path (const gchar *method_name, const char ** args)
 {
@@ -425,12 +505,15 @@ gnome_vfs_configuration_get_module_path (const gchar *method_name, const char **
 	g_return_val_if_fail (method_name != NULL, NULL);
 
 	G_LOCK (configuration);
+
+	maybe_reload ();
+
 	if (configuration != NULL) {
 		element = g_hash_table_lookup
 			(configuration->method_to_module_path, method_name);
 	} else {
 		/* This should never happen.  */
-		g_warning ("Internal error: the configuration system was not initialized. Did you call gnome_vfs_init?");
+		g_warning ("Internal error: the configuration system was not initialized. Did you call gnome_vfs_configuration_init?");
 		element = NULL;
 	}
 	G_UNLOCK (configuration);

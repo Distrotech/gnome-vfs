@@ -1,3 +1,13 @@
+Fri Apr 27 13:32:32 2001  Jonathan Blandford  <jrb@webwynk.net>
+
+	* libgnomevfs/gnome-vfs-configuration.c
+	(gnome_vfs_configuration_init): load from GNOME_VFS_MODULE_CFGDIR,
+	and ~/.gnome/vfs/modules.
+	(configuration_load): Change behaviour to not create the
+	configuration anymore, but just load it.
+	(maybe_reload): potentially reload the config files if they
+	change.
+
 2001-04-25  Darin Adler  <darin@eazel.com>
 
 	* check-mime.pl: Check that the applications file entries are in
