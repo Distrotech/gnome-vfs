@@ -1,3 +1,14 @@
+2001-02-20  Pavel  <pavel@eazel.com>
+
+	reviewed by: Rebecca Schulman <rebecka@eazel.com>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.h:
+	* libgnomevfs/gnome-vfs-context.h:
+	* libgnomevfs/gnome-vfs-private-types.h:
+	* libgnomevfs/gnome-vfs-types.h:
+	
+	Fixmore Medusa build breakage, part 1.
+
 2001-02-20  Darin Adler  <darin@eazel.com>
 
 	reviewed by: Mike Fleming <mfleming@eazel.com>

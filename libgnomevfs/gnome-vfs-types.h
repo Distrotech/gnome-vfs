@@ -617,4 +617,9 @@ typedef void    (* GnomeVFSAsyncFindDirectoryCallback)
 typedef void    (* GnomeVFSStatusCallback)      (const gchar *message,
 						 gpointer     callback_data);
 
+typedef struct GnomeVFSContext GnomeVFSContext;
+typedef struct GnomeVFSMessageCallbacks GnomeVFSMessageCallbacks;
+typedef struct GnomeVFSCancellation GnomeVFSCancellation;
+typedef gpointer GnomeVFSMethodHandle;
+
 #endif /* _GNOME_VFS_TYPES_H */
