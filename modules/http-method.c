@@ -435,20 +435,30 @@ set_content_length (HttpFileHandle *handle,
 	return TRUE;
 }
 
+static char *
+strip_semicolon (const char *value)
+{
+	char *p;
+
+	p = strchr (value, ';');
+
+	if (p != NULL) {
+		return g_strndup (value, p - value);
+	}
+	else {
+		return g_strdup (value);
+	}
+}
+
 static gboolean
 set_content_type (HttpFileHandle *handle,
 		  const char *value)
 {
-	char *p;
-
 	g_free (handle->file_info->mime_type);
 
-	if((p=strchr(value, ';')))
-		handle->file_info->mime_type = g_strndup (value, p-value);
-	else
-		handle->file_info->mime_type = g_strdup (value);
-
+	handle->file_info->mime_type = strip_semicolon (value);
 	handle->file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+	
 	return TRUE;
 }
 
@@ -1646,11 +1656,12 @@ process_propfind_propstat (xmlNodePtr node,
 			char *node_content_xml = xmlNodeGetContent(l);
 			if (node_content_xml) {
 				if (strcmp ((char *)l->name, "getcontenttype") == 0) {
+
 					file_info->valid_fields |= 
 						GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 					
 					if (!file_info->mime_type) {
-						file_info->mime_type = g_strdup(node_content_xml);
+						file_info->mime_type = strip_semicolon (node_content_xml);
 					}
 				} else if (strcmp ((char *)l->name, "getcontentlength") == 0){
 					file_info->valid_fields |= 
