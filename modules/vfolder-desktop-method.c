@@ -1739,6 +1739,7 @@ folder_read (VFolderInfo *info, xmlNode *fnode)
 		} else if (g_ascii_strcasecmp (node->name, "Include") == 0) {
 			xmlChar *file = xmlNodeGetContent (node);
 			if (file != NULL) {
+				GSList *li;
 				char *str = g_strdup (file);
 				folder->includes = g_slist_prepend
 					(folder->includes, str);
@@ -1749,6 +1750,15 @@ folder_read (VFolderInfo *info, xmlNode *fnode)
 						 g_str_equal,
 						 NULL,
 						 NULL);
+				}
+				li = g_hash_table_lookup (folder->includes_ht,
+							  file);
+				if (li != NULL) {
+					g_free (li->data);
+					/* Note: this will NOT change folder->includes
+					 * pointer! */
+					folder->includes = g_slist_delete_link
+						(folder->includes, li);
 				}
 				g_hash_table_replace (folder->includes_ht, 
 						      file, folder->includes);
@@ -3441,8 +3451,11 @@ remove_file (Folder *folder, const char *basename)
 	if (folder->includes_ht != NULL) {
 		li = g_hash_table_lookup (folder->includes_ht, basename);
 		if (li != NULL) {
+			char *name = li->data;
 			folder->includes = g_slist_delete_link
 				(folder->includes, li);
+			g_hash_table_remove (folder->includes_ht, basename);
+			g_free (name);
 		}
 	}
 
