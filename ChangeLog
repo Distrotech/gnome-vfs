@@ -1,3 +1,16 @@
+2000-05-09  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(job_oneway_notify):
+	Handle the case where job_oneway_notify gets called from 
+	gnome_vfs_job_destroy properly - the current_op is NULL 
+	but we may still have a pending notify_op.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(gnome_vfs_job_cancel):
+	Fix a crash during cancellation - the call was dereferencing
+	a null job when cancelling.
+
 2000-05-08  Darin Adler  <darin@eazel.com>
 
 	A fix for canceling. Cancels can still be done until the caller

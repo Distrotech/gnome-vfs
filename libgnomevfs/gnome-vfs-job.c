@@ -116,6 +116,8 @@ job_ack_notify (GnomeVFSJob *job)
 	}
 
 	JOB_DEBUG (("unlocking wakeup channel."));
+
+	g_assert (job->notify_op == NULL);
 	g_mutex_unlock (job->wakeup_channel_lock);
 }
 
@@ -148,8 +150,9 @@ job_oneway_notify (GnomeVFSJob *job)
 	g_mutex_lock (job->wakeup_channel_lock);
 
 	/* Record which op we want notified. */
-	g_assert (job->notify_op == NULL);
-	job->notify_op = job->current_op;
+	g_assert (job->notify_op == NULL || job->current_op == NULL);
+	if (job->notify_op == NULL)
+		job->notify_op = job->current_op;
 
 	job->want_notify_ack = FALSE;
 
@@ -501,7 +504,7 @@ dispatch_job_callback (GIOChannel *source,
 			break;
 		default:
 			g_warning (_("Unknown job ID %d"), op->type);
-	}
+		}
 	}
 	gnome_vfs_job_release_notify_op (job);
 	job_ack_notify (job);
@@ -513,7 +516,7 @@ GnomeVFSJob *
 gnome_vfs_job_new (void)
 {
 	GnomeVFSJobSlave *slave;
-	GnomeVFSJob *new;
+	GnomeVFSJob *new_job;
 	gint pipefd[2];
 	gchar c;
 	guint bytes_read;
@@ -524,41 +527,42 @@ gnome_vfs_job_new (void)
 		return NULL;
 	}
 
-	new = g_new0 (GnomeVFSJob, 1);
+	new_job = g_new0 (GnomeVFSJob, 1);
 
-	new->access_lock = g_mutex_new ();
-	new->execution_condition = g_cond_new ();
-	new->notify_ack_condition = g_cond_new ();
-	new->notify_ack_lock = g_mutex_new ();
+	new_job->access_lock = g_mutex_new ();
+	new_job->execution_condition = g_cond_new ();
+	new_job->notify_ack_condition = g_cond_new ();
+	new_job->notify_ack_lock = g_mutex_new ();
 
-	new->is_empty = TRUE;
+	new_job->is_empty = TRUE;
 
-	new->wakeup_channel_in = g_io_channel_unix_new (pipefd[0]);
-	new->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
-	new->wakeup_channel_lock = g_mutex_new ();
+	new_job->wakeup_channel_in = g_io_channel_unix_new (pipefd[0]);
+	new_job->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
+	new_job->wakeup_channel_lock = g_mutex_new ();
 
-	g_io_add_watch_full (new->wakeup_channel_in, G_PRIORITY_LOW, G_IO_IN,
-			     dispatch_job_callback, new, NULL);
+	g_io_add_watch_full (new_job->wakeup_channel_in, G_PRIORITY_LOW, G_IO_IN,
+			     dispatch_job_callback, new_job, NULL);
 
-	slave = gnome_vfs_job_slave_new (new);
+	slave = gnome_vfs_job_slave_new (new_job);
 	if (slave == NULL) {
 		g_warning ("Cannot create job slave.");
-		g_free (new);
+		g_free (new_job);
 		return NULL;
 	}
 
-	new->slave = slave;
+	new_job->slave = slave;
 
 	/* Wait for the thread to come up.  */
-	g_io_channel_read (new->wakeup_channel_in, &c, 1, &bytes_read);
+	g_io_channel_read (new_job->wakeup_channel_in, &c, 1, &bytes_read);
 
-	return new;
+	return new_job;
 }
 
 void
 gnome_vfs_job_destroy (GnomeVFSJob *job)
 {
 	gnome_vfs_job_release_current_op (job);
+
 	job_oneway_notify (job);
 
 	/* We'll finish destroying on the main thread. */
@@ -1384,7 +1388,7 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 	if (cancellation != NULL)
 		gnome_vfs_cancellation_cancel (cancellation);
 
-	gnome_vfs_context_emit_message (job->current_op->context, _("Operation stopped"));
+	gnome_vfs_context_emit_message (op->context, _("Operation stopped"));
 	
 	return GNOME_VFS_OK;
 }
