@@ -140,8 +140,6 @@ gnome_vfs_slave_launch (GNOME_VFS_Slave_Notify notify_object,
 		return CORBA_OBJECT_NIL;
 	}
 
-	printf ("Client: %s\n", notify_ior);
-
 	if (pipe (pipe_fd) < 0) {
 		g_warning ("Cannot create pipe for slave communication: %s.",
 			   g_strerror (errno));
@@ -185,8 +183,6 @@ gnome_vfs_slave_launch (GNOME_VFS_Slave_Notify notify_object,
 	}
 
 	g_free (ior);
-
-	fprintf (stderr, "VFS Slave activated.\n");
 
 	*request_objref_return = request_objref;
 	return process;

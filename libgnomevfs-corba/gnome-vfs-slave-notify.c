@@ -90,8 +90,6 @@ impl_Notify_reset (PortableServer_Servant servant,
 	GnomeVFSSlaveProcess *slave;
 	GnomeVFSSlaveProcessResetCallback callback;
 
-	g_message ("Slave has been reset.");
-
 	slave = slave_from_servant (servant);
 	callback = slave->callback;
 

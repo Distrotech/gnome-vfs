@@ -64,8 +64,6 @@ callback_new (GnomeVFSStatusCallback callback_func,
 	++next_id;
 	G_UNLOCK(next_id);
 
-	printf("new message callback %u\n", cb->id);
-	
         return cb;
 }
 
@@ -76,15 +74,12 @@ callback_destroy (Callback *cb)
                 (* cb->notify_func) (cb->user_data);
         }
 
-	printf("destroyed message callback %u\n", cb->id);
-	
         g_free(cb);
 }
 
 static void
 callback_invoke (Callback *cb, const gchar* message)
 {
-	printf("Invoking message callback %u\n", cb->id);
         if (cb->callback_func) {
                 (* cb->callback_func) (message, cb->user_data);
         }
@@ -150,7 +145,6 @@ gnome_vfs_message_callbacks_add (GnomeVFSMessageCallbacks *cbs,
                                  GnomeVFSStatusCallback    callback,
                                  gpointer                  user_data)
 {
-	printf("adding status callback\n");
         return gnome_vfs_message_callbacks_add_full (cbs, callback, user_data, NULL);
 }
 
@@ -318,8 +312,6 @@ gnome_vfs_message_callbacks_emit (GnomeVFSMessageCallbacks *cbs,
         }
 
 	MUTEX_UNLOCK(cbs->list_mutex);
-	
-	printf("debug message: %s\n", message);
 }
 
 

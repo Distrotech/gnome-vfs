@@ -747,8 +747,6 @@ corba_gnome_vfs_async_add_status_callback (GnomeVFSAsyncHandle *handle,
 
 	slave = (GnomeVFSSlaveProcess *) handle;
 
-	printf("Adding, %s\n", G_GNUC_FUNCTION);
-	
 	return gnome_vfs_message_callbacks_add(gnome_vfs_context_get_message_callbacks(slave->context), callback, user_data);
 }
 

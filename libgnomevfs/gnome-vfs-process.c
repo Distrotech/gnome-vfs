@@ -129,8 +129,6 @@ wake_up (GIOChannel *source,
 		return TRUE;
 	}
 
-	g_message ("Process %d died, status %d.", process->pid, status);
-
 	if (process->callback != NULL)
 		(* process->callback) (process, status,
 				       process->callback_data);
@@ -225,8 +223,6 @@ gnome_vfs_process_new (const gchar *file_name,
 
 	if (child_pid == -1)
 		return NULL;
-
-	g_message ("Launched PID %d.", child_pid);
 
 	new = g_new (GnomeVFSProcess, 1);
 	new->pid = child_pid;

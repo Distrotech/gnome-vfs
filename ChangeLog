@@ -1,5 +1,11 @@
 2000-02-09  Elliot Lee  <sopwith@redhat.com>
 
+	* libgnomevfs/gnome-vfs-messages.c, libgnomevfs/gnome-vfs-method.c,
+	libgnomevfs/gnome-vfs-process.c, libgnomevfs-corba/gnome-vfs-async-ops.c,
+	libgnomevfs-corba/gnome-vfs-slave-launch.c, libgnomevfs-corba/gnome-vfs-slave-notify.c,
+	libgnomevfs-corba/gnome-vfs-slave-process.c, modules/ftp-method.c: Remove excess
+	debugging output.
+
 	* libgnomevfs/gnome-vfs-handle.c, libgnomevfs/gnome-vfs-handle.h,
 	libgnomevfs/gnome-vfs-ops.c, libgnomevfs/gnome-vfs-ops.h,
 	libgnomevfs/gnome-vfs-private-ops.c,

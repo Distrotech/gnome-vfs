@@ -2386,8 +2386,7 @@ ftpfs_get_file_info (GnomeVFSMethod *method,
 		filename = g_strdup(".");
 		real_filename = "/";
 	}
-	g_message("dirname is |%s|, filename is |%s|", dirname, filename);
-	
+
 	dir = retrieve_dir (ftpfs_uri->conn, dirname, TRUE);
 	g_free (dirname);
 
@@ -2403,8 +2402,6 @@ ftpfs_get_file_info (GnomeVFSMethod *method,
 
 		if (strcmp (fe->name, filename))
 			continue;
-
-		g_message("found file %s", fe->name);
 
 		if (S_ISLNK (fe->s.st_mode)) {
 			if (fe->l_stat == NULL){

@@ -162,9 +162,6 @@ load_module (const gchar *module_name, const char *method_name, const char *args
 	GnomeVFSMethodInitFunc init_function = NULL;
 	GnomeVFSMethodShutdownFunc shutdown_function = NULL;
 
-	/* FIXME */
-	g_message ("Loading module `%s'", module_name);
-
 	module = g_module_open (module_name, G_MODULE_BIND_LAZY);
 	if (module == NULL) {
 		g_warning ("Cannot load module `%s'", module_name);
