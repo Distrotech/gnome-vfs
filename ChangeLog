@@ -1,3 +1,9 @@
+2000-09-05  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* libgnomevfs/Makefile.am: made gnome-vfs-mimedb statically
+	link on Pavel's suggestion.  This solves the make install
+	problem in a chrooted environment.
+
 2000-09-05  Mathieu Lacage  <mathieu@eazel.com>
 
 	* mime-type-capplet/nautilus-mime-type-capplet.c:

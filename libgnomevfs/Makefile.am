@@ -136,10 +136,7 @@ libgnomevfsplatofrmincludedir = $(libdir)/vfs/include
 libgnomevfsplatofrminclude_HEADERS =			\
 	gnome-vfs-file-size.h
 
-## [The following is copied from gnome-libs.]
-
 bin_PROGRAMS = gnome-vfs-gen-mimedb
 gnome_vfs_gen_mimedb_SOURCES = gnome-vfs-gen-mimedb.c
-gnome_vfs_gen_mimedb_LDADD = libgnomevfs.la
-
-
+gnome_vfs_gen_mimedb_LDFLAGS = -static
+gnome_vfs_gen_mimedb_LDADD = libgnomevfs.la 
