@@ -28,6 +28,9 @@
 application/mac-binhex40
 	description=Macintosh BinHex archive
 
+application/msword
+	description=Microsoft Word document
+
 application/octet-stream
 	description=Unknown data
 
@@ -62,10 +65,13 @@ application/rtf
 	description=rich text
 
 application/vnd.ms-excel
-	description=Excel document
+	description=Microsoft Excel document
 
 application/x-applix-spreadsheet
 	description=Applix spreadsheet
+
+application/x-applix-word
+	description=Applix Word document
 
 application/x-arj
 	description=arj archive
@@ -218,6 +224,9 @@ application/x-ustar
 
 application/x-wais-source
 	description=WAIS source code
+
+application/x-wordperfect
+	description=WordPerfect document
 
 application/zip
 	description=zip archive
@@ -429,17 +438,8 @@ text/sgml
 text/tab-separated-values
 	description=tab-separated text
 
-text/vnd.ms-word
-	description=MS-Word document
-
-text/vnd.wordperfect
-	description=WordPerfect document
-
 text/xml
 	description=XML document
-
-text/x-applix-word
-	description=Applix Word document
 
 text/x-authors
 	description=authors list

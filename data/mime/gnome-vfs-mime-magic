@@ -1,7 +1,7 @@
 0	string		%PDF-			application/pdf
 0	string		\177ELF			application/x-executable-file
 0	string		PK\003\004		application/zip
-0	string		\004%!			application/x-postscript
+0	string		\004%!			application/postscript
 0	string		\000\000\001\272	video/mpeg
 0	string		\000\000\001\263	video/mpeg
 0	string		\377\330\377		image/jpeg
@@ -57,11 +57,11 @@
 0	string		RIFF			audio/x-riff
 8	string		WAVE			audio/x-wav
 8	string		WAV\ 			audio/x-wav
-0	string		SIT! 			application/x-stuff-it
+0	string		SIT! 			application/x-stuffit
 0	string		\312\376\272\276	application/x-java-byte-code
 0	string		Joy!			application/x-pef-executable
 0       string		\037\213		application/x-gzip
-0	string		%!			application/x-postscript
+0	string		%!			application/postscript
 0	string		\037\235		application/compress
 4       string		\x11\xAF		video/x-fli
 4       string		\x12\xAF		video/x-flc
@@ -83,14 +83,14 @@
 0	string		LWFN			font/type1
 65	string		LWFN			font/type1
 0	string		MZ	application/x-ms-dos-executable
-2080	string	Microsoft\ Word\ 6.0\ Document	text/vnd.ms-word
-2080	string	Documento\ Microsoft\ Word\ 6	text/vnd.ms-word
-2112	string		MSWordDoc		text/vnd.ms-word
-0	string	\x31\xbe\x00\x00		text/vnd.ms-word
-0       string  	PO^Q`           	text/vnd.ms-word
+2080	string	Microsoft\ Word\ 6.0\ Document	application/msword
+2080	string	Documento\ Microsoft\ Word\ 6	application/msword
+2112	string		MSWordDoc		application/msword
+0	string	\x31\xbe\x00\x00		application/msword
+0       string  	PO^Q`           	application/msword
 2080	string	Microsoft\ Excel\ 5.0\ Worksheet	application/vnd.ms-excel
 2114	string		Biff5			application/vnd.ms-excel
-1       string          WPC          		text/vnd.wordperfect
+1       string          WPC          		application/x-wordperfect
 0	string		StartFont		font/x-sunos-news
 0	string		\x13\x7A\x29		font/x-sunos-news
 8	string		\x13\x7A\x2B		font/x-sunos-news
