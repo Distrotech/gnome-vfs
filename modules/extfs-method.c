@@ -831,6 +831,7 @@ static GnomeVFSMethod method = {
 	do_move,
 	do_unlink,
 	do_check_same_fs,
+	NULL,
 	do_truncate
 };
 

@@ -189,7 +189,7 @@ tr_do_read_directory(GnomeVFSMethod *method,
 
   retval = tm->real_method->read_directory(tm->real_method, method_handle, file_info, context);
 
-  tr_apply_default_mime_type (method, file_info);
+  tr_apply_default_mime_type (tm, file_info);
 
   return retval;
 }
@@ -212,7 +212,7 @@ tr_do_get_file_info(GnomeVFSMethod *method,
 
   gnome_vfs_uri_unref(real_uri);
 
-  tr_apply_default_mime_type (method, file_info);
+  tr_apply_default_mime_type (tm, file_info);
 
   return retval;
 }
@@ -230,7 +230,7 @@ tr_do_get_file_info_from_handle(GnomeVFSMethod *method,
 
   retval = tm->real_method->get_file_info_from_handle(tm->real_method, method_handle, file_info, options, meta_keys, context);
 
-  tr_apply_default_mime_type (method, file_info);
+  tr_apply_default_mime_type (tm, file_info);
 
   return retval;
 }

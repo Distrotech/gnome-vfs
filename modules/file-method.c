@@ -818,7 +818,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
-	file_info->name = gnome_vfs_extract_short_name (file_handle->uri);
+	file_info->name = gnome_vfs_uri_extract_short_name (file_handle->uri);
 
 	result = get_stat_info_from_handle (file_info, file_handle,
 					    options, &statbuf);

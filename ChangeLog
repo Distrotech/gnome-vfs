@@ -1,5 +1,34 @@
 2000-02-21  Ettore Perazzoli  <ettore@helixcode.com>
 
+	* test/test-xfer.c (xfer_progress_callback): Use
+	`GNOME_VFS_SIZE_FORMAT_STR' to match the types.
+
+	* test/test-async-directory.c (main) [!WITH_CORBA]: Do not define
+	`ev', so that we don't get annoying compiler warnings.
+
+	* test/test-xfer.c (xfer_progress_callback): Add casts.
+
+	* test/test-directory-visit.c (directory_visit_callback): Add
+	cast.
+
+	* test/test-directory.c (print_list): Add cast.
+
+	* test/test-async-directory.c (main): Removed unused variable.
+
+	* modules/translate-method.c (tr_do_read_directory): Added cast to
+	placate the compiler.
+
+	* modules/file-method.c (do_get_file_info_from_handle):
+	s/gnome_vfs_extract_short_name/gnome_vfs_uri_extract_short_name/.
+	`gnome_vfs_extract_short_name' does not even exist!
+
+	* modules/extfs-method.c: Add missing NULL pointer in
+	initialization of `method'.
+
+	* libgnomevfs-corba/gnome-vfs-slave.c (serve_channel_read): Use
+	`GNOMEVFSFileSize' instead of `gulong'.
+	(serve_channel_write): Likewise.
+
 	* modules/Makefile.am (libhttp_la_LIBADD): Do not link the HTTP
 	module with `-lghttp' (we don't actually use it).
 

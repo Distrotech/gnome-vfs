@@ -158,7 +158,6 @@ main (int argc, char **argv)
 {
 	GnomeVFSAsyncHandle *handle;
 	GnomeVFSResult result;
-	CORBA_Environment ev;
 	poptContext popt_context;
 	char **args;
 	gchar *text_uri;
@@ -168,6 +167,9 @@ main (int argc, char **argv)
 	};
 	GTimer *timer;
 	guint num_entries;
+#ifdef WITH_CORBA
+	CORBA_Environment ev;
+#endif
 
 #ifdef WITH_PTHREAD
 	puts ("Initializing threads...");
