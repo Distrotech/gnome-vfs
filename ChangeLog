@@ -1,3 +1,7 @@
+2000-05-07  Maciej Stachowiak  <mjs@eazel.com>
+
+	* data/mime/gnome-vfs-mime: Fixed some of the broken mime types.
+
 2000-05-07  Pavel Cisler  <pavel@eazel.com>
 
 	* gnome-vfs/configure.in:

@@ -151,8 +151,8 @@
 0	string		#!\ /usr/local/bin/zsh	application/x-zsh
 0	string		#!\	/usr/local/bin/zsh	application/x-zsh
 0	string		#!/usr/local/bin/ash	application/x-sh
-0	string		#!\ /usr/local/bin/ash	application/x-zsh
-0	string		#!\	/usr/local/bin/ash	application/x-zsh
+0	string		#!\ /usr/local/bin/ash	application/x-sh
+0	string		#!\	/usr/local/bin/ash	application/x-sh
 0	string		#!/usr/local/bin/ae	text/script
 0	string		#!\ /usr/local/bin/ae	text/script
 0	string		#!\	/usr/local/bin/ae	text/script
@@ -386,11 +386,11 @@
 0	string		IIN1		image/tiff
 0	string		MM\x00\x2a	image/tiff
 0	string		II\x2a\x00	image/tiff
-0	string		\x89PNG		image/x-png
-1	string		PNG		image/x-png
+0	string		\x89PNG		image/png
+1	string		PNG		image/png
 0	string		GIF8		image/gif
 0	string		\361\0\100\273	image/x-cmu-raster
-0	string		id=ImageMagick	MIFF image data
+0	string		id=ImageMagick	image/x-miff
 0	long		1123028772	Artisan image data
 0	string		#FIG		FIG image text
 0	string		ARF_BEGARF		PHIGS clear text archive
@@ -415,12 +415,12 @@
 0	string		/*\ XPM\ */	X pixmap image text
 0	leshort		0xcc52		RLE image data,
 0	string		Imagefile\ version-	iff image data
-0	belong		0x59a66a95	x/x-image-sun-raster
-0	beshort		474		x/x-image-sgi
+0	belong		0x59a66a95	image/x-sun-raster
+0	beshort		474		image/x-sgi
 0	string		IT01		FIT image data
 0	string		IT02		FIT image data
-2048	string		PCD_IPI		x/x-photo-cd-pack-file
-0	string		PCD_OPA		x/x-photo-cd-overfiew-file
+2048	string		PCD_IPI		application/x-photo-cd-pack-file
+0	string		PCD_OPA		application/x-photo-cd-overfiew-file
 0	string	SIMPLE\ \ =	FITS image data
 0	string	This\ is\ a\ BitMap\ file	Lisp Machine bit-array-file
 0	string		!!		Bennet Yee's "face" format
@@ -467,7 +467,7 @@
 514		string	HdrS		Linux kernel
 0		belong	0xb8c0078e	Linux kernel
 0	string	Begin3	Linux Software Map entry text
-0	string	;;			Lisp/Scheme program text
+0	string	;;			text/x-lisp
 0	string	\012(			byte-compiled Emacs-Lisp program data
 0	string	;ELC\023\000\000\000	byte-compiled Emacs-Lisp program data
 0	string	(SYSTEM::VERSION\040'	CLISP byte-compiled Lisp program text
@@ -625,7 +625,7 @@
 0	long		0xefbe	OSF/Rose object
 0	short		0565	i386 COFF object
 0	short	0x2a17	"compact bitmap" format (Poskanzer)
-0	string		%PDF-		PDF document
+0	string		%PDF-		application/pdf
 0	lelong		0101555		PDP-11 single precision APL workspace
 0	lelong		0101554		PDP-11 double precision APL workspace
 0	leshort		0407		PDP-11 executable
@@ -754,7 +754,7 @@
 0	string		\032\001	Compiled terminfo entry
 0	short		0433		Curses screen image
 0	short		0434		Curses screen image
-0	string		\367\002	TeX DVI file
+0	string		\367\002	application/x-dvi
 0	string		\367\203	TeX generic font data
 0	string		\367\131	TeX packed font data
 0	string		\367\312	TeX virtual font data
