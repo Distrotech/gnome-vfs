@@ -1,3 +1,31 @@
+2000-12-19  Darin Adler  <darin@eazel.com>
+
+	reviewed by: John Sullivan <sullivan@eazel.com>
+
+	Quick rewrite of pieces of the test module.
+
+	* modules/test-method.c: (get_operation_settings): Changed name
+	and design of the function. Also fixed backwards logic that had
+	this returning results for the last setting that does not match
+	a function name, rather than for the setting that does match.
+	(start_operation), (finish_operation): Moved most of the work
+	of the macros into these functions.
+	(parse_result_text): Separated out the "name not found" result
+	from the error code result.
+	(load_settings): Rewrote the parsing code to be simpler.
+	(do_open), (do_close), (do_read), (do_write), (do_seek),
+	(do_tell), (do_open_directory), (do_close_directory),
+	(do_read_directory), (do_get_file_info),
+	(do_get_file_info_from_handle), (do_make_directory),
+	(do_remove_directory) (do_unlink), (do_set_file_info),
+	(do_truncate), (do_truncate_handle), (do_find_directory),
+	(do_create_symbolic_link): Use new simpler macros. Also got rid of
+	"do_" prefix on names of calls.
+	(do_create), (do_is_local), (do_move), (do_check_same_fs): Update
+	FIXME, since these are still not implemented correctly.
+	(vfs_module_init): Minor style change.
+	(vfs_module_shutdown): Free storage on shutdown.
+
 2000-12-18  Andy Hertzfeld  <andy@eazel.com>
 
 	* data/mime/gnome-vfs.keys:
