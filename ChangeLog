@@ -1,3 +1,8 @@
+2000-10-16  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* modules/file-method.c:
+	Include <stdio.h> to get the prototype for rename().
+	
 2000-10-14  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/ftp-method.c: (dircache_setup), (dircache_expire):
