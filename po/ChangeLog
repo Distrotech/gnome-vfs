@@ -1,10 +1,15 @@
+2005-02-08  Rhys Jones  <rhys@sucs.org>
+
+	* cy.po: Updated Welsh (fuzzy-squeezing, plural form standardisation,
+	  general typo fixes)
+
 2005-02-07  David Lodge <dave@cirt.net>
-                                                                                
-        * en_GB.po: Updated British translation.
-                                                                                
+
+	* en_GB.po: Updated British translation.
+
 2005-02-06  Pauli Virtanen <pauli.virtanen@hut.fi>
 
-	 * fi.po: Updated Finnish translation.
+	* fi.po: Updated Finnish translation.
 
 2005-02-05  Duarte Loreto <happyguy_pt@hotmail.com>
 

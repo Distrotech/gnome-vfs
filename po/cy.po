@@ -4,21 +4,25 @@
 # Rhys Jones <rhys@sucs.org>, 2003.
 #
 # (RJ) Bathiad: Memory stick -> tocyn cof
-# (RJ) Fe ddefnyddiais i 'gyrriant' yn hytrach na 'gyrrydd' - ceir
+# (RJ) Fe ddefnyddiais i 'gyriant' yn hytrach na 'gyrrydd' - ceir
 #      enghreifftiau o'r ddau yn nautilus ar hyn o bryd.
+#
+# rhysj, 8ed Chw 2005
+# Wedi cysoni'r ffurfiau lluosog
+# Wedi gyrru'r cyfan drwy Cysill
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 15:10+0100\n"
-"PO-Revision-Date: 2004-09-12 14:05+0100\n"
-"Last-Translator: Dafydd Harries <daf@muse.19inch.net>\n"
+"POT-Creation-Date: 2005-02-08 07:39+0000\n"
+"PO-Revision-Date: 2005-02-08 07:48+0000\n"
+"Last-Translator: Rhys Jones <rhys@sucs.org>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
-"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : (n == 2) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n==1)?1:(n==2)?2:(n==8||n==11)?3:0;\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -248,7 +252,7 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
-"Ffwythiant dirmygol. Ni chynhelir newidiadau defnyddiwr i'r cronfa ddata "
+"Ffwythiant a anargymhellir. Ni chynhelir newidiadau defnyddiwr i'r gronfa ddata "
 "MIME bellach."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
@@ -458,7 +462,7 @@ msgstr "Nid yw'r gwasanaeth ar gael"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "Request obsoletes service's data"
-msgstr "Mae'r cais yn anarferu data y gwasanaeth"
+msgstr "Mae'r cais yn anarferu data'r gwasanaeth"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:78
@@ -519,8 +523,9 @@ msgstr "Gwall anhysbys"
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u beit"
-msgstr[1] "%u feit"
-msgstr[2] "%u beit"
+msgstr[1] "%u beit"
+msgstr[2] "%u feit"
+msgstr[3] "%u beit"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -537,7 +542,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1122
+#: libgnomevfs/gnome-vfs-utils.c:1131
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (Unicode annilys)"
@@ -687,7 +692,7 @@ msgstr "Gweinydd rhwydwaith"
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
-"Methu rhagosod y gyrriant disg hyblyg. Hwyrach nad oes disg yn y gyrriant."
+"Methu rhagosod y gyriant disg hyblyg. Hwyrach nad oes disg yn y gyriant."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
@@ -699,7 +704,7 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Methu rhagosod y gyrriant disg hyblyg. Hwyrach fod y disg hyblyg mewn ffurf "
+"Methu rhagosod y gyriant disg hyblyg. Hwyrach fod y disg hyblyg mewn ffurf "
 "na ellir ei osod."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
@@ -707,12 +712,12 @@ msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Methu a gosod y gyfrol ddewisiwyd. Hwyrach ei fod mewn ffurf na ellir ei "
+"Methu a gosod y gyfrol ddewiswyd. Hwyrach ei fod mewn ffurf na ellir ei "
 "osod."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr "Methu gosod y gyrriant disg hyblyg ddewisiwyd."
+msgstr "Methu gosod y gyriant disg hyblyg ddewisiwyd."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
@@ -771,7 +776,7 @@ msgid ""
 msgstr ""
 "Mae hyn yn digwydd pan rydych chi'n mewngofnodi i gyfrifiadur y tro cyntaf.\n"
 "%s yw'r hunaniaeth a ddanfonwyd gan y cyfrifiadur pell. Os ydych chi eisiau "
-"bod yn hollol siwr ei fod hi'n ddiogel i fynd ymlaen, cysylltwch a gweinydd "
+"bod yn hollol siŵr ei bod hi'n ddiogel i fynd ymlaen, cysylltwch â gweinydd "
 "y system."
 
 #: modules/sftp-method.c:1347
@@ -829,8 +834,8 @@ msgid ""
 "will be replaced by the component IID."
 msgstr ""
 "Y rhaglen i'w ddefnyddio i bori ffeiliau sydd angen cydran er mwyn eu "
-"gwylio. Amnweidir y paramedr %s gan URI y ffeil, ac amnewidir y paramedr %c "
-"gan IID y cydran."
+"gwylio. Amnewidir y paramedr %s gan URI y ffeil, ac amnewidir y paramedr %c "
+"gan IID y gydran."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -934,7 +939,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a LAU "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin â LAU "
 "\"aim\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
@@ -942,7 +947,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a LAU "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin â LAU "
 "\"callto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
@@ -950,7 +955,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a LAU "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin â LAU "
 "\"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
@@ -958,7 +963,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a LAU "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin â LAU "
 "\"h323\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
@@ -966,7 +971,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a LAU "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin â LAU "
 "\"http\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
@@ -974,7 +979,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a LAU "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin â LAU "
 "\"https\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
@@ -982,7 +987,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a LAU "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin â LAU "
 "\"info\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
@@ -990,7 +995,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a LAU "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin â LAU "
 "\"mailto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
@@ -998,7 +1003,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a LAU "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin â LAU "
 "\"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
@@ -1006,7 +1011,7 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a LAU "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin â LAU "
 "\"trash\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
@@ -1019,43 +1024,43 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"aim\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin â LAU \"aim\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"callto\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin â LAU \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"ghelp\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin â LAU \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"h323\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin â LAU \"h323\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"http\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin â LAU \"http\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"https\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin â LAU \"https\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"info\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin â LAU \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"mailto\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin â LAU \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin â LAU \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"trash\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin â LAU \"trash\""
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1087,7 +1092,7 @@ msgstr "LAU i gyflunio'r dirprwy'n awtomatig"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Galluogi'r gosodiadau dirprwy pan yn cyrchu HTTP dros y Rhyngrwyd."
+msgstr "Galluogi'r gosodiadau dirprwy wrth gyrchu HTTP dros y Rhyngrwyd."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1116,8 +1121,8 @@ msgstr "Enw defnyddiwr y dirprwy HTTP"
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "Os yn wir, bydd angen dilysu cysylltiadau â'r gweinydd dirprwy. Defnyddir y "
 "pâr enw defnyddiwr/cyfrinair a benodir gan \"/system/http_proxy/"
@@ -1129,7 +1134,7 @@ msgstr "Gweinyddion di-ddirprwy"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Cyfrinair i'w basio i'r dirprwy HTTP tra'n dilysu."
+msgstr "Cyfrinair i'w basio i'r dirprwy HTTP wrth ddilysu."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -1156,7 +1161,7 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Dewiswch fodd rhagosod y dirprwy. Y gwerthoedd caniatier yw \"none\", "
+"Dewiswch fodd rhagosod y dirprwy. Y gwerthoedd caniateir yw \"none\", "
 "\"manual\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
@@ -1180,7 +1185,7 @@ msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"Y porth ar y peiriant ddiffynir gan \"/system/http_proxy/host\" yr ydych yn "
+"Y porth ar y peiriant ddiffinnir gan \"/system/http_proxy/host\" yr ydych yn "
 "ei ddefnyddio fel dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:24
@@ -1188,7 +1193,7 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Y porth ar y peiriant ddifynnir gan \"/system/proxy/ftp_host\" yr ydych yn "
+"Y porth ar y peiriant ddiffinnir gan \"/system/proxy/ftp_host\" yr ydych yn "
 "ei ddefnyddio fel dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:25
@@ -1196,7 +1201,7 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"Y porth ar y peiriant ddifynnir gan \"/system/proxy/secure_host\" yr ydych "
+"Y porth ar y peiriant ddiffinnir gan \"/system/proxy/secure_host\" yr ydych "
 "yn ei ddefnyddio fel dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:26
@@ -1204,7 +1209,7 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Y porth ar y peiriant ddifynnir gan \"/system/proxy/socks_host\" yr ydych yn "
+"Y porth ar y peiriant ddiffinnir gan \"/system/proxy/socks_host\" yr ydych yn "
 "ei ddefnyddio fel dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:27
@@ -1217,12 +1222,12 @@ msgstr ""
 "Mae'r allwedd hon yn cynnwys rhestr o weinyddion y cysylltir â hwy yn "
 "uniongyrchol, yn hytrach na thrwy'r dirprwy (os defnyddir). Medrwch roi fan "
 "hyn enwau gweinyddion, parth-enwau (gan ddefnyddio gwylltnod i ddechrau, fel "
-"*.foo.com), rhifau IP gweinyddion (IPv6 yn ogystal a IPv4) a rhifau "
+"*.foo.com), rhifau IP gweinyddion (IPv6 yn ogystal â IPv4) a rhifau "
 "rhwydwaith gyda masg rhwydwaith (tebyg i 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "URL sy'n rhoi manylion cyflunio y dirprwy."
+msgstr "URL sy'n rhoi manylion cyflunio'r dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
@@ -1230,7 +1235,7 @@ msgstr "Defnyddio dirprwy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Enw'r defnyddiwr i'w basio i'r dirprwy HTTP tra'n dilysu"
+msgstr "Enw'r defnyddiwr i'w basio i'r dirprwy HTTP wrth ddilysu"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1592,3 +1597,4 @@ msgstr "Y grŵp Windows mae'r defnyddiwr yn rhan ohoni"
 
 #~ msgid "1 byte"
 #~ msgstr "1 beit"
+
