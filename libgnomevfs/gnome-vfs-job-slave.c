@@ -47,7 +47,9 @@ thread_routine (void *data)
 		;
 
 	/* FIXME: Is more cleanup needed here?  */
-	gnome_vfs_job_destroy (slave->job);
+	/* FIXME: bugzilla.eazel.com 829: Had to turn off the destroy call
+	   gnome_vfs_job_destroy (slave->job);
+	*/
 
 	return NULL;
 }

@@ -20,8 +20,8 @@
 
    Author: Havoc Pennington <hp@redhat.com> */
 
-#ifndef _GNOME_VFS_CONTEXT_H
-#define _GNOME_VFS_CONTEXT_H
+#ifndef GNOME_VFS_CONTEXT_H
+#define GNOME_VFS_CONTEXT_H
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
@@ -45,11 +45,9 @@ void             gnome_vfs_context_set_redirect_uri      (GnomeVFSContext *ctx,
                                                           const gchar     *uri);
 
 /* Convenience - both of these accept a NULL context object */
-#define          gnome_vfs_context_check_cancellation(x) (gnome_vfs_cancellation_check(context ? gnome_vfs_context_get_cancellation((x)) : NULL))
+#define          gnome_vfs_context_check_cancellation(x) (gnome_vfs_cancellation_check((x) ? gnome_vfs_context_get_cancellation((x)) : NULL))
 
 void             gnome_vfs_context_emit_message           (GnomeVFSContext *ctx,
                                                            const gchar* message);
 
-#endif /* _GNOME_VFS_CONTEXT_H */
-
-
+#endif /* GNOME_VFS_CONTEXT_H */

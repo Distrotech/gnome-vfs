@@ -1,3 +1,13 @@
+2000-05-06  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
+	Turned off the call to gnome_vfs_destroy, reintroducing the
+	leak. Hopefully this makes things work again, but the leak
+	is back until I get a real fix.
+	
+	* libgnomevfs/gnome-vfs-context.h: Fixed a typo in the macro
+	that made it work only on variables named "context".
+
 2000-05-05  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_destroy):
