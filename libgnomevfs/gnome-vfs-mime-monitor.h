@@ -25,7 +25,7 @@
 #ifndef GNOME_VFS_MIME_MONITOR_H
 #define GNOME_VFS_MIME_MONITOR_H
 
-#include <gobject/gobject.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 
