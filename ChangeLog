@@ -1,3 +1,21 @@
+2003-09-17  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-async-job-map.c (_gnome_vfs_async_job_map_get_job):
+	Don't assert async_job_map != NULL.
+	Patch from Martin Wehner <martin.wehner@epost.de>
+
+2003-09-16  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (copy_file):
+	Correctly set utimes if the owner change fails.
+	Bug #117762
+	
+2003-09-16  Alexander Larsson  <alexl@redhat.com>
+
+	* schemas/system_http_proxy.schemas:
+	Add missing schemas.
+	Patch by Marco Pesenti Gritti.
+
 2003-09-15  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/http-method.c: define INET_ADDRSTRLEN if it's not defined
