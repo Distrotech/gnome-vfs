@@ -1,3 +1,12 @@
+2000-08-02  Pavel Cisler  <pavel@eazel.com>
+
+	Seth forgot to check in changes Nautilus relies on and
+	unfortunately they are nowhere to be found on his machine.
+	This change will make Nautilus build again. Seth needs to check
+	in his missing changes to make symlink creation work properly.
+
+	* libgnomevfs/gnome-vfs-types.h:
+
 2000-08-02  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 1837, The icon in the action list item
