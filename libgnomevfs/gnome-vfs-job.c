@@ -52,7 +52,7 @@ char *job_debug_types[] = {
 	"open", "open as channel",
 	"create", "create symbolic link",
 	"create as channel", "close",
-	"read", "write", "read write done",
+	"read", "write", "seek", "read write done",
 	"load directory", "find directory",
 	"xfer", "get file info", "set file info",
 	"module callback", "file control",
@@ -143,6 +143,7 @@ _gnome_vfs_job_complete (GnomeVFSJob *job)
 		return FALSE;
 	case GNOME_VFS_OP_READ_WRITE_DONE:
 	case GNOME_VFS_OP_FILE_CONTROL:
+	case GNOME_VFS_OP_SEEK:
 		return FALSE;
 	
 	default:
@@ -260,6 +261,14 @@ dispatch_write_callback (GnomeVFSNotifyResult *notify_result)
 						     notify_result->specifics.write.num_bytes,
 						     notify_result->specifics.write.bytes_written,
 						     notify_result->specifics.write.callback_data);
+}
+
+static void
+dispatch_seek_callback (GnomeVFSNotifyResult *notify_result)
+{
+	(* notify_result->specifics.seek.callback) (notify_result->job_handle,
+						    notify_result->specifics.seek.result,
+						    notify_result->specifics.seek.callback_data);
 }
 
 static void
@@ -398,6 +407,7 @@ _gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 	case GNOME_VFS_OP_CREATE_AS_CHANNEL:
 	case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
 	case GNOME_VFS_OP_WRITE:
+	case GNOME_VFS_OP_SEEK:
 	case GNOME_VFS_OP_OPEN:
 	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
 	case GNOME_VFS_OP_READ:
@@ -606,6 +616,9 @@ dispatch_job_callback (gpointer data)
 	case GNOME_VFS_OP_WRITE:
 		dispatch_write_callback (notify_result);
 		break;
+	case GNOME_VFS_OP_SEEK:
+		dispatch_seek_callback (notify_result);
+		break;
 	case GNOME_VFS_OP_FILE_CONTROL:
 		dispatch_file_control_callback (notify_result);
 		break;
@@ -750,6 +763,7 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 		break;
 	case GNOME_VFS_OP_READ:
 	case GNOME_VFS_OP_WRITE:
+	case GNOME_VFS_OP_SEEK:
 	case GNOME_VFS_OP_CLOSE:
 	case GNOME_VFS_OP_READ_WRITE_DONE:
 		break;
@@ -1285,6 +1299,30 @@ execute_write (GnomeVFSJob *job)
 }
 
 static void
+execute_seek (GnomeVFSJob *job)
+{
+	GnomeVFSResult result;
+	GnomeVFSSeekOp *seek_op;
+	GnomeVFSNotifyResult *notify_result;
+
+	seek_op = &job->op->specifics.seek;
+
+	result = gnome_vfs_seek_cancellable (job->handle,
+					     seek_op->whence,
+					     seek_op->offset,
+					     job->op->context);
+
+	notify_result = g_new0 (GnomeVFSNotifyResult, 1);
+	notify_result->job_handle = job->job_handle;
+	notify_result->type = job->op->type;
+	notify_result->specifics.seek.result = result;
+	notify_result->specifics.seek.callback = (GnomeVFSAsyncSeekCallback) job->op->callback;
+	notify_result->specifics.seek.callback_data = job->op->callback_data;
+
+	job_oneway_notify (job, notify_result);
+}
+
+static void
 execute_get_file_info (GnomeVFSJob *job)
 {
 	GnomeVFSGetFileInfoOp *get_file_info_op;
@@ -1663,6 +1701,9 @@ _gnome_vfs_job_execute (GnomeVFSJob *job)
 			break;
 		case GNOME_VFS_OP_WRITE:
 			execute_write (job);
+			break;
+		case GNOME_VFS_OP_SEEK:
+			execute_seek (job);
 			break;
 		case GNOME_VFS_OP_LOAD_DIRECTORY:
 			execute_load_directory (job);

@@ -1,3 +1,15 @@
+2003-10-20  Christophe Fergeau  <teuf@gnome.org>
+
+	* NEWS: updated
+
+2003-10-20  Manuel Clos  <llanero@jazzfree.com>
+
+	* libgnomevfs/gnome-vfs-async-ops.c
+	* libgnomevfs/gnome-vfs-async-ops.h
+	* libgnomevfs/gnome-vfs-job.c
+	* libgnomevfs/gnome-vfs-job.h: added asynchronous seek implementation
+	  (gnome_vfs_async_seek)
+
 2003-10-20  Manuel Clos  <llanero@jazzfree.com> 
 	
 	* modules/ftp-method.c: added seek/tell support

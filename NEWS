@@ -1,5 +1,9 @@
 gnome-vfs 2.5.0
 
+	* Features 
+		+ asynchronous seek implementation (Manuel Clos)
+		+ seek and tell support in the FTP method (Manuel Clos)
+
 	* Featurelets:
 		+ make the ssh method work with newer ssh (Mitch)
 

@@ -94,6 +94,7 @@ enum GnomeVFSOpType {
 	GNOME_VFS_OP_CLOSE,
 	GNOME_VFS_OP_READ,
 	GNOME_VFS_OP_WRITE,
+	GNOME_VFS_OP_SEEK,
 	GNOME_VFS_OP_READ_WRITE_DONE,
 	GNOME_VFS_OP_LOAD_DIRECTORY,
 	GNOME_VFS_OP_FIND_DIRECTORY,
@@ -201,6 +202,17 @@ typedef struct {
 } GnomeVFSWriteOpResult;
 
 typedef struct {
+	GnomeVFSSeekPosition whence;
+	GnomeVFSFileOffset offset;
+} GnomeVFSSeekOp;
+
+typedef struct {
+	GnomeVFSAsyncSeekCallback callback;
+	void *callback_data;
+	GnomeVFSResult result;
+} GnomeVFSSeekOpResult;
+
+typedef struct {
 	GList *uris; /* GnomeVFSURI* */
 	GnomeVFSFileInfoOptions options;
 } GnomeVFSGetFileInfoOp;
@@ -305,6 +317,7 @@ typedef union {
 	GnomeVFSCloseOp close;
 	GnomeVFSReadOp read;
 	GnomeVFSWriteOp write;
+	GnomeVFSSeekOp seek;
 	GnomeVFSLoadDirectoryOp load_directory;
 	GnomeVFSXferOp xfer;
 	GnomeVFSGetFileInfoOp get_file_info;
@@ -337,6 +350,7 @@ typedef union {
 	GnomeVFSCloseOpResult close;
 	GnomeVFSReadOpResult read;
 	GnomeVFSWriteOpResult write;
+	GnomeVFSSeekOpResult seek;
 	GnomeVFSGetFileInfoOpResult get_file_info;
 	GnomeVFSSetFileInfoOpResult set_file_info;
 	GnomeVFSFindDirectoryOpResult find_directory;
