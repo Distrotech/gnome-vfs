@@ -1,3 +1,13 @@
+2005-03-20  Christian Kellner <gicmo@gnome.org>
+
+	* configure.in: Add -Wno-pointer-sign if available. This will stop
+	the gcc4 warnings about char * vs unsigned char * for now. It's not
+	100% optimal but even the linux kernel uses it at the moment!
+	* modules/http-proxy.c: Correct the logic to actually handle netmaks
+	right!
+	* modules/sftp-method.c: Initialize save_password. This is not really
+	necessary here but it will keep gcc4 quiet.
+
 2005-03-14  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* modules/http-neon-method.c: (http_get_file_info), (http_options),

@@ -1061,7 +1061,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	guint           last_arg, i;
 	gboolean        full_auth;
 	gboolean        done_auth;
-	gboolean	save_password;
+	gboolean	save_password = FALSE;
 	Buffer          msg;
 	gchar           type;
 	char *password = NULL;
