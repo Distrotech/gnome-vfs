@@ -3,11 +3,13 @@
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000-2001.
 # Christian Rose <menthos@menthos.com>, 2000.
 #
+# $Id$
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-01-19 11:25+0100\n"
-"PO-Revision-Date: 2001-01-03 17:37+0100\n"
+"POT-Creation-Date: 2001-01-22 17:18+0100\n"
+"PO-Revision-Date: 2001-01-22 17:22+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +78,7 @@ msgstr "C++-källkod"
 
 #: data/mime/gnome-vfs.keys.in.h:16
 msgid "C-Shell script"
-msgstr "C-skalsskript"
+msgstr "C-skalskript"
 
 #: data/mime/gnome-vfs.keys.in.h:17
 msgid "CGI program"
@@ -303,8 +305,8 @@ msgid "Macintosh BinHex archive"
 msgstr "Macintosh BinHex-arkiv"
 
 #: data/mime/gnome-vfs.keys.in.h:73
-msgid "Macintosh StuffIt! archive "
-msgstr "Macintosh StuffIt!-arkiv"
+msgid "Macintosh StuffIt archive "
+msgstr "Macintosh StuffIt-arkiv "
 
 #: data/mime/gnome-vfs.keys.in.h:74
 msgid "Makefile"
@@ -1324,6 +1326,7 @@ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "Kan inte döda GNOME::VFS::Slave (IOR okänt) -- undantag %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:690
+#, c-format
 msgid "Unknown op type %u"
 msgstr "Okänd operandtyp %u"
 
@@ -1333,11 +1336,12 @@ msgstr "Okänd operandtyp %u"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan inte skapa rör till öppen GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1727
+#: libgnomevfs-pthread/gnome-vfs-job.c:1728
+#, c-format
 msgid "Unknown job ID %u"
 msgstr "Okänt jobb-ID %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1750
+#: libgnomevfs-pthread/gnome-vfs-job.c:1749
 msgid "Operation stopped"
 msgstr "Operationen stoppad"
 
