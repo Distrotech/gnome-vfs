@@ -27,8 +27,12 @@
 */
 
 #include <config.h>
-#include "gnome-vfs-utils.h"
 
+#ifdef HAVE_SYS_PARAM_H
+#include <sys/param.h>
+#endif
+
+#include "gnome-vfs-utils.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-private.h"
 #include "gnome-vfs.h"
@@ -39,10 +43,6 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-
-#ifdef HAVE_SYS_PARAM_H
-#include <sys/param.h>
-#endif
 
 #if HAVE_SYS_STATVFS_H
 #include <sys/statvfs.h>

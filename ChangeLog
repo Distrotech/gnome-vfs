@@ -1,3 +1,12 @@
+2001-07-18  Martin Baulig  <baulig@suse.de>
+
+	* libgnomevfs/gnome-vfs-module-shared.c: Move the #include
+	"gnome-vfs-module-shared.h" after the #define of _BSD_SOURCE
+	and _LARGEFILE64_SOURCE.
+
+	* libgnomevfs/gnome-vfs-utils.c: #include <sys/param.h> before
+	<glib.h>.
+
 2001-07-17  Chema Celorio  <chema@celorio.com>
 
 	* configure.in: add a message that displays the target
