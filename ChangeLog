@@ -1,3 +1,8 @@
+2005-01-29  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/http-neon-method.c: Some small code cleanups. Also remove the
+	etag header handle on get since we dont use it at this time.
+
 2005-01-28  Vincent Untz  <vincent@vuntz.net>
 
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_extract_short_name): fix

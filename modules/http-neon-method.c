@@ -1113,7 +1113,8 @@ set_content_range (void *ud, const char *value)
     	}
 }
 
-
+/* function for setting the etag value
+   we dont use it at the moment
 static void 
 set_etag (void **etag, const char *value)
 {		
@@ -1122,6 +1123,30 @@ set_etag (void **etag, const char *value)
 	else
 		*etag = NULL;
 }
+*/
+
+static void
+add_default_header_handlers (ne_request *req, GnomeVFSFileInfo *info)
+{
+
+	ne_add_response_header_handler (req, "Last-Modified", 
+					(ne_header_handler) set_last_modified,
+		   			info);
+	
+	ne_add_response_header_handler (req, "Content-Length", 
+					(ne_header_handler) set_content_length,
+					info);
+	
+	ne_add_response_header_handler (req, "Content-Type",
+					(ne_header_handler) set_content_type,
+					info);
+	
+	ne_add_response_header_handler (req, "Date",
+					(ne_header_handler) set_access_time,
+					info);
+       
+}
+
 
 /* ************************************************************************** */
 /* Propfind request handlers */
@@ -1813,7 +1838,7 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 	
 	/* Let's be very cautious here! If the server doesn't respond with a 
 	   207 here just fall back to HEAD because some server server (eg. gws) 
-	   colse the connection on an unknown command, most (stupid) php scripts
+	   close the connection on an unknown command, most (stupid) php scripts
 	   will treat PROPFIND as GET and some servers may deny us PROFIND but
 	   allow us HEAD. */
 	if (res == NE_OK && ne_get_status (req)->code == 207) {
@@ -1831,23 +1856,9 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 	
  head_start:	
 	req  = ne_request_create (context->session, "HEAD", context->path);
-			
-	ne_add_response_header_handler (req, "Last-Modified", 
-					(ne_header_handler) set_last_modified,
-		   			info);
-	
-	ne_add_response_header_handler (req, "Content-Length", 
-					(ne_header_handler) set_content_length,
-					info);
-	
-	ne_add_response_header_handler (req, "Content-Type",
-					(ne_header_handler) set_content_type,
-					info);
-	
-	ne_add_response_header_handler (req, "Date",
-					(ne_header_handler) set_access_time,
-					info);
 
+	add_default_header_handlers (req, info);
+		
 	res = ne_request_dispatch (req);
 
 	if (res == NE_REDIRECT) {
@@ -2027,11 +2038,11 @@ dav_request (ne_request *req, gboolean allow_redirect)
 
 typedef struct {
 	
-	HttpContext      *context;
-	GnomeVFSOpenMode  mode;
-	GnomeVFSFileInfo  *info;
-	GnomeVFSFileOffset offset;
-	char *etag;
+	HttpContext        *context;
+	GnomeVFSOpenMode    mode;
+	GnomeVFSFileInfo   *info;
+	GnomeVFSFileOffset  offset;
+	char               *etag;
 	
 	/* Whether we do/can ranged gets or not */
 	gboolean can_range;
@@ -2190,27 +2201,8 @@ get_start:
 						&range);
 	}
 	
-		
-	ne_add_response_header_handler (req, "Last-Modified", 
-					(ne_header_handler) set_last_modified,
-		   			handle->info);
-	
-	ne_add_response_header_handler (req, "Content-Length", 
-					(ne_header_handler) set_content_length,
-					handle->info);
-	
-	ne_add_response_header_handler (req, "Content-Type",
-					(ne_header_handler) set_content_type,
-					handle->info);
-	
-	ne_add_response_header_handler (req, "Date",
-					(ne_header_handler) set_access_time,
-					handle->info);
-	
-	ne_add_response_header_handler (req, "ETag",
-					(ne_header_handler) set_etag,
-					&(handle->etag));
-	
+
+	add_default_header_handlers (req, handle->info);
 	
 	res = ne_begin_request (req);
 	result = resolve_result (res, req);
