@@ -85,6 +85,13 @@ lookup_metadata (GnomeVFSFileInfo *info,
 }
 
 
+/**
+ * gnome_vfs_file_info_new:
+ * 
+ * Allocate and initialize a new file information struct.
+ * 
+ * Return value: A pointer to the new file information struct.
+ **/
 GnomeVFSFileInfo *
 gnome_vfs_file_info_new (void)
 {
@@ -98,6 +105,15 @@ gnome_vfs_file_info_new (void)
 	return new;
 }
 
+/**
+ * gnome_vfs_file_info_init:
+ * @info: 
+ * 
+ * Initialize @info.  This is different from %gnome_vfs_file_info_clear,
+ * because it will not de-allocate any memory.  This is supposed to be used
+ * when a new %GnomeVFSFileInfo struct is allocated on the stack, and you want
+ * to initialize it.
+ **/
 void
 gnome_vfs_file_info_init (GnomeVFSFileInfo *info)
 {
@@ -108,6 +124,15 @@ gnome_vfs_file_info_init (GnomeVFSFileInfo *info)
 	memset (info, 0, sizeof (*info));
 }
 
+/**
+ * gnome_vfs_file_info_clear:
+ * @info: Pointer to a file information struct
+ * 
+ * Clear @info so that it's ready to accept new data.  This is different from
+ * %gnome_vfs_file_info_init as it will free associated memory too.  This is
+ * supposed to be used when @info already contains meaningful information which
+ * we want to get rid of.
+ **/
 void
 gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
 {
@@ -122,6 +147,12 @@ gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
 	memset (info, 0, sizeof (*info));
 }
 
+/**
+ * gnome_vfs_file_info_destroy:
+ * @info: Pointer to a file information struct
+ * 
+ * Destroy @info
+ **/
 void
 gnome_vfs_file_info_destroy (GnomeVFSFileInfo *info)
 {
@@ -132,6 +163,18 @@ gnome_vfs_file_info_destroy (GnomeVFSFileInfo *info)
 }
 
 
+/**
+ * gnome_vfs_file_info_set_metadata:
+ * @info: Pointer to a file information struct
+ * @key: Key for which the metadata must be set.
+ * @value: Value to set for @key
+ * @value_size: Size of @value, in bytes
+ * 
+ * Set metadata associated to @key in @info to the specified @value of size
+ * @value_size.
+ * 
+ * Return value:  %TRUE If operation was successfull, %FALSE otherwise
+ **/
 gboolean
 gnome_vfs_file_info_set_metadata (GnomeVFSFileInfo *info,
 				  const gchar *key,
@@ -161,6 +204,20 @@ gnome_vfs_file_info_set_metadata (GnomeVFSFileInfo *info,
 	return TRUE;
 }
 
+/**
+ * gnome_vfs_file_info_get_metadata:
+ * @info: A pointer to a file information struct
+ * @key: Key for which the metadata must be retrieved
+ * @value: Pointer to a variable that will hold a pointer to the metadata on
+ * return from this function.
+ * @value_size: Pointer to a variable that will hold the size of the metadata
+ * on return from this function.
+ * 
+ * Retrieve metadata associated to @key in @info.
+ * 
+ * Return value: %TRUE if operation was successfull (@key was found), %FALSE
+ * otherwise.
+ **/
 gboolean
 gnome_vfs_file_info_get_metadata (GnomeVFSFileInfo *info,
 				  const gchar *key,
@@ -195,6 +252,16 @@ gnome_vfs_file_info_get_metadata (GnomeVFSFileInfo *info,
 	return TRUE;
 }
 
+/**
+ * gnome_vfs_file_info_unset_metadata:
+ * @info: A pointer to a file information struct
+ * @key: Key for the metadata to be unset
+ * 
+ * Unset metadata associated with @key in @info.  This has no effect on the
+ * real metadata saved in the metadata database.
+ * 
+ * Return value: %TRUE if the operation was successfull, %FALSE otherwise.
+ **/
 gboolean
 gnome_vfs_file_info_unset_metadata (GnomeVFSFileInfo *info,
 				    const gchar *key)
@@ -213,6 +280,14 @@ gnome_vfs_file_info_unset_metadata (GnomeVFSFileInfo *info,
 	return TRUE;
 }
 
+/**
+ * gnome_vfs_file_info_get_mime_type:
+ * @info: A pointer to a file information struct
+ * 
+ * Retrieve MIME type from @info.
+ * 
+ * Return value: A pointer to a string representing the MIME type.
+ **/
 const gchar *
 gnome_vfs_file_info_get_mime_type (GnomeVFSFileInfo *info)
 {
@@ -222,6 +297,13 @@ gnome_vfs_file_info_get_mime_type (GnomeVFSFileInfo *info)
 }
 
 
+/**
+ * gnome_vfs_file_info_copy:
+ * @dest: Pointer to a struct to copy @src's information into
+ * @src: Pointer to the information to be copied into @dest
+ * 
+ * Copy information from @src into @dest.
+ **/
 void
 gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 			  const GnomeVFSFileInfo *src)

@@ -146,6 +146,20 @@ open (GnomeVFSDirectoryHandle **handle,
 	return result;
 }
 
+/**
+ * gnome_vfs_directory_open:
+ * @handle: A pointer to a pointer to a GnomeVFSDirectoryHandle object
+ * @text_uri: String representing the URI to open
+ * @options: Options for reading file information
+ * @meta_keys: List of metadata keys to be retrieved for each directory entry
+ * @filter: Filter to be applied to the directory entries
+ * 
+ * Open directory @text_uri for reading.  On return, @*handle will point to
+ * a %GnomeVFSDirectoryHandle object which can be used to read the directory
+ * entries one by one.
+ * 
+ * Return value: An integer representing the result of the operation.
+ **/
 GnomeVFSResult
 gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 			  const gchar *text_uri,
@@ -159,6 +173,20 @@ gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 	return open (handle, text_uri, options, meta_keys, filter);
 }
 
+/**
+ * gnome_vfs_directory_open:
+ * @handle: A pointer to a pointer to a GnomeVFSDirectoryHandle object
+ * @uri: URI to open
+ * @options: Options for reading file information
+ * @meta_keys: List of metadata keys to be retrieved for each directory entry
+ * @filter: Filter to be applied to the directory entries
+ * 
+ * Open directory @text_uri for reading.  On return, @*handle will point to
+ * a %GnomeVFSDirectoryHandle object which can be used to read the directory
+ * entries one by one.
+ * 
+ * Return value: An integer representing the result of the operation.
+ **/
 GnomeVFSResult
 gnome_vfs_directory_open_from_uri (GnomeVFSDirectoryHandle **handle,
 				   GnomeVFSURI *uri,
@@ -172,6 +200,16 @@ gnome_vfs_directory_open_from_uri (GnomeVFSDirectoryHandle **handle,
 	return open_from_uri (handle, uri, options, meta_keys, filter);
 }
 
+/**
+ * gnome_vfs_directory_read_next:
+ * @handle: A directory handle
+ * @file_info: Pointer to a %GnomeVFSFileInfo struct where the data about
+ * the entry will be stored
+ * 
+ * Read the next directory entry from @handle.
+ * 
+ * Return value: An integer value representing the result of the operation.
+ **/
 GnomeVFSResult
 gnome_vfs_directory_read_next (GnomeVFSDirectoryHandle *handle,
 			       GnomeVFSFileInfo *file_info)
@@ -183,6 +221,14 @@ gnome_vfs_directory_read_next (GnomeVFSDirectoryHandle *handle,
 						    file_info);
 }
 
+/**
+ * gnome_vfs_directory_close:
+ * @handle: A directory handle.
+ * 
+ * Close @handle.
+ * 
+ * Return value: An integer representing the result of the operation.
+ **/
 GnomeVFSResult
 gnome_vfs_directory_close (GnomeVFSDirectoryHandle *handle)
 {
@@ -399,6 +445,23 @@ directory_visit_internal (GnomeVFSURI *uri,
 		return result;
 }
 
+/**
+ * gnome_vfs_directory_visit_uri:
+ * @uri: URI to start from
+ * @info_options: Options specifying what kind of file information must be
+ * retrieved
+ * @meta_keys: List of metadata keys to retrieve for each directory entry
+ * @filter: Filter to be used while visiting the directory
+ * @visit_options: Options specifying the type of visit
+ * @callback: Callback to be called for every visited file
+ * @data: Data to be passed to @callback at each iteration
+ * 
+ * Visit @uri, retrieving information as specified by @info_options, and
+ * looking up the metadata keys specified in @meta_keys.  Also, @filter will be
+ * applied.
+ * 
+ * Return value: 
+ **/
 GnomeVFSResult
 gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 			       GnomeVFSFileInfoOptions info_options,
@@ -415,6 +478,23 @@ gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 					 visit_options, callback, data);
 }
 
+/**
+ * gnome_vfs_directory_visit:
+ * @uri: URI to start from
+ * @info_options: Options specifying what kind of file information must be
+ * retrieved
+ * @meta_keys: List of metadata keys to retrieve for each directory entry
+ * @filter: Filter to be used while visiting the directory
+ * @visit_options: Options specifying the type of visit
+ * @callback: Callback to be called for every visited file
+ * @data: Data to be passed to @callback at each iteration
+ * 
+ * Visit @uri, retrieving information as specified by @info_options, and
+ * looking up the metadata keys specified in @meta_keys.  Also, @filter will be
+ * applied.
+ * 
+ * Return value: 
+ **/
 GnomeVFSResult
 gnome_vfs_directory_visit (const gchar *text_uri,
 			   GnomeVFSFileInfoOptions info_options,

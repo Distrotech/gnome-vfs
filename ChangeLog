@@ -1,3 +1,13 @@
+1999-10-10  Ettore Perazzoli  <ettore@gnu.org>
+
+	* libgnomevfs/gnome-vfs-file-info.c: Doc'ed.
+
+	* libgnomevfs/gnome-vfs-directory.c: Doc'ed.
+
+	* libgnomevfs/gnome-vfs-directory-list.c: Doc'ed.
+
+	* libgnomevfs/gnome-vfs-directory-filter.c: Doc'ed.
+
 1999-10-08  Ettore Perazzoli  <ettore@gnu.org>
 
 	* modules/Makefile.am (CPPFLAGS): #define

@@ -87,6 +87,16 @@ common_filter (const GnomeVFSDirectoryFilter *filter,
 }
 
 
+/**
+ * gnome_vfs_directory_filter_new:
+ * @type: Filter type
+ * @options: Options for the filter
+ * @pattern: Pattern for name-based selection
+ * 
+ * Create a new directory filter.
+ * 
+ * Return value: A pointer to the newly created filter.
+ **/
 GnomeVFSDirectoryFilter *
 gnome_vfs_directory_filter_new (GnomeVFSDirectoryFilterType type,
 				GnomeVFSDirectoryFilterOptions options,
@@ -129,6 +139,21 @@ gnome_vfs_directory_filter_new (GnomeVFSDirectoryFilterType type,
 	return new;
 }
 
+/**
+ * gnome_vfs_directory_filter_new_custom:
+ * @func: Function to call to evaluate whether a file must pass the filter or
+ * not
+ * @needs: Bitmask representing the information that @func needs to decide
+ * if a file passes through the filter or not.
+ * @func_data: Additional data to be passed to @func
+ * 
+ * Create a new custom directory filter.  Whenever the filter is applied, @func
+ * will be called with info about the file to be filtered and @func_data as
+ * parameters.  If @func returns %TRUE, the file passes the filter; if it
+ * returns %FALSE, it does not.
+ * 
+ * Return value: A pointer to the newly created filter.
+ **/
 GnomeVFSDirectoryFilter *
 gnome_vfs_directory_filter_new_custom (GnomeVFSDirectoryFilterFunc func,
 				       GnomeVFSDirectoryFilterNeeds needs,
@@ -149,6 +174,12 @@ gnome_vfs_directory_filter_new_custom (GnomeVFSDirectoryFilterFunc func,
 	return new;
 }
 
+/**
+ * gnome_vfs_directory_filter_destroy:
+ * @filter: A directory filter
+ * 
+ * Destroy @filter.
+ **/
 void
 gnome_vfs_directory_filter_destroy (GnomeVFSDirectoryFilter *filter)
 {
@@ -171,6 +202,15 @@ gnome_vfs_directory_filter_destroy (GnomeVFSDirectoryFilter *filter)
 	g_free (filter->pattern);
 }
 
+/**
+ * gnome_vfs_directory_filter_apply:
+ * @filter: A directory filter
+ * @info: Information about the file to be filtered
+ * 
+ * Apply @filter to the file whose info is @info.
+ * 
+ * Return value: TRUE if the file passes through the filter, FALSE otherwise.
+ **/
 gboolean
 gnome_vfs_directory_filter_apply (const GnomeVFSDirectoryFilter *filter,
 				  GnomeVFSFileInfo *info)
@@ -198,6 +238,15 @@ gnome_vfs_directory_filter_apply (const GnomeVFSDirectoryFilter *filter,
 	return TRUE;
 }
 
+/**
+ * gnome_vfs_directory_filter_get_needs:
+ * @filter: A directory filter
+ *
+ * Check what kind of information the filter needs to select files.
+ * 
+ * Return value: A bitmask representing the information needed by the filter to
+ * perform selection.
+ **/
 GnomeVFSDirectoryFilterNeeds
 gnome_vfs_directory_filter_get_needs (const GnomeVFSDirectoryFilter *filter)
 {

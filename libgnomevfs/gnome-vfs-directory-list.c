@@ -140,6 +140,13 @@ compare_for_sort_reversed (const GnomeVFSFileInfo *a,
 }
 
 
+/**
+ * gnome_vfs_directory_list_new:
+ * 
+ * Create a new directory list object.
+ * 
+ * Return value: A pointer to the newly created object.
+ **/
 GnomeVFSDirectoryList *
 gnome_vfs_directory_list_new (void)
 {
@@ -155,6 +162,12 @@ gnome_vfs_directory_list_new (void)
 	return new;
 }
 
+/**
+ * gnome_vfs_directory_list_destroy:
+ * @list: A directory list
+ * 
+ * Destroy @list
+ **/
 void
 gnome_vfs_directory_list_destroy (GnomeVFSDirectoryList *list)
 {
@@ -175,6 +188,13 @@ gnome_vfs_directory_list_destroy (GnomeVFSDirectoryList *list)
 	g_free (list);
 }
 
+/**
+ * gnome_vfs_directory_list_prepend:
+ * @list: A directory list
+ * @info: Information to be added to the list
+ * 
+ * Add @info at the beginning of @list.
+ **/
 void
 gnome_vfs_directory_list_prepend (GnomeVFSDirectoryList *list,
 				  GnomeVFSFileInfo *info)
@@ -189,6 +209,14 @@ gnome_vfs_directory_list_prepend (GnomeVFSDirectoryList *list,
 	list->num_entries++;
 }
 
+/**
+ * gnome_vfs_directory_list_append:
+ * @list: A directory list
+ * @info: Information to be added to the list
+ * 
+ * Add @info at the end of @list.
+ * 
+ **/
 void
 gnome_vfs_directory_list_append (GnomeVFSDirectoryList *list,
 				 GnomeVFSFileInfo *info)
@@ -209,6 +237,14 @@ gnome_vfs_directory_list_append (GnomeVFSDirectoryList *list,
 }
 
 
+/**
+ * gnome_vfs_directory_list_first:
+ * @list: A directory list
+ * 
+ * Retrieve the first item in @list, and set it as the current entry.
+ * 
+ * Return value: A pointer to the information retrieved.
+ **/
 GnomeVFSFileInfo *
 gnome_vfs_directory_list_first (GnomeVFSDirectoryList *list)
 {
@@ -221,6 +257,14 @@ gnome_vfs_directory_list_first (GnomeVFSDirectoryList *list)
 	return list->current_entry->data;
 }
 
+/**
+ * gnome_vfs_directory_list_last:
+ * @list: A directory list
+ * 
+ * Retrieve the last item in @list, and set it as the current entry.
+ * 
+ * Return value: A pointer to the information retrieved.
+ **/
 GnomeVFSFileInfo *
 gnome_vfs_directory_list_last (GnomeVFSDirectoryList *list)
 {
@@ -233,6 +277,15 @@ gnome_vfs_directory_list_last (GnomeVFSDirectoryList *list)
 	return list->current_entry->data;
 }
 
+/**
+ * gnome_vfs_directory_list_next:
+ * @list: A directory list
+ * 
+ * Retrieve the next item in @list, and set it as the current entry.
+ * 
+ * Return value: A pointer to the information retrieved, or NULL if the current
+ * entry is the last one.
+ **/
 GnomeVFSFileInfo *
 gnome_vfs_directory_list_next (GnomeVFSDirectoryList *list)
 {
@@ -248,6 +301,15 @@ gnome_vfs_directory_list_next (GnomeVFSDirectoryList *list)
 	return list->current_entry->data;
 }
 
+/**
+ * gnome_vfs_directory_list_prev:
+ * @list: A directory list
+ * 
+ * Retrieve the previous item in @list, and set it as the current entry.
+ * 
+ * Return value: A pointer to the information retrieved, or %NULL if the
+ * current entry is the last one.
+ **/
 GnomeVFSFileInfo *
 gnome_vfs_directory_list_prev (GnomeVFSDirectoryList *list)
 {
@@ -263,6 +325,15 @@ gnome_vfs_directory_list_prev (GnomeVFSDirectoryList *list)
 	return list->current_entry->data;
 }
 
+/**
+ * gnome_vfs_directory_list_current:
+ * @list: A directory list
+ * 
+ * Retrieve the current entry in @list.
+ * 
+ * Return value: A pointer to the current entry, or %NULL if no current entry
+ * is set.
+ **/
 GnomeVFSFileInfo *
 gnome_vfs_directory_list_current (GnomeVFSDirectoryList *list)
 {
@@ -274,6 +345,16 @@ gnome_vfs_directory_list_current (GnomeVFSDirectoryList *list)
 	return list->current_entry->data;
 }
 
+/**
+ * gnome_vfs_directory_list_nth:
+ * @list: A directory list
+ * @n: Ordinal number of the element to retrieve
+ * 
+ * Retrieve the @n'th element in @list.
+ * 
+ * Return value: A pointer to the @n'th element in @list, or %NULL if no such
+ * element exists.
+ **/
 GnomeVFSFileInfo *
 gnome_vfs_directory_list_nth (GnomeVFSDirectoryList *list, guint n)
 {
@@ -287,6 +368,13 @@ gnome_vfs_directory_list_nth (GnomeVFSDirectoryList *list, guint n)
 }
 
 
+/**
+ * gnome_vfs_directory_list_filter:
+ * @list: A directory list
+ * @filter: A directory filter
+ * 
+ * Filter @list through @filter
+ **/
 void
 gnome_vfs_directory_list_filter	(GnomeVFSDirectoryList *list,
 				 GnomeVFSDirectoryFilter *filter)
@@ -314,6 +402,14 @@ gnome_vfs_directory_list_filter	(GnomeVFSDirectoryList *list,
 }
 
 
+/**
+ * gnome_vfs_directory_list_sort:
+ * @list: A directory list
+ * @reversed: Boolean specifying whether the sort order should be reversed
+ * @rules: %NULL-terminated array of sorting rules
+ * 
+ * Sort @list according to @rules.
+ **/
 void
 gnome_vfs_directory_list_sort (GnomeVFSDirectoryList *list,
 			       gboolean reversed,
@@ -336,6 +432,17 @@ gnome_vfs_directory_list_sort (GnomeVFSDirectoryList *list,
 		(list, GNOME_VFS_DIRECTORY_LIST_POSITION_NONE);
 }
 
+/**
+ * gnome_vfs_directory_list_sort_custom:
+ * @list: A directory list
+ * @func: A directory sorting function
+ * @data: Data to be passed to @func at each iteration
+ * 
+ * Sort @list using @func.  @func should return -1 if the element in the first
+ * argument should come before the element in the second; +1 if the element in
+ * the first argument should come after the element in the second; 0 if it
+ * elements are equal from the point of view of sorting.
+ **/
 void
 gnome_vfs_directory_list_sort_custom (GnomeVFSDirectoryList *list,
 				      GnomeVFSDirectorySortFunc func,
@@ -349,6 +456,15 @@ gnome_vfs_directory_list_sort_custom (GnomeVFSDirectoryList *list,
 }
 
 
+/**
+ * gnome_vfs_directory_list_get:
+ * @list: A directory list
+ * @position: A directory list position
+ * 
+ * Retrieve element at @position.
+ * 
+ * Return value: A pointer to the element at @position.
+ **/
 GnomeVFSFileInfo *
 gnome_vfs_directory_list_get (GnomeVFSDirectoryList *list,
 			      GnomeVFSDirectoryListPosition position)
@@ -367,6 +483,14 @@ gnome_vfs_directory_list_get (GnomeVFSDirectoryList *list,
 }
 
 
+/**
+ * gnome_vfs_directory_list_get_num_entries:
+ * @list: A directory list
+ * 
+ * Retrieve the number of elements in @list.  This is an O(0) operation.
+ * 
+ * Return value: The number of elements in @list.
+ **/
 guint
 gnome_vfs_directory_list_get_num_entries (GnomeVFSDirectoryList *list)
 {
@@ -375,6 +499,14 @@ gnome_vfs_directory_list_get_num_entries (GnomeVFSDirectoryList *list)
 	return list->num_entries;
 }
 
+/**
+ * gnome_vfs_directory_list_get_position:
+ * @list: A directory list
+ * 
+ * Retrieve the current position in @list.
+ * 
+ * Return value: An opaque value representing the current position in @list.
+ **/
 GnomeVFSDirectoryListPosition
 gnome_vfs_directory_list_get_position (GnomeVFSDirectoryList *list)
 {
@@ -383,6 +515,13 @@ gnome_vfs_directory_list_get_position (GnomeVFSDirectoryList *list)
 	return list->current_entry;
 }
 
+/**
+ * gnome_vfs_directory_list_set_position:
+ * @list: A directory list
+ * @position: A position in @list
+ * 
+ * Set @list's current position.
+ **/
 void
 gnome_vfs_directory_list_set_position (GnomeVFSDirectoryList *list,
 				       GnomeVFSDirectoryListPosition position)
@@ -392,6 +531,15 @@ gnome_vfs_directory_list_set_position (GnomeVFSDirectoryList *list,
 	list->current_entry = position;
 }
 
+/**
+ * gnome_vfs_directory_list_get_last_position:
+ * @list: A directory list
+ * 
+ * Get the position of the last element in @list.
+ * 
+ * Return value: An opaque type representing the position of the last element
+ * in @list.
+ **/
 GnomeVFSDirectoryListPosition
 gnome_vfs_directory_list_get_last_position (GnomeVFSDirectoryList *list)
 {
@@ -400,6 +548,15 @@ gnome_vfs_directory_list_get_last_position (GnomeVFSDirectoryList *list)
 	return list->last_entry;
 }
 
+/**
+ * gnome_vfs_directory_list_get_first_position:
+ * @list: A directory list
+ * 
+ * Get the position of the first element in @list.
+ * 
+ * Return value: An opaque type representing the position of the first element
+ * in @list.
+ **/
 GnomeVFSDirectoryListPosition
 gnome_vfs_directory_list_get_first_position (GnomeVFSDirectoryList *list)
 {
@@ -408,6 +565,15 @@ gnome_vfs_directory_list_get_first_position (GnomeVFSDirectoryList *list)
 	return list->entries;
 }
 
+/**
+ * gnome_vfs_directory_list_position_next:
+ * @position: A directory list position
+ * 
+ * Get the position next to @position.
+ * 
+ * Return value: An opaque type representing the position of the element that
+ * comes after @position.
+ **/
 GnomeVFSDirectoryListPosition
 gnome_vfs_directory_list_position_next (GnomeVFSDirectoryListPosition position)
 {
@@ -419,6 +585,15 @@ gnome_vfs_directory_list_position_next (GnomeVFSDirectoryListPosition position)
 	return list->next;
 }
 
+/**
+ * gnome_vfs_directory_list_position_prev:
+ * @position: A directory list position
+ * 
+ * Get the position previous to @position.
+ * 
+ * Return value: An opaque type representing the position of the element that
+ * comes before @position.
+ **/
 GnomeVFSDirectoryListPosition
 gnome_vfs_directory_list_position_prev (GnomeVFSDirectoryListPosition position)
 {
@@ -459,6 +634,20 @@ load_from_handle (GnomeVFSDirectoryList **list,
 	return GNOME_VFS_OK;
 }
 
+/**
+ * gnome_vfs_directory_list_load:
+ * @list: A pointer to a pointer to a directory list
+ * @text_uri: A text URI
+ * @options: Options for loading the directory 
+ * @meta_keys: %NULL-terminated list of metadata keys to be read for each file
+ * @filter: Filter to be applied to the files being read
+ * 
+ * Load a directory from @text_uri with the specified @options and @meta_keys
+ * into a newly created directory list.  Directory entries are filtered through
+ * @filter.  On return @*list will point to such a list.
+ * 
+ * Return value: An integer representing the result of the operation.
+ **/
 GnomeVFSResult
 gnome_vfs_directory_list_load (GnomeVFSDirectoryList **list,
 			       const gchar *text_uri,
@@ -477,6 +666,20 @@ gnome_vfs_directory_list_load (GnomeVFSDirectoryList **list,
 	return load_from_handle (list, handle);
 }
 
+/**
+ * gnome_vfs_directory_list_load_from_uri:
+ * @list: A pointer to a pointer to a directory list
+ * @uri: A GnomeVFSURI
+ * @options: Options for loading the directory 
+ * @meta_keys: %NULL-terminated list of metadata keys to be read for each file
+ * @filter: Filter to be applied to the files being read
+ * 
+ * Load a directory from @uri with the specified @options and @meta_keys
+ * into a newly created directory list.  Directory entries are filtered through
+ * @filter.  On return @*list will point to such a list.
+ * 
+ * Return value: An integer representing the result of the operation.
+ **/
 GnomeVFSResult
 gnome_vfs_directory_list_load_from_uri (GnomeVFSDirectoryList **list,
 					GnomeVFSURI *uri,
