@@ -1,5 +1,11 @@
 2004-04-16  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
+	Better statfs portability (#136468)
+
+2004-04-16  Alexander Larsson  <alexl@redhat.com>
+
 	Patch from Ondrej Sury
 	
 	* acconfig.h:
