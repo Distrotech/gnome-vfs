@@ -1,3 +1,41 @@
+2002-07-24  Michael Meeks  <michael@ximian.com>
+  
+	* Version 2.0.2
+
+	* libgnomevfs/gnome-vfs-job.c (gnome_vfs_job_go): dump
+	debug before scheduling the job, rather than when job
+	might be invalid.
+	(handle_cancelled_open): don't do daft things with
+	re-using the original job, and trying to signal
+	strangely to the caller.
+	(dispatch_job_callback): expand switch for
+	CREATE_SYMBOLIC_LINK test for a valid handle before
+	destroying it here, since it wasn't killed at the
+	exit of gnome-vfs-job-slave.c (thread_routine).
+	(execute_read, execute_write): set the op type to
+	READ_WRITE_DONE here before job might be invalid.
+	(gnome_vfs_job_execute): and not here, when it may
+	be duff / freed.
+
+	* libgnomevfs/gnome-vfs-async-ops.c
+	(gnome_vfs_async_xfer): set handle_return before
+	calling job_go [ which may invalidate job ]
+
+	* libgnomevfs/gnome-vfs-job.c
+	(job_notify): prune semaphore mess.
+	(gnome_vfs_job_set): lock/unlock.
+
+2002-07-23  Michael Meeks  <michael@ximian.com>
+
+	* test/test-async-cancel.c (file_open_callback): move
+	the async_read into the open_callback.
+
+	* libgnomevfs/gnome-vfs-job.c
+	(empty_close_callback): kill.
+
+	* libgnomevfs/gnome-vfs-job-queue.c
+	(job_queue_get_first): don't foreach a NULL job_queue.
+	
 2002-07-23  Michael Meeks  <michael@ximian.com>
 
 	* libgnomevfs/gnome-vfs-async-job-map.c

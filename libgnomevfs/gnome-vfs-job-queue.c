@@ -144,7 +144,10 @@ job_queue_get_first (void)
 {
 	GnomeVFSJob *job = NULL;
 
-	g_tree_foreach (job_queue, find_first_value, &job);
+	if (job_queue) {
+		g_tree_foreach (job_queue, find_first_value, &job);
+	}
+
 	return job;
 }
 

@@ -107,7 +107,11 @@ clr_fl (int fd, int flags)
 	}
 }
 
-/* Find out whether or not a given job has more ops to go */
+/*
+ *   Find out whether or not a given job should be left in
+ * the job map, preserving it's open VFS handle, since we
+ * can do more operations on it later.
+ */
 gboolean
 gnome_vfs_job_complete (GnomeVFSJob *job)
 {
@@ -146,8 +150,9 @@ job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 	
 		g_idle_add (dispatch_job_callback, notify_result);
 	} else {
-		JOB_DEBUG (("job cancelled, bailing %u",
-			GPOINTER_TO_UINT (notify_result->job_handle)));
+		JOB_DEBUG (("Barfing on oneway cancel %u (%d)",
+			    GPOINTER_TO_UINT (notify_result->job_handle),
+			    job->op->type));
 		gnome_vfs_job_destroy_notify_result (notify_result);
 	}
 }
@@ -158,40 +163,23 @@ static void
 job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
 	if (!gnome_vfs_async_job_add_callback (job, notify_result)) {
-		JOB_DEBUG (("job cancelled, bailing %u",
-			GPOINTER_TO_UINT (notify_result->job_handle)));
+		JOB_DEBUG (("Barfing on sync cancel %u (%d)",
+			    GPOINTER_TO_UINT (notify_result->job_handle),
+			    job->op->type));
 		gnome_vfs_job_destroy_notify_result (notify_result);
 		return;
 	}
-
-	JOB_DEBUG (("Locking notification lock %u", GPOINTER_TO_UINT (notify_result->job_handle)));
-	/* Lock notification, so that the master cannot send the signal until
-           we are ready to receive it.  */
-	g_mutex_lock (job->notify_ack_lock);
 
 	/* Send the notification.  This will wake up the master thread, which
          * will in turn signal the notify condition.
          */
 	g_idle_add (dispatch_sync_job_callback, notify_result);
 
-	/* FIXME:
-	 * unlock here to prevent deadlock with async cancel. We should not
-	 * use the access lock at all in the case of synch operations like
-	 * xfer. Unlocking here is perfectly OK, even though it's a hack.
-	 */
-	sem_post (&job->access_lock);
-
 	JOB_DEBUG (("Wait notify condition %u", GPOINTER_TO_UINT (notify_result->job_handle)));
 	/* Wait for the notify condition.  */
-	g_cond_wait (job->notify_ack_condition, job->notify_ack_lock);
+	g_cond_wait (job->notify_ack_condition, job->job_lock);
 
-	sem_wait (&job->access_lock);
-
-	JOB_DEBUG (("Unlock notify ack lock %u", GPOINTER_TO_UINT (notify_result->job_handle)));
-	/* Acknowledgment got: unlock the mutex.  */
-	g_mutex_unlock (job->notify_ack_lock);
-
-	JOB_DEBUG (("Done %u", GPOINTER_TO_UINT (notify_result->job_handle)));
+	JOB_DEBUG (("Got notify ack condition %u", GPOINTER_TO_UINT (notify_result->job_handle)));
 }
 
 static void
@@ -336,7 +324,7 @@ static void
 handle_cancelled_open (GnomeVFSJob *job)
 {
 	/* schedule a silent close to make sure the handle does not leak */
-	gnome_vfs_job_set (job, GNOME_VFS_OP_CLOSE,
+	gnome_vfs_job_set (job, GNOME_VFS_OP_CLOSE, 
 			   (GFunc) empty_close_callback, NULL);
 	gnome_vfs_job_go (job);
 }
@@ -452,20 +440,16 @@ dispatch_sync_job_callback (gpointer data)
 	
 	gnome_vfs_async_job_map_lock ();
 	job = gnome_vfs_async_job_map_get_job (notify_result->job_handle);
+	g_mutex_lock (job->job_lock);
 	gnome_vfs_async_job_map_unlock ();
 	
 	g_assert (job != NULL);
 	
 	JOB_DEBUG (("signalling %u", GPOINTER_TO_UINT (notify_result->job_handle)));
-
-	/* OK to access a job with the map unlocked, job will not be deleted
-	 * from under us.
-	 */
-	g_mutex_lock (job->notify_ack_lock);
 	
 	/* Signal the async thread that we are done with the notification. */
 	g_cond_signal (job->notify_ack_condition);
-	g_mutex_unlock (job->notify_ack_lock);
+	g_mutex_unlock (job->job_lock);
 
 	return FALSE;
 }
@@ -489,40 +473,44 @@ dispatch_job_callback (gpointer data)
 
 	if (!valid) {
 		/* this can happen when gnome vfs is shutting down */
-		JOB_DEBUG (("callback %u no longer valid", notify_result->callback_id));
+		JOB_DEBUG (("shutting down: callback %u no longer valid",
+			    notify_result->callback_id));
 		gnome_vfs_job_destroy_notify_result (notify_result);
 		return FALSE;
 	}
 	
 	if (cancelled) {
 		/* cancel the job in progress */
-		
-		JOB_DEBUG (("cancelling job %u %u", GPOINTER_TO_UINT (notify_result->job_handle),
-			notify_result->callback_id));
+		JOB_DEBUG (("cancelling job %u %u",
+			    GPOINTER_TO_UINT (notify_result->job_handle),
+			    notify_result->callback_id));
 
 		gnome_vfs_async_job_map_lock ();
 
 		job = gnome_vfs_async_job_map_get_job (notify_result->job_handle);
 		
 		if (job != NULL) {
-			/* If needed, schedule a close to make sure we do not leak open handles. */
+			g_mutex_lock (job->job_lock);
+
 			switch (job->op->type) {
 			case GNOME_VFS_OP_OPEN:
-			case GNOME_VFS_OP_CREATE:
 			case GNOME_VFS_OP_OPEN_AS_CHANNEL:
+			case GNOME_VFS_OP_CREATE:
 			case GNOME_VFS_OP_CREATE_AS_CHANNEL:
-				JOB_DEBUG (("cancelling open or create %u",
-					    GPOINTER_TO_UINT (job->job_handle)));
-				handle_cancelled_open (job);
-				/* Keep the job in the job map -- it will get removed once close completes. */
-				break;
-		
+			case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
+				if (job->handle) {
+					g_mutex_unlock (job->job_lock);
+					handle_cancelled_open (job);
+					JOB_DEBUG (("handle cancel open job %u",
+						    GPOINTER_TO_UINT (notify_result->job_handle)));
+					break;
+				} /* else drop through */
 			default:
 				/* Remove job from the job map. */
 				gnome_vfs_async_job_map_remove_job (job);
+				g_mutex_unlock (job->job_lock);
 				break;
 			}
-			
 		}
 	
 		gnome_vfs_async_job_map_unlock ();
@@ -532,7 +520,6 @@ dispatch_job_callback (gpointer data)
 	
 		
 	JOB_DEBUG (("executing callback %u", GPOINTER_TO_UINT (notify_result->job_handle)));	
-	
 
 	switch (notify_result->type) {
 	case GNOME_VFS_OP_CLOSE:
@@ -590,9 +577,6 @@ gnome_vfs_job_set (GnomeVFSJob *job,
 {
 	GnomeVFSOp *op;
 
-	JOB_DEBUG (("locking access lock %u, op %d", GPOINTER_TO_UINT (job->job_handle), type));
-	sem_wait (&job->access_lock);
-
 	op = g_new (GnomeVFSOp, 1);
 	op->type = type;
 	op->callback = callback;
@@ -602,10 +586,15 @@ gnome_vfs_job_set (GnomeVFSJob *job,
 
 	g_assert (gnome_vfs_context_get_cancellation (op->context) != NULL);
 
+	JOB_DEBUG (("locking access lock %u, op %d", GPOINTER_TO_UINT (job->job_handle), type));
+
+	g_mutex_lock (job->job_lock);
+
 	gnome_vfs_op_destroy (job->op);
 	job->op = op;
-
 	job->cancelled = FALSE;
+
+	g_mutex_unlock (job->job_lock);
 
 	JOB_DEBUG (("%u op type %d, op %p", GPOINTER_TO_UINT (job->job_handle),
 		job->op->type, job->op));
@@ -618,9 +607,8 @@ gnome_vfs_job_new (GnomeVFSOpType type, int priority, GFunc callback, gpointer c
 	
 	new_job = g_new0 (GnomeVFSJob, 1);
 
-	sem_init (&new_job->access_lock, 0, 1);
+	new_job->job_lock = g_mutex_new ();
 	new_job->notify_ack_condition = g_cond_new ();
-	new_job->notify_ack_lock = g_mutex_new ();
 	new_job->priority = priority;
 
 	/* Add the new job into the job hash table. This also assigns
@@ -641,10 +629,8 @@ gnome_vfs_job_destroy (GnomeVFSJob *job)
 
 	gnome_vfs_op_destroy (job->op);
 
-	sem_destroy (&job->access_lock);
-
+	g_mutex_free (job->job_lock);
 	g_cond_free (job->notify_ack_condition);
-	g_mutex_free (job->notify_ack_lock);
 
 	memset (job, 0xaa, sizeof (GnomeVFSJob));
 
@@ -731,17 +717,15 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 void
 gnome_vfs_job_go (GnomeVFSJob *job)
 {
+	JOB_DEBUG (("new job %u, op %d, unlocking job lock",
+		GPOINTER_TO_UINT (job->job_handle), job->op->type));
+
 	/* Fire up the async job thread. */
 	if (!gnome_vfs_job_schedule (job)) {
 		g_warning ("Cannot schedule this job.");
 		gnome_vfs_job_destroy (job);
 		return;
 	}
-	
-	JOB_DEBUG (("new job %u, op %d, unlocking access lock",
-		GPOINTER_TO_UINT (job->job_handle), job->op->type));
-
-	sem_post (&job->access_lock);
 }
 
 #define DEFAULT_BUFFER_SIZE 16384
@@ -1213,6 +1197,8 @@ execute_read (GnomeVFSJob *job)
 									   &notify_result->specifics.read.bytes_read,
 									   job->op->context);
 
+	job->op->type = GNOME_VFS_OP_READ_WRITE_DONE;
+
 	job_oneway_notify (job, notify_result);
 }
 
@@ -1238,6 +1224,7 @@ execute_write (GnomeVFSJob *job)
 									     &notify_result->specifics.write.bytes_written,
 									     job->op->context);
 
+	job->op->type = GNOME_VFS_OP_READ_WRITE_DONE;
 
 	job_oneway_notify (job, notify_result);
 }
@@ -1558,12 +1545,17 @@ execute_xfer (GnomeVFSJob *job)
 void
 gnome_vfs_job_execute (GnomeVFSJob *job)
 {
-	JOB_DEBUG (("exec job %u", GPOINTER_TO_UINT (job->job_handle)));
+	guint id;
+
+	id = GPOINTER_TO_UINT (job->job_handle);
+
+	JOB_DEBUG (("exec job %u", id));
 
 	if (!job->cancelled) {
 		set_current_job (job);
 
-		JOB_DEBUG (("executing %u %d", GPOINTER_TO_UINT (job->job_handle), job->op->type));
+		JOB_DEBUG (("executing %u %d", id, job->op->type));
+
 		switch (job->op->type) {
 		case GNOME_VFS_OP_OPEN:
 			execute_open (job);
@@ -1608,21 +1600,20 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 			g_warning (_("Unknown job kind %u"), job->op->type);
 			break;
 		}
-
+		/* NB. 'job' is quite probably invalid now */
 		clear_current_job ();
-	}
-	
-	switch (job->op->type) {
+	} else {
+		switch (job->op->type) {
 		case GNOME_VFS_OP_READ:
 		case GNOME_VFS_OP_WRITE:
 			job->op->type = GNOME_VFS_OP_READ_WRITE_DONE;
 			break;
-
 		default:
 			break;
+		}
 	}
 	
-	JOB_DEBUG (("done %u", GPOINTER_TO_UINT (job->job_handle)));
+	JOB_DEBUG (("done job %u", id));
 }
 
 void
@@ -1718,4 +1709,3 @@ gnome_vfs_dispatch_module_callback (GnomeVFSAsyncModuleCallback callback,
 
 	job_notify (job, &notify_result);
 }
-

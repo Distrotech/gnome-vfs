@@ -44,7 +44,7 @@ static GnomeVFSAsyncHandle *test_handle;
 static gpointer test_callback_data;
 static gboolean test_done;
 
-#define MAX_THREAD_WAIT 100
+#define MAX_THREAD_WAIT 500
 #define MAX_FD_CHECK 128
 
 static void
@@ -460,6 +460,13 @@ test_open_close (void)
 }
 
 static void
+empty_close_callback (GnomeVFSAsyncHandle *handle,
+		      GnomeVFSResult result,
+		      gpointer callback_data)
+{
+}
+
+static void
 test_open_cancel (void)
 {
 	file_open_flag = FALSE;
@@ -486,6 +493,9 @@ test_open_cancel (void)
 			      test_callback_data);
 	wait_until_vfs_jobs_gone_no_main ();
 	gnome_vfs_async_cancel (test_handle);
+	if (file_open_flag) { /* too quick */
+		gnome_vfs_async_close (test_handle, empty_close_callback, NULL);
+	}
 	TEST_ASSERT (wait_until_file_descriptors_gone (),
 		     ("open cancel 2: %d file descriptors leaked", get_used_file_descriptor_count ()));
 	free_at_start = get_free_file_descriptor_count ();
@@ -553,7 +563,8 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 	
 	directory_load_flag = FALSE;
 	gnome_vfs_async_cancel (handle);
-	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("load directory cancel 1: job never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("load directory cancel 1: job never went away delay %d",
+						   delay_till_cancel));
 	TEST_ASSERT (!directory_load_flag, ("load directory cancel 1: load callback was called"));
 
 	gnome_vfs_async_load_directory (&handle,
@@ -570,7 +581,8 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 	
 	directory_load_flag = FALSE;
 	gnome_vfs_async_cancel (handle);
-	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("load directory cancel 2: job never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("load directory cancel 2: job never went away delay %d",
+						   delay_till_cancel));
 	TEST_ASSERT (!directory_load_flag, ("load directory cancel 2: load callback was called"));
 }
 
@@ -634,7 +646,9 @@ test_find_directory (int delay_till_cancel)
 		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777, 0,
 		test_find_directory_callback, &find_directory_flag);
 		
-	TEST_ASSERT (wait_for_boolean (&find_directory_flag), ("find directory cancel 1: callback was not called"));
+	TEST_ASSERT (wait_for_boolean (&find_directory_flag),
+		     ("find directory cancel 1: callback was not called %d",
+		      delay_till_cancel));
 	
 	find_directory_flag = FALSE;
 	
@@ -645,7 +659,7 @@ test_find_directory (int delay_till_cancel)
 	usleep (delay_till_cancel * 100);
 	
 	gnome_vfs_async_cancel (handle);
-	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 2: job never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("find directory cancel 2: job never went away"));
 	TEST_ASSERT (!find_directory_flag, ("find directory cancel 2: callback was called"));
 
 	
@@ -681,53 +695,72 @@ main (int argc, char **argv)
 	free_at_start = get_free_file_descriptor_count ();
 
 	/* Test to see that a simple async. call works without leaking or anything. */
+	fprintf (stderr, "Testing get file info...\n");
 	test_get_file_info ();
 	test_get_file_info ();
+	fprintf (stderr, "Testing open, close...\n");
 	test_open_close ();
 	test_open_close ();
+	fprintf (stderr, "Testing read, close...\n");
 	test_open_read_close ();
 	test_open_read_close ();
+	fprintf (stderr, "Testing cancellation...\n");
 	test_open_cancel ();
 	test_open_cancel ();
 
+	fprintf (stderr, "Testing failed opens...\n");
 	test_open_fail ();
 	test_open_fail ();
+	fprintf (stderr, "Testing read, cancel, closes...\n");
 	test_open_read_cancel_close ();
 	test_open_read_cancel_close ();
 
+	fprintf (stderr, "Testing directory loads");
 	test_load_directory_fail ();
 	test_load_directory_cancel (0, 1);
 	test_load_directory_cancel (1, 1);
 	test_load_directory_cancel (10, 1);
 	test_load_directory_cancel (100, 1);
+	fprintf (stderr, ".");
 	test_load_directory_cancel (0, 1);
 	test_load_directory_cancel (1, 1);
 	test_load_directory_cancel (10, 1);
 	test_load_directory_cancel (100, 1);
+	fprintf (stderr, ".");
 
 	test_load_directory_cancel (0, 32);
 	test_load_directory_cancel (1, 32);
 	test_load_directory_cancel (10, 32);
 	test_load_directory_cancel (100, 32);
+	fprintf (stderr, ".");
 	test_load_directory_cancel (0, 32);
 	test_load_directory_cancel (1, 32);
 	test_load_directory_cancel (10, 32);
 	test_load_directory_cancel (100, 32);
 
+	fprintf (stderr, "\nTesting directory finds");
 	test_find_directory (0);
 	test_find_directory (0);
+	fprintf (stderr, ".");
 	test_find_directory (1);
 	test_find_directory (1);
+	fprintf (stderr, ".");
 	test_find_directory (10);
 	test_find_directory (10);
+	fprintf (stderr, ".");
 	test_find_directory (100);
 	test_find_directory (100);
 
+	fprintf (stderr, "\nTesting shutdown...\n");
 	gnome_vfs_shutdown ();
 
 	if (g_getenv ("_MEMPROF_SOCKET")) {
 		g_warning ("Waiting for memprof\n");
 		g_main_context_iteration (NULL, TRUE);
+	}
+
+	if (!at_least_one_test_failed) {
+		fprintf (stderr, "All tests passed successfully.\n");
 	}
 
 	/* Report to "make check" on whether it all worked or not. */
