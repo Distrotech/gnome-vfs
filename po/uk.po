@@ -44,7 +44,7 @@ msgstr "Неможливо проанал╕зувати: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr ""
+msgstr "╤нш╕ помилки анал╕зу буде про╕гноровано."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -518,7 +518,7 @@ msgstr "ftpfs: зчитування каталогу FTP перервано користувачем"
 
 #: modules/ftp-method.c:1592
 msgid "ftpfs: got listing"
-msgstr ""
+msgstr "ftpfs: отримано список"
 
 #: modules/ftp-method.c:1644
 msgid "ftpfs: failed; nowhere to fallback to"
