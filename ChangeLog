@@ -1,3 +1,54 @@
+2002-07-26  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (monitor_timeout_cb): Fix
+	reentrency by copying the stat_monitors list, and checking each
+	VFolderMonitor is still in the list while iterating.
+
+	* modules/vfolder/vfolder-method.c (do_open): Handle all-scheme by
+	loading the FolderChild manually.
+	(dir_handle_new_all): ret->list is a list of entry names, not
+	Entry pointers.
+	(do_read_directory): Handle all-scheme.
+	(do_get_file_info): Ditto.  Also, handle a NULL parent folder for
+	all-scheme.
+	(do_remove_directory_unlocked): New, unlocked version of
+	do_remove_directory.
+	(do_remove_directory): Wrap do_remove_directory_unlocked() with a
+	lock.
+	(do_unlink_unlocked): New, unlocked version of do_unlink.
+	(do_unlink): Wrap do_unlink_unlocked() with a lock.
+	(do_move): Fix some logic bugs, use _unlocked versions of unlink
+	and remove_directory, only make the moved file user-private if the
+	displayname has changed.
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_write_user): Freeze
+	and thaw the filename_monitor while writing out the .vfolder-info,
+	so we don't trigger our own reloads.
+	(vfolder_info_set_dirty): just set info->dirty to true, instead of
+	writing the .vfolder-info out every time.
+
+	* modules/vfolder/vfolder-common.h (VFOLDER_INFO_WRITE_UNLOCK):
+	Call vfolder_info_write_user() before unlocking, so we batch
+	.vfoldeer-info file writes.
+
+	* modules/vfolder/vfolder-common.c (entry_reload_if_needed): Add
+	basic support for a "Deprecates" keyword, to allow differently
+	named .desktop files to replace one-another.
+	(read_includes): Read and load the explicit includes here, so we
+	can support including arbitrary URLs, not just extended/pool
+	entries.
+	(is_excluded): New, check the displayname and filename for
+	includability.
+	(folder_reload_if_needed): Call read_includes.
+	(folder_add_include): remove_exclude here.
+	(folder_add_exclude): remove_include here.
+
+2002-07-25  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/test-vfolder.c (main): NULL term
+	g_build_filename().  Use putenv() which is more portable than
+	setenv().
+
 2002-07-24  jacob berkman  <jacob@ximian.com>
 
 	* modules/vfolder/Makefile.am (libvfolder_desktop_la_LIBADD):

@@ -39,6 +39,7 @@ gboolean vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri);
 
 typedef struct {
 	GnomeVFSMonitorType     type;
+
 	GnomeVFSMonitorHandle  *vfs_handle;
 
 	time_t                  ctime;
@@ -50,12 +51,15 @@ typedef struct {
 	gpointer                user_data;
 } VFolderMonitor;
 
+
 VFolderMonitor *vfolder_monitor_dir_new  (gchar                   *uri,
 					  GnomeVFSMonitorCallback  callback,
 					  gpointer                 user_data);
 VFolderMonitor *vfolder_monitor_file_new (gchar                   *uri,
 					  GnomeVFSMonitorCallback  callback,
 					  gpointer                 user_data);
+void            vfolder_monitor_emit     (gchar                   *uri,
+					  GnomeVFSMonitorEventType event_type);
 void            vfolder_monitor_freeze   (VFolderMonitor          *monitor);
 void            vfolder_monitor_thaw     (VFolderMonitor          *monitor);
 void            vfolder_monitor_cancel   (VFolderMonitor          *monitor);

@@ -124,11 +124,29 @@ static gboolean
 monitor_timeout_cb (gpointer user_data)
 {
         GSList *iter;
+	GSList *copy;
 
+	/* 
+	 * Copy the stat_monitors list in case the callback removes/adds
+	 * monitors (which is likely).
+	 */
 	G_LOCK (stat_monitors);
-	for (iter = stat_monitors; iter; iter = iter->next) {
+	copy = g_slist_copy (stat_monitors);
+	G_UNLOCK (stat_monitors);	
+
+	for (iter = copy; iter; iter = iter->next) {
 		VFolderMonitor *monitor = iter->data;
 		time_t ctime;
+
+		G_LOCK (stat_monitors);
+		if (g_slist_position (stat_monitors, iter) < 0) {
+			G_UNLOCK (stat_monitors);
+			continue;
+		}
+		G_UNLOCK (stat_monitors);
+
+		if (monitor->frozen)
+			continue;
 
 		ctime = ctime_for_uri (monitor->uri);
 		if (ctime == monitor->ctime)
@@ -144,7 +162,8 @@ monitor_timeout_cb (gpointer user_data)
 
 		monitor->ctime = ctime;
 	}
-	G_UNLOCK (stat_monitors);
+
+	g_slist_free (copy);
 
 	return TRUE;
 }
@@ -157,7 +176,18 @@ monitor_start_internal (GnomeVFSMonitorType      type,
 {
 	GnomeVFSResult result;
 	VFolderMonitor *monitor;
-	
+	GnomeVFSFileInfo *info;
+
+	/* Check the file exists so we don't get a bogus DELETED event */
+	info = gnome_vfs_file_info_new ();
+	result = gnome_vfs_get_file_info (uri, 
+					  info, 
+					  GNOME_VFS_FILE_INFO_DEFAULT);
+	gnome_vfs_file_info_unref (info);
+
+	if (result != GNOME_VFS_OK)
+		return NULL;
+
 	monitor = g_new0 (VFolderMonitor, 1);
 	monitor->callback = callback;
 	monitor->user_data = user_data;
@@ -228,7 +258,7 @@ vfolder_monitor_cancel (VFolderMonitor *monitor)
 	else {
 		G_LOCK (stat_monitors);
 		stat_monitors = g_slist_remove (stat_monitors, monitor);
-
+		
 		if (!stat_monitors) {
 			g_source_remove (stat_timeout_tag);
 			stat_timeout_tag = 0;
@@ -320,14 +350,12 @@ vfolder_timestamp_file_name (gchar *file)
 gchar *
 vfolder_untimestamp_file_name (gchar *file)
 {
-	int cnt;
-	gchar *dash = file;
+	int n = 0;
 
-	cnt = strspn (file, "0123456789-");
-	if (cnt)
-		dash = file + cnt;
+	while (file [n] && (g_ascii_isdigit (file [n]) || file [n] == '-'))
+		++n;
 
-	return g_strdup (dash);
+	return g_strdup (file [n] ? &file [n] : NULL);
 }
 
 gboolean

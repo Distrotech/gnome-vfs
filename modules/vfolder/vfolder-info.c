@@ -359,20 +359,17 @@ folder_read (VFolderInfo *info, gboolean user_private, xmlNode *fnode)
  * </VFolderInfo>
  */
 
-static void
-itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
-		    const gchar              *monitor_uri,
-		    const gchar              *info_uri,
-		    GnomeVFSMonitorEventType  event_type,
-		    gpointer                  user_data)
-{
-	// FIXME
-}
+static void itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
+				const gchar              *monitor_uri,
+				const gchar              *info_uri,
+				GnomeVFSMonitorEventType  event_type,
+				gpointer                  user_data);
 
 static ItemDir *
 itemdir_new (VFolderInfo *info, gchar *uri, gboolean is_mergedir)
 {
 	ItemDir *ret;
+
 	ret = g_new0 (ItemDir, 1);
 	ret->uri = g_strdup (uri);
 	ret->is_mergedir = is_mergedir;
@@ -385,7 +382,8 @@ itemdir_new (VFolderInfo *info, gchar *uri, gboolean is_mergedir)
 static void
 itemdir_free (ItemDir *itemdir)
 {
-	vfolder_monitor_cancel (itemdir->monitor);
+	if (itemdir->monitor)
+		vfolder_monitor_cancel (itemdir->monitor);
 	g_free (itemdir->uri);
 	g_free (itemdir);
 }
@@ -952,13 +950,13 @@ xml_tree_from_vfolder (VFolderInfo *info)
 }
 
 /* FIXME: what to do about errors */
-static void
+void
 vfolder_info_write_user (VFolderInfo *info)
 {
 	xmlDoc *doc;
 	GnomeVFSResult result;
 
-	if (info->inhibit_write)
+	if (info->inhibit_write || !info->dirty)
 		return;
 
 	if (!info->filename)
@@ -979,12 +977,18 @@ vfolder_info_write_user (VFolderInfo *info)
 		return;
 	}
 
+	/* Avoid triggering the monitor since we're the one writing the file */
+	if (info->filename_monitor)
+		vfolder_monitor_freeze (info->filename_monitor);
+
 	xmlSaveFormatFile (info->filename, doc, TRUE /* format */);
 	xmlFreeDoc(doc);
 
 	info->dirty = FALSE;
-
 	info->modification_time = time (NULL);
+
+	if (info->filename_monitor)
+		vfolder_monitor_thaw (info->filename_monitor);
 }
 
 static void
@@ -1033,6 +1037,21 @@ vfolder_info_reset (VFolderInfo *info)
 
 	folder_unref (info->root);
 	info->root = NULL;
+}
+
+static void
+itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
+		    const gchar              *monitor_uri,
+		    const gchar              *info_uri,
+		    GnomeVFSMonitorEventType  event_type,
+		    gpointer                  user_data)
+{
+	VFolderInfo *info =  user_data;
+
+	g_print ("Itemdir '%s' monitor called!\n", monitor_uri);
+
+	vfolder_info_reset (info);
+	vfolder_info_read_info (info, NULL, NULL);
 }
 
 static void
@@ -1203,7 +1222,6 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 						 info);
 
 	info->entries_ht = g_hash_table_new (g_str_case_hash, g_str_case_equal);
-	//info->entries_ht = g_hash_table_new (g_str_hash, g_str_equal);
 
 	/* 
 	 * Load all entries in the itemdir and mergedir directories.  Load all
@@ -1301,10 +1319,7 @@ vfolder_info_locate (const gchar *scheme)
 void
 vfolder_info_set_dirty (VFolderInfo *info)
 {
-	if (info->inhibit_write)
-		return;
-
-	vfolder_info_write_user (info);
+	info->dirty = TRUE;
 }
 
 static Folder *

@@ -38,7 +38,6 @@ typedef struct {
 
 	gboolean        dirty;
 	gboolean        user_private;
-	gboolean        has_implicit_keywords;
 	GSList         *keywords;       /* GQuark */
 } Entry;
 
@@ -126,7 +125,7 @@ struct _Folder {
 
 typedef struct {
 	enum {
-		FOLDER,
+		FOLDER = 1,
 		DESKTOP_FILE,
 		UNKNOWN_URI
 	} type;
@@ -276,12 +275,15 @@ struct _VFolderInfo {
 
 #define VFOLDER_INFO_WRITE_LOCK(vi) \
 	g_static_rw_lock_writer_lock (&(vi->rw_lock))
-#define VFOLDER_INFO_WRITE_UNLOCK(vi) \
+/* Writes out .vfolder-info file if there are changes */
+#define VFOLDER_INFO_WRITE_UNLOCK(vi)                   \
+	vfolder_info_write_user (vi);                   \
 	g_static_rw_lock_writer_unlock (&(vi->rw_lock))
 
 VFolderInfo  *vfolder_info_locate           (const gchar *scheme);
 
 void          vfolder_info_set_dirty        (VFolderInfo *info);
+void          vfolder_info_write_user       (VFolderInfo *info);
 
 Folder       *vfolder_info_get_folder       (VFolderInfo *info, gchar *path);
 Folder       *vfolder_info_get_parent       (VFolderInfo *info, gchar *path);

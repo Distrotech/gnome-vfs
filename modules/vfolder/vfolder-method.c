@@ -54,10 +54,11 @@ file_handle_free (FileHandle *handle)
 
 #define NICE_UNLOCK_INFO(info, write) 		  	  \
 	do {						  \
-		if (write) 			          \
+		if (write) {			          \
 			VFOLDER_INFO_WRITE_UNLOCK (info); \
-		else 					  \
+		} else {				  \
 			VFOLDER_INFO_READ_UNLOCK (info);  \
+		}					  \
 	} while (0)
 
 
@@ -99,26 +100,36 @@ do_open (GnomeVFSMethod *method,
 	else 
 		VFOLDER_INFO_READ_LOCK (info);
 
-	parent = vfolder_info_get_parent (info, vuri.path);
-	if (!parent) {
-		NICE_UNLOCK_INFO (info, want_write);
-		return GNOME_VFS_ERROR_NOT_FOUND;
-	}
+	if (vuri.is_all_scheme) {
+		child.type = DESKTOP_FILE;
+		child.entry = vfolder_info_lookup_entry (info, vuri.file);
 
-	if (!folder_get_child (parent, vuri.file, &child)) {
-		NICE_UNLOCK_INFO (info, want_write);
-		return GNOME_VFS_ERROR_NOT_FOUND;
-	}
+		if (!child.entry) {
+			NICE_UNLOCK_INFO (info, want_write);
+			return GNOME_VFS_ERROR_NOT_FOUND;
+		}
+	} else {
+		parent = vfolder_info_get_parent (info, vuri.path);
+		if (!parent) {
+			NICE_UNLOCK_INFO (info, want_write);
+			return GNOME_VFS_ERROR_NOT_FOUND;
+		}
 
-	if (child.type == FOLDER) {
-		NICE_UNLOCK_INFO (info, want_write);
-		return GNOME_VFS_ERROR_IS_DIRECTORY;
-	}
+		if (!folder_get_child (parent, vuri.file, &child)) {
+			NICE_UNLOCK_INFO (info, want_write);
+			return GNOME_VFS_ERROR_NOT_FOUND;
+		}
 
-	if (want_write) {
-		if (!entry_make_user_private (child.entry, parent)) {
-			VFOLDER_INFO_WRITE_UNLOCK (info);
-			return GNOME_VFS_ERROR_READ_ONLY;
+		if (child.type == FOLDER) {
+			NICE_UNLOCK_INFO (info, want_write);
+			return GNOME_VFS_ERROR_IS_DIRECTORY;
+		}
+
+		if (want_write) {
+			if (!entry_make_user_private (child.entry, parent)) {
+				VFOLDER_INFO_WRITE_UNLOCK (info);
+				return GNOME_VFS_ERROR_READ_ONLY;
+			}
 		}
 	}
 
@@ -247,6 +258,7 @@ do_create (GnomeVFSMethod *method,
 
 	if (result != GNOME_VFS_OK) {
 		VFOLDER_INFO_WRITE_UNLOCK (info);
+		g_free (filename);
 		return result;
 	}
 
@@ -259,6 +271,7 @@ do_create (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_READ_ONLY;
 	}
 
+	folder_add_include (parent, entry_get_filename (new_entry));
 	folder_add_entry (parent, new_entry);
 
 	vfolder_info_emit_change (info, 
@@ -582,10 +595,18 @@ dir_handle_new_all (VFolderInfo             *info,
 		    GnomeVFSFileInfoOptions  options)
 {
 	DirHandle *ret = g_new0 (DirHandle, 1);
+	GSList *iter;
 
+	iter = vfolder_info_list_all_entries (info);
+	for (; iter; iter = iter->next) {
+		Entry *entry = iter->data;
+		ret->list = g_slist_prepend (ret->list, 
+					     entry_get_displayname (entry));
+	}
+	ret->list = g_slist_reverse (ret->list);
+			 
 	ret->info = info;
 	ret->options = options;
-	ret->list = g_slist_copy (vfolder_info_list_all_entries (info));
 	ret->current = ret->list;
 
 	return ret;
@@ -594,7 +615,8 @@ dir_handle_new_all (VFolderInfo             *info,
 static void
 dir_handle_free (DirHandle *handle)
 {
-	folder_unref (handle->folder);
+	if (handle->folder) 
+		folder_unref (handle->folder);
 	
 	g_slist_free (handle->list);
 	g_free (handle);
@@ -624,7 +646,8 @@ do_open_directory (GnomeVFSMethod *method,
 
 	/* In the all- scheme just list all filenames */
 	if (vuri.is_all_scheme) {
-		if (vuri.path && strchr (vuri.path, '/')) {
+		/* Don't allow dirnames for all-applications:/ */
+		if (vuri.path && strrchr (vuri.path, '/') != vuri.path) {
 			VFOLDER_INFO_READ_UNLOCK (info);
 			return GNOME_VFS_ERROR_NOT_FOUND;
 		}
@@ -685,8 +708,17 @@ do_read_directory (GnomeVFSMethod *method,
 	entry_name = dh->current->data;
 	dh->current = dh->current->next;
 
-	if (!folder_get_child (dh->folder, entry_name, &child))
-		goto READ_NEXT_ENTRY;
+	if (dh->folder) {
+		if (!folder_get_child (dh->folder, entry_name, &child))
+			goto READ_NEXT_ENTRY;
+	} else {
+		/* all-scheme */
+		child.type = DESKTOP_FILE;
+		child.entry = vfolder_info_lookup_entry (dh->info, entry_name);
+
+		if (!child.entry)
+			goto READ_NEXT_ENTRY;
+	}
 
 	if (child.type == DESKTOP_FILE) {
 		GnomeVFSURI *file_uri;
@@ -766,16 +798,33 @@ do_get_file_info (GnomeVFSMethod *method,
 
 	VFOLDER_INFO_READ_LOCK (info);
 
-	parent = vfolder_info_get_parent (info, vuri.path);
-	if (!parent) {
-		VFOLDER_INFO_READ_UNLOCK (info);
-		return GNOME_VFS_ERROR_NOT_FOUND;
-	}
+	if (vuri.is_all_scheme) {
+		if (vuri.file) {
+			/* all-scheme */
+			child.type = DESKTOP_FILE;
+			child.entry = vfolder_info_lookup_entry (info, 
+								 vuri.file);
+			if (!child.entry) {
+				VFOLDER_INFO_READ_UNLOCK (info);
+				return GNOME_VFS_ERROR_NOT_FOUND;
+			}
+		} else {
+			/* all-scheme root folder */
+			child.type = FOLDER;
+			child.folder = NULL;
+		}
+	} else {
+		parent = vfolder_info_get_parent (info, vuri.path);
+		if (!parent) {
+			VFOLDER_INFO_READ_UNLOCK (info);
+			return GNOME_VFS_ERROR_NOT_FOUND;
+		}
 
-	if (!folder_get_child (parent, vuri.file, &child)) {
-		VFOLDER_INFO_READ_UNLOCK (info);
-		return GNOME_VFS_ERROR_NOT_FOUND;
-	}
+		if (!folder_get_child (parent, vuri.file, &child)) {
+			VFOLDER_INFO_READ_UNLOCK (info);
+			return GNOME_VFS_ERROR_NOT_FOUND;
+		}
+	}		
 
 	if (child.type == DESKTOP_FILE) {
 		GnomeVFSURI *file_uri;
@@ -812,14 +861,20 @@ do_get_file_info (GnomeVFSMethod *method,
 	else if (child.type == FOLDER) {
 		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
-		file_info->name = g_strdup (folder_get_name (child.folder));
+		if (child.folder) {
+			file_info->name = 
+				g_strdup (folder_get_name (child.folder));
 
-		if (child.folder->read_only) {
-			file_info->permissions = (GNOME_VFS_PERM_USER_READ |
-						  GNOME_VFS_PERM_GROUP_READ |
-						  GNOME_VFS_PERM_OTHER_READ);
-			file_info->valid_fields |= 
-				GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+			if (child.folder->read_only) {
+				file_info->permissions = 
+					(GNOME_VFS_PERM_USER_READ |
+					 GNOME_VFS_PERM_GROUP_READ |
+					 GNOME_VFS_PERM_OTHER_READ);
+				file_info->valid_fields |= 
+					GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+			}
+		} else {
+			file_info->name = g_strdup ("/");
 		}
 
 		VFOLDER_INFO_READ_UNLOCK (info);
@@ -959,13 +1014,47 @@ do_make_directory (GnomeVFSMethod *method,
 
 
 static GnomeVFSResult
+do_remove_directory_unlocked (VFolderInfo *info,
+			      VFolderURI  *vuri,
+			      GnomeVFSContext *context)
+{
+	Folder *parent, *folder;
+
+	parent = vfolder_info_get_parent (info, vuri->path);
+	if (!parent)
+		return GNOME_VFS_ERROR_NOT_FOUND;
+
+	folder = folder_get_subfolder (parent, vuri->file);
+	if (!folder || folder_is_hidden (folder))
+		return GNOME_VFS_ERROR_NOT_FOUND;
+
+	if (folder_list_subfolders (folder) ||
+	    folder_list_entries (folder))
+		return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
+
+	if (!folder_make_user_private (parent))
+		return GNOME_VFS_ERROR_READ_ONLY;
+
+	folder_ref (folder);
+	folder_add_exclude (parent, folder_get_name (folder));
+	folder_remove_subfolder (parent, folder);
+	folder_unref (folder);
+
+	vfolder_info_emit_change (info, 
+				  vuri->path, 
+				  GNOME_VFS_MONITOR_EVENT_DELETED);
+
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
 do_remove_directory (GnomeVFSMethod *method,
 		     GnomeVFSURI *uri,
 		     GnomeVFSContext *context)
 {
-	Folder *parent, *folder;
 	VFolderInfo *info;
 	VFolderURI vuri;
+	GnomeVFSResult result;
 
 	VFOLDER_URI_PARSE (uri, &vuri);
 
@@ -978,52 +1067,72 @@ do_remove_directory (GnomeVFSMethod *method,
 
 	VFOLDER_INFO_WRITE_LOCK (info);
 
-	parent = vfolder_info_get_parent (info, vuri.path);
+	result = do_remove_directory_unlocked (info, &vuri, context);
+
+	VFOLDER_INFO_WRITE_UNLOCK (info);
+
+	return result;
+}
+
+
+static GnomeVFSResult
+do_unlink_unlocked (VFolderInfo *info,
+		    VFolderURI  *vuri,
+		    GnomeVFSContext *context)
+{
+	Folder *parent, *folder;
+	Entry *entry;
+
+	parent = vfolder_info_get_parent (info, vuri->path);
 	if (!parent) {
 		VFOLDER_INFO_WRITE_UNLOCK (info);
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
 
-	folder = folder_get_subfolder (parent, vuri.file);
-	if (!folder || folder_is_hidden (folder)) {
-		VFOLDER_INFO_WRITE_UNLOCK (info);
+	folder = folder_get_subfolder (parent, vuri->file);
+	if (folder)
+		return GNOME_VFS_ERROR_IS_DIRECTORY;
+
+	entry = folder_get_entry (parent, vuri->file);
+	if (!entry)
 		return GNOME_VFS_ERROR_NOT_FOUND;
+
+	if (entry_is_user_private (entry)) {
+		GnomeVFSURI *uri;
+		GnomeVFSResult result;
+		
+		/* Delete our local copy */
+		uri = entry_get_real_uri (entry);
+		result = gnome_vfs_unlink_from_uri_cancellable (uri, context);
+		gnome_vfs_uri_unref (uri);
+
+		if (result != GNOME_VFS_OK)
+			return result;
 	}
 
-	if (folder_list_subfolders (folder) ||
-	    folder_list_entries (folder)) {
-		VFOLDER_INFO_WRITE_UNLOCK (info);
-		return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
-	}
-
-	if (!folder_make_user_private (parent)) {
-		VFOLDER_INFO_WRITE_UNLOCK (info);
+	if (!folder_make_user_private (parent))
 		return GNOME_VFS_ERROR_READ_ONLY;
-	}
 
-	folder_ref (folder);
-	folder_add_exclude (parent, folder_get_name (folder));
-	folder_remove_subfolder (parent, folder);
-	folder_unref (folder);
+	entry_ref (entry);
+	folder_add_exclude (parent, entry_get_displayname (entry));
+	folder_remove_entry (parent, entry);
+	entry_unref (entry);
 
 	vfolder_info_emit_change (info, 
-				  vuri.path, 
+				  vuri->path, 
 				  GNOME_VFS_MONITOR_EVENT_DELETED);
 
-	VFOLDER_INFO_WRITE_UNLOCK (info);
 	return GNOME_VFS_OK;
 }
 
-
 static GnomeVFSResult
 do_unlink (GnomeVFSMethod *method,
 	   GnomeVFSURI *uri,
 	   GnomeVFSContext *context)
 {
-	Folder *parent, *folder;
-	Entry *entry;
 	VFolderInfo *info;
 	VFolderURI vuri;
+	GnomeVFSResult result;
 
 	VFOLDER_URI_PARSE (uri, &vuri);
 
@@ -1041,53 +1150,11 @@ do_unlink (GnomeVFSMethod *method,
 
 	VFOLDER_INFO_WRITE_LOCK (info);
 
-	parent = vfolder_info_get_parent (info, vuri.path);
-	if (!parent) {
-		VFOLDER_INFO_WRITE_UNLOCK (info);
-		return GNOME_VFS_ERROR_NOT_FOUND;
-	}
-
-	folder = folder_get_subfolder (parent, vuri.file);
-	if (folder) {
-		VFOLDER_INFO_WRITE_UNLOCK (info);
-		return GNOME_VFS_ERROR_IS_DIRECTORY;
-	}
-
-	entry = folder_get_entry (parent, vuri.file);
-	if (!entry) {
-		VFOLDER_INFO_WRITE_UNLOCK (info);
-		return GNOME_VFS_ERROR_NOT_FOUND;
-	}
-
-	if (entry_is_user_private (entry)) {
-		GnomeVFSURI *uri;
-		GnomeVFSResult result;
-		
-		/* Delete our local copy */
-		uri = entry_get_real_uri (entry);
-		result = gnome_vfs_unlink_from_uri_cancellable (uri, context);
-		gnome_vfs_uri_unref (uri);
-
-		if (result != GNOME_VFS_OK)
-			return result;
-	}
-
-	if (!folder_make_user_private (parent)) {
-		VFOLDER_INFO_WRITE_UNLOCK (info);
-		return GNOME_VFS_ERROR_READ_ONLY;
-	}
-
-	entry_ref (entry);
-	folder_add_exclude (parent, entry_get_displayname (entry));
-	folder_remove_entry (parent, entry);
-	entry_unref (entry);
-
-	vfolder_info_emit_change (info, 
-				  vuri.path, 
-				  GNOME_VFS_MONITOR_EVENT_DELETED);
+	result = do_unlink_unlocked (info, &vuri, context);
 
 	VFOLDER_INFO_WRITE_UNLOCK (info);
-	return GNOME_VFS_OK;
+
+	return result;
 }
 
 
@@ -1101,9 +1168,6 @@ do_move (GnomeVFSMethod *method,
 	GnomeVFSResult result = GNOME_VFS_OK;
 	VFolderInfo *info;
 	Folder *old_parent, *new_parent;
-	//Folder *old_folder, *new_folder;
-	//Entry *old_entry, *new_entry;
-	//gboolean old_is_directory_file, new_is_directory_file;
 	VFolderURI old_vuri, new_vuri;
 	FolderChild old_child, existing_child;
 
@@ -1163,34 +1227,53 @@ do_move (GnomeVFSMethod *method,
 			VFOLDER_INFO_WRITE_UNLOCK (info);
 			return GNOME_VFS_ERROR_IS_DIRECTORY;
 		}
-		else if (existing_child.type == DESKTOP_FILE) {
-			/* ref in case old_child is existing_child */
-			entry_ref (old_child.entry);
 
-			result = do_unlink (method,
-					    new_uri,
-					    context);
+		/* ref in case old_parent is new_parent */
+		entry_ref (old_child.entry);
+
+		if (existing_child.type == DESKTOP_FILE) {
+			result = do_unlink_unlocked (info,
+						     &new_vuri,
+						     context);
 			if (result != GNOME_VFS_OK &&
 			    result != GNOME_VFS_ERROR_NOT_FOUND) {
+				entry_unref (old_child.entry);
 				VFOLDER_INFO_WRITE_UNLOCK (info);
 				return result;
 			}
+		}
 
+		/* remove from old folder */
+		folder_add_exclude (old_parent, 
+				    entry_get_filename (old_child.entry));
+		folder_remove_entry (old_parent, old_child.entry);
+
+		/* basenames different, have to make a local copy */
+		if (strcmp (entry_get_displayname (old_child.entry),
+			    new_vuri.file) != 0) {
 			entry_set_displayname (old_child.entry, new_vuri.file);
 			entry_make_user_private (old_child.entry, new_parent);
-
-			folder_add_entry (new_parent, old_child.entry);
-
-			entry_unref (old_child.entry);
-
-			vfolder_info_emit_change (
-				info, 
-				new_vuri.path, 
-				GNOME_VFS_MONITOR_EVENT_CREATED);
+		} else {
+			folder_add_include (
+				new_parent, 
+				entry_get_filename (old_child.entry));
 		}
+
+		/* add to new folder */
+		folder_add_entry (new_parent, old_child.entry);
+
+		entry_unref (old_child.entry);
+
+		vfolder_info_emit_change (info, 
+					  old_vuri.path, 
+					  GNOME_VFS_MONITOR_EVENT_DELETED);
+
+		vfolder_info_emit_change (info, 
+					  new_vuri.path, 
+					  GNOME_VFS_MONITOR_EVENT_CREATED);
 	} 
 	else if (old_child.type == FOLDER) {
-		if (existing_child.type != FOLDER) {
+		if (existing_child.type && existing_child.type != FOLDER) {
 			VFOLDER_INFO_WRITE_UNLOCK (info);
 			return GNOME_VFS_ERROR_NOT_A_DIRECTORY;
 		}
@@ -1202,14 +1285,15 @@ do_move (GnomeVFSMethod *method,
 			return GNOME_VFS_ERROR_LOOP;
 		}
 
-		/* ref in case old_child is existing_child */
+		/* ref in case old_parent is new_parent */
 		folder_ref (old_child.folder);
 
-		result = do_remove_directory (method, 
-					      new_uri,
-					      context);
+		result = do_remove_directory_unlocked (info, 
+						       &new_vuri,
+						       context);
 		if (result != GNOME_VFS_OK &&
 		    result != GNOME_VFS_ERROR_NOT_FOUND) {
+			folder_unref (old_child.folder);
 			VFOLDER_INFO_WRITE_UNLOCK (info);
 			return result;
 		}
@@ -1267,12 +1351,12 @@ do_set_file_info (GnomeVFSMethod *method,
 
 	if (mask & GNOME_VFS_SET_FILE_INFO_NAME) {
 		GnomeVFSResult result = GNOME_VFS_OK;
-		char *relative_name;
-		GnomeVFSURI *new_uri;
+		GnomeVFSURI *parent_uri, *new_uri;
 
-		relative_name = g_strconcat ("../", info->name, NULL);
-		new_uri = gnome_vfs_uri_resolve_relative (uri, relative_name);
-		g_free (relative_name);
+		parent_uri = gnome_vfs_uri_get_parent (uri);
+		new_uri = gnome_vfs_uri_append_file_name (parent_uri, 
+							 info->name);
+		gnome_vfs_uri_unref (parent_uri);
 
 		if (!new_uri)
 			return GNOME_VFS_ERROR_INVALID_URI;
