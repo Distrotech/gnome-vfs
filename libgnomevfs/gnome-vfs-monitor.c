@@ -26,6 +26,7 @@
 #include <libgnomevfs/gnome-vfs-monitor.h>
 #include <libgnomevfs/gnome-vfs-monitor-private.h>
 #include <libgnomevfs/gnome-vfs-method.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <glib.h>
 
 typedef enum {
