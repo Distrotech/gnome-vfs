@@ -1,3 +1,15 @@
+2000-08-21  John Sullivan  <sullivan@eazel.com>
+
+	More tweaks to match MIME identification problems
+	users have run into.
+
+	* data/mime/gnome-vfs-mime-magic:
+	changed audio/midi to audio/x-midi to match .keys file
+	(and usage rules)
+	* data/mime/gnome-vfs.keys: Added descriptions for
+	application/x-smil, audio/x-it, and text/x-credits.
+	Also moved one entry that was out of order.
+
 2000-08-17  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.keys:

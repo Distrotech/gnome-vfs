@@ -242,6 +242,9 @@ application/x-shared-library-la
 application/x-stuffit
 	description=Macintosh StuffIt archive 
 
+application/x-smil
+	description=SMIL script
+
 application/x-sv4cpio
 	description=SV4Cpio document 
 
@@ -287,6 +290,9 @@ audio/x-aiff
 
 audio/x-midi
 	description=MIDI audio
+
+audio/x-it
+	description=Impulse Tracker audio
 
 audio/x-mp3
 	description=MP3 audio
@@ -649,17 +655,20 @@ text/x-comma-separated-values
 text/x-copying
 	description=GNU license
 
+text/x-credits
+	description=author credits
+
 text/x-csh
 	description=C-Shell script
+
+text/x-dtd
+	description=document type definition
 
 text/x-emacs-lisp
 	description=Emacs Lisp source code
 
 text/x-fortran
 	description=Fortran source code
-
-text/x-dtd
-	description=document type definition
 
 text/x-gtkrc
 	description=GTK configuration
