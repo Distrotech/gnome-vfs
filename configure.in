@@ -207,13 +207,16 @@ AC_SUBST(VFS_OFFSET_IS)
 AC_SUBST(VFS_SIZE_PRINTF)
 AC_SUBST(VFS_OFFSET_PRINTF)
 
-AC_CHECK_HEADERS(sys/param.h sys/resource.h sys/vfs.h sys/mount.h sys/statfs.h sys/statvfs.h wctype.h)
+AC_CHECK_HEADERS(sys/param.h sys/resource.h sys/vfs.h sys/mount.h sys/statfs.h sys/statvfs.h sys/param.h wctype.h)
 
 dnl
 dnl file system type member in statfs struct
 dnl
 AC_CHECK_MEMBERS([struct statfs.f_type], ,[
-  AC_CHECK_MEMBERS([struct statfs.f_fstyp], , , [#ifdef HAVE_SYS_VFS_H
+  AC_CHECK_MEMBERS([struct statfs.f_fstyp], , , [#ifdef HAVE_SYS_PARAM_H
+#include <sys/param.h>
+#endif
+#ifdef HAVE_SYS_VFS_H
 #include <sys/vfs.h>
 #endif
 #ifdef HAVE_SYS_MOUNT_H
@@ -221,7 +224,10 @@ AC_CHECK_MEMBERS([struct statfs.f_type], ,[
 #endif
 #ifdef HAVE_SYS_STATFS_H
 #include <sys/statfs.h>
-#endif])], [#ifdef HAVE_SYS_VFS_H
+#endif])], [#ifdef HAVE_SYS_PARAM_H
+#include <sys/param.h>
+#endif
+#ifdef HAVE_SYS_VFS_H
 #include <sys/vfs.h>
 #endif
 #ifdef HAVE_SYS_MOUNT_H
@@ -236,6 +242,9 @@ dnl if statfs() takes 2 arguments or 4 (Solaris)
 dnl
 AC_MSG_CHECKING([number of arguments to statfs()])
 AC_TRY_COMPILE([#include <unistd.h>
+#ifdef HAVE_SYS_PARAM_H
+#include <sys/param.h>
+#endif
 #ifdef HAVE_SYS_VFS_H
 #include <sys/vfs.h>
 #endif
@@ -249,6 +258,9 @@ statfs(NULL, &st);],[
   AC_MSG_RESULT([2])
   AC_DEFINE(STATFS_ARGS, 2, [Number of arguments to statfs()])],[
   AC_TRY_COMPILE([#include <unistd.h>
+#ifdef HAVE_SYS_PARAM_H
+#include <sys/param.h>
+#endif
 #ifdef HAVE_SYS_VFS_H
 #include <sys/vfs.h>
 #endif
