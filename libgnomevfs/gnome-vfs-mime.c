@@ -634,6 +634,8 @@ gnome_vfs_mime_type_is_equal (const char *a,
 		g_strfreev (aliases);
 	}
 
+	/* FIXME: If 'a' and 'b' are both aliases for another MIME type, we
+	 * don't catch it, #148516 */
 	return FALSE;
 }
 
@@ -712,6 +714,9 @@ gnome_vfs_mime_type_get_equivalence (const char *mime_type,
 			return GNOME_VFS_MIME_PARENT;
 		}
 	}
+
+	/* FIXME: If 'mime_type' is an alias for a mime type that's a child of
+	 * 'base_mime_type', #148517 */
 
 	return GNOME_VFS_MIME_UNRELATED;
 }
