@@ -40,6 +40,16 @@ GnomeVFSResult	 gnome_vfs_async_open		(GnomeVFSAsyncContext *context,
 						 GnomeVFSAsyncOpenCallback
 						 	callback,
 						 gpointer callback_data);
+
+GnomeVFSResult	 gnome_vfs_async_open_as_channel
+						(GnomeVFSAsyncContext *context,
+						 const gchar *text_uri,
+						 GnomeVFSOpenMode open_mode,
+						 guint advised_block_size,
+						 GnomeVFSAsyncOpenAsChannelCallback
+						        callback,
+						 gpointer callback_data);
+
 GnomeVFSResult	 gnome_vfs_async_create		(GnomeVFSAsyncContext *context,
 						 const gchar *text_uri,
 						 GnomeVFSOpenMode open_mode,
@@ -47,6 +57,16 @@ GnomeVFSResult	 gnome_vfs_async_create		(GnomeVFSAsyncContext *context,
 						 guint perm,
 						 GnomeVFSAsyncOpenCallback
 						 	callback,
+						 gpointer callback_data);
+
+GnomeVFSResult	 gnome_vfs_async_create_as_channel
+						(GnomeVFSAsyncContext *context,
+						 const gchar *text_uri,
+						 GnomeVFSOpenMode open_mode,
+						 gboolean exclusive,
+						 guint perm,
+						 GnomeVFSAsyncCreateAsChannelCallback
+	                                                 callback,
 						 gpointer callback_data);
 
 GnomeVFSResult	 gnome_vfs_async_close		(GnomeVFSAsyncContext *context,

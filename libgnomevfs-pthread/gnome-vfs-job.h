@@ -29,7 +29,9 @@ typedef struct _GnomeVFSJob GnomeVFSJob;
 
 enum _GnomeVFSJobType {
 	GNOME_VFS_JOB_OPEN,
+	GNOME_VFS_JOB_OPEN_AS_CHANNEL,
 	GNOME_VFS_JOB_CREATE,
+	GNOME_VFS_JOB_CREATE_AS_CHANNEL,
 	GNOME_VFS_JOB_CLOSE,
 	GNOME_VFS_JOB_READ,
 	GNOME_VFS_JOB_WRITE,
@@ -51,6 +53,20 @@ struct _GnomeVFSOpenJob {
 };
 typedef struct _GnomeVFSOpenJob GnomeVFSOpenJob;
 
+struct _GnomeVFSOpenAsChannelJob {
+	struct {
+		gchar *text_uri;
+		GnomeVFSOpenMode open_mode;
+		guint advised_block_size;
+	} request;
+
+	struct {
+		GnomeVFSResult result;
+		GIOChannel *channel;
+	} notify;
+};
+typedef struct _GnomeVFSOpenAsChannelJob GnomeVFSOpenAsChannelJob;
+
 struct _GnomeVFSCreateJob {
 	struct {
 		gchar *text_uri;
@@ -65,6 +81,21 @@ struct _GnomeVFSCreateJob {
 	} notify;
 };
 typedef struct _GnomeVFSCreateJob GnomeVFSCreateJob;
+
+struct _GnomeVFSCreateAsChannelJob {
+	struct {
+		gchar *text_uri;
+		GnomeVFSOpenMode open_mode;
+		gboolean exclusive;
+		guint perm;
+	} request;
+
+	struct {
+		GnomeVFSResult result;
+		GIOChannel *channel;
+	} notify;
+};
+typedef struct _GnomeVFSCreateAsChannelJob GnomeVFSCreateAsChannelJob;
 
 struct _GnomeVFSCloseJob {
 	struct {
@@ -176,7 +207,7 @@ struct _GnomeVFSJob {
 	GMutex *notify_ack_lock;
 
 	/* Whether this struct contains a job ready for execution.  */
-	gboolean is_empty : 1;
+	gboolean is_empty;
 
 	/* I/O channels used to wake up the master thread.  When the slave
            thread wants to notify the master thread that an operation has been
@@ -201,7 +232,9 @@ struct _GnomeVFSJob {
 	/* Job-specific information.  */
 	union {
 		GnomeVFSOpenJob open;
+		GnomeVFSOpenAsChannelJob open_as_channel;
 		GnomeVFSCreateJob create;
+		GnomeVFSCreateAsChannelJob create_as_channel;
 		GnomeVFSCloseJob close;
 		GnomeVFSReadJob read;
 		GnomeVFSWriteJob write;

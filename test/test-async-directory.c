@@ -39,23 +39,23 @@ type_to_string (GnomeVFSFileType type)
 {
 	switch (type) {
 	case GNOME_VFS_FILE_TYPE_UNKNOWN:
-		return _("Unknown");
+		return "Unknown";
 	case GNOME_VFS_FILE_TYPE_REGULAR:
-		return _("Regular");
+		return "Regular";
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
-		return _("Directory");
+		return "Directory";
 	case GNOME_VFS_FILE_TYPE_BROKENSYMLINK:
-		return _("Broken symlink");
+		return "Broken symlink";
 	case GNOME_VFS_FILE_TYPE_FIFO:
-		return _("FIFO");
+		return "FIFO";
 	case GNOME_VFS_FILE_TYPE_SOCKET:
-		return _("Socket");
+		return "Socket";
 	case GNOME_VFS_FILE_TYPE_CHARDEVICE:
-		return _("Character device");
+		return "Character device";
 	case GNOME_VFS_FILE_TYPE_BLOCKDEVICE:
-		return _("Block device");
+		return "Block device";
 	default:
-		return _("???");
+		return "???";
 	}
 }
 
@@ -66,7 +66,7 @@ print_list (GnomeVFSDirectoryList *list)
 
 	info = gnome_vfs_directory_list_current (list);
 	while (info != NULL) {
-		printf (_("  File `%s'%s (%s, %s), size %ld, mode %04o\n"),
+		printf ("  File `%s'%s (%s, %s), size %ld, mode %04o\n",
 			info->name,
 			info->is_symlink ? " [link]" : "",
 			type_to_string (info->type),
@@ -84,7 +84,7 @@ directory_load_callback (GnomeVFSAsyncContext *context,
 			 guint entries_read,
 			 gpointer callback_data)
 {
-	printf (_("Directory load callback: %s, %d entries, callback_data `%s'\n"),
+	printf ("Directory load callback: %s, %d entries, callback_data `%s'\n",
 		gnome_vfs_result_to_string (result), entries_read,
 		callback_data);
 
@@ -108,7 +108,7 @@ main (int argc, char **argv)
 	};
 
 	if (argc < 2) {
-		fprintf (stderr, _("Usage: %s <uri>\n"), argv[0]);
+		fprintf (stderr, "Usage: %s <uri>\n", argv[0]);
 		return 1;
 	}
 
@@ -118,16 +118,16 @@ main (int argc, char **argv)
 		num_iterations = 10;
 
 	CORBA_exception_init (&ev);
-	puts (_("Initializing gnome-libs with CORBA..."));
+	puts ("Initializing gnome-libs with CORBA...");
 	gnome_CORBA_init ("test-vfs", "0.0", &argc, argv, 0, &ev);
 
-	puts (_("Initializing gnome-vfs..."));
+	puts ("Initializing gnome-vfs...");
 	gnome_vfs_init ();
 
-	puts (_("Creating async context..."));
+	puts ("Creating async context...");
 	context = gnome_vfs_async_context_new ();
 	if (context == NULL) {
-		fprintf (stderr, _("Cannot create async context!\n"));
+		fprintf (stderr, "Cannot create async context!\n");
 #ifdef WITH_CORBA
 		CORBA_exception_free (&ev);
 #endif
@@ -150,10 +150,10 @@ main (int argc, char **argv)
 		 directory_load_callback, /* callback */
 		 "here we are"); /* callback_data */
 
-	puts (_("GTK+ main loop running."));
+	puts ("GTK+ main loop running.");
 	gtk_main ();
 
-	puts (_("GTK+ main loop finished: destroying context."));
+	puts ("GTK+ main loop finished: destroying context.");
 	gnome_vfs_async_context_destroy (context);
 
 	return 0;

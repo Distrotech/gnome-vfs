@@ -7,9 +7,11 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs
 
 noinst_PROGRAMS =				\
-	test-async-pthread			\
-	test-async-corba			\
+	test-async_pthread			\
+	test-async_corba			\
 	test-async-directory			\
+	test-channel_corba			\
+	test-channel_pthread			\
 	test-copy				\
 	test-directory				\
 	test-directory-visit			\
@@ -39,6 +41,30 @@ test_async_corba_LDADD =					\
 	$(top_builddir)/libgnomevfs-corba/libgnomevfs-corba.la
 test_async_corba_LDFLAGS =
 
+test_async_directory_SOURCES = test-async-directory.c
+test_async_directory_LDADD =					\
+	$(libraries)						\
+	$(top_builddir)/libgnomevfs-corba/libgnomevfs-corba.la
+test_async_directory_LDFLAGS = 
+
+test-channel_corba.o: test-channel.c
+	$(COMPILE) -DWITH_CORBA -o $@ -c $<
+test_channel_corba_SOURCES =
+test_channel_corba_LDADD =					\
+	test-channel_corba.o					\
+	$(libraries)						\
+	$(top_builddir)/libgnomevfs-corba/libgnomevfs-corba.la
+test_channel_corba_LDFLAGS =
+
+test-channel_pthread.o: test-channel.c
+	$(COMPILE) -DWITH_PTHREAD -o $@ -c $<
+test_channel_pthread_SOURCES =
+test_channel_pthread_LDADD =					\
+	test-channel_pthread.o					\
+	$(libraries)						\
+	$(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la
+test_channel_pthread_LDFLAGS =
+
 test_copy_SOURCES = test-copy.c
 test_copy_LDADD = $(libraries)
 test_copy_LDFLAGS = 
@@ -50,12 +76,6 @@ test_directory_LDFLAGS =
 test_directory_visit_SOURCES = test-directory-visit.c
 test_directory_visit_LDADD = $(libraries)
 test_directory_visit_LDFLAGS = 
-
-test_async_directory_SOURCES = test-async-directory.c
-test_async_directory_LDADD =					\
-	$(libraries)						\
-	$(top_builddir)/libgnomevfs-corba/libgnomevfs-corba.la
-test_async_directory_LDFLAGS = 
 
 test_sync_SOURCES = test-sync.c
 test_sync_LDADD = $(libraries)

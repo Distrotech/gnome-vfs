@@ -36,23 +36,23 @@ type_to_string (GnomeVFSFileType type)
 {
 	switch (type) {
 	case GNOME_VFS_FILE_TYPE_UNKNOWN:
-		return _("Unknown");
+		return "Unknown";
 	case GNOME_VFS_FILE_TYPE_REGULAR:
-		return _("Regular");
+		return "Regular";
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
-		return _("Directory");
+		return "Directory";
 	case GNOME_VFS_FILE_TYPE_BROKENSYMLINK:
-		return _("Broken symlink");
+		return "Broken symlink";
 	case GNOME_VFS_FILE_TYPE_FIFO:
-		return _("FIFO");
+		return "FIFO";
 	case GNOME_VFS_FILE_TYPE_SOCKET:
-		return _("Socket");
+		return "Socket";
 	case GNOME_VFS_FILE_TYPE_CHARDEVICE:
-		return _("Character device");
+		return "Character device";
 	case GNOME_VFS_FILE_TYPE_BLOCKDEVICE:
-		return _("Block device");
+		return "Block device";
 	default:
-		return _("???");
+		return "???";
 	}
 }
 
@@ -66,7 +66,7 @@ directory_visit_callback (const gchar *rel_path,
 	printf ("directory_visit_callback -- rel_path `%s' data `%s'\n",
 		rel_path, (gchar *) data);
 
-	printf (_("  File `%s'%s (%s, %s), size %ld, mode %04o\n"),
+	printf ("  File `%s'%s (%s, %s), size %ld, mode %04o\n",
 		info->name,
 		info->is_symlink ? " [link]" : "",
 		type_to_string (info->type),

@@ -27,9 +27,15 @@
 #include <config.h>
 #endif
 
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <unistd.h>
+     
 #include <libgnorba/gnorba.h>
 #include <orb/orbit.h>
-#include <stdio.h>
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
@@ -75,13 +81,16 @@ typedef struct _GnomeVFSAsyncXferOpInfo GnomeVFSAsyncXferOpInfo;
 
 enum _GnomeVFSAsyncOperation {
 	GNOME_VFS_ASYNC_OP_NONE,
-	GNOME_VFS_ASYNC_OP_RESET,
-	GNOME_VFS_ASYNC_OP_OPEN,
-	GNOME_VFS_ASYNC_OP_CREATE,
+	GNOME_VFS_ASYNC_OP_CHANNEL,
 	GNOME_VFS_ASYNC_OP_CLOSE,
-	GNOME_VFS_ASYNC_OP_READ,
-	GNOME_VFS_ASYNC_OP_WRITE,
+	GNOME_VFS_ASYNC_OP_CREATE,
+	GNOME_VFS_ASYNC_OP_CREATE_AS_CHANNEL,
 	GNOME_VFS_ASYNC_OP_LOAD_DIRECTORY,
+	GNOME_VFS_ASYNC_OP_OPEN,
+	GNOME_VFS_ASYNC_OP_OPEN_AS_CHANNEL,
+	GNOME_VFS_ASYNC_OP_READ,
+	GNOME_VFS_ASYNC_OP_RESET,
+	GNOME_VFS_ASYNC_OP_WRITE,
 	GNOME_VFS_ASYNC_OP_XFER
 };
 typedef enum _GnomeVFSAsyncOperation GnomeVFSAsyncOperation;
@@ -234,7 +243,7 @@ free_op_info (GnomeVFSAsyncContext *context)
 /* Basic methods in the Notify interface.  */
 
 static void
-impl_Notify_reset (PortableServer_Servant *servant,
+impl_Notify_reset (PortableServer_Servant servant,
 		   CORBA_Environment *ev)
 {
 	GnomeVFSAsyncContext *context;
@@ -312,6 +321,57 @@ impl_Notify_open (PortableServer_Servant servant,
 	callback = (GnomeVFSAsyncOpenCallback) context->callback;
 	(* callback) (context, new_handle, (GnomeVFSResult) result,
 		      context->callback_data);
+}
+
+static void
+impl_Notify_open_as_channel (PortableServer_Servant servant,
+			     const GNOME_VFS_Result result,
+			     const CORBA_char *sock_path,
+			     CORBA_Environment *ev)
+{
+	GnomeVFSAsyncContext *context;
+	GnomeVFSAsyncOpenAsChannelCallback callback;
+	GIOChannel *new_channel;
+	GnomeVFSResult vfs_result;
+	gint fd;
+
+	context = context_from_servant (servant);
+
+	if (context->operation_in_progress != GNOME_VFS_ASYNC_OP_OPEN_AS_CHANNEL
+	    && context->operation_in_progress != GNOME_VFS_ASYNC_OP_CREATE_AS_CHANNEL)
+		return;
+
+	context->operation_in_progress = GNOME_VFS_ASYNC_OP_CHANNEL;
+
+	new_channel = NULL;
+	vfs_result = (GnomeVFSResult) result;
+
+	if (vfs_result == GNOME_VFS_OK) {
+		fd = socket (AF_UNIX, SOCK_STREAM, 0);
+		if (fd < 0) {
+			g_warning (_("Cannot create socket: %s"),
+				   g_strerror (errno));
+		} else {
+			struct sockaddr_un saddr;
+			gint r;
+
+			saddr.sun_family = AF_UNIX;
+			strncpy (saddr.sun_path, sock_path,
+				 sizeof (saddr.sun_path));
+			r = connect (fd, &saddr, SUN_LEN (&saddr));
+			if (r < 0) {
+				g_warning (_("Cannot connect socket `%s': %s"),
+					   saddr.sun_path, g_strerror (errno));
+				close (fd);
+				vfs_result = GNOME_VFS_ERROR_INTERNAL;
+			} else {
+				new_channel = g_io_channel_unix_new (fd);
+			}
+		}
+	}
+
+	callback = (GnomeVFSAsyncOpenAsChannelCallback) context->callback;
+	(* callback) (context, new_channel, vfs_result, context->callback_data);
 }
 
 static void
@@ -734,7 +794,8 @@ create_notify_object (GnomeVFSAsyncContext *context)
 	base_epv.finalize = NULL;
 	base_epv.default_POA = NULL;
 
-	Notify_epv.open  = impl_Notify_open;
+	Notify_epv.open = impl_Notify_open;
+	Notify_epv.open_as_channel = impl_Notify_open_as_channel;
 	Notify_epv.close = impl_Notify_close;
 	Notify_epv.read  = impl_Notify_read;
 	Notify_epv.write = impl_Notify_write;
@@ -928,6 +989,40 @@ gnome_vfs_async_open (GnomeVFSAsyncContext *context,
 	return GNOME_VFS_OK;
 }
 
+GnomeVFSResult
+gnome_vfs_async_open_as_channel (GnomeVFSAsyncContext *context,
+				 const gchar *text_uri,
+				 GnomeVFSOpenMode open_mode,
+				 guint advised_block_size,
+				 GnomeVFSAsyncOpenAsChannelCallback callback,
+				 gpointer callback_data)
+{
+	g_return_val_if_fail (context != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail ((open_mode & (GNOME_VFS_OPEN_READ
+					    | GNOME_VFS_OPEN_WRITE))
+			      != (GNOME_VFS_OPEN_READ | GNOME_VFS_OPEN_WRITE),
+			      GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	RETURN_IF_CONTEXT_BUSY (context);
+
+	context->callback = callback;
+	context->callback_data = callback_data;
+
+	GNOME_VFS_Slave_Request_open_as_channel (context->request_objref,
+						 text_uri,
+						 open_mode,
+						 advised_block_size,
+						 &context->ev);
+
+	if (context->ev._major != CORBA_NO_EXCEPTION)
+		return GNOME_VFS_ERROR_INTERNAL;
+
+	context->operation_in_progress = GNOME_VFS_ASYNC_OP_OPEN_AS_CHANNEL;
+	return GNOME_VFS_OK;
+}
+
 GnomeVFSResult	 
 gnome_vfs_async_create (GnomeVFSAsyncContext *context,
 			const gchar *text_uri,
@@ -939,6 +1034,8 @@ gnome_vfs_async_create (GnomeVFSAsyncContext *context,
 {
 	g_return_val_if_fail (context != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail ((open_mode & GNOME_VFS_OPEN_WRITE), GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (! (open_mode & GNOME_VFS_OPEN_READ), GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	RETURN_IF_CONTEXT_BUSY (context);
@@ -960,6 +1057,41 @@ gnome_vfs_async_create (GnomeVFSAsyncContext *context,
 	return GNOME_VFS_OK;
 }
 
+GnomeVFSResult
+gnome_vfs_async_create_as_channel (GnomeVFSAsyncContext *context,
+				   const gchar *text_uri,
+				   GnomeVFSOpenMode open_mode,
+				   gboolean exclusive,
+				   guint perm,
+				   GnomeVFSAsyncOpenAsChannelCallback callback,
+				   gpointer callback_data)
+{
+	g_return_val_if_fail (context != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail ((open_mode & GNOME_VFS_OPEN_WRITE), GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail ((open_mode & GNOME_VFS_OPEN_READ)
+			      && (open_mode & GNOME_VFS_OPEN_WRITE),
+			      GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	RETURN_IF_CONTEXT_BUSY (context);
+
+	context->callback = callback;
+	context->callback_data = callback_data;
+
+	GNOME_VFS_Slave_Request_create_as_channel (context->request_objref,
+						   text_uri,
+						   open_mode,
+						   exclusive,
+						   perm,
+						   &context->ev);
+
+	if (context->ev._major != CORBA_NO_EXCEPTION)
+		return GNOME_VFS_ERROR_INTERNAL;
+
+	context->operation_in_progress = GNOME_VFS_ASYNC_OP_OPEN_AS_CHANNEL;
+	return GNOME_VFS_OK;
+}
 
 GnomeVFSResult	 
 gnome_vfs_async_close (GnomeVFSAsyncContext *context,
@@ -987,7 +1119,6 @@ gnome_vfs_async_close (GnomeVFSAsyncContext *context,
 	context->operation_in_progress = GNOME_VFS_ASYNC_OP_CLOSE;
 	return GNOME_VFS_OK;
 }
-
 
 GnomeVFSResult	 
 gnome_vfs_async_read (GnomeVFSAsyncContext *context,

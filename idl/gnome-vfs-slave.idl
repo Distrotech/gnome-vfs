@@ -49,14 +49,27 @@ module Slave {
 	interface Notify;
 
 	/* This is the interface used by the master to communicate with the
-           slave.  */
+           slave and request operations to it.  */
 	interface Request {
 		/* Open a file.  */
 		oneway void open (in string uri, in OpenMode open_mode);
 
+		/* Open a file and create a Unix domain socket from/to which we
+                   can read/write data.  */
+		oneway void open_as_channel (in string uri,
+					     in OpenMode open_mode,
+					     in unsigned long advised_block_size);
+
 		/* Create a file.  */
 		oneway void create (in string uri, in OpenMode open_mode,
 				    in boolean exclusive, in Permission perm);
+
+		/* Create a file and create a Unix domain socket from/to which
+                   we can read/write data.  */
+		oneway void create_as_channel (in string uri,
+					       in OpenMode open_mode,
+					       in boolean exclusive,
+					       in Permission perm);
 
 		/* Load a directory.  */
 		oneway void load_directory (in string uri,
@@ -97,6 +110,11 @@ module Slave {
 	interface Notify {
 		/* Open done.  */
 		oneway void open  (in Result result, in FileHandle handle);
+
+		/* Open done.  Read/write from/to Unix domain socket
+                   `channel_path' to access the file.  */
+		oneway void open_as_channel (in Result result,
+					     in string channel_path);
 
 		/* Close done.  */
 		oneway void close (in Result result);

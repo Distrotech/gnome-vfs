@@ -97,6 +97,39 @@ gnome_vfs_async_open (GnomeVFSAsyncContext *context,
 }
 
 GnomeVFSResult
+gnome_vfs_async_open_as_channel (GnomeVFSAsyncContext *context,
+				 const gchar *text_uri,
+				 GnomeVFSOpenMode open_mode,
+				 guint advised_block_size,
+				 GnomeVFSAsyncOpenAsChannelCallback callback,
+				 gpointer callback_data)
+{
+	GnomeVFSJob *job;
+	GnomeVFSOpenAsChannelJob *open_as_channel_job;
+
+	g_return_val_if_fail (context != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	job = context->job;
+	open_as_channel_job = &job->info.open_as_channel;
+
+	gnome_vfs_job_prepare (job);
+
+	job->type = GNOME_VFS_JOB_OPEN_AS_CHANNEL;
+	job->callback = callback;
+	job->callback_data = callback_data;
+
+	open_as_channel_job->request.text_uri = g_strdup (text_uri);
+	open_as_channel_job->request.open_mode = open_mode;
+	open_as_channel_job->request.advised_block_size = advised_block_size;
+
+	gnome_vfs_job_go (job);
+
+	return GNOME_VFS_OK;
+}
+
+GnomeVFSResult
 gnome_vfs_async_create (GnomeVFSAsyncContext *context,
 			const gchar *text_uri,
 			GnomeVFSOpenMode open_mode,
@@ -125,6 +158,41 @@ gnome_vfs_async_create (GnomeVFSAsyncContext *context,
 	create_job->request.open_mode = open_mode;
 	create_job->request.exclusive = exclusive;
 	create_job->request.perm = perm;
+
+	gnome_vfs_job_go (job);
+
+	return GNOME_VFS_OK;
+}
+
+GnomeVFSResult
+gnome_vfs_async_create_as_channel (GnomeVFSAsyncContext *context,
+				   const gchar *text_uri,
+				   GnomeVFSOpenMode open_mode,
+				   gboolean exclusive,
+				   guint perm,
+				   GnomeVFSAsyncOpenAsChannelCallback callback,
+				   gpointer callback_data)
+{
+	GnomeVFSJob *job;
+	GnomeVFSCreateAsChannelJob *create_as_channel_job;
+
+	g_return_val_if_fail (context != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	job = context->job;
+	create_as_channel_job = &job->info.create_as_channel;
+
+	gnome_vfs_job_prepare (job);
+
+	job->type = GNOME_VFS_JOB_CREATE_AS_CHANNEL;
+	job->callback = callback;
+	job->callback_data = callback_data;
+
+	create_as_channel_job->request.text_uri = g_strdup (text_uri);
+	create_as_channel_job->request.open_mode = open_mode;
+	create_as_channel_job->request.exclusive = exclusive;
+	create_as_channel_job->request.perm = perm;
 
 	gnome_vfs_job_go (job);
 

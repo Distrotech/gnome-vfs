@@ -30,7 +30,6 @@
 #include <libgnorba/gnorba.h>
 
 #include "gnome-vfs.h"
-#include "gnome-vfs-async-ops.h"
 
 #ifdef WITH_CORBA
 CORBA_Environment ev;
@@ -43,7 +42,7 @@ close_callback (GnomeVFSAsyncContext *context,
 		GnomeVFSResult result,
 		gpointer callback_data)
 {
-	printf (_("Close: %s.\n"), gnome_vfs_result_to_string (result));
+	printf ("Close: %s.\n", gnome_vfs_result_to_string (result));
 	gtk_main_quit ();
 }
 
@@ -57,17 +56,17 @@ read_callback (GnomeVFSAsyncContext *context,
                gpointer callback_data)
 {
 	if (result != GNOME_VFS_OK) {
-		printf (_("Read failed: %s"),
+		printf ("Read failed: %s",
 			gnome_vfs_result_to_string (result));
 		gtk_main_quit ();
 	} else {
-		printf (_("%ld/%ld byte(s) read, callback data `%s'\n"),
+		printf ("%ld/%ld byte(s) read, callback data `%s'\n",
 			bytes_read, bytes_requested, (gchar *) callback_data);
 		*((gchar *) buffer + bytes_read) = 0;
 		puts (buffer);
 	}
 
-	printf (_("Now closing the file.\n"));
+	printf ("Now closing the file.\n");
 	gnome_vfs_async_close (context, handle, close_callback,
 			       "close");
 }
@@ -79,14 +78,14 @@ open_callback  (GnomeVFSAsyncContext *context,
                 gpointer callback_data)
 {
 	if (result != GNOME_VFS_OK) {
-		printf (_("Open failed: %s.\n"),
+		printf ("Open failed: %s.\n",
 			gnome_vfs_result_to_string (result));
 		gtk_main_quit ();
 	} else {
 		gchar *buffer;
 		const gulong buffer_size = 1024;
 
-		printf (_("File opened correctly, data `%s'.\n"),
+		printf ("File opened correctly, data `%s'.\n",
 			(gchar *) callback_data);
 
 		buffer = g_malloc (buffer_size);
@@ -107,55 +106,55 @@ main (int argc, char **argv)
 	GnomeVFSResult result;
 
 	if (argc < 2) {
-		fprintf (stderr, _("Usage: %s <uri>\n"), argv[0]);
+		fprintf (stderr, "Usage: %s <uri>\n", argv[0]);
 		return 1;
 	}
 
 #ifdef WITH_PTHREAD
-	puts (_("Initializing threads..."));
+	puts ("Initializing threads...");
 	g_thread_init (NULL);
 #endif
 
 #ifdef WITH_CORBA
 	CORBA_exception_init (&ev);
-	puts (_("Initializing gnome-libs with CORBA..."));
+	puts ("Initializing gnome-libs with CORBA...");
 	gnome_CORBA_init ("test-vfs", "0.0", &argc, argv, 0, &ev);
 #else
-	puts (_("Initializing gnome-libs..."));
+	puts ("Initializing gnome-libs...");
 	gnome_init ("test-vfs", "0.0", argc, argv);
 #endif
 
-	puts (_("Initializing gnome-vfs..."));
+	puts ("Initializing gnome-vfs...");
 	gnome_vfs_init ();
 
-	puts (_("Creating async context..."));
+	puts ("Creating async context...");
 	context = gnome_vfs_async_context_new ();
 	if (context == NULL) {
-		fprintf (stderr, _("Cannot create async context!\n"));
+		fprintf (stderr, "Cannot create async context!\n");
 #ifdef WITH_CORBA
 		CORBA_exception_free (&ev);
 #endif
 		return 1;
 	}
 
-	printf (_("Starting open for `%s'...\n"), argv[1]);
+	printf ("Starting open for `%s'...\n", argv[1]);
 	result = gnome_vfs_async_open (context, argv[1], GNOME_VFS_OPEN_READ,
 				       open_callback, "open_callback");
 	if (result != GNOME_VFS_OK)
-		fprintf (stderr, _("Error starting open: %s\n"),
+		fprintf (stderr, "Error starting open: %s\n",
 			 gnome_vfs_result_to_string (result));
 
-	puts (_("GTK+ main loop running."));
+	puts ("GTK+ main loop running.");
 	gtk_main ();
 
-	puts (_("GTK+ main loop finished: destroying context."));
+	puts ("GTK+ main loop finished: destroying context.");
 	gnome_vfs_async_context_destroy (context);
 
 #ifdef WITH_CORBA
 	CORBA_exception_free (&ev);
 #endif
 
-	puts (_("All done"));
+	puts ("All done");
 
 	while (1)
 		;

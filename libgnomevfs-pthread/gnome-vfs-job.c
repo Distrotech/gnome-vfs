@@ -120,7 +120,7 @@ job_notify_and_close (GnomeVFSJob *job)
 
 
 static void
-dispatch_open_or_create_callback (GnomeVFSJob *job)
+dispatch_open_callback (GnomeVFSJob *job)
 {
 	GnomeVFSAsyncOpenCallback callback;
 	GnomeVFSOpenJob *open_job;
@@ -132,6 +132,54 @@ dispatch_open_or_create_callback (GnomeVFSJob *job)
 	(* callback) (job->context,
 		      (GnomeVFSAsyncHandle *) open_job->notify.handle,
 		      open_job->notify.result,
+		      job->callback_data);
+}
+
+static void
+dispatch_create_callback (GnomeVFSJob *job)
+{
+	GnomeVFSAsyncCreateCallback callback;
+	GnomeVFSCreateJob *create_job;
+
+	create_job = &job->info.create;
+
+	callback = (GnomeVFSAsyncCreateCallback) job->callback;
+
+	(* callback) (job->context,
+		      (GnomeVFSAsyncHandle *) create_job->notify.handle,
+		      create_job->notify.result,
+		      job->callback_data);
+}
+
+static void
+dispatch_open_as_channel_callback (GnomeVFSJob *job)
+{
+	GnomeVFSAsyncOpenAsChannelCallback callback;
+	GnomeVFSOpenAsChannelJob *open_as_channel_job;
+
+	open_as_channel_job = &job->info.open_as_channel;
+
+	callback = (GnomeVFSAsyncOpenAsChannelCallback) job->callback;
+
+	(* callback) (job->context,
+		      open_as_channel_job->notify.channel,
+		      open_as_channel_job->notify.result,
+		      job->callback_data);
+}
+
+static void
+dispatch_create_as_channel_callback (GnomeVFSJob *job)
+{
+	GnomeVFSAsyncCreateAsChannelCallback callback;
+	GnomeVFSCreateAsChannelJob *create_as_channel_job;
+
+	create_as_channel_job = &job->info.create_as_channel;
+
+	callback = (GnomeVFSAsyncCreateAsChannelCallback) job->callback;
+
+	(* callback) (job->context,
+		      create_as_channel_job->notify.channel,
+		      create_as_channel_job->notify.result,
 		      job->callback_data);
 }
 
@@ -242,8 +290,16 @@ dispatch_job_callback (GIOChannel *source,
 
 	switch (job->type) {
 	case GNOME_VFS_JOB_OPEN:
+		dispatch_open_callback (job);
+		break;
+	case GNOME_VFS_JOB_OPEN_AS_CHANNEL:
+		dispatch_open_as_channel_callback (job);
+		break;
 	case GNOME_VFS_JOB_CREATE:
-		dispatch_open_or_create_callback (job);
+		dispatch_create_callback (job);
+		break;
+	case GNOME_VFS_JOB_CREATE_AS_CHANNEL:
+		dispatch_create_as_channel_callback (job);
 		break;
 	case GNOME_VFS_JOB_CLOSE:
 		dispatch_close_callback (job);
@@ -364,6 +420,99 @@ gnome_vfs_job_go (GnomeVFSJob *job)
 }
 
 
+#define DEFAULT_BUFFER_SIZE 16384
+
+static void
+serve_channel_read (GnomeVFSHandle *handle,
+		    GIOChannel *channel_in,
+		    GIOChannel *channel_out,
+		    gulong advised_block_size)
+{
+	gpointer buffer;
+
+	if (advised_block_size == 0)
+		advised_block_size = DEFAULT_BUFFER_SIZE;
+
+	buffer = alloca (advised_block_size);
+
+	while (1) {
+		GnomeVFSResult result;
+		GIOError io_result;
+		gulong bytes_read;
+		gulong bytes_to_write;
+		guint bytes_written;
+		gchar *p;
+
+		result = gnome_vfs_read (handle, buffer, advised_block_size,
+					 &bytes_read);
+		if (result == GNOME_VFS_ERROR_INTERRUPTED)
+			continue;
+		if (result != GNOME_VFS_OK || bytes_read == 0)
+			return;
+
+		bytes_to_write = bytes_read;
+		p = buffer;
+
+		while (bytes_to_write > 0) {
+			io_result = g_io_channel_write (channel_out, p,
+							bytes_to_write,
+							&bytes_written);
+			if (io_result == G_IO_ERROR_AGAIN)
+				continue;
+			if (io_result != G_IO_ERROR_NONE || bytes_written == 0)
+				return;
+
+			p += bytes_written;
+			bytes_to_write -= bytes_written;
+		}
+	}
+}
+
+static void
+serve_channel_write (GnomeVFSHandle *handle,
+		     GIOChannel *channel_in,
+		     GIOChannel *channel_out)
+{
+	gpointer buffer;
+	guint buffer_size;
+
+	buffer_size = DEFAULT_BUFFER_SIZE;
+	buffer = alloca (buffer_size);
+
+	while (1) {
+		GnomeVFSResult result;
+		GIOError io_result;
+		guint bytes_read;
+		guint bytes_to_write;
+		gulong bytes_written;
+		gchar *p;
+
+		io_result = g_io_channel_read (channel_in, buffer, buffer_size,
+					       &bytes_read);
+		if (io_result == G_IO_ERROR_AGAIN)
+			continue;
+		if (io_result != G_IO_ERROR_NONE || bytes_read == 0)
+			return;
+
+		p = buffer;
+		bytes_to_write = bytes_read;
+		while (bytes_to_write > 0) {
+			result = gnome_vfs_write (handle,
+						  p,
+						  bytes_to_write,
+						  &bytes_written);
+			if (result == GNOME_VFS_ERROR_INTERRUPTED)
+				continue;
+			if (result != GNOME_VFS_OK || bytes_written == 0)
+				return;
+
+			p += bytes_written;
+			bytes_to_write -= bytes_written;
+		}
+	}
+}
+
+
 /* Job execution.  This is performed by the slave thread.  */
 
 static gboolean
@@ -398,6 +547,69 @@ execute_open (GnomeVFSJob *job)
 }
 
 static gboolean
+execute_open_as_channel (GnomeVFSJob *job)
+{
+	GnomeVFSResult result;
+	GnomeVFSHandle *handle;
+	GnomeVFSURI *uri;
+	GnomeVFSOpenAsChannelJob *open_as_channel_job;
+	GnomeVFSOpenMode open_mode;
+	GIOChannel *channel_in, *channel_out;
+	gint pipefd[2];
+
+	open_as_channel_job = &job->info.open_as_channel;
+
+	uri = gnome_vfs_uri_new (open_as_channel_job->request.text_uri);
+	if (uri == NULL)
+		result = GNOME_VFS_ERROR_INVALIDURI;
+	else
+		result = gnome_vfs_open_from_uri
+			(&handle, uri, open_as_channel_job->request.open_mode);
+
+	g_free (open_as_channel_job->request.text_uri);
+	gnome_vfs_uri_unref (uri);
+
+	if (result != GNOME_VFS_OK) {
+		open_as_channel_job->notify.channel = NULL;
+		open_as_channel_job->notify.result = result;
+		return job_oneway_notify_and_close (job);
+	}
+
+	if (pipe (pipefd) < 0) {
+		g_warning (_("Cannot create pipe for open GIOChannel: %s"),
+			   g_strerror (errno));
+		open_as_channel_job->notify.channel = NULL;
+		open_as_channel_job->notify.result = GNOME_VFS_ERROR_INTERNAL;
+		return job_oneway_notify_and_close (job);
+	}
+
+	channel_in = g_io_channel_unix_new (pipefd[0]);
+	channel_out = g_io_channel_unix_new (pipefd[1]);
+
+	open_mode = open_as_channel_job->request.open_mode;
+	
+	if (open_mode & GNOME_VFS_OPEN_READ)
+		open_as_channel_job->notify.channel = channel_in;
+	else
+		open_as_channel_job->notify.channel = channel_out;
+	
+	open_as_channel_job->notify.result = GNOME_VFS_OK;
+
+	if (! job_oneway_notify (job))
+		return FALSE;
+
+	if (open_mode & GNOME_VFS_OPEN_READ)
+		serve_channel_read (handle, channel_in, channel_out,
+				    open_as_channel_job->request.advised_block_size);
+	else
+		serve_channel_write (handle, channel_out, channel_out);
+
+	job_close (job);
+
+	return TRUE;
+}
+
+static gboolean
 execute_create (GnomeVFSJob *job)
 {
 	GnomeVFSResult result;
@@ -428,6 +640,59 @@ execute_create (GnomeVFSJob *job)
 	create_job->notify.result = result;
 
 	return job_oneway_notify_and_close (job);
+}
+
+static gboolean
+execute_create_as_channel (GnomeVFSJob *job)
+{
+	GnomeVFSResult result;
+	GnomeVFSHandle *handle;
+	GnomeVFSURI *uri;
+	GnomeVFSCreateAsChannelJob *create_as_channel_job;
+	GIOChannel *channel_in, *channel_out;
+	gint pipefd[2];
+
+	create_as_channel_job = &job->info.create_as_channel;
+
+	uri = gnome_vfs_uri_new (create_as_channel_job->request.text_uri);
+	if (uri == NULL)
+		result = GNOME_VFS_ERROR_INVALIDURI;
+	else
+		result = gnome_vfs_open_from_uri
+			(&handle, uri,
+			 create_as_channel_job->request.open_mode);
+
+	g_free (create_as_channel_job->request.text_uri);
+	gnome_vfs_uri_unref (uri);
+
+	if (result != GNOME_VFS_OK) {
+		create_as_channel_job->notify.channel = NULL;
+		create_as_channel_job->notify.result = result;
+		return job_oneway_notify_and_close (job);
+	}
+
+	if (pipe (pipefd) < 0) {
+		g_warning (_("Cannot create pipe for open GIOChannel: %s"),
+			   g_strerror (errno));
+		create_as_channel_job->notify.channel = NULL;
+		create_as_channel_job->notify.result = GNOME_VFS_ERROR_INTERNAL;
+		return job_oneway_notify_and_close (job);
+	}
+
+	channel_in = g_io_channel_unix_new (pipefd[0]);
+	channel_out = g_io_channel_unix_new (pipefd[1]);
+
+	create_as_channel_job->notify.channel = channel_out;
+	create_as_channel_job->notify.result = GNOME_VFS_OK;
+
+	if (! job_oneway_notify (job))
+		return FALSE;
+
+	serve_channel_write (handle, channel_in, channel_out);
+
+	job_close (job);
+
+	return TRUE;
 }
 
 static gboolean
@@ -716,8 +981,12 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 	switch (job->type) {
 	case GNOME_VFS_JOB_OPEN:
 		return execute_open (job);
+	case GNOME_VFS_JOB_OPEN_AS_CHANNEL:
+		return execute_open_as_channel (job);
 	case GNOME_VFS_JOB_CREATE:
 		return execute_create (job);
+	case GNOME_VFS_JOB_CREATE_AS_CHANNEL:
+		return execute_create_as_channel (job);
 	case GNOME_VFS_JOB_CLOSE:
 		return execute_close (job);
 	case GNOME_VFS_JOB_READ:

@@ -29,6 +29,13 @@
 #include <gnome.h>
 #include <libgnorba/gnorba.h>
 #include <orb/orbit.h>
+
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <alloca.h>
+#include <errno.h>
+#include <fcntl.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -459,6 +466,269 @@ impl_Request_create (PortableServer_Servant servant,
 				     (GNOME_VFS_Result) result,
 				     file_handle_objref,
 				     ev);
+}
+
+
+#define DEFAULT_BUFFER_SIZE 16384
+
+static void
+serve_channel_read (GnomeVFSHandle *handle,
+		    gint fd,
+		    GnomeVFSOpenMode open_mode,
+		    gulong advised_block_size)
+{
+	gpointer buffer;
+
+	if (advised_block_size == 0)
+		advised_block_size = DEFAULT_BUFFER_SIZE;
+
+	buffer = alloca (advised_block_size);
+
+	while (1) {
+		GnomeVFSResult result;
+		gulong bytes_read;
+		gulong bytes_to_write;
+		gchar *p;
+
+		result = gnome_vfs_read (handle, buffer, advised_block_size,
+					 &bytes_read);
+		if (result == GNOME_VFS_ERROR_INTERRUPTED)
+			continue;
+
+		if (result != GNOME_VFS_OK) {
+			/* FIXME */
+			g_warning (_("Error reading: %s"),
+				   gnome_vfs_result_from_errno ());
+			return;
+		}
+
+		if (bytes_read == 0) {
+			DPRINTF (("Done reading file."));
+			break;
+		}
+
+		bytes_to_write = bytes_read;
+		p = (gchar *) buffer;
+
+		while (bytes_to_write > 0) {
+			gint bytes_written;
+
+			bytes_written = write (fd, p, bytes_to_write);
+			if (bytes_written < 0) {
+				if (errno == EINTR)
+					continue;
+
+				/* FIXME */
+				g_warning (_("Error writing: %s"),
+					   g_strerror (errno));
+				return;
+			}
+
+			p += bytes_written;
+			bytes_to_write -= bytes_written;
+		}
+	}
+}
+
+static void
+serve_channel_write (GnomeVFSHandle *handle,
+		     gint fd,
+		     GnomeVFSOpenMode open_mode)
+{
+	gpointer buffer;
+	guint buffer_size;
+
+	buffer_size = DEFAULT_BUFFER_SIZE;
+	buffer = alloca (buffer_size);
+
+	while (1) {
+		gint bytes_read;
+		gulong bytes_to_write;
+		gchar *p;
+
+		bytes_read = read (fd, buffer, buffer_size);
+
+		if (bytes_read == 0) {
+			DPRINTF (("Done writing file."));
+			return;
+		}
+
+		bytes_to_write = bytes_read;
+		p = (gchar *) buffer;
+
+		while (bytes_to_write > 0) {
+			gulong bytes_written;
+			GnomeVFSResult result;
+
+			result = gnome_vfs_write (handle, p, bytes_to_write,
+						  &bytes_written);
+
+			if (result == GNOME_VFS_ERROR_INTERRUPTED)
+				continue;
+
+			if (result != GNOME_VFS_OK) {
+				/* FIXME */
+				g_warning (_("Cannot write: %s"),
+					   g_strerror (errno));
+				return;
+			}
+
+			bytes_to_write -= bytes_written;
+			p += bytes_written;
+		}
+	}
+}
+
+static void
+setup_and_serve_channel (GnomeVFSHandle *handle,
+			 GnomeVFSOpenMode open_mode,
+			 glong advised_block_size,
+			 CORBA_Environment *ev)
+{
+	GnomeVFSResult result;
+	struct sockaddr_un saddr;
+	struct sockaddr caller_addr;
+	socklen_t caller_addr_size;
+	guint size;
+	gint socket_fd, fd;
+	gchar socket_name[] = "/tmp/gnome-vfs-XXXXXX";
+
+	socket_fd = -1;
+
+	if (mktemp (socket_name) == NULL) {
+		g_warning (_("Cannot create temporary file name `%s'"));
+		result = GNOME_VFS_ERROR_INTERNAL;
+		goto error;
+	}
+
+	socket_fd = socket (PF_LOCAL, SOCK_STREAM, 0);
+	if (socket_fd < 0) {
+		g_warning (_("Cannot create socket: %s"), g_strerror (errno));
+		result = GNOME_VFS_ERROR_INTERNAL;
+		goto error;
+	}
+
+	saddr.sun_family = AF_LOCAL;
+	strncpy (saddr.sun_path, socket_name, sizeof (saddr.sun_path));
+	size = (offsetof (struct sockaddr_un, sun_path)
+		+ strlen (saddr.sun_path) + 1);
+
+	if (bind (socket_fd, (struct sockaddr *) &saddr, size) < 0) {
+		g_warning (_("Cannot bind `%s': %s"),
+			   socket_name, g_strerror (errno));
+		result = GNOME_VFS_ERROR_INTERNAL;
+		goto error;
+	}
+
+	if (listen (socket_fd, 1) < 0) {
+		g_warning (_("Cannot listen on `%s': %s"),
+			   socket_name, g_strerror (errno));
+		result = GNOME_VFS_ERROR_INTERNAL;
+		goto error;
+	}
+
+	DPRINTF (("Socket `%s' ready to accept connections...\n", socket_name));
+
+	GNOME_VFS_Slave_Notify_open_as_channel (notify_objref,
+						(GNOME_VFS_Result) GNOME_VFS_OK,
+						socket_name, ev);
+	if (ev->_major != CORBA_NO_EXCEPTION) {
+		unlink (socket_name);
+		close (socket_fd);
+		return;
+	}
+
+	DPRINTF (("Waiting for connection on `%s'.\n", socket_name));
+
+	fd = accept (socket_fd, (struct sockaddr *) &caller_addr,
+		     &caller_addr_size);
+	if (fd < 0) {
+		g_warning (_("Cannot accept connections on `%s': %s"),
+			   socket_name, g_strerror (errno));
+		result = GNOME_VFS_ERROR_INTERNAL;
+		goto error;
+	}
+
+	DPRINTF (("Connection established, now performing operation.\n"));
+
+	if (open_mode & GNOME_VFS_OPEN_READ)
+		serve_channel_read (handle, fd, open_mode, advised_block_size);
+	else
+		serve_channel_write (handle, fd, open_mode);
+
+	DPRINTF (("Closing file descriptors.\n"));
+
+	gnome_vfs_close (handle);
+	close (fd);
+	close (socket_fd);
+
+	unlink (socket_name);
+
+	return;
+
+error:
+	if (socket_fd != -1)
+		close (socket_fd);
+	unlink (socket_name);
+	GNOME_VFS_Slave_Notify_open_as_channel (notify_objref,
+						(GNOME_VFS_Result) result,
+						"", ev);
+	return;
+}
+
+static void
+impl_Request_open_as_channel (PortableServer_Servant servant,
+			      const CORBA_char *uri,
+			      const GNOME_VFS_OpenMode open_mode,
+			      const CORBA_unsigned_long advised_block_size,
+			      CORBA_Environment *ev)
+{
+	GnomeVFSHandle *handle;
+	GnomeVFSResult result;
+
+	DPRINTF (("Opening file for channel"));
+
+	result = gnome_vfs_open (&handle, uri, open_mode);
+
+	if (result != GNOME_VFS_OK) {
+		DPRINTF (("Couldn't open file: %s",
+			  gnome_vfs_result_to_string (result)));
+		GNOME_VFS_Slave_Notify_open_as_channel
+			                             (notify_objref,
+					              (GNOME_VFS_Result) result,
+						      "", ev);
+		return;
+	}
+
+	setup_and_serve_channel (handle, open_mode, advised_block_size, ev);
+}
+
+static void
+impl_Request_create_as_channel (PortableServer_Servant servant,
+				const CORBA_char *uri,
+				GNOME_VFS_OpenMode open_mode,
+				CORBA_boolean exclusive,
+				GNOME_VFS_Permission perm,
+				CORBA_Environment *ev)
+{
+	GnomeVFSResult result;
+	GnomeVFSHandle *handle;
+
+	DPRINTF (("Opening file for channel"));
+
+	result = gnome_vfs_create (&handle, uri, open_mode, exclusive, perm);
+
+	if (result != GNOME_VFS_OK) {
+		DPRINTF (("Couldn't open file: %s",
+			  gnome_vfs_result_to_string (result)));
+		GNOME_VFS_Slave_Notify_open_as_channel
+			                             (notify_objref,
+						      (GNOME_VFS_Result) result,
+						      "", ev);
+		return;
+	}
+
+	setup_and_serve_channel (handle, open_mode, 0, ev);
 }
 
 
@@ -923,7 +1193,9 @@ init_Request (void)
 	Request_epv.reset = impl_Request_reset;
 	Request_epv.stop = impl_Request_stop;
 	Request_epv.open = impl_Request_open;
+	Request_epv.open_as_channel = impl_Request_open_as_channel;
 	Request_epv.create = impl_Request_create;
+	Request_epv.create_as_channel = impl_Request_create_as_channel;
 	Request_epv.load_directory = impl_Request_load_directory;
 	Request_epv.xfer = impl_Request_xfer;
 

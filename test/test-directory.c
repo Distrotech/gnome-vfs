@@ -46,23 +46,23 @@ type_to_string (GnomeVFSFileType type)
 {
 	switch (type) {
 	case GNOME_VFS_FILE_TYPE_UNKNOWN:
-		return _("Unknown");
+		return "Unknown";
 	case GNOME_VFS_FILE_TYPE_REGULAR:
-		return _("Regular");
+		return "Regular";
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
-		return _("Directory");
+		return "Directory";
 	case GNOME_VFS_FILE_TYPE_BROKENSYMLINK:
-		return _("Broken symlink");
+		return "Broken symlink";
 	case GNOME_VFS_FILE_TYPE_FIFO:
-		return _("FIFO");
+		return "FIFO";
 	case GNOME_VFS_FILE_TYPE_SOCKET:
-		return _("Socket");
+		return "Socket";
 	case GNOME_VFS_FILE_TYPE_CHARDEVICE:
-		return _("Character device");
+		return "Character device";
 	case GNOME_VFS_FILE_TYPE_BLOCKDEVICE:
-		return _("Block device");
+		return "Block device";
 	default:
-		return _("???");
+		return "???";
 	}
 }
 
@@ -74,12 +74,12 @@ print_list (GnomeVFSDirectoryList *list)
 	info = gnome_vfs_directory_list_first (list);
 
 	if (info == NULL) {
-		printf (_("  (No files)\n"));
+		printf ("  (No files)\n");
 		return;
 	}
 
 	while (info != NULL) {
-		printf (_("  File `%s'%s (%s, %s), size %ld, mode %04o\n"),
+		printf ("  File `%s'%s (%s, %s), size %ld, mode %04o\n",
 			info->name,
 			info->is_symlink ? " [link]" : "",
 			type_to_string (info->type),
@@ -99,12 +99,12 @@ sort_list (GnomeVFSDirectoryList *list)
 		GNOME_VFS_DIRECTORY_SORT_NONE
 	};
 		
-	printf (_("Now sorting..."));
+	printf ("Now sorting...");
 	fflush (stdout);
 
 	gnome_vfs_directory_list_sort (list, FALSE, rules);
 
-	printf (_("  Done!\n"));
+	printf ("  Done!\n");
 }
 
 static void
@@ -113,7 +113,7 @@ filter_list (GnomeVFSDirectoryList *list,
 {
 	GnomeVFSDirectoryFilter *filter;
 
-	printf (_("Filtering with `%s'..."), pattern);
+	printf ("Filtering with `%s'...", pattern);
 	fflush (stdout);
 
 	filter = gnome_vfs_directory_filter_new
@@ -124,7 +124,7 @@ filter_list (GnomeVFSDirectoryList *list,
 	gnome_vfs_directory_list_filter (list, filter);
 	gnome_vfs_directory_filter_destroy (filter);
 
-	printf (_("  Done!\n"));
+	printf ("  Done!\n");
 }
 
 
@@ -136,7 +136,7 @@ main (int argc, char **argv)
 	gchar *uri;
 
 	if (argc < 2 || argc > 3) {
-		fprintf (stderr, _("Usage: %s <uri> [<pattern>]\n"), argv[0]);
+		fprintf (stderr, "Usage: %s <uri> [<pattern>]\n", argv[0]);
 		return 1;
 	}
 
@@ -159,24 +159,24 @@ main (int argc, char **argv)
 
 	show_result (result, "load_directory", uri);
 
-	printf (_("Raw listing for `%s':\n"), uri);
+	printf ("Raw listing for `%s':\n", uri);
 	print_list (list);
 
 	sort_list (list);
-	printf (_("Sorted listing for `%s':\n"), uri);
+	printf ("Sorted listing for `%s':\n", uri);
 	print_list (list);
 
 	if (argc >= 3) {
 		filter_list (list, argv[2]);
-		printf (_("Filtered (`%s') listing for `%s':\n"),
+		printf ("Filtered (`%s') listing for `%s':\n",
 			argv[2], uri);
 		print_list (list);
 	}
 
-	printf (_("Destroying.\n"));
+	printf ("Destroying.\n");
 	gnome_vfs_directory_list_destroy (list);
 
-	printf (_("Done.\n"));
+	printf ("Done.\n");
 
 	return 0;
 }

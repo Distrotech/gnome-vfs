@@ -53,7 +53,8 @@ static gchar *status_strings[] = {
 	/* GNOME_VFS_ERROR_EOF */		N_("End of file"),
 	/* GNOME_VFS_ERROR_NOTADIRECTORY */	N_("Not a directory"),
 	/* GNOME_VFS_ERROR_INPROGRESS */	N_("Operation in progress"),
-	/* GNOME_VFS_ERROR_INTERRUPTED */	N_("Operation interrupted")
+	/* GNOME_VFS_ERROR_INTERRUPTED */	N_("Operation interrupted"),
+	/* GNOME_VFS_ERROR_NOTPERMITTED */	N_("Operation not permitted")
 };
 
 
@@ -75,6 +76,7 @@ gnome_vfs_result_from_errno (void)
 	case EINVAL:
 		return GNOME_VFS_ERROR_BADPARAMS;
 	case EMFILE:
+		return GNOME_VFS_ERROR_TOOMANYOPENFILES;
 	case ENFILE:
 		return GNOME_VFS_ERROR_TOOMANYOPENFILES;
 	case ENOENT:
@@ -83,6 +85,8 @@ gnome_vfs_result_from_errno (void)
 		return GNOME_VFS_ERROR_NOSPACE;
 	case ENOTDIR:
 		return GNOME_VFS_ERROR_NOTADIRECTORY;
+	case EPERM:
+		return GNOME_VFS_ERROR_NOTPERMITTED;
 	case EEXIST:
 		return GNOME_VFS_ERROR_FILEEXISTS;
 	default:

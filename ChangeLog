@@ -1,3 +1,97 @@
+1999-08-26  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs-pthread/gnome-vfs-job.h: Changed `is_empty' member
+	of `GnomeVFSJob' from 1-bit wide gboolean to plain gboolean.
+
+	* modules/Makefile.am (modules_LTLIBRARIES): Removed previously
+	commented HTTP module.
+
+	* test/Makefile.am: Minor cleanup.
+	(noinst_PROGRAMS): Replace `test-async-pthread' with
+	`test-async_pthread' and `test-async-corba' with
+	`test-async_corba'.  Added `test-channel_corba' and
+	`test-channel_pthread'.
+	(test-channel_corba): New target, compiling `test-channel.c' with
+	the CORBA-based VFS.
+	(test-channel_pthread): New target, compiling `test-channel.c'
+	with the PThread-based VFS.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (serve_channel_write): New
+	function.
+	(serve_channel_read): New function.
+	(execute_open_as_channel): New function.
+	(execute_create_as_channel): New function.
+	(gnome_vfs_job_execute): Call `execute_open_as_channel()' and
+	`execute_create_as_channel()' for jobs
+	`GNOME_VFS_JOB_OPEN_AS_CHANNEL' and
+	`GNOME_VFS_JOB_CREATE_AS_CHANNEL', respectively.
+	(dispatch_open_or_create_as_channel_callback): New function.
+	(dispatch_job_callback): Handle `GNOME_VFS_JOB_OPEN_AS_CHANNEL'
+	and `GNOME_VFS_JOB_CREATE_AS_CHANNEL' through it.
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c
+	(gnome_vfs_async_open_as_channel): New function.
+	(gnome_vfs_async_create_as_channel): New function.
+
+	* libgnomevfs-pthread/gnome-vfs-job.h: New structs
+	`GnomeVFSOpenAsChannelJob', `GnomeVFSCreateAsChannelJob'; added
+	corresponding members to `GnomeVFSJob'.  New values
+	`GNOME_VFS_JOB_OPEN_AS_CHANNEL' and
+	`GNOME_VFS_JOB_CREATE_AS_CHANNEL' in `GnomeVFSJobType'.
+
+	* test/test-async-directory.c: Removed translation marks.
+	* test/test-async.c: Likewise.
+	* test/test-directory-visit.c: Likewise.
+	* test/test-directory.c: Likewise.
+
+	* libgnomevfs/gnome-vfs-result.c (gnome_vfs_result_from_errno):
+	Translate `EPERM' with `GNOME_VFS_ERROR_NOTPERMITTED'.
+
+	* libgnomevfs/gnome-vfs-types.h: Added value
+	`GNOME_VFS_ERROR_NOTPERMITTED' to GnomeVFSError.
+
+	* test/test-channel.c: New test program.
+
+	* libgnomevfs-corba/gnome-vfs-slave.h (setup_and_serve_channel):
+	New function.
+	(serve_channel_read): New function.
+	(serve_channel_write): New function.
+	(impl_Request_open_as_channel): New function.
+	(impl_Request_create_as_channel): New function.
+	(init_Request): Install `impl_Request_open_as_channel' and
+	`impl_Request_create_as_channel' as the implementations for
+	`Request::open_as_channel' and `Request::create_as_channel',
+	respectively.
+
+	* libgnomevfs-corba/gnome-vfs-async-ops.c: New values
+	`GNOME_VFS_ASYNC_OP_OPEN_AS_CHANNEL',
+	`GNOME_VFS_ASYNC_OP_CREATE_AS_CHANNEL'
+	`GNOME_VFS_ASYNC_OP_CHANNEL' in enum `GnomeVFSAsyncOperation'.
+	Sorted values in alphabetical order.
+	(gnome_vfs_async_open_as_channel): New function.
+	(gnome_vfs_async_create_as_channel): New function.
+	(impl_Notify_open_as_channel): New function.
+	(create_notify_object): Install it as the implementation of
+	`Notify::open_as_channel'.
+
+	* idl/gnome-vfs-slave.idl (Request::open_as_channel): New method.
+	(Request::create_as_channel): New method.
+	(Notify::open_as_channel): New method.
+
+	* libgnomevfs/gnome-vfs-async-ops.h
+	(gnome_vfs_async_open_as_channel): Declare new function.
+	(gnome_vfs_async_create_as_channel): Declare new function.
+
+	* libgnomevfs/gnome-vfs-types.h: New typedefs
+	`GnomeVFSAsyncOpenAsChannelCallback',
+	`GnomeVFSAsyncCreateAsChannelCallback'.
+
+	* libgnomevfs-corba/gnome-vfs-async-ops.c
+	(gnome_vfs_async_create): Added precondition that file must be
+	open for writing.
+	(impl_Notify_reset): Oops.  Removed typo (`*' before parameter
+	`servant').
+
 1999-08-26  Michael Meeks  <michael@imaginator.com>
 
 	* test/gnome-file-selection/gnome-file-selection.c

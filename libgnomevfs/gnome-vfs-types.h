@@ -56,6 +56,7 @@ enum _GnomeVFSResult {
 	GNOME_VFS_ERROR_INTERRUPTED,
 	GNOME_VFS_ERROR_FILEEXISTS,
 	GNOME_VFS_ERROR_LOOP,
+	GNOME_VFS_ERROR_NOTPERMITTED,
 	GNOME_VFS_NUM_ERRORS
 };
 typedef enum _GnomeVFSResult GnomeVFSResult;
@@ -475,6 +476,14 @@ typedef void	(* GnomeVFSAsyncOpenCallback)	(GnomeVFSAsyncContext *context,
 						 gpointer callback_data);
 
 typedef GnomeVFSAsyncOpenCallback GnomeVFSAsyncCreateCallback;
+
+typedef void	(* GnomeVFSAsyncOpenAsChannelCallback)
+						(GnomeVFSAsyncContext *context,
+						 GIOChannel *channel,
+						 GnomeVFSResult result,
+						 gpointer callback_data);
+
+typedef GnomeVFSAsyncOpenAsChannelCallback GnomeVFSAsyncCreateAsChannelCallback;
 
 typedef void	(* GnomeVFSAsyncCloseCallback)	(GnomeVFSAsyncContext *context,
 						 GnomeVFSResult result,

@@ -13,7 +13,6 @@ modulesdir = $(prefix)/lib/vfs/modules
 
 modules_LTLIBRARIES =	\
 	libfile.la	\
-#	libhttp.la	\
 	libgzip.la
 
 libfile_la_SOURCES = \
