@@ -1,3 +1,7 @@
+2000-07-05  Dan Winship  <danw@helixcode.com>
+
+	* modules/gconf-method.c: add #ifdef HAVE_ALLOCA_H
+
 2000-07-05  Jeffrey Stedfast  <fejj@helixcode.com>
 
 	* libgnomevfs/gnome-vfs-types.h: Changed 

@@ -28,7 +28,9 @@
 
 #include <gtk/gtk.h>
 #include <string.h>
+#ifdef HAVE_ALLOCA_H
 #include <alloca.h>
+#endif
 #include <gconf/gconf.h>
 #include <gconf/gconf-client.h>
 
