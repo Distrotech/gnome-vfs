@@ -714,6 +714,7 @@ gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
 						        GnomeVFSFindDirectoryKind kind,
 						        gboolean create_if_needed,
 						        gboolean find_if_needed,
+						        guint permissions,
 						        GnomeVFSAsyncFindDirectoryCallback callback,
 						        gpointer callback_data);
 
@@ -721,7 +722,7 @@ gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
 
 	CALL_BACKEND (gnome_vfs_async_find_directory,
 		      (handle_return, near_uri_list, kind, create_if_needed, find_if_needed,
-		       callback, callback_data));
+		       permissions, callback, callback_data));
 	report_failure_find_directory (result, near_uri_list, callback, callback_data);
 }
 

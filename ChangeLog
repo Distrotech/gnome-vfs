@@ -1,3 +1,9 @@
+2000-08-14  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-backend.c:
+	(gnome_vfs_async_find_directory):
+	Fix a crasher in the new gnome_vfs_async_find_directory.
+
 2000-08-13  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
