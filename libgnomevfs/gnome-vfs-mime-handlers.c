@@ -25,7 +25,7 @@
 #include "gnome-vfs-mime-handlers.h"
 
 #include "gnome-vfs-mime-info.h"
-#include <gconf/gconf-client.h>
+#include <gconf/gconf.h>
 #include <gtk/gtksignal.h>
 #include <stdio.h>
 #include <libgnome/gnome-util.h>
@@ -1011,28 +1011,23 @@ process_app_list (const char *id_list)
 static char *
 get_user_level (void)
 {
-	static GConfClient *client;
+	static GConfEngine *engine = NULL;
 	char *user_level;
 
-	client = NULL;
-
 	/* This sequence is needed in case no one has initialize GConf.
-	 * GConf won't take care of initializing Gtk.
 	 */
 	if (!gconf_is_initialized ()) {
 		char *fake_argv[] = { "gnome-vfs", NULL };
 		gconf_init (1, fake_argv, NULL);
 	}
-	gtk_type_init ();
-	gtk_signal_init ();
 
-	/* Create the client. */
-	if (client == NULL) {
-		client = gconf_client_new ();
-		/* FIXME: This client never gets freed. */
+	/* Create the gconf engine once. */
+	if (engine == NULL) {
+		engine = gconf_engine_new ();
+		/* FIXME: This engine never gets freed. */
 	}
 
-	user_level = gconf_client_get_string (client, "/nautilus/user_level", NULL);
+	user_level = gconf_get_string (engine, "/nautilus/user_level", NULL);
 
 	/* FIXME: Nautilus just asserts this.
 	 * But it doesn't seem reasonable to assert something that's the result

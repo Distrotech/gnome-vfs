@@ -1,3 +1,9 @@
+2000-06-02  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (get_user_level):
+	Use a GConfEngine directly to avoid depending on the Gtk object
+	system.
+	
 2000-06-01  Maciej Stachowiak  <mjs@eazel.com>
 
 	* data/mime/gnome-vfs.keys: Define short-list components for
