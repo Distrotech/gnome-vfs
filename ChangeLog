@@ -1,3 +1,15 @@
+2001-02-14  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 6570, Initial tab order in "Add application"
+	dialog is broken.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_mime_window),
+	(add_extension_clicked),
+	(nautilus_mime_type_capplet_show_new_extension_window),
+	(show_new_application_window), (show_edit_application_window):
+	Set focus to proper widget in all of these functions.
+
 2001-02-13  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 6579, Clicking on a column for sorting performs
