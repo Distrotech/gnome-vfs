@@ -1,3 +1,10 @@
+2002-02-20  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/applications.vfolder-info.in:
+	* modules/preferences.vfolder-info.in:
+
+	more minor tweaks
+	
 2002-02-20  Michael Meeks  <michael@ximian.com>
 
 	* test/test-performance.c: add.

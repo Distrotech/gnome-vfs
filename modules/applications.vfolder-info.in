@@ -164,6 +164,7 @@
 	    <Keyword>AdvancedSettings</Keyword>
 	  </And>
 	</Query>
+        <Exclude>cddb-slave.desktop</Exclude>
 	<DontShowIfEmpty/>
 	<Folder>
 	  <Name>Sawfish</Name>
