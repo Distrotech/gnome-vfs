@@ -1,3 +1,10 @@
+2000-02-18  Maciej Stachowiak  <mjs@eazel.com>
+
+	* modules/file-method.c (do_get_file_info,
+	do_get_file_info_from_handle): Use gnome_vfs_extract_short_name on
+	the URI rather than g_basename on the filename to get the
+	basename. g_basename is broken.
+
 2000-02-17  Jonathan Blandford  <jrb@redhat.com>
 
 	* modules/default-modules.conf (ghelp): add ghelp to the list of
@@ -16,6 +23,17 @@
 	* libgnomevfs/gnome-vfs-configuration.c:
 	(gnome_vfs_configuration_get_module_path): Just clarified an
 	error message.
+
+2000-02-14  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-types.h: Added a GnomeVFSFIleInfoFields
+	enumeration, and added a field of this type (valid_fields) to
+	GnomeVFSFileInfo, so that cases where get_file_info returns
+	incomplete information can be handled gracefully.
+	* modules/extfs-method.c, modules/file-method.c,
+	modules/ftp-method.c, modules/http-method.c,
+	modules/module-shared.c, modules/pipe-method.c,
+	modules/translate-method.c: Set the valid_fields
 
 2000-02-09  Elliot Lee  <sopwith@redhat.com>
 

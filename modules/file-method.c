@@ -785,7 +785,7 @@ do_get_file_info (GnomeVFSMethod *method,
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
-	file_info->name = g_strdup (g_basename (full_name));
+	file_info->name = gnome_vfs_uri_extract_short_name (uri);
 
 	result = get_stat_info (file_info, full_name, options, NULL);
 	if (result != GNOME_VFS_OK)
@@ -818,7 +818,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
-	file_info->name = g_strdup (g_basename (full_name));
+	file_info->name = gnome_vfs_extract_short_name (file_handle->uri);
 
 	result = get_stat_info_from_handle (file_info, file_handle,
 					    options, &statbuf);
