@@ -8,11 +8,27 @@
 #include <config.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <string.h>
+
 #include <bonobo/bonobo-storage.h>
 #include "bonobo-storage-vfs.h"
 #include "bonobo-stream-vfs.h"
 
 static BonoboObjectClass *bonobo_storage_vfs_parent_class;
+
+static char *
+concat_dir_and_file (const char *dir, const char *file)
+{
+	g_return_val_if_fail (dir != NULL, NULL);
+	g_return_val_if_fail (file != NULL, NULL);
+
+        /* If the directory name doesn't have a / on the end, we need
+	   to add one so we get a proper path to the file */
+	if (dir[0] != '\0' && dir [strlen(dir) - 1] != '/')
+		return g_strconcat (dir, "/", file, NULL);
+	else
+		return g_strconcat (dir, file, NULL);
+}
 
 static Bonobo_StorageInfo*
 vfs_get_info (PortableServer_Servant         storage,
@@ -52,7 +68,7 @@ vfs_open_stream (PortableServer_Servant  storage,
 	BonoboStreamVfs *stream;
 	char *full;
 
-	full = g_concat_dir_and_file (storage_vfs->path, path);
+	full = concat_dir_and_file (storage_vfs->path, path);
 	stream = bonobo_stream_vfs_open (full, 0664, mode, ev);
 	g_free (full);
 
@@ -115,7 +131,7 @@ vfs_list_contents (PortableServer_Servant   storage,
 
 	storage_vfs = BONOBO_STORAGE_VFS (storage);
 
-	uri = g_concat_dir_and_file (storage_vfs->path, path);
+	uri = concat_dir_and_file (storage_vfs->path, path);
 
 	result = gnome_vfs_directory_list_load (
 		&dir_list, uri, 
@@ -230,7 +246,7 @@ vfs_open_storage (PortableServer_Servant  storage,
 	GnomeVFSResult    result;
 	char *full;
 
-	full = g_concat_dir_and_file (storage_vfs->path, path);
+	full = concat_dir_and_file (storage_vfs->path, path);
 
 	result = gnome_vfs_make_directory (full, GNOME_VFS_PERM_USER_ALL);
 	if (result == GNOME_VFS_OK ||
@@ -254,7 +270,7 @@ vfs_erase (PortableServer_Servant storage,
 	GnomeVFSResult    result;
 	char *full;
 
-	full = g_concat_dir_and_file (storage_vfs->path, path);
+	full = concat_dir_and_file (storage_vfs->path, path);
 
 	result = gnome_vfs_unlink (full);
 

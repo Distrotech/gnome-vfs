@@ -1,3 +1,18 @@
+2001-08-02  Michael Meeks  <michael@ximian.com>
+
+	* bonobo-storage-vfs.c (concat_dir_and_file): impl.
+	(vfs_open_stream, vfs_list_contents, vfs_open_storage),
+	(vfs_erase): use it.
+
+	* bonobo-storage-fs.c (concat_dir_and_file): impl.
+	(fs_get_info, fs_open_stream, fs_open_storage),
+	(fs_rename, fs_list_contents, fs_erase): use it.
+
+2001-07-30  Michael Meeks  <michael@ximian.com>
+
+	* GNOME_VFS_Moniker_std.oaf.in.in: in library gnome_vfs not
+	vfs_gnome, doh.
+
 2001-07-29  Seth Nickell  <snickell@stanford.edu>
 
 	* bonobo-storage-fs.c:

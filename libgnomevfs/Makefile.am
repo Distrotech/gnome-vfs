@@ -12,7 +12,7 @@ INCLUDES =					\
 	$(BONOBO_CFLAGS)			\
 	$(GCONF_CFLAGS) 			\
 	$(GLIB_CFLAGS)				\
-	$(OAF_CFLAGS)				\
+	$(BONOBO_ACTIVATION__CFLAGS)		\
         $(OPENSSL_CFLAGS)                       \
 	$(ORBIT_CFLAGS)				\
 	$(VFS_CFLAGS)				\
@@ -50,7 +50,7 @@ libgnomevfs_la_LIBADD =				\
 	$(BONOBO_LIBS)				\
 	$(GCONF_LIBS) 				\
 	$(GLIB_LIBS)				\
-	$(OAF_LIBS)				\
+	$(BONOBO_ACTIVATION_LIBS)		\
 	$(OPENSSL_LDFLAGS) 			\
 	$(ORBIT_LIBS)				\
 	$(XML_LIBS)				\

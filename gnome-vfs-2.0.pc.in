@@ -7,6 +7,6 @@ includedir=${prefix}/include
 Name: gnome-vfs
 Description: The GNOME virtual file-system libraries
 Version: @VERSION@
-Requires: oaf-2.0,gthread-2.0,gmodule-2.0
+Requires: bonobo-activation-2.0,gthread-2.0,gmodule-2.0
 Libs: -L${libdir} -lgnomevfs
 Cflags: -I${includedir} -I${libdir}/vfs/include

@@ -40,7 +40,7 @@ static GConfEngine *gconf_engine = NULL;
 #endif
 
 static char *         get_user_level                          (void);
-static GList *        OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
+static GList *        Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList *info_list);
 static GList *        copy_str_list                           (GList *string_list);
 static GList *        comma_separated_str_to_str_list         (const char         *str);
 static GList *        str_list_difference                     (GList              *a,
@@ -294,15 +294,15 @@ gnome_vfs_mime_set_can_be_executable (const char *mime_type, gboolean new_value)
  * Query the MIME database for the default Bonobo component to be activated to 
  * view files of MIME type @mime_type.
  * 
- * Return value: An OAF_ServerInfo * representing the OAF server to be activated
+ * Return value: An Bonobo_ServerInfo * representing the OAF server to be activated
  * to get a reference to the proper component.
  **/
-OAF_ServerInfo *
+Bonobo_ServerInfo *
 gnome_vfs_mime_get_default_component (const char *mime_type)
 {
 	const char *default_component_iid;
-	OAF_ServerInfoList *info_list;
-	OAF_ServerInfo *default_component;
+	Bonobo_ServerInfoList *info_list;
+	Bonobo_ServerInfo *default_component;
 	CORBA_Environment ev;
 	char *supertype;
 	char *query;
@@ -348,10 +348,10 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
  			prev = sort[1];
 			
 			if (p->next != NULL) {
-				sort[1] = g_strconcat (prev, ((OAF_ServerInfo *) (p->data))->iid, 
+				sort[1] = g_strconcat (prev, ((Bonobo_ServerInfo *) (p->data))->iid, 
 								    "','", NULL);
 			} else {
-				sort[1] = g_strconcat (prev, ((OAF_ServerInfo *) (p->data))->iid, 
+				sort[1] = g_strconcat (prev, ((Bonobo_ServerInfo *) (p->data))->iid, 
 								    "'])", NULL);
 			}
 			g_free (prev);
@@ -372,12 +372,12 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	sort[4] = g_strdup ("name");
 	sort[5] = NULL;
 
-	info_list = oaf_query (query, sort, &ev);
+	info_list = bonobo_activation_query (query, sort, &ev);
 	
 	default_component = NULL;
 	if (ev._major == CORBA_NO_EXCEPTION) {
 		if (info_list != NULL && info_list->_length > 0) {
-			default_component = OAF_ServerInfo_duplicate (&info_list->_buffer[0]);
+			default_component = Bonobo_ServerInfo_duplicate (&info_list->_buffer[0]);
 		}
 		CORBA_free (info_list);
 	}
@@ -647,12 +647,12 @@ join_str_list (const char *separator, GList *list)
  * gnome_vfs_mime_get_short_list_components:
  * @mime_type: A const char * containing a mime type, e.g. "image/png"
  * 
- * Return an unsorted sorted list of OAF_ServerInfo *
+ * Return an unsorted sorted list of Bonobo_ServerInfo *
  * data structures for the requested mime type.	The short list contains
  * "select" components recommended for handling this MIME type, appropriate for
  * display to the user.
  * 
- * Return value: A GList * where the elements are OAF_ServerInfo *
+ * Return value: A GList * where the elements are Bonobo_ServerInfo *
  * representing various components to display in the short list for @mime_type.
  **/ 
 GList *
@@ -670,7 +670,7 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 	char *sort[2];
 	char *iids_delimited;
 	CORBA_Environment ev;
-	OAF_ServerInfoList *info_list;
+	Bonobo_ServerInfoList *info_list;
 	GList *preferred_components;
 
 	if (mime_type == NULL) {
@@ -746,10 +746,10 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		sort[0] = g_strconcat ("prefer_by_list_order(iid, ['", iids_delimited, "'])", NULL);
 		sort[1] = NULL;
 		
-		info_list = oaf_query (query, sort, &ev);
+		info_list = bonobo_activation_query (query, sort, &ev);
 		
 		if (ev._major == CORBA_NO_EXCEPTION) {
-			preferred_components = OAF_ServerInfoList_to_ServerInfo_g_list (info_list);
+			preferred_components = Bonobo_ServerInfoList_to_ServerInfo_g_list (info_list);
 			CORBA_free (info_list);
 		}
 
@@ -830,17 +830,17 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
  * gnome_vfs_mime_get_all_components:
  * @mime_type: A const char * containing a mime type, e.g. "image/png"
  * 
- * Return an alphabetically sorted list of OAF_ServerInfo
+ * Return an alphabetically sorted list of Bonobo_ServerInfo
  * data structures representing all Bonobo components registered
  * to handle files of MIME type @mime_type (and supertypes).
  * 
- * Return value: A GList * where the elements are OAF_ServerInfo *
+ * Return value: A GList * where the elements are Bonobo_ServerInfo *
  * representing components that can handle MIME type @mime_type.
  **/ 
 GList *
 gnome_vfs_mime_get_all_components (const char *mime_type)
 {
-	OAF_ServerInfoList *info_list;
+	Bonobo_ServerInfoList *info_list;
 	GList *components_list;
 	CORBA_Environment ev;
 	char *supertype;
@@ -870,10 +870,10 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 	sort[0] = g_strdup ("name");
 	sort[1] = NULL;
 
-	info_list = oaf_query (query, sort, &ev);
+	info_list = bonobo_activation_query (query, sort, &ev);
 	
 	if (ev._major == CORBA_NO_EXCEPTION) {
-		components_list = OAF_ServerInfoList_to_ServerInfo_g_list (info_list);
+		components_list = Bonobo_ServerInfoList_to_ServerInfo_g_list (info_list);
 		CORBA_free (info_list);
 	} else {
 		components_list = NULL;
@@ -1179,13 +1179,11 @@ gnome_vfs_mime_id_matches_application (const char *id, GnomeVFSMimeApplication *
 	return gnome_vfs_mime_application_has_id (application, id);
 }
 
-#ifdef USING_OAF
 static gint
-gnome_vfs_mime_id_matches_component (const char *iid, OAF_ServerInfo *component)
+gnome_vfs_mime_id_matches_component (const char *iid, Bonobo_ServerInfo *component)
 {
 	return strcmp (component->iid, iid);
 }
-#endif
 
 static gint 
 gnome_vfs_mime_application_matches_id (GnomeVFSMimeApplication *application, const char *id)
@@ -1193,13 +1191,11 @@ gnome_vfs_mime_application_matches_id (GnomeVFSMimeApplication *application, con
 	return gnome_vfs_mime_id_matches_application (id, application);
 }
 
-#ifdef USING_OAF
 static gint 
-gnome_vfs_mime_component_matches_id (OAF_ServerInfo *component, const char *iid)
+gnome_vfs_mime_component_matches_id (Bonobo_ServerInfo *component, const char *iid)
 {
 	return gnome_vfs_mime_id_matches_component (iid, component);
 }
-#endif
 
 /**
  * gnome_vfs_mime_id_in_application_list:
@@ -1222,10 +1218,10 @@ gnome_vfs_mime_id_in_application_list (const char *id, GList *applications)
 /**
  * gnome_vfs_mime_id_in_component_list:
  * @iid: A component iid.
- * @components: A GList * whose nodes are OAF_ServerInfos, such as the
+ * @components: A GList * whose nodes are Bonobo_ServerInfos, such as the
  * result of gnome_vfs_mime_get_short_list_components().
  * 
- * Check whether a component iid is in a list of OAF_ServerInfos.
+ * Check whether a component iid is in a list of Bonobo_ServerInfos.
  * 
  * Return value: TRUE if a component whose iid matches @iid is in @components.
  */
@@ -1267,12 +1263,12 @@ gnome_vfs_mime_id_list_from_application_list (GList *applications)
 
 /**
  * gnome_vfs_mime_id_list_from_component_list:
- * @components: A GList * whose nodes are OAF_ServerInfos, such as the
+ * @components: A GList * whose nodes are Bonobo_ServerInfos, such as the
  * result of gnome_vfs_mime_get_short_list_components().
  * 
- * Create a list of component iids from a list of OAF_ServerInfos.
+ * Create a list of component iids from a list of Bonobo_ServerInfos.
  * 
- * Return value: A new list where each OAF_ServerInfo in the original
+ * Return value: A new list where each Bonobo_ServerInfo in the original
  * list is replaced by a char * with the component's iid. The original list is
  * not modified.
  */
@@ -1284,7 +1280,7 @@ gnome_vfs_mime_id_list_from_component_list (GList *components)
 
 	for (node = components; node != NULL; node = node->next) {
 		list = g_list_prepend 
-			(list, g_strdup (((OAF_ServerInfo *)node->data)->iid));
+			(list, g_strdup (((Bonobo_ServerInfo *)node->data)->iid));
 	}
 	return g_list_reverse (list);
 }
@@ -1437,13 +1433,13 @@ gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
 
 /**
  * gnome_vfs_mime_remove_component_from_list:
- * @components: A GList * whose nodes are OAF_ServerInfos, such as the
+ * @components: A GList * whose nodes are Bonobo_ServerInfos, such as the
  * result of gnome_vfs_mime_get_short_list_components().
  * @iid: The iid of a component to remove from @components.
  * @did_remove: If non-NULL, this is filled in with TRUE if the component
  * was found in the list, FALSE otherwise.
  * 
- * Remove a component specified by iid from a list of OAF_ServerInfos.
+ * Remove a component specified by iid from a list of Bonobo_ServerInfos.
  * 
  * Return value: The modified list. If the component is not found, the list will 
  * be unchanged.
@@ -1786,9 +1782,9 @@ gnome_vfs_mime_application_list_free (GList *list)
 
 /**
  * gnome_vfs_mime_component_list_free:
- * @list: a GList of OAF_ServerInfo * to be freed
+ * @list: a GList of Bonobo_ServerInfo * to be freed
  * 
- * Frees lists of OAF_ServerInfo * (as returned from functions such
+ * Frees lists of Bonobo_ServerInfo * (as returned from functions such
  * as @gnome_vfs_get_all_components)
  * 
  **/
@@ -1851,7 +1847,7 @@ prune_ids_for_nonexistent_applications (GList *list)
 }
 
 static GList *
-OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list)
+Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList *info_list)
 {
 	GList *retval;
 	int i;
@@ -1859,7 +1855,7 @@ OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list)
 	retval = NULL;
 	if (info_list != NULL && info_list->_length > 0) {
 		for (i = 0; i < info_list->_length; i++) {
-			retval = g_list_prepend (retval, OAF_ServerInfo_duplicate (&info_list->_buffer[i]));
+			retval = g_list_prepend (retval, Bonobo_ServerInfo_duplicate (&info_list->_buffer[i]));
 		}
 		retval = g_list_reverse (retval);
 	}

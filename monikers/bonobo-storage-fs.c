@@ -25,6 +25,20 @@
 #include "bonobo-stream-fs.h"
 #include "bonobo-storage-fs.h"
 
+static char *
+concat_dir_and_file (const char *dir, const char *file)
+{
+	g_return_val_if_fail (dir != NULL, NULL);
+	g_return_val_if_fail (file != NULL, NULL);
+
+        /* If the directory name doesn't have a / on the end, we need
+	   to add one so we get a proper path to the file */
+	if (dir[0] != '\0' && dir [strlen(dir) - 1] != '/')
+		return g_strconcat (dir, "/", file, NULL);
+	else
+		return g_strconcat (dir, file, NULL);
+}
+
 static BonoboObjectClass *bonobo_storage_fs_parent_class;
 
 static void
@@ -56,7 +70,7 @@ fs_get_info (PortableServer_Servant storage,
 		return CORBA_OBJECT_NIL;
 	}
 
-	full = g_concat_dir_and_file (storage_fs->path, path);
+	full = concat_dir_and_file (storage_fs->path, path);
 	if (stat (full, &st) == -1) {
 		if (lstat (full, &st) == -1)
 			goto get_info_except;
@@ -130,7 +144,7 @@ fs_open_stream (PortableServer_Servant  storage,
 	BonoboObject *stream;
 	char *full;
 
-	full = g_concat_dir_and_file (storage_fs->path, path);
+	full = concat_dir_and_file (storage_fs->path, path);
 	stream = BONOBO_OBJECT (
 		bonobo_stream_fs_open (full, mode, 0644, ev));
 	g_free (full);
@@ -150,7 +164,7 @@ fs_open_storage (PortableServer_Servant  storage,
 	BonoboObject *new_storage;
 	char *full;
 
-	full = g_concat_dir_and_file (storage_fs->path, path);
+	full = concat_dir_and_file (storage_fs->path, path);
 	new_storage = BONOBO_OBJECT (
 		bonobo_storage_fs_open (full, mode, 0644, ev));
 	g_free (full);
@@ -181,8 +195,8 @@ fs_rename (PortableServer_Servant storage,
 		bonobo_object (storage));
 	char *full_old, *full_new;
 
-	full_old = g_concat_dir_and_file (storage_fs->path, path);
-	full_new = g_concat_dir_and_file (storage_fs->path, new_path);
+	full_old = concat_dir_and_file (storage_fs->path, path);
+	full_new = concat_dir_and_file (storage_fs->path, new_path);
 
 	if (rename (full_old, full_new) == -1) {
 
@@ -273,7 +287,7 @@ fs_list_contents (PortableServer_Servant   storage,
 		buf [i].size = 0;
 		buf [i].content_type = NULL;
 
-		full = g_concat_dir_and_file (storage_fs->path, de->d_name);
+		full = concat_dir_and_file (storage_fs->path, de->d_name);
 		v = stat (full, &st);
 
 		if (v == -1) {
@@ -366,7 +380,7 @@ fs_erase (PortableServer_Servant storage,
 		bonobo_object (storage));
 	char *full;
 
-	full = g_concat_dir_and_file (storage_fs->path, path);
+	full = concat_dir_and_file (storage_fs->path, path);
 
 	if (remove (full) == -1) {
 

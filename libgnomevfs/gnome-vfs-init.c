@@ -30,10 +30,7 @@
 #include "gnome-vfs-ssl-private.h"
 #include "gnome-vfs-mime.h"
 
-#ifdef USING_OAF
-#include <liboaf/liboaf.h>
-#endif
-
+#include <bonobo-activation/bonobo-activation.h>
 
 static gboolean vfs_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (vfs_already_initialized);
@@ -49,8 +46,8 @@ gnome_vfs_init (void)
 	G_LOCK (vfs_already_initialized);
 
 	if (!vfs_already_initialized) {
-		if (oaf_orb_get() == NULL) {
-			oaf_init (0, bogus_argv);
+		if (bonobo_activation_orb_get() == NULL) {
+			bonobo_activation_init (0, bogus_argv);
 		}
 
 		gnome_vfs_ssl_init ();

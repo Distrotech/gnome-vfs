@@ -1,3 +1,7 @@
+2001-08-02  Michael Meeks  <michael@ximian.com>
+
+	* port to bonobo-activation.
+
 2001-08-01  Jonas Borgström  <jonas@codefactory.se>
 
 	* libgnomevfs/gnome-vfs-ssl.c (gnome_vfs_ssl_create): 

@@ -26,7 +26,7 @@
 #define GNOME_VFS_MIME_HANDLERS_H
 
 #include <libgnomevfs/gnome-vfs-result.h>
-#include <liboaf/liboaf.h>
+#include <bonobo-activation/bonobo-activation.h>
 
 typedef enum {
 	GNOME_VFS_MIME_ACTION_TYPE_NONE,
@@ -53,7 +53,7 @@ typedef struct {
 typedef struct {
 	GnomeVFSMimeActionType action_type;
 	union {
-		OAF_ServerInfo *component;
+		Bonobo_ServerInfo *component;
 		void *dummy_component;
 		GnomeVFSMimeApplication *application;
 	} action;
@@ -63,7 +63,7 @@ GnomeVFSMimeApplication *gnome_vfs_mime_application_copy                   (Gnom
 GnomeVFSMimeActionType   gnome_vfs_mime_get_default_action_type            (const char              *mime_type);
 GnomeVFSMimeAction *     gnome_vfs_mime_get_default_action                 (const char              *mime_type);
 GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application            (const char              *mime_type);
-OAF_ServerInfo *         gnome_vfs_mime_get_default_component              (const char              *mime_type);
+Bonobo_ServerInfo *      gnome_vfs_mime_get_default_component              (const char              *mime_type);
 GList *                  gnome_vfs_mime_get_short_list_applications        (const char              *mime_type);
 GList *                  gnome_vfs_mime_get_short_list_components          (const char              *mime_type);
 GList *                  gnome_vfs_mime_get_all_applications               (const char              *mime_type);
