@@ -1,21 +1,22 @@
+# translation of gnome-vfs.HEAD.po to Spanish
 # Spanish translation.
 # Copyright (C) 2000,2003 Free Software Foundation, Inc.
 # Manuel de Vega Barreiro <barreiro@arrakis.es>, 2000.
 # Mauricio Araya Polo <mauricio@eazel.com>, 2001.
-# Juan Manuel García Molina <juanma_gm@wanadoo.es>, 2002.
+# Juan Manuel García Molina <juanma_gm@wanadoo.es>, 2002,2003.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.9.16\n"
+"Project-Id-Version: gnome-vfs.HEAD\n"
 "POT-Creation-Date: 2003-05-05 12:39+0200\n"
-"PO-Revision-Date: 2003-01-10 14:54-0300\n"
-"Last-Translator: Pablo Gonzalo del Campo <pablodc@bigfoot.com>\n"
+"PO-Revision-Date: 2003-05-08 18:03+0200\n"
+"Last-Translator: Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First-Translator: Mauricio Araya Polo <mauricio@eazel.com>\n"
-"X-Generator: KBabel 1.1\n"
+"X-Generator: KBabel 1.0.1\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
@@ -278,22 +279,22 @@ msgstr "No se pudo encontrar el examinador principal"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "No hay acción predeterminada asociada"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "No hay manejador para el esquema de URL"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Error al analizar la línea de comandos"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Error al lanzar el comando"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
@@ -341,59 +342,57 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:163
 msgid "Applications"
-msgstr ""
+msgstr "Aplicaciones"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:166
 msgid "Cards"
-msgstr ""
+msgstr "Tarjetas"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:169
-#, fuzzy
 msgid "Files"
-msgstr "El archivo ya existe"
+msgstr "Archivos"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:172
 msgid "Folders"
-msgstr ""
+msgstr "Carpetas"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Help"
-msgstr ""
+msgstr "Ayuda"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Hosts"
-msgstr ""
+msgstr "Máquinas"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
 msgid "Links"
-msgstr ""
+msgstr "Enlaces"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Mail"
-msgstr ""
+msgstr "Correo"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Tools"
-msgstr ""
+msgstr "Herramientas"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Windows"
-msgstr ""
+msgstr "Ventanas"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -410,3 +409,4 @@ msgstr "Moniker genérico de Gnome VFS"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "Moniker de archivo genérico"
+
