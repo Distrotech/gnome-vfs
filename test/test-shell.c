@@ -384,6 +384,71 @@ do_cat (void)
 }
 
 static void
+do_info (void)
+{
+	char             *from;
+	GnomeVFSResult    result;
+	GnomeVFSFileInfo *info;
+
+	from = get_fname ();
+
+
+	info = gnome_vfs_file_info_new ();
+	result = gnome_vfs_get_file_info (
+		from, info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+
+	if (show_if_error (result, "getting info on: ", from))
+		return;
+
+	fprintf (stdout, "Name: '%s'\n", info->name);
+	if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE) {
+		fprintf (stdout, "Type: ");
+		switch (info->type) {
+		case GNOME_VFS_FILE_TYPE_UNKNOWN:
+			fprintf (stdout, "unknown");
+			break;
+		case GNOME_VFS_FILE_TYPE_REGULAR:
+			fprintf (stdout, "regular");
+			break;
+		case GNOME_VFS_FILE_TYPE_DIRECTORY:
+			fprintf (stdout, "directory");
+			break;
+		case GNOME_VFS_FILE_TYPE_FIFO:
+			fprintf (stdout, "fifo");
+			break;
+		case GNOME_VFS_FILE_TYPE_SOCKET:
+			fprintf (stdout, "socket");
+			break;
+		case GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE:
+			fprintf (stdout, "char");
+			break;
+		case GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:
+			fprintf (stdout, "block");
+			break;
+		case GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK:
+			fprintf (stdout, "broken symlink");
+			break;
+		default:
+			fprintf (stdout, "Error; invalid value");
+			break;
+		}
+	} else
+		fprintf (stdout, "Type invalid");
+	fprintf (stdout, "\n");
+
+	if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE) {
+		long i = info->size;
+		fprintf (stdout, "Size: %ld bytes", i);
+	} else
+		fprintf (stdout, "Size invalid");
+	fprintf (stdout, "\n");
+
+	/* FIXME: hack here; should dump them all */
+	    
+	gnome_vfs_file_info_unref (info);
+}
+
+static void
 do_cp (void)
 {
 	char *from;
@@ -557,6 +622,9 @@ main (int argc, char **argv)
 			do_cat ();
 		else if (g_strcasecmp (ptr, "cp") == 0)
 			do_cp ();
+		else if (g_strcasecmp (ptr, "info") == 0 ||
+			 g_strcasecmp (ptr, "stat") == 0)
+			do_info ();
 		else if (g_strcasecmp (ptr, "sync") == 0)
 			fprintf (stderr, "a shell is like a boat, it lists or syncs (RMS)\n");
 		else if (g_strcasecmp (ptr,"help") == 0 ||

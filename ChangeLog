@@ -1,5 +1,10 @@
 2000-06-23  Michael Meeks  <michael@helixcode.com>
 
+	* test/test-shell.c (do_info): implement.
+	(main): hook in.
+
+2000-06-23  Michael Meeks  <michael@helixcode.com>
+
 	* test/test-shell.c (get_fname): updates.
 
 	* modules/efs-method.c (do_read_directory): implement.
