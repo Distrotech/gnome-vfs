@@ -5,8 +5,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.4.2\n"
-"POT-Creation-Date: 2001-02-05 13:23+0100\n"
+"Project-Id-Version: gnome-vfs 2.0\n"
+"POT-Creation-Date: 2001-02-13 12:26+0100\n"
 "PO-Revision-Date: 2001-02-05 13:14+0100\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@eikonex.org>\n"
 "Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
@@ -1169,7 +1169,7 @@ msgstr "Service non disponible"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "Request obsoletes service's data"
-msgstr "Donnée de requète de service obsolète"
+msgstr "Donnée de requête de service obsolète"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
@@ -1487,57 +1487,57 @@ msgstr "Éditer une application"
 msgid "Can open from URI"
 msgstr "Il est possible d'ouvrir depuis une URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:541
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1580
+#: mime-type-capplet/nautilus-mime-type-capplet.c:619
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1680
 msgid "Mime Type"
 msgstr "Type MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:548
+#: mime-type-capplet/nautilus-mime-type-capplet.c:626
 msgid "Change Icon"
 msgstr "Changer l'icône"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:555
+#: mime-type-capplet/nautilus-mime-type-capplet.c:633
 msgid "Change File Extensions"
 msgstr "Changer l'extension de fichier"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:563
+#: mime-type-capplet/nautilus-mime-type-capplet.c:641
 msgid "Default Action:"
 msgstr "Action par défaut :"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:575
+#: mime-type-capplet/nautilus-mime-type-capplet.c:653
 msgid "Use Viewer"
 msgstr "Utiliser un visualiseur"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:581
+#: mime-type-capplet/nautilus-mime-type-capplet.c:659
 msgid "Open With Application"
 msgstr "Ouvrir avec l'application"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:593
+#: mime-type-capplet/nautilus-mime-type-capplet.c:671
 msgid "Edit List"
 msgstr "Éditer la liste"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:618
+#: mime-type-capplet/nautilus-mime-type-capplet.c:696
 msgid "Add new Mime type..."
 msgstr "Ajouter un nouveau type MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:624
+#: mime-type-capplet/nautilus-mime-type-capplet.c:702
 msgid "Delete this Mime type..."
 msgstr "Supprimer ce type MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:635
+#: mime-type-capplet/nautilus-mime-type-capplet.c:713
 msgid "Revert to System Defaults"
 msgstr "Revenir aux réglages par défaut"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:693
+#: mime-type-capplet/nautilus-mime-type-capplet.c:794
 msgid "No Description"
 msgstr "Aucune description"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:823
-#: mime-type-capplet/nautilus-mime-type-capplet.c:968
+#: mime-type-capplet/nautilus-mime-type-capplet.c:924
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1068
 msgid "None"
 msgstr "Aucun"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1064
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1164
 msgid ""
 "Reverting to system settings\n"
 "will lose all your personal \n"
@@ -1550,28 +1550,28 @@ msgstr ""
 "Revenir aux réglages système ?\n"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1133
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1321
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1445
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1233
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1421
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1545
 msgid "none"
 msgstr "aucun"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1170
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1351
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1481
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1270
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1451
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1581
 #, c-format
 msgid "View as %s"
 msgstr "Voir comme %s"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1579
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1679
 msgid "Description"
 msgstr "Description"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1581
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1681
 msgid "Extension"
 msgstr "Extension"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1582
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1682
 msgid "Default Action"
 msgstr "Action par défaut"
 
@@ -1583,7 +1583,7 @@ msgstr "Ne peut trouver un hbox, utilise un sélecteur de fichier normal"
 msgid "Preview"
 msgstr "Aperçu"
 
-#: modules/efs-method.c:493 modules/file-method.c:366
+#: modules/efs-method.c:493 modules/file-method.c:365
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d inconnue"
@@ -1852,7 +1852,7 @@ msgstr "Afficher les fichiers cachés"
 #~ msgstr "ftpfs : listing obtenu"
 
 #~ msgid "ftpfs: failed; nowhere to fallback to"
-#~ msgstr "ftpfs : échec; aucune solution de rechange"
+#~ msgstr "ftpfs : échec ; aucune solution de rechange"
 
 #~ msgid "Starting linear transfer..."
 #~ msgstr "Démarrage du transfert linéaire..."
