@@ -438,6 +438,8 @@ gicon_get_icon_for_file (const gchar *full_name, gboolean do_quick)
 {
         struct stat stat_buf;
 
+	g_return_val_if_fail (iset_regular != NULL, NULL);
+
 	return iset_regular->plain;
 
         if (stat (full_name, &stat_buf) < 0) {

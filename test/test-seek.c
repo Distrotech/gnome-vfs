@@ -27,6 +27,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
+
 #include <glib.h>
 
 #include "gnome-vfs.h"
@@ -51,6 +53,36 @@ show_if_error (GnomeVFSResult result, const gchar *what)
 		return FALSE;
 }
 
+static const char *
+translate_vfs_seek_pos (GnomeVFSSeekPosition whence, int *unix_whence)
+{
+	const char *txt;
+	int         ref_whence;
+
+	switch (whence) {
+	case GNOME_VFS_SEEK_START:
+		txt = "seek_start";
+		ref_whence = SEEK_SET;
+		break;
+	case GNOME_VFS_SEEK_CURRENT:
+		txt = "seek_current";
+		ref_whence = SEEK_CUR;
+		break;
+	case GNOME_VFS_SEEK_END:
+		txt = "seek_end";
+		ref_whence = SEEK_END;
+		break;
+	default:
+		txt = "unknown seek type";
+		ref_whence = SEEK_SET;
+		g_warning ("Unknown seek type");
+	}
+	if (unix_whence)
+		*unix_whence = ref_whence;
+
+	return txt;	
+}
+
 static gboolean
 seek_test_chunk (GnomeVFSHandle      *handle,
 		 FILE                *ref,
@@ -59,26 +91,12 @@ seek_test_chunk (GnomeVFSHandle      *handle,
 		 GnomeVFSFileSize     length)
 {
 	GnomeVFSResult result;
-	const char *txt;
+	int            ref_whence;
 	
-	switch (whence) {
-	case GNOME_VFS_SEEK_START:
-		txt = "seek_start";
-		break;
-	case GNOME_VFS_SEEK_CURRENT:
-		txt = "seek_current";
-		break;
-	case GNOME_VFS_SEEK_END:
-		txt = "seek_end";
-		break;
-	default:
-		g_warning ("Unknown seek type");
-		return FALSE;
-	}
-	printf ("offset %d, whence '%s', length %d\n", (int)vfs_offset, txt, (int)length);
+	translate_vfs_seek_pos (whence, &ref_whence);
 
 	{ /* Preliminary tell */
-		GnomeVFSFileSize offset;
+		GnomeVFSFileSize offset = 0;
 		long ref_off;
 		result  = gnome_vfs_tell (handle, &offset);
 		if (show_if_error (result, "head gnome_vfs_tell"))
@@ -94,6 +112,56 @@ seek_test_chunk (GnomeVFSHandle      *handle,
 			g_warning ("Offset mismatch %d should be %d", (int)offset, (int)ref_off);
 			return FALSE;
 		}
+	}
+
+	{ /* seek */
+		int fseekres;
+		result   = gnome_vfs_seek (handle, whence, vfs_offset);
+		fseekres = fseek (ref, vfs_offset, ref_whence);
+
+		if (fseekres == 0 &&
+		    result != GNOME_VFS_OK) {
+			g_warning ("seek success difference '%d - %d' - '%s'",
+				   fseekres, errno, gnome_vfs_result_to_string (result));
+			return FALSE;
+		}
+	}
+
+	{ /* read - leaks like a sieve on error =] */
+		guint8 *data, *data_ref;
+		int     bytes_read_ref;
+		GnomeVFSFileSize bytes_read;
+
+		data     = g_new (guint8, length);
+		data_ref = g_new (guint8, length);
+		
+		result = gnome_vfs_read (handle, data, length, &bytes_read);
+		bytes_read_ref = fread (data_ref, 1, length, ref);
+
+		if (bytes_read_ref != bytes_read) {
+			g_warning ("read failure: vfs read %d and fread %d bytes ('%s')",
+				   (int)bytes_read, bytes_read_ref,
+				   gnome_vfs_result_to_string (result));
+			return FALSE;
+		}
+		if (result != GNOME_VFS_OK) {
+			g_warning ("VFS read failed with '%s'",
+				   gnome_vfs_result_to_string (result));
+			return FALSE;
+		}
+		
+		{ /* Compare the data */
+			int i;
+			for (i = 0; i < bytes_read; i++)
+				if (data[i] != data_ref[i]) {
+					g_warning ("vfs read data mismatch at byte %d, '%d' != '%d'",
+						   i, data[i], data_ref[i]);
+					return FALSE;
+				}
+		}
+
+		g_free (data_ref);
+		g_free (data);
 	}
 	
 	{ /* Tail tell */
@@ -114,7 +182,6 @@ seek_test_chunk (GnomeVFSHandle      *handle,
 			return FALSE;
 		}
 	}
-	
 
 	return TRUE;
 }
@@ -125,7 +192,7 @@ main (int argc, char **argv)
 	GnomeVFSResult result;
 	GnomeVFSHandle *handle;
 	FILE *ref;
-	int i;
+	int i, failures;
 
 	if (! gnome_vfs_init ()) {
 		fprintf (stderr, "Cannot initialize gnome-vfs.\n");
@@ -147,14 +214,23 @@ main (int argc, char **argv)
 		exit (1);
 	}
 
-	for (i = 0; i < 1000; i++) {
+	failures = 0;
+	for (i = 0; i < 10; i++) {
 		GnomeVFSFileSize     length  = (1000.0 * rand () / (RAND_MAX + 1.0));
 		GnomeVFSFileOffset   seekpos = (1000.0 * rand () / (RAND_MAX + 1.0));
 		GnomeVFSSeekPosition w = (int)(2.0 * rand () / (RAND_MAX + 1.0));
 
-		if (!seek_test_chunk (handle, ref, seekpos, w, length))
-			g_warning ("test failed\n");
+		if (!seek_test_chunk (handle, ref, seekpos, w, length)) {
+			printf ("Failed: seek (offset %d, whence '%s'), read (length %d), tell = %d\n",
+				(int)seekpos, translate_vfs_seek_pos (w, NULL),
+				(int)length, ftell (ref));
+			failures++;
+		}
 	}
+	if (failures)
+		printf ("%d tests failed\n", failures);
+	else
+		printf ("All test successful\n");
 
 	result = gnome_vfs_close (handle);
 	show_result (result, "gnome_vfs_close", argv[1]);

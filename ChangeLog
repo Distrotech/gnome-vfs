@@ -1,3 +1,25 @@
+1999-09-06  Michael Meeks  <michael@imaginator.com>
+
+	* libgnomevfs/gnome-vfs-private.h: Add include gnome-vfs-seekable.h
+
+	* libgnomevfs/gnome-vfs-seekable.[ch]: Created.
+
+	* libgnomevfs/Makefile.am: Include them.
+
+	* libgnomevfs/gnome-vfs-handle.c (gnome_vfs_handle_new): Added
+	OPEN_RANDOM hook here.
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_open_from_uri): and removed
+	hook from here.
+
+	* test/test-seek.c: Implemented fully.
+
+	* modules/file-method.c (do_tell, do_seek): correct order to offset
+	then whence.
+
+	* test/gnome-file-selection/gicon.c (gicon_get_icon_for_file): Add
+	precondition.
+
 1999-09-06  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs-corba/gnome-vfs-async-ops.c

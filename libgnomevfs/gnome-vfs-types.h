@@ -120,10 +120,10 @@ typedef enum _GnomeVFSSeekPosition GnomeVFSSeekPosition;
 
 #ifdef G_HAVE_GINT64
 typedef guint64 GnomeVFSFileSize;
-typedef gint64 GnomeVFSFileOffset;
+typedef gint64  GnomeVFSFileOffset;
 #else
 typedef gulong GnomeVFSFileSize;
-typedef glong GnomeVFSFileOffset;
+typedef glong  GnomeVFSFileOffset;
 #endif
 
 /* A file handle.  */

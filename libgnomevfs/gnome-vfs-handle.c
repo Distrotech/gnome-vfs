@@ -86,6 +86,15 @@ gnome_vfs_handle_new (GnomeVFSURI *uri,
 	new->method_handle = method_handle;
 	new->open_mode = open_mode;
 
+	if ((open_mode & GNOME_VFS_OPEN_RANDOM) &&
+	    uri->method->seek == NULL) {
+		GnomeVFSMethodHandle *handle;
+		handle = gnome_vfs_seek_emulate (new->uri, method_handle,
+						 open_mode);
+		if (handle) /* Successfully wrapped */
+			new->method_handle = handle;
+	}
+
 	return new;
 }
 

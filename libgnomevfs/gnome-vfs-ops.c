@@ -64,15 +64,11 @@ gnome_vfs_open_from_uri (GnomeVFSHandle **handle,
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (uri->method != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	if (!uri->method->seek && open_mode == GNOME_VFS_OPEN_RANDOM) {
-		g_warning ("proxy the file to emulate seeks");
-	} else {
-		result = uri->method->open (&method_handle, uri, open_mode);
-		if (result != GNOME_VFS_OK)
-			return result;
+	result = uri->method->open (&method_handle, uri, open_mode);
+	if (result != GNOME_VFS_OK)
+		return result;
 
-		*handle = gnome_vfs_handle_new (uri, method_handle, open_mode);
-	}
+	*handle = gnome_vfs_handle_new (uri, method_handle, open_mode);
 	
 	return GNOME_VFS_OK;
 }
