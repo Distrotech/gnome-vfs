@@ -1,18 +1,20 @@
 # Albanian translation for gnome-vfs
-# Copyright (C) 2001-2002 Free Software Foundation, Inc.
+# Copyright (C) 2001-2002,2003 Free Software Foundation, Inc.
 # Laurent Dhima <laurenti@albinux.net>, 2002.
+# Laurent Dhima <laurenti@alblinux.net>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.0\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-01-09 15:58+0100\n"
+"Project-Id-Version: gnome-vfs.HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-07-01 01:34+0200\n"
+"PO-Revision-Date: 2003-07-01 01:37+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
-"Language-Team: albanian < gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
+"Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"X-Generator: KBabel 1.0.1\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
@@ -275,22 +277,22 @@ msgstr "E pamundur gjetja e browser master"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "Nuk i është shoqëruar asnjë veprim i prezgjedhur"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "No handler for URL scheme"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Gabim gjatë zbatimit të rreshtit të komandës"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Gabim gjatë lëshimit të komandës"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
@@ -345,53 +347,52 @@ msgstr ""
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:163
 msgid "Applications"
-msgstr ""
+msgstr "Aplikativë"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:166
 msgid "Cards"
-msgstr ""
+msgstr "Cards"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:169
-#, fuzzy
 msgid "Files"
-msgstr "File ekziston"
+msgstr "Files"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:172
 msgid "Folders"
-msgstr ""
+msgstr "Kartela"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Help"
-msgstr ""
+msgstr "Ndihmë"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Hosts"
-msgstr ""
+msgstr "Hosts"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
 msgid "Links"
-msgstr ""
+msgstr "Lidhje"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Mail"
-msgstr ""
+msgstr "Mail"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Tools"
-msgstr ""
+msgstr "Vegla"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Windows"
-msgstr ""
+msgstr "Dritare"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -408,3 +409,4 @@ msgstr "Moniker Gnome VFS i përgjithshëm"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "moniker i përgjithshëm për file"
+
