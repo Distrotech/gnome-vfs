@@ -1,3 +1,14 @@
+2003-04-25  Alexander Larsson  <alexl@redhat.com>
+
+	Based on patch by Frank Worsley <fworsley@shaw.ca>
+	
+	* libgnomevfs/gnome-vfs-utils.[ch]:
+	(gnome_vfs_icon_path_from_filename):
+	Use g_file_test instead of hack_file_exists.
+	
+	(gnome_vfs_make_uri_from_input_with_dirs):
+	Add new function.
+
 2003-04-24  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/Makefile.am (libgnomevfs_2_la_LIBADD): 

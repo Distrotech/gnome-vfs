@@ -820,26 +820,6 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 	return ret;
 }
 
-/**
- * hack_file_exists
- * @filename: pathname to test for existance.
- *
- * Returns true if filename exists
- */
-/* FIXME: Why is this here? Why not use g_file_exists in libgnome/gnome-util.h?
- * (I tried to simply replace but there were strange include dependencies, maybe
- * that's why this function exists.)
- */
-static int
-hack_file_exists (const char *filename)
-{
-	struct stat s;
-
-	g_return_val_if_fail (filename != NULL,FALSE);
-    
-	return stat (filename, &s) == 0;
-}
-
 char *
 gnome_vfs_icon_path_from_filename (const char *relative_filename)
 {
@@ -848,7 +828,7 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 	char **paths, **temp_paths;
 
 	if (g_path_is_absolute (relative_filename) &&
-	    hack_file_exists (relative_filename))
+	    g_file_test (relative_filename, G_FILE_TEST_EXISTS))
 		return g_strdup (relative_filename);
 
 	gnome_var = g_getenv ("GNOME_PATH");
@@ -861,7 +841,7 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 
 	for (temp_paths = paths; *temp_paths != NULL; temp_paths++) {
 		full_filename = g_strconcat (*temp_paths, "/share/pixmaps/", relative_filename, NULL);
-		if (hack_file_exists (full_filename)) {
+		if (g_file_test (full_filename, G_FILE_TEST_EXISTS)) {
 			g_strfreev (paths);
 			return full_filename;
 		}
@@ -1348,6 +1328,70 @@ gnome_vfs_make_uri_from_input (const char *location)
 
 	return gnome_vfs_make_uri_from_input_internal (location, broken_filenames, TRUE);
 }
+
+/**
+ * gnome_vfs_make_uri_from_input_with_dirs:
+ * @in: a relative or absolute path
+ *
+ * Determines a fully qualified URL from a relative or absolute input path.
+ * Basically calls gnome_vfs_make_uri_from_input except it specifically
+ * tries to support paths relative to the specified directories (can be homedir
+ * and/or current directory).
+ *
+ * Return value: the fully qualified URL
+ *
+ * Since: 2.4
+ */
+char *
+gnome_vfs_make_uri_from_input_with_dirs (const char *in,
+					 GnomeVFSMakeURIDirs dirs)
+{
+	char *uri, *path, *dir;
+
+	switch (in[0]) {
+	case '\0':
+		uri = g_strdup ("");
+		break;
+		
+	case '~':
+	case '/':
+		uri = gnome_vfs_make_uri_from_input (in);
+		break;
+		
+	default:
+		/* this might be a relative path, check if it exists relative
+		 * to current dir and home dir.
+		 */
+		uri = NULL;
+		if (dirs & GNOME_VFS_MAKE_URI_DIR_CURRENT) {
+			dir = g_get_current_dir ();
+			path = g_build_filename (dir, in, NULL);
+			g_free (dir);
+			
+			if (g_file_test (path, G_FILE_TEST_EXISTS)) {
+				uri = gnome_vfs_make_uri_from_input (path);
+			}
+			g_free (path);
+		}
+
+		if (uri == NULL &&
+		    dirs & GNOME_VFS_MAKE_URI_DIR_HOMEDIR) {
+			path = g_build_filename (g_get_home_dir (), in, NULL);
+		
+			if (g_file_test (path, G_FILE_TEST_EXISTS)) {
+				uri = gnome_vfs_make_uri_from_input (path);
+			}
+			g_free (path);
+		}
+
+		if (uri == NULL) {
+			uri = gnome_vfs_make_uri_from_input (in);
+		}
+	}
+	
+	return uri;
+}
+
 
 /**
  * gnome_vfs_make_uri_canonical_strip_fragment:
