@@ -5,58 +5,54 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2004-01-12 10:09+0100\n"
-"PO-Revision-Date: 2003-06-18 19:53+0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-21 15:06+0300\n"
+"PO-Revision-Date: 2004-01-23 15:46+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\\n\n"
 
-# libgnomevfs/gnome-vfs-parse-ls.c:652
 #: daemon/gnome-vfs-daemon.c:573
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "Не удалось найти главный браузер"
+msgstr "Не удалось проинициализировать подсистему Bonobo"
 
 #: daemon/gnome-vfs-daemon.c:579
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "Не удалось проинициализировать подсистему gnome vfs"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "Раздел формата ISO 9660"
 
-# libgnomevfs/gnome-vfs-configuration.c:223
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d содержит NUL символов."
 
-# libgnomevfs/gnome-vfs-configuration.c:240
 #: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d не содержит названия метода."
 
-# libgnomevfs/gnome-vfs-configuration.c:240
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d не содержит названия метода."
+msgstr "%s:%d не содержит признака окончания параметров."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d содержит неизвестный параметр %s."
 
-# libgnomevfs/gnome-vfs-configuration.c:269
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d не содержит названия модуля."
 
-# libgnomevfs/gnome-vfs-configuration.c:322
 #: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
@@ -64,422 +60,372 @@ msgstr "Конфигурационный файл \"%s\" не найден: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "Раздел формата AFFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "Сетевой раздел формата AFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Автоопределяемый раздел"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "Дисковод компакт-дисков"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "Цифровое аудио качества компакт-диска"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Раздел оборудования"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Раздел ОС Linux формата Ext2"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Раздел ОС Linux формата Ext3"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "Раздел ОС MSDOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr ""
+msgstr "Раздел ОС MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr ""
+msgstr "Раздел компакт-диска"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Раздел компакт-диска формата Hsfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr ""
+msgstr "Раздел формата JFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
-msgstr ""
+msgstr "Раздел ОС Windows NT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr ""
+msgstr "Системный раздел"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr ""
+msgstr "Раздел в памяти"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr ""
+msgstr "Раздел ОС Minix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "Сетевой раздел формата NFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr ""
+msgstr "Раздел ОС Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "Раздел ОС Linux формата ReiserFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Разделяемый раздел ОС Windows"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "Раздел формата SuperMount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr ""
+msgstr "Раздел формата DVD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Раздел ОС Solaris/BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Раздел ОС Solaris формата Udfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "Раздел ОС Solaris формата Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "Расширенный раздел ОС DOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "Раздел ОС Windows формата VFAT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr ""
+msgstr "Раздел ОС Xenix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "Раздел ОС Linux формата XFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "Раздел формата XIAFS"
 
-# libgnomevfs/gnome-vfs-result.c:137
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
-#, fuzzy
 msgid "Unknown"
-msgstr "Произошла неизвестная ошибка"
+msgstr "Неизвестно"
 
-# libgnomevfs/gnome-vfs-job.c:714
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Тип операции %u неизвестен"
 
-# libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Невозможно создать канал для открытия GIOChannel: %s"
 
-# libgnomevfs/gnome-vfs-job.c:1596
 #: libgnomevfs/gnome-vfs-job.c:1727
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Вид задания %u неизвестен"
 
-# libgnomevfs/gnome-vfs-job.c:1632
 #: libgnomevfs/gnome-vfs-job.c:1760
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
-# libgnomevfs/gnome-vfs-parse-ls.c:652
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Не удалось провести разбор: %s"
 
-# libgnomevfs/gnome-vfs-parse-ls.c:654
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
 msgstr "Остальные ошибки разбора будут проигнорированы."
 
-# libgnomevfs/gnome-vfs-result.c:35
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
 msgstr "Ошибки отсутствуют"
 
-# libgnomevfs/gnome-vfs-result.c:36
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
 msgstr "Файл не найден"
 
-# libgnomevfs/gnome-vfs-result.c:37
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
 msgstr "Произошла общая ошибка"
 
-# libgnomevfs/gnome-vfs-result.c:38
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
 msgstr "Произошла внутренняя ошибка"
 
-# libgnomevfs/gnome-vfs-result.c:39
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
 msgstr "Обнаружены неверные параметры"
 
-# libgnomevfs/gnome-vfs-result.c:40
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
 msgstr "Операция не поддерживается"
 
-# libgnomevfs/gnome-vfs-result.c:41
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
 msgstr "Произошла ошибка ввода/вывода"
 
-# libgnomevfs/gnome-vfs-result.c:42
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
 msgstr "Данные повреждены"
 
-# libgnomevfs/gnome-vfs-result.c:43
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
 msgstr "Формат недопустим"
 
-# libgnomevfs/gnome-vfs-result.c:44
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
 msgstr "Заголовок файла неверен"
 
-# libgnomevfs/gnome-vfs-result.c:45
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
 msgstr "Файл слишком велик"
 
-# libgnomevfs/gnome-vfs-result.c:46
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
 msgstr "Отсутствует место на устройстве"
 
-# libgnomevfs/gnome-vfs-result.c:47
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
 msgstr "Файловая система только для чтения"
 
-# libgnomevfs/gnome-vfs-result.c:48
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
 msgstr "Идентификатор (URI) недопустим"
 
-# libgnomevfs/gnome-vfs-result.c:49
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
 msgstr "Файл не открыт"
 
-# libgnomevfs/gnome-vfs-result.c:50
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
 msgstr "Режим открытия недопустим"
 
-# libgnomevfs/gnome-vfs-result.c:51
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
 msgstr "Доступ запрещен"
 
-# libgnomevfs/gnome-vfs-result.c:52
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
 msgstr "Открыто слишком много файлов"
 
-# libgnomevfs/gnome-vfs-result.c:53
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
 msgstr "Обнаружен конец файла"
 
-# libgnomevfs/gnome-vfs-result.c:54
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
 msgstr "Не является каталогом"
 
-# libgnomevfs/gnome-vfs-result.c:55
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
 msgstr "Действие выполняется"
 
-# libgnomevfs/gnome-vfs-result.c:56
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
 msgstr "Действие прервано"
 
-# libgnomevfs/gnome-vfs-result.c:57
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
 msgstr "Файл существует"
 
-# libgnomevfs/gnome-vfs-result.c:58
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
 msgstr "Обнаружены циклические ссылки"
 
-# libgnomevfs/gnome-vfs-result.c:59
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
 msgstr "Действие не разрешено"
 
-# libgnomevfs/gnome-vfs-result.c:60
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
 msgstr "Является каталогом"
 
-# libgnomevfs/gnome-vfs-result.c:61
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
 msgstr "Недостаточно памяти"
 
-# libgnomevfs/gnome-vfs-result.c:62
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
 msgstr "Узел не найден"
 
-# libgnomevfs/gnome-vfs-result.c:63
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
 msgstr "Имя узла недопустимо"
 
-# libgnomevfs/gnome-vfs-result.c:64
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
 msgstr "У узла отсутствует адрес"
 
-# libgnomevfs/gnome-vfs-result.c:65
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "Начать сеанс не удалось"
+msgstr "Вход в сеанс не удался"
 
-# libgnomevfs/gnome-vfs-result.c:66
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
 msgstr "Действие отменено"
 
-# libgnomevfs/gnome-vfs-result.c:67
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
 msgstr "Каталог занят"
 
-# libgnomevfs/gnome-vfs-result.c:68
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
 msgstr "Каталог не пуст"
 
-# libgnomevfs/gnome-vfs-result.c:69
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
 msgstr "Слишком много ссылок"
 
-# libgnomevfs/gnome-vfs-result.c:70
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
 msgstr "Файловая система только для чтения"
 
-# libgnomevfs/gnome-vfs-result.c:71
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Не в той же файловой системе"
+msgstr "Находится не в той же файловой системе"
 
-# libgnomevfs/gnome-vfs-result.c:72
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
 msgstr "Слишком длинное имя"
 
-# libgnomevfs/gnome-vfs-result.c:73
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
 msgstr "Сервис не доступен"
 
-# libgnomevfs/gnome-vfs-result.c:74
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
 msgstr "Были запрошены устаревшие сервисные данные"
 
-# libgnomevfs/gnome-vfs-result.c:75
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Protocol error"
 msgstr "Произошла ошибка протокола"
 
-# libgnomevfs/gnome-vfs-parse-ls.c:652
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Could not find master browser"
@@ -505,38 +451,34 @@ msgstr "Произошла ошибка при разборе командной
 msgid "Error launching command"
 msgstr "Произошла ошибка при выполнении команды"
 
-# libgnomevfs/gnome-vfs-result.c:137
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
 msgstr "Произошла неизвестная ошибка"
 
-# libgnomevfs/gnome-vfs-utils.c:67
-#: libgnomevfs/gnome-vfs-utils.c:84
-#, fuzzy, c-format
+#: libgnomevfs/gnome-vfs-utils.c:85
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u байт"
-msgstr[1] "%u байт"
+msgstr[1] "%u байта"
+msgstr[2] "%u байтов"
 
-# libgnomevfs/gnome-vfs-utils.c:74
-#: libgnomevfs/gnome-vfs-utils.c:90
-#, fuzzy, c-format
+#: libgnomevfs/gnome-vfs-utils.c:91
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f K"
+msgstr "%.1f Кб"
 
-# libgnomevfs/gnome-vfs-utils.c:78
-#: libgnomevfs/gnome-vfs-utils.c:94
+#: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f MB"
+msgstr "%.1f Мб"
 
-# libgnomevfs/gnome-vfs-utils.c:82
-#: libgnomevfs/gnome-vfs-utils.c:98
+#: libgnomevfs/gnome-vfs-utils.c:99
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f GB"
+msgstr "%.1f Гб"
 
-#: libgnomevfs/gnome-vfs-utils.c:1105
+#: libgnomevfs/gnome-vfs-utils.c:1106
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr " (недопустимый Юникод)"
@@ -544,91 +486,95 @@ msgstr " (недопустимый Юникод)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
 msgid "Floppy"
-msgstr ""
+msgstr "Дискета"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
 msgid "CD-ROM"
-msgstr ""
+msgstr "Компакт-диск"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
 msgid "Zip Drive"
-msgstr ""
+msgstr "ZIP-дисковод"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
 msgid "Memory Stick"
-msgstr ""
+msgstr "Мемори стик"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
 msgid "Camera"
-msgstr ""
+msgstr "Камера"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
 msgid "Root Volume"
-msgstr ""
+msgstr "Корневой раздел"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
 msgid "Audio CD"
-msgstr ""
+msgstr "Аудио компакт-диск"
 
-# libgnomevfs/gnome-vfs-result.c:137
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Произошла неизвестная ошибка"
+msgstr "Неизвестный раздел"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
 msgid "Network server"
-msgstr ""
+msgstr "Сетевой сервер"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
+"Невозможно подсоединить дискету. Возможно, дискета отсутствует в дисководе."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
+"Невозможно подсоединить раздел. Возможно, носитель отсутствует в устройстве."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Невозможно подсоединить дискету. Возможно, дискета в таком формате, что она "
+"не может быть подсоединена."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Невозможно подсоединить выбранный раздел. Возможно, раздел в таком формате, "
+"что он не может быть подсоединён."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Невозможно подсоединить выбранную дискету."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Невозможно подсоединить выбранный раздел."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Невозможно отсоединить выбранный раздел."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:220
 #: libgnomevfs/gnome-vfs-volume-ops.c:252
 msgid "Failed to start command"
-msgstr ""
+msgstr "Произошла ошибка при запуске команды"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:245
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Невозможно извлечь носитель"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Невозможно отсоединить подключённый сервер"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -640,7 +586,6 @@ msgstr "Приложения"
 msgid "Cards"
 msgstr "Карточки"
 
-# libgnomevfs/gnome-vfs-result.c:57
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
 msgid "Files"
@@ -683,68 +628,59 @@ msgstr "Окна"
 
 #: modules/computer-method.c:521
 msgid "Network"
-msgstr ""
+msgstr "Сеть"
 
 #: modules/computer-method.c:539
 msgid "Home"
-msgstr ""
+msgstr "Начало"
 
-# libgnomevfs/gnome-vfs-result.c:57
 #: modules/computer-method.c:557
-#, fuzzy
 msgid "Filesystem"
-msgstr "Файлы"
+msgstr "Файловая система"
 
-# modules/file-method.c:381
 #: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Значение GnomeVFSSeekPosition %d неизвестно"
 
-# modules/test-method.c:590
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
 msgstr "Не найден допустимый файл установок в \"%s\"\n"
 
-# modules/test-method.c:592
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Используйте переменную окружения \"%s\" для указания другого места.\n"
 
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
 msgstr "Фабрика Стандартного моникера"
 
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
 msgstr "файл MonikerExtender"
 
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
 msgstr "общий моникер системы Gnome VFS"
 
-# monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "общий моникер файла"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Исходное приложения просмотра компонентов"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Исходное терминальное приложение"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Аргуметы выполнения для исходного терминала"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -884,7 +820,6 @@ msgstr ""
 msgid "info URL handler"
 msgstr ""
 
-# libgnomevfs/gnome-vfs-result.c:44
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 #, fuzzy
 msgid "mailto URL handler"
@@ -1036,8 +971,9 @@ msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
 
 #: modules/network-method.c:257
-msgid "Window Network"
-msgstr ""
+#, fuzzy
+msgid "Windows Network"
+msgstr "Окна"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1046,15 +982,3 @@ msgstr ""
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr ""
-
-#, fuzzy
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "Отсутствует обработчик для схемы ссылки (URL)"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "Отсутствует обработчик для схемы ссылки (URL)"
-
-# libgnomevfs/gnome-vfs-utils.c:65
-#~ msgid "1 byte"
-#~ msgstr "1 байт"
