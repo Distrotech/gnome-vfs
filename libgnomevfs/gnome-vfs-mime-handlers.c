@@ -1089,8 +1089,7 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 	entries =
 		egg_desktop_entries_new_from_file (NULL,
 				EGG_DESKTOP_ENTRIES_GENERATE_LOOKUP_MAP |
-				EGG_DESKTOP_ENTRIES_DISCARD_COMMENTS |
-				EGG_DESKTOP_ENTRIES_DISCARD_TRANSLATIONS,
+			        EGG_DESKTOP_ENTRIES_DISCARD_COMMENTS,
 				filename,
 				NULL);
 	g_free (filename);
@@ -1101,9 +1100,9 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 	application = g_new0 (GnomeVFSMimeApplication, 1);
 
 	application->id = g_strdup (id);
-	application->name = egg_desktop_entries_get_string (entries,
-			                                    egg_desktop_entries_get_start_group (entries),
-							    "Name", NULL);
+	application->name = egg_desktop_entries_get_locale_string (entries,
+								   egg_desktop_entries_get_start_group (entries),
+								   "Name", NULL, NULL);
 	if (application->name == NULL) 
 		goto error;
 

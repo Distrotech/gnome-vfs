@@ -1,3 +1,14 @@
+2004-08-18  Anders Carlsson  <andersca@gnome.org>
+
+	* libgnomevfs/eggdesktopentries.c:
+	(egg_desktop_entries_parse_entry), (key_get_locale),
+	(egg_desktop_entries_get_locale_string):
+	Fix bug where locale strings would not be read correctly.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_new_from_id):
+	Translate the application name.
+	
 2004-08-17  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c (gnome_vfs_mime_info_cache_init):

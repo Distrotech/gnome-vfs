@@ -742,6 +742,7 @@ egg_desktop_entries_parse_entry (EggDesktopEntries  *entries,
   /* Is this key a translation? If so, is it one that we care about?
    */
   locale = key_get_locale (key);
+
   if (locale == NULL || g_deskop_entries_locale_is_interesting (entries, locale))
     egg_desktop_entries_add_entry (entries, entries->current_group->name, key, value);
 
@@ -762,7 +763,7 @@ key_get_locale (const gchar *key)
   if (locale)
     {
       locale = g_strdup (locale + 1);
-      locale[strlen (locale)] = '\0';
+      locale[strlen (locale) - 1] = '\0';
     }
 
   return locale;
@@ -1236,7 +1237,8 @@ egg_desktop_entries_get_locale_string (EggDesktopEntries  *entries,
 						       candidate_key, NULL);
       g_free (candidate_key);
     }
-  else if (lang && country)
+
+  if (!translated_value && lang && country)
     {
       candidate_key = g_strdup_printf ("%s[%s_%s]", key, lang, country);
 
@@ -1244,7 +1246,8 @@ egg_desktop_entries_get_locale_string (EggDesktopEntries  *entries,
 						       candidate_key, NULL);
       g_free (candidate_key);
     }
-  else if (lang && modifier)
+  
+  if (!translated_value && lang && modifier)
     {
       candidate_key = g_strdup_printf ("%s[%s@%s]", key, lang, modifier);
 
@@ -1252,7 +1255,8 @@ egg_desktop_entries_get_locale_string (EggDesktopEntries  *entries,
 						       candidate_key, NULL);
       g_free (candidate_key);
     }
-  else if (lang)
+      
+   if (!translated_value && lang)
     {
       candidate_key = g_strdup_printf ("%s[%s]", key, lang);
 
@@ -1260,8 +1264,6 @@ egg_desktop_entries_get_locale_string (EggDesktopEntries  *entries,
 						       candidate_key, NULL);
       g_free (candidate_key);
     }
-  else
-    g_assert_not_reached ();
 
   if (translated_value)
     {
