@@ -1,39 +1,39 @@
-# Finnish translation for gnome-vfs.
-# Copyright (C) 2000 Free Software Foundation, Inc.
-# Pauli Virtanen <pauli.virtanen@saunalahti.fi>, 2000
+# gnome-vfs Finnish translation
+# Suomennos: http://gnome-fi.sourceforge.net/
 #
-# GNOME Finnish Translation Team: http://gnome-fi.sourceforge.net/
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Pauli Virtanen <pauli.virtanen@saunalahti.fi>, 2000-2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-02-04 16:49-0800\n"
-"PO-Revision-Date: 2001-01-10 23:17+02:00\n"
+"Project-Id-Version: gnome-vfs 1.9.4\n"
+"POT-Creation-Date: 2002-01-29 23:17+0200\n"
+"PO-Revision-Date: 2002-02-09 22:11+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@saunalahti.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d sis‰lt‰‰ NUL-merkkej‰."
+msgstr "%s:%d sis√§lt√§√§ NUL-merkkej√§."
 
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d ei sis‰ll‰ metodin nime‰."
+msgstr "%s:%d ei sis√§ll√§ metodin nime√§."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d ei sis‰ll‰ moduulin nime‰."
+msgstr "%s:%d ei sis√§ll√§ moduulin nime√§."
 
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Asetustiedostoa '%s' ei lˆytynyt: %s"
+msgstr "Asetustiedostoa '%s' ei l√∂ytynyt: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:714
 #, c-format
@@ -48,11 +48,11 @@ msgstr "GIOChannelille ei voi luoda putkea: %s"
 #: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Tuntematon tyˆntyyppi %u"
+msgstr "Tuntematon ty√∂tyyppi %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1632
 msgid "Operation stopped"
-msgstr "Toiminta pys‰ytetty"
+msgstr "Toiminta pys√§ytetty"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
@@ -61,17 +61,17 @@ msgstr "Ei voitu tulkita: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Mahdolliset seuraavat tulkkausvirheet j‰‰v‰t huomiotta."
+msgstr "Mahdolliset seuraavat tulkkausvirheet j√§√§v√§t huomiotta."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
-msgstr "Ei virhett‰"
+msgstr "Ei virhett√§"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
-msgstr "Tiedostoa ei lˆytynyt"
+msgstr "Tiedostoa ei l√∂ytynyt"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
@@ -81,12 +81,12 @@ msgstr "Yleinen virhe"
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
-msgstr "Sis‰inen virhe"
+msgstr "Sis√§inen virhe"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Virheellisi‰ parametreja"
+msgstr "Virheellisi√§ parametreja"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
@@ -121,12 +121,12 @@ msgstr "Tiedosto on liian suuri"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Levyll‰ ei ole j‰ljell‰ tilaa"
+msgstr "Levyll√§ ei ole j√§ljell√§ tilaa"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Tiedostoj‰rjestelm‰st‰ voi vain lukea"
+msgstr "Tiedostoj√§rjestelm√§st√§ voi vain lukea"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -146,7 +146,7 @@ msgstr "Avaustapa on virheellinen"
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "Ei k‰yttˆoikeutta"
+msgstr "Ei k√§ytt√∂oikeutta"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
@@ -166,7 +166,7 @@ msgstr "Ei ole hakemisto"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Toiminto k‰ynniss‰"
+msgstr "Toiminto k√§ynniss√§"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
@@ -181,7 +181,7 @@ msgstr "Tiedosto on olemassa"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Silmukkamaisia linkkej‰ havaittu"
+msgstr "Silmukkamaisia linkkej√§ havaittu"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
@@ -201,7 +201,7 @@ msgstr "Ei tarpeeksi muistia"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Konetta ei lˆytynyt"
+msgstr "Konetta ei l√∂ytynyt"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
@@ -216,7 +216,7 @@ msgstr "Koneella ei ole osoitetta"
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "Sis‰‰nkirjautuminen ep‰onnistui"
+msgstr "Sis√§√§nkirjautuminen ep√§onnistui"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
@@ -231,27 +231,27 @@ msgstr "Hakemistossa toimintaa"
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "Hakemisto ei ole tyhj‰"
+msgstr "Hakemisto ei ole tyhj√§"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "Liian monta linkki‰"
+msgstr "Liian monta linkki√§"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Tiedostoj‰rjestelm‰st‰ voi vain lukea"
+msgstr "Tiedostoj√§rjestelm√§st√§ voi vain lukea"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Eiv‰t ole samassa tiedostoj‰rjestelm‰ss‰"
+msgstr "Eiv√§t ole samassa tiedostoj√§rjestelm√§ss√§"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "Nimi on liian pitk‰"
+msgstr "Nimi on liian pitk√§"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
@@ -261,13 +261,12 @@ msgstr "Palvelu ei saatavilla"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Pyyntˆ vanhentaa palvelun datan"
+msgstr "Pyynt√∂ vanhentaa palvelun datan"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
-#, fuzzy
 msgid "Protocol error"
-msgstr "Ei virhett‰"
+msgstr "Protokollavirhe"
 
 #: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
@@ -306,38 +305,37 @@ msgstr "Tuntematon GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Ei l√∂yt√§nyt kelvollista asetustiedostoa paikasta %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "K√§yt√§ ymp√§rist√∂muuttujaa %s m√§√§ritt√§√§ksesi toisen paikan.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Standardimoniker-tehdas"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "tiedosto-MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "yleinen Gnome VFS -moniker"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Yleinen virhe"
+msgstr "yleinen tiedostomoniker"
 
 #~ msgid "3D Studio image"
 #~ msgstr "3D Studio -kuva"
 
 #~ msgid "AIFC audio"
-#~ msgstr "AIFC-‰‰ni"
+#~ msgstr "AIFC-√§√§ni"
 
 #~ msgid "AIFF audio"
-#~ msgstr "AIFF-‰‰ni"
+#~ msgstr "AIFF-√§√§ni"
 
 #~ msgid "ANIM animation"
 #~ msgstr "ANIM-animaatio"
@@ -379,14 +377,10 @@ msgstr "Yleinen virhe"
 #~ msgstr "C-komentotulkkiskripti"
 
 #~ msgid "C source code"
-#~ msgstr "C l‰hdekoodi"
-
-#, fuzzy
-#~ msgid "C source code header"
-#~ msgstr "C l‰hdekoodi"
+#~ msgstr "C l√§hdekoodi"
 
 #~ msgid "C++ source code"
-#~ msgstr "C++ l‰hdekoodi"
+#~ msgstr "C++ l√§hdekoodi"
 
 #~ msgid "CGI program"
 #~ msgstr "CGI-ohjelma"
@@ -425,10 +419,10 @@ msgstr "Yleinen virhe"
 #~ msgstr "Dia-kaavio"
 
 #~ msgid "Dolby Digital audio"
-#~ msgstr "Dolby-digitaali‰‰ni"
+#~ msgstr "Dolby-digitaali√§√§ni"
 
 #~ msgid "Emacs Lisp source code"
-#~ msgstr "Emacs Lisp -l‰hdekoodi"
+#~ msgstr "Emacs Lisp -l√§hdekoodi"
 
 #~ msgid "Enlightenment theme"
 #~ msgstr "Enlightenment-teema"
@@ -440,13 +434,13 @@ msgstr "Yleinen virhe"
 #~ msgstr "FLI-animaatio"
 
 #~ msgid "FastTracker II audio"
-#~ msgstr "FastTracker II -‰‰ni"
+#~ msgstr "FastTracker II -√§√§ni"
 
 #~ msgid "Fortran source code"
-#~ msgstr "Fortran-l‰hdekoodi"
+#~ msgstr "Fortran-l√§hdekoodi"
 
 #~ msgid "FrameMaker interchange document"
-#~ msgstr "FrameMaker-v‰litysasiakirja"
+#~ msgstr "FrameMaker-v√§litysasiakirja"
 
 #~ msgid "G3 fax image"
 #~ msgstr "G3-faksikuva"
@@ -476,7 +470,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "Glade-projekti"
 
 #~ msgid "GnuCash Workbook"
-#~ msgstr "GnuCash-tyˆkirja"
+#~ msgstr "GnuCash-ty√∂kirja"
 
 #~ msgid "Gnumeric spreadsheet"
 #~ msgstr "Gnumeric-taulukko"
@@ -503,7 +497,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "ISI-video"
 
 #~ msgid "Impulse Tracker audio"
-#~ msgstr "Impulse Tracker -‰‰ni"
+#~ msgstr "Impulse Tracker -√§√§ni"
 
 #~ msgid "JBuilder Project"
 #~ msgstr "JBuilder-projekti"
@@ -515,7 +509,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "Java-tavukoodi"
 
 #~ msgid "Java source code"
-#~ msgstr "Java-l‰hdekoodi"
+#~ msgstr "Java-l√§hdekoodi"
 
 #~ msgid "KDE application details"
 #~ msgstr "KDE-sovellustietoja"
@@ -548,7 +542,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "LightWave-esine"
 
 #~ msgid "LightWave scene"
-#~ msgstr "LightWave-n‰kym‰"
+#~ msgstr "LightWave-n√§kym√§"
 
 #~ msgid "Linux PSF console font"
 #~ msgstr "Linux PSF -konsolikirjasin"
@@ -557,16 +551,16 @@ msgstr "Yleinen virhe"
 #~ msgstr "Lotus 1-2-3 -taulukko"
 
 #~ msgid "M3 audio URL"
-#~ msgstr "M3-‰‰ni URL"
+#~ msgstr "M3-√§√§ni URL"
 
 #~ msgid "MIDI audio"
-#~ msgstr "MIDI-‰‰ni"
+#~ msgstr "MIDI-√§√§ni"
 
 #~ msgid "MOD audio"
-#~ msgstr "MOD-‰‰ni"
+#~ msgstr "MOD-√§√§ni"
 
 #~ msgid "MP3 audio"
-#~ msgstr "MP3-‰‰ni"
+#~ msgstr "MP3-√§√§ni"
 
 #~ msgid "MP3 audio playlist"
 #~ msgstr "MP3-soittolista"
@@ -674,7 +668,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "PostScript-asiakirja"
 
 #~ msgid "Python source code"
-#~ msgstr "Python-l‰hdekoodi"
+#~ msgstr "Python-l√§hdekoodi"
 
 #~ msgid "QuickTime movie"
 #~ msgstr "QuickTime-video"
@@ -695,7 +689,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "RGB-kuva"
 
 #~ msgid "RIFF audio"
-#~ msgstr "RIFF-‰‰ni"
+#~ msgstr "RIFF-√§√§ni"
 
 #~ msgid "RPM package"
 #~ msgstr "RPM-paketti"
@@ -734,13 +728,13 @@ msgstr "Yleinen virhe"
 #~ msgstr "SVG-kuva"
 
 #~ msgid "Scheme source code"
-#~ msgstr "Scheme-l‰hdekoodi"
+#~ msgstr "Scheme-l√§hdekoodi"
 
 #~ msgid "Scream Tracker 3 audio"
-#~ msgstr "Scream Tracker 3 -‰‰ni"
+#~ msgstr "Scream Tracker 3 -√§√§ni"
 
 #~ msgid "Scream Tracker audio"
-#~ msgstr "Scream Tracker -‰‰ni"
+#~ msgstr "Scream Tracker -√§√§ni"
 
 #~ msgid "Scream Tracker instrument"
 #~ msgstr "Scream Tracker -soitin"
@@ -755,7 +749,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "Speedo-kirjasin"
 
 #~ msgid "Spreadsheet Interchange document"
-#~ msgstr "Taulukkov‰litysasiakirja"
+#~ msgstr "Taulukkov√§litysasiakirja"
 
 #~ msgid "Stampede package"
 #~ msgstr "Stampede-paketti"
@@ -770,7 +764,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "StarOffice-taulukko"
 
 #~ msgid "Sun mu-law audio"
-#~ msgstr "Sun µ-law -‰‰ni"
+#~ msgstr "Sun mu-law -√§√§ni"
 
 #~ msgid "SunOS News font"
 #~ msgstr "SunOS News -kirjasin"
@@ -806,7 +800,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "TrueType-kirjasin"
 
 #~ msgid "USENET news message"
-#~ msgstr "keskusteluryhm‰viesti"
+#~ msgstr "keskusteluryhm√§viesti"
 
 #~ msgid "Unidata netCDF document"
 #~ msgstr "Unidata netCDF -asiakirja"
@@ -815,7 +809,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "V-kirjasin"
 
 #~ msgid "VOC audio"
-#~ msgstr "VOC-‰‰ni"
+#~ msgstr "VOC-√§√§ni"
 
 #~ msgid "VRML document"
 #~ msgstr "VRML-asiakirja"
@@ -824,7 +818,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "Vivo-video"
 
 #~ msgid "WAIS source code"
-#~ msgstr "WAIS-l‰hdekoodi"
+#~ msgstr "WAIS-l√§hdekoodi"
 
 #~ msgid "Wavelet video"
 #~ msgstr "Wavelet-video"
@@ -869,13 +863,13 @@ msgstr "Yleinen virhe"
 #~ msgstr "arj-paketti"
 
 #~ msgid "authors list"
-#~ msgstr "tekij‰luettelo"
+#~ msgstr "tekij√§luettelo"
 
 #~ msgid "backup file"
 #~ msgstr "varmuuskopio"
 
 #~ msgid "basic audio"
-#~ msgstr "tavallinen ‰‰ni"
+#~ msgstr "tavallinen √§√§ni"
 
 #~ msgid "bibliography record"
 #~ msgstr "bibliografiakohta"
@@ -914,13 +908,13 @@ msgstr "Yleinen virhe"
 #~ msgstr "hakemistotiedot"
 
 #~ msgid "document type definition"
-#~ msgstr "asiakirjatyyppim‰‰ritelm‰"
+#~ msgstr "asiakirjatyyppim√§√§ritelm√§"
 
 #~ msgid "email headers"
-#~ msgstr "s‰hkˆpostiotsikot"
+#~ msgstr "s√§hk√∂postiotsikot"
 
 #~ msgid "email message"
-#~ msgstr "s‰hkˆpostiviesti"
+#~ msgstr "s√§hk√∂postiviesti"
 
 #~ msgid "encrypted message"
 #~ msgstr "salattu viesti"
@@ -941,13 +935,13 @@ msgstr "Yleinen virhe"
 #~ msgstr "ohjesivu"
 
 #~ msgid "mail delivery report"
-#~ msgstr "postinv‰litysraportti"
+#~ msgstr "postinv√§litysraportti"
 
 #~ msgid "mail disposition report"
 #~ msgstr "postinsijoitusraportti"
 
 #~ msgid "mail system report"
-#~ msgstr "postij‰rjestelm‰raportti"
+#~ msgstr "postij√§rjestelm√§raportti"
 
 #~ msgid "makefile"
 #~ msgstr "makefile"
@@ -962,10 +956,10 @@ msgstr "Yleinen virhe"
 #~ msgstr "muistivedos"
 
 #~ msgid "message digest"
-#~ msgstr "viestitiivistelm‰"
+#~ msgstr "viestitiivistelm√§"
 
 #~ msgid "message in several formats"
-#~ msgstr "eri muotoisia viestej‰"
+#~ msgstr "eri muotoisia viestej√§"
 
 #~ msgid "multi-part message"
 #~ msgstr "moniosainen viesti"
@@ -977,19 +971,19 @@ msgstr "Yleinen virhe"
 #~ msgstr "objektikoodi"
 
 #~ msgid "ogg audio"
-#~ msgstr "ogg-‰‰ni"
+#~ msgstr "ogg-√§√§ni"
 
 #~ msgid "partial email message"
-#~ msgstr "osittainen s‰hkˆpostiviesti"
+#~ msgstr "osittainen s√§hk√∂postiviesti"
 
 #~ msgid "plain text document"
-#~ msgstr "pelkk‰ teksti"
+#~ msgstr "pelkk√§ teksti"
 
 #~ msgid "profiler results"
 #~ msgstr "profilointitulokset"
 
 #~ msgid "reference to remote file"
-#~ msgstr "viite et‰tiedostoon"
+#~ msgstr "viite et√§tiedostoon"
 
 #~ msgid "rejected patch file"
 #~ msgstr "hylkiintynyt patch-tiedosto"
@@ -998,7 +992,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "RTF-asiakirja"
 
 #~ msgid "search results"
-#~ msgstr "etsint‰tulokset"
+#~ msgstr "etsint√§tulokset"
 
 #~ msgid "shared library"
 #~ msgstr "jaettu kirjasto"
@@ -1016,7 +1010,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "pistoke"
 
 #~ msgid "software author credits"
-#~ msgstr "kiitos ohjelman tekijˆille"
+#~ msgstr "kiitos ohjelman tekij√∂ille"
 
 #~ msgid "software installation instructions"
 #~ msgstr "ohjelman asennusohjeet"
@@ -1025,7 +1019,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "ohjelman lisenssi"
 
 #~ msgid "source code patch"
-#~ msgstr "l‰hdekoodipatch"
+#~ msgstr "l√§hdekoodipatch"
 
 #~ msgid "style sheet"
 #~ msgstr "tyylisivu"
@@ -1052,13 +1046,13 @@ msgstr "Yleinen virhe"
 #~ msgstr "troff-asiakirja"
 
 #~ msgid "troff me input document"
-#~ msgstr "troff me -syˆteasiakirja"
+#~ msgstr "troff me -sy√∂teasiakirja"
 
 #~ msgid "troff mm input document"
-#~ msgstr "troff mm -syˆteasiakirja"
+#~ msgstr "troff mm -sy√∂teasiakirja"
 
 #~ msgid "troff ms input document"
-#~ msgstr "troff ms -syˆteasiakirja"
+#~ msgstr "troff ms -sy√∂teasiakirja"
 
 #~ msgid "unknown type"
 #~ msgstr "tuntematon tyyppi"
@@ -1067,7 +1061,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "ustar-paketti"
 
 #~ msgid "wave audio"
-#~ msgstr "aalto‰‰ni"
+#~ msgstr "aalto√§√§ni"
 
 #~ msgid "web folder"
 #~ msgstr "www-hakemisto"
@@ -1084,6 +1078,18 @@ msgstr "Yleinen virhe"
 #~ msgid "GNOME VFS already initialized."
 #~ msgstr "GNOME VFS on jo alustettu."
 
+#~ msgid "%s to retrieve"
+#~ msgstr "Haettava %s"
+
+#~ msgid "Closing connection to %s"
+#~ msgstr "Suljetaan yhteys kohteeseen %s"
+
+#~ msgid "%s of %s read"
+#~ msgstr "%s/%s luettu"
+
+#~ msgid "%s read"
+#~ msgstr "%s luettu"
+
 #~ msgid "Dying."
 #~ msgstr "Kuolee."
 
@@ -1097,7 +1103,7 @@ msgstr "Yleinen virhe"
 #~ msgstr "Ei voi kirjoittaa: %s"
 
 #~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "V‰liaikaista tiedostonnime‰ '%s' ei voi luoda"
+#~ msgstr "V√§liaikaista tiedostonnime√§ '%s' ei voi luoda"
 
 #~ msgid "Cannot create socket: %s"
 #~ msgstr "Pistoketta ei voi luoda: %s"
@@ -1109,31 +1115,31 @@ msgstr "Yleinen virhe"
 #~ msgstr "Pistoketta ei voi kuunnella '%s': %s"
 
 #~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Pistokkeesta ei voi hyv‰ksy‰ yhteyksi‰ '%s': %s"
+#~ msgstr "Pistokkeesta ei voi hyv√§ksy√§ yhteyksi√§ '%s': %s"
 
 #~ msgid "Cannot initialize CORBA."
 #~ msgstr "CORBAa ei voi alustaa."
 
 #~ msgid "Cannot resolve initial reference to RootPOA."
-#~ msgstr "Alkuviittausta RootPOA:an ei voi selvitt‰‰."
+#~ msgstr "Alkuviittausta RootPOA:an ei voi selvitt√§√§."
 
 #~ msgid "Cannot activate POA manager."
 #~ msgstr "POA-manageria ei voi aktivoida."
 
 #~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "K‰yttˆ: %s <ior> [<ior_fd>]\n"
+#~ msgstr "K√§ytt√∂: %s <ior> [<ior_fd>]\n"
 
 #~ msgid "Cannot open file descriptor %d."
 #~ msgstr "Tiedostokahvaa %d ei voi avata."
 
 #~ msgid "Notify interface for `%s' not found."
-#~ msgstr "Ilmoitusrajapintaa IOR:lle '%s' ei lˆytynyt."
+#~ msgstr "Ilmoitusrajapintaa IOR:lle '%s' ei l√∂ytynyt."
 
 #~ msgid "Cannot setup Request object."
 #~ msgstr "Request-oliota ei voi alustaa."
 
 #~ msgid "Cannot extract IOR."
-#~ msgstr "IOR:‰‰ ei voi erottaa."
+#~ msgstr "IOR:√§√§ ei voi erottaa."
 
 #~ msgid "Got weird string from the slave process: `%s'"
 #~ msgstr "Orjaprosessilta saatu kummallinen merkkijono: '%s'"
@@ -1142,13 +1148,13 @@ msgstr "Yleinen virhe"
 #~ msgstr "IOR:in '%s' oliota ei voi hakea"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "GNOME::VFS::Slave::Notify:‰ ei voi sulkea -- poikkeus %s"
+#~ msgstr "GNOME::VFS::Slave::Notify:√§ ei voi sulkea -- poikkeus %s"
 
 #~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "Pistoketta '%s' ei voi yhdist‰‰: %s"
+#~ msgstr "Pistoketta '%s' ei voi yhdist√§√§: %s"
 
 #~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-#~ msgstr "GNOME::VFS::Slave::Notify:‰ ei voi alustaa"
+#~ msgstr "GNOME::VFS::Slave::Notify:√§ ei voi alustaa"
 
 #~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
 #~ msgstr "GNOME::VFS::Slavea %s ei voi palauttaa -- poikkeus %s"
@@ -1162,202 +1168,6 @@ msgstr "Yleinen virhe"
 #~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 #~ msgstr "GNOME::VFS::Slavea (IOR tuntematon) ei voi sulkea -- poikkeus %s"
 
-#~ msgid "File Types and Programs"
-#~ msgstr "Tiedostotyypit ja ohjelmat"
-
-#~ msgid "Specify which programs are used to open or view each file type"
-#~ msgstr "M‰‰rit‰, mill‰ ohjelmilla tiedostoja k‰sitell‰‰n"
-
-#~ msgid "MIME Type"
-#~ msgstr "MIME-tyyppi"
-
-#~ msgid "Change Icon"
-#~ msgstr "Vaihda kuvaketta"
-
-#~ msgid "Change File Extensions"
-#~ msgstr "Muuta tiedostojen p‰‰tteit‰"
-
-#~ msgid "Default Action:"
-#~ msgstr "Oletustoiminto:"
-
-#~ msgid "Use Viewer"
-#~ msgstr "K‰yt‰ katselinta"
-
-#~ msgid "Open With Application"
-#~ msgstr "Avaa sovelluksella"
-
-#~ msgid "Edit List"
-#~ msgstr "Muokkaa luetteloa"
-
-#~ msgid "Add New MIME Type..."
-#~ msgstr "Lis‰‰ uusi MIME-tyyppi..."
-
-#~ msgid "Delete This MIME Type"
-#~ msgstr "Poista t‰m‰ MIME-tyyppi"
-
-#~ msgid "Revert to System Defaults"
-#~ msgstr "K‰yt‰ j‰rjestelm‰n oletuksia"
-
-#~ msgid "None"
-#~ msgstr "Ei mik‰‰n"
-
-#~ msgid ""
-#~ "Reverting to system settings will lose any changes\n"
-#~ "you have ever made to File Types and Programs.\n"
-#~ "Revert anyway?"
-#~ msgstr ""
-#~ "Kun j‰rjestelm‰n oletukset otetaan k‰yttˆˆn, niin\n"
-#~ "kaikki tekem‰si muutokset h‰vi‰v‰t.\n"
-#~ "\n"
-#~ "Haluatko silti k‰ytt‰‰ j‰rjestelm‰n oletuksia?"
-
-#~ msgid "none"
-#~ msgstr "ei mik‰‰n"
-
-#~ msgid "View as %s"
-#~ msgstr "N‰yt‰ muotona %s"
-
-#~ msgid "Description"
-#~ msgstr "Kuvaus"
-
-#~ msgid "Extension"
-#~ msgstr "P‰‰te"
-
-#~ msgid "Default Action"
-#~ msgstr "Oletustoiminto"
-
-#~ msgid "Edit Applications List"
-#~ msgstr "Muokkaa sovellusluetteloa"
-
-#~ msgid "Select applications to appear in menu for MIME type \"%s\""
-#~ msgstr "Valitse sovellukset, jotka n‰kyv‰t MIME-tyypin \"%s\" valikossa"
-
-#~ msgid "Add Application..."
-#~ msgstr "Lis‰‰ sovellus..."
-
-#~ msgid "Edit Application..."
-#~ msgstr "Muokkaa sovellusta..."
-
-#~ msgid "Delete Application"
-#~ msgstr "Poista sovellus"
-
-#~ msgid "Edit Components List"
-#~ msgstr "Muokkaa komponenttiluetteloa"
-
-#~ msgid "Select views to appear in menu for MIME type \"%s\""
-#~ msgstr "Valitse n‰kym‰t, jotka ovat MIME-tyypin \"%s\" valikossa"
-
-#~ msgid ""
-#~ "The MIME type entered contained upper case characters. Upper case "
-#~ "characters were changed to lower case for you."
-#~ msgstr ""
-#~ "Annetussa MIME-tyypiss‰ oli isoja kirjaimia, jotka muutetaan pieniksi."
-
-#~ msgid "Add New MIME Type"
-#~ msgstr "Lis‰‰ uusi MIME-tyyppi"
-
-#~ msgid "Add MIME Type"
-#~ msgstr "Lis‰‰ MIME-tyyppi"
-
-#~ msgid "New MIME type (e.g. image/x-thumper):"
-#~ msgstr "Uusi MIME-tyyppi (esim. image/x-isku):"
-
-#~ msgid "Description (e.g. Thumper image):"
-#~ msgstr "Kuvaus (esim. Iskukuva):"
-
-#~ msgid "File Extensions "
-#~ msgstr "Tiedostojen p‰‰tteet:"
-
-#~ msgid "Add..."
-#~ msgstr "Lis‰‰..."
-
-#~ msgid "    Remove    "
-#~ msgstr "    Poista    "
-
-#~ msgid "Add New Extension"
-#~ msgstr "Lis‰‰ uusi p‰‰te"
-
-#~ msgid ""
-#~ "Type in the extensions for this mime-type (without dot).\n"
-#~ "You can enter several extensions seperated by a space,\n"
-#~ "for example: html htm"
-#~ msgstr ""
-#~ "Kirjoita t‰m‰n mime-tyypin tiedostojen p‰‰tteit‰ (ilman pistett‰).\n"
-#~ "Esimerkiksi:  html, htm"
-
-#~ msgid "Extension:"
-#~ msgstr "P‰‰tteet:"
-
-#~ msgid "You must enter a name."
-#~ msgstr "Nimi t‰ytyy antaa."
-
-#~ msgid "You must enter a command."
-#~ msgstr "Komento t‰ytyy antaa."
-
-#~ msgid ""
-#~ "\"%s\" does not exist or is not executable.\n"
-#~ "Check your spelling and make sure you have\n"
-#~ "the right permissions to execute this file."
-#~ msgstr ""
-#~ "\"%s\" ei ole olemassa tai ei ole suoritettava.\n"
-#~ "Tarkista, ett‰ kirjoitit oikein, ja ett‰\n"
-#~ "sinulla on t‰m‰n tiedoston suoritusoikeudet."
-
-#~ msgid ""
-#~ "The command \"%s\" cannot be found.\n"
-#~ "You must use a command that can work from any command line."
-#~ msgstr ""
-#~ "Komentoa \"%s\" ei lˆydy.\n"
-#~ "Sinun t‰ytyy k‰ytt‰‰ komentoa, joka toimii komentorivilt‰."
-
-#~ msgid "Bad Application Name"
-#~ msgstr "Virheellinen sovelluksen nimi"
-
-#~ msgid "Bad Application Command"
-#~ msgstr "Virheellinen sovelluksen komento"
-
-#~ msgid "Add Application"
-#~ msgstr "Lis‰‰ sovellus"
-
-#~ msgid "Edit Application"
-#~ msgstr "Muokkaussovellus"
-
-#~ msgid "Application Name:"
-#~ msgstr "Sovelluksen nimi:"
-
-#~ msgid "Application Command:"
-#~ msgstr "Sovelluksen komento:"
-
-#~ msgid "Open Behavior"
-#~ msgstr "Avaamisk‰ytt‰ytyminen"
-
-#~ msgid "Can open multiple files"
-#~ msgstr "Voi avata useita tiedostoja"
-
-#~ msgid "Can open from URI"
-#~ msgstr "Voi avata URI:n"
-
-#~ msgid "Can't find an hbox, using a normal file selection"
-#~ msgstr "Hboxia ei lˆydy: k‰ytet‰‰n tavallista tiedoston valintaa"
-
-#~ msgid "Preview"
-#~ msgstr "Esikatselu"
-
-#~ msgid "Select an icon"
-#~ msgstr "Valitse kuvake"
-
-#~ msgid "%s to retrieve"
-#~ msgstr "Haettava %s"
-
-#~ msgid "Closing connection to %s"
-#~ msgstr "Suljetaan yhteys kohteeseen %s"
-
-#~ msgid "%s of %s read"
-#~ msgstr "%s/%s luettu"
-
-#~ msgid "%s read"
-#~ msgstr "%s luettu"
-
 #~ msgid "Back"
 #~ msgstr "Takaisin"
 
@@ -1365,13 +1175,13 @@ msgstr "Yleinen virhe"
 #~ msgstr "Siirry edelliseen hakemistoon"
 
 #~ msgid "Up"
-#~ msgstr "Ylˆs"
+#~ msgstr "Yl√∂s"
 
 #~ msgid "Go to the parent directory"
-#~ msgstr "Siirry yl‰hakemistoon"
+#~ msgstr "Siirry yl√§hakemistoon"
 
 #~ msgid "Forward"
-#~ msgstr "Eteenp‰in"
+#~ msgstr "Eteenp√§in"
 
 #~ msgid "Go to the next visited directory"
 #~ msgstr "Siirry seuraavaan hakemistoon"
@@ -1395,13 +1205,13 @@ msgstr "Yleinen virhe"
 #~ msgstr "Koko"
 
 #~ msgid "Date"
-#~ msgstr "P‰iv‰m‰‰r‰"
+#~ msgstr "P√§iv√§m√§√§r√§"
 
 #~ msgid "Enter name:"
 #~ msgstr "Anna nimi:"
 
 #~ msgid "Show:"
-#~ msgstr "N‰yt‰:"
+#~ msgstr "N√§yt√§:"
 
 #~ msgid "Show dotfiles"
-#~ msgstr "N‰yt‰  pisteell‰ alkavat tiedostot"
+#~ msgstr "N√§yt√§  pisteell√§ alkavat tiedostot"
