@@ -731,9 +731,11 @@ vfolder_info_read_info (VFolderInfo     *info,
 	if (ret) {
 		GSList *iter;
 
+		/* Load WriteDir entries first */
 		if (info->write_dir)
 			create_entries_from_itemdir (info, info->write_dir);
 
+		/* Followed by ItemDir/MergeDirs in order of appearance */
 		for (iter = info->item_dirs; iter; iter = iter->next) {
 			ItemDir *id = iter->data;
 			if (id->is_mergedir)
@@ -1018,12 +1020,6 @@ vfolder_info_write_user (VFolderInfo *info)
 
 	xmlSaveFormatFile (info->filename, doc, TRUE /* format */);
 
-	/* 
-	 * not as good as a stat, but cheaper ... hmmm what is
-	 * the likelyhood of this not being the same as ctime.
-	 */
-	info->filename_last_write = time (NULL);
-
 	xmlFreeDoc(doc);
 
 	info->dirty = FALSE;
@@ -1140,31 +1136,16 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 					      NULL);
 		g_free (base_scheme);
 
-		info->desktop_dir = g_strdup (DATADIR "/gnome/vfolders/");
-		info->write_dir = g_strdup (DATADIR "/applications/");
-
-		/* Init the default desktop paths */
-		id = itemdir_new (info, 
-				  "file:///usr/share/applications/", 
-				  FALSE);
-		list = g_slist_prepend (list, id);
-
-		if (strcmp ("/usr/share/applications/", 
-			    DATADIR "/applications/") != 0) {
-			id = itemdir_new (info, 
-					  "file://" DATADIR "/applications/",
-					  FALSE);
-			list = g_slist_prepend (list, id);
-		}
-
-		path = g_getenv ("DESKTOP_FILE_PATH");
-		if (path != NULL) {
+		path = g_getenv ("GNOME2_PATH");
+		if (path) {
 			int i;
 			char *dir;
 			char **ppath = g_strsplit (path, ":", -1);
 
 			for (i = 0; ppath[i] != NULL; i++) {
-				dir = g_strconcat ("file://", ppath[i], NULL);
+				dir = g_build_filename (ppath[i], 
+							"/share/applications/",
+							NULL);
 				id = itemdir_new (info, dir, FALSE);
 				g_free (dir);
 
@@ -1203,10 +1184,11 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 		vfolder_monitor_file_new (info->filename,
 					  filename_monitor_cb,
 					  info);
-	info->write_dir_monitor = 
-		vfolder_monitor_directory_new (info->write_dir,
-					       write_dir_monitor_cb,
-					       info);
+	if (info->write_dir)
+		info->write_dir_monitor = 
+			vfolder_monitor_directory_new (info->write_dir,
+						       write_dir_monitor_cb,
+						       info);
 
 	if (info->desktop_dir) 
 		info->desktop_dir_monitor = 
@@ -1246,6 +1228,17 @@ vfolder_info_destroy (VFolderInfo *info)
 	g_free (info);
 }
 
+static void
+load_folders (Folder *folder)
+{
+	const GSList *iter;
+
+	for (iter = folder_list_subfolders (folder); iter; iter = iter->next) {
+		Folder *folder = iter->data;
+		load_folders (folder);
+	}
+}
+
 static GHashTable *infos = NULL;
 G_LOCK_DEFINE_STATIC (vfolder_lock);
 
@@ -1278,10 +1271,16 @@ vfolder_info_locate (const gchar *scheme)
 		} else
 			g_hash_table_insert (infos, info->scheme, info);
 
-		/* vfolder_info_dump_entries (info, 4); */
-	}
+		G_UNLOCK (vfolder_lock);
+		
+		VFOLDER_INFO_READ_LOCK (info);
 
-	G_UNLOCK (vfolder_lock);
+		/* vfolder_info_dump_entries (info, 4); */
+		load_folders (info->root);
+
+		VFOLDER_INFO_READ_UNLOCK (info);
+	} else
+		G_UNLOCK (vfolder_lock);
 
 	return info;
 }

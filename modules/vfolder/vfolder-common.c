@@ -80,7 +80,7 @@ entry_dealloc (Entry *entry)
 gboolean 
 entry_is_allocated (Entry *entry)
 {
-	return entry->allocs == 0;
+	return entry->allocs > 0;
 }
 
 static gchar *
@@ -111,11 +111,13 @@ entry_make_user_private (Entry *entry)
 
 	if (entry->user_private)
 		return TRUE;
+	if (!entry->info->write_dir)
+		return TRUE;
 
 	src_uri = entry_get_real_uri (entry);
 
 	uniqname = uniqueify_file_name (entry_get_displayname (entry));
-	filename = g_build_path (entry->info->write_dir, uniqname, NULL);
+	filename = g_build_filename (entry->info->write_dir, uniqname, NULL);
 	g_free (uniqname);
 
 	dest_uri = gnome_vfs_uri_new (filename);
@@ -316,8 +318,10 @@ entry_quick_read_keys (Entry  *entry,
 
 	gnome_vfs_close (handle);
 
-	if (!fullbuf->len)
+	if (!fullbuf->len) {
+		g_string_free (fullbuf, TRUE);
 		return;
+	}
 
 	entry_key_val_from_string (fullbuf->str, key1, result1);
 
@@ -371,20 +375,42 @@ folder_ref (Folder *folder)
 	folder->refcnt++;
 }
 
+static void
+unalloc_exclude (gpointer key, gpointer val, gpointer user_data)
+{
+	gchar *filename = key;
+	VFolderInfo *info = user_data;
+	Entry *entry;
+
+	/* Skip excludes which probably from the parent URI */
+	if (strchr (filename, '/'))
+		return;
+
+	entry = vfolder_info_lookup_entry (info, filename);
+	entry_dealloc (entry);
+}
+
 void
 folder_unref (Folder *folder)
 {
 	folder->refcnt--;
 
 	if (folder->refcnt == 0) {
+		GSList *iter; 
+
 		D (g_print ("DESTORYING FOLDER: %s\n", folder->name));
 
 		g_free (folder->name);
 		g_free (folder->extend_uri);
 		query_free (folder->query);
 
-		if (folder->excludes)
+		if (folder->excludes) {
+			g_hash_table_foreach (folder->excludes, 
+					      (GHFunc) unalloc_exclude,
+					      folder->info);			
 			g_hash_table_destroy (folder->excludes);
+		}
+
 		if (folder->includes_ht)
 			g_hash_table_destroy (folder->includes_ht);
 		g_slist_free (folder->includes);
@@ -397,6 +423,9 @@ folder_unref (Folder *folder)
 		if (folder->subfolders_ht)
 			g_hash_table_destroy (folder->subfolders_ht);
 
+		g_slist_foreach (folder->entries, 
+				 (GFunc) entry_dealloc, 
+				 NULL);
 		g_slist_foreach (folder->entries, 
 				 (GFunc) entry_unref, 
 				 NULL);
@@ -480,7 +509,15 @@ read_extended_entries (Folder *folder)
 		GnomeVFSFileInfo *file_info = iter->data;
 		gchar *file_uri;
 
-		file_uri = g_build_filename (extend_uri, file_info->name, NULL);
+		if (extend_uri [strlen (extend_uri) - 1] == '/')
+			file_uri = g_strconcat (extend_uri, 
+						file_info->name, 
+						NULL);
+		else
+			file_uri = g_strconcat (extend_uri, 
+						file_info->name, 
+						"/", 
+						NULL);
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			Folder *sub;
@@ -532,8 +569,6 @@ read_extended_entries (Folder *folder)
 						folder_list_entries (folder))));
 
 				folder_add_entry (folder, entry);
-				entry_alloc (entry);
-
 				changed = TRUE;
 			}
 			else 
@@ -567,8 +602,11 @@ read_info_entry_pool (Folder *folder)
 
 		include = check_include_exclude (folder, 
 						 entry_get_displayname (entry));
-		if (include == -1)
+		if (include == -1) {
+			/* Alloc even though we arent showing it */
+			entry_alloc (entry);
 			continue;
+		}
 
 		/* Only include if matches query, or is explicitly included */
 		if (include == 1 || 
@@ -580,8 +618,6 @@ read_info_entry_pool (Folder *folder)
 					    folder_list_entries (folder))));
 
 			folder_add_entry (folder, entry);
-			entry_alloc (entry);
-
 			changed = TRUE;
 		} 
 	}
@@ -623,10 +659,10 @@ folder_reload_if_needed (Folder *folder)
 	folder->loading = TRUE;
 
 	if (folder_get_extend_uri (folder)) 
-		changed = read_extended_entries (folder);
+		changed |= read_extended_entries (folder);
 
 	if (folder_get_query (folder))
-		changed = read_info_entry_pool (folder);
+		changed |= read_info_entry_pool (folder);
 
 	if (changed)
 		folder_emit_changed (folder, GNOME_VFS_MONITOR_EVENT_CHANGED);	
@@ -750,10 +786,13 @@ folder_get_entry (Folder *folder, gchar *filename)
 {
 	folder_reload_if_needed (folder);
 
-	if (!folder->entries_ht)
-		return NULL;
+	if (folder->entries_ht)
+		return g_hash_table_lookup (folder->entries_ht, filename);
 
-	return g_hash_table_lookup (folder->entries_ht, filename);
+	if (folder->only_unallocated)
+		return vfolder_info_lookup_entry (folder->info, filename);
+
+	return NULL;
 }
 
 const GSList *
@@ -781,6 +820,7 @@ folder_remove_entry (Folder *folder, Entry *entry)
 		g_hash_table_remove (folder->entries_ht, name);
 		folder->entries = g_slist_remove (folder->entries, entry);
 
+		entry_dealloc (entry);
 		entry_unref (entry);
 	}
 }
@@ -802,6 +842,7 @@ folder_add_entry (Folder *folder, Entry *entry)
 			     entry);
 	folder->entries = g_slist_append (folder->entries, entry);
 
+	entry_alloc (entry);
 	entry_ref (entry);
 }
 
@@ -1014,8 +1055,7 @@ folder_is_hidden (Folder *folder)
 			return FALSE;
 	}
 
-	iter = folder_list_subfolders (folder);
-	for (; iter; iter = iter->next) {
+	for (iter = folder_list_subfolders (folder); iter; iter = iter->next) {
 		Folder *child = iter->data;
 
 		if (!folder_is_hidden (child))

@@ -1,3 +1,26 @@
+2002-07-17  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_create): If there is a
+	write dir, then the parent folder's URI, otherwise read-only.
+
+	* modules/vfolder/vfolder-common.c (entry_quick_read_keys): Free
+	fullbuf even if empty.
+	(entry_make_user_private): Use g_build_filename, not
+	g_build_path.  Return success if there is no WriteDir.
+	(folder_unref): Dealloc entries as well as unref.  Dealloc any
+	entries which we Excluded.
+	(read_info_entry_pool): Alloc excluded files.
+
+	* modules/vfolder/applications.vfolder-info.in: Add some defaults,
+	so we don't rely on mandatory defaults from vfolder_info_init().
+	Spell "Accessories" correctly.  Remove the duplication of the
+	preferences-all-users:/// vfolder layout, and just make it the
+	<Parent> of the Preferences folder.
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_init): Remove the
+	default itemdir/writedir/desktopdir; just listen to the config
+	file.  Use GNOME2_PATH as a bunch of prefixes for itemdirs.
+
 2002-07-16  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/ABOUT: Add file describing the vfolder

@@ -136,8 +136,7 @@ typedef struct {
 	GnomeVFSURI *uri;
 } FolderChild;
 
-Folder       *folder_new               (VFolderInfo *info,
-					gchar       *name);
+Folder       *folder_new               (VFolderInfo *info, gchar *name);
 
 void          folder_ref               (Folder *folder);
 void          folder_unref             (Folder *folder);
@@ -153,13 +152,11 @@ gchar        *folder_get_name          (Folder *folder);
 void          folder_set_query         (Folder *folder, Query *query);
 Query        *folder_get_query         (Folder *folder);
 
-void          folder_set_extend_uri    (Folder      *folder, 
-					gchar       *uri);
-gchar        *folder_get_extend_uri    (Folder      *folder);
+void          folder_set_extend_uri    (Folder *folder, gchar *uri);
+gchar        *folder_get_extend_uri    (Folder *folder);
 
-void          folder_set_desktop_file  (Folder      *folder,
-					gchar       *filename);
-gchar        *folder_get_desktop_file  (Folder      *folder);
+void          folder_set_desktop_file  (Folder *folder, gchar *filename);
+gchar        *folder_get_desktop_file  (Folder *folder);
 
 gboolean      folder_get_child         (Folder      *folder, 
 					gchar       *name,
@@ -233,7 +230,6 @@ struct _VFolderInfo {
 	char     *scheme;
 
 	char           *filename;
-	time_t          filename_last_write;
 	VFolderMonitor *filename_monitor;
 
 	/* deprecated */

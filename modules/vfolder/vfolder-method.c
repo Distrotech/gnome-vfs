@@ -192,7 +192,19 @@ do_create (GnomeVFSMethod *method,
 	}
 
 	/* HACK. This should probably be abstracted */
-	writedir_uri = gnome_vfs_uri_new (info->write_dir);
+	if (info->write_dir) 
+		writedir_uri = gnome_vfs_uri_new (info->write_dir);
+	else {
+		gchar *extend = folder_get_extend_uri (parent);
+		if (extend)
+			writedir_uri = gnome_vfs_uri_new (extend);
+		else {
+			/* Nowhere to create a new file */
+			VFOLDER_INFO_WRITE_UNLOCK (info);
+			return GNOME_VFS_ERROR_READ_ONLY;
+		}
+	}
+
 	file_uri = gnome_vfs_uri_append_file_name (writedir_uri, vuri.file);
 
 	result = gnome_vfs_create_uri_cancellable (&file_handle,

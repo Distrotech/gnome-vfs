@@ -64,9 +64,9 @@ directory a URI extends using the <Parent> tag.
 When a chenge is made to a folder that is not user-private, a new folder entry
 is added to the .vfolder-info file for the changed folder, making it
 user-private.  The entry is created with a <Parent> element continaing the URI
-of the original non-user-private folder. If the changed folder is a child of
-folder which itself is not user-private, that folder becomes user-private as
-well (this is performed recursively).
+of the original non-user-private folder. If the newly privatized folder is a
+child of a folder which itself is not user-private, that folder becomes
+user-private as well (this is performed recursively).
 
 When a change to a file is made, the original file is copied to the directory in
 the .vfolder-info's <WriteDir> element if one exists.  When copied to the write
@@ -82,7 +82,7 @@ Only-Unallocated Folders
 Folder elements in the .vfolder-info file can contain an <OnlyUnallocated/>
 element tag.  This tag specifies that the folder should only contain pool
 entries which do not match any other folder's query.  Entries which are
-excplicitly Include'd or Exclude'd by another folder are not included.
+excplicitly Include'd or Exclude'd by another folder are also not shown.
 
 In order to construct this unallocated list properly, a new folder must read
 through the global entry pool on (or near) creation.
@@ -98,7 +98,7 @@ whereas a URI represents only the file/directory with the URI referred to.
 
 For instance an <Exclude> element with a filename like "gaim.desktop" will
 ensure a file named "gaim.desktop" will never appear in the folder containing
-the include element, whereas if the filename were
+the element, whereas if the filename was
 "file:///usr/share/gnome/apps/Internet/gaim.desktop", only the indicated file
 will be excluded, and not other gaim.desktop files.
 

@@ -1,16 +1,22 @@
 <VFolderInfo>
+  <!-- Load the GNOME2 applications from our prefix -->
+  <ItemDir>@datadir@/applications/</ItemDir>
+
+  <!-- Write changes here, instead of to the original files -->
+  <WriteDir>@datadir@/applications/</WriteDir>
+
+  <!-- Add main GNOME2 entries if you build into a non-default prefix -->
+  <ItemDir>/usr/share/applications/</ItemDir>
+
+  <!-- Default .directory location -->
+  <DesktopDir>@datadir@/gnome/vfolders/</DesktopDir>
+
   <!-- Merge dirs optional -->
   <MergeDir>/etc/X11/applnk/</MergeDir>
   <MergeDir>@datadir@/gnome/apps/</MergeDir>
 
-  <!-- Merges in the main GNOME menus if you build into a non-default prefix -->
+  <!-- Merge in the main GNOME menus if you build into a non-default prefix -->
   <MergeDir>/usr/share/gnome/apps/</MergeDir>
-
-  <!-- Control Center Merge Directories -->
-  <MergeDir>@datadir@/control-center-2.0/capplets/</MergeDir>
-  <MergeDir>@datadir@/gnome/capplets/</MergeDir>
-
-  <DesktopDir>@datadir@/gnome/vfolders/</DesktopDir>
 
   <!-- Root folder -->
   <Folder>
@@ -29,7 +35,7 @@
 
     <!-- Accesories -->
     <Folder>
-      <Name>Accesories</Name>
+      <Name>Accessories</Name>
       <Desktop>Accessories.directory</Desktop>
       <Query>
 	<And>
@@ -156,94 +162,8 @@
     <!-- Settings -->
     <Folder>
       <Name>Preferences</Name>
-      <Desktop>Settings.directory</Desktop>
-      <Query>
-	<And>
-	  <Keyword>Settings</Keyword>
-	  <Not>
-	    <Or>
-	      <Keyword>AdvancedSettings</Keyword>
-	      <Keyword>Sawfish</Keyword>
-	      <Keyword>X-GNOME-Sawfish</Keyword>
-	      <Keyword>System</Keyword>
-	      <Keyword>Accessibility</Keyword>
-	      <Keyword>Merged</Keyword>
-	    </Or>
-	  </Not>
-	</And>
-      </Query>
-      
-      <Exclude>gnomecc.desktop</Exclude>
-      
-      <Folder>
-	<Name>Advanced</Name>
-	<Desktop>Advanced.directory</Desktop>
-	<Query>
-	  <And>
-	    <Keyword>Settings</Keyword>
-	    <Keyword>AdvancedSettings</Keyword>
-	    <Not>
-	      <Or>
-	        <Keyword>Sawfish</Keyword>
-	        <Keyword>X-GNOME-Sawfish</Keyword>
-	      </Or>
-	    </Not>
-	  </And>
-	</Query>
-	<DontShowIfEmpty/>
-	<Folder>
-	  <Name>Sawfish</Name>
-	  <Desktop>Sawfish.directory</Desktop>
-	  <Query>
-	    <And>
-	      <Or>
-	        <Keyword>Sawfish</Keyword>
-	        <Keyword>X-GNOME-Sawfish</Keyword>
-	      </Or>
-	      <Keyword>Settings</Keyword>
-	    </And>
-	  </Query>
-	  <DontShowIfEmpty/>
-	</Folder>
-      </Folder>
-      <Folder>
-	<Name>Accessibility</Name>
-	<Desktop>Accessibility.directory</Desktop>
-	<Query>
-	  <And>
-	    <Keyword>Settings</Keyword>
-	    <Keyword>Accessibility</Keyword>
-	  </And>
-	</Query>
-	<DontShowIfEmpty/>
-      </Folder>
-      <Folder>
-	<Name>System</Name>
-	<Desktop>System.directory</Desktop>
-	<Query>
-	  <And>
-	    <Keyword>System</Keyword>
-	    <Keyword>Settings</Keyword>
-	  </And>
-	</Query>
-	<DontShowIfEmpty/>
-      </Folder>
-    </Folder>
-
-    <!-- System Tools-->
-    <Folder>
-      <Name>System</Name>
-      <Desktop>System.directory</Desktop>
-      <Query>
-	<And>
-	  <Keyword>Application</Keyword>
-	  <Not>
-	    <Keyword>Settings</Keyword>
-	  </Not>
-	  <Keyword>System</Keyword>
-	</And>
-      </Query>
-      <DontShowIfEmpty/>
+      <Parent>preferences-all-users:///</Parent>
+      <ReadOnly/>
     </Folder>
     
   </Folder>
