@@ -28,9 +28,6 @@ gchar* egg_get_user_configuration_dir (void);
 gchar* egg_get_user_cache_dir (void);
 gchar** egg_get_secondary_data_dirs (void);
 gchar** egg_get_secondary_configuration_dirs (void);
-gboolean egg_file_full_test (const gchar *filename, GFileTest tests);
-gchar*egg_find_file_in_configuration_dir (const gchar *file, 
-					  GFileTest    tests);
 
 G_END_DECLS
 

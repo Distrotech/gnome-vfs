@@ -209,6 +209,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
 	gnome-vfs-mime-handlers.h		\
+	gnome-vfs-mime-info-cache.h		\
 	gnome-vfs-mime-monitor.h		\
 	gnome-vfs-mime-utils.h			\
 	gnome-vfs-module-callback.h		\
@@ -262,6 +263,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-method.c			\
 	gnome-vfs-mime-handlers.c		\
 	gnome-vfs-mime-info.c			\
+	gnome-vfs-mime-info-cache.c		\
 	gnome-vfs-mime-monitor.c		\
 	gnome-vfs-mime-sniff-buffer.c		\
 	gnome-vfs-mime.c			\

@@ -1,3 +1,8 @@
+2004-07-16  Ray Strode  <rstrode@redhat.com
+	* libgnomevfs/egg*: update to latest version
+	* libgnomevfs/gnome-vfs-mime-info-cache.[ch]: new (broken) files
+	* libgnomevfs/Makefile.am: add new files
+
 2004-07-14  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

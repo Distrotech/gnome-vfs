@@ -28,7 +28,7 @@ G_BEGIN_DECLS
 typedef enum
 {
   EGG_DESKTOP_ENTRIES_ERROR_UNKNOWN_ENCODING,
-  EGG_DESKTOP_ENTRIES_ERROR_BAD_DEFAULT_GROUP,
+  EGG_DESKTOP_ENTRIES_ERROR_BAD_START_GROUP,
   EGG_DESKTOP_ENTRIES_ERROR_PARSE,
   EGG_DESKTOP_ENTRIES_ERROR_NO_FILE,
   EGG_DESKTOP_ENTRIES_ERROR_KEY_NOT_FOUND,
@@ -50,10 +50,12 @@ typedef enum
   EGG_DESKTOP_ENTRIES_GENERATE_LOOKUP_MAP      = 1 << 2
 } EggDesktopEntriesFlags;
 
-EggDesktopEntries         *egg_desktop_entries_new           (EggDesktopEntriesFlags flags);
-EggDesktopEntries         *egg_desktop_entries_new_from_file (EggDesktopEntriesFlags   flags,
- 	                                                  const gchar         *file,
-                                                          GError             **error);
+EggDesktopEntries         *egg_desktop_entries_new           (gchar **legal_start_groups,
+                                                              EggDesktopEntriesFlags flags);
+EggDesktopEntries         *egg_desktop_entries_new_from_file (gchar **legal_start_groups,
+                                                              EggDesktopEntriesFlags   flags,
+                                                              const gchar         *file,
+                                                              GError             **error);
 void                   egg_desktop_entries_free            (EggDesktopEntries  *entries);
 
 void                   egg_desktop_entries_keep_locales    (EggDesktopEntries *entries,
@@ -70,7 +72,7 @@ gchar                 *egg_desktop_entries_to_data   (EggDesktopEntries   *entri
 	                                            gsize             *length,
 						    GError           **error);
 
-const gchar           *egg_desktop_entries_get_default_group (EggDesktopEntries *entries);
+const gchar           *egg_desktop_entries_get_start_group (EggDesktopEntries *entries);
 
 gchar                **egg_desktop_entries_get_groups (EggDesktopEntries  *entries,
 	                                           gsize          *length);
