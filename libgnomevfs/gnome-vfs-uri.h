@@ -41,6 +41,7 @@ GnomeVFSURI	     *gnome_vfs_uri_get_parent   (const GnomeVFSURI *uri);
 GnomeVFSToplevelURI *gnome_vfs_uri_get_toplevel  (const GnomeVFSURI *uri);
 
 const gchar 	    *gnome_vfs_uri_get_host_name (const GnomeVFSURI *uri);
+const gchar         *gnome_vfs_uri_get_scheme    (const GnomeVFSURI *uri);
 guint 	    	     gnome_vfs_uri_get_host_port (const GnomeVFSURI *uri);
 const gchar 	    *gnome_vfs_uri_get_user_name (const GnomeVFSURI *uri);
 const gchar	    *gnome_vfs_uri_get_password  (const GnomeVFSURI *uri);

@@ -809,6 +809,20 @@ gnome_vfs_uri_get_host_name (const GnomeVFSURI *uri)
 }
 
 /**
+ * gnome_vfs_uri_get_scheme:
+ * @uri: A GnomeVFSURI
+ *
+ * Retrieve the scheme used for @uri
+ *
+ * Return value: A string representing the scheme
+ **/
+const gchar *
+gnome_vfs_uri_get_scheme (const GnomeVFSURI *uri)
+{
+	return uri->method_string;
+}
+
+/**
  * gnome_vfs_uri_get_host_port:
  * @uri: A GnomeVFSURI.
  * 

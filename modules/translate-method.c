@@ -631,7 +631,8 @@ static GnomeVFSMethod base_vfs_method = {
 	tr_do_check_same_fs,
 	tr_do_set_file_info,
 	tr_do_truncate,
-	tr_do_find_directory
+	tr_do_find_directory,
+	NULL
 };
 
 static void tr_args_free(ParsedArgs * pa)

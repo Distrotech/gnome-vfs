@@ -103,7 +103,10 @@ GnomeVFSResult gnome_vfs_remove_directory_from_uri_cancellable
 GnomeVFSResult gnome_vfs_unlink_from_uri_cancellable
 					(GnomeVFSURI *uri,
 					 GnomeVFSContext *context);
-
+GnomeVFSResult gnome_vfs_create_symbolic_link_cancellable
+                                        (GnomeVFSURI *uri,
+					 const gchar *target_reference,
+					 GnomeVFSContext *context);
 GnomeVFSResult gnome_vfs_move_uri_cancellable
 					(GnomeVFSURI *old,
 					 GnomeVFSURI *new,

@@ -187,6 +187,12 @@ typedef GnomeVFSResult (* GnomeVFSMethodSetFileInfo)
 					 GnomeVFSSetFileInfoMask mask,
 					 GnomeVFSContext *context);
 
+typedef GnomeVFSResult (* GnomeVFSMethodCreateSymbolicLink)
+                                        (GnomeVFSMethod *method,
+                                         GnomeVFSURI *uri,
+                                         const gchar *target_reference,
+                                         GnomeVFSContext *context);
+
 
 /* Structure defining an access method.	 This is also defined as an
    opaque type in `gnome-vfs-types.h'.	*/
@@ -213,6 +219,7 @@ struct GnomeVFSMethod {
 	GnomeVFSMethodSetFileInfo set_file_info;
 	GnomeVFSMethodTruncateFunc truncate;
 	GnomeVFSMethodFindDirectoryFunc find_directory;
+	GnomeVFSMethodCreateSymbolicLink create_symbolic_link;
 };
 
 

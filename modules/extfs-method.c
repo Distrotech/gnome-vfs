@@ -862,7 +862,8 @@ static GnomeVFSMethod method = {
 	do_check_same_fs,
 	NULL,
 	do_truncate,
-	do_find_directory
+	do_find_directory,
+	NULL     /* FIXME: do_create_symbolic_link */
 };
 
 GnomeVFSMethod *

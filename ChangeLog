@@ -1,5 +1,47 @@
 2000-06-21  Seth Nickell  <seth@eazel.com>
 
+	Added more complete symlink support to gnome-vfs.
+
+	* libgnomevfs/gnome-vfs-ops.c: (gnome_vfs_create_symbolic_link):
+	* libgnomevfs/gnome-vfs-ops.h:
+	* libgnomevfs/gnome-vfs-private-ops.c:
+	(gnome_vfs_create_symbolic_link_cancellable),
+	* libgnomevfs/gnome-vfs-private-ops.h:
+	* libgnomevfs/gnome-vfs-private-types.h:
+	Added the generic gnome-vfs functions and declarations for
+	gnome_vfs_create_symbolic_link and children that end up calling 
+	method specific functions.
+	
+	(gnome_vfs_remove_directory_from_uri_cancellable),
+	(gnome_vfs_unlink_from_uri_cancellable),
+	(check_same_fs_in_uri):
+	Cleaned up formatting in some of the functions.
+
+	* modules/file-method.c: (do_create_symbolic_link):
+	Implemented symlinking for the file-method, with a place-holder
+	for possible (eventual, post 1.0?) addition of URI links.
+	
+	* modules/bzip2-method.c:
+	* modules/extfs-method.c:
+	* modules/ftp-method.c:
+	* modules/gzip-method.c:
+	* modules/pipe-method.c:
+	* modules/translate-method.c:
+	Added NULL placeholders for other methods that do not implement
+	create_symbolic_link.
+	
+	* test/Makefile.am:
+	* test/test-symlinks.c: (make_link), (main):
+	Wrote test code for the new gnome-vfs symlink support. Verifies
+	by writing data to the new links and checking the target uri.
+	
+	* libgnomevfs/gnome-vfs-uri.h:
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_get_scheme):
+	Fixed bug 821 by providing a method for querying a URI's 
+	scheme. (as featured in the addition of symlink support)
+	
+2000-06-21  Seth Nickell  <seth@eazel.com>
+
 	* modules/http-method.c: (http_file_handle_new),
 	(http_file_handle_destroy), (http_handle_close), (do_close):
 	Pavel here. Fixed a number of memory thrashers in http_handle_close.

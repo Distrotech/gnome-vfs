@@ -1149,6 +1149,60 @@ do_unlink (GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
+do_create_symbolic_link (GnomeVFSMethod *method,
+			 GnomeVFSURI *uri,
+			 const char *target_reference,
+			 GnomeVFSContext *context)
+{
+	const char *link_scheme, *target_scheme;
+	char *link_full_name, *target_full_name;
+	GnomeVFSResult result;
+	GnomeVFSURI *target_uri;
+
+	g_assert (target_reference != NULL);
+	g_assert (uri != NULL);
+	
+	/* what we actually want is a function that takes a gchar* and tells whether it
+	   is a valid URI...does such a beast exist? */
+	target_uri = gnome_vfs_uri_new (target_reference);
+	g_assert (target_uri != NULL);
+
+	link_scheme = gnome_vfs_uri_get_scheme (uri);
+	g_assert (link_scheme != NULL);
+
+	target_scheme = gnome_vfs_uri_get_scheme (target_uri);
+	if (target_scheme == NULL) {
+		target_scheme = "file";
+	}
+	
+	if ((strcmp (link_scheme, "file") == 0) && (strcmp (target_scheme, "file") == 0)) {
+		/* symlink between two places on the local filesystem */
+		if (strncmp (target_reference, "file", 4) != 0)
+			/* target_reference wasn't a full URI */
+			target_full_name = strdup (target_reference); 
+		else 
+			target_full_name = get_path_from_uri (target_uri);
+		link_full_name = get_path_from_uri (uri);
+
+		if (symlink (target_full_name, link_full_name) != 0) {
+			result = gnome_vfs_result_from_errno ();
+		} else {
+			result = GNOME_VFS_OK;
+		}
+
+		g_free (target_full_name);
+		g_free (link_full_name);
+	} else {
+		/* FIXME: do a URI link */
+		result = GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	gnome_vfs_uri_unref (target_uri);
+
+	return result;
+}
+
+static GnomeVFSResult
 do_check_same_fs (GnomeVFSMethod *method,
 		  GnomeVFSURI *a,
 		  GnomeVFSURI *b,
@@ -1285,7 +1339,8 @@ static GnomeVFSMethod method = {
 	do_check_same_fs,
 	do_set_file_info,
 	do_truncate,
-	do_find_directory
+	do_find_directory,
+	do_create_symbolic_link
 };
 
 GnomeVFSMethod *

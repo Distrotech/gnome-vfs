@@ -466,6 +466,22 @@ gnome_vfs_unlink_from_uri (GnomeVFSURI *uri)
 }
 
 /**
+ * gnome_vfs_create_symbolic_link:
+ * @uri: URI to create a link at
+ * @target_reference: URI "reference" to point the link to (URI or relative path)
+ *
+ * Creates a symbolic link, or eventually, a URI link (as necessary) 
+ * at @uri pointing to @target_reference
+ *
+ * Return value: An integer representing the result of the operation
+ **/
+GnomeVFSResult
+gnome_vfs_create_symbolic_link (GnomeVFSURI *uri, const gchar *target_reference)
+{
+	return gnome_vfs_create_symbolic_link_cancellable (uri, target_reference, NULL);
+}
+
+/**
  * gnome_vfs_unlink_from_uri:
  * @text_uri: URI of the file to be unlinked
  * 

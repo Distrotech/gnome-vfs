@@ -291,11 +291,13 @@ gnome_vfs_remove_directory_from_uri_cancellable (GnomeVFSURI *uri,
 
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	if (gnome_vfs_context_check_cancellation (context))
+	if (gnome_vfs_context_check_cancellation (context)) {
 		return GNOME_VFS_ERROR_CANCELLED;
+	}
 
-	if (uri->method->remove_directory == NULL)
+	if (uri->method->remove_directory == NULL) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
 
 	result = uri->method->remove_directory (uri->method, uri, context);
 	return result;
@@ -307,23 +309,46 @@ gnome_vfs_unlink_from_uri_cancellable (GnomeVFSURI *uri,
 {
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	if (gnome_vfs_context_check_cancellation (context))
+	if (gnome_vfs_context_check_cancellation (context)) {
 		return GNOME_VFS_ERROR_CANCELLED;
+	}
 
-	if (uri->method->unlink == NULL)
+	if (uri->method->unlink == NULL) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
 
 	return uri->method->unlink (uri->method, uri, context);
+}
+
+GnomeVFSResult
+gnome_vfs_create_symbolic_link_cancellable (GnomeVFSURI *uri,
+					    const char *target_reference,
+					    GnomeVFSContext *context)
+{
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	
+	if (gnome_vfs_context_check_cancellation (context)) {
+		return GNOME_VFS_ERROR_CANCELLED;
+	}
+
+	if (uri->method->create_symbolic_link == NULL) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	return uri->method->create_symbolic_link (uri->method, uri, target_reference, context);
 }
 
 static gboolean
 check_same_fs_in_uri (GnomeVFSURI *a,
 		      GnomeVFSURI *b)
 {
-	if (a->method != b->method)
+	if (a->method != b->method) {
 		return FALSE;
-	if (strcmp (a->method_string, b->method_string) != 0)
+	}
+	
+	if (strcmp (a->method_string, b->method_string) != 0) {
 		return FALSE;
+	}
 
 	return TRUE;
 }

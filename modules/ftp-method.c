@@ -1073,7 +1073,11 @@ static GnomeVFSMethod method = {
 	do_remove_directory, /* remove directory */
 	do_move, /* rename */
 	do_unlink, /* unlink */
-	do_check_same_fs
+	do_check_same_fs,
+	NULL, /* do_set_file_info */
+	NULL, /* do_truncate */
+	NULL, /* do_find_directory */
+	NULL /* do_create_symbolic_link */
 };
 
 GnomeVFSMethod *

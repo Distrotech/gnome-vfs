@@ -23,6 +23,7 @@ noinst_PROGRAMS =				\
 	test-mime-handlers			\
 	test-mime-handlers-set			\
 	test-seek				\
+	test-symlinks				\
 	test-sync				\
 	test-sync-write				\
 	test-xfer
@@ -122,6 +123,10 @@ test_directory_visit_SOURCES = test-directory-visit.c
 test_directory_visit_LDADD = $(libraries)
 test_directory_visit_LDFLAGS = 
 
+test_symlinks_SOURCES = test-symlinks.c
+test_symlinks_LDADD = $(libraries)
+test_symlinks_LDFLAGS =
+
 test_sync_SOURCES = test-sync.c
 test_sync_LDADD = $(libraries)
 test_sync_LDFLAGS =
@@ -144,6 +149,7 @@ EXTRA_DIST =					\
 	test-channel.c				\
 	test-directory-visit.c			\
 	test-directory.c			\
+	test-symlinks.c				\
 	test-seek.c				\
 	test-sync.c				\
 	test-sync-write.c			\

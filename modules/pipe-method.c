@@ -184,7 +184,8 @@ static GnomeVFSMethod method = {
 	NULL, /* check_same_fs */
 	NULL, /* set_file_info */
 	NULL, /* truncate */
-	NULL /* find_directory */
+	NULL, /* find_directory */
+	NULL  /* create_symbolic_link */
 };
 
 GnomeVFSMethod *

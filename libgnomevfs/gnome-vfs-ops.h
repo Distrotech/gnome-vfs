@@ -100,6 +100,8 @@ GnomeVFSResult	 gnome_vfs_remove_directory_from_uri
 GnomeVFSResult	 gnome_vfs_remove_directory	(const gchar *text_uri);
 
 GnomeVFSResult   gnome_vfs_unlink_from_uri      (GnomeVFSURI *uri);
+GnomeVFSResult   gnome_vfs_create_symbolic_link (GnomeVFSURI *uri, 
+						 const gchar *target_reference);
 GnomeVFSResult   gnome_vfs_unlink               (const gchar *text_uri);
 
 GnomeVFSResult   gnome_vfs_move_uri		(GnomeVFSURI *old_uri,
