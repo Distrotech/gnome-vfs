@@ -41,9 +41,6 @@ struct GnomeVFSDirectoryHandle {
 
 	/* Method-specific handle.  */
 	GnomeVFSMethodHandle *method_handle;
-
-	/* Filter.  */
-	const GnomeVFSDirectoryFilter *filter;
 };
 
 #define CHECK_IF_SUPPORTED(vfs_method, what)		\
@@ -56,8 +53,7 @@ G_STMT_START{						\
 static GnomeVFSDirectoryHandle *
 gnome_vfs_directory_handle_new (GnomeVFSURI *uri,
 				GnomeVFSMethodHandle *method_handle,
-				GnomeVFSFileInfoOptions options,
-				const GnomeVFSDirectoryFilter *filter)
+				GnomeVFSFileInfoOptions options)
 {
 	GnomeVFSDirectoryHandle *new;
 
@@ -71,7 +67,6 @@ gnome_vfs_directory_handle_new (GnomeVFSURI *uri,
 	new->uri = uri;
 	new->method_handle = method_handle;
 	new->options = options;
-	new->filter = filter;
 
 	return new;
 }
@@ -91,7 +86,6 @@ static GnomeVFSResult
 open_from_uri (GnomeVFSDirectoryHandle **handle,
 	       GnomeVFSURI *uri,
 	       GnomeVFSFileInfoOptions options,
-	       const GnomeVFSDirectoryFilter *filter,
 	       GnomeVFSContext *context)
 {
 	GnomeVFSMethodHandle *method_handle;
@@ -104,7 +98,6 @@ open_from_uri (GnomeVFSDirectoryHandle **handle,
 					      &method_handle, 
 					      uri,
 					      options, 
-					      filter,
 					      context);
 	if (result != GNOME_VFS_OK) {
 		return result;
@@ -112,8 +105,7 @@ open_from_uri (GnomeVFSDirectoryHandle **handle,
 
 	*handle = gnome_vfs_directory_handle_new (uri,
 						  method_handle,
-						  options,
-						  filter);
+						  options);
 
 	return GNOME_VFS_OK;
 }
@@ -122,7 +114,6 @@ static GnomeVFSResult
 open (GnomeVFSDirectoryHandle **handle,
       const gchar *text_uri,
       GnomeVFSFileInfoOptions options,
-      const GnomeVFSDirectoryFilter *filter,
       GnomeVFSContext *context)
 {
 	GnomeVFSURI *uri;
@@ -135,7 +126,7 @@ open (GnomeVFSDirectoryHandle **handle,
 	if (uri == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
-	result = open_from_uri (handle, uri, options, filter,
+	result = open_from_uri (handle, uri, options,
 				context);
 
 	gnome_vfs_uri_unref (uri);
@@ -148,7 +139,6 @@ open (GnomeVFSDirectoryHandle **handle,
  * @handle: A pointer to a pointer to a GnomeVFSDirectoryHandle object
  * @text_uri: String representing the URI to open
  * @options: Options for reading file information
- * @filter: Filter to be applied to the directory entries
  * 
  * Open directory @text_uri for reading.  On return, @*handle will point to
  * a %GnomeVFSDirectoryHandle object which can be used to read the directory
@@ -159,13 +149,12 @@ open (GnomeVFSDirectoryHandle **handle,
 GnomeVFSResult
 gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 			  const gchar *text_uri,
-			  GnomeVFSFileInfoOptions options,
-			  const GnomeVFSDirectoryFilter *filter)
+			  GnomeVFSFileInfoOptions options)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return open (handle, text_uri, options, filter, NULL);
+	return open (handle, text_uri, options, NULL);
 }
 
 /**
@@ -173,7 +162,6 @@ gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
  * @handle: A pointer to a pointer to a GnomeVFSDirectoryHandle object
  * @uri: URI to open
  * @options: Options for reading file information
- * @filter: Filter to be applied to the directory entries
  * 
  * Open directory @text_uri for reading.  On return, @*handle will point to
  * a %GnomeVFSDirectoryHandle object which can be used to read the directory
@@ -184,26 +172,24 @@ gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 GnomeVFSResult
 gnome_vfs_directory_open_from_uri (GnomeVFSDirectoryHandle **handle,
 				   GnomeVFSURI *uri,
-				   GnomeVFSFileInfoOptions options,
-				   const GnomeVFSDirectoryFilter *filter)
+				   GnomeVFSFileInfoOptions options)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return open_from_uri (handle, uri, options, filter, NULL);
+	return open_from_uri (handle, uri, options, NULL);
 }
 
 GnomeVFSResult
 gnome_vfs_directory_open_from_uri_cancellable (GnomeVFSDirectoryHandle **handle,
 				   GnomeVFSURI *uri,
 				   GnomeVFSFileInfoOptions options,
-				   const GnomeVFSDirectoryFilter *filter,
 				   GnomeVFSContext *context)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return open_from_uri (handle, uri, options, filter, context);
+	return open_from_uri (handle, uri, options, context);
 }
 
 /**
@@ -331,7 +317,6 @@ directory_visit_internal (GnomeVFSURI *uri,
 			  const gchar *prefix,
 			  GList *ancestor_references, /* DirectoryReference */
 			  GnomeVFSFileInfoOptions info_options,
-			  const GnomeVFSDirectoryFilter *filter,
 			  GnomeVFSDirectoryVisitOptions visit_options,
 			  GnomeVFSDirectoryVisitFunc callback,
 			  gpointer data)
@@ -364,8 +349,7 @@ directory_visit_internal (GnomeVFSURI *uri,
 		gnome_vfs_file_info_unref (info);
 	}
 
-	result = gnome_vfs_directory_open_from_uri (&handle, uri, info_options,
-						    filter);
+	result = gnome_vfs_directory_open_from_uri (&handle, uri, info_options);
 	if (result != GNOME_VFS_OK)
 		return result;
 
@@ -432,7 +416,6 @@ directory_visit_internal (GnomeVFSURI *uri,
 							   new_prefix,
 							   ancestor_references,
 							   info_options,
-							   filter,
 							   visit_options,
 							   callback, data);
 
@@ -475,20 +458,17 @@ directory_visit_internal (GnomeVFSURI *uri,
  * @uri: URI to start from
  * @info_options: Options specifying what kind of file information must be
  * retrieved
- * @filter: Filter to be used while visiting the directory
  * @visit_options: Options specifying the type of visit
  * @callback: Callback to be called for every visited file
  * @data: Data to be passed to @callback at each iteration
  * 
  * Visit @uri, retrieving information as specified by @info_options. 
- * Also, @filter will be applied.
  * 
  * Return value: 
  **/
 GnomeVFSResult
 gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 			       GnomeVFSFileInfoOptions info_options,
-			       const GnomeVFSDirectoryFilter *filter,
 			       GnomeVFSDirectoryVisitOptions visit_options,
 			       GnomeVFSDirectoryVisitFunc callback,
 			       gpointer data)
@@ -496,7 +476,7 @@ gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return directory_visit_internal (uri, NULL, NULL,
-					 info_options, filter,
+					 info_options,
 					 visit_options, callback, data);
 }
 
@@ -505,20 +485,17 @@ gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
  * @uri: URI to start from
  * @info_options: Options specifying what kind of file information must be
  * retrieved
- * @filter: Filter to be used while visiting the directory
  * @visit_options: Options specifying the type of visit
  * @callback: Callback to be called for every visited file
  * @data: Data to be passed to @callback at each iteration
  * 
- * Visit @uri, retrieving information as specified by @info_options. Also, 
- * @filter will be applied.
+ * Visit @uri, retrieving information as specified by @info_options.
  * 
  * Return value: 
  **/
 GnomeVFSResult
 gnome_vfs_directory_visit (const gchar *text_uri,
 			   GnomeVFSFileInfoOptions info_options,
-			   const GnomeVFSDirectoryFilter *filter,
 			   GnomeVFSDirectoryVisitOptions visit_options,
 			   GnomeVFSDirectoryVisitFunc callback,
 			   gpointer data)
@@ -531,7 +508,7 @@ gnome_vfs_directory_visit (const gchar *text_uri,
 	uri = gnome_vfs_uri_new (text_uri);
 
 	result = directory_visit_internal (uri, NULL, NULL,
-					   info_options, filter,
+					   info_options,
 					   visit_options, callback, data);
 
 	gnome_vfs_uri_unref (uri);
@@ -543,9 +520,7 @@ GnomeVFSResult
 gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 					GList *file_list,
 					GnomeVFSFileInfoOptions info_options,
-					const GnomeVFSDirectoryFilter *filter,
-					GnomeVFSDirectoryVisitOptions
-						visit_options,
+					GnomeVFSDirectoryVisitOptions visit_options,
 					GnomeVFSDirectoryVisitFunc callback,
 					gpointer data)
 {
@@ -579,7 +554,6 @@ gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 			result = gnome_vfs_directory_visit_uri
 				(uri, 
 				 info_options,
-				 filter,
 				 visit_options,
 				 callback, 
 				 data);
@@ -598,7 +572,6 @@ GnomeVFSResult
 gnome_vfs_directory_visit_files (const gchar *text_uri,
 				 GList *file_list,
 				 GnomeVFSFileInfoOptions info_options,
-				 const GnomeVFSDirectoryFilter *filter,
 				 GnomeVFSDirectoryVisitOptions
 				 	visit_options,
 				 GnomeVFSDirectoryVisitFunc callback,
@@ -611,7 +584,6 @@ gnome_vfs_directory_visit_files (const gchar *text_uri,
 
 	result = gnome_vfs_directory_visit_files_at_uri (uri, file_list,
 							 info_options,
-							 filter,
 							 visit_options,
 							 callback,
 							 data);
@@ -654,24 +626,21 @@ load_from_handle (GList **list,
  * @list: An address of a pointer to a list of GnomeVFSFileInfo
  * @text_uri: A text URI
  * @options: Options for loading the directory 
- * @filter: Filter to be applied to the files being read
  * 
  * Load a directory from @text_uri with the specified @options
- * into a list.  Directory entries are filtered through
- * @filter.
+ * into a list.
  * 
  * Return value: An integer representing the result of the operation.
  **/
 GnomeVFSResult 
 gnome_vfs_directory_list_load (GList **list,
 			       const gchar *text_uri,
-			       GnomeVFSFileInfoOptions options,
-			       const GnomeVFSDirectoryFilter *filter)
+			       GnomeVFSFileInfoOptions options)
 {
 	GnomeVFSDirectoryHandle *handle;
 	GnomeVFSResult result;
 
-	result = gnome_vfs_directory_open (&handle, text_uri, options, filter);
+	result = gnome_vfs_directory_open (&handle, text_uri, options);
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}

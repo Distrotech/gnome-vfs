@@ -87,7 +87,6 @@ static GnomeVFSResult do_open_directory  	(GnomeVFSMethod               	*method
 					  	 GnomeVFSMethodHandle         	**method_handle,
 					  	 GnomeVFSURI                   	*uri,
 					  	 GnomeVFSFileInfoOptions        options,
-					  	 const GnomeVFSDirectoryFilter 	*filter,
 					  	 GnomeVFSContext               	*context);
 static GnomeVFSResult do_close_directory 	(GnomeVFSMethod               	*method,
 					  	 GnomeVFSMethodHandle          	*method_handle,
@@ -281,7 +280,7 @@ do_open (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 		
 		dir_uri = gnome_vfs_uri_new (schemedir);
 		options = 0;
-		result = do_open_directory (method, method_handle, dir_uri, options, NULL, NULL);
+		result = do_open_directory (method, method_handle, dir_uri, options, NULL);
 		gnome_vfs_uri_unref (dir_uri);
 
 		if (result != GNOME_VFS_OK) {
@@ -661,7 +660,7 @@ do_get_file_info (GnomeVFSMethod *method,
 static GnomeVFSResult 
 do_open_directory (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri, GnomeVFSFileInfoOptions options,
-		   const GnomeVFSDirectoryFilter *filter, GnomeVFSContext *context)
+		   GnomeVFSContext *context)
 {
 	cdrom_drive *drive;
 	gboolean use_base, use_cache;

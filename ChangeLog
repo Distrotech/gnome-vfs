@@ -1,3 +1,63 @@
+2001-08-21  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* OUTSTANDING_API_ISSUES: Removed teh filtering item, added one
+	for renaming gnome-vfs-method.
+
+	All changes below: removed the non-working and undesirably directory filtering feature.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(async_load_directory), (pthread_gnome_vfs_async_load_directory),
+	(pthread_gnome_vfs_async_load_directory_uri):
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_op_destroy),
+	(load_directory_details), (execute_load_directory):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	(gnome_vfs_async_load_directory_uri),
+	(gnome_vfs_async_load_directory):
+	* libgnomevfs/gnome-vfs-cancellable-ops.h:
+	* libgnomevfs/gnome-vfs-directory-filter.c:
+	* libgnomevfs/gnome-vfs-directory-filter.h:
+	* libgnomevfs/gnome-vfs-directory.c:
+	(gnome_vfs_directory_handle_new), (open_from_uri), (open),
+	(gnome_vfs_directory_open), (gnome_vfs_directory_open_from_uri),
+	(gnome_vfs_directory_open_from_uri_cancellable),
+	(directory_visit_internal), (gnome_vfs_directory_visit_uri),
+	(gnome_vfs_directory_visit),
+	(gnome_vfs_directory_visit_files_at_uri),
+	(gnome_vfs_directory_visit_files), (gnome_vfs_directory_list_load):
+	* libgnomevfs/gnome-vfs-directory.h:
+	* libgnomevfs/gnome-vfs-method.h:
+	* libgnomevfs/gnome-vfs-regexp-filter.c:
+	* libgnomevfs/gnome-vfs-regexp-filter.h:
+	* libgnomevfs/gnome-vfs-shellpattern-filter.c:
+	* libgnomevfs/gnome-vfs-shellpattern-filter.h:
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-xfer.c: (empty_directory),
+	(non_recursive_empty_directory), (gnome_vfs_visit_list),
+	(directory_add_items_and_size), (create_directory),
+	(copy_directory):
+	* libgnomevfs/gnome-vfs.h:
+	* modules/cdda-method.c: (do_open), (do_open_directory):
+	* modules/extfs-method.c: (do_open_directory), (do_get_file_info):
+	* modules/file-method.c: (directory_handle_new),
+	(do_open_directory), (do_read_directory):
+	* modules/ftp-method.c: (do_get_file_info), (do_open_directory):
+	* modules/gconf-method.c: (directory_handle_new),
+	(do_open_directory), (do_read_directory):
+	* modules/http-method.c: (do_open_directory):
+	* modules/ssh-method.c: (do_open_directory):
+	* modules/test-method.c: (do_open_directory):
+	* modules/translate-method.c: (tr_do_open_directory):
+	* monikers/bonobo-storage-vfs.c: (vfs_list_contents):
+	* test/test-async-cancel.c: (test_load_directory_cancel),
+	(test_load_directory_fail):
+	* test/test-async-directory.c: (main):
+	* test/test-directory-visit.c: (main):
+	* test/test-directory.c: (main):
+	* test/test-shell.c: (do_ls), (validate_path), (get_regexp_name):
+
 2001-08-21  Theo van Klaveren  <t.vanklaveren@student.utwente.nl>
 
 	* libgnomevfs/gnome-vfs-inet-connection.c,

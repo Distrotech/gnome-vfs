@@ -423,9 +423,6 @@ void
 gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 				    GnomeVFSURI *uri,
 				    GnomeVFSFileInfoOptions options,
-				    GnomeVFSDirectoryFilterType filter_type,
-				    GnomeVFSDirectoryFilterOptions filter_options,
-				    const gchar *filter_pattern,
 				    guint items_per_notification,
 				    GnomeVFSAsyncDirectoryLoadCallback callback,
 				    gpointer callback_data)
@@ -434,17 +431,13 @@ gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 		(*real_gnome_vfs_async_load_directory_uri) (GnomeVFSAsyncHandle **handle_return,
 							    GnomeVFSURI *uri,
 							    GnomeVFSFileInfoOptions options,
-							    GnomeVFSDirectoryFilterType filter_type,
-							    GnomeVFSDirectoryFilterOptions filter_options,
-							    const gchar *filter_pattern,
 							    guint items_per_notification,
 							    GnomeVFSAsyncDirectoryLoadCallback callback,
 							    gpointer callback_data);
 	
 	CALL_BACKEND (gnome_vfs_async_load_directory_uri,
 		      (handle_return, uri, options,
-		       filter_type, filter_options,
-		       filter_pattern, items_per_notification,
+		       items_per_notification,
 		       callback, callback_data));
 }
 
@@ -452,9 +445,6 @@ void
 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 				const gchar *uri,
 				GnomeVFSFileInfoOptions options,
-				GnomeVFSDirectoryFilterType filter_type,
-				GnomeVFSDirectoryFilterOptions filter_options,
-				const gchar *filter_pattern,
 				guint items_per_notification,
 				GnomeVFSAsyncDirectoryLoadCallback callback,
 				gpointer callback_data)
@@ -463,16 +453,13 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 		(*real_gnome_vfs_async_load_directory) (GnomeVFSAsyncHandle **handle_return,
 							const gchar *uri,
 							GnomeVFSFileInfoOptions options,
-							GnomeVFSDirectoryFilterType filter_type,
-							GnomeVFSDirectoryFilterOptions filter_options,
-							const gchar *filter_pattern,
 							guint items_per_notification,
 							GnomeVFSAsyncDirectoryLoadCallback callback,
 							gpointer callback_data);
 
 	CALL_BACKEND (gnome_vfs_async_load_directory,
 		      (handle_return, uri, options,
-		       filter_type, filter_options, filter_pattern, items_per_notification,
+		       items_per_notification,
 		       callback, callback_data));
 }
 

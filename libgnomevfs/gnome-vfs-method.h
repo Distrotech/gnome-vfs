@@ -27,7 +27,6 @@
 #define GNOME_VFS_METHOD_H
 
 #include <libgnomevfs/gnome-vfs-context.h>
-#include <libgnomevfs/gnome-vfs-directory-filter.h>
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>
 #include <libgnomevfs/gnome-vfs-transform.h>
@@ -116,7 +115,6 @@ typedef GnomeVFSResult (* GnomeVFSMethodOpenDirectoryFunc)
 					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
-					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSContext *context);
 
 typedef GnomeVFSResult (* GnomeVFSMethodCloseDirectoryFunc)

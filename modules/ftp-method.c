@@ -108,7 +108,6 @@ static GnomeVFSResult do_open_directory  (GnomeVFSMethod                *method,
 					  GnomeVFSMethodHandle         **method_handle,
 					  GnomeVFSURI                   *uri,
 					  GnomeVFSFileInfoOptions        options,
-					  const GnomeVFSDirectoryFilter *filter,
 					  GnomeVFSContext               *context);
 static GnomeVFSResult do_close_directory (GnomeVFSMethod               *method,
 					  GnomeVFSMethodHandle          *method_handle,
@@ -117,8 +116,6 @@ static GnomeVFSResult do_read_directory  (GnomeVFSMethod               *method,
 		                          GnomeVFSMethodHandle          *method_handle,
 		                          GnomeVFSFileInfo              *file_info,
 		                          GnomeVFSContext               *context);
-
-	/* FIXME bugzilla.eazel.com 1137: implement filters */
 
 guint                 ftp_connection_uri_hash  (gconstpointer c);
 gint                  ftp_connection_uri_equal (gconstpointer c, gconstpointer d);
@@ -1092,7 +1089,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		gchar *name;
 
 		result = do_open_directory (method, &method_handle, parent,
-					    options, NULL, context);
+					    options, context);
 
 		gnome_vfs_uri_unref (parent);
 
@@ -1141,11 +1138,8 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri,
 		   GnomeVFSFileInfoOptions options,
-		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
-	/* FIXME bugzilla.eazel.com 1137: implement filters */
-
 	FtpConnection *conn;
 	GnomeVFSResult result;
 	GnomeVFSFileSize num_bytes = 1024, bytes_read;

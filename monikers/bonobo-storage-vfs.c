@@ -139,7 +139,7 @@ vfs_list_contents (PortableServer_Servant   storage,
 		&dir_list, uri, 
 		(mask & Bonobo_FIELD_CONTENT_TYPE) ?
 		GNOME_VFS_FILE_INFO_GET_MIME_TYPE :
-		GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+		GNOME_VFS_FILE_INFO_DEFAULT);
 
 	if (result != GNOME_VFS_OK) {
 		CORBA_exception_set (ev, CORBA_USER_EXCEPTION, 

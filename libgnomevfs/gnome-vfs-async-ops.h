@@ -27,7 +27,6 @@
 
 #include <glib/gconvert.h> /* remove when giochannel.h is fixed */
 #include <glib/giochannel.h>
-#include <libgnomevfs/gnome-vfs-directory-filter.h>
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>
 #include <libgnomevfs/gnome-vfs-handle.h>
@@ -197,18 +196,12 @@ void           gnome_vfs_async_set_file_info          (GnomeVFSAsyncHandle      
 void           gnome_vfs_async_load_directory         (GnomeVFSAsyncHandle                  **handle_return,
 						       const gchar                           *text_uri,
 						       GnomeVFSFileInfoOptions                options,
-						       GnomeVFSDirectoryFilterType            filter_type,
-						       GnomeVFSDirectoryFilterOptions         filter_options,
-						       const gchar                           *filter_pattern,
 						       guint                                  items_per_notification,
 						       GnomeVFSAsyncDirectoryLoadCallback     callback,
 						       gpointer                               callback_data);
 void           gnome_vfs_async_load_directory_uri     (GnomeVFSAsyncHandle                  **handle_return,
 						       GnomeVFSURI                           *uri,
 						       GnomeVFSFileInfoOptions                options,
-						       GnomeVFSDirectoryFilterType            filter_type,
-						       GnomeVFSDirectoryFilterOptions         filter_options,
-						       const gchar                           *filter_pattern,
 						       guint                                  items_per_notification,
 						       GnomeVFSAsyncDirectoryLoadCallback     callback,
 						       gpointer                               callback_data);

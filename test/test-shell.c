@@ -143,8 +143,7 @@ do_ls (void)
 	GnomeVFSFileInfo *info;
 
 	result = gnome_vfs_directory_list_load (
-		&list, cur_dir, GNOME_VFS_FILE_INFO_DEFAULT,
-		NULL);
+		&list, cur_dir, GNOME_VFS_FILE_INFO_DEFAULT);
 	if (show_if_error (result, "open directory ", cur_dir))
 		return;
 
@@ -274,8 +273,7 @@ validate_path (const char *path)
 	GList *list;
 
 	result = gnome_vfs_directory_list_load (
-		&list, path, GNOME_VFS_FILE_INFO_DEFAULT,
-		NULL);
+		&list, path, GNOME_VFS_FILE_INFO_DEFAULT);
 
 	if (show_if_error (result, "open directory ", path)) {
 		return FALSE;
@@ -295,8 +293,7 @@ get_regexp_name (const char *regexp, const char *path, gboolean dir)
 	char *res = NULL;
 
 	result = gnome_vfs_directory_list_load (
-		&list, path, GNOME_VFS_FILE_INFO_DEFAULT,
-		NULL);
+		&list, path, GNOME_VFS_FILE_INFO_DEFAULT);
 
 	if (show_if_error (result, "open directory ", path))
 		return NULL;

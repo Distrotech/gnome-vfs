@@ -159,13 +159,12 @@ main (int argc, const char **argv)
 		timer = NULL;
 	}
 
-	/* Load with no filters and without requesting any metadata.  */
+	/* Load with without requesting any metadata.  */
 	result = gnome_vfs_directory_list_load
 		(&list, text_uri,
 		 (GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 		  | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
-		  | GNOME_VFS_FILE_INFO_FOLLOW_LINKS),
-		 NULL);
+		  | GNOME_VFS_FILE_INFO_FOLLOW_LINKS));
 
 	if (result == GNOME_VFS_OK && measure_speed) {
 		gdouble elapsed_seconds;

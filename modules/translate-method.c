@@ -620,7 +620,6 @@ tr_do_open_directory(GnomeVFSMethod * method,
 		     GnomeVFSMethodHandle ** method_handle,
 		     GnomeVFSURI * uri,
 		     GnomeVFSFileInfoOptions options,
-		     const GnomeVFSDirectoryFilter * filter,
 		     GnomeVFSContext * context)
 {
 	TranslateMethod *tm = (TranslateMethod *) method;
@@ -633,7 +632,7 @@ tr_do_open_directory(GnomeVFSMethod * method,
 		retval =
 		    tm->real_method->open_directory(tm->real_method, method_handle,
 						    real_uri, options,
-						    filter, context);
+						    context);
 		gnome_vfs_uri_unref(real_uri);
 	} else {
 		retval = GNOME_VFS_ERROR_NOT_FOUND;

@@ -223,9 +223,6 @@ typedef struct {
 typedef struct {
 	GnomeVFSURI *uri;
 	GnomeVFSFileInfoOptions options;
-	GnomeVFSDirectoryFilterType filter_type;
-	GnomeVFSDirectoryFilterOptions filter_options;
-	gchar *filter_pattern;
 	guint items_per_notification;
 } GnomeVFSLoadDirectoryOp;
 

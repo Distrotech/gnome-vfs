@@ -478,15 +478,12 @@ typedef struct {
 
 	gchar *name_buffer;
 	gchar *name_ptr;
-
-	const GnomeVFSDirectoryFilter *filter;
 } DirectoryHandle;
 
 static DirectoryHandle *
 directory_handle_new (GnomeVFSURI *uri,
 		      DIR *dir,
-		      GnomeVFSFileInfoOptions options,
-		      const GnomeVFSDirectoryFilter *filter)
+		      GnomeVFSFileInfoOptions options)
 {
 	DirectoryHandle *result;
 	gchar *full_name;
@@ -515,7 +512,6 @@ directory_handle_new (GnomeVFSURI *uri,
 	g_free (full_name);
 
 	result->options = options;
-	result->filter = filter;
 
 	return result;
 }
@@ -692,7 +688,6 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri,
 		   GnomeVFSFileInfoOptions options,
-		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
 	gchar *directory_name;
@@ -709,8 +704,7 @@ do_open_directory (GnomeVFSMethod *method,
 
 	*method_handle
 		= (GnomeVFSMethodHandle *) directory_handle_new (uri, dir,
-								 options,
-								 filter);
+								 options);
 
 	return GNOME_VFS_OK;
 }
@@ -731,31 +725,19 @@ do_close_directory (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
-inline static GnomeVFSResult
-read_directory (DirectoryHandle *handle,
-		GnomeVFSFileInfo *info,
-		gboolean *skip,
-		GnomeVFSContext *context)
+static GnomeVFSResult
+do_read_directory (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle *method_handle,
+		   GnomeVFSFileInfo *file_info,
+		   GnomeVFSContext *context)
 {
-	const GnomeVFSDirectoryFilter *filter;
-	GnomeVFSDirectoryFilterNeeds filter_needs;
 	struct dirent *result;
 	struct stat statbuf;
 	gchar *full_name;
-	gboolean filter_called;
+	DirectoryHandle *handle;
 
-	/* This makes sure we don't try to filter the file more than
-           once.  */
-	filter_called = FALSE;
-	*skip = FALSE;
-
-	filter = handle->filter;
-	if (filter != NULL) {
-		filter_needs = gnome_vfs_directory_filter_get_needs (filter);
-	} else {
-		filter_needs = GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING;
-	}
-
+	handle = (DirectoryHandle *) method_handle;
+	
 	if (readdir_r (handle->dir, handle->current_entry, &result) != 0) {
 		return gnome_vfs_result_from_errno ();
 	}
@@ -764,26 +746,12 @@ read_directory (DirectoryHandle *handle,
 		return GNOME_VFS_ERROR_EOF;
 	}
 
-	info->name = g_strdup (result->d_name);
-
-	if (filter != NULL
-	    && !filter_called
-	    && (filter_needs
-		  & (GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE
-		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_STAT
-		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE)) == 0){
-		if (!gnome_vfs_directory_filter_apply (filter, info)) {
-			*skip = TRUE;
-			return GNOME_VFS_OK;
-		}
-
-		filter_called = TRUE;
-	}
+	file_info->name = g_strdup (result->d_name);
 
 	strcpy (handle->name_ptr, result->d_name);
 	full_name = handle->name_buffer;
 
-	if (get_stat_info (info, full_name, handle->options, &statbuf) != GNOME_VFS_OK) {
+	if (get_stat_info (file_info, full_name, handle->options, &statbuf) != GNOME_VFS_OK) {
 		/* Return OK - this should not terminate the directory iteration
 		 * and we will know from the valid_fields that we don't have the
 		 * stat info.
@@ -791,57 +759,7 @@ read_directory (DirectoryHandle *handle,
 		return GNOME_VFS_OK;
 	}
 	
-	if (filter != NULL && !filter_called
-	    && (filter_needs & GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE) == 0) {
-		if (!gnome_vfs_directory_filter_apply (filter, info)) {
-			*skip = TRUE;
-			return GNOME_VFS_OK;
-		}
-		filter_called = TRUE;
-	}
-
-	if (handle->options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
-		get_mime_type (info, full_name, handle->options, &statbuf);
-	}
-
-	if (filter != NULL && !filter_called) {
-		if (!gnome_vfs_directory_filter_apply (filter, info)) {
-			*skip = TRUE;
-			return GNOME_VFS_OK;
-		}
-		filter_called = TRUE;
-	}
-
-	if (filter != NULL && !filter_called) {
-		if (!gnome_vfs_directory_filter_apply (filter, info)) {
-			*skip = TRUE;
-			return GNOME_VFS_OK;
-		}
-		filter_called = TRUE;
-	}
-
 	return GNOME_VFS_OK;
-}
-
-static GnomeVFSResult
-do_read_directory (GnomeVFSMethod *method,
-		   GnomeVFSMethodHandle *method_handle,
-		   GnomeVFSFileInfo *file_info,
-		   GnomeVFSContext *context)
-{
-	GnomeVFSResult result;
-	gboolean skip;
-
-	do {
-		result = read_directory ((DirectoryHandle *) method_handle,
-					 file_info, &skip, context);
-		if (result != GNOME_VFS_OK)
-			break;
-		if (skip)
-			gnome_vfs_file_info_clear (file_info);
-	} while (skip);
-
-	return result;
 }
 
 

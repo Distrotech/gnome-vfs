@@ -62,7 +62,6 @@ static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
-					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSContext *context);
 static GnomeVFSResult do_close_directory(GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle *method_handle,
@@ -128,7 +127,6 @@ static GMutex *client_mutex;
 typedef struct {
         GnomeVFSURI *uri;
         GnomeVFSFileInfoOptions options;
-        const GnomeVFSDirectoryFilter *filter;
 
         GSList *subdirs;
         GSList *pairs;
@@ -170,7 +168,6 @@ make_absolute (const char *src)
 static DirectoryHandle *
 directory_handle_new (GnomeVFSURI *uri,
                       GnomeVFSFileInfoOptions options,
-                      const GnomeVFSDirectoryFilter *filter,
                       GSList *subdirs,
                       GSList *pairs)
 {
@@ -180,7 +177,6 @@ directory_handle_new (GnomeVFSURI *uri,
         
         retval->uri = gnome_vfs_uri_ref (uri);
         retval->options = options;
-        retval->filter = filter;
         retval->pairs = pairs;
         retval->subdirs = subdirs;
 #ifdef G_THREADS_ENABLED
@@ -477,7 +473,6 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
                    GnomeVFSURI *uri,
                    GnomeVFSFileInfoOptions options,
-                   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
         GSList *pairs;
@@ -529,7 +524,6 @@ do_open_directory (GnomeVFSMethod *method,
         *method_handle = 
 		(GnomeVFSMethodHandle*)directory_handle_new (uri,
 							     options,
-							     filter,
 							     subdirs,
 							     pairs);
 	g_free (dirname);
@@ -587,27 +581,18 @@ file_info_dir (GnomeVFSFileInfo *info,
         return result;
 }
 
-        
+
 static GnomeVFSResult 
-read_directory (DirectoryHandle *handle,
-		GnomeVFSFileInfo *file_info,
-		gboolean *skip)
+do_read_directory (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle *method_handle,
+                   GnomeVFSFileInfo *file_info,
+		   GnomeVFSContext *context)
 {
-        GnomeVFSResult result;
+	GnomeVFSResult result;
         GSList *tmp;
-	const GnomeVFSDirectoryFilter *filter;
-	GnomeVFSDirectoryFilterNeeds filter_needs;
-	gboolean filter_called;
+	DirectoryHandle *handle;
 
-	filter_called = FALSE;
-        filter = handle->filter;
-
-	if (filter != NULL) {
-		filter_needs = gnome_vfs_directory_filter_get_needs (filter);
-	} else {
-		filter_needs = GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING;
-	}
-	
+	handle = (DirectoryHandle *) method_handle;
 
 	MUTEX_LOCK (handle->mutex);
 	/* Get the next key info */
@@ -632,53 +617,6 @@ read_directory (DirectoryHandle *handle,
 	}
 	MUTEX_UNLOCK (handle->mutex);
 	
-	if (result != GNOME_VFS_OK) {
-		return result;
-	}
-	
-	/* Filter the file */
-	*skip = FALSE;;
-	if (filter != NULL
-	    && !filter_called
-	    && !(filter_needs 
-		 & (GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE
-		    | GNOME_VFS_DIRECTORY_FILTER_NEEDS_STAT
-		    | GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE))) {
-		if (!gnome_vfs_directory_filter_apply (filter, file_info)) {
-			*skip = TRUE;
-			return GNOME_VFS_OK;
-		}
-		filter_called = TRUE;
-	}
-
-	return result;
-}
-
-static GnomeVFSResult 
-do_read_directory (GnomeVFSMethod *method,
-		   GnomeVFSMethodHandle *method_handle,
-                   GnomeVFSFileInfo *file_info,
-		   GnomeVFSContext *context)
-{
-	GnomeVFSResult result;
-	gboolean skip;
-	
-	skip = FALSE;
-	
-	do {
-		result = read_directory ((DirectoryHandle*)method_handle,
-					 file_info, 
-					 &skip);
-		if (result != GNOME_VFS_OK) {
-			break;
-		}
-		
-		if (skip) {
-			gnome_vfs_file_info_clear (file_info);
-		}
-				
-	} while (skip);
-
 	return result;	    
 }
 

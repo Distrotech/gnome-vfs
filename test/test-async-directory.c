@@ -305,8 +305,6 @@ main (int argc, const char **argv)
 		(&handle,
 		 text_uri,
 		 (GNOME_VFS_FILE_INFO_GET_MIME_TYPE | GNOME_VFS_FILE_INFO_FOLLOW_LINKS),
-		 GNOME_VFS_DIRECTORY_FILTER_NONE,
-		 0, NULL,
 		 items_per_notification,
 		 directory_load_callback,
 		 &callback_data);

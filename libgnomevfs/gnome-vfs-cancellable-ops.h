@@ -150,7 +150,6 @@ GnomeVFSResult  gnome_vfs_directory_open_from_uri_cancellable
 					(GnomeVFSDirectoryHandle **handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
-					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSContext *context);
 
 G_END_DECLS

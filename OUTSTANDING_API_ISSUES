@@ -36,7 +36,6 @@ Basic recommendations to avoid application breakage:
 * Install public headers and module-only headers in different places,
   separate pkgconfig targets
 * remove gnome-vfs-iobuf / gnome-vfs-socket-buffer duplication
-* remove directory filter / regexp filter stuff
 * buffered I/O API
 * kill gnome-vfs-seekable
 * kill gnome-vfs-transform
@@ -47,3 +46,4 @@ Basic recommendations to avoid application breakage:
   names, some should go into other headers, some back to Eel or
   Nautilus
 * kill half-baked port of metadata
+* rename `method' to something else (`module'? `protocol'? `scheme'? `scheme handler'?)

@@ -48,13 +48,6 @@
 /* see gnome-vfs-file-info.h for GnomeVFSFileInfoOptions */
 /* see gnome-vfs-file-info.h for GnomeVFSFileInfoMask */
 /* see gnome-vfs-find-directory.h for GnomeVFSFindDirectoryKind */
-/* see gnome-vfs-directory-filter.h for GnomeVFSDirectoryFilterType */
-/* see gnome-vfs-directory-filter.h for GnomeVFSDirectoryFilterOptions */
-/* see gnome-vfs-directory-filter.h for GnomeVFSDirectoryFilterNeeds */
-/* see gnome-vfs-directory-filter.h for GnomeVFSDirectoryVisitOptions */
-/* see gnome-vfs-directory-filter.h for GnomeVFSDirectoryFilter */
-/* see gnome-vfs-directory-filter.h for GnomeVFSDirectoryFilterFunc */
-/* see gnome-vfs-directory-filter.h for GnomeVFSDirectoryVisitFunc */
 /* see gnome-vfs-xfer.h for GnomeVFSXferOptions */
 /* see gnome-vfs-xfer.h for GnomeVFSXferProgressStatus */
 /* see gnome-vfs-xfer.h for GnomeVFSXferOverwriteMode */
@@ -92,7 +85,6 @@
    still include gnome-vfs-types.h directly */
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-callbacks.h>
-#include <libgnomevfs/gnome-vfs-directory-filter.h>
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>

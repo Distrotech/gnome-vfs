@@ -80,7 +80,6 @@ static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
-					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSContext *context);
 static GnomeVFSResult do_close_directory(GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle *method_handle,
@@ -392,7 +391,6 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
                    GnomeVFSURI *uri,
                    GnomeVFSFileInfoOptions options,
-                   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
 	SshHandle *handle = NULL;

@@ -2077,7 +2077,6 @@ do_open_directory(GnomeVFSMethod *method,
 		  GnomeVFSMethodHandle **method_handle,
 		  GnomeVFSURI *uri,
 		  GnomeVFSFileInfoOptions options,
-		  const GnomeVFSDirectoryFilter *filter,
 		  GnomeVFSContext *context) 
 {
 	/* TODO move to using the gnome_vfs_file_info_list family of functions */
@@ -2087,7 +2086,7 @@ do_open_directory(GnomeVFSMethod *method,
 	GList *child_file_info_cached_list = NULL;
 
 	ANALYZE_HTTP ("==> +do_open_directory");
-	DEBUG_HTTP (("+Open_Directory options: %d dirfilter: 0x%08x URI: '%s'", options, (unsigned int) filter, gnome_vfs_uri_to_string( uri, 0)));
+	DEBUG_HTTP (("+Open_Directory options: %d URI: '%s'", options, gnome_vfs_uri_to_string (uri, 0)));
 
 	/* Check the cache--is this even a directory?  
 	 * (Nautilus, in particular, seems to like to make this call on non directories
@@ -2124,7 +2123,7 @@ do_open_directory(GnomeVFSMethod *method,
 			if (uri->text != NULL && *uri->text != '\0'
 			   && uri->text[strlen (uri->text) - 1] != '/') {
 				GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path (uri, "/");
-				result = do_open_directory (method, (GnomeVFSMethodHandle **)&handle, tmpuri, options, filter, context);
+				result = do_open_directory (method, (GnomeVFSMethodHandle **)&handle, tmpuri, options, context);
 				gnome_vfs_uri_unref (tmpuri);
 
 			}

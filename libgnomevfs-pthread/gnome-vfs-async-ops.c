@@ -106,18 +106,12 @@ void           pthread_gnome_vfs_async_set_file_info          (GnomeVFSAsyncHand
 void           pthread_gnome_vfs_async_load_directory         (GnomeVFSAsyncHandle                **handle_return,
 							       const gchar                         *text_uri,
 							       GnomeVFSFileInfoOptions              options,
-							       GnomeVFSDirectoryFilterType          filter_type,
-							       GnomeVFSDirectoryFilterOptions       filter_options,
-							       const gchar                         *filter_pattern,
 							       guint                                items_per_notification,
 							       GnomeVFSAsyncDirectoryLoadCallback   callback,
 							       gpointer                             callback_data);
 void           pthread_gnome_vfs_async_load_directory_uri     (GnomeVFSAsyncHandle                **handle_return,
 							       GnomeVFSURI                         *uri,
 							       GnomeVFSFileInfoOptions              options,
-							       GnomeVFSDirectoryFilterType          filter_type,
-							       GnomeVFSDirectoryFilterOptions       filter_options,
-							       const gchar                         *filter_pattern,
 							       guint                                items_per_notification,
 							       GnomeVFSAsyncDirectoryLoadCallback   callback,
 							       gpointer                             callback_data);
@@ -604,9 +598,6 @@ pthread_gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
 static GnomeVFSAsyncHandle *
 async_load_directory (GnomeVFSURI *uri,
 		      GnomeVFSFileInfoOptions options,
-		      GnomeVFSDirectoryFilterType filter_type,
-		      GnomeVFSDirectoryFilterOptions filter_options,
-		      const gchar *filter_pattern,
 		      guint items_per_notification,
 		      GnomeVFSAsyncDirectoryLoadCallback callback,
 		      gpointer callback_data)
@@ -620,9 +611,6 @@ async_load_directory (GnomeVFSURI *uri,
 	load_directory_op = &job->op->specifics.load_directory;
 	load_directory_op->uri = uri == NULL ? NULL : gnome_vfs_uri_ref (uri);
 	load_directory_op->options = options;
-	load_directory_op->filter_type = filter_type;
-	load_directory_op->filter_options = filter_options;
-	load_directory_op->filter_pattern = g_strdup (filter_pattern);
 	load_directory_op->items_per_notification = items_per_notification;
 
 
@@ -636,9 +624,6 @@ void
 pthread_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 					const gchar *text_uri,
 					GnomeVFSFileInfoOptions options,
-					GnomeVFSDirectoryFilterType filter_type,
-					GnomeVFSDirectoryFilterOptions filter_options,
-					const gchar *filter_pattern,
 					guint items_per_notification,
 					GnomeVFSAsyncDirectoryLoadCallback callback,
 					gpointer callback_data)
@@ -651,7 +636,6 @@ pthread_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 
 	uri = gnome_vfs_uri_new (text_uri);
 	*handle_return = async_load_directory (uri, options,
-				               filter_type, filter_options, filter_pattern,
 				               items_per_notification,
 				               callback, callback_data);
 	if (uri != NULL) {
@@ -663,9 +647,6 @@ void
 pthread_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 					    GnomeVFSURI *uri,
 					    GnomeVFSFileInfoOptions options,
-					    GnomeVFSDirectoryFilterType filter_type,
-					    GnomeVFSDirectoryFilterOptions filter_options,
-					    const gchar *filter_pattern,
 					    guint items_per_notification,
 					    GnomeVFSAsyncDirectoryLoadCallback callback,
 					    gpointer callback_data)
@@ -675,7 +656,6 @@ pthread_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (callback != NULL);
 
 	*handle_return = async_load_directory (uri, options,
-					       filter_type, filter_options, filter_pattern,
 					       items_per_notification,
 					       callback, callback_data);
 }

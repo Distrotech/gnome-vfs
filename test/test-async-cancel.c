@@ -532,9 +532,6 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 					GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
-					GNOME_VFS_DIRECTORY_FILTER_NONE,
-					0,
-					NULL,
 					chunk_count,
 					directory_load_callback,
 					&num_entries);
@@ -551,9 +548,6 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 					GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
-					GNOME_VFS_DIRECTORY_FILTER_NONE,
-					0,
-					NULL,
 					chunk_count,
 					directory_load_callback,
 					&num_entries);
@@ -578,9 +572,6 @@ test_load_directory_fail (void)
 					GNOME_VFS_FILE_INFO_GET_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
-					GNOME_VFS_DIRECTORY_FILTER_NONE,
-					0,
-					NULL,
 					32,
 					directory_load_failed_callback,
 					&num_entries);

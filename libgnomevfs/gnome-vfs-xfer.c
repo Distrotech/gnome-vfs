@@ -428,8 +428,7 @@ empty_directory (GnomeVFSURI *uri,
 	*skip = FALSE;
 	do {
 		result = gnome_vfs_directory_open_from_uri (&directory_handle, uri, 
-							    GNOME_VFS_FILE_INFO_DEFAULT, 
-							    NULL);
+							    GNOME_VFS_FILE_INFO_DEFAULT);
 		retry = FALSE;
 		if (result != GNOME_VFS_OK) {
 			retry = handle_error (&result, progress,
@@ -540,7 +539,7 @@ non_recursive_empty_directory (GnomeVFSURI *directory_uri,
 	visit_params.base_uri = directory_uri;
 	visit_params.uri_list = NULL;
 	result = gnome_vfs_directory_visit_uri (directory_uri, GNOME_VFS_FILE_INFO_DEFAULT, 
-		NULL, GNOME_VFS_DIRECTORY_VISIT_SAMEFS | GNOME_VFS_DIRECTORY_VISIT_LOOPCHECK,
+		GNOME_VFS_DIRECTORY_VISIT_SAMEFS | GNOME_VFS_DIRECTORY_VISIT_LOOPCHECK,
 		PrependOneURIToList, &visit_params);
 
 	uri_list = visit_params.uri_list;
@@ -665,7 +664,7 @@ gnome_vfs_visit_list (const GList *name_uri_list,
 				 * recursively 
 				 */
 				result = gnome_vfs_directory_visit_uri (uri, info_options, 
-					NULL, visit_options, callback, data);
+					visit_options, callback, data);
 			}
 		}
 		gnome_vfs_file_info_unref (info);
@@ -790,7 +789,7 @@ directory_add_items_and_size (GnomeVFSURI *dir_uri,
 		info_options = GNOME_VFS_FILE_INFO_DEFAULT;
 	}
 
-	return gnome_vfs_directory_visit_uri (dir_uri, info_options, NULL, 
+	return gnome_vfs_directory_visit_uri (dir_uri, info_options,
 		visit_options, count_each_file_size_one, &each_params);
 
 }
@@ -966,8 +965,7 @@ create_directory (GnomeVFSURI *dir_uri,
 		if (result == GNOME_VFS_OK) {
 			return gnome_vfs_directory_open_from_uri (return_handle, 
 								  dir_uri, 
-								  GNOME_VFS_FILE_INFO_DEFAULT, 
-								  NULL);
+								  GNOME_VFS_FILE_INFO_DEFAULT);
 		}
 		/* handle the error case */
 		retry = handle_error (&result, progress,
@@ -1291,7 +1289,7 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 	dest_directory_handle = NULL;
 	
 	result = gnome_vfs_directory_open_from_uri (&source_directory_handle, source_dir_uri, 
-						    GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+						    GNOME_VFS_FILE_INFO_DEFAULT);
 
 	if (result != GNOME_VFS_OK) {
 		return result;

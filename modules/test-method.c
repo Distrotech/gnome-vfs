@@ -387,10 +387,9 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri,
 		   GnomeVFSFileInfoOptions options,
-		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
-	PERFORM_OPERATION (open_directory, gnome_vfs_directory_open_from_uri ((GnomeVFSDirectoryHandle **) method_handle, uri, options, filter));
+	PERFORM_OPERATION (open_directory, gnome_vfs_directory_open_from_uri ((GnomeVFSDirectoryHandle **) method_handle, uri, options));
 }
 
 static GnomeVFSResult

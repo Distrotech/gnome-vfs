@@ -57,7 +57,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-configuration.h		\
 	gnome-vfs-context.h			\
-	gnome-vfs-directory-filter.h		\
 	gnome-vfs-directory.h			\
 	gnome-vfs-file-info.h			\
 	gnome-vfs-file-size.h			\
@@ -81,10 +80,8 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-parse-ls.h			\
 	gnome-vfs-private-utils.h		\
 	gnome-vfs-private.h			\
-	gnome-vfs-regexp-filter.h		\
 	gnome-vfs-result.h			\
 	gnome-vfs-seekable.h			\
-	gnome-vfs-shellpattern-filter.h		\
 	gnome-vfs-socket-buffer.h		\
 	gnome-vfs-socket.h			\
 	gnome-vfs-ssl-private.h			\
@@ -111,7 +108,6 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-cancellation.c		\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
-	gnome-vfs-directory-filter.c		\
 	gnome-vfs-directory.c			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-find-directory.c		\
@@ -136,10 +132,8 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-private-utils.c		\
 	gnome-vfs-private.c			\
 	gnome-vfs-process.c			\
-	gnome-vfs-regexp-filter.c		\
 	gnome-vfs-result.c			\
 	gnome-vfs-seekable.c			\
-	gnome-vfs-shellpattern-filter.c		\
 	gnome-vfs-socket-buffer.c		\
 	gnome-vfs-socket.c			\
 	gnome-vfs-ssl.c				\

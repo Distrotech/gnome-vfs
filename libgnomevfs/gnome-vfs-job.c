@@ -682,7 +682,6 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 		if (op->specifics.load_directory.uri != NULL) {
 			gnome_vfs_uri_unref (op->specifics.load_directory.uri);
 		}
-		g_free (op->specifics.load_directory.filter_pattern);
 		break;
 	case GNOME_VFS_OP_OPEN:
 		if (op->specifics.open.uri != NULL) {
@@ -1364,8 +1363,7 @@ execute_find_directory (GnomeVFSJob *job)
 }
 
 static void
-load_directory_details (GnomeVFSJob *job,
-			GnomeVFSDirectoryFilter *filter)
+load_directory_details (GnomeVFSJob *job)
 {
 	GnomeVFSLoadDirectoryOp *load_directory_op;
 	GnomeVFSDirectoryHandle *handle;
@@ -1385,7 +1383,6 @@ load_directory_details (GnomeVFSJob *job,
 			(&handle,
 			 load_directory_op->uri,
 			 load_directory_op->options,
-			 filter,
 			 job->op->context);
 	}
 
@@ -1459,18 +1456,10 @@ static void
 execute_load_directory (GnomeVFSJob *job)
 {
 	GnomeVFSLoadDirectoryOp *load_directory_op;
-	GnomeVFSDirectoryFilter *filter;
 
 	load_directory_op = &job->op->specifics.load_directory;
 
-	filter = gnome_vfs_directory_filter_new
-		(load_directory_op->filter_type,
-		 load_directory_op->filter_options,
-		 load_directory_op->filter_pattern);
-
-	load_directory_details (job, filter);
-
-	gnome_vfs_directory_filter_destroy (filter);
+	load_directory_details (job);
 }
 
 static gint

@@ -578,7 +578,6 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri,
 		   GnomeVFSFileInfoOptions info_options,
-		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
 	GList **handle;
@@ -655,12 +654,6 @@ do_open_directory (GnomeVFSMethod *method,
 
 		/* check if the paths match */
 		if(strcmp(entry->directory, sub_uri)) {
-			l = l->next;
-			continue;
-		}
-
-		/* apply a directory filter */
-		if (! gnome_vfs_directory_filter_apply (filter, entry->info)) {
 			l = l->next;
 			continue;
 		}
@@ -753,7 +746,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		return result;
 	}
 	
-	result = do_open_directory(method, &method_handle, parent, options, NULL, context);
+	result = do_open_directory(method, &method_handle, parent, options, context);
 	while(TRUE) {
 		result = do_read_directory(method, method_handle, file_info, context);
 		if(result != GNOME_VFS_OK) break;
