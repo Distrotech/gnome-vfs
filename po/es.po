@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-14 18:07+0100\n"
-"PO-Revision-Date: 2004-01-14 18:08+0100\n"
+"POT-Creation-Date: 2004-01-18 03:00+0100\n"
+"PO-Revision-Date: 2004-01-18 03:01+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -532,6 +532,7 @@ msgstr "Volumen desconocido"
 msgid "Network server"
 msgstr "Servidor de red"
 
+#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
@@ -539,6 +540,7 @@ msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
 
+#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
@@ -1018,7 +1020,7 @@ msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Nombre de usuario para pasar como autenticación al hacer proxy HTTP."
 
 #: modules/network-method.c:257
-msgid "Window Network"
+msgid "Windows Network"
 msgstr "Red de Windows"
 
 #: schemas/system_smb.schemas.in.h:1
@@ -1027,7 +1029,7 @@ msgstr "Grupo SMB"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "El grupo de trabajo de windows del que el usuario es parte"
 
 #~ msgid "How to handle http URLs"
 #~ msgstr "Cómo manipular las URLs http"
