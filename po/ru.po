@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-02-17 13:01+0300\n"
+"POT-Creation-Date: 2004-07-08 08:34+0400\n"
+"PO-Revision-Date: 2004-07-08 08:49+0400\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -452,7 +452,12 @@ msgstr "Произошла ошибка при разборе командной
 msgid "Error launching command"
 msgstr "Произошла ошибка при выполнении команды"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+msgid "Timeout reached"
+msgstr "Произошёл таймаут"
+
+#: libgnomevfs/gnome-vfs-result.c:180
 msgid "Unknown error"
 msgstr "Произошла неизвестная ошибка"
 
@@ -509,7 +514,7 @@ msgstr "Камера"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
 msgid "DVD"
-msgstr ""
+msgstr "Видео-диск"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
 msgid "Root Volume"
@@ -527,14 +532,12 @@ msgstr "Неизвестный том"
 msgid "Network server"
 msgstr "Сетевой сервер"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Невозможно подсоединить дискету. Возможно, дискета отсутствует в дисководе."
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
@@ -643,7 +646,7 @@ msgstr "Начало"
 msgid "Filesystem"
 msgstr "Файловая система"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Значение GnomeVFSSeekPosition %d неизвестно"
@@ -655,7 +658,7 @@ msgstr "Сеть ОС Виндоуз (Windows)"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "Идентификационная информация удалённого компьютера (%s) неизвестна."
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -665,25 +668,32 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Это происходит, когда вход в севнс на компьютере осуществляется впервые.\n"
+"\n"
+"Удалённый компьютер прислал идентификационную информацию %s. Чтобы "
+"убедиться, что продолжение соединения будет полностью безопасна, свяжитесь с "
+"ситемным администратором."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Войти всё равно"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "Отменить вход"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Не найден допустимый файл установок в \"%s\"\n"
+msgstr "Допустимый файл установок в \"%s\" не найден\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Используйте переменную окружения \"%s\" для указания другого места.\n"
+msgstr ""
+"Используйте переменную окружения \"%s\" для указания другого "
+"местоположения.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -761,9 +771,8 @@ msgid "Handle HTTPS URLs"
 msgstr "Обрабатывать ссылки (URLs) типа HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle aim URLs"
-msgstr "Обрабатывать ссылки (URLs) типа man"
+msgstr "Обрабатывать ссылки (URLs) типа aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
@@ -815,11 +824,10 @@ msgstr ""
 "будет обрабатывать ссылки (URLs) типа HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle aim URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URLs) типа man."
+"будет обрабатывать ссылки (URLs) типа aim."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
@@ -869,9 +877,8 @@ msgstr ""
 "(URL), будет запускаться в терминале."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid "aim URL handler"
-msgstr "Обработчик ссылок (URLs) типа man"
+msgstr "Обработчик ссылок (URLs) типа aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
@@ -902,18 +909,23 @@ msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"Разделённый запятыми список доменов типа dns-sd, которые должны быть видимы "
+"в сети."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
 msgstr ""
+"Дополнительные домены, в которых осуществлять поиск сервисов типа dns-sd"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Как отображать локальный сервис типа DNS-SD"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
 msgstr ""
+"Возможные значения \"merged\" (\"совместные\"), \"separate\" (\"раздельные"
+"\") и \"disabled\" (\"отключено\")"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -958,7 +970,7 @@ msgid ""
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "Если этот ключ установлен, то соединения с прокси-сервером требуют "
-"авторизации. Пара значенийимя_пользователя/пароль определяется ключами \"/"
+"авторизации. Пара значений имя_пользователя/пароль определяется ключами \"/"
 "system/http_proxy/authentication_user\" и \"/system/http_proxy/"
 "authentication_password\"."
 
