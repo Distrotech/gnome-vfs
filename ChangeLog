@@ -1,5 +1,12 @@
 2000-10-26  John Sullivan  <sullivan@eazel.com>
 
+	* modules/http-method.c: (make_propfind_request):
+	More cleanup of *handle_return handling. This
+	stuff was revealed when I temporarily #defined
+	DAV_NO_CACHE to investigate another bug.
+
+2000-10-26  John Sullivan  <sullivan@eazel.com>
+
 	Crashed while fiddling around in WebDAV looking at some other
 	bug. Found cause of crash, and cleaned up various callers
 	of offending routine (make_request). Maybe this will improve 

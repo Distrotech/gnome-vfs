@@ -1969,48 +1969,45 @@ make_propfind_request (HttpFileHandle **handle_return,
 	 */
 	if (result == GNOME_VFS_OK && (*handle_return)->server_status != 207) { /* Multi-Status */
 		DEBUG_HTTP (("HTTP server returned an invalid PROPFIND response: %d", (*handle_return)->server_status));
-		http_handle_close (*handle_return, context);
-		*handle_return = NULL;
 		result = GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
-	if (result != GNOME_VFS_OK) {
-		g_assert (*handle_return == NULL);
-		xmlFreeParserCtxt(parserContext);
-		g_free(buffer);
-		g_free(extraheaders);
-		return result;
+	if (result == GNOME_VFS_OK) {
+		do {
+			result = do_read(NULL, (GnomeVFSMethodHandle *) *handle_return,
+				buffer, num_bytes, &bytes_read, context);
+
+			if (result != GNOME_VFS_OK ) {
+				break;
+			}
+			
+			xmlParseChunk(parserContext, buffer, bytes_read, 0);
+			buffer[bytes_read]=0;
+		} while( bytes_read > 0 );
 	}
 
-	do {
-		result = do_read(NULL, (GnomeVFSMethodHandle *) *handle_return,
-			buffer, num_bytes, &bytes_read, context);
+	if (result == GNOME_VFS_ERROR_EOF) {
+		result = GNOME_VFS_OK;
+	}
 
-		if ( result == GNOME_VFS_ERROR_EOF ) {
-			result = GNOME_VFS_OK;
-			break;
-		}
-		
-		if(result != GNOME_VFS_OK ) {
-			xmlFreeParserCtxt(parserContext);
-			g_free(buffer);
-			g_free(extraheaders);
-			return result;
-		}
-		xmlParseChunk(parserContext, buffer, bytes_read, 0);
-		buffer[bytes_read]=0;
-	} while( bytes_read > 0 );
+	if (result != GNOME_VFS_OK) {
+		goto cleanup;
+	}
+
 	xmlParseChunk(parserContext, "", 0, 1);
 
 	doc = parserContext->myDoc;
-	if(!doc)
-		return GNOME_VFS_ERROR_CORRUPTED_DATA;
+	if(!doc) {
+		result = GNOME_VFS_ERROR_CORRUPTED_DATA;
+		goto cleanup;
+	}
 
 	cur = doc->root;
 
 	if(strcmp((char *)cur->name, "multistatus")) {
 		DEBUG_HTTP(("Couldn't find <multistatus>.\n"));
-		return GNOME_VFS_ERROR_CORRUPTED_DATA;
+		result = GNOME_VFS_ERROR_CORRUPTED_DATA;
+		goto cleanup;
 	}
 
 	cur = cur->childs;
@@ -2044,6 +2041,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 	if (!found_root_node_props) {
 		DEBUG_HTTP (("Failed to find root request node properties during propfind"));
 		result = GNOME_VFS_ERROR_CORRUPTED_DATA;
+		goto cleanup;
 	}
 
 #ifndef DAV_NO_CACHE
@@ -2062,10 +2060,15 @@ make_propfind_request (HttpFileHandle **handle_return,
 	}
 #endif /* DAV_NO_CACHE */
 
+cleanup:
 	g_free(buffer);
 	g_free(extraheaders);
-
 	xmlFreeParserCtxt(parserContext);
+
+	if (result != GNOME_VFS_OK) {
+		http_handle_close (*handle_return, context);
+		*handle_return = NULL;
+	}
 
 	return result;
 }
