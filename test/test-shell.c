@@ -144,11 +144,17 @@ do_ls (void)
 	GnomeVFSResult result;
 	GList *list, *node;
 	GnomeVFSFileInfo *info;
+	const char *path;
 
-	result = gnome_vfs_directory_list_load (
-		&list, cur_dir,
-		GNOME_VFS_FILE_INFO_DEFAULT |
-		GNOME_VFS_FILE_INFO_GET_MIME_TYPE);
+	if (!arg_data [arg_cur])
+		path = cur_dir;
+	else
+		path = arg_data [arg_cur++];
+
+	result = gnome_vfs_directory_list_load
+		(&list, path,
+		 GNOME_VFS_FILE_INFO_DEFAULT |
+		 GNOME_VFS_FILE_INFO_GET_MIME_TYPE);
 	if (show_if_error (result, "open directory ", cur_dir))
 		return;
 
@@ -216,15 +222,15 @@ list_commands (void)
 {
 	printf ("command can be one or all of:\n");
 	printf ("Main operations:\n");
-	printf (" * ls:                     list files\n");
-	printf (" * cd:                     enter storage\n");
-	printf (" * mv:                     move object\n");
-	printf (" * rm:                     remove stream\n");
-	printf (" * mkdir:                  make storage\n");
-	printf (" * rmdir:                  remove storage\n");
-	printf (" * info,stat:              get information on object\n");
-	printf (" * cat,type:               dump text file to console\n");
-	printf (" * dump:                   dump binary file to console\n");
+	printf (" * ls [opt_dir]            list files\n");
+	printf (" * cd [dir]                enter storage\n");
+	printf (" * mv <a> <b>              move object\n");
+	printf (" * rm <file>               remove stream\n");
+	printf (" * mkdir <dir>             make storage\n");
+	printf (" * rmdir <dir>             remove storage\n");
+	printf (" * info,stat <a>           get information on object\n");
+	printf (" * cat,type <a>            dump text file to console\n");
+	printf (" * dump <a>                dump binary file to console\n");
 	printf (" * sync:                   for sinkers\n");
 	printf (" * ssl:                    displays ssl enabled state\n");
 	printf (" * findtrash:              locates a trash directory for a URI\n");
@@ -958,12 +964,24 @@ callback (GIOChannel *source,
 	return TRUE;
 }
 
+static char *
+get_input_string (const char *prompt)
+{
+	char buffer[512];
+
+	printf (prompt);
+	fgets (buffer, 511, stdin);
+	if (strchr (buffer, '\n'))
+		*strchr (buffer, '\n') = '\0';
+	
+	return g_strndup (buffer, 512);
+}
+
 static void
 authentication_callback (gconstpointer in, size_t in_size,
 			 gpointer out, size_t out_size,
 			 gpointer user_data)
 {
-	char buffer[512];
  	GnomeVFSModuleCallbackAuthenticationIn *in_real;
  	GnomeVFSModuleCallbackAuthenticationOut *out_real;
 
@@ -978,13 +996,8 @@ authentication_callback (gconstpointer in, size_t in_size,
 	
 	printf ("Authenticate for uri: %s realm: %s\n", in_real->uri, in_real->realm);
 
-	printf ("Username:\n");
-	fgets (buffer, 511, stdin);
-	out_real->username = g_strndup (buffer, 512);
-
-	printf ("Password:\n");
-	fgets (buffer, 511, stdin);
- 	out_real->password = g_strndup (buffer, 512);
+	out_real->username = get_input_string ("Username:\n");
+	out_real->password = get_input_string ("Password:\n");
 }
 
 int
@@ -1032,7 +1045,7 @@ main (int argc, const char **argv)
 		
 	poptFreeContext (popt_context);
 
-	do {
+	while (!exit) {
 		char *ptr;
 
 		if (interactive) {
@@ -1062,7 +1075,12 @@ main (int argc, const char **argv)
 		} else {
 			/* In non-interactive mode we just do this evil
 			 * thingie */
-			fgets (buffer, 1023, stdin);
+			buffer[0] = '\0';
+			fgets (buffer, 1023, instream);
+			if (!buffer [0]) {
+				exit = 1;
+				continue;
+			}
 		}
 
 		if (!buffer || buffer [0] == '#')
@@ -1135,7 +1153,7 @@ main (int argc, const char **argv)
 
 		g_strfreev (arg_data);
 		arg_data = NULL;
-	} while (!exit);
+	}
 
 	g_free (buffer);
 	g_free (cur_dir);

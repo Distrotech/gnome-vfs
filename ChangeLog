@@ -1,3 +1,14 @@
+2003-08-04  Michael Meeks  <michael@ximian.com>
+
+	* test/test-shell.c (authentication_callback),
+	(get_input_string): don't pollute user/password with
+	trailing '\n's.
+
+2003-08-01  Michael Meeks  <michael@ximian.com>
+
+	* test/test-shell.c (do_ls): add ls [dir]
+	(main): quit properly at end of stream.
+
 2003-08-03  Danilo Segan  <dsegan@gmx.net>
 
 	* libgnomevfs/gnome-vfs-utils.c: uses ngettext
