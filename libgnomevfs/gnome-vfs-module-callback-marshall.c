@@ -685,8 +685,6 @@ _gnome_vfs_module_callback_marshal_invoke (const char    *callback_name,
 	gboolean res;
 	struct ModuleCallbackMarshaller *marshaller;
 
-	g_print ("_gnome_vfs_module_callback_marshal_invoke(%s) - thread %p\n", callback_name, g_thread_self());
-	
 	marshaller = lookup_marshaller (callback_name);
 	if (marshaller == NULL) {
 		return FALSE;
@@ -735,8 +733,6 @@ _gnome_vfs_module_callback_demarshal_invoke (const char    *callback_name,
 	gsize in_size, out_size;
 	struct ModuleCallbackMarshaller *marshaller;
 	CORBA_any *empty_any;
-
-	g_print ("_gnome_vfs_module_callback_demarshal_invoke(%s) - thread %p\n", callback_name, g_thread_self());
 
 	marshaller = lookup_marshaller (callback_name);
 	if (marshaller == NULL) {

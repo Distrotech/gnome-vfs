@@ -1,5 +1,10 @@
 2003-12-10  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	Remove debug spew.
+	
+2003-12-10  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/GNOME_VFS_Daemon.idl:
 	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
 	Marshallers for the new auth callbacks.
