@@ -226,7 +226,6 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 #elif defined HAVE_GNUTLS
 	GnomeVFSSSL *ssl;
 	int err;
-	int ret;
 
 	ssl = g_new0 (GnomeVFSSSL, 1);
 	ssl->private = g_new0 (GnomeVFSSSLPrivate, 1);
