@@ -10,9 +10,8 @@
   <!-- Root folder -->
   <Folder>
     <Name>Root</Name>
-
+    <Desktop>Settings.directory</Desktop>
     <Query>
-      <Desktop>Settings.directory</Desktop>
       <And>
         <Keyword>Settings</Keyword>
         <Not>
