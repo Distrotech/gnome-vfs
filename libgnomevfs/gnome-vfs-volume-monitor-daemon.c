@@ -418,7 +418,7 @@ get_drive_icon_from_type (GnomeVFSDeviceType type, const char *mount_path)
 				icon_name = "gnome-dev-removable-usb";
 			} else if (g_str_has_prefix (basename, 
 						     "ieee1394disk")) {
-				icon_name = "gnome-dev-removable-ieee1394";
+				icon_name = "gnome-dev-removable-1394";
 			}
 			g_free (basename);
 		}
@@ -452,7 +452,7 @@ get_icon_from_type (GnomeVFSDeviceType type, const char *mount_path)
 				icon_name = "gnome-dev-harddisk-usb";
 			} else if (g_str_has_prefix (basename, 
 						     "ieee1394disk")) {
-				icon_name = "gnome-dev-harddisk-ieee1394";
+				icon_name = "gnome-dev-harddisk-1394";
 			}
 		}
 		break;

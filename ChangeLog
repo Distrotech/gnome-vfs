@@ -1,5 +1,11 @@
 2004-09-02  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c (get_drive_name):
+	Fix a small typo in fstab-sync patch
+
+2004-09-02  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c (get_drive_name): 
 	* modules/http-neon-method.c: (http_list_directory),
 	(do_make_directory):
 	Fix dav redirect handling issues.
