@@ -1,9 +1,7 @@
-@XML_I18N_MERGE_KEYS_RULE@
-
-KEYS_IN_FILES = gnome-vfs.keys.in
-KEYS_FILES = $(KEYS_IN_FILES:.keys.in=.keys)
-
 NULL=
+
+keys_in_files = gnome-vfs.keys.in
+keys_files = $(keys_in_files:.keys.in=.keys)
 
 mimedir = $(datadir)/mime-info
 
@@ -20,7 +18,6 @@ applications_DATA = \
 
 sysconf_DATA = gnome-vfs-mime-magic
 
-EXTRA_DIST = $(mime_DATA) $(sysconf_DATA) $(applications_DATA) $(KEYS_IN_FILES) $(KEYS_FILES)
+@XML_I18N_MERGE_KEYS_RULE@
 
-#install-data-local:
-#	$(top_builddir)/libgnomevfs/gnome-vfs-gen-mimedb $(DESTDIR)$(sysconfdir)/gnome-vfs-mime-magic
+EXTRA_DIST = $(keys_in_files) $(mime_DATA) $(sysconf_DATA) $(applications_DATA)
