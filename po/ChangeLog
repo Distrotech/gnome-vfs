@@ -1,5 +1,9 @@
 2003-05-27  Abel Cheung  <maddog@linux.org.hk>
 
+	* zh_TW.po: Updated traditional Chinese translation.
+
+2003-05-27  Abel Cheung  <maddog@linux.org.hk>
+
 	* POTFILES.skip: Added gob/*
 
 ==== gnome-vfs 2.2.5 ====
