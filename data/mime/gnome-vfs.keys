@@ -28,6 +28,7 @@
 
 application/andrew-inset
 	description=Andrew Toolkit inset
+	[fi]description=Andrew Toolkit -osio
 	[no]description=Andrew verktøysett insett
 	[da]description=Andrew værktøjssæt indsæt
 	[sv]description=Andrew-verktygssamling insatt
@@ -35,6 +36,7 @@ application/andrew-inset
 application/mac-binhex40
 	description=Macintosh BinHex archive
         [da]description=Macintosh BinHex-arkiv
+	[fi]description=Machintoshin BinHex-paketti
 	[fr]description=Archive BinHex Macintosh
 	[no]description=Macintosh BinHex-arkiv
 	[sv]description=Macintosh BinHex-arkiv
@@ -50,6 +52,7 @@ application/mime-type-test
 application/mspowerpoint
 	description=Microsoft PowerPoint document
 	[da]description=Microsoft PowerPoint-dokument
+	[fi]description=Microsoft PowerPoint -asiakirja
  	[fr]description=Document Microsoft PowerPoint
 	[no]description=Microsoft PowerPoint dokument
 	[sv]description=Microsoft PowerPoint-dokument
@@ -62,6 +65,7 @@ application/mspowerpoint
 application/msword
 	description=Microsoft Word document
 	[da]description=Microsoft Word-dokument
+	[fi]description=Microsoft Word -asiakirja
  	[fr]description=Document Microsoft Word
 	[no]description=Microsoft Word dokument
 	[sv]description=Microsoft Word-dokument
@@ -74,6 +78,7 @@ application/msword
 application/octet-stream
 	description=unknown data
 	[da]description=data af ukendt type
+	[fi]description=tuntematon data
 	[fr]description=Donnée inconnue
 	[no]description=data av ukjent type
 	[sv]description=data av okänd typ
@@ -81,6 +86,7 @@ application/octet-stream
 application/oda
 	description=ODA document
 	[da]description=ODA-dokument
+	[fi]description=ODA-asiakirja
 	[fr]description=Document ODA
 	[no]description=ODA-dokument
 	[sv]description=ODA-dokument
@@ -88,6 +94,7 @@ application/oda
 application/pdf
 	description=PDF document
 	[da]description=PDF-dokument
+	[fi]description=PDF-asiakirja
 	[fr]description=Document PDF
 	[no]description=PDF-dokument
 	[sv]description=PDF-dokument
@@ -104,6 +111,7 @@ application/pdf
 application/pgp
 	description=PGP message
 	[da]description=PGP-meddelelse
+	[fi]description=PGP-viesti
 	[fr]description=Message PGP
 	[no]description=PGP-melding
 	[sv]description=PGP-meddelande
@@ -111,6 +119,7 @@ application/pgp
 application/pgp-encrypted
 	description=PGP encrypted data
 	[da]description=Data krypteret med PGP
+	[fi]description=PGP:llä suojattu data
 	[fr]description=Donnée encryptée PGP
 	[no]description=Data kryptert med PGP
 	[sv]description=PGP-krypterad data
@@ -118,6 +127,7 @@ application/pgp-encrypted
 application/pgp-keys
 	description=PGP keys
 	[da]description=PGP-nøgler 
+	[fi]description=PGP-avaimet
 	[fr]description=Clés PGP
 	[no]description=PGP-nøkler
 	[sv]description=PGP-nycklar
@@ -125,6 +135,7 @@ application/pgp-keys
 application/pgp-signature
 	description=PGP signature
 	[da]description=PGP-signatur
+	[fi]description=PGP-allekirjoitus
 	[fr]description=Signature PGP
 	[no]description=PGP-signatur
 	[sv]description=PGP-signatur
@@ -132,6 +143,7 @@ application/pgp-signature
 application/pkcs7-mime
 	description=S/MIME data
 	[da]description=S/MIME-data
+	[fi]description=S/MIME-data
 	[fr]description=Donnée S/MIME
 	[no]description=S/MIME-data
 	[sv]description=S/MIME-data
@@ -139,6 +151,7 @@ application/pkcs7-mime
 application/pkcs7-signature
 	description=S/MIME signature
 	[da]description=S/MIME-signatur
+	[fi]description=S/MIME-allekirjoitus
 	[fr]description=Signature S/MIME
 	[no]description=S/MIME-signatur
 	[sv]description=S/MIME-signatur
@@ -146,6 +159,7 @@ application/pkcs7-signature
 application/postscript
 	description=PostScript document
 	[da]description=PostScript-dokument
+	[fi]description=PostScript-asiakirja
 	[fr]description=Document PostScript
 	[no]description=PostScript dokument
 	[sv]description=PostScript-dokument
@@ -157,6 +171,7 @@ application/postscript
 
 application/rtf
 	description=rich text
+	[fi]description=rich-teksti
 	[fr]description=Texte enrichi
 	[da]description=Rig tekst
 	[no]description=Rik tekst
@@ -170,6 +185,7 @@ application/rtf
 application/vnd.ms-excel
 	description=Microsoft Excel document
 	[da]description=Microsoft Excel-dokument
+	[fi]description=Microsoft Excel -asiakirja
 	[fr]description=Document Microsoft Excel
 	[no]description=Microsoft Excel dokument
 	[sv]description=Microsoft Excel-dokument
@@ -182,10 +198,11 @@ application/vnd.ms-excel
 application/x-applix-spreadsheet
 	description=Applix spreadsheet
 	[da]description=Applix-regneark
+	[fi]description=Applix-asiakirja
 	[fr]description=Feuille de calcul Applix
 	[no]description=Applix regneark
 	[sv]description=Applix-kalkylblad
-	icon-filename=nautilus/i-spreadsheet
+	icon-filename=i-spreadsheet
 	default_action_type=application
 	default_application_id=applix
 	short_list_application_ids_for_novice_user_level=applix
@@ -195,6 +212,7 @@ application/x-applix-spreadsheet
 application/x-applix-word
 	description=Applix Word document
 	[da]description=Applix Word-dokument
+	[fi]description=Applix Word -asiakirja
 	[fr]description=Document Applix Word
 	[no]description=Applix Word dokument
 	[sv]description=Applix Word-dokument
@@ -206,6 +224,7 @@ application/x-applix-word
 
 application/x-arj
 	description=arj archive
+	[fi]description=ARJ-paketti
 	[fr]description=Archive ARJ
 	[no]description=ARJ-arkiv
 	[sv]description=ARJ-arkiv
@@ -213,6 +232,7 @@ application/x-arj
 application/x-asp
 	description=active server page
 	[da]description=Active Server Page
+	[fi]description=aktiivinen palvelinsivu
 	[fr]description=Active Server Page
 	[no]description=Active Server Page
 	[sv]description=Active Server Page
@@ -220,6 +240,7 @@ application/x-asp
 application/x-backup
 	description=backup document
 	[da]description=Sikkerhedskopi
+	[fi]description=varmuuskopio
 	[fr]description=Document de sauvegarde
 	[no]description=Sikkerhetskopi
 	[sv]description=säkerhetskopia
@@ -227,6 +248,7 @@ application/x-backup
 application/x-bcpio
 	description=BCPIO document
 	[da]description=BCPIO-dokument
+	[fi]description=BCPIO-asiakirja
 	[fr]description=Document BCPIO
 	[no]description=BCPIO-dokument
 	[sv]description=BCPIO-dokument
@@ -234,6 +256,7 @@ application/x-bcpio
 application/x-bzip
 	description=bzip archive
 	[da]description=bzip-arkiv
+	[fi]description=bzip-paketti
 	[fr]description=Archive bzip
 	[no]description=bzip-arkiv
 	[sv]description=bzip-arkiv
@@ -242,21 +265,24 @@ application/x-bzip
 application/x-bzip-compressed-tar
 	description=bzip archive
 	[da]description=bzip-arkiv
+	[fi]description=bzip-paketti
 	[fr]description=Archive bzip
 	[no]description=bzip-arkiv
 	[sv]description=bzip-arkiv
-	icon-filename=nautilus/gnome-compressed.png
+	icon-filename=gnome-compressed.png
 	vfs-method=bzip2
 
 application/x-cgi
 	description=CGI program
 	[da]description=CGI-program
+	[fi]description=CGI-ohjelma
 	[fr]description=Programme CGI
 	[no]description=CGI-program
 	[sv]description=CGI-program
 
 application/x-chess-pgn
 	description=PGN chess game
+	[fi]description=PGN-shakkipeli
 	[no]description=PGN skakspil
 	[fr]description=Partie d'échec PGN
 	[no]description=PGN sjakkspill
@@ -265,6 +291,7 @@ application/x-chess-pgn
 application/x-class-file
 	description=class code
 	[da]description=Klassekode
+	[fi]description=luokkakoodi
 	[fr]description=Code classe
 	[no]description=Klassekode
 	[sv]description=klasskod
@@ -272,44 +299,50 @@ application/x-class-file
 application/x-compress
 	description=archive
 	[da]description=Arkiv
+	[fi]description=paketti
 	[fr]description=Archive
 	[no]description=Arkiv
 	[sv]description=arkiv
 
 application/x-compressed-tar
 	description=tar archive
+	[fi]description=tar-paketti
 	[fr]description=Archive tar
 	[da]description=tar-arkiv
 	[no]description=tar-arkiv
 	[sv]description=tar-arkiv
-	icon-filename=nautilus/gnome-package.png
+	icon-filename=gnome-package.png
 
 application/x-core-file
 	description=memory dump
 	[da]description=Hukommelsesstump
+	[fi]description=muistivedos
 	[fr]description=Sortie mémoire
 	[no]description=Minnedump
 	[sv]description=minnesdump
-	icon-filename=nautilus/i-core.png
+	icon-filename=i-core.png
 
 application/x-cpio
 	description=CPIO document
 	[da]description=CPIO-dokument
+	[fi]description=CPIO-asiakirja
 	[fr]description=Document CPIO
 	[no]description=CPIO-dokument
 	[sv]description=CPIO-dokument
 
 application/x-cpio-compressed
 	description=CPIO archive
+	[fi]description=CPIO-paketti
 	[fr]description=Archive CPIO
 	[no]description=CPIO-arkiv
 	[sv]description=CPIO-arkiv
-	icon-filename=nautilus/gnome-compressed.png
+	icon-filename=gnome-compressed.png
 
 # also text/x-csh
 application/x-csh
 	description=C-Shell script
 	[da]description=C-skalsskript
+	[fi]description=C-Shell-skripti
 	[fr]description=Script C-Shell
 	[no]description=C-skall skript
 	[sv]description=C-skalsskript
@@ -317,14 +350,16 @@ application/x-csh
 application/x-deb
 	description=Debian package
 	[da]description=Debian pakke
+	[fi]description=Debianin paketti
 	[fr]description=Paquetage Debian
 	[no]description=Debian pakke
 	[sv]description=Debianpaket
-	icon-filename=nautilus/gnome-pack-deb.png
+	icon-filename=gnome-pack-deb.png
 
 application/x-dia-diagram
 	description=Dia diagram
 	[da]description=Dia-diagram
+	[fi]description=Dian kaavakuva
 	[fr]description=Diagramme Dia
 	[no]description=Dia-diagram
 	[sv]description=Dia-diagram
@@ -332,6 +367,7 @@ application/x-dia-diagram
 application/x-dvi
 	description=TeX dvi document
 	[da]description=TeX dvi-dokument
+	[fi]description=TeX DVI -asiakirja
 	[fr]description=Document TeX dvi
 	[no]description=TeX dvi dokument
 	[sv]description=TeX dvi-dokument
@@ -339,6 +375,7 @@ application/x-dvi
 application/x-e-theme
 	description=Enlightenment theme
 	[da]description=Enlightenment-tema
+	[fi]description=Enlightenmentin teema
 	[fr]description=Theme Enlightenment
 	[no]description=Enlightenment tema
 	[sv]description=Enlightenment-tema
@@ -346,6 +383,7 @@ application/x-e-theme
 application/x-executable-file
 	description=binary program
 	[da]description=Binærprogram
+	[fi]description=binaariohjelma
 	[fr]description=Programme binaire
 	[no]description=Binærprogram
 	[sv]description=binärprogram
@@ -353,6 +391,7 @@ application/x-executable-file
 application/x-font-afm
 	description=Adobe font metrics
 	[da]description=Adobe skrifttypefil
+	[fi]description=Adobe-kirjasinlajimittoja
 	[fr]description=Métrique de fonte Adobe
 	[no]description=Adobe skrifttypefil
 	[sv]description=Adobe-typsnittsmetrik
@@ -360,6 +399,7 @@ application/x-font-afm
 application/x-font-bdf
 	description=BDF font
 	[da]description=BDF-skrifttype
+	[fi]description=BDF-kirjasinlaji
 	[fr]description=Police BDF
 	[no]description=BDF-skrifttype
 	[sv]description=BDF-typsnitt
@@ -367,6 +407,7 @@ application/x-font-bdf
 application/x-font-dos
 	description=DOS font
 	[da]description=DOS-skrifttype
+	[fi]description=DOS-kirjasinlaji
 	[fr]description=Police DOS
 	[no]description=DOS-skrifttype
 	[sv]description=DOS-typsnitt
@@ -374,6 +415,7 @@ application/x-font-dos
 application/x-font-framemaker
 	description=FrameMaker font
 	[da]description=FrameMaker-skrifttype
+	[fi]description=FrameMaker-kirjasinlaji
 	[fr]description=Police FrameMaker
 	[no]description=FrameMaker-skrifttype
 	[sv]description=FrameMaker-typsnitt
@@ -381,6 +423,7 @@ application/x-font-framemaker
 application/x-font-libgrx
 	description=LIBGRX font
 	[da]description=LIBGRX-skrifttype
+	[fi]description=LIBGRX-kirjasinlaji
 	[fr]description=Police LIBGRX
 	[no]description=LIBGRX-skrifttype
 	[sv]description=LIBGRX-typsnitt
@@ -388,6 +431,7 @@ application/x-font-libgrx
 application/x-font-linux-psf
 	description=Linux psf console font
 	[da]description=Linux PSF-konsolskrift
+	[fi]description=Linuxin psf-konsolikirjasinlaji
 	[fr]description=Police Linux console psf
 	[no]description=Linux psf konsollskrifttype
 	[sv]description=Linux psf-konsolltypsnitt
@@ -395,6 +439,7 @@ application/x-font-linux-psf
 application/x-font-pcf
 	description=PCF font
 	[da]description=PCF-skrifttype
+	[fi]description=PCF-kirjasinlaji
 	[fr]description=Police PCF
 	[no]description=PCF-skrifttype
 	[sv]description=PCF-typsnitt
@@ -402,6 +447,7 @@ application/x-font-pcf
 application/x-font-speedo
 	description=Speedo font
 	[da]description=Speedo-skrifttype
+	[fi]description=Speedo-kirjasinlaji
 	[fr]description=Police Speedo
 	[no]description=Speedo-skrifttype
 	[sv]description=Speedo-typsnitt
@@ -409,6 +455,7 @@ application/x-font-speedo
 application/x-font-sunos-news
 	description=SunOS News font
 	[da]description=SunOS News-skrifttype
+	[fi]description=SunOS-uutiskirjasinlaji
 	[fr]description=Police SunOS News
 	[no]description=SunOS News-skrifttype
 	[sv]description=SunOS News-typsnitt
@@ -416,6 +463,7 @@ application/x-font-sunos-news
 application/x-font-tex
 	description=TeX font
 	[da]description=TeX-skrifttype
+	[fi]description=TeX-kirjasinlaji
 	[fr]description=Police TeX
 	[no]description=TeX-skrifttype
 	[sv]description=TeX-typsnitt
@@ -423,12 +471,14 @@ application/x-font-tex
 application/x-font-tex-tfm
 	description=TeX font metrics
 	[da]description=TeX-skriftmatricer
+	[fi]description=TeX-kirjasinlajimitat
 	[fr]description=Métriques de fontes TeX
 	[sv]description=TeX-typsnittsmetrik
 
 application/x-font-ttf
 	description=TrueType font
 	[da]description=TrueType-skrifttype
+	[fi]description=TrueType-kirjasinlaji
 	[fr]description=Police TrueType
 	[no]description=TrueType-skrifttype
 	[sv]description=TrueType-typsnitt
@@ -436,6 +486,7 @@ application/x-font-ttf
 application/x-font-type1
 	description=PostScript Type 1 font
 	[da]description=PostScript Type 1-skrifttype
+	[fi]description=PostScript Tyyppi 1 -kirjasinlaji
 	[fr]description=Police PostScript Type 1
 	[no]description=PostScript Type 1-skrifttype
 	[sv]description=PostScript Type 1-typsnitt
@@ -443,6 +494,7 @@ application/x-font-type1
 application/x-font-vfont
 	description=V font
 	[da]description=V-skrifttype
+	[fi]description=V-kirjasinlaji
 	[fr]description=Police V
 	[no]description=V-skrifttype
 	[sv]description=V-typsnitt
@@ -450,6 +502,7 @@ application/x-font-vfont
 application/x-gmc-link
 	description=GMC link
 	[da]description=GMC-lænke
+	[fi]description=GMC-linkki
 	[fr]description=Lien GMC
 	[no]description=GMC-lenke
 	[sv]description=GMC-länk
@@ -457,6 +510,7 @@ application/x-gmc-link
 application/x-gnome-app-info
 	description=GNOME application information
 	[da]description=Gnome-programinfo
+	[fi]description=GNOME-sovellustietoja
 	[fr]description=Information d'application GNOME
 	[no]description=GNOME-programinformasjon
 	[sv]description=GNOME-programinformation
@@ -464,6 +518,7 @@ application/x-gnome-app-info
 application/x-gnumeric
 	description=Gnumeric spreadsheet
 	[da]description=Gnumeric-regneark
+	[fi]description=Gnumeric-taulukko
 	[fr]description=Feuille de calcul Gnumeric
 	[no]description=Gnumeric regneark
 	[sv]description=Gnumeric-kalkylblad
@@ -472,27 +527,30 @@ application/x-gnumeric
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
 	short_list_application_ids_for_hacker_user_level=gnumeric
-	icon-filename=nautilus/i-spreadsheet
+	icon-filename=i-spreadsheet
 
 application/x-gtar
 	description=gtar archive
 	[da]description=gtar-arkiv
+	[fi]description=gtar-paketti
 	[fr]description=Archive gtar
 	[no]description=gtar-arkiv
 	[sv]description=gtar-arkiv
-	icon-filename=nautilus/gnome-package.png
+	icon-filename=gnome-package.png
 
 application/x-gzip
 	description=gzip archive
 	[da]description=gzip-arkiv
+	[fi]description=gzip-paketti
 	[fr]description=Archive gzip
 	[no]description=gzip-arkiv
 	[sv]description=gzip-arkiv
-	icon-filename=nautilus/gnome-compressed.png
+	icon-filename=gnome-compressed.png
 	vfs-method=gzip
 
 application/x-hdf
 	description=HDF document
+	[fi]description=HDF-asiakirja
 	[fr]description=Document HDF
 	[no]description=HDF-dokument
 	[sv]description=HDF-dokument
@@ -500,6 +558,7 @@ application/x-hdf
 application/x-java-byte-code
 	description=Java byte code
 	[da]description=Java-bytekode
+	[fi]description=Java-tavukoodia
 	[fr]description=Byte code Java
 	[no]description=Java-bytekode
 	[sv]description=Java-bytekod
@@ -507,6 +566,7 @@ application/x-java-byte-code
 application/x-kde-app-info
 	description=KDE application information
 	[da]description=KDE-programinfo
+	[fi]description=KDE-sovellustietoja
 	[fr]description=Information d'application KDE
 	[no]description=KDE-programinformasjon
 	[sv]description=KDE-programinformation
@@ -514,6 +574,7 @@ application/x-kde-app-info
 application/x-lha
 	description=LHARC archive
 	[da]description=LHARC-arkiv
+	[fi]description=LHARC-paketti
 	[fr]description=Archive LHARC
 	[no]description=LHARC-arkiv
 	[sv]description=LHARC-arkiv
@@ -521,6 +582,7 @@ application/x-lha
 application/x-lhz
 	description=LHA archive
 	[da]description=LHA-arkiv
+	[fi]description=LHA-paketti
 	[fr]description=Archive LHA
 	[no]description=LHA-arkiv
 	[sv]description=LHA-arkiv
@@ -528,6 +590,7 @@ application/x-lhz
 application/x-mif
 	description=FrameMaker interchange document
 	[da]description=FrameMaker-udbytningsdokument
+	[fi]description=FrameMaker-välitysasiakirja
 	[fr]description=Document d'échange FrameMaker
 	[no]description=FrameMaker-utvekslingsdokument
 	[sv]description=FrameMaker-utbytesdokument
@@ -535,6 +598,7 @@ application/x-mif
 application/x-ms-dos-executable
 	description=DOS/Windows program
 	[da]description=DOS/Windows-program
+	[fi]description=DOS- tai Windows-ohjelma
 	[fr]description=Programme DOS/Windows
 	[no]description=DOS/Windows-program
 	[sv]description=DOS/Windows-program
@@ -542,6 +606,7 @@ application/x-ms-dos-executable
 application/x-nautilus-link
 	description=Nautilus link
 	[da]description=Nautilus-lænke
+	[fi]description=Nautilus-linkki
 	[fr]description=Lien Nautilus
 	[no]description=Nautilus-lenke
 	[sv]description=Nautiluslänk
@@ -549,6 +614,7 @@ application/x-nautilus-link
 application/x-netcdf
 	description=Unidata netCDF document
 	[da]description=Unidata netCDF-dokument
+	[fi]description=Unidata netCDF -asiakirja
 	[fr]description=Document Unidata netCDF
 	[no]description=Unidata netCDF-dokument
 	[sv]description=Unidata netCDF-dokument
@@ -556,15 +622,17 @@ application/x-netcdf
 application/x-object-file
 	description=object code
 	[da]description=objektkode
+	[fi]description=objektikoodi
 	[fr]description=Code objet
 	[no]description=objektkode
 	[sv]description=objektkod
-	icon-filename=nautilus/gnome-objectfile.png
+	icon-filename=gnome-objectfile.png
 
 # also audio/x-ogg
 application/x-ogg
 	description=ogg file
 	[da]description=OGG-lydfil
+	[fi]description=ogg-tiedosto
 	[fr]description=Audio ogg
 	[no]description=OGG-lydfil
 	default_action_type=application
@@ -576,6 +644,7 @@ application/x-ogg
 application/x-palm-database
 	description=Palm OS database
 	[da]description=Palm OS-database
+	[fi]description=Palm OS -tietokanta
 	[fr]description=Base de données Palm OS
 	[no]description=Palm OS-database
 	[sv]description=Palm OS-databas
@@ -583,6 +652,7 @@ application/x-palm-database
 application/x-pef-executable
 	description=PEF document
 	[da]description=PEF-dokument
+	[fi]description=PEF-asiakirja
 	[fr]description=Document PEF
 	[no]description=PEF-dokument
 	[sv]description=PEF-dokument
@@ -591,6 +661,7 @@ application/x-pef-executable
 application/x-perl
 	description=Perl script
 	[da]description=Perlskript
+	[fi]description=Perl-skripti
 	[fr]description=Script Perl
 	[no]description=Perl skript
 	[sv]description=Perlskript
@@ -598,6 +669,7 @@ application/x-perl
 application/x-php
 	description=PHP script
 	[da]description=PHP-skript
+	[fi]description=PHP-skripti
 	[fr]description=Script PHP
 	[no]description=PHP-skript
 	[sv]description=PHP-skript
@@ -605,6 +677,7 @@ application/x-php
 application/x-profile
 	description=profiler results
 	[da]description=profilererresultat
+	[fi]description=profiloinnin tulokset
 	[fr]description=Résultats du profileur
 	[no]description=profileingsresultat
 	[sv]description=profilerarresultat
@@ -612,6 +685,7 @@ application/x-profile
 application/x-rar
 	description=RAR archive
 	[da]description=RAR-arkiv
+	[fi]description=RAR-paketti
 	[fr]description=Archive RAR
 	[no]description=RAR-arkiv
 	[sv]description=RAR-arkiv
@@ -619,6 +693,7 @@ application/x-rar
 application/x-reject
 	description=rejected patch file
 	[da]description=afvist kildekodelap
+	[fi]description=hylätty patch-tiedosto
 	[fr]description=Fichier patch rejeté
 	[no]description=avvist patchfil
 	[sv]description=avvisad patchfil
@@ -626,10 +701,11 @@ application/x-reject
 application/x-rpm
 	description=RPM package
 	[da]description=RPM-pakke
+	[fi]description=RPM-paketti
 	[fr]description=Paquetage RPM
 	[no]description=RPM-pakke
 	[sv]description=RPM-paket
-	icon-filename=nautilus/gnome-pack-rpm.png
+	icon-filename=gnome-pack-rpm.png
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
@@ -639,6 +715,7 @@ application/x-rpm
 application/x-shar
 	description=shell archive
 	[da]description=skalarkiv
+	[fi]description=shell-paketti
 	[fr]description=Archive shell
 	[no]description=skallarkiv
 	[sv]description=skalarkiv
@@ -646,22 +723,25 @@ application/x-shar
 application/x-shared-library
 	description=shared library
 	[da]description=delt bibliotek
+	[fi]description=jaettu kirjasto
 	[fr]description=Bibliothèque partagée
 	[no]description=delt bibliotek
 	[sv]description=delat bibliotek
-	icon-filename=nautilus/gnome-library.png
+	icon-filename=gnome-library.png
 
 application/x-shared-library-la
 	description=shared library
 	[da]description=delt bibliotek
+	[fi]description=jaettu kirjasto
 	[fr]description=Bibliothèque partagée
 	[no]description=delt bibliotek
 	[sv]description=delat bibliotek
-	icon-filename=nautilus/gnome-library.png
+	icon-filename=gnome-library.png
 
 application/x-smil
 	description=SMIL script
 	[da]description=SMIL-skript
+	[fi]description=SMIL-skripti
 	[fr]description=Script SMIL
 	[no]description=SMIL-skript
 	[sv]description=SMIL-skript
@@ -669,6 +749,7 @@ application/x-smil
 application/x-staroffice-presentation
 	description=StarOffice presentation
 	[da]description=StarOffice-præsentation
+	[fi]description=StarOffice-esitys
 	[no]description=StarOffice-presentasjon
 	[sv]description=StarOffice-presentation
 	default_action_type=application
@@ -680,10 +761,11 @@ application/x-staroffice-presentation
 application/x-staroffice-spreadsheet
 	description=StarOffice spreadsheet
 	[da]description=StarOffice-regneark
+	[fi]description=StarOffice-taulukko
 	[fr]description=Feuille de calcul StarOffice
 	[no]description=StarOffice-regneark
 	[sv]description=StarOffice-kalkylblad
-	icon-filename=nautilus/i-spreadsheet
+	icon-filename=i-spreadsheet
 	default_action_type=application
 	default_application_id=staroffice
 	short_list_application_ids_for_novice_user_level=staroffice
@@ -693,6 +775,7 @@ application/x-staroffice-spreadsheet
 application/x-staroffice-words
 	description=StarOffice word processing document
 	[da]description=StarOffice-tekstbehandlingsdokument
+	[fi]description=StarOffice-tekstiasiakirja
 	[fr]description=Document traitement de texte StarOffice
 	[no]description=StarOffice-tekstbehandlingsdokument
 	[sv]description=StarOffice-ordbehandlingsdokument
@@ -705,6 +788,7 @@ application/x-staroffice-words
 application/x-stuffit
 	description=Macintosh StuffIt! archive 
 	[da]description=Macintosh StuffIt!-arkiv
+	[fi]description=Machintoshin StuffIt!-paketti
 	[fr]description=Archive StuffIt! Macintosh
 	[no]description=Macintosh StuffIt!-arkiv
 	[sv]description=Macintosh StuffIt!-arkiv
@@ -712,6 +796,7 @@ application/x-stuffit
 application/x-sv4cpio
 	description=SV4Cpio document 
 	[da]description=SV4CPIO-dokument
+	[fi]description=SV4Cpio-asiakirja
 	[fr]description=Document SV4Cpio
 	[no]description=SV4CPIO-dokument
 	[sv]description=SV4CPIO-dokument
@@ -719,6 +804,7 @@ application/x-sv4cpio
 application/x-sv4crc
 	description=SV4Crc document 
 	[da]description=SV4Crc-dokument
+	[fi]description=SV4Crc-asiakirja
 	[fr]description=Document SV4Crc
 	[no]description=SV4Crc-dokument
 	[sv]description=SV4Crc-dokument
@@ -726,15 +812,17 @@ application/x-sv4crc
 application/x-tar
 	description=tar archive
 	[da]description=tar-arkiv
+	[fi]description=tar-paketti
 	[fr]description=Archive tar
 	[no]description=tar-arkiv
 	[sv]description=tar-arkiv
-	icon-filename=nautilus/gnome-package.png
+	icon-filename=gnome-package.png
 	vfs-method=tar
 
 application/x-theme
 	description=theme
 	[da]description=tema
+	[fi]description=teema
 	[fr]description=Thème
 	[no]description=tema
 	[sv]description=tema
@@ -742,6 +830,7 @@ application/x-theme
 application/x-toutdoux
 	description=ToutDoux document
 	[da]description=ToutDoux-dokument
+	[fi]description=ToutDoux-asiakirja
 	[fr]description=Document ToutDoux
 	[no]description=ToutDoux-dokument
 	[sv]description=ToutDoux-dokument
@@ -749,14 +838,16 @@ application/x-toutdoux
 application/x-troff-man-compressed
 	description=manual page archive
 	[da]description=arkiv med manualsider
+	[fi]description=pakattu manuaalisivu
 	[fr]description=Archive page de manuel
 	[no]description=manualsidearkiv
 	[sv]description=manualsidearkiv
-	icon-filename=nautilus/gnome-manpage.png
+	icon-filename=gnome-manpage.png
 
 application/x-unix-archive
 	description=archive
 	[da]description=arkiv
+	[fi]description=paketti
 	[fr]description=Archive
 	[no]description=arkiv
 	[sv]description=arkiv
@@ -764,6 +855,7 @@ application/x-unix-archive
 application/x-ustar
 	description=UStar archive
 	[da]description=UStar-arkiv
+	[fi]description=UStar-paketti
 	[fr]description=Archive UStar
 	[no]description=UStar-arkiv
 	[sv]description=UStar-arkiv
@@ -771,6 +863,7 @@ application/x-ustar
 application/x-wais-source
 	description=WAIS source code
 	[da]description=WAIS-kildekode
+	[fi]description=WAIS-lähdekoodi
 	[fr]description=Code source WAIS
 	[no]description=WAIS-kildekode
 	[sv]description=WAIS-källkod
@@ -778,6 +871,7 @@ application/x-wais-source
 application/x-wordperfect
 	description=WordPerfect document
 	[da]description=WordPerfect-dokument
+	[fi]description=WordPerfect-asiakirja
 	[fr]description=Document WordPerfect
 	[no]description=WordPerfect-dokument
 	[sv]description=WordPerfect-dokument
@@ -785,6 +879,7 @@ application/x-wordperfect
 application/x-zoo
 	description=zoo archive
 	[da]description=zoo-arkiv
+	[fi]description=zoo-paketti
 	[fr]description=Archive zoo
 	[no]description=zoo-arkiv
 	[sv]description=zoo-arkiv
@@ -792,6 +887,7 @@ application/x-zoo
 application/zip
 	description=zip archive
 	[da]description=zip-arkiv
+	[fi]description=zip-paketti
 	[fr]description=Archive zip
 	[no]description=zip-arkiv
 	[sv]description=zip-arkiv
@@ -800,14 +896,16 @@ application/zip
 audio/basic
 	description=basic audio
 	[da]description=grundlæggende lyd
+	[fi]description=tavallinen ääni
 	[fr]description=Audio basic
 	[no]description=grunnleggende lyd
 	[sv]description=grundläggande ljud
-	icon-filename=nautilus/gnome-audio.png
+	icon-filename=gnome-audio.png
 
 audio/x-aifc
 	description=AIFC audio
 	[da]description=AIFC-lyd
+	[fi]description=AIFC-ääni
 	[fr]description=Audio AIFC
 	[no]description=AIFC-lyd
 	[sv]description=AIFC-ljud
@@ -815,14 +913,16 @@ audio/x-aifc
 audio/x-aiff
 	description=AIFF audio
 	[da]description=AIFC-lyd
+	[fi]description=AIFF-ääni
 	[fr]description=Audio AIFF
 	[no]description=AIFF-lyd
 	[sv]description=AIFF-ljud
-	icon-filename=nautilus/gnome-audio-x-aiff.png
+	icon-filename=gnome-audio-x-aiff.png
 
 audio/x-it
 	description=Impulse Tracker audio
 	[da]description=Impulse Tracker-lyd
+	[fi]description=Impulse Tracker -ääni
 	[fr]description=Audio Impulse Tracker
 	[no]description=Impulse Tracker-lyd
 	[sv]description=Impulse Tracker-ljud
@@ -830,18 +930,20 @@ audio/x-it
 audio/x-midi
 	description=MIDI audio
 	[da]description=MIDI-musik
+	[fi]description=MIDI-ääni
 	[fr]description=Audio Midi
 	[no]description=MIDI-lyd
 	[sv]description=MIDI-ljud
-	icon-filename=nautilus/gnome-audio-midi.png
+	icon-filename=gnome-audio-midi.png
 
 audio/x-mod
 	description=MOD audio
 	[da]description=MOD-lyd
+	[fi]description=MOD-ääni
 	[fr]description=Audio MOD
 	[no]description=MOD-lyd
 	[sv]description=MOD-ljud
-	icon-filename=nautilus/gnome-audio-x-mod.png
+	icon-filename=gnome-audio-x-mod.png
 	default_action_type=application
 	default_application_id=soundtracker
 	short_list_application_ids_for_novice_user_level=soundtracker
@@ -852,10 +954,11 @@ audio/x-mod
 audio/x-mp3
 	description=MP3 audio
 	[da]description=MP3-lyd
+	[fi]description=MP3-ääni
 	[fr]description=Audio MP3
 	[no]description=MP3-lyd
 	[sv]description=MP3-ljud
-	icon-filename=nautilus/i-music
+	icon-filename=i-music
 	default_action_type=application
 	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms,mpg123
@@ -865,6 +968,7 @@ audio/x-mp3
 audio/x-mp3-playlist
 	description=MP3 audio playlist
 	[da]description=MP3-spilleliste
+	[fi]description=MP3-soittolista
 	[fr]description=Audio liste de lecture MP3
 	[no]description=MP3-lydavspillingsliste
 	[sv]description=MP3-ljudspellista
@@ -873,10 +977,11 @@ audio/x-mp3-playlist
 audio/x-mpeg
         description=MP3 audio
 	[da]description=MP3-lyd
+        [fi]description=MP3-ääni
         [fr]description=Audio MP3
         [no]description=MP3-lyd
         [sv]description=MP3-ljud
-        icon-filename=nautilus/i-music 
+        icon-filename=i-music 
 	default_action_type=application
 	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms,mpg123
@@ -886,6 +991,7 @@ audio/x-mpeg
 audio/x-mpegurl
         description=MPEG URL
 	[da]description=MPEG-adresse
+        [fi]description=MPEG-URL
 	[no]description=MPEG URL
         default_action_type=application
         default_application_id=xmms
@@ -899,7 +1005,7 @@ audio/x-mpegurl
 #	[da]description=OGG-lyd
 #	[fr]description=Audio OGG
 #	[no]description=OGG-lyd
-#	icon-filename=nautilus/i-music
+#	icon-filename=i-music
 #	default_action_type=application
 #	default_application_id=ogg123
 #	short_list_application_ids_for_novice_user_level=ogg123,xmms
@@ -909,10 +1015,11 @@ audio/x-mpegurl
 audio/x-pn-realaudio
 	description=PN RealAudio document
 	[da]description=PN RealAudio-dokument
+	[fi]description=PN RealAudio -asiakirja
 	[fr]description=Document RealAudio PN
 	[no]description=PN RealAudio-dokument
 	[sv]description=PN RealAudio-dokument
-	icon-filename=nautilus/gnome-audio-x-pn-realaudio.png
+	icon-filename=gnome-audio-x-pn-realaudio.png
         default_action_type=application
         default_application_id=realplayer
         short_list_application_ids_for_novice_user_level=realplayer
@@ -922,10 +1029,11 @@ audio/x-pn-realaudio
 audio/x-real-audio
 	description=RealAudio document
 	[da]description=RealAudio-dokument
+	[fi]description=RealAudio-asiakirja
 	[fr]description=Document RealAudio
 	[no]description=RealAudio-dokument
 	[sv]description=RealAudio-dokument
-	icon-filename=nautilus/gnome-audio-x-pn-realaudio.png
+	icon-filename=gnome-audio-x-pn-realaudio.png
         default_action_type=application
         default_application_id=realplayer
         short_list_application_ids_for_novice_user_level=realplayer
@@ -935,10 +1043,11 @@ audio/x-real-audio
 audio/x-riff
 	description=RIFF audio
 	[da]description=RIFF-lyd
+	[fi]description=RIFF-ääni
 	[fr]description=Audio RIFF
 	[no]description=RIFF-lyd
 	[sv]description=RIFF-ljud
-	icon-filename=nautilus/i-music
+	icon-filename=i-music
         default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
@@ -948,6 +1057,7 @@ audio/x-riff
 audio/x-s3m
 	description=Scream Tracker 3 audio
 	[da]description=Scream Tracker 3-lyd
+	[fi]description=Scream Tracker 3 -ääni
 	[fr]description=Audio Scream Tracker 3
 	[no]description=Scream Tracker 3-lyd
 	[sv]description=Scream Tracker 3-ljud
@@ -955,6 +1065,7 @@ audio/x-s3m
 audio/x-stm
 	description=Scream Tracker audio
 	[da]description=Scream Tracker-lyd
+	[fi]description=Scream Tracker -ääni
 	[fr]description=Audio Stream Tracker
 	[no]description=Scream Tracker-lyd
 	[sv]description=Scream Tracker-ljud
@@ -962,14 +1073,16 @@ audio/x-stm
 audio/x-ulaw
 	description=audio
 	[da]description=lyd
+	[fi]description=ääni
 	[fr]description=Audio
 	[no]description=lyd
 	[sv]description=ljud
-	icon-filename=nautilus/gnome-audio-ulaw.png
+	icon-filename=gnome-audio-ulaw.png
 
 audio/x-voc
 	description=VOC audio
 	[da]description=VOC-lyd
+	[fi]description=VOC-ääni
 	[fr]description=Audio VOC
 	[no]description=VOC-lyd
 	[sv]description=VOC-ljud
@@ -977,10 +1090,11 @@ audio/x-voc
 audio/x-wav
 	description=Wave audio
 	[da]description=Wave-lyd
+	[fi]description=aaltoääni
 	[fr]description=Audio Wave
 	[no]description=Wave-lyd
 	[sv]description=Wave-ljud
-	icon-filename=nautilus/gnome-audio-x-wav.png
+	icon-filename=gnome-audio-x-wav.png
         default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
@@ -990,6 +1104,7 @@ audio/x-wav
 audio/x-xi
 	description=Scream Tracker instrument
 	[da]description=Scream Tracker-instrument
+	[fi]description=Scream Tracker -soitin
 	[fr]description=Instrument Scream Tracker
 	[no]description=Scream Tracker-instrument
 	[sv]description=Scream Tracker-instrument
@@ -997,6 +1112,7 @@ audio/x-xi
 audio/x-xm
 	description=FastTracker II audio
 	[da]description=FastTracker II-lyd
+	[fi]description=FastTracker II -ääni
 	[fr]description=Audio FastTracker
 	[no]description=FastTracker II-lyd
 	[sv]description=FastTracker II-ljud
@@ -1005,6 +1121,7 @@ audio/x-xm
 image/bmp
 	description=Windows bitmap image
 	[da]description=Windows-bitkortbillede
+	[fi]description=Windows-bittikarttakuva
 	[fr]description=Image bitmap Windows
 	[no]description=Windows-bitmapbilde
 	[sv]description=Windows-bitmappbild
@@ -1017,11 +1134,12 @@ image/bmp
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=nautilus/gnome-image-bmp.png
+	icon-filename=gnome-image-bmp.png
 
 image/cgm
 	description=CGM image
 	[da]description=CGM-billede
+	[fi]description=CGM-kuva
 	[fr]description=Image CGM
 	[no]description=CGM-bilde
 	[sv]description=CGM-bild
@@ -1029,6 +1147,7 @@ image/cgm
 image/g3fax
 	description=G3 fax image
 	[da]description=G#-faxbillede
+	[fi]description=G3 fax-kuva
 	[fr]description=Image fax G3
 	[no]description=G3-faksbilde
 	[sv]description=G3-faxbild
@@ -1036,6 +1155,7 @@ image/g3fax
 image/gif
 	description=GIF image
 	[da]description=GIF-billede
+	[fi]description=GIF-kuva
 	[fr]description=Image GIF
 	[no]description=GIF-bilde
 	[sv]description=GIF-bild
@@ -1048,19 +1168,21 @@ image/gif
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=nautilus/gnome-image-gif.png
+	icon-filename=gnome-image-gif.png
 
 image/ief
 	description=IEF image
 	[da]description=IEF-billede
+	[fi]description=IEF-kuva
 	[fr]description=Image IEF
 	[no]description=IEF-bilde
 	[sv]description=IEF-bild
-	icon-filename=nautilus/gnome-image-ief.png
+	icon-filename=gnome-image-ief.png
 
 image/jpeg
 	description=JPEG image
 	[da]description=JPEG-billede
+	[fi]description=JPEG-kuva
 	[fr]description=Image JPEG
 	[no]description=JPEG-bilde
 	default_action_type=component
@@ -1072,12 +1194,13 @@ image/jpeg
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=nautilus/gnome-image-jpeg.png
+	icon-filename=gnome-image-jpeg.png
 
 # also image/x-png
 image/png
 	description=PNG image
 	[da]description=PNG-billede
+	[fi]description=PNG-kuva
 	[fr]description=Image PNG
 	[no]description=PNG-bilde
 	[sv]description=PNG-bild
@@ -1090,11 +1213,12 @@ image/png
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=nautilus/gnome-image-png.png
+	icon-filename=gnome-image-png.png
 
 image/svg
 	description=SVG art
 	[da]description=SVG-kunst
+	[fi]description=SVG-kuva
 	[fr]description=Art SVG
 	[no]description=SVG-kunst
 	[sv]description=SVG-konst
@@ -1102,6 +1226,7 @@ image/svg
 image/tiff
 	description=TIFF image
 	[da]description=TIFF-billede
+	[fi]description=TIFF-kuva
 	[fr]description=Image TIFF
 	[no]description=TIFF-bilde
 	[sv]description=TIFF-bild
@@ -1114,11 +1239,12 @@ image/tiff
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=nautilus/gnome-image-tiff.png
+	icon-filename=gnome-image-tiff.png
 
 image/vnd.dwg
 	description=AutoCAD image
 	[da]description=AutoCAD-billede
+	[fi]description=AutoCAD-kuva
 	[fr]description=Image AutoCAD
 	[no]description=AutoCAD-bilde
 	[sv]description=AutoCAD-bild
@@ -1126,6 +1252,7 @@ image/vnd.dwg
 image/vnd.dxf
 	description=DXF vector graphic
 	[da]description=DXF-vektorgrafik
+	[fi]description=DXF-vektorigrafiikka
 	[fr]description=Graphique vectoriel DXF
 	[no]description=DXF-vektorgrafikk
 	[sv]description=DXF-vektorgrafik
@@ -1133,6 +1260,7 @@ image/vnd.dxf
 image/x-3ds
 	description=3D Studio image
 	[da]description=3D Studio-billede
+	[fi]description=3D Studio -kuva
 	[fr]description=Image 3D Studio
 	[no]description=3D Studio-bilde
 	[sv]description=3D Studio-bild
@@ -1140,6 +1268,7 @@ image/x-3ds
 image/x-applix-graphic
 	description=Applix image
 	[da]description=Applix-billede
+	[fi]description=Applix-kuva
 	[fr]description=Image Applix
 	[no]description=Applix-bilde
 	[sv]description=Applix-bild
@@ -1153,6 +1282,7 @@ image/x-applix-graphic
 image/x-bmp
 	description=Windows bitmap image
 	[da]description=Windows-bitkortbillede	
+	[fi]description=Windows-bittikarttakuva
 	[fr]description=Image bitmap Windows
 	[no]description=Windows-bitmapbilde
 	[sv]description=Windows-bitmappbild
@@ -1165,11 +1295,12 @@ image/x-bmp
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=nautilus/gnome-image-bmp.png
+	icon-filename=gnome-image-bmp.png
 
 image/x-cmu-raster
 	description=CMU raster image
 	[da]description=CMU-rasterbillede
+	[fi]description=CMU-rasterikuva
 	[fr]description=Image raster CMU
 	[no]description=CMU-rasterbilde
 	[sv]description=CMU-rasterbild
@@ -1177,6 +1308,7 @@ image/x-cmu-raster
 image/x-compressed-xcf
 	description=GIMP image archive
 	[da]description=Gimp-billedarkiv
+	[fi]description=GIMP-kuvapaketti
 	[fr]description=Image archive GIMP
 	[no]description=GIMP-bildearkiv
 	[sv]description=GIMP-bildarkiv
@@ -1184,6 +1316,7 @@ image/x-compressed-xcf
 image/x-ico
 	description=Windows icon image
 	[da]description=Windows-ikonbillede
+	[fi]description=Windows-kuvake
 	[fr]description=Image icone Windows
 	[no]description=Windows-ikonbilde
 	[sv]description=Windows-ikonbild
@@ -1191,6 +1324,7 @@ image/x-ico
 image/x-iff
 	description=IFF image
 	[da]description=IFF-billede
+	[fi]description=IFF-kuva
 	[fr]description=Image IFF
 	[no]description=IFF-bilde
 	[sv]description=IFF-bild
@@ -1198,6 +1332,7 @@ image/x-iff
 image/x-ilbm
 	description=ILBM image
 	[da]description=ILBM-billede
+	[fi]description=ILBM-kuva
 	[fr]description=Image ILBM
 	[no]description=ILBM-bilde
 	[sv]description=ILBM-bild
@@ -1205,6 +1340,7 @@ image/x-ilbm
 image/x-lwo
 	description=LightWave object
 	[da]description=LightWave-objekt
+	[fi]description=LightWave-esine
 	[fr]description=Objet LightWave
 	[no]description=LightWave-objekt
 	[sv]description=LightWave-objekt
@@ -1212,6 +1348,7 @@ image/x-lwo
 image/x-lws
 	description=LightWave scene
 	[da]description=LightWave-scene
+	[fi]description=LightWave-näkymä
 	[fr]description=Scène LightWave
 	[no]description=LightWave-scene
 	[sv]description=LightWave-scen
@@ -1220,6 +1357,7 @@ image/x-lws
 image/x-png
 	description=PNG image	
 	[da]description=PNG-billede
+	[fi]description=PNG-kuva
 	[fr]description=Image PNG
 	[no]description=PNG-bilde
 	[sv]description=PNG-bild
@@ -1232,11 +1370,12 @@ image/x-png
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=nautilus/gnome-image-png.png
+	icon-filename=gnome-image-png.png
 
 image/x-portable-anymap
 	description=PNM image
 	[da]description=PNM-billede
+	[fi]description=PNM-kuva
 	[fr]description=Image PNM
 	[no]description=PNM-bilde
 	[sv]description=PNM-bild
@@ -1253,6 +1392,7 @@ image/x-portable-anymap
 image/x-portable-bitmap
 	description=PBM image
 	[da]description=PBM-billede
+	[fi]description=PBM-kuva
 	[fr]description=Image PBM
 	[no]description=PBM-bilde
 	[sv]description=PBM-bild
@@ -1265,10 +1405,11 @@ image/x-portable-bitmap
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=nautilus/gnome-image-pbm.png
+	icon-filename=gnome-image-pbm.png
 	
 image/x-portable-graymap
 	description=PGM image
+	[fi]description=PGM-kuva
 	[fr]description=Image PGM
 	[no]description=PGM-bilde
 	[sv]description=PGM-bild
@@ -1285,6 +1426,7 @@ image/x-portable-graymap
 image/x-portable-pixmap
 	description=PPM image
 	[da]description=PPM-billede
+	[fi]description=PPM-kuva
 	[fr]description=Image PPM
 	[no]description=PPM-bilde
 	[sv]description=PPM-bild
@@ -1297,11 +1439,12 @@ image/x-portable-pixmap
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=nautilus/gnome-image-ppm.png
+	icon-filename=gnome-image-ppm.png
 
 image/x-psd
 	description=Photoshop document
 	[da]description=PhotoShop-dokument
+	[fi]description=Photoshop-asiakirja
 	[no]description=Photoshop-dokument
 	[sv]description=Photoshopdokument
 	default_action_type=application
@@ -1309,27 +1452,30 @@ image/x-psd
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
-	icon-filename=nautilus/gnome-image-psd.png
+	icon-filename=gnome-image-psd.png
 
 image/x-rgb
 	description=RGB image
 	[da]description=RGB-billede
+	[fi]description=RGB-kuva
 	[fr]description=Image RGB
 	[no]description=RGB-bilde
 	[sv]description=RGB-bild
-	icon-filename=nautilus/gnome-image-rgb.png
+	icon-filename=gnome-image-rgb.png
 	
 image/x-tga
 	description=TarGA image
 	[da]description=TarGA-billede
+	[fi]description=TarGA-kuva
 	[fr]description=Image TarGA
 	[no]description=TarGA-bilde
 	[sv]description=TarGA-bild
-	icon-filename=nautilus/gnome-image-tga.png
+	icon-filename=gnome-image-tga.png
 
 image/x-xbitmap
 	description=X bitmap image
 	[da]description=X-bitkortbillede
+	[fi]description=X-bittikarttakuva
 	[fr]description=Image X bitmap
 	[no]description=X-bitmapbilde
 	[sv]description=X-bitmappbild
@@ -1338,11 +1484,12 @@ image/x-xbitmap
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
-	icon-filename=nautilus/gnome-image-xbm.png
+	icon-filename=gnome-image-xbm.png
 
 image/x-xcf
 	description=GIMP image
 	[da]description=Gimp-billede
+	[fi]description=GIMP-kuva
 	[fr]description=Image GIMP
 	[no]description=GIMP-bilde
 	[sv]description=GIMP-bild
@@ -1351,19 +1498,21 @@ image/x-xcf
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
-	icon-filename=nautilus/gnome-image-xcf.png
+	icon-filename=gnome-image-xcf.png
 
 image/x-xfig
 	description=xfig image
 	[da]description=XFig-billede
+	[fi]description=xfig-kuva
 	[fr]description=Image xfig
 	[no]description=xfig-bilde
 	[sv]description=xfig-bild
-	icon-filename=nautilus/gnome-image-x-xfig.png
+	icon-filename=gnome-image-x-xfig.png
 
 image/x-xpixmap
 	description=XPM image	
 	[da]description=XPM-billede
+	[fi]description=XPM-kuva
 	[fr]description=Image XPM
 	[no]description=XPM-bilde
 	[sv]description=XPM-bild
@@ -1380,13 +1529,15 @@ image/x-xpixmap
 image/x-xwindowdump
 	description=X window image
 	[da]description=X-vinduebillede
+	[fi]description=X-ikkunakuva
 	[no]description=X-Windows skjermbilde
 	[sv]description=X-fönsterbild
-	icon-filename=nautilus/gnome-image-xwd.png
+	icon-filename=gnome-image-xwd.png
 
 message/delivery-status
 	description=mail delivery report
 	[da]description=leverancerapport over epost
+	[fi]description=postintoimitusraportti
 	[fr]description=Rapport de livraison de courrier
 	[no]description=e-postleveranserapport
 	[sv]description=e-postleveransrapport
@@ -1394,6 +1545,7 @@ message/delivery-status
 message/disposition-notification
 	description=mail disposition report
 	[da]description=disponeringsrapport over epost
+	[fi]description=postinsijoitusraportti
 	[fr]description=Rapport de mise à disposition de courrier
 	[no]description=e-postdispositionsrapport
 	[sv]description=e-postdisposisjonsrapport
@@ -1401,6 +1553,7 @@ message/disposition-notification
 message/external-body
 	description=pointer to remote data
 	[da]description=hæfter til fjerndata
+	[fi]description=osoitin etädataan
 	[fr]description=Pointeur vers des données distantes
 	[no]description=pekare till eksterne data
 	[sv]description=pekare till fjärrdata
@@ -1408,6 +1561,7 @@ message/external-body
 message/news
 	description=USENET news message
 	[da]description=USENET nyhedsmeddelelse
+	[fi]description=USENET-uutisryhmäviesti
 	[fr]description=Message de nouvelle USENET
 	[no]description=USENET nyhetsmelding
 	[sv]description=diskussionsgruppsmeddelande
@@ -1415,6 +1569,7 @@ message/news
 message/partial
 	description=partial email message
 	[da]description=del af elektronisk brev
+	[fi]description=sähköpostiviestin osa
 	[fr]description=Message de courrier électronique partiel
 	[no]description=del av e-postmelding
 	[sv]description=del av e-postmeddelande
@@ -1422,6 +1577,7 @@ message/partial
 message/rfc822
 	description=email message
 	[da]description=elektronisk brev
+	[fi]description=sähköpostiviesti
 	[fr]description=Message de courrier électronique
 	[no]description=e-postmelding
 	[sv]description=e-postmeddelande
@@ -1429,6 +1585,7 @@ message/rfc822
 message/x-gnu-rmail
 	description=GNU mail message
 	[da]description=Gnu-postmeddelelse
+	[fi]description=GNU-postiviesti
 	[fr]description=Message de courrier GNU
 	[no]description=GNU e-postmelding
 	[sv]description=GNU-epostmeddelande
@@ -1436,6 +1593,7 @@ message/x-gnu-rmail
 model/vrml
 	description=VRML data
 	[da]description=VRML-data
+	[fi]description=VRML-data
 	[fr]description=Donnée VRML
 	[no]description=VRML-data
 	[sv]description=VRML-data
@@ -1443,6 +1601,7 @@ model/vrml
 multipart/alternative
 	description=message in several formats
 	[da]description=meddelelse i flere formater
+	[fi]description=eri muotoisia viestejä
 	[fr]description=Message dans différents formats
 	[no]description=melding i flere formater
 	[sv]description=meddelande i flera format
@@ -1450,6 +1609,7 @@ multipart/alternative
 multipart/appledouble
 	description=Macintosh AppleDouble-encoded document
 	[da]description=dokument kodet med Macintosh AppleDouble
+	[fi]description=Macintosh AppleDouble-koodattu asiakirja
 	[fr]description=Document encodé AppleDouble Macintosh
 	[no]description=dokument kodet med Macintosh AppleDouble
 	[sv]description=dokument kodat med Macintosh AppleDouble
@@ -1457,6 +1617,7 @@ multipart/appledouble
 multipart/digest
 	description=message digest
 	[da]description=meddelelsessamling
+	[fi]description=viestitiivistelmä
 	[fr]description=Message digest
 	[no]description=medldingssamling
 	[sv]description=meddelandesamling
@@ -1464,6 +1625,7 @@ multipart/digest
 multipart/encrypted
 	description=encrypted message
 	[da]description=krypteret meddelelse
+	[fi]description=kryptattu viesti
 	[fr]description=Message encrypté
 	[no]description=kryptert melding
 	[sv]description=krypterat meddelande
@@ -1471,6 +1633,7 @@ multipart/encrypted
 multipart/mixed
 	description=multi-part message
 	[da]description=meddelelse i flere dele
+	[fi]description=moniosainen viesti
 	[fr]description=Message multi-part
 	[no]description=melding i flere deler
 	[sv]description=meddelande i flera delar
@@ -1478,6 +1641,7 @@ multipart/mixed
 multipart/related
 	description=compound document
 	[da]description=sammensat dokument
+	[fi]description=yhdisteasiakirja
 	[fr]description=Message composé
 	[no]description=sammensatt dokument
 	[sv]description=sammansatt dokument
@@ -1485,6 +1649,7 @@ multipart/related
 multipart/report
 	description=mail system report
 	[da]description=epost-systemrapport
+	[fi]description=postijärjestelmän raportti
 	[fr]description=Rapport de système de courrier
 	[no]description=e-postsystemrapport
 	[sv]description=e-postsystemrapport
@@ -1492,6 +1657,7 @@ multipart/report
 multipart/signed
 	description=signed message
 	[da]description=signeret meddelelse
+	[fi]description=allekirjoitettu viesti
 	[fr]description=Message signé
 	[no]description=signert melding
 	[sv]description=signerat meddelande
@@ -1510,6 +1676,7 @@ text/*
 text/abiword
 	description=AbiWord document
 	[da]description=AbiWord-dokument
+	[fi]description=AbiWord-asiakirja
 	[fr]description=Document AbiWord
 	[no]description=AbiWord-dokument
 	[sv]description=AbiWord-dokument
@@ -1521,6 +1688,7 @@ text/abiword
 
 text/bib
 	description=bibliography record
+	[fi]description=bibliografiamerkinnät
 	[fr]description=Enregistrement bibliographique
 	[no]description=bibliografipost
 	[sv]description=bibliografipost
@@ -1528,6 +1696,7 @@ text/bib
 text/calendar
 	description=calendar information
 	[da]description=kalenderinformation
+	[fi]description=kalenteritiedot
 	[fr]description=Information de calendrier
 	[no]description=kalenderinformasjon
 	[sv]description=kalenderinformation
@@ -1535,6 +1704,7 @@ text/calendar
 text/css
 	description=style sheet
 	[da]description=stilark
+	[fi]description=tyylisivu
 	[fr]description=Feuille de style
 	[no]description=stilmal
 	[sv]description=stilmall
@@ -1542,6 +1712,7 @@ text/css
 text/directory
 	description=directory information
 	[da]description=kataloginformation
+	[fi]description=hakemistotiedot
 	[fr]description=Information de répertoire
 	[no]description=kataloginformasjon
 	[sv]description=kataloginformation
@@ -1549,6 +1720,7 @@ text/directory
 text/enriched
 	description=enriched text
 	[da]description=beriget tekst
+	[fi]description=enriched-teksti
 	[fr]description=Text enrichi
 	[no]description=rik tekst
 	[sv]description=enriched text
@@ -1556,6 +1728,7 @@ text/enriched
 text/html
 	description=HTML document
 	[da]description=HTML-dokument
+	[fi]description=HTML-asiakirja
 	[fr]description=Document HTML
 	[no]description=HTML-dokument
 	[sv]description=HTML-dokument
@@ -1572,6 +1745,7 @@ text/html
 text/htmlh
 	description=Help page
 	[da]description=Hjælpeside
+	[fi]description=Ohjesivu
 	[no]description=Hjelpside
 	[sv]description=Hjälpsida
 	default_action_type=component
@@ -1580,6 +1754,7 @@ text/htmlh
 text/mathml
 	description=MathML document
 	[da]description=MathML-dokument
+	[fi]description=MathML-asiakirja
 	[fr]description=Document MathML
 	[no]description=MathML-dokument
 	[sv]description=MathML-dokument
@@ -1587,6 +1762,7 @@ text/mathml
 text/plain
 	description=plain text
 	[da]description=ren tekst
+	[fi]description=pelkkä teksti
 	[fr]description=Texte plein
 	[no]description=vanlig tekst
 	[sv]description=vanlig text
@@ -1603,6 +1779,7 @@ text/plain
 text/rfc822-headers
 	description=email headers
 	[da]description=Elektronisk brevhoved
+	[fi]description=sähköpostin otsakkeet
 	[fr]description=En-tête de courrier électronique
 	[no]description=e-posthode
 	[sv]description=e-posthuvuden
@@ -1610,6 +1787,7 @@ text/rfc822-headers
 text/richtext
 	description=rich text
 	[da]description=rigtekst
+	[fi]description=rich-teksti
 	[fr]description=Texte riche
 	[no]description=rik tekst
 	[sv]description=rik text
@@ -1617,6 +1795,7 @@ text/richtext
 text/sgml
 	description=SGML document
 	[da]description=SGML-dokument
+	[fi]description=SGML-asiakirja
 	[fr]description=Document SGML
 	[no]description=SGML-dokument
 	[sv]description=SGML-dokument
@@ -1624,6 +1803,7 @@ text/sgml
 text/tab-separated-values
 	description=tab-separated text
 	[da]description=tabulatorsepareret tekst
+	[fi]description=sarkaimilla eroteltu teksti
 	[fr]description=Texte séparé par des tabulations
 	[no]description=tabulatorseparert tekst
 	[sv]description=tabbseparerad text
@@ -1634,6 +1814,7 @@ text/tab-separated-values
 text/tex
 	description=TeX document
 	[da]description=TeX-dokument
+	[fi]description=TeX-asiakirja
 	[fr]description=Document TeX
 	[no]description=TeX-dokument
 	[sv]description=TeX-dokument
@@ -1641,6 +1822,7 @@ text/tex
 text/x-authors
 	description=authors list
 	[da]description=forfatterliste
+	[fi]description=tekijäluettelo
 	[fr]description=Liste d'auteurs
 	[no]description=forfatterliste
 	[sv]description=författarlista
@@ -1648,6 +1830,7 @@ text/x-authors
 text/x-c
 	description=C source code
 	[da]description=C-kildekode
+	[fi]description=C-lähdekoodi
 	[fr]description=Code source C
 	[no]description=C-kildekode
 	[sv]description=C-källkod
@@ -1655,6 +1838,7 @@ text/x-c
 text/x-c++
 	description=C++ source code
 	[da]description=C++-kildekode
+	[fi]description=C++-lähdekoodi
 	[fr]description=Code source C++
 	[no]description=C++-kildekode
 	[sv]description=C++-källkod
@@ -1662,6 +1846,7 @@ text/x-c++
 text/x-comma-separated-values
 	description=comma-separated text
 	[da]description=kommasepareret tekst
+	[fi]description=pilkuilla eroteltu teksti
 	[fr]description=Texte séparé par des virgules
 	[no]description=kommaseparert tekst
 	[sv]description=kommaseparerad text
@@ -1669,6 +1854,7 @@ text/x-comma-separated-values
 text/x-copying
 	description=GNU license
 	[da]description=Gnu-licens
+	[fi]description=GNU-lisenssi
 	[fr]description=Licence GNU
 	[no]description=GNU-lisens
 	[sv]description=GNU-licens
@@ -1676,6 +1862,7 @@ text/x-copying
 text/x-credits
 	description=author credits
 	[da]description=forfatterliste
+	[fi]description=tunnustus tekijöille
 	[fr]description=Crédits d'auteur
 	[no]description=forfatterliste
 	[sv]description=författarlista
@@ -1684,6 +1871,7 @@ text/x-credits
 text/x-csh
 	description=C-Shell script
 	[da]description=C-skalskript
+	[fi]description=C-Shell-skripti
 	[fr]description=Script C-Shell
 	[no]description=C-skall skript
 	[sv]description=C-skalskript
@@ -1691,6 +1879,7 @@ text/x-csh
 text/x-dcl
 	description=DCL script
 	[da]description=DCL-skript
+	[fi]description=DCL-skripti
 	[fr]description=Script DCL
 	[no]description=DCL-skript
 	[sv]description=DCL-skript
@@ -1698,6 +1887,7 @@ text/x-dcl
 text/x-dsl
 	description=DSSSL document
 	[da]description=DSSSL-dokument
+	[fi]description=DSSSL-asiakirja
 	[fr]description=Document DSSSL
 	[no]description=DSSSL-dokument
 	[sv]description=DSSSL-dokument
@@ -1705,6 +1895,7 @@ text/x-dsl
 text/x-dtd
 	description=document type definition
 	[da]description=dokumenttypedefination
+	[fi]description=asiakirjatyypin määritelmä
 	[fr]description=Définition de type de document
 	[no]description=dokumenttypdefinisjon
 	[sv]description=dokumenttypdefinition
@@ -1712,6 +1903,7 @@ text/x-dtd
 text/x-emacs-lisp
 	description=Emacs Lisp source code
 	[da]description=Emacs Lisp-kildekode
+	[fi]description=Emacs Lisp -lähdekoodi
 	[fr]description=Code source Emacs Lisp
 	[no]description=Emacs Lisp-kildekode
 	[sv]description=Emacs Lisp-källkod
@@ -1719,6 +1911,7 @@ text/x-emacs-lisp
 text/x-fortran
 	description=Fortran source code
 	[da]description=Fortran-kildekode
+	[fi]description=Fortran-lähdekoodi
 	[fr]description=Code source Fortran
 	[no]description=Fortran-kildekode
 	[sv]description=Fortran-källkod
@@ -1726,6 +1919,7 @@ text/x-fortran
 text/x-gtkrc
 	description=GTK configuration
 	[da]description=Gtk-konfiguration
+	[fi]description=GTK-asetukset
 	[fr]description=Configuration GTK
 	[no]description=GTK-konfigurasjon
 	[sv]description=GTK-konfiguration
@@ -1733,6 +1927,7 @@ text/x-gtkrc
 text/x-idl
 	description=IDL document
 	[da]description=IDL-dokument
+	[fi]description=IDL-asiakirja
 	[fr]description=Document IDL
 	[no]description=IDL-dokument
 	[sv]description=IDL-dokument
@@ -1740,6 +1935,7 @@ text/x-idl
 text/x-install
 	description=installation instructions
 	[da]description=Installationsinstruktioner
+	[fi]description=asennusohje
 	[fr]description=Instructions d'installation
 	[no]description=installationsinstruksjoner
 	[sv]description=installationsinstruktioner
@@ -1747,6 +1943,7 @@ text/x-install
 text/x-java
 	description=Java source code
 	[da]description=Java-kildekode
+	[fi]description=Java-lähdekoodi
 	[fr]description=Code source Java
 	[no]description=Java-kildekode
 	[sv]description=Java-källkod
@@ -1754,6 +1951,7 @@ text/x-java
 text/x-ksh
 	description=Korn shell script
 	[da]description=Korn-skalskript
+	[fi]description=Korn shell -skripti
 	[fr]description=Script Korn Shell
 	[no]description=Korn-skall skript
 	[sv]description=Korn-skalskript
@@ -1761,6 +1959,7 @@ text/x-ksh
 text/x-makefile
 	description=Makefile
 	[da]description=Makefil
+	[fi]description=Makefile
 	[fr]description=Makefile
 	[no]description=Makefil
 	[sv]description=Makefil
@@ -1768,6 +1967,7 @@ text/x-makefile
 text/x-patch
 	description=source code patch
 	[da]description=kildekodelap
+	[fi]description=patch-tiedosto
 	[fr]description=Code source patch
 	[no]description=kildekodepatch
 	[sv]description=källkodspatch
@@ -1776,6 +1976,7 @@ text/x-patch
 text/x-perl
 	description=Perl script
 	[da]description=Perlskript
+	[fi]description=Perl-skripti
 	[fr]description=Script Perl
 	[no]description=Perl skript
 	[sv]description=Perlskript
@@ -1783,6 +1984,7 @@ text/x-perl
 text/x-python
 	description=Python script
 	[da]description=Pythonskript
+	[fi]description=Python-skripti
 	[fr]description=Script Python
 	[no]description=Python skript
 	[sv]description=Pythonskript
@@ -1790,12 +1992,14 @@ text/x-python
 text/x-readme
 	description=README file
 	[da]description=README-fil (læs mig)
+	[fi]description=LUEMINUT-tiedosto
 	[fr]description=Fichier README
 	[no]description=README-fil
 	[sv]description=README-fil
 
 text/x-scheme
 	description=Scheme source code
+	[fi]description=Scheme-lähdekoodi
 	[fr]description=Code source Scheme
 	[no]description=Scheme-kildekode
 	[sv]description=Scheme-källkod
@@ -1803,6 +2007,7 @@ text/x-scheme
 text/x-setext
 	description=Setext document
 	[da]description=Setext-dokument
+	[fi]description=Setext-asiakirja
 	[fr]description=Document Setext
 	[no]description=Setext-dokument
 	[sv]description=Setext-dokument
@@ -1810,6 +2015,7 @@ text/x-setext
 text/x-sh
 	description=shell script
 	[da]description=skalskript
+	[fi]description=shelliskripti
 	[fr]description=Script shell
 	[no]description=skallskript
 	[sv]description=skalskript
@@ -1817,6 +2023,7 @@ text/x-sh
 text/x-speech
 	description=Speech document
 	[da]description=Speech-dokument
+	[fi]description=Puheasiakirja
 	[fr]description=Document Speech
 	[no]description=Speech-dokument
 	[sv]description=Speech-dokument
@@ -1824,6 +2031,7 @@ text/x-speech
 text/x-sql
 	description=SQL source code
 	[da]description=SQL-kildekode
+	[fi]description=SQL-lähdekoodia
 	[fr]description=Code source SQL
 	[no]description=SQL-kildekode
 	[sv]description=SQL-källkod
@@ -1831,6 +2039,7 @@ text/x-sql
 text/x-tcl
 	description=Tcl script
 	[da]description=Tcl-skript
+	[fi]description=Tcl-skripti
 	[fr]description=Script Tcl
 	[no]description=Tcl-skript
 	[sv]description=Tcl-skript
@@ -1839,6 +2048,7 @@ text/x-tcl
 text/x-tex
 	description=TeX document
 	[da]description=TeX-dokument
+	[fi]description=TeX-asiakirja
 	[fr]description=Document TeX
 	[no]description=TeX-dokument
 	[sv]description=TeX-dokument
@@ -1846,6 +2056,7 @@ text/x-tex
 text/x-texinfo
 	description=TeXInfo document
 	[da]description=TeXInfo-dokument
+	[fi]description=TeXInfo-asiakirja
 	[fr]description=Document TeXInfo
 	[no]description=TeXInfo-dokument
 	[sv]description=TeXInfo-dokument
@@ -1853,6 +2064,7 @@ text/x-texinfo
 text/x-troff
 	description=Troff document
 	[da]description=Troff-dokument
+	[fi]description=Troff-asiakirja
 	[fr]description=Document Trof
 	[no]description=Troff-dokument
 	[sv]description=Troff-dokument
@@ -1860,14 +2072,16 @@ text/x-troff
 text/x-troff-man
 	description=manual page
 	[da]description=manualside
+	[fi]description=manuaalisivu
 	[fr]description=Page de manuel
 	[no]description=manualside
 	[sv]description=manualsida
-	icon-filename=nautilus/gnome-manpage.png
+	icon-filename=gnome-manpage.png
 
 text/x-troff-me
 	description=Troff ME-macros document
 	[da]description=Troff ME-makrodokument
+	[fi]description=Troff ME-makroasiakirja
 	[fr]description=Document ME-macros Troff
 	[no]description=Troff ME-makrodokument
 	[sv]description=Troff ME-makrodokument
@@ -1875,6 +2089,7 @@ text/x-troff-me
 text/x-troff-ms
 	description=Troff MS-macros document
 	[da]description=Troff MS-makrodokument
+	[fi]description=Troff MS-makroasiakirja
 	[fr]description=Document MS-macros Troff
 	[no]description=Troff MS-makrodokument
 	[sv]description=Troff MS-makrodokument
@@ -1882,6 +2097,7 @@ text/x-troff-ms
 text/x-vcalendar
 	description=calendar or event information
 	[da]description=kalender eller evenementsinformation
+	[fi]description=kalenteri- tai tapahtumatiedot
 	[fr]description=Information de calendrier ou d'événement
 	[no]description=kalender eller hendelsesinformasjon
 	[sv]description=kalender eller evenemangsinformation
@@ -1889,6 +2105,7 @@ text/x-vcalendar
 text/x-vcard
 	description=address card
 	[da]description=adressekort
+	[fi]description=osoitekortti
 	[fr]description=Carte d'adresse
 	[no]description=adressekort
 	[sv]description=adresskort
@@ -1896,6 +2113,7 @@ text/x-vcard
 text/xml
 	description=XML document
 	[da]description=XML-dokument
+	[fi]description=XML-asiakirja
 	[fr]description=Document XML
 	[no]description=XML-dokument
 	[sv]description=XML-dokument
@@ -1912,6 +2130,7 @@ text/xml
 video/isivideo
 	description=ISI video
 	[da]description=ISI-film
+	[fi]description=ISI-video
 	[fr]description=Vidéo ISI
 	[no]description=ISI-film
 	[sv]description=ISI-video
@@ -1919,6 +2138,7 @@ video/isivideo
 video/mpeg
 	description=MPEG movie
 	[da]description=MPEG-film
+	[fi]description=MPEG-video
 	[fr]description=Vidéo MPEG
 	[no]description=MPEG-film
 	[sv]description=MPEG-film
@@ -1931,6 +2151,7 @@ video/mpeg
 video/msvideo
 	description=MS video
 	[da]description=Microsoft Video-film
+	[fi]description=MS-video
 	[fr]description=Vidéo MS
 	[no]description=MS-film
 	[sv]description=MS-video
@@ -1942,6 +2163,7 @@ video/msvideo
 video/quicktime
 	description=QuickTime movie
 	[da]description=QuickTime-film
+	[fi]description=QuickTime-video
 	[fr]description=Vidéo QuickTime
 	[no]description=QuickTime-film
 	[sv]description=QuickTime-film
@@ -1954,6 +2176,7 @@ video/quicktime
 video/vivo
 	description=Vivo video
 	[da]description=Vivo-film
+	[fi]description=Vivo-video
 	[fr]description=Vidéo Vivo
 	[no]description=Vivo-film
 	[sv]description=Vivo-video
@@ -1961,6 +2184,7 @@ video/vivo
 video/wavelet
 	description=Wavelet video
 	[da]description=Wavelet-film
+	[fi]description=Wavelet-video
 	[fr]description=Vidéo Wavelet
 	[no]description=Wavelet-film
 	[sv]description=Wavelet-video
@@ -1968,6 +2192,7 @@ video/wavelet
 video/x-anim
 	description=animation
 	[da]description=animation
+	[fi]description=animaatio
 	[fr]description=Animation
 	[no]description=animasjon
 	[sv]description=animation
@@ -1979,6 +2204,7 @@ video/x-anim
 
 video/x-avi
 	description=Audio-Video Interleave
+	[fi]description=AVI-video
 	[no]description=Audio-Video interleave
 	default_action_type=application
 	default_application_id=xanim
@@ -1989,6 +2215,7 @@ video/x-avi
 video/x-flc
 	description=FLC video animation
 	[da]description=FLC-animation
+	[fi]description=FLC-animaatio
 	[fr]description=Vidéo d'animation FLC
 	[no]description=FLC-animasjon
 	[sv]description=FLC-videoanimation
@@ -2001,6 +2228,7 @@ video/x-flc
 video/x-fli
 	description=FLI video animation
 	[da]description=FLI-animation
+	[fi]description=FLI-animaatio
 	[fr]description=Vidéo d'animation FLI
 	[no]description=FLI-animasjon
 	[sv]description=FLI-videoanimation
@@ -2013,6 +2241,7 @@ video/x-fli
 video/x-msvideo
 	description=MS video
 	[da]description=Microsoft Video
+	[fi]description=MS-video
 	[fr]description=Vidéo MS
 	[no]description=Microsoft Video
 	[sv]description=MS-video
@@ -2024,6 +2253,7 @@ video/x-msvideo
 video/x-real-video
 	description=RealVideo document
 	[da]description=RealVideo-dokument
+	[fi]description=RealVideo-asiakirja
 	[fr]description=Document RealVideo
 	[no]description=RealVideo-dokument
         default_action_type=application
@@ -2035,6 +2265,7 @@ video/x-real-video
 video/x-sgi-movie
 	description=SGI movie
 	[da]description=SGI-film
+	[fi]description=SGI-video
 	[fr]description=Vidéo SGI
 	[no]description=SGI-film
 	[sv]description=SGI-film
@@ -2047,6 +2278,7 @@ video/x-sgi-movie
 x-directory/normal
 	description=folder
 	[da]description=mappe
+	[fi]description=hakemisto
 	[fr]description=Répertoire
 	[no]description=mappe
 	[sv]description=mapp
@@ -2059,6 +2291,7 @@ x-directory/normal
 x-directory/search
 	description=search results
 	[da]description=søgeresultat
+	[fi]description=etsinnän tulokset
 	[fr]description=Résultats de recherche
 	[no]description=søkeresultat
 	[sv]description=sökresultat
@@ -2071,6 +2304,7 @@ x-directory/search
 x-directory/webdav
 	description=web folder
 	[da]description=webmappe
+	[fi]description=www-hakemisto
 	[fr]description=Dossier Web
 	[no]description=webmappe
 	[sv]description=webbmapp
@@ -2084,6 +2318,7 @@ x-directory/webdav
 x-special/device-block
 	description=block device
 	[da]description=blokenhed
+	[fi]description=lohkolaite
 	[fr]description=Périphérique bloc
 	[no]description=blokkenhet
 	[sv]description=blockenhet
@@ -2091,6 +2326,7 @@ x-special/device-block
 x-special/device-char
 	description=character device
 	[da]description=tegnenhed
+	[fi]description=merkkilaite
 	[fr]description=Périphérique caractère
 	[no]description=tegnenhet
 	[sv]description=teckenenhet
@@ -2098,6 +2334,7 @@ x-special/device-char
 x-special/fifo
 	description=named pipe
 	[da]description=navngivet rør
+	[fi]description=nimetty putki
 	[fr]description=Conduit nommé
 	[no]description=navngitt rør
 	[sv]description=namngivet rör
@@ -2105,6 +2342,7 @@ x-special/fifo
 x-special/socket
 	description=socket
 	[da]description=sokkel
+	[fi]description=pistoke
 	[fr]description=Socket
 	[no]description=socket
 	[sv]description=uttag
@@ -2112,6 +2350,7 @@ x-special/socket
 x-special/symlink
 	description=link
 	[da]description=lænke
+	[fi]description=linkki
 	[fr]description=Lien
 	[no]description=lenke
 	[sv]description=länk
