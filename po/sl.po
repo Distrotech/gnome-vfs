@@ -483,7 +483,7 @@ msgstr "arhiv SV4 CPIO"
 
 #: data/mime/gnome-vfs.keys.in.h:118
 msgid "SV4 CPIP archive (with CRC)"
-msgstr "arhiv SV4 CPIP (z CRCjem)"
+msgstr "arhiv SV4 CPIP (s CRCjem)"
 
 #: data/mime/gnome-vfs.keys.in.h:119
 msgid "SVG art"
@@ -879,7 +879,7 @@ msgstr "simbolièna povezava"
 
 #: data/mime/gnome-vfs.keys.in.h:217
 msgid "tab-separated text document"
-msgstr "datoteka z besedilom loèenim z tabulatorji"
+msgstr "datoteka z besedilom loèenim s tabulatorji"
 
 #: data/mime/gnome-vfs.keys.in.h:218
 msgid "tar archive"
