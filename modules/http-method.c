@@ -53,6 +53,10 @@
 
 #include <pthread.h>
 
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-mime.h"
@@ -1255,9 +1259,22 @@ http_proxy_for_host_port (
 	guint *p_proxy_port)
 {
 	gboolean ret = FALSE;
+	struct in_addr in, in_loop, in_mask;
 
 	g_mutex_lock (gl_mutex);
 
+	/* Don't force "localhost" or 127.x.x.x through the proxy */
+	/* This is a special case that we'd like to generalize into a gconf config */
+
+	inet_aton("127.0.0.0", &in_loop); 
+	inet_aton("255.0.0.0", &in_mask); 
+
+	if (host && ( 0 == strcmp (host, "localhost") 
+		      || ( 0 != inet_aton (host, &in) 
+		      		&& ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))
+	) {
+		ret = FALSE;
+	} else 
 	if (gl_http_proxy) {
 		if (host_port_from_string (gl_http_proxy, p_proxy_host, p_proxy_port)) {
 			ret = TRUE;
@@ -2374,7 +2391,7 @@ vfs_module_init (const char *method_name, const char *args)
 	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_NONE, &err_gconf);
 
 	if (err_gconf) {
-		DEBUG_HTTP (("GConf error during client_add_dir '%s'", err_gconf->str));
+		DEBUG_HTTP (("GConf error during client_add_dir '%s'", err_gconf->message));
 		g_error_free (err_gconf);
 	}
 
@@ -2385,7 +2402,7 @@ vfs_module_init (const char *method_name, const char *args)
 	val_gconf = gconf_client_get (gl_client, KEY_GCONF_HTTP_PROXY, &err_gconf);
 
 	if (err_gconf) {
-		DEBUG_HTTP (("GConf error during client_get '%s'", err_gconf->str));
+		DEBUG_HTTP (("GConf error during client_get '%s'", err_gconf->message));
 		g_error_free (err_gconf);
 	} else if (val_gconf) {
 		sig_gconf_value_changed (gl_client, KEY_GCONF_HTTP_PROXY, val_gconf);

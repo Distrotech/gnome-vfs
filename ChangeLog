@@ -1,3 +1,14 @@
+2000-10-05  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c: (http_proxy_for_host_port),
+	(vfs_module_init):
+
+	When HTTP proxy is enabled, proxy is explicitly bypassed for "localhost"
+	and "127.x.x.x.".  We'd like to have a general configuration mechanism for
+	non-proxy URL's in the future.  This was causing bugzilla.eazel.com 3492
+
+	Also fixed some debug messages to work with the new gconf
+	
 2000-10-05  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* modules/http-method.c: (vfs_module_init):
