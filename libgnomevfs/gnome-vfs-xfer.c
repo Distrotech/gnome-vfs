@@ -1721,6 +1721,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			     GnomeVFSProgressCallbackState *progress)
 {
 	GnomeVFSResult result;
+	GnomeVFSHandle *handle;
 	GList *source_uri_list, *target_uri_list;
 	GList *source_uri, *target_uri;
 	GnomeVFSURI *target_dir_uri;
@@ -1738,10 +1739,16 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 	source_uri_list = gnome_vfs_uri_list_copy ((GList *)source_uris);
 	target_uri_list = gnome_vfs_uri_list_copy ((GList *)target_uris);
 
-	/* FIXME bugzilla.eazel.com 1213:
-	 * check if destination is writable
-	 * and bail if not
-	 */
+	/* Check and see if target is writable. Return error if it is not. */
+	target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_uri_list->data);
+	result = gnome_vfs_open_uri (&handle, target_dir_uri, GNOME_VFS_OPEN_WRITE);	
+	gnome_vfs_uri_unref (target_dir_uri);	
+	target_dir_uri = NULL;
+	if (result != GNOME_VFS_OK) {
+		return result;
+	}
+	gnome_vfs_close (handle);
+	
 	move = (xfer_options & GNOME_VFS_XFER_REMOVESOURCE) != 0;
 	link = (xfer_options & GNOME_VFS_XFER_LINK_ITEMS) != 0;
 

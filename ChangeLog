@@ -1,3 +1,13 @@
+2000-09-19  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 1213, add a check to figure out if destination
+	is writable.
+
+	Call gnome_vfs_open_uri () on destination and return error
+	if one is returned.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_uri_internal):
+
 2000-09-18  Mathieu Lacage  <mathieu@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c: (context_new),
