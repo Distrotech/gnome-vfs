@@ -1,3 +1,28 @@
+2004-07-15  Christian Kellner  <gicmo@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-result.h: 
+	* libgnomevfs/gnome-vfs-result.c
+	Added the GNOME_VFS_ERROR_NAMESERVER result.
+	(gnome_vfs_result_from_h_errno_val): 
+	(gnome_vfs_result_from_h_errno):
+	Moved gnome_vfs_error_from_h_errno code body to
+	gnome_vfs_error_from_h_errno_val and let the former use that.
+
+	* libgnomevfs/gnome-vfs-ssl.c (gnome_vfs_ssl_create): 
+	* libgnomevfs/gnome-vfs-inet-connection.c (gnome_vfs_inet_connection_create) 
+	(gnome_vfs_inet_connection_get_ip):
+	Moved to the new resolver API.
+
+	* libgnomevfs/gnome-vfs-address.h: 
+	* libgnomevfs/gnome-vfs-address.c: 
+	* libgnomevfs/gnome-vfs-resolve.h: 
+	* libgnomevfs/gnome-vfs-resolve.c:
+	New Files.
+	Implemented a simple resolver API.
+	
+	* libgnomevfs/Makefile.am: 
+	Added gnome-vfs-resolve.[ch] and gnome-vfs-address.[ch]
+		
 2004-07-15  Alexander Larsson  <alexl@redhat.com>
 
 	Patch from John Palmieri.

@@ -81,13 +81,15 @@ typedef enum {
 	GNOME_VFS_ERROR_PARSE,
 	GNOME_VFS_ERROR_LAUNCH,
 	GNOME_VFS_ERROR_TIMEOUT,
+	GNOME_VFS_ERROR_NAMESERVER,
 	GNOME_VFS_NUM_ERRORS
 } GnomeVFSResult;
 
-const char	*gnome_vfs_result_to_string	  (GnomeVFSResult result);
-GnomeVFSResult   gnome_vfs_result_from_errno_code (int errno_code);
-GnomeVFSResult	 gnome_vfs_result_from_errno	  (void);
-GnomeVFSResult   gnome_vfs_result_from_h_errno    (void);
+const char	*gnome_vfs_result_to_string	    (GnomeVFSResult result);
+GnomeVFSResult   gnome_vfs_result_from_errno_code   (int errno_code);
+GnomeVFSResult	 gnome_vfs_result_from_errno	    (void);
+GnomeVFSResult   gnome_vfs_result_from_h_errno_val  (int h_errno_code);
+GnomeVFSResult   gnome_vfs_result_from_h_errno      (void);
 
 G_END_DECLS
 

@@ -24,6 +24,7 @@
 #include <config.h>
 #include "gnome-vfs-inet-connection.h"
 #include "gnome-vfs-private-utils.h"
+#include "gnome-vfs-resolve.h"
 
 #include <errno.h>
 #include <glib/gmem.h>
@@ -42,19 +43,10 @@
 
 #include <sys/time.h>
 
-/* AIX #defines h_errno */
-#ifndef h_errno
-extern int h_errno;
-#endif
-
 struct GnomeVFSInetConnection {
-	int family;
-#ifdef ENABLE_IPV6
-	struct sockaddr_in6 addr6;
-#endif
-	struct sockaddr_in addr;
+
+	GnomeVFSAddress *address;	
 	guint sock;
-	guint socklen;
 	struct timeval *timeout;
 };
 
@@ -66,135 +58,65 @@ struct GnomeVFSInetConnection {
  * @host_port: the port number to connect to.
  * @cancellation: handle allowing cancellation of the operation.
  *
- * Creates a connection at @handle_return to @host_name using
+ * Creates a connection at @connection_return to @host_name using
  * port @port.
  *
- * Return value: GnomeVFSResult indicating the success of the operation
+ * Return value: #GnomeVFSResult indicating the success of the operation.
  **/
 GnomeVFSResult
 gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
-				  const gchar *host_name,
-				  guint host_port,
-				  GnomeVFSCancellation *cancellation)
+				  const gchar             *host_name,
+				  guint                    host_port,
+				  GnomeVFSCancellation    *cancellation)
 {
 	GnomeVFSInetConnection *new;
-#ifdef ENABLE_IPV6
-	struct addrinfo hints, *result, *res;
-	int ret;
-#endif
-	struct hostent *host_info;
-	struct sockaddr_in addr;
-	gint sock;
+	GnomeVFSResolveHandle *rh;
+	GnomeVFSAddress *address;
+	GnomeVFSResult res;
+	gint sock, len, ret;
+	struct sockaddr *saddr;
 
 	g_return_val_if_fail (connection_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (host_name != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (host_port != 0, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-#ifdef ENABLE_IPV6
-	if (_gnome_vfs_have_ipv6 ()) {
-		result = NULL;
-		ret = 0;
-		sock = 0;
+	res = gnome_vfs_resolve (host_name, &rh);
 
-		memset (&hints, 0, sizeof (hints));
-		hints.ai_socktype = SOCK_STREAM;
+	if (res != GNOME_VFS_OK)
+		return res;
 
-		if (getaddrinfo (host_name, NULL, &hints, &result) != 0) {
-			return GNOME_VFS_ERROR_HOST_NOT_FOUND;
-		}
+	sock = -1;
+	
+	while (gnome_vfs_next_address (rh, &address)) {
+		sock = socket (gnome_vfs_address_get_family_type (address),
+			       SOCK_STREAM, 0);
 
-		if (gnome_vfs_cancellation_check (cancellation)) {
-			return GNOME_VFS_ERROR_CANCELLED;
-		}
-
-		/*For selecting a valid IP of the List*/
-		for (res = result; res; res = res->ai_next) {
-
-			if (res->ai_family != AF_INET && res->ai_family != AF_INET6) {
-				continue;
-			}
-
-			sock = socket (res->ai_family, SOCK_STREAM, 0);
-			if (sock < 0) {
-				continue;
-			}
-
-			if (res->ai_family == AF_INET) {
-				((struct sockaddr_in *)res->ai_addr)->sin_port = htons (host_port);
-			}
-
-			if (res->ai_family == AF_INET6) {
-				((struct sockaddr_in6 *)res->ai_addr)->sin6_port = htons (host_port);
-			}
-
-			ret = connect (sock, res->ai_addr, res->ai_addrlen);
-			if (ret == 0) {
+		if (sock > -1) {
+			saddr = gnome_vfs_address_get_sockaddr (address,
+								host_port,
+								&len);
+			ret = connect (sock, saddr, len);
+			g_free (saddr);
+			
+			if (ret == 0)
 				break;
-			}
 
 			close (sock);
+			sock = -1;
 		}
 
-		if (!res) {
-			freeaddrinfo (result);
-
-			if (sock < 0 || ret < 0) {
-				/*Error in connection or socket creation.*/
-				return gnome_vfs_result_from_errno ();
-			} else {
-				/*Error: No IPv4 or IPv6 address.*/
-				return GNOME_VFS_ERROR_HOST_NOT_FOUND;
-			}
-		}
-
-		new = g_new0 (GnomeVFSInetConnection, 1);
-
-		if (res->ai_family == AF_INET) {
-			new->family = AF_INET;
-			memcpy (&new->addr, res->ai_addr, res->ai_addrlen);
-		}
-
-		if (res->ai_family == AF_INET6) {
-			new->family = AF_INET6;
-			memcpy (&new->addr6, res->ai_addr, res->ai_addrlen);
-		}
-
-		new->socklen = res->ai_addrlen;
-		new->sock = sock;
-		freeaddrinfo (result);
+		gnome_vfs_address_free (address);
+		
 	}
-	else
-#endif
-	{
-		sock = socket (PF_INET, SOCK_STREAM, 0);
-		if (sock < 0) {
-			return gnome_vfs_result_from_errno ();
-		}
 
-		host_info = gethostbyname (host_name);
-		if (gnome_vfs_cancellation_check (cancellation)) {
-			return GNOME_VFS_ERROR_CANCELLED;
-		}
-
-		if (host_info == NULL) {
-			return gnome_vfs_result_from_h_errno ();
-		}
-
-		addr.sin_family = host_info->h_addrtype;
-		addr.sin_addr = * (struct in_addr *) host_info->h_addr;
-		addr.sin_port = htons (host_port);
-
-		if (connect (sock, (struct sockaddr *) &addr, sizeof (addr)) < 0) {
-			return gnome_vfs_result_from_errno ();
-		}
-
-		new = g_new0 (GnomeVFSInetConnection, 1);
-		new->family = AF_INET;
-		memcpy (&new->addr, &addr, sizeof (addr));
-		new->socklen = sizeof(addr);
-		new->sock = sock;
-
-	}
+	gnome_vfs_resolve_free (rh);
+	
+	if (sock < 0)
+		return gnome_vfs_result_from_errno ();
+	
+	new = g_new0 (GnomeVFSInetConnection, 1);
+	new->address = address;
+	new->sock = sock;
 
 	_gnome_vfs_set_fd_flags (new->sock, O_NONBLOCK);
 
@@ -205,8 +127,8 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 
 /**
  * gnome_vfs_inet_connection_destroy:
- * @connection: connection to destroy
- * @cancellation: handle for cancelling the operation
+ * @connection: Connection to destroy.
+ * @cancellation: Handle for cancelling the operation.
  *
  * Closes/Destroys @connection.
  **/
@@ -220,6 +142,9 @@ gnome_vfs_inet_connection_destroy (GnomeVFSInetConnection *connection,
 	
 	if (connection->timeout)
 		g_free (connection->timeout);
+
+	if (connection->address)
+		gnome_vfs_address_free (connection->address);
 
 	g_free (connection);
 }
@@ -266,30 +191,7 @@ gnome_vfs_inet_connection_get_fd (GnomeVFSInetConnection *connection)
 char *
 gnome_vfs_inet_connection_get_ip (GnomeVFSInetConnection *connection)
 {
-	const char *res;
-#ifdef ENABLE_IPV6
-	char ip[INET6_ADDRSTRLEN];
-#else
-	char ip[INET_ADDRSTRLEN];
-#endif
-
-	res = NULL;
-#ifdef ENABLE_IPV6
-	if (connection->family == AF_INET6) {
-		res = inet_ntop (AF_INET6, &connection->addr6.sin6_addr,
-				 ip, sizeof(ip));
-	}
-#endif
-	if (connection->family == AF_INET) {
-		res = inet_ntop (AF_INET, &connection->addr.sin_addr,
-				 ip, sizeof(ip));
-	}
-	
-
-	if (res != NULL) {
-		return g_strdup (ip);
-	}
-	return NULL;
+	return gnome_vfs_address_to_string (connection->address);
 }
 
 

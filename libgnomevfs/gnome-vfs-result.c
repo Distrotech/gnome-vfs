@@ -61,7 +61,7 @@ static char *status_strings[] = {
 	/* GNOME_VFS_ERROR_LOOP */			N_("Looping links encountered"),
 	/* GNOME_VFS_ERROR_NOT_PERMITTED */		N_("Operation not permitted"),
 	/* GNOME_VFS_ERROR_IS_DIRECTORY */       	N_("Is a directory"),
-        /* GNOME_VFS_ERROR_NO_MEMMORY */             	N_("Not enough memory"),
+        /* GNOME_VFS_ERROR_NO_MEMORY */             	N_("Not enough memory"),
 	/* GNOME_VFS_ERROR_HOST_NOT_FOUND */		N_("Host not found"),
 	/* GNOME_VFS_ERROR_INVALID_HOST_NAME */		N_("Host name not valid"),
 	/* GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS */  	N_("Host has no address"),
@@ -81,7 +81,8 @@ static char *status_strings[] = {
 	/* GNOME_VFS_ERROR_NO_HANDLER */		N_("No handler for URL scheme"),
 	/* GNOME_VFS_ERROR_PARSE */			N_("Error parsing command line"),
 	/* GNOME_VFS_ERROR_LAUNCH */			N_("Error launching command"),
-	/* GNOME_VFS_ERROR_TIMEOUT */			N_("Timeout reached")
+	/* GNOME_VFS_ERROR_TIMEOUT */			N_("Timeout reached"),
+	/* GNOME_VFS_ERROR_NAMESERVER */                N_("Nameserver error")
 };
 
 
@@ -153,11 +154,26 @@ gnome_vfs_result_from_errno (void)
 GnomeVFSResult
 gnome_vfs_result_from_h_errno (void)
 {
+	return gnome_vfs_result_from_h_errno_val (h_errno);
+}
+
+/**
+ * gnome_vfs_result_from_h_errno_val:
+ * @h_errno: A integer containing representing the same error codes
+ * as the system h_errno.
+ * 
+ * Converts the error code of @h_errno into a #GnomeVFSResult.
+ * 
+ * Return Value: The #GnomeVFSResult equivalent to the h_errno error code.
+ **/
+GnomeVFSResult
+gnome_vfs_result_from_h_errno_val (int h_errno_code)
+{
 	switch (h_errno) {
 	case HOST_NOT_FOUND:	return GNOME_VFS_ERROR_HOST_NOT_FOUND;
 	case NO_ADDRESS:	return GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS;
-	case TRY_AGAIN:		/* FIXME bugzilla.eazel.com 1190 */
-	case NO_RECOVERY:	/* FIXME bugzilla.eazel.com 1190 */
+	case TRY_AGAIN:		return GNOME_VFS_ERROR_NAMESERVER;
+	case NO_RECOVERY:	return GNOME_VFS_ERROR_NAMESERVER;
 	default:
 		return GNOME_VFS_ERROR_GENERIC;
 	}

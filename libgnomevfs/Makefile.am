@@ -193,6 +193,7 @@ libgnomevfsmoduleinclude_HEADERS =		\
 
 libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-application-registry.h	\
+	gnome-vfs-address.h			\
 	gnome-vfs-async-ops.h			\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-context.h			\
@@ -212,6 +213,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-module-callback.h		\
 	gnome-vfs-monitor.h			\
 	gnome-vfs-ops.h				\
+	gnome-vfs-resolve.h			\
 	gnome-vfs-result.h			\
 	gnome-vfs-standard-callbacks.h		\
 	gnome-vfs-types.h			\
@@ -232,6 +234,7 @@ CORBA_SOURCE = \
 libgnomevfs_2_la_SOURCES =			\
 	$(CORBA_SOURCE)				\
 	gnome-vfs-application-registry.c	\
+	gnome-vfs-address.c			\
 	gnome-vfs-async-job-map.c		\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-cancellable-ops.c	 	\
@@ -275,6 +278,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-private-utils.c		\
 	gnome-vfs-private.c			\
 	gnome-vfs-process.c			\
+	gnome-vfs-resolve.c			\
 	gnome-vfs-result.c			\
 	gnome-vfs-socket-buffer.c		\
 	gnome-vfs-socket.c			\
