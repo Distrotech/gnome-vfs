@@ -1326,8 +1326,10 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 		progress->progress_info->total_bytes_copied += DEFAULT_SIZE_OVERHEAD;
 		progress->progress_info->top_level_item = FALSE;
 
-		/* We do not deal with symlink loops here. 
-		 * That's OK because we don't follow symlinks.
+		/* We do not deal with symlink loops here.  That's OK
+		 * because we don't follow symlinks, unless the user
+		 * explicitly requests this with
+		 * GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE.
 		 */
 		do {
 			GnomeVFSURI *source_uri;
@@ -1361,8 +1363,19 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 								 xfer_options, error_mode, overwrite_mode, 
 								 progress, skip);
 				} else if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
-					result = copy_symlink (source_uri, dest_uri, info->symlink_name,
-							       progress);
+					if (xfer_options & GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE) {
+						GnomeVFSFileInfo *symlink_target_info = gnome_vfs_file_info_new ();
+						result = gnome_vfs_get_file_info_uri (source_uri, symlink_target_info,
+										      GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
+						if (result == GNOME_VFS_OK) 
+							result = copy_file (symlink_target_info, source_uri, dest_uri, 
+									    xfer_options, error_mode, overwrite_mode, 
+									    progress, skip);
+						gnome_vfs_file_info_unref (symlink_target_info);
+					} else {
+						result = copy_symlink (source_uri, dest_uri, info->symlink_name,
+								       progress);
+					}
 				}
 				/* just ignore all the other special file system objects here */
 			}

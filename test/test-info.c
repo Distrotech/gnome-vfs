@@ -142,6 +142,7 @@ main (int argc,
 	}
 
 	while (i < argc) {
+		const char *path;
 
 		uri = argv[i];
 
@@ -164,6 +165,8 @@ main (int argc,
 		gnome_vfs_file_info_unref (info);
 
 		vfs_uri = gnome_vfs_uri_new (uri);
+		path = gnome_vfs_uri_get_path (vfs_uri);
+		printf ("Path: %s\n", path ? path : "<null>");
 		printf (gnome_vfs_uri_is_local (vfs_uri)
 			? "File is local\n" : "File is not local\n");
 		gnome_vfs_uri_unref (vfs_uri);

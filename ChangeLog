@@ -1,3 +1,20 @@
+2002-10-29  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-module-callback.c
+	(copy_one_callback): bin so we can build -Wall
+	cleanly again.
+
+2002-10-29  Colin Walters <walters@debian.org>
+
+	* test/test-xfer.c: add params so we can regression
+	  test the various options nicely.
+
+	* libgnomevfs/gnome-vfs-xfer.h (GnomeVFSXferOptions):
+	  add GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE.
+
+	* libgnomevfs/gnome-vfs-xfer.c (copy_directory): add
+	  recursive symlink following copy support.
+
 2002-10-25  Alex Graveley  <alex@ximian.com>
 
 	Drop support for the broken .vfolder-info-default concept.

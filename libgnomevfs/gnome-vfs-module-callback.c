@@ -284,26 +284,9 @@ pop_stack_table (GHashTable *table,
 	}
 }
 
-
 /* Functions to copy, duplicate and clear callback tables and callback
  * stack tables, and helpers for these functions.
  */
-
-static void
-copy_one_callback  (gpointer	key,
-		    gpointer	value,
-		    gpointer	callback_data)
-{
-	const char *callback_name;
-	CallbackInfo *callback;
-	GHashTable *table;
-	
-	callback_name = key;
-	callback = value;
-	table = callback_data;
-	
-	insert_callback_into_table (table, callback_name, callback);
-}
 
 static void
 copy_one_stack_top (gpointer key,
