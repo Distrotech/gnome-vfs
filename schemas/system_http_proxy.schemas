@@ -18,6 +18,7 @@
       <key>/schemas/system/http_proxy/host</key>
       <owner>gnome-vfs</owner>
       <type>string</type>
+      <default></default>
       <locale name="C">
         <short>Proxy host name</short>
         <long>The machine name to proxy http through.</long>
@@ -54,6 +55,7 @@
       <key>/schemas/system/http_proxy/authentication_user</key>
       <owner>gnome-vfs</owner>
       <type>string</type>
+      <default></default>
       <locale name="C">
         <short>http proxy username</short>
         <long>User name to pass as authentication when doing http proxying</long>
@@ -64,6 +66,7 @@
       <key>/schemas/system/http_proxy/authentication_password</key>
       <owner>gnome-vfs</owner>
       <type>string</type>
+      <default></default>
       <locale name="C">
         <short>http proxy password</short>
         <long>Password to pass as authentication when doing http proxying</long>
