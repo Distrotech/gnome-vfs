@@ -269,7 +269,8 @@ parse_line (Configuration *configuration,
 	return retval;
 }
 
-/* FIXME maybe we should return FALSE if any errors during parsing happen so
+/* FIXME bugzilla.eazel.com 1139:
+   maybe we should return FALSE if any errors during parsing happen so
    that we abort immediately, but this sounds a bit too overkill.  */
 static gboolean
 parse_file (Configuration *configuration,

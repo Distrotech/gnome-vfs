@@ -286,9 +286,6 @@ remove_first_reference (GList *reference_list)
 	return reference_list;
 }
 
-/* FIXME?  This leads to an O(2) algorithm, but it should not be noticeable
-   unless a *very* deep recursion (more than the depth of reasonable file
-   systems) is performed.  */
 static gboolean
 lookup_ancestor (GList *ancestors,
 		 ino_t inode,

@@ -84,7 +84,7 @@ static void
 impl_Notify_reset (PortableServer_Servant servant,
 		   CORBA_Environment *ev)
 {
-	/* FIXME */
+	/* FIXME bugzilla.eazel.com 1124: */
 #if 0
 	GnomeVFSSlaveProcess *slave;
 	GnomeVFSSlaveProcessResetCallback callback;

@@ -620,33 +620,6 @@ corba_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 	return retval;
 }
 
-#if 0
-static GNOME_VFS_Slave_FileNameList *
-g_list_to_file_name_list (const GList *list)
-{
-	GNOME_VFS_Slave_FileNameList *new;
-	const GList *p;
-	guint length, i;
-
-	length = g_list_length ((GList *) list); /* FIXME dammit glib */
-
-	/* FIXME it is a waste to re-alloc all the strings, but I am not sure
-           how to free the sequence if I don't do so otherwise. */
-
-	new = GNOME_VFS_Slave_FileNameList__alloc ();
-	new->_maximum = length;
-	new->_length = length;
-	new->_buffer = CORBA_sequence_CORBA_string_allocbuf (length);
-
-	for (i = 0, p = list; i < length; i++, p = p->next)
-		new->_buffer[i] = CORBA_string_dup (p->data);
-
-	CORBA_sequence_set_release (new, TRUE);
-
-	return new;
-}
-#endif
-
 GnomeVFSResult
 corba_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 			    const gchar *source_dir,
@@ -674,7 +647,7 @@ corba_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 			    GnomeVFSXferProgressCallback progress_sync_callback,
 			    gpointer sync_callback_data)
 {
-	/* FIXME:
+	/* FIXME bugzilla.eazel.com:1122
 	 * 
 	 * Update to pass progress_sync_callback properly.
 	 * 

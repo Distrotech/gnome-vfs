@@ -145,7 +145,8 @@ pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 
 	job = (GnomeVFSJob *) handle;
 
-	/* FIXME should free the handle.  */
+	/* FIXME bugzilla.eazel.com 1129:
+	   should free the handle.  */
 
 	return gnome_vfs_job_cancel (job);
 }

@@ -251,7 +251,7 @@ typedef struct {
 } GnomeVFSOp;
 
 
-/* FIXME: Move private stuff out of the header.  */
+/* FIXME bugzilla.eazel.com 1135: Move private stuff out of the header.  */
 struct GnomeVFSJob {
 	/* The slave thread that executes jobs (see module
            `gnome-vfs-job-slave.c'). */

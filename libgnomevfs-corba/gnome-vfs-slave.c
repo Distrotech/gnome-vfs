@@ -812,7 +812,8 @@ copy_metadata (GNOME_VFS_Slave_FileInfo *dest,
 {
 	guint i;
 
-	/* FIXME: This is a bit inefficient (because every
+	/* FIXME bugzilla.eazel.com 1128: 
+	   This is a bit inefficient (because every
 	   `gnome_vfs_file_info_get_metadata()' is actually a linear search
 	   with the current implementation), but we are happy with it for now.
 	   In most cases, the number of metadata keys will be very limited.  */

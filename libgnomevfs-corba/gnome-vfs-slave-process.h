@@ -100,7 +100,7 @@ void gnome_vfs_slave_process_destroy (GnomeVFSSlaveProcess *slave);
 gboolean gnome_vfs_slave_process_busy (GnomeVFSSlaveProcess *slave);
 
 #if 0
-/* FIXME to be implemented */
+/* FIXME bugzilla.eazel.com 1124: */
 void gnome_vfs_slave_process_reset (GnomeVFSSlaveProcess *slave,
 				    GnomeVFSSlaveProcessResetCallback callback,
 				    gpointer callback_data);

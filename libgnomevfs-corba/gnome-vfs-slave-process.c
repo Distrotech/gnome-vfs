@@ -89,7 +89,8 @@ gnome_vfs_slave_process_new (void)
 	return new;
 }
 
-#if 0				/* FIXME */
+#if 0				
+/* FIXME bugzilla.eazel.com 1124: */
 void
 gnome_vfs_slave_process_reset (GnomeVFSSlaveProcess *slave,
 			       GnomeVFSSlaveProcessResetCallback callback,

@@ -30,11 +30,13 @@
  * handle_get_message_callbacks() and then let people use this API
  * directly.  */
 
-/* FIXME should we have a priority enum of some kind, and pass it to
+/* FIXME bugzilla.eazel.com 1143
+   should we have a priority enum of some kind, and pass it to
    the status callback? Netscape doesn't distinguish any of the status
    messages but you probably could if you wanted. */
 
-/* FIXME this isn't thread safe (well, one thread per
+/* FIXME bugzilla.eazel.com 1141
+   this isn't thread safe (well, one thread per
    GnomeVFSMessageCallbacks, there's no static data) - can multiple
    threads be using the same file handle? */
 

@@ -27,8 +27,8 @@ System (version for POSIX threads).
 
    */
 
-/* FIXME the slave threads do not die properly.  */
-/* FIXME check that all the data is freed properly //in the callback dispatching
+/* FIXME bugzilla.eazel.com 1132:
+   check that all the data is freed properly //in the callback dispatching
    functions//.  */
 
 #ifdef HAVE_CONFIG_H
@@ -52,7 +52,8 @@ System (version for POSIX threads).
 
 #if GNOME_VFS_JOB_DEBUG
 
-/* FIXME - this is should use the correct static mutex initialization macro.
+/* FIXME bugzilla.eazel.com 1130
+ * - this is should use the correct static mutex initialization macro.
  * However glibconfig.h is broken and the supplied macro gives a warning.
  * Since this id debug only, just use what the macro should be here.
  * even though it is not portable.

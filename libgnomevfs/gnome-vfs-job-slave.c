@@ -34,7 +34,8 @@
 
 #include "gnome-vfs-job-slave.h"
 
-/* FIXME - would use a GStaticMutex here but the initializer macro is broken.
+/* FIXME bugzilla.eazel.com 1130:
+ * - would use a GStaticMutex here but the initializer macro is broken.
  * Just use a dynamically allocated one for now.
  */
 static GMutex *gnome_vfs_thread_count_mutex = NULL;
@@ -80,7 +81,8 @@ gnome_vfs_job_slave_new (GnomeVFSJob *job)
 
 
 	if (gnome_vfs_thread_count_mutex == NULL) {
-		/* FIXME - would use a GStaticMutex but the initializer macro 
+		/* FIXME bugzilla.eazel.com 1130:
+		 * - would use a GStaticMutex but the initializer macro 
 		 * is broken. There is no real danger here as the 
 		 * gnome_vfs_thread_count_mutex only gets created by the master 
 		 * thread but it would still be cleaner to use a static one.

@@ -138,7 +138,8 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	/* Find a component that supports either the exact mime type,
            the supertype, or all mime types. */
 
-	/* FIXME: should probably check for the right interfaces
+	/* FIXME bugzilla.eazel.com 1144:
+	   should probably check for the right interfaces
            too. Also slightly semantically different from nautilus in
            other tiny ways. */
 	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
@@ -154,7 +155,8 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 		sort[0] = g_strdup ("true");
 	}
 
-	/* FIXME: We should then fall back to preferring one of the
+	/* FIXME bugzilla.eazel.com 1145: 
+	   We should then fall back to preferring one of the
 	   components on the current short list. */
 	
 	/* Prefer something that matches the exact type to something
@@ -176,7 +178,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 		if (info_list != NULL && info_list->_length > 0) {
 			server = OAF_ServerInfo__copy (&info_list->_buffer[0]);
 		}
-		/* FIXME: Need to free here, but the copying isn't done right yet. */
+		/* FIXME bugzilla.eazel.com 1146: Need to free here, but the copying isn't done right yet. */
 		/* CORBA_free (info_list); */
 	}
 
@@ -354,7 +356,7 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		
 		if (ev._major == CORBA_NO_EXCEPTION) {
 			preferred_components = OAF_ServerInfoList_to_ServerInfo_g_list (info_list);
-			/* FIXME: Need to free here, but the copying isn't done right yet. */
+			/* FIXME bugzilla.eazel.com 1146: Need to free here, but the copying isn't done right yet. */
 			/* CORBA_free (info_list); */
 		}
 
@@ -387,7 +389,8 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 		return NULL;
 	}
 
-	/* FIXME: no way for apps to modify at install time */
+	/* FIXME bugzilla.eazel.com 1147: 
+	   no way for apps to modify at install time */
 
 	/* get app list */
  	system_all_application_ids = gnome_vfs_mime_get_value 
@@ -426,7 +429,8 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 	/* Find a component that supports either the exact mime type,
            the supertype, or all mime types. */
 
-	/* FIXME: should probably check for the right interfaces
+	/* FIXME bugzilla.eazel.com 1144:
+	   should probably check for the right interfaces
            too. Also slightly semantically different from nautilus in
            other tiny ways. */
 	supertype = mime_type_get_supertype (mime_type);
@@ -443,7 +447,8 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 	
 	if (ev._major == CORBA_NO_EXCEPTION) {
 		components_list = OAF_ServerInfoList_to_ServerInfo_g_list (info_list);
-		/* FIXME: Need to free here, but the copying isn't done right yet. */
+		/* FIXME bugzilla.eazel.com 1146: Need to free here, but the copying 
+		 * isn't done right yet. */
 		/* CORBA_free (info_list); */
 	} else {
 		components_list = NULL;
@@ -669,7 +674,8 @@ gnome_vfs_mime_set_short_list_components (const char *mime_type,
 	g_free (removal_string);
 }
 
-/* FIXME: The next set of helper functions are all replicated in nautilus-mime-actions.c.
+/* FIXME bugzilla.eazel.com 1148: 
+ * The next set of helper functions are all replicated in nautilus-mime-actions.c.
  * Need to refactor so they can share code.
  */
 static gint
@@ -858,7 +864,6 @@ gnome_vfs_mime_extend_all_applications (const char *mime_type,
 
 	update_str = str_list_to_comma_separated_str (update_list);
 
-	g_list_free (update_list);
 	g_list_free_deep (user_id_list);
 	
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
@@ -899,7 +904,6 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 
 	update_str = str_list_to_comma_separated_str (update_list);
 
-	g_list_free (update_list);
 	g_list_free_deep (user_id_list);
 	
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
@@ -1017,6 +1021,8 @@ join_str_list (const char *separator, GList *list)
 	GList *p;
 	int i;
 	char *retval;
+
+	strv = g_new0 (char *, g_list_length (list) + 1);
 
 	/* Convert to a strv so we can use g_strjoinv.
 	 * Saves code but could be made faster if we want.
@@ -1234,12 +1240,13 @@ get_user_level (void)
 		}
 
 		engine = gconf_engine_new ();
-		/* FIXME: This engine never gets freed. */
+		/* FIXME bugzilla.eazel.com 1150: 
+		   This engine never gets freed. */
 	}
 
 	user_level = gconf_get_string (engine, "/nautilus/user_level", NULL);
 
-	/* FIXME: Nautilus just asserts this.
+	/* FIXME bugzilla.eazel.com 1152: Nautilus just asserts this.
 	 * But it doesn't seem reasonable to assert something that's the result
 	 * of reading from a file.
 	 */
@@ -1247,7 +1254,8 @@ get_user_level (void)
 		user_level = g_strdup ("novice");
 	}
 
-	/* FIXME: Is it OK to just return a string without checking if
+	/* FIXME bugzilla.eazel.com 1151: 
+	 * Is it OK to just return a string without checking if
 	 * it's one of the 3 expected values?
 	 */
 	return user_level;
