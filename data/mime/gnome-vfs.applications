@@ -428,6 +428,14 @@ xanim
 	requires_terminal=false
 	mime_types=video/quicktime,video/x-anim,video/x-sgi-movie,video/x-avi,video/msvideo,video/x-msvideo
 
+xdvi
+	command=xdvi
+	name=xdvi
+	can_open_multiple_files=false
+	expects_uris=false
+	requires_terminal=false
+	mime_types=application/x-dvi
+
 xemacs
 	command=xemacs
 	name=XEmacs

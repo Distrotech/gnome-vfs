@@ -1,3 +1,10 @@
+2001-10-11  Seth Nickell  <snickell@stanford.edu>
+
+	* gnome-vfs.applications:
+	* gnome-vfs.keys.in:
+
+	Add xdvi.
+
 2001-09-20  Havoc Pennington  <hp@redhat.com>
 
 	* gnome-vfs-mime-magic: add magic for .desktop files
