@@ -149,4 +149,7 @@ GList               *gnome_vfs_uri_list_unref              (GList *list);
 GList               *gnome_vfs_uri_list_copy               (GList *list);
 void                 gnome_vfs_uri_list_free               (GList *list);
 
+char                *gnome_vfs_uri_make_full_from_relative (const char *base_uri,
+							    const char *relative_uri);
+
 #endif /* GNOME_VFS_URI_H */

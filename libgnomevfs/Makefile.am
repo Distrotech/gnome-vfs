@@ -9,13 +9,15 @@ INCLUDES =					\
 	-I$(top_builddir)			\
 	-I$(top_builddir)/intl			\
 	-I$(top_builddir)/libgnomevfs		\
-	$(GLIB_CFLAGS)				\
-	$(ORBIT_CFLAGS)				\
-	$(OAF_CFLAGS)				\
-	$(XML_CFLAGS)				\
+	$(BONOBO_CFLAGS)			\
+	$(EEL_CFLAGS)				\
 	$(GCONF_CFLAGS) 			\
-	$(VFS_CFLAGS) $(WERROR)			\
+	$(GLIB_CFLAGS)				\
+	$(OAF_CFLAGS)				\
         $(OPENSSL_CFLAGS)                       \
+	$(ORBIT_CFLAGS)				\
+	$(VFS_CFLAGS) $(WERROR)			\
+	$(XML_CFLAGS)				\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
@@ -24,18 +26,36 @@ INCLUDES =					\
 	-DG_LOG_DOMAIN=\"GnomeVFS\"		\
 	$(NULL)
 
+CORBA_SOURCE =					\
+	gnome-vfs-metafile-server.h		\
+	gnome-vfs-metafile-server-common.c	\
+	gnome-vfs-metafile-server-stubs.c	\
+	gnome-vfs-metafile-server-skels.c	\
+	$(NULL)
+
+idls = 								\
+	$(top_srcdir)/idl/gnome-vfs-metafile-server.idl		\
+	$(NULL)
+
+idl_flags = -I @BONOBO_IDLDIR@ -D__GNOME_COMPILATION
+
+$(CORBA_SOURCE): $(idls) $(ORBIT_IDL)
+	$(ORBIT_IDL) $(top_srcdir)/idl/gnome-vfs-metafile-server.idl -I$(top_srcdir)/idl $(idl_flags)
+
 lib_LTLIBRARIES = libgnomevfs.la
 
 EXTRA_DIST =					\
 	getdelim.c
 
 libgnomevfs_la_LIBADD =				\
-	$(GLIB_LIBS)				\
-	$(ORBIT_LIBS)				\
-	$(OAF_LIBS)				\
-	$(XML_LIBS)				\
+	$(BONOBO_LIBS)				\
+	$(EEL_LIBS)				\
 	$(GCONF_LIBS) 				\
+	$(GLIB_LIBS)				\
+	$(OAF_LIBS)				\
 	$(OPENSSL_LDFLAGS) 			\
+	$(ORBIT_LIBS)				\
+	$(XML_LIBS)				\
 	$(NULL)
 
 libgnomevfsincludedir = $(includedir)/libgnomevfs
@@ -56,6 +76,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-file-size.h			\
 	gnome-vfs-find-directory.h		\
 	gnome-vfs-handle.h			\
+	gnome-vfs-helpers.h			\
 	gnome-vfs-inet-connection.h		\
 	gnome-vfs-init.h			\
 	gnome-vfs-iobuf.h			\
@@ -91,6 +112,9 @@ libgnomevfsinclude_HEADERS =			\
 	$(NULL)
 
 libgnomevfs_la_SOURCES =			\
+	$(CORBA_SOURCE)				\
+	eel-cut-n-paste.c			\
+	stolen-glib-extensions.c			\
 	fnmatch.c				\
 	gnome-vfs-app-context.c			\
 	gnome-vfs-application-registry.c	\
@@ -106,10 +130,12 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-find-directory.c		\
 	gnome-vfs-handle.c			\
+	gnome-vfs-helpers.c			\
 	gnome-vfs-i18n.c			\
 	gnome-vfs-inet-connection.c		\
 	gnome-vfs-init.c			\
 	gnome-vfs-iobuf.c			\
+	gnome-vfs-metafile-backend.c		\
 	gnome-vfs-method.c			\
 	gnome-vfs-mime-handlers.c               \
 	gnome-vfs-mime-info.c			\
@@ -144,7 +170,11 @@ libgnomevfs_la_SOURCES =			\
 
 noinst_HEADERS =				\
 	gnome-vfs-backend-private.h
- 
+
+BUILT_SOURCES = 		\
+	$(CORBA_SOURCE)		\
+	$(NULL)
+
 # Platform specific includes
 libgnomevfsplatofrmincludedir = $(libdir)/vfs/include
 libgnomevfsplatofrminclude_HEADERS =			\

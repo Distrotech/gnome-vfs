@@ -571,9 +571,14 @@ is_uri_relative (const char *uri)
  * Compact "../" segments inside the URI
  * Remove "." at the end of the URL 
  * Leave any ".."'s at the beginning of the URI
+ 
+*/
+/*
+ * FIXME this is not the simplest or most time-efficent way
+ * to do this.  Probably a far more clear way of doing this processing
+ * is to split the path into segments, rather than doing the processing
+ * in place.
  */
-
-/* in case if you were wondering, this is probably one of the least time-efficient ways to do this*/
 static void
 remove_internal_relative_components (char *uri_current)
 {
@@ -1837,4 +1842,160 @@ void
 gnome_vfs_uri_list_free (GList *list)
 {
 	g_list_free (gnome_vfs_uri_list_unref (list));
+}
+
+
+static gboolean
+is_uri_partial (const char *uri)
+{
+	const char *current;
+
+	/* RFC 2396 section 3.1 */
+	for (current = uri ; 
+		*current
+		&& 	((*current >= 'a' && *current <= 'z')
+			 || (*current >= 'A' && *current <= 'Z')
+			 || (*current >= '0' && *current <= '9')
+			 || ('-' == *current)
+			 || ('+' == *current)
+			 || ('.' == *current)) ;
+	     current++);
+
+	return  !(':' == *current);
+}
+
+/**
+ * gnome_vfs_uri_make_full_from_relative:
+ * 
+ * Returns a full URI given a full base URI, and a secondary URI which may
+ * be relative.
+ *
+ * Return value: the URI (NULL for some bad errors).
+ **/
+char *
+gnome_vfs_uri_make_full_from_relative (const char *base_uri,
+				       const char *relative_uri)
+{
+	char *result = NULL;
+
+	/* See section 5.2 in RFC 2396 */
+
+	if (base_uri == NULL && relative_uri == NULL) {
+		result = NULL;
+	} else if (base_uri == NULL) {
+		result = g_strdup (relative_uri);
+	} else if (relative_uri == NULL) {
+		result = g_strdup (base_uri);
+	} else if (!is_uri_partial (relative_uri)) {
+		result = g_strdup (relative_uri);
+	} else {
+		char *mutable_base_uri;
+		char *mutable_uri;
+
+		char *uri_current;
+		size_t base_uri_length;
+		char *separator;
+
+		mutable_base_uri = g_strdup (base_uri);
+		uri_current = mutable_uri = g_strdup (relative_uri);
+
+		/* Chew off Fragment and Query from the base_url */
+
+		separator = strrchr (mutable_base_uri, '#'); 
+
+		if (separator) {
+			*separator = '\0';
+		}
+
+		separator = strrchr (mutable_base_uri, '?');
+
+		if (separator) {
+			*separator = '\0';
+		}
+
+		if ('/' == uri_current[0] && '/' == uri_current [1]) {
+			/* Relative URI's beginning with the authority
+			 * component inherit only the scheme from their parents
+			 */
+
+			separator = strchr (mutable_base_uri, ':');
+
+			if (separator) {
+				separator[1] = '\0';
+			}			  
+		} else if ('/' == uri_current[0]) {
+			/* Relative URI's beginning with '/' absolute-path based
+			 * at the root of the base uri
+			 */
+
+			separator = strchr (mutable_base_uri, ':');
+
+			/* g_assert (separator), really */
+			if (separator) {
+				/* If we start with //, skip past the authority section */
+				if ('/' == separator[1] && '/' == separator[2]) {
+					separator = strchr (separator + 3, '/');
+					if (separator) {
+						separator[0] = '\0';
+					}
+				} else {
+				/* If there's no //, just assume the scheme is the root */
+					separator[1] = '\0';
+				}
+			}
+		} else if ('#' != uri_current[0]) {
+			/* Handle the ".." convention for relative uri's */
+
+			/* If there's a trailing '/' on base_url, treat base_url
+			 * as a directory path.
+			 * Otherwise, treat it as a file path, and chop off the filename
+			 */
+
+			base_uri_length = strlen (mutable_base_uri);
+			if ('/' == mutable_base_uri[base_uri_length-1]) {
+				/* Trim off '/' for the operation below */
+				mutable_base_uri[base_uri_length-1] = 0;
+			} else {
+				separator = strrchr (mutable_base_uri, '/');
+				if (separator) {
+					*separator = '\0';
+				}
+			}
+
+			remove_internal_relative_components (uri_current);
+
+			/* handle the "../"'s at the beginning of the relative URI */
+			while (0 == strncmp ("../", uri_current, 3)) {
+				uri_current += 3;
+				separator = strrchr (mutable_base_uri, '/');
+				if (separator) {
+					*separator = '\0';
+				} else {
+					/* <shrug> */
+					break;
+				}
+			}
+
+			/* handle a ".." at the end */
+			if (uri_current[0] == '.' && uri_current[1] == '.' 
+			    && uri_current[2] == '\0') {
+
+			    	uri_current += 2;
+				separator = strrchr (mutable_base_uri, '/');
+				if (separator) {
+					*separator = '\0';
+				}
+			}
+
+			/* Re-append the '/' */
+			mutable_base_uri [strlen(mutable_base_uri)+1] = '\0';
+			mutable_base_uri [strlen(mutable_base_uri)] = '/';
+		}
+
+		result = g_strconcat (mutable_base_uri, uri_current, NULL);
+		g_free (mutable_base_uri); 
+		g_free (mutable_uri); 
+	}
+	
+	return result;
 }
