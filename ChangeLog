@@ -1,3 +1,10 @@
+2002-08-23  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (folder_extend_monitor_cb):
+	Fix segfault where we accidentally used child.entry instead of
+	entry.  Remove local entry var, and use child.entry throughout.
+	Fixes bug #91271.
+
 2002-08-19  Alex Graveley  <alex@ximian.com>
 	
 	* modules/vfolder/vfolder-method.c (set_desktop_file_key):

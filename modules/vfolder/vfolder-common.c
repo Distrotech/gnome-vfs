@@ -555,7 +555,6 @@ folder_extend_monitor_cb (GnomeVFSMonitorHandle    *handle,
 {
 	Folder *folder = user_data;
 	FolderChild child;
-	Entry *entry = NULL;
 	GnomeVFSFileInfo *file_info;
 	GnomeVFSResult result;
 	GnomeVFSURI *uri, *entry_uri;
@@ -584,15 +583,15 @@ folder_extend_monitor_cb (GnomeVFSMonitorHandle    *handle,
 		 * the subfolders themselves should take care of emitting
 		 * changes.
 		 */
-		entry = folder_get_entry (folder, filename);
-		if (entry) {
+		child.entry = folder_get_entry (folder, filename);
+		if (child.entry) {
 			entry_uri = entry_get_real_uri (child.entry);
 
 			if (gnome_vfs_uri_equal (entry_uri, uri)) {
-				entry_set_dirty (entry);
+				entry_set_dirty (child.entry);
 				folder_emit_changed (
 					folder, 
-					entry_get_displayname (entry),
+					entry_get_displayname (child.entry),
 					GNOME_VFS_MONITOR_EVENT_CHANGED);
 			}
 
