@@ -1,0 +1,6 @@
+Makefile
+Makefile.in
+.deps
+.libs
+GNOME_VFS_Moniker_std.oaf
+GNOME_VFS_Moniker_std.oaf.in

@@ -1,3 +1,7 @@
+2001-08-01  Darin Adler  <darin@bentspoon.com>
+
+	* .cvsignore: Add this.
+
 2001-08-02  Michael Meeks  <michael@ximian.com>
 
 	* bonobo-storage-vfs.c (concat_dir_and_file): impl.
