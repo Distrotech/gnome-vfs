@@ -368,12 +368,6 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 #elif defined(HAVE_GETMNTINFO) && defined(HAVE_FSTAB_H) && defined(HAVE_SYS_MOUNT_H)
 
 static char *
-get_mtab_read_file (void)
-{
-    	return NULL;
-}
-
-static char *
 get_mtab_monitor_file (void)
 {
     	return NULL;
