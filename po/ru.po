@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-04 08:37+0400\n"
-"PO-Revision-Date: 2004-08-04 10:32+0400\n"
+"POT-Creation-Date: 2004-08-16 08:53+0400\n"
+"PO-Revision-Date: 2004-08-16 08:57+0400\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,26 +24,26 @@ msgstr "Не удалось проинициализировать подсис�
 msgid "Could not initialize gnome vfs"
 msgstr "Не удалось проинициализировать подсистему gnome vfs"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, c-format
 msgid "File could not be opened: %s"
 msgstr "Не удалось открыть файл: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Произошёл сбой при открытии файла \"%s\":%s "
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 msgid "File is empty"
 msgstr "Файл пуст"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Произошёл сбой при чтении из файла \"%s\":%s "
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
@@ -51,34 +51,34 @@ msgstr ""
 "элементы рабочего стола содержат строку \"%s\", не являющуюся элементом, "
 "группой или комментарием"
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
 msgstr "файл элементов рабочего стола не начинается с начальной группы"
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr ""
 "элементы рабочего стола содержат строку \"%s\" не в кодировке УТФ-8 (UTF-8)"
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "элементы рабочего стола содержат неизвестную кодировку \"%s\""
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "элементы рабочего стола не содержат группу \"%s\""
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "элементы рабочего стола не содержат ключа \"%s\""
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
@@ -86,7 +86,7 @@ msgstr ""
 "элементы рабочего стола содержат ключ \"%s\", значение которого не может "
 "быть понято."
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
@@ -94,23 +94,23 @@ msgstr ""
 "элементы рабочего стола не содержат переведённого значения ключа \"%s\" "
 "длялокали \"%s\"."
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr ""
 "элементы рабочего стола содержат недопустимую экранирующую "
 "последовательность \"%s\""
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
 msgstr "элементы рабочего стола содержат экранирующий символ в конце строки"
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Значение \"%s\" не может быть понято как число."
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Значение \"%s\" не может быть понято булевое."
@@ -290,8 +290,8 @@ msgid "Unknown"
 msgstr "Неизвестно"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "Компакт-диск"
+msgid "CD-ROM Disc"
+msgstr "Компакт-диск с данными"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -399,7 +399,7 @@ msgstr "Диск ОС Линукс"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
-msgid "Unknown op type %u"
+msgid "Unknown operation type %u"
 msgstr "Тип операции %u неизвестен"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -732,7 +732,7 @@ msgstr "%.1f Мб"
 msgid "%.1f GB"
 msgstr "%.1f Гб"
 
-#: libgnomevfs/gnome-vfs-utils.c:1115
+#: libgnomevfs/gnome-vfs-utils.c:1119
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (недопустимый Юникод)"
@@ -1017,45 +1017,45 @@ msgstr ""
 "установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа h323, если ключ "
+"установлен"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа \"http\", если ключ "
+"установлен"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr ""
+"Команда, используемая для обработки ссылок (URL) типа \"https\", если ключ "
+"установлен"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr ""
 "Команда, используемая для обработки ссылок (URL) типа \"info\", если ключ "
 "установлен"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr ""
 "Команда, используемая для обработки ссылок (URL) типа \"mailto\", если ключ "
 "установлен"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr ""
 "Команда, используемая для обработки ссылок (URL) типа \"man\", если ключ "
 "установлен"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr ""
 "Команда, используемая для обработки ссылок (URL) типа \"trash\", если ключ "
-"установлен"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr ""
-"Команда, используемая для обработки ссылок (URL) типа H323, если ключ "
-"установлен"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr ""
-"Команда, используемая для обработки ссылок (URL) типа HTTP, если ключ "
-"установлен"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr ""
-"Команда, используемая для обработки ссылок (URL) типа HTTPS, если ключ "
 "установлен"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
@@ -1071,32 +1071,32 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "Обработчик ссылок (URL) типа \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid "The handler for \"h323\" URLs"
+msgstr "Обработчик ссылок (URL) типа h232"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid "The handler for \"http\" URLs"
+msgstr "Обработчик ссылок (URL) типа \"http\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid "The handler for \"https\" URLs"
+msgstr "Обработчик ссылок (URL) типа \"https\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "Обработчик ссылок (URL) типа \"info\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
 msgstr "Обработчик ссылок (URL) типа \"mailto\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
 msgstr "Обработчик ссылок (URL) типа \"man\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
 msgstr "Обработчик ссылок (URL) типа \"trash\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "The handler for H323 URLs"
-msgstr "Обработчик ссылок (URL) типа H232"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "The handler for HTTP URLs"
-msgstr "Обработчик ссылок (URL) типа HTTP"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "The handler for HTTPS URLs"
-msgstr "Обработчик ссылок (URL) типа HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
@@ -1124,13 +1124,37 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr ""
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URL) типа h323."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URL) типа \"http\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
+"будет обрабатывать ссылки (URL) типа \"https\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
 "будет обрабатывать ссылки (URL) типа \"info\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
@@ -1138,7 +1162,7 @@ msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
 "будет обрабатывать ссылки (URL) типа \"mailto\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
@@ -1146,35 +1170,13 @@ msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
 "будет обрабатывать ссылки (URL) типа \"man\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
 "Если этот ключ установлен, то программа, определённая в ключе \"command\", "
 "будет обрабатывать ссылки (URL) типа \"trash\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URL) типа H323."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URL) типа HTTP."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
-"URLs."
-msgstr ""
-"Если этот ключ установлен, то программа, определённая в ключе \"command\", "
-"будет обрабатывать ссылки (URL) типа HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1197,32 +1199,32 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа h323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"http\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"https\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"info\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"mailto\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"man\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа \"trash\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа H323"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа HTTP"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа HTTPS"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1415,6 +1417,45 @@ msgstr "Рабочая группа для сети протокола SMB"
 msgid "The window workgroup the user is part of"
 msgstr ""
 "Рабочая группа сети ОС Виндоуз (Windows), в которую входит пользователь"
+
+#~ msgid "CD Disc"
+#~ msgstr "Компакт-диск"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr ""
+#~ "Команда, используемая для обработки ссылок (URL) типа HTTP, если ключ "
+#~ "установлен"
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr ""
+#~ "Команда, используемая для обработки ссылок (URL) типа HTTPS, если ключ "
+#~ "установлен"
+
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "Обработчик ссылок (URL) типа HTTP"
+
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "Обработчик ссылок (URL) типа HTTPS"
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr ""
+#~ "Если этот ключ установлен, то программа, определённая в ключе \"command"
+#~ "\", будет обрабатывать ссылки (URL) типа HTTP."
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "Если этот ключ установлен, то программа, определённая в ключе \"command"
+#~ "\", будет обрабатывать ссылки (URL) типа HTTPS."
+
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа HTTP"
+
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "Будет ли указанная команда обрабатывать ссылки (URL) типа HTTPS"
 
 #~ msgid "H323 URL handler"
 #~ msgstr "Обработчик ссылок (URL) типа H232"
