@@ -2073,7 +2073,7 @@ as:
 
 The GNOMEUIINFO_HELP macro takes the name of your application and expects
 the help files to be installed as per normal gnome procedures.
-<emphasis>FIXME: we need to add some section on help files and stuff
+<emphasis>FixMe: we need to add some section on help files and stuff
 </emphasis>
 </para>
 </sect4>

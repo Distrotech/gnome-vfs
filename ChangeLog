@@ -1,3 +1,12 @@
+2000-06-06  Pavel  <pavel@eazel.com>
+
+	* devel-docs/gnome-vfs-tutorial/gnome-vfs-tutorial.sgml:
+	* doc/writing-modules.sgml:
+	* modules/extfs-method.c: (do_open):
+	Added more bug numbers to FIXMEs.
+	Changed some mentions of FIXMEs to FixMes to make them
+	not trigger the FIXME tool.
+
 2000-06-05  Seth Nickell  <snickell@stanford.edu>
 
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_extract_short_name):

@@ -76,7 +76,7 @@
       <para>For example, in the case we outlined above, the URI would
         look something like:</para>
 
-      <!-- FIXME what should I use here instead of programlisting? -->
+      <!-- FixMe what should I use here instead of programlisting? -->
       <programlisting>
 
         ftp://username:password@host.net/path/to/file.tar.gz#gzip#tar/path/to/hello.c</programlisting>
@@ -192,7 +192,7 @@
       <para>For example, suppose you have to read a simple URI like
       the following:</para>
 
-      <!-- FIXME what should I use here instead of programlisting? -->
+      <!-- FixMe what should I use here instead of programlisting? -->
       <programlisting>
 
         file:/home/ettore/file.gz#gzip</programlisting>

@@ -340,7 +340,7 @@ do_open (GnomeVFSMethod *method,
 	/* FIXME bugzilla.eazel.com 1223:
 	 * args 
 	 * Ettore needs to elaborate here some more, it is not clear what this
-	 * FIXME is about
+	 * FixMe is about
 	 */
 	process_result = gnome_vfs_process_run_cancellable
 		(script_path, args, GNOME_VFS_PROCESS_CLOSEFDS,
