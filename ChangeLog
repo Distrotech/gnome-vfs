@@ -1,5 +1,11 @@
 2004-09-14  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	* modules/Makefile.am:
+	AC_SUBST GSSAPI_* vars, and use them
+
+2004-09-14  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-volume-monitor-client.c:
 	* libgnomevfs/gnome-vfs-volume-monitor-client.h:
 	* libgnomevfs/gnome-vfs-volume-monitor.c:

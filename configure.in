@@ -476,6 +476,8 @@ if test "x$KRB5_CONFIG" != "xnone"; then
    LIBS="$saved_LIBS" 
    CPPFLAGS="$saved_CPPFLAGS" 
 fi   
+AC_SUBST(GSSAPI_LIBS)
+AC_SUBST(GSSAPI_CFLAGS)
 	   
 dnl ******************************
 dnl http-method (neon checks)
