@@ -1070,45 +1070,19 @@ find_trash_in_one_hierarchy_level (const char *current_directory, dev_t near_dev
 static char *
 find_trash_in_hierarchy (const char *start_dir, dev_t near_device_id, GnomeVFSContext *context)
 {
-	GList *current_directory_list;
 	GList *next_directory_list;
-	GList *list_iterator;
 	char *result;
-	int level;
 
 #ifdef DEBUG_FIND_DIRECTORY
 	g_print ("searching for trash in %s\n", start_dir);
 #endif
 
 	next_directory_list = NULL;
-	current_directory_list = NULL;
 
 	/* Search the top level. */
 	result = find_trash_in_one_hierarchy_level (start_dir, near_device_id, 
 		&next_directory_list, context);
-
-	for (level = 1; result == NULL && level < MAX_TRASH_SEARCH_DEPTH; level++) {
-		gnome_vfs_list_deep_free (current_directory_list);
-
-		current_directory_list = next_directory_list;
-		next_directory_list = NULL;
-
-		if (current_directory_list == NULL) {
-			/* Shallow hierarchy, bail. */
-			break;
-		}
-		for (list_iterator = current_directory_list; list_iterator != NULL;
-			list_iterator = list_iterator->next) {
-			result = find_trash_in_one_hierarchy_level (list_iterator->data, 
-				near_device_id, &next_directory_list, context);
-
-			if (result != NULL) {
-				break;
-			}
-		}
-	}
-
-	gnome_vfs_list_deep_free (current_directory_list);
+	
 	gnome_vfs_list_deep_free (next_directory_list);
 
 	return result;
@@ -1404,56 +1378,7 @@ static char *
 create_trash_near (const char *full_name_near, dev_t near_device_id, const char *disk_top_directory,
 	guint permissions, GnomeVFSContext *context)
 {
-	char *result;
-	const char *scanner;
-	int depth;
-	char *current_directory;
-
-	result = NULL;
-
-	/* Point at the last directory in the top directory path */
-	scanner = strrchr (disk_top_directory, G_DIR_SEPARATOR);
-	g_assert (scanner != NULL);
-
-#ifdef DEBUG_FIND_DIRECTORY
-	g_print ("creating trash near %s, disk top %s\n", full_name_near, disk_top_directory);
-#endif
-	scanner = full_name_near + strlen (disk_top_directory);
-	if (*scanner != '\0') {
-		/* Try creating the Trash as high up in the volume hierarchy as possible
-		 * this makes it faster to find and less likely that the user will try
-		 * to delete it as a part of throwing something into the Trash.
-		 */
-		for (depth = 1; depth < MAX_TRASH_SEARCH_DEPTH; depth++) {
-			g_assert (*scanner == G_DIR_SEPARATOR);
-
-			/* Special-case to handle "/" (and similar?) */
-			if (scanner == full_name_near) {
-				current_directory = g_strdup (G_DIR_SEPARATOR_S);
-			} else {
-				current_directory = g_strdup (full_name_near);
-				current_directory[scanner - full_name_near] = '\0';
-			}
-
-			result = try_creating_trash_in (current_directory, permissions);
-			g_free (current_directory);
-			if (result != NULL) {
-				break;
-			}
-
-			scanner = strchr (scanner + 1, G_DIR_SEPARATOR);
-			if (scanner == NULL) {
-				break;
-			}
-		}
-	}
-	if (result == NULL) {
-		/* full_name_near must be the top of the disk hierarchy, we have to create a Trash in it
-		 */
-		 result = try_creating_trash_in (full_name_near, permissions);
-	}
-
-	return result;
+	return try_creating_trash_in (disk_top_directory, permissions);
 }
 
 

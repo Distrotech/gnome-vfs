@@ -12,6 +12,8 @@ INCLUDES =					\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-DG_DISABLE_DEPRECATED			\
+	-DDATADIR=\"$(datadir)\"		\
+	-DSYSCONFDIR=\"$(sysconfdir)\"		\
 	-DPREFIX=\"$(prefix)\"
 
 EXTRA_DIST =					\
@@ -32,6 +34,7 @@ modulesdir = $(libdir)/gnome-vfs-2.0/modules
 
 modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
+	libdesktop.la				\
 	libextfs.la				\
 	libfile.la				\
 	libvfs-test.la				\
@@ -77,6 +80,11 @@ libextfs_la_LDFLAGS = $(module_flags)
 libfile_la_SOURCES = file-method.c
 libfile_la_LDFLAGS = $(module_flags)
 libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS)
+
+###  `desktop' method
+
+libdesktop_la_SOURCES = desktop-method.c
+libdesktop_la_LDFLAGS = $(module_flags)
 
 ###  `ssh' method
 

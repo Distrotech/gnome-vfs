@@ -1,3 +1,11 @@
+2001-09-21  Havoc Pennington  <hp@redhat.com>
+
+	* Makefile.am (sysconf_DATA): revert rename of
+	gnome-vfs-mime-magic
+
+	* gnome-vfs-mime-magic: add a comment about the desktop entry
+	stuff being somewhat wrong
+
 2001-09-18  Havoc Pennington  <hp@redhat.com>
 
 	* Makefile.am (gnome-vfs2-mime-magic): rename gnome-vfs-mime-magic
