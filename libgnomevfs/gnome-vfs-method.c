@@ -52,6 +52,8 @@ typedef struct _ModuleElement ModuleElement;
 static gboolean method_already_initialized = FALSE;
 
 static gboolean gnome_vfs_is_daemon = FALSE;
+static GType daemon_volume_monitor_type = 0;
+static void (*daemon_force_probe_callback) (GnomeVFSVolumeMonitor *volume_monitor) = NULL;
 
 static GHashTable *module_hash = NULL;
 G_LOCK_DEFINE_STATIC (gnome_vfs_method_init);
@@ -60,16 +62,33 @@ GStaticRecMutex module_hash_lock = G_STATIC_REC_MUTEX_INIT;
 static GList *module_path_list = NULL;
 
 
+/* Pass some integration stuff here, so we can make the library not depend
+   on the daemon-side code */
 void
-gnome_vfs_set_is_daemon (void)
+gnome_vfs_set_is_daemon (GType volume_monitor_type,
+			 GnomeVFSDaemonForceProbeCallback force_probe_callback)
 {
 	gnome_vfs_is_daemon = TRUE;
+	daemon_volume_monitor_type = volume_monitor_type;
+	daemon_force_probe_callback = force_probe_callback;
 }
 
 gboolean
 gnome_vfs_get_is_daemon (void)
 {
 	return gnome_vfs_is_daemon;
+}
+
+GType
+_gnome_vfs_get_daemon_volume_monitor_type (void)
+{
+	return daemon_volume_monitor_type;
+}
+
+GnomeVFSDaemonForceProbeCallback
+_gnome_vfs_get_daemon_force_probe_callback (void)
+{
+	return daemon_force_probe_callback;
 }
 
 static gboolean

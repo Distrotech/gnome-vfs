@@ -30,7 +30,6 @@
 
 #include "gnome-vfs-volume-monitor-client.h"
 #include "gnome-vfs-volume-monitor-private.h"
-#include "gnome-vfs-unix-mounts.h"
 #include "gnome-vfs-cdrom.h"
 #include "gnome-vfs-filesystem-type.h"
 #include "gnome-vfs-client.h"

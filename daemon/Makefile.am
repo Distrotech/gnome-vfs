@@ -22,7 +22,7 @@ INCLUDES= \
 	-I$(top_srcdir)/libgnomevfs             \
 	-I$(top_builddir)/libgnomevfs           \
 	$(NULL)
-gnome_vfs_daemon_LDADD=$(MONIKERS_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la
+gnome_vfs_daemon_LDADD=$(MONIKERS_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la $(top_builddir)/libgnomevfs/libgnomevfsdaemon-2.la
 
 gnome_vfs_daemon_SOURCES = \
 	gnome-vfs-daemon.c \

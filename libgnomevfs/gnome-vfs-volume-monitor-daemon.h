@@ -64,7 +64,7 @@ struct _GnomeVFSVolumeMonitorDaemonClass {
 
 GType gnome_vfs_volume_monitor_daemon_get_type (void) G_GNUC_CONST;
 
-void gnome_vfs_volume_monitor_daemon_force_probe (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);
+void gnome_vfs_volume_monitor_daemon_force_probe (GnomeVFSVolumeMonitor *volume_monitor_daemon);
 
 G_END_DECLS
 

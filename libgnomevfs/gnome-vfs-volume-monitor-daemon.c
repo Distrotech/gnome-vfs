@@ -199,8 +199,12 @@ gnome_vfs_volume_monitor_daemon_init (GnomeVFSVolumeMonitorDaemon *volume_monito
 }
 
 void
-gnome_vfs_volume_monitor_daemon_force_probe (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
+gnome_vfs_volume_monitor_daemon_force_probe (GnomeVFSVolumeMonitor *volume_monitor)
 {
+	GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon;
+	
+	volume_monitor_daemon = GNOME_VFS_VOLUME_MONITOR_DAEMON (volume_monitor);
+	
 	if (dont_use_hald) {
 		update_fstab_drives (volume_monitor_daemon);
 		update_mtab_volumes (volume_monitor_daemon);

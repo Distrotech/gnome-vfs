@@ -30,7 +30,6 @@
 #include <gconf/gconf-client.h>
 #include "gnome-vfs-i18n.h"
 #include "gnome-vfs-volume-monitor-private.h"
-#include "gnome-vfs-volume-monitor-daemon.h"
 #include "gnome-vfs-volume.h"
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-drive.h"
@@ -153,11 +152,13 @@ force_probe (void)
 	GnomeVFSClient *client;
 	GNOME_VFS_Daemon daemon;
 	CORBA_Environment  ev;
+	GnomeVFSDaemonForceProbeCallback callback;
 	
 	volume_monitor = gnome_vfs_get_volume_monitor ();
 
 	if (gnome_vfs_get_is_daemon ()) {
-		gnome_vfs_volume_monitor_daemon_force_probe (GNOME_VFS_VOLUME_MONITOR_DAEMON (volume_monitor));
+		callback = _gnome_vfs_get_daemon_force_probe_callback();
+		(*callback) (GNOME_VFS_VOLUME_MONITOR (volume_monitor));
 	} else {
 		client = _gnome_vfs_get_client ();
 		daemon = _gnome_vfs_client_get_daemon (client);

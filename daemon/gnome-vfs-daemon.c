@@ -429,7 +429,7 @@ force_probe (PortableServer_Servant _servant,
 	
 	monitor = gnome_vfs_get_volume_monitor ();
 
-	gnome_vfs_volume_monitor_daemon_force_probe (GNOME_VFS_VOLUME_MONITOR_DAEMON (monitor));
+	gnome_vfs_volume_monitor_daemon_force_probe (monitor);
 }
 
 
@@ -597,7 +597,8 @@ main (int argc, char *argv [])
 		return 1;
 	}
 
-	gnome_vfs_set_is_daemon ();
+	gnome_vfs_set_is_daemon (GNOME_VFS_TYPE_VOLUME_MONITOR_DAEMON,
+				 gnome_vfs_volume_monitor_daemon_force_probe);
 	if (!gnome_vfs_init ()) {
 		g_error (_("Could not initialize gnome vfs"));
 		return 1;

@@ -1,3 +1,20 @@
+2004-07-14  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* daemon/Makefile.am:
+	* daemon/gnome-vfs-daemon.c:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-method.c:
+	* libgnomevfs/gnome-vfs-private.h:
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.h:
+	* libgnomevfs/gnome-vfs-volume-monitor.c:
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	Move daemon-only code over to a helper library for the daemon.
+	This way all apps won't have to link to the volume code,
+	including dependencies.
+
 2004-07-13  David Zeuthen  <david@fubar.dk>
 
 	Export HAL UDI to applications using GNOME VFS. Largely based on

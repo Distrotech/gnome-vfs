@@ -4,6 +4,7 @@ INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	$(LIBGNOMEVFS_CFLAGS)			\
+	$(LIBGNOMEVFSDAEMON_CFLAGS)		\
 	$(VFS_CFLAGS)				\
 	$(MONIKERS_CFLAGS)			\
 	-DXDG_PREFIX=_gnome_vfs_xdg		\
@@ -110,6 +111,8 @@ s-enum-types-c: @REBUILD@ $(libgnomevfs_headers_to_scan_for_enums) Makefile
 
 lib_LTLIBRARIES = libgnomevfs-2.la
 
+noinst_LTLIBRARIES = libgnomevfsdaemon-2.la
+
 libgnomevfs_2_la_LIBADD =			\
 	$(LIBGNOMEVFS_LIBS)			\
 	$(NULL)
@@ -118,6 +121,11 @@ libgnomevfs_2_la_LDFLAGS =			\
 	-version-info $(LIBGNOMEVFS_CURRENT):$(LIBGNOMEVFS_REVISION):$(LIBGNOMEVFS_AGE) \
 	-export-symbols-regex "^[^_].*" \
 	-no-undefined \
+	$(NULL)
+
+libgnomevfsdaemon_2_la_LIBADD =			\
+	$(LIBGNOMEVFS_LIBS)			\
+	$(LIBGNOMEVFSDAEMON_LIBS)		\
 	$(NULL)
 
 libgnomevfsincludedir = $(includedir)/gnome-vfs-2.0/libgnomevfs
@@ -241,7 +249,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-filesystem-type.c		\
 	gnome-vfs-find-directory.c		\
 	gnome-vfs-handle.c			\
-	gnome-vfs-hal-mounts.c			\
 	gnome-vfs-i18n.c			\
 	gnome-vfs-inet-connection.c		\
 	gnome-vfs-init.c			\
@@ -274,11 +281,9 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-ssl.c				\
 	gnome-vfs-thread-pool.c			\
 	gnome-vfs-transform.c			\
-	gnome-vfs-unix-mounts.c			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	gnome-vfs-volume-monitor-client.c	\
-	gnome-vfs-volume-monitor-daemon.c	\
 	gnome-vfs-volume-monitor.c		\
 	gnome-vfs-volume-ops.c			\
 	gnome-vfs-volume.c			\
@@ -294,6 +299,13 @@ libgnomevfs_2_la_SOURCES =			\
 #	$(GOB_FILES)				\
 # BUILT_SOURCES = $(GOB_SRCLIST)
 # CLEANFILES = $(BUILT_SOURCES)
+
+libgnomevfsdaemon_2_la_SOURCES =		\
+	gnome-vfs-hal-mounts.c			\
+	gnome-vfs-volume-monitor-daemon.c	\
+	gnome-vfs-unix-mounts.c			\
+	$(NULL)
+
 
 
 # Platform specific includes

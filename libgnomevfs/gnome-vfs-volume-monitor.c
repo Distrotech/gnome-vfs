@@ -28,7 +28,6 @@
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-volume-monitor.h"
 #include "gnome-vfs-volume-monitor-private.h"
-#include "gnome-vfs-volume-monitor-daemon.h"
 #include "gnome-vfs-volume-monitor-client.h"
 
 static void gnome_vfs_volume_monitor_class_init (GnomeVFSVolumeMonitorClass *klass);
@@ -221,7 +220,7 @@ _gnome_vfs_get_volume_monitor_internal (gboolean create)
 	    create &&
 	    !volume_monitor_was_shutdown) {
 		if (gnome_vfs_get_is_daemon ()) {
-			the_volume_monitor = g_object_new (GNOME_VFS_TYPE_VOLUME_MONITOR_DAEMON, NULL);
+			the_volume_monitor = g_object_new (_gnome_vfs_get_daemon_volume_monitor_type (), NULL);
 		} else {
 			the_volume_monitor = g_object_new (GNOME_VFS_TYPE_VOLUME_MONITOR_CLIENT, NULL);
 		}
