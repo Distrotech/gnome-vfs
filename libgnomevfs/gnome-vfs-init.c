@@ -51,6 +51,10 @@ gnome_vfs_init (void)
 	G_LOCK (vfs_already_initialized);
 
 	if (!vfs_already_initialized) {
+#ifdef ENABLE_NLS
+		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+#endif    
+
 		if (bonobo_activation_orb_get() == NULL) {
 			bonobo_activation_init (0, bogus_argv);
 		}
