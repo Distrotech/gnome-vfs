@@ -474,6 +474,19 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 
 	if (vuri->path != NULL) {
 		int last_slash = strlen (vuri->path) - 1;
+		char *first;
+
+		/* Note: This handling of paths is somewhat evil, may need a
+		 * bit of a rework */
+
+		/* kill leading slashes, that is make sure there is
+		 * only one */
+		for (first = vuri->path; *first == '/'; first++)
+			;
+		if (first != vuri->path) {
+			first--;
+			vuri->path = first;
+		}
 
 		/* kill trailing slashes (leave first if all slashes) */
 		while (last_slash > 0 && vuri->path [last_slash] == '/')
@@ -487,6 +500,11 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 			vuri->file = vuri->path + last_slash + 1;
 		else
 			vuri->file = vuri->path;
+
+		if (vuri->file[0] == '\0' &&
+		    strcmp (vuri->path, "/") == 0) {
+			vuri->file = NULL;
+		}
 	} else {
 		vuri->path = "/";
 		vuri->file = NULL;
