@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-11 15:35+0200\n"
-"PO-Revision-Date: 2004-09-02 10:11+0530\n"
+"POT-Creation-Date: 2004-10-19 05:22+0200\n"
+"PO-Revision-Date: 2004-10-19 15:09+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "<magnet@magnet-i.com>\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
 "\n"
 "\n"
 "\n"
@@ -54,63 +54,64 @@ msgstr "ફાઈલ '%s' માંથી વાંચવામાં નિષ�
 
 #: libgnomevfs/eggdesktopentries.c:572
 #, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr "ડેસ્કટોપ પ્રવેશ લીટી '%s' સમાવે છે કે પ્રવેશ, જૂથ, અથવા ટિપ્પળી નથી"
 
 #: libgnomevfs/eggdesktopentries.c:645
 msgid "desktop entries file does not start with legal start group"
 msgstr "ડેસ્કટોપ પ્રવેશ ફાઈલ યોગ્ય શરુઆત જૂથથી શરુ થતા નથી"
 
-#: libgnomevfs/eggdesktopentries.c:702
+#: libgnomevfs/eggdesktopentries.c:670
+msgid "desktop entry does not start with legal start group"
+msgstr "ડેસ્કટોપ પ્રવેશ યોગ્ય શરુઆત જૂથથી શરુ થતા નથી"
+
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "ડેસ્કટોપ પ્રવેશ લીટી '%s' સમાવે છે કે જે UTF-8 નથી"
 
-#: libgnomevfs/eggdesktopentries.c:725
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "ડેસ્કટોપ પ્રવેશો અજ્ઞાત સંગ્રહપદ્ધતિ '%s' ધરાવે છે"
 
-#: libgnomevfs/eggdesktopentries.c:915 libgnomevfs/eggdesktopentries.c:1027
-#: libgnomevfs/eggdesktopentries.c:1212
+#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
+#: libgnomevfs/eggdesktopentries.c:1221
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "ડેસ્કટોપ પ્રવેશો પાસે કોઈ જૂથ '%s' નથી"
 
-#: libgnomevfs/eggdesktopentries.c:1039
+#: libgnomevfs/eggdesktopentries.c:1048
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "ડેસ્કટોપ પ્રવેશો પાસે કોઈ કી '%s' નથી"
 
-#: libgnomevfs/eggdesktopentries.c:1095 libgnomevfs/eggdesktopentries.c:1268
-#: libgnomevfs/eggdesktopentries.c:1410 libgnomevfs/eggdesktopentries.c:1535
+#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
+#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
 #, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr "ડેસ્કટોપ પ્રવેશ કી '%s' ધરાવે છે કે જેની કિંમત સમજી શકાતી નથી."
 
-#: libgnomevfs/eggdesktopentries.c:1293
+#: libgnomevfs/eggdesktopentries.c:1302
 #, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr "ડેસ્કટોપ પ્રવેશો કી '%s' માટે લોકેલ '%s' સાથે કોઈ ભાષાંતરિત કિંમતો ધરાવતું નથી."
 
-#: libgnomevfs/eggdesktopentries.c:2226
+#: libgnomevfs/eggdesktopentries.c:2235
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "ડેસ્કટોપ પ્રવેશો અયોગ્ય એસ્કેપ હાર '%s' ધરાવે છે"
 
-#: libgnomevfs/eggdesktopentries.c:2243
+#: libgnomevfs/eggdesktopentries.c:2252
 msgid "desktop entries contain escape character at end of line"
 msgstr "ડેસ્કટોપ પ્રવેશો લીટીના અંતે એસ્કેપ અક્ષરો ધરાવે છે"
 
-#: libgnomevfs/eggdesktopentries.c:2268
+#: libgnomevfs/eggdesktopentries.c:2277
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "કિંમત '%s' નંબર તરીકે સમજી શકાતી નથી."
 
-#: libgnomevfs/eggdesktopentries.c:2295
+#: libgnomevfs/eggdesktopentries.c:2304
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "કિંમત '%s' બુલિયન તરીકે સમજી શકાતી નથી."
@@ -443,12 +444,12 @@ msgstr "પ્રક્રિયા થોભી દેવાઇ"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1020
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1038
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1056
-#: libgnomevfs/gnome-vfs-mime-info.c:649 libgnomevfs/gnome-vfs-mime-info.c:656
-#: libgnomevfs/gnome-vfs-mime-info.c:664 libgnomevfs/gnome-vfs-mime-info.c:671
-#: libgnomevfs/gnome-vfs-mime-info.c:679 libgnomevfs/gnome-vfs-mime-info.c:696
-#: libgnomevfs/gnome-vfs-mime-info.c:703 libgnomevfs/gnome-vfs-mime-info.c:710
-#: libgnomevfs/gnome-vfs-mime-info.c:717 libgnomevfs/gnome-vfs-mime-info.c:725
-#: libgnomevfs/gnome-vfs-mime-info.c:732
+#: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
+#: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
+#: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
+#: libgnomevfs/gnome-vfs-mime-info.c:702 libgnomevfs/gnome-vfs-mime-info.c:709
+#: libgnomevfs/gnome-vfs-mime-info.c:716 libgnomevfs/gnome-vfs-mime-info.c:724
+#: libgnomevfs/gnome-vfs-mime-info.c:731
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -938,8 +939,7 @@ msgstr "નેટવર્ક સર્વર"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ.કદાચિત ડ્રાઇવમાં કોઇ ફ્લોપી નથી."
 
 #. All others
@@ -1471,8 +1471,7 @@ msgstr ""
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
-"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/ftp_યજમાન\" કે જેની તમે સીધીપ્રોક્સી કરો છો."
+msgstr "યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/ftp_યજમાન\" કે જેની તમે સીધીપ્રોક્સી કરો છો."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -1523,3 +1522,4 @@ msgstr "SMB કામ કરતુ જૂથ"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "વિન્ડોનુ કામ કરતુ જૂથ કે વપરાશર્ક્તા જેનો ભાગ છે"
+
