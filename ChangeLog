@@ -1,3 +1,14 @@
+2001-03-04  Pavel Cisler <pavel@eazel.com>
+
+	reviewed by: Darin Adler  <darin@eazel.com>
+
+	Fixed 7333: leak in gnome_vfs_mime_get_default_component
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_component):
+	Fix a leak by adding a missing
+	gnome_vfs_mime_component_list_free.
+
 2001-02-28  Maciej Stachowiak  <mjs@eazel.com>
 
 	reviewed by: Darin Adler  <darin@eazel.com>

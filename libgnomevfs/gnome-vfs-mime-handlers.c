@@ -261,6 +261,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 			}
 			g_free (prev);
 		}
+		gnome_vfs_mime_component_list_free (short_list);
 	} else {
 		sort[1] = g_strdup ("true");
 	}
