@@ -1,3 +1,11 @@
+2003-05-15 Radu Greab <radu@netsoft.ro>
+           Christophe Fergeau <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-utils.c(gnome_vfs_get_volume_free_space): 
+	fixed a leak when the function was called with an non-file:// uri
+	* modules/file-method.c(do_is_local): ncpfs file systems aren't local
+	(fixes #97789) 
+
 2003-05-14  Pasupathi Duraisamy <pasupathi.duraisamy@wipro.com>
 
 	* configure.in: check "getdelim" in AC_CHECK_FUNCS
