@@ -1,3 +1,7 @@
+2002-02-11  jacob berkman  <jacob@ximian.com>
+
+	* configure.in: remove checks for capplet things
+
 2002-02-10  Darin Adler  <darin@bentspoon.com>
 
 	* libgnomevfs/Makefile.am:

@@ -130,19 +130,15 @@ GNOME_INIT
 VFS_GNOME_CFLAGS="`gnome-config --cflags gnome`"
 VFS_GNOMEUI_CFLAGS="`gnome-config --cflags gnome gnomeui`"
 VFS_GNOMEGNORBA_CFLAGS="`gnome-config --cflags gnome gnomeui gnorba`"
-VFS_CAPPLET_CFLAGS="`gnome-config --cflags gnome gnomeui capplet`"
 VFS_GNOME_LIBS="`gnome-config --libs gnome`"
 VFS_GNOMEUI_LIBS="`gnome-config --libs gnome gnomeui`"
 VFS_GNOMEGNORBA_LIBS="`gnome-config --libs gnome gnomeui gnorba`"
-VFS_CAPPLET_LIBS="`gnome-config --libs gnome gnomeui capplet`"
 VFS_GLIB_CONFIG="glib-config"
 AC_SUBST(VFS_GNOME_CFLAGS)
 AC_SUBST(VFS_GNOMEUI_CFLAGS)
 AC_SUBST(VFS_GNOMEGNORBA_CFLAGS)
-AC_SUBST(VFS_CAPPLET_CFLAGS)
 AC_SUBST(VFS_GNOME_LIBS)
 AC_SUBST(VFS_GNOMEUI_LIBS)
-AC_SUBST(VFS_CAPPLET_LIBS)
 AC_SUBST(VFS_GNOMEGNORBA_LIBS)
 
 AC_ARG_ENABLE(gconf,
