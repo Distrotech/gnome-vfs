@@ -1,3 +1,9 @@
+2004-03-05  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/default-modules.conf (sftp):
+	Don't include "lib" and ".so" in library reference.
+	Noticed by Michael Wilson <Michael.Wilson@bull.net>
+	
 2004-03-05  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/xdgmimemagic.c: fix sniffing for mime types using
