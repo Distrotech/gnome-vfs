@@ -257,7 +257,7 @@ msgstr "%u bajtov"
 #: libgnomevfs/gnome-vfs-utils.c:50
 #, c-format
 msgid "%.1fK"
-msgstr "%.1F"
+msgstr "%.1fK"
 
 #: libgnomevfs/gnome-vfs-utils.c:54
 #, c-format
@@ -544,7 +544,7 @@ msgstr "Uporabi pregledovalnik"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:410
 msgid "Open With Application"
-msgstr "Odpri z programom"
+msgstr "Odpri s programom"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:422
 msgid "Edit List"
@@ -635,7 +635,7 @@ msgstr "HTTP stre¾nik je vrnil napaèen PROPFIND odgovor"
 #~ msgstr "Dodaj..."
 
 #~ msgid "Delete"
-#~ msgstr "Izbri¹i"
+#~ msgstr "Zbri¹i"
 
 #~ msgid "Use None"
 #~ msgstr "Brez"
