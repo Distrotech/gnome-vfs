@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2001-01-19 03:15+0100\n"
-"PO-Revision-Date: 2001-01-19 19:03+01:00\n"
+"PO-Revision-Date: 2001-01-27 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -419,12 +419,12 @@ msgstr "Ukendt op-type %u"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1727
+#: libgnomevfs-pthread/gnome-vfs-job.c:1728
 #, c-format
 msgid "Unknown job ID %u"
 msgstr "Ukendt job-ID %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1750
+#: libgnomevfs-pthread/gnome-vfs-job.c:1749
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
@@ -524,41 +524,45 @@ msgstr ""
 msgid "Extension:"
 msgstr "Filtype:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1150
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1153
 msgid "New Application"
 msgstr "Ny applikation"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1159
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1263
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1162
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1269
 msgid "Application Name:"
 msgstr "Applikationsnavn:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1167
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1272
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1170
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1278
 msgid "Application Command:"
 msgstr "Applikationskommando:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1175
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1281
+#. FIXME: Need to add expected uri schemes
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1179
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
 msgid "Open Behavior"
 msgstr "Opførsel ved åbning"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1181
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
 msgid "Can open multiple files"
 msgstr "Kan åbne flere filer"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1184
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1291
-msgid "Can open from URI"
-msgstr "Kan åbne fra URI"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1188
+msgid "Expects URIs as arguments"
+msgstr "Forventer URI-er som argumenter"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1254
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1260
 msgid "Edit Application"
 msgstr "Redigér applikation"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1297
+msgid "Can open from URI"
+msgstr "Kan åbne fra URI"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:541
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1532
@@ -997,7 +1001,6 @@ msgstr "Vis dotfiler"
 #~ msgid "PGM image"
 #~ msgstr "CGM-billede"
 
-#, fuzzy
 #~ msgid "PGN chess game"
 #~ msgstr "PGP-meddelelse"
 
@@ -1100,7 +1103,6 @@ msgstr "Vis dotfiler"
 #~ msgid "SVG art"
 #~ msgstr "SVG-kunst"
 
-#, fuzzy
 #~ msgid "Scheme source code"
 #~ msgstr "SQL-kildekode"
 
@@ -1236,7 +1238,6 @@ msgstr "Vis dotfiler"
 #~ msgid "archive"
 #~ msgstr "arkiv"
 
-#, fuzzy
 #~ msgid "arj archive"
 #~ msgstr "tar-arkiv"
 
