@@ -1,3 +1,8 @@
+2005-01-26  Nate Nielsen  <nielsen@memberwebs.com>
+
+	* modules/smb-method.c: Fix (initial_authentication) so that server 
+	connection cache lookup works properly.
+	
 2005-01-26  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* libgnomevfs/gnome-vfs-monitor.c: (destroy_monitor_handle):

@@ -724,6 +724,7 @@ initial_authentication (SmbAuthContext *actx)
 	GnomeVFSToplevelURI *toplevel_uri;
 	SmbServerCacheEntry server_lookup;
 	SmbServerCacheEntry *server;
+        gboolean found_user = FALSE;
         gboolean preset_user = FALSE;
 	char *tmp;
 
@@ -752,28 +753,29 @@ initial_authentication (SmbAuthContext *actx)
 		}
                 preset_user = TRUE;
 	} 
-	
-	/* Lookup the password in our internal cache */
-	server_lookup.server_name = (char*)actx->for_server;
-	server_lookup.share_name = (char*)actx->for_share;
-	server_lookup.username = (char*)actx->use_user;
-	server_lookup.domain = (char*)actx->use_domain;
-		
-	server = g_hash_table_lookup (server_cache, &server_lookup);
-	if (server != NULL) {
-		/* Server is in cache already, no need to get password */
-		g_free (actx->use_password);
-		actx->use_password = g_strdup ("");
-		DEBUG_SMB(("[auth] Using login info for '%s@%s' from our internal cache\n", actx->use_user, actx->use_domain));
-		return TRUE;
-	}
 
-        /* Lookup a default user and domain (both with and without share) */
         if (lookup_user_cache (actx, TRUE, preset_user) ||
             lookup_user_cache (actx, FALSE, preset_user))
-                return TRUE;    
+                found_user = TRUE;
 
-	return FALSE;
+        if (found_user || preset_user) {
+        	/* Lookup the password in our internal cache */
+        	server_lookup.server_name = (char*)actx->for_server;
+        	server_lookup.share_name = (char*)actx->for_share;
+        	server_lookup.username = (char*)actx->use_user;
+        	server_lookup.domain = (char*)actx->use_domain;
+        		
+        	server = g_hash_table_lookup (server_cache, &server_lookup);
+        	if (server != NULL) {
+        		/* Server is in cache already, no need to get password */
+        		g_free (actx->use_password);
+        		actx->use_password = g_strdup ("");
+        		DEBUG_SMB(("[auth] Using login info for '%s@%s' from our internal cache\n", actx->use_user, actx->use_domain));
+                        found_user = TRUE;
+        	}
+        }
+
+	return found_user;
 }
 
 static gboolean
