@@ -1,5 +1,28 @@
 2002-10-25  Alex Graveley  <alex@ximian.com>
 
+	Drop support for the broken .vfolder-info-default concept.
+
+	* modules/vfolder/Makefile.am (EXTRA_DIST): Remove
+	applications.vfolder-info-default.in and
+	preferences.vfolder-info-default.in
+	(vfolder_DATA): Remove applications.vfolder-info-default and
+	preferences.vfolder-info-default.
+
+	* modules/vfolder/applications-all-users.vfolder-info.in: Link to
+	preferences:/// instead of preferences-all-users:///.  If admins
+	want to edit preferences-all-users:, they should go there
+	directly.
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_find_filenames):
+	Don't look for .vfolder-info-default, and don't copy it to the
+	user's vfolder directory.
+	(copy_user_default_file): Remove.
+	(vfolder_info_init): Set the default writedir to
+	~/.gnome2/vfolders/scheme, in case a .vfolder-info files doesn't
+	exist to tell us where to write changes.
+
+2002-10-25  Alex Graveley  <alex@ximian.com>
+
 	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new_private): Use
 	gnome_vfs_context_peek_current() instead of
 	gnome_vfs_context_new() which was triggering an abort if resolving

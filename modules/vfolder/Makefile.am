@@ -22,7 +22,6 @@ INCLUDES =					\
 	$(NULL)
 
 EXTRA_DIST =					\
-	applications.vfolder-info-default.in	\
 	applications-all-users.vfolder-info.in	\
 	preferences-all-users.vfolder-info.in	\
 	favorites.vfolder-info.in		\
@@ -57,7 +56,6 @@ libvfolder_desktop_la_LIBADD = $(top_builddir)/libgnomevfs/libgnomevfs-2.la
 
 vfolderdir = $(sysconfdir)/gnome-vfs-2.0/vfolders
 vfolder_DATA = 					\
-	applications.vfolder-info-default	\
 	applications-all-users.vfolder-info 	\
 	preferences-all-users.vfolder-info	\
 	favorites.vfolder-info			\
@@ -73,9 +71,6 @@ VFOLDER_INFO_CREATE = 				 \
 	    < $< > $@
 
 %.vfolder-info: %.vfolder-info.in 
-	$(VFOLDER_INFO_CREATE)
-
-%.vfolder-info-default: %.vfolder-info-default.in
 	$(VFOLDER_INFO_CREATE)
 
 ###  test-vfolder regression test

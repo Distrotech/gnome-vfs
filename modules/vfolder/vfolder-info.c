@@ -1555,7 +1555,7 @@ check_monitors_foreach (gpointer key, gpointer val, gpointer user_data)
 	}
 }
 
-static void vfolder_info_init (VFolderInfo *info);
+static gboolean vfolder_info_init (VFolderInfo *info);
 
 static gboolean
 filename_monitor_handle (gpointer user_data)
@@ -1593,8 +1593,6 @@ filename_monitor_handle (gpointer user_data)
 
 	vfolder_info_reset (info);
 	vfolder_info_init (info);
-
-	vfolder_info_read_info (info, NULL, NULL);
 
 	/* Start sending events again */
 	info->loading = FALSE;
@@ -1669,51 +1667,7 @@ vfolder_info_new (const char *scheme)
 	return info;
 }
 
-static gboolean
-copy_user_default_file (VFolderInfo *info, GnomeVFSURI *user_file_uri)
-{
-	gchar *default_file_name; 
-	GnomeVFSResult result;
-	GnomeVFSURI *default_file_uri;
-
-	default_file_name = g_strconcat (SYSCONFDIR,
-					 "/gnome-vfs-2.0/vfolders/",
-					 info->scheme, ".vfolder-info-default",
-					 NULL);
-	default_file_uri = gnome_vfs_uri_new (default_file_name);
-	g_free (default_file_name);
-
-	if (!gnome_vfs_uri_exists (default_file_uri)) {
-		gnome_vfs_uri_unref (default_file_uri);
-		return FALSE;
-	}
-
-	result = vfolder_make_directory_and_parents (info->filename, 
-						     TRUE, 
-						     0700);
-	if (result != GNOME_VFS_OK) {
-		g_warning ("Unable to create parent directory for "
-			   "vfolder-info file: %s",
-			   info->filename);
-		gnome_vfs_uri_unref (default_file_uri);
-		return FALSE;
-	}
-
-	/* Copy the default file */
-	result = gnome_vfs_xfer_uri (default_file_uri /* source_uri */,
-				     user_file_uri    /* target_uri */,
-				     GNOME_VFS_XFER_USE_UNIQUE_NAMES, 
-				     GNOME_VFS_XFER_ERROR_MODE_ABORT, 
-				     GNOME_VFS_XFER_OVERWRITE_MODE_ABORT,
-				     NULL, 
-				     NULL);
-
-	gnome_vfs_uri_unref (default_file_uri);
-
-	return result == GNOME_VFS_OK;
-}
-
-static gboolean
+static void
 vfolder_info_find_filenames (VFolderInfo *info)
 {
 	gchar *scheme = info->scheme;
@@ -1725,8 +1679,9 @@ vfolder_info_find_filenames (VFolderInfo *info)
 	 */
 
 	/* 
-	 * 1st: Try mandatory system-global file located at 
-	 *      /etc/gnome-vfs-2.0/vfolders/scheme.vfolder-info.
+	 * 1st: Try mandatory system-global file located at
+	 * /etc/gnome-vfs-2.0/vfolders/scheme.vfolder-info.  Writability will
+	 * depend on permissions of this file.
 	 */
 	info->filename = g_strconcat (SYSCONFDIR,
 				      "/gnome-vfs-2.0/vfolders/",
@@ -1746,20 +1701,6 @@ vfolder_info_find_filenames (VFolderInfo *info)
 					      "/" DOT_GNOME "/vfolders/",
 					      scheme, ".vfolder-info",
 					      NULL);
-		file_uri = gnome_vfs_uri_new (info->filename);
-
-		exists = gnome_vfs_uri_exists (file_uri);
-		if (!exists) {
-			/* 
-			 * 3rd: Try copying system-default file at
-			 *      /etc/gnome-vfs-2.0/vfolders/
-			 *                           scheme.vfolder-info-default
-			 *      to user-private location. 
-			 */
-			exists = copy_user_default_file (info, file_uri);
-		}
-
-		gnome_vfs_uri_unref (file_uri);
 	}
 
 	/* 
@@ -1792,8 +1733,6 @@ vfolder_info_find_filenames (VFolderInfo *info)
 			g_strfreev (ppath);
 		}
 	}
-
-	return exists;
 }
 
 static gboolean
@@ -1820,7 +1759,7 @@ g_str_case_hash (gconstpointer key)
 	return h;
 }
 
-static void
+static gboolean
 vfolder_info_init (VFolderInfo *info)
 {
 	gchar *all_user_scheme;
@@ -1832,12 +1771,23 @@ vfolder_info_init (VFolderInfo *info)
 	/* 
 	 * Set the extend uri for the root folder to the -all-users version of
 	 * the scheme, in case the user doesn't have a private .vfolder-info
-	 * file, and there's no default.  
+	 * file yet.  
 	 */
 	all_user_scheme = g_strconcat (info->scheme, "-all-users:///", NULL);
 	folder_set_extend_uri (info->root, all_user_scheme);
 	g_free (all_user_scheme);
 
+	/* 
+	 * Set the default writedir, in case there is no .vfolder-info for this
+	 * scheme yet.  Otherwise this will be overwritten when we read our
+	 * source.
+	 */
+	info->write_dir = g_strconcat (g_get_home_dir (),
+				       "/" DOT_GNOME "/vfolders/",
+				       info->scheme,
+				       NULL);
+
+	/* Figure out which .vfolder-info to read */
 	vfolder_info_find_filenames (info);
 
 	if (g_getenv ("GNOME_VFS_VFOLDER_INFODIR")) {
@@ -1871,6 +1821,9 @@ vfolder_info_init (VFolderInfo *info)
 	info->modification_time = time (NULL);
 	info->loading = FALSE;
 	info->dirty = FALSE;
+
+	/* Read from the user's .vfolder-info if it exists */
+	return vfolder_info_read_info (info, NULL, NULL);
 }
 
 static void
@@ -1942,9 +1895,7 @@ vfolder_info_locate (const gchar *scheme)
 		VFOLDER_INFO_WRITE_LOCK (info);
 		G_UNLOCK (vfolder_lock);
 
-		vfolder_info_init (info);
-
-		if (!vfolder_info_read_info (info, NULL, NULL)) {
+		if (!vfolder_info_init (info)) {
 			D (g_print ("DESTROYING INFO FOR SCHEME: %s\n", 
 				    scheme));
 
@@ -1953,17 +1904,16 @@ vfolder_info_locate (const gchar *scheme)
 			G_UNLOCK (vfolder_lock);
 
 			return NULL;
-		} else {
-			if (info->has_unallocated_folder) {
-				info->loading = TRUE;
-				load_folders (info->root);
-				info->loading = FALSE;
-			}
-
-			VFOLDER_INFO_WRITE_UNLOCK (info);
-
-			return info;
 		}
+			
+		if (info->has_unallocated_folder) {
+			info->loading = TRUE;
+			load_folders (info->root);
+			info->loading = FALSE;
+		}
+
+		VFOLDER_INFO_WRITE_UNLOCK (info);
+		return info;
 	}
 }
 
