@@ -11,3 +11,5 @@ cat-id-tbl.c
 cat-id-tbl.c
 gnome-vfs.pot
 stamp-cat-id
+*.pot
+
