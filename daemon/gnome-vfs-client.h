@@ -27,6 +27,12 @@ typedef struct {
 } GnomeVfsClientClass;
 
 GType gnome_vfs_client_get_type (void) G_GNUC_CONST;
+void  gnome_vfs_client_deregister (GnomeVfsClient    *client,
+				   GNOME_VFS_Daemon   daemon,
+				   CORBA_Environment *ev);
+void  gnome_vfs_client_register (GnomeVfsClient    *client,
+				 GNOME_VFS_Daemon   daemon,
+				 CORBA_Environment *ev);
 
 G_END_DECLS
 

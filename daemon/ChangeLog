@@ -1,3 +1,14 @@
+2002-12-20  Christophe Fergeau <teuf@users.sourceforge.net>
+	* daemon/Makefile.am
+	* daemon/gnome-vfs-authentication.c
+	* daemon/gnome-vfs-authentication.h
+	* daemon/gnome-vfs-client.c
+	* daemon/gnome-vfs-client.h
+	* daemon/gnome-vfs-daemon.c
+	* daemon/test-authentication.c: wrapped CORBA calls in a nicer C API,
+	moved the test code out of gnome-vfs-client to test-authentication.c
+	(and use the C API for the tests)
+
 2002-12-11  Christophe Fergeau <teuf@users.sourceforge.net>
 
 	* GNOME_VFS_Daemon-common.c

@@ -1,11 +1,14 @@
-bin_PROGRAMS=vfs-client vfs-daemon
+bin_PROGRAMS=test-authentication vfs-daemon
 
 INCLUDES=$(MONIKERS_CFLAGS)
 LIBS=$(MONIKERS_LIBS) -lgnomevfs-2
 
-vfs_client_SOURCES = \
+test_authentication_SOURCES = \
 	gnome-vfs-client.c \
 	gnome-vfs-client.h \
+	gnome-vfs-authentication.c \
+	gnome-vfs-authentication.h \
+	test-authentication.c \
 	$(CORBA_SOURCE)
 
 vfs_daemon_SOURCES = \
@@ -14,7 +17,7 @@ vfs_daemon_SOURCES = \
 	$(CORBA_SOURCE)
 
 $(vfs_daemon_OBJECTS): GNOME_VFS_Daemon.h
-$(vfs_client_OBJECTS): GNOME_VFS_Daemon.h
+$(test_authentication_OBJECTS): GNOME_VFS_Daemon.h
 
 CORBA_SOURCE = \
 	GNOME_VFS_Daemon.h		\
