@@ -1,3 +1,7 @@
+1999-09-29  Rodrigo Stulzer Lopes <rodrigo@conectiva.com.br>
+
+	* configure.in: add pt_BR to ALL_LINGUAS
+
 1999-09-29  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* modules/ftp-method.c (MUTEX_LOCK): New macro to lock a mutex.
