@@ -203,9 +203,10 @@ xfer_open_source (GnomeVFSHandle **source_handle,
 	GnomeVFSResult result;
 	gboolean retry;
 
-	retry = FALSE;
 	*skip = FALSE;
 	do {
+		retry = FALSE;
+
 		result = gnome_vfs_open_uri (source_handle, source_uri,
 					     GNOME_VFS_OPEN_READ);
 		if (result != GNOME_VFS_OK)
@@ -237,9 +238,10 @@ xfer_create_target (GnomeVFSHandle **target_handle,
 	else
 		exclusive = TRUE;
 
-	retry = FALSE;
 	*skip = FALSE;
 	do {
+		retry = FALSE;
+
 		result = gnome_vfs_create_uri (target_handle, target_uri,
 					       GNOME_VFS_OPEN_WRITE,
 					       exclusive, 0600);
@@ -265,6 +267,8 @@ xfer_create_target (GnomeVFSHandle **target_handle,
 					      progress_callback,
 					      data,
 					      skip);
+		} else {
+			retry = FALSE;
 		}
 	} while (retry);
 
@@ -298,11 +302,11 @@ xfer_file (GnomeVFSHandle *target_handle,
 		progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 		progress_info->vfs_status = GNOME_VFS_OK;
 
-		retry = FALSE;
-
 		progress_info->phase = GNOME_VFS_XFER_PHASE_READSOURCE;
 
 		do {
+			retry = FALSE;
+
 			result = gnome_vfs_read (source_handle, buffer,
 						 block_size, &bytes_read);
 			if (result != GNOME_VFS_OK)
@@ -320,6 +324,8 @@ xfer_file (GnomeVFSHandle *target_handle,
 		progress_info->phase = GNOME_VFS_XFER_PHASE_WRITETARGET;
 
 		do {
+			retry = FALSE;
+
 			result = gnome_vfs_write (target_handle, buffer,
 						  bytes_to_write,
 						  &bytes_written);
@@ -611,9 +617,10 @@ copy_directory (Source *source,
 	GnomeVFSResult result;
 	gboolean retry;
 
-	retry = FALSE;
 	*skip = FALSE;
 	do {
+		retry = FALSE;
+
 		result = gnome_vfs_make_directory_for_uri (target_uri, 0700);
 
 		/* We ignore file existance here so that we are not too much of
@@ -656,9 +663,9 @@ remove_directory (GnomeVFSURI *uri,
 	GnomeVFSResult result;
 	gboolean retry;
 
-	retry = FALSE;
-
 	do {
+		retry = FALSE;
+
 		result = gnome_vfs_remove_directory_from_uri (uri);
 		if (result != GNOME_VFS_OK)
 			retry = handle_error (&result, progress_info,
@@ -691,8 +698,9 @@ move_file (Source *source,
 	else
 		force_replace = FALSE;
 
-	retry = FALSE;
 	do {
+		retry = FALSE;
+
 		result = gnome_vfs_move_uri (source_uri, target_uri,
 					     force_replace);
 
