@@ -1,3 +1,15 @@
+2000-11-02  Andy Hertzfeld  <andy@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_short_list_applications):
+	made it only include applications from the supertype on the
+	short list if there were no applications assigned to the
+	specific type.
+	
+	* data/mime/gnome-vfs.keys:
+	removed "lynx" from the text/html short list for novice and
+	intermediate users.
+	
 2000-11-02  Darin Adler  <darin@eazel.com>
 
 	Fix bug 4377 (Crash in the http method as a result of a redirect).

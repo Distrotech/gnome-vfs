@@ -1431,8 +1431,8 @@ text/html
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	#default_application_id=mozilla
-	short_list_application_ids_for_novice_user_level=mozilla,netscape,lynx,galeon
-	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,lynx,galeon
+	short_list_application_ids_for_novice_user_level=mozilla,netscape,galeon
+	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,galeon
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx,galeon
 
 text/htmlh

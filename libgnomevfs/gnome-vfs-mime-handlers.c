@@ -479,11 +479,11 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 							       (mime_type,
 								"short_list_application_user_removals"));
 
-	/* Get supertype info to merge in. */
-
+	/* Only include the supertype in the short list if we came up empty with
+	   the specific types */
 	supertype = mime_type_get_supertype (mime_type);
 
-	if (strcmp (supertype, mime_type) != 0) {
+	if ((strcmp (supertype, mime_type) != 0) && (system_short_list == NULL)) {
 		supertype_short_list = comma_separated_str_to_str_list 
 			(gnome_vfs_mime_get_value_for_user_level 
 			 (supertype, 
