@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs-2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-09 18:33+0530\n"
+"POT-Creation-Date: 2004-06-01 08:33+0200\n"
 "PO-Revision-Date: 2004-02-29 20:47+0530\n"
 "Last-Translator: Nirav, Ankit, Ankur, Atit, Bhavin, Kartik, Khushbu, Sweta. "
 "<magnet@magnet-i.com>\n"
@@ -538,56 +538,58 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
+#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
 msgid " (invalid Unicode)"
 msgstr " (અયોગ્ય યુનીકોડ)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
 msgid "Floppy"
 msgstr "ફ્લોપી"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
 msgid "CD-ROM"
 msgstr "સીડી-રોમ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
 msgid "Zip Drive"
 msgstr "ઝીપ ડ્રાઇવ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
 msgid "Memory Stick"
 msgstr "મૅમરી સ્ટીક"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
 msgid "Camera"
 msgstr "કેમેરા"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
 msgid "Root Volume"
 msgstr "રુટ કદ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
 msgid "Audio CD"
 msgstr "ઓડિયો સીડી"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
 msgid "Unknown volume"
 msgstr "અજાણીતુ કદ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
 msgid "Network server"
 msgstr "નેટવર્ક સર્વર"
 
+#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ.કદાચિત ડ્રાઇવમાં કોઇ ફ્લોપી નથી."
 
+#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "કદને માઉન્ટ કરવામાં ભૂલ. કદાચ ઉપકરણમાં કોઇ મિડિયા નથી."

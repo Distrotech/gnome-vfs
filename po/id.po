@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-06 15:13+0700\n"
+"POT-Creation-Date: 2004-06-01 08:33+0200\n"
 "PO-Revision-Date: 2003-06-12 15:24+0700\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesia <id@li.org>\n"
@@ -478,55 +478,57 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
+#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
 msgid " (invalid Unicode)"
 msgstr " (unicode tidak benar)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
 msgid "Floppy"
 msgstr "Disket"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
 msgid "Zip Drive"
 msgstr "Drive Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
 msgid "Memory Stick"
 msgstr "Memori Stik"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
 msgid "Camera"
 msgstr "Kamera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
 msgid "Root Volume"
 msgstr "Volume Root"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
 msgid "Audio CD"
 msgstr "CD Audio"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
 msgid "Unknown volume"
 msgstr "Volume tidak dikenal"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
 msgid "Network server"
 msgstr "Server Jaringan"
 
+#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Tidak dapat memasang disket. Disketnya belum dimasukkan?"
 
+#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""

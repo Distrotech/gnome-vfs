@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-22 13:53+0100\n"
+"POT-Creation-Date: 2004-06-01 08:33+0200\n"
 "PO-Revision-Date: 2004-03-06 19:24+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -205,31 +205,31 @@ msgstr "Volumen XIAFS"
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: libgnomevfs/gnome-vfs-job.c:774
+#: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Tipo de op %u desconocida"
 
-#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "No se puede crear el pipe para el GIOChannel abierto: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1727
+#: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipo de trabajo %u desconocido"
 
-#: libgnomevfs/gnome-vfs-job.c:1760
+#: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "La operación ha sido detenida"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:659
+#: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
 msgstr "No se puede analizar: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:661
+#: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
 msgstr "El resto de los errores de análisis serán ignorados."
 
@@ -489,47 +489,47 @@ msgstr "%.1f MiB"
 msgid "%.1f GB"
 msgstr "%.1f Gib"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
+#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
 msgid "Floppy"
 msgstr "Disquete"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
 msgid "Zip Drive"
 msgstr "Unidad Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
 msgid "Memory Stick"
 msgstr "Barra de memoria"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
 msgid "Camera"
 msgstr "Cámara"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
 msgid "Root Volume"
 msgstr "Volumen raíz"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
 msgid "Audio CD"
 msgstr "CD de sonido"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
 msgid "Unknown volume"
 msgstr "Volumen desconocido"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
 msgid "Network server"
 msgstr "Servidor de red"
 

@@ -3,18 +3,18 @@
 # Borislav Aleksandrov <B.Aleksandrov@cnsys.bg>, 2002.
 # Alexander Shopov <al_shopov@yahoo.com>, 2003.
 # Updated by Peter "Peshka" Slavov <pslavov@i-space.org>, 2004
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs + gnome-vfs-extras\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-25 13:49+0200\n"
+"POT-Creation-Date: 2004-06-01 08:33+0200\n"
 "PO-Revision-Date: 2004-05-25 21:18+0300\n"
 "Last-Translator: Updated by Peter \"Peshka\" Slavov <pslavov@i-space.org>>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
@@ -194,22 +194,22 @@ msgstr "XIAFS·Диск"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: libgnomevfs/gnome-vfs-job.c:774
+#: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Неизвестен тип операция %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Не мога да създам програмен канал за отваряне на GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1727
+#: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Неизвестен вид задание %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1760
+#: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "Операцията е спряна"
 
@@ -457,9 +457,11 @@ msgid "Unknown error"
 msgstr "Неизвестна грешка"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, c-format
+#, fuzzy, c-format
 msgid "%u byte"
-msgstr "%u байт"
+msgid_plural "%u bytes"
+msgstr[0] "%u байт"
+msgstr[1] "%u байт"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -477,46 +479,46 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
 msgid " (invalid Unicode)"
 msgstr " (грешен уникод)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
 msgid "Floppy"
 msgstr "Дискета"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
 msgid "Zip Drive"
 msgstr "Zip·Устройство"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
 msgid "Memory Stick"
 msgstr "Memory·Stick"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
 msgid "Camera"
 msgstr "Фотоапарат"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
 msgid "Root Volume"
 msgstr "Root·Диск"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
 msgid "Audio CD"
 msgstr "Аудио·CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
 msgid "Unknown volume"
 msgstr "Неизвестно устройство"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
 msgid "Network server"
 msgstr "Мрежови сървър"
 
@@ -525,7 +527,8 @@ msgstr "Мрежови сървър"
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
-"Дисковото устройство не може да бъде монтирано. Вероятно няма дискета в устройството."
+"Дисковото устройство не може да бъде монтирано. Вероятно няма дискета в "
+"устройството."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117

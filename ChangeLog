@@ -1,3 +1,8 @@
+2004-06-01  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS:
+	Update for 2.7.1
+
 Thu May 27 15:59:40 2004  Jonathan Blandford  <jrb@gnome.org>
 
 	* libgnomevfs/xdgmimemagic.c: Sync from upstream.

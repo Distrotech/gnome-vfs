@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-22 13:53+0100\n"
+"POT-Creation-Date: 2004-06-01 08:33+0200\n"
 "PO-Revision-Date: 2004-02-14 00:20+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -195,31 +195,31 @@ msgstr "XIAFS ボリューム"
 msgid "Unknown"
 msgstr "不明"
 
-#: libgnomevfs/gnome-vfs-job.c:774
+#: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown op type %u"
 msgstr "オペレーションの種類 %u が不明です"
 
-#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel を開くためのパイプを作成することができません: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1727
+#: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "ジョブの種類 %u が不明です"
 
-#: libgnomevfs/gnome-vfs-job.c:1760
+#: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "操作を停止しました"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:659
+#: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
 msgstr "解析できませんでした: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:661
+#: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
 msgstr "これ以上の解析エラーは無視されます。"
 
@@ -479,47 +479,47 @@ msgstr "%.1f Mバイト"
 msgid "%.1f GB"
 msgstr "%.1f Gバイト"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
+#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
 msgid " (invalid Unicode)"
 msgstr " (Unicode が正しくありません)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
 msgid "Floppy"
 msgstr "フロッピー"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
 msgid "Zip Drive"
 msgstr "Zip ドライブ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
 msgid "Memory Stick"
 msgstr "メモリ・スティック"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
 msgid "Camera"
 msgstr "カメラ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
 msgid "Root Volume"
 msgstr "Root ボリューム"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
 msgid "Audio CD"
 msgstr "オーディオ CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
 msgid "Unknown volume"
 msgstr "不明なボリューム"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
 msgid "Network server"
 msgstr "ネットワーク・サーバ"
 

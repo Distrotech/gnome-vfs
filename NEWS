@@ -1,3 +1,16 @@
+gnome-vfs 2.7.1
+	* Bugs fixed:
+	        + fixed some mime issues (sync w/ upstream)
+		+ keyring support for sftp:
+		+ deprecate ssh: and alias it to sftp:
+		+ handle cdrom/floppy mountpoints outside /mnt
+		+ fix multiple file copies with ftp:
+		+ fix some sftp bugs
+		+ freebsd build fix
+		+ new ask callback, used to implement ssh host key
+		  questions
+		+ Work on making sockets cancellable
+		
 gnome-vfs 2.6.0
 	* Bugs fixed:
 	        + Some doc fixes

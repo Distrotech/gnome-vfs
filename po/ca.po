@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-31 14:55+0200\n"
+"POT-Creation-Date: 2004-06-01 08:33+0200\n"
 "PO-Revision-Date: 2004-03-31 15:20+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -194,22 +194,22 @@ msgstr "Volum de XIAFS"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: libgnomevfs/gnome-vfs-job.c:774
+#: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Tipus d'op %u desconegut"
 
-#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "No es pot crear la connexió per obrir GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1727
+#: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipus de feina %u desconegut"
 
-#: libgnomevfs/gnome-vfs-job.c:1760
+#: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "Operació aturada"
 
@@ -478,47 +478,47 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
+#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
 msgid " (invalid Unicode)"
 msgstr " (Unicode invàlid)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
 msgid "Floppy"
 msgstr "Disquet"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
 msgid "Zip Drive"
 msgstr "Unitat Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
 msgid "Memory Stick"
 msgstr "Memòria portàtil"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
 msgid "Camera"
 msgstr "Càmera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
 msgid "Root Volume"
 msgstr "Volum arrel"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
 msgid "Audio CD"
 msgstr "CD d'àudio"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
 msgid "Unknown volume"
 msgstr "Volum desconegut"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
 msgid "Network server"
 msgstr "Servidor de xarxa"
 
@@ -526,24 +526,31 @@ msgstr "Servidor de xarxa"
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "No s'ha pogut muntar la disquetera. Segurament no hi ha cap disquet a la unitat."
+msgstr ""
+"No s'ha pogut muntar la disquetera. Segurament no hi ha cap disquet a la "
+"unitat."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "No s'ha pogut muntar el volum. Segurament no hi ha cap medi al dispositiu."
+msgstr ""
+"No s'ha pogut muntar el volum. Segurament no hi ha cap medi al dispositiu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr "No s'ha pogut muntar la disquetera. El disquet probablement és en un format que no es pot muntar."
+msgstr ""
+"No s'ha pogut muntar la disquetera. El disquet probablement és en un format "
+"que no es pot muntar."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "No s'ha pogut muntar el volum seleccionat. El volum probablement és en un format que no es pot muntar."
+msgstr ""
+"No s'ha pogut muntar el volum seleccionat. El volum probablement és en un "
+"format que no es pot muntar."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -688,17 +695,23 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr "L'aplicació a usar per a visualitzar fitxers que requereixen un compoment per ser visualitzats. Es reemplaçarà el paràmetre %s amb l'URI del fitxer, i es reemplaçarà el paràmetre %c amb l'IID del component."
+msgstr ""
+"L'aplicació a usar per a visualitzar fitxers que requereixen un compoment "
+"per ser visualitzats. Es reemplaçarà el paràmetre %s amb l'URI del fitxer, i "
+"es reemplaçarà el paràmetre %c amb l'IID del component."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "L'aplicació de terminal a usar per defecte per a aplicacions que requereixen un terminal."
+msgstr ""
+"L'aplicació de terminal a usar per defecte per a aplicacions que requereixen "
+"un terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "L'argument d'execució a usar per a l'aplicació de terminal predeterminada."
+msgstr ""
+"L'argument d'execució a usar per a l'aplicació de terminal predeterminada."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
@@ -755,50 +768,70 @@ msgstr "Executa el programa en un terminal"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr "Establiu a vertader per a que un programa especificat en «command» gestione les URL H323."
+msgstr ""
+"Establiu a vertader per a que un programa especificat en «command» gestione "
+"les URL H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr "Establiu a vertader per a que un programa especificat en «command» gestione les URL HTTP."
+msgstr ""
+"Establiu a vertader per a que un programa especificat en «command» gestione "
+"les URL HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr "Establiu a vertader per a que un programa especificat en «command» gestione les URL HTTPS."
+msgstr ""
+"Establiu a vertader per a que un programa especificat en «command» gestione "
+"les URL HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr "Establiu a vertader per a que un programa especificat en «command» gestione les URL callto."
+msgstr ""
+"Establiu a vertader per a que un programa especificat en «command» gestione "
+"les URL callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr "Establiu a vertader per a que un programa especificat en «command» gestione les URL ghelp."
+msgstr ""
+"Establiu a vertader per a que un programa especificat en «command» gestione "
+"les URL ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr "Establiu a vertader per a que un programa especificat en «command» gestione les URL info."
+msgstr ""
+"Establiu a vertader per a que un programa especificat en «command» gestione "
+"les URL info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr "Establiu a vertader per a que un programa especificat en «command» gestione les URL mailto."
+msgstr ""
+"Establiu a vertader per a que un programa especificat en «command» gestione "
+"les URL mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "Establiu a vertader per a que un programa especificat en «command» gestione les URL man."
+msgstr ""
+"Establiu a vertader per a que un programa especificat en «command» gestione "
+"les URL man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr "Establiu a vertader per a que un programa especificat en «command» gestione les URL trash."
+msgstr ""
+"Establiu a vertader per a que un programa especificat en «command» gestione "
+"les URL trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr "Vertader si el programa per a gestionar aquest URL hauria d'executar-se en un terminal."
+msgstr ""
+"Vertader si el programa per a gestionar aquest URL hauria d'executar-se en "
+"un terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -834,7 +867,9 @@ msgstr "URL de configuració automàtica del servidor intermediari"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Habilita els paràmetres del servidor intermediari quan s'accedeix a HTTP per Internet."
+msgstr ""
+"Habilita els paràmetres del servidor intermediari quan s'accedeix a HTTP per "
+"Internet."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -865,7 +900,11 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
-msgstr "Si és vertader, les connexions al servidor intermediari requereixen autenticació. La combinació usuari/contrasenya és definida per «/system/http_proxy/authentication_use» i «/system/http_proxy/authentication_password»."
+msgstr ""
+"Si és vertader, les connexions al servidor intermediari requereixen "
+"autenticació. La combinació usuari/contrasenya és definida per «/system/"
+"http_proxy/authentication_use» i «/system/http_proxy/"
+"authentication_password»."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -873,7 +912,9 @@ msgstr "Ordinadors sense servidor intermediari"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Contrasenya a passar com autenticació quan es fa servir el servidor intermediari d'HTTP."
+msgstr ""
+"Contrasenya a passar com autenticació quan es fa servir el servidor "
+"intermediari d'HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -899,7 +940,9 @@ msgstr "Port del servidor intermediari d'HTTP segur"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "Selecciona el mode de configuració del servidor intermediari. Els valors suportats són «none», «manual», «auto»."
+msgstr ""
+"Selecciona el mode de configuració del servidor intermediari. Els valors "
+"suportats són «none», «manual», «auto»."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -921,25 +964,33 @@ msgstr "El nom del servidor que fa de servidor intermediari de socks."
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "El port a l'ordinador definit per «/system/http_proxy/host» pel que escolta el servidor intermediari."
+msgstr ""
+"El port a l'ordinador definit per «/system/http_proxy/host» pel que escolta "
+"el servidor intermediari."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "El port a l'ordinador definit per «/system/proxy/ftp_host» pel que escolta el servidor intermediari."
+msgstr ""
+"El port a l'ordinador definit per «/system/proxy/ftp_host» pel que escolta "
+"el servidor intermediari."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "El port a l'ordinador definit per «/system/proxy/secure_host» pel que escolta el servidor intermediari."
+msgstr ""
+"El port a l'ordinador definit per «/system/proxy/secure_host» pel que "
+"escolta el servidor intermediari."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "El port a l'ordinador definit per «/system/proxy/socks_host» pel que escolta el servidor intermediari."
+msgstr ""
+"El port a l'ordinador definit per «/system/proxy/socks_host» pel que escolta "
+"el servidor intermediari."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -947,7 +998,12 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "Aquesta clau conté una llista d'ordinadors als que s'està connectat directament, i no a través d'un servidor intermediari (si és actiu). Els valors poden ser noms d'ordinador, dominis (usant un comodí inicial, com *.foo.com), adreces IP d'ordinadors (tant IPv4 com IPv6) i adreces de xarxa amb una màscara de xarxa (alguna cosa com 192.168.0.0/24)."
+msgstr ""
+"Aquesta clau conté una llista d'ordinadors als que s'està connectat "
+"directament, i no a través d'un servidor intermediari (si és actiu). Els "
+"valors poden ser noms d'ordinador, dominis (usant un comodí inicial, com *."
+"foo.com), adreces IP d'ordinadors (tant IPv4 com IPv6) i adreces de xarxa "
+"amb una màscara de xarxa (alguna cosa com 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -959,7 +1015,9 @@ msgstr "Utilitza un servidor intermediari d'HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Nom d'usuari a passar com autenticació quan es fa servir el servidor intermediari d'HTTP."
+msgstr ""
+"Nom d'usuari a passar com autenticació quan es fa servir el servidor "
+"intermediari d'HTTP."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"

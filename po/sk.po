@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-09 03:58+0100\n"
+"POT-Creation-Date: 2004-06-01 08:33+0200\n"
 "PO-Revision-Date: 2004-03-23 17:34+0100\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
@@ -197,31 +198,31 @@ msgstr "Disk XIAFS"
 msgid "Unknown"
 msgstr "Neznámy"
 
-#: libgnomevfs/gnome-vfs-job.c:774
+#: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Neznámy typ operácie %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nemôžem vytvoriť rúru pre otvorenie GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1727
+#: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Neznáme typ úlohy %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1760
+#: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "Operácia zastavená"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:659
+#: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Nemôžem rozložiť: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:661
+#: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
 msgstr "Ďalšie chyby budú ignorované."
 
@@ -482,53 +483,54 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
+#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
 msgid " (invalid Unicode)"
 msgstr " (neplatný Unicode kód)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
 msgid "Floppy"
 msgstr "Disketa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
 msgid "Zip Drive"
 msgstr "Mechanika Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
 msgid "Memory Stick"
 msgstr "Memory Stick"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
 msgid "Camera"
 msgstr "Digitálny fotoaparát"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
 msgid "Root Volume"
 msgstr "Koreňový disk"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
 msgid "Audio CD"
 msgstr "Zvukové CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
 msgid "Unknown volume"
 msgstr "Neznámy disk"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
 msgid "Network server"
 msgstr "Sieťový server"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Nepodarilo sa pripojiť disketu. Možno v mechanike žiadna nie je."
 
 #. All others
@@ -540,7 +542,8 @@ msgstr "Nepodarilo sa pripojiť disk. Možno v mechanike nie je médium."
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr "Nepodarilo sa pripojiť disketu. Disketa asi nie je v podporovanom formáte."
+msgstr ""
+"Nepodarilo sa pripojiť disketu. Disketa asi nie je v podporovanom formáte."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
@@ -690,9 +693,9 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Aplikácia používaná pre zobrazenie súborov, ktoré vyžadujú "
-"nejaký komponent pre zobrazenie. Parameter %s sa "
-"nahradí URI súborov, %c bude nahradené IID komponentu."
+"Aplikácia používaná pre zobrazenie súborov, ktoré vyžadujú nejaký komponent "
+"pre zobrazenie. Parameter %s sa nahradí URI súborov, %c bude nahradené IID "
+"komponentu."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -757,40 +760,57 @@ msgid "Run program in terminal"
 msgstr "Spustiť program v termináli"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr "Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre H323."
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgstr ""
+"Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr "Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre HTTP."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgstr ""
+"Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr "Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre HTTPS."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgstr ""
+"Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr "Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre callto."
+msgid ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
+msgstr ""
+"Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr "Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre ghelp."
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgstr ""
+"Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr "Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre info."
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
+msgstr ""
+"Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr "Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre mailto."
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgstr ""
+"Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre man."
+msgstr ""
+"Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr "Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre kôš."
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr ""
+"Nastavte na true, ak program zadaný v \"príkaz\" podporuje URL pre kôš."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
@@ -862,10 +882,9 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Ak je true, pripojenie k proxy server vyžaduje prihlásenie. "
-"Používateľ a heslo sú definované v "
-"\"/system/http_proxy/authentication_user"
-"\" a \"/system/http_proxy/authentication_password\"."
+"Ak je true, pripojenie k proxy server vyžaduje prihlásenie. Používateľ a "
+"heslo sú definované v \"/system/http_proxy/authentication_user\" a \"/system/"
+"http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -900,8 +919,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Výber režimu nastavenia proxy. Podporované hodnoty sú \"none\", "
-"\"manual\", \"auto\"."
+"Výber režimu nastavenia proxy. Podporované hodnoty sú \"none\", \"manual\", "
+"\"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -924,32 +943,32 @@ msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"Port počítača definovaného v \"/system/http_proxy/host\", na "
-"ktorom sa používa proxy."
+"Port počítača definovaného v \"/system/http_proxy/host\", na ktorom sa "
+"používa proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Port počítača definovaného v \"/system/proxy/ftp_host\", na "
-"ktorom sa používa proxy."
+"Port počítača definovaného v \"/system/proxy/ftp_host\", na ktorom sa "
+"používa proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"Port počítača definovaného v \"/system/proxy/secure_host\", na "
-"ktorom sa používa proxy."
+"Port počítača definovaného v \"/system/proxy/secure_host\", na ktorom sa "
+"používa proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Port počítača definovaného v \"/system/proxy/socks_host\", na "
-"ktorom sa používa proxy."
+"Port počítača definovaného v \"/system/proxy/socks_host\", na ktorom sa "
+"používa proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -958,11 +977,10 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Tento kľúč obsahuje zoznam hostiteľov, ku ktorým sa má "
-"pripojovať priamo, bez použitia proxy (ak je zapnutá). "
-"Hodnoty môžu byť mená hostiteľov, domény (pomocou "
-"žolíkov, napr. *.foo.com), IP adresy (IPv4 aj IPv6) a "
-"sieťové adresy s maskou (napr. 192.168.0.0/24)."
+"Tento kľúč obsahuje zoznam hostiteľov, ku ktorým sa má pripojovať priamo, "
+"bez použitia proxy (ak je zapnutá). Hodnoty môžu byť mená hostiteľov, domény "
+"(pomocou žolíkov, napr. *.foo.com), IP adresy (IPv4 aj IPv6) a sieťové "
+"adresy s maskou (napr. 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -983,4 +1001,3 @@ msgstr "Pracovná skupina SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Pracovná skupina, ktorej členom je používateľ"
-
