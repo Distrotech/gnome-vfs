@@ -1,3 +1,16 @@
+2004-08-27  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/http-neon-method.c (http_options):
+	Correctly follow redirects.	
+
+2004-08-27  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/file-method.c:
+	Revert part of recent change. For some cases this is needed
+	anyway (such as when the toplevel found by the algorithm is a
+	symlink), since otherwise we won't find the right trash
+	directories when displaying the merged trash.
+
 2004-08-26  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/file-method.c (find_disk_top_directory):

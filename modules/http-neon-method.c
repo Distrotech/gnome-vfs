@@ -1869,6 +1869,7 @@ http_options (HttpContext *hctx, gint *dav_class)
 	
 	if (res == NE_REDIRECT) {
 		ne_request_destroy (req);
+		result = http_follow_redirect (hctx);
 		goto options_start;
 	}
 
