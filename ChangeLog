@@ -1,3 +1,12 @@
+2000-09-18  Mathieu Lacage  <mathieu@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (context_new),
+	(load_mime_list_info_from): fix on fixup on fix on 
+	my previous commit. This parser code is truly evil
+	but it now works both for me and dan.
+	Remove the ":" at the end of old .mime file format 
+	when reading.
+
 2000-09-18  Maciej Stachowiak  <mjs@eazel.com>
 
 	Rename "foobar" module to "test".

@@ -136,6 +136,7 @@ context_new (GHashTable *hash_table, GString *str)
 	char last_char;
 
 	mime_type = g_strdup (str->str);
+
 	last_char = mime_type[strlen (mime_type) - 1];
 	if (last_char == '*') {
 		mime_type[strlen (mime_type) - 1] = '\0';
@@ -523,6 +524,10 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 			/* fall down */
 			
 		case STATE_ON_MIME_TYPE:
+			if (c == ':'){
+				in_comment = TRUE;
+				break;
+			}
 			g_string_append_c (line, c);
 			break;
 
