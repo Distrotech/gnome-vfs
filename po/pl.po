@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-02-04 16:49-0800\n"
+"POT-Creation-Date: 2002-02-11 13:53-0800\n"
 "PO-Revision-Date: 2000-10-18 21:12+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -294,7 +294,7 @@ msgstr "%.1fM"
 msgid "%.1f GB"
 msgstr "%.1fG"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:381
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nieznana warto¶æ %d GnomeVFSSeekPosition"

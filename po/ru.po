@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-02-04 16:49-0800\n"
+"POT-Creation-Date: 2002-02-11 13:53-0800\n"
 "PO-Revision-Date: 2001-10-13 17:58+0400\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -293,7 +293,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:381
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестная GnomeVFSSeekPosition %d"

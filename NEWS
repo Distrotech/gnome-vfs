@@ -1,4 +1,14 @@
 ===================================
+gnome-vfs 1.9.7
+---------------
+
+* Fix deadlock in vfolder method (markmc)
+* Fix issues on 64-bit systems (darin)
+* Detect libbz2 (hadess)
+* OpenSSL detection fixups (Havoc,  Jon K Hellan)
+* Moniker fixes (Johan Dahlin, Michael)
+
+===================================
 gnome-vfs 1.9.6
 ---------------
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2002-02-08 00:50+0000\n"
+"POT-Creation-Date: 2002-02-11 13:53-0800\n"
 "PO-Revision-Date: 2002-02-08 00:50+GMT\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: None <none@none.org>\n"
@@ -294,7 +294,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:381
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d desconhecida"
@@ -308,7 +308,9 @@ msgstr "Ficheiro de configuração válido não encontrado em %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Utilize a variável de ambiente %s para especificar uma localização diferente.\n"
+msgstr ""
+"Utilize a variável de ambiente %s para especificar uma localização "
+"diferente.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
