@@ -133,11 +133,7 @@ static int should_write_file_back = 0;
 static GList *current_lang = NULL;
 /* we want to replace the previous key if the current key has a higher
    language level */
-static char *previous_key = NULL;
 static int previous_key_lang_level = -1;
-
-
-
 
 /*
  * A hash table containing all of the Mime records for specific
@@ -168,7 +164,6 @@ static GnomeVFSResult write_back_keys_user_file (void);
 static const char *   gnome_vfs_mime_get_registered_mime_type_key (const char *mime_type, 
 								   const char *key);
 
-
 static gboolean 
 does_string_contain_caps (const char *string)
 {
@@ -184,8 +179,6 @@ does_string_contain_caps (const char *string)
 
 	return FALSE;
 }
-
-
 
 static GnomeMimeContext *
 context_new (GHashTable *hash_table, GString *str)
@@ -207,31 +200,24 @@ context_new (GHashTable *hash_table, GString *str)
 		g_free (mime_type);
 		return context;
 	}
+
+/*	fprintf (stderr, "New context: '%s'\n", mime_type); */
 	
 	context = g_new (GnomeMimeContext, 1);
 	context->mime_type = mime_type;
-	context->keys = g_hash_table_new (g_str_hash, g_str_equal);
+	context->keys = g_hash_table_new_full (
+		g_str_hash, g_str_equal,
+		(GDestroyNotify) g_free,
+		(GDestroyNotify) g_free);
 
 	g_hash_table_insert (hash_table, context->mime_type, context);
+
 	return context;
-}
-
-static gboolean
-release_key_and_value (gpointer key, gpointer value, gpointer user_data)
-{
-	g_free (key);
-	g_free (value);
-
-	return TRUE;
 }
 
 static void
 context_destroy (GnomeMimeContext *context)
 {
-	/*
-	 * Destroy it
-	 */
-	g_hash_table_foreach_remove (context->keys, release_key_and_value, NULL);
 	g_hash_table_destroy (context->keys);
 	g_free (context->mime_type);
 	g_free (context);
@@ -276,53 +262,23 @@ language_level (const char *langage)
 static void
 context_add_key (GnomeMimeContext *context, char *key, char *lang, char *value)
 {
-	char *v;
-	char *orig_key;
 	int lang_level;
 
-	lang_level = language_level(lang);
+	lang_level = language_level (lang);
 	/* wrong language completely */
 	if (lang_level < 0)
 		return;
 
-/*	fprintf (stderr, "Add key: '%s' '%s' '%s'\n", key, lang, value); */
-
-	/* if we have some language defined and
-	   if there was a previous_key */
-	if (lang_level > 0 && previous_key) {
-		/* if our new key has a better lang_level then remove the
-		   previous key */
-		if (previous_key_lang_level <= lang_level) {
-			if (g_hash_table_lookup_extended (context->keys,
-							  previous_key,
-							  (gpointer *)&orig_key,
-							  (gpointer *)&v)) {
-				g_hash_table_remove (context->keys, orig_key);
-				g_free(orig_key);
-				g_free(v);
-			}
-		/* else, our language level really sucks and the previous
-		   translation was of better language quality so just
-		   ignore us */
-		} else {
-			return;
-		}
+	/* if a previous key in the hash had a better lang_level don't do anything */
+	if (lang_level > 0 &&
+	    previous_key_lang_level > lang_level) {
+		return;
 	}
 
-	if (g_hash_table_lookup_extended (context->keys, key,
-					  (gpointer *)&orig_key,
-					  (gpointer *)&v)) {
-		/* if we found it in the database already, just replace it here */
-		g_free (v);
-		g_hash_table_insert (context->keys, orig_key,
-				     g_strdup (value));
-	} else {
-		g_hash_table_insert (context->keys, g_strdup(key),
-				     g_strdup (value));
-	}
-	/* set this as the previous key */
-	g_free(previous_key);
-	previous_key = g_strdup(key);
+/*	fprintf (stderr, "Add key: '%s' '%s' '%s' %d\n", key, lang, value, lang_level); */
+
+	g_hash_table_replace (context->keys, g_strdup (key), g_strdup (value));
+
 	previous_key_lang_level = lang_level;
 }
 
@@ -335,206 +291,38 @@ typedef enum {
 	STATE_ON_VALUE
 } ParserState;
 
+#define APPEND_CHAR(gstr,c) g_string_insert_c ((gstr), -1, (c))
+
+typedef enum {
+	FORMAT_MIME,
+	FORMAT_KEYS
+} Format;
+
+#define load_mime_type_info_from(a,b) load_type_info_from ((a), (b), FORMAT_MIME)
+#define load_mime_list_info_from(a,b) load_type_info_from ((a), (b), FORMAT_KEYS)
+
 static void
-load_mime_type_info_from (const char *filename, GHashTable *hash_table)
+load_type_info_from (const char *filename,
+		     GHashTable *hash_table,
+		     Format      format)
 {
-	FastFile mime_file;
-	gboolean in_comment, context_used;
 	GString *line;
 	int column, c;
 	ParserState state;
+	FastFile mime_file;
+	gboolean skip_line;
 	GnomeMimeContext *context;
-	char *key;
-	char *lang;
+	int key, lang, last_str_end; /* offsets */
 
 	if (!fast_file_open (&mime_file, filename)) {
 		return;
 	}
 
-	in_comment = FALSE;
-	context_used = FALSE;
+	skip_line = FALSE;
 	column = -1;
 	context = NULL;
-	key = NULL;
-	lang = NULL;
 	line = g_string_sized_new (120);
-	state = STATE_NONE;
-	
-	while ((c = fast_file_getc (&mime_file)) != EOF) {
-		column++;
-		if (c == '\r')
-			continue;
-
-		if (c == '#' && column == 0) {
-			in_comment = TRUE;
-			continue;
-		}
-
-		if (in_comment) {
-			if (c == '\n') {
-				in_comment = FALSE;
-				column = -1;
-			}
-			continue;
-		}
-
-		if (c == '\n') {
-			in_comment = FALSE;
-			column = -1;
-			if (state == STATE_ON_MIME_TYPE) {
-
-				/* set previous key to nothing
-				   for this mime type */
-				g_free(previous_key);
-				previous_key = NULL;
-				previous_key_lang_level = -1;
-
-				context = context_new (hash_table, line);
-				context_used = FALSE;
-				g_string_assign (line, "");
-				state = STATE_LOOKING_FOR_KEY;
-				continue;
-			}
-			if (state == STATE_ON_VALUE) {
-				context_used = TRUE;
-				context_add_key (context, key, lang, line->str);
-				g_string_assign (line, "");
-				g_free (key);
-				key = NULL;
-				g_free (lang);
-				lang = NULL;
-				state = STATE_LOOKING_FOR_KEY;
-				continue;
-			}
-			continue;
-		}
-
-		switch (state) {
-		case STATE_NONE:
-			if (c != ' ' && c != '\t')
-				state = STATE_ON_MIME_TYPE;
-			else
-				break;
-			/* fall down */
-			
-		case STATE_ON_MIME_TYPE:
-			if (c == ':') {
-				in_comment = TRUE;
-				break;
-			}
-			g_string_append_c (line, c);
-			break;
-
-		case STATE_LOOKING_FOR_KEY:
-			if (c == '\t' || c == ' ')
-				break;
-
-			if (c == '[') {
-				state = STATE_LANG;
-				break;
-			}
-
-			if (column == 0) {
-				state = STATE_ON_MIME_TYPE;
-				g_string_append_c (line, c);
-				break;
-			}
-			state = STATE_ON_KEY;
-			/* falldown */
-
-		case STATE_ON_KEY:
-			if (c == '\\') {
-				c = fast_file_getc (&mime_file);
-				if (c == EOF)
-					break;
-			}
-			if (c == '=') {
-				key = g_strdup (line->str);
-				g_string_assign (line, "");
-				state = STATE_ON_VALUE;
-				break;
-			}
-			g_string_append_c (line, c);
-			break;
-
-		case STATE_ON_VALUE:
-			g_string_append_c (line, c);
-			break;
-			
-		case STATE_LANG:
-			if (c == ']') {
-				state = STATE_ON_KEY;      
-				if (line->str [0]) {
-					g_free(lang);
-					lang = g_strdup(line->str);
-				} else {
-					in_comment = TRUE;
-					state = STATE_LOOKING_FOR_KEY;
-				}
-				g_string_assign (line, "");
-				break;
-			}
-			g_string_append_c (line, c);
-			break;
-		}
-	}
-
-	if (context != NULL) {
-		if (key && line->str [0])
-			context_add_key (context, key, lang, line->str);
-		else
-			if (!context_used)
-				context_destroy_and_unlink (context);
-	}
-
-	g_string_free (line, TRUE);
-	g_free (key);
-	g_free (lang);
-
-	/* free the previous_key stuff */
-	g_free(previous_key);
-	previous_key = NULL;
-	previous_key_lang_level = -1;
-
-	fast_file_close (&mime_file);
-}
-
-/*
- *  load_mime_list_info_from
- *
- *  Why this special function when a similar one is already in the code?
- *  Because we need to handle the case where ':' is used to delimit
- *  the start of a key in a .mime file instead of '=' as is used in
- *  the .key file.  Why is this done?  Why are there two mime database 
- *  files with differing standards?  We may never know.  
- *  Until we have a better solution, this will suffice.	
- *  
- *  Both ':' and '=' are used to delimit the start of a key.
- */
- 
-static void
-load_mime_list_info_from (const char *filename, GHashTable *hash_table)
-{
-	FastFile mime_file;
-	gboolean in_comment, context_used;
-	GString *line;
-	int column, c;
-	ParserState state;
-	GnomeMimeContext *context;
-	char *key;
-	char *lang;
-	
-	if (!fast_file_open (&mime_file, filename)) {
-		return;
-	}
-
-	in_comment = FALSE;
-	context_used = FALSE;
-	column = -1;
-	context = NULL;
-	key = NULL;
-	lang = NULL;
-	line = g_string_sized_new (120);
+	key = lang = last_str_end = 0;
 	state = STATE_NONE;
 	
 	while ((c = fast_file_getc (&mime_file)) != EOF) {
@@ -544,81 +332,79 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 			continue;
 
 		if (c == '#' && column == 0) {
-			in_comment = TRUE;
+			skip_line = TRUE;
 			continue;
 		}
 
-		if (c == '#' && column == 0) {
-			in_comment = TRUE;
-			continue;
-		}
-
-		if (in_comment) {
+		if (skip_line) {
 			if (c == '\n') {
-				in_comment = FALSE;
+				skip_line = FALSE;
 				column = -1;
+				g_string_assign (line, "");
+				key = lang = last_str_end = 0;
 			}
 			continue;
 		}
-		
-		if (c == '\n') {
-			in_comment = FALSE;
-			column = 0;
-			if (state == STATE_ON_MIME_TYPE) {
-				/* set previous key to nothing
-				   for this mime type */
-				g_free(previous_key);
-				previous_key = NULL;
-				previous_key_lang_level = -1;
 
+		if (c == '\n') {
+			skip_line = FALSE;
+			column = -1;
+			if (state == STATE_ON_MIME_TYPE) {
+				/* setup for a new key */
+				previous_key_lang_level = -1;
 				context = context_new (hash_table, line);
-				context_used = FALSE;
-				g_string_assign (line, "");
-				state = STATE_LOOKING_FOR_KEY;
-				continue;
+
+			} else if (state == STATE_ON_VALUE) {
+				APPEND_CHAR (line, '\0');
+				context_add_key (context,
+						 line->str + key,
+						 lang ? line->str + lang : NULL,
+						 line->str + last_str_end);
+				key = lang = 0;
 			}
-			if (state == STATE_ON_VALUE) {
-				context_used = TRUE;
-				context_add_key (context, key, lang, line->str);
-				g_string_assign (line, "");
-				g_free (key);
-				key = NULL;
-				g_free (lang);
-				lang = NULL;
-				state = STATE_LOOKING_FOR_KEY;
-				continue;
-			}
+			g_string_assign (line, "");
+			last_str_end = 0;
+			state = STATE_LOOKING_FOR_KEY;
 			continue;
 		}
 
 		switch (state) {
 		case STATE_NONE:
-			if (c != ' ' && c != '\t')
-				state = STATE_ON_MIME_TYPE;
-			else
+			if (c == ' ' || c == '\t') {
 				break;
+			} else if (c == ':') {
+				skip_line = TRUE;
+				break;
+			} else {
+				state = STATE_ON_MIME_TYPE;
+			}
 			/* fall down */
 			
 		case STATE_ON_MIME_TYPE:
 			if (c == ':') {
-				in_comment = TRUE;
+				skip_line = TRUE;
+				/* setup for a new key */
+				previous_key_lang_level = -1;
+				context = context_new (hash_table, line);
+				state = STATE_LOOKING_FOR_KEY;
 				break;
 			}
-			g_string_append_c (line, c);
+			APPEND_CHAR (line, c);
 			break;
 
 		case STATE_LOOKING_FOR_KEY:
-			if (c == '\t' || c == ' ')
+			if (c == '\t' || c == ' ') {
 				break;
+			}
 
 			if (c == '[') {
 				state = STATE_LANG;
 				break;
 			}
 
-			if (column == 1) {
+			if (column == 0) {
 				state = STATE_ON_MIME_TYPE;
-				g_string_append_c (line, c);
+				APPEND_CHAR (line, c);
 				break;
 			}
 			state = STATE_ON_KEY;
@@ -627,19 +413,22 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 		case STATE_ON_KEY:
 			if (c == '\\') {
 				c = fast_file_getc (&mime_file);
-				if (c == EOF)
+				if (c == EOF) {
 					break;
-			}			
+				}
+			}
 			if (c == '=') {
-				key = g_strdup (line->str);
-				g_string_assign (line, "");
+				key = last_str_end;
+				APPEND_CHAR (line, '\0');
+				last_str_end = line->len;
 				state = STATE_ON_VALUE;
 				break;
 			}
 
-			if (c == ':') {
-				key = g_strdup (line->str);				
-				g_string_assign (line, "");
+			if (format == FORMAT_KEYS && c == ':') {
+				key = last_str_end;
+				APPEND_CHAR (line, '\0');
+				last_str_end = line->len;
 
 				/* Skip space after colon.  There should be one
 				 * there.  That is how the file is defined. */
@@ -658,46 +447,51 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 				break;
 			}
 
-			g_string_append_c (line, c);
+			APPEND_CHAR (line, c);
 			break;
 
 		case STATE_ON_VALUE:
-			g_string_append_c (line, c);
+			APPEND_CHAR (line, c);
 			break;
 			
 		case STATE_LANG:
 			if (c == ']') {
 				state = STATE_ON_KEY;      
-				if (line->str [0]) {
-					g_free(lang);
-					lang = g_strdup(line->str);
-				} else {
-					in_comment = TRUE;
+
+				lang = last_str_end;
+				APPEND_CHAR (line, '\0');
+				last_str_end = line->len;
+
+				if (!line->str [0] ||
+				    language_level (line->str + lang) < 0) {
+					skip_line = TRUE;
+					key = lang = last_str_end = 0;
+					g_string_assign (line, "");
 					state = STATE_LOOKING_FOR_KEY;
 				}
-				g_string_assign (line, "");
-				break;
+			} else {
+				APPEND_CHAR (line, c);
 			}
-			g_string_append_c (line, c);
 			break;
 		}
 	}
 
 	if (context != NULL) {
-		if (key && line->str [0])
-			context_add_key (context, key, lang, line->str);
-		else
-			if (!context_used)
+		if (key && line->str [0]) {
+			APPEND_CHAR (line, '\0');
+			context_add_key (context,
+					 line->str + key,
+					 lang ? line->str + lang : NULL,
+					 line->str + last_str_end);
+		} else {
+			if (g_hash_table_size (context->keys) < 1) {
 				context_destroy_and_unlink (context);
+			}
+		}
 	}
 
 	g_string_free (line, TRUE);
-	g_free (key);
-	g_free (lang);
 
-	/* free the previous_key stuff */
-	g_free(previous_key);
-	previous_key = NULL;
 	previous_key_lang_level = -1;
 
 	fast_file_close (&mime_file);
@@ -843,11 +637,11 @@ gnome_vfs_mime_init (void)
 	/*
 	 * Setup the descriptors for the information loading
 	 */
-
 	gnome_mime_dir.dirname = g_strdup (DATADIR "/mime-info");
 	gnome_mime_dir.system_dir = TRUE;
 	
-	user_mime_dir.dirname  = g_strconcat (g_get_home_dir(), "/.gnome/mime-info", NULL);
+	user_mime_dir.dirname  = g_strconcat
+		(g_get_home_dir (), "/.gnome/mime-info", NULL);
 	user_mime_dir.system_dir = FALSE;
 
 	/*

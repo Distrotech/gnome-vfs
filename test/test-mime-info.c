@@ -225,7 +225,6 @@ main (int argc, char **argv)
 		
 	}
 
-
 	/* do hard stuff on the API */
 
 	printf ("all mime-info-related tests succeeded\n");

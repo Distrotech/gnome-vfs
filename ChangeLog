@@ -1,3 +1,28 @@
+2002-04-07  Michael Meeks  <michael@ximian.com>
+
+	* test/test-performance.c (main): upd.
+
+	* libgnomevfs/gnome-vfs-mime-info.c
+	(context_new): use g_hash_table_new_full.
+	(context_add_key): make the logic more sane,
+	don't do stupid things keeping 'previous_key'
+	around, since it's always the same (current) key.
+	(load_mime_list_info_from, load_mime_type_info_from):
+	expunge previous_key inefficiency.
+	(load_mime_type_info_from): don't keep dupping stuff
+	we don't need to, instead build the several strings
+	we need in the GString.
+	(load_mime_list_info_from): ditto.
+	(release_key_and_value): kill.
+	(context_destroy): upd.
+	use g_string_insert_c instead of append_char.
+	(load_mime_type_info_from): rename to
+	(load_type_info_from): and unify from giant ugly cut and paste
+	(load_mime_list_info_from): kill junk.
+	use defines to map to old names.
+	(load_type_info_from): ignore lines that don't have the
+	right lang before doing much slower parsing on them.
+
 2002-03-30  Jody Goldberg <jody@gnome.org>
 
         http://bugzilla.gnome.org/show_bug.cgi?id=71391
