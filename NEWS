@@ -1,3 +1,11 @@
+gnome-vfs 2.7.5
+
+	* Bugs fixed:
+	       + Put back symbols inadvertantly removed.
+	       + desktop file parser cleanups.
+	       + http method cleanups
+	       + search vfs methods case insensitively
+
 gnome-vfs 2.7.4
 
 	* Bugs fixed:

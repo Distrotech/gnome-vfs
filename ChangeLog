@@ -1,3 +1,7 @@
+Mon Jul 26 16:09:44 2004  Jonathan Blandford  <jrb@gnome.org>
+
+	* NEWS: update NEWS.
+
 Mon Jul 26 15:28:24 2004  Jonathan Blandford  <jrb@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-info.c:
