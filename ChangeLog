@@ -1,3 +1,14 @@
+2004-06-23  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-dns-sd.c (gnome_vfs_get_default_browse_domains):
+	Add new helper function.
+
+	* test/test-dns-sd.c (main):
+	Add some tests for gnome_vfs_get_default_browse_domains
+
+	* modules/network-method.c (refresh_link_lists):
+	fixed typo
+
 2004-06-21  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-dns-sd.c:

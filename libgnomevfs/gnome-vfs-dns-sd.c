@@ -30,10 +30,14 @@
 #include <resolv.h>
 #include <string.h>
 #include "gnome-vfs-dns-sd.h"
+#include <gconf/gconf-client.h>
 
 #ifdef HAVE_HOWL
 #include <howl.h>
 #endif
+
+#define PATH_GCONF_GNOME_VFS_DNS_SD "/system/dns_sd"
+#define PATH_GCONF_GNOME_VFS_DNS_SD_EXTRA_DOMAINS "/system/dns_sd/extra_domains"
 
 #define DNS_REPLY_SIZE (64*1024)
 
@@ -1760,4 +1764,76 @@ gnome_vfs_dns_sd_list_browse_domains_sync (const char *domain,
 	} else {
 		return unicast_list_domains_sync (domain, domains);
 	}
+}
+
+/**
+ * gnome_vfs_get_default_browse_domains:
+ *
+ * Returns a list of domain names that is useful to
+ * browse for standard services. The list is generated
+ * by contacting the dns server of the domain part the
+ * hostname and asking for the list of browse domains.
+ * Then extra domains from a gconf setting is added.
+ *
+ * The "local" domain is not normally returned by this.
+ * Care should be taken with local services so that its
+ * obvious that they are local, and cannot be confused
+ * with non-local services.
+ *
+ * Return value: A GList of domain name strings
+ */
+GList *
+gnome_vfs_get_default_browse_domains (void)
+{
+	char hostname[256];
+	char *domain, *dot;
+	GList *domains;
+	char *extra_domains;
+	char **domainsv;
+	GConfClient *client;
+	int i;
+	
+	domain = NULL;
+	if (gethostname (hostname, sizeof(hostname)) == 0) {
+		dot = strchr (hostname, '.');
+		if (dot != NULL &&
+		    dot[0] != 0 &&
+		    dot[1] != 0) {
+			domain = dot + 1;
+		}
+	}
+
+	domains = NULL;
+	if (domain != NULL) {
+		gnome_vfs_dns_sd_list_browse_domains_sync (domain,
+							   2000,
+							   &domains);
+		
+	}
+
+	if (!gconf_is_initialized ()) {
+		if (!gconf_init (0, NULL, NULL)) {
+			return domains;
+		}
+	}
+
+	client = gconf_client_get_default ();
+	extra_domains = gconf_client_get_string (client, PATH_GCONF_GNOME_VFS_DNS_SD_EXTRA_DOMAINS, NULL);
+
+
+	if (extra_domains != NULL) {
+		domainsv = g_strsplit (extra_domains, ",", 0);
+		
+		for (i = 0; domainsv[i] != NULL; i++) {
+			domains = g_list_prepend (domains, g_strdup (domainsv[i]));
+		}
+		
+		g_strfreev (domainsv);
+	}
+
+	g_free (extra_domains);
+	
+	g_object_unref (G_OBJECT (client));
+
+	return domains;
 }

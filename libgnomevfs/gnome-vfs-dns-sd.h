@@ -160,6 +160,10 @@ gnome_vfs_dns_sd_list_browse_domains_sync (const char *domain,
 					   GList **domains);
 
 
+GList *
+gnome_vfs_get_default_browse_domains (void);
+
+
 G_END_DECLS
 
 #endif /* GNOME_VFS_OPS_H */

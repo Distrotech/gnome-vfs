@@ -74,7 +74,7 @@ main (int argc, char **argv)
 	int port, text_len;
 	char *host;
 	char *text;
-	GList *list, *l;
+	GList *list, *l, *domains;
 	GHashTable *text_hash;
 	
 	if (argc < 3) {
@@ -88,6 +88,16 @@ main (int argc, char **argv)
 	fprintf (stderr, "Initializing gnome-vfs...\n");
 	gnome_vfs_init ();
 
+	fprintf (stderr, "Getting default browse domains:");
+	domains = gnome_vfs_get_default_browse_domains ();
+	for (l = domains; l != NULL; l = l->next) {
+		g_print ("%s,", (char *)l->data);
+		g_free (l->data);
+	}
+	g_print ("\n");
+	g_list_free (domains);
+
+	
 	fprintf (stderr, "Trying sync list\n");
 	res = gnome_vfs_dns_sd_list_browse_domains_sync ("dns-sd.org",
 							 2000,

@@ -1278,7 +1278,7 @@ refresh_link_lists (void)
 	}
 
 	domains = NULL;
-	if (domains != NULL)
+	if (domain != NULL)
 		res = gnome_vfs_dns_sd_list_browse_domains_sync (domain,
 								 2000,
 								 &domains);
