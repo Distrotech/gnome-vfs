@@ -1,3 +1,9 @@
+Wed Nov 28 13:16:06 2001  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: Fix set_file_info, fix
+	  a few leaks, some possible crashes, and add cancellation
+	  checks to a bunch of places (not everywhere yet)
+
 2001-11-28  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/vfolder-desktop-method.c: (get_entry),
