@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2000-04-19 15:50+0200\n"
+"POT-Creation-Date: 2000-05-03 23:24+0200\n"
 "PO-Revision-Date: 2000-04-19 23:51+0200\n"
 "Last-Translator: Gediminas Paulauskas <menesis@delfi.lt>\n"
 "Language-Team: Lithuanian\n"
@@ -32,6 +32,11 @@ msgstr "%s:%d neturi savyje modulio vardo."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigûracijos byla ¥%s´ nerasta: %s"
+
+#: libgnomevfs/gnome-vfs-file-info.c:483
+#, fuzzy, c-format
+msgid "Unknown sort rule %d"
+msgstr "Neþinomas job'o ID %d"
 
 #: libgnomevfs/gnome-vfs-init.c:55
 msgid "GNOME VFS already initialized."
@@ -264,86 +269,86 @@ msgstr "%.1fM"
 msgid "%.1fG"
 msgstr "%.1fG"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
+#: libgnomevfs-corba/gnome-vfs-slave.c:340
 msgid "Dying."
 msgstr "Mirðtu."
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#: libgnomevfs-corba/gnome-vfs-slave.c:505
 #, c-format
 msgid "Error reading: %s"
 msgstr "Klaida skaitant: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#: libgnomevfs-corba/gnome-vfs-slave.c:527
 #, c-format
 msgid "Error writing: %s"
 msgstr "Klaida raðant: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#: libgnomevfs-corba/gnome-vfs-slave.c:576
 #, c-format
 msgid "Cannot write: %s"
 msgstr "Negaliu raðyti: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#: libgnomevfs-corba/gnome-vfs-slave.c:604
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Negaliu sukurti laikinos bylos vardu ¥%s´"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:614
+#: libgnomevfs-corba/gnome-vfs-slave.c:618
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "Negaliu sukurti lizdo: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:632
+#: libgnomevfs-corba/gnome-vfs-slave.c:636
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "Negaliu susieti ¥%s´: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:639
+#: libgnomevfs-corba/gnome-vfs-slave.c:643
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "Negaliu klausytis per ¥%s´: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:661
+#: libgnomevfs-corba/gnome-vfs-slave.c:665
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Negaliu priimti prisijungimø per ¥%s´: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1385
+#: libgnomevfs-corba/gnome-vfs-slave.c:1402
 msgid "Cannot initialize CORBA."
 msgstr "Negaliu inicializuoti CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1392
+#: libgnomevfs-corba/gnome-vfs-slave.c:1409
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1399
+#: libgnomevfs-corba/gnome-vfs-slave.c:1416
 msgid "Cannot activate POA manager."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1424
+#: libgnomevfs-corba/gnome-vfs-slave.c:1441
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Vartojimas: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1435
+#: libgnomevfs-corba/gnome-vfs-slave.c:1452
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1458
+#: libgnomevfs-corba/gnome-vfs-slave.c:1475
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1468
+#: libgnomevfs-corba/gnome-vfs-slave.c:1485
 msgid "Cannot setup Request object."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1475
+#: libgnomevfs-corba/gnome-vfs-slave.c:1492
 msgid "Cannot extract IOR."
 msgstr ""
 
@@ -367,7 +372,7 @@ msgstr "Negaliu nuþudyti GNOME::VFS::Slave::Notify -- iðimtis %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "Negaliu prijungti lizdo ¥%s´: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:782
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:802
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Negaliu inicializuoti GNOME::VFS:Slave::Notify"
 
@@ -395,165 +400,165 @@ msgstr ""
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr ""
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1253
+#: libgnomevfs-pthread/gnome-vfs-job.c:445
+#: libgnomevfs-pthread/gnome-vfs-job.c:1275
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Neþinomas job'o ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:784
-#: libgnomevfs-pthread/gnome-vfs-job.c:879
+#: libgnomevfs-pthread/gnome-vfs-job.c:795
+#: libgnomevfs-pthread/gnome-vfs-job.c:890
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr ""
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1271
+#: libgnomevfs-pthread/gnome-vfs-job.c:1293
 msgid "Operation stopped"
 msgstr "Operacija sustabdyta"
 
-#: modules/file-method.c:332
+#: modules/file-method.c:334
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr ""
 
-#: modules/ftp-method.c:353
+#: modules/ftp-method.c:357
 msgid "ftpfs: Invalid host name."
 msgstr "ftpfs: Negaliojantis hosto vardas."
 
-#: modules/ftp-method.c:376
+#: modules/ftp-method.c:380
 msgid "ftpfs: Invalid host address."
 msgstr "ftpfs: Negaliojantis hosto adresas."
 
-#: modules/ftp-method.c:396
+#: modules/ftp-method.c:400
 #, c-format
 msgid "ftpfs: making connection to %s"
 msgstr "ftpfs: bandau prisijungti prie %s"
 
-#: modules/ftp-method.c:402
+#: modules/ftp-method.c:406
 msgid "ftpfs: connection interrupted by user"
 msgstr "ftpfs: jungtis pertraukta vartotojo"
 
-#: modules/ftp-method.c:404
+#: modules/ftp-method.c:408
 #, c-format
 msgid "ftpfs: connection to server failed: %s"
 msgstr "ftpfs: prisijungimas prie serverio nepavyko: %s"
 
-#: modules/ftp-method.c:480
+#: modules/ftp-method.c:484
 #, c-format
 msgid "Waiting to retry... %d (Control-C to cancel)"
 msgstr "Laukiu kito bandymo... %d (Control-C atðaukti)"
 
-#: modules/ftp-method.c:751
+#: modules/ftp-method.c:755
 msgid " FTP: Password required for "
 msgstr " FTP: Slaptaþodis reikalingas "
 
-#: modules/ftp-method.c:790
+#: modules/ftp-method.c:794
 msgid "ftpfs: sending login name"
 msgstr "ftpfs: siunèiu prisijungimo vardà"
 
-#: modules/ftp-method.c:796
+#: modules/ftp-method.c:800
 msgid "ftpfs: sending user password"
 msgstr "ftpfs: siunèiu vartotojo slaptaþodá"
 
-#: modules/ftp-method.c:802
+#: modules/ftp-method.c:806
 msgid "ftpfs: logged in"
 msgstr "ftpfs: prisijungta"
 
-#: modules/ftp-method.c:814
+#: modules/ftp-method.c:818
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
 msgstr "ftpfs: neteisingas prisijungimas vartotojui %s"
 
-#: modules/ftp-method.c:827
+#: modules/ftp-method.c:831
 msgid "ftpfs: aborting transfer."
 msgstr "ftpfs: nutraukiu siuntimà."
 
-#: modules/ftp-method.c:829
+#: modules/ftp-method.c:833
 #, c-format
 msgid "ftpfs: abort error: %s"
 msgstr "ftpfs: nutraukimo klaida: %s"
 
-#: modules/ftp-method.c:834
+#: modules/ftp-method.c:838
 msgid "ftpfs: abort failed"
 msgstr "ftpfs: nutraukimas nepavyko"
 
-#: modules/ftp-method.c:911
+#: modules/ftp-method.c:915
 msgid "ftpfs: could not setup passive mode"
 msgstr "ftpfs: negalëjau pereiti á pasyvø reþimà"
 
-#: modules/ftp-method.c:1088
+#: modules/ftp-method.c:1092
 #, c-format
 msgid "ftpfs: storing file %d (%d)"
 msgstr "ftpfs: áraðau bylà %d (%d)"
 
-#: modules/ftp-method.c:1305 modules/ftp-method.c:1507
+#: modules/ftp-method.c:1313 modules/ftp-method.c:1515
 msgid "ftpfs: CWD failed."
 msgstr "ftpfs: CWD nepavyko."
 
-#: modules/ftp-method.c:1315 modules/ftp-method.c:1322
+#: modules/ftp-method.c:1323 modules/ftp-method.c:1330
 msgid "ftpfs: couldn't resolve symlink"
 msgstr "ftpfs: negalëjau atsekti symlinko"
 
-#: modules/ftp-method.c:1374
+#: modules/ftp-method.c:1382
 msgid "Resolving symlink..."
 msgstr "Atseku symlinkà..."
 
-#: modules/ftp-method.c:1498
+#: modules/ftp-method.c:1506
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
 msgstr "ftpfs: Skaitau FTP katalogà %s... (nenaudok UNIX ls pasirinkèiø)"
 
-#: modules/ftp-method.c:1502
+#: modules/ftp-method.c:1510
 #, c-format
 msgid "ftpfs: Reading FTP directory %s..."
 msgstr "ftpfs: Skaitau FTP katalogà %s..."
 
-#: modules/ftp-method.c:1568
+#: modules/ftp-method.c:1576
 msgid "ftpfs: reading FTP directory interrupt by user"
 msgstr "ftpfs: FTP katalogo skaitymas nutrauktas vartotojo"
 
-#: modules/ftp-method.c:1592
+#: modules/ftp-method.c:1600
 msgid "ftpfs: got listing"
 msgstr "ftpfs: gavau sàraðà"
 
-#: modules/ftp-method.c:1644
+#: modules/ftp-method.c:1652
 msgid "ftpfs: failed; nowhere to fallback to"
 msgstr "ftpfs: nepavyko; nëra kur besugráþti"
 
-#: modules/ftp-method.c:2037
+#: modules/ftp-method.c:2045
 msgid "Starting linear transfer..."
 msgstr "Pradedu tiesiná siuntimà..."
 
-#: modules/ftp-method.c:2107
+#: modules/ftp-method.c:2115
 msgid "Preparing reget..."
 msgstr "Paruoðiu gavimo pratæsimà..."
 
-#: modules/http-method.c:500
+#: modules/http-method.c:502
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Negalima antraðtë ¥%s´"
 
-#: modules/http-method.c:517
+#: modules/http-method.c:519
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s, kurá parsiøsti"
 
-#: modules/http-method.c:652
+#: modules/http-method.c:655
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Uþdarau jungtá su %s"
 
-#: modules/http-method.c:805
+#: modules/http-method.c:809
 #, c-format
 msgid "%s of %s read"
 msgstr "%s ið %s perskaityti"
 
-#: modules/http-method.c:808
+#: modules/http-method.c:812
 #, c-format
 msgid "%s read"
 msgstr "%s perskaityti"
 
 #. Multi-Status
-#: modules/http-method.c:970
+#: modules/http-method.c:974
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "HTTP serveris gràþino negalimà PROPFIND atsakymà"

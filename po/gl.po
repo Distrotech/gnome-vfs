@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2000-04-27 23:53+0200\n"
+"POT-Creation-Date: 2000-05-03 23:24+0200\n"
 "PO-Revision-Date: 2000-05-02 18:31+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
@@ -422,120 +422,120 @@ msgstr "Non se pode crear unha canle para abrir GIOChannel: %s"
 msgid "Operation stopped"
 msgstr "Operación parada"
 
-#: modules/file-method.c:332
+#: modules/file-method.c:334
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d descoñecido"
 
-#: modules/ftp-method.c:353
+#: modules/ftp-method.c:357
 msgid "ftpfs: Invalid host name."
 msgstr "ftpfs: Nome de máquina non válido."
 
-#: modules/ftp-method.c:376
+#: modules/ftp-method.c:380
 msgid "ftpfs: Invalid host address."
 msgstr "ftpfs: Enderezo de máquina non válido."
 
-#: modules/ftp-method.c:396
+#: modules/ftp-method.c:400
 #, c-format
 msgid "ftpfs: making connection to %s"
 msgstr "ftpfs: facendo unha conexión a %s"
 
-#: modules/ftp-method.c:402
+#: modules/ftp-method.c:406
 msgid "ftpfs: connection interrupted by user"
 msgstr "ftpfs: conexión interrompida polo usuario"
 
-#: modules/ftp-method.c:404
+#: modules/ftp-method.c:408
 #, c-format
 msgid "ftpfs: connection to server failed: %s"
 msgstr "ftpfs: a conexión ó servidor fallou: %s"
 
-#: modules/ftp-method.c:480
+#: modules/ftp-method.c:484
 #, c-format
 msgid "Waiting to retry... %d (Control-C to cancel)"
 msgstr "Agardando a retentativa... %d (Control-C para cancelar)"
 
-#: modules/ftp-method.c:751
+#: modules/ftp-method.c:755
 msgid " FTP: Password required for "
 msgstr " FTP: Contrasinal requirido para "
 
-#: modules/ftp-method.c:790
+#: modules/ftp-method.c:794
 msgid "ftpfs: sending login name"
 msgstr "ftpfs: enviando o nome do login"
 
-#: modules/ftp-method.c:796
+#: modules/ftp-method.c:800
 msgid "ftpfs: sending user password"
 msgstr "ftpfs: enviando o contrasinal do usuario"
 
-#: modules/ftp-method.c:802
+#: modules/ftp-method.c:806
 msgid "ftpfs: logged in"
 msgstr "ftpfs: autenticado"
 
-#: modules/ftp-method.c:814
+#: modules/ftp-method.c:818
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
 msgstr "ftpfs: Login incorrecto para o usuario %s "
 
-#: modules/ftp-method.c:827
+#: modules/ftp-method.c:831
 msgid "ftpfs: aborting transfer."
 msgstr "ftpfs: abortando a transferencia."
 
-#: modules/ftp-method.c:829
+#: modules/ftp-method.c:833
 #, c-format
 msgid "ftpfs: abort error: %s"
 msgstr "ftpfs: erro do abort: %s"
 
-#: modules/ftp-method.c:834
+#: modules/ftp-method.c:838
 msgid "ftpfs: abort failed"
 msgstr "ftpfs: fallou o abort"
 
-#: modules/ftp-method.c:911
+#: modules/ftp-method.c:915
 msgid "ftpfs: could not setup passive mode"
 msgstr "ftpfs: non se puido activar o modo pasivo"
 
-#: modules/ftp-method.c:1088
+#: modules/ftp-method.c:1092
 #, c-format
 msgid "ftpfs: storing file %d (%d)"
 msgstr "ftpfs: gardando ficheiro %d (%d)"
 
-#: modules/ftp-method.c:1305 modules/ftp-method.c:1507
+#: modules/ftp-method.c:1313 modules/ftp-method.c:1515
 msgid "ftpfs: CWD failed."
 msgstr "ftpfs: fallou o CWD."
 
-#: modules/ftp-method.c:1315 modules/ftp-method.c:1322
+#: modules/ftp-method.c:1323 modules/ftp-method.c:1330
 msgid "ftpfs: couldn't resolve symlink"
 msgstr "ftpfs: non se puido resolver a ligazón simbólica"
 
-#: modules/ftp-method.c:1374
+#: modules/ftp-method.c:1382
 msgid "Resolving symlink..."
 msgstr "Resolvendo ligazón simbólica..."
 
-#: modules/ftp-method.c:1498
+#: modules/ftp-method.c:1506
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
 msgstr "ftpfs: Lendo o directorio FTP %s... (non usar opcións do ls de UNIX)"
 
-#: modules/ftp-method.c:1502
+#: modules/ftp-method.c:1510
 #, c-format
 msgid "ftpfs: Reading FTP directory %s..."
 msgstr "ftpfs: Lendo o directorio FTP %s..."
 
-#: modules/ftp-method.c:1568
+#: modules/ftp-method.c:1576
 msgid "ftpfs: reading FTP directory interrupt by user"
 msgstr "ftpfs: lectura do directorio FTP interrompida polo usuario"
 
-#: modules/ftp-method.c:1592
+#: modules/ftp-method.c:1600
 msgid "ftpfs: got listing"
 msgstr "ftpfs: listado obtido"
 
-#: modules/ftp-method.c:1644
+#: modules/ftp-method.c:1652
 msgid "ftpfs: failed; nowhere to fallback to"
 msgstr "ftpfs: fallou; máis nada que se poida tentar"
 
-#: modules/ftp-method.c:2037
+#: modules/ftp-method.c:2045
 msgid "Starting linear transfer..."
 msgstr "Comezando transferencia lineal..."
 
-#: modules/ftp-method.c:2107
+#: modules/ftp-method.c:2115
 msgid "Preparing reget..."
 msgstr "Preparando o reget..."
 

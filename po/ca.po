@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2000-04-19 15:50+0200\n"
+"POT-Creation-Date: 2000-05-03 23:24+0200\n"
 "PO-Revision-Date: 2000-03-04 20:03+01:00\n"
 "Last-Translator: Softcatala <linux@softcatala.org>\n"
 "Language-Team: \n"
@@ -32,6 +32,11 @@ msgstr "%s:%d no conté cap nom de mòdul."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "El fitxer de configuració `%s' no ha estat trobat: %s"
+
+#: libgnomevfs/gnome-vfs-file-info.c:483
+#, fuzzy, c-format
+msgid "Unknown sort rule %d"
+msgstr "Treball desconegut amb ID %d"
 
 #: libgnomevfs/gnome-vfs-init.c:55
 msgid "GNOME VFS already initialized."
@@ -264,86 +269,86 @@ msgstr "%.1fM"
 msgid "%.1fG"
 msgstr "%.1fG"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
+#: libgnomevfs-corba/gnome-vfs-slave.c:340
 msgid "Dying."
 msgstr "Morint."
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#: libgnomevfs-corba/gnome-vfs-slave.c:505
 #, c-format
 msgid "Error reading: %s"
 msgstr "Error llegint: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#: libgnomevfs-corba/gnome-vfs-slave.c:527
 #, c-format
 msgid "Error writing: %s"
 msgstr "Error escrivint: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#: libgnomevfs-corba/gnome-vfs-slave.c:576
 #, c-format
 msgid "Cannot write: %s"
 msgstr "No es pot escriure: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#: libgnomevfs-corba/gnome-vfs-slave.c:604
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "No es pot crear el fitxer temporal de nom `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:614
+#: libgnomevfs-corba/gnome-vfs-slave.c:618
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "No es pot crear l'enllaç: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:632
+#: libgnomevfs-corba/gnome-vfs-slave.c:636
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "No es pot vincular `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:639
+#: libgnomevfs-corba/gnome-vfs-slave.c:643
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "No es pot atendre a `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:661
+#: libgnomevfs-corba/gnome-vfs-slave.c:665
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "No es poden acceptar connexions en `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1385
+#: libgnomevfs-corba/gnome-vfs-slave.c:1402
 msgid "Cannot initialize CORBA."
 msgstr "No es pot inicialitzar CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1392
+#: libgnomevfs-corba/gnome-vfs-slave.c:1409
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "No es pot reoldre la referència inicial al RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1399
+#: libgnomevfs-corba/gnome-vfs-slave.c:1416
 msgid "Cannot activate POA manager."
 msgstr "No es pot activar el gestor POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1424
+#: libgnomevfs-corba/gnome-vfs-slave.c:1441
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Utilització: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1435
+#: libgnomevfs-corba/gnome-vfs-slave.c:1452
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "No es pot obrir el descriptor de fitxers %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1458
+#: libgnomevfs-corba/gnome-vfs-slave.c:1475
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "No s'ha trobat la interfície de notificació per a `%s'."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1468
+#: libgnomevfs-corba/gnome-vfs-slave.c:1485
 msgid "Cannot setup Request object."
 msgstr "No es pot configurar l'objecte demanat."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1475
+#: libgnomevfs-corba/gnome-vfs-slave.c:1492
 msgid "Cannot extract IOR."
 msgstr "No es pot extreure l'IOR."
 
@@ -367,7 +372,7 @@ msgstr "No es pot matar GNOME::VFS::Esclau::Notifica -- excepció %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "No es pot connectar l'enllaç `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:782
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:802
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "No es pot inicialitzar GNOME::VFS:Esclau::Notifica"
 
@@ -396,166 +401,166 @@ msgstr "No es pot matar GNOME::VFS::Esclau (IOR unknown) -- excepció %s"
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Error en escriure en el canal d'avís GnomeVFSJob"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1253
+#: libgnomevfs-pthread/gnome-vfs-job.c:445
+#: libgnomevfs-pthread/gnome-vfs-job.c:1275
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Treball desconegut amb ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:784
-#: libgnomevfs-pthread/gnome-vfs-job.c:879
+#: libgnomevfs-pthread/gnome-vfs-job.c:795
+#: libgnomevfs-pthread/gnome-vfs-job.c:890
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "No es pot crear la connexió per obrir GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1271
+#: libgnomevfs-pthread/gnome-vfs-job.c:1293
 msgid "Operation stopped"
 msgstr "Operació aturada"
 
-#: modules/file-method.c:332
+#: modules/file-method.c:334
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Desconeguda GnomeVFSSeekPosition %d"
 
-#: modules/ftp-method.c:353
+#: modules/ftp-method.c:357
 msgid "ftpfs: Invalid host name."
 msgstr "ftpfs: Nom de servidor no vàlid."
 
-#: modules/ftp-method.c:376
+#: modules/ftp-method.c:380
 msgid "ftpfs: Invalid host address."
 msgstr "ftpfs: Adreça de servidor no vàlida."
 
-#: modules/ftp-method.c:396
+#: modules/ftp-method.c:400
 #, c-format
 msgid "ftpfs: making connection to %s"
 msgstr "ftpfs: connectant-se a %s"
 
-#: modules/ftp-method.c:402
+#: modules/ftp-method.c:406
 msgid "ftpfs: connection interrupted by user"
 msgstr "ftpfs: connexió interrompuda per l'usuari"
 
-#: modules/ftp-method.c:404
+#: modules/ftp-method.c:408
 #, c-format
 msgid "ftpfs: connection to server failed: %s"
 msgstr "ftpfs: connexió al servidor fallida: %s"
 
-#: modules/ftp-method.c:480
+#: modules/ftp-method.c:484
 #, c-format
 msgid "Waiting to retry... %d (Control-C to cancel)"
 msgstr "Esperant per reintentar-ho... %d (Control-C per cancel·lar-ho)"
 
-#: modules/ftp-method.c:751
+#: modules/ftp-method.c:755
 msgid " FTP: Password required for "
 msgstr " FTP: Contrasenya requerida per "
 
-#: modules/ftp-method.c:790
+#: modules/ftp-method.c:794
 msgid "ftpfs: sending login name"
 msgstr "ftpfs: enviant el nom d'entrada"
 
-#: modules/ftp-method.c:796
+#: modules/ftp-method.c:800
 msgid "ftpfs: sending user password"
 msgstr "ftpfs: enviant la contrasenya de l'usuari"
 
-#: modules/ftp-method.c:802
+#: modules/ftp-method.c:806
 msgid "ftpfs: logged in"
 msgstr "ftpfs: connectat"
 
-#: modules/ftp-method.c:814
+#: modules/ftp-method.c:818
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
 msgstr "ftpfs: Entrada incorrecta per a l'usuari %s "
 
-#: modules/ftp-method.c:827
+#: modules/ftp-method.c:831
 msgid "ftpfs: aborting transfer."
 msgstr "ftpfs: avortant la transferència."
 
-#: modules/ftp-method.c:829
+#: modules/ftp-method.c:833
 #, c-format
 msgid "ftpfs: abort error: %s"
 msgstr "ftpfs: error en avortar: %s"
 
-#: modules/ftp-method.c:834
+#: modules/ftp-method.c:838
 msgid "ftpfs: abort failed"
 msgstr "ftpfs: avortament fallit"
 
-#: modules/ftp-method.c:911
+#: modules/ftp-method.c:915
 msgid "ftpfs: could not setup passive mode"
 msgstr "ftpfs: no s'ha pogut configurar el mode passiu"
 
-#: modules/ftp-method.c:1088
+#: modules/ftp-method.c:1092
 #, c-format
 msgid "ftpfs: storing file %d (%d)"
 msgstr "ftpfs: emmagatzemant el fitxer %d (%d)"
 
-#: modules/ftp-method.c:1305 modules/ftp-method.c:1507
+#: modules/ftp-method.c:1313 modules/ftp-method.c:1515
 msgid "ftpfs: CWD failed."
 msgstr "ftpfs: CWD fallit."
 
-#: modules/ftp-method.c:1315 modules/ftp-method.c:1322
+#: modules/ftp-method.c:1323 modules/ftp-method.c:1330
 msgid "ftpfs: couldn't resolve symlink"
 msgstr "ftpfs: No s'ha pogut resoldre l'enllaç simbòlic"
 
-#: modules/ftp-method.c:1374
+#: modules/ftp-method.c:1382
 msgid "Resolving symlink..."
 msgstr "Resolent l'enllaç simbòlic..."
 
-#: modules/ftp-method.c:1498
+#: modules/ftp-method.c:1506
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
 msgstr ""
 "ftpfs: Llegint el directori FTP %s... (no utilitzeu les opcions ls de UNIX)"
 
-#: modules/ftp-method.c:1502
+#: modules/ftp-method.c:1510
 #, c-format
 msgid "ftpfs: Reading FTP directory %s..."
 msgstr "ftpfs: Llegint el directori FTP %s..."
 
-#: modules/ftp-method.c:1568
+#: modules/ftp-method.c:1576
 msgid "ftpfs: reading FTP directory interrupt by user"
 msgstr "ftpfs: lectura del directori FTP interrompuda per l'usuari"
 
-#: modules/ftp-method.c:1592
+#: modules/ftp-method.c:1600
 msgid "ftpfs: got listing"
 msgstr "ftpfs: llistat rebut"
 
-#: modules/ftp-method.c:1644
+#: modules/ftp-method.c:1652
 msgid "ftpfs: failed; nowhere to fallback to"
 msgstr "ftpfs: fallit; enlloc per anar"
 
-#: modules/ftp-method.c:2037
+#: modules/ftp-method.c:2045
 msgid "Starting linear transfer..."
 msgstr "Iniciant transferència lineal..."
 
-#: modules/ftp-method.c:2107
+#: modules/ftp-method.c:2115
 msgid "Preparing reget..."
 msgstr "Preparant la recuperació..."
 
-#: modules/http-method.c:500
+#: modules/http-method.c:502
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Encapçalament no vàlid `%s'"
 
-#: modules/http-method.c:517
+#: modules/http-method.c:519
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s per recuperar"
 
-#: modules/http-method.c:652
+#: modules/http-method.c:655
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Tancant la connexió a %s"
 
-#: modules/http-method.c:805
+#: modules/http-method.c:809
 #, c-format
 msgid "%s of %s read"
 msgstr "%s de %s llegit"
 
-#: modules/http-method.c:808
+#: modules/http-method.c:812
 #, c-format
 msgid "%s read"
 msgstr "%s llegit"
 
 #. Multi-Status
-#: modules/http-method.c:970
+#: modules/http-method.c:974
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr ""

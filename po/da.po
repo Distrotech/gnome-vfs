@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2000-04-19 15:50+0200\n"
+"POT-Creation-Date: 2000-05-03 23:24+0200\n"
 "PO-Revision-Date: 2000-04-26 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
@@ -403,7 +403,7 @@ msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Fejl ved skrivning til 'wakeup GnomeVFSJob' kanalen."
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:445
-#: libgnomevfs-pthread/gnome-vfs-job.c:1282
+#: libgnomevfs-pthread/gnome-vfs-job.c:1275
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Ukendt job-ID %d"
@@ -414,124 +414,124 @@ msgstr "Ukendt job-ID %d"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1300
+#: libgnomevfs-pthread/gnome-vfs-job.c:1293
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
-#: modules/file-method.c:332
+#: modules/file-method.c:334
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
 
-#: modules/ftp-method.c:353
+#: modules/ftp-method.c:357
 msgid "ftpfs: Invalid host name."
 msgstr "ftpfs: Ugyldigt værtsnavn."
 
-#: modules/ftp-method.c:376
+#: modules/ftp-method.c:380
 msgid "ftpfs: Invalid host address."
 msgstr "ftpfs: Ugyldig værtsadresse."
 
-#: modules/ftp-method.c:396
+#: modules/ftp-method.c:400
 #, c-format
 msgid "ftpfs: making connection to %s"
 msgstr "ftpfs: laver forbindelse til %s"
 
-#: modules/ftp-method.c:402
+#: modules/ftp-method.c:406
 msgid "ftpfs: connection interrupted by user"
 msgstr "ftpfs: forbindelse afbrudt af bruger"
 
-#: modules/ftp-method.c:404
+#: modules/ftp-method.c:408
 #, c-format
 msgid "ftpfs: connection to server failed: %s"
 msgstr "ftpfs: forbindelse til server fejlede: %s"
 
-#: modules/ftp-method.c:480
+#: modules/ftp-method.c:484
 #, c-format
 msgid "Waiting to retry... %d (Control-C to cancel)"
 msgstr "Venter på at prøve igen... %d (Ctrl-C for at annullere)"
 
-#: modules/ftp-method.c:751
+#: modules/ftp-method.c:755
 msgid " FTP: Password required for "
 msgstr " FTP: Adgangskode påkrævet for "
 
-#: modules/ftp-method.c:790
+#: modules/ftp-method.c:794
 msgid "ftpfs: sending login name"
 msgstr "Ftpfs: sender logindnavn"
 
-#: modules/ftp-method.c:796
+#: modules/ftp-method.c:800
 msgid "ftpfs: sending user password"
 msgstr "ftpfs: sender brugeradgangskode"
 
-#: modules/ftp-method.c:802
+#: modules/ftp-method.c:806
 msgid "ftpfs: logged in"
 msgstr "ftpfs: logget ind"
 
-#: modules/ftp-method.c:814
+#: modules/ftp-method.c:818
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
 msgstr "ftpfs: Forkert logind for bruger %s "
 
-#: modules/ftp-method.c:827
+#: modules/ftp-method.c:831
 msgid "ftpfs: aborting transfer."
 msgstr "ftpfs: afbryder overførsel."
 
-#: modules/ftp-method.c:829
+#: modules/ftp-method.c:833
 #, c-format
 msgid "ftpfs: abort error: %s"
 msgstr "ftpfs: afbrydningsfejl: %s"
 
-#: modules/ftp-method.c:834
+#: modules/ftp-method.c:838
 msgid "ftpfs: abort failed"
 msgstr "ftpfs: afbryd fejlede"
 
-#: modules/ftp-method.c:911
+#: modules/ftp-method.c:915
 msgid "ftpfs: could not setup passive mode"
 msgstr "ftpfs: kunne ikke opsætte passiv tilstand"
 
-#: modules/ftp-method.c:1088
+#: modules/ftp-method.c:1092
 #, c-format
 msgid "ftpfs: storing file %d (%d)"
 msgstr "ftpfs: gemmer filen %d (%d)"
 
-#: modules/ftp-method.c:1305 modules/ftp-method.c:1507
+#: modules/ftp-method.c:1313 modules/ftp-method.c:1515
 msgid "ftpfs: CWD failed."
 msgstr "ftpfs: CWD fejlede."
 
-#: modules/ftp-method.c:1315 modules/ftp-method.c:1322
+#: modules/ftp-method.c:1323 modules/ftp-method.c:1330
 msgid "ftpfs: couldn't resolve symlink"
 msgstr "ftpfs: kunne læse symlænke"
 
-#: modules/ftp-method.c:1374
+#: modules/ftp-method.c:1382
 msgid "Resolving symlink..."
 msgstr "Læser symlænke..."
 
-#: modules/ftp-method.c:1498
+#: modules/ftp-method.c:1506
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
 msgstr "ftpfs: Læser FTP-mappe %s... (brug ikke UNIX ls kommandoflag)"
 
-#: modules/ftp-method.c:1502
+#: modules/ftp-method.c:1510
 #, c-format
 msgid "ftpfs: Reading FTP directory %s..."
 msgstr "ftpfs: Læser FTP-mappe %s..."
 
-#: modules/ftp-method.c:1568
+#: modules/ftp-method.c:1576
 msgid "ftpfs: reading FTP directory interrupt by user"
 msgstr "ftpfs: læsning af FTP-mappe afbrudt af bruger"
 
-#: modules/ftp-method.c:1592
+#: modules/ftp-method.c:1600
 msgid "ftpfs: got listing"
 msgstr "ftpfs: fik liste"
 
-#: modules/ftp-method.c:1644
+#: modules/ftp-method.c:1652
 msgid "ftpfs: failed; nowhere to fallback to"
 msgstr "ftpfs: fejlede; ingen steder at falde tilbage til"
 
-#: modules/ftp-method.c:2037
+#: modules/ftp-method.c:2045
 msgid "Starting linear transfer..."
 msgstr "Starter lineær overførsel..."
 
-#: modules/ftp-method.c:2107
+#: modules/ftp-method.c:2115
 msgid "Preparing reget..."
 msgstr "Forbereder fortryd..."
 
