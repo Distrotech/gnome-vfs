@@ -96,10 +96,10 @@ application/pdf
 	short_list_component_iids_for_novice_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_intermediate_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_hacker_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
-	default_application_id=xpdf
-	short_list_application_ids_for_novice_user_level=gv,xpdf,acrobat
-	short_list_application_ids_for_intermediate_user_level=gv,xpdf,acrobat
-	short_list_application_ids_for_hacker_user_level=gv,xpdf,acrobat
+	default_application_id=acrobat
+	short_list_application_ids_for_novice_user_level=acrobat,ggv,gv,xpdf
+	short_list_application_ids_for_intermediate_user_level=acrobat,ggv,gv,xpdf
+	short_list_application_ids_for_hacker_user_level=acrobat,ggv,gv,xpdf
 
 application/pgp
 	description=PGP message
@@ -150,10 +150,10 @@ application/postscript
 	[no]description=PostScript dokument
 	[sv]description=PostScript-dokument
 	default_action_type=application
-	default_application_id=gv
-	short_list_application_ids_for_novice_user_level=gv,ghostview
-	short_list_application_ids_for_intermediate_user_level=gv,ghostview
-	short_list_application_ids_for_hacker_user_level=gv,ghostview
+	default_application_id=ggv
+	short_list_application_ids_for_novice_user_level=ggv,gv,ghostview
+	short_list_application_ids_for_intermediate_user_level=ggv,gv,ghostview
+	short_list_application_ids_for_hacker_user_level=ggv,gv,ghostview
 
 application/rtf
 	description=rich text
@@ -786,7 +786,7 @@ audio/x-mod
 	short_list_application_ids_for_intermediate_user_level=soundtracker
 	short_list_application_ids_for_hacker_user_level=soundtracker
 
-# also image/x-mpeg
+# also audio/x-mpeg
 audio/x-mp3
 	description=MP3 audio
 	[da]description=MP3-lyd
@@ -795,9 +795,9 @@ audio/x-mp3
 	icon-filename=i-music
 	default_action_type=application
 	default_application_id=xmms
-	short_list_application_ids_for_novice_user_level=mpg123,xmms
-	short_list_application_ids_for_intermediate_user_level=mpg123,xmms
-	short_list_application_ids_for_hacker_user_level=mpg123,xmms
+	short_list_application_ids_for_novice_user_level=xmms,mpg123
+	short_list_application_ids_for_intermediate_user_level=xmms,mpg123
+	short_list_application_ids_for_hacker_user_level=xmms,mpg123
 	
 audio/x-mp3-playlist
 	description=MP3 audio playlist
@@ -805,7 +805,7 @@ audio/x-mp3-playlist
 	[fr]description=Audio liste de lecture MP3
 	[sv]description=MP3-ljudspellista
 
-# also image/x-mp3
+# also audio/x-mp3
 audio/x-mpeg
         description=MP3 audio
 	[da]description=MP3-lyd
@@ -814,9 +814,9 @@ audio/x-mpeg
         icon-filename=i-music 
 	default_action_type=application
 	default_application_id=xmms
-	short_list_application_ids_for_novice_user_level=mpg123,xmms
-	short_list_application_ids_for_intermediate_user_level=mpg123,xmms
-	short_list_application_ids_for_hacker_user_level=mpg123,xmms
+	short_list_application_ids_for_novice_user_level=xmms,mpg123
+	short_list_application_ids_for_intermediate_user_level=xmms,mpg123
+	short_list_application_ids_for_hacker_user_level=xmms,mpg123
 
 audio/x-mpegurl
         description=MPEG URL
@@ -936,9 +936,9 @@ image/bmp
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	icon-filename=gnome-image-bmp.png
 
 image/cgm
@@ -964,9 +964,9 @@ image/gif
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	icon-filename=gnome-image-gif.png
 
 image/ief
@@ -986,9 +986,9 @@ image/jpeg
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	icon-filename=gnome-image-jpeg.png
 
 # also image/x-png
@@ -1003,9 +1003,9 @@ image/png
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	icon-filename=gnome-image-png.png
 
 image/svg
@@ -1025,9 +1025,9 @@ image/tiff
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	icon-filename=gnome-image-tiff.png
 
 image/vnd.dwg
@@ -1071,9 +1071,9 @@ image/x-bmp
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	icon-filename=gnome-image-bmp.png
 
 image/x-cmu-raster
@@ -1130,9 +1130,9 @@ image/x-png
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	icon-filename=gnome-image-png.png
 
 image/x-portable-anymap
@@ -1146,9 +1146,9 @@ image/x-portable-anymap
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	
 image/x-portable-bitmap
 	description=PBM image
@@ -1161,9 +1161,9 @@ image/x-portable-bitmap
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	icon-filename=gnome-image-pbm.png
 	
 image/x-portable-graymap
@@ -1176,9 +1176,9 @@ image/x-portable-graymap
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	
 image/x-portable-pixmap
 	description=PPM image
@@ -1191,9 +1191,9 @@ image/x-portable-pixmap
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	icon-filename=gnome-image-ppm.png
 
 image/x-psd
@@ -1263,9 +1263,9 @@ image/x-xpixmap
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	#default_application_id=eog
-	short_list_application_ids_for_novice_user_level=gimp,eog
-	short_list_application_ids_for_intermediate_user_level=gimp,eog
-	short_list_application_ids_for_hacker_user_level=gimp,eog
+	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
+	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 
 image/x-xwindowdump
 	description=X window image
@@ -1377,8 +1377,8 @@ text/*
 	short_list_component_iids_for_hacker_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	#default_application_id=gedit
 	short_list_application_ids_for_novice_user_level=gedit,xfte
-	short_list_application_ids_for_intermediate_user_level=emacs,xemacs,nedit,gedit,xfte
-	short_list_application_ids_for_hacker_user_level=vi,gvim,emacs,xemacs,nedit,gedit,xfte
+	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
+	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
 
 text/abiword
 	description=AbiWord document
@@ -1460,8 +1460,8 @@ text/plain
 	short_list_component_iids_for_hacker_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	#default_application_id=gedit
 	short_list_application_ids_for_novice_user_level=gedit
-	short_list_application_ids_for_intermediate_user_level=emacs,xemacs,nedit,gedit,xfte
-	short_list_application_ids_for_hacker_user_level=vi,gvim,emacs,xemacs,nedit,gedit,xfte
+	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
+	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
 
 text/rfc822-headers
 	description=email headers

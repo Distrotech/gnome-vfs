@@ -1,3 +1,15 @@
+2000-11-06  Maciej Stachowiak  <mjs@eazel.com>
+
+	* data/mime/gnome-vfs.applications, data/mime/gnome-vfs.keys: Some
+	minor changes. Added Electric Eyes and made it the most preferred
+	image viewer. Added ggv and made it more preferred than gv or
+	ghostview for PDF viewing. Added proper entry for ogg123. Made
+	mpg123 not require a terminal. Made mpg123 and xmms kmow that they
+	handle secondary versions of various mime types. Made Acrobat the
+	most preferred PDF viewer (if you've gone to the trouble of
+	installing it, it's proably what you want). Changed editor
+	preference order around a bit.
+
 2000-11-05  Yukihiro Nakai  <nakai@gnome.gr.jp>
 
 	* configure.in: Add sk(Slovak) to ALL_LINGUAS.
