@@ -1,3 +1,10 @@
+2000-12-18  Andy Hertzfeld  <andy@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	added explicit i-regular icons to text-oriented mime-types, so
+	you can see embedded text even when the standard gnome icons are
+	present.
+	
 2000-12-18  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Rebecca Schulman  <rebecka@eazel.com>

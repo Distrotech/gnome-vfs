@@ -1674,6 +1674,7 @@ text/*
 	short_list_application_ids_for_novice_user_level=gedit,xfte
 	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
 	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
+	icon_filename=i-regular
 
 text/abiword
 	description=AbiWord document
@@ -1743,6 +1744,7 @@ text/html
 	short_list_application_ids_for_novice_user_level=mozilla,netscape,galeon
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,galeon
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx,galeon
+	icon_filename=i-regular
 
 text/htmlh
 	description=Help page
@@ -1778,6 +1780,7 @@ text/plain
 	short_list_application_ids_for_novice_user_level=gedit
 	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
 	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
+	icon_filename=i-regular
 
 text/rfc822-headers
 	description=email headers
@@ -1837,6 +1840,7 @@ text/x-c
 	[fr]description=Code source C
 	[no]description=C-kildekode
 	[sv]description=C-källkod
+	icon_filename=i-regular
 
 text/x-c++
 	description=C++ source code
@@ -1861,6 +1865,7 @@ text/x-copying
 	[fr]description=Licence GNU
 	[no]description=GNU-lisens
 	[sv]description=GNU-licens
+	icon_filename=i-regular
 
 text/x-credits
 	description=author credits
@@ -1869,6 +1874,7 @@ text/x-credits
 	[fr]description=Crédits d'auteur
 	[no]description=forfatterliste
 	[sv]description=författarlista
+	icon_filename=i-regular
 
 # also application/x-csh
 text/x-csh
@@ -1951,6 +1957,7 @@ text/x-java
 	[fr]description=Code source Java
 	[no]description=Java-kildekode
 	[sv]description=Java-källkod
+	icon_filename=i-regular
 
 text/x-ksh
 	can_be_executable=TRUE
@@ -1976,6 +1983,7 @@ text/x-patch
 	[fr]description=Code source patch
 	[no]description=kildekodepatch
 	[sv]description=källkodspatch
+	icon_filename=i-regular
 
 # also application/x-perl
 text/x-perl
@@ -1986,6 +1994,7 @@ text/x-perl
 	[fr]description=Script Perl
 	[no]description=Perl skript
 	[sv]description=Perlskript
+	icon_filename=i-regular
 
 text/x-python
 	description=Python script
@@ -1994,6 +2003,7 @@ text/x-python
 	[fr]description=Script Python
 	[no]description=Python skript
 	[sv]description=Pythonskript
+	icon_filename=i-regular
 
 text/x-readme
 	description=README file
@@ -2002,6 +2012,7 @@ text/x-readme
 	[fr]description=Fichier README
 	[no]description=README-fil
 	[sv]description=README-fil
+	icon_filename=i-regular
 
 text/x-scheme
 	description=Scheme source code
@@ -2025,6 +2036,7 @@ text/x-sh
 	[fr]description=Script shell
 	[no]description=skallskript
 	[sv]description=skalskript
+	icon_filename=i-regular
 
 text/x-speech
 	description=Speech document
@@ -2132,6 +2144,7 @@ text/xml
 	short_list_application_ids_for_novice_user_level=mozilla
 	short_list_application_ids_for_intermediate_user_level=mozilla
 	short_list_application_ids_for_hacker_user_level=mozilla
+	icon_filename=i-regular
 
 video/isivideo
 	description=ISI video
