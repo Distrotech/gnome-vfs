@@ -1,5 +1,9 @@
 2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
         * modules/ssh-method.c: 
+        Quote filenames using g_shell_quote before passing them to ssh
+
+2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
+        * modules/ssh-method.c: 
         Make do_read return GNOME_VFS_ERROR_EOF when it read 0 byte
         Force C locale in ssh_connect before running ssh (the ls parsing 
         function expects ls output to be in this locale)
