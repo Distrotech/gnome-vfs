@@ -72,6 +72,9 @@
 0	string		\x89PNG					image/png
 0	string		8BPS\ \ \000\000\000\000 &0xffffffff0000ffffffff image/x-psd
 
+# Desktop file support
+0	string		[Desktop\ Entry]			application/x-gnome-app-info
+
 # special Nautilus link type
 0:32	string		\<nautilus_object\ nautilus_link	application/x-nautilus-link
 
