@@ -1,5 +1,18 @@
 2001-11-28  Seth Nickell  <snickell@stanford.edu>
 
+	* modules/vfolder-desktop-method.c: (get_entry),
+	(desktop_uri_to_file_uri), (do_open):
+
+	Track down a couple bugs that were preventing
+	.directory files from being read... Folders should
+	now have directory info... woo hoo!
+	
+	* modules/programs.vfolder-info.in:
+
+	Add <Desktop> specs to all folders.
+	
+2001-11-28  Seth Nickell  <snickell@stanford.edu>
+
 	* modules/programs.vfolder-info.in:
 
 	Add <DesktopDir> specification

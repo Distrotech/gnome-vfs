@@ -2224,6 +2224,8 @@ get_entry (GnomeVFSURI *uri,
 
 		g_free (basename);
 
+		*is_directory_file = TRUE;
+
 		if (folder == NULL) {
 			*result = GNOME_VFS_ERROR_NOT_FOUND;
 			return FALSE;
@@ -2290,8 +2292,9 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 		}
 
 		info = vfolder_info_from_uri (desktop_uri, result);
-		if (info == NULL)
+		if (info == NULL) {
 			return NULL;
+		}
 
 		if (privatize) {
 			char *fname;
@@ -2520,6 +2523,7 @@ do_open (GnomeVFSMethod *method,
 					    NULL /* the_folder */,
 					    mode & GNOME_VFS_OPEN_WRITE,
 					    &result);
+
 	if (file_uri == NULL)
 		return result;
 
