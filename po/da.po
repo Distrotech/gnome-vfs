@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-29 10:41+0200\n"
+"POT-Creation-Date: 2004-08-01 21:54+0200\n"
 "PO-Revision-Date: 2004-07-28 21:35+0200\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -296,23 +296,23 @@ msgstr "Ukendt"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
-msgstr "Cd-rom-disk"
+msgstr "Cd-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
-msgstr "Blank læsebar cd-rom-disk"
+msgstr "Blank cd-r-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:606
 msgid "CD-R Disc"
-msgstr "Læsbar cd-rom-disk"
+msgstr "Cd-r-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
-msgstr "Blank læse og skrivebar cd-rom-disk"
+msgstr "Blank cd-rw-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
 msgid "CD-RW Disc"
-msgstr "Læse og skrivebar cd-rom-disk"
+msgstr "Cd-rw-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:613
 msgid "DVD-ROM Disc"
@@ -320,11 +320,11 @@ msgstr "Dvd-rom-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
-msgstr "Blank læsebar dvd-rom-disk"
+msgstr "Blank dvd-r-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
-msgstr "Læsebar dvd-rom-disk"
+msgstr "Dvd-r-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
@@ -336,27 +336,27 @@ msgstr "Dvd-ram-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
-msgstr "Blank læse og skrivebar dvd-rom-disk"
+msgstr "Blank dvd-rw-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
-msgstr "Læse og skrivebar dvd-rom-disk"
+msgstr "Dvd-rw-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
-msgstr "Blank læse og skrivebar dvd-rom-disk"
+msgstr "Blank dvd+rw-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
-msgstr "Læse og skrivebar dvd-rom-disk"
+msgstr "Dvd+rw-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
-msgstr "Blank læsebar dvd-rom-disk"
+msgstr "Blank dvd+r-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
-msgstr "Læsebar dvd-rom-disk"
+msgstr "Dvd+r-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
@@ -368,7 +368,7 @@ msgstr "Lyd-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
-msgstr "Kompakt lynhurtigt medie"
+msgstr "Compact Flash-medie"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:652
 msgid "Memory Stick Media"
@@ -376,7 +376,7 @@ msgstr "Hukommelsespind-medie"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
-msgstr "Smartmedie-medie"
+msgstr "Smart Media-medie"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
@@ -760,7 +760,7 @@ msgstr "Kamera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
-msgstr "DVD"
+msgstr "Dvd"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
