@@ -9,9 +9,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.0\n"
-"POT-Creation-Date: 2000-02-21 16:53-0500\n"
-"PO-Revision-Date: 2000-04-08 00:03+0200\n"
+"Project-Id-Version: gnome-vfs 0.1\n"
+"POT-Creation-Date: 2000-04-08 09:57+0200\n"
+"PO-Revision-Date: 2000-04-08 9:58+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -402,7 +402,7 @@ msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Erro ó escribir á canle de avisos GnomeVFSJob."
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1247
+#: libgnomevfs-pthread/gnome-vfs-job.c:1248
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "ID de traballo %d descoñecido"
@@ -413,7 +413,7 @@ msgstr "ID de traballo %d descoñecido"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Non se pode crear unha canle para abrir GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1265
+#: libgnomevfs-pthread/gnome-vfs-job.c:1266
 msgid "Operation stopped"
 msgstr "Operación parada"
 
@@ -534,27 +534,32 @@ msgstr "Comezando transferencia lineal..."
 msgid "Preparing reget..."
 msgstr "Preparando o reget..."
 
-#: modules/http-method.c:471
+#: modules/http-method.c:500
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Cabeceira `%s' non válida"
 
-#: modules/http-method.c:488
+#: modules/http-method.c:517
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s a recibir"
 
-#: modules/http-method.c:601
+#: modules/http-method.c:652
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Pechando a conexión a %s"
 
-#: modules/http-method.c:686
+#: modules/http-method.c:805
 #, c-format
 msgid "%s of %s read"
 msgstr "lido %s de %s"
 
-#: modules/http-method.c:689
+#: modules/http-method.c:808
 #, c-format
 msgid "%s read"
 msgstr "%s lido"
+
+#. Multi-Status
+#: modules/http-method.c:970
+msgid "HTTP server returned an invalid PROPFIND response"
+msgstr "O servidiro devolveu unha resposta PROPFIND non válida"
