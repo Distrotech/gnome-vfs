@@ -835,6 +835,9 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 		{
 			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		}
+	} else {
+		/* everything is copacetic... free the unescaped path */
+		g_free (unescaped_path);
 	}
 #else 
 	g_free (unescaped_path);
