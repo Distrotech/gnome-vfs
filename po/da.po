@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2000-08-01 02:00+0200\n"
-"PO-Revision-Date: 2001-01-03 19:03+01:00\n"
+"PO-Revision-Date: 2001-11-03 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -408,23 +408,23 @@ msgstr "Kan ikke dræbe GNOME::VFS::Slave %s -- undtagelse %s"
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "Kan ikke dræbe GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:157
+#: libgnomevfs-pthread/gnome-vfs-job.c:146
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Fejl ved skrivning til 'wakeup GnomeVFSJob' kanalen."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:762
-#: libgnomevfs-pthread/gnome-vfs-job.c:1672
+#: libgnomevfs-pthread/gnome-vfs-job.c:763
+#: libgnomevfs-pthread/gnome-vfs-job.c:1775
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Ukendt job-ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1061
-#: libgnomevfs-pthread/gnome-vfs-job.c:1189
+#: libgnomevfs-pthread/gnome-vfs-job.c:1079
+#: libgnomevfs-pthread/gnome-vfs-job.c:1227
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1705
+#: libgnomevfs-pthread/gnome-vfs-job.c:1807
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
@@ -561,7 +561,7 @@ msgid "Edit Application"
 msgstr "Redigér applikation"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:541
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1520
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1532
 msgid "Mime Type"
 msgstr "MIME-type"
 
@@ -589,32 +589,28 @@ msgstr "Åbn med applikation"
 msgid "Edit List"
 msgstr "Redigér liste"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:612
+#: mime-type-capplet/nautilus-mime-type-capplet.c:618
 msgid "Add new Mime type..."
 msgstr "Tilføj ny MIME-type..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:618
+#: mime-type-capplet/nautilus-mime-type-capplet.c:624
 msgid "Delete this Mime type..."
 msgstr "Slet denne Mime-type..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:629
+#: mime-type-capplet/nautilus-mime-type-capplet.c:635
 msgid "Revert to System Defaults"
 msgstr "Gå tilbage til system-standard"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:687
+#: mime-type-capplet/nautilus-mime-type-capplet.c:693
 msgid "No Description"
 msgstr "Ingen beskrivelse"
 
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-#: mime-type-capplet/nautilus-mime-type-capplet.c:962
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1127
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1313
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1435
+#: mime-type-capplet/nautilus-mime-type-capplet.c:823
+#: mime-type-capplet/nautilus-mime-type-capplet.c:968
 msgid "None"
 msgstr "Ingen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1058
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1064
 msgid ""
 "Reverting to system settings\n"
 "will lose all your personal \n"
@@ -626,23 +622,37 @@ msgstr ""
 "Mime-opsætning.\n"
 "Skal vi gå tilbage til system-opsætninger?\n"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1519
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1133
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1321
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1445
+msgid "none"
+msgstr "ingen"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1170
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1351
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1481
+#, c-format
+msgid "View as %s"
+msgstr "Vis som %s"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1531
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1521
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1533
 msgid "Extension"
 msgstr "Filtype"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1522
-msgid "Action"
-msgstr "Handling"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1534
+msgid "Default Action"
+msgstr "Standard handling"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:272
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:255
 msgid "Can't find an hbox, using a normal file selection"
 msgstr "Kan ikke finde en hbox, ved brug af normalt filvalg"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:278
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:261
 msgid "Preview"
 msgstr "Smugkig"
 
@@ -734,6 +744,9 @@ msgstr "Vis:"
 #: test/gnome-file-selection/gnome-file-selection.c:887
 msgid "Show dotfiles"
 msgstr "Vis dotfiler"
+
+#~ msgid "Action"
+#~ msgstr "Handling"
 
 #~ msgid "Extensions:"
 #~ msgstr "fil-endelser:"
