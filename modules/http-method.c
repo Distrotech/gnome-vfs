@@ -1966,16 +1966,24 @@ process_propfind_response(xmlNodePtr n,
 					    (0 == null_handling_strcmp (second_base->text, uri->text))) {
 						file_info->name = NULL; /* this file is the . directory */
 					} else {
-						/* extract_short_name returns unescaped */
+						if (file_info->name != NULL) {
+							/* Don't leak if a (potentially malicious)
+							 * server returns several href in its answer
+							 */
+							g_free (file_info->name);
+						}
 						file_info->name = gnome_vfs_uri_extract_short_name (uri);
-						gnome_vfs_uri_unref (uri);
-						
-						len = strlen (file_info->name) -1;
-						if (file_info->name[len] == '/') {
-							/* trim trailing `/` - it confuses stuff */
-							file_info->name[len] = '\0';
+						if (file_info->name != NULL) {
+							len = strlen (file_info->name) -1;
+							if (file_info->name[len] == '/') {
+								/* trim trailing `/` - it confuses stuff */
+								file_info->name[len] = '\0';
+							}
+						} else {
+							g_warning ("Invalid filename in PROPFIND '%s'; silently skipping", nodecontent);
 						}
 					}
+					gnome_vfs_uri_unref (uri);
 				} else {
 					g_warning ("Can't make URI from href in PROPFIND '%s'; silently skipping", nodecontent);
 				}
@@ -2198,6 +2206,7 @@ do_open_directory(GnomeVFSMethod *method,
 
 	if (file_info_cached) {
 		handle = http_file_handle_new (NULL, uri);
+		gnome_vfs_file_info_unref (handle->file_info);
 		handle->file_info = file_info_cached;
 		handle->files = child_file_info_cached_list;
 		result = GNOME_VFS_OK;

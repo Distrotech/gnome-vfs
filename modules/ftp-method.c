@@ -23,16 +23,6 @@
 
 /* see RFC 959 for protocol details */
 
-/* SOME INVALID ASSUMPTIONS I HAVE MADE:
- * All FTP servers return UNIX ls style responses to LIST,
- */
-
-/* TODO */
-/* FIXME bugzilla.eazel.com 1463: Make koobera.math.uic.edu and 
-   Make NetPresenz work (eg: uniserver.uwa.edu.au)*/
-/* FIXME bugzilla.eazel.com 1465: FtpUri / FtpConnectionUri refcounting or something. */
-/* FIXME bugzilla.eazel.com 1466: do_get_file_info_from_handle */
-
 #include <config.h>
 
 /* Keep <sys/types.h> above any network includes for FreeBSD. */
@@ -1305,16 +1295,22 @@ do_get_file_info (GnomeVFSMethod *method,
 		GnomeVFSMethodHandle *method_handle;
 		gchar *name;
 
+
+	       	name = gnome_vfs_uri_extract_short_name (uri);
+		if (name == NULL) {
+			gnome_vfs_uri_unref (parent);
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;
+		}
+
 		result = do_open_directory (method, &method_handle, parent,
 					    options, context);
 
 		gnome_vfs_uri_unref (parent);
 
 		if (result != GNOME_VFS_OK) {
+			g_free (name);
 			return result;
 		}
-
-	       	name = gnome_vfs_uri_extract_short_name (uri);
 
 		while (1) {
 			result = do_read_directory (method, method_handle, 
