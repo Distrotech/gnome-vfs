@@ -24,6 +24,7 @@ ltconfig
 ltmain.sh
 missing
 mkinstalldirs
+sgml
 stamp-h
 stamp-h.in
 vfsConf.sh

@@ -1,3 +1,7 @@
+2001-07-12  Darin Adler  <darin@bentspoon.com>
+
+	* .cvsignore: Ignore sgml directory too.
+
 2001-07-12  Laszlo Peter   <laca@ireland.sun.com>
 
 	Fix some portability issues.
