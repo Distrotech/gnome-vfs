@@ -1,3 +1,10 @@
+2002-02-17  Alexander Larsson  <alla@lysator.liu.se>
+
+	* modules/vfolder-desktop-method.c (vfolder_info_insert_entry):
+	Use g_hash_table_replace instead of g_hash_table_insert, so we don't
+	keep a pointer to the old key which eventually got freed.
+	Seems to fix a startup segfault in the panel.
+
 2002-02-14  Tõivo Leedjärv  <leedjarv@interest.ee>
 
 	* configure.in: Added et to ALL_LINGUAS.

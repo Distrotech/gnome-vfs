@@ -2205,7 +2205,7 @@ vfolder_info_insert_entry (VFolderInfo *info, EntryFile *efile)
 
 	info->entries = g_slist_prepend (info->entries, efile);
 	/* The hash table contains the GSList pointer */
-	g_hash_table_insert (info->entries_ht, efile->entry.name, 
+	g_hash_table_replace (info->entries_ht, efile->entry.name, 
 			     info->entries);
 
 	if (entry_list != NULL) {
