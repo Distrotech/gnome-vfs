@@ -264,8 +264,6 @@ dispatch_open_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 
 	open_op = &op->specifics.open;
 
-	gnome_vfs_uri_unref (open_op->request.uri);
-
 	callback = (GnomeVFSAsyncOpenCallback) op->callback;
 	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      open_op->notify.result,
@@ -280,8 +278,6 @@ dispatch_create_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 
 	create_op = &op->specifics.create;
 
-	gnome_vfs_uri_unref (create_op->request.uri);
-
 	callback = (GnomeVFSAsyncCreateCallback) op->callback;
 	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      create_op->notify.result,
@@ -295,7 +291,6 @@ dispatch_open_as_channel_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	GnomeVFSOpenAsChannelOp *open_as_channel_op;
 
 	open_as_channel_op = &op->specifics.open_as_channel;
-	gnome_vfs_uri_unref (open_as_channel_op->request.uri);
 
 	callback = (GnomeVFSAsyncOpenAsChannelCallback) op->callback;
 	(* callback) ((GnomeVFSAsyncHandle *) job,
@@ -311,8 +306,6 @@ dispatch_create_as_channel_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	GnomeVFSCreateAsChannelOp *create_as_channel_op;
 
 	create_as_channel_op = &op->specifics.create_as_channel;
-
-	gnome_vfs_uri_unref (create_as_channel_op->request.uri);
 
 	callback = (GnomeVFSAsyncCreateAsChannelCallback) op->callback;
 	(* callback) ((GnomeVFSAsyncHandle *) job,
@@ -379,9 +372,6 @@ dispatch_load_directory_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 
 	load_directory_op = &op->specifics.load_directory;
 
-	if (load_directory_op->notify.result != GNOME_VFS_OK)
-		gnome_vfs_uri_unref (load_directory_op->request.uri);
-
 	callback = (GnomeVFSAsyncDirectoryLoadCallback) op->callback;
 	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      load_directory_op->notify.result,
@@ -394,8 +384,7 @@ static void
 dispatch_get_file_info_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 {
 	GnomeVFSAsyncGetFileInfoCallback callback;
-	GList *result_list, *p;
-	GnomeVFSGetFileInfoResult *result_item;
+	GList *result_list;
 
 	callback = (GnomeVFSAsyncGetFileInfoCallback) op->callback;
 	result_list = op->specifics.get_file_info.notify.result_list;
@@ -403,6 +392,15 @@ dispatch_get_file_info_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      result_list,
 		      op->callback_data);
+}
+
+static void
+free_get_file_info_data (GnomeVFSOp *op)
+{
+	GList *result_list, *p;
+	GnomeVFSGetFileInfoResult *result_item;
+
+	result_list = op->specifics.get_file_info.notify.result_list;
 
 	for (p = result_list; p != NULL; p = p->next) {
 		result_item = p->data;
@@ -418,8 +416,7 @@ static void
 dispatch_find_directory_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 {
 	GnomeVFSAsyncFindDirectoryCallback callback;
-	GList *result_list, *p;
-	GnomeVFSFindDirectoryResult *result_item;
+	GList *result_list;
 
 	callback = (GnomeVFSAsyncFindDirectoryCallback) op->callback;
 	result_list = op->specifics.find_directory.notify.result_list;
@@ -427,6 +424,15 @@ dispatch_find_directory_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      result_list,
 		      op->callback_data);
+}
+
+static void
+free_find_directory_data (GnomeVFSOp *op)
+{
+	GList *result_list, *p;
+	GnomeVFSFindDirectoryResult *result_item;
+
+	result_list = op->specifics.find_directory.notify.result_list;
 
 	for (p = result_list; p != NULL; p = p->next) {
 		result_item = p->data;
@@ -444,22 +450,19 @@ dispatch_set_file_info_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 {
 	GnomeVFSAsyncSetFileInfoCallback callback;
 	gboolean new_info_is_valid;
-
+	
 	new_info_is_valid = 
-		op->specifics.set_file_info.notify.set_file_info_result == GNOME_VFS_OK &&
-		op->specifics.set_file_info.notify.get_file_info_result == GNOME_VFS_OK;
-
+		op->specifics.set_file_info.notify.set_file_info_result == GNOME_VFS_OK
+		&& op->specifics.set_file_info.notify.get_file_info_result == GNOME_VFS_OK;
+	
 	callback = (GnomeVFSAsyncSetFileInfoCallback) op->callback;
-
+	
 	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      op->specifics.set_file_info.notify.set_file_info_result,
 		      new_info_is_valid 
-		      	? &op->specifics.set_file_info.notify.info 
-		      	: NULL,
+		      ? &op->specifics.set_file_info.notify.info 
+		      : NULL,
 		      op->callback_data);
-
-	/* Always clear new info, whether or not it's valid. */
-	gnome_vfs_file_info_clear (&op->specifics.set_file_info.notify.info);
 }
 
 static void
@@ -529,8 +532,17 @@ dispatch_job_callback (GIOChannel *source,
 	
 	JOB_DEBUG (("dispatching %p", job));
 	/* Do the callback, but not if this operation has been cancelled. */
+
 	if (gnome_vfs_context_check_cancellation (op->context)) {
 		switch (op->type) {
+		case GNOME_VFS_OP_CREATE:
+			if (op->specifics.create.notify.result == GNOME_VFS_OK)
+				handle_cancelled_open (job, op);
+			break;
+		case GNOME_VFS_OP_CREATE_AS_CHANNEL:
+			if (op->specifics.create_as_channel.notify.result == GNOME_VFS_OK)
+				handle_cancelled_open (job, op);
+			break;
 		case GNOME_VFS_OP_OPEN:
 			if (op->specifics.open.notify.result == GNOME_VFS_OK)
 				handle_cancelled_open (job, op);
@@ -539,71 +551,58 @@ dispatch_job_callback (GIOChannel *source,
 			if (op->specifics.open_as_channel.notify.result == GNOME_VFS_OK)
 				handle_cancelled_open (job, op);
 			break;
-		case GNOME_VFS_OP_CREATE:
-			if (op->specifics.create.notify.result == GNOME_VFS_OK)
-				handle_cancelled_open (job, op);
-			break;
-		case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
-			if (op->specifics.create_symbolic_link.notify.result == GNOME_VFS_OK)
-				handle_cancelled_open (job, op);
-			break;
-		case GNOME_VFS_OP_CREATE_AS_CHANNEL:
-			if (op->specifics.create_as_channel.notify.result == GNOME_VFS_OK)
-				handle_cancelled_open (job, op);
-			break;
 		case GNOME_VFS_OP_CLOSE:
-		case GNOME_VFS_OP_READ:
-		case GNOME_VFS_OP_WRITE:
-		case GNOME_VFS_OP_LOAD_DIRECTORY:
-		case GNOME_VFS_OP_XFER:
-		case GNOME_VFS_OP_GET_FILE_INFO:
-		case GNOME_VFS_OP_SET_FILE_INFO:
+		case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
 		case GNOME_VFS_OP_FIND_DIRECTORY:
+		case GNOME_VFS_OP_GET_FILE_INFO:
+		case GNOME_VFS_OP_LOAD_DIRECTORY:
+		case GNOME_VFS_OP_READ:
+		case GNOME_VFS_OP_SET_FILE_INFO:
+		case GNOME_VFS_OP_WRITE:
+		case GNOME_VFS_OP_XFER:
 			break;
 		}
 	} else {
 		switch (op->type) {
+		case GNOME_VFS_OP_CLOSE:
+			dispatch_close_callback (job, op);
+			break;
+		case GNOME_VFS_OP_CREATE:
+			dispatch_create_callback (job, op);
+			break;
+		case GNOME_VFS_OP_CREATE_AS_CHANNEL:
+			dispatch_create_as_channel_callback (job, op);
+			break;
+		case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
+			dispatch_create_callback (job, op);
+			break;
+		case GNOME_VFS_OP_FIND_DIRECTORY:
+			dispatch_find_directory_callback (job, op);
+			break;
+		case GNOME_VFS_OP_GET_FILE_INFO:
+			dispatch_get_file_info_callback (job, op);
+			break;
+		case GNOME_VFS_OP_LOAD_DIRECTORY:
+			dispatch_load_directory_callback (job, op);
+			break;
 		case GNOME_VFS_OP_OPEN:
 			dispatch_open_callback (job, op);
 			break;
 		case GNOME_VFS_OP_OPEN_AS_CHANNEL:
 			dispatch_open_as_channel_callback (job, op);
 			break;
-		case GNOME_VFS_OP_CREATE:
-			dispatch_create_callback (job, op);
-			break;
-		case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
-			dispatch_create_callback (job, op);
-			break;
-		case GNOME_VFS_OP_CREATE_AS_CHANNEL:
-			dispatch_create_as_channel_callback (job, op);
-			break;
-		case GNOME_VFS_OP_CLOSE:
-			dispatch_close_callback (job, op);
-			break;
 		case GNOME_VFS_OP_READ:
 			dispatch_read_callback (job, op);
-			break;
-		case GNOME_VFS_OP_WRITE:
-			dispatch_write_callback (job, op);
-			break;
-		case GNOME_VFS_OP_LOAD_DIRECTORY:
-			dispatch_load_directory_callback (job, op);
-			break;
-		case GNOME_VFS_OP_XFER:
-			dispatch_xfer_callback (job, op);
-			break;
-		case GNOME_VFS_OP_GET_FILE_INFO:
-			dispatch_get_file_info_callback (job, op);
 			break;
 		case GNOME_VFS_OP_SET_FILE_INFO:
 			dispatch_set_file_info_callback (job, op);
 			break;
-		case GNOME_VFS_OP_FIND_DIRECTORY:
-			dispatch_find_directory_callback (job, op);
+		case GNOME_VFS_OP_WRITE:
+			dispatch_write_callback (job, op);
 			break;
-		default:
-			g_warning (_("Unknown job ID %d"), op->type);
+		case GNOME_VFS_OP_XFER:
+			dispatch_xfer_callback (job, op);
+			break;
 		}
 	}
 
@@ -711,6 +710,43 @@ gnome_vfs_job_finish_destroy (GnomeVFSJob *job)
 static void
 gnome_vfs_op_destroy (GnomeVFSOp *op)
 {
+	switch (op->type) {
+	case GNOME_VFS_OP_CREATE:
+	case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
+		gnome_vfs_uri_unref (op->specifics.create.request.uri);
+		break;
+	case GNOME_VFS_OP_CREATE_AS_CHANNEL:
+		gnome_vfs_uri_unref (op->specifics.create_as_channel.request.uri);
+		break;
+	case GNOME_VFS_OP_FIND_DIRECTORY:
+		free_find_directory_data (op);
+		break;
+	case GNOME_VFS_OP_GET_FILE_INFO:
+		free_get_file_info_data (op);
+		break;
+	case GNOME_VFS_OP_LOAD_DIRECTORY:
+		gnome_vfs_uri_unref (op->specifics.load_directory.request.uri);
+		break;
+	case GNOME_VFS_OP_OPEN:
+		gnome_vfs_uri_unref (op->specifics.open.request.uri);
+		break;
+	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
+		gnome_vfs_uri_unref (op->specifics.open_as_channel.request.uri);
+		break;
+	case GNOME_VFS_OP_SET_FILE_INFO:
+		gnome_vfs_uri_unref (op->specifics.set_file_info.request.uri);
+		gnome_vfs_file_info_clear (&op->specifics.set_file_info.request.info);
+		gnome_vfs_file_info_clear (&op->specifics.set_file_info.notify.info);
+		break;
+	case GNOME_VFS_OP_CLOSE:
+	case GNOME_VFS_OP_READ:
+	case GNOME_VFS_OP_WRITE:
+	case GNOME_VFS_OP_XFER:
+		break;
+	default:
+		g_warning (_("Unknown job ID %d"), op->type);
+	}
+	
 	gnome_vfs_context_unref (op->context);
 	g_free (op);
 }
@@ -1228,14 +1264,14 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 
 	count = 0;
 	while (1) {
-		info = gnome_vfs_file_info_new ();
-
 		if (gnome_vfs_context_check_cancellation (job->current_op->context)) {
 			JOB_DEBUG (("cancelled, bailing %p", job));
 			result = GNOME_VFS_ERROR_CANCELLED;
 			break;
 		}
 		
+		info = gnome_vfs_file_info_new ();
+
 		result = gnome_vfs_directory_read_next (handle, info);
 
 		if (result == GNOME_VFS_OK) {
@@ -1361,7 +1397,6 @@ execute_get_file_info (GnomeVFSJob *job)
 
 	gijob = &job->current_op->specifics.get_file_info;
 
-	gijob->notify.result_list = NULL;
 	for (p = gijob->request.uris; p != NULL; p = p->next) {
 		result_item = g_new (GnomeVFSGetFileInfoResult, 1);
 
@@ -1393,9 +1428,6 @@ execute_set_file_info (GnomeVFSJob *job)
 	op->notify.set_file_info_result = gnome_vfs_set_file_info_cancellable
 		(op->request.uri, &op->request.info, op->request.mask,
 		 job->current_op->context);
-
-	/* FIXME bugzilla.eazel.com 2746: potential leak if operation is cancelled before getting here. */
-	gnome_vfs_file_info_clear (&op->request.info);
 
 	/* Always get new file info, even if setter failed. Init here and clear
 	 * in dispatch_set_file_info.

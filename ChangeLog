@@ -1,3 +1,30 @@
+2000-09-22  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (dispatch_open_callback),
+	(dispatch_create_callback), (dispatch_open_as_channel_callback),
+	(dispatch_create_as_channel_callback),
+	(dispatch_load_directory_callback),
+	(dispatch_get_file_info_callback), (free_get_file_info_data),
+	(dispatch_find_directory_callback), (free_find_directory_data),
+	(dispatch_set_file_info_callback), (dispatch_job_callback),
+	(gnome_vfs_op_destroy), (execute_get_file_info),
+	(execute_set_file_info): Fixed tons of storage leaks that happened
+	when an operation was cancelled by freeing things stored in the
+	GnomeVFSOp when the GnomeVFSOp is deleted instead of at callback
+	time. Fixes bug 2746 (leak in cancelled gnome_vfs_xfer call).
+	(execute_load_directory_not_sorted): Fixed a storage leak caused
+	by allocating an info before checking for cancellation and then
+	exiting without freeing it.
+	
+	* libgnomevfs/gnome-vfs-method.c:
+	(gnome_vfs_add_module_to_hash_table), (gnome_vfs_method_get),
+	(gnome_vfs_transform_get): Changed the name of "fill_hash_table"
+	to "gnome_vfs_add_module_to_hash_table" to make the it easier for
+	the leak checker (currently in the Nautilus source module, but
+	useful for any program) to recognize this as an exception to the
+	normal rules about what leaks are. A bit of a hack; alternatives
+	include adding code to free things at exit time.
+
 2000-09-22  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c: (http_file_handle_new),

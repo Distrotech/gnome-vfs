@@ -260,7 +260,7 @@ load_module_in_path_list (const gchar *base_name, const char *method_name, const
 }
 
 static gboolean
-fill_hash_table (const gchar *name)
+gnome_vfs_add_module_to_hash_table (const gchar *name)
 {
 	GnomeVFSMethod *method = NULL;
 	GnomeVFSTransform *transform = NULL;
@@ -326,7 +326,7 @@ gnome_vfs_method_get (const gchar *name)
 	if (module_element != NULL)
 		return module_element->method;
 
-	if (fill_hash_table (name)) {
+	if (gnome_vfs_add_module_to_hash_table (name)) {
 		G_LOCK (module_hash);
 		module_element = g_hash_table_lookup (module_hash, name);
 		G_UNLOCK (module_hash);
@@ -352,7 +352,7 @@ gnome_vfs_transform_get (const gchar *name)
 	if (module_element != NULL)
 		return module_element->transform;
 
-	if (fill_hash_table (name)) {
+	if (gnome_vfs_add_module_to_hash_table (name)) {
 		G_LOCK (module_hash);
 		module_element = g_hash_table_lookup (module_hash, name);
 		G_UNLOCK (module_hash);
