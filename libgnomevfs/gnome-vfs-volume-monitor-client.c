@@ -83,14 +83,16 @@ gnome_vfs_volume_monitor_client_class_init (GnomeVFSVolumeMonitorClientClass *cl
 	client = _gnome_vfs_get_client ();
 	daemon = _gnome_vfs_client_get_daemon (client);
 
-	CORBA_exception_init (&ev);
-	GNOME_VFS_Daemon_registerVolumeMonitor (daemon, BONOBO_OBJREF (client), &ev);
-
-        if (BONOBO_EX (&ev)) {
-                CORBA_exception_free (&ev);
-        }
-	
-	CORBA_Object_release (daemon, NULL);
+	if (daemon != CORBA_OBJECT_NIL) {
+		CORBA_exception_init (&ev);
+		GNOME_VFS_Daemon_registerVolumeMonitor (daemon, BONOBO_OBJREF (client), &ev);
+		
+		if (BONOBO_EX (&ev)) {
+			CORBA_exception_free (&ev);
+		}
+		
+		CORBA_Object_release (daemon, NULL);
+	}
 	
 	/* GObject signals */
 	o_class->finalize = gnome_vfs_volume_monitor_client_finalize;
@@ -111,26 +113,28 @@ read_drives_from_daemon (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 	client = _gnome_vfs_get_client ();
 	daemon = _gnome_vfs_client_get_daemon (client);
 
-	CORBA_exception_init (&ev);
+	if (daemon != CORBA_OBJECT_NIL) {
+		CORBA_exception_init (&ev);
 
-	list = GNOME_VFS_Daemon_getDrives (daemon,
-					   BONOBO_OBJREF (client),
-					   &ev);
-        if (BONOBO_EX (&ev)) {
+		list = GNOME_VFS_Daemon_getDrives (daemon,
+						   BONOBO_OBJREF (client),
+						   &ev);
+		if (BONOBO_EX (&ev)) {
+			CORBA_Object_release (daemon, NULL);
+			CORBA_exception_free (&ev);
+			return;
+		}
+		
+		for (i = 0; i < list->_length; i++) {
+			drive = _gnome_vfs_drive_from_corba (&list->_buffer[i],
+							     volume_monitor);
+			_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
+			gnome_vfs_drive_unref (drive);
+		}
+
+		CORBA_free (list);
 		CORBA_Object_release (daemon, NULL);
-                CORBA_exception_free (&ev);
-		return;
-        }
-
-	for (i = 0; i < list->_length; i++) {
-		drive = _gnome_vfs_drive_from_corba (&list->_buffer[i],
-						     volume_monitor);
-		_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
-		gnome_vfs_drive_unref (drive);
 	}
-
-	CORBA_free (list);
-	CORBA_Object_release (daemon, NULL);
 }
 
 static void
@@ -148,26 +152,28 @@ read_volumes_from_daemon (GnomeVFSVolumeMonitorClient *volume_monitor_client)
 	client = _gnome_vfs_get_client ();
 	daemon = _gnome_vfs_client_get_daemon (client);
 
-	CORBA_exception_init (&ev);
+	if (daemon != CORBA_OBJECT_NIL) {
+		CORBA_exception_init (&ev);
 
-	list = GNOME_VFS_Daemon_getVolumes (daemon,
-					    BONOBO_OBJREF (client),
-					    &ev);
-        if (BONOBO_EX (&ev)) {
+		list = GNOME_VFS_Daemon_getVolumes (daemon,
+						    BONOBO_OBJREF (client),
+						    &ev);
+		if (BONOBO_EX (&ev)) {
+			CORBA_Object_release (daemon, NULL);
+			CORBA_exception_free (&ev);
+			return;
+		}
+		
+		for (i = 0; i < list->_length; i++) {
+			volume = _gnome_vfs_volume_from_corba (&list->_buffer[i],
+							       volume_monitor);
+			_gnome_vfs_volume_monitor_mounted (volume_monitor, volume);
+			gnome_vfs_volume_unref (volume);
+		}
+		
+		CORBA_free (list);
 		CORBA_Object_release (daemon, NULL);
-                CORBA_exception_free (&ev);
-		return;
-        }
-
-	for (i = 0; i < list->_length; i++) {
-		volume = _gnome_vfs_volume_from_corba (&list->_buffer[i],
-						       volume_monitor);
-		_gnome_vfs_volume_monitor_mounted (volume_monitor, volume);
-		gnome_vfs_volume_unref (volume);
 	}
-
-	CORBA_free (list);
-	CORBA_Object_release (daemon, NULL);
 }
 
 static void
@@ -192,14 +198,16 @@ gnome_vfs_volume_monitor_client_finalize (GObject *object)
 	client = _gnome_vfs_get_client ();
 	daemon = _gnome_vfs_client_get_daemon (client);
 
-	GNOME_VFS_Daemon_deRegisterVolumeMonitor (daemon, BONOBO_OBJREF (client), &ev);
-	CORBA_exception_init (&ev);
-
-        if (BONOBO_EX (&ev)) {
-                CORBA_exception_free (&ev);
-        }
+	if (daemon != CORBA_OBJECT_NIL) {
+		GNOME_VFS_Daemon_deRegisterVolumeMonitor (daemon, BONOBO_OBJREF (client), &ev);
+		CORBA_exception_init (&ev);
+		
+		if (BONOBO_EX (&ev)) {
+			CORBA_exception_free (&ev);
+		}
 	
-	CORBA_Object_release (daemon, NULL);
+		CORBA_Object_release (daemon, NULL);
+	}
 	
 	if (G_OBJECT_CLASS (parent_class)->finalize)
 		(* G_OBJECT_CLASS (parent_class)->finalize) (object);

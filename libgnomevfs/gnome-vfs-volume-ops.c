@@ -161,15 +161,17 @@ force_probe (void)
 	} else {
 		client = _gnome_vfs_get_client ();
 		daemon = _gnome_vfs_client_get_daemon (client);
-		
-		CORBA_exception_init (&ev);
-		GNOME_VFS_Daemon_forceProbe (daemon,
-					     BONOBO_OBJREF (client),
-					     &ev);
-		if (BONOBO_EX (&ev)) {
-			CORBA_exception_free (&ev);
+
+		if (daemon != CORBA_OBJECT_NIL) {
+			CORBA_exception_init (&ev);
+			GNOME_VFS_Daemon_forceProbe (daemon,
+						     BONOBO_OBJREF (client),
+						     &ev);
+			if (BONOBO_EX (&ev)) {
+				CORBA_exception_free (&ev);
+			}
+			CORBA_Object_release (daemon, NULL);
 		}
-		CORBA_Object_release (daemon, NULL);
 	}
 }
 
@@ -388,15 +390,17 @@ emit_pre_unmount (GnomeVFSVolume *volume)
 		client = _gnome_vfs_get_client ();
 		daemon = _gnome_vfs_client_get_daemon (client);
 		
-		CORBA_exception_init (&ev);
-		 GNOME_VFS_Daemon_emitPreUnmountVolume (daemon,
-							BONOBO_OBJREF (client),
-							gnome_vfs_volume_get_id (volume),
-							&ev);
-		 if (BONOBO_EX (&ev)) {
-			 CORBA_exception_free (&ev);
-		 }
-		 CORBA_Object_release (daemon, NULL);
+		if (daemon != CORBA_OBJECT_NIL) {
+			CORBA_exception_init (&ev);
+			GNOME_VFS_Daemon_emitPreUnmountVolume (daemon,
+							       BONOBO_OBJREF (client),
+							       gnome_vfs_volume_get_id (volume),
+							       &ev);
+			if (BONOBO_EX (&ev)) {
+				CORBA_exception_free (&ev);
+			}
+			CORBA_Object_release (daemon, NULL);
+		}
 	}
 }
 

@@ -1,5 +1,16 @@
 2004-03-02  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-volume-monitor-client.c:
+	(gnome_vfs_volume_monitor_client_class_init),
+	(read_drives_from_daemon), (read_volumes_from_daemon),
+	(gnome_vfs_volume_monitor_client_finalize):
+	* libgnomevfs/gnome-vfs-volume-ops.c: (force_probe),
+	(emit_pre_unmount):
+	Handle NIL return from _gnome_vfs_client_get_daemon().
+	Hopefully fixes #133808.
+
+2004-03-02  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime.c (_gnome_vfs_get_mime_type_internal):
 	Extension before sniffed for bzip2.
 
