@@ -1,5 +1,10 @@
 2004-07-22  Ray Strode  <rstrode@redhat.com>
 
+	* libgnomevfs/egg*.[ch]: sync up from libegg again
+	(fixes bug 148182 again)
+
+2004-07-22  Ray Strode  <rstrode@redhat.com>
+
 	* libgnomevfs/egg*.[ch]: sync up from libegg
 	(fixes bug 148182)
 

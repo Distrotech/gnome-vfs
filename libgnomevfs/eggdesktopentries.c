@@ -1358,7 +1358,7 @@ egg_desktop_entries_get_locale_string_list (EggDesktopEntries  *entries,
   g_free (value);
 
   if (length)
-    for (*length = 0; value_vector[*length]; *(length)++);
+    for (*length = 0; value_vector[*length]; (*length)++);
 
   return value_vector;
 }
