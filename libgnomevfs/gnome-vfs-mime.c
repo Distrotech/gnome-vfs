@@ -536,6 +536,15 @@ gnome_vfs_get_mime_type (GnomeVFSURI *uri)
 				/* Didn't find an extension match, assume plain text. */
 				result = "text/plain";
 			}
+		} else if (gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
+			/* MP3 file -- treat extensions as a more accurate source
+			 * of type information.
+			 */
+			result = gnome_vfs_get_mime_type_from_uri_internal (uri);
+			if (result == NULL) {
+				/* Didn't find an extension match, assume MP3. */
+				result = "audio/x-mp3";
+			}
 		} else {
 			/* No type recognized -- fall back on extensions. */
 			result = gnome_vfs_get_mime_type_from_uri_internal (uri);
@@ -645,6 +654,16 @@ gnome_vfs_get_file_mime_type (const char *path, const struct stat *stat_info,
 					result = "text/plain";
 				}
 			}
+			if (result == NULL && gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
+				/* MP3 file -- treat extensions as a more accurate source
+				 * of type information.
+				 */
+				result = gnome_vfs_mime_type_from_name_or_default (path, NULL);
+				if (result == NULL) {
+					/* Didn't find an extension match, assume MP3. */
+					result = "audio/x-mp3";
+				}
+			}
 			fclose (file);
 		}
 	}
@@ -716,6 +735,10 @@ gnome_vfs_get_mime_type_from_file_data (GnomeVFSURI *uri)
 
 	if (result == NULL && gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
 		result = "text/plain";
+	}
+
+	if (result == NULL && gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
+		result = "audio/x-mp3";
 	}
 
 	if (result == NULL) {

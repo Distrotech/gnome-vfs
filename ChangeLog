@@ -1,3 +1,20 @@
+2001-02-19  Don Melton  <don@eazel.com>
+
+	reviewed by: Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_get_mime_type_for_buffer):
+	* libgnomevfs/gnome-vfs-mime.c: (gnome_vfs_get_mime_type),
+	(gnome_vfs_get_file_mime_type),
+	(gnome_vfs_get_mime_type_from_file_data):
+
+	Fixed bug 5477 ("linux-2.4.0.tar.bz2" is not MP3 file)
+	Fixed bug 6612 (".doc", ".sdw", etc. are not MP3 files)
+
+	Now call "gnome_vfs_sniff_buffer_looks_like_mp3" just like its text
+	sniffing counterpart so that it is _not_ called only on failure of
+	"gnome_vfs_mime_try_one_magic_pattern".
+
 2001-02-19  Ian McKellar,,,  <ian@eazel.com>
 
 	reviewed by: Eskil Olsen <eskil@eazel.com>

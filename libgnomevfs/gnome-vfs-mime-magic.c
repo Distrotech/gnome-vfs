@@ -706,10 +706,7 @@ gnome_vfs_get_mime_type_for_buffer (GnomeVFSMimeSniffBuffer *buffer)
   		}
 	}
 
-	/* if no match, try the algorithmic sniffers */
-	if (gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
-		return "audio/x-mp3";
-	}
+	/* NOTE: don't try the algorithmic sniffers here */
 
 	return NULL;
 }
