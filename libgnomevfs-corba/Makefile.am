@@ -1,5 +1,5 @@
-OBJECT_DIRECTORY_CFLAGS = $(OAF_CFLAGS) $(GNOME_INCLUDEDIR)
-OBJECT_DIRECTORY_LIBS = $(OAF_LIBS) $(GNOME_LIBS)
+OBJECT_DIRECTORY_CFLAGS = $(OAF_CFLAGS)
+OBJECT_DIRECTORY_LIBS = $(OAF_LIBS)
 
 lib_LTLIBRARIES = libgnomevfs-corba.la
 
@@ -9,7 +9,6 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs		\
 	-I$(top_builddir)/libgnomevfs		\
 	-I$(top_builddir)/libgnomevfs-corba	\
-	$(GNOME_INCLUDEDIR)			\
 	$(OBJECT_DIRECTORY_CFLAGS)
 
 CPPFLAGS =					\
@@ -45,7 +44,7 @@ libgnomevfs_corba_la_SOURCES =			\
 	gnome-vfs-slave-notify.c		\
 	gnome-vfs-slave-process.c
 
-libgnomevfs_corba_la_LDFLAGS=$(GNOME_LIBDIR) $(OBJECT_DIRECTORY_LIBS)
+libgnomevfs_corba_la_LDFLAGS=$(OBJECT_DIRECTORY_LIBS)
 
 gnome_vfs_slave_SOURCES =			\
 	$(gnome_vfs_slave_built)		\
@@ -54,8 +53,6 @@ gnome_vfs_slave_SOURCES =			\
 gnome_vfs_slave_LDADD =					\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
 	libgnomevfs-corba.la				\
-	$(GNOME_LIBDIR)					\
-	$(GNOMEUI_LIBS)					\
 	$(OBJECT_DIRECTORY_LIBS)
 
 bin_PROGRAMS =					\

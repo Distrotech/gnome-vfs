@@ -26,7 +26,7 @@
 #endif
 
 #include <glib.h>
-#include <libgnorba/gnorba.h>
+#include <gtk/gtk.h>
 #include <unistd.h>
 
 #include "gnome-vfs.h"
