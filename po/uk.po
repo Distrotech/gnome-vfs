@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-05-07 23:10-0700\n"
-"PO-Revision-Date: 2002-02-28 12:27+0200\n"
+"POT-Creation-Date: 2002-05-31 20:04+0300\n"
+"PO-Revision-Date: 2002-05-31 19:18+0200\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,8 @@ msgstr "Не знайдено конфігураційного файлу \"%s\"
 msgid "Unknown op type %u"
 msgstr "Невідомий тип операції %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#: libgnomevfs/gnome-vfs-job.c:1005
+#: libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Неможливо створити канал для GIOChannel: %s"
@@ -299,7 +300,6 @@ msgstr "%.1f Гб"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Невідомий GnomeVFSSeekPosition %d"
 
-#. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
@@ -312,17 +312,17 @@ msgstr "Використайте змінну середовища %s для в�
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Фабрика стандартних монікерів"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "файл MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "загальний монікер GNOME VFS"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Загальна помилка"
+msgstr "загальний файловий монікер"
+
