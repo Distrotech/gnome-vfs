@@ -3,19 +3,20 @@
 # Joe Man <trmetal@yahoo.com.hk>, 2001.
 # Abel Cheung <maddog@linux.org.hk>, 2002-2003.
 # Woodman Tuen <woodman@culturecom.com.hk>, 2004
-# 
+# Li-Jen Hsin <hsin@med.cgu.edu.tw>, 2004 
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.7.93\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-09 06:31+0800\n"
-"PO-Revision-Date: 2004-09-09 06:43+0800\n"
-"Last-Translator: Woodman Tuen <woodman@culturecom.com.hk>, 200>\n"
+"POT-Creation-Date: 2004-09-13 01:56+0800\n"
+"PO-Revision-Date: 2004-09-13 02:22+0800\n"
+"Last-Translator: Li-Jen Hsin <hsin@med.cgu.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -26,87 +27,86 @@ msgid "Could not initialize gnome vfs"
 msgstr "不能啟動 gnome vfs"
 
 #: libgnomevfs/eggdesktopentries.c:229
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "無法解析：%s"
+msgstr "無法開啟檔案：%s"
 
 #: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
-msgstr ""
+msgstr "開啟檔案 '%s' 失敗：%s"
 
 #: libgnomevfs/eggdesktopentries.c:341
-#, fuzzy
 msgid "File is empty"
-msgstr "檔案已存在"
+msgstr "檔案為空白"
 
 #: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr ""
+msgstr "無法讀取檔案 '%s'：%s"
 
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
+msgstr "桌面登錄含有 '%s' ，該行並不屬於登錄，群組或註記"
 
 #: libgnomevfs/eggdesktopentries.c:648
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "桌面登錄檔開頭並沒有合法的起始群組"
 
 #: libgnomevfs/eggdesktopentries.c:705
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "桌面登錄中的 '%s' 並不是使用 UTF-8 編碼"
 
 #: libgnomevfs/eggdesktopentries.c:728
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "桌面登錄含有未知的編碼 '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:918 libgnomevfs/eggdesktopentries.c:1030
 #: libgnomevfs/eggdesktopentries.c:1215
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "桌面登錄沒有群組 '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:1042
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "桌面登錄沒有資料鍵 '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:1098 libgnomevfs/eggdesktopentries.c:1271
 #: libgnomevfs/eggdesktopentries.c:1413 libgnomevfs/eggdesktopentries.c:1538
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
+msgstr "桌面登錄含有資料鍵 '%s' 包含有無法解譯的設定值。"
 
 #: libgnomevfs/eggdesktopentries.c:1296
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
+msgstr "桌面登錄中的資料鍵 '%s' 未包含語言 '%s' 的翻譯訊息。"
 
 #: libgnomevfs/eggdesktopentries.c:2229
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "桌面登錄含有無效的 escape sequence '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:2246
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "桌面登錄行末含有 escape 字元"
 
 #: libgnomevfs/eggdesktopentries.c:2271
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "設定值 '%s' 無法被解譯成為數字。"
 
 #: libgnomevfs/eggdesktopentries.c:2298
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "設定值 '%s' 無法被解譯成為布林值。"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -255,9 +255,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris 檔案系統"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "AFFS 檔案系統"
+msgstr "Sun SAM-QFS 檔案系統"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -284,125 +283,119 @@ msgid "Unknown"
 msgstr "不明"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "光碟機"
+msgstr "光碟片"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "空的 CD-R 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "光碟機"
+msgstr "CD-R 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:619
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "空的 CD-RW 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "光碟機"
+msgstr "CD-RW 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "光碟機"
+msgstr "DVD-ROM 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "空的 DVD-R 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "DVD-R 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "空的 DVD-RAM 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "DVD-RAM 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "空的 DVD-RW 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "DVD-RW 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:641
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "空的 DVD+RW 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:643
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "DVD+RW 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "空的 DVD+R 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:648
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "DVD+R 光碟"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Optical Disc"
-msgstr ""
+msgstr "光學碟片"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
-#, fuzzy
 msgid "Audio Disc"
 msgstr "音樂光碟"
 
+#
+# 譯註：不翻比較看得懂
 #: libgnomevfs/gnome-vfs-hal-mounts.c:660
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Compact Flash Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:662
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Memory Stick"
+msgstr "Memory Stick Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:664
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Smart Media Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:666
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "SD/MMC Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:668
-#, fuzzy
 msgid "Floppy Disk"
-msgstr "軟碟"
+msgstr "軟碟片"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:675
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Mac OS 磁片"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:677
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Mac OS X 磁片"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:691
-#, fuzzy
 msgid "Windows Disk"
-msgstr "視窗"
+msgstr "Windows 磁片"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:697
 msgid "Linux Disk"
-msgstr ""
+msgstr "Linux 磁片"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "不明的 op 種類 %u"
+msgstr "不明的操作類型 %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -435,16 +428,16 @@ msgstr "操作已停止"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1013
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1031
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: libgnomevfs/gnome-vfs-mime-info.c:641 libgnomevfs/gnome-vfs-mime-info.c:648
-#: libgnomevfs/gnome-vfs-mime-info.c:656 libgnomevfs/gnome-vfs-mime-info.c:663
-#: libgnomevfs/gnome-vfs-mime-info.c:671 libgnomevfs/gnome-vfs-mime-info.c:688
-#: libgnomevfs/gnome-vfs-mime-info.c:695 libgnomevfs/gnome-vfs-mime-info.c:702
-#: libgnomevfs/gnome-vfs-mime-info.c:709 libgnomevfs/gnome-vfs-mime-info.c:717
-#: libgnomevfs/gnome-vfs-mime-info.c:724
+#: libgnomevfs/gnome-vfs-mime-info.c:647 libgnomevfs/gnome-vfs-mime-info.c:654
+#: libgnomevfs/gnome-vfs-mime-info.c:662 libgnomevfs/gnome-vfs-mime-info.c:669
+#: libgnomevfs/gnome-vfs-mime-info.c:677 libgnomevfs/gnome-vfs-mime-info.c:694
+#: libgnomevfs/gnome-vfs-mime-info.c:701 libgnomevfs/gnome-vfs-mime-info.c:708
+#: libgnomevfs/gnome-vfs-mime-info.c:715 libgnomevfs/gnome-vfs-mime-info.c:723
+#: libgnomevfs/gnome-vfs-mime-info.c:730
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
+msgstr "本功能已過時。現在已不再支援讓用戶直接修改 MIME 資料庫。"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -688,34 +681,32 @@ msgstr "啟動指令時出現錯誤"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "到達計時時間"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "一般錯誤"
+msgstr "名稱伺服器錯誤"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "資源被鎖住了"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "函式呼叫已經過時了"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
 msgstr "不明的錯誤"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u 位元組"
-msgstr[1] "%u 位元組"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -748,107 +739,96 @@ msgid "CD-ROM"
 msgstr "光碟"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
-#, fuzzy
 msgid "CD-R"
-msgstr "光碟"
+msgstr "CD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
-#, fuzzy
 msgid "CD-RW"
-msgstr "光碟"
+msgstr "CD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
-#, fuzzy
 msgid "DVD-ROM"
-msgstr "光碟"
+msgstr "DVD 光碟"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
-#, fuzzy
 msgid "DVD-RAM"
-msgstr "光碟"
+msgstr "DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
 msgid "DVD-R"
-msgstr ""
+msgstr "DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
 msgid "DVD-RW"
-msgstr ""
+msgstr "DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
-#, fuzzy
 msgid "CD-ROM/DVD-ROM"
-msgstr "光碟"
+msgstr "CD-ROM/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
-#, fuzzy
 msgid "CD-ROM/DVD-RAM"
-msgstr "光碟"
+msgstr "CD-ROM/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
-#, fuzzy
 msgid "CD-ROM/DVD-R"
-msgstr "光碟"
+msgstr "CD-ROM/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
-#, fuzzy
 msgid "CD-ROM/DVD-RW"
-msgstr "光碟"
+msgstr "CD-ROM/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
-#, fuzzy
 msgid "CD-R/DVD-ROM"
-msgstr "光碟"
+msgstr "CD-R/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
 msgid "CD-R/DVD-RAM"
-msgstr ""
+msgstr "CD-R/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "CD-R/DVD-R"
-msgstr ""
+msgstr "CD-R/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "CD-R/DVD-RW"
-msgstr ""
+msgstr "CD-R/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
-#, fuzzy
 msgid "CD-RW/DVD-ROM"
-msgstr "光碟"
+msgstr "CD-RW/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 msgid "CD-RW/DVD-RAM"
-msgstr ""
+msgstr "CD-RW/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "CD-RW/DVD-R"
-msgstr ""
+msgstr "CD-RW/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
 msgid "CD-RW/DVD-RW"
-msgstr ""
+msgstr "CD-RW/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Disk"
-msgstr ""
+msgstr "磁碟"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
-#, fuzzy
 msgid "USB Drive"
-msgstr "Zip 磁碟機"
+msgstr "USB 磁碟機"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "IEEE1394 Drive"
-msgstr ""
+msgstr "IEEE1394 磁碟機"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
 msgid "CF"
-msgstr ""
+msgstr "CF"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
 msgid "SD/MMC"
-msgstr ""
+msgstr "SD/MMC"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
@@ -857,7 +837,7 @@ msgstr "Memory Stick"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
 msgid "Smart Media"
-msgstr ""
+msgstr "Smart Media"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
@@ -870,7 +850,7 @@ msgstr "相機"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:606
 msgid "DVD"
-msgstr ""
+msgstr "DVD光碟機"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:822
 msgid "Root Volume"
@@ -903,7 +883,7 @@ msgstr "檔案系統裝載失敗。可能裝置中沒有任何媒體。"
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr "軟碟機裝載失敗。可能軟碟機所使用的格式不能裝載。"
+msgstr "軟碟機裝載失敗。可能軟碟機所使用的格式不能被裝載。"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
@@ -1005,12 +985,12 @@ msgstr "不明的 GnomeVFSSeekPosition (搜尋位置) %d"
 
 #: modules/network-method.c:1395
 msgid "Windows Network"
-msgstr "Windows Network"
+msgstr "Windows 網路"
 
 #: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "遠端電腦 (%s) 的身份不明。"
 
 #: modules/sftp-method.c:1340
 #, c-format
@@ -1020,14 +1000,18 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"當您首次登入一台主機時會發生。\n"
+"\n"
+"遠端主機傳送來的身份為 %s。若您希望完全確定繼續動作是安全的，請與您的系統管理"
+"者接洽。"
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
-msgstr ""
+msgstr "繼續登入"
 
 #: modules/sftp-method.c:1349
 msgid "Cancel Login"
-msgstr ""
+msgstr "取消登入"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -1075,7 +1059,7 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"用作檢示檔案的應用程式需要有一個元件來檢示它們。參數 %s 會被檔案的 URIs 所取"
+"用作檢視檔案的應用程式需要有一個元件來檢視它們。參數 %s 會被檔案的 URIs 所取"
 "代，參數 %c 會被元件 IID 所取代。"
 
 #: schemas/desktop_default_applications.schemas.in.h:6
@@ -1089,256 +1073,224 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "預設終端機程式所使用的 exec 參數。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "在終端機中執行程式"
+msgstr "在終端機中執行命令"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "若有啟用，用來處理“aim”URL 的指令。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "若有啟用，用來處理“callto”URL 的指令。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "若有啟用，用來處理“ghelp”URL 的指令。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr ""
+msgstr "若有啟用，用來處理“h323”URL 的指令。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr ""
+msgstr "若有啟用，用來處理“http”URL 的指令。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
+msgstr "若有啟用，用來處理“https”URL 的指令。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "若有啟用，用來處理“info”URL 的指令。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "若有啟用，用來處理“mailto”URL 的指令。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "若有啟用，用來處理“man”URL 的指令。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "若有啟用，用來處理“trash”URL 的指令。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "沒有該類 URL 的處理程序"
+msgstr "沒有處理 “aim”URL 的處理程序"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "處理 callto URLs"
+msgstr "處理 “callto”URL 的處理程序"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "ghelp pages 的 URL 處理程序"
+msgstr "處理 “ghelp”URL 的處理程序"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "沒有該類 URL 的處理程序"
+msgstr "處理 “h323”URL 的處理程序"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "沒有該類 URL 的處理程序"
+msgstr "處理 “http”URL 的處理程序"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "沒有該類 URL 的處理程序"
+msgstr "處理 “https”URL 的處理程序"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "處理 info URLs"
+msgstr "處理 “info”URL 的處理程序"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "處理 mailto URLs"
+msgstr "處理 “mailto”URL 的處理程序"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "處理 man URLs"
+msgstr "處理 “man”URL 的處理程序"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "trash pages 的 URL 處理程序"
+msgstr "處理 “trash”URL 的處理程序"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "如設定為真，請在「指令」欄中指定處理 mailto URLs 的程式。"
+msgstr "如設定為真，在「指令」欄中指定的指令為處理 “aim”URL 的程式。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "如設定為真，請在「指令」欄中指定處理 callto URLs 的程式。"
+msgstr "如設定為真，在「指令」欄中指定的指令為處理 “callto”URL 的程式。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "如設定為真，請在「指令」欄中指定處理 ghelp URLs 的程式。"
+msgstr "如設定為真，在「指令」欄中指定的指令為處理 “ghelp”URL 的程式。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "如設定為真，請在「指令」欄中指定處理 H323 URLs 的程式。"
+msgstr "如設定為真，在「指令」欄中指定的指令為處理 “h323”URL 的程式。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "如設定為真，請在「指令」欄中指定處理 ghelp URLs 的程式。"
+msgstr "如設定為真，在「指令」欄中指定的指令為處理 “http”URL 的程式。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "如設定為真，請在「指令」欄中指定處理 ghelp URLs 的程式。"
+msgstr "如設定為真，在「指令」欄中指定的指令為處理 “https”URL 的程式。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "如設定為真，請在「指令」欄中指定處理 info URLs 的程式。"
+msgstr "如設定為真，在「指令」欄中指定的指令為處理 “info”URL 的程式。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "如設定為真，請在「指令」欄中指定處理 mailto URLs 的程式。"
+msgstr "如設定為真，在「指令」欄中指定的指令為處理 “mailto”URL 的程式。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "如設定為真，請在「指令」欄中指定處理 man URLs 的程式。"
+msgstr "如設定為真，在「指令」欄中指定的指令為處理 “man”URL 的程式。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "如設定為真，請在「指令」欄中指定處理 trash URLs 的程式。"
+msgstr "如設定為真，在「指令」欄中指定的指令為處理 “trash”URL 的程式。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "如處理這 URL 的程式必須在終端機中執行，將其設定為真。"
+msgstr "若為真，處理此 URL 的程式必須在終端機中執行。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "如設定為真，請在「指令」欄中指定處理 mailto URLs 的程式。"
+msgstr "指定的命令應否處理 “aim”URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "如設定為真，請在「指令」欄中指定處理 callto URLs 的程式。"
+msgstr "指定的命令應否處理 “callto”URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "如設定為真，請在「指令」欄中指定處理 ghelp URLs 的程式。"
+msgstr "指定的命令應否處理 “ghelp”URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "如設定為真，請在「指令」欄中指定處理 H323 URLs 的程式。"
+msgstr "指定的命令應否處理 “h323”URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "如設定為真，請在「指令」欄中指定處理 ghelp URLs 的程式。"
+msgstr "指定的命令應否處理 “http”URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "如設定為真，請在「指令」欄中指定處理 trash URLs 的程式。"
+msgstr "指定的命令應否處理 “https”URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "如設定為真，請在「指令」欄中指定處理 info URLs 的程式。"
+msgstr "指定的命令應否處理 “info”URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "如設定為真，請在「指令」欄中指定處理 mailto URLs 的程式。"
+msgstr "指定的命令應否處理 “mailto”URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "如設定為真，請在「指令」欄中指定處理 man URLs 的程式。"
+msgstr "指定的命令應否處理 “man”URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "如設定為真，請在「指令」欄中指定處理 trash URLs 的程式。"
+msgstr "指定的命令應否處理 “trash”URL"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr ""
+msgstr "在網路位置應該可見的 dns-sd 領域列表，以逗號區隔。"
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "找尋 dns-sd 服務的額外網域"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "如何顯示本地端的 DNS-SD 服務"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "可能值為 “merged”,“separate”以及“disabled”。"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "認證代理伺服器連接"
+msgstr "代理伺服器連線是否需要認證"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr "自動代理伺服器設置 URL"
+msgstr "代表自動代理伺服器設定的 URL"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "啟用以網際網路存取 HTTP 時的代理伺服器設定。"
+msgstr "經網際網路存取 HTTP 時啟用代理伺服器設定。"
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1370,9 +1322,9 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"如設定為真，那麼連接到代理伺服器時需要認證。使用者/密碼的組合在 \"/system/"
-"http_proxy/authentication_user\" 和 \"/system/http_proxy/"
-"authentication_password\" 中設定。"
+"如設定為真，那麼連接到代理伺服器時需要認證。使用者/密碼的組合在\n"
+"\"/system/http_proxy/authentication_user\" 和\n"
+"\"/system/http_proxy/authentication_password\" 中設定。"
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1428,25 +1380,25 @@ msgstr "socks 代理伺服器的機器名稱。"
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "您的機器的代理伺服器埠號定義在 \"/system/http_proxy/host\"。"
+msgstr "在 \"/system/http_proxy/host\" 中定義的代理伺服器的埠號。"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "您的機器的代理伺服器埠號定義在 \"/system/proxy/ftp_host\"。"
+msgstr "在 \"/system/proxy/ftp_host\" 中定義的代理伺服器的埠號。"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "您的機器的代理伺服器埠號定義在 \"/system/http_proxy/host\"。"
+msgstr "在 \"/system/proxy/secure_host\" 中定義的代理伺服器的埠號。"
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "您的機器的代理伺服器埠號定義在 \"/system/proxy/socks_host\"。"
+msgstr "在 \"/system/proxy/socks_host\" 中定義的代理伺服器的埠號。"
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1456,7 +1408,7 @@ msgid ""
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
 "這設定鍵中包含了不是通過代理伺服器（如果它有啟用），而是使用直接連線的主機清"
-"單。數值可以是主機名稱，網域名稱（使用萬用字元如 *.foo.com），IP 主機地址"
+"單。設定值可以是主機名稱，網域名稱（使用萬用字元如 *.foo.com），IP 主機地址"
 "（IPv4 及 IPV6 亦可）和包括網路遮罩的網路地址（如 192.168.0.0/24）。"
 
 #: schemas/system_http_proxy.schemas.in.h:28
