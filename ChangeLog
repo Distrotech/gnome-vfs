@@ -1,3 +1,9 @@
+1999-12-08  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* modules/extfs/Makefile.am
+	take out non existance extfs.ini from EXTRA_DIST to unbreak
+ 	'make dist'
+	
 1999-12-07  Havoc Pennington  <hp@pobox.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c (serve_channel_read): handle

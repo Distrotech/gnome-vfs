@@ -26,7 +26,6 @@ EXTRA_DIST =					\
 	arj					\
 	cpio.in					\
 	deb.in					\
-	extfs.ini				\
 	hp48					\
 	lha.in					\
 	mailfs					\
