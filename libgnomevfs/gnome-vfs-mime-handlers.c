@@ -626,12 +626,10 @@ join_str_list (const char *separator, GList *list)
 	int i;
 	char *retval;
 
-	strv = g_new0 (char *, g_list_length (list) + 1);
-
 	/* Convert to a strv so we can use g_strjoinv.
 	 * Saves code but could be made faster if we want.
 	 */
-	strv = g_new (char *, g_list_length (list) + 1);
+	strv = g_new0 (char *, g_list_length (list) + 1);
 	for (p = list, i = 0; p != NULL; p = p->next, i++) {
 		strv[i] = (char *) p->data;
 	}

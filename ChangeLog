@@ -1,3 +1,8 @@
+2001-07-14  Anders Carlsson  <andersca@codefactory.se>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c (join_str_list): Remove a
+	duplicate call to g_new.
+
 2001-07-12  Darin Adler  <darin@bentspoon.com>
 
 	* .cvsignore: Ignore sgml directory too.
@@ -149,10 +154,19 @@
 	you can include this header on its own.
 
 2001-06-25  Sri Ramkrishna  <sri@aracnet.com>
+>>>>>>> 1.1047
 
+<<<<<<< ChangeLog
+	Rolled changes from HEAD.
+=======
 	* libgnomevfs/gnome-vfs-application-registry.c:
 	Added gtkdocs for gnome_vfs_application_registry_*
+>>>>>>> 1.1047
 
+<<<<<<< ChangeLog
+	2001-05-07  Darin Adler  <darin@eazel.com>
+
+=======
 2001-06-20  Peter Williams  <peterw@ximian.com>
 
 	* configure.in (autodetected_gnome_2): Fix a syntax error in the test
@@ -685,6 +699,7 @@ Mon May 28 15:49:55 2001  Jonathan Blandford  <jrb@redhat.com>
 
 2001-05-07  Darin Adler  <darin@eazel.com>
 
+>>>>>>> 1.1047
 	reviewed by: Ramiro Estrugo <ramiro@eazel.com>
 
 	* modules/Makefile.am:
