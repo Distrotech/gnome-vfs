@@ -134,6 +134,8 @@ libgnomevfsmoduleincludedir = $(includedir)/gnome-vfs-module-2.0/libgnomevfs
 
 # mime-sniff-buffers and cancellabe-ops are used by modules
 noinst_HEADERS =				\
+	eggdesktopentries.h			\
+	eggdirfuncs.h				\
 	gnome-vfs-async-job-map.h		\
 	gnome-vfs-backend.h			\
 	gnome-vfs-cancellable-ops.h		\
@@ -231,6 +233,8 @@ CORBA_SOURCE = \
 
 libgnomevfs_2_la_SOURCES =			\
 	$(CORBA_SOURCE)				\
+	eggdesktopentries.c			\
+	eggdirfuncs.c				\
 	gnome-vfs-application-registry.c	\
 	gnome-vfs-async-job-map.c		\
 	gnome-vfs-async-ops.c			\
