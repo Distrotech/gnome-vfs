@@ -1,3 +1,8 @@
+2003-11-28  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c (get_fstab_file) : fix the
+	build.
+
 2003-11-28  Niall Power  <niall.power@sun.com>
 
 	* libgnomevfs/gnome-vfs-unix-mounts.c: use VFSTAB macro defn

@@ -451,7 +451,6 @@ get_fstab_file (void)
 #else
 	return "/etc/fstab";
 #endif
-#endif
 }
 
 #ifdef HAVE_MNTENT_H
