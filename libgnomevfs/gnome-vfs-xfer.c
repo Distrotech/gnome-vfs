@@ -1865,6 +1865,7 @@ move_items (const GList *source_uri_list,
 					break;
 
 				conflict_count++;
+				retry = TRUE;
 				continue;
 			}
 
@@ -1967,6 +1968,7 @@ link_items (const GList *source_uri_list,
 					break;
 
 				conflict_count++;
+				retry = TRUE;
 				continue;
 			}
 			

@@ -1,5 +1,10 @@
 2004-09-08  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-xfer.c: (move_items), (link_items):
+	Make unique names work again.
+
+2004-09-08  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_get_value),
 	(gnome_vfs_mime_type_is_known):
 	Implement type_is_known and can_be_executable.
