@@ -515,7 +515,7 @@ static int my_poptParseArgvString(char *buf, int *argcPtr, char ***argvPtr)
 					*(buf++) = '\\';
 			}
 			*(buf++) = *src;
-		} else if (isspace(*src)) {
+		} else if (isspace((unsigned char)*src)) {
 			*buf = '\0';
 			if (*argv[argc]) {
 				buf++, argc++;

@@ -205,14 +205,16 @@ http_file_handle_destroy (HttpFileHandle *handle)
    The function returns the status-code, or -1 if the status line is
    malformed.  The pointer to reason-phrase is returned in RP.  */
 static gboolean
-parse_status (const gchar *line,
+parse_status (const gchar *cline,
 	      guint *status_return)
 {
 	/* (the variables must not be named `major' and `minor', because
 	   that breaks compilation with SunOS4 cc.)  */
 	guint mjr, mnr;
 	guint statcode;
-	const gchar *p;
+	const guchar *p, *line;
+
+	line = (const guchar *)cline;
 
 	/* The standard format of HTTP-Version is: `HTTP/X.Y', where X is
 	   major version, and Y is minor version.  */
@@ -279,7 +281,7 @@ header_value_to_number (const gchar *header_value,
 
 	p = header_value;
 
-	for (result = 0; isdigit (*p); p++)
+	for (result = 0; isdigit ((unsigned char)*p); p++)
 		result = 10 * result + (*p - '0');
 	if (*p)
 		return FALSE;

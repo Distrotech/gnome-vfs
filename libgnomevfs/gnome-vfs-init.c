@@ -30,7 +30,9 @@
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-mime.h"
 
+#ifdef USING_OAF
 #include <liboaf/liboaf.h>
+#endif
 
 
 
@@ -48,9 +50,11 @@ gboolean gnome_vfs_init (void)
 	G_LOCK (vfs_already_initialized);
 
 	if (! vfs_already_initialized) {
+#ifdef USING_OAF
 		if (oaf_orb_get() == NULL) {
 			oaf_init (0, bogus_argv);
 		}
+#endif
 
 		retval = gnome_vfs_method_init ();
 		if (retval)

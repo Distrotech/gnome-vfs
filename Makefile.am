@@ -1,15 +1,28 @@
+if USING_OAF
+SUBDIRS_OAF=libgnomevfs-corba
+else
+SUBDIRS_OAF=
+endif
+
+if HAVE_GCONF
+SUBDIRS_GCONF=mime-type-capplet
+else
+SUBDIRS_GCONF=
+endif
+
 SUBDIRS =					\
 	libgnomevfs				\
-	libgnomevfs-corba			\
 	libgnomevfs-pthread			\
 	idl					\
 	modules					\
-	mime-type-capplet			\
 	data					\
 	man					\
 	devel-docs				\
 	test					\
-	po
+	po					\
+	$(SUBDIRS_OAF)				\
+	$(SUBDIRS_GCONF)
+
 
 EXTRA_DIST =					\
 	HACKING					\

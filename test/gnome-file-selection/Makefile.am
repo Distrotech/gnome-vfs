@@ -1,6 +1,12 @@
+if USING_OAF
+oaf_programs=gnome-file-selection-test_corba
+else
+oaf_programs=
+endif
+
 noinst_PROGRAMS =				\
-	gnome-file-selection-test_corba		\
-	gnome-file-selection-test_pthread
+	gnome-file-selection-test_pthread	\
+	$(oaf_programs)
 
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\

@@ -165,7 +165,9 @@ static GnomeVFSResult read_response_line(FtpConnection *conn, gchar **line) {
 	return result;
 }
 
-static GnomeVFSResult get_response(FtpConnection *conn) {
+static GnomeVFSResult
+get_response (FtpConnection *conn)
+{
 	/* all that should be pending is a response to the last command */
 	GnomeVFSResult result;
 
@@ -186,11 +188,11 @@ static GnomeVFSResult get_response(FtpConnection *conn) {
 #endif
 
 		/* response needs to be at least: "### x"  - I think*/
-		if( isdigit(line[0]) &&
-				isdigit(line[1]) &&
-				isdigit(line[2]) &&
-				isspace(line[3])) {
-			
+		if( isdigit((unsigned char)line[0]) &&
+		    isdigit((unsigned char)line[1]) &&
+		    isdigit((unsigned char)line[2]) &&
+		    isspace((unsigned char)line[3])) {
+
 			conn->response_code = (line[0]-'0')*100 + (line[1]-'0')*10 + (line[2]-'0');
 
 			if(conn->response_message) g_free(conn->response_message);
@@ -805,11 +807,12 @@ static GnomeVFSResult do_close_directory(GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
-static GnomeVFSResult do_read_directory (GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSContext *context) {
-
+static GnomeVFSResult
+do_read_directory (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle *method_handle,
+		   GnomeVFSFileInfo *file_info,
+		   GnomeVFSContext *context)
+{
 	FtpConnection *conn = (FtpConnection *)method_handle;
 
 	if(!conn->dirlistptr || *(conn->dirlistptr) == '\0')
@@ -826,8 +829,8 @@ static GnomeVFSResult do_read_directory (GnomeVFSMethod *method,
 			conn->dirlistptr++;
 		}
 		/* go past \r\n */
-		while(conn->dirlistptr && *conn->dirlistptr && 
-				isspace(*conn->dirlistptr)) {
+		while(conn->dirlistptr && *conn->dirlistptr &&
+		      isspace((unsigned char)(*conn->dirlistptr))) {
 			conn->dirlistptr++;
 		}
 

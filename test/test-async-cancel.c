@@ -429,7 +429,7 @@ test_open_fail (void)
 }
 
 static void
-yield (int count)
+my_yield (int count)
 {
 	for (; count >= 0; count--) {
 		usleep (1000);
@@ -457,7 +457,7 @@ test_load_directory_cancel (int delay_till_cancel)
 					directory_load_callback,
 					&num_entries);
 	if (delay_till_cancel > 0)
-		yield (delay_till_cancel);
+		my_yield (delay_till_cancel);
 	gnome_vfs_async_cancel (handle);
 	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
 }

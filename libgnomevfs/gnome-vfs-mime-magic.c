@@ -118,7 +118,7 @@ read_string_val (const char *scanner, char *intobuf, int max_len, guint16 *into_
 	intobufend = intobuf + max_len - 1;
 	*into_len = 0;
 
-	while (*scanner && !isspace (*scanner) && *scanner != '#') {
+	while (*scanner && !isspace ((unsigned char)*scanner) && *scanner != '#') {
 		ch = *scanner++;
 
 		switch (ch) {
@@ -224,7 +224,7 @@ read_num_val(const char **offset, int bsize, int *result)
 		break;
 	}
 
-	while (**offset && !isspace (**offset)) {
+	while (**offset && !isspace ((unsigned char)**offset)) {
 		(*offset)++;
 	}
 
@@ -234,7 +234,7 @@ read_num_val(const char **offset, int bsize, int *result)
 static const char *
 eat_white_space (const char *scanner)
 {
-	while (*scanner && isspace (*scanner)) {
+	while (*scanner && isspace ((unsigned char)*scanner)) {
 		scanner++;
 	}
 	return scanner;
@@ -285,7 +285,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 			continue;
 		}
 
-		if (!isdigit (*scanner)) {
+		if (!isdigit ((unsigned char)*scanner)) {
 			continue;
 		}
 
@@ -294,7 +294,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 		}
 		newent.range_end = newent.range_start;
 
-		while (*scanner && isdigit (*scanner)) {
+		while (*scanner && isdigit ((unsigned char)*scanner)) {
 			scanner++; /* eat the offset */
 		}
 
@@ -306,7 +306,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 			}
 		}
 
-		while (*scanner && !isspace (*scanner)) {
+		while (*scanner && !isspace ((unsigned char)*scanner)) {
 			scanner++; /* eat the offset */
 		}
 
@@ -408,7 +408,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 
 		g_snprintf (newent.mimetype, sizeof (newent.mimetype), "%s", scanner);
 		bsize = strlen (newent.mimetype) - 1;
-		while (newent.mimetype [bsize] && isspace (newent.mimetype [bsize])) {
+		while (newent.mimetype [bsize] && isspace ((unsigned char)(newent.mimetype [bsize]))) {
 			newent.mimetype [bsize--] = '\0';
 		}
 

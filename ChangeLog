@@ -1,3 +1,55 @@
+2000-06-25  Morten Welinder  <terra@diku.dk>
+
+	* test/test-mime-handlers.c: conditionalise on USING_OAF and
+ 	HAVE_GCONF as needed.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c: conditionalise on
+ 	USING_OAF and HAVE_GCONF as needed.
+ 	(gnome_vfs_mime_action_free): Add a few "break;"s to this piece of
+ 	untested code.
+
+	* test/Makefile.am (noinst_PROGRAMS): Only make oaf-depedent tests
+ 	when we have oaf.
+
+	* test/gnome-file-selection/Makefile.am (noinst_PROGRAMS): Ditto.
+
+	* modules/default-modules.conf (ftp): Remove Yakk's newftp hack.
+
+	* acconfig.h (HAVE_GCONF): Add.
+
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): Only initialise
+ 	oaf if we have it.
+
+	* configure.in (set_more_warnings): Don't add -Wsign-promo and
+ 	-Wno-sign-compare unless the compiler understands them.  Don't add
+ 	-Werror at all.
+
+	* test/test-async-cancel.c (my_yield): renamed from yield to avoid
+ 	name clash.
+
+	* libgnomevfs/gnome-vfs-mime.c (add_to_key): Fix arguments to
+ 	isspace (etc.)
+	(mime_fill_from_file): Ditto.
+
+	* libgnomevfs/gnome-vfs-mime-magic.c (read_string_val): Ditto.
+	(read_num_val): Ditto.
+	(eat_white_space): Ditto.
+	(gnome_vfs_mime_magic_parse): Ditto.
+
+	* modules/translate-method.c (my_poptParseArgvString): Ditto.
+
+	* modules/ftp-method.c (get_response): Ditto.
+	(do_read_directory): Ditto.
+
+	* modules/http-method.c (parse_status): Ditto.
+	(header_value_to_number): Ditto.
+
+	* libgnomevfs/fnmatch.c (FOLD): Ditto.
+
+	* libgnomevfs/gnome-vfs-uri.c (get_method_string): Ditto.
+
+	* libgnomevfs/gnome-vfs-private-utils.c (check_end): Ditto.
+
 2000-06-26  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/ftp-method.c: (ftp_response_to_vfs_result),

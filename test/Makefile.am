@@ -1,19 +1,22 @@
+if USING_OAF
+oaf_programs=test-async-directory_corba test-async_corba test-channel_corba
+else
+oaf_programs=
+endif
+
 SUBDIRS = gnome-file-selection
 
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
-	$(OAF_CFLAGS)					\
+	$(OAF_CFLAGS)				\
 	$(GNOME_INCLUDEDIR)
 
 noinst_PROGRAMS =				\
 	test-async-cancel                       \
-	test-async-directory_corba		\
 	test-async-directory_pthread		\
-	test-async_corba			\
 	test-async_pthread			\
-	test-channel_corba			\
 	test-channel_pthread			\
 	test-directory				\
 	test-directory-visit			\
@@ -27,7 +30,8 @@ noinst_PROGRAMS =				\
 	test-sync				\
 	test-sync-write				\
 	test-xfer				\
-	test-shell
+	test-shell				\
+	$(oaf_programs)
 
 TESTS = test-async-cancel test-escape
 

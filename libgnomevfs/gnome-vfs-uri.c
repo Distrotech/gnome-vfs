@@ -195,7 +195,9 @@ get_method_string (const gchar *substring, gchar **method_string)
 {
 	const gchar *p;
 	
-	for (p = substring; isalnum (*p) || *p == '+' || *p == '-' || *p == '.'; p++)
+	for (p = substring;
+	     isalnum ((unsigned char)*p) || *p == '+' || *p == '-' || *p == '.';
+	     p++)
 		;
 
 	if (*p == ':') {

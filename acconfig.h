@@ -12,3 +12,4 @@
 #undef HAVE_NSL
 #undef GNOME_VFS_DEFAULT_BACKEND
 #undef USING_OAF
+#undef HAVE_GCONF

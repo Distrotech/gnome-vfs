@@ -25,10 +25,16 @@
 #include <config.h>
 #endif
 
+#ifdef _POSIX_SOURCE
+#include <fnmatch.h>
+#else
 /* This enables the `FNM_CASEFOLD' #define on GNU libc. */
 /* FIXME bugzilla.eazel.com 1195: OK to use a GNU extension? */
 #define _POSIX_SOURCE
 #include <fnmatch.h>
+/* On Solaris 2.7 we need to undef this again.  */
+#undef _POSIX_SOURCE
+#endif
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"

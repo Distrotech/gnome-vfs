@@ -75,28 +75,50 @@ if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 	CFLAGS="$CFLAGS \
 	-Wall -Wno-uninitialized \
 	-Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes \
-	-Wnested-externs -Wpointer-arith \
-	-Wno-sign-compare -Wsign-promo \
-	-Werror"
+	-Wnested-externs -Wpointer-arith"
+
+	for option in -Wsign-promo -Wno-sign-compare; do
+		SAVE_CFLAGS="$CFLAGS"
+		CFLAGS="$CFLAGS $option"
+		AC_MSG_CHECKING([whether gcc understands $option])
+		AC_TRY_COMPILE([], [int test;],
+			has_option=yes,
+			has_option=no,)
+		if test $has_option = no; then
+			CFLAGS="$SAVE_CFLAGS"
+		fi
+		AC_MSG_RESULT($has_option)
+		unset has_option
+		unset SAVE_CFLAGS
+	done
+	unset option
+
+	# Don't set -Werror -- it is antisocial.  You break too many builds
+	# too often that way.  Set it for yourself, if you need it.  -- MW.
 fi
 
+using_oaf=no
 AC_PATH_PROG(OAF_CONFIG,oaf-config,no)
 if test x$OAF_CONFIG = xno; then
-	AC_MSG_ERROR("The program oaf-config was not found")
+	AC_MSG_RESULT("The program oaf-config was not found")
+	OAF_LIBS=""
+	OAF_CFLAGS=""
 else
 	AC_MSG_CHECKING(for Oaf >= 0.3.0)
 	vers=`$OAF_CONFIG --version | \
 		awk 'BEGIN { FS = "."; } { printf "%d", $1 * 1000 + $2;}'`
 	if test "$vers" -ge 3; then
+		using_oaf=yes
 	        OAF_LIBS=`$OAF_CONFIG --libs`
         	OAF_CFLAGS=`$OAF_CONFIG --cflags`
 		AC_MSG_RESULT(found)
+		AC_DEFINE(USING_OAF)
 	else
 		AC_MSG_RESULT(not found)	
-		AC_MSG_ERROR(Please install the oaf and oaf-devel packages)
+		AC_MSG_ERROR(Please upgrade the oaf and oaf-devel packages)
 	fi
 fi
-
+AM_CONDITIONAL(USING_OAF, test x"$using_oaf" = "xyes")
 AC_SUBST(OAF_LIBS)
 AC_SUBST(OAF_CFLAGS)
 
@@ -171,10 +193,13 @@ dnl
 dnl gconf-method.c
 dnl
 
+dnl This is truly useless.  If we don't have gconf, the aclocal will
+dnl have failed long before we get here.
 AM_PATH_GCONF(0.1.0,,,gconf)
 
 if test "x$gconf_enabled" = xyes; then 
-    AC_PATH_PROG(GCONF_CONFIG, gconf-config, no)
+	AC_PATH_PROG(GCONF_CONFIG, gconf-config, no)
+	AC_DEFINE(HAVE_GCONF)
 else
     GCONF_CONFIG=no
 fi

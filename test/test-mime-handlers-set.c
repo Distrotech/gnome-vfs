@@ -29,6 +29,7 @@
 #include "gnome-vfs-mime-handlers.h"
 
 #include <stdio.h>
+#include <string.h>
 
 
 static void
@@ -109,7 +110,9 @@ main (int argc, char **argv)
 	const char *field;
 	const char *value;
 
+#ifdef USING_OAF
 	oaf_init (argc, argv);
+#endif
 	gnome_vfs_init ();
 
 	if (argc < 3) {
@@ -165,9 +168,3 @@ main (int argc, char **argv)
 
 	return 0;
 }
-
-
-
-
-
-

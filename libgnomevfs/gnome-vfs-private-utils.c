@@ -379,11 +379,11 @@ check_end (const gchar *p)
 {
 	if (!p)
 		return 0;
-	while (isspace (*p))
+	while (isspace ((unsigned char)*p))
 		++p;
 	if (!*p
 	    || (p[0] == 'G' && p[1] == 'M' && p[2] == 'T')
-	    || ((p[0] == '+' || p[1] == '-') && isdigit (p[1])))
+	    || ((p[0] == '+' || p[1] == '-') && isdigit ((unsigned char)p[1])))
 		return 1;
 	else
 		return 0;

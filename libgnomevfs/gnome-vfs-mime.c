@@ -137,7 +137,7 @@ add_to_key (char *mime_type, char *def)
 		def += 5;
 		def = get_priority (def, &priority);
 
-		while (*def && isspace (*def))
+		while (*def && isspace ((unsigned char)*def))
 			def++;
 
 		if (!*def)
@@ -177,7 +177,7 @@ mime_fill_from_file (const char *filename)
 
 		/* Trim trailing spaces */
 		for (p = buf + strlen (buf) - 1; p >= buf; p--){
-			if (isspace (*p) || *p == '\n')
+			if (isspace ((unsigned char)*p) || *p == '\n')
 				*p = 0;
 			else
 				break;
@@ -190,7 +190,7 @@ mime_fill_from_file (const char *filename)
 			if (current_key){
 				char *p = buf;
 
-				while (*p && isspace (*p))
+				while (*p && isspace ((unsigned char)*p))
 					p++;
 
 				if (*p == 0)
@@ -766,13 +766,13 @@ gnome_vfs_get_mime_type_for_data (gconstpointer data, int data_size)
 GList*
 gnome_uri_list_extract_uris (const gchar* uri_list)
 {
-	const gchar *p, *q;
+	const guchar *p, *q;
 	gchar *retval;
 	GList *result = NULL;
 
 	g_return_val_if_fail (uri_list != NULL, NULL);
 
-	p = uri_list;
+	p = (const guchar *)uri_list;
 
 	/* We don't actually try to validate the URI according to RFC
 	 * 2396, or even check for allowed characters - we just ignore
