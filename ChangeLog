@@ -1,3 +1,10 @@
+2002-07-15  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (set_uri_element):
+	canonize NULL uri into "/". "start-here:" will now be
+	canonized into "start-here:///", fixing some monitoring
+	problem in nautilus
+
 2002-07-13  Peteris Krisjanis <pecisk@inbox.lv>
 
 	* configure.in - (ALL_LINGUAS) Added support for Latvian (lv) language.
