@@ -1,5 +1,8 @@
 1999-09-25  Ettore Perazzoli  <ettore@comm2000.it>
 
+	* libgnomevfs/gnome-vfs-constants.h (GNOME_VFS_OFFSET_FORMAT_STR)
+	[!HAVE_GINT64]: Change "L" to "l".
+
 	* modules/bzip2-method.c (struct _Bzip2MethodHandle): Removed
 	`modification_time' member.
 	(bzip2_method_handle_new): Removed `modification_time' parameter.
