@@ -2149,6 +2149,7 @@ gnome_vfs_xfer_delete_items_common (const GList *source_uri_list,
 						      GNOME_VFS_FILE_INFO_DEFAULT);
 
 		if (result != GNOME_VFS_OK) {
+			gnome_vfs_file_info_unref (info);
 			break;
 		}
 
@@ -2160,6 +2161,8 @@ gnome_vfs_xfer_delete_items_common (const GList *source_uri_list,
 			result = remove_file (uri, progress, xfer_options, &error_mode,
 					      &skip);
 		}
+
+		gnome_vfs_file_info_unref (info);
 	}
 
 	return result;

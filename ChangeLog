@@ -1,5 +1,10 @@
 2005-02-11  Christian Kellner  <gicmo@gnome.org>
 
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_delete_items_common):
+	Plug some more leaks. This fixes bug #166109.
+
+2005-02-11  Christian Kellner  <gicmo@gnome.org>
+
 	* modules/sftp-method.c: Plug some leaks. This should fix 
 	bug #153264.
 
