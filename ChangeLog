@@ -1,5 +1,9 @@
 2000-11-06  Robin * Slomkowski  <rslomkow@eazel.com>
 
+	* configure.in: upped version to 0.5.2
+
+2000-11-06  Robin * Slomkowski  <rslomkow@eazel.com>
+
 	* configure.in:  upped version 0.4.1.1
 	for internal incrimental release
 
