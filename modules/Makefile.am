@@ -53,6 +53,7 @@ modules_LTLIBRARIES =				\
 	libftp.la				\
 	libvfs-pipe.la				\
 	libvfs-translate.la			\
+	libcdemenu-desktop.la		\
 	libssh.la				\
 	$(NULL)
 
@@ -104,6 +105,11 @@ libdesktop_la_LDFLAGS = $(module_flags)
 
 libvfolder_desktop_la_SOURCES = vfolder-desktop-method.c
 libvfolder_desktop_la_LDFLAGS = $(module_flags)
+
+###  `cdemenu-desktop' method
+ 
+libcdemenu_desktop_la_SOURCES = cdemenu-desktop-method.c
+libcdemenu_desktop_la_LDFLAGS = $(module_flags)
 
 vfolderdir=$(sysconfdir)/gnome-vfs-2.0/vfolders
 vfolder_DATA = 				\
