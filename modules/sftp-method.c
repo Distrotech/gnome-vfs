@@ -1178,6 +1178,9 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 	if (user_name == NULL)
 		user_name = g_get_user_name ();
 
+	if (host_name == NULL)
+		return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+
 	hash_name = g_strconcat (user_name, "@", host_name, NULL);
 
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
@@ -1642,7 +1645,7 @@ do_close (GnomeVFSMethod       *method,
 
 	DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Exit", __FUNCTION__));
 
-	return sftp_status_to_vfs_result (status);
+	return status;
 }
 
 static GnomeVFSResult 
@@ -2352,7 +2355,7 @@ do_make_directory (GnomeVFSMethod  *method,
 
 	g_free (path);
 
-	res = sftp_status_to_vfs_result (iobuf_read_result (conn->in_fd, id));
+	res = iobuf_read_result (conn->in_fd, id);
 
 	sftp_connection_unref (conn);
 	sftp_connection_unlock (conn);
@@ -2381,7 +2384,7 @@ do_remove_directory (GnomeVFSMethod  *method,
 
 	g_free (path);
 
-	res = sftp_status_to_vfs_result (iobuf_read_result (conn->in_fd, id));
+	res = iobuf_read_result (conn->in_fd, id);
 
 	sftp_connection_unref (conn);
 	sftp_connection_unlock (conn);
@@ -2424,7 +2427,7 @@ do_move (GnomeVFSMethod  *method,
 	g_free (old_path);
 	g_free (new_path);
 
-	res = sftp_status_to_vfs_result (iobuf_read_result (conn->in_fd, id));
+	res = iobuf_read_result (conn->in_fd, id);
 
 	sftp_connection_unref (conn);
 	sftp_connection_unlock (conn);
@@ -2469,7 +2472,7 @@ do_rename (GnomeVFSMethod  *method,
 	g_free (old_path);
 	g_free (new_path);
 
-	res = sftp_status_to_vfs_result (iobuf_read_result (conn->in_fd, id));
+	res = iobuf_read_result (conn->in_fd, id);
 
 	sftp_connection_unref (conn);
 	sftp_connection_unlock (conn);
@@ -2497,7 +2500,7 @@ do_unlink (GnomeVFSMethod  *method,
 
 	g_free (path);
 
-	res = sftp_status_to_vfs_result (iobuf_read_result (conn->in_fd, id));
+	res = iobuf_read_result (conn->in_fd, id);
 
 	sftp_connection_unref (conn);
 	sftp_connection_unlock (conn);
@@ -2567,7 +2570,7 @@ do_set_file_info (GnomeVFSMethod          *method,
 
 		g_free (path);
 
-		res = sftp_status_to_vfs_result (iobuf_read_result (conn->in_fd, id));
+		res = iobuf_read_result (conn->in_fd, id);
 
 		sftp_connection_unref (conn);
 		sftp_connection_unlock (conn);
@@ -2617,7 +2620,7 @@ do_create_symlink (GnomeVFSMethod   *method,
 
 	g_free (path);
 
-	res = sftp_status_to_vfs_result (iobuf_read_result (conn->in_fd, id));
+	res = iobuf_read_result (conn->in_fd, id);
 
 	sftp_connection_unref (conn);
 	sftp_connection_unlock (conn);
