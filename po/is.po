@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2003-06-21 12:15--100\n"
 "Last-Translator: Samuel Jon Gunnarsson <sammi@techattack.nu>\n"
 "Language-Team: Icelandic <gnome@techattack.nu>\n"
@@ -22,89 +22,6 @@ msgstr "Ekki tókst að finna yfirvafra"
 
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, fuzzy, c-format
-msgid "File could not be opened: %s"
-msgstr "Ekki tókst að þátta: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:337
-#, fuzzy
-msgid "File is empty"
-msgstr "Skráin er þegar til"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
@@ -410,23 +327,23 @@ msgstr "Óþekkt vinnuaðgerð %u"
 msgid "Operation stopped"
 msgstr "Aðgerð stöðvuð"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -918,57 +835,6 @@ msgstr ""
 msgid "Unable to unmount connected server"
 msgstr ""
 
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Forrit"
-
-#  Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Spjöld"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Skrár"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Möppur"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Hjálp"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Vélar"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Tenglar"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Póstur"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Verkfæri"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Gluggar"
-
 #: modules/computer-method.c:545
 msgid "Network"
 msgstr ""
@@ -1434,6 +1300,45 @@ msgstr ""
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr ""
+
+#, fuzzy
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Ekki tókst að þátta: %s"
+
+#, fuzzy
+#~ msgid "File is empty"
+#~ msgstr "Skráin er þegar til"
+
+#~ msgid "Applications"
+#~ msgstr "Forrit"
+
+#  Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#~ msgid "Cards"
+#~ msgstr "Spjöld"
+
+#~ msgid "Files"
+#~ msgstr "Skrár"
+
+#~ msgid "Folders"
+#~ msgstr "Möppur"
+
+#~ msgid "Help"
+#~ msgstr "Hjálp"
+
+#~ msgid "Hosts"
+#~ msgstr "Vélar"
+
+#~ msgid "Links"
+#~ msgstr "Tenglar"
+
+#~ msgid "Mail"
+#~ msgstr "Póstur"
+
+#~ msgid "Tools"
+#~ msgstr "Verkfæri"
+
+#~ msgid "Windows"
+#~ msgstr "Gluggar"
 
 #, fuzzy
 #~ msgid "The handler for HTTP URLs"

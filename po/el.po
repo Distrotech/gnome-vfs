@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-04 11:06+0300\n"
 "Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
 "Language-Team:  <nls@tux.hellug.gr>\n"
@@ -41,102 +41,6 @@ msgstr "Αδύνατη η αρχικοποίηση του Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Αδυναμία αρχικοποίησης gnome vfs"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Αδύναμία ανοίγματος του αρχείου: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Αποτυχία ανοίγματος αρχείου '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "Το αρχείο είναι κενό"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Αποτυχία ανάγνωσης από το αρχείο '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"οι καταχωρήσεις της επιφάνειας εργασίας περιέχουν μια γραμμή '%s που δεν "
-"είναι καταχώρηση, ομάδα ή σχόλιο"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr ""
-"το αρχείο καταχωρήσεων επιφάνειας εργασίας δεν ξεκινά με νόμιμη ομάδα έναρξης"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
-"οι καταχωρήσεις της επιφάνειας εργασίας περιέχουν μια γραμμή '%s που δεν "
-"είναι UTF-8"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
-"οι καταχωρήσεις της επιφάνειας εργασίας περιέχουν άγνωστη κωδικοποίηση '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "οι καταχωρήσεις της επιφάνειας εργασίας δεν περιέχουν ομάδα '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "οι καταχωρήσεις της επιφάνειας εργασίας δεν περιέχουν κλειδί '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"οι καταχωρήσεις της επιφάνειας εργασίας  περιέχουν ένα κλειδί '%s' που η "
-"τιμή του δεν μπορεί να ερμηνευθεί"
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"οι καταχωρήσεις της επιφάνειας εργασίας δεν περιέχουν μεταφρασμένη τιμή για "
-"το κλειδί  '%s' με locale '%s'."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
-"οι καταχωρήσεις της επιφάνειας εργασίας  περιέχουν invalid escape sequence '%"
-"s'"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr ""
-"οι καταχωρήσεις της επιφάνειας εργασίας  περιέχουν escape character στο "
-"τέλος της γραμμής"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "Η τιμή '%s' δεν μπορεί να ερμηνευθεί ως αριθμός."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "Η τιμή '%s' δεν μπορεί να ερμηνευθεί ως boolean."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -439,23 +343,23 @@ msgstr "Άγνωστη είδος εργασίας %u"
 msgid "Operation stopped"
 msgstr "Η λειτουργία διακόπηκε"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -953,56 +857,6 @@ msgstr "Αδυναμία αποβολής μέσου"
 #: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Αδυναμία αποπροσάρτησης συνδεδεμένου εξυπηρετητή"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Εφαρμογές"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Κάρτες"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Αρχεία"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Φάκελοι"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Βοήθεια"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Συστήματα"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Δεσμοί"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Αλληλογραφία"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Εργαλεία"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Παράθυρα"
 
 #: modules/computer-method.c:545
 msgid "Network"
@@ -1533,3 +1387,101 @@ msgstr "Ομάδα εργασίας SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Η ομάδα εργασίας windows όπου ο χρήστης είναι μέλος"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Αδύναμία ανοίγματος του αρχείου: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Αποτυχία ανοίγματος αρχείου '%s': %s"
+
+#~ msgid "File is empty"
+#~ msgstr "Το αρχείο είναι κενό"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Αποτυχία ανάγνωσης από το αρχείο '%s': %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "οι καταχωρήσεις της επιφάνειας εργασίας περιέχουν μια γραμμή '%s που δεν "
+#~ "είναι καταχώρηση, ομάδα ή σχόλιο"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr ""
+#~ "το αρχείο καταχωρήσεων επιφάνειας εργασίας δεν ξεκινά με νόμιμη ομάδα "
+#~ "έναρξης"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr ""
+#~ "οι καταχωρήσεις της επιφάνειας εργασίας περιέχουν μια γραμμή '%s που δεν "
+#~ "είναι UTF-8"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr ""
+#~ "οι καταχωρήσεις της επιφάνειας εργασίας περιέχουν άγνωστη κωδικοποίηση '%"
+#~ "s'"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "οι καταχωρήσεις της επιφάνειας εργασίας δεν περιέχουν ομάδα '%s'"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "οι καταχωρήσεις της επιφάνειας εργασίας δεν περιέχουν κλειδί '%s'"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "οι καταχωρήσεις της επιφάνειας εργασίας  περιέχουν ένα κλειδί '%s' που η "
+#~ "τιμή του δεν μπορεί να ερμηνευθεί"
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "οι καταχωρήσεις της επιφάνειας εργασίας δεν περιέχουν μεταφρασμένη τιμή "
+#~ "για το κλειδί  '%s' με locale '%s'."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr ""
+#~ "οι καταχωρήσεις της επιφάνειας εργασίας  περιέχουν invalid escape "
+#~ "sequence '%s'"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr ""
+#~ "οι καταχωρήσεις της επιφάνειας εργασίας  περιέχουν escape character στο "
+#~ "τέλος της γραμμής"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "Η τιμή '%s' δεν μπορεί να ερμηνευθεί ως αριθμός."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "Η τιμή '%s' δεν μπορεί να ερμηνευθεί ως boolean."
+
+#~ msgid "Applications"
+#~ msgstr "Εφαρμογές"
+
+#~ msgid "Cards"
+#~ msgstr "Κάρτες"
+
+#~ msgid "Files"
+#~ msgstr "Αρχεία"
+
+#~ msgid "Folders"
+#~ msgstr "Φάκελοι"
+
+#~ msgid "Help"
+#~ msgstr "Βοήθεια"
+
+#~ msgid "Hosts"
+#~ msgstr "Συστήματα"
+
+#~ msgid "Links"
+#~ msgstr "Δεσμοί"
+
+#~ msgid "Mail"
+#~ msgstr "Αλληλογραφία"
+
+#~ msgid "Tools"
+#~ msgstr "Εργαλεία"
+
+#~ msgid "Windows"
+#~ msgstr "Παράθυρα"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-03 22:39+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -24,92 +24,6 @@ msgstr "Bonobo を初期化できませんでした"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "GNOME 仮想ファイルシステム (gnome-vfs) を初期化できませんでした"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "ファイルを開けませんでした: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "ファイル '%s' を開けませんでした: %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "ファイルが空です"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "ファイル '%s' からの読み込みに失敗しました: %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-".desktop エントリの行 '%s' はエントリ、グループまたはコメントではありません。"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr ".desktop エントリ・ファイルが正しい起動グループで開始していません。"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ".desktop エントリの行 '%s' が UTF-8 ではありません。"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr ".desktop エントリに不明なエンコーディング '%s' が含まれています。"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr ".desktop エントリにグループ '%s' がありません。"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr ".desktop エントリにキー '%s' がありません。"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ".desktop エントリのキー '%s' には解釈することのできない値があります。"
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-".desktop エントリのキー '%s' はロケール '%s' で翻訳された値が含まれていませ"
-"ん。"
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
-".desktop エントリに不正なエスケープ・シーケンス '%s' が含まれています。"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr ".desktop エントリの行末にエスケープ文字が含まれています。"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "値 '%s' を数字として解釈できません。"
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "値 '%s' を論理値として解釈できません。"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -412,23 +326,23 @@ msgstr "ジョブの種類 %u が不明です"
 msgid "Operation stopped"
 msgstr "操作を停止しました"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -927,56 +841,6 @@ msgstr "メディアを排出できません"
 #: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "接続済のサーバをアンマウントできません"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "アプリケーション"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "カード"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "ファイル"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "フォルダ"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "ヘルプ"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "ホスト"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "リンク"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "メール"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "ツール"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Windows"
 
 #: modules/computer-method.c:545
 msgid "Network"
@@ -1480,3 +1344,91 @@ msgstr "SMB ワークグループ"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "ユーザが接続している Windows ワークグループです。"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "ファイルを開けませんでした: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "ファイル '%s' を開けませんでした: %s"
+
+#~ msgid "File is empty"
+#~ msgstr "ファイルが空です"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "ファイル '%s' からの読み込みに失敗しました: %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ ".desktop エントリの行 '%s' はエントリ、グループまたはコメントではありませ"
+#~ "ん。"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr ".desktop エントリ・ファイルが正しい起動グループで開始していません。"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr ".desktop エントリの行 '%s' が UTF-8 ではありません。"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr ".desktop エントリに不明なエンコーディング '%s' が含まれています。"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr ".desktop エントリにグループ '%s' がありません。"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr ".desktop エントリにキー '%s' がありません。"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ ".desktop エントリのキー '%s' には解釈することのできない値があります。"
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ ".desktop エントリのキー '%s' はロケール '%s' で翻訳された値が含まれていま"
+#~ "せん。"
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr ""
+#~ ".desktop エントリに不正なエスケープ・シーケンス '%s' が含まれています。"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr ".desktop エントリの行末にエスケープ文字が含まれています。"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "値 '%s' を数字として解釈できません。"
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "値 '%s' を論理値として解釈できません。"
+
+#~ msgid "Applications"
+#~ msgstr "アプリケーション"
+
+#~ msgid "Cards"
+#~ msgstr "カード"
+
+#~ msgid "Files"
+#~ msgstr "ファイル"
+
+#~ msgid "Folders"
+#~ msgstr "フォルダ"
+
+#~ msgid "Help"
+#~ msgstr "ヘルプ"
+
+#~ msgid "Hosts"
+#~ msgstr "ホスト"
+
+#~ msgid "Links"
+#~ msgstr "リンク"
+
+#~ msgid "Mail"
+#~ msgstr "メール"
+
+#~ msgid "Tools"
+#~ msgstr "ツール"
+
+#~ msgid "Windows"
+#~ msgstr "Windows"

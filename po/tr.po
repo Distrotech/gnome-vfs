@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-05 02:36+0300\n"
 "Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -25,93 +25,6 @@ msgstr "Bonobo başlatılamadı"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Gnome vfs başlatılamadı"
-
-# libgnomevfs/gnome-vfs-parse-ls.c:654
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Dosya açılamadı: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "'%s' dosyası açılamadı: %s"
-
-# libgnomevfs/gnome-vfs-result.c:61
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "Dosya boş"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "'%s' dosyasından okunurken başarısız olundu: %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"masaüstü girdileri girdi, grup ya da açıklama olmayan '%s' satırını içeriyor"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "masaüstü girdi dosyaları legal başlangıç grubu ile başlamaz"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "masaüstü girdileri UTF-8 olmayan '%s' satırı içeriyor"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "masaüstü girdileri bilinmeyen kodlama olan '%s' içeriyor"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "masaüstü girdileri '%s' grubuna sahip değil"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "masaüstü girdileri '%s' anahtarına sahip değil"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "masaüstü girdileri değeri kullanılamayan '%s' anahtarı içeriyor."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"masaüstü girdileri '%2$s' yereli ve '%1$s' anatharı için çevirilmiş bir "
-"değer içermiyor"
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "masaüstü girdileri geçersiz çıkış (escape) serisi '%s' içeriyor"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "masaüstü girdileri satır sonunda çıkış (escape) karakteri içeriyor"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "'%s' değeri bir sayı olarak kullanılamadı."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "'%s' değeri bir mantıksal değer olarak kullanılamadı."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -425,23 +338,23 @@ msgstr "Bilinmeyen iş türü %u"
 msgid "Operation stopped"
 msgstr "İşlem durduruldu"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -987,57 +900,6 @@ msgstr "Aygıt çıkartılamadı"
 msgid "Unable to unmount connected server"
 msgstr "Bağlı olan sunucudan ayrılma işlemi gerçekleştirilemedi"
 
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Uygulamalar"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Kartlar"
-
-# libgnomevfs/gnome-vfs-result.c:61
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Dosyalar"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Klasörler"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Yardım"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Bilgisayarlar"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Bağlantılar"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Posta"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Araçlar"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Windows"
-
 #: modules/computer-method.c:545
 msgid "Network"
 msgstr "Ağ"
@@ -1544,3 +1406,92 @@ msgstr "SMB çalışma gurubu"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Pencere çalışma gurubu, kullanıcı ise:"
+
+# libgnomevfs/gnome-vfs-parse-ls.c:654
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Dosya açılamadı: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "'%s' dosyası açılamadı: %s"
+
+# libgnomevfs/gnome-vfs-result.c:61
+#~ msgid "File is empty"
+#~ msgstr "Dosya boş"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "'%s' dosyasından okunurken başarısız olundu: %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "masaüstü girdileri girdi, grup ya da açıklama olmayan '%s' satırını "
+#~ "içeriyor"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "masaüstü girdi dosyaları legal başlangıç grubu ile başlamaz"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "masaüstü girdileri UTF-8 olmayan '%s' satırı içeriyor"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "masaüstü girdileri bilinmeyen kodlama olan '%s' içeriyor"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "masaüstü girdileri '%s' grubuna sahip değil"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "masaüstü girdileri '%s' anahtarına sahip değil"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr "masaüstü girdileri değeri kullanılamayan '%s' anahtarı içeriyor."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "masaüstü girdileri '%2$s' yereli ve '%1$s' anatharı için çevirilmiş bir "
+#~ "değer içermiyor"
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "masaüstü girdileri geçersiz çıkış (escape) serisi '%s' içeriyor"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr "masaüstü girdileri satır sonunda çıkış (escape) karakteri içeriyor"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "'%s' değeri bir sayı olarak kullanılamadı."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "'%s' değeri bir mantıksal değer olarak kullanılamadı."
+
+#~ msgid "Applications"
+#~ msgstr "Uygulamalar"
+
+#~ msgid "Cards"
+#~ msgstr "Kartlar"
+
+# libgnomevfs/gnome-vfs-result.c:61
+#~ msgid "Files"
+#~ msgstr "Dosyalar"
+
+#~ msgid "Folders"
+#~ msgstr "Klasörler"
+
+#~ msgid "Help"
+#~ msgstr "Yardım"
+
+#~ msgid "Hosts"
+#~ msgstr "Bilgisayarlar"
+
+#~ msgid "Links"
+#~ msgstr "Bağlantılar"
+
+#~ msgid "Mail"
+#~ msgstr "Posta"
+
+#~ msgid "Tools"
+#~ msgstr "Araçlar"
+
+#~ msgid "Windows"
+#~ msgstr "Windows"

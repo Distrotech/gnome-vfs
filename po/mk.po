@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-18 02:02+0200\n"
 "Last-Translator: Tomislav Markovski <herrera@users.sourceforge.net>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
@@ -31,97 +31,6 @@ msgstr "Не можам да го иницијализирам bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Не можам да го иницијализирам gnome vfs"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Не можам да го парсирам: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Не успеав да ја отворам датотеката '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "Датотеката е празна"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Не успеав да прочитам од датотеката '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"записите на работната површина ја содржат датотеката '%s' која што не е "
-"запис, група или коментар"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr ""
-"датотеката за записите на работната површина не започнува со легална група "
-"за подигнување"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
-"записите на работната површина ја содржат линијата '%s' која што не е UTF-8"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "записите на работната површина содржат непознат енкодинг '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "записите на работната површина ја немаат групата '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "записите на работната површина го немаат клучот '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"записите на работната површина го содржат клучот'%s' кој што има вредност "
-"која што не може да биде преведена."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"записите на работната површина не содржат преведена вредност за клучот '%s' "
-"со locale '%s'."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "записите на работната површина содржат невалидни секвенци  '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr ""
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "Вредноста '%s' не може да биде преведена како број."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "Вредноста '%s' не може да биде преведена како boolean."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -424,23 +333,23 @@ msgstr "Непознат вид на работа %u"
 msgid "Operation stopped"
 msgstr "Операцијата е стопирана"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -938,56 +847,6 @@ msgstr "Не можам да го извадам медиумот"
 msgid "Unable to unmount connected server"
 msgstr "Не можам да го демонитрам врзаниот сервер"
 
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Апликации"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Карти"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Датотеки"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Папки"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Помош"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Хостови"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Врски"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Пошта"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Алатки"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Прозорци"
-
 #: modules/computer-method.c:545
 msgid "Network"
 msgstr "Мрежа"
@@ -1458,3 +1317,92 @@ msgstr "SMB работна група"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Работната група од која што е дел корисникот"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Не можам да го парсирам: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Не успеав да ја отворам датотеката '%s': %s"
+
+#~ msgid "File is empty"
+#~ msgstr "Датотеката е празна"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Не успеав да прочитам од датотеката '%s': %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "записите на работната површина ја содржат датотеката '%s' која што не е "
+#~ "запис, група или коментар"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr ""
+#~ "датотеката за записите на работната површина не започнува со легална "
+#~ "група за подигнување"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr ""
+#~ "записите на работната површина ја содржат линијата '%s' која што не е UTF-"
+#~ "8"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "записите на работната површина содржат непознат енкодинг '%s'"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "записите на работната површина ја немаат групата '%s'"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "записите на работната површина го немаат клучот '%s'"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "записите на работната површина го содржат клучот'%s' кој што има вредност "
+#~ "која што не може да биде преведена."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "записите на работната површина не содржат преведена вредност за клучот '%"
+#~ "s' со locale '%s'."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "записите на работната површина содржат невалидни секвенци  '%s'"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "Вредноста '%s' не може да биде преведена како број."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "Вредноста '%s' не може да биде преведена како boolean."
+
+#~ msgid "Applications"
+#~ msgstr "Апликации"
+
+#~ msgid "Cards"
+#~ msgstr "Карти"
+
+#~ msgid "Files"
+#~ msgstr "Датотеки"
+
+#~ msgid "Folders"
+#~ msgstr "Папки"
+
+#~ msgid "Help"
+#~ msgstr "Помош"
+
+#~ msgid "Hosts"
+#~ msgstr "Хостови"
+
+#~ msgid "Links"
+#~ msgstr "Врски"
+
+#~ msgid "Mail"
+#~ msgstr "Пошта"
+
+#~ msgid "Tools"
+#~ msgstr "Алатки"
+
+#~ msgid "Windows"
+#~ msgstr "Прозорци"

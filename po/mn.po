@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-08-10 00:50+0200\n"
 "Last-Translator: Sanlig Badral <badral@users.sf.net>\n"
 "Language-Team: Mongolian <openmn-gnome@lists.sf.net>\n"
@@ -26,92 +26,6 @@ msgstr "Bonobo-г инициацалж чадсангүй"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "гноме vfs -г инициацлаж чадахгүй байна."
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Файл нээгдэх боломжгүй: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "'%s' файлыг нээж чадсангүй: %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "Файл хоосон байна"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "'%s' файлаас уншиж чадсангүй: %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"Тавцангийн элементүүд бичлэг, бүлэг, тайлбар ч байхгүй '%s' мөр агуулж байна"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "Тавцангийн элементүүдийн файл энгийн бүлгээр эхлэхгүй"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "Тавцангийн элементүүд ЮТФ-8 биш '%s' мөр агуулж байна"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "Тавцангийн элементүүд танигдахгүй '%s' кодчилол агуулж байна"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "Тавцангийн элементүүдэд '%s' бүлэг алга"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "Тавцангийн элементүүдэд '%s' түлхүүр алга"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"Тавцангийн элементүүд хөрвөх боломжгүй утгатай '%s' түлхүүр агуулж байна."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"Тавцангийн элементүүд '%s' түлхүүрийн хувьд орчуулагдаагүй утгатай түлхүүр '%"
-"s' локал дээр агуулж байна."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "Тавцангийн элементүүд хүчингүй '%s' буцах дараалал агуулж байна"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "Тавцангийн элементүүд мөрийн төгсгөлдөө escape тэмдэгт агуулж байна"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "'%s' утга тоогоор хөрвөх боломжгүй."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "'%s' утга бүүл утгаар хөрвөх боломжгүй."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -415,23 +329,23 @@ msgstr "Тодорхойгүй ажилын хэв %u"
 msgid "Operation stopped"
 msgstr "Үйлдэл зослоо"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -947,56 +861,6 @@ msgstr "Дискийг түлхэх боломжгүй"
 msgid "Unable to unmount connected server"
 msgstr "Холбоотой серверийг салгах боломжгүй"
 
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Х.програмууд"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Карт"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Файлууд"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Лавлахууд"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Тусламж"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Хост"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Холбоосууд"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Э-захиа"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Хэрэгэсэл"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Цонхнууд"
-
 #: modules/computer-method.c:545
 msgid "Network"
 msgstr "Сүлжээ"
@@ -1502,6 +1366,93 @@ msgstr "SMB ажлын хэсэг"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Цонхны ажлын хэсгийн хэрэглэгч бол:"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Файл нээгдэх боломжгүй: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "'%s' файлыг нээж чадсангүй: %s"
+
+#~ msgid "File is empty"
+#~ msgstr "Файл хоосон байна"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "'%s' файлаас уншиж чадсангүй: %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "Тавцангийн элементүүд бичлэг, бүлэг, тайлбар ч байхгүй '%s' мөр агуулж "
+#~ "байна"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "Тавцангийн элементүүдийн файл энгийн бүлгээр эхлэхгүй"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "Тавцангийн элементүүд ЮТФ-8 биш '%s' мөр агуулж байна"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "Тавцангийн элементүүд танигдахгүй '%s' кодчилол агуулж байна"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "Тавцангийн элементүүдэд '%s' бүлэг алга"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "Тавцангийн элементүүдэд '%s' түлхүүр алга"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "Тавцангийн элементүүд хөрвөх боломжгүй утгатай '%s' түлхүүр агуулж байна."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "Тавцангийн элементүүд '%s' түлхүүрийн хувьд орчуулагдаагүй утгатай "
+#~ "түлхүүр '%s' локал дээр агуулж байна."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "Тавцангийн элементүүд хүчингүй '%s' буцах дараалал агуулж байна"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr "Тавцангийн элементүүд мөрийн төгсгөлдөө escape тэмдэгт агуулж байна"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "'%s' утга тоогоор хөрвөх боломжгүй."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "'%s' утга бүүл утгаар хөрвөх боломжгүй."
+
+#~ msgid "Applications"
+#~ msgstr "Х.програмууд"
+
+#~ msgid "Cards"
+#~ msgstr "Карт"
+
+#~ msgid "Files"
+#~ msgstr "Файлууд"
+
+#~ msgid "Folders"
+#~ msgstr "Лавлахууд"
+
+#~ msgid "Help"
+#~ msgstr "Тусламж"
+
+#~ msgid "Hosts"
+#~ msgstr "Хост"
+
+#~ msgid "Links"
+#~ msgstr "Холбоосууд"
+
+#~ msgid "Mail"
+#~ msgstr "Э-захиа"
+
+#~ msgid "Tools"
+#~ msgstr "Хэрэгэсэл"
+
+#~ msgid "Windows"
+#~ msgstr "Цонхнууд"
 
 #~ msgid "CD Disc"
 #~ msgstr "CD Диск"

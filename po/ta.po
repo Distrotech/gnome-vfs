@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-03 17:04+0530\n"
 "Last-Translator: Jayaradha N <jaya@pune.redhat.com>\n"
 "Language-Team: Tamil <zhakanini@yahoogroups.com>\n"
@@ -30,88 +30,6 @@ msgstr "போனபோவை துவக்க முடியவில்ல�
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "க்னோம் விஏஃப்எஸ் ஐ துவக்க முடியவில்லை"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "கோப்பை திறக்க முடியவில்லை: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "கோப்பை திறப்பதில் தோல்வி '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "கோப்பு காலியாக உள்ளது"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "கோப்பு '%s' லிருந்து படிப்பதில் தோல்வி: %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr "மேல்மேசை உள்ளீட்டில் உள்ள '%s' சரியான தகவை,குழு அல்லது கட்டளை இல்லை"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "மேல்மேசை உள்ளீடு கோப்புகள் முறையான துவக்க குழுவாக இல்லை"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "மேல்மேசையில் உள்ள '%s' உள்ளீடுகள் UTF-8 இல்லை"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "மேல்மேடை உள்ளீடுகள் தெரியாக குறியீட்டு முறையை பயன்படுத்துகிறது '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "மேல்மேசை உள்ளீடுகளில் குழு இல்லை '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "மேல்மேசை உள்ளீடுகளின் '%s' விசை இல்லை"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "மேல்மேசையில் உள்ள '%s' விசை இல் உள்ள மதிப்பை புரிந்துகொள்ள முடியவில்லை"
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "மேல்மேசையில் விசை '%s' உடன் மொழி '%s' யில் மொழிபெயர்க்கப்படாத தகவல் உள்ளது"
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "'%s' இல் செல்லாத குழு குறிகள் உள்ளது"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "மேல்மேசையில் குழுக்குறிகள் வரியின் முடிவில் உள்ளது"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "மதிப்பு '%s' எண்ணாக புரிந்துகொள்ள முடியாது"
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "மதிப்பு '%s' பூலியனாக புரிந்துகொள்ள முடியாது"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -414,23 +332,23 @@ msgstr "தெரியாத %u பணி வகை"
 msgid "Operation stopped"
 msgstr "செயல் நிறுத்தப்பட்டுள்ளது"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -920,56 +838,6 @@ msgstr "ஊடகத்தை வெளியேற்ற முடியவி�
 msgid "Unable to unmount connected server"
 msgstr "இணைக்கப்பட்ட சேவகனின் இணைப்பை துண்டிக்க முடியவில்லை"
 
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "செயல்பாடுகள்"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "அட்டைகள்"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "கோப்புகள்"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "அடைவுகள்"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "உதவி"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "விருந்தோம்புகள்"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "இணைப்புகள்"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "அஞ்சல்"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "கருவிகள்"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "சாளரங்கள்"
-
 #: modules/computer-method.c:545
 msgid "Network"
 msgstr "வலைப்பின்னல்"
@@ -1445,3 +1313,85 @@ msgstr "SMB பணிகுழு"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "பயனீட்டாளர் சாளர பணிகுழுவின் அங்கத்தினராவர்"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "கோப்பை திறக்க முடியவில்லை: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "கோப்பை திறப்பதில் தோல்வி '%s': %s"
+
+#~ msgid "File is empty"
+#~ msgstr "கோப்பு காலியாக உள்ளது"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "கோப்பு '%s' லிருந்து படிப்பதில் தோல்வி: %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr "மேல்மேசை உள்ளீட்டில் உள்ள '%s' சரியான தகவை,குழு அல்லது கட்டளை இல்லை"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "மேல்மேசை உள்ளீடு கோப்புகள் முறையான துவக்க குழுவாக இல்லை"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "மேல்மேசையில் உள்ள '%s' உள்ளீடுகள் UTF-8 இல்லை"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "மேல்மேடை உள்ளீடுகள் தெரியாக குறியீட்டு முறையை பயன்படுத்துகிறது '%s'"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "மேல்மேசை உள்ளீடுகளில் குழு இல்லை '%s'"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "மேல்மேசை உள்ளீடுகளின் '%s' விசை இல்லை"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr "மேல்மேசையில் உள்ள '%s' விசை இல் உள்ள மதிப்பை புரிந்துகொள்ள முடியவில்லை"
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr "மேல்மேசையில் விசை '%s' உடன் மொழி '%s' யில் மொழிபெயர்க்கப்படாத தகவல் உள்ளது"
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "'%s' இல் செல்லாத குழு குறிகள் உள்ளது"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr "மேல்மேசையில் குழுக்குறிகள் வரியின் முடிவில் உள்ளது"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "மதிப்பு '%s' எண்ணாக புரிந்துகொள்ள முடியாது"
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "மதிப்பு '%s' பூலியனாக புரிந்துகொள்ள முடியாது"
+
+#~ msgid "Applications"
+#~ msgstr "செயல்பாடுகள்"
+
+#~ msgid "Cards"
+#~ msgstr "அட்டைகள்"
+
+#~ msgid "Files"
+#~ msgstr "கோப்புகள்"
+
+#~ msgid "Folders"
+#~ msgstr "அடைவுகள்"
+
+#~ msgid "Help"
+#~ msgstr "உதவி"
+
+#~ msgid "Hosts"
+#~ msgstr "விருந்தோம்புகள்"
+
+#~ msgid "Links"
+#~ msgstr "இணைப்புகள்"
+
+#~ msgid "Mail"
+#~ msgstr "அஞ்சல்"
+
+#~ msgid "Tools"
+#~ msgstr "கருவிகள்"
+
+#~ msgid "Windows"
+#~ msgstr "சாளரங்கள்"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-10-19 16:51+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -22,93 +22,6 @@ msgstr "E pamundur nisja e Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "E pamundur nisja e gnome vfs"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "E pamundur hapja e file: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Hapja e file '%s' dështoi: %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "File është bosh"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Leximi nga file '%s' dështoi: %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"elementi i desktop përmban rreshtin '%s' që nuk është një zë, grup, apo "
-"koment"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "file i elementit të desktop nuk fillon me një grup legal nisjeje"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "elementi i desktop përmban rreshtin '%s' që nuk është UTF-8"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "elementi i desktop përmban kodifikimin e panjohur '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "elementi i desktop nuk ka grupin '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "elementi i desktop nuk ka kyçin '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"elementi i desktop përmban kyçin '%s' që ka një vlerë të pa interpretueshme."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"elementi i desktop përmban vlerën e papërkthyer për kyçin '%s' në gjuhën '%"
-"s'."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "elementi i desktop përmban sekuencën e gabuar escape '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "elementi i desktop përmban simbolin escape në fund të rreshtit"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "Vlera '%s' nuk mund të interpretohet si një numër."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "Vlera '%s' nuk mund të interpretohet si një boolean."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -411,23 +324,23 @@ msgstr "Lloj i panjohur pune %u"
 msgid "Operation stopped"
 msgstr "Operacioni u ndërpre"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -926,56 +839,6 @@ msgstr "Nxjerrja e suportit është e pamundur"
 #: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "E pamundur shkëputja e server-it të lidhur"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Programe"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Letra"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Files"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Kartelat"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Ndihmë"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Host-et"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Lidhje"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Posta"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Instrumente"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Dritaret"
 
 #: modules/computer-method.c:545
 msgid "Network"
@@ -1485,6 +1348,94 @@ msgstr "Grup pune SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Grupi i punës Windows në të cilin bën pjesë përdoruesi"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "E pamundur hapja e file: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Hapja e file '%s' dështoi: %s"
+
+#~ msgid "File is empty"
+#~ msgstr "File është bosh"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Leximi nga file '%s' dështoi: %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "elementi i desktop përmban rreshtin '%s' që nuk është një zë, grup, apo "
+#~ "koment"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "file i elementit të desktop nuk fillon me një grup legal nisjeje"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "elementi i desktop përmban rreshtin '%s' që nuk është UTF-8"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "elementi i desktop përmban kodifikimin e panjohur '%s'"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "elementi i desktop nuk ka grupin '%s'"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "elementi i desktop nuk ka kyçin '%s'"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "elementi i desktop përmban kyçin '%s' që ka një vlerë të pa "
+#~ "interpretueshme."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "elementi i desktop përmban vlerën e papërkthyer për kyçin '%s' në gjuhën "
+#~ "'%s'."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "elementi i desktop përmban sekuencën e gabuar escape '%s'"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr "elementi i desktop përmban simbolin escape në fund të rreshtit"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "Vlera '%s' nuk mund të interpretohet si një numër."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "Vlera '%s' nuk mund të interpretohet si një boolean."
+
+#~ msgid "Applications"
+#~ msgstr "Programe"
+
+#~ msgid "Cards"
+#~ msgstr "Letra"
+
+#~ msgid "Files"
+#~ msgstr "Files"
+
+#~ msgid "Folders"
+#~ msgstr "Kartelat"
+
+#~ msgid "Help"
+#~ msgstr "Ndihmë"
+
+#~ msgid "Hosts"
+#~ msgstr "Host-et"
+
+#~ msgid "Links"
+#~ msgstr "Lidhje"
+
+#~ msgid "Mail"
+#~ msgstr "Posta"
+
+#~ msgid "Tools"
+#~ msgstr "Instrumente"
+
+#~ msgid "Windows"
+#~ msgstr "Dritaret"
 
 #~ msgid "desktop entry does not start with legal start group"
 #~ msgstr "elementi i desktop nuk fillon me një grup të ligjshëm nisjeje"

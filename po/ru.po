@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-27 13:16+0300\n"
 "Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team:  <ru@li.org>\n"
@@ -27,96 +27,6 @@ msgstr "Не удалось проинициализировать подсис�
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Не удалось проинициализировать подсистему gnome vfs"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Не удалось открыть файл: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Сбой при открытии файла \"%s\":%s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "Файл пуст"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Сбой при чтении из файла \"%s\":%s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"элементы рабочего стола содержат строку \"%s\", не являющуюся элементом, "
-"группой или комментарием"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "файл элементов рабочего стола не начинается с начальной группы"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "элементы рабочего стола содержат строку \"%s\" не в кодировке UTF-8"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "элементы рабочего стола содержат неизвестную кодировку \"%s\""
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "элементы рабочего стола не содержат группу \"%s\""
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "элементы рабочего стола не содержат ключа \"%s\""
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"элементы рабочего стола содержат ключ \"%s\", значение которого не может "
-"быть понято."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"элементы рабочего стола не содержат переведённого значения ключа \"%s\" для "
-"локали \"%s\"."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
-"элементы рабочего стола содержат недопустимую экранирующую "
-"последовательность \"%s\""
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "элементы рабочего стола содержат экранирующий символ в конце строки"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "Значение \"%s\" не может быть понято как число."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "Значение \"%s\" не может быть понято как булевое."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -419,23 +329,23 @@ msgstr "Вид задания %u неизвестен"
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -933,56 +843,6 @@ msgstr "Невозможно извлечь носитель"
 #: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Невозможно отсоединить подключённый сервер"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Приложения"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Карточки"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Файлы"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Папки"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Справка"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Узлы"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Ссылки"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Почта"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Инструменты"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Окна"
 
 #: modules/computer-method.c:545
 msgid "Network"
@@ -1507,3 +1367,93 @@ msgstr "Рабочая группа SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Рабочая группа сети Windows, в которую входит пользователь"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Не удалось открыть файл: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Сбой при открытии файла \"%s\":%s"
+
+#~ msgid "File is empty"
+#~ msgstr "Файл пуст"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Сбой при чтении из файла \"%s\":%s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "элементы рабочего стола содержат строку \"%s\", не являющуюся элементом, "
+#~ "группой или комментарием"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "файл элементов рабочего стола не начинается с начальной группы"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "элементы рабочего стола содержат строку \"%s\" не в кодировке UTF-8"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "элементы рабочего стола содержат неизвестную кодировку \"%s\""
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "элементы рабочего стола не содержат группу \"%s\""
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "элементы рабочего стола не содержат ключа \"%s\""
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "элементы рабочего стола содержат ключ \"%s\", значение которого не может "
+#~ "быть понято."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "элементы рабочего стола не содержат переведённого значения ключа \"%s\" "
+#~ "для локали \"%s\"."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr ""
+#~ "элементы рабочего стола содержат недопустимую экранирующую "
+#~ "последовательность \"%s\""
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr "элементы рабочего стола содержат экранирующий символ в конце строки"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "Значение \"%s\" не может быть понято как число."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "Значение \"%s\" не может быть понято как булевое."
+
+#~ msgid "Applications"
+#~ msgstr "Приложения"
+
+#~ msgid "Cards"
+#~ msgstr "Карточки"
+
+#~ msgid "Files"
+#~ msgstr "Файлы"
+
+#~ msgid "Folders"
+#~ msgstr "Папки"
+
+#~ msgid "Help"
+#~ msgstr "Справка"
+
+#~ msgid "Hosts"
+#~ msgstr "Узлы"
+
+#~ msgid "Links"
+#~ msgstr "Ссылки"
+
+#~ msgid "Mail"
+#~ msgstr "Почта"
+
+#~ msgid "Tools"
+#~ msgstr "Инструменты"
+
+#~ msgid "Windows"
+#~ msgstr "Окна"

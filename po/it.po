@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-06 09:32+0200\n"
 "Last-Translator: Luca Ferretti <elle.uca@infinito.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -23,95 +23,6 @@ msgstr "Impossibile inizializzare Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Impossibile inizializzare gnome vfs"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Il file non puù essere aperto: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Apertura del file «%s» fallita: %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "Il file è vuoto"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Lettura del file «%s» fallita: %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"le desktop entry contengono la riga «%s» che non è una voce, un gruppo o un "
-"commento"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "le desktop entry non cominciano per un gruppo legale di inizio"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "le desktop entry contengono la riga «%s» che non è in UTF-8"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "le desktop entry contengono la codifica sconoscitua «%s»"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "le desktop entry non presentano il gruppo «%s»"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "le desktop entry non presentano la chiave «%s»"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"le desktop entry contengono la chiave «%s» che presenta un valore che non "
-"può essere interpretato."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"le desktop entry non contengono alcun valore tradotto per la chiave «%s» "
-"nella localizzazione «%s»."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "le desktop entry contengono la sequenza di escape non valida «%s»"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr ""
-"le desktop entry contengono il carattere di escape alla fine della riga"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "Il valore «%s» non può essere interpretato come un numero."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "Il valore «%s» non può essere interpretato come un booleano."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -414,23 +325,23 @@ msgstr "Tipo di job %u sconosciuto"
 msgid "Operation stopped"
 msgstr "Operazione fermata"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -929,56 +840,6 @@ msgstr "Impossibile espellere il supporto"
 #: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Impossibile smontare il server connesso"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Applicazioni"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Schede"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "File"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Cartelle"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Guida"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Host"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Collegamenti"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Posta"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Strumenti"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Finestre"
 
 #: modules/computer-method.c:545
 msgid "Network"
@@ -1487,3 +1348,92 @@ msgstr "Workgroup SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Il workgroup tipo Windows di cui fa parte l'utente"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Il file non puù essere aperto: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Apertura del file «%s» fallita: %s"
+
+#~ msgid "File is empty"
+#~ msgstr "Il file è vuoto"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Lettura del file «%s» fallita: %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "le desktop entry contengono la riga «%s» che non è una voce, un gruppo o "
+#~ "un commento"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "le desktop entry non cominciano per un gruppo legale di inizio"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "le desktop entry contengono la riga «%s» che non è in UTF-8"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "le desktop entry contengono la codifica sconoscitua «%s»"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "le desktop entry non presentano il gruppo «%s»"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "le desktop entry non presentano la chiave «%s»"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "le desktop entry contengono la chiave «%s» che presenta un valore che non "
+#~ "può essere interpretato."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "le desktop entry non contengono alcun valore tradotto per la chiave «%s» "
+#~ "nella localizzazione «%s»."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "le desktop entry contengono la sequenza di escape non valida «%s»"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr ""
+#~ "le desktop entry contengono il carattere di escape alla fine della riga"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "Il valore «%s» non può essere interpretato come un numero."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "Il valore «%s» non può essere interpretato come un booleano."
+
+#~ msgid "Applications"
+#~ msgstr "Applicazioni"
+
+#~ msgid "Cards"
+#~ msgstr "Schede"
+
+#~ msgid "Files"
+#~ msgstr "File"
+
+#~ msgid "Folders"
+#~ msgstr "Cartelle"
+
+#~ msgid "Help"
+#~ msgstr "Guida"
+
+#~ msgid "Hosts"
+#~ msgstr "Host"
+
+#~ msgid "Links"
+#~ msgstr "Collegamenti"
+
+#~ msgid "Mail"
+#~ msgstr "Posta"
+
+#~ msgid "Tools"
+#~ msgstr "Strumenti"
+
+#~ msgid "Windows"
+#~ msgstr "Finestre"

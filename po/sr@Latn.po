@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-03 15:59+0200\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
@@ -28,103 +28,6 @@ msgstr "Ne mogu da pokrenem Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Ne mogu da pokrenem Gnomov VSD"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Datoteka se ne može otvoriti: %s"
-
-# bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Neuspešno otvaranje datoteke „%s“: %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "Datoteka je prazna"
-
-# bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Neuspešno čitanje datoteke „%s“: %s"
-
-# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr "„.desktop“ datoteka sadrži red „%s“ koji nije unos, grupa ni primedba"
-
-# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "„.desktop“ datoteka ne počinje sa ispravnom početnom grupom"
-
-# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "„.desktop“ datoteka sadrži red „%s“ koji nije UTF-8"
-
-# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "„.desktop“ datoteka koristi nepoznato kodiranje „%s“"
-
-# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "„.desktop“ datoteka nema grupu „%s“"
-
-# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "„.desktop“ datoteka nema ključ „%s“"
-
-# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"„.desktop“ datoteka sadrži ključ „%s“ koji ima vrednost koja se ne može "
-"razumeti."
-
-# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"„.desktop“ datoteka ne sadrži prevod vrednosti ključa „%s“ u lokalitetu „%s“."
-
-# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "„.desktop“ datoteka sadrži neispravan znak za isticanje „%s“"
-
-# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "„.desktop“ datoteka sadrži neispravan znak za isticanje na kraju reda"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "Vrednost „%s“ se ne može posmatrati kao broj."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "Vrednost „%s“ se ne može posmatrati kao istinitosna vrednost."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -430,23 +333,23 @@ msgstr "Nepoznata vrsta posla %u"
 msgid "Operation stopped"
 msgstr "Operacija zaustavljena"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -943,56 +846,6 @@ msgstr "Ne mogu da izbacim medij"
 #: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Ne mogu da isključim vezu sa serverom"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Programi"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Karte"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Datoteke"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Direktorijumi"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Pomoć"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Računari"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Veze"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Pošta"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Alati"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Prozori"
 
 #: modules/computer-method.c:545
 msgid "Network"
@@ -1494,6 +1347,106 @@ msgstr "SMB radna grupa"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Vindouz radna grupa koje je korisnik član"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Datoteka se ne može otvoriti: %s"
+
+# bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Neuspešno otvaranje datoteke „%s“: %s"
+
+#~ msgid "File is empty"
+#~ msgstr "Datoteka je prazna"
+
+# bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Neuspešno čitanje datoteke „%s“: %s"
+
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "„.desktop“ datoteka sadrži red „%s“ koji nije unos, grupa ni primedba"
+
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "„.desktop“ datoteka ne počinje sa ispravnom početnom grupom"
+
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "„.desktop“ datoteka sadrži red „%s“ koji nije UTF-8"
+
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "„.desktop“ datoteka koristi nepoznato kodiranje „%s“"
+
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "„.desktop“ datoteka nema grupu „%s“"
+
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "„.desktop“ datoteka nema ključ „%s“"
+
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "„.desktop“ datoteka sadrži ključ „%s“ koji ima vrednost koja se ne može "
+#~ "razumeti."
+
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "„.desktop“ datoteka ne sadrži prevod vrednosti ključa „%s“ u lokalitetu „%"
+#~ "s“."
+
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "„.desktop“ datoteka sadrži neispravan znak za isticanje „%s“"
+
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr ""
+#~ "„.desktop“ datoteka sadrži neispravan znak za isticanje na kraju reda"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "Vrednost „%s“ se ne može posmatrati kao broj."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "Vrednost „%s“ se ne može posmatrati kao istinitosna vrednost."
+
+#~ msgid "Applications"
+#~ msgstr "Programi"
+
+#~ msgid "Cards"
+#~ msgstr "Karte"
+
+#~ msgid "Files"
+#~ msgstr "Datoteke"
+
+#~ msgid "Folders"
+#~ msgstr "Direktorijumi"
+
+#~ msgid "Help"
+#~ msgstr "Pomoć"
+
+#~ msgid "Hosts"
+#~ msgstr "Računari"
+
+#~ msgid "Links"
+#~ msgstr "Veze"
+
+#~ msgid "Mail"
+#~ msgstr "Pošta"
+
+#~ msgid "Tools"
+#~ msgstr "Alati"
+
+#~ msgid "Windows"
+#~ msgstr "Prozori"
 
 # bug: Compact Disk Disk?
 #~ msgid "CD Disc"

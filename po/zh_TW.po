@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.7.93\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-13 02:22+0800\n"
 "Last-Translator: Li-Jen Hsin <hsin@med.cgu.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -25,88 +25,6 @@ msgstr "不能啟動 Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "不能啟動 gnome vfs"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "無法開啟檔案：%s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "開啟檔案 '%s' 失敗：%s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "檔案為空白"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "無法讀取檔案 '%s'：%s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr "桌面登錄含有 '%s' ，該行並不屬於登錄，群組或註記"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "桌面登錄檔開頭並沒有合法的起始群組"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "桌面登錄中的 '%s' 並不是使用 UTF-8 編碼"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "桌面登錄含有未知的編碼 '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "桌面登錄沒有群組 '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "桌面登錄沒有資料鍵 '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "桌面登錄含有資料鍵 '%s' 包含有無法解譯的設定值。"
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "桌面登錄中的資料鍵 '%s' 未包含語言 '%s' 的翻譯訊息。"
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "桌面登錄含有無效的 escape sequence '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "桌面登錄行末含有 escape 字元"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "設定值 '%s' 無法被解譯成為數字。"
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "設定值 '%s' 無法被解譯成為布林值。"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -411,23 +329,23 @@ msgstr "不明的工作類型 %u"
 msgid "Operation stopped"
 msgstr "操作已停止"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -916,56 +834,6 @@ msgstr "不能將媒體退出"
 msgid "Unable to unmount connected server"
 msgstr "不能將已連接的伺服器卸載"
 
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "應用程式"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "名片"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "檔案"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "資料夾"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "求助"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "主機"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "連結"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "郵件"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "工具"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "視窗"
-
 #: modules/computer-method.c:545
 msgid "Network"
 msgstr "網路"
@@ -1430,6 +1298,88 @@ msgstr "SMB 群組"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "使用者的所屬的 window 群組"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "無法開啟檔案：%s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "開啟檔案 '%s' 失敗：%s"
+
+#~ msgid "File is empty"
+#~ msgstr "檔案為空白"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "無法讀取檔案 '%s'：%s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr "桌面登錄含有 '%s' ，該行並不屬於登錄，群組或註記"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "桌面登錄檔開頭並沒有合法的起始群組"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "桌面登錄中的 '%s' 並不是使用 UTF-8 編碼"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "桌面登錄含有未知的編碼 '%s'"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "桌面登錄沒有群組 '%s'"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "桌面登錄沒有資料鍵 '%s'"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr "桌面登錄含有資料鍵 '%s' 包含有無法解譯的設定值。"
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr "桌面登錄中的資料鍵 '%s' 未包含語言 '%s' 的翻譯訊息。"
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "桌面登錄含有無效的 escape sequence '%s'"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr "桌面登錄行末含有 escape 字元"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "設定值 '%s' 無法被解譯成為數字。"
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "設定值 '%s' 無法被解譯成為布林值。"
+
+#~ msgid "Applications"
+#~ msgstr "應用程式"
+
+#~ msgid "Cards"
+#~ msgstr "名片"
+
+#~ msgid "Files"
+#~ msgstr "檔案"
+
+#~ msgid "Folders"
+#~ msgstr "資料夾"
+
+#~ msgid "Help"
+#~ msgstr "求助"
+
+#~ msgid "Hosts"
+#~ msgstr "主機"
+
+#~ msgid "Links"
+#~ msgstr "連結"
+
+#~ msgid "Mail"
+#~ msgstr "郵件"
+
+#~ msgid "Tools"
+#~ msgstr "工具"
+
+#~ msgid "Windows"
+#~ msgstr "視窗"
 
 #~ msgid "H323 URL handler"
 #~ msgstr "H323 URL 處理程式"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-18 12:06+0300\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -25,90 +25,6 @@ msgstr "Nepavyko inicijuoti Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Nepavyko inicijuoti gnome vfs"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Byla negalėjo būtų atidaryta: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Nepavyko atidaryti bylos „%s“: %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "Byla yra tuščia"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Nepavyko perskaityti bylos „%s“: %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"darbastalio įrašuose yra eilutė „%s“, kuri nėra nei įrašas, nei grupė, nei "
-"komentaras"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "darbastalio įrašų byla prasideda neleistina pradžios grupe"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "darbastalio įrašuose yra eilutė „%s“, kuri yra ne UTF-8"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "darbastalio įrašai yra nežinomos koduotės „%s“"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "darbastalio įrašuose nėra grupės „%s“"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "darbastalio įrašuose nėra rakto „%s“"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "darbastalio įrašuose yra raktas „%s“, turintis nesuprantamą reikšmę."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "darbastalio įrašuose nėra išverstos rakto „%s“ reikšmės lokalei „%s“."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "darbastalio įrašuose yra negalima pabėgimo seka „%s“"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "darbastalio įrašų eilučių pabaigoje yra pabėgimo simbolis"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "Reikšmė „%s“ negali būti interpretuojama kaip skaičius."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "Reikšmė „%s“ negali būti interpretuojama kaip loginė."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -411,23 +327,23 @@ msgstr "Nežinomas užduoties tipas %u"
 msgid "Operation stopped"
 msgstr "Operacija sustabdyta"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -922,56 +838,6 @@ msgstr "Nepavyko išstumti disko"
 #: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Nepavyko atjungti prisijungusio serverio"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Programos"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Kortelės"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Bylos"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Aplankai"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Pagalba"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Kompiuteriai"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Nuorodos"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Paštas"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Įrankiai"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Langai"
 
 #: modules/computer-method.c:545
 msgid "Network"
@@ -1475,6 +1341,92 @@ msgstr "SMB darbo grupė"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Windows darbo grupė, kuriai priklauso vartotojas"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Byla negalėjo būtų atidaryta: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Nepavyko atidaryti bylos „%s“: %s"
+
+#~ msgid "File is empty"
+#~ msgstr "Byla yra tuščia"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Nepavyko perskaityti bylos „%s“: %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "darbastalio įrašuose yra eilutė „%s“, kuri nėra nei įrašas, nei grupė, "
+#~ "nei komentaras"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "darbastalio įrašų byla prasideda neleistina pradžios grupe"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "darbastalio įrašuose yra eilutė „%s“, kuri yra ne UTF-8"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "darbastalio įrašai yra nežinomos koduotės „%s“"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "darbastalio įrašuose nėra grupės „%s“"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "darbastalio įrašuose nėra rakto „%s“"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "darbastalio įrašuose yra raktas „%s“, turintis nesuprantamą reikšmę."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "darbastalio įrašuose nėra išverstos rakto „%s“ reikšmės lokalei „%s“."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "darbastalio įrašuose yra negalima pabėgimo seka „%s“"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr "darbastalio įrašų eilučių pabaigoje yra pabėgimo simbolis"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "Reikšmė „%s“ negali būti interpretuojama kaip skaičius."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "Reikšmė „%s“ negali būti interpretuojama kaip loginė."
+
+#~ msgid "Applications"
+#~ msgstr "Programos"
+
+#~ msgid "Cards"
+#~ msgstr "Kortelės"
+
+#~ msgid "Files"
+#~ msgstr "Bylos"
+
+#~ msgid "Folders"
+#~ msgstr "Aplankai"
+
+#~ msgid "Help"
+#~ msgstr "Pagalba"
+
+#~ msgid "Hosts"
+#~ msgstr "Kompiuteriai"
+
+#~ msgid "Links"
+#~ msgstr "Nuorodos"
+
+#~ msgid "Mail"
+#~ msgstr "Paštas"
+
+#~ msgid "Tools"
+#~ msgstr "Įrankiai"
+
+#~ msgid "Windows"
+#~ msgstr "Langai"
 
 #~ msgid "CD Disc"
 #~ msgstr "CD diskas"

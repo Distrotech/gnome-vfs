@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-10-03 15:42+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <suso@trasno.net>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -27,97 +27,6 @@ msgstr "Non se puido inicializar Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Non se puido inicializar gnome vfs"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Non se puido abrir o ficheiro: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Falla ao abrir o ficheiro '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "O ficheiro está baleiro"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Falla ao ler do ficheiro '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"as entradas de escritorio conteñen a liña '%s', que non é unha entrada, "
-"grupo, ou comentario"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr ""
-"o ficheiro de entradas de escritorio non empeza cun grupo inicial válido"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "as entradas de escritorio conteñen a liña '%s', que non é UTF-8"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "as entradas de escritorio conteñen unha codificación '%s' descoñecida"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "as entradas de escritorio non teñen o grupo '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "as entradas de escritorio non teñen a clave '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"as entradas de escritorio conteñen a clave '%s', que ten un valor que non se "
-"pode interpretar."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"as entradas de escritorio non teñen un valor traducido da clave '%s' para o "
-"locale '%s'."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
-"as entradas de escritorio conteñen a secuencia de escape non válida '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr ""
-"as entradas de escritorio conteñen un carácter de escape no final da liña"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "O valor '%s' non se pode interpretar coma un número."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "O valor '%s' non se pode interpretar coma un booleano."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -420,23 +329,23 @@ msgstr "Clase de traballo %u descoñecida"
 msgid "Operation stopped"
 msgstr "Operación parada"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -934,56 +843,6 @@ msgstr "Non se pode extraer o soporte"
 #: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Non se pode desmontar o servidor conectado"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Aplicacións"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Tarxetas"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Ficheiros"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Cartafoles"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Axuda"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Máquinas"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Ligazóns"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Correo"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Ferramentas"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Fiestras"
 
 #: modules/computer-method.c:545
 msgid "Network"
@@ -1495,3 +1354,95 @@ msgstr "Grupo de traballo SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "O grupo de traballo de Windows ao que pertence o usuario"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Non se puido abrir o ficheiro: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Falla ao abrir o ficheiro '%s': %s"
+
+#~ msgid "File is empty"
+#~ msgstr "O ficheiro está baleiro"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Falla ao ler do ficheiro '%s': %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "as entradas de escritorio conteñen a liña '%s', que non é unha entrada, "
+#~ "grupo, ou comentario"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr ""
+#~ "o ficheiro de entradas de escritorio non empeza cun grupo inicial válido"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "as entradas de escritorio conteñen a liña '%s', que non é UTF-8"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr ""
+#~ "as entradas de escritorio conteñen unha codificación '%s' descoñecida"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "as entradas de escritorio non teñen o grupo '%s'"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "as entradas de escritorio non teñen a clave '%s'"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "as entradas de escritorio conteñen a clave '%s', que ten un valor que non "
+#~ "se pode interpretar."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "as entradas de escritorio non teñen un valor traducido da clave '%s' para "
+#~ "o locale '%s'."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr ""
+#~ "as entradas de escritorio conteñen a secuencia de escape non válida '%s'"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr ""
+#~ "as entradas de escritorio conteñen un carácter de escape no final da liña"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "O valor '%s' non se pode interpretar coma un número."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "O valor '%s' non se pode interpretar coma un booleano."
+
+#~ msgid "Applications"
+#~ msgstr "Aplicacións"
+
+#~ msgid "Cards"
+#~ msgstr "Tarxetas"
+
+#~ msgid "Files"
+#~ msgstr "Ficheiros"
+
+#~ msgid "Folders"
+#~ msgstr "Cartafoles"
+
+#~ msgid "Help"
+#~ msgstr "Axuda"
+
+#~ msgid "Hosts"
+#~ msgstr "Máquinas"
+
+#~ msgid "Links"
+#~ msgstr "Ligazóns"
+
+#~ msgid "Mail"
+#~ msgstr "Correo"
+
+#~ msgid "Tools"
+#~ msgstr "Ferramentas"
+
+#~ msgid "Windows"
+#~ msgstr "Fiestras"

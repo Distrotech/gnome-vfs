@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-22 23:22+0200\n"
 "Last-Translator: Ivan Noris <vix@vazka.sk>\n"
 "Language-Team: Slovak <sk-i18n@linux.sk>\n"
@@ -27,92 +27,6 @@ msgstr "Nemôžem inicializovať Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Nemôžem inicializovať gnome VFS"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Nepodarilo sa otvoriť súbor %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Nepodarilo sa otvoriť súbor '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "Súbor je prázdny"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Nepodarilo sa čítať zo súboru '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"položky desktop obsahujú riadok '%s', ktorý nie je položka, skupina, ani "
-"komentár"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "súbor s položkami desktop nezačína platnou začiatočnou skupinou"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "položky desktopu obsahujú riadok '%s', ktorý nie je kódovaný v UTF-8"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "položky desktopu obsahujú neznáme kódovanie '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "položky desktop nemajú skupinu '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "položky desktop nemajú kľúč '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"položky desktop obsahujú kľúč '%s', ktorého hodnotu nemožno interpretovať."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"položky desktop neobsahujú preloženú hodnotu pre kľúč '%s' s locale '%s'."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "položky desktop obsahujú neplatnú escape sekvenciu '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "položky desktop obsahujú znak escape na konci riadku"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "Hodnota '%s' nemôže byť interpretovaná ako číslo."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "Hodnota '%s' nemôže byť interpretovaná ako logická (boolean) hodnota."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -415,23 +329,23 @@ msgstr "Neznáme typ úlohy %u"
 msgid "Operation stopped"
 msgstr "Operácia zastavená"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -924,56 +838,6 @@ msgstr "Nepodarilo sa vysunúť médium"
 msgid "Unable to unmount connected server"
 msgstr "Nepodarilo sa odpojiť pripojený server"
 
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Aplikácie"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Karty"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Súbory"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Priečinky"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Pomocník"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Hostitelia"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Odkazy"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "Pošta"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Nástroje"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Okná"
-
 #: modules/computer-method.c:545
 msgid "Network"
 msgstr "Sieť"
@@ -1465,6 +1329,94 @@ msgstr "Pracovná skupina SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Pracovná skupina, ktorej členom je používateľ"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Nepodarilo sa otvoriť súbor %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Nepodarilo sa otvoriť súbor '%s': %s"
+
+#~ msgid "File is empty"
+#~ msgstr "Súbor je prázdny"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Nepodarilo sa čítať zo súboru '%s': %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "položky desktop obsahujú riadok '%s', ktorý nie je položka, skupina, ani "
+#~ "komentár"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "súbor s položkami desktop nezačína platnou začiatočnou skupinou"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr ""
+#~ "položky desktopu obsahujú riadok '%s', ktorý nie je kódovaný v UTF-8"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "položky desktopu obsahujú neznáme kódovanie '%s'"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "položky desktop nemajú skupinu '%s'"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "položky desktop nemajú kľúč '%s'"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "položky desktop obsahujú kľúč '%s', ktorého hodnotu nemožno interpretovať."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "položky desktop neobsahujú preloženú hodnotu pre kľúč '%s' s locale '%s'."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "položky desktop obsahujú neplatnú escape sekvenciu '%s'"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr "položky desktop obsahujú znak escape na konci riadku"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "Hodnota '%s' nemôže byť interpretovaná ako číslo."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr ""
+#~ "Hodnota '%s' nemôže byť interpretovaná ako logická (boolean) hodnota."
+
+#~ msgid "Applications"
+#~ msgstr "Aplikácie"
+
+#~ msgid "Cards"
+#~ msgstr "Karty"
+
+#~ msgid "Files"
+#~ msgstr "Súbory"
+
+#~ msgid "Folders"
+#~ msgstr "Priečinky"
+
+#~ msgid "Help"
+#~ msgstr "Pomocník"
+
+#~ msgid "Hosts"
+#~ msgstr "Hostitelia"
+
+#~ msgid "Links"
+#~ msgstr "Odkazy"
+
+#~ msgid "Mail"
+#~ msgstr "Pošta"
+
+#~ msgid "Tools"
+#~ msgstr "Nástroje"
+
+#~ msgid "Windows"
+#~ msgstr "Okná"
 
 #~ msgid ""
 #~ "Whether the specified command should handle \"callto\" URLsČi má určený "

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-08-30 19:29+0300\n"
 "Last-Translator: Ayman Hourieh <aymanh@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -26,90 +26,6 @@ msgstr "لم يمكن تشغيل بونوبو"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "لم يمكن تشغيل جنوم vfs"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "لم يمكن فتح الملف: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "فشل فتح الملف '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "الملف فارغ"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "فشلت القراءة من الملف '%s': %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"تحوي مدخلات سطح المكتب السطر '%s' الذي هو ليس مدخلاً، مجموعة، أو تعليقاً."
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "لا يبدأ ملف مدخلات سطح المكتب بمجموعة بدء قانونيّة"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "تحوي مدخلات سطح المكتب السطر '%s' الذي هو ليس UTF-8"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "تحوي مدخلات سطح المكتب ترميزاً غير معروف '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "ليس لمدخلات سطح المكتب المجموعة '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "ليس لمدخلات سطح المكتب المفتاح '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "تحوي مدخلات سطح المكتب المفتاح '%s' الذي يملك قيمة لا يمكن تفسيرها."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"لا تحوي مدخلات سطح المكتب على قيمة مترجمة للمفتاح '%s' بالإعداد المحلّي '%s'."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "حوي مدخلات سطح المكتب تسلسل تجاهل غير صالح '%s'"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "تحوي مدخلات سطح المكتب رمز تجاهل في نهاية سطر"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "لا يمكن تفسير القيمة '%s' كعدد."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "لا يمكن تفسير القيمة '%s' كقيمة منطقية."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -412,23 +328,23 @@ msgstr "نوع عمليّة مجهول %u"
 msgid "Operation stopped"
 msgstr "اوقفت العمليّة"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -938,56 +854,6 @@ msgstr "لا يمكن طرد الوسيط"
 msgid "Unable to unmount connected server"
 msgstr "لا يمكن إلغاء تجهيز النادل المتصل"
 
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "تطبيقات"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "بطاقات"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "ملفات"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "دلائل"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "مساعدة"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "مضيفين"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "وصلات"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "بريد إلكتروني"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "أدوات"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "نوافذ"
-
 #: modules/computer-method.c:545
 msgid "Network"
 msgstr "الشبكة"
@@ -1481,3 +1347,88 @@ msgstr "مجموعة عمل SMB (صمبا)"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "نافذة مجموعة العملالتي لا ينتمي إليها المستخدم"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "لم يمكن فتح الملف: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "فشل فتح الملف '%s': %s"
+
+#~ msgid "File is empty"
+#~ msgstr "الملف فارغ"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "فشلت القراءة من الملف '%s': %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "تحوي مدخلات سطح المكتب السطر '%s' الذي هو ليس مدخلاً، مجموعة، أو تعليقاً."
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "لا يبدأ ملف مدخلات سطح المكتب بمجموعة بدء قانونيّة"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr "تحوي مدخلات سطح المكتب السطر '%s' الذي هو ليس UTF-8"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "تحوي مدخلات سطح المكتب ترميزاً غير معروف '%s'"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "ليس لمدخلات سطح المكتب المجموعة '%s'"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "ليس لمدخلات سطح المكتب المفتاح '%s'"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr "تحوي مدخلات سطح المكتب المفتاح '%s' الذي يملك قيمة لا يمكن تفسيرها."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "لا تحوي مدخلات سطح المكتب على قيمة مترجمة للمفتاح '%s' بالإعداد المحلّي '%"
+#~ "s'."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "حوي مدخلات سطح المكتب تسلسل تجاهل غير صالح '%s'"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr "تحوي مدخلات سطح المكتب رمز تجاهل في نهاية سطر"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "لا يمكن تفسير القيمة '%s' كعدد."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "لا يمكن تفسير القيمة '%s' كقيمة منطقية."
+
+#~ msgid "Applications"
+#~ msgstr "تطبيقات"
+
+#~ msgid "Cards"
+#~ msgstr "بطاقات"
+
+#~ msgid "Files"
+#~ msgstr "ملفات"
+
+#~ msgid "Folders"
+#~ msgstr "دلائل"
+
+#~ msgid "Help"
+#~ msgstr "مساعدة"
+
+#~ msgid "Hosts"
+#~ msgstr "مضيفين"
+
+#~ msgid "Links"
+#~ msgstr "وصلات"
+
+#~ msgid "Mail"
+#~ msgstr "بريد إلكتروني"
+
+#~ msgid "Tools"
+#~ msgstr "أدوات"
+
+#~ msgid "Windows"
+#~ msgstr "نوافذ"

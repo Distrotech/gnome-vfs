@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
+"POT-Creation-Date: 2004-11-29 18:51+0100\n"
 "PO-Revision-Date: 2004-09-06 21:37+0000\n"
 "Last-Translator: Åsmund Skjæveland <aasmunds@fys.uio.no>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
@@ -26,94 +26,6 @@ msgstr "Klarte ikkje å starta Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Klarte ikkje å starta GNOME VFS"
-
-#: libgnomevfs/eggdesktopentries.c:229
-#, c-format
-msgid "File could not be opened: %s"
-msgstr "Fila kunne ikkje opnast: %s"
-
-#: libgnomevfs/eggdesktopentries.c:324
-#, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Klarte ikkje opna fila «%s»: %s"
-
-#: libgnomevfs/eggdesktopentries.c:337
-msgid "File is empty"
-msgstr "Fila er tom"
-
-#: libgnomevfs/eggdesktopentries.c:359
-#, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Klarte ikkje å lesa frå fila «%s»: %s"
-
-#: libgnomevfs/eggdesktopentries.c:572
-#, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
-"skrivebordsoppføringane inneheld linja «%s» som ikkje er ei oppføring, ei "
-"gruppe eller ein merknad"
-
-#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entries file does not start with legal start group"
-msgstr "skrivebordsoppføringsfila startar ikkje med lovleg startgruppe"
-
-#: libgnomevfs/eggdesktopentries.c:711
-#, c-format
-msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "skrivebordsoppføringane inneheld linja «%s» som ikkje er koda i UTF-8"
-
-#: libgnomevfs/eggdesktopentries.c:734
-#, c-format
-msgid "desktop entries contain unknown encoding '%s'"
-msgstr "skrivebordsoppføringane inneheld ukjend teiknkoding «%s»"
-
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
-msgid "desktop entries do not have group '%s'"
-msgstr "skrivebordsoppføringane har ikkje gruppa «%s»"
-
-#: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
-msgid "desktop entries do not have key '%s'"
-msgstr "skrivebordsoppføringane har ikkje nøkkelen «%s»"
-
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
-"skrivebordsoppføringane inneheld nøkkelen «%s» som har ein verdi som ikkje "
-"kan tolkast."
-
-#: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"skrivebordsoppføringane inneheld ikkje nokon omsett verdi til nøkkelen «%s» "
-"med lokalet «%s»."
-
-#: libgnomevfs/eggdesktopentries.c:2235
-#, c-format
-msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "skrivebordsoppføringane inneheld ugyldig escape-sekvens «%s»"
-
-#: libgnomevfs/eggdesktopentries.c:2252
-msgid "desktop entries contain escape character at end of line"
-msgstr "skrivebordsoppføringane inneheld escape-teikn på slutten av ei linje"
-
-#: libgnomevfs/eggdesktopentries.c:2277
-#, c-format
-msgid "Value '%s' cannot be interpreted as a number."
-msgstr "Verdien «%s» kan ikkje tolkast som eit tal."
-
-#: libgnomevfs/eggdesktopentries.c:2304
-#, c-format
-msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "Verdien «%s» kan ikkje tolkast som ein boolsk verdi."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -417,23 +329,23 @@ msgstr "Ukjend jobbtype %u"
 msgid "Operation stopped"
 msgstr "Operasjonen vart stoppa"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:83
-#: libgnomevfs/gnome-vfs-mime-handlers.c:312
-#: libgnomevfs/gnome-vfs-mime-handlers.c:363
-#: libgnomevfs/gnome-vfs-mime-handlers.c:657
-#: libgnomevfs/gnome-vfs-mime-handlers.c:676
-#: libgnomevfs/gnome-vfs-mime-handlers.c:694
-#: libgnomevfs/gnome-vfs-mime-handlers.c:713
-#: libgnomevfs/gnome-vfs-mime-handlers.c:732
-#: libgnomevfs/gnome-vfs-mime-handlers.c:873
-#: libgnomevfs/gnome-vfs-mime-handlers.c:895
-#: libgnomevfs/gnome-vfs-mime-handlers.c:914
-#: libgnomevfs/gnome-vfs-mime-handlers.c:933
-#: libgnomevfs/gnome-vfs-mime-handlers.c:986
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1003
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1020
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1038
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1056
+#: libgnomevfs/gnome-vfs-mime-handlers.c:101
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
 #: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
 #: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
@@ -930,56 +842,6 @@ msgstr "Kan ikkje løysa ut mediet"
 #: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Kan ikkje avmontera tilkopla tenar"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
-msgid "Applications"
-msgstr "Program"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-msgid "Cards"
-msgstr "Cards"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
-msgid "Files"
-msgstr "Filer"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
-msgid "Folders"
-msgstr "Mapper"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
-msgid "Help"
-msgstr "Hjelp"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
-msgid "Hosts"
-msgstr "Vertar"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:193
-msgid "Links"
-msgstr "Lenkjer"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:196
-msgid "Mail"
-msgstr "E-post"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:199
-msgid "Tools"
-msgstr "Verktøy"
-
-#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:202
-msgid "Windows"
-msgstr "Vindauge"
 
 #: modules/computer-method.c:545
 msgid "Network"
@@ -1491,3 +1353,93 @@ msgstr "SMB-arbeidsgruppe"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Windows-arbeidsgruppa brukaren er med i"
+
+#~ msgid "File could not be opened: %s"
+#~ msgstr "Fila kunne ikkje opnast: %s"
+
+#~ msgid "Failed to open file '%s': %s"
+#~ msgstr "Klarte ikkje opna fila «%s»: %s"
+
+#~ msgid "File is empty"
+#~ msgstr "Fila er tom"
+
+#~ msgid "Failed to read from file '%s': %s"
+#~ msgstr "Klarte ikkje å lesa frå fila «%s»: %s"
+
+#~ msgid ""
+#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
+#~ msgstr ""
+#~ "skrivebordsoppføringane inneheld linja «%s» som ikkje er ei oppføring, ei "
+#~ "gruppe eller ein merknad"
+
+#~ msgid "desktop entries file does not start with legal start group"
+#~ msgstr "skrivebordsoppføringsfila startar ikkje med lovleg startgruppe"
+
+#~ msgid "desktop entries contain line '%s' which is not UTF-8"
+#~ msgstr ""
+#~ "skrivebordsoppføringane inneheld linja «%s» som ikkje er koda i UTF-8"
+
+#~ msgid "desktop entries contain unknown encoding '%s'"
+#~ msgstr "skrivebordsoppføringane inneheld ukjend teiknkoding «%s»"
+
+#~ msgid "desktop entries do not have group '%s'"
+#~ msgstr "skrivebordsoppføringane har ikkje gruppa «%s»"
+
+#~ msgid "desktop entries do not have key '%s'"
+#~ msgstr "skrivebordsoppføringane har ikkje nøkkelen «%s»"
+
+#~ msgid ""
+#~ "desktop entries contain key '%s' which has value that cannot be "
+#~ "interpreted."
+#~ msgstr ""
+#~ "skrivebordsoppføringane inneheld nøkkelen «%s» som har ein verdi som "
+#~ "ikkje kan tolkast."
+
+#~ msgid ""
+#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
+#~ msgstr ""
+#~ "skrivebordsoppføringane inneheld ikkje nokon omsett verdi til nøkkelen «%"
+#~ "s» med lokalet «%s»."
+
+#~ msgid "desktop entries contain invalid escape sequence '%s'"
+#~ msgstr "skrivebordsoppføringane inneheld ugyldig escape-sekvens «%s»"
+
+#~ msgid "desktop entries contain escape character at end of line"
+#~ msgstr ""
+#~ "skrivebordsoppføringane inneheld escape-teikn på slutten av ei linje"
+
+#~ msgid "Value '%s' cannot be interpreted as a number."
+#~ msgstr "Verdien «%s» kan ikkje tolkast som eit tal."
+
+#~ msgid "Value '%s' cannot be interpreted as a boolean."
+#~ msgstr "Verdien «%s» kan ikkje tolkast som ein boolsk verdi."
+
+#~ msgid "Applications"
+#~ msgstr "Program"
+
+#~ msgid "Cards"
+#~ msgstr "Cards"
+
+#~ msgid "Files"
+#~ msgstr "Filer"
+
+#~ msgid "Folders"
+#~ msgstr "Mapper"
+
+#~ msgid "Help"
+#~ msgstr "Hjelp"
+
+#~ msgid "Hosts"
+#~ msgstr "Vertar"
+
+#~ msgid "Links"
+#~ msgstr "Lenkjer"
+
+#~ msgid "Mail"
+#~ msgstr "E-post"
+
+#~ msgid "Tools"
+#~ msgstr "Verktøy"
+
+#~ msgid "Windows"
+#~ msgstr "Vindauge"
