@@ -303,7 +303,7 @@ application/x-font-afm
 	description=Adobe font metrics
 	[fr]description=Métrique de fonte Adobe
 	[no]description=Adobe skrifttypefil
-	[sv]description=Adobe-fontmetrik
+	[sv]description=Adobe-typsnittsmetrik
 
 application/x-font-bdf
 	description=BDF font
