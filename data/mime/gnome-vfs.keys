@@ -29,11 +29,13 @@
 application/andrew-inset
 	description=Andrew Toolkit inset
 	[no]description=Andrew verktøysett insett
+	[sv]description=Andrew-verktygssamling insatt
 	
 application/mac-binhex40
 	description=Macintosh BinHex archive
 	[fr]description=Archive BinHex Macintosh
 	[no]description=Macintosh BinHex-arkiv
+	[sv]description=Macintosh BinHex-arkiv
 	
 # This is used by automated tests ("make check")
 application/mime-type-test
@@ -47,6 +49,7 @@ application/mspowerpoint
 	description=Microsoft PowerPoint document
 	[fr]description=Document Microsoft PowerPoint
 	[no]description=Microsoft PowerPoint dokument
+	[sv]description=Microsoft PowerPoint-dokument
 	default_action_type=application
 	default_application_id=staroffice
 	short_list_application_ids_for_novice_user_level=staroffice
@@ -57,6 +60,7 @@ application/msword
 	description=Microsoft Word document
 	[fr]description=Document Microsoft Word
 	[no]description=Microsoft Word dokument
+	[sv]description=Microsoft Word-dokument
 	default_action_type=application
 	default_application_id=staroffice
 	short_list_application_ids_for_novice_user_level=staroffice
@@ -67,16 +71,19 @@ application/octet-stream
 	description=unknown data
 	[fr]description=Donnée inconnue
 	[no]description=data av ukjent type
+	[sv]description=data av okänd typ
 
 application/oda
 	description=ODA document
 	[fr]description=Document ODA
 	[no]description=ODA-dokument
+	[sv]description=ODA-dokument
 
 application/pdf
 	description=PDF document
 	[fr]description=Document PDF
 	[no]description=PDF-dokument
+	[sv]description=PDF-dokument
 	default_action_type=component
 	default_component_iid=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_novice_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
@@ -87,41 +94,49 @@ application/pgp
 	description=PGP message
 	[fr]description=Message PGP
 	[no]description=PGP-melding
+	[sv]description=PGP-meddelande
 
 application/pgp-encrypted
 	description=PGP encrypted data
 	[fr]description=Donnée encryptée PGP
 	[no]description=Data kryptert med PGP
+	[sv]description=PGP-krypterad data
 
 application/pgp-keys
 	description=PGP keys
 	[fr]description=Clés PGP
 	[no]description=PGP-nøkler
+	[sv]description=PGP-nycklar
 
 application/pgp-signature
 	description=PGP signature
 	[fr]description=Signature PGP
 	[no]description=PGP-signatur
+	[sv]description=PGP-signatur
 	
 application/pkcs7-mime
 	description=S/MIME data
 	[fr]description=Donnée S/MIME
 	[no]description=S/MIME-data
+	[sv]description=S/MIME-data
 
 application/pkcs7-signature
 	description=S/MIME signature
 	[fr]description=Signature S/MIME
 	[no]description=S/MIME-signatur
+	[sv]description=S/MIME-signatur
 
 application/postscript
 	description=PostScript document
 	[fr]description=Document PostScript
 	[no]description=PostScript dokument
+	[sv]description=PostScript-dokument
 
 application/rtf
 	description=rich text
 	[fr]description=Texte enrichi
 	[no]description=Rik tekst
+	[sv]description=rik text
 	default_action_type=application
 	default_application_id=staroffice
 	short_list_application_ids_for_novice_user_level=staroffice
@@ -132,6 +147,7 @@ application/vnd.ms-excel
 	description=Microsoft Excel document
 	[fr]description=Document Microsoft Excel
 	[no]description=Microsoft Excel dokument
+	[sv]description=Microsoft Excel-dokument
 	default_action_type=application
 	default_application_id=gnumeric
 	short_list_application_ids_for_novice_user_level=gnumeric,staroffice
@@ -142,43 +158,51 @@ application/x-applix-spreadsheet
 	description=Applix spreadsheet
 	[fr]description=Feuille de calcul Applix
 	[no]description=Applix regneark
+	[sv]description=Applix-kalkylblad
 	icon-filename=i-spreadsheet
 
 application/x-applix-word
 	description=Applix Word document
 	[fr]description=Document Applix Word
 	[no]description=Applix Word dokument
+	[sv]description=Applix Word-dokument
 
 application/x-arj
 	description=arj archive
 	[fr]description=Archive ARJ
 	[no]description=ARJ-arkiv
+	[sv]description=ARJ-arkiv
 
 application/x-asp
 	description=active server page
 	[fr]description=Active Server Page
 	[no]description=Active Server Page
+	[sv]description=Active Server Page
 
 application/x-backup
 	description=backup document
 	[fr]description=Document de sauvegarde
 	[no]description=Sikkerhetskopi
+	[sv]description=säkerhetskopia
 
 application/x-bcpio
 	description=BCPIO document
 	[fr]description=Document BCPIO
 	[no]description=BCPIO-dokument
+	[sv]description=BCPIO-dokument
 
 application/x-bzip
 	description=bzip archive
 	[fr]description=Archive bzip
 	[no]description=bzip-arkiv
+	[sv]description=bzip-arkiv
 	vfs-method=bzip2
 
 application/x-bzip-compressed-tar
 	description=bzip archive
 	[fr]description=Archive bzip
 	[no]description=bzip-arkiv
+	[sv]description=bzip-arkiv
 	icon-filename=gnome-compressed.png
 	vfs-method=bzip2
 
@@ -186,43 +210,51 @@ application/x-cgi
 	description=CGI program
 	[fr]description=Programme CGI
 	[no]description=CGI-program
+	[sv]description=CGI-program
 
 application/x-chess-pgn
 	description=PGN chess game
 	[fr]description=Partie d'échec PGN
 	[no]description=PGN sjakkspill
+	[sv]description=PGN-schackparti
 
 application/x-class-file
 	description=class code
 	[fr]description=Code classe
 	[no]description=Klassekode
+	[sv]description=klasskod
 
 application/x-compress
 	description=archive
 	[fr]description=Archive
 	[no]description=Arkiv
+	[sv]description=arkiv
 
 application/x-compressed-tar
 	description=tar archive
 	[fr]description=Archive tar
 	[no]description=tar-arkiv
+	[sv]description=tar-arkiv
 	icon-filename=gnome-package.png
 
 application/x-core-file
 	description=memory dump
 	[fr]description=Sortie mémoire
 	[no]description=Minnedump
+	[sv]description=minnesdump
 	icon-filename=i-core.png
 
 application/x-cpio
 	description=CPIO document
 	[fr]description=Document CPIO
 	[no]description=CPIO-dokument
+	[sv]description=CPIO-dokument
 
 application/x-cpio-compressed
 	description=CPIO archive
 	[fr]description=Archive CPIO
 	[no]description=CPIO-arkiv
+	[sv]description=CPIO-arkiv
 	icon-filename=gnome-compressed.png
 
 # also text/x-csh
@@ -230,100 +262,123 @@ application/x-csh
 	description=C-Shell script
 	[fr]description=Script C-Shell
 	[no]description=C-skall skript
+	[sv]description=C-skalsskript
 
 application/x-deb
 	description=Debian package
 	[fr]description=Paquetage Debian
 	[no]description=Debian pakke
+	[sv]description=Debianpaket
 	icon-filename=gnome-pack-deb.png
 
 application/x-dia-diagram
 	description=Dia diagram
 	[fr]description=Diagramme Dia
 	[no]description=Dia-diagram
+	[sv]description=Dia-diagram
 
 application/x-dvi
 	description=TeX dvi document
 	[fr]description=Document TeX dvi
 	[no]description=TeX dvi dokument
+	[sv]description=TeX dvi-dokument
 
 application/x-e-theme
 	description=Enlightenment theme
 	[fr]description=Theme Enlightenment
 	[no]description=Enlightenment tema
+	[sv]description=Enlightenment-tema
 
 application/x-executable-file
 	description=binary program
 	[fr]description=Programme binaire
 	[no]description=Binærprogram
+	[sv]description=binärprogram
 
 application/x-font-afm
 	description=Adobe font metrics
 	[fr]description=Métrique de fonte Adobe
+	[sv]description=Adobe-fontmetrik
 
 application/x-font-bdf
 	description=BDF font
 	[fr]description=Police BDF
+	[sv]description=BDF-typsnitt
 
 application/x-font-dos
 	description=DOS font
 	[fr]description=Police DOS
+	[sv]description=DOS-typsnitt
 
 application/x-font-framemaker
 	description=FrameMaker font
 	[fr]description=Police FrameMaker
+	[sv]description=FrameMaker-typsnitt
 
 application/x-font-libgrx
 	description=LIBGRX font
 	[fr]description=Police LIBGRX
+	[sv]description=LIBGRX-typsnitt
 
 application/x-font-linux-psf
 	description=Linux psf console font
 	[fr]description=Police Linux console psf
+	[sv]description=Linux psf-konsolltypsnitt
 
 application/x-font-pcf
 	description=PCF font
 	[fr]description=Police PCF
+	[sv]description=PCF-typsnitt
 
 application/x-font-speedo
 	description=Speedo font
 	[fr]description=Police Speedo
+	[sv]description=Speedo-typsnitt
 
 application/x-font-sunos-news
 	description=SunOS News font
 	[fr]description=Police SunOS News
+	[sv]description=SunOS News-typsnitt
 
 application/x-font-tex
 	description=TeX font
 	[fr]description=Police TeX
+	[sv]description=TeX-typsnitt
 
 application/x-font-tex-tfm
 	description=TeX font metrics
 	[fr]description=Métriques de fontes TeX
+	[sv]description=TeX-typsnittsmetrik
 
 application/x-font-ttf
 	description=TrueType font
 	[fr]description=Police TrueType
+	[sv]description=TrueType-typsnitt
 
 application/x-font-type1
 	description=PostScript Type 1 font
 	[fr]description=Police PostScript Type 1
+	[sv]description=PostScript Type 1-typsnitt
 
 application/x-font-vfont
 	description=V font
 	[fr]description=Police V
+	[sv]description=V-typsnitt
 
 application/x-gmc-link
 	description=GMC link
 	[fr]description=Lien GMC
+	[sv]description=GMC-länk
 
 application/x-gnome-app-info
 	description=GNOME application information
 	[fr]description=Information d'application GNOME
+	[sv]description=GNOME-programinformation
 
 application/x-gnumeric
 	description=Gnumeric spreadsheet
 	[fr]description=Feuille de calcul Gnumeric
+	[sv]description=Gnumeric-kalkylblad
 	default_action_type=application
 	default_application_id=gnumeric
 	short_list_application_ids_for_novice_user_level=gnumeric
@@ -334,87 +389,107 @@ application/x-gnumeric
 application/x-gtar
 	description=gtar archive
 	[fr]description=Archive gtar
+	[sv]description=gtar-arkiv
 	icon-filename=gnome-package.png
 
 application/x-gzip
 	description=gzip archive
 	[fr]description=Archive gzip
+	[sv]description=gzip-arkiv
 	icon-filename=gnome-compressed.png
 	vfs-method=gzip
 
 application/x-hdf
 	description=HDF document
 	[fr]description=Document HDF
+	[sv]description=HDF-dokument
 
 application/x-java-byte-code
 	description=Java byte code
 	[fr]description=Byte code Java
+	[sv]description=Java-bytekod
 
 application/x-kde-app-info
 	description=KDE application information
 	[fr]description=Information d'application KDE
+	[sv]description=KDE-programinformation
 
 application/x-lha
 	description=LHARC archive
 	[fr]description=Archive LHARC
+	[sv]description=LHARC-arkiv
 
 application/x-lhz
 	description=LHA archive
 	[fr]description=Archive LHA
+	[sv]description=LHA-arkiv
 
 application/x-mif
 	description=FrameMaker interchange document
 	[fr]description=Document d'échange FrameMaker
+	[sv]description=FrameMaker-utbytesdokument
 
 application/x-ms-dos-executable
 	description=DOS/Windows program
 	[fr]description=Programme DOS/Windows
+	[sv]description=DOS/Windows-program
 
 application/x-nautilus-link
 	description=Nautilus link
 	[fr]description=Lien Nautilus
+	[sv]description=Nautiluslänk
 
 application/x-netcdf
 	description=Unidata netCDF document
 	[fr]description=Document Unidata netCDF
+	[sv]description=Unidata netCDF-dokument
 
 application/x-object-file
 	description=object code
 	[fr]description=Code objet
+	[sv]description=objektkod
 	icon-filename=gnome-objectfile.png
 
 application/x-palm-database
 	description=Palm OS database
 	[fr]description=Base de données Palm OS
+	[sv]description=Palm OS-databas
 
 application/x-pef-executable
 	description=PEF document
 	[fr]description=Document PEF
+	[sv]description=PEF-dokument
 
 # also text/x-perl
 application/x-perl
 	description=Perl script
 	[fr]description=Script Perl
+	[sv]description=Perlskript
 
 application/x-php
 	description=PHP script
 	[fr]description=Script PHP
+	[sv]description=PHP-skript
 
 application/x-profile
 	description=profiler results
 	[fr]description=Résultats du profileur
+	[sv]description=profilerarresultat
 
 application/x-rar
 	description=RAR archive
 	[fr]description=Archive RAR
+	[sv]description=RAR-arkiv
 
 application/x-reject
 	description=rejected patch file
 	[fr]description=Fichier patch rejeté
+	[sv]description=avvisad patchfil
 
 application/x-rpm
 	description=RPM package
 	[fr]description=Paquetage RPM
+	[sv]description=RPM-paket
 	icon-filename=gnome-pack-rpm.png
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
@@ -425,174 +500,214 @@ application/x-rpm
 application/x-shar
 	description=shell archive
 	[fr]description=Archive shell
+	[sv]description=skalarkiv
 
 application/x-shared-library
 	description=shared library
 	[fr]description=Bibliothèque partagée
+	[sv]description=delat bibliotek
 	icon-filename=gnome-library.png
 
 application/x-shared-library-la
 	description=shared library
 	[fr]description=Bibliothèque partagée
+	[sv]description=delat bibliotek
 	icon-filename=gnome-library.png
 
 application/x-smil
 	description=SMIL script
 	[fr]description=Script SMIL
+	[sv]description=SMIL-skript
 
 application/x-staroffice-presentation
 	description=StarOffice presentation
+	[sv]description=StarOffice-presentation
 
 application/x-staroffice-spreadsheet
 	description=StarOffice spreadsheet
 	[fr]description=Feuille de calcul StarOffice
+	[sv]description=StarOffice-kalkylblad
 	icon-filename=i-spreadsheet
 
 application/x-staroffice-words
 	description=StarOffice word processing document
 	[fr]description=Document traitement de texte StarOffice
+	[sv]description=StarOffice-ordbehandlingsdokument
 
 application/x-stuffit
 	description=Macintosh StuffIt! archive 
 	[fr]description=Archive StuffIt! Macintosh
+	[sv]description=Macintosh StuffIt!-arkiv
 
 application/x-sv4cpio
 	description=SV4Cpio document 
 	[fr]description=Document SV4Cpio
+	[sv]description=SV4CPIO-dokument
 
 application/x-sv4crc
 	description=SV4Crc document 
 	[fr]description=Document SV4Crc
+	[sv]description=SV4Crc-dokument
 
 application/x-tar
 	description=tar archive
 	[fr]description=Archive tar
+	[sv]description=tar-arkiv
 	icon-filename=gnome-package.png
 	vfs-method=tar
 
 application/x-theme
 	description=theme
 	[fr]description=Thème
+	[sv]description=tema
 
 application/x-toutdoux
 	description=ToutDoux document
 	[fr]description=Document ToutDoux
+	[sv]description=ToutDoux-dokument
 
 application/x-troff-man-compressed
 	description=manual page archive
 	[fr]description=Archive page de manuel
+	[sv]description=manualsidearkiv
 	icon-filename=gnome-manpage.png
 
 application/x-unix-archive
 	description=archive
 	[fr]description=Archive
+	[sv]description=arkiv
 
 application/x-ustar
 	description=UStar archive
 	[fr]description=Archive UStar
+	[sv]description=UStar-arkiv
 
 application/x-wais-source
 	description=WAIS source code
 	[fr]description=Code source WAIS
+	[sv]description=WAIS-källkod
 
 application/x-wordperfect
 	description=WordPerfect document
 	[fr]description=Document WordPerfect
+	[sv]description=WordPerfect-dokument
 
 application/x-zoo
 	description=zoo archive
 	[fr]description=Archive zoo
+	[sv]description=zoo-arkiv
+
 application/zip
 	description=zip archive
 	[fr]description=Archive zip
+	[sv]description=zip-arkiv
 	vfs-method=zip
 
 audio/basic
 	description=basic audio
 	[fr]description=Audio basic
+	[sv]description=grundläggande ljud
 	icon-filename=gnome-audio.png
 
 audio/x-aifc
 	description=AIFC audio
 	[fr]description=Audio AIFC
+	[sv]description=AIFC-ljud
 
 audio/x-aiff
 	description=AIFF audio
 	[fr]description=Audio AIFF
+	[sv]description=AIFF-ljud
 	icon-filename=gnome-audio-x-aiff.png
 
 audio/x-it
 	description=Impulse Tracker audio
 	[fr]description=Audio Impulse Tracker
+	[sv]description=Impulse Tracker-ljud
 
 audio/x-midi
 	description=MIDI audio
 	[fr]description=Audio Midi
+	[sv]description=MIDI-ljud
 	icon-filename=gnome-audio-midi.png
 
 audio/x-mod
 	description=MOD audio
 	[fr]description=Audio MOD
+	[sv]description=MOD-ljud
 	icon-filename=gnome-audio-x-mod.png
 
 audio/x-mp3
 	description=MP3 audio
 	[fr]description=Audio MP3
+	[sv]description=MP3-ljud
 	icon-filename=i-music
 
 audio/x-mp3-playlist
 	description=MP3 audio playlist
 	[fr]description=Audio liste de lecture MP3
+	[sv]description=MP3-ljudspellista
 
 audio/x-pn-realaudio
 	description=PN RealAudio document
 	[fr]description=Document RealAudio PN
+	[sv]description=PN RealAudio-dokument
 	icon-filename=gnome-audio-x-pn-realaudio.png
 
 audio/x-real-audio
 	description=RealAudio document
 	[fr]description=Document RealAudio
+	[sv]description=RealAudio-dokument
 	icon-filename=gnome-audio-x-pn-realaudio.png
 
 audio/x-riff
 	description=RIFF audio
 	[fr]description=Audio RIFF
+	[sv]description=RIFF-ljud
 	icon-filename=i-music
 
 audio/x-s3m
 	description=Scream Tracker 3 audio
 	[fr]description=Audio Scream Tracker 3
+	[sv]description=Scream Tracker 3-ljud
 
 audio/x-stm
 	description=Scream Tracker audio
 	[fr]description=Audio Stream Tracker
+	[sv]description=Scream Tracker-ljud
 
 audio/x-ulaw
 	description=audio
 	[fr]description=Audio
+	[sv]description=ljud
 	icon-filename=gnome-audio-ulaw.png
 
 audio/x-voc
 	description=VOC audio
 	[fr]description=Audio VOC
+	[sv]description=VOC-ljud
 
 audio/x-wav
 	description=Wave audio
 	[fr]description=Audio Wave
+	[sv]description=Wave-ljud
 	icon-filename=gnome-audio-x-wav.png
 
 audio/x-xi
 	description=Scream Tracker instrument
 	[fr]description=Instrument Scream Tracker
+	[sv]description=Scream Tracker-instrument
 
 audio/x-xm
 	description=FastTracker II audio
 	[fr]description=Audio FastTracker
+	[sv]description=FastTracker II-ljud
 
 # also image/x-bmp
 image/bmp
 	description=Windows bitmap image
 	[fr]description=Image bitmap Windows
+	[sv]description=Windows-bitmappbild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -607,14 +722,17 @@ image/bmp
 image/cgm
 	description=CGM image
 	[fr]description=Image CGM
+	[sv]description=CGM-bild
 
 image/g3fax
 	description=G3 fax image
 	[fr]description=Image fax G3
+	[sv]description=G3-faxbild
 
 image/gif
 	description=GIF image
 	[fr]description=Image GIF
+	[sv]description=GIF-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -629,6 +747,7 @@ image/gif
 image/ief
 	description=IEF image
 	[fr]description=Image IEF
+	[sv]description=IEF-bild
 	icon-filename=gnome-image-ief.png
 
 image/jpeg
@@ -649,6 +768,7 @@ image/jpeg
 image/png
 	description=PNG image
 	[fr]description=Image PNG
+	[sv]description=PNG-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -663,10 +783,12 @@ image/png
 image/svg
 	description=SVG art
 	[fr]description=Art SVG
+	[sv]description=SVG-konst
 
 image/tiff
 	description=TIFF image
 	[fr]description=Image TIFF
+	[sv]description=TIFF-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -681,23 +803,28 @@ image/tiff
 image/vnd.dwg
 	description=AutoCAD image
 	[fr]description=Image AutoCAD
+	[sv]description=AutoCAD-bild
 
 image/vnd.dxf
 	description=DXF vector graphic
 	[fr]description=Graphique vectoriel DXF
+	[sv]description=DXF-vektorgrafik
 
 image/x-3ds
 	description=3D Studio image
 	[fr]description=Image 3D Studio
+	[sv]description=3D Studio-bild
 
 image/x-applix-graphic
 	description=Applix image
 	[fr]description=Image Applix
+	[sv]description=Applix-bild
 
 # also image/bmp
 image/x-bmp
 	description=Windows bitmap image
 	[fr]description=Image bitmap Windows
+	[sv]description=Windows-bitmappbild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -712,35 +839,43 @@ image/x-bmp
 image/x-cmu-raster
 	description=CMU raster image
 	[fr]description=Image raster CMU
+	[sv]description=CMU-rasterbild
 
 image/x-compressed-xcf
 	description=GIMP image archive
 	[fr]description=Image archive GIMP
+	[sv]description=GIMP-bildarkiv
 
 image/x-ico
 	description=Windows icon image
 	[fr]description=Image icone Windows
+	[sv]description=Windows-ikonbild
 
 image/x-iff
 	description=IFF image
 	[fr]description=Image IFF
+	[sv]description=IFF-bild
 
 image/x-ilbm
 	description=ILBM image
 	[fr]description=Image ILBM
+	[sv]description=ILBM-bild
 
 image/x-lwo
 	description=LightWave object
 	[fr]description=Objet LightWave
+	[sv]description=LightWave-objekt
 
 image/x-lws
 	description=LightWave scene
 	[fr]description=Scène LightWave
+	[sv]description=LightWave-scen
 
 # also image/png
 image/x-png
 	description=PNG image	
 	[fr]description=Image PNG
+	[sv]description=PNG-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -755,6 +890,7 @@ image/x-png
 image/x-portable-anymap
 	description=PNM image
 	[fr]description=Image PNM
+	[sv]description=PNM-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -768,6 +904,7 @@ image/x-portable-anymap
 image/x-portable-bitmap
 	description=PBM image
 	[fr]description=Image PBM
+	[sv]description=PBM-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -782,6 +919,7 @@ image/x-portable-bitmap
 image/x-portable-graymap
 	description=PGM image
 	[fr]description=Image PGM
+	[sv]description=PGM-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -795,6 +933,7 @@ image/x-portable-graymap
 image/x-portable-pixmap
 	description=PPM image
 	[fr]description=Image PPM
+	[sv]description=PPM-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -808,6 +947,7 @@ image/x-portable-pixmap
 
 image/x-psd
 	description=Photoshop document
+	[sv]description=Photoshopdokument
 	default_action_type=application
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp
@@ -818,16 +958,19 @@ image/x-psd
 image/x-rgb
 	description=RGB image
 	[fr]description=Image RGB
+	[sv]description=RGB-bild
 	icon-filename=gnome-image-rgb.png
 	
 image/x-tga
 	description=TarGA image
 	[fr]description=Image TarGA
+	[sv]description=TarGA-bild
 	icon-filename=gnome-image-tga.png
 
 image/x-xbitmap
 	description=X bitmap image
 	[fr]description=Image X bitmap
+	[sv]description=X-bitmappbild
 	default_action_type=application
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp
@@ -838,6 +981,7 @@ image/x-xbitmap
 image/x-xcf
 	description=GIMP image
 	[fr]description=Image GIMP
+	[sv]description=GIMP-bild
 	default_action_type=application
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp
@@ -848,11 +992,13 @@ image/x-xcf
 image/x-xfig
 	description=xfig image
 	[fr]description=Image xfig
+	[sv]description=xfig-bild
 	icon-filename=gnome-image-x-xfig.png
 
 image/x-xpixmap
 	description=XPM image	
 	[fr]description=Image XPM
+	[sv]description=XPM-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -865,71 +1011,88 @@ image/x-xpixmap
 
 image/x-xwindowdump
 	description=X window image
+	[sv]description=X-fönsterbild
 	icon-filename=gnome-image-xwd.png
 
 message/delivery-status
 	description=mail delivery report
 	[fr]description=Rapport de livraison de courrier
+	[sv]description=e-postleveransrapport
 
 message/disposition-notification
 	description=mail disposition report
 	[fr]description=Rapport de mise à disposition de courrier
+	[sv]description=e-postdispositionsrapport
 
 message/external-body
 	description=pointer to remote data
 	[fr]description=Pointeur vers des données distantes
+	[sv]description=pekare till fjärrdata
 
 message/news
 	description=USENET news message
 	[fr]description=Message de nouvelle USENET
+	[sv]description=diskussionsgruppsmeddelande
 
 message/partial
 	description=partial email message
 	[fr]description=Message de courrier électronique partiel
+	[sv]description=del av e-postmeddelande
 
 message/rfc822
 	description=email message
 	[fr]description=Message de courrier électronique
+	[sv]description=e-postmeddelande
 
 message/x-gnu-rmail
 	description=GNU mail message
 	[fr]description=Message de courrier GNU
+	[sv]description=GNU-epostmeddelande
 
 model/vrml
 	description=VRML data
 	[fr]description=Donnée VRML
+	[sv]description=VRML-data
 
 multipart/alternative
 	description=message in several formats
 	[fr]description=Message dans différents formats
+	[sv]description=meddelande i flera format
 
 multipart/appledouble
 	description=Macintosh AppleDouble-encoded document
 	[fr]description=Document encodé AppleDouble Macintosh
+	[sv]description=dokument kodat med Macintosh AppleDouble
 
 multipart/digest
 	description=message digest
 	[fr]description=Message digest
+	[sv]description=meddelandesamling
 
 multipart/encrypted
 	description=encrypted message
 	[fr]description=Message encrypté
+	[sv]description=krypterat meddelande
 
 multipart/mixed
 	description=multi-part message
 	[fr]description=Message multi-part
+	[sv]description=meddelande i flera delar
 
 multipart/related
 	description=compound document
 	[fr]description=Message composé
+	[sv]description=sammansatt dokument
 
 multipart/report
 	description=mail system report
 	[fr]description=Rapport de système de courrier
+	[sv]description=e-postsystemrapport
 
 multipart/signed
 	description=signed message
 	[fr]description=Message signé
+	[sv]description=signerat meddelande
 
 text/*
 	default_action_type=component
@@ -945,6 +1108,7 @@ text/*
 text/abiword
 	description=AbiWord document
 	[fr]description=Document AbiWord
+	[sv]description=AbiWord-dokument
 	default_action_type=application
 	default_application_id=staroffice
 	short_list_application_ids_for_novice_user_level=staroffice
@@ -954,26 +1118,32 @@ text/abiword
 text/bib
 	description=bibliography record
 	[fr]description=Enregistrement bibliographique
+	[sv]description=bibliografipost
 
 text/calendar
 	description=calendar information
 	[fr]description=Information de calendrier
+	[sv]description=kalenderinformation
 
 text/css
 	description=style sheet
 	[fr]description=Feuille de style
+	[sv]description=stilmall
 
 text/directory
 	description=directory information
 	[fr]description=Information de répertoire
+	[sv]description=kataloginformation
 
 text/enriched
 	description=enriched text
 	[fr]description=Text enrichi
+	[sv]description=enriched text
 
 text/html
 	description=HTML document
 	[fr]description=Document HTML
+	[sv]description=HTML-dokument
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
@@ -986,16 +1156,19 @@ text/html
 
 text/htmlH
 	description=Help page
+	[sv]description=Hjälpsida
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 
 text/mathml
 	description=MathML document
 	[fr]description=Document MathML
+	[sv]description=MathML-dokument
 
 text/plain
 	description=plain text
 	[fr]description=Texte plein
+	[sv]description=vanlig text
 	default_action_type=component
 	default_application_id=emacs
 	default_component_iid=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
@@ -1009,18 +1182,22 @@ text/plain
 text/rfc822-headers
 	description=email headers
 	[fr]description=En-tête de courrier électronique
+	[sv]description=e-posthuvuden
 
 text/richtext
 	description=rich text
 	[fr]description=Texte riche
+	[sv]description=rik text
 
 text/sgml
 	description=SGML document
 	[fr]description=Document SGML
+	[sv]description=SGML-dokument
 
 text/tab-separated-values
 	description=tab-separated text
 	[fr]description=Texte séparé par des tabulations
+	[sv]description=tabbseparerad text
 
 # Note that text/tex should be text/x-tex, but a user reported
 # a complaint about text/tex in Nautilus, so some non-gnome-vfs
@@ -1028,206 +1205,256 @@ text/tab-separated-values
 text/tex
 	description=TeX document
 	[fr]description=Document TeX
+	[sv]description=TeX-dokument
 
 text/x-authors
 	description=authors list
 	[fr]description=Liste d'auteurs
+	[sv]description=författarlista
 
 text/x-c
 	description=C source code
 	[fr]description=Code source C
+	[sv]description=C-källkod
 
 text/x-c++
 	description=C++ source code
 	[fr]description=Code source C++
+	[sv]description=C++-källkod
 
 text/x-comma-separated-values
 	description=comma-separated text
 	[fr]description=Texte séparé par des virgules
+	[sv]description=kommaseparerad text
 
 text/x-copying
 	description=GNU license
 	[fr]description=Licence GNU
+	[sv]description=GNU-licens
 
 text/x-credits
 	description=author credits
 	[fr]description=Crédits d'auteur
+	[sv]description=författarlista
 
 # also application/x-csh
 text/x-csh
 	description=C-Shell script
 	[fr]description=Script C-Shell
+	[sv]description=C-skalskript
 
 text/x-dcl
 	description=DCL script
 	[fr]description=Script DCL
+	[sv]description=DCL-skript
 
 text/x-dsl
 	description=DSSSL document
 	[fr]description=Document DSSSL
+	[sv]description=DSSSL-dokument
 
 text/x-dtd
 	description=document type definition
 	[fr]description=Définition de type de document
+	[sv]description=dokumenttypdefinition
 
 text/x-emacs-lisp
 	description=Emacs Lisp source code
 	[fr]description=Code source Emacs Lisp
+	[sv]description=Emacs Lisp-källkod
 
 text/x-fortran
 	description=Fortran source code
 	[fr]description=Code source Fortran
+	[sv]description=Fortran-källkod
 
 text/x-gtkrc
 	description=GTK configuration
 	[fr]description=Configuration GTK
+	[sv]description=GTK-konfiguration
 
 text/x-idl
 	description=IDL document
 	[fr]description=Document IDL
+	[sv]description=IDL-dokument
 
 text/x-install
 	description=installation instructions
 	[fr]description=Instructions d'installation
+	[sv]description=installationsinstruktioner
 
 text/x-java
 	description=Java source code
 	[fr]description=Code source Java
+	[sv]description=Java-källkod
 
 text/x-ksh
 	description=Korn shell script
 	[fr]description=Script Korn Shell
+	[sv]description=Korn-skalskript
 
 text/x-makefile
 	description=Makefile
 	[fr]description=Makefile
+	[sv]description=Makefil
 
 text/x-patch
 	description=source code patch
 	[fr]description=Code source patch
+	[sv]description=källkodspatch
 
 # also application/x-perl
 text/x-perl
 	description=Perl script
 	[fr]description=Script Perl
+	[sv]description=Perlskript
 
 text/x-python
 	description=Python script
 	[fr]description=Script Python
+	[sv]description=Pythonskript
 
 text/x-readme
 	description=README file
 	[fr]description=Fichier README
+	[sv]description=README-fil
 
 text/x-scheme
 	description=Scheme source code
 	[fr]description=Code source Scheme
+	[sv]description=Scheme-källkod
 
 text/x-setext
 	description=Setext document
 	[fr]description=Document Setext
+	[sv]description=Setext-dokument
 
 text/x-sh
 	description=shell script
 	[fr]description=Script shell
+	[sv]description=skalskript
 
 text/x-speech
 	description=Speech document
 	[fr]description=Document Speech
+	[sv]description=Speech-dokument
 
 text/x-sql
 	description=SQL source code
 	[fr]description=Code source SQL
+	[sv]description=SQL-källkod
 
 text/x-tcl
 	description=Tcl script
 	[fr]description=Script Tcl
+	[sv]description=Tcl-skript
 
 # also text/tex
 text/x-tex
 	description=TeX document
 	[fr]description=Document TeX
+	[sv]description=TeX-dokument
 
 text/x-texinfo
 	description=TeXInfo document
 	[fr]description=Document TeXInfo
+	[sv]description=TeXInfo-dokument
 
 text/x-troff
 	description=Troff document
-	[fr]description=Document Troff
+	[fr]description=Document Trof
+	[sv]description=Troff-dokument
 
 text/x-troff-man
 	description=manual page
 	[fr]description=Page de manuel
+	[sv]description=manualsida
 	icon-filename=gnome-manpage.png
 
 text/x-troff-me
 	description=Troff ME-macros document
 	[fr]description=Document ME-macros Troff
+	[sv]description=Troff ME-makrodokument
 
 text/x-troff-ms
 	description=Troff MS-macros document
 	[fr]description=Document MS-macros Troff
+	[sv]description=Troff MS-makrodokument
 
 text/x-vcalendar
 	description=calendar or event information
 	[fr]description=Information de calendrier ou d'événement
+	[sv]description=kalender eller evenemangsinformation
 
 text/x-vcard
 	description=address card
 	[fr]description=Carte d'adresse
+	[sv]description=adresskort
 
 text/xml
 	description=XML document
 	[fr]description=Document XML
+	[sv]description=XML-dokument
 
 video/isivideo
 	description=ISI video
 	[fr]description=Vidéo ISI
+	[sv]description=ISI-video
 
 video/mpeg
 	description=MPEG movie
 	[fr]description=Vidéo MPEG
+	[sv]description=MPEG-film
 
 video/msvideo
 	description=MS video
 	[fr]description=Vidéo MS
+	[sv]description=MS-video
 
 video/quicktime
 	description=QuickTime movie
 	[fr]description=Vidéo QuickTime
+	[sv]description=QuickTime-film
 
 video/vivo
 	description=Vivo video
 	[fr]description=Vidéo Vivo
+	[sv]description=Vivo-video
 
 video/wavelet
 	description=Wavelet video
 	[fr]description=Vidéo Wavelet
+	[sv]description=Wavelet-video
 
 video/x-anim
 	description=animation
 	[fr]description=Animation
+	[sv]description=animation
 
 video/x-flc
 	description=FLC video animation
 	[fr]description=Vidéo d'animation FLC
+	[sv]description=FLC-videoanimation
 
 video/x-fli
 	description=FLI video animation
 	[fr]description=Vidéo d'animation FLI
+	[sv]description=FLI-videoanimation
 
 video/x-msvideo
 	description=MS video
 	[fr]description=Vidéo MS
+	[sv]description=MS-video
 
 video/x-sgi-movie
 	description=SGI movie
 	[fr]description=Vidéo SGI
+	[sv]description=SGI-film
 
 x-directory/normal
 	description=folder
 	[fr]description=Répertoire
+	[sv]description=mapp
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
@@ -1237,6 +1464,7 @@ x-directory/normal
 x-directory/search
 	description=search results
 	[fr]description=Résultats de recherche
+	[sv]description=sökresultat
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
@@ -1246,6 +1474,7 @@ x-directory/search
 x-directory/webdav
 	description=web folder
 	[fr]description=Dossier Web
+	[sv]description=webbmapp
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
@@ -1259,20 +1488,25 @@ x-directory/webdav
 x-special/device-block
 	description=block device
 	[fr]description=Périphérique bloc
+	[sv]description=blockenhet
 
 x-special/device-char
 	description=character device
 	[fr]description=Périphérique caractère
+	[sv]description=teckenenhet
 
 x-special/fifo
 	description=named pipe
 	[fr]description=Conduit nommé
+	[sv]description=namngivet rör
 
 x-special/socket
 	description=socket
 	[fr]description=Socket
+	[sv]description=uttag
 
 x-special/symlink
 	description=link
 	[fr]description=Lien
+	[sv]description=länk
 
