@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.0\n"
-"POT-Creation-Date: 2000-08-16 10:12+0200\n"
+"POT-Creation-Date: 2000-08-31 21:27+0200\n"
 "PO-Revision-Date: 2000-08-16 10:14+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -33,7 +33,7 @@ msgstr "%s:%d inneholder ingen modulnavn."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigurasjonsfilen `%s' ble ikke funnet: %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:269
+#: libgnomevfs/gnome-vfs-file-info.c:280
 #, c-format
 msgid "Unknown sort rule %d"
 msgstr "Ukjent sorteringsregel %d"
@@ -250,26 +250,26 @@ msgstr "Tjeneste ikke tilgjengelig"
 msgid "Unknown error"
 msgstr "Ukjent feil"
 
-#: libgnomevfs/gnome-vfs-utils.c:41
+#: libgnomevfs/gnome-vfs-utils.c:42
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:43
+#: libgnomevfs/gnome-vfs-utils.c:44
 #, c-format
 msgid "%u bytes"
 msgstr "%u bytes"
 
-#: libgnomevfs/gnome-vfs-utils.c:50
+#: libgnomevfs/gnome-vfs-utils.c:51
 #, c-format
 msgid "%.1fK"
 msgstr "%.1fK"
 
-#: libgnomevfs/gnome-vfs-utils.c:54
+#: libgnomevfs/gnome-vfs-utils.c:55
 #, c-format
 msgid "%.1fM"
 msgstr "%.1fM"
 
-#: libgnomevfs/gnome-vfs-utils.c:58
+#: libgnomevfs/gnome-vfs-utils.c:59
 #, c-format
 msgid "%.1fG"
 msgstr "%.1fG"
@@ -405,19 +405,19 @@ msgstr "Kan ikke drepe GNOME::VFS::Slave (IOR ukjent) -- unntak %s"
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Feil under skriving til oppvåknings GnomeVFSJob kanalen."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:605
-#: libgnomevfs-pthread/gnome-vfs-job.c:1589
+#: libgnomevfs-pthread/gnome-vfs-job.c:608
+#: libgnomevfs-pthread/gnome-vfs-job.c:1593
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Ukjent jobb ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1007
-#: libgnomevfs-pthread/gnome-vfs-job.c:1128
+#: libgnomevfs-pthread/gnome-vfs-job.c:1010
+#: libgnomevfs-pthread/gnome-vfs-job.c:1131
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke opprette rør for åpen GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1622
+#: libgnomevfs-pthread/gnome-vfs-job.c:1626
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
 
@@ -610,18 +610,18 @@ msgstr "%s å hente"
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:880
+#: modules/http-method.c:898
 #, c-format
 msgid "%s of %s read"
 msgstr "%s av %s lest"
 
-#: modules/http-method.c:883
+#: modules/http-method.c:901
 #, c-format
 msgid "%s read"
 msgstr "%s lest"
 
 #. Multi-Status
-#: modules/http-method.c:1071
+#: modules/http-method.c:1087
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "HTTP-tjener returnerte et ugyldig PROPFIND-svar"
 
