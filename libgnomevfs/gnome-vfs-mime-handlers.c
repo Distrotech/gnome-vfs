@@ -503,6 +503,7 @@ gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 	GnomeVFSMimeApplication *result;
 	
 	result = g_new0 (GnomeVFSMimeApplication, 1);
+	result->id = g_strdup (application->id);
 	result->name = g_strdup (application->name);
 	result->command = g_strdup (application->command);
 	result->can_open_multiple_files = application->can_open_multiple_files;
