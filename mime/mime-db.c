@@ -58,6 +58,10 @@
 #define GNOME_VFS_NAMESPACE (const xmlChar *)"http://www.gnome.org/gnome-vfs/mime/1.0"
 
 
+static struct MimeType *read_mime_file (const gchar *filename);
+static GList *get_mime_type_files (const gchar *mime_type);
+
+
 /* The mime_types hash table contains GLists of MimeMapping */
 static GHashTable *mime_types = NULL;
 
@@ -94,6 +98,32 @@ find_mime_type (const char *mime_type)
 	g_assert (mime_types != NULL);
 
 	type = g_hash_table_lookup (mime_types, mime_type);
+
+	/* mime_type isn't in our cache (yet?), try to load some info about
+	 * it.
+	 */
+	if (type == NULL) {
+		GList *mime_files;
+		GList *it;
+
+		mime_files = get_mime_type_files (mime_type);
+		if (mime_files == NULL) {
+			return NULL;
+		}
+		for (it = mime_files; it != NULL; it = it->next) {
+			type = read_mime_file (it->data);
+			/* FIXME: needs to define a sensible policy for the 
+			 * reading order of the files, and whether we stop
+			 * as soon as we get some info for mime type
+			 */
+			if (type != NULL) {
+				break;
+			}
+		}
+		g_list_foreach (mime_files, (GFunc)g_free, NULL);
+		g_list_free (mime_files);
+	}
+
 	if ((type == NULL) || (type->state == USER_REMOVED)) {
 		return NULL;
 	}
@@ -258,7 +288,7 @@ process_gnomevfs_node (xmlDocPtr doc, xmlNodePtr cur,
 }
 
 
-static void 
+static struct MimeType *
 process_mime_type_node (xmlDocPtr doc, xmlNodePtr cur)
 {
 	gchar *type;
@@ -286,20 +316,22 @@ process_mime_type_node (xmlDocPtr doc, xmlNodePtr cur)
 		remove_mime_type (type);
 		return;
 	}
-	
-	mime_type = find_mime_type (type);
+	/* FIXME: that's probably no longer needed since we only load
+	 * mime type info when it's not available
+	 */
+	/*	mime_type = find_mime_type (type);
+		if (mime_type == NULL) {*/
+	mime_type = g_new0 (struct MimeType, 1);
 	if (mime_type == NULL) {
-		mime_type = g_new0 (struct MimeType, 1);
-		if (mime_type == NULL) {
-			fprintf (stderr, "out of memory");
-			xmlFreeDoc (doc);
-			return;
-		}
-		mime_type->type = type;
-		add_mime_type (mime_type);
-	} else {
-		g_free (type);
+		fprintf (stderr, "out of memory");
+		xmlFreeDoc (doc);
+		return;
 	}
+	mime_type->type = type;
+	add_mime_type (mime_type);
+	/*	} else {
+		g_free (type);
+		}*/
 
 	cur = cur->xmlChildrenNode;
 	
@@ -326,22 +358,25 @@ process_mime_type_node (xmlDocPtr doc, xmlNodePtr cur)
 		}
 		cur = cur->next;
 	}
+	return mime_type;
 }
+
 /* Parses a MEDIA/SUBTYPE.xml file and stores the corresponding info in 
  * the mime_types hash table
  */
-static void
-parse_mime_desc (const gchar *filename)
+static struct MimeType *
+read_mime_file (const gchar *filename)
 {
 	xmlDocPtr doc;
 	xmlNsPtr freedesktop_ns;
 	xmlNodePtr cur;
+	struct MimeType *result = NULL;
 
 	/*
 	 * build an XML tree from a the file;
 	 */
 	doc = xmlParseFile (filename);
-	if (doc == NULL) return;
+	if (doc == NULL) return NULL;
 
 	/*
 	 * Check the document is of the right kind
@@ -350,7 +385,7 @@ parse_mime_desc (const gchar *filename)
 	if (cur == NULL) {
 		fprintf (stderr,"empty document\n");
 		xmlFreeDoc (doc);
-		return;
+		return NULL;
 	}
 
 	freedesktop_ns = xmlSearchNsByHref (doc, cur, MIME_SPEC_NAMESPACE);
@@ -358,11 +393,12 @@ parse_mime_desc (const gchar *filename)
 		fprintf (stderr,
 			 "document of the wrong type, Shared Mime Info Namespace not found\n");
 		xmlFreeDoc (doc);
-		return;
+		return NULL;
 	}
 
 	if (xmlStrcmp(cur->name, (const xmlChar *) "mime-type") == 0) {
-		process_mime_type_node (doc, cur);
+		result = process_mime_type_node (doc, cur);	 
+#ifdef COMPILE_OBSOLETE
 	} else if (xmlStrcmp(cur->name, (const xmlChar *) "mime-types") == 0) {
 		g_print ("%s: mime-types\n", filename);
 
@@ -371,34 +407,106 @@ parse_mime_desc (const gchar *filename)
 			process_mime_type_node (doc, cur);
 			cur = cur->next;
 		}
+#endif /* COMPILE_OBSOLETE */
 	} else {
 		fprintf(stderr,"document %s of the wrong type, root node != mime-type\n", filename);
 		xmlFreeDoc (doc);
-		return;
+		return NULL;
 	}
 
 	xmlFreeDoc (doc);
+	return result;
 }
 
 
-/* Returns true if dirname is a directory */
-static gboolean 
-is_dir (const char *dirname)
+/* Checks sanity of mime_type, and convert it to the filename to use
+ * to access it (ie media/subtype.xml).
+ */
+static gchar *
+file_name_from_mime_type (const gchar *mime_type)
 {
-	struct stat s;
+	gchar* mime_path = g_strdup (mime_type);
+	gchar *result;
+	gchar* it = mime_path;
+	gint nb_slashes = 0;
 
-	stat (dirname, &s);
-	return S_ISDIR (s.st_mode);
+	/* Ensure sanity of the mime type. One thing which is not dealt with
+	 * is the position of the dot (it can't be at the beginning or at the
+	 * end of mime_type), that's probably not really important 
+	 */
+	while (it && *it != 0) {
+		if (*it == '/') {
+			nb_slashes++;
+		} else if (g_ascii_isalpha (*it)) {
+			*it = g_ascii_tolower (*it);
+		} else {
+			goto error;
+		}		
+		it++;
+	}
+	if (nb_slashes != 1) {
+		goto error;
+	}
+
+	result = g_strconcat (mime_path, ".xml", NULL);
+	g_free (mime_path);
+
+	return result;
+
+ error:
+	g_warning ("%s: %s is a malformed mime-type\n", 
+		   G_GNUC_FUNCTION, mime_type);
+	g_free (mime_path);
+	return NULL;
 }
 
-static gboolean
-file_exists (const char *filename)
+/* Generates the list of files where to read the info for mime_type from 
+ * Please note that generating this list and then using it to read from the
+ * files it refers to is inherently racy, some files may appear/disappear 
+ * after the g_file_test from this function has been run...
+ */
+static GList *
+get_mime_type_files (const gchar *mime_type)
 {
-	struct stat s;
+	/* FIXME: this directory list must use the XDG directory spec */
+	gchar *system_dirs[] = { "/usr/share/mime/", 
+				 "/usr/local/share/mime/",
+				 NULL };
 
-	stat (filename, &s);
-	return S_ISREG (s.st_mode);
+	gchar *rel_path = file_name_from_mime_type (mime_type);
+	gchar *full_path;
+	gchar **it = system_dirs;
+	GList *result = NULL;
+
+	if (rel_path == NULL) {
+		g_free (rel_path);
+		return NULL;
+	}
+	
+	while ((it != NULL) && (*it != NULL)) {
+		full_path = g_strconcat (*it, rel_path, NULL);
+		if (g_file_test (full_path, G_FILE_TEST_EXISTS)) {
+			result = g_list_append (result, full_path);
+		} else {
+			g_free (full_path);
+		}
+		it++;
+	}
+	
+	full_path = g_strconcat (g_get_home_dir (), "/.mime/", rel_path, NULL);
+	if (g_file_test (full_path, G_FILE_TEST_EXISTS)) {
+		result = g_list_append (result, full_path);
+	} else {
+		g_free (full_path);
+	}
+
+	return result;
 }
+
+
+
+
+#ifdef COMPILE_OBSOLETE
 
 /* Find all .xml files in a dir, parses them and add the mime types they 
  * describe to the database
@@ -422,10 +530,29 @@ read_mime_info_from_dir (const char *dirname)
 		}
 		filename = g_strconcat (dirname, "/", dent->d_name, 
 						NULL);
-		parse_mime_desc (filename);
+		read_mime_file (filename);
 		g_free (filename);
 	}
 	closedir (dir);
+}
+
+/* Returns true if dirname is a directory */
+static gboolean 
+is_dir (const char *dirname)
+{
+	struct stat s;
+
+	stat (dirname, &s);
+	return S_ISDIR (s.st_mode);
+}
+
+static gboolean
+file_exists (const char *filename)
+{
+	struct stat s;
+
+	stat (filename, &s);
+	return S_ISREG (s.st_mode);
 }
 
 /* Load the whole mime database */
@@ -498,7 +625,7 @@ load_mime_database (void)
 	g_free (user_custom);
 	g_list_foreach (mime_paths, (GFunc)g_free, NULL);
 }
-
+#endif /* COMPILE_OBSOLETE */
 
 static void 
 mime_type_print (struct MimeType *mime_type)
@@ -532,7 +659,9 @@ init_mime_db (void)
 {
 	current_lang = gnome_vfs_i18n_get_language_list ("LC_ALL");
 	mime_types = g_hash_table_new (g_str_hash, g_str_equal);
+#ifdef COMPILE_OBSOLETE
 	load_mime_database ();
+#endif /* COMPILE_OBSOLETE */
 	//	g_print ("nb of elems: %u\n", g_hash_table_size (mime_types));
 }
 
@@ -859,8 +988,10 @@ gnome_vfs_mime_info_reload (void)
 				      NULL);
 	}
 
+#ifdef COMPILE_OBSOLETE	
 	/* 2. Reload */
 	load_mime_database ();
+#endif /* COMPILE_OBSOLETE */
 }
 
 

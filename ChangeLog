@@ -1,3 +1,13 @@
+2003-07-05  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* configure.in: disabled strict aliasing warnings
+	* mime/mime-db.c: (find_mime_type), (process_mime_type_node),
+	(read_mime_file), (file_name_from_mime_type),
+	(get_mime_type_files), (read_mime_info_from_dir), (is_dir),
+	(file_exists), (init_mime_db), (gnome_vfs_mime_info_reload): only
+	load mime info when it's necessary, as opposed to reading everything
+	at startup
+
 2003-06-09  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* mime/mime-db.c
