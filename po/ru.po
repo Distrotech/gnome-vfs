@@ -4,1014 +4,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-11-01 16:52-0800\n"
+"POT-Creation-Date: 2001-11-02 11:25-0800\n"
 "PO-Revision-Date: 2001-10-13 17:58+0400\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=koi8-r\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: data/mime/gnome-vfs.keys.in.h:1
-msgid "3D Studio image"
-msgstr "Изображение 3D Studi"
-
-#: data/mime/gnome-vfs.keys.in.h:2
-msgid "AIFC audio"
-msgstr "Звук AIFC"
-
-#: data/mime/gnome-vfs.keys.in.h:3
-msgid "AIFF audio"
-msgstr "Звук AIFF"
-
-#: data/mime/gnome-vfs.keys.in.h:4
-msgid "ANIM animation"
-msgstr "Анимация ANIM"
-
-#: data/mime/gnome-vfs.keys.in.h:5
-msgid "AVI video"
-msgstr "Видео AVI"
-
-#: data/mime/gnome-vfs.keys.in.h:6
-msgid "AbiWord document"
-msgstr "Документ AbiWord"
-
-#: data/mime/gnome-vfs.keys.in.h:7
-msgid "Adobe FrameMaker font"
-msgstr "Шрифт Adobe FrameMaker"
-
-#: data/mime/gnome-vfs.keys.in.h:8
-msgid "Adobe font metrics"
-msgstr "Метрики шрифта Adobe"
-
-#: data/mime/gnome-vfs.keys.in.h:9
-msgid "Andrew Toolkit inset"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:10
-msgid "ApplixWare Graphics image"
-msgstr "Изображение ApplixWare Graphic"
-
-#: data/mime/gnome-vfs.keys.in.h:11
-msgid "Applixware Words document"
-msgstr "Документ Applixware Word"
-
-#: data/mime/gnome-vfs.keys.in.h:12
-msgid "Applixware spreadsheet"
-msgstr "Таблица Applixware"
-
-#: data/mime/gnome-vfs.keys.in.h:13
-msgid "AutoCAD image"
-msgstr "Изображение AutoCAD"
-
-#: data/mime/gnome-vfs.keys.in.h:14
-msgid "BCPIO document"
-msgstr "Документ BCPIO"
-
-#: data/mime/gnome-vfs.keys.in.h:15
-msgid "BDF font"
-msgstr "Шрифт BDF"
-
-#: data/mime/gnome-vfs.keys.in.h:16
-msgid "C shell script"
-msgstr "Скрипт С-оболочки"
-
-#: data/mime/gnome-vfs.keys.in.h:17
-msgid "C source code"
-msgstr "Исходный код C"
-
-#: data/mime/gnome-vfs.keys.in.h:18
-#, fuzzy
-msgid "C source code header"
-msgstr "Исходный код C"
-
-#: data/mime/gnome-vfs.keys.in.h:19
-msgid "C++ source code"
-msgstr "Исходный код C++"
-
-#: data/mime/gnome-vfs.keys.in.h:20
-msgid "CGI program"
-msgstr "Программа CGI"
-
-#: data/mime/gnome-vfs.keys.in.h:21
-msgid "CGM image"
-msgstr "Изображение CGM"
-
-#: data/mime/gnome-vfs.keys.in.h:22
-msgid "CMU raster image"
-msgstr "Растровое изображение CMU"
-
-#: data/mime/gnome-vfs.keys.in.h:23
-msgid "CPIO archive"
-msgstr "Архив CPIO"
-
-#: data/mime/gnome-vfs.keys.in.h:24
-msgid "CPIO archive (gzip-compressed)"
-msgstr "Архив CPIO (сжатый gzip)"
-
-#: data/mime/gnome-vfs.keys.in.h:25
-msgid "DCL script"
-msgstr "Скрипт DSL"
-
-#: data/mime/gnome-vfs.keys.in.h:26
-msgid "DOS font"
-msgstr "Шрифт DOS"
-
-#: data/mime/gnome-vfs.keys.in.h:27
-msgid "DOS/Windows program"
-msgstr "Программа DOS/Windows"
-
-#: data/mime/gnome-vfs.keys.in.h:28
-msgid "DSSSL document"
-msgstr "Документ DSSSL"
-
-#: data/mime/gnome-vfs.keys.in.h:29
-msgid "DXF vector graphic"
-msgstr "Векторная графика DXF"
-
-#: data/mime/gnome-vfs.keys.in.h:30
-msgid "Debian package"
-msgstr "Пакет Debian"
-
-#: data/mime/gnome-vfs.keys.in.h:31
-msgid "Dia diagram"
-msgstr "Диаграмма Dia"
-
-#: data/mime/gnome-vfs.keys.in.h:32
-msgid "Dolby Digital audio"
-msgstr "Цифровой звук Dolby Digital"
-
-#: data/mime/gnome-vfs.keys.in.h:33
-msgid "Emacs Lisp source code"
-msgstr "Исходный код Emacs Lisp"
-
-#: data/mime/gnome-vfs.keys.in.h:34
-msgid "Enlightenment theme"
-msgstr "Тема для Enlightenment"
-
-#: data/mime/gnome-vfs.keys.in.h:35
-msgid "FLC animation"
-msgstr "Анимация FLC"
-
-#: data/mime/gnome-vfs.keys.in.h:36
-msgid "FLI animation"
-msgstr "Анимация FLI"
-
-#: data/mime/gnome-vfs.keys.in.h:37
-msgid "FastTracker II audio"
-msgstr "Звук FastTracker II"
-
-#: data/mime/gnome-vfs.keys.in.h:38
-msgid "Fortran source code"
-msgstr "Исходный текст Fortran"
-
-#: data/mime/gnome-vfs.keys.in.h:39
-msgid "FrameMaker interchange document"
-msgstr "Документ обмена для FrameMaker"
-
-#: data/mime/gnome-vfs.keys.in.h:40
-msgid "G3 fax image"
-msgstr "Факсовое изображение G3"
-
-#: data/mime/gnome-vfs.keys.in.h:41
-msgid "GIF image"
-msgstr "Изображение GIF"
-
-#: data/mime/gnome-vfs.keys.in.h:42
-msgid "GIMP document"
-msgstr "Документ GIMP"
-
-#: data/mime/gnome-vfs.keys.in.h:43
-msgid "GMC link"
-msgstr "Ссылка GMC"
-
-#: data/mime/gnome-vfs.keys.in.h:44
-msgid "GNOME application details"
-msgstr "Сведения о приложении GNOME"
-
-#: data/mime/gnome-vfs.keys.in.h:45
-msgid "GNU Oleo Spreadsheet"
-msgstr "Таблица GNU Oleo"
-
-#: data/mime/gnome-vfs.keys.in.h:46
-msgid "GNU mail message"
-msgstr "Почтовое сообщение GNU mail"
-
-#: data/mime/gnome-vfs.keys.in.h:47
-msgid "GTK configuration"
-msgstr "Настройка GTK"
-
-#: data/mime/gnome-vfs.keys.in.h:48
-msgid "Glade project"
-msgstr "Проект Glade"
-
-#: data/mime/gnome-vfs.keys.in.h:49
-msgid "GnuCash Workbook"
-msgstr "Рабочая книга GnuCash"
-
-#: data/mime/gnome-vfs.keys.in.h:50
-msgid "Gnumeric spreadsheet"
-msgstr "Таблица Gnumeric"
-
-#: data/mime/gnome-vfs.keys.in.h:51
-msgid "HDF document"
-msgstr "Документ HDF"
-
-#: data/mime/gnome-vfs.keys.in.h:52
-msgid "HTML page"
-msgstr "Страница HTML"
-
-#: data/mime/gnome-vfs.keys.in.h:53
-msgid "IDL document"
-msgstr "Документ IDL"
-
-#: data/mime/gnome-vfs.keys.in.h:54
-msgid "IEF image"
-msgstr "Изображение IEF"
-
-#: data/mime/gnome-vfs.keys.in.h:55
-msgid "IFF image"
-msgstr "Изображение IFF"
-
-#: data/mime/gnome-vfs.keys.in.h:56
-msgid "ILBM image"
-msgstr "Изображение ILBM"
-
-#: data/mime/gnome-vfs.keys.in.h:57
-msgid "ISI video"
-msgstr "Видео ISI"
-
-#: data/mime/gnome-vfs.keys.in.h:58
-msgid "Impulse Tracker audio"
-msgstr "Звук Impulse Tracker"
-
-#: data/mime/gnome-vfs.keys.in.h:59
-msgid "JBuilder Project"
-msgstr "Проект JBuilder"
-
-#: data/mime/gnome-vfs.keys.in.h:60
-msgid "JPEG image"
-msgstr "Изображение JPEG"
-
-#: data/mime/gnome-vfs.keys.in.h:61
-msgid "Java byte code"
-msgstr "Байт-код Java"
-
-#: data/mime/gnome-vfs.keys.in.h:62
-msgid "Java source code"
-msgstr "Исходный текст Java"
-
-#: data/mime/gnome-vfs.keys.in.h:63
-msgid "KDE application details"
-msgstr "Сведения о приложении KDE"
-
-#: data/mime/gnome-vfs.keys.in.h:64
-msgid "KIllustrator document"
-msgstr "Документ KIllustrator"
-
-#: data/mime/gnome-vfs.keys.in.h:65
-msgid "KPresenter presentation"
-msgstr "Презентация KPresenter"
-
-#: data/mime/gnome-vfs.keys.in.h:66
-msgid "KSpread spreadsheet"
-msgstr "Таблица KSpread"
-
-#: data/mime/gnome-vfs.keys.in.h:67
-msgid "KWord document"
-msgstr "Документ KWord"
-
-#: data/mime/gnome-vfs.keys.in.h:68
-msgid "Korn shell script"
-msgstr "Скрипт оболочки Korn"
-
-#: data/mime/gnome-vfs.keys.in.h:69
-msgid "LHA archive"
-msgstr "Архив LHA"
-
-#: data/mime/gnome-vfs.keys.in.h:70
-msgid "LHARC archive"
-msgstr "Архив LHARC"
-
-#: data/mime/gnome-vfs.keys.in.h:71
-msgid "LIBGRX font"
-msgstr "Шрифт LIBGRX"
-
-#: data/mime/gnome-vfs.keys.in.h:72
-msgid "LightWave object"
-msgstr "Объект LightWave"
-
-#: data/mime/gnome-vfs.keys.in.h:73
-msgid "LightWave scene"
-msgstr "Сцена LightWave"
-
-#: data/mime/gnome-vfs.keys.in.h:74
-msgid "Linux PSF console font"
-msgstr "Консольный шрифт Linux PSF"
-
-#: data/mime/gnome-vfs.keys.in.h:75
-msgid "Lotus 1-2-3 spreadsheet"
-msgstr "Таблица Lotus 1-2-3"
-
-#: data/mime/gnome-vfs.keys.in.h:76
-msgid "M3 audio URL"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:77
-msgid "MIDI audio"
-msgstr "Звук MIDI"
-
-#: data/mime/gnome-vfs.keys.in.h:78
-msgid "MOD audio"
-msgstr "Звук MOD"
-
-#: data/mime/gnome-vfs.keys.in.h:79
-msgid "MP3 audio"
-msgstr "Звук MP3"
-
-#: data/mime/gnome-vfs.keys.in.h:80
-msgid "MP3 audio playlist"
-msgstr "Список звуков MP3"
-
-#: data/mime/gnome-vfs.keys.in.h:81
-msgid "MPEG video"
-msgstr "Видео MPEG"
-
-#: data/mime/gnome-vfs.keys.in.h:82
-msgid "MS ASF video"
-msgstr "Видео MS ASF"
-
-#: data/mime/gnome-vfs.keys.in.h:83
-msgid "MS video"
-msgstr "Видео MS"
-
-#: data/mime/gnome-vfs.keys.in.h:84
-msgid "Macintosh AppleDouble-encoded file"
-msgstr "Файл Macintosh кодированный AppleDouble"
-
-#: data/mime/gnome-vfs.keys.in.h:85
-msgid "Macintosh BinHex-encoded file"
-msgstr "Файл Macintosh кодированный BinHex"
-
-#: data/mime/gnome-vfs.keys.in.h:86
-msgid "Macintosh StuffIt archive"
-msgstr "Архив Macintosh StuffIt"
-
-#: data/mime/gnome-vfs.keys.in.h:87
-msgid "Macromedia Flash file"
-msgstr "Файл Macromedia Flash"
-
-#: data/mime/gnome-vfs.keys.in.h:88
-msgid "MathML document"
-msgstr "Документ MathML"
-
-#: data/mime/gnome-vfs.keys.in.h:89
-msgid "Microsoft Excel spreadsheet"
-msgstr "Таблица Microsoft Excel"
-
-#: data/mime/gnome-vfs.keys.in.h:90
-msgid "Microsoft PowerPoint document"
-msgstr "Документ Microsoft PowerPoint"
-
-#: data/mime/gnome-vfs.keys.in.h:91
-msgid "Microsoft Word document"
-msgstr "Документ Microsoft Word"
-
-#: data/mime/gnome-vfs.keys.in.h:92
-msgid "Microsoft video"
-msgstr "Видео Microsoft"
-
-#: data/mime/gnome-vfs.keys.in.h:93
-msgid "Nautilus link"
-msgstr "Ссылка Nautilus"
-
-#: data/mime/gnome-vfs.keys.in.h:94
-msgid "ODA document"
-msgstr "Документ ODA"
-
-#: data/mime/gnome-vfs.keys.in.h:95
-msgid "PBM image"
-msgstr "Изображение PBM"
-
-#: data/mime/gnome-vfs.keys.in.h:96
-msgid "PCF font"
-msgstr "Шрифт PCF"
-
-#: data/mime/gnome-vfs.keys.in.h:97
-msgid "PDF document"
-msgstr "Документ PDF"
-
-#: data/mime/gnome-vfs.keys.in.h:98
-msgid "PEF program"
-msgstr "Программа PEF"
-
-#: data/mime/gnome-vfs.keys.in.h:99
-msgid "PGM image"
-msgstr "Изображение PGM"
-
-#: data/mime/gnome-vfs.keys.in.h:100
-msgid "PGN chess game"
-msgstr "Шахматный матч PGN"
-
-#: data/mime/gnome-vfs.keys.in.h:101
-msgid "PGP keys"
-msgstr "Ключи PGP"
-
-#: data/mime/gnome-vfs.keys.in.h:102
-msgid "PGP message"
-msgstr "Сообщение PGP"
-
-#: data/mime/gnome-vfs.keys.in.h:103
-msgid "PGP signature"
-msgstr "Подпись PGP"
-
-#: data/mime/gnome-vfs.keys.in.h:104
-msgid "PGP-encrypted file"
-msgstr "Файл закодированный PGP"
-
-#: data/mime/gnome-vfs.keys.in.h:105
-msgid "PHP script"
-msgstr "Скрипт PHP"
-
-#: data/mime/gnome-vfs.keys.in.h:106
-msgid "PN RealAudio document"
-msgstr "Документ PN RealAudio"
-
-#: data/mime/gnome-vfs.keys.in.h:107
-msgid "PNG image"
-msgstr "Изображение PNG"
-
-#: data/mime/gnome-vfs.keys.in.h:108
-msgid "PNM image"
-msgstr "Изображение PNM"
-
-#: data/mime/gnome-vfs.keys.in.h:109
-msgid "PPM image"
-msgstr "Изображение PPM"
-
-#: data/mime/gnome-vfs.keys.in.h:110
-msgid "Palm OS database"
-msgstr "База данных Palm OS"
-
-#: data/mime/gnome-vfs.keys.in.h:111
-msgid "Perl script"
-msgstr "Скрипт Perl"
-
-#: data/mime/gnome-vfs.keys.in.h:112
-msgid "Photoshop document"
-msgstr "Документ Photoshop"
-
-#: data/mime/gnome-vfs.keys.in.h:113
-msgid "PostScript Type 1 font"
-msgstr "Шрифт PostScript Type 1"
-
-#: data/mime/gnome-vfs.keys.in.h:114
-msgid "PostScript document"
-msgstr "Документ PostScript"
-
-#: data/mime/gnome-vfs.keys.in.h:115
-msgid "Python source code"
-msgstr "Исходный код Python"
-
-#: data/mime/gnome-vfs.keys.in.h:116
-msgid "QuickTime movie"
-msgstr "Фильм QuickTime"
-
-#: data/mime/gnome-vfs.keys.in.h:117
-msgid "Quicken document"
-msgstr "Документ Quicken"
-
-#: data/mime/gnome-vfs.keys.in.h:118
-msgid "Quicken for Windows document"
-msgstr "Документ Quicken for Windows"
-
-#: data/mime/gnome-vfs.keys.in.h:119
-msgid "RAR archive"
-msgstr "Архив RAR"
-
-#: data/mime/gnome-vfs.keys.in.h:120
-msgid "README document"
-msgstr "Документ README"
-
-#: data/mime/gnome-vfs.keys.in.h:121
-msgid "RGB image"
-msgstr "Изображение RGB"
-
-#: data/mime/gnome-vfs.keys.in.h:122
-msgid "RIFF audio"
-msgstr "Звук RIFF"
-
-#: data/mime/gnome-vfs.keys.in.h:123
-msgid "RPM package"
-msgstr "Пакет RPM"
-
-#: data/mime/gnome-vfs.keys.in.h:124
-msgid "RealAudio/Video document"
-msgstr "Документ RealAudio/Video"
-
-#: data/mime/gnome-vfs.keys.in.h:125
-msgid "RealVideo video"
-msgstr "Видео RealVideo"
-
-#: data/mime/gnome-vfs.keys.in.h:126
-msgid "S/MIME file"
-msgstr "Файл S/MIME"
-
-#: data/mime/gnome-vfs.keys.in.h:127
-msgid "S/MIME signature"
-msgstr "Подпись S/MIME"
-
-#: data/mime/gnome-vfs.keys.in.h:128
-msgid "SGI video"
-msgstr "Видео SGI"
-
-#: data/mime/gnome-vfs.keys.in.h:129
-msgid "SGML document"
-msgstr "Документ SGML"
-
-#: data/mime/gnome-vfs.keys.in.h:130
-msgid "SMIL script"
-msgstr "Скрипт SMIL"
-
-#: data/mime/gnome-vfs.keys.in.h:131
-msgid "SQL code"
-msgstr "Код SQL"
-
-#: data/mime/gnome-vfs.keys.in.h:132
-msgid "SV4 CPIO archive"
-msgstr "Архив SV4 CPIO"
-
-#: data/mime/gnome-vfs.keys.in.h:133
-msgid "SV4 CPIP archive (with CRC)"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:134
-msgid "SVG art"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:135
-msgid "Scheme source code"
-msgstr "Исходный код Scheme"
-
-#: data/mime/gnome-vfs.keys.in.h:136
-msgid "Scream Tracker 3 audio"
-msgstr "Звук Scream Tracker 3"
-
-#: data/mime/gnome-vfs.keys.in.h:137
-msgid "Scream Tracker audio"
-msgstr "Звук Scream Tracker"
-
-#: data/mime/gnome-vfs.keys.in.h:138
-msgid "Scream Tracker instrument"
-msgstr "Инструмент Scream Tracker"
-
-#: data/mime/gnome-vfs.keys.in.h:139
-msgid "Setext document"
-msgstr "Документ Setext"
-
-#: data/mime/gnome-vfs.keys.in.h:140
-msgid "Speech document"
-msgstr "Документ Speech"
-
-#: data/mime/gnome-vfs.keys.in.h:141
-msgid "Speedo font"
-msgstr "Шрифт Speedo"
-
-#: data/mime/gnome-vfs.keys.in.h:142
-msgid "Spreadsheet Interchange document"
-msgstr "Документ Spreadsheet Interchange"
-
-#: data/mime/gnome-vfs.keys.in.h:143
-msgid "Stampede package"
-msgstr "Пакет Stampede"
-
-#: data/mime/gnome-vfs.keys.in.h:144
-msgid "StarOffice Writer document"
-msgstr "Документ StarOffice Writer"
-
-#: data/mime/gnome-vfs.keys.in.h:145
-msgid "StarOffice presentation"
-msgstr "Презентация StarOffice"
-
-#: data/mime/gnome-vfs.keys.in.h:146
-msgid "StarOffice spreadsheet"
-msgstr "Таблица StarOffice"
-
-#: data/mime/gnome-vfs.keys.in.h:147
-msgid "Sun mu-law audio"
-msgstr "Звук Sun mu-law"
-
-#: data/mime/gnome-vfs.keys.in.h:148
-msgid "SunOS News font"
-msgstr "Шрифт SunOS News"
-
-#: data/mime/gnome-vfs.keys.in.h:149
-msgid "TIFF image"
-msgstr "Изображение TIFF"
-
-#: data/mime/gnome-vfs.keys.in.h:150
-msgid "TarGA image"
-msgstr "Изображение TarGA"
-
-#: data/mime/gnome-vfs.keys.in.h:151
-msgid "Tcl script"
-msgstr "Скрипт Tcl"
-
-#: data/mime/gnome-vfs.keys.in.h:152
-msgid "TeX document"
-msgstr "Документ TeX"
-
-#: data/mime/gnome-vfs.keys.in.h:153
-msgid "TeX dvi document"
-msgstr "Документ TeX dvi"
-
-#: data/mime/gnome-vfs.keys.in.h:154
-msgid "TeX font"
-msgstr "Шрифт TeX"
-
-#: data/mime/gnome-vfs.keys.in.h:155
-msgid "TeX font metrics"
-msgstr "Метрики шрифта TeX"
-
-#: data/mime/gnome-vfs.keys.in.h:156
-msgid "TeXInfo document"
-msgstr "Документ TeXInfo"
-
-#: data/mime/gnome-vfs.keys.in.h:157
-msgid "ToutDoux document"
-msgstr "Документ ToutDoux"
-
-#: data/mime/gnome-vfs.keys.in.h:158
-msgid "TrueType font"
-msgstr "Шрифт TrueType"
-
-#: data/mime/gnome-vfs.keys.in.h:159
-msgid "USENET news message"
-msgstr "Сообщение новостей USENET"
-
-#: data/mime/gnome-vfs.keys.in.h:160
-msgid "Unidata netCDF document"
-msgstr "Документ Unidata netCDF"
-
-#: data/mime/gnome-vfs.keys.in.h:161
-msgid "V font"
-msgstr "Шрифт V font"
-
-#: data/mime/gnome-vfs.keys.in.h:162
-msgid "VOC audio"
-msgstr "Звук VOC"
-
-#: data/mime/gnome-vfs.keys.in.h:163
-msgid "VRML document"
-msgstr "Документ VRML"
-
-#: data/mime/gnome-vfs.keys.in.h:164
-msgid "Vivo video"
-msgstr "Видео Vivo"
-
-#: data/mime/gnome-vfs.keys.in.h:165
-msgid "WAIS source code"
-msgstr "Исходный код WAIS"
-
-#: data/mime/gnome-vfs.keys.in.h:166
-msgid "Wavelet video"
-msgstr "Видео Wavelet"
-
-#: data/mime/gnome-vfs.keys.in.h:167
-msgid "Windows bitmap image"
-msgstr "Изображение Windows bitmap"
-
-#: data/mime/gnome-vfs.keys.in.h:168
-msgid "Windows icon image"
-msgstr "Изображение пиктограммы Windows"
-
-#: data/mime/gnome-vfs.keys.in.h:169
-msgid "Windows metafile graphics"
-msgstr "Графика Windows metafile"
-
-#: data/mime/gnome-vfs.keys.in.h:170
-msgid "WordPerfect document"
-msgstr "Документ WordPerfect"
-
-#: data/mime/gnome-vfs.keys.in.h:171
-msgid "X bitmap image"
-msgstr "Изображение X bitmap"
-
-#: data/mime/gnome-vfs.keys.in.h:172
-msgid "X window image"
-msgstr "Изображение X window"
-
-#: data/mime/gnome-vfs.keys.in.h:173
-msgid "XML document"
-msgstr "Документ XML"
-
-#: data/mime/gnome-vfs.keys.in.h:174
-msgid "XPM image"
-msgstr "Изображение XPM"
-
-#: data/mime/gnome-vfs.keys.in.h:175
-msgid "Xbase database"
-msgstr "База данных Xbase"
-
-#: data/mime/gnome-vfs.keys.in.h:176
-msgid "active server page"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:177
-msgid "address card"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:178
-msgid "ar archive"
-msgstr "архив ar"
-
-#: data/mime/gnome-vfs.keys.in.h:179
-msgid "arj archive"
-msgstr "архив arj"
-
-#: data/mime/gnome-vfs.keys.in.h:180
-msgid "authors list"
-msgstr "список авторов"
-
-#: data/mime/gnome-vfs.keys.in.h:181
-msgid "backup file"
-msgstr "резервный файл"
-
-#: data/mime/gnome-vfs.keys.in.h:182
-msgid "basic audio"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:183
-msgid "bibliography record"
-msgstr "библиографическая запись"
-
-#: data/mime/gnome-vfs.keys.in.h:184
-msgid "binary program"
-msgstr "двоичная программа"
-
-#: data/mime/gnome-vfs.keys.in.h:185
-msgid "block device"
-msgstr "блочное устройство"
-
-#: data/mime/gnome-vfs.keys.in.h:186
-msgid "bzip-compressed file"
-msgstr "файл сжатый bzip"
-
-#: data/mime/gnome-vfs.keys.in.h:187
-msgid "calendar file"
-msgstr "файл календаря"
-
-#: data/mime/gnome-vfs.keys.in.h:188
-msgid "calendar or event document"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:189
-msgid "character device"
-msgstr "символьное устройство"
-
-#: data/mime/gnome-vfs.keys.in.h:190
-msgid "comma-separated text document"
-msgstr "документ с текстовыми полями разделёнными запятыми"
-
-#: data/mime/gnome-vfs.keys.in.h:191
-msgid "compound document"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:192
-msgid "compress-compressed file"
-msgstr "файл сжатый compress"
-
-#: data/mime/gnome-vfs.keys.in.h:193
-msgid "compressed GIMP document"
-msgstr "сжатый документ GIMP"
-
-#: data/mime/gnome-vfs.keys.in.h:194
-msgid "directory information file"
-msgstr "файл информации о каталоге"
-
-#: data/mime/gnome-vfs.keys.in.h:195
-msgid "document type definition"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:196
-msgid "email headers"
-msgstr "заголовок эл.письма"
-
-#: data/mime/gnome-vfs.keys.in.h:197
-msgid "email message"
-msgstr "эл.письмо"
-
-#: data/mime/gnome-vfs.keys.in.h:198
-msgid "encrypted message"
-msgstr "зашифрованное сообщение"
-
-#: data/mime/gnome-vfs.keys.in.h:199
-msgid "enriched text document"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:200
-msgid "folder"
-msgstr "папка"
-
-#: data/mime/gnome-vfs.keys.in.h:201
-msgid "gtar archive"
-msgstr "архив gtar"
-
-#: data/mime/gnome-vfs.keys.in.h:202
-msgid "gzip-compressed file"
-msgstr "файл сжатый gzip"
-
-#: data/mime/gnome-vfs.keys.in.h:203
-msgid "help page"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:204
-msgid "mail delivery report"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:205
-msgid "mail disposition report"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:206
-msgid "mail system report"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:207
-msgid "makefile"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:208
-msgid "manual page"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:209
-msgid "manual page (compressed)"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:210
-msgid "memory dump"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:211
-msgid "message digest"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:212
-msgid "message in several formats"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:213
-msgid "multi-part message"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:214
-msgid "named pipe"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:215
-msgid "object code"
-msgstr "объектный код"
-
-#: data/mime/gnome-vfs.keys.in.h:216
-msgid "ogg audio"
-msgstr "звук ogg"
-
-#: data/mime/gnome-vfs.keys.in.h:217
-msgid "partial email message"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:218
-msgid "plain text document"
-msgstr "текстовый документ"
-
-#: data/mime/gnome-vfs.keys.in.h:219
-msgid "profiler results"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:220
-msgid "reference to remote file"
-msgstr "ссылка на удалённый файл"
-
-#: data/mime/gnome-vfs.keys.in.h:221
-msgid "rejected patch file"
-msgstr "отброшенный файл заплатки"
-
-#: data/mime/gnome-vfs.keys.in.h:222
-msgid "rich text document"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:223
-msgid "search results"
-msgstr "результаты поиска"
-
-#: data/mime/gnome-vfs.keys.in.h:224
-msgid "shared library"
-msgstr "разделяемая библиотека"
-
-#: data/mime/gnome-vfs.keys.in.h:225
-msgid "shell archive"
-msgstr "архив оболочки"
-
-#: data/mime/gnome-vfs.keys.in.h:226
-msgid "shell script"
-msgstr "Скрипт оболочки"
-
-#: data/mime/gnome-vfs.keys.in.h:227
-msgid "signed message"
-msgstr "подписанное сообщение"
-
-#: data/mime/gnome-vfs.keys.in.h:228
-msgid "socket"
-msgstr "сокет"
-
-#: data/mime/gnome-vfs.keys.in.h:229
-msgid "software author credits"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:230
-msgid "software installation instructions"
-msgstr "инструкции по установке программы"
-
-#: data/mime/gnome-vfs.keys.in.h:231
-msgid "software license terms"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:232
-msgid "source code patch"
-msgstr "заплатка к исходному коду"
-
-#: data/mime/gnome-vfs.keys.in.h:233
-msgid "style sheet"
-msgstr "таблица стилей"
-
-#: data/mime/gnome-vfs.keys.in.h:234
-msgid "symbolic link"
-msgstr "символическая ссылка"
-
-#: data/mime/gnome-vfs.keys.in.h:235
-msgid "tab-separated text document"
-msgstr "текстовый документ с полями разделёнными табуляцией"
-
-#: data/mime/gnome-vfs.keys.in.h:236
-msgid "tar archive"
-msgstr "архив tar"
-
-#: data/mime/gnome-vfs.keys.in.h:237
-msgid "tar archive (bzip2-compressed)"
-msgstr "архив tar (сжатый bzip)"
-
-#: data/mime/gnome-vfs.keys.in.h:238
-msgid "tar archive (gzip-compressed)"
-msgstr "архив tar (сжатый gzip)"
-
-#: data/mime/gnome-vfs.keys.in.h:239
-msgid "theme"
-msgstr "тема"
-
-#: data/mime/gnome-vfs.keys.in.h:240
-msgid "troff document"
-msgstr "документ troff"
-
-#: data/mime/gnome-vfs.keys.in.h:241
-msgid "troff me input document"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:242
-msgid "troff mm input document"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:243
-msgid "troff ms input document"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:244
-msgid "unknown type"
-msgstr "неизвестный тип"
-
-#: data/mime/gnome-vfs.keys.in.h:245
-msgid "ustar archive"
-msgstr "архив ustar"
-
-#: data/mime/gnome-vfs.keys.in.h:246
-msgid "wave audio"
-msgstr "звук wave"
-
-#: data/mime/gnome-vfs.keys.in.h:247
-msgid "web folder"
-msgstr ""
-
-#: data/mime/gnome-vfs.keys.in.h:248
-msgid "xfig vector graphic"
-msgstr "векторная графика xfig"
-
-#: data/mime/gnome-vfs.keys.in.h:249
-msgid "zip archive"
-msgstr "архив zip"
-
-#: data/mime/gnome-vfs.keys.in.h:250
-msgid "zoo archive"
-msgstr "архив zoo"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
@@ -1275,23 +274,22 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:714
+#: libgnomevfs/gnome-vfs-job.c:714
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Неизвестный тип задания %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1005
-#: libgnomevfs-pthread/gnome-vfs-job.c:1150
+#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Невозможно создать канал для открытого GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1596
+#: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Неизвестный вид задания %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1632
+#: libgnomevfs/gnome-vfs-job.c:1632
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
@@ -1299,3 +297,658 @@ msgstr "Действие остановлено"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестная GnomeVFSSeekPosition %d"
+
+#~ msgid "3D Studio image"
+#~ msgstr "Изображение 3D Studi"
+
+#~ msgid "AIFC audio"
+#~ msgstr "Звук AIFC"
+
+#~ msgid "AIFF audio"
+#~ msgstr "Звук AIFF"
+
+#~ msgid "ANIM animation"
+#~ msgstr "Анимация ANIM"
+
+#~ msgid "AVI video"
+#~ msgstr "Видео AVI"
+
+#~ msgid "AbiWord document"
+#~ msgstr "Документ AbiWord"
+
+#~ msgid "Adobe FrameMaker font"
+#~ msgstr "Шрифт Adobe FrameMaker"
+
+#~ msgid "Adobe font metrics"
+#~ msgstr "Метрики шрифта Adobe"
+
+#~ msgid "ApplixWare Graphics image"
+#~ msgstr "Изображение ApplixWare Graphic"
+
+#~ msgid "Applixware Words document"
+#~ msgstr "Документ Applixware Word"
+
+#~ msgid "Applixware spreadsheet"
+#~ msgstr "Таблица Applixware"
+
+#~ msgid "AutoCAD image"
+#~ msgstr "Изображение AutoCAD"
+
+#~ msgid "BCPIO document"
+#~ msgstr "Документ BCPIO"
+
+#~ msgid "BDF font"
+#~ msgstr "Шрифт BDF"
+
+#~ msgid "C shell script"
+#~ msgstr "Скрипт С-оболочки"
+
+#~ msgid "C source code"
+#~ msgstr "Исходный код C"
+
+#, fuzzy
+#~ msgid "C source code header"
+#~ msgstr "Исходный код C"
+
+#~ msgid "C++ source code"
+#~ msgstr "Исходный код C++"
+
+#~ msgid "CGI program"
+#~ msgstr "Программа CGI"
+
+#~ msgid "CGM image"
+#~ msgstr "Изображение CGM"
+
+#~ msgid "CMU raster image"
+#~ msgstr "Растровое изображение CMU"
+
+#~ msgid "CPIO archive"
+#~ msgstr "Архив CPIO"
+
+#~ msgid "CPIO archive (gzip-compressed)"
+#~ msgstr "Архив CPIO (сжатый gzip)"
+
+#~ msgid "DCL script"
+#~ msgstr "Скрипт DSL"
+
+#~ msgid "DOS font"
+#~ msgstr "Шрифт DOS"
+
+#~ msgid "DOS/Windows program"
+#~ msgstr "Программа DOS/Windows"
+
+#~ msgid "DSSSL document"
+#~ msgstr "Документ DSSSL"
+
+#~ msgid "DXF vector graphic"
+#~ msgstr "Векторная графика DXF"
+
+#~ msgid "Debian package"
+#~ msgstr "Пакет Debian"
+
+#~ msgid "Dia diagram"
+#~ msgstr "Диаграмма Dia"
+
+#~ msgid "Dolby Digital audio"
+#~ msgstr "Цифровой звук Dolby Digital"
+
+#~ msgid "Emacs Lisp source code"
+#~ msgstr "Исходный код Emacs Lisp"
+
+#~ msgid "Enlightenment theme"
+#~ msgstr "Тема для Enlightenment"
+
+#~ msgid "FLC animation"
+#~ msgstr "Анимация FLC"
+
+#~ msgid "FLI animation"
+#~ msgstr "Анимация FLI"
+
+#~ msgid "FastTracker II audio"
+#~ msgstr "Звук FastTracker II"
+
+#~ msgid "Fortran source code"
+#~ msgstr "Исходный текст Fortran"
+
+#~ msgid "FrameMaker interchange document"
+#~ msgstr "Документ обмена для FrameMaker"
+
+#~ msgid "G3 fax image"
+#~ msgstr "Факсовое изображение G3"
+
+#~ msgid "GIF image"
+#~ msgstr "Изображение GIF"
+
+#~ msgid "GIMP document"
+#~ msgstr "Документ GIMP"
+
+#~ msgid "GMC link"
+#~ msgstr "Ссылка GMC"
+
+#~ msgid "GNOME application details"
+#~ msgstr "Сведения о приложении GNOME"
+
+#~ msgid "GNU Oleo Spreadsheet"
+#~ msgstr "Таблица GNU Oleo"
+
+#~ msgid "GNU mail message"
+#~ msgstr "Почтовое сообщение GNU mail"
+
+#~ msgid "GTK configuration"
+#~ msgstr "Настройка GTK"
+
+#~ msgid "Glade project"
+#~ msgstr "Проект Glade"
+
+#~ msgid "GnuCash Workbook"
+#~ msgstr "Рабочая книга GnuCash"
+
+#~ msgid "Gnumeric spreadsheet"
+#~ msgstr "Таблица Gnumeric"
+
+#~ msgid "HDF document"
+#~ msgstr "Документ HDF"
+
+#~ msgid "HTML page"
+#~ msgstr "Страница HTML"
+
+#~ msgid "IDL document"
+#~ msgstr "Документ IDL"
+
+#~ msgid "IEF image"
+#~ msgstr "Изображение IEF"
+
+#~ msgid "IFF image"
+#~ msgstr "Изображение IFF"
+
+#~ msgid "ILBM image"
+#~ msgstr "Изображение ILBM"
+
+#~ msgid "ISI video"
+#~ msgstr "Видео ISI"
+
+#~ msgid "Impulse Tracker audio"
+#~ msgstr "Звук Impulse Tracker"
+
+#~ msgid "JBuilder Project"
+#~ msgstr "Проект JBuilder"
+
+#~ msgid "JPEG image"
+#~ msgstr "Изображение JPEG"
+
+#~ msgid "Java byte code"
+#~ msgstr "Байт-код Java"
+
+#~ msgid "Java source code"
+#~ msgstr "Исходный текст Java"
+
+#~ msgid "KDE application details"
+#~ msgstr "Сведения о приложении KDE"
+
+#~ msgid "KIllustrator document"
+#~ msgstr "Документ KIllustrator"
+
+#~ msgid "KPresenter presentation"
+#~ msgstr "Презентация KPresenter"
+
+#~ msgid "KSpread spreadsheet"
+#~ msgstr "Таблица KSpread"
+
+#~ msgid "KWord document"
+#~ msgstr "Документ KWord"
+
+#~ msgid "Korn shell script"
+#~ msgstr "Скрипт оболочки Korn"
+
+#~ msgid "LHA archive"
+#~ msgstr "Архив LHA"
+
+#~ msgid "LHARC archive"
+#~ msgstr "Архив LHARC"
+
+#~ msgid "LIBGRX font"
+#~ msgstr "Шрифт LIBGRX"
+
+#~ msgid "LightWave object"
+#~ msgstr "Объект LightWave"
+
+#~ msgid "LightWave scene"
+#~ msgstr "Сцена LightWave"
+
+#~ msgid "Linux PSF console font"
+#~ msgstr "Консольный шрифт Linux PSF"
+
+#~ msgid "Lotus 1-2-3 spreadsheet"
+#~ msgstr "Таблица Lotus 1-2-3"
+
+#~ msgid "MIDI audio"
+#~ msgstr "Звук MIDI"
+
+#~ msgid "MOD audio"
+#~ msgstr "Звук MOD"
+
+#~ msgid "MP3 audio"
+#~ msgstr "Звук MP3"
+
+#~ msgid "MP3 audio playlist"
+#~ msgstr "Список звуков MP3"
+
+#~ msgid "MPEG video"
+#~ msgstr "Видео MPEG"
+
+#~ msgid "MS ASF video"
+#~ msgstr "Видео MS ASF"
+
+#~ msgid "MS video"
+#~ msgstr "Видео MS"
+
+#~ msgid "Macintosh AppleDouble-encoded file"
+#~ msgstr "Файл Macintosh кодированный AppleDouble"
+
+#~ msgid "Macintosh BinHex-encoded file"
+#~ msgstr "Файл Macintosh кодированный BinHex"
+
+#~ msgid "Macintosh StuffIt archive"
+#~ msgstr "Архив Macintosh StuffIt"
+
+#~ msgid "Macromedia Flash file"
+#~ msgstr "Файл Macromedia Flash"
+
+#~ msgid "MathML document"
+#~ msgstr "Документ MathML"
+
+#~ msgid "Microsoft Excel spreadsheet"
+#~ msgstr "Таблица Microsoft Excel"
+
+#~ msgid "Microsoft PowerPoint document"
+#~ msgstr "Документ Microsoft PowerPoint"
+
+#~ msgid "Microsoft Word document"
+#~ msgstr "Документ Microsoft Word"
+
+#~ msgid "Microsoft video"
+#~ msgstr "Видео Microsoft"
+
+#~ msgid "Nautilus link"
+#~ msgstr "Ссылка Nautilus"
+
+#~ msgid "ODA document"
+#~ msgstr "Документ ODA"
+
+#~ msgid "PBM image"
+#~ msgstr "Изображение PBM"
+
+#~ msgid "PCF font"
+#~ msgstr "Шрифт PCF"
+
+#~ msgid "PDF document"
+#~ msgstr "Документ PDF"
+
+#~ msgid "PEF program"
+#~ msgstr "Программа PEF"
+
+#~ msgid "PGM image"
+#~ msgstr "Изображение PGM"
+
+#~ msgid "PGN chess game"
+#~ msgstr "Шахматный матч PGN"
+
+#~ msgid "PGP keys"
+#~ msgstr "Ключи PGP"
+
+#~ msgid "PGP message"
+#~ msgstr "Сообщение PGP"
+
+#~ msgid "PGP signature"
+#~ msgstr "Подпись PGP"
+
+#~ msgid "PGP-encrypted file"
+#~ msgstr "Файл закодированный PGP"
+
+#~ msgid "PHP script"
+#~ msgstr "Скрипт PHP"
+
+#~ msgid "PN RealAudio document"
+#~ msgstr "Документ PN RealAudio"
+
+#~ msgid "PNG image"
+#~ msgstr "Изображение PNG"
+
+#~ msgid "PNM image"
+#~ msgstr "Изображение PNM"
+
+#~ msgid "PPM image"
+#~ msgstr "Изображение PPM"
+
+#~ msgid "Palm OS database"
+#~ msgstr "База данных Palm OS"
+
+#~ msgid "Perl script"
+#~ msgstr "Скрипт Perl"
+
+#~ msgid "Photoshop document"
+#~ msgstr "Документ Photoshop"
+
+#~ msgid "PostScript Type 1 font"
+#~ msgstr "Шрифт PostScript Type 1"
+
+#~ msgid "PostScript document"
+#~ msgstr "Документ PostScript"
+
+#~ msgid "Python source code"
+#~ msgstr "Исходный код Python"
+
+#~ msgid "QuickTime movie"
+#~ msgstr "Фильм QuickTime"
+
+#~ msgid "Quicken document"
+#~ msgstr "Документ Quicken"
+
+#~ msgid "Quicken for Windows document"
+#~ msgstr "Документ Quicken for Windows"
+
+#~ msgid "RAR archive"
+#~ msgstr "Архив RAR"
+
+#~ msgid "README document"
+#~ msgstr "Документ README"
+
+#~ msgid "RGB image"
+#~ msgstr "Изображение RGB"
+
+#~ msgid "RIFF audio"
+#~ msgstr "Звук RIFF"
+
+#~ msgid "RPM package"
+#~ msgstr "Пакет RPM"
+
+#~ msgid "RealAudio/Video document"
+#~ msgstr "Документ RealAudio/Video"
+
+#~ msgid "RealVideo video"
+#~ msgstr "Видео RealVideo"
+
+#~ msgid "S/MIME file"
+#~ msgstr "Файл S/MIME"
+
+#~ msgid "S/MIME signature"
+#~ msgstr "Подпись S/MIME"
+
+#~ msgid "SGI video"
+#~ msgstr "Видео SGI"
+
+#~ msgid "SGML document"
+#~ msgstr "Документ SGML"
+
+#~ msgid "SMIL script"
+#~ msgstr "Скрипт SMIL"
+
+#~ msgid "SQL code"
+#~ msgstr "Код SQL"
+
+#~ msgid "SV4 CPIO archive"
+#~ msgstr "Архив SV4 CPIO"
+
+#~ msgid "Scheme source code"
+#~ msgstr "Исходный код Scheme"
+
+#~ msgid "Scream Tracker 3 audio"
+#~ msgstr "Звук Scream Tracker 3"
+
+#~ msgid "Scream Tracker audio"
+#~ msgstr "Звук Scream Tracker"
+
+#~ msgid "Scream Tracker instrument"
+#~ msgstr "Инструмент Scream Tracker"
+
+#~ msgid "Setext document"
+#~ msgstr "Документ Setext"
+
+#~ msgid "Speech document"
+#~ msgstr "Документ Speech"
+
+#~ msgid "Speedo font"
+#~ msgstr "Шрифт Speedo"
+
+#~ msgid "Spreadsheet Interchange document"
+#~ msgstr "Документ Spreadsheet Interchange"
+
+#~ msgid "Stampede package"
+#~ msgstr "Пакет Stampede"
+
+#~ msgid "StarOffice Writer document"
+#~ msgstr "Документ StarOffice Writer"
+
+#~ msgid "StarOffice presentation"
+#~ msgstr "Презентация StarOffice"
+
+#~ msgid "StarOffice spreadsheet"
+#~ msgstr "Таблица StarOffice"
+
+#~ msgid "Sun mu-law audio"
+#~ msgstr "Звук Sun mu-law"
+
+#~ msgid "SunOS News font"
+#~ msgstr "Шрифт SunOS News"
+
+#~ msgid "TIFF image"
+#~ msgstr "Изображение TIFF"
+
+#~ msgid "TarGA image"
+#~ msgstr "Изображение TarGA"
+
+#~ msgid "Tcl script"
+#~ msgstr "Скрипт Tcl"
+
+#~ msgid "TeX document"
+#~ msgstr "Документ TeX"
+
+#~ msgid "TeX dvi document"
+#~ msgstr "Документ TeX dvi"
+
+#~ msgid "TeX font"
+#~ msgstr "Шрифт TeX"
+
+#~ msgid "TeX font metrics"
+#~ msgstr "Метрики шрифта TeX"
+
+#~ msgid "TeXInfo document"
+#~ msgstr "Документ TeXInfo"
+
+#~ msgid "ToutDoux document"
+#~ msgstr "Документ ToutDoux"
+
+#~ msgid "TrueType font"
+#~ msgstr "Шрифт TrueType"
+
+#~ msgid "USENET news message"
+#~ msgstr "Сообщение новостей USENET"
+
+#~ msgid "Unidata netCDF document"
+#~ msgstr "Документ Unidata netCDF"
+
+#~ msgid "V font"
+#~ msgstr "Шрифт V font"
+
+#~ msgid "VOC audio"
+#~ msgstr "Звук VOC"
+
+#~ msgid "VRML document"
+#~ msgstr "Документ VRML"
+
+#~ msgid "Vivo video"
+#~ msgstr "Видео Vivo"
+
+#~ msgid "WAIS source code"
+#~ msgstr "Исходный код WAIS"
+
+#~ msgid "Wavelet video"
+#~ msgstr "Видео Wavelet"
+
+#~ msgid "Windows bitmap image"
+#~ msgstr "Изображение Windows bitmap"
+
+#~ msgid "Windows icon image"
+#~ msgstr "Изображение пиктограммы Windows"
+
+#~ msgid "Windows metafile graphics"
+#~ msgstr "Графика Windows metafile"
+
+#~ msgid "WordPerfect document"
+#~ msgstr "Документ WordPerfect"
+
+#~ msgid "X bitmap image"
+#~ msgstr "Изображение X bitmap"
+
+#~ msgid "X window image"
+#~ msgstr "Изображение X window"
+
+#~ msgid "XML document"
+#~ msgstr "Документ XML"
+
+#~ msgid "XPM image"
+#~ msgstr "Изображение XPM"
+
+#~ msgid "Xbase database"
+#~ msgstr "База данных Xbase"
+
+#~ msgid "ar archive"
+#~ msgstr "архив ar"
+
+#~ msgid "arj archive"
+#~ msgstr "архив arj"
+
+#~ msgid "authors list"
+#~ msgstr "список авторов"
+
+#~ msgid "backup file"
+#~ msgstr "резервный файл"
+
+#~ msgid "bibliography record"
+#~ msgstr "библиографическая запись"
+
+#~ msgid "binary program"
+#~ msgstr "двоичная программа"
+
+#~ msgid "block device"
+#~ msgstr "блочное устройство"
+
+#~ msgid "bzip-compressed file"
+#~ msgstr "файл сжатый bzip"
+
+#~ msgid "calendar file"
+#~ msgstr "файл календаря"
+
+#~ msgid "character device"
+#~ msgstr "символьное устройство"
+
+#~ msgid "comma-separated text document"
+#~ msgstr "документ с текстовыми полями разделёнными запятыми"
+
+#~ msgid "compress-compressed file"
+#~ msgstr "файл сжатый compress"
+
+#~ msgid "compressed GIMP document"
+#~ msgstr "сжатый документ GIMP"
+
+#~ msgid "directory information file"
+#~ msgstr "файл информации о каталоге"
+
+#~ msgid "email headers"
+#~ msgstr "заголовок эл.письма"
+
+#~ msgid "email message"
+#~ msgstr "эл.письмо"
+
+#~ msgid "encrypted message"
+#~ msgstr "зашифрованное сообщение"
+
+#~ msgid "folder"
+#~ msgstr "папка"
+
+#~ msgid "gtar archive"
+#~ msgstr "архив gtar"
+
+#~ msgid "gzip-compressed file"
+#~ msgstr "файл сжатый gzip"
+
+#~ msgid "object code"
+#~ msgstr "объектный код"
+
+#~ msgid "ogg audio"
+#~ msgstr "звук ogg"
+
+#~ msgid "plain text document"
+#~ msgstr "текстовый документ"
+
+#~ msgid "reference to remote file"
+#~ msgstr "ссылка на удалённый файл"
+
+#~ msgid "rejected patch file"
+#~ msgstr "отброшенный файл заплатки"
+
+#~ msgid "search results"
+#~ msgstr "результаты поиска"
+
+#~ msgid "shared library"
+#~ msgstr "разделяемая библиотека"
+
+#~ msgid "shell archive"
+#~ msgstr "архив оболочки"
+
+#~ msgid "shell script"
+#~ msgstr "Скрипт оболочки"
+
+#~ msgid "signed message"
+#~ msgstr "подписанное сообщение"
+
+#~ msgid "socket"
+#~ msgstr "сокет"
+
+#~ msgid "software installation instructions"
+#~ msgstr "инструкции по установке программы"
+
+#~ msgid "source code patch"
+#~ msgstr "заплатка к исходному коду"
+
+#~ msgid "style sheet"
+#~ msgstr "таблица стилей"
+
+#~ msgid "symbolic link"
+#~ msgstr "символическая ссылка"
+
+#~ msgid "tab-separated text document"
+#~ msgstr "текстовый документ с полями разделёнными табуляцией"
+
+#~ msgid "tar archive"
+#~ msgstr "архив tar"
+
+#~ msgid "tar archive (bzip2-compressed)"
+#~ msgstr "архив tar (сжатый bzip)"
+
+#~ msgid "tar archive (gzip-compressed)"
+#~ msgstr "архив tar (сжатый gzip)"
+
+#~ msgid "theme"
+#~ msgstr "тема"
+
+#~ msgid "troff document"
+#~ msgstr "документ troff"
+
+#~ msgid "unknown type"
+#~ msgstr "неизвестный тип"
+
+#~ msgid "ustar archive"
+#~ msgstr "архив ustar"
+
+#~ msgid "wave audio"
+#~ msgstr "звук wave"
+
+#~ msgid "xfig vector graphic"
+#~ msgstr "векторная графика xfig"
+
+#~ msgid "zip archive"
+#~ msgstr "архив zip"
+
+#~ msgid "zoo archive"
+#~ msgstr "архив zoo"

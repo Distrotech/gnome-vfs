@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.1.0\n"
-"POT-Creation-Date: 2001-11-01 16:52-0800\n"
+"POT-Creation-Date: 2001-11-02 11:25-0800\n"
 "PO-Revision-Date: 2001-10-03 19:04GMT +0200\n"
 "Last-Translator: Vasif İsmayıloğlu MD <azerb_linux@hotmail.com>\n"
 "Language-Team: Azerbaijani Turkish <linuxaz@azerimal.net>\n"
@@ -13,1008 +13,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.8\n"
-
-#: data/mime/gnome-vfs.keys.in.h:1
-msgid "3D Studio image"
-msgstr "3D Studio Rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:2
-msgid "AIFC audio"
-msgstr "AIFC audio"
-
-#: data/mime/gnome-vfs.keys.in.h:3
-msgid "AIFF audio"
-msgstr "AIFF audio"
-
-#: data/mime/gnome-vfs.keys.in.h:4
-msgid "ANIM animation"
-msgstr "ANIM animasiya"
-
-#: data/mime/gnome-vfs.keys.in.h:5
-msgid "AVI video"
-msgstr "AVI video"
-
-#: data/mime/gnome-vfs.keys.in.h:6
-msgid "AbiWord document"
-msgstr "AbiWord sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:7
-msgid "Adobe FrameMaker font"
-msgstr "Adobe FrameMaker yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:8
-msgid "Adobe font metrics"
-msgstr "Adobe font metrics"
-
-#: data/mime/gnome-vfs.keys.in.h:9
-msgid "Andrew Toolkit inset"
-msgstr "Andrew Toolkit inset"
-
-#: data/mime/gnome-vfs.keys.in.h:10
-msgid "ApplixWare Graphics image"
-msgstr "ApplixWare Graphics rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:11
-msgid "Applixware Words document"
-msgstr "Applixware Words sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:12
-msgid "Applixware spreadsheet"
-msgstr "Applixware hesab cədvəlləri"
-
-#: data/mime/gnome-vfs.keys.in.h:13
-msgid "AutoCAD image"
-msgstr "AutoCAD rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:14
-msgid "BCPIO document"
-msgstr "BCPIO sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:15
-msgid "BDF font"
-msgstr "BDF yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:16
-msgid "C shell script"
-msgstr "C qabıq skripti"
-
-#: data/mime/gnome-vfs.keys.in.h:17
-msgid "C source code"
-msgstr "C qaynaq kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:18
-#, fuzzy
-msgid "C source code header"
-msgstr "C qaynaq kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:19
-msgid "C++ source code"
-msgstr "C++ qaynaq kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:20
-msgid "CGI program"
-msgstr "SGI proqramı"
-
-#: data/mime/gnome-vfs.keys.in.h:21
-msgid "CGM image"
-msgstr "CGM rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:22
-msgid "CMU raster image"
-msgstr "CMU raster rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:23
-msgid "CPIO archive"
-msgstr "CPIO arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:24
-msgid "CPIO archive (gzip-compressed)"
-msgstr "CPIO arxivi (gzip ilə sıxışdırılmış)"
-
-#: data/mime/gnome-vfs.keys.in.h:25
-msgid "DCL script"
-msgstr "DCL skripti"
-
-#: data/mime/gnome-vfs.keys.in.h:26
-msgid "DOS font"
-msgstr "DOS yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:27
-msgid "DOS/Windows program"
-msgstr "DOS/Windows proqramı"
-
-#: data/mime/gnome-vfs.keys.in.h:28
-msgid "DSSSL document"
-msgstr "DSSSL sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:29
-msgid "DXF vector graphic"
-msgstr "DXF vektor qrafikaları"
-
-#: data/mime/gnome-vfs.keys.in.h:30
-msgid "Debian package"
-msgstr "Debian paketi"
-
-#: data/mime/gnome-vfs.keys.in.h:31
-msgid "Dia diagram"
-msgstr "Dia diaqramı"
-
-#: data/mime/gnome-vfs.keys.in.h:32
-msgid "Dolby Digital audio"
-msgstr "Dolby Digital Audio"
-
-#: data/mime/gnome-vfs.keys.in.h:33
-msgid "Emacs Lisp source code"
-msgstr "Emacs Lisp qaynaq kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:34
-msgid "Enlightenment theme"
-msgstr "Enlightment örtüsü"
-
-#: data/mime/gnome-vfs.keys.in.h:35
-msgid "FLC animation"
-msgstr "FLC animasiyası"
-
-#: data/mime/gnome-vfs.keys.in.h:36
-msgid "FLI animation"
-msgstr "FLI animasiyası"
-
-#: data/mime/gnome-vfs.keys.in.h:37
-msgid "FastTracker II audio"
-msgstr "FastTracker II audio"
-
-#: data/mime/gnome-vfs.keys.in.h:38
-msgid "Fortran source code"
-msgstr "Fortran qaynaq kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:39
-msgid "FrameMaker interchange document"
-msgstr "FrameMaker mübadilə sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:40
-msgid "G3 fax image"
-msgstr "G3 faks rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:41
-msgid "GIF image"
-msgstr "GIF rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:42
-msgid "GIMP document"
-msgstr "GIMP sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:43
-msgid "GMC link"
-msgstr "GMC bağı"
-
-#: data/mime/gnome-vfs.keys.in.h:44
-msgid "GNOME application details"
-msgstr "GNOME proqramları detalları"
-
-#: data/mime/gnome-vfs.keys.in.h:45
-msgid "GNU Oleo Spreadsheet"
-msgstr "GNU Oleo Hesab Cədvəli"
-
-#: data/mime/gnome-vfs.keys.in.h:46
-msgid "GNU mail message"
-msgstr "GNU elektronik məktub ismarıcı"
-
-#: data/mime/gnome-vfs.keys.in.h:47
-msgid "GTK configuration"
-msgstr "GTK qurğuları"
-
-#: data/mime/gnome-vfs.keys.in.h:48
-msgid "Glade project"
-msgstr "Gleyd lahiyəsi"
-
-#: data/mime/gnome-vfs.keys.in.h:49
-msgid "GnuCash Workbook"
-msgstr "GnuKeş İş Kitabı"
-
-#: data/mime/gnome-vfs.keys.in.h:50
-msgid "Gnumeric spreadsheet"
-msgstr "Gnomeric hesab cədvəli"
-
-#: data/mime/gnome-vfs.keys.in.h:51
-msgid "HDF document"
-msgstr "HDF sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:52
-msgid "HTML page"
-msgstr "HTMl səhifəsi"
-
-#: data/mime/gnome-vfs.keys.in.h:53
-msgid "IDL document"
-msgstr "IDL sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:54
-msgid "IEF image"
-msgstr "IEF rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:55
-msgid "IFF image"
-msgstr "IFF rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:56
-msgid "ILBM image"
-msgstr "ILBM rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:57
-msgid "ISI video"
-msgstr "ISI video"
-
-#: data/mime/gnome-vfs.keys.in.h:58
-msgid "Impulse Tracker audio"
-msgstr "Impulse Tracker audio"
-
-#: data/mime/gnome-vfs.keys.in.h:59
-msgid "JBuilder Project"
-msgstr "JBilder Lahiyəsi"
-
-#: data/mime/gnome-vfs.keys.in.h:60
-msgid "JPEG image"
-msgstr "JPEG rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:61
-msgid "Java byte code"
-msgstr "Java bayt kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:62
-msgid "Java source code"
-msgstr "Java qaynaq kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:63
-msgid "KDE application details"
-msgstr "KDE proqramları detalları"
-
-#: data/mime/gnome-vfs.keys.in.h:64
-msgid "KIllustrator document"
-msgstr "Killustrator sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:65
-msgid "KPresenter presentation"
-msgstr "KPresenter nümayişi"
-
-#: data/mime/gnome-vfs.keys.in.h:66
-msgid "KSpread spreadsheet"
-msgstr "KSpread hesab cədvəlləri"
-
-#: data/mime/gnome-vfs.keys.in.h:67
-msgid "KWord document"
-msgstr "KWord sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:68
-msgid "Korn shell script"
-msgstr "Korn qabıq skripti"
-
-#: data/mime/gnome-vfs.keys.in.h:69
-msgid "LHA archive"
-msgstr "LHA arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:70
-msgid "LHARC archive"
-msgstr "LHARC arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:71
-msgid "LIBGRX font"
-msgstr "LIBGRX yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:72
-msgid "LightWave object"
-msgstr "LightWave cismi"
-
-#: data/mime/gnome-vfs.keys.in.h:73
-msgid "LightWave scene"
-msgstr "LightWave səhnəsi"
-
-#: data/mime/gnome-vfs.keys.in.h:74
-msgid "Linux PSF console font"
-msgstr "Linux RSF konsol yazı növləri"
-
-#: data/mime/gnome-vfs.keys.in.h:75
-msgid "Lotus 1-2-3 spreadsheet"
-msgstr "Lotus 1-2-3 hesab cədvəli"
-
-#: data/mime/gnome-vfs.keys.in.h:76
-msgid "M3 audio URL"
-msgstr "M3 audio URL"
-
-#: data/mime/gnome-vfs.keys.in.h:77
-msgid "MIDI audio"
-msgstr "MIDI audio"
-
-#: data/mime/gnome-vfs.keys.in.h:78
-msgid "MOD audio"
-msgstr "MOD audio"
-
-#: data/mime/gnome-vfs.keys.in.h:79
-msgid "MP3 audio"
-msgstr "MP3 audio"
-
-#: data/mime/gnome-vfs.keys.in.h:80
-msgid "MP3 audio playlist"
-msgstr "MP3 audio çalğı siyahısı"
-
-#: data/mime/gnome-vfs.keys.in.h:81
-msgid "MPEG video"
-msgstr "MPEG video"
-
-#: data/mime/gnome-vfs.keys.in.h:82
-msgid "MS ASF video"
-msgstr "MS ASF video"
-
-#: data/mime/gnome-vfs.keys.in.h:83
-msgid "MS video"
-msgstr "MS video"
-
-#: data/mime/gnome-vfs.keys.in.h:84
-msgid "Macintosh AppleDouble-encoded file"
-msgstr "Macintosh AppleDouble-encoded faylı"
-
-#: data/mime/gnome-vfs.keys.in.h:85
-msgid "Macintosh BinHex-encoded file"
-msgstr "Macintosh BinHx-encoded faylı"
-
-#: data/mime/gnome-vfs.keys.in.h:86
-msgid "Macintosh StuffIt archive"
-msgstr "Macintosh Stufflt arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:87
-msgid "Macromedia Flash file"
-msgstr "Macromedia Flash faylı"
-
-#: data/mime/gnome-vfs.keys.in.h:88
-msgid "MathML document"
-msgstr "MathML sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:89
-msgid "Microsoft Excel spreadsheet"
-msgstr "Microsoft Excel hesab cədvəli"
-
-#: data/mime/gnome-vfs.keys.in.h:90
-msgid "Microsoft PowerPoint document"
-msgstr "Micrpspft PowerPoint sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:91
-msgid "Microsoft Word document"
-msgstr "Microsoft Word sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:92
-msgid "Microsoft video"
-msgstr "Microsoft video"
-
-#: data/mime/gnome-vfs.keys.in.h:93
-msgid "Nautilus link"
-msgstr "Nautilus bağı"
-
-#: data/mime/gnome-vfs.keys.in.h:94
-msgid "ODA document"
-msgstr "ODA sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:95
-msgid "PBM image"
-msgstr "PBM rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:96
-msgid "PCF font"
-msgstr "PCF yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:97
-msgid "PDF document"
-msgstr "PDF sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:98
-msgid "PEF program"
-msgstr "PEF proqramı"
-
-#: data/mime/gnome-vfs.keys.in.h:99
-msgid "PGM image"
-msgstr "PGM rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:100
-msgid "PGN chess game"
-msgstr "PGN şahmat oyunu"
-
-#: data/mime/gnome-vfs.keys.in.h:101
-msgid "PGP keys"
-msgstr "PGP açarları"
-
-#: data/mime/gnome-vfs.keys.in.h:102
-msgid "PGP message"
-msgstr "PGP ismarıcı"
-
-#: data/mime/gnome-vfs.keys.in.h:103
-msgid "PGP signature"
-msgstr "PGP imzası"
-
-#: data/mime/gnome-vfs.keys.in.h:104
-msgid "PGP-encrypted file"
-msgstr "PGP ile kodlanmış fayl"
-
-#: data/mime/gnome-vfs.keys.in.h:105
-msgid "PHP script"
-msgstr "PHP skripti"
-
-#: data/mime/gnome-vfs.keys.in.h:106
-msgid "PN RealAudio document"
-msgstr "PN RealAudio sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:107
-msgid "PNG image"
-msgstr "PNG rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:108
-msgid "PNM image"
-msgstr "PNM rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:109
-msgid "PPM image"
-msgstr "PPM rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:110
-msgid "Palm OS database"
-msgstr "Palm OS databeyzi"
-
-#: data/mime/gnome-vfs.keys.in.h:111
-msgid "Perl script"
-msgstr "Perl skripti"
-
-#: data/mime/gnome-vfs.keys.in.h:112
-msgid "Photoshop document"
-msgstr "Photoshop sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:113
-msgid "PostScript Type 1 font"
-msgstr "PostScript Type 1 yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:114
-msgid "PostScript document"
-msgstr "PostScript sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:115
-msgid "Python source code"
-msgstr "Phyton qaynaq kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:116
-msgid "QuickTime movie"
-msgstr "QuickTime filmi"
-
-#: data/mime/gnome-vfs.keys.in.h:117
-msgid "Quicken document"
-msgstr "Quicken sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:118
-msgid "Quicken for Windows document"
-msgstr "Windows üçün Quicken sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:119
-msgid "RAR archive"
-msgstr "RAR arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:120
-msgid "README document"
-msgstr "README sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:121
-msgid "RGB image"
-msgstr "RGB rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:122
-msgid "RIFF audio"
-msgstr "RIFF audio"
-
-#: data/mime/gnome-vfs.keys.in.h:123
-msgid "RPM package"
-msgstr "paketi"
-
-#: data/mime/gnome-vfs.keys.in.h:124
-msgid "RealAudio/Video document"
-msgstr "RealAudio/Video sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:125
-msgid "RealVideo video"
-msgstr "RealVideo video"
-
-#: data/mime/gnome-vfs.keys.in.h:126
-msgid "S/MIME file"
-msgstr "S/MIME faylı"
-
-#: data/mime/gnome-vfs.keys.in.h:127
-msgid "S/MIME signature"
-msgstr "S/MIME imzası"
-
-#: data/mime/gnome-vfs.keys.in.h:128
-msgid "SGI video"
-msgstr "SGI video"
-
-#: data/mime/gnome-vfs.keys.in.h:129
-msgid "SGML document"
-msgstr "SGML sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:130
-msgid "SMIL script"
-msgstr "SMIL skripti"
-
-#: data/mime/gnome-vfs.keys.in.h:131
-msgid "SQL code"
-msgstr "SQL kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:132
-msgid "SV4 CPIO archive"
-msgstr "SV4 CPIO arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:133
-msgid "SV4 CPIP archive (with CRC)"
-msgstr "SV4 CPIP arxivi (CRC ilə bərabər)"
-
-#: data/mime/gnome-vfs.keys.in.h:134
-msgid "SVG art"
-msgstr "SVG art"
-
-#: data/mime/gnome-vfs.keys.in.h:135
-msgid "Scheme source code"
-msgstr "Scheme qaynaq kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:136
-msgid "Scream Tracker 3 audio"
-msgstr "Scream Tracker 3 audio"
-
-#: data/mime/gnome-vfs.keys.in.h:137
-msgid "Scream Tracker audio"
-msgstr "Scream Tracker audio"
-
-#: data/mime/gnome-vfs.keys.in.h:138
-msgid "Scream Tracker instrument"
-msgstr "Scream Tracker aləti"
-
-#: data/mime/gnome-vfs.keys.in.h:139
-msgid "Setext document"
-msgstr "Setext sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:140
-msgid "Speech document"
-msgstr "Speech sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:141
-msgid "Speedo font"
-msgstr "Speedo yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:142
-msgid "Spreadsheet Interchange document"
-msgstr "Spreadsheet Interchange sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:143
-msgid "Stampede package"
-msgstr "Stampede paketi"
-
-#: data/mime/gnome-vfs.keys.in.h:144
-msgid "StarOffice Writer document"
-msgstr "StarOffice Writer sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:145
-msgid "StarOffice presentation"
-msgstr "StarOffice nümayişi"
-
-#: data/mime/gnome-vfs.keys.in.h:146
-msgid "StarOffice spreadsheet"
-msgstr "StarOffice hesab cədvəli"
-
-# The sources use a hardcoded latin1 char for mu :-(
-#: data/mime/gnome-vfs.keys.in.h:147
-msgid "Sun mu-law audio"
-msgstr "Sun µ-law audio"
-
-#: data/mime/gnome-vfs.keys.in.h:148
-msgid "SunOS News font"
-msgstr "SunOS News yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:149
-msgid "TIFF image"
-msgstr "TIFF rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:150
-msgid "TarGA image"
-msgstr "TarGA rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:151
-msgid "Tcl script"
-msgstr "Tcl skripti"
-
-#: data/mime/gnome-vfs.keys.in.h:152
-msgid "TeX document"
-msgstr "TeX sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:153
-msgid "TeX dvi document"
-msgstr "TeX dvi sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:154
-msgid "TeX font"
-msgstr "TeX yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:155
-msgid "TeX font metrics"
-msgstr "TeX yazı növü metrikləri"
-
-#: data/mime/gnome-vfs.keys.in.h:156
-msgid "TeXInfo document"
-msgstr "Texnfo sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:157
-msgid "ToutDoux document"
-msgstr "ToutDoux sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:158
-msgid "TrueType font"
-msgstr "TrueType yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:159
-msgid "USENET news message"
-msgstr "USENET xəbər ismarıcı"
-
-#: data/mime/gnome-vfs.keys.in.h:160
-msgid "Unidata netCDF document"
-msgstr "Unidata netCDF sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:161
-msgid "V font"
-msgstr "V yazı növü"
-
-#: data/mime/gnome-vfs.keys.in.h:162
-msgid "VOC audio"
-msgstr "VOC audio"
-
-#: data/mime/gnome-vfs.keys.in.h:163
-msgid "VRML document"
-msgstr "VRML sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:164
-msgid "Vivo video"
-msgstr "Vivo video"
-
-#: data/mime/gnome-vfs.keys.in.h:165
-msgid "WAIS source code"
-msgstr "WAIS qaynaq kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:166
-msgid "Wavelet video"
-msgstr "Wavelet video"
-
-#: data/mime/gnome-vfs.keys.in.h:167
-msgid "Windows bitmap image"
-msgstr "Windows bitmap rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:168
-msgid "Windows icon image"
-msgstr "Windows timsal rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:169
-msgid "Windows metafile graphics"
-msgstr "Windows metafayl qrafikası"
-
-#: data/mime/gnome-vfs.keys.in.h:170
-msgid "WordPerfect document"
-msgstr "WorldPerfect sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:171
-msgid "X bitmap image"
-msgstr "X bitmap rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:172
-msgid "X window image"
-msgstr "X window rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:173
-msgid "XML document"
-msgstr "XML sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:174
-msgid "XPM image"
-msgstr "XPM rəsmi"
-
-#: data/mime/gnome-vfs.keys.in.h:175
-msgid "Xbase database"
-msgstr "Xbase databeyzi"
-
-#: data/mime/gnome-vfs.keys.in.h:176
-msgid "active server page"
-msgstr "fəal verici səhifələri"
-
-#: data/mime/gnome-vfs.keys.in.h:177
-msgid "address card"
-msgstr "ünvan kartı"
-
-#: data/mime/gnome-vfs.keys.in.h:178
-msgid "ar archive"
-msgstr "ar arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:179
-msgid "arj archive"
-msgstr "arj arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:180
-msgid "authors list"
-msgstr "müəlliflər siyahısı"
-
-#: data/mime/gnome-vfs.keys.in.h:181
-msgid "backup file"
-msgstr "ehtiyat nüsxəsi faylı"
-
-#: data/mime/gnome-vfs.keys.in.h:182
-msgid "basic audio"
-msgstr "əsas audio"
-
-#: data/mime/gnome-vfs.keys.in.h:183
-msgid "bibliography record"
-msgstr "biblioqrafik qeyd"
-
-#: data/mime/gnome-vfs.keys.in.h:184
-msgid "binary program"
-msgstr "binar proqramı"
-
-#: data/mime/gnome-vfs.keys.in.h:185
-msgid "block device"
-msgstr "blok avadanlığı"
-
-#: data/mime/gnome-vfs.keys.in.h:186
-msgid "bzip-compressed file"
-msgstr "bzip-sıxışdırılmış fayl"
-
-#: data/mime/gnome-vfs.keys.in.h:187
-msgid "calendar file"
-msgstr "təqvim faylı"
-
-#: data/mime/gnome-vfs.keys.in.h:188
-msgid "calendar or event document"
-msgstr "təqvim və ya hadisə sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:189
-msgid "character device"
-msgstr "hərf avadanlığı"
-
-#: data/mime/gnome-vfs.keys.in.h:190
-msgid "comma-separated text document"
-msgstr "vergüllə ayrılmış mətn sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:191
-msgid "compound document"
-msgstr "kipləşdirilmiş sənəd"
-
-#: data/mime/gnome-vfs.keys.in.h:192
-msgid "compress-compressed file"
-msgstr "sıxışdır-sıxışdırılmış fayl"
-
-#: data/mime/gnome-vfs.keys.in.h:193
-msgid "compressed GIMP document"
-msgstr "sıxışdırılmış GIMP sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:194
-msgid "directory information file"
-msgstr "qovluq haqqında mə'lumat faylı"
-
-#: data/mime/gnome-vfs.keys.in.h:195
-msgid "document type definition"
-msgstr "sənəd növü izahı"
-
-#: data/mime/gnome-vfs.keys.in.h:196
-msgid "email headers"
-msgstr "ePoçt başlıqları"
-
-#: data/mime/gnome-vfs.keys.in.h:197
-msgid "email message"
-msgstr "ePoçt ismarıcları"
-
-#: data/mime/gnome-vfs.keys.in.h:198
-msgid "encrypted message"
-msgstr "kodlanmış ismarıcı"
-
-#: data/mime/gnome-vfs.keys.in.h:199
-msgid "enriched text document"
-msgstr "zənginləşdirilmiş mətn sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:200
-msgid "folder"
-msgstr "qovluq"
-
-#: data/mime/gnome-vfs.keys.in.h:201
-msgid "gtar archive"
-msgstr "gtar arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:202
-msgid "gzip-compressed file"
-msgstr "gzip-sıxışdırılmış fayl"
-
-#: data/mime/gnome-vfs.keys.in.h:203
-msgid "help page"
-msgstr "kömək səhifəsi"
-
-#: data/mime/gnome-vfs.keys.in.h:204
-msgid "mail delivery report"
-msgstr "məktub göndərmə raportu"
-
-#: data/mime/gnome-vfs.keys.in.h:205
-msgid "mail disposition report"
-msgstr "məktub dispozisiya raportu"
-
-#: data/mime/gnome-vfs.keys.in.h:206
-msgid "mail system report"
-msgstr "məktub sistem raportu"
-
-#: data/mime/gnome-vfs.keys.in.h:207
-msgid "makefile"
-msgstr "makefile"
-
-#: data/mime/gnome-vfs.keys.in.h:208
-msgid "manual page"
-msgstr "bələdçi səhifəsi"
-
-#: data/mime/gnome-vfs.keys.in.h:209
-msgid "manual page (compressed)"
-msgstr "bələdçi səhifəsi (sıxışdırılmış)"
-
-#: data/mime/gnome-vfs.keys.in.h:210
-msgid "memory dump"
-msgstr "yaddaş raportu"
-
-#: data/mime/gnome-vfs.keys.in.h:211
-msgid "message digest"
-msgstr "ismarıc gündəliyi"
-
-#: data/mime/gnome-vfs.keys.in.h:212
-msgid "message in several formats"
-msgstr "müxtəlif şəkillərdə ismarıc"
-
-#: data/mime/gnome-vfs.keys.in.h:213
-msgid "multi-part message"
-msgstr "çoxlu hissəli ismarıc"
-
-#: data/mime/gnome-vfs.keys.in.h:214
-msgid "named pipe"
-msgstr "adlandırılmış boru"
-
-#: data/mime/gnome-vfs.keys.in.h:215
-msgid "object code"
-msgstr "cism kodu"
-
-#: data/mime/gnome-vfs.keys.in.h:216
-msgid "ogg audio"
-msgstr "ogg audio"
-
-#: data/mime/gnome-vfs.keys.in.h:217
-msgid "partial email message"
-msgstr "qismi ePoçt ismarıcı"
-
-#: data/mime/gnome-vfs.keys.in.h:218
-msgid "plain text document"
-msgstr "düz mətn sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:219
-msgid "profiler results"
-msgstr "profayler nəticəsi"
-
-#: data/mime/gnome-vfs.keys.in.h:220
-msgid "reference to remote file"
-msgstr "uzaq fayla referens"
-
-#: data/mime/gnome-vfs.keys.in.h:221
-msgid "rejected patch file"
-msgstr "rədd edilmiş yamaq faylı"
-
-#: data/mime/gnome-vfs.keys.in.h:222
-msgid "rich text document"
-msgstr "zənginləşdirilmiş mətn sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:223
-msgid "search results"
-msgstr "axtarış nəticəsi"
-
-#: data/mime/gnome-vfs.keys.in.h:224
-msgid "shared library"
-msgstr "paylaşdırılmış kitabxana"
-
-#: data/mime/gnome-vfs.keys.in.h:225
-msgid "shell archive"
-msgstr "qabıq arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:226
-msgid "shell script"
-msgstr "qabıq skripti"
-
-#: data/mime/gnome-vfs.keys.in.h:227
-msgid "signed message"
-msgstr "imzalanmış ismarıc"
-
-#: data/mime/gnome-vfs.keys.in.h:228
-msgid "socket"
-msgstr "soket"
-
-#: data/mime/gnome-vfs.keys.in.h:229
-msgid "software author credits"
-msgstr "proqram müəllifləri haqqında"
-
-#: data/mime/gnome-vfs.keys.in.h:230
-msgid "software installation instructions"
-msgstr "proqram qurulma tövsiyyələri"
-
-#: data/mime/gnome-vfs.keys.in.h:231
-msgid "software license terms"
-msgstr "proqram lisenziya terminləri"
-
-#: data/mime/gnome-vfs.keys.in.h:232
-msgid "source code patch"
-msgstr "qaynaq kodu yamağı"
-
-#: data/mime/gnome-vfs.keys.in.h:233
-msgid "style sheet"
-msgstr "tərz səhifəsi"
-
-#: data/mime/gnome-vfs.keys.in.h:234
-msgid "symbolic link"
-msgstr "yumşaq bağ"
-
-#: data/mime/gnome-vfs.keys.in.h:235
-msgid "tab-separated text document"
-msgstr "tab ilə ayrılmış mətn sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:236
-msgid "tar archive"
-msgstr "tar arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:237
-msgid "tar archive (bzip2-compressed)"
-msgstr "tar arxivi (bzip2 ilə sıxışdırılmış)"
-
-#: data/mime/gnome-vfs.keys.in.h:238
-msgid "tar archive (gzip-compressed)"
-msgstr "tar arxivi (gzip ilə sıxışdırılmış)"
-
-#: data/mime/gnome-vfs.keys.in.h:239
-msgid "theme"
-msgstr "örtü"
-
-#: data/mime/gnome-vfs.keys.in.h:240
-msgid "troff document"
-msgstr "troff sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:241
-msgid "troff me input document"
-msgstr "troff me giriş sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:242
-msgid "troff mm input document"
-msgstr "troff mm giriş sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:243
-msgid "troff ms input document"
-msgstr "troff ms giriş sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:244
-msgid "unknown type"
-msgstr "namə'lum növ"
-
-#: data/mime/gnome-vfs.keys.in.h:245
-msgid "ustar archive"
-msgstr "ustar arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:246
-msgid "wave audio"
-msgstr "wave audio"
-
-#: data/mime/gnome-vfs.keys.in.h:247
-msgid "web folder"
-msgstr "web qovluğu"
-
-#: data/mime/gnome-vfs.keys.in.h:248
-msgid "xfig vector graphic"
-msgstr "sfig vektor qrafikaları"
-
-#: data/mime/gnome-vfs.keys.in.h:249
-msgid "zip archive"
-msgstr "zip arxivi"
-
-#: data/mime/gnome-vfs.keys.in.h:250
-msgid "zoo archive"
-msgstr "zoo arxivi"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
@@ -1278,23 +276,22 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:714
+#: libgnomevfs/gnome-vfs-job.c:714
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Namə'lum gedişat nömrəsi %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1005
-#: libgnomevfs-pthread/gnome-vfs-job.c:1150
+#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "%s: GIOChannel açmaq üçün bir boru yarada bilmədim "
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1596
+#: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Namə'lum vəzifə növü %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1632
+#: libgnomevfs/gnome-vfs-job.c:1632
 msgid "Operation stopped"
 msgstr "Əməliyyat dayandırıldı"
 
@@ -1302,6 +299,758 @@ msgstr "Əməliyyat dayandırıldı"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Namə'lum GnomeVFSSeekPosition %d"
+
+#~ msgid "3D Studio image"
+#~ msgstr "3D Studio Rəsmi"
+
+#~ msgid "AIFC audio"
+#~ msgstr "AIFC audio"
+
+#~ msgid "AIFF audio"
+#~ msgstr "AIFF audio"
+
+#~ msgid "ANIM animation"
+#~ msgstr "ANIM animasiya"
+
+#~ msgid "AVI video"
+#~ msgstr "AVI video"
+
+#~ msgid "AbiWord document"
+#~ msgstr "AbiWord sənədi"
+
+#~ msgid "Adobe FrameMaker font"
+#~ msgstr "Adobe FrameMaker yazı növü"
+
+#~ msgid "Adobe font metrics"
+#~ msgstr "Adobe font metrics"
+
+#~ msgid "Andrew Toolkit inset"
+#~ msgstr "Andrew Toolkit inset"
+
+#~ msgid "ApplixWare Graphics image"
+#~ msgstr "ApplixWare Graphics rəsmi"
+
+#~ msgid "Applixware Words document"
+#~ msgstr "Applixware Words sənədi"
+
+#~ msgid "Applixware spreadsheet"
+#~ msgstr "Applixware hesab cədvəlləri"
+
+#~ msgid "AutoCAD image"
+#~ msgstr "AutoCAD rəsmi"
+
+#~ msgid "BCPIO document"
+#~ msgstr "BCPIO sənədi"
+
+#~ msgid "BDF font"
+#~ msgstr "BDF yazı növü"
+
+#~ msgid "C shell script"
+#~ msgstr "C qabıq skripti"
+
+#~ msgid "C source code"
+#~ msgstr "C qaynaq kodu"
+
+#, fuzzy
+#~ msgid "C source code header"
+#~ msgstr "C qaynaq kodu"
+
+#~ msgid "C++ source code"
+#~ msgstr "C++ qaynaq kodu"
+
+#~ msgid "CGI program"
+#~ msgstr "SGI proqramı"
+
+#~ msgid "CGM image"
+#~ msgstr "CGM rəsmi"
+
+#~ msgid "CMU raster image"
+#~ msgstr "CMU raster rəsmi"
+
+#~ msgid "CPIO archive"
+#~ msgstr "CPIO arxivi"
+
+#~ msgid "CPIO archive (gzip-compressed)"
+#~ msgstr "CPIO arxivi (gzip ilə sıxışdırılmış)"
+
+#~ msgid "DCL script"
+#~ msgstr "DCL skripti"
+
+#~ msgid "DOS font"
+#~ msgstr "DOS yazı növü"
+
+#~ msgid "DOS/Windows program"
+#~ msgstr "DOS/Windows proqramı"
+
+#~ msgid "DSSSL document"
+#~ msgstr "DSSSL sənədi"
+
+#~ msgid "DXF vector graphic"
+#~ msgstr "DXF vektor qrafikaları"
+
+#~ msgid "Debian package"
+#~ msgstr "Debian paketi"
+
+#~ msgid "Dia diagram"
+#~ msgstr "Dia diaqramı"
+
+#~ msgid "Dolby Digital audio"
+#~ msgstr "Dolby Digital Audio"
+
+#~ msgid "Emacs Lisp source code"
+#~ msgstr "Emacs Lisp qaynaq kodu"
+
+#~ msgid "Enlightenment theme"
+#~ msgstr "Enlightment örtüsü"
+
+#~ msgid "FLC animation"
+#~ msgstr "FLC animasiyası"
+
+#~ msgid "FLI animation"
+#~ msgstr "FLI animasiyası"
+
+#~ msgid "FastTracker II audio"
+#~ msgstr "FastTracker II audio"
+
+#~ msgid "Fortran source code"
+#~ msgstr "Fortran qaynaq kodu"
+
+#~ msgid "FrameMaker interchange document"
+#~ msgstr "FrameMaker mübadilə sənədi"
+
+#~ msgid "G3 fax image"
+#~ msgstr "G3 faks rəsmi"
+
+#~ msgid "GIF image"
+#~ msgstr "GIF rəsmi"
+
+#~ msgid "GIMP document"
+#~ msgstr "GIMP sənədi"
+
+#~ msgid "GMC link"
+#~ msgstr "GMC bağı"
+
+#~ msgid "GNOME application details"
+#~ msgstr "GNOME proqramları detalları"
+
+#~ msgid "GNU Oleo Spreadsheet"
+#~ msgstr "GNU Oleo Hesab Cədvəli"
+
+#~ msgid "GNU mail message"
+#~ msgstr "GNU elektronik məktub ismarıcı"
+
+#~ msgid "GTK configuration"
+#~ msgstr "GTK qurğuları"
+
+#~ msgid "Glade project"
+#~ msgstr "Gleyd lahiyəsi"
+
+#~ msgid "GnuCash Workbook"
+#~ msgstr "GnuKeş İş Kitabı"
+
+#~ msgid "Gnumeric spreadsheet"
+#~ msgstr "Gnomeric hesab cədvəli"
+
+#~ msgid "HDF document"
+#~ msgstr "HDF sənədi"
+
+#~ msgid "HTML page"
+#~ msgstr "HTMl səhifəsi"
+
+#~ msgid "IDL document"
+#~ msgstr "IDL sənədi"
+
+#~ msgid "IEF image"
+#~ msgstr "IEF rəsmi"
+
+#~ msgid "IFF image"
+#~ msgstr "IFF rəsmi"
+
+#~ msgid "ILBM image"
+#~ msgstr "ILBM rəsmi"
+
+#~ msgid "ISI video"
+#~ msgstr "ISI video"
+
+#~ msgid "Impulse Tracker audio"
+#~ msgstr "Impulse Tracker audio"
+
+#~ msgid "JBuilder Project"
+#~ msgstr "JBilder Lahiyəsi"
+
+#~ msgid "JPEG image"
+#~ msgstr "JPEG rəsmi"
+
+#~ msgid "Java byte code"
+#~ msgstr "Java bayt kodu"
+
+#~ msgid "Java source code"
+#~ msgstr "Java qaynaq kodu"
+
+#~ msgid "KDE application details"
+#~ msgstr "KDE proqramları detalları"
+
+#~ msgid "KIllustrator document"
+#~ msgstr "Killustrator sənədi"
+
+#~ msgid "KPresenter presentation"
+#~ msgstr "KPresenter nümayişi"
+
+#~ msgid "KSpread spreadsheet"
+#~ msgstr "KSpread hesab cədvəlləri"
+
+#~ msgid "KWord document"
+#~ msgstr "KWord sənədi"
+
+#~ msgid "Korn shell script"
+#~ msgstr "Korn qabıq skripti"
+
+#~ msgid "LHA archive"
+#~ msgstr "LHA arxivi"
+
+#~ msgid "LHARC archive"
+#~ msgstr "LHARC arxivi"
+
+#~ msgid "LIBGRX font"
+#~ msgstr "LIBGRX yazı növü"
+
+#~ msgid "LightWave object"
+#~ msgstr "LightWave cismi"
+
+#~ msgid "LightWave scene"
+#~ msgstr "LightWave səhnəsi"
+
+#~ msgid "Linux PSF console font"
+#~ msgstr "Linux RSF konsol yazı növləri"
+
+#~ msgid "Lotus 1-2-3 spreadsheet"
+#~ msgstr "Lotus 1-2-3 hesab cədvəli"
+
+#~ msgid "M3 audio URL"
+#~ msgstr "M3 audio URL"
+
+#~ msgid "MIDI audio"
+#~ msgstr "MIDI audio"
+
+#~ msgid "MOD audio"
+#~ msgstr "MOD audio"
+
+#~ msgid "MP3 audio"
+#~ msgstr "MP3 audio"
+
+#~ msgid "MP3 audio playlist"
+#~ msgstr "MP3 audio çalğı siyahısı"
+
+#~ msgid "MPEG video"
+#~ msgstr "MPEG video"
+
+#~ msgid "MS ASF video"
+#~ msgstr "MS ASF video"
+
+#~ msgid "MS video"
+#~ msgstr "MS video"
+
+#~ msgid "Macintosh AppleDouble-encoded file"
+#~ msgstr "Macintosh AppleDouble-encoded faylı"
+
+#~ msgid "Macintosh BinHex-encoded file"
+#~ msgstr "Macintosh BinHx-encoded faylı"
+
+#~ msgid "Macintosh StuffIt archive"
+#~ msgstr "Macintosh Stufflt arxivi"
+
+#~ msgid "Macromedia Flash file"
+#~ msgstr "Macromedia Flash faylı"
+
+#~ msgid "MathML document"
+#~ msgstr "MathML sənədi"
+
+#~ msgid "Microsoft Excel spreadsheet"
+#~ msgstr "Microsoft Excel hesab cədvəli"
+
+#~ msgid "Microsoft PowerPoint document"
+#~ msgstr "Micrpspft PowerPoint sənədi"
+
+#~ msgid "Microsoft Word document"
+#~ msgstr "Microsoft Word sənədi"
+
+#~ msgid "Microsoft video"
+#~ msgstr "Microsoft video"
+
+#~ msgid "Nautilus link"
+#~ msgstr "Nautilus bağı"
+
+#~ msgid "ODA document"
+#~ msgstr "ODA sənədi"
+
+#~ msgid "PBM image"
+#~ msgstr "PBM rəsmi"
+
+#~ msgid "PCF font"
+#~ msgstr "PCF yazı növü"
+
+#~ msgid "PDF document"
+#~ msgstr "PDF sənədi"
+
+#~ msgid "PEF program"
+#~ msgstr "PEF proqramı"
+
+#~ msgid "PGM image"
+#~ msgstr "PGM rəsmi"
+
+#~ msgid "PGN chess game"
+#~ msgstr "PGN şahmat oyunu"
+
+#~ msgid "PGP keys"
+#~ msgstr "PGP açarları"
+
+#~ msgid "PGP message"
+#~ msgstr "PGP ismarıcı"
+
+#~ msgid "PGP signature"
+#~ msgstr "PGP imzası"
+
+#~ msgid "PGP-encrypted file"
+#~ msgstr "PGP ile kodlanmış fayl"
+
+#~ msgid "PHP script"
+#~ msgstr "PHP skripti"
+
+#~ msgid "PN RealAudio document"
+#~ msgstr "PN RealAudio sənədi"
+
+#~ msgid "PNG image"
+#~ msgstr "PNG rəsmi"
+
+#~ msgid "PNM image"
+#~ msgstr "PNM rəsmi"
+
+#~ msgid "PPM image"
+#~ msgstr "PPM rəsmi"
+
+#~ msgid "Palm OS database"
+#~ msgstr "Palm OS databeyzi"
+
+#~ msgid "Perl script"
+#~ msgstr "Perl skripti"
+
+#~ msgid "Photoshop document"
+#~ msgstr "Photoshop sənədi"
+
+#~ msgid "PostScript Type 1 font"
+#~ msgstr "PostScript Type 1 yazı növü"
+
+#~ msgid "PostScript document"
+#~ msgstr "PostScript sənədi"
+
+#~ msgid "Python source code"
+#~ msgstr "Phyton qaynaq kodu"
+
+#~ msgid "QuickTime movie"
+#~ msgstr "QuickTime filmi"
+
+#~ msgid "Quicken document"
+#~ msgstr "Quicken sənədi"
+
+#~ msgid "Quicken for Windows document"
+#~ msgstr "Windows üçün Quicken sənədi"
+
+#~ msgid "RAR archive"
+#~ msgstr "RAR arxivi"
+
+#~ msgid "README document"
+#~ msgstr "README sənədi"
+
+#~ msgid "RGB image"
+#~ msgstr "RGB rəsmi"
+
+#~ msgid "RIFF audio"
+#~ msgstr "RIFF audio"
+
+#~ msgid "RPM package"
+#~ msgstr "paketi"
+
+#~ msgid "RealAudio/Video document"
+#~ msgstr "RealAudio/Video sənədi"
+
+#~ msgid "RealVideo video"
+#~ msgstr "RealVideo video"
+
+#~ msgid "S/MIME file"
+#~ msgstr "S/MIME faylı"
+
+#~ msgid "S/MIME signature"
+#~ msgstr "S/MIME imzası"
+
+#~ msgid "SGI video"
+#~ msgstr "SGI video"
+
+#~ msgid "SGML document"
+#~ msgstr "SGML sənədi"
+
+#~ msgid "SMIL script"
+#~ msgstr "SMIL skripti"
+
+#~ msgid "SQL code"
+#~ msgstr "SQL kodu"
+
+#~ msgid "SV4 CPIO archive"
+#~ msgstr "SV4 CPIO arxivi"
+
+#~ msgid "SV4 CPIP archive (with CRC)"
+#~ msgstr "SV4 CPIP arxivi (CRC ilə bərabər)"
+
+#~ msgid "SVG art"
+#~ msgstr "SVG art"
+
+#~ msgid "Scheme source code"
+#~ msgstr "Scheme qaynaq kodu"
+
+#~ msgid "Scream Tracker 3 audio"
+#~ msgstr "Scream Tracker 3 audio"
+
+#~ msgid "Scream Tracker audio"
+#~ msgstr "Scream Tracker audio"
+
+#~ msgid "Scream Tracker instrument"
+#~ msgstr "Scream Tracker aləti"
+
+#~ msgid "Setext document"
+#~ msgstr "Setext sənədi"
+
+#~ msgid "Speech document"
+#~ msgstr "Speech sənədi"
+
+#~ msgid "Speedo font"
+#~ msgstr "Speedo yazı növü"
+
+#~ msgid "Spreadsheet Interchange document"
+#~ msgstr "Spreadsheet Interchange sənədi"
+
+#~ msgid "Stampede package"
+#~ msgstr "Stampede paketi"
+
+#~ msgid "StarOffice Writer document"
+#~ msgstr "StarOffice Writer sənədi"
+
+#~ msgid "StarOffice presentation"
+#~ msgstr "StarOffice nümayişi"
+
+#~ msgid "StarOffice spreadsheet"
+#~ msgstr "StarOffice hesab cədvəli"
+
+# The sources use a hardcoded latin1 char for mu :-(
+#~ msgid "Sun mu-law audio"
+#~ msgstr "Sun µ-law audio"
+
+#~ msgid "SunOS News font"
+#~ msgstr "SunOS News yazı növü"
+
+#~ msgid "TIFF image"
+#~ msgstr "TIFF rəsmi"
+
+#~ msgid "TarGA image"
+#~ msgstr "TarGA rəsmi"
+
+#~ msgid "Tcl script"
+#~ msgstr "Tcl skripti"
+
+#~ msgid "TeX document"
+#~ msgstr "TeX sənədi"
+
+#~ msgid "TeX dvi document"
+#~ msgstr "TeX dvi sənədi"
+
+#~ msgid "TeX font"
+#~ msgstr "TeX yazı növü"
+
+#~ msgid "TeX font metrics"
+#~ msgstr "TeX yazı növü metrikləri"
+
+#~ msgid "TeXInfo document"
+#~ msgstr "Texnfo sənədi"
+
+#~ msgid "ToutDoux document"
+#~ msgstr "ToutDoux sənədi"
+
+#~ msgid "TrueType font"
+#~ msgstr "TrueType yazı növü"
+
+#~ msgid "USENET news message"
+#~ msgstr "USENET xəbər ismarıcı"
+
+#~ msgid "Unidata netCDF document"
+#~ msgstr "Unidata netCDF sənədi"
+
+#~ msgid "V font"
+#~ msgstr "V yazı növü"
+
+#~ msgid "VOC audio"
+#~ msgstr "VOC audio"
+
+#~ msgid "VRML document"
+#~ msgstr "VRML sənədi"
+
+#~ msgid "Vivo video"
+#~ msgstr "Vivo video"
+
+#~ msgid "WAIS source code"
+#~ msgstr "WAIS qaynaq kodu"
+
+#~ msgid "Wavelet video"
+#~ msgstr "Wavelet video"
+
+#~ msgid "Windows bitmap image"
+#~ msgstr "Windows bitmap rəsmi"
+
+#~ msgid "Windows icon image"
+#~ msgstr "Windows timsal rəsmi"
+
+#~ msgid "Windows metafile graphics"
+#~ msgstr "Windows metafayl qrafikası"
+
+#~ msgid "WordPerfect document"
+#~ msgstr "WorldPerfect sənədi"
+
+#~ msgid "X bitmap image"
+#~ msgstr "X bitmap rəsmi"
+
+#~ msgid "X window image"
+#~ msgstr "X window rəsmi"
+
+#~ msgid "XML document"
+#~ msgstr "XML sənədi"
+
+#~ msgid "XPM image"
+#~ msgstr "XPM rəsmi"
+
+#~ msgid "Xbase database"
+#~ msgstr "Xbase databeyzi"
+
+#~ msgid "active server page"
+#~ msgstr "fəal verici səhifələri"
+
+#~ msgid "address card"
+#~ msgstr "ünvan kartı"
+
+#~ msgid "ar archive"
+#~ msgstr "ar arxivi"
+
+#~ msgid "arj archive"
+#~ msgstr "arj arxivi"
+
+#~ msgid "authors list"
+#~ msgstr "müəlliflər siyahısı"
+
+#~ msgid "backup file"
+#~ msgstr "ehtiyat nüsxəsi faylı"
+
+#~ msgid "basic audio"
+#~ msgstr "əsas audio"
+
+#~ msgid "bibliography record"
+#~ msgstr "biblioqrafik qeyd"
+
+#~ msgid "binary program"
+#~ msgstr "binar proqramı"
+
+#~ msgid "block device"
+#~ msgstr "blok avadanlığı"
+
+#~ msgid "bzip-compressed file"
+#~ msgstr "bzip-sıxışdırılmış fayl"
+
+#~ msgid "calendar file"
+#~ msgstr "təqvim faylı"
+
+#~ msgid "calendar or event document"
+#~ msgstr "təqvim və ya hadisə sənədi"
+
+#~ msgid "character device"
+#~ msgstr "hərf avadanlığı"
+
+#~ msgid "comma-separated text document"
+#~ msgstr "vergüllə ayrılmış mətn sənədi"
+
+#~ msgid "compound document"
+#~ msgstr "kipləşdirilmiş sənəd"
+
+#~ msgid "compress-compressed file"
+#~ msgstr "sıxışdır-sıxışdırılmış fayl"
+
+#~ msgid "compressed GIMP document"
+#~ msgstr "sıxışdırılmış GIMP sənədi"
+
+#~ msgid "directory information file"
+#~ msgstr "qovluq haqqında mə'lumat faylı"
+
+#~ msgid "document type definition"
+#~ msgstr "sənəd növü izahı"
+
+#~ msgid "email headers"
+#~ msgstr "ePoçt başlıqları"
+
+#~ msgid "email message"
+#~ msgstr "ePoçt ismarıcları"
+
+#~ msgid "encrypted message"
+#~ msgstr "kodlanmış ismarıcı"
+
+#~ msgid "enriched text document"
+#~ msgstr "zənginləşdirilmiş mətn sənədi"
+
+#~ msgid "folder"
+#~ msgstr "qovluq"
+
+#~ msgid "gtar archive"
+#~ msgstr "gtar arxivi"
+
+#~ msgid "gzip-compressed file"
+#~ msgstr "gzip-sıxışdırılmış fayl"
+
+#~ msgid "help page"
+#~ msgstr "kömək səhifəsi"
+
+#~ msgid "mail delivery report"
+#~ msgstr "məktub göndərmə raportu"
+
+#~ msgid "mail disposition report"
+#~ msgstr "məktub dispozisiya raportu"
+
+#~ msgid "mail system report"
+#~ msgstr "məktub sistem raportu"
+
+#~ msgid "makefile"
+#~ msgstr "makefile"
+
+#~ msgid "manual page"
+#~ msgstr "bələdçi səhifəsi"
+
+#~ msgid "manual page (compressed)"
+#~ msgstr "bələdçi səhifəsi (sıxışdırılmış)"
+
+#~ msgid "memory dump"
+#~ msgstr "yaddaş raportu"
+
+#~ msgid "message digest"
+#~ msgstr "ismarıc gündəliyi"
+
+#~ msgid "message in several formats"
+#~ msgstr "müxtəlif şəkillərdə ismarıc"
+
+#~ msgid "multi-part message"
+#~ msgstr "çoxlu hissəli ismarıc"
+
+#~ msgid "named pipe"
+#~ msgstr "adlandırılmış boru"
+
+#~ msgid "object code"
+#~ msgstr "cism kodu"
+
+#~ msgid "ogg audio"
+#~ msgstr "ogg audio"
+
+#~ msgid "partial email message"
+#~ msgstr "qismi ePoçt ismarıcı"
+
+#~ msgid "plain text document"
+#~ msgstr "düz mətn sənədi"
+
+#~ msgid "profiler results"
+#~ msgstr "profayler nəticəsi"
+
+#~ msgid "reference to remote file"
+#~ msgstr "uzaq fayla referens"
+
+#~ msgid "rejected patch file"
+#~ msgstr "rədd edilmiş yamaq faylı"
+
+#~ msgid "rich text document"
+#~ msgstr "zənginləşdirilmiş mətn sənədi"
+
+#~ msgid "search results"
+#~ msgstr "axtarış nəticəsi"
+
+#~ msgid "shared library"
+#~ msgstr "paylaşdırılmış kitabxana"
+
+#~ msgid "shell archive"
+#~ msgstr "qabıq arxivi"
+
+#~ msgid "shell script"
+#~ msgstr "qabıq skripti"
+
+#~ msgid "signed message"
+#~ msgstr "imzalanmış ismarıc"
+
+#~ msgid "socket"
+#~ msgstr "soket"
+
+#~ msgid "software author credits"
+#~ msgstr "proqram müəllifləri haqqında"
+
+#~ msgid "software installation instructions"
+#~ msgstr "proqram qurulma tövsiyyələri"
+
+#~ msgid "software license terms"
+#~ msgstr "proqram lisenziya terminləri"
+
+#~ msgid "source code patch"
+#~ msgstr "qaynaq kodu yamağı"
+
+#~ msgid "style sheet"
+#~ msgstr "tərz səhifəsi"
+
+#~ msgid "symbolic link"
+#~ msgstr "yumşaq bağ"
+
+#~ msgid "tab-separated text document"
+#~ msgstr "tab ilə ayrılmış mətn sənədi"
+
+#~ msgid "tar archive"
+#~ msgstr "tar arxivi"
+
+#~ msgid "tar archive (bzip2-compressed)"
+#~ msgstr "tar arxivi (bzip2 ilə sıxışdırılmış)"
+
+#~ msgid "tar archive (gzip-compressed)"
+#~ msgstr "tar arxivi (gzip ilə sıxışdırılmış)"
+
+#~ msgid "theme"
+#~ msgstr "örtü"
+
+#~ msgid "troff document"
+#~ msgstr "troff sənədi"
+
+#~ msgid "troff me input document"
+#~ msgstr "troff me giriş sənədi"
+
+#~ msgid "troff mm input document"
+#~ msgstr "troff mm giriş sənədi"
+
+#~ msgid "troff ms input document"
+#~ msgstr "troff ms giriş sənədi"
+
+#~ msgid "unknown type"
+#~ msgstr "namə'lum növ"
+
+#~ msgid "ustar archive"
+#~ msgstr "ustar arxivi"
+
+#~ msgid "wave audio"
+#~ msgstr "wave audio"
+
+#~ msgid "web folder"
+#~ msgstr "web qovluğu"
+
+#~ msgid "xfig vector graphic"
+#~ msgstr "sfig vektor qrafikaları"
+
+#~ msgid "zip archive"
+#~ msgstr "zip arxivi"
+
+#~ msgid "zoo archive"
+#~ msgstr "zoo arxivi"
 
 #~ msgid "GNOME VFS already initialized."
 #~ msgstr "Gnome VFS çoxdan başladıldı ."

@@ -1,4 +1,39 @@
 ===================================
+gnome-vfs 1.9.2
+---------------
+
+API changes:
+
+* Remove gnome_vfs_get_basename [bug 40822] (Maciej)
+* Split public, private and module APIs [bug 48511] (Seth, Maciej)
+* Rename GNOME_VFS_*_PRIORITY to GNOME_VFS_PRIORITY_* for 
+  consistency (Jacob)
+* Add priority argument to async calls and use a job queue to limit
+  the maximum number of threads [bug 48545] (Laszlo)
+
+New features: 
+
+* vfolder-desktop module, for handling new vfolder-based panel menu
+  setup (George)
+
+Build changes:
+
+* Got rid of separate libgnomevfs-pthread directory (Maciej)
+* Moved mime data into separate gnome-mime-data module (Seth)
+* Misc build fixes (Laszlo, George)
+* Updated for glib-gettext (Jacob)
+* Updated for intltool (Darin)
+* Spec file updates (Gregory)
+
+Bug fixes:
+
+* Symlink handling fixes [bug 62494] (Havoc)
+* Remove gdk dependency (Jacob)
+* Fix mistake in nfs method [bug 55805] (Martin Pool)
+* Updates for newer glib (Darin)
+* Leak fix (Anders)
+
+===================================
 gnome-vfs 1.9.1
 ---------------
 

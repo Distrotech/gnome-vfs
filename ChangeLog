@@ -1,5 +1,9 @@
 2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
 
+	* NEWS, configure.in: Updated for 1.9.2.
+
+2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
+
 	* libgnomevfs/gnome-vfs-uri.h, libgnomevfs/gnome-vfs-uri.c: Remove
 	gnome_vfs_get_basename, fixing bug 40822
 
