@@ -105,7 +105,8 @@ static GnomeVFSMethod method = {
 	do_is_local,
 	NULL,			/* make_directory */
 	NULL,			/* remove_directory */
-	NULL			/* rename */
+	NULL,			/* rename */
+	NULL                    /* unlink */
 };
 
 #define RETURN_IF_FAIL(action)			\

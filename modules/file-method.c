@@ -67,7 +67,7 @@ static GnomeVFSResult   do_seek		(GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult	do_tell		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileOffset *offset_return);
 static GnomeVFSResult	do_truncate 	(GnomeVFSMethodHandle *method_handle,
-					 glong where);
+					 GnomeVFSFileSize where);
 
 static GnomeVFSResult	do_open_directory
 					(GnomeVFSMethodHandle **method_handle,
@@ -101,6 +101,7 @@ static GnomeVFSResult	do_make_directory
 
 static GnomeVFSResult	do_remove_directory
                                         (GnomeVFSURI *uri);
+static GnomeVFSResult   do_unlink       (GnomeVFSURI *uri);
 
 static GnomeVFSMethod method = {
 	do_open,
@@ -119,7 +120,8 @@ static GnomeVFSMethod method = {
 	do_is_local,
 	do_make_directory,
 	do_remove_directory,
-	NULL
+	NULL,
+	do_unlink
 };
 
 
@@ -437,7 +439,7 @@ do_tell (GnomeVFSMethodHandle *method_handle,
 
 static GnomeVFSResult
 do_truncate (GnomeVFSMethodHandle *method_handle,
-	     glong where)
+	     GnomeVFSFileSize where)
 {
 	FileHandle *file_handle;
 
@@ -997,6 +999,18 @@ do_remove_directory (GnomeVFSURI *uri)
 
 	retval = rmdir (uri->text);
 
+	if (retval == 0)
+		return GNOME_VFS_OK;
+	else
+		return gnome_vfs_result_from_errno ();
+}
+
+static GnomeVFSResult
+do_unlink (GnomeVFSURI *uri)
+{
+	gint retval;
+
+	retval = unlink (uri->text);
 	if (retval == 0)
 		return GNOME_VFS_OK;
 	else

@@ -92,4 +92,7 @@ GnomeVFSResult	 gnome_vfs_remove_directory_from_uri
 						(GnomeVFSURI *uri);
 GnomeVFSResult	 gnome_vfs_remove_directory	(const gchar *text_uri);
 
+GnomeVFSResult   gnome_vfs_unlink_from_uri      (GnomeVFSURI *uri);
+GnomeVFSResult   gnome_vfs_unlink               (const gchar *text_uri);
+
 #endif /* _GNOME_VFS_OPS_H */

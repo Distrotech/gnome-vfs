@@ -541,8 +541,6 @@ gnome_vfs_uri_is_local (const GnomeVFSURI *uri)
 gboolean
 gnome_vfs_uri_has_parent (const GnomeVFSURI *uri)
 {
-	gchar *p;
-
 	g_return_val_if_fail (uri != NULL, FALSE);
 
 	if (uri->parent != NULL)

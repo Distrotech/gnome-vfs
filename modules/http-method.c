@@ -1,5 +1,9 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* file-method.c - Local file access method for the GNOME Virtual File
+/*
+  This module is on ice, while various other implementations are discussed,
+  if you have a good idea and some time, do implement it yourself :-).
+
+   file-method.c - Local file access method for the GNOME Virtual File
    System.
 
    Copyright (C) 1999 Free Software Foundation
@@ -73,6 +77,7 @@ static GnomeVFSMethod method = {
 	do_get_file_info,
 	NULL,			/* get_file_info_from_handle FIXME */
 	do_is_local,
+	NULL,
 	NULL,
 	NULL,
 	NULL

@@ -84,7 +84,8 @@ static GnomeVFSMethod method = {
         do_is_local,
         NULL,
 	NULL,
-        NULL
+        NULL,
+	NULL
 };
 
 static GConf *conf;

@@ -55,7 +55,7 @@ static GnomeVFSResult   do_seek		(GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult	do_tell		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileOffset *offset_return);
 static GnomeVFSResult	do_truncate 	(GnomeVFSMethodHandle *method_handle,
-					 glong where);
+					 GnomeVFSFileSize where);
 /* Our method_handle */
 typedef struct  {
 	/* Child chaining info */
@@ -64,6 +64,7 @@ typedef struct  {
 
 	/* Housekeeping info */
 	GnomeVFSHandle       *tmp_file;
+	gchar                *tmp_uri;
 	GnomeVFSOpenMode      open_mode;
 	gboolean              dirty;
 
@@ -158,17 +159,15 @@ init_seek (SeekableMethodHandle *mh)
 	if (!(stem = tmpnam (NULL)))
 		return GNOME_VFS_ERROR_NOSPACE;
 
-	txt_uri = g_strdup_printf ("file:%s", stem);
+	mh->tmp_uri = g_strdup_printf ("file:%s", stem);
 
 	g_warning ("Opening temp seekable file '%s'\n", txt_uri);
 	
 	/* Open the file */
-	result = gnome_vfs_create (&mh->tmp_file, txt_uri, 
-				   GNOME_VFS_OPEN_READ|GNOME_VFS_OPEN_WRITE|
+	result = gnome_vfs_create (&mh->tmp_file, mh->tmp_uri, 
+				   GNOME_VFS_OPEN_READ | GNOME_VFS_OPEN_WRITE |
 				   GNOME_VFS_OPEN_RANDOM,
-				   TRUE, S_IWUSR|S_IRUSR);
-
-	g_free (txt_uri);
+				   TRUE, S_IWUSR | S_IRUSR);
 
 	if (result != GNOME_VFS_OK)
 		return result;
@@ -213,6 +212,7 @@ gnome_vfs_seek_emulate (GnomeVFSURI *uri, GnomeVFSMethodHandle *child_handle,
 	mh->child_method   = uri->method;
 	mh->open_mode      = open_mode;
 	mh->tmp_file       = NULL;
+	mh->tmp_uri        = NULL;
 	mh->wrapper_method = m;
 
 	uri->method        = m;
@@ -251,10 +251,14 @@ do_close (GnomeVFSMethodHandle *method_handle)
 		write_file (mh);
 
 	result = gnome_vfs_close (mh->tmp_file);
-
-	g_warning ("FIXME: The temp file must be removed");
-
 	mh->tmp_file = NULL;
+
+	if (mh->tmp_uri) {
+		if (result == GNOME_VFS_OK)
+			result = gnome_vfs_unlink (mh->tmp_uri);
+		g_free (mh->tmp_uri);
+		mh->tmp_uri  = NULL;
+	}
 
 	INVOKE_CHILD (result, mh, close, (mh->child_handle));
 
@@ -316,7 +320,7 @@ do_tell (GnomeVFSMethodHandle *method_handle,
 
 static GnomeVFSResult
 do_truncate (GnomeVFSMethodHandle *method_handle,
-	     glong where)
+	     GnomeVFSFileSize where)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);

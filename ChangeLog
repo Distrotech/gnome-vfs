@@ -1,3 +1,25 @@
+1999-09-18  Michael Meeks  <michael@nuclecu.unam.mx>
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_has_parent): remove
+	unused 'p'
+
+	* modules/ftp-method.c, gzip-method.c, gconf-method.c:
+	pad method structure.
+
+	* modules/http-method.c: Add comment explaining the coding stall.
+
+	* modules/file-method.c (do_unlink): implement.
+
+	* libgnomevfs/gnome-vfs-seekable.c (do_close, init_seek): do unlink of
+	tmp file. 
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_unlink),
+	(gnome_vfs_unlink_for_uri): Added.
+
+	* libgnomevfs/gnome-vfs-ops.h: add unlinks.
+
+	* libgnomevfs/gnome-vfs-private-types.h: Add unlink, update truncate.
+
 1999-09-17  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs/gnome-vfs-constants.h: #include "gnome-vfs-types.h"

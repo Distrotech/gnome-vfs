@@ -2091,6 +2091,7 @@ static GnomeVFSMethod method = {
 	ftpfs_is_local,
 	ftpfs_make_directory,
 	ftpfs_remove_directory,
+	NULL,
 	NULL
 };
 

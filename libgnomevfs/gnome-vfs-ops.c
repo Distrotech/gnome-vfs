@@ -307,3 +307,35 @@ gnome_vfs_remove_directory (const gchar *text_uri)
 
 	return result;
 }
+
+
+GnomeVFSResult
+gnome_vfs_unlink_from_uri (GnomeVFSURI *uri)
+{
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (uri->method->unlink == NULL)
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+
+	return uri->method->unlink (uri);
+}
+
+GnomeVFSResult
+gnome_vfs_unlink (const gchar *text_uri)
+{
+	GnomeVFSResult result;
+	GnomeVFSURI *uri;
+
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
+	result = gnome_vfs_unlink_from_uri (uri);
+
+	gnome_vfs_uri_unref (uri);
+
+	return result;
+}
+
