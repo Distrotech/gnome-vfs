@@ -1,3 +1,13 @@
+2001-02-22  Seth Nickell  <snickell@stanford.edu>
+
+	reviewed by: Mathieu Lacage <mathieu@gnu.org>
+
+	* modules/test-method.c: (load_settings), (vfs_module_init):
+
+	Fix test module to look in the PREFIX for its configuration file
+	rather than hardcoding. Deal with missing or invalid settings files
+	gracefully, returning a sane error rather than segfaulting :-)
+
 2001-02-22  Seth Nickell  <seth@eazel.com>
 
 	reviewed by: Pavel Císler <pavel@eazel.com>
