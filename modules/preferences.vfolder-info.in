@@ -2,6 +2,7 @@
   <ItemDir>@datadir@/control-center-2/capplets</ItemDir>
   <!-- Merge dirs optional -->
   <MergeDir>@datadir@/gnome/apps/Settings</MergeDir>
+  <MergeDir>@datadir@/control-center-2/capplets/Advanced</MergeDir>
 
   <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
 
@@ -9,23 +10,18 @@
   <Folder>
     <Name>Root</Name>
 
-    <Query>
-      <Or>
-        <Keyword>Settings</Keyword>
-      </Or>
-    </Query>
-
     <!-- Other folders -->
 
     <!-- Applications -->
     <Folder>
-      <Name>Other Preferences</Name>
-      <Desktop>OtherPreferences.directory</Desktop>
-      <OnlyUnallocated/>
+      <Name>Advanced</Name>
+      <Desktop>Advanced.directory</Desktop>
       <Query>
-        <Keyword>Settings</Keyword>
+	<And>
+	  <Keyword>Settings</Keyword>
+	  <Keyword>AdvancedSettings</Keyword>
+        </And>
       </Query>
-      <DontShowIfEmpty/>
     </Folder>
     <Folder>
       <Name>System</Name>
@@ -38,5 +34,16 @@
       </Query>
       <DontShowIfEmpty/>
     </Folder>
+
+    <Query>
+      <And>
+        <Keyword>Settings</Keyword>
+        <Not>
+          <Keyword>AdvancedSettings</Keyword>
+          <Keyword>System</Keyword>
+        </Not>
+      </And>
+    </Query>
+
   </Folder>
 </VFolderInfo>
