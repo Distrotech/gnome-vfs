@@ -38,7 +38,6 @@ struct GnomeVFSDirectoryList {
 	GList *last_entry;
 
 	guint num_entries;
-	int ref_count;
 };
 
 static void
@@ -74,8 +73,6 @@ gnome_vfs_directory_list_new (void)
 	GnomeVFSDirectoryList *new_list;
 
 	new_list = g_new0 (GnomeVFSDirectoryList, 1);
-
-	new_list->ref_count = 1;
 	
 	return new_list;
 }

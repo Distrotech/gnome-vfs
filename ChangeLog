@@ -1,5 +1,11 @@
 2001-01-18  Pavel Cisler <pavel@eazel.com>
 
+	* libgnomevfs/gnome-vfs-directory-list.c:
+	(gnome_vfs_directory_list_new):
+	Get rid of an unused field.
+
+2001-01-18  Pavel Cisler <pavel@eazel.com>
+
 	Part of fix to 4221 (Pressing Cancel button does not cancel)
 	* libgnomevfs-pthread/gnome-vfs-job.c: (job_notify),
 	(dispatch_xfer_callback), (dispatch_sync_job_callback):
