@@ -277,7 +277,7 @@ open_efs_file (GnomeVFSFileSystem **fs, GnomeVFSURI *uri, gint mode)
 
 		fprintf (stderr, "New EFS file system: '%s'\n", fname);
 
-		dir = efs_open (fname, mode, default_permissions);
+		dir = efs_open (fname, mode, default_permissions, NULL);
 
 		if (!dir) {
 			result = gnome_vfs_result_from_errno ();
@@ -702,7 +702,8 @@ do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSContext *context)
 {
 	DirectoryHandle *directory_handle;
-	EFSDirEntry     *entry;
+	EFSDirEntry     entry;
+	gint res;
 
 	directory_handle = (DirectoryHandle *) method_handle;
 	if (!directory_handle || !directory_handle->fs ||
@@ -710,12 +711,14 @@ do_read_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_INTERNAL;
 
 	gnome_vfs_file_system_lock (directory_handle->fs);
-		entry = efs_dir_read (directory_handle->dir);
+	res = efs_dir_read (directory_handle->dir, &entry);
 	gnome_vfs_file_system_unlock (directory_handle->fs);
-	if (!entry)
+	if (!res)
 		return GNOME_VFS_ERROR_EOF;
+	if (res == -1)
+		return GNOME_VFS_ERROR_INTERNAL;
 
-	transfer_dir_to_info (info, entry);
+	transfer_dir_to_info (info, &entry);
 
 	return GNOME_VFS_OK;
 }
@@ -810,17 +813,18 @@ do_get_file_info (GnomeVFSMethod *method,
 	 */
 	result = GNOME_VFS_ERROR_NOT_FOUND;
 	while (1) {
-		EFSDirEntry     *entry;
-		
+		EFSDirEntry    entry;
+		gint res;
+
 		gnome_vfs_file_system_lock (fs);
-			entry = efs_dir_read (dir);
+		        res = efs_dir_read (dir, &entry);
 		gnome_vfs_file_system_unlock (fs);
 
-		if (!entry)
+		if (res <= 0)
 			break;
 
-		if (!strcmp (fname, entry->name)) {
-			transfer_dir_to_info (info, entry);
+		if (!strcmp (fname, entry.name)) {
+			transfer_dir_to_info (info, &entry);
 			result = GNOME_VFS_OK;
 			break;
 		}
