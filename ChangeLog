@@ -1,3 +1,8 @@
+1999-10-29 Elliot Lee <sopwith@redhat.com>
+	* test/test-somethingorother.c: Make it use the file info flags instead
+	of ->is_symlink.
+	* libgnomevfs/Makefile.am: Put our build tree on the include path before installed stuff.
+
 1999-10-23  Ettore Perazzoli  <ettore@gnu.org>
 
 	* libgnomevfs/gnome-vfs-directory-filter.c
