@@ -1,3 +1,11 @@
+2000-08-03  Seth Nickell  <seth@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (count_items_and_size),
+	(link_items), (gnome_vfs_xfer_delete_items),
+	(gnome_vfs_xfer_uri_internal):
+	A rewrite of the code that CVS (or me?) lost for some strange bizarre reason...
+	<sigh> Adds symbolic link abilities to gnome-vfs-xfer.
+
 2000-08-03  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* data/mime/gnome-vfs.keys:

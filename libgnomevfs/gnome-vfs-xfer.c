@@ -647,7 +647,8 @@ count_items_and_size (const GnomeVFSURI *dir_uri,
 		      const GList *name_list,
 		      GnomeVFSXferOptions xfer_options,
 		      GnomeVFSProgressCallbackState *progress,
-		      gboolean move)
+		      gboolean move,
+		      gboolean link)
 {
 	/*
 	 * FIXME bugzilla.eazel.com 1200:
@@ -675,7 +676,7 @@ count_items_and_size (const GnomeVFSURI *dir_uri,
 	}
 
 	return gnome_vfs_visit_list (dir_uri, name_list, info_options,
-		visit_options, !move && (xfer_options & GNOME_VFS_XFER_RECURSIVE) != 0,
+		visit_options, !link && !move && (xfer_options & GNOME_VFS_XFER_RECURSIVE) != 0,
 		count_each_file_size_one, &each_params);
 }
 
@@ -1473,6 +1474,110 @@ move_items (const GnomeVFSURI *source_dir_uri,
 
 	return result;
 }
+static GnomeVFSResult
+link_items (const GnomeVFSURI *source_dir_uri,
+	    const GList *source_name_list,
+	    GnomeVFSURI *target_dir_uri,
+	    const GList *target_name_list,
+	    GnomeVFSXferOptions xfer_options,
+	    GnomeVFSXferErrorMode *error_mode,
+	    GnomeVFSXferOverwriteMode *overwrite_mode,
+	    GnomeVFSProgressCallbackState *progress)
+{
+	GnomeVFSResult result;
+	const GList *source_name_item;
+	const GList *dest_name_item;
+	GnomeVFSURI *source_uri;
+	GnomeVFSURI *target_uri;
+	gboolean retry;
+	gboolean skip;
+	int conflict_count;
+	int progress_result;
+	char *source_reference;
+
+	result = GNOME_VFS_OK;
+
+	/* go through the list of names, move each item */
+	for (source_name_item = source_name_list, dest_name_item = target_name_list; 
+		source_name_item != NULL;) {
+
+		source_uri = gnome_vfs_uri_append_file_name (source_dir_uri, source_name_item->data);
+		source_reference = gnome_vfs_uri_to_string (source_uri, GNOME_VFS_URI_HIDE_NONE);
+
+		progress->progress_info->duplicate_name = g_strdup (dest_name_item->data);
+
+		retry = FALSE;
+		skip = FALSE;
+		conflict_count = 1;
+
+		do {
+			target_uri = gnome_vfs_uri_append_file_name
+				(target_dir_uri, 
+				 progress->progress_info->duplicate_name);
+
+			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
+			progress->progress_info->bytes_copied = 0;
+			progress_set_source_target_uris (progress, source_uri, target_uri);
+
+			/* no matter what the replace mode, just overwrite the destination
+			 * handle_name_conflicts took care of conflicting files
+			 */
+			result = gnome_vfs_create_symbolic_link (target_uri, source_reference); 
+
+			if (result == GNOME_VFS_ERROR_FILE_EXISTS) {
+				/* deal with a name conflict -- ask the progress_callback for a better name */
+				g_free (progress->progress_info->duplicate_name);
+				progress->progress_info->duplicate_name = g_strdup (dest_name_item->data);
+				progress->progress_info->duplicate_count = conflict_count;
+				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE;
+				progress->progress_info->vfs_status = result;
+				progress_result = call_progress_uri (progress, source_uri, target_uri, 
+						       GNOME_VFS_XFER_PHASE_COPYING);
+				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
+
+				if (progress_result == GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
+					gnome_vfs_uri_unref (target_uri);
+					break;
+				}
+				conflict_count++;
+				
+				result = gnome_vfs_create_symbolic_link (target_uri, source_reference);
+
+			}
+			
+			if (result != GNOME_VFS_OK) {
+				if (result == GNOME_VFS_ERROR_FILE_EXISTS) {
+					retry = TRUE;
+				} else {
+				retry = handle_error (&result, progress,
+						      error_mode, &skip);
+				}
+			} else {
+				retry = FALSE;
+			}
+
+			if (call_progress_with_uris_often (progress, source_uri,
+						target_uri, GNOME_VFS_XFER_PHASE_OPENTARGET) == 0) {
+				result = GNOME_VFS_ERROR_INTERRUPTED;
+				gnome_vfs_uri_unref (target_uri);
+				break;
+			}
+			gnome_vfs_uri_unref (target_uri);
+		} while (retry);
+		
+		gnome_vfs_uri_unref (source_uri);
+		g_free (source_reference);
+
+		if (result != GNOME_VFS_OK && !skip)
+			break;
+
+		source_name_item = source_name_item->next;
+		dest_name_item = dest_name_item->next;
+		g_assert ((source_name_item != NULL) == (dest_name_item != NULL));
+	}
+
+	return result;
+}
 
 static GnomeVFSResult
 gnome_vfs_xfer_empty_trash (GList *trash_dir_uris,
@@ -1586,8 +1691,7 @@ gnome_vfs_xfer_delete_items (GnomeVFSURI *source_directory,
 
 	for (p = item_names;  p != NULL; p = p->next) {
 		result = count_items_and_size (source_directory, item_names,
-			GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 
-			progress, TRUE);
+			GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 			progress, TRUE, FALSE);
 		if (result != GNOME_VFS_OK)
 			break;
 
@@ -1689,10 +1793,11 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 	GnomeVFSResult result;
 	GList *source_name_list;
 	GList *target_name_list;
-	gboolean move;
+	gboolean move, link;
 
 	result = GNOME_VFS_OK;
 	move = FALSE;
+	link = FALSE;
 
 	/* Create an owning list of source and destination names.
 	 * We want to be able to remove items that we decide to skip during
@@ -1708,6 +1813,7 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 	 * and bail if not
 	 */
 	move = (xfer_options & GNOME_VFS_XFER_REMOVESOURCE) != 0;
+	link = (xfer_options & GNOME_VFS_XFER_LINK_ITEMS) != 0;
 
 	if ((xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) == 0) {
 		gboolean same_fs;
@@ -1722,7 +1828,7 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 
 		progress->progress_info->phase = GNOME_VFS_XFER_PHASE_COLLECTING;
 		result = count_items_and_size (source_dir_uri, source_name_list,
-					       xfer_options, progress, move);
+					       xfer_options, progress, move, link);
 		if (result == GNOME_VFS_OK) {
 
 			/* FIXME bugzilla.eazel.com 1214:
@@ -1751,9 +1857,15 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 				call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
 
 				if (move) {
+					g_assert (!link);
 					result = move_items (source_dir_uri, source_name_list,
 							     target_dir_uri, target_name_list,
 							     xfer_options, &error_mode, &overwrite_mode, 
+							     progress);
+				} else if (link) {
+					result = link_items (source_dir_uri, source_name_list,
+							     target_dir_uri, target_name_list,
+							     xfer_options, &error_mode, &overwrite_mode,
 							     progress);
 				} else {
 					result = copy_items (source_dir_uri, source_name_list,
