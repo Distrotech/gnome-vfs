@@ -1,3 +1,15 @@
+2001-01-19  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Ramiro Estrugo  <ramiro@eazel.com>
+
+	Fix 5430: Duplicate a link -> Nautilus won't display without refresh.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_symlink), (copy_directory),
+	(copy_items):
+	Replaced a call to gnome_vfs_create_link to a new copy_symlink call
+	that properly updates progress and sends notifications about the
+	link being created.
+
 2001-01-18  Kenneth Christiansen  <kenneth@gnu.org>
 
 	* configure.in: Added AM_PROG_XML_I18N_TOOLS to support

@@ -1129,6 +1129,23 @@ xfer_create_target (GnomeVFSHandle **target_handle,
 }
 
 static GnomeVFSResult
+copy_symlink (GnomeVFSURI *source_uri,
+	      GnomeVFSURI *target_uri,
+	      const char *link_name,
+	      GnomeVFSProgressCallbackState *progress)
+{
+	GnomeVFSResult result;
+	
+	result = gnome_vfs_create_symbolic_link (target_uri, link_name);
+	
+	if (result == GNOME_VFS_OK && call_progress_with_uris_often (progress, source_uri,
+		target_uri, GNOME_VFS_XFER_PHASE_OPENTARGET) == 0) {
+		result = GNOME_VFS_ERROR_INTERRUPTED;
+	}
+	return result;
+}
+
+static GnomeVFSResult
 copy_file (GnomeVFSFileInfo *info,  
 	   GnomeVFSURI *source_uri,
 	   GnomeVFSURI *target_uri,
@@ -1316,7 +1333,8 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 					xfer_options, error_mode, overwrite_mode, 
 					progress, skip);
 			} else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
-				result = gnome_vfs_create_symbolic_link (dest_uri, info.symlink_name);
+				result = copy_symlink (source_uri, dest_uri, info.symlink_name,
+					progress);
 			}
 			/* just ignore all the other special file system objects here */
 			
@@ -1429,7 +1447,8 @@ copy_items (const GList *source_uri_list,
 								 &overwrite_mode_abort,
 								 progress, &skip);
                                 } else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
-					result = gnome_vfs_create_symbolic_link (target_uri, info.symlink_name);
+					result = copy_symlink (source_uri, target_uri, info.symlink_name,
+						progress);
                                 }
 				/* just ignore all the other special file system objects here */
 
