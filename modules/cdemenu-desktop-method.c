@@ -351,7 +351,7 @@ do_read_directory (GnomeVFSMethod *method,
 	gchar line[LINESIZE];
 	gchar *tmp, *tmp2;
 	FILE *file = (FILE *)method_handle;
-	static int sep=0;
+	/*static int sep=0;*/
 	
 	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 
