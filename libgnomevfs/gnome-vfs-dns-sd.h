@@ -47,7 +47,7 @@ typedef struct {
 
 typedef enum {
 	GNOME_VFS_DNS_SD_SERVICE_ADDED,
-	GNOME_VFS_DNS_SD_SERVICE_REMOVED,
+	GNOME_VFS_DNS_SD_SERVICE_REMOVED
 } GnomeVFSDNSSDServiceStatus;
 
 GType gnome_vfs_dns_sd_service_status_get_type (void);
