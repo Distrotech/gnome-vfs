@@ -106,7 +106,7 @@ UriStrspnSet uri_strspn_sets[] = {
 #define URI_DELIMITER_IPV6_SET (uri_strspn_sets + 3)
 
 #define BV_SET(bv, idx) (bv)[((guchar)(idx))>>3] |= (1 << ( (idx) & 7) )
-#define BV_IS_SET(bv, idx) ((bv)[(idx)>>3] & (1 << ( (idx) & 7)))
+#define BV_IS_SET(bv, idx) ((bv)[((guchar)(idx))>>3] & (1 << ( (idx) & 7)))
 
 static const char *
 uri_strspn_to(const char *str, UriStrspnSet *set, const char *path_end)

@@ -1,3 +1,9 @@
+2003-06-28  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-uri.c (BV_IS_SET): don't read out of 
+	  the buffer bounds if the uri contains 8-bit chars (this fixes
+	  some problem when trying to parse uris containing UTF-8 chars)
+
 2003-06-25  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* programs/gnomevfs-mkdir.c: removed debugging code, fixes compilation
