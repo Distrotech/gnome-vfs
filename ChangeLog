@@ -1,3 +1,33 @@
+2000-05-01  John Sullivan  <sullivan@eazel.com>
+
+	First steps at the grand move-MIME-handling-code-to-
+	gnome-vfs plan.
+
+	* libgnomevfs/gnome-vfs-mime-info.c,
+	* libgnomevfs/gnome-vfs-mime-info.h,
+	* libgnomevfs/gnome-vfs-mime-magic.c,
+	* libgnomevfs/gnome-vfs-mime-magic.h,
+	* libgnomevfs/gnome-vfs-mime.c,
+	* libgnomevfs/gnome-vfs-mime.h:
+	New files, cloned from similarly-named ones in gnome-libs. 
+	I started with the HEAD versions of these files, which
+	include some mime-list API that I'm not sure yet if we
+	actually need (but is currently sitting there uncalled,
+	so no biggie for now). All code should now start using
+	these instead of the code in gnome-libs, which will
+	eventually be obsoleted.
+
+	* libgnomevfs/Makefile.am:
+	Put these new files into the build.
+	
+	* modules/extfs-method.c (read_directory_list):
+	* modules/file-method.c (set_mime_type):
+	* modules/ftp-method.c (_ftpfs_read_directory), (fill_file_info):
+	* modules/pipe-method.c (set_mime_type):
+	* test/gnome-file-selection/gicon.c (gicon_get_icon_for_file_2):
+	Update all callers in gnome-vfs to use the new gnome-vfs mime
+	calls.
+
 2000-05-01  Ian McKellar  <yakk@yakk.net>
 
 	* modules/ftp-method.c:

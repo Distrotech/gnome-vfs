@@ -13,6 +13,8 @@
 #include <unistd.h>
 
 #include <gnome.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-mime-info.h>
 #include "gicon.h"
 
 /* What kinds of images can an icon set contain */
@@ -375,11 +377,11 @@ gicon_get_icon_for_file_2 (const gchar *full_name,
 
 	/* 3. Try MIME-types */
 
-	mime_type = gnome_mime_type_or_default (full_name, NULL);
+	mime_type = gnome_vfs_mime_type_or_default (full_name, NULL);
 	if (mime_type) {
 		const char *icon_name;
 
-		icon_name = gnome_mime_get_value (mime_type, "icon-filename");
+		icon_name = gnome_vfs_mime_get_value (mime_type, "icon-filename");
 		if (icon_name) {
 			iset = get_icon_set (icon_name);
 			if (iset)

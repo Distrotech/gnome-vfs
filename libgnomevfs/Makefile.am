@@ -49,6 +49,9 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-list-sort.h			\
 	gnome-vfs-messages.h			\
 	gnome-vfs-method.h			\
+	gnome-vfs-mime.h			\
+	gnome-vfs-mime-info.h			\
+	gnome-vfs-mime-magic.h			\
 	gnome-vfs-module.h			\
 	gnome-vfs-module-shared.h		\
 	gnome-vfs-parse-ls.h			\
@@ -80,6 +83,9 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-list-sort.c			\
 	gnome-vfs-messages.c			\
 	gnome-vfs-method.c			\
+	gnome-vfs-mime.c			\
+	gnome-vfs-mime-info.c			\
+	gnome-vfs-mime-magic.c			\
 	gnome-vfs-module-shared.c		\
 	gnome-vfs-xfer.c			\
 	gnome-vfs-ops.c				\

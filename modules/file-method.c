@@ -40,6 +40,8 @@
 
 #include <gnome.h>
 
+#include "gnome-vfs-mime.h"
+
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-shared.h"
 #include "file-method.h"
@@ -514,7 +516,7 @@ set_mime_type (GnomeVFSFileInfo *info,
 		else
 			mime_name = full_name;
 
-		mime_type = gnome_mime_type_or_default (mime_name, NULL);
+		mime_type = gnome_vfs_mime_type_or_default (mime_name, NULL);
 
 		if (mime_type == NULL)
 			mime_type = gnome_vfs_mime_type_from_mode (statbuf->st_mode);
@@ -525,7 +527,7 @@ set_mime_type (GnomeVFSFileInfo *info,
                    current gnome-libs.  */
 		/* FIXME: We actually *always* follow symlinks here.  It
                    needs fixing.  */
-		mime_type = gnome_mime_type_from_magic (full_name);
+		mime_type = gnome_vfs_mime_type_from_magic (full_name);
 	}
 
 	info->mime_type = g_strdup (mime_type);

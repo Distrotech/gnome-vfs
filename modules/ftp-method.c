@@ -52,6 +52,7 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-mime.h"
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-shared.h"
 
@@ -2275,7 +2276,7 @@ _ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 		else
 			mime_name = info->name;
 		
-		mime_type = gnome_mime_type_or_default (mime_name, NULL);
+		mime_type = gnome_vfs_mime_type_or_default (mime_name, NULL);
 
 		if (mime_type == NULL)
 			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
@@ -2368,7 +2369,7 @@ fill_file_info (const char *filename,
 		else
 			mime_name = file_info->name;
 		
-		mime_type = gnome_mime_type_or_default (mime_name, NULL);
+		mime_type = gnome_vfs_mime_type_or_default (mime_name, NULL);
 		
 		if (mime_type == NULL)
 			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);

@@ -43,6 +43,7 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-mime.h"
 
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-shared.h"
@@ -538,7 +539,7 @@ read_directory_list (FILE *p,
 		/* Notice that we always do stupid, fast MIME type checking.
                    Real checking based on contents would be too expensive.  */
 		if (info_options & GNOME_VFS_FILE_INFO_GETMIMETYPE) {
-			info->mime_type = g_strdup (gnome_mime_type
+			info->mime_type = g_strdup (gnome_vfs_mime_type
 						    (info->name));
 			info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		}
