@@ -8,14 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.4\n"
-"POT-Creation-Date: 2003-11-24 12:07+0100\n"
-"PO-Revision-Date: 2003-11-15 17:20+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-07 22:30+0100\n"
+"PO-Revision-Date: 2003-12-07 22:36+0100\n"
 "Last-Translator: Danilo Šegan <dsegan@gmx.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
@@ -482,7 +482,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1100
+#: libgnomevfs/gnome-vfs-utils.c:1105
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr " (neispravan Unikod)"
@@ -510,19 +510,19 @@ msgstr "Memorijski štapić"
 msgid "Camera"
 msgstr "Fotoaparat"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:646
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
 msgid "Root Volume"
 msgstr "Osnovni disk"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:725
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
 msgid "Audio CD"
 msgstr "Zvučni CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:756
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
 msgid "Unknown volume"
 msgstr "Nepoznati disk"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
 msgid "Network server"
 msgstr "Mrežni server"
 
@@ -706,6 +706,125 @@ msgstr ""
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
 msgstr "Argument izvršavanja za podrazumevani terminalski program."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:1
+msgid "How to handle callto URLs"
+msgstr "Kako baratati callto adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
+msgid "How to handle ghelp URLs"
+msgstr "Kako baratati ghelp adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
+msgid "How to handle h323 URLs"
+msgstr "Kako baratati h323 adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
+msgid "How to handle http URLs"
+msgstr "Kako baratati http adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid "How to handle https URLs"
+msgstr "Kako baratati https adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid "How to handle info URLs"
+msgstr "Kako baratati info adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "How to handle mailto URLs"
+msgstr "Kako baratati mailto adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+msgid "How to handle man URLs"
+msgstr "Kako baratati man adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+msgid "How to handle trash URLs"
+msgstr "Kako baratati trash adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "Run program in terminal"
+msgstr "Pokreni program u terminalu"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "Set to true to have a program specified in command handle callto URLs"
+msgstr "Uključite ako želite da program naveden u naredbi barata callto adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid "Set to true to have a program specified in command handle h323 URLs"
+msgstr "Uključite ako želite da program naveden u naredbi barata h323 adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+msgid "Set to true to have a program specified in command handle http URLs"
+msgstr "Uključite ako želite da program naveden u naredbi barata http adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+msgid "Set to true to have a program specified in command handle https URLs"
+msgstr "Uključite ako želite da program naveden u naredbi barata https adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid "Set to true to have a program specified in command handle mailto URLs"
+msgstr "Uključite ako želite da program naveden u naredbi barata mailto adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid ""
+"Set to true to have a program specified in programs/ghelp handle ghelp URLs"
+msgstr "Uključite ako želite da program naveden u programs/ghelp barata ghelp adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid ""
+"Set to true to have a program specified in programs/info handle info URLs"
+msgstr "Uključite ako želite da program naveden u programs/info barata info adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+msgid "Set to true to have a program specified in programs/man handle man URLs"
+msgstr "Uključite ako želite da program naveden u programs/man barata man adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+msgid ""
+"Set to true to have a program specified in trash/command handle trash URLs"
+msgstr "Uključite ako želite da program naveden u trash/command barata trash adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+msgid "True if the program to handle this URL should be run in a terminal"
+msgstr "Postavljeno ako je potrebno pokrenuti program za baratanje ovom adresom u terminalu"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+msgid "URL handler for callto uris"
+msgstr "Rukovaoc callto adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+msgid "URL handler for ghelp pages"
+msgstr "Rukovaoc adresama za ghelp stranice"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+msgid "URL handler for h323 uris"
+msgstr "Rukovaoc h323 adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+msgid "URL handler for http uris"
+msgstr "Rukovaoc http adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+msgid "URL handler for https uris"
+msgstr "Rukovaoc https adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+msgid "URL handler for info pages"
+msgstr "Rukovaoc adresama za info stranice"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+msgid "URL handler for mailto uris"
+msgstr "Rukovaoc mailto adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+msgid "URL handler for man pages"
+msgstr "Rukovaoc adresama za man stranice"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+msgid "URL handler for trash pages"
+msgstr "Rukovaoc adresama za trash stranice"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate connections to the proxy server"
