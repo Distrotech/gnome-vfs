@@ -90,4 +90,16 @@ GnomeVFSResult gnome_vfs_unlink_from_uri_cancellable
 					(GnomeVFSURI *uri,
 					 GnomeVFSCancellation *cancellation);
 
+GnomeVFSResult gnome_vfs_move_uri_cancellable
+					(GnomeVFSURI *old,
+					 GnomeVFSURI *new,
+					 gboolean force_replace,
+					 GnomeVFSCancellation *cancellation);
+
+GnomeVFSResult gnome_vfs_check_same_fs_uris_cancellable
+					 (GnomeVFSURI *a,
+					  GnomeVFSURI *b,
+					  gboolean *same_fs_return,
+					  GnomeVFSCancellation *cancellation);
+
 #endif /* _GNOME_VFS_PRIVATE_OPS_H */

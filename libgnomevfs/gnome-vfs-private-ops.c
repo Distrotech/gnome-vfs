@@ -219,3 +219,55 @@ gnome_vfs_unlink_from_uri_cancellable (GnomeVFSURI *uri,
 	return uri->method->unlink (uri, cancellation);
 }
 
+static gboolean
+check_same_fs_in_uri (GnomeVFSURI *a,
+		      GnomeVFSURI *b)
+{
+	if (a->method != b->method)
+		return FALSE;
+	if (strcmp (a->method_string, b->method_string) != 0)
+		return FALSE;
+
+	return TRUE;
+}
+
+GnomeVFSResult
+gnome_vfs_move_uri_cancellable (GnomeVFSURI *old,
+				GnomeVFSURI *new,
+				gboolean force_replace,
+				GnomeVFSCancellation *cancellation)
+{
+	g_return_val_if_fail (old != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (new != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (! check_same_fs_in_uri (old, new))
+		return GNOME_VFS_ERROR_NOTSAMEFS;
+
+	if (old->method->move == NULL)
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+
+	return old->method->move (old, new, force_replace, cancellation);
+}
+
+GnomeVFSResult
+gnome_vfs_check_same_fs_uris_cancellable (GnomeVFSURI *a,
+					  GnomeVFSURI *b,
+					  gboolean *same_fs_return,
+					  GnomeVFSCancellation *cancellation)
+{
+	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (b != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (same_fs_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (! check_same_fs_in_uri (a, b)) {
+		*same_fs_return = FALSE;
+		return GNOME_VFS_OK;
+	}
+
+	if (a->method->check_same_fs == NULL) {
+		*same_fs_return = FALSE;
+		return GNOME_VFS_OK;
+	}
+
+	return a->method->check_same_fs (a, b, same_fs_return, cancellation);
+}

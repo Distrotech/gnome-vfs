@@ -1,3 +1,88 @@
+1999-10-13  Ettore Perazzoli  <ettore@gnu.org>
+
+	* modules/Makefile.am: Add `modules.conf' to `EXTRA_DIST'.
+
+	* libgnomevfs/gnome-vfs-cancellation.c
+	(gnome_vfs_cancellation_check): Do not complain if `cancellation'
+	is NULL.
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_move_uri): New function.
+	(gnome_vfs_move): New function.
+	(gnome_vfs_check_same_fs_uris): New function.
+	(gnome_vfs_check_same_fs): New function.
+	* libgnomevfs/gnome-vfs-ops.h (gnome_vfs_move): Prototypes here.
+
+	* libgnomevfs/gnome-vfs-private-ops.c
+	(gnome_vfs_move_uri_cancellable): New function.
+	(gnome_vfs_check_same_fs_uris_cancellable): New function.
+	* libgnomevfs/gnome-vfs-private-ops.h
+	(gnome_vfs_move_uri_cancellable): Prototypes here.
+
+	* modules/file-method.c (do_check_same_fs): New function,
+	installed as the `check_same_fs' op implementation.
+
+	* libgnomevfs/gnome-vfs-private-types.h: New type
+	`GnomeVFSCheckSameFSFunc'.  New member `check_same_fs' in
+	`GnomeVFSMethod'.
+
+	* modules/file-method.c (do_move): New function, implementing the
+	`move' operation.
+
+	* libgnomevfs/gnome-vfs-private-types.h: `GnomeVFSMethodRenameFunc'
+	removed; replaced by `GnomeVFSMethodMoveFunc' with different
+	parameters.  `rename' member in `struct _GnomeVFSMethod' removed;
+	replaced by `move'.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_get_basename): New
+	function.
+	* libgnomevfs/gnome-vfs-uri.h: Prototype here.
+
+	* test/test-xfer.c: New file, implementing a test for the xfer
+	functionality.
+	* test/Makefile.am: Compile it as `test-xfer'.
+
+	* test/test-copy.c: Removed.
+
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_uri): Honour
+	`GNOME_VFS_XFER_REMOVESOURCE'.  This needs to be optimized for the
+	"files are in the same file system" case of course.
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_open): Doc'ed.
+	(gnome_vfs_open_uri): Doc'ed.
+	(gnome_vfs_create): Doc'ed.
+	(gnome_vfs_create_uri): Doc'ed.
+	(gnome_vfs_close): Doc'ed.
+	(gnome_vfs_read): Doc'ed.
+	(gnome_vfs_write): Doc'ed.
+	(gnome_vfs_seek): Doc'ed.
+	(gnome_vfs_tell): Doc'ed.
+	(gnome_vfs_get_file_info): Doc'ed.
+	(gnome_vfs_get_file_info_uri): Doc'ed.
+	(gnome_vfs_get_file_info_from_handle): Doc'ed.
+	(gnome_vfs_make_directory_for_uri): Doc'ed.
+	(gnome_vfs_make_directory): Doc'ed.
+	(gnome_vfs_remove_directory_from_uri): Doc'ed.
+	(gnome_vfs_remove_directory): Doc'ed.
+	(gnome_vfs_unlink_from_uri): Doc'ed.
+	(gnome_vfs_unlink): Doc'ed.
+
+	* test/test-directory.c (main): Local variable `args' made const.
+
+	* test/test-directory.c (filter_list): `#if 0'ed out just to make
+	the compiler happy.
+
+	* libgnomevfs/gnome-vfs-result.c (gnome_vfs_result_from_errno):
+	Re-indented to make sorting easier.  Convert `EBUSY', `ENOTEMPTY',
+	`EROFS', `EMLINK', `EXDEV', `EFAULT', `ELOOP', as well, using the
+	new GnomeVFSResult values.
+
+	* libgnomevfs/gnome-vfs-types.h: New errors
+	`GNOME_VFS_ERROR_DIRECTORYBUSY', `GNOME_VFS_ERROR_DIRECTORYNOTEMPTY',
+	`GNOME_VFS_ERROR_TOOMANYLINKS', `GNOME_VFS_ERROR_READONLYFS',
+	`GNOME_VFS_ERROR_NOTSAMEFS', `GNOME_VFS_ERROR_NAMETOOLONG'.
+	* libgnomevfs/gnome-vfs-result.c: Added corresponding string
+	descriptions.
+
 1999-10-12  Ettore Perazzoli  <ettore@gnu.org>
 
 	* modules/file-method.c (do_open): When getting `EINTR', do not

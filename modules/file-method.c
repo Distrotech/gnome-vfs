@@ -21,7 +21,7 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-/* TODO: Error handling throughout!  */
+/* TODO metadata? */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -115,7 +115,19 @@ static GnomeVFSResult	do_make_directory
 static GnomeVFSResult	do_remove_directory
                                         (GnomeVFSURI *uri,
 					 GnomeVFSCancellation *cancellation);
+
+static GnomeVFSResult   do_move 	(GnomeVFSURI *old_uri,
+					 GnomeVFSURI *new_uri,
+					 gboolean force_replace,
+					 GnomeVFSCancellation *cancellation);
+
 static GnomeVFSResult   do_unlink       (GnomeVFSURI *uri,
+					 GnomeVFSCancellation *cancellation);
+
+static GnomeVFSResult   do_check_same_fs
+					(GnomeVFSURI *a,
+					 GnomeVFSURI *b,
+					 gboolean *same_fs_return,
 					 GnomeVFSCancellation *cancellation);
 
 static GnomeVFSMethod method = {
@@ -135,8 +147,9 @@ static GnomeVFSMethod method = {
 	do_is_local,
 	do_make_directory,
 	do_remove_directory,
-	NULL,
-	do_unlink
+	do_move,
+	do_unlink,
+	do_check_same_fs
 };
 
 
@@ -920,6 +933,66 @@ do_remove_directory (GnomeVFSURI *uri,
 }
 
 static GnomeVFSResult
+do_move (GnomeVFSURI *old_uri,
+	 GnomeVFSURI *new_uri,
+	 gboolean force_replace,
+	 GnomeVFSCancellation *cancellation)
+{
+	gboolean old_exists;
+	gint retval;
+	struct stat statbuf;
+
+	retval = stat (new_uri->text, &statbuf);
+	if (retval == 0) {
+		/* If we are not allowed to replace an existing file, return an
+                   error.  */
+		if (! force_replace)
+			return GNOME_VFS_ERROR_FILEEXISTS;
+		old_exists = TRUE;
+	} else {
+		old_exists = FALSE;
+	}
+
+	if (gnome_vfs_cancellation_check (cancellation))
+		return GNOME_VFS_ERROR_CANCELLED;
+
+	retval = rename (old_uri->text, new_uri->text);
+
+	/* FIXME?  The following assumes that, if `new_uri' and `old_uri' are
+           on different file systems, `rename()' will always return `EXDEV'
+           instead of `EISDIR', even if the old file is not a directory while
+           the new one is.  If this is not the case, we have to stat() both
+	   the old and new file.  */
+
+	if (retval != 0 && errno == EISDIR && force_replace && old_exists) {
+		/* The Unix version of `rename()' fails if the original file is
+		   not a directory, while the new one is.  But we have been
+		   explicitly asked to replace the destination name, so if the
+		   new name points to a directory, we remove it manually.  */
+		if (S_ISDIR (statbuf.st_mode)) {
+			if (gnome_vfs_cancellation_check (cancellation))
+				return GNOME_VFS_ERROR_CANCELLED;
+			retval = rmdir (new_uri->text);
+			if (retval != 0) {
+				/* FIXME: Maybe we could be more accurate
+				   here?  */
+				return GNOME_VFS_ERROR_DIRECTORYNOTEMPTY;
+			}
+
+			if (gnome_vfs_cancellation_check (cancellation))
+				return GNOME_VFS_ERROR_CANCELLED;
+
+			retval = rename (old_uri->text, new_uri->text);
+		}
+	}
+
+	if (retval == 0)
+		return GNOME_VFS_OK;
+	else
+		return gnome_vfs_result_from_errno ();
+}
+
+static GnomeVFSResult
 do_unlink (GnomeVFSURI *uri,
 	   GnomeVFSCancellation *cancellation)
 {
@@ -930,6 +1003,31 @@ do_unlink (GnomeVFSURI *uri,
 		return GNOME_VFS_OK;
 	else
 		return gnome_vfs_result_from_errno ();
+}
+
+static GnomeVFSResult
+do_check_same_fs (GnomeVFSURI *a,
+		  GnomeVFSURI *b,
+		  gboolean *same_fs_return,
+		  GnomeVFSCancellation *cancellation)
+{
+	struct stat sa, sb;
+	gint retval;
+
+	retval = stat (a->text, &sa);
+	if (retval != 0)
+		return gnome_vfs_result_from_errno ();
+
+	if (gnome_vfs_cancellation_check (cancellation))
+		return GNOME_VFS_ERROR_CANCELLED;
+
+	retval = stat (b->text, &sb);
+	if (retval != 0)
+		return gnome_vfs_result_from_errno ();
+
+	*same_fs_return = (sa.st_dev == sb.st_dev);
+
+	return GNOME_VFS_OK;
 }
 
 

@@ -152,6 +152,7 @@ sort_list (GnomeVFSDirectoryList *list)
 	}
 }
 
+#if 0
 static void
 filter_list (GnomeVFSDirectoryList *list,
 	     const gchar *pattern)
@@ -171,6 +172,7 @@ filter_list (GnomeVFSDirectoryList *list,
 
 	printf ("  Done!\n");
 }
+#endif
 
 
 int
@@ -179,7 +181,7 @@ main (int argc, char **argv)
 	GnomeVFSDirectoryList *list;
 	GnomeVFSResult result;
 	GTimer *timer;
-	char **args;
+	const char **args;
 	gchar *text_uri;
 	poptContext popt_context;
 

@@ -635,7 +635,9 @@ gnome_vfs_xfer_uri (GnomeVFSURI *source_dir_uri,
 	GnomeVFSXferProgressInfo progress_info;
 	GnomeVFSResult result;
 	GList *file_list;
+	GList *rmdir_list;
 	GList *p;
+	gboolean same_fs;
 
 	g_return_val_if_fail (source_dir_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (source_name_list != NULL, GNOME_VFS_ERROR_BADPARAMS);
@@ -654,6 +656,15 @@ gnome_vfs_xfer_uri (GnomeVFSURI *source_dir_uri,
 	progress_info.file_size = 0;
 	progress_info.bytes_copied = 0;
 	progress_info.total_bytes_copied = 0;
+
+	if (gnome_vfs_check_same_fs_uris (source_dir_uri, target_dir_uri,
+					  &same_fs) == GNOME_VFS_OK
+	    && same_fs
+	    && (xfer_options & GNOME_VFS_XFER_REMOVESOURCE)) {
+		/* Optimization possible!  We can use `gnome_vfs_move()'
+                   instead of copying the files manually and remove the
+                   original copies.  */
+	}
 	
 	result = create_xfer_file_list (source_dir_uri, source_name_list,
 					xfer_options, &file_list,
@@ -667,6 +678,10 @@ gnome_vfs_xfer_uri (GnomeVFSURI *source_dir_uri,
 		free_xfer_file_list (file_list);
 		return GNOME_VFS_ERROR_INTERRUPTED;
 	}
+
+	/* This will hold a list of the directories to remove when we are done
+           copying all the files.  */
+	rmdir_list = NULL;
 
 	for (p = file_list; p != NULL; p = p->next) {
 		GnomeVFSURI *source_uri, *target_uri;
@@ -735,6 +750,21 @@ gnome_vfs_xfer_uri (GnomeVFSURI *source_dir_uri,
 					       &skip);
 		}
 
+		/* Remove the source if requested to.  FIXME: We need to
+		   implement a `rename()'-like VFS op and use it when
+		   possible.  */
+		if ((xfer_options & GNOME_VFS_XFER_REMOVESOURCE)
+		    && ! skip && result == GNOME_VFS_OK) {
+			/* Directories must be removed last.  */
+			if (source->info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+				rmdir_list = g_list_prepend
+					(rmdir_list,
+					 gnome_vfs_uri_ref (source_uri));
+			} else {
+				gnome_vfs_unlink_from_uri (source_uri);
+			}
+		}
+
 		gnome_vfs_uri_unref (source_uri);
 		gnome_vfs_uri_unref (target_uri);
 
@@ -758,6 +788,21 @@ gnome_vfs_xfer_uri (GnomeVFSURI *source_dir_uri,
 		}
 
 		progress_info.file_index++;
+	}
+
+	/* Now remove all the directories that have been transferred.  The list
+           should be ordered for giving correct results already (i.e. inner
+           directories first).  */
+	if (rmdir_list != NULL) {
+		for (p = rmdir_list; p != NULL; p = p->next) {
+			GnomeVFSURI *uri;
+
+			/* FIXME progress */
+			uri = p->data;
+			result = gnome_vfs_remove_directory_from_uri (uri);
+			gnome_vfs_uri_unref (uri);
+		}
+		g_list_free (rmdir_list);
 	}
 
 	/* This can be redundant, but makes sure the info is always freed when

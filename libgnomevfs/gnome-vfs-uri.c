@@ -479,8 +479,6 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
  * 
  * Return value: A malloced printable string representing @uri.
  **/
-/* FIXME/TODO: Special characters such as `#' in the URI components should be
-   replaced.  */
 gchar *
 gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 			 GnomeVFSURIHideOptions hide_options)
@@ -490,6 +488,9 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 	const GnomeVFSToplevelURI *toplevel;
 	guint size, len;
 	gchar *s, *p;
+
+	/* FIXME/TODO: Special characters such as `#' in the URI components
+           should be replaced.  */
 
 	g_return_val_if_fail (uri != NULL, NULL);
 
@@ -646,7 +647,7 @@ gnome_vfs_uri_has_parent (const GnomeVFSURI *uri)
  * Return value: A pointer to @uri's parent URI.
  **/
 GnomeVFSURI *
-gnome_vfs_uri_get_parent   (const GnomeVFSURI *uri)
+gnome_vfs_uri_get_parent (const GnomeVFSURI *uri)
 {
 	g_return_val_if_fail (uri != NULL, NULL);
 
@@ -955,3 +956,33 @@ gnome_vfs_uri_equal (const GnomeVFSURI *a,
 
 	return TRUE;
 }
+
+
+/**
+ * gnome_vfs_uri_get_basename:
+ * @uri: A GnomeVFSURI
+ * 
+ * Retrieve base file name for @uri.
+ * 
+ * Return value: A pointer to the base file name in @uri.  Notice that the
+ * pointer points to the name store in @uri, so the name returned must not
+ * be modified nor free.
+ **/
+const gchar *
+gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
+{
+	gchar *p;
+
+	g_return_val_if_fail (uri != NULL, NULL);
+
+	p = strrchr (uri->text, G_DIR_SEPARATOR);
+	if (p == NULL)
+		return NULL;
+
+	p++;
+	if (*p == '\0')
+		return NULL;
+
+	return g_strdup (p);
+}
+

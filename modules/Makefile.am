@@ -8,6 +8,12 @@ CPPFLAGS =					\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS
 
+EXTRA_DIST =					\
+	modules.conf
+
+
+###  Module setup
+
 module_flags = -export_dynamic -avoid-version
 modulesdir = $(prefix)/lib/vfs/modules
 
@@ -20,6 +26,9 @@ modules_LTLIBRARIES =				\
 modules_DATA =					\
 	modules.conf
 
+
+###  `file' method
+
 libfile_la_SOURCES = 				\
 	file-method.c 				\
 	file-method.h				\
@@ -28,17 +37,26 @@ libfile_la_SOURCES = 				\
 
 libfile_la_LDFLAGS = $(module_flags)
 
+
+### `gzip' method
+
 libgzip_la_SOURCES = 				\
 	gzip-method.c 				\
 	gzip-method.h
 libgzip_la_LDFLAGS = $(module_flags)
 libgzip_la_LIBADD = -lz
 
+
+### `bzip2' method
+
 libbzip2_la_SOURCES =				\
 	bzip2-method.c				\
 	bzip2-method.h
 libbzip2_la_LDFLAGS = $(module_flags)
 libbzip2_la_LIBADD = -lbz2
+
+
+### `ftp' method
 
 libftp_la_SOURCES = 				\
 	ftp-method.c				\
@@ -47,6 +65,9 @@ libftp_la_SOURCES = 				\
 	module-shared.h				\
 	parse.c					\
 	parse.h
+
+
+### `gconf' method
 
 if HAVE_GCONF
 gconfmoduledir = $(modulesdir)
@@ -59,6 +80,9 @@ libgconf_la_LIBADD = $(GCONF_LIBS)
 endif
 
 libgconf_la_LDFLAGS = $(module_flags)
+
+
+### `http' method
 
 #libhttp_la_SOURCES =				\
 #	http-method.c				\

@@ -7,8 +7,10 @@ Things to complete
 * GZIP write support might be broken.
 
 * The transfer function does not honour all the flags appropriately,
-it doesn't set the attributes, it cannot copy special files and file
-moving is completely unimplemented.  This is going to be fixed soon.
+  it doesn't set the attributes, it cannot copy special files and file
+  moving is completely unimplemented.  This is going to be fixed soon.
+
+* Names containing the `#' character are likely to cause disasters.
 
 
 API issues

@@ -67,7 +67,13 @@ static gchar *status_strings[] = {
 	/* GNOME_VFS_ERROR_INVALIDHOSTNAME */	N_("Host name not valid"),
 	/* GNOME_VFS_ERROR_HOSTHASNOADDRESS */  N_("Host has no address"),
 	/* GNOME_VFS_ERROR_LOGINFAILED */	N_("Login failed"),
-	/* GNOME_VFS_ERROR_CANCELLED */		N_("Operation cancelled")
+	/* GNOME_VFS_ERROR_CANCELLED */		N_("Operation cancelled"),
+	/* GNOME_VFS_ERROR_DIRECTORYBUSY */     N_("Directory busy"),
+	/* GNOME_VFS_ERROR_DIRECTORYNOTEMPTY */ N_("Directory not empty"),
+	/* GNOME_VFS_ERROR_TOOMANYLINKS */	N_("Too many links"),
+	/* GNOME_VFS_ERROR_READONLYFS */	N_("Read only file system"),
+	/* GNOME_VFS_ERROR_NOTSAMEFS */		N_("Not on the same file system"),
+	/* GNOME_VFS_ERROR_NAMETOOLONG */	N_("Name too long")
 };
 
 
@@ -75,39 +81,31 @@ static gchar *status_strings[] = {
 GnomeVFSResult
 gnome_vfs_result_from_errno (void)
 {
+	/* Please keep these in alphabetical order.  */
 	switch (errno) {
-	case EACCES:
-		return GNOME_VFS_ERROR_ACCESSDENIED;
-	case EBADF:
-		return GNOME_VFS_ERROR_BADFILE;
-	case EFBIG:
-		return GNOME_VFS_ERROR_TOOBIG;
-	case EIO:
-		return GNOME_VFS_ERROR_IO;
-	case EINTR:
-		return GNOME_VFS_ERROR_INTERRUPTED;
-	case EINVAL:
-		return GNOME_VFS_ERROR_BADPARAMS;
-	case EMFILE:
-		return GNOME_VFS_ERROR_TOOMANYOPENFILES;
-	case ENFILE:
-		return GNOME_VFS_ERROR_TOOMANYOPENFILES;
-	case ENOENT:
-		return GNOME_VFS_ERROR_NOTFOUND;
-	case ENOSPC:
-		return GNOME_VFS_ERROR_NOSPACE;
-	case ENOTDIR:
-		return GNOME_VFS_ERROR_NOTADIRECTORY;
-	case EPERM:
-		return GNOME_VFS_ERROR_NOTPERMITTED;
-	case EEXIST:
-		return GNOME_VFS_ERROR_FILEEXISTS;
-	case ENOMEM:
-		return GNOME_VFS_ERROR_NOMEM;
-	case EISDIR:
-		return GNOME_VFS_ERROR_ISDIRECTORY;
-	default:
-		return GNOME_VFS_ERROR_GENERIC;
+	case EACCES:	return GNOME_VFS_ERROR_ACCESSDENIED;
+	case EBUSY:	return GNOME_VFS_ERROR_DIRECTORYBUSY;
+	case EBADF:	return GNOME_VFS_ERROR_BADFILE;
+	case EEXIST:	return GNOME_VFS_ERROR_FILEEXISTS;
+	case EFAULT:	return GNOME_VFS_ERROR_INTERNAL;
+	case EFBIG:	return GNOME_VFS_ERROR_TOOBIG;
+	case EINTR:	return GNOME_VFS_ERROR_INTERRUPTED;
+	case EINVAL:	return GNOME_VFS_ERROR_BADPARAMS;
+	case EIO:	return GNOME_VFS_ERROR_IO;
+	case EISDIR:	return GNOME_VFS_ERROR_ISDIRECTORY;
+	case ELOOP:	return GNOME_VFS_ERROR_LOOP;
+	case EMFILE:	return GNOME_VFS_ERROR_TOOMANYOPENFILES;
+	case EMLINK:	return GNOME_VFS_ERROR_TOOMANYLINKS;
+	case ENFILE:	return GNOME_VFS_ERROR_TOOMANYOPENFILES;
+	case ENOTEMPTY: return GNOME_VFS_ERROR_DIRECTORYNOTEMPTY;
+	case ENOENT:	return GNOME_VFS_ERROR_NOTFOUND;
+	case ENOMEM:	return GNOME_VFS_ERROR_NOMEM;
+	case ENOSPC:	return GNOME_VFS_ERROR_NOSPACE;
+	case ENOTDIR:	return GNOME_VFS_ERROR_NOTADIRECTORY;
+	case EPERM:	return GNOME_VFS_ERROR_NOTPERMITTED;
+	case EROFS:	return GNOME_VFS_ERROR_READONLYFS;
+	case EXDEV:	return GNOME_VFS_ERROR_NOTSAMEFS;
+	default:	return GNOME_VFS_ERROR_GENERIC;
 	}
 }
 
@@ -116,10 +114,8 @@ GnomeVFSResult
 gnome_vfs_result_from_h_errno (void)
 {
 	switch (h_errno) {
-	case HOST_NOT_FOUND:
-		return GNOME_VFS_ERROR_HOSTNOTFOUND;
-	case NO_ADDRESS:
-		return GNOME_VFS_ERROR_HOSTHASNOADDRESS;
+	case HOST_NOT_FOUND:	return GNOME_VFS_ERROR_HOSTNOTFOUND;
+	case NO_ADDRESS:	return GNOME_VFS_ERROR_HOSTHASNOADDRESS;
 	case TRY_AGAIN:		/* FIXME? */
 	case NO_RECOVERY:	/* FIXME? */
 	default:

@@ -111,11 +111,6 @@ typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFromHandleFunc)
 typedef gboolean       (* GnomeVFSMethodIsLocalFunc)
 					(const GnomeVFSURI *uri);
 
-typedef GnomeVFSResult (* GnomeVFSMethodRenameFunc)
-					(GnomeVFSURI *uri,
-					 const gchar *new_name,
-					 GnomeVFSCancellation *cancellation);
-
 typedef GnomeVFSResult (* GnomeVFSMethodMakeDirectoryFunc)
 					(GnomeVFSURI *uri,
 					 guint perm,
@@ -125,8 +120,20 @@ typedef GnomeVFSResult (* GnomeVFSMethodRemoveDirectoryFunc)
 					(GnomeVFSURI *uri,
 					 GnomeVFSCancellation *cancellation);
 
+typedef GnomeVFSResult (* GnomeVFSMethodMoveFunc)
+					(GnomeVFSURI *old_uri,
+					 GnomeVFSURI *new_uri,
+					 gboolean force_replace,
+					 GnomeVFSCancellation *cancellation);
+
 typedef GnomeVFSResult (* GnomeVFSMethodUnlinkFunc)
                                         (GnomeVFSURI *uri,
+					 GnomeVFSCancellation *cancellation);
+
+typedef GnomeVFSResult (* GnomeVFSMethodCheckSameFSFunc)
+					(GnomeVFSURI *a,
+					 GnomeVFSURI *b,
+					 gboolean *same_fs_return,
 					 GnomeVFSCancellation *cancellation);
 
 
@@ -149,8 +156,9 @@ struct _GnomeVFSMethod {
 	GnomeVFSMethodIsLocalFunc is_local;
 	GnomeVFSMethodMakeDirectoryFunc make_directory;
 	GnomeVFSMethodRemoveDirectoryFunc remove_directory;
-	GnomeVFSMethodRenameFunc rename;
+	GnomeVFSMethodMoveFunc move;
 	GnomeVFSMethodUnlinkFunc unlink;
+	GnomeVFSMethodCheckSameFSFunc check_same_fs;
 };
 
 

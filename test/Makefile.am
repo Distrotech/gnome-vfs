@@ -7,17 +7,17 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs
 
 noinst_PROGRAMS =				\
-	test-async_corba			\
-	test-async_pthread			\
 	test-async-directory_corba		\
 	test-async-directory_pthread		\
+	test-async_corba			\
+	test-async_pthread			\
 	test-channel_corba			\
 	test-channel_pthread			\
-	test-copy				\
 	test-directory				\
 	test-directory-visit			\
 	test-seek				\
-	test-sync
+	test-sync				\
+	test-xfer
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
@@ -80,13 +80,13 @@ test_channel_pthread_LDADD =					\
 	$(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la
 test_channel_pthread_LDFLAGS =
 
-test_copy_SOURCES = test-copy.c
-test_copy_LDADD = $(libraries)
-test_copy_LDFLAGS = 
-
 test_seek_SOURCES = test-seek.c
 test_seek_LDADD = $(libraries)
-test_seek_LDFLAGS = 
+test_seek_LDFLAGS =
+
+test_xfer_SOURCES = test-xfer.c
+test_xfer_LDADD = $(libraries)
+test_xfer_LDFLAGS =
 
 test_directory_SOURCES = test-directory.c
 test_directory_LDADD = $(libraries)
@@ -104,8 +104,8 @@ EXTRA_DIST =					\
 	test-async-directory.c			\
 	test-async.c				\
 	test-channel.c				\
-	test-copy.c				\
 	test-directory-visit.c			\
 	test-directory.c			\
 	test-seek.c				\
-	test-sync.c
+	test-sync.c				\
+	test-xfer.c
