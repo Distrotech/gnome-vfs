@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-02-25 14:26+0100\n"
+"POT-Creation-Date: 2000-04-08 19:53+0200\n"
 "PO-Revision-Date: 1999-12-28 15:28+0100\n"
 "Last-Translator: Andreas Hyden <ahyden@staffanstorp.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -396,7 +396,7 @@ msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Fel vid skrivning till GnomeVFSJob-kanalen."
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1247
+#: libgnomevfs-pthread/gnome-vfs-job.c:1248
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Okänt jobb-ID %d"
@@ -407,7 +407,7 @@ msgstr "Okänt jobb-ID %d"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan inte skapa rörledning till öppen GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1265
+#: libgnomevfs-pthread/gnome-vfs-job.c:1266
 msgid "Operation stopped"
 msgstr "Operation stoppad"
 
@@ -528,26 +528,32 @@ msgstr "Startar linjär överföring"
 msgid "Preparing reget..."
 msgstr "Förbereder återtagning..."
 
-#: modules/http-method.c:471
+#: modules/http-method.c:500
+#, c-format
 msgid "Invalid header `%s'"
 msgstr "Ogiltig header `%s'"
 
-#: modules/http-method.c:488
+#: modules/http-method.c:517
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s att motta"
 
-#: modules/http-method.c:601
+#: modules/http-method.c:652
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Stänger anslutning till %s"
 
-#: modules/http-method.c:686
+#: modules/http-method.c:805
 #, c-format
 msgid "%s of %s read"
 msgstr "%s av %s läst"
 
-#: modules/http-method.c:689
+#: modules/http-method.c:808
 #, c-format
 msgid "%s read"
 msgstr "%s läst"
+
+#. Multi-Status
+#: modules/http-method.c:970
+msgid "HTTP server returned an invalid PROPFIND response"
+msgstr "HTTP-servern retunerade ett ogiltigt PROPFIND-svar"
