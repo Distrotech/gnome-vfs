@@ -647,7 +647,7 @@ corba_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 			    GnomeVFSXferProgressCallback progress_sync_callback,
 			    gpointer sync_callback_data)
 {
-	/* FIXME bugzilla.eazel.com:1122
+	/* FIXME bugzilla.eazel.com 1122:
 	 * 
 	 * Update to pass progress_sync_callback properly.
 	 * 

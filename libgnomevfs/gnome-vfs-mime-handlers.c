@@ -138,10 +138,10 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	/* Find a component that supports either the exact mime type,
            the supertype, or all mime types. */
 
-	/* FIXME bugzilla.eazel.com 1144:
-	   should probably check for the right interfaces
-           too. Also slightly semantically different from nautilus in
-           other tiny ways. */
+	/* FIXME bugzilla.eazel.com 1142: should probably check for
+           the right interfaces too. Also slightly semantically
+           different from nautilus in other tiny ways.
+	*/
 	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 			     "', '", supertype,
 			     "', '*'])", NULL);
@@ -343,6 +343,10 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		
 		supertype = mime_type_get_supertype (mime_type);
 		
+		/* FIXME bugzilla.eazel.com 1142: should probably check for
+		   the right interfaces too. Also slightly semantically
+		   different from nautilus in other tiny ways.
+		*/
 		query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 				     "', '", supertype,
 				     "', '*']) && has (['", iids_delimited, "'], iid)",
@@ -429,10 +433,10 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 	/* Find a component that supports either the exact mime type,
            the supertype, or all mime types. */
 
-	/* FIXME bugzilla.eazel.com 1144:
-	   should probably check for the right interfaces
-           too. Also slightly semantically different from nautilus in
-           other tiny ways. */
+	/* FIXME bugzilla.eazel.com 1142: should probably check for
+           the right interfaces too. Also slightly semantically
+           different from nautilus in other tiny ways.
+	*/
 	supertype = mime_type_get_supertype (mime_type);
 	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 			     "', '", supertype,
@@ -492,7 +496,7 @@ gnome_vfs_mime_set_default_action_type (const char *mime_type,
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
 	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
-	/* FIXME: Is it OK to ignore errors? */
+	/* FIXME bugzilla.eazel.com 1156: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
@@ -515,7 +519,7 @@ void gnome_vfs_mime_set_default_application (const char *mime_type,
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
 	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
-	/* FIXME: Is it OK to ignore errors? */
+	/* FIXME bugzilla.eazel.com 1156: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
@@ -539,7 +543,7 @@ gnome_vfs_mime_set_default_component (const char *mime_type,
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
 	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
-	/* FIXME: Is it OK to ignore errors? */
+	/* FIXME bugzilla.eazel.com 1156: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
@@ -598,7 +602,7 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
 	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
-	/* FIXME: Is it OK to ignore errors? */
+	/* FIXME bugzilla.eazel.com 1156: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
@@ -661,7 +665,7 @@ gnome_vfs_mime_set_short_list_components (const char *mime_type,
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
 	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
-	/* FIXME: Is it OK to ignore errors? */
+	/* FIXME bugzilla.eazel.com 1156: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
@@ -869,7 +873,7 @@ gnome_vfs_mime_extend_all_applications (const char *mime_type,
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
 	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
-	/* FIXME: Is it OK to ignore errors? */
+	/* FIXME bugzilla.eazel.com 1156: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
@@ -909,7 +913,7 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
 	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
-	/* FIXME: Is it OK to ignore errors? */
+	/* FIXME bugzilla.eazel.com 1156: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
@@ -934,7 +938,7 @@ gnome_vfs_mime_define_application (GnomeVFSMimeApplication *application)
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
 	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
-	/* FIXME: Is it OK to ignore errors? */
+	/* FIXME bugzilla.eazel.com 1156: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", hack_mime_type);
@@ -1246,8 +1250,7 @@ get_user_level (void)
 		}
 
 		engine = gconf_engine_new ();
-		/* FIXME bugzilla.eazel.com 1150: 
-		   This engine never gets freed. */
+		/* FIXME bugzilla.eazel.com 1150: This engine never gets freed. */
 	}
 
 	user_level = gconf_get_string (engine, "/nautilus/user_level", NULL);

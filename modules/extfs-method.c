@@ -619,7 +619,7 @@ do_open_directory (GnomeVFSMethod *method,
 	handle = g_new (ExtfsDirectoryHandle, 1);
 	handle->directory = directory;
 	handle->prev_position = NULL;
-	handle->meta_keys = NULL; /* FIXME currently unused */
+	handle->meta_keys = NULL; /* FIXME bugzilla.eazel.com 1120: currently unused */
 	for (item = meta_keys; item != NULL; item = item->next) {
 		handle->meta_keys = g_list_prepend (handle->meta_keys, g_strdup (item->data));
 	}
