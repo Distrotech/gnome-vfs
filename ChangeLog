@@ -1,3 +1,10 @@
+2002-05-24  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/vfolder-desktop-method.c:
+	(vfolder_info_read_items_merge):
+
+	Add filters for the "Office" sub-directory (which KDE uses).
+
 2002-05-22  Alex Graveley  <alex@ximian.com>
 
 	* modules/desktop-method.c (do_monitor_add): Implement monitoring,

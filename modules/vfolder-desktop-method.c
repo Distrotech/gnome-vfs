@@ -2437,6 +2437,8 @@ vfolder_info_read_items_merge (VFolderInfo *info,
 		extra_keyword = g_quark_from_static_string ("Network");
 	else if (g_ascii_strcasecmp (subdir, "Multimedia") == 0)
 		extra_keyword = g_quark_from_static_string ("AudioVideo");
+	else if (g_ascii_strcasecmp (subdir, "Office") == 0)
+		extra_keyword = g_quark_from_static_string ("Office");
 	else if (g_ascii_strcasecmp (subdir, "Settings") == 0)
 		extra_keyword = g_quark_from_static_string ("Settings");
 	else if (g_ascii_strcasecmp (subdir, "System") == 0)
