@@ -1,4 +1,6 @@
 <!doctype book PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+<!entity writing-modules SYSTEM "writing-modules.sgml">
+<!entity about SYSTEM "about.sgml">
 <!entity gnome-vfs-app-context SYSTEM "sgml/app-context.sgml">
 <!entity gnome-vfs-application-registry SYSTEM "sgml/application-registry.sgml">
 <!entity gnome-vfs-async-ops SYSTEM "sgml/async-ops.sgml">
@@ -51,7 +53,7 @@
 	<surname>Nickell</surname>
 	<affiliation>
 	  <address>
-	    <email>snickell@stanford.edu</email>
+	    <email>snickell@Stanford.edu</email>
 	  </address>
 	</affiliation>
       </author>
@@ -60,12 +62,9 @@
 
     <legalnotice>
     <para>
-    Permission is granted to copy, distribute and/or modify this document
+      Permission is granted to copy, distribute and/or modify this document
       under the terms of the GNU Free Documentation License, Version 1.1
       or any later version published by the Free Software Foundation;
-      with the Invariant Sections being Tutorial, Configuring, Architecture,
-      Query Langage, .oafinfo reference, Migrating and API reference with no
-      Front-Cover Texts, and with no Back-Cover Texts.
       A copy of the license is included in the section entitled "GNU
       Free Documentation License".
     </para>
@@ -76,11 +75,9 @@
       <holder>The Free Software Foundation</holder>
     </copyright>
   </bookinfo>
-  
-  <para>
-    Test
-  </para>
 
+&about;
+  
   <chapter id="file-operations">
       <title>Basic File Operations</title>
       <para>
@@ -97,7 +94,7 @@
 	without the use of threads.
       </para>
       &gnome-vfs-async-ops;
-    <--FIXME: should we display this?&gnome-vfs-cancellable-ops;-->
+    <--FIXME: should we display this?gnome-vfs-cancellable-ops-->
       &gnome-vfs-ops;
       &gnome-vfs-directory;
       &gnome-vfs-xfer;
@@ -140,6 +137,7 @@
       read-write, seeking, etc). Modules are dynamically loaded based upon the URI
       scheme passed into the high-level GnomeVFS APIs.
     </para>
+      &writing-modules;
       &gnome-vfs-module-api;
       &gnome-vfs-method;
       &gnome-vfs-module-shared;
@@ -156,7 +154,7 @@
       &gnome-vfs-directory-filter;
       &gnome-vfs-file-size;
       &gnome-vfs-find-directory;
-      <--FIXME: I think this should be private&gnome-vfs-handle;-->
+      <--FIXME: I think this should be private: gnome-vfs-handle-->
       &gnome-vfs-inet-connection;
       &gnome-vfs-init;
       &gnome-vfs-iobuf;

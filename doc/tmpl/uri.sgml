@@ -336,6 +336,7 @@ URIs form the backbone of GnomeVFS' filesystem operations
 
 @list: 
 
+
 <!-- ##### MACRO GNOME_VFS_URI_MAGIC_CHR ##### -->
 <para>
 
@@ -361,4 +362,6 @@ URIs form the backbone of GnomeVFS' filesystem operations
 <para>
 
 </para>
+
+
 

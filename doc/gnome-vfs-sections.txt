@@ -527,10 +527,6 @@ GnomeVFSCallback
 
 <SECTION>
 <FILE>uri</FILE>
-GNOME_VFS_URI_MAGIC_CHR
-GNOME_VFS_URI_MAGIC_STR
-GNOME_VFS_URI_PATH_CHR
-GNOME_VFS_URI_PATH_STR
 gnome_vfs_uri_new
 gnome_vfs_uri_ref
 gnome_vfs_uri_unref
@@ -566,6 +562,10 @@ gnome_vfs_uri_list_ref
 gnome_vfs_uri_list_unref
 gnome_vfs_uri_list_copy
 gnome_vfs_uri_list_free
+GNOME_VFS_URI_MAGIC_CHR
+GNOME_VFS_URI_MAGIC_STR
+GNOME_VFS_URI_PATH_CHR
+GNOME_VFS_URI_PATH_STR
 </SECTION>
 
 <SECTION>

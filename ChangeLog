@@ -1,3 +1,26 @@
+2001-06-03  Seth Nickell  <snickell@stanford.edu>
+
+	* doc/Makefile.am:
+	* doc/gnome-vfs-docs.sgml:
+	* doc/gnome-vfs-sections.txt:
+	* doc/tmpl/uri.sgml:
+	* doc/writing-modules.sgml:
+
+	Start writing more "tutorial like" documentation for basic
+	I/O operations.
+	
+	* libgnomevfs/gnome-vfs-socket-buffer.c:
+	(gnome_vfs_socket_buffer_new), (gnome_vfs_socket_buffer_read),
+	(gnome_vfs_socket_buffer_peekc), (gnome_vfs_socket_buffer_write),
+	(gnome_vfs_socket_buffer_flush), (gnome_vfs_socket_buffer_destroy):
+	* libgnomevfs/gnome-vfs-socket-buffer.h:
+	* libgnomevfs/gnome-vfs-socket.c: (gnome_vfs_socket_write),
+	(gnome_vfs_socket_close), (gnome_vfs_socket_read):
+	* libgnomevfs/gnome-vfs-socket.h:
+
+	Write skeletons for functions to get http-method to compile.
+	***WARNING*** - http is probably broken at this point!!!
+	
 2001-06-02  Seth Nickell  <snickell@stanford.edu>
 
 	* doc/gnome-vfs-docs.sgml:

@@ -1,24 +1,4 @@
-<!doctype article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN" [
-]>
-
-<article id="index">
- <artheader>
-   <authorgroup>
-     <author>
-       <firstname>Ettore</firstname>
-       <surname>Perazzoli</surname>
-       <affiliation>
-       <address>
-        <email>ettore@gnu.org</email>
-       </address>
-       </affiliation>
-     </author>
-   </authorgroup>
-   <copyright>
-     <year>1999</year>
-     <holder>the Free Software Foundation</holder>
-   </copyright>
-
+<chapter id="writing-modules">
   <title>Writing modules for the GNOME Virtual File System</title>
   <abstract>
     <para>
@@ -571,7 +551,7 @@ gint gnome_vfs_cancellation_get_fd (GnomeVFSCancellation *cancellation); </progr
     </sect2>
   </sect1>
 
-</article>
+</chapter>
 
 <!--
 Local Variables:
