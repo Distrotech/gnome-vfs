@@ -49,7 +49,6 @@
 #include <arpa/ftp.h>
 #include <arpa/telnet.h>
 #include "ftp-method.h"
-#include "parse.h"
 
 #define DEFAULT_PORT 21
 #define IS_LINEAR(mode) (! ((mode) & GNOME_VFS_OPEN_RANDOM))

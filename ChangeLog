@@ -1,5 +1,10 @@
 1999-10-19  Ettore Perazzoli  <ettore@gnu.org>
 
+	* modules/ftp-method.c: Do not #include "parse.h" anymore.
+
+	* libgnomevfs/gnome-vfs-cancellation.c [HAVE_CONFIG_H]: #include
+	<config.h>.
+
 	* modules/Makefile.am (CPPFLAGS): #define `_GNU_SOURCE'.
 	* libgnomevfs-pthread/Makefile.am (CPPFLAGS): Likewise.
 	* libgnomevfs-corba/Makefile.am (CPPFLAGS): Likewise.
