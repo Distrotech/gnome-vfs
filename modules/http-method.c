@@ -1292,6 +1292,7 @@ make_request (HttpFileHandle **handle_return,
 		g_free (authn_header_request);
 		g_free (authn_header_proxy);
 
+		socket_buffer = NULL;
 		result = connect_to_uri (toplevel_uri, &socket_buffer, 
 				&proxy_connect);
 		

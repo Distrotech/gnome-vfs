@@ -1,3 +1,15 @@
+2001-07-25  Maciej Stachowiak  <mjs@noisehavoc.org>
+ 
+	Fix bug 8296 (News Sidebar crashes when not connected to network),
+	a bunch of other News panel instability, and a bug where Nautilus
+	would totally crash on entering an invalid http URI in the
+	location bar:
+
+	* modules/http-method.c: (make_request): initialize socket_buffer
+	to NULL; if this is not done it will be left set to garbage if
+	`connect_to_uri' fails so that subsequent attempts to close the
+	destroy the socket buffer will crash.
+ 	
 2001-07-18  Martin Baulig  <baulig@suse.de>
 
 	* libgnomevfs/gnome-vfs-module-shared.c: Move the #include
