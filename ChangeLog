@@ -1,3 +1,20 @@
+2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
+
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(initialize_edit_applications_dialog),
+	(nautilus_mime_type_capplet_show_new_extension_window),
+	(add_new_application), (show_new_application_window):
+	More work on adding applications and extension.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(nautilus_mime_type_capplet_add_extension),
+	(remove_extension_clicked), (none_button_toggled),
+	(application_button_toggled), (component_button_toggled),
+	(init_mime_capplet),
+	(nautilus_mime_type_capplet_get_selected_item_mime_type):
+	Changed use of GtkFixed to use layout.  Layout is now messy
+	again, but I should be able to get it looking right.	
+
 2000-06-20  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c:
