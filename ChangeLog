@@ -1,3 +1,15 @@
+2000-08-09  Pavel Cisler  <pavel@eazel.com>
+
+	* modules/file-method.c: (find_trash_in_one_hierarchy_level),
+	(find_trash_in_hierarchy), (try_creating_trash_in),
+	(find_trash_directory), (do_find_directory):
+	Add checks for cancellation at every level of trash lookup.
+	Make it so that we start looking a good place for a new directory
+	right in the top disk level rather than on level deeper.
+	Check if entries returned from the cached Trash list still exist
+	when find_if_needed is on. If they no longer do, flush them from the
+	list.
+
 2000-08-09  Ali Abdin <aliabdin@aucegypt.edu>
 
         * modules/extfs-method.c:

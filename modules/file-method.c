@@ -144,7 +144,6 @@ file_handle_destroy (FileHandle *handle)
 	g_free (handle);
 }
 
-
 static GnomeVFSResult
 do_open (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle **method_handle,
@@ -959,9 +958,12 @@ append_trash_path (const char *path)
 		"-", g_get_user_name (), NULL);
 }
 
+/* Try to find the Trash in @current_directory. If not found, collect all the 
+ * directories in @current_directory to visit later.
+ */
 static char *
 find_trash_in_one_hierarchy_level (const char *current_directory, dev_t near_device_id, 
-	GList **directory_list)
+	GList **directory_list, GnomeVFSContext *context)
 {
 	char *trash_path;
 	char *item_path;
@@ -969,6 +971,9 @@ find_trash_in_one_hierarchy_level (const char *current_directory, dev_t near_dev
 	DIR *directory;
 	struct dirent *item_buffer;
 	struct dirent *item;
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return NULL;
 
 	/* check if there is a trash in this directory */
 	trash_path = append_trash_path (current_directory);
@@ -979,6 +984,9 @@ find_trash_in_one_hierarchy_level (const char *current_directory, dev_t near_dev
 	}
 	g_free (trash_path);
 
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return NULL;
 
 	/* Trash not in this directory.
 	 * Collect the list of all the directories in this directory to visit later.
@@ -994,6 +1002,9 @@ find_trash_in_one_hierarchy_level (const char *current_directory, dev_t near_dev
 			break;
 		}
 
+		if (gnome_vfs_context_check_cancellation (context))
+			break;
+
 		if (strcmp (item->d_name, ".") == 0
 			|| strcmp (item->d_name, "..") == 0)
 			continue;
@@ -1003,12 +1014,17 @@ find_trash_in_one_hierarchy_level (const char *current_directory, dev_t near_dev
 			&& S_ISDIR (stat_buffer.st_mode)
 			&& near_device_id == stat_buffer.st_dev) {
 
-			/* directory -- put it on the list to search, as long as it is on the same device */
+			/* Directory -- put it on the list to search, 
+			 * just as long as it is on the same device.
+			 */
 			*directory_list = g_list_prepend (*directory_list, item_path);
 		} else {
 			g_free (item_path);
 		}
+		if (gnome_vfs_context_check_cancellation (context))
+			break;
 	}
+
 
 	closedir (directory);
 	g_free (item_buffer);
@@ -1024,7 +1040,7 @@ find_trash_in_one_hierarchy_level (const char *current_directory, dev_t near_dev
  * we will fail to find it.
  */
 static char *
-find_trash_in_hierarchy (const char *start_dir, dev_t near_device_id)
+find_trash_in_hierarchy (const char *start_dir, dev_t near_device_id, GnomeVFSContext *context)
 {
 	GList *current_directory_list;
 	GList *next_directory_list;
@@ -1035,7 +1051,9 @@ find_trash_in_hierarchy (const char *start_dir, dev_t near_device_id)
 	next_directory_list = NULL;
 	current_directory_list = NULL;
 
-	result = find_trash_in_one_hierarchy_level (start_dir, near_device_id, &next_directory_list);
+	/* Search the top level. */
+	result = find_trash_in_one_hierarchy_level (start_dir, near_device_id, 
+		&next_directory_list, context);
 
 	for (level = 1; result == NULL && level < MAX_TRASH_SEARCH_DEPTH; level++) {
 		gnome_vfs_list_deep_free (current_directory_list);
@@ -1044,13 +1062,13 @@ find_trash_in_hierarchy (const char *start_dir, dev_t near_device_id)
 		next_directory_list = NULL;
 
 		if (current_directory_list == NULL) {
-			/* shallow hierarchy, bail */
+			/* Shallow hierarchy, bail. */
 			break;
 		}
 		for (list_iterator = current_directory_list; list_iterator != NULL;
 			list_iterator = list_iterator->next) {
 			result = find_trash_in_one_hierarchy_level (list_iterator->data, 
-				near_device_id, &next_directory_list);
+				near_device_id, &next_directory_list, context);
 
 			if (result != NULL) {
 				break;
@@ -1064,12 +1082,12 @@ find_trash_in_hierarchy (const char *start_dir, dev_t near_device_id)
 	return result;
 }
 
+static GList *cached_trash_directories;
+
 typedef struct {
 	char *path;
 	dev_t device_id;
 } TrashDirectoryCachedItem;
-
-static GList *cached_trash_directories;
 
 typedef struct {
 	dev_t device_id;
@@ -1114,7 +1132,8 @@ find_trash_directory (const char *full_name_near, dev_t near_device_id,
 	TrashDirectoryCachedItem *new_cached_item;
 	const char *scanner;
 	int depth;
-	
+	int top_directory_length;
+
 	disk_top_directory = g_strdup (full_name_near);
 
 	/* Walk up in the hierarchy, finding the top-most point that still
@@ -1139,12 +1158,19 @@ find_trash_directory (const char *full_name_near, dev_t near_device_id,
 			disk_top_directory = previous_search_directory;
 			break;
 		}
+		if (gnome_vfs_context_check_cancellation (context))
+			return NULL;
 	}
 
-	trash_path = find_trash_in_hierarchy (disk_top_directory, near_device_id);
+	trash_path = find_trash_in_hierarchy (disk_top_directory, near_device_id, context);
 
 	if (trash_path == NULL && create_if_needed) {
-		scanner = full_name_near + strlen (disk_top_directory);
+		/* Point at the last directory in the top directory path*/
+		scanner = strrchr (disk_top_directory, G_DIR_SEPARATOR);
+		g_assert (scanner != NULL);
+		top_directory_length =  strlen (scanner);
+
+		scanner = full_name_near + strlen (disk_top_directory) - top_directory_length;
 		if (*scanner != '\0') {
 			/* Try creating the Trash as high up in the volume hierarchy as possible
 			 * this makes it faster to find and less likely that the user will try
@@ -1204,6 +1230,7 @@ do_find_directory (GnomeVFSMethod *method,
 	char *full_name_near;
 	struct stat near_item_stat;
 	struct stat home_volume_stat;
+	struct stat stat_buffer;
 	const char *home_directory;
 	char *target_directory;
 
@@ -1216,6 +1243,7 @@ do_find_directory (GnomeVFSMethod *method,
 	if (full_name_near == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
+	/* We will need the URI and the stat structure for the home directory. */
 	home_directory = g_get_home_dir();
 
 	if (gnome_vfs_context_check_cancellation (context)) {
@@ -1257,6 +1285,20 @@ do_find_directory (GnomeVFSMethod *method,
 			matching_item = g_list_find_custom (cached_trash_directories, 
 				&tmp, match_trash_item_by_device_id);
 
+			if (matching_item != NULL && find_if_needed) {
+				/* We found something, make sure it still exists. */
+				if (lstat (((TrashDirectoryCachedItem *)matching_item->data)->path,
+					&stat_buffer) != 0) {
+					/* The cached item doesn't really exist, make a new one
+					 * and delete the cached entry
+					 */
+					g_free (((TrashDirectoryCachedItem *)matching_item->data)->path);
+					g_free ((TrashDirectoryCachedItem *)matching_item->data);
+					cached_trash_directories = g_list_remove (cached_trash_directories, 
+						matching_item->data);
+				}
+			}
+
 			if (matching_item != NULL) {
 				target_directory = g_strdup 
 					(((TrashDirectoryCachedItem *)matching_item->data)->path);
@@ -1266,10 +1308,9 @@ do_find_directory (GnomeVFSMethod *method,
 				target_directory = g_strdup (find_trash_directory (full_name_near,  
 					near_item_stat.st_dev, create_if_needed,
 					permissions, context));
-				/* FIXME:
-				 * handle the case where the cached entry became stale and a Trash
-				 * no longer exists in that location.
-				 */
+				if (gnome_vfs_context_check_cancellation (context))
+					return GNOME_VFS_ERROR_CANCELLED;
+
 			}
 		} else  {
 			/* volume with a home directory, just create a trash in home */
