@@ -1,3 +1,16 @@
+2004-09-27  Ray Strode  <rstrode@redhat.com>
+	* libgnomevfs/eggdesktopentries.c
+        (egg_find_file_in_data_dirs): use g_error_new
+	instead g_set_error.
+	(egg_find_file_in_data_dir): get rid of the
+	secondary error cruft.
+	(egg_desktop_entries_free): free 
+	entries->default_group_name
+	(egg_desktop_entries_get_locale_country):
+	swap if and else clauses to prevent needlessly 
+	misallocating gigabytes of memory  (Spotted 
+	by Nicholas Miell, bug 153759).
+
 2004-09-22  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-unix-mounts.[ch]:
