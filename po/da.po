@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2000-08-01 02:00+0200\n"
-"PO-Revision-Date: 2000-11-03 19:03+01:00\n"
+"PO-Revision-Date: 2000-11-11 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -548,17 +548,27 @@ msgstr "Tilføj ny MIME-type..."
 msgid "Delete this Mime type..."
 msgstr "Slet denne Mime-type..."
 
+#. Set up top right area.
+#: mime-type-capplet/nautilus-mime-type-capplet.c:394
+msgid "Default Action:"
+msgstr "Standard handling:"
+
 #: mime-type-capplet/nautilus-mime-type-capplet.c:404
 msgid "Use Viewer"
 msgstr "Brug visningsprogram"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:410
 msgid "Open With Application"
-msgstr "Åbn ny applikation"
+msgstr "Åbn med applikation"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:422
 msgid "Edit List"
 msgstr "Redigér liste"
+
+#. Set up bottom right area.
+#: mime-type-capplet/nautilus-mime-type-capplet.c:428
+msgid "Extensions:"
+msgstr "fil-endelser:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:451
 msgid "Add"
@@ -567,6 +577,10 @@ msgstr "Tilføj"
 #: mime-type-capplet/nautilus-mime-type-capplet.c:454
 msgid "Remove"
 msgstr "Fjern"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:518
+msgid "No Description"
+msgstr "Ingen beskrivelse"
 
 #. Add default action to fourth column
 #: mime-type-capplet/nautilus-mime-type-capplet.c:640
@@ -601,22 +615,22 @@ msgstr "Smugkig"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1145
+#: modules/http-method.c:1149
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:1510
+#: modules/http-method.c:1514
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:1722
+#: modules/http-method.c:1726
 #, c-format
 msgid "%s of %s read"
 msgstr "%s af %s læst"
 
-#: modules/http-method.c:1725
+#: modules/http-method.c:1729
 #, c-format
 msgid "%s read"
 msgstr "%s læst"
