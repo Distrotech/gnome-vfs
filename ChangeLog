@@ -1,3 +1,14 @@
+2001-02-28  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+	
+	Fixed bug 7148, Flash files identified as mp3
+	
+	* data/mime/gnome-vfs-mime-magic:
+	* data/mime/gnome-vfs.keys.in:
+	* data/mime/gnome-vfs.mime:
+	Add application/x-shockwave-flash information.
+
 2001-02-24  Marius Andreiana  <mandreiana@yahoo.com>
 
 	* configure.in: Added ro (Romanian) to ALL_LINGUAS.

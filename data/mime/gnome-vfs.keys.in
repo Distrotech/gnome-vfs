@@ -340,6 +340,9 @@ application/x-shared-library-la
 	_description=shared library
 	icon_filename=gnome-library.png
 
+application/x-shockwave-flash
+	_description=Macromedia Flash file
+
 application/x-smil
 	_description=SMIL script
 
