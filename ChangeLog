@@ -1,3 +1,23 @@
+2000-08-10  Ali Abdin <aliabdin@aucegypt.edu>
+
+        * libgnomevfs/gnome-vfs-gen-mimedb.c:
+        (main):
+        Replace gnomelib_init with gnome_vfs_init and replace
+        Replace g_file_exists with access(,F_OK)
+
+        Remove #include of gnome-libs file
+
+        * modules/file-method.c:
+        (do_find_directory):
+        Replace g_file_exists with access(,F_OK)
+        (do_set_file_info): Remove usage of g_concat_dir_and_file (to avoid
+        gnome-libs dependency).
+
+        Also #include <string.h>
+
+        * libgnomevfs-corba.c:
+        #include <popt.h>
+
 2000-08-10  Maciej Stachowiak  <mjs@eazel.com>
  
  	* libgnomevfs/gnome-vfs-uri.c (parse_uri_substring,

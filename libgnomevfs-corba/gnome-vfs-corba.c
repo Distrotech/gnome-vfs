@@ -27,6 +27,7 @@
 #include <orb/orbit.h>
 
 #include <gnome.h>
+#include <popt.h>
 #include <liboaf/liboaf.h>
 
 #include "gnome-vfs.h"

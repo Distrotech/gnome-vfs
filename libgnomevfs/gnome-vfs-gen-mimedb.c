@@ -3,7 +3,6 @@
 #endif
 #include <sys/types.h>
 
-#include <libgnome/libgnome.h>
 #include <ctype.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -12,6 +11,7 @@
 #include <stdio.h>
 
 #include "gnome-vfs-mime-magic.h"
+#include "gnome-vfs.h"
 
 extern GnomeMagicEntry *gnome_vfs_mime_magic_parse (const char *filename, int *nents);
 
@@ -23,15 +23,13 @@ int main(int argc, char *argv[])
 
 	FILE *f;
 
-	gnome_do_not_create_directories = 1;
-	/* Passing a bogus version number here. */
-	gnomelib_init("gnome-vfs-gen-mimedb", "0.0");
+	gnome_vfs_init();
 
 	if(argc > 1) {
 		if(argv[1][0] == '-') {
 			fprintf(stderr, "Usage: %s [filename]\n", argv[0]);
 			return 1;
-		} else if(g_file_exists(argv[1]))
+		} else if(access(argv[1],F_OK))
 			filename = argv[1];
 	} else {
 	        filename = g_strconcat (GNOME_VFS_CONFDIR, "/gnome-vfs-mime-magic", NULL);

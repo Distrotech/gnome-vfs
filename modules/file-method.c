@@ -38,8 +38,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <utime.h>
-
-#include <gnome.h>
+#include <string.h>
 
 #include "gnome-vfs-mime.h"
 
@@ -1335,10 +1334,10 @@ do_find_directory (GnomeVFSMethod *method,
 	if (target_directory == NULL)
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
-	if (create_if_needed && !g_file_exists (target_directory))
+	if (create_if_needed && !access (target_directory,F_OK))
 		mkdir (target_directory, permissions);
 
-	if (!g_file_exists (target_directory)) {
+	if (!access (target_directory,F_OK)) {
 		g_free (target_directory);
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
@@ -1575,7 +1574,11 @@ do_set_file_info (GnomeVFSMethod *method,
 		g_free (encoded_dir);
 		g_assert (dir != NULL);
 
-		new_name = g_concat_dir_and_file (dir, info->name);
+		if (dir[strlen(dir) - 1] != '/') {
+			new_name = g_strconcat (dir, "/", info->name, NULL);
+		} else {
+			new_name = g_strconcat (dir, info->name, NULL);
+		}
 
 		result = rename_helper (full_name, new_name, FALSE, context);
 
