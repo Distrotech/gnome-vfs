@@ -1,3 +1,5 @@
+=== gnome-vfs 2.7.4 ===
+
 2004-07-22  Ray Strode  <rstrode@redhat.com>
 
 	* imported/neon/Makefile.am:
