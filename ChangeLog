@@ -1,3 +1,21 @@
+2001-02-20  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Mike Fleming <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-process.c: (sigchld_handler): Fix
+	uninitialized variable problem (reported by danw I think).
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_get_local_path_from_uri): Simplify function and make it
+	return NULL with # characters.
+	
+	* test/test-uri.c: (main): Update tests to match the change to
+	gnome_vfs_get_local_path_from_uri.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.c: Improve a variable name.
+
+	* mime-type-capplet/.cvsignore: Ignore the executable under its
+	new name, not its old name.
+
 2001-02-20  John Sullivan  <sullivan@eazel.com>
 
 	* mime-type-capplet/nautilus-mime-type-capplet.c:
@@ -228,7 +246,7 @@
 	sniffing counterpart so that it is _not_ called only on failure of
 	"gnome_vfs_mime_try_one_magic_pattern".
 
-2001-02-19  Ian McKellar,,,  <ian@eazel.com>
+2001-02-19  Ian McKellar  <ian@eazel.com>
 
 	reviewed by: Eskil Olsen <eskil@eazel.com>
 
@@ -545,14 +563,13 @@
 
 2001-02-08  Michael K. Fleming  <mfleming@eazel.com>
 
-	Bug 6451: Copying file into folder with space in it fails with "out of space"
-	error.
+	Bug 6451: Copying file into folder with space in it fails with
+	"out of space" error.
 
 	gnome_vfs_get_volume_free_space was calling statfs() with escaped
 	paths and returning the wrong error code. 
 
 	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
-
 
 2001-02-08  Ian McKellar  <ian@eazel.com>
 

@@ -588,16 +588,15 @@ main (int argc, char **argv)
 			    "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml",
 			    GNOME_VFS_URI_HIDE_NONE);
 
-
-	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/document.html#fragment"), "/my/document.html");
-	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/document.html"), "/my/document.html");
-	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("http://my/document.html"), NULL);
-	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("/my/document.html"), NULL);
-	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("/#"), NULL);
 	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri (""), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("/#"), NULL);
 	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:/path"), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/document.html"), "/my/document.html");
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/document.html#fragment"), NULL);
 	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/docu%20ment%23/path"), "/my/docu ment#/path");
-	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/docu%20ment%23/path/foo.html.gz#gunzip:///#fragment"), "/my/docu ment#/path/foo.html.gz");
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("file:///my/docu%20ment%23/path/foo.html.gz#gunzip:///#fragment"), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("/my/document.html"), NULL);
+	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("http://my/document.html"), NULL);
 	
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;

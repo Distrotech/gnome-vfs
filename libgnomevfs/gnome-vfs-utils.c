@@ -654,46 +654,20 @@ istr_has_prefix (const char *haystack, const char *needle)
  *
  * Return value: the local path 
  * NULL is returned on error of if the uri isn't a file: URI
- *
- * Any fragment identifier or chained URI's will be stripped
+ * without a fragment identifier (or chained URI).
  **/
 char *
 gnome_vfs_get_local_path_from_uri (const char *uri)
 {
-	char *result, *unescaped_uri, *fragment, *uri_minus_fragment;
-
-	if (uri == NULL) {
+	if (!istr_has_prefix (uri, "file:///")) {
 		return NULL;
 	}
-
-	/*
-	 * Remove fragments and gnome-vfs compound URIs from the URI
-	 */
-
-	fragment = strchr (uri, '#');
 	
-	if (fragment != NULL) {
-		uri_minus_fragment = g_strndup (uri, fragment - uri);
-		unescaped_uri = gnome_vfs_unescape_string (uri_minus_fragment, "/");
-		g_free (uri_minus_fragment);
-		uri_minus_fragment = NULL;
-	} else {
-		unescaped_uri = gnome_vfs_unescape_string (uri, "/");	
-	}
-
-	if (unescaped_uri == NULL) {
+	if (strchr (uri, '#') != NULL) {
 		return NULL;
 	}
-
-	if (istr_has_prefix (unescaped_uri, "file:///")) {
-		result = g_strdup (unescaped_uri + 7);
-	} else {
-		result = NULL;
-	}
-
-	g_free (unescaped_uri);
-
-	return result;
+	
+	return gnome_vfs_unescape_string (uri + 7, "/");
 }
 
 /**

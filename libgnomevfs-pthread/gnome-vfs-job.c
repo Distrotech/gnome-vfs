@@ -54,9 +54,10 @@ GStaticMutex debug_mutex = { NULL, { { } } };
 
 static int job_count = 0;
 
-static void 	gnome_vfs_op_destroy 			(GnomeVFSOp 			*op);
-static gboolean dispatch_job_callback 			(gpointer 			 data);
-static gboolean dispatch_sync_job_callback 		(gpointer 			 data);
+static void     gnome_vfs_op_destroy                (GnomeVFSOp           *op);
+static void     gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result);
+static gboolean dispatch_job_callback               (gpointer              data);
+static gboolean dispatch_sync_job_callback          (gpointer              data);
 
 static void
 set_fl (int fd, int flags)
@@ -126,32 +127,28 @@ gnome_vfs_job_complete (GnomeVFSJob *job)
  * acknowledgment.
  */
 static void
-job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *wakeup_context)
+job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
-	
-	gnome_vfs_async_job_add_callback (wakeup_context);
+	gnome_vfs_async_job_add_callback (notify_result);
 
-	JOB_DEBUG (("job %u, callback %u", GPOINTER_TO_UINT (wakeup_context->job_handle),
-		wakeup_context->callback_id));
+	JOB_DEBUG (("job %u, callback %u", GPOINTER_TO_UINT (notify_result->job_handle),
+		notify_result->callback_id));
 
-	g_idle_add (dispatch_job_callback, wakeup_context);
+	g_idle_add (dispatch_job_callback, notify_result);
 }
-
 
 /* This notifies the master threads, waiting until it acknowledges the
    notification.  */
 static void
-job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *wakeup_context)
+job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
 	if (job->cancelled) {
 		JOB_DEBUG (("job cancelled, bailing %u",
-			GPOINTER_TO_UINT (wakeup_context->job_handle)));
+			    GPOINTER_TO_UINT (notify_result->job_handle)));
 		return;
 	}
 
-	gnome_vfs_async_job_add_callback (wakeup_context);
-
-	JOB_DEBUG (("Locking notification lock %u", GPOINTER_TO_UINT (wakeup_context->job_handle)));
+	JOB_DEBUG (("Locking notification lock %u", GPOINTER_TO_UINT (notify_result->job_handle)));
 	/* Lock notification, so that the master cannot send the signal until
            we are ready to receive it.  */
 	g_mutex_lock (job->notify_ack_lock);
@@ -159,8 +156,8 @@ job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *wakeup_context)
 	/* Send the notification.  This will wake up the master thread, which
          * will in turn signal the notify condition.
          */
-	gnome_vfs_async_job_add_callback (wakeup_context);
-	g_idle_add (dispatch_sync_job_callback, wakeup_context);
+	gnome_vfs_async_job_add_callback (notify_result);
+	g_idle_add (dispatch_sync_job_callback, notify_result);
 
 	/* FIXME:
 	 * unlock here to prevent deadlock with async cancel. We should not use the
@@ -169,17 +166,17 @@ job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *wakeup_context)
 	 */
 	sem_post (&job->access_lock);
 
-	JOB_DEBUG (("Wait notify condition %u", GPOINTER_TO_UINT (wakeup_context->job_handle)));
+	JOB_DEBUG (("Wait notify condition %u", GPOINTER_TO_UINT (notify_result->job_handle)));
 	/* Wait for the notify condition.  */
 	g_cond_wait (job->notify_ack_condition, job->notify_ack_lock);
 
 	sem_wait (&job->access_lock);
 
-	JOB_DEBUG (("Unlock notify ack lock %u", GPOINTER_TO_UINT (wakeup_context->job_handle)));
+	JOB_DEBUG (("Unlock notify ack lock %u", GPOINTER_TO_UINT (notify_result->job_handle)));
 	/* Acknowledgment got: unlock the mutex.  */
 	g_mutex_unlock (job->notify_ack_lock);
 
-	JOB_DEBUG (("Done %u", GPOINTER_TO_UINT (wakeup_context->job_handle)));
+	JOB_DEBUG (("Done %u", GPOINTER_TO_UINT (notify_result->job_handle)));
 }
 
 static void
