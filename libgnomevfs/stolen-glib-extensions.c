@@ -28,7 +28,6 @@
 #include "stolen-glib-extensions.h"
 
 #include "eel-cut-n-paste.h"
-#include <ctype.h>
 #include <glib/glist.h>
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>

@@ -31,7 +31,6 @@
 #include "eel-cut-n-paste.h"
 
 #include "gnome-vfs-helpers.h"
-#include <ctype.h>
 #include <errno.h>
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>

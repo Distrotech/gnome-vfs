@@ -24,7 +24,6 @@
 #include "gnome-vfs-i18n.h"
 
 #include "gnome-vfs-private-utils.h"
-#include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <glib/ghash.h>

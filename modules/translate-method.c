@@ -22,7 +22,6 @@
 
 #include <config.h>
 
-#include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <glib/gmessages.h>
@@ -1015,7 +1014,7 @@ static int my_poptParseArgvString(char *buf, int *argcPtr, char ***argvPtr)
 					*(buf++) = '\\';
 			}
 			*(buf++) = *src;
-		} else if (isspace((unsigned char)*src)) {
+		} else if (g_ascii_isspace(*src)) {
 			*buf = '\0';
 			if (*argv[argc]) {
 				buf++, argc++;

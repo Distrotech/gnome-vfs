@@ -26,7 +26,6 @@
 
 #include <config.h>
 
-#include <ctype.h>
 #include <errno.h>
 #include <glib/ghash.h>
 #include <glib/gstrfuncs.h>

@@ -33,7 +33,6 @@
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-uri.h"
-#include <ctype.h>
 #include <dirent.h>
 #include <regex.h>
 #include <stdio.h>
@@ -139,7 +138,7 @@ add_to_key (char *mime_type, char *def)
 		def += 5;
 		def = get_priority (def, &priority);
 
-		while (*def != '\0' && isspace ((unsigned char)*def)) {
+		while (g_ascii_isspace (*def)) {
 			def++;
 		}
 
@@ -187,7 +186,7 @@ mime_fill_from_file (const char *filename)
 
 		/* Trim trailing spaces */
 		for (p = buf + strlen (buf) - 1; p >= buf; p--) {
-			if (!isspace ((unsigned char)*p) && *p != '\n') {
+			if (!g_ascii_isspace (*p)) {
 				break;
 			}
 			*p = 0;
@@ -201,7 +200,7 @@ mime_fill_from_file (const char *filename)
 			if (current_key){
 				char *p = buf;
 
-				while (*p && isspace ((unsigned char)*p))
+				while (g_ascii_isspace (*p))
 					p++;
 
 				if (*p == 0)

@@ -40,7 +40,6 @@
 /* Keep <netinet/in.h> above <arpa/inet.h> for FreeBSD. */
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <ctype.h> /* for isspace */
 #include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-inet-connection.h>
@@ -293,10 +292,10 @@ get_response (FtpConnection *conn)
 #endif
 
 		/* response needs to be at least: "### x"  - I think*/
-		if (isdigit ((unsigned char) line[0]) &&
-		    isdigit ((unsigned char) line[1]) &&
-		    isdigit ((unsigned char) line[2]) &&
-		    isspace ((unsigned char) line[3])) {
+		if (g_ascii_isdigit (line[0]) &&
+		    g_ascii_isdigit (line[1]) &&
+		    g_ascii_isdigit (line[2]) &&
+		    g_ascii_isspace (line[3])) {
 
 			conn->response_code = (line[0] - '0') * 100 + (line[1] - '0') * 10 + (line[2] - '0');
 
@@ -1268,8 +1267,7 @@ do_read_directory (GnomeVFSMethod *method,
 			conn->dirlistptr++;
 		}
 		/* go past \r\n */
-		while (conn->dirlistptr && *conn->dirlistptr &&
-		       isspace ((unsigned char) (*conn->dirlistptr))) {
+		while (conn->dirlistptr && g_ascii_isspace (*conn->dirlistptr)) {
 			conn->dirlistptr++;
 		}
 

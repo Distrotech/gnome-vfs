@@ -24,7 +24,6 @@
 #ifndef GNOME_VFS_MIME_H
 #define GNOME_VFS_MIME_H
 
-#include <ctype.h>
 #include <dirent.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 #include <sys/types.h>

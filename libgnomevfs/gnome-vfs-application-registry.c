@@ -33,7 +33,6 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-result.h"
-#include <ctype.h>
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -673,7 +672,7 @@ strip_trailing_whitespace (GString *string)
 	int i;
 
 	for (i = string->len - 1; i >= 0; i--) {
-		if (!isspace ((guchar) string->str[i]))
+		if (!g_ascii_isspace (string->str[i]))
 			break;
 	}
 

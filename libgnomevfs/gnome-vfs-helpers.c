@@ -40,7 +40,6 @@
 #include <libgnomevfs/gnome-vfs-xfer.h>
 #include <pthread.h>
 
-#include <ctype.h>
 #include <string.h>
 
 #include <glib/gstrfuncs.h>

@@ -31,7 +31,6 @@
 #include "gnome-vfs-cancellation.h"
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-uri.h"
-#include <ctype.h>
 #include <errno.h>
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>
@@ -392,11 +391,11 @@ check_end (const gchar *p)
 {
 	if (!p)
 		return 0;
-	while (isspace ((unsigned char)*p))
+	while (g_ascii_isspace (*p))
 		++p;
 	if (!*p
 	    || (p[0] == 'G' && p[1] == 'M' && p[2] == 'T')
-	    || ((p[0] == '+' || p[1] == '-') && isdigit ((unsigned char)p[1])))
+	    || ((p[0] == '+' || p[1] == '-') && g_ascii_isdigit (p[1])))
 		return 1;
 	else
 		return 0;

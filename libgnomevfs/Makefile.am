@@ -99,7 +99,6 @@ libgnomevfsinclude_HEADERS =			\
 libgnomevfs_la_SOURCES =			\
 	eel-cut-n-paste.c			\
 	stolen-glib-extensions.c		\
-	fnmatch.c				\
 	gnome-vfs-app-context.c			\
 	gnome-vfs-application-registry.c	\
 	gnome-vfs-async-ops.c			\
@@ -144,7 +143,6 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-utils.c			\
 	gnome-vfs-xfer.c			\
 	eel-cut-n-paste.h			\
-	fnmatch.h				\
 	gnome-vfs-backend-private.h		\
 	gnome-vfs-i18n.h			\
 	gnome-vfs-mime-private.h		\

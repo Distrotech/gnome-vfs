@@ -25,7 +25,6 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-private-utils.h"
 
-#include <ctype.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -123,7 +122,7 @@ read_string_val (const char *scanner, char *intobuf, int max_len, guint16 *into_
 	intobufend = intobuf + max_len - 1;
 	*into_len = 0;
 
-	while (*scanner && !isspace ((unsigned char)*scanner) && *scanner != '#') {
+	while (*scanner && !g_ascii_isspace (*scanner) && *scanner != '#') {
 		ch = *scanner++;
 
 		switch (ch) {
@@ -229,7 +228,7 @@ read_num_val(const char **offset, int bsize, int *result)
 		break;
 	}
 
-	while (**offset && !isspace ((guchar)**offset)) {
+	while (**offset && !g_ascii_isspace (**offset)) {
 		(*offset)++;
 	}
 
@@ -239,7 +238,7 @@ read_num_val(const char **offset, int bsize, int *result)
 static const char *
 eat_white_space (const char *scanner)
 {
-	while (*scanner && isspace ((guchar)*scanner)) {
+	while (g_ascii_isspace (*scanner)) {
 		scanner++;
 	}
 	return scanner;
@@ -291,7 +290,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 			continue;
 		}
 
-		if (!isdigit ((guchar)*scanner)) {
+		if (!g_ascii_isdigit (*scanner)) {
 			continue;
 		}
 
@@ -300,7 +299,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 		}
 		newent.range_end = newent.range_start;
 
-		while (*scanner && isdigit ((guchar)*scanner)) {
+		while (g_ascii_isdigit (*scanner)) {
 			scanner++; /* eat the offset */
 		}
 
@@ -312,7 +311,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 			}
 		}
 
-		while (*scanner && !isspace ((guchar)*scanner)) {
+		while (*scanner && !g_ascii_isspace (*scanner)) {
 			scanner++; /* eat the offset */
 		}
 
@@ -421,7 +420,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 
 		g_snprintf (newent.mimetype, sizeof (newent.mimetype), "%s", scanner);
 		bsize = strlen (newent.mimetype) - 1;
-		while (newent.mimetype [bsize] && isspace ((guchar)(newent.mimetype [bsize]))) {
+		while (newent.mimetype [bsize] && g_ascii_isspace (newent.mimetype [bsize])) {
 			newent.mimetype [bsize--] = '\0';
 		}
 
@@ -613,7 +612,7 @@ print_escaped_string (const guchar *string, int length)
 		if (*string == '\\' || *string == '#') {
 			/* escape \, #, etc. properly */
 			printf ("\\%c", *string);
-		} else if (isprint (*string) && *string > ' ') {
+		} else if (g_ascii_isgraph (*string)) {
 			/* everything printable except for white space can go directly */
 			printf ("%c", *string);
 		} else {
@@ -736,7 +735,7 @@ gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	
 	for (index = 0; index < sniff_buffer->buffer_length - 3; index++) {
 		ch = sniff_buffer->buffer[index];
-		if (!isprint (ch) && !isspace(ch)) {
+		if (!g_ascii_isprint (ch) && !g_ascii_isspace (ch)) {
 			/* check if we are dealing with UTF-8 text
 			 * 
 			 *	 bytes | bits | representation

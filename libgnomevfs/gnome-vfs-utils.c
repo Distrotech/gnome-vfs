@@ -34,7 +34,6 @@
 
 #include "gnome-vfs-i18n.h"
 #include "gnome-vfs-private-utils.h"
-#include <ctype.h>
 #include <glib/gstrfuncs.h>
 #include <glib/gutils.h>
 #include <pwd.h>

@@ -26,7 +26,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -40,6 +39,7 @@
 #include <unistd.h>
 
 #include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
 #include <glib/gutils.h>
 
 #define size16 short
@@ -379,11 +379,11 @@ char *ChopWhite(char *buf)
 {
   int pos;
 
-  for(pos=strlen(buf)-1;(pos>=0)&&isspace(buf[pos]);pos--);
+  for(pos=strlen(buf)-1;(pos>=0)&&g_ascii_isspace(buf[pos]);pos--);
 
   buf[pos+1]='\0';
 
-  for(;isspace(*buf);buf++);
+  for(;g_ascii_isspace(*buf);buf++);
 
   return buf;
 }

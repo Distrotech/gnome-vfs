@@ -29,7 +29,6 @@
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-transform.h"
 #include "gnome-vfs-utils.h"
-#include <ctype.h>
 #include <glib/ghash.h>
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>
@@ -238,7 +237,7 @@ split_toplevel_uri (const gchar *path, guint path_len,
 
 		port = 0;
 
-		for ( ; cur < path_end && '\0' != *cur && isdigit ((guchar) *cur); cur++) {
+		for ( ; cur < path_end && g_ascii_isdigit (*cur); cur++) {
 			port *= 10;
 			port += *cur - '0'; 
 		}

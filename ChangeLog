@@ -1,5 +1,39 @@
 2001-08-31  Darin Adler  <darin@bentspoon.com>
 
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/fnmatch.c:
+	* libgnomevfs/fnmatch.h:
+	Remove this unused code.
+
+	* libgnomevfs/eel-cut-n-paste.c:
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	(strip_trailing_whitespace):
+	* libgnomevfs/gnome-vfs-configuration.c: (parse_line):
+	* libgnomevfs/gnome-vfs-helpers.c:
+	* libgnomevfs/gnome-vfs-i18n.c:
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-mime-magic.c: (read_string_val),
+	(read_num_val), (eat_white_space), (gnome_vfs_mime_magic_parse),
+	(print_escaped_string), (gnome_vfs_sniff_buffer_looks_like_text):
+	* libgnomevfs/gnome-vfs-mime.c: (add_to_key),
+	(mime_fill_from_file):
+	* libgnomevfs/gnome-vfs-mime.h:
+	* libgnomevfs/gnome-vfs-private-utils.c: (check_end):
+	* libgnomevfs/gnome-vfs-uri.c: (split_toplevel_uri):
+	* libgnomevfs/gnome-vfs-utils.c:
+	* libgnomevfs/stolen-glib-extensions.c:
+	* modules/cdda-cddb.c: (ChopWhite):
+	* modules/cdda-method.c:
+	* modules/ftp-method.c: (get_response), (do_read_directory):
+	* modules/http-method.c: (parse_status), (header_value_to_number),
+	(unescape_unreserved_chars):
+	* modules/translate-method.c: (my_poptParseArgvString):
+	* test/test-shell.c:
+	Get rid of any use of <ctype.h> and replace with the new g_ascii_*
+	calls in glib.
+
+2001-08-31  Darin Adler  <darin@bentspoon.com>
+
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_list_parse):
 	Use g_ascii_isspace instead of isspace. This fixes the char
 	subscript problem in an even better way, and makes sure we don't

@@ -33,7 +33,6 @@
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-private-utils.h"
-#include <ctype.h>
 #include <dirent.h>
 #include <stdio.h>
 #include <string.h>

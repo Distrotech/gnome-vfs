@@ -41,7 +41,6 @@
 /* Keep <netinet/in.h> above <arpa/inet.h> for FreeBSD. */
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <ctype.h>
 #include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs-inet-connection.h>
 #include <libgnomevfs/gnome-vfs-mime-sniff-buffer.h>
@@ -314,7 +313,7 @@ parse_status (const char *cline,
 		
 		/* Calculate major HTTP version.  */
 		p = line;
-		for (mjr = 0; isdigit (*line); line++)
+		for (mjr = 0; g_ascii_isdigit (*line); line++)
 			mjr = 10 * mjr + (*line - '0');
 		if (*line != '.' || p == line)
 			return FALSE;
@@ -322,7 +321,7 @@ parse_status (const char *cline,
 		
 		/* Calculate minor HTTP version.  */
 		p = line;
-		for (mnr = 0; isdigit (*line); line++)
+		for (mnr = 0; g_ascii_isdigit (*line); line++)
 			mnr = 10 * mnr + (*line - '0');
 		if (*line != ' ' || p == line)
 			return -1;
@@ -344,7 +343,7 @@ parse_status (const char *cline,
 	}
 	
 	/* Calculate status code.  */
-	if (!(isdigit (*line) && isdigit (line[1]) && isdigit (line[2])))
+	if (!(g_ascii_isdigit (*line) && g_ascii_isdigit (line[1]) && g_ascii_isdigit (line[2])))
 		return -1;
 	statcode = 100 * (*line - '0') + 10 * (line[1] - '0') + (line[2] - '0');
 
@@ -409,7 +408,7 @@ header_value_to_number (const char *header_value,
 
 	p = header_value;
 
-	for (result = 0; isdigit ((unsigned char)*p); p++)
+	for (result = 0; g_ascii_isdigit (*p); p++)
 		result = 10 * result + (*p - '0');
 	if (*p)
 		return FALSE;
@@ -1759,22 +1758,6 @@ null_handling_strcmp (const char *a, const char *b)
 }
 
 #if 0
-static unsigned char
-unhex_char (char to_unhex)
-{
-	unsigned char ret = 0;
-	
-	if (to_unhex >= 'A' && to_unhex <= 'F') {	
-		ret = to_unhex - 'A' + 0xA;	
-	} else if (to_unhex >= 'a' && to_unhex <= 'f') {
-		ret = to_unhex - 'a' + 0xa;	
-	} else if (to_unhex >= '0' && to_unhex <= '9') {
-		ret = to_unhex - '0';
-	}
-	
-	return ret;
-}
-
 static char *
 unescape_unreserved_chars (const char *in_string)
 {
@@ -1792,13 +1775,13 @@ unescape_unreserved_chars (const char *in_string)
 
 	for (read_char = in_string, write_char = ret ; *read_char != '\0' ; read_char++) {
 		if (read_char[0] == '%' 
-		    && isxdigit ((unsigned char) read_char[1]) 
-		    && isxdigit ((unsigned char) read_char[2])) {
+		    && g_ascii_isxdigit (read_char[1]) 
+		    && g_ascii_isxdigit (read_char[2])) {
 			char unescaped;
 			
-			unescaped = (unsigned char) ((unhex_char (read_char[1]) << 4) | unhex_char (read_char[2]));
+			unescaped = (g_ascii_xdigit_value (read_char[1]) << 4) | g_ascii_xdigit_value (read_char[2]);
 			
-			if (strchr (reserved_chars, (unsigned char)unescaped)) {
+			if (strchr (reserved_chars, unescaped)) {
 				*write_char++ = *read_char++;
 				*write_char++ = *read_char++;
 				*write_char++ = *read_char; /*The last ++ is done in the for statement */
@@ -1819,7 +1802,6 @@ unescape_unreserved_chars (const char *in_string)
 	
 	return ret;
 }
-
 #endif /* 0 */
 
 static xmlNodePtr

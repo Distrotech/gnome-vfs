@@ -25,7 +25,6 @@
 #include <config.h>
 
 #include "cdda-cddb.h"
-#include <ctype.h>
 #include <errno.h>
 #include <gconf/gconf-client.h>
 #include <gconf/gconf.h>
