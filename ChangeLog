@@ -1,5 +1,11 @@
 2004-03-04  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/http-method.c:
+	Don't send host:port when port undefined
+	Remove webdav hack from last checkin that was caused by this.
+
+2004-03-04  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/http-method.c (make_propfind_request):
 	Handle redirects in PROPFIND.
 	Force slash on end of uri for open_directory.

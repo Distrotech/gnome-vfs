@@ -1475,7 +1475,7 @@ build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean
 		g_string_append_printf (request, "Host: %s:%d\r\n",
 					toplevel_uri->host_name, toplevel_uri->host_port);
 	} else {
-		g_string_append_printf (request, "Host: %s:80\r\n",
+		g_string_append_printf (request, "Host: %s\r\n",
 					toplevel_uri->host_name);
 	}
 
@@ -2328,14 +2328,6 @@ make_propfind_request (HttpFileHandle **handle_return,
 			}
 			redirect_uri = gnome_vfs_uri_new (redirect_to);
 
-			/* HACK: Work around apache 2.0.47 issue which returned a
-			 * https redirect forcing port 80 for me (ALEX) */
-			if (g_ascii_strcasecmp (gnome_vfs_uri_get_scheme (redirect_uri), 
-						"https")  == 0 &&
-			    gnome_vfs_uri_get_host_port (redirect_uri) == 80) {
-				gnome_vfs_uri_set_host_port (redirect_uri, 0);
-			}
-			    
 			uri = redirect_uri;
 			http_handle_close (*handle_return, context);
 			*handle_return = NULL;
