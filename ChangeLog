@@ -1,5 +1,11 @@
 2001-07-29  Seth Nickell  <snickell@stanford.edu>
 
+	* libgnomevfs/Makefile.am:
+
+	Remove link and include variables that were no longer in use.
+
+2001-07-29  Seth Nickell  <snickell@stanford.edu>
+
 	* doc/about.sgml:
 
 	Change some of the text a little, add a few programming

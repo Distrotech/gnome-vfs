@@ -10,7 +10,6 @@ INCLUDES =					\
 	-I$(top_builddir)/intl			\
 	-I$(top_builddir)/libgnomevfs		\
 	$(BONOBO_CFLAGS)			\
-	$(EEL_CFLAGS)				\
 	$(GCONF_CFLAGS) 			\
 	$(GLIB_CFLAGS)				\
 	$(OAF_CFLAGS)				\
@@ -49,7 +48,6 @@ EXTRA_DIST =					\
 
 libgnomevfs_la_LIBADD =				\
 	$(BONOBO_LIBS)				\
-	$(EEL_LIBS)				\
 	$(GCONF_LIBS) 				\
 	$(GLIB_LIBS)				\
 	$(OAF_LIBS)				\
