@@ -37,6 +37,7 @@
 #include <limits.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <utime.h>
 #include <string.h>
@@ -125,6 +126,10 @@ nfs_clnt_call(CLIENT *clnt, u_long procnum, xdrproc_t inproc, char *in,
 		if (rv == RPC_SUCCESS && !*success) {
 			/* all good, break from this loop */
 			break;
+#ifdef ECOMM
+/* no ECOMM on FreeBSD.
+ * You may want to check that with autoconf or leave like that.
+ */
 		} else if (*success == ECOMM) {
 			/* this error is evil, only way around it is 
 			   to destroy the RPC connection and start over
@@ -134,11 +139,12 @@ nfs_clnt_call(CLIENT *clnt, u_long procnum, xdrproc_t inproc, char *in,
 			 * do something intelligent, don't just fail out
 			 * FIXME
 			 */
+#endif
 		} else if ((rv == RPC_CANTSEND) || /* can't send */ 
 			   (rv == RPC_CANTRECV) || /* can't receive */
 			   (rv == RPC_TIMEDOUT) || /* timed out */
 			   (rv == RPC_SYSTEMERROR) || /* generic other problem at server */
-			   (rv == RPC_RPCBFAILURE) || /* portmapper failed in its call */
+			   (rv == RPC_PMAPFAILURE) || /* portmapper failed in its call */
 			   (rv == RPC_CANTDECODEARGS) || /* can't decode arguments */
 			   (rv == RPC_CANTENCODEARGS) || /* can't encode arguments */
 			   (rv == RPC_CANTDECODERES) || /* can't decored results */

@@ -1,3 +1,15 @@
+2001-02-03  Rolf Grossmann <grossman@securitas.net>
+
+	reviewed by: Pavel Cisler  <pavel@eazel.com>
+
+	Make it build on FreeBSD.
+	
+	* modules/ftp-method.c:
+	Add includes.
+	
+	* modules/nfs-method.c: (nfs_clnt_call):
+	#ifdef an unsupported define
+
 2001-02-03  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Mike Fleming <mfleming@eazel.com>
