@@ -1,5 +1,9 @@
 1999-10-20  Ettore Perazzoli  <ettore@gnu.org>
 
+	* modules/extfs-method.c (match): Apply filter.
+	(vfs_module_shutdown): Close all the handles.
+	(do_close): Remove the handle from the handle list.
+
 	* README: Added some info about the `vfs-run' wrapper.
 
 	* configure.in: Subst `@TOP_BUILDDIR@' with the path to the top

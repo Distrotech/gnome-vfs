@@ -25,7 +25,7 @@
 
 /* TODO: Metadata? */
 /* TODO: Support archives on non-local file systems.  Although I am not
-           that sure it's such a terrific idea anymore.  */
+   that sure it's such a terrific idea anymore.  */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -402,10 +402,18 @@ do_close (GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSCancellation *cancellation)
 {
 	ExtfsHandle *extfs_handle;
+	GnomeVFSResult result;
 
 	extfs_handle = (ExtfsHandle *) method_handle;
+	result = extfs_handle_close (extfs_handle);
 
-	return extfs_handle_close (extfs_handle);
+	if (result == GNOME_VFS_OK) {
+		G_LOCK (handle_list);
+		handle_list = g_list_remove (handle_list, extfs_handle);
+		G_UNLOCK (handle_list);
+	}
+
+	return result;
 }
 
 static GnomeVFSResult
@@ -641,7 +649,8 @@ match (const ExtfsDirectoryHandle *handle,
 			return FALSE;
 	}
 
-	/* TODO: Directory is fine: apply the filter.  */
+	if (! gnome_vfs_directory_filter_apply (handle->filter, entry->info))
+		return FALSE;
 
 	return TRUE;
 }
@@ -801,4 +810,8 @@ vfs_module_init (void)
 void
 vfs_module_shutdown (GnomeVFSMethod *method)
 {
+	GList *p;
+
+	for (p = handle_list; p != NULL; p = p->next)
+		extfs_handle_close ((ExtfsHandle *) p->data);
 }
