@@ -817,8 +817,9 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 			if(!strcmp((char *)l->name, "getcontenttype")) {
 				file_info->valid_fields |= 
 					GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-				file_info->mime_type = 
-					g_strdup(xmlNodeGetContent(l));
+				if(!file_info->mime_type)
+					file_info->mime_type = 
+						g_strdup(xmlNodeGetContent(l));
 
 				g_print("found content-type: %s\n", 
 					xmlNodeGetContent(l));
@@ -838,9 +839,13 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 
 				if(l->childs && l->childs->name && 
 					  !strcmp((char *)l->childs->name, 
-					  "collection"))
+					  "collection")) {
 					file_info->type = 
 						GNOME_VFS_FILE_TYPE_DIRECTORY;
+					/* mjs wants me to set the mime-type to special/webdav-directory */
+					if(file_info->mime_type) g_free(file_info->mime_type);
+					file_info->mime_type = g_strdup("special/webdav-directory");
+				}
 			}
 			/* TODO: all date related properties:
 			 * creationdate
@@ -896,18 +901,15 @@ process_propfind_response(xmlNodePtr n, gchar *uri_string)
 }
 
 
+
 static GnomeVFSResult
-do_open_directory(GnomeVFSMethod *method,
-	GnomeVFSMethodHandle **method_handle,
+make_propfind_request (HttpFileHandle **handle_return,
 	GnomeVFSURI *uri,
-	GnomeVFSFileInfoOptions options,
-	const GList *meta_keys,
-	const GnomeVFSDirectoryFilter *filter,
-	GnomeVFSContext *context) 
+	gint depth,
+	GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
 	GnomeVFSResult result = GNOME_VFS_OK;
-
 	GnomeVFSFileSize bytes_read, num_bytes=(64*1024);
 	gchar *buffer = g_malloc(num_bytes);
 	xmlParserCtxtPtr parserContext;
@@ -919,6 +921,7 @@ do_open_directory(GnomeVFSMethod *method,
                 |GNOME_VFS_URI_HIDE_HOST_NAME
                 |GNOME_VFS_URI_HIDE_HOST_PORT
                 |GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
+	gchar *extraheaders = g_strdup_printf("Depth: %d\r\n", depth);
 
 	GByteArray *request = g_byte_array_new();
 	gchar *request_str = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
@@ -927,25 +930,27 @@ do_open_directory(GnomeVFSMethod *method,
 	request = g_byte_array_append(request, request_str, 
 			strlen(request_str));
 
-	parserContext = xmlCreatePushParserCtxt(NULL,NULL, "", 0, "PROPFIND");
+	parserContext = xmlCreatePushParserCtxt(NULL, NULL, "", 0, "PROPFIND");
 
 	result = make_request (&handle, uri, "PROPFIND", request, 
-			"Depth: 1\r\n", context);
+			extraheaders, context);
 
 	if (result == GNOME_VFS_OK) {
-		*method_handle = (GnomeVFSMethodHandle *) handle;
+		*handle_return = handle;
 	} else {
 		xmlFreeParserCtxt(parserContext);
 		g_free(buffer);
+		g_free(extraheaders);
 		return result;
 	}
 
 	do {
-		result = do_read(method, *method_handle, buffer, num_bytes, 
-			&bytes_read, context);
+		result = do_read(NULL, (GnomeVFSMethodHandle *) *handle_return, 
+			buffer, num_bytes, &bytes_read, context);
 		if(result != GNOME_VFS_OK) {
 			xmlFreeParserCtxt(parserContext);
 			g_free(buffer);
+			g_free(extraheaders);
 			return result;
 		}
 		xmlParseChunk(parserContext, buffer, bytes_read, 0);
@@ -969,9 +974,11 @@ do_open_directory(GnomeVFSMethod *method,
 			GnomeVFSFileInfo *file_info = 
 				process_propfind_response(cur->childs, 
 					uri_string);
-
-			if(file_info->name) /* if the file has a filename */
+			/* if the file has a filename or we're doing a PROPFIND on a single 
+			 * resource... */
+			if(file_info->name || depth==0) { 
 				handle->files = g_list_append(handle->files, file_info);
+			}
 		} else {
 			g_print("expecting <response> got <%s>\n", cur->name);
 		}
@@ -979,10 +986,23 @@ do_open_directory(GnomeVFSMethod *method,
 	}
 
 	g_free(buffer);
+	g_free(extraheaders);
 
 	xmlFreeParserCtxt(parserContext);
 
 	return result;
+}
+
+static GnomeVFSResult
+do_open_directory(GnomeVFSMethod *method,
+	GnomeVFSMethodHandle **method_handle,
+	GnomeVFSURI *uri,
+	GnomeVFSFileInfoOptions options,
+	const GList *meta_keys,
+	const GnomeVFSDirectoryFilter *filter,
+	GnomeVFSContext *context) 
+{
+	return make_propfind_request((HttpFileHandle **)method_handle, uri, 1, context);
 }
 
 static GnomeVFSResult
@@ -1086,12 +1106,26 @@ do_get_file_info (GnomeVFSMethod *method,
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
 
-	result = make_request (&handle, uri, "HEAD", NULL, NULL, 
-			       context);
-	if (result != GNOME_VFS_OK)
-		return result;
+	result = make_propfind_request(&handle, uri, 0, context);
+	if (result == GNOME_VFS_OK) {
+		/* PROPFIND worked */
+		memcpy(file_info, handle->files->data, sizeof(*file_info));
+		g_free(handle->files->data);
+		g_list_free(handle->files);
+		handle->files = NULL;
+		file_info->name = g_strdup (g_basename (handle->uri_string));
+		if (file_info->name == NULL)
+			file_info->name = g_strdup ("");
+	} else {
+		g_print("PROPFIND didn't work...\n");
+		g_print("result = %s\n", gnome_vfs_result_to_string(result) );
+		result = make_request (&handle, uri, "HEAD", NULL, NULL, 
+			       	context);
+		if (result != GNOME_VFS_OK)
+			return result;
 
-	result = get_file_info_from_http_handle (handle, file_info, options);
+		result = get_file_info_from_http_handle (handle, file_info, options);
+	}
 	http_handle_close (handle, context);
 
 	return result;
@@ -1106,6 +1140,9 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
+
+	return do_get_file_info(method, ((HttpFileHandle *)method_handle)->uri, 
+			file_info, options, meta_keys, context);
 
 	handle = (HttpFileHandle *) method_handle;
 	return get_file_info_from_http_handle (handle, file_info, options);
