@@ -1,3 +1,10 @@
+2002-07-07  Seth Nickell  <snickell@stanford.edu>
+
+	* libgnomevfs/gnome-vfs-method.gob:
+
+	Ahem. Getting built accidentally. Not a good thing.
+	Replacing decent clean files.
+	
 2002-07-05  Stephen Browne  <stephen.browne@sun.com>
 	* modules/cdemenu-desktop-method.c
 	Patch from rohit.raveendran@wipro.com
