@@ -229,6 +229,14 @@ typedef struct {
 	guint server_status;
 } HttpFileHandle;
 
+typedef struct {
+	char *username;
+	char *password;
+	char *keyring;
+	char *realm;
+	enum AuthnHeaderType type;
+} HttpAuthSave;
+
 static GnomeVFSResult resolve_409 		 (GnomeVFSMethod *method,
 						  GnomeVFSURI *uri,
 						  GnomeVFSContext *context);
@@ -238,12 +246,20 @@ static void	proxy_unset_authn 		 (void);
 static gboolean invoke_callback_send_additional_headers (GnomeVFSURI *uri,
 							 GList **list);
 static gboolean invoke_callback_headers_received (HttpFileHandle *handle);
+static gboolean invoke_callback_basic_authn_fill (HttpFileHandle *handle, 
+			     			  enum AuthnHeaderType authn_which);
 static gboolean invoke_callback_basic_authn	 (HttpFileHandle *handle, 
 			     			  enum AuthnHeaderType authn_which,
-			     			  gboolean previous_attempt_failed);
+			     			  gboolean previous_attempt_failed,
+						  HttpAuthSave **auth_save);
+static gboolean invoke_callback_save_authn	 (HttpFileHandle *handle, 
+			     			  enum AuthnHeaderType authn_which,
+						  HttpAuthSave *auth_save);
 static gboolean check_authn_retry_request 	 (HttpFileHandle * http_handle,
 			   			  enum AuthnHeaderType authn_which,
-			   			  const char *prev_authn_header);
+			   			  const char *prev_authn_header,
+						  gboolean first_request,
+						  HttpAuthSave **auth_save);
 static void parse_ignore_host 			 (gpointer data,
 						  gpointer user_data);
 #ifdef ENABLE_IPV6
@@ -1506,6 +1522,16 @@ error:
 	return result;
 }
 
+static void
+http_auth_save_free (HttpAuthSave *auth_save)
+{
+	g_free (auth_save->username);
+	g_free (auth_save->password);
+	g_free (auth_save->keyring);
+	g_free (auth_save->realm);
+	g_free (auth_save);
+}
+
 static GnomeVFSResult
 make_request (HttpFileHandle **handle_return,
 	      GnomeVFSURI *uri,
@@ -1521,7 +1547,9 @@ make_request (HttpFileHandle **handle_return,
 	gboolean proxy_connect;
 	char *authn_header_request;
 	char *authn_header_proxy;
-
+	gboolean first_auth;
+	HttpAuthSave *auth_save;
+	
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_INTERNAL);
  	*handle_return = NULL;
 
@@ -1534,6 +1562,8 @@ make_request (HttpFileHandle **handle_return,
 	
 	toplevel_uri = (GnomeVFSToplevelURI *) uri;
 
+	first_auth = TRUE;
+	auth_save = NULL;
 	for (;;) {
 		GList *list;
 
@@ -1608,20 +1638,38 @@ make_request (HttpFileHandle **handle_return,
 			break;
 		}
 		if ((*handle_return)->server_status == HTTP_STATUS_UNAUTHORIZED) {
-			if (! check_authn_retry_request (*handle_return, AuthnHeader_WWW, authn_header_request)) {
+			if (auth_save != NULL) {
+				http_auth_save_free (auth_save);
+				auth_save = NULL;
+			}
+			if (! check_authn_retry_request (*handle_return, AuthnHeader_WWW, authn_header_request, first_auth, &auth_save)) {
 				break;
 			}
 		} else if ((*handle_return)->server_status == HTTP_STATUS_PROXY_AUTH_REQUIRED) {
-			if (! check_authn_retry_request (*handle_return, AuthnHeader_WWW, authn_header_proxy)) {
+			if (auth_save != NULL) {
+				http_auth_save_free (auth_save);
+				auth_save = NULL;
+			}
+			if (! check_authn_retry_request (*handle_return, AuthnHeader_Proxy, authn_header_proxy, first_auth, &auth_save)) {
 				break;
 			}
 		} else {
 			break;
 		}
+		first_auth = FALSE;
 		http_file_handle_destroy (*handle_return);
 		*handle_return = NULL;
 	}
 
+	if (auth_save != NULL) {
+		invoke_callback_save_authn (*handle_return,
+					    auth_save->type,
+					    auth_save);
+		
+		http_auth_save_free (auth_save);
+		auth_save = NULL;
+	}
+	
 	g_free (authn_header_request);
 	g_free (authn_header_proxy);
 
@@ -3005,37 +3053,40 @@ invoke_callback_send_additional_headers (GnomeVFSURI  *uri,
 }
 
 static gboolean
-invoke_callback_basic_authn (HttpFileHandle *handle, 
-			     enum AuthnHeaderType authn_which,
-			     gboolean previous_attempt_failed)
+invoke_callback_basic_authn_fill (HttpFileHandle *handle, 
+				  enum AuthnHeaderType authn_which)
 {
-	GnomeVFSModuleCallbackAuthenticationIn in_args;
-	GnomeVFSModuleCallbackAuthenticationOut out_args;
+	GnomeVFSModuleCallbackFillAuthenticationIn in_args;
+	GnomeVFSModuleCallbackFillAuthenticationOut out_args;
 	gboolean ret;
+	char *username;
+	
 
 	ret = FALSE;
 	
 	memset (&in_args, 0, sizeof (in_args));
 	memset (&out_args, 0, sizeof (out_args));
 
-	in_args.previous_attempt_failed = previous_attempt_failed;
-		
 	in_args.uri = gnome_vfs_uri_to_string (handle->uri, GNOME_VFS_URI_HIDE_NONE);
+	in_args.server = (char *)gnome_vfs_uri_get_host_name (handle->uri);
+	in_args.port = gnome_vfs_uri_get_host_port (handle->uri);
+	username = (char *)gnome_vfs_uri_get_user_name (handle->uri);
+	if (username != NULL && username[0] != 0) {
+		in_args.username = username;
+	}
+	in_args.protocol = "http";
+	in_args.authtype = authn_which == AuthnHeader_WWW ? "basic" : "proxy";
 
-	ret = http_authn_parse_response_header_basic (authn_which, handle->response_headers, &in_args.realm);
+	ret = http_authn_parse_response_header_basic (authn_which, handle->response_headers, &in_args.object);
 		
 	if (!ret) {
 		goto error;
 	}
 
-	DEBUG_HTTP (("Invoking %s authentication callback for uri %s",
+	DEBUG_HTTP (("Invoking %s fill authentication callback for uri %s",
 		authn_which == AuthnHeader_WWW ? "basic" : "proxy", in_args.uri));
 
-	in_args.auth_type = AuthTypeBasic;
-
-	ret = gnome_vfs_module_callback_invoke (authn_which == AuthnHeader_WWW 
-						? GNOME_VFS_MODULE_CALLBACK_AUTHENTICATION
-						: GNOME_VFS_MODULE_CALLBACK_HTTP_PROXY_AUTHENTICATION, 
+	ret = gnome_vfs_module_callback_invoke (GNOME_VFS_MODULE_CALLBACK_FILL_AUTHENTICATION,
 						&in_args, sizeof (in_args), 
 						&out_args, sizeof (out_args)); 
 
@@ -3043,8 +3094,8 @@ invoke_callback_basic_authn (HttpFileHandle *handle,
 		DEBUG_HTTP (("No callback registered"));
 		goto error;
 	}
-
-	ret = (out_args.username != NULL);
+	
+	ret = out_args.valid;
 
 	if (!ret) {
 		DEBUG_HTTP (("No username provided by callback"));
@@ -3060,12 +3111,155 @@ invoke_callback_basic_authn (HttpFileHandle *handle,
 	}
 error:
 	g_free (in_args.uri);
-	g_free (in_args.realm);
+	g_free (in_args.object);
 	g_free (out_args.username);
+	g_free (out_args.domain);
 	g_free (out_args.password);
 
 	return ret;
 }
+
+
+static gboolean
+invoke_callback_basic_authn (HttpFileHandle *handle, 
+			     enum AuthnHeaderType authn_which,
+			     gboolean previous_attempt_failed,
+			     HttpAuthSave **auth_save_out)
+{
+	GnomeVFSModuleCallbackFullAuthenticationIn in_args;
+	GnomeVFSModuleCallbackFullAuthenticationOut out_args;
+	gboolean ret;
+	char *username;
+	HttpAuthSave *auth_save;
+
+	ret = FALSE;
+
+	*auth_save_out = NULL;
+	memset (&in_args, 0, sizeof (in_args));
+	memset (&out_args, 0, sizeof (out_args));
+
+	in_args.uri = gnome_vfs_uri_to_string (handle->uri, GNOME_VFS_URI_HIDE_NONE);
+	in_args.server = (char *)gnome_vfs_uri_get_host_name (handle->uri);
+	in_args.port = gnome_vfs_uri_get_host_port (handle->uri);
+	username = (char *)gnome_vfs_uri_get_user_name (handle->uri);
+	if (username != NULL && username[0] != 0) {
+		in_args.username = username;
+	}
+	in_args.protocol = "http";
+	in_args.authtype = authn_which == AuthnHeader_WWW ? "basic" : "proxy";
+
+	in_args.flags = GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_PASSWORD;
+	if (in_args.username == NULL) {
+		in_args.flags |= GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME;
+	}	
+	if (previous_attempt_failed) {
+		in_args.flags |= GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_PREVIOUS_ATTEMPT_FAILED;
+	}
+	
+	in_args.default_user = in_args.username;
+	
+	ret = http_authn_parse_response_header_basic (authn_which, handle->response_headers, &in_args.object);
+
+	if (!ret) {
+		goto error;
+	}
+
+	DEBUG_HTTP (("Invoking %s authentication callback for uri %s",
+		authn_which == AuthnHeader_WWW ? "basic" : "proxy", in_args.uri));
+
+	ret = gnome_vfs_module_callback_invoke (GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION,
+						&in_args, sizeof (in_args), 
+						&out_args, sizeof (out_args)); 
+
+	if (!ret) {
+		DEBUG_HTTP (("No callback registered"));
+		goto error;
+	}
+
+	ret = !out_args.abort_auth;
+
+	if (!ret) {
+		DEBUG_HTTP (("No username provided by callback"));
+		goto error;
+	}
+
+	DEBUG_HTTP (("Back from authentication callback, adding credentials"));
+
+	username = (char *)gnome_vfs_uri_get_user_name (handle->uri);
+	if (username == NULL || username[0] == 0) {
+		username = out_args.username;
+	}
+
+	if (out_args.save_password) {
+		auth_save = g_new (HttpAuthSave, 1);
+		*auth_save_out = auth_save;
+		auth_save->username = g_strdup (username);
+		auth_save->password = g_strdup (out_args.password);
+		auth_save->keyring = g_strdup (out_args.keyring);
+		auth_save->realm = g_strdup (in_args.object);
+		auth_save->type = authn_which;
+	}
+	
+	if (authn_which == AuthnHeader_WWW) {
+		http_authn_session_add_credentials (handle->uri, username, out_args.password);
+	} else /* if (authn_which == AuthnHeader_Proxy) */ {
+		proxy_set_authn (username, out_args.password);
+	}
+error:
+	g_free (in_args.uri);
+	g_free (in_args.object);
+	g_free (out_args.username);
+	g_free (out_args.domain);
+	g_free (out_args.password);
+	g_free (out_args.keyring);
+
+	return ret;
+}
+
+static gboolean
+invoke_callback_save_authn (HttpFileHandle *handle, 
+			    enum AuthnHeaderType authn_which,
+			    HttpAuthSave *auth_save)
+{
+	GnomeVFSModuleCallbackSaveAuthenticationIn in_args;
+	GnomeVFSModuleCallbackSaveAuthenticationOut out_args;
+	gboolean ret;
+
+	ret = FALSE;
+
+	memset (&in_args, 0, sizeof (in_args));
+	memset (&out_args, 0, sizeof (out_args));
+
+	in_args.keyring = auth_save->keyring;
+
+	in_args.uri = gnome_vfs_uri_to_string (handle->uri, GNOME_VFS_URI_HIDE_NONE);
+	in_args.server = (char *)gnome_vfs_uri_get_host_name (handle->uri);
+	in_args.port = gnome_vfs_uri_get_host_port (handle->uri);
+	in_args.username = auth_save->username;
+	in_args.password = auth_save->password;
+	in_args.protocol = "http";
+	in_args.authtype = authn_which == AuthnHeader_WWW ? "basic" : "proxy";
+	in_args.object = auth_save->realm;
+
+	DEBUG_HTTP (("Invoking %s authentication save callback for uri %s",
+		authn_which == AuthnHeader_WWW ? "basic" : "proxy", in_args.uri));
+
+	ret = gnome_vfs_module_callback_invoke (GNOME_VFS_MODULE_CALLBACK_SAVE_AUTHENTICATION,
+						&in_args, sizeof (in_args), 
+						&out_args, sizeof (out_args)); 
+
+	if (!ret) {
+		DEBUG_HTTP (("No callback registered"));
+		goto error;
+	}
+
+error:
+	g_free (in_args.uri);
+
+	return ret;
+}
+
+
 
 static int
 strcmp_allow_nulls (const char *s1, const char *s2)
@@ -3084,11 +3278,14 @@ strcmp_allow_nulls (const char *s1, const char *s2)
 gboolean
 check_authn_retry_request (HttpFileHandle * http_handle,
 			   enum AuthnHeaderType authn_which,
-			   const char *prev_authn_header)
+			   const char *prev_authn_header,
+			   gboolean first_request,
+			   HttpAuthSave **auth_save)
 {
 	gboolean ret;
 	char *current_authn_header;
 
+	*auth_save = NULL;
 	current_authn_header = NULL;
 	
 	g_mutex_lock (gl_mutex);
@@ -3103,7 +3300,13 @@ check_authn_retry_request (HttpFileHandle * http_handle,
 
 	ret = FALSE;
 	if (0 == strcmp_allow_nulls (current_authn_header, prev_authn_header)) {
-		ret = invoke_callback_basic_authn (http_handle, authn_which, prev_authn_header == NULL);
+		if (first_request) {
+			ret = invoke_callback_basic_authn_fill (http_handle, authn_which);
+		}
+		if (!ret) {
+			/* TODO: shouldn't say previous_attempt_failed if the fill callback failed */
+			ret = invoke_callback_basic_authn (http_handle, authn_which, prev_authn_header == NULL, auth_save);
+		}
 	} else {
 		ret = TRUE;
 	}
