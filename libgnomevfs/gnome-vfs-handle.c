@@ -129,7 +129,6 @@ gnome_vfs_handle_do_close (GnomeVFSHandle *handle,
 	INVOKE (result, handle, close, (handle->uri->method, handle->method_handle, context));
 
 	/* Even if close has failed, we shut down the handle. */
-	/* FIXME bugzilla.eazel.com 1169: Is this OK? */
 	gnome_vfs_handle_destroy (handle);
 
 	return result;

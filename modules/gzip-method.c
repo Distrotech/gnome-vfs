@@ -559,7 +559,6 @@ do_close (GnomeVFSMethod *method,
 	if (result == GNOME_VFS_OK)
 		result = gnome_vfs_close (gzip_handle->parent_handle);
 
-	/* FIXME bugzilla.eazel.com 1169: How do we deal with close errors?  */
 	gzip_method_handle_destroy (gzip_handle);
 
 	return result;

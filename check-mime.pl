@@ -102,11 +102,11 @@ while (<MAGIC>)
 	  {
 	    if (!$in_keys{$type})
 	      {
-		print "- $type is in gnome-vfs.mime, but not gnome-vfs.keys\n";
+		print "- $type is in gnome-vfs-mime-magic, but not gnome-vfs.keys\n";
 	      }
 	    else
 	      {
-		print "- $type is in gnome-vfs.mime, but has no description in gnome-vfs.keys\n";
+		print "- $type is in gnome-vfs-mime-magic, but has no description in gnome-vfs.keys\n";
 	      }
 	  }
 	$seen{$type} = 1;

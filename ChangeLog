@@ -1,3 +1,15 @@
+2000-08-23  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-handle.c: (gnome_vfs_handle_do_close):
+	* modules/bzip2-method.c: (do_close):
+	* modules/gzip-method.c: (do_close):
+	Removed FIXMEs about close behavior. It's now clear that the
+	correct behavior on close is to always get rid of the handle, even
+	if the close returns a non-GNOME_VFS_OK result, which indicates a
+	failure of I/O, not necessarily of the close as a while.
+
+	* check-mime.pl: Fixed a typo in a message.
+	
 2000-08-22  John Sullivan  <sullivan@eazel.com>
 
 	* check-mime.pl: Fixed small bug that was reporting a
