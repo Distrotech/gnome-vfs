@@ -1,3 +1,41 @@
+2000-07-14  Gene Z. Ragan  <gzr@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	(gnome_vfs_mime_get_icon), (gnome_vfs_mime_set_icon):
+	New API to get and set icon data.
+	
+	* mime-type-capplet/Makefile.am:
+	Added new file 
+	mime-type-capplet/nautilus-mime-type-icon-entry.c
+	
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	* mime-type-capplet/nautilus-mime-type-icon-entry.h:
+	(nautilus_mime_type_icon_entry_get_type),
+	(nautilus_mime_type_icon_entry_class_init), (entry_changed),
+	(entry_activated), (setup_preview), (ientry_destroy),
+	(browse_clicked), (icon_selected_cb), (cancel_pressed),
+	(gil_icon_selected_cb), (nautilus_mime_type_show_icon_selection),
+	(drag_data_received), (drag_data_get),
+	(nautilus_mime_type_icon_entry_init),
+	(nautilus_mime_type_icon_entry_new),
+	(nautilus_mime_type_icon_entry_gnome_file_entry),
+	(nautilus_mime_type_icon_entry_gnome_entry),
+	(nautilus_mime_type_icon_entry_gtk_entry),
+	(nautilus_mime_type_icon_entry_set_pixmap_subdir),
+	(nautilus_mime_type_icon_entry_set_icon),
+	(nautilus_mime_type_icon_entry_get_filename):
+	New file.  This is a new verison of GnomeIconEntry.
+	I am customizing it to look and bahve in a way that
+	is compatible with Arlo's UI reccomendations.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(mime_list_selected_row_callback), (icon_changed),
+	(change_icon_clicked), (init_mime_capplet),
+	(nautilus_mime_type_capplet_update_info), (populate_mime_list):
+	More UI cleanups.  Removed GnomeIconEntry and replaced
+	with new NautilusMimeTypeIconEntry. 
+
 2000-07-14  Mathieu Lacage <mathieu@eazel.com>
 
 	* mime-type-capplet/Makefile.am: add OAF_CFLAGS and OAF_LIBS

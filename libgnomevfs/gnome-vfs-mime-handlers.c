@@ -54,6 +54,8 @@ static GList *gnome_vfs_strsplit_to_list (const char *str, const char *delim, in
 static char *gnome_vfs_strjoin_from_list (const char *separator, GList *list);
 static void g_list_free_deep (GList *list);
 static GList *prune_ids_for_nonexistent_applications (GList *list);
+static GnomeVFSResult gnome_vfs_mime_edit_user_file (const char *mime_type, const char *key, const char *value);
+
 
 
 GnomeVFSMimeActionType
@@ -153,6 +155,19 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 	 */
 
 	return gnome_vfs_mime_application_new_from_id (default_application_id);
+}
+
+const char *
+gnome_vfs_mime_get_icon (const char *mime_type)
+{
+	return (gnome_vfs_mime_get_value (mime_type, "icon-filename"));
+}
+
+GnomeVFSResult
+gnome_vfs_mime_set_icon (const char *mime_type, const char *filename)
+{
+	return gnome_vfs_mime_edit_user_file
+		(mime_type, "icon-filename", filename);
 }
 
 

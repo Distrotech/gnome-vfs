@@ -75,6 +75,9 @@ GnomeVFSResult           gnome_vfs_mime_set_default_application            (cons
 									    const char              *application_id);
 GnomeVFSResult           gnome_vfs_mime_set_default_component              (const char              *mime_type,
 									    const char              *component_iid);
+const char  		 *gnome_vfs_mime_get_icon 			   (const char 		    *mime_type);
+GnomeVFSResult  	 gnome_vfs_mime_set_icon 			   (const char 		    *mime_type,
+									    const char		    *filename);
 
 /* Stored as delta to current user level - API function computes delta and stores in prefs */
 GnomeVFSResult           gnome_vfs_mime_set_short_list_applications        (const char              *mime_type,
