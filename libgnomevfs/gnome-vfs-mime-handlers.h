@@ -89,6 +89,14 @@ void                gnome_vfs_mime_set_short_list_applications            (const
 								           GList                  *application_ids);
 void                gnome_vfs_mime_set_short_list_components              (const char             *mime_type,
 								           GList                  *component_ids);
+void		    gnome_vfs_mime_add_application_to_short_list  	  (const char	     *uri,
+									   const char	     *application_id);									      
+void		    gnome_vfs_mime_remove_application_from_short_list     (const char	     *uri,
+									   const char	     *application_id);									      
+void		    gnome_vfs_mime_add_component_to_short_list	    	  (const char	     *uri,
+									   const char	     *iid);									      
+void		    gnome_vfs_mime_remove_component_from_short_list 	  (const char	     *uri,
+									   const char	     *iid);									      
 /* No way to override system list; can only add. */
 void                gnome_vfs_mime_extend_all_applications                (const char             *mime_type,
 								           GList                  *application_ids);

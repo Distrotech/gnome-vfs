@@ -631,6 +631,30 @@ gnome_vfs_mime_set_short_list_components (const char *mime_type,
 	g_free (user_mime_file);
 }
 
+void gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
+						   const char *application_id)
+{
+	g_message ("called gnome_vfs_mime_add_application_to_short_list");
+}						   
+
+void gnome_vfs_mime_remove_application_from_short_list (const char *mime_type,
+						   	const char *application_id)
+{
+	g_message ("called gnome_vfs_mime_remove_application_from_short_list");
+}						   
+
+void gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
+						 const char *iid)
+{
+	g_message ("called gnome_vfs_mime_add_component_to_short_list");
+}						   
+
+void gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
+						      const char *iid)
+{
+	g_message ("called gnome_vfs_mime_remove_component_from_short_list");
+}						   
+
 
 void gnome_vfs_mime_extend_all_applications (const char *mime_type,
 					     GList      *application_ids)
