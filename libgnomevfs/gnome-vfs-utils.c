@@ -1,9 +1,10 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
 /* gnome-vfs-utils.c - Private utility functions for the GNOME Virtual
    File System.
 
    Copyright (C) 1999 Free Software Foundation
-   Copyright (C) 2000 Eazel, Inc.
+   Copyright (C) 2000, 2001 Eazel, Inc.
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -22,6 +23,7 @@
 
    Authors: Ettore Perazzoli <ettore@comm2000.it>
    	    John Sullivan <sullivan@eazel.com> 
+            Darin Adler <darin@eazel.com>
 */
 
 #ifdef HAVE_CONFIG_H
@@ -698,25 +700,6 @@ gnome_vfs_get_uri_from_local_path (const char *local_path)
 	return result;
 }
 
-static gboolean
-str_has_prefix (const char *haystack, const char *needle)
-{
-	const char *h, *n;
-
-	/* Eat one character at a time. */
-	h = haystack == NULL ? "" : haystack;
-	n = needle == NULL ? "" : needle;
-	do {
-		if (*n == '\0') {
-			return TRUE;
-		}
-		if (*h == '\0') {
-			return FALSE;
-		}
-	} while (*h++ == *n++);
-	return FALSE;
-}
-
 /* gnome_vfs_get_volume_free_space
  * 
  * Return total amount of free space on a volume.
@@ -745,8 +728,8 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 	path = gnome_vfs_uri_get_path (vfs_uri);
 	scheme = gnome_vfs_uri_get_scheme (vfs_uri);
 	
-        /* We only handle the file: scheme for now */
-	if (!str_has_prefix (scheme, "file") || !str_has_prefix (path, "/")) {
+        /* We only handle the file scheme for now */
+	if (g_strcasecmp (scheme, "file") != 0 || !istr_has_prefix (path, "/")) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 

@@ -1,3 +1,15 @@
+2001-02-02  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Mike Fleming <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-result.h: Add include so you can include
+	this file alone.
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
+	Change "file" check to check for scheme == "file" instead of any
+	scheme that starts with file. Also got rid of the case-sensitive
+	version of "str_has_prefix" since the one case that was using it
+	could use the case-insensitive one instead.
+
 2001-02-01  Ramiro Estrugo  <ramiro@eazel.com>
 
 	reviewed by: Maciej Stachowiak  <mjs@eazel.com>
