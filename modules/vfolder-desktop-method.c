@@ -486,7 +486,7 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 		if (last_slash > -1)
 			vuri->file = vuri->path + last_slash + 1;
 		else
-			vuri->file = NULL;
+			vuri->file = vuri->path;
 	} else {
 		vuri->path = "/";
 		vuri->file = NULL;
