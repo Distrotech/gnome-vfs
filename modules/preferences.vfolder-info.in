@@ -25,7 +25,6 @@
       </And>
     </Query>
 
-    <Exclude>cddb-slave.desktop</Exclude>
     <Exclude>gnomecc.desktop</Exclude>
 
     <Folder>
