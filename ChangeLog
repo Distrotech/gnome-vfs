@@ -1,3 +1,9 @@
+2001-02-16  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/test-method.c: (translate_uri):
+
+	Make test-method.c not bite ass on "test://" 
+
 2001-02-13  Dan Winship  <danw@ximian.com>
 
 	* libgnomevfs/gnome-vfs-process.c (sigchld_handler): Initialize

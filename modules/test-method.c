@@ -119,10 +119,22 @@ translate_uri (GnomeVFSURI *uri)
 
 	uri_text = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 	no_method = strchr (uri_text, ':');
-	translated_uri_text = g_strconcat (test_method_name, no_method, NULL);
-	g_free (uri_text);
-	translated_uri = gnome_vfs_uri_new (translated_uri_text);
+	
+	if (test_method_name != NULL) {
+	  translated_uri_text = g_strconcat (test_method_name, 
+					     no_method, NULL);
+	} else {
+	  translated_uri_text = NULL;
+	}
+
+	if (translated_uri_text != NULL) {
+	  translated_uri = gnome_vfs_uri_new (translated_uri_text);
+	} else {
+	  translated_uri = NULL;
+	}
+
 	g_free (translated_uri_text);
+	g_free (uri_text);
 
 	return translated_uri;
 }
