@@ -1,4 +1,5 @@
 # translation of el.po to 
+# translation of el.po to
 # translation of el.po to Greek
 # GNOME VFS Greek translation.
 # Copyright (C) 2000-2003, 2004 Free Software Foundation, Inc.
@@ -23,9 +24,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-30 15:33+0200\n"
-"PO-Revision-Date: 2004-08-24 16:35-0300\n"
-"Last-Translator: Nikos Charonitakis <charosn@her.forthnet.gr>\n"
+"POT-Creation-Date: 2004-09-04 11:10+0300\n"
+"PO-Revision-Date: 2004-09-04 11:06+0300\n"
+"Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
 "Language-Team:  <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,68 +61,82 @@ msgstr "Το αρχείο είναι κενό"
 msgid "Failed to read from file '%s': %s"
 msgstr "Αποτυχία ανάγνωσης από το αρχείο '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:578
+#: libgnomevfs/eggdesktopentries.c:575
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
+"οι καταχωρήσεις της επιφάνειας εργασίας περιέχουν μια γραμμή '%s που δεν "
+"είναι καταχώρηση, ομάδα ή σχόλιο"
 
-#: libgnomevfs/eggdesktopentries.c:654
+#: libgnomevfs/eggdesktopentries.c:648
 msgid "desktop entries file does not start with legal start group"
 msgstr ""
+"το αρχείο καταχωρήσεων επιφάνειας εργασίας δεν ξεκινά με νόμιμη ομάδα έναρξης"
 
-#: libgnomevfs/eggdesktopentries.c:711
+#: libgnomevfs/eggdesktopentries.c:705
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr ""
+"οι καταχωρήσεις της επιφάνειας εργασίας περιέχουν μια γραμμή '%s που δεν "
+"είναι UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:734
+#: libgnomevfs/eggdesktopentries.c:728
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr ""
+"οι καταχωρήσεις της επιφάνειας εργασίας περιέχουν άγνωστη κωδικοποίηση '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
+#: libgnomevfs/eggdesktopentries.c:918 libgnomevfs/eggdesktopentries.c:1030
+#: libgnomevfs/eggdesktopentries.c:1215
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "οι καταχωρήσεις της επιφάνειας εργασίας δεν περιέχουν ομάδα '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1048
+#: libgnomevfs/eggdesktopentries.c:1042
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "οι καταχωρήσεις της επιφάνειας εργασίας δεν περιέχουν κλειδί '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
+#: libgnomevfs/eggdesktopentries.c:1098 libgnomevfs/eggdesktopentries.c:1271
+#: libgnomevfs/eggdesktopentries.c:1413 libgnomevfs/eggdesktopentries.c:1538
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
+"οι καταχωρήσεις της επιφάνειας εργασίας  περιέχουν ένα κλειδί '%s' που η "
+"τιμή του δεν μπορεί να ερμηνευθεί"
 
-#: libgnomevfs/eggdesktopentries.c:1302
+#: libgnomevfs/eggdesktopentries.c:1296
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
+"οι καταχωρήσεις της επιφάνειας εργασίας δεν περιέχουν μεταφρασμένη τιμή για "
+"το κλειδί  '%s' με locale '%s'."
 
-#: libgnomevfs/eggdesktopentries.c:2223
+#: libgnomevfs/eggdesktopentries.c:2229
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr ""
+"οι καταχωρήσεις της επιφάνειας εργασίας  περιέχουν invalid escape sequence '%"
+"s'"
 
-#: libgnomevfs/eggdesktopentries.c:2240
+#: libgnomevfs/eggdesktopentries.c:2246
 msgid "desktop entries contain escape character at end of line"
 msgstr ""
+"οι καταχωρήσεις της επιφάνειας εργασίας  περιέχουν escape character στο "
+"τέλος της γραμμής"
 
-#: libgnomevfs/eggdesktopentries.c:2265
+#: libgnomevfs/eggdesktopentries.c:2271
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "Η τιμή '%s' δεν μπορεί να ερμηνευθεί ως αριθμός."
 
-#: libgnomevfs/eggdesktopentries.c:2292
+#: libgnomevfs/eggdesktopentries.c:2298
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "Η τιμή '%s' δεν μπορεί να ερμηνευθεί ως boolean."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -371,20 +386,19 @@ msgstr "Δίσκος Audio"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:660
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Compact Flash Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:662
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Stick Μνήμης"
+msgstr "Memory Stick Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:664
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Smart Media Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:666
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "SD/MMC Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:668
 msgid "Floppy Disk"
@@ -407,7 +421,7 @@ msgid "Linux Disk"
 msgstr "Δίσκος Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
 msgstr "Άγνωστος τύπος λειτουργίας %u"
 
@@ -428,20 +442,20 @@ msgstr "Η λειτουργία διακόπηκε"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:83
 #: libgnomevfs/gnome-vfs-mime-handlers.c:305
 #: libgnomevfs/gnome-vfs-mime-handlers.c:356
-#: libgnomevfs/gnome-vfs-mime-handlers.c:626
-#: libgnomevfs/gnome-vfs-mime-handlers.c:645
-#: libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: libgnomevfs/gnome-vfs-mime-handlers.c:682
-#: libgnomevfs/gnome-vfs-mime-handlers.c:701
-#: libgnomevfs/gnome-vfs-mime-handlers.c:842
-#: libgnomevfs/gnome-vfs-mime-handlers.c:864
-#: libgnomevfs/gnome-vfs-mime-handlers.c:883
-#: libgnomevfs/gnome-vfs-mime-handlers.c:902
-#: libgnomevfs/gnome-vfs-mime-handlers.c:955
-#: libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: libgnomevfs/gnome-vfs-mime-handlers.c:989
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
+#: libgnomevfs/gnome-vfs-mime-handlers.c:652
+#: libgnomevfs/gnome-vfs-mime-handlers.c:671
+#: libgnomevfs/gnome-vfs-mime-handlers.c:689
+#: libgnomevfs/gnome-vfs-mime-handlers.c:708
+#: libgnomevfs/gnome-vfs-mime-handlers.c:727
+#: libgnomevfs/gnome-vfs-mime-handlers.c:868
+#: libgnomevfs/gnome-vfs-mime-handlers.c:890
+#: libgnomevfs/gnome-vfs-mime-handlers.c:909
+#: libgnomevfs/gnome-vfs-mime-handlers.c:928
+#: libgnomevfs/gnome-vfs-mime-handlers.c:981
+#: libgnomevfs/gnome-vfs-mime-handlers.c:998
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1015
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1033
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1051
 #: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
 #: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
 #: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
@@ -452,6 +466,8 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
+"Λειτουργία σε αχρηστία. Οι τροποποιήσεις από τον χρήστη στην βάση δεδομένων "
+"MIME δεν υποστηρίζονται πια."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -695,23 +711,22 @@ msgstr "Σφάλμα εκκίνησης εντολής"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "Λήξη ορίου χρόνου"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "Γενικό σφάλμα"
+msgstr "Σφάλμα Nameserver"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "Ο πόρος είναι κλειδωμένος"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Function call deprecated"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -740,50 +755,147 @@ msgid "%.1f GB"
 msgstr "%.1f GΒ"
 
 #: libgnomevfs/gnome-vfs-utils.c:1122
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:391
 msgid " (invalid Unicode)"
 msgstr " (μη έγκυρο Unicode)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:629
 msgid "Floppy"
 msgstr "Δισκέτα"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:632
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+msgid "CD-R"
+msgstr "CD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+msgid "CD-ROM/DVD-ROM"
+msgstr "CD-ROM/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+msgid "CD-ROM/DVD-RAM"
+msgstr "CD-ROM/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+msgid "CD-ROM/DVD-R"
+msgstr "CD-ROM/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+msgid "CD-ROM/DVD-RW"
+msgstr "CD-ROM/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+msgid "CD-R/DVD-ROM"
+msgstr "CD-R/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+msgid "CD-R/DVD-RAM"
+msgstr "CD-R/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+msgid "CD-R/DVD-R"
+msgstr "CD-R/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+msgid "CD-R/DVD-RW"
+msgstr "CD-R/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+msgid "CD-RW/DVD-ROM"
+msgstr "CD-RW/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+msgid "CD-RW/DVD-RAM"
+msgstr "CD-RW/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
+msgid "CD-RW/DVD-R"
+msgstr "CD-RW/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+msgid "CD-RW/DVD-RW"
+msgstr "CD-RW/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+msgid "Disk"
+msgstr "Δίσκος"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+msgid "USB Drive"
+msgstr "Οδηγός USB"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
+msgid "IEEE1394 Drive"
+msgstr "IEEE1394 Drive"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
+msgid "CF"
+msgstr "CF"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
+msgid "SD/MMC"
+msgstr "SD/MMC"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
+msgid "Memory Stick"
+msgstr "Memory Stick"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
+msgid "Smart Media"
+msgstr "Smart Media"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
 msgid "Zip Drive"
 msgstr "Οδηγός zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
-msgid "Memory Stick"
-msgstr "Stick Μνήμης"
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:605
 msgid "Camera"
 msgstr "Φωτογραφική μηχανή"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:606
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:822
 msgid "Root Volume"
 msgstr "Τόμος Root"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:903
 msgid "Audio CD"
 msgstr "Audio CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
 msgid "Unknown volume"
 msgstr "Άγνωστος τόμος"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1116
 msgid "Network server"
 msgstr "Εξυπηρετητής δικτύου"
 
@@ -926,10 +1038,15 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Αυτό συμβαίνει όταν μπαίνετε για πρώτη φορά στον υπολογιστή σας\n"
+"\n"
+"Η ταυτότητα που στέλνεται από τον απομακρυσμένο υπολογιστή είναι %s. Αν "
+"θέλετε να είστε σίγουροι ότι είναι απόλυτα ασφαλές να συνεχίσετε, "
+"επικοινωνήστε με τον διαχειριστή του συστήματος σας."
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Είσοδος οπωσδήποτε"
 
 #: modules/sftp-method.c:1349
 msgid "Cancel Login"
@@ -1006,194 +1123,183 @@ msgstr "Εκτέλεση της εντολής σε τερματικό"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
 msgstr ""
+"Η εντολή που χρησιμοποιείται για τον χειρισμό \"aim\" URLs, αν ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
 msgstr ""
+"Η εντολή που χρησιμοποιείται για τον χειρισμό \"callto\" URLs, αν "
+"ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr ""
+"Η εντολή που χρησιμοποιείται για τον χειρισμό \"ghelp\" URLs, αν "
+"ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
 msgstr ""
-"True αν το πρόγραμμα για το χειρισμό του URL θα πρέπει να εκτελείται σε "
-"τερματικό."
+"Η εντολή που χρησιμοποιείται για τον χειρισμό \"h323\" URLs, αν "
+"ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
 msgstr ""
-"True αν το πρόγραμμα για το χειρισμό του URL θα πρέπει να εκτελείται σε "
-"τερματικό."
+"Η εντολή που χρησιμοποιείται για τον χειρισμό \"http\" URLs, αν "
+"ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
 msgstr ""
-"True αν το πρόγραμμα για το χειρισμό του URL θα πρέπει να εκτελείται σε "
-"τερματικό."
+"Η εντολή που χρησιμοποιείται για τον χειρισμό \"https\" URLs, αν "
+"ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr ""
+"Η εντολή που χρησιμοποιείται για τον χειρισμό \"info\" URLs, αν "
+"ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr ""
+"Η εντολή που χρησιμοποιείται για τον χειρισμό \"mailto\" URLs, αν "
+"ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr ""
+"Η εντολή που χρησιμοποιείται για τον χειρισμό  \"man\" URLs, αν "
+"ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr ""
+"Η εντολή που χρησιμοποιείται για τον χειρισμό \"trash\" URLs, αν "
+"ενεργοποιηθεί."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Χειρισμός man URLs"
+msgstr "Το πρόγραμμα χειρισμού για \"aim\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Χειρισμός callto URLs"
+msgstr "Το πρόγραμμα χειρισμού για \"callto\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Χειρισμός ghelp URLs"
+msgstr "Το πρόγραμμα χειρισμού για \"ghelp\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Χειρισμός  H323 URLs"
+msgstr "Το πρόγραμμα χειρισμού για \"h323\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Χειρισμός ghelp URLs"
+msgstr "Το πρόγραμμα χειρισμού για \"http\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Χειρισμός ghelp URLs"
+msgstr "Το πρόγραμμα χειρισμού για \"https\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Χειρισμός info URLs"
+msgstr "Το πρόγραμμα χειρισμού για \"info\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Χειρισμός mailto URLs"
+msgstr "Το πρόγραμμα χειρισμού για \"mailto\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Χειρισμός man URLs"
+msgstr "Το πρόγραμμα χειρισμού για \"man\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Χειρισμός trash URLs"
+msgstr "Το πρόγραμμα χειρισμού για \"trash\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό mailto URLs."
+"Ορισμός σε true αν η εντολή που καθορίζεται στο \"command\" key θα πρέπει να "
+"χειρίζεται \"aim\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό callto URLs."
+"Ορισμός σε true αν η εντολή που καθορίζεται στο \"command\" key θα πρέπει να "
+"χειρίζεται  \"callto\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό http URLs."
+"Ορισμός σε true αν η εντολή που καθορίζεται στο \"command\" key θα πρέπει να "
+"χειρίζεται \"ghelp\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό h323 URLs."
+"Ορισμός σε true αν η εντολή που καθορίζεται στο \"command\" key θα πρέπει να "
+"χειρίζεται  \"h323\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό http URLs."
+"Ορισμός σε true αν η εντολή που καθορίζεται στο \"command\" key θα πρέπει να "
+"χειρίζεται  \"http\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό http URLs."
+"Ορισμός σε true αν η εντολή που καθορίζεται στο \"command\" key θα πρέπει να "
+"χειρίζεται  \"https\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό mailto URLs."
+"Ορισμός σε true αν η εντολή που καθορίζεται στο \"command\" key θα πρέπει να "
+"χειρίζεται  \"info\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό mailto URLs."
+"Ορισμός σε true αν η εντολή που καθορίζεται στο \"command\" key θα πρέπει να "
+"χειρίζεται  \"mailto\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό mailto URLs."
+"Ορισμός σε true αν η εντολή που καθορίζεται στο \"command\" key θα πρέπει να "
+"χειρίζεται   \"man\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό trash URLs."
+"Ορισμός σε true αν η εντολή που καθορίζεται στο \"command\" key θα πρέπει να "
+"χειρίζεται  \"trash\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
@@ -1202,92 +1308,64 @@ msgstr ""
 "τερματικό."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό mailto URLs."
+msgstr "Αν η καθορισμένη εντολή θα χειρίζεται \"aim\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό callto URLs."
+msgstr "Αν η καθορισμένη εντολή θα χειρίζεται \"callto\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό http URLs."
+msgstr "Αν η καθορισμένη εντολή θα χειρίζεται \"ghelp\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό h323 URLs."
+msgstr "Αν η καθορισμένη εντολή θα χειρίζεται \"h323\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό http URLs."
+msgstr "Αν η καθορισμένη εντολή θα χειρίζεται \"http\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
-"Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό trash URLs."
+msgstr "Αν η καθορισμένη εντολή θα χειρίζεται \"https\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό mailto URLs."
+msgstr "Αν η καθορισμένη εντολή θα χειρίζεται \"info\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό mailto URLs."
+msgstr "Αν η καθορισμένη εντολή θα χειρίζεται \"mailto\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό mailto URLs."
+msgstr "Αν η καθορισμένη εντολή θα χειρίζεται \"man\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"το χειρισμό trash URLs."
+msgstr "Αν η καθορισμένη εντολή θα χειρίζεται \"trash\" URLs"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"Λίστα διαχωρισμένη με κόμμα από τομείς dns-sd που θα πρέπει να είναι ορατοί "
+"στην τοποθεσία δικτύου."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Επιπρόσθετοι τομείς για αναζήτηση υπηρεσιών dns-sd"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Πως να εμφανίζεται η τοπική υπηρεσία DNS-SD"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "Πιθανές τιμές είναι \"merged\", \"separate\" and \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
