@@ -39,7 +39,7 @@
 
     <!-- Applications -->
     <Folder>
-      <Name>Applications</Name>
+      <Name>Other</Name>
       <Desktop>Applications.directory</Desktop>
       <OnlyUnallocated/>
       <Query>
