@@ -198,7 +198,7 @@ get_method_string (const gchar *substring, gchar **method_string)
 	const gchar *p;
 	
 	/* FIXME: Correct to look for alpha only?  */
-	for (p = substring; isalpha (*p); p++)
+	for (p = substring; isalnum (*p) || *p == '+' || *p == '-' || *p == '.'; p++)
 		;
 
 	if (*p == ':') {
