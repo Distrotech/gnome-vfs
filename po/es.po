@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-01-18 03:01+0100\n"
+"POT-Creation-Date: 2004-02-12 16:31+0100\n"
+"PO-Revision-Date: 2004-02-12 16:33+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,27 @@ msgstr "No se pudo inicializar Bonobo"
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
 msgstr "No se pudo inicializar gnome vfs"
+
+#: gtk/gtkfilesystemgnomevfs.c:1457
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Se ha producido un fallo al guardar el marcador (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "No se puede obtener información para el archivo «%s»: %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Fallo al abrir el archivo «%s»: %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr "Fallo al cargar la imagen «%s»: razón no conocida, probablemente un archivo de imagen corrupto"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
@@ -638,15 +659,15 @@ msgstr "Herramientas"
 msgid "Windows"
 msgstr "Ventanas"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "Red"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "Directorio inicial"
 
-#: modules/computer-method.c:557
+#: modules/computer-method.c:561
 msgid "Filesystem"
 msgstr "Sistema de archivos"
 
@@ -654,6 +675,10 @@ msgstr "Sistema de archivos"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d desconocida"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Red de Windows"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -1018,10 +1043,6 @@ msgstr "Usar proxy HTTP"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Nombre de usuario para pasar como autenticación al hacer proxy HTTP."
-
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "Red de Windows"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
