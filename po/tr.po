@@ -7,26 +7,25 @@ msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-12-28 21:44+0000\n"
-"PO-Revision-Date: 2003-01-15 21:59+0200\n"
+"PO-Revision-Date: 2003-12-29 09:36+0000\n"
 "Last-Translator: Sinan İmamoğlu <sinan@myrealbox.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:654
 #: daemon/gnome-vfs-daemon.c:553
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "Ana gezgin bulunamadı"
+msgstr "Bonobo başlatılamadı"
 
 #: daemon/gnome-vfs-daemon.c:559
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "GNOME vfs başlatılamadı"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "ISO 9660 Sistemi"
 
 # libgnomevfs/gnome-vfs-configuration.c:224
 #: libgnomevfs/gnome-vfs-configuration.c:227
@@ -42,9 +41,9 @@ msgstr "%s:%d metod adı içermiyor."
 
 # libgnomevfs/gnome-vfs-configuration.c:241
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d metod adı içermiyor."
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
@@ -65,140 +64,139 @@ msgstr "Yapılandırma dosyası `%s' bulunamadı: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "AFFS Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "AFS Ağ Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Otomatik Tanınan Sistem"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "CD-ROM Sürücü"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "CD Sayısal Ses"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Donanım Aygıtı Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Ext2 Linux Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Ext3 Linux Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "MSDOS Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr ""
+msgstr "MacOS Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr ""
+msgstr "CDROM Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Hsfs CDROM Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr ""
+msgstr "JFS Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
-msgstr ""
+msgstr "Windows NT Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr ""
+msgstr "Sistem Biçimi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr ""
+msgstr "Bellek Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr ""
+msgstr "Minix Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "NFS Ağ Biçimi "
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr ""
+msgstr "Netware Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "ReiserFS Linux Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Windows Paylaşılmış Sistem"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "SuperMount Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr ""
+msgstr "DVD Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Solaris/BSD Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Udfs Solaris Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "Pcfs Solaris Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "Gelişmiş DOS Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "Windows VFAT Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr ""
+msgstr "Xenix Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "XFS Linux Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "XIAFS Sistemi"
 
 # libgnomevfs/gnome-vfs-result.c:141
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
-#, fuzzy
 msgid "Unknown"
-msgstr "Bilinmeyen hata"
+msgstr "Bilinmeyen"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:712
 #: libgnomevfs/gnome-vfs-job.c:774
@@ -505,7 +503,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Komut çalıştırılması sırasında hata oluştu"
 
 # libgnomevfs/gnome-vfs-result.c:141
 #: libgnomevfs/gnome-vfs-result.c:174
@@ -514,17 +512,15 @@ msgstr "Bilinmeyen hata"
 
 # libgnomevfs/gnome-vfs-utils.c:70
 #: libgnomevfs/gnome-vfs-utils.c:84
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "%u bayt"
-msgstr[1] "%u bayt"
+msgstr "%u bayt"
 
 # libgnomevfs/gnome-vfs-utils.c:77
 #: libgnomevfs/gnome-vfs-utils.c:90
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f K"
+msgstr "%.1f KB"
 
 # libgnomevfs/gnome-vfs-utils.c:81
 #: libgnomevfs/gnome-vfs-utils.c:94
@@ -546,17 +542,17 @@ msgstr " (geçersiz Unicode)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
 msgid "Floppy"
-msgstr ""
+msgstr "Disket"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
 msgid "Zip Drive"
-msgstr ""
+msgstr "Zip Sürücü"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
 msgid "Memory Stick"
@@ -564,15 +560,15 @@ msgstr ""
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
 msgid "Root Volume"
-msgstr ""
+msgstr "Kök Sistemi"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
 msgid "Audio CD"
-msgstr ""
+msgstr "Ses CD'si"
 
 # libgnomevfs/gnome-vfs-result.c:141
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
@@ -582,24 +578,24 @@ msgstr "Bilinmeyen hata"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
 msgid "Network server"
-msgstr ""
+msgstr "Ağ sunucusu"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
+msgstr "Disket sürücü bağlanamadı. Sürücü içinde disket olmayabilir."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "Bu sistem bağlanamadı. Sürücü içinde aygıt olmayabilir."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr ""
+msgstr "Disket sürücü bağlanamadı. Disket, bağlanmasını engelleyen bir biçime sahip olabilir."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
@@ -613,90 +609,88 @@ msgstr ""
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Seçilen sistem bağlanamadı."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Seçilen sistem ayrılamadı."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:220
 #: libgnomevfs/gnome-vfs-volume-ops.c:252
 msgid "Failed to start command"
-msgstr ""
+msgstr "Komut başlatılamadı"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:245
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Disk/CD çıkartılamadı"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Bağlı olan sunucudan ayrılma işlemi gerçekleştirilemedi"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
-msgstr ""
+msgstr "Uygulamalar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
-msgstr ""
+msgstr "Kartlar"
 
 # libgnomevfs/gnome-vfs-result.c:61
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
-#, fuzzy
 msgid "Files"
-msgstr "Dosya zaten var"
+msgstr "Dosyalar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
-msgstr ""
+msgstr "Dizinler"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Help"
-msgstr ""
+msgstr "Yardım"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
-msgstr ""
+msgstr "Bilgisayarlar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:193
 msgid "Links"
-msgstr ""
+msgstr "Bağlantılar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
-msgstr ""
+msgstr "E-posta"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr ""
+msgstr "Araçlar"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: modules/computer-method.c:521
 msgid "Network"
-msgstr ""
+msgstr "Ağ"
 
 #: modules/computer-method.c:539
 msgid "Home"
-msgstr ""
+msgstr "Başlangıç"
 
 # libgnomevfs/gnome-vfs-result.c:61
 #: modules/computer-method.c:557
-#, fuzzy
 msgid "Filesystem"
-msgstr "Dosya zaten var"
+msgstr "Dosya sistemi"
 
 # modules/file-method.c:380
 #: modules/file-method.c:382
@@ -725,12 +719,12 @@ msgstr "dosya MonikerExtender'ı"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr "soysal Gnome VFS moniker'ı"
+msgstr "Genel Gnome VFS moniker"
 
 # libgnomevfs/gnome-vfs-result.c:41
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "soysal dosya moniker'ı"
+msgstr "Genel dosya moniker"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -890,11 +884,11 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Vekil sunucu bağlantılarında kimlik denetimi yap"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "Otomatik vekil sunucu yapılandırma adresi"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
@@ -902,27 +896,27 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "FTP vekil sunucu bilgisayar adı"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "FTP vekil sunucu portu"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "HTTP vekil sunucu bilgisayar adı"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "HTTP vekil sunucu parolası"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "HTTP vekil sunucu portu"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "HTTP vekil sunucu kullanıcı adı"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -941,15 +935,15 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Vekil sunucu yapılandırma kipi"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "SOCKS vekil sunucu adı"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "SOCS vekil sunucu portu"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
