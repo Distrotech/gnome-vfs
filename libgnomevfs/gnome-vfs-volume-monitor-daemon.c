@@ -200,12 +200,18 @@ get_device_type_from_device_and_mount (const char *device_path, const char *moun
 	
 	if (g_str_has_prefix (device_path, "/dev/loop")) {
 		return GNOME_VFS_DEVICE_TYPE_LOOPBACK;
+	} else if (g_str_has_prefix (device_path, "/dev/vn")) {
+	    	return GNOME_VFS_DEVICE_TYPE_LOOPBACK;
 	} else if (g_str_has_prefix (device_path, "/vol/dev/diskette/") ||
 		   g_str_has_prefix (device_path, "/dev/fd") ||
 		   g_str_has_prefix (device_path, "/dev/floppy")) {
 		return GNOME_VFS_DEVICE_TYPE_FLOPPY;
 	} else if (g_str_has_prefix (device_path, "/dev/cdrom")) {
 		return GNOME_VFS_DEVICE_TYPE_CDROM;
+	} else if (g_str_has_prefix (device_path, "/dev/acd")) {
+	    	return GNOME_VFS_DEVICE_TYPE_CDROM;
+	} else if (g_str_has_prefix (device_path, "/dev/cd")) {
+	    	return GNOME_VFS_DEVICE_TYPE_CDROM;
 	} else if (g_str_has_prefix (mount_path, "/mnt/")) {		
 		name = mount_path + strlen ("/mnt/");
 		
@@ -468,7 +474,8 @@ create_drive_from_mount_point (GnomeVFSVolumeMonitor *volume_monitor,
 	drive->priv->is_connected = 1;
 
 	drive->priv->device_type = get_device_type_from_device_and_mount (mount->device_path, mount->mount_path);
-	if (strcmp (mount->filesystem_type, "iso9660") == 0) {
+	if ((strcmp (mount->filesystem_type, "iso9660") == 0) ||
+	    (strcmp (mount->filesystem_type, "cd9660") == 0)) {
 		if (drive->priv->device_type == GNOME_VFS_DEVICE_TYPE_UNKNOWN) {
 			drive->priv->device_type = GNOME_VFS_DEVICE_TYPE_CDROM;
 		}
@@ -654,7 +661,8 @@ create_vol_from_mount (GnomeVFSVolumeMonitor *volume_monitor, GnomeVFSUnixMount 
 	
 	vol->priv->device_type = get_device_type_from_device_and_mount (mount->device_path, mount->mount_path);
 	
-	if (strcmp (mount->filesystem_type, "iso9660") == 0) {
+	if ((strcmp (mount->filesystem_type, "iso9660") == 0) ||
+	    (strcmp (mount->filesystem_type, "cd9660") == 0)) {
 		if (vol->priv->device_type == GNOME_VFS_DEVICE_TYPE_UNKNOWN) {
 			vol->priv->device_type = GNOME_VFS_DEVICE_TYPE_CDROM;
 		}

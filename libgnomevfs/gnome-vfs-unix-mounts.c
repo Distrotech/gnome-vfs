@@ -47,6 +47,13 @@
 #include <fshelp.h>
 #endif
 
+#if defined(HAVE_GETMNTINFO) && defined(HAVE_FSTAB_H) && defined(HAVE_SYS_MOUNT_H)
+#include <sys/param.h>
+#include <sys/ucred.h>
+#include <sys/mount.h>
+#include <fstab.h>
+#endif
+
 
 /* Ideally this should not nonblocking stat, since that can block on
  * downed NFS mounts forever, however there seems to be no good way
@@ -356,6 +363,51 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 
         return TRUE;
 
+}
+
+#elif defined(HAVE_GETMNTINFO) && defined(HAVE_FSTAB_H) && defined(HAVE_SYS_MOUNT_H)
+
+static char *
+get_mtab_read_file (void)
+{
+    	return NULL;
+}
+
+static char *
+get_mtab_monitor_file (void)
+{
+    	return NULL;
+}
+
+gboolean
+_gnome_vfs_get_current_unix_mounts (GList **return_list)
+{
+    	struct statfs *mntent = NULL;
+	int num_mounts, i;
+	GnomeVFSUnixMount *mount_entry;
+
+	*return_list = NULL;
+
+	if ((num_mounts = getmntinfo (&mntent, MNT_WAIT)) == 0) {
+	    	return TRUE;
+	}
+
+	for (i = 0; i < num_mounts; i++) {
+	    	mount_entry = g_new0 (GnomeVFSUnixMount, 1);
+
+		mount_entry->mount_path = g_strdup (mntent[i].f_mntonname);
+		mount_entry->device_path = g_strdup (mntent[i].f_mntfromname);
+		mount_entry->filesystem_type = g_strdup (mntent[i].f_fstypename);
+		if (mntent[i].f_flags == MNT_RDONLY) {
+		    	mount_entry->is_read_only = TRUE;
+		}
+
+		*return_list = g_list_prepend (*return_list, mount_entry);
+	}
+
+	*return_list = g_list_reverse (*return_list);
+
+	return TRUE;
 }
 #else
 #error No _gnome_vfs_get_current_unix_mounts() implementation for system
@@ -715,6 +767,44 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 	return TRUE;
 }
 
+#elif defined(HAVE_GETMNTINFO) && defined(HAVE_FSTAB_H) && defined(HAVE_SYS_MOUNT_H)
+
+gboolean
+_gnome_vfs_get_unix_mount_table (GList **return_list)
+{
+    	struct fstab *fstab = NULL;
+	GnomeVFSUnixMountPoint *mount_entry;
+
+	*return_list = NULL;
+
+	if (!setfsent ()) {
+	    	return TRUE;
+	}
+
+	while ((fstab = getfsent ()) != NULL) {
+	    	if (strcmp (fstab->fs_vfstype, "swap") == 0) {
+		    	continue;
+		}
+
+		mount_entry = g_new0 (GnomeVFSUnixMountPoint, 1);
+
+		mount_entry->mount_path = g_strdup (fstab->fs_file);
+		mount_entry->device_path = g_strdup (fstab->fs_spec);
+		mount_entry->filesystem_type = g_strdup (fstab->fs_vfstype);
+
+		if (strcmp (fstab->fs_type, "ro") == 0) {
+		    	mount_entry->is_read_only = TRUE;
+		}
+
+		*return_list = g_list_prepend (*return_list, mount_entry);
+	}
+
+	endfsent ();
+
+	*return_list = g_list_reverse (*return_list);
+
+	return TRUE;
+}
 #else
 #error No _gnome_vfs_get_mount_table() implementation for system
 #endif

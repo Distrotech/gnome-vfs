@@ -37,6 +37,7 @@ static struct FSInfo fs_data[] = {
 	{ "affs"     , N_("AFFS Volume"), 0},
 	{ "afs"      , N_("AFS Network Volume"), 0 },
 	{ "auto"     , N_("Auto-detected Volume"), 0 },
+	{ "cd9660"   , N_("CD-ROM Drive"), 0 },
 	{ "cdda"     , N_("CD Digital Audio"), 0 },
 	{ "cdrom"    , N_("CD-ROM Drive"), 0 },
 	{ "devfs"    , N_("Hardware Device Volume"), 0 },
@@ -49,10 +50,15 @@ static struct FSInfo fs_data[] = {
 	{ "hsfs"     , N_("Hsfs CDROM Volume"), 0 },
 	{ "jfs"      , N_("JFS Volume"), 1 },
 	{ "hpfs"     , N_("Windows NT Volume"), 0 },
+	{ "linprocfs", N_("System Volume"), 0 },
+	{ "mfs"      , N_("Memory Volume"), 1 },
 	{ "minix"    , N_("Minix Volume"), 0 },
 	{ "msdos"    , N_("MSDOS Volume"), 0 },
 	{ "nfs"      , N_("NFS Network Volume"), 1 },
+	{ "ntfs"     , N_("Windows NT Volume"), 0 },
+	{ "nwfs"     , N_("Netware Volume"), 0 },
 	{ "proc"     , N_("System Volume"), 0 },
+	{ "procfs"   , N_("System Volume"), 0 },
 	{ "reiserfs" , N_("ReiserFS Linux Volume"), 1 },
 	{ "smbfs"    , N_("Windows Shared Volume"), 1 },
 	{ "supermount",N_("SuperMount Volume"), 0 },
@@ -73,7 +79,7 @@ find_fs_info (const char *fs_type)
 	int i;
 
 	for (i = 0; i < G_N_ELEMENTS (fs_data); i++) {
-		if (strcmp (fs_data[i].fs_type, fs_type)) {
+		if (strcmp (fs_data[i].fs_type, fs_type) == 0) {
 			return &fs_data[i];
 		}
 	}

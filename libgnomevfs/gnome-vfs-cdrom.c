@@ -39,6 +39,10 @@
 #include <linux/cdrom.h>
 #endif
 
+#ifdef __FreeBSD__
+#include <sys/cdio.h>
+#endif
+
 #include "gnome-vfs-iso9660.h"
 #include "gnome-vfs-cdrom.h"
 
@@ -85,6 +89,37 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 	return type;
 #elif defined(HAVE_SYS_MNTCTL_H)
 	return CDS_NO_INFO;
+#elif defined(__FreeBSD__)
+	struct ioc_toc_header header;
+	struct ioc_read_toc_single_entry entry;
+	int type;
+#ifndef CDROM_DATA_TRACK
+#define CDROM_DATA_TRACK 4
+#endif
+
+	*fd = open (vol_dev_path, O_RDONLY|O_NONBLOCK);
+	if (*fd < 0) {
+	    	return CDS_DATA_1;
+	}
+
+	if (ioctl (*fd, CDIOREADTOCHEADER, &header) == 0) {
+	    	return CDS_DATA_1;
+	}
+
+	type = CDS_DATA_1;
+	for (entry.track = header.starting_track;
+		entry.track <= header.ending_track;
+		entry.track++) {
+	    	entry.address_format = CD_LBA_FORMAT;
+		if (ioctl (*fd, CDIOREADTOCENTRY, &entry) == 0) {
+		    	if (entry.entry.control & CDROM_DATA_TRACK) {
+			    	type = CDS_AUDIO;
+				break;
+			}
+		}
+	}
+
+	return type;
 #else
 	*fd = open (vol_dev_path, O_RDONLY|O_NONBLOCK);
 	return ioctl (*fd, CDROM_DISC_STATUS, CDSL_CURRENT);
