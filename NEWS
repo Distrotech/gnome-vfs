@@ -1,3 +1,16 @@
+gnome-vfs 2.2.5
+
+	* Bugs fixed:
+	       + Support ncpfs filesystem (Radu Greab)
+	       + Properly initializes gettext (Hidetoshi Tajima)
+	       + Various compilation fixes on non-linux platforms 
+	         (Pasupathi Duraisamy, Christophe Fergeau)
+	       + Various fixes for crashes/leaks (Christophe Fergeau)
+
+	* Translation updates:
+	       + Samuel Jon Gunnarsson (is), Changwoo Ryu (ko), 
+                 Danilo Segan (sr.po, sr@Latn.po)
+
 gnome-vfs 2.2.4
 
 	* Bugs fixed:
