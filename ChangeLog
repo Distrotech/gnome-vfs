@@ -1,3 +1,8 @@
+2003-06-25  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* programs/gnomevfs-mkdir.c: removed debugging code, fixes compilation
+	  with Forte on Solaris (bug #115862)
+
 === gnome-vfs 2.3.5 ===
 
 2003-06-23  Dave Camp  <dave@ximian.com>

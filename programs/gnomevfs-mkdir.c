@@ -24,13 +24,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#undef DEBUG
-#ifdef DEBUG
-#define D(x...) g_message (x)
-#else
-#define D(x...) 
-#endif
-
 static GnomeVFSResult
 make_directory_with_parents_for_uri (GnomeVFSURI * uri,
 		guint perm)
@@ -47,7 +40,6 @@ make_directory_with_parents_for_uri (GnomeVFSURI * uri,
 
 	while (result == GNOME_VFS_ERROR_NOT_FOUND) {
 		parent = gnome_vfs_uri_get_parent (work_uri);
-		D("trying to create: %s", gnome_vfs_uri_to_string (parent, 0));
 		result = gnome_vfs_make_directory_for_uri (parent, perm);
 
 		if (result == GNOME_VFS_ERROR_NOT_FOUND)
@@ -64,7 +56,6 @@ make_directory_with_parents_for_uri (GnomeVFSURI * uri,
 	}
 
 	while (result == GNOME_VFS_OK && list != NULL) {
-		D("creating: %s", gnome_vfs_uri_to_string (list->data, 0));
 		result = gnome_vfs_make_directory_for_uri
 		    ((GnomeVFSURI *) list->data, perm);
 
@@ -82,11 +73,8 @@ make_directory_with_parents (const gchar * text_uri, guint perm)
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
 
-	D("gnome_vfs_make_directory_with_parents (%s)", text_uri);
 	uri = gnome_vfs_uri_new (text_uri);
 	result = make_directory_with_parents_for_uri (uri, perm);
-	D ("gnome_vfs_make_directory_with_parents: %s\n",
-			gnome_vfs_result_to_string (result));
 	gnome_vfs_uri_unref (uri);
 
 	return result;
