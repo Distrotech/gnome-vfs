@@ -1,3 +1,7 @@
+2004-09-12  Laszlo Dvornik  <dvornik@gnome.hu>
+
+	* hu.po: Updated Hungarian translation by Gabor Kelemen.
+
 2004-09-10  Christophe Fergeau  <teuf@gnome.org>
 
 	* ar.po: Remove conflict markers in ar.po, this broke the build

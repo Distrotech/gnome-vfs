@@ -6,14 +6,15 @@
 # Gergely Nagy <greg@gnome.hu>, 2001.
 # Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-07 11:56+0200\n"
-"PO-Revision-Date: 2004-09-07 18:59+0200\n"
-"Last-Translator: Laszlo Dvornik <dvornik@gnome.hu>\n"
+"POT-Creation-Date: 2004-09-12 11:55+0200\n"
+"PO-Revision-Date: 2004-09-12 12:21+0200\n"
+"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -414,26 +415,26 @@ msgstr "A művelet leállítva"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:83
 #: libgnomevfs/gnome-vfs-mime-handlers.c:305
 #: libgnomevfs/gnome-vfs-mime-handlers.c:356
-#: libgnomevfs/gnome-vfs-mime-handlers.c:626
-#: libgnomevfs/gnome-vfs-mime-handlers.c:645
-#: libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: libgnomevfs/gnome-vfs-mime-handlers.c:682
-#: libgnomevfs/gnome-vfs-mime-handlers.c:701
-#: libgnomevfs/gnome-vfs-mime-handlers.c:842
-#: libgnomevfs/gnome-vfs-mime-handlers.c:864
-#: libgnomevfs/gnome-vfs-mime-handlers.c:883
-#: libgnomevfs/gnome-vfs-mime-handlers.c:902
-#: libgnomevfs/gnome-vfs-mime-handlers.c:955
-#: libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: libgnomevfs/gnome-vfs-mime-handlers.c:989
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
-#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
-#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
-#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
-#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
-#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
-#: libgnomevfs/gnome-vfs-mime-info.c:713
+#: libgnomevfs/gnome-vfs-mime-handlers.c:650
+#: libgnomevfs/gnome-vfs-mime-handlers.c:669
+#: libgnomevfs/gnome-vfs-mime-handlers.c:687
+#: libgnomevfs/gnome-vfs-mime-handlers.c:706
+#: libgnomevfs/gnome-vfs-mime-handlers.c:725
+#: libgnomevfs/gnome-vfs-mime-handlers.c:866
+#: libgnomevfs/gnome-vfs-mime-handlers.c:888
+#: libgnomevfs/gnome-vfs-mime-handlers.c:907
+#: libgnomevfs/gnome-vfs-mime-handlers.c:926
+#: libgnomevfs/gnome-vfs-mime-handlers.c:979
+#: libgnomevfs/gnome-vfs-mime-handlers.c:996
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1013
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1031
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1049
+#: libgnomevfs/gnome-vfs-mime-info.c:647 libgnomevfs/gnome-vfs-mime-info.c:654
+#: libgnomevfs/gnome-vfs-mime-info.c:662 libgnomevfs/gnome-vfs-mime-info.c:669
+#: libgnomevfs/gnome-vfs-mime-info.c:677 libgnomevfs/gnome-vfs-mime-info.c:694
+#: libgnomevfs/gnome-vfs-mime-info.c:701 libgnomevfs/gnome-vfs-mime-info.c:708
+#: libgnomevfs/gnome-vfs-mime-info.c:715 libgnomevfs/gnome-vfs-mime-info.c:723
+#: libgnomevfs/gnome-vfs-mime-info.c:730
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -528,7 +529,7 @@ msgstr "Nincs nyitva a fájl"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
-msgstr "A megnyitás módja nem helyes"
+msgstr "A megnyitás módja érvénytelen"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -593,7 +594,7 @@ msgstr "A gép nem található"
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
-msgstr "A gépnév nem érvényes"
+msgstr "A gépnév érvénytelen"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:67
@@ -658,7 +659,7 @@ msgstr "Protokollhiba"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Could not find master browser"
-msgstr "Főtallózó (master browser) nem található"
+msgstr "Főböngésző (master browser) nem található"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
@@ -876,14 +877,14 @@ msgstr "Hálózati kiszolgáló"
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
-"Nem lehet felcsatolni a floppy meghajtót. Valószínűleg nincs floppy a "
+"Nem lehet csatlakoztatni a floppy meghajtót. Valószínűleg nincs floppy a "
 "meghajtóban."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
-"Nem lehet felcsatolni a kötetet. Valószínűleg nincs adathordozó a "
+"Nem lehet csatlakoztatni a kötetet. Valószínűleg nincs adathordozó a "
 "meghajtóban."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
@@ -891,24 +892,24 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Nem lehet felcsatolni a floppy meghajtót. Valószínűleg a floppy olyan "
-"formátumú, amit nem lehet felcsatolni."
+"Nem lehet csatlakoztatni a floppy meghajtót. Valószínűleg a floppy olyan "
+"formátumú, amit nem lehet csatlakoztatni."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Nem lehet felcsatolni a kötetet. Valószínűleg a kötet olyan formátumú, amit "
-"nem lehet felcsatolni."
+"Nem lehet csatlakoztatni a kötetet. Valószínűleg a kötet olyan formátumú, "
+"amit nem lehet csatlakoztatni."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
-msgstr "Nem lehet felcsatolni a kijelölt floppy meghajtót."
+msgstr "Nem lehet csatlakoztatni a kijelölt floppy meghajtót."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
-msgstr "Nem lehet felcsatolni a kijelölt kötetet."
+msgstr "Nem lehet csatlakoztatni a kijelölt kötetet."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
