@@ -87,6 +87,7 @@ gnome_vfs_monitor_do_add (GnomeVFSMethod *method,
 	if (result != GNOME_VFS_OK) {
 		gnome_vfs_uri_unref (uri);
 		g_free (monitor_handle);
+		monitor_handle = NULL;
 	} else {
 		G_LOCK (handle_hash);
 		g_hash_table_insert (handle_hash, 
