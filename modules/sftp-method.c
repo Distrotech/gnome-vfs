@@ -1071,6 +1071,7 @@ get_sftp_client_vendor (void)
 		else
 			res = SFTP_VENDOR_INVALID;
 	}
+	g_free (ssh_stderr);
 	g_free (args[0]);
 	g_free (args[1]);
 
@@ -1083,8 +1084,8 @@ static GnomeVFSResult
 sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri) 
 {
 	GnomeVFSResult  res;
-	GIOChannel     *error_channel;
-	GIOChannel     *tty_channel;
+	GIOChannel     *error_channel = NULL;
+	GIOChannel     *tty_channel = NULL;
 	int             in_fd, out_fd, err_fd, tty_fd;
 	pid_t           ssh_pid;
 	const gchar    *user_name;
@@ -1415,6 +1416,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		(*connection)->in_fd = in_fd;
 		(*connection)->out_fd = out_fd;
 		(*connection)->error_channel = error_channel;
+		g_io_channel_ref (error_channel);
 		(*connection)->ssh_pid = ssh_pid;
 		(*connection)->version = buffer_read_gint32 (&msg);
 		(*connection)->mutex = g_mutex_new ();
@@ -1437,7 +1439,12 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	g_free (user);
 	g_free (object);
 	g_free (authtype);
-
+	if (error_channel != NULL) {
+		g_io_channel_unref (error_channel);
+	}
+	if (tty_channel != NULL) {
+		g_io_channel_unref (tty_channel);
+	}
 	if (res != GNOME_VFS_OK) {
 		close (in_fd);
 		close (out_fd);
@@ -1496,6 +1503,7 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 			if (*connection == NULL)
 			{
 				res = GNOME_VFS_ERROR_INTERNAL;
+				g_free (hash_name);
 				goto bail;
 			}
 			g_mutex_lock ((*connection)->mutex);

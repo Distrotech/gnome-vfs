@@ -1,6 +1,12 @@
 2004-09-21  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/sftp-method.c (sftp_connect):
+	Fix some leaks (#152839).
+	Patch from Christophe Fergeau.
+	
+2004-09-21  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/sftp-method.c (sftp_connect):
 	Use password from uri if availible (#152639).
 	Patch from Bastien Nocera.
 
