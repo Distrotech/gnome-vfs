@@ -6,25 +6,46 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-08 13:11+0100\n"
-"PO-Revision-Date: 2004-02-17 11:14+0100\n"
+"POT-Creation-Date: 2004-02-12 15:59+0100\n"
+"PO-Revision-Date: 2004-03-03 15:56+0100\n"
 "Last-Translator: Luca Ferretti <elle.uca@infinito.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:590
+#: daemon/gnome-vfs-daemon.c:588
 msgid "Could not initialize Bonobo"
 msgstr "Impossibile inizializzare Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:596
+#: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
 msgstr "Impossibile inizializzare gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:202
+#: gtk/gtkfilesystemgnomevfs.c:1457
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Salvataggio segnalibro fallito (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "Impossibile ottenere informazioni per il file «%s»: %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Apertura del file «%s» fallita: %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr "Caricamento dell'immagine «%s» fallito: motivo sconosciuto, forse è un file di immagine corrotto"
+
+#: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
 msgstr "Volume ISO 9660"
 
@@ -84,113 +105,112 @@ msgid "Hardware Device Volume"
 msgstr "Volume dispositivo hardware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
-#: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr "Volume Linux Ext2"
+msgstr "Volume Linux ext2"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:45
+msgid "Ext3 Linux Volume"
+msgstr "Volume Linux ext3"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
-msgid "Ext3 Linux Volume"
-msgstr "Volume Linux Ext3"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
 msgstr "Volume MSDOS"
 
+#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
-#: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
 msgstr "Volume MacOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
 msgstr "Volume CDROM"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr "Volume CDROM Hsfs"
+msgstr "Volume CDROM hsfs"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
 msgstr "Volume JFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
 msgstr "Volume Windows NT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
 msgstr "Volume di sistema"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
 msgstr "Volume di memoria"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
 msgstr "Volume Minix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
 msgstr "Volume di rete NFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
 msgstr "Volume Netware"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
 msgstr "Volume Linux ReiserFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
 msgstr "Volume Windows condiviso"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
 msgstr "Volume SuperMount"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
 msgstr "Volume DVD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
 msgstr "Volume Solaris/BSD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr "Volume Solaris Udfs"
+msgstr "Volume Solaris udfs"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+msgid "Pcfs Solaris Volume"
+msgstr "Volume Solaris pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
-msgid "Pcfs Solaris Volume"
-msgstr "Volume Solaris Pcfs"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
 msgstr "Volume DOS avanzato"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
 msgstr "Volume Windows VFAT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
 msgstr "Volume Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
 msgstr "Volume Linux XFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
 msgstr "Volume XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:103
+#: libgnomevfs/gnome-vfs-filesystem-type.c:102
 msgid "Unknown"
 msgstr "Sconosciuto"
 
@@ -340,7 +360,7 @@ msgstr "Il file esiste"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
-msgstr "Trovati link in loop"
+msgstr "Trovati collegamenti in loop"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -437,11 +457,10 @@ msgstr "Impossibile trovare un master browser"
 msgid "No default action associated"
 msgstr "Nessuna azione predefinita associata"
 
-# O "Nessun gestore per questo schema di URL"?
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr "Nessun gestore per URL scheme"
+msgstr "Nessun gestore per lo schema URL"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
@@ -479,7 +498,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
+#: libgnomevfs/gnome-vfs-utils.c:1106
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (Unicode non valido)"
@@ -566,16 +585,16 @@ msgstr "Impossibile montare il volume selezionato."
 msgid "Unable to unmount the selected volume."
 msgstr "Impossibile smontare il volume selezionato."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:253
+#: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
 msgstr "Avvio del comando fallito"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:291
+#: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
 msgstr "Impossibile espellere il supporto"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:465
 msgid "Unable to unmount connected server"
 msgstr "Impossibile smontare il server connesso"
 
@@ -641,7 +660,7 @@ msgstr "Home"
 msgid "Filesystem"
 msgstr "File system"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d sconosciuta"
@@ -1022,18 +1041,3 @@ msgstr "Workgroup SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Il workgroup tipo Windows di cui fa parte l'utente"
-
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "Salvataggio segnalibro fallito (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "Impossibile ottenere informazioni per il file «%s»: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Apertura del file «%s» fallita: %s"
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "Caricamento dell'immagine «%s» fallito: motivo sconosciuto, forse è un "
-#~ "file di immagine corrotto"
