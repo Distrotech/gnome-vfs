@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
-"POT-Creation-Date: 2003-02-12 15:04+0100\n"
+"POT-Creation-Date: 2003-03-10 20:34+0100\n"
 "PO-Revision-Date: 2002-12-15 23:32-0500\n"
 "Last-Translator: Maratonec <kjdskjds@dksjd>\n"
 "Language-Team: Macedonian <en@li.org>\n"
@@ -35,22 +35,22 @@ msgstr "%s:%d не содржи име на модул."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Конфигурациската датотека `%s' не е најдена: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:737
+#: libgnomevfs/gnome-vfs-job.c:746
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Непознат оп тип %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1026 libgnomevfs/gnome-vfs-job.c:1171
+#: libgnomevfs/gnome-vfs-job.c:1035 libgnomevfs/gnome-vfs-job.c:1180
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Неможе да креира цевка за отварање на GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1661
+#: libgnomevfs/gnome-vfs-job.c:1670
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Непознат вид на работа %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1694
+#: libgnomevfs/gnome-vfs-job.c:1703
 msgid "Operation stopped"
 msgstr "Операцијата е стопирана"
 

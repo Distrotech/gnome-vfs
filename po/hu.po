@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS HEAD\n"
-"POT-Creation-Date: 2003-02-12 15:04+0100\n"
+"POT-Creation-Date: 2003-03-10 20:34+0100\n"
 "PO-Revision-Date: 2002-12-19 11:20+0100\n"
 "Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
@@ -35,22 +35,22 @@ msgstr "%s:%d nem tartalmaz modulnevet."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "'%s' konfigurációs fájlt nem található: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:737
+#: libgnomevfs/gnome-vfs-job.c:746
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Ismeretlen op típus: %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1026 libgnomevfs/gnome-vfs-job.c:1171
+#: libgnomevfs/gnome-vfs-job.c:1035 libgnomevfs/gnome-vfs-job.c:1180
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nem lehet csővezetéket létrehozni a GIOChannel megnyitásához: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1661
+#: libgnomevfs/gnome-vfs-job.c:1670
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Ismeretlen munkatípus: %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1694
+#: libgnomevfs/gnome-vfs-job.c:1703
 msgid "Operation stopped"
 msgstr "A művelet leállítva"
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-02-12 15:04+0100\n"
+"POT-Creation-Date: 2003-03-10 20:34+0100\n"
 "PO-Revision-Date: 2002-05-27 20:20GMT+1\n"
 "Last-Translator: Samir Marić <samir@lugbih.org>\n"
 "Language-Team: Bosnian <prijevodi@linux.org.ba>\n"
@@ -35,22 +35,22 @@ msgstr "%s:%d ne sadrži ime modula."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfiguracijska datoteka `%s' nije pronađena: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:737
+#: libgnomevfs/gnome-vfs-job.c:746
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Nepoznat tip operacije %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1026 libgnomevfs/gnome-vfs-job.c:1171
+#: libgnomevfs/gnome-vfs-job.c:1035 libgnomevfs/gnome-vfs-job.c:1180
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nemogu otvoriti cijev za otvaranje GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1661
+#: libgnomevfs/gnome-vfs-job.c:1670
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Nepoznata vrsta posla %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1694
+#: libgnomevfs/gnome-vfs-job.c:1703
 msgid "Operation stopped"
 msgstr "Operacija zaustavljena"
 
