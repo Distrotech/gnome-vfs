@@ -640,7 +640,9 @@ cache_invalidate_uri_parent (GnomeVFSURI *uri)
 /* GConf paths and keys */
 #define PATH_GCONF_GNOME_VFS "/system/gnome-vfs"
 #define ITEM_GCONF_HTTP_PROXY "http-proxy"
+#define ITEM_GCONF_USE_HTTP_PROXY "use-http-proxy"
 #define KEY_GCONF_HTTP_PROXY (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_HTTP_PROXY)
+#define KEY_GCONF_USE_HTTP_PROXY (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_USE_HTTP_PROXY)
 
 /* Some status code validation macros.  */
 #define HTTP_20X(x)        (((x) >= 200) && ((x) < 300))
@@ -1218,15 +1220,22 @@ static gchar *base64( const gchar *text ) {
  * GTK signal function for when HTTP proxy GConf key has changed.
  */
 static void
-sig_gconf_value_changed (
-	GConfClient* client,
-	const gchar* key,
-	GConfValue* value)
+sig_gconf_value_changed (GConfClient* client, const gchar* key, GConfValue* value)
 {
+	gboolean use_proxy_value;
+
 	g_mutex_lock (gl_mutex);
-	
+
+	/* Check and see if we are using the proxy */
+	use_proxy_value = gconf_client_get_bool (gl_client, KEY_GCONF_USE_HTTP_PROXY, NULL);
+	if (!use_proxy_value) {
+		g_mutex_unlock (gl_mutex);
+		return;
+	}
+
+	/* Get value of proxy string */
 	if (key != NULL && strcmp (KEY_GCONF_HTTP_PROXY, key) == 0) {
-		if (value) {
+		if (value != NULL) {
 			if (GCONF_VALUE_STRING == value->type) {
 				gl_http_proxy = g_strdup (gconf_value_to_string (value));
 				DEBUG_HTTP (("New HTTP proxy: '%s'", gl_http_proxy));
@@ -2568,14 +2577,14 @@ static GnomeVFSMethod method = {
 GnomeVFSMethod *
 vfs_module_init (const char *method_name, const char *args)
 {
-        char *argv[] = {"dummy"};
-        int argc = 1;
-        GError *err_gconf = NULL;
-        GConfValue *val_gconf;
+	char *argv[] = {"dummy"};
+	int argc = 1;
+	GError *gconf_error = NULL;
+	GConfValue *proxy_value, *use_proxy_value;
 
 	LIBXML_TEST_VERSION
 
-	/* Ensure GConf is init'd.  If more modules start to rely on
+	/* Ensure GConf is initialized.  If more modules start to rely on
 	 * GConf, then this should probably be moved into a more 
 	 * central location
 	 */
@@ -2586,8 +2595,8 @@ vfs_module_init (const char *method_name, const char *args)
 	}
 
 	/* ensure GTK is inited for gconf-client. */
-	gtk_type_init();
-	gtk_signal_init();
+	gtk_type_init ();
+	gtk_signal_init ();
 
 	gl_client = gconf_client_get_default ();
 
@@ -2602,29 +2611,27 @@ vfs_module_init (const char *method_name, const char *args)
         }
 #endif
 
+	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_NONE, &gconf_error);
 
-	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_NONE, &err_gconf);
-
-	if (err_gconf) {
-		DEBUG_HTTP (("GConf error during client_add_dir '%s'", err_gconf->message));
-		g_error_free (err_gconf);
+	if (gconf_error) {
+		DEBUG_HTTP (("GConf error during client_add_dir '%s'", gconf_error->message));
+		g_error_free (gconf_error);
 	}
 
-	gtk_signal_connect (GTK_OBJECT(gl_client), "value_changed", (GtkSignalFunc) sig_gconf_value_changed, NULL);
+	gtk_signal_connect (GTK_OBJECT (gl_client), "value_changed", (GtkSignalFunc) sig_gconf_value_changed, NULL);
 
-	/* Load the http proxy setting */
+	/* Load the http proxy setting */	
+	proxy_value = gconf_client_get (gl_client, KEY_GCONF_HTTP_PROXY, &gconf_error);
 
-	val_gconf = gconf_client_get (gl_client, KEY_GCONF_HTTP_PROXY, &err_gconf);
-
-	if (err_gconf) {
-		DEBUG_HTTP (("GConf error during client_get '%s'", err_gconf->message));
-		g_error_free (err_gconf);
-	} else if (val_gconf) {
-		sig_gconf_value_changed (gl_client, KEY_GCONF_HTTP_PROXY, val_gconf);
+	if (gconf_error != NULL) {
+		DEBUG_HTTP (("GConf error during client_get '%s'", gconf_error->message));
+		g_error_free (gconf_error);
+	} else if (proxy_value != NULL) {
+		sig_gconf_value_changed (gl_client, KEY_GCONF_HTTP_PROXY, proxy_value);
 	}
 
 #ifndef DAV_NO_CACHE
-	cache_init();
+	cache_init ();
 #endif /*DAV_NO_CACHE*/
 
 	return &method;

@@ -1,3 +1,18 @@
+2000-11-16  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 4528, http method does not listen for
+	'use-http-proxy' preference.
+	
+	* modules/http-method.c: 
+	(vfs_module_init):
+	Listen to changes in 'use-http-proxy' settings.
+	
+	(sig_gconf_value_changed),
+	Check for status of 'use-http-proxy' system setting before
+	setting proxy to new modified value. This allows a user to edit
+	the text of the proxy without actually resetting the proxy to
+	this value if the "Use Proxy" checkbox is unset.	
+
 2000-11-16  Mathieu Lacage  <mathieu@eazel.com>
 
 	Fix bugs 2767 and 3228
