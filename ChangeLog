@@ -1,3 +1,11 @@
+2004-07-06  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	Make move/copy merge directories instead of overwriting them.
+	
+	* modules/file-method.c: (get_stat_info):
+	Fix up symlink handling
+
 2004-07-05  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

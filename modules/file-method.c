@@ -108,6 +108,7 @@ GET_PATH_MAX (void)
 #define OFF_T off_t
 #endif
 
+
 static gchar *
 get_path_from_uri (GnomeVFSURI const *uri)
 {
@@ -698,13 +699,15 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 				g_free (link_file_path);
 				return gnome_vfs_result_from_errno ();
 			}
-			if (symlink_name[0] != '/') {
+			if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) &&
+			    symlink_name[0] != '/') {
 				symlink_dir = g_path_get_dirname (link_file_path);
 				newpath = g_build_filename (symlink_dir,
 							    symlink_name, NULL);
 				g_free (symlink_dir);
 				g_free (symlink_name);
-				symlink_name = newpath;
+				symlink_name = gnome_vfs_make_path_name_canonical (newpath);
+				g_free (newpath);
 			}
 			
 			if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0
