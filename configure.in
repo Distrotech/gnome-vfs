@@ -456,7 +456,6 @@ data/Makefile
 data/mime/Makefile
 idl/Makefile
 intl/Makefile
-libgnomevfs-corba/Makefile
 libgnomevfs-pthread/Makefile
 libgnomevfs/Makefile
 modules/Makefile
@@ -475,7 +474,6 @@ devel-docs/gnome-vfs/Makefile
 devel-docs/gnome-vfs-tutorial/Makefile
 po/Makefile.in
 test/Makefile
-test/gnome-file-selection/Makefile
 test/vfs-run
 gnome-vfs-2.0.pc
 ])

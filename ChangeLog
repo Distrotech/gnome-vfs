@@ -1,5 +1,9 @@
 2001-04-13  Darin Adler  <darin@eazel.com>
 
+	* configure.in: Missed Makefile list.
+
+2001-04-13  Darin Adler  <darin@eazel.com>
+
 	* acconfig.h:
 	* configure.in:
 	Eliminate --disable-libefs, --with-default-backend, and
