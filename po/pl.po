@@ -9,14 +9,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-12-28 11:03+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-29 12:37+0100\n"
 "PO-Revision-Date: 2003-06-27 00:15--100\n"
 "Last-Translator: Gnome PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
@@ -468,9 +468,9 @@ msgstr[1] "%u bajty"
 msgstr[2] "%u bajtów"
 
 #: libgnomevfs/gnome-vfs-utils.c:90
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f K"
+msgstr "%.1f KB"
 
 #: libgnomevfs/gnome-vfs-utils.c:94
 #, c-format
@@ -710,151 +710,160 @@ msgstr "Argument uruchomienia używany dla domyślnej aplikacji terminala."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "Program obsługujący adresy URL protokołu H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "Program obsługujący adresy URL protokołu HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "Program obsługujący adresy URL protokołu HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "Handle H323 URLs"
-msgstr "Brak obsługi dla schematu URL"
+msgstr "Obsługuje adresy URL protokołu H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "Handle HTTP URLs"
-msgstr "Brak obsługi dla schematu URL"
+msgstr "Obsługuje adresy URL protokołu HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "Obsługuje adresy URL protokołu HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle callto URLs"
-msgstr "Brak obsługi dla schematu URL"
+msgstr "Obsługuje adresy URL typu callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "Handle ghelp URLs"
-msgstr "Brak obsługi dla schematu URL"
+msgstr "Obsługuje adresy URL typu ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
-msgstr "Brak obsługi dla schematu URL"
+msgstr "Obsługuje adresy URL typu info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "Handle mailto URLs"
-msgstr "Brak obsługi dla schematu URL"
+msgstr "Obsługuje adresy URL typu mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "Handle man URLs"
-msgstr "Brak obsługi dla schematu URL"
+msgstr "Obsługuje adresy URL typu man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "Handle trash URLs"
-msgstr "Brak obsługi dla schematu URL"
+msgstr "Obsługuje adresy URL typu trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Uruchomienie programu w terminalu"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"Określa, czy program podany w \"poleceniu\" ma obsługiwać adresy URL "
+"protokołu H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
+"Określa, czy program podany w \"poleceniu\" ma obsługiwać adresy URL "
+"protokołu HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
+"Określa, czy program podany w \"poleceniu\" ma obsługiwać adresy URL "
+"protokołu HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"Określa, czy program podany w \"poleceniu\" ma obsługiwać adresy URL typu "
+"callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
+"Określa, czy program podany w \"poleceniu\" ma obsługiwać adresy URL typu "
+"ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
+"Określa, czy program podany w \"poleceniu\" ma obsługiwać adresy URL typu "
+"info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
+"Określa, czy program podany w \"poleceniu\" ma obsługiwać adresy URL typu "
+"mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
+"Określa, czy program podany w \"poleceniu\" ma obsługiwać adresy URL typu "
+"man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
+"Określa, czy program podany w \"poleceniu\" ma obsługiwać adresy URL typu "
+"trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
+"Określa, czy program obsługujący ten adres URL powinien być uruchomiony w "
+"terminalu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "Program obsługujący adresy URL typu callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "Program obsługujący adresy URL typu ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "Program obsługujący adresy URL typu info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "Nieprawidłowy uchwyt pliku"
+msgstr "Program obsługujący adresy URL typu mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "Program obsługujący adresy URL typu man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "Program obsługujący adresy URL typu trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
-#, fuzzy
 msgid "Authenticate proxy server connections"
-msgstr "Połączenia uwierzytelnienia do serwera pośredniczącego"
+msgstr "Uwierzytelnianie połączeń do serwera pośredniczącego"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
 msgstr "Adres URL automatycznej konfiguracji pośrednika"
 
 #: schemas/system_http_proxy.schemas.in.h:3
-#, fuzzy
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
 msgstr ""
-"Włącza ustawienia pośrednika podczas próby dostępu za pośrednictwem "
+"Włącza ustawienia pośrednika podczas próby dostępu HTTP za pośrednictwem "
 "Internetu."
 
 #: schemas/system_http_proxy.schemas.in.h:4
@@ -870,87 +879,75 @@ msgid "HTTP proxy host name"
 msgstr "Nazwa komputera pośrednika HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
-#, fuzzy
 msgid "HTTP proxy password"
-msgstr "Port pośrednika HTTP"
+msgstr "Hasło pośrednika HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
 msgstr "Port pośrednika HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:9
-#, fuzzy
 msgid "HTTP proxy username"
-msgstr "Nazwa komputera pośrednika HTTP"
+msgstr "Nazwa użytkownika pośrednika HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Po ustawieniu wartości prawda, połączenia do serwera pośredniczącego "
-"wymagają uwierzytelniania. Lista rozwijana nazwa_użytkownika/hasło "
-"zdefiniowana przez /system/http_proxy/authentication_user oraz /system/"
-"http_proxy/authentication_password."
+"Jeżeli ustawione, połączenia do serwera pośredniczącego wymagają "
+"uwierzytelniania. Lista rozwijana użytkownik/hasło zdefiniowana przez \"/"
+"system/http_proxy/authentication_user\" oraz \"/system/http_proxy/"
+"authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
-#, fuzzy
 msgid "Non-proxy hosts"
-msgstr "Nazwa komputera pośrednika gniazd"
+msgstr "Komputery bez pośrednika"
 
 #: schemas/system_http_proxy.schemas.in.h:12
-#, fuzzy
 msgid "Password to pass as authentication when doing HTTP proxying."
 msgstr ""
-"Hasła podawane przy uwierzytelnieniu podczas wykonywania operacji "
-"pośredniczących http"
+"Hasło podawane przy uwierzytelnieniu podczas wykonywania operacji "
+"pośredniczących HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
 msgstr "Tryb konfiguracji pośrednika"
 
 #: schemas/system_http_proxy.schemas.in.h:14
-#, fuzzy
 msgid "SOCKS proxy host name"
 msgstr "Nazwa komputera pośrednika gniazd"
 
 #: schemas/system_http_proxy.schemas.in.h:15
-#, fuzzy
 msgid "SOCKS proxy port"
 msgstr "Port pośrednika gniazd"
 
 #: schemas/system_http_proxy.schemas.in.h:16
-#, fuzzy
 msgid "Secure HTTP proxy host name"
-msgstr "Nazwa komputera pracującego jako bezpośredni pośrednik http"
+msgstr "Nazwa komputera pośrednika HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:17
-#, fuzzy
 msgid "Secure HTTP proxy port"
-msgstr "Port pośrednika bezpiecznego połączenia http"
+msgstr "Port pośrednika bezpiecznego połączenia HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:18
-#, fuzzy
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
 "Wybierz tryb konfiguracji pośrednika. Obsługiwanymi wartościami są \"none"
-"\" (brak konfiguracji), \"manual\" (ręczna), \"auto\" (automatyczna)"
+"\" (brak konfiguracji), \"manual\" (ręczna), \"auto\" (automatyczna)."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
 msgstr "Nazwa maszyny pośredniczącej protokół FTP."
 
 #: schemas/system_http_proxy.schemas.in.h:20
-#, fuzzy
 msgid "The machine name to proxy HTTP through."
-msgstr "Nazwa maszyny pośredniczącej protokół FTP."
+msgstr "Nazwa maszyny pośredniczącej protokół HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:21
-#, fuzzy
 msgid "The machine name to proxy secure HTTP through."
 msgstr "Nazwa maszyny pośredniczącej protokół SHTTP."
 
@@ -959,40 +956,36 @@ msgid "The machine name to proxy socks through."
 msgstr "Nazwa maszyny stanowiącej pośrednika dla mechanizmu gniazd."
 
 #: schemas/system_http_proxy.schemas.in.h:23
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"Port komputera określonego w pliku /system/http_proxy/host, będący "
-"pośrednikiem dla ruchu sieciowego"
+"Port komputera określonego przez \"/system/http_proxy/host\", będący "
+"pośrednikiem dla ruchu sieciowego."
 
 #: schemas/system_http_proxy.schemas.in.h:24
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Port komputera określonego w pliku /system/proxy/ftp_host, będący "
-"pośrednikiem dla ruchu sieciowego"
+"Port komputera określonego przez \"/system/proxy/ftp_host\", będący "
+"pośrednikiem dla ruchu sieciowego."
 
 #: schemas/system_http_proxy.schemas.in.h:25
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"Port komputera określonego w pliku /system/proxy/secure_host, będący "
-"pośrednikiem dla ruchu sieciowego"
+"Port komputera określonego przez \"/system/proxy/secure_host\", będący "
+"pośrednikiem dla ruchu sieciowego."
 
 #: schemas/system_http_proxy.schemas.in.h:26
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Port komputera określonego w pliku /system/proxy/socks_host, będącego "
-"pośrednikiem dla ruchu sieciowego"
+"Port komputera określonego przez \"/system/proxy/socks_host\", będącego "
+"pośrednikiem dla ruchu sieciowego."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1008,42 +1001,15 @@ msgstr ""
 "192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
-#, fuzzy
 msgid "URL that provides proxy configuration values."
-msgstr "URL udostępniający wartości konfiguracyjne pośrednika"
+msgstr "URL udostępniający wartości konfiguracyjne pośrednika."
 
 #: schemas/system_http_proxy.schemas.in.h:29
-#, fuzzy
 msgid "Use HTTP proxy"
-msgstr "Port pośrednika HTTP"
+msgstr "Użycie pośrednika HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
-#, fuzzy
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
 "Nazwa użytkownika przekazywana do uwierzytelnienia podczas opercji "
-"pośredniczenia http"
-
-#, fuzzy
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "Brak obsługi dla schematu URL"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "Brak obsługi dla schematu URL"
-
-#~ msgid "Hosts are not contacted via the proxy"
-#~ msgstr "Komputery nie są połączone przy użyciu pośrednika"
-
-#~ msgid "The machine name to proxy http through."
-#~ msgstr "Nazwa maszyny pośredniczącej protokół HTTP."
-
-#~ msgid "Use proxy settings when accessing http"
-#~ msgstr ""
-#~ "Używanie ustawień pośrednika podczas łączenia przy użyciu protokołu http"
-
-#~ msgid "http proxy password"
-#~ msgstr "hasło pośrednika http"
-
-#~ msgid "http proxy username"
-#~ msgstr "nazwa użytkownika pośrednika http"
+"pośredniczenia http."
