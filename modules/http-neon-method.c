@@ -1848,7 +1848,6 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 					(ne_header_handler) set_access_time,
 					info);
 
-		
 	res = ne_request_dispatch (req);
 
 	if (res == NE_REDIRECT) {
@@ -1872,6 +1871,11 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 		info->flags = GNOME_VFS_FILE_FLAGS_NONE;
 		
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
+
+		/* work-around for broken icecast server */
+		if (! g_ascii_strcasecmp (info->mime_type, "audio/mpeg")) {
+			ne_close_connection (ne_get_session (req));
+		}
 		
 	}
 

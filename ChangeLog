@@ -1,5 +1,11 @@
 2005-01-28  Christian Kellner  <gicmo@gnome.org>
 
+	* modules/http-neon-method.c (http_get_file_info): Close the connection
+	if we got the audio/mpeg mime-type. This is another work around for
+	broken icecast server.
+
+2005-01-28  Christian Kellner  <gicmo@gnome.org>
+
 	* modules/http-neon-method.c: Differ between dav:// and http://.
 	So only do PORPFINDs and other dav specific methods when dav://
 	was specified in the URL. This will also fix bug #164019.
