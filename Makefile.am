@@ -19,9 +19,9 @@ EXTRA_DIST =					\
 	autogen.sh				\
 	gnome-vfs.spec				\
 	gnome-vfs-2.0.pc.in			\
-	xml-i18n-extract.in			\
-	xml-i18n-merge.in			\
-	xml-i18n-update.in
+	intltool-extract.in			\
+	intltool-merge.in			\
+	intltool-update.in
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gnome-vfs-2.0.pc

@@ -30,9 +30,9 @@ stamp-h.in
 vfsConf.sh
 gnome-vfs-config
 gnome-vfs-2.0.pc
-xml-i18n-extract
-xml-i18n-extract.in
-xml-i18n-merge
-xml-i18n-merge.in
-xml-i18n-update
-xml-i18n-update.in
+intltool-extract
+intltool-extract.in
+intltool-merge
+intltool-merge.in
+intltool-update
+intltool-update.in
