@@ -110,7 +110,6 @@ file_handle_new (GnomeVFSURI *uri,
 		 gint fd)
 {
 	FileHandle *new;
-
 	new = g_new (FileHandle, 1);
 
 	new->uri = gnome_vfs_uri_ref (uri);

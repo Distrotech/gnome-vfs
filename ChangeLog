@@ -1,3 +1,42 @@
+2000-05-31  Gene Z. Ragan  <gzr@eazel.com>
+
+	Work in progress for the modified Files and Programs
+	capplet that is relacing the old mime types capplet
+	in the Gnome Control Center.
+	
+	* mime-type-capplet/Makefile.am:
+	Added link dependeny to libgnomevfs.
+	
+	* mime-type-capplet/edit-window.c: 
+	(add_extension), (remove_extension):
+	Rename functions to be more coherent.
+
+	(initialize_main_win), (initialize_main_win_vals):
+	Modified functions to remove dialog items
+	that are obsolete in our new designs.  Added new
+	items such as the application and component menus.
+
+	(populate_application_menu),
+	(populate_component_menu), (application_menu_activate):
+	Application menu functions that list the short
+	list of applications for a mime type and allow a user
+	to add applications to the short list.
+
+	(add_application), (show_file_selector):
+	Menu callback and function to display GtkFileSelection to 
+	allow user to locate an application to be associated with
+	mime type.
+	
+	* mime-type-capplet/mime-data.c: 
+	(add_new_mime_type):
+	Modified functions for new mime APIs.
+	
+	* mime-type-capplet/new-mime-window.c: (launch_new_mime_window):
+	Modified functions for new mime APIs.
+
+	* modules/file-method.c: (file_handle_new):
+	Modified functions for new mime APIs.
+
 2000-05-31  Dan Winship  <danw@helixcode.com>
 
 	* data/mime/gnome-vfs-mime-magic: 
