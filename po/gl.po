@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
 "POT-Creation-Date: 2000-04-27 23:53+0200\n"
-"PO-Revision-Date: 2000-04-29 14:11+0200\n"
+"PO-Revision-Date: 2000-05-02 18:31+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -347,7 +347,7 @@ msgstr "Non se pode abri-lo descritor de ficheiro %d."
 #: libgnomevfs-corba/gnome-vfs-slave.c:1475
 #, c-format
 msgid "Notify interface for `%s' not found."
-msgstr "Non se atopou a interfaz de notificación para `%s'."
+msgstr "Non se atopou a interface de notificación para `%s'."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1485
 msgid "Cannot setup Request object."
