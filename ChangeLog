@@ -1,3 +1,13 @@
+2001-02-21  Mike Fleming  <mfleming@eazel.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	* data/mime/gnome-vfs.applications:
+	* data/mime/gnome-vfs.keys.in:
+
+	added x-directory/webdav-prefer-directory to gnome-vfs.keys.in
+	I must have edited the wrong file before :)
+
 2001-02-21  Darin Adler  <darin@eazel.com>
 
 	reviewed by: Pavel Cisler <pavel@eazel.com>
