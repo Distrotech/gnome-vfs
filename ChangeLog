@@ -1,3 +1,16 @@
+2004-09-21  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	Cache global default lookups, to avoid re-reading and validating desktop files.
+	Blow away global cache if any directory changes.
+	Don't validate all desktop entries in the mime cache. Instead validate when used.
+	Don't limit defaults.list to reference desktop files from the same
+	directory. This means user defaults.list now works.
+	Lock mime_info_cache when getting file monitor callbacks.
+	separate mime.cache and defaults.list file change handling
+	Don't leak mime_info_cache on reload.
+	Remove defaults.list-only dirs.
+	
 2004-09-20  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c (gnome_vfs_mime_info_cache_get_search_path) 
