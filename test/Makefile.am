@@ -23,6 +23,7 @@ noinst_PROGRAMS =				\
 	test-info				\
 	test-mime				\
 	test-mime-handlers			\
+	test-mime-info-cache			\
 	test-mime-handlers-set			\
 	test-monitor				\
 	test-performance			\
@@ -95,6 +96,9 @@ test_mime_handlers_LDADD = $(libraries)
 
 test_mime_handlers_set_SOURCES = test-mime-handlers-set.c
 test_mime_handlers_set_LDADD = $(libraries)
+
+test_mime_info_cache_SOURCES = test-mime-info-cache.c
+test_mime_info_cache_LDADD = $(libraries)
 
 test_xfer_SOURCES = test-xfer.c
 test_xfer_LDADD = $(libraries)

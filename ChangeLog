@@ -1,3 +1,20 @@
+2004-07-17  Ray Strode  <rstrode@redhat.com>
+
+	Search in $XDG_CONFIG_DIRS for default.list, too
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	(gnome_vfs_mime_info_cache_get_defaults_search_path):
+	new function.
+	(gnome_vfs_mime_info_cache_reload):
+	flush cache from memory before reloading.  Load 
+	additional default.list files.
+	(gnome_vfs_mime_info_cache_free): clean up better
+	(gnome_vfs_mime_get_all_desktop_entries): fix bug
+	where list was getting built wrong.
+
+	* test/gnome-vfs-mime-info-cache.c: file for testing
+	functions
+
 Sat Jul 17 22:55:33 2004  Jonathan Blandford  <jrb@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
