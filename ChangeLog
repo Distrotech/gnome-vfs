@@ -1,5 +1,11 @@
 2004-10-13  Alexander Larsson  <alexl@redhat.com>
 
+	* gnome-vfs-2.0.pc.in:
+	Add missing dependencies.
+	Patch from Juergen George Sawinski <j4y54w@sawinski.de>
+
+2004-10-13  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-socket-buffer.c (flush):
 	Correctly move memory in buffer when we've written some bytes.
 
