@@ -21,8 +21,3 @@ test/gnome-file-selection/gnome-file-selection.c
 
 # files added by xml-i18n-prepare
 mime-type-capplet/file-types-capplet.desktop.in
-mime-type-capplet/files-types-capplet.desktop.in
-test/.libs/test-directory.in
-test/.libs/test-find-directory.in
-test/test-directory.in
-test/test-find-directory.in
