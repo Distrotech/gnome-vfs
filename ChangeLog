@@ -1,3 +1,9 @@
+2000-06-26  Pavel Cisler  <pavel@eazel.com>
+
+	* data/mime/gnome-vfs-mime-magic:
+	Added a sniff rule for svg files.
+	Got rid of questionable sgml sniff rules.
+
 2000-06-26  Michael Meeks  <michael@helixcode.com>
 
 	* modules/efs-method.c (do_make_directory): add error handling
@@ -11,7 +17,7 @@
 	* test/test-shell.c (list_commands): expand help.
 	(syntax_error): kill. (main): update argument handling.
 
-2000-06-26  Pavel  <pavel@eazel.com>
+2000-06-26  Pavel Cisler <pavel@eazel.com>
 
 	* Makefile.am:
 	Fix broken build - recent changes to Makefile.am put libraries
