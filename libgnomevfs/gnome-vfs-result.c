@@ -54,7 +54,9 @@ static gchar *status_strings[] = {
 	/* GNOME_VFS_ERROR_NOTADIRECTORY */	N_("Not a directory"),
 	/* GNOME_VFS_ERROR_INPROGRESS */	N_("Operation in progress"),
 	/* GNOME_VFS_ERROR_INTERRUPTED */	N_("Operation interrupted"),
-	/* GNOME_VFS_ERROR_NOTPERMITTED */	N_("Operation not permitted")
+	/* GNOME_VFS_ERROR_NOTPERMITTED */	N_("Operation not permitted"),
+	/* GNOME_VFS_ERROR_ISDIRECTORY */       N_("Is a directory"),
+        /* GNOME_VFS_ERROR_NOMEM */             N_("Not enough memory")
 };
 
 
