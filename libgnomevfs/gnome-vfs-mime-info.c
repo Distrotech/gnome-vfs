@@ -149,17 +149,19 @@ context_destroy_and_unlink (GnomeMimeContext *context)
 /* this gives us a number of the language in the current language list,
    the higher the number the "better" the translation */
 static int
-language_level (char *lang)
+language_level (const char *lang)
 {
 	int i;
 	GList *li;
-	if(!lang) return 0;
-	for (i = 1, li = current_lang;
-	     li != NULL;
-	     i++, li = g_list_next (li)) {
-		if(strcmp (li->data,lang)==0)
+
+	if (lang == NULL)
+		return 0;
+
+	for (i = 1, li = current_lang; li != NULL; i++, li = g_list_next (li)) {
+		if (strcmp ((const char *) li->data, lang) == 0)
 			return i;
 	}
+
 	return -1;
 }
 

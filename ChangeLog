@@ -1,3 +1,9 @@
+2000-05-16  Ettore Perazzoli  <ettore@helixcode.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (language_level): Correctly
+	cast the `void *' pointer before passing to `strcmp()'.  Also,
+	made const-safe and re-indented a bit.
+
 2000-05-16  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/newftp-method.c:
