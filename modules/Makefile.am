@@ -7,6 +7,7 @@ INCLUDES =					\
 	-I$(top_builddir)/intl			\
 	$(GNOME_INCLUDEDIR)			\
 	$(XML_CFLAGS)	 			\
+	$(LIBEFS_CFLAGS)			\
 	$(GCONF_CFLAGS)
 
 CPPFLAGS =					\
