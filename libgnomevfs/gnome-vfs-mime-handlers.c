@@ -649,14 +649,10 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 
 		iids_delimited = join_str_list ("','", iid_list);
 
-		/* FIXME bugzilla.eazel.com 1142: should probably check for
-		   the right interfaces too. Also slightly semantically
-		   different from nautilus in other tiny ways.
-		*/
 		query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 				     "', '", supertype,
 				     "', '*'])",
-				     " AND has(['", iids_delimited, "'], iid)", NULL);
+				     " AND prefer_by_list_order(iid, ['", iids_delimited, "'])", NULL);
 		
 		/* Alphebetize by name, for the sake of consistency */
 		sort[0] = g_strdup ("name");

@@ -1,3 +1,15 @@
+2001-02-02  Rebecca Schulman  <rebecka@eazel.com>
+	Fix bugs 6241 and 6171, that the default viewer
+	was wrong for various types of files
+
+	reviewed by: Gene Regan <gzr@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_short_list_components):
+	Use the new oaf query that will preserve iid list
+	order in the short list.
+	Also remove a fixme for bug 1142 that has now been fixed.
+
 2001-02-02  Darin Adler  <darin@eazel.com>
 
 	reviewed by: Mike Fleming <mfleming@eazel.com>
