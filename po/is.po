@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Samúel Jón Gunnarsson  <sammi@techattack.nu>, 2003
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-05-08 21:49--100\n"
+"POT-Creation-Date: 2003-06-21 12:10+0200\n"
+"PO-Revision-Date: 2003-06-21 12:15--100\n"
 "Last-Translator: Samuel Jon Gunnarsson <sammi@techattack.nu>\n"
 "Language-Team: Icelandic <gnome@techattack.nu>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,8 @@ msgstr "Stillingarskráin `%s' fannst ekki: %s"
 msgid "Unknown op type %u"
 msgstr "Óþekkt op gerð %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
+#: libgnomevfs/gnome-vfs-job.c:1048
+#: libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ekki tókst að stofna pípu fyrir opna GIOChannel: %s"
@@ -204,7 +205,6 @@ msgstr "Hýsill fannst ekki"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
-#, fuzzy
 msgid "Host name not valid"
 msgstr "Nafn hýsils er ekki gilt"
 
@@ -332,7 +332,7 @@ msgstr "Óþekkt GnomeVFSSeekPosition %d"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
-#, fuzzy, c-format
+#, c-format
 msgid "Didn't find a valid settings file at %s\n"
 msgstr "Ekki tókst að finna gildar stillingar við %s\n"
 
@@ -369,7 +369,6 @@ msgstr "Hjálp"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
-#, fuzzy
 msgid "Hosts"
 msgstr "Hýslar"
 
@@ -393,15 +392,14 @@ msgstr "Verkfæri"
 msgid "Windows"
 msgstr "Gluggar"
 
+# Það þarf að finna eitthvað hentugt nafn á Moniker Factory, en eftir því sem mér skilts þá er moniker eitthvað form fyrir merkimiða.
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-#, fuzzy
 msgid "Standard Moniker factory"
-msgstr "Stöðluð Merkimiða verksmiðja"
+msgstr "Standard Moniker factory"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-#, fuzzy
 msgid "file MonikerExtender"
-msgstr "skrá MerkimiðaFramlenging"
+msgstr "file MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
@@ -410,3 +408,4 @@ msgstr "almennur Gnome VFS merkimiði"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "almennur skráar merkimiði"
+
