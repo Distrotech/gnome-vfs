@@ -1,5 +1,10 @@
 2000-10-24  John Sullivan  <sullivan@eazel.com>
 
+	* modules/ftp-method.c: (do_read_directory):
+	added FIXME about not following symlinks
+
+2000-10-24  John Sullivan  <sullivan@eazel.com>
+
 	* data/mime/gnome-vfs.keys: Added entry for
 	audio/x-mpeg, which is returned by some web servers
 	instead of the audio/x-mp3 that gnome-vfs knew about.
