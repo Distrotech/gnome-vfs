@@ -1,3 +1,8 @@
+2003-03-14  Michael Meeks  <michael@server.home>
+
+	* test/test-shell.c (do_ssl): impl.
+	(main, list_commands): upd.
+
 2003-03-14  Alexander Larsson  <alexl@redhat.com>
 
 	* Makefile.am:

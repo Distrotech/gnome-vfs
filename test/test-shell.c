@@ -36,6 +36,7 @@
 #include <libgnomevfs/gnome-vfs-directory.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
+#include <libgnomevfs/gnome-vfs-ssl.h>
 #include <popt.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -223,6 +224,8 @@ list_commands (void)
 	printf (" * cat,type:               dump text file to console\n");
 	printf (" * dump:                   dump binary file to console\n");
 	printf (" * sync:                   for sinkers\n");
+	printf (" * ssl:                    displays ssl enabled state\n");
+	printf (" * findtrash:              locates a trash directory for a URI\n");
 	printf (" * quit,exit,bye:          exit\n");
 	printf ("File operations:\n");
 	printf (" * open <handle> <name>:   open a file\n");
@@ -542,10 +545,20 @@ do_findtrash (void)
 }
 
 static void
+do_ssl (void)
+{
+	if (gnome_vfs_ssl_enabled ())
+		fprintf (stdout, "SSL enabled\n");
+	else
+		fprintf (stdout, "SSL disabled\n");
+}
+
+static void
 print_info (GnomeVFSFileInfo *info)
 {
 	const char *mime_type;
 	struct tm *loctime;
+
 	fprintf (stdout, "Name: '%s'\n", info->name);
 	if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE) {
 		fprintf (stdout, "Type: ");
@@ -1054,6 +1067,8 @@ main (int argc, const char **argv)
 			do_info ();
 		else if (g_ascii_strcasecmp (ptr, "findtrash") == 0)
 			do_findtrash ();
+		else if (g_ascii_strcasecmp (ptr, "ssl") == 0)
+			do_ssl ();
 		else if (g_ascii_strcasecmp (ptr, "sync") == 0)
 			fprintf (vfserr, "a shell is like a boat, it lists or syncs (RMS)\n");
 		else if (g_ascii_strcasecmp (ptr,"help") == 0 ||
