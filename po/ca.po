@@ -5,9 +5,9 @@
 # Traducció per Softcatalà <info@softcatala.org>
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.2.0\n"
-"POT-Creation-Date: 2001-08-02 15:30-0700\n"
-"PO-Revision-Date: 2001-04-14 00:55+0100\n"
+"Project-Id-Version: gnome-vfs 1.1\n"
+"POT-Creation-Date: 2001-09-09 19:05+0200\n"
+"PO-Revision-Date: 2001-09-10 13:57+0200\n"
 "Last-Translator: Softcatalà <tradgnome@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -1010,269 +1010,264 @@ msgstr "arxiu zip"
 msgid "zoo archive"
 msgstr "arxiu zoo"
 
-#: libgnomevfs/gnome-vfs-configuration.c:216
+#: libgnomevfs/gnome-vfs-configuration.c:222
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d conté caràcters NULS."
 
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:239
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d no conté cap nom de mètode."
 
-#: libgnomevfs/gnome-vfs-configuration.c:262
+#: libgnomevfs/gnome-vfs-configuration.c:268
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d no conté cap nom de mòdul."
 
-#: libgnomevfs/gnome-vfs-configuration.c:315
+#: libgnomevfs/gnome-vfs-configuration.c:321
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "El fitxer de configuració `%s' no ha estat trobat: %s"
 
-#: libgnomevfs/gnome-vfs-init.c:76
-msgid "GNOME VFS already initialized."
-msgstr "GNOME VFS ja està inicialitzat."
-
-#: libgnomevfs/gnome-vfs-parse-ls.c:650
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
 msgstr "No s'ha pogut analitzar: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
 msgstr "Els següent errors d'anàlisi seran ignorats"
 
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:38
+#: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
 msgstr "Cap error"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:39
+#: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
 msgstr "Fitxer no trobat"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:40
+#: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
 msgstr "Error genèric"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:41
+#: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
 msgstr "Error intern"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
 msgstr "Paràmetres no vàlids"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
 msgstr "Operació no suportada"
 
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
 msgstr "Error E/S"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
 msgstr "Dades corruptes"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
 msgstr "Format no vàlid"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
 msgstr "Fitxer associat incorrecte"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
 msgstr "Fitxer massa gran"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
 msgstr "No hi ha prou espai en el dispositiu"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
 msgstr "Sistema de fitxers de només lectura"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
 msgstr "URI no vàlid"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
 msgstr "Fitxer no obert"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
 msgstr "Mode d'obertura no vàlid"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
 msgstr "Accés denegat"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
 msgstr "Massa fitxers oberts"
 
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
 msgstr "Fi del fitxer"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:57
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
 msgstr "No és un directori"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: libgnomevfs/gnome-vfs-result.c:58
+#: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
 msgstr "Operació en progrés"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:59
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
 msgstr "Operació interrompuda"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/gnome-vfs-result.c:60
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
 msgstr "Fitxer ja existent"
 
 #. GNOME_VFS_ERROR_LOOP
-#: libgnomevfs/gnome-vfs-result.c:61
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
 msgstr "Enllaços amb bucles trobats"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: libgnomevfs/gnome-vfs-result.c:62
+#: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
 msgstr "Operació no permesa"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:63
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
 msgstr "És un directori"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
-#: libgnomevfs/gnome-vfs-result.c:64
+#: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
 msgstr "No hi ha prou memòria"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:65
+#: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
 msgstr "Servidor no trobat"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: libgnomevfs/gnome-vfs-result.c:66
+#: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
 msgstr "Nom de servidor no vàlid"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: libgnomevfs/gnome-vfs-result.c:67
+#: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
 msgstr "Servidor sense adreça"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: libgnomevfs/gnome-vfs-result.c:68
+#: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
 msgstr "Entrada fallida"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: libgnomevfs/gnome-vfs-result.c:69
+#: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
 msgstr "Operació cancel·lada"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: libgnomevfs/gnome-vfs-result.c:70
+#: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
 msgstr "Directori ocupat"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: libgnomevfs/gnome-vfs-result.c:71
+#: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
 msgstr "Directori no buit"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: libgnomevfs/gnome-vfs-result.c:72
+#: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
 msgstr "Massa enllaços"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:73
+#: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
 msgstr "Sistema de fitxers de només lectura"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:74
+#: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
 msgstr "No és del mateix sistema de fitxers"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: libgnomevfs/gnome-vfs-result.c:75
+#: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
 msgstr "Nom massa llarg"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: libgnomevfs/gnome-vfs-result.c:76
+#: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
 msgstr "El servei no està disponible"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: libgnomevfs/gnome-vfs-result.c:77
+#: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
 msgstr "Sol·licita les dades de serveis obsolets"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: libgnomevfs/gnome-vfs-result.c:78
-#, fuzzy
+#: libgnomevfs/gnome-vfs-result.c:75
 msgid "Protocol error"
-msgstr "Cap error"
+msgstr "Error de protocol"
 
-#: libgnomevfs/gnome-vfs-result.c:141
+#: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
 msgstr "Error desconegut"
 
-#: libgnomevfs/gnome-vfs-utils.c:66
+#: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:68
+#: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
 msgstr "%u bytes"
 
-#: libgnomevfs/gnome-vfs-utils.c:75
+#: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:78
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:82
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
@@ -1282,25 +1277,28 @@ msgstr "%.1f GB"
 msgid "Unknown op type %u"
 msgstr "Tipus d'op %u desconegut"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1000
-#: libgnomevfs-pthread/gnome-vfs-job.c:1145
+#: libgnomevfs-pthread/gnome-vfs-job.c:1003
+#: libgnomevfs-pthread/gnome-vfs-job.c:1148
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "No es pot crear la connexió per obrir GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1603
+#: libgnomevfs-pthread/gnome-vfs-job.c:1594
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipus de feina %u desconegut"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1639
+#: libgnomevfs-pthread/gnome-vfs-job.c:1630
 msgid "Operation stopped"
 msgstr "Operació aturada"
 
-#: modules/file-method.c:380
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Desconeguda GnomeVFSSeekPosition %d"
+
+#~ msgid "GNOME VFS already initialized."
+#~ msgstr "GNOME VFS ja està inicialitzat."
 
 #~ msgid "%s to retrieve"
 #~ msgstr "%s per recuperar"
