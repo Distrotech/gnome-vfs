@@ -1,3 +1,14 @@
+2004-08-12  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	(gnome_vfs_mime_info_cache_dir_init_defaults_list):
+	Rename default.list name to [Default Applications]
+	Need eel upgrade.
+	
+	(get_all_parent_types_helper), (get_all_parent_types),
+	(gnome_vfs_mime_get_all_desktop_entries):
+	Correctly find desktop files for parent mime types.
+
 2004-08-12  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* configure.in: Added nb to ALL_LINGUAS.

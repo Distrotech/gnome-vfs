@@ -29,6 +29,7 @@
 #include <glib.h>
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-info-cache.h"
+#include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-mime-monitor.h"
 #include "gnome-vfs-monitor.h"
 #include "gnome-vfs-ops.h"
@@ -206,7 +207,7 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 	gchar *filename, *desktop_file_id, **mime_types;
 	int i;
 	struct stat buf;
-	static gchar *allowed_start_groups[] = { "MIME Cache", NULL };
+	static gchar *allowed_start_groups[] = { "Default Applications", NULL };
 
 	load_error = NULL;
 	mime_types = NULL;
@@ -248,7 +249,7 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 	if (load_error != NULL)
 		goto error;
 
-	mime_types = egg_desktop_entries_get_keys (entries, "MIME Cache",
+	mime_types = egg_desktop_entries_get_keys (entries, "Default Applications",
 						   NULL, &load_error);
 
 	if (load_error != NULL)
@@ -258,7 +259,7 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 		GList *tmp;
 
 		desktop_file_id = egg_desktop_entries_get_string (entries,
-								  "MIME Cache",
+								  "Default Applications",
 								  mime_types[i],
 								  &load_error);
 		if (load_error != NULL) {
@@ -692,34 +693,92 @@ gnome_vfs_mime_info_cache_reload (const char *dir)
 	}
 }
 
+
+
+
+static void
+get_all_parent_types_helper (GList **mime_types, const char *mime_type)
+{
+	const gchar *parent_list;
+	
+	if (!g_list_find_custom (*mime_types, mime_type,
+				 (GCompareFunc) strcmp)) {
+		*mime_types = g_list_prepend (*mime_types, g_strdup (mime_type));
+	}
+
+	parent_list = gnome_vfs_mime_get_value (mime_type, "parent_classes");
+	if (parent_list) {
+		char **parents;
+		int i;
+		
+		parents = g_strsplit (parent_list, ":", -1);
+		for (i = 0; parents && parents[i] != NULL; i++) {
+			get_all_parent_types_helper (mime_types, parents[i]);
+		}
+		g_strfreev (parents);
+	}
+
+	if (g_str_has_prefix (mime_type, "text/")) {
+		if (!g_list_find_custom (*mime_types, "text/plain",
+					 (GCompareFunc) strcmp)) {
+			*mime_types = g_list_prepend (*mime_types, g_strdup ("text/plain"));
+		}
+	}
+	if (!g_str_has_prefix (mime_type, "inode/")) {
+		if (!g_list_find_custom (*mime_types, "application/octet-stream",
+					 (GCompareFunc) strcmp)) {
+			*mime_types = g_list_prepend (*mime_types, g_strdup ("application/octet-stream"));
+		}
+	}
+}
+
+static GList *
+get_all_parent_types (const char *mime_type)
+{
+	GList *mime_types;
+
+	/* TODO: Unalias mime_type first */
+	
+	mime_types = NULL;
+	get_all_parent_types_helper (&mime_types, mime_type);
+	return g_list_reverse (mime_types);
+}
+
 GList *
 gnome_vfs_mime_get_all_desktop_entries (const char *mime_type)
 {
 	GList *desktop_entries, *list, *dir_list, *tmp;
+	GList *mime_types, *m_list;
+	GnomeVFSMimeInfoCacheDir *dir;
+	char *type;
 
 	gnome_vfs_mime_info_cache_init ();
 
 	G_LOCK (mime_info_cache);
-	dir_list = mime_info_cache->dirs;
+	mime_types = get_all_parent_types (mime_type);
+
 	desktop_entries = NULL;
-	while (dir_list != NULL) {
-		GnomeVFSMimeInfoCacheDir *dir;
-
-		dir = (GnomeVFSMimeInfoCacheDir *) dir_list->data;
-
-		list = g_hash_table_lookup (dir->mime_info_cache_map, mime_type);
-
-		tmp = list;
-		while (tmp != NULL) {
-			if (!g_list_find_custom (desktop_entries, tmp->data,
-						 (GCompareFunc) strcmp)) {
-				desktop_entries = g_list_prepend (desktop_entries,
-								  g_strdup (tmp->data));
+	for (m_list = mime_types; m_list != NULL; m_list = m_list->next) {
+		type = m_list->data;
+		
+		for (dir_list = mime_info_cache->dirs;
+		     dir_list != NULL;
+		     dir_list = dir_list->next) {
+			dir = (GnomeVFSMimeInfoCacheDir *) dir_list->data;
+			
+			list = g_hash_table_lookup (dir->mime_info_cache_map, type);
+			
+			for (tmp = list; tmp != NULL; tmp = tmp->next) {
+				/* Add if not already in list */
+				if (!g_list_find_custom (desktop_entries, tmp->data,
+							 (GCompareFunc) strcmp)) {
+					desktop_entries = g_list_prepend (desktop_entries,
+									  g_strdup (tmp->data));
+				}
 			}
-			tmp = tmp->next;
 		}
-		dir_list = dir_list->next;
 	}
+
 	G_UNLOCK (mime_info_cache);
 
 	desktop_entries = g_list_reverse (desktop_entries);
