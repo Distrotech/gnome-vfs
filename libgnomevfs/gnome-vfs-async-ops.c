@@ -37,7 +37,29 @@
  * @handle: handle of the async operation to be cancelled
  *
  * Cancel an asynchronous operation and close all its callbacks.
- * Its possible to still receive another call or two on the callback.
+ *
+ * In a single-threaded application, its guaranteed that if you
+ * call this before the operation finished callback has been called
+ * the callback will never be called.
+ *
+ * However, in a multithreaded application, or to be more specific, if
+ * you call gnome_vfs_async_cancel from another thread than the thread
+ * handling the glib mainloop, there is a race condition where if
+ * the the operation finished callback was just dispatched, you might
+ * still cancel the operation. So, in this case you need to handle the
+ * fact that the operation callback might still run even though another
+ * thread has cancelled the operation.
+ *
+ * One way to avoid problems from this is to mark the data structure you're
+ * using as callback_data as destroyed, and then queue an idle and do the
+ * actual freeing in an idle handler. The idle handler is guaranteed to run
+ * after the callback has been exectuted, so by then it is safe to destroy
+ * the callback_data. The callback handler must handle the case where the
+ * callback_data is marked destroyed by doing nothing.
+ *
+ * This is clearly not ideal for multithreaded applications, but as good as
+ * we can with the current API. Eventually we'll have to change the API to
+ * make this work better.
  **/
 void
 gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)

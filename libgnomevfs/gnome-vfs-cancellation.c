@@ -119,7 +119,13 @@ _gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
  * @cancellation: A GnomeVFSCancellation object
  * 
  * Send a cancellation request through @cancellation.
- * Must be called on the main thread.
+ *
+ * If called on a different thread than the one handling idle
+ * callbacks, there is a small race condition where the
+ * operation finished callback will be called even if you
+ * cancelled the operation. Its the apps responsibility
+ * to handle this. See gnome_vfs_async_cancel for more
+ * discussion about this.
  **/
 void
 gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
@@ -129,8 +135,6 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 	GnomeVFSClientCall *client_call;
 
 	g_return_if_fail (cancellation != NULL);
-
-	GNOME_VFS_ASSERT_PRIMARY_THREAD;
 
 	if (cancellation->cancelled)
 		return;

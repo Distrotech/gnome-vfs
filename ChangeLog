@@ -1,3 +1,13 @@
+2005-02-16  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-async-ops.c:
+	Document how cancellation works (eh, doesn't work) in
+	multithreaded applications-
+	
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	(gnome_vfs_cancellation_cancel):
+	Remove main thread assert.
+
 2005-02-14  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/ftp-method.c (unix_ls_to_file_info): Unset the invaild
