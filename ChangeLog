@@ -1,3 +1,13 @@
+2001-01-25  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Gene Z. Ragan <gzr@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_private):
+	Make new folder operation call GNOME_VFS_XFER_PHASE_COMPLETED like
+	the other file operations to make it easier for callers to clean
+	up their state.
+	Simplify a bit.
+
 2001-01-25  Darin Adler  <darin@eazel.com>
 
 	* test/test-uri.c: (main): Added some tests to

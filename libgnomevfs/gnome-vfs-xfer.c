@@ -2133,8 +2133,6 @@ gnome_vfs_xfer_private (const GList *source_uri_list,
 		
 		call_progress (&progress_state, GNOME_VFS_XFER_PHASE_INITIAL);
 	 	result = gnome_vfs_xfer_empty_trash (source_uri_list, error_mode, &progress_state);
-		call_progress (&progress_state, GNOME_VFS_XFER_PHASE_COMPLETED);
-		free_progress (&progress_info);
 	} else if ((xfer_options & GNOME_VFS_XFER_DELETE_ITEMS) != 0) {
 		/* Delete items operation */
 		g_assert (source_uri_list != NULL);
@@ -2143,22 +2141,22 @@ gnome_vfs_xfer_private (const GList *source_uri_list,
 		call_progress (&progress_state, GNOME_VFS_XFER_PHASE_INITIAL);
 		result = gnome_vfs_xfer_delete_items (source_uri_list,
 		      error_mode, xfer_options, &progress_state);
-		call_progress (&progress_state, GNOME_VFS_XFER_PHASE_COMPLETED);
-		free_progress (&progress_info);
 	} else if ((xfer_options & GNOME_VFS_XFER_NEW_UNIQUE_DIRECTORY) != 0) {
 		/* New directory create operation */
 		g_assert (source_uri_list == NULL);
-		g_assert (g_list_length ((GList *)target_uri_list) == 1);
+		g_assert (g_list_length ((GList *) target_uri_list) == 1);
 
-		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_uri_list->data);
-		if (target_dir_uri == NULL 
-			|| gnome_vfs_uri_get_basename ((GnomeVFSURI *)target_uri_list->data) == NULL)
-			return GNOME_VFS_ERROR_INVALID_URI;
+		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *) target_uri_list->data);
+		result = GNOME_VFS_ERROR_INVALID_URI;
+		if (target_dir_uri != NULL) { 
+			if (gnome_vfs_uri_get_basename ((GnomeVFSURI *) target_uri_list->data) != NULL) {
 		
-		result = gnome_vfs_new_directory_with_unique_name (target_dir_uri, 
-			gnome_vfs_uri_get_basename ((GnomeVFSURI *)target_uri_list->data),
-			error_mode, overwrite_mode, &progress_state);
-		gnome_vfs_uri_unref (target_dir_uri);
+				result = gnome_vfs_new_directory_with_unique_name (target_dir_uri, 
+					gnome_vfs_uri_get_basename ((GnomeVFSURI *) target_uri_list->data),
+					error_mode, overwrite_mode, &progress_state);
+			}
+			gnome_vfs_uri_unref (target_dir_uri);
+		}
 	} else {
 		/* Copy items operation */
 		g_assert (source_uri_list != NULL);
@@ -2168,10 +2166,10 @@ gnome_vfs_xfer_private (const GList *source_uri_list,
 		call_progress (&progress_state, GNOME_VFS_XFER_PHASE_INITIAL);
 		result = gnome_vfs_xfer_uri_internal (source_uri_list, target_uri_list,
 			xfer_options, error_mode, overwrite_mode, &progress_state);
-		call_progress (&progress_state, GNOME_VFS_XFER_PHASE_COMPLETED);
-		free_progress (&progress_info);
 	}
 
+	call_progress (&progress_state, GNOME_VFS_XFER_PHASE_COMPLETED);
+	free_progress (&progress_info);
 
 	/* FIXME bugzilla.eazel.com 1218:
 	 * 
