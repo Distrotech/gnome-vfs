@@ -185,7 +185,6 @@ application/x-gnumeric
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
 	short_list_application_ids_for_hacker_user_level=gnumeric
-	system_all_application_ids=gnumeric
 
 application/x-java-byte-code
 	description=Java byte code
@@ -308,7 +307,6 @@ image/bmp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 
 image/cgm
 	description=CGM image
@@ -327,7 +325,6 @@ image/gif
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 
 image/ief
 	description=IEF image
@@ -343,7 +340,6 @@ image/jpeg
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 
 image/png
 	description=PNG image
@@ -356,7 +352,6 @@ image/png
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 
 image/svg
 	description=SVG art
@@ -372,7 +367,6 @@ image/tiff
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 
 image/x-xpixmap
 	description=XPM image	
@@ -385,7 +379,6 @@ image/x-xpixmap
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 
 image/x-bmp
 	default_action_type=component
@@ -397,7 +390,6 @@ image/x-bmp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 	description=Windows bitmap
 
 image/x-compressed-xcf
@@ -414,7 +406,6 @@ image/x-png
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 
 image/x-portable-anymap
 	description=portable image
@@ -427,7 +418,6 @@ image/x-portable-anymap
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 	
 image/x-portable-bitmap
 	description=portable bitmap
@@ -440,7 +430,6 @@ image/x-portable-bitmap
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 	
 image/x-portable-graymap
 	description=portable gray image
@@ -453,7 +442,6 @@ image/x-portable-graymap
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 	
 image/x-portable-pixmap
 	description=portable pixmap
@@ -466,7 +454,6 @@ image/x-portable-pixmap
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 
 image/x-psd
 	description=Photoshop document
@@ -475,7 +462,6 @@ image/x-psd
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
-	system_all_application_ids=gimp
 
 image/x-rgb
 	description=RGB image
@@ -487,7 +473,6 @@ image/x-xbitmap
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
-	system_all_application_ids=gimp
 
 image/x-xcf
 	description=GIMP image
@@ -496,7 +481,6 @@ image/x-xcf
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
-	system_all_application_ids=gimp
 
 image/x-xfig
 	description=xfig image
@@ -512,7 +496,6 @@ image/x-xpixmap
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	system_all_application_ids=gimp,eog
 
 image/x-xwindowdump
 	description=X window image
@@ -575,7 +558,6 @@ text/*
 	short_list_application_ids_for_novice_user_level=emacs,nedit
 	short_list_application_ids_for_intermediate_user_level=emacs,nedit
 	short_list_application_ids_for_hacker_user_level=emacs,nedit
-	system_all_application_ids=emacs,nedit
 
 text/calendar
 	description=calendar information
@@ -600,7 +582,6 @@ text/html
 	short_list_application_ids_for_novice_user_level=mozilla,netscape,lynx
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,lynx
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx
-	system_all_application_ids=mozilla,netscape,lynx,emacs,nedit
 
 
 text/plain
@@ -614,7 +595,6 @@ text/plain
 	short_list_application_ids_for_novice_user_level=emacs,nedit
 	short_list_application_ids_for_intermediate_user_level=emacs,nedit
 	short_list_application_ids_for_hacker_user_level=emacs,nedit
-	system_all_application_ids=emacs,nedit
 
 text/rfc822-headers
 	description=email headers
@@ -803,5 +783,4 @@ x-directory/webdav
 	short_list_application_ids_for_novice_user_level=mozilla,netscape,lynx
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,lynx
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx
-	system_all_application_ids=mozilla,netscape,lynx
 

@@ -25,6 +25,7 @@
 #include "gnome-vfs-mime-handlers.h"
 
 #include "gnome-vfs-mime-info.h"
+#include "gnome-vfs-application-registry.h"
 #ifdef HAVE_GCONF
 #include <gconf/gconf.h>
 #endif
@@ -37,8 +38,6 @@
 #include "gnome-vfs-result.h"
 
 static char *get_user_level (void);
-static gboolean str_to_bool (const char *str);
-static const char *bool_to_str (gboolean bool);
 static char *extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix);
 static char *mime_type_get_supertype (const char *mime_type);
 static char **strsplit_handle_null (const char *str, const char *delim, int max);
@@ -46,7 +45,6 @@ static char **strsplit_handle_null (const char *str, const char *delim, int max)
 static char *join_str_list (const char *separator, GList *list);
 static GList *OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
 #endif
-static GList *process_app_list (GList *id_list);
 static GList *comma_separated_str_to_str_list (const char *str);
 static GList *str_list_difference (GList *a, GList *b);
 static char *str_list_to_comma_separated_str (GList *list);
@@ -176,7 +174,7 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 	 * pruned system lists here.
 	 */
 
-	return gnome_vfs_mime_application_new_from_id (default_application_id);
+	return gnome_vfs_application_registry_get_mime_application (default_application_id);
 }
 
 const char *
@@ -474,7 +472,7 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	preferred_applications = NULL;
 
 	for (p = id_list; p != NULL; p = p->next) {
-		application = gnome_vfs_mime_application_new_from_id (p->data);
+		application = gnome_vfs_application_registry_get_mime_application (p->data);
 		if (application != NULL) {
 			preferred_applications = g_list_prepend
 				(preferred_applications, application);
@@ -655,76 +653,31 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 GList *
 gnome_vfs_mime_get_all_applications (const char *mime_type)
 {
- 	GList *system_all_application_ids;
- 	GList *user_all_application_ids;
-	char *supertype;
- 	GList *supertype_all_application_ids;
- 	GList *supertype_user_all_application_ids;
-	GList *full_normal;
-	GList *full_supertype;
-	GList *full_id_list;
-	GList *system_apps;
+	GList *applications, *li;
 
-	if (mime_type == NULL) {
-		return NULL;
+	g_return_val_if_fail (mime_type != NULL, NULL);
+
+	applications = gnome_vfs_application_registry_get_applications (mime_type);
+
+	/* convert list to list of GnomeVFSMimeApplication's */
+	li = applications;
+	while (li != NULL) {
+		const char *application_id = li->data;
+		li->data = gnome_vfs_application_registry_get_mime_application (application_id);
+		/* Make sure we get no NULLs */
+		if (li->data == NULL) {
+			GList *link_to_remove = li;
+
+			li = li->next;
+
+			applications = g_list_remove_link (applications,
+							   link_to_remove);
+			g_list_free_1 (link_to_remove);
+		} else
+			li = li->next;
 	}
 
-	/* FIXME bugzilla.eazel.com 1075: 
-	   no way for apps to modify at install time */
-
-	/* get app list */
- 	system_all_application_ids = comma_separated_str_to_str_list 
-		(gnome_vfs_mime_get_value 
-		 (mime_type, "system_all_application_ids"));
-	system_all_application_ids = prune_ids_for_nonexistent_applications
-		(system_all_application_ids);
-
- 	user_all_application_ids = comma_separated_str_to_str_list
-		(gnome_vfs_mime_get_value 
-		 (mime_type, "all_application_ids"));
-
-	supertype = mime_type_get_supertype (mime_type);
-	
-	if (strcmp (supertype, mime_type) != 0) {
-		supertype_all_application_ids = comma_separated_str_to_str_list 
-			(gnome_vfs_mime_get_value
-			 (supertype, 
-			  "system_all_application_ids"));
-		supertype_all_application_ids = prune_ids_for_nonexistent_applications
-			(supertype_all_application_ids);
-
-		supertype_user_all_application_ids = comma_separated_str_to_str_list 
-			(gnome_vfs_mime_get_value
-			 (supertype, 
-			  "all_application_ids"));
-
-	} else {
-		supertype_all_application_ids = NULL;
-		supertype_user_all_application_ids = NULL;
-	}
-
-	full_normal = gnome_vfs_mime_str_list_merge (system_all_application_ids,
-						     user_all_application_ids); 
-		
-	full_supertype = gnome_vfs_mime_str_list_merge (supertype_all_application_ids,
-							supertype_user_all_application_ids); 
-
-	full_id_list = gnome_vfs_mime_str_list_merge (full_normal, full_supertype);
-
-
-	
-	system_apps = process_app_list (full_id_list);
-	
-	g_free (supertype);
-	g_list_free_deep (system_all_application_ids);
-	g_list_free_deep (user_all_application_ids);
-	g_list_free_deep (supertype_all_application_ids);
-	g_list_free_deep (supertype_user_all_application_ids);
-	g_list_free (full_normal);
-	g_list_free (full_supertype);
-	g_list_free (full_id_list);
-
-	return system_apps;
+	return applications;
 }
 
 GList *
@@ -1468,75 +1421,34 @@ GnomeVFSResult
 gnome_vfs_mime_extend_all_applications (const char *mime_type,
 					GList *application_ids)
 {
-	const char *user_all_application_ids;
-	GList *user_id_list;
-	GList *extras;
-	GList *update_list;
-	char *update_str;
-	GnomeVFSResult result;
+	GList *li;
 
-	user_all_application_ids = gnome_vfs_mime_get_value 
-		(mime_type, "all_application_ids");
-	user_id_list = comma_separated_str_to_str_list (user_all_application_ids);
+	g_return_val_if_fail (mime_type != NULL, GNOME_VFS_ERROR_INTERNAL);
 
-	extras = str_list_difference (application_ids, user_id_list);
+	for (li = application_ids; li != NULL; li = li->next) {
+		const char *application_id = li->data;
+		gnome_vfs_application_registry_add_mime_type (application_id,
+							      mime_type);
+	}
 
-	update_list = g_list_concat (g_list_copy (user_id_list), extras);
-
-	update_str = str_list_to_comma_separated_str (update_list);
-
-	g_list_free_deep (user_id_list);
-	
-	result = gnome_vfs_mime_edit_user_file
-		(mime_type, "all_application_ids", update_str);
-	g_free (update_str);
-
-	return result;
+	return gnome_vfs_application_registry_sync ();
 }
 
 GnomeVFSResult
 gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 					     GList *application_ids)
 {
-	GnomeVFSResult result;
-	const char *user_all_application_ids;
-	GList *user_id_list;
-	GList *update_list;
-	char *update_str;
+	GList *li;
 
- 	user_all_application_ids = gnome_vfs_mime_get_value 
-		(mime_type, "all_application_ids");
-	user_id_list = comma_separated_str_to_str_list (user_all_application_ids);
+	g_return_val_if_fail (mime_type != NULL, GNOME_VFS_ERROR_INTERNAL);
 
-	update_list = str_list_difference (user_id_list, application_ids);
-	update_str = str_list_to_comma_separated_str (update_list);
+	for (li = application_ids; li != NULL; li = li->next) {
+		const char *application_id = li->data;
+		gnome_vfs_application_registry_remove_mime_type (application_id,
+								 mime_type);
+	}
 
-	g_list_free_deep (user_id_list);
-	
-	result = gnome_vfs_mime_edit_user_file
-		(mime_type, "all_application_ids", update_str);
-	g_free (update_str);
-
-	return result;
-}
-
-GnomeVFSResult
-gnome_vfs_mime_define_application (const char *mime_type, GnomeVFSMimeApplication *application)
-{
-	GnomeVFSResult result;
-
-	g_return_val_if_fail (application != NULL, GNOME_VFS_OK);
-	g_return_val_if_fail (mime_type != NULL, GNOME_VFS_OK);
-
-	result = gnome_vfs_mime_edit_user_file_multiple
-		(mime_type,
-		 "name", application->name,
-		 "command", application->command,
-		 "can_open_multiple_files", bool_to_str (application->can_open_multiple_files),
-		 "can_open_uris", bool_to_str (application->can_open_uris),
-		 NULL);
-
-	return result;
+	return gnome_vfs_application_registry_sync ();
 }
 
 GnomeVFSMimeApplication *
@@ -1605,22 +1517,6 @@ gnome_vfs_mime_component_list_free (GList *list)
 	g_list_free (list);
 }
 
-
-
-static gboolean
-str_to_bool (const char *str)
-{
-	return str != NULL &&
-		(strcasecmp (str, "true") == 0 ||
-		 strcasecmp (str, "yes") == 0);
-}
-
-static const char *
-bool_to_str (gboolean bool)
-{
-	return bool ? "true" : "false";
-}
-
 static char *
 extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix)
 {
@@ -1663,48 +1559,8 @@ GnomeVFSMimeApplication *
 gnome_vfs_mime_application_new_from_id (const char *id)
 {
 	GnomeVFSMimeApplication *application;
-	const char *command;
-	const char *name;
-	char *id_hack_mime_type;
 
-	if (id == NULL) {
-		return NULL;
-	}
-
-	application = g_new0 (GnomeVFSMimeApplication, 1);
-
-	id_hack_mime_type = g_strconcat ("x-application-registry-hack/", id, NULL);
-
-	command = gnome_vfs_mime_get_value (id_hack_mime_type, 
-					    "command");
-
-	if (command == NULL) {
-		g_free (id_hack_mime_type);
-		g_free (application);
-		return NULL;
-	} else {
-		application->command = g_strdup (command);
-	}
-
-	name = gnome_vfs_mime_get_value (id_hack_mime_type, 
-					 "name");
-
-	if (name == NULL) {
-		application->name = gnome_vfs_mime_program_name (application->command);
-	} else {
-		application->name = g_strdup (name);
-	}
-
-	application->can_open_multiple_files = str_to_bool (gnome_vfs_mime_get_value (id_hack_mime_type, 
-										      "can_open_multiple_files"));
-	
-	application->can_open_uris = str_to_bool (gnome_vfs_mime_get_value (id_hack_mime_type, 
-									    "can_open_uris"));
-
-	application->requires_terminal = str_to_bool (gnome_vfs_mime_get_value (id_hack_mime_type, 
-										"requires_terminal"));
-
-	application->id = g_strdup (id);
+	application = gnome_vfs_application_registry_get_mime_application (id);
 
 	return application;
 }
@@ -1787,16 +1643,16 @@ get_executable_name_from_command_string (const char *command)
 static gboolean
 application_known_to_be_nonexistent (const char *application_id)
 {
-	char *id_hack_mime_type;
 	const char *command;
 	char *executable_name;
 	gboolean found;
 
-	id_hack_mime_type = g_strconcat ("x-application-registry-hack/",
-					 application_id,
-					 NULL);
-	command = gnome_vfs_mime_get_value (id_hack_mime_type,
-					    "command");
+	g_return_val_if_fail (application_id != NULL, FALSE);
+
+	command = gnome_vfs_application_registry_peek_value
+		(application_id,
+		 GNOME_VFS_APPLICATION_REGISTRY_COMMAND);
+
 	if (command == NULL) {
 		return TRUE;
 	}
@@ -1845,30 +1701,6 @@ OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list)
 	return retval;
 }
 #endif
-
-static GList *
-process_app_list (GList *id_list) 
-{
-	GList *applications;
-	GList *p;
-
-	applications = NULL;
-
-	for (p = id_list; p != NULL; p = p->next) {
-		GnomeVFSMimeApplication *application;
-
-		application = gnome_vfs_mime_application_new_from_id (p->data);
-		
-		if (application != NULL) {
-			applications = g_list_prepend (applications, application);
-		}
-	}
-
-	applications = g_list_reverse (applications);
-
-	return applications;
-}
-
 
 /* Returns the Nautilus user level, a string.
  * This does beg the question: Why does gnome-vfs have the Nautilus

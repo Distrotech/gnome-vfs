@@ -1,3 +1,46 @@
+Tue Aug 08 23:18:49 2000  George Lebl <jirka@5z.com>
+
+	* libgnomevfs/Makefile.am,
+	  libgnomevfs/gnome-vfs-application-registry.[ch]:
+	  A new application registry.  The parsing is based upon
+	  mime-info.  The interface completely hides any structures
+	  and is based entierly on querying string keys.  Handles
+	  user settings as a delta against the system settings.  Also
+	  adds mime_types list support to the registry instead of this
+	  being read from the keys file.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.[ch]
+	  (gnome_vfs_mime_get_default_application)
+	  (gnome_vfs_mime_get_short_list_applications)
+	  (gnome_vfs_mime_get_all_applications)
+	  (gnome_vfs_mime_extend_all_applications)
+	  (gnome_vfs_mime_remove_from_all_applications)
+	  (gnome_vfs_mime_application_new_from_id)
+	  (application_known_to_be_nonexistent):
+	  Use the application registry API internally.  Remove the
+	  gnome_vfs_mime_define_application call as it doesn't
+	  make any sesnse any more and is replaced by an application
+	  registry call.  The all_applications calls now use the
+	  registry api for all their work.
+
+	* libgnomevfs/gnome-vfs-mime-info.c (load_mime_type_info_from):
+	  Fix a bug where comments would only be ignored on the first
+	  line which would add nonsense mime types if comments were
+	  elsewhere in the file.
+
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c
+	  (add_new_application)
+	  test/test-mime-handlers-set.c (main): 
+	  Use the application registry for adding new applications
+
+	* data/mime/Makefile.am, data/mime/gnome-vfs.keys,
+	  data/mime/gnome-vfs.applications,
+	  data/mime/application-registry-hack.keys:
+	  Remove the registry hack stuff, remove all_applications
+	  stuff from gnome-vfs.keys and add the applications from
+	  the registry hack to gnome-vfs.applications including
+	  the mime types they read.
+
 2000-08-08  Maciej Stachowiak  <mjs@eazel.com>
 
 	* mime-type-capplet/nautilus-mime-type-capplet.c: Move include of

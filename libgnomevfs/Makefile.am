@@ -76,6 +76,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-mime-magic.h			\
 	gnome-vfs-mime-sniff-buffer.h		\
 	gnome-vfs-mime-sniff-buffer-private.h	\
+	gnome-vfs-application-registry.h	\
 	gnome-vfs-module.h			\
 	gnome-vfs-module-shared.h		\
 	gnome-vfs-parse-ls.h			\
@@ -110,6 +111,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-mime-info.c			\
 	gnome-vfs-mime-magic.c			\
 	gnome-vfs-mime-sniff-buffer.c		\
+	gnome-vfs-application-registry.c	\
 	gnome-vfs-module-shared.c		\
 	gnome-vfs-xfer.c			\
 	gnome-vfs-ops.c				\

@@ -26,6 +26,7 @@
 #endif
 
 #include "gnome-vfs.h"
+#include "gnome-vfs-application-registry.h"
 #include "gnome-vfs-mime-handlers.h"
 
 #include <stdio.h>
@@ -160,8 +161,11 @@ main (int argc, char **argv)
 		app.command = g_list_nth (stuff, 2)->data;
 		app.can_open_multiple_files = str_to_bool (g_list_nth (stuff, 3)->data);
 		app.can_open_uris = str_to_bool (g_list_nth (stuff, 4)->data);
+		app.requires_terminal = str_to_bool (g_list_nth (stuff, 5)->data);
 		
-		gnome_vfs_mime_define_application ("x-application-registry-hack", &app);
+		gnome_vfs_application_registry_save_mime_application (&app);
+		gnome_vfs_application_registry_add_mime_type (app.id, type);
+		gnome_vfs_application_registry_sync ();
 	} else {
 		usage (argv[0]);
 	}

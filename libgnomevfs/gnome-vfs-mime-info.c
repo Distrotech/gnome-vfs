@@ -303,7 +303,7 @@ load_mime_type_info_from (const char *filename)
 		
 		if (c == '\n'){
 			in_comment = FALSE;
-			column = 0;
+			column = -1;
 			if (state == STATE_ON_MIME_TYPE){
 
 				/* set previous key to nothing
@@ -360,7 +360,7 @@ load_mime_type_info_from (const char *filename)
 				break;
 			}
 
-			if (column == 1){
+			if (column == 0){
 				state = STATE_ON_MIME_TYPE;
 				g_string_append_c (line, c);
 				break;
