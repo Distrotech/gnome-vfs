@@ -52,7 +52,9 @@
 #include <unistd.h>
 #include <utime.h>
 #include <string.h>
+#ifdef HAVE_FAM
 #include <fam.h>
+#endif
 #include <gdk/gdk.h>
 
 

@@ -1,3 +1,9 @@
+2001-08-27  Martin Baulig  <baulig@suse.de>
+
+	* modules/file-method.c: Only #include <fam.h> if we HAVE_FAM.
+	(FIXME: The configure.in contains a check for `fam', but what the
+	hell is this ?)
+
 2001-08-26  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* OUTSTANDING_API_ISSUES: Added the rest of the bugs.
