@@ -1,3 +1,10 @@
+2002-03-25  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/applications.vfolder-info.in:
+
+	Change "Applications" to "Other", since lots of people are seeing this
+	category and its weird to have Applications->Applications.
+	
 2002-03-18  Jody Goldberg <jody@gnome.org>
 
 	* modules/preferences.vfolder-info.in : add an Accessibility category.
