@@ -1,3 +1,13 @@
+1999-12-21  Elliot Lee  <sopwith@redhat.com>
+
+	* modules/http-method.c: Don't treat redirections as an error.
+
+	This is not quite the "right" solution, since redirections are
+	similar to symlinks, and this change doesn't check for the
+	GNOME_VFS_FILE_INFO_FOLLOW_SYMLINKS flag. It's also possible that
+	the MIME type returned from a redirection is different than the
+	MIME type of the target.
+
 1999-12-18  Havoc Pennington  <hp@pobox.com>
 
 	* libgnomevfs/gnome-vfs-file-info.c (gnome_vfs_file_info_new):

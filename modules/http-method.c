@@ -450,7 +450,7 @@ create_handle (HttpFileHandle **handle_return,
 		goto error;
 	}
 
-	if (! HTTP_20X (server_status)) {
+	if (! HTTP_20X (server_status) && !HTTP_REDIRECTED(server_status)) {
 		result = http_status_to_vfs_result (server_status);
 		goto error;
 	}
