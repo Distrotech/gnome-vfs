@@ -1,3 +1,16 @@
+2001-08-02  Seth Nickell  <snickell@stanford.edu>
+
+	* libgnomevfs/gnome-vfs-metafile-backend.c: (corba_get_list),
+	(corba_set_list), (find_monitor_node), (corba_register_monitor),
+	(corba_unregister_monitor),
+	(gnome_vfs_metafile_notify_metafile_ready),
+	(call_metafile_changed), (file_list_filler_ghfunc),
+	(call_metafile_changed_for_all_files_mentioned_in_metafile),
+	(call_metafile_changed_for_one_file):
+	* libgnomevfs/gnome-vfs-metafile-backend.h:
+
+	Sigh. Compile happily...(rename to new idl namespace).
+	
 2001-08-02  Michael Meeks  <michael@ximian.com>
 
 	* doc/Makefile.am (dist-hook): fix directory creation
@@ -40,6 +53,9 @@
 2001-08-01  Seth Nickell  <snickell@stanford.edu>
 
 	* idl/gnome-vfs-metafile-server.idl:
+
+	Change from GnomeVFS_ namespace to GNOME_VFS_.
+	
 	* libgnomevfs/gnome-vfs-metadata.c: (get_factory),
 	(gnome_vfs_metafile_load), (gnome_vfs_metafile_unref),
 	(gnome_vfs_metadata_get_string), (gnome_vfs_metadata_get_integer),

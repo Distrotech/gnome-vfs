@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*-*/
 
-/* gnome-vfs-metafile-backend.c - server side of GnomeVFS::Metafile
+/* gnome-vfs-metafile-backend.c - server side of GNOME_VFS::Metafile
  *
  * Copyright (C) 2001 Eazel, Inc.
  * Copyright (C) 2001 Free Software Foundation
@@ -733,7 +733,7 @@ gnome_vfs_metafile_notify_metafile_ready (GnomeVFSMetafile *metafile)
 
 static void
 call_metafile_changed (GnomeVFSMetafile *metafile,
-		       const GnomeVFS_FileNameList  *file_names)
+		       const GNOME_VFS_FileNameList  *file_names)
 {
 	GList                     *node;
 	CORBA_Environment          ev;
@@ -756,7 +756,7 @@ file_list_filler_ghfunc (gpointer key,
 			 gpointer value,
 			 gpointer user_data)
 {
-	GnomeVFS_FileNameList *file_names;
+	GNOME_VFS_FileNameList *file_names;
 
 	file_names = user_data;
 
@@ -769,7 +769,7 @@ void
 call_metafile_changed_for_all_files_mentioned_in_metafile (GnomeVFSMetafile *metafile)
 {
 	CORBA_unsigned_long   len;
-	GnomeVFS_FileNameList file_names;
+	GNOME_VFS_FileNameList file_names;
 
 	len = g_hash_table_size (metafile->details->node_hash);
 
@@ -793,7 +793,7 @@ static void
 call_metafile_changed_for_one_file (GnomeVFSMetafile *metafile,
 				    const CORBA_char  *file_name)
 {
-	GnomeVFS_FileNameList file_names = {0};
+	GNOME_VFS_FileNameList file_names = {0};
 	
 	file_names._maximum =  1;
 	file_names._length  =  1;
