@@ -396,8 +396,6 @@ folder_unref (Folder *folder)
 	folder->refcnt--;
 
 	if (folder->refcnt == 0) {
-		GSList *iter; 
-
 		D (g_print ("DESTORYING FOLDER: %s\n", folder->name));
 
 		g_free (folder->name);
