@@ -25,10 +25,10 @@
    Pavel Cisler <pavel@eazel.com> 
 */
 
-/* FIXME bugzilla.eazel.com 1197: 
+/* FIXME bugzilla.gnome.org #41197: 
    Check that all the flags passed by address are set at least once by
    functions that are expected to set them.  */
-/* FIXME bugzilla.eazel.com 1198: 
+/* FIXME bugzilla.gnome.org #41198: 
    There should be a concept of a `context' in the file methods that would
    allow us to set a prefix URI for all the operations.  This way we can
    greatly optimize access to "strange" file systems.  */
@@ -113,6 +113,8 @@ free_progress (GnomeVFSXferProgressInfo *progress_info)
 	progress_info->source_name = NULL;
 	g_free (progress_info->target_name);
 	progress_info->target_name = NULL;
+	g_free (progress_info->duplicate_name);
+	progress_info->duplicate_name = NULL;
 }
 
 static void
@@ -1595,7 +1597,6 @@ copy_items (const GList *source_uri_list,
 		}
 
 		gnome_vfs_file_info_unref (info);
-		g_free (progress->progress_info->duplicate_name);
 
 		if (result != GNOME_VFS_OK) {
 			break;
@@ -2005,7 +2006,6 @@ gnome_vfs_new_directory_with_unique_name (const GnomeVFSURI *target_dir_uri,
 	}
 
 	gnome_vfs_uri_unref (target_uri);
-	g_free (progress->progress_info->duplicate_name);
 
 	return result;
 }

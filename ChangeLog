@@ -1,3 +1,10 @@
+2003-10-18  Christophe Fergeau  <teuf@gnome.org>
+ 
+         * libgnomevfs/gnome-vfs-private-utils.c: replaced some strcpy
+           where src and dest overlapped with memmove. Fixes #124873.
+         * libgnomevfs/gnome-vfs-xfer.c: only free duplicate_name 
+	   after the GNOME_VFS_XFER_PHASE_COMPLETED state.
+
 2003-10-12  Christophe Fergeau  <teuf@gnome.org>
  
          * libgnomevfs/gnome-vfs-mime-handlers.c: applied patch by
