@@ -81,28 +81,58 @@ print_file_info (const GnomeVFSFileInfo *info)
 	(GNOME_VFS_FILE_INFO_##which (info) ? "YES" : "NO")
 
 	printf ("Name              : %s\n", info->name);
-	printf ("Type              : %s\n", type_to_string (info->type));
-	if (info->symlink_name != NULL)
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_TYPE)
+		printf ("Type              : %s\n", type_to_string (info->type));
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME && info->symlink_name != NULL)
 		printf ("Symlink to        : %s\n", info->symlink_name);
-	printf ("MIME type         : %s\n", info->mime_type);
-	printf ("Size              : %" GNOME_VFS_SIZE_FORMAT_STR "\n",
-		info->size);
-	printf ("Blocks            : %" GNOME_VFS_SIZE_FORMAT_STR "\n",
-		info->block_count);
-	printf ("I/O block size    : %d\n", info->io_block_size);
-	printf ("Local             : %s\n", FLAG_STRING (info, LOCAL));
-	printf ("SUID              : %s\n", FLAG_STRING (info, SUID));
-	printf ("SGID              : %s\n", FLAG_STRING (info, SGID));
-	printf ("Sticky            : %s\n", FLAG_STRING (info, STICKY));
-	printf ("Permissions       : %04o\n", info->permissions);
-	printf ("Link count        : %d\n", info->link_count);
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE)
+		printf ("MIME type         : %s\n", info->mime_type);
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_SIZE)
+		printf ("Size              : %" GNOME_VFS_SIZE_FORMAT_STR "\n",
+			info->size);
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_BLOCK_COUNT)
+		printf ("Blocks            : %" GNOME_VFS_SIZE_FORMAT_STR "\n",
+			info->block_count);
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE)
+		printf ("I/O block size    : %d\n", info->io_block_size);
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_FLAGS) {
+		printf ("Local             : %s\n", FLAG_STRING (info, LOCAL));
+		printf ("SUID              : %s\n", FLAG_STRING (info, SUID));
+		printf ("SGID              : %s\n", FLAG_STRING (info, SGID));
+		printf ("Sticky            : %s\n", FLAG_STRING (info, STICKY));
+	}
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS)
+		printf ("Permissions       : %04o\n", info->permissions);
+
+	
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_LINK_COUNT)
+		printf ("Link count        : %d\n", info->link_count);
+	
 	printf ("UID               : %d\n", info->uid);
 	printf ("GID               : %d\n", info->gid);
-	printf ("Access time       : %s", ctime (&info->atime));
-	printf ("Modification time : %s", ctime (&info->mtime));
-	printf ("Change time       : %s", ctime (&info->ctime));
-	printf ("Device #          : %ld\n", (gulong) info->device);
-	printf ("Inode #           : %ld\n", (gulong) info->inode);
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_ATIME)
+		printf ("Access time       : %s", ctime (&info->atime));
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_MTIME)
+		printf ("Modification time : %s", ctime (&info->mtime));
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_CTIME)
+		printf ("Change time       : %s", ctime (&info->ctime));
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_DEVICE)
+		printf ("Device #          : %ld\n", (gulong) info->device);
+
+	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_INODE)
+		printf ("Inode #           : %ld\n", (gulong) info->inode);
 
 	print_meta_list (info);
 

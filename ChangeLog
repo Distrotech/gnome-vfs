@@ -1,3 +1,19 @@
+2000-07-05  Ian McKellar  <yakk@yakk.net.au>
+
+	* modules/extfs-method.c: (get_dirname), (do_open_directory),
+	(match), (find_next):
+	SEGV fixes.
+
+	(do_get_file_info):
+	Implement a useful get_file_info (based off the existing 
+	(open|read|close)_directory code.
+
+	* modules/http-method.c: (my_strcmp), (do_move):
+	Implement MOVE (using the HTTP/DAV MOVE method)
+
+	* test/test-info.c: (print_file_info):
+	Only print valid info fields.
+
 2000-07-04  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c:

@@ -1269,7 +1269,48 @@ static GnomeVFSResult do_remove_directory(GnomeVFSMethod * method,
 	return result;
 }
 
-/* do_move goes here */
+/* a strcmp that doesn't barf on NULLs */
+static gint
+my_strcmp(const gchar *a, const gchar *b) {
+	if( (!a && b) || (a && !b) ) return 1;
+	if( (!a && !b) ) return 0;
+	return strcmp(a,b);
+}
+
+static GnomeVFSResult
+do_move (GnomeVFSMethod *method,
+	 GnomeVFSURI *old_uri,
+	 GnomeVFSURI *new_uri,
+	 gboolean force_replace,
+	 GnomeVFSContext *context)
+{
+	/* MOVE /path1 HTTP/1.0
+	 * Destination: /path2 */
+	HttpFileHandle *handle;
+	GnomeVFSResult result;
+
+	gchar *destpath, *destheader;
+
+	if(my_strcmp(gnome_vfs_uri_get_scheme(old_uri), gnome_vfs_uri_get_scheme(new_uri)) ||
+		my_strcmp(gnome_vfs_uri_get_host_name(old_uri), gnome_vfs_uri_get_host_name(new_uri)) ||
+	  	my_strcmp(gnome_vfs_uri_get_user_name(old_uri), gnome_vfs_uri_get_user_name(new_uri)) ||
+	  	my_strcmp(gnome_vfs_uri_get_password(old_uri), gnome_vfs_uri_get_password(new_uri)) ||
+		(gnome_vfs_uri_get_host_port(old_uri) != gnome_vfs_uri_get_host_port(new_uri))) {
+
+		/* the host/username/password/port are different */
+		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
+	}
+
+	destpath = gnome_vfs_uri_to_string(new_uri, GNOME_VFS_URI_HIDE_USER_NAME|GNOME_VFS_URI_HIDE_PASSWORD|GNOME_VFS_URI_HIDE_HOST_NAME|GNOME_VFS_URI_HIDE_HOST_PORT|GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
+	destheader = g_strdup_printf("Destination: %s\r\n", destpath);
+
+
+	result = make_request (&handle, old_uri, "MOVE", NULL, destheader, context);
+	http_handle_close (handle, context);
+	return result;
+	//return GNOME_VFS_ERROR_NOT_SUPPORTED;
+}
+
 
 static GnomeVFSResult do_unlink(GnomeVFSMethod * method,
              GnomeVFSURI * uri, GnomeVFSContext * context) {
@@ -1294,7 +1335,7 @@ static GnomeVFSMethod method = {
 	do_is_local,
 	do_make_directory,
 	do_remove_directory,
-	NULL /* do_move */,
+	do_move,
 	do_unlink,
 	NULL,
 	NULL, /* truncate */

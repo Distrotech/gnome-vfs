@@ -178,7 +178,7 @@ get_dirname (const gchar *path)
 
 	p = strrchr (path, G_DIR_SEPARATOR);
 	if (p == NULL)
-		return NULL;
+		return g_strdup("");
 
 	while (p != path && *p == G_DIR_SEPARATOR)
 		p--;
@@ -187,7 +187,7 @@ get_dirname (const gchar *path)
 		path++;
 
 	if (p == path)
-		return NULL;
+		return g_strdup("");
 
 	len = p - path;
 	s = g_malloc (len + 1);
@@ -633,8 +633,9 @@ do_open_directory (GnomeVFSMethod *method,
 
 	/* Remove all leading slashes, as they don't matter for us.  */
 	if (uri->text != NULL) {
-		for (p = uri->text; *p == G_DIR_SEPARATOR; p++)
+		for (p = uri->text; *p == G_DIR_SEPARATOR; p++) 
 			;
+		
 		handle->sub_uri = g_strdup (p);
 	} else {
 		handle->sub_uri = NULL;
@@ -675,8 +676,9 @@ match (const ExtfsDirectoryHandle *handle,
 	guint len;
 
 	if ((entry->directory != NULL && handle->sub_uri == NULL)
-	    || (entry->directory == NULL && handle->sub_uri != NULL))
+	    || (entry->directory == NULL && handle->sub_uri != NULL)) {
 		return FALSE;
+	}
 
 	/* First check that this is in the subdirectory we want.  */
 	/* FIXME bugzilla.eazel.com 1125: 
@@ -711,6 +713,10 @@ find_next (ExtfsDirectoryHandle *handle)
 		ExtfsDirectoryEntry *entry;
 
 		p = directory->entries;
+
+		if(p == NULL) 
+			return NULL;
+
 		entry = p->data;
 		if (match (handle, entry)) {
 			handle->prev_position = p;
@@ -759,7 +765,31 @@ do_get_file_info (GnomeVFSMethod *method,
 		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	GnomeVFSMethodHandle *method_handle;
+	GnomeVFSResult result;
+	GnomeVFSURI *parent = gnome_vfs_uri_get_parent(uri);
+	const gchar *filename = gnome_vfs_uri_get_basename(uri);
+
+	if(strcmp(parent->method_string, uri->method_string)) {
+		
+		result = gnome_vfs_get_file_info_uri(parent, file_info, options, NULL);
+		/* now we get evil and tell the app that this is in fact a dir */
+		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+		g_free(file_info->mime_type);
+		file_info->mime_type = g_strdup("x-special/directory");
+		return result;
+	}
+	
+	result = do_open_directory(method, &method_handle, parent, options, meta_keys, NULL, context);
+	while(result == GNOME_VFS_OK) {
+		result = do_read_directory(method, method_handle, file_info, context);
+		if(!strcmp(file_info->name, filename)) break;
+	}
+	do_close_directory(method, method_handle, context);
+
+	if(result == GNOME_VFS_ERROR_EOF) result = GNOME_VFS_ERROR_NOT_FOUND;
+	
+	return result;
 }
 
 static GnomeVFSResult
