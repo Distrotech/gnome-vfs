@@ -251,5 +251,6 @@ gboolean	 gnome_vfs_job_destroy	(GnomeVFSJob *job);
 void		 gnome_vfs_job_prepare	(GnomeVFSJob *job);
 void		 gnome_vfs_job_go	(GnomeVFSJob *job);
 gboolean	 gnome_vfs_job_execute	(GnomeVFSJob *job);
+GnomeVFSResult	 gnome_vfs_job_cancel	(GnomeVFSJob *job);
 
 #endif /* _GNOME_VFS_JOB_PTHREAD_H */

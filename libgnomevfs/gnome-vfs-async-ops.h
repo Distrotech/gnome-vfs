@@ -24,6 +24,8 @@
 #ifndef _GNOME_VFS_ASYNC_OPS_H
 #define _GNOME_VFS_ASYNC_OPS_H
 
+GnomeVFSResult	 gnome_vfs_async_cancel		(GnomeVFSAsyncHandle *handle);
+
 GnomeVFSResult	 gnome_vfs_async_open		(GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
 						 GnomeVFSOpenMode open_mode,

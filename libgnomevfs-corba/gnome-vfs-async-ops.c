@@ -527,3 +527,12 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 
 	return GNOME_VFS_OK;
 }
+
+
+GnomeVFSResult
+gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
+{
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	return GNOME_VFS_ERROR_NOTSUPPORTED;
+}

@@ -32,6 +32,18 @@
 
 
 GnomeVFSResult
+gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
+{
+	GnomeVFSJob *job;
+
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	job = (GnomeVFSJob *) handle;
+	return gnome_vfs_job_cancel (job);
+}
+
+
+GnomeVFSResult
 gnome_vfs_async_open (GnomeVFSAsyncHandle **handle_return,
 		      const gchar *text_uri,
 		      GnomeVFSOpenMode open_mode,

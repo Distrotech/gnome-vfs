@@ -1051,3 +1051,14 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 		return FALSE;
 	}
 }
+
+
+GnomeVFSResult
+gnome_vfs_job_cancel (GnomeVFSJob *job)
+{
+	g_return_val_if_fail (job != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	/* FIXME */
+
+	return GNOME_VFS_ERROR_NOTSUPPORTED;
+}

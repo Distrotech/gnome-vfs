@@ -1,5 +1,20 @@
 1999-09-12  Ettore Perazzoli  <ettore@comm2000.it>
 
+	* libgnomevfs-corba/gnome-vfs-async-ops.c
+	(gnome_vfs_async_cancel): New function.  Just a stub for now.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (gnome_vfs_job_cancel): New
+	function.  Just a stub for now.
+
+	* libgnomevfs-pthread/gnome-vfs-job.h (gnome_vfs_job_cancel):
+	New prototype.
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c
+	(gnome_vfs_async_cancel): New function.
+
+	* libgnomevfs/gnome-vfs-async-ops.h (gnome_vfs_async_cancel): New
+	prototype.
+
 	* libgnomevfs-pthread/gnome-vfs-job.c (execute_close): Notify with
 	ack and return `FALSE' so that the thread is killed.
 	(execute_load_directory_not_sorted): Always return FALSE.
