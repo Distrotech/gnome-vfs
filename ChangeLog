@@ -1,5 +1,14 @@
 2004-02-03  Thomas Cataldo  <thomas.cataldo@aliacom.fr>
 
+	* libgnomevfs/gnome-vfs-socket.c (gnome_vfs_socket_close):
+	Free socket structure
+	
+	* modules/ftp-method.c: (do_transfer_command), (end_transfer),
+	(ftp_connection_create), (ftp_connection_destroy):
+	Fix leaks.
+
+2004-02-03  Thomas Cataldo  <thomas.cataldo@aliacom.fr>
+
 	* modules/nntp-method.c: (parse_date_string), (parse_header): some
 	memory leak fixes.
 

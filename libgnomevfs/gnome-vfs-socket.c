@@ -95,6 +95,7 @@ GnomeVFSResult
 gnome_vfs_socket_close (GnomeVFSSocket *socket)
 {
 	socket->impl->close (socket->connection);
+	g_free (socket);
 	return GNOME_VFS_OK;
 }
 
