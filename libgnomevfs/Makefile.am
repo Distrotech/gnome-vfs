@@ -24,6 +24,7 @@ INCLUDES =					\
 	$(NULL)
 
 libgnomevfs_headers_to_scan_for_enums = 			\
+	gnome-vfs-address.h			\
 	gnome-vfs-application-registry.h	\
 	gnome-vfs-async-ops.h			\
 	gnome-vfs-cancellation.h		\
@@ -36,13 +37,15 @@ libgnomevfs_headers_to_scan_for_enums = 			\
 	gnome-vfs-handle.h			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
-	gnome-vfs-mime-utils.h			\
 	gnome-vfs-mime.h			\
 	gnome-vfs-mime-handlers.h		\
+	gnome-vfs-mime-info-cache.h		\
 	gnome-vfs-mime-monitor.h		\
+	gnome-vfs-mime-utils.h			\
 	gnome-vfs-module-callback.h		\
 	gnome-vfs-monitor.h			\
 	gnome-vfs-ops.h				\
+	gnome-vfs-resolve.h			\
 	gnome-vfs-result.h			\
 	gnome-vfs-standard-callbacks.h		\
 	gnome-vfs-types.h			\
@@ -55,6 +58,7 @@ libgnomevfs_headers_to_scan_for_enums = 			\
 
 libgnomevfs_headers = 			\
 	$(libgnomevfs_headers_to_scan_for_enums) \
+	gnome-vfs-dns-sd.h			\
 	gnome-vfs-uri.h				\
 	$(NULL)
 
@@ -86,8 +90,7 @@ gnome-vfs-enum-types.c: s-enum-types-c
 s-enum-types-c: @REBUILD@ $(libgnomevfs_headers_to_scan_for_enums) Makefile
 	( cd $(srcdir) && glib-mkenums \
 			--fhead "#include <libgnomevfs/gnome-vfs.h>\n" \
-      --fhead "#include <libgnomevfs/gnome-vfs-mime-handlers.h>\n" \
-      --fhead "#include <libgnomevfs/gnome-vfs-mime.h>\n" \
+			--fhead "#include <libgnomevfs/gnome-vfs-mime-handlers.h>\n" \
 			--fhead "#include <glib-object.h>" \
       --fprod "\n/* enumerations from \"@filename@\" */" \
 			--vhead "GType\n@enum_name@_get_type (void)\n{\n  static GType etype = 0;\n  if (etype == 0) {\n    static const G@Type@Value values[] = {" 	\
@@ -127,6 +130,7 @@ libgnomevfs_2_la_LDFLAGS =			\
 
 libgnomevfsdaemon_2_la_LIBADD =			\
 	$(LIBGNOMEVFS_LIBS)			\
+	libgnomevfs-2.la			\
 	$(LIBGNOMEVFSDAEMON_LIBS)		\
 	$(NULL)
 
@@ -315,6 +319,7 @@ libgnomevfs_2_la_SOURCES =			\
 libgnomevfsdaemon_2_la_SOURCES =		\
 	gnome-vfs-hal-mounts.c			\
 	gnome-vfs-volume-monitor-daemon.c	\
+	gnome-vfs-volume-monitor.c	 	\
 	gnome-vfs-unix-mounts.c			\
 	$(NULL)
 

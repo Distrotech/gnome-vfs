@@ -27,6 +27,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <glib.h>
+#include <glib-object.h>
 #include <libgnomevfs/gnome-vfs-result.h>
 
 G_BEGIN_DECLS
@@ -49,6 +50,8 @@ typedef enum {
 	GNOME_VFS_DNS_SD_SERVICE_REMOVED,
 } GnomeVFSDNSSDServiceStatus;
 
+GType gnome_vfs_dns_sd_service_status_get_type (void);
+#define GNOME_VFS_TYPE_VFS_DNS_SD_SERVICE_STATUS (gnome_vfs_dns_sd_service_status_get_type())
 
 typedef struct GnomeVFSDNSSDBrowseHandle GnomeVFSDNSSDBrowseHandle;
 typedef struct GnomeVFSDNSSDResolveHandle GnomeVFSDNSSDResolveHandle;

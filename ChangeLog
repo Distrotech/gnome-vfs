@@ -1,3 +1,15 @@
+2004-07-31 Torsten Schoenfeld  <kaffeetisch@gmx.de> 
+
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-dns-sd.c:
+	(gnome_vfs_dns_sd_service_status_get_type):
+	* libgnomevfs/gnome-vfs-dns-sd.h:
+	* libgnomevfs/gnome-vfs.h: Adds GType for GnomeVFSDNSSDServiceStatus
+
+2004-07-31  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/Makefile.am:
+
 2004-07-31  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/ftp-method.c: (do_transfer_command):
