@@ -1,3 +1,9 @@
+2002-05-28  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-application-registry.c
+	(gnome_vfs_application_registry_init) : initialize before we load the
+	  applications so that things do not loop.
+
 Tue May 28 15:04:17 2002  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: fix adding/removing of includes

@@ -971,12 +971,12 @@ gnome_vfs_application_registry_init (void)
 			  user_registry_dir.dirname);
 	}
 
-	/*
-	 * Load
+	/* Things have been initialized flag it as ready so that we can load
+	 * the applications without attempting to reinitialize
 	 */
-	load_application_info ();
-
 	gnome_vfs_application_registry_initialized = TRUE;
+
+	load_application_info ();
 }
 
 /*
