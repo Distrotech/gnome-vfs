@@ -42,7 +42,7 @@ else
 CDEMENU_LTLIBS =
 endif
 
-module_flags = -export_dynamic -avoid-version
+module_flags = -export_dynamic -avoid-version -module
 modulesdir = $(libdir)/gnome-vfs-2.0/modules
 
 modules_LTLIBRARIES =				\
