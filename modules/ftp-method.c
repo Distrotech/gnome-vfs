@@ -27,11 +27,10 @@
  */
 
 /* TODO 
- * Make koobera.math.uic.edu work
- * Make NetPresenz work (eg: uniserver.uwa.edu.au)
- * FtpUri / FtpConnectionUri refcounting or something.
- * Create Bugzilla entry relating to cacheing
- * Fix do_get_file_info_from_handle
+ * Make koobera.math.uic.edu work [bugzilla.eazel.com 1463]
+ * Make NetPresenz work (eg: uniserver.uwa.edu.au) [bugzilla.eazel.com 1463]
+ * FtpUri / FtpConnectionUri refcounting or something. [bugzilla.eazel.com 1465]
+ * Fix do_get_file_info_from_handle [bugzilla.eazel.com 1466]
  */
 
 #ifdef HAVE_CONFIG_H
@@ -120,12 +119,10 @@ static GnomeVFSResult ftp_response_to_vfs_result(gint response) {
 			return GNOME_VFS_ERROR_BAD_FILE;
 	}
 
-	/* FIXME - is this the correct interpretation of this error? */
-	/*if(IS_100(response)) return GNOME_VFS_ERROR_IN_PROGRESS;*/
+	/* is this the correct interpretation of this error? */
 	if(IS_100(response)) return GNOME_VFS_OK;
 	if(IS_200(response)) return GNOME_VFS_OK;
-	/* FIXME - is this the correct interpretation of this error? */
-	/*if(IS_300(response)) return GNOME_VFS_ERROR_IN_PROGRESS;*/
+	/* is this the correct interpretation of this error? */
 	if(IS_300(response)) return GNOME_VFS_OK;
 	if(IS_400(response)) return GNOME_VFS_ERROR_GENERIC;
 	if(IS_500(response)) return GNOME_VFS_ERROR_INTERNAL;
@@ -225,15 +222,13 @@ static GnomeVFSResult do_control_write(FtpConnection *conn, gchar *command) {
 	gnome_vfs_iobuf_flush(conn->iobuf);
 
 	if(result != GNOME_VFS_OK) {
-		/* FIXME - return something useful */
 		g_free(actual_command);
-		return result; /* FIXME */
+		return result;
 	}
 
 	if(bytes != bytes_written) {
-		/* FIXME - return something useful */
 		g_free(actual_command);
-		return result; /* FIXME */
+		return result;
 	}
 
 	g_free(actual_command);
@@ -245,7 +240,6 @@ static GnomeVFSResult do_basic_command(FtpConnection *conn, gchar *command) {
 	GnomeVFSResult result = do_control_write(conn, command);
 
 	if(result != GNOME_VFS_OK) {
-		/* FIXME - return something useful */
 		return result;
 	}
 
@@ -257,7 +251,7 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 	gint port;
 	GnomeVFSResult result;
 
-	/* FIXME - support other than PASV */
+	/* FIXME bugzilla.eazel.com 1464: implement non-PASV mode */
 
 	/* send PASV */
 	do_basic_command(conn, "PASV");
@@ -268,10 +262,10 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 		gchar *ptr, *response = g_strdup(conn->response_message);
 		ptr = strchr(response, '(');
 		if(!ptr ||
-			(sscanf(ptr+1,"%d,%d,%d,%d,%d,%d", &a1, &a2, &a3, &a4, &p1, &p2) != 6)) {
-			/*ftp_debug(conn,g_strdup_printf("PASV response parse error `%s'", ptr?ptr+1:response));*/
+			(sscanf(ptr+1,"%d,%d,%d,%d,%d,%d", &a1, &a2, &a3, 
+				&a4, &p1, &p2) != 6)) {
 			g_free(response);
-			return GNOME_VFS_ERROR_CORRUPTED_DATA; /* uhh - I guess */
+			return GNOME_VFS_ERROR_CORRUPTED_DATA;
 		}
 
 		host = g_strdup_printf("%d.%d.%d.%d", a1, a2, a3, a4);
@@ -279,21 +273,18 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 
 		g_free(response);
 
-		/*ftp_debug(conn,g_strdup_printf("connecting to %s:%d", host, port));*/
 	}
 
 	/* connect */
 	result = gnome_vfs_inet_connection_create(&conn->data_connection,
 		host, port,
-		NULL /* FIXME where do I get a GnomeVFSCancellation? */);
+		NULL /* Where do I get a GnomeVFSCancellation? */);
 
-	g_free(host);
+	if(host) g_free(host);
 	
-  if(result != GNOME_VFS_OK) {
-    /* FIXME - should really return the error to the app somehow */
-		/*ftp_debug(conn,g_strdup_printf("gnome_vfs_inet_connection_create failed."));*/
-    return result;
-  }
+	if(result != GNOME_VFS_OK) {
+		return result;
+	}
 
 	conn->data_iobuf = gnome_vfs_inet_connection_get_iobuf(conn->data_connection);
 
@@ -305,18 +296,18 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 	result = do_control_write(conn, command);
 
 	if(result != GNOME_VFS_OK) {
-		// FIXME free stuff?
+		gnome_vfs_iobuf_destroy(conn->data_iobuf);
+		gnome_vfs_inet_connection_destroy(conn->data_connection, NULL);
 		return result;
 	}
 
 	result = get_response(conn);
 
 	if(result != GNOME_VFS_OK) {
-		// FIXME free stuff?
+		gnome_vfs_iobuf_destroy(conn->data_iobuf);
+		gnome_vfs_inet_connection_destroy(conn->data_connection, NULL);
 		return result;
 	}
-
-	/*ftp_debug(conn,g_strdup_printf("`%s' returned `%s'", command, gnome_vfs_result_to_string(result)));*/
 
 	return result;
 }
@@ -358,10 +349,11 @@ static GnomeVFSResult ftp_connection_create(FtpConnection **connptr,
 
 	result = gnome_vfs_inet_connection_create(&conn->inet_connection, 
 			uri->host, uri->port, 
-			NULL /* FIXME where do I get a GnomeVFSCancellation? */);
+			NULL /* Where do I get a GnomeVFSCancellation? */);
 	if(result != GNOME_VFS_OK) {
 		g_warning("gnome_vfs_inet_connection_create(\"%s\", %d) = \"%s\"",
-				uri->host, uri->port, gnome_vfs_result_to_string(result));
+				uri->host, uri->port, 
+				gnome_vfs_result_to_string(result));
 		g_string_free(conn->response_buffer, TRUE);
 		g_free(conn);
 		return result;
@@ -404,7 +396,6 @@ static GnomeVFSResult ftp_connection_create(FtpConnection **connptr,
 		gnome_vfs_iobuf_destroy(conn->iobuf);
 		gnome_vfs_inet_connection_destroy(conn->inet_connection, NULL);
 		g_free(conn);
-		/* FIXME - should really return the error to the app somehow */
 		return result;
 	}
 
@@ -497,10 +488,7 @@ static GnomeVFSResult ftp_connection_aquire(FtpUri *furi, FtpConnection **connec
 static void ftp_connection_release(FtpConnection *conn) {
 	GList *possible_connections;
 
-	if(conn == NULL) { /* FIXME - turn into g_return_if_fail */
-		g_warning("ftp_connection_release(NULL) called");
-		return;
-	}
+	g_return_if_fail(conn);
 
 	G_LOCK(spare_connections);
 	if(spare_connections == NULL) 
@@ -571,7 +559,7 @@ static GnomeVFSResult do_open	   (GnomeVFSMethod *method,
 	} else {
 		g_warning("Unsupported open mode %d\n", mode);
 		ftp_connection_release(conn);
-		/* FIXME - free lots-o-stuff */
+		/* FIXME bugzilla.eazel.com 1465: free furi */
 		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
 	result = do_transfer_command(conn, command);
@@ -676,7 +664,7 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 					 const GList *meta_keys,
 					 GnomeVFSContext *context) {
 	FtpConnection *conn;
-	/* FIXME - take away LS syntax */
+	/* FIXME bugzilla.eazel.com 1463 */
 	gchar *command = g_strdup_printf("LIST -ld %s", furi->path);
 	GnomeVFSResult result;
 	GnomeVFSFileSize num_bytes = 1024, bytes_read;
@@ -693,7 +681,8 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 	do_transfer_command(conn, command);
 	g_free(command);
 
-	result = gnome_vfs_iobuf_read(conn->data_iobuf, buffer, num_bytes, &bytes_read);
+	result = gnome_vfs_iobuf_read(conn->data_iobuf, buffer, 
+		num_bytes, &bytes_read);
 
 	if(result != GNOME_VFS_OK) {
 		/*ftp_debug(conn, g_strdup("gnome_vfs_iobuf_read failed"));*/
@@ -837,7 +826,8 @@ static GnomeVFSResult do_read_directory (GnomeVFSMethod *method,
 			conn->dirlistptr++;
 		}
 		/* go past \r\n */
-		while(conn->dirlistptr && *conn->dirlistptr && isspace(*conn->dirlistptr)) {
+		while(conn->dirlistptr && *conn->dirlistptr && 
+				isspace(*conn->dirlistptr)) {
 			conn->dirlistptr++;
 		}
 

@@ -1,3 +1,12 @@
+2000-06-26  Ian McKellar  <yakk@yakk.net.au>
+
+	* modules/ftp-method.c: (ftp_response_to_vfs_result),
+	(do_control_write), (do_basic_command), (do_transfer_command),
+	(ftp_connection_create), (ftp_connection_release), (do_open),
+	(internal_get_file_info), (do_read_directory):
+	Added FIXMEs to bugzilla, removed some fixed FIXMEs and fixed some
+	of the things mentioned in some of the FIXMEs.
+
 2000-06-24  Morten Welinder  <terra@diku.dk>
 
 	* libgnomevfs/gnome-vfs-parse-ls.c (vfs_parse_filedate): Actually
