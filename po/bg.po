@@ -976,27 +976,17 @@ msgstr ""
 msgid "The window workgroup the user is part of"
 msgstr ""
 
-#. Translators: Use only ASCII characters for this,
-#. * or don't translate
-#: rio500-method.c:171 rio500-method.c:295 rio500-method.c:776
-#: rio500-method.c:865
-msgid "Internal"
-msgstr "Вътрешен"
+#~ msgid "Internal"
+#~ msgstr "Вътрешен"
 
-#. Translators: Use only ASCII characters for this,
-#. * or don't translate
-#: rio500-method.c:180 rio500-method.c:298 rio500-method.c:777
-#: rio500-method.c:868
-msgid "External"
-msgstr "Външен"
+#~ msgid "External"
+#~ msgstr "Външен"
 
-#: smb.desktop.in.h:1
-msgid "Network neighborhood"
-msgstr "Локална·Мрежа"
+#~ msgid "Network neighborhood"
+#~ msgstr "Локална·Мрежа"
 
-#: smb.desktop.in.h:2
-msgid "Windows Shares in your local network"
-msgstr "Поделени папки от Windows във вашата локална мрежа"
+#~ msgid "Windows Shares in your local network"
+#~ msgstr "Поделени папки от Windows във вашата локална мрежа"
 
 #~ msgid "1 byte"
 #~ msgstr "1 байт"

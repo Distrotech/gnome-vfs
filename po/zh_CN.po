@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-12 03:59+0100\n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-03-12 22:36+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -686,15 +686,14 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"用于查看需要组件才能查看的文件的应用程序。参数 %s 将被替换为文件的 URI，"
-"参数 %c 将被替换为组件 IID。"
+"用于查看需要组件才能查看的文件的应用程序。参数 %s 将被替换为文件的 URI，参数 "
+"%c 将被替换为组件 IID。"
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
-"为需要终端的应用程序所使用的默认终端应用程序。"
+msgstr "为需要终端的应用程序所使用的默认终端应用程序。"
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -755,55 +754,46 @@ msgstr "在终端运行程序"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-"设为 true 可在“命令”中指定一个程序来处理 H323 URLs。"
+msgstr "设为 true 可在“命令”中指定一个程序来处理 H323 URLs。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"设为 true 可在“命令”中指定一个程序来处理 HTTP URLs。"
+msgstr "设为 true 可在“命令”中指定一个程序来处理 HTTP URLs。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"设为 true 可在“命令”中指定一个程序来处理 HTTPS URLs。"
+msgstr "设为 true 可在“命令”中指定一个程序来处理 HTTPS URLs。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
-"设为 true 可在“命令”中指定一个程序来处理 callto URLs。"
+msgstr "设为 true 可在“命令”中指定一个程序来处理 callto URLs。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
-"设为 true 可在“命令”中指定一个程序来处理 ghelp URLs。"
+msgstr "设为 true 可在“命令”中指定一个程序来处理 ghelp URLs。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
-"设为 true 可在“命令”中指定一个程序来处理 info URLs。"
+msgstr "设为 true 可在“命令”中指定一个程序来处理 info URLs。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
-"设为 true 可在“命令”中指定一个程序来处理 mailto URLs。"
+msgstr "设为 true 可在“命令”中指定一个程序来处理 mailto URLs。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr ""
-"设为 true 可在“命令”中指定一个程序来处理 man URLs。"
+msgstr "设为 true 可在“命令”中指定一个程序来处理 man URLs。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr ""
-"设为 true 可在“命令”中指定一个程序来处理 trash URLs。"
+msgstr "设为 true 可在“命令”中指定一个程序来处理 trash URLs。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
@@ -875,9 +865,9 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"若为 true，则所连接的代理服务器需要身份验证。用户明/密码组合由"
-"“/system/http_proxy/authentication_user”和“/system/http_proxy/authentication_password”"
-"定义。"
+"若为 true，则所连接的代理服务器需要身份验证。用户明/密码组合由“/system/"
+"http_proxy/authentication_user”和“/system/http_proxy/"
+"authentication_password”定义。"
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -911,8 +901,7 @@ msgstr "安全 HTTP 代理端口"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
-"选择代理配置模式。支持的值为“none”、“manual”、“auto”。"
+msgstr "选择代理配置模式。支持的值为“none”、“manual”、“auto”。"
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -934,29 +923,25 @@ msgstr "代理 socks 流量的机器名。"
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr ""
-"您代理流过的由“/system/http_proxy/host”所定义的所用的端口。"
+msgstr "您代理流过的由“/system/http_proxy/host”所定义的所用的端口。"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
-"您代理流过的由“/system/proxy/ftp_host”所定义的所用的端口。"
+msgstr "您代理流过的由“/system/proxy/ftp_host”所定义的所用的端口。"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
-"您代理流过的由“/system/proxy/secure_host”所定义的所用的端口。"
+msgstr "您代理流过的由“/system/proxy/secure_host”所定义的所用的端口。"
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
-"您代理流过的由“/system/proxy/socks_host”所定义的所用的端口。"
+msgstr "您代理流过的由“/system/proxy/socks_host”所定义的所用的端口。"
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -965,9 +950,9 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"此键列出了要直接连接的主机，这些主机将不会通过代理服务器(如果激活了代理服务器的话)。"
-"这里的值可以是主机名、域名(使用前置通配符，如 *.foo.com)、IP 主机地址(IPv4 和 "
-"IPv6 都可)、带网络掩码的网络地址(如 192.168.0.0/24)。"
+"此键列出了要直接连接的主机，这些主机将不会通过代理服务器(如果激活了代理服务器"
+"的话)。这里的值可以是主机名、域名(使用前置通配符，如 *.foo.com)、IP 主机地址"
+"(IPv4 和 IPv6 都可)、带网络掩码的网络地址(如 192.168.0.0/24)。"
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."

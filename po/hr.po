@@ -4,7 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0\n"
-"POT-Creation-Date: 2004-03-13 13:07+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2004-03-13 13:07+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
@@ -12,7 +13,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: TransDict server\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
@@ -454,7 +456,6 @@ msgstr "Greška kod pokretanja naredbe"
 msgid "Unknown error"
 msgstr "Nepoznata greška"
 
-#. plural form
 #: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u byte"
@@ -522,10 +523,14 @@ msgstr "Nepoznati disk"
 msgid "Network server"
 msgstr "Mrežni poslužitelj"
 
+#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Ne mogu montirati meki disk. Moguće je da nema diska u disketnom uređaju."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+"Ne mogu montirati meki disk. Moguće je da nema diska u disketnom uređaju."
 
+#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Ne mogu montirati disk.  Moguće je da nema medija u uređaju."
@@ -534,13 +539,17 @@ msgstr "Ne mogu montirati disk.  Moguće je da nema medija u uređaju."
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr "Ne mogu montirati meki disk. Moguće je da je meki disk u obliku koji ne može biti montiran."
+msgstr ""
+"Ne mogu montirati meki disk. Moguće je da je meki disk u obliku koji ne može "
+"biti montiran."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "Ne mogu montirati odabrani disk. Moguće je da je disk u obliku koji ne može biti montiran."
+msgstr ""
+"Ne mogu montirati odabrani disk. Moguće je da je disk u obliku koji ne može "
+"biti montiran."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -685,8 +694,8 @@ msgid ""
 "will be replaced by the component IID."
 msgstr ""
 "Program koji se koristi za pregled datoteka, te koji zahtjeva komponentu za "
-"pregledavanje istih. Parametar %s će biti zamijenjen s URI datoteke, a parametar "
-"%c će biti zamijenjen s IID komponente."
+"pregledavanje istih. Parametar %s će biti zamijenjen s URI datoteke, a "
+"parametar %c će biti zamijenjen s IID komponente."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -753,40 +762,66 @@ msgid "Run program in terminal"
 msgstr "Pokreni program u treminalu"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za H323 URL-ove."
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgstr ""
+"Postavite kako biste imali program određen u rukovatelju \"naredbe\" za H323 "
+"URL-ove."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za HTTP URL-ove."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgstr ""
+"Postavite kako biste imali program određen u rukovatelju \"naredbe\" za HTTP "
+"URL-ove."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za HTTPS URL-ove."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgstr ""
+"Postavite kako biste imali program određen u rukovatelju \"naredbe\" za "
+"HTTPS URL-ove."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za pozivne URL-ove."
+msgid ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
+msgstr ""
+"Postavite kako biste imali program određen u rukovatelju \"naredbe\" za "
+"pozivne URL-ove."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-ove ghelp-a."
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgstr ""
+"Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-"
+"ove ghelp-a."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-ove informacija."
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
+msgstr ""
+"Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-"
+"ove informacija."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-ove e-pošte."
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgstr ""
+"Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-"
+"ove e-pošte."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-ove stranica uputstva."
+msgstr ""
+"Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-"
+"ove stranica uputstva."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za odbačene URL-ove."
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr ""
+"Postavite kako biste imali program određen u rukovatelju \"naredbe\" za "
+"odbačene URL-ove."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
@@ -826,7 +861,8 @@ msgstr "Automatska po postavljanje proxy URL-a"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Omogućava postavljanje proxy-a kod pristupa http protokolom prema internetu."
+msgstr ""
+"Omogućava postavljanje proxy-a kod pristupa http protokolom prema internetu."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -869,7 +905,8 @@ msgstr "Računala bez proxy-a"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Lozinka za prolazak provjere vjerodostojnosti kod korištenja http proxy-a."
+msgstr ""
+"Lozinka za prolazak provjere vjerodostojnosti kod korištenja http proxy-a."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -919,25 +956,33 @@ msgstr "Naziv računala s proxy utičnicama."
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "Port na računalu je određen u datoteci /system/http_proxy/host računala s proxy-em."
+msgstr ""
+"Port na računalu je određen u datoteci /system/http_proxy/host računala s "
+"proxy-em."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "Port na računalu je određen u datoteci /system/proxy/ftp_host računala s proxy-em."
+msgstr ""
+"Port na računalu je određen u datoteci /system/proxy/ftp_host računala s "
+"proxy-em."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "Port na računalu je određen u datoteci /system/proxy/secure_host računala s proxy-em."
+msgstr ""
+"Port na računalu je određen u datoteci /system/proxy/secure_host računala s "
+"proxy-em."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "Port na računalu je određen u datoteci /system/proxy/socks_host računala s proxy-em."
+msgstr ""
+"Port na računalu je određen u datoteci /system/proxy/socks_host računala s "
+"proxy-em."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -946,10 +991,11 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Ovaj ključ sadrži popis računala koji su direktno povezani, radije nego pomoću "
-"proxy-a (ako je uopće uključen). Vrijednosti mogu biti nazivi računala, domene "
-"(koristeći početne zamjenske znakove kao *.foo.com), IP adrese računala (obje "
-"IPv4 i IPv6) i mrežne adrese s mrežnim maskama (npr. 192.168.0.0/24)."
+"Ovaj ključ sadrži popis računala koji su direktno povezani, radije nego "
+"pomoću proxy-a (ako je uopće uključen). Vrijednosti mogu biti nazivi "
+"računala, domene (koristeći početne zamjenske znakove kao *.foo.com), IP "
+"adrese računala (obje IPv4 i IPv6) i mrežne adrese s mrežnim maskama (npr. "
+"192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -961,7 +1007,8 @@ msgstr "Koristi HTTP proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Korisničko ime koje treba proći provjeru vjerodostojnosti kod http proxy-a."
+msgstr ""
+"Korisničko ime koje treba proći provjeru vjerodostojnosti kod http proxy-a."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -970,4 +1017,3 @@ msgstr "Radna grupa SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Korisnik je član radne grupe"
-
