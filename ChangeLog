@@ -1,3 +1,13 @@
+2001-05-17  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-list-sort.c:
+	* libgnomevfs/gnome-vfs-list-sort.h:
+	Removed the unused gnome_vfs_list_sort function. The good news
+	is that glib 2 has this same function (g_list_sort_with_data).
+
+	* test/.cvsignore: Ignore the new test-ssl test program.
+
 2001-05-14  Ian McKellar <yakk@yakk.net>
 
 	* libgnomevfs/Makefile.am:

@@ -20,6 +20,7 @@ test-mime-handlers-set
 test-mime-info
 test-seek
 test-shell
+test-ssl
 test-symlinks
 test-sync
 test-sync-create

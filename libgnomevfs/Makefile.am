@@ -59,7 +59,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-inet-connection.h		\
 	gnome-vfs-init.h			\
 	gnome-vfs-iobuf.h			\
-	gnome-vfs-list-sort.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-mime.h			\
 	gnome-vfs-mime-handlers.h		\
@@ -107,7 +106,6 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-inet-connection.c		\
 	gnome-vfs-init.c			\
 	gnome-vfs-iobuf.c			\
-	gnome-vfs-list-sort.c			\
 	gnome-vfs-method.c			\
 	gnome-vfs-mime.c			\
 	gnome-vfs-mime-handlers.c               \
