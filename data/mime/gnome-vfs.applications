@@ -188,7 +188,7 @@ xmms
 	can_open_multiple_files=true
 	can_open_uris=true
 	requires_terminal=false
-	mime_types=audio/x-mp3,audio/x-mpeg,application/x-ogg,audio/x-mpegurl
+	mime_types=audio/x-mp3,audio/x-mpeg,application/x-ogg,audio/x-mpegurl,audio/x-wav
 
 realplayer
 	command=realplayer
