@@ -1,3 +1,17 @@
+2001-01-17  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Darin Adler <darin@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_cancel):
+	Fix a typo (g_mutex_lock->g_mutex_unlock) that caused a race
+	condition where async callbacks could have been scheduled after
+	a cancellation.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(execute_load_directory_not_sorted):
+	Whitespace tweak.
+
 2001-01-16  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c:

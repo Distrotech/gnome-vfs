@@ -158,32 +158,27 @@ pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 	GnomeVFSJob *job;
 	
 	gnome_vfs_async_job_map_lock ();
+
 	job = gnome_vfs_async_job_map_get_job (handle);
-
-
 	if (job == NULL) {
 		JOB_DEBUG (("job %u - job no longer exists", GPOINTER_TO_UINT (handle)));
-		/* Job is gone but callbacks may be still pending, make
-		 * sure they get dropped.
+		/* have to cancel the callbacks because they still can be pending */
+		gnome_vfs_async_job_cancel_callbacks (handle);
+	} else {
+		JOB_DEBUG (("locking access lock %u", (int) job->job_handle));
+		g_mutex_lock (job->access_lock);
+	
+		/* The lock here is to make sure that either the job doesn't
+		 * get to execute anything or that any callbacks it schedules get cancelled
 		 */
 		gnome_vfs_async_job_cancel_callbacks (handle);
-		gnome_vfs_async_job_map_unlock ();
-		return;
+		
+		/* cancel the job in progress */
+		gnome_vfs_job_cancel (job);
+		
+		JOB_DEBUG (("unlocking access lock %u", (int) job->job_handle));
+		g_mutex_unlock (job->access_lock);
 	}
-	
-	
-	/* cancel the job in progress */
-	JOB_DEBUG (("locking access lock %u", (int) job->job_handle));
-	g_mutex_unlock (job->access_lock);
-	
-	/* The lock here is to make sure that either the job doesn't
-	 * get to execute anything or that any callbacks it schedules get cancelled
-	 */
-	gnome_vfs_async_job_cancel_callbacks (handle);
-	gnome_vfs_job_cancel (job);
-	
-	JOB_DEBUG (("unlocking access lock %u", (int) job->job_handle));
-	g_mutex_unlock (job->access_lock);
 
 	gnome_vfs_async_job_map_unlock ();
 }

@@ -1329,7 +1329,6 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 
 	gnome_vfs_shared_directory_list_unref (directory_list);
 	gnome_vfs_directory_close (handle);
-
 }
 
 static void
