@@ -1,3 +1,8 @@
+2000-05-02  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys: Added description for
+	image/svg.
+
 2000-05-02  Dave Camp  <campd@oit.edu>
 
 	* libgnomevfs/gnome-vfs-ops.h (gnome_vfs_move_uri):

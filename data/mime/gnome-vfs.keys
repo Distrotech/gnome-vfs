@@ -239,6 +239,9 @@ image/ief
 image/jpeg
 	description=JPEG image
 
+image/svg
+	description=SVG art
+
 image/tiff
 	description=TIFF image
 
