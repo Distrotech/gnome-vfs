@@ -115,7 +115,7 @@
 
     <!-- Settings -->
     <Folder>
-      <Name>Settings</Name>
+      <Name>Preferences</Name>
       <Desktop>Settings.directory</Desktop>
       <Query>
         <And>

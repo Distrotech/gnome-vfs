@@ -1,5 +1,11 @@
 2001-12-14  Seth Nickell  <snickell@stanford.edu>
 
+	* modules/applications.vfolder-info.in:
+
+	Rename Settings folder to Preferences.
+
+2001-12-14  Seth Nickell  <snickell@stanford.edu>
+
 	* modules/preferences.vfolder-info.in:
 
 	Fix stupid typo that was breaking substitution
