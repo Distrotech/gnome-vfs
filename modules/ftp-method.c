@@ -14,6 +14,12 @@
  * (C) 1999 International GNOME Support.
  * (C) 1995, 1996, 1997, 1998, 1999 The Free Software Foundation
  * (C) 1997, 1998, 1999 Norbert Warmuth
+ *
+ * TODO:
+ *   on connection unref, we need to move the connection to a
+ *   timeout pool, and kill the connection after some time.
+ *
+ *   Make the global variables use a lock before we access them.
  */
 #include <config.h>
 #include <sys/param.h>
