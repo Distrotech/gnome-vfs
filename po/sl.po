@@ -10,7 +10,7 @@ msgstr ""
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso8599-2\n"
+"Content-Type: text/plain; charset=iso-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/mime/gnome-vfs.keys.in.h:1
@@ -1419,7 +1419,7 @@ msgstr "Operacija ustavljena"
 
 #: mime-type-capplet/file-types-capplet.desktop.in.h:1
 msgid "File Types and Programs"
-msgstr "Tipi datotek in programi"
+msgstr "Vrste datotek in programi"
 
 #: mime-type-capplet/file-types-capplet.desktop.in.h:2
 msgid "Specify which programs are used to open or view each file type"
@@ -1481,7 +1481,7 @@ msgid ""
 msgstr ""
 "Vrnitev na privzete sistemske\n"
 "nastavitve bo povzroèila izgubo vseh\n"
-"osebnih nastavitev v \"Tipi datotek in programi\".\n"
+"osebnih nastavitev v \"Vrste datotek in programi\".\n"
 "Vseeno povrni na sistemske nastavitve?"
 
 #. Add default action to fourth column
