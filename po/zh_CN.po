@@ -1,15 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
-# Lou Bingyong <loubingyong@hotmail.com>, 2001
-# Funda Wang <fundawang@linux.net.cn>, 2003,2004
+# Copyright (C) 2001-2004 Free Software Foundation, Inc.
+# Lou Bingyong <loubingyong@hotmail.com>, 2001.
+# Funda Wang <fundawang@linux.net.cn>, 2003, 2004.
+# LoneStar <lone@auvtech.com>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs\n"
+"Project-Id-Version: gnome-vfs 2.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-08 13:11+0100\n"
-"PO-Revision-Date: 2004-03-16 22:19+0800\n"
-"Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
+"POT-Creation-Date: 2004-03-20 22:42+0800\n"
+"PO-Revision-Date: 2004-03-20 22:43+0800\n"
+"Last-Translator: LoneStar <lone@auvtech.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr "%s:%d 没有包含模块名。"
 #: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "配置文件“%s”找不到：%s"
+msgstr "找不到配置文件“%s”：%s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -202,12 +203,12 @@ msgstr "未知的操作类型 %u"
 #: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "不能为打开 GIOChannel 建立管道：%s"
+msgstr "无法创建管道以打开 GIOChannel：%s"
 
 #: libgnomevfs/gnome-vfs-job.c:1727
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "未知的工作种类 %u"
+msgstr "未知的任务种类 %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1760
 msgid "Operation stopped"
@@ -216,11 +217,11 @@ msgstr "操作停止"
 #: libgnomevfs/gnome-vfs-parse-ls.c:659
 #, c-format
 msgid "Could not parse: %s"
-msgstr "无法解释：%s"
+msgstr "无法解析：%s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
-msgstr "更多的解释错误将被忽略。"
+msgstr "更多的解析错误将被忽略。"
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -235,7 +236,7 @@ msgstr "文件找不到"
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Generic error"
-msgstr "常规错误"
+msgstr "一般错误"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -280,17 +281,17 @@ msgstr "文件太大"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "No space left on device"
-msgstr "设备中没有空间"
+msgstr "设备中没有剩余空间"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Read-only file system"
-msgstr "只读的文件系统"
+msgstr "只读文件系统"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid URI"
-msgstr "无效的URI"
+msgstr "无效的 URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:52
@@ -300,7 +301,7 @@ msgstr "文件未打开"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
-msgstr "无效的打开模式"
+msgstr "打开模式无效"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -360,12 +361,12 @@ msgstr "没有足够的内存"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Host not found"
-msgstr "无法找到主机"
+msgstr "主机无法找到"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
-msgstr "无效的主机名"
+msgstr "主机名无效"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:67
@@ -400,7 +401,7 @@ msgstr "太多链接"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Read only file system"
-msgstr "只读的文件系统"
+msgstr "只读文件系统"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
@@ -415,7 +416,7 @@ msgstr "名字太长"
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Service not available"
-msgstr "服务不存在"
+msgstr "服务不可用"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:77
@@ -440,12 +441,12 @@ msgstr "没有关联默认动作"
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr "URL schema 没有处理程序"
+msgstr "URL 方案没有处理程序"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
-msgstr "处理命令行出错"
+msgstr "解析命令行出错"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:83
@@ -521,13 +522,11 @@ msgstr "未知卷"
 msgid "Network server"
 msgstr "网络服务器"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "无法挂载软盘驱动器。可能驱动器中没有软盘。"
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "无法挂载卷。可能设备中没有介质。"
@@ -542,7 +541,7 @@ msgstr "无法挂载软盘驱动器。可能软盘的格式无法挂载。"
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "无法挂载选中卷。可能卷的格式无法挂载。"
+msgstr "无法挂载选中的卷。可能卷的格式无法挂载。"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -554,7 +553,7 @@ msgstr "无法挂载选中的卷。"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr "无法卸载选中卷。"
+msgstr "无法卸载选中的卷。"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
 #: libgnomevfs/gnome-vfs-volume-ops.c:298
@@ -653,19 +652,19 @@ msgstr "使用 %s 环境变量来指定其它位置。\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "标准 Moniker 工厂"
+msgstr "标准别名工厂"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr "文件 MonikerExtender"
+msgstr "文件别名扩展"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr "通用 Gnome VFS moniker"
+msgstr "通用 Gnome VFS 别名"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "通用文件 moniker"
+msgstr "通用文件别名"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -673,7 +672,7 @@ msgstr "默认组件查看器应用程序"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "默认终端程序"
+msgstr "默认终端应用程序"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
@@ -686,7 +685,7 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"用于查看需要组件才能查看的文件的应用程序。参数 %s 将被替换为文件的 URI，参数 "
+"该应用程序用于查看需要组件才能查看的文件。参数 %s 将被替换为文件的 URI，参数 "
 "%c 将被替换为组件 IID。"
 
 #: schemas/desktop_default_applications.schemas.in.h:6
@@ -717,35 +716,35 @@ msgstr "处理 H323 URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "Handle HTTP URLs"
-msgstr "处理 HTTTP URLs"
+msgstr "处理 HTTTP URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr "处理 HTTPS URLs"
+msgstr "处理 HTTPS URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "Handle callto URLs"
-msgstr "处理 callto URLs"
+msgstr "处理 callto URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle ghelp URLs"
-msgstr "处理 ghelp URLs"
+msgstr "处理 ghelp URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "Handle info URLs"
-msgstr "处理 info URLs"
+msgstr "处理 info URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Handle mailto URLs"
-msgstr "处理 mailto URLs"
+msgstr "处理 mailto URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Handle man URLs"
-msgstr "处理 man URLs"
+msgstr "处理 man URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Handle trash URLs"
-msgstr "处理 trash URLs"
+msgstr "处理 trash URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
@@ -754,50 +753,50 @@ msgstr "在终端运行程序"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr "设为 true 可在“命令”中指定一个程序来处理 H323 URLs。"
+msgstr "设为真可在“命令”中指定一个程序来处理 H323 URL。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr "设为 true 可在“命令”中指定一个程序来处理 HTTP URLs。"
+msgstr "设为真可在“命令”中指定一个程序来处理 HTTP URL。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr "设为 true 可在“命令”中指定一个程序来处理 HTTPS URLs。"
+msgstr "设为真可在“命令”中指定一个程序来处理 HTTPS URL。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr "设为 true 可在“命令”中指定一个程序来处理 callto URLs。"
+msgstr "设为真可在“命令”中指定一个程序来处理 callto URL。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr "设为 true 可在“命令”中指定一个程序来处理 ghelp URLs。"
+msgstr "设为真可在“命令”中指定一个程序来处理 ghelp URL。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr "设为 true 可在“命令”中指定一个程序来处理 info URLs。"
+msgstr "设为真可在“命令”中指定一个程序来处理 info URL。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr "设为 true 可在“命令”中指定一个程序来处理 mailto URLs。"
+msgstr "设为真可在“命令”中指定一个程序来处理 mailto URL。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "设为 true 可在“命令”中指定一个程序来处理 man URLs。"
+msgstr "设为真可在“命令”中指定一个程序来处理 man URL。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr "设为 true 可在“命令”中指定一个程序来处理 trash URLs。"
+msgstr "设为真可在“命令”中指定一个程序来处理 trash URL。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr "true 代表要处理此 URL 的程序应该在终端中运行。"
+msgstr "真代表要处理此 URL 的程序应该在终端中运行。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -865,17 +864,17 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"若为 true，则所连接的代理服务器需要身份验证。用户明/密码组合由“/system/"
+"若为真，则对代理服务器的连接需要身份验证。用户名/密码组合由“/system/"
 "http_proxy/authentication_user”和“/system/http_proxy/"
 "authentication_password”定义。"
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr "不代理的主机"
+msgstr "非代理服务器"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "执行 HTTP 代理时传递为身份验证的密码。"
+msgstr "用于 HTTP 代理认证的密码。"
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -901,47 +900,47 @@ msgstr "安全 HTTP 代理端口"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "选择代理配置模式。支持的值为“none”、“manual”、“auto”。"
+msgstr "选择代理配置模式。支持的值为“无”、“手动”、“自动”。"
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr "代理 FTP 流量的机器名。"
+msgstr "代理 FTP 的机器名。"
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr "代理 HTTP 流量的机器名。"
+msgstr "代理 HTTP 的机器名。"
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr "代理安全 HTTP 流量的机器名。"
+msgstr "代理安全 HTTP 的机器名。"
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr "代理 socks 流量的机器名。"
+msgstr "代理套接字的机器名。"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "您代理流过的由“/system/http_proxy/host”所定义的所用的端口。"
+msgstr "您使用的代理服务器的端口号定义在“/system/http_proxy/host”中。"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "您代理流过的由“/system/proxy/ftp_host”所定义的所用的端口。"
+msgstr "您使用的代理服务器的端口号定义在“/system/proxy/ftp_host”中。"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "您代理流过的由“/system/proxy/secure_host”所定义的所用的端口。"
+msgstr "您使用的代理服务器的端口号定义在“/system/proxy/secure_host”中。"
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "您代理流过的由“/system/proxy/socks_host”所定义的所用的端口。"
+msgstr "您使用的代理服务器的端口号定义在“/system/proxy/socks_host”中。"
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -950,13 +949,13 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"此键列出了要直接连接的主机，这些主机将不会通过代理服务器(如果激活了代理服务器"
-"的话)。这里的值可以是主机名、域名(使用前置通配符，如 *.foo.com)、IP 主机地址"
-"(IPv4 和 IPv6 都可)、带网络掩码的网络地址(如 192.168.0.0/24)。"
+"此键中定义的主机列表将不通过代理(如果有设定)而直接联接。其值可以是主机名、域"
+"名(支持通配符开头的形式如 *.foo.com)、IP 主机地址(既可 IPv4 亦可 IPv6)以及跟"
+"随网络掩码的网络地址(例如 192.168.0.0/24)。"
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "提供代理服务器配置值的 URL。"
+msgstr "提供代理配置值的 URL。"
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
@@ -964,7 +963,7 @@ msgstr "使用 HTTP 代理"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "执行 HTTP 代理进行身份验证时所传递的用户名。"
+msgstr "用于 HTTP 代理认证的用户名。"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -972,4 +971,4 @@ msgstr "SMB 工作组"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr "此用户所属的 Windows 工作组"
+msgstr "此用户所属的 windows 工作组"
