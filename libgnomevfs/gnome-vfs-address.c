@@ -65,6 +65,21 @@ struct _GnomeVFSAddress {
 #endif
 
 
+/* Register GnomeVFSAddress in the glib type system */
+GType 
+gnome_vfs_address_get_type (void) {
+	static GType addr_type = 0;
+
+	if (addr_type == 0) {
+		addr_type = g_boxed_type_register_static ("GnomeVFSAddress",
+				(GBoxedCopyFunc) gnome_vfs_address_dup,
+				(GBoxedFreeFunc) gnome_vfs_address_free);
+	}
+
+	return addr_type;
+}
+
+												 
 
 /**
  * gnome_vfs_address_new_from_string:

@@ -25,14 +25,18 @@
 #include <libgnomevfs/gnome-vfs-result.h>
 
 #include <glib.h>
+#include <glib-object.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
 
 G_BEGIN_DECLS
 
+#define GNOME_VFS_TYPE_ADDRESS  (gnome_vfs_address_get_type ())
+
 typedef struct _GnomeVFSAddress GnomeVFSAddress;
 
+GType            gnome_vfs_address_get_type          (void);
 
 GnomeVFSAddress *gnome_vfs_address_new_from_string   (const char      *address);
 GnomeVFSAddress *gnome_vfs_address_new_from_ipv4     (guint32          ipv4_address);

@@ -1,3 +1,8 @@
+2004-07-25  Christian Kellner  <gicmo@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-address.[ch]: Register GnomeVFSAddress in the
+	glib GType system.
+
 2004-07-25  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_add_volume): removed 
