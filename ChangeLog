@@ -1,3 +1,10 @@
+2005-01-31  Christian Kellner  <gicmo@gnome.org>
+
+	* schemas/system_http_proxy.schemas.in: Correct bad grammar.
+	This fixes bug #150342.
+
+	Patch from Ryan Lortie <desrt@desrt.ca>
+
 2005-01-30  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/http-neon-method.c (propfind_result): Don't check

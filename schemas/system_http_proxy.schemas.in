@@ -45,7 +45,7 @@
       <locale name="C">
         <short>Authenticate proxy server connections</short>
         <long>If true, then connections to the proxy server require
-        authentication. The username/password combo defined by
+        authentication. The username/password combo is defined by
         "/system/http_proxy/authentication_user" and
         "/system/http_proxy/authentication_password".</long>
       </locale>
