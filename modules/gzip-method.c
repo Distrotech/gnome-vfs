@@ -31,8 +31,10 @@
 
 #include <zlib.h>
 #include <time.h>
+#include <stdio.h>
 
 #include "gnome-vfs-module.h"
+#include "gnome-vfs-mime.h"
 
 #include "gzip-method.h"
 
@@ -100,6 +102,13 @@ static GnomeVFSResult	do_write	(GnomeVFSMethod *method,
 					 GnomeVFSFileSize *bytes_written,
 					 GnomeVFSContext *context);
 
+static GnomeVFSResult	do_get_file_info(GnomeVFSMethod *method,
+	           			 GnomeVFSURI *uri,
+		   			 GnomeVFSFileInfo *file_info,
+		   			 GnomeVFSFileInfoOptions options,
+		   			 const GList *meta_keys,
+		   			 GnomeVFSContext *context);
+
 static gboolean		do_is_local	(GnomeVFSMethod *method,
 					 const GnomeVFSURI *uri);
 
@@ -115,7 +124,7 @@ static GnomeVFSMethod method = {
 	NULL,			/* open_directory */
 	NULL,			/* close_directory */
 	NULL,			/* read_directory */
-	NULL,			/* get_file_info */
+	do_get_file_info,	/* get_file_info */
 	NULL,			/* get_file_info_from_handle */
 	do_is_local,
 	NULL,			/* make_directory */
@@ -135,6 +144,8 @@ G_STMT_START{					\
 	if (__tmp_result != GNOME_VFS_OK)	\
 		return __tmp_result;		\
 }G_STMT_END
+
+#define VALID_URI(u) (((u)->text==NULL)||((u)->text[0]=='\0')||(((u)->text[0]=='/')&&((u)->text[1]=='\0')))
 
 
 /* GZip handle creation/destruction.  */
@@ -294,26 +305,6 @@ write_guint32 (GnomeVFSHandle *handle,
 	}
 
 	return gnome_vfs_write (handle, buffer, 4, &bytes_written);
-}
-
-static GnomeVFSResult
-read_guint32 (GnomeVFSHandle *handle,
-              guint32 *value_return)
-{
-	GnomeVFSResult   result;
-	GnomeVFSFileSize bytes_read;
-	guchar buffer[4];
-
-	result = gnome_vfs_read (handle, buffer, 4, &bytes_read);
-	RETURN_IF_FAIL (result);
-
-	if (bytes_read != 4)
-		return GNOME_VFS_ERROR_WRONG_FORMAT;
-
-	*value_return = (buffer[0] | (buffer[1] << 8)
-			 | (buffer[2] << 16) | (buffer[3] << 24));
-
-	return GNOME_VFS_OK;
 }
 
 
@@ -477,9 +468,8 @@ do_open (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
-	/* We don't allow any paths in the GZIP file.  */
-	if (uri->text != NULL && uri->text[0] != 0)
-		return GNOME_VFS_ERROR_INVALID_URI;
+	/* Check that the URI is valid.  */
+	g_return_val_if_fail(VALID_URI(uri), GNOME_VFS_ERROR_NOT_FOUND);
 
 	parent_uri = uri->parent;
 
@@ -632,9 +622,10 @@ do_read (GnomeVFSMethod *method,
 	zstream = &gzip_handle->zstream;
 
 	if (gzip_handle->last_z_result != Z_OK) {
-		if (gzip_handle->last_z_result == Z_STREAM_END)
+		if (gzip_handle->last_z_result == Z_STREAM_END) {
+			*bytes_read = 0;
 			return GNOME_VFS_OK;
-		else
+		} else
 			return result_from_z_result (gzip_handle->last_z_result);
 	} else if (gzip_handle->last_vfs_result != GNOME_VFS_OK) {
 		return gzip_handle->last_vfs_result;
@@ -649,22 +640,8 @@ do_read (GnomeVFSMethod *method,
 
 		z_result = inflate (&gzip_handle->zstream, Z_NO_FLUSH);
 		if (z_result == Z_STREAM_END) {
-			guint32 crc;
-
-			/* Check CRC and original size.  */
-			gzip_handle->crc = crc32 (gzip_handle->crc,
-						  crc_start,
-						  (guint) (zstream->next_out
-							   - crc_start));
-			crc_start = zstream->next_out;
-
-			result = read_guint32 (gzip_handle->parent_handle,
-					       &crc);
-			if (result != GNOME_VFS_OK || crc != gzip_handle->crc) {
-				/* FIXME bugzilla.eazel.com 1167: Set VFS error instead?  */
-				gzip_handle->last_z_result = Z_DATA_ERROR;
-				break;
-			}
+			gzip_handle->last_z_result = z_result;
+			break;
 		} else if (z_result != Z_OK) {	
 			/* FIXME bugzilla.eazel.com 1165: Concatenated GZIP files?  */
 			gzip_handle->last_z_result = z_result;
@@ -734,6 +711,44 @@ do_write (GnomeVFSMethod *method,
 
 	return result;
 }
+
+
+static GnomeVFSResult 
+do_get_file_info  (GnomeVFSMethod *method,
+	           GnomeVFSURI *uri,
+		   GnomeVFSFileInfo *file_info,
+		   GnomeVFSFileInfoOptions options,
+		   const GList *meta_keys,
+		   GnomeVFSContext *context) {
+	GnomeVFSResult result;
+
+	g_return_val_if_fail(VALID_URI(uri), GNOME_VFS_ERROR_NOT_FOUND);
+
+	result = gnome_vfs_get_file_info_uri(uri->parent, file_info, options,
+			NULL /*FIXME - meta_keys */);
+	if(result == GNOME_VFS_OK) {
+		gint namelen = strlen(file_info->name);
+		
+		/* work out the name */
+		/* FIXME handle uppercase */
+		if(namelen > 3 &&
+				file_info->name[namelen-1] == 'z' &&
+				file_info->name[namelen-2] == 'g' &&
+				file_info->name[namelen-3] == '.')
+			file_info->name[namelen-3] = '\0';
+
+		/* we can't tell the size without uncompressing it */
+		//file_info->valid_fields &= ~GNOME_VFS_FILE_INFO_FIELDS_SIZE;
+
+		/* guess the mime type of the file inside */
+		/* FIXME guess mime based on contents */
+		g_free(file_info->mime_type);
+		file_info->mime_type = g_strdup(gnome_vfs_mime_type_from_name(file_info->name));
+	}
+
+	return result;
+}
+
 
 
 static gboolean

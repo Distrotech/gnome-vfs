@@ -51,7 +51,7 @@
 #include "http-method.h"
 
 
-#if 1				/* FIXME bugzilla.eazel.com 1138 */
+#if 0				/* FIXME bugzilla.eazel.com 1138 */
 #include <stdio.h>
 #define DEBUG_HTTP(x)				\
 	do {					\
@@ -59,6 +59,9 @@
 		printf x;			\
 		putchar ('\n');			\
 	} while (0);
+#else
+static int nothing;
+#define DEBUG_HTTP(x) nothing = 1;
 #endif
 
 
@@ -548,6 +551,54 @@ create_handle (HttpFileHandle **handle_return,
 	return result;
 }
 
+/* BASE64 code ported from neon (http://www.webdav.org/neon) */
+static const gchar b64_alphabet[65] = {
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    "abcdefghijklmnopqrstuvwxyz"
+    "0123456789+/=" };
+
+static gchar *base64( const gchar *text ) {
+    /* The tricky thing about this is doing the padding at the end,
+     *      * doing the bit manipulation requires a bit of concentration only */
+    gchar *buffer, *point;
+    gint inlen, outlen;
+
+    /* Use 'buffer' to store the output. Work out how big it should be...
+     *      * This must be a multiple of 4 bytes */
+
+    inlen = strlen( text );
+    outlen = (inlen*4)/3;
+    if( (inlen % 3) > 0 ) /* got to pad */
+        outlen += 4 - (inlen % 3);
+
+    buffer = g_malloc( outlen + 1 ); /* +1 for the \0 */
+
+    /* now do the main stage of conversion, 3 bytes at a time,
+     *      * leave the trailing bytes (if there are any) for later */
+
+    for( point=buffer; inlen>=3; inlen-=3, text+=3 ) {
+        *(point++) = b64_alphabet[ (*text)>>2 ];
+        *(point++) = b64_alphabet[ ((*text)<<4 & 0x30) | (*(text+1))>>4 ];
+        *(point++) = b64_alphabet[ ((*(text+1))<<2 & 0x3c) | (*(text+2))>>6 ];
+        *(point++) = b64_alphabet[ (*(text+2)) & 0x3f ];
+    }
+
+    /* Now deal with the trailing bytes */
+    if( inlen ) {
+        /* We always have one trailing byte */
+        *(point++) = b64_alphabet[ (*text)>>2 ];
+        *(point++) = b64_alphabet[ ( ((*text)<<4 & 0x30) |
+                                     (inlen==2?(*(text+1))>>4:0) ) ];
+        *(point++) = (inlen==1?'=':b64_alphabet[ (*(text+1))<<2 & 0x3c ] );
+        *(point++) = '=';
+    }
+
+    /* Null-terminate */
+    *point = '\0';
+
+    return buffer;
+}
+
 static GnomeVFSResult
 make_request (HttpFileHandle **handle_return,
 	      GnomeVFSURI *uri,
@@ -599,8 +650,22 @@ make_request (HttpFileHandle **handle_return,
 	g_string_append (request, " HTTP/1.0\r\n");
 
 	/* `Host:' header.  */
-	g_string_sprintfa (request, "Host: %s:%d\r\n",
+	if(toplevel_uri->host_port && toplevel_uri->host_port != 80)
+		g_string_sprintfa (request, "Host: %s:%d\r\n",
 			   toplevel_uri->host_name, toplevel_uri->host_port);
+	else
+		g_string_sprintfa (request, "Host: %s\r\n",
+			   toplevel_uri->host_name);
+
+	/* Basic authentication */
+	if(toplevel_uri->user_name) {
+		gchar *raw = g_strdup_printf("%s:%s", toplevel_uri->user_name,
+				toplevel_uri->password?toplevel_uri->password:"");
+		gchar *enc = base64(raw);
+		g_string_sprintfa(request, "Authorization: Basic %s\n", enc);
+		g_free(enc);
+		g_free(raw);
+	}
 
 	/* `Accept:' header.  */
 	g_string_append (request, "Accept: */*\r\n");
@@ -737,12 +802,13 @@ do_close (GnomeVFSMethod *method,
 	if (handle->to_be_written != NULL) {
 		GnomeVFSURI *uri = handle->uri;
 		GByteArray *bytes = handle->to_be_written;
+		GnomeVFSFileSize bytes_written;
 
 		result = make_request(&handle, uri, "PUT", bytes, NULL, context);
 
 		if (result == GNOME_VFS_OK) {
 			result = gnome_vfs_iobuf_write (handle->iobuf, bytes->data,
-					bytes->len, NULL /* we don't care how big it was */);
+					bytes->len, &bytes_written);
 		}
 	}
 
@@ -1198,19 +1264,22 @@ do_get_file_info (GnomeVFSMethod *method,
 
 		if(webdav_file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE) {
 			file_info->type = webdav_file_info->type;
-			file_info->valid_fields &= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
+			file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 		}	
 
 		if(webdav_file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) {
 			g_free(file_info->mime_type);
 			file_info->mime_type = g_strdup(webdav_file_info->mime_type);
-			file_info->valid_fields &= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+			file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		}	
 
 		if(webdav_file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE) {
 			file_info->size = webdav_file_info->size;
-			file_info->valid_fields &= GNOME_VFS_FILE_INFO_FIELDS_SIZE;
+			file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SIZE;
 		}	
+
+		file_info->valid_fields &= ~GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+		file_info->valid_fields &= ~GNOME_VFS_FILE_INFO_FIELDS_FLAGS;
 
 		#if 0
 		memcpy(file_info, handle->files->data, sizeof(*file_info));
@@ -1218,10 +1287,14 @@ do_get_file_info (GnomeVFSMethod *method,
 		g_free(handle->files->data);
 		g_list_free(handle->files);
 		handle->files = NULL;
+		/*
 		file_info->name = g_strdup (g_basename (handle->uri_string));
-		if (file_info->name == NULL)
+		if (file_info->name == NULL) {
 			file_info->name = g_strdup ("");
+		}
+		*/
 	}
+	file_info->name = gnome_vfs_uri_extract_short_name(uri);
 
 	http_handle_close (handle, context);
 
@@ -1306,7 +1379,7 @@ do_move (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
 	}
 
-	destpath = gnome_vfs_uri_to_string(new_uri, GNOME_VFS_URI_HIDE_USER_NAME|GNOME_VFS_URI_HIDE_PASSWORD|GNOME_VFS_URI_HIDE_HOST_NAME|GNOME_VFS_URI_HIDE_HOST_PORT|GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
+	destpath = gnome_vfs_uri_to_string(new_uri, GNOME_VFS_URI_HIDE_USER_NAME|GNOME_VFS_URI_HIDE_PASSWORD);
 	destheader = g_strdup_printf("Destination: %s\r\n", destpath);
 
 

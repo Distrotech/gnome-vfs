@@ -1,3 +1,27 @@
+2000-07-09  Ian McKellar  <yakk@yakk.net.au>
+
+	* libgnomevfs/gnome-vfs-private-types.h:
+	Renamed GnomeVFSMethodCreateSymbolicLink to
+	GnomeVFSMethodCreateSymbolicLinkFunc to match 
+
+	* modules/bzip2-method.c: (do_open), (do_read):
+	Bugfixes.
+
+	(do_get_file_info):
+	Implemented do_get_file_info - needed by Nautilus
+	
+	* modules/gzip-method.c: (do_open), (do_read):
+	Bugfixes.
+
+	(do_get_file_info):
+	Implemented do_get_file_info - needed by Nautilus
+
+	* modules/http-method.c: (base64), (make_request):
+	Implement minimal basic authorization support.
+
+	(do_get_file_info), (do_close), (do_move):
+	Bugfixes.
+
 2000-07-07  Gene Z. Ragan  <gzr@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

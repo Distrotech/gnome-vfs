@@ -31,6 +31,7 @@
 #include <time.h>
 
 #include "gnome-vfs-module.h"
+#include "gnome-vfs-mime.h"
 #include "bzip2-method.h"
 
 #define BZ_BUFSIZE   5000
@@ -81,6 +82,13 @@ static GnomeVFSResult do_write (GnomeVFSMethod *method,
 				GnomeVFSFileSize *bytes_written,
 				GnomeVFSContext *context);
 
+static GnomeVFSResult do_get_file_info  (GnomeVFSMethod *method,
+		                         GnomeVFSURI *uri,
+				         GnomeVFSFileInfo *file_info,
+					 GnomeVFSFileInfoOptions options,
+					 const GList *meta_keys,
+					 GnomeVFSContext *context);
+
 static gboolean do_is_local (GnomeVFSMethod *method, const GnomeVFSURI *uri);
 
 static GnomeVFSMethod method = {
@@ -95,7 +103,7 @@ static GnomeVFSMethod method = {
 	NULL,		/* open_directory  */
 	NULL,		/* close_directory */
 	NULL,		/* read_directory  */
-	NULL,		/* get_file_info   */
+	do_get_file_info,	/* get_file_info   */
 	NULL,		/* get_file_info_from_handle */
 	do_is_local,
 	NULL,		/* make_directory  */
@@ -114,6 +122,8 @@ G_STMT_START {					\
 	if (__tmp_result != GNOME_VFS_OK)	\
 		return __tmp_result;		\
 } G_STMT_END
+
+#define VALID_URI(u) (((u)->text==NULL)||((u)->text[0]=='\0')||(((u)->text[0]=='/')&&((u)->text[1]=='\0')))
 
 static Bzip2MethodHandle *
 bzip2_method_handle_new (GnomeVFSHandle *parent_handle,
@@ -285,9 +295,8 @@ do_open (GnomeVFSMethod *method,
 	if (open_mode & GNOME_VFS_OPEN_WRITE)
 		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 
-	/* We don't allow any paths in the bzip2 file. */
-	if (uri->text != NULL && uri->text[0] != 0)
-		return GNOME_VFS_ERROR_INVALID_URI;
+	/* Check that the URI is valid.  */
+	g_return_val_if_fail(VALID_URI(uri), GNOME_VFS_ERROR_NOT_FOUND);
 
 	parent_uri = uri->parent;
 
@@ -433,10 +442,17 @@ do_read (GnomeVFSMethod *method,
 
 		if (bzip2_handle->last_bz_result != BZ_OK
 		    && bzstream->avail_out == num_bytes) {
+			bzip2_handle->last_bz_result = bz_result;
 			return result_from_bz_result (bzip2_handle->last_bz_result);
 		}
 
 		*bytes_read = num_bytes - bzstream->avail_out;
+
+		if (bz_result == BZ_STREAM_END) {
+			bzip2_handle->last_bz_result = bz_result;
+			break;
+		}
+
 	}
 
 	return GNOME_VFS_OK;
@@ -493,6 +509,44 @@ do_is_local (GnomeVFSMethod *method, const GnomeVFSURI *uri)
 {
 	g_return_val_if_fail (uri != NULL, FALSE);
 	return gnome_vfs_uri_is_local (uri->parent);
+}
+
+static GnomeVFSResult 
+do_get_file_info  (GnomeVFSMethod *method,
+	           GnomeVFSURI *uri,
+		   GnomeVFSFileInfo *file_info,
+		   GnomeVFSFileInfoOptions options,
+		   const GList *meta_keys,
+		   GnomeVFSContext *context) {
+	GnomeVFSResult result;
+
+	g_return_val_if_fail(VALID_URI(uri), GNOME_VFS_ERROR_NOT_FOUND);
+
+	result = gnome_vfs_get_file_info_uri(uri->parent, file_info, options,
+			NULL /*FIXME - meta_keys */);
+
+	if(result == GNOME_VFS_OK) {
+		gint namelen = strlen(file_info->name);
+		
+		/* work out the name */
+		/* FIXME handle uppercase */
+		if(namelen > 4 &&
+				file_info->name[namelen-1] == '2' &&
+				file_info->name[namelen-2] == 'z' &&
+				file_info->name[namelen-3] == 'b' &&
+				file_info->name[namelen-4] == '.')
+			file_info->name[namelen-4] = '\0';
+
+		/* we can't tell the size without uncompressing it */
+		//file_info->valid_fields &= ~GNOME_VFS_FILE_INFO_FIELDS_SIZE;
+
+		/* guess the mime type of the file inside */
+		/* FIXME guess mime based on contents */
+		g_free(file_info->mime_type);
+		file_info->mime_type = g_strdup(gnome_vfs_mime_type_from_name(file_info->name));
+	}
+
+	return result;
 }
 
 GnomeVFSMethod *

@@ -187,7 +187,7 @@ typedef GnomeVFSResult (* GnomeVFSMethodSetFileInfo)
 					 GnomeVFSSetFileInfoMask mask,
 					 GnomeVFSContext *context);
 
-typedef GnomeVFSResult (* GnomeVFSMethodCreateSymbolicLink)
+typedef GnomeVFSResult (* GnomeVFSMethodCreateSymbolicLinkFunc)
                                         (GnomeVFSMethod *method,
                                          GnomeVFSURI *uri,
                                          const gchar *target_reference,
@@ -219,7 +219,7 @@ struct GnomeVFSMethod {
 	GnomeVFSMethodSetFileInfo set_file_info;
 	GnomeVFSMethodTruncateFunc truncate;
 	GnomeVFSMethodFindDirectoryFunc find_directory;
-	GnomeVFSMethodCreateSymbolicLink create_symbolic_link;
+	GnomeVFSMethodCreateSymbolicLinkFunc create_symbolic_link;
 };
 
 
