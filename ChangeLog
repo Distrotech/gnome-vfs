@@ -1,3 +1,17 @@
+2000-10-29  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_to_string):
+	Make gnome_vfs_uri_to_string not interpret uris in the form
+	foo:bar as foo://bar. This fixes a bug Mathieu is working on and
+	fixes 2802.
+	Get rid of an extra comma.
+	
+	* modules/file-method.c: (do_read):
+	Tiny tweak.
+	
+	* test/test-uri.c: (test_uri_to_path), (main):
+	Add some tests and tweak others to match the proper // handling.
+
 2000-10-29  Eskil Heyn Olsen  <eskil@eazel.com>
 
 	* gnome-vfs.spec.in:

@@ -251,6 +251,25 @@ test_uri_part (const char *input,
 
 }
 
+static void
+test_uri_to_path (const char *input_uri, 
+	          const char *expected_path) 
+{
+	GnomeVFSURI *uri;
+	const char *path;
+
+	uri = gnome_vfs_uri_new (input_uri);
+
+	path = gnome_vfs_uri_get_path (uri);
+
+	if (strcmp (path, expected_path) != 0) {
+		test_failed ("gnome_vfs_uri_get_path (%s) resulted in \"%s\" instead of \"%s\"",
+			     input_uri, path, expected_path);
+	}
+	gnome_vfs_uri_unref (uri);
+}
+
+
 /*
  * Ensure that gnome_vfs_uri_get_host_port
  * return expected results
@@ -342,7 +361,7 @@ main (int argc, char **argv)
 	test_uri_to_string ("http://yakk:womble@www.eazel.com:42/blah/", "http://yakk:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_NONE);
 
 	test_uri_to_string ("http://yakk:womble@www.eazel.com:42/blah/", "http://:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_USER_NAME);
-	test_uri_to_string ("FILE://", "file://", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("FILE://", "file:", GNOME_VFS_URI_HIDE_NONE);
 
 	test_uri_to_string ("file:///trash", "file:///trash", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("file:///Users/mikef", "file:///Users/mikef", GNOME_VFS_URI_HIDE_NONE);
@@ -440,18 +459,18 @@ main (int argc, char **argv)
 	/* FIXME bugzilla.eazel.com 4101: Why append a slash in this case, but not in the http://www.eazel.com case? */
 	test_uri_to_string ("http://www.eazel.com:80", "http://www.eazel.com:80/", GNOME_VFS_URI_HIDE_NONE);
 
-	/* FIXME bugzilla.eazel.com 3829: Is this useful behavior?
-	 * It turns a partial path name into a host name!
-	 */
-	test_uri_to_string ("trash", "file://trash", GNOME_VFS_URI_HIDE_NONE);
+	/* FIXME bugzilla.eazel.com 3829: illegal */
+	test_uri_to_string ("foo", "file:foo", GNOME_VFS_URI_HIDE_NONE);
 
-	/* FIXME bugzilla.eazel.com 4102: Is this useful behavior? */
-	test_uri_to_string ("file:trash", "file://trash", GNOME_VFS_URI_HIDE_NONE);
+	/* FIXME bugzilla.eazel.com 4102: illegal? */
+	test_uri_to_string ("file:foo", "file:foo", GNOME_VFS_URI_HIDE_NONE);
+	/* correct */
+	test_uri_to_string ("help:foo", "help:foo", GNOME_VFS_URI_HIDE_NONE);
 
 	/* FIXME bugzilla.eazel.com 3830: This turns a good path with
 	 * a redundant "/" in it into a completely different one.
 	 */
-	test_uri_to_string ("//trash", "file://trash", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("//foo", "file://foo", GNOME_VFS_URI_HIDE_NONE);
 
 	/* FIXME bugzilla.eazel.com 2801: Do we want GnomeVFSURI to
          * just refuse to deal with URIs that we don't have a module
@@ -460,17 +479,24 @@ main (int argc, char **argv)
 	test_uri_to_string ("glorp:", "NULL", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_parent ("glorp:", "URI NULL");
 
-	/* FIXME bugzilla.eazel.com 2802: Is this the correct behavior
-	 * for these cases?
-	 */
-	test_uri_to_string ("file:", "file://", GNOME_VFS_URI_HIDE_NONE);
-	test_uri_to_string ("http:", "http://", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("file:", "file:", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("http:", "http:", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("file:/", "file:///", GNOME_VFS_URI_HIDE_NONE);
 
 	/* FIXME bugzilla.eazel.com 2803: Do we really want to add the
          * "//" in this case?
 	 */
-	test_uri_to_string ("pipe:gnome-info2html2 as", "pipe://gnome-info2html2 as", GNOME_VFS_URI_HIDE_NONE);
+
+	test_uri_to_path ("pipe:gnome-db2html2%20'%2Fgnome%2Fshare%2Fgnome%2Fhelp"
+			  "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml", 
+			  "gnome-db2html2%20'%2Fgnome%2Fshare%2Fgnome%2Fhelp"
+			  "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml");
+
+	test_uri_to_string ("pipe:gnome-db2html2%20'%2Fgnome%2Fshare%2Fgnome%2Fhelp"
+			    "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml", 
+			    "pipe:gnome-db2html2%20'%2Fgnome%2Fshare%2Fgnome%2Fhelp"
+			    "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml",
+			    GNOME_VFS_URI_HIDE_NONE);
 
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;

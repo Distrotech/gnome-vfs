@@ -317,10 +317,9 @@ do_read (GnomeVFSMethod *method,
 		/* Getting 0 from read() means EOF! */
 		if (read_val == 0) {
 			return GNOME_VFS_ERROR_EOF;
-		} else {
-			return GNOME_VFS_OK;
 		}
 	}
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult

@@ -95,7 +95,7 @@ typedef struct {
 UriStrspnSet uri_strspn_sets[] = {
 	{":@" GNOME_VFS_URI_PATH_STR, FALSE, ""},
 	{"@", FALSE, ""},
-	{":" GNOME_VFS_URI_PATH_STR, FALSE, ""},
+	{":" GNOME_VFS_URI_PATH_STR, FALSE, ""}
 };
 
 #define URI_DELIMITER_ALL_SET (uri_strspn_sets + 0)
@@ -733,21 +733,26 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 	if (uri->parent == NULL) {
 		GnomeVFSToplevelURI *top_level_uri = (GnomeVFSToplevelURI *)uri;
 		gboolean shown_user_pass = FALSE;
-		
-		g_string_append (string, "//");
+
+		if (top_level_uri->user_name != NULL
+			|| top_level_uri->host_name != NULL
+			|| (uri->text != NULL && uri->text[0] == GNOME_VFS_URI_PATH_CHR)) {
+			/* don't append '//' for uris such as pipe:foo */
+			g_string_append (string, "//");
+		}
 
 		if ((hide_options & GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD) != 0) {
 			g_string_free (string, TRUE); /* throw away method */
 			string = g_string_new ("");
 		}
 
-		if (top_level_uri->user_name 
+		if (top_level_uri->user_name != NULL
 			&& (hide_options & GNOME_VFS_URI_HIDE_USER_NAME) == 0) {
 			g_string_append (string, top_level_uri->user_name);
 			shown_user_pass = TRUE;
 		}
 
-		if (top_level_uri->password 
+		if (top_level_uri->password != NULL
 			&& (hide_options & GNOME_VFS_URI_HIDE_PASSWORD) == 0) {
 			g_string_append_c (string, ':');
 			g_string_append (string, top_level_uri->password);
@@ -758,7 +763,7 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 			g_string_append_c (string, '@');
 		}
 
-		if (top_level_uri->host_name 
+		if (top_level_uri->host_name != NULL
 			&& (hide_options & GNOME_VFS_URI_HIDE_HOST_NAME) == 0) {
 		       	g_string_append (string, top_level_uri->host_name);
 		}
