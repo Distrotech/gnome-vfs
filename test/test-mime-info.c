@@ -99,6 +99,7 @@ main (int argc, char **argv)
 		for (temp = list, extension = extensions; temp != NULL; temp = temp->next, extension++) {
 			if (strcmp (*extension, (char *)temp->data) != 0) {
 				printf ("Error: get_extensions_list failed on \"application/postscript\".\n");
+				printf ("Wrong value received was %s instead of %s\n", (char *) temp->data, *extension);
 				exit (1);
 			}
 		}
