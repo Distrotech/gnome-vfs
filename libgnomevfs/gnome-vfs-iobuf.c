@@ -115,9 +115,8 @@ gnome_vfs_iobuf_read (GnomeVFSIOBuf *iobuf,
 		      GnomeVFSFileSize *bytes_read)
 {
 	Buffer *input_buffer;
-	GnomeVFSFileSize read_count;
 	GnomeVFSResult result;
-	gchar *p;
+	GnomeVFSFileSize n;
 
 	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BADPARAMS);
@@ -125,30 +124,26 @@ gnome_vfs_iobuf_read (GnomeVFSIOBuf *iobuf,
 	input_buffer = &iobuf->input_buffer;
 
 	result = GNOME_VFS_OK;
-	read_count = 0;
-	p = buffer;
-	while (read_count < bytes) {
-		if (input_buffer->byte_count > 0) {
-			GnomeVFSFileSize n;
 
-			n = MIN (bytes - read_count, input_buffer->byte_count);
-			memcpy (p, input_buffer->data + input_buffer->offset,
-				n);
-			input_buffer->byte_count -= n;
-			input_buffer->offset += n;
-			read_count += n;
-			p += n;
-		} else  if (! refill_input_buffer (iobuf)) {
+	if (input_buffer->byte_count == 0) {
+		if (! refill_input_buffer (iobuf)) {
 			/* The buffer is empty but we had an error last time we
-                           filled it, so we report the error.  */
+			   filled it, so we report the error.  */
 			result = input_buffer->last_error;
 			input_buffer->last_error = GNOME_VFS_OK;
-			break;
 		}
 	}
 
-	if (bytes_read != NULL) {
-		*bytes_read = read_count;
+	if (input_buffer->byte_count != 0) {
+		n = MIN (bytes, input_buffer->byte_count);
+		memcpy (buffer, input_buffer->data + input_buffer->offset, n);
+		input_buffer->byte_count -= n;
+		input_buffer->offset += n;
+		if (bytes_read != NULL)
+			*bytes_read = n;
+	} else {
+		if (bytes_read != NULL)
+			*bytes_read = 0;
 	}
 
 	if (result == GNOME_VFS_ERROR_EOF)

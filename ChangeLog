@@ -1,5 +1,8 @@
 1999-10-23  Ettore Perazzoli  <ettore@gnu.org>
 
+	* libgnomevfs/gnome-vfs-iobuf.c (gnome_vfs_iobuf_read): Only read
+	as much bytes as the stream gives us; not more.
+
 	* modules/ftp-method.c (_ftpfs_read_directory): Set the "local"
 	flag in the info to `FALSE'.
 	(fill_file_info): Likewise.
