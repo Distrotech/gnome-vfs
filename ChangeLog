@@ -1,3 +1,11 @@
+2002-01-31  Jeff Waugh  <jdub@perkypants.org>
+
+	* gnome-vfs-2.0.pc.in:
+	* gnome-vfs-module-2.0.pc.in:
+
+	Fix specifics in pc.in files for 'non-standard' builds.
+	Permission from Seth to commit.
+
 2002-01-30  Seth Nickell  <snickell@stanford.edu>
 
 	* NEWS:
