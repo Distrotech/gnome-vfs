@@ -1215,8 +1215,58 @@ find_disk_top_directory (const char *item_on_disk,
 	return disk_top_directory;
 }
 
+#define TRASH_ENTRY_CACHE_PARENT ".gnome/gnome-vfs"
+#define TRASH_ENTRY_CACHE_NAME ".trash_entry_cache"
 #define NON_EXISTENT_TRASH_ENTRY "-"
 
+/* Save the localy cached Trashed paths on disk in the user's home
+ * directory.
+ */
+static void
+save_trash_entry_cache (void)
+{
+	int cache_file;
+	char *cache_file_parent, *cache_file_path;
+	GList *p;
+	char *buffer, *escaped_path, *escaped_mount_point;
+
+	cache_file_parent = append_to_path (g_get_home_dir (), TRASH_ENTRY_CACHE_PARENT);
+	cache_file_path = append_to_path (cache_file_parent, TRASH_ENTRY_CACHE_NAME);
+
+	if (mkdir_recursive (cache_file_parent, 0777) != 0) {
+		g_warning ("failed to create trash item cache file");
+		return;
+	}
+
+	cache_file = open (cache_file_path, O_CREAT | O_TRUNC | O_RDWR, 0666);
+	if (cache_file < 0) {
+		g_warning ("failed to create trash item cache file");
+		return;
+	}
+
+	for (p = cached_trash_directories; p != NULL; p = p->next) {
+		/* Use proper escaping to not confuse paths with spaces in them */
+		escaped_path = gnome_vfs_escape_path_string (
+			((TrashDirectoryCachedItem *)p->data)->path);
+		escaped_mount_point = gnome_vfs_escape_path_string(
+			((TrashDirectoryCachedItem *)p->data)->device_mount_point);
+			
+		buffer = g_strdup_printf ("%s %s\n", escaped_mount_point, escaped_path);
+		write (cache_file, buffer, strlen (buffer));
+
+#ifdef DEBUG_FIND_DIRECTORY
+	g_print ("saving trash item cache %s\n", buffer);
+#endif
+
+		g_free (buffer);
+		g_free (escaped_mount_point);
+		g_free (escaped_path);
+	}
+	close (cache_file);
+	
+	g_free (cache_file_path);
+	g_free (cache_file_parent);
+}
 
 typedef struct {
 	const char *mount_point;
@@ -1288,6 +1338,8 @@ static void
 add_cached_trash_entry (dev_t near_device_id, const char *trash_path, const char *mount_point)
 {
 	add_local_cached_trash_entry (near_device_id, trash_path, mount_point);
+	/* write out the local cache */
+	save_trash_entry_cache ();
 }
 
 static void
@@ -1296,6 +1348,64 @@ destroy_cached_trash_entry (TrashDirectoryCachedItem *entry)
 	g_free (entry->path);
 	g_free (entry->device_mount_point);
 	g_free (entry);
+}
+
+/* Read the cached entries for the file cache into the local Trash item cache. */
+static void
+read_saved_cached_trash_entries (void)
+{
+	char *cache_file_path;
+	FILE *cache_file;
+	char buffer[2048];
+	char escaped_mount_point[PATH_MAX], escaped_trash_path[PATH_MAX];
+	char *mount_point, *trash_path;
+	struct stat stat_buffer;
+
+	/* empty the old locally cached entries */
+	g_list_foreach (cached_trash_directories, 
+		(GFunc)destroy_cached_trash_entry, NULL);
+	g_list_free (cached_trash_directories);
+	cached_trash_directories = NULL;
+
+	/* read in the entries from disk */
+	cache_file_path = g_strconcat (g_get_home_dir (), G_DIR_SEPARATOR_S,
+		TRASH_ENTRY_CACHE_PARENT, G_DIR_SEPARATOR_S, TRASH_ENTRY_CACHE_NAME, NULL);
+	cache_file = fopen (cache_file_path, "r");
+
+	if (cache_file != NULL) {
+		for (;;) {
+			if (fgets (buffer, sizeof (buffer), cache_file) == NULL) {
+				break;
+			}
+
+			mount_point = NULL;
+			trash_path = NULL;
+			if (sscanf (buffer, "%s %s", escaped_mount_point, escaped_trash_path) == 2) {
+				/* the paths are saved in escaped form */
+				trash_path = gnome_vfs_unescape_string (escaped_trash_path, "/");
+				mount_point = gnome_vfs_unescape_string (escaped_mount_point, "/"); 
+
+				if (trash_path != NULL 
+					&& mount_point != NULL
+					&& (strcmp (trash_path, NON_EXISTENT_TRASH_ENTRY) == 0 || lstat (trash_path, &stat_buffer) == 0)
+					&& lstat (mount_point, &stat_buffer) == 0) {
+					/* We either know the trash doesn't exist or we checked that it's really
+					 * there - this is a good entry, copy it into the local cache.
+					 */
+					 add_local_cached_trash_entry (stat_buffer.st_dev, trash_path, mount_point);
+#ifdef DEBUG_FIND_DIRECTORY
+					g_print ("read trash item cache entry %s %s\n", trash_path, mount_point);
+#endif
+				}
+			}
+			
+			g_free (trash_path);
+			g_free (mount_point);
+		}
+		fclose (cache_file);	
+	}
+	
+	g_free (cache_file_path);
 }
 
 /* Create a Trash directory on the same disk as @full_name_near. */
@@ -1327,7 +1437,7 @@ find_locally_cached_trash_entry_for_device_id (dev_t device_id, gboolean check_d
 	tmp.device_id = device_id;
 
 	matching_item = g_list_find_custom (cached_trash_directories, 
-					    &tmp, match_trash_item_by_device_id);
+		&tmp, match_trash_item_by_device_id);
 
 	if (matching_item == NULL) {
 		return NULL;
@@ -1372,6 +1482,12 @@ find_locally_cached_trash_entry_for_device_id (dev_t device_id, gboolean check_d
 static char *
 find_cached_trash_entry_for_device (dev_t device_id, gboolean check_disk)
 {
+	if (cached_trash_directories == NULL) {
+		if (!check_disk) {
+			return NULL;
+		}
+		read_saved_cached_trash_entries ();
+	}
 	return find_locally_cached_trash_entry_for_device_id (device_id, check_disk);
 }
 
