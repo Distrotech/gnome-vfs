@@ -1,3 +1,9 @@
+2004-10-11  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/Makefile.am:
+	Fix build issues with concurrent installs. Patch from
+	Chris Kelso <ckelso@rooneyholdings.com>.
+		
 2004-10-11  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
