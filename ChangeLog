@@ -1,3 +1,9 @@
+2000-10-31  Mathieu Lacage  <mathieu@eazel.com>
+
+	* modules/http-method.c: (do_get_file_info):
+	remove support for HEAD. We now do only a PROPFIND
+	and a GET to get the information on a file.
+
 2000-10-31  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (remove_file), (remove_directory),

@@ -2256,52 +2256,48 @@ do_get_file_info (GnomeVFSMethod *method,
 			gnome_vfs_file_info_copy (file_info, handle->file_info);
 		} else {
 			g_assert (handle == NULL); /* Make sure we're not leaking some old one */
-			result = make_request (&handle, uri, "HEAD", NULL, NULL, 
-				       	context);
-
-			if (result == GNOME_VFS_OK) {
-				gnome_vfs_file_info_copy (file_info, handle->file_info);
-			} else {
-				if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
-					/* FIXME bugzilla.eazel.com 3835: mfleming: Is this code really appropriate?
-					 * In any case, it doesn't seem to be appropriate for a DAV-enabled
-					 * server, since they don't seem to send 301's when you PROPFIND collections
-					 * without a trailing '/'.
-					 */
-					if (uri->text != NULL && *uri->text != '\0' 
-						&& uri->text[strlen(uri->text)-1] != '/') {
-						GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path (uri, "/");
-
-						result = do_get_file_info (method, tmpuri, file_info, options, context);
-						gnome_vfs_uri_unref (tmpuri);
-					}
-				}
 
 				/* Lame buggy servers (eg: www.mozilla.org, www.corel.com)) return
 				 * an HTTP error for a HEAD where a GET would succeed. In these cases
 				 * lets try to do a GET.
 				 */
-
-				if (result != GNOME_VFS_OK) {
-					g_assert (handle == NULL); /* Make sure we're not leaking some old one */
-					result = make_request (&handle, uri, "GET", NULL, NULL, context);
-					if (result == GNOME_VFS_OK) {
-						gnome_vfs_file_info_copy (file_info, handle->file_info);
-						http_handle_close (handle, context);
-					}
+			
+			if (result != GNOME_VFS_OK) {
+				g_assert (handle == NULL); /* Make sure we're not leaking some old one */
+				result = make_request (&handle, uri, "GET", NULL, NULL, context);
+				if (result == GNOME_VFS_OK) {
+					gnome_vfs_file_info_copy (file_info, handle->file_info);
+					http_handle_close (handle, context);
 				}
-
-				DEBUG_HTTP (("-Get_File_Info"));
-				return result;
 			}
+			
+			if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
+				/* FIXME bugzilla.eazel.com 3835: mfleming: Is this code really appropriate?
+				 * In any case, it doesn't seem to be appropriate for a DAV-enabled
+				 * server, since they don't seem to send 301's when you PROPFIND collections
+				 * without a trailing '/'.
+				 */
+				if (uri->text != NULL && *uri->text != '\0' 
+				    && uri->text[strlen(uri->text)-1] != '/') {
+					GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path (uri, "/");
+					
+					result = do_get_file_info (method, tmpuri, file_info, options, context);
+					gnome_vfs_uri_unref (tmpuri);
+				}
+			}
+
+
+			DEBUG_HTTP (("-Get_File_Info"));
+			return result;
 		}
+
 
 		http_handle_close (handle, context);
 #ifndef DAV_NO_CACHE
 	}
 #endif /* DAV_NO_CACHE */
 	DEBUG_HTTP (("-Get_File_Info"));
-
+	
 	return result;
 }
 
