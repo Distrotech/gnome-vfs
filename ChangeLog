@@ -1,5 +1,25 @@
 2000-11-15  Mathieu Lacage  <mathieu@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-info.c: 
+	(context_new), cleanups.
+	(load_mime_type_info_from), cleanups
+	(load_mime_list_info_from), cleanups
+	(reload_if_needed), rename from maybe_reload
+	(set_value_real), new function.
+	(gnome_vfs_mime_set_value), make it use funiton above.
+	(get_value_real), new function
+	(gnome_vfs_mime_get_value), make it use funciton above
+	(gnome_vfs_mime_get_key_list), cleanups
+	(gnome_vfs_mime_get_extensions_list), cleanups
+	(gnome_vfs_mime_get_extensions_pretty_string), cleanups
+	(gnome_vfs_get_registered_mime_types), cleanups
+	(gnome_vfs_mime_set_registered_type_key), make it use
+	set_value_real.
+	(gnome_vfs_mime_get_registered_mime_type_key): make it
+	use get_value_real.
+
+2000-11-15  Mathieu Lacage  <mathieu@eazel.com>
+
 	Buddy: pavel <pavel@eazel.com>
 	
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

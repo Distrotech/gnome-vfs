@@ -150,7 +150,7 @@ context_new (GHashTable *hash_table, GString *str)
 
 	context = g_hash_table_lookup (hash_table, mime_type);
 
-	if (context) {
+	if (context != NULL) {
 		g_free (mime_type);
 		return context;
 	}
@@ -419,7 +419,7 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 		}
 	}
 
-	if (context){
+	if (context != NULL) {
 		if (key && line->str [0])
 			context_add_key (context, key, lang, line->str);
 		else
@@ -610,7 +610,7 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 		}
 	}
 
-	if (context){
+	if (context != NULL) {
 		if (key && line->str [0])
 			context_add_key (context, key, lang, line->str);
 		else
@@ -797,7 +797,7 @@ remove_keys (gpointer key, gpointer value, gpointer user_data)
 }
 
 static void
-maybe_reload (void)
+reload_if_needed (void)
 {
 	time_t now = time (NULL);
 	gboolean need_reload = FALSE;
@@ -906,6 +906,48 @@ gnome_vfs_mime_thaw (void)
 }
 
 
+static GnomeVFSResult
+set_value_real (const char *mime_type, const char *key, const char *value, 
+		GHashTable *user_hash_table)
+{
+	GnomeMimeContext *context;
+
+	if (mime_type == NULL 
+	    || key == NULL
+	    || value == NULL) {
+		return gnome_vfs_result_from_errno ();
+	}
+
+	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+			      gnome_vfs_result_from_errno ());
+	
+	if (!gnome_vfs_mime_inited) {
+		gnome_vfs_mime_init ();
+	}
+
+	context = g_hash_table_lookup (user_hash_table, mime_type);
+	if (context != NULL) {
+		gpointer orig_key, orig_value;
+		if (g_hash_table_lookup_extended (context->keys, key, &orig_key, &orig_value)) {
+			g_hash_table_insert (context->keys, orig_key, g_strdup (value));
+			g_free (orig_value);
+		} else {
+			g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
+		}
+	} else {
+		GString *string;
+
+		string = g_string_new (mime_type);
+
+		/* create the mime type context */
+		context = context_new (user_hash_table, string);
+		/* add the info to the mime type context */
+		g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
+	}
+	
+	return GNOME_VFS_OK;
+}
+
 /**
  * gnome_vfs_mime_set_value:
  * @mime_type: a mime type.
@@ -921,45 +963,82 @@ gnome_vfs_mime_thaw (void)
 GnomeVFSResult
 gnome_vfs_mime_set_value (const char *mime_type, const char *key, const char *value)
 {
-	GnomeMimeContext *context;
-
-	if (mime_type == NULL 
-	    || key == NULL
-	    || value == NULL) {
-		return gnome_vfs_result_from_errno ();
-	}
-
-	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
-			      gnome_vfs_result_from_errno ());
+	GnomeVFSResult retval;
 	
-	context = g_hash_table_lookup (specific_types_user, mime_type);
-	if (context != NULL) {
-		gpointer orig_key, orig_value;
-		if (g_hash_table_lookup_extended (context->keys, key, &orig_key, &orig_value)) {
-			g_hash_table_insert (context->keys, orig_key, g_strdup (value));
-			g_free (orig_value);
-		} else {
-			g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
-		}
-	} else {
-		GString *string;
-
-		string = g_string_new (mime_type);
-
-		/* create the mime type context */
-		context = context_new (specific_types_user, string);
-		/* add the info to the mime type context */
-		g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
-	}
+	retval = set_value_real (mime_type, key, value, specific_types_user);
 	
 	if (should_write_file_back == 0) {
 		return write_back_keys_user_file ();
 	}
 
-	return GNOME_VFS_OK;
+	return retval;
 }
 
 
+static const char *
+get_value_real (const char *mime_type, 
+		const char *key, 
+		GHashTable *user_hash_table, 
+		GHashTable *system_hash_table)
+{
+	char *value, *generic_type, *p;
+	GnomeMimeContext *context;
+	
+	g_return_val_if_fail (key != NULL, NULL);
+	g_assert (user_hash_table != NULL);
+	g_assert (system_hash_table != NULL);
+
+	if (mime_type == NULL) {
+		return NULL;
+	}
+	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+			      NULL);
+
+	reload_if_needed ();
+	
+	context = g_hash_table_lookup (user_hash_table, mime_type);
+	if (context != NULL) {
+		value = g_hash_table_lookup (context->keys, key);
+		if (value != NULL) {
+			return value;
+		}
+	}
+
+	context = g_hash_table_lookup (system_hash_table, mime_type);
+	if (context != NULL) {
+		value = g_hash_table_lookup (context->keys, key);
+		if (value != NULL) {
+			return value;
+		}
+	}
+
+	generic_type = g_strdup (mime_type);
+	p = strchr (generic_type, '/');
+	if (p != NULL)
+		*(p+1) = '\0';
+	
+	context = g_hash_table_lookup (user_hash_table, generic_type);
+	if (context != NULL) {
+		value = g_hash_table_lookup (context->keys, key);
+		if (value != NULL) {
+			g_free (generic_type);
+			return value;
+		}
+	}
+
+	context = g_hash_table_lookup (system_hash_table, generic_type);
+	if (context != NULL) {
+		value = g_hash_table_lookup (context->keys, key);
+		if (value != NULL) {
+			g_free (generic_type);
+			return value;
+		}
+	}
+
+	g_free (generic_type);
+
+	return NULL;
+}
 
 
 /**
@@ -974,65 +1053,10 @@ gnome_vfs_mime_set_value (const char *mime_type, const char *key, const char *va
 const char *
 gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 {
-	char *value, *generic_type, *p;
-	GnomeMimeContext *context;
-	
-	g_return_val_if_fail (key != NULL, NULL);
-
-	if (mime_type == NULL) {
-		return NULL;
-	}
-	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
-			      NULL);
-
-
 	if (!gnome_vfs_mime_inited)
 		gnome_vfs_mime_init ();
 
-	maybe_reload ();
-	
-	context = g_hash_table_lookup (specific_types_user, mime_type);
-	if (context){
-		value = g_hash_table_lookup (context->keys, key);
-		if (value != NULL) {
-			return value;
-		}
-	}
-
-	context = g_hash_table_lookup (specific_types, mime_type);
-	if (context){
-		value = g_hash_table_lookup (context->keys, key);
-		if (value != NULL) {
-			return value;
-		}
-	}
-
-	generic_type = g_strdup (mime_type);
-	p = strchr (generic_type, '/');
-	if (p)
-		*(p+1) = '\0';
-	
-	context = g_hash_table_lookup (specific_types_user, generic_type);
-	if (context){
-		value = g_hash_table_lookup (context->keys, key);
-		if (value != NULL) {
-			g_free (generic_type);
-			return value;
-		}
-	}
-
-	context = g_hash_table_lookup (specific_types, generic_type);
-	if (context){
-		value = g_hash_table_lookup (context->keys, key);
-		if (value != NULL) {
-			g_free (generic_type);
-			return value;
-		}
-	}
-
-	g_free (generic_type);
-
-	return NULL;
+	return get_value_real (mime_type, key, specific_types_user, specific_types);
 }
 
 
@@ -1085,21 +1109,21 @@ gnome_vfs_mime_get_key_list (const char *mime_type)
 	if (!gnome_vfs_mime_inited)
 		gnome_vfs_mime_init ();
 
-	maybe_reload ();
+	reload_if_needed ();
 	
 	generic_type = g_strdup (mime_type);
 	p = strchr (generic_type, '/');
-	if (p)
+	if (p != NULL)
 		*(p+1) = 0;
 	
 	context = g_hash_table_lookup (specific_types_user, generic_type);
-	if (context){
+	if (context != NULL) {
 		g_hash_table_foreach (
 			context->keys, assemble_list, &list);
 	}
 	
 	context = g_hash_table_lookup (specific_types, generic_type);
-	if (context){
+	if (context != NULL) {
 		g_hash_table_foreach (
 			context->keys, assemble_list, &list);
 	}
@@ -1160,18 +1184,18 @@ gnome_vfs_mime_get_extensions_list (const char *mime_type)
 		gnome_vfs_mime_init ();
 	}
 
-	maybe_reload ();
+	reload_if_needed ();
 
 	extensions_system = NULL;
 	extensions_user = NULL;
 
 	context = g_hash_table_lookup (registered_types_user, mime_type);
-	if (context){
+	if (context != NULL) {
 		extensions_user = g_hash_table_lookup (context->keys, "ext");
 	}
 
 	context = g_hash_table_lookup (registered_types, mime_type);
-	if (context){
+	if (context != NULL) {
 		extensions_system = g_hash_table_lookup (context->keys, "ext");
 	}
 
@@ -1283,7 +1307,7 @@ gnome_vfs_mime_get_extensions_pretty_string (const char *mime_type)
 		gnome_vfs_mime_init ();
 	}
 
-	maybe_reload ();
+	reload_if_needed ();
 	
 	extensions = gnome_vfs_mime_get_extensions_list (mime_type);
 	if (extensions == NULL) {
@@ -1437,7 +1461,7 @@ gnome_vfs_get_registered_mime_types (void)
 		gnome_vfs_mime_init ();
 	}
 
-	maybe_reload ();
+	reload_if_needed ();
 
 	/* Extract mime type names */
 	g_hash_table_foreach (registered_types_user, get_key_name, &type_list);
@@ -1477,39 +1501,8 @@ GnomeVFSResult
 gnome_vfs_mime_set_registered_type_key (const char *mime_type, const char *key, const char *value)
 {
 	GnomeVFSResult result;
-	GnomeMimeContext *context;
 
-	result = gnome_vfs_result_from_errno ();
-	if (mime_type == NULL) {
-		return result;
-	}
-	g_return_val_if_fail (!does_string_contains_caps (mime_type),
-			      result);
-
-
-	if (!gnome_vfs_mime_inited) {
-		gnome_vfs_mime_init ();
-	}
-	
-	context = g_hash_table_lookup (registered_types_user, mime_type);
-	if (context != NULL) {
-		gpointer orig_key, orig_value;
-		if (g_hash_table_lookup_extended (context->keys, key, &orig_key, &orig_value)) {
-                        g_hash_table_insert (context->keys, orig_key, g_strdup (value));
-			g_free (orig_value);
-		} else {
-			g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
-		}
-	} else {
-		GString *string;
-
-		string = g_string_new (mime_type);
-
-		/* create the mime type context */
-		context = context_new (registered_types_user, string);
-		/* add the info to the mime type context */
-		g_hash_table_insert (context->keys, g_strdup (key), g_strdup (value));
-	}
+	result = set_value_real (mime_type, key, value, registered_types_user);
 
 	if (should_write_file_back == 0) {
 		result = write_back_mime_user_file ();
@@ -1530,65 +1523,13 @@ gnome_vfs_mime_set_registered_type_key (const char *mime_type, const char *key, 
 static const char *
 gnome_vfs_mime_get_registered_mime_type_key (const char *mime_type, const char *key)
 {
-	char *value, *generic_type, *p;
-	GnomeMimeContext *context;
-	
-	g_return_val_if_fail (key != NULL, NULL);
-
-	if (mime_type == NULL) {
-		return NULL;
-	}
-	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
-			      NULL);
-
 
 	if (!gnome_vfs_mime_inited)
 		gnome_vfs_mime_init ();
 
-	maybe_reload ();
-	
-	context = g_hash_table_lookup (registered_types_user, mime_type);
-	if (context){
-		value = g_hash_table_lookup (context->keys, key);
-		if (value != NULL) {
-			return value;
-		}
-	}
-
-	context = g_hash_table_lookup (registered_types, mime_type);
-	if (context){
-		value = g_hash_table_lookup (context->keys, key);
-		if (value != NULL) {
-			return value;
-		}
-	}
-
-	generic_type = g_strdup (mime_type);
-	p = strchr (generic_type, '/');
-	if (p)
-		*(p+1) = '\0';
-	
-	context = g_hash_table_lookup (registered_types_user, generic_type);
-	if (context){
-		value = g_hash_table_lookup (context->keys, key);
-		if (value != NULL) {
-			g_free (generic_type);
-			return value;
-		}
-	}
-
-	context = g_hash_table_lookup (registered_types, generic_type);
-	if (context){
-		value = g_hash_table_lookup (context->keys, key);
-		if (value != NULL) {
-			g_free (generic_type);
-			return value;
-		}
-	}
-
-	g_free (generic_type);
-
-	return NULL;
+	return get_value_real (mime_type, key, 
+			       registered_types_user, 
+			       registered_types);
 }
 
 
