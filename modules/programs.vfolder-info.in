@@ -21,11 +21,9 @@
     <Folder>
       <Name>Applications</Name>
       <Desktop>Applications.directory</Desktop>
+      <OnlyUnallocated/>
       <Query>
-        <And>
-          <Keyword>Application</Keyword>
-	  <Unallocated/>
-        </And>
+        <Keyword>Application</Keyword>
       </Query>
       <DontShowIfEmpty/>
     </Folder>

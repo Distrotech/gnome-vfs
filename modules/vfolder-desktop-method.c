@@ -90,8 +90,7 @@ enum {
 	QUERY_OR,
 	QUERY_AND,
 	QUERY_KEYWORD,
-	QUERY_FILENAME,
-	QUERY_UNALLOCATED
+	QUERY_FILENAME
 };
 
 struct _Query {
@@ -159,6 +158,7 @@ struct _Folder {
 	/* Some flags */
 	gboolean read_only;
 	gboolean dont_show_if_empty;
+	gboolean only_unallocated; /* include only unallocated items */
 
 	/* lazily done, will run query only when it
 	 * needs to */
@@ -191,9 +191,9 @@ struct _VFolderInfo
 	/* The root folder */
 	Folder *root;
 
-	/* The unallocated folder, the folder where the query
-	 * includes the Unallocated statement */
-	Folder *unallocated_folder;
+	/* The unallocated folders, the folder which only
+	 * include unallocated items */
+	GSList *unallocated_folders;
 
 	/* some flags */
 	gboolean read_only;
@@ -434,25 +434,26 @@ static gboolean
 matches_query (VFolderInfo *info,
 	       Folder *folder,
 	       EntryFile *efile,
-	       Query *query,
-	       gboolean ignore_unallocated)
+	       Query *query)
 {
 	GSList *li;
+
+	if (query == NULL)
+		return TRUE;
+
 #define INVERT_IF_NEEDED(val) (query->not ? !(val) : (val))
 	switch (query->type) {
 	case QUERY_OR:
 		for (li = query->queries; li != NULL; li = li->next) {
 			Query *subquery = li->data;
-			if (matches_query (info, folder, efile, subquery,
-					   ignore_unallocated))
+			if (matches_query (info, folder, efile, subquery))
 				return INVERT_IF_NEEDED (TRUE);
 		}
 		return INVERT_IF_NEEDED (FALSE);
 	case QUERY_AND:
 		for (li = query->queries; li != NULL; li = li->next) {
 			Query *subquery = li->data;
-			if ( ! matches_query (info, folder, efile, subquery,
-					      ignore_unallocated))
+			if ( ! matches_query (info, folder, efile, subquery))
 				return INVERT_IF_NEEDED (FALSE);
 		}
 		return INVERT_IF_NEEDED (TRUE);
@@ -475,21 +476,6 @@ matches_query (VFolderInfo *info,
 				return INVERT_IF_NEEDED (FALSE);
 			}
 		}
-	case QUERY_UNALLOCATED:
-		if (ignore_unallocated)
-			return INVERT_IF_NEEDED (FALSE);
-
-		ensure_folder (info,
-			       info->root,
-			       TRUE /* subfolders */,
-			       folder /* except */,
-			       /* avoid infinite loops */
-			       TRUE /* ignore_unallocated */);
-
-		if (((Entry *)efile)->alloc == 0)
-			return INVERT_IF_NEEDED (TRUE);
-		else
-			return INVERT_IF_NEEDED (FALSE);
 	}
 #undef INVERT_IF_NEEDED
 	g_assert_not_reached ();
@@ -497,15 +483,51 @@ matches_query (VFolderInfo *info,
 	return FALSE;
 }
 
+static void
+dump_unallocated_folders (Folder *folder)
+{
+	GSList *li;
+	for (li = folder->subfolders; li != NULL; li = li->next)
+		dump_unallocated_folders (li->data);
+
+	if (folder->only_unallocated &&
+	    folder->entries != NULL) {
+		g_slist_foreach (folder->entries,
+				 (GFunc)entry_unref_dealloc, NULL);
+		g_slist_free (folder->entries);
+		folder->entries = NULL;
+	}
+}
+
 /* Run query, allocs and refs the entries */
 static void
-append_query (VFolderInfo *info, Folder *folder,
-	      gboolean ignore_unallocated)
+append_query (VFolderInfo *info, Folder *folder)
 {
 	GSList *li;
 
-	if (folder->query == NULL)
+	if (folder->query == NULL &&
+	    ! folder->only_unallocated)
 		return;
+
+	if (folder->only_unallocated) {
+		/* dump all folders that use unallocated
+		 * items only.  This sucks if you keep
+		 * reading one and then another such
+		 * folder, but oh well, life sucks for
+		 * you then, but at least you get
+		 * consistent results */
+		dump_unallocated_folders (info->root);
+
+		/* ensure all other folders, so that
+		 * after this we know which ones are
+		 * unallocated */
+		ensure_folder (info,
+			       info->root,
+			       TRUE /* subfolders */,
+			       folder /* except */,
+			       /* avoid infinite loops */
+			       TRUE /* ignore_unallocated */);
+	}
 
 	for (li = info->entries; li != NULL; li = li->next) {
 		Entry *entry = li->data;
@@ -518,9 +540,12 @@ append_query (VFolderInfo *info, Folder *folder,
 					  entry->name) != NULL))
 			continue;
 
+		if (folder->only_unallocated &&
+		    entry->alloc != 0)
+			continue;
+
 		if (matches_query (info, folder, (EntryFile *)entry,
-				   folder->query,
-				   ignore_unallocated))
+				   folder->query))
 			folder->entries = g_slist_prepend
 				(folder->entries, entry_ref_alloc (entry));
 	}
@@ -545,6 +570,10 @@ ensure_folder (VFolderInfo *info,
 	if (except == folder)
 		return;
 
+	if (ignore_unallocated &&
+	    folder->only_unallocated)
+		return;
+
 	if (folder->up_to_date)
 		return;
 
@@ -559,7 +588,7 @@ ensure_folder (VFolderInfo *info,
 	folder->entries = alloc_entries_from_files (info, folder->includes);
 
 	/* Run query */
-	append_query (info, folder, ignore_unallocated);
+	append_query (info, folder);
 
 	/* We were prepending all this time */
 	folder->entries = g_slist_reverse (folder->entries);
@@ -895,8 +924,11 @@ vfolder_info_destroy (VFolderInfo *info)
 	g_hash_table_destroy (info->entries_ht);
 	info->entries_ht = NULL;
 
-	entry_unref ((Entry *)info->unallocated_folder);
-	info->unallocated_folder = NULL;
+	g_slist_foreach (info->unallocated_folders,
+			 (GFunc)entry_unref,
+			 NULL);
+	g_slist_free (info->unallocated_folders);
+	info->unallocated_folders = NULL;
 
 	entry_unref ((Entry *)info->root);
 	info->root = NULL;
@@ -905,7 +937,7 @@ vfolder_info_destroy (VFolderInfo *info)
 }
 
 static Query *
-single_query_read (xmlNode *qnode, gboolean *got_unallocated)
+single_query_read (xmlNode *qnode)
 {
 	Query *query;
 	xmlNode *node;
@@ -923,7 +955,7 @@ single_query_read (xmlNode *qnode, gboolean *got_unallocated)
 		for (iter = qnode->xmlChildrenNode;
 		     iter != NULL && query == NULL;
 		     iter = iter->next)
-			query = single_query_read (iter, got_unallocated);
+			query = single_query_read (iter);
 		if (query != NULL) {
 			query->not = ! query->not;
 		}
@@ -948,9 +980,6 @@ single_query_read (xmlNode *qnode, gboolean *got_unallocated)
 			xmlFree (file);
 		}
 		return query;
-	} else if (g_ascii_strcasecmp (qnode->name, "Unallocated") == 0) {
-		*got_unallocated = TRUE;
-		return query_new (QUERY_UNALLOCATED);
 	} else if (g_ascii_strcasecmp (qnode->name, "And") == 0) {
 		query = query_new (QUERY_AND);
 	} else if (g_ascii_strcasecmp (qnode->name, "Or") == 0) {
@@ -964,7 +993,7 @@ single_query_read (xmlNode *qnode, gboolean *got_unallocated)
 	g_assert (query != NULL);
 
 	for (node = qnode->xmlChildrenNode; node != NULL; node = node->next) {
-		Query *new_query = single_query_read (node, got_unallocated);
+		Query *new_query = single_query_read (node);
 
 		if (new_query != NULL)
 			query->queries = g_slist_prepend
@@ -992,7 +1021,7 @@ add_or_set_query (Query **query, Query *new_query)
 }
 
 static Query *
-query_read (xmlNode *qnode, gboolean *got_unallocated)
+query_read (xmlNode *qnode)
 {
 	Query *query;
 	xmlNode *node;
@@ -1012,15 +1041,13 @@ query_read (xmlNode *qnode, gboolean *got_unallocated)
 			for (iter = node->xmlChildrenNode;
 			     iter != NULL && new_query == NULL;
 			     iter = iter->next)
-				new_query = single_query_read
-					(iter, got_unallocated);
+				new_query = single_query_read (iter);
 			if (new_query != NULL) {
 				new_query->not = ! new_query->not;
 				add_or_set_query (&query, new_query);
 			}
 		} else {
-			Query *new_query = single_query_read
-				(node, got_unallocated);
+			Query *new_query = single_query_read (node);
 			if (new_query != NULL)
 				add_or_set_query (&query, new_query);
 		}
@@ -1090,26 +1117,20 @@ folder_read (VFolderInfo *info, xmlNode *fnode)
 				xmlFree (file);
 			}
 		} else if (g_ascii_strcasecmp (node->name, "Query") == 0) {
-			gboolean got_unallocated = FALSE;
 			Query *query;
 
-			query = query_read (node, &got_unallocated);
+			query = query_read (node);
 
 			if (query != NULL) {
-				if (info->unallocated_folder != NULL &&
-				    got_unallocated)
-					g_warning ("Got more then one "
-						   "'Unallocated' query "
-						   "in the vfolder.  Weird "
-						   "things may happen.");
-				if (got_unallocated &&
-				    info->unallocated_folder == NULL)
-					info->unallocated_folder =
-						(Folder *)entry_ref ((Entry *)folder);
 				if (folder->query != NULL)
 					query_destroy (folder->query);
 				folder->query = query;
 			}
+		} else if (g_ascii_strcasecmp (node->name, "OnlyUnallocated") == 0) {
+			info->unallocated_folders = 
+				g_slist_prepend (info->unallocated_folders,
+						 (Folder *)entry_ref ((Entry *)folder));
+			folder->only_unallocated = TRUE;
 		} else if (g_ascii_strcasecmp (node->name, "Folder") == 0) {
 			Folder *new_folder = folder_read (info, node);
 			if (new_folder != NULL) {
@@ -1376,6 +1397,22 @@ add_xml_tree_from_folder (xmlNode *parent, Folder *folder)
 			     "Desktop" /* name */,
 			     folder->desktop_file /* content */);
 	}
+
+	if (folder->read_only)
+		xmlNewChild (folder_node /* parent */,
+			     NULL /* ns */,
+			     "ReadOnly" /* name */,
+			     NULL /* content */);
+	if (folder->read_only)
+		xmlNewChild (folder_node /* parent */,
+			     NULL /* ns */,
+			     "DontShowIfEmpty" /* name */,
+			     NULL /* content */);
+	if (folder->only_unallocated)
+		xmlNewChild (folder_node /* parent */,
+			     NULL /* ns */,
+			     "OnlyUnallocated" /* name */,
+			     NULL /* content */);
 
 	for (li = folder->subfolders; li != NULL; li = li->next) {
 		Folder *subfolder = li->data;
@@ -3589,9 +3626,14 @@ do_remove_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
 	}
 
-	if (folder == info->unallocated_folder) {
-		info->unallocated_folder = NULL;
-		entry_unref ((Entry *)folder);
+	if (folder->only_unallocated) {
+		GSList *li = g_slist_find (info->unallocated_folders,
+					   folder);
+		if (li != NULL) {
+			info->unallocated_folders = g_slist_delete_link
+				(info->unallocated_folders, li);
+			entry_unref ((Entry *)folder);
+		}
 	}
 
 	if (folder == info->root) {
@@ -3962,6 +4004,7 @@ do_unlink (GnomeVFSMethod *method,
 	VFolderInfo *info;
 	const char *basename;
 	const char *scheme;
+	GSList *li;
 
 	info = vfolder_info_from_uri (uri, &result, context);
 	if (info == NULL)
@@ -4015,23 +4058,26 @@ do_unlink (GnomeVFSMethod *method,
 
 	remove_file (the_folder, basename);
 
-	/* evil, we must remove this from the unallocated folder as well
+	/* evil, we must remove this from the unallocated folders as well
 	 * so that it magically doesn't appear there.  But it's not so simple.
 	 * We only want to remove it if it isn't in that folder already. */
-	if (info->unallocated_folder != NULL)  {
-		GSList *li;
-		ensure_folder (info, info->unallocated_folder,
+	for (li = info->unallocated_folders;
+	     li != NULL;
+	     li = li->next) {
+		Folder *folder = li->data;
+		GSList *l;
+
+		/* This is actually really evil since ensuring 
+		 * an unallocated folder clears all other unallocated
+		 * folders in it's wake.  I'm not sure it's worth
+		 * optimizing however */
+		ensure_folder (info, folder,
 			       FALSE /* subfolders */,
 			       NULL /* except */,
 			       FALSE /* ignore_unallocated */);
-		for (li = info->unallocated_folder->entries;
-		     li != NULL;
-		     li = li->next) {
-			if (li->data == entry)
-				break;
-		}
-		if (li == NULL)
-			remove_file (info->unallocated_folder, basename);
+		l = g_slist_find (folder->entries, entry);
+		if (l == NULL)
+			remove_file (folder, basename);
 	}
 
 	/* FIXME: if this was a user file and this is the only

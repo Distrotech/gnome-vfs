@@ -546,7 +546,7 @@ do_info (void)
 
 	info = gnome_vfs_file_info_new ();
 	result = gnome_vfs_get_file_info (
-		from, info, GNOME_VFS_FILE_INFO_DEFAULT);
+		from, info, GNOME_VFS_FILE_INFO_GET_MIME_TYPE);
 
 	if (show_if_error (result, "getting info on: ", from))
 		return;

@@ -1,3 +1,16 @@
+Sun Dec 02 11:55:57 2001  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c, modules/programs.vfolder-info.in:
+	  change the Unallocated query type to an OnlyUnallocated flag on
+	  the folder.  This way we can have multiple onlyunallocated folders,
+	  though that may lead to some operations not being very efficent.
+	  Also it fixes some ugly corner cases with that being a query type
+	  and cleans up the code somewhat.  Also write all 3 folder flags
+	  to disk when writing the user vfolder-info file.
+
+	* test/test-shell.c: when getting file info, always get the mime
+	  type.
+
 Wed Nov 28 13:16:06 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: Fix set_file_info, fix
