@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-13 09:57+0200\n"
-"PO-Revision-Date: 2004-09-02 20:08+0200\n"
+"POT-Creation-Date: 2004-09-15 21:12+0200\n"
+"PO-Revision-Date: 2004-09-06 09:32+0200\n"
 "Last-Translator: Luca Ferretti <elle.uca@infinito.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -43,76 +43,75 @@ msgstr "Il file è vuoto"
 msgid "Failed to read from file '%s': %s"
 msgstr "Lettura del file «%s» fallita: %s"
 
-# credo che qui ed in seguito "desktop entries" sottintenda file
-# Quindi tutte queste voci dovrebbero cominiciare per "Il file desktop entries..."
 #: libgnomevfs/eggdesktopentries.c:575
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr "contiene la riga «%s» non non è una voce, un gruppo o un commento"
+msgstr ""
+"le desktop entry contengono la riga «%s» che non è una voce, un gruppo o un "
+"commento"
 
 #: libgnomevfs/eggdesktopentries.c:648
-#, fuzzy
 msgid "desktop entries file does not start with legal start group"
-msgstr "non comincia per un gruppo legale di inizio"
+msgstr "le desktop entry non cominciano per un gruppo legale di inizio"
 
 #: libgnomevfs/eggdesktopentries.c:705
-#, fuzzy, c-format
+#, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr "contiene la riga «%s» che non è in UTF-8"
+msgstr "le desktop entry contengono la riga «%s» che non è in UTF-8"
 
 #: libgnomevfs/eggdesktopentries.c:728
-#, fuzzy, c-format
+#, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr "contiente la codifica sconoscitua «%s»"
+msgstr "le desktop entry contengono la codifica sconoscitua «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:918 libgnomevfs/eggdesktopentries.c:1030
 #: libgnomevfs/eggdesktopentries.c:1215
-#, fuzzy, c-format
+#, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr "non presenta il gruppo «%s»"
+msgstr "le desktop entry non presentano il gruppo «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:1042
-#, fuzzy, c-format
+#, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr "non presenta la chiave «%s»"
+msgstr "le desktop entry non presentano la chiave «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:1098 libgnomevfs/eggdesktopentries.c:1271
 #: libgnomevfs/eggdesktopentries.c:1413 libgnomevfs/eggdesktopentries.c:1538
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
-"contiene la chiave «%s» che presenta un valore che non può essere "
-"interpretato."
+"le desktop entry contengono la chiave «%s» che presenta un valore che non "
+"può essere interpretato."
 
 #: libgnomevfs/eggdesktopentries.c:1296
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
-"non contiene alcun valore tradotto per la chiave «%s» nella localizzazione «%"
-"s»."
+"le desktop entry non contengono alcun valore tradotto per la chiave «%s» "
+"nella localizzazione «%s»."
 
 #: libgnomevfs/eggdesktopentries.c:2229
-#, fuzzy, c-format
+#, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "contiene la sequenza di escape non valida «%s»"
+msgstr "le desktop entry contengono la sequenza di escape non valida «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:2246
-#, fuzzy
 msgid "desktop entries contain escape character at end of line"
-msgstr "contiene carattere di escape alla fine della riga"
+msgstr ""
+"le desktop entry contengono il carattere di escape alla fine della riga"
 
 #: libgnomevfs/eggdesktopentries.c:2271
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr "Il valore «%s» non può essere interpretato come numerico."
+msgstr "Il valore «%s» non può essere interpretato come un numero."
 
 #: libgnomevfs/eggdesktopentries.c:2298
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr "Il valore «%s» non può essere interpretato come booleano."
+msgstr "Il valore «%s» non può essere interpretato come un booleano."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -686,25 +685,21 @@ msgstr "Errore nell'avviare il comando"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
-#, fuzzy
 msgid "Timeout reached"
 msgstr "Timeout scaduto"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
 msgstr "Errore del nameserver"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
-#, fuzzy
 msgid "The resource is locked"
 msgstr "La risorsa è bloccata"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
-#, fuzzy
 msgid "Function call deprecated"
 msgstr "Chiamata a funzione deprecata"
 
@@ -826,22 +821,20 @@ msgid "Disk"
 msgstr "Disco"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
-#, fuzzy
 msgid "USB Drive"
-msgstr "Unità Zip"
+msgstr "Unità USB"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "IEEE1394 Drive"
-msgstr ""
+msgstr "Unità IEEE1394"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
 msgid "CF"
-msgstr ""
+msgstr "CF"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
-#, fuzzy
 msgid "SD/MMC"
-msgstr "Memoria SD/MMC"
+msgstr "SD/MMC"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
@@ -849,9 +842,8 @@ msgid "Memory Stick"
 msgstr "Stick di memoria"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
-#, fuzzy
 msgid "Smart Media"
-msgstr "Memoria Smart Media"
+msgstr "Smart Media"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
@@ -1115,19 +1107,16 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Il comando usato per gestire gli URL \"ghelp\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Il comando usato per gestire gli URL H323, se abilitati."
+msgstr "Il comando usato per gestire gli URL \"h323\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Il comando usato per gestire gli URL \"ghelp\", se abilitati."
+msgstr "Il comando usato per gestire gli URL \"http\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Il comando usato per gestire gli URL \"trash\", se abilitati."
+msgstr "Il comando usato per gestire gli URL \"https\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
@@ -1158,19 +1147,16 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "Gestore di URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Gestore di URL H323"
+msgstr "Gestore di URL \"h323\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Gestore di URL \"ghelp\""
+msgstr "Gestore di URL \"http\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Gestore di URL \"ghelp\""
+msgstr "Gestore di URL \"https\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
@@ -1213,31 +1199,28 @@ msgstr ""
 "gestisca gli URL \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
 "Impostare a vero affiché in programma specificato nella chiave \"command\" "
-"gestisca gli URL H323"
+"gestisca gli URL \"h323\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
 "Impostare a vero affiché in programma specificato nella chiave \"command\" "
-"gestisca gli URL \"ghelp\"."
+"gestisca gli URL \"http\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
 "Impostare a vero affiché in programma specificato nella chiave \"command\" "
-"gestisca gli URL \"ghelp\"."
+"gestisca gli URL \"https\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
@@ -1292,19 +1275,16 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Indica se il comando specificao deve gestire gli URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Indica se il comando specificato deve gestire gli URL H323"
+msgstr "Indica se il comando specificato deve gestire gli URL \"h323\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Indica se il comando specificao deve gestire gli URL \"ghelp\""
+msgstr "Indica se il comando specificao deve gestire gli URL \"http\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Indica se il comando specificato deve gestire gli URL \"trash\""
+msgstr "Indica se il comando specificato deve gestire gli URL \"https\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
@@ -1331,7 +1311,6 @@ msgstr ""
 "nella posizione network://."
 
 #: schemas/system_dns_sd.schemas.in.h:2
-#, fuzzy
 msgid "Extra domains to look for dns-sd services in"
 msgstr "Domini aggiuntivi da interrogare per servizi dns-sd"
 
@@ -1508,38 +1487,3 @@ msgstr "Workgroup SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Il workgroup tipo Windows di cui fa parte l'utente"
-
-#~ msgid "CD Disc"
-#~ msgstr "Disco CD"
-
-#~ msgid "The command used to handle HTTP URLs, if enabled."
-#~ msgstr "Il comando usato per gestire gli URL HTTP, se abilitati."
-
-#~ msgid "The command used to handle HTTPS URLs, if enabled."
-#~ msgstr "Il comando usato per gestire gli URL HTTPS, se abilitati."
-
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "Gestore di URL HTTP"
-
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "Gestore di URL HTTPS"
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTP "
-#~ "URLs."
-#~ msgstr ""
-#~ "Impostare a vero affiché in programma specificato nella chiave \"command"
-#~ "\" gestisca gli URL HTTP."
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTPS "
-#~ "URLs."
-#~ msgstr ""
-#~ "Impostare a vero affiché in programma specificato nella chiave \"command"
-#~ "\" gestisca gli URL HTTPS."
-
-#~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr "Indica se il comando specificato deve gestire gli URL HTTP"
-
-#~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr "Indica se il comando specificato deve gestire gli URL HTTPS"
