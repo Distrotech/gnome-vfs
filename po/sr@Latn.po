@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-10-04 01:34+0200\n"
-"PO-Revision-Date: 2003-10-04 01:44+0200\n"
+"POT-Creation-Date: 2003-10-18 14:48+0200\n"
+"PO-Revision-Date: 2003-10-18 14:49+0200\n"
 "Last-Translator: Dušan Živojnov <calvin@verat.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,42 +19,60 @@ msgstr ""
 "Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: libgnomevfs/gnome-vfs-configuration.c:219
+#: daemon/gnome-vfs-daemon.c:320
+msgid "Could not initialize Bonobo"
+msgstr "Ne mogu da pokrenem Bonobo"
+
+#: daemon/gnome-vfs-daemon.c:326
+msgid "Could not initialize gnome vfs"
+msgstr "Ne mogu da pokrenem Gnomov VFS"
+
+#: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d sadrži NUL znakove."
 
-#: libgnomevfs/gnome-vfs-configuration.c:236
+#: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d ne sadrži ime metoda."
 
-#: libgnomevfs/gnome-vfs-configuration.c:265
+#: libgnomevfs/gnome-vfs-configuration.c:284
+#, c-format
+msgid "%s:%d has no options endmarker."
+msgstr "%s:%d ne sadrži oznaku kraja opcija."
+
+#: libgnomevfs/gnome-vfs-configuration.c:295
+#, c-format
+msgid "%s:%d has unknown options %s."
+msgstr "%s:%d koristi nepoznate opcije %s."
+
+#: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ne sadrži ime modula."
 
-#: libgnomevfs/gnome-vfs-configuration.c:318
+#: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Datoteka sa podešavanjima `%s' nije pronađena: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:758
+#: libgnomevfs/gnome-vfs-job.c:760
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Nepoznat tip operacije %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
+#: libgnomevfs/gnome-vfs-job.c:1050 libgnomevfs/gnome-vfs-job.c:1195
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ne mogu napraviti vezu ka procesu za otvoreni GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1684
+#: libgnomevfs/gnome-vfs-job.c:1686
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Nepoznata vrsta posla %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1717
+#: libgnomevfs/gnome-vfs-job.c:1719
 msgid "Operation stopped"
 msgstr "Operacija zaustavljena"
 
@@ -430,13 +448,18 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr "Program koji se koristi za pregledanje datoteka koje zahtevaju komponentu za pregled. Parametar %s će biti zamenjen adresom datoteke, a parametar %c će biti zamenjen IID-om komponente."
+msgstr ""
+"Program koji se koristi za pregledanje datoteka koje zahtevaju komponentu za "
+"pregled. Parametar %s će biti zamenjen adresom datoteke, a parametar %c će "
+"biti zamenjen IID-om komponente."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "Podrazumevani terminalski program koji se koristi za programe kojima je neophodan terminal."
+msgstr ""
+"Podrazumevani terminalski program koji se koristi za programe kojima je "
+"neophodan terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -479,7 +502,10 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by /system/http_proxy/authentication_user "
 "and /system/http_proxy/authentication_password."
-msgstr "Ukoliko je postavljeno, veze sa posredničkim serverom se identifikuju. Par korisnik/lozinka se uzima iz /system/http_proxy/authentication_user i /system/http_proxy/authentication_password."
+msgstr ""
+"Ukoliko je postavljeno, veze sa posredničkim serverom se identifikuju. Par "
+"korisnik/lozinka se uzima iz /system/http_proxy/authentication_user i /"
+"system/http_proxy/authentication_password."
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid "Password to pass as authentication when doing http proxying"
@@ -501,7 +527,9 @@ msgstr "Port bezbednog HTTP posrednika"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\""
-msgstr "Izaberite režim podešavanja posrednika. Dopuštene vrednosti su „none“, „manual“ i „auto“"
+msgstr ""
+"Izaberite režim podešavanja posrednika. Dopuštene vrednosti su „none“, "
+"„manual“ i „auto“"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "Socks proxy host name"
@@ -543,13 +571,15 @@ msgstr "Port mašine određene pomoću /system/proxy/ftp_proxy koja je posrednik
 msgid ""
 "The port on the machine defined by /system/proxy/secure_host that you proxy "
 "through"
-msgstr "Port mašine određene pomoću /system/proxy/secure_proxy koja je posrednik"
+msgstr ""
+"Port mašine određene pomoću /system/proxy/secure_proxy koja je posrednik"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by /system/proxy/socks_host that you proxy "
 "through"
-msgstr "Port mašine određene pomoću /system/proxy/socks_proxy koja je posrednik"
+msgstr ""
+"Port mašine određene pomoću /system/proxy/socks_proxy koja je posrednik"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -557,7 +587,12 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "Ovaj ključ sadrži spisak računara koji su neposredno povezani, umesto putem posrednika (ukoliko je u dejstvu). Ove vrednosti mogu biti imena računara, domeni (pomoću početnih navoda kao što je *.nešto.iju), IP adrese računara (bilo IPv4 bilo IPv6) i adrese mreža uz mrežnu masku (nešto kao što je 192.168.0.0/24)."
+msgstr ""
+"Ovaj ključ sadrži spisak računara koji su neposredno povezani, umesto putem "
+"posrednika (ukoliko je u dejstvu). Ove vrednosti mogu biti imena računara, "
+"domeni (pomoću početnih navoda kao što je *.nešto.iju), IP adrese računara "
+"(bilo IPv4 bilo IPv6) i adrese mreža uz mrežnu masku (nešto kao što je "
+"192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid "URL that provides proxy configuration values"
