@@ -1,5 +1,10 @@
 2004-07-31  Christophe Fergeau  <teuf@gnome.org>
 
+	* configure.in
+	* NEWS: version 2.7.90
+
+2004-07-31  Christophe Fergeau  <teuf@gnome.org>
+
 	* modules/ftp-method.c: added explicit cast to struct sockaddr in the
 	  hope that it will fix part of bug #147887.
 

@@ -1,3 +1,20 @@
+gnome-vfs 2.7.90
+
+	* Bugs fixed:
+		+ Support for ssh.com ssh servers (William Jon McCann)
+		+ Properly reinitialize DNS resolver when needed 
+                  (Christian Kellner)
+		+ Renamed gnome_vfs_next_address to 
+	          gnome_vfs_resolve_next_address (Christian Kellner)
+		+ Various compilation fixes for gcc 3.4, Solaris, x86-64
+                  (Christophe Fergeau)
+
+	* Translation updates:
+		+ sq (Laurent Dhima), lt (Žygimantas Beručka), 
+                  bg (Alexander Shopov), da (Martin Willemoes Hansen), 
+		  no (Kjartan Maraas), eu (Iñaki Larrañaga), 
+		  en_CA (Adam Weinberger), es (Francisco Javier F. Serrador)
+
 gnome-vfs 2.7.5
 
 	* Bugs fixed:
