@@ -1,3 +1,9 @@
+2003-05-05  Bastien Nocera  <hadess@hadess.net>
+
+	* libgnomevfs/gnome-vfs-mime.c:
+	(_gnome_vfs_get_mime_type_internal): "audio/mpeg" is the right
+	mimetype for MP3 files, not "audio/x-mp3" (Closes: #100523)
+
 2003-05-05  Xan Lopez  <xan@masilla.org>
 
 	* modules/cdda-cddb.c: (CDDBConnect):

@@ -567,7 +567,7 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 				return "text/plain";
 
 			} else if (_gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
-				return "audio/x-mp3";
+				return "audio/mpeg";
 			}
 		}
 	}
