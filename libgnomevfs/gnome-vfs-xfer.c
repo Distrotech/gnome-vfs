@@ -1569,12 +1569,15 @@ copy_items (const GList *source_uri_list,
 
 				if (result != GNOME_VFS_ERROR_FILE_EXISTS) {
 					/* whatever happened, it wasn't a name conflict */
+					gnome_vfs_uri_unref (target_uri);
 					break;
 				}
 
 				if (overwrite_mode != GNOME_VFS_XFER_OVERWRITE_MODE_QUERY
-				    || (xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) == 0)
+				    || (xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) == 0) {
+					gnome_vfs_uri_unref (target_uri);
 					break;
+				}
 
 				/* pass in the current target name, progress will update it to 
 				 * a new unique name such as 'foo (copy)' or 'bar (copy 2)'
@@ -1590,6 +1593,8 @@ copy_items (const GList *source_uri_list,
 						       GNOME_VFS_XFER_PHASE_COPYING);
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 
+				gnome_vfs_uri_unref (target_uri);
+
 				if (progress_result == GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
 					break;
 				}
@@ -1599,8 +1604,6 @@ copy_items (const GList *source_uri_list,
 				}
 				
 				/* try again with new uri */
-				gnome_vfs_uri_unref (target_uri);
-
 			}
 		}
 
