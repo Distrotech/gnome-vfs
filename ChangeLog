@@ -1,3 +1,8 @@
+2002-06-21  Michael Meeks  <michael@ximian.com>
+
+	* configure.in: bin GTK_REQUIRED, upd. BONOBO_REQUIRED
+	and ORBIT_REQUIRED, bonobo-activation-required. #80244
+
 2002-06-17  Damon Chaplin  <damon@ximian.com>
 
 	* libgnomevfs/gnome-vfs-monitor.c (gnome_vfs_monitor_do_add): if
