@@ -2,12 +2,11 @@
 # Copyright (C) 2000 Free Software Foundation, Inc.
 # Andraz Tori <andraz.tori1@guest.arnes.si>, 2000.
 #
-
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2000-06-24 03:20+0200\n"
-"PO-Revision-Date: 2000-06-24 02:53+0200\n"
+"POT-Creation-Date: 2000-07-07 17:39+0200\n"
+"PO-Revision-Date: 2000-07-07 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,16 +38,16 @@ msgstr "Nastavitvena datoteka `%s' ni bila najdena: %s"
 msgid "Unknown sort rule %d"
 msgstr "Neznano pravilo urejanja %d"
 
-#: libgnomevfs/gnome-vfs-init.c:67
+#: libgnomevfs/gnome-vfs-init.c:71
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS je ¾e inicializiran."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:653
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Ne morem razèleniti: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:654
+#: libgnomevfs/gnome-vfs-parse-ls.c:655
 msgid "More parsing errors will be ignored."
 msgstr "Nadalnje napake pri razèlenitvi bodo ignorirane."
 
@@ -401,19 +400,19 @@ msgstr "Ne morem ubiti GNOME::VFS::Slave (IOR neznan) -- izjema %s"
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Napaka pri bujenju GnomeVFSJob kanala."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:545
-#: libgnomevfs-pthread/gnome-vfs-job.c:1449
+#: libgnomevfs-pthread/gnome-vfs-job.c:552
+#: libgnomevfs-pthread/gnome-vfs-job.c:1487
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Neznan ID posla %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:949
-#: libgnomevfs-pthread/gnome-vfs-job.c:1044
+#: libgnomevfs-pthread/gnome-vfs-job.c:956
+#: libgnomevfs-pthread/gnome-vfs-job.c:1077
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ne morem ustvariti cevi GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1482
+#: libgnomevfs-pthread/gnome-vfs-job.c:1520
 msgid "Operation stopped"
 msgstr "Operacija ustavljena"
 
@@ -490,149 +489,153 @@ msgid "Extension:"
 msgstr "Pripona:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:702
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:770
 msgid "New Application"
 msgstr "Nov Program"
 
 #. Application Name label and entry
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:788
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
 msgid "Application Name:"
 msgstr "Ime Programa:"
 
-#. Application ID label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:796
-msgid "Application ID:"
-msgstr "ID Programa:"
-
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:787
 msgid "Application Command:"
 msgstr "Ukaz Programa:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:812
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:795
 msgid "Open Behavior"
-msgstr "Odpri Obna¹anje"
+msgstr "Odpri obna¹anje"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:741
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:818
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:733
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:801
 msgid "Can open multiple files"
 msgstr "Lahko odpre veè datotek"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:744
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:821
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:736
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
 msgid "Can open from URI"
 msgstr "Lahko odpre iz URI-a"
 
-#. Create label, menu and edit button for default applications
-#: mime-type-capplet/nautilus-mime-type-capplet.c:330
-msgid "Default Application:"
-msgstr "Privzet Program:"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:358
+msgid "Change Icon"
+msgstr "Spremeni ikono"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:337
-#: mime-type-capplet/nautilus-mime-type-capplet.c:348
+#: mime-type-capplet/nautilus-mime-type-capplet.c:370
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1022
+msgid "Mime Type"
+msgstr "Mime tip"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:383
+msgid "Add new Mime type..."
+msgstr "Dodaj nov Mime tip..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:390
+msgid "Delete this Mime type..."
+msgstr "Zbri¹i ta Mime tip..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:404
+msgid "Use Viewer"
+msgstr "Uporabi pregledovalnik"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:410
+msgid "Open With Application"
+msgstr "Odpri z programom"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:422
 msgid "Edit List"
-msgstr "Uredi Seznam"
+msgstr "Uredi seznam"
 
-#. Create label, menu and edit button for default components
-#: mime-type-capplet/nautilus-mime-type-capplet.c:342
-msgid "Default Viewer:"
-msgstr "Privzet Prikazovalnik:"
-
-#. Add icon box
-#: mime-type-capplet/nautilus-mime-type-capplet.c:353
-msgid "Select an icon..."
-msgstr "Izberi ikono..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:373
+#: mime-type-capplet/nautilus-mime-type-capplet.c:450
 msgid "Add"
 msgstr "Dodaj"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:377
+#: mime-type-capplet/nautilus-mime-type-capplet.c:453
 msgid "Remove"
 msgstr "Odstrani"
 
-#. Default Action frame
-#: mime-type-capplet/nautilus-mime-type-capplet.c:391
-msgid "Default Action"
-msgstr "Privzeto Dejanje"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:397
-msgid "No Default"
-msgstr "Ni Privzeto"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:403
-msgid "Use Application"
-msgstr "Uporabi Program"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:409
-msgid "Use Viewer"
-msgstr "Uporabi Pregledovalnik"
-
-#. Mime list Add and Delete buttons
-#: mime-type-capplet/nautilus-mime-type-capplet.c:415
-msgid "Add..."
-msgstr "Dodaj..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:419
-msgid "Delete"
-msgstr "Izbri¹i"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:562
-#: mime-type-capplet/nautilus-mime-type-capplet.c:704
+#: mime-type-capplet/nautilus-mime-type-capplet.c:628
+#: mime-type-capplet/nautilus-mime-type-capplet.c:770
 msgid "None"
 msgstr "Brez"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:933
-msgid "Mime Type"
-msgstr "Mime Tip"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:934
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1021
 msgid "Description"
 msgstr "Opis"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:935
-msgid "Application"
-msgstr "Program"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1023
+msgid "Extension"
+msgstr "Pripona"
 
-#: modules/file-method.c:358
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1024
+msgid "Action"
+msgstr "Dejanje"
+
+#: modules/file-method.c:357
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznan GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:503
+#: modules/http-method.c:517
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Napaèna glava `%s'"
 
-#: modules/http-method.c:520
+#: modules/http-method.c:534
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s za prenos sem"
 
-#: modules/http-method.c:655
+#: modules/http-method.c:669
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Zapiram povezavo do %s"
 
-#: modules/http-method.c:797
+#: modules/http-method.c:812
 #, c-format
 msgid "%s of %s read"
 msgstr "%s od %s prebranih"
 
-#: modules/http-method.c:800
+#: modules/http-method.c:815
 #, c-format
 msgid "%s read"
 msgstr "%s prebran"
 
 #. Multi-Status
-#: modules/http-method.c:962
+#: modules/http-method.c:994
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "HTTP stre¾nik je vrnil napaèen PROPFIND odgovor"
+
+#~ msgid "Application ID:"
+#~ msgstr "ID Programa:"
+
+#~ msgid "Default Application:"
+#~ msgstr "Privzet Program:"
+
+#~ msgid "Default Viewer:"
+#~ msgstr "Privzet Prikazovalnik:"
+
+#~ msgid "Select an icon..."
+#~ msgstr "Izberi ikono..."
+
+#~ msgid "Default Action"
+#~ msgstr "Privzeto Dejanje"
+
+#~ msgid "No Default"
+#~ msgstr "Ni Privzeto"
+
+#~ msgid "Use Application"
+#~ msgstr "Uporabi Program"
+
+#~ msgid "Add..."
+#~ msgstr "Dodaj..."
+
+#~ msgid "Delete"
+#~ msgstr "Izbri¹i"
 
 #~ msgid "Use None"
 #~ msgstr "Brez"
