@@ -115,16 +115,19 @@ static GnomeVFSResult do_make_directory (GnomeVFSMethod *method,
 static GnomeVFSResult do_remove_directory(GnomeVFSMethod *method,
 					  GnomeVFSURI *uri,
 					  GnomeVFSContext *context);
+static GnomeVFSResult do_move            (GnomeVFSMethod *method,
+					  GnomeVFSURI *old_uri,
+					  GnomeVFSURI *new_uri,
+					  gboolean force_replace,
+					  GnomeVFSContext *context);
 static GnomeVFSResult do_unlink         (GnomeVFSMethod *method,
 					 GnomeVFSURI *uri,
 					 GnomeVFSContext *context);
-#if 0
 static GnomeVFSResult do_check_same_fs	(GnomeVFSMethod  *method,
 					 GnomeVFSURI     *a,
 					 GnomeVFSURI     *b,
 					 gboolean        *same_fs_return,
 					 GnomeVFSContext *context);
-#endif
 static GnomeVFSResult do_set_file_info  (GnomeVFSMethod *method,
 					 GnomeVFSURI *uri,
 					 const GnomeVFSFileInfo *info,
@@ -157,9 +160,9 @@ static GnomeVFSMethod method = {
         do_is_local,
 	do_make_directory, /* make directory */
         do_remove_directory, /* remove directory */
-	NULL, /* move */
+	do_move,
 	do_unlink, /* unlink */
-	NULL, /* do_check_same_fs */
+	do_check_same_fs,
 	do_set_file_info, /* set_file_info */
 	NULL, /* truncate */
 	NULL, /* find_directory */
@@ -834,13 +837,55 @@ do_remove_directory (GnomeVFSMethod *method,
 	return result;
 }
 
+static GnomeVFSResult
+do_move (GnomeVFSMethod *method,
+	 GnomeVFSURI *old_uri,
+	 GnomeVFSURI *new_uri,
+	 gboolean force_replace,
+	 GnomeVFSContext *context)
+{
+	SshHandle *handle = NULL;
+	GnomeVFSResult res;
+	gboolean same_fs;
+	char *old_name, *new_name;
+	char *quoted_old_name, *quoted_new_name;
+	char *cmd;
+
+	res = do_check_same_fs (method, old_uri, new_uri, &same_fs, context);
+	if (res != GNOME_VFS_OK) {
+		return res;
+	}
+
+	old_name = gnome_vfs_unescape_string (old_uri->text, G_DIR_SEPARATOR_S);
+	new_name = gnome_vfs_unescape_string (new_uri->text, G_DIR_SEPARATOR_S);
+
+	quoted_old_name = g_shell_quote (old_name);
+	quoted_new_name = g_shell_quote (new_name);
+
+	cmd = g_strdup_printf ("mv %s %s", quoted_old_name, quoted_new_name);
+	res = ssh_connect (&handle, old_uri, cmd);
+	g_free (cmd);
+	g_free (old_name);
+	g_free (new_name);
+	g_free (quoted_old_name);
+	g_free (quoted_new_name);
+
+	if (res != GNOME_VFS_OK) {
+		return res;
+	}
+
+	ssh_wait_and_destroy (handle, context);
+
+	return res;
+}
+
 GnomeVFSResult
 do_unlink (GnomeVFSMethod *method,
 	   GnomeVFSURI *uri,
 	   GnomeVFSContext *context)
 {
 	SshHandle *handle = NULL;
-	char *cmd = NULL;
+	char *cmd;
 	GnomeVFSResult result;
 	gchar *name;
 	gchar *quoted_name;
@@ -864,7 +909,7 @@ do_unlink (GnomeVFSMethod *method,
 
 	return result;
 }
-#if 0
+
 static GnomeVFSResult
 do_check_same_fs (GnomeVFSMethod  *method,
 		GnomeVFSURI     *a,
@@ -899,7 +944,6 @@ do_check_same_fs (GnomeVFSMethod  *method,
 
 	return GNOME_VFS_OK;
 }
-#endif
 
 static GnomeVFSResult
 do_set_file_info (GnomeVFSMethod *method,

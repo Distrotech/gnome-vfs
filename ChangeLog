@@ -1,5 +1,10 @@
 2003-02-13  Bastien Nocera  <hadess@hadess.net>
 
+	* modules/ssh-method.c: (do_move), (do_unlink), (do_check_same_fs):
+	implement do_move and revive do_check_same_fs
+
+2003-02-13  Bastien Nocera  <hadess@hadess.net>
+
 	* modules/ssh-method.c: (ssh_connect), (do_open_directory): don't crash
 	when accessing ssh://, nicer error message when we get a connection
 	refused
