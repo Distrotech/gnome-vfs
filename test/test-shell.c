@@ -34,6 +34,7 @@
 #include <glib/gutils.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <libgnomevfs/gnome-vfs-directory.h>
+#include <libgnomevfs/gnome-vfs-find-directory.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <popt.h>
 #include <stdio.h>

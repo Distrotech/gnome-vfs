@@ -64,6 +64,13 @@ Constants
 </para>
 
 
+<!-- ##### USER_FUNCTION GnomeVFSProcessInitFunc ##### -->
+<para>
+
+</para>
+
+@data: 
+
 <!-- ##### ENUM GnomeVFSDirectoryFilterOptions ##### -->
 <para>
 
@@ -78,13 +85,6 @@ Constants
 @GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR: 
 @GNOME_VFS_DIRECTORY_FILTER_NOPARENTDIR: 
 @GNOME_VFS_DIRECTORY_FILTER_NOBACKUPFILES: 
-
-<!-- ##### USER_FUNCTION GnomeVFSProcessInitFunc ##### -->
-<para>
-
-</para>
-
-@data: 
 
 <!-- ##### ENUM GnomeVFSDirectoryFilterNeeds ##### -->
 <para>
@@ -299,14 +299,14 @@ Constants
 @p_dispatch_on_job_thread: 
 @Returns: 
 
-<!-- ##### SECTION ./tmpl/fnmatch.sgml:Title ##### -->
-File Matching
-
-
 <!-- ##### MACRO FNM_LEADING_DIR ##### -->
 <para>
 
 </para>
+
+
+<!-- ##### SECTION ./tmpl/fnmatch.sgml:Title ##### -->
+File Matching
 
 
 <!-- ##### SECTION ./tmpl/seekable.sgml:See_Also ##### -->
@@ -472,15 +472,15 @@ Directory Filter
 @uri: 
 @Returns: 
 
+<!-- ##### FUNCTION gnome_vfs_ssl_new ##### -->
+<para>
+=======
+
+
 <!-- ##### SECTION ./tmpl/fnmatch.sgml:See_Also ##### -->
 <para>
 
 </para>
-
-
-<!-- ##### FUNCTION gnome_vfs_ssl_new ##### -->
-<para>
-=======
 
 
 <!-- ##### TYPEDEF GnomeVFSCallbackSimpleAuthIn ##### -->
@@ -509,16 +509,16 @@ seekable
 
 
 
-<!-- ##### SECTION ./tmpl/module-api.sgml:Title ##### -->
-module-api
-
-
 <!-- ##### FUNCTION gnome_vfs_app_context_unref ##### -->
 <para>
 
 </para>
 
 @app_context: 
+
+<!-- ##### SECTION ./tmpl/module-api.sgml:Title ##### -->
+module-api
+
 
 <!-- ##### FUNCTION gnome_vfs_seek_emulate ##### -->
 <para>

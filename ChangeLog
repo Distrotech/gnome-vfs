@@ -1,5 +1,11 @@
 2001-11-05  Maciej Stachowiak  <mjs@noisehavoc.org>
 
+	* test/test-shell.c: Add a header now needed due to the below
+	changes.
+	* doc/tmpl/gnome-vfs-unused.sgml: More mystery changes.
+
+2001-11-05  Maciej Stachowiak  <mjs@noisehavoc.org>
+
 	* libgnomevfs/check-headers.pl: New script to check that module
 	API headers do not include private headers, and public headers do
 	not include private or module API headers.
