@@ -1,3 +1,9 @@
+2002-03-28  Kevin Vandersloot <kfv101@psu.edu>
+
+	* modules/http-method.c: bind to the "value_changed" gconf
+	signal for the proxy settings so that changes made by the user
+	are updated instantly. Fixes bug # 73578 incidentally.
+
 2002-03-27  Seth Nickell  <snickell@stanford.edu>
 
 	* configure.in:
