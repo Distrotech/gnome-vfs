@@ -1,3 +1,9 @@
+2004-03-10  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-private-utils.[ch]
+	(gnome_vfs_process_run_cancellable):
+	Use correct return type.
+
 2004-03-09  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-ssl.c: Doh! I managed to break compilation
