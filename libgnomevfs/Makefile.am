@@ -19,18 +19,17 @@ INCLUDES =					\
 	-DG_LOG_DOMAIN=\"libgnomevfs\"		\
 	$(NULL)
 
-%.c %.h: %.gob
-	$(top_srcdir)/gob/src/gob2 $<
-
-GOB_SRCLIST = 					\
-	gnome-vfs-metadata.c			\
-	gnome-vfs-metadata.h			\
-	gnome-vfs-metadata-private.h		\
-	$(NULL)
-
-GOB_FILES =					\
-	gnome-vfs-metadata.gob			\
-	$(NULL)
+# %.c %.h: %.gob
+#	$(top_srcdir)/gob/src/gob2 $<
+#
+# GOB_SRCLIST = 					\
+#	gnome-vfs-metadata.c			\
+#	gnome-vfs-metadata.h			\
+#	gnome-vfs-metadata-private.h		\
+#	$(NULL)
+# GOB_FILES =					\
+#	gnome-vfs-metadata.gob			\
+#	$(NULL)
 
 lib_LTLIBRARIES = libgnomevfs-2.la
 
@@ -52,7 +51,6 @@ noinst_HEADERS =				\
 	gnome-vfs-job-queue.h			\
 	gnome-vfs-job-slave.h			\
 	gnome-vfs-job.h				\
-	gnome-vfs-metadata-private.h		\
 	gnome-vfs-mime-magic.h			\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer.h		\
@@ -65,6 +63,7 @@ noinst_HEADERS =				\
 	gnome-vfs-ssl-private.h			\
 	gnome-vfs-thread-pool.h			\
 	$(NULL)
+#	gnome-vfs-metadata-private.h		\
 
 libgnomevfsmoduleinclude_HEADERS =		\
 	gnome-vfs-cancellable-ops.h		\
@@ -95,7 +94,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-handle.h			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
-	gnome-vfs-metadata.h			\
 	gnome-vfs-mime-utils.h			\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-monitor.h		\
@@ -110,10 +108,9 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-xfer.h			\
 	gnome-vfs.h				\
 	$(NULL)
+#	gnome-vfs-metadata.h			\
 
 libgnomevfs_2_la_SOURCES =			\
-	$(GOB_SRCLIST)				\
-	$(GOB_FILES)				\
 	gnome-vfs-application-registry.c	\
 	gnome-vfs-async-job-map.c		\
 	gnome-vfs-async-ops.c			\
@@ -160,14 +157,15 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-xfer.c			\
 	$(NULL)
 
+#	$(GOB_SRCLIST)				\
+#	$(GOB_FILES)				\
+# BUILT_SOURCES = $(GOB_SRCLIST)
+# CLEANFILES = $(BUILT_SOURCES)
+
 # Platform specific includes
 libgnomevfsplatformincludedir = $(libdir)/gnome-vfs-2.0/include
 libgnomevfsplatforminclude_HEADERS =		\
 	gnome-vfs-file-size.h
-
-BUILT_SOURCES = $(GOB_SRCLIST)
-
-CLEANFILES = $(BUILT_SOURCES)
 
 # TESTS = check-headers.pl
 EXTRA_DIST = check-headers.pl getdelim.c
