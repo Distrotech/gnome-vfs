@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-01-31 10:27+0900\n"
+"POT-Creation-Date: 2004-02-14 00:43+0900\n"
+"PO-Revision-Date: 2004-02-14 00:20+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,29 @@ msgstr "Bonobo を初期化できませんでした"
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
 msgstr "GNOME 仮想ファイルシステム (gnome-vfs) を初期化できませんでした"
+
+#: gtk/gtkfilesystemgnomevfs.c:1457
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "ブックマークの保存に失敗 (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "ファイル '%s' の情報を取得できませんでした: %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "ファイル '%s' を開けませんでした: %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr ""
+"画像 '%s' を読み込めませんでした: 理由は不明ですが、おそらく画像ファイルが壊"
+"れています"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
@@ -627,15 +650,15 @@ msgstr "ツール"
 msgid "Windows"
 msgstr "Windows"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "ネットワーク"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "ホーム"
 
-#: modules/computer-method.c:557
+#: modules/computer-method.c:561
 msgid "Filesystem"
 msgstr "ファイルシステム"
 
@@ -643,6 +666,10 @@ msgstr "ファイルシステム"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "不明な GnomeVFSSeekPosition %d です"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Windows ネットワーク"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -993,10 +1020,6 @@ msgstr "HTTP プロキシの使用"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "HTTP プロキシを利用するときに認証として引き渡すユーザ名です。"
-
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "Windows ネットワーク"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
