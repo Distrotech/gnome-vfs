@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-03 19:28+0200\n"
-"PO-Revision-Date: 2004-07-03 19:30+0200\n"
+"POT-Creation-Date: 2004-07-05 10:11+0200\n"
+"PO-Revision-Date: 2004-07-05 10:18+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -651,6 +651,32 @@ msgstr "GnomeVFSSeekPosition %d i panjohur"
 msgid "Windows Network"
 msgstr "Rrjeti Windows"
 
+#: modules/sftp-method.c:1261
+#, c-format
+msgid "The identity of the remote computer (%s) is unknown."
+msgstr "Identiteti i kompjuterit remot (%s) është i panjohur."
+
+#: modules/sftp-method.c:1262
+#, c-format
+msgid ""
+"This happens when you log in to a computer the first time.\n"
+"\n"
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
+msgstr ""
+"Kjo ndodh kur lidheni për herë të parë në një kompjuter.\n"
+"\n"
+"Identiteti i dërguar nga kompjuteri remot është %s. Nëse dëshironi të jeni "
+"krejtësisht i sigurt që mund të vazhdoni, kontakto administratorin e sistemit."
+
+#: modules/sftp-method.c:1267
+msgid "Log In Anyway"
+msgstr "Futu sidoqoftë"
+
+#: modules/sftp-method.c:1268
+msgid "Cancel Login"
+msgstr "Anullo futjen"
+
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
@@ -864,6 +890,26 @@ msgstr "trajtues URL man"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid "trash URL handler"
 msgstr "trajtues URL trash"
+
+#: schemas/system_dns_sd.schemas.in.h:1
+msgid ""
+"Comma separated list of dns-sd domains that should be visible in the network "
+"location."
+msgstr ""
+"Lista e domain-eve dns-sd, të ndarë me presje, që do të jenë të dukshëm tek "
+"pozicioni i rrjetit."
+
+#: schemas/system_dns_sd.schemas.in.h:2
+msgid "Extra domains to look for dns-sd services in"
+msgstr "Domain-e të tjerë që duhen kontrolluar për shërbimet dns-sd"
+
+#: schemas/system_dns_sd.schemas.in.h:3
+msgid "How to display local DNS-SD service"
+msgstr "Si duhet shfaqur shërbimi lokal DNS-SD"
+
+#: schemas/system_dns_sd.schemas.in.h:4
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
+msgstr "Vlerat e mundshme janë \"merged\", \"separate\" dhe \"disabled\"難"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
