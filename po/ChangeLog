@@ -1,3 +1,8 @@
+2000-01-19  Kjartan Maraas  <kmaraas@online.no>
+
+	* POTFILES.in: Added missing files.
+	* no.po: Updated accordingly.
+	
 2000-01-04  Kjartan Maraas  <kmaraas@online.no>
 
 	* update.sh: A little script that lets people
