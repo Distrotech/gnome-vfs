@@ -1,3 +1,9 @@
+2002-01-27  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/preferences.vfolder-info.in:
+
+	Change where we look for capplets.
+
 2002-01-27  Anders Carlsson  <andersca@gnu.org>
 
 	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_delete_items): Call
