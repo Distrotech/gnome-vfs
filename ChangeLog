@@ -1,3 +1,8 @@
+2003-04-09  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-module-callback.h: add
+	G_BEGIN/END_DECLS for my C++
+
 2003-04-05  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* libgnomevfs/gnome-vfs-uri.c
