@@ -40,6 +40,7 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <glib.h>
+#include <ctype.h>
 
 #include "gnome-vfs-types.h"
 #include "gnome-vfs-result.h"
@@ -581,6 +582,20 @@ typedef enum {
 	STATE_ON_VALUE
 } ParserState;
 
+
+static void
+strip_trailing_whitespace (GString *string)
+{
+	int i;
+
+	for (i = string->len - 1; i >= 0; i--) {
+		if (!isspace (string->str[i]))
+			break;
+	}
+
+	g_string_truncate (string, i + 1);
+}
+
 static void
 load_application_info_from (const char *filename, gboolean user_owned)
 {
@@ -619,7 +634,7 @@ load_application_info_from (const char *filename, gboolean user_owned)
 		if (c == '\n'){
 			in_comment = FALSE;
 			column = -1;
-			if (state == STATE_ON_APPLICATION){
+			if (state == STATE_ON_APPLICATION) {
 
 				/* set previous key to nothing
 				   for this mime type */
@@ -627,6 +642,7 @@ load_application_info_from (const char *filename, gboolean user_owned)
 				previous_key = NULL;
 				previous_key_lang_level = -1;
 
+				strip_trailing_whitespace (line);
 				application = application_lookup_or_create (line->str, user_owned);
 				app_used = FALSE;
 				g_string_assign (line, "");

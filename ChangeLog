@@ -1,3 +1,15 @@
+2000-11-14  Maciej Stachowiak  <mjs@eazel.com>
+
+	reviewed by: Rebecca Schulman  <rebecka@eazel.com>
+
+	* data/mime/gnome-vfs.applications: Remove trailing whitespace
+	from `abiword' and `galeon'.
+	
+	* libgnomevfs/gnome-vfs-application-registry.c
+	(load_application_info_from): strip trailing whitespace from
+	application IDs.
+	(strip_trailing_whitespace): helper function
+
 2000-11-13  Rebecca Schulman  <rebecka@eazel.com>
 
 	Reviewed by: Maciej Stachowiak

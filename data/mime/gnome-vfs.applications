@@ -1,4 +1,4 @@
-emacs
+emacs 
 	command=emacs
 	name=GNU Emacs
 	can_open_multiple_files=true
@@ -46,7 +46,7 @@ mozilla
 	requires_terminal=false
 	mime_types=text/html,x-directory/webdav,image/gif,image/jpeg,text/xml
 
-galeon 
+galeon
 	command=galeon
 	name=Galeon
 	can_open_multiple_files=false
@@ -102,7 +102,7 @@ staroffice
 	requires_terminal=false
 	mime_types=application/x-staroffice-presentation,application/x-staroffice-spreadsheet,application/x-staroffice-words,text/abiword,application/vnd.ms-excel,application/rtf,application/msword,application/mspowerpoint
 
-abiword   
+abiword
 	command=abiword
 	name=AbiWord
 	can_open_multiple_files=true
