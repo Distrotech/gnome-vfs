@@ -1,3 +1,12 @@
+Fri Aug 24 22:17:25 2001  George Lebl <jirka@5z.com>
+
+	* libgnomevfs/gnome-vfs-uri.[ch]: Add function
+	  gnome_vfs_uri_list_parse, which is like the original gnome
+	  function gnome_uri_list_extract_uris.  It parses text/uri-list
+	  and returns a GList of GnomeVFSURIs.  Actually it is not just
+	  like that function it is basically exactly that function thanks
+	  to CutAndPaste(tm) technology.
+
 Thu Aug 23 11:33:48 2001  George Lebl <jirka@5z.com>
 
 	* test/test-channel.c (io_channel_callback):  Another s/guint/gsize/

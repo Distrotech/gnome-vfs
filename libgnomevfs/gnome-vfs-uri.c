@@ -2008,3 +2008,69 @@ gnome_vfs_uri_make_full_from_relative (const char *base_uri,
 	
 	return result;
 }
+
+/**
+ * gnome_vfs_uri_list_parse:
+ * @uri_list:
+ * 
+ * Extracts a list of #GnomeVFSURI objects from a standard text/uri-list,
+ * such as one you would get on a drop operation.  Use
+ * #gnome_vfs_uri_list_free when you are done with the list.
+ *
+ * Return value: A GList of GnomeVFSURIs
+ **/
+GList*
+gnome_vfs_uri_list_parse (const gchar* uri_list)
+{
+	/* Note that this is mostly very stolen from old libgnome/gnome-mime.c */
+
+	const gchar *p, *q;
+	gchar *retval;
+	GnomeVFSURI *uri;
+	GList *result = NULL;
+
+	g_return_val_if_fail (uri_list != NULL, NULL);
+
+	p = uri_list;
+
+	/* We don't actually try to validate the URI according to RFC
+	 * 2396, or even check for allowed characters - we just ignore
+	 * comments and trim whitespace off the ends.  We also
+	 * allow LF delimination as well as the specified CRLF.
+	 */
+	while (p != NULL) {
+		if (*p != '#') {
+			while (isspace (*p))
+				p++;
+
+			q = p;
+			while ((*q != '\0')
+			       && (*q != '\n')
+			       && (*q != '\r'))
+				q++;
+
+			if (q > p) {
+				q--;
+				while (q > p
+				       && isspace (*q))
+					q--;
+
+				retval = g_malloc (q - p + 2);
+				strncpy (retval, p, q - p + 1);
+				retval[q - p + 1] = '\0';
+
+				uri = gnome_vfs_uri_new (retval);
+
+				g_free (retval);
+
+				if (uri != NULL)
+					result = g_list_prepend (result, uri);
+			}
+		}
+		p = strchr (p, '\n');
+		if (p != NULL)
+			p++;
+	}
+
+	return g_list_reverse (result);
+}

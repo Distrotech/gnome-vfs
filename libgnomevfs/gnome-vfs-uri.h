@@ -146,6 +146,7 @@ gint		     gnome_vfs_uri_hequal 	           (gconstpointer a,
 						            gconstpointer b);
 guint		     gnome_vfs_uri_hash		           (gconstpointer p);
 
+GList               *gnome_vfs_uri_list_parse              (const gchar* uri_list);
 GList               *gnome_vfs_uri_list_ref                (GList *list);
 GList               *gnome_vfs_uri_list_unref              (GList *list);
 GList               *gnome_vfs_uri_list_copy               (GList *list);
