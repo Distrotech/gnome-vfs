@@ -5,12 +5,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-vfs\n"
-"POT-Creation-Date: 2002-05-07 23:10-0700\n"
-"PO-Revision-Date: 2000-07-18 21:23+0200\n"
+"POT-Creation-Date: 2002-05-28 17:20+0200\n"
+"PO-Revision-Date: 2002-05-28 20:49+02:00\n"
 "Last-Translator: Mendel Mobach <mendel@mobach.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
@@ -41,7 +41,7 @@ msgstr "Onbekend oper-type %u"
 #: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan geen pijp creëren voor GIOChannel: %s"
+msgstr "Kan geen pijp creÃ«ren voor GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
@@ -214,7 +214,7 @@ msgstr "Machine heeft geen adres"
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "Login niet gelukt"
+msgstr "Inloggen niet gelukt"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
@@ -254,12 +254,12 @@ msgstr "Naam te lang"
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "Dienst is niet beschikbaar"
+msgstr "Service is niet beschikbaar"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Verzoek maakt gegevens van de dienst achterhaald"
+msgstr "Verzoek maakt gegevens van de service achterhaald"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -282,17 +282,17 @@ msgstr "%u bytes"
 #: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
 msgid "%.1f K"
-msgstr "%.1fK"
+msgstr "%.1f K"
 
 #: libgnomevfs/gnome-vfs-utils.c:78
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1fMb"
+msgstr "%.1f Mb"
 
 #: libgnomevfs/gnome-vfs-utils.c:82
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1fGb"
+msgstr "%.1f Gb"
 
 #: modules/file-method.c:382
 #, c-format
@@ -303,26 +303,25 @@ msgstr "Onbekende GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Geen geldig instellingenbestand gevonden in %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "Gebruik de %s omgevingsvariabele om een andere locatie op te geven.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Standaard Monikerfabriek"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "bestand MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "algemene Gnome VFS moniker"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Algemene fout"
+msgstr "algemene bestandsmoniker"
