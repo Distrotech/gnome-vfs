@@ -1,3 +1,14 @@
+2000-05-24  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* mime-type-capplet/.cvsignore,
+	  mime-type-capplet/Makefile.am
+	  mime-type-capplet/mime-type-capplet.c
+	  mime-type-capplet/mime-type.desktop
+	  mime-type-capplet/nautilus-mime-type-capplet.c
+	  mime-type-capplet/nautilus-mime-type.desktop:
+	Rename the 'mime-type' capplet to 'nautilus-mime-capplet' to avoid
+	clobbering the control-center's one.
+
 2000-05-23  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-uri.c (get_method_string): Allow digits,
