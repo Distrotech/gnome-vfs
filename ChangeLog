@@ -1,3 +1,8 @@
+2004-09-15  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (handle_mime_info):
+	Plug one more leak. Closes bug #152754.
+
 2004-09-15  Christian Kellner  <gicmo@gnome-de.org>
 
 	* modules/http-neon-method.c (http_get_file_info):

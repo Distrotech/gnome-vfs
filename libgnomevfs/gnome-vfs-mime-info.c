@@ -381,6 +381,7 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 				} else {
 					entry->parent_classes = g_strdup (mime_type);
 				}
+				g_free (mime_type);
 			} else if (!strcmp (name, "alias")) {
 				char *mime_type;
 				mime_type = handle_attribute (reader, "type");
@@ -394,6 +395,7 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 				} else {
 					entry->aliases = g_strdup (mime_type);
 				}
+				g_free (mime_type);
 			}
 		}
 		ret = read_next (reader);
