@@ -1,3 +1,9 @@
+2002-04-29  Seth Nickell  <snickell@stanford.edu>
+
+	* configure.in:
+
+	Bump version number to 1.9.14, release, rinse, repeat.
+
 Mon Apr 29 15:54:45 2002  Jonathan Blandford  <jrb@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_info_reload):
