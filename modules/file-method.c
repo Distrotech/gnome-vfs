@@ -2041,7 +2041,6 @@ fam_callback (GIOChannel *source,
 			case FAMEndExist:
 			case FAMMoved:
 				event_type = -1;
-				g_warning ("bad FAM event: %d", ev.code);
 				break;
 		}
 
