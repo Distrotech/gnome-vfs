@@ -151,6 +151,10 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
+dnl This is needed by `test/vfs-run.in'
+TOP_BUILDDIR="`pwd`"
+AC_SUBST(TOP_BUILDDIR)
+
 dnl Output files
 
 AC_OUTPUT([
@@ -172,4 +176,7 @@ modules/extfs/zoo
 po/Makefile.in
 test/Makefile
 test/gnome-file-selection/Makefile
+test/vfs-run
 ])
+
+chmod u+x test/vfs-run

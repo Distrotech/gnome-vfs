@@ -108,4 +108,5 @@ EXTRA_DIST =					\
 	test-directory.c			\
 	test-seek.c				\
 	test-sync.c				\
-	test-xfer.c
+	test-xfer.c				\
+	vfs-run.in

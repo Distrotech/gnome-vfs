@@ -25,6 +25,11 @@
 #include <config.h>
 #endif
 
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <unistd.h>
+
 #include <glib.h>
 #include <gmodule.h>
 
@@ -40,9 +45,12 @@ typedef struct _MethodElement MethodElement;
 static GHashTable *method_hash = NULL;
 G_LOCK_DEFINE_STATIC (method_hash);
 
+static GList *module_path_list = NULL;
+G_LOCK_DEFINE_STATIC (module_path_list);
+
 
-gboolean
-gnome_vfs_method_init (void)
+static gboolean
+init_hash_table (void)
 {
 	G_LOCK (method_hash);
 	method_hash = g_hash_table_new (g_str_hash, g_str_equal);
@@ -51,28 +59,113 @@ gnome_vfs_method_init (void)
 	return TRUE;
 }
 
+static gboolean
+install_path_list (const gchar *user_path_list)
+{
+	const gchar *p, *oldp;
+
+	/* Notice that this assumes the list has already been locked.  */
+
+	oldp = user_path_list;
+	while (1) {
+		gchar *elem;
+
+		p = strchr (oldp, ':');
+
+		if (p == NULL) {
+			if (*oldp != '\0') {
+				elem = g_strdup (oldp);
+				module_path_list = g_list_append
+						       (module_path_list, elem);
+			}
+			break;
+		} else if (p != oldp) {
+			elem = g_strndup (oldp, p - oldp);
+			module_path_list = g_list_append (module_path_list,
+							  elem);
+		} else {
+			elem = NULL;
+		}
+
+		oldp = p + 1;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+init_path_list (void)
+{
+	const gchar *user_path_list;
+	gboolean retval;
+
+	retval = TRUE;
+
+	G_LOCK (module_path_list);
+
+	if (module_path_list != NULL) {
+		retval = FALSE;
+		goto end;
+	}
+
+	/* User-supplied path.  */
+
+	user_path_list = getenv ("GNOME_VFS_MODULE_PATH");
+	if (user_path_list != NULL) {
+		if (! install_path_list (user_path_list)) {
+			retval = FALSE;
+			goto end;
+		}
+	}
+
+	/* Default path.  It comes last so that users can override it.  */
+
+	module_path_list = g_list_append (module_path_list,
+					  g_strdup (GNOME_VFS_MODULE_DIR));
+
+ end:
+	G_UNLOCK (module_path_list);
+	return retval;
+}
+
+gboolean
+gnome_vfs_method_init (void)
+{
+	if (! init_hash_table ())
+		return FALSE;
+	if (! init_path_list ())
+		return FALSE;
+
+	return TRUE;
+}
+
 static GnomeVFSMethod *
-module_get_sane_handle (gchar *module_name)
+load_module (const gchar *module_name)
 {
 	GnomeVFSMethod *method;
 	GModule        *module;
 	GnomeVFSMethod * (*init_function) (void) = NULL;
 	void           * (*shutdown_function) (GnomeVFSMethod *) = NULL;
-	
+
+	/* FIXME */
+	g_warning ("Loading module `%s'", module_name);
+
 	module = g_module_open (module_name, G_MODULE_BIND_LAZY);
 	if (module == NULL) {
 		g_warning ("Cannot load module `%s'", module_name);
 		return NULL;
 	}
 
-	if (! g_module_symbol (module, GNOME_VFS_MODULE_INIT, (gpointer *) &init_function) ||
-	    !init_function) {
+	if (! g_module_symbol (module, GNOME_VFS_MODULE_INIT,
+			       (gpointer *) &init_function)
+	    || init_function == NULL) {
 		g_warning ("module '%s' has no init fn", module_name);
 		return NULL;
 	}
 
-	if (! g_module_symbol (module, GNOME_VFS_MODULE_SHUTDOWN, (gpointer *) &shutdown_function) ||
-	    !shutdown_function)
+	if (! g_module_symbol (module, GNOME_VFS_MODULE_SHUTDOWN,
+			       (gpointer *) &shutdown_function)
+	    || shutdown_function == NULL)
 		g_warning ("module '%s' has no shutdown fn", module_name);
 
 	method = init_function ();
@@ -83,25 +176,25 @@ module_get_sane_handle (gchar *module_name)
 	}
 
 	/* Some basic checks */
-	if (!method->open) {
+	if (method->open == NULL) {
 		g_warning ("module '%s' has no open fn", module_name);
 		return NULL;
-	} else if (!method->create) {
+	} else if (method->create == NULL) {
 		g_warning ("module '%s' has no create fn", module_name);
 		return NULL;
-	} else if (!method->is_local) {
+	} else if (method->is_local == NULL) {
 		g_warning ("module '%s' has no is-local fn", module_name);
 		return NULL;
 	}
 #if 0
-	else if (!method->get_file_info) {
+	else if (method->get_file_info == NULL) {
 		g_warning ("module '%s' has no get-file-info fn", module_name);
 		return NULL;
 	}
 #endif
 
-	/* More advanced assumptions */
-	if (!method->tell && method->seek) {
+	/* More advanced assumptions.  */
+	if (method->tell != NULL && method->seek == NULL) {
 		g_warning ("module '%s' has seek and no tell", module_name);
 		return NULL;
 	}
@@ -109,13 +202,38 @@ module_get_sane_handle (gchar *module_name)
 	return method;
 }
 
+static GnomeVFSMethod *
+load_module_in_path_list (const gchar *base_name)
+{
+	GList *p;
+
+	for (p = module_path_list; p != NULL; p = p->next) {
+		GnomeVFSMethod *method;
+		const gchar *path;
+		gchar *name;
+
+		path = p->data;
+		name = g_strconcat (path, "/", base_name, NULL);
+
+		method = load_module (name);
+
+		g_free (name);
+
+		if (method != NULL)
+			return method;
+	}
+
+	return NULL;
+}
+
 GnomeVFSMethod *
 gnome_vfs_method_get (const gchar *name)
 {
 	GnomeVFSMethod *method;
 	MethodElement *method_element;
-	const gchar *base_module_name;
-	gchar *module_name;
+	const gchar *module_name;
+	pid_t saved_uid;
+	gid_t saved_gid;
 
 	g_return_val_if_fail (name != NULL, NULL);
 
@@ -126,19 +244,25 @@ gnome_vfs_method_get (const gchar *name)
 	if (method_element != NULL)
 		return method_element->method;
 
-	base_module_name = gnome_vfs_configuration_get_module_path (name);
-	if (base_module_name == NULL)
+	module_name = gnome_vfs_configuration_get_module_path (name);
+	if (module_name == NULL)
 		return NULL;
 
-	if (g_path_is_absolute (base_module_name)) {
-		module_name = g_strdup (base_module_name);
-	} else {
-		module_name = g_strconcat (GNOME_VFS_MODULE_DIR,
-					   "/", base_module_name, NULL);
-	}
+	/* Set the effective UID/GID to the user UID/GID to prevent attacks to
+           setuid/setgid executables.  */
 
-	method = module_get_sane_handle (module_name);
-	g_free (module_name);
+	saved_uid = geteuid ();
+	saved_gid = getegid ();
+	seteuid (getuid ());
+	setegid (getgid ());
+
+	if (g_path_is_absolute (module_name))
+		method = load_module (module_name);
+	else
+		method = load_module_in_path_list (module_name);
+
+	seteuid (saved_uid);
+	setegid (saved_gid);
 
 	if (method == NULL)
 		return NULL;

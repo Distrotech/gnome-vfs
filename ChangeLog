@@ -1,3 +1,34 @@
+1999-10-20  Ettore Perazzoli  <ettore@gnu.org>
+
+	* README: Added some info about the `vfs-run' wrapper.
+
+	* configure.in: Subst `@TOP_BUILDDIR@' with the path to the top
+	building directory.  Build `$(top_builddir)/test/vfs-run' from
+	`$(top_srcdir)/test/vfs-run.in'.
+
+	* test/vfs-run.in (GNOME_VFS_MODULE_PATH): New file.
+
+	* libgnomevfs/gnome-vfs-method.c (gnome_vfs_method_get): Set the
+	effective UID/GID to the real UID/GID when loading the module, and
+	restore them afterwards.  This should prevent exploits to
+	setuid/setgid applications by using `GNOME_VFS_MODULE_PATH'.
+	(module_get_sane_handle): Renamed to `load_module'.  Added
+	debugging message displaying the complete name of the module that
+	is being loaded.
+
+	* libgnomevfs/gnome-vfs-method.c: New variable `module_path_list'.
+	(init_hash_table): New helper function.
+	(gnome_vfs_method_init): Use it.
+	(init_path_list): New helper function to initialize
+	`module_path_list' through the `GNOME_VFS_MODULE_PATH' environment
+	variable.
+	(install_path_list): New helper function used by `init_path_list'.
+	(gnome_vfs_method_init): Use it.
+	(load_module_in_path_list): New function to search for a module in
+	the path list.
+	(gnome_vfs_method_get): Use it.
+	(module_get_sane_handle): Made const-safe.
+
 1999-10-19  Ettore Perazzoli  <ettore@gnu.org>
 
 	* modules/extfs-method.c (read_directory_list): New parameter
