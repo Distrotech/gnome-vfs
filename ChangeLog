@@ -1,5 +1,17 @@
 2004-01-09  Alexander Larsson  <alexl@redhat.com>
 
+	* daemon/gnome-vfs-async-daemon.c:
+	* daemon/gnome-vfs-async-daemon.h:
+	* daemon/gnome-vfs-daemon-dir-handle.c:
+	* daemon/gnome-vfs-daemon-dir-handle.h:
+	* daemon/gnome-vfs-daemon-handle.c:
+	* daemon/gnome-vfs-daemon-handle.h:
+	* daemon/gnome-vfs-daemon.c:
+	* daemon/gnome-vfs-daemon.h:
+	Add GPL headers to vfs-daemon code.
+
+2004-01-09  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/Makefile.am:
 	* modules/network-method.c:
 	* modules/default-modules.conf:
