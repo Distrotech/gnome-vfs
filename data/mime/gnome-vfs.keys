@@ -29,7 +29,7 @@ application/mac-binhex40
 	description=Macintosh BinHex archive
 
 application/octet-stream
-	description=Binary data
+	description=Unknown data
 
 application/oda
 	description=ODA document
@@ -40,8 +40,20 @@ application/pgp
 application/pdf
 	description=PDF document
 
+application/pgp-encrypted
+	description=PGP encrypted data
+
+application/pgp-keys
+	description=PGP keys
+
 application/pgp-signature
 	description=PGP signature
+
+application/pkcs7-mime
+	description=S/MIME data
+
+application/pkcs7-signature
+	description=S/MIME signature
 
 application/postscript
 	description=PostScript document
@@ -234,6 +246,12 @@ font/x-pcf
 image/bmp
 	description=Windows bitmap
 
+image/cgm
+	description=CGM image
+
+image/g3fax
+	description=G3 fax image
+
 image/gif
 	description=GIF image
 
@@ -242,6 +260,9 @@ image/ief
 
 image/jpeg
 	description=JPEG image
+
+image/png
+	description=PNG image
 
 image/svg
 	description=SVG art
@@ -288,8 +309,53 @@ image/x-xpixmap
 image/x-xwindowdump
 	description=X window image
 
+message/delivery-status
+	description=mail delivery report
+
+message/disposition-notification
+	description=mail disposition report
+
+message/external-body
+	description=pointer to remote data
+
+message/news
+	description=USENET news message
+
+message/partial
+	description=partial email message
+
+message/rfc822
+	description=email message
+
 message/x-gnu-rmail
 	description=GNU mail message
+
+model/vrml
+	description=VRML data
+
+multipart/appledouble
+	description=Macintosh AppleDouble-encoded document
+
+multipart/alternative
+	description=message in several formats
+
+multipart/digest
+	description=message digest
+
+multipart/encrypted
+	description=encrypted message
+
+multipart/mixed
+	description=multi-part message
+
+multipart/related
+	description=compound document
+
+multipart/report
+	description=mail system report
+
+multipart/signed
+	description=signed message
 
 special/directory
 	description=directory
@@ -297,14 +363,26 @@ special/directory
 special/symlink
 	description=link
 
+text/calendar
+	description=calendar information
+
 text/css
 	description=style sheet
+
+text/directory
+	description=directory information
+
+text/enriched
+	description=enriched text
 
 text/html
 	description=HTML document
 
 text/plain
 	description=plain text
+
+text/rfc822-headers
+	description=email headers
 
 text/richtext
 	description=rich text
@@ -314,9 +392,6 @@ text/sgml
 
 text/tab-separated-values
 	description=tab-separated text
-
-text/vnd.latext-z
-	description=LaTeX document
 
 text/xml
 	description=XML document
@@ -330,7 +405,7 @@ text/x-authors
 text/x-c
 	description=C source code
 
-text/x-C++
+text/x-c++
 	description=C++ source code
 
 text/x-comma-separated-values
@@ -370,7 +445,7 @@ text/x-python
 	description=Python script
 
 text/x-readme
-	description=text
+	description=README file
 
 text/x-scheme
 	description=Scheme source code
@@ -416,8 +491,3 @@ video/x-msvideo:
 
 video/x-sgi-movie
 	description=SGI movie
-
-
-
-
-

@@ -1,3 +1,14 @@
+2000-05-10  Dan Winship  <danw@helixcode.com>
+
+	* data/mime/gnome-vfs.keys: Add message/* and multipart/* mime
+	types. They aren't useful for identifying files, but they may be
+	useful for mail programs, and it would be dumb to have a separate
+	MIME type database for that. Also fix up some descriptions, add
+	some more types, and remove text/vnd.latex-z, because it's not
+	what you think (and not useful).
+
+	* data/mime/gnome-vfs.mime: Sync.
+
 2000-05-09  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-gen-mimedb: Removed from CVS. 

@@ -51,9 +51,6 @@ application/rtf
 application/smil
 	ext: smil smi sml
 
-application/zip
-	ext: zip
-
 application/x-applix-spreadsheet
         ext: as
 
@@ -214,6 +211,9 @@ application/x-wais-source
 application/x-zoo
 	ext: zoo
 
+application/zip
+	ext: zip
+
 
 
 audio/basic
@@ -283,6 +283,9 @@ image/ief
 image/jpeg
 	ext: jpe jpeg jpg JPG
 
+image/png
+	ext: png
+
 image/svg
 	ext: svg
 
@@ -325,9 +328,6 @@ image/x-lwo
 
 image/x-lws
         ext: lws
-
-image/x-png
-	ext: png
 
 image/x-portable-anymap
 	ext: pnm
@@ -398,9 +398,6 @@ text/sgml
 text/tab-separated-values
 	ext: tsv
 
-text/vnd.latex-z
-	ext: latex
-
 text/xml
 	ext: xml
 
@@ -410,7 +407,7 @@ text/x-authors:
 text/x-c
 	ext: c h
 
-text/x-C++
+text/x-c++
 	ext: cc C cpp
 
 text/x-comma-separated-values
