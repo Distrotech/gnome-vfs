@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2001-03-01 21:17+0100\n"
+"POT-Creation-Date: 2001-03-11 19:43+0100\n"
 "PO-Revision-Date: 2000-07-07 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -127,7 +127,7 @@ msgstr "vektorska grafika DXF"
 
 #: data/mime/gnome-vfs.keys.in.h:29
 msgid "Debian package"
-msgstr "Debianov paket"
+msgstr "paket Debian"
 
 #: data/mime/gnome-vfs.keys.in.h:30
 msgid "Dia diagram"
@@ -199,7 +199,7 @@ msgstr "nastavitev GTK"
 
 #: data/mime/gnome-vfs.keys.in.h:47
 msgid "Glade project"
-msgstr "projekt Glade"
+msgstr "projekt Gladea"
 
 #: data/mime/gnome-vfs.keys.in.h:48
 msgid "GnuCash Workbook"
@@ -243,7 +243,7 @@ msgstr "zvok Impulse trackerja"
 
 #: data/mime/gnome-vfs.keys.in.h:58
 msgid "JBuilder Project"
-msgstr "projekt JBuilder"
+msgstr "projekt JBuilderja"
 
 #: data/mime/gnome-vfs.keys.in.h:59
 msgid "JPEG image"
@@ -263,19 +263,19 @@ msgstr "podrobnosti KDE programa"
 
 #: data/mime/gnome-vfs.keys.in.h:63
 msgid "KIllustrator document"
-msgstr "dokument KIllustrator"
+msgstr "dokument KIllustratoja"
 
 #: data/mime/gnome-vfs.keys.in.h:64
 msgid "KPresenter presentation"
-msgstr "predstavitev KPresenter"
+msgstr "predstavitev KPresenterja"
 
 #: data/mime/gnome-vfs.keys.in.h:65
 msgid "KSpread spreadsheet"
-msgstr "preglednica KSpread"
+msgstr "preglednica KSpreada"
 
 #: data/mime/gnome-vfs.keys.in.h:66
 msgid "KWord document"
-msgstr "dokument KWord-a"
+msgstr "dokument KWorda"
 
 #: data/mime/gnome-vfs.keys.in.h:67
 msgid "Korn shell script"
@@ -307,7 +307,7 @@ msgstr "konzolska pisava Linux PSF"
 
 #: data/mime/gnome-vfs.keys.in.h:74
 msgid "Lotus 1-2-3 spreadsheet"
-msgstr "preglednica Louts 1-2-3"
+msgstr "preglednica Lotus-1-2-3"
 
 #: data/mime/gnome-vfs.keys.in.h:75
 msgid "M3 audio URL"
@@ -575,11 +575,11 @@ msgstr "pisava Speedo"
 
 #: data/mime/gnome-vfs.keys.in.h:141
 msgid "Spreadsheet Interchange document"
-msgstr "dokument preglednice Interchange"
+msgstr "izmenjalna preglednica Interexchange"
 
 #: data/mime/gnome-vfs.keys.in.h:142
 msgid "Stampede package"
-msgstr "Stampedov paket"
+msgstr "paket Stampede"
 
 #: data/mime/gnome-vfs.keys.in.h:143
 msgid "StarOffice Writer document"
@@ -1409,272 +1409,12 @@ msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ne morem ustvariti cevi GIOChannel: %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1574
-#, c-format
 msgid "Unknown job kind %u"
 msgstr "Neznana vrsta posla %u"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1605
 msgid "Operation stopped"
 msgstr "Operacija ustavljena"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:1
-msgid "File Types and Programs"
-msgstr "Tipi datotek in programi"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:2
-msgid "Specify which programs are used to open or view each file type"
-msgstr ""
-"Navedi kateri programi se uporabljajo za odprtje in pogled katerih vrst "
-"datotek"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-msgid "MIME Type"
-msgstr "Tip MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:742
-msgid "Change Icon"
-msgstr "Spremeni ikono"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:749
-msgid "Change File Extensions"
-msgstr "Spremeni pripone datotek"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:757
-msgid "Default Action:"
-msgstr "Privzeto dejanje:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:769
-msgid "Use Viewer"
-msgstr "Uporabi pregledovalnik"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:775
-msgid "Open With Application"
-msgstr "Odpri s programom"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:786
-msgid "Edit List"
-msgstr "Uredi seznam"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:811
-msgid "Add New MIME Type..."
-msgstr "Dodaj nov tip MIME..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-msgid "Delete This MIME Type"
-msgstr "Zbri¹i ta tip MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:828
-msgid "Revert to System Defaults"
-msgstr "Vrni na privzete sistemske nastavitve"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
-msgid "None"
-msgstr "Brez"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
-msgid ""
-"Reverting to system settings will lose any changes\n"
-"you have ever made to File Types and Programs.\n"
-"Revert anyway?"
-msgstr ""
-"Vrnitev na privzete sistemske\n"
-"nastavitve bo povzroèila izgubo vseh\n"
-"osebnih nastavitev v \"Tipi datotek in programi\".\n"
-"Vseeno povrni na sistemske nastavitve?"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-msgid "none"
-msgstr "brez"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
-#, c-format
-msgid "View as %s"
-msgstr "Poglej kot %s"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
-msgid "Description"
-msgstr "Opis"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
-msgid "Extension"
-msgstr "Pripona"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-msgid "Default Action"
-msgstr "Privzeto Dejanje"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
-msgid "Edit Applications List"
-msgstr "Uredi seznam programov"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
-#, c-format
-msgid "Select applications to appear in menu for MIME type \"%s\""
-msgstr "Izberi programe, ki naj se ka¾ejo v menuju tipov MIME \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:433
-msgid "Add Application..."
-msgstr "Dodaj program..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:440
-msgid "Edit Application..."
-msgstr "Uredi program..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
-msgid "Delete Application"
-msgstr "Zbri¹i program"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:480
-msgid "Edit Components List"
-msgstr "Uredi seznam komponent"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:500
-#, c-format
-msgid "Select views to appear in menu for MIME type \"%s\""
-msgstr "Izberi poglede, ki naj se ka¾ejo v menuju tipov MIME \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:720
-msgid ""
-"The MIME type entered contained upper case characters. Upper case characters "
-"were changed to lower case for you."
-msgstr ""
-"Vpisan tip MIME je vseboval velike èrke. Samodejno so bile spremenjene v "
-"male."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:723
-msgid "Add New MIME Type"
-msgstr "Dodaj nov tip MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
-msgid "Add MIME Type"
-msgstr "Dodaj tip MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:773
-msgid "New MIME type (e.g. image/x-thumper):"
-msgstr "Nov tip MIME (npr.: image/x-thumper):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:780
-msgid "Description (e.g. Thumper image):"
-msgstr "Opis (npr.: sluka Thumper)"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:947
-msgid "File Extensions "
-msgstr "Pripone datotek "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:967
-msgid "Add..."
-msgstr "Dodaj..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:972
-msgid "    Remove    "
-msgstr "    Odstrani  "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1041
-msgid "Add New Extension"
-msgstr "Dodaj novo pripono"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
-msgid ""
-"Type in the extensions for this mime-type (without dot).\n"
-"You can enter several extensions seperated by a space,\n"
-"for example: html htm"
-msgstr ""
-"Vnesite pripone za ta tip mime (brez pike).\n"
-"Lahko vpi¹ete veè pripon loèenih s presledki,\n"
-"Na primer: html htm"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
-msgid "Extension:"
-msgstr "Pripona:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
-msgid "You must enter a name."
-msgstr "Vpisati morate ime."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
-msgid "You must enter a command."
-msgstr "Vpisati morate ukaz."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
-#, c-format
-msgid ""
-"\"%s\" does not exist or is not executable.\n"
-"Check your spelling and make sure you have\n"
-"the right permissions to execute this file."
-msgstr ""
-"\"%s\" ne obstaja ali ni izvedljiva.\n"
-"Preverite èrkovanje in se preprièajte ali\n"
-"imate prava dovoljenja za izvedbo te datoteke."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
-#, c-format
-msgid ""
-"The command \"%s\" cannot be found.\n"
-"You must use a command that can work from any command line."
-msgstr ""
-"Ukaza \"%s\" ni mogoèe najti.\n"
-"Uporabiti morate ukaz, ki deluje iz vsake ukazne vrstice."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
-msgid "Bad Application Name"
-msgstr "Slabo ime programa"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
-msgid "Bad Application Command"
-msgstr "Slab ukaz programa"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
-msgid "Add Application"
-msgstr "Dodaj program"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
-msgid "Edit Application"
-msgstr "Uredi program"
-
-#. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1271
-msgid "Application Name:"
-msgstr "Ime programa:"
-
-#. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1282
-msgid "Application Command:"
-msgstr "Ukaz programa:"
-
-#. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
-msgid "Open Behavior"
-msgstr "Odpri obna¹anje"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1299
-msgid "Can open multiple files"
-msgstr "Lahko odpre veè datotek"
-
-#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
-msgid "Can open from URI"
-msgstr "Lahko odpre iz URI-a"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
-msgid "Can't find an hbox, using a normal file selection"
-msgstr "Ne najdem hbox, uporabljam obièajno izbiranje datotek"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
-msgid "Preview"
-msgstr "Predogled"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
-msgid "Select an icon"
-msgstr "Izberi ikono"
 
 #: modules/efs-method.c:493 modules/file-method.c:371
 #, c-format
@@ -1765,39 +1505,169 @@ msgstr "Ka¾i:"
 msgid "Show dotfiles"
 msgstr "Ka¾i nastavitevene datoteke"
 
+#~ msgid "Edit Applications List"
+#~ msgstr "Uredi seznam programov"
+
+#~ msgid "Select applications to appear in menu for mime type \"%s\""
+#~ msgstr "Izberi programe, ki naj se ka¾ejo v menuju tipov mime \"%s\""
+
+#~ msgid "Add Application..."
+#~ msgstr "Dodaj program..."
+
+#~ msgid "Edit Application..."
+#~ msgstr "Uredi program..."
+
+#~ msgid "Delete Application"
+#~ msgstr "Zbri¹i program"
+
+#~ msgid "Edit Components List"
+#~ msgstr "Uredi seznam komponent"
+
+#~ msgid "Select views to appear in menu for mime type \"%s\""
+#~ msgstr "Izberi poglede, ki naj se ka¾ejo v menuju tipov mime \"%s\""
+
 #~ msgid ""
-#~ "Add a new MIME Type\n"
-#~ "For example:  image/tiff; text/x-scheme"
+#~ "The MIME type entered contained upper case characters. Upper case characters "
+#~ "were changed to lower case for you."
 #~ msgstr ""
-#~ "Dodaj nov tip MIME\n"
-#~ "Na primer:  image/tiff; text/x-scheme"
+#~ "Vpisan tip MIME je vseboval velike èrke. Samodejno so bile spremenjene v "
+#~ "male."
 
-#~ msgid "MIME Type:"
-#~ msgstr "Tip MIME:"
-
-#~ msgid "Type a description for this MIME type."
-#~ msgstr "Vnesite opis tega tipa MIME."
-
-#~ msgid "Description:"
-#~ msgstr "Opis:"
-
-#~ msgid "New Application"
-#~ msgstr "Nov program"
-
-#~ msgid "Expects URIs as arguments"
-#~ msgstr "Kot argumente prièakuje URIje"
-
-#~ msgid "Add new MIME type..."
-#~ msgstr "Dodaj nov tip MIME..."
-
-#~ msgid "No Description"
-#~ msgstr "Ni opisa"
+#~ msgid "Add New MIME Type"
+#~ msgstr "Dodaj nov tip MIME"
 
 #~ msgid "Add Mime Type"
 #~ msgstr "Dodaj tip Mime"
 
+#~ msgid ""
+#~ "Add a new Mime Type\n"
+#~ "For example:  image/tiff; text/x-scheme"
+#~ msgstr ""
+#~ "Dodaj nov tip Mime\n"
+#~ "Na primer:  image/tiff; text/x-scheme"
+
+#~ msgid "Mime Type:"
+#~ msgstr "Tip mime:"
+
+#~ msgid "Type in a description for this mime-type."
+#~ msgstr "Vnesite opis tega tipa mime."
+
+#~ msgid "Description:"
+#~ msgstr "Opis:"
+
+#~ msgid "File Extensions "
+#~ msgstr "Pripone datotek "
+
+#~ msgid "Add..."
+#~ msgstr "Dodaj..."
+
+#~ msgid "    Remove    "
+#~ msgstr "    Odstrani  "
+
+#~ msgid "Add New Extension"
+#~ msgstr "Dodaj novo pripono"
+
+#~ msgid ""
+#~ "Type in the extensions for this mime-type.\n"
+#~ "For example:  .html, .htm"
+#~ msgstr ""
+#~ "Vnesite novo pripono za ta tip mime.\n"
+#~ "Na primer:  .html, .htm"
+
+#~ msgid "Extension:"
+#~ msgstr "Pripona:"
+
+#~ msgid "New Application"
+#~ msgstr "Nov program"
+
+#~ msgid "Application Name:"
+#~ msgstr "Ime programa:"
+
+#~ msgid "Application Command:"
+#~ msgstr "Ukaz programa:"
+
+#~ msgid "Open Behavior"
+#~ msgstr "Odpri obna¹anje"
+
+#~ msgid "Can open multiple files"
+#~ msgstr "Lahko odpre veè datotek"
+
+#~ msgid "Expects URIs as arguments"
+#~ msgstr "Kot argumente prièakuje URIje"
+
+#~ msgid "Edit Application"
+#~ msgstr "Uredi program"
+
+#~ msgid "Can open from URI"
+#~ msgstr "Lahko odpre iz URI-a"
+
 #~ msgid "Mime Type"
 #~ msgstr "Tip Mime"
+
+#~ msgid "Change Icon"
+#~ msgstr "Spremeni ikono"
+
+#~ msgid "Change File Extensions"
+#~ msgstr "Spremeni pripone datotek"
+
+#~ msgid "Default Action:"
+#~ msgstr "Privzeto dejanje:"
+
+#~ msgid "Use Viewer"
+#~ msgstr "Uporabi pregledovalnik"
+
+#~ msgid "Open With Application"
+#~ msgstr "Odpri s programom"
+
+#~ msgid "Edit List"
+#~ msgstr "Uredi seznam"
+
+#~ msgid "Add new Mime type..."
+#~ msgstr "Dodaj nov tip Mime..."
+
+#~ msgid "Delete this Mime type..."
+#~ msgstr "Zbri¹i ta tip Mime..."
+
+#~ msgid "Revert to System Defaults"
+#~ msgstr "Vrni na privzete sistemske nastavitve"
+
+#~ msgid "No Description"
+#~ msgstr "Ni opisa"
+
+#~ msgid "None"
+#~ msgstr "Brez"
+
+#~ msgid ""
+#~ "Reverting to system settings\n"
+#~ "will lose all your personal \n"
+#~ "Mime configuration.\n"
+#~ "Revert to System Settings ?\n"
+#~ msgstr ""
+#~ "Vrnitev na privzete sistemske\n"
+#~ "nastavitve bo povzroèila izgubo vseh\n"
+#~ "osebnih Mime nastavitev.\n"
+#~ "Vrni na sistemske nastavitve ?\n"
+
+#~ msgid "none"
+#~ msgstr "brez"
+
+#~ msgid "View as %s"
+#~ msgstr "Poglej kot %s"
+
+#~ msgid "Description"
+#~ msgstr "Opis"
+
+#~ msgid "Extension"
+#~ msgstr "Pripona"
+
+#~ msgid "Default Action"
+#~ msgstr "Privzeto Dejanje"
+
+#~ msgid "Can't find an hbox, using a normal file selection"
+#~ msgstr "Ne najdem hbox, uporabljam obièajno izbiranje datotek"
+
+#~ msgid "Preview"
+#~ msgstr "Predogled"
 
 #~ msgid "Unknown sort rule %d"
 #~ msgstr "Neznano pravilo urejanja %d"
@@ -1822,6 +1692,9 @@ msgstr "Ka¾i nastavitevene datoteke"
 
 #~ msgid "Default Viewer:"
 #~ msgstr "Privzet Prikazovalnik:"
+
+#~ msgid "Select an icon..."
+#~ msgstr "Izberi ikono..."
 
 #~ msgid "No Default"
 #~ msgstr "Ni Privzeto"
