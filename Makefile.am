@@ -4,7 +4,11 @@ else
 SUBDIRS_OAF=
 endif
 
+if HAVE_GCONF
+SUBDIRS_GCONF=mime-type-capplet
+else
 SUBDIRS_GCONF=
+endif
 
 SUBDIRS =					\
 	libgnomevfs				\
@@ -16,6 +20,7 @@ SUBDIRS =					\
 	man					\
 	devel-docs				\
 	$(SUBDIRS_GCONF)			\
+	test					\
 	po
 
 
