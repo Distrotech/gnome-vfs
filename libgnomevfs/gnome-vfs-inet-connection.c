@@ -23,6 +23,7 @@
 
 #include <config.h>
 #include "gnome-vfs-inet-connection.h"
+#include "gnome-vfs-private-utils.h"
 
 #include <errno.h>
 #include <glib/gmem.h>
@@ -39,8 +40,12 @@
 extern int h_errno;
 
 struct GnomeVFSInetConnection {
+#ifdef ENABLE_IPV6
+	struct sockaddr_in6 addr6;
+#endif
 	struct sockaddr_in addr;
 	guint sock;
+	guint socklen;
 };
 
 /**
@@ -63,6 +68,10 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 				  GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSInetConnection *new;
+#ifdef ENABLE_IPV6
+	struct addrinfo hints, *result, *res;
+	int ret;
+#endif
 	struct hostent *host_info;
 	struct sockaddr_in addr;
 	gint sock;
@@ -71,33 +80,109 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 	g_return_val_if_fail (host_name != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (host_port != 0, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	sock = socket (PF_INET, SOCK_STREAM, 0);
-	if (sock < 0)
-		return gnome_vfs_result_from_errno ();
+#ifdef ENABLE_IPV6
+	if (_gnome_vfs_have_ipv6 ()) {
+		result = NULL;
+		ret = 0;
+		sock = 0;
 
-	host_info = gethostbyname (host_name);
-	if (gnome_vfs_cancellation_check (cancellation)) {
-		return GNOME_VFS_ERROR_CANCELLED;
+		memset (&hints, 0, sizeof (hints));
+		hints.ai_socktype = SOCK_STREAM;
+
+		if (getaddrinfo (host_name, NULL, &hints, &result) != 0) {
+			return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+		}
+
+		if (gnome_vfs_cancellation_check (cancellation)) {
+			return GNOME_VFS_ERROR_CANCELLED;
+		}
+
+		/*For selecting a valid IP of the List*/
+		for (res = result; res; res = res->ai_next) {
+
+			if (res->ai_family != AF_INET && res->ai_family != AF_INET6) {
+				continue;
+			}
+
+			sock = socket (res->ai_family, SOCK_STREAM, 0);
+			if (sock < 0) {
+				continue;
+			}
+
+			if (res->ai_family == AF_INET) {
+				((struct sockaddr_in *)res->ai_addr)->sin_port = htons (host_port);
+			}
+
+			if (res->ai_family == AF_INET6) {
+				((struct sockaddr_in6 *)res->ai_addr)->sin6_port = htons (host_port);
+			}
+
+			ret = connect (sock, res->ai_addr, res->ai_addrlen);
+			if (ret == 0) {
+				break;
+			}
+
+			close (sock);
+		}
+
+		if (!res) {
+			freeaddrinfo (result);
+
+			if (sock < 0 || ret < 0) {
+				/*Error in connection or socket creation.*/
+				return gnome_vfs_result_from_errno ();
+			} else {
+				/*Error: No IPv4 or IPv6 address.*/
+				return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+			}
+		}
+
+		new = g_new (GnomeVFSInetConnection, 1);
+
+		if (res->ai_family == AF_INET) { 
+			memcpy (&new->addr, res->ai_addr, res->ai_addrlen);
+		}
+
+		if (res->ai_family == AF_INET6) {
+			memcpy (&new->addr6, res->ai_addr, res->ai_addrlen);
+		}
+
+		new->socklen = res->ai_addrlen;
+		new->sock = sock;
+		freeaddrinfo (result);
 	}
+	else
+#endif
+	{
+		sock = socket (PF_INET, SOCK_STREAM, 0);
+		if (sock < 0) {
+			return gnome_vfs_result_from_errno ();
+		}
 
-	if (host_info == NULL) {
-		return gnome_vfs_result_from_h_errno ();
+		host_info = gethostbyname (host_name);
+		if (gnome_vfs_cancellation_check (cancellation)) {
+			return GNOME_VFS_ERROR_CANCELLED;
+		}
+
+		if (host_info == NULL) {
+			return gnome_vfs_result_from_h_errno ();
+		}
+
+		addr.sin_family = host_info->h_addrtype;
+		addr.sin_addr = * (struct in_addr *) host_info->h_addr;
+		addr.sin_port = htons (host_port);
+
+		if (connect (sock, (struct sockaddr *) &addr, sizeof (addr)) < 0) {
+			return gnome_vfs_result_from_errno ();
+		}
+
+		new = g_new (GnomeVFSInetConnection, 1);
+		memcpy (&new->addr, &addr, sizeof (addr));
+		new->socklen = sizeof(addr);
+		new->sock = sock;
+
 	}
-
-	addr.sin_family = host_info->h_addrtype;
-	addr.sin_addr = * (struct in_addr *) host_info->h_addr;
-	addr.sin_port = htons (host_port);
-
-	if (connect (sock, (struct sockaddr *) &addr, sizeof (addr)) < 0) {
-		return gnome_vfs_result_from_errno ();
-	}
-
-	new = g_new (GnomeVFSInetConnection, 1);
-	memcpy (&new->addr, &addr, sizeof (addr));
-	new->sock = sock;
-
 	*connection_return = new;
-
 	return GNOME_VFS_OK;
 }
 

@@ -39,3 +39,4 @@
 #undef FSTYPE_GETMNT
 
 #undef HAVE_GNUTLS
+#undef ENABLE_IPV6

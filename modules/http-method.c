@@ -62,6 +62,7 @@
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include <netdb.h>
 
 #define EAZEL_XML_NS "http://services.eazel.com/namespaces"
 
@@ -226,6 +227,22 @@ static gboolean check_authn_retry_request 	 (HttpFileHandle * http_handle,
 			   			  enum AuthnHeaderType authn_which,
 			   			  const char *prev_authn_header);
 
+#ifdef ENABLE_IPV6
+/*Check whether the node is IPv6 enabled.*/
+static gboolean
+have_ipv6 (void)
+{
+	int s;
+
+	s = socket (AF_INET6, SOCK_STREAM, 0);
+	if (s != -1) {
+		close (s);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+#endif
 
 static GnomeVFSFileInfo *
 defaults_file_info_new (void)
@@ -852,6 +869,10 @@ host_port_from_string (const char *http_proxy,
 static gboolean
 proxy_should_for_hostname (const char *hostname)
 {
+#ifdef ENABLE_IPV6
+	struct addrinfo hints, *res, *result;
+	struct in6_addr in6;
+#endif
 	struct in_addr in, in_loop, in_mask;
 	gboolean ret;
 
@@ -863,10 +884,62 @@ proxy_should_for_hostname (const char *hostname)
 	inet_aton("127.0.0.0", &in_loop); 
 	inet_aton("255.0.0.0", &in_mask); 
 
-	if (hostname != NULL 
-		&& (g_ascii_strcasecmp (hostname, "localhost") == 0 || (inet_aton (hostname, &in) != 0
-			&& ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
-		ret = FALSE;
+	memset (&in, 0, sizeof (in));
+
+#ifdef ENABLE_IPV6
+	if (have_ipv6 ()) {
+		result = NULL;
+
+		memset (&in6, 0, sizeof (in6));
+
+		memset (&hints, 0, sizeof (hints));
+		hints.ai_socktype = SOCK_STREAM;
+
+		if (getaddrinfo (hostname, NULL, &hints, &result) == 0) {
+			
+			for (res = result; res; res = res->ai_next) {
+
+				if (res->ai_family == AF_INET6 || res->ai_family == AF_INET) {
+					break;
+				}
+			}
+
+			if (res) {
+				if (res->ai_family == AF_INET6) {
+					memcpy (&in6, &((struct sockaddr_in6 *)res->ai_addr)->sin6_addr, sizeof (struct in6_addr));
+					if (IN6_IS_ADDR_V4MAPPED (&in6)) {
+						/*Converting IPv4-mapped IPv6 address to IPv4 address.*/
+						memcpy (&in, &in6.s6_addr[12], 4);
+					}
+				}
+			
+				if (res->ai_family == AF_INET) { 
+					memcpy (&in, &((struct sockaddr_in *)res->ai_addr)->sin_addr, sizeof (struct in_addr));
+				}
+			}
+
+			/*to test for the ipv4 addresses on a ipv6 enabled machine*/
+			if (hostname != NULL
+			    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (res
+			    && ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
+				ret = FALSE;
+			} else {
+				if (hostname != NULL
+				    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (res
+				    && (IN6_IS_ADDR_LOOPBACK (&in6) || IN6_IS_ADDR_LINKLOCAL (&in6))))) {
+					ret = FALSE;
+				}
+			}
+		}
+	}
+	else
+#endif
+	{
+		if (hostname != NULL 
+		    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (inet_aton (hostname, &in) != 0
+		    && ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
+			ret = FALSE;
+		}
 	}
 
 	return ret;

@@ -35,6 +35,8 @@
 
 G_BEGIN_DECLS
 
+gboolean	 _gnome_vfs_have_ipv6			 (void);
+
 gchar   	*_gnome_vfs_canonicalize_pathname         (char *path);
 GnomeVFSResult   gnome_vfs_remove_optional_escapes 	 (char *escaped_uri);
 

@@ -23,6 +23,7 @@
 
 #include "cdda-cddb.h"
 
+#include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -70,6 +71,23 @@ static void CDDBWriteLine(char *header,int num,char *data,FILE *outfile);
 static char *cddb_genres[] = {"unknown","blues","classical","country",
 			      "data","folk","jazz","misc","newage",
 			      "reggae","rock","soundtrack"};
+
+#ifdef ENABLE_IPV6
+/*Check whether the node is IPv6 enabled.*/
+static gboolean
+have_ipv6 (void)
+{
+	int s;
+
+	s = socket (AF_INET6, SOCK_STREAM, 0);
+	if (s != -1) {
+		close (s);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+#endif
 
 /* CDDB sum function */
 static int 
@@ -134,10 +152,30 @@ static int
 CDDBConnect (CDDBServer *server)
 {
 	int sock;
+#ifdef ENABLE_IPV6
+	struct sockaddr_in6 sin6;
+	struct addrinfo hints, *result, *res;  /*info abt the IP of node*/
+#endif
 	struct sockaddr_in sin;
 	struct hostent *host;
 	char *sname;
   
+#ifdef ENABLE_IPV6
+	if (have_ipv6 ()) {
+		result = NULL;
+
+		memset (&sin6, 0 , sizeof (sin6));	
+		sin6.sin6_family = AF_INET6;
+
+		if (server->use_proxy) {
+			sin6.sin6_port = htons (server->proxy->port);
+		} else {
+			sin6.sin6_port = htons (server->port);
+		}
+	}
+#endif
+
+	memset (&sin, 0, sizeof (sin));
 	sin.sin_family = AF_INET;
 
 	if (server->use_proxy)
@@ -150,22 +188,81 @@ CDDBConnect (CDDBServer *server)
 	else
 		sname=server->name;
   
+#ifdef ENABLE_IPV6
+	if (have_ipv6 ()) {
+		memset (&hints, 0, sizeof (hints));
+		hints.ai_socktype = SOCK_STREAM;
+
+		if ((getaddrinfo (sname, NULL, &hints, &result)) != 0) {
+			return -1;
+		}
+      
+		for (res = result; res; res = res->ai_next) {
+
+			if (res->ai_family != AF_INET && res->ai_family != AF_INET6) {
+				continue;
+			}
+
+			sock = socket (res->ai_family, SOCK_STREAM, 0);
+			if (sock < 0) {
+				continue;
+			}
+
+			if (res->ai_family == AF_INET) {
+				memcpy (&sin.sin_addr, &((struct sockaddr_in *)res->ai_addr)->sin_addr, sizeof (struct in_addr));
+
+				if (connect (sock, (struct sockaddr *)&sin, sizeof (sin)) != -1) {
+					break;
+				}
+			}
+
+			if (res->ai_family == AF_INET6) {
+				memcpy (&sin6.sin6_addr, &((struct sockaddr_in6 *)res->ai_addr)->sin6_addr, sizeof (struct in6_addr));
+        
+				if (connect (sock, (struct sockaddr *)&sin6, sizeof (sin6)) != -1) {
+					break;
+				}
+			}
+
+			close (sock);
+		}
+
+		freeaddrinfo (result);
+
+		if (!res) {
+			/* No valid address found. */
+			return -1;
+		}
+	} else
+#endif  /*IPv4*/
+	{
+		sin.sin_addr.s_addr = inet_addr (sname);
 #ifdef SOLARIS
-  if((sin.sin_addr.s_addr = inet_addr(sname)) == (unsigned long)-1)
+		if (sin.sin_addr.s_addr == (unsigned long)-1)
 #else
-  if((sin.sin_addr.s_addr = inet_addr(sname))==INADDR_NONE)
+		if (sin.sin_addr.s_addr == INADDR_NONE)
 #endif
-  {
-    if((host = gethostbyname(sname))==NULL) return -1;
+		{
+			host = gethostbyname (sname);
+			if (host == NULL) {
+				return -1;
+			}
 
-    bcopy(host->h_addr,&sin.sin_addr,host->h_length);
-  }
+			bcopy (host->h_addr, &sin.sin_addr, host->h_length);
+		}
 
-  if((sock=socket(AF_INET,SOCK_STREAM,0))<0) return -1;
+		sock = socket (AF_INET, SOCK_STREAM, 0);
+		if (sock < 0) {
+			return -1;
+		}
   
-  if(connect(sock,(struct sockaddr *)&sin,sizeof(sin))<0) return -1;
-  
-  return sock;
+		if (connect (sock, (struct sockaddr *)&sin, sizeof (sin)) < 0) {
+			return -1;
+		}
+
+	}
+
+	return sock;
 }
 
 

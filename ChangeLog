@@ -1,5 +1,50 @@
-==== gnome-vfs 2.2.4 ====
+2003-04-02  Shailesh Mittal  <shailesh.mittal@wipro.com>
+
+	* configure.in :
+	Added option for enabling IPv6 support, and only enabling
+	IPv6 support if AF_INET6 and function getaddrinfo are
+	defined there.
+
+	* libgnomevfs/gnome-vfs-inet-connection.c :
+	Added a field addr6 of #sockaddr_in6 type in structure
+	GnomeVFSInetConnection, for holding IPv6 address.
+	One more field socklen is added to the definition of
+	structure GnomeVFSInetConnection to hold the length of
+	socket for identification of address family.
+	(gnome_vfs_inet_connection_create):
+	Modified to have support for IPv6 addresses too.
+	Included <gnome-vfs-private-utils.h> for prototype of the
+	function _gnome_vfs_have_ipv6 ().
+
+	* libgnomevfs/gnome-vfs-private-utils.c :
+	(_gnome_vfs_have_ipv6):
+	Function added to check for run-time IPv6 support.
+
+	* libgnomevfs/gnome-vfs-private-utils.h :
+	Added prototype for function _gnome_vfs_have_ipv6 ().
+
+	* libgnomevfs/gnome-vfs-ssl.c (gnome_vfs_ssl_create) :
+	Modified to have support for IPv6 addresses as well.
+	Included <libgnomevfs/gnome-vfs-private-utils.h> for prototype of the
+	function _gnome_vfs_have_ipv6 ().
+
+	* modules/cdda-cddb.c :
+	Included "config.h" for having definition of macro ENABLE_IPV6.
+	(CDDBConnect) :
+	Modified to support IPv6 addresses in addition to IPv4.
+	(have_ipv6) :
+	Function added to check for run-time IPv6 support.
+
+	* modules/http-method.c :
+	Included header <netdb.h> for prototype of getaddrinfo().
+	(have_ipv6) :
+	Function added to check for run-time IPv6 support.
+	(proxy_should_for_hostname) :
+	It is modified to work with IPv6 and IPv4-Mapped IPv6 addresses
+	in addition to IPv4 addresses.
 	
+==== gnome-vfs 2.2.4 ====
+
 2003-03-31  Alexander Larsson  <alexl@redhat.com>
 
 	* NEWS: 

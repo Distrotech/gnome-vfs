@@ -33,6 +33,7 @@
 #include "gnome-vfs-ssl.h"
 
 #include "gnome-vfs-ssl-private.h"
+#include "gnome-vfs-private-utils.h"
 #include <glib/gmem.h>
 #include <string.h>
 
@@ -122,26 +123,86 @@ gnome_vfs_ssl_create (GnomeVFSSSL **handle_return,
 #if defined(HAVE_OPENSSL) || defined(HAVE_GNUTLS)
 	int fd;
 	int ret;
+#ifdef ENABLE_IPV6	
+	struct addrinfo hints, *result, *res;
+#endif
 	struct hostent *h;
 	struct sockaddr_in sin;
 
-        sin.sin_port = htons (port);
-	h = gethostbyname (host);
+#ifdef ENABLE_IPV6
+	if (_gnome_vfs_have_ipv6 ()) {
+		fd = 0;
+		ret = 0;
+		result = NULL;
 
-	if (h == NULL) {
-		/* host lookup failed */
-		return gnome_vfs_result_from_h_errno ();
+		memset (&hints, 0, sizeof (hints));
+		hints.ai_socktype = SOCK_STREAM;
+
+		if (getaddrinfo (host, NULL, &hints, &result) != 0) {
+			/* host lookup failed */
+			return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+		}
+
+		for (res = result; res; res = res->ai_next) {
+
+			if (res->ai_family != AF_INET && res->ai_family != AF_INET6) {
+				continue;
+			}
+
+			fd = socket (res->ai_family, SOCK_STREAM, 0);
+			if (fd < 0) {
+				continue;
+			}
+
+			if (res->ai_family == AF_INET) {
+				((struct sockaddr_in *)res->ai_addr)->sin_port = htons (port);
+			}
+
+			if (res->ai_family == AF_INET6) {
+				((struct sockaddr_in6 *)res->ai_addr)->sin6_port = htons (port);
+			}
+
+			ret = connect (fd, res->ai_addr, res->ai_addrlen);
+			if (ret != -1) {
+				break;
+			}
+			
+			close (fd);
+		}
+
+		freeaddrinfo (result);
+		if (!res) {
+			if (fd < 0 || ret < 0) {
+				/*Error in socket creation.*/
+				return gnome_vfs_result_from_errno ();
+			} else {
+				/*Error: No IPv4 or IPv6 address.*/
+				return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+			}
+		}
+	}
+	else
+#endif
+	{
+		sin.sin_port = htons (port);
+		h = gethostbyname (host);
+
+		if (h == NULL) {
+			/* host lookup failed */
+			return gnome_vfs_result_from_h_errno ();
+		}
+
+		sin.sin_family = h->h_addrtype;
+		memcpy (&sin.sin_addr, h->h_addr, sizeof (sin.sin_addr));
+
+		fd = socket (h->h_addrtype, SOCK_STREAM, 0);
+		if (fd < 0) {
+			return gnome_vfs_result_from_errno ();
+		}
+
+		ret = connect (fd, (struct sockaddr *)&sin, sizeof (sin));
 	}
 
-        sin.sin_family = h->h_addrtype;
-        memcpy (&sin.sin_addr, h->h_addr, sizeof (sin.sin_addr));
-
-        fd = socket (h->h_addrtype, SOCK_STREAM, 0);
-	if (fd < 0) {
-		return gnome_vfs_result_from_errno ();
-	}
-
-	ret = connect (fd, (struct sockaddr *)&sin, sizeof (sin));
 	if (ret == -1) {
 		/* connect failed */
 		return gnome_vfs_result_from_errno ();

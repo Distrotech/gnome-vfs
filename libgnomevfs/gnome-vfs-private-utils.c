@@ -37,9 +37,27 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
+#include <sys/socket.h>
 #include <sys/wait.h>
 #include <time.h>
 #include <unistd.h>
+
+/* Check whether the node is IPv6 enabled.*/
+gboolean
+_gnome_vfs_have_ipv6 ()
+{
+#ifdef ENABLE_IPV6
+	int s;
+
+	s = socket (AF_INET6, SOCK_STREAM, 0);
+	if (s != -1) {
+		close (s);
+		return TRUE;
+	}
+
+#endif
+	return FALSE;
+}
 
 static int
 find_next_slash (const char *path, int current_offset)
