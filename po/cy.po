@@ -11,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-30 15:33+0200\n"
-"PO-Revision-Date: 2004-02-23 19:51+0000\n"
-"Last-Translator: Rhys Jones <rhys@sucs.org>\n"
+"POT-Creation-Date: 2004-09-12 13:23+0100\n"
+"PO-Revision-Date: 2004-09-12 14:05+0100\n"
+"Last-Translator: Dafydd Harries <daf@muse.19inch.net>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : (n == 2) ? 1 : 2;\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -29,9 +29,9 @@ msgid "Could not initialize gnome vfs"
 msgstr "Methwyd ymgychwyn gnome vfs"
 
 #: libgnomevfs/eggdesktopentries.c:229
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "Methu gramadegu: %s"
+msgstr "Methwyd agor y ffeil: %s"
 
 #: libgnomevfs/eggdesktopentries.c:328
 #, c-format
@@ -39,77 +39,81 @@ msgid "Failed to open file '%s': %s"
 msgstr "Methwyd agor ffeil '%s': %s"
 
 #: libgnomevfs/eggdesktopentries.c:341
-#, fuzzy
 msgid "File is empty"
-msgstr "Mae'r ffeil yn bodoli"
+msgstr "Mae'r ffeil yn wag"
 
 #: libgnomevfs/eggdesktopentries.c:363
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr "Methwyd agor ffeil '%s': %s"
+msgstr "Methwyd darllen o'r ffeil '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:578
+#: libgnomevfs/eggdesktopentries.c:575
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
+"mae'r cofnodion penbwrdd yn cynnwys llinell '%s' nad yw'r gofnod, grŵp na sylw"
 
-#: libgnomevfs/eggdesktopentries.c:654
+#: libgnomevfs/eggdesktopentries.c:648
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "nid yw'r ffeil cofnodion penbwrdd yn cychwyn gyda grŵp cychwyn dilys"
 
-#: libgnomevfs/eggdesktopentries.c:711
+#: libgnomevfs/eggdesktopentries.c:705
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "mae'r cofnodion penbwrdd yn cynnwys llinell '%s' nad yw'n UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:734
+#: libgnomevfs/eggdesktopentries.c:728
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "mae'r cofnodion penbwrdd yn cynnwys amgodiad anhysbys '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
+#: libgnomevfs/eggdesktopentries.c:918 libgnomevfs/eggdesktopentries.c:1030
+#: libgnomevfs/eggdesktopentries.c:1215
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "nid oes grŵp '%s' gan y cofnodion penbwrdd"
 
-#: libgnomevfs/eggdesktopentries.c:1048
+#: libgnomevfs/eggdesktopentries.c:1042
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "nid oes allwedd '%s' gan y cofnodion penbwrdd"
 
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
+#: libgnomevfs/eggdesktopentries.c:1098 libgnomevfs/eggdesktopentries.c:1271
+#: libgnomevfs/eggdesktopentries.c:1413 libgnomevfs/eggdesktopentries.c:1538
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
+"mae'r cofnodion penbwrdd yn cynnwys bysell '%s' sydd â gwerth ni ellir ei "
+"ddehongli"
 
-#: libgnomevfs/eggdesktopentries.c:1302
+#: libgnomevfs/eggdesktopentries.c:1296
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
+"nid yw'r cofnodion penbwrdd yn cynnwys gwerth cyfieithiedig o'r bysell '%s' "
+"â'r locale '%s'."
 
-#: libgnomevfs/eggdesktopentries.c:2223
+#: libgnomevfs/eggdesktopentries.c:2229
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "mae'r cofnodion penbwrdd yn cynnwys dilyniant dianc annilys '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:2240
+#: libgnomevfs/eggdesktopentries.c:2246
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "mae'r cofnodion penbwrdd yn cynnwys nod dianc ar ddiwedd llinell"
 
-#: libgnomevfs/eggdesktopentries.c:2265
+#: libgnomevfs/eggdesktopentries.c:2271
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "Ni ellir dehongli'r gwerth '%s' fel rhif."
 
-#: libgnomevfs/eggdesktopentries.c:2292
+#: libgnomevfs/eggdesktopentries.c:2298
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "Ni ellir dehongli'r gwerth '%s' fel gwerth booleaidd."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -258,9 +262,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Cyfrol Solaris Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "Cyfrol AFFS"
+msgstr "Cyfrol SAM-QFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -287,125 +290,117 @@ msgid "Unknown"
 msgstr "Anhysbys"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "Chwaraewr CD-ROM"
+msgstr "Disg CD-ROM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "Disg CD-R Gwag"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "Chwaraewr CD-ROM"
+msgstr "Disg CD-R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:619
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "Disg CD-RW Gwag"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "Chwaraewr CD-ROM"
+msgstr "Disg CD-RW"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "Chwaraewr CD-ROM"
+msgstr "Disg DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "Disg DVD-R Gwag"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "Disg DVD-R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "Disg DVD-RAM Gwag"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "Disg DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "Disg DVD-RW Gwag"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "Disg DVD-RW"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:641
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "Disg DVD+RW Gwag"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:643
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "Disg DVD+RW"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "Disg DVD+R Gwag"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:648
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "Disg DVD+R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Optical Disc"
-msgstr ""
+msgstr "Disg Optig"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
-#, fuzzy
 msgid "Audio Disc"
-msgstr "CD Sain"
+msgstr "Disg Sain"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:660
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Cyfrwng Fflach Cryno"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:662
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Tocyn Cof"
+msgstr "Cyfrwng Tocyn Cof"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:664
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Cyfrwng Smart Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:666
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "Cyfrwng SD/MMC"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:668
-#, fuzzy
 msgid "Floppy Disk"
-msgstr "Disg hyblyg"
+msgstr "Disgen Hyblyg"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:675
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Disg Mac OS"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:677
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Disg Max OS X"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:691
-#, fuzzy
 msgid "Windows Disk"
-msgstr "Ffenestri"
+msgstr "Disg Windows"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:697
 msgid "Linux Disk"
-msgstr ""
+msgstr "Disg Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "Math op anhybys %u"
+msgstr "Math gweithred anhybys %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -424,30 +419,32 @@ msgstr "Ataliwyd y gweithrediad"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:83
 #: libgnomevfs/gnome-vfs-mime-handlers.c:305
 #: libgnomevfs/gnome-vfs-mime-handlers.c:356
-#: libgnomevfs/gnome-vfs-mime-handlers.c:626
-#: libgnomevfs/gnome-vfs-mime-handlers.c:645
-#: libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: libgnomevfs/gnome-vfs-mime-handlers.c:682
-#: libgnomevfs/gnome-vfs-mime-handlers.c:701
-#: libgnomevfs/gnome-vfs-mime-handlers.c:842
-#: libgnomevfs/gnome-vfs-mime-handlers.c:864
-#: libgnomevfs/gnome-vfs-mime-handlers.c:883
-#: libgnomevfs/gnome-vfs-mime-handlers.c:902
-#: libgnomevfs/gnome-vfs-mime-handlers.c:955
-#: libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: libgnomevfs/gnome-vfs-mime-handlers.c:989
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
-#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
-#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
-#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
-#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
-#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
-#: libgnomevfs/gnome-vfs-mime-info.c:713
+#: libgnomevfs/gnome-vfs-mime-handlers.c:650
+#: libgnomevfs/gnome-vfs-mime-handlers.c:669
+#: libgnomevfs/gnome-vfs-mime-handlers.c:687
+#: libgnomevfs/gnome-vfs-mime-handlers.c:706
+#: libgnomevfs/gnome-vfs-mime-handlers.c:725
+#: libgnomevfs/gnome-vfs-mime-handlers.c:866
+#: libgnomevfs/gnome-vfs-mime-handlers.c:888
+#: libgnomevfs/gnome-vfs-mime-handlers.c:907
+#: libgnomevfs/gnome-vfs-mime-handlers.c:926
+#: libgnomevfs/gnome-vfs-mime-handlers.c:979
+#: libgnomevfs/gnome-vfs-mime-handlers.c:996
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1013
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1031
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1049
+#: libgnomevfs/gnome-vfs-mime-info.c:647 libgnomevfs/gnome-vfs-mime-info.c:654
+#: libgnomevfs/gnome-vfs-mime-info.c:662 libgnomevfs/gnome-vfs-mime-info.c:669
+#: libgnomevfs/gnome-vfs-mime-info.c:677 libgnomevfs/gnome-vfs-mime-info.c:694
+#: libgnomevfs/gnome-vfs-mime-info.c:701 libgnomevfs/gnome-vfs-mime-info.c:708
+#: libgnomevfs/gnome-vfs-mime-info.c:715 libgnomevfs/gnome-vfs-mime-info.c:723
+#: libgnomevfs/gnome-vfs-mime-info.c:730
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
+"Ffwythiant dirmygol. Ni chynhelir newidiadau defnyddiwr i'r cronfa ddata "
+"MIME bellach."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -691,23 +688,22 @@ msgstr "Gwall wrth weithredu'r gorchymyn"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "Cyrhaddwyd goramser"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "Gwall generig"
+msgstr "Gwall gweinydd enw"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "Mae'r adnodd wedi ei gloi"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Dirmygir y galwad ffwythiant"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -718,7 +714,8 @@ msgstr "Gwall anhysbys"
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u beit"
-msgstr[1] "%u beit"
+msgstr[1] "%u feit"
+msgstr[2] "%u beit"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -736,50 +733,147 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1122
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:391
 msgid " (invalid Unicode)"
 msgstr " (Unicode annilys)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:629
 msgid "Floppy"
 msgstr "Disg hyblyg"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:632
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
-msgid "Zip Drive"
-msgstr "Gyrriant Zip"
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+msgid "CD-R"
+msgstr "CD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+msgid "CD-ROM/DVD-ROM"
+msgstr "CD-ROM/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+msgid "CD-ROM/DVD-RAM"
+msgstr "CD-ROM/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+msgid "CD-ROM/DVD-R"
+msgstr "CD-ROM/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+msgid "CD-ROM/DVD-RW"
+msgstr "CD-ROM/RVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+msgid "CD-R/DVD-ROM"
+msgstr "CD-R/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+msgid "CD-R/DVD-RAM"
+msgstr "CD-R/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+msgid "CD-R/DVD-R"
+msgstr "CD-R/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+msgid "CD-R/DVD-RW"
+msgstr "CD-R/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+msgid "CD-RW/DVD-ROM"
+msgstr "CD-RW/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+msgid "CD-RW/DVD-RAM"
+msgstr "CD-RW/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
+msgid "CD-RW/DVD-R"
+msgstr "CD-RW/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+msgid "CD-RW/DVD-RW"
+msgstr "CD-RW/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+msgid "Disk"
+msgstr "Disg"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+msgid "USB Drive"
+msgstr "Gyrriant USB"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
+msgid "IEEE1394 Drive"
+msgstr "Gyrriant IEEE 1394"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
+msgid "CF"
+msgstr "Fflach Cryno"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
+msgid "SD/MMC"
+msgstr "SD/MMC"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
 msgid "Memory Stick"
 msgstr "Tocyn Cof"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
+msgid "Smart Media"
+msgstr "Smart Media"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
+msgid "Zip Drive"
+msgstr "Gyrriant Zip"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:605
 msgid "Camera"
 msgstr "Camera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:606
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:822
 msgid "Root Volume"
 msgstr "Cyfrol Gwraidd"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:903
 msgid "Audio CD"
 msgstr "CD Sain"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
 msgid "Unknown volume"
 msgstr "Cyfrol anhysbys"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1116
 msgid "Network server"
 msgstr "Gweinydd rhwydwaith"
 
@@ -910,7 +1004,7 @@ msgstr "Rhwydwaith Windows"
 #: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "Nid yw hunaniaeth y cyfrifiadur pell (%s) yn hysbys."
 
 #: modules/sftp-method.c:1340
 #, c-format
@@ -920,14 +1014,19 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Mae hyn yn digwydd pan rydych chi'n mewngofnodi i gyfrifiadur y tro "
+"cyntaf.\n"
+"%s yw'r hunaniaeth a ddanfonwyd gan y cyfrifiadur pell. Os ydych chi eisiau "
+"bod yn hollol siwr ei fod hi'n ddiogel i fynd ymlaen, cysylltwch a gweinydd "
+"y system."
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Mengofnodi Fodd Bynnag"
 
 #: modules/sftp-method.c:1349
 msgid "Cancel Login"
-msgstr ""
+msgstr "Diddymu Mewngofnodi"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -993,14 +1092,12 @@ msgstr ""
 "Yr ymresymiad exec i'w ddefnyddio ar gyfer y rhaglen derfynell rhagosodedig."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "Rhedeg rhaglen mewn terfynell"
+msgstr "Rhedeg y gorchymyn mewn terfynell"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-#, fuzzy
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"man\", os yn alluog."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"aim\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
@@ -1011,28 +1108,24 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"ghelp\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU H323, os yn alluog."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"h323\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"ghelp\", os yn alluog."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"http\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"trash\", os yn alluog."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"https\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"info\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"callto\", os yn alluog."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"mailto\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
@@ -1043,200 +1136,169 @@ msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"trash\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Ymdrin â LAU \"man\""
+msgstr "Y trinydd ar gyfer LAU \"aim\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Trinydd LAU ar gyfer lleoliadau \"callto\""
+msgstr "Y trinydd ar gyfer LAU \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
+msgstr "Y trinydd ar gyfer LAU \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Ymdrin â LAU H323"
+msgstr "Y trinydd ar gyfer LAU \"h323\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
+msgstr "Y trinydd ar gyfer LAU \"http\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
+msgstr "Y trinydd ar gyfer LAU \"https\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Trinydd LAU ar gyfer lleoliadau \"info\""
+msgstr "Y trinydd ar gyfer LAU \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Ymdrin â LAU \"mailto\""
+msgstr "Y trinydd ar gyfer LAU \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Trinydd LAU ar gyfer lleoliadau \"man\""
+msgstr "Y trinydd ar gyfer LAU \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Trinydd LAU ar gyfer lleoliadau \"trash\""
+msgstr "Y trinydd ar gyfer LAU \"trash\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"man\"."
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a "
+"LAU \"aim\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"man\"."
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a "
+"LAU \"callto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a "
 "LAU \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU H323."
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a "
+"LAU \"h323\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"ghelp\"."
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a "
+"LAU \"http\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"ghelp\"."
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a "
+"LAU \"https\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a "
 "LAU \"info\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"man\"."
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a "
+"LAU \"mailto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a "
 "LAU \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"Gwir os ddylai'r gorchymyn a benodir yn yr allwedd \"command\" ymdrin a "
 "LAU \"trash\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Gwir os dylid rhedeg y rhaglen sy'n delio â'r math yma o LAU mewn terfynell."
+"Gwir os dylid rhedeg y gorchymyn sy'n delio â'r math yma o LAU mewn terfynell."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"aim\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU H323"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"h323\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"ghelp\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"http\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"trash\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"https\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"trash\""
 
@@ -1245,18 +1307,20 @@ msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"Rhestr coma-wahanedig o barthau dns-sd a ddylai fod yn weladwy yn y "
+"lleoliad rhwydwaith."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Parthau ychwanegol i chwilio am wasanaethau dns-sd ynddynt"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Sut i ddangos gwasanaeth DNS-SD lleol"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "Gwerthoedd posib: \"merged\", \"separate\" a \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
