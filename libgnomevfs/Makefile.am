@@ -179,6 +179,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-context.h			\
 	gnome-vfs-directory.h			\
 	gnome-vfs-drive.h			\
+	gnome-vfs-enum-types.h			\
 	gnome-vfs-file-info.h			\
 	gnome-vfs-file-size.h			\
 	gnome-vfs-find-directory.h		\

@@ -1,3 +1,7 @@
+2003-12-01  Malcolm Tredinnick <malcolm@commsecure.com.au>
+
+	* libgnomevfs/Makefile.am: Install gnome-vfs-enum-types.h
+
 2003-11-29  Murray Cumming  <murrayc@usa.net>
    
    	* libgnomevfs/Makefile.am: Use glib-mkenums to generate
