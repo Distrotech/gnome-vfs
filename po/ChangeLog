@@ -1,3 +1,7 @@
+2004-09-10  Christophe Fergeau  <teuf@gnome.org>
+
+	* ar.po: Remove conflict markers in ar.po, this broke the build
+
 2004-09-10  Arafat Medini  <lumina@silverpen.de>
 
 	* ar.po: Updated Arabic translation.

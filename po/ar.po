@@ -10,13 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< gnome-vfs.po
 "POT-Creation-Date: 2004-09-01 19:54+0200\n"
 "PO-Revision-Date: 2004-08-30 19:29+0300\n"
-=======
-"POT-Creation-Date: 2004-08-31 03:48+0200\n"
-"PO-Revision-Date: 2004-09-03 17:40+0300\n"
->>>>>>> 1.22
 "Last-Translator: Ayman Hourieh <aymanh@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
