@@ -36,6 +36,12 @@ else
 CDDA_LTLIBS =
 endif
 
+if BUILD_CDEMENU_MODULE
+CDEMENU_LTLIBS = libcdemenu-desktop.la
+else
+CDEMENU_LTLIBS =
+endif
+
 module_flags = -export_dynamic -avoid-version
 modulesdir = $(libdir)/gnome-vfs-2.0/modules
 
@@ -53,7 +59,7 @@ modules_LTLIBRARIES =				\
 	libftp.la				\
 	libvfs-pipe.la				\
 	libvfs-translate.la			\
-	libcdemenu-desktop.la		\
+	$(CDEMENU_LTLIBS)                       \
 	libssh.la				\
 	$(NULL)
 

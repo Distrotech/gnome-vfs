@@ -307,6 +307,16 @@ AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h, [
 	AM_CONDITIONAL(HAVE_CDDA, true)
 ])
 
+dnl modules/cdemenu-desktop
+
+AC_MSG_CHECKING(for Solaris platform)
+case "$host" in
+        *solaris*) build_cdemenu_module=yes ;;
+        *) build_cdemenu_module=no ;;
+esac
+AC_MSG_RESULT([$build_cdemenu_module])
+AM_CONDITIONAL(BUILD_CDEMENU_MODULE, test "$build_cdemenu_module" = "yes")
+
 dnl ******************************
 dnl OpenSSL
 dnl ******************************
