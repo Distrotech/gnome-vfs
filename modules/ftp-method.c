@@ -44,7 +44,10 @@
 #include "util-url.h"
 #include "parse.h"
 
+#define DEFAULT_PORT 21
 #define IS_LINEAR(mode) (! ((mode) & GNOME_VFS_OPEN_RANDOM))
+
+#define logfile stdout		/* FIXME tmp */
 
 /* Seconds until directory contents are considered invalid */
 int ftpfs_directory_timeout = 600;
@@ -53,24 +56,18 @@ int ftpfs_retry_seconds = 0;
 char *ftpfs_anonymous_passwd = "nothing@";
 
 static GHashTable *connections_hash;
-static FILE *logfile;
-static int code;
-static int force_expiration;
-static int got_sigpipe;
 
-/* command wait_flag: */
-#define NONE        0x00
-#define WAIT_REPLY  0x01
-#define WANT_STRING 0x02
-static char reply_str [80];
+/* FIXME ugly kludgy smelly globals.  Should be removed.  */
+/* static int code; FIXME this was evil, I hope I removed it correctly */
+/*  static int got_sigpipe; */
+/*  static char reply_str [80]; */
 
-static void  ftpfs_dir_unref (ftpfs_dir_t *dir);
-static int   login_server (ftpfs_connection_t *conn);
+static void ftpfs_dir_unref (ftpfs_dir_t *dir);
+static GnomeVFSResult login_server (ftpfs_connection_t *conn);
 static char *ftpfs_get_current_directory (ftpfs_connection_t *conn);
-static GnomeVFSResult
-get_file_entry (ftpfs_uri_t *uri, int flags,
-		GnomeVFSOpenMode mode, gboolean exclusive,
-		ftpfs_direntry_t **retval);
+static GnomeVFSResult get_file_entry (ftpfs_uri_t *uri, int flags,
+				      GnomeVFSOpenMode mode, gboolean exclusive,
+				      ftpfs_direntry_t **retval);
 
 void
 print_vfs_message (char *msg, ...)
@@ -228,8 +225,16 @@ static guint
 hash_conn (gconstpointer key)
 {
 	const ftpfs_connection_t *conn = key;
-	
-	return g_str_hash (conn->hostname) + g_str_hash (conn->username);
+	guint value;
+
+	value = 0;
+
+	if (conn->hostname != NULL)
+		value += g_str_hash (conn->hostname);
+	if (conn->username != NULL)
+		value += g_str_hash (conn->username);
+
+	return value;
 }
 
 static gint
@@ -275,12 +280,12 @@ lookup_conn (char *host, char *user, char *pass, int port)
 	key.hostname = host;
 	key.username = user;
 	key.password = pass;
-	key.port = port;
+	key.port = (port == 0 ? DEFAULT_PORT : port);
 
 	return g_hash_table_lookup (connections_hash, &key);
 }
 
-static int
+static GnomeVFSResult
 ftpfs_open_socket (ftpfs_connection_t *conn)
 {
 	struct   sockaddr_in server_address;
@@ -289,13 +294,13 @@ ftpfs_open_socket (ftpfs_connection_t *conn)
 	char     *host = NULL;
 	int      port = 0;
 	int      free_host = 0;
-	
+
 	/* Use a proxy host? */
 	host = conn->hostname;
 	
 	if (!host || !*host){
 		print_vfs_message (_("ftpfs: Invalid host name."));
-		return -1;
+		return GNOME_VFS_ERROR_INVALIDHOSTNAME;
 	}
 	
 	/* Hosts to connect to that start with a ! should use proxy */
@@ -320,7 +325,7 @@ ftpfs_open_socket (ftpfs_connection_t *conn)
 			print_vfs_message (_("ftpfs: Invalid host address."));
 			if (free_host)
 				g_free (host);
-			return -1;
+			return gnome_vfs_result_from_h_errno ();
 		}
 		server_address.sin_family = hp->h_addrtype;
 		
@@ -334,7 +339,7 @@ ftpfs_open_socket (ftpfs_connection_t *conn)
 	if ((my_socket = socket (AF_INET, SOCK_STREAM, 0)) < 0) {
 		if (free_host)
 			g_free (host);
-		return -1;
+		return gnome_vfs_result_from_errno ();
 	}
 	
 	print_vfs_message (_("ftpfs: making connection to %s"), host);
@@ -348,31 +353,11 @@ ftpfs_open_socket (ftpfs_connection_t *conn)
 			print_vfs_message (_("ftpfs: connection to server failed: %s"),
 					   g_strerror (errno));
 		close (my_socket);
-		return -1;
-	}
-	return my_socket;
-}
-
-static int
-is_connection_closed (ftpfs_connection_t *conn)
-{
-	fd_set rset;
-	struct timeval t;
-
-	if (got_sigpipe){
-		return 1;
+		return gnome_vfs_result_from_errno ();
 	}
 
-	t.tv_sec = 0;
-	t.tv_usec = 0;
-	FD_ZERO (&rset);
-	FD_SET (conn->sock, &rset);
-	while (1) {
-		if (select (conn->sock + 1, &rset, NULL, NULL, &t) < 0)
-			if (errno != EINTR)
-				return 1;
-		return 0;
-	}
+	conn->sock = my_socket;
+	return GNOME_VFS_OK;
 }
 
 /* some defines only used by changetype */
@@ -386,7 +371,7 @@ is_connection_closed (ftpfs_connection_t *conn)
 
 static void sig_pipe (int unused)
 {
-	got_sigpipe = 1;
+	/* Do nothing.  */
 }
 
 static void
@@ -399,30 +384,32 @@ net_init (void)
 		return;
 	inited = 1;
 	
-	got_sigpipe = 0;
 	sa.sa_handler = sig_pipe;
 	sa.sa_flags = 0;
 	sigemptyset (&sa.sa_mask);
 	sigaction (SIGPIPE, &sa, NULL);
 }
 
-static ftpfs_connection_t *
+static GnomeVFSResult
 ftpfs_connection_connect (ftpfs_connection_t *conn)
 {
+	GnomeVFSResult result;
 	int retry_seconds = 0;
 
 	if (conn->sock != -1)
-		return conn;
+		return GNOME_VFS_OK;
 
 	net_init ();
-	do { 
+	do {
 		conn->failed_on_login = 0;
 
-		conn->sock = ftpfs_open_socket (conn);
-		if (conn->sock == -1)
-			return NULL;
+		result = ftpfs_open_socket (conn);
+		if (result != GNOME_VFS_OK)
+			return result;
 		
-		if (login_server (conn)) {
+		result = login_server (conn);
+
+		if (result == GNOME_VFS_OK) {
 			/* Logged in, no need to retry the connection */
 			break;
 		} else {
@@ -430,8 +417,9 @@ ftpfs_connection_connect (ftpfs_connection_t *conn)
 				/* Close only the socket descriptor */
 				close (conn->sock);
 				conn->sock = -1;
-			} else
-				return NULL;
+			} else {
+				return result;
+			}
 
 			if (ftpfs_retry_seconds) {
 				int count_down;
@@ -446,13 +434,13 @@ ftpfs_connection_connect (ftpfs_connection_t *conn)
 	} while (retry_seconds);
 
 	if (conn->sock == -1)
-		return NULL;
-			
+		return GNOME_VFS_ERROR_LOGINFAILED;
+
 	conn->home = ftpfs_get_current_directory (conn);
 	if (!conn->home)
 		conn->home = g_strdup ("/");
-	return conn;
 
+	return GNOME_VFS_OK;
 }
 
 static void
@@ -462,16 +450,22 @@ ftpfs_connection_dir_flush (ftpfs_connection_t *conn)
 }
 
 static ftpfs_connection_t *
-ftpfs_connection_new (char *hostname, char *username, char *password, char *path, int port)
+ftpfs_connection_new (const gchar *hostname,
+		      const gchar *username,
+		      const gchar *password,
+		      guint port,
+		      GnomeVFSResult *result_return)
 {
 	ftpfs_connection_t *conn;
 			    
 	conn = g_new0 (ftpfs_connection_t, 1);
 	conn->ref_count = 1;
-	conn->hostname = hostname;
-	conn->username = username;
-	conn->password = password;
-	conn->port = port;
+
+	conn->hostname = g_strdup (hostname);
+	conn->username = g_strdup (username);
+	conn->password = g_strdup (password);
+	conn->port = (port == 0 ? DEFAULT_PORT : port);
+
 	conn->is_binary = TYPE_UNKNOWN;
 	conn->sock = -1;
 	conn->remote_is_amiga = 0;
@@ -481,7 +475,9 @@ ftpfs_connection_new (char *hostname, char *username, char *password, char *path
 	if (!connections_hash)
 		init_connections_hash ();
 
-	if (ftpfs_connection_connect (conn)){
+	*result_return = ftpfs_connection_connect (conn);
+
+	if (*result_return == GNOME_VFS_OK) {
 		g_hash_table_insert (connections_hash, conn, conn);
 		return conn;
 	} else {
@@ -500,39 +496,34 @@ ftpfs_uri_destroy (ftpfs_uri_t *uri)
 }
 
 static ftpfs_uri_t *
-ftpfs_parse_uri (GnomeVFSURI *uri)
+ftpfs_uri_new (GnomeVFSURI *uri,
+	       GnomeVFSResult *result_return)
 {
+	GnomeVFSToplevelURI *toplevel;
 	ftpfs_connection_t *conn;
 	ftpfs_uri_t *ftpfs_uri;
-	char *ftpfs_url;
-	char *path, *host, *user, *pass;
-	int  port;
 	
-	if (uri->text [0] != '/' || uri->text [1] != '/')
-		return NULL;
-
-	/* Skip the slashes */
-	ftpfs_url = uri->text + 2;
-	
-	path = vfs_split_url (ftpfs_url, &host, &user, &port, &pass, 21, URL_DEFAULTANON);
-	if (!path)
-		return NULL;
-
 	ftpfs_uri = g_new (ftpfs_uri_t, 1);
-	ftpfs_uri->path = path;
+	ftpfs_uri->path = g_strdup (uri->text);
+
+	toplevel = (GnomeVFSToplevelURI *) uri;
 	
-	conn = lookup_conn (host, user, pass, port);
-	if (conn){
+	conn = lookup_conn (toplevel->host_name,
+			    toplevel->user_name,
+			    toplevel->password,
+			    toplevel->host_port);
+
+	if (conn != NULL) {
 		ftpfs_uri->conn = ftpfs_connection_ref (conn);
-
-		g_free (host);
-		g_free (user);
-		g_free (pass);
-
+		*result_return = GNOME_VFS_OK;
 		return ftpfs_uri;
 	}
 
-	ftpfs_uri->conn = ftpfs_connection_new (host, user, pass, path, port);
+	ftpfs_uri->conn = ftpfs_connection_new (toplevel->host_name,
+						toplevel->user_name,
+						toplevel->password,
+						toplevel->host_port,
+						result_return);
 	if (ftpfs_uri->conn == NULL){
 		ftpfs_uri_destroy (ftpfs_uri);
 		return NULL;
@@ -572,19 +563,20 @@ get_line (int sock, char *buf, int buf_len, char term)
 }
 
 
-/* Returns a reply code, check /usr/include/arpa/ftp.h for possible values */
+/* Returns a reply code, divide it by 100 and check /usr/include/arpa/ftp.h for
+   possible values */
 static int
 get_reply (int sock, char *string_buf, int string_len)
 {
 	char answer [1024];
 	int i;
+	gint code;
 	
 	for (;;) {
 		if (!get_line (sock, answer, sizeof (answer), '\n')){
 			if (string_buf)
 				*string_buf = 0;
-			code = 421;
-			return 4;
+			return 421;
 		}
 		switch (sscanf(answer, "%d", &code)){
 		case 0:
@@ -592,8 +584,7 @@ get_reply (int sock, char *string_buf, int string_len)
 				strncpy (string_buf, answer, string_len - 1);
 				*(string_buf + string_len - 1) = 0;
 			}
-			code = 500;
-			return 5;
+			return 500;
 		case 1:
 			if (answer[3] == '-') {
 				while (1) {
@@ -612,14 +603,17 @@ get_reply (int sock, char *string_buf, int string_len)
 				strncpy (string_buf, answer, string_len - 1);
 				*(string_buf + string_len - 1) = 0;
 			}
-			return code / 100;
+			return code;
 		}
 	}
 }
 
 static int
-command (ftpfs_connection_t *conn, int wait_reply, char *fmt, ...)
+command (ftpfs_connection_t *conn, int wait_reply,
+	 char *reply_string, int reply_string_len,
+	 char *fmt, ...)
 {
+	GnomeVFSResult result;
 	va_list ap;
 	char *str, *fmt_str;
 	int status;
@@ -633,39 +627,34 @@ command (ftpfs_connection_t *conn, int wait_reply, char *fmt, ...)
 	str = g_strconcat (fmt_str, "\r\n", NULL);
 	g_free (fmt_str);
 
-	ftpfs_connection_connect (conn);
+	/* FIXME FIXME FIXME Use the return value.  */
+	result = ftpfs_connection_connect (conn);
 
 	if (logfile){
 		if (strncmp (str, "PASS ", 5) == 0){
 			char *tmp = "PASS <Password not logged>\r\n";
 			
 			fwrite (tmp, strlen (tmp), 1, logfile);
-		} else
+		} else {
 			fwrite (str, strlen (str), 1, logfile);
-		
+		}
+
 		fflush (logfile);
 	}
 
-	got_sigpipe = 0;
 	status = write (sock, str, strlen (str));
 	g_free (str);
     
-	if (status < 0){
-		code = 421;
-		
-		if (errno == EPIPE){
-			got_sigpipe = 1;
-		}
-		return TRANSIENT;
-	}
+	if (status < 0)
+		return 421;
+
 	if (wait_reply)
-		return get_reply (
-			sock, (wait_reply & WANT_STRING) ? reply_str : NULL,
-			sizeof (reply_str)-1);
-	return COMPLETE;
+		return get_reply (sock, reply_string, reply_string_len);
+
+	return COMPLETE * 100;
 }
 
-static int 
+static GnomeVFSResult
 login_server (ftpfs_connection_t *conn)
 {
 	char *pass;
@@ -673,26 +662,31 @@ login_server (ftpfs_connection_t *conn)
 	char *name;			/* login user name */
 	int  anon = 0;
 	char reply_string[255];
+	gint code;
 	
 	conn->is_binary = TYPE_UNKNOWN;
-	if (!strcmp (conn->username, "anonymous") || 
-	    !strcmp (conn->username, "ftp")) {
+	if (conn->username == NULL
+	    || strcmp (conn->username, "anonymous") == 0
+	    || strcmp (conn->username, "ftp") == 0) {
 		op = g_strdup (ftpfs_anonymous_passwd);
 		anon = 1;
-         } else {
-		 char *p;
-		 
-		 if (!conn->password){
-			 p = g_strconcat (_(" FTP: Password required for "), conn->username,
-					  " ", NULL);
-			 op = "FIXME";
-			 g_free (p);
-			 if (op == NULL)
-				 return 0;
-			 conn->password = g_strdup (op);
-		 } else
-			 op = g_strdup (conn->password);
-	 }
+	} else {
+		char *p;
+
+		/* Non-anonymous login.  */
+
+		if (!conn->password){
+			p = g_strconcat (_(" FTP: Password required for "),
+					 conn->username, " ", NULL);
+			op = "FIXME";
+			g_free (p);
+			if (op == NULL)
+				return GNOME_VFS_ERROR_LOGINFAILED;
+			conn->password = g_strdup (op);
+		} else {
+			op = g_strdup (conn->password);
+		}
+	}
 	
 	if (!anon || logfile)
 		pass = g_strdup (op);
@@ -702,13 +696,19 @@ login_server (ftpfs_connection_t *conn)
 	
 	/* Proxy server accepts: username@host-we-want-to-connect*/
 	if (conn->use_proxy){
-		name = g_strconcat (
-			conn->username, "@", 
-			conn->hostname [0] == '!' ? conn->hostname+1 : conn->hostname, NULL);
-	} else 
+		name = g_strconcat (conn->username, "@", 
+				    (conn->hostname [0] == '!'
+				     ? conn->hostname+1 : conn->hostname),
+				    NULL);
+	} else if (conn->username == NULL) {
+		name = g_strdup ("anonymous");
+	} else {
 		name = g_strdup (conn->username);
-    
-	if (get_reply (conn->sock, reply_string, sizeof (reply_string) - 1) == COMPLETE) {
+	}
+
+	code = get_reply (conn->sock, reply_string, sizeof (reply_string) - 1);
+
+	if (code / 100 == COMPLETE) {
 		g_strup (reply_string);
 		conn->remote_is_amiga = strstr (reply_string, "AMIGA") != 0;
 		if (logfile) {
@@ -716,18 +716,20 @@ login_server (ftpfs_connection_t *conn)
 			fflush (logfile);
 		}
 		print_vfs_message (_("ftpfs: sending login name"));
-		code = command (conn, WAIT_REPLY, "USER %s", name);
 
-		switch (code){
+		code = command (conn, TRUE, NULL, 0, "USER %s", name);
+
+		switch (code / 100){
 		case CONTINUE:
 			print_vfs_message (_("ftpfs: sending user password"));
-			if (command (conn, WAIT_REPLY, "PASS %s", pass) != COMPLETE)
+			if (command (conn, TRUE, NULL, 0, "PASS %s", pass) / 100
+			    != COMPLETE)
 				break;
 			
 		case COMPLETE:
 			print_vfs_message (_("ftpfs: logged in"));
 			g_free (name);
-			return 1;
+			return GNOME_VFS_OK;
 
 		default:
 			conn->failed_on_login = 1;
@@ -736,10 +738,11 @@ login_server (ftpfs_connection_t *conn)
 			goto login_fail;
 		}
 	}
+
 	print_vfs_message (_("ftpfs: Login incorrect for user %s "), conn->username);
  login_fail:
 	g_free (name);
-	return 0;
+	return GNOME_VFS_ERROR_LOGINFAILED;
 }
 
 static void
@@ -755,7 +758,7 @@ abort_transfer (ftpfs_connection_t *conn, int dsock)
 		return;
 	}
     
-	if (command (conn, NONE, "%cABOR", DM) != COMPLETE){
+	if (command (conn, FALSE, NULL, 0, "%cABOR", DM) / 100 != COMPLETE){
 		print_vfs_message (_("ftpfs: abort failed"));
 		return;
 	}
@@ -768,7 +771,7 @@ abort_transfer (ftpfs_connection_t *conn, int dsock)
 				;
 	}
 
-	if ((get_reply (conn->sock, NULL, 0) == TRANSIENT) && (code == 426))
+	if (get_reply (conn->sock, NULL, 0) == 426)
 		get_reply (conn->sock, NULL, 0);
 }
 
@@ -778,13 +781,15 @@ setup_passive (int my_socket, ftpfs_connection_t *conn, struct sockaddr_in *sa)
 {
 	int xa, xb, xc, xd, xe, xf;
 	char n [6];
-	char *c = reply_str;
+	char reply_string[256];
+	char *c;
 	
-	if (command (conn, WAIT_REPLY | WANT_STRING, "PASV") != COMPLETE)
+	if (command (conn, TRUE, reply_string, sizeof (reply_string) - 1,
+		     "PASV") / 100 != COMPLETE)
 		return 0;
 	
 	/* Parse remote parameters */
-	for (c = reply_str + 4; (*c) && (!isdigit (*c)); c++)
+	for (c = reply_string + 4; (*c) && (!isdigit (*c)); c++)
 		;
 	if (!*c)
 		return 0;
@@ -846,8 +851,9 @@ initconn (ftpfs_connection_t *conn)
 		unsigned char *a = (unsigned char *)&data_addr.sin_addr;
 		unsigned char *p = (unsigned char *)&data_addr.sin_port;
 		
-		if (command (conn, WAIT_REPLY, "PORT %d,%d,%d,%d,%d,%d", a[0], a[1], 
-			     a[2], a[3], p[0], p[1]) != COMPLETE)
+		if (command (conn, TRUE, NULL, 0, "PORT %d,%d,%d,%d,%d,%d",
+			     a[0], a[1], a[2], a[3], p[0], p[1]) / 100
+		    != COMPLETE)
 			goto error_return;
 	}
 	return data;
@@ -915,7 +921,8 @@ static int
 changetype (ftpfs_connection_t *conn, int binary)
 {
 	if (binary != conn->is_binary) {
-		if (command (conn, WAIT_REPLY, "TYPE %c", binary ? 'I' : 'A') != COMPLETE)
+		if (command (conn, TRUE, NULL, 0, "TYPE %c", binary ? 'I' : 'A')
+		    / 100 != COMPLETE)
 			return -1;
 		conn->is_binary = binary;
 	}
@@ -936,15 +943,15 @@ open_data_connection (ftpfs_connection_t *conn,
 		return -1;
 
 	if (reget > 0){
-		j = command (conn, WAIT_REPLY, "REST %d", reget);
+		j = command (conn, TRUE, NULL, 0, "REST %d", reget) / 100;
 		if (j != CONTINUE)
 			return -1;
 	}
 	if (remote){
-		j = command (conn, WAIT_REPLY, "%s %s", cmd, 
-			     translate_path (conn, remote));
+		j = command (conn, TRUE, NULL, 0, "%s %s", cmd, 
+			     translate_path (conn, remote)) / 100;
 	} else
-		j = command (conn, WAIT_REPLY, "%s", cmd);
+		j = command (conn, TRUE, NULL, 0, "%s", cmd) / 100;
 	if (j != PRELIM)
 		return -1;
 
@@ -1011,9 +1018,12 @@ store_file (ftpfs_direntry_t *fe)
 	}
 	close (sock);
 	close (local_handle);
-	if (get_reply (fe->conn->sock, NULL, 0) != COMPLETE)
+
+	if (get_reply (fe->conn->sock, NULL, 0) / 100 != COMPLETE)
 		result = GNOME_VFS_ERROR_IO;
+
 	return result;
+
  error_return:
 	close (sock);
 	close (local_handle);
@@ -1054,13 +1064,13 @@ linear_read (ftpfs_direntry_t *fe, void *buf, int len, GnomeVFSFileSize *bytes_r
 		break;
 	}
 
-	if (n < 0){
+	if (n < 0) {
 		linear_abort (fe);
 		return GNOME_VFS_ERROR_IO;
 	}
 	
 	if (!n) {
-		if ((get_reply (fe->conn->sock, NULL, 0) != COMPLETE))
+		if ((get_reply (fe->conn->sock, NULL, 0) / 100 != COMPLETE))
 			error = GNOME_VFS_ERROR_IO;
 		close (fe->data_sock);
 		fe->data_sock = -1;
@@ -1099,7 +1109,7 @@ ftpfs_chdir_internal (ftpfs_connection_t *conn, const char *remote_path)
 		return COMPLETE;
 	
 	p = translate_path (conn, remote_path);
-	r = command (conn, WAIT_REPLY, "CWD %s", p);
+	r = command (conn, WAIT_REPLY, NULL, 0, "CWD %s", p) / 100;
 	g_free (p);
 	
 	if (r == COMPLETE){
@@ -1313,8 +1323,8 @@ ftpfs_get_current_directory (ftpfs_connection_t *conn)
 {
 	char buf[4096], *bufp, *bufq;
 	
-	if (!(command (conn, NONE, "PWD") == COMPLETE &&
-	      get_reply(conn->sock, buf, sizeof(buf)) == COMPLETE))
+	if (!(command (conn, NONE, NULL, 0, "PWD") / 100 == COMPLETE &&
+	      get_reply(conn->sock, buf, sizeof(buf)) / 100 == COMPLETE))
 		return NULL;
 	
 	bufp = NULL;
@@ -1364,15 +1374,13 @@ retrieve_dir (ftpfs_connection_t *conn, char *remote_path, gboolean resolve_syml
 	if (dcache){
 		time_t now = time (NULL);
 		
-		if ((now < dcache->timeout && !force_expiration) ||
-		    (dcache->symlink_status == FTPFS_RESOLVING_SYMLINKS)) {
+		if (now < dcache->timeout ||
+		    dcache->symlink_status == FTPFS_RESOLVING_SYMLINKS) {
 			if (resolve_symlinks && dcache->symlink_status == FTPFS_UNRESOLVED_SYMLINKS)
 				resolve_symlink (conn, dcache);
 			return dcache;
 		} else {
 			gpointer key;
-
-			force_expiration = 0;
 
 			g_hash_table_lookup_extended (conn->dcache, remote_path, &key, NULL);
 			g_hash_table_remove (conn->dcache, remote_path);
@@ -1463,8 +1471,10 @@ retrieve_dir (ftpfs_connection_t *conn, char *remote_path, gboolean resolve_syml
 	}
 	close (sock);
 
-	if ((get_reply (conn->sock, NULL, 0) != COMPLETE) || dcache->file_list == NULL)
+	if ((get_reply (conn->sock, NULL, 0) / 100 != COMPLETE)
+	    || dcache->file_list == NULL)
 		goto fallback;
+
 ok:
 	if (!dot_found)
 		insert_dots (dcache, conn);
@@ -1482,7 +1492,8 @@ ok:
 	return dcache;
 	close (sock);
 	get_reply (conn->sock, NULL, 0);
- error_3:
+
+error_3:
 	ftpfs_dir_unref (dcache);
 	return NULL;
 
@@ -1706,7 +1717,7 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 	 * Ok, the file does not exist, does the user want to create it?
 	 */
 	if (!((flags & FTPFS_DO_OPEN) && (flags & FTPFS_DO_CREAT)))
-		return GNOME_VFS_ERROR_GENERIC;
+		return GNOME_VFS_ERROR_NOTFOUND;
 
 	fe = g_new (ftpfs_direntry_t, 1);
 	if (fe == NULL)
@@ -1758,9 +1769,9 @@ ftpfs_open (GnomeVFSMethodHandle **method_handle,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
-	ftpfs_uri = ftpfs_parse_uri (uri);
+	ftpfs_uri = ftpfs_uri_new (uri, &ret);
 	if (!ftpfs_uri)
-		return GNOME_VFS_ERROR_WRONGFORMAT;
+		return ret;
 
 #warning Perhaps we want to set linear *only* iff READ is specified (see write method)
 	
@@ -1821,9 +1832,9 @@ ftpfs_create (GnomeVFSMethodHandle **method_handle,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
-	ftpfs_uri = ftpfs_parse_uri (uri);
+	ftpfs_uri = ftpfs_uri_new (uri, &ret);
 	if (!ftpfs_uri)
-		return GNOME_VFS_ERROR_WRONGFORMAT;
+		return GNOME_VFS_ERROR_INVALIDURI;
 
 #warning Perhaps we want to set linear *only* iff READ is specified (see write method)
 	

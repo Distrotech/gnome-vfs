@@ -13,7 +13,8 @@ typedef struct {
 	
 	time_t time_stamp;
 
-	int  port;
+	guint  port;
+
 	/*
 	 * our connection to the remote end
 	 */

@@ -25,10 +25,14 @@
 #include <config.h>
 #endif
 
+#include <netdb.h>
 #include <errno.h>
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
+
+
+extern int h_errno;
 
 
 static gchar *status_strings[] = {
@@ -58,7 +62,11 @@ static gchar *status_strings[] = {
 	/* GNOME_VFS_ERROR_LOOP */		N_("Looping links encountered"),
 	/* GNOME_VFS_ERROR_NOTPERMITTED */	N_("Operation not permitted"),
 	/* GNOME_VFS_ERROR_ISDIRECTORY */       N_("Is a directory"),
-        /* GNOME_VFS_ERROR_NOMEM */             N_("Not enough memory")
+        /* GNOME_VFS_ERROR_NOMEM */             N_("Not enough memory"),
+	/* GNOME_VFS_ERROR_HOSTNOTFOUND */	N_("Host not found"),
+	/* GNOME_VFS_ERROR_INVALIDHOSTNAME */	N_("Host name not valid"),
+	/* GNOME_VFS_ERROR_HOSTHASNOADDRESS */  N_("Host has no address"),
+	/* GNOME_VFS_ERROR_LOGINFAILED */	N_("Login failed")
 };
 
 
@@ -97,6 +105,22 @@ gnome_vfs_result_from_errno (void)
 		return GNOME_VFS_ERROR_NOMEM;
 	case EISDIR:
 		return GNOME_VFS_ERROR_ISDIRECTORY;
+	default:
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+}
+
+
+GnomeVFSResult
+gnome_vfs_result_from_h_errno (void)
+{
+	switch (h_errno) {
+	case HOST_NOT_FOUND:
+		return GNOME_VFS_ERROR_HOSTNOTFOUND;
+	case NO_ADDRESS:
+		return GNOME_VFS_ERROR_HOSTHASNOADDRESS;
+	case TRY_AGAIN:		/* FIXME? */
+	case NO_RECOVERY:	/* FIXME? */
 	default:
 		return GNOME_VFS_ERROR_GENERIC;
 	}

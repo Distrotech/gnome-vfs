@@ -1,8 +1,102 @@
 1999-09-10  Ettore Perazzoli  <ettore@comm2000.it>
 
+	* modules/ftp-method.c: Removed `reply_str' global.  Removed
+	`NONE', `WAIT_REPLY', `WANT_STRING' #defines.
+	(command): New parameters `reply_string' and `reply_string_len':
+	copy the response in there instead of using the silly global.
+	(login_server): Pass `TRUE' instead of `WAIT_REPLY' to `command()'
+	for the `wait_reply' parameter.  Pass NULL, 0 as `reply_string',
+	`reply_string_len'.
+	(ftpfs_chdir_internal): Likewise.
+	(open_data_connection): Likewise.
+	(changetype): Likewise.
+	(initconn): Likewise.
+	(abort_transfer): Pass `FALSE' instead of `NONE' to `command()'
+	for the `wait_reply' parameter. Pass NULL, 0 as `reply_string',
+	`reply_string_len'.
+	(ftpfs_get_current_directory): Likewise.
+	(setup_passive): Allocate the reply in a local buffer, update the
+	call to `command()'.
+
+	* modules/ftp-method.c: Removed variable `force_expiration', it
+	does not seem to be have meaningful use.  #define `logfile' to
+	`stdout' so that we get some useful debugging messages.  Removed
+	`code' global (this was *evil*).  Removed `got_sigpipe' global.
+	(retrieve_dir): Do not reference it anymore.
+	(get_reply): Return the code without dividing it by 100.
+	(command): Return 421 for a transient error.  Return `COMPLETE *
+	100' instead of `COMPLETE'.
+	(login_server): Divide return values from `get_reply' and
+	`command' by 100 before comparing with the `ftp.h' constants.
+	(abort_transfer): Compare `get_reply()' return value with 426
+	instead of comparing it with 4 and checking the global `code' with
+	426.
+	(store_file): Divide return value from `get_reply()' by 100.
+	(linear_read): Likewise.
+	(ftpfs_get_current_directory): Likewise.
+	(retrieve_dir): Likewise.
+	(abort_transfer): Divide return value from `command()' by 100.
+	(login_server): Likewise.
+	(setup_passive): Likewise.
+	(ftpfs_get_current_directory): Likewise.
+	(ftpfs_chdir_internal): Likewise.
+	(open_data_connection): Likewise.
+	(changetype): Likewise.
+	(initconn): Likewise.
+	(is_connection_closed): Removed unused function.
+	(sig_pipe): Do not set `got_sigpipe' anymore.
+	(net_init): Likewise.
+	(command): Likewise.
+
+	* modules/ftp-method.c (ftpfs_connection_new): New parameter
+	`result_return' used to return the VFS error code for a failure.
+	(ftpfs_uri_new): Likewise.
+	(ftpfs_open_socket): Return a GnomeVFSResult, and set the
+	connection on `conn' directly.  Return
+	`GNOME_VFS_ERROR_INVALIDHOSTNAME' if the host name is not valid.
+	If `gethostbyname()' fails, translate `h_errno' using
+	`gnome_vfs_result_from_h_errno()'.  If any of the other Unix
+	functions fails, return a sensible error code using
+	`gnome_vfs_result_from_errno()'.
+	(login_server): Return value changed to `GnomeVFSResult'.  Return
+	`GNOME_VFS_ERROR_LOGINFAILED' on error.  Use login "anonymous" if
+	user name is NULL.
+	(ftpfs_open): Use the new result parameter in `ftpfs_uri_new()'.
+	(ftpfs_create): Likewise.
+	(command): Adapted to the new `ftpfs_connection_connect()'.
+	(ftpfs_connection_connect): Return type changed to
+	`GnomeVFSResult'.  Return an appropriate result value.
+	(hash_conn): Deal with NULL host/user names gracefully.
+	(get_file_entry): Return `GNOME_VFS_ERROR_NOTFOUND' if the file is
+	not found, instead of `GNOME_VFS_ERROR_GENERIC'.
+
+	* libgnomevfs/gnome-vfs-result.c: #include <netdb.h> and declare
+	`h_errno' as extern
+	(gnome_vfs_result_from_h_errno): New function.
+	* libgnomevfs/gnome-vfs-result.h (gnome_vfs_result_from_h_errno):
+	Prototype here.
+
+	* libgnomevfs/gnome-vfs-types.h: New errors
+	`GNOME_VFS_ERROR_HOSTNOTFOUND', `GNOME_VFS_ERROR_INVALIDHOSTNAME',
+	`GNOME_VFS_ERROR_HOSTHASNOADDRESS', `GNOME_VFS_ERROR_LOGINFAILED'.
+	* libgnomevfs/gnome-vfs-result.c: Added the corresponding
+	description strings.
+
 	* modules/ftp-method.c (resolve_symlink_without_ls_options): Use
 	`gnome_vfs_canonicalize_pathname()' instead of
 	`canonicalize_pathname' from `util-url.c'.
+	(ftpfs_open): Return `GNOME_VFS_ERROR_INVALIDURI' instead of
+	`GNOME_VFS_ERROR_WRONGFORMAT'.
+	(ftpfs_create): Likewise.
+	(ftpfs_connection_new): Get const string parameters, and
+	g_strdup() all of them when filling the connection struct.
+	(ftpfs_parse_uri): Renamed to `ftpfs_uri_new'.  Use the new
+	members in `GnomeVFSToplevelURI' instead of parsing the string.
+	(ftpfs_connection_new): Removed unused parameter `path'; callers
+	updated.
+	(lookup_conn): If the specified port is zero, use the default FTP
+	port.
+	(ftpfs_connection_new): Likewise.
 
 	* test/test-sync.c (main): Do things through a GnomeVFSURI and use
 	`gnome_vfs_uri_to_string()', so that we can debug the new stuff.
