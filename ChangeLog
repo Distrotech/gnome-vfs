@@ -1,3 +1,7 @@
+2001-08-27  Abel Cheung  <maddog@linux.org.hk>
+
+	* configure.in(ALL_LINGUAS): Rename zh_TW.Big5 to zh_TW.
+
 2001-08-25  Ian McKellar  <yakk@yakk.net>
 
 	* Makefile.am:

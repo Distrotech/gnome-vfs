@@ -1,3 +1,8 @@
+2001-08-27  Abel Cheung  <maddog@linux.org.hk>
+
+	* zh_TW.Big5.po: Renamed to...
+	* zh_TW.po: this. Converted to UTF8 as well.
+
 2001-08-24  Andras Timar  <timar@gnome.hu>
 
 	* hu.po: Updated Hungarian translation.
