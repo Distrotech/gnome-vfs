@@ -232,8 +232,9 @@ callback_map_cancel_one (gpointer key, gpointer value, gpointer user_data)
 	notify_result = (GnomeVFSNotifyResult *) value;
 	
 	if (notify_result->job_handle == (GnomeVFSAsyncHandle *)user_data) {
-		JOB_DEBUG (("cancelling callback %d - job %d cancelled", GPOINTER_TO_UINT (key),
-			GPOINTER_TO_UINT (user_data)));
+		JOB_DEBUG (("cancelling callback %u - job %u cancelled",
+			    GPOINTER_TO_UINT (key),
+			    GPOINTER_TO_UINT (user_data)));
 		notify_result->cancelled = TRUE;
 	}
 }
@@ -242,7 +243,8 @@ void
 gnome_vfs_async_job_cancel_callbacks (GnomeVFSAsyncHandle *job_handle)
 {
 	if (async_job_callback_map == NULL) {
-		JOB_DEBUG (("job %d, no callbacks scheduled yet", GPOINTER_TO_UINT (job_handle)));
+		JOB_DEBUG (("job %u, no callbacks scheduled yet",
+			    GPOINTER_TO_UINT (job_handle)));
 		return;
 	}
 

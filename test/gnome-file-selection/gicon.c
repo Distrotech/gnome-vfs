@@ -198,7 +198,7 @@ gicon_init (void)
 	gicon_inited = TRUE;
 
 	name_hash = g_hash_table_new (g_str_hash, g_str_equal);
-	image_hash = g_hash_table_new (g_direct_hash, g_direct_equal);
+	image_hash = g_hash_table_new (NULL, NULL);
 
 	/* Load the default icons */
 

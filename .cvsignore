@@ -14,6 +14,7 @@ config.log
 config.status
 config.sub
 configure
+gnome-vfs-config
 gnome-vfs.spec
 install-sh
 intl
@@ -27,4 +28,6 @@ stamp-h.in
 vfsConf.sh
 vfscorbaConf.sh
 vfspthreadConf.sh
-gnome-vfs-config
+xml-i18n-extract
+xml-i18n-merge
+xml-i18n-update

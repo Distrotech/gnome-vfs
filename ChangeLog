@@ -1,3 +1,16 @@
+2001-01-19  Darin Adler  <darin@eazel.com>
+
+	reviewed by: John Sullivan  <sullivan@eazel.com>
+
+	* .cvsignore: Ignore the xml-i18n-tools files.
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.c:
+	(callback_map_cancel_one), (gnome_vfs_async_job_cancel_callbacks):
+	Use %u instead of %d to format unsigned ints.
+	* libgnomevfs/gnome-vfs-process.c: (gnome_vfs_process_init): Take
+	advantage of defaults for the hash and key comparison functions.
+	* test/gnome-file-selection/gicon.c: (gicon_init): Take advantage
+	of defaults for the hash and key comparison functions.
+
 2001-01-19  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Ramiro Estrugo  <ramiro@eazel.com>
@@ -149,6 +162,7 @@
 	
 	Add casts to strcmp's performed on gpointers so they will
 	not generate warnings.
+
 2001-01-16  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Darin Adler <darin@eazel.com>
@@ -447,7 +461,7 @@
 	Remove a bogus assert that crashed when exiting
 	if no async calls had been made.
 
-2001-01-03  Pavel Cisler <pavel@eazel.com>
+2001-01-03  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
 
