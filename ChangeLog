@@ -1,3 +1,9 @@
+2000-06-20  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_action_type): Another place we need to
+	handle NULL.
+
 2000-06-20  Gene Z. Ragan  <gzr@eazel.com>
 
 	* mime-type-capplet/nautilus-mime-type-capplet.c:

@@ -66,12 +66,14 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
 	} else {
 		/* Fall back to the supertype. */
 		supertype = mime_type_get_supertype (mime_type);
+
 		/* Check if already a supertype */
-		if (strcmp (supertype, mime_type) != 0) {
+		if (supertype != NULL && strcmp (supertype, mime_type) != 0) {
 			action_type = gnome_vfs_mime_get_default_action_type (supertype);
 		} else {
 			action_type = GNOME_VFS_MIME_ACTION_TYPE_NONE;
 		}
+
 		g_free (supertype);
 		return action_type;
 	}
