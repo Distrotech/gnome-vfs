@@ -1,3 +1,22 @@
+2000-05-26  Gene Z. Ragan  <gzr@eazel.com>
+
+	All of the below is work in progress on the Files and Programs
+	capplet.  I am currently retro-fitting jrb's capplet to use
+	our modified capplet layout and new gnome-vfs mime API.
+	This capplet does not currently work properly, but does build and
+	causes no harm if run.
+	
+	* mime-type-capplet/edit-window.c: (ext_remove), (apply_changes),
+	(initialize_main_win), (initialize_main_win_vals),
+	(launch_edit_window), (hide_edit_window), (show_edit_window),
+	(populate_application_menu), (populate_component_menu):
+	
+	* mime-type-capplet/mime-data.c: (selected_row_callback),
+	(edit_clicked):
+	
+	* mime-type-capplet/nautilus-mime-type.desktop:
+	Changed entries so capplet would register itself as "Files and Programs"
+
 2000-05-26  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.keys: Added one more description.
