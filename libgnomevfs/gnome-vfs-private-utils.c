@@ -107,7 +107,7 @@ collapse_slash_runs (char *path, int from_offset)
 	}
 
 	if (from_offset < i) {
-		strcpy (path + from_offset, path + i);
+		memmove (path + from_offset, path + i, strlen (path + i));
 		i = from_offset + 1;
 	}
 }
@@ -149,7 +149,8 @@ _gnome_vfs_canonicalize_pathname (gchar *path)
 
 			/* Handle `./'. */
 			if (path[i + 1] == GNOME_VFS_URI_PATH_CHR) {
-				strcpy (path + i, path + i + 2);
+				memmove (path + i, path + i + 2, 
+					 strlen (path + i + 2));
 				if (i == 0) {
 					/* don't leave leading '/' for paths that started
 					 * as relative (.//foo)
@@ -186,7 +187,8 @@ _gnome_vfs_canonicalize_pathname (gchar *path)
 						i++;
 					}
 
-					strcpy (path + marker, path + i + 2);
+					memmove (path + marker, path + i + 2,
+						 strlen (path + i + 2));
 					i = marker;
 				} else {
 					i = 2;
