@@ -1,5 +1,9 @@
 2003-05-16  Bastien Nocera  <hadess@hadess.net>
 
+	* programs/gnomevfs-ls.c: (show_data), (main): remove use of SHOW_ICON
+
+2003-05-16  Bastien Nocera  <hadess@hadess.net>
+
 	reviewed by: Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

@@ -20,16 +20,7 @@
    Author: Bastien Nocera <hadess@hadess.net>
 */
 
-/* Compile against libgnomeui to see which icon the files would be using */
-#undef SHOW_ICON
-
 #include <libgnomevfs/gnome-vfs.h>
-
-#ifdef SHOW_ICON
-#include <gnome.h>
-
-GnomeIconTheme *theme;
-#endif
 
 char *directory;
 
@@ -65,20 +56,13 @@ static void
 show_data (gpointer item, gpointer no_item)
 {
 	GnomeVFSFileInfo *info;
-	char *path, *icon;
+	char *path;
 
 	info = (GnomeVFSFileInfo *) item;
 
 	path = g_strconcat (directory, "/", info->name, NULL);
 
-#ifndef SHOW_ICON
-	icon = "";
-#else
-	icon = gnome_icon_lookup (theme, NULL, path, NULL,
-			info, info->mime_type, 0, NULL);
-#endif
-
-	g_print ("%s\t%s%s%s\t(%s, %s, %s)\tsize %ld\tmode %04o\n",
+	g_print ("%s\t%s%s%s\t(%s, %s)\tsize %ld\tmode %04o\n",
 			info->name,
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? " [link: " : "",
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? info->symlink_name
@@ -86,7 +70,6 @@ show_data (gpointer item, gpointer no_item)
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? " ]" : "",
 			type_to_string (info->type),
 			info->mime_type,
-			icon,
 			(glong) info->size,
 			info->permissions);
 
@@ -128,10 +111,6 @@ int
 main (int argc, char *argv[])
 {
 	gnome_vfs_init ();
-
-#ifdef SHOW_ICON
-	theme = gnome_icon_theme_new ();
-#endif
 
 	if (argc > 1) {
 		directory = argv[1];
