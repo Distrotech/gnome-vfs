@@ -20,7 +20,9 @@ INCLUDES =					\
 EXTRA_DIST =					\
 	default-modules.conf			\
 	cdda-module.conf			\
-	ssl-modules.conf
+	ssl-modules.conf			\
+	$(libnfs_la_SOURCES)			\
+	$(libssh_la_SOURCES)
 
 ###  Module setup
 
@@ -44,10 +46,10 @@ modules_LTLIBRARIES =				\
 	libftp.la				\
 	libvfs-pipe.la				\
 	libvfs-translate.la			\
-	libssh.la				\
 	$(NULL)
 
-# Not currently supported
+# Disabled for now
+#	libssh.la
 #	libnfs.la
 
 modulesconfdir=$(sysconfdir)/vfs/modules
@@ -90,7 +92,7 @@ libfile_la_LDFLAGS = $(module_flags)
 libssh_la_SOURCES = 				\
 	ssh-method.c 				\
 	ssh-method.h
-libssh_la_LDFLAGS = $(module_flags)
+#libssh_la_LDFLAGS = $(module_flags)
 
 ###  `test' method
 
@@ -129,13 +131,13 @@ libgconf_la_LDFLAGS = $(module_flags)
 
 ### `nfs' method
 
-#libnfs_la_SOURCES = 				\
-#	nfs-method.c				\
-#	nfs-method.h				\
-#	nfs-method_mount_xdr.c			\
-#	nfs-method_nfs_prot_xdr.c		\
-#	nfs-method_mount.h			\
-#	nfs-method_nfs_prot.h
+libnfs_la_SOURCES = 				\
+	nfs-method.c				\
+	nfs-method.h				\
+	nfs-method_mount_xdr.c			\
+	nfs-method_nfs_prot_xdr.c		\
+	nfs-method_mount.h			\
+	nfs-method_nfs_prot.h
 #libnfs_la_LDFLAGS = $(module_flags)
 
 ### `http' method

@@ -1,5 +1,18 @@
 2001-09-10  Maciej Stachowiak  <mjs@noisehavoc.org>
 
+	* NEWS: Updated for upcoming 1.0.2 release.
+
+	* libgnomevfs/gnome-vfs-uri.h, libgnomevfs/gnome-vfs-uri.c
+	(gnome_vfs_uri_resolve_relative): Renamed from
+	gnome_vfs_uri_relative_new; reversed argument order.
+	* doc/gnome-vfs-sections.txt, doc/tmpl/uri.sgml: Updated for the
+	name change.
+
+	* modules/Makefile.am: Disable ssh module for now at Ian's
+	request, but distribute it's sources and the nfs module sources.
+
+2001-09-10  Maciej Stachowiak  <mjs@noisehavoc.org>
+
 	* configure.in: Move installed headers to allow for parallel
 	development environments with GNOME 2.0.
 	* libgnomevfs/Makefile.am: Likewise.
