@@ -1,3 +1,9 @@
+2004-11-28  James Henstridge  <james@jamesh.id.au>
+
+	* libgnomevfs/xdgmimeparent.c (_xdg_mime_parent_read_from_file):
+	apply the same crash fix as found in gtk+.  This has been reported
+	upstream as https://bugs.freedesktop.org/show_bug.cgi?id=1916
+
 2004-11-26  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/xdgmimeparent.h: added missing file
