@@ -706,13 +706,18 @@ vfs_module_init (const char *method_name, const char *args)
 
 	/* These just return and do nothing if GTK
 	   is already initialized. */
+#if GNOME_PLATFORM_VERSION < 1095000
 	gtk_type_init();
-	gtk_signal_init();
+#else
+	gtk_type_init(G_TYPE_DEBUG_NONE);
+#endif
 
 	client = gconf_client_get_default ();
 
+#if GNOME_PLATFORM_VERSION < 1095000
 	gtk_object_ref(GTK_OBJECT(client));
 	gtk_object_sink(GTK_OBJECT(client));
+#endif
 	
 #ifdef G_THREADS_ENABLED
         if (g_thread_supported ())
@@ -727,8 +732,12 @@ vfs_module_init (const char *method_name, const char *args)
 void
 vfs_module_shutdown (GnomeVFSMethod *method)
 {
+#if GNOME_PLATFORM_VERSION < 1095000
 	gtk_object_destroy(GTK_OBJECT(client));
 	gtk_object_unref(GTK_OBJECT(client));
+#else
+	g_object_unref(G_OBJECT(client));
+#endif
 
 #ifdef G_THREADS_ENABLED
 	if (g_thread_supported ()) {

@@ -11,7 +11,6 @@ INCLUDES =					\
 	$(XML_CFLAGS)	 			\
 	$(LIBEFS_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
-	$(GTK_CFLAGS)				\
 	$(VFS_CFLAGS) $(WERROR)			\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
@@ -139,7 +138,7 @@ gconfmodule_LTLIBRARIES = libgconf.la
 libgconf_la_SOURCES =                           \
 	gconf-method.c                          \
         gconf-method.h
-libgconf_la_LIBADD = $(GCONF_LIBS) $(GTK_LIBS)
+libgconf_la_LIBADD = $(GCONF_LIBS) $(GLIB_LIBS)
 
 libgconf_la_LDFLAGS = $(module_flags)
 
@@ -160,7 +159,7 @@ libhttp_la_SOURCES =				\
 	http-method.c				\
 	http-method.h
 libhttp_la_LDFLAGS = $(module_flags)
-libhttp_la_LIBADD  = $(GLIB_LIBS) $(XML_LIBS) $(GCONF_LIBS) $(GTK_LIBS)
+libhttp_la_LIBADD  = $(GLIB_LIBS) $(XML_LIBS) $(GCONF_LIBS)
 
 libvfs_pipe_la_SOURCES =			\
 	pipe-method.c				\
@@ -180,5 +179,5 @@ libvfs_translate_la_LIBADD  = $(GLIB_LIBS)
 #libvefs_la_SOURCES =	\
 #	efs-method.c	\
 #        efs-method.h
-#libvefs_la_LIBADD = $(LIBEFS_LIBS) $(GTK_LIBS)
+#libvefs_la_LIBADD = $(LIBEFS_LIBS) $(GLIB_LIBS)
 #endif

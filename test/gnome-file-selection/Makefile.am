@@ -1,19 +1,12 @@
-if USING_OAF
-oaf_programs=gnome-file-selection-test_corba
-else
-oaf_programs=
-endif
-
 noinst_PROGRAMS =				\
 	gnome-file-selection-test_pthread	\
-	$(oaf_programs)
+	gnome-file-selection-test_corba
 
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
-	$(GNOME_INCLUDEDIR)			\
-	$(GTK_CFLAGS)			\
+	$(VFS_GNOMEUI_CFLAGS)			\
 	-I$(top_srcdir)				\
 	-DICONDIR=\"$(datadir)/pixmaps/mc\"	\
 	$(VFS_CFLAGS) $(WERROR)
@@ -41,9 +34,7 @@ gnome_file_selection_test_corba_LDADD =				\
 	main_corba.o						\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la		\
 	$(top_builddir)/libgnomevfs-corba/libgnomevfs-corba.la	\
-	$(GNOME_LIBDIR)						\
-	$(GNOMEUI_LIBS)						\
-	$(GNOMEGNORBA_LIBS)                                     \
+	$(VFS_GNOMEGNORBA_LIBS)					\
         $(GCONF_LIBS)
 
 main_pthread.o: main.c
@@ -53,8 +44,8 @@ gnome_file_selection_test_pthread_LDADD =				\
 	main_pthread.o							\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la			\
 	$(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la	\
-	$(GNOME_LIBDIR)							\
-	$(GNOMEUI_LIBS)
+	$(VFS_GNOMEUI_LIBS)						\
+	$(GCONF_LIBS)
 
 noinst_HEADERS =				\
 	gicon.h					\

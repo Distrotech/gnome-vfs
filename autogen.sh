@@ -14,4 +14,4 @@ PKG_NAME="GNOME VFS"
     exit 1
 }
 
-. $srcdir/macros/autogen.sh
+USE_GNOME2_MACROS=1 . gnome-autogen.sh

@@ -1,9 +1,3 @@
-if USING_OAF
-SUBDIRS_OAF=libgnomevfs-corba
-else
-SUBDIRS_OAF=
-endif
-
 if PLATFORM_GNOME_2
 SUBDIRS_GNOME=
 else
@@ -13,15 +7,14 @@ endif
 SUBDIRS =					\
 	libgnomevfs				\
 	libgnomevfs-pthread			\
-	$(SUBDIRS_OAF)				\
+	libgnomevfs-corba			\
 	idl					\
 	modules					\
 	data					\
 	man					\
 	devel-docs				\
 	$(SUBDIRS_GNOME)			\
-	po					\
-	macros
+	po
 
 
 EXTRA_DIST =					\
@@ -32,6 +25,7 @@ EXTRA_DIST =					\
 	vfsConf.sh.in				\
 	vfscorbaConf.sh.in			\
 	vfspthreadConf.sh.in			\
+	gnomevfs-2.0.pc.in			\
 	xml-i18n-extract.in			\
 	xml-i18n-merge.in			\
 	xml-i18n-update.in			\
@@ -86,4 +80,6 @@ gnome-vfs-config: gnome-vfs-config.in Makefile
 	  && mv gnome-vfs-config.tmp gnome-vfs-config && \
 		chmod 755 gnome-vfs-config
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = gnomevfs-2.0.pc
 

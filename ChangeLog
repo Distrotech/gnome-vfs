@@ -1,3 +1,25 @@
+2001-03-23  Martin Baulig  <baulig@suse.de>
+
+	Added support for the GNOME 2.0 platform.
+
+	We try to autodetect the GNOME Platform in configure.in, but
+	you may need to use the --enable-platform-gnome-2 or
+	--disable-platform-gnome-2 argument if this fails.
+
+	* autogen.sh: Use gnome-common.
+
+	* configure.in: Use pkg-config to check for things; removed
+	the USING_OAF conditional.
+
+	* Makefile.am: Removed the USING_OAF conditional.
+
+	* libgnomevfs/gnome-vfs-i18n.c: New file.
+	(gnome_vfs_i18n_get_language_list): Moved the implementation of
+	this function from gnome-libs/libgnome/gnome-i18n.c here.
+
+	* libgnomevfs/gnome-vfs-private-utils.c
+	(gnome_vfs_i18n_get_language_list): Moved to gnome-vfs-i18n.c.
+
 2001-03-23  Darin Adler  <darin@eazel.com>
 
 	* test/test-uri.c: (main): Added some tests to demonstrate

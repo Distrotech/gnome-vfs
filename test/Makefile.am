@@ -1,9 +1,3 @@
-if USING_OAF
-oaf_programs=test-async-directory_corba test-async_corba test-channel_corba
-else
-oaf_programs=
-endif
-
 SUBDIRS = gnome-file-selection
 
 INCLUDES =					\
@@ -12,8 +6,7 @@ INCLUDES =					\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
 	$(OAF_CFLAGS)				\
-	$(GNOME_INCLUDEDIR)			\
-	$(GTK_CFLAGS)				\
+	$(VFS_GNOMEUI_CFLAGS)			\
 	$(VFS_CFLAGS) $(WERROR)
 
 noinst_PROGRAMS =				\
@@ -40,7 +33,9 @@ noinst_PROGRAMS =				\
 	test-unlink				\
 	test-dirop				\
 	test-mime-info				\
-	$(oaf_programs)
+	test-async-directory_corba		\
+	test-async_corba			\
+	test-channel_corba
 
 test_files=		\
 	test.input	\
@@ -59,9 +54,7 @@ TESTS = test-async-cancel test-escape test-uri $(auto_tests)
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
-	$(GNOME_LIBDIR)					\
-	$(GNOMEUI_LIBS)					\
-	$(GNOMEGNORBA_LIBS)                             \
+	$(VFS_GNOMEGNORBA_LIBS)				\
 	$(GCONF_LIBS)					\
 	$(LIBEFS_LIBS)
 

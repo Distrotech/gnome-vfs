@@ -9,9 +9,11 @@ INCLUDES =					\
 	-I$(top_builddir)			\
 	-I$(top_builddir)/intl			\
 	-I$(top_builddir)/libgnomevfs		\
+	$(GLIB_CFLAGS)				\
+	$(ORBIT_CFLAGS)				\
 	$(OAF_CFLAGS)				\
+	$(XML_CFLAGS)				\
 	$(GCONF_CFLAGS) 			\
-	$(GNOME_INCLUDEDIR)			\
 	$(VFS_CFLAGS) $(WERROR)			\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
@@ -27,18 +29,11 @@ EXTRA_DIST =					\
 	getdelim.c
 
 libgnomevfs_la_LIBADD =				\
-	$(GNOME_LIBDIR)				\
-	$(GNOME_LIBS)				\
-	$(OAF_LIBS)	                        \
-	$(GCONF_LIBS)	                        \
 	$(GLIB_LIBS)				\
-	$(NULL)
-
-libgnomevfs_la_CFLAGS =				\
-	$(GNOME_CFLAGS)				\
-	$(OAF_CFLAGS)	                        \
-	$(GCONF_CFLAGS)	                        \
-	$(GLIB_CFLAGS)				\
+	$(ORBIT_LIBS)				\
+	$(OAF_LIBS)				\
+	$(XML_LIBS)				\
+	$(GCONF_LIBS) 				\
 	$(NULL)
 
 libgnomevfsincludedir = $(includedir)/libgnomevfs
@@ -117,6 +112,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-parse-ls.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-private-utils.c		\
+	gnome-vfs-i18n.c			\
 	gnome-vfs-process.c			\
 	gnome-vfs-result.c			\
 	gnome-vfs-regexp-filter.c		\

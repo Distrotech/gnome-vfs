@@ -28,6 +28,8 @@ stamp-h.in
 vfsConf.sh
 vfscorbaConf.sh
 vfspthreadConf.sh
+gnome-vfs-config
+gnomevfs-2.0.pc
 xml-i18n-extract
 xml-i18n-extract.in
 xml-i18n-merge
