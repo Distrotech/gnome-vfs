@@ -1,3 +1,20 @@
+2000-11-09  Darin Adler  <darin@eazel.com>
+
+	* gnome-vfs.spec.in: Turn on "make check" for RPM builds. This is
+	especially good for the Tinderbox.
+	
+	* modules/http-method.c: (process_propfind_propstat),
+	(process_propfind_response), (make_propfind_request),
+	(vfs_module_init):
+	* modules/test-method.c: (load_config_file), (vfs_module_init):
+	Use LIBXML_TEST_VERSION and the new macros to make gnome-vfs
+	ready for gnome-xml 2.X or gnome-xml 1.X, as DV suggests.
+
+	* modules/Makefile.am:
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	Formatting tweaks.
+
 2000-11-08  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed an error where access count was not reset

@@ -28,16 +28,16 @@ EXTRA_DIST =					\
 module_flags = -export_dynamic -avoid-version
 modulesdir = $(libdir)/vfs/modules
 
-modules_LTLIBRARIES =		\
+modules_LTLIBRARIES =				\
 	libextfs.la				\
 	libfile.la				\
-	libvfs-test.la			\
+	libvfs-test.la				\
 	libhttp.la				\
 	libbzip2.la				\
 	libgzip.la				\
 	libftp.la				\
-	libvfs-pipe.la			\
-	libvfs-translate.la		\
+	libvfs-pipe.la				\
+	libvfs-translate.la			\
 	libnfs.la
 
 modulesconfdir=$(sysconfdir)/vfs/modules
@@ -119,9 +119,9 @@ libgconf_la_LDFLAGS = $(module_flags)
 libnfs_la_SOURCES = 				\
 	nfs-method.c				\
 	nfs-method.h				\
-	nfs-method_mount_xdr.c				\
-	nfs-method_nfs_prot_xdr.c				\
-	nfs-method_mount.h					\
+	nfs-method_mount_xdr.c			\
+	nfs-method_nfs_prot_xdr.c		\
+	nfs-method_mount.h			\
 	nfs-method_nfs_prot.h
 
 libnfs_la_LDFLAGS = $(module_flags)

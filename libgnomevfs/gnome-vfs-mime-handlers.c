@@ -24,44 +24,30 @@
 #include <config.h>
 #include "gnome-vfs-mime-handlers.h"
 
-#include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-application-registry.h"
+#include "gnome-vfs-mime-info.h"
+#include "gnome-vfs-result.h"
 #include <gconf/gconf.h>
 #include <stdio.h>
 #include <string.h>
-#include <unistd.h>
 #include <sys/stat.h>
-#include "gnome-vfs-result.h"
+#include <unistd.h>
+
+static GConfEngine *gconf_engine = NULL;
 
 static char *         get_user_level                          (void);
-static char *         extract_prefix_add_suffix               (const char         *string,
-							       const char         *separator,
-							       const char         *suffix);
 static char *         mime_type_get_supertype                 (const char         *mime_type);
-static char **        strsplit_handle_null                    (const char         *str,
-							       const char         *delim,
-							       int                 max);
-static char *         join_str_list                           (const char         *separator,
-							       GList              *list);
 static GList *        OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
 static GList *        comma_separated_str_to_str_list         (const char         *str);
 static GList *        str_list_difference                     (GList              *a,
 							       GList              *b);
 static char *         str_list_to_comma_separated_str         (GList              *list);
-static GList *        gnome_vfs_strsplit_to_list              (const char         *str,
-							       const char         *delim,
-							       int                 max);
-static char *         gnome_vfs_strjoin_from_list             (const char         *separator,
-							       GList              *list);
 static void           g_list_free_deep                        (GList              *list);
 static GList *        prune_ids_for_nonexistent_applications  (GList              *list);
 static GnomeVFSResult gnome_vfs_mime_edit_user_file           (const char         *mime_type,
 							       const char         *key,
 							       const char         *value);
 static gboolean       application_known_to_be_nonexistent     (const char         *application_id);
-
-
-static GConfEngine *gconf_engine = NULL;
 
 static GnomeVFSMimeActionType
 gnome_vfs_mime_get_default_action_type_without_fallback (const char *mime_type)
@@ -79,8 +65,6 @@ gnome_vfs_mime_get_default_action_type_without_fallback (const char *mime_type)
 		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
 	}
 }
-
-
 
 /**
  * gnome_vfs_mime_get_description:
@@ -191,10 +175,10 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 	default_application_id = gnome_vfs_mime_get_value
 		(mime_type, "default_application_id");
 
-	if (default_application_id != NULL && 
-	    strcmp (default_application_id, "") != 0
-	    && ! application_known_to_be_nonexistent (default_application_id)) {
-		default_application = 
+	if (default_application_id != NULL
+	    && default_application_id[0] != '\0'
+	    && !application_known_to_be_nonexistent (default_application_id)) {
+		default_application =
 			gnome_vfs_application_registry_get_mime_application (default_application_id);
 	}
 
@@ -204,7 +188,7 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 		short_list = gnome_vfs_mime_get_short_list_applications (mime_type);
 
 		if (short_list != NULL) {
-			default_application = gnome_vfs_mime_application_copy 
+			default_application = gnome_vfs_mime_application_copy
 				((GnomeVFSMimeApplication *) (short_list->data));
 			gnome_vfs_mime_application_list_free (short_list);
 		}
@@ -212,12 +196,13 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 
 	if (default_application == NULL) {
 		/* If that still fails, try the supertype */
-
 		supertype = mime_type_get_supertype (mime_type);
+
 		/* Check if already a supertype */
 		if (strcmp (supertype, mime_type) != 0) {
 			default_application = gnome_vfs_mime_get_default_application (supertype);
 		} 
+
 		g_free (supertype);
 	}
 
@@ -1596,20 +1581,10 @@ mime_type_get_supertype (const char *mime_type)
 }
 
 
-static char **
-strsplit_handle_null (const char *str, const char *delim, int max)
-{
-	return g_strsplit ((str == NULL ? "" : str), delim, max);
-}
-
 GnomeVFSMimeApplication *
 gnome_vfs_mime_application_new_from_id (const char *id)
 {
-	GnomeVFSMimeApplication *application;
-
-	application = gnome_vfs_application_registry_get_mime_application (id);
-
-	return application;
+	return gnome_vfs_application_registry_get_mime_application (id);
 }
 
 static char *
@@ -1793,12 +1768,14 @@ get_user_level (void)
 	return user_level;
 }
 
-
-
-
+static char **
+strsplit_handle_null (const char *str, const char *delim, int max)
+{
+	return g_strsplit ((str == NULL ? "" : str), delim, max);
+}
 
 static GList *
-gnome_vfs_strsplit_to_list (const char *str, const char *delim, int max)
+strsplit_to_list (const char *str, const char *delim, int max)
 {
 	char **strv;
 	GList *retval;
@@ -1821,7 +1798,7 @@ gnome_vfs_strsplit_to_list (const char *str, const char *delim, int max)
 }
 
 static char *
-gnome_vfs_strjoin_from_list (const char *separator, GList *list)
+strjoin_from_list (const char *separator, GList *list)
 {
 	char **strv;
 	int i;
@@ -1844,30 +1821,31 @@ gnome_vfs_strjoin_from_list (const char *separator, GList *list)
 static GList *
 comma_separated_str_to_str_list (const char *str)
 {
-	return gnome_vfs_strsplit_to_list (str, ",", 0);
+	return strsplit_to_list (str, ",", 0);
 }
 
 static char *
 str_list_to_comma_separated_str (GList *list)
 {
-	return gnome_vfs_strjoin_from_list (",", list);
+	return strjoin_from_list (",", list);
 }
-
 
 static GList *
 str_list_difference (GList *a, GList *b)
 {
-	GList *p;
-	GList *retval;
+	GList *node, *result;
 
-	retval = NULL;
+	/* Uses an N^2 algorithm rather than a more efficient one
+	 * that sorts or creates a hash table.
+	 */
 
-	for (p = a; p != NULL; p = p->next) {
-		if (g_list_find_custom (b, p->data, (GCompareFunc) strcmp) == NULL) {
-			retval = g_list_prepend (retval, p->data);
+	result = NULL;
+
+	for (node = a; node != NULL; node = node->next) {
+		if (g_list_find_custom (b, node->data, (GCompareFunc) strcmp) == NULL) {
+			result = g_list_prepend (result, node->data);
 		}
 	}
 
-	retval = g_list_reverse (retval);
-	return retval;
+	return g_list_reverse (result);
 }

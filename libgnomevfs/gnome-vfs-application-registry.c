@@ -1392,7 +1392,7 @@ gnome_vfs_application_registry_get_mime_application (const char *app_id)
 
 	application = g_new0 (GnomeVFSMimeApplication, 1);
 
-	application->id = g_strdup(app_id);
+	application->id = g_strdup (app_id);
 
 	application->name =
 		g_strdup (real_peek_value

@@ -1756,7 +1756,7 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 			continue;
 		}
 		/* properties of the file */
-		l = node->childs;
+		l = node->xmlChildrenNode;
 		while (l != NULL) {
 			gchar *nc = xmlNodeGetContent(l);
 			if (nc) {
@@ -1788,8 +1788,8 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 					GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 				file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 
-				if (l->childs && l->childs->name 
-					&& strcmp((char *)l->childs->name, "collection") == 0) {
+				if (l->xmlChildrenNode && l->xmlChildrenNode->name 
+					&& strcmp((char *)l->xmlChildrenNode->name, "collection") == 0) {
 					file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 					g_free(file_info->mime_type);
 					file_info->mime_type = g_strdup("x-directory/webdav");
@@ -1926,7 +1926,7 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 			xmlFree (nodecontent_escaped);
 			g_free (nodecontent);
 		} else if (strcmp ((char *)n->name, "propstat") == 0) {
-			process_propfind_propstat (n->childs, file_info);
+			process_propfind_propstat (n->xmlChildrenNode, file_info);
 		}
 		n = n->next;
 	}
@@ -2021,7 +2021,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 		goto cleanup;
 	}
 
-	cur = doc->root;
+	cur = doc->xmlRootNode;
 
 	if (strcmp((char *)cur->name, "multistatus") != 0) {
 		DEBUG_HTTP(("Couldn't find <multistatus>.\n"));
@@ -2029,13 +2029,13 @@ make_propfind_request (HttpFileHandle **handle_return,
 		goto cleanup;
 	}
 
-	cur = cur->childs;
+	cur = cur->xmlChildrenNode;
 
 	found_root_node_props = FALSE;
 	while (cur != NULL) {
 		if (strcmp((char *)cur->name, "response") == 0) {
 			GnomeVFSFileInfo *file_info =
-				process_propfind_response(cur->childs, uri);
+				process_propfind_response(cur->xmlChildrenNode, uri);
 
 			if (file_info->name != NULL) { 
 				(*handle_return)->files = g_list_append ((*handle_return)->files, file_info);
@@ -2571,7 +2571,9 @@ vfs_module_init (const char *method_name, const char *args)
         char *argv[] = {"dummy"};
         int argc = 1;
         GError *err_gconf = NULL;
-        GConfValue *val_gconf = NULL;
+        GConfValue *val_gconf;
+
+	LIBXML_TEST_VERSION
 
 	/* Ensure GConf is init'd.  If more modules start to rely on
 	 * GConf, then this should probably be moved into a more 
@@ -2589,8 +2591,8 @@ vfs_module_init (const char *method_name, const char *args)
 
 	gl_client = gconf_client_get_default ();
 
-	gtk_object_ref(GTK_OBJECT(gl_client));
-	gtk_object_sink(GTK_OBJECT(gl_client));
+	gtk_object_ref (GTK_OBJECT (gl_client));
+	gtk_object_sink (GTK_OBJECT (gl_client));
 
 #ifdef G_THREADS_ENABLED
         if (g_thread_supported ()) {

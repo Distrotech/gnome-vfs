@@ -270,17 +270,17 @@ load_config_file (char *filename)
 
 	/* FIXME bugzilla.eazel.com 3836: the module shouldn't crash when the config file doesn't exist */
 	
-	if(!doc || !doc->root || !doc->root->name || g_strcasecmp(doc->root->name,"TestModule")!=0) {
+	if(!doc || !doc->xmlRootNode || !doc->xmlRootNode->name || g_strcasecmp(doc->xmlRootNode->name,"TestModule")!=0) {
 		xmlFreeDoc(doc);
 		return FALSE;
 	}
 
-	method_name = xmlGetProp(doc->root, "method");
+	method_name = xmlGetProp(doc->xmlRootNode, "method");
 	g_snprintf (TestMethodName, 10, "%s", method_name);
 	
 	printf ("target method: %s\n", TestMethodName);
 
-	for(node = doc->root->childs; node != NULL; node = node->next) {
+	for(node = doc->xmlRootNode->xmlChildrenNode; node != NULL; node = node->next) {
 		if (xmlGetProp (node, "name") != NULL) {
 			operation = g_new (Interposition, 1);
 			operation->operation_name = xmlGetProp(node, "name");
@@ -666,6 +666,8 @@ static GnomeVFSMethod method = {
 GnomeVFSMethod *
 vfs_module_init (const char *method_name, const char *args)
 {
+	LIBXML_TEST_VERSION
+	
 	/* FIXME bugzilla.eazel.com 3838: the path to the config file should not be hardcoded */
 	TestOperationConfig = load_config_file ("/gnome/etc/vfs/Test-conf.xml");
 	printf ("Module initialized.\n");
