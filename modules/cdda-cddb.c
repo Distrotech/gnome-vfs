@@ -781,8 +781,8 @@ CDDBLookupDisc (CDDBServer *server, cdrom_drive *drive, DiscData *disc_data)
 	gboolean success = FALSE;
 
 	if(server->use_proxy) {
-    	//g_message ("Querying %s (through %s) for disc %02x.\n",server->name,
-	   	//server->proxy->name, CDDBDiscid (drive));
+    	//g_message ("Querying %s (through %s:%d) for disc %02x.\n", server->name,
+	   	//server->proxy->name, server->proxy->port, CDDBDiscid (drive));
 	} else {
 		//g_message ("Querying %s for disc %02x.\n",server->name, CDDBDiscid (drive));
 	}
@@ -791,7 +791,7 @@ CDDBLookupDisc (CDDBServer *server, cdrom_drive *drive, DiscData *disc_data)
 	strncpy (hello.hello_version, "1.0", 256);
 	
 	if (!CDDBDoQuery (drive, server, &hello, &query)) {
-		//g_message ("Query failed");
+		g_message ("Query failed");
 	} else {
 		switch(query.query_match) {
 			case MATCH_INEXACT:

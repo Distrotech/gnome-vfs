@@ -28,6 +28,8 @@
 
 #include <ctype.h>
 #include <errno.h>
+#include <gconf/gconf.h>
+#include <gconf/gconf-client.h>
 #include <gtk/gtk.h>
 #include <pwd.h>
 #include <stdlib.h>
@@ -56,10 +58,6 @@
 #include "cdda-method.h"
 
 CDDAContext *global_context = NULL;
-ProxyServer proxy_server={"192.168.0.1", 4480};
-CDDBServer dbserver = {"freedb.freedb.org", "~cddb/cddb.cgi", 80, 0, &proxy_server};
-CDDBServer dbserver2 = {"","~cddb/cddb.cgi", 80, 0, &proxy_server};
-
 
 static GnomeVFSResult do_open	         	(GnomeVFSMethod              	*method,
 					  						 GnomeVFSMethodHandle         	**method_handle,
@@ -88,11 +86,20 @@ static gboolean	is_file_is_on_disc 			(CDDAContext 					*context,
 static int 		write_wav_header 			(gpointer 						buffer, 
 											 long 							bytes);
 
+
+static const char PROXY_KEY[] = "/system/gnome-vfs/http-proxy";
+static const char USE_PROXY_KEY[] = "/system/gnome-vfs/use-http-proxy";
+
 static CDDAContext *
 cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
 {
 	CDDAContext *context;
-		
+	GConfClient *gconf_client;
+	char *proxy_string, *port, *proxy;
+	gboolean use_proxy;
+	ProxyServer proxy_server;
+	CDDBServer cddb_server;
+				
 	context = g_new0 (CDDAContext, 1);
 	context->drive = drive;
 	context->file_info = gnome_vfs_file_info_new ();
@@ -101,7 +108,33 @@ cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
 	context->cddb_discid = CDDBDiscid (drive);
 
 	// Look up CDDB info
-	context->use_cddb = CDDBLookupDisc (&dbserver, drive, &context->disc_data);
+	gconf_client = gconf_client_get_default ();
+
+	proxy_string = port = proxy = NULL;
+	
+	use_proxy = gconf_client_get_bool (gconf_client, USE_PROXY_KEY, NULL);
+	if (use_proxy) {
+		proxy_string = gconf_client_get_string (gconf_client, PROXY_KEY, NULL);
+		if (proxy_string != NULL) {
+			port = strchr (proxy_string, ':');
+			if (port != NULL) {
+				proxy = g_strdup (proxy_string);
+				proxy [port - proxy_string] = '\0';
+				port++;
+			}			
+		}						
+	}
+
+	strcpy (proxy_server.name, proxy);
+	proxy_server.port = atoi (port);
+
+	strcpy (cddb_server.name, "freedb.freedb.org");
+	strcpy (cddb_server.cgi_prog, "~cddb/cddb.cgi");
+	cddb_server.port = 80;
+	cddb_server.use_proxy = use_proxy;
+	cddb_server.proxy = &proxy_server;
+
+	context->use_cddb = CDDBLookupDisc (&cddb_server, drive, &context->disc_data);
 
 	return context;
 }
@@ -779,7 +812,7 @@ do_check_same_fs (GnomeVFSMethod *method,
 static gboolean       
 do_is_local (GnomeVFSMethod *method, const GnomeVFSURI *uri)
 {
-	return FALSE;
+	return TRUE;
 }
 
 
@@ -847,6 +880,35 @@ put_num (long num, int f, int endianness, int bytes)
 			i++;
 		}
 	}
+}
+#endif
+
+
+/* Write WAV header information into memory buffer */
+#if 0
+static int
+write_wav_header (gpointer buffer, long bytes)
+{
+		char *ptr;
+
+		memset (buffer, 0, CD_FRAMESIZE_RAW);
+		
+		ptr = buffer;
+		
+		*ptr = "RIFF"; ptr += 4;
+		*ptr = bytes + 44 - 8; ptr += 4;
+		*ptr = "WAVEfmt "); ptr += 8;
+		*ptr = 16; ptr += 4;
+		*ptr = 1; ptr += 2;
+		*ptr = 2; ptr += 2;
+		*ptr = 44100; ptr += 4;
+		*ptr = 44100 * 2 * 2; ptr += 4;
+		*ptr = 4; ptr += 2;
+		*ptr = 16; ptr += 2;		
+		*ptr = "data"; ptr += 4;
+		*ptr = bytes, 4); ptr += 4;
+
+		return 44;
 }
 #endif
 

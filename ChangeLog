@@ -1,3 +1,18 @@
+2000-10-31  Gene Z. Ragan  <gzr@eazel.com>
+
+	* modules/cdda-cddb.c:
+	* modules/cdda-method.c: 
+	(cdda_context_new):
+	Get proxy info using gconf. We are using the system keys that
+	are shared by nautilus and ammonite.  The only UI to change these
+	values is in Nautolis right now.
+	
+	(do_is_local):
+	Return TRUE
+	
+	(put_num), (write_wav_header):
+	More cleanup.
+
 2000-11-01  Ian McKellar,,,  <set EMAIL_ADDRESS environment variable>
 
 	* libgnomevfs/gnome-vfs-method.c: (load_module):
