@@ -50,7 +50,7 @@ libvfolder_desktop_la_SOURCES = \
 	vfolder-common.h 	\
 	vfolder-method.c
 libvfolder_desktop_la_LDFLAGS = $(module_flags)
-libvfolder_desktop_la_LIBADD = $(top_builddir)/libgnomevfs/libgnomevfs-2.la
+libvfolder_desktop_la_LIBADD = $(top_builddir)/libgnomevfs/libgnomevfs-2.la $(TEST_LIBS)
 
 ###  Default .vfolder-info files
 
