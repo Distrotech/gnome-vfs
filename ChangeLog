@@ -1,3 +1,12 @@
+2001-07-02  Seth Nickell  <snickell@stanford.edu>
+
+	* configure.in:
+
+	Fix ORBit configuration problem on GNOME1 platform.
+	
+	* po/ChangeLog:
+	Long live stupid gettext.
+	
 2001-06-26  Darin Adler  <darin@bentspoon.com>
 
 	* .cvsignore: Ignore ABOUT-NLS, but not obsolete *Conf.sh files.
