@@ -4,5 +4,3 @@ Makefile
 Makefile.in
 *.lo
 *.la
-applications.vfolder-info
-preferences.vfolder-info

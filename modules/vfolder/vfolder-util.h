@@ -1,0 +1,71 @@
+
+
+#ifndef VFOLDER_UTIL_H
+#define VFOLDER_UTIL_H
+
+#include <time.h>
+
+#include <glib.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
+#include <libgnomevfs/gnome-vfs-monitor.h>
+
+G_BEGIN_DECLS
+
+typedef struct {
+	const gchar *scheme;
+	gboolean     is_all_scheme;
+	gboolean     ends_in_slash;
+	gchar       *path;
+	gchar       *file;
+	GnomeVFSURI *uri;
+} VFolderURI;
+
+/* assumes vuri->path already set */
+gboolean vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri);
+
+#define VFOLDER_URI_PARSE(_uri, _vuri) {                                    \
+	gchar *path;                                                        \
+	path = gnome_vfs_unescape_string ((_uri)->text, G_DIR_SEPARATOR_S); \
+	if (path != NULL) {                                                 \
+		(_vuri)->path = g_alloca (strlen (path) + 1);               \
+		strcpy ((_vuri)->path, path);                               \
+		g_free (path);                                              \
+	} else {                                                            \
+		(_vuri)->path = NULL;                                       \
+	}                                                                   \
+	vfolder_uri_parse_internal ((_uri), (_vuri));                       \
+}
+
+gboolean check_extension (const char *name, const char *ext_check);
+
+typedef struct {
+	time_t    ctime;
+	time_t    last_stat;
+	gboolean  trigger_next; /* if true, next check will fail */
+	char     *name;      /* will allocate enough to fit name */
+} StatLoc;
+
+typedef struct {
+	StatLoc                 statloc;
+	GnomeVFSMonitorHandle  *vfs_handle;
+	gboolean                frozen;
+
+	GnomeVFSMonitorCallback callback;
+	gpointer                user_data;
+} VFolderMonitor;
+
+VFolderMonitor *vfolder_monitor_directory_new (gchar                   *uri,
+					       GnomeVFSMonitorCallback  callback,
+					       gpointer                 user_data);
+VFolderMonitor *vfolder_monitor_file_new (gchar                   *uri,
+					  GnomeVFSMonitorCallback  callback,
+					  gpointer                 user_data);
+
+void vfolder_monitor_freeze (VFolderMonitor *monitor);
+void vfolder_monitor_thaw (VFolderMonitor *monitor);
+
+void vfolder_monitor_cancel (VFolderMonitor *monitor);
+
+G_END_DECLS
+
+#endif /* VFOLDER_UTIL_H */
