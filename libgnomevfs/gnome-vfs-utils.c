@@ -87,7 +87,7 @@ gnome_vfs_format_file_size_for_display (GnomeVFSFileSize size)
 
 		if (size < (GnomeVFSFileSize) MEGABYTE_FACTOR) {
 			displayed_size = (gdouble) size / KILOBYTE_FACTOR;
-			return g_strdup_printf (_("%.1f K"),
+			return g_strdup_printf (_("%.1f KB"),
 						       displayed_size);
 		} else if (size < (GnomeVFSFileSize) GIGABYTE_FACTOR) {
 			displayed_size = (gdouble) size / MEGABYTE_FACTOR;
