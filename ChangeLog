@@ -1,3 +1,7 @@
+2004-12-01  Dwayne Bailey  <dwayne@translate.org.za>
+
+	* configure.in: Added "nso" to ALL_LINGUAS.
+
 2004-11-30  Sebastien Bacher  <seb128@debian.org>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c:
