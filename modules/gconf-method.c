@@ -93,7 +93,8 @@ static GnomeVFSMethod method = {
         NULL,
 	NULL,
         NULL,
-	NULL
+	NULL,
+	NULL /* truncate */
 };
 
 static GConfClient *client = NULL;
@@ -610,5 +611,3 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 	gtk_object_unref(GTK_OBJECT(client));
 	client = NULL;
 }
-
-

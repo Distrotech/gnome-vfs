@@ -2129,16 +2129,6 @@ ftpfs_tell (GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
-ftpfs_truncate (GnomeVFSMethod *method,
-		GnomeVFSMethodHandle *method_handle,
-		GnomeVFSFileSize where,
-		GnomeVFSContext *context)
-{
-	g_error ("unimplemented routine reached (truncate)");
-	return GNOME_VFS_ERROR_WRONGFORMAT;
-}
-
-static GnomeVFSResult
 ftpfs_open_directory (GnomeVFSMethod *method,
 		      GnomeVFSMethodHandle **method_handle,
 		      GnomeVFSURI *uri,
@@ -2490,7 +2480,7 @@ static GnomeVFSMethod method = {
 	ftpfs_write,
 	ftpfs_seek,
 	ftpfs_tell,
-	ftpfs_truncate,
+	NULL, /* truncate_handle */
 	ftpfs_open_directory,
 	ftpfs_close_directory,
 	ftpfs_read_directory,
@@ -2500,7 +2490,8 @@ static GnomeVFSMethod method = {
 	ftpfs_make_directory,
 	ftpfs_remove_directory,
 	NULL,
-	NULL
+	NULL,
+	NULL /* truncate */
 };
 
 GnomeVFSMethod *

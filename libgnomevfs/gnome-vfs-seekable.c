@@ -70,10 +70,10 @@ static GnomeVFSResult   do_seek		(GnomeVFSMethod *method,
 static GnomeVFSResult	do_tell		(GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileOffset *offset_return);
-static GnomeVFSResult	do_truncate 	(GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileSize where,
-					 GnomeVFSContext *context);
+static GnomeVFSResult	do_truncate_handle 	(GnomeVFSMethod *method,
+						 GnomeVFSMethodHandle *method_handle,
+						 GnomeVFSFileSize where,
+						 GnomeVFSContext *context);
 
 /* Our method_handle */
 typedef struct  {
@@ -226,7 +226,7 @@ gnome_vfs_seek_emulate (GnomeVFSURI *uri, GnomeVFSMethodHandle *child_handle,
 	m->write    = do_write;
 	m->seek     = do_seek;
 	m->tell     = do_tell;
-	m->truncate = do_truncate;
+	m->truncate_handle = do_truncate_handle;
 
 	mh->child_handle   = child_handle;
 	mh->child_method   = uri->method;
@@ -352,10 +352,10 @@ do_tell (GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
-do_truncate (GnomeVFSMethod *method,
-	     GnomeVFSMethodHandle *method_handle,
-	     GnomeVFSFileSize where,
-	     GnomeVFSContext *context)
+do_truncate_handle (GnomeVFSMethod *method,
+		    GnomeVFSMethodHandle *method_handle,
+		    GnomeVFSFileSize where,
+		    GnomeVFSContext *context)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);

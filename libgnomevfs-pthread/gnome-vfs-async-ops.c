@@ -498,6 +498,8 @@ pthread_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 	job->callback = callback;
 	job->callback_data = callback_data;
 
+	gijob = &job->info.get_file_info;
+
 	gijob->request.uri = vuri;
 	gijob->request.meta_keys = copy_meta_keys (meta_keys);
 	gijob->request.options = options;

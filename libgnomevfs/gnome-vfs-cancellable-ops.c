@@ -177,6 +177,28 @@ gnome_vfs_get_file_info_from_handle_cancellable (GnomeVFSHandle *handle,
 }
 
 GnomeVFSResult
+gnome_vfs_truncate_uri_cancellable (GnomeVFSURI *uri,
+				    GnomeVFSFileSize length,
+				    GnomeVFSContext *context)
+{
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	if(uri->method->truncate == NULL)
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+
+	return uri->method->truncate(uri->method, uri, length, context);
+}
+
+GnomeVFSResult
+gnome_vfs_truncate_handle_cancellable (GnomeVFSHandle *handle,
+				       GnomeVFSFileSize length,
+				       GnomeVFSContext *context)
+{
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	return gnome_vfs_handle_do_truncate (handle, length, context);
+}
+
+GnomeVFSResult
 gnome_vfs_make_directory_for_uri_cancellable (GnomeVFSURI *uri,
 					      guint perm,
 					      GnomeVFSContext *context)

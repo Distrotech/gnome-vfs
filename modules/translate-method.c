@@ -138,16 +138,6 @@ tr_do_tell(GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
-tr_do_truncate(GnomeVFSMethod *method,
-	       GnomeVFSMethodHandle *method_handle,
-	       GnomeVFSFileSize where,
-	       GnomeVFSContext *context)
-{
-  TranslateMethod *tm = (TranslateMethod *)method;
-  return tm->real_method->truncate(tm->real_method, method_handle, where, context);
-}
-
-static GnomeVFSResult
 tr_do_open_directory(GnomeVFSMethod *method,
 		     GnomeVFSMethodHandle **method_handle,
 		     GnomeVFSURI *uri,
@@ -237,6 +227,36 @@ tr_do_get_file_info_from_handle(GnomeVFSMethod *method,
   return retval;
 }
 
+static GnomeVFSResult
+tr_do_truncate(GnomeVFSMethod *method,
+	       GnomeVFSURI *uri,
+	       GnomeVFSFileSize length,
+	       GnomeVFSContext *context)
+{
+  TranslateMethod *tm = (TranslateMethod *)method;
+  GnomeVFSURI *real_uri;
+  GnomeVFSResult retval;
+
+  real_uri = tr_uri_translate(tm, uri);
+
+  retval = tm->real_method->truncate(tm->real_method, real_uri, length, context);
+
+  gnome_vfs_uri_unref(real_uri);
+
+  return retval;
+}
+
+static GnomeVFSResult
+tr_do_truncate_handle(GnomeVFSMethod *method,
+		      GnomeVFSMethodHandle *method_handle,
+		      GnomeVFSFileSize length,
+		      GnomeVFSContext *context)
+{
+  TranslateMethod *tm = (TranslateMethod *)method;
+
+  return tm->real_method->truncate_handle(tm->real_method, method_handle, length, context);
+}
+
 static gboolean
 tr_do_is_local(GnomeVFSMethod *method,
 	       const GnomeVFSURI *uri)
@@ -247,7 +267,7 @@ tr_do_is_local(GnomeVFSMethod *method,
 
   real_uri = tr_uri_translate(tm, uri);
 
-  retval = tm->real_method->is_local(method, real_uri);
+  retval = tm->real_method->is_local(tm->real_method, real_uri);
 
   gnome_vfs_uri_unref(real_uri);
 
@@ -266,7 +286,7 @@ tr_do_make_directory(GnomeVFSMethod *method,
 
   real_uri = tr_uri_translate(tm, uri);
 
-  retval = tm->real_method->make_directory(method, real_uri, perm, context);
+  retval = tm->real_method->make_directory(tm->real_method, real_uri, perm, context);
 
   gnome_vfs_uri_unref(real_uri);
 
@@ -284,7 +304,7 @@ tr_do_remove_directory(GnomeVFSMethod *method,
 
   real_uri = tr_uri_translate(tm, uri);
 
-  retval = tm->real_method->remove_directory(method, real_uri, context);
+  retval = tm->real_method->remove_directory(tm->real_method, real_uri, context);
 
   gnome_vfs_uri_unref(real_uri);
 
@@ -305,7 +325,7 @@ tr_do_move(GnomeVFSMethod *method,
   real_uri_old = tr_uri_translate(tm, old_uri);
   real_uri_new = tr_uri_translate(tm, new_uri);
 
-  retval = tm->real_method->move(method, real_uri_old, real_uri_new, force_replace, context);
+  retval = tm->real_method->move(tm->real_method, real_uri_old, real_uri_new, force_replace, context);
 
   gnome_vfs_uri_unref(real_uri_old);
   gnome_vfs_uri_unref(real_uri_new);
@@ -324,7 +344,7 @@ tr_do_unlink(GnomeVFSMethod *method,
 
   real_uri = tr_uri_translate(tm, uri);
 
-  retval = tm->real_method->unlink(method, real_uri, context);
+  retval = tm->real_method->unlink(tm->real_method, real_uri, context);
 
   gnome_vfs_uri_unref(real_uri);
 
@@ -345,7 +365,7 @@ tr_do_check_same_fs(GnomeVFSMethod *method,
   real_uri_a = tr_uri_translate(tm, a);
   real_uri_b = tr_uri_translate(tm, b);
 
-  retval = tm->real_method->check_same_fs(method, real_uri_a, real_uri_b, same_fs_return, context);
+  retval = tm->real_method->check_same_fs(tm->real_method, real_uri_a, real_uri_b, same_fs_return, context);
 
   gnome_vfs_uri_unref(real_uri_a);
   gnome_vfs_uri_unref(real_uri_b);
@@ -366,7 +386,7 @@ tr_do_set_file_info(GnomeVFSMethod *method,
 
   real_uri_a = tr_uri_translate(tm, a);
 
-  retval = tm->real_method->set_file_info(method, real_uri_a, info, mask, context);
+  retval = tm->real_method->set_file_info(tm->real_method, real_uri_a, info, mask, context);
 
   gnome_vfs_uri_unref(real_uri_a);
 
@@ -539,7 +559,7 @@ static GnomeVFSMethod base_vfs_method = {
   tr_do_write,
   tr_do_seek,
   tr_do_tell,
-  tr_do_truncate,
+  tr_do_truncate_handle,
   tr_do_open_directory,
   tr_do_close_directory,
   tr_do_read_directory,
@@ -551,7 +571,8 @@ static GnomeVFSMethod base_vfs_method = {
   tr_do_move,
   tr_do_unlink,
   tr_do_check_same_fs,
-  tr_do_set_file_info
+  tr_do_set_file_info,
+  tr_do_truncate
 };
 
 static void
@@ -605,6 +626,7 @@ vfs_module_init(const char *method_name, const char *args)
   CHECK_NULL_METHOD(unlink);
   CHECK_NULL_METHOD(check_same_fs);
   CHECK_NULL_METHOD(set_file_info);
+  CHECK_NULL_METHOD(truncate_handle);
 #undef CHECK_NULL_METHOD
 
   return (GnomeVFSMethod *)retval;

@@ -379,12 +379,12 @@ do_tell (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
-
+
 static GnomeVFSResult
-do_truncate (GnomeVFSMethod *method,
-	     GnomeVFSMethodHandle *method_handle,
-	     GnomeVFSFileSize where,
-	     GnomeVFSContext *context)
+do_truncate_handle (GnomeVFSMethod *method,
+		    GnomeVFSMethodHandle *method_handle,
+		    GnomeVFSFileSize where,
+		    GnomeVFSContext *context)
 {
 	FileHandle *file_handle;
 
@@ -393,6 +393,27 @@ do_truncate (GnomeVFSMethod *method,
 	file_handle = (FileHandle *) method_handle;
 
 	if (ftruncate (file_handle->fd, where) == 0) {
+		return GNOME_VFS_OK;
+	} else {
+		switch (errno) {
+		case EBADF:
+		case EROFS:
+			return GNOME_VFS_ERROR_READONLY;
+		case EINVAL:
+			return GNOME_VFS_ERROR_NOTSUPPORTED;
+		default:
+			return GNOME_VFS_ERROR_GENERIC;
+		}
+	}
+}
+
+static GnomeVFSResult
+do_truncate (GnomeVFSMethod *method,
+	     GnomeVFSURI *uri,
+	     GnomeVFSFileSize where,
+	     GnomeVFSContext *context)
+{
+	if (truncate (uri->text, where) == 0) {
 		return GNOME_VFS_OK;
 	} else {
 		switch (errno) {
@@ -1038,7 +1059,6 @@ do_set_file_info (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
-
 static GnomeVFSMethod method = {
 	do_open,
 	do_create,
@@ -1047,7 +1067,7 @@ static GnomeVFSMethod method = {
 	do_write,
 	do_seek,
 	do_tell,
-	do_truncate,
+	do_truncate_handle,
 	do_open_directory,
 	do_close_directory,
 	do_read_directory,
@@ -1059,7 +1079,8 @@ static GnomeVFSMethod method = {
 	do_move,
 	do_unlink,
 	do_check_same_fs,
-	do_set_file_info
+	do_set_file_info,
+	do_truncate
 };
 
 GnomeVFSMethod *

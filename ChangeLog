@@ -1,3 +1,19 @@
+2000-02-09  Elliot Lee  <sopwith@redhat.com>
+
+	* libgnomevfs/gnome-vfs-handle.c, libgnomevfs/gnome-vfs-handle.h,
+	libgnomevfs/gnome-vfs-ops.c, libgnomevfs/gnome-vfs-ops.h,
+	libgnomevfs/gnome-vfs-private-ops.c,
+	libgnomevfs/gnome-vfs-private-ops.h,
+	libgnomevfs/gnome-vfs-private-types.h,
+	libgnomevfs/gnome-vfs-seekable.c: Add gnome_vfs_truncate and gnome_vfs_truncate_handle.
+	* modules/bzip2-method.c, modules/extfs-method.c,
+	modules/file-method.c, modules/ftp-method.c,
+	modules/gconf-method.c, modules/gzip-method.c,
+	modules/http-method.c, modules/pipe-method.c,
+	modules/translate-method.c: Implement truncate (or don't).
+	* libgnomevfs-corba/gnome-vfs-corba.c: putenv("GNOME_DISABLE_CRASH_DIALOG=1") so we don't get stupid crash dialogs.
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c: Fix obvious get_file_info bug.
+
 2000-02-07  Elliot Lee  <sopwith@redhat.com>
 
 	* libgnomevfs-corba/gnome-vfs-slave-notify.c: When memcpy'ing over a new GnomeVFSFileInfo, reset the refcount to 1

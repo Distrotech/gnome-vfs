@@ -91,12 +91,6 @@ typedef GnomeVFSResult (* GnomeVFSMethodTellFunc)
 					 GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileOffset *offset_return);
 
-typedef GnomeVFSResult (* GnomeVFSMethodTruncateFunc)
-					(GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileSize where,
-					 GnomeVFSContext *context);
-
 typedef GnomeVFSResult (* GnomeVFSMethodOpenDirectoryFunc)
 					(GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle **method_handle,
@@ -132,6 +126,15 @@ typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFromHandleFunc)
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys,
 					 GnomeVFSContext *context);
+
+typedef GnomeVFSResult (* GnomeVFSMethodTruncateFunc) (GnomeVFSMethod *method,
+						       GnomeVFSURI *uri,
+						       GnomeVFSFileSize length,
+						       GnomeVFSContext *context);
+typedef GnomeVFSResult (* GnomeVFSMethodTruncateHandleFunc) (GnomeVFSMethod *method,
+							     GnomeVFSMethodHandle *handle,
+							     GnomeVFSFileSize length,
+							     GnomeVFSContext *context);
 
 typedef gboolean       (* GnomeVFSMethodIsLocalFunc)
 					(GnomeVFSMethod *method,
@@ -185,7 +188,7 @@ struct _GnomeVFSMethod {
 	GnomeVFSMethodWriteFunc write;
 	GnomeVFSMethodSeekFunc seek;
 	GnomeVFSMethodTellFunc tell;
-	GnomeVFSMethodTruncateFunc truncate;
+	GnomeVFSMethodTruncateHandleFunc truncate_handle;
 	GnomeVFSMethodOpenDirectoryFunc open_directory;
 	GnomeVFSMethodCloseDirectoryFunc close_directory;
 	GnomeVFSMethodReadDirectoryFunc read_directory;
@@ -198,6 +201,7 @@ struct _GnomeVFSMethod {
 	GnomeVFSMethodUnlinkFunc unlink;
 	GnomeVFSMethodCheckSameFSFunc check_same_fs;
 	GnomeVFSMethodSetFileInfo set_file_info;
+	GnomeVFSMethodTruncateFunc truncate;
 };
 
 

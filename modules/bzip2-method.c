@@ -91,7 +91,7 @@ static GnomeVFSMethod method = {
 	do_write,		/* write           */
 	NULL,		/* seek            */
 	NULL,		/* tell            */
-	NULL,		/* truncate FIXME  */
+	NULL,		/* truncate_handle */
 	NULL,		/* open_directory  */
 	NULL,		/* close_directory */
 	NULL,		/* read_directory  */
@@ -100,7 +100,8 @@ static GnomeVFSMethod method = {
 	do_is_local,
 	NULL,		/* make_directory  */
 	NULL,		/* remove_directory */
-	NULL			/* rename */
+	NULL,			/* rename */
+	NULL /* truncate */
 };
 
 #define RETURN_IF_FAIL(action)			\

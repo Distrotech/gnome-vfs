@@ -799,7 +799,8 @@ static GnomeVFSMethod method = {
 	NULL,
 	NULL,
 	NULL,
-	NULL
+	NULL,
+	NULL /* truncate */
 };
 
 GnomeVFSMethod *

@@ -189,3 +189,10 @@ gnome_vfs_handle_do_get_file_info (GnomeVFSHandle *handle,
 			   (handle->uri->method, handle->method_handle, info, options, meta_keys,
 			    context));
 }
+
+GnomeVFSResult gnome_vfs_handle_do_truncate     (GnomeVFSHandle *handle,
+						 GnomeVFSFileSize length,
+						 GnomeVFSContext *context)
+{
+	INVOKE_AND_RETURN (handle, truncate_handle, (handle->uri->method, handle->method_handle, length, context));
+}

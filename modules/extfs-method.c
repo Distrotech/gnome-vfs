@@ -465,8 +465,17 @@ do_tell (GnomeVFSMethod *method,
 }
 
 static GnomeVFSResult
+do_truncate_handle (GnomeVFSMethod *method,
+		    GnomeVFSMethodHandle *method_handle,
+		    GnomeVFSFileSize where,
+		    GnomeVFSContext *context)
+{
+	return GNOME_VFS_ERROR_NOTSUPPORTED;
+}
+
+static GnomeVFSResult
 do_truncate (GnomeVFSMethod *method,
-	     GnomeVFSMethodHandle *method_handle,
+	     GnomeVFSURI *uri,
 	     GnomeVFSFileSize where,
 	     GnomeVFSContext *context)
 {
@@ -806,7 +815,7 @@ static GnomeVFSMethod method = {
 	do_write,
 	do_seek,
 	do_tell,
-	do_truncate,
+	do_truncate_handle,
 	do_open_directory,
 	do_close_directory,
 	do_read_directory,
@@ -817,7 +826,8 @@ static GnomeVFSMethod method = {
 	do_remove_directory,
 	do_move,
 	do_unlink,
-	do_check_same_fs
+	do_check_same_fs,
+	do_truncate
 };
 
 GnomeVFSMethod *

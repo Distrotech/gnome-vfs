@@ -39,6 +39,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #ifdef HAVE_SYS_RESOURCE_H
 #include <sys/resource.h>
@@ -1408,6 +1409,7 @@ main (int argc, char **argv)
 	CORBA_char *request_ior;
 	FILE *ior_fd;
 
+	putenv("GNOME_DISABLE_CRASH_DIALOG=1");
 	program_name = g_strdup (argv[0]);
 
 	if (argc < 2 || argc > 3) {

@@ -83,6 +83,13 @@ GnomeVFSResult	 gnome_vfs_get_file_info_from_handle
 						 	options,
 						 const char *meta_keys[]);
 
+GnomeVFSResult   gnome_vfs_truncate             (const char *text_uri,
+						 GnomeVFSFileSize length);
+GnomeVFSResult   gnome_vfs_truncate_uri         (GnomeVFSURI *uri,
+						 GnomeVFSFileSize length);
+GnomeVFSResult   gnome_vfs_truncate_handle      (GnomeVFSHandle *handle,
+						 GnomeVFSFileSize length);
+
 GnomeVFSResult	 gnome_vfs_make_directory_for_uri
 						(GnomeVFSURI *uri, guint perm);
 GnomeVFSResult	 gnome_vfs_make_directory	(const gchar *text_uri,

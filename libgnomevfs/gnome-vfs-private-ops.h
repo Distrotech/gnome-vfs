@@ -76,6 +76,13 @@ GnomeVFSResult gnome_vfs_get_file_info_from_handle_cancellable
 					 const gchar *meta_keys[],
 					 GnomeVFSContext *context);
 
+GnomeVFSResult gnome_vfs_truncate_uri_cancellable (GnomeVFSURI *uri,
+						   GnomeVFSFileSize length,
+						   GnomeVFSContext *context);
+
+GnomeVFSResult gnome_vfs_truncate_handle_cancellable (GnomeVFSHandle *handle,
+						      GnomeVFSFileSize length,
+						      GnomeVFSContext *context);
 
 GnomeVFSResult gnome_vfs_make_directory_for_uri_cancellable
 					(GnomeVFSURI *uri,

@@ -192,7 +192,7 @@ static GnomeVFSMethod method = {
   NULL, /* write */
   NULL, /* seek */
   NULL, /* tell */
-  NULL, /* truncate */
+  NULL, /* truncate_handle */
   NULL, /* open_directory */
   NULL, /* close_directory */
   NULL, /* read_directory */
@@ -204,7 +204,8 @@ static GnomeVFSMethod method = {
   NULL, /* move */
   NULL, /* unlink */
   NULL, /* check_same_fs */
-  NULL /* set_file_info */
+  NULL, /* set_file_info */
+  NULL /* truncate */
 };
 
 GnomeVFSMethod *

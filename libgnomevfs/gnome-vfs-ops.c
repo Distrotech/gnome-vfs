@@ -271,24 +271,13 @@ gnome_vfs_get_file_info (const gchar *text_uri,
 {
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
-	GList *meta_list;
 
 	uri = gnome_vfs_uri_new (text_uri);
 
-	if (uri == NULL) {
+	if (uri == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
-	}
 	
-	if (uri->method->get_file_info == NULL) {
-		gnome_vfs_uri_unref (uri);
-		return GNOME_VFS_ERROR_NOTSUPPORTED;
-	}
-
-	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
-	result = uri->method->get_file_info (uri->method, uri, info, options, meta_list,
-					     NULL);
-
-	gnome_vfs_free_string_list (meta_list);
+	result = gnome_vfs_get_file_info_uri(uri, info, options, meta_keys);
 	gnome_vfs_uri_unref (uri);
 
 	return result;
@@ -344,7 +333,36 @@ gnome_vfs_get_file_info_from_handle (GnomeVFSHandle *handle,
 								NULL);
 }
 
-
+GnomeVFSResult
+gnome_vfs_truncate (const char *text_uri, GnomeVFSFileSize length)
+{
+	GnomeVFSURI *uri;
+	GnomeVFSResult result;
+
+	uri = gnome_vfs_uri_new (text_uri);
+
+	if (uri == NULL)
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+
+	result = gnome_vfs_truncate_uri(uri, length);
+	gnome_vfs_uri_unref (uri);
+
+	return result;
+}
+
+
+GnomeVFSResult
+gnome_vfs_truncate_uri (GnomeVFSURI *uri, GnomeVFSFileSize length)
+{
+	return gnome_vfs_truncate_uri_cancellable(uri, length, NULL);
+}
+
+GnomeVFSResult
+gnome_vfs_truncate_handle (GnomeVFSHandle *handle, GnomeVFSFileSize length)
+{
+	return gnome_vfs_truncate_handle_cancellable(handle, length, NULL);
+}
+
 /**
  * gnome_vfs_make_directory_for_uri:
  * @uri: URI of the directory to be created
