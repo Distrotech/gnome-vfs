@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-01-26 15:15+0100\n"
+"POT-Creation-Date: 2004-02-13 16:09+0100\n"
+"PO-Revision-Date: 2004-02-13 16:10+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,27 @@ msgstr "Kunne ikke initiere Bonobo"
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
 msgstr "Kunne ikke initiere GNOME VFS"
+
+#: gtk/gtkfilesystemgnomevfs.c:1457
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Lagring av bokmerke feilet (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "Kunne ikke finne informasjon for filen «%s»: %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Feil under åpning av fil «%s»: %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr "Kunne ikke laste bilde «%s»: årsak ukjent. Sannsynligvis en korrupt bildefil"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
@@ -624,15 +645,15 @@ msgstr "Verktøy"
 msgid "Windows"
 msgstr "Vinduer"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "Nettverk"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "Hjem"
 
-#: modules/computer-method.c:557
+#: modules/computer-method.c:561
 msgid "Filesystem"
 msgstr "Filsystem"
 
@@ -640,6 +661,10 @@ msgstr "Filsystem"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukjent GnomeVFSSeekPosition %d"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Windows nettverk"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -991,10 +1016,6 @@ msgstr "Bruk HTTP-proxy"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Brukernavn som skal oppgis som autentisering ved bruk av HTTP-proxy."
-
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "Windows nettverk"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
