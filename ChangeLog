@@ -1,3 +1,24 @@
+2001-01-15  Michael K. Fleming  <mfleming@eazel.com>
+
+	reviewed by: <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (move_items),
+	(gnome_vfs_xfer_uri_internal):
+
+	More fun with bug 5250.  Same-filesystem moves that failed from an error
+	during a move would be deleted even if the user "skipped" them.
+
+	move_items no longer gives progress callback GNOME_VFS_XFER_PHASE_MOVING
+	for URI's that are skipped (prevents faulty copying of metadata)
+
+	gnome_vfs_xfer_uri_internal returns an error if both move and link conditions
+	are indicated (obvious contradiction)
+
+	GNOME_VFS_XFER_PHASE_CLEANUP and associated item deletion no longer occurs
+	for move or link case.  I confirmed that this didn't mess up the Nautilus
+	sync_transfer_callback metadata copying and update mechanism.
+	
+
 2001-01-12  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 3229, Clean up appearance of File Types and Programs capplet

@@ -1561,8 +1561,9 @@ move_items (const GList *source_uri_list,
 			}
 
 			if (result == GNOME_VFS_OK 
-				&& call_progress_with_uris_often (progress, source_uri,
-				target_uri, GNOME_VFS_XFER_PHASE_MOVING) == 0) {
+			    && !skip
+			    && call_progress_with_uris_often (progress, source_uri,
+					target_uri, GNOME_VFS_XFER_PHASE_MOVING) == 0) {
 				result = GNOME_VFS_ERROR_INTERRUPTED;
 				gnome_vfs_uri_unref (target_uri);
 				break;
@@ -1938,15 +1939,19 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 		return result;
 	}
 
+	move = (xfer_options & GNOME_VFS_XFER_REMOVESOURCE) != 0;
+	link = (xfer_options & GNOME_VFS_XFER_LINK_ITEMS) != 0;
+
+	if (move && link) {
+		return GNOME_VFS_ERROR_BAD_PARAMETERS;
+	}
+
 	/* Create an owning list of source and destination uris.
 	 * We want to be able to remove items that we decide to skip during
 	 * name conflict check.
 	 */
 	source_uri_list = gnome_vfs_uri_list_copy ((GList *)source_uris);
 	target_uri_list = gnome_vfs_uri_list_copy ((GList *)target_uris);
-
-	move = (xfer_options & GNOME_VFS_XFER_REMOVESOURCE) != 0;
-	link = (xfer_options & GNOME_VFS_XFER_LINK_ITEMS) != 0;
 
 	if ((xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) == 0) {
 		/* see if moved files are on the same file system so that we decide to do
@@ -2040,11 +2045,12 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			}
 			
 			if (result == GNOME_VFS_OK) {
-				if (xfer_options & GNOME_VFS_XFER_REMOVESOURCE) {
+				if (xfer_options & GNOME_VFS_XFER_REMOVESOURCE
+				    && ! (move || link)) {
 					call_progress (progress, GNOME_VFS_XFER_PHASE_CLEANUP);
 					result = gnome_vfs_xfer_delete_items_common ( 
-						(move || link) ? source_uri_list : source_uri_list_copied,
-						error_mode, xfer_options, progress);
+						 	source_uri_list_copied,
+						 	error_mode, xfer_options, progress);
 				}
 			}
 		}
