@@ -23,6 +23,23 @@
 
     <!-- Applications -->
     <Folder>
+      <Name>Accesories</Name>
+      <Desktop>Accessories.directory</Desktop>
+      <Query>
+	<And>
+	  <Keyword>Application</Keyword>
+	  <Keyword>Utility</Keyword>
+	  <Not>
+	    <Keyword>System</Keyword>
+	  </Not>
+	  <Keyword>Fake</Keyword>
+	</And>
+      </Query>
+      <DontShowIfEmpty/>
+    </Folder>
+
+    <!-- Applications -->
+    <Folder>
       <Name>Applications</Name>
       <Desktop>Applications.directory</Desktop>
       <OnlyUnallocated/>
@@ -168,30 +185,35 @@
       </Folder>
     </Folder>
 
-    <!-- System -->
+    <!-- Tools -->
     <Folder>
-      <Name>System</Name>
-      <Desktop>System.directory</Desktop>
-      <Query>
-	<And>
-	  <Keyword>Application</Keyword>
-	  <Keyword>System</Keyword>
-	</And>
-      </Query>
-      <DontShowIfEmpty/>
-    </Folder>
-    
-    <!-- Utilities -->
-    <Folder>
-      <Name>Utilities</Name>
-      <Desktop>Utilities.directory</Desktop>
+      <Name>Tools</Name>
+      <Desktop>Tools.directory</Desktop>
       <Query>
         <And>
           <Keyword>Application</Keyword>
 	  <Keyword>Utility</Keyword>
+	  <!-- <Keyword>System</Keyword> -->
         </And>
       </Query>
       <DontShowIfEmpty/>
+
+      <!-- System -->
+      <Folder>
+	<Name>System</Name>
+	<Desktop>System.directory</Desktop>
+	<Query>
+	  <And>
+	    <Keyword>Application</Keyword>
+	    <Keyword>System</Keyword>
+	    <Not>
+	      <Keyword>Utility</Keyword>
+	    </Not>
+	  </And>
+	</Query>
+	<DontShowIfEmpty/>
+      </Folder>
+
     </Folder>
   </Folder>
 </VFolderInfo>
