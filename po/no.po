@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 19:29-0400\n"
-"PO-Revision-Date: 2004-02-13 16:10+0100\n"
+"POT-Creation-Date: 2004-07-29 17:20+0200\n"
+"PO-Revision-Date: 2004-07-29 17:33+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -24,9 +24,9 @@ msgid "Could not initialize gnome vfs"
 msgstr "Kunne ikke initiere GNOME VFS"
 
 #: libgnomevfs/eggdesktopentries.c:226
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "Kan ikke fortolke: %s"
+msgstr "Filen kunne ikke åpnes: %s"
 
 #: libgnomevfs/eggdesktopentries.c:325
 #, c-format
@@ -34,77 +34,76 @@ msgid "Failed to open file '%s': %s"
 msgstr "Feil under åpning av fil «%s»: %s"
 
 #: libgnomevfs/eggdesktopentries.c:338
-#, fuzzy
 msgid "File is empty"
-msgstr "Filen eksisterer"
+msgstr "Filen er tom"
 
 #: libgnomevfs/eggdesktopentries.c:360
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr "Feil under åpning av fil «%s»: %s"
+msgstr "Kunne ikke lese fra fil «%s»: %s"
 
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
+msgstr "skrivebordsoppføringsfil inneholder linje, «%s», som ikke er en oppføring, gruppe eller kommentar"
 
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "skrivebordsoppføringsfil starter ikke med gyldig startsgruppe"
 
 #: libgnomevfs/eggdesktopentries.c:708
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "skrivebordsoppføring inneholder linje, «%s», som ikke er UTF-8"
 
 #: libgnomevfs/eggdesktopentries.c:731
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "skrivebordsoppføring inneholder ukjent koding «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
 #: libgnomevfs/eggdesktopentries.c:1217
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "skrivebordsoppføring har ikke gruppe «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:1044
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "skrivebordsoppføring har ikke nøkkel «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
 #: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
+msgstr "skrivebordsoppføring inneholder nøkkel «%s» som har verdi som ikke kan fortolkes."
 
 #: libgnomevfs/eggdesktopentries.c:1297
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
+msgstr "skrivebordsoppføring inneholder ingen oversatt verdi for nøkkel «%s» med locale «%s»."
 
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "skrivebordsoppføring inneholder ugyldig escape-sekvens «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:2235
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "skrivebordsoppføring inneholder escape-tegn ved slutten av linjen"
 
 #: libgnomevfs/eggdesktopentries.c:2260
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "Verdi «%s» kan ikke tolkes som et tall."
 
 #: libgnomevfs/eggdesktopentries.c:2287
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "Verdi «%s» kan ikke fortolkes som en bolsk verdi"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -253,9 +252,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris-volum"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "AFFS-volum"
+msgstr "Sun SAM-QFS-volum"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -283,118 +281,111 @@ msgstr "Ukjent"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
-msgstr ""
+msgstr "CD-plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "Tom CD-R plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:606
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "CD-ROM stasjon"
+msgstr "CD-R plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "Tom CD-RW plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "CD-ROM stasjon"
+msgstr "CD-RW plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:613
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "CD-ROM stasjon"
+msgstr "DVD-ROM plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "Tom DVD-R plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "DVD-R plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "Tom DVD-RAM plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "DVD-RAM plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "Tom DVD-RW plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "DVD-RW plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "Tom DVD+RW plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "DVD+RW plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "Tom DVD+R plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "DVD+R plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
-msgstr ""
+msgstr "Optisk plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
-#, fuzzy
 msgid "Audio Disc"
 msgstr "Lyd-CD"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Compact Flash medie"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:652
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Minnestokk"
+msgstr "Minnestaur"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Smart media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "SD/MMC-medie"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:658
-#, fuzzy
 msgid "Floppy Disk"
 msgstr "Diskett"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Mac OS-disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Mac OS X disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:681
-#, fuzzy
 msgid "Windows Disk"
-msgstr "Vinduer"
+msgstr "Windows disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
-msgstr ""
+msgstr "Linux disk"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -432,10 +423,16 @@ msgstr "Stoppet operasjonen"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:921
 #: libgnomevfs/gnome-vfs-mime-handlers.c:939
 #: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
+msgstr "Utgått funksjonskall. Brukerendringer i MIME-databasen er ikke støttet lengre."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -679,23 +676,22 @@ msgstr "Feil under oppstart av kommando"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "Tidsavbrudd nådd"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "Ordinær feil"
+msgstr "Feil med navnetjener"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "Ressursen er låst"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Utgått funksjonskall"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -753,7 +749,7 @@ msgstr "Kamera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
@@ -899,7 +895,7 @@ msgstr "Windows nettverk"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "Identiteten for den eksterne datamaskinen (%s) er ukjent."
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -909,14 +905,17 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Dette skjer når du logger inn på en datamaskin første gang.\n"
+"\n"
+"Identiteten som sendes av den eksterne datamaskinen er %s. Hvid du vil være helt sikker på at det er trygt å fortsette kontakt systemadministrator."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Logg inn likevel"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "Avbryt pålogging"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -981,9 +980,8 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Kjøringsargument som skal brukes for forvalgt terminalprogram."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "Kjør program i terminal"
+msgstr "Kjør kommandoen i en terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
@@ -1026,54 +1024,44 @@ msgid "The command used to handle HTTPS URLs, if enabled."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Håndter man-URLer"
+msgstr "Håndterer for «aim»-URLer"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Håndter callto-URLer"
+msgstr "Håndterer for «callto»-URLer"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Håndter ghelp-URLer"
+msgstr "Håndterer for «ghelp»-URLer"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Håndter info-URLer"
+msgstr "Håndterer for «info»-URLer"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Håndter mailto-URLer"
+msgstr "Håndterer for «mailto»-URLer"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Håndter man-URLer"
+msgstr "Håndterer for «man»-URLer"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Håndter papirkurv-URLer"
+msgstr "Håndterer for «papirkurv»-URLer"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for H323 URLs"
-msgstr "Håndter H323-URLer"
+msgstr "Håndterer for H323-URLer"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for HTTP URLs"
-msgstr "Håndter HTTP-URLer"
+msgstr "Håndterer for HTTP-URLer"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for HTTPS URLs"
-msgstr "Håndter HTTPS-URLer"
+msgstr "Håndterer for HTTPS-URLer"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 #, fuzzy
@@ -1401,46 +1389,3 @@ msgstr "SMB-arbeidsgruppe"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Windows arbeidsgruppe bruker er en del av"
-
-#~ msgid "H323 URL handler"
-#~ msgstr "URL-håndterer for H323"
-
-#~ msgid "HTTP URL handler"
-#~ msgstr "URL-håndterer for HTTP"
-
-#~ msgid "HTTPS URL handler"
-#~ msgstr "URL-håndterer for HTTPS"
-
-#, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "man URL-håndterer"
-
-#~ msgid "callto URL handler"
-#~ msgstr "callto URL-håndterer"
-
-#~ msgid "ghelp URL handler"
-#~ msgstr "ghelp URL-håndterer"
-
-#~ msgid "info URL handler"
-#~ msgstr "info URL-håndterer"
-
-#~ msgid "mailto URL handler"
-#~ msgstr "mailto URL-håndterer"
-
-#~ msgid "man URL handler"
-#~ msgstr "man URL-håndterer"
-
-#~ msgid "trash URL handler"
-#~ msgstr "trash URL-håndterer"
-
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "Lagring av bokmerke feilet (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "Kunne ikke finne informasjon for filen «%s»: %s"
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "Kunne ikke laste bilde «%s»: årsak ukjent. Sannsynligvis en korrupt "
-#~ "bildefil"

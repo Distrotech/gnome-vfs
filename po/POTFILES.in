@@ -10,6 +10,7 @@ libgnomevfs/gnome-vfs-hal-mounts.c
 libgnomevfs/gnome-vfs-init.c
 libgnomevfs/gnome-vfs-job.c
 libgnomevfs/gnome-vfs-mime-handlers.c
+libgnomevfs/gnome-vfs-mime-info.c
 libgnomevfs/gnome-vfs-parse-ls.c
 libgnomevfs/gnome-vfs-result.c
 libgnomevfs/gnome-vfs-utils.c
