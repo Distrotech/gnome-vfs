@@ -1,3 +1,13 @@
+2003-01-16  Alexander Larsson  <alexl@redhat.com>
+
+	* acinclude.m4:
+	* acconfig.h:
+	* configure.in:
+	* libgnomevfs/gnome-vfs-ssl.c:
+	gnutls support if openssl is not availible.
+	Patch from Andrew McDonald (debian).
+	I haven't tested this. 
+
 2003-01-14  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-job.c:
