@@ -1,6 +1,6 @@
 # Galician translation of gnome-vfs.
-# Copyright (C) 1999 Jesús Bravo Álvarez.
-# Jesús Bravo Álvarez <jba@pobox.com>, 1999.
+# Copyright (C) 1999, 2000 Jesús Bravo Álvarez.
+# Jesús Bravo Álvarez <jba@pobox.com>, 1999, 2000.
 #
 # Se desexas colaborar connosco na traducción de programas libres ó galego,
 # vai mira-la páxina do noso grupo:  http://www.ctv.es/USERS/jtarrio/trans
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2000-04-19 15:50+0200\n"
-"PO-Revision-Date: 2000-04-08 9:58+0200\n"
+"POT-Creation-Date: 2000-04-27 23:53+0200\n"
+"PO-Revision-Date: 2000-04-27 23:54+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,11 @@ msgstr "%s:%d non contén ningún nome de módulo."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "O ficheiro de configuración '%s' non foi atopado: %s"
+
+#: libgnomevfs/gnome-vfs-file-info.c:483
+#, c-format
+msgid "Unknown sort rule %d"
+msgstr "Regra de ordenación %d descoñecida"
 
 #: libgnomevfs/gnome-vfs-init.c:55
 msgid "GNOME VFS already initialized."
@@ -269,86 +274,86 @@ msgstr "%.1fM"
 msgid "%.1fG"
 msgstr "%.1fG"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
+#: libgnomevfs-corba/gnome-vfs-slave.c:340
 msgid "Dying."
 msgstr "Morrendo."
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#: libgnomevfs-corba/gnome-vfs-slave.c:505
 #, c-format
 msgid "Error reading: %s"
 msgstr "Erro ó ler: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#: libgnomevfs-corba/gnome-vfs-slave.c:527
 #, c-format
 msgid "Error writing: %s"
 msgstr "Erro ó escribir: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#: libgnomevfs-corba/gnome-vfs-slave.c:576
 #, c-format
 msgid "Cannot write: %s"
 msgstr "Non se pode escribir: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#: libgnomevfs-corba/gnome-vfs-slave.c:604
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Non se pode crea-lo ficheiro temporal `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:614
+#: libgnomevfs-corba/gnome-vfs-slave.c:618
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "Non se pode crea-lo socket: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:632
+#: libgnomevfs-corba/gnome-vfs-slave.c:636
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "Non se pode asociar `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:639
+#: libgnomevfs-corba/gnome-vfs-slave.c:643
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "Non se pode escoitar en `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:661
+#: libgnomevfs-corba/gnome-vfs-slave.c:665
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Non se poden aceptar conexións en `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1385
+#: libgnomevfs-corba/gnome-vfs-slave.c:1402
 msgid "Cannot initialize CORBA."
 msgstr "Non se pode inicializar CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1392
+#: libgnomevfs-corba/gnome-vfs-slave.c:1409
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Non se pode resolver a referencia inicial a RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1399
+#: libgnomevfs-corba/gnome-vfs-slave.c:1416
 msgid "Cannot activate POA manager."
 msgstr "Non se pode activa-lo xestor POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1424
+#: libgnomevfs-corba/gnome-vfs-slave.c:1441
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Uso: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1435
+#: libgnomevfs-corba/gnome-vfs-slave.c:1452
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Non se pode abri-lo descritor de ficheiro %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1458
+#: libgnomevfs-corba/gnome-vfs-slave.c:1475
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Non se atopou a interfaz de notificación para `%s'."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1468
+#: libgnomevfs-corba/gnome-vfs-slave.c:1485
 msgid "Cannot setup Request object."
 msgstr "Non se pode activar un obxecto de petición."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1475
+#: libgnomevfs-corba/gnome-vfs-slave.c:1492
 msgid "Cannot extract IOR."
 msgstr "Non se pode extrae-lo IOR"
 
@@ -372,7 +377,7 @@ msgstr "Non se pode matar GNOME::VFS::Slave::Notify -- excepción %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "Non se pode conectar o socket `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:782
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:802
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Non se pode inicializar GNOME::VFS:Slave::Notify"
 
@@ -401,19 +406,19 @@ msgstr "Non se pode matar GNOME::VFS::Slave (IOR descoñecido) -- excepción %s"
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Erro ó escribir á canle de avisos GnomeVFSJob."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1253
+#: libgnomevfs-pthread/gnome-vfs-job.c:445
+#: libgnomevfs-pthread/gnome-vfs-job.c:1275
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "ID de traballo %d descoñecido"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:784
-#: libgnomevfs-pthread/gnome-vfs-job.c:879
+#: libgnomevfs-pthread/gnome-vfs-job.c:795
+#: libgnomevfs-pthread/gnome-vfs-job.c:890
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Non se pode crear unha canle para abrir GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1271
+#: libgnomevfs-pthread/gnome-vfs-job.c:1293
 msgid "Operation stopped"
 msgstr "Operación parada"
 
@@ -534,32 +539,32 @@ msgstr "Comezando transferencia lineal..."
 msgid "Preparing reget..."
 msgstr "Preparando o reget..."
 
-#: modules/http-method.c:500
+#: modules/http-method.c:502
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Cabeceira `%s' non válida"
 
-#: modules/http-method.c:517
+#: modules/http-method.c:519
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s a recibir"
 
-#: modules/http-method.c:652
+#: modules/http-method.c:655
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Pechando a conexión a %s"
 
-#: modules/http-method.c:805
+#: modules/http-method.c:809
 #, c-format
 msgid "%s of %s read"
 msgstr "lido %s de %s"
 
-#: modules/http-method.c:808
+#: modules/http-method.c:812
 #, c-format
 msgid "%s read"
 msgstr "%s lido"
 
 #. Multi-Status
-#: modules/http-method.c:970
+#: modules/http-method.c:974
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "O servidiro devolveu unha resposta PROPFIND non válida"
