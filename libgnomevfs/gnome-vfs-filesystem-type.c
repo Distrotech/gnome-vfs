@@ -54,6 +54,7 @@ static struct FSInfo fs_data[] = {
 	{ "mfs"      , N_("Memory Volume"), 1 },
 	{ "minix"    , N_("Minix Volume"), 0 },
 	{ "msdos"    , N_("MSDOS Volume"), 0 },
+	{ "msdosfs"  , N_("MSDOS Volume"), 0 },
 	{ "nfs"      , N_("NFS Network Volume"), 1 },
 	{ "ntfs"     , N_("Windows NT Volume"), 0 },
 	{ "nwfs"     , N_("Netware Volume"), 0 },

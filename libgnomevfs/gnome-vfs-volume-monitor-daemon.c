@@ -492,7 +492,8 @@ create_drive_from_mount_point (GnomeVFSVolumeMonitor *volume_monitor,
 	} else if ((strcmp (mount->filesystem_type, "vfat") == 0) ||
 		   (strcmp (mount->filesystem_type, "fat") == 0)	||
 		   (strcmp (mount->filesystem_type, "ntfs") == 0) ||
-		   (strcmp (mount->filesystem_type, "msdos") == 0)) {
+		   (strcmp (mount->filesystem_type, "msdos") == 0) ||
+		   (strcmp (mount->filesystem_type, "msdosfs") == 0)) {
 		if (drive->priv->device_type == GNOME_VFS_DEVICE_TYPE_UNKNOWN) {
 			drive->priv->device_type = GNOME_VFS_DEVICE_TYPE_WINDOWS;
 		}
@@ -680,7 +681,8 @@ create_vol_from_mount (GnomeVFSVolumeMonitor *volume_monitor, GnomeVFSUnixMount 
 	} else if ((strcmp (mount->filesystem_type, "vfat") == 0) ||
 		   (strcmp (mount->filesystem_type, "fat") == 0)	||
 		   (strcmp (mount->filesystem_type, "ntfs") == 0) ||
-		   (strcmp (mount->filesystem_type, "msdos") == 0)) {
+		   (strcmp (mount->filesystem_type, "msdos") == 0)
+		   (strcmp (mount->filesystem_type, "msdosfs") == 0)) {
 		if (vol->priv->device_type == GNOME_VFS_DEVICE_TYPE_UNKNOWN) {
 			vol->priv->device_type = GNOME_VFS_DEVICE_TYPE_WINDOWS;
 		}
