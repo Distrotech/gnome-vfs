@@ -1,3 +1,13 @@
+2002-09-19  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-application-registry.c
+	* libgnomevfs/gnome-vfs-application-registry.h
+	* libgnomevfs/gnome-vfs-configuration.c
+	* libgnomevfs/gnome-vfs-configuration.h: added support for
+	uses_gnomevfs in .application file so that apps can indicate they 
+	can open all uris supported by gnomevfs
+	* doc/mime-data-specification.txt: updated doc accordingly
+
 2002-09-16  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/Makefile.am (vfolder_DATA): Add
