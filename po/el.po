@@ -11,6 +11,7 @@
 # kostas:80 messages, 03Sep2003,updated translation for Gnome2.4x
 # kostas: messages, 120 messages 02Nov2003,updated translation for Gnome2.6
 # kostas:203 messages 16Dec2003
+# kostas: 23Dec2003, one more update
 # Spiros Papadimitriou <spapadim+@cs.cmu.edu>, 2000.
 # Simos Xenitellis <simos@teiath.gr>, 2000-2001.
 # Kostas Papadimas <pkst@gnome.org>,2002,2003.
@@ -19,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-16 11:51+0200\n"
-"PO-Revision-Date: 2003-12-16 14:10+0200\n"
+"POT-Creation-Date: 2003-12-23 22:19+0200\n"
+"PO-Revision-Date: 2003-12-23 22:30+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -476,8 +477,8 @@ msgstr[1] "%u byte"
 
 #: libgnomevfs/gnome-vfs-utils.c:90
 #, c-format
-msgid "%.1f K"
-msgstr "%.1f K"
+msgid "%.1f KB"
+msgstr "%.1f KB"
 
 #: libgnomevfs/gnome-vfs-utils.c:94
 #, c-format
@@ -536,7 +537,9 @@ msgstr "Εξυπηρετητής δικτύου"
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανόν να μην υπάρχει δισκέτα στον οδηγό."
+msgstr ""
+"Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανόν να μην υπάρχει δισκέτα "
+"στον οδηγό."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
@@ -548,16 +551,16 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανώς η δισκέτα να είναι σε μορφή που δεν μπορεί "
-"να προσαρτηθεί."
+"Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανώς η δισκέτα να είναι σε "
+"μορφή που δεν μπορεί να προσαρτηθεί."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Αδυναμία προσάρτησης του τόμου. Πιθανώς ο τόμος να είναι σε μορφή που δεν μπορεί "
-"να προσαρτηθεί."
+"Αδυναμία προσάρτησης του τόμου. Πιθανώς ο τόμος να είναι σε μορφή που δεν "
+"μπορεί να προσαρτηθεί."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
@@ -716,123 +719,139 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Η παράμετρος exec για χρήση στην εξ ορισμού εφαρμογή τερματικού. "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "How to handle callto URLs"
-msgstr "Τρόπος χειρισμού callto URLs"
+msgid "H323 URL handler"
+msgstr "Χειριστής H323 URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "How to handle ghelp URLs"
-msgstr "Τρόπος χειρισμού ghelp URLs"
+msgid "HTTP URL handler"
+msgstr "Χειριστής HTTP URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "How to handle h323 URLs"
-msgstr "Τρόπος χειρισμού  h323 URLs"
+msgid "HTTPS URL handler"
+msgstr "Χειριστής HTTPS URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-msgid "How to handle http URLs"
-msgstr "Τρόπος χειρισμού http URLs"
+msgid "Handle H323 URLs"
+msgstr "Χειρισμός  h323 URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-msgid "How to handle https URLs"
-msgstr "Τρόπος χειρισμού https URLs"
+msgid "Handle HTTP URLs"
+msgstr "Χειρισμός HTTP URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "How to handle info URLs"
-msgstr "Τρόπος χειρισμού info URLs"
+msgid "Handle HTTPS URLs"
+msgstr "Χειρισμός HTTPS URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-msgid "How to handle mailto URLs"
-msgstr "Τρόπος χειρισμού mailto URLs"
+msgid "Handle callto URLs"
+msgstr "Χειρισμός callto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "How to handle man URLs"
-msgstr "Τρόπος χειρισμού man URLs"
+msgid "Handle ghelp URLs"
+msgstr "Χειρισμός ghelp URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "How to handle trash URLs"
-msgstr "Τρόπος χειρισμού trash URLs"
+msgid "Handle info URLs"
+msgstr "Χειρισμός info URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "Handle mailto URLs"
+msgstr "Χειρισμός mailto URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "Handle man URLs"
+msgstr "Χειρισμός man URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid "Handle trash URLs"
+msgstr "Χειρισμός trash URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
 msgstr "Εκτέλεση προγράμματος σε τερματικό"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Set to true to have a program specified in command handle callto URLs"
-msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για τον χειρισμό callto URLs"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Set to true to have a program specified in command handle h323 URLs"
-msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για τον χειρισμό h323 URLs"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Set to true to have a program specified in command handle http URLs"
-msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για τον χειρισμό http URLs"
-
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in command handle https URLs"
-msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για τον χειρισμό https URLs"
+msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
+msgstr ""
+"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για τον "
+"χειρισμό h323 URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in command handle mailto URLs"
-msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για τον χειρισμό mailto URLs"
+msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgstr ""
+"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για τον "
+"χειρισμό http URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in programs/ghelp handle ghelp URLs"
-msgstr "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο Προγράμματα/ghelp για τον χειρισμό ghelp URLs"
+msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgstr ""
+"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για τον "
+"χειρισμό http URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in programs/info handle info URLs"
-msgstr "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο προγράμματα/info για τον χειρισμό info URLs"
+msgid "Set to true to have a program specified in \"command\" handle callto URLs."
+msgstr ""
+"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για τον "
+"χειρισμό callto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in programs/man handle man URLs"
-msgstr "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο προγράμματα/man για τον χειρισμό man URLs"
+msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgstr ""
+"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για τον "
+"χειρισμό http URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in trash/command handle trash URLs"
-msgstr "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο απορρίματα/εντολή για τον χειρισμό trash URLs"
+msgid "Set to true to have a program specified in \"command\" handle info URLs."
+msgstr ""
+"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για τον "
+"χειρισμό mailto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "True if the program to handle this URL should be run in a terminal"
-msgstr "True αν το πρόγραμμα για το χειρισμό του URL θα πρέπει να εκτελείται σε τερματικό"
+msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
+msgstr ""
+"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για τον "
+"χειρισμό mailto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "URL handler for callto uris"
-msgstr "Χειριστής URL για callto uris"
+msgid "Set to true to have a program specified in \"command\" handle man URLs."
+msgstr ""
+"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για τον "
+"χειρισμό mailto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "URL handler for ghelp pages"
-msgstr "Χειριστής URL για σελίδες ghelp"
+msgid "Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για τον χειρισμό trash URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "URL handler for h323 uris"
-msgstr "Χειριστής URL για h323 uris"
+msgid "True if the program to handle this URL should be run in a terminal."
+msgstr "True αν το πρόγραμμα για το χειρισμό του URL θα πρέπει να εκτελείται σε τερματικό."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "URL handler for http uris"
-msgstr "Χειριστής URL για http uris"
+msgid "callto URL handler"
+msgstr "Χειριστής callto URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "URL handler for https uris"
-msgstr "Χειριστής URL για https uris"
+msgid "ghelp URL handler"
+msgstr "Χειριστής ghelp URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "URL handler for info pages"
-msgstr "Χειριστής URL για σελίδες info"
+msgid "info URL handler"
+msgstr "Χειριστής info URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "URL handler for mailto uris"
-msgstr "Χειριστής URL για mailto uris"
+msgid "mailto URL handler"
+msgstr "Χειριστής mailto URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "URL handler for man pages"
-msgstr "Χειριστής URL για σελίδες man"
+msgid "man URL handler"
+msgstr "Χειριστής man URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "URL handler for trash pages"
-msgstr "Χειριστής URL για σελίδες trash"
+msgid "trash URL handler"
+msgstr "Χειριστής trash URL"
 
 #: schemas/system_http_proxy.schemas.in.h:1
-msgid "Authenticate connections to the proxy server"
+msgid "Authenticate proxy server connections"
 msgstr "Πιστοποίηση συνδέσεων στον εξυπηρετητή διαμεσολαβητή"
 
 #: schemas/system_http_proxy.schemas.in.h:2
@@ -840,7 +859,7 @@ msgid "Automatic proxy configuration URL"
 msgstr "Αυτόματη ρύθμιση URL ρύθμισης διαμεσολαβητή"
 
 #: schemas/system_http_proxy.schemas.in.h:3
-msgid "Enables the proxy settings when accessing http over the internet."
+msgid "Enables the proxy settings when accessing HTTP over the Internet."
 msgstr "Ενεργοποιεί τις ρυθμίσεις διαμεσολαβητή κατά την πρόσβαση http στο διαδίκτυο"
 
 #: schemas/system_http_proxy.schemas.in.h:4
@@ -856,104 +875,112 @@ msgid "HTTP proxy host name"
 msgstr "Όνομα συστήματος διαμεσολαβητή HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
+msgid "HTTP proxy password"
+msgstr "Κωδικός διαμεσολαβητή HTTP"
+
+#: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
 msgstr "Θύρα διαμεσολαβητή HTTP"
 
-#: schemas/system_http_proxy.schemas.in.h:8
-msgid "Hosts are not contacted via the proxy"
-msgstr "Τα συστήματα δεν είναι προσβάσιμα μέσω του διαμεσολαβητή"
-
 #: schemas/system_http_proxy.schemas.in.h:9
-msgid ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by /system/http_proxy/authentication_user "
-"and /system/http_proxy/authentication_password."
-msgstr ""
-"Αν true, τότε οι συνδέσεις τον εξυπηρετητή διαμεσολαβητή απαιτεί "
-"πιστοποίηση. Το όνομα χρήστη/κωδικός καθορίζονται από το  /system/http_proxy/"
-"authentication_user και το  /system/http_proxy/authentication_password."
+msgid "HTTP proxy username"
+msgstr "Όνομα χρήστη διαμεσολαβητή HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-msgid "Password to pass as authentication when doing http proxying"
-msgstr "Κωδικός πρόσβασης για πιστοποίηση όταν γίνεται διαμεσολάβηση http"
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by \"/system/http_proxy/authentication_user"
+"\" and \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Αν true, τότε οι συνδέσεις τον εξυπηρετητή διαμεσολαβητή απαιτεί "
+"πιστοποίηση. Το όνομα χρήστη/κωδικός καθορίζονται από το  \"/system/http_proxy/"
+"authentication_user\" και το  \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
+msgid "Non-proxy hosts"
+msgstr "Συστήματα χωρίς διαμεσολαβητή"
+
+#: schemas/system_http_proxy.schemas.in.h:12
+msgid "Password to pass as authentication when doing HTTP proxying."
+msgstr "Κωδικός πρόσβασης για πιστοποίηση όταν γίνεται διαμεσολάβηση http"
+
+#: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
 msgstr "Λειτουργία ρυθμίσεων διαμεσολαβητή"
 
-#: schemas/system_http_proxy.schemas.in.h:12
-msgid "Secure http proxy host name"
+#: schemas/system_http_proxy.schemas.in.h:14
+msgid "SOCKS proxy host name"
+msgstr "Όνομα συστήματος διαμεσολαβητή Socks"
+
+#: schemas/system_http_proxy.schemas.in.h:15
+msgid "SOCKS proxy port"
+msgstr "Θύρα διαμεσολαβητή Socks"
+
+#: schemas/system_http_proxy.schemas.in.h:16
+msgid "Secure HTTP proxy host name"
 msgstr "Όνομα συστήματος ασφαλούς διαμεσολαβητή http "
 
-#: schemas/system_http_proxy.schemas.in.h:13
-msgid "Secure http proxy port"
+#: schemas/system_http_proxy.schemas.in.h:17
+msgid "Secure HTTP proxy port"
 msgstr "Θύρα ασφαλούς διαμεσολαβητή http "
 
-#: schemas/system_http_proxy.schemas.in.h:14
+#: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\""
+"\", \"auto\"."
 msgstr ""
 "Επιλογή λειτουργίας ρύθμισης διαμεσολαβητή. Υποστηριζόμενες τιμές είναι "
 "\"καμμία\", \"χειροκίνητη\", \"αυτόματη\""
 
-#: schemas/system_http_proxy.schemas.in.h:15
-msgid "Socks proxy host name"
-msgstr "Όνομα συστήματος διαμεσολαβητή Socks"
-
-#: schemas/system_http_proxy.schemas.in.h:16
-msgid "Socks proxy port"
-msgstr "Θύρα διαμεσολαβητή Socks"
-
-#: schemas/system_http_proxy.schemas.in.h:17
+#: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
 msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση FTP"
 
-#: schemas/system_http_proxy.schemas.in.h:18
-msgid "The machine name to proxy http through."
-msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση http. "
+#: schemas/system_http_proxy.schemas.in.h:20
+msgid "The machine name to proxy HTTP through."
+msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση FTP"
 
-#: schemas/system_http_proxy.schemas.in.h:19
-msgid "The machine name to proxy secure http through."
+#: schemas/system_http_proxy.schemas.in.h:21
+msgid "The machine name to proxy secure HTTP through."
 msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση ασφαλούς http. "
 
-#: schemas/system_http_proxy.schemas.in.h:20
+#: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
 msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση socks"
 
-#: schemas/system_http_proxy.schemas.in.h:21
-msgid ""
-"The port on the machine defined by /system/http_proxy/host that you proxy "
-"through"
-msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το  /system/http_proxy/host μέσω του "
-"οποίου γίνεται διαμεσολάβηση"
-
-#: schemas/system_http_proxy.schemas.in.h:22
-msgid ""
-"The port on the machine defined by /system/proxy/ftp_host that you proxy "
-"through"
-msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το /system/proxy/ftp_host μέσω του "
-"οποίου γίνεται διαμεσολάβηση"
-
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
-"The port on the machine defined by /system/proxy/secure_host that you proxy "
-"through"
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
 msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το /system/proxy/secure_hostμέσω του "
+"Η θύρα στο σύστημα που καθορίζεται από το  \"/system/http_proxy/host\" μέσω του "
 "οποίου γίνεται διαμεσολάβηση"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
-"The port on the machine defined by /system/proxy/socks_host that you proxy "
-"through"
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
 msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το  /system/proxy/socks_hostμέσω του "
+"Η θύρα στο σύστημα που καθορίζεται από το \"/system/proxy/ftp_host\" μέσω του "
 "οποίου γίνεται διαμεσολάβηση"
 
 #: schemas/system_http_proxy.schemas.in.h:25
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr ""
+"Η θύρα στο σύστημα που καθορίζεται από το \"/system/proxy/secure_host\" μέσω του "
+"οποίου γίνεται διαμεσολάβηση."
+
+#: schemas/system_http_proxy.schemas.in.h:26
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr ""
+"Η θύρα στο σύστημα που καθορίζεται από το  \"/system/proxy/socks_host\" μέσω του "
+"οποίου γίνεται διαμεσολάβηση"
+
+#: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
 "This key contains a list of hosts which are connected to directly, rather "
 "than via the proxy (if it is active). The values can be hostnames, domains "
@@ -966,25 +993,89 @@ msgstr ""
 "foo.com), διευθύνσεις IP (και IPv4 και IPv6) και διευθύνσεις δικτύου με  "
 "netmask (κάτι σαν 192.168.0.0/24)."
 
-#: schemas/system_http_proxy.schemas.in.h:26
-msgid "URL that provides proxy configuration values"
+#: schemas/system_http_proxy.schemas.in.h:28
+msgid "URL that provides proxy configuration values."
 msgstr "Το URL που παρέχει τιμές ρύθμισης διαμεσολαβητή"
 
-#: schemas/system_http_proxy.schemas.in.h:27
-msgid "Use proxy settings when accessing http"
-msgstr "Χρήση ρυθμίσεων διαμεσολαβητή κατά την πρόσβαση http"
-
-#: schemas/system_http_proxy.schemas.in.h:28
-msgid "User name to pass as authentication when doing http proxying"
-msgstr "Όνομα χρήστη για να περάσει ως πιστοποίηση κατά την διαμεσολάβηση http"
-
 #: schemas/system_http_proxy.schemas.in.h:29
-msgid "http proxy password"
-msgstr "κωδικός διαμεσολαβητή http"
+msgid "Use HTTP proxy"
+msgstr "Χρήση διαμεσολαβητή HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
-msgid "http proxy username"
-msgstr "όνομα χρήστη http"
+msgid "User name to pass as authentication when doing HTTP proxying."
+msgstr "Όνομα χρήστη για να περάσει ως πιστοποίηση κατά την διαμεσολάβηση http"
+
+#~ msgid "How to handle http URLs"
+#~ msgstr "Τρόπος χειρισμού http URLs"
+
+#~ msgid "How to handle https URLs"
+#~ msgstr "Τρόπος χειρισμού https URLs"
+
+#~ msgid "Set to true to have a program specified in command handle https URLs"
+#~ msgstr ""
+#~ "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για "
+#~ "τον χειρισμό https URLs"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in programs/ghelp handle ghelp "
+#~ "URLs"
+#~ msgstr ""
+#~ "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο Προγράμματα/"
+#~ "ghelp για τον χειρισμό ghelp URLs"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in programs/info handle info URLs"
+#~ msgstr ""
+#~ "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο προγράμματα/"
+#~ "info για τον χειρισμό info URLs"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in programs/man handle man URLs"
+#~ msgstr ""
+#~ "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο προγράμματα/"
+#~ "man για τον χειρισμό man URLs"
+
+#~ msgid "URL handler for callto uris"
+#~ msgstr "Χειριστής URL για callto uris"
+
+#~ msgid "URL handler for ghelp pages"
+#~ msgstr "Χειριστής URL για σελίδες ghelp"
+
+#~ msgid "URL handler for h323 uris"
+#~ msgstr "Χειριστής URL για h323 uris"
+
+#~ msgid "URL handler for http uris"
+#~ msgstr "Χειριστής URL για http uris"
+
+#~ msgid "URL handler for https uris"
+#~ msgstr "Χειριστής URL για https uris"
+
+#~ msgid "URL handler for info pages"
+#~ msgstr "Χειριστής URL για σελίδες info"
+
+#~ msgid "URL handler for mailto uris"
+#~ msgstr "Χειριστής URL για mailto uris"
+
+#~ msgid "URL handler for man pages"
+#~ msgstr "Χειριστής URL για σελίδες man"
+
+#~ msgid "URL handler for trash pages"
+#~ msgstr "Χειριστής URL για σελίδες trash"
+
+#~ msgid "Hosts are not contacted via the proxy"
+#~ msgstr "Τα συστήματα δεν είναι προσβάσιμα μέσω του διαμεσολαβητή"
+
+#~ msgid "The machine name to proxy http through."
+#~ msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση http. "
+
+#~ msgid "Use proxy settings when accessing http"
+#~ msgstr "Χρήση ρυθμίσεων διαμεσολαβητή κατά την πρόσβαση http"
+
+#~ msgid "http proxy password"
+#~ msgstr "κωδικός διαμεσολαβητή http"
+
+#~ msgid "http proxy username"
+#~ msgstr "όνομα χρήστη http"
 
 #~ msgid "1 byte"
 #~ msgstr "1 byte"
@@ -1565,9 +1656,6 @@ msgstr "όνομα χρήστη http"
 
 #~ msgid "document type definition"
 #~ msgstr "ορισμός τύπου εγγράφου"
-
-#~ msgid "email headers"
-#~ msgstr "κεφαλίδα ηλεκ. μηνύματος"
 
 #~ msgid "email message"
 #~ msgstr "ηλεκτρονικό μήνυμα"
