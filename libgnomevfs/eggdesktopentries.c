@@ -663,6 +663,15 @@ egg_desktop_entries_parse_entry (EggDesktopEntries  *entries,
   gchar *key, *value, *key_end, *value_start, *locale;
   gsize key_len, value_len;
 
+  if (entries->current_group->name == NULL)
+    {
+      g_set_error (error, EGG_DESKTOP_ENTRIES_ERROR,
+                   EGG_DESKTOP_ENTRIES_ERROR_BAD_START_GROUP,
+                   _("desktop entry does not start with "
+                     "legal start group"));
+      return;
+    }
+
   key_end = value_start = strchr (line, '=');
 
   g_assert (key_end != NULL);

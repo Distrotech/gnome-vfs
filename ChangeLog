@@ -1,7 +1,14 @@
+2004-10-18  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/eggdesktopentries.c
+	(egg_desktop_entries_parse_entry):
+	Error out if trying to add key-value pair to comment group
+	(Patch from Miloslav Trmac <mitr@redhat.com>)
+
 2004-10-18  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c (handle_attribute):
-	Remobe some debug spew.
+	Remove some debug spew.
 
 2004-10-15  Ryan Lortie  <desrt@desrt.ca>
 
