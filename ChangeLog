@@ -1,3 +1,10 @@
+2002-08-08  jacob berkman  <jacob@ximian.com>
+
+	* modules/cdemenu-desktop-method.c (expand_env_vars): fix some
+	broken logic to make cde menu work when $LANG is not set
+
+	(fixes bug #87684)
+
 2002-08-07  Dave Camp  <dave@ximian.com>
 
 	* modules/fstype.c (filesystem_type): Use g_free to free 

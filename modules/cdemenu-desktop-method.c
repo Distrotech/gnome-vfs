@@ -106,7 +106,9 @@ expand_env_vars(char *s)
 			}
 			tmp3 = g_getenv(tmp);
 			g_free(*token);
-			*token = g_strdup(tmp3);
+			/* don't do g_strdup (s?s1:s2) as that doesn't work with
+			   certain gcc 2.96 versions */
+			*token = tmp3 ? g_strdup(tmp3) : g_strdup("");
 		}
 	}
 	expanded = g_strjoinv("/", tokens);
