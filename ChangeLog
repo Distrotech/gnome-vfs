@@ -1,6 +1,10 @@
+Thu May 27 15:59:40 2004  Jonathan Blandford  <jrb@gnome.org>
+
+	* libgnomevfs/xdgmimemagic.c: Sync from upstream.
+
 2004-05-15  Christophe Fergeau  <teuf@gnome.org>
 
-        * modules/ftp-method.c: reset connection offset in
+	* modules/ftp-method.c: reset connection offset in
           ftp_connection_acquire (should fix #140583)
 
 2004-05-16  Georges Karabin  <gkarabin@pobox.com>

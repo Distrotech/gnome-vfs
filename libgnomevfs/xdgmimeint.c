@@ -51,6 +51,7 @@ static const unsigned char _xdg_utf8_skip_data[256] = {
 const char * const _xdg_utf8_skip = _xdg_utf8_skip_data;
 
 
+
 /* Returns the number of unprocessed characters. */
 xdg_unichar_t
 _xdg_utf8_to_ucs4(const char *source)
