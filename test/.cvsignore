@@ -29,3 +29,4 @@ test-sync-write
 test-uri
 test-xfer
 vfs-run
+test-mime-info
