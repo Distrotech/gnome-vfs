@@ -874,7 +874,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 
 GHashTable *fstype_hash = NULL;
 G_LOCK_DEFINE_STATIC (fstype_hash);
-extern char const *filesystem_type (char *path, char *relpath, struct stat *statp);
+extern char *filesystem_type (char *path, char *relpath, struct stat *statp);
 
 static gboolean
 do_is_local (GnomeVFSMethod *method,
@@ -899,7 +899,7 @@ do_is_local (GnomeVFSMethod *method,
 	if (local == NULL) {
 		struct stat statbuf;
 		if (stat (path, &statbuf) == 0) {
-			char const *type = filesystem_type (path, path, &statbuf);
+			char *type = filesystem_type (path, path, &statbuf);
 			gboolean is_local = strcmp (type, "nfs") && strcmp (type, "afs");
 			local = GINT_TO_POINTER (is_local ? 1 : -1);
 			g_hash_table_insert (fstype_hash, path, local);
