@@ -1,3 +1,11 @@
+2000-06-02  Gene Z. Ragan  <gzr@eazel.com>
+
+	* mime-type-capplet/edit-window.c: 
+	(populate_application_menu):
+	More work on handling the logic of populating the menu
+	and handling special cases where short list, default application
+	and applicaiton list may be NULL or empty.
+
 2000-06-02  John Sullivan  <sullivan@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.h,
