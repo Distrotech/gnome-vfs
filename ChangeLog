@@ -1,3 +1,14 @@
+2000-10-25  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
+	(gnome_vfs_mime_sniff_buffer_get): Fixed error with the handling
+	of a case where the file is smaller than the requested sniff
+	buffer. The check was broken, and it also didn't set an error
+	code to let the caller know there's insufficient data.
+
+	* configure.in: Fixed check of gcc command-line switches to work
+	properly even with -O.
+
 2000-10-24  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.mime: Added extension-based MIME type
@@ -5,6 +16,7 @@
 	with StarOffice at least.
 
 2000-10-24  Rebecca Schulman  <rebecka@eazel.com>
+	
 	Fixed a bug in the gnome vfs mime magic that we weren't
 	actually seeking and reading the right chunks of files.
 	Fixing this exposed a large performance problem related to
@@ -35,7 +47,6 @@
 	* libgnomevfs/gnome-vfs-mime.c: (file_seek_binder):
 	Fix mistake where we'd swapped two arguments of 
 	fseek.  Amazingly, it worked anyways, that way. :)
-	
 
 2000-10-24  John Sullivan  <sullivan@eazel.com>
 

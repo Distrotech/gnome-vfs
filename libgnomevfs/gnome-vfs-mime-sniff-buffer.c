@@ -1,3 +1,5 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
 /*
  * gnome-vfs-mime-sniff-buffer.c
  * Utility for implementing gnome_vfs_mime_type_from_magic, and other
@@ -136,8 +138,8 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 	}
 
 	if (buffer->read_whole_file) {
-	  /* If we've read the whole file, don't read any more */
-	  return GNOME_VFS_OK;
+		/* If we've read the whole file, don't read any more */
+		return GNOME_VFS_OK;
 	}
 
 	if (size < GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK) {
@@ -154,28 +156,30 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 	buffer->buffer = g_realloc (buffer->buffer, size);
 
 	/* seek to the spot we last took off */
-	result = (buffer->seek) (buffer->context, 
-				 GNOME_VFS_SEEK_START,
-				 buffer->buffer_length);
-
+	result = (* buffer->seek) (buffer->context, 
+				   GNOME_VFS_SEEK_START,
+				   buffer->buffer_length);
+	
 	if (result == GNOME_VFS_ERROR_EOF) {
- 	        buffer->read_whole_file = TRUE;
+		buffer->read_whole_file = TRUE;
 		return result;
 	}
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}
+
 	/* read in more data */
-	result = (buffer->read) (buffer->context, 
-				 buffer->buffer + buffer->buffer_length,
-				 size - buffer->buffer_length,
-				 &bytes_read);
+	result = (* buffer->read) (buffer->context, 
+				   buffer->buffer + buffer->buffer_length,
+				   size - buffer->buffer_length,
+				   &bytes_read);
 	buffer->buffer_length += bytes_read;
 
-	if (bytes_read < size - buffer->buffer_length) {
+	/* check to be sure we got enough data */
+	if (size > buffer->buffer_length) {
 	        buffer->read_whole_file = TRUE;
+		result = GNOME_VFS_ERROR_EOF;
 	}
 
 	return result;
 }
-
