@@ -1,3 +1,7 @@
+2004-01-08  Thomas Cataldo  <tom@aliacom.fr>
+
+        * programs/gnomevfs-info.c: Fixed a memory leak
+
 2003-12-05  Mark McLoughlin  <mark@skynet.ie>
 
 	* schemas/desktop_gnome_url_handlers.schemas.in: remove CVS surgery
