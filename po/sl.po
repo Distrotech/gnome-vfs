@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2000-11-11 15:56+0100\n"
+"POT-Creation-Date: 2000-11-13 19:14+0100\n"
 "PO-Revision-Date: 2000-07-07 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -332,7 +332,7 @@ msgstr "Ne morem razvozlati zaèetne reference na RootPOA."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1292
 msgid "Cannot activate POA manager."
-msgstr "Ne morem aktivirat POA upravljalca."
+msgstr "Ne morem aktivirat upravljalca POA."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1317
 #, c-format
@@ -351,11 +351,11 @@ msgstr "Vmesnik za obvestila za `%s' ni bil najden."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1361
 msgid "Cannot setup Request object."
-msgstr "Ne morem nastaviti Zahtevka po predmetu."
+msgstr "Ne morem nastaviti predmeta za zahtevek."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1368
 msgid "Cannot extract IOR."
-msgstr "Ne morem izlu¹èiti IOR."
+msgstr "Ne morem izlu¹èiti IORa."
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #, c-format
@@ -399,11 +399,11 @@ msgstr "Ne morem ubiti GNOME::VFS::Slave %s -- izjema %s"
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Ne morem ubiti GNOME::VFS::Slave (IOR neznan) -- izjema %s"
+msgstr "Ne morem ubiti GNOME::VFS::Slave (neznan IOR) -- izjema %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:157
 msgid "Error writing to the wakeup GnomeVFSJob channel."
-msgstr "Napaka pri bujenju GnomeVFSJob kanala."
+msgstr "Napaka pri bujenju kanala GnomeVFSJob."
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:762
 #: libgnomevfs-pthread/gnome-vfs-job.c:1672
@@ -421,67 +421,67 @@ msgstr "Ne morem ustvariti cevi GIOChannel: %s"
 msgid "Operation stopped"
 msgstr "Operacija ustavljena"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:306
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:333
 msgid "Edit Applications List"
-msgstr "Uredi Seznam Programov"
+msgstr "Uredi seznam programov"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:326
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:353
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
 msgstr "Izberi programe, ki naj se ka¾ejo v menuju mime tipov \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:349
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:377
 msgid "Add Application..."
-msgstr "Dodaj Program..."
+msgstr "Dodaj program..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:353
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:384
 msgid "Edit Application..."
-msgstr "Uredi Program..."
+msgstr "Uredi program..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:357
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:390
 msgid "Delete Application"
-msgstr "Zbri¹i Program"
+msgstr "Zbri¹i program"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:382
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:423
 msgid "Edit Components List"
-msgstr "Uredi Seznam Komponent"
+msgstr "Uredi seznam komponent"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:402
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:443
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
 msgstr "Izberi poglede, ki naj se ka¾ejo v menuju mime tipov \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:579
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:620
 msgid "Add Mime Type"
-msgstr "Dodaj Mime Tip"
+msgstr "Dodaj Mime tip"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:580
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:621
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
 msgstr ""
-"Dodaj nov Mime Tip\n"
+"Dodaj nov Mime tip\n"
 "Naprimer:  image/tiff; text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:585
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:626
 msgid "Mime Type:"
-msgstr "Mime Tip:"
+msgstr "Mime tip:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:598
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:638
 msgid "Type in a description for this mime-type."
 msgstr "Vnesite opis tega mime tipa."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:604
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
 msgid "Description:"
 msgstr "Opis:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:643
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:683
 msgid "Add New Extension"
-msgstr "Dodaj Novo Pripono"
+msgstr "Dodaj novo pripono"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
@@ -489,42 +489,45 @@ msgstr ""
 "Vnesite novo pripono za ta mime tip.\n"
 "Naprimer:  .html, .htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:649
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:689
 msgid "Extension:"
 msgstr "Pripona:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:722
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:790
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:848
 msgid "New Application"
-msgstr "Nov Program"
+msgstr "Nov program"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:731
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:799
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:857
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:961
 msgid "Application Name:"
-msgstr "Ime Programa:"
+msgstr "Ime programa:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:739
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:807
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:865
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:970
 msgid "Application Command:"
-msgstr "Ukaz Programa:"
+msgstr "Ukaz programa:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:747
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:815
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:873
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:979
 msgid "Open Behavior"
 msgstr "Odpri obna¹anje"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:753
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:821
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:879
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:985
 msgid "Can open multiple files"
 msgstr "Lahko odpre veè datotek"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:756
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:824
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:882
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:989
 msgid "Can open from URI"
 msgstr "Lahko odpre iz URI-a"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:952
+msgid "Edit Application"
+msgstr "Uredi program"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:349
 msgid "Change Icon"
@@ -596,22 +599,22 @@ msgstr "Predogled"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznan GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1142
+#: modules/http-method.c:1145
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s za prenos sem"
 
-#: modules/http-method.c:1502
+#: modules/http-method.c:1510
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Zapiram povezavo do %s"
 
-#: modules/http-method.c:1714
+#: modules/http-method.c:1722
 #, c-format
 msgid "%s of %s read"
 msgstr "%s od %s prebranih"
 
-#: modules/http-method.c:1717
+#: modules/http-method.c:1725
 #, c-format
 msgid "%s read"
 msgstr "%s prebran"
