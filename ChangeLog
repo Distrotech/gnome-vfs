@@ -1,3 +1,8 @@
+2002-07-24  jacob berkman  <jacob@ximian.com>
+
+	* modules/vfolder/Makefile.am (libvfolder_desktop_la_LIBADD):
+	point to $(top_builddir) and not a relative path
+
 2002-07-24  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-method.c (dir_handle_new): Match with
