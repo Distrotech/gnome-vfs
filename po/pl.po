@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-03-31 13:23+0200\n"
+"POT-Creation-Date: 2003-05-05 12:39+0200\n"
 "PO-Revision-Date: 2003-01-02 01:53+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -275,35 +275,55 @@ msgstr "Błąd protokołu"
 msgid "Could not find master browser"
 msgstr "Nie można odnaleźć głównego serwera listy przeglądania"
 
-#: libgnomevfs/gnome-vfs-result.c:170
+#. GNOME_VFS_ERROR_NO_DEFAULT
+#: libgnomevfs/gnome-vfs-result.c:77
+msgid "No default action associated"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NO_HANDLER
+#: libgnomevfs/gnome-vfs-result.c:78
+msgid "No handler for URL scheme"
+msgstr ""
+
+#. GNOME_VFS_ERROR_PARSE
+#: libgnomevfs/gnome-vfs-result.c:79
+msgid "Error parsing command line"
+msgstr ""
+
+#. GNOME_VFS_ERROR_LAUNCH
+#: libgnomevfs/gnome-vfs-result.c:80
+msgid "Error launching command"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
 msgstr "Nieznany błąd"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:84
 msgid "1 byte"
 msgstr "1 bajt"
 
-#: libgnomevfs/gnome-vfs-utils.c:85
+#: libgnomevfs/gnome-vfs-utils.c:86
 #, c-format
 msgid "%u bytes"
 msgstr "%u bajtów"
 
-#: libgnomevfs/gnome-vfs-utils.c:92
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:96
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:100
+#: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
+#: libgnomevfs/gnome-vfs-utils.c:1088
 msgid " (invalid Unicode)"
 msgstr " (niepoprawny Unicode)"
 
@@ -322,6 +342,57 @@ msgstr "Nie odnaleziono poprawnego pliku z ustawieniami pod %s\n"
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Aby określić inne położenie, użyj zmiennej środowiskowej %s.\n"
+
+#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:163
+msgid "Applications"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:166
+msgid "Cards"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:169
+#, fuzzy
+msgid "Files"
+msgstr "Plik istnieje"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:172
+msgid "Folders"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:175
+msgid "Help"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:178
+msgid "Hosts"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:181
+msgid "Links"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:184
+msgid "Mail"
+msgstr ""
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:187
+msgid "Tools"
+msgstr ""
+
+#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:190
+msgid "Windows"
+msgstr ""
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
