@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS HEAD\n"
-"POT-Creation-Date: 2002-04-22 08:19-0400\n"
+"POT-Creation-Date: 2002-04-24 14:25+0200\n"
 "PO-Revision-Date: 2001-03-05 18:20+00:00\n"
 "Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
@@ -48,7 +48,7 @@ msgstr "Nem tudok csõvezetéket létrehozni a GIOChannel megnyitásához: %s"
 #: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Ismeretlen munkattípus: %u"
+msgstr "Ismeretlen munkatípus: %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1632
 msgid "Operation stopped"
@@ -71,7 +71,7 @@ msgstr "Nincs hiba"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
-msgstr "Nem taléltam a fájlt"
+msgstr "Nem találtam a fájlt"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
@@ -111,7 +111,7 @@ msgstr "Nem jó formátum"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Rossz féjl handle"
+msgstr "Rossz fájl handle"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
@@ -643,7 +643,7 @@ msgstr "Alap hiba"
 #~ msgstr "PGP-vel titkosított fájl"
 
 #~ msgid "PHP script"
-#~ msgstr "PHP szkript"
+#~ msgstr "PHP parancsfájl"
 
 #~ msgid "PN RealAudio document"
 #~ msgstr "PN RealAudio dokumentum"
@@ -661,7 +661,7 @@ msgstr "Alap hiba"
 #~ msgstr "Palm OS adatbázis"
 
 #~ msgid "Perl script"
-#~ msgstr "Perl szkript"
+#~ msgstr "Perl parancsfájl"
 
 #~ msgid "Photoshop document"
 #~ msgstr "Photoshop dokumentum"
@@ -718,7 +718,7 @@ msgstr "Alap hiba"
 #~ msgstr "SGML dokumentum"
 
 #~ msgid "SMIL script"
-#~ msgstr "SMIL szkript"
+#~ msgstr "SMIL parancsfájl"
 
 #~ msgid "SQL code"
 #~ msgstr "SQL kód"
@@ -781,7 +781,7 @@ msgstr "Alap hiba"
 #~ msgstr "TarGA kép"
 
 #~ msgid "Tcl script"
-#~ msgstr "Tcl szkript"
+#~ msgstr "Tcl parancsfájl"
 
 #~ msgid "TeX document"
 #~ msgstr "TeX dokumentum"
@@ -1143,7 +1143,7 @@ msgstr "Alap hiba"
 #~ msgstr "Nem kapok objektumot a '%s'-nek"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Nem tudom kilõni a GNOME::VFS::Slave::Notify-t -- hiba: %s"
+#~ msgstr "Nem tudom a GNOME::VFS::Slave::Notify-t leállítani -- hiba: %s"
 
 #~ msgid "Cannot connect socket `%s': %s"
 #~ msgstr "Nem tudok a '%s' socket-ra kapcsolódni: %s"
@@ -1213,7 +1213,7 @@ msgstr "Alap hiba"
 #~ msgstr ""
 #~ "A rendszerbeállítások visszaállítása minden saját\n"
 #~ "fájltípus- és programvátoztatást töröl.\n"
-#~ "Biztos, vagy a visszállításban?"
+#~ "Biztos, vagy a visszaállításban?"
 
 #~ msgid "none"
 #~ msgstr "semmi"
