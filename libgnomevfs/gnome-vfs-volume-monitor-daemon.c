@@ -785,6 +785,11 @@ create_vol_from_mount (GnomeVFSVolumeMonitor *volume_monitor, GnomeVFSUnixMount 
 
 	if (containing_drive != NULL &&
 	    containing_drive->priv->volume == NULL) {
+		/* Make sure the mounted volume for a visible drive is visible */
+		if (containing_drive->priv->is_user_visible) {
+			vol->priv->is_user_visible = 1;
+		}
+		
 		vol->priv->drive = containing_drive;
 		_gnome_vfs_drive_set_mounted_volume (containing_drive, vol);
 	}

@@ -1,3 +1,8 @@
+2003-11-11  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c (create_vol_from_mount):
+	Make sure volumes for user_visible drives are user_visible.
+
 === gnome-vfs 2.5.1 ===
 
 2003-11-10  Alexander Larsson  <alexl@redhat.com>
