@@ -325,30 +325,40 @@ parse_status (const char *cline,
 
 	/* The standard format of HTTP-Version is: `HTTP/X.Y', where X is
 	   major version, and Y is minor version.  */
-	if (strncmp (line, "HTTP/", 5) != 0)
+	if (strncmp (line, "HTTP/", 5) == 0) {
+		line += 5;
+		
+		/* Calculate major HTTP version.  */
+		p = line;
+		for (mjr = 0; isdigit (*line); line++)
+			mjr = 10 * mjr + (*line - '0');
+		if (*line != '.' || p == line)
+			return FALSE;
+		++line;
+		
+		/* Calculate minor HTTP version.  */
+		p = line;
+		for (mnr = 0; isdigit (*line); line++)
+			mnr = 10 * mnr + (*line - '0');
+		if (*line != ' ' || p == line)
+			return -1;
+		/* Wget will accept only 1.0 and higher HTTP-versions.  The value of
+		   minor version can be safely ignored.  */
+		if (mjr < 1)
+			return FALSE;
+		++line;
+	} else if (strncmp (line, "ICY ", 4) == 0) {
+		/* FIXME: workaround for broken ShoutCast and IceCast status replies.
+		 * They send things like "ICY 200 OK" instead of "HTTP/1.0 200 OK".
+		 * Is there a better way to handle this? 
+		 */
+		mjr = 1;
+		mnr = 0;
+		line += 4;
+	} else {
 		return FALSE;
-	line += 5;
-
-	/* Calculate major HTTP version.  */
-	p = line;
-	for (mjr = 0; isdigit (*line); line++)
-		mjr = 10 * mjr + (*line - '0');
-	if (*line != '.' || p == line)
-		return FALSE;
-	++line;
-
-	/* Calculate minor HTTP version.  */
-	p = line;
-	for (mnr = 0; isdigit (*line); line++)
-		mnr = 10 * mnr + (*line - '0');
-	if (*line != ' ' || p == line)
-		return -1;
-	/* Wget will accept only 1.0 and higher HTTP-versions.  The value of
-	   minor version can be safely ignored.  */
-	if (mjr < 1)
-		return FALSE;
-	++line;
-
+	}
+	
 	/* Calculate status code.  */
 	if (!(isdigit (*line) && isdigit (line[1]) && isdigit (line[2])))
 		return -1;

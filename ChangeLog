@@ -1,3 +1,10 @@
+2001-05-27  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	reviewed by: Seth Nickell <snickell@stanford.edu>
+
+	* modules/http-method.c (parse_status): Handle technically invalid
+	http replies from ShoutCast and IceCast.
+
 2001-05-25  Seth Nickell  <snickell@stanford.edu>
 
 	* HACKING: Fix typos, bring it up-to-date.
