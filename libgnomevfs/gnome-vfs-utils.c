@@ -713,6 +713,7 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
        	int statfs_result;
 	const char *path, *scheme;
 	char *unescaped_path;
+	GnomeVFSResult ret;
 #if HAVE_STATVFS
 	struct statvfs statfs_buffer;
 #else
