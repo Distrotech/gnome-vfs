@@ -1,7 +1,58 @@
+2000-05-23  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	* libgnomevfs/gnome-vfs-mime-magic.h:
+	* libgnomevfs/gnome-vfs-mime.c:
+	* libgnomevfs/gnome-vfs-mime.h:
+	(gnome_vfs_mime_try_one_magic_pattern), (gnome_vfs_get_mime_type_for_buffer),
+	(gnome_vfs_mime_magic_db_load), (gnome_vfs_mime_get_magic_table),
+	(gnome_vfs_mime_type_from_magic), (gnome_vfs_get_special_mime_type),
+	(gnome_vfs_get_mime_type_from_name_internal),
+	(gnome_vfs_get_mime_type_from_name), (gnome_vfs_get_mime_type),
+	(gnome_vfs_get_mime_type_from_file_data), (gnome_vfs_get_mime_type_for_data),
+	(gnome_vfs_get_sniff_buffer_looks_like_text):
+	Add new magic MIME sniffing APIs that can work on a URI as well as
+	on an in-memory buffer. Fix the broken use of mask.
+	Fix a bug where octal numbers were not parsed properly -- pretty much
+	half the rules that used octal numbers never worked. Make the 
+	loading of the MIME-magic entry database thread-safe. Change the 
+	MIME-type lookup sequence for the default call.
+
+	* libgnomevfs/Makefile.am: 
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.h: 
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
+	Lazy-reading buffer that can wrap either a file or a memory buffer
+	and that is passed to the new magic MIME type sniffing calls.
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(read_hex_str):
+	Fix a bug Darin helped me find where uppercase hex numbers weren't 
+	converted properly.
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(read_string_val):
+	Fix a bug where octal numbers were not parsed properly -- pretty much
+	half the rules that used octal numbers never worked.
+
+	* data/mime/gnome-vfs-mime-magic: 
+	Re-did the whole file. We'll add more entries in the future,
+	for now start with a good set of magic rules that are correct
+	and that are for file types you are actually likely see on your
+	machine. Ordered the rules such that the more-ambiguous ones
+	are at the end of the file to minimize the chance of getting
+	false positive. Fixed a number of incorrect rules in some of
+	the entries I kept from the old file.
+	
+	* test/Makefile.am:
+	* test/test-mime.c:
+	New testing tool to test the new MIME-magic sniffing routines.
+	In addition to testing the main gnome_vfs_get_mime_type allows 
+	testing magic-only MIME sniffing (good for verifying that
+	a new magic entry is correct) and suffix-only MIME sniffing.
+
 2000-05-23  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* configure.in:
-
 	Removed -lgnomevfs from CAPPLET_LIBS.
 
 2000-05-23  Ramiro Estrugo  <ramiro@eazel.com>

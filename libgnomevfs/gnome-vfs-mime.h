@@ -27,6 +27,8 @@
 #include <libgnome/gnome-defs.h>
 #include <glib.h>
 
+#include "gnome-vfs-types.h"
+
 BEGIN_GNOME_DECLS
 
 /* do not free any of the returned gchar* values */
@@ -37,6 +39,12 @@ const char  *gnome_vfs_mime_type_of_file			(const char *existing_filename);
 const char  *gnome_vfs_mime_type_or_default_of_file		(const char *existing_filename,
 								 const gchar *defaultv);
 const char  *gnome_vfs_mime_type_from_magic			(const gchar *filename);
+
+const char  *gnome_vfs_get_mime_type				(GnomeVFSURI *uri);
+const char  *gnome_vfs_get_mime_type_from_name			(GnomeVFSURI *uri);
+const char  *gnome_vfs_get_mime_type_from_file_data		(GnomeVFSURI *uri);
+const char  *gnome_vfs_get_mime_type_for_data			(gconstpointer data,
+                                                                 int data_size);
 
 /* functions for working with uri lists */
 GList       *gnome_uri_list_extract_filenames			(const gchar* uri_list);

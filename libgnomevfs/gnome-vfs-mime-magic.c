@@ -15,6 +15,9 @@
 #include <sys/types.h>
 
 #include "gnome-vfs-mime-magic.h"
+
+
+#include "gnome-vfs-mime-sniff-buffer.h"
 #include "gnome-vfs-mime.h"
 
 #include <libgnome/libgnome.h>
@@ -69,7 +72,7 @@ read_hex_str(char **pos)
     retval = **pos - '0';
   } else if(**pos >= 'a' && **pos <= 'f') {
     retval = **pos - 'a' + 10;
-  } else if(**pos >= 'A' && **pos <= 'A') {
+  } else if(**pos >= 'A' && **pos <= 'F') {
     retval = **pos - 'A' + 10;
   } else
     g_error("bad hex digit %c", **pos);
@@ -81,7 +84,7 @@ read_hex_str(char **pos)
     retval += **pos - '0';
   } else if(**pos >= 'a' && **pos <= 'f') {
     retval += **pos - 'a' + 10;
-  } else if(**pos >= 'A' && **pos <= 'A') {
+  } else if(**pos >= 'A' && **pos <= 'F') {
     retval += **pos - 'A' + 10;
   } else
     g_error("bad hex digit %c", **pos);
@@ -110,7 +113,10 @@ read_string_val(char *curpos, char *intobuf, guchar max_len, guchar *into_len)
 	curpos++;
 	c = read_hex_str(&curpos);
 	break;
-      case '0': case '1':
+      case '0': 
+      case '1':
+      case '2':
+      case '3':
 	/* read octal value */
 	c = read_octal_str(&curpos);
 	break;
@@ -302,7 +308,8 @@ gnome_vfs_mime_magic_parse(const gchar *filename, gint *nents)
   return retval;
 }
 
-static void do_byteswap(guchar *outdata,
+static void 
+do_byteswap(guchar *outdata,
 		 const guchar *data,
 		 gulong datalen)
 {
@@ -336,6 +343,9 @@ gnome_vfs_mime_magic_matches_p(FILE *fh, GnomeMagicEntry *ent)
     retval &= !memcmp(ent->test, buf, ent->test_len);
 
   if(ent->mask != 0xFFFFFFFF) {
+  /* FIXME:
+   * this never worked
+   */
     switch(ent->test_len) {
     case 1:
       retval &= ((ent->mask & ent->test[0]) == ent->mask);
@@ -352,30 +362,142 @@ gnome_vfs_mime_magic_matches_p(FILE *fh, GnomeMagicEntry *ent)
   return retval;
 }
 
-static GnomeMagicEntry *
-gnome_vfs_mime_magic_db_load(void)
+
+static gboolean
+gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer, 
+	GnomeMagicEntry *magic_entry)
 {
-  int fd;
-  char *filename;
-  GnomeMagicEntry *retval;
-  struct stat sbuf;
+	char test_pattern[48];
 
-  filename = gnome_config_file("gnome-vfs-mime-magic.dat");
+	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
+		magic_entry->offset + magic_entry->test_len) != GNOME_VFS_OK) {
+		return FALSE;
+	}
 
-  if(!filename) return NULL;
-  fd = open(filename, O_RDONLY);
-  g_free(filename);
-  if(fd < 0) return NULL;
+	g_assert(magic_entry->test_len <= 48);
+	memcpy (test_pattern, sniff_buffer->buffer + magic_entry->offset, 
+		magic_entry->test_len);
 
-  if (fstat(fd, &sbuf)) {
-    return NULL;
-  }
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+	if (magic_entry->type >= T_BESHORT && magic_entry->type <= T_BEDATE) 
+#else	
+	if (magic_entry->type >= T_LESHORT && magic_entry->type <= T_LEDATE)
+#endif
+	{ 
+		/* Endian-convert the data we are trying to recognize to
+		 * our host endianness.
+		 */
+		char buf2[sizeof(magic_entry->test)];
 
-  retval = (GnomeMagicEntry*) mmap(NULL, sbuf.st_size, PROT_READ, MAP_SHARED, fd, 0);
+		g_assert(magic_entry->test_len <= 4);
 
-  close(fd);
+		memcpy (buf2, test_pattern, magic_entry->test_len);
 
-  return retval;
+		do_byteswap(test_pattern, buf2, magic_entry->test_len);
+	}
+
+
+	if (magic_entry->mask != 0xFFFFFFFF) {
+		/* Apply mask to the examined data. At this point the data in
+		 * test_pattern is in the same endianness as the mask.
+		 */ 
+		g_assert(magic_entry->test_len <= 4);
+
+		g_assert((*((guint32 *)magic_entry->test) & magic_entry->mask) ==  
+			*((guint32 *)magic_entry->test));
+
+		switch(magic_entry->test_len) {
+		case 1:
+			test_pattern[0] &= magic_entry->mask;
+			break;
+		case 2:
+			*((guint16 *)test_pattern) &= magic_entry->mask;
+			break;
+		case 4:
+			*((guint32 *)test_pattern) &= magic_entry->mask;
+			break;
+		default:
+			g_assert(!"unimplemented");
+		}
+	}
+
+	return memcmp(magic_entry->test, test_pattern, magic_entry->test_len) == 0;
+}
+
+/* We lock this mutex whenever we modify global state in this module.  */
+G_LOCK_DEFINE_STATIC (mime_magic_table_mutex);
+
+static GnomeMagicEntry *mime_magic_table = NULL;
+
+static GnomeMagicEntry *
+gnome_vfs_mime_get_magic_table (void)
+{
+	int file;
+	char *filename;
+	struct stat sbuf;
+
+	G_LOCK (mime_magic_table_mutex);
+	if (mime_magic_table == NULL) {
+		/* try reading the pre-parsed table */
+		filename = gnome_config_file ("gnome-vfs-mime-magic.dat");
+
+		if (filename != NULL) {
+			file = open(filename, O_RDONLY);
+			if (file >= 0) {
+				if (fstat(file, &sbuf) == 0) {
+					mime_magic_table = (GnomeMagicEntry *) mmap(NULL, 
+						sbuf.st_size, 
+						PROT_READ, 
+						MAP_SHARED, 
+						file, 0);
+				}
+  				close (file);
+			}
+			g_free(filename);
+		}
+  	}
+  	if (mime_magic_table == NULL) {
+		/* don't have a pre-parsed table, use original text file */
+		filename = gnome_config_file("gnome-vfs-mime-magic");
+		if (filename != NULL) {
+			mime_magic_table = gnome_vfs_mime_magic_parse(filename, NULL);
+		}
+		g_free(filename);
+  	}
+
+	G_UNLOCK (mime_magic_table_mutex);
+
+	return mime_magic_table;
+}
+
+/**
+ * gnome_vfs_get_mime_type_for_buffer:
+ * @buffer: a sniff buffer referencing either a file or data in memory
+ *
+ * This routine uses a magic database to guess the mime type of the
+ * data represented by @buffer.
+ *
+ * Returns a pointer to an internal copy of the mime-type for @buffer.
+ */
+const char *
+gnome_vfs_get_mime_type_for_buffer (GnomeVFSMimeSniffBuffer *buffer)
+{
+	GnomeMagicEntry *magic_table;
+
+	/* load the magic table if needed */
+	magic_table = gnome_vfs_mime_get_magic_table ();
+	if (magic_table == NULL) {
+		return NULL;
+	}
+	
+	for (; magic_table->type != T_END; magic_table++) {
+		if (gnome_vfs_mime_try_one_magic_pattern (buffer, magic_table)) {
+  			return (magic_table->type == T_END) 
+  				? NULL : magic_table->mimetype;
+  		}
+	}
+
+	return NULL;
 }
 
 /**
@@ -389,53 +511,55 @@ gnome_vfs_mime_magic_db_load(void)
  * Returns a pointer to an internal copy of the mime-type for @filename.
  */
 const char *
-gnome_vfs_mime_type_from_magic(const gchar *filename)
+gnome_vfs_mime_type_from_magic (const gchar *filename)
 {
-  FILE *fh;
-  static GnomeMagicEntry *ents = NULL;
-  int i;
-  struct stat sbuf;
+	GnomeMagicEntry *magic_table;
+	FILE *fh;
+	int i;
+	struct stat sbuf;
 
-  /* we really don't want to start reading from devices :) */
-  if(stat(filename, &sbuf))
-    return NULL;
-  if(!S_ISREG(sbuf.st_mode)) {
-    if(S_ISDIR(sbuf.st_mode))
-      return "special/directory";
-    else if(S_ISCHR(sbuf.st_mode))
-      return "special/device-char";
-    else if(S_ISBLK(sbuf.st_mode))
-      return "special/device-block";
-    else if(S_ISFIFO(sbuf.st_mode))
-      return "special/fifo";
-    else if(S_ISSOCK(sbuf.st_mode))
-      return "special/socket";
-    else
-      return NULL;
-  }
+	/* we really don't want to start reading from devices */
+	if (stat(filename, &sbuf) != 0)
+		return NULL;
+	if (!S_ISREG(sbuf.st_mode)) {
+		if (S_ISDIR(sbuf.st_mode))
+			return "special/directory";
+		else if (S_ISCHR(sbuf.st_mode))
+			return "special/device-char";
+		else if (S_ISBLK(sbuf.st_mode))
+			return "special/device-block";
+		else if (S_ISFIFO(sbuf.st_mode))
+			return "special/fifo";
+		else if (S_ISSOCK(sbuf.st_mode))
+			return "special/socket";
+		else
+			return NULL;
+	}
+	
+	fh = fopen(filename, "r");
+	if (!fh) {
+		return NULL;
+	}
 
-  fh = fopen(filename, "r");
-  if(!fh) return NULL;
+	magic_table = gnome_vfs_mime_get_magic_table ();
+	if (!magic_table) {
+		fclose(fh);
+		return NULL;
+	}
 
-  if(!ents) ents = gnome_vfs_mime_magic_db_load();
-  if(!ents) {
-    char *fn = gnome_config_file("gnome-vfs-mime-magic");
-    if(fn)
-      ents = gnome_vfs_mime_magic_parse(fn, NULL);
-    g_free(fn);
-  }
-  if(!ents) {
-	  fclose(fh);
-	  return NULL;
-  }
+	for (i = 0; magic_table[i].type != T_END; i++) {
+		if (gnome_vfs_mime_magic_matches_p (fh, &magic_table[i])) {
+			break;
+		}
+	}
 
-  for(i = 0; ents[i].type != T_END; i++) {
-    if(gnome_vfs_mime_magic_matches_p(fh, &ents[i]))
-      break;
-  }
+	fclose(fh);
 
-  fclose(fh);
-
-  return (ents[i].type == T_END)?NULL:ents[i].mimetype;
+	return (magic_table[i].type == T_END) ? NULL : magic_table[i].mimetype;
 }
 
+gboolean
+gnome_vfs_get_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *buffer)
+{
+	return TRUE;
+}

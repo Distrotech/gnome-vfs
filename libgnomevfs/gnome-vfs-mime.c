@@ -21,7 +21,9 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#include "gnome-vfs.h"
 #include "gnome-vfs-mime.h"
+#include "gnome-vfs-mime-sniff-buffer.h"
 
 #include <libgnome/gnome-util.h>
 #include <config.h>
@@ -461,6 +463,210 @@ gnome_vfs_mime_type_or_default_of_file (const char *existing_filename,
 		return mime_type;
 
 	return gnome_vfs_mime_type_or_default (existing_filename, defaultv);
+}
+
+
+static const char *
+gnome_vfs_get_special_mime_type (GnomeVFSURI *uri)
+{
+	GnomeVFSResult error;
+	GnomeVFSFileInfo info;
+
+	/* Get file info and examine the type field to see if file is 
+	 * one of the special kinds. 
+	 */
+	error = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+	if (error != GNOME_VFS_OK) {
+		return NULL;
+	}
+
+	/* FIXME:
+	 * The following returned values are not valid MIME types.
+	 * Should the returned types be "application/x-directory" 
+	 * or "x-special/directory"?
+	 */
+	switch (info.type) {
+	case GNOME_VFS_FILE_TYPE_DIRECTORY:
+		return "special/directory";
+	case GNOME_VFS_FILE_TYPE_CHARDEVICE:
+		return "special/device-char";
+	case GNOME_VFS_FILE_TYPE_BLOCKDEVICE:
+		return "special/device-block";
+	case GNOME_VFS_FILE_TYPE_FIFO:
+		return "special/fifo";
+	case GNOME_VFS_FILE_TYPE_SOCKET:
+		return "special/socket";
+	default:
+		break;
+	}
+
+	return NULL;	
+}
+
+static const char *
+gnome_vfs_get_mime_type_from_name_internal (GnomeVFSURI *uri)
+{
+	const char *base_name;
+
+	/* Return a mime type based on the file extension or NULL if no match. */
+	base_name = gnome_vfs_uri_get_basename (uri);
+	if (base_name == NULL)
+		return NULL;
+
+	return gnome_vfs_mime_type_or_default (base_name, NULL);
+}
+
+/**
+ * gnome_vfs_get_mime_type:
+ * @uri: a real file or a non-existent uri.
+ * @data_size: Size of the data.
+ *
+ * Tries to guess the mime type of the file represented by @uir.
+ * Favors using the file data to the @uri extension.
+ * Handles passing @uri of a non-existent file by falling back
+ * on returning a type based on the extension.
+ *
+ * Returns the mime-type for this uri.
+ */
+const char *
+gnome_vfs_get_mime_type (GnomeVFSURI *uri)
+{
+	const char *result;
+	GnomeVFSMimeSniffBuffer *buffer;
+	GnomeVFSHandle *handle;
+	GnomeVFSResult error;
+
+	/* Check for special stat-defined file types first. */
+	result = gnome_vfs_get_special_mime_type (uri);
+	if (result != NULL) {
+		return result;
+	}
+
+	error = gnome_vfs_open_uri (&handle, uri, GNOME_VFS_OPEN_READ);
+
+	if (error != GNOME_VFS_OK) {
+		/* file may not exist, return type based on name only */
+		return gnome_vfs_get_mime_type_from_name_internal (uri);
+	}
+	
+	buffer = gnome_vfs_mime_sniff_buffer_new_from_handle (handle);
+
+	/* check the type from the file data */
+	result = gnome_vfs_get_mime_type_for_buffer (buffer);
+
+	if (result == NULL) {
+		if (gnome_vfs_get_sniff_buffer_looks_like_text (buffer)) {
+			/* Text file -- treat extensions as a more accurate source
+			 * of type information.
+			 */
+			result = gnome_vfs_get_mime_type_from_name_internal (uri);
+			if (result == NULL) {
+				/* Didn't find an extension match, assume plain text. */
+				result = "text/plain";
+			}
+		} else {
+			/* No type recognized -- fall back on extensions. */
+			result = gnome_vfs_get_mime_type_from_name_internal (uri);
+		}
+	}
+
+	if (result == NULL) {
+		/* no type detected, return a generic file type */
+		result = "application/octet-stream";
+	}
+	
+	gnome_vfs_mime_sniff_buffer_free (buffer);
+	gnome_vfs_close (handle);
+
+	return result;
+}
+
+/**
+ * gnome_vfs_get_mime_type_from_name:
+ * @uri: A file uri.
+ *
+ * Tries to guess the mime type of the file @uri by
+ * checking the file name extension. Works on non-existent
+ * files.
+ *
+ * Returns the mime-type for this filename.
+ */
+const char *
+gnome_vfs_get_mime_type_from_name (GnomeVFSURI *uri)
+{
+	const char *result;
+
+	result = gnome_vfs_get_mime_type_from_name_internal (uri);
+	if (result == NULL) {
+		/* no type, return generic file type */
+		result = "application/octet-stream";
+	}
+
+	return result;
+}
+
+/**
+ * gnome_vfs_get_mime_type_from_file_data:
+ * @uri: A file uri.
+ *
+ * Tries to guess the mime type of the file @uri by
+ * checking the file data using the magic patterns. Does not handle text files properly
+ *
+ * Returns the mime-type for this filename.
+ */
+const char *
+gnome_vfs_get_mime_type_from_file_data (GnomeVFSURI *uri)
+{
+	const char *result;
+	GnomeVFSMimeSniffBuffer *buffer;
+	GnomeVFSHandle *handle;
+	GnomeVFSResult error;
+
+	error = gnome_vfs_open_uri (&handle, uri, GNOME_VFS_OPEN_READ);
+
+	if (error != GNOME_VFS_OK) {
+		return NULL;
+	}
+	
+	buffer = gnome_vfs_mime_sniff_buffer_new_from_handle (handle);
+
+	/* check the type from the file data */
+	result = gnome_vfs_get_mime_type_for_buffer (buffer);
+
+	if (result == NULL) {
+		/* no type detected, return a generic file type */
+		result = "application/octet-stream";
+	}
+	
+	gnome_vfs_mime_sniff_buffer_free (buffer);
+	gnome_vfs_close (handle);
+
+	return result;
+}
+
+/**
+ * gnome_vfs_get_mime_type_for_data:
+ * @data: A pointer to data in memory.
+ * @data_size: Size of the data.
+ *
+ * Tries to guess the mime type of the data in @data
+ * using the magic patterns.
+ *
+ * Returns the mime-type for this filename.
+ */
+const char *
+gnome_vfs_get_mime_type_for_data (gconstpointer data, int data_size)
+{
+	const char *result;
+	GnomeVFSMimeSniffBuffer *buffer;
+
+	buffer = gnome_vfs_mime_sniff_buffer_new_from_existing_data
+		(data, data_size);
+
+	result = gnome_vfs_get_mime_type_for_buffer (buffer);
+	gnome_vfs_mime_sniff_buffer_free (buffer);
+
+	return result;
 }
 
 /**

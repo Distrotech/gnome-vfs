@@ -17,6 +17,7 @@ noinst_PROGRAMS =				\
 	test-directory				\
 	test-directory-visit			\
 	test-info				\
+	test-mime				\
 	test-seek				\
 	test-sync				\
 	test-sync-write				\
@@ -92,6 +93,10 @@ test_seek_LDFLAGS =
 test_info_SOURCES = test-info.c
 test_info_LDADD = $(libraries)
 test_info_LDFLAGS =
+
+test_mime_SOURCES = test-mime.c
+test_mime_LDADD = $(libraries)
+test_mime_LDFLAGS =
 
 test_xfer_SOURCES = test-xfer.c
 test_xfer_LDADD = $(libraries)

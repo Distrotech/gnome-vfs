@@ -6,8 +6,8 @@
  * the gnome-vfs-mime.h header file.
  */
 
-#include <libgnome/gnome-defs.h>
 #include <glib.h>
+#include <libgnome/gnome-defs.h>
 
 BEGIN_GNOME_DECLS
 
