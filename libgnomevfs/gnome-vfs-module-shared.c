@@ -25,7 +25,7 @@ gnome_vfs_mime_type_from_mode (mode_t mode)
 	if (S_ISREG (mode))
 		mime_type = NULL;
 	else if (S_ISDIR (mode))
-		mime_type = "x-special/directory";
+		mime_type = "x-directory/normal";
 	else if (S_ISCHR (mode))
 		mime_type = "x-special/device-char";
 	else if (S_ISBLK (mode))
@@ -58,7 +58,7 @@ gnome_vfs_get_special_mime_type (GnomeVFSURI *uri)
 
 	switch (info.type) {
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
-		return "x-special/directory";
+		return "x-directory/normal";
 	case GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE:
 		return "x-special/device-char";
 	case GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:

@@ -615,7 +615,7 @@ gnome_vfs_get_file_mime_type (const char *path, const struct stat *stat_info,
 	/* single out special file types */
 	if (stat_info && !S_ISREG(stat_info->st_mode)) {
 		if (S_ISDIR(stat_info->st_mode))
-			return "x-special/directory";
+			return "x-directory/normal";
 		else if (S_ISCHR(stat_info->st_mode))
 			return "x-special/device-char";
 		else if (S_ISBLK(stat_info->st_mode))

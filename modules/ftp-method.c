@@ -831,7 +831,7 @@ static GnomeVFSResult do_get_file_info  (GnomeVFSMethod *method,
 
 		file_info->name = g_strdup("/");
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-		file_info->mime_type = g_strdup("x-special/directory");
+		file_info->mime_type = g_strdup("x-directory/normal");
 		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_TYPE|
 			GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		return GNOME_VFS_OK;

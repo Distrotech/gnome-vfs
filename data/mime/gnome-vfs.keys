@@ -764,7 +764,7 @@ x-special/device-block
 x-special/device-char
 	description=character device
 
-x-special/directory
+x-directory/normal
 	description=directory
 	default_action_type=component
 	default_component_iid=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058
@@ -772,7 +772,7 @@ x-special/directory
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
 
-x-special/virtual-directory
+x-directory/search
 	description=search results virtual directory
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_file_manager_search_list_view:b186e381-198e-43cf-9c46-60b6bb35db0b
@@ -789,7 +789,7 @@ x-special/socket
 x-special/symlink
 	description=link
 
-x-special/webdav-directory
+x-directory/webdav
 	description=web directory
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1

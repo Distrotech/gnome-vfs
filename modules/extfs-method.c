@@ -739,7 +739,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		/* now we get evil and tell the app that this is in fact a dir */
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 		g_free(file_info->mime_type);
-		file_info->mime_type = g_strdup("x-special/directory");
+		file_info->mime_type = g_strdup("x-directory/normal");
 		g_free(filename);
 		return result;
 	}

@@ -946,7 +946,7 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 					file_info->type = 
 						GNOME_VFS_FILE_TYPE_DIRECTORY;
 					g_free(file_info->mime_type);
-					file_info->mime_type = g_strdup("x-special/webdav-directory");
+					file_info->mime_type = g_strdup("x-directory/webdav");
 					file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 				}
 			}
