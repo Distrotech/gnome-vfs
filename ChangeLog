@@ -1,3 +1,9 @@
+2004-06-03  Niall Power  <niall.power@sun.com>
+
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	  mount_unmount_thread(): ignore umount errors if ejection still
+	  succeeds. Fixes bugzilla #143569
+
 2004-06-01  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

@@ -290,6 +290,9 @@ mount_unmount_thread (void *arg)
 				info->succeeded = FALSE;
 				info->error_message = g_strdup (_("Unable to eject media"));
 				info->detailed_error_message = g_strdup (standard_error);
+			} else {
+				/* If the eject succeed then ignore the previous unmount error (if any) */
+				info->succeeded = TRUE;
 			}
 		} else {
 			/* Spawn failure */
