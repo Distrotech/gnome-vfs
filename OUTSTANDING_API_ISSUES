@@ -1,3 +1,26 @@
+Many of these API changes will not make the GNOME2 
+timeframe, just be aware that they are possibilites.
+
+Basic recommendations to avoid application breakage:
+
+- Do not use the gnome_vfs_*_uri calls, use the
+  non-uri forms instead.
+
+- Do not use the metadata / monitoring APIs without
+  first consulting gnome-vfs@ximian.com mailing list
+  or being willing to take some breakage if they
+  change.
+
+- Do not use gnome-vfs-seekable or gnome-vfs-transform
+  unless you consult gnome-vfs@ximian.com. We'd be
+  inerested if there's something you actually want to
+  use them for.
+
+- Make sure you use pkgconfig to get the correct cflags
+  variable, because the include paths may be changing.
+
+---------------------------
+
 * 8450 - [API] The new metadata API in gnome-vfs needs to be finished
 * 8451 - [API] gnome-vfs needs an API for filesystem monitoring
 * real icon support
@@ -9,7 +32,7 @@
 * redirect support
 * URI links
 * make xfer API not suck
-* deprecate GnomeVFSURI in public APIs
+* deprecate GnomeVFSURI in public APIs (libgnomevfs/gnome-vfs-ops.h)
 * Install public headers and module-only headers in different places,
   separate pkgconfig targets
 * remove gnome-vfs-iobuf / gnome-vfs-socket-buffer duplication

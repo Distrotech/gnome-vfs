@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2001-08-02 21:54+0100\n"
+"POT-Creation-Date: 2001-08-02 15:30-0700\n"
 "PO-Revision-Date: 2001-03-12 18:12-03:00\n"
 "Last-Translator: Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br> \n"
@@ -1373,7 +1373,8 @@ msgstr "GnomeVFSSeekPosition desconhecido %d"
 
 #~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
 #~ msgstr ""
-#~ "Não é possível reiniciar GNOME::VFS::Slave (IOR desconhecido) -- exceção %s"
+#~ "Não é possível reiniciar GNOME::VFS::Slave (IOR desconhecido) -- exceção %"
+#~ "s"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
 #~ msgstr "Não é possível terminar GNOME::VFS::Slave %s -- exceção %s"

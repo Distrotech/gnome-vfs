@@ -133,7 +133,22 @@
 
 	* OUTSTANDING_API_ISSUES: Add a fe bug numbers.
 	* doc/outstanding-api-issues.txt: Actually remove this.
+	
+==== gnome-vfs 1.1 ====
+	
+2001-08-02  Seth Nickell  <snickell@stanford.edu>
 
+	* OUTSTANDING_API_ISSUES:
+
+	Add more descriptive text so application developers have
+	a better idea what to avoid using.
+	
+	* modules/cdda-cddb.h:
+	* modules/cdda-method.h:
+
+	Remove gtk includes.
+	
+	
 2001-08-02  Seth Nickell  <snickell@stanford.edu>
 
 	* OUTSTANDING_API_ISSUES:
