@@ -1469,7 +1469,10 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 		user_name = g_get_user_name ();
 
 	if (host_name == NULL)
-		return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+	{
+		res = GNOME_VFS_ERROR_HOST_NOT_FOUND;
+		goto bail;
+	}
 
 	hash_name = g_strconcat (user_name, "@", host_name, NULL);
 
@@ -1485,7 +1488,11 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 		res = sftp_connect (connection, uri);
 
 		if (res == GNOME_VFS_OK) {
-			g_return_val_if_fail (*connection != NULL, GNOME_VFS_ERROR_INTERNAL);
+			if (*connection == NULL)
+			{
+				res = GNOME_VFS_ERROR_INTERNAL;
+				goto bail;
+			}
 			g_mutex_lock ((*connection)->mutex);
 			(*connection)->hash_name = hash_name;
 			g_hash_table_insert (sftp_connection_table, hash_name, *connection);
@@ -1517,6 +1524,7 @@ sftp_get_connection (SftpConnection **connection, const GnomeVFSURI *uri)
 		res = GNOME_VFS_OK;
 	}
 
+ bail:
 	G_UNLOCK (sftp_connection_table);
 
 	return res;

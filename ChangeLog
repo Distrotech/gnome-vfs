@@ -1,3 +1,7 @@
+2004-08-09  Ryan Lortie <desrt@desrt.ca>
+
+	* modules/sftp-method.c: fix potential deadlock in sftp_get_connection
+
 2004-08-03  William Jon McCann  <mccann@jhu.edu>
  
  	* modules/sftp-method.c (sftp_connect): write responses to
