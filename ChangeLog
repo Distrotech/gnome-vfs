@@ -1,5 +1,10 @@
 2000-11-03  Mike Fleming  <mfleming@eazel.com>
 
+	* modules/http-method.c:
+	Let's turn *off* verbose HTTP logging
+
+2000-11-03  Mike Fleming  <mfleming@eazel.com>
+
 	* libgnomevfs/gnome-vfs-uri.c: (set_uri_element):
 	Do it right this time
 
