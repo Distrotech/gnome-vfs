@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.0.0\n"
-"POT-Creation-Date: 2001-02-20 12:21+0100\n"
-"PO-Revision-Date: 2001-02-20 12:24+0100\n"
+"POT-Creation-Date: 2001-02-23 13:32+0100\n"
+"PO-Revision-Date: 2001-02-23 13:29+0100\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@eikonex.org>\n"
 "Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -104,7 +104,7 @@ msgstr "Archive CPIO"
 
 #: data/mime/gnome-vfs.keys.in.h:23
 msgid "CPIO archive (gzip-compressed)"
-msgstr "Archive CPIO (compressé gzip)"
+msgstr "Archive CPIO (comprimé gzip)"
 
 #: data/mime/gnome-vfs.keys.in.h:24
 msgid "DCL script"
@@ -684,7 +684,7 @@ msgstr "Périphérique bloc"
 
 #: data/mime/gnome-vfs.keys.in.h:168
 msgid "bzip-compressed file"
-msgstr "Document compressé bzip"
+msgstr "Document comprimé bzip"
 
 #: data/mime/gnome-vfs.keys.in.h:169
 msgid "calendar file"
@@ -708,11 +708,11 @@ msgstr "Message composé"
 
 #: data/mime/gnome-vfs.keys.in.h:174
 msgid "compress-compressed file"
-msgstr "Document compressé compress"
+msgstr "Document comprimé compress"
 
 #: data/mime/gnome-vfs.keys.in.h:175
 msgid "compressed GIMP document"
-msgstr "Document GIMP compressé"
+msgstr "Document GIMP comprimé"
 
 #: data/mime/gnome-vfs.keys.in.h:176
 msgid "directory information file"
@@ -748,7 +748,7 @@ msgstr "Archive gtar"
 
 #: data/mime/gnome-vfs.keys.in.h:184
 msgid "gzip-compressed file"
-msgstr "Document compressé gzip"
+msgstr "Document comprimé gzip"
 
 #: data/mime/gnome-vfs.keys.in.h:185
 msgid "help page"
@@ -776,7 +776,7 @@ msgstr "Page de manuel"
 
 #: data/mime/gnome-vfs.keys.in.h:191
 msgid "manual page (compressed)"
-msgstr "Page de manuel (compressé)"
+msgstr "Page de manuel (comprimé)"
 
 #: data/mime/gnome-vfs.keys.in.h:192
 msgid "memory dump"
@@ -796,7 +796,7 @@ msgstr "Message multi-part"
 
 #: data/mime/gnome-vfs.keys.in.h:196
 msgid "named pipe"
-msgstr "Conduit nommé"
+msgstr "Tube nommé"
 
 #: data/mime/gnome-vfs.keys.in.h:197
 msgid "object code"
@@ -888,11 +888,11 @@ msgstr "Archive tar"
 
 #: data/mime/gnome-vfs.keys.in.h:219
 msgid "tar archive (bzip2-compressed)"
-msgstr "Archive tar (compressé bzip2)"
+msgstr "Archive tar (comprimé bzip2)"
 
 #: data/mime/gnome-vfs.keys.in.h:220
 msgid "tar archive (gzip-compressed)"
-msgstr "Archive tar (compressé gzip)"
+msgstr "Archive tar (comprimé gzip)"
 
 #: data/mime/gnome-vfs.keys.in.h:221
 msgid "theme"
@@ -1225,64 +1225,64 @@ msgstr "Erreur en écrivant : %s"
 msgid "Cannot write: %s"
 msgstr "Ne peut écrire : %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#: libgnomevfs-corba/gnome-vfs-slave.c:601
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Ne peut créer le fichier temporaire « %s »"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:614
+#: libgnomevfs-corba/gnome-vfs-slave.c:615
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "Ne peut créer la socket : %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:632
+#: libgnomevfs-corba/gnome-vfs-slave.c:633
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "Ne peut binder « %s » : %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:639
+#: libgnomevfs-corba/gnome-vfs-slave.c:640
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "Ne peut écouter sur « %s » : %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:661
+#: libgnomevfs-corba/gnome-vfs-slave.c:663
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Ne peut accepter des connexions sur « %s » : %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1189
+#: libgnomevfs-corba/gnome-vfs-slave.c:1195
 msgid "Cannot initialize CORBA."
 msgstr "Ne peut initialiser CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1196
+#: libgnomevfs-corba/gnome-vfs-slave.c:1202
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Ne peut résoudre la référence initiale à RootPOA"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1203
+#: libgnomevfs-corba/gnome-vfs-slave.c:1209
 msgid "Cannot activate POA manager."
 msgstr "Ne peut activer le gestionnaire POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1228
+#: libgnomevfs-corba/gnome-vfs-slave.c:1234
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Usage : %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1239
+#: libgnomevfs-corba/gnome-vfs-slave.c:1245
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Ne peut ouvrir le descripteur de fichiers %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1262
+#: libgnomevfs-corba/gnome-vfs-slave.c:1268
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Interface de notification pour « %s » non trouvé."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1272
+#: libgnomevfs-corba/gnome-vfs-slave.c:1278
 msgid "Cannot setup Request object."
 msgstr "Ne peut configurer l'objet Request."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1279
+#: libgnomevfs-corba/gnome-vfs-slave.c:1285
 msgid "Cannot extract IOR."
 msgstr "Ne peut extraire l'IOR."
 
@@ -1330,63 +1330,63 @@ msgstr "Ne peut tuer GNOME::VFS::Slave %s -- exception %s"
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "Ne peut tuer GNOME::VFS::Slave (IOR inconnu) -- exception %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:688
+#: libgnomevfs-pthread/gnome-vfs-job.c:684
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Type d'op %u inconnu"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:974
-#: libgnomevfs-pthread/gnome-vfs-job.c:1119
+#: libgnomevfs-pthread/gnome-vfs-job.c:970
+#: libgnomevfs-pthread/gnome-vfs-job.c:1115
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ne peut créer un pipeline pour ouvrir GIOChannel : %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1576
+#: libgnomevfs-pthread/gnome-vfs-job.c:1570
 #, c-format
 msgid "Unknown job ID %u"
 msgstr "Job ID %u inconnu"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1597
+#: libgnomevfs-pthread/gnome-vfs-job.c:1591
 msgid "Operation stopped"
 msgstr "Opération stoppée"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:373
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:385
 msgid "Edit Applications List"
 msgstr "Éditer la liste des applications"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:393
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:405
 #, c-format
 msgid "Select applications to appear in menu for MIME type \"%s\""
 msgstr ""
 "Sélectionner les applications à faire apparaître dans le menu pour le type "
 "MIME « %s »"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:417
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:429
 msgid "Add Application..."
 msgstr "Ajouter une application..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:424
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:436
 msgid "Edit Application..."
 msgstr "Éditer une application..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:430
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:442
 msgid "Delete Application"
 msgstr "Supprimer l'application"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:463
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:476
 msgid "Edit Components List"
 msgstr "Éditer la liste des composants"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:483
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:496
 #, c-format
 msgid "Select views to appear in menu for MIME type \"%s\""
 msgstr ""
 "Sélectionnez les vues à faire apparaître dans le menu pour le type MIME « %s "
 "»"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:703
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:716
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
@@ -1394,51 +1394,39 @@ msgstr ""
 "Le type MIME entré contient des caractères majuscules. Les caractères "
 "majuscules seront transformés en minuscules pour vous."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:706
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
 msgid "Add New MIME Type"
 msgstr "Ajouter un nouveau type MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:754
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:765
 msgid "Add MIME Type"
 msgstr "Ajouter un type MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:757
-msgid ""
-"Add a new MIME Type\n"
-"For example:  image/tiff; text/x-scheme"
-msgstr ""
-"Ajouter un nouveau type MIME.\n"
-"Par exemple :  image/tiff ; text/x-scheme"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
+msgid "New MIME type (e.g. image/x-thumper):"
+msgstr "Nouveau type MIME (par ex. image/x-thunder) :"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:763
-msgid "MIME Type:"
-msgstr "Type MIME :"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:776
+msgid "Description (e.g. Thumper image):"
+msgstr "Description (par ex. Image thunder) :"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:775
-msgid "Type a description for this MIME type."
-msgstr "Saisissez une description pour ce type MIME."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:781
-msgid "Description:"
-msgstr "Description :"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:940
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:937
 msgid "File Extensions "
 msgstr "Extensions de fichiers "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:960
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:957
 msgid "Add..."
 msgstr "Ajouter..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:965
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:962
 msgid "    Remove    "
 msgstr "  Supprimer  "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1034
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1031
 msgid "Add New Extension"
 msgstr "Ajouter une nouvelle extension"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1038
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1035
 msgid ""
 "Type in the extensions for this mime-type (without dot).\n"
 "You can enter several extensions seperated by a space,\n"
@@ -1448,7 +1436,7 @@ msgstr ""
 "Vous pouvez saisir plusieurs extensions séparées par un espace,\n"
 "par exemple :  html htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1042
 msgid "Extension:"
 msgstr "Extension :"
 
@@ -1493,53 +1481,53 @@ msgstr "Éditer une application"
 msgid "Can open from URI"
 msgstr "Il est possible d'ouvrir depuis une URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:722
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1787
+#: mime-type-capplet/nautilus-mime-type-capplet.c:735
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1862
 msgid "MIME Type"
 msgstr "Type MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:729
+#: mime-type-capplet/nautilus-mime-type-capplet.c:742
 msgid "Change Icon"
 msgstr "Changer l'icône"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:736
+#: mime-type-capplet/nautilus-mime-type-capplet.c:749
 msgid "Change File Extensions"
 msgstr "Changer l'extension de fichier"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:744
+#: mime-type-capplet/nautilus-mime-type-capplet.c:757
 msgid "Default Action:"
 msgstr "Action par défaut :"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:756
+#: mime-type-capplet/nautilus-mime-type-capplet.c:769
 msgid "Use Viewer"
 msgstr "Utiliser un visualiseur"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:762
+#: mime-type-capplet/nautilus-mime-type-capplet.c:775
 msgid "Open With Application"
 msgstr "Ouvrir avec l'application"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:774
+#: mime-type-capplet/nautilus-mime-type-capplet.c:786
 msgid "Edit List"
 msgstr "Éditer la liste"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:799
-msgid "Add new MIME type..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:811
+msgid "Add New MIME Type..."
 msgstr "Ajouter un nouveau type MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:805
-msgid "Delete this MIME type..."
-msgstr "Supprimer ce type MIME..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:817
+msgid "Delete This MIME Type"
+msgstr "Supprimer ce type MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:816
+#: mime-type-capplet/nautilus-mime-type-capplet.c:828
 msgid "Revert to System Defaults"
 msgstr "Revenir aux réglages par défaut"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1022
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1166
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
 msgid "None"
 msgstr "Aucun"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1271
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
 msgid ""
 "Reverting to system settings will lose any changes\n"
 "you have ever made to File Types and Programs.\n"
@@ -1550,60 +1538,64 @@ msgstr ""
 "Revenir malgré tout ?"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1340
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1534
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1647
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1582
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1703
 msgid "none"
 msgstr "aucun"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1377
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1553
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1683
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1425
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1606
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1744
 #, c-format
 msgid "View as %s"
 msgstr "Voir comme %s"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1786
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1861
 msgid "Description"
 msgstr "Description"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1788
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1863
 msgid "Extension"
 msgstr "Extension"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1789
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1864
 msgid "Default Action"
 msgstr "Action par défaut"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:255
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
 msgid "Can't find an hbox, using a normal file selection"
 msgstr "Ne peut trouver un hbox, utilise un sélecteur de fichier normal"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:261
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
 msgid "Preview"
 msgstr "Aperçu"
 
-#: modules/efs-method.c:493 modules/file-method.c:365
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
+msgid "Select an icon"
+msgstr "Selectionnez une icône"
+
+#: modules/efs-method.c:493 modules/file-method.c:371
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d inconnue"
 
-#: modules/http-method.c:1177
+#: modules/http-method.c:1179
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s a récupérer"
 
-#: modules/http-method.c:1582
+#: modules/http-method.c:1584
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Fermeture de la connexion vers %s"
 
-#: modules/http-method.c:1848
+#: modules/http-method.c:1850
 #, c-format
 msgid "%s of %s read"
 msgstr "%s de %s lu"
 
-#: modules/http-method.c:1851
+#: modules/http-method.c:1853
 #, c-format
 msgid "%s read"
 msgstr "%s lu"
@@ -1671,6 +1663,25 @@ msgstr "Afficher :"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Afficher les fichiers cachés"
+
+#~ msgid ""
+#~ "Add a new MIME Type\n"
+#~ "For example:  image/tiff; text/x-scheme"
+#~ msgstr ""
+#~ "Ajouter un nouveau type MIME.\n"
+#~ "Par exemple :  image/tiff ; text/x-scheme"
+
+#~ msgid "MIME Type:"
+#~ msgstr "Type MIME :"
+
+#~ msgid "Type a description for this MIME type."
+#~ msgstr "Saisissez une description pour ce type MIME."
+
+#~ msgid "Description:"
+#~ msgstr "Description :"
+
+#~ msgid "Add new MIME type..."
+#~ msgstr "Ajouter un nouveau type MIME..."
 
 #~ msgid "No Description"
 #~ msgstr "Aucune description"
@@ -1744,12 +1755,11 @@ msgstr "Afficher les fichiers cachés"
 #~ msgid "class code"
 #~ msgstr "Code classe"
 
-#, fuzzy
 #~ msgid "compressed bzip archive"
-#~ msgstr "Archive bzip"
+#~ msgstr "Archive comprimé bzip"
 
 #~ msgid "enriched text"
-#~ msgstr "Text enrichi"
+#~ msgstr "Texte enrichi"
 
 #~ msgid "gzip archive"
 #~ msgstr "Archive gzip"
