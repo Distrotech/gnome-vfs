@@ -2,9 +2,10 @@
 #define __GNOME_VFS_MIME_MAGIC_H__
 
 #include <glib.h>
-#include <libgnome/gnome-defs.h>
 
-BEGIN_GNOME_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
 
 /* Used internally by the magic code, exposes the parsing to users */
 typedef enum {
@@ -40,6 +41,8 @@ GnomeMagicEntry *gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 GnomeMagicEntry *gnome_vfs_mime_test_get_magic_table (const char *table_path);
 void gnome_vfs_mime_dump_magic_table (void);
 
-END_GNOME_DECLS
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
 
 #endif

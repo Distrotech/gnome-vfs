@@ -26,10 +26,31 @@
 
 #include <config.h>
 #include <glib.h>
-#include <libgnome/gnome-defs.h>
-#include <libgnome/gnome-i18n.h>
 
-BEGIN_GNOME_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
+
+/* The i18n defines */
+#ifdef ENABLE_NLS
+#    include <libintl.h>
+#    undef _
+#    define _(String) dgettext (PACKAGE, String)
+#    ifdef gettext_noop
+#        define N_(String) gettext_noop (String)
+#    else
+#        define N_(String) (String)
+#    endif
+#else
+/* Stubs that do something close enough.  */
+#    define textdomain(String) (String)
+#    define gettext(String) (String)
+#    define dgettext(Domain,Message) (Message)
+#    define dcgettext(Domain,Message,Type) (Message)
+#    define bindtextdomain(Domain,Directory) (Domain)
+#    define _(String) (String)
+#    define N_(String) (String)
+#endif
 
 #define GNOME_VFS_MODULE_DIR     LIBDIR "/vfs/modules"
 #define GNOME_VFS_MODULE_CFGDIR  SYSCONFDIR "/vfs/modules"
@@ -73,9 +94,11 @@ char *alloca ();
 ssize_t getdelim (char **lineptr, size_t *n, int terminator, FILE *stream);
 #endif
 
-END_GNOME_DECLS
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
 
-#endif /* _GNOME_VFS_PRIVATE_H */
+#endif /* GNOME_VFS_PRIVATE_H */
 
 
 

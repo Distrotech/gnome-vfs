@@ -26,9 +26,10 @@
  */
 
 #include "config.h"
-#include <gnome.h>
 
 #include <time.h>
+#include <string.h>
+#include <stdlib.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -38,6 +39,13 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <glib.h>
+
+/* FIXME: We need to get rid of this for gnome 2.0 or perhaps even before
+ * that.  The problem is gnome_i18n_get_language_list.  We may have to
+ * duplicate it in gnome-vfs but that's not a very nice solution */
+#include <libgnome/gnome-defs.h>
+#include <libgnome/gnome-i18n.h>
 
 #include "gnome-vfs-types.h"
 #include "gnome-vfs-result.h"
@@ -756,7 +764,7 @@ application_info_load (ApplicationRegistryDir *source)
 		return;
 	}
 	if (source->system_dir) {
-		filename = g_concat_dir_and_file (source->dirname, "gnome-vfs.applications");
+		filename = g_strconcat (source->dirname, "/gnome-vfs.applications", NULL);
 		load_application_info_from (filename, FALSE /*user_owned*/);
 		g_free (filename);
 	}
@@ -773,13 +781,13 @@ application_info_load (ApplicationRegistryDir *source)
 			continue;
 		if ( ! source->system_dir && strcmp (dent->d_name, "user.applications") == 0)
 			continue;
-		filename = g_concat_dir_and_file (source->dirname, dent->d_name);
+		filename = g_strconcat (source->dirname, "/", dent->d_name, NULL);
 		load_application_info_from (filename, FALSE /*user_owned*/);
 		g_free (filename);
 	}
 
 	if ( ! source->system_dir) {
-		filename = g_concat_dir_and_file (source->dirname, "user.applications");
+		filename = g_strconcat (source->dirname, "/user.applications", NULL);
 		/* Currently this is the only file that is "user owned".  It actually makes
 		 * sense.  Editting of other files from the API would be too complex */
 		load_application_info_from (filename, TRUE /*user_owned*/);
@@ -816,10 +824,10 @@ gnome_vfs_application_registry_init (void)
 	 * Setup the descriptors for the information loading
 	 */
 
-	gnome_registry_dir.dirname = g_concat_dir_and_file (GNOME_VFS_DATADIR, "application-registry");
+	gnome_registry_dir.dirname = g_strconcat (GNOME_VFS_DATADIR, "/application-registry", NULL);
 	gnome_registry_dir.system_dir = TRUE;
 	
-	user_registry_dir.dirname = gnome_util_home_file ("application-registry");
+	user_registry_dir.dirname = g_strconcat (g_get_home_dir(), "/.gnome/application-info", NULL);
 	user_registry_dir.system_dir = FALSE;
 
 	/* Make sure user directory exists */
@@ -1346,7 +1354,7 @@ gnome_vfs_application_registry_sync (void)
 
 	maybe_reload ();
 
-	file = g_concat_dir_and_file (user_registry_dir.dirname, "user.applications");
+	file = g_strconcat (user_registry_dir.dirname, "/user.applications", NULL);
 	fp = fopen (file, "w");
 
 	if ( ! fp) {

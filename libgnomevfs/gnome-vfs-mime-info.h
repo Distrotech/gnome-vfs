@@ -24,11 +24,12 @@
 #ifndef GNOME_VFS_MIME_INFO_H
 #define GNOME_VFS_MIME_INFO_H
 
-#include <libgnome/gnome-defs.h>
 #include <libgnomevfs/gnome-vfs-types.h> /* for GnomeVFSResult */
 #include <glib.h>
 
-BEGIN_GNOME_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
 
 const char 	*gnome_vfs_mime_get_value     		 	(const char *mime_type,
 					  	 	 	 const char *key);
@@ -55,7 +56,8 @@ void	    	gnome_vfs_mime_set_registered_type_key 	 	(const char *mime_type,
 							  	 gpointer   data);
 GnomeVFSResult	gnome_vfs_mime_commit_registered_types 	 	(void);
 
-
-END_GNOME_DECLS
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
 
 #endif /* GNOME_VFS_MIME_INFO_H */

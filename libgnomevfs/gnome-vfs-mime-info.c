@@ -23,12 +23,16 @@
 #include <config.h>
 #include "gnome-vfs-mime-info.h"
 
+/* FIXME: We need to get rid of this for gnome 2.0 or perhaps even before
+ * that.  The problem is gnome_i18n_get_language_list.  We may have to
+ * duplicate it in gnome-vfs but that's not a very nice solution */
+#include <libgnome/gnome-defs.h>
+#include <libgnome/gnome-i18n.h>
+
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-result.h"
 
-#include <libgnome/gnome-i18n.h>
-#include <libgnome/gnome-util.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
@@ -631,7 +635,7 @@ mime_info_load (mime_dir_source_t *source)
 		return;
 	}
 	if (source->system_dir){
-		filename = g_concat_dir_and_file (source->dirname, "gnome-vfs.keys");
+		filename = g_strconcat (source->dirname, "/gnome-vfs.keys", NULL);
 		load_mime_type_info_from (filename);
 		g_free (filename);
 	}
@@ -657,12 +661,12 @@ mime_info_load (mime_dir_source_t *source)
 		if (!source->system_dir && !strcmp (dent->d_name, "user.keys"))
 			continue;
 
-		filename = g_concat_dir_and_file (source->dirname, dent->d_name);
+		filename = g_strconcat (source->dirname, "/", dent->d_name, NULL);
 		load_mime_type_info_from (filename);
 		g_free (filename);
 	}
 	if (!source->system_dir) {
-		filename = g_concat_dir_and_file (source->dirname, "user.keys");
+		filename = g_strconcat (source->dirname, "/user.keys", NULL);
 		load_mime_type_info_from (filename);
 		g_free (filename);
 	}
@@ -688,7 +692,7 @@ mime_list_load (mime_dir_source_t *source)
 		return;
 	}
 	if (source->system_dir){
-		filename = g_concat_dir_and_file (source->dirname, "gnome-vfs.mime");
+		filename = g_strconcat (source->dirname, "/gnome-vfs.mime", NULL);
 		load_mime_list_info_from (filename);
 		g_free (filename);
 	}
@@ -714,12 +718,12 @@ mime_list_load (mime_dir_source_t *source)
 		if (!source->system_dir && !strcmp (dent->d_name, "user.mime"))
 			continue;
 
-		filename = g_concat_dir_and_file (source->dirname, dent->d_name);
+		filename = g_strconcat (source->dirname, "/", dent->d_name, NULL);
 		load_mime_list_info_from (filename);
 		g_free (filename);
 	}
 	if (!source->system_dir) {
-		filename = g_concat_dir_and_file (source->dirname, "user.mime");
+		filename = g_strconcat (source->dirname, "/user.mime", NULL);
 		load_mime_list_info_from (filename);
 		g_free (filename);
 	}
@@ -755,7 +759,7 @@ gnome_vfs_mime_init (void)
 	gnome_mime_dir.dirname = g_strconcat (GNOME_VFS_DATADIR, "/mime-info", NULL);
 	gnome_mime_dir.system_dir = TRUE;
 	
-	user_mime_dir.dirname  = gnome_util_home_file ("mime-info");
+	user_mime_dir.dirname  = g_strconcat (g_get_home_dir(), "/.gnome/mime-info", NULL);
 	user_mime_dir.system_dir = FALSE;
 
 	/*
@@ -1368,7 +1372,7 @@ write_registered_mime_data (void)
 			return GNOME_VFS_ERROR_INTERNAL;
 		}
 		
-		filename = g_concat_dir_and_file (gnome_mime_dir.dirname, "gnome-vfs.mime");
+		filename = g_strconcat (gnome_mime_dir.dirname, "/gnome-vfs.mime", NULL);
 
         	remove (filename);
 		file = fopen (filename, "w");

@@ -25,9 +25,10 @@
 #define _GNOME_VFS_H
 
 #include <glib.h>
-#include <libgnome/gnome-defs.h>
 
-BEGIN_GNOME_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
 
 #include "gnome-vfs-constants.h"
 #include "gnome-vfs-types.h"
@@ -46,6 +47,8 @@ BEGIN_GNOME_DECLS
 #include "gnome-vfs-uri.h"
 #include "gnome-vfs-utils.h"
 
-END_GNOME_DECLS
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
 
 #endif /* _GNOME_VFS_H */

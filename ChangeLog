@@ -1,3 +1,26 @@
+Wed Aug 09 23:26:17 2000  George Lebl <jirka@5z.com>
+
+	* libgnomevfs/gnome-vfs-application-registry.[ch]
+	  (application_info_load) (gnome_vfs_application_registry_init)
+	  (gnome_vfs_application_registry_sync)
+	  libgnomevfs/gnome-vfs-mime-handlers.c
+	  (gnome_vfs_mime_edit_user_file_full)
+	  libgnomevfs/gnome-vfs-mime-info.[ch] (mime_info_load)
+	  (mime_list_load) (gnome_vfs_mime_init) (write_registered_mime_data)
+	  libgnomevfs/gnome-vfs-mime-magic.h
+	  libgnomevfs/gnome-vfs-mime-private.h
+	  libgnomevfs/gnome-vfs-mime.[ch] (mime_load) (mime_init)
+	  libgnomevfs/gnome-vfs.h, libgnomevfs/gnome-vfs-private.h:
+	  Remove all the simple gnome dependencies.  All the gnome-utils
+	  dependencies which can be replaced by about the same amount of
+	  non-gnome code.  Also replace all BEGIN/END_GNOME_DECLS with the
+	  standard extern "C" foo.
+
+	* libgnomevfs/gnome-vfs-private.h:  Add NLS defines N_ and _ because
+	  those are handled by gnome normally.  Also this uses the "private"
+	  defines from gnome-i18nP.h which is apparently the way to do this
+	  inside the library.
+
 2000-08-09  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* gnome-vfs.spec.in: should work again

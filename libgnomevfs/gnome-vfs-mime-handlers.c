@@ -33,7 +33,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <libgnome/gnome-util.h>
 #include <sys/stat.h>
 #include "gnome-vfs-result.h"
 
@@ -747,7 +746,7 @@ gnome_vfs_mime_edit_user_file_full (const char *mime_type, GList *keys, GList *v
 		return GNOME_VFS_OK;
 	}
 
-	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
+	user_mime_file = g_strconcat (g_get_home_dir (), "/.gnome/mime-info/user.keys", NULL);
 
 	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
 	result = GNOME_VFS_OK;

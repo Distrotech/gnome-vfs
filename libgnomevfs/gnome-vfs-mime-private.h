@@ -23,12 +23,14 @@
 #ifndef GNOME_VFS_MIME_PRIVATE_H
 #define GNOME_VFS_MIME_PRIVATE_H
 
-#include <libgnome/gnome-defs.h>
-
-BEGIN_GNOME_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
 
 void gnome_vfs_mime_info_shutdown (void);
 
-END_GNOME_DECLS
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
 
 #endif /* GNOME_VFS_MIME_PRIVATE_H */

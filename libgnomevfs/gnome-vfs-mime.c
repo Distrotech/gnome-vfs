@@ -24,6 +24,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#include <config.h>
+
 #include "gnome-vfs.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-info.h"
@@ -31,8 +33,6 @@
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-module-shared.h"
 
-#include <libgnome/gnome-util.h>
-#include <config.h>
 #include <string.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -239,7 +239,7 @@ mime_load (mime_dir_source_t *source)
 	}
 
 	if (source->system_dir){
-		filename = g_concat_dir_and_file (source->dirname, "gnome-vfs.mime");
+		filename = g_strconcat (source->dirname, "/gnome-vfs.mime", NULL);
 		mime_fill_from_file (filename);
 		g_free (filename);
 	}
@@ -266,7 +266,7 @@ mime_load (mime_dir_source_t *source)
 		if (!source->system_dir && !strcmp (dent->d_name, "user.mime"))
 			continue;
 
-		filename = g_concat_dir_and_file (source->dirname, dent->d_name);
+		filename = g_strconcat (source->dirname, "/", dent->d_name, NULL);
 
 		mime_fill_from_file (filename);
 		g_free (filename);
@@ -274,7 +274,7 @@ mime_load (mime_dir_source_t *source)
 	closedir (dir);
 
 	if (!source->system_dir) {
-		filename = g_concat_dir_and_file (source->dirname, "user.mime");
+		filename = g_strconcat (source->dirname, "/user.mime", NULL);
 		mime_fill_from_file (filename);
 		g_free (filename);
 	}
@@ -352,7 +352,7 @@ mime_init (void)
 	gnome_mime_dir.dirname = g_strconcat (GNOME_VFS_DATADIR, "/mime-info", NULL);
 	gnome_mime_dir.system_dir = TRUE;
 
-	user_mime_dir.dirname  = gnome_util_home_file ("mime-info");
+	user_mime_dir.dirname = g_strconcat (g_get_home_dir (), "/.gnome/mime-info", NULL);
 	user_mime_dir.system_dir = FALSE;
 
 	mime_load (&gnome_mime_dir);

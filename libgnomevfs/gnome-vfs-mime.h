@@ -24,12 +24,13 @@
 #ifndef __GNOME_VFS_MIME_H__
 #define __GNOME_VFS_MIME_H__
 
-#include <libgnome/gnome-defs.h>
 #include <glib.h>
 
 #include "gnome-vfs-types.h"
 
-BEGIN_GNOME_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif /*__cplusplus*/
 
 void 	     gnome_vfs_mime_shutdown 				(void);
 
@@ -54,7 +55,9 @@ void         gnome_uri_list_free_strings			(GList *list);
 /* utility function for getting a filename only from a single uri */
 gchar       *gnome_uri_extract_filename                         (const gchar* uri);
 
-END_GNOME_DECLS
+#ifdef __cplusplus
+}
+#endif /*__cplusplus*/
 
 #endif
 
