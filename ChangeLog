@@ -1,3 +1,9 @@
+2000-10-17  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_extract_short_name):
+	Fix 1087 - gnome_vfs_uri_extract_short_name should probably unescape.
+	It already was but it was using the wrong unescape funciton.
+
 2000-10-18  Pavel Cisler  <pavel@eazel.com>
 
 	Fix 2763 - "the uri code does not handle ../ and ./ like
