@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-07-04 01:32+0200\n"
+"POT-Creation-Date: 2004-07-06 04:24+0200\n"
+"PO-Revision-Date: 2004-07-06 14:13+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -513,7 +513,7 @@ msgstr "Camera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
 msgid "Root Volume"
@@ -662,7 +662,7 @@ msgstr "Windows netwerk"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "De identiteit van de computer op afstand (%s) is onbekend."
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -672,14 +672,17 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Dit gebeurt wanneer u zich voor de eerste keer bij een computer aanmeldt.\n"
+"\n"
+"De identiteit die door de computer op afstand is verzonden is %s. Indien u absoluut zeker wilt zijn dat het veilig is om door te gaan, neem dan contact op met de systeembeheerder."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Toch aanmelden"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "Aanmelden annuleren"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -901,19 +904,19 @@ msgstr "Actie voor trash URL"
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr ""
+msgstr "Door komma's gescheiden lijst met dns-sd domeinen die zichtbaar zouden moeten zijn in de netwerklokatie."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Extra domeinen waarin naar dns-sd services wordt gezocht"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Hoe een lokale DNS-SD service wordt weergegeven"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr ""
+msgstr "Mogelijke waarden zijn \"merged\", \"separate\" en \"disabled\""
 
 # Aanmelding? Authenticatie?
 #: schemas/system_http_proxy.schemas.in.h:1
