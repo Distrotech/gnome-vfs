@@ -1,3 +1,12 @@
+2003-06-09  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* mime/mime-db.c
+	* mime/mime-db.h
+	* mime/mime.c
+	* mime/test-mime.c; actually tested user modifications to the mime
+	database, it works for basic changes, I probably don't save/reload
+	properly some attributes.
+
 2003-05-22  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* Makefile.am

@@ -176,7 +176,7 @@ gnome_vfs_mime_set_description (const char *mime_type, const char *description)
 		g_free (type->desc);
 	}
 	type->desc = g_strdup (description);
-	if (mime_type == DEFAULT) {
+	if (type->state == DEFAULT) {
 		type->state = USER_MODIFIED;
 	}
 
@@ -538,7 +538,7 @@ gnome_vfs_mime_set_default_application (const char *mime_type,
 	 * to default app and then want to "unpromote" it
 	 */
 	add_helper_to_mime_type (type, helper);
-	if (type == DEFAULT) {
+	if (type->state == DEFAULT) {
 		type->state = USER_MODIFIED;
 	}
 
@@ -898,144 +898,6 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 
 	return GNOME_VFS_OK;
 }
-
-
-#ifdef PERSISTENCE_USED
-/* #ifdef'ed out for now to get it to compile without getting warnings about
- * these functions not being used
- */
-/* The following 3 functions are used to save modified mime types in the
- * user home dir
- */
-
-/* Used to convert a ModificationState to a string when saving to an XML file 
- */
-static char *modification_string[] = 
-	{ "unchanged", "added", "removed", "modified" };
-
-static void
-save_user_attributes (gchar *key, gchar *value, xmlNodePtr node)
-{
-	xmlNsPtr ns;
-	
-	ns = xmlSearchNs (node->doc, node, "gnome");
-	if (ns == NULL) {
-		g_print ("Uh Oh, namespace not found\n");
-		return;
-	}
-	xmlNewTextChild (node, ns, key, value);
-}
-
-
-static void
-mime_type_save (gchar *key, struct MimeType *mime_type, xmlNodePtr root)
-{
-	xmlNodePtr node;
-	xmlNodePtr user_node;
-	xmlNsPtr ns;
-	GList *it;
-
-	if (mime_type->state == DEFAULT) {
-		return;
-	}
-
-	ns = xmlSearchNs (root->doc, root, "gnome");
-	if (ns == NULL) {
-		g_print ("Uh Oh, namespace not found\n");
-		return;
-	}
-
-	node = xmlNewChild (root, NULL, "mime-type", NULL);
-	xmlNewProp (node, "type", mime_type->type);
-	xmlNewNsProp (node, ns, "state", 
-		      modification_string[mime_type->state]);
-
-	if (mime_type->state == USER_REMOVED) {
-		return;
-	}
-
-	/* FIXME:
-	 * Currently, if a user modifies a mime type (without changing
-	 * the description) and the switch locale, he will get the description
-	 * in the locale used when he modified the mime type
-	 */
-	xmlNewTextChild (node, NULL, "comment", mime_type->desc);
-	/* It's pointless to save that since there is no API to change it...
-	 * Moreover, it adds problems when the user changes locale after
-	 * persisting some mime changes to disk...
-	 */
-	xmlNewTextChild (node, ns, "category", mime_type->category);
-	if (mime_type->default_action == GNOME_VFS_MIME_ACTION_TYPE_COMPONENT){
-		xmlNewTextChild (node, ns, "default_action_type", "component");
-	} else {
-		xmlNewTextChild (node, ns, "default_action_type", 
-				 "application");
-	}
-	
-	for (it = mime_type->helpers; it != NULL; it = it->next) {
-		struct MimeHelper *helper;
-		xmlNodePtr h_node;
-
-		helper = (struct MimeHelper *)it->data;
-		if (helper->state != DEFAULT) {
-			gchar *relevance;
-			h_node = xmlNewChild (node, ns, "default-application", 
-					      NULL);
-			xmlNewNsProp (node, ns, "state", 
-				      modification_string[mime_type->state]);
-
-			if (mime_type->state == USER_REMOVED) {
-				continue;
-			}
-			xmlNewTextChild (h_node, ns, "app-id", helper->app_id);
-			relevance = g_strdup_printf ("%u", helper->relevance);
-			xmlNewTextChild (h_node, ns, "relevance", relevance);
-			g_free (relevance);
-		}
-	}
-
-	/* Save user attributes */
-	/* FIXME: may need to check that users aren't trying to use a tag used
-	 * by gnome-vfs => maybe use a different namespace ? 
-	 */
-	user_node = xmlNewChild (node, ns, "user-attributes", NULL);
-	g_hash_table_foreach (mime_type->user_attributes, 
-			      (GHFunc)save_user_attributes, 
-			      user_node);
-}
-
-
-/* This will save the user changes to the mime database in an XML file.
- * This file format is the same as the one described in the shared mime
- * spec with its gnome-specific extensions, and an additional "state" 
- * attribute to each mime-type tag to indicate if it was "added", 
- * "removed" or "modified". Similarly, each default-application tag uses
- * a similar tag.
- * All the user changes are persisted in a single file instead of a
- * directory hierarchy as in the spec for performance reason.
- */
-static void
-persist_user_changes (void)
-{
-	xmlDocPtr doc;
-	xmlNodePtr root;
-	xmlNsPtr mime_ns;
-	xmlNsPtr gnome_ns;
-
-	xmlKeepBlanksDefault (0);
-	
-	doc = xmlNewDoc ("1.0");
-	root = xmlNewDocNode (doc, NULL, "mime-info", "");
-	mime_ns = xmlNewNs (root, MIME_SPEC_NAMESPACE, NULL);
-	gnome_ns = xmlNewNs (root, GNOME_VFS_NAMESPACE, "gnome");
-	xmlDocSetRootElement (doc, root);
-
-	g_hash_table_foreach (mime_types, (GHFunc)mime_type_save, 
-			      doc->children);
-
-	xmlSaveFormatFile ("user.xml", doc, 1);
-}
-#endif
 
 /**
  * gnome_vfs_mime_can_be_executable:

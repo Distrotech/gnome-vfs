@@ -99,7 +99,6 @@ const char *   gnome_vfs_mime_get_user_attribute    (const char *mime_type,
 						     const char *key);
 void           gnome_vfs_mime_remove_user_attribute (const char *mime_type, 
 						     const char *key);
-GList *        gnome_vfs_get_user_attributes        (const char *mime_type);
-
+GList *        gnome_vfs_mime_get_user_attributes   (const char *mime_type);
 
 #endif /* MIME_DB_H */
