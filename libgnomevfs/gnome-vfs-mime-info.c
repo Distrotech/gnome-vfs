@@ -29,15 +29,10 @@
 #include <config.h>
 #include "gnome-vfs-mime-info.h"
 
-/* FIXME: We need to get rid of this for gnome 2.0 or perhaps even before
- * that.  The problem is gnome_i18n_get_language_list.  We may have to
- * duplicate it in gnome-vfs but that's not a very nice solution */
-#include <libgnome/gnome-defs.h>
-#include <libgnome/gnome-i18n.h>
-
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-result.h"
+#include "gnome-vfs-private.h"
 
 #include <stdio.h>
 #include <ctype.h>
@@ -753,9 +748,7 @@ gnome_vfs_mime_init (void)
 	specific_types_user = g_hash_table_new (g_str_hash, g_str_equal);
 	registered_types_user  = g_hash_table_new (g_str_hash, g_str_equal);
 	
-	current_lang = gnome_i18n_get_language_list ("LC_MESSAGES");
-	if(current_lang)
-		current_lang = g_list_reverse(g_list_copy(current_lang));
+	current_lang = gnome_vfs_i18n_get_language_list ("LC_MESSAGES");
 
 	/*
 	 * Setup the descriptors for the information loading

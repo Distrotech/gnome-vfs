@@ -1,5 +1,18 @@
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
+	* libgnomevfs/gnome-vfs-private-utils.c
+	(gnome_vfs_i18n_get_language_list): New function. This calls
+	gnome_i18n_get_language list for the GNOME 1.2.x platform and
+	g_i18n_get_language_list for the GNOME 2.x platform and copies
+	the returned list.
+
+	* libgnomevfs/gnome-vfs-mime-info.c (gnome_vfs_mime_init): Call
+	gnome_vfs_i18n_get_language_list and don't #include the GNOME
+	header files.
+	* libgnomevfs/gnome-vfs-application-registry.c: Likewise.
+
+2000-08-31  Martin Baulig  <baulig@suse.de>
+
 	* acconfig.h (GNOME_PLATFORM_VERSION): Added.  This is hardcoded
 	to be 1002000 in configure.in for the GNOME 1.2.x platform.
 

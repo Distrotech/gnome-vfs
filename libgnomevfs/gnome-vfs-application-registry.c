@@ -41,16 +41,11 @@
 #include <dirent.h>
 #include <glib.h>
 
-/* FIXME: We need to get rid of this for gnome 2.0 or perhaps even before
- * that.  The problem is gnome_i18n_get_language_list.  We may have to
- * duplicate it in gnome-vfs but that's not a very nice solution */
-#include <libgnome/gnome-defs.h>
-#include <libgnome/gnome-i18n.h>
-
 #include "gnome-vfs-types.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-mime-handlers.h"
 #include "gnome-vfs-application-registry.h"
+#include "gnome-vfs-private.h"
 
 #if !defined getc_unlocked && !defined HAVE_GETC_UNLOCKED
 # define getc_unlocked(fp) getc (fp)
@@ -816,9 +811,7 @@ gnome_vfs_application_registry_init (void)
 	generic_mime_types  = g_hash_table_new (g_str_hash, g_str_equal);
 	specific_mime_types  = g_hash_table_new (g_str_hash, g_str_equal);
 	
-	current_lang = gnome_i18n_get_language_list ("LC_MESSAGES");
-	if(current_lang)
-		current_lang = g_list_reverse(g_list_copy(current_lang));
+	current_lang = gnome_vfs_i18n_get_language_list ("LC_MESSAGES");
 
 	/*
 	 * Setup the descriptors for the information loading
