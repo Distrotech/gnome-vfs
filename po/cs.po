@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-21 04:07+0200\n"
-"PO-Revision-Date: 2004-07-21 14:51+0200\n"
+"POT-Creation-Date: 2004-07-23 15:08+0200\n"
+"PO-Revision-Date: 2004-07-23 19:32+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,88 @@ msgstr "Nemohu inicializovat Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Nemohu inicializovat gnome vfs"
+
+#: libgnomevfs/eggdesktopentries.c:226
+#, c-format
+msgid "File could not be opened: %s"
+msgstr "Soubor nelze otevřít: %s"
+
+#: libgnomevfs/eggdesktopentries.c:325
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Nemohu otevřít soubor '%s': %s"
+
+#: libgnomevfs/eggdesktopentries.c:338
+msgid "File is empty"
+msgstr "Soubor je prázdný"
+
+#: libgnomevfs/eggdesktopentries.c:360
+#, c-format
+msgid "Failed to read from file '%s': %s"
+msgstr "Nemohu číst ze souboru '%s': %s"
+
+#: libgnomevfs/eggdesktopentries.c:575
+#, c-format
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr "položky desktop obsahují řádek '%s', což není položka, skupina ani poznámka"
+
+#: libgnomevfs/eggdesktopentries.c:651
+msgid "desktop entries file does not start with legal start group"
+msgstr "soubor položek destop nezačíná platnou počáteční skupinou"
+
+#: libgnomevfs/eggdesktopentries.c:708
+#, c-format
+msgid "desktop entries contain line '%s' which is not UTF-8"
+msgstr "položky desktop obsahují řádek '%s', který není v UTF-8"
+
+#: libgnomevfs/eggdesktopentries.c:731
+#, c-format
+msgid "desktop entries contain unknown encoding '%s'"
+msgstr "položky desktop obsahují neznámé kódování '%s'"
+
+#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
+#: libgnomevfs/eggdesktopentries.c:1217
+#, c-format
+msgid "desktop entries do not have group '%s'"
+msgstr "položky desktop nemají skupinu '%s'"
+
+#: libgnomevfs/eggdesktopentries.c:1044
+#, c-format
+msgid "desktop entries do not have key '%s'"
+msgstr "položky desktop nemají klíč '%s'"
+
+#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
+#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#, c-format
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr "položky desktop obsahují klíč '%s', který má hodnotu, kterou nelze interpretovat."
+
+#: libgnomevfs/eggdesktopentries.c:1297
+#, c-format
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr "položky desktop neobsahují přeloženou hodnotu pro klíč '%s' s locale '%s'."
+
+#: libgnomevfs/eggdesktopentries.c:2218
+#, c-format
+msgid "desktop entries contain invalid escape sequence '%s'"
+msgstr "položky desktop obsahují neplatnou escape posloupnost '%s'"
+
+#: libgnomevfs/eggdesktopentries.c:2235
+msgid "desktop entries contain escape character at end of line"
+msgstr "položky desktop obsahují znak escape na konci řádku"
+
+#: libgnomevfs/eggdesktopentries.c:2260
+#, c-format
+msgid "Value '%s' cannot be interpreted as a number."
+msgstr "Hodnotu '%s' nelze interpretovat jako číslo."
+
+#: libgnomevfs/eggdesktopentries.c:2287
+#, c-format
+msgid "Value '%s' cannot be interpreted as a boolean."
+msgstr "Hodnotu '%s' nelze interpretovat jako booleovskou hodnotu."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -328,6 +410,28 @@ msgstr "Neznámý typ úlohy %u"
 msgid "Operation stopped"
 msgstr "Operace zastavena"
 
+#: libgnomevfs/gnome-vfs-mime-handlers.c:82
+#: libgnomevfs/gnome-vfs-mime-handlers.c:237
+#: libgnomevfs/gnome-vfs-mime-handlers.c:288
+#: libgnomevfs/gnome-vfs-mime-handlers.c:558
+#: libgnomevfs/gnome-vfs-mime-handlers.c:577
+#: libgnomevfs/gnome-vfs-mime-handlers.c:595
+#: libgnomevfs/gnome-vfs-mime-handlers.c:614
+#: libgnomevfs/gnome-vfs-mime-handlers.c:633
+#: libgnomevfs/gnome-vfs-mime-handlers.c:774
+#: libgnomevfs/gnome-vfs-mime-handlers.c:796
+#: libgnomevfs/gnome-vfs-mime-handlers.c:815
+#: libgnomevfs/gnome-vfs-mime-handlers.c:834
+#: libgnomevfs/gnome-vfs-mime-handlers.c:887
+#: libgnomevfs/gnome-vfs-mime-handlers.c:904
+#: libgnomevfs/gnome-vfs-mime-handlers.c:921
+#: libgnomevfs/gnome-vfs-mime-handlers.c:939
+#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr "Zastaralá funkce. Změny databáze MIME uživatelem již nejsou podporovány."
+
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
@@ -568,7 +672,7 @@ msgid "Error launching command"
 msgstr "Chyba při spouštění příkazu"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: libgnomevfs/gnome-vfs-result.c:84
+#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
 msgstr "Čas vypršel"
 
@@ -577,7 +681,17 @@ msgstr "Čas vypršel"
 msgid "Nameserver error"
 msgstr "Chyba serveru jmen"
 
-#: libgnomevfs/gnome-vfs-result.c:200
+#. GNOME_VFS_ERROR_LOCKED
+#: libgnomevfs/gnome-vfs-result.c:87
+msgid "The resource is locked"
+msgstr "Zdrou je uzamčen"
+
+#. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
+#: libgnomevfs/gnome-vfs-result.c:88
+msgid "Function call deprecated"
+msgstr "Volání funkce zastaralé"
+
+#: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
 msgstr "Neznámá chyba"
 
@@ -1198,9 +1312,6 @@ msgstr "Pracovní skupina Windows, jejímž je uživatel členem"
 
 #~ msgid "Could not get information for file '%s': %s"
 #~ msgstr "Nemohu získat informace o souboru '%s': %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Nemohu otevřít soubor '%s': %s"
 
 #~ msgid ""
 #~ "Failed to load image '%s': reason not known, probably a corrupt image file"
