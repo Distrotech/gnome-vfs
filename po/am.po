@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "POT-Creation-Date: 2002-11-06 05:07+0100\n"
-"PO-Revision-Date: 2002-12-21 22:37+EDT\n"
+"PO-Revision-Date: 2003-01-14 11:02+EDT\n"
 "Last-Translator: Ge'ez Frontier Foundation <locales@geez.org>\n"
 "Language-Team: Amharic <locales@geez.org>\n"
 "MIME-Version: 1.0\n"
@@ -274,12 +274,12 @@ msgstr "ያልታወቀ ስህተት"
 
 #: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
-msgstr "1 byte"
+msgstr "1 ባይት"
 
 #: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
-msgstr "%u bytes"
+msgstr "%u ባይቶች"
 
 #: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
