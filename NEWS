@@ -1,3 +1,7 @@
+gnome-vfs 2.3.4:
+	* Bugs fixed:
+	       + Get Names of vfolder directories right
+	
 gnome-vfs 2.3.3:
 	* Bugs fixed:
 	       + Fix potential crashes for uris with %2F in them

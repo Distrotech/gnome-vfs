@@ -1,3 +1,9 @@
+2003-06-10  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump version
+
 2003-06-07 Mark Finlay <sisob@eircom.net>
 
 	* modules/vfolder/applications-all-users.vfolder-info.in
