@@ -1,3 +1,11 @@
+2001-01-18  Kenneth Christiansen  <kenneth@gnu.org>
+
+	* POTFILES.in: Updated
+	* da.po, fi.po, fr.po, no.po, sv.po:
+	All updated to include translations from
+	the gnome-vfs.keys file. All extracted with
+	a script of mine.
+
 2001-01-18  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* no.po: Updated Norwegian (bokmål) translation.
