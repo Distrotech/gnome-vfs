@@ -1,4 +1,8 @@
 2000-03-13 Elliot Lee <sopwith@redhat.com>
+	* modules/Makefile.am: Finish the help-method move. Move module-shared stuff to
+	libgnomevfs.
+	* libgnomevfs/Makefile.am: Install our "private" headers for use by modules.
+
 	* modules/http-method.c: #if 0 debug messages.
 	* libgnomevfs/gnome-vfs-uri.c: Fix split_toplevel_uri for URIs with a hostname but no path.
 	* modules/Makefile.am: Move help-method over to nautilus.

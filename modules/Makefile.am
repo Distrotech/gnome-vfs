@@ -31,8 +31,7 @@ modules_LTLIBRARIES =				\
 	libgzip.la				\
 	libftp.la				\
 	libvfs-pipe.la				\
-	libvfs-translate.la			\
-	libvfs-help.la
+	libvfs-translate.la
 
 modulesconfdir=$(sysconfdir)/vfs/modules
 modulesconf_DATA =				\
@@ -43,9 +42,7 @@ modulesconf_DATA =				\
 
 libextfs_la_SOURCES = 				\
 	extfs-method.c 				\
-	extfs-method.h				\
-	module-shared.c				\
-	module-shared.h
+	extfs-method.h
 
 libextfs_la_LDFLAGS = $(module_flags)
 
@@ -54,9 +51,7 @@ libextfs_la_LDFLAGS = $(module_flags)
 
 libfile_la_SOURCES = 				\
 	file-method.c 				\
-	file-method.h				\
-	module-shared.c				\
-	module-shared.h
+	file-method.h
 
 libfile_la_LDFLAGS = $(module_flags)
 
@@ -83,9 +78,7 @@ libbzip2_la_LIBADD = -lbz2
 
 libftp_la_SOURCES = 				\
 	ftp-method.c				\
-	ftp-method.h				\
-	module-shared.c				\
-	module-shared.h
+	ftp-method.h
 
 ### `gconf' method
 

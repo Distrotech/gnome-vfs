@@ -50,7 +50,7 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-module.h"
-#include "module-shared.h"
+#include "gnome-vfs-module-shared.h"
 
 #include "ftp-method.h"
 

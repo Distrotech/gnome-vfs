@@ -18,6 +18,7 @@ EXTRA_DIST =					\
 
 libgnomevfs_la_LIBADD =				\
 	$(GNOME_LIBDIR)				\
+	$(GNOME_LIBS)				\
 	$(GLIB_LIBS)
 
 libgnomevfsincludedir = $(includedir)/libgnomevfs
@@ -36,9 +37,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-types.h			\
 	gnome-vfs-uri.h				\
 	gnome-vfs-utils.h			\
-	gnome-vfs.h
-
-noinst_HEADERS =				\
+	gnome-vfs.h				\
 	gnome-vfs-backend.h			\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-configuration.h		\
@@ -50,6 +49,7 @@ noinst_HEADERS =				\
 	gnome-vfs-messages.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-module.h			\
+	gnome-vfs-module-shared.h		\
 	gnome-vfs-parse-ls.h			\
 	gnome-vfs-private-ops.h			\
 	gnome-vfs-private-types.h		\
@@ -57,7 +57,9 @@ noinst_HEADERS =				\
 	gnome-vfs-private-utils.h		\
 	gnome-vfs-regexp-filter.h		\
 	gnome-vfs-seekable.h			\
-	gnome-vfs-shellpattern-filter.h		\
+	gnome-vfs-shellpattern-filter.h
+
+noinst_HEADERS=\
 	fnmatch.h
 
 libgnomevfs_la_SOURCES =			\
@@ -76,6 +78,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-list-sort.c			\
 	gnome-vfs-messages.c			\
 	gnome-vfs-method.c			\
+	gnome-vfs-module-shared.c		\
 	gnome-vfs-xfer.c			\
 	gnome-vfs-ops.c				\
 	gnome-vfs-parse-ls.c			\

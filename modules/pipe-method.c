@@ -6,7 +6,7 @@
 
 #include <gnome.h>
 #include "gnome-vfs-module.h"
-#include "module-shared.h"
+#include "gnome-vfs-module-shared.h"
 #include "pipe-method.h"
 
 struct _FileHandle {

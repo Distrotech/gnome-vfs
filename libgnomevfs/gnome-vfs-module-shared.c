@@ -15,7 +15,7 @@
 #include <gnome.h>
 
 #include "gnome-vfs-module.h"
-#include "module-shared.h"
+#include "gnome-vfs-module-shared.h"
 
 const gchar *
 gnome_vfs_mime_type_from_mode (mode_t mode)
