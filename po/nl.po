@@ -3,13 +3,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-vfs\n"
-"POT-Creation-Date: 2003-09-09 04:25+0200\n"
-"PO-Revision-Date: 2003-09-09 09:45+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-17 03:58+0200\n"
+"PO-Revision-Date: 2003-10-17 18:25+0200\n"
 "Last-Translator: Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 # hier wordt waarschijnlijk NULL bedoeld ipv NUL
 #: libgnomevfs/gnome-vfs-configuration.c:219
@@ -322,22 +323,6 @@ msgstr "%.1f Gb"
 msgid " (invalid Unicode)"
 msgstr " (ongeldige Unicode)"
 
-#: modules/file-method.c:382
-#, c-format
-msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Onbekende GnomeVFSSeekPosition %d"
-
-#. FIXME: we probably shouldn't use printf to output the message
-#: modules/test-method.c:590
-#, c-format
-msgid "Didn't find a valid settings file at %s\n"
-msgstr "Geen geldig instellingenbestand gevonden in %s\n"
-
-#: modules/test-method.c:592
-#, c-format
-msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Gebruik de %s omgevingsvariabele om een andere locatie op te geven.\n"
-
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
@@ -389,6 +374,22 @@ msgstr "Gereedschap"
 msgid "Windows"
 msgstr "Vensters"
 
+#: modules/file-method.c:382
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "Onbekende GnomeVFSSeekPosition %d"
+
+#. FIXME: we probably shouldn't use printf to output the message
+#: modules/test-method.c:590
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "Geen geldig instellingenbestand gevonden in %s\n"
+
+#: modules/test-method.c:592
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr "Gebruik de %s omgevingsvariabele om een andere locatie op te geven.\n"
+
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
 msgstr "Standaard Monikerfabriek"
@@ -404,3 +405,185 @@ msgstr "algemene Gnome VFS moniker"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "algemene bestandsmoniker"
+
+#: schemas/desktop_default_applications.schemas.in.h:1
+msgid "Default component viewer application"
+msgstr "Standaard componentweergave-programma"
+
+#: schemas/desktop_default_applications.schemas.in.h:2
+msgid "Default terminal application"
+msgstr "Standaard terminalprogramma"
+
+#: schemas/desktop_default_applications.schemas.in.h:3
+msgid "Exec argument for default terminal"
+msgstr "Opstartargumenten voor standaard terminal"
+
+#: schemas/desktop_default_applications.schemas.in.h:5
+#, no-c-format
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"Te gebruiken programma voor weergave van bestanden die een component "
+"vereisen. De parameter %s zal vervangen worden door de URI van het bestand "
+"en de parameter %c zal vervangen worden de de IID van de component."
+
+#: schemas/desktop_default_applications.schemas.in.h:6
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+"Het standaard terminalprogramma voor toepassingen die een terminal nodig "
+"hebben."
+
+#: schemas/desktop_default_applications.schemas.in.h:7
+msgid "The exec argument to use for the default terminal application."
+msgstr "Te gebruiken exec argument voor het standaard terminalprogramma."
+
+#: schemas/system_http_proxy.schemas.in.h:1
+msgid "Authenticate connections to the proxy server"
+msgstr "Identificatie gebruiken bij verbinden met de proxy"
+
+#: schemas/system_http_proxy.schemas.in.h:2
+msgid "Automatic proxy configuration URL"
+msgstr "URL voor automatische proxy-configuratie"
+
+#: schemas/system_http_proxy.schemas.in.h:3
+msgid "Enables the proxy settings when accessing http over the internet."
+msgstr "Proxy-instellingen gebruiken bij HTTP-verbindingen over het internet."
+
+#: schemas/system_http_proxy.schemas.in.h:4
+msgid "FTP proxy host name"
+msgstr "FTP proxy hostnaam"
+
+#: schemas/system_http_proxy.schemas.in.h:5
+msgid "FTP proxy port"
+msgstr "FTP proxy poortnummer"
+
+#: schemas/system_http_proxy.schemas.in.h:6
+msgid "HTTP proxy host name"
+msgstr "HTTP proxy hostnaam"
+
+#: schemas/system_http_proxy.schemas.in.h:7
+msgid "HTTP proxy port"
+msgstr "HTTP proxy poortnummer"
+
+#: schemas/system_http_proxy.schemas.in.h:8
+msgid "Hosts are not contacted via the proxy"
+msgstr "Computers worden niet benaderd via de proxy"
+
+#: schemas/system_http_proxy.schemas.in.h:9
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by /system/http_proxy/authentication_user "
+"and /system/http_proxy/authentication_password."
+msgstr ""
+"Indien waar, zal identificatie gebruikt worden bij verbindingen met de "
+"proxy. De combinatie van gebruikersnaam en wachtwoord van /system/http_proxy/"
+"authentication_user en /system/http_proxy/authentication_password zal "
+"gebruikt worden."
+
+#: schemas/system_http_proxy.schemas.in.h:10
+msgid "Password to pass as authentication when doing http proxying"
+msgstr "Te gebruiken wachtwoord voor de HTTP proxy"
+
+#: schemas/system_http_proxy.schemas.in.h:11
+msgid "Proxy configuration mode"
+msgstr "Proxy configuratiemodus"
+
+#: schemas/system_http_proxy.schemas.in.h:12
+msgid "Secure http proxy host name"
+msgstr "Beveiligde HTTP proxy hostnaam"
+
+#: schemas/system_http_proxy.schemas.in.h:13
+msgid "Secure http proxy port"
+msgstr "Beveiligde HTTP proxy poortnummer"
+
+#: schemas/system_http_proxy.schemas.in.h:14
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\""
+msgstr ""
+"Kies de proxy configuratiemodus. Ondersteunde waarden zijn \"none\" (geen), "
+"\"manual\" (handmatig) en \"auto\" (automatisch)."
+
+#: schemas/system_http_proxy.schemas.in.h:15
+msgid "Socks proxy host name"
+msgstr "Socks proxy hostnaam"
+
+#: schemas/system_http_proxy.schemas.in.h:16
+msgid "Socks proxy port"
+msgstr "Socks proxy poortnummer"
+
+#: schemas/system_http_proxy.schemas.in.h:17
+msgid "The machine name to proxy FTP through."
+msgstr "De machinenaam waar de FTP proxy op draait."
+
+#: schemas/system_http_proxy.schemas.in.h:18
+msgid "The machine name to proxy http through."
+msgstr "De machinenaam waar de HTTP proxy op draait."
+
+#: schemas/system_http_proxy.schemas.in.h:19
+msgid "The machine name to proxy secure http through."
+msgstr "De machinenaam waar de beveiligde HTTP proxy op draait."
+
+#: schemas/system_http_proxy.schemas.in.h:20
+msgid "The machine name to proxy socks through."
+msgstr "De machinenaam waar de socks proxy op draait."
+
+#: schemas/system_http_proxy.schemas.in.h:21
+msgid ""
+"The port on the machine defined by /system/http_proxy/host that you proxy "
+"through"
+msgstr "De poort op de machine gedefineerd door /system/http_proxy/host"
+
+#: schemas/system_http_proxy.schemas.in.h:22
+msgid ""
+"The port on the machine defined by /system/proxy/ftp_host that you proxy "
+"through"
+msgstr "De poort op de machine gedefinieerd door /system/proxy/ftp_hos"
+
+#: schemas/system_http_proxy.schemas.in.h:23
+msgid ""
+"The port on the machine defined by /system/proxy/secure_host that you proxy "
+"through"
+msgstr "De poort op de machine gedefinieerd door /system/proxy/secure_host"
+
+#: schemas/system_http_proxy.schemas.in.h:24
+msgid ""
+"The port on the machine defined by /system/proxy/socks_host that you proxy "
+"through"
+msgstr "De poort op de machine gedefinieerd door /system/proxy/socks_host"
+
+#: schemas/system_http_proxy.schemas.in.h:25
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"Deze sleutel bevat een lijst van computers die direct benaderd dienen te "
+"worden in plaats van via de proxy. De waarden kunnen computernamen, domeinen "
+"(met jokertekens zoals: *.bla.com), IP-adressen (zowel IPv4 als IPv6) en "
+"netwerkadressen met netmasker zoals 192.168.0.0/24."
+
+#: schemas/system_http_proxy.schemas.in.h:26
+msgid "URL that provides proxy configuration values"
+msgstr "URL voor automatische proxy-configuratie"
+
+#: schemas/system_http_proxy.schemas.in.h:27
+msgid "Use proxy settings when accessing http"
+msgstr "Proxy gebruiken bij HTTP-verkeer"
+
+#: schemas/system_http_proxy.schemas.in.h:28
+msgid "User name to pass as authentication when doing http proxying"
+msgstr "Te gebruiken naam voor identificatie bij HTTP proxy-gebruik."
+
+#: schemas/system_http_proxy.schemas.in.h:29
+msgid "http proxy password"
+msgstr "HTTP proxy wachtwoord"
+
+#: schemas/system_http_proxy.schemas.in.h:30
+msgid "http proxy username"
+msgstr "HTTP proxy gebruikersnaam"
