@@ -1,3 +1,12 @@
+2001-02-26  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Ramiro Estrugo <ramiro@eazel.com>
+
+	* check-mime.pl: Added more checks, including a check for
+	unexpected keys, check for repeated keys, check for key format in
+	.mime file, check for icon names mentioned against icon files, and
+	code to make it communicate failure to the shell with "exit 1".
+
 2001-02-25  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Gene Ragan <gzr@eazel.com>
