@@ -1,3 +1,8 @@
+2004-07-03  Takao Fujiwara  <takao.fujiwara@sun.com>
+
+	* daemon/gnome-vfs-daemon.c: initialize gettext so that strings from
+	  the daemon are translated
+
 2004-06-09  Narayana Pattipati  <narayana.pattipati@wipro.com>
 
 	* libgnomevfs/gnome-vfs-socket-buffer.c (gnome_vfs_socket_buffer_write):

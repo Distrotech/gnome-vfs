@@ -19,6 +19,7 @@
  *
  */
 #include <config.h>
+#include <locale.h>
 #include <libbonobo.h>
 #include <bonobo/bonobo-main.h>
 #include <bonobo/bonobo-generic-factory.h>
@@ -586,6 +587,11 @@ main (int argc, char *argv [])
 {
 	BonoboGenericFactory *factory;
 	
+	setlocale (LC_ALL, "");
+	bindtextdomain (GETTEXT_PACKAGE, GNOMEVFS_LOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain (GETTEXT_PACKAGE);
+
 	if (!bonobo_init (&argc, argv)) {
 		g_error (_("Could not initialize Bonobo"));
 		return 1;
