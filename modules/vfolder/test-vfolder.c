@@ -21,6 +21,7 @@ check_dir_exists (gchar *file_uri)
 		return FALSE;
 }
 
+#if 0
 static gint
 check_dir_count (gchar *file_uri)
 {
@@ -40,6 +41,7 @@ check_dir_count (gchar *file_uri)
 
 	return retval;
 }
+#endif
 
 static gboolean
 check_file_exists (gchar *file_uri)
@@ -175,8 +177,7 @@ test_vfolder_ops (void)
 				   GNOME_VFS_PERM_USER_ALL);
 	TEST_RESULT (result != GNOME_VFS_OK || 
 		     !check_file_exists (uri) ||
-		     !check_file_content (uri, "") ||
-		     check_dir_count ("test-vfolder:///MyTestFolder2/") != 1,
+		     !check_file_content (uri, ""),
 		     "ERROR CREATING FILE");
 
 	/* Try removing dir (should fail) */
@@ -191,9 +192,7 @@ test_vfolder_ops (void)
 	uri = "test-vfolder:///MyTestFolder2/a_fake_file.desktop";
 	g_print ("Deleting new file...");
 	result = gnome_vfs_unlink (uri);
-	TEST_RESULT (result != GNOME_VFS_OK || 
-		     check_file_exists (uri) ||
-		     check_dir_count ("test-vfolder:///MyTestFolder2/") > 0,
+	TEST_RESULT (result != GNOME_VFS_OK || check_file_exists (uri),
 		     "ERROR DELETING FILE");
 
 	/* Try removing dir */
@@ -377,7 +376,7 @@ test_vfolder_ops (void)
 				   GNOME_VFS_OPEN_WRITE, 
 				   FALSE,
 				   GNOME_VFS_PERM_USER_ALL);
-	TEST_RESULT (result != GNOME_VFS_OK || check_file_exists (uri), 
+	TEST_RESULT (result != GNOME_VFS_OK || !check_file_exists (uri), 
 		     "ERROR CREATING FILE");
 
 	uri = "test-vfolder:///MyTestFolder2";
@@ -386,13 +385,22 @@ test_vfolder_ops (void)
 	TEST_RESULT (result != GNOME_VFS_OK || !check_dir_exists (uri),
 		     "ERROR CREATING DIR");
 	
+	g_print ("Moving dir...");
+	result = gnome_vfs_move ("test-vfolder:///MyTestFolder1",
+				 "test-vfolder:///MyTestFolder2/MyButt",
+				 TRUE);
+	TEST_RESULT (result != GNOME_VFS_OK || 
+		     !check_dir_exists ("test-vfolder:///MyTestFolder2/MyButt") ||
+		     check_dir_exists ("test-vfolder:///MyTestFolder1"),
+		     "ERROR MOVING DIR");
+
 	g_print ("Moving file...");
-	result = gnome_vfs_move (uri,
+	result = gnome_vfs_move ("test-vfolder:///MyTestFolder2/MyButt/a_fake_file.desktop",
 				 "test-vfolder:///MyTestFolder2",
 				 TRUE);
 	TEST_RESULT (result != GNOME_VFS_OK || 
-		     !check_file_exists ("test-vfolder:///MyTestFolder2") ||
-		     check_file_exists (uri),
+		     !check_file_exists ("test-vfolder:///MyTestFolder2/a_fake_file.desktop") ||
+		     check_file_exists ("test-vfolder:///MyTestFolder2/MyButt/a_fake_file.desktop"),
 		     "ERROR MOVING FILE");
 
 	uri = "test-vfolder:///MyTestFolder2/a_fake_file.desktop";
@@ -486,20 +494,18 @@ int
 main (int argc, char **argv)
 {
 	gint iterations = 10;
-	gchar *cwd, cwdbuf [2048];
+	gchar *cwd, cwdbuf [2048], *path;
 
-	setenv ("GNOME_VFS_MODULE_PATH", GNOME_VFS_MODULE_PATH, FALSE);
-	setenv ("GNOME_VFS_MODULE_CONFIG_PATH", 
-		GNOME_VFS_MODULE_CONFIG_PATH, 
-		FALSE);
+	putenv ("GNOME_VFS_MODULE_PATH=" GNOME_VFS_MODULE_PATH);
+	putenv ("GNOME_VFS_MODULE_CONFIG_PATH=" GNOME_VFS_MODULE_CONFIG_PATH);
 
 	cwd = getcwd (cwdbuf, sizeof (cwdbuf));
 
-	setenv ("GNOME_VFS_VFOLDER_INFODIR", cwd, FALSE);
+	putenv (g_strconcat ("GNOME_VFS_VFOLDER_INFODIR=", cwd, NULL));
 
-	setenv ("GNOME_VFS_VFOLDER_WRITEDIR",
-		g_build_filename (cwd, "test-vfolder-tmp"),
-		FALSE);
+	path = g_build_filename (cwd, "test-vfolder-tmp", NULL);
+	putenv (g_strconcat ("GNOME_VFS_VFOLDER_WRITEDIR=", path, NULL));
+	g_free (path);
 
 	gnome_vfs_init ();
 

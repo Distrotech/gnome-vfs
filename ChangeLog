@@ -1,5 +1,10 @@
 2002-07-26  Alex Graveley  <alex@ximian.com>
 
+	* modules/vfolder/test-vfolder.c (main): Use putenv() as setenv()
+	is not portable to Solaris.
+
+2002-07-26  Alex Graveley  <alex@ximian.com>
+
 	* modules/vfolder/vfolder-util.c (monitor_timeout_cb): Fix
 	reentrency by copying the stat_monitors list, and checking each
 	VFolderMonitor is still in the list while iterating.
