@@ -1,3 +1,11 @@
+1999-08-27  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* test/gnome-file-selection/gicon.c: Do not #define `ICONDIR'
+	manually anymore.
+
+	* test/gnome-file-selection/Makefile.am (INCLUDES): Added quick &
+	dirty `-DICONDIR' definition.
+
 1999-08-26  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs-pthread/gnome-vfs-job.h: Changed `is_empty' member

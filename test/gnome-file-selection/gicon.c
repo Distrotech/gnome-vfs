@@ -15,8 +15,6 @@
 #include <gnome.h>
 #include "gicon.h"
 
-#define ICONDIR	"/opt/gnome/share/pixmaps/mc"
-
 /* What kinds of images can an icon set contain */
 typedef enum {
 	ICON_TYPE_PLAIN,
