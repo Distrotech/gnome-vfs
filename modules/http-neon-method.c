@@ -82,17 +82,17 @@ void               vfs_module_shutdown  (GnomeVFSMethod *method);
 /* ************************************************************************** */
 /* DEBUGING stuff */
 
+#undef DEBUG_HTTP_ENABLE
+
 #ifdef DEBUG_HTTP_ENABLE
 
-void http_debug_printf(char *func, char *fmt, ...) G_GNUC_PRINTF (2,3);
+void http_debug_printf(const char *func, const char *fmt, ...) G_GNUC_PRINTF (2,3);
 
 
-/* #define DEBUG_HTTP_3(fmt, ...) http_debug_printf (__PRETTY_FUNCTION__, fmt, ##__VA_ARGS__) */
-/* #define DEBUG_HTTP_2(fmt, ...) http_debug_printf (__PRETTY_FUNCTION__, fmt, ##__VA_ARGS__) */
+#define DEBUG_HTTP_3(fmt, ...) http_debug_printf (__PRETTY_FUNCTION__, fmt, ##__VA_ARGS__) 
+#define DEBUG_HTTP_2(fmt, ...) http_debug_printf (__PRETTY_FUNCTION__, fmt, ##__VA_ARGS__) 
 #define DEBUG_HTTP(fmt, ...) http_debug_printf (__PRETTY_FUNCTION__, fmt, ##__VA_ARGS__)
 #define DEBUG_HTTP_FUNC(_enter) http_debug_printf (_enter ? "+++" : "---", "%s",__PRETTY_FUNCTION__)
-#define DEBUG_HTTP_3(fmt, ...)	
-#define DEBUG_HTTP_2(fmt, ...)
 
 
 #define DEBUG_HTTP_CONTEXT(c) http_debug_printf (__PRETTY_FUNCTION__,       \
@@ -100,7 +100,7 @@ void http_debug_printf(char *func, char *fmt, ...) G_GNUC_PRINTF (2,3);
 						  c->session, c->path)
 
 void
-http_debug_printf (char *func, char *fmt, ...)
+http_debug_printf (const char *func, const char *fmt, ...)
 {
 	va_list args;
 	gchar * out;
@@ -1385,10 +1385,12 @@ neon_session_pool_lookup (GnomeVFSURI *uri)
 	DEBUG_HTTP ("[Session Pool] Searching (%d)", 
 		    g_hash_table_size (neon_session_table));
 	
+	session = NULL;
 	pool = g_hash_table_lookup (neon_session_table, uri);
 	
 	/* search in session pool */
 	if (pool != NULL && pool->unused_sessions) {
+
 		session = pool->unused_sessions->data;
 		pool->unused_sessions = g_list_remove (pool->unused_sessions,
 						       session);
@@ -1396,59 +1398,104 @@ neon_session_pool_lookup (GnomeVFSURI *uri)
 			    g_list_length (pool->unused_sessions));
 		
 		g_get_current_time (&(pool->last_used));
-
-		G_UNLOCK (nst_lock);
-		return session;
 	}
 	
 	G_UNLOCK (nst_lock);
-	return NULL;
+	return session;
 }
 
 /* ************************************************************************** */
 /* Additional Headers */
-#if 0
-/* Does not work because the neon library doesnt provide as all the headers
-   working around that is a bigger thing */
-
-typedef struct {
-	
+static int 
+neon_return_headers (ne_request *req, void *userdata, const ne_status *status)
+{	
+	GnomeVFSModuleCallbackReceivedHeadersIn in_args;
+	GnomeVFSModuleCallbackReceivedHeadersOut out_args;
+	GList **headers, *iter;
 	GnomeVFSURI *uri;
-	gboolean sent;
+	ne_session *session;
+
+	DEBUG_HTTP_FUNC (1);
 	
-} AddHeadersContext;
+	session = ne_get_session (req);
+	headers = ne_get_request_private (req, "Headers");
+	uri = ne_get_session_private (session, "GnomeVFSURI");
+
+	memset (&in_args, 0, sizeof (in_args));
+	memset (&out_args, 0, sizeof (out_args));
+	
+	in_args.uri = uri;
+	in_args.headers = *headers;
+
+	gnome_vfs_module_callback_invoke (GNOME_VFS_MODULE_CALLBACK_HTTP_RECEIVED_HEADERS,
+					&in_args, sizeof (in_args),
+					&out_args, sizeof (out_args));
+	
+	for (iter = *headers; iter; iter = iter->next) {
+		DEBUG_HTTP_3 ("Headers returned %s,", (char *) iter->data);
+		g_free (iter->data);
+	}
+
+	g_list_free (*headers);
+	g_free (headers);
+	
+	DEBUG_HTTP_FUNC (0);
+	
+	return 0;
+}
+
+static void 
+neon_header_catcher (void *userdata, const char *value)
+{
+	GList **headers = (GList **) userdata;
+
+	*headers = g_list_prepend (*headers, g_strdup (value));	
+}
 
 
 static void 
-neon_handle_additional_headers (ne_request *req, 
-				void *userdata, 
-				const char *method, 
-				const char *requri)
+neon_setup_headers (ne_request *req, void *userdata, ne_buffer *header)
 {
-	AddHeadersContext *adhctx = (AddHeadersContext *) userdata;
+	GnomeVFSModuleCallbackAdditionalHeadersIn in_args;
+	GnomeVFSModuleCallbackAdditionalHeadersOut out_args;
+	GList *iter, **headers;
+	gboolean ret;
+	GnomeVFSURI *uri;
+	ne_session *session;
+
+	DEBUG_HTTP_FUNC (1);
 	
-	if (! invoke_callback_send_additional_headers (uri, &list))
-		return;
+	headers = g_new0 (GList *, 1);
+
+	ne_set_request_private (req, "Headers", headers);
+	ne_add_response_header_catcher (req, neon_header_catcher, headers);
+
+	session = ne_get_session (req);
+	uri = ne_get_session_private (session, "GnomeVFSURI");
+
+	memset (&in_args, 0, sizeof (in_args));
+	memset (&out_args, 0, sizeof (out_args));
+
+	in_args.uri = uri;
+
+	ret = gnome_vfs_module_callback_invoke (GNOME_VFS_MODULE_CALLBACK_HTTP_SEND_ADDITIONAL_HEADERS,
+						&in_args, sizeof (in_args),
+						&out_args, sizeof (out_args));
 	
-	GList *iter;
-	for (iter = list; iter; iter = iter->next) {
-		char *header = iter->data;
-		char *colon  = g_strrstr (header, ":");
-		AcHeaderContext acctx = g_new0 (AcHeaderContext, 1);
+	for (iter = out_args.headers; iter; iter = iter->next) {
 		
-		if (colon != NULL) {
-			colon = '\0';
-			ne_add_request_header (req, header, colon + 1);
-		}
+		if (ret) {
+			ne_buffer_zappend (header, iter->data);
+			DEBUG_HTTP_3 ("Adding header %s,", (char *) iter->data);
+		}		
 		
-		g_free (header);
-		iter->data = NULL;
+		g_free (iter->data);
 	}
 	
-	g_list_free (list);
-
+	g_list_free (out_args.headers);
+	
+	DEBUG_HTTP_FUNC (0);
 }
-#endif
 
 /* ************************************************************************** */
 /* Http context */
@@ -1488,6 +1535,9 @@ http_aquire_connection (HttpContext *context)
 	session = neon_session_pool_lookup (context->uri);
 	
 	if (session != NULL) {
+			
+		ne_set_session_private (session, "GnomeVFSURI", context->uri);
+	
 		context->session = session;
 		return GNOME_VFS_OK;
 	}
@@ -1521,8 +1571,12 @@ http_aquire_connection (HttpContext *context)
 				 http_auth_info_free, basic_auth);
 
 	ne_redirect_register (session);
-	
-		
+
+	/* Headers stuff */
+	ne_set_session_private (session, "GnomeVFSURI", context->uri);
+	ne_hook_pre_send (session, neon_setup_headers, NULL);
+	ne_hook_post_send (session, neon_return_headers, NULL);
+
 	if (proxy_for_uri (top_uri, &proxy)) {
 		HttpAuthInfo *proxy_auth;
 		
@@ -1669,7 +1723,7 @@ http_follow_redirect (HttpContext *context)
 	} else {
 		
 		http_context_set_uri (context, new_uri);
-		
+		ne_set_session_private (context->session, "GnomeVFSURI", context->uri);
 		result = GNOME_VFS_OK;
 	}
 	DEBUG_HTTP ("[Redirec] Redirect result: %s", 
