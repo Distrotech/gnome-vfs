@@ -469,6 +469,19 @@ do_write (GnomeVFSMethodHandle *method_handle,
 }
 #endif
 
+
+static const char*
+make_relative (const char* key)
+{
+  const gchar* end;
+  
+  end = strrchr(key, '/');
+
+  ++end;
+
+  return g_strdup (end);
+}
+
 static GnomeVFSResult 
 do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle **method_handle,
@@ -480,6 +493,7 @@ do_open_directory (GnomeVFSMethod *method,
         GSList *pairs;
         GSList *subdirs;
         gchar *dirname;
+	GSList *tmp;
 
         dirname = make_absolute (uri->text);
         if (dirname == NULL) {
@@ -490,7 +504,38 @@ do_open_directory (GnomeVFSMethod *method,
         subdirs = gconf_client_all_dirs (client, dirname, NULL);
         pairs = gconf_client_all_entries (client, dirname, NULL);
 	MUTEX_UNLOCK (client_mutex);
-        
+
+	{
+		/* I'm really embarassed about this. I should not have
+		 * had GConf return absolute paths for dir
+		 * listings. -hp
+		 */
+		gchar *relative;
+
+		tmp = subdirs;
+		while (tmp != NULL) {
+			relative = make_relative (tmp->data);
+
+			g_free (tmp->data);
+			tmp->data = relative;
+			
+			tmp = g_slist_next (tmp);
+		}
+
+		tmp = pairs;
+		while (tmp != NULL) {
+			GConfEntry *entry = tmp->data;
+
+			relative = make_relative (entry->key);
+
+			/* This is a little bit dubious */
+			g_free (entry->key);
+			entry->key = relative;
+			
+			tmp = g_slist_next (tmp);
+		}
+	}
+	
         *method_handle = 
 		(GnomeVFSMethodHandle*)directory_handle_new (uri,
 							     options,
@@ -656,6 +701,7 @@ do_get_file_info (GnomeVFSMethod *method,
 {
         GConfValue *value;
         gchar *key;
+	GnomeVFSResult retval; 
         
 	key = make_absolute (uri->text);
         if (key == NULL) {
@@ -665,16 +711,23 @@ do_get_file_info (GnomeVFSMethod *method,
 	MUTEX_LOCK (client_mutex);
 	if (gconf_client_dir_exists (client, key, NULL)) {
 		MUTEX_UNLOCK (client_mutex);
-		return file_info_dir (file_info, options, key);
+
+		retval = file_info_dir (file_info, options, key);
+
+		g_free (key);
+		
+		return retval;
 	}
 
         value = gconf_client_get (client, key, NULL);
 	
 	MUTEX_UNLOCK (client_mutex);
 	
+	retval = file_info_value (file_info, options, value, key);
+
 	g_free (key);
-	
-	return file_info_value (file_info, options, value, key);
+
+	return retval;	
 }
 
 #if 0

@@ -1,3 +1,10 @@
+2001-06-15  Havoc Pennington  <hp@redhat.com>
+
+	* modules/gconf-method.c (do_get_file_info): fix one mem leak and
+	one use of uninitialized memory.
+	(do_open_directory): compensate for GConf's
+	list-absolute-paths-in-directories braindamage
+
 2001-06-15  Martin Baulig  <baulig@suse.de>
 
 	If we ever need to revert this (for instance, when GConf is fixed for GNOME 2),
