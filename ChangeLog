@@ -1,3 +1,9 @@
+2000-05-26  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.h: Header for upcoming mime
+	handler API.
+	* libgnomevfs/Makefile.am: Install the new header.
+
 2000-05-24  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c:

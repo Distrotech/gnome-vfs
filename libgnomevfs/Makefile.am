@@ -50,6 +50,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-messages.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-mime.h			\
+	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-info.h			\
 	gnome-vfs-mime-magic.h			\
 	gnome-vfs-mime-sniff-buffer.h		\
