@@ -1,3 +1,10 @@
+2004-08-29   Christian Kellner <gicmo@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-ssl.c: Make GnuTLS work again! This should
+	fix bug #151350. 
+	Thanks to Carlos Perelló Marín <carlos@gnome.org> for helping and
+	testing.
+
 2004-08-27  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime.c (_gnome_vfs_get_mime_type_internal):

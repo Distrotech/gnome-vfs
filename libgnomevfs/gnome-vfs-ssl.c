@@ -73,6 +73,7 @@ typedef struct {
 	int sockfd;
 	gnutls_session tlsstate;
 	gnutls_certificate_client_credentials xcred;
+	struct timeval *timeout;
 #elif defined HAVE_NSS
 	PRFileDesc *sockfd;
 #else
@@ -89,7 +90,6 @@ _gnome_vfs_ssl_init (void) {
 #ifdef HAVE_OPENSSL
 	SSL_library_init ();
 #elif defined HAVE_GNUTLS
-#error "Need to update the GNUTLS code to support non-blocking fds and cancellation"
 	gnutls_global_init();
 #endif
 }
@@ -112,7 +112,27 @@ gnome_vfs_ssl_enabled (void)
 #endif
 }
 
-#ifdef HAVE_OPENSSL
+
+#ifdef HAVE_GNUTLS
+/*
+  From the gnutls documentation:
+
+  To tell you whether a file descriptor should be selected for either reading 
+  or writing, gnutls_record_get_direction() returns 0 if the interrupted 
+  function was trying to read data, and 1 if it was trying to write data.
+
+*/
+
+#ifndef SSL_ERROR_WANT_READ
+#define SSL_ERROR_WANT_READ 0
+#endif
+
+#ifndef SSL_ERROR_WANT_WRITE
+#define SSL_ERROR_WANT_WRITE 1
+#endif
+
+#endif
+
 static GnomeVFSResult
 handle_ssl_read_write (int fd, int error, struct timeval *timeout,
 		       GnomeVFSCancellation *cancellation)
@@ -150,7 +170,7 @@ handle_ssl_read_write (int fd, int error, struct timeval *timeout,
 	}
 
 	res = select (max_fd + 1, &read_fds, &write_fds, NULL, 
-			timeout ? &tout : NULL);
+		      timeout ? &tout : NULL);
 	
 	if (res == -1 && errno == EINTR) {
 		goto retry;
@@ -167,7 +187,6 @@ handle_ssl_read_write (int fd, int error, struct timeval *timeout,
 	}
 	return GNOME_VFS_ERROR_INTERNAL;
 }
-#endif
 
 /**
  * gnome_vfs_ssl_create:
@@ -255,6 +274,7 @@ static const int kx_priority[] =
 	{GNUTLS_KX_DHE_RSA, GNUTLS_KX_RSA, GNUTLS_KX_DHE_DSS, 0};
 static const int mac_priority[] =
 	{GNUTLS_MAC_SHA, GNUTLS_MAC_MD5, 0};
+
 #endif
 
 
@@ -342,6 +362,7 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 	return GNOME_VFS_OK;
 
 #elif defined HAVE_GNUTLS
+	GnomeVFSResult res;
 	GnomeVFSSSL *ssl;
 	int err;
 
@@ -371,10 +392,18 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 	gnutls_cred_set (ssl->private->tlsstate, GNUTLS_CRD_CERTIFICATE,
 			 ssl->private->xcred);
 
+ retry:
+	res = GNOME_VFS_ERROR_IO;
 	err = gnutls_handshake (ssl->private->tlsstate);
 
-	while (err == GNUTLS_E_AGAIN || err == GNUTLS_E_INTERRUPTED) {
-		err = gnutls_handshake (ssl->private->tlsstate);
+	if (ret == GNUTLS_E_INTERRUPTED || ret = GNUTLS_E_AGAIN) {
+
+		res = handle_ssl_read_write (ssl->private->sockfd,
+					     gnutls_record_get_direction (ssl->private->tlsstate),
+					     ssl->private->timeout,
+					     cancellation);
+		if (res == GNOME_VFS_OK)
+			goto retry;
 	}
 
 	if (err < 0) {
@@ -382,7 +411,7 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 		gnutls_deinit (ssl->private->tlsstate);
 		g_free (ssl->private);
 		g_free (ssl);
-		return GNOME_VFS_ERROR_IO;
+		return res;
 	}
 
 	*handle_return = ssl;
@@ -413,9 +442,10 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 		    GnomeVFSFileSize *bytes_read,
 		    GnomeVFSCancellation *cancellation)
 {
-#ifdef HAVE_OPENSSL
-	int ret, error;
 	GnomeVFSResult res;
+	int ret;
+#ifdef HAVE_OPENSSL
+	int error;
 	
 	if (bytes == 0) {
 		*bytes_read = 0;
@@ -458,13 +488,33 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 		return GNOME_VFS_OK;
 	}
 
-	*bytes_read = gnutls_record_recv (ssl->private->tlsstate, buffer, bytes);
+ retry:
+	res = GNOME_VFS_OK;
+	ret = gnutls_record_recv (ssl->private->tlsstate, buffer, bytes);
 
-	if (*bytes_read <= 0) {
+	if (ret == 0) {
+		res = GNOME_VFS_ERROR_EOF;
+	} else if (ret < 0) {
+
+		res = GNOME_VFS_ERROR_IO;
+
+		if (ret == GNUTLS_E_INTERRUPTED || ret = GNUTLS_E_AGAIN) {
+			res = handle_ssl_read_write (ssl->private->sockfd,
+						     gnutls_record_get_direction (ssl->private->tlsstate),
+						     ssl->private->timeout,
+						     cancellation);
+
+			if (res == GNOME_VFS_OK) {
+				goto retry;
+			}
+		}
+
 		*bytes_read = 0;
-		return GNOME_VFS_ERROR_GENERIC;
+		return res;
 	}
-	return GNOME_VFS_OK;
+	
+	*bytes_read = ret;
+	return res;
 #else
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif
@@ -490,9 +540,10 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 		     GnomeVFSFileSize *bytes_written,
 		     GnomeVFSCancellation *cancellation)
 {
-#ifdef HAVE_OPENSSL
-	int ret, error;
 	GnomeVFSResult res;
+	int ret;
+#ifdef HAVE_OPENSSL
+	int error;
 	
 	if (bytes == 0) {
 		*bytes_written = 0;
@@ -530,13 +581,33 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 		return GNOME_VFS_OK;
 	}
 
-	*bytes_written = gnutls_record_send (ssl->private->tlsstate, buffer, bytes);
+ retry:
+	res = GNOME_VFS_OK;
+	ret = gnutls_record_send (ssl->private->tlsstate, buffer, bytes);
 
-	if (*bytes_written <= 0) {
+	if (ret == 0) {
+		res = GNOME_VFS_ERROR_EOF;
+	} else if (ret < 0) {
+
+		res = GNOME_VFS_ERROR_IO;
+
+		if (ret == GNUTLS_E_INTERRUPTED || ret = GNUTLS_E_AGAIN) {
+			res = handle_ssl_read_write (ssl->private->sockfd,
+						     gnutls_record_get_direction (ssl->private->tlsstate),
+						     ssl->private->timeout,
+						     cancellation);
+
+			if (res == GNOME_VFS_OK) {
+				goto retry;
+			}
+		}
+
 		*bytes_written = 0;
-		return GNOME_VFS_ERROR_GENERIC;
+		return res;
 	}
-	return GNOME_VFS_OK;
+	
+	*bytes_written = ret;
+	return res;
 #else
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif
@@ -553,9 +624,10 @@ void
 gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl,
 		       GnomeVFSCancellation *cancellation) 
 {
+	int ret;
+	GnomeVFSResult res;	
 #ifdef HAVE_OPENSSL
-	int ret, error;
-	GnomeVFSResult res;
+	int error;
 
  retry:
 	ret = SSL_shutdown (ssl->private->ssl);
@@ -579,7 +651,19 @@ gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl,
 	if (ssl->private->timeout)
 		g_free (ssl->private->timeout);
 #elif defined HAVE_GNUTLS
-	gnutls_bye (ssl->private->tlsstate, GNUTLS_SHUT_RDWR);
+
+ retry:
+	ret = gnutls_bye (ssl->private->tlsstate, GNUTLS_SHUT_RDWR);
+	
+	if (ret == GNUTLS_E_AGAIN || ret == GNUTLS_E_INTERRUPTED) {
+		res = handle_ssl_read_write (ssl->private->sockfd,
+					     gnutls_record_get_direction (ssl->private->tlsstate),
+					     ssl->private->timeout,
+					     cancellation);
+		if (res == GNOME_VFS_OK)
+			goto retry;
+	}
+
 	gnutls_certificate_free_credentials (ssl->private->xcred);
 	gnutls_deinit (ssl->private->tlsstate);
 	close (ssl->private->sockfd);
@@ -613,7 +697,7 @@ gnome_vfs_ssl_set_timeout (GnomeVFSSSL *ssl,
 			   GTimeVal *timeout,
 			   GnomeVFSCancellation *cancellation)
 {
-#ifdef HAVE_OPENSSL
+#if defined(HAVE_OPENSSL) || defined(HAVE_GNUTLS)
 	/* reset a timeout */
 	if (timeout == NULL) {
 		if (ssl->private->timeout != NULL) {
