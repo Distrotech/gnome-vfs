@@ -1,5 +1,12 @@
 2003-04-11  Christophe Fergeau  <teuf@users.sourceforge.net>
 
+	* modules/http-method.[ch]: cleaned up some eazel related stuff
+	  parses an HTTP error code in the body of an answer to a PROPFIND
+	  request (fixes access to WebDAV servers using Resin). 
+	  Fixes bug #110532
+
+2003-04-11  Christophe Fergeau  <teuf@users.sourceforge.net>
+
 	* test/test-uri.c: added regression test for
 	  gnome_vfs_uri_make_full_from_relative
 
