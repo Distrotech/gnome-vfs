@@ -274,5 +274,39 @@
      </locale>
    </schema>
    
+   <schema>   
+     <key>/schemas/desktop/gnome/url-handlers/h323/enabled</key>
+     <applyto>/desktop/gnome/url-handlers/h323/enabled</applyto>
+     <owner>gnome</owner>
+     <type>bool</type>
+     <default>true</default>
+     <locale name="C">
+       <short>How to handle h323 URLs</short>
+       <long>Set to true to have a program specified in command handle h323 URLs</long>
+     </locale>
+   </schema>
+   <schema>
+     <key>/schemas/desktop/gnome/url-handlers/h323/command</key>
+     <applyto>/desktop/gnome/url-handlers/h323/command</applyto>
+     <owner>gnome</owner>
+     <type>string</type>
+     <default>gnomemeeting %s</default>
+     <locale name="C">
+       <short>URL handler for h323 uris</short>
+       <long>URL handler for h323 uris</long>
+     </locale>
+   </schema>
+   <schema>
+     <key>/schemas/desktop/gnome/url-handlers/h323/need-terminal</key>
+     <applyto>/desktop/gnome/url-handlers/h323/need-terminal</applyto>
+     <owner>gnome</owner>
+     <type>bool</type>
+     <default>false</default>
+     <locale name="C">
+       <short>Run program in terminal</short>
+       <long>True if the program to handle this URL should be run in a terminal</long>
+     </locale>
+   </schema>
+   
   </schemalist>
 </gconfschemafile>
