@@ -1,3 +1,21 @@
+2000-12-08  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	Fixed bug 4660, Descrption lost when adding mime types
+
+	Bug was caused by a failure to write out a mime type
+	with caps in the string. I now convert all caps to lower
+	case and inform the user what has happened.
+
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(find_message_label_callback), (find_message_label),
+	(show_message_box), (display_upper_case_dialog):
+	New routines to display a nice dialog taken from Nautilus.
+	
+	(nautilus_mime_type_capplet_show_new_mime_window):
+	Convert mime string to lower case if caps are present.
+		
 2000-12-08  Andy Hertzfeld  <andy@eazel.com>
 
 	* data/mime/gnome-vfs.keys:
