@@ -1,4 +1,18 @@
-gnome-vfs 2.5.7
+gnome-vfs 2.5.90
+	* Bugs fixed:
+	        + fix some sftp bugs
+		+ fix ssl support (wasn't working at all)
+		+ better webdav support on some servers (including apache)
+		+ fix crash when monitoring invalid uris
+		+ handle fam crashing without using 100% cpu
+		+ fix nautilus crasher
+		+ better emission of pre_unmount when unmounting volumes
+		+ fixed some mime sniffing issues (need new shared-mime-info)
+		+ portability fixes
+		+ fix memleaks
+		+ some header changes needed for c++ binding
+
+gnome-vfs 2.5.8
 	* Bugs fixed:
 	        + Text mimetype sniffing
 		+ portability fixes
