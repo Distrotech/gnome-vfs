@@ -63,7 +63,6 @@ extern "C" {
 #include "gnome-vfs-handle.h"
 #include "gnome-vfs-inet-connection.h"
 #include "gnome-vfs-iobuf.h"
-#include "gnome-vfs-list-sort.h"
 #include "gnome-vfs-method.h"
 #include "gnome-vfs-cancellable-ops.h"
 #include "gnome-vfs-parse-ls.h"
