@@ -1,3 +1,8 @@
+2002-06-13  Glynn Foster  <glynn.foster@sun.com>
+
+	* docs/vfolder-info-spec.dtd: Initial version of the vfolder-info
+	dtd.
+
 -------------------2.0.0------------------------
 2002-06-10  Seth Nickell  <snickell@stanford.edu>
 
