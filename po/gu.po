@@ -1,19 +1,21 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Free Software Foundation, Inc.
+# translation of gu.po to Gujarati
+# Copyright (C) 2004 Free Software Foundation, Inc.
 # MagNet <magnet@magnet-i.com>, 2004.
+# Ankit Patel <ankit@redhat.com>, 2004.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs-2.6\n"
+"Project-Id-Version: gu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-07-26 19:29-0400\n"
-"PO-Revision-Date: 2004-02-29 20:47+0530\n"
-"Last-Translator: Nirav, Ankit, Ankur, Atit, Bhavin, Kartik, Khushbu, Sweta. "
+"PO-Revision-Date: 2004-08-05 11:26+0530\n"
+"Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "<magnet@magnet-i.com>\n"
-"Language-Team: MagNet <magnet@magnet-i.com>\n"
+"Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"X-Generator: KBabel 1.3.1\n"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #: daemon/gnome-vfs-daemon.c:596
@@ -26,88 +28,84 @@ msgstr "જીનોમ vfs શરુ કરી શકાતુ નથી"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #: libgnomevfs/eggdesktopentries.c:226
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "પદચ્છેદ કરી શકાયુ નહિ: %s"
+msgstr "ફાઈલ ખોલી શકાઈ નહિં: %s"
 
 #: libgnomevfs/eggdesktopentries.c:325
 #, c-format
 msgid "Failed to open file '%s': %s"
-msgstr ""
+msgstr "ફાઈલ '%s' ખોલવામાં નિષ્ફળ: %s"
 
 # libgnomevfs/gnome-vfs-result.c:57
 #: libgnomevfs/eggdesktopentries.c:338
-#, fuzzy
 msgid "File is empty"
-msgstr "ફાઈલ ઉપલબ્ધ છે"
+msgstr "ફાઈલ ખાલી છે"
 
 #: libgnomevfs/eggdesktopentries.c:360
 #, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr ""
+msgstr "ફાઈલ '%s' માંથી વાંચવામાં નિષ્ફળ: %s"
 
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
+msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr "ડેસ્કટોપ પ્રવેશ લીટી '%s' સમાવે છે કે પ્રવેશ, જૂથ, અથવા ટિપ્પળી નથી"
 
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "ડેસ્કટોપ પ્રવેશ ફાઈલ યોગ્ય શરુઆત જૂથથી શરુ થતા નથી"
 
 #: libgnomevfs/eggdesktopentries.c:708
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "ડેસ્કટોપ પ્રવેશ લીટી '%s' સમાવે છે કે જે UTF-8 નથી"
 
 #: libgnomevfs/eggdesktopentries.c:731
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "ડેસ્કટોપ પ્રવેશો અજ્ઞાત સંગ્રહપદ્ધતિ '%s' ધરાવે છે"
 
 #: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
 #: libgnomevfs/eggdesktopentries.c:1217
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "ડેસ્કટોપ પ્રવેશો પાસે કોઈ જૂથ '%s' નથી"
 
 #: libgnomevfs/eggdesktopentries.c:1044
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "ડેસ્કટોપ પ્રવેશો પાસે કોઈ કી '%s' નથી"
 
 #: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
 #: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
 #, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
+msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr "ડેસ્કટોપ પ્રવેશ કી '%s' ધરાવે છે કે જેની કિંમત સમજી શકાતી નથી."
 
 #: libgnomevfs/eggdesktopentries.c:1297
 #, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
+msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr "ડેસ્કટોપ પ્રવેશો કી '%s' માટે લોકેલ '%s' સાથે કોઈ ભાષાંતરિત કિંમતો ધરાવતું નથી."
 
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "ડેસ્કટોપ પ્રવેશો અયોગ્ય એસ્કેપ હાર '%s' ધરાવે છે"
 
 #: libgnomevfs/eggdesktopentries.c:2235
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "ડેસ્કટોપ પ્રવેશો લીટીના અંતે એસ્કેપ અક્ષરો ધરાવે છે"
 
 #: libgnomevfs/eggdesktopentries.c:2260
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "કિંમત '%s' નંબર તરીકે સમજી શકાતી નથી."
 
 #: libgnomevfs/eggdesktopentries.c:2287
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "કિંમત '%s' બુલિયન તરીકે સમજી શકાતી નથી."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -261,9 +259,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris કદ"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "AFFS કદ"
+msgstr "સન SAM-QFS વોલ્યુમ"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -292,118 +289,111 @@ msgstr "અજાણીતુ"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
-msgstr ""
+msgstr "CD ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "ખાલી CD-R ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:606
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "CD-ROM ડ્રાઇવ"
+msgstr "CD-R ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "ખાલી CD-RW ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "CD-ROM ડ્રાઇવ"
+msgstr "CD-RW ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:613
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "CD-ROM ડ્રાઇવ"
+msgstr "CD-ROM ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "ખાલી DVD-R ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "DVD-R ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "ખાલી DVD-RAM ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "DVD-RAM ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "ખાલી DVD-RW ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "DVD-RW ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "ખાલી DVD+RW ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "DVD+RW ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "ખાલી DVD+R ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "DVD+R ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
-msgstr ""
+msgstr "ઓપ્ટિકલ ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
-#, fuzzy
 msgid "Audio Disc"
-msgstr "ઓડિયો સીડી"
+msgstr "ઓડિયો ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "સંકુચિત ફ્લેશ મિડીયા"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:652
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "મૅમરી સ્ટીક"
+msgstr "મૅમરી સ્ટીક મિડીયા"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
-msgstr ""
+msgstr "સ્માર્ટ મિડીયા મિડીયા"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "SD/MMC મિડીયા"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:658
-#, fuzzy
 msgid "Floppy Disk"
-msgstr "ફ્લોપી"
+msgstr "ફ્લોપી ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Mac OS ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Mac OS X ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:681
-#, fuzzy
 msgid "Windows Disk"
-msgstr "વિન્ડો"
+msgstr "વિન્ડો ડિસ્ક"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
-msgstr ""
+msgstr "લિનક્સ ડિસ્ક"
 
 # libgnomevfs/gnome-vfs-job.c:714
 #: libgnomevfs/gnome-vfs-job.c:734
@@ -449,6 +439,8 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
+"નીચું પડાયેલ વિધેય. MIME ડેટાબેઝને કરવામાં આવેલા સુધારા લાંબા "
+"સમય સુધી આધારભૂત નથી."
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
@@ -497,7 +489,7 @@ msgstr "અયોગ્ય પેરામીટર"
 msgid "Unsupported operation"
 msgstr "નિરાધારિત પ્રક્રિયાઓ"
 
-# 
+#
 # libgnomevfs/gnome-vfs-result.c:41
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:44
@@ -737,24 +729,23 @@ msgstr "આદેશ શરૂ કરવામાં ભૂલ"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "સમય સમાપ્તિ સુધી પહોંચી ગયા"
 
 # libgnomevfs/gnome-vfs-result.c:37
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "સામાન્ય ભૂલ"
+msgstr "નામસર્વર ભૂલ"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "સ્રોતને તાળુ મરાયેલ છે"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "વિધેય કોલ નીચે પાડી દેવાયો"
 
 # libgnomevfs/gnome-vfs-result.c:137
 #: libgnomevfs/gnome-vfs-result.c:203
@@ -817,7 +808,7 @@ msgstr "કેમેરા"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
@@ -838,8 +829,7 @@ msgstr "નેટવર્ક સર્વર"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ.કદાચિત ડ્રાઇવમાં કોઇ ફ્લોપી નથી."
 
 #. All others
@@ -963,7 +953,7 @@ msgstr "વિન્ડો નેટવર્ક"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "દૂરસ્થ કમ્પ્યુટર (%s) ની ઓળખ અજ્ઞાત છે."
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -973,14 +963,19 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"આ ત્યારે જ બને જ્યારે તમે કમ્પ્યુટરમાં પહેલી વાર પ્રવેશો.\n"
+"\n"
+"દૂરસ્થ કમ્પ્યુટર દ્વારા મોકલવામાં આવતી ઓળખ %s છે. જો તમે સંપૂર્ણપણે "
+"ચોક્કસ થવા માંગો તો ચાલુ રાખવા માટે એ સુરક્ષિત છે, સિસ્ટમ સંચાલકનો "
+"સંપર્ક કરો."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "કોઈપણ રીતે પ્રવેશો"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "પ્રવેશ રદ કરો"
 
 # modules/test-method.c:590
 #. FIXME: we probably shouldn't use printf to output the message
@@ -1048,242 +1043,231 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "મૂળભૂત ટર્મિનલ કાર્યક્રમ માટે exec દલીલનો ઉપયોગ કરવાનો છે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "ટર્મિનલમાં કાર્યક્રમ ચલાવો"
+msgstr "આદેશને ટર્મિનલમાં કાર્યક્રમ ચલાવો"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "\"aim\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "\"callto\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "\"ghelp\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "\"info\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "\"mailto\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "\"man\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "\"trash\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle H323 URLs, if enabled."
-msgstr ""
+msgstr "H323 URLs ને નિયંત્રિત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle HTTP URLs, if enabled."
-msgstr ""
+msgstr "HTTP URLs ને નિયંત્રિત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr ""
+msgstr "HTTPS URLs ને નિયંત્રિત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "હેન્ડલ man URLs"
+msgstr "\"aim\" URLs માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "હેન્ડલ callto URLs"
+msgstr "\"callto\" URLs માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "હેન્ડલ ghelp URLs"
+msgstr "\"ghelp\" URLs માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "URL યોજના માટે કોઇ હેન્ડલર નથી"
+msgstr "\"info\" URLs માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "હેન્ડલ mailto URLs"
+msgstr "\"mailto\" URLs માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "હેન્ડલ man URLs"
+msgstr "\"man\" URLs માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "હેન્ડલ કચરાપેટી URLs"
+msgstr "\"trash\" URLs માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for H323 URLs"
-msgstr "હેન્ડલ H323 URLs"
+msgstr "H323 URLs માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for HTTP URLs"
-msgstr "હેન્ડલ HTTP URLs"
+msgstr "HTTP URLs માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for HTTPS URLs"
-msgstr "હેન્ડલ HTTPS URLs"
+msgstr "HTTPS URLs માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ man URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr ""
+"સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"aim\" "
+"URLs ને "
+"નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ callto URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr ""
+"સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"callto\" "
+"URLs ને "
+"નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ ghelp URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr ""
+"સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"ghelp\" "
+"URLs ને "
+"નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ જાણકારી URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr ""
+"સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"info\" "
+"URLs ને "
+"નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ mailto URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr ""
+"સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"mailto\" "
+"URLs ને "
+"નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ man URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr ""
+"સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"man\" "
+"URLs ને "
+"નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ કચરાપેટી URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr ""
+"સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"trash\" "
+"URLs ને "
+"નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ H323 URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgid "True if the command specified in the \"command\" key should handle H323 URLs."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ H323 URLs ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ HTTP URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgid "True if the command specified in the \"command\" key should handle HTTP URLs."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ HTTP URLs ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle HTTPS "
 "URLs."
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ HTTPS URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ HTTPS URLs ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "સાચુ જો આ URLના હેન્ડલ માટેનો કાર્યક્રમ ટર્મિનલમાં ચલાવાશે."
+msgstr "સાચું જો આ પ્રકારના URL ને નિયંત્રિત કરવા માટેનો આદેશ ટર્મિનલમાં ચાલે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ man URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"aim\" URLs ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ callto URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"callto\" URLs ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ ghelp URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"ghelp\" URLs ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ જાણકારી URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"info\" URLs ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ mailto URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"mailto\" URLs ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ man URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"man\" URLs ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ કચરાપેટી URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"trash\" URLs ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle H323 URLs"
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ H323 URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "શું સ્પષ્ટ કરેલ આદેશ H323 URLs ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle HTTP URLs"
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ HTTP URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "શું સ્પષ્ટ કરેલ આદેશ HTTP URLs ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "સાચુ સુયોજિત કરો માટે \"આદેશ\" હેન્ડલ HTTPS URLsમાં કાર્યક્રમ સ્પષ્ટ કરેલ છે."
+msgstr "શું સ્પષ્ટ કરેલ આદેશ HTTPS URLs ને નિયંત્રિત કરે"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"અલ્પવિરામથી છુટી પડેલી dns-sd ડોમેઈનોની યાદીઓ નેટવર્કની જગ્યામાં "
+"દ્રશ્યમાન થશે."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "આમાં dns-sd સેવાઓ માટે જોવા માટે વધારાના ડોમેઈનો"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "કેવી રીતે સ્થાનિક DNS-SD સેવા પ્રદર્શિત કરવી"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "\"ભેગું થયેલ\", \"અલગ\" અને \"નિષ્ક્રિય\" શક્ય કિંમતો છે."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1397,8 +1381,7 @@ msgstr ""
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
-"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/ftp_યજમાન\" કે જેની તમે સીધીપ્રોક્સી કરો છો."
+msgstr "યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/ftp_યજમાન\" કે જેની તમે સીધીપ્રોક્સી કરો છો."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -1450,40 +1433,3 @@ msgstr "SMB કામ કરતુ જૂથ"
 msgid "The window workgroup the user is part of"
 msgstr "વિન્ડોનુ કામ કરતુ જૂથ કે વપરાશર્ક્તા જેનો ભાગ છે"
 
-#~ msgid "H323 URL handler"
-#~ msgstr "H323 URL સંભાળનાર"
-
-#~ msgid "HTTP URL handler"
-#~ msgstr "HTTP URL સંભાળનાર"
-
-#~ msgid "HTTPS URL handler"
-#~ msgstr "HTTPS URL સંભાળનાર"
-
-# libgnomevfs/gnome-vfs-result.c:44
-#, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "man URL handler"
-
-#~ msgid "callto URL handler"
-#~ msgstr "callto URL handler"
-
-#~ msgid "ghelp URL handler"
-#~ msgstr "ghelp URL handler"
-
-#~ msgid "info URL handler"
-#~ msgstr "જાણકારી URL handler"
-
-# libgnomevfs/gnome-vfs-result.c:44
-#~ msgid "mailto URL handler"
-#~ msgstr "mailto URL handler"
-
-# libgnomevfs/gnome-vfs-result.c:44
-#~ msgid "man URL handler"
-#~ msgstr "man URL handler"
-
-#~ msgid "trash URL handler"
-#~ msgstr "કચરાપેટી URL handler"
-
-# libgnomevfs/gnome-vfs-utils.c:65
-#~ msgid "1 byte"
-#~ msgstr "૧ બાઇટ"
