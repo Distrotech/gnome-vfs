@@ -1,0 +1,564 @@
+# gnome-vfs ko.po
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# Young-Ho Cha <ganadist@dacome.co.kr>, 2000.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2000-06-03 12:47+0900\n"
+"PO-Revision-Date: 2000-06-03 04:19:26+0900\n"
+"Last-Translator: Young-Ho Cha <ganadist@dacome.co.kr>\n"
+"Language-Team: korean <ko@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=euc-kr\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: libgnomevfs/gnome-vfs-configuration.c:187
+#, c-format
+msgid "%s:%d contains NUL characters."
+msgstr "%s:%d 가 NUL 문자를 포함합니다."
+
+#: libgnomevfs/gnome-vfs-configuration.c:204
+#, c-format
+msgid "%s:%d contains no method name."
+msgstr "%s:%d 가 메서드 이름을 포함하지 않습니다."
+
+#: libgnomevfs/gnome-vfs-configuration.c:233
+#, c-format
+msgid "%s:%d contains no module name."
+msgstr "%s:%d 가 모듈이름을 포함하지 않습니다."
+
+#: libgnomevfs/gnome-vfs-configuration.c:285
+#, c-format
+msgid "Configuration file `%s' was not found: %s"
+msgstr "설정 파일 `%s' 가 없습니다: %s"
+
+#: libgnomevfs/gnome-vfs-file-info.c:479
+#, c-format
+msgid "Unknown sort rule %d"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-init.c:66
+msgid "GNOME VFS already initialized."
+msgstr "그놈 VFS는 이미 초기화 되었습니다."
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:650
+#, c-format
+msgid "Could not parse: %s"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
+msgid "More parsing errors will be ignored."
+msgstr ""
+
+#. GNOME_VFS_OK
+#: libgnomevfs/gnome-vfs-result.c:39
+msgid "No error"
+msgstr "오류 없슴"
+
+#. GNOME_VFS_ERROR_NOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:40
+msgid "File not found"
+msgstr "파일 없슴"
+
+#. GNOME_VFS_ERROR_GENERIC
+#: libgnomevfs/gnome-vfs-result.c:41
+msgid "Generic error"
+msgstr "일반 오류"
+
+#. GNOME_VFS_ERROR_INTERNAL
+#: libgnomevfs/gnome-vfs-result.c:42
+msgid "Internal error"
+msgstr "내부 오류"
+
+#. GNOME_VFS_ERROR_BADPARAMS
+#: libgnomevfs/gnome-vfs-result.c:43
+msgid "Invalid parameters"
+msgstr "잘못된 인자"
+
+#. GNOME_VFS_ERROR_NOTSUPPORTED
+#: libgnomevfs/gnome-vfs-result.c:44
+msgid "Unsupported operation"
+msgstr "지원되지 않는 "
+
+#. GNOME_VFS_ERROR_IO
+#: libgnomevfs/gnome-vfs-result.c:45
+msgid "I/O error"
+msgstr "입출력 오류"
+
+#. GNOME_VFS_ERROR_CORRUPTEDDATA
+#: libgnomevfs/gnome-vfs-result.c:46
+msgid "Data corrupted"
+msgstr "손상된 데이터"
+
+#. GNOME_VFS_ERROR_WRONGFORMAT
+#: libgnomevfs/gnome-vfs-result.c:47
+msgid "Format not valid"
+msgstr "형식이 잘못되어 있슴"
+
+#. GNOME_VFS_ERROR_BADFILE
+#: libgnomevfs/gnome-vfs-result.c:48
+msgid "Bad file handle"
+msgstr "잘못된 파일 핸들"
+
+#. GNOME_VFS_ERROR_TOOBIG
+#: libgnomevfs/gnome-vfs-result.c:49
+msgid "File too big"
+msgstr "파일이 너무 큼"
+
+#. GNOME_VFS_ERROR_NOSPACE
+#: libgnomevfs/gnome-vfs-result.c:50
+msgid "No space left on device"
+msgstr "장치에 남은 공간 없슴"
+
+#. GNOME_VFS_ERROR_READONLY
+#: libgnomevfs/gnome-vfs-result.c:51
+msgid "Read-only file system"
+msgstr "읽기 전용 파일 시스템"
+
+#. GNOME_VFS_ERROR_INVALIDURI
+#: libgnomevfs/gnome-vfs-result.c:52
+msgid "Invalid URI"
+msgstr "잘못된 URI"
+
+#. GNOME_VFS_ERROR_NOTOPEN
+#: libgnomevfs/gnome-vfs-result.c:53
+msgid "File not open"
+msgstr "파일을 열수 없슴"
+
+#. GNOME_VFS_ERROR_INVALIDOPENMODE
+#: libgnomevfs/gnome-vfs-result.c:54
+msgid "Open mode not valid"
+msgstr "열기모드가 잘못되어 있슴"
+
+#. GNOME_VFS_ERROR_ACCESSDENIED
+#: libgnomevfs/gnome-vfs-result.c:55
+msgid "Access denied"
+msgstr "접근 거부"
+
+#. GNOME_VFS_ERROR_TOOMANYOPENFILES
+#: libgnomevfs/gnome-vfs-result.c:56
+msgid "Too many open files"
+msgstr "너무 많은 파일이 열림"
+
+#. GNOME_VFS_ERROR_EOF
+#: libgnomevfs/gnome-vfs-result.c:57
+msgid "End of file"
+msgstr "파일의 끝"
+
+#. GNOME_VFS_ERROR_NOTADIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:58
+msgid "Not a directory"
+msgstr "디렉토리가 아님"
+
+#. GNOME_VFS_ERROR_INPROGRESS
+#: libgnomevfs/gnome-vfs-result.c:59
+msgid "Operation in progress"
+msgstr ""
+
+#. GNOME_VFS_ERROR_INTERRUPTED
+#: libgnomevfs/gnome-vfs-result.c:60
+msgid "Operation interrupted"
+msgstr ""
+
+#. GNOME_VFS_ERROR_FILEEXISTS
+#: libgnomevfs/gnome-vfs-result.c:61
+msgid "File exists"
+msgstr "파일이 있슴"
+
+#. GNOME_VFS_ERROR_LOOP
+#: libgnomevfs/gnome-vfs-result.c:62
+msgid "Looping links encountered"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NOTPERMITTED
+#: libgnomevfs/gnome-vfs-result.c:63
+msgid "Operation not permitted"
+msgstr ""
+
+#. GNOME_VFS_ERROR_ISDIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:64
+msgid "Is a directory"
+msgstr "디렉토리 임"
+
+#. GNOME_VFS_ERROR_NOMEM
+#: libgnomevfs/gnome-vfs-result.c:65
+msgid "Not enough memory"
+msgstr "메모리가 부족"
+
+#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:66
+msgid "Host not found"
+msgstr "호스트가 없슴"
+
+#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#: libgnomevfs/gnome-vfs-result.c:67
+msgid "Host name not valid"
+msgstr "호스트 이름이 잘못됨"
+
+#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#: libgnomevfs/gnome-vfs-result.c:68
+msgid "Host has no address"
+msgstr "호스트의 주소가 없슴"
+
+#. GNOME_VFS_ERROR_LOGINFAILED
+#: libgnomevfs/gnome-vfs-result.c:69
+msgid "Login failed"
+msgstr "로그인 실패"
+
+#. GNOME_VFS_ERROR_CANCELLED
+#: libgnomevfs/gnome-vfs-result.c:70
+msgid "Operation cancelled"
+msgstr ""
+
+#. GNOME_VFS_ERROR_DIRECTORYBUSY
+#: libgnomevfs/gnome-vfs-result.c:71
+msgid "Directory busy"
+msgstr "디렉토리 사용중"
+
+#. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
+#: libgnomevfs/gnome-vfs-result.c:72
+msgid "Directory not empty"
+msgstr "빈 디렉토리가 아님"
+
+#. GNOME_VFS_ERROR_TOOMANYLINKS
+#: libgnomevfs/gnome-vfs-result.c:73
+msgid "Too many links"
+msgstr "링크가 너무 많음"
+
+#. GNOME_VFS_ERROR_READONLYFS
+#: libgnomevfs/gnome-vfs-result.c:74
+msgid "Read only file system"
+msgstr "읽기 전용 파일 시스템"
+
+#. GNOME_VFS_ERROR_NOTSAMEFS
+#: libgnomevfs/gnome-vfs-result.c:75
+msgid "Not on the same file system"
+msgstr "같은 파일시스템이 아님"
+
+#. GNOME_VFS_ERROR_NAMETOOLONG
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Name too long"
+msgstr "이름이 너무 김"
+
+#: libgnomevfs/gnome-vfs-result.c:133
+msgid "Unknown error"
+msgstr "알수 없는 오류"
+
+#: libgnomevfs/gnome-vfs-utils.c:41
+msgid "1 byte"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-utils.c:43
+#, c-format
+msgid "%u bytes"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-utils.c:50
+#, c-format
+msgid "%.1fK"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-utils.c:54
+#, c-format
+msgid "%.1fM"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-utils.c:58
+#, c-format
+msgid "%.1fG"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:338
+msgid "Dying."
+msgstr ""
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:503
+#, c-format
+msgid "Error reading: %s"
+msgstr "읽기 오류: %s"
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:525
+#, c-format
+msgid "Error writing: %s"
+msgstr "쓰기 오루: %s"
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:574
+#, c-format
+msgid "Cannot write: %s"
+msgstr "쓸수 없슴: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:602
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr "임시파일 이름 `%s'를 만들수 없슴"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
+#: libgnomevfs-corba/gnome-vfs-slave.c:616
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr "소켓을 만들수 없슴: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:634
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:641
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:663
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1396
+msgid "Cannot initialize CORBA."
+msgstr "CORBA를 초기화 시킬수 없슴"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1403
+msgid "Cannot resolve initial reference to RootPOA."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1410
+msgid "Cannot activate POA manager."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1435
+#, c-format
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "사용법: %s <ior> [<ior_fd>]\n"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1446
+#, c-format
+msgid "Cannot open file descriptor %d."
+msgstr "파일 기술자 %d를 열수 없슴."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1469
+#, c-format
+msgid "Notify interface for `%s' not found."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1479
+msgid "Cannot setup Request object."
+msgstr "요청한 객체를 설정할수 없슴"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1486
+msgid "Cannot extract IOR."
+msgstr "IOR을 풀수 없슴"
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
+#, c-format
+msgid "Got weird string from the slave process: `%s'"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
+#, c-format
+msgid "Cannot get object for `%s'"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
+#, c-format
+msgid "Cannot connect socket `%s': %s"
+msgstr "소켓 `%s'를 연결할수 없슴: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:803
+msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+msgstr "GNOME:VFS:Slave:Notify 를 초기화 할수 없슴"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:119
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:122
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:153
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+msgstr "GNOME::VFS:Slave %s를 죽일수 없슴 -- 예외 %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:156
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "GNOME::VFS:Slave 를 죽일수 없슴 (알수없는 IOR) -- 예외 %s"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:160
+msgid "Error writing to the wakeup GnomeVFSJob channel."
+msgstr ""
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:544
+#: libgnomevfs-pthread/gnome-vfs-job.c:1448
+#, c-format
+msgid "Unknown job ID %d"
+msgstr "알수없는 작업 ID %d"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:948
+#: libgnomevfs-pthread/gnome-vfs-job.c:1043
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "GIOChannel을 열기위한 파이프 생성 실패: %s"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:1481
+msgid "Operation stopped"
+msgstr "작동 중지"
+
+#: modules/file-method.c:358
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "알수없는 GnomeVFSSeekPosition %d"
+
+#: modules/ftp-method.c:357
+msgid "ftpfs: Invalid host name."
+msgstr "ftpfs: 잘못된 호스트 이름."
+
+#: modules/ftp-method.c:380
+msgid "ftpfs: Invalid host address."
+msgstr "ftpfs: 잘못된 호스트 주소."
+
+#: modules/ftp-method.c:400
+#, c-format
+msgid "ftpfs: making connection to %s"
+msgstr "ftpfs: %s로 접속 연결중"
+
+#: modules/ftp-method.c:406
+msgid "ftpfs: connection interrupted by user"
+msgstr "ftpfs: 사용자가 접속 중지"
+
+#: modules/ftp-method.c:408
+#, c-format
+msgid "ftpfs: connection to server failed: %s"
+msgstr "ftpfs: 서버로 연결 실패: %s"
+
+#: modules/ftp-method.c:484
+#, c-format
+msgid "Waiting to retry... %d (Control-C to cancel)"
+msgstr "재시도하기 위해 대기중... %d (취소하려면 Control-C)"
+
+#: modules/ftp-method.c:755
+msgid " FTP: Password required for "
+msgstr " FTP: 비밀번호가 필요합니다 "
+
+#: modules/ftp-method.c:794
+msgid "ftpfs: sending login name"
+msgstr "ftpfs: 로그인 이름 전송중"
+
+#: modules/ftp-method.c:800
+msgid "ftpfs: sending user password"
+msgstr "ftpfs: 사용자 비밀번호 전송중"
+
+#: modules/ftp-method.c:806
+msgid "ftpfs: logged in"
+msgstr "ftpfs: 로그인 중"
+
+#: modules/ftp-method.c:818
+#, c-format
+msgid "ftpfs: Login incorrect for user %s "
+msgstr "ftpfs: 사용자 %s의 로그인이 잘못되었슴"
+
+#: modules/ftp-method.c:831
+msgid "ftpfs: aborting transfer."
+msgstr "ftpfs: 전송 중지."
+
+#: modules/ftp-method.c:833
+#, c-format
+msgid "ftpfs: abort error: %s"
+msgstr "ftpfs: 중지 오류: %s"
+
+#: modules/ftp-method.c:838
+msgid "ftpfs: abort failed"
+msgstr "ftpfs: 중지 실패"
+
+#: modules/ftp-method.c:915
+msgid "ftpfs: could not setup passive mode"
+msgstr "ftpfs: 수동모드로 설정하지 못하였습니다"
+
+#: modules/ftp-method.c:1092
+#, c-format
+msgid "ftpfs: storing file %d (%d)"
+msgstr "ftpfs: 파일 저장중 %d (%d)"
+
+#: modules/ftp-method.c:1313 modules/ftp-method.c:1515
+msgid "ftpfs: CWD failed."
+msgstr "ftpfs: 현재 작업 디렉토리를 읽을수 없습니다."
+
+#: modules/ftp-method.c:1323 modules/ftp-method.c:1330
+msgid "ftpfs: couldn't resolve symlink"
+msgstr "ftpfs: symlink 를 해석할수 없습니다"
+
+#: modules/ftp-method.c:1382
+msgid "Resolving symlink..."
+msgstr "symlink 해석중..."
+
+#: modules/ftp-method.c:1506
+#, c-format
+msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
+msgstr "ftpfs: FTP디렉토리 %s 읽는중... (유닉스 ls옵션 사용하지 않음)"
+
+#: modules/ftp-method.c:1510
+#, c-format
+msgid "ftpfs: Reading FTP directory %s..."
+msgstr "ftpfs: FTP디렉토리 %s 읽는중..."
+
+#: modules/ftp-method.c:1576
+msgid "ftpfs: reading FTP directory interrupt by user"
+msgstr "ftpfs: FTP디렉토리 읽는중 사용자가 중지"
+
+#: modules/ftp-method.c:1600
+msgid "ftpfs: got listing"
+msgstr "ftpfs: 목록 받는중"
+
+#: modules/ftp-method.c:1652
+msgid "ftpfs: failed; nowhere to fallback to"
+msgstr ""
+
+#: modules/ftp-method.c:2045
+msgid "Starting linear transfer..."
+msgstr "전송 시작..."
+
+#: modules/ftp-method.c:2115
+msgid "Preparing reget..."
+msgstr "다시 받기 준비..."
+
+#: modules/http-method.c:502
+#, c-format
+msgid "Invalid header `%s'"
+msgstr "잘못된 헤더 `%s'"
+
+#: modules/http-method.c:519
+#, c-format
+msgid "%s to retrieve"
+msgstr "%s 받음"
+
+#: modules/http-method.c:655
+#, c-format
+msgid "Closing connection to %s"
+msgstr "%s의 연결 끊음"
+
+#: modules/http-method.c:809
+#, c-format
+msgid "%s of %s read"
+msgstr "%2$s 중 %1$s 읽음"
+
+#: modules/http-method.c:812
+#, c-format
+msgid "%s read"
+msgstr "%s 읽음"
+
+#. Multi-Status
+#: modules/http-method.c:974
+msgid "HTTP server returned an invalid PROPFIND response"
+msgstr ""

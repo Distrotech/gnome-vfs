@@ -1,3 +1,7 @@
+2000-06-10  Sung-Hyun Nam  <namsh@lgic.co.kr>
+
+	* configure.in (ALL_LINGUAS): added ko
+
 2000-06-08  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c
