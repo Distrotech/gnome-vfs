@@ -1,3 +1,10 @@
+2000-09-29  Ian McKellar  <yakk@yakk.net.au>
+
+	* modules/ftp-method.c: (ls_to_file_info), (do_read_directory):
+	Fixed a bug where NULL was being returned for the mime-type for
+	files whose type was unknown. Fixed a bug where a reading a
+	directory would busy-loop forever on an empty string.
+
 2000-07-28  Christophe Merlet  <christophe@merlet.net>
 
 	* mime-type-capplet/nautilus-mime-type.desktop: Added the

@@ -2,7 +2,7 @@
 
 /* ftp-method.c - VFS modules for FTP
 
-   Copyright (C) 2000 Ian McKellar
+   Copyright (C) 2000 Ian McKellar, Eazel Inc.
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -848,7 +848,7 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info)
 		}
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
-			mime_type = gnome_vfs_mime_type_from_name_or_default (file_info->name, NULL);
+			mime_type = gnome_vfs_mime_type_from_name_or_default (file_info->name, "application/octet-stream");
 			/*ftp_debug (conn, g_strdup_printf ("mimetype = %s", mime_type));*/
 		} else {
 			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
@@ -1077,6 +1077,9 @@ do_read_directory (GnomeVFSMethod *method,
 
 	while (TRUE) {
 		gboolean success = ls_to_file_info (conn->dirlistptr, file_info);
+
+		if (*(conn->dirlistptr) == '\0')
+			return GNOME_VFS_ERROR_EOF;
 
 		/* go till we find \r\n */
 		while (conn->dirlistptr &&
