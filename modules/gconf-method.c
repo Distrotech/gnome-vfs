@@ -39,6 +39,7 @@ static GnomeVFSResult do_open           (GnomeVFSMethod *method,
 				         GnomeVFSURI *uri,
 				         GnomeVFSOpenMode mode,
 				         GnomeVFSContext *context);
+#if 0
 static GnomeVFSResult do_create         (GnomeVFSMethod *method,
 				         GnomeVFSMethodHandle **method_handle,
 				         GnomeVFSURI *uri,
@@ -46,9 +47,11 @@ static GnomeVFSResult do_create         (GnomeVFSMethod *method,
 				         gboolean exclusive,
 				         guint perm,
 				         GnomeVFSContext *context);
+#endif
 static GnomeVFSResult do_close          (GnomeVFSMethod *method,
 				         GnomeVFSMethodHandle *method_handle,
 				         GnomeVFSContext *context);
+#if 0
 static GnomeVFSResult do_read           (GnomeVFSMethodHandle *method_handle,
 				         gpointer buffer,
 				         GnomeVFSFileSize num_bytes,
@@ -57,6 +60,7 @@ static GnomeVFSResult do_write          (GnomeVFSMethodHandle *method_handle,
 				         gconstpointer buffer,
 				         GnomeVFSFileSize num_bytes,
 				         GnomeVFSFileSize *bytes_written);
+#endif
 static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
@@ -77,11 +81,13 @@ static GnomeVFSResult do_get_file_info  (GnomeVFSMethod *method,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys,
 					 GnomeVFSContext *context);
+#if 0
 static GnomeVFSResult do_get_file_info_from_handle
                                         (GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys);
+#endif
 static gboolean       do_is_local       (GnomeVFSMethod *method,
 					 const GnomeVFSURI *uri);
 
@@ -399,6 +405,7 @@ do_open (GnomeVFSMethod *method,
 	return GNOME_VFS_ERROR_WRONGFORMAT;
 }
 
+#if 0
 static GnomeVFSResult   
 do_create (GnomeVFSMethod *method,
 	   GnomeVFSMethodHandle **method_handle,
@@ -410,6 +417,7 @@ do_create (GnomeVFSMethod *method,
 {
 	return GNOME_VFS_ERROR_WRONGFORMAT;
 }
+#endif
 
 static GnomeVFSResult   
 do_close (GnomeVFSMethod *method,
@@ -419,6 +427,7 @@ do_close (GnomeVFSMethod *method,
 	return GNOME_VFS_ERROR_WRONGFORMAT;
 }
 
+#if 0
 static GnomeVFSResult
 do_read (GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
@@ -436,6 +445,7 @@ do_write (GnomeVFSMethodHandle *method_handle,
 {
 	return GNOME_VFS_ERROR_WRONGFORMAT;
 }
+#endif
 
 static GnomeVFSResult 
 do_open_directory (GnomeVFSMethod *method,
@@ -633,6 +643,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	return file_info_value (file_info, options, value, key);
 }
 
+#if 0
 static GnomeVFSResult  
 do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
@@ -641,7 +652,7 @@ do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 {
 	return GNOME_VFS_ERROR_WRONGFORMAT;	
 }
-
+#endif
 
 gboolean 
 do_is_local (GnomeVFSMethod *method, const GnomeVFSURI *uri)

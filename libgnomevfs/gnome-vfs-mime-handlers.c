@@ -21,14 +21,14 @@
 
    Author: Maciej Stachowiak <mjs@eazel.com> */
 
-#include <gnome-vfs-mime-handlers.h>
-#include <gnome-vfs-mime-info.h>
-#include <stdio.h>
+#include <config.h>
+#include "gnome-vfs-mime-handlers.h"
 
-/* FIXME: This next include is only here to support temporary hacks */
-#include <gnome-vfs-file-info.h>
+#include "gnome-vfs-mime-info.h"
+#include <gconf/gconf-client.h>
+#include <gtk/gtksignal.h>
 
-
+static char *get_user_level (void);
 static gboolean str_to_bool (const char *str);
 static char *join_str_list (const char *separator, GList *list);
 static gboolean strv_contains_str (char **strv, const char *str);
@@ -37,7 +37,7 @@ static char *mime_type_get_supertype (const char *mime_type);
 static char **strsplit_handle_null (const char *str, const char *delim, int max);
 static OAF_ServerInfo *OAF_ServerInfo__copy (OAF_ServerInfo *orig);
 static GList *OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
-static GList *process_app_list (const char *id_list) ;
+static GList *process_app_list (const char *id_list);
 
 
 GnomeVFSMimeActionType
@@ -194,20 +194,29 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	GList *retval;
 	GList *p;
 	int i;
+	char *user_level, *id_list_key;
 	
 	if (mime_type == NULL) {
 		return NULL;
 	}
 
-	/* FIXME: should be using user level */
+	/* Base list depends on user level. */
+	user_level = get_user_level ();
+	id_list_key = g_strconcat ("short_list_application_ids_for_",
+				   user_level,
+				   "_user_level",
+				   NULL);
+	g_free (user_level);
+	short_list_id_list = gnome_vfs_mime_get_value (mime_type, id_list_key);
+	g_free (id_list_key);
 
-	short_list_id_list = gnome_vfs_mime_get_value (mime_type,
-						       "short_list_application_ids");
 	/* get user short list delta (add list and remove list) */
-	short_list_id_user_additions = gnome_vfs_mime_get_value (mime_type,
-								 "short_list_application_user_additions");
-	short_list_id_user_removals = gnome_vfs_mime_get_value (mime_type,
-								"short_list_application_user_removals");
+	short_list_id_user_additions = gnome_vfs_mime_get_value
+		(mime_type,
+		 "short_list_application_user_additions");
+	short_list_id_user_removals = gnome_vfs_mime_get_value
+		(mime_type,
+		 "short_list_application_user_removals");
 	
 	/* compute list modified by delta */
 	short_list_strv = strsplit_handle_null (short_list_id_list, ",", 0);
@@ -263,22 +272,27 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 	char *query;
 	char *sort[2];
 	char *iids_delimited;
+	char *user_level, *id_list_key;
 	
 	if (mime_type == NULL) {
 		return NULL;
 	}
 
-	/* FIXME - determine user level */
-
 	/* get short list IIDs for that user level */
-	short_list_iid_list = gnome_vfs_mime_get_value (mime_type,
-							"short_list_component_iids");
+	user_level = get_user_level ();
+	id_list_key = g_strconcat ("short_list_component_iids_for_",
+				   user_level,
+				   "_user_level",
+				   NULL);
+	g_free (user_level);
+	short_list_iid_list = gnome_vfs_mime_get_value (mime_type, id_list_key);
+	g_free (id_list_key);
 
 	/* get user short list delta (add list and remove list) */
-	short_list_iid_user_additions = gnome_vfs_mime_get_value (mime_type,
-								  "short_list_component_user_additions");
-	short_list_iid_user_removals = gnome_vfs_mime_get_value (mime_type,
-								 "short_list_component_user_removals");
+	short_list_iid_user_additions = gnome_vfs_mime_get_value
+		(mime_type, "short_list_component_user_additions");
+	short_list_iid_user_removals = gnome_vfs_mime_get_value
+		(mime_type, "short_list_component_user_removals");
 	
 	/* compute list modified by delta */
 	
@@ -723,3 +737,46 @@ process_app_list (const char *id_list)
 }
 	
 
+/* Returns the Nautilus user level, a string.
+ * This does beg the question: Why does gnome-vfs have the
+ * Nautilus user level coded into it. Eventually we might
+ * want to call this the GNOME user level or something.
+ */
+static char *
+get_user_level (void)
+{
+	static GConfClient *client;
+	char *user_level;
+
+	client = NULL;
+
+	/* This sequence is needed in case no one has initialize GConf.
+	 * GConf won't take care of initializing Gtk.
+	 */
+	if (!gconf_is_initialized ()) {
+		gconf_init (0, NULL, NULL);
+	}
+	gtk_type_init ();
+	gtk_signal_init ();
+
+	/* Create the client. */
+	if (client == NULL) {
+		client = gconf_client_new ();
+		/* FIXME: This client never gets freed. */
+	}
+
+	user_level = gconf_client_get_string (client, "/nautilus/user_level", NULL);
+
+	/* FIXME: Nautilus just asserts this.
+	 * But it doesn't seem reasonable to assert something that's the result
+	 * of reading from a file.
+	 */
+	if (user_level == NULL) {
+		user_level = g_strdup ("novice");
+	}
+
+	/* FIXME: Is it OK to just return a string without checking if
+	 * it's one of the 3 expected values?
+	 */
+	return user_level;
+}

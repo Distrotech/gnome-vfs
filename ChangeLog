@@ -1,3 +1,27 @@
+2000-06-01  Darin Adler  <darin@eazel.com>
+
+	A set of changes to make the short lists be based on the user
+	level.  I'm not wild about adding the GConf dependency nor about
+	the 3 identical lists for every MIME type, but for now this is
+	what we designed.
+	
+	* configure.in: Changed to always require GConf, not just
+	conditionally.
+	
+	* data/mime/gnome-vfs.keys: Updated the short list keys to have
+	a separate list for each user level.
+	
+	* libgnomevfs/Makefile.am: Added GConf to what's linked with the
+	gnome-vfs library.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_short_list_applications),
+	(gnome_vfs_mime_get_short_list_components), (get_user_level):
+	Added code to get the user level and include the user level name
+	in the attribute name that's sought ought in the MIME data.
+	
+	* modules/gconf-method.c: Fixed build warnings.
+
 2000-06-01  Maciej Stachowiak  <mjs@eazel.com>
 
 	* data/mime/gnome-vfs.keys: Added short list and default

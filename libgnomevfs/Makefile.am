@@ -1,3 +1,5 @@
+NULL = 
+
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
@@ -20,12 +22,16 @@ libgnomevfs_la_LIBADD =				\
 	$(GNOME_LIBDIR)				\
 	$(GNOME_LIBS)				\
 	$(OAF_LIBS)	                        \
-	$(GLIB_LIBS)
+	$(GCONF_LIBS)	                        \
+	$(GLIB_LIBS)				\
+	$(NULL)
 
 libgnomevfs_la_CFLAGS =				\
 	$(GNOME_CFLAGS)				\
 	$(OAF_CFLAGS)	                        \
-	$(GLIB_CFLAGS)
+	$(GCONF_CFLAGS)	                        \
+	$(GLIB_CFLAGS)				\
+	$(NULL)
 
 libgnomevfsincludedir = $(includedir)/libgnomevfs
 
