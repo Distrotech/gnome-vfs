@@ -1,3 +1,9 @@
+2000-08-11  Ali Abdin <aliabdin@aucegypt.edu>
+
+        * libgnomevfs/gnome-vfs-mime-snif-buffer.h:
+        * libgnomevfs/gnome-vfs-application-registry.h:
+        Remove unneeded #include <libgnome/gnome-defs.h> (libgnome dependency)
+
 2000-08-10  Darin Adler  <darin@eazel.com>
 
 	* data/mime/gnome-vfs.keys: Fix the default for directories. It

@@ -27,7 +27,6 @@
 #ifndef GNOME_VFS_MIME_SNIFF_BUFFER_H
 #define GNOME_VFS_MIME_SNIFF_BUFFER_H
 
-#include <libgnome/gnome-defs.h>
 #include <glib.h>
 
 #include "gnome-vfs-types.h"
