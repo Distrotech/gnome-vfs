@@ -2,14 +2,15 @@
 # Copyright (C) 1999 Free Software Foundation, Inc.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1999.
 # Birger Langkjer <birger.langkjer@image.dk>, 2000.
+# Keld Simonsen <Keld@dkuug.dk>, 2000.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2000-02-23 05:22+0100\n"
+"POT-Creation-Date: 2000-04-09 22:05+0200\n"
 "PO-Revision-Date: 2000-03-04 20:03+01:00\n"
-"Last-Translator: BL <birger.langkjer@image.dk>\n"
-"Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
+"Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
+"Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
@@ -397,7 +398,7 @@ msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Fejl ved skrivning til 'wakeup GnomeVFSJob' kanalen."
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1247
+#: libgnomevfs-pthread/gnome-vfs-job.c:1248
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Ukendt job-ID %d"
@@ -408,7 +409,7 @@ msgstr "Ukendt job-ID %d"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1265
+#: libgnomevfs-pthread/gnome-vfs-job.c:1266
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
@@ -529,30 +530,35 @@ msgstr "Starter lineær overførsel..."
 msgid "Preparing reget..."
 msgstr "Forbereder fortryd..."
 
-#: modules/http-method.c:471
+#: modules/http-method.c:500
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Ugyldig header '%s'"
 
-#: modules/http-method.c:488
+#: modules/http-method.c:517
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:601
+#: modules/http-method.c:652
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:686
+#: modules/http-method.c:805
 #, c-format
 msgid "%s of %s read"
 msgstr "%s af %s læst"
 
-#: modules/http-method.c:689
+#: modules/http-method.c:808
 #, c-format
 msgid "%s read"
 msgstr "%s læst"
+
+#. Multi-Status
+#: modules/http-method.c:970
+msgid "HTTP server returned an invalid PROPFIND response"
+msgstr "HTTP-tjener returnerede et ugyldig PROPFIND-svar"
 
 #~ msgid "Destroying slave."
 #~ msgstr "Ødelægger slave."
