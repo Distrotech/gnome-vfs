@@ -1,3 +1,12 @@
+2003-02-13  Bastien Nocera  <hadess@hadess.net>
+
+	reviewed by: Alexander Larsson  <alexl@redhat.com>
+
+	* modules/ssh-method.c: (ssh_connect), (ssh_destroy),
+	(ssh_check_for_done), (do_read), (do_read_directory):
+	add more robust error checking, check for EOF and EOD when we're done
+	reading rather than on close
+
 ==== gnome-vfs 2.2.2 ====
 	
 2003-02-12  Alexander Larsson  <alexl@redhat.com>

@@ -52,6 +52,7 @@ typedef struct {
 	GnomeVFSOpenMode open_mode;
 	int read_fd;
 	int write_fd;
+	int error_fd;
 	pid_t pid;
 	GnomeVFSFileInfoOptions info_opts;
 } SshHandle;
@@ -171,10 +172,11 @@ ssh_connect (SshHandle **handle_return,
 	SshHandle *handle;
 	char *command_line, *host_port;
 	const gchar *username, *hostname;
-	int argc, error_fd;
+	int argc;
 	GError *gerror = NULL;
 	GnomeVFSFileSize bytes_read;
 	char buffer[LINE_LENGTH];
+	GnomeVFSResult res;
 
 	/* We do support ssh:/// as ssh://localhost/ */
 	hostname = gnome_vfs_uri_get_host_name (uri);
@@ -194,7 +196,9 @@ ssh_connect (SshHandle **handle_return,
 				     username,
 				     " -p ", host_port,
 				     " ", hostname,
-				     " ", "\"LC_ALL=C;", command,"\"",
+				     " ",
+				     "\"LC_ALL=C; echo READY > /dev/stderr;",
+				     command, "; echo DONE > /dev/stderr\"",
 				     NULL);
 	g_free (host_port);
 
@@ -213,7 +217,7 @@ ssh_connect (SshHandle **handle_return,
 				  G_SPAWN_SEARCH_PATH,
 				  NULL, NULL,
 				  &handle->pid, &handle->write_fd, &handle->read_fd,
-				  &error_fd, &gerror);
+				  &handle->error_fd, &gerror);
 	g_strfreev (argv);
 
 	if (gerror) {
@@ -228,24 +232,23 @@ ssh_connect (SshHandle **handle_return,
 
 	/* You can add more error checking here */
 	memset (buffer, '\0', LINE_LENGTH);
-	ssh_read_error (error_fd, &buffer, LINE_LENGTH, &bytes_read);
+	res = ssh_read_error (handle->error_fd, &buffer,
+			LINE_LENGTH, &bytes_read);
 
-	if (bytes_read != 0) {
-		if (strncmp ("Permission denied", buffer,
+	if (bytes_read != 0 && res == GNOME_VFS_OK) {
+		if (strncmp ("READY", buffer, strlen ("READY")) == 0) {
+			res = GNOME_VFS_OK;
+		} else if (strncmp ("Permission denied", buffer,
 					strlen("Permission denied")) == 0) {
-			close (error_fd);
-			return GNOME_VFS_ERROR_LOGIN_FAILED;
-		}
-		if (strncmp ("Host key verification failed", buffer,
-					strlen("Host key verification failed")) == 0) {
-			close (error_fd);
-			return GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE;
+			res = GNOME_VFS_ERROR_LOGIN_FAILED;
+		} else if (strncmp ("Host key verification failed", buffer,
+					strlen("Host key verification failed"))
+				== 0) {
+			res = GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE;
 		}
 	}
 
-	close (error_fd);
-
-	return GNOME_VFS_OK;
+	return res;
 }
 
 static GnomeVFSResult
@@ -253,6 +256,7 @@ ssh_destroy (SshHandle *handle)
 {
 	close (handle->read_fd);
 	close (handle->write_fd);
+	close (handle->error_fd);
 	gnome_vfs_uri_unref (handle->uri);
 	kill (handle->pid, SIGINT);
 	g_free (handle);
@@ -298,6 +302,26 @@ ssh_read_error (int error_fd,
 	*bytes_read = my_read;
 
 	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
+ssh_check_for_done (SshHandle *handle)
+{
+	char buffer[LINE_LENGTH];
+	GnomeVFSResult res;
+	GnomeVFSFileSize bytes_read;
+
+	memset (buffer, '\0', LINE_LENGTH);
+	res = ssh_read_error (handle->error_fd, &buffer,
+			LINE_LENGTH, &bytes_read);
+
+	if (bytes_read != 0 && res == GNOME_VFS_OK) {
+		if (strncmp ("DONE", buffer, strlen ("DONE")) == 0) {
+			return res;
+		}
+	}
+
+	return GNOME_VFS_ERROR_GENERIC;
 }
 
 static GnomeVFSResult
@@ -459,7 +483,7 @@ do_read (GnomeVFSMethod *method,
 	 GnomeVFSFileSize *bytes_read,
 	 GnomeVFSContext *context)
 {
-	GnomeVFSResult result;
+	GnomeVFSResult result, res_secondary;
 
 	result =  ssh_read ((SshHandle *)method_handle, buffer, num_bytes,
 			bytes_read);
@@ -468,7 +492,12 @@ do_read (GnomeVFSMethod *method,
 	}
 
 	if (*bytes_read == 0) {	
-		result = GNOME_VFS_ERROR_EOF;
+		res_secondary = ssh_check_for_done ((SshHandle *)method_handle);
+		if (res_secondary != GNOME_VFS_OK) {
+			result = res_secondary;
+		} else {
+			result = GNOME_VFS_ERROR_EOF;
+		}
 	}
 	return result;
 }
@@ -596,7 +625,7 @@ do_read_directory (GnomeVFSMethod *method,
                    GnomeVFSFileInfo *file_info,
 		   GnomeVFSContext *context)
 {
-	GnomeVFSResult result = GNOME_VFS_OK;
+	GnomeVFSResult result = GNOME_VFS_OK, res_secondary;
 	char line[LINE_LENGTH+1];
 	char c;
 	int i=0;
@@ -619,7 +648,13 @@ do_read_directory (GnomeVFSMethod *method,
 			}
 
 			if (result != GNOME_VFS_OK) {
-				return result;
+				res_secondary = ssh_check_for_done
+					((SshHandle *)method_handle);
+				if (res_secondary != GNOME_VFS_OK) {
+					result = res_secondary;
+				} else {
+					return result;
+				}
 			}
 
 			line[i] = c;
