@@ -44,6 +44,7 @@ typedef struct _FtpConnection {
 	} operation;
 	gchar *dirlist;
 	gchar *dirlistptr;
+	GnomeVFSFileInfoOptions file_info_options;
 } FtpConnection;
 
 #endif /* FTP_METHOD_H */

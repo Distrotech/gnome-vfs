@@ -1,3 +1,23 @@
+2000-10-14  Ian McKellar  <yakk@yakk.net.au>
+
+	* modules/ftp-method.c: (dircache_setup), (dircache_expire):
+	Initial caching support. Currently disabled.
+
+	(do_path_transfer_command):
+	Fix for empty paths.
+
+	(ftp_connection_create), (ftp_connection_destroy), 
+	(ftp_connection_aquire), (ftp_connection_release):
+	Count connections for debugging purposes.
+
+	(ls_to_file_info), (do_get_file_info),
+	(do_open_directory), (do_read_directory):
+	* modules/ftp-method.h:
+	Initial symlink expansion support
+
+	* test/test-directory.c: (print_list):
+	Better symlink debugging output.
+
 2000-10-12  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c:

@@ -101,6 +101,34 @@ static const int   control_port = 21;
 /* A GHashTable of GLists of FtpConnections */
 static GHashTable *spare_connections = NULL;
 G_LOCK_DEFINE_STATIC (spare_connections);
+static gint total_connections = 0;
+static gint allocated_connections = 0;
+
+#if 0
+struct CachedDirectoryListing {
+	GList *file_info_list;
+	time_t expires;
+};
+
+/* A GHashTable of directory listings */
+static GHashTable *cached_directory_listings = NULL;
+G_LOCK_DEFINE_STATIC (cached_directory_listings);
+
+static void dircache_setup() {
+	/* NOTE: only call this when you have the lock */
+	if (cached_directory_listings == NULL)
+		cached_directory_listings = g_hash_table_new 
+			(gnome_vfs_uri_hash, gnome_vfs_uri_hequal);
+}
+
+static void dircache_expire(GnomeVFSURI *uri) {
+	GList *list;
+	G_LOCK (cached_directory_listings);
+	dircache_setup();
+	list = g_hash_table_lookup(cached_directory_listings, uri);
+	G_UNLOCK (cached_directory_listings);
+}
+#endif
 
 #define ftp_debug(c,g) FTP_DEBUG((c),(g),__FILE__, __LINE__, __PRETTY_FUNCTION__)
 
@@ -415,7 +443,7 @@ do_path_transfer_command (FtpConnection *conn,
 	path = gnome_vfs_uri_get_path (uri);
 
 	if (path == NULL || strlen (path) == 0) {
-		path = ".";
+		path = "/";
 	}
 
 	actual_command = g_strdup_printf ("%s %s", command, path);
@@ -546,12 +574,15 @@ ftp_connection_create (FtpConnection **connptr,
 
 	ftp_debug (conn, g_strdup ("created"));
 
+	total_connections++;
+
 	return GNOME_VFS_OK;
 }
 
 static void
 ftp_connection_destroy (FtpConnection *conn) 
 {
+
 	if (conn->inet_connection) 
 	        gnome_vfs_inet_connection_destroy (conn->inet_connection, NULL);
 
@@ -574,6 +605,7 @@ ftp_connection_destroy (FtpConnection *conn)
 	g_free (conn->dirlist);
 	g_free (conn->dirlistptr);
 	g_free (conn);
+	total_connections--;
 }
 
 /* g_str_hash and g_str_equal seem to fail with null arguments */
@@ -673,6 +705,8 @@ ftp_connection_aquire (GnomeVFSURI *uri,
 
 	*connection = conn;
 
+	if(result == GNOME_VFS_OK) allocated_connections++;
+
 	return result;
 }
 
@@ -704,6 +738,7 @@ ftp_connection_release (FtpConnection *conn)
 		uri = gnome_vfs_uri_dup (conn->uri); 
 	}
 	g_hash_table_insert (spare_connections, uri, possible_connections);
+	allocated_connections--;
 
 	G_UNLOCK(spare_connections);
 }
@@ -817,7 +852,8 @@ do_write (GnomeVFSMethod *method,
 
 
 static gboolean 
-ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info) 
+ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info, 
+		GnomeVFSFileInfoOptions options) 
 {
 	struct stat s;
 	gchar *filename = NULL, *linkname = NULL;
@@ -845,6 +881,7 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info)
 		if(linkname) {
 			file_info->symlink_name = linkname;
 			file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
+			file_info->flags |= GNOME_VFS_FILE_FLAGS_SYMLINK;
 		}
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
@@ -978,12 +1015,16 @@ do_get_file_info (GnomeVFSMethod *method,
 				if (file_info->name && !strcmp (file_info->name,
 								name)) {
 					g_free (name);
+					do_close_directory(
+							method, method_handle,
+						       	context);
 					return GNOME_VFS_OK;
 				}
 
 				gnome_vfs_file_info_clear (file_info);
 			}
 		}
+		do_close_directory(method, method_handle, context);
 	}
 
 	return GNOME_VFS_ERROR_NOT_FOUND;
@@ -1039,6 +1080,7 @@ static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 
 	conn->dirlist = g_strdup (dirlist->str);
 	conn->dirlistptr = conn->dirlist;
+	conn->file_info_options = options;
 
 	g_string_free (dirlist,TRUE);
 
@@ -1076,7 +1118,15 @@ do_read_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_EOF;
 
 	while (TRUE) {
-		gboolean success = ls_to_file_info (conn->dirlistptr, file_info);
+		gboolean success = ls_to_file_info (conn->dirlistptr, file_info, conn->file_info_options);
+
+		if ((conn->file_info_options & 
+					GNOME_VFS_FILE_INFO_FOLLOW_LINKS) && 
+				(file_info->type == 
+				 GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK)) {
+		       	//g_print("[debug] expand symlink for: %s\n", file_info->name);
+		}
+
 
 		if (*(conn->dirlistptr) == '\0')
 			return GNOME_VFS_ERROR_EOF;
