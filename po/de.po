@@ -3,7 +3,7 @@
 # Matthias Warkus <mawa@iname.com>, 2000.
 # Christian Meyer <chrisime@gnome.org>, 2002.
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
-# Hendrik Richter <hendrik@gnome-de.org>, 2004.
+# Hendrik Richter <hendrik@gnome-de.org>, 2004, 2005.
 #
 # TODO: Somebody who's familiar to CDE's terminology needs to sync the
 # CDE-specific strings up with CDE
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.7.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 15:10+0100\n"
-"PO-Revision-Date: 2004-08-15 20:26+0200\n"
+"POT-Creation-Date: 2005-02-08 14:34+0100\n"
+"PO-Revision-Date: 2005-02-08 14:34+0100\n"
 "Last-Translator: Hendrik Richter <hendrik@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -539,7 +539,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1122
+#: libgnomevfs/gnome-vfs-utils.c:1131
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (ungültiger Unicode)"
@@ -1131,8 +1131,8 @@ msgstr "Benutzername am HTTP-Proxy"
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "Legt fest, ob Verbindungen mit dem Proxy-Server legitimiert werden müssen. "
 "Hierbei werden die Werte von »/system/http_proxy/authentication_user« und »/"
