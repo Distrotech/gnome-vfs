@@ -1,3 +1,8 @@
+2004-09-16  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* modules/ftp-method.c: Fix debugging define
+	so it doesn't create leaks. Closes bug #152811.
+
 2004-09-15  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-info.c: (handle_mime_info):

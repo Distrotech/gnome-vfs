@@ -201,7 +201,7 @@ FTP_DEBUG (FtpConnection *conn,
 
 #else 
 
-#define ftp_debug(c,g) (g)
+#define ftp_debug(c,g)
 
 #endif
 
