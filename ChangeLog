@@ -1,3 +1,24 @@
+2001-01-22  Rebecca Schulman  <rebecka@eazel.com>
+	Fixed bugzilla.eazel.com bug 5498 about
+	symbolic links across file systems caused 
+	copies instead of drags in nautilus.
+	This change makes the order uris are
+	passed to check_same_fs important.
+	The first uri is now the "source
+	uri," and the second is the "target uri."
+	
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-ops.h:
+	Change the argument names of check_same_fs to 
+	reflect the new argument names
+	* modules/file-method.c: (do_check_same_fs):
+	Do a stat on the "target uri" but an lstat
+	on the "source uri"
+	* doc/mime-data-specification.txt:
+	Added bug number references to the 
+	problems that we list in the specification
+
 2001-01-20  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Rebecca Schulman  <rebecka@eazel.com>

@@ -102,10 +102,10 @@ The default files inside GNOME VFS source have a header that includes
 a brief description of the file's format.
 
 [known problem: These headers are not in all files, and have both
-incorrect and hard-to-understand information.]
+incorrect and hard-to-understand information. (bugzilla.eazel.com bug 5438)]
 
 [known problem: We have separate parsers for each of these files,
-hence probably different sets of bugs for each.]
+hence probably different sets of bugs for each. (bugzilla.eazel.com bug 5439)]
 
 [known problem: We have had problems with stray whitespace confusing
 the parser in the past, problems of this type may still exist.]
@@ -160,17 +160,18 @@ file. The columns are as follows:
 
 [known poblem: The types other than "string" are unused, hence
 untested. Also, they're not really needed so we can probably delete
-this column.]
+this column. (bugzilla.eazel.com 5442)]
 
 [known problem: Priority scheme is "first pattern wins" which is not
 as flexible as the numeric priority scheme nor is it easy to
-understand/remember.]
+understand/remember. (bugzilla.eazel.com 5443)]
 
 [known problem: All content patterns have higher priority than all
-file name patterns. It would be better to be able to interleave them.]
+file name patterns. It would be better to be able to interleave
+them. (bugzilla.eazel.com 5444)]
 
 [known problem: This file is not extensible by adding multiple files
-in the same way that the others are.]
+in the same way that the others are. *bugzilla.eazel.com 5445)]
 
 1.  The offset (or offset range) that a pattern should be found at
 2   The type the pattern information takes on (only string is used currently in the
@@ -214,7 +215,7 @@ Possible keys include the following:
     for detail on the construction of (English) descriptions.
 
 [known problem: Translators like to edit .po files, not learn multiple
- file formats for translating.]
+ file formats for translating. (bugzilla.eazel.com 5446)]
 
 [known problem: Without the .pot/.po system, there's no way for
  translators to notice when the default string is changed so they can
@@ -261,7 +262,7 @@ Possible keys include the following:
 
 [known problem: This is not user-level-specific, and also arbitrarily
  means that either all applications come first or all components come first
- in the default order/]
+ in the default order. (bugzilla.eazel.com 5447, 5448)]
 
 6.  short_list_component_iids_for_novice_user_level,
     short_list_component_iids_for_intermediate_user_level,
