@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.4\n"
-"POT-Creation-Date: 2003-02-10 16:08+0100\n"
+"POT-Creation-Date: 2003-02-12 15:04+0100\n"
 "PO-Revision-Date: 2003-01-04 18:30+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
