@@ -1,3 +1,12 @@
+2002-04-02  Jody Goldberg <jody@gnome.org>
+
+	* modules/file-method.c (fam_callback) : Alex pointed out the
+	  Acknowledged event.  I'll use that, it is much cleaner.
+	  Ignore events that are tagged as cancelled, and delete cancelled
+	  handlers when an ack comes in.
+	(do_monitor_add) : init cancelled.
+	(do_monitor_cancel) : watch out for double cancels.
+
 2002-04-06  Zbigniew Chyla  <cyba@gnome.pl>
 
 	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init):
