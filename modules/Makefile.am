@@ -7,6 +7,7 @@ INCLUDES =					\
 	$(MODULES_XML_GCONF_CFLAGS)		\
 	$(MODULES_FILE_CFLAGS) 			\
 	$(LIBEFS_CFLAGS)			\
+	$(SAMBA_CFLAGS)				\
 	$(VFS_CFLAGS)				\
 	-D_FILE_OFFSET_BITS=64			\
 	-D_BSD_SOURCE				\
@@ -24,6 +25,7 @@ INCLUDES =					\
 
 EXTRA_DIST =					\
 	default-modules.conf			\
+	smb-module.conf				\
 	cdda-module.conf			\
 	cdemenu-module.conf			\
 	ssl-modules.conf
@@ -35,6 +37,13 @@ CDDA_LTLIBS = libcdda.la
 else
 CDDA_LTLIBS =
 endif
+
+if HAVE_SAMBA
+SMB_LTLIBS = libsmb.la
+else
+SMB_LTLIBS = 
+endif
+
 
 if BUILD_CDEMENU_MODULE
 CDEMENU_LTLIBS = libcdemenu-desktop.la
@@ -59,6 +68,7 @@ modules_LTLIBRARIES =				\
 	libvfs-pipe.la				\
 	libvfs-translate.la			\
 	$(CDEMENU_LTLIBS)                       \
+	$(SMB_LTLIBS)	                        \
 	libssh.la				\
 	libtar.la				\
 	$(NULL)
@@ -70,13 +80,16 @@ modulesconfdir=$(sysconfdir)/gnome-vfs-2.0/modules
 if HAVE_CDDA
 CDDA_CONF = cdda-module.conf
 endif
+if HAVE_SAMBA
+SMB_CONF = smb-module.conf
+endif
 if HAVE_SSL
 SSL_CONF = ssl-modules.conf
 endif
 if BUILD_CDEMENU_MODULE
 CDE_CONF = cdemenu-module.conf
 endif
-modulesconf_DATA = default-modules.conf $(CDDA_CONF) $(SSL_CONF) $(CDE_CONF)
+modulesconf_DATA = default-modules.conf $(CDDA_CONF) $(SMB_CONF) $(SSL_CONF) $(CDE_CONF)
 
 ###  `cdda' method
 
@@ -118,6 +131,12 @@ libnntp_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 libcdemenu_desktop_la_SOURCES = cdemenu-desktop-method.c
 libcdemenu_desktop_la_LDFLAGS = $(module_flags)
 libcdemenu_desktop_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
+
+### `smb' method
+
+libsmb_la_SOURCES = smb-method.c
+libsmb_la_LDFLAGS = $(module_flags)
+libsmb_la_LIBADD = $(SAMBA_LIBS) $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la 
 
 ###  `ssh' method
 

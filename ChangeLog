@@ -1,3 +1,11 @@
+2004-01-08  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* modules/Makefile.am:
+	* modules/smb-method.c: 
+	* modules/smb-module.conf:
+	Add smb module, used to be in gnome-vfs-extras.
+
 Wed Jan  7 13:36:53 2004  Jonathan Blandford  <jrb@gnome.org>
 
 	* libgnomevfs/mime*: use the xdg mime system.
