@@ -46,6 +46,9 @@ extern int errno;
 #endif
 #include <string.h>
 #include <glib.h>
+#ifdef HAVE_LIBGEN_H
+#include <libgen.h>
+#endif
 
 #if __STDC__
 # define P_(s) s

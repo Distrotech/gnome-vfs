@@ -34,7 +34,7 @@ enum {
 
 enum {
 	LOCAL_MIME_DIR,
-	GNOME_MIME_DIR,
+	GNOME_MIME_DIR
 };
 
 static guint signals[LAST_SIGNAL];

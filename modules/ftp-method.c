@@ -1460,10 +1460,11 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSFileInfoOptions options,
 		   GnomeVFSContext *context)
 {
+#define BUFFER_SIZE 1024
 	FtpConnection *conn;
 	GnomeVFSResult result;
-	GnomeVFSFileSize num_bytes = 1024, bytes_read;
-	gchar buffer[num_bytes+1];
+	GnomeVFSFileSize num_bytes = BUFFER_SIZE, bytes_read;
+	gchar buffer[BUFFER_SIZE];
 	GString *dirlist = g_string_new ("");
 
 	result = ftp_connection_acquire (uri, &conn, context);

@@ -1,5 +1,31 @@
 2004-01-22  Christophe Fergeau  <teuf@gnome.org>
 
+	Portability patch from "The Written Word", fixes bug #131393
+
+	* configure.in: use AC_SEARCH_LIBS instead of AC_CHECK_LIB
+	  fix small bug in OpenSSL check, added various additional checks
+	  for portability
+	* libgnomevfs/gnome-vfs-inet-connection.c: wrap h_errno in #ifdef 
+	  for AIX
+	* libgnomevfs/gnome-vfs-mime-monitor.c: remove trailing comma in enum
+	* libgnomevfs/gnome-vfs-private-utils.h: fix 
+	  gnome_vfs_process_run_cancellable return value
+	* libgnomevfs/gnome-vfs-process.c: fix _gnome_vfs_process_signal
+	  return value
+	* libgnomevfs/gnome-vfs-result.c: handle both ENOTEMPTY and EEXIST if
+	  necessary
+	* modules/bzip2-method.c:
+	* modules/cdda-method.c:
+	* modules/extfs-method.c: 
+	* modules/gzip-method.c:
+	* modules/vfolder/test-vfolder.c: 
+	* modules/test-method.c:  Don't use C++ comments 
+	* modules/fstype.c: include <libgen.h> for IRIX
+	* modules/ftp-method.c: fix use of a non constant initializer
+	* modules/vfolder/vfolder-method.c: fix val_end type
+
+2004-01-22  Christophe Fergeau  <teuf@gnome.org>
+
 	* libgnomevfs/gnome-vfs-parse-ls.c: properly handle 32 bits linux
 	  device numbers
 

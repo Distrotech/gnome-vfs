@@ -29,7 +29,10 @@
 #include <errno.h>
 #include <netdb.h>
 
+/* AIX #defines h_errno */
+#ifndef h_errno
 extern int h_errno;
+#endif
 
 static char *status_strings[] = {
 	/* GNOME_VFS_OK */				N_("No error"),
@@ -109,7 +112,9 @@ gnome_vfs_result_from_errno_code (int errno_code)
 	case EMFILE:	return GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES;
 	case EMLINK:	return GNOME_VFS_ERROR_TOO_MANY_LINKS;
 	case ENFILE:	return GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES;
+#if ENOTEMPTY != EEXIST
 	case ENOTEMPTY: return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
+#endif
 	case ENOENT:	return GNOME_VFS_ERROR_NOT_FOUND;
 	case ENOMEM:	return GNOME_VFS_ERROR_NO_MEMORY;
 	case ENOSPC:	return GNOME_VFS_ERROR_NO_SPACE;
