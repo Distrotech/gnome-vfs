@@ -1,3 +1,17 @@
+2001-06-03  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-socket.h, libgnomevfs/gnome-vfs-socket.c
+	(gnome_vfs_socket_new, gnome_vfs_socket_write,
+	gnome_vfs_socket_close, gnome_vfs_socket_read): Continued Seth's
+	reverse-engineering of the missing pieces of Ian's SSL code.
+
+	* libgnomevfs/gnome-vfs-inet-connection.c
+	(gnome_vfs_inet_connection_destroy,
+	gnome_vfs_inet_connection_close): Minor tweaks.
+	* libgnomevfs/gnome-vfs-ssl.c (gnome_vfs_ssl_destroy): Likewise.
+
+	* ABOUT-NLS: Removed (this is added by autogen).
+	
 2001-06-03  Seth Nickell  <snickell@stanford.edu>
 
 	* doc/Makefile.am:

@@ -220,7 +220,8 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 }
 
 void
-gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl) {
+gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl) 
+{
 #if HAVE_OPENSSL
 	SSL_shutdown (ssl->private->ssl);
 	SSL_CTX_free (ssl->private->ssl->ctx);

@@ -96,12 +96,18 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 
 void
 gnome_vfs_inet_connection_destroy (GnomeVFSInetConnection *connection,
-				   GnomeVFSCancellation *cancellation)
+				   GnomeVFSCancellation   *cancellation)
 {
 	g_return_if_fail (connection != NULL);
 
 	close (connection->sock);
 	g_free (connection);
+}
+
+static void
+gnome_vfs_inet_connection_close (GnomeVFSInetConnection *connection)
+{
+	gnome_vfs_inet_connection_destroy (connection, NULL);
 }
 
 GnomeVFSIOBuf *
@@ -166,7 +172,7 @@ gnome_vfs_inet_connection_write (GnomeVFSInetConnection *connection,
 static GnomeVFSSocketImpl inet_connection_socket_impl = {
 	(GnomeVFSSocketReadFunc)gnome_vfs_inet_connection_read,
 	(GnomeVFSSocketWriteFunc)gnome_vfs_inet_connection_write,
-	(GnomeVFSSocketCloseFunc)gnome_vfs_inet_connection_destroy
+	(GnomeVFSSocketCloseFunc)gnome_vfs_inet_connection_close
 };
 
 GnomeVFSSocket *
