@@ -1,3 +1,8 @@
+2000-01-16  Federico Mena Quintero  <federico@helixcode.com>
+
+	* libgnomevfs-pthread/Makefile.am: Do not put $(VFS_LIBS) in the
+	library LDADD.
+
 2000-01-14  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-uri.h: libgnomevfs/gnome-vfs-uri.c:

@@ -22,5 +22,3 @@ libgnomevfs_pthread_la_SOURCES =		\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-job-slave.c			\
 	gnome-vfs-job.c
-
-libgnomevfs_pthread_la_LDFLAGS=$(VFS_LIBS)
