@@ -5,14 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.1.0\n"
-"POT-Creation-Date: 2001-11-02 11:25-0800\n"
-"PO-Revision-Date: 2001-10-03 19:04GMT +0200\n"
+"POT-Creation-Date: 2001-11-19 18:39+0100\n"
+"PO-Revision-Date: 2001-11-11 12:25GMT+0200\n"
 "Last-Translator: Vasif İsmayıloğlu MD <azerb_linux@hotmail.com>\n"
-"Language-Team: Azerbaijani Turkish <linuxaz@azerimal.net>\n"
+"Language-Team: Azerbaijani Turkic <linuxaz@azerimail.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.8\n"
+"X-Generator: KBabel 0.9.5\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
@@ -351,9 +351,8 @@ msgstr "Namə'lum GnomeVFSSeekPosition %d"
 #~ msgid "C source code"
 #~ msgstr "C qaynaq kodu"
 
-#, fuzzy
 #~ msgid "C source code header"
-#~ msgstr "C qaynaq kodu"
+#~ msgstr "C qaynaq kodu başlığı"
 
 #~ msgid "C++ source code"
 #~ msgstr "C++ qaynaq kodu"
