@@ -137,7 +137,7 @@ context_new (GHashTable *hash_table, GString *str)
 
 	mime_type = g_strdup (str->str);
 	last_char = mime_type[strlen (mime_type) - 1];
-	if (last_char == ':') {
+	if (last_char == '*') {
 		mime_type[strlen (mime_type) - 1] = '\0';
 	}
 
