@@ -1,5 +1,7 @@
 NULL = 
 
+SUBDIRS = libcharset
+
 INCLUDES =					\
 	-DGNOME_VFS_CONFDIR=\"$(sysconfdir)\"	\
 	-DGNOME_VFS_DATADIR=\"$(datadir)\"	\
@@ -30,6 +32,8 @@ EXTRA_DIST =					\
 	getdelim.c
 
 libgnomevfs_la_LIBADD =				\
+	libcharset/libcharset.la		\
+	@ICONV_LIBS@				\
 	$(GLIB_LIBS)				\
 	$(ORBIT_LIBS)				\
 	$(OAF_LIBS)				\

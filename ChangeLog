@@ -1,3 +1,29 @@
+2002-01-30  Seth Nickell  <snickell@stanford.edu>
+
+	* acconfig.h:
+	* configure.in:
+	* libgnomevfs/libcharset/Makefile.am:
+	* libgnomevfs/libcharset/codeset.m4:
+	* libgnomevfs/libcharset/config.charset:
+	* libgnomevfs/libcharset/glibc21.m4:
+	* libgnomevfs/libcharset/libcharset.h:
+	* libgnomevfs/libcharset/localcharset.c:
+	(_gnome_vfs_locale_get_charset_aliases),
+	(_gnome_vfs_locale_charset):
+	* libgnomevfs/libcharset/ref-add.sin:
+	* libgnomevfs/libcharset/ref-del.sin:
+
+	Add libcharset, snatched from glib, which snatched
+	it from libiconv.
+
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-mime-info.c: (convert_with_iconv),
+	(get_charset), (locale_from_utf8), (context_add_key):
+
+	Steal some code from glib and improvise the rest ;-) When
+	reading the MIME database in convert it from UTF-8 into
+	the character set of the current locale.
+	
 2002-01-28  Darin Adler  <darin@bentspoon.com>
 
 	* modules/Makefile.am: Fix module flags. Patch from Remi Cohen-Scali
