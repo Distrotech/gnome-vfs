@@ -515,6 +515,7 @@ po/Makefile.in
 test/Makefile
 test/gnome-file-selection/Makefile
 test/vfs-run
+macros/Makefile
 ])
 
 chmod u+x test/vfs-run

@@ -1,3 +1,11 @@
+2001-02-28  Maciej Stachowiak  <mjs@eazel.com>
+
+	reviewed by: Darin Adler  <darin@eazel.com>
+
+	* Makefile.am, configure.in: Include macros dir in dist tarball
+	for the benefit of those building the module with
+	--enable-maintainer-mode
+
 2001-03-02  Eric Fischer  <eric@eazel.com>
 
 	reviewed by: Gregory Leblanc <gleblanc@cu-portland.edu>
