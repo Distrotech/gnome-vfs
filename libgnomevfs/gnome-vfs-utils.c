@@ -61,6 +61,8 @@
 
 #define READ_CHUNK_SIZE 8192
 
+#define MAX_SYMLINKS_FOLLOWED 32
+
 
 gchar*
 gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
@@ -1891,3 +1893,166 @@ gnome_vfs_make_uri_full_from_relative (const char *base_uri, const char *relativ
 	return result;
 }
 
+GnomeVFSResult
+_gnome_vfs_uri_resolve_all_symlinks_uri (GnomeVFSURI *uri,
+					 GnomeVFSURI **result_uri)
+{
+	GnomeVFSURI *new_uri, *resolved_uri;
+	GnomeVFSFileInfo *info;
+	GnomeVFSResult res;
+	char *p;
+	int n_followed_symlinks;
+
+	/* Ref the original uri so we don't lose it */
+	uri = gnome_vfs_uri_ref (uri);
+
+	*result_uri = NULL;
+
+	info = gnome_vfs_file_info_new ();
+
+	p = uri->text;
+	n_followed_symlinks = 0;
+	while (*p != 0) {
+		while (*p == GNOME_VFS_URI_PATH_CHR)
+			p++;
+		while (*p != 0 && *p != GNOME_VFS_URI_PATH_CHR)
+			p++;
+
+		new_uri = gnome_vfs_uri_dup (uri);
+		g_free (new_uri->text);
+		new_uri->text = g_strndup (uri->text, p - uri->text);
+		
+		gnome_vfs_file_info_clear (info);
+		res = gnome_vfs_get_file_info_uri (new_uri, info, GNOME_VFS_FILE_INFO_DEFAULT);
+		if (res != GNOME_VFS_OK) {
+			gnome_vfs_uri_unref (new_uri);
+			goto out;
+		}
+		if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK &&
+		    info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME) {
+			n_followed_symlinks++;
+			if (n_followed_symlinks > MAX_SYMLINKS_FOLLOWED) {
+				res = GNOME_VFS_ERROR_TOO_MANY_LINKS;
+				gnome_vfs_uri_unref (new_uri);
+				goto out;
+			}
+			resolved_uri = gnome_vfs_uri_resolve_relative (new_uri,
+								       info->symlink_name);
+			if (*p != 0) {
+				gnome_vfs_uri_unref (uri);
+				uri = gnome_vfs_uri_append_path (resolved_uri, p);
+				gnome_vfs_uri_unref (resolved_uri);
+			} else {
+				gnome_vfs_uri_unref (uri);
+				uri = resolved_uri;
+			}
+
+			p = uri->text;
+		} 
+		gnome_vfs_uri_unref (new_uri);
+	}
+
+	res = GNOME_VFS_OK;
+	*result_uri = gnome_vfs_uri_dup (uri);
+ out:
+	gnome_vfs_file_info_unref (info);
+	gnome_vfs_uri_unref (uri);
+	return res;
+}
+
+GnomeVFSResult
+_gnome_vfs_uri_resolve_all_symlinks (const char *text_uri,
+				     char **resolved_text_uri)
+{
+	GnomeVFSURI *uri, *resolved_uri;
+	GnomeVFSResult res;
+
+	*resolved_text_uri = NULL;
+
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL || uri->text == NULL) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	res = _gnome_vfs_uri_resolve_all_symlinks_uri (uri, &resolved_uri);
+
+	if (res == GNOME_VFS_OK) {
+		*resolved_text_uri = gnome_vfs_uri_to_string (resolved_uri, GNOME_VFS_URI_HIDE_NONE);
+		gnome_vfs_uri_unref (resolved_uri);
+	}
+	return res;
+}
+
+gboolean 
+_gnome_vfs_uri_is_in_subdir (GnomeVFSURI *uri, GnomeVFSURI *dir)
+{
+	GnomeVFSFileInfo *dirinfo, *info;
+	GnomeVFSURI *resolved_dir, *parent, *tmp;
+	GnomeVFSResult res;
+	gboolean is_in_dir;
+
+	resolved_dir = NULL;
+	parent = NULL;
+
+	is_in_dir = FALSE;
+	
+	dirinfo = gnome_vfs_file_info_new ();
+	info = gnome_vfs_file_info_new ();
+
+	res = gnome_vfs_get_file_info_uri (dir, dirinfo, GNOME_VFS_FILE_INFO_DEFAULT);
+	if (res != GNOME_VFS_OK || dirinfo->type != GNOME_VFS_FILE_TYPE_DIRECTORY) {
+		goto out;
+	}
+
+	res = _gnome_vfs_uri_resolve_all_symlinks_uri (dir, &resolved_dir);
+	if (res != GNOME_VFS_OK) {
+		goto out;
+	}
+	
+	res = _gnome_vfs_uri_resolve_all_symlinks_uri (uri, &tmp);
+	if (res != GNOME_VFS_OK) {
+		goto out;
+	}
+	
+	parent = gnome_vfs_uri_get_parent (tmp);
+	gnome_vfs_uri_unref (tmp);
+
+	while (parent != NULL) {
+		res = gnome_vfs_get_file_info_uri (parent, info, GNOME_VFS_FILE_INFO_DEFAULT);
+		if (res != GNOME_VFS_OK) {
+			break;
+		}
+
+		if (dirinfo->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_DEVICE &&
+		    dirinfo->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_INODE &&
+		    info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_DEVICE &&
+		    info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_INODE) {
+			if (dirinfo->device == info->device &&
+			    dirinfo->inode == info->inode) {
+				is_in_dir = TRUE;
+				break;
+			}
+		} else {
+			if (gnome_vfs_uri_equal (dir, parent)) {
+				is_in_dir = TRUE;
+				break;
+			}
+		}
+		
+		tmp = gnome_vfs_uri_get_parent (parent);
+		gnome_vfs_uri_unref (parent);
+		parent = tmp;
+	}
+
+ out:
+	if (resolved_dir != NULL) {
+		gnome_vfs_uri_unref (resolved_dir);
+	}
+	if (parent != NULL) {
+		gnome_vfs_uri_unref (parent);
+	}
+	gnome_vfs_file_info_unref (info);
+	return is_in_dir;
+}
+
+			  

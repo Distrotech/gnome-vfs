@@ -40,6 +40,7 @@
 #include "gnome-vfs-directory.h"
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-utils.h"
+#include "gnome-vfs-private-utils.h"
 #include <glib/gstrfuncs.h>
 #include <glib/gmessages.h>
 #include <string.h>
@@ -794,6 +795,34 @@ directory_add_items_and_size (GnomeVFSURI *dir_uri,
 
 }
 
+/* Checks to see if any part of the source pathname of a move
+ * is inside the target. If it is we can't remove the target
+ * and then move the source to it since we would then remove
+ * the source before we moved it.
+ */
+static gboolean
+move_source_is_in_target (GnomeVFSURI *source, GnomeVFSURI *target)
+{
+	GnomeVFSURI *parent, *tmp;
+	gboolean res;
+
+	parent = gnome_vfs_uri_ref (source);
+
+	res = FALSE;
+	while (parent != NULL) {
+		if (_gnome_vfs_uri_is_in_subdir (parent, target)) {
+			res = TRUE;
+			break;
+		}
+		tmp = gnome_vfs_uri_get_parent (parent);
+		gnome_vfs_uri_unref (parent);
+		parent = tmp;
+	}
+	gnome_vfs_uri_unref (parent);
+	
+	return res;
+}
+
 /* Compares the list of files about to be created by a transfer with
  * any possible existing files with conflicting names in the target directory.
  * Handles conflicts, optionaly removing the conflicting file/directory
@@ -868,8 +897,13 @@ handle_name_conflicts (GList **source_uri_list,
 				gnome_vfs_get_file_info_uri (uri, info, GNOME_VFS_FILE_INFO_DEFAULT);
 				progress_set_source_target_uris (progress, uri, NULL);
 				if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-					remove_directory (uri, TRUE, progress, 
-						xfer_options, error_mode, &skip);
+					if (move_source_is_in_target (source_uri, uri)) {
+						/* Would like a better error here */
+						result = GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
+					} else {					
+						remove_directory (uri, TRUE, progress, 
+								  xfer_options, error_mode, &skip);
+					}
 				} else {
 					remove_file (uri, progress,
 						xfer_options, error_mode, &skip);
