@@ -1546,9 +1546,11 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 	GnomeVFSResult result;
 	GnomeVFSDirectoryHandle *source_directory_handle;
 	GnomeVFSDirectoryHandle *dest_directory_handle;
+	GnomeVFSFileInfo *target_dir_info;
 
 	source_directory_handle = NULL;
 	dest_directory_handle = NULL;
+	target_dir_info = NULL;
 	
 	result = gnome_vfs_directory_open_from_uri (&source_directory_handle, source_dir_uri, 
 						    GNOME_VFS_FILE_INFO_DEFAULT);
@@ -1582,6 +1584,14 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 		return result;
 	}
 
+	target_dir_info = gnome_vfs_file_info_new ();
+	result = gnome_vfs_get_file_info_uri (target_dir_uri, target_dir_info,
+                                        GNOME_VFS_FILE_INFO_DEFAULT);
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_file_info_unref (target_dir_info);
+		target_dir_info = NULL;
+	}
+
 	if (call_progress_with_uris_often (progress, source_dir_uri, target_dir_uri, 
 					   GNOME_VFS_XFER_PHASE_OPENTARGET) != 0) {
 
@@ -1607,6 +1617,9 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 			if (result != GNOME_VFS_OK) {
 				gnome_vfs_file_info_unref (info);	
 				break;
+			}
+			if (target_dir_info && GNOME_VFS_FILE_INFO_SGID(target_dir_info)) {
+				info->gid = target_dir_info->gid;
 			}
 			
 			/* Skip "." and "..".  */
@@ -1669,20 +1682,29 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 	gnome_vfs_directory_close (source_directory_handle);
 
 	if (result == GNOME_VFS_OK) {
+		GnomeVFSFileInfo *info;
+		info = gnome_vfs_file_info_new ();
 		/* FIXME the modules should ignore setting of permissions if
 		 * "valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS" is clear
 		 * for now, make sure permissions aren't set to 000
 		 */
-
+		gnome_vfs_file_info_copy (source_file_info, info);
+		if (target_dir_info && GNOME_VFS_FILE_INFO_SGID(target_dir_info)) {
+			info->gid = target_dir_info->gid;
+		}
 		if ((source_file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) != 0) {
 			/* Call this separately from the time one, since one of them may fail,
 			   making the other not run. */
-			gnome_vfs_set_file_info_uri (target_dir_uri, source_file_info, 
+			gnome_vfs_set_file_info_uri (target_dir_uri, info, 
 						     GNOME_VFS_SET_FILE_INFO_OWNER | GNOME_VFS_SET_FILE_INFO_PERMISSIONS);
 		}
 		
 		/* Call this last so nothing else changes the times */
-		gnome_vfs_set_file_info_uri (target_dir_uri, source_file_info, GNOME_VFS_SET_FILE_INFO_TIME);
+		gnome_vfs_set_file_info_uri (target_dir_uri, info, GNOME_VFS_SET_FILE_INFO_TIME);
+		gnome_vfs_file_info_unref (info);
+	}
+	if (target_dir_info) {
+		gnome_vfs_file_info_unref (target_dir_info);
 	}
 
 	return result;
@@ -1732,6 +1754,17 @@ copy_items (const GList *source_uri_list,
 			((GnomeVFSURI *)target_item->data);
 
 		if (result == GNOME_VFS_OK) {
+			GnomeVFSFileInfo *target_dir_info;
+			/* get target_dir URI and file info to take care of SGID */
+			target_dir_info = gnome_vfs_file_info_new ();
+			result = gnome_vfs_get_file_info_uri (target_dir_uri, target_dir_info,
+																						GNOME_VFS_FILE_INFO_DEFAULT);
+			if (result == GNOME_VFS_OK && GNOME_VFS_FILE_INFO_SGID(target_dir_info)) {
+				info->gid = target_dir_info->gid;
+			}
+			gnome_vfs_file_info_unref (target_dir_info);
+			result = GNOME_VFS_OK;
+
 			/* optionally keep trying until we hit a unique target name */
 			for (count = 1; ; count++) {
 				GnomeVFSXferOverwriteMode overwrite_mode_abort;

@@ -1,5 +1,11 @@
 2005-01-25  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-xfer.c (copy_directory):
+	Support setgid directories.
+	Patch from Sjoerd Simons <sjoerd@luon.net>
+
+2005-01-25  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/smb-method.c:
 	Cache passwords on a per-server level, not per-share.
 	Patch from Nate	Nielsen <nielsen@memberwebs.com>
