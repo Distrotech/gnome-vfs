@@ -1,3 +1,23 @@
+2000-12-18  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	Fixed bug 5217 (Nautilus crashes if you type cdda: in the
+	navigation bar.)
+
+	* libgnomevfs/gnome-vfs-method.c: (load_module): Fixed bug where
+	it was freeing the result of g_module_error.
+	* modules/default-modules.conf: Disable both the cdda and the efs
+	modules since compiling them is currently disabled. It's important
+	to keep this file in sync. with the libraries it points to.
+	
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(gnome_vfs_new_directory_with_unique_name): A new directory that
+	we are creating now qualifies as a top-level item. This makes
+	logical sense, and helps the code in Nautilus handle metadata
+	properly. This is a piece of my fix for bug 2199 -- the rest was
+	checked into Nautilus the other day.
+
 2000-12-18  John Sullivan  <sullivan@eazel.com>
 
 	Fixed bug 5216 (typing "deb:" in the uri text field

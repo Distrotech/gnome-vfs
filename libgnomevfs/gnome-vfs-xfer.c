@@ -1253,7 +1253,7 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 	}
 
 	if (call_progress_with_uris_often (progress, source_dir_uri, target_dir_uri, 
-			       GNOME_VFS_XFER_PHASE_OPENTARGET) != 0) {
+					   GNOME_VFS_XFER_PHASE_OPENTARGET) != 0) {
 
 		progress->progress_info->file_index++;
 		progress->progress_info->total_bytes_copied += DEFAULT_SIZE_OVERHEAD;
@@ -1794,6 +1794,7 @@ gnome_vfs_new_directory_with_unique_name (const GnomeVFSURI *target_dir_uri,
 	int conflict_count;
 	
 	dest_directory_handle = NULL;
+	progress->progress_info->top_level_item = TRUE;
 	progress->progress_info->duplicate_name = g_strdup (name);
 
 	for (conflict_count = 1; ; conflict_count++) {
@@ -2071,12 +2072,11 @@ gnome_vfs_xfer_private (const GList *source_uri_list,
 		g_assert (source_uri_list == NULL);
 		g_assert (g_list_length ((GList *)target_uri_list) == 1);
 
-
 		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_uri_list->data);
 		if (target_dir_uri == NULL 
 			|| gnome_vfs_uri_get_basename ((GnomeVFSURI *)target_uri_list->data) == NULL)
 			return GNOME_VFS_ERROR_INVALID_URI;
-			
+		
 		result = gnome_vfs_new_directory_with_unique_name (target_dir_uri, 
 			gnome_vfs_uri_get_basename ((GnomeVFSURI *)target_uri_list->data),
 			error_mode, overwrite_mode, &progress_state);
