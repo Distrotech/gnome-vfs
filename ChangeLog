@@ -1,3 +1,8 @@
+Wed Jan 21 09:31:22 2004  Jonathan Blandford  <jrb@gnome.org>
+
+	* libgnomevfs/xdgmimeglob.c:
+	* libgnomevfs/xdgmimemagic.c: Sync from upstream
+
 2004-01-20 Christian Kellner  <gicmo@xatom.net>
 	* libgnomevfs/gnome-vfs-unix-mounts.c: differ "user" from
 	"user_xattr" mount option
