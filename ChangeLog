@@ -1,3 +1,9 @@
+Fri Mar 22 11:13:30 2002  Owen Taylor  <otaylor@redhat.com>
+
+	* test/test-async.c (main): Fix includes and 
+	g_type_init (0) [ g_type_init() hasn't taken
+	arguments for a long time. ]
+
 2002-03-22  jacob berkman  <jacob@ximian.com>
 
 	* modules/extfs/Makefile.am (extfsdir): 
