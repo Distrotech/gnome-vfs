@@ -1,3 +1,11 @@
+2001-06-06  Seth Nickell  <snickell@stanford.edu>
+
+	* gnome-vfs.applications:
+	* gnome-vfs.keys.in:
+
+	Add VideoLAN to the application list as the preferred player
+	for MPEG files (http://www.videolan.org).
+	
 2001-05-24  Dan Winship  <danw@ximian.com>
 
 	* gnome-vfs-mime-magic: Add an entry for text/x-vcard so they
