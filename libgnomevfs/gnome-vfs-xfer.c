@@ -1864,9 +1864,8 @@ gnome_vfs_xfer_delete_items (const GList *source_uri_list,
 	progress->progress_info->bytes_total = 0;
 	call_progress (progress, GNOME_VFS_XFER_PHASE_COLLECTING);
 
-
 	result = count_items_and_size (source_uri_list,
-		GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, progress, TRUE, FALSE);
+		GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, progress, FALSE, FALSE);
 
 	/* When deleting, ignore the real file sizes, just count the same DEFAULT_SIZE_OVERHEAD
 	 * for each file.
