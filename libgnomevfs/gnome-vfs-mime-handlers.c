@@ -225,7 +225,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	sort[2] = g_strconcat ("bonobo:supported_mime_types.has ('", mime_type, "')", NULL);
 
 	/* Prefer something that matches the supertype to something that matches `*' */
-	sort[2] = g_strconcat ("bonobo:supported_mime_types.has ('", supertype, "')", NULL);
+	sort[3] = g_strconcat ("bonobo:supported_mime_types.has ('", supertype, "')", NULL);
 
 	/* At lowest priority, alphebetize by name, for the sake of consistency */
 	sort[4] = g_strdup ("name");

@@ -1,6 +1,10 @@
 2000-06-13  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_get_default_component): Fix type inserted when
+	adding sort conditions.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c
 	(gnome_vfs_mime_get_default_component):FIx part of FIXME 1145;
 	prefer a component of the short list as a fallback default if no
 	explicit default.
