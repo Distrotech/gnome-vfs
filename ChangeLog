@@ -1,3 +1,16 @@
+2000-07-18  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/translate-method.c: (tr_forkexec_cb), (tr_getline),
+	(tr_handle_exec), (tr_uri_translate), (tr_do_open), (tr_do_create),
+	(tr_do_open_directory), (tr_do_get_file_info), (tr_do_truncate),
+	(tr_do_is_local), (tr_do_make_directory), (tr_do_find_directory),
+	(tr_do_remove_directory), (tr_do_move), (tr_do_unlink),
+	(tr_do_check_same_fs), (tr_do_set_file_info),
+	(my_poptParseArgvString), (tr_args_parse), (tr_args_free):
+
+	Added a -exec option to vfs-translate, which allows a child
+	process to filter URI's.
+
 2000-07-18  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-private-utils.c

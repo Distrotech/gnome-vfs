@@ -7,13 +7,33 @@
 #ifdef HAVE_ALLOCA_H
 #include <alloca.h>
 #endif
+#include <unistd.h>
+#include <stdio.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <fcntl.h>
 
 #include "gnome-vfs-module.h"
 
 typedef struct {
-	char *trans_string;
-	char *real_method_name;
+	enum {
+		MODE_BASIC, MODE_EXEC
+	} mode;
+
 	char *default_mime_type;
+	char *real_method_name;
+
+	union {
+		struct {
+			char *trans_string;
+		} basic;
+		struct {
+			int argc;
+			char **argv;
+			char *orig_string;	/* this string gets chopped up--it exists for freeing only */
+		} exec;
+	}u;
 } ParsedArgs;
 
 typedef struct {
@@ -33,6 +53,218 @@ tr_apply_default_mime_type(TranslateMethod * tm,
 	}
 }
 
+typedef struct {
+	int child_out_fd;
+	int child_in_fd;
+} TrForkCBData;
+
+static void /* GnomeVFSProcessInitFunc */ tr_forkexec_cb (gpointer data)
+{
+	TrForkCBData *cb_data;
+
+	g_assert (NULL != data);
+	cb_data = (TrForkCBData *) data;
+
+	if ( -1 == dup2 (cb_data->child_in_fd, STDIN_FILENO) ) {
+		_exit (-1);
+	}
+
+	if ( -1 == dup2 (cb_data->child_out_fd, STDOUT_FILENO) ) {
+		_exit (-1);
+	}
+
+}
+
+#define GETLINE_DELTA 256
+static char * tr_getline (FILE* stream)
+{
+	char *ret;
+	size_t ret_size;
+	size_t ret_used;
+	int char_read;
+	gboolean got_newline;
+
+	ret = g_malloc( GETLINE_DELTA * sizeof(char) );
+	ret_size = GETLINE_DELTA;
+
+	for ( ret_used = 0, got_newline = FALSE ;
+	      !got_newline && (EOF != (char_read = fgetc (stream))) ; 
+	      ret_used++
+	) {
+		if (ret_size == (ret_used + 1)) {
+			ret_size += GETLINE_DELTA;
+			ret = g_realloc (ret, ret_size); 
+		}
+		if ('\n' == char_read || '\r' == char_read ) {
+			got_newline = TRUE;
+			ret [ret_used] = '\0';
+		} else {
+			ret [ret_used] = char_read;
+		}
+	}
+
+	if (got_newline) {
+		return ret;
+	} else {
+		g_free (ret);
+		return NULL;
+	}
+}
+
+/*
+ * -exec spawns a child process with given arguments
+ * It passes a URI minus the scheme (right of the colon) into standard in and
+ * then closes the pipe
+ * 
+ * It expects a translated URI minus the scheme to appear on standard out,
+ * and the exit code of the filter process to be 0.
+ * 
+ * Use example: (in config file)
+ * 
+ * foo: libvfs-translate.so -real-method http -exec "/bin/sed -e s/\/\/www.microsoft.com/\/\/www.eazel.com/"
+ */ 
+
+/* FIXME: this may be broken when the child produces compound URI's */
+static GnomeVFSURI *tr_handle_exec (TranslateMethod *tm, const GnomeVFSURI * uri)
+{
+
+	pid_t pid;	
+	TrForkCBData cb_data;
+	int err;
+	char *tmpstr;
+
+	void *sigpipe_old;
+	int child_status;
+	int pipe_to_child[2] 	= { -1, -1 };
+	int pipe_to_parent[2] 	= { -1, -1 };
+	FILE *out_stream 	= NULL;
+	FILE *in_stream 	= NULL;
+	char *uri_string	= NULL;
+	char *child_result 	= NULL;
+	GnomeVFSURI * retval 	= NULL;
+
+	/* This is probably unnecessary -- GnomeVFS already does this on init */
+	sigpipe_old = signal (SIGPIPE, SIG_IGN);
+
+	err = pipe (pipe_to_child);
+
+	if ( 0 != err ) {
+		g_warning ("pipe returned error %d", errno);
+		goto error;
+	}
+
+	err = pipe (pipe_to_parent);
+
+	if ( 0 != err ) {
+		g_warning ("pipe returned error %d", errno);
+		goto error;
+	}
+
+	/*
+	 * Note that normally having a parent and child communicate
+	 * bi-directionally via pipes is a bad idea.  However, in this case,
+	 * the parent will write everything and then close, so it'll all be OK
+	 * as long as the child doesnt intermix reads and writes and fill
+	 * up their output pipe's buffer before the parent is done writing.
+	 */
+
+	cb_data.child_out_fd = pipe_to_parent[1];
+	cb_data.child_in_fd = pipe_to_child[0];
+
+	/* Strictly speaking, this is unnecessary since they will be closed anyway*/
+	err = fcntl ( pipe_to_parent[0], F_SETFD, FD_CLOEXEC ) ;
+	g_assert (0 == err );
+	err = fcntl ( pipe_to_child[1], F_SETFD, FD_CLOEXEC ) ;
+	g_assert (0 == err );
+		
+	pid = gnome_vfs_forkexec (tm->pa.u.exec.argv[0],
+					(const char * const*)tm->pa.u.exec.argv,
+					GNOME_VFS_PROCESS_SETSID 
+						| GNOME_VFS_PROCESS_USEPATH
+						| GNOME_VFS_PROCESS_CLOSEFDS,
+					tr_forkexec_cb,
+					(gpointer) &cb_data);
+
+	close (pipe_to_parent[1]);
+	pipe_to_parent[1] = -1;
+	close (pipe_to_child[0]);
+	pipe_to_child[0] = -1;
+	
+	if ( -1 == pid ) {
+		g_warning ("fork returned error %d", errno);
+		goto error;
+	}
+
+	out_stream = fdopen (pipe_to_child[1], "w");
+	if ( NULL == out_stream ) {
+		goto error;
+	}
+	pipe_to_child[1] = -1;
+
+	uri_string = gnome_vfs_uri_to_string (uri, 0);
+
+	/*shave off the scheme--pass only the right hand side to the child*/
+	tmpstr = strchr (uri_string, ':');
+	fprintf (out_stream, "%s\n", tmpstr ? tmpstr + 1 : uri_string);
+	tmpstr = NULL;
+	fflush (out_stream);
+	fclose (out_stream);
+	out_stream = NULL;
+
+	in_stream = fdopen (pipe_to_parent[0], "r");
+	if ( NULL == in_stream ) {
+		goto error;
+	}
+	pipe_to_parent[0] = -1;
+	setvbuf (in_stream, NULL, _IOLBF, 0);
+
+	child_result = tr_getline (in_stream);
+	
+	if (NULL == child_result) {
+		g_warning ("Child produced no result");
+		goto error;
+	}
+
+	/* append the real scheme */
+	tmpstr = g_strconcat (tm->pa.real_method_name, ":", child_result, NULL);
+	g_free (child_result);
+	child_result = tmpstr;
+	tmpstr = NULL;
+
+	err = waitpid (pid, &child_status, 0);
+
+	g_assert ( pid == err );
+
+	if (! WIFEXITED (child_status) ) {
+		goto error;
+	}
+
+	/* FIXME: just because we've appended the same scheme, doesn't mean
+	 * we're going to get the same method from gnome_vfs_uri_new
+	 */
+
+	retval = gnome_vfs_uri_new (child_result);
+
+	if ( NULL == retval ) {
+		g_warning ("Unable to make URI from child process's result '%s'", child_result);
+		goto error;
+	}
+
+error:
+	if ( -1 != pipe_to_parent[0] ) { close ( pipe_to_parent[0]); }
+	if ( -1 != pipe_to_parent[1] ) { close ( pipe_to_parent[1]); }
+	if ( -1 != pipe_to_child[0] ) { close ( pipe_to_child[0]); }
+	if ( -1 != pipe_to_child[1] ) { close ( pipe_to_child[1]); }
+	if ( NULL != in_stream ) { fclose (in_stream); }
+	if ( NULL != out_stream ) { fclose (out_stream); }
+
+	g_free (child_result);
+	g_free (uri_string);
+
+	signal (SIGPIPE, sigpipe_old);
+	
+	return retval;
+}
 
 static GnomeVFSURI *tr_uri_translate(TranslateMethod * tm,
 				     const GnomeVFSURI * uri)
@@ -43,14 +275,24 @@ static GnomeVFSURI *tr_uri_translate(TranslateMethod * tm,
 		return gnome_vfs_uri_ref((GnomeVFSURI *) uri);	/* Don't translate things that don't belong to us */
 
 	/* Hack it all up to pieces */
-	retval = gnome_vfs_uri_dup(uri);
-	g_free(retval->text);
-	retval->text =
-	    g_strdup_printf(tm->pa.trans_string, uri->text, uri->text,
-			    uri->text, uri->text, uri->text);
-	g_free(retval->method_string);
-	retval->method_string = g_strdup(tm->pa.real_method_name);
-	retval->method = tm->real_method;
+
+	if (MODE_BASIC == tm->pa.mode) {
+		retval = gnome_vfs_uri_dup(uri);
+		g_free(retval->text);
+
+		retval->text =
+		    g_strdup_printf(tm->pa.u.basic.trans_string, uri->text, uri->text,
+				    uri->text, uri->text, uri->text);
+		g_free(retval->method_string);
+		retval->method_string = g_strdup(tm->pa.real_method_name);
+		retval->method = tm->real_method;
+	} else if (MODE_EXEC == tm->pa.mode) {
+		retval = tr_handle_exec (tm, uri);
+	} else {
+		g_assert (FALSE);
+	}
+
+	/* FIXME callers need to be aware that this can now return NULL */
 
 	return retval;
 }
@@ -67,11 +309,15 @@ tr_do_open(GnomeVFSMethod * method,
 
 	real_uri = tr_uri_translate(tm, uri);
 
-	retval =
-	    tm->real_method->open(tm->real_method, method_handle_return,
-				  real_uri, mode, context);
+	if ( NULL != real_uri ) {
+		retval =
+		    tm->real_method->open(tm->real_method, method_handle_return,
+					  real_uri, mode, context);
 
-	gnome_vfs_uri_unref(real_uri);
+		gnome_vfs_uri_unref(real_uri);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	return retval;
 }
@@ -90,12 +336,15 @@ tr_do_create(GnomeVFSMethod * method,
 
 	real_uri = tr_uri_translate(tm, uri);
 
-	retval =
-	    tm->real_method->create(tm->real_method, method_handle_return,
-				    real_uri, mode, exclusive, perm,
-				    context);
-
-	gnome_vfs_uri_unref(real_uri);
+	if ( NULL != real_uri ) {
+		retval =
+		    tm->real_method->create(tm->real_method, method_handle_return,
+					    real_uri, mode, exclusive, perm,
+					    context);
+		gnome_vfs_uri_unref(real_uri);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	return retval;
 }
@@ -173,12 +422,15 @@ tr_do_open_directory(GnomeVFSMethod * method,
 
 	real_uri = tr_uri_translate(tm, uri);
 
-	retval =
-	    tm->real_method->open_directory(tm->real_method, method_handle,
-					    real_uri, options, meta_keys,
-					    filter, context);
-
-	gnome_vfs_uri_unref(real_uri);
+	if ( NULL != real_uri ) {
+		retval =
+		    tm->real_method->open_directory(tm->real_method, method_handle,
+						    real_uri, options, meta_keys,
+						    filter, context);
+		gnome_vfs_uri_unref(real_uri);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	return retval;
 }
@@ -224,12 +476,16 @@ tr_do_get_file_info(GnomeVFSMethod * method,
 
 	real_uri = tr_uri_translate(tm, uri);
 
-	retval =
-	    tm->real_method->get_file_info(tm->real_method, real_uri,
-					   file_info, options, meta_keys,
-					   context);
+	if ( NULL != real_uri ) {
+		retval =
+		    tm->real_method->get_file_info(tm->real_method, real_uri,
+						   file_info, options, meta_keys,
+						   context);
 
-	gnome_vfs_uri_unref(real_uri);
+		gnome_vfs_uri_unref(real_uri);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	tr_apply_default_mime_type(tm, file_info);
 
@@ -269,11 +525,15 @@ tr_do_truncate(GnomeVFSMethod * method,
 
 	real_uri = tr_uri_translate(tm, uri);
 
-	retval =
-	    tm->real_method->truncate(tm->real_method, real_uri, length,
-				      context);
+	if ( NULL != real_uri ) {
+		retval =
+		    tm->real_method->truncate(tm->real_method, real_uri, length,
+					      context);
 
-	gnome_vfs_uri_unref(real_uri);
+		gnome_vfs_uri_unref(real_uri);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	return retval;
 }
@@ -299,9 +559,13 @@ tr_do_is_local(GnomeVFSMethod * method, const GnomeVFSURI * uri)
 
 	real_uri = tr_uri_translate(tm, uri);
 
-	retval = tm->real_method->is_local(tm->real_method, real_uri);
+	if ( NULL != real_uri ) {
+		retval = tm->real_method->is_local(tm->real_method, real_uri);
 
-	gnome_vfs_uri_unref(real_uri);
+		gnome_vfs_uri_unref(real_uri);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	return retval;
 }
@@ -317,11 +581,15 @@ tr_do_make_directory(GnomeVFSMethod * method,
 
 	real_uri = tr_uri_translate(tm, uri);
 
-	retval =
-	    tm->real_method->make_directory(tm->real_method, real_uri,
-					    perm, context);
+	if ( NULL != real_uri ) {
+		retval =
+		    tm->real_method->make_directory(tm->real_method, real_uri,
+						    perm, context);
 
-	gnome_vfs_uri_unref(real_uri);
+		gnome_vfs_uri_unref(real_uri);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	return retval;
 }
@@ -340,13 +608,17 @@ tr_do_find_directory(GnomeVFSMethod * method,
 
 	real_uri = tr_uri_translate(tm, near_uri);
 
-	retval =
-	    tm->real_method->find_directory(tm->real_method, real_uri,
-					    kind, result_uri,
-					    create_if_needed, permissions,
-					    context);
+	if ( NULL != real_uri ) {
+		retval =
+		    tm->real_method->find_directory(tm->real_method, real_uri,
+						    kind, result_uri,
+						    create_if_needed, permissions,
+						    context);
 
-	gnome_vfs_uri_unref(real_uri);
+		gnome_vfs_uri_unref(real_uri);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	return retval;
 }
@@ -363,11 +635,15 @@ tr_do_remove_directory(GnomeVFSMethod * method,
 
 	real_uri = tr_uri_translate(tm, uri);
 
-	retval =
-	    tm->real_method->remove_directory(tm->real_method, real_uri,
-					      context);
+	if ( NULL != real_uri ) {
+		retval =
+		    tm->real_method->remove_directory(tm->real_method, real_uri,
+						      context);
 
-	gnome_vfs_uri_unref(real_uri);
+		gnome_vfs_uri_unref(real_uri);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	return retval;
 }
@@ -385,12 +661,17 @@ tr_do_move(GnomeVFSMethod * method,
 	real_uri_old = tr_uri_translate(tm, old_uri);
 	real_uri_new = tr_uri_translate(tm, new_uri);
 
-	retval =
-	    tm->real_method->move(tm->real_method, real_uri_old,
-				  real_uri_new, force_replace, context);
+	if ( NULL != real_uri_old && NULL != real_uri_new ) {
+		retval =
+		    tm->real_method->move(tm->real_method, real_uri_old,
+					  real_uri_new, force_replace, context);
 
-	gnome_vfs_uri_unref(real_uri_old);
-	gnome_vfs_uri_unref(real_uri_new);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
+
+	if (real_uri_old) {gnome_vfs_uri_unref(real_uri_old);}
+	if (real_uri_new) {gnome_vfs_uri_unref(real_uri_new);}
 
 	return retval;
 }
@@ -405,10 +686,14 @@ tr_do_unlink(GnomeVFSMethod * method,
 
 	real_uri = tr_uri_translate(tm, uri);
 
-	retval =
-	    tm->real_method->unlink(tm->real_method, real_uri, context);
+	if ( NULL != real_uri ) {
+		retval =
+		    tm->real_method->unlink(tm->real_method, real_uri, context);
 
-	gnome_vfs_uri_unref(real_uri);
+		gnome_vfs_uri_unref(real_uri);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	return retval;
 }
@@ -426,13 +711,17 @@ tr_do_check_same_fs(GnomeVFSMethod * method,
 	real_uri_a = tr_uri_translate(tm, a);
 	real_uri_b = tr_uri_translate(tm, b);
 
-	retval =
-	    tm->real_method->check_same_fs(tm->real_method, real_uri_a,
-					   real_uri_b, same_fs_return,
-					   context);
+	if ( NULL != real_uri_a && NULL != real_uri_b ) {
+		retval =
+		    tm->real_method->check_same_fs(tm->real_method, real_uri_a,
+						   real_uri_b, same_fs_return,
+						   context);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
-	gnome_vfs_uri_unref(real_uri_a);
-	gnome_vfs_uri_unref(real_uri_b);
+	if (real_uri_a) {gnome_vfs_uri_unref(real_uri_a);}
+	if (real_uri_b) {gnome_vfs_uri_unref(real_uri_b);}
 
 	return retval;
 }
@@ -450,11 +739,15 @@ tr_do_set_file_info(GnomeVFSMethod * method,
 
 	real_uri_a = tr_uri_translate(tm, a);
 
-	retval =
-	    tm->real_method->set_file_info(tm->real_method, real_uri_a,
-					   info, mask, context);
+	if ( NULL != real_uri_a ) {
+		retval =
+		    tm->real_method->set_file_info(tm->real_method, real_uri_a,
+						   info, mask, context);
 
-	gnome_vfs_uri_unref(real_uri_a);
+		gnome_vfs_uri_unref(real_uri_a);
+	} else {
+		retval = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	return retval;
 }
@@ -485,7 +778,6 @@ tr_do_set_file_info(GnomeVFSMethod * method,
 
 */
 
-#define POPT_ARGV_ARRAY_GROW_DELTA 5
 #define POPT_ARGV_ARRAY_GROW_DELTA 5
 static int my_poptParseArgvString(char *buf, int *argcPtr, char ***argvPtr)
 {
@@ -519,7 +811,8 @@ static int my_poptParseArgvString(char *buf, int *argcPtr, char ***argvPtr)
 			*buf = '\0';
 			if (*argv[argc]) {
 				buf++, argc++;
-				if (argc == argvAlloced) {
+				/* leave one empty argv at the end */
+				if (argc == argvAlloced - 1) {
 					argvAlloced +=
 					    POPT_ARGV_ARRAY_GROW_DELTA;
 					argv =
@@ -553,6 +846,9 @@ static int my_poptParseArgvString(char *buf, int *argcPtr, char ***argvPtr)
 		argc++, buf++;
 	}
 
+	/* add NULL to the end of argv */
+	argv[argc] = NULL;
+
 	*argcPtr = argc;
 	*argvPtr = argv;
 
@@ -566,6 +862,7 @@ static gboolean tr_args_parse(ParsedArgs * pa, const char *args)
 	char *tmp_args;
 	int i;
 	gboolean badargs = FALSE;
+	gboolean mode_determined = FALSE;
 
 	memset(pa, 0, sizeof(ParsedArgs));
 
@@ -579,12 +876,18 @@ static gboolean tr_args_parse(ParsedArgs * pa, const char *args)
 
 	for (i = 0; i < argc; i++) {
 #define CHECK_ARG() if((++i) >= argc) { badargs = TRUE; goto out; }
+#define CHECK_MODE(my_mode) if (mode_determined && pa->mode != (my_mode)) { badargs = TRUE ; goto out; } else { pa->mode = my_mode; mode_determined = TRUE; }
 		if (g_strcasecmp(argv[i], "-pattern") == 0) {
 			CHECK_ARG();
-			pa->trans_string = g_strdup(argv[i]);
+			CHECK_MODE(MODE_BASIC);
+			pa->u.basic.trans_string = g_strdup(argv[i]);
 		} else if (g_strcasecmp(argv[i], "-real-method") == 0) {
 			CHECK_ARG();
 			pa->real_method_name = g_strdup(argv[i]);
+		} else if (g_strcasecmp(argv[i], "-exec") == 0) {
+			CHECK_ARG();
+			CHECK_MODE(MODE_EXEC);
+			pa->u.exec.orig_string = g_strdup(argv[i]);
 		} else if (g_strcasecmp(argv[i], "-default-mime-type") == 0) {
 			CHECK_ARG();
 			pa->default_mime_type = g_strdup(argv[i]);
@@ -594,16 +897,42 @@ static gboolean tr_args_parse(ParsedArgs * pa, const char *args)
 			goto out;
 		}
 #undef CHECK_ARG
+#undef CHECK_MODE
 	}
 
-	if (!pa->real_method_name) {
-		g_warning("Need a -real-method option");
+	if ( ! mode_determined ) {
+		g_warning("Need a -pattern option or -exec option");
 		badargs = TRUE;
-	} else if (!pa->trans_string) {
-		g_warning("Need a -pattern option");
-		badargs = TRUE;
-	}
+	} else if (MODE_BASIC == pa->mode) {
+		if (!pa->real_method_name) {
+			g_warning("Need a -real-method option");
+			badargs = TRUE;
+		} else if (!pa->u.basic.trans_string) {
+			g_warning("Need a -pattern option");
+			badargs = TRUE;
+		}
+	} else if (MODE_EXEC == pa->mode) {
+		if (!pa->real_method_name) {
+			g_warning("Need a -real-method option");
+			badargs = TRUE;
+		} else if (!pa->u.exec.orig_string) {
+			g_warning("Need a -exec option");
+			badargs = TRUE;
+		}
 
+		/* Chop up the exec string here */
+		if (my_poptParseArgvString (
+			pa->u.exec.orig_string, 
+			&(pa->u.exec.argc), 
+			&(pa->u.exec.argv))
+		) {
+			g_warning ("Failed to parse -exec args");
+			badargs = TRUE;
+		}
+	} else {
+		g_assert (FALSE);
+	}
+	
       out:
 	g_free(argv);
 	return !badargs;
@@ -637,9 +966,14 @@ static GnomeVFSMethod base_vfs_method = {
 
 static void tr_args_free(ParsedArgs * pa)
 {
-	g_free(pa->real_method_name);
-	g_free(pa->trans_string);
 	g_free(pa->default_mime_type);
+	g_free(pa->real_method_name);
+
+	if (MODE_BASIC == pa->mode) {
+		g_free(pa->u.basic.trans_string);
+	} else {
+		g_free(pa->u.exec.orig_string);
+	}
 }
 
 GnomeVFSMethod *vfs_module_init(const char *method_name, const char *args)
