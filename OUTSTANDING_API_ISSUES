@@ -1,6 +1,6 @@
 
-* metadata API
-* monitoring API
+* 8450 - [API] The new metadata API in gnome-vfs needs to be finished
+* 8451 - [API] gnome-vfs needs an API for filesystem monitoring
 * real icon support
 * 8447
 * 8448
