@@ -49,18 +49,6 @@
 
 /* This is to make sure the path starts with `/', so that at least we
    get a predictable behavior when the leading `/' is not present.  */
-#define MAKE_ABSOLUTE(dest, src)			\
-G_STMT_START{						\
-	if (!src) {					\
-		dest = "Parent must be a file";		\
-	} else if ((src)[0] != '/') {			\
-		(dest) = alloca (strlen (src) + 2);	\
-		(dest)[0] = '/';			\
-		strcpy ((dest), (src));			\
-	} else {					\
-		(dest) = (src);				\
-	}						\
-}G_STMT_END
 
 #ifdef PATH_MAX
 #define	GET_PATH_MAX()	PATH_MAX
@@ -131,6 +119,36 @@ file_handle_destroy (FileHandle *handle)
 }
 
 
+
+static GnomeVFSResult
+open_efs_file (EFSDir **dir, GnomeVFSURI *uri, gint mode)
+{
+	GnomeVFSResult result;
+	char          *fname, *bname;
+
+	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
+	_GNOME_VFS_METHOD_PARAM_CHECK (uri->parent != NULL);
+	_GNOME_VFS_METHOD_PARAM_CHECK (uri->parent->text != NULL);
+	_GNOME_VFS_METHOD_PARAM_CHECK (strcmp (uri->parent->method_string, "file") == 0);
+
+	bname = uri->parent->text;
+	if (bname [0] != '/')
+		fname = g_strconcat ("/", bname, NULL);
+	else
+		fname = g_strdup (bname);
+
+	*dir = efs_open (fname, mode, default_permissions);
+
+	if (!(*dir))
+		result = gnome_vfs_result_from_errno ();
+	else
+		result = GNOME_VFS_OK;
+
+	g_free (fname);
+
+	return result;
+}
+
 static GnomeVFSResult
 do_open (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle **method_handle,
@@ -138,14 +156,11 @@ do_open (GnomeVFSMethod *method,
 	 GnomeVFSOpenMode mode,
 	 GnomeVFSContext *context)
 {
+	GnomeVFSResult result;
 	FileHandle *file_handle;
 	EFSDir *dir;
 	EFSFile *file;
 	mode_t efs_mode;
-	gchar *file_name;
-
-	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL && (strcmp(uri->parent->method_string, "file") == 0));
-	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
 	if (mode & GNOME_VFS_OPEN_READ) {
 		if (mode & GNOME_VFS_OPEN_WRITE)
@@ -159,15 +174,11 @@ do_open (GnomeVFSMethod *method,
 			return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
 	
-	MAKE_ABSOLUTE (file_name, uri->parent->text);
-
-	dir = efs_open (file_name, efs_mode, default_permissions);
-
-	if (dir == 0)
-		return gnome_vfs_result_from_errno ();
+	result = open_efs_file (&dir, uri, efs_mode);
+	if (result != GNOME_VFS_OK)
+		return result;
 
 	efs_mode |= EFS_CREATE;
-
 
 	file = efs_file_open (dir, uri->text, efs_mode);
 
@@ -187,11 +198,11 @@ do_create (GnomeVFSMethod *method,
 	   guint perm,
 	   GnomeVFSContext *context)
 {
+	GnomeVFSResult result;
 	FileHandle *file_handle;
 	EFSDir *dir;
 	EFSFile *file;
 	mode_t efs_mode;
-	gchar *file_name;
 
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
@@ -209,12 +220,9 @@ do_create (GnomeVFSMethod *method,
 	if (exclusive)
 		efs_mode |= EFS_EXCL;
 
-	MAKE_ABSOLUTE (file_name, uri->parent->text);
-
-	dir = efs_open (file_name, efs_mode, default_permissions);
-
-	if (dir == 0)
-		return gnome_vfs_result_from_errno ();
+	result = open_efs_file (&dir, uri, efs_mode);
+	if (result != GNOME_VFS_OK)
+		return result;
 
 	file = efs_file_open (dir, uri->text, efs_mode);
 
@@ -391,7 +399,7 @@ do_truncate (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL && (strcmp(uri->method_string, "file") == 0));
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
-	if(do_open (method, &method_handle, uri, EFS_WRITE, context)) {
+	if (do_open (method, &method_handle, uri, EFS_WRITE, context)) {
 	 	file_handle = (FileHandle *) method_handle;
 	 	if (efs_file_trunc (file_handle->file, where) == 0) {
 		  	do_close (method, method_handle, context);
@@ -434,7 +442,10 @@ directory_handle_new (GnomeVFSURI *uri,
 	new->dir = dir;
 	new->efs = efs;
 
-	MAKE_ABSOLUTE (full_name, uri->text);
+	if (uri->text [0] != '/')
+		full_name = g_strconcat ("/", uri->text, NULL);
+	else
+		full_name = g_strdup (uri->text);
 	full_name_len = strlen (full_name);
 
 	new->name_buffer = g_malloc (full_name_len + GET_PATH_MAX () + 2);
@@ -448,6 +459,8 @@ directory_handle_new (GnomeVFSURI *uri,
 	new->options = options;
 	new->meta_keys = meta_keys;
 	new->filter = filter;
+
+	g_free (full_name);
 
 	return new;
 }
@@ -470,16 +483,16 @@ do_open_directory (GnomeVFSMethod *method,
 		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
-	gchar *directory_name;
-	EFSDir *dir;
-	EFSDir *originaldir;
+	GnomeVFSResult result;
+	EFSDir        *dir;
+	EFSDir        *originaldir;
 
-	MAKE_ABSOLUTE (directory_name, uri->parent->text);
+	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
+	_GNOME_VFS_METHOD_PARAM_CHECK (uri->text != NULL);
 
-	originaldir = efs_open (directory_name, EFS_READ, default_permissions);
-
-	if (originaldir == 0)
-	  	return gnome_vfs_result_from_errno ();
+	result = open_efs_file (&originaldir, uri, EFS_READ);
+	if (result != GNOME_VFS_OK)
+		return result;
 
 	dir = efs_dir_open (originaldir, uri->text, EFS_READ);
 	if (!dir)
@@ -561,7 +574,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
-	char *dir_name, *fname, *efs_name;
+	char *dir_name, *fname;
 	EFSDir *originaldir;
 	EFSDir *dir;
 	GnomeVFSResult result;
@@ -625,8 +638,9 @@ do_get_file_info (GnomeVFSMethod *method,
 	/*
 	 * 3. Open the efs directory.
 	 */
-	MAKE_ABSOLUTE (efs_name, uri->parent->text);
-	originaldir = efs_open (efs_name, EFS_READ, default_permissions);
+	result = open_efs_file (&originaldir, uri, EFS_READ);
+	if (result != GNOME_VFS_OK)
+		return result;
 
 	if (!originaldir) {
 		g_free (dir_name);
@@ -682,7 +696,24 @@ do_make_directory (GnomeVFSMethod *method,
 		   guint perm,
 		   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	GnomeVFSResult result;
+	EFSDir        *dir;
+
+	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
+	_GNOME_VFS_METHOD_PARAM_CHECK (uri->text != NULL);
+
+	result = open_efs_file (&dir, uri, EFS_RDWR);
+	if (result != GNOME_VFS_OK)
+		return result;
+
+	if (!efs_dir_open (dir, uri->text, EFS_CREATE|EFS_EXCL))
+		result = GNOME_VFS_ERROR_FILE_EXISTS;
+	else
+		result = GNOME_VFS_OK;
+
+	efs_close (dir);
+
+	return result;
 }
 
 static GnomeVFSResult
@@ -720,7 +751,24 @@ do_unlink (GnomeVFSMethod *method,
 	   GnomeVFSURI *uri,
 	   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	GnomeVFSResult result;
+	EFSDir        *dir;
+
+	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
+	_GNOME_VFS_METHOD_PARAM_CHECK (uri->text != NULL);
+
+	result = open_efs_file (&dir, uri, EFS_RDWR);
+	if (result != GNOME_VFS_OK)
+		return result;
+
+	if (!efs_erase (dir, uri->text))
+		result = GNOME_VFS_ERROR_NOT_FOUND;
+	else
+		result = GNOME_VFS_OK;
+
+	efs_close (dir);
+
+	return result;
 }
 
 static GnomeVFSResult

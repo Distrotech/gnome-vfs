@@ -1,5 +1,14 @@
 2000-06-24  Michael Meeks  <michael@helixcode.com>
 
+	* modules/efs-method.c (open_efs_file): split.
+	(do_open, do_create): update. (do_unlink): implement.
+	(do_open_directory,do_get_file_info, do_make_directory): update.
+	Elimiate all uses of MAKE_ABSOLUTE, it leaks badly.
+	(directory_handle_new): clean for no MAKE_ABSOLUTE.
+	(do_open_directory): add param checks on uri.
+
+2000-06-24  Michael Meeks  <michael@helixcode.com>
+
 	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new): re-order to make
 	(parse_uri_substring): Add parent arg, since set_uri_element will
 	trample on memory unless uri->parent != NULL before call. update.
