@@ -1,5 +1,10 @@
 2004-10-05  Christian Kellner  <gicmo@gnome-de.org>
 
+	* modules/http-neon-method.c (http_transfer_start_read): Fix leaking a
+	req in a error case. This should fix bug #152842.
+
+2004-10-05  Christian Kellner  <gicmo@gnome-de.org>
+
 	* ne_gnomevfs.c (ne_sock_connect): Use the same method as in
 	ne_negotiate_ssl ( ). 
 	(ne_sock_close): Don't free the socket because it will get be

@@ -2146,6 +2146,7 @@ get_start:
 	if (res != NE_OK && res != NE_REDIRECT) {
 		handle->transfer_state = TRANSFER_ERROR;
 		handle->last_error = result;
+		ne_request_destroy (req);
 		return result;
 	}
 	
