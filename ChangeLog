@@ -1,5 +1,8 @@
 2002-07-29  Alex Graveley  <alex@ximian.com>
 
+	* modules/vfolder/vfolder-info.c: Add WordProcessing->Office and
+	Toys->Utility keyword mapping.  These are two top-level KDE menus.
+
 	* modules/vfolder/applications-all-users.vfolder-info.in: Use
 	<ParentLink/> for Preferences, so changes get written out to
 	preferences-all-users:///.
