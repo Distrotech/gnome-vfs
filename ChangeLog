@@ -1,3 +1,15 @@
+2000-06-15  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-gen-mimedb.c: (main):
+	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_init):
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_get_magic_table):
+	* libgnomevfs/gnome-vfs-mime.c: (mime_init):
+	* mime-type-capplet/mime-data.c: (init_mime_type):
+	Added FIXMEs to places that get MIME info from the gnome-libs
+	prefix since we install this stuff in the gnome-vfs prefix.
+	We already had a bug report about this.
+
 2000-06-15  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.mime,
@@ -33,7 +45,8 @@
 
 2000-06-14  Maciej Stachowiak  <mjs@eazel.com>
 
-	Part of task 1057: Terminal-based programs should open into a new terminal window
+	Part of task 1057: Terminal-based programs should open into a new
+	terminal window
 
 	* data/mime/application-registry-hack.keys: Set requires_terminal
 	setting for everything.
