@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2000-05-03 23:24+0200\n"
-"PO-Revision-Date: 2000-06-29 19:03+01:00\n"
+"PO-Revision-Date: 2000-07-08 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -402,19 +402,19 @@ msgstr "Kan ikke dræbe GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Fejl ved skrivning til 'wakeup GnomeVFSJob' kanalen."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:545
-#: libgnomevfs-pthread/gnome-vfs-job.c:1449
+#: libgnomevfs-pthread/gnome-vfs-job.c:552
+#: libgnomevfs-pthread/gnome-vfs-job.c:1487
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Ukendt job-ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:949
-#: libgnomevfs-pthread/gnome-vfs-job.c:1044
+#: libgnomevfs-pthread/gnome-vfs-job.c:956
+#: libgnomevfs-pthread/gnome-vfs-job.c:1077
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1482
+#: libgnomevfs-pthread/gnome-vfs-job.c:1520
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
@@ -491,146 +491,152 @@ msgid "Extension:"
 msgstr "Filtype:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:702
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:770
 msgid "New Application"
 msgstr "Ny applikation"
 
 #. Application Name label and entry
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:788
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
 msgid "Application Name:"
 msgstr "Applikationsnavn:"
 
-#. Application ID label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:796
-msgid "Application ID:"
-msgstr "Applikation-id:"
-
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:787
 msgid "Application Command:"
 msgstr "Applikationskommando:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:812
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:795
 msgid "Open Behavior"
 msgstr "Opførsel ved åbning"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:741
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:818
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:733
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:801
 msgid "Can open multiple files"
 msgstr "Kan åbne flere filer"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:744
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:821
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:736
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
 msgid "Can open from URI"
 msgstr "Kan åbne fra URI"
 
-#. Create label, menu and edit button for default applications
-#: mime-type-capplet/nautilus-mime-type-capplet.c:330
-msgid "Default Application:"
-msgstr "Standard applikation:"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:356
+msgid "Change Icon"
+msgstr "Ændr ikon"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:337
-#: mime-type-capplet/nautilus-mime-type-capplet.c:348
-msgid "Edit List"
-msgstr "Redigér liste"
-
-#. Create label, menu and edit button for default components
-#: mime-type-capplet/nautilus-mime-type-capplet.c:342
-msgid "Default Viewer:"
-msgstr "Standard visningsprogram:"
-
-#. Add icon box
-#: mime-type-capplet/nautilus-mime-type-capplet.c:353
-msgid "Select an icon..."
-msgstr "Vælg en ikon:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:373
-msgid "Add"
-msgstr "Tilføj"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:377
-msgid "Remove"
-msgstr "Fjern"
-
-#. Default Action frame
-#: mime-type-capplet/nautilus-mime-type-capplet.c:391
-msgid "Default Action"
-msgstr "Standard handling"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:397
-msgid "No Default"
-msgstr "Ingen standardværdi"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:403
-msgid "Use Application"
-msgstr "Brug applikation"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:409
-msgid "Use Viewer"
-msgstr "Brug visningsprogram"
-
-#. Mime list Add and Delete buttons
-#: mime-type-capplet/nautilus-mime-type-capplet.c:415
-msgid "Add..."
-msgstr "Tilføj..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:419
-msgid "Delete"
-msgstr "Slet"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:562
-#: mime-type-capplet/nautilus-mime-type-capplet.c:704
-msgid "None"
-msgstr "Ingen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:933
+#: mime-type-capplet/nautilus-mime-type-capplet.c:368
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1061
 msgid "Mime Type"
 msgstr "MIME-type"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:934
+#: mime-type-capplet/nautilus-mime-type-capplet.c:389
+msgid "Add new Mime type..."
+msgstr "Tilføj ny MIME-type..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:396
+msgid "Delete this Mime type..."
+msgstr "Slet denne Mime-type..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:411
+msgid "Use Viewer"
+msgstr "Brug visningsprogram"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:417
+msgid "Open With Application"
+msgstr "Åbn ny applikation"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:429
+msgid "Edit List"
+msgstr "Redigér liste"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:458
+msgid "Add"
+msgstr "Tilføj"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:461
+msgid "Remove"
+msgstr "Fjern"
+
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:640
+#: mime-type-capplet/nautilus-mime-type-capplet.c:782
+#: mime-type-capplet/nautilus-mime-type-capplet.c:987
+msgid "None"
+msgstr "Ingen"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1060
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:935
-msgid "Application"
-msgstr "Applikation"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1062
+msgid "Extension"
+msgstr "Filtype"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1063
+msgid "Action"
+msgstr "Handling"
 
 #: modules/file-method.c:357
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:505
+#: modules/http-method.c:517
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Ugyldig header '%s'"
 
-#: modules/http-method.c:522
+#: modules/http-method.c:534
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:657
+#: modules/http-method.c:669
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:799
+#: modules/http-method.c:812
 #, c-format
 msgid "%s of %s read"
 msgstr "%s af %s læst"
 
-#: modules/http-method.c:802
+#: modules/http-method.c:815
 #, c-format
 msgid "%s read"
 msgstr "%s læst"
 
 #. Multi-Status
-#: modules/http-method.c:962
+#: modules/http-method.c:994
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "HTTP-tjener returnerede et ugyldig PROPFIND-svar"
+
+#~ msgid "Application ID:"
+#~ msgstr "Applikation-id:"
+
+#~ msgid "Default Application:"
+#~ msgstr "Standard applikation:"
+
+#~ msgid "Default Viewer:"
+#~ msgstr "Standard visningsprogram:"
+
+#~ msgid "Select an icon..."
+#~ msgstr "Vælg en ikon:"
+
+#~ msgid "Default Action"
+#~ msgstr "Standard handling"
+
+#~ msgid "No Default"
+#~ msgstr "Ingen standardværdi"
+
+#~ msgid "Use Application"
+#~ msgstr "Brug applikation"
+
+#~ msgid "Add..."
+#~ msgstr "Tilføj..."
+
+#~ msgid "Delete"
+#~ msgstr "Slet"
