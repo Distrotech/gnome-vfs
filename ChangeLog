@@ -1,3 +1,7 @@
+2002-01-21  jacob berkman  <jacob@ximian.com>
+
+	* modules/Makefile.am (libnntp_la_SOURCES): include nntp-method.h
+
 2002-01-20  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/Makefile.am:

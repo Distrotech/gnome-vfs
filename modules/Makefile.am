@@ -87,7 +87,7 @@ libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS)
 
 ###  `nntp' method
 
-libnntp_la_SOURCES = nntp-method.c
+libnntp_la_SOURCES = nntp-method.c nntp-method.h
 libnntp_la_LDFLAGS = $(module_flags)
 
 ###  `desktop' method
