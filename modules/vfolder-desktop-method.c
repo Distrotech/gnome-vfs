@@ -120,6 +120,8 @@ struct _EntryFile {
 	char *filename;
 	gboolean per_user;
 	GSList *keywords;
+
+	gboolean implicit_keywords; /* the keywords were added by us */
 };
 
 struct _Folder {
@@ -1381,6 +1383,21 @@ readitem_entry (const char *filename,
 }
 
 static void
+invalidate_folder (Folder *folder)
+{
+	GSList *li;
+
+	folder->up_to_date = FALSE;
+
+	for (li = folder->subfolders; li != NULL; li = li->next) {
+		Folder *subfolder = li->data;
+
+		invalidate_folder (subfolder);
+	}
+}
+
+
+static void
 vfolder_info_insert_entry (VFolderInfo *info, EntryFile *efile)
 {
 	GSList *entry_list;
@@ -1398,6 +1415,27 @@ vfolder_info_insert_entry (VFolderInfo *info, EntryFile *efile)
 	/* The hash table contains the GSList pointer */
 	g_hash_table_insert (info->entries_ht, efile->entry.name, 
 			     info->entries);
+}
+
+static void
+set_keywords (EntryFile *efile, const char *keywords)
+{
+	if (keywords != NULL) {
+		int i;
+		char **parsed = g_strsplit (keywords, ";", -1);
+		for (i = 0; parsed[i] != NULL; i++) {
+			GQuark quark;
+			const char *word = parsed[i];
+			/* ignore empties (including end of list) */
+			if (word[0] == '\0')
+				continue;
+			quark = g_quark_from_string (word);
+			efile->keywords = g_slist_prepend
+				(efile->keywords,
+				 GINT_TO_POINTER (quark));
+		}
+		g_strfreev (parsed);
+	}
 }
 
 static EntryFile *
@@ -1438,21 +1476,7 @@ make_entry_file (const char *dir, const char *name)
 	efile = file_new (name);
 	efile->filename = filename;
 
-	if (categories != NULL) {
-		char **parsed = g_strsplit (only_show_in, ";", -1);
-		for (i = 0; parsed[i] != NULL; i++) {
-			GQuark quark;
-			const char *word = parsed[i];
-			/* ignore empties (including end of list) */
-			if (word[0] == '\0')
-				continue;
-			quark = g_quark_from_string (word);
-			efile->keywords = g_slist_prepend
-				(efile->keywords,
-				 GINT_TO_POINTER (quark));
-		}
-		g_strfreev (parsed);
-	}
+	set_keywords (efile, categories);
 
 	g_free (only_show_in);
 	g_free (categories);
@@ -1567,6 +1591,7 @@ vfolder_info_read_items_merge (VFolderInfo *info, const char *merge_dir, const c
 					(efile->keywords,
 					 GINT_TO_POINTER (extra_keyword));
 			}
+			efile->implicit_keywords = TRUE;
 		}
 
 		vfolder_info_insert_entry (info, efile);
@@ -1629,6 +1654,76 @@ get_vfolder_info (const char *scheme)
 	return info;
 }
 
+static char *
+keywords_to_string (GSList *keywords)
+{
+	GSList *li;
+	GString *str = g_string_new (NULL);
+
+	for (li = keywords; li != NULL; li = li->next) {
+		GQuark word = GPOINTER_TO_INT (li->data);
+		g_string_append (str, g_quark_to_string (word));
+		g_string_append_c (str, ';');
+	}
+
+	return g_string_free (str, FALSE);
+}
+
+/* copy file and add keywords line */
+static gboolean
+copy_file_with_keywords (const char *from, const char *to, GSList *keywords)
+{
+	FILE *fp;
+	FILE *wfp;
+	int wfd;
+	char buf[BUFSIZ];
+	char *keyword_string;
+
+	if ( ! ensure_dir (to,
+			   TRUE /* ignore_basename */))
+		return FALSE;
+
+	wfd = open (to, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	if (wfd < 0) {
+		return FALSE;
+	}
+
+	keyword_string = keywords_to_string (keywords);
+
+	wfp = fdopen (wfd, "w");
+
+	fp = fopen (from, "r");
+	if (fp != NULL) {
+		gboolean wrote_keywords = FALSE;
+		while (fgets (buf, sizeof (buf), fp) != NULL) {
+			fprintf (wfp, "%s", buf);
+			if ( ! wrote_keywords &&
+			    (strncmp (buf, "[Desktop Entry]",
+				      strlen ("[Desktop Entry]")) == 0 ||
+			     strncmp (buf, "[KDE Desktop Entry]",
+				      strlen ("[KDE Desktop Entry]")) == 0)) {
+				fprintf (wfp, "Categories=%s\n",
+					 keyword_string);
+				wrote_keywords = TRUE;
+			}
+		}
+
+		fclose (fp);
+	} else {
+		fprintf (wfp, "[Desktop Entry]\nCategories=%s\n",
+			 keyword_string);
+	}
+
+	/* FIXME: does this close wfd???? */
+	fclose (wfp);
+
+	close (wfd);
+
+	g_free (keyword_string);
+
+	return TRUE;
+}
+
 static gboolean
 copy_file (const char *from, const char *to)
 {
@@ -1676,10 +1771,20 @@ make_file_private (VFolderInfo *info, EntryFile *efile)
 				     efile->entry.name,
 				     NULL);
 
-	if (efile->filename != NULL &&
-	    ! copy_file (efile->filename, newfname)) {
-		g_free (newfname);
-		return FALSE;
+	if (efile->implicit_keywords) {
+		if (efile->filename != NULL &&
+		    ! copy_file_with_keywords (efile->filename,
+					       newfname,
+					       efile->keywords)) {
+			g_free (newfname);
+			return FALSE;
+		}
+	} else {
+		if (efile->filename != NULL &&
+		    ! copy_file (efile->filename, newfname)) {
+			g_free (newfname);
+			return FALSE;
+		}
 	}
 
 	/* we didn't copy but ensure path anyway */
@@ -1982,16 +2087,25 @@ get_entry (GnomeVFSURI *uri,
 /* only works for files and only those that exist */
 static GnomeVFSURI *
 desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
+			 Entry **the_entry,
+			 gboolean *the_is_directory_file,
 			 Folder **the_folder,
 			 gboolean privatize,
 			 GnomeVFSResult *result)
 {
 	gboolean is_directory_file;
 	GnomeVFSURI *ret_uri;
-	Entry *entry = get_entry (desktop_uri,
-				  the_folder,
-				  &is_directory_file,
-				  result);
+	Entry *entry;
+
+	entry = get_entry (desktop_uri,
+			    the_folder,
+			    &is_directory_file,
+			    result);
+
+	if (the_entry != NULL)
+		*the_entry = entry;
+	if (the_is_directory_file != NULL)
+		*the_is_directory_file = is_directory_file;
 
 	if (entry == NULL) {
 		*result = GNOME_VFS_ERROR_NOT_FOUND;
@@ -2131,6 +2245,50 @@ open_check (GnomeVFSMethod *method,
 	return FALSE;
 }
 
+typedef struct _FileHandle FileHandle;
+struct _FileHandle {
+	VFolderInfo *info;
+	GnomeVFSMethodHandle *handle;
+	Entry *entry;
+	gboolean write;
+	gboolean is_directory_file;
+};
+
+static void
+make_handle (GnomeVFSMethodHandle **method_handle,
+	     GnomeVFSMethodHandle *file_handle,
+	     VFolderInfo *info,
+	     Entry *entry,
+	     gboolean is_directory_file,
+	     gboolean write)
+{
+	if (file_handle != NULL) {
+		FileHandle *handle = g_new0 (FileHandle, 1);
+
+		handle->info = info;
+		handle->handle = file_handle;
+		handle->entry = entry_ref (entry);
+		handle->is_directory_file = is_directory_file;
+		handle->write = write;
+
+		*method_handle = (GnomeVFSMethodHandle *) handle;
+	} else {
+		*method_handle = NULL;
+	}
+}
+
+static void
+whack_handle (FileHandle *handle)
+{
+	entry_unref (handle->entry);
+	handle->entry = NULL;
+
+	handle->handle = NULL;
+	handle->info = NULL;
+
+	g_free (handle);
+}
+
 static GnomeVFSResult
 do_open (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle **method_handle,
@@ -2141,6 +2299,9 @@ do_open (GnomeVFSMethod *method,
 	GnomeVFSURI *file_uri;
 	GnomeVFSResult result = GNOME_VFS_OK;
 	VFolderInfo *info;
+	Entry *entry;
+	gboolean is_directory_file;
+	GnomeVFSMethodHandle *file_handle;
 
 	info = vfolder_info_from_uri (uri, &result);
 	if (info == NULL)
@@ -2150,6 +2311,8 @@ do_open (GnomeVFSMethod *method,
 		return result;
 
 	file_uri = desktop_uri_to_file_uri (uri,
+					    &entry,
+					    &is_directory_file,
 					    NULL /* the_folder */,
 					    mode & GNOME_VFS_OPEN_WRITE,
 					    &result);
@@ -2157,10 +2320,18 @@ do_open (GnomeVFSMethod *method,
 		return result;
 
 	result = (* parent_method->open) (parent_method,
-					  method_handle,
+					  &file_handle,
 					  file_uri,
 					  mode,
 					  context);
+
+	make_handle (method_handle,
+		     file_handle,
+		     info,
+		     entry,
+		     is_directory_file,
+		     mode & GNOME_VFS_OPEN_WRITE);
+
 	gnome_vfs_uri_unref (file_uri);
 
 	if (info->dirty)
@@ -2209,6 +2380,7 @@ do_create (GnomeVFSMethod *method,
 	   GnomeVFSContext *context)
 {
 	GnomeVFSResult result = GNOME_VFS_OK;
+	GnomeVFSMethodHandle *file_handle;
 	GnomeVFSURI *file_uri;
 	const char *scheme;
 	const char *basename;
@@ -2268,13 +2440,20 @@ do_create (GnomeVFSMethod *method,
 			return GNOME_VFS_ERROR_GENERIC;
 
 		result = (* parent_method->create) (parent_method,
-						    method_handle,
+						    &file_handle,
 						    file_uri,
 						    mode,
 						    exclusive,
 						    perm,
 						    context);
 		gnome_vfs_uri_unref (file_uri);
+
+		make_handle (method_handle,
+			     file_handle,
+			     info,
+			     (Entry *)parent,
+			     TRUE /* is_directory_file */,
+			     TRUE /* write */);
 
 		if (info->dirty)
 			vfolder_info_write_user (info);
@@ -2293,7 +2472,6 @@ do_create (GnomeVFSMethod *method,
 	efile = (EntryFile *)entry;
 
 	if (efile != NULL) {
-
 		if (exclusive)
 			return GNOME_VFS_ERROR_FILE_EXISTS;
 
@@ -2309,13 +2487,20 @@ do_create (GnomeVFSMethod *method,
 			return GNOME_VFS_ERROR_GENERIC;
 
 		result = (* parent_method->create) (parent_method,
-						    method_handle,
+						    &file_handle,
 						    file_uri,
 						    mode,
 						    exclusive,
 						    perm,
 						    context);
 		gnome_vfs_uri_unref (file_uri);
+
+		make_handle (method_handle,
+			     file_handle,
+			     info,
+			     (Entry *)efile,
+			     FALSE /* is_directory_file */,
+			     TRUE /* write */);
 
 		return result;
 	}
@@ -2350,13 +2535,20 @@ do_create (GnomeVFSMethod *method,
 	g_free (s);
 
 	result = (* parent_method->create) (parent_method,
-					    method_handle,
+					    &file_handle,
 					    file_uri,
 					    mode,
 					    exclusive,
 					    perm,
 					    context);
 	gnome_vfs_uri_unref (file_uri);
+
+	make_handle (method_handle,
+		     file_handle,
+		     info,
+		     (Entry *)efile,
+		     FALSE /* is_directory_file */,
+		     TRUE /* write */);
 
 	vfolder_info_write_user (info);
 
@@ -2369,6 +2561,7 @@ do_close (GnomeVFSMethod *method,
 	  GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
+	FileHandle *handle = (FileHandle *)method_handle;
 
 	/* FIXME: if this was a writing open, reread
 	 * keywords */
@@ -2377,8 +2570,33 @@ do_close (GnomeVFSMethod *method,
 		return GNOME_VFS_OK;
 	
 	result = (* parent_method->close) (parent_method,
-					   method_handle,
+					   handle->handle,
 					   context);
+	handle->handle = NULL;
+
+	/* we reread the Categories keyword */
+	if (handle->write &&
+	    handle->entry != NULL &&
+	    handle->entry->type == ENTRY_FILE) {
+		EntryFile *efile = (EntryFile *)handle->entry;
+		char *categories;
+		readitem_entry (efile->filename,
+				"Categories",
+				&categories,
+				NULL,
+				NULL);
+		set_keywords (efile, categories);
+		g_free (categories);
+		/* FIXME: what about OnlyShowIn */
+
+		/* FIXME: check if the keywords changed, if not, do
+		 * nothing */
+
+		/* Perhaps a bit drastic */
+		invalidate_folder (handle->info->root);
+	}
+
+	whack_handle (handle);
 
 	return result;
 }
@@ -2410,6 +2628,7 @@ do_read (GnomeVFSMethod *method,
 	 GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
+	FileHandle *handle = (FileHandle *)method_handle;
 
 	if (method_handle == (GnomeVFSMethodHandle *)method) {
 		if ((rand () >> 4) & 0x3) {
@@ -2421,7 +2640,7 @@ do_read (GnomeVFSMethod *method,
 	}
 	
 	result = (* parent_method->read) (parent_method,
-					  method_handle,
+					  handle->handle,
 					  buffer, num_bytes,
 					  bytes_read,
 					  context);
@@ -2438,12 +2657,13 @@ do_write (GnomeVFSMethod *method,
 	  GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
+	FileHandle *handle = (FileHandle *)method_handle;
 
 	if (method_handle == (GnomeVFSMethodHandle *)method)
 		return GNOME_VFS_OK;
 
 	result = (* parent_method->write) (parent_method,
-					   method_handle,
+					   handle->handle,
 					   buffer, num_bytes,
 					   bytes_written,
 					   context);
@@ -2460,12 +2680,13 @@ do_seek (GnomeVFSMethod *method,
 	 GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
+	FileHandle *handle = (FileHandle *)method_handle;
 
 	if (method_handle == (GnomeVFSMethodHandle *)method)
 		return GNOME_VFS_OK;
 	
 	result = (* parent_method->seek) (parent_method,
-					  method_handle,
+					  handle->handle,
 					  whence, offset,
 					  context);
 
@@ -2478,9 +2699,10 @@ do_tell (GnomeVFSMethod *method,
 	 GnomeVFSFileOffset *offset_return)
 {
 	GnomeVFSResult result;
+	FileHandle *handle = (FileHandle *)method_handle;
 	
 	result = (* parent_method->tell) (parent_method,
-					  method_handle,
+					  handle->handle,
 					  offset_return);
 
 	return result;
@@ -2494,12 +2716,13 @@ do_truncate_handle (GnomeVFSMethod *method,
 		    GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
+	FileHandle *handle = (FileHandle *)method_handle;
 
 	if (method_handle == (GnomeVFSMethodHandle *)method)
 		return GNOME_VFS_OK;
 	
 	result = (* parent_method->truncate_handle) (parent_method,
-						     method_handle,
+						     handle->handle,
 						     where,
 						     context);
 
@@ -2515,12 +2738,15 @@ do_truncate (GnomeVFSMethod *method,
 	GnomeVFSURI *file_uri;
 	GnomeVFSResult result = GNOME_VFS_OK;
 	VFolderInfo *info;
+	Entry *entry;
 
 	info = vfolder_info_from_uri (uri, &result);
 	if (info == NULL)
 		return result;
 
 	file_uri = desktop_uri_to_file_uri (uri,
+					    &entry,
+					    NULL /* the_is_directory_file */,
 					    NULL /* the_folder */,
 					    TRUE /* privatize */,
 					    &result);
@@ -2536,6 +2762,15 @@ do_truncate (GnomeVFSMethod *method,
 
 	if (info->dirty)
 		vfolder_info_write_user (info);
+
+	if (entry->type == ENTRY_FILE) {
+		EntryFile *efile = (EntryFile *)entry;
+		g_slist_free (efile->keywords);
+		efile->keywords = NULL;
+	}
+
+	/* Perhaps a bit drastic, but oh well */
+	invalidate_folder (info->root);
 
 	return result;
 }
@@ -2697,6 +2932,8 @@ do_get_file_info (GnomeVFSMethod *method,
 	Folder *folder;
 
 	file_uri = desktop_uri_to_file_uri (uri,
+					    NULL /* the_entry */,
+					    NULL /* the_is_directory_file */,
 					    &folder,
 					    FALSE /* privatize */,
 					    &result);
@@ -2740,13 +2977,13 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
+	FileHandle *handle = (FileHandle *)method_handle;
 
 	if (method_handle == (GnomeVFSMethodHandle *)method)
 		return GNOME_VFS_OK;
 	
-
 	result = (* parent_method->get_file_info_from_handle) (parent_method,
-							       method_handle,
+							       handle->handle,
 							       file_info,
 							       options,
 							       context);
@@ -2909,6 +3146,8 @@ long_move (GnomeVFSMethod *method,
 		return result;
 
 	file_uri = desktop_uri_to_file_uri (old_uri,
+					    NULL /* the_entry */,
+					    NULL /* the_is_directory_file */,
 					    NULL /* the_folder */,
 					    FALSE /* privatize */,
 					    &result);
@@ -2957,7 +3196,7 @@ long_move (GnomeVFSMethod *method,
 			result = GNOME_VFS_ERROR_NO_SPACE;
 		if (result != GNOME_VFS_OK) {
 			close (fd);
-			do_close (method, handle, context);
+			method->close (method, handle, context);
 			/* FIXME: is this completely correct ? */
 			method->unlink (method,
 					new_uri,
@@ -3298,10 +3537,13 @@ do_set_file_info (GnomeVFSMethod *method,
 
 	/* FIXME: what to do with folders? I suppose nothing */
 	file_uri = desktop_uri_to_file_uri (uri,
+					    NULL /* the_entry */,
+					    NULL /* the_is_directory_file */,
 					    NULL /* the_folder */,
 					    /* FIXME: should this privatize?,
-					     * probably only if we can't access the
-					     * file or something, I dunno */
+					     * probably only if we can't
+					     * access the file or something,
+					     * I dunno */
 					    FALSE /* privatize */,
 					    &result);
 	if (file_uri == NULL)

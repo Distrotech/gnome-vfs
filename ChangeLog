@@ -1,3 +1,10 @@
+Mon Oct 22 23:18:38 2001  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: fix reading of keywords,
+	  preserve implicit keywords on privatize, reread keywords
+	  after we changed the file, when keywords may have changed,
+	  invalidate the entire directory strucutre.
+
 Mon Oct 22 21:47:00 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: fix creation of files, fix usage
