@@ -519,21 +519,17 @@ gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *f
 		result = gnome_vfs_mime_get_type_from_magic_table (buffer);
 		
 		if (result != NULL) {
-			return result;
-		}
+			if (strcmp (result, "application/x-gzip") == 0) {
 		
-		/* So many file types come compressed by gzip that extensions are
-		 * more reliable than magic typing. If the file has a suffix, then
-		 * use the type from the suffix.
-		 *
-		 * FIXME bugzilla.eazel.com 6867:
-		 * Allow specific mime types to override magic detection
-		 */
-		if (gnome_vfs_sniff_buffer_looks_like_gzip (buffer, file_name)) {
-			/* gzip -- treat extensions as a more accurate source
-			 * of type information.
+				/* So many file types come compressed by gzip 
+				 * that extensions are more reliable than magic
+				 * typing. If the file has a suffix, then use 
+				 * the type from the suffix.
+		 		 *
+				 * FIXME bugzilla.gnome.org 46867:
+				 * Allow specific mime types to override 
+				 * magic detection
 			 */
-			
 			if (file_name != NULL) {
 				result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
 			}
@@ -541,17 +537,18 @@ gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *f
 			if (result != NULL) {
 				return result;
 			}
-			
-			/* Didn't find an extension match, assume gzip. */
+				/* Didn't find an extension match,
+				 * assume gzip. */
 			return "application/x-gzip";
+		}
+			return result;
 		}
 		
 		if (result == NULL) {
 			if (gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
-				/* Text file -- treat extensions as a more accurate source
-				 * of type information.
+				/* Text file -- treat extensions as a more 
+				 * accurate source of type information.
 				 */
-				
 				if (file_name != NULL) {
 					result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
 				}
@@ -621,6 +618,7 @@ gnome_vfs_get_mime_type_common (GnomeVFSURI *uri)
 	buffer = gnome_vfs_mime_sniff_buffer_new_from_handle (handle);
 
 	base_name = gnome_vfs_uri_extract_short_path_name (uri);
+
 	result = gnome_vfs_get_mime_type_internal (buffer, base_name);
 	g_free (base_name);
 
@@ -798,7 +796,6 @@ gnome_vfs_get_mime_type_for_data (gconstpointer data, int data_size)
 
 	buffer = gnome_vfs_mime_sniff_buffer_new_from_existing_data
 		(data, data_size);
-
 	result = gnome_vfs_get_mime_type_internal (buffer, NULL);	
 
 	gnome_vfs_mime_sniff_buffer_free (buffer);

@@ -34,7 +34,7 @@
 #include <glib/gstrfuncs.h>
 #include <glib/gthread.h>
 #include <glib/gutils.h>
-
+#include <glib/gunicode.h>
 static gboolean
 is_octal_digit (char ch)
 {
@@ -732,8 +732,7 @@ enum {
 gboolean
 gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
-	int index;
-	guchar ch;
+	gchar *end;
 	
 	gnome_vfs_mime_sniff_buffer_get (sniff_buffer, GNOME_VFS_TEXT_SNIFF_LENGTH);
 
@@ -741,46 +740,21 @@ gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 		return FALSE;
 	}
 	
-	for (index = 0; index < sniff_buffer->buffer_length - 3; index++) {
-		ch = sniff_buffer->buffer[index];
-		if (!g_ascii_isprint (ch) && !g_ascii_isspace (ch)) {
-			/* check if we are dealing with UTF-8 text
-			 * 
-			 *	 bytes | bits | representation
-			 *	     1 |    7 | 0vvvvvvv
-			 *	     2 |   11 | 110vvvvv 10vvvvvv
-			 *	     3 |   16 | 1110vvvv 10vvvvvv 10vvvvvv
-			 *	     4 |   21 | 11110vvv 10vvvvvv 10vvvvvv 10vvvvvv
-     			 */
-			if ((ch & 0xc0) != 0xc0) {
-				/* not a UTF-8 text */
-				return FALSE;
-			}
+	if (g_utf8_validate (sniff_buffer->buffer, 
+			     sniff_buffer->buffer_length, (const gchar**)&end))
+	{
+		return TRUE;
+	} else {
+		/* Check whether the string was truncated in the middle of
+		 * a valid UTF8 char, or if we really have an invalid
+		 * UTF8 string
+     		 */
+		gint remaining_bytes = sniff_buffer->buffer_length;
 
-			if ((ch & 0x20) == 0) {
-				/* check if this is a 2-byte UTF-8 letter */
-				++index;
-				if ((sniff_buffer->buffer[index] & 0xc0) != 0x80) {
-					return FALSE;
-				}
-			} else if ((ch & 0x30) == 0x20) {
-				/* check if this is a 3-byte UTF-8 letter */
-				if ((sniff_buffer->buffer[++index] & 0xc0) != 0x80
-				    || (sniff_buffer->buffer[++index] & 0xc0) != 0x80) {
-					return FALSE;
-				}
-			} else if ((ch & 0x38) == 0x30) {
-				/* check if this is a 4-byte UTF-8 letter */
-				if ((sniff_buffer->buffer[++index] & 0xc0) != 0x80
-				    || (sniff_buffer->buffer[++index] & 0xc0) != 0x80
-				    || (sniff_buffer->buffer[++index] & 0xc0) != 0x80) {
-					return FALSE;
-				}
-			}
-		}
-	}
+		remaining_bytes -= (end-((gchar*)sniff_buffer->buffer));
 	
-	return TRUE;
+ 		return (g_utf8_get_char_validated(end, remaining_bytes) == -2);
+	} 
 }
 
 static int bitrates[2][15] = {
@@ -921,35 +895,3 @@ gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 
 	return FALSE;
 }
-
-/**
- * gnome_vfs_sniff_buffer_looks_like_gzip:
- * @sniff_buffer: buffer to examine
- *
- * Return value: returns %TRUE if the contents of @sniff_buffer appear to
- * be in the GZip format.
- **/
-gboolean
-gnome_vfs_sniff_buffer_looks_like_gzip (GnomeVFSMimeSniffBuffer *sniff_buffer,
-	const char *file_name)
-{
-	if (sniff_buffer == NULL) {
-		return FALSE;
-	}
-	
-	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 2) != GNOME_VFS_OK) {
-		return FALSE;
-	}
-	
-	if (sniff_buffer->buffer[0] != 0x1F || sniff_buffer->buffer[1] != 0x8B) {
-		/* not a gzipped file */
-		return FALSE;
-	}
-	
-	if (file_name == NULL) {
-		return TRUE;
-	}
-	
-	return TRUE;
-}
-
