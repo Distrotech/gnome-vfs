@@ -1,3 +1,17 @@
+gnome-vfs 2.9.92
+
+    * Bugs fixed:
+	+ Fix some tests
+	+ smb-method: Fix crashes when user specified in uri
+	+ smb-method: Some authentication fixes
+	+ sftp-method: fix memory leaks
+	+ Make GnomeVFSSocket handle cancellation earlier
+	+ ftp-method: Fix access rights
+	+ Return OK on read/writes of 0 bytes, even at eof
+	+ Make gnome_vfs_read_entire_file nul-terminate the string
+	  to fix some apps that depended on this
+	+ Get right mime description for folders.
+
 gnome-vfs 2.9.91
 
     Note: The handling of dav:// and http:// changed with this release.
