@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-15 00:37+0200\n"
+"POT-Creation-Date: 2004-08-16 15:41+0200\n"
 "PO-Revision-Date: 2004-08-15 00:41+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -57,7 +57,8 @@ msgstr "Falló al leer del archivo «%s»: %s"
 
 #: libgnomevfs/eggdesktopentries.c:578
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 "las entradas del escritorio contienen la línea «%s» que no es una entrada, "
 "grupo o comentario"
@@ -76,7 +77,8 @@ msgstr "las entradas del escritorio contienen la línea «%s» que no es UTF-8"
 #: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr "las entradas del escritorio contienen una codificación desconocida «%s»"
+msgstr ""
+"las entradas del escritorio contienen una codificación desconocida «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
 #: libgnomevfs/eggdesktopentries.c:1220
@@ -92,14 +94,16 @@ msgstr "las entradas del escritorio no tienen la clave «%s»"
 #: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
 #: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
 "las entradas del escritorio contienen la clave «%s» la cual tiene un valor "
 "que no puede ser interpretado."
 
 #: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 "las entradas del escritorio no contienen ningún valor traducido para la "
 "clave «%s» en el idioma «%s»"
@@ -107,7 +111,8 @@ msgstr ""
 #: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr "las entradas del escritorio contienen una secuencia de escape inválida «%s»"
+msgstr ""
+"las entradas del escritorio contienen una secuencia de escape inválida «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
@@ -300,8 +305,9 @@ msgid "Unknown"
 msgstr "Desconocido"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "Disco compacto"
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "Disco CD-R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -408,8 +414,8 @@ msgid "Linux Disk"
 msgstr "Disco Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "Tipo de op %u desconocido"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -741,7 +747,7 @@ msgstr "%.1f MiB"
 msgid "%.1f GB"
 msgstr "%.1f Gib"
 
-#: libgnomevfs/gnome-vfs-utils.c:1119
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
@@ -791,7 +797,8 @@ msgstr "Servidor de red"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
@@ -951,7 +958,8 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr ""
+"Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -1002,7 +1010,8 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
+msgstr ""
+"El argumento de exec a usar para la aplicación de terminal predeterminada."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "Run the command in a terminal"
@@ -1400,6 +1409,9 @@ msgstr "Grupo de trabajo SMB"
 msgid "The window workgroup the user is part of"
 msgstr "El grupo de trabajo de windows del que el usuario es parte"
 
+#~ msgid "CD Disc"
+#~ msgstr "Disco compacto"
+
 #~ msgid "The command used to handle HTTP URLs, if enabled."
 #~ msgstr "El comando usado para manipular las URLs HTTP, si están activadas."
 
@@ -1548,4 +1560,3 @@ msgstr "El grupo de trabajo de windows del que el usuario es parte"
 
 #~ msgid "1 byte"
 #~ msgstr "1 byte"
-

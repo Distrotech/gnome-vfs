@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 19:29-0400\n"
+"POT-Creation-Date: 2004-08-16 15:41+0200\n"
 "PO-Revision-Date: 2004-07-25 15:18+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -27,59 +27,59 @@ msgstr "Nemohu inicializovat Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Nemohu inicializovat gnome vfs"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, c-format
 msgid "File could not be opened: %s"
 msgstr "Soubor nelze otevřít: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Nemohu otevřít soubor '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 msgid "File is empty"
 msgstr "Soubor je prázdný"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Nemohu číst ze souboru '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 "položky desktop obsahují řádek '%s', což není položka, skupina ani poznámka"
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
 msgstr "soubor položek destop nezačíná platnou počáteční skupinou"
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "položky desktop obsahují řádek '%s', který není v UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "položky desktop obsahují neznámé kódování '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "položky desktop nemají skupinu '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "položky desktop nemají klíč '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
@@ -87,28 +87,28 @@ msgstr ""
 "položky desktop obsahují klíč '%s', který má hodnotu, kterou nelze "
 "interpretovat."
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 "položky desktop neobsahují přeloženou hodnotu pro klíč '%s' s locale '%s'."
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "položky desktop obsahují neplatnou escape posloupnost '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
 msgstr "položky desktop obsahují znak escape na konci řádku"
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Hodnotu '%s' nelze interpretovat jako číslo."
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Hodnotu '%s' nelze interpretovat jako booleovskou hodnotu."
@@ -288,8 +288,9 @@ msgid "Unknown"
 msgstr "Neznámý"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "Disk CD"
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "Disk CD-R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -396,8 +397,8 @@ msgid "Linux Disk"
 msgstr "Disk Linuxu"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "Neznámý typ operace %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -431,6 +432,12 @@ msgstr "Operace zastavena"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:921
 #: libgnomevfs/gnome-vfs-mime-handlers.c:939
 #: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -723,7 +730,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (neplatný Unicode)"
@@ -896,12 +903,12 @@ msgstr "Neznámé GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Síť Windows"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identita vzdáleného počítače (%s) není známa."
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -914,11 +921,11 @@ msgstr ""
 "Identita odeslaná vzdáleným počítačem je %s. Pokud si chcete být úplně "
 "jisti, že je bezpečné pokračovat, kontaktujte správce systému."
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
 msgstr "Přesto se přihlásit"
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
 msgstr "Zrušit přihlašování"
 
@@ -1001,32 +1008,35 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Příkaz používaný pro obsluhu URL \"ghelp\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+#, fuzzy
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL H323, je-li povolen."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL \"ghelp\", je-li povolen."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "Příkaz používaný pro obsluhu URL \"trash\", je-li povolen."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "Příkaz používaný pro obsluhu URL \"info\", je-li povolen."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr "Příkaz používaný pro obsluhu URL \"mailto\", je-li povolen."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr "Příkaz používaný pro obsluhu URL \"man\", je-li povolen."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr "Příkaz používaný pro obsluhu URL \"trash\", je-li povolen."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL H323, je-li povolen."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL HTTP, je-li povolen."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL HTTPS, je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1041,32 +1051,35 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "Obsluha pro URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#, fuzzy
+msgid "The handler for \"h323\" URLs"
+msgstr "Obsluha pro URL H323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
+msgid "The handler for \"http\" URLs"
+msgstr "Obsluha pro URL \"ghelp\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
+msgid "The handler for \"https\" URLs"
+msgstr "Obsluha pro URL \"ghelp\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "Obsluha pro URL \"info\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
 msgstr "Obsluha pro URL \"mailto\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
 msgstr "Obsluha pro URL \"man\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
 msgstr "Obsluha pro URL \"trash\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "The handler for H323 URLs"
-msgstr "Obsluha pro URL H323"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "The handler for HTTP URLs"
-msgstr "Obsluha pro URL HTTP"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "The handler for HTTPS URLs"
-msgstr "Obsluha pro URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
@@ -1090,48 +1103,55 @@ msgstr ""
 "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL H323."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"ghelp\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"ghelp\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
 "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"info\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
 "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"mailto\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
 "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"man\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
 "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"trash\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL H323."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL HTTP."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
-"URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1154,32 +1174,35 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Jestli má určený příkaz obsluhovat URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL H323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL \"ghelp\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "Jestli má určený příkaz obsluhovat URL \"trash\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "Jestli má určený příkaz obsluhovat URL \"info\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "Jestli má určený příkaz obsluhovat URL \"mailto\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "Jestli má určený příkaz obsluhovat URL \"man\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Jestli má určený příkaz obsluhovat URL \"trash\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL H323"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL HTTP"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL HTTPS"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1363,6 +1386,39 @@ msgstr "Pracovní skupina SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Pracovní skupina Windows, jejímž je uživatel členem"
+
+#~ msgid "CD Disc"
+#~ msgstr "Disk CD"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "Příkaz používaný pro obsluhu URL HTTP, je-li povolen."
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "Příkaz používaný pro obsluhu URL HTTPS, je-li povolen."
+
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "Obsluha pro URL HTTP"
+
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "Obsluha pro URL HTTPS"
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr ""
+#~ "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL HTTP."
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL HTTPS."
+
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "Jestli má určený příkaz obsluhovat URL HTTP"
+
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "Jestli má určený příkaz obsluhovat URL HTTPS"
 
 #~ msgid "Bookmark saving failed (%s)"
 #~ msgstr "Ukládání záložek selhalo (%s)"

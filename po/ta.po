@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 19:29-0400\n"
+"POT-Creation-Date: 2004-08-16 15:41+0200\n"
 "PO-Revision-Date: 2004-08-16 16:33+0530\n"
 "Last-Translator: Jayaradha N <jaya@pune.redhat.com>\n"
 "Language-Team: Tamil <zhakanini@yahoogroups.com>\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3.1\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -27,81 +28,84 @@ msgstr "போனபோவை துவக்க முடியவில்ல�
 msgid "Could not initialize gnome vfs"
 msgstr "க்னோம் விஏஃப்எஸ் ஐ துவக்க முடியவில்லை"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, c-format
 msgid "File could not be opened: %s"
 msgstr "கோப்பை திறக்க முடியவில்லை: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "கோப்பை திறப்பதில் தோல்வி '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 msgid "File is empty"
 msgstr "கோப்பு காலியாக உள்ளது"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "கோப்பு '%s' லிருந்து படிப்பதில் தோல்வி: %s"
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr "மேல்மேசை உள்ளீட்டில் உள்ள '%s' சரியான தகவை,குழு அல்லது கட்டளை இல்லை"
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
 msgstr "மேல்மேசை உள்ளீடு கோப்புகள் முறையான துவக்க குழுவாக இல்லை"
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "மேல்மேசையில் உள்ள '%s' உள்ளீடுகள் UTF-8 இல்லை"
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "மேல்மேடை உள்ளீடுகள் தெரியாக குறியீட்டு முறையை பயன்படுத்துகிறது '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "மேல்மேசை உள்ளீடுகளில் குழு இல்லை '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "மேல்மேசை உள்ளீடுகளின் '%s' விசை இல்லை"
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr "மேல்மேசையில் உள்ள '%s' விசை இல் உள்ள மதிப்பை புரிந்துகொள்ள முடியவில்லை"
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr "மேல்மேசையில் விசை '%s' உடன் மொழி '%s' யில் மொழிபெயர்க்கப்படாத தகவல் உள்ளது"
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "'%s' இல் செல்லாத குழு குறிகள் உள்ளது"
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
 msgstr "மேல்மேசையில் குழுக்குறிகள் வரியின் முடிவில் உள்ளது"
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "மதிப்பு '%s' எண்ணாக புரிந்துகொள்ள முடியாது"
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "மதிப்பு '%s' பூலியனாக புரிந்துகொள்ள முடியாது"
@@ -281,8 +285,9 @@ msgid "Unknown"
 msgstr "தெரியாத"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "CD வட்டு"
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "CD-R வட்டு"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -389,8 +394,8 @@ msgid "Linux Disk"
 msgstr "லினக்ஸ் வட்டு"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "தெரியாத %u செயல் வகை"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -424,6 +429,12 @@ msgstr "செயல் நிறுத்தப்பட்டுள்ளத�
 #: libgnomevfs/gnome-vfs-mime-handlers.c:921
 #: libgnomevfs/gnome-vfs-mime-handlers.c:939
 #: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -714,7 +725,7 @@ msgstr "%.1f மெ.பை"
 msgid "%.1f GB"
 msgstr "%.1f கிகா.பை"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (தவராண யுனிகோட்)"
@@ -764,7 +775,8 @@ msgstr "வலைப்பின்னல் சேவகன்"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "நெகிழ்வட்டு இயக்கியை ஏற்ற முடியவில்லை. ஒருவேலை நெகிழ்வட்டு இல்லாமல் இருக்கலாம்"
 
 #. All others
@@ -880,12 +892,12 @@ msgstr "தெரியாத GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "விண்டோஸ் வலைப்பின்னல்்"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "(%s) தொலை கணினியை கண்டுபிடிக்க முடியவில்லை"
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -895,13 +907,14 @@ msgid ""
 msgstr ""
 "இது முதல்முதலாக கணினிக்குள் நுழையும் போது ஏற்படும்\n"
 "\n"
-"தொலை கணினி %s க்கு அடைளாளம் அனுப்பப்படும். தொடர்வது பாதுகாப்பானது என நீங்கள் நினைத்தால் கணினி மேலாளரை அணுகவும்."
+"தொலை கணினி %s க்கு அடைளாளம் அனுப்பப்படும். தொடர்வது பாதுகாப்பானது என நீங்கள் நினைத்தால் "
+"கணினி மேலாளரை அணுகவும்."
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
 msgstr "எப்படி இருந்தாலும் உள்நுழையவும்"
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
 msgstr "உள் நுழைவதை ரத்து செய்யவும்"
 
@@ -950,7 +963,9 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr "கோப்புகளை பார்க்க தேவைப்படும் பயன்பாடுகளுக்கு பொருள்கள் தேவை. அளவுரு %s அதன் URI யால் மாற்றப்படும், அளவுரு %c அதன் பொருள் அடையாளத்தால் மாற்றப்படும்"
+msgstr ""
+"கோப்புகளை பார்க்க தேவைப்படும் பயன்பாடுகளுக்கு பொருள்கள் தேவை. அளவுரு %s அதன் URI யால் "
+"மாற்றப்படும், அளவுரு %c அதன் பொருள் அடையாளத்தால் மாற்றப்படும்"
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -979,32 +994,35 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "\"ghelp\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+#, fuzzy
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "H323 ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "\"ghelp\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "\"trash\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "\"info\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr "\"mailto\"ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr "\"man\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr "\"trash\" ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr "H323 ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr "HTTP ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr "HTTPS ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1019,32 +1037,35 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "\"ghelp\" கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#, fuzzy
+msgid "The handler for \"h323\" URLs"
+msgstr "H323 கையாள்வதற்கான URL"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
+msgid "The handler for \"http\" URLs"
+msgstr "\"ghelp\" கையாள்வதற்கான URL"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
+msgid "The handler for \"https\" URLs"
+msgstr "\"ghelp\" கையாள்வதற்கான URL"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "\"info\" கையாள்வதற்கான URL"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
 msgstr "\"mailto\" கையாள்வதற்கான URL"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
 msgstr "\"man\" கையாள்வதற்கான URL"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
 msgstr "\"trash\" கையாள்வதற்கான URL"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "The handler for H323 URLs"
-msgstr "H323 கையாள்வதற்கான URL"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "The handler for HTTP URLs"
-msgstr "HTTP கையாள்வதற்கான URL"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "The handler for HTTPS URLs"
-msgstr "கையாள்வதற்கான URL கையாள்வதற்கான URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
@@ -1062,45 +1083,57 @@ msgstr "உண்மை, \"command\" விசையில் குறிக்
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
+msgstr ""
+"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை H323 URL ஐ கையாளுமெனில்."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமெனில்."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"info\" URL ஐ கையாளுமெனில்."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"mailto\" URL ஐ கையாளுமெனில்."
+msgstr ""
+"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"mailto\" URL ஐ கையாளுமெனில்."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"man\" URL ஐ கையாளுமெனில்."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"trash\"  URL ஐ கையாளுமெனில்."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை H323 URL ஐ கையாளுமெனில்."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை HTTP URL ஐ கையாளுமெனில்."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
-"URLs."
-msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை HTTPS URL ஐ கையாளுமெனில்."
+msgstr ""
+"உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை \"trash\"  URL ஐ கையாளுமெனில்."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1121,32 +1154,35 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "குறிப்பிட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமா"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "குறிப்பிட்ட கட்டளை H323 URL ஐ கையாளுமா"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "குறிப்பிட்ட கட்டளை \"ghelp\" URL ஐ கையாளுமா"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "குறிப்பிட்ட கட்டளை \"trash\" URL ஐ கையாளுமா"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "குறிப்பிட்ட கட்டளை \"info\" URL ஐ கையாளுமா"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "குறிப்பிட்ட கட்டளை \"mailto\"URL ஐ கையாளுமா"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "குறிப்பிட்ட கட்டளை \"man\" URL ஐ கையாளுமா"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "குறிப்பிட்ட கட்டளை \"trash\" URL ஐ கையாளுமா"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "குறிப்பிட்ட கட்டளை H323 URL ஐ கையாளுமா"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "குறிப்பிட்ட கட்டளை HTTP URL ஐ கையாளுமா"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "குறிப்பிட்ட கட்டளை HTTPS URL ஐ கையாளுமா"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1207,7 +1243,10 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
-msgstr "உண்மை யெனில் ப்ராக்ஸியுன் இணைக்க அனுமதி தேவை.  \"/system/http_proxy/authentication_user\" மற்றும் \"/system/http_proxy/authentication_password\"  பயனீட்டாளர்பெயர்/கடவுச்சொல் தேர்வு பெட்டியில் குறிப்பிடப்பட்டிருக்கும்"
+msgstr ""
+"உண்மை யெனில் ப்ராக்ஸியுன் இணைக்க அனுமதி தேவை.  \"/system/http_proxy/"
+"authentication_user\" மற்றும் \"/system/http_proxy/authentication_password\"  "
+"பயனீட்டாளர்பெயர்/கடவுச்சொல் தேர்வு பெட்டியில் குறிப்பிடப்பட்டிருக்கும்"
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1242,8 +1281,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"ப்ராக்ஸி அமைப்பு வழியை தேர்வு செய்யவும். \"none\", \"manual"
-"\", \"auto\" மதிப்புகளுக்கு ஆதரவு உண்டு"
+"ப்ராக்ஸி அமைப்பு வழியை தேர்வு செய்யவும். \"none\", \"manual\", \"auto\" "
+"மதிப்புகளுக்கு ஆதரவு உண்டு"
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1265,25 +1304,29 @@ msgstr "socks வழியாக ப்ராக்ஸிக்கான கண�
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "\"/system/http_proxy/host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgstr ""
+"\"/system/http_proxy/host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "\"/system/proxy/ftp_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgstr ""
+"\"/system/proxy/ftp_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "\"/system/proxy/secure_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgstr ""
+"\"/system/proxy/secure_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "\"/system/proxy/socks_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
+msgstr ""
+"\"/system/proxy/socks_host\" இனால் குறிப்பிடப்பட்ட வழியை ப்ராக்ஸி பயன்படுத்துகிறது"
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1291,7 +1334,11 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "இந்த பட்டியல் ப்ராக்ஸியை(செயலிலிருந்தும்) நேரடியாக பயன்படுத்தாத கணினியின் பட்டியலை காட்டுகிறது. இதில் புரவலன் பெயர், டொமைன்(குழுக்குறிகளை பயன்படுத்தும் உம் *.foo.com) புரவலன் IP முகவரி (both IPv4 மற்றும்IPv6) மற்றும் வலைப்பின்னல் முகவரியுடன் வலைமூடியும் இருக்கும் (உதாரணம் 192.168.0.0/24)"
+msgstr ""
+"இந்த பட்டியல் ப்ராக்ஸியை(செயலிலிருந்தும்) நேரடியாக பயன்படுத்தாத கணினியின் பட்டியலை "
+"காட்டுகிறது. இதில் புரவலன் பெயர், டொமைன்(குழுக்குறிகளை பயன்படுத்தும் உம் *.foo.com) "
+"புரவலன் IP முகவரி (both IPv4 மற்றும்IPv6) மற்றும் வலைப்பின்னல் முகவரியுடன் வலைமூடியும் "
+"இருக்கும் (உதாரணம் 192.168.0.0/24)"
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1313,3 +1360,33 @@ msgstr "SMB பணிகுழு"
 msgid "The window workgroup the user is part of"
 msgstr "பயனீட்டாளர் சாளர பணிகுழுவின் அங்கத்தினராவர்"
 
+#~ msgid "CD Disc"
+#~ msgstr "CD வட்டு"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "HTTP ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "HTTPS ஐ கையாள பயன்படும் URL செயல்படுத்தப்பட்டது"
+
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "HTTP கையாள்வதற்கான URL"
+
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "கையாள்வதற்கான URL கையாள்வதற்கான URL"
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை HTTP URL ஐ கையாளுமெனில்."
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr "உண்மை, \"command\" விசையில் குறிக்கப்பட்ட கட்டளை HTTPS URL ஐ கையாளுமெனில்."
+
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "குறிப்பிட்ட கட்டளை HTTP URL ஐ கையாளுமா"
+
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "குறிப்பிட்ட கட்டளை HTTPS URL ஐ கையாளுமா"

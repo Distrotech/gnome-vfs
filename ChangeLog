@@ -1,5 +1,13 @@
 2004-08-16  Alexander Larsson  <alexl@redhat.com>
 
+	* NEWS:
+	Update
+	
+	* configure.in:
+	Bump version to 2.7.91
+
+2004-08-16  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	Add some missing goject-2.0 references to PKG_CHECK macros.
 

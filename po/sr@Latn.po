@@ -10,14 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-06 19:35+0200\n"
+"POT-Creation-Date: 2004-08-16 15:41+0200\n"
 "PO-Revision-Date: 2004-08-06 19:56+0200\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -28,96 +29,99 @@ msgstr "Ne mogu da pokrenem Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Ne mogu da pokrenem Gnomov VSD"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, c-format
 msgid "File could not be opened: %s"
 msgstr "Datoteka se ne može otvoriti: %s"
 
 # bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Neuspešno otvaranje datoteke „%s“: %s"
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 msgid "File is empty"
 msgstr "Datoteka je prazna"
 
 # bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Neuspešno čitanje datoteke „%s“: %s"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr "„.desktop“ datoteka sadrži red „%s“ koji nije unos, grupa ni primedba"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
 msgstr "„.desktop“ datoteka ne počinje sa ispravnom početnom grupom"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "„.desktop“ datoteka sadrži red „%s“ koji nije UTF-8"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "„.desktop“ datoteka koristi nepoznato kodiranje „%s“"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "„.desktop“ datoteka nema grupu „%s“"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "„.desktop“ datoteka nema ključ „%s“"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "„.desktop“ datoteka sadrži ključ „%s“ koji ima vrednost koja se ne može razumeti."
+msgstr ""
+"„.desktop“ datoteka sadrži ključ „%s“ koji ima vrednost koja se ne može "
+"razumeti."
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "„.desktop“ datoteka ne sadrži prevod vrednosti ključa „%s“ u lokalitetu „%s“."
+msgstr ""
+"„.desktop“ datoteka ne sadrži prevod vrednosti ključa „%s“ u lokalitetu „%s“."
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "„.desktop“ datoteka sadrži neispravan znak za isticanje „%s“"
 
 # bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
 msgstr "„.desktop“ datoteka sadrži neispravan znak za isticanje na kraju reda"
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Vrednost „%s“ se ne može posmatrati kao broj."
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Vrednost „%s“ se ne može posmatrati kao istinitosna vrednost."
@@ -297,10 +301,10 @@ msgstr "XIAFS disk"
 msgid "Unknown"
 msgstr "Nepoznat"
 
-# bug: Compact Disk Disk?
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "CD disk"
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "CD-R disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -410,8 +414,8 @@ msgstr "Linuks disk"
 
 # bug: "op" should be "operation"
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "Nepoznat tip operacije %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -454,7 +458,8 @@ msgstr "Operacija zaustavljena"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "Prevaziđena funkcija.  Izmene korisnika u MIME bazi više nisu podržane."
+msgstr ""
+"Prevaziđena funkcija.  Izmene korisnika u MIME bazi više nisu podržane."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -743,7 +748,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1115
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (neispravan Unikod)"
@@ -930,7 +935,9 @@ msgid ""
 msgstr ""
 "Ovo se događa kada se po prvi put prijavite na računar.\n"
 "\n"
-"Identitet koji je poslao udaljeni računar je %s. Ukoliko želite da budete potpuno sigurni da je bezbedno da nastavite, stupite u vezu sa administratorom sistema."
+"Identitet koji je poslao udaljeni računar je %s. Ukoliko želite da budete "
+"potpuno sigurni da je bezbedno da nastavite, stupite u vezu sa "
+"administratorom sistema."
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
@@ -1018,36 +1025,37 @@ msgstr "Naredba korišćena za baratanje „callto“ adresama, ako je uključen
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Naredba korišćena za baratanje „ghelp“ adresama, ako je uključeno."
 
+# bug: inconsistent with other strings which use "...to handle \"h323\" URLs..."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+#, fuzzy
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "Naredba korišćena za baratanje „h323“ adresama, ako je uključeno."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "Naredba korišćena za baratanje „ghelp“ adresama, ako je uključeno."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "Naredba korišćena za baratanje „trash“ adresama, ako je uključeno."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "Naredba korišćena za baratanje „info“ adresama, ako je uključeno."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr "Naredba korišćena za baratanje „mailto“ adresama, ako je uključeno."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr "Naredba korišćena za baratanje „man“ adresama, ako je uključeno."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr "Naredba korišćena za baratanje „trash“ adresama, ako je uključeno."
-
-# bug: inconsistent with other strings which use "...to handle \"h323\" URLs..."
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr "Naredba korišćena za baratanje „h323“ adresama, ako je uključeno."
-
-# bug: inconsistent with other strings which use "...to handle \"h323\" URLs..."
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr "Naredba korišćena za baratanje „http“ adresama, ako je uključeno."
-
-# bug: inconsistent with other strings which use "...to handle \"h323\" URLs..."
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr "Naredba korišćena za baratanje „https“ adresama, ako je uključeno."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1061,103 +1069,129 @@ msgstr "Rukovaoc „callto“ adresama"
 msgid "The handler for \"ghelp\" URLs"
 msgstr "Rukovaoc „ghelp“ adresama"
 
+# bug: inconsistent with other strings; should be "The handler for \"h323\" URLs"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#, fuzzy
+msgid "The handler for \"h323\" URLs"
+msgstr "Rukovaoc „h323“ adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
+msgid "The handler for \"http\" URLs"
+msgstr "Rukovaoc „ghelp“ adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
+msgid "The handler for \"https\" URLs"
+msgstr "Rukovaoc „ghelp“ adresama"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "Rukovaoc „info“ adresama"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
 msgstr "Rukovaoc „mailto“ adresama"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
 msgstr "Rukovaoc „man“ adresama"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
 msgstr "Rukovaoc „trash“ adresama"
-
-# bug: inconsistent with other strings; should be "The handler for \"h323\" URLs"
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "The handler for H323 URLs"
-msgstr "Rukovaoc „h323“ adresama"
-
-# bug: inconsistent with other strings; should be "The handler for \"http\" URLs"
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "The handler for HTTP URLs"
-msgstr "Rukovaoc „http“ adresama"
-
-# bug: inconsistent with other strings; should be "The handler for \"https\" URLs"
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "The handler for HTTPS URLs"
-msgstr "Rukovaoc „https“ adresama"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „aim“ adrese."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„aim“ adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „callto“ adrese."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„callto“ adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „ghelp“ adrese."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„ghelp“ adrese."
 
+# bug: inconsistent; should be "...should handle \"h323\" URLs."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#, fuzzy
 msgid ""
-"True if the command specified in the \"command\" key should handle \"info\" "
+"True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „info“ adrese."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„h323“ adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
 msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „mailto“ adrese."
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„ghelp“ adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
 msgid ""
-"True if the command specified in the \"command\" key should handle \"man\" "
+"True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „man“ adrese."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„ghelp“ adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
+"True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „trash“ adrese."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„info“ adrese."
 
-# bug: inconsistent; should be "...should handle \"h323\" URLs."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „h323“ adrese."
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„mailto“ adrese."
 
-# bug: inconsistent; should be "...should handle \"http\" URLs."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „http“ adrese."
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„man“ adrese."
 
-# bug: inconsistent; should be "...should handle \"https\" URLs."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
+"True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za „https“ adrese."
+msgstr ""
+"Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+"„trash“ adrese."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "Uključeno ako naredba koja se koristi za ove adrese treba da se pokreće u terminalu."
+msgstr ""
+"Uključeno ako naredba koja se koristi za ove adrese treba da se pokreće u "
+"terminalu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1171,43 +1205,45 @@ msgstr "Da li navedena naredba treba da se koristi za „callto“ adrese."
 msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Da li navedena naredba treba da se koristi za „ghelp“ adrese."
 
+# bug: inconsistent; should be "...should handle \"h323\" URLs".
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "Da li navedena naredba treba da se koristi za „h323“ adrese."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "Da li navedena naredba treba da se koristi za „ghelp“ adrese."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "Da li navedena naredba treba da se koristi za „trash“ adrese."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "Da li navedena naredba treba da se koristi za „info“ adrese."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "Da li navedena naredba treba da se koristi za „mailto“ adrese."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "Da li navedena naredba treba da se koristi za „man“ adrese."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Da li navedena naredba treba da se koristi za „trash“ adrese."
-
-# bug: inconsistent; should be "...should handle \"h323\" URLs".
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "Da li navedena naredba treba da se koristi za „h323“ adrese."
-
-# bug: inconsistent; should be "...should handle \"http\" URLs".
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "Da li navedena naredba treba da se koristi za „http“ adrese."
-
-# bug: inconsistent; should be "...should handle \"https\" URLs".
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "Da li navedena naredba treba da se koristi za „https“ adrese."
 
 # bug: perhaps s/dns-sd/DNS-SD/, and s/network location/"network" location/?
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr "Zapetom razdvojen spisak DNS-SD domena koji su dostupni u mrežnoj putanji."
+msgstr ""
+"Zapetom razdvojen spisak DNS-SD domena koji su dostupni u mrežnoj putanji."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
@@ -1379,6 +1415,50 @@ msgstr "SMB radna grupa"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Vindouz radna grupa koje je korisnik član"
+
+# bug: Compact Disk Disk?
+#~ msgid "CD Disc"
+#~ msgstr "CD disk"
+
+# bug: inconsistent with other strings which use "...to handle \"h323\" URLs..."
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "Naredba korišćena za baratanje „http“ adresama, ako je uključeno."
+
+# bug: inconsistent with other strings which use "...to handle \"h323\" URLs..."
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "Naredba korišćena za baratanje „https“ adresama, ako je uključeno."
+
+# bug: inconsistent with other strings; should be "The handler for \"http\" URLs"
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "Rukovaoc „http“ adresama"
+
+# bug: inconsistent with other strings; should be "The handler for \"https\" URLs"
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "Rukovaoc „https“ adresama"
+
+# bug: inconsistent; should be "...should handle \"http\" URLs."
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr ""
+#~ "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+#~ "„http“ adrese."
+
+# bug: inconsistent; should be "...should handle \"https\" URLs."
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "Uključeno ako naredba navedena u ključu „command“ treba da se koristi za "
+#~ "„https“ adrese."
+
+# bug: inconsistent; should be "...should handle \"http\" URLs".
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "Da li navedena naredba treba da se koristi za „http“ adrese."
+
+# bug: inconsistent; should be "...should handle \"https\" URLs".
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "Da li navedena naredba treba da se koristi za „https“ adrese."
 
 #~ msgid "H323 URL handler"
 #~ msgstr "Rukovalac H323 adresama"

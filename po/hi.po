@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.hi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 19:29-0400\n"
+"POT-Creation-Date: 2004-08-16 15:41+0200\n"
 "PO-Revision-Date: 2004-07-18 14:16+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@yahoo.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
@@ -29,87 +29,87 @@ msgid "Could not initialize gnome vfs"
 msgstr "गनोम वीएफएस प्रारंभ नहीं कर सका"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, fuzzy, c-format
 msgid "File could not be opened: %s"
 msgstr "पार्से नहीं कर सका: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr ""
 
 # libgnomevfs/gnome-vfs-result.c:57
 #  GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 #, fuzzy
 msgid "File is empty"
 msgstr "फ़ाइल मौज़ूद है"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
@@ -296,8 +296,9 @@ msgid "Unknown"
 msgstr "अज्ञात"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr ""
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "सीडी-रोम ड्राइव"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -413,8 +414,8 @@ msgstr ""
 
 # libgnomevfs/gnome-vfs-job.c:714
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "अज्ञात ओपी प्रकार %u"
 
 # libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
@@ -451,6 +452,12 @@ msgstr "ऑपरेशन रोका गया"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:921
 #: libgnomevfs/gnome-vfs-mime-handlers.c:939
 #: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -840,7 +847,7 @@ msgstr "%.1f मे.बा."
 msgid "%.1f GB"
 msgstr "%.1f गी.बा."
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr "(अवैध यूनिकोड)"
@@ -1024,12 +1031,12 @@ msgstr "अज्ञात गनोम-वीएफ़एस-सीक-स्�
 msgid "Windows Network"
 msgstr "विंडोज़ नेटवर्क"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr ""
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -1038,11 +1045,11 @@ msgid ""
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
 msgstr ""
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
 msgstr ""
 
@@ -1128,31 +1135,34 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+#, fuzzy
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "सत्य यदि प्रोग्राम जो इस यूआरएल को हैंडल करता है, टर्मिनल में चलाया जाए."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "सत्य यदि प्रोग्राम जो इस यूआरएल को हैंडल करता है, टर्मिनल में चलाया जाए."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "सत्य यदि प्रोग्राम जो इस यूआरएल को हैंडल करता है, टर्मिनल में चलाया जाए."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr ""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr ""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr ""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr ""
-
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
+msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
@@ -1172,38 +1182,38 @@ msgstr "जी-हेल्प यूआरएल्स हैंडल कर�
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 #, fuzzy
+msgid "The handler for \"h323\" URLs"
+msgstr "एच323 यूआरएल्स हैंडल करें"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
+msgid "The handler for \"http\" URLs"
+msgstr "जी-हेल्प यूआरएल्स हैंडल करें"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
+msgid "The handler for \"https\" URLs"
+msgstr "जी-हेल्प यूआरएल्स हैंडल करें"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#, fuzzy
 msgid "The handler for \"info\" URLs"
 msgstr "जानकारी यूआरएल्स हैंडल करें"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 #, fuzzy
 msgid "The handler for \"mailto\" URLs"
 msgstr "इनको-डाक-भेजें यूआरएल्स हैंडल करें"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 #, fuzzy
 msgid "The handler for \"man\" URLs"
 msgstr "मेन यूआरएल्स हैंडल करें"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 #, fuzzy
 msgid "The handler for \"trash\" URLs"
 msgstr "रद्दी यूआरएल्स हैंडल करें"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
-msgid "The handler for H323 URLs"
-msgstr "एच323 यूआरएल्स हैंडल करें"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
-msgid "The handler for HTTP URLs"
-msgstr "एचटीटीपी यूआरएल्स हैंडल करें"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
-msgid "The handler for HTTPS URLs"
-msgstr "एचटीटीपीएस यूआरएल्स हैंडल करें"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 #, fuzzy
@@ -1229,49 +1239,51 @@ msgstr "\"कमांड\" हैंडल जी-हेल्प यूआर�
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 #, fuzzy
 msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr "\"कमांड\" हैंडल एच323 यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr "\"कमांड\" हैंडल जी-हेल्प यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr "\"कमांड\" हैंडल जी-हेल्प यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#, fuzzy
+msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr "\"कमांड\" हैंडल जानकारी यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 #, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr "\"कमांड\" हैंडल इनको-डाक-भेजें यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 #, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr "\"कमांड\" हैंडल मैन यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 #, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr "\"कमांड\" हैंडल ट्रैश यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr "\"कमांड\" हैंडल एच323 यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr "\"कमांड\" हैंडल एचटीटीपी यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
-"URLs."
-msgstr "\"कमांड\" हैंडल एचटीटीपीएस यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 #, fuzzy
@@ -1297,38 +1309,38 @@ msgstr "\"कमांड\" हैंडल जी-हेल्प यूआर�
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 #, fuzzy
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "\"कमांड\" हैंडल एच323 यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "\"कमांड\" हैंडल जी-हेल्प यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "\"कमांड\" हैंडल ट्रैश यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "\"कमांड\" हैंडल जानकारी यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 #, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "\"कमांड\" हैंडल इनको-डाक-भेजें यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 #, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "\"कमांड\" हैंडल मैन यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 #, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "\"कमांड\" हैंडल ट्रैश यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "\"कमांड\" हैंडल एच323 यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "\"कमांड\" हैंडल एचटीटीपी यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "\"कमांड\" हैंडल एचटीटीपीएस यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1502,6 +1514,36 @@ msgstr "एसएमबी वर्कग्रुप"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "विंडो वर्कग्रुप जिसका उपयोगकर्ता एक हिस्सा है"
+
+#, fuzzy
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "एचटीटीपी यूआरएल्स हैंडल करें"
+
+#, fuzzy
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "एचटीटीपीएस यूआरएल्स हैंडल करें"
+
+#, fuzzy
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr "\"कमांड\" हैंडल एचटीटीपी यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
+
+#, fuzzy
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "\"कमांड\" हैंडल एचटीटीपीएस यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
+
+#, fuzzy
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "\"कमांड\" हैंडल एचटीटीपी यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
+
+#, fuzzy
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr ""
+#~ "\"कमांड\" हैंडल एचटीटीपीएस यूआरएल्स पर निर्दिष्ट प्रोग्राम हेतु सत्य पर नियत करें."
 
 #~ msgid "H323 URL handler"
 #~ msgstr "एच323 यूआरएल हैंडलर"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-02 00:24+0900\n"
+"POT-Creation-Date: 2004-08-16 15:41+0200\n"
 "PO-Revision-Date: 2004-07-28 09:14+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -25,65 +25,65 @@ msgstr "Bonobo を初期化できませんでした"
 msgid "Could not initialize gnome vfs"
 msgstr "GNOME 仮想ファイルシステム (gnome-vfs) を初期化できませんでした"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, c-format
 msgid "File could not be opened: %s"
 msgstr "ファイルを開けませんでした: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "ファイル '%s' を開けませんでした: %s"
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 msgid "File is empty"
 msgstr "ファイルが空です"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "ファイル '%s' からの読み込みに失敗しました: %s"
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 ".desktop エントリの行 '%s' はエントリ、グループまたはコメントではありません。"
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
 msgstr ".desktop エントリ・ファイルが正しい起動グループで開始していません。"
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr ".desktop エントリの行 '%s' が UTF-8 ではありません。"
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr ".desktop エントリに不明なエンコーディング '%s' が含まれています。"
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr ".desktop エントリにグループ '%s' がありません。"
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr ".desktop エントリにキー '%s' がありません。"
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ".desktop エントリのキー '%s' には解釈することのできない値があります。"
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
@@ -91,22 +91,22 @@ msgstr ""
 ".desktop エントリのキー '%s' はロケール '%s' で翻訳された値が含まれていませ"
 "ん。"
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr ""
 ".desktop エントリに不正なエスケープ・シーケンス '%s' が含まれています。"
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
 msgstr ".desktop エントリの行末にエスケープ文字が含まれています。"
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "値 '%s' を数字として解釈できません。"
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "値 '%s' を論理値として解釈できません。"
@@ -286,8 +286,9 @@ msgid "Unknown"
 msgstr "不明"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "CD ディスク"
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "CD-R ディスク"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -394,8 +395,8 @@ msgid "Linux Disk"
 msgstr "Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "オペレーションの種類 %u が不明です"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -727,7 +728,7 @@ msgstr "%.1f Mバイト"
 msgid "%.1f GB"
 msgstr "%.1f Gバイト"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode が正しくありません)"
@@ -902,12 +903,12 @@ msgstr "不明な GnomeVFSSeekPosition %d です"
 msgid "Windows Network"
 msgstr "Windows ネットワーク"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "リモート・コンピュータ (%s) を識別できません"
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -920,11 +921,11 @@ msgstr ""
 "リモート・コンピュータから送られた識別子は %s です。その識別子が絶対確実だと"
 "思う場合は、システム管理者に問い合わせて下さい。"
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
 msgstr "とにかくログイン"
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
 msgstr "キャンセル"
 
@@ -1007,32 +1008,35 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "\"ghelp\" の URL を処理する際に使用するコマンドです (任意)。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+#, fuzzy
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "H323 の URL を処理する際に使用するコマンドです (任意)。"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "\"ghelp\" の URL を処理する際に使用するコマンドです (任意)。"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "\"trash\" の URL を処理する際に使用するコマンドです (任意)。"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "\"info\" の URL を処理する際に使用するコマンドです (任意)。"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr "\"mailto\" の URL を処理する際に使用するコマンドです (任意)。"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr "\"man\" の URL を処理する際に使用するコマンドです (任意)。"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr "\"trash\" の URL を処理する際に使用するコマンドです (任意)。"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr "H323 の URL を処理する際に使用するコマンドです (任意)。"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr "HTTP の URL を処理する際に使用するコマンドです (任意)。"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr "HTTPS の URL を処理する際に使用するコマンドです (任意)。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1047,32 +1051,35 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "URL \"ghelp\" の 処理"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#, fuzzy
+msgid "The handler for \"h323\" URLs"
+msgstr "H323 の URL の処理"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
+msgid "The handler for \"http\" URLs"
+msgstr "URL \"ghelp\" の 処理"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
+msgid "The handler for \"https\" URLs"
+msgstr "URL \"ghelp\" の 処理"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "URL \"info\" の 処理"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
 msgstr "URL \"mailto\" の 処理"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
 msgstr "URL \"man\" の 処理"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
 msgstr "URL \"trash\" の 処理"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "The handler for H323 URLs"
-msgstr "H323 の URL の処理"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "The handler for HTTP URLs"
-msgstr "HTTP の URL の処理"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "The handler for HTTPS URLs"
-msgstr "HTTPS の URL の処理"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
@@ -1099,6 +1106,33 @@ msgstr ""
 "ます。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr ""
+"H323 の URL を処理するキー \"command\" にコマンドを指定する場合は TRUE にしま"
+"す。"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"URL \"ghelp\" を処理するキー \"command\" にコマンドを指定する場合は TRUE にし"
+"ます。"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"URL \"ghelp\" を処理するキー \"command\" にコマンドを指定する場合は TRUE にし"
+"ます。"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
@@ -1106,7 +1140,7 @@ msgstr ""
 "URL \"info\" を処理するキー \"command\" にコマンドを指定する場合は TRUE にし"
 "ます。"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
@@ -1114,7 +1148,7 @@ msgstr ""
 "URL \"mailto\" を処理するキー \"command\" にコマンドを指定する場合は TRUE に"
 "します。"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
@@ -1122,34 +1156,12 @@ msgstr ""
 "URL \"man\" を処理するキー \"command\" にコマンドを指定する場合は TRUE にしま"
 "す。"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
 "URL \"trash\" を処理するキー \"command\" にコマンドを指定する場合は TRUE にし"
-"ます。"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr ""
-"H323 の URL を処理するキー \"command\" にコマンドを指定する場合は TRUE にしま"
-"す。"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr ""
-"HTTP の URL を処理するキー \"command\" にコマンドを指定する場合は TRUE にしま"
-"す。"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
-"URLs."
-msgstr ""
-"HTTPS の URL を処理するキー \"command\" にコマンドを指定する場合は TRUE にし"
 "ます。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
@@ -1172,32 +1184,35 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "指定したコマンドで URL \"ghelp\" を処理するかどうか"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "指定したコマンドで H323 の URL を処理するかどうか"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "指定したコマンドで URL \"ghelp\" を処理するかどうか"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "指定したコマンドで URL \"trash\" を処理するかどうか"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "指定したコマンドで URL \"info\" を処理するかどうか"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "指定したコマンドで URL \"mailto\" を処理するかどうか"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "指定したコマンドで URL \"man\" を処理するかどうか"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "指定したコマンドで URL \"trash\" を処理するかどうか"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "指定したコマンドで H323 の URL を処理するかどうか"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "指定したコマンドで HTTP の URL を処理するかどうか"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "指定したコマンドで HTTPS の URL を処理するかどうか"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1381,3 +1396,38 @@ msgstr "SMB ワークグループ"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "ユーザが接続している Windows ワークグループです。"
+
+#~ msgid "CD Disc"
+#~ msgstr "CD ディスク"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "HTTP の URL を処理する際に使用するコマンドです (任意)。"
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "HTTPS の URL を処理する際に使用するコマンドです (任意)。"
+
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "HTTP の URL の処理"
+
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "HTTPS の URL の処理"
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr ""
+#~ "HTTP の URL を処理するキー \"command\" にコマンドを指定する場合は TRUE に"
+#~ "します。"
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "HTTPS の URL を処理するキー \"command\" にコマンドを指定する場合は TRUE に"
+#~ "します。"
+
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "指定したコマンドで HTTP の URL を処理するかどうか"
+
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "指定したコマンドで HTTPS の URL を処理するかどうか"

@@ -8,14 +8,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2004-07-29 17:37+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-16 15:41+0200\n"
 "PO-Revision-Date: 2004-07-29 22:33+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.2\n"
 "Plural-Forms: nplurals=2; plural=(n == 1);\n"
 
@@ -27,81 +27,91 @@ msgstr "Ezin izan da Bonobo hasieratu"
 msgid "Could not initialize gnome vfs"
 msgstr "Ezin izan da gnome vfs hasieratu"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, c-format
 msgid "File could not be opened: %s"
 msgstr "Ezin izan da fitxategia ireki: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Huts eginu du '%s' fitxategia irekitzean: %s"
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 msgid "File is empty"
 msgstr "Fitxategia hutsik dago"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Huts egin du '%s' fitxategia irakurtzean: %s"
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr "Mahaigaineko sarrerak '%s' lerroa dauka, baina ez da sarrera, taldea edo iruzkina"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr ""
+"Mahaigaineko sarrerak '%s' lerroa dauka, baina ez da sarrera, taldea edo "
+"iruzkina"
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
-msgstr "mahaigaineko sarrerako fitxategia ez da hasten hasierako talde legalarekin"
+msgstr ""
+"mahaigaineko sarrerako fitxategia ez da hasten hasierako talde legalarekin"
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "mahaigaineko sarrerak '%s' lerroa dauka, baina ez da UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "mahaigaineko sarrerak '%s' kodeketa ezezaguna dauka"
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "mahaigaineko sarrerak ez dauka '%s' talderik"
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "mahaigaineko sarrerak ez dauka '%s' gakorik"
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "mahaigaineko sarresak '%s' gakoa dauka, bere balioa ordea ezin da interpretatu"
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ""
+"mahaigaineko sarresak '%s' gakoa dauka, bere balioa ordea ezin da "
+"interpretatu"
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "mahaigaineko sarrerak '%2$s' hizkuntzako '%1$s' gakoaren balioa itzuli gabe dauka"
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr ""
+"mahaigaineko sarrerak '%2$s' hizkuntzako '%1$s' gakoaren balioa itzuli gabe "
+"dauka"
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "mahaigaineko sarrerak '%s' ihes-sekuentzia baliogabea dauka"
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
 msgstr "mahaigaineko sarrerak ihes-karakterea dauka lerroaren amaieran"
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "'%s' balioa ezin da zenbaki bezala interpretatu"
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "'%s' balioa ezin da balio boolear bezala interpretatu"
@@ -281,8 +291,9 @@ msgid "Unknown"
 msgstr "Ezezaguna"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "CD diskoa"
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "CD-R diskoa"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -389,8 +400,8 @@ msgid "Linux Disk"
 msgstr "Linux diskoa"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "%u op mota ezezaguna"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -433,7 +444,9 @@ msgstr "Eragiketa geldiarazita"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "Funtzio zaharkitua.  Erabiltzaileak egindako MIME datubasearen aldaketarik ez da onartuko"
+msgstr ""
+"Funtzio zaharkitua.  Erabiltzaileak egindako MIME datubasearen aldaketarik "
+"ez da onartuko"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -720,7 +733,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode baliogabea)"
@@ -770,7 +783,8 @@ msgstr "Sareko zerbitzaria"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Ezin da diskete gailua muntatu. Baliteke gailuan disketerik ez egotea."
 
 #. All others
@@ -890,12 +904,12 @@ msgstr "%d nomeVFSSeekPosition ezezaguna"
 msgid "Windows Network"
 msgstr "Windows sarea"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Urruneko ordenagailuaren (%s) identitatea ezezaguna da."
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -905,14 +919,14 @@ msgid ""
 msgstr ""
 "Ordenagailuan lehen aldiz saioa hastean gertatzen da.\n"
 "\n"
-"Urruneko ordenagailuak bidalitako idetitatea %s da. Jar zaitez sistemako arduradunarekin "
-"harremanetan erabateko segurtasuna duela ziurtatzeko."
+"Urruneko ordenagailuak bidalitako idetitatea %s da. Jar zaitez sistemako "
+"arduradunarekin harremanetan erabateko segurtasuna duela ziurtatzeko."
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
 msgstr "Sartu hala ere"
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
 msgstr "Utzi saioa amaitzea bertan behera"
 
@@ -962,9 +976,9 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Fitxategiak bistaratzeko eta hauek ikusteko behar duen osagaia eskatzen duen aplikazioa. "
-"%s parametroa fitxategiaren URIagatik, eta %c parametroa IID osagaiatik "
-"ordeztuko dira."
+"Fitxategiak bistaratzeko eta hauek ikusteko behar duen osagaia eskatzen duen "
+"aplikazioa. %s parametroa fitxategiaren URIagatik, eta %c parametroa IID "
+"osagaiatik ordeztuko dira."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -995,32 +1009,35 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "\"ghelp\" URLak kudeatzeko komandoa, gaituta egonez gero."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+#, fuzzy
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "H323 URLak kudeatzeko komandoa, gaituta egonez gero."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "\"ghelp\" URLak kudeatzeko komandoa, gaituta egonez gero."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "\"trash\" komandoa kudeatzeko komandoa, gaituta egonez gero."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "\"info\" URLak kudeatzeko komandoa, gaituta egonez gero."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr "\"mailto\" URLak kudeatzeko komandoa, gaituta egonez gero."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr "\"man\" URLak kudeatzeko komandoa, gaituta egonez gero."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr "\"trash\" komandoa kudeatzeko komandoa, gaituta egonez gero."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr "H323 URLak kudeatzeko komandoa, gaituta egonez gero."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr "HTTP URLak kudeatzeko komandoa, gaituta egonez gero."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr "HTTPS URLak kuedatzeko komandoa, gaituta egonez gero."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1035,114 +1052,125 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "\"ghelp\" URLen kudeatzailea"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#, fuzzy
+msgid "The handler for \"h323\" URLs"
+msgstr "H323 URLen kudeatzailea"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
+msgid "The handler for \"http\" URLs"
+msgstr "\"ghelp\" URLen kudeatzailea"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
+msgid "The handler for \"https\" URLs"
+msgstr "\"ghelp\" URLen kudeatzailea"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "\"info\" URLen kudeatzailea"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
 msgstr "\"mailto\" URLen kudeatzailea"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
 msgstr "\"man\" URLen kudeatzailea"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
 msgstr "\"trash\" URLen kudeatzailea"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "The handler for H323 URLs"
-msgstr "H323 URLen kudeatzailea"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "The handler for HTTP URLs"
-msgstr "HTTP URLen kudeatzailea"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "The handler for HTTPS URLs"
-msgstr "HTTPS URLen kudeatzailea"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"aim\" URLak "
-"kudeatuko baditu."
+"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"aim\" "
+"URLak kudeatuko baditu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"callto\" URLak "
-"kudeatuko baditu."
+"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"callto\" "
+"URLak kudeatuko baditu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"ghelp\" URLak "
-"kudeatuko baditu."
+"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"ghelp\" "
+"URLak kudeatuko baditu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#, fuzzy
 msgid ""
-"True if the command specified in the \"command\" key should handle \"info\" "
+"True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr ""
-"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"info\" URLak "
-"kudeatuko baditu."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr ""
-"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"mailto\" URLak "
-"kudeatuko baditu."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid ""
-"True if the command specified in the \"command\" key should handle \"man\" "
-"URLs."
-msgstr ""
-"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"man\" URLak "
-"kudeatuko baditu."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
-"URLs."
-msgstr ""
-"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"trash\" URLak "
-"kudeatuko baditu."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle H323 URLs."
 msgstr ""
 "Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak H323 URLak "
 "kudeatuko baditu."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle HTTP URLs."
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
 msgstr ""
-"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak HTTP URLak "
-"kudeatuko baditu."
+"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"ghelp\" "
+"URLak kudeatuko baditu."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"ghelp\" "
+"URLak kudeatuko baditu."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
+msgstr ""
+"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"info\" "
+"URLak kudeatuko baditu."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"mailto\" "
+"URLak kudeatuko baditu."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"man\" "
+"URLak kudeatuko baditu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
+"True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak HTTPS URLak "
-"kudeatuko baditu."
+"Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak \"trash\" "
+"URLak kudeatuko baditu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr "Egia (true) URL hau kudeatzeko programa terminal batean exekutatu behar bada."
+msgstr ""
+"Egia (true) URL hau kudeatzeko programa terminal batean exekutatu behar bada."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1157,38 +1185,42 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Hemen zehaztutako komandoak \"ghelp\" URLak kudeatuko ditu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "Hemen zehaztutako komandoak H323 URLak kudeatuko ditu."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "Hemen zehaztutako komandoak \"ghelp\" URLak kudeatuko ditu."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "Hemen zehaztutako komandoak \"trash\" URLak kudeatuko ditu."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "Hemen zehaztutako komandoak \"info\" URLak kudeatuko ditu."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "Hemen zehaztutako komandoak \"mailto\" URLak kudeatuko ditu."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "Hemen zehaztutako komandoak \"man\" URLak kudeatuko ditu."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Hemen zehaztutako komandoak \"trash\" URLak kudeatuko ditu."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "Hemen zehaztutako komandoak H323 URLak kudeatuko ditu."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "Hemen zehaztutako komandoak HTTP URLak kudeatuko ditu."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "Hemen zehaztutako komandoak HTTPS URLak kudeatuko ditu."
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr "Komaz bereiztutako dns-sd domeinuen zerrenda, sarean ikuskorra izango dena."
+msgstr ""
+"Komaz bereiztutako dns-sd domeinuen zerrenda, sarean ikuskorra izango dena."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
@@ -1245,8 +1277,8 @@ msgid ""
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "Egia bada, proxy zerbitzarira konektatzeko autentifikazioa eskatuko da. "
-"Erabiltzailea/pasahitza bikotea \"/system/http_proxy/authentication_user"
-"\"-ean eta \"/system/http_proxy/authentication_password\"-ean definitzen dira."
+"Erabiltzailea/pasahitza bikotea \"/system/http_proxy/authentication_user\"-"
+"ean eta \"/system/http_proxy/authentication_password\"-ean definitzen dira."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1340,9 +1372,10 @@ msgid ""
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
 "Gako honek zuzenean konektatzen dien hostalarien zerrenda dauka, proxy-aren "
-"bitartez egin beharrean (nahiz eta abioan egon). Balioak hostalarien izenak, domeinuak "
-"(*.lelo.com bezalako hasierako komodina erabiliz), IP helbideak (bai IPv4 bai IPv6) eta sareko "
-"helbideak, sare-maskarekin, (192.168.0.0/24 bezalakoak)."
+"bitartez egin beharrean (nahiz eta abioan egon). Balioak hostalarien izenak, "
+"domeinuak (*.lelo.com bezalako hasierako komodina erabiliz), IP helbideak "
+"(bai IPv4 bai IPv6) eta sareko helbideak, sare-maskarekin, (192.168.0.0/24 "
+"bezalakoak)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1363,6 +1396,41 @@ msgstr "SMB lan-taldea"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Windows-eko lan-taldea, erabiltzailea kide dena"
+
+#~ msgid "CD Disc"
+#~ msgstr "CD diskoa"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "HTTP URLak kudeatzeko komandoa, gaituta egonez gero."
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "HTTPS URLak kuedatzeko komandoa, gaituta egonez gero."
+
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "HTTP URLen kudeatzailea"
+
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "HTTPS URLen kudeatzailea"
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr ""
+#~ "Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak HTTP "
+#~ "URLak kudeatuko baditu."
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "Ezarri egi gisa (true) \"komandoa\" gakoan zehaztutako komandoak HTTPS "
+#~ "URLak kudeatuko baditu."
+
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "Hemen zehaztutako komandoak HTTP URLak kudeatuko ditu."
+
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "Hemen zehaztutako komandoak HTTPS URLak kudeatuko ditu."
 
 #~ msgid "H323 URL handler"
 #~ msgstr "H323 URL kudeatzailea"
@@ -1397,4 +1465,3 @@ msgstr "Windows-eko lan-taldea, erabiltzailea kide dena"
 
 #~ msgid "1 byte"
 #~ msgstr "byte 1"
-

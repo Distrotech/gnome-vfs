@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 19:29-0400\n"
+"POT-Creation-Date: 2004-08-16 15:41+0200\n"
 "PO-Revision-Date: 2004-02-23 19:51+0000\n"
 "Last-Translator: Rhys Jones <rhys@sucs.org>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
@@ -28,85 +28,85 @@ msgstr "Methwyd ymgychwyn Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Methwyd ymgychwyn gnome vfs"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, fuzzy, c-format
 msgid "File could not be opened: %s"
 msgstr "Methu gramadegu: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Methwyd agor ffeil '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 #, fuzzy
 msgid "File is empty"
 msgstr "Mae'r ffeil yn bodoli"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, fuzzy, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Methwyd agor ffeil '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr ""
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr ""
@@ -287,8 +287,9 @@ msgid "Unknown"
 msgstr "Anhysbys"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr ""
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "Chwaraewr CD-ROM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -402,8 +403,8 @@ msgid "Linux Disk"
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "Math op anhybys %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -437,6 +438,12 @@ msgstr "Ataliwyd y gweithrediad"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:921
 #: libgnomevfs/gnome-vfs-mime-handlers.c:939
 #: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -728,7 +735,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode annilys)"
@@ -900,12 +907,12 @@ msgstr "GnomeVFSSeekPosition anhysbys %d"
 msgid "Windows Network"
 msgstr "Rhwydwaith Windows"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr ""
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -914,11 +921,11 @@ msgid ""
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
 msgstr ""
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
 msgstr ""
 
@@ -1004,33 +1011,36 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"ghelp\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+#, fuzzy
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU H323, os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"ghelp\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"trash\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"info\", os yn alluog."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 #, fuzzy
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"callto\", os yn alluog."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"man\", os yn alluog."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"trash\", os yn alluog."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU H323, os yn alluog."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTP, os yn alluog."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTPS, os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 #, fuzzy
@@ -1049,38 +1059,38 @@ msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 #, fuzzy
+msgid "The handler for \"h323\" URLs"
+msgstr "Ymdrin â LAU H323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
+msgid "The handler for \"http\" URLs"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
+msgid "The handler for \"https\" URLs"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#, fuzzy
 msgid "The handler for \"info\" URLs"
 msgstr "Trinydd LAU ar gyfer lleoliadau \"info\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 #, fuzzy
 msgid "The handler for \"mailto\" URLs"
 msgstr "Ymdrin â LAU \"mailto\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 #, fuzzy
 msgid "The handler for \"man\" URLs"
 msgstr "Trinydd LAU ar gyfer lleoliadau \"man\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 #, fuzzy
 msgid "The handler for \"trash\" URLs"
 msgstr "Trinydd LAU ar gyfer lleoliadau \"trash\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
-msgid "The handler for H323 URLs"
-msgstr "Ymdrin â LAU H323"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
-msgid "The handler for HTTP URLs"
-msgstr "Ymdrin â LAU HTTP"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
-msgid "The handler for HTTPS URLs"
-msgstr "Ymdrin â LAU HTTP diogel"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 #, fuzzy
@@ -1112,13 +1122,40 @@ msgstr ""
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 #, fuzzy
 msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU H323."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU \"ghelp\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU \"ghelp\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#, fuzzy
+msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
 "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
 "LAU \"info\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 #, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
@@ -1127,7 +1164,7 @@ msgstr ""
 "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
 "LAU \"man\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 #, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
@@ -1136,7 +1173,7 @@ msgstr ""
 "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
 "LAU \"man\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 #, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
@@ -1144,31 +1181,6 @@ msgid ""
 msgstr ""
 "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
 "LAU \"trash\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU H323."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU HTTPS."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
-"URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 #, fuzzy
@@ -1195,38 +1207,38 @@ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 #, fuzzy
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU H323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"ghelp\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"trash\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"info\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 #, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 #, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 #, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"trash\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU H323"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTP"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTPS"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1408,6 +1420,44 @@ msgstr "Grŵp SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Y grŵp Windows mae'r defnyddiwr yn rhan ohoni"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTP, os yn alluog."
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTPS, os yn alluog."
+
+#, fuzzy
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "Ymdrin â LAU HTTP"
+
+#, fuzzy
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "Ymdrin â LAU HTTP diogel"
+
+#, fuzzy
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU HTTPS."
+
+#, fuzzy
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+#~ "â LAU HTTPS."
+
+#, fuzzy
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTP"
+
+#, fuzzy
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTPS"
 
 #~ msgid "H323 URL handler"
 #~ msgstr "trinydd LAU H323"

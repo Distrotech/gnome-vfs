@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-10 21:15+0200\n"
+"POT-Creation-Date: 2004-08-16 15:41+0200\n"
 "PO-Revision-Date: 2004-08-10 21:45+0200\n"
 "Last-Translator: Åsmund Skjæveland <aasmunds@fys.uio.no>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
@@ -27,81 +27,90 @@ msgstr "Klarte ikkje å starta Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Klarte ikkje å starta GNOME VFS"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, c-format
 msgid "File could not be opened: %s"
 msgstr "Fila kunne ikkje opnast: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Klarte ikkje opna fila «%s»: %s"
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 msgid "File is empty"
 msgstr "Fila er tom"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Klarte ikkje å lesa frå fila «%s»: %s"
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr "skrivebordsoppføringane inneheld linja «%s» som ikkje er ei oppføring, ei gruppe eller ein merknad"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr ""
+"skrivebordsoppføringane inneheld linja «%s» som ikkje er ei oppføring, ei "
+"gruppe eller ein merknad"
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
 msgstr "skrivebordsoppføringsfila startar ikkje med lovleg startgruppe"
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "skrivebordsoppføringane inneheld linja «%s» som ikkje er koda i UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "skrivebordsoppføringane inneheld ukjend teiknkoding «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "skrivebordsoppføringane har ikkje gruppa «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "skrivebordsoppføringane har ikkje nøkkelen «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "skrivebordsoppføringane inneheld nøkkelen «%s» som har ein verdi som ikkje kan tolkast."
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ""
+"skrivebordsoppføringane inneheld nøkkelen «%s» som har ein verdi som ikkje "
+"kan tolkast."
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "skrivebordsoppføringane inneheld ikkje nokon omsett verdi til nøkkelen «%s» med lokalet «%s»."
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr ""
+"skrivebordsoppføringane inneheld ikkje nokon omsett verdi til nøkkelen «%s» "
+"med lokalet «%s»."
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "skrivebordsoppføringane inneheld ugyldig escape-sekvens «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
 msgstr "skrivebordsoppføringane inneheld escape-teikn på slutten av ei linje"
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Verdien «%s» kan ikkje tolkast som eit tal."
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Verdien «%s» kan ikkje tolkast som ein boolsk verdi."
@@ -281,8 +290,9 @@ msgid "Unknown"
 msgstr "Ukjend"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "CD-plate"
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "CD-R-plate"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -390,8 +400,8 @@ msgstr "Linux-disk"
 
 # TRN: Hø?
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "Ukjend op-type %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -434,7 +444,8 @@ msgstr "Operasjonen vart stoppa"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "Forelda funksjonar. Brukarendringar av MIME-databasen er ikkje støtta lenger."
+msgstr ""
+"Forelda funksjonar. Brukarendringar av MIME-databasen er ikkje støtta lenger."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -722,7 +733,7 @@ msgstr "%.1f MiB"
 msgid "%.1f GB"
 msgstr "%.1f GiB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1118
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (ugyldig Unicode)"
@@ -772,7 +783,8 @@ msgstr "Nettverkstenar"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Kan ikkje montera disketten. Det er truleg ikkje nokon diskett i "
 "diskettstasjonen."
@@ -909,7 +921,9 @@ msgid ""
 msgstr ""
 "Dette skjer når du loggar på ein maskin for fyrste gong.\n"
 "\n"
-"Identiteten som er sendt av den eksterne maskinen er «%s». Dersom du vil vera heilt viss på at det er trygt å halda fram, bør du kontakta systemadministratoren."
+"Identiteten som er sendt av den eksterne maskinen er «%s». Dersom du vil "
+"vera heilt viss på at det er trygt å halda fram, bør du kontakta "
+"systemadministratoren."
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
@@ -973,7 +987,8 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "Standard terminalemulator som skal brukast til program som krev ein terminal."
+msgstr ""
+"Standard terminalemulator som skal brukast til program som krev ein terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -996,32 +1011,35 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Kommandoen som tek hand om «ghelp»-adresser, dersom slått på."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+#, fuzzy
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "Kommandoen som tek hand om H323-adresser, dersom slått på."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "Kommandoen som tek hand om «ghelp»-adresser, dersom slått på."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "Kommandoen som tek hand om «trash»-adresser, dersom slått på."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "Kommandoen som tek hand om «info»-adresser, dersom slått på."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr "Kommandoen som tek hand om «mailto»-adresser, dersom slått på."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr "Kommandoen som tek hand om «man»-adresser, dersom slått på."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr "Kommandoen som tek hand om «trash»-adresser, dersom slått på."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr "Kommandoen som tek hand om H323-adresser, dersom slått på."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr "Kommandoen som tek hand om HTTP-adresser, dersom slått på."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr "Kommandoen som tek hand om HTTPS-adresser, dersom slått på."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1036,88 +1054,118 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "Handsamar av «ghelp»-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#, fuzzy
+msgid "The handler for \"h323\" URLs"
+msgstr "Handsamar av «H323»-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
+msgid "The handler for \"http\" URLs"
+msgstr "Handsamar av «ghelp»-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
+msgid "The handler for \"https\" URLs"
+msgstr "Handsamar av «ghelp»-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "Handsamar av «info»-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
 msgstr "Handsamar av «mailto»-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
 msgstr "Handsamar av «man»-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
 msgstr "Handsamar av «trash»-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "The handler for H323 URLs"
-msgstr "Handsamar av «H323»-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "The handler for HTTP URLs"
-msgstr "Handsamar av HTTP-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "The handler for HTTPS URLs"
-msgstr "Handsamar av HTTPS-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «aim»-adresser."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «aim»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «callto»-adresser."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «callto»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «ghelp»-adresser."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «ghelp»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#, fuzzy
 msgid ""
-"True if the command specified in the \"command\" key should handle \"info\" "
+"True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «info»-adresser."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama H323-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
 msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «mailto»-adresser."
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «ghelp»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
 msgid ""
-"True if the command specified in the \"command\" key should handle \"man\" "
+"True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «man»-adresser."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «ghelp»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
+"True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama «trash»-adresser."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «info»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama H323-adresser."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «mailto»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama HTTP-adresser."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «man»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
+"True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "Sett til sann for å la programmet i nøkkelen «command» handsama HTTPS-adresser."
+msgstr ""
+"Sett til sann for å la programmet i nøkkelen «command» handsama «trash»-"
+"adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1140,38 +1188,43 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Om den oppgjevne kommandoen skal handsama «ghelp»-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "Om den oppgjevne kommandoen skal handsama H323-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "Om den oppgjevne kommandoen skal handsama «ghelp»-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "Om den oppgjevne kommandoen skal handsama «trash»-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "Om den oppgjevne kommandoen skal handsama «info»-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "Om den oppgjevne kommandoen skal handsama «mailto»-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "Om den oppgjevne kommandoen skal handsama «man»-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Om den oppgjevne kommandoen skal handsama «trash»-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "Om den oppgjevne kommandoen skal handsama H323-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "Om den oppgjevne kommandoen skal handsama HTTP-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "Om den oppgjevne kommandoen skal handsama HTTPS-adresser"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr "Kommadelt liste over dns-sd-domener som skal vera synlege i nettverksplasseringa."
+msgstr ""
+"Kommadelt liste over dns-sd-domener som skal vera synlege i "
+"nettverksplasseringa."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
@@ -1355,3 +1408,37 @@ msgstr "SMB-arbeidsgruppe"
 msgid "The window workgroup the user is part of"
 msgstr "Windows-arbeidsgruppa brukaren er med i"
 
+#~ msgid "CD Disc"
+#~ msgstr "CD-plate"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "Kommandoen som tek hand om HTTP-adresser, dersom slått på."
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "Kommandoen som tek hand om HTTPS-adresser, dersom slått på."
+
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "Handsamar av HTTP-adresser"
+
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "Handsamar av HTTPS-adresser"
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr ""
+#~ "Sett til sann for å la programmet i nøkkelen «command» handsama HTTP-"
+#~ "adresser."
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "Sett til sann for å la programmet i nøkkelen «command» handsama HTTPS-"
+#~ "adresser."
+
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "Om den oppgjevne kommandoen skal handsama HTTP-adresser"
+
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "Om den oppgjevne kommandoen skal handsama HTTPS-adresser"

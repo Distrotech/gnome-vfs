@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-03 13:19+0200\n"
+"POT-Creation-Date: 2004-08-16 15:41+0200\n"
 "PO-Revision-Date: 2004-08-03 13:19+0200\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -34,26 +34,26 @@ msgstr "Kunne ikke klargøre Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Kunne ikke klargøre Gnome-VFS"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, c-format
 msgid "File could not be opened: %s"
 msgstr "Filen kunne ikke åbnes: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Kunne ikke åbne fil '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 msgid "File is empty"
 msgstr "Filen er tom"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Kunne ikke læse fra fil '%s': %s"
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
@@ -61,33 +61,33 @@ msgstr ""
 "skrivebordselementer indeholder linjen '%s' hvilket ikke er et element, en "
 "gruppe eller en kommentar"
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
 msgstr "skrivebordselementer-filen starter ikke med en gyldig start-gruppe"
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "skrivebordselementer indeholder linjen '%s' hvilket ikke er UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "skrivebordselementer indeholder ukendt indkodning '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "skrivebordselementer har ikke gruppen '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "skrivebordselementer har ikke nøgle '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
@@ -95,7 +95,7 @@ msgstr ""
 "skrivebordselementer indeholder nøgle '%s' med en værdi der ikke kan "
 "fortolkes."
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
@@ -103,21 +103,21 @@ msgstr ""
 "skrivebordselementer indeholder ingen oversat værdi for nøgle '%s' med "
 "regionaldata '%s'."
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "skrivebordselementer indeholder ugyldig undvigesekvens '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
 msgstr "skrivebordselementer indeholder undvige-tegn for enden af linjen"
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Værdi '%s' kan ikke fortolkes som et nummer."
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Værdi '%s' kan ikke fortolkes som en sandhedsværdi."
@@ -297,8 +297,9 @@ msgid "Unknown"
 msgstr "Ukendt"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "Cd-skive"
+#, fuzzy
+msgid "CD-ROM Disc"
+msgstr "Cd-r-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -405,8 +406,8 @@ msgid "Linux Disk"
 msgstr "Linux-drev"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, c-format
-msgid "Unknown op type %u"
+#, fuzzy, c-format
+msgid "Unknown operation type %u"
 msgstr "Ukendt operationstype %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -440,6 +441,12 @@ msgstr "Operation stoppet"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:921
 #: libgnomevfs/gnome-vfs-mime-handlers.c:939
 #: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -732,7 +739,7 @@ msgstr "%.1f Mb"
 msgid "%.1f GB"
 msgstr "%.1f Gb"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (ugyldig Unicode)"
@@ -905,12 +912,12 @@ msgstr "Ukendt GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows-netværk"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identitet på den fjerne maskine (%s) er ukendt."
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -924,11 +931,11 @@ msgstr ""
 "sikker på at det er sikkert at fortsætte, kan du kontakte "
 "systemadministratoren."
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
 msgstr "Log på alligevel"
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
 msgstr "Annullér log ind"
 
@@ -1012,36 +1019,41 @@ msgstr ""
 "Kommandoen der bruges til at håndtere \"ghelp\"-adresser, hvis aktiveret."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+#, fuzzy
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "Kommandoen der bruges til at håndtere H323-adresser, hvis aktiveret."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr ""
+"Kommandoen der bruges til at håndtere \"ghelp\"-adresser, hvis aktiveret."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr ""
+"Kommandoen der bruges til at håndtere \"trash\"-adresser, hvis aktiveret."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr ""
 "Kommandoen der bruges til at håndtere \"info\"-adresser, hvis aktiveret."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr ""
 "Kommandoen der bruges til at håndtere \"mailto\"-adresser, hvis aktiveret."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr ""
 "Kommandoen der bruges til at håndtere \"man\"-adresser, hvis aktiveret."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr ""
 "Kommandoen der bruges til at håndtere \"trash\"-adresser, hvis aktiveret."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr "Kommandoen der bruges til at håndtere H323-adresser, hvis aktiveret."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr "Kommandoen der bruges til at håndtere HTTP-adresser, hvis aktiveret."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr "Kommandoen der bruges til at håndtere HTTPS-adresser, hvis aktiveret."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1056,32 +1068,35 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "Håndtering af \"ghelp\"-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#, fuzzy
+msgid "The handler for \"h323\" URLs"
+msgstr "Håndtering af H323-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#, fuzzy
+msgid "The handler for \"http\" URLs"
+msgstr "Håndtering af \"ghelp\"-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#, fuzzy
+msgid "The handler for \"https\" URLs"
+msgstr "Håndtering af \"ghelp\"-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "Håndtering af \"info\"-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
 msgstr "Håndtering af \"mailto\"-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
 msgstr "Håndtering af \"man\"-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
 msgstr "Håndtering af \"trash\"-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "The handler for H323 URLs"
-msgstr "Håndtering af H323-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "The handler for HTTP URLs"
-msgstr "Håndtering af HTTP-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "The handler for HTTPS URLs"
-msgstr "Håndtering af HTTPS-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
@@ -1107,13 +1122,39 @@ msgstr ""
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"h323\" "
+"URLs."
+msgstr ""
+"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere H323-adresser."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"ghelp\"-"
+"adresser."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
+msgid ""
+"True if the command specified in the \"command\" key should handle \"https\" "
+"URLs."
+msgstr ""
+"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"ghelp\"-"
+"adresser."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
 "Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"info\"-adresser."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
@@ -1121,40 +1162,20 @@ msgstr ""
 "Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"mailto\"-"
 "adresser."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
 "Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"man\"-adresser."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
 "Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"trash\"-"
 "adresser."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr ""
-"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere H323-adresser."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr ""
-"Sand hvis kommandoen angivet i \"command\"-nøglen til at håndtere HTTP-"
-"adresser."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
-"URLs."
-msgstr ""
-"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere HTTPS-adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1176,32 +1197,35 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Om den specificerede kommando skal håndtere \"ghelp\"-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+#, fuzzy
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "Om den specificerede kommando skal håndtere H323-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#, fuzzy
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "Om den specificerede kommando skal håndtere \"ghelp\"-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#, fuzzy
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "Om den specificerede kommando skal håndtere \"trash\"-adresser"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr "Om det specificerde program skal håndtere \"info\"-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr "Om den specificerede kommando skal håndtere \"mailto\"-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr "Om den specificerede kommando skal håndtere \"man\"-adresser"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Om den specificerede kommando skal håndtere \"trash\"-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "Om den specificerede kommando skal håndtere H323-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "Om den specificerede kommando skal håndtere HTTP-adresser"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "Om den specificerede kommando skal håntere HTTPS-adresser"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1386,6 +1410,42 @@ msgstr "SMB-arbejdsgruppe"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Den Windows-arbejdsgruppe som brugeren er en del af"
+
+#~ msgid "CD Disc"
+#~ msgstr "Cd-skive"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr ""
+#~ "Kommandoen der bruges til at håndtere HTTP-adresser, hvis aktiveret."
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr ""
+#~ "Kommandoen der bruges til at håndtere HTTPS-adresser, hvis aktiveret."
+
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "Håndtering af HTTP-adresser"
+
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "Håndtering af HTTPS-adresser"
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr ""
+#~ "Sand hvis kommandoen angivet i \"command\"-nøglen til at håndtere HTTP-"
+#~ "adresser."
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "Sand hvis kommandoen angivet i \"command\"-nøglen håndtere HTTPS-adresser."
+
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "Om den specificerede kommando skal håndtere HTTP-adresser"
+
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "Om den specificerede kommando skal håntere HTTPS-adresser"
 
 #~ msgid "H323 URL handler"
 #~ msgstr "H323 URL-håndtering"

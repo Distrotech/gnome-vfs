@@ -1,3 +1,19 @@
+gnome-vfs 2.7.91
+
+	* Bugs fixed:
+		+ Various build fixes and leak fixes
+		+ really add support for ssh.com ssh servers
+		+ fix deadlock in sftp support
+		+ update howl usage to the API in howl 0.9.6
+		+ fix mime type inheritance usage when listing all
+                  applications for a mimetype
+		+ change type of default application list
+                  you need to upgrade eel to handle this change
+		+ Remove extfs module. It had security issues and
+		  never worked well.
+		+ docs cleanup
+		+ added missing libgobject dependency to link line
+
 gnome-vfs 2.7.90
 
 	* Bugs fixed:
