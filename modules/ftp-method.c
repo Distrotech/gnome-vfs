@@ -1206,6 +1206,25 @@ try_login (GnomeVFSURI *uri,
 	return result;	
 }
 
+static void toggle_winnt_into_unix_mode(FtpConnection *conn, 
+					GnomeVFSCancellation *cancellation)
+{
+	do_basic_command (conn, "SITE DIRSTYLE", cancellation);
+
+	if (conn->response_message != NULL
+	 && strstr(conn->response_message, "is on") != NULL)
+	{
+		/*
+		 * msdos directory mode was already off, but
+		 * we just toggled it on.  toggle it back off again
+		 */
+
+		do_basic_command(conn, "SITE DIRSTYLE", cancellation);
+	}
+
+	/* server should now be in unix directory style */
+}
+
 static GnomeVFSResult 
 ftp_connection_create (FtpConnectionPool *pool,
 		       FtpConnection **connptr,
@@ -1372,7 +1391,15 @@ ftp_connection_create (FtpConnectionPool *pool,
 	if (pool->server_type == NULL) {
 		do_basic_command (conn, "SYST", cancellation);
 		pool->server_type = g_strdup (conn->response_message);
+
 	}
+
+	/* if this is a windows server, toggle it into NT mode */
+
+	if (strncmp (pool->server_type, "Windows_NT", 10) == 0) {
+		toggle_winnt_into_unix_mode(conn, cancellation);
+	}
+
 	conn->server_type = g_strdup (pool->server_type);
 
 	*connptr = conn;
@@ -1906,97 +1933,6 @@ do_tell (GnomeVFSMethod *method,
  * only one line from that string. Fill in the appropriate fields of file_info.
  * return TRUE if a directory entry was found, FALSE otherwise
  */
-static gboolean 
-winnt_ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info, 
-		       GnomeVFSFileInfoOptions options) 
-{
-	char *mtime_str;
-	int m, d, y, h, mn;
-	const char *mime_type;
-
-	/* check parameters */
-	g_return_val_if_fail (file_info != NULL, FALSE);
-
-	/* fill in bits of valid_fields as we go along */
-	file_info->valid_fields = 0;
-
-	/* First 17 chars are DOS date */
-	file_info->mtime = 0;
-	mtime_str = g_strndup (ls, 17);
-	if (sscanf (mtime_str, "%2d-%2d-%2d  %2d:%2d",
-	                &m, &d, &y, &h, &mn) == 5) {
-		/* yes it's a dos date */
-		struct tm mtime_parts;
-		mtime_parts.tm_mon = m - 1;   /* tm_mon is zero-based */
-		mtime_parts.tm_mday = d;
-		mtime_parts.tm_year = y >= 70 ? y : y + 100;  /* handle y2k */
-		mtime_parts.tm_hour = strcasecmp (mtime_str + 15, "pm") == 0 ?
-                                        h + 12 : h;
-		mtime_parts.tm_min = mn;
-		mtime_parts.tm_sec = 0;
-		mtime_parts.tm_isdst = -1;
-		file_info->mtime = mktime (&mtime_parts);
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MTIME;
-	}
-	/* TODO: if there isn't a date it's probably a Unix-style ftp server
-	 * running under Windows */
-
-	g_free (mtime_str);
-
-	/* just in case client doesn't check valid_fields */
-	file_info->atime = file_info->mtime;
-	file_info->ctime = file_info->mtime;
-
-	/* filename begins in column 39 */
-	if (strlen (ls) >= 39) {
-		int i;
-		i = strcspn (ls + 39, "\r\n");
-		file_info->name = g_strndup (ls + 39, i);
-	} else {
-		file_info->name = NULL;
-		return FALSE;
-	}
-
-	/* if it's a directory, columns 24-29 contains "<DIR>" */
-	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-	if (strlen (ls) >= 24) {
-		char *dirflag_str;
-		dirflag_str = g_strndup (ls + 24, 5);
-		if (strcmp (dirflag_str, "<DIR>") == 0) {
-			file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-		}
-		g_free (dirflag_str);
-	}
-	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
-
-	/* if not a directory, we should find right-aligned size ending
-	 * at column 37 */
-	if (file_info->type == GNOME_VFS_FILE_TYPE_REGULAR &&
-	                strlen (ls) > 17) {
-		file_info->size = strtol (ls + 17, NULL, 0);
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SIZE;
-	}
-
-	/* mime type */
-	if (file_info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
-		mime_type = gnome_vfs_mime_type_from_name_or_default (
-		                 file_info->name,
-		                 GNOME_VFS_MIME_TYPE_UNKNOWN);
-	} else {
-		mime_type = gnome_vfs_mime_type_from_mode (S_IFDIR);
-	}
-	file_info->mime_type = g_strdup (mime_type);
-	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-
-	/* fill in other structures with meaningful data, even though
-	 * it may not be valid */
-	file_info->permissions = GNOME_VFS_PERM_USER_ALL |
-	                         GNOME_VFS_PERM_GROUP_ALL |
-	                         GNOME_VFS_PERM_OTHER_ALL;
-	file_info->flags = GNOME_VFS_FILE_FLAGS_NONE;
-
-	return TRUE;
-}
 
 /**
  * return TRUE if entry found, FALSE otherwise
@@ -2509,11 +2445,7 @@ do_read_directory (GnomeVFSMethod *method,
 	while (TRUE) {
 		gboolean success;
                 
-		if (strncmp (handle->server_type, "Windows_NT", 10) == 0) {
-			success = winnt_ls_to_file_info (handle->dirlistptr, file_info,
-			                                 handle->file_info_options);
-		}
-		else if (strncmp (handle->server_type, "NETWARE", 7) == 0) {
+		if (strncmp (handle->server_type, "NETWARE", 7) == 0) {
 			success = netware_ls_to_file_info (handle->dirlistptr, file_info,
 			                                   handle->file_info_options);
 		}

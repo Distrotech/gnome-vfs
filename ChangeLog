@@ -1,3 +1,12 @@
+2005-01-28  Sebastien Bacher  <seb128@debian.org>
+
+	reviewed by: Christophe Fergeau <teuf@gnome.org>
+	
+	* modules/ftp-method.c: (toggle_winnt_into_unix_mode),
+	(ftp_connection_create), (do_read_directory): 
+	patch from Simon Howard <fraggle@alkali.org> to fix the directory 
+	listings when connecting a windows ftp server (Closes: #151594).
+
 2005-01-26  Nate Nielsen  <nielsen@memberwebs.com>
 
 	* modules/smb-method.c: Fix (initial_authentication) so that server 
