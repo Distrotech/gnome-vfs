@@ -34,7 +34,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-app-context.h			\
 	gnome-vfs-application-registry.h	\
 	gnome-vfs-async-ops.h			\
-	gnome-vfs-backend.h			\
 	gnome-vfs-callbacks.h			\
 	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-cancellation.h		\
@@ -122,7 +121,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	gnome-vfs-xfer.c			\
-	gnome-vfs-backend-private.h		\
+	gnome-vfs-backend.h			\
 	gnome-vfs-i18n.h			\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer-private.h	\

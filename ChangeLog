@@ -1,5 +1,15 @@
 2001-09-03  Maciej Stachowiak  <mjs@noisehavoc.org>
 
+	Put gnome-vfs-backend stuff all in one header and make it private.
+
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-app-context.c:
+	* libgnomevfs/gnome-vfs-backend-private.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	* libgnomevfs/gnome-vfs-backend.h:
+
+2001-09-03  Maciej Stachowiak  <mjs@noisehavoc.org>
+
 	Fix bug 8514 ([API] kill gnome-vfs-seekable)
 	
 	* libgnomevfs/Makefile.am:
