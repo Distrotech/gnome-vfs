@@ -1,3 +1,8 @@
+2004-02-06  Anthony Taranto  <voltron@emptyrhetoric.com>
+
+	* libgnomevfs/gnome-vfs-volume-ops.c (mount_unmount_thread):
+    Added code to use cdcontrol to eject cds on FreeBSD. Fixes #129980.
+
 2004-02-06  Robert Sedak  <robert.sedak@sk.htnet.hr>
 
         * configure.in: Added "hr" (Croatian) to ALL_LINGUAS.

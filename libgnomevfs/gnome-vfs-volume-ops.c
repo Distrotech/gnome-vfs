@@ -257,12 +257,23 @@ mount_unmount_thread (void *arg)
 	}
 
 	if (info->should_eject) {
+#ifdef __FreeBSD__
+	    	char *argv[5] = {
+		    	"cdcontrol",
+			"-f",
+			NULL,
+			"eject",
+			NULL
+		};
+		argv[2] = info->device_path?info->device_path:info->mount_point;
+#else
 		char *argv[3] = {
 			"eject",
 			NULL,
 			NULL
 		};
 		argv[1] = info->device_path?info->device_path:info->mount_point;
+#endif
 
 		if (g_spawn_sync (NULL,
 				  argv,
