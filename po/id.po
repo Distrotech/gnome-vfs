@@ -7,26 +7,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-22 13:53+0100\n"
+"POT-Creation-Date: 2004-04-06 15:13+0700\n"
 "PO-Revision-Date: 2003-06-12 15:24+0700\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesia <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: daemon/gnome-vfs-daemon.c:590
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "Tidak dapat menemukan browser utama"
+msgstr "Bonobo gagal diinisialisasi"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "Gagal menginisialisasi gnome vfs"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "Volume ISO 9660"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -36,17 +36,17 @@ msgstr "%s:%d berisi karakter NUL."
 #: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d tidak memiliki nama method"
+msgstr "%s:%d tidak memiliki nama method."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d tidak memiliki nama method"
+msgstr "%s:%d tidak memiliki penanda akhir pilihan."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d memiliki pilihan %s yang tidak dikenal."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -60,166 +60,165 @@ msgstr "File konfigurasi '%s' tidak ditemukan: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "Volume AFFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "Volume Jaringan AFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Volume terdeteksi otomatis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "Drive CD-ROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "CD Digital Audio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Volume Perangkat Keras"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Volume Linux Ext2"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Volume Linux Ext3"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "Volume MSDOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
-msgstr ""
+msgstr "Volume MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
-msgstr ""
+msgstr "Volume CDROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Volume Hsfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
-msgstr ""
+msgstr "Volume JFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
-msgstr ""
+msgstr "Volume Windows NT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
-msgstr ""
+msgstr "Volume Sistem"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
-msgstr ""
+msgstr "Volume Memori"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
-msgstr ""
+msgstr "Volume Minix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "Volume Jaringan NFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
-msgstr ""
+msgstr "Volume Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "Volume Linux ReiserFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Volume Share Windows"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "Volume SuperMount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
-msgstr ""
+msgstr "Volume DVD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Volume Solaris/BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Volume Solaris Udfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "Volume Solaris Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "Volume DOS Mutakhir"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "Volume Windows VFAT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Xenix Volume"
-msgstr ""
+msgstr "Volume Xenix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "Volume Linux XFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "Volume XIAFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
-#, fuzzy
 msgid "Unknown"
-msgstr "Error tidak dikenal"
+msgstr "Tidak Diketahui"
 
-#: libgnomevfs/gnome-vfs-job.c:774
+#: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Tipe op %u tidak dikenal"
 
-#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Tidak dapat membuat pipe untuk membuka GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1727
+#: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Jenis job %u tidak dikenal"
 
-#: libgnomevfs/gnome-vfs-job.c:1760
+#: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "Operasi dihentikan"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:659
+#: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Tidak dapat memparse: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:661
+#: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
 msgstr "Error parse berikutnya tidak akan ditampilkan."
 
@@ -331,7 +330,7 @@ msgstr "Operasi sedang berlangsung"
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation interrupted"
-msgstr "Operasi diinterupsi"
+msgstr "Operasi terganggu"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:60
@@ -458,16 +457,16 @@ msgid "Unknown error"
 msgstr "Error tidak dikenal"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u byte"
 msgstr[1] "%u byte"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f K"
+msgstr "%.1f KB"
 
 #: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
@@ -482,95 +481,97 @@ msgstr "%.1f GB"
 #: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
-msgstr " (unicode tidak sah)"
+msgstr " (unicode tidak benar)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
-msgstr ""
+msgstr "Disket"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
 msgid "Zip Drive"
-msgstr ""
+msgstr "Drive Zip"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
 msgid "Memory Stick"
-msgstr ""
+msgstr "Memori Stik"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
-msgstr ""
+msgstr "Volume Root"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
-msgstr ""
+msgstr "CD Audio"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Error tidak dikenal"
+msgstr "Volume tidak dikenal"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
-msgstr ""
+msgstr "Server Jaringan"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
+msgstr "Tidak dapat memasang disket. Disketnya belum dimasukkan?"
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
+"Tidak dapat memasang volume ini. Mungkin tidak ada media dalam perangkatnya."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Tidak dapat memasang disket. Mungkin format disketnya tidak dapat dipasang "
+"pada sistem ini."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Tidak dapat memasang volume yang dipilih. Mungkin tipenya tidak dapat "
+"dipasang pada sistem ini."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Tidak dapat memasang disket yang sudah dipilih."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Tidak dapat memasang volume yang sudah dipilih."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Tidak dapat melepas volume yang sudah dipilih."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
 #: libgnomevfs/gnome-vfs-volume-ops.c:298
 msgid "Failed to start command"
-msgstr ""
+msgstr "Gagal menjalankan perintah"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Tidak dapat mengeluarkan isi media"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Tidak dapat melepas server yang sedang tersambung ini"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -624,16 +625,15 @@ msgstr "Windows"
 
 #: modules/computer-method.c:525
 msgid "Network"
-msgstr ""
+msgstr "Jaringan"
 
 #: modules/computer-method.c:543
 msgid "Home"
-msgstr ""
+msgstr "Rumah"
 
 #: modules/computer-method.c:561
-#, fuzzy
 msgid "Filesystem"
-msgstr "File"
+msgstr "Sistem File"
 
 #: modules/file-method.c:385
 #, c-format
@@ -641,9 +641,8 @@ msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d tidak dikenal"
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Windows"
+msgstr "Jaringan Windows"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -670,19 +669,19 @@ msgstr "Gnome VFS moniker generik"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "file moniker standar"
+msgstr "file moniker generik"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Penampil standar"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Aplikasi terminal standar"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Parameter tambahan untuk terminal standar"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -691,185 +690,192 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"Aplikasi yang digunakan untuk menampilkan isi file ini. Parameter %s akan "
+"disubstitusi dengan URI file ini, dan parameter %c akan digantikan dengan "
+"IID komponennya"
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
+"Aplikasi terminal standar yang akan digunakan bagi semua aplikasi yang "
+"membutuhkan terminal"
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "Parameter yang akan disampaikan kepada aplikasi terminal itu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "Pengatur URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "Pengatur URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "Pengatur URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "Handle H323 URLs"
-msgstr "Tidak ada handler untuk skema URL tersebut"
+msgstr "Mengatur semua URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "Handle HTTP URLs"
-msgstr "Tidak ada handler untuk skema URL tersebut"
+msgstr "Mengatur URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "Mengatur URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle callto URLs"
-msgstr "Tidak ada handler untuk skema URL tersebut"
+msgstr "Mengatur URL callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "Handle ghelp URLs"
-msgstr "Tidak ada handler untuk skema URL tersebut"
+msgstr "Mengatur URL ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
-msgstr "Tidak ada handler untuk skema URL tersebut"
+msgstr "Mengatur URL info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "Handle mailto URLs"
-msgstr "Tidak ada handler untuk skema URL tersebut"
+msgstr "Mengatur URL mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "Handle man URLs"
-msgstr "Tidak ada handler untuk skema URL tersebut"
+msgstr "Mengatur URL man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "Handle trash URLs"
-msgstr "Tidak ada handler untuk skema URL tersebut"
+msgstr "Mengatur URL trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Jalankan program di dalam terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"Pilih jika ingin memasang program pengatur URL H323 pada bagian \"command\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
+"Pilih jika ingin memasang program pengatur URL HTTP pada bagian \"command\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
+"Pilih jika ingin memasang program pengatur URL HTTPS pada bagian \"command\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"Pilih jika ingin memasang program pengatur URL callto pada bagian \"command"
+"\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
+"Pilih jika ingin memasang program pengatur URL ghelp pada bagian \"command\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
+"Pilih jika ingin memasang program pengatur URL info pada bagian \"command\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
+"Pilih jika ingin memasang program pengatur URL mailto pada bagian \"command"
+"\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
+"Pilih jika ingin memasang program pengatur URL man pada bagian \"command\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
+"Pilih jika ingin memasang program pengatur URL trash pada bagian \"command\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
+msgstr "Pilih jika URL ini ingin dijalankan lewat sebuah terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "Pengatur URL callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "Pengatur URL ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "Pengatur URL info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "File handle tidak sah"
+msgstr "Pengatur URL mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "Pengatur URL man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "Pengatur URL trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Lakukan otentikasi pada koneksi server proksi"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "URL konfigurasi proksi otomatis"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "Aktifkan proksi saat mengakses HTTP lewat Internet."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "Nama komputer proksi FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "Port proksi FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "Nama komputer proksi HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "Kata sandi pada proksi HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "Port proksi HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "Nama pemakai pada proksi HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -877,80 +883,93 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
+"Pilih jika ingin menggunakan otentikasi pada server proksi. Kolom nama "
+"pemakai dan kata sandinya silakan di set pada \"/system/http_proxy/"
+"authentication_user\" dan \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Host non-proksi"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Kata sandi yang digunakan untuk melakukan otentikasi proksi HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Modus konfigurasi proksi"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "Nama komputer proxy SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "Port proksi SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "Nama komputer proksi HTTP Secure"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "Port proksi HTTP Secure"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
+"Pilihlah modus konfigurasi yang digunakan. Pilih antara \"none\", \"manual"
+"\", atau \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "Nama komputer yang hendak menggunakan proksi FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "Nama komputer yang hendak menggunakan proksi HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "Nama komputer yang hendak menggunakan proksi HTTP secure"
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "Nama komputer yang hendak menggunakan proksi socks"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
+"Port proksi yang digunakan oleh komputer yang tercantum pada \"/system/"
+"http_proxy/host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
+"Port proksi yang digunakan oleh komputer yang tercantum pada \"/system/proxy/"
+"ftp_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"Port proksi yang digunakan oleh komputer yang tercantum pada \"/system/proxy/"
+"secure_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
+"Port proksi yang digunakan oleh komputer yang tercantum pada \"/system/proxy/"
+"socks_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -959,34 +978,27 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Ini berisi daftar komputer yang akan terhubung langsung ke tujuan tanpa "
+"melalui proksi. Silakan isi dengan nama komputer, nama domain (gunakan "
+"wildcard semisal *.foo.com), alamat IP (boleh IPv4 atau IPv6), atau alamat "
+"jaringan lengkap dengan netmask (misalnya 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "URL yang memberikan konfigurasi proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "Gunakan proksi HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Nama pemakai yang digunakan untuk otentikasi proksi HTTP"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "Workgroup SMB"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
-
-#, fuzzy
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "Tidak ada handler untuk skema URL tersebut"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "Tidak ada handler untuk skema URL tersebut"
-
-#~ msgid "1 byte"
-#~ msgstr "1 byte"
+msgstr "Jendela informasi workgroup pemakai"
