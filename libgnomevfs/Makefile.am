@@ -169,6 +169,6 @@ BUILT_SOURCES = $(GOB_SRCLIST)
 
 CLEANFILES = $(BUILT_SOURCES)
 
-TESTS = check-headers.pl
+# TESTS = check-headers.pl
 EXTRA_DIST = check-headers.pl getdelim.c
 

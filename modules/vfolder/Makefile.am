@@ -86,7 +86,7 @@ TESTS_INCLUDES = 							  \
 	-DGNOME_VFS_MODULE_PATH=\"$(module_path)\" 			  \
 	-DGNOME_VFS_MODULE_CONFIG_PATH=\"$(top_srcdir)/modules/vfolder\"
 
-TESTS = test-vfolder
+# TESTS = test-vfolder
 
 test_vfolder_SOURCES = test-vfolder.c
 test_vfolder_LDADD = $(top_builddir)/libgnomevfs/libgnomevfs-2.la

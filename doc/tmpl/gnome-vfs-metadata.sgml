@@ -30,16 +30,6 @@ attach extra pieces of information to files, such as icons or positions
 </para>
 
 
-<!-- ##### FUNCTION gnome_vfs_metadata_get_string ##### -->
-<para>
-
-</para>
-
-@self: 
-@key: 
-@Returns: 
-
-
 <!-- ##### FUNCTION gnome_vfs_metadata_set_string ##### -->
 <para>
 

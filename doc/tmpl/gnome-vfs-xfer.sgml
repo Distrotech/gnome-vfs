@@ -33,6 +33,7 @@ conveniently copy/move/delete files en masse
 @GNOME_VFS_XFER_REMOVESOURCE: 
 @GNOME_VFS_XFER_USE_UNIQUE_NAMES: 
 @GNOME_VFS_XFER_LINK_ITEMS: 
+@GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE: 
 
 <!-- ##### ENUM GnomeVFSXferProgressStatus ##### -->
 <para>

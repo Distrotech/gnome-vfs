@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.3\n"
-"POT-Creation-Date: 2002-06-12 00:32-0700\n"
+"POT-Creation-Date: 2002-11-02 08:26+0000\n"
 "PO-Revision-Date: 2002-02-23 18:35GMT+2\n"
 "Last-Translator: Sinan Imamoglu <sinan_imam@yahoo.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -38,26 +38,26 @@ msgid "Configuration file `%s' was not found: %s"
 msgstr "Ayar dosyas? `%s' bulunamad?: %s"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:712
-#: libgnomevfs/gnome-vfs-job.c:714
+#: libgnomevfs/gnome-vfs-job.c:707
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Bilinmeyen op türü %u"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1000
 # libgnomevfs-pthread/gnome-vfs-job.c:1145
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Aç?k GIOChannel %s için boru yarat?lam?yor"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1603
-#: libgnomevfs/gnome-vfs-job.c:1596
+#: libgnomevfs/gnome-vfs-job.c:1601
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Bilinmeyen i? tan?t?c?s? %u"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1639
-#: libgnomevfs/gnome-vfs-job.c:1632
+#: libgnomevfs/gnome-vfs-job.c:1634
 msgid "Operation stopped"
 msgstr "??lem durduruldu"
 
@@ -319,38 +319,42 @@ msgid "Protocol error"
 msgstr "Protokol hatas?"
 
 # libgnomevfs/gnome-vfs-result.c:141
-#: libgnomevfs/gnome-vfs-result.c:137
+#: libgnomevfs/gnome-vfs-result.c:169
 msgid "Unknown error"
 msgstr "Bilinmeyen hata"
 
 # libgnomevfs/gnome-vfs-utils.c:68
-#: libgnomevfs/gnome-vfs-utils.c:65
+#: libgnomevfs/gnome-vfs-utils.c:70
 msgid "1 byte"
 msgstr "1 bayt"
 
 # libgnomevfs/gnome-vfs-utils.c:70
-#: libgnomevfs/gnome-vfs-utils.c:67
+#: libgnomevfs/gnome-vfs-utils.c:72
 #, c-format
 msgid "%u bytes"
 msgstr "%u bayt"
 
 # libgnomevfs/gnome-vfs-utils.c:77
-#: libgnomevfs/gnome-vfs-utils.c:74
+#: libgnomevfs/gnome-vfs-utils.c:79
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
 # libgnomevfs/gnome-vfs-utils.c:81
-#: libgnomevfs/gnome-vfs-utils.c:78
+#: libgnomevfs/gnome-vfs-utils.c:83
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
 # libgnomevfs/gnome-vfs-utils.c:85
-#: libgnomevfs/gnome-vfs-utils.c:82
+#: libgnomevfs/gnome-vfs-utils.c:87
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
+
+#: libgnomevfs/gnome-vfs-utils.c:1087
+msgid " (invalid Unicode)"
+msgstr ""
 
 # modules/file-method.c:380
 #: modules/file-method.c:382

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-06-12 00:32-0700\n"
+"POT-Creation-Date: 2002-11-02 08:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anurag Seetha <anuragseetha@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,25 +40,25 @@ msgid "Configuration file `%s' was not found: %s"
 msgstr "कानफिगरेशन फाइल '%s' नहीं मिली : %s"
 
 # libgnomevfs/gnome-vfs-job.c:714
-#: libgnomevfs/gnome-vfs-job.c:714
+#: libgnomevfs/gnome-vfs-job.c:707
 #, c-format
 msgid "Unknown op type %u"
 msgstr "अज्ञात कारक प्रकार %u"
 
 # libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "खुली GIO चैनल के लिए पाइप निर्मित नहीं किया जा सका : %s"
 
 # libgnomevfs/gnome-vfs-job.c:1596
-#: libgnomevfs/gnome-vfs-job.c:1596
+#: libgnomevfs/gnome-vfs-job.c:1601
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "अज्ञात कार्य प्रकार %u"
 
 # libgnomevfs/gnome-vfs-job.c:1632
-#: libgnomevfs/gnome-vfs-job.c:1632
+#: libgnomevfs/gnome-vfs-job.c:1634
 msgid "Operation stopped"
 msgstr "प्रक्रिया रोक दी गई है"
 
@@ -321,38 +321,42 @@ msgid "Protocol error"
 msgstr "प्रोटोकाॅल त्रुटि"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: libgnomevfs/gnome-vfs-result.c:137
+#: libgnomevfs/gnome-vfs-result.c:169
 msgid "Unknown error"
 msgstr "अज्ञात त्रुटि"
 
 # libgnomevfs/gnome-vfs-utils.c:65
-#: libgnomevfs/gnome-vfs-utils.c:65
+#: libgnomevfs/gnome-vfs-utils.c:70
 msgid "1 byte"
 msgstr "1 बाइट"
 
 # libgnomevfs/gnome-vfs-utils.c:67
-#: libgnomevfs/gnome-vfs-utils.c:67
+#: libgnomevfs/gnome-vfs-utils.c:72
 #, c-format
 msgid "%u bytes"
 msgstr "%u बाइट्स"
 
 # libgnomevfs/gnome-vfs-utils.c:74
-#: libgnomevfs/gnome-vfs-utils.c:74
+#: libgnomevfs/gnome-vfs-utils.c:79
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f किलोबाइट्स"
 
 # libgnomevfs/gnome-vfs-utils.c:78
-#: libgnomevfs/gnome-vfs-utils.c:78
+#: libgnomevfs/gnome-vfs-utils.c:83
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f मेगाबाइट्स"
 
 # libgnomevfs/gnome-vfs-utils.c:82
-#: libgnomevfs/gnome-vfs-utils.c:82
+#: libgnomevfs/gnome-vfs-utils.c:87
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f गीगाबाइट्स"
+
+#: libgnomevfs/gnome-vfs-utils.c:1087
+msgid " (invalid Unicode)"
+msgstr ""
 
 # modules/file-method.c:381
 #: modules/file-method.c:382
