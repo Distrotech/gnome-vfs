@@ -1,3 +1,19 @@
+2001-01-24  Rebecca Schulman  <rebecka@eazel.com>
+
+	* doc/mime-data-specification.txt:
+	Add documentation about new features we
+	plan to add for 1.0.  Most of them
+	were already in the document, but I've
+	also cleaned it up and added a new 
+	possible feature addition for the future
+	that takes care of a few of our design 
+	concerns: the "handled_uri_schemes"
+	attribute that will list uri schemes
+	that an application can handle regardless of
+	mime types.  This will allow applications 
+	to accept uris that are not necessarily
+	understood by gnome-vfs
+
 2001-01-22  Darin Adler  <darin@eazel.com>
 
 	* check-mime.pl: Added lots of white space checks.

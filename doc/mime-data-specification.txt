@@ -53,8 +53,10 @@ these categories:
 
 [some discussion of supertypes needed]
 
-[Information about components is stored in oaf (explain that's why
-it's not in the list above)]
+
+Information about components, including human readable names for components,
+and uri schemes and mime types that a component can understand are stored
+in oaf files, and not in gnome-vfs.  
 
 MIME types aren't the only information that is used by gnome VFS to
 choose an application to display a location.  Other information can
@@ -94,9 +96,8 @@ of the MIME file formats.  All files are standard text files.
 Comments can be added throughout the files by prepending the line
 containing the comment with a '#' character.
 
-[Move to "known problems" section. For some files,
-the parser may not be correctly handling comments on the end of
-non-comment lines.]
+[known problem: For some files, the parser may not be correctly
+handling comments on the end of non-comment lines.]
 
 The default files inside GNOME VFS source have a header that includes
 a brief description of the file's format.
@@ -262,7 +263,7 @@ Possible keys include the following:
 
 [known problem: This is not user-level-specific, and also arbitrarily
  means that either all applications come first or all components come first
- in the default order. (bugzilla.eazel.com 5447, 5448)]
+ in the default order. (bugzilla.eazel.com 4048, 5448)]
 
 6.  short_list_component_iids_for_novice_user_level,
     short_list_component_iids_for_intermediate_user_level,
@@ -334,25 +335,21 @@ The key value pairs for a .application file are as follows:
    "false" (default), GNOME VFS clients should not attempt to open
    multiple files at once with this application.
 
-4. can_open_uris: If "false" (default), all file names should be passed on the
-   command line as path names, and no non-"file:" URIs can be opened
-   by this application, regardless of the value of other values (like
-   supported_uri_schemes). If "true", all file names should be passed
-   on the command line as URIs, including "file:" file names, "file:"
-   URIs. If "non-file", then all file names that can be passed as path
-   names should be, and other file names should be passed as
-   URIs. (This third case is required for some known applications that
-   support "http" scheme URIs and local file paths, but not "file"
-   scheme URIs.)
+4. [to be implemented] can_open_uris: If "false" (default), all file
+   names should be passed on the command line as path names, and no
+   non-"file:" URIs can be opened by this application, regardless of
+   the value of other values (like supported_uri_schemes). If "true",
+   all file names should be passed on the command line as URIs,
+   including "file:" file names, "file:" URIs. If "non-file", then all
+   file names that can be passed as path names should be, and other
+   file names should be passed as URIs. (This third case is required
+   for some known applications that support "http" scheme URIs and
+   local file paths, but not "file" scheme URIs.)
 
-[known problem: Currently can_open_uris means more than this and the
-"non-file" feature does not exist.]
-
-5. all_gnome_vfs_schemes_supported: If "true", all gnome-vfs schemes
-   should be included in the set of "supported schemes". Other schemes
-   can be added by also including a supported_uri_schemes key as well.
-
-[known problem: This is a proposal, not currently implemented.]
+5. [to be implemented] all_gnome_vfs_schemes_supported: If "true", all
+   gnome-vfs schemes should be included in the set of "supported
+   schemes". Other schemes can be added by also including a
+   supported_uri_schemes key as well.  
 
 [may want to discuss issue of using cover scripts to make programs
 easily invokable rather than teaching clients to pass command-line
@@ -380,29 +377,26 @@ options]
    application might know how to "handle" MIME types in some
    non-"Open" way and those types would be omitted from this list.
 
-8. supported_uri_schemes - A comma-separated list of schemes that this
-   application can accept in a command-line URI. If this is omitted,
-   the default list is "file". Note that all schemes supported by
-   GNOME VFS are also included if all_gnome_vfs_schemes_supported is
-   "true". Re-listing a scheme that GNOME VFS accepts has no
-   additional effect in this case.
+8. [to be implemented] supported_uri_schemes - A comma-separated list
+   of schemes that this application can accept in a command-line
+   URI. If this is omitted, the default list is "file". Note that all
+   schemes supported by GNOME VFS are also included if
+   all_gnome_vfs_schemes_supported is "true". Re-listing a scheme that
+   GNOME VFS accepts has no additional effect in this case.
 
-[known problem: This is a proposal, not currently implemented.]
+9. [to be implemented] handled_uri_schemes - A comma-separated list of
+   schemes that this application can accept in a command-line URI,
+   regardless of the mime type of the location.  There is no tdefault
+   value for this field.  If a scheme not supported by GNOME VFS is
+   specified, it's unlikely the client can determine the MIME type so
+   unclear how this application will be identified as a candidate.
+   Therefore, uri schemes not supported by GNOME VFS must be specified
+   independent of MIME type.
 
 [known problem: It's possible to overwrite single fields of an entry
 for a mime type.  If this is the case, and default fields are allowed,
 we need to be sure that changing the value for one key will not
 change the meaning of other keys.]
-
-[known problem: If a scheme not supported by GNOME VFS is specified,
- it's unlikely the client can determine the MIME type so unclear how
- this application will be identified as a candidate.]
-
-[known problem: Assuming the above is solved by treating unknown
- file's types as application/octet-string (for example), we might
- still have no way to specify that a program can handle both normal
- files of a certain type and URLs with a scheme not supported by GNOME
- VFS.]
 
 [known problem: how are .keys files installed by other applications
 found?  Is there a specified ordering or preference if multiple
