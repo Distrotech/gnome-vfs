@@ -1,3 +1,11 @@
+2003-07-25  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-file-info.h.in: add G_GNUC_EXTENSION before
+	  GnomeVFSFileSize declaration to prevent g++ from spitting warnings
+	  about long long being forbidden in C++ when used with -pedantic
+	  (glib does exactly the same thing in its gint64 definition)
+	  Fixes bug #118315
+
 2003-07-24  Leena Gunda  <leena.gunda@wipro.com>
 
 	* libgnomevfs/gnome-vfs-process.c: 
