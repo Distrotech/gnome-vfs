@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.2.0\n"
-"POT-Creation-Date: 2001-02-10 21:19+0000\n"
+"POT-Creation-Date: 2001-02-19 14:54+0100\n"
 "PO-Revision-Date: 2001-02-10 23:00:03+0900\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -1672,4 +1672,3 @@ msgstr "Εμφάνιση:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Εμφάνιση κρυφών αρχείων"
-

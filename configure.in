@@ -122,7 +122,7 @@ dnl Don't blindly #define them if they're typedef'ed in <sys/types.h>
 AM_GNOME_SIZE_T
 AM_GNOME_OFF_T
 
-ALL_LINGUAS="ca da de el fi fr ga gl hu it ja ko lt nl no pl pt_BR ru sk sl sv tr uk"
+ALL_LINGUAS="az ca da de el fi fr ga gl hu it ja ko lt nl no pl pt_BR ru sk sl sv tr uk"
 AM_GNOME_GETTEXT
 
 AC_FUNC_ALLOCA

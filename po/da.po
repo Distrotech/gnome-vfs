@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2001-01-29 16:42+0100\n"
+"POT-Creation-Date: 2001-02-19 14:54+0100\n"
 "PO-Revision-Date: 2001-01-27 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
@@ -985,11 +985,6 @@ msgstr "%s:%d indeholder intet modulnavn."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigurationsfilen '%s' fandtes ikke: %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:342
-#, c-format
-msgid "Unknown sort rule %d"
-msgstr "Ukendt sorteringsregel %d"
-
 #: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS er allerede initialiseret."
@@ -1207,26 +1202,26 @@ msgstr "Forespørgsel overflødiggør tjenestens data"
 msgid "Unknown error"
 msgstr "Ukendt fejl"
 
-#: libgnomevfs/gnome-vfs-utils.c:65
+#: libgnomevfs/gnome-vfs-utils.c:67
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:67
+#: libgnomevfs/gnome-vfs-utils.c:69
 #, c-format
 msgid "%u bytes"
 msgstr "%u byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:74
+#: libgnomevfs/gnome-vfs-utils.c:76
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:78
+#: libgnomevfs/gnome-vfs-utils.c:80
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mb"
 
-#: libgnomevfs/gnome-vfs-utils.c:82
+#: libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Gb"
@@ -1279,38 +1274,38 @@ msgstr "Kan ikke lytte på '%s': %s"
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Kan ikke modtage forbindelser på '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
+#: libgnomevfs-corba/gnome-vfs-slave.c:1189
 msgid "Cannot initialize CORBA."
 msgstr "Kan ikke initialisere CORBA"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
+#: libgnomevfs-corba/gnome-vfs-slave.c:1196
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Kan ikke læse første reference til RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1292
+#: libgnomevfs-corba/gnome-vfs-slave.c:1203
 msgid "Cannot activate POA manager."
 msgstr "Kan ikke aktivere POA-håndtering"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1317
+#: libgnomevfs-corba/gnome-vfs-slave.c:1228
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Brug: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1328
+#: libgnomevfs-corba/gnome-vfs-slave.c:1239
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Kan ikke åbne filbeskriver %d"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1351
+#: libgnomevfs-corba/gnome-vfs-slave.c:1262
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Meddelelsesgrænsesnit for '%s' ikke fundet."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1361
+#: libgnomevfs-corba/gnome-vfs-slave.c:1272
 msgid "Cannot setup Request object."
 msgstr "Kan ikke opsætte forespørgselsobjekt."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1368
+#: libgnomevfs-corba/gnome-vfs-slave.c:1279
 msgid "Cannot extract IOR."
 msgstr "Kan ikke få IOR."
 
@@ -1334,7 +1329,7 @@ msgstr "Kan ikke dræbe GNOME::VFS::Slave::Notify -- undtagelse %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "Kan ikke forbinde sokkel: '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:750
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Kan ikke initialisere GNOME::VFS:Slave::Notify"
 
@@ -1358,23 +1353,23 @@ msgstr "Kan ikke dræbe GNOME::VFS::Slave %s -- undtagelse %s"
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "Kan ikke dræbe GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:690
+#: libgnomevfs-pthread/gnome-vfs-job.c:688
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Ukendt op-type %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:976
-#: libgnomevfs-pthread/gnome-vfs-job.c:1121
+#: libgnomevfs-pthread/gnome-vfs-job.c:974
+#: libgnomevfs-pthread/gnome-vfs-job.c:1119
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1728
+#: libgnomevfs-pthread/gnome-vfs-job.c:1576
 #, c-format
 msgid "Unknown job ID %u"
 msgstr "Ukendt job-ID %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1749
+#: libgnomevfs-pthread/gnome-vfs-job.c:1597
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
@@ -1491,7 +1486,7 @@ msgid "Application Command:"
 msgstr "Applikationskommando:"
 
 #. Open Behavior frame
-#. FIXME: Need to add expected uri schemes
+#. FIXME bugzilla.eazel.com 6066: Need to add expected uri schemes
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1179
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
 msgid "Open Behavior"
@@ -1510,61 +1505,62 @@ msgstr "Forventer URI-er som argumenter"
 msgid "Edit Application"
 msgstr "Redigér applikation"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1297
+#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1298
 msgid "Can open from URI"
 msgstr "Kan åbne fra URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:541
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1532
+#: mime-type-capplet/nautilus-mime-type-capplet.c:619
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1680
 msgid "Mime Type"
 msgstr "MIME-type"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:548
+#: mime-type-capplet/nautilus-mime-type-capplet.c:626
 msgid "Change Icon"
 msgstr "Ændr ikon"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:555
+#: mime-type-capplet/nautilus-mime-type-capplet.c:633
 msgid "Change File Extensions"
 msgstr "Ændr fil-endelser"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:563
+#: mime-type-capplet/nautilus-mime-type-capplet.c:641
 msgid "Default Action:"
 msgstr "Standard handling:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:575
+#: mime-type-capplet/nautilus-mime-type-capplet.c:653
 msgid "Use Viewer"
 msgstr "Brug visningsprogram"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:581
+#: mime-type-capplet/nautilus-mime-type-capplet.c:659
 msgid "Open With Application"
 msgstr "Åbn med applikation"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:593
+#: mime-type-capplet/nautilus-mime-type-capplet.c:671
 msgid "Edit List"
 msgstr "Redigér liste"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:618
+#: mime-type-capplet/nautilus-mime-type-capplet.c:696
 msgid "Add new Mime type..."
 msgstr "Tilføj ny MIME-type..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:624
+#: mime-type-capplet/nautilus-mime-type-capplet.c:702
 msgid "Delete this Mime type..."
 msgstr "Slet denne Mime-type..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:635
+#: mime-type-capplet/nautilus-mime-type-capplet.c:713
 msgid "Revert to System Defaults"
 msgstr "Gå tilbage til system-standard"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:693
+#: mime-type-capplet/nautilus-mime-type-capplet.c:794
 msgid "No Description"
 msgstr "Ingen beskrivelse"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:823
-#: mime-type-capplet/nautilus-mime-type-capplet.c:968
+#: mime-type-capplet/nautilus-mime-type-capplet.c:924
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1068
 msgid "None"
 msgstr "Ingen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1064
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1164
 msgid ""
 "Reverting to system settings\n"
 "will lose all your personal \n"
@@ -1577,28 +1573,28 @@ msgstr ""
 "Skal vi gå tilbage til system-opsætninger?\n"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1133
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1321
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1445
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1233
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1421
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1545
 msgid "none"
 msgstr "ingen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1170
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1351
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1481
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1270
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1451
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1581
 #, c-format
 msgid "View as %s"
 msgstr "Vis som %s"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1531
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1679
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1533
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1681
 msgid "Extension"
 msgstr "Filtype"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1534
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1682
 msgid "Default Action"
 msgstr "Standard handling"
 
@@ -1610,94 +1606,97 @@ msgstr "Kan ikke finde en hbox, ved brug af normalt filvalg"
 msgid "Preview"
 msgstr "Smugkig"
 
-#: modules/efs-method.c:493 modules/file-method.c:367
+#: modules/efs-method.c:493 modules/file-method.c:365
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1184
+#: modules/http-method.c:1176
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:1589
+#: modules/http-method.c:1581
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:1833
+#: modules/http-method.c:1825
 #, c-format
 msgid "%s of %s read"
 msgstr "%s af %s læst"
 
-#: modules/http-method.c:1836
+#: modules/http-method.c:1828
 #, c-format
 msgid "%s read"
 msgstr "%s læst"
 
-#: test/gnome-file-selection/gnome-file-selection.c:671
+#: test/gnome-file-selection/gnome-file-selection.c:667
 msgid "Back"
 msgstr "Tilbage"
 
-#: test/gnome-file-selection/gnome-file-selection.c:672
+#: test/gnome-file-selection/gnome-file-selection.c:668
 msgid "Go to the previously visited directory"
 msgstr "Gå til forrige besøgte katalog"
 
-#: test/gnome-file-selection/gnome-file-selection.c:680
+#: test/gnome-file-selection/gnome-file-selection.c:676
 msgid "Up"
 msgstr "Op"
 
-#: test/gnome-file-selection/gnome-file-selection.c:681
+#: test/gnome-file-selection/gnome-file-selection.c:677
 msgid "Go to the parent directory"
 msgstr "Gå til forælderkataloget"
 
-#: test/gnome-file-selection/gnome-file-selection.c:689
+#: test/gnome-file-selection/gnome-file-selection.c:685
 msgid "Forward"
 msgstr "Frem"
 
-#: test/gnome-file-selection/gnome-file-selection.c:690
+#: test/gnome-file-selection/gnome-file-selection.c:686
 msgid "Go to the next visited directory"
 msgstr "Gå til næste besøgte katalog"
 
-#: test/gnome-file-selection/gnome-file-selection.c:699
+#: test/gnome-file-selection/gnome-file-selection.c:695
 msgid "Rescan"
 msgstr "Læs igen"
 
-#: test/gnome-file-selection/gnome-file-selection.c:700
+#: test/gnome-file-selection/gnome-file-selection.c:696
 msgid "Rescan the current directory"
 msgstr "Læs dette katalog igen"
 
-#: test/gnome-file-selection/gnome-file-selection.c:709
+#: test/gnome-file-selection/gnome-file-selection.c:705
 msgid "Home"
 msgstr "Hjem"
 
-#: test/gnome-file-selection/gnome-file-selection.c:710
+#: test/gnome-file-selection/gnome-file-selection.c:706
 msgid "Go to the home directory"
 msgstr "Gå til hjemmekataloget"
 
-#: test/gnome-file-selection/gnome-file-selection.c:806
+#: test/gnome-file-selection/gnome-file-selection.c:802
 msgid "Name"
 msgstr "Navn"
 
-#: test/gnome-file-selection/gnome-file-selection.c:807
+#: test/gnome-file-selection/gnome-file-selection.c:803
 msgid "Size"
 msgstr "Størrelse"
 
-#: test/gnome-file-selection/gnome-file-selection.c:808
+#: test/gnome-file-selection/gnome-file-selection.c:804
 msgid "Date"
 msgstr "Dato"
 
-#: test/gnome-file-selection/gnome-file-selection.c:837
+#: test/gnome-file-selection/gnome-file-selection.c:833
 msgid "Enter name:"
 msgstr "Indtast navn:"
 
-#: test/gnome-file-selection/gnome-file-selection.c:860
+#: test/gnome-file-selection/gnome-file-selection.c:856
 msgid "Show:"
 msgstr "Vis:"
 
-#: test/gnome-file-selection/gnome-file-selection.c:887
+#: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Vis dotfiler"
+
+#~ msgid "Unknown sort rule %d"
+#~ msgstr "Ukendt sorteringsregel %d"
 
 #~ msgid "C-Shell script"
 #~ msgstr "C-skalsskript"
