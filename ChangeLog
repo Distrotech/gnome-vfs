@@ -1,3 +1,8 @@
+2004-07-18  Christian Kellner <gicmo@gnome-de.org>
+
+	* po/POTFILES.skip: Added neon files because we do not use neon strings
+	anywhere in the http method.
+		
 2004-07-17  Murray Cumming  <murrayc@murrayc.com>
 
 	* libgnomevfs/gnome-vfs-address.h: In the GnomeVFSAddres hidden-struct 
