@@ -607,6 +607,8 @@ _gnome_vfs_pty_getpt(void)
 #ifdef HAVE_GETPT
 	/* Call the system's function for allocating a pty. */
 	fd = getpt();
+#elif defined(HAVE_POSIX_OPENPT)
+	fd = posix_openpt(O_RDWR | O_NOCTTY);
 #else
 	/* Try to allocate a pty by accessing the pty master multiplex. */
 	fd = open("/dev/ptmx", O_RDWR | O_NOCTTY);
