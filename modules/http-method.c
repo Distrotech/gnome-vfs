@@ -2768,6 +2768,11 @@ vfs_module_init (const char *method_name, const char *args)
 		g_error_free (gconf_error);
 	}
 
+	/* FIMXE bugzilla.eazel.com 5339: 
+	 * This callback will be invoked for any key in the gnome-vfs directory,
+	 * but the code assumes that the http proxy value has changed without
+	 * checking which key changed.
+	 */
 	gtk_signal_connect (GTK_OBJECT (gl_client), "value_changed", (GtkSignalFunc) sig_gconf_value_changed, NULL);
 
 	/* Load the http proxy setting */	
