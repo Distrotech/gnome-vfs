@@ -1,5 +1,28 @@
 2003-06-10  Alexander Larsson  <alexl@redhat.com>
 
+	* Makefile.am:
+	* configure.in:
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-cancellation-private.h:
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	* libgnomevfs/gnome-vfs-client-call.c:
+	* libgnomevfs/gnome-vfs-client-call.h:
+	* libgnomevfs/gnome-vfs-client.c:
+	* libgnomevfs/gnome-vfs-client.h:
+	* libgnomevfs/gnome-vfs-configuration.c:
+	* libgnomevfs/gnome-vfs-configuration.h:
+	* libgnomevfs/gnome-vfs-daemon-method.c:
+	* libgnomevfs/gnome-vfs-daemon-method.h:
+	* libgnomevfs/gnome-vfs-init.c:
+	* libgnomevfs/gnome-vfs-method.c:
+	* libgnomevfs/gnome-vfs-private.h:
+	* modules/default-modules.conf:
+
+==== ALEX_DAEMON branch ====
+	
+2003-06-10  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-job.c:
 	Make job_private static.
 

@@ -1,9 +1,8 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+/* gnome-vfs-cancellation.h - Cancellation handling for the GNOME Virtual File
+   System access methods.
 
-/* gnome-vfs-private.h - Private header file for the GNOME Virtual
-   File System.
-
-   Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 1999, 2001 Free Software Foundation
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -20,14 +19,26 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org> */
+   Author: Ettore Perazzoli <ettore@gnu.org> 
+           Seth Nickell <snickell@stanford.edu>
+*/
 
-#ifndef GNOME_VFS_PRIVATE_H
-#define GNOME_VFS_PRIVATE_H
+#ifndef GNOME_VFS_CANCELLATION_PRIVATE_H
+#define GNOME_VFS_CANCELLATION_PRIVATE_H
 
-#define GNOME_VFS_MODULE_DIR     LIBDIR "/gnome-vfs-2.0/modules"
-#define GNOME_VFS_MODULE_CFGDIR  SYSCONFDIR "/gnome-vfs-2.0/modules"
+#include "gnome-vfs-cancellation.h"
+#include "gnome-vfs-client-call.h"
+#include "GNOME_VFS_Daemon.h"
 
-void gnome_vfs_set_is_daemon (void);
+G_BEGIN_DECLS
 
-#endif /* GNOME_VFS_PRIVATE_H */
+void _gnome_vfs_cancellation_add_client_call    (GnomeVFSCancellation *cancellation,
+						 GnomeVFSClientCall   *client_call);
+void _gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
+						 GnomeVFSClientCall   *client_call);
+
+
+
+G_END_DECLS
+
+#endif /* GNOME_VFS_CANCELLATION_PRIVATE_H */

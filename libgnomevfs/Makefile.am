@@ -5,6 +5,7 @@ INCLUDES =					\
 	-I$(top_builddir)			\
 	$(LIBGNOMEVFS_CFLAGS)			\
 	$(VFS_CFLAGS)				\
+	$(MONIKERS_CFLAGS)			\
 	-D_FILE_OFFSET_BITS=64			\
 	-D_BSD_SOURCE				\
 	-D_GNU_SOURCE				\
@@ -53,7 +54,11 @@ noinst_HEADERS =				\
 	gnome-vfs-async-job-map.h		\
 	gnome-vfs-backend.h			\
 	gnome-vfs-cancellable-ops.h		\
+	gnome-vfs-client.h			\
+	gnome-vfs-client-call.h			\
+	gnome-vfs-cancellation-private.h	\
 	gnome-vfs-configuration.h		\
+	gnome-vfs-daemon-method.h		\
 	gnome-vfs-handle-private.h		\
 	gnome-vfs-i18n.h			\
 	gnome-vfs-job-queue.h			\
@@ -116,15 +121,25 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs.h				\
 	$(NULL)
 
+CORBA_SOURCE = \
+	GNOME_VFS_Daemon.h		\
+	GNOME_VFS_Daemon-common.c	\
+	GNOME_VFS_Daemon-stubs.c	\
+	GNOME_VFS_Daemon-skels.c
+
 libgnomevfs_2_la_SOURCES =			\
+	$(CORBA_SOURCE)				\
 	gnome-vfs-application-registry.c	\
 	gnome-vfs-async-job-map.c		\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-cancellation.c		\
+	gnome-vfs-client.c			\
+	gnome-vfs-client-call.c			\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
 	gnome-vfs-directory.c			\
+	gnome-vfs-daemon-method.c		\
 	gnome-vfs-open-fd.c			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-find-directory.c		\
@@ -174,6 +189,16 @@ libgnomevfsplatformincludedir = $(libdir)/gnome-vfs-2.0/include
 libgnomevfsplatforminclude_HEADERS =		\
 	gnome-vfs-file-size.h
 
-# TESTS = check-headers.pl
-EXTRA_DIST = check-headers.pl 
+$(test_authentication_OBJECTS): GNOME_VFS_Daemon.h
 
+# Hack for now
+BONOBO_ACTIVATION_IDL_DIR=`pkg-config --variable=idldir bonobo-activation-2.0`
+
+idls = GNOME_VFS_Daemon.idl
+idl_flags = -I $(BONOBO_ACTIVATION_IDL_DIR)
+
+$(CORBA_SOURCE): $(idls) $(ORBIT_IDL)
+	$(ORBIT_IDL) $(idl_flags) $(idls)
+
+# TESTS = check-headers.pl
+EXTRA_DIST = check-headers.pl $(idls) (CORBA_SOURCE)
