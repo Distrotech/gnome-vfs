@@ -1,3 +1,9 @@
+2000-10-20  Michael Engber  <engber@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_directory):
+	progress callbacks used to get called in situations
+	when they shouldn't (error or skip cases).
+
 2000-10-20  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.keys:

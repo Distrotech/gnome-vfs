@@ -1213,7 +1213,15 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 				   progress,
 				   skip);
 
-	
+	if (*skip) {
+		gnome_vfs_directory_close (source_directory_handle);
+		return GNOME_VFS_OK;
+	}
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_directory_close (source_directory_handle);
+		return result;
+	}
+
 	if (call_progress_with_uris_often (progress, source_dir_uri, target_dir_uri, 
 			       GNOME_VFS_XFER_PHASE_OPENTARGET) != 0) {
 
@@ -1224,63 +1232,53 @@ copy_directory (GnomeVFSURI *source_dir_uri,
 		/* We do not deal with symlink loops here. 
 		 * That's OK because we don't follow symlinks.
 		 */
-		if (!*skip && result == GNOME_VFS_OK) {
-			for (;;) {
-				GnomeVFSURI *source_uri;
-				GnomeVFSURI *dest_uri;
-				GnomeVFSFileInfo info;
+		do {
+			GnomeVFSURI *source_uri;
+			GnomeVFSURI *dest_uri;
+			GnomeVFSFileInfo info;
 
-				gnome_vfs_file_info_init (&info);
+			gnome_vfs_file_info_init (&info);
 
-				result = gnome_vfs_directory_read_next (source_directory_handle, &info);
-				if (result != GNOME_VFS_OK) {
-					break;
-				}
-				
-				/* Skip "." and "..".  */
-				if (strcmp (info.name, ".") == 0 || strcmp (info.name, "..") == 0) {
-					continue;
-				}
-
-				source_uri = gnome_vfs_uri_append_file_name (source_dir_uri, info.name);
-				dest_uri = gnome_vfs_uri_append_file_name (target_dir_uri, info.name);
-				
-				if (info.type == GNOME_VFS_FILE_TYPE_REGULAR) {
-					result = copy_file (&info, source_uri, dest_uri, 
-							    xfer_options, error_mode, overwrite_mode, 
-							    progress, skip);
-				} else if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-					result = copy_directory (source_uri, dest_uri, 
-							    xfer_options, error_mode, overwrite_mode, 
-							    progress, skip);
-				} else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
-					result = gnome_vfs_create_symbolic_link (dest_uri, info.symlink_name);
-				} else {
-					g_assert_not_reached ();
-				}
-
-				gnome_vfs_uri_unref (dest_uri);
-				gnome_vfs_uri_unref (source_uri);
-
-				if (result != GNOME_VFS_OK) {
-					result = GNOME_VFS_OK;
-				}
+			result = gnome_vfs_directory_read_next (source_directory_handle, &info);
+			if (result != GNOME_VFS_OK) {
+				break;
 			}
-		}
+			
+			/* Skip "." and "..".  */
+			if (strcmp (info.name, ".") == 0 || strcmp (info.name, "..") == 0) {
+				continue;
+			}
+
+			source_uri = gnome_vfs_uri_append_file_name (source_dir_uri, info.name);
+			dest_uri = gnome_vfs_uri_append_file_name (target_dir_uri, info.name);
+			
+			if (info.type == GNOME_VFS_FILE_TYPE_REGULAR) {
+				result = copy_file (&info, source_uri, dest_uri, 
+						    xfer_options, error_mode, overwrite_mode, 
+						    progress, skip);
+			} else if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+				result = copy_directory (source_uri, dest_uri, 
+						    xfer_options, error_mode, overwrite_mode, 
+						    progress, skip);
+			} else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
+				result = gnome_vfs_create_symbolic_link (dest_uri, info.symlink_name);
+			} else {
+				g_assert_not_reached ();
+			}
+
+			gnome_vfs_uri_unref (dest_uri);
+			gnome_vfs_uri_unref (source_uri);
+
+		} while (result == GNOME_VFS_OK);
 	}
 
 	if (result == GNOME_VFS_ERROR_EOF) {
 		/* all is well, we just finished iterating the directory */
 		result = GNOME_VFS_OK;
 	}
-	
-	if (dest_directory_handle != NULL) {
-		gnome_vfs_directory_close (dest_directory_handle);
-	}
-	
-	if (source_directory_handle != NULL) {
-		gnome_vfs_directory_close (source_directory_handle);
-	}
+
+	gnome_vfs_directory_close (dest_directory_handle);
+	gnome_vfs_directory_close (source_directory_handle);
 
 	return result;
 }
