@@ -798,17 +798,17 @@ make_full_uri_from_relative (const char *base_uri, const char *uri)
 }
 
 /**
- * gnome_vfs_uri_relative_new:
- * @text_uri: A string representing a URI.
+ * gnome_vfs_uri_resolve_relative
  * @base: The base URI.
+ * @text_uri: A string representing a possibly relative URI reference
  * 
- * Create a new URI from @text_uri relative to @base.
+ * Create a new URI from @relative_reference, relative to @base.
  *
  * Return value: The new URI.
  **/
 GnomeVFSURI *
-gnome_vfs_uri_relative_new (const gchar *text_uri,
-			    const GnomeVFSURI *base)
+gnome_vfs_uri_resolve_relative (const GnomeVFSURI *base,
+				const gchar *relative_reference)
 {
 	char *text_base;
 	char *text_new;
@@ -819,7 +819,7 @@ gnome_vfs_uri_relative_new (const gchar *text_uri,
 	} else {
 		text_base = gnome_vfs_uri_to_string (base, 0);
 	}
-	text_new = make_full_uri_from_relative (text_base, text_uri);
+	text_new = make_full_uri_from_relative (text_base, relative_reference);
 
 	uri = gnome_vfs_uri_new (text_new);
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-06-13 14:35+0800\n"
+"POT-Creation-Date: 2001-09-26 12:27-0700\n"
 "PO-Revision-Date: 2001-08-27 07:53+0800\n"
 "Last-Translator: Joe Man <trmetal@yahoo.com.hk>\n"
 "Language-Team: Chinese <zh@li.org>\n"
@@ -1009,268 +1009,264 @@ msgstr "zip 檔"
 msgid "zoo archive"
 msgstr "zoo 檔"
 
-#: libgnomevfs/gnome-vfs-configuration.c:224
+#: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s：%d 具有 NUL 空字元。"
 
-#: libgnomevfs/gnome-vfs-configuration.c:241
+#: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s：%d 沒有包含方法名稱。"
 
-#: libgnomevfs/gnome-vfs-configuration.c:270
+#: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s：%d 沒有包含模組名稱。"
 
-#: libgnomevfs/gnome-vfs-configuration.c:323
+#: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "找不到設定檔案 `%s'：%s "
 
-#: libgnomevfs/gnome-vfs-init.c:80
-msgid "GNOME VFS already initialized."
-msgstr "GNOME VFS 已經完成初始化。"
-
-#: libgnomevfs/gnome-vfs-parse-ls.c:654
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
 msgstr "不能解析：%s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:656
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
 msgstr "更多的解析錯誤將會被忽略。"
 
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:39
+#: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
 msgstr "沒有錯誤"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:40
+#: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
 msgstr "找不到檔案"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:41
+#: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
 msgstr "一般的錯誤"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
 msgstr "內部錯誤"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
 msgstr "無效的參數"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
 msgstr "不支援的動作"
 
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
 msgstr "輸出/入錯誤"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
 msgstr "資料已損壞"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
 msgstr "不合法的格式"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
 msgstr "錯誤的檔案控制碼"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
 msgstr "檔案過大"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
 msgstr "設備已沒有剩餘空間"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
 msgstr "唯讀的檔案系統"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
 msgstr "無效的 URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
 msgstr "檔案沒有開啟"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
 msgstr "無效的開啟模式"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
 msgstr "存取被拒絕"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
 msgstr "過多已開啟的檔案"
 
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:57
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
 msgstr "已到達檔案的結尾"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:58
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
 msgstr "不是一個目錄"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: libgnomevfs/gnome-vfs-result.c:59
+#: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
 msgstr "正在處理中"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:60
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
 msgstr "動作已被中斷"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/gnome-vfs-result.c:61
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
 msgstr "檔案已存在"
 
 #. GNOME_VFS_ERROR_LOOP
-#: libgnomevfs/gnome-vfs-result.c:62
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
 msgstr "遇上循環的連結"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: libgnomevfs/gnome-vfs-result.c:63
+#: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
 msgstr "不許可的動作"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:64
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
 msgstr "是一個目錄"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
-#: libgnomevfs/gnome-vfs-result.c:65
+#: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
 msgstr "沒有足夠的記憶體"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:66
+#: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
 msgstr "找不到主機"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: libgnomevfs/gnome-vfs-result.c:67
+#: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
 msgstr "不正確的主機名稱"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: libgnomevfs/gnome-vfs-result.c:68
+#: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
 msgstr "主機沒有地址"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: libgnomevfs/gnome-vfs-result.c:69
+#: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
 msgstr "登入失敗"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: libgnomevfs/gnome-vfs-result.c:70
+#: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
 msgstr "動作已被取消"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: libgnomevfs/gnome-vfs-result.c:71
+#: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
 msgstr "目錄正在忙碌處理資料"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: libgnomevfs/gnome-vfs-result.c:72
+#: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
 msgstr "目錄內仍有檔案存在"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: libgnomevfs/gnome-vfs-result.c:73
+#: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
 msgstr "過多的連結"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:74
+#: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
 msgstr "唯讀的檔案系統"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:75
+#: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
 msgstr "不是在相同的檔案系統"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: libgnomevfs/gnome-vfs-result.c:76
+#: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
 msgstr "名稱過長"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: libgnomevfs/gnome-vfs-result.c:77
+#: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
 msgstr "不支援的服務"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: libgnomevfs/gnome-vfs-result.c:78
+#: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
 msgstr "要求某些已過時服務的資料"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: libgnomevfs/gnome-vfs-result.c:79
+#: libgnomevfs/gnome-vfs-result.c:75
 msgid "Protocol error"
 msgstr "協定錯誤"
 
-#: libgnomevfs/gnome-vfs-result.c:142
+#: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
 msgstr "不詳的錯誤"
 
-#: libgnomevfs/gnome-vfs-utils.c:68
+#: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
 msgstr "1 個位元"
 
-#: libgnomevfs/gnome-vfs-utils.c:70
+#: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
 msgstr "%u 個位元"
 
-#: libgnomevfs/gnome-vfs-utils.c:77
+#: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:81
+#: libgnomevfs/gnome-vfs-utils.c:78
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:85
+#: libgnomevfs/gnome-vfs-utils.c:82
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
@@ -1280,23 +1276,25 @@ msgstr "%.1f GB"
 msgid "Unknown op type %u"
 msgstr "不詳的 op 種類 %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1000
-#: libgnomevfs-pthread/gnome-vfs-job.c:1145
+#: libgnomevfs-pthread/gnome-vfs-job.c:1003
+#: libgnomevfs-pthread/gnome-vfs-job.c:1148
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "無法建立導管用以開啟 GIOChannel：%s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1603
+#: libgnomevfs-pthread/gnome-vfs-job.c:1594
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "不詳的工作種類 %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1639
+#: libgnomevfs-pthread/gnome-vfs-job.c:1630
 msgid "Operation stopped"
 msgstr "動作已停止"
 
-#: modules/file-method.c:380
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "不詳的 GnomeVFSSeekPosition (搜尋位置) %d"
 
+#~ msgid "GNOME VFS already initialized."
+#~ msgstr "GNOME VFS 已經完成初始化。"

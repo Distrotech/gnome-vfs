@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.6.2.0\n"
-"POT-Creation-Date: 2001-09-07 09:16+0200\n"
+"POT-Creation-Date: 2001-09-26 12:27-0700\n"
 "PO-Revision-Date: 2001-03-06 15:46CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@rak.isternet.sk>\n"
@@ -1010,22 +1010,22 @@ msgstr "archív zip"
 msgid "zoo archive"
 msgstr "archív zoo"
 
-#: libgnomevfs/gnome-vfs-configuration.c:222
+#: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d obsahuje znaky NUL."
 
-#: libgnomevfs/gnome-vfs-configuration.c:239
+#: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d neobsahuje meno metódy."
 
-#: libgnomevfs/gnome-vfs-configuration.c:268
+#: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d neobsahuje meno modulu."
 
-#: libgnomevfs/gnome-vfs-configuration.c:321
+#: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfiguraèný súbor '%s' nebol nájdený: %s"
@@ -1272,23 +1272,23 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:713
+#: libgnomevfs-pthread/gnome-vfs-job.c:712
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Neznámy typ operácie %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1004
-#: libgnomevfs-pthread/gnome-vfs-job.c:1149
+#: libgnomevfs-pthread/gnome-vfs-job.c:1003
+#: libgnomevfs-pthread/gnome-vfs-job.c:1148
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nemô¾em vytvori» rúru pre otvorenie GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1595
+#: libgnomevfs-pthread/gnome-vfs-job.c:1594
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Neznáme typ úlohy %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1631
+#: libgnomevfs-pthread/gnome-vfs-job.c:1630
 msgid "Operation stopped"
 msgstr "Operácia zastavená"
 

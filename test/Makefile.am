@@ -49,6 +49,8 @@ else
 auto_tests=
 endif
 
+# Set up the environment so the tests can find the modules
+TESTS_ENVIRONMENT = GNOME_VFS_MODULE_PATH=$(top_builddir)/modules/.libs GNOME_VFS_MODULE_CONFIG_PATH=$(top_srcdir)/modules
 TESTS = test-async-cancel test-escape test-uri $(auto_tests)
 
 libraries =						\

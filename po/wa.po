@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2001-09-09 19:05+0200\n"
+"POT-Creation-Date: 2001-09-26 12:27-0700\n"
 "PO-Revision-Date: 2001-02-26 19:15+0100\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
@@ -1029,22 +1029,22 @@ msgstr "Årtchive ZIP (sipotcheye)"
 msgid "zoo archive"
 msgstr "Årtchive ZOO (sipotcheye)"
 
-#: libgnomevfs/gnome-vfs-configuration.c:222
+#: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-configuration.c:239
+#: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-configuration.c:268
+#: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-configuration.c:321
+#: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr ""

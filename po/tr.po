@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2001-08-02 15:30-0700\n"
+"POT-Creation-Date: 2001-09-26 12:27-0700\n"
 "PO-Revision-Date: 2001-06-08 13:46+0200\n"
 "Last-Translator: Sinan Imamoglu <sinan@linuxmail.org>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -1259,321 +1259,316 @@ msgid "zoo archive"
 msgstr "zoo arþivi"
 
 # libgnomevfs/gnome-vfs-configuration.c:224
-#: libgnomevfs/gnome-vfs-configuration.c:216
+#: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d NUL harfleri içeriyor."
 
 # libgnomevfs/gnome-vfs-configuration.c:241
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d metod adý içermiyor."
 
 # libgnomevfs/gnome-vfs-configuration.c:270
-#: libgnomevfs/gnome-vfs-configuration.c:262
+#: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d modül adý içermiyor."
 
 # libgnomevfs/gnome-vfs-configuration.c:323
-#: libgnomevfs/gnome-vfs-configuration.c:315
+#: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Ayar dosyasý `%s' bulunamadý: %s"
 
-# libgnomevfs/gnome-vfs-init.c:80
-#: libgnomevfs/gnome-vfs-init.c:76
-msgid "GNOME VFS already initialized."
-msgstr "GNOME VFS çoktan hazýrlandý."
-
 # libgnomevfs/gnome-vfs-parse-ls.c:654
-#: libgnomevfs/gnome-vfs-parse-ls.c:650
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
 msgstr "%s taranamadý"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:656
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
 msgstr "Artýk tarama hatalarý gözardý edilecek."
 
 # libgnomevfs/gnome-vfs-result.c:39
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:38
+#: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
 msgstr "Hata yok"
 
 # libgnomevfs/gnome-vfs-result.c:40
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:39
+#: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
 msgstr "Dosya bulunamadý"
 
 # libgnomevfs/gnome-vfs-result.c:41
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:40
+#: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
 msgstr "Genel hata"
 
 # libgnomevfs/gnome-vfs-result.c:42
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:41
+#: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
 msgstr "Ýçsel hata"
 
 # libgnomevfs/gnome-vfs-result.c:43
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
 msgstr "Geçersiz parametreler"
 
 # libgnomevfs/gnome-vfs-result.c:44
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
 msgstr "Desteklenmeyen iþlem"
 
 # libgnomevfs/gnome-vfs-result.c:45
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
 msgstr "G/Ç hatasý"
 
 # libgnomevfs/gnome-vfs-result.c:46
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
 msgstr "Veri bozulmuþ"
 
 # libgnomevfs/gnome-vfs-result.c:47
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
 msgstr "Biçim geçersiz"
 
 # libgnomevfs/gnome-vfs-result.c:48
 #. GNOME_VFS_ERROR_BAD_FILE
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
 msgstr "Yanlýþ dosya tutacaðý"
 
 # libgnomevfs/gnome-vfs-result.c:49
 #. GNOME_VFS_ERROR_TOO_BIG
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
 msgstr "Dosya fazla büyük"
 
 # libgnomevfs/gnome-vfs-result.c:50
 #. GNOME_VFS_ERROR_NO_SPACE
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
 msgstr "Aygýtta boþ alan kalmadý"
 
 # libgnomevfs/gnome-vfs-result.c:51
 #. GNOME_VFS_ERROR_READ_ONLY
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
 msgstr "Salt okunur dosya sistemi"
 
 # libgnomevfs/gnome-vfs-result.c:52
 #. GNOME_VFS_ERROR_INVALID_URI
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
 msgstr "Geçersiz URI"
 
 # libgnomevfs/gnome-vfs-result.c:53
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
 msgstr "Dosya açýk deðil"
 
 # libgnomevfs/gnome-vfs-result.c:54
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
 msgstr "Açýþ türü geçersiz"
 
 # libgnomevfs/gnome-vfs-result.c:55
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
 msgstr "Eriþim reddedildi"
 
 # libgnomevfs/gnome-vfs-result.c:56
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
 msgstr "Çok fazla açýk dosya"
 
 # libgnomevfs/gnome-vfs-result.c:57
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
 msgstr "Dosya sonu"
 
 # libgnomevfs/gnome-vfs-result.c:58
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:57
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
 msgstr "Dizin deðil"
 
 # libgnomevfs/gnome-vfs-result.c:59
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: libgnomevfs/gnome-vfs-result.c:58
+#: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
 msgstr "Ýþlem sürüyor"
 
 # libgnomevfs/gnome-vfs-result.c:60
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:59
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
 msgstr "Ýþlem durduruldu"
 
 # libgnomevfs/gnome-vfs-result.c:61
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/gnome-vfs-result.c:60
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
 msgstr "Dosya zaten var"
 
 # libgnomevfs/gnome-vfs-result.c:62
 #. GNOME_VFS_ERROR_LOOP
-#: libgnomevfs/gnome-vfs-result.c:61
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
 msgstr "Ýç içe baðlantýlarla karþýlaþtým"
 
 # libgnomevfs/gnome-vfs-result.c:63
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: libgnomevfs/gnome-vfs-result.c:62
+#: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
 msgstr "Ýþleme izin verilmiyor"
 
 # libgnomevfs/gnome-vfs-result.c:64
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:63
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
 msgstr "Bir dizindir"
 
 # libgnomevfs/gnome-vfs-result.c:65
 #. GNOME_VFS_ERROR_NO_MEMMORY
-#: libgnomevfs/gnome-vfs-result.c:64
+#: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
 msgstr "Yetersiz bellek"
 
 # libgnomevfs/gnome-vfs-result.c:66
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:65
+#: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
 msgstr "Sunucu bulunamadý"
 
 # libgnomevfs/gnome-vfs-result.c:67
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: libgnomevfs/gnome-vfs-result.c:66
+#: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
 msgstr "Sunucu adý geçersiz"
 
 # libgnomevfs/gnome-vfs-result.c:68
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: libgnomevfs/gnome-vfs-result.c:67
+#: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
 msgstr "Sunucunun adresi yok"
 
 # libgnomevfs/gnome-vfs-result.c:69
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: libgnomevfs/gnome-vfs-result.c:68
+#: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
 msgstr "Giriþ baþarýsýz"
 
 # libgnomevfs/gnome-vfs-result.c:70
 #. GNOME_VFS_ERROR_CANCELLED
-#: libgnomevfs/gnome-vfs-result.c:69
+#: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
 msgstr "Ýþlem iptal edildi"
 
 # libgnomevfs/gnome-vfs-result.c:71
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: libgnomevfs/gnome-vfs-result.c:70
+#: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
 msgstr "Dizin meþgul"
 
 # libgnomevfs/gnome-vfs-result.c:72
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: libgnomevfs/gnome-vfs-result.c:71
+#: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
 msgstr "Dizin boþ deðil"
 
 # libgnomevfs/gnome-vfs-result.c:73
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: libgnomevfs/gnome-vfs-result.c:72
+#: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
 msgstr "Çok fazla baðlantý"
 
 # libgnomevfs/gnome-vfs-result.c:74
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:73
+#: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
 msgstr "Salt okunur dosya sistemi"
 
 # libgnomevfs/gnome-vfs-result.c:75
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:74
+#: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
 msgstr "Ayný dosya sistemi üzerinde deðil"
 
 # libgnomevfs/gnome-vfs-result.c:76
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: libgnomevfs/gnome-vfs-result.c:75
+#: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
 msgstr "Ad fazla uzun"
 
 # libgnomevfs/gnome-vfs-result.c:77
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: libgnomevfs/gnome-vfs-result.c:76
+#: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
 msgstr "Bu hizmet yok"
 
 # libgnomevfs/gnome-vfs-result.c:78
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: libgnomevfs/gnome-vfs-result.c:77
+#: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
 msgstr "Ýstem hizmet verisinin yerine geçer"
 
 # libgnomevfs/gnome-vfs-result.c:39
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: libgnomevfs/gnome-vfs-result.c:78
+#: libgnomevfs/gnome-vfs-result.c:75
 msgid "Protocol error"
 msgstr "Protokol hatasý"
 
 # libgnomevfs/gnome-vfs-result.c:141
-#: libgnomevfs/gnome-vfs-result.c:141
+#: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
 msgstr "Bilinmeyen hata"
 
 # libgnomevfs/gnome-vfs-utils.c:68
-#: libgnomevfs/gnome-vfs-utils.c:66
+#: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
 msgstr "1 bayt"
 
 # libgnomevfs/gnome-vfs-utils.c:70
-#: libgnomevfs/gnome-vfs-utils.c:68
+#: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
 msgstr "%u bayt"
 
 # libgnomevfs/gnome-vfs-utils.c:77
-#: libgnomevfs/gnome-vfs-utils.c:75
+#: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
 # libgnomevfs/gnome-vfs-utils.c:81
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:78
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
 # libgnomevfs/gnome-vfs-utils.c:85
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:82
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
@@ -1586,25 +1581,29 @@ msgstr "Bilinmeyen op türü %u"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1000
 # libgnomevfs-pthread/gnome-vfs-job.c:1145
-#: libgnomevfs-pthread/gnome-vfs-job.c:1000
-#: libgnomevfs-pthread/gnome-vfs-job.c:1145
+#: libgnomevfs-pthread/gnome-vfs-job.c:1003
+#: libgnomevfs-pthread/gnome-vfs-job.c:1148
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Açýk GIOChannel %s için boru yaratýlamýyor"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1603
-#: libgnomevfs-pthread/gnome-vfs-job.c:1603
+#: libgnomevfs-pthread/gnome-vfs-job.c:1594
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Bilinmeyen iþ tanýtýcýsý %u"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1639
-#: libgnomevfs-pthread/gnome-vfs-job.c:1639
+#: libgnomevfs-pthread/gnome-vfs-job.c:1630
 msgid "Operation stopped"
 msgstr "Ýþlem durduruldu"
 
 # modules/file-method.c:380
-#: modules/file-method.c:380
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Bilinmeyen GnomeVFSSeekPosition %d"
+
+# libgnomevfs/gnome-vfs-init.c:80
+#~ msgid "GNOME VFS already initialized."
+#~ msgstr "GNOME VFS çoktan hazýrlandý."

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2001-09-08 22:59-0300\n"
+"POT-Creation-Date: 2001-09-26 12:27-0700\n"
 "PO-Revision-Date: 2001-09-08 23:00-03:00\n"
 "Last-Translator: Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br> \n"
@@ -1010,22 +1010,22 @@ msgstr "arquivo zip"
 msgid "zoo archive"
 msgstr "arquivo zoo"
 
-#: libgnomevfs/gnome-vfs-configuration.c:222
+#: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d possui caracteres NUL."
 
-#: libgnomevfs/gnome-vfs-configuration.c:239
+#: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d não possui nome de método."
 
-#: libgnomevfs/gnome-vfs-configuration.c:268
+#: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d não possui nome de módulo."
 
-#: libgnomevfs/gnome-vfs-configuration.c:321
+#: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Arquivo de configuração `%s' não foi achado: %s"

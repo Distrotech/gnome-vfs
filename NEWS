@@ -1,0 +1,53 @@
+===================================
+gnome-vfs 1.9.1
+---------------
+
+API changes:
+
+* Renamed gnome_vfs_uri_relative_new to gnome_vfs_uri_resolve_relative
+(Maciej)
+* Major simplification and revision of callback API (Maciej)
+* Removed gnome-vfs-backed API, removed separate libgnomevfs-pthread
+library (Darin, Maciej)
+* Removed gnome-vfs-seekable (Maciej)
+* Remove gnome_vfs_options declaration (Maciej)
+* Removed half-done metadata code (Maciej, Darin)
+* New monitoring API (Ian)
+* New gnome_vfs_uri_list_parse function (George)
+* Removed directory filtering (Maciej)
+
+New features:
+
+* Add module for `start-here:' URI scheme and related (Havoc)
+* New translations (Abel Cheung)
+
+Documentation updates:
+
+* Fixed many problems that were causing doc build warnings (Maciej)
+* Various doc updates (Maciej)
+* Documented xfer API (Sri)
+* Documented some async ops (Jim Garrison)
+
+Bug fixes:
+
+* Vast amounts of code cleanup (Darin)
+* Vast amounts of updates for GNOME 2 platform, especially new glib2
+features (Darin)
+* Fixed make distcheck (Maciej)
+* Remove expensive trash search (Havoc)
+* parallel installability fixes (Havoc) 
+* Lots of leak fixes and simplification in ftp module (Darin)
+* Misc bug fixes (Maciej)
+* Build fixes (Martin, Darin, Sander, Maciej)
+* ftp fixes (Jacob)
+* Mime fixes (Frederic Crozat)
+
+Portability fixes:
+
+* Check for librt, for solaris portability (Frank Belew)
+* Portability fixes for systems that don't use .so extension (Jacob) 
+* 64-bit cleanness fixes (George)
+* FreeBSD poratbility fixes (Theo van Klaveren)
+
+
+

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-08-02 15:30-0700\n"
+"POT-Creation-Date: 2001-09-26 12:27-0700\n"
 "PO-Revision-Date: 2000-10-18 21:12+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -1016,269 +1016,265 @@ msgstr ""
 msgid "zoo archive"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-configuration.c:216
+#: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d zawiera puste znaki."
 
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d nie zawiera nazwy metody."
 
-#: libgnomevfs/gnome-vfs-configuration.c:262
+#: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d nie zawiera nazwy modu³u."
 
-#: libgnomevfs/gnome-vfs-configuration.c:315
+#: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Nie odnaleziono pliku konfiguracyjnego `%s': %s"
 
-#: libgnomevfs/gnome-vfs-init.c:76
-msgid "GNOME VFS already initialized."
-msgstr "GNOME VFS zosta³ ju¿ zainicjowany."
-
-#: libgnomevfs/gnome-vfs-parse-ls.c:650
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Nie mo¿na przeanalizowaæ: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
 msgstr "Kolejne b³êdy sk³adniowe zostan± zignorowane."
 
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:38
+#: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
 msgstr "Bez b³êdu"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:39
+#: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
 msgstr "Nie odnaleziono pliku"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:40
+#: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
 msgstr "B³±d ogólny"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:41
+#: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
 msgstr "B³±d wewnêtrzny"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
 msgstr "Niepoprawne parametry"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
 msgstr "Nieobs³ugiwana operacja"
 
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
 msgstr "B³±d We/Wy"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
 msgstr "Uszkodzone dane"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
 msgstr "Niepoprawny format"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
 msgstr "Niepoprawny uchwyt pliku"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
 msgstr "Zbyt wielki plik"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
 msgstr "Brak miejsca na urz±dzeniu"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
 msgstr "System plików tylko do odczytu"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
 msgstr "Niepoprawny URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
 msgstr "Nie otwarto plik"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
 msgstr "Niepoprawny tryb otwarcia"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
 msgstr "Brak dostêpu"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
 msgstr "Zbyt wiele otwartych plików"
 
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
 msgstr "Koniec pliku"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:57
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
 msgstr "To nie katalog"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: libgnomevfs/gnome-vfs-result.c:58
+#: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
 msgstr "Operacja w toku"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:59
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
 msgstr "Operacja przerwana"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/gnome-vfs-result.c:60
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
 msgstr "Plik istnieje"
 
 #. GNOME_VFS_ERROR_LOOP
-#: libgnomevfs/gnome-vfs-result.c:61
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
 msgstr "Wyst±pi³y zapêtlone dowi±zania"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: libgnomevfs/gnome-vfs-result.c:62
+#: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
 msgstr "Operacja niedozwolona"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:63
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
 msgstr "Jest katalogiem"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
-#: libgnomevfs/gnome-vfs-result.c:64
+#: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
 msgstr "Brak pamiêci"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:65
+#: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
 msgstr "Nie odnaleziono komputera"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: libgnomevfs/gnome-vfs-result.c:66
+#: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
 msgstr "Niepoprawna nazwa komputera"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: libgnomevfs/gnome-vfs-result.c:67
+#: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
 msgstr "Komputer nie ma adresu"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: libgnomevfs/gnome-vfs-result.c:68
+#: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
 msgstr "Zalogowanie nie powiod³o siê"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: libgnomevfs/gnome-vfs-result.c:69
+#: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
 msgstr "Anulowano operacjê"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: libgnomevfs/gnome-vfs-result.c:70
+#: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
 msgstr "Katalog zajêty"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: libgnomevfs/gnome-vfs-result.c:71
+#: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
 msgstr "Katalog nie jest pusty"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: libgnomevfs/gnome-vfs-result.c:72
+#: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
 msgstr "Zbyt wiele dowi±zañ"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:73
+#: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
 msgstr "System plików tylko do odczytu"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:74
+#: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
 msgstr "To nie ten sam system plików"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: libgnomevfs/gnome-vfs-result.c:75
+#: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
 msgstr "Zbyt d³uga nazwa"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: libgnomevfs/gnome-vfs-result.c:76
+#: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
 msgstr "Us³uga nie jest dostêpna"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: libgnomevfs/gnome-vfs-result.c:77
+#: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
 msgstr ""
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: libgnomevfs/gnome-vfs-result.c:78
+#: libgnomevfs/gnome-vfs-result.c:75
 #, fuzzy
 msgid "Protocol error"
 msgstr "Bez b³êdu"
 
-#: libgnomevfs/gnome-vfs-result.c:141
+#: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
 msgstr "Nieznany b³±d"
 
-#: libgnomevfs/gnome-vfs-utils.c:66
+#: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
 msgstr "1 bajt"
 
-#: libgnomevfs/gnome-vfs-utils.c:68
+#: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
 msgstr "%u bajtów"
 
-#: libgnomevfs/gnome-vfs-utils.c:75
+#: libgnomevfs/gnome-vfs-utils.c:74
 #, fuzzy, c-format
 msgid "%.1f K"
 msgstr "%.1fK"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:78
 #, fuzzy, c-format
 msgid "%.1f MB"
 msgstr "%.1fM"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:82
 #, fuzzy, c-format
 msgid "%.1f GB"
 msgstr "%.1fG"
@@ -1288,25 +1284,28 @@ msgstr "%.1fG"
 msgid "Unknown op type %u"
 msgstr "Nieznany ID zadania %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1000
-#: libgnomevfs-pthread/gnome-vfs-job.c:1145
+#: libgnomevfs-pthread/gnome-vfs-job.c:1003
+#: libgnomevfs-pthread/gnome-vfs-job.c:1148
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nie mo¿na utworzyæ potoku dla GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1603
+#: libgnomevfs-pthread/gnome-vfs-job.c:1594
 #, fuzzy, c-format
 msgid "Unknown job kind %u"
 msgstr "Nieznany ID zadania %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1639
+#: libgnomevfs-pthread/gnome-vfs-job.c:1630
 msgid "Operation stopped"
 msgstr "Zatrzymano operacjê"
 
-#: modules/file-method.c:380
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nieznana warto¶æ %d GnomeVFSSeekPosition"
+
+#~ msgid "GNOME VFS already initialized."
+#~ msgstr "GNOME VFS zosta³ ju¿ zainicjowany."
 
 #~ msgid "Dying."
 #~ msgstr "Rezygnacja."

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2001-09-09 19:05+0200\n"
+"POT-Creation-Date: 2001-09-26 12:27-0700\n"
 "PO-Revision-Date: 2001-09-10 13:57+0200\n"
 "Last-Translator: Softcatalà <tradgnome@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
@@ -1010,22 +1010,22 @@ msgstr "arxiu zip"
 msgid "zoo archive"
 msgstr "arxiu zoo"
 
-#: libgnomevfs/gnome-vfs-configuration.c:222
+#: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d conté caràcters NULS."
 
-#: libgnomevfs/gnome-vfs-configuration.c:239
+#: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d no conté cap nom de mètode."
 
-#: libgnomevfs/gnome-vfs-configuration.c:268
+#: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d no conté cap nom de mòdul."
 
-#: libgnomevfs/gnome-vfs-configuration.c:321
+#: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "El fitxer de configuració `%s' no ha estat trobat: %s"

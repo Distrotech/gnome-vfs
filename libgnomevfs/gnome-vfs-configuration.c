@@ -37,6 +37,7 @@
 #include "gnome-vfs-private.h"
 #include <sys/stat.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 
@@ -412,10 +413,39 @@ gnome_vfs_configuration_add_directory (const char *dir)
 	G_UNLOCK (configuration);
 }
 
+
+static void
+install_path_list (const gchar *environment_path)
+{
+	const char *p, *oldp;
+
+	oldp = environment_path;
+	while (1) {
+		char *elem;
+
+		p = strchr (oldp, ':');
+
+		if (p == NULL) {
+			if (*oldp != '\0') {
+				add_directory_internal (oldp);
+			}
+			break;
+		} else {
+			elem = g_strndup (oldp, p - oldp);
+			add_directory_internal (elem);
+			g_free (elem);
+		} 
+
+		oldp = p + 1;
+	}
+}
+
+
 gboolean
 gnome_vfs_configuration_init (void)
 {
-	gchar *home_config;
+	char *home_config;
+	char *environment_path;
 
 	G_LOCK (configuration);
 	if (configuration != NULL) {
@@ -430,6 +460,10 @@ gnome_vfs_configuration_init (void)
 				       G_DIR_SEPARATOR,
 				       ".gnome/vfs/modules");
 	add_directory_internal (GNOME_VFS_MODULE_CFGDIR);
+	environment_path = getenv ("GNOME_VFS_MODULE_CONFIG_PATH");
+	if (environment_path != NULL) {
+		install_path_list (environment_path);
+	}
 	add_directory_internal (home_config);
 	g_free (home_config);
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2001-09-19 11:10-0400\n"
+"POT-Creation-Date: 2001-09-26 12:27-0700\n"
 "PO-Revision-Date: 2000-09-20 22:59+0200\n"
 "Last-Translator: Vasif Ismailoglu MD <azerb_linux@hotmail.com>\n"
 "Language-Team:Azerbaijani Turkish \n"
@@ -1010,22 +1010,22 @@ msgstr "zip arxivi"
 msgid "zoo archive"
 msgstr "zoo arxivi"
 
-#: libgnomevfs/gnome-vfs-configuration.c:222
+#: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s : %d NUL hərfləini daxil edir."
 
-#: libgnomevfs/gnome-vfs-configuration.c:239
+#: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s : %d metod adını daxil etmir ."
 
-#: libgnomevfs/gnome-vfs-configuration.c:268
+#: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s : %d modul adını daxil etmir ."
 
-#: libgnomevfs/gnome-vfs-configuration.c:321
+#: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Quraşdırma faylı `%s' tapıla bilmədi : %s"
