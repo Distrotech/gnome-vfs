@@ -37,7 +37,6 @@
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-module-callback.h>
 #include <libgnomevfs/gnome-vfs-module-callback-private.h>
-#include <semaphore.h>
 
 typedef struct GnomeVFSJob GnomeVFSJob;
 
