@@ -1,5 +1,15 @@
 2000-06-20  Pavel Cisler  <pavel@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_magic_matches_p):
+	Fix a memory thrasher in my new code.
+
+	* data/mime/gnome-vfs-mime-magic:
+	* data/mime/gnome-vfs.keys:
+	Add proper key entries to Photoshop file type.
+
+2000-06-20  Pavel Cisler  <pavel@eazel.com>
+
 	* libgnomevfs/gnome-vfs-mime-magic.h:
 	* libgnomevfs/gnome-vfs-mime-magic.c: (is_octal_digit),
 	(is_hex_digit), (read_octal_byte), (read_hex_byte),

@@ -63,7 +63,7 @@
 0	string		MM\x00\x2a				image/tiff
 0	string		II\x2a\x00				image/tiff
 0	string		\x89PNG					image/png
-0	string		8BPS\ \ \000\000\000\000 &0xffffffff0000ffffffff image/x-photoshop
+0	string		8BPS\ \ \000\000\000\000 &0xffffffff0000ffffffff image/x-psd
 0:64	string		\<!DOCTYPE\ HTML			text/html
 0:64	string		\<!doctype\ html			text/html
 0:64	string		\<HEAD					text/html

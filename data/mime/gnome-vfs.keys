@@ -448,6 +448,15 @@ image/x-portable-pixmap
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 	system_all_application_ids=gimp,eog
 
+image/x-psd
+	description=Photoshop document
+	default_action_type=application
+	default_application_id=gimp
+	short_list_application_ids_for_novice_user_level=gimp
+	short_list_application_ids_for_intermediate_user_level=gimp
+	short_list_application_ids_for_hacker_user_level=gimp
+	system_all_application_ids=gimp
+
 image/x-rgb
 	description=RGB image
 	

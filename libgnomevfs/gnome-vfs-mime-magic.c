@@ -495,19 +495,26 @@ gnome_vfs_mime_magic_matches_p (FILE *file, GnomeMagicEntry *magic_entry)
 {
 	int offset;
 	int size_read;
-	char buf[sizeof(magic_entry->pattern)];
+	char *buffer;
+
 
 	if (fseek (file, (long)magic_entry->range_start, SEEK_SET) < 0) {
 		return FALSE;
 	}
-	size_read = fread (buf, magic_entry->pattern_length + magic_entry->range_end
+
+	buffer = g_malloc(magic_entry->pattern_length + magic_entry->range_end
+		- magic_entry->range_start);
+
+	size_read = fread (buffer, magic_entry->pattern_length + magic_entry->range_end
 		- magic_entry->range_start, 1, file);
 
 	for (offset = 0; offset <= size_read - magic_entry->pattern_length; offset++) {
-		if (try_one_pattern_on_buffer (buf + offset, magic_entry)) {
+		if (try_one_pattern_on_buffer (buffer + offset, magic_entry)) {
+			g_free (buffer);
 			return TRUE;
 		}
 	}
+	g_free (buffer);
 	return FALSE;
 }
 
