@@ -1,42 +1,288 @@
-<!-- ##### SECTION ./tmpl/constants.sgml:Long_Description ##### -->
+<!-- ##### FUNCTION gnome_vfs_app_context_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_app_context_set_attribute ##### -->
+<para>
+
+</para>
+
+@app_context: 
+@attribute_name: 
+@value: 
+
+<!-- ##### MACRO GNOME_VFS_HOOKNAME_HTTP_PROXY_AUTH ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### SECTION ./tmpl/constants.sgml:See_Also ##### -->
+<!-- ##### SECTION ./tmpl/shellpattern-filter.sgml:Title ##### -->
+shellpattern-filter
+
+
+<!-- ##### MACRO FNM_NOESCAPE ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### SECTION ./tmpl/constants.sgml:Short_Description ##### -->
+<!-- ##### MACRO GNOME_VFS_HOOKNAME_BASIC_AUTH ##### -->
+<para>
+
+</para>
 
 
+<!-- ##### MACRO FNM_CASEFOLD ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_set_callback_full ##### -->
+<para>
+
+</para>
+
+@app_context: 
+@hook_name: 
+@callback: 
+@user_data: 
+@dispatch_on_job_thread: 
+@notify: 
 
 <!-- ##### SECTION ./tmpl/constants.sgml:Title ##### -->
 Constants
 
+
+<!-- ##### SECTION ./tmpl/backend.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GnomeVFSDirectoryFilterOptions ##### -->
+<para>
+
+</para>
+
+@GNOME_VFS_DIRECTORY_FILTER_DEFAULT: 
+@GNOME_VFS_DIRECTORY_FILTER_NODIRS: 
+@GNOME_VFS_DIRECTORY_FILTER_DIRSONLY: 
+@GNOME_VFS_DIRECTORY_FILTER_NODOTFILES: 
+@GNOME_VFS_DIRECTORY_FILTER_IGNORECASE: 
+@GNOME_VFS_DIRECTORY_FILTER_EXTENDEDREGEXP: 
+@GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR: 
+@GNOME_VFS_DIRECTORY_FILTER_NOPARENTDIR: 
+@GNOME_VFS_DIRECTORY_FILTER_NOBACKUPFILES: 
+
+<!-- ##### ENUM GnomeVFSDirectoryFilterNeeds ##### -->
+<para>
+
+</para>
+
+@GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING: 
+@GNOME_VFS_DIRECTORY_FILTER_NEEDS_NAME: 
+@GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE: 
+@GNOME_VFS_DIRECTORY_FILTER_NEEDS_STAT: 
+@GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE: 
+
+<!-- ##### SECTION ./tmpl/shellpattern-filter.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### USER_FUNCTION GnomeVFSDirectoryFilterFunc ##### -->
+<para>
+
+</para>
+
+@info: 
+@data: 
+@Returns: 
+
+<!-- ##### SECTION ./tmpl/seekable.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### MACRO FNM_PATHNAME ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_push_override_takesref ##### -->
+<para>
+
+</para>
+
+@app_context: 
+
+<!-- ##### FUNCTION gnome_vfs_backend_init ##### -->
+<para>
+
+</para>
+
+@init_deps: 
+@Returns: 
+
+<!-- ##### SECTION ./tmpl/directory-filter.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION GnomeVFSCallback ##### -->
+<para>
+
+</para>
+
+@user_data: 
+@in: 
+@in_size: 
+@out: 
+@out_size: 
+
+<!-- ##### TYPEDEF GnomeVFSCallbackSimpleAuthOut ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO FNM_NOMATCH ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_context_peek_app_context_current ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_backend_shutdown ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_peek_current ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### ENUM GnomeVFSDirectoryFilterType ##### -->
+<para>
+
+</para>
+
+@GNOME_VFS_DIRECTORY_FILTER_NONE: 
+@GNOME_VFS_DIRECTORY_FILTER_SHELLPATTERN: 
+@GNOME_VFS_DIRECTORY_FILTER_REGEXP: 
+
+<!-- ##### SECTION ./tmpl/app-context.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_callback_call_hook ##### -->
+<para>
+
+</para>
+
+@hookname: 
+@in: 
+@in_size: 
+@out: 
+@out_size: 
+@Returns: 
 
 <!-- ##### USER_FUNCTION GnomeVFSListCompareFunc ##### -->
 <para>
 
 </para>
 
-<<<<<<< gnome-vfs-unused.sgml
-
 @a: 
 @b: 
 @data: 
 @Returns: 
 
-<!-- ##### FUNCTION gnome_vfs_list_sort ##### -->
-=======
-
-
-<!-- ##### FUNCTION gnome_vfs_ssl_new ##### -->
+<!-- ##### FUNCTION gnome_vfs_app_context_set_callback ##### -->
 <para>
-=======
+
+</para>
+
+@app_context: 
+@hook_name: 
+@callback: 
+@user_data: 
+
+<!-- ##### SECTION ./tmpl/list-sort.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_get_current ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_app_context_ref ##### -->
+<para>
+
+</para>
+
+@app_context: 
+
+<!-- ##### SECTION ./tmpl/list-sort.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/module-api.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/backend.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_get_callback ##### -->
+<para>
+
+</para>
+
+@app_context: 
+@hook_name: 
+@user_data: 
+@p_dispatch_on_job_thread: 
+@Returns: 
+
+<!-- ##### MACRO FNM_LEADING_DIR ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/fnmatch.sgml:Title ##### -->
+File Matching
+
+
+<!-- ##### SECTION ./tmpl/seekable.sgml:See_Also ##### -->
+<para>
+
+</para>
 
 
 <!-- ##### FUNCTION gnome_vfs_ssl_new_from_uri ##### -->
@@ -45,5 +291,251 @@ Constants
 </para>
 
 @uri: 
+@Returns: 
+
+<!-- ##### SECTION ./tmpl/module-api.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/regexp-filter.sgml:Title ##### -->
+regexp-filter
+
+
+<!-- ##### SECTION ./tmpl/constants.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/app-context.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_pop ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION GnomeVFSStatusCallback ##### -->
+<para>
+
+</para>
+
+@message: 
+@callback_data: 
+
+<!-- ##### SECTION ./tmpl/directory-filter.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/regexp-filter.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_backend_loadinit ##### -->
+<para>
+
+</para>
+
+@app: 
+@modinfo: 
+
+<!-- ##### SECTION ./tmpl/backend.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/fnmatch.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/fnmatch.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/module-api.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/regexp-filter.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_get_attribute ##### -->
+<para>
+
+</para>
+
+@app_context: 
+@attribute_name: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_backend_get_job_count ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### SECTION ./tmpl/directory-filter.sgml:Title ##### -->
+Directory Filter
+
+
+<!-- ##### SECTION ./tmpl/shellpattern-filter.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_ssl_new ##### -->
+<para>
+=======
+
+
+<!-- ##### SECTION ./tmpl/fnmatch.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GnomeVFSCallbackSimpleAuthIn ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/list-sort.sgml:Title ##### -->
+list-sort
+
+
+<!-- ##### SECTION ./tmpl/seekable.sgml:Title ##### -->
+seekable
+
+
+<!-- ##### FUNCTION gnome_vfs_context_peek_app_context ##### -->
+<para>
+
+</para>
+
+@ctx: 
+@Returns: 
+
+<!-- ##### SECTION ./tmpl/constants.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_unref ##### -->
+<para>
+
+</para>
+
+@app_context: 
+
+<!-- ##### SECTION ./tmpl/module-api.sgml:Title ##### -->
+module-api
+
+
+<!-- ##### FUNCTION gnome_vfs_seek_emulate ##### -->
+<para>
+
+</para>
+
+@handle: 
+@child_handle: 
+@open_mode: 
+@Returns: 
+
+<!-- ##### SECTION ./tmpl/shellpattern-filter.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO FNM_PERIOD ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/app-context.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/list-sort.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_push_takesref ##### -->
+<para>
+
+</para>
+
+@app_context: 
+
+<!-- ##### SECTION ./tmpl/backend.sgml:Title ##### -->
+Backend
+
+
+<!-- ##### SECTION ./tmpl/app-context.sgml:Title ##### -->
+app-context
+
+
+<!-- ##### SECTION ./tmpl/seekable.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/regexp-filter.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/constants.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/directory-filter.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO FNM_FILE_NAME ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION gnome_vfs_backend_name ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_list_sort ##### -->
+<para>
+
+</para>
+
+@list: 
+@compare_func: 
+@data: 
 @Returns: 
 

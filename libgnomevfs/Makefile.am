@@ -31,10 +31,8 @@ libgnomevfs_la_LIBADD =				\
 libgnomevfsincludedir = $(includedir)/libgnomevfs
 
 libgnomevfsinclude_HEADERS =			\
-	gnome-vfs-app-context.h			\
 	gnome-vfs-application-registry.h	\
 	gnome-vfs-async-ops.h			\
-	gnome-vfs-callbacks.h			\
 	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-configuration.h		\
@@ -55,7 +53,8 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-mime-monitor.h		\
 	gnome-vfs-mime-sniff-buffer.h		\
 	gnome-vfs-mime.h			\
-	gnome-vfs-module-api.h			\
+	gnome-vfs-module-callback-module-api.h	\
+	gnome-vfs-module-callback.h		\
 	gnome-vfs-module-shared.h		\
 	gnome-vfs-module.h			\
 	gnome-vfs-monitor.h			\
@@ -79,10 +78,8 @@ libgnomevfsinclude_HEADERS =			\
 	$(NULL)
 
 libgnomevfs_la_SOURCES =			\
-	gnome-vfs-app-context.c			\
 	gnome-vfs-application-registry.c	\
 	gnome-vfs-async-ops.c			\
-	gnome-vfs-callbacks.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-cancellation.c		\
 	gnome-vfs-configuration.c		\
@@ -97,13 +94,15 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-init.c			\
 	gnome-vfs-iobuf.c			\
 	gnome-vfs-method.c			\
-	gnome-vfs-mime-handlers.c               \
+	gnome-vfs-mime-handlers.c		\
 	gnome-vfs-mime-info.c			\
 	gnome-vfs-mime-magic.c			\
 	gnome-vfs-mime-monitor.c		\
 	gnome-vfs-mime-sniff-buffer.c		\
 	gnome-vfs-mime.c			\
-	gnome-vfs-module-api.c			\
+	gnome-vfs-module-callback-module-api.c	\
+	gnome-vfs-module-callback-private.c	\
+	gnome-vfs-module-callback.c		\
 	gnome-vfs-module-shared.c		\
 	gnome-vfs-module.c			\
 	gnome-vfs-monitor.c			\
@@ -124,6 +123,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-i18n.h			\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer-private.h	\
+	gnome-vfs-module-callback-private.h	\
 	gnome-vfs-process.h			\
 	$(NULL)
 

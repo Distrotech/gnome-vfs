@@ -71,20 +71,3 @@ Context
 @Returns: 
 
 
-<!-- ##### FUNCTION gnome_vfs_context_peek_app_context ##### -->
-<para>
-
-</para>
-
-@ctx: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gnome_vfs_context_peek_app_context_current ##### -->
-<para>
-
-</para>
-
-@Returns: 
-
-

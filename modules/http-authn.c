@@ -438,10 +438,10 @@ test_parse_header (guint line, enum AuthnHeaderType type, const char *realm_expe
 
 /* Hook for testing code to flush credentials */
 void
-http_authn_test_flush_credentials (void);
+http_authentication_test_flush_credentials (void);
 
 void
-http_authn_test_flush_credentials (void)
+http_authentication_test_flush_credentials (void)
 {
 	g_hash_table_foreach (gl_authn_table, hfunc_free_string, NULL);
 	g_hash_table_destroy (gl_authn_table);

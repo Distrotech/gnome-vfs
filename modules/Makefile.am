@@ -45,7 +45,7 @@ modules_LTLIBRARIES =				\
 	$(NULL)
 
 # Not currently supported
-#	libnfs.la				\
+#	libnfs.la
 
 modulesconfdir=$(sysconfdir)/vfs/modules
 if HAVE_CDDA

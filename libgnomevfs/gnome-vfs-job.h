@@ -27,6 +27,8 @@
 #define GNOME_VFS_JOB_PTHREAD_H
 
 #include <libgnomevfs/gnome-vfs-async-ops.h>
+#include <libgnomevfs/gnome-vfs-module-callback.h>
+#include <libgnomevfs/gnome-vfs-module-callback-private.h>
 #include <semaphore.h>
 
 typedef struct GnomeVFSJob GnomeVFSJob;
@@ -79,9 +81,9 @@ enum GnomeVFSOpType {
 	GNOME_VFS_OP_GET_FILE_INFO,
 	GNOME_VFS_OP_SET_FILE_INFO,
 	/* This is not a real OpType; its intended to mark
-	 * GnomeVFSCallback's in the job_callback queue
+	 * GnomeVFSAsyncModuleCallback's in the job_callback queue
 	 */
-	GNOME_VFS_OP_CALLBACK
+	GNOME_VFS_OP_MODULE_CALLBACK
 };
 
 typedef enum GnomeVFSOpType GnomeVFSOpType;
@@ -252,13 +254,15 @@ typedef struct {
 } GnomeVFSXferOpResult;
 
 typedef struct {
-	GnomeVFSCallback	callback;
-	gpointer		user_data;
-	gconstpointer		in;
-	size_t			in_size;
-	gpointer		out;
-	size_t			out_size;
-} GnomeVFSCallbackOpResult;
+	GnomeVFSAsyncModuleCallback    callback;
+	gpointer                       user_data;
+	gconstpointer		       in;
+	size_t			       in_size;
+	gpointer                       out;
+	size_t			       out_size;
+	GnomeVFSModuleCallbackResponse response;
+	gpointer                       response_data;
+} GnomeVFSModuleCallbackOpResult;
 
 typedef union {
 	GnomeVFSOpenOp open;
@@ -289,6 +293,7 @@ typedef struct {
 
 	/* The context for cancelling the operation. */
 	GnomeVFSContext *context;
+	GnomeVFSModuleCallbackStackInfo *stack_info;
 } GnomeVFSOp;
 
 typedef union {
@@ -304,7 +309,7 @@ typedef union {
 	GnomeVFSFindDirectoryOpResult find_directory;
 	GnomeVFSLoadDirectoryOpResult load_directory;
 	GnomeVFSXferOpResult xfer;
-	GnomeVFSCallbackOpResult callback;
+	GnomeVFSModuleCallbackOpResult callback;
 } GnomeVFSSpecificNotifyResult;
 
 typedef struct {

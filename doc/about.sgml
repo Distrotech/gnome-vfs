@@ -167,7 +167,7 @@ print_error (GnomeVFSResult result, const char *uri_string)
   return 1;
 }
 
-	</program_listing>
+	</programlisting>
     </sect2>
     <sect2>
 	<title>Conversion of a Sample Code Block</title>

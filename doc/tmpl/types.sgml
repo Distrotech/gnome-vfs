@@ -201,41 +201,6 @@ types
 @GNOME_VFS_DIRECTORY_KIND_DESKTOP: 
 @GNOME_VFS_DIRECTORY_KIND_TRASH: 
 
-<!-- ##### ENUM GnomeVFSDirectoryFilterType ##### -->
-<para>
-
-</para>
-
-@GNOME_VFS_DIRECTORY_FILTER_NONE: 
-@GNOME_VFS_DIRECTORY_FILTER_SHELLPATTERN: 
-@GNOME_VFS_DIRECTORY_FILTER_REGEXP: 
-
-<!-- ##### ENUM GnomeVFSDirectoryFilterOptions ##### -->
-<para>
-
-</para>
-
-@GNOME_VFS_DIRECTORY_FILTER_DEFAULT: 
-@GNOME_VFS_DIRECTORY_FILTER_NODIRS: 
-@GNOME_VFS_DIRECTORY_FILTER_DIRSONLY: 
-@GNOME_VFS_DIRECTORY_FILTER_NODOTFILES: 
-@GNOME_VFS_DIRECTORY_FILTER_IGNORECASE: 
-@GNOME_VFS_DIRECTORY_FILTER_EXTENDEDREGEXP: 
-@GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR: 
-@GNOME_VFS_DIRECTORY_FILTER_NOPARENTDIR: 
-@GNOME_VFS_DIRECTORY_FILTER_NOBACKUPFILES: 
-
-<!-- ##### ENUM GnomeVFSDirectoryFilterNeeds ##### -->
-<para>
-
-</para>
-
-@GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING: 
-@GNOME_VFS_DIRECTORY_FILTER_NEEDS_NAME: 
-@GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE: 
-@GNOME_VFS_DIRECTORY_FILTER_NEEDS_STAT: 
-@GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE: 
-
 <!-- ##### ENUM GnomeVFSDirectoryVisitOptions ##### -->
 <para>
 
@@ -244,16 +209,6 @@ types
 @GNOME_VFS_DIRECTORY_VISIT_DEFAULT: 
 @GNOME_VFS_DIRECTORY_VISIT_SAMEFS: 
 @GNOME_VFS_DIRECTORY_VISIT_LOOPCHECK: 
-
-<!-- ##### USER_FUNCTION GnomeVFSDirectoryFilterFunc ##### -->
-<para>
-
-</para>
-
-@info: 
-@data: 
-@Returns: 
-
 
 <!-- ##### USER_FUNCTION GnomeVFSDirectoryVisitFunc ##### -->
 <para>
@@ -447,15 +402,6 @@ types
 </para>
 
 
-<!-- ##### USER_FUNCTION GnomeVFSStatusCallback ##### -->
-<para>
-
-</para>
-
-@message: 
-@callback_data: 
-
-
 <!-- ##### USER_FUNCTION GnomeVFSTransformInitFunc ##### -->
 <para>
 
@@ -482,17 +428,5 @@ types
 <para>
 
 </para>
-
-
-<!-- ##### USER_FUNCTION GnomeVFSCallback ##### -->
-<para>
-
-</para>
-
-@user_data: 
-@in: 
-@in_size: 
-@out: 
-@out_size: 
 
 

@@ -1,57 +1,57 @@
 #include <config.h>
 
 #include <gmodule.h>
-#include <libgnomevfs/gnome-vfs-app-context.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
+#include <libgnomevfs/gnome-vfs-module-callback.h>
 #include <libgnomevfs/gnome-vfs-standard-callbacks.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-static gboolean authn_callback_called = FALSE;
+static gboolean authentication_callback_called = FALSE;
 
 /* For this test case to function, these two URI's should
- * require a username/password (set in authn_username, authn_password below)
- * and AUTHN_URI_CHILD should be a child of AUTHN_URI
+ * require a username/password (set in authentication_username, authentication_password below)
+ * and AUTHENTICATION_URI_CHILD should be a child of AUTHENTICATION_URI
  */
-#define AUTHN_URI_CHILD "http://localhost/~mikef/protected/index.html"
-#define AUTHN_URI "http://localhost/~mikef/protected/"
+#define AUTHENTICATION_URI_CHILD "http://localhost/~mikef/protected/index.html"
+#define AUTHENTICATION_URI "http://localhost/~mikef/protected/"
 
-static const char *authn_username = "foo";
-static const char *authn_password = "foo";
+static const char *authentication_username = "foo";
+static const char *authentication_password = "foo";
 
-static void /* GnomeVFSCallback */
-authn_callback (gpointer user_data, gconstpointer in, size_t in_size, gpointer out, size_t out_size)
+static void /* GnomeVFSModuleCallback */
+authentication_callback (gconstpointer in, size_t in_size, gpointer out, size_t out_size, gpointer user_data)
 {
-	GnomeVFSCallbackSimpleAuthIn *in_real;
-	GnomeVFSCallbackSimpleAuthOut *out_real;
+ 	GnomeVFSModuleCallbackAuthenticationIn *in_real;
+ 	GnomeVFSModuleCallbackAuthenticationOut *out_real;
 
-	/* printf ("in authn_callback\n"); */
+ 	/* printf ("in authentication_callback\n"); */
 	
-	g_return_if_fail (sizeof (GnomeVFSCallbackSimpleAuthIn) == in_size
-		&& sizeof (GnomeVFSCallbackSimpleAuthOut) == out_size);
+ 	g_return_if_fail (sizeof (GnomeVFSModuleCallbackAuthenticationIn) == in_size
+ 		&& sizeof (GnomeVFSModuleCallbackAuthenticationOut) == out_size);
 
 	g_return_if_fail (in != NULL);
 	g_return_if_fail (out != NULL);
 
-	in_real = (GnomeVFSCallbackSimpleAuthIn *)in;
-	out_real = (GnomeVFSCallbackSimpleAuthOut *)out;
+ 	in_real = (GnomeVFSModuleCallbackAuthenticationIn *)in;
+ 	out_real = (GnomeVFSModuleCallbackAuthenticationOut *)out;
 
 	/* printf ("in uri: %s realm: %s\n", in_real->uri, in_real->realm); */
 	
-	out_real->username = g_strdup (authn_username);
-	out_real->password = g_strdup (authn_password);
+ 	out_real->username = g_strdup (authentication_username);
+ 	out_real->password = g_strdup (authentication_password);
 
-	authn_callback_called = TRUE;
+ 	authentication_callback_called = TRUE;
 }
 
 static gboolean destroy_notify_occurred = FALSE;
 
 static void /*GDestroyNotify*/
-app_context_destroy_notify (gpointer user_data)
+destroy_notify (gpointer user_data)
 {
 	destroy_notify_occurred = TRUE;
 }
@@ -107,14 +107,11 @@ static void (*flush_credentials_func)(void);
 int
 main (int argc, char **argv)
 {
-        GnomeVFSAppContext *app_context;
-        GnomeVFSCallback callback;
-        gpointer user_data;
         GnomeVFSHandle *handle;
         GnomeVFSResult result;
 	GnomeVFSAsyncHandle *async_handle;
 	char *module_path;
-	char *authn_uri, *authn_uri_child;
+	char *authentication_uri, *authentication_uri_child;
 	GModule *module;
 	guint i;
 
@@ -122,14 +119,14 @@ main (int argc, char **argv)
 	make_asserts_break ("GnomeVFS");
 
 	if (argc == 2) {
-		authn_uri = argv[1];
-		authn_uri_child = g_strdup_printf("%s/./", authn_uri);
+		authentication_uri = argv[1];
+		authentication_uri_child = g_strdup_printf("%s/./", authentication_uri);
 	} else if (argc == 3) {
-		authn_uri = argv[1];
-		authn_uri_child = argv[2];
+		authentication_uri = argv[1];
+		authentication_uri_child = argv[2];
 	} else {
-		authn_uri = AUTHN_URI;
-		authn_uri_child = AUTHN_URI_CHILD;
+		authentication_uri = AUTHENTICATION_URI;
+		authentication_uri_child = AUTHENTICATION_URI_CHILD;
 	}
 
 	gnome_vfs_init ();
@@ -145,48 +142,34 @@ main (int argc, char **argv)
 		exit (-1);
 	}
 
-	g_module_symbol (module, "http_authn_test_flush_credentials", (gpointer *) &flush_credentials_func);
+	g_module_symbol (module, "http_authentication_test_flush_credentials", (gpointer *) &flush_credentials_func);
 
 	if (flush_credentials_func == NULL) {
-		fprintf (stderr, "Couldn't find http_authn_test_flush_credentials\n");
+		fprintf (stderr, "Couldn't find http_authentication_test_flush_credentials\n");
 		exit (-1);
 	}
 
-	/* Test 1: Attempt to access a URI requiring authn w/o a callback registered */
+	/* Test 1: Attempt to access a URI requiring authentication w/o a callback registered */
 
-	result = gnome_vfs_open (&handle, authn_uri, GNOME_VFS_OPEN_READ);
+	result = gnome_vfs_open (&handle, authentication_uri, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_ERROR_ACCESS_DENIED);
 	handle = NULL;
 
-	/* Set up app context */
-
-	app_context = gnome_vfs_app_context_new ();
-
-	g_assert (app_context != NULL);
-
-	gnome_vfs_app_context_set_callback (app_context, GNOME_VFS_HOOKNAME_BASIC_AUTH, authn_callback, NULL);
-
-	gnome_vfs_app_context_push_takesref (app_context);
-
-	g_assert (app_context == gnome_vfs_app_context_get_current());
-
-	callback = gnome_vfs_app_context_get_callback (gnome_vfs_app_context_get_current(), "random-crap", &user_data, NULL);
-	g_assert (callback == NULL);
-
-	callback = gnome_vfs_app_context_get_callback (gnome_vfs_app_context_get_current(), GNOME_VFS_HOOKNAME_BASIC_AUTH, &user_data, NULL);
-	g_assert (callback == authn_callback);
-	g_assert (user_data == NULL);
-
 	/* Test 2: Attempt an async open that requires http authentication */
 
-	authn_callback_called = FALSE;
+	gnome_vfs_module_callback_set_default (GNOME_VFS_MODULE_CALLBACK_AUTHENTICATION,
+					       authentication_callback, 
+					       NULL,
+					       NULL);
+
+	authentication_callback_called = FALSE;
 	
 	open_callback_occurred = FALSE;
 	open_callback_result_expected = GNOME_VFS_OK;
 
 	gnome_vfs_async_open (
 		&async_handle, 
-		authn_uri,
+		authentication_uri,
 		GNOME_VFS_OPEN_READ,
 		open_callback,
 		NULL);
@@ -202,96 +185,92 @@ main (int argc, char **argv)
 		g_main_context_iteration (NULL, TRUE);
 	}
 
-	g_assert (authn_callback_called);
-
+	g_assert (authentication_callback_called);
 
 	/* Test 3: Attempt a sync call to the same location;
-	 * credentials should be stored so the authn_callback function
+	 * credentials should be stored so the authentication_callback function
 	 * should not be called
 	 */
 	
-	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, authn_uri, GNOME_VFS_OPEN_READ);
+	authentication_callback_called = FALSE;
+	result = gnome_vfs_open (&handle, authentication_uri, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_OK);
 	gnome_vfs_close (handle);
 	handle = NULL;
 	/* The credentials should be in the cache, so we shouldn't have been called */
-	g_assert (authn_callback_called == FALSE);
+	g_assert (authentication_callback_called == FALSE);
 
 	/* Test 4: Attempt a sync call to something deeper in the namespace.
 	 * which should work without a callback too
 	 */
 
-	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, authn_uri_child, GNOME_VFS_OPEN_READ);
+	authentication_callback_called = FALSE;
+	result = gnome_vfs_open (&handle, authentication_uri_child, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_OK);
 	gnome_vfs_close (handle);
 	handle = NULL;
 	/* The credentials should be in the cache, so we shouldn't have been called */
-	g_assert (authn_callback_called == FALSE);
+	g_assert (authentication_callback_called == FALSE);
 
 	/* Test 5: clear the credential store and try again in reverse order */
 
 	flush_credentials_func();
 
-	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, authn_uri_child, GNOME_VFS_OPEN_READ);
+	authentication_callback_called = FALSE;
+	result = gnome_vfs_open (&handle, authentication_uri_child, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_OK);
 	gnome_vfs_close (handle);
 	handle = NULL;
-	g_assert (authn_callback_called == TRUE);
+	g_assert (authentication_callback_called == TRUE);
 
 	/* Test 6: Try something higher in the namespace, which should
 	 * cause the callback to happen again
 	 */
 
-	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, authn_uri, GNOME_VFS_OPEN_READ);
+	authentication_callback_called = FALSE;
+	result = gnome_vfs_open (&handle, authentication_uri, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_OK);
 	gnome_vfs_close (handle);
 	handle = NULL;
-	g_assert (authn_callback_called == TRUE);
+	g_assert (authentication_callback_called == TRUE);
 
 	/* Test 7: Try same URL as in test 4, make sure callback doesn't get called */
 
-	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, authn_uri_child, GNOME_VFS_OPEN_READ);
+	authentication_callback_called = FALSE;
+	result = gnome_vfs_open (&handle, authentication_uri_child, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_OK);
 	gnome_vfs_close (handle);
 	handle = NULL;
-	g_assert (authn_callback_called == FALSE);
+	g_assert (authentication_callback_called == FALSE);
 
 	/* Test 8: clear the credential store ensure that passing a username as NULL
 	 * cancels the operation, resulting in a ACCESS_DENIED error */
 
 	flush_credentials_func();
 
-	authn_username = NULL;
+	authentication_username = NULL;
 
-	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, authn_uri_child, GNOME_VFS_OPEN_READ);
+	authentication_callback_called = FALSE;
+	result = gnome_vfs_open (&handle, authentication_uri_child, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_ERROR_ACCESS_DENIED);
 	handle = NULL;
-	g_assert (authn_callback_called == TRUE);
+	g_assert (authentication_callback_called == TRUE);
 
 
-	/* Test 9: exercise the "destroy notify" functionality of the app context */
+	/* Test 9: exercise the "destroy notify" functionality */
 	/* Note that job doesn't end until a "close" is called, so the inherited
-	 * app context isn't released until then
+	 * callback isn't released until then
 	 */
 
 	flush_credentials_func();
-	authn_username = "foo";
+	authentication_username = "foo";
 
-	app_context = gnome_vfs_app_context_new ();
+	gnome_vfs_module_callback_push (GNOME_VFS_MODULE_CALLBACK_AUTHENTICATION,
+					authentication_callback, 
+					NULL,
+					destroy_notify);
 
-	gnome_vfs_app_context_set_callback_full (
-		app_context, GNOME_VFS_HOOKNAME_BASIC_AUTH, authn_callback, 
-		NULL, FALSE, app_context_destroy_notify);
-
-	gnome_vfs_app_context_push_takesref (app_context);
-
-	authn_callback_called = FALSE;
+	authentication_callback_called = FALSE;
 	
 	open_callback_occurred = FALSE;
 	open_callback_result_expected = GNOME_VFS_OK;
@@ -300,12 +279,12 @@ main (int argc, char **argv)
 
 	gnome_vfs_async_open (
 		&async_handle, 
-		authn_uri,
+		authentication_uri,
 		GNOME_VFS_OPEN_READ,
 		open_callback,
 		NULL);
 
-	gnome_vfs_app_context_pop ();
+	gnome_vfs_module_callback_pop (GNOME_VFS_MODULE_CALLBACK_AUTHENTICATION);
 
 	g_assert (!destroy_notify_occurred);
 
@@ -325,7 +304,7 @@ main (int argc, char **argv)
 		usleep (10);
 	}
 
-	g_assert (authn_callback_called);
+	g_assert (authentication_callback_called);
 	g_assert (destroy_notify_occurred);
 
 	gnome_vfs_shutdown ();

@@ -38,7 +38,6 @@
 
 struct GnomeVFSContext {
         GnomeVFSCancellation *cancellation;
-	GnomeVFSAppContext *	app_context;
 
         guint refcount;
 };
@@ -46,7 +45,7 @@ struct GnomeVFSContext {
 /* This is a token Context to return in situations
  * where we don't normally have a context: eg, during sync calls
  */
-const GnomeVFSContext sync_context = {NULL, NULL, 1};
+const GnomeVFSContext sync_context = {NULL, 1};
 
 GnomeVFSContext*
 gnome_vfs_context_new (void)
@@ -58,8 +57,6 @@ gnome_vfs_context_new (void)
         ctx = g_new0(GnomeVFSContext, 1);
 
         ctx->cancellation = gnome_vfs_cancellation_new();
-
-	ctx->app_context = gnome_vfs_app_context_get_current();
 
         ctx->refcount = 1;
  
@@ -87,10 +84,7 @@ gnome_vfs_context_unref (GnomeVFSContext *ctx)
         if (ctx->refcount == 1) {
                 gnome_vfs_cancellation_destroy(ctx->cancellation);
 
-		gnome_vfs_app_context_unref (ctx->app_context);
-		     
                 g_free(ctx);
-        
         } else {
                 ctx->refcount -= 1;
         }
@@ -133,22 +127,3 @@ gnome_vfs_context_check_cancellation_current (void)
 		return FALSE;
 	}	
 }
-
-const GnomeVFSAppContext *
-gnome_vfs_context_peek_app_context (const GnomeVFSContext *ctx)
-{
-	if (ctx == NULL) {
-		return NULL;
-	} else if (ctx == &sync_context) {
-		return gnome_vfs_app_context_peek_current ();
-	} else {
-		return ctx->app_context;
-	}
-}
-
-const GnomeVFSAppContext *
-gnome_vfs_context_peek_app_context_current (void)
-{
-	return gnome_vfs_context_peek_app_context (gnome_vfs_context_peek_current ());
-}
-

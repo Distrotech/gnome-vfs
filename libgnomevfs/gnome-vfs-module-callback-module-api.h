@@ -1,3 +1,4 @@
+
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /* gnome-vfs-callbacks.h - various callback declarations
 
@@ -18,27 +19,19 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Seth Nickell <snickell@stanford.edu>
+   Authors: Maciej Stachowiak <mjs@noisehavoc.org>
+            Seth Nickell <snickell@stanford.edu>
 */
 
-#ifndef GNOME_VFS_CALLBACKS_H
-#define GNOME_VFS_CALLBACKS_H
+#ifndef GNOME_VFS_MODULE_CALLBACK_MODULE_API_H
+#define GNOME_VFS_MODULE_CALLBACK_MODULE_API_H
 
-#include <glib/gtypes.h>
+#include <glib.h>
 
-G_BEGIN_DECLS
-
-/* Used to report user-friendly status messages you might want to display. */
-typedef void (* GnomeVFSStatusCallback) (const gchar  *message,
-					 gpointer      callback_data);
-typedef void (* GnomeVFSCallback)       (gpointer      user_data,
-					 gconstpointer in,
-					 gsize         in_size,
-					 gpointer      out,
-					 gsize         out_size);
-
-typedef struct GnomeVFSMessageCallbacks GnomeVFSMessageCallbacks;
-
-G_END_DECLS
+gboolean gnome_vfs_module_callback_invoke (const char    *callback_name,
+					   gconstpointer  in,
+					   gsize          in_size,
+					   gpointer       out,
+					   gsize          out_size);
 
 #endif

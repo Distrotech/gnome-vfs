@@ -23,13 +23,13 @@ HFILE_GLOB=$(top_srcdir)/libgnomevfs/*.h
 CFILE_GLOB=$(top_srcdir)/libgnomevfs/*.c
 
 # Headers to ignore
-IGNORE_HFILES=			\
-	gnome-vfs-ssl-private.h	\
-	gnome-vfs-private.h	\
-	gnome-vfs-private-utils.h	\
-	gnome-vfs-private-types.h	\
-	gnome-vfs-backend-private.h	\
-	gnome-vfs-mime-private.h	\
+IGNORE_HFILES=					\
+	gnome-vfs-ssl-private.h			\
+	gnome-vfs-private.h			\
+	gnome-vfs-private-utils.h		\
+	gnome-vfs-private-types.h		\
+	gnome-vfs-module-callback-private.h	\
+	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer-private.h
 
 # Extra files to add when scanning

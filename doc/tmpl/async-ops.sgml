@@ -209,12 +209,13 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @handle_return: a reference to where the newly created handle pointer should be stored
 @text_uri: 
 @options: 
-@filter_type: 
-@filter_options: 
-@filter_pattern: 
 @items_per_notification: 
 @callback: 
 @callback_data: data to be passed to the callback function
+<!-- # Unused Parameters # -->
+@filter_type: 
+@filter_options: 
+@filter_pattern: 
 
 
 <!-- ##### FUNCTION gnome_vfs_async_load_directory_uri ##### -->
@@ -225,12 +226,13 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @handle_return: a reference to where the newly created handle pointer should be stored
 @uri: 
 @options: 
-@filter_type: 
-@filter_options: 
-@filter_pattern: 
 @items_per_notification: 
 @callback: 
 @callback_data: data to be passed to the callback function
+<!-- # Unused Parameters # -->
+@filter_type: 
+@filter_options: 
+@filter_pattern: 
 
 
 <!-- ##### FUNCTION gnome_vfs_async_xfer ##### -->
@@ -264,3 +266,5 @@ Transfers file(s) from one location to another
 @permissions: 
 @callback: 
 @user_data: data to be passed to the callback function
+
+

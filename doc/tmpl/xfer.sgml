@@ -27,9 +27,6 @@ xfer
 @progress_callback: 
 @data: 
 @Returns: 
-<!-- # Unused Parameters # -->
-@Param5: 
-@Param6: 
 
 
 <!-- ##### FUNCTION gnome_vfs_xfer_uri ##### -->
@@ -45,9 +42,6 @@ xfer
 @progress_callback: 
 @data: 
 @Returns: 
-<!-- # Unused Parameters # -->
-@Param5: 
-@Param6: 
 
 
 <!-- ##### FUNCTION gnome_vfs_xfer_delete_list ##### -->
@@ -61,7 +55,5 @@ xfer
 @progress_callback: 
 @data: 
 @Returns: 
-<!-- # Unused Parameters # -->
-@Param4: 
 
 

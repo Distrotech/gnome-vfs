@@ -309,14 +309,15 @@ dispatch_xfer_callback (GnomeVFSNotifyResult *notify_result, gboolean cancelled)
 }
 
 static void
-dispatch_callback_callback (GnomeVFSNotifyResult *notify_result)
+dispatch_module_callback (GnomeVFSNotifyResult *notify_result)
 {
-	notify_result->specifics.callback.callback (
-						notify_result->specifics.callback.user_data,
-						notify_result->specifics.callback.in,
-						notify_result->specifics.callback.in_size,
-						notify_result->specifics.callback.out,
-						notify_result->specifics.callback.out_size);
+	notify_result->specifics.callback.callback (notify_result->specifics.callback.in,
+						    notify_result->specifics.callback.in_size,
+						    notify_result->specifics.callback.out,
+						    notify_result->specifics.callback.out_size,
+						    notify_result->specifics.callback.user_data,
+						    notify_result->specifics.callback.response,
+						    notify_result->specifics.callback.response_data);
 }
 
 static void
@@ -437,8 +438,8 @@ dispatch_sync_job_callback (gpointer data)
 	case GNOME_VFS_OP_XFER:
 		dispatch_xfer_callback (notify_result, cancelled);
 		break;
-	case GNOME_VFS_OP_CALLBACK:
-		dispatch_callback_callback (notify_result);
+	case GNOME_VFS_OP_MODULE_CALLBACK:
+		dispatch_module_callback (notify_result);
 		break;
 	default:
 		g_assert_not_reached ();
@@ -593,6 +594,7 @@ gnome_vfs_job_set (GnomeVFSJob *job,
 	op->callback = callback;
 	op->callback_data = callback_data;
 	op->context = gnome_vfs_context_new ();
+	op->stack_info = gnome_vfs_module_callback_get_stack_info ();
 
 	g_assert (gnome_vfs_context_get_cancellation (op->context) != NULL);
 
@@ -714,6 +716,8 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 	g_assert (gnome_vfs_context_get_cancellation (op->context) != NULL);
 	
 	gnome_vfs_context_unref (op->context);
+	gnome_vfs_module_callback_free_stack_info (op->stack_info);
+	
 	g_free (op);
 }
 
@@ -1541,13 +1545,11 @@ execute_xfer (GnomeVFSJob *job)
 void
 gnome_vfs_job_execute (GnomeVFSJob *job)
 {
-
 	JOB_DEBUG (("%u", GPOINTER_TO_UINT (job->job_handle)));
 
 	if (!job->cancelled) {
-
 		set_current_job (job);
-	
+
 		JOB_DEBUG (("executing %u %d", GPOINTER_TO_UINT (job->job_handle), job->op->type));
 		switch (job->op->type) {
 		case GNOME_VFS_OP_OPEN:
@@ -1642,12 +1644,17 @@ set_current_job (GnomeVFSJob *job)
 	g_assert (g_static_private_get (&job_private) == NULL);
 
 	g_static_private_set (&job_private, job, NULL);
+
+	gnome_vfs_module_callback_use_stack_info (job->op->stack_info);
+	gnome_vfs_module_callback_set_in_async_thread (TRUE);
 }
 
 static void
 clear_current_job (void)
 {
 	g_static_private_set (&job_private, NULL, NULL);
+
+	gnome_vfs_module_callback_clear_stacks ();
 }
 
 void
@@ -1667,10 +1674,12 @@ gnome_vfs_get_current_context (GnomeVFSContext **context)
 }
 
 void
-gnome_vfs_dispatch_callback (GnomeVFSCallback callback,
-			     gpointer user_data,
-			     gconstpointer in, size_t in_size,
-	 		     gpointer out, size_t out_size)
+gnome_vfs_dispatch_module_callback (GnomeVFSAsyncModuleCallback callback,
+				    gconstpointer in, size_t in_size,
+				    gpointer out, size_t out_size,
+				    gpointer user_data,
+				    GnomeVFSModuleCallbackResponse response,
+				    gpointer response_data)
 {
 	GnomeVFSJob *job;
 	GnomeVFSNotifyResult notify_result;
@@ -1683,7 +1692,7 @@ gnome_vfs_dispatch_callback (GnomeVFSCallback callback,
 
 	notify_result.job_handle = job->job_handle;
 
-	notify_result.type = GNOME_VFS_OP_CALLBACK;
+	notify_result.type = GNOME_VFS_OP_MODULE_CALLBACK;
 
 	notify_result.specifics.callback.callback 	= callback;
 	notify_result.specifics.callback.user_data 	= user_data;
@@ -1691,6 +1700,10 @@ gnome_vfs_dispatch_callback (GnomeVFSCallback callback,
 	notify_result.specifics.callback.in_size 	= in_size;
 	notify_result.specifics.callback.out 		= out;
 	notify_result.specifics.callback.out_size 	= out_size;
+	notify_result.specifics.callback.out 		= out;
+	notify_result.specifics.callback.out_size 	= out_size;
+	notify_result.specifics.callback.response	= response;
+	notify_result.specifics.callback.response_data 	= response_data;
 
 	job_notify (job, &notify_result);
 }

@@ -11,18 +11,6 @@ GNOME_VFS_SIZE_IS_UNSIGNED_LONG_LONG
 </SECTION>
 
 <SECTION>
-<FILE>fnmatch</FILE>
-<TITLE>File Matching</TITLE>
-FNM_PATHNAME
-FNM_NOESCAPE
-FNM_PERIOD
-FNM_FILE_NAME
-FNM_LEADING_DIR
-FNM_CASEFOLD
-FNM_NOMATCH
-</SECTION>
-
-<SECTION>
 <FILE>application-registry</FILE>
 <TITLE>Application Registry</TITLE>
 GNOME_VFS_APPLICATION_REGISTRY_COMMAND
@@ -74,16 +62,6 @@ gnome_vfs_async_load_directory
 gnome_vfs_async_load_directory_uri
 gnome_vfs_async_xfer
 gnome_vfs_async_find_directory
-</SECTION>
-
-<SECTION>
-<FILE>backend</FILE>
-<TITLE>Backend</TITLE>
-gnome_vfs_backend_loadinit
-gnome_vfs_backend_name
-gnome_vfs_backend_init
-gnome_vfs_backend_shutdown
-gnome_vfs_backend_get_job_count
 </SECTION>
 
 <SECTION>
@@ -142,15 +120,6 @@ gnome_vfs_context_get_cancellation
 gnome_vfs_context_check_cancellation
 gnome_vfs_context_peek_current
 gnome_vfs_context_check_cancellation_current
-gnome_vfs_context_peek_app_context
-gnome_vfs_context_peek_app_context_current
-</SECTION>
-
-<SECTION>
-<FILE>directory-filter</FILE>
-<TITLE>Directory Filter</TITLE>
-gnome_vfs_directory_filter_new
-gnome_vfs_directory_filter_destroy
 </SECTION>
 
 <SECTION>
@@ -242,17 +211,6 @@ gnome_vfs_iobuf_read
 gnome_vfs_iobuf_peekc
 gnome_vfs_iobuf_write
 gnome_vfs_iobuf_flush
-</SECTION>
-
-<SECTION>
-<FILE>list-sort</FILE>
-GnomeVFSListCompareFunc
-gnome_vfs_list_sort
-</SECTION>
-
-<SECTION>
-<FILE>module-api</FILE>
-gnome_vfs_callback_call_hook
 </SECTION>
 
 <SECTION>
@@ -453,30 +411,11 @@ gnome_vfs_process_free
 </SECTION>
 
 <SECTION>
-<FILE>regexp-filter</FILE>
-gnome_vfs_regexp_filter_new
-gnome_vfs_regexp_filter_destroy
-gnome_vfs_regexp_filter_apply
-</SECTION>
-
-<SECTION>
 <FILE>result</FILE>
 gnome_vfs_result_to_string
 gnome_vfs_result_from_errno_code
 gnome_vfs_result_from_errno
 gnome_vfs_result_from_h_errno
-</SECTION>
-
-<SECTION>
-<FILE>seekable</FILE>
-gnome_vfs_seek_emulate
-</SECTION>
-
-<SECTION>
-<FILE>shellpattern-filter</FILE>
-gnome_vfs_shellpattern_filter_new
-gnome_vfs_shellpattern_filter_destroy
-gnome_vfs_shellpattern_filter_apply
 </SECTION>
 
 <SECTION>
@@ -494,11 +433,7 @@ GnomeVFSFileInfo
 GnomeVFSFileInfoOptions
 GnomeVFSSetFileInfoMask
 GnomeVFSFindDirectoryKind
-GnomeVFSDirectoryFilterType
-GnomeVFSDirectoryFilterOptions
-GnomeVFSDirectoryFilterNeeds
 GnomeVFSDirectoryVisitOptions
-GnomeVFSDirectoryFilterFunc
 GnomeVFSDirectoryVisitFunc
 GnomeVFSXferOptions
 GnomeVFSXferProgressStatus
@@ -518,11 +453,9 @@ GnomeVFSAsyncReadCallback
 GnomeVFSAsyncWriteCallback
 GnomeVFSGetFileInfoResult
 GnomeVFSFindDirectoryResult
-GnomeVFSStatusCallback
 GnomeVFSTransformInitFunc
 GnomeVFSTransformFunc
 GnomeVFSMethodHandle
-GnomeVFSCallback
 </SECTION>
 
 <SECTION>
@@ -604,37 +537,50 @@ gnome_vfs_xfer_delete_list
 </SECTION>
 
 <SECTION>
-<FILE>app-context</FILE>
-gnome_vfs_app_context_new
-gnome_vfs_app_context_push_takesref
-gnome_vfs_app_context_push_override_takesref
-gnome_vfs_app_context_pop
-gnome_vfs_app_context_set_attribute
-gnome_vfs_app_context_set_callback
-gnome_vfs_app_context_set_callback_full
-gnome_vfs_app_context_peek_current
-gnome_vfs_app_context_get_current
-gnome_vfs_app_context_ref
-gnome_vfs_app_context_unref
-gnome_vfs_app_context_get_attribute
-gnome_vfs_app_context_get_callback
+<FILE>module-callback</FILE>
+<TITLE>Module Callbacks</TITLE>
+GnomeVFSModuleCallback
+GnomeVFSModuleCallbackResponse
+GnomeVFSAsyncModuleCallback
+gnome_vfs_module_callback_set_default
+gnome_vfs_module_callback_push
+gnome_vfs_module_callback_pop
+gnome_vfs_async_module_callback_set_default
+gnome_vfs_async_module_callback_push
+gnome_vfs_async_module_callback_pop
 </SECTION>
 
 <SECTION>
-<FILE>ssl</FILE>
-gnome_vfs_ssl_enabled
-gnome_vfs_ssl_new
-gnome_vfs_ssl_new_from_uri
-gnome_vfs_ssl_read
-gnome_vfs_ssl_write
-gnome_vfs_ssl_destroy
+<FILE>module-callback-module-api</FILE>
+gnome_vfs_module_callback_invoke
+</SECTION>
+
+<SECTION>
+<FILE>module-callback-private</FILE>
+gnome_vfs_module_callback_get_stack_info
+gnome_vfs_module_callback_use_stack_info
+gnome_vfs_module_callback_free_stack_info
+gnome_vfs_module_callback_clear_stacks
+gnome_vfs_module_callback_set_in_async_thread
 </SECTION>
 
 <SECTION>
 <FILE>standard-callbacks</FILE>
-GNOME_VFS_HOOKNAME_BASIC_AUTH
-GNOME_VFS_HOOKNAME_HTTP_PROXY_AUTH
-GnomeVFSCallbackSimpleAuthIn
-GnomeVFSCallbackSimpleAuthOut
+<TITLE>Standard Callbacks</TITLE>
+GNOME_VFS_MODULE_CALLBACK_AUTHENTICATION
+GNOME_VFS_MODULE_CALLBACK_HTTP_PROXY_AUTHENTICATION
+GnomeVFSModuleCallbackAuthenticationIn
+GnomeVFSModuleCallbackAuthenticationOut
+GNOME_VFS_MODULE_CALLBACK_STATUS_MESSAGE
+GnomeVFSModuleCallbackStatusMessageIn
+GnomeVFSModuleCallbackStatusMessageOut
 </SECTION>
 
+
+<SECTION>
+<FILE>ssl</FILE>
+gnome_vfs_ssl_enabled
+gnome_vfs_ssl_read
+gnome_vfs_ssl_write
+gnome_vfs_ssl_destroy
+</SECTION>
