@@ -39,7 +39,7 @@ static char *mime_type_get_supertype (const char *mime_type);
 static char **strsplit_handle_null (const char *str, const char *delim, int max);
 static OAF_ServerInfo *OAF_ServerInfo__copy (OAF_ServerInfo *orig);
 static GList *OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
-static GList *process_app_list (const char *id_list);
+static GList *process_app_list (GList *id_list);
 static GList *comma_separated_str_to_str_list (const char *str);
 static GList *str_list_difference (GList *a, GList *b);
 static char *str_list_to_comma_separated_str (GList *list);
@@ -52,6 +52,8 @@ GnomeVFSMimeActionType
 gnome_vfs_mime_get_default_action_type (const char *mime_type)
 {
 	const char *action_type_string;
+	char *supertype;
+	GnomeVFSMimeActionType action_type;
 
 	action_type_string = gnome_vfs_mime_get_value
 		(mime_type, "default_action_type");
@@ -63,7 +65,16 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
 	} else if (strcasecmp (action_type_string, "component") == 0) {
 		return GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
 	} else {
-		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
+		/* Fall back to the supertype. */
+		supertype = mime_type_get_supertype (mime_type);
+		/* Check if already a supertype */
+		if (strcmp (supertype, mime_type) != 0) {
+			action_type = gnome_vfs_mime_get_default_action_type (supertype);
+		} else {
+			action_type = GNOME_VFS_MIME_ACTION_TYPE_NONE;
+		}
+		g_free (supertype);
+		return action_type;
 	}
 }
 
@@ -108,9 +119,23 @@ GnomeVFSMimeApplication *
 gnome_vfs_mime_get_default_application (const char *mime_type)
 {
 	const char *default_application_id;
+	GnomeVFSMimeApplication *default_application;
+	char *supertype;
 
 	default_application_id = gnome_vfs_mime_get_value
 		(mime_type, "default_application_id");
+
+	if (default_application_id == NULL || strcmp (default_application_id, "") == 0) {
+		/* Fall back to the supertype. */
+		supertype = mime_type_get_supertype (mime_type);
+		/* Check if already a supertype */
+		if (strcmp (supertype, mime_type) != 0) {
+			default_application = gnome_vfs_mime_get_default_application (supertype);
+			g_free (supertype);
+			return default_application;
+		}
+	}
+
 	return gnome_vfs_mime_application_new_from_id (default_application_id);
 }
 
@@ -120,7 +145,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 {
 	const char *default_component_iid;
 	OAF_ServerInfoList *info_list;
-	OAF_ServerInfo *server;
+	OAF_ServerInfo *default_component;
 	CORBA_Environment ev;
 	char *supertype;
 	char *query;
@@ -137,6 +162,24 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	/* Find a component that supports either the exact mime type,
            the supertype, or all mime types. */
 
+	/* First try the component specified in the mime database, if available. */
+	default_component_iid = gnome_vfs_mime_get_value
+		(mime_type, "default_component_iid");
+
+
+	if (default_component_iid == NULL || strcmp (default_component_iid, "") == 0) {
+		/* Fall back to the supertype. */
+		/* Check if already a supertype */
+		if (strcmp (supertype, mime_type) != 0) {
+			default_component = gnome_vfs_mime_get_default_component (supertype);
+		}
+
+		default_component_iid = g_strdup (default_component->iid);
+
+		CORBA_free (default_component);
+	}
+
+
 	/* FIXME bugzilla.eazel.com 1142: should probably check for
            the right interfaces too. Also slightly semantically
            different from nautilus in other tiny ways.
@@ -145,9 +188,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 			     "', '", supertype,
 			     "', '*'])", NULL);
 
-	/* First try the component specified in the mime database, if available. */
-	default_component_iid = gnome_vfs_mime_get_value
-		(mime_type, "default_component_iid");
+
 	if (default_component_iid != NULL) {
 		sort[0] = g_strconcat ("iid == '", default_component_iid, "'", NULL);
 	} else {
@@ -172,10 +213,10 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 
 	info_list = oaf_query (query, sort, &ev);
 	
-	server = NULL;
+	default_component = NULL;
 	if (ev._major == CORBA_NO_EXCEPTION) {
 		if (info_list != NULL && info_list->_length > 0) {
-			server = OAF_ServerInfo__copy (&info_list->_buffer[0]);
+			default_component = OAF_ServerInfo__copy (&info_list->_buffer[0]);
 		}
 		CORBA_free (info_list);
 	}
@@ -189,29 +230,43 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 
 	CORBA_exception_free (&ev);
 
-	return server;
+	return default_component;
 }
+
+static GList *
+gnome_vfs_mime_str_list_merge (GList *a, 
+			       GList *b)
+{
+	GList *pruned_b;
+	GList *extended_a;
+	GList *a_copy;
+
+	pruned_b = str_list_difference (b, a);
+
+	a_copy = g_list_copy (a);
+	extended_a = g_list_concat (a_copy, pruned_b);
+
+	/* No need to free a_copy or
+         * pruned_b since they were concat()ed into
+         * extended_a 
+	 */
+
+	return extended_a;
+}
+
 
 static GList *
 gnome_vfs_mime_str_list_apply_delta (GList *list_to_process, 
 				     GList *additions, 
 				     GList *removals)
 {
-	GList *pruned_addition_list;
-	GList *list_to_process_copy;
 	GList *extended_original_list;
 	GList *processed_list;
 
-	pruned_addition_list = str_list_difference (additions, list_to_process);
-	list_to_process_copy = g_list_copy (list_to_process);
-	extended_original_list = g_list_concat (list_to_process_copy, pruned_addition_list);
+	extended_original_list = gnome_vfs_mime_str_list_merge (list_to_process, additions);
 
 	processed_list = str_list_difference (extended_original_list, removals);
 	
-	/* No need to free list_to_process_copy or
-         * pruned_addition_list since they were concat()ed into
-         * extended_original_list 
-	 */
 	g_list_free (extended_original_list);
 
 	return processed_list;
@@ -239,12 +294,46 @@ gnome_vfs_mime_get_value_for_user_level (const char *mime_type,
 	return value;
 }
 
+
+static GList *gnome_vfs_mime_do_short_list_processing (GList *short_list, 
+						       GList *additions,
+						       GList *removals, 
+						       GList *supertype_short_list, 
+						       GList *supertype_additions, 
+						       GList *supertype_removals)
+{
+	GList *processed_supertype_list;
+	GList *merged_system_and_supertype;
+	GList *final_list;
+
+	processed_supertype_list = gnome_vfs_mime_str_list_apply_delta (supertype_short_list,
+									supertype_additions,
+									supertype_removals);
+
+	merged_system_and_supertype = gnome_vfs_mime_str_list_merge (short_list,
+								     processed_supertype_list);
+
+	final_list = gnome_vfs_mime_str_list_apply_delta (merged_system_and_supertype,
+							  additions,
+							  removals);
+	
+	g_list_free (processed_supertype_list);
+	g_list_free (merged_system_and_supertype);
+
+	return final_list;
+}
+
+
 GList *
 gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 {
 	GList *system_short_list;
-	GList *short_list_addition_list;
-	GList *short_list_removal_list;
+	GList *short_list_additions;
+	GList *short_list_removals;
+	char *supertype;
+	GList *supertype_short_list;
+	GList *supertype_additions;
+	GList *supertype_removals;
 	GList *id_list;
 	GList *p;
 	GnomeVFSMimeApplication *application;
@@ -261,18 +350,48 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 
 	/* get user short list delta (add list and remove list) */
 
-	short_list_addition_list = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
-								    (mime_type,
-								     "short_list_application_user_additions"));
-	short_list_removal_list = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
-								   (mime_type,
-								    "short_list_application_user_removals"));
+	short_list_additions = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
+								(mime_type,
+								 "short_list_application_user_additions"));
+	short_list_removals = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
+							       (mime_type,
+								"short_list_application_user_removals"));
+
+	/* Get supertype info to merge in. */
+
+	supertype = mime_type_get_supertype (mime_type);
+
+	if (strcmp (supertype, mime_type) != 0) {
+		supertype_short_list = comma_separated_str_to_str_list 
+			(gnome_vfs_mime_get_value_for_user_level 
+			 (supertype, 
+			  "short_list_application_ids"));
+
+		/* get supertype short list delta (add list and remove list) */
+
+		supertype_additions = comma_separated_str_to_str_list 
+			(gnome_vfs_mime_get_value
+			 (supertype,
+			  "short_list_application_user_additions"));
+		supertype_removals = comma_separated_str_to_str_list 
+			(gnome_vfs_mime_get_value
+			 (supertype,
+			  "short_list_application_user_removals"));
+	} else {
+		supertype_short_list = NULL;
+		supertype_additions = NULL;
+		supertype_removals = NULL;
+	}
+
 
 	/* compute list modified by delta */
 
-	id_list = gnome_vfs_mime_str_list_apply_delta (system_short_list, 
-						       short_list_addition_list, 
-						       short_list_removal_list);
+	id_list = gnome_vfs_mime_do_short_list_processing (system_short_list, 
+							   short_list_additions,
+							   short_list_removals, 
+							   supertype_short_list, 
+							   supertype_additions, 
+							   supertype_removals);
 
 	preferred_applications = NULL;
 
@@ -288,9 +407,11 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	preferred_applications = g_list_reverse (preferred_applications);
 
 	g_list_free_deep (system_short_list);
-	g_list_free_deep (short_list_addition_list);
-	g_list_free_deep (short_list_removal_list);
-
+	g_list_free_deep (short_list_additions);
+	g_list_free_deep (short_list_removals);
+	g_list_free_deep (supertype_short_list);
+	g_list_free_deep (supertype_additions);
+	g_list_free_deep (supertype_removals);
 	g_list_free (id_list);
 
 	return preferred_applications;
@@ -301,10 +422,13 @@ GList *
 gnome_vfs_mime_get_short_list_components (const char *mime_type)
 {
 	GList *system_short_list;
-	GList *short_list_addition_list;
-	GList *short_list_removal_list;
-	GList *iid_list;
+	GList *short_list_additions;
+	GList *short_list_removals;
 	char *supertype;
+	GList *supertype_short_list;
+	GList *supertype_additions;
+	GList *supertype_removals;
+	GList *iid_list;
 	char *query;
 	char *sort[2];
 	char *iids_delimited;
@@ -324,19 +448,49 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 
 	/* get user short list delta (add list and remove list) */
 
-	short_list_addition_list = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
-								    (mime_type,
-								     "short_list_component_user_additions"));
+	short_list_additions = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
+								(mime_type,
+								 "short_list_component_user_additions"));
+	
+	short_list_removals = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
+							       (mime_type,
+								"short_list_component_user_removals"));
 
-	short_list_removal_list = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
-								   (mime_type,
-								    "short_list_component_user_removals"));
+
+	supertype = mime_type_get_supertype (mime_type);
+	
+	if (strcmp (supertype, mime_type) != 0) {
+		supertype_short_list = comma_separated_str_to_str_list 
+			(gnome_vfs_mime_get_value_for_user_level 
+			 (supertype, 
+			  "short_list_component_iids"));
+
+		/* get supertype short list delta (add list and remove list) */
+
+		supertype_additions = comma_separated_str_to_str_list 
+			(gnome_vfs_mime_get_value
+			 (supertype,
+			  "short_list_component_user_additions"));
+		supertype_removals = comma_separated_str_to_str_list 
+			(gnome_vfs_mime_get_value
+			 (supertype,
+			  "short_list_component_user_removals"));
+	} else {
+		supertype_short_list = NULL;
+		supertype_additions = NULL;
+		supertype_removals = NULL;
+	}
 
 	/* compute list modified by delta */
 
-	iid_list = gnome_vfs_mime_str_list_apply_delta (system_short_list, 
-						       short_list_addition_list, 
-						       short_list_removal_list);
+	iid_list = gnome_vfs_mime_do_short_list_processing (system_short_list, 
+							    short_list_additions,
+							    short_list_removals, 
+							    supertype_short_list, 
+							    supertype_additions, 
+							    supertype_removals);
+
+
 
 	/* Do usual query but requiring that IIDs be one of the ones
            in the short list IID list. */
@@ -346,8 +500,6 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		CORBA_exception_init (&ev);
 
 		iids_delimited = join_str_list ("','", iid_list);
-		
-		supertype = mime_type_get_supertype (mime_type);
 		
 		/* FIXME bugzilla.eazel.com 1142: should probably check for
 		   the right interfaces too. Also slightly semantically
@@ -369,16 +521,19 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		}
 
 		g_free (iids_delimited);
-		g_free (supertype);
 		g_free (query);
 		g_free (sort[0]);
 
 		CORBA_exception_free (&ev);
 	}
 
+	g_free (supertype);
 	g_list_free_deep (system_short_list);
-	g_list_free_deep (short_list_addition_list);
-	g_list_free_deep (short_list_removal_list);
+	g_list_free_deep (short_list_additions);
+	g_list_free_deep (short_list_removals);
+	g_list_free_deep (supertype_short_list);
+	g_list_free_deep (supertype_additions);
+	g_list_free_deep (supertype_removals);
 	g_list_free (iid_list);
 
 	return preferred_components;
@@ -389,10 +544,15 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 GList *
 gnome_vfs_mime_get_all_applications (const char *mime_type)
 {
- 	const char *system_all_application_ids;
- 	const char *user_all_application_ids;
+ 	GList *system_all_application_ids;
+ 	GList *user_all_application_ids;
+	char *supertype;
+ 	GList *supertype_all_application_ids;
+ 	GList *supertype_user_all_application_ids;
+	GList *full_normal;
+	GList *full_supertype;
+	GList *full_id_list;
 	GList *system_apps;
-	GList *user_apps;
 
 	if (mime_type == NULL) {
 		return NULL;
@@ -402,21 +562,54 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 	   no way for apps to modify at install time */
 
 	/* get app list */
- 	system_all_application_ids = gnome_vfs_mime_get_value 
-		(mime_type, "system_all_application_ids");
-	
-	system_apps = process_app_list (system_all_application_ids);
-	
-	/* get user app list extension */
+ 	system_all_application_ids = comma_separated_str_to_str_list 
+		(gnome_vfs_mime_get_value 
+		 (mime_type, "system_all_application_ids"));
 
- 	user_all_application_ids = gnome_vfs_mime_get_value 
-		(mime_type, "all_application_ids");
+ 	user_all_application_ids = comma_separated_str_to_str_list
+		(gnome_vfs_mime_get_value 
+		 (mime_type, "all_application_ids"));
+
+	supertype = mime_type_get_supertype (mime_type);
+	
+	if (strcmp (supertype, mime_type) != 0) {
+		supertype_all_application_ids = comma_separated_str_to_str_list 
+			(gnome_vfs_mime_get_value
+			 (supertype, 
+			  "system_all_application_ids"));
+
+		supertype_user_all_application_ids = comma_separated_str_to_str_list 
+			(gnome_vfs_mime_get_value
+			 (supertype, 
+			  "all_application_ids"));
+
+	} else {
+		supertype_all_application_ids = NULL;
+		supertype_user_all_application_ids = NULL;
+	}
+
+	full_normal = gnome_vfs_mime_str_list_merge (system_all_application_ids,
+						     user_all_application_ids); 
 		
-	user_apps = process_app_list (user_all_application_ids);
-	
-	/* merge the two */
+	full_supertype = gnome_vfs_mime_str_list_merge (supertype_all_application_ids,
+							supertype_user_all_application_ids); 
 
-	return g_list_concat (system_apps, user_apps);
+	full_id_list = gnome_vfs_mime_str_list_merge (full_normal, full_supertype);
+
+
+	
+	system_apps = process_app_list (full_id_list);
+	
+	g_free (supertype);
+	g_list_free_deep (system_all_application_ids);
+	g_list_free_deep (user_all_application_ids);
+	g_list_free_deep (supertype_all_application_ids);
+	g_list_free_deep (supertype_user_all_application_ids);
+	g_list_free (full_normal);
+	g_list_free (full_supertype);
+	g_list_free (full_id_list);
+
+	return system_apps;
 }
 
 GList *
@@ -1336,32 +1529,26 @@ OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list)
 
 
 static GList *
-process_app_list (const char *id_list) 
+process_app_list (GList *id_list) 
 {
-	char **id_strv;
-	GList *retval;
-	int i;
-	
-	if (id_list == NULL) {
-		return NULL;
-	}
+	GList *applications;
+	GList *p;
 
-	id_strv = strsplit_handle_null (id_list, ",", 0);
-	
-	retval = NULL;
-	for (i = 0; id_strv[i] != NULL; i++) {
+	applications = NULL;
+
+	for (p = id_list; p != NULL; p = p->next) {
 		GnomeVFSMimeApplication *application;
 
-		application = gnome_vfs_mime_application_new_from_id (id_strv[i]);
+		application = gnome_vfs_mime_application_new_from_id (p->data);
 		
 		if (application != NULL) {
-			retval = g_list_prepend (retval, application);
+			applications = g_list_prepend (applications, application);
 		}
 	}
 
-	retval = g_list_reverse (retval);
+	applications = g_list_reverse (applications);
 
-	return retval;
+	return applications;
 }
 	
 

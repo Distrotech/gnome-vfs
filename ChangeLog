@@ -1,5 +1,25 @@
 2000-06-13  Maciej Stachowiak  <mjs@eazel.com>
 
+	Bugzilla task #1074
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_action_type,
+	gnome_vfs_mime_get_default_application,
+	gnome_vfs_mime_get_default_component,
+	gnome_vfs_mime_get_short_list_applications,
+	gnome_vfs_mime_get_short_list_components,
+	gnome_vfs_mime_get_all_applications): Added support for trying the
+	supertype.
+	(gnome_vfs_mime_str_list_merge,
+	gnome_vfs_mime_str_list_apply_delta,
+	gnome_vfs_mime_do_short_list_processing): New or modified helper
+	functions.
+	(process_app_list): Changed to take a GList of IDs instead of a
+	comma-separated string.
+	* data/mime/gnome-vfs.keys: Added text/* entry.
+	
+2000-06-13  Maciej Stachowiak  <mjs@eazel.com>
+
 	* libgnomevfs/gnome-vfs-mime-handlers.c
 	(gnome_vfs_mime_get_all_components): Fix broken query.
 

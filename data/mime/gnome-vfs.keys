@@ -733,3 +733,14 @@ video/x-msvideo
 video/x-sgi-movie
 	description=SGI movie
 
+text/*
+	default_action_type=component
+	default_application_id=emacs
+	default_component_iid=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_novice_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_intermediate_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_component_iids_for_hacker_user_level=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_application_ids_for_novice_user_level=emacs,nedit
+	short_list_application_ids_for_intermediate_user_level=emacs,nedit
+	short_list_application_ids_for_hacker_user_level=emacs,nedit
+	system_all_application_ids=emacs,nedit
