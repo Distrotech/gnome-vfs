@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2001-03-06 23:31+0100\n"
-"PO-Revision-Date: 2001-03-07 18:21+01:00\n"
+"PO-Revision-Date: 2001-04-27 20:19+02:00\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk> \n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -746,7 +746,7 @@ msgstr "bibliografish opfølgning"
 
 #: data/mime/gnome-vfs.keys.in.h:183
 msgid "binary program"
-msgstr "Binærprogram"
+msgstr "binært program"
 
 #: data/mime/gnome-vfs.keys.in.h:184
 msgid "block device"
@@ -770,7 +770,7 @@ msgstr "tegnenhed"
 
 #: data/mime/gnome-vfs.keys.in.h:189
 msgid "comma-separated text document"
-msgstr "kommasepareret tekst-dokument"
+msgstr "kommasepareret tekstdokument"
 
 #: data/mime/gnome-vfs.keys.in.h:190
 msgid "compound document"
@@ -786,15 +786,15 @@ msgstr "komprimeret GIMP-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:193
 msgid "directory information file"
-msgstr "kataloginformationsfil"
+msgstr "mappeinformationsfil"
 
 #: data/mime/gnome-vfs.keys.in.h:194
 msgid "document type definition"
-msgstr "dokumenttypedefination"
+msgstr "dokumenttypedefinition"
 
 #: data/mime/gnome-vfs.keys.in.h:195
 msgid "email headers"
-msgstr "elektroning brevhoved"
+msgstr "elektronisk brevhoved"
 
 #: data/mime/gnome-vfs.keys.in.h:196
 msgid "email message"
@@ -850,7 +850,7 @@ msgstr "manualside (komprimeret)"
 
 #: data/mime/gnome-vfs.keys.in.h:209
 msgid "memory dump"
-msgstr "Hukommelsesstump"
+msgstr "hukommelsesdump"
 
 #: data/mime/gnome-vfs.keys.in.h:210
 msgid "message digest"
