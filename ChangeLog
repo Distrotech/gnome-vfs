@@ -1,5 +1,13 @@
 2003-05-21  Christophe Fergeau  <teuf@users.sourceforge.net>
 
+	* configure.in
+	* test/Makefile.am: hopefully this should build now (warning, 
+	I removed all the translations from configure.in). The only remaining
+	issue is that GNOME_VFS_Daemon.h must be generated manually 
+	(make GNOME_VFS_Daemon.h in daemon/)
+
+2003-05-21  Christophe Fergeau  <teuf@users.sourceforge.net>
+
 	* Makefile.am
 	* configure.in: removed the 'programs' subdir from the build 
 	  since it's not needed in this branch

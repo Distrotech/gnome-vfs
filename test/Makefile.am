@@ -19,7 +19,6 @@ noinst_PROGRAMS =				\
 	test-escape				\
 	test-find-directory			\
 	test-info				\
-	test-metadata				\
 	test-mime				\
 	test-mime-handlers			\
 	test-mime-handlers-set			\
@@ -136,9 +135,6 @@ test_mime_info_LDADD = $(libraries)
 
 test_monitor_SOURCES = test-monitor.c
 test_monitor_LDADD = $(libraries)
-
-test_metadata_SOURCES = test-metadata.c
-test_metadata_LDADD = $(libraries)
 
 test_callback_SOURCES = test-callback.c
 test_callback_LDADD = $(libraries)
