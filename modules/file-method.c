@@ -803,12 +803,14 @@ do_read_directory (GnomeVFSMethod *method,
 #else
 	G_LOCK (readdir);
 	errno = 0;
-	result = readdir (dir);
+	result = readdir (handle->dir);
 
-	if (result != NULL && errno != 0) {
+	if (result == NULL && errno != 0) {
 		return gnome_vfs_result_from_errno ();
 	}
-	memcpy (handle->current_entry, result, sizeof (struct dirent));
+	if (result != NULL) {
+		memcpy (handle->current_entry, result, sizeof (struct dirent));
+	}
 	G_UNLOCK (readdir);
 #endif
 	

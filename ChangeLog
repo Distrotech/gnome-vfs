@@ -1,5 +1,10 @@
 2003-02-24  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/file-method.c (do_read_directory):
+	Actually make the non-readdir_r case work.
+
+2003-02-24  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-monitor.c (destroy_monitor_handle):
 	Warn if the handle was not in the hash table.
 	(gnome_vfs_monitor_callback):
