@@ -5,77 +5,59 @@
 # Mauricio Araya Polo <mauricio@eazel.com>, 2001.
 # Juan Manuel García Molina <juanma_gm@wanadoo.es>, 2002,2003.
 # Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
+# Francisco Javier F. Serrador <franciscojavier.fernandez.serrador@hispalinux.es>, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
-"POT-Creation-Date: 2003-11-10 09:03+0100\n"
-"PO-Revision-Date: 2003-08-28 13:57+0200\n"
-"Last-Translator: Francisco Javier F. Serrador <serrador@arrakis.es>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-03 04:16+0200\n"
+"PO-Revision-Date: 2003-11-03 23:09+0100\n"
+"Last-Translator: Francisco Javier F. Serrador <franciscojavier.fernandez.serrador@hispalinux.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "First-Translator: Mauricio Araya Polo <mauricio@eazel.com>\n"
 "X-Generator: KBabel 1.0.2\n"
 "Plural-Forms: nplurals=2; plural=(n == 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:553
-#, fuzzy
-msgid "Could not initialize Bonobo"
-msgstr "No se pudo encontrar el examinador principal"
-
-#: daemon/gnome-vfs-daemon.c:559
-msgid "Could not initialize gnome vfs"
-msgstr ""
-
-#: libgnomevfs/gnome-vfs-configuration.c:227
+#: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d contiene caracteres nulos."
 
-#: libgnomevfs/gnome-vfs-configuration.c:244
+#: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d contiene un método sin nombre."
 
-#: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
-msgid "%s:%d has no options endmarker."
-msgstr "%s:%d contiene un método sin nombre."
-
-#: libgnomevfs/gnome-vfs-configuration.c:295
-#, c-format
-msgid "%s:%d has unknown options %s."
-msgstr ""
-
-#: libgnomevfs/gnome-vfs-configuration.c:314
+#: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d contiene un modulo sin nombre."
 
-#: libgnomevfs/gnome-vfs-configuration.c:368
+#: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "No se encuentra el archivo de configuración `%s': %s"
 
-#: libgnomevfs/gnome-vfs-job.c:774
+#: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Tipo de op %u desconocido"
 
-#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "No se puede crear el pipe para el canal de E/S abierto: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1727
+#: libgnomevfs/gnome-vfs-job.c:1684
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipo de trabajo %u desconocido"
 
-#: libgnomevfs/gnome-vfs-job.c:1760
+#: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
 msgstr "La operación ha sido detenida"
 
@@ -339,12 +321,12 @@ msgstr "%.1f K"
 #: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f Mb"
+msgstr "%.1f MiB"
 
 #: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f Gb"
+msgstr "%.1f Gib"
 
 #: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
@@ -414,8 +396,7 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -435,15 +416,15 @@ msgstr "Moniker de archivo genérico"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Aplicación visualizadora del componente"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Aplicación de terminal predeterminada"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "El argumento exec para la terminal predeterminada"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -452,48 +433,51 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"La aplicación que se usara para ver archivos que requieren un componente para verlos. "
+"El parámetro %s podrá ser reemplazado por las URIs del archivo, el parámetro %c sera reemplazado "
+"por el componente IID."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
+msgstr "La aplicación de terminal predeterminada para las aplicaciones que lo requieran."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate connections to the proxy server"
-msgstr ""
+msgstr "Autenticar conexiones con el servidor proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "URL de configuración automática del proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing http over the internet."
-msgstr ""
+msgstr "Habilita los ajustes del proxy al acceder por http a Internet."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "Nombre del host proxy FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "Puerto del proxy FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "Nombre del host del proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "Puerto del proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "Hosts are not contacted via the proxy"
-msgstr ""
+msgstr "Hosts que no son contactados a través del proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid ""
@@ -504,73 +488,75 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid "Password to pass as authentication when doing http proxying"
-msgstr ""
+msgstr "Contraseña para usar como autenticación a conectar con el proxy http"
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Modo de configuración del proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Secure http proxy host name"
-msgstr ""
+msgstr "Nombre del host del proxy http seguro"
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Secure http proxy port"
-msgstr ""
+msgstr "Puerto del proxy http seguro"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\""
 msgstr ""
+"Seleccione el modo de configuración del proxy. Los valores soportados son \"none\", \"manual\", "
+"\"auto\""
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "Socks proxy host name"
-msgstr ""
+msgstr "Nombre del host del proxy socks"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Socks proxy port"
-msgstr ""
+msgstr "Puerto del proxy socks"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "El nombre de la maquina por la que se hace proxy FTP."
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid "The machine name to proxy http through."
-msgstr ""
+msgstr "El nombre de la maquina por la que se hace proxy http."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy secure http through."
-msgstr ""
+msgstr "El nombre de la maquina por la que se hace proxy http seguro."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "El nombre de la maquina por la que se hace proxy socks."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid ""
 "The port on the machine defined by /system/http_proxy/host that you proxy "
 "through"
-msgstr ""
+msgstr "El puerto de la maquina definida por /system/http_proxy/host que hace de proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid ""
 "The port on the machine defined by /system/proxy/ftp_host that you proxy "
 "through"
-msgstr ""
+msgstr "El puerto de la maquina definida por /system/proxy/ftp_host que hace de proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by /system/proxy/secure_host that you proxy "
 "through"
-msgstr ""
+msgstr "El puerto de la maquina definida por /system/proxy/secure_host que hace de proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by /system/proxy/socks_host that you proxy "
 "through"
-msgstr ""
+msgstr "El puerto de la maquina definida por /system/proxy/socks_host que hace de proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -579,23 +565,28 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Esta clave contiene una lista de hosts con los que está conectado directamente, en vez "
+"de por medio del proxy (si esta activo). Los valores pueden ser nombres de host, dominios "
+"(usando un comodín auxiliar como *.foo.com), direcciones IP de hosts (tanto IPv4 como "
+"IPv6) y direcciones de red con una mascara (algo como 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid "URL that provides proxy configuration values"
-msgstr ""
+msgstr "URL que proporciona valores de configuración de proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid "Use proxy settings when accessing http"
-msgstr ""
+msgstr "Usar ajustes del proxy al acceder a http"
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "User name to pass as authentication when doing http proxying"
-msgstr ""
+msgstr "Nombre de usuario para pasar como autentificacion al hacer proxy http"
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "http proxy password"
-msgstr ""
+msgstr "contraseña del proxy http"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "http proxy username"
-msgstr ""
+msgstr "usuario del proxy http"
+
