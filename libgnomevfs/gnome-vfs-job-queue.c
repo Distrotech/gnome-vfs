@@ -60,19 +60,17 @@ static int thread_count_limit;
 /* This is the maximum number of threads reserved for higher priority jobs */
 static float max_decrease;
 
-static GStaticMutex job_queue_lock = G_STATIC_MUTEX_INIT;
-static int running_job_count;
-static int job_id;
-
-static volatile gboolean gnome_vfs_quitting = FALSE;
-
 typedef GTree JobQueueType;
 
+/* This mutex protects these */
+static GStaticMutex job_queue_lock = G_STATIC_MUTEX_INIT;
 static JobQueueType *job_queue;
-
+static int running_job_count;
+static int job_id;
 #ifdef QUEUE_DEBUG
-static int job_queue_length;
+  static int job_queue_length;
 #endif
+/* end mutex guard */
 
 typedef struct JobQueueKey {
 	int job_id;
@@ -263,11 +261,8 @@ gnome_vfs_job_queue_run (void)
 {
 	GnomeVFSJob *job_to_run;
 
-	if (gnome_vfs_quitting) {
-		return;
-	}
-
 	g_static_mutex_lock (&job_queue_lock);
+
 	running_job_count--;
 	Q_DEBUG (("job finished;\t\t\t\t       %d jobs running, %d waiting\n",
 		 running_job_count,
@@ -363,6 +358,9 @@ gnome_vfs_async_get_job_limit (void)
 void
 gnome_vfs_job_queue_shutdown (void)
 {
-	gnome_vfs_quitting = TRUE;
+	g_static_mutex_lock (&job_queue_lock);
+
 	job_queue_destroy ();
+
+	g_static_mutex_unlock (&job_queue_lock);
 }

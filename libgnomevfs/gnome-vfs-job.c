@@ -145,6 +145,10 @@ job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 			notify_result->callback_id));
 	
 		g_idle_add (dispatch_job_callback, notify_result);
+	} else {
+		JOB_DEBUG (("job cancelled, bailing %u",
+			GPOINTER_TO_UINT (notify_result->job_handle)));
+		gnome_vfs_job_destroy_notify_result (notify_result);
 	}
 }
 
@@ -156,6 +160,7 @@ job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 	if (!gnome_vfs_async_job_add_callback (job, notify_result)) {
 		JOB_DEBUG (("job cancelled, bailing %u",
 			GPOINTER_TO_UINT (notify_result->job_handle)));
+		gnome_vfs_job_destroy_notify_result (notify_result);
 		return;
 	}
 
@@ -336,7 +341,6 @@ handle_cancelled_open (GnomeVFSJob *job)
 	gnome_vfs_job_go (job);
 }
 
-
 static void
 free_get_file_info_notify_result (GnomeVFSGetFileInfoOpResult *notify_result)
 {
@@ -507,9 +511,9 @@ dispatch_job_callback (gpointer data)
 			case GNOME_VFS_OP_CREATE:
 			case GNOME_VFS_OP_OPEN_AS_CHANNEL:
 			case GNOME_VFS_OP_CREATE_AS_CHANNEL:
-				JOB_DEBUG (("cancelling open or create %u", GPOINTER_TO_UINT (job->job_handle)));
+				JOB_DEBUG (("cancelling open or create %u",
+					    GPOINTER_TO_UINT (job->job_handle)));
 				handle_cancelled_open (job);
-				
 				/* Keep the job in the job map -- it will get removed once close completes. */
 				break;
 		
@@ -613,7 +617,7 @@ gnome_vfs_job_new (GnomeVFSOpType type, int priority, GFunc callback, gpointer c
 	GnomeVFSJob *new_job;
 	
 	new_job = g_new0 (GnomeVFSJob, 1);
-	
+
 	sem_init (&new_job->access_lock, 0, 1);
 	new_job->notify_ack_condition = g_cond_new ();
 	new_job->notify_ack_lock = g_mutex_new ();
@@ -641,6 +645,8 @@ gnome_vfs_job_destroy (GnomeVFSJob *job)
 
 	g_cond_free (job->notify_ack_condition);
 	g_mutex_free (job->notify_ack_lock);
+
+	memset (job, 0xaa, sizeof (GnomeVFSJob));
 
 	g_free (job);
 	job_count--;
@@ -1401,7 +1407,6 @@ load_directory_details (GnomeVFSJob *job)
 			(GnomeVFSAsyncDirectoryLoadCallback) job->op->callback;
 		notify_result->specifics.load_directory.callback_data = job->op->callback_data;
 		job_oneway_notify (job, notify_result);
-		
 		return;
 	}
 
@@ -1410,16 +1415,18 @@ load_directory_details (GnomeVFSJob *job)
 	count = 0;
 	while (1) {
 		if (gnome_vfs_context_check_cancellation (job->op->context)) {
-			JOB_DEBUG (("cancelled, bailing %u", GPOINTER_TO_UINT (job->job_handle)));
+			JOB_DEBUG (("cancelled, bailing %u",
+				    GPOINTER_TO_UINT (job->job_handle)));
 			gnome_vfs_file_info_list_free (directory_list);
 			directory_list = NULL;
 			result = GNOME_VFS_ERROR_CANCELLED;
 			break;
 		}
-		
+
 		info = gnome_vfs_file_info_new ();
 
-		result = gnome_vfs_directory_read_next_cancellable (handle, info, job->op->context);
+		result = gnome_vfs_directory_read_next_cancellable
+			(handle, info, job->op->context);
 
 		if (result == GNOME_VFS_OK) {
 			directory_list = g_list_prepend (directory_list, info);
@@ -1541,12 +1548,17 @@ execute_xfer (GnomeVFSJob *job)
 	}
 }
 
-/* This function is called by the slave thread to execute a
-   GnomeVFSJob.  */
+/*
+ * gnome_vfs_job_execute:
+ * @job: the job to execute
+ * 
+ *   This function is called by the slave thread to execute
+ * the job - all work performed by a thread starts here.
+ */
 void
 gnome_vfs_job_execute (GnomeVFSJob *job)
 {
-	JOB_DEBUG (("%u", GPOINTER_TO_UINT (job->job_handle)));
+	JOB_DEBUG (("exec job %u", GPOINTER_TO_UINT (job->job_handle)));
 
 	if (!job->cancelled) {
 		set_current_job (job);
@@ -1597,9 +1609,7 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 			break;
 		}
 
-
 		clear_current_job ();
-
 	}
 	
 	switch (job->op->type) {

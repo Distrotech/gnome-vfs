@@ -44,7 +44,8 @@ static GnomeVFSAsyncHandle *test_handle;
 static gpointer test_callback_data;
 static gboolean test_done;
 
-#define MAX_THREAD_WAIT 1000
+#define MAX_THREAD_WAIT 100
+#define MAX_FD_CHECK 128
 
 static void
 stop_after_log (const char *domain, GLogLevelFlags level, 
@@ -72,10 +73,10 @@ get_free_file_descriptor_count (void)
 {
 	int count;
 	GList *list, *p;
-	int fd;
+	int fd = -1;
 
 	list = NULL;
-	for (count = 0; ; count++) {
+	for (count = 0; fd < MAX_FD_CHECK; count++) {
 		fd = open ("/dev/null", O_RDONLY);
 		if (fd == -1) {
 			break;
@@ -109,7 +110,7 @@ wait_for_boolean (gboolean *wait_for_it)
 	}
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
-		usleep (1);
+		g_thread_yield ();
 		g_main_context_iteration (NULL, FALSE);
 		if (*wait_for_it) {
 			return TRUE;
@@ -128,12 +129,13 @@ wait_until_vfs_jobs_gone (void)
 	}
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
-		usleep (1);
+		g_thread_yield ();
 		g_main_context_iteration (NULL, FALSE);
 		if (gnome_vfs_job_get_count () == 0) {
 			return TRUE;
 		}
 	}
+	
 	return FALSE;
 }
 
@@ -147,7 +149,7 @@ wait_until_vfs_jobs_gone_no_main (void)
 	}
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
-		usleep (1);
+		g_thread_yield ();
 		if (gnome_vfs_job_get_count () == 0) {
 			return TRUE;
 		}
@@ -165,7 +167,7 @@ wait_until_file_descriptors_gone (void)
 	}
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
-		usleep (1);
+		g_thread_yield ();
 		g_main_context_iteration (NULL, FALSE);
 		if (get_used_file_descriptor_count () == 0) {
 			return TRUE;
@@ -246,7 +248,7 @@ test_get_file_info (void)
 				       0,
 				       get_file_info_callback,
 				       test_callback_data);
-	g_list_free (uri_list);
+	gnome_vfs_uri_list_free (uri_list);
 
 	/* Wait until it is done. */
 	TEST_ASSERT (wait_for_boolean (&test_done), ("get_file_info 1: callback was not called"));
@@ -265,7 +267,7 @@ test_get_file_info (void)
 				       0,
 				       get_file_info_callback,
 				       test_callback_data);
-	g_list_free (uri_list);
+	gnome_vfs_uri_list_free (uri_list);
 	gnome_vfs_async_cancel (test_handle);
 	g_free (test_callback_data);
 
@@ -451,9 +453,9 @@ test_open_close (void)
 
 	TEST_ASSERT (wait_for_boolean (&file_closed_flag), ("open close: close callback was not called"));
 	
-	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 1: job never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open close 1: job never went away"));
 	TEST_ASSERT (get_used_file_descriptor_count () == 0,
-		     ("open cancel 1: %d file descriptors leaked", get_used_file_descriptor_count ()));
+		     ("open close 1: %d file descriptors leaked", get_used_file_descriptor_count ()));
 	free_at_start = get_free_file_descriptor_count ();
 }
 
@@ -524,7 +526,8 @@ static void
 my_yield (int count)
 {
 	for (; count > 0; count--) {
-		usleep (100);
+		usleep (1);
+		g_thread_yield ();
 		g_main_context_iteration (NULL, FALSE);
 	}
 }
@@ -550,7 +553,7 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 	
 	directory_load_flag = FALSE;
 	gnome_vfs_async_cancel (handle);
-	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 1: job never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("load directory cancel 1: job never went away"));
 	TEST_ASSERT (!directory_load_flag, ("load directory cancel 1: load callback was called"));
 
 	gnome_vfs_async_load_directory (&handle,
@@ -567,7 +570,7 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 	
 	directory_load_flag = FALSE;
 	gnome_vfs_async_cancel (handle);
-	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 2: job never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("load directory cancel 2: job never went away"));
 	TEST_ASSERT (!directory_load_flag, ("load directory cancel 2: load callback was called"));
 }
 
@@ -588,8 +591,8 @@ test_load_directory_fail (void)
 					directory_load_failed_callback,
 					&num_entries);
 		
-	TEST_ASSERT (wait_for_boolean (&directory_load_failed_flag), ("load directory cancel 1: load callback was not called"));
-	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 1: job never went away"));
+	TEST_ASSERT (wait_for_boolean (&directory_load_failed_flag), ("load directory 1: load callback was not called"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("load directory 1: job never went away"));
 }
 
 static gboolean find_directory_flag;
@@ -719,8 +722,14 @@ main (int argc, char **argv)
 	test_find_directory (10);
 	test_find_directory (100);
 	test_find_directory (100);
-		
+
 	gnome_vfs_shutdown ();
+
+	if (g_getenv ("_MEMPROF_SOCKET")) {
+		g_warning ("Waiting for memprof\n");
+		g_main_context_iteration (NULL, TRUE);
+	}
+
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;
 }
