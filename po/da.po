@@ -13,13 +13,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-05-19 20:58+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-05 15:58+0200\n"
+"PO-Revision-Date: 2003-08-05 16:00+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
@@ -303,31 +305,29 @@ msgstr "Fejl ved kørsel af kommando"
 msgid "Unknown error"
 msgstr "Ukendt fejl"
 
-#: libgnomevfs/gnome-vfs-utils.c:84
-msgid "1 byte"
-msgstr "1 byte"
-
-#: libgnomevfs/gnome-vfs-utils.c:86
+#: libgnomevfs/gnome-vfs-utils.c:83
 #, c-format
-msgid "%u bytes"
-msgstr "%u byte"
+msgid "%u byte"
+msgid_plural "%u bytes"
+msgstr[0] "%u byte"
+msgstr[1] "%u byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:93
+#: libgnomevfs/gnome-vfs-utils.c:89
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f k"
 
-#: libgnomevfs/gnome-vfs-utils.c:97
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mb"
 
-#: libgnomevfs/gnome-vfs-utils.c:101
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Gb"
 
-#: libgnomevfs/gnome-vfs-utils.c:1085
+#: libgnomevfs/gnome-vfs-utils.c:1081
 msgid " (invalid Unicode)"
 msgstr " (ugyldig Unicode)"
 
@@ -348,52 +348,52 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Brug miljøvariablen %s til at angive en anden placering.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
 msgstr "Programmer"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr "Kort"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr "Filer"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr "Mapper"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr "Hjælp"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr "Værter"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr "Henvisninger"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr "Post"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr "Værktøjer"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "Vinduer"
 
@@ -412,6 +412,9 @@ msgstr "generel Gnome VFS-protokolhåndtering"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "generel filprotokolhåndtering"
+
+#~ msgid "1 byte"
+#~ msgstr "1 byte"
 
 #~ msgid "3D Studio image"
 #~ msgstr "3D Studio-billede"
