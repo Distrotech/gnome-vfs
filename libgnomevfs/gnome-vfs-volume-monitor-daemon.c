@@ -154,7 +154,7 @@ static void
 gnome_vfs_volume_monitor_daemon_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 {
 #ifdef USE_HAL
-	if (_gnome_vfs_monitor_hal_mounts_init (volume_monitor_daemon)) {
+	if (_gnome_vfs_hal_mounts_init (volume_monitor_daemon)) {
 		/* It worked, do use HAL */
 		dont_use_hald = FALSE;
 	} else {
@@ -163,12 +163,10 @@ gnome_vfs_volume_monitor_daemon_init (GnomeVFSVolumeMonitorDaemon *volume_monito
 	}
 #endif /* USE_HAL */
 
-	if (dont_use_hald) {
-		_gnome_vfs_monitor_unix_mounts (fstab_changed,
-						volume_monitor_daemon,
-						mtab_changed,
-						volume_monitor_daemon);
-	}
+	_gnome_vfs_monitor_unix_mounts (fstab_changed,
+					volume_monitor_daemon,
+					mtab_changed,
+					volume_monitor_daemon);
 
 	volume_monitor_daemon->gconf_client = gconf_client_get_default ();
 	gconf_client_add_dir (volume_monitor_daemon->gconf_client,
@@ -185,16 +183,8 @@ gnome_vfs_volume_monitor_daemon_init (GnomeVFSVolumeMonitorDaemon *volume_monito
 					 NULL);
 								       
 	
-	if (dont_use_hald) {
-		update_fstab_drives (volume_monitor_daemon);
-		update_mtab_volumes (volume_monitor_daemon);
-	}
-#ifdef USE_HAL
-	else {
-		_gnome_vfs_monitor_hal_get_volume_list (volume_monitor_daemon);
-	}
-#endif /* USE_HAL */
-
+	update_fstab_drives (volume_monitor_daemon);
+	update_mtab_volumes (volume_monitor_daemon);
 	update_connected_servers (volume_monitor_daemon);
 }
 
@@ -205,15 +195,8 @@ gnome_vfs_volume_monitor_daemon_force_probe (GnomeVFSVolumeMonitor *volume_monit
 	
 	volume_monitor_daemon = GNOME_VFS_VOLUME_MONITOR_DAEMON (volume_monitor);
 	
-	if (dont_use_hald) {
-		update_fstab_drives (volume_monitor_daemon);
-		update_mtab_volumes (volume_monitor_daemon);
-	}
-#ifdef USE_HAL
-	else {
-		_gnome_vfs_monitor_hal_get_volume_list (volume_monitor_daemon);
-	}
-#endif /* USE_HAL */
+	update_fstab_drives (volume_monitor_daemon);
+	update_mtab_volumes (volume_monitor_daemon);
 	update_connected_servers (volume_monitor_daemon);
 }
 
@@ -226,22 +209,15 @@ gnome_vfs_volume_monitor_daemon_finalize (GObject *object)
 
 	volume_monitor_daemon = GNOME_VFS_VOLUME_MONITOR_DAEMON (object);
 		
-	if (dont_use_hald) {
-		_gnome_vfs_stop_monitoring_unix_mounts ();
+	_gnome_vfs_stop_monitoring_unix_mounts ();
 
-		g_list_foreach (volume_monitor_daemon->last_mtab,
-				(GFunc)_gnome_vfs_unix_mount_free, NULL);
-		g_list_free (volume_monitor_daemon->last_mtab);
+	g_list_foreach (volume_monitor_daemon->last_mtab,
+			(GFunc)_gnome_vfs_unix_mount_free, NULL);
+	g_list_free (volume_monitor_daemon->last_mtab);
 	
-		g_list_foreach (volume_monitor_daemon->last_fstab,
-				(GFunc)_gnome_vfs_unix_mount_point_free, NULL);
-		g_list_free (volume_monitor_daemon->last_fstab);	
-	}
-#ifdef USE_HAL
-	else {
-		_gnome_vfs_monitor_hal_mounts_shutdown (volume_monitor_daemon);
-	}
-#endif /* USE_HAL */
+	g_list_foreach (volume_monitor_daemon->last_fstab,
+			(GFunc)_gnome_vfs_unix_mount_point_free, NULL);
+	g_list_free (volume_monitor_daemon->last_fstab);	
 
 	gconf_client_notify_remove (volume_monitor_daemon->gconf_client,
 				    volume_monitor_daemon->connected_id);
@@ -755,12 +731,19 @@ update_fstab_drives (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 			mount = l->data;
 		
 			drive = create_drive_from_mount_point (volume_monitor, mount);
+
 			if (drive != NULL) {
+
+#ifdef USE_HAL
+				if (!dont_use_hald)
+					_gnome_vfs_hal_mounts_modify_drive (volume_monitor_daemon, drive);
+#endif /* USE_HAL */
+					
 				_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
 				gnome_vfs_drive_unref (drive);
 			}
 		}
-		
+
 		g_list_free (added);
 		g_list_free (removed);
 		g_list_foreach (volume_monitor_daemon->last_fstab,
@@ -1021,6 +1004,10 @@ update_mtab_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 		
 			vol = create_vol_from_mount (volume_monitor, mount);
 			vol->priv->unix_device = unix_device;
+#ifdef USE_HAL
+			if (!dont_use_hald)
+				_gnome_vfs_hal_mounts_modify_volume (volume_monitor_daemon, vol);
+#endif /* USE_HAL */
 			_gnome_vfs_volume_monitor_mounted (volume_monitor, vol);
 			gnome_vfs_volume_unref (vol);
 		}
@@ -1033,8 +1020,6 @@ update_mtab_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 		g_list_free (volume_monitor_daemon->last_mtab);
 		volume_monitor_daemon->last_mtab = new_mtab;
 	}
-
-	
 }
 
 /************************* connected server ***********************************/

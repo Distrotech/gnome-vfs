@@ -85,6 +85,8 @@ struct _GnomeVFSDrivePrivate {
 
 	/* Only for HAL devices: */
 	char *hal_udi;
+
+	gboolean must_eject_at_unmount;
 };
 
 void _gnome_vfs_volume_set_drive                (GnomeVFSVolume        *volume,
@@ -132,11 +134,17 @@ GnomeVFSVolume *_gnome_vfs_volume_monitor_find_connected_server_by_gconf_id  (Gn
 
 #ifdef USE_HAL
 GnomeVFSVolume *_gnome_vfs_volume_monitor_find_volume_by_hal_udi (GnomeVFSVolumeMonitor *volume_monitor,
-								  const char *hal_udi);
-GnomeVFSDrive *_gnome_vfs_volume_monitor_find_drive_by_hal_udi (GnomeVFSVolumeMonitor *volume_monitor,
-								const char           *hal_udi);
+								  const char            *hal_udi);
+GnomeVFSDrive *_gnome_vfs_volume_monitor_find_drive_by_hal_udi   (GnomeVFSVolumeMonitor *volume_monitor,
+								  const char            *hal_udi);
 
 #endif /* USE_HAL */
+
+GnomeVFSVolume *_gnome_vfs_volume_monitor_find_volume_by_device_path (GnomeVFSVolumeMonitor *volume_monitor,
+								      const char            *device_path);
+GnomeVFSDrive *_gnome_vfs_volume_monitor_find_drive_by_device_path   (GnomeVFSVolumeMonitor *volume_monitor,
+								      const char            *device_path);
+
 
 
 char *_gnome_vfs_volume_monitor_uniquify_volume_name (GnomeVFSVolumeMonitor *volume_monitor,

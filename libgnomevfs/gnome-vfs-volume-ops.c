@@ -332,12 +332,12 @@ mount_unmount_operation (const char *mount_point,
 
 	
 #ifdef USE_VOLRMMOUNT
-       name = strrchr (mount_point, '/');
-       if (name != NULL) {
-               name = name + 1;
-       } else {
-	       name = mount_point;
-       }
+	name = strrchr (mount_point, '/');
+	if (name != NULL) {
+		name = name + 1;
+	} else {
+		name = mount_point;
+	}
 #else
        name = mount_point;
 #endif
@@ -501,7 +501,14 @@ gnome_vfs_volume_unmount (GnomeVFSVolume *volume,
 	char *mount_path, *device_path;
 	char *uri;
 	GnomeVFSVolumeType type;
-	
+
+	if (volume->priv->drive != NULL) {
+		if (volume->priv->drive->priv->must_eject_at_unmount) {
+			gnome_vfs_volume_eject (volume, callback, user_data);
+			return;
+		}
+	}
+
 	emit_pre_unmount (volume);
 
 	type = gnome_vfs_volume_get_volume_type (volume);
@@ -608,6 +615,11 @@ gnome_vfs_drive_unmount (GnomeVFSDrive  *drive,
 {
 	GList *vol_list;
 	GList *current_vol;
+
+	if (drive->priv->must_eject_at_unmount) {
+		gnome_vfs_drive_eject (drive, callback, user_data);
+		return;
+	}
 
 	vol_list = gnome_vfs_drive_get_mounted_volumes (drive);
 

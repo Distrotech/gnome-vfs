@@ -22,11 +22,12 @@ functions for getting information about files based on their MIME type
 
 @id: 
 @name: 
-@command: 
 @can_open_multiple_files: 
 @expects_uris: 
 @supported_uri_schemes: 
-@requires_terminal: 
+@_can_open_multiple_files: 
+@_expects_uris: 
+@_supported_uri_schemes: 
 @reserved1: 
 @priv: 
 

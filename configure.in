@@ -698,11 +698,11 @@ yes) ENABLE_HAL=yes ;;
 no)  ENABLE_HAL=no ;;
 *) AC_MSG_ERROR(bad value ${enableval} for --enable-hal) ;;
 esac],
-[ENABLE_HAL=no]) dnl Default value
+[ENABLE_HAL=yes]) dnl Default value
 
 if test "x$ENABLE_HAL" = "xyes"; then
-	PKG_CHECK_MODULES(HAL, hal >= 0.2.92,
-		[ USE_HAL="hal >= 0.2.92, dbus-1 >= 0.22, dbus-glib-1 >= 0.22"; AC_DEFINE(USE_HAL, 1, [defined if using libhal])],
+	PKG_CHECK_MODULES(HAL, hal >= 0.2.98,
+		[ USE_HAL="hal >= 0.2.98, hal-storage >= 0.2.98, dbus-1 >= 0.22, dbus-glib-1 >= 0.22"; AC_DEFINE(USE_HAL, 1, [defined if using libhal])],
 		[ USE_HAL=""])
 else
 	USE_HAL=""

@@ -582,6 +582,8 @@ gnome_vfs_drive_to_corba (GnomeVFSDrive *drive,
 	
 	corba_drive->is_user_visible = drive->priv->is_user_visible;
 	corba_drive->is_connected = drive->priv->is_connected;
+
+	corba_drive->must_eject_at_unmount = drive->priv->must_eject_at_unmount;
 }
 
 GnomeVFSDrive *
@@ -617,5 +619,6 @@ _gnome_vfs_drive_from_corba (const GNOME_VFS_Drive *corba_drive,
 	drive->priv->is_user_visible = corba_drive->is_user_visible;
 	drive->priv->is_connected = corba_drive->is_connected;
 
+	drive->priv->must_eject_at_unmount = corba_drive->must_eject_at_unmount;
 	return drive;
 }

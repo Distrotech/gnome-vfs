@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /* gnome-vfs-hal-mounts.h - read and monitor volumes using freedesktop HAL
 
-   Copyright (C) 2004 David Zeuthen
+   Copyright (C) 2004 Red Hat, Inc.
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -18,7 +18,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: David Zeuthen <david@fubar.dk>
+   Author: David Zeuthen <davidz@redhat.com>
 */
 
 #ifndef GNOME_VFS_HAL_MOUNTS_H
@@ -26,12 +26,14 @@
 
 #include "gnome-vfs-volume-monitor-daemon.h"
 
-gboolean _gnome_vfs_monitor_hal_mounts_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);
+gboolean _gnome_vfs_hal_mounts_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);
 
-void _gnome_vfs_monitor_hal_mounts_shutdown (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);
+void _gnome_vfs_hal_mounts_shutdown (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);
 
-void _gnome_vfs_monitor_hal_get_volume_list (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);
-
+void _gnome_vfs_hal_mounts_modify_drive (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
+					 GnomeVFSDrive *drive);
+void _gnome_vfs_hal_mounts_modify_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon, 
+					  GnomeVFSVolume *volume);
 
 
 #endif /* GNOME_VFS_HAL_MOUNTS_H */

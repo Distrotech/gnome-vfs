@@ -1,3 +1,37 @@
+2004-12-06  David Zeuthen  <davidz@redhat.com>
+
+	* libgnomevfs/gnome-vfs-volume-ops.c (gnome_vfs_volume_unmount): Honor
+	the must_eject_at_unmount for the containing drive
+	(gnome_vfs_drive_unmount): Honor must_eject_at_unmount
+
+	* libgnomevfs/gnome-vfs-volume-monitor.c
+	(_gnome_vfs_volume_monitor_find_volume_by_device_path): New function
+	(_gnome_vfs_volume_monitor_find_drive_by_device_path): New function
+
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h: Add field
+	must_eject_at_unmount to GnomeVFSDrivePrivate. Add prototypes for
+	_gnome_vfs_volume_monitor_find_volume_by_device_path and
+	_gnome_vfs_volume_monitor_find_drive_by_device_path.
+
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c:
+	(gnome_vfs_volume_monitor_daemon_init): Remove old hal code; still use
+	fstab and mtab detection code
+	(gnome_vfs_volume_monitor_daemon_force_probe): Remove old hal code
+	(gnome_vfs_volume_monitor_daemon_finalize): Remove old hal code
+	(update_fstab_drives): Let hal modify the drive attributes
+	(update_mtab_volumes): Let hal modify the volume attributes
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c:
+	(_gnome_vfs_get_unix_mount_table): Also support pamconsole option
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: Total rewrite
+
+	* libgnomevfs/gnome-vfs-drive.c:
+	(gnome_vfs_drive_to_corba): Handle must_eject_at_unmount
+	(_gnome_vfs_drive_from_corba): Handle must_eject_at_unmount
+
+	* libgnomevfs/GNOME_VFS_Daemon.idl: Add must_eject_at_unmount boolean
+
 2004-12-09  Marco Pesenti Gritti  <marco@gnome.org>
 
 	reviewed by: Christophe Fergeau  <teuf@gnome.org>

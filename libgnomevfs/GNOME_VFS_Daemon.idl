@@ -63,6 +63,7 @@ module GNOME {
 			boolean is_user_visible;
 			boolean is_connected;
 		        string hal_udi;
+			boolean must_eject_at_unmount;
 		};
 		
 		typedef sequence<Drive> DriveList;
