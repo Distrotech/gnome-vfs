@@ -1,3 +1,20 @@
+gnome-vfs 2.2.4
+
+	* Bugs fixed:
+	       + Remove spew in destroy_notify (Dave Camp)
+	       + Throttle FAM change even rate to avoid applications
+	         using 100% cpu when a file is written
+	       + Don't silently fail whole operation when symlink copy
+	         fails
+	       + Fix for crash when canceling in bug-buddy
+	       + Fix bug in sample program (Murray Cumming)
+	       + Fix gnome_vfs_get_volume_free_space to work on NFS mounts
+	       + Fix start directory on some ftp servers (Christophe Fergeau)
+	       + Look for user-installed modules in ~/.gnome2/vfs/modules
+	         instead of ~/.gnome/vfs/modules
+	* Featurelets
+	       + Some translation updates.
+
 gnome-vfs 2.2.3
 
 	* Bugs fixed:
