@@ -1563,7 +1563,7 @@ gnome_vfs_new_directory_with_unique_name (const char *target_dir,
 					  GnomeVFSProgressCallbackState *progress)
 {
 	GnomeVFSResult result;
-	GnomeVFSURI *target_uri;
+	GnomeVFSURI *target_dir_uri, *target_uri;
 	GnomeVFSDirectoryHandle *dest_directory_handle;
 	gboolean dummy;
 	int progress_result;
@@ -1574,10 +1574,11 @@ gnome_vfs_new_directory_with_unique_name (const char *target_dir,
 
 	for (conflict_count = 1; ; conflict_count++) {
 
-		target_uri = gnome_vfs_uri_new (target_dir);
+		target_dir_uri = gnome_vfs_uri_new (target_dir);
 		target_uri = gnome_vfs_uri_append_file_name
-			(target_uri, 
+			(target_dir_uri, 
 			 progress->progress_info->duplicate_name);
+		gnome_vfs_unref (target_dir_uri);
 		result = create_directory (target_uri, 
 					   &dest_directory_handle,
 					   GNOME_VFS_XFER_USE_UNIQUE_NAMES,

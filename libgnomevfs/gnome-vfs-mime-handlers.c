@@ -1028,9 +1028,10 @@ process_app_list (const char *id_list)
 	
 
 /* Returns the Nautilus user level, a string.
- * This does beg the question: Why does gnome-vfs have the
- * Nautilus user level coded into it. Eventually we might
- * want to call this the GNOME user level or something.
+ * This does beg the question: Why does gnome-vfs have the Nautilus
+ * user level coded into it? Eventually we might want to call this the
+ * GNOME user level or something if we can figure out a clear concept
+ * that works across GNOME.
  */
 static char *
 get_user_level (void)
@@ -1038,15 +1039,14 @@ get_user_level (void)
 	static GConfEngine *engine = NULL;
 	char *user_level;
 
-	/* This sequence is needed in case no one has initialize GConf.
-	 */
-	if (!gconf_is_initialized ()) {
-		char *fake_argv[] = { "gnome-vfs", NULL };
-		gconf_init (1, fake_argv, NULL);
-	}
-
 	/* Create the gconf engine once. */
 	if (engine == NULL) {
+		/* This sequence is needed in case no one has initialized GConf. */
+		if (!gconf_is_initialized ()) {
+			char *fake_argv[] = { "gnome-vfs", NULL };
+			gconf_init (1, fake_argv, NULL);
+		}
+
 		engine = gconf_engine_new ();
 		/* FIXME: This engine never gets freed. */
 	}
@@ -1071,7 +1071,8 @@ get_user_level (void)
 
 
 
-static GList *gnome_vfs_strsplit_to_list (const char *str, const char *delim, int max)
+static GList *
+gnome_vfs_strsplit_to_list (const char *str, const char *delim, int max)
 {
 	char **strv;
 	GList *retval;
@@ -1093,7 +1094,8 @@ static GList *gnome_vfs_strsplit_to_list (const char *str, const char *delim, in
 	return retval;
 }
 
-static char *gnome_vfs_strjoin_from_list (const char *separator, GList *list)
+static char *
+gnome_vfs_strjoin_from_list (const char *separator, GList *list)
 {
 	char **strv;
 	int i;
@@ -1113,18 +1115,21 @@ static char *gnome_vfs_strjoin_from_list (const char *separator, GList *list)
 	return retval;
 }
 
-static GList *comma_separated_str_to_str_list (const char *str)
+static GList *
+comma_separated_str_to_str_list (const char *str)
 {
 	return gnome_vfs_strsplit_to_list (str, ",", 0);
 }
 
-static char *str_list_to_comma_separated_str (GList *list)
+static char *
+str_list_to_comma_separated_str (GList *list)
 {
 	return gnome_vfs_strjoin_from_list (",", list);
 }
 
 
-static GList *str_list_difference (GList *a, GList *b)
+static GList *
+str_list_difference (GList *a, GList *b)
 {
 	GList *p;
 	GList *retval;
@@ -1140,4 +1145,3 @@ static GList *str_list_difference (GList *a, GList *b)
 	retval = g_list_reverse (retval);
 	return retval;
 }
-

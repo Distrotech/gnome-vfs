@@ -1,3 +1,12 @@
+2000-06-02  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(gnome_vfs_new_directory_with_unique_name):
+	Fixed a URI leak.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (get_user_level):
+	Tweaked gconf_init and some formatting.
+	
 2000-06-02  Gene Z. Ragan  <gzr@eazel.com>
 
 	* mime-type-capplet/edit-window.c: 
