@@ -1,3 +1,10 @@
+2001-07-29  Seth Nickell  <snickell@stanford.edu>
+
+	* doc/about.sgml:
+
+	Change some of the text a little, add a few programming
+	examples.
+
 2001-07-29  Michael Meeks  <michael@ximian.com>
 
 	* Makefile.am (SUBDIRS_GNOME): add monikers.
