@@ -1,3 +1,11 @@
+2000-09-18  Mathieu Lacage  <mathieu@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: 
+	(ensure_user_directory_exist): add new function to create the 
+	user's home directory ~/gnome/mime-info if it does not exists
+	(write_back_mime_user_file), (write_back_keys_user_file): use
+	this new function here.
+
 2000-09-16  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 3042, Adding new mime type doesn't work
