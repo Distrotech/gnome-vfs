@@ -5,8 +5,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-09-21 16:52-0400\n"
+"Project-Id-Version: gnome-vfs 1.0.2\n"
+"POT-Creation-Date: 2001-10-11 21:14+0200\n"
 "PO-Revision-Date: 2001-02-28 11:30+0200\n"
 "Last-Translator: Mauricio Araya Polo <mauricio@eazel.com>\n"
 "Language-Team: spanish <es@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "animación ANIM"
 
 #: data/mime/gnome-vfs.keys.in.h:5
 msgid "AVI video"
-msgstr "video AVI"
+msgstr "vídeo AVI"
 
 #: data/mime/gnome-vfs.keys.in.h:6
 msgid "AbiWord document"
@@ -144,7 +144,7 @@ msgstr "código fuente Lisp Emacs"
 
 #: data/mime/gnome-vfs.keys.in.h:33
 msgid "Enlightenment theme"
-msgstr "tema para Enlghtenment"
+msgstr "tema para Enlightenment"
 
 #: data/mime/gnome-vfs.keys.in.h:34
 msgid "FLC animation"
@@ -160,7 +160,7 @@ msgstr "audio de FastTracker II"
 
 #: data/mime/gnome-vfs.keys.in.h:37
 msgid "Fortran source code"
-msgstr "código fuente de Fortram"
+msgstr "código fuente de Fortran"
 
 #: data/mime/gnome-vfs.keys.in.h:38
 msgid "FrameMaker interchange document"
@@ -200,11 +200,11 @@ msgstr "configuración de GTK"
 
 #: data/mime/gnome-vfs.keys.in.h:47
 msgid "Glade project"
-msgstr "Projecto Glade"
+msgstr "Proyecto Glade"
 
 #: data/mime/gnome-vfs.keys.in.h:48
 msgid "GnuCash Workbook"
-msgstr "LIbro de trabajo de GnuCash"
+msgstr "Libro de trabajo de GnuCash"
 
 #: data/mime/gnome-vfs.keys.in.h:49
 msgid "Gnumeric spreadsheet"
@@ -236,7 +236,7 @@ msgstr "imagen ILBM"
 
 #: data/mime/gnome-vfs.keys.in.h:56
 msgid "ISI video"
-msgstr "video ISI"
+msgstr "vídeo ISI"
 
 #: data/mime/gnome-vfs.keys.in.h:57
 msgid "Impulse Tracker audio"
@@ -264,7 +264,7 @@ msgstr "detalles de una aplicación KDE"
 
 #: data/mime/gnome-vfs.keys.in.h:63
 msgid "KIllustrator document"
-msgstr "documento de KIllustrator"
+msgstr "documento de KIlustrator"
 
 #: data/mime/gnome-vfs.keys.in.h:64
 msgid "KPresenter presentation"
@@ -332,15 +332,15 @@ msgstr "lista de ejecución de MP3"
 
 #: data/mime/gnome-vfs.keys.in.h:80
 msgid "MPEG video"
-msgstr "pelicula MPEG"
+msgstr "película MPEG"
 
 #: data/mime/gnome-vfs.keys.in.h:81
 msgid "MS ASF video"
-msgstr "video MS ASF"
+msgstr "vídeo MS ASF"
 
 #: data/mime/gnome-vfs.keys.in.h:82
 msgid "MS video"
-msgstr "video MS"
+msgstr "vídeo MS"
 
 #: data/mime/gnome-vfs.keys.in.h:83
 msgid "Macintosh AppleDouble-encoded file"
@@ -376,7 +376,7 @@ msgstr "documento de Microsoft Word"
 
 #: data/mime/gnome-vfs.keys.in.h:91
 msgid "Microsoft video"
-msgstr "video de Microsoft"
+msgstr "vídeo de Microsoft"
 
 #: data/mime/gnome-vfs.keys.in.h:92
 msgid "Nautilus link"
@@ -424,7 +424,7 @@ msgstr "firma para PGP"
 
 #: data/mime/gnome-vfs.keys.in.h:103
 msgid "PGP-encrypted file"
-msgstr "archivo encriptado PGP"
+msgstr "archivo cifrado PGP"
 
 #: data/mime/gnome-vfs.keys.in.h:104
 msgid "PHP script"
@@ -472,7 +472,7 @@ msgstr "código fuente en Python"
 
 #: data/mime/gnome-vfs.keys.in.h:115
 msgid "QuickTime movie"
-msgstr "pelicula de QuickTime"
+msgstr "película de QuickTime"
 
 #: data/mime/gnome-vfs.keys.in.h:116
 msgid "Quicken document"
@@ -508,7 +508,7 @@ msgstr "documento RealAudio/Video"
 
 #: data/mime/gnome-vfs.keys.in.h:124
 msgid "RealVideo video"
-msgstr "video RealVideo"
+msgstr "vídeo RealVideo"
 
 #: data/mime/gnome-vfs.keys.in.h:125
 msgid "S/MIME file"
@@ -520,7 +520,7 @@ msgstr "firma S/MIME"
 
 #: data/mime/gnome-vfs.keys.in.h:127
 msgid "SGI video"
-msgstr "video SGI"
+msgstr "vídeo SGI"
 
 #: data/mime/gnome-vfs.keys.in.h:128
 msgid "SGML document"
@@ -664,7 +664,7 @@ msgstr "documento VRML"
 
 #: data/mime/gnome-vfs.keys.in.h:163
 msgid "Vivo video"
-msgstr "video Vivo"
+msgstr "vídeo Vivo"
 
 #: data/mime/gnome-vfs.keys.in.h:164
 msgid "WAIS source code"
@@ -672,7 +672,7 @@ msgstr "código fuente de WAIS"
 
 #: data/mime/gnome-vfs.keys.in.h:165
 msgid "Wavelet video"
-msgstr "video Wavelet"
+msgstr "vídeo Wavelet"
 
 #: data/mime/gnome-vfs.keys.in.h:166
 msgid "Windows bitmap image"
@@ -736,11 +736,11 @@ msgstr "archivo de respaldo"
 
 #: data/mime/gnome-vfs.keys.in.h:181
 msgid "basic audio"
-msgstr "audio basico"
+msgstr "audio básico"
 
 #: data/mime/gnome-vfs.keys.in.h:182
 msgid "bibliography record"
-msgstr "registro bibliográffico"
+msgstr "registro bibliográfico"
 
 #: data/mime/gnome-vfs.keys.in.h:183
 msgid "binary program"
@@ -800,11 +800,11 @@ msgstr "mensaje de correo"
 
 #: data/mime/gnome-vfs.keys.in.h:197
 msgid "encrypted message"
-msgstr "mensaje encriptado"
+msgstr "mensaje cifrado"
 
 #: data/mime/gnome-vfs.keys.in.h:198
 msgid "enriched text document"
-msgstr "documento con texto enriquesido"
+msgstr "documento con texto enriquecido"
 
 #: data/mime/gnome-vfs.keys.in.h:199
 msgid "folder"
@@ -896,11 +896,11 @@ msgstr "fichero de parche rechazado"
 
 #: data/mime/gnome-vfs.keys.in.h:221
 msgid "rich text document"
-msgstr "documento de texto enriquesido"
+msgstr "documento de texto enriquecido"
 
 #: data/mime/gnome-vfs.keys.in.h:222
 msgid "search results"
-msgstr "resultados de busqueda"
+msgstr "resultados de búsqueda"
 
 #: data/mime/gnome-vfs.keys.in.h:223
 msgid "shared library"
@@ -916,7 +916,7 @@ msgstr "archivo de comandos de shell"
 
 #: data/mime/gnome-vfs.keys.in.h:226
 msgid "signed message"
-msgstr "mensaje senalado"
+msgstr "mensaje señalado"
 
 #: data/mime/gnome-vfs.keys.in.h:227
 msgid "socket"
@@ -924,7 +924,7 @@ msgstr "socket"
 
 #: data/mime/gnome-vfs.keys.in.h:228
 msgid "software author credits"
-msgstr "creditos de los autores de la aplicaciónn"
+msgstr "créditos de los autores de la aplicación"
 
 #: data/mime/gnome-vfs.keys.in.h:229
 msgid "software installation instructions"
@@ -932,7 +932,7 @@ msgstr "instrucciones de instalación de la aplicación"
 
 #: data/mime/gnome-vfs.keys.in.h:230
 msgid "software license terms"
-msgstr "terminos de la licencia para la aplicación"
+msgstr "términos de la licencia para la aplicación"
 
 #: data/mime/gnome-vfs.keys.in.h:231
 msgid "source code patch"
@@ -944,7 +944,7 @@ msgstr "página de estilo"
 
 #: data/mime/gnome-vfs.keys.in.h:233
 msgid "symbolic link"
-msgstr "enlace simbolico"
+msgstr "enlace simbólico"
 
 #: data/mime/gnome-vfs.keys.in.h:234
 msgid "tab-separated text document"
@@ -1245,9 +1245,8 @@ msgstr "Petición de dato de servicios obsoletos "
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:78
-#, fuzzy
 msgid "Protocol error"
-msgstr "Sin errores"
+msgstr "Error de protocolo"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
