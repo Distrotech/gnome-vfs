@@ -297,6 +297,11 @@ main (int argc, char **argv)
 	 */
 	test_uri_to_string ("trash", "file://trash", GNOME_VFS_URI_HIDE_NONE);
 
+	/* FIXME: This turns a good path with a redundant "/" in it
+	 * into a completely different one.
+	 */
+	test_uri_to_string ("//trash", "file://trash", GNOME_VFS_URI_HIDE_NONE);
+
 	/* FIXME bugzilla.eazel.com 2801: Do we want GnomeVFSURI to
          * just refuse to deal with URIs that we don't have a module
          * for?

@@ -1,5 +1,10 @@
 2000-09-29  Darin Adler  <darin@eazel.com>
 
+	* test/test-uri.c: (main): Added a test to demonstrate how badly
+	gnome_vfs_uri_new handles paths that start with "//".
+
+2000-09-29  Darin Adler  <darin@eazel.com>
+
 	* gnome-vfs.spec.in: Turn "make check" back on.
 	* test/Makefile.am: Fix tests so they work even before gnome-vfs
 	is installed for the first time. This has a nice side effect of
