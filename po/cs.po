@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-08 04:24+0200\n"
-"PO-Revision-Date: 2004-07-08 19:08+0200\n"
+"POT-Creation-Date: 2004-07-10 15:29+0200\n"
+"PO-Revision-Date: 2004-07-10 21:24+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -196,6 +196,114 @@ msgstr "Svazek XIAFS"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "Neznámý"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:610
+msgid "CD Disc"
+msgstr "Disk CD"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+msgid "Blank CD-R Disc"
+msgstr "Prázdný disk CD-R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:615
+msgid "CD-R Disc"
+msgstr "Disk CD-R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+msgid "Blank CD-RW Disc"
+msgstr "Prázdný disk CD-RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:620
+msgid "CD-RW Disc"
+msgstr "Disk CD-RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:622
+msgid "DVD-ROM Disc"
+msgstr "Disk DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:625
+msgid "Blank DVD-R Disc"
+msgstr "Prázdný disk DVD-R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:627
+msgid "DVD-R Disc"
+msgstr "Disk DVD-R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:630
+msgid "Blank DVD-RAM Disc"
+msgstr "Prázdný disk DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:632
+msgid "DVD-RAM Disc"
+msgstr "Disk DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:635
+msgid "Blank DVD-RW Disc"
+msgstr "Prázdný disk DVD-RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:637
+msgid "DVD-RW Disc"
+msgstr "Disk DVD-RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+msgid "Blank DVD+RW Disc"
+msgstr "Prázdný disk DVD+RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:642
+msgid "DVD+RW Disc"
+msgstr "Disk DVD+RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:645
+msgid "Blank DVD+R Disc"
+msgstr "Prázdný disk DVD+R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:647
+msgid "DVD+R Disc"
+msgstr "Disk DVD+R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:649
+msgid "Optical Disc"
+msgstr "Optický disk"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:655
+msgid "Audio Disc"
+msgstr "Zvukový disk"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:659
+msgid "Compact Flash Media"
+msgstr "Médium Compact Flash"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:661
+msgid "Memory Stick Media"
+msgstr "Médium Memory Stick"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:663
+msgid "Smart Media Media"
+msgstr "Médium Smart Media"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+msgid "SD/MMC Media"
+msgstr "Médium SD/MMC"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+msgid "Floppy Disk"
+msgstr "Disketa"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:674
+msgid "Mac OS disk"
+msgstr "Disk Mac OS"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:676
+msgid "Mac OS X disk"
+msgstr "Disk Mac OS X"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:690
+msgid "Windows Disk"
+msgstr "Disk Windows"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:696
+msgid "Linux Disk"
+msgstr "Disk Linuxu"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -488,50 +596,50 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:364
 msgid " (invalid Unicode)"
 msgstr " (neplatný Unicode)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:492
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:520
 msgid "Floppy"
 msgstr "Disketa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:493
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:523
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:494
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:526
 msgid "Zip Drive"
 msgstr "Jednotka Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:495
 msgid "Memory Stick"
 msgstr "Memory Stick"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
 msgid "Camera"
 msgstr "Fotoaparát"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:713
 msgid "Root Volume"
 msgstr "Kořenový svazek"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:794
 msgid "Audio CD"
 msgstr "Zvukové CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:825
 msgid "Unknown volume"
 msgstr "Neznámý svazek"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1005
 msgid "Network server"
 msgstr "Síťový server"
 
