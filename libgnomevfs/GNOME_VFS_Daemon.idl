@@ -110,8 +110,6 @@ module GNOME {
 			Result Truncate (in FileSize length,
 					 in ClientCall client_call,
 					 in Client client);
-
-			
 		};
 		
 		interface DaemonDirHandle : Bonobo::Unknown {
@@ -194,7 +192,7 @@ module GNOME {
 					    in ClientCall client_call,
 					    in Client client);
 			Result CreateSymbolicLink (in string uri,
-						   in string target_referece,
+						   in string target_reference,
 						   in ClientCall client_call,
 						   in Client client);
 			Result MonitorAdd (in string uri,
