@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-13 08:23+0100\n"
+"POT-Creation-Date: 2004-01-19 09:18+0100\n"
 "PO-Revision-Date: 2003-06-27 00:15--100\n"
 "Last-Translator: Gnome PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
@@ -459,7 +459,7 @@ msgstr "Błąd podczas uruchamiania polecenia"
 msgid "Unknown error"
 msgstr "Nieznany błąd"
 
-#: libgnomevfs/gnome-vfs-utils.c:84
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
@@ -467,22 +467,22 @@ msgstr[0] "%u bajt"
 msgstr[1] "%u bajty"
 msgstr[2] "%u bajtów"
 
-#: libgnomevfs/gnome-vfs-utils.c:90
+#: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
 msgid "%.1f KB"
 msgstr "%.1f KB"
 
-#: libgnomevfs/gnome-vfs-utils.c:94
+#: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:98
+#: libgnomevfs/gnome-vfs-utils.c:99
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1105
+#: libgnomevfs/gnome-vfs-utils.c:1106
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr " (niepoprawny Unicode)"
@@ -1012,10 +1012,9 @@ msgstr ""
 "Nazwa użytkownika przekazywana do uwierzytelnienia podczas opercji "
 "pośredniczenia http."
 
-# FIXME - czy tu nie powinno być windows?
 #: modules/network-method.c:257
-msgid "Window Network"
-msgstr "Sieć windows"
+msgid "Windows Network"
+msgstr "Sieć Windows"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
