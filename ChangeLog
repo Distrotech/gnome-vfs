@@ -1,3 +1,8 @@
+2004-03-05  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/xdgmimemagic.c: fix sniffing for mime types using
+	  nested patterns (application/x-core for example)
+	
 2004-03-04  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/http-method.c:
