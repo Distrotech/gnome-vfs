@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs-0.0\n"
-"POT-Creation-Date: 2000-07-26 00:44+0200\n"
+"POT-Creation-Date: 2000-08-08 13:01+0200\n"
 "PO-Revision-Date: 2000-07-26 00:47+02:00\n"
 "Last-Translator: Matthias Warkus <mawa@iname.com>\n"
 "Language-Team: German <de@li.org>\n"
@@ -231,7 +231,7 @@ msgstr "Zu viele Links"
 msgid "Read only file system"
 msgstr "Schreibgeschütztes Dateisystem"
 
-#. GNOME_VFS_ERROR_NOT_SAME_FFILE_SYSTEM
+#. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
 msgstr "Nicht auf demselben Dateisystem"
@@ -241,7 +241,12 @@ msgstr "Nicht auf demselben Dateisystem"
 msgid "Name too long"
 msgstr "Name zu lang"
 
-#: libgnomevfs/gnome-vfs-result.c:133
+#. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
+#: libgnomevfs/gnome-vfs-result.c:77
+msgid "Service not available"
+msgstr "Dienst nicht erreichbar"
+
+#: libgnomevfs/gnome-vfs-result.c:134
 msgid "Unknown error"
 msgstr "Unbekannter Fehler"
 
@@ -424,7 +429,8 @@ msgstr "Anwendungsliste bearbeiten"
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:325
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
-msgstr "Anwendungen auswählen, die in Menü für MIME-Typ \"%s\" erscheinen sollen"
+msgstr ""
+"Anwendungen auswählen, die in Menü für MIME-Typ \"%s\" erscheinen sollen"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:348
 msgid "Add Application..."
@@ -521,59 +527,59 @@ msgstr "Kann mehrere Dateien öffnen"
 msgid "Can open from URI"
 msgstr "Kann aus URI öffnen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:361
+#: mime-type-capplet/nautilus-mime-type-capplet.c:371
 msgid "Change Icon"
 msgstr "Icon ändern"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:374
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1078
+#: mime-type-capplet/nautilus-mime-type-capplet.c:385
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1103
 msgid "Mime Type"
 msgstr "MIME-Typ"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:396
+#: mime-type-capplet/nautilus-mime-type-capplet.c:407
 msgid "Add new Mime type..."
 msgstr "Neuen MIME-Typ hinzufügen..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:403
+#: mime-type-capplet/nautilus-mime-type-capplet.c:414
 msgid "Delete this Mime type..."
 msgstr "Diesen MIME-Typ löschen..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:418
+#: mime-type-capplet/nautilus-mime-type-capplet.c:429
 msgid "Use Viewer"
 msgstr "Betrachter benutzen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:424
+#: mime-type-capplet/nautilus-mime-type-capplet.c:435
 msgid "Open With Application"
 msgstr "Mit Anwendung öffnen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:436
+#: mime-type-capplet/nautilus-mime-type-capplet.c:447
 msgid "Edit List"
 msgstr "Liste bearbeiten"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:465
+#: mime-type-capplet/nautilus-mime-type-capplet.c:476
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:468
+#: mime-type-capplet/nautilus-mime-type-capplet.c:479
 msgid "Remove"
 msgstr "Entfernen"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:646
-#: mime-type-capplet/nautilus-mime-type-capplet.c:788
-#: mime-type-capplet/nautilus-mime-type-capplet.c:993
+#: mime-type-capplet/nautilus-mime-type-capplet.c:657
+#: mime-type-capplet/nautilus-mime-type-capplet.c:799
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1006
 msgid "None"
 msgstr "keine"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1077
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1102
 msgid "Description"
 msgstr "Beschreibung"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1079
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1104
 msgid "Extension"
 msgstr "Erweiterung"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1080
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1105
 msgid "Action"
 msgstr "Aktion"
 
@@ -582,32 +588,33 @@ msgstr "Aktion"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Unbekannte GNOMEVFSSeekPosition %d"
 
-#: modules/http-method.c:520
+#: modules/http-method.c:522
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Ungültige Kopfzeile `%s'"
 
-#: modules/http-method.c:537
+#: modules/http-method.c:539
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s zu empfangen"
 
-#: modules/http-method.c:734
+#: modules/http-method.c:736
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Schließe Verbindung zu %s"
 
-#: modules/http-method.c:878
+#: modules/http-method.c:880
 #, c-format
 msgid "%s of %s read"
 msgstr "%s von %s gelesen"
 
-#: modules/http-method.c:881
+#: modules/http-method.c:883
 #, c-format
 msgid "%s read"
 msgstr "%s gelesen"
 
 #. Multi-Status
-#: modules/http-method.c:1060
+#: modules/http-method.c:1079
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "HTTP-Server gab eine ungültige PROPFIND-Antwort zurück"
+
