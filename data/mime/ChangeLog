@@ -1,5 +1,11 @@
 2001-10-24  Seth Nickell  <snickell@stanford.edu>
 
+	* gnome-vfs-mime-magic:
+
+	Remove // and /* magic mime detection for C/C++.
+
+2001-10-24  Seth Nickell  <snickell@stanford.edu>
+
 	* gnome-vfs.applications:
 	* gnome-vfs.keys.in:
 	* gnome-vfs.mime:
