@@ -375,7 +375,7 @@ msgstr ""
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
 msgid "Links"
-msgstr ""
+msgstr "ബന്ധങ്ങള്"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
