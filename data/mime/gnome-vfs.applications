@@ -198,7 +198,7 @@ xmms
 	mime_types=audio/x-mp3,audio/x-mpeg,application/x-ogg,audio/x-mpegurl,audio/x-wav
 
 realplayer
-        command=realplay
+	command=realplay
 	name=realplayer
 	can_open_multiple_files=false
 	expects_uris=true
