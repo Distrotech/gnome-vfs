@@ -83,6 +83,7 @@ gnome_vfs_result_from_errno (void)
 {
 	/* Please keep these in alphabetical order.  */
 	switch (errno) {
+	case E2BIG:     return GNOME_VFS_ERROR_TOOBIG;
 	case EACCES:	return GNOME_VFS_ERROR_ACCESSDENIED;
 	case EBUSY:	return GNOME_VFS_ERROR_DIRECTORYBUSY;
 	case EBADF:	return GNOME_VFS_ERROR_BADFILE;

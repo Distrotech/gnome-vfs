@@ -102,9 +102,6 @@ dynamically allocate the buffer.  This is lame: we should just
 re-allocate the buffer only if the required is bigger than the one of
 the previous call.
 
-* Complete unfinished errno -> GnomeVFSError translation
-(`gnome_vfs_error_from_errno()' in `gnome-vfs-error.c').
-
 * Portability checks and fixes.  I am sure I forgot lots of details.
 
 * We currently use GNOME MIME functions for file types instead of GNOME

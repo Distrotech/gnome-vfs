@@ -1,3 +1,12 @@
+1999-11-29  Elliot Lee  <sopwith@redhat.com>
+
+	* libgnomevfs/gnome-vfs-result.c: I declare the errno->GnomeVFSResult translation function "complete enough".
+
+1999-11-24  Elliot Lee  <sopwith@redhat.com>
+
+	* modules/Makefile.am: Try using $(GLIB_LIBS) to pick up the -L thingie for -lghttp
+	* Makefile.am: Remove 'intl' dir from build.
+
 1999-11-19  Kjartan Maraas  <kmaraas@online.no>
 
 	* configure.in: Added "no" to ALL_LINGUAS.

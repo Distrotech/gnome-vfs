@@ -102,4 +102,4 @@ libhttp_la_SOURCES =				\
 	http-method.c				\
 	http-method.h
 libhttp_la_LDFLAGS = $(module_flags)
-libhttp_la_LIBADD  = -lghttp
+libhttp_la_LIBADD  = $(GLIB_LIBS) -lghttp

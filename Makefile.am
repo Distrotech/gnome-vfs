@@ -5,8 +5,7 @@ SUBDIRS =					\
 	idl					\
 	modules					\
 	test					\
-	po					\
-	intl
+	po
 
 EXTRA_DIST =					\
 	HACKING					\
