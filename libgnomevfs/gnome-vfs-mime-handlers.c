@@ -393,7 +393,7 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 		return NULL;
 	}
 
-	/* FIXME bugzilla.eazel.com 1147: 
+	/* FIXME bugzilla.eazel.com 1075: 
 	   no way for apps to modify at install time */
 
 	/* get app list */

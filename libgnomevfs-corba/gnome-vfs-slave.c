@@ -812,7 +812,7 @@ copy_metadata (GNOME_VFS_Slave_FileInfo *dest,
 {
 	guint i;
 
-	/* FIXME bugzilla.eazel.com 1128: 
+	/* FIXME bugzilla.eazel.com 1120: 
 	   This is a bit inefficient (because every
 	   `gnome_vfs_file_info_get_metadata()' is actually a linear search
 	   with the current implementation), but we are happy with it for now.

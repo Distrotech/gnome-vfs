@@ -628,7 +628,7 @@ do_open_directory (GnomeVFSMethod *method,
 		handle->meta_keys = g_list_prepend (handle->meta_keys, g_strdup (item->data));
 	}
 
-	handle->info_options = info_options; /* FIXME bugzilla.eazel.com 1124: currently unused */
+	handle->info_options = info_options; /* FIXME bugzilla.eazel.com 1224: currently unused */
 	handle->filter = filter;
 
 	/* Remove all leading slashes, as they don't matter for us.  */

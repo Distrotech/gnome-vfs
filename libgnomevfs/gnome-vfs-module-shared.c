@@ -149,7 +149,7 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 }
 
 
-/* FIXME bugzilla.eazel.com 1176:
+/* FIXME bugzilla.eazel.com 1120:
  * Thread safety.  */
 GnomeVFSResult
 gnome_vfs_set_meta (GnomeVFSFileInfo *info,

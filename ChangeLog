@@ -1,5 +1,15 @@
 2000-06-06  Pavel  <pavel@eazel.com>
 
+	* libgnomevfs-corba/gnome-vfs-slave.c: (copy_metadata):
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_all_applications):
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	* modules/extfs-method.c: (do_open_directory):
+	Renumber some FIXMEs after marking them as duplicates.
+	Fix a wrong FIXME number.
+
+2000-06-06  Pavel  <pavel@eazel.com>
+
 	* devel-docs/gnome-vfs-tutorial/gnome-vfs-tutorial.sgml:
 	* doc/writing-modules.sgml:
 	* modules/extfs-method.c: (do_open):
