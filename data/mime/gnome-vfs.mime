@@ -136,9 +136,6 @@ application/x-netcdf
 application/x-object-file
 	ext: o
 
-application/x-php
-        ext: php
-
 application/x-profile
         regex: gmon\.out$
 
@@ -166,35 +163,14 @@ application/x-sv4crc
 application/x-tar
 	ext: tar
 
-application/x-tcl
-	ext: tcl
-
-application/x-tex
-	ext: tex
-
-application/x-texinfo
-	ext: texi texinfo
+application/x-php
+        ext: php
 
 application/x-theme
         ext: theme
 
-application/x-troff
-	ext: roff t tr
-
-application/x-troff-man
-	regex: (([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|n)|\.man)$
-
-application/x-troff-man
-	ext: man
-
 application/x-troff-man-compressed
 	regex: ([^0-9]|^[^\.]*)\.([1-9][a-z]?|n)\.g?[Zz]$
-
-application/x-troff-me
-	ext: me
-
-application/x-troff-ms
-	ext: ms
 
 application/x-unix-archive
 	ext: a sa
@@ -277,6 +253,8 @@ font/x-pcf
 
 font/x-speedo
 	ext: spd
+
+
 
 image/cgm
 	ext: cgm
@@ -384,6 +362,7 @@ model/vrml
 
 
 
+
 text/css
 	ext: css
 
@@ -479,6 +458,30 @@ text/x-sh
 
 text/x-sql
 	ext: sql
+
+text/x-tcl
+	ext: tcl
+
+text/x-tex
+	ext: tex
+
+text/x-texinfo
+	ext: texi texinfo
+
+text/x-troff
+	ext: roff t tr
+
+text/x-troff-man
+	regex: (([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|n)|\.man)$
+
+text/x-troff-man
+	ext: man
+
+text/x-troff-me
+	ext: me
+
+text/x-troff-ms
+	ext: ms
 
 text/x-vCalendar:
 	ext: vcs vcf
