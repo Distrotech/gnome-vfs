@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 1999-11-19 21:13+0100\n"
-"PO-Revision-Date: 1999-11-19 21:15+0100\n"
+"POT-Creation-Date: 1999-12-14 00:20+0100\n"
+"PO-Revision-Date: 1999-12-14 00:21+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -203,7 +203,7 @@ msgstr "Ikke på samme filsystem"
 msgid "Name too long"
 msgstr "Navnet er for langt"
 
-#: libgnomevfs/gnome-vfs-result.c:132
+#: libgnomevfs/gnome-vfs-result.c:133
 msgid "Unknown error"
 msgstr "Ukjent feil"
 
@@ -211,100 +211,104 @@ msgstr "Ukjent feil"
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS er allerede initialisert."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
+#: libgnomevfs-corba/gnome-vfs-slave.c:333
 msgid "Dying."
 msgstr "Dør."
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#: libgnomevfs-corba/gnome-vfs-slave.c:498
 #, c-format
 msgid "Error reading: %s"
 msgstr "Feil under lesing: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#: libgnomevfs-corba/gnome-vfs-slave.c:520
 #, c-format
 msgid "Error writing: %s"
 msgstr "Feil under skriving: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#: libgnomevfs-corba/gnome-vfs-slave.c:569
 #, c-format
 msgid "Cannot write: %s"
 msgstr "Kan ikke skrive: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#: libgnomevfs-corba/gnome-vfs-slave.c:597
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Kan ikke opprette midlertidig fil ved navn `%s'"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:613
+#: libgnomevfs-corba/gnome-vfs-slave.c:610
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "Kan ikke opprette socket: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:631
+#: libgnomevfs-corba/gnome-vfs-slave.c:628
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "Kan ikke binde `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:638
+#: libgnomevfs-corba/gnome-vfs-slave.c:635
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "Kan ikke lytte på `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:660
+#: libgnomevfs-corba/gnome-vfs-slave.c:657
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Kan ikke motta forbindelser på `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1304
+#: libgnomevfs-corba/gnome-vfs-slave.c:1301
 msgid "Cannot initialize CORBA."
 msgstr "Kan ikke initialisere CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1311
+#: libgnomevfs-corba/gnome-vfs-slave.c:1308
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Kan ikke oppløse initiell referanse til RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1318
+#: libgnomevfs-corba/gnome-vfs-slave.c:1315
 msgid "Cannot activate POA manager."
 msgstr "Kan ikke aktivere POA-håndterer."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1342
+#: libgnomevfs-corba/gnome-vfs-slave.c:1339
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Bruk: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1353
+#: libgnomevfs-corba/gnome-vfs-slave.c:1350
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Kan ikke åpne file descriptor %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1376
+#: libgnomevfs-corba/gnome-vfs-slave.c:1373
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Meldingsgrensesnitt for `%s' ikke funnet."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1386
+#: libgnomevfs-corba/gnome-vfs-slave.c:1383
 msgid "Cannot setup Request object."
 msgstr "Kan ikke sette opp Request objekt."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1393
+#: libgnomevfs-corba/gnome-vfs-slave.c:1390
 msgid "Cannot extract IOR."
 msgstr "Kan ikke hente ut IOR."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:84
+#: libgnomevfs-pthread/gnome-vfs-job.c:125
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Feil under skriving til oppvåknings GnomeVFSJob kanalen."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:374
-#: libgnomevfs-pthread/gnome-vfs-job.c:1080
+#: libgnomevfs-pthread/gnome-vfs-job.c:415
+#: libgnomevfs-pthread/gnome-vfs-job.c:1209
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Ukjent jobb ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:645
-#: libgnomevfs-pthread/gnome-vfs-job.c:733
+#: libgnomevfs-pthread/gnome-vfs-job.c:765
+#: libgnomevfs-pthread/gnome-vfs-job.c:860
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke opprette rør for åpen GIOChannel: %s"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:1227
+msgid "Operation stopped"
+msgstr "Stoppet operasjonen"
