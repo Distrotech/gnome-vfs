@@ -1,3 +1,18 @@
+2000-06-09  John Sullivan  <sullivan@eazel.com>
+
+	Fixed bug 1302: can't undo mmap with g_free. Nautilus was
+	sometimes crashing on exit due to this bug.
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	Added global variables to keep track of mmap size and
+	whether mmap was used.
+	(gnome_vfs_mime_get_magic_table):
+	#ifdef declarations of variables only used in _POSIX_MAPPED_FILES
+	case; use new globals to keep track of mmap size and
+	whether mmap was used; check for MAP_FAILED case.
+	(gnome_vfs_mime_clear_magic_table): Call munmap and not g_free
+	if mmap was used.
+
 2000-06-10  Sung-Hyun Nam  <namsh@lgic.co.kr>
 
 	* configure.in (ALL_LINGUAS): added ko

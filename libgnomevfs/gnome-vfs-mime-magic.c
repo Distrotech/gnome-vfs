@@ -431,12 +431,24 @@ G_LOCK_DEFINE_STATIC (mime_magic_table_mutex);
 
 static GnomeMagicEntry *mime_magic_table = NULL;
 
+/* FIXME: This whole mmap optimization may be unnecessary. It complicates
+ * this code quite a bit (and slows down "make install"). If it's not buying
+ * a noticeable performance improvement we should get rid of it.
+ */
+#ifdef _POSIX_MAPPED_FILES
+static gboolean mime_magic_table_is_mapped = FALSE;
+static size_t mime_magic_table_size = 0;
+#endif /* _POSIX_MAPPED_FILES */
+
 static GnomeMagicEntry *
 gnome_vfs_mime_get_magic_table (void)
 {
-	int file;
 	char *filename;
+#ifdef _POSIX_MAPPED_FILES
+	int file;
 	struct stat sbuf;
+	void *mmap_result;
+#endif /* _POSIX_MAPPED_FILES */
 
 	G_LOCK (mime_magic_table_mutex);
 
@@ -449,11 +461,16 @@ gnome_vfs_mime_get_magic_table (void)
 			file = open(filename, O_RDONLY);
 			if (file >= 0) {
 				if (fstat(file, &sbuf) == 0) {
-					mime_magic_table = (GnomeMagicEntry *) mmap(NULL, 
+					mmap_result = (GnomeMagicEntry *) mmap(NULL, 
 						sbuf.st_size, 
 						PROT_READ, 
 						MAP_SHARED, 
 						file, 0);
+					if (mmap_result != MAP_FAILED) {
+						mime_magic_table_size = sbuf.st_size;
+						mime_magic_table_is_mapped = TRUE;
+						mime_magic_table = (GnomeMagicEntry *) mmap_result;
+					}
 				}
   				close (file);
 			}
@@ -480,7 +497,12 @@ void
 gnome_vfs_mime_clear_magic_table (void)
 {
 	G_LOCK (mime_magic_table_mutex);
-	/* FIXME bugzilla.eazel.com 1302: Will this work if we loaded the table with mmap? */
+#ifdef _POSIX_MAPPED_FILES
+	if (mime_magic_table_is_mapped) {
+		munmap (mime_magic_table, mime_magic_table_size);
+		mime_magic_table = NULL;
+	}
+#endif /* _POSIX_MAPPED_FILES */
   	g_free (mime_magic_table);
   	mime_magic_table = NULL;
 	G_UNLOCK (mime_magic_table_mutex);
