@@ -1,5 +1,10 @@
 2000-06-15  Pavel Cisler  <pavel@eazel.com>
 
+	* data/mime/gnome-vfs-mime-magic:
+	Add mime magic for shell scripts.
+
+2000-06-15  Pavel Cisler  <pavel@eazel.com>
+
 	* libgnomevfs/gnome-vfs-module-shared.c:
 	(gnome_vfs_mime_type_from_mode), (gnome_vfs_get_special_mime_type):
 	* modules/gconf-method.c: (set_mime_type_dir):
