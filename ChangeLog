@@ -1,5 +1,20 @@
 2001-02-12  Gene Z. Ragan  <gzr@eazel.com>
 
+	Fixed bug 6447, "Change file extensions" erases all extensions
+					
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.h:
+	(nautilus_mime_type_capplet_show_change_extension_window):
+	Add a variable to function that tells if returned list
+	is to be used to replace existing extension mapping for
+	mime type.
+			
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(add_extension_clicked), (change_file_extensions_clicked):
+	Do some sanity checking for empty or NULL new extensions
+
+2001-02-12  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug 6471, wrong text in "add extension" dialog
 	
 	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
