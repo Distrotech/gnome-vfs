@@ -1,3 +1,9 @@
+2000-09-13  Pavel Cisler  <pavel@eazel.com>
+
+	* modules/file-method.c: (do_create_symbolic_link):
+	Make it handle invalid URI with a returned error value rather
+	than with an assert.
+
 2000-09-13  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (copy_items), (move_items),

@@ -1492,10 +1492,13 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 	g_assert (target_reference != NULL);
 	g_assert (uri != NULL);
 	
-	/* what we actually want is a function that takes a gchar* and tells whether it
-	   is a valid URI...does such a beast exist? */
+	/* what we actually want is a function that takes a const char * and 
+	 * tells whether it is a valid URI
+	 */
 	target_uri = gnome_vfs_uri_new (target_reference);
-	g_assert (target_uri != NULL);
+	if (target_uri == NULL) {
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
 
 	link_scheme = gnome_vfs_uri_get_scheme (uri);
 	g_assert (link_scheme != NULL);
@@ -1507,11 +1510,13 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 	
 	if ((strcmp (link_scheme, "file") == 0) && (strcmp (target_scheme, "file") == 0)) {
 		/* symlink between two places on the local filesystem */
-		if (strncmp (target_reference, "file", 4) != 0)
+		if (strncmp (target_reference, "file", 4) != 0) {
 			/* target_reference wasn't a full URI */
 			target_full_name = strdup (target_reference); 
-		else 
+		} else {
 			target_full_name = get_path_from_uri (target_uri);
+		}
+
 		link_full_name = get_path_from_uri (uri);
 
 		if (symlink (target_full_name, link_full_name) != 0) {
