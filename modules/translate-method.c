@@ -342,7 +342,7 @@ tr_do_find_directory(GnomeVFSMethod * method,
 
 	retval =
 	    tm->real_method->find_directory(tm->real_method, real_uri,
-					    kind, &result_uri,
+					    kind, result_uri,
 					    create_if_needed, permissions,
 					    context);
 
@@ -579,13 +579,13 @@ static gboolean tr_args_parse(ParsedArgs * pa, const char *args)
 
 	for (i = 0; i < argc; i++) {
 #define CHECK_ARG() if((++i) >= argc) { badargs = TRUE; goto out; }
-		if (!b_strcasecmp(argv[i], "-pattern")) {
+		if (g_strcasecmp(argv[i], "-pattern") == 0) {
 			CHECK_ARG();
 			pa->trans_string = g_strdup(argv[i]);
-		} else if (!g_strcasecmp(argv[i], "-real-method")) {
+		} else if (g_strcasecmp(argv[i], "-real-method") == 0) {
 			CHECK_ARG();
 			pa->real_method_name = g_strdup(argv[i]);
-		} else if (!g_strcasecmp(argv[i], "-default-mime-type")) {
+		} else if (g_strcasecmp(argv[i], "-default-mime-type") == 0) {
 			CHECK_ARG();
 			pa->default_mime_type = g_strdup(argv[i]);
 		} else {

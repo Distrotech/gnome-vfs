@@ -1,3 +1,14 @@
+2000-05-07  Pavel Cisler  <pavel@eazel.com>
+
+	* modules/translate-method.c: (tr_args_parse):
+	Fixed the translate module that got broken recently.
+	(b_strcasecmp->g_strcasecmp). This broke viewing
+	man pages, etc. in Nautilus.
+	
+	* modules/translate-method.c: (tr_do_find_directory):
+	Fixed an obvious bug in parameter passing that was 
+	triggering a warning.
+
 2000-05-06  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
