@@ -9,7 +9,6 @@ libgnomevfs-corba/gnome-vfs-slave-launch.c
 libgnomevfs-corba/gnome-vfs-slave-notify.c
 libgnomevfs-corba/gnome-vfs-slave-process.c
 libgnomevfs-pthread/gnome-vfs-job.c
-mime-type-capplet/mime-data.c
 mime-type-capplet/nautilus-mime-type-capplet-dialogs.c
 mime-type-capplet/nautilus-mime-type-capplet.c
 modules/file-method.c

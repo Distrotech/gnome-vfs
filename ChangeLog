@@ -1,3 +1,7 @@
+2000-06-19  Darin Adler  <darin@eazel.com>
+
+	* po/POTFILES.in: Removed mime-data.c to fix build.
+
 2000-06-19  Gene Z. Ragan  <gzr@eazel.com>
 
 	* mime-type-capplet/mime-data.c:
