@@ -60,7 +60,7 @@ typedef struct {
 	GnomeVFSFileInfoOptions info_opts;
 } SshHandle;
 
-static GnomeVFSResult ssh_read_error	(int error_fd,
+static GnomeVFSResult ssh_read		(gint fd,
 					 gpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_read);
@@ -176,43 +176,36 @@ ssh_connect (SshHandle **handle_return,
 {
 	char ** argv;
 	SshHandle *handle;
-	char *command_line, *host_port;
 	const gchar *username, *hostname;
 	int argc;
 	GError *gerror = NULL;
 	GnomeVFSFileSize bytes_read;
 	char buffer[LINE_LENGTH];
 	GnomeVFSResult res;
+	GString *cmd_line;
 
 	/* We do support ssh:/// as ssh://localhost/ */
 	hostname = gnome_vfs_uri_get_host_name (uri);
-	if (hostname == NULL) {
-		hostname = "localhost";
-	}
 
 	username = gnome_vfs_uri_get_user_name(uri);
-	if (username == NULL) {
-		username = g_get_user_name();
+
+	cmd_line = g_string_new ("ssh -oBatchMode=yes -x");
+	if (username != NULL) {
+		g_string_append_printf (cmd_line, " -l %s", username);
 	}
 
-	host_port = g_strdup_printf("%d", gnome_vfs_uri_get_host_port(uri) ?
-			gnome_vfs_uri_get_host_port(uri) : 22);
+	if (gnome_vfs_uri_get_host_port(uri) != 0) {
+		g_string_append_printf (cmd_line, " -p %d",
+					gnome_vfs_uri_get_host_port(uri));
+	}
 
-	command_line  = g_strconcat ("ssh -oBatchMode=yes -x -l ", 
-				     username,
-				     " -p ", host_port,
-				     " ", hostname,
-				     " ",
-				     "\"LC_ALL=C; echo READY > /dev/stderr;",
-				     command, "; echo DONE > /dev/stderr\"",
-				     NULL);
-	g_free (host_port);
+	g_string_append_printf (cmd_line, " %s \"LC_ALL=C %s\"", 
+				hostname, command);
 
-	D(("ssh_connect () command: %s\n", command_line));
+	D(("ssh_connect () command: %s\n", cmd_line->str));
 
-	g_shell_parse_argv (command_line, &argc, &argv, &gerror);
-
-	g_free (command_line);
+	g_shell_parse_argv (cmd_line->str, &argc, &argv, &gerror);
+	g_string_free (cmd_line, TRUE);
 	if (gerror) {
 		g_warning (gerror->message);
 		return GNOME_VFS_ERROR_BAD_PARAMETERS;
@@ -224,8 +217,10 @@ ssh_connect (SshHandle **handle_return,
 	g_spawn_async_with_pipes (NULL, argv, NULL, 
 				  G_SPAWN_SEARCH_PATH,
 				  NULL, NULL,
-				  (gint *)&handle->pid, &handle->write_fd, 
-				  &handle->read_fd, &handle->error_fd, 
+				  (gint *)&handle->pid,
+				  &handle->write_fd, 
+				  &handle->read_fd,
+				  &handle->error_fd, 
 				  &gerror);
 	g_strfreev (argv);
 
@@ -241,13 +236,11 @@ ssh_connect (SshHandle **handle_return,
 
 	/* You can add more error checking here */
 	memset (buffer, '\0', LINE_LENGTH);
-	res = ssh_read_error (handle->error_fd, &buffer,
-			LINE_LENGTH, &bytes_read);
-
+	g_print ("reading error\n");
+	res = ssh_read (handle->error_fd, &buffer, LINE_LENGTH, &bytes_read);
+	g_print ("finished reading error\n");
 	if (bytes_read != 0 && res == GNOME_VFS_OK) {
-		if (strncmp ("READY", buffer, strlen ("READY")) == 0) {
-			res = GNOME_VFS_OK;
-		} else if (strncmp ("Permission denied", buffer,
+		if (strncmp ("Permission denied", buffer,
 					strlen("Permission denied")) == 0) {
 			res = GNOME_VFS_ERROR_LOGIN_FAILED;
 		} else if (strncmp ("Host key verification failed", buffer,
@@ -276,63 +269,36 @@ ssh_destroy (SshHandle *handle)
 }
 
 static GnomeVFSResult
-ssh_read (SshHandle *handle,
-	   gpointer buffer,
-	   GnomeVFSFileSize num_bytes,
-	   GnomeVFSFileSize *bytes_read)
+ssh_read (gint fd,
+	      gpointer buffer,
+	      GnomeVFSFileSize num_bytes,
+	      GnomeVFSFileSize *bytes_read)
 {
+	int retval;
+	fd_set fds;
+	struct timeval tv = {5, 0};
 	GnomeVFSFileSize my_read;
 
-	my_read = (GnomeVFSFileSize) read (handle->read_fd, buffer, 
-					   (size_t) num_bytes);
+	FD_ZERO(&fds);
+	FD_SET(fd, &fds);
+	retval = select(fd + 1, &fds, NULL, NULL, &tv);
 
-	if (my_read == -1) {
+	*bytes_read = 0;
+
+	if (retval < 0)
 		return gnome_vfs_result_from_errno ();
-	}
 
-	*bytes_read = my_read;
-
-	return GNOME_VFS_OK;
-}
-
-static GnomeVFSResult
-ssh_read_error (int error_fd,
-		gpointer buffer,
-		GnomeVFSFileSize num_bytes,
-		GnomeVFSFileSize *bytes_read)
-{
-	GnomeVFSFileSize my_read;
-
-	my_read = (GnomeVFSFileSize) read (error_fd, buffer,
-			(size_t) num_bytes);
-
-	if (my_read == -1) {
-		return gnome_vfs_result_from_errno ();
-	}
-
-	*bytes_read = my_read;
-
-	return GNOME_VFS_OK;
-}
-
-static GnomeVFSResult
-ssh_check_for_done (SshHandle *handle)
-{
-	char buffer[LINE_LENGTH];
-	GnomeVFSResult res;
-	GnomeVFSFileSize bytes_read;
-
-	memset (buffer, '\0', LINE_LENGTH);
-	res = ssh_read_error (handle->error_fd, &buffer,
-			LINE_LENGTH, &bytes_read);
-
-	if (bytes_read != 0 && res == GNOME_VFS_OK) {
-		if (strncmp ("DONE", buffer, strlen ("DONE")) == 0) {
-			return res;
+	if (retval) {
+		my_read = (GnomeVFSFileSize) read (fd, buffer,
+						   (size_t) num_bytes);
+		if (my_read == -1) {
+			return gnome_vfs_result_from_errno ();
 		}
+		*bytes_read = my_read;
 	}
 
-	return GNOME_VFS_ERROR_GENERIC;
+
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -407,7 +373,7 @@ do_open (GnomeVFSMethod *method,
 	 GnomeVFSOpenMode mode,
 	 GnomeVFSContext *context)
 {
-	GnomeVFSResult result = GNOME_VFS_OK;
+	GnomeVFSResult result;
 	char *cmd;
 	SshHandle *handle = NULL;
 
@@ -500,22 +466,10 @@ do_read (GnomeVFSMethod *method,
 	 GnomeVFSFileSize *bytes_read,
 	 GnomeVFSContext *context)
 {
-	GnomeVFSResult result, res_secondary;
+	GnomeVFSResult result;
 
-	result =  ssh_read ((SshHandle *)method_handle, buffer, num_bytes,
-			bytes_read);
-	if (result != GNOME_VFS_OK) {
-		return result;
-	}
-
-	if (*bytes_read == 0) {	
-		res_secondary = ssh_check_for_done ((SshHandle *)method_handle);
-		if (res_secondary != GNOME_VFS_OK) {
-			result = res_secondary;
-		} else {
-			result = GNOME_VFS_ERROR_EOF;
-		}
-	}
+	result =  ssh_read (((SshHandle *)method_handle)->read_fd, buffer,
+			    num_bytes, bytes_read);
 	return result;
 }
 
@@ -626,7 +580,7 @@ get_access_info (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info)
                      return;
              }               
              
-             result = ssh_read (handle, &c, 1, &bytes_read);
+             result = ssh_read (handle->read_fd, &c, 1, &bytes_read);
              if ((bytes_read > 0) && (c == '0')) {
                      file_info->permissions |= params[i].perm;
              } else {
@@ -648,7 +602,7 @@ do_read_directory (GnomeVFSMethod *method,
                    GnomeVFSFileInfo *file_info,
 		   GnomeVFSContext *context)
 {
-	GnomeVFSResult result = GNOME_VFS_OK, res_secondary;
+	GnomeVFSResult result = GNOME_VFS_OK;
 	char line[LINE_LENGTH+1];
 	char c;
 	int i=0;
@@ -669,19 +623,10 @@ do_read_directory (GnomeVFSMethod *method,
 		bytes_read = 0;
 
 		while (i<LINE_LENGTH) {
-			result = ssh_read (handle, &c,
-					   sizeof(char), &bytes_read);
+			result = ssh_read (handle->read_fd, &c,
+					   1, &bytes_read);
 			if (bytes_read == 0 || c == '\r' || c == '\n') {
 				break;
-			}
-
-			if (result != GNOME_VFS_OK) {
-				res_secondary = ssh_check_for_done (handle);
-				if (res_secondary != GNOME_VFS_OK) {
-					result = res_secondary;
-				} else {
-					return result;
-				}
 			}
 
 			line[i] = c;
@@ -695,7 +640,7 @@ do_read_directory (GnomeVFSMethod *method,
 			return GNOME_VFS_ERROR_EOF;
 		}
 
-		if (!gnome_vfs_parse_ls_lga (line, &st, &tempfilename, &linkname)) {
+		if (!gnome_vfs_parse_ls_lga (line, &st, &tempfilename, &linkname)) {			
 			/* Maybe the file doesn't exist? */
 			if (strstr (line, "No such file or directory"))
 				return GNOME_VFS_ERROR_NOT_FOUND;
@@ -774,7 +719,6 @@ do_read_directory (GnomeVFSMethod *method,
 		*/
 		break;
 	}
-
 	return result;
 }
 
@@ -799,9 +743,9 @@ do_get_file_info (GnomeVFSMethod *method,
 	quoted_name = g_shell_quote (name);
 
 	if (*name != '\0') {
-		cmd = g_strdup_printf ("ls -ld %s 2>&1", quoted_name);
+		cmd = g_strdup_printf ("ls -ld %s", quoted_name);
 	} else {
-		cmd = g_strdup_printf ("ls -ld '/' 2>&1");
+		cmd = g_strdup_printf ("ls -ld '/'");
 	}
 
 	result = ssh_connect (&handle, uri, cmd);
@@ -1065,7 +1009,7 @@ do_set_file_info (GnomeVFSMethod *method,
 			char c;
 			GnomeVFSResult res;
 			GnomeVFSFileSize bytes_read;
-			res = ssh_read (handle, &c, 1, &bytes_read);
+			res = ssh_read (handle->read_fd, &c, 1, &bytes_read);
 			if (bytes_read == 0 || res != GNOME_VFS_OK)
 				break;
 		}

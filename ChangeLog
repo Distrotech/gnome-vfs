@@ -1,3 +1,8 @@
+2003-10-19  Christophe Fergeau  <teuf@gnome.org>
+
+	* modules/ssh-method.c: applied slightly modified patch from Mitch
+	  <mitch@0bits.com> to fix the method with some ssh servers.
+
 2003-10-18  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-private-utils.c: replaced some strcpy
