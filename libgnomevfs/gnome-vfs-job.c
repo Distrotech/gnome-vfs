@@ -170,9 +170,9 @@ job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 	g_idle_add (dispatch_sync_job_callback, notify_result);
 
 	/* FIXME:
-	 * unlock here to prevent deadlock with async cancel. We should not use the
-	 * access lock at all in the case of synch operations like xfer.
-	 * Unlocking here is perfectly OK, even though it's a hack.
+	 * unlock here to prevent deadlock with async cancel. We should not
+	 * use the access lock at all in the case of synch operations like
+	 * xfer. Unlocking here is perfectly OK, even though it's a hack.
 	 */
 	sem_post (&job->access_lock);
 

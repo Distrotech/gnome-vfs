@@ -1,3 +1,28 @@
+2002-07-12  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-cancellation.c
+	(gnome_vfs_cancellation_cancel), 
+	(gnome_vfs_cancellation_ack): only write if we have a pipe.
+	(gnome_vfs_cancellation_get_fd): idly create the pipes,
+	return -1 on error.
+	(gnome_vfs_cancellation_new): init the pipe fds to -1
+
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init):
+	move pthread_init up the order. If we don't do this
+	we create a default main context, without the
+	'wake_up_pipe' initialized, which means that anyone
+	doing a plain gnome-init has a '0' wake_up_pipe by
+	the time they need to write / read to it. This means
+	you see an 'A' on the console and have to hit enter
+	before getting any async callbacks.
+
+	* libgnomevfs/gnome-vfs-job.h (JOB_DEBUG_PRINT):
+	make more standard.
+
+	* test/test-async.c (async_queue_callback): impl.
+	(main): hammer the async queue to test efficiency.
+	re-hash lots of this.
+
 2002-07-15  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* test/test-uri.c: (main):
