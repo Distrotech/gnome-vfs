@@ -46,6 +46,7 @@
 
 typedef struct {
 	char *description;
+	char *parent_classes;
 } MimeEntry;
 
 typedef struct {
@@ -90,6 +91,7 @@ mime_entry_free (MimeEntry *entry)
 	}
 	
 	g_free (entry->description);
+	g_free (entry->parent_classes);
 	g_free (entry);
 }
 
@@ -346,6 +348,19 @@ handle_mime_info (const char *filename, xmlTextReaderPtr reader)
 					entry->description = comment;
 					previous_lang_level = lang_level;
 				}
+			} else if (!strcmp (name, "is-subclass-of")) {
+				char *mime_type;
+				mime_type = handle_simple_string (filename, reader);
+				if (entry->parent_classes) {
+					char *new;
+					new = g_strdup_printf ("%s:%s",
+							       entry->parent_classes,
+							       mime_type);
+					g_free (entry->parent_classes);
+					entry->parent_classes = new;
+				} else {
+					entry->parent_classes = g_strdup (mime_type);
+				}
 			}
 		}
 		ret = read_next (reader);
@@ -509,6 +524,8 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 	
 	if (!strcmp (key, "description")) {
 		return entry->description;
+	} else if (!strcmp (key, "parent_classes")) {
+		return entry->parent_classes;
 	}
 
 	return NULL;
