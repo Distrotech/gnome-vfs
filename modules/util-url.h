@@ -6,5 +6,6 @@
 
 char *vfs_split_url (const char *path, char **host, char **user, int *port, char **pass,
 		     int default_port, int flags);
+char *canonicalize_pathname (char *path);
 
 #endif

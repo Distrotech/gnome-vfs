@@ -1,6 +1,11 @@
 /* Utilities for VFS modules.
  *
- * Copyright (C) 1995, 1996, 1999 Miguel de Icaza
+ * Copyright (C) 1994, 1995, 1996, 1999 the Free Software Foundation.
+ *
+ * Written 1994, 1995, 1996 by:
+ * Norbert Warmuth, Miguel de Icaza, Janne Kukonlehto, Dugan Porter,
+ * Jakub Jelinek.
+ * 
  *
  */
 #include <config.h>
@@ -129,6 +134,117 @@ vfs_split_url (const char *path,
 
 	g_free (pcopy);
 	return retval;
+}
+
+/*
+ * Canonicalize path, and return a new path. Do everything in situ.
+ *  The new path differs from path in:
+ *	 Multiple `/'s are collapsed to a single `/'.
+ *	 Leading `./'s and trailing `/.'s are removed.
+ *	 Trailing `/'s are removed.
+ *	 Non-leading `../'s and trailing `..'s are handled by removing
+ *	 portions of the path.
+*/
+char *
+canonicalize_pathname (char *path)
+{
+    int i, start;
+    char stub_char;
+
+    stub_char = (*path == PATH_SEP) ? PATH_SEP : '.';
+
+    /* Walk along path looking for things to compact. */
+    i = 0;
+    for (;;) {
+        if (!path[i])
+	    break;
+
+      	while (path[i] && path[i] != PATH_SEP)
+	    i++;
+
+      	start = i++;
+
+      	/* If we didn't find any slashes, then there is nothing left to do. */
+      	if (!path[start])
+	    break;
+
+#if defined(__QNX__)
+		/*
+		** QNX accesses the directories of nodes on its peer-to-peer
+		** network by prefixing their directories with "//[nid]".
+		** We don't want to collapse two '/'s if they're at the start
+		** of the path, followed by digits, and ending with a '/'.
+		*/
+		if (start == 0 && i == 1)
+		{
+			char *p = path + 2;
+			char *q = strchr(p, PATH_SEP);
+
+			if (q > p)
+			{
+				*q = 0;
+				if (!strcspn(p, "0123456789"))
+				{
+					start = q - path;
+					i = start + 1;
+				}
+				*q = PATH_SEP;
+			}
+		}
+#endif
+
+        /* Handle multiple `/'s in a row. */
+        while (path[i] == PATH_SEP)
+	    i++;
+
+        if ((start + 1) != i) {
+	    strcpy (path + start + 1, path + i);
+	    i = start + 1;
+	}
+
+        /* Handle backquoted `/'. */
+        if (start > 0 && path[start - 1] == '\\')
+	    continue;
+
+        /* Check for trailing `/'. */
+        if (start && !path[i]) {
+	zero_last:
+	    path[--i] = '\0';
+	    break;
+	}
+
+        /* Check for `../', `./' or trailing `.' by itself. */
+        if (path[i] == '.') {
+	    /* Handle trailing `.' by itself. */
+	    if (!path[i + 1])
+	        goto zero_last;
+
+	    /* Handle `./'. */
+	    if (path[i + 1] == PATH_SEP) {
+	        strcpy (path + i, path + i + 1);
+	        i = start;
+	        continue;
+	    }
+
+	    /* Handle `../' or trailing `..' by itself. 
+	       Remove the previous ?/ part with the exception of
+	       ../, which we should leave intact. */
+	    if (path[i + 1] == '.' && (path[i + 2] == PATH_SEP || !path[i + 2])) {
+	        while (--start > -1 && path[start] != PATH_SEP);
+	        if (!strncmp (path + start + 1, "../", 3))
+	            continue;
+	        strcpy (path + start + 1, path + i + 2);
+	        i = start;
+	        continue;
+	    }
+	}
+    }
+
+    if (!*path) {
+        *path = stub_char;
+        path[1] = '\0';
+    }
+    return path;
 }
 
 #ifdef test_get_host_and_username
@@ -278,3 +394,4 @@ main ()
 	printf ("%d tests ok\n", i);
 }
 #endif
+

@@ -26,6 +26,7 @@
 #include <sys/stat.h>
 #include <ctype.h>
 #include <sys/types.h>
+#include <sys/time.h>
 #include <unistd.h>
 #include <time.h>
 #include "gnome-vfs.h"
@@ -42,18 +43,34 @@
 #include <arpa/telnet.h>
 #include "ftp-method.h"
 #include "util-url.h"
+#include "parse.h"
 
 #define IS_LINEAR(mode) (! ((mode) & GNOME_VFS_OPEN_RANDOM))
+
+/* Seconds until directory contents are considered invalid */
+int ftpfs_directory_timeout = 600;
+int ftpfs_first_cd_then_ls = 1;
+int ftpfs_retry_seconds = 0;
+char *ftpfs_anonymous_passwd = "nothing@";
 
 static GHashTable *connections_hash;
 static FILE *logfile;
 static int code;
+static int force_expiration;
 
 /* command wait_flag: */
 #define NONE        0x00
 #define WAIT_REPLY  0x01
 #define WANT_STRING 0x02
 static char reply_str [80];
+
+static void  ftpfs_dir_unref (ftpfs_dir_t *dir);
+static int   login_server (ftpfs_connection_t *conn);
+static char *ftpfs_get_current_directory (ftpfs_connection_t *conn);
+static GnomeVFSResult
+get_file_entry (ftpfs_uri_t *uri, int flags,
+		GnomeVFSOpenMode mode, gboolean exclusive,
+		ftpfs_direntry_t **retval);
 
 static void
 print_vfs_message (char *msg, ...)
@@ -77,19 +94,134 @@ ftpfs_connection_ref (ftpfs_connection_t *conn)
 	return conn;
 }
 
+static gboolean
+remove_entry (gpointer key, gpointer value, gpointer user_data)
+{
+	g_free (key);
+	ftpfs_dir_unref (value);
+	return TRUE;
+}
+
 static void
 ftpfs_connection_unref (ftpfs_connection_t *conn)
 {
 	conn->ref_count--;
 
-	if (conn->ref_count == 0){
-		g_free (conn->hostname);
-		g_free (conn->username);
-		g_free (conn->password);
-		g_free (conn->current_directory);
+	if (conn->ref_count != 0)
+		return;
+	
+	g_free (conn->hostname);
+	g_free (conn->username);
+	g_free (conn->password);
+	g_free (conn->current_directory);
+	g_free (conn->home);
+	
+	g_hash_table_foreach_remove (conn->dcache, remove_entry, NULL);
+	g_hash_table_destroy (conn->dcache);
 
-		g_free (conn);
+	g_free (conn);
+}
+
+static void
+ftpfs_direntry_unref (ftpfs_direntry_t *fe)
+{
+	g_return_if_fail (fe != NULL);
+	
+	fe->ref_count--;
+	if (fe->ref_count != 0)
+		return;
+
+	if (fe->name)
+		g_free (fe->name);
+	if (fe->linkname)
+		g_free (fe->linkname);
+	if (fe->local_filename){
+		if (fe->local_is_temp) {
+			if (!fe->local_stat.st_mtime)
+				unlink (fe->local_filename);
+			else {
+				struct stat sb;
+				
+				/* Delete only if it hasn't changed */
+				if (stat (fe->local_filename, &sb) >=0 && 
+				    fe->local_stat.st_mtime == sb.st_mtime)
+					unlink (fe->local_filename);
+			}
+		}
+		g_free (fe->local_filename);
+		fe->local_filename = NULL;
 	}
+	if (fe->remote_filename)
+		g_free (fe->remote_filename);
+	if (fe->l_stat)
+		g_free (fe->l_stat);
+	g_free(fe);
+}
+
+static void
+ftpfs_direntry_ref (ftpfs_direntry_t *fe)
+{
+	fe->ref_count++;
+}
+
+static ftpfs_direntry_t *
+ftpfs_direntry_new ()
+{
+	ftpfs_direntry_t *fe;
+
+	fe = g_new0 (ftpfs_direntry_t, 1);
+
+	return fe;
+}
+
+static void
+ftpfs_dir_unref (ftpfs_dir_t *dir)
+{
+	GList *l;
+
+	dir->ref_count--;
+	if (dir->ref_count != 0)
+		return;
+	
+	for (l = dir->file_list; l; l = l->next){
+		ftpfs_direntry_t *fe = l->data;
+
+		ftpfs_direntry_unref (fe);
+	}
+	g_free (dir->remote_path);
+	g_free (dir);
+}
+
+static void
+ftpfs_dir_ref (ftpfs_dir_t *dir)
+{
+	g_return_if_fail (dir != NULL);
+	g_return_if_fail (dir->ref_count > 0);
+	
+	dir->ref_count++;
+}
+
+static ftpfs_dir_t *
+ftpfs_dir_new (const char *remote_path)
+{
+	ftpfs_dir_t *dir;
+
+	dir = g_new (ftpfs_dir_t, 1);
+
+	dir->timeout = time (NULL) + ftpfs_directory_timeout;
+	dir->file_list = NULL;
+	dir->remote_path = g_strdup (remote_path);
+	dir->ref_count = 1;
+	dir->symlink_status = FTPFS_NO_SYMLINKS;
+
+	return dir;
+}
+
+static void
+ftpfs_dir_insert (ftpfs_dir_t *dir, ftpfs_direntry_t *fe)
+{
+	dir->file_list = g_list_prepend (dir->file_list, fe);
+	ftpfs_direntry_ref (fe);
 }
 
 static guint
@@ -134,6 +266,11 @@ static ftpfs_connection_t *
 lookup_conn (char *host, char *user, char *pass, int port)
 {
 	ftpfs_connection_t key;
+
+	if (connections_hash == NULL){
+		init_connections_hash ();
+		return NULL;
+	}
 	
 	key.hostname = host;
 	key.username = user;
@@ -143,28 +280,192 @@ lookup_conn (char *host, char *user, char *pass, int port)
 	return g_hash_table_lookup (connections_hash, &key);
 }
 
+static int
+ftpfs_open_socket (ftpfs_connection_t *conn)
+{
+	struct   sockaddr_in server_address;
+	struct   hostent *hp;
+	int      my_socket;
+	char     *host = NULL;
+	int      port = 0;
+	int      free_host = 0;
+	
+	/* Use a proxy host? */
+	host = conn->hostname;
+	
+	if (!host || !*host){
+		print_vfs_message (_("ftpfs: Invalid host name."));
+		return -1;
+	}
+	
+	/* Hosts to connect to that start with a ! should use proxy */
+	if (conn->use_proxy){
+#warning "Mmisging"
+#if 0
+		ftpfs_get_proxy_host_and_port (ftpfs_proxy_host, &host, &port);
+#endif
+		free_host = 1;
+	} else
+		port = conn->port;
+	
+	/* Get host address */
+	memset (&server_address, 0, sizeof (server_address));
+	server_address.sin_family = AF_INET;
+	server_address.sin_addr.s_addr = inet_addr (host);
+	if (server_address.sin_addr.s_addr != -1)
+		server_address.sin_family = AF_INET;
+	else {
+		hp = gethostbyname (host);
+		if (hp == NULL){
+			print_vfs_message (_("ftpfs: Invalid host address."));
+			if (free_host)
+				g_free (host);
+			return -1;
+		}
+		server_address.sin_family = hp->h_addrtype;
+		
+		/* We copy only 4 bytes, we can not trust hp->h_length, as it comes from the DNS */
+		memcpy (&server_address.sin_addr, &hp->h_addr, 4);
+	}
+	
+	server_address.sin_port = htons (port);
+	
+	/* Connect */
+	if ((my_socket = socket (AF_INET, SOCK_STREAM, 0)) < 0) {
+		if (free_host)
+			g_free (host);
+		return -1;
+	}
+	
+	print_vfs_message (_("ftpfs: making connection to %s"), host);
+	if (free_host)
+		g_free (host);
+	
+	if (connect (my_socket, (struct sockaddr *) &server_address, sizeof (server_address)) < 0){
+		if (errno == EINTR)
+			print_vfs_message (_("ftpfs: connection interrupted by user"));
+		else
+			print_vfs_message (_("ftpfs: connection to server failed: %s"),
+					   g_strerror (errno));
+		close (my_socket);
+		return -1;
+	}
+	return my_socket;
+}
+
+static int
+is_connection_closed (ftpfs_connection_t *conn)
+{
+	fd_set rset;
+	struct timeval t;
+#if 0
+	FIXME
+	if (got_sigpipe){
+		return 1;
+	}
+#endif
+	t.tv_sec = 0;
+	t.tv_usec = 0;
+	FD_ZERO (&rset);
+	FD_SET (conn->sock, &rset);
+	while (1) {
+		if (select (conn->sock + 1, &rset, NULL, NULL, &t) < 0)
+			if (errno != EINTR)
+				return 1;
+		return 0;
+	}
+}
+
+/* some defines only used by changetype */
+/* These two are valid values for the second parameter */
+#define TYPE_ASCII    0
+#define TYPE_BINARY   1
+
+/* This one is only used to initialize bucket->isbinary, don't use it as
+   second parameter to changetype. */
+#define TYPE_UNKNOWN -1 
+
+static ftpfs_connection_t *
+ftpfs_connection_connect (ftpfs_connection_t *conn)
+{
+	int retry_seconds = 0;
+
+	do { 
+		conn->failed_on_login = 0;
+
+		conn->sock = ftpfs_open_socket (conn);
+		if (conn->sock == -1)
+			return NULL;
+		
+		if (login_server (conn)) {
+			/* Logged in, no need to retry the connection */
+			break;
+		} else {
+			if (conn->failed_on_login){
+				/* Close only the socket descriptor */
+				close (conn->sock);
+				conn->sock = -1;
+			} else
+				return NULL;
+
+			if (ftpfs_retry_seconds) {
+				int count_down;
+				
+				retry_seconds = ftpfs_retry_seconds;
+				for (count_down = retry_seconds; count_down; count_down--){
+					print_vfs_message (_("Waiting to retry... %d (Control-C to cancel)"), count_down);
+					sleep (1);
+				}
+			}
+		}
+	} while (retry_seconds);
+
+	if (conn->sock == -1)
+		return NULL;
+			
+	conn->home = ftpfs_get_current_directory (conn);
+	if (!conn->home)
+		conn->home = g_strdup ("/");
+	return conn;
+
+}
+
 static ftpfs_connection_t *
 ftpfs_connection_new (char *hostname, char *username, char *password, char *path, int port)
 {
 	ftpfs_connection_t *conn;
 			    
-	conn = g_new (ftpfs_connection_t, 1);
+	conn = g_new0 (ftpfs_connection_t, 1);
 	conn->ref_count = 1;
 	conn->hostname = hostname;
 	conn->username = username;
 	conn->password = password;
 	conn->port = port;
-
-	conn->sock = 0;
+	conn->is_binary = TYPE_UNKNOWN;
+	conn->sock = -1;
 	conn->remote_is_amiga = 0;
 	conn->strict_rfc959_list_cmd = 0;
+	conn->dcache = g_hash_table_new (g_str_hash, g_str_equal);
 
 	if (!connections_hash)
 		init_connections_hash ();
 
-	g_hash_table_insert (connections_hash, conn, conn);
-	
-	return conn;
+	if (ftpfs_connection_connect (conn)){
+		g_hash_table_insert (connections_hash, conn, conn);
+		return conn;
+	} else {
+		ftpfs_connection_unref (conn);
+		return NULL;
+	}
+}
+
+static void
+ftpfs_uri_destroy (ftpfs_uri_t *uri)
+{
+	if (uri->conn)
+		ftpfs_connection_unref (uri->conn);
+	g_free (uri->path);
+	g_free (uri);
 }
 
 static ftpfs_uri_t *
@@ -201,52 +502,12 @@ ftpfs_parse_uri (GnomeVFSURI *uri)
 	}
 
 	ftpfs_uri->conn = ftpfs_connection_new (host, user, pass, path, port);
-
-	return ftpfs_uri;
-}
-
-static void
-ftpfs_uri_destroy (ftpfs_uri_t *uri)
-{
-	ftpfs_connection_unref (uri->conn);
-	g_free (uri->path);
-	g_free (uri);
-}
-
-static void
-ftpfs_direntry_unref (ftpfs_direntry_t *fe)
-{
-	g_return_if_fail (fe != NULL);
-	
-	fe->ref_count--;
-	if (fe->ref_count != 0)
-		return;
-
-	if (fe->name)
-		g_free (fe->name);
-	if (fe->linkname)
-		g_free (fe->linkname);
-	if (fe->local_filename){
-		if (fe->local_is_temp) {
-			if (!fe->local_stat.st_mtime)
-				unlink (fe->local_filename);
-			else {
-				struct stat sb;
-				
-				/* Delete only if it hasn't changed */
-				if (stat (fe->local_filename, &sb) >=0 && 
-				    fe->local_stat.st_mtime == sb.st_mtime)
-					unlink (fe->local_filename);
-			}
-		}
-		g_free (fe->local_filename);
-		fe->local_filename = NULL;
+	if (ftpfs_uri->conn == NULL){
+		ftpfs_uri_destroy (ftpfs_uri);
+		return NULL;
 	}
-	if (fe->remote_filename)
-		g_free (fe->remote_filename);
-	if (fe->l_stat)
-		g_free (fe->l_stat);
-	g_free(fe);
+	
+	return ftpfs_uri;
 }
 
 static int
@@ -342,6 +603,8 @@ command (ftpfs_connection_t *conn, int wait_reply, char *fmt, ...)
 	str = g_strconcat (fmt_str, "\r\n", NULL);
 	g_free (fmt_str);
 
+	ftpfs_connection_connect (conn);
+
 	if (logfile){
 		if (strncmp (str, "PASS ", 5) == 0){
 			char *tmp = "PASS <Password not logged>\r\n";
@@ -370,6 +633,83 @@ command (ftpfs_connection_t *conn, int wait_reply, char *fmt, ...)
 			sock, (wait_reply & WANT_STRING) ? reply_str : NULL,
 			sizeof (reply_str)-1);
 	return COMPLETE;
+}
+
+static int 
+login_server (ftpfs_connection_t *conn)
+{
+	char *pass;
+	char *op;
+	char *name;			/* login user name */
+	int  anon = 0;
+	char reply_string[255];
+	
+	conn->is_binary = TYPE_UNKNOWN;
+	if (!strcmp (conn->username, "anonymous") || 
+	    !strcmp (conn->username, "ftp")) {
+		op = g_strdup (ftpfs_anonymous_passwd);
+		anon = 1;
+         } else {
+		 char *p;
+		 
+		 if (!conn->password){
+			 p = g_strconcat (_(" FTP: Password required for "), conn->username,
+					  " ", NULL);
+			 op = "FIXME";
+			 g_free (p);
+			 if (op == NULL)
+				 return 0;
+			 conn->password = g_strdup (op);
+		 } else
+			 op = g_strdup (conn->password);
+	 }
+	
+	if (!anon || logfile)
+		pass = g_strdup (op);
+	else
+		pass = g_strconcat ("-", op, NULL);
+	
+	
+	/* Proxy server accepts: username@host-we-want-to-connect*/
+	if (conn->use_proxy){
+		name = g_strconcat (
+			conn->username, "@", 
+			conn->hostname [0] == '!' ? conn->hostname+1 : conn->hostname, NULL);
+	} else 
+		name = g_strdup (conn->username);
+    
+	if (get_reply (conn->sock, reply_string, sizeof (reply_string) - 1) == COMPLETE) {
+		g_strup (reply_string);
+		conn->remote_is_amiga = strstr (reply_string, "AMIGA") != 0;
+		if (logfile) {
+			fprintf (logfile, "MC -- remote_is_amiga =  %d\n", conn->remote_is_amiga);
+			fflush (logfile);
+		}
+		print_vfs_message (_("ftpfs: sending login name"));
+		code = command (conn, WAIT_REPLY, "USER %s", name);
+
+		switch (code){
+		case CONTINUE:
+			print_vfs_message (_("ftpfs: sending user password"));
+			if (command (conn, WAIT_REPLY, "PASS %s", pass) != COMPLETE)
+				break;
+			
+		case COMPLETE:
+			print_vfs_message (_("ftpfs: logged in"));
+			g_free (name);
+			return 1;
+
+		default:
+			conn->failed_on_login = 1;
+			conn->password = 0;
+	    
+			goto login_fail;
+		}
+	}
+	print_vfs_message (_("ftpfs: Login incorrect for user %s "), conn->username);
+ login_fail:
+	g_free (name);
+	return 0;
 }
 
 static void
@@ -488,26 +828,6 @@ initconn (ftpfs_connection_t *conn)
 }
 
 
-/* some defines only used by changetype */
-/* These two are valid values for the second parameter */
-#define TYPE_ASCII    0
-#define TYPE_BINARY   1
-
-/* This one is only used to initialize bucket->isbinary, don't use it as
-   second parameter to changetype. */
-#define TYPE_UNKNOWN -1 
-
-static int
-changetype (ftpfs_connection_t *conn, int binary)
-{
-	if (binary != conn->is_binary) {
-		if (command (conn, WAIT_REPLY, "TYPE %c", binary ? 'I' : 'A') != COMPLETE)
-			return -1;
-		conn->is_binary = binary;
-	}
-	return binary;
-}
-
 /*
  * char *translate_path (struct ftpfs_connection_t *conn, char *remote_path)
  * Translate a Unix path, i.e. gnome-vfs's internal path representation (e.g. 
@@ -523,7 +843,7 @@ changetype (ftpfs_connection_t *conn, int binary)
  */
 
 static char *
-translate_path (ftpfs_connection_t *conn, char *remote_path)
+translate_path (ftpfs_connection_t *conn, const char *remote_path)
 {
 	char *p;
 	
@@ -559,6 +879,17 @@ translate_path (ftpfs_connection_t *conn, char *remote_path)
 			*p = '\0';
 		return ret;
 	}
+}
+
+static int
+changetype (ftpfs_connection_t *conn, int binary)
+{
+	if (binary != conn->is_binary) {
+		if (command (conn, WAIT_REPLY, "TYPE %c", binary ? 'I' : 'A') != COMPLETE)
+			return -1;
+		conn->is_binary = binary;
+	}
+	return binary;
 }
 
 static int
@@ -651,10 +982,457 @@ linear_close (ftpfs_direntry_t *fe)
 		linear_abort (fe);
 }
 
-static ftpfs_dir_t *
-retrieve_dir (ftpfs_uri_t *uri, char *remote_path, gboolean resolve_symlinks)
+static int
+is_same_dir (const char *path, const ftpfs_connection_t *conn)
 {
-	g_warning ("FIXME");
+	if (!conn->current_directory);
+		return 0;
+	if (strcmp (path, conn->current_directory) == 0)
+		return 1;
+	return 0;
+}
+
+static int
+ftpfs_chdir_internal (ftpfs_connection_t *conn, const char *remote_path)
+{
+	int r;
+	char *p;
+	
+	if (!conn->cwd_defered && is_same_dir (remote_path, conn))
+		return COMPLETE;
+	
+	p = translate_path (conn, remote_path);
+	r = command (conn, WAIT_REPLY, "CWD %s", p);
+	g_free (p);
+	
+	if (r == COMPLETE){
+		if (conn->current_directory)
+			g_free (conn->current_directory);
+		conn->current_directory = g_strdup (remote_path);
+		conn->cwd_defered = 0;
+	}
+	return r;
+}
+
+static void
+resolve_symlink_without_ls_options (ftpfs_connection_t *conn, ftpfs_dir_t *dir)
+{
+	ftpfs_direntry_t *fe, *fel;
+	GList *l;
+	char tmp [300];
+	
+	dir->symlink_status = FTPFS_RESOLVING_SYMLINKS;
+	
+	for (l = dir->file_list; l != NULL; l = l->next) {
+		fel = l->data;
+
+		if (!S_ISLNK (fel->s.st_mode))
+			continue;
+		
+		if (fel->linkname[0] == '/') {
+			if (strlen (fel->linkname) >= sizeof (tmp)-1)
+				continue;
+			strcpy (tmp, fel->linkname);
+		} else {
+			if ((strlen (dir->remote_path) + strlen (fel->linkname)) >= sizeof (tmp)-1)
+				continue;
+			strcpy (tmp, dir->remote_path);
+			if (tmp[1] != '\0')
+				strcat (tmp, "/");
+			strcat (tmp + 1, fel->linkname);
+		}
+		for ( ;; ) {
+			ftpfs_uri_t uri;
+
+			canonicalize_pathname (tmp);
+			uri.path = tmp;
+			uri.conn = conn;
+			if (get_file_entry (&uri, 0, 0, 0, &fe) != GNOME_VFS_OK)
+				break;
+			
+			if (S_ISLNK (fe->s.st_mode) && fe->l_stat == 0) {
+				/* Symlink points to link which isn't resolved, yet. */
+				if (fe->linkname[0] == '/') {
+					if (strlen (fe->linkname) >= sizeof (tmp)-1)
+						break;
+					strcpy (tmp, fe->linkname);
+				} else {
+					/* at this point tmp looks always like this
+					   /directory/filename, i.e. no need to check
+					   strrchr's return value */
+					*(strrchr (tmp, '/') + 1) = '\0'; /* dirname */
+					if ((strlen (tmp) + strlen (fe->linkname)) >= sizeof (tmp)-1)
+						break;
+					strcat (tmp, fe->linkname);
+				}
+				continue;
+			} else {
+				fel->l_stat = g_new (struct stat, 1);
+				if ( S_ISLNK (fe->s.st_mode))
+					*fel->l_stat = *fe->l_stat;
+				else
+					*fel->l_stat = fe->s;
+				(*fel->l_stat).st_ino = conn->__inode_counter++;
+			}
+			break;
+		}
+	}
+	dir->symlink_status = FTPFS_RESOLVED_SYMLINKS;
+}
+
+static void
+resolve_symlink_with_ls_options(ftpfs_connection_t *conn, ftpfs_dir_t *dir)
+{
+	char  buffer[2048] = "", *filename;
+	int sock;
+	FILE *fp;
+	struct stat s;
+	GList *l;
+	ftpfs_direntry_t *fe;
+	int switch_method = 0;
+	
+	dir->symlink_status = FTPFS_RESOLVED_SYMLINKS;
+	if (strchr (dir->remote_path, ' ')) {
+		if (ftpfs_chdir_internal (conn, dir->remote_path) != COMPLETE) {
+			print_vfs_message(_("ftpfs: CWD failed."));
+			return;
+		}
+		sock = open_data_connection (conn, "LIST -lLa", ".", TYPE_ASCII, 0);
+	}
+	else
+		sock = open_data_connection (conn, "LIST -lLa", 
+					     dir->remote_path, TYPE_ASCII, 0);
+	
+	if (sock == -1) {
+		print_vfs_message(_("ftpfs: couldn't resolve symlink"));
+		return;
+	}
+	
+	fp = fdopen(sock, "r");
+	if (fp == NULL) {
+		close(sock);
+		print_vfs_message(_("ftpfs: couldn't resolve symlink"));
+		return;
+	}
+	
+	for (l = dir->file_list; l; l = l->next) {
+		fe = l->data;
+
+		if (!S_ISLNK (fe->s.st_mode))
+			continue;
+		
+		while (1) {
+			if (fgets (buffer, sizeof (buffer), fp) == NULL)
+				goto done;
+			if (logfile){
+				fputs (buffer, logfile);
+				fflush (logfile);
+			}
+			if (vfs_parse_ls_lga (buffer, &s, &filename, NULL)) {
+				int r = strcmp(fe->name, filename);
+				g_free(filename);
+				if (r == 0) {
+					if (S_ISLNK (s.st_mode)) {
+						/* This server doesn't understand LIST -lLa */
+						switch_method = 1;
+						goto done;
+					}
+					fe->l_stat = g_new (struct stat, 1);
+					if (fe->l_stat == NULL)
+						goto done;
+					*fe->l_stat = s;
+					(*fe->l_stat).st_ino = conn->__inode_counter++;
+					break;
+				}
+				if (r < 0)
+					break;
+			}
+		}
+	}
+ done:
+	while (fgets(buffer, sizeof(buffer), fp) != NULL)
+		;
+	fclose(fp);
+	get_reply (conn->sock, NULL, 0);
+	if (switch_method) {
+		conn->strict_rfc959_list_cmd = 1;
+		resolve_symlink_without_ls_options (conn, dir);
+	}
+}
+
+static void
+resolve_symlink(ftpfs_connection_t *conn, ftpfs_dir_t *dir)
+{
+    print_vfs_message(_("Resolving symlink..."));
+
+    if (conn->strict_rfc959_list_cmd) 
+	resolve_symlink_without_ls_options (conn, dir);
+    else
+        resolve_symlink_with_ls_options (conn, dir);
+}
+
+/* Return true if path is the same directoy as the one we are on now */
+
+/*
+ * Inserts an entry for "." (and "..") into the linked list. Ignore any 
+ * errors because "." isn't important (as fas as you don't try to save a
+ * file in the root dir of the ftp server).
+ * Actually the dot is needed when stating the root directory, e.g.
+ * mc_stat ("/ftp#localhost", &buf). Down the call tree _get_file_entry
+ * gets called with filename = "/" which will be transformed into "."
+ * before searching for a fileentry. Whithout "." in the linked list
+ * this search fails.  -- Norbert.
+ */
+static void
+insert_dots (ftpfs_dir_t *dir, ftpfs_connection_t *conn)
+{
+	ftpfs_direntry_t *fe;
+	int i;
+	char buffer[][58] = { 
+		"drwxrwxrwx   1 0        0            1024 Jan  1  1970 .",
+		"drwxrwxrwx   1 0        0            1024 Jan  1  1970 .."
+	};
+	
+	for (i = 0; i < 2; i++ ) {
+		fe = ftpfs_direntry_new ();
+		if (fe == NULL)
+			return;
+		if (vfs_parse_ls_lga (buffer[i], &fe->s, &fe->name, &fe->linkname)) {
+			fe->freshly_created = 0;
+			fe->ref_count = 1;
+			fe->local_filename = fe->remote_filename = NULL;
+			fe->l_stat = NULL;
+			fe->conn = conn;
+			(fe->s).st_ino = conn->__inode_counter++;
+
+			ftpfs_dir_insert (dir, fe);
+		} else
+			g_free (fe);
+	}
+}
+
+static char *
+ftpfs_get_current_directory (ftpfs_connection_t *conn)
+{
+	char buf[4096], *bufp, *bufq;
+	
+	if (!(command (conn, NONE, "PWD") == COMPLETE &&
+	      get_reply(conn->sock, buf, sizeof(buf)) == COMPLETE))
+		return NULL;
+	
+	bufp = NULL;
+	for (bufq = buf; *bufq; bufq++){
+		if (*bufq != '"')
+			continue;
+		
+		if (!bufp) {
+			bufp = bufq + 1;
+			continue;
+		}
+		
+		*bufq = 0;
+		if (!*bufp)
+			return NULL;
+		
+		if (*(bufq - 1) != '/') {
+			*bufq++ = '/';
+			*bufq = 0;
+		}
+		if (*bufp == '/')
+			return g_strdup (bufp);
+		else {
+			/*
+			 * If the remote server is an Amiga a leading slash
+			 * might be missing. MC needs it because it is used
+			 * as seperator between hostname and path internally.
+			 */
+			return g_strconcat( "/", bufp, 0);
+		}
+	}
+	return NULL;
+}
+
+static ftpfs_dir_t *
+retrieve_dir (ftpfs_connection_t *conn, char *remote_path, gboolean resolve_symlinks)
+{
+	int sock, has_symlinks;
+	ftpfs_direntry_t *fe;
+	ftpfs_dir_t *dcache;
+	char buffer[8192];
+	int got_intr = 0;
+	int dot_found = 0;
+	int has_spaces = (strchr (remote_path, ' ') != NULL);
+
+	dcache = g_hash_table_lookup (conn->dcache, remote_path);
+	if (dcache){
+		time_t now = time (NULL);
+		
+		if ((now < dcache->timeout && !force_expiration) ||
+		    (dcache->symlink_status == FTPFS_RESOLVING_SYMLINKS)) {
+			if (resolve_symlinks && dcache->symlink_status == FTPFS_UNRESOLVED_SYMLINKS)
+				resolve_symlink (conn, dcache);
+			return dcache;
+		} else {
+			gpointer key;
+
+			force_expiration = 0;
+
+			g_hash_table_lookup_extended (conn->dcache, remote_path, &key, NULL);
+			g_hash_table_remove (conn->dcache, remote_path);
+			g_free (key);
+			
+			ftpfs_dir_unref (dcache);
+		}
+	}
+
+	
+	has_symlinks = 0;
+	if (conn->strict_rfc959_list_cmd)
+		print_vfs_message(
+			_("ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"),
+			remote_path);
+	else
+		print_vfs_message(
+			_("ftpfs: Reading FTP directory %s..."),
+			remote_path);
+
+	if (has_spaces || conn->strict_rfc959_list_cmd || ftpfs_first_cd_then_ls) {
+		if (ftpfs_chdir_internal (conn, remote_path) != COMPLETE) {
+			print_vfs_message(_("ftpfs: CWD failed."));
+			return NULL;
+		}
+	}
+
+	dcache = ftpfs_dir_new (remote_path);
+
+	if (conn->strict_rfc959_list_cmd == 1) 
+		sock = open_data_connection (conn, "LIST", 0, TYPE_ASCII, 0);
+	else if (has_spaces || ftpfs_first_cd_then_ls)
+		sock = open_data_connection (conn, "LIST -la", ".", TYPE_ASCII, 0);
+	else {
+		/*
+		 * Trailing "/." is necessary if remote_path is a symlink
+		 * but don't generate "//."
+		 */
+		char *path = g_strconcat (remote_path, 
+					  remote_path[1] == '\0' ? "" : "/", 
+					  ".", (char *) 0);
+
+		sock = open_data_connection (conn, "LIST -la", path, TYPE_ASCII, 0);
+		g_free (path);
+	}
+
+	if (sock == -1)
+		goto fallback;
+
+	while ((got_intr = get_line (sock, buffer, sizeof (buffer), '\n')) != EINTR){
+		int eof = got_intr == 0;
+
+		if (logfile){
+			fputs (buffer, logfile);
+			fputs ("\n", logfile);
+			fflush (logfile);
+		}
+
+		if (buffer [0] == 0 && eof)
+			break;
+		
+		fe = ftpfs_direntry_new ();
+
+		if (vfs_parse_ls_lga (buffer, &fe->s, &fe->name, &fe->linkname)) {
+			if (strcmp (fe->name, ".") == 0)
+				dot_found = 1;
+			fe->ref_count = 1;
+			fe->local_filename = fe->remote_filename = NULL;
+			fe->l_stat = NULL;
+			fe->conn = conn;
+			(fe->s).st_ino = conn->__inode_counter++;
+			if (S_ISLNK (fe->s.st_mode))
+				has_symlinks = 1;
+
+			ftpfs_dir_insert (dcache, fe);
+		} else
+			g_free(fe);
+
+		if (eof)
+			break;
+	}
+	
+	if (got_intr){
+		print_vfs_message(_("ftpfs: reading FTP directory interrupt by user"));
+		abort_transfer (conn, sock);
+		close (sock);
+		goto error_3;
+	}
+	close (sock);
+
+	if ((get_reply (conn->sock, NULL, 0) != COMPLETE) || dcache->file_list == NULL)
+		goto fallback;
+ok:
+	if (!dot_found)
+		insert_dots (dcache, conn);
+
+	g_hash_table_insert (conn->dcache, g_strdup (remote_path), dcache);
+
+	
+	if (has_symlinks) {
+		if (resolve_symlinks)
+			resolve_symlink (conn, dcache);
+		else
+			dcache->symlink_status = FTPFS_UNRESOLVED_SYMLINKS;
+	}
+	print_vfs_message(_("ftpfs: got listing"));
+	return dcache;
+	close (sock);
+	get_reply (conn->sock, NULL, 0);
+ error_3:
+	ftpfs_dir_unref (dcache);
+	return NULL;
+
+fallback:
+        /*
+	 * It's our first attempt to get a directory listing from this
+	 * server (UNIX style LIST command)
+	 */
+	if (conn->__inode_counter == 0 && (!conn->strict_rfc959_list_cmd)) {
+		conn->strict_rfc959_list_cmd = 1;
+		ftpfs_dir_unref (dcache);
+
+		return retrieve_dir (conn, remote_path, resolve_symlinks);
+	}
+
+	/*
+	 * Ok, maybe the directory exists but the remote server doesn't
+	 * list "." and "..". 
+	 * Check whether the directory exists:
+	 *
+	 * CWD has been already performed, i.e. 
+	 * we know that remote_path exists
+	 */
+	if (has_spaces || conn->strict_rfc959_list_cmd || ftpfs_first_cd_then_ls)
+		goto ok;
+	else {
+		if (conn->remote_is_amiga) {
+			/*
+			 * The Amiga ftp server needs extra processing because it
+			 * always gets relative pathes instead of absolute pathes
+			 * like anyone else
+			 */
+			char *p = ftpfs_get_current_directory (conn);
+	
+			if (ftpfs_chdir_internal (conn, remote_path) == COMPLETE) {
+				ftpfs_chdir_internal (conn, p);
+				g_free (p);
+				goto ok;
+			}
+		} else {
+			if (ftpfs_chdir_internal (conn, remote_path) == COMPLETE)
+				goto ok;
+		}
+	}
+	
+	ftpfs_dir_unref (dcache);
+	print_vfs_message(_("ftpfs: failed; nowhere to fallback to"));
 	return NULL;
 }
 
@@ -738,7 +1516,7 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 	int handle;
 	
 	*retval = NULL;
-	dir = retrieve_dir (uri, *dirname ? dirname : "/", flags & FTPFS_DO_RESOLVE_SYMLINK);
+	dir = retrieve_dir (uri->conn, *dirname ? dirname : "/", flags & FTPFS_DO_RESOLVE_SYMLINK);
 	g_free (dirname);
 	if (dir == NULL)
 		return GNOME_VFS_ERROR_IO;

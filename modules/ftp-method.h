@@ -9,7 +9,8 @@ typedef struct {
 	char *username;
 	char *password;
 	char *current_directory;
-
+	char *home;
+	
 	time_t time_stamp;
 
 	int  port;
@@ -17,6 +18,7 @@ typedef struct {
 	 * our connection to the remote end
 	 */
 	int  sock;
+	int use_proxy;
 	
 	/*
 	 * For AmiTCP systems
@@ -33,6 +35,17 @@ typedef struct {
 	/* Whether we have to use passive connections */
 	int use_passive_connection;
 	int is_binary;
+	int failed_on_login;
+	
+	GHashTable *dcache;
+
+	int __inode_counter;
+	
+	
+	int cwd_defered;  /*
+			   * current_directory was changed but CWD command hasn't
+			   * been sent yet
+			   */
 } ftpfs_connection_t;
 
 typedef struct {
@@ -63,15 +76,16 @@ typedef struct {
 } ftpfs_direntry_t;
 
 typedef struct {
-	int     count;
-	time_t  timestamp;
+	int     ref_count;
+	time_t  timeout;	/* When this directory is no longer valid */
 	char   *remote_path;
 	GList  *file_list;
 
 	enum {
 		FTPFS_NO_SYMLINKS,
 		FTPFS_UNRESOLVED_SYMLINKS,
-		FTPFS_RESOLVED_SYMLINKS
+		FTPFS_RESOLVED_SYMLINKS,
+		FTPFS_RESOLVING_SYMLINKS
 	} symlink_status;
 } ftpfs_dir_t;
 
