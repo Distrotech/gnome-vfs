@@ -88,9 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
-%config %{_sysconfdir}/gnome-vfs-mime-magic
 %config %{_sysconfdir}/vfs/modules/*.conf
-%dir %{_datadir}/application-registry
 %{_libdir}/*.0
 %{_libdir}/*.sh
 %{_libdir}/*.so
@@ -98,9 +96,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/vfs/modules/*.0
 %{_libdir}/vfs/modules/*.so
 %{_mandir}/man5/*.5*
-%{_datadir}/application-registry/gnome-vfs.applications
-%{_datadir}/mime-info/*.keys
-%{_datadir}/mime-info/*.mime
 
 %files devel
 %defattr(-, root, root)

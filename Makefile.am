@@ -4,7 +4,6 @@ SUBDIRS =					\
 	libgnomevfs-pthread			\
 	libgnomevfs				\
 	modules					\
-	data					\
 	man					\
 	devel-docs				\
 	doc					\

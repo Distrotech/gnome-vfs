@@ -1,3 +1,32 @@
+2001-11-01  Seth Nickell  <snickell@stanford.edu>
+
+	* data/mime/WHERE_IS_THE_MIME_REGISTRY?:
+
+	Add file informing the unwashed of the new location
+	of the registry.
+	
+	* check-mime.pl:
+	* data/Makefile.am:
+	* data/mime/ChangeLog:
+	* data/mime/Makefile.am:
+	* data/mime/gnome-vfs-mime-magic:
+	* data/mime/gnome-vfs.applications:
+	* data/mime/gnome-vfs.keys.in:
+	* data/mime/gnome-vfs.mime:
+
+	Remove the mime registry.
+	
+	* Makefile.am:
+	* configure.in:
+	* gnome-vfs.spec.in:
+
+	Remove references to the mime registry.
+	
+	* doc/tmpl/gnome-vfs-unused.sgml:
+
+	Apparently gtk-doc had some changes it wanted
+	to make, don't look at me ;-)
+	
 2001-10-30  Laszlo Peter  <laca@ireland.sun.com>
 	* libgnomevfs/gnome-vfs.h: remove duplicated include line
 
