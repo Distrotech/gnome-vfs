@@ -481,9 +481,6 @@ static GnomeVFSURI *tr_uri_translate(TranslateMethod * tm,
 		g_assert (FALSE);
 	}
 
-	/* FIXME bugzilla.eazel.com 2798: 
-	 * callers need to be aware that this can now return NULL */
-
 	return retval;
 }
 

@@ -1,5 +1,10 @@
 2000-09-23  Mike Fleming  <mfleming@eazel.com>
 
+	* modules/translate-method.c: (tr_uri_translate):
+	Removed dead FIXME (bugzilla.eazel.com 2798)
+
+2000-09-23  Mike Fleming  <mfleming@eazel.com>
+
 	* modules/translate-method.c: (tr_exec_open_child),
 	(tr_exec_do_retain), (tr_handle_exec):
 
