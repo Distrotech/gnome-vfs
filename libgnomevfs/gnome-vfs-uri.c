@@ -210,7 +210,7 @@ get_method_string (const gchar *substring, gchar **method_string)
 }
 
 static GnomeVFSURI *
-parse_uri_substring (const gchar *substring)
+parse_uri_substring (const gchar *substring, GnomeVFSURI *parent)
 {
 	GnomeVFSMethod *method;
 	GnomeVFSURI *uri, *new_uri;
@@ -233,6 +233,7 @@ parse_uri_substring (const gchar *substring)
 	uri->method = method;
 	uri->method_string = method_string;
 	uri->ref_count = 1;
+	uri->parent = parent;
 
 	p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
 	if (p1 == NULL) {
@@ -241,10 +242,8 @@ parse_uri_substring (const gchar *substring)
 	}
 
 	set_uri_element (uri, p, p1 - p);
+	new_uri = parse_uri_substring (p1 + 1, uri);
 
-	new_uri = parse_uri_substring (p1 + 1);
-	if (new_uri != NULL)
-		new_uri->parent = uri;
 	return uri;
 }
 /**
@@ -297,18 +296,18 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	}
 	
 	method = gnome_vfs_method_get (method_string);
+	/* The toplevel URI element is special, as it also contains host/user
+           information.  */
+	uri->method        = method;
+	uri->ref_count     = 1;
+	uri->method_string = method_string;
+	uri->text          = NULL;
 	if (method == NULL) {
 		g_free (method_string);
 		gnome_vfs_uri_unref (uri);
 		g_free (new_uri_string);
 		return NULL;
 	}
-
-	/* The toplevel URI element is special, as it also contains host/user
-           information.  */
-	uri->method = method;
-	uri->ref_count = 1;
-	uri->method_string = method_string;
 	
 	p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
 	if (p1 == NULL) {
@@ -327,14 +326,13 @@ gnome_vfs_uri_new (const gchar *text_uri)
 		g_free (new_uri_string);
 		return NULL;
 	}
-	new_uri = parse_uri_substring (p2);
+	new_uri = parse_uri_substring (p2, uri);
 
 	g_free (new_uri_string);
 
-	if (new_uri != NULL) {
-		new_uri->parent = uri;
+	if (new_uri)
 		return new_uri;
-	} else
+	else
 		return uri;
 }
 

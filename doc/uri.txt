@@ -6,11 +6,11 @@ authoratitive oracle for queries.
     A gnome-vfs URI can be assembled using the following method:
 
 <method>:\ / <path> \ / End of URI
-          X          X                     / <blank> - starts in root directory
- <blank> / \ <path> / \ '#' <method> ':' K
-                      ^                    \ <'/' path> -+- finish.
-                      |                                  |
-                      +----------------------------------+
+          X          X                 / <blank> - starts in root directory
+ <blank> / \ <path> / \ '#' <method> K
+                      ^                \ <'/' path> -+- finish.
+                      |                              |
+                      +------------------------------+
 
 Examples:
 

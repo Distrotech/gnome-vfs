@@ -19,9 +19,9 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Rajit Singh <endah@dircon.co.uk> */
-
-/* TODO metadata? */
+   Authors: Rajit Singh   <endah@dircon.co.uk>
+            Michael Meeks <mmeeks@gnu.org>
+*/
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -41,7 +41,6 @@
 #include <gnome.h>
 
 #include "gnome-vfs-mime.h"
-
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-shared.h"
 #include "efs-method.h"
@@ -52,7 +51,9 @@
    get a predictable behavior when the leading `/' is not present.  */
 #define MAKE_ABSOLUTE(dest, src)			\
 G_STMT_START{						\
-	if ((src)[0] != '/') {				\
+	if (!src) {					\
+		dest = "Parent must be a file";		\
+	} else if ((src)[0] != '/') {			\
 		(dest) = alloca (strlen (src) + 2);	\
 		(dest)[0] = '/';			\
 		strcpy ((dest), (src));			\
@@ -334,17 +335,29 @@ do_seek (GnomeVFSMethod *method,
 	retval = efs_file_seek (file_handle->file, offset, lseek_whence);
 	
 	if (retval == -1)
-	  return gnome_vfs_result_from_errno ();
+		return gnome_vfs_result_from_errno ();
 
 	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
-do_tell (GnomeVFSMethod *method,
+do_tell (GnomeVFSMethod       *method,
 	 GnomeVFSMethodHandle *method_handle,
-	 GnomeVFSFileOffset *offset_return)
+	 GnomeVFSFileOffset   *offset_return)
 {
-  	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	FileHandle *file_handle;
+	gint        retval;
+
+	file_handle = (FileHandle *) method_handle;
+
+	retval = efs_file_seek (file_handle->file, 0, SEEK_CUR);
+
+	*offset_return = retval;
+
+	if (retval == -1)
+		return gnome_vfs_result_from_errno ();
+
+	return GNOME_VFS_OK;
 }
 
 
@@ -463,12 +476,12 @@ do_open_directory (GnomeVFSMethod *method,
 
 	MAKE_ABSOLUTE (directory_name, uri->parent->text);
 
-	originaldir = efs_open (directory_name, EFS_RDWR, default_permissions);
+	originaldir = efs_open (directory_name, EFS_READ, default_permissions);
 
 	if (originaldir == 0)
 	  	return gnome_vfs_result_from_errno ();
 
-	dir = efs_dir_open (originaldir, uri->text, EFS_RDWR);
+	dir = efs_dir_open (originaldir, uri->text, EFS_READ);
 	if (!dir)
 		return gnome_vfs_result_from_errno ();
 
@@ -498,6 +511,25 @@ do_close_directory (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
+static void
+transfer_dir_to_info (GnomeVFSFileInfo *info, EFSDirEntry *entry)
+{
+	info->name = g_strdup (entry->name);
+	if (entry->type == EFS_DIR)
+		info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+	else if (entry->type == EFS_FILE)
+		info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+	else
+		info->type = GNOME_VFS_FILE_TYPE_UNKNOWN;
+
+	info->size = entry->length;
+
+	info->valid_fields =
+		GNOME_VFS_FILE_INFO_FIELDS_TYPE |
+		GNOME_VFS_FILE_INFO_FIELDS_SIZE;
+
+}
+
 static GnomeVFSResult
 do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle,
@@ -515,19 +547,7 @@ do_read_directory (GnomeVFSMethod *method,
 	if (!entry)
 		return GNOME_VFS_ERROR_EOF;
 
-	info->name = g_strdup (entry->name);
-	if (entry->type == EFS_DIR)
-		info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-	else if (entry->type == EFS_FILE)
-		info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-	else
-		info->type = GNOME_VFS_FILE_TYPE_UNKNOWN;
-
-	info->size = entry->length;
-
-	info->valid_fields =
-		GNOME_VFS_FILE_INFO_FIELDS_TYPE |
-		GNOME_VFS_FILE_INFO_FIELDS_SIZE;
+	transfer_dir_to_info (info, entry);
 
 	return GNOME_VFS_OK;
 }
@@ -536,24 +556,112 @@ do_read_directory (GnomeVFSMethod *method,
 static GnomeVFSResult
 do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSURI *uri,
-		  GnomeVFSFileInfo *file_info,
+		  GnomeVFSFileInfo *info,
 		  GnomeVFSFileInfoOptions options,
 		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
-	
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
-}
+	char *dir_name, *fname, *efs_name;
+	EFSDir *originaldir;
+	EFSDir *dir;
+	GnomeVFSResult result;
 
-static GnomeVFSResult
-do_get_file_info_from_handle (GnomeVFSMethod *method,
-			      GnomeVFSMethodHandle *method_handle,
-			      GnomeVFSFileInfo *file_info,
-			      GnomeVFSFileInfoOptions options,
-			      const GList *meta_keys,
-			      GnomeVFSContext *context)
-{
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	/*
+	 * FIXME: Much of this code should be done once centraly
+	 * for methods that support an embedded tree.
+	 */
+
+	/*
+	 * 1. Get the directory / file names split.
+	 */
+	dir_name = g_strdup (uri->text?uri->text:"");
+	if ((fname = strrchr (dir_name, '/'))) {
+		*fname = '\0';
+		fname++;
+	} else {
+		fname = dir_name;
+		dir_name = g_strconcat ("/ ", dir_name, NULL);
+		g_free (fname);
+		fname = dir_name + 2;
+		dir_name [1] = '\0';
+	}
+	
+	/*
+	 * 2. If we are just looking for root then; return parent data.
+	 */
+	if (strlen  (fname) == 0 ||
+	    strlen  (dir_name) == 0 ||
+	    !strcmp (dir_name, "/")) {
+		g_free (dir_name);
+
+		if (uri->parent->method->get_file_info == NULL)
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;
+
+		result = uri->parent->method->get_file_info
+			(uri->parent->method, uri->parent,
+			 info, options, meta_keys, context);
+		if (result != GNOME_VFS_OK)
+			return result;
+
+		/*
+		 * Fiddle the info so it looks like a directory.
+		 */
+		if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE) {
+			if (info->type != GNOME_VFS_FILE_TYPE_DIRECTORY)
+				info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+			else { 
+				/*
+				 * Ug, we can't put an efs file in a directory.
+				 */ 
+				return GNOME_VFS_ERROR_IS_DIRECTORY;
+			}
+		} else {
+			info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
+			info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+		}
+		return GNOME_VFS_OK;
+	}
+
+	/*
+	 * 3. Open the efs directory.
+	 */
+	MAKE_ABSOLUTE (efs_name, uri->parent->text);
+	originaldir = efs_open (efs_name, EFS_READ, default_permissions);
+
+	if (!originaldir) {
+		g_free (dir_name);
+	  	return gnome_vfs_result_from_errno ();
+	}
+
+	dir = efs_dir_open (originaldir, dir_name, EFS_READ);
+	if (!dir) {
+		efs_close (originaldir);
+		g_free (dir_name);
+		return gnome_vfs_result_from_errno ();
+	}
+
+	/*
+	 * 4. Iterate over the files
+	 */
+	result = GNOME_VFS_ERROR_NOT_FOUND;
+	while (1) {
+		EFSDirEntry     *entry;
+		
+		entry = efs_dir_read (dir);
+		if (!entry)
+			break;
+
+		if (!strcmp (fname, entry->name)) {
+			transfer_dir_to_info (info, entry);
+			result = GNOME_VFS_OK;
+			break;
+		}
+	}
+	efs_dir_close (dir);
+	efs_close (originaldir);
+	g_free (dir_name);
+
+	return result;
 }
 
 
@@ -642,13 +750,13 @@ static GnomeVFSMethod method = {
 	do_read,
 	do_write,
 	do_seek,
-	do_tell,	// not supported
+	do_tell,
 	do_truncate_handle,
 	do_open_directory,
 	do_close_directory,
 	do_read_directory,
-	do_get_file_info,	// not supported
-	do_get_file_info_from_handle,	// not supported
+	do_get_file_info,
+	NULL,
 	do_is_local,
 	do_make_directory,
 	do_remove_directory,

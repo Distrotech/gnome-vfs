@@ -1,3 +1,20 @@
+2000-06-24  Michael Meeks  <michael@helixcode.com>
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new): re-order to make
+	(parse_uri_substring): Add parent arg, since set_uri_element will
+	trample on memory unless uri->parent != NULL before call. update.
+	(gnome_vfs_uri_new): update.
+
+	* modules/efs-method.c (MAKE_ABSOLUTE): add catch for non-existant
+	parents. (do_tell): implement. (do_open_directory): open only for read
+	and use (transfer_dir_to_info): split (do_get_file_info): implement.
+	(do_get_file_info_from_handle): remove, should be a fallback in the vfs
+	anyway.
+
+	* configure.in: enable libefs by default.
+
+	* doc/uri.txt: revert a daftness.
+
 2000-06-24  Pavel  <pavel@eazel.com>
 
 	* modules/file-method.c: (file_handle_new), (do_close),
