@@ -647,7 +647,7 @@ msgstr "aktivna stre¾ni¹ka stran"
 
 #: data/mime/gnome-vfs.keys.in.h:159
 msgid "address card"
-msgstr "adresar"
+msgstr "vizitka"
 
 #: data/mime/gnome-vfs.keys.in.h:160
 msgid "ar archive"
@@ -731,7 +731,7 @@ msgstr "sporoèilo e-po¹te"
 
 #: data/mime/gnome-vfs.keys.in.h:180
 msgid "encrypted message"
-msgstr "¹ifirirano sporoèilo"
+msgstr "¹ifrirano sporoèilo"
 
 #: data/mime/gnome-vfs.keys.in.h:181
 msgid "enriched text document"
@@ -1395,7 +1395,7 @@ msgstr "Dodaj nov tip MIME"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:754
 msgid "Add MIME Type"
-msgstr "Dodaj nov tip MIME"
+msgstr "Dodaj tip MIME"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:757
 msgid ""
@@ -1403,7 +1403,7 @@ msgid ""
 "For example:  image/tiff; text/x-scheme"
 msgstr ""
 "Dodaj nov tip MIME\n"
-"Naprimer:  image/tiff; text/x-scheme"
+"Na primer:  image/tiff; text/x-scheme"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:763
 msgid "MIME Type:"
@@ -1441,7 +1441,7 @@ msgid ""
 msgstr ""
 "Vnesite pripone za ta tip mime (brez pike).\n"
 "Lahko vpi¹ete veè pripon loèenih s presledki,\n"
-"Naprimer: html htm"
+"Na primer: html htm"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
 msgid "Extension:"
@@ -1573,7 +1573,7 @@ msgstr "Privzeto Dejanje"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:255
 msgid "Can't find an hbox, using a normal file selection"
-msgstr "Ne morem najti h¹katle, uporabljam obièajno izbiranje datotek"
+msgstr "Ne najdem hbox, uporabljam obièajno izbiranje datotek"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:261
 msgid "Preview"
@@ -1592,7 +1592,7 @@ msgstr "%s za prenos sem"
 #: modules/http-method.c:1582
 #, c-format
 msgid "Closing connection to %s"
-msgstr "Zapiram povezavo do %s"
+msgstr "Zapiram povezavo z %s"
 
 #: modules/http-method.c:1848
 #, c-format
