@@ -787,7 +787,6 @@ load_mime_type_info (void)
 static gboolean
 reload_if_needed_idle_function (gpointer user_data)
 {
-	g_message ("called reload_if_needed_idle_function");
 	reload_if_needed ();
 
 	/* Do call this again */

@@ -1,3 +1,9 @@
+2000-12-22  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	(reload_if_needed_idle_function): Saved the terminal by
+	removing a debug g_message.
+
 gno2000-12-22  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-monitor.c:
