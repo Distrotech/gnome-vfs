@@ -336,6 +336,8 @@ audio/x-xm
 	ext: xm XM
 
 
+image/bmp
+	ext: bmp
 
 image/cgm
 	ext: cgm

@@ -158,3 +158,4 @@
 2	string		\000\022				application/x-font-tex-tfm
 0	string		\x36\x04				application/x-font-linux-psf
 0	string		FWS					application/x-shockwave-flash
+0	string		BMxxxx\000\000 &0xffff00000000ffff	image/bmp

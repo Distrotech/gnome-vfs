@@ -2,6 +2,17 @@
 
 	reviewed by: Pavel Cisler <pavel@eazel.com>
 	
+	Fixed bug 5570, bmp file sometimes appears as an mp3 file
+	
+	* data/mime/gnome-vfs-mime-magic:
+	* data/mime/gnome-vfs.mime:
+	Add image/bmp rule. There was already information
+	about this mime type in .keys
+
+2001-02-28  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+	
 	Fixed bug 7148, Flash files identified as mp3
 	
 	* data/mime/gnome-vfs-mime-magic:
