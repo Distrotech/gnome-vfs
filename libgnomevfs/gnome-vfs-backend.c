@@ -533,6 +533,7 @@ report_failure_get_file_info_callback (gpointer callback_data)
 	GList *p, *results;
 	GnomeVFSGetFileInfoResult *result;
 
+	results = NULL;
 	data = callback_data;
 
 	/* Create a list of all the files with the same result for

@@ -1,5 +1,12 @@
 2000-05-07  Maciej Stachowiak  <mjs@eazel.com>
 
+	* libgnomevfs/gnome-vfs-backend.c
+	(report_failure_get_file_info_callback),
+	libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_empty_trash): Fixed
+	some uninitialized variable warnings.
+
+2000-05-07  Maciej Stachowiak  <mjs@eazel.com>
+
 	* data/mime/gnome-vfs-mime: Fixed some of the broken mime types.
 
 2000-05-07  Pavel Cisler  <pavel@eazel.com>

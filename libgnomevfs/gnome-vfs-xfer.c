@@ -1455,6 +1455,8 @@ gnome_vfs_xfer_empty_trash (GList *trash_dir_uris,
 	GnomeVFSResult result;
 	GList *p;
 	gboolean skip;
+
+	result = GNOME_VFS_OK;
 	
 	call_progress (progress, GNOME_VFS_XFER_PHASE_INITIAL);
 
