@@ -1,3 +1,8 @@
+2001-11-02  Darin Adler  <darin@bentspoon.com>
+
+	* Makefile.am: Build gnome-vfs-module-2.0.pc.
+	* libgnomevfs/gnome-vfs.h: One file was out of alphabetical order.
+
 2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* NEWS, configure.in: Updated for 1.9.2.

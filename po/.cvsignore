@@ -13,5 +13,6 @@ cat-id-tbl.c
 gnome-vfs.pot
 stamp-cat-id
 *.pot
-
 Makefile.in.in
+po2tbl.sed
+po2tbl.sed.in
