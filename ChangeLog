@@ -1,3 +1,7 @@
+2000-05-08  Ettore Perazzoli  <ettore@helixcode.com>
+
+	* libgnomevfs-corba/Makefile.am: Don't use `GNOME_CFLAGS'.
+
 2000-05-08  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c:
