@@ -16,6 +16,7 @@ static GnomeVFSAsyncDaemon *async_daemon = NULL;
 typedef struct {
 	GNOME_VFS_Client client;
 	GList *outstanding_handles;
+	GList *outstanding_dir_handles;
 	GList *outstanding_contexts;
   /* DAEMON-TODO: outstanding_monitors + dir_handles */
 } ClientInfo;
@@ -58,7 +59,8 @@ static void
 free_client_info (ClientInfo *client_info)
 {
 	GList *l;
-	GNOME_VFS_DaemonHandle handle;
+	GnomeVFSDaemonHandle *handle;
+	GnomeVFSDaemonDirHandle *dir_handle;
 	GnomeVFSContext *context;
 	GnomeVFSCancellation *cancellation;
 
@@ -84,7 +86,15 @@ free_client_info (ClientInfo *client_info)
 	}
 	g_list_free (client_info->outstanding_handles);
 
-	/* DAEMON-TODO: unref outstanding dir handles & monitors (?) */
+	for (l = client_info->outstanding_dir_handles; l != NULL; l = l->next) {
+		dir_handle = l->data;
+		
+		bonobo_object_unref (dir_handle);
+	}
+	g_list_free (client_info->outstanding_dir_handles);
+
+	
+	/* DAEMON-TODO: unref outstanding monitors (?) */
 	
 	CORBA_Object_release (client_info->client, NULL);
 	g_free (client_info);
@@ -220,6 +230,37 @@ gnome_vfs_daemon_remove_client_handle (const GNOME_VFS_Client client,
 	if (client_info) {
 		client_info->outstanding_handles = g_list_remove (client_info->outstanding_handles,
 								  handle);
+	}
+	G_UNLOCK (client_list);
+}
+
+
+void
+gnome_vfs_daemon_add_client_dir_handle (const GNOME_VFS_Client client,
+					GnomeVFSDaemonDirHandle *handle)
+{
+	ClientInfo *client_info;
+	
+	G_LOCK (client_list);
+	client_info = lookup_client (client);
+	if (client_info) {
+		client_info->outstanding_dir_handles = g_list_prepend (client_info->outstanding_dir_handles,
+								       handle);
+	}
+	G_UNLOCK (client_list);
+}
+
+void
+gnome_vfs_daemon_remove_client_dir_handle (const GNOME_VFS_Client client,
+					   GnomeVFSDaemonDirHandle *handle)
+{
+	ClientInfo *client_info;
+	
+	G_LOCK (client_list);
+	client_info = lookup_client (client);
+	if (client_info) {
+		client_info->outstanding_dir_handles = g_list_remove (client_info->outstanding_dir_handles,
+								      handle);
 	}
 	G_UNLOCK (client_list);
 }

@@ -24,10 +24,14 @@
 #define GNOME_VFS_DAEMON_METHOD_H
 
 #include <libgnomevfs/gnome-vfs-method.h>
+#include "GNOME_VFS_Daemon.h"
 
 G_BEGIN_DECLS
 
 GnomeVFSMethod *_gnome_vfs_daemon_method_get (void);
+
+void _gnome_vfs_daemon_convert_from_corba_file_info (const GNOME_VFS_FileInfo *corba_info, GnomeVFSFileInfo *file_info);
+void _gnome_vfs_daemon_convert_to_corba_file_info (const GnomeVFSFileInfo *file_info, GNOME_VFS_FileInfo *corba_info);
 
 G_END_DECLS
 

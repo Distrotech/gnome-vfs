@@ -45,8 +45,9 @@ daemon_dir_handle_free (DaemonDirHandle *handle)
 	g_free (handle);
 }
 
-static void
-convert_from_corba_file_info (GNOME_VFS_FileInfo *corba_info, GnomeVFSFileInfo *file_info)
+void
+_gnome_vfs_daemon_convert_from_corba_file_info (const GNOME_VFS_FileInfo *corba_info,
+						GnomeVFSFileInfo *file_info)
 {
 	g_free (file_info->name);
 	
@@ -78,6 +79,43 @@ convert_from_corba_file_info (GNOME_VFS_FileInfo *corba_info, GnomeVFSFileInfo *
 		file_info->mime_type = g_strdup (corba_info->mime_type);
 	}
 }
+
+void
+_gnome_vfs_daemon_convert_to_corba_file_info (const GnomeVFSFileInfo *file_info,
+					      GNOME_VFS_FileInfo *corba_info)
+{
+	corba_info->name = CORBA_string_dup (file_info->name);
+
+	corba_info->valid_fields = file_info->valid_fields;
+	corba_info->type = file_info->type;
+	corba_info->permissions = file_info->permissions;
+	corba_info->flags = file_info->flags;
+	corba_info->device = file_info->device;
+	corba_info->inode = file_info->inode;
+	corba_info->link_count = file_info->link_count;
+	corba_info->uid = file_info->uid;
+	corba_info->gid = file_info->gid;
+	corba_info->size = file_info->size;
+	corba_info->block_count = file_info->block_count;
+	corba_info->io_block_size = file_info->io_block_size;
+	corba_info->atime = file_info->atime;
+	corba_info->mtime = file_info->mtime;
+	corba_info->ctime = file_info->ctime;
+
+	if (file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME) {
+		corba_info->symlink_name = CORBA_string_dup (file_info->symlink_name);
+	} else {
+		corba_info->symlink_name = CORBA_string_dup ("");
+	}
+		
+	corba_info->mime_type = NULL;
+	if (file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) {
+		corba_info->mime_type = CORBA_string_dup (file_info->mime_type);
+	} else {
+		corba_info->mime_type = CORBA_string_dup ("");
+	}
+}
+
 
 static GnomeVFSResult
 do_open (GnomeVFSMethod *method,
@@ -575,7 +613,7 @@ do_read_directory (GnomeVFSMethod *method,
 	g_assert (dir_handle->current_pos < dir_handle->current_list->_length);
 	
 	corba_info = &dir_handle->current_list->_buffer[dir_handle->current_pos++];
-	convert_from_corba_file_info (corba_info, file_info);
+	_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 	if (dir_handle->current_pos == dir_handle->current_list->_length) {
 		CORBA_free (dir_handle->current_list);
 		dir_handle->current_list = NULL;
@@ -632,7 +670,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	}
 
 	if (res == GNOME_VFS_OK) {
-		convert_from_corba_file_info (corba_info, file_info);
+		_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 		CORBA_free (corba_info);
 	}
 	
@@ -676,7 +714,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	}
 
 	if (res == GNOME_VFS_OK) {
-		convert_from_corba_file_info (corba_info, file_info);
+		_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 		CORBA_free (corba_info);
 	}
 	
@@ -977,8 +1015,46 @@ do_set_file_info (GnomeVFSMethod *method,
 		  GnomeVFSSetFileInfoMask mask,
 		  GnomeVFSContext *context)
 {
-	/* DAEMON-TODO: Implement set_file_info. Needs convert_from_corba_info */
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	GNOME_VFS_AsyncDaemon daemon;
+	GnomeVFSClient *client;
+	GnomeVFSResult res;
+	CORBA_Environment ev;
+	GNOME_VFS_DaemonHandle handle;
+	char *uri_str;
+	GnomeVFSClientCall *client_call;
+	GNOME_VFS_FileInfo *corba_info;
+	
+	client = _gnome_vfs_get_client ();
+	daemon = _gnome_vfs_client_get_async_daemon (client);
+	
+	if (daemon == CORBA_OBJECT_NIL) {
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
+
+	uri_str = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+
+	corba_info = GNOME_VFS_FileInfo__alloc ();
+	_gnome_vfs_daemon_convert_to_corba_file_info (info, corba_info);
+	
+	client_call = _gnome_vfs_client_call_get (context);
+
+	CORBA_exception_init (&ev);
+	handle = CORBA_OBJECT_NIL;
+	res = GNOME_VFS_AsyncDaemon_SetFileInfo (daemon,
+						 uri_str,
+						 corba_info,
+						 mask,
+						 BONOBO_OBJREF (client_call),
+						 BONOBO_OBJREF (client),
+						 &ev);
+
+	_gnome_vfs_client_call_finished (client_call, context);
+	g_free (uri_str);
+	CORBA_free (corba_info);
+	
+	CORBA_Object_release (daemon, NULL);
+					  
+	return res;
 }
 
 static GnomeVFSResult

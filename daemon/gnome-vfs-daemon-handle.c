@@ -15,9 +15,6 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	BONOBO_TYPE_OBJECT);
 
 
-/* DAEMON-TODO: auth */
-
-
 static void
 gnome_vfs_daemon_handle_finalize (GObject *object)
 {
@@ -87,21 +84,27 @@ gnome_vfs_daemon_handle_close (PortableServer_Servant _servant,
 {
 	GnomeVFSDaemonHandle *handle;
 	GnomeVFSResult res;
+	GnomeVFSContext *context;
 
 	handle = GNOME_VFS_DAEMON_HANDLE (bonobo_object_from_servant (_servant));
 	g_print ("gnome_vfs_daemon_handle_close(%p) - thread: %p\n", handle, g_thread_self());
 
-	res = gnome_vfs_close_cancellable (handle->real_handle,
-					   NULL /* context */);
-	handle->real_handle = NULL;
+	context = gnome_vfs_async_daemon_get_context (client_call, client);
 	
-	/* DAEMON-TODO: What if the close was cancelled? */
-
-	/* The client is now finished with the handle,
-	   remove it from the list and free it */
-	gnome_vfs_daemon_remove_client_handle (client,
-					       handle);
-	bonobo_object_unref (handle);
+	res = gnome_vfs_close_cancellable (handle->real_handle,
+					   context);
+	
+	gnome_vfs_async_daemon_drop_context (client_call, client, context);
+	
+	if (res == GNOME_VFS_OK) {
+		handle->real_handle = NULL;
+		
+		/* The client is now finished with the handle,
+		   remove it from the list and free it */
+		gnome_vfs_daemon_remove_client_handle (client,
+						       handle);
+		bonobo_object_unref (handle);
+	}
 	
 	return res;
 }

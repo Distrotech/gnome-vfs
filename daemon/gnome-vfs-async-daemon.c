@@ -5,6 +5,7 @@
 #include "gnome-vfs-async-daemon.h"
 #include "gnome-vfs-cancellable-ops.h"
 #include "gnome-vfs-daemon-handle.h"
+#include "gnome-vfs-daemon-dir-handle.h"
 #include "gnome-vfs-client-call.h"
 #include "gnome-vfs-daemon.h"
 #include <unistd.h>
@@ -122,6 +123,50 @@ gnome_vfs_async_daemon_open (PortableServer_Servant _servant,
 	return res;
 }
 
+
+static GNOME_VFS_Result
+gnome_vfs_async_daemon_open_dir (PortableServer_Servant _servant,
+				 GNOME_VFS_DaemonDirHandle *
+				 handle_return,
+				 const CORBA_char * uri_str,
+				 const CORBA_long options,
+				 const GNOME_VFS_ClientCall
+				 client_call,
+				 const GNOME_VFS_Client client,
+				 CORBA_Environment * ev)
+{
+	GnomeVFSURI *uri;
+	GnomeVFSDirectoryHandle *vfs_handle;
+	GnomeVFSResult res;
+	GnomeVFSContext *context;
+	GnomeVFSDaemonDirHandle *handle;
+	
+	*handle_return = NULL;
+
+	uri = gnome_vfs_uri_new (uri_str);
+	if (uri == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
+	context = gnome_vfs_async_daemon_get_context (client_call, client);
+
+	res = gnome_vfs_directory_open_from_uri_cancellable (&vfs_handle,
+							     uri, options,
+							     context);
+
+	if (res == GNOME_VFS_OK) {
+		handle = gnome_vfs_daemon_dir_handle_new (vfs_handle);
+		*handle_return = CORBA_Object_duplicate (BONOBO_OBJREF (handle), NULL);
+		gnome_vfs_daemon_add_client_dir_handle (client, handle);
+	}
+	
+	gnome_vfs_async_daemon_drop_context (client_call, client, context);
+
+	gnome_vfs_uri_unref (uri);
+	
+	return res;
+}
+
+
 static gboolean
 cancel_client_call_callback (gpointer data)
 {
@@ -175,6 +220,7 @@ gnome_vfs_async_daemon_class_init (GnomeVFSAsyncDaemonClass *klass)
 
 	epv->Open = gnome_vfs_async_daemon_open;
 	epv->Cancel = gnome_vfs_async_daemon_cancel;
+	epv->OpenDirectory = gnome_vfs_async_daemon_open_dir;
 	
 	object_class->finalize = gnome_vfs_async_daemon_finalize;
 }

@@ -26,6 +26,8 @@ vfs_daemon_SOURCES = \
 	gnome-vfs-daemon.h \
 	gnome-vfs-async-daemon.c \
 	gnome-vfs-async-daemon.h \
+	gnome-vfs-daemon-dir-handle.h \
+	gnome-vfs-daemon-dir-handle.c \
 	gnome-vfs-daemon-handle.h \
 	gnome-vfs-daemon-handle.c \
 	$(top_srcdir)/libgnomevfs/GNOME_VFS_Daemon.h		\
