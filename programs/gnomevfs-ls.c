@@ -115,7 +115,11 @@ main (int argc, char *argv[])
 	if (argc > 1) {
 		directory = argv[1];
 	} else {
-		directory = g_get_current_dir ();
+		char *tmp;
+
+		tmp = g_get_current_dir ();
+		directory = gnome_vfs_escape_path_string (tmp);
+		g_free (tmp);
 	}
 
 	list ();

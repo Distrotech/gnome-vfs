@@ -1,3 +1,8 @@
+2003-11-20  Bastien Nocera  <hadess@hadess.net>
+
+	* programs/gnomevfs-ls.c: (main): escape the current path to be
+	used for listing when no arguments have been passed
+
 2003-11-15  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/http-method.c: fixed some leaks
