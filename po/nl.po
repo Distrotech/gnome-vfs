@@ -1,5 +1,5 @@
 # translation of gnome-vfs.HEAD.po to Dutch
-# a.t.meinen <a.t.meinen@chello.nl>, 2003.
+# Tino Meinen <a.t.meinen@chello.nl>, 2003.
 # Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003.
 # Deze vertalingen zijn te zien als je het programma: .... gebruikt.
 # Nog uit te zoeken...................................^^^^
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-02-02 13:00+0100\n"
+"POT-Creation-Date: 2004-02-19 20:05+0100\n"
+"PO-Revision-Date: 2004-02-19 23:12+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,32 @@ msgstr "Kan bonobo niet starten"
 msgid "Could not initialize gnome vfs"
 msgstr "Kan gnome vfs niet starten"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:180
+#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Bestandssysteem"
+
+#: gtk/gtkfilesystemgnomevfs.c:1458
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Opslaan favorieten mislukt (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "Kon geen informatie over bestand '%s' verkrijgen: %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Kon bestand '%s' niet openen: %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr "Kon afbeelding '%s' niet laden: reden onbekend, waarschijnlijk een corrupt bestand"
+
+#: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 volume"
 
@@ -89,112 +114,113 @@ msgid "Hardware Device Volume"
 msgstr "Hardware-apparaat volume"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
+#: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 linux volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 linux volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:46
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
 msgstr "MSDOS volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
 msgstr "MacOS volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
 msgstr "CD-ROM volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
 msgstr "HSFS CD-ROM volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
 msgstr "JFS volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:52
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
 msgstr "Windows NT volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
 msgstr "Systeemvolume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
 msgstr "Geheugenvolume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
 msgstr "Minixvolume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
 msgstr "NFS netwerk volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
 msgstr "Netware volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS linux volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
 msgstr "Gedeeld windowsvolume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
 msgstr "Supermount volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
 msgstr "DVD volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
 msgstr "UDFS Solaris volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
 msgstr "PCFS Solaris volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
 msgstr "verbeterd DOS volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Xenix Volume"
 msgstr "Xenix volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XFS Linux Volume"
 msgstr "XFS linux volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XIAFS Volume"
 msgstr "XIAFS volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:102
+#: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -633,22 +659,22 @@ msgstr "Extra"
 msgid "Windows"
 msgstr "Vensters"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "Netwerk"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "Thuis"
-
-#: modules/computer-method.c:557
-msgid "Filesystem"
-msgstr "Bestandssysteem"
 
 #: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Windows netwerk"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -1009,10 +1035,6 @@ msgstr "HTTP proxy gebruiken"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Te gebruiken naam voor identificatie bij HTTP proxy-gebruik."
-
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "Windows netwerk"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
