@@ -7,7 +7,7 @@ endif
 if PLATFORM_GNOME_2
 SUBDIRS_GNOME=
 else
-SUBDIRS_GNOME=test mime-type-capplet
+SUBDIRS_GNOME=test
 endif
 
 SUBDIRS =					\

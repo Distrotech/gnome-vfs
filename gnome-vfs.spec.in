@@ -20,7 +20,6 @@ BuildRoot: /var/tmp/%{name}-root
 Requires: glib >= @GLIB_REQUIRED@
 Requires: GConf >= @GCONF_REQUIRED@
 Requires: oaf >= @OAF_REQUIRED@
-Requires: control-center >= @CONTROL_CENTER_REQUIRED@
 Docdir: %{prefix}/doc
 Summary:  GNOME VFS is the GNOME virtual file system.  It is used extensively by Nautilus.
 
@@ -94,8 +93,6 @@ fi
 %{prefix}/lib/vfs/modules/*.so
 %{prefix}/man/man5/*.5*
 %{prefix}/share/application-registry/gnome-vfs.applications
-%{prefix}/share/control-center/Documents/*.desktop
-%{prefix}/share/gnome/apps/Settings/*.desktop
 %{prefix}/share/gnome/html/*.txt
 %{prefix}/share/locale/*/LC_MESSAGES/*.mo
 %{prefix}/share/mime-info/*.keys
