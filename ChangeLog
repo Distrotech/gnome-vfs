@@ -1,5 +1,22 @@
 2000-11-13  Gene Z. Ragan  <gzr@eazel.com>
 
+	Some more capplet work.  The mime list now updates
+	to reflect changes made to the default action button
+	and menu item list.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(application_button_toggled), (viewer_button_toggled),
+	(application_menu_activated), (component_menu_activated),
+	(add_mime_clicked),
+	(nautilus_mime_type_capplet_update_mime_list_icon),
+	(update_mime_list_action), (populate_mime_list):
+	
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	(entry_changed):
+	Fixed a case where a NULL widget would cause an assertion.
+
+2000-11-13  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug 3107, Setting na icon for a mime type does not work.
 	
 	* mime-type-capplet/nautilus-mime-type-capplet.c:
