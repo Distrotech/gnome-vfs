@@ -1,5 +1,10 @@
 1999-09-06  Ettore Perazzoli  <ettore@comm2000.it>
 
+	* libgnomevfs/gnome-vfs-method.c: New type `MethodElement'.
+	(gnome_vfs_method_get): Put `MethodElement's in the hash table
+	instead of `GnomeVFSMethod's.
+	(module_get_sane_handle): Do not check for get_file_info.
+
 	* modules/file-method.c (do_open): Removed wrong directory test.
 	(do_create): Removed stupid stat check.
 	(do_seek): Call LSEEK() correctly.

@@ -31,6 +31,12 @@
 #include "gnome-vfs-module.h"
 
 
+struct _MethodElement {
+	gchar *name;
+	GnomeVFSMethod *method;
+};
+typedef struct _MethodElement MethodElement;
+
 static GHashTable *method_hash = NULL;
 G_LOCK_DEFINE_STATIC (method_hash);
 
@@ -83,13 +89,16 @@ module_get_sane_handle (gchar *module_name)
 	} else if (!method->create) {
 		g_warning ("module '%s' has no create fn", module_name);
 		return NULL;
-	} else if (!method->get_file_info) {
-		g_warning ("module '%s' has no get-file-info fn", module_name);
-		return NULL;
 	} else if (!method->is_local) {
 		g_warning ("module '%s' has no is-local fn", module_name);
 		return NULL;
 	}
+#if 0
+	else if (!method->get_file_info) {
+		g_warning ("module '%s' has no get-file-info fn", module_name);
+		return NULL;
+	}
+#endif
 
 	/* More advanced assumptions */
 	if (!method->tell && method->seek) {
@@ -104,26 +113,30 @@ GnomeVFSMethod *
 gnome_vfs_method_get (const gchar *name)
 {
 	GnomeVFSMethod *method;
+	MethodElement *method_element;
 	gchar *module_name;
 
 	g_return_val_if_fail (name != NULL, NULL);
 
 	G_LOCK (method_hash);
-	method = g_hash_table_lookup (method_hash, name);
+	method_element = g_hash_table_lookup (method_hash, name);
 	G_UNLOCK (method_hash);
 
-	if (method != NULL)
-		return method;
+	if (method_element != NULL)
+		return method_element->method;
 
 	module_name = g_strconcat (PREFIX "/lib/vfs/modules/lib", name, ".so",
 				   NULL);
-	if (!(method = module_get_sane_handle (module_name)))
+	if (! (method = module_get_sane_handle (module_name)))
 	    return NULL;
-
 	g_free (module_name);
 
+	method_element = g_new (MethodElement, 1);
+	method_element->name = g_strdup (name);
+	method_element->method = method;
+
 	G_LOCK (method_hash);
-	g_hash_table_insert (method_hash, g_strdup (name), method);
+	g_hash_table_insert (method_hash, method_element->name, method_element);
 	G_UNLOCK (method_hash);
 
 	return method;
