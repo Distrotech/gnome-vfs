@@ -1,5 +1,11 @@
 2000-08-17  John Sullivan  <sullivan@eazel.com>
 
+	* data/mime/gnome-vfs.keys:
+
+	Another missing description, for image/x-ico
+
+2000-08-17  John Sullivan  <sullivan@eazel.com>
+
 	Fixed bug 1724 (some MIME types without descriptions)
 
 	* data/mime/gnome-vfs.keys:

@@ -412,6 +412,9 @@ image/x-bmp
 image/x-compressed-xcf
 	description=GIMP image archive
 
+image/x-ico	
+	description=Icon image
+
 image/x-png
 	description=PNG image	
 	default_action_type=component
