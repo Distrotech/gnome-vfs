@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-21 15:06+0300\n"
-"PO-Revision-Date: 2004-01-23 15:46+0300\n"
+"POT-Creation-Date: 2004-01-29 12:20+0300\n"
+"PO-Revision-Date: 2004-01-30 08:56+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\\n\n"
 
-#: daemon/gnome-vfs-daemon.c:573
+#: daemon/gnome-vfs-daemon.c:588
 msgid "Could not initialize Bonobo"
 msgstr "Не удалось проинициализировать подсистему Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:579
+#: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
 msgstr "Не удалось проинициализировать подсистему gnome vfs"
 
@@ -212,246 +212,246 @@ msgstr "Вид задания %u неизвестен"
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:659
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Не удалось провести разбор: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:654
+#: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
 msgstr "Остальные ошибки разбора будут проигнорированы."
 
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:35
+#: libgnomevfs/gnome-vfs-result.c:38
 msgid "No error"
 msgstr "Ошибки отсутствуют"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:36
+#: libgnomevfs/gnome-vfs-result.c:39
 msgid "File not found"
 msgstr "Файл не найден"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:37
+#: libgnomevfs/gnome-vfs-result.c:40
 msgid "Generic error"
 msgstr "Произошла общая ошибка"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:38
+#: libgnomevfs/gnome-vfs-result.c:41
 msgid "Internal error"
 msgstr "Произошла внутренняя ошибка"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: libgnomevfs/gnome-vfs-result.c:39
+#: libgnomevfs/gnome-vfs-result.c:42
 msgid "Invalid parameters"
 msgstr "Обнаружены неверные параметры"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:40
+#: libgnomevfs/gnome-vfs-result.c:43
 msgid "Unsupported operation"
 msgstr "Операция не поддерживается"
 
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:41
+#: libgnomevfs/gnome-vfs-result.c:44
 msgid "I/O error"
 msgstr "Произошла ошибка ввода/вывода"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:45
 msgid "Data corrupted"
 msgstr "Данные повреждены"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:46
 msgid "Format not valid"
 msgstr "Формат недопустим"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "Bad file handle"
 msgstr "Заголовок файла неверен"
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "File too big"
 msgstr "Файл слишком велик"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "No space left on device"
 msgstr "Отсутствует место на устройстве"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:50
 msgid "Read-only file system"
 msgstr "Файловая система только для чтения"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid URI"
 msgstr "Идентификатор (URI) недопустим"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "File not open"
 msgstr "Файл не открыт"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
 msgstr "Режим открытия недопустим"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Access denied"
 msgstr "Доступ запрещен"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:55
 msgid "Too many open files"
 msgstr "Открыто слишком много файлов"
 
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "End of file"
 msgstr "Обнаружен конец файла"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "Not a directory"
 msgstr "Не является каталогом"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "Operation in progress"
 msgstr "Действие выполняется"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation interrupted"
 msgstr "Действие прервано"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/gnome-vfs-result.c:57
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "File exists"
 msgstr "Файл существует"
 
 #. GNOME_VFS_ERROR_LOOP
-#: libgnomevfs/gnome-vfs-result.c:58
+#: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
 msgstr "Обнаружены циклические ссылки"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: libgnomevfs/gnome-vfs-result.c:59
+#: libgnomevfs/gnome-vfs-result.c:62
 msgid "Operation not permitted"
 msgstr "Действие не разрешено"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:60
+#: libgnomevfs/gnome-vfs-result.c:63
 msgid "Is a directory"
 msgstr "Является каталогом"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
-#: libgnomevfs/gnome-vfs-result.c:61
+#: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
 msgstr "Недостаточно памяти"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:62
+#: libgnomevfs/gnome-vfs-result.c:65
 msgid "Host not found"
 msgstr "Узел не найден"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: libgnomevfs/gnome-vfs-result.c:63
+#: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
 msgstr "Имя узла недопустимо"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: libgnomevfs/gnome-vfs-result.c:64
+#: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host has no address"
 msgstr "У узла отсутствует адрес"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: libgnomevfs/gnome-vfs-result.c:65
+#: libgnomevfs/gnome-vfs-result.c:68
 msgid "Login failed"
 msgstr "Вход в сеанс не удался"
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: libgnomevfs/gnome-vfs-result.c:66
+#: libgnomevfs/gnome-vfs-result.c:69
 msgid "Operation cancelled"
 msgstr "Действие отменено"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: libgnomevfs/gnome-vfs-result.c:67
+#: libgnomevfs/gnome-vfs-result.c:70
 msgid "Directory busy"
 msgstr "Каталог занят"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: libgnomevfs/gnome-vfs-result.c:68
+#: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory not empty"
 msgstr "Каталог не пуст"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: libgnomevfs/gnome-vfs-result.c:69
+#: libgnomevfs/gnome-vfs-result.c:72
 msgid "Too many links"
 msgstr "Слишком много ссылок"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:70
+#: libgnomevfs/gnome-vfs-result.c:73
 msgid "Read only file system"
 msgstr "Файловая система только для чтения"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:71
+#: libgnomevfs/gnome-vfs-result.c:74
 msgid "Not on the same file system"
 msgstr "Находится не в той же файловой системе"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: libgnomevfs/gnome-vfs-result.c:72
+#: libgnomevfs/gnome-vfs-result.c:75
 msgid "Name too long"
 msgstr "Слишком длинное имя"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: libgnomevfs/gnome-vfs-result.c:73
+#: libgnomevfs/gnome-vfs-result.c:76
 msgid "Service not available"
 msgstr "Сервис не доступен"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: libgnomevfs/gnome-vfs-result.c:74
+#: libgnomevfs/gnome-vfs-result.c:77
 msgid "Request obsoletes service's data"
 msgstr "Были запрошены устаревшие сервисные данные"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: libgnomevfs/gnome-vfs-result.c:75
+#: libgnomevfs/gnome-vfs-result.c:78
 msgid "Protocol error"
 msgstr "Произошла ошибка протокола"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
-#: libgnomevfs/gnome-vfs-result.c:76
+#: libgnomevfs/gnome-vfs-result.c:79
 msgid "Could not find master browser"
 msgstr "Не удалось найти главный браузер"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
-#: libgnomevfs/gnome-vfs-result.c:77
+#: libgnomevfs/gnome-vfs-result.c:80
 msgid "No default action associated"
 msgstr "Отсутствует исходное ассоциированное действие"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
-#: libgnomevfs/gnome-vfs-result.c:78
+#: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
 msgstr "Отсутствует обработчик для схемы ссылки (URL)"
 
 #. GNOME_VFS_ERROR_PARSE
-#: libgnomevfs/gnome-vfs-result.c:79
+#: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
 msgstr "Произошла ошибка при разборе командной строки"
 
 #. GNOME_VFS_ERROR_LAUNCH
-#: libgnomevfs/gnome-vfs-result.c:80
+#: libgnomevfs/gnome-vfs-result.c:83
 msgid "Error launching command"
 msgstr "Произошла ошибка при выполнении команды"
 
-#: libgnomevfs/gnome-vfs-result.c:174
+#: libgnomevfs/gnome-vfs-result.c:179
 msgid "Unknown error"
 msgstr "Произошла неизвестная ошибка"
 
@@ -479,63 +479,63 @@ msgid "%.1f GB"
 msgstr "%.1f Гб"
 
 #: libgnomevfs/gnome-vfs-utils.c:1106
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (недопустимый Юникод)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
 msgstr "Дискета"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
 msgid "CD-ROM"
 msgstr "Компакт-диск"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
 msgid "Zip Drive"
 msgstr "ZIP-дисковод"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
 msgid "Memory Stick"
 msgstr "Мемори стик"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
 msgid "Camera"
 msgstr "Камера"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
 msgstr "Корневой раздел"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
 msgstr "Аудио компакт-диск"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
 msgid "Unknown volume"
 msgstr "Неизвестный раздел"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
 msgstr "Сетевой сервер"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Невозможно подсоединить дискету. Возможно, дискета отсутствует в дисководе."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Невозможно подсоединить раздел. Возможно, носитель отсутствует в устройстве."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -543,7 +543,7 @@ msgstr ""
 "Невозможно подсоединить дискету. Возможно, дискета в таком формате, что она "
 "не может быть подсоединена."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -551,28 +551,28 @@ msgstr ""
 "Невозможно подсоединить выбранный раздел. Возможно, раздел в таком формате, "
 "что он не может быть подсоединён."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Невозможно подсоединить выбранную дискету."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Невозможно подсоединить выбранный раздел."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Невозможно отсоединить выбранный раздел."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:220
-#: libgnomevfs/gnome-vfs-volume-ops.c:252
+#: libgnomevfs/gnome-vfs-volume-ops.c:253
+#: libgnomevfs/gnome-vfs-volume-ops.c:285
 msgid "Failed to start command"
 msgstr "Произошла ошибка при запуске команды"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:245
+#: libgnomevfs/gnome-vfs-volume-ops.c:278
 msgid "Unable to eject media"
 msgstr "Невозможно извлечь носитель"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:421
+#: libgnomevfs/gnome-vfs-volume-ops.c:454
 msgid "Unable to unmount connected server"
 msgstr "Невозможно отсоединить подключённый сервер"
 
@@ -689,149 +689,165 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"Приложение, используемое для просмотра файлов, требующих компонента для "
+"просмотра. Параметр %s будет заменён адресом (URI) файла, параметр %c - "
+"идентификатором (IID) rjvgjytynf."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
+"Исходное терминальное приложение, используемое приложениями, нуждающимися в "
+"терминале."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "Аргумент выполнения, использующийся исходным терминальным приложением."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "Обработчик ссылок (URL) типа H232"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "Обработчик ссылок (URL) типа HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "Обработчик ссылок (URL) типа HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "Handle H323 URLs"
-msgstr "Отсутствует обработчик для схемы ссылки (URL)"
+msgstr "Обрабатывать ссылки (URLs) типа H232"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "Handle HTTP URLs"
-msgstr "Отсутствует обработчик для схемы ссылки (URL)"
+msgstr "Обрабатывать ссылки (URLs) типа HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "Обрабатывать ссылки (URLs) типа HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle callto URLs"
-msgstr "Отсутствует обработчик для схемы ссылки (URL)"
+msgstr "Обрабатывать ссылки (URLs) типа callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "Handle ghelp URLs"
-msgstr "Отсутствует обработчик для схемы ссылки (URL)"
+msgstr "Обрабатывать ссылки (URLs) типа ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
-msgstr "Отсутствует обработчик для схемы ссылки (URL)"
+msgstr "Обрабатывать ссылки (URLs) типа info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "Handle mailto URLs"
-msgstr "Отсутствует обработчик для схемы ссылки (URL)"
+msgstr "Обрабатывать ссылки (URLs) типа mail"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "Handle man URLs"
-msgstr "Отсутствует обработчик для схемы ссылки (URL)"
+msgstr "Обрабатывать ссылки (URLs) типа man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "Handle trash URLs"
-msgstr "Отсутствует обработчик для схемы ссылки (URL)"
+msgstr "Обрабатывать ссылки (URLs) типа trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Запускать программу в терминале"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"Если включено, то программа, определённая в ключе \"command\", будет "
+"обрабатывать ссылки (URLs) типа H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
+"Если включено, то программа, определённая в ключе \"command\", будет "
+"обрабатывать ссылки (URLs) типа HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
+"Если включено, то программа, определённая в ключе \"command\", будет "
+"обрабатывать ссылки (URLs) типа HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"Если включено, то программа, определённая в ключе \"command\", будет "
+"обрабатывать ссылки (URLs) типа callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
+"Если включено, то программа, определённая в ключе \"command\", будет "
+"обрабатывать ссылки (URLs) типа ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
+"Если включено, то программа, определённая в ключе \"command\", будет "
+"обрабатывать ссылки (URLs) типа info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
+"Если включено, то программа, определённая в ключе \"command\", будет "
+"обрабатывать ссылки (URLs) типа mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
+"Если включено, то программа, определённая в ключе \"command\", будет "
+"обрабатывать ссылки (URLs) типа man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
+"Если включено, то программа, определённая в ключе \"command\", будет "
+"обрабатывать ссылки (URLs) типа trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
+"Если включено, то программа,определённая для обработки ссылки (URL), будет "
+"запускаться в терминале."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "Обработчик ссылки (URL) типа callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "Обработчик ссылок (URLs) типа ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "Обработчик ссылок (URLs) типа info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "Заголовок файла неверен"
+msgstr "Обработчик ссылок (URLs) типа mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "Обработчик ссылок (URLs) типа man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "Обработчик ссылок (URLs) типа trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
