@@ -1,3 +1,7 @@
+2003-09-01  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "ne" to ALL_LINGUAS.
+
 === gnome-vfs 2.3.8 ===
 
 2003-08-25  Alexander Larsson  <alexl@redhat.com>

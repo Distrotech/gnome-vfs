@@ -1,0 +1,209 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-vfs 1.9.16\n"
+"POT-Creation-Date: 2003-02-12 15:04+0100\n"
+"PO-Revision-Date: 2003-07-10 14:54-0300\n"
+"Last-Translator: Kshitij <obsession@enet.com.np>\n"
+"Language-Team: Nepali <info@mpp.org.np>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"First-Translator : Pawan Chitrakar<pawan@nplinux.org>\n"
+
+msgid " (invalid Unicode)"
+msgstr " (अबैध यूनिकोड)"
+
+msgid "%.1f GB"
+msgstr "%.1f जि बि"
+
+msgid "%.1f K"
+msgstr "%.1f के"
+
+msgid "%.1f MB"
+msgstr "%.1f एम बि"
+
+msgid "%s:%d contains NUL characters."
+msgstr "%s:%d मा नल क्यारेक्टर छ।."
+
+msgid "%s:%d contains no method name."
+msgstr "%s:%d मा मेथड नेम छैन।"
+
+msgid "%s:%d contains no module name."
+msgstr "%s:%d मा मोड्युल नाम छैन"
+
+msgid "%u bytes"
+msgstr "%u बाईट्स"
+
+msgid "1 byte"
+msgstr "1 बाईट"
+
+msgid "Access denied"
+msgstr "भित्र जान दिईएन"
+
+msgid "Bad file handle"
+msgstr "ब्याड फाईल ह्यन्डल"
+
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "जि आई ओ च्यानल खोल्न पाईप बनाऊन सकेन: %s"
+
+msgid "Configuration file `%s' was not found: %s"
+msgstr "कन्फिगरेशन फाईल भेटाउन सकिएन`%s': %s"
+
+msgid "Could not find master browser"
+msgstr "मास्टर ब्राउजर भेटाउन सकिएन"
+
+msgid "Could not parse: %s"
+msgstr "फ्रेजगर्न सकिएन: %s"
+
+msgid "Data corrupted"
+msgstr "डाटा करप्ट छ।"
+
+msgid "Didn't find a valid settings file at %s"
+msgstr " %s मा भ्यालिड सेटिंग फाईल भेटाउन सकिएन"
+
+msgid "Directory busy"
+msgstr "डाईरेक्टरि बिजि छ।"
+
+msgid "Directory not empty"
+msgstr "डाईरेक्टरि खाली छैन।"
+
+msgid "End of file"
+msgstr "फाईलको अन्त"
+
+msgid "File exists"
+msgstr "फाईल छ"
+
+msgid "File not found"
+msgstr "फाईल भेटिएन"
+
+msgid "File not open"
+msgstr "फाईल खुल्ला छैन"
+
+msgid "File too big"
+msgstr "फाईल एकदम ठुलो छ।"
+
+msgid "Format not valid"
+msgstr "फर्मयाट भ्यालिड छैन"
+
+msgid "Generic error"
+msgstr "जेनेरिक ऐरर"
+
+msgid "Host has no address"
+msgstr "होस्टको ठेगाना छैन"
+
+msgid "Host name not valid"
+msgstr "होस्टको नाम भ्यालिड छैन"
+
+msgid "Host not found"
+msgstr "होस्ट भेटिएन"
+
+msgid "I/O error"
+msgstr "अई/ओ गल्ती"
+
+msgid "Internal error"
+msgstr "भित्री गल्ती"
+
+msgid "Invalid URI"
+msgstr "ईनभ्यालिड यू आर आई"
+
+msgid "Invalid parameters"
+msgstr "ईनभ्यालिड प्यारामिटर्स"
+
+msgid "Is a directory"
+msgstr "डाईरेक्ट्रि हो"
+
+msgid "Login failed"
+msgstr "लग ईन असफल"
+
+msgid "Looping links encountered"
+msgstr "लुपिंग लिंक भेटियो"
+
+msgid "More parsing errors will be ignored."
+msgstr "अरु पार्सिंग एररलाई छोडिने छ"
+
+msgid "Name too long"
+msgstr "नाम लामो भयो"
+
+msgid "No error"
+msgstr "एरर छैन"
+
+msgid "No space left on device"
+msgstr "डिभाईसमा ठाँउ छैन"
+
+msgid "Not a directory"
+msgstr "डाईरेक्ट्रि होईन"
+
+msgid "Not enough memory"
+msgstr "पुग्दो मेमोरि छैन"
+
+msgid "Not on the same file system"
+msgstr "ऊहि फाईल सिस्टममा छैन"
+
+msgid "Open mode not valid"
+msgstr "ओपन मोड भ्यालिड छैन"
+
+msgid "Operation cancelled"
+msgstr "अपरेशन क्यान्सल भयो"
+
+msgid "Operation in progress"
+msgstr "अपरेशन अगाडि बड्दै छ"
+
+msgid "Operation interrupted"
+msgstr "अपरेशनमा बाधा"
+
+msgid "Operation not permitted"
+msgstr "अपरेशन गर्न दिईएन"
+
+msgid "Operation stopped"
+msgstr "अपरेशन रोकियो"
+
+msgid "Protocol error"
+msgstr "प्रोटोकोल एरर"
+
+msgid "Read only file system"
+msgstr "पढ्ने मात्र  फाईल सिस्टम"
+
+msgid "Read-only file system"
+msgstr "पढ्ने- मात्र  फाईल सिस्टम"
+
+msgid "Request obsoletes service's data"
+msgstr "रिक्वेस्ट ओबसोलेटस सर्भिस डेटा "
+
+msgid "Service not available"
+msgstr "सेवा ऊपलब्ध छैन"
+
+msgid "Standard Moniker factory"
+msgstr "स्टयान्डर्ड मंकियर फ्याक्ट्रि"
+
+msgid "Too many links"
+msgstr "धेरै लिंक भयो"
+
+msgid "Too many open files"
+msgstr "खुलेको फाईल धेरै भयो"
+
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "थाहा नभएको जिनोम भि एफ एस सिक पोजिसन%d"
+
+msgid "Unknown error"
+msgstr "थाहा नभएको एरर "
+
+msgid "Unknown job kind %u"
+msgstr "थाहा नभएको खाले काम %u"
+
+msgid "Unknown op type %u"
+msgstr "थाहा नभएको ओ पि टाईप %u"
+
+msgid "Unsupported operation"
+msgstr "सपोर्ट नगरिएको अपरेशन"
+
+msgid "Use the %s environment variable to specify a different location."
+msgstr "आर्कै लोकेसन स्पेसिफाई गर्न %s  ईनभाईरोमेन्ट भएको भेरिएबल प्रयोग गर्नु "
+
+msgid "file MonikerExtender"
+msgstr "मंकियर एक्टेन्डर फाईल"
+
+msgid "generic Gnome VFS moniker"
+msgstr "जेनेरिक जिनोम भि एफ एस मंकियर"
+
+msgid "generic file moniker"
+msgstr "जेनेरिक फाईल मंकियर"
