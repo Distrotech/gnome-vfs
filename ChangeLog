@@ -1,3 +1,9 @@
+2000-07-30  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c
+	(name_from_oaf_server_info): changed oaf_server_info_attr_lookup
+	calls to oaf_server_info_prop_lookup
+
 2000-07-28  Gene Z. Ragan  <gzr@eazel.com>
 
 	* mime-type-capplet/nautilus-mime-type-capplet.c:
