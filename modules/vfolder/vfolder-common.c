@@ -183,8 +183,9 @@ entry_reload_if_needed (Entry *entry)
 
 			D (g_print ("ADDING KEYWORD: %s\n", word));
 
-			entry->keywords = g_slist_prepend (entry->keywords, 
-							   GINT_TO_POINTER (quark));
+			entry->keywords = 
+				g_slist_prepend (entry->keywords, 
+						 GINT_TO_POINTER (quark));
 			changed = TRUE;
 		}
 		g_strfreev (parsed);
@@ -766,30 +767,23 @@ folder_get_child  (Folder *folder, gchar *name, FolderChild *child)
 		return TRUE;
 	}
 
-	if (folder->only_unallocated) {
-		file = vfolder_info_lookup_entry (folder->info, name);
-		if (file) {
-			child->type = DESKTOP_FILE;
-			child->entry = file;
-			return TRUE;
-		}
-	}
-
 	return FALSE;
 }
 
 Entry *
 folder_get_entry (Folder *folder, gchar *filename)
 {
+	Entry *retval = NULL;
+
 	folder_reload_if_needed (folder);
 
 	if (folder->entries_ht)
-		return g_hash_table_lookup (folder->entries_ht, filename);
+		retval = g_hash_table_lookup (folder->entries_ht, filename);
 
-	if (folder->only_unallocated)
-		return vfolder_info_lookup_entry (folder->info, filename);
+	if (!retval && folder->only_unallocated)
+		retval = vfolder_info_lookup_entry (folder->info, filename);
 
-	return NULL;
+	return retval;
 }
 
 const GSList *

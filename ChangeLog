@@ -1,3 +1,9 @@
+2002-07-18  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (folder_get_child): Don't call
+	vfolder_info_lookup_entry here for only_unallocated folders, let
+	folder_get_entry() do it.
+
 2002-07-17  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-info.c (vfolder_info_locate): Wrap
