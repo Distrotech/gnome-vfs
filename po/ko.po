@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-06-22 16:16+0900\n"
-"PO-Revision-Date: 2000-06-23 04:22:58+0900\n"
-"Last-Translator: Young-Ho Cha <ganadist@dacome.co.kr>\n"
+"Project-Id-Version: gnome-vfs 0.4.2cvs\n"
+"POT-Creation-Date: 2000-12-06 10:00+0900\n"
+"PO-Revision-Date: 2000-12-06 10:02+0900\n"
+"Last-Translator: Young-Ho Cha <ganadist@chollian.net>\n"
 "Language-Team: korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=euc-kr\n"
@@ -33,33 +33,33 @@ msgstr "%s:%d 가 모듈이름을 포함하지 않습니다."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "설정 파일 `%s' 가 없습니다: %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:479
+#: libgnomevfs/gnome-vfs-file-info.c:342
 #, c-format
 msgid "Unknown sort rule %d"
-msgstr ""
+msgstr "알수없는 정렬 규칙 %d"
 
-#: libgnomevfs/gnome-vfs-init.c:67
+#: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
 msgstr "그놈 VFS는 이미 초기화 되었습니다."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:656
 #, c-format
 msgid "Could not parse: %s"
-msgstr "파싱을 할수 없슴: %s"
+msgstr "분석 할수 없음: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:654
+#: libgnomevfs/gnome-vfs-parse-ls.c:658
 msgid "More parsing errors will be ignored."
-msgstr "다음부터 파싱 오류는 무시됩니다."
+msgstr "다음부터 분석 오류는 무시됩니다."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "No error"
-msgstr "오류 없슴"
+msgstr "오류 없음"
 
-#. GNOME_VFS_ERROR_NOTFOUND
+#. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
-msgstr "파일 없슴"
+msgstr "파일 없음"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -71,72 +71,72 @@ msgstr "일반 오류"
 msgid "Internal error"
 msgstr "내부 오류"
 
-#. GNOME_VFS_ERROR_BADPARAMS
+#. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Invalid parameters"
 msgstr "잘못된 인자"
 
-#. GNOME_VFS_ERROR_NOTSUPPORTED
+#. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Unsupported operation"
-msgstr "지원되지 않는 "
+msgstr "지원되지 않는 작동"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "I/O error"
 msgstr "입출력 오류"
 
-#. GNOME_VFS_ERROR_CORRUPTEDDATA
+#. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
-msgstr "손상된 데이터"
+msgstr "손상된 자료"
 
-#. GNOME_VFS_ERROR_WRONGFORMAT
+#. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
-msgstr "형식이 잘못되어 있슴"
+msgstr "형식이 잘못되어 있음"
 
-#. GNOME_VFS_ERROR_BADFILE
+#. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
 msgstr "잘못된 파일 핸들"
 
-#. GNOME_VFS_ERROR_TOOBIG
+#. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
 msgstr "파일이 너무 큼"
 
-#. GNOME_VFS_ERROR_NOSPACE
+#. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "No space left on device"
-msgstr "장치에 남은 공간 없슴"
+msgstr "장치에 남은 공간 없음"
 
-#. GNOME_VFS_ERROR_READONLY
+#. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
 msgstr "읽기 전용 파일 시스템"
 
-#. GNOME_VFS_ERROR_INVALIDURI
+#. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
 msgstr "잘못된 URI"
 
-#. GNOME_VFS_ERROR_NOTOPEN
+#. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
-msgstr "파일을 열수 없슴"
+msgstr "파일을 열수 없음"
 
-#. GNOME_VFS_ERROR_INVALIDOPENMODE
+#. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
-msgstr "열기모드가 잘못되어 있슴"
+msgstr "열기모드가 잘못되어 있음"
 
-#. GNOME_VFS_ERROR_ACCESSDENIED
+#. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Access denied"
 msgstr "접근 거부"
 
-#. GNOME_VFS_ERROR_TOOMANYOPENFILES
+#. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
 msgstr "너무 많은 파일이 열림"
@@ -146,12 +146,12 @@ msgstr "너무 많은 파일이 열림"
 msgid "End of file"
 msgstr "파일의 끝"
 
-#. GNOME_VFS_ERROR_NOTADIRECTORY
+#. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Not a directory"
 msgstr "디렉토리가 아님"
 
-#. GNOME_VFS_ERROR_INPROGRESS
+#. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
 msgstr "작동이 진행중"
@@ -161,47 +161,47 @@ msgstr "작동이 진행중"
 msgid "Operation interrupted"
 msgstr "작동이 중단됨"
 
-#. GNOME_VFS_ERROR_FILEEXISTS
+#. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "File exists"
-msgstr "파일이 있슴"
+msgstr "파일이 있음"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Looping links encountered"
-msgstr ""
+msgstr "루핑되는 링크 만남"
 
-#. GNOME_VFS_ERROR_NOTPERMITTED
+#. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation not permitted"
 msgstr "작동이 허가되지 않음"
 
-#. GNOME_VFS_ERROR_ISDIRECTORY
+#. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Is a directory"
 msgstr "디렉토리 임"
 
-#. GNOME_VFS_ERROR_NOMEM
+#. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
 msgstr "메모리가 부족"
 
-#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host not found"
-msgstr "호스트가 없슴"
+msgstr "호스트가 없음"
 
-#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
 msgstr "호스트 이름이 잘못됨"
 
-#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
-msgstr "호스트의 주소가 없슴"
+msgstr "호스트의 주소가 없음"
 
-#. GNOME_VFS_ERROR_LOGINFAILED
+#. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Login failed"
 msgstr "로그인 실패"
@@ -211,244 +211,258 @@ msgstr "로그인 실패"
 msgid "Operation cancelled"
 msgstr "작동 취소됨"
 
-#. GNOME_VFS_ERROR_DIRECTORYBUSY
+#. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory busy"
 msgstr "디렉토리 사용중"
 
-#. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
+#. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Directory not empty"
 msgstr "빈 디렉토리가 아님"
 
-#. GNOME_VFS_ERROR_TOOMANYLINKS
+#. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
 msgstr "링크가 너무 많음"
 
-#. GNOME_VFS_ERROR_READONLYFS
+#. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
 msgstr "읽기 전용 파일 시스템"
 
-#. GNOME_VFS_ERROR_NOTSAMEFS
+#. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
 msgstr "같은 파일시스템이 아님"
 
-#. GNOME_VFS_ERROR_NAMETOOLONG
+#. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Name too long"
 msgstr "이름이 너무 김"
 
-#: libgnomevfs/gnome-vfs-result.c:133
+#. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
+#: libgnomevfs/gnome-vfs-result.c:77
+msgid "Service not available"
+msgstr "서비스가 가능하지 않음"
+
+#. GNOME_VFS_ERROR_SERVICE_OBSOLETE
+#: libgnomevfs/gnome-vfs-result.c:78
+msgid "Request obsoletes service's data"
+msgstr "쓰이지 않는 서비스의 자료 요청"
+
+#: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
 msgstr "알수 없는 오류"
 
-#: libgnomevfs/gnome-vfs-utils.c:41
+#: libgnomevfs/gnome-vfs-utils.c:66
 msgid "1 byte"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-utils.c:43
+#: libgnomevfs/gnome-vfs-utils.c:68
 #, c-format
 msgid "%u bytes"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-utils.c:50
+#: libgnomevfs/gnome-vfs-utils.c:75
 #, c-format
 msgid "%.1fK"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-utils.c:54
+#: libgnomevfs/gnome-vfs-utils.c:79
 #, c-format
 msgid "%.1fM"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-utils.c:58
+#: libgnomevfs/gnome-vfs-utils.c:83
 #, c-format
 msgid "%.1fG"
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:338
+#: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
-msgstr ""
+msgstr "죽음."
 
 #. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:503
+#: libgnomevfs-corba/gnome-vfs-slave.c:501
 #, c-format
 msgid "Error reading: %s"
 msgstr "읽기 오류: %s"
 
 #. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:525
+#: libgnomevfs-corba/gnome-vfs-slave.c:523
 #, c-format
 msgid "Error writing: %s"
-msgstr "쓰기 오루: %s"
+msgstr "쓰기 오류: %s"
 
 #. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:574
+#: libgnomevfs-corba/gnome-vfs-slave.c:572
 #, c-format
 msgid "Cannot write: %s"
-msgstr "쓸수 없슴: %s"
+msgstr "쓸수 없음: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:602
+#: libgnomevfs-corba/gnome-vfs-slave.c:600
 #, c-format
 msgid "Cannot create temporary file name `%s'"
-msgstr "임시파일 이름 `%s'를 만들수 없슴"
+msgstr "임시파일 이름 `%s'를 만들수 없음"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:616
+#: libgnomevfs-corba/gnome-vfs-slave.c:614
 #, c-format
 msgid "Cannot create socket: %s"
-msgstr "소켓을 만들수 없슴: %s"
+msgstr "소켓을 만들수 없음: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:634
+#: libgnomevfs-corba/gnome-vfs-slave.c:632
 #, c-format
 msgid "Cannot bind `%s': %s"
-msgstr ""
+msgstr "`%s'를 연결할수 없음: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:641
+#: libgnomevfs-corba/gnome-vfs-slave.c:639
 #, c-format
 msgid "Cannot listen on `%s': %s"
-msgstr "`%s'를 들을수 없슴: %s"
+msgstr "`%s'를 들을수 없음: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
+#: libgnomevfs-corba/gnome-vfs-slave.c:661
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
-msgstr "`%s' 의 연결을 받을수 없슴: %s"
+msgstr "`%s' 의 연결을 받을수 없음: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1397
+#: libgnomevfs-corba/gnome-vfs-slave.c:1278
 msgid "Cannot initialize CORBA."
-msgstr "CORBA를 초기화 시킬수 없슴"
+msgstr "CORBA를 초기화 시킬수 없음"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1404
+#: libgnomevfs-corba/gnome-vfs-slave.c:1285
 msgid "Cannot resolve initial reference to RootPOA."
-msgstr ""
+msgstr "RootPOA로 초기참조를 결정할수 없음."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1411
+#: libgnomevfs-corba/gnome-vfs-slave.c:1292
 msgid "Cannot activate POA manager."
-msgstr ""
+msgstr "POA관리자를 활성화 할수 없음."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1436
+#: libgnomevfs-corba/gnome-vfs-slave.c:1317
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "사용법: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1447
+#: libgnomevfs-corba/gnome-vfs-slave.c:1328
 #, c-format
 msgid "Cannot open file descriptor %d."
-msgstr "파일 기술자 %d를 열수 없슴."
+msgstr "파일 기술자 %d를 열수 없음."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1470
+#: libgnomevfs-corba/gnome-vfs-slave.c:1351
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1480
+#: libgnomevfs-corba/gnome-vfs-slave.c:1361
 msgid "Cannot setup Request object."
-msgstr "요청한 객체를 설정할수 없슴"
+msgstr "요청한 객체를 설정할수 없음"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1487
+#: libgnomevfs-corba/gnome-vfs-slave.c:1368
 msgid "Cannot extract IOR."
-msgstr "IOR을 풀수 없슴"
+msgstr "IOR을 풀수 없음"
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #, c-format
 msgid "Got weird string from the slave process: `%s'"
-msgstr ""
+msgstr "슬레이브 프로세스에서 이상한 문자열 받아옴: `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
-msgstr "`%s'를 위한 객체를 얻을수 없슴"
+msgstr "`%s'를 위한 객체를 얻을수 없음"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr ""
+msgstr "GNOME::VFS::Slave::Notify 를 죽일수 없음 -- 예외 %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
 #, c-format
 msgid "Cannot connect socket `%s': %s"
-msgstr "소켓 `%s'를 연결할수 없슴: %s"
+msgstr "소켓 `%s'를 연결할수 없음: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:801
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:750
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "GNOME:VFS:Slave:Notify 를 초기화 할수 없슴"
+msgstr "GNOME:VFS:Slave:Notify 를 초기화 할수 없음"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
+msgstr "GNOME::VFS::Slave %s 을 다시설정할수 없음 -- 예외 %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
+msgstr "GNOME::VFS::Slave (IOR 알수없음)을 다시설정할수 없음 -- 예외 %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "GNOME::VFS:Slave %s를 죽일수 없슴 -- 예외 %s"
+msgstr "GNOME::VFS:Slave %s를 죽일수 없음 -- 예외 %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "GNOME::VFS:Slave 를 죽일수 없슴 (알수없는 IOR) -- 예외 %s"
+msgstr "GNOME::VFS:Slave 를 죽일수 없음 (알수없는 IOR) -- 예외 %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:161
+#: libgnomevfs-pthread/gnome-vfs-job.c:157
 msgid "Error writing to the wakeup GnomeVFSJob channel."
-msgstr ""
+msgstr "깨어있는 GnomeVFSJob채널을 쓰는중 오류."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:545
-#: libgnomevfs-pthread/gnome-vfs-job.c:1449
+#: libgnomevfs-pthread/gnome-vfs-job.c:762
+#: libgnomevfs-pthread/gnome-vfs-job.c:1672
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "알수없는 작업 ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:949
-#: libgnomevfs-pthread/gnome-vfs-job.c:1044
+#: libgnomevfs-pthread/gnome-vfs-job.c:1061
+#: libgnomevfs-pthread/gnome-vfs-job.c:1189
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel을 열기위한 파이프 생성 실패: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1482
+#: libgnomevfs-pthread/gnome-vfs-job.c:1705
 msgid "Operation stopped"
 msgstr "작동 중지"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:291
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:336
 msgid "Edit Applications List"
 msgstr "프로그램 목록 편집"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:311
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:356
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
 msgstr "mime형식 \"%s\"에 대한 메뉴에서 나타날 프로그램 선택"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:331
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:380
 msgid "Add Application..."
 msgstr "프로그램 추가..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:335
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
+msgid "Edit Application..."
+msgstr "프로그램 편집..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:393
 msgid "Delete Application"
 msgstr "프로그램 제거"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:360
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:426
 msgid "Edit Components List"
 msgstr "컴포넌트 목록 편집"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:380
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
 msgstr "mime형식 \"%s\"에 대한 메뉴에서 나타날 보기프로그램 선택"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:553
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:623
 msgid "Add Mime Type"
 msgstr "Mime형식 추가"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:554
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:626
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
@@ -456,23 +470,35 @@ msgstr ""
 "새 Mime형식을 추가하십시오\n"
 "예: image/tiff; text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:559
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:632
 msgid "Mime Type:"
 msgstr "Mime 형식:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:572
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
 msgid "Type in a description for this mime-type."
 msgstr "이 mime형식의 설명을 적으세요"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:578
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:650
 msgid "Description:"
 msgstr "설명"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:606
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:786
+msgid "File Extensions "
+msgstr "파일 확장자"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:806
+msgid "Add..."
+msgstr "추가..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:811
+msgid "    Remove    "
+msgstr "    제거     "
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:882
 msgid "Add New Extension"
 msgstr "새 확장자 추가"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:607
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:886
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
@@ -480,250 +506,217 @@ msgstr ""
 "이 mime형식의 확장자를 입력하십시오.\n"
 "예: .html, .htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:612
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:891
 msgid "Extension:"
 msgstr "확장자:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:673
-msgid "Add New Application"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1051
+msgid "New Application"
 msgstr "새 프로그램"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:675
+#. Application Name label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1060
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1164
 msgid "Application Name:"
 msgstr "프로그램 이름:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:683
+#. Application Command label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1068
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1173
 msgid "Application Command:"
 msgstr "프로그램 명령:"
 
-#. Create label, menu and edit button for default applications
-#: mime-type-capplet/nautilus-mime-type-capplet.c:339
-msgid "Default Application:"
-msgstr "기본 프로그램:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:347
-#: mime-type-capplet/nautilus-mime-type-capplet.c:358
-msgid "Edit List"
-msgstr "편집 목록"
-
-#. Create label, menu and edit button for default components
-#: mime-type-capplet/nautilus-mime-type-capplet.c:352
-msgid "Default Viewer:"
-msgstr "기본 보기 프로그램:"
-
-#. Add icon box
-#: mime-type-capplet/nautilus-mime-type-capplet.c:363
-msgid "Select an icon..."
-msgstr "아이콘 선택..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:383
-msgid "Add"
-msgstr "추가"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:387
-msgid "Remove"
-msgstr "제거"
-
-#. Default Action frame
-#: mime-type-capplet/nautilus-mime-type-capplet.c:401
-msgid "Default Action"
-msgstr "기본 행동"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:407
-msgid "Use None"
-msgstr "아무것도 사용않음"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:413
-msgid "Use Application"
-msgstr "프로그램 사용"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:419
-msgid "Use Viewer"
-msgstr "보기 프로그램 사용"
-
 #. Open Behavior frame
-#.
-#. behavior_frame = gtk_frame_new (_("Open Behavior"));
-#. gtk_box_pack_start (GTK_BOX (vbox4), behavior_frame, FALSE, FALSE, 0);
-#.
-#. frame_vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
-#. gtk_container_add (GTK_CONTAINER (behavior_frame), frame_vbox);
-#.
-#. check_box = gtk_check_button_new_with_label (_("Can open multiple files"));
-#. gtk_box_pack_start (GTK_BOX (frame_vbox), check_box, FALSE, FALSE, 0);
-#.
-#. check_box = gtk_check_button_new_with_label (_("Can open from URI"));
-#. gtk_box_pack_start (GTK_BOX (frame_vbox), check_box, FALSE, FALSE, 0);
-#.
-#. Mime list Add and Delete buttons
-#: mime-type-capplet/nautilus-mime-type-capplet.c:441
-msgid "Add..."
-msgstr "추가..."
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1076
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1182
+msgid "Open Behavior"
+msgstr "열기 행동"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:445
-msgid "Delete"
-msgstr "지움"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1082
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1188
+msgid "Can open multiple files"
+msgstr "여러 파일을 열수 있음"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:588
-#: mime-type-capplet/nautilus-mime-type-capplet.c:730
-msgid "None"
-msgstr "없음"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1085
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1192
+msgid "Can open from URI"
+msgstr "URI에서 열수 있음"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:959
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1155
+msgid "Edit Application"
+msgstr "응용프로그램 편집"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:541
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1520
 msgid "Mime Type"
 msgstr "Mime 형식"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:960
+#: mime-type-capplet/nautilus-mime-type-capplet.c:548
+msgid "Change Icon"
+msgstr "아이콘 바꿈"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:555
+msgid "Change File Extensions"
+msgstr "파일 확장자 바꿈"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:563
+msgid "Default Action:"
+msgstr "기본 행동:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:575
+msgid "Use Viewer"
+msgstr "보기 프로그램 사용"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:581
+msgid "Open With Application"
+msgstr "응용프로그램으로 열기"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:593
+msgid "Edit List"
+msgstr "편집 목록"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:612
+msgid "Add new Mime type..."
+msgstr "새 Mime형식 추가..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:618
+msgid "Delete this Mime type..."
+msgstr "이 Mime형식을 지움..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:629
+msgid "Revert to System Defaults"
+msgstr "시스템 기본치로 되돌림"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:687
+msgid "No Description"
+msgstr "설명 없음"
+
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:817
+#: mime-type-capplet/nautilus-mime-type-capplet.c:962
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1127
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1313
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1435
+msgid "None"
+msgstr "없음"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1058
+msgid ""
+"Reverting to system settings\n"
+"will lose all your personal \n"
+"Mime configuration.\n"
+"Revert to System Settings ?\n"
+msgstr ""
+"시스템 설정으로 되돌리면\n"
+"사용자의 개인 Mime설정을\n"
+"모두 잃어버리게 됩니다.\n"
+"시스템 설정으로 되돌리겠습니까?\n"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1519
 msgid "Description"
 msgstr "설명"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:961
-msgid "Application"
-msgstr "프로그램"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1521
+msgid "Extension"
+msgstr "확장자"
 
-#: modules/file-method.c:358
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1522
+msgid "Action"
+msgstr "사용할 프로그램"
+
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:272
+msgid "Can't find an hbox, using a normal file selection"
+msgstr "hbox를 찾을수 없습니다, 보통 파일선택기를 사용합니다"
+
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:278
+msgid "Preview"
+msgstr "미리 보기"
+
+#: modules/efs-method.c:493 modules/file-method.c:367
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "알수없는 GnomeVFSSeekPosition %d"
 
-#: modules/ftp-method.c:352
-msgid "ftpfs: Invalid host name."
-msgstr "ftpfs: 잘못된 호스트 이름."
-
-#: modules/ftp-method.c:375
-msgid "ftpfs: Invalid host address."
-msgstr "ftpfs: 잘못된 호스트 주소."
-
-#: modules/ftp-method.c:395
-#, c-format
-msgid "ftpfs: making connection to %s"
-msgstr "ftpfs: %s로 접속 연결중"
-
-#: modules/ftp-method.c:401
-msgid "ftpfs: connection interrupted by user"
-msgstr "ftpfs: 사용자가 접속 중지"
-
-#: modules/ftp-method.c:403
-#, c-format
-msgid "ftpfs: connection to server failed: %s"
-msgstr "ftpfs: 서버로 연결 실패: %s"
-
-#: modules/ftp-method.c:479
-#, c-format
-msgid "Waiting to retry... %d (Control-C to cancel)"
-msgstr "재시도하기 위해 대기중... %d (취소하려면 Control-C)"
-
-#: modules/ftp-method.c:750
-msgid " FTP: Password required for "
-msgstr " FTP: 비밀번호가 필요합니다 "
-
-#: modules/ftp-method.c:789
-msgid "ftpfs: sending login name"
-msgstr "ftpfs: 로그인 이름 전송중"
-
-#: modules/ftp-method.c:795
-msgid "ftpfs: sending user password"
-msgstr "ftpfs: 사용자 비밀번호 전송중"
-
-#: modules/ftp-method.c:801
-msgid "ftpfs: logged in"
-msgstr "ftpfs: 로그인 중"
-
-#: modules/ftp-method.c:813
-#, c-format
-msgid "ftpfs: Login incorrect for user %s "
-msgstr "ftpfs: 사용자 %s의 로그인이 잘못되었슴"
-
-#: modules/ftp-method.c:826
-msgid "ftpfs: aborting transfer."
-msgstr "ftpfs: 전송 중지."
-
-#: modules/ftp-method.c:828
-#, c-format
-msgid "ftpfs: abort error: %s"
-msgstr "ftpfs: 중지 오류: %s"
-
-#: modules/ftp-method.c:833
-msgid "ftpfs: abort failed"
-msgstr "ftpfs: 중지 실패"
-
-#: modules/ftp-method.c:910
-msgid "ftpfs: could not setup passive mode"
-msgstr "ftpfs: 수동모드로 설정하지 못하였습니다"
-
-#: modules/ftp-method.c:1087
-#, c-format
-msgid "ftpfs: storing file %d (%d)"
-msgstr "ftpfs: 파일 저장중 %d (%d)"
-
-#: modules/ftp-method.c:1308 modules/ftp-method.c:1510
-msgid "ftpfs: CWD failed."
-msgstr "ftpfs: 현재 작업 디렉토리를 읽을수 없습니다."
-
-#: modules/ftp-method.c:1318 modules/ftp-method.c:1325
-msgid "ftpfs: couldn't resolve symlink"
-msgstr "ftpfs: symlink 를 해석할수 없습니다"
-
-#: modules/ftp-method.c:1377
-msgid "Resolving symlink..."
-msgstr "symlink 해석중..."
-
-#: modules/ftp-method.c:1501
-#, c-format
-msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-msgstr "ftpfs: FTP디렉토리 %s 읽는중... (유닉스 ls옵션 사용하지 않음)"
-
-#: modules/ftp-method.c:1505
-#, c-format
-msgid "ftpfs: Reading FTP directory %s..."
-msgstr "ftpfs: FTP디렉토리 %s 읽는중..."
-
-#: modules/ftp-method.c:1571
-msgid "ftpfs: reading FTP directory interrupt by user"
-msgstr "ftpfs: FTP디렉토리 읽는중 사용자가 중지"
-
-#: modules/ftp-method.c:1595
-msgid "ftpfs: got listing"
-msgstr "ftpfs: 목록 받는중"
-
-#: modules/ftp-method.c:1647
-msgid "ftpfs: failed; nowhere to fallback to"
-msgstr ""
-
-#: modules/ftp-method.c:2040
-msgid "Starting linear transfer..."
-msgstr "전송 시작..."
-
-#: modules/ftp-method.c:2110
-msgid "Preparing reget..."
-msgstr "다시 받기 준비..."
-
-#: modules/http-method.c:503
-#, c-format
-msgid "Invalid header `%s'"
-msgstr "잘못된 헤더 `%s'"
-
-#: modules/http-method.c:520
+#: modules/http-method.c:1176
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s 받음"
 
-#: modules/http-method.c:656
+#: modules/http-method.c:1570
 #, c-format
 msgid "Closing connection to %s"
 msgstr "%s의 연결 끊음"
 
-#: modules/http-method.c:810
+#: modules/http-method.c:1801
 #, c-format
 msgid "%s of %s read"
 msgstr "%2$s 중 %1$s 읽음"
 
-#: modules/http-method.c:813
+#: modules/http-method.c:1804
 #, c-format
 msgid "%s read"
 msgstr "%s 읽음"
 
-#. Multi-Status
-#: modules/http-method.c:975
-msgid "HTTP server returned an invalid PROPFIND response"
-msgstr ""
+#: test/gnome-file-selection/gnome-file-selection.c:671
+msgid "Back"
+msgstr "뒤로"
+
+#: test/gnome-file-selection/gnome-file-selection.c:672
+msgid "Go to the previously visited directory"
+msgstr "이전에 방문하였던 디렉토리로 갑니다"
+
+#: test/gnome-file-selection/gnome-file-selection.c:680
+msgid "Up"
+msgstr "위로"
+
+#: test/gnome-file-selection/gnome-file-selection.c:681
+msgid "Go to the parent directory"
+msgstr "상위 디렉토리로 갑니다"
+
+#: test/gnome-file-selection/gnome-file-selection.c:689
+msgid "Forward"
+msgstr "앞으로"
+
+#: test/gnome-file-selection/gnome-file-selection.c:690
+msgid "Go to the next visited directory"
+msgstr "다음 방문하였던 디렉토리로 갑니다"
+
+#: test/gnome-file-selection/gnome-file-selection.c:699
+msgid "Rescan"
+msgstr "다시 읽기"
+
+#: test/gnome-file-selection/gnome-file-selection.c:700
+msgid "Rescan the current directory"
+msgstr "현재 디렉토리 다시 읽기"
+
+#: test/gnome-file-selection/gnome-file-selection.c:709
+msgid "Home"
+msgstr "홈"
+
+#: test/gnome-file-selection/gnome-file-selection.c:710
+msgid "Go to the home directory"
+msgstr "홈 디렉토리로 가기"
+
+#: test/gnome-file-selection/gnome-file-selection.c:806
+msgid "Name"
+msgstr "이름"
+
+#: test/gnome-file-selection/gnome-file-selection.c:807
+msgid "Size"
+msgstr "크기"
+
+#: test/gnome-file-selection/gnome-file-selection.c:808
+msgid "Date"
+msgstr "날짜"
+
+#: test/gnome-file-selection/gnome-file-selection.c:837
+msgid "Enter name:"
+msgstr "이름 입력:"
+
+#: test/gnome-file-selection/gnome-file-selection.c:860
+msgid "Show:"
+msgstr "보기:"
+
+#: test/gnome-file-selection/gnome-file-selection.c:887
+msgid "Show dotfiles"
+msgstr "숨김파일 보기"
