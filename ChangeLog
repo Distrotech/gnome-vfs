@@ -1,3 +1,32 @@
+2001-01-17  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Rebecca Schulman  <rebecka@eazel.com>
+
+	Fixed problems that were part of bug 5581 (Can't make
+	StarOffice the default application for file types). There
+	were three problems, of which two are now fixed:
+	(1) Installing StarOffice (at least using Sun's installer)
+	doesn't add its directory to $PATH, and it isn't installed
+	in a directory already in $PATH. This is not fixed.
+	(2) Applications not in $PATH were not stripped from the
+	complete list, but should be since they can't be used (the
+	same reason they are stripped from the short list and
+	default). This is fixed.
+	(3) The code that checked whether applications were in $PATH
+	didn't handle paths starting with ~. This is fixed.
+
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_expand_initial_tilde): Function moved here and
+	renamed from expand_tilde in nautilus-file-utilities.c. Next
+	I'll make Nautilus use this function.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_all_applications): Prune nonexistent
+	applications (including ones not in the path) from here
+	also, since they can't be used by Nautilus.
+	(executable_in_path): Handle parts of $PATH that start with ~
+
 2001-01-17  Ian McKellar  <ian@eazel.com>
 
 	* test/test-dirop.c: (main):

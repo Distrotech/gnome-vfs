@@ -27,6 +27,7 @@
 #include "gnome-vfs-application-registry.h"
 #include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-result.h"
+#include "gnome-vfs-utils.h"
 #include <gconf/gconf.h>
 #include <stdio.h>
 #include <string.h>
@@ -701,6 +702,9 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 	g_return_val_if_fail (mime_type != NULL, NULL);
 
 	applications = gnome_vfs_application_registry_get_applications (mime_type);
+
+	/* Remove application ids representing nonexistent (not in path) applications */
+	applications = prune_ids_for_nonexistent_applications (applications);
 
 	/* convert list to list of GnomeVFSMimeApplication's */
 	li = applications;
@@ -1594,11 +1598,12 @@ is_executable_file (const char *path)
 	return TRUE;
 }
 
+
 static gboolean
 executable_in_path (const char *executable_name)
 {
 	const char *path_list, *piece_start, *piece_end;
-	char *piece, *path;
+	char *piece, *raw_path, *expanded_path;
 	gboolean is_good;
 
 	path_list = g_getenv ("PATH");
@@ -1613,9 +1618,12 @@ executable_in_path (const char *executable_name)
 			is_good = FALSE;
 		} else {
 			/* Try out this path with the executable. */
-			path = g_strconcat (piece, "/", executable_name, NULL);
-			is_good = is_executable_file (path);
-			g_free (path);
+			raw_path = g_strconcat (piece, "/", executable_name, NULL);
+			expanded_path = gnome_vfs_expand_initial_tilde (raw_path);
+			g_free (raw_path);
+			
+			is_good = is_executable_file (expanded_path);
+			g_free (expanded_path);
 		}
 		
 		g_free (piece);
