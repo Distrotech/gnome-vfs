@@ -37,6 +37,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 
 #include <libgnomevfs/gnome-vfs-mime.h>
 
@@ -105,10 +106,11 @@ expand_env_vars(char *s)
 				tmp2 = tmp+(strlen(tmp))-1; *tmp2='\0';
 			}
 			tmp3 = g_getenv(tmp);
+			if (!tmp3 && strstr(tmp, "LC_CTYPE"))
+				/* It's not always the case $LC_CTYPE or $LANG is set */
+				tmp3 = (char*)setlocale(LC_CTYPE, NULL);
 			g_free(*token);
-			/* don't do g_strdup (s?s1:s2) as that doesn't work with
-			   certain gcc 2.96 versions */
-			*token = tmp3 ? g_strdup(tmp3) : g_strdup("");
+			*token = g_strdup(tmp3);
 		}
 	}
 	expanded = g_strjoinv("/", tokens);
@@ -152,9 +154,10 @@ get_icon_for_action(char *action)
 	char *tmp=NULL;
 	char *icon_name_cache_path;
 
-	char *iconsearchpath[] = {"/usr/dt/appconfig/icons/$LANG",
-			"/etc/dt/appconfig/icons/$LANG",
-   			"$HOME/.dt/icons", NULL };
+	char *iconsearchpath[] = {"/usr/dt/appconfig/icons/$LC_CTYPE",
+                       "/etc/dt/appconfig/icons/$LC_CTYPE",
+                       "$HOME/.dt/icons",
+                       "/usr/dt/appconfig/icons/C", NULL};
 
 	/*if action has arg strip the arg*/
 	if ((tmp=strchr(action,'\"'))) {*tmp='\0'; tmp=NULL;}
@@ -236,12 +239,35 @@ do_open (GnomeVFSMethod *method,
 			if (line[0] == '#') continue;
 			else if (line[0] == '}') break;
 			else if (strstr(line,"f.title")) {
+				char *utf8_name = NULL;
+				
 				tmp = strchr(line,'\"'); tmp ++;
 				tmp2 = strchr(tmp,'\"'); if(tmp2) *tmp2='\0';
-				dtfile->contents= g_strdup_printf("[Desktop "
-					"Entry]\nName=%s\nIcon=%s\nType=Directory\n",
-					 tmp, get_icon_for_menu(tmp));
+
+				utf8_name = g_locale_to_utf8 (tmp, -1,
+							      NULL, NULL,
+							      NULL);
+				/* fallback to avoid crash */
+				if (utf8_name == NULL)
+					utf8_name = g_strdup (tmp);
+
+				dtfile->contents = g_strdup_printf 
+					("[Desktop Entry]\n"
+					 "Encoding=UTF-8\n"
+					 /* Note that we include the utf-8
+					  * translated name without a language
+					  * specifier, but that's OK, it will
+					  * work */
+					 "Name=%s\n"
+					 "Comment=%s\n"
+					 "Icon=%s\n"
+					 "Type=Directory\n",
+					 utf8_name, 
+					 utf8_name,
+					 get_icon_for_menu(tmp));
 				/* Title is found, dont look for secondary title*/
+
+				g_free (utf8_name);
 				break;
 			}
 		}
@@ -251,28 +277,75 @@ do_open (GnomeVFSMethod *method,
 			else if (line[0] == '}') break;
 			else if (strstr(line,name)){
 				if((tmp = strstr(line,"f.action")) != NULL){
+					char *utf8_name = NULL;
+
 					tmp+=8;
 					end = strchr(tmp,'\n');
 					if (end) *end='\0';
 					exec=g_strdup_printf("dtaction %s",tmp);
 					icon=get_icon_for_action(tmp);
 					if (!icon) icon=g_strdup("NONE");
-					dtfile->contents= g_strdup_printf("[Desktop Entry]\nName=%s"
-								"\nExec=%s\nIcon=%s\nTerminal=0\n"
-								"Type=Application\n", name, exec, icon);
+
+					utf8_name = g_locale_to_utf8 (name, -1,
+								      NULL,
+								      NULL,
+								      NULL);
+					/* fallback to avoid crash */
+					if (utf8_name == NULL)
+						utf8_name = g_strdup (name);
+
+					dtfile->contents= g_strdup_printf
+						("[Desktop Entry]\n"
+						 "Encoding=UTF-8\n"
+						 /* Note that we include the
+						  * utf-8 translated name
+						  * without a language
+						  * specifier, but that's
+						  * OK, it will work */
+						 "Name=%s\n"
+						 "Comment=%s\n"
+						 "Exec=%s\n"
+						 "Icon=%s\n"
+						 "Terminal=0\n"
+						 "Type=Application\n",
+						 utf8_name, utf8_name,
+						 exec, icon);
+					g_free (utf8_name);
 					g_free(icon);
 				} else if ((tmp = strstr(line,"f.exec"))!=NULL){
+					char *utf8_name = NULL;
+
 					tmp+=6;
 					tmp = g_strstrip(tmp);
 					/* strip off quotes */
 					if (*tmp == '\"') tmp++;
 					end = tmp+(strlen(tmp))-1;
 					if (*end == '\"') *end = '\0';
-					dtfile->contents= g_strdup_printf("[Desktop Entry]\nName=%s"
-								"\nExec=%s\n"
-								"Icon=\n"
-								"Terminal=0\n"
-			  		  			"Type=Application\n", name, tmp);
+
+					utf8_name = g_locale_to_utf8 (name, -1,
+								      NULL,
+								      NULL,
+								      NULL);
+					/* fallback to avoid crash */
+					if (utf8_name == NULL)
+						utf8_name = g_strdup (name);
+
+					dtfile->contents= g_strdup_printf
+						("[Desktop Entry]\n"
+						 "Encoding=UTF-8\n"
+						 /* Note that we include the
+						  * utf-8 translated name
+						  * without a language
+						  * specifier, but that's
+						  * OK, it will work */
+						 "Name=%s\n"
+						 "Comment=%s\n"
+						 "Exec=%s\n"
+						 "Icon=\n"
+						 "Terminal=0\n"
+						 "Type=Application\n",
+						 utf8_name, utf8_name, tmp);
+					g_free (utf8_name);
 				}
 			}
 		}
@@ -519,7 +592,7 @@ GnomeVFSMethod *
 vfs_module_init (const char *method_name, 
 		 const char *args)
 {
-	gchar *files[6];
+	gchar *files[7];
 	int i;
 	char *icon_name_cache_path;
 
@@ -532,21 +605,22 @@ vfs_module_init (const char *method_name,
 
 	/* find the right cde menu file to start with */
 	cdemenufiles = NULL;
-	files[0] = expand_env_vars("$HOME/.dt/$LANG/dtwmrc");
+	files[0] = expand_env_vars("$HOME/.dt/$LC_CTYPE/dtwmrc");
 	files[1] = expand_env_vars("$HOME/.dt/dtwmrc");
-	files[2] = expand_env_vars("/etc/dt/config/$LANG/sys.dtwmrc");
+	files[2] = expand_env_vars("/etc/dt/config/$LC_CTYPE/sys.dtwmrc");
 	files[3] = g_strdup("/etc/dt/config/sys.dtwmrc");
-	files[4] = expand_env_vars("/usr/dt/config/$LANG/sys.dtwmrc");
+	files[4] = expand_env_vars("/usr/dt/config/$LC_CTYPE/sys.dtwmrc");
 	files[5] = g_strdup("/usr/dt/config/sys.dtwmrc");
+	files[6] = g_strdup("/usr/dt/config/C/sys.dtwmrc");
 
-	for (i=0;i<6;i++){
+	for (i=0;i<7;i++){
 		if (g_file_test(files[i],G_FILE_TEST_EXISTS)){
 			cdemenufiles = g_slist_append(cdemenufiles,
 				g_strdup(files[i]));
 			break;
 		}	
 	}
-	for (i=0;i<6;i++) g_free(files[i]);
+	for (i=0;i<7;i++) g_free(files[i]);
 
 	/* if didnt find any menu start file then we are fecked */
 	if (cdemenufiles == NULL) return NULL;
