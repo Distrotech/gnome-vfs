@@ -58,7 +58,8 @@
 #endif
 
 #ifdef HAVE_FAM
-FAMConnection *fam_connection = NULL;
+static FAMConnection *fam_connection = NULL;
+static gint fam_watch_id = 0;
 G_LOCK_DEFINE_STATIC (fam_connection);
 
 typedef struct {
@@ -2172,6 +2173,8 @@ fam_do_iter_unlocked (void)
 		if (FAMNextEvent(fam_connection, &ev) != 1) {
 			FAMClose(fam_connection);
 			g_free(fam_connection);
+			g_source_remove (fam_watch_id);
+			fam_watch_id = 0;
 			fam_connection = NULL;
 			return FALSE;
 		}
@@ -2257,7 +2260,6 @@ static gboolean
 monitor_setup (void)
 {
 	GIOChannel *ioc;
-	gint watch_id;
 
 	G_LOCK (fam_connection);
 
@@ -2273,9 +2275,9 @@ monitor_setup (void)
 			return FALSE;
 		}
 		ioc = g_io_channel_unix_new (FAMCONNECTION_GETFD(fam_connection));
-		watch_id = g_io_add_watch (ioc,
-					   G_IO_IN | G_IO_HUP | G_IO_ERR,
-					   fam_callback, fam_connection);
+		fam_watch_id = g_io_add_watch (ioc,
+					       G_IO_IN | G_IO_HUP | G_IO_ERR,
+					       fam_callback, fam_connection);
 		g_io_channel_unref (ioc);
 	}
 
