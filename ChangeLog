@@ -1,3 +1,22 @@
+2000-10-28  Pavel Cisler <pavel@eazel.com>
+
+	* modules/http-method.c: (sig_gconf_value_changed),
+	(http_proxy_for_host_port), (process_propfind_propstat),
+	(propfind_href_to_vfs_uri), (null_handling_strcmp),
+	(match_unescaped_uri_text), (process_propfind_response),
+	(make_propfind_request), (do_open_directory), (do_read_directory),
+	(do_get_file_info), (do_is_local), (do_make_directory),
+	(do_remove_directory), (is_same_fs), (do_move), (do_unlink),
+	(do_check_same_fs), (vfs_module_init), (vfs_module_shutdown):
+	Fix 4110 - document icon instead of folder icon for subfolder...
+	I found a fix to this one while working on 4059.
+	The problem was that the webdav server was overzealous about
+	escaping and was returning urls that had '(' escaped. This
+	is not needed according to the RFC. A uri text compare was failing
+	because of this. Changed the test to unescape before the comparison.
+	I also took a stab at cleaning up the three or so formatting styles
+	throught the code into the required style in at least a part of the file.
+
 2000-10-27  Darin Adler  <darin@eazel.com>
 
 	Fixed bugs in set_file_info enough to make it suitable for use

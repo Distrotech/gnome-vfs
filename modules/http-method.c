@@ -30,7 +30,6 @@
    - Handle redirection.
    - Handle persistent connections.  */
 
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -64,7 +63,6 @@
 
 #include "http-method.h"
 
-
 #if 0
 #include <stdio.h>
 #include <stdarg.h>
@@ -626,7 +624,6 @@ cache_invalidate_uri_parent (GnomeVFSURI *uri)
 
 #endif /* DAV_NO_CACHE */
 
-
 /* What do we qualify ourselves as?  */
 /* FIXME bugzilla.eazel.com 1160: "gnome-vfs/1.0.0" may not be good. */
 #define USER_AGENT_STRING 	"gnome-vfs/" VERSION
@@ -645,7 +642,6 @@ cache_invalidate_uri_parent (GnomeVFSURI *uri)
 #define ITEM_GCONF_HTTP_PROXY "http-proxy"
 #define KEY_GCONF_HTTP_PROXY (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_HTTP_PROXY)
 
-
 /* Some status code validation macros.  */
 #define HTTP_20X(x)        (((x) >= 200) && ((x) < 300))
 #define HTTP_PARTIAL(x)    ((x) == HTTP_STATUS_PARTIAL_CONTENTS)
@@ -707,7 +703,6 @@ static GConfClient * gl_client = NULL;
 static GMutex *gl_mutex = NULL;
 static gchar *gl_http_proxy = NULL;
 
-
 struct _HttpFileHandle {
 	GnomeVFSInetConnection *connection;
 	GnomeVFSIOBuf *iobuf;
@@ -752,7 +747,6 @@ defaults_file_info_new ()
 	return ret;
 }
 
-
 static HttpFileHandle *
 http_file_handle_new (GnomeVFSInetConnection *connection,
 		      GnomeVFSIOBuf *iobuf,
@@ -794,7 +788,6 @@ http_file_handle_destroy (HttpFileHandle *handle)
 	}
 }
 
-
 /* The following comes from GNU Wget with minor changes by myself.
    Copyright (C) 1995, 1996, 1997, 1998 Free Software Foundation, Inc.  */
 /* Parse the HTTP status line, which is of format:
@@ -893,7 +886,6 @@ http_status_to_vfs_result (guint status)
 	}
 }
 
-
 /* Header parsing routines.  */
 
 static gboolean
@@ -1030,7 +1022,6 @@ parse_header (HttpFileHandle *handle,
 	return TRUE;
 }
 
-
 /* Header/status reading.  */
 
 static GnomeVFSResult
@@ -1227,7 +1218,7 @@ sig_gconf_value_changed (
 {
 	g_mutex_lock (gl_mutex);
 	
-	if ( key && 0 == strcmp (KEY_GCONF_HTTP_PROXY, key)) {
+	if (key != NULL && strcmp (KEY_GCONF_HTTP_PROXY, key) == 0) {
 		if (value) {
 			if (GCONF_VALUE_STRING == value->type) {
 				gl_http_proxy = g_strdup (gconf_value_to_string (value));
@@ -1301,25 +1292,15 @@ http_proxy_for_host_port (
 	inet_aton("127.0.0.0", &in_loop); 
 	inet_aton("255.0.0.0", &in_mask); 
 
-	if (host && ( 0 == strcmp (host, "localhost") 
-		      || ( 0 != inet_aton (host, &in) 
-		      		&& ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))
-	) {
+	if (host != NULL 
+		&& (strcmp (host, "localhost") == 0 || (inet_aton (host, &in) != 0
+			&& ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
 		ret = FALSE;
-	} else 
-	if (gl_http_proxy) {
-		if (host_port_from_string (gl_http_proxy, p_proxy_host, p_proxy_port)) {
-			ret = TRUE;
-		} else {
-			ret = FALSE;
-		};
+	} else if (gl_http_proxy) {
+		ret = host_port_from_string (gl_http_proxy, p_proxy_host, p_proxy_port);
 	} else {
-		if (p_proxy_host) {
-			p_proxy_host = NULL;
-		}
-		if (p_proxy_port) {
-			p_proxy_port = NULL;
-		}
+		p_proxy_host = NULL;
+		p_proxy_port = NULL;
 		ret = FALSE;
 	}
 
@@ -1532,7 +1513,6 @@ http_handle_close (HttpFileHandle *handle, GnomeVFSContext *context)
 	}
 }
 
-
 static GnomeVFSResult
 do_open (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle **method_handle,
@@ -1750,7 +1730,6 @@ do_read (GnomeVFSMethod *method,
 	return result;
 }
 
-
 /* Directory handling - WebDAV servers only */
 
 static void
@@ -1758,29 +1737,29 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 {
 	xmlNodePtr l;
 
-	while(node != NULL) {
-		if(strcmp((char *)node->name, "prop")) {
+	while (node != NULL) {
+		if (strcmp((char *)node->name, "prop") != 0) {
 			/* node name != "prop" - prop is all we care about */
 			node = node->next;
 			continue;
 		}
 		/* properties of the file */
 		l = node->childs;
-		while(l != NULL) {
+		while (l != NULL) {
 			gchar *nc = xmlNodeGetContent(l);
-			if(nc) {
-				if(!strcmp((char *)l->name, "getcontenttype")) {
+			if (nc) {
+				if (strcmp((char *)l->name, "getcontenttype") == 0) {
 					file_info->valid_fields |= 
 						GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-					if(!file_info->mime_type)
-						file_info->mime_type = 
-							g_strdup(nc);
 
+					if (!file_info->mime_type) {
+						file_info->mime_type = g_strdup(nc);
+					}
 #if 0
 					g_print("found content-type: %s\n", nc);
 #endif
 
-				} else if(!strcmp((char *)l->name, "getcontentlength")){
+				} else if (strcmp((char *)l->name, "getcontentlength") == 0){
 					file_info->valid_fields |= 
 						GNOME_VFS_FILE_INFO_FIELDS_SIZE;
 					file_info->size = atoi(nc);
@@ -1790,18 +1769,16 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 #endif
 
 				}
-				xmlFree(nc);
+				xmlFree (nc);
 			}
-			if(!strcmp((char *)l->name, "resourcetype")) {
+			if (strcmp((char *)l->name, "resourcetype") == 0) {
 				file_info->valid_fields |= 
 					GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 				file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 
-				if(l->childs && l->childs->name && 
-					  !strcmp((char *)l->childs->name, 
-					  "collection")) {
-					file_info->type = 
-						GNOME_VFS_FILE_TYPE_DIRECTORY;
+				if (l->childs && l->childs->name 
+					&& strcmp((char *)l->childs->name, "collection") == 0) {
+					file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 					g_free(file_info->mime_type);
 					file_info->mime_type = g_strdup("x-directory/webdav");
 					file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
@@ -1817,12 +1794,12 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 		node = node->next;
 	}
 
-	if ( ! (file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) ) {
+	if ((file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) == 0) {
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-		file_info->mime_type = g_strdup(gnome_vfs_mime_type_from_name_or_default (file_info->name, "text/plain"));
+		file_info->mime_type = g_strdup (gnome_vfs_mime_type_from_name_or_default (file_info->name, "text/plain"));
 	}
 
-	if ( ! (file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE ) ) {
+	if ((file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE) == 0) {
 		/* Is this a reasonable assumption ? */
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
@@ -1838,16 +1815,61 @@ propfind_href_to_vfs_uri (const gchar *propfind_href_uri)
 	size_t https_len = strlen("https:");
 	GnomeVFSURI *ret;
 
-	if ( 0 == strncmp (propfind_href_uri, "https:", https_len)) {
+	if (strncmp (propfind_href_uri, "https:", https_len) == 0) {
 		gchar *new_uri;
 		new_uri = g_strconcat ("http:", https_len + propfind_href_uri, NULL);
 		ret = gnome_vfs_uri_new (new_uri);
 		g_free (new_uri);
 	} else {
-		ret = gnome_vfs_uri_new(propfind_href_uri);
+		ret = gnome_vfs_uri_new (propfind_href_uri);
 	}
 
 	return ret;
+}
+
+/* a strcmp that doesn't barf on NULLs */
+static gint
+null_handling_strcmp (const gchar *a, const gchar *b) 
+{
+	if ((a == NULL) != (b == NULL)) {
+		return 1;
+	}
+
+	if (a == NULL && b == NULL) {
+		return 0;
+	}
+	
+	return strcmp(a, b);
+}
+
+static gboolean
+match_unescaped_uri_text (const GnomeVFSURI *uri1, const GnomeVFSURI *uri2)
+{
+	// when comparing two uris, unescape the text because.
+	// this is mainly to work around the fact that the webdav server may 
+	// escape characters like '(' which would normally not be escaped
+	// and cause a mismatch on otherwise identical uris
+	char *uri_text1;
+	char *uri_text2;
+	gboolean result;
+
+	uri_text1 = NULL;
+	uri_text2 = NULL;
+
+	if (uri1->text != NULL) {
+		uri_text1 = gnome_vfs_unescape_string (uri1->text, "/");
+	}
+
+	if (uri2->text != NULL) {
+		uri_text2 = gnome_vfs_unescape_string (uri2->text, "/");
+	}
+
+	result = null_handling_strcmp (uri_text1, uri_text2) == 0;
+	
+	g_free (uri_text1);
+	g_free (uri_text2);
+
+	return result;
 }
 
 static GnomeVFSFileInfo *
@@ -1858,26 +1880,26 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
-	while(n != NULL) {
-		if(!strcmp((char *)n->name, "href")) {
+	while (n != NULL) {
+		if (strcmp((char *)n->name, "href") == 0) {
 			gchar *nodecontent_escaped = xmlNodeGetContent(n);
-			gchar *nodecontent = gnome_vfs_unescape_string(nodecontent_escaped, "/");
+			gchar *nodecontent = gnome_vfs_unescape_string (nodecontent_escaped, "/");
 
-			if(nodecontent && *nodecontent) {
+			if (nodecontent != NULL && *nodecontent) {
 				gint len;
 				GnomeVFSURI *uri = propfind_href_to_vfs_uri (nodecontent_escaped);
 
-				if (uri) {
-					if( !strcmp(base_uri->text, uri->text) ||
-					    !strcmp(second_base->text, uri->text)) {
+				if (uri != NULL) {
+					if (match_unescaped_uri_text (base_uri, uri) ||
+					    match_unescaped_uri_text (second_base, uri)) {
 						file_info->name = NULL; /* this file is the . directory */
 					} else {
 						/* extract_short_name returns unescaped */
-						file_info->name = gnome_vfs_uri_extract_short_name(uri);
-						gnome_vfs_uri_unref(uri);
+						file_info->name = gnome_vfs_uri_extract_short_name (uri);
+						gnome_vfs_uri_unref (uri);
 
-						len = strlen(file_info->name)-1;
-						if(file_info->name[len] == '/') {
+						len = strlen (file_info->name) -1;
+						if (file_info->name[len] == '/') {
 							/* trim trailing `/` - it confuses stuff */
 							file_info->name[len] = '\0';
 						}
@@ -1889,30 +1911,15 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 				g_warning("got href without contents in PROPFIND response");
 			}
 
-#if 0
-			if(!strncmp(uri_string, nodecontent, strlen(uri_string))) {
-				/* our DAV server is prepending the 
-				 * current path
-				 */
-				if(strcmp(uri_string, nodecontent)) {
-					file_info->name = g_strdup(nodecontent+strlen(uri_string));
-				} else {
-					file_info->name = g_strdup("");
-				}
-			} else {
-				file_info->name = 
-					g_strdup(nodecontent);
-			}
-#endif
 			xmlFree (nodecontent_escaped);
 			g_free (nodecontent);
-		} else if(!strcmp((char *)n->name, "propstat")) {
-			process_propfind_propstat(n->childs, file_info);
+		} else if (strcmp ((char *)n->name, "propstat") == 0) {
+			process_propfind_propstat (n->childs, file_info);
 		}
 		n = n->next;
 	}
 
-	gnome_vfs_uri_unref(second_base);
+	gnome_vfs_uri_unref (second_base);
 
 	return file_info;
 }
@@ -1997,14 +2004,14 @@ make_propfind_request (HttpFileHandle **handle_return,
 	xmlParseChunk(parserContext, "", 0, 1);
 
 	doc = parserContext->myDoc;
-	if(!doc) {
+	if (doc == NULL) {
 		result = GNOME_VFS_ERROR_CORRUPTED_DATA;
 		goto cleanup;
 	}
 
 	cur = doc->root;
 
-	if(strcmp((char *)cur->name, "multistatus")) {
+	if (strcmp((char *)cur->name, "multistatus") != 0) {
 		DEBUG_HTTP(("Couldn't find <multistatus>.\n"));
 		result = GNOME_VFS_ERROR_CORRUPTED_DATA;
 		goto cleanup;
@@ -2013,14 +2020,13 @@ make_propfind_request (HttpFileHandle **handle_return,
 	cur = cur->childs;
 
 	found_root_node_props = FALSE;
-	while(cur != NULL) {
-		if(!strcmp((char *)cur->name, "response")) {
+	while (cur != NULL) {
+		if (strcmp((char *)cur->name, "response") == 0) {
 			GnomeVFSFileInfo *file_info =
-				process_propfind_response(cur->childs, 
-					uri);
+				process_propfind_response(cur->childs, uri);
 
-			if(file_info->name) { 
-				(*handle_return)->files = g_list_append((*handle_return)->files, file_info);
+			if (file_info->name != NULL) { 
+				(*handle_return)->files = g_list_append ((*handle_return)->files, file_info);
 			} else {
 				/* This response refers to the root node */
 				/* Abandon the old information that came from create_handle*/
@@ -2124,17 +2130,17 @@ do_open_directory(GnomeVFSMethod *method,
 		 * lack-of-trailing-/-is-a-301 problem for PROPFIND's
 		 */
 		if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
-			if(uri->text && *uri->text 
-			   && uri->text[strlen(uri->text)-1] != '/') {
-				GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path(uri, "/");
-				result = do_open_directory(method, (GnomeVFSMethodHandle **)&handle, tmpuri, options, filter, context);
-				gnome_vfs_uri_unref(tmpuri);
+			if (uri->text != NULL && *uri->text != '\0'
+			   && uri->text[strlen (uri->text) - 1] != '/') {
+				GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path (uri, "/");
+				result = do_open_directory (method, (GnomeVFSMethodHandle **)&handle, tmpuri, options, filter, context);
+				gnome_vfs_uri_unref (tmpuri);
 
 			}
 		}
 
-		if ( GNOME_VFS_OK == result 
-		     && GNOME_VFS_FILE_TYPE_DIRECTORY != handle->file_info->type) {
+		if (result == GNOME_VFS_OK
+		     && handle->file_info->type != GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			result = GNOME_VFS_ERROR_NOT_A_DIRECTORY;
 			http_handle_close (handle, context);
 			handle = NULL;
@@ -2184,33 +2190,31 @@ do_read_directory (GnomeVFSMethod *method,
 
 	handle = (HttpFileHandle *) method_handle;
 
-	if(handle->files && g_list_length(handle->files)) {
-		GnomeVFSFileInfo *original_info = g_list_nth_data(handle->files, 0);
+	if (handle->files && g_list_length (handle->files)) {
+		GnomeVFSFileInfo *original_info = g_list_nth_data (handle->files, 0);
 		gboolean found_entry = FALSE;
 
 		/* mfleming -- Why is this check here?  Does anyone set original_info->name to NULL? */
-		if(original_info->name && original_info->name[0]) {
+		if (original_info->name != NULL && original_info->name[0]) {
 			gnome_vfs_file_info_copy (file_info, original_info); 
 			found_entry = TRUE;
 		}
 
 		/* remove our GnomeVFSFileInfo from the list */
-		handle->files = g_list_remove(handle->files, original_info);
-		gnome_vfs_file_info_unref(original_info);
+		handle->files = g_list_remove (handle->files, original_info);
+		gnome_vfs_file_info_unref (original_info);
 
 		DEBUG_HTTP (("-Read_Directory"));
 	
 		/* mfleming -- Is this necessary? */
-		if(found_entry) {
+		if (found_entry) {
 			return GNOME_VFS_OK;
-		} else {
-			return do_read_directory (method, method_handle, file_info, context);
 		}
-	} else {
-		DEBUG_HTTP (("-Read_Directory"));
 
-		return GNOME_VFS_ERROR_EOF;
+		return do_read_directory (method, method_handle, file_info, context);
 	}
+	DEBUG_HTTP (("-Read_Directory"));
+	return GNOME_VFS_ERROR_EOF;
 }
  
 
@@ -2242,7 +2246,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		 * Start off by making a PROPFIND request.  Fall back to a HEAD if it fails
 		 */
 
-		result = make_propfind_request(&handle, uri, 0, context);
+		result = make_propfind_request (&handle, uri, 0, context);
 
 		/* Note that theoretically we could not bother with this request if we get a 404 back,
 		 * but since some servers seem to return wierd things on PROPFIND (mostly 200 OK's...)
@@ -2264,12 +2268,12 @@ do_get_file_info (GnomeVFSMethod *method,
 					 * server, since they don't seem to send 301's when you PROPFIND collections
 					 * without a trailing '/'.
 					 */
-					if(uri->text && *uri->text &&
-							uri->text[strlen(uri->text)-1] != '/') {
-						GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path(uri, "/");
+					if (uri->text != NULL && *uri->text != '\0' 
+						&& uri->text[strlen(uri->text)-1] != '/') {
+						GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path (uri, "/");
 
-						result = do_get_file_info(method, tmpuri, file_info, options, context);
-						gnome_vfs_uri_unref(tmpuri);
+						result = do_get_file_info (method, tmpuri, file_info, options, context);
+						gnome_vfs_uri_unref (tmpuri);
 					}
 				}
 
@@ -2312,13 +2316,12 @@ do_is_local (GnomeVFSMethod *method,
 {
 	DEBUG_HTTP (("+Is_Local"));
 	return FALSE;
-	DEBUG_HTTP (("-Is_Local"));
-
 }
 
-static GnomeVFSResult do_make_directory(GnomeVFSMethod * method,
-                     GnomeVFSURI * uri,
-                     guint perm, GnomeVFSContext * context) {
+static GnomeVFSResult 
+do_make_directory (GnomeVFSMethod *method, GnomeVFSURI *uri,
+                   guint perm, GnomeVFSContext *context) 
+{
 	/* MKCOL /path HTTP/1.0 */
 
 	HttpFileHandle *handle;
@@ -2334,15 +2337,17 @@ static GnomeVFSResult do_make_directory(GnomeVFSMethod * method,
 	 */
 	result = make_propfind_request(&handle, uri, 0, context);
 
-	if ( GNOME_VFS_OK == result) {
+	if (result == GNOME_VFS_OK) {
 		result = GNOME_VFS_ERROR_FILE_EXISTS;
 	} else {
-		g_assert (handle == NULL); /* Make sure we're not leaking an old one */
-		if ( GNOME_VFS_ERROR_NOT_FOUND == result) {
+		/* Make sure we're not leaking an old one */
+		g_assert (handle == NULL);
+		
+		if (result == GNOME_VFS_ERROR_NOT_FOUND) {
 #ifndef DAV_NO_CACHE
 			cache_invalidate_uri_parent (uri);
 #endif /* DAV_NO_CACHE */
-			result =  make_request (&handle, uri, "MKCOL", NULL, NULL, context);
+			result = make_request (&handle, uri, "MKCOL", NULL, NULL, context);
 		}
 	}
 	http_handle_close (handle, context);
@@ -2352,8 +2357,9 @@ static GnomeVFSResult do_make_directory(GnomeVFSMethod * method,
 	return result;
 }
 
-static GnomeVFSResult do_remove_directory(GnomeVFSMethod * method,
-                       GnomeVFSURI * uri, GnomeVFSContext * context) {
+static GnomeVFSResult 
+do_remove_directory(GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *context) 
+{
 	/* DELETE /path HTTP/1.0 */
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
@@ -2376,26 +2382,14 @@ static GnomeVFSResult do_remove_directory(GnomeVFSMethod * method,
 	return result;
 }
 
-/* a strcmp that doesn't barf on NULLs */
-static gint
-my_strcmp(const gchar *a, const gchar *b) {
-	if( (!a && b) || (a && !b) ) return 1;
-	if( (!a && !b) ) return 0;
-	return strcmp(a,b);
-}
-
-static gboolean is_same_fs (GnomeVFSURI *a, GnomeVFSURI *b)
+static gboolean 
+is_same_fs (const GnomeVFSURI *a, const GnomeVFSURI *b)
 {
-	if(	my_strcmp(gnome_vfs_uri_get_scheme(a), gnome_vfs_uri_get_scheme(a))
-		|| my_strcmp(gnome_vfs_uri_get_host_name(a), gnome_vfs_uri_get_host_name(a))
-	  	|| my_strcmp(gnome_vfs_uri_get_user_name(a), gnome_vfs_uri_get_user_name(a)) 
-	  	|| my_strcmp(gnome_vfs_uri_get_password(a), gnome_vfs_uri_get_password(a)) 
-		|| (gnome_vfs_uri_get_host_port(a) != gnome_vfs_uri_get_host_port(a))
-	) {
-		return FALSE;
-	} else {
-		return TRUE;
-	}
+	return null_handling_strcmp(gnome_vfs_uri_get_scheme(a), gnome_vfs_uri_get_scheme(a)) == 0
+		&& null_handling_strcmp(gnome_vfs_uri_get_host_name(a), gnome_vfs_uri_get_host_name(a)) == 0
+	  	&& null_handling_strcmp(gnome_vfs_uri_get_user_name(a), gnome_vfs_uri_get_user_name(a)) == 0
+	  	&& null_handling_strcmp(gnome_vfs_uri_get_password(a), gnome_vfs_uri_get_password(a)) == 0
+		&& (gnome_vfs_uri_get_host_port(a) == gnome_vfs_uri_get_host_port(a));
 }
 
 static GnomeVFSResult
@@ -2416,7 +2410,7 @@ do_move (GnomeVFSMethod *method,
 
 	DEBUG_HTTP (("+Move"));
 
-	if ( ! is_same_fs (old_uri, new_uri)) {
+	if (!is_same_fs (old_uri, new_uri)) {
 		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
 	}	
 
@@ -2438,8 +2432,9 @@ do_move (GnomeVFSMethod *method,
 }
 
 
-static GnomeVFSResult do_unlink(GnomeVFSMethod * method,
-             GnomeVFSURI * uri, GnomeVFSContext * context)
+static GnomeVFSResult 
+do_unlink(GnomeVFSMethod * method,
+	GnomeVFSURI * uri, GnomeVFSContext * context)
 {
 	GnomeVFSResult result;
 	
@@ -2450,12 +2445,12 @@ static GnomeVFSResult do_unlink(GnomeVFSMethod * method,
 	return result;
 }
 
-static GnomeVFSResult do_check_same_fs (
-		GnomeVFSMethod *method,
-		GnomeVFSURI *a,
-		GnomeVFSURI *b,
-		gboolean *same_fs_return,
-		GnomeVFSContext *context)
+static GnomeVFSResult 
+do_check_same_fs (GnomeVFSMethod *method,
+		  GnomeVFSURI *a,
+		  GnomeVFSURI *b,
+		  gboolean *same_fs_return,
+		  GnomeVFSContext *context)
 {
 	*same_fs_return = is_same_fs (a, b);
 
@@ -2494,7 +2489,6 @@ do_set_file_info (GnomeVFSMethod *method,
 	return result;
 }
 
-
 static GnomeVFSMethod method = {
 	do_open,
 	do_create,
@@ -2549,10 +2543,11 @@ vfs_module_init (const char *method_name, const char *args)
 	gtk_object_sink(GTK_OBJECT(gl_client));
 
 #ifdef G_THREADS_ENABLED
-        if (g_thread_supported ())
+        if (g_thread_supported ()) {
                 gl_mutex = g_mutex_new ();
-        else
+        } else {
                 gl_mutex = NULL;
+        }
 #endif
 
 
@@ -2596,8 +2591,9 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 #endif /*DAV_NO_CACHE*/
 
 #ifdef G_THREADS_ENABLED
-	if (g_thread_supported ()) 
+	if (g_thread_supported ()) {
 		g_mutex_free (gl_mutex);
+	}
 #endif
 	gl_client = NULL;
 }
