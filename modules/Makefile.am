@@ -9,6 +9,7 @@ INCLUDES =					\
 	$(XML_CFLAGS)	 			\
 	$(LIBEFS_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
+	$(GTK_CFLAGS)				\
 	$(VFS_CFLAGS) $(WERROR)
 
 CPPFLAGS =					\

@@ -6,6 +6,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs		\
 	-I$(top_builddir)/libgnomevfs		\
 	$(GLIB_CFLAGS)				\
+	$(GTK_CFLAGS)				\
 	$(GNOME_INCLUDEDIR)			\
 	$(VFS_CFLAGS) $(WERROR)
 

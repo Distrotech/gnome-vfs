@@ -74,6 +74,12 @@ AM_PATH_GLIB(1.2.0,,
 *** is always available from ftp://ftp.gtk.org/.]),
     gmodule gthread)
 
+AM_PATH_GTK(1.2.0,,
+  AC_MSG_ERROR([
+*** Gtk+ 1.2.0 or better is required. The latest version of Gtk+
+*** is always available from ftp://ftp.gtk.org/.]),
+    gmodule gthread)
+
 cflags_set=yes
 GNOME_COMPILE_WARNINGS
 VFS_CFLAGS="$warnCFLAGS $complCFLAGS"

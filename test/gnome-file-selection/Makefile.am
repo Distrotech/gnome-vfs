@@ -13,6 +13,7 @@ INCLUDES =					\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
 	$(GNOME_INCLUDEDIR)			\
+	$(GTK_CFLAGS)			\
 	-I$(top_srcdir)				\
 	-DICONDIR=\"$(datadir)/pixmaps/mc\"	\
 	$(VFS_CFLAGS) $(WERROR)

@@ -1,5 +1,16 @@
 2000-09-10  Maciej Stachowiak  <mjs@eazel.com>
 
+	Build fixes for latest Gtk+
+	
+	* configure.in: Add AM_PATH_GTK check
+	* libgnomevfs-pthread/Makefile.am: Use $(GTK_CFLAGS) in compiler flags
+	* mime-type-capplet/Makefile.am: likewise
+	* modules/Makefile.am: likewise
+	* test/Makefile.am: likewise
+	* test/gnome-file-selection/Makefile.am: likewise
+
+2000-09-10  Maciej Stachowiak  <mjs@eazel.com>
+
 	* gnome-vfs.spec.in: Revert kmaraas's last change, because it
 	breaks rpm building for me (and for tinderbox). I wonder why man
 	pages are apparently installed gzipped on Kjartan's system but not

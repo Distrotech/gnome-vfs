@@ -12,6 +12,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs		\
 	$(OAF_CFLAGS)				\
 	$(GNOME_INCLUDEDIR)			\
+	$(GTK_CFLAGS)				\
 	$(VFS_CFLAGS) $(WERROR)
 
 noinst_PROGRAMS =				\
