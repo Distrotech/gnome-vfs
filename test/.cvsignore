@@ -1,5 +1,3 @@
-*.la
-*.lo
 .deps
 .libs
 Makefile
@@ -19,6 +17,7 @@ test-mime-handlers
 test-mime-handlers-set
 test-mime-info
 test-monitor
+test-performance
 test-seek
 test-shell
 test-ssl
