@@ -1,3 +1,12 @@
+2001-07-12  Laszlo Peter   <laca@ireland.sun.com>
+
+	Fix some portability issues.
+
+        * libgnomevfs/gnome-vfs-ssl.c: a struct needs to have a member.
+
+	* libgnomevfs/gnome-vfs-context.c: use G_GNUC_FUNCTION instead
+	of __FUNCTION__.
+
 2001-07-11  Martin Baulig  <baulig@suse.de>
 
 	We now require autoconf 2.50b on the GNOME 2 platform.

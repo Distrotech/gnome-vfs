@@ -59,6 +59,8 @@ typedef struct {
 #else
 #ifdef HAVE_NSS
 	PRFileDesc *sockfd;
+#else
+	char	dummy;
 #endif
 #endif
 } GnomeVFSSSLPrivate;

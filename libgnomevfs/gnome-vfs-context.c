@@ -71,7 +71,7 @@ gnome_vfs_context_ref (GnomeVFSContext *ctx)
         g_return_if_fail(ctx != NULL);
 
 	/* FIXME: this function should be removed in Gnome 2.0 GnomeVFS */
-  	g_warning ("Warning call to deprecated function '%s'\n", __FUNCTION__);
+  	g_warning ("Warning call to deprecated function '%s'\n", G_GNUC_FUNCTION);
   	
         ctx->refcount += 1;
 }
