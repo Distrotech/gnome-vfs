@@ -1,8 +1,9 @@
 <!-- ##### SECTION Title ##### -->
-Asynchronous Operations
+Asynchronous File I/O
 
 <!-- ##### SECTION Short_Description ##### -->
 
+allows for non-blocking file operations
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

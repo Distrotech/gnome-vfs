@@ -3,6 +3,7 @@ Find Directory
 
 <!-- ##### SECTION Short_Description ##### -->
 
+used to locate special directories such as the trash and desktop
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
@@ -26,5 +27,3 @@ Find Directory
 @find_if_needed: 
 @permissions: 
 @Returns: 
-
-

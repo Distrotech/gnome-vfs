@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-xfer
+
+File Transfer
 
 <!-- ##### SECTION Short_Description ##### -->
 
+the transfer engine provides copy & move operations (with progress callbacks)
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

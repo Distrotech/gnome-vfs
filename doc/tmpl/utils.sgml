@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-utils
+
+Utilities
 
 <!-- ##### SECTION Short_Description ##### -->
 
+utility functions for parsing/escaping URIs, and other assorted goodies
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

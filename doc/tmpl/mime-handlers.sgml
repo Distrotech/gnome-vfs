@@ -3,6 +3,7 @@ MIME Handlers
 
 <!-- ##### SECTION Short_Description ##### -->
 
+functions for getting and manipulating the actions to be performed on mime types
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

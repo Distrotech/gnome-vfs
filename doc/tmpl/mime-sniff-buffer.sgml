@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-mime-sniff-buffer
+
+Algorithmic Sniff Buffer
 
 <!-- ##### SECTION Short_Description ##### -->
 
+algorithmic detection of mime type for select file types
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-Directory
+
+Directory Operations
 
 <!-- ##### SECTION Short_Description ##### -->
 
+loading and parsing directory contents
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
@@ -125,5 +127,25 @@ Directory
 @options: 
 @filter: 
 @Returns: 
+
+
+
+<!-- ##### FUNCTION gnome_vfs_directory_filter_new ##### -->
+<para>
+
+</para>
+
+@type: 
+@Param2: 
+@filter_pattern: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_directory_filter_destroy ##### -->
+<para>
+
+</para>
+
+@filter: 
 
 

@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-types
+
+Basic Data Types
 
 <!-- ##### SECTION Short_Description ##### -->
 
+a collection of structs for purposes ranging from error messages to file information
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-mime-magic
+
+Magic MIME Detection
 
 <!-- ##### SECTION Short_Description ##### -->
 
+functions for parsing the magic mime database
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

@@ -1,3 +1,31 @@
+2001-05-30  Seth Nickell  <snickell@stanford.edu>
+
+	* doc/gnome-vfs-docs.sgml:
+
+	Start organizing higher level documentation structure
+	and preparing sections on the most common parts application
+	developers will have to use. Hopefully at this point
+	somebody could use the docs as an API reference to the
+	POSIX like synchronous calls.
+	
+	* doc/tmpl/application-registry.sgml:
+	* doc/tmpl/async-ops.sgml:
+	* doc/tmpl/directory.sgml:
+	* doc/tmpl/find-directory.sgml:
+	* doc/tmpl/mime-handlers.sgml:
+	* doc/tmpl/mime-magic.sgml:
+	* doc/tmpl/mime-sniff-buffer.sgml:
+	* doc/tmpl/mime.sgml:
+	* doc/tmpl/ops.sgml:
+	* doc/tmpl/result.sgml:
+	* doc/tmpl/types.sgml:
+	* doc/tmpl/uri.sgml:
+	* doc/tmpl/utils.sgml:
+	* doc/tmpl/xfer.sgml:
+
+	Write descriptions, titles, and short descriptions as
+	well as perform some re-organization of the documentation.
+
 2001-05-28  Seth Nickell  <snickell@stanford.edu>
 	
 	* doc/gnome-vfs-docs.sgml:

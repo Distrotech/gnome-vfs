@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-result
+
+Result Codes
 
 <!-- ##### SECTION Short_Description ##### -->
 
+utilities for interpreting GnomeVFS Result codes
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

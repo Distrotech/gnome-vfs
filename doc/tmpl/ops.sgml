@@ -1,8 +1,9 @@
 <!-- ##### SECTION Title ##### -->
-ops
+Basic File I/O
 
 <!-- ##### SECTION Short_Description ##### -->
 
+synchronous file operations similar to posix calls, but using uris
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

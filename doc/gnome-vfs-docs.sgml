@@ -45,52 +45,130 @@
 ]>
 <book id="index">
   <bookinfo>
-    <title>GNOME-VFS Reference Manual</title>
-  </bookinfo>
+    <title>GnomeVFS - Filesystem Abstraction library</title>
+    <authorgroup>
+      <author>
+	<firstname>Seth</firstname>
+	<surname>Nickell</surname>
+	<affiliation>
+	  <address>
+	    <email>snickell@stanford.edu</email>
+	  </address>
+	</affiliation>
+      </author>
+    </authorgroup>
 
-  <chapter id="everything">
-    <title>GNOME-VFS Documentation</title>
-    &gnome-vfs-app-context;
-    &gnome-vfs-application-registry;
-    &gnome-vfs-async-ops;
-    &gnome-vfs-backend;
-    &gnome-vfs-cancellable-ops;
-    &gnome-vfs-cancellation;
-    &gnome-vfs-configuration;
-    &gnome-vfs-constants;
-    &gnome-vfs-context;
-    &gnome-vfs-directory-filter;
-    &gnome-vfs-directory;
-    &gnome-vfs-file-info;
-    &gnome-vfs-file-size;
-    &gnome-vfs-find-directory;
-    &gnome-vfs-handle;
-    &gnome-vfs-inet-connection;
-    &gnome-vfs-init;
-    &gnome-vfs-iobuf;
-    &gnome-vfs-list-sort;
-    &gnome-vfs-module-api;
-    &gnome-vfs-method;
-    &gnome-vfs-mime-handlers;
-    &gnome-vfs-mime-info;
-    &gnome-vfs-mime-magic;
-    &gnome-vfs-mime-monitor;
-    &gnome-vfs-mime-sniff-buffer;
-    &gnome-vfs-mime;
-    &gnome-vfs-module-shared;
-    &gnome-vfs-module;
-    &gnome-vfs-ops;
-    &gnome-vfs-parse-ls;
-    &gnome-vfs-process;
-    &gnome-vfs-regexp-filter;
-    &gnome-vfs-result;
-    &gnome-vfs-seekable;
-    &gnome-vfs-shellpattern-filter;
-    &gnome-vfs-ssl;
-    &gnome-vfs-standard-callbacks;
-    &gnome-vfs-types;
-    &gnome-vfs-uri;
-    &gnome-vfs-utils;
-    &gnome-vfs-xfer;
+
+    <legalnotice>
+    <para>
+    Permission is granted to copy, distribute and/or modify this document
+      under the terms of the GNU Free Documentation License, Version 1.1
+      or any later version published by the Free Software Foundation;
+      with the Invariant Sections being Tutorial, Configuring, Architecture,
+      Query Langage, .oafinfo reference, Migrating and API reference with no
+      Front-Cover Texts, and with no Back-Cover Texts.
+      A copy of the license is included in the section entitled "GNU
+      Free Documentation License".
+    </para>
+    </legalnotice>
+
+    <copyright>
+      <year>2001</year>
+      <holder>The Free Software Foundation</holder>
+    </copyright>
+  </bookinfo>
+  
+  <para>
+    Test
+  </para>
+
+  <chapter id="file-operations">
+      <title>Basic File Operations</title>
+      <para>
+	GnomeVFS file operations are, for the most part, patterned after
+	their POSIX equivalents, with the systematic difference that they
+	accept URIs rather than paths on the local filesystem. This makes
+	them easy to learn as if you are already familiar with basic commands
+	such as open(), seek(), write(), etc you will feel right at home
+	with GnomeVFS after learning a little about URIs.
+      </para>
+      <para>
+	GnomeVFS also provides asynchronous versions of these basic operations for
+	allowing application developers to provide non-blocking file I/O 
+	without the use of threads.
+      </para>
+      &gnome-vfs-async-ops;
+    <comment>FIXME: should we display this?&gnome-vfs-cancellable-ops;</comment>
+      &gnome-vfs-ops;
+      &gnome-vfs-directory;
+      &gnome-vfs-xfer;
+  </chapter>
+  <chapter id="data-types">
+    <title>Common Data Types</title>
+      &gnome-vfs-types;
+    <comment>FIXME: this seems better put in uri&gnome-vfs-constants;</comment>
+      &gnome-vfs-file-info;
+      &gnome-vfs-result;
+      &gnome-vfs-standard-callbacks;
+      &gnome-vfs-uri;
+  </chapter>
+
+  <chapter id="mime-registry">
+    <title>MIME types & the Application Registry</title>
+    <para>
+      MIME types provide a standardized for denoting the content of files or
+      file streams. GnomeVFS exposes simple methods for both identifying the
+      MIME type of a particular file, and deciding how to act on it.	The MIME 
+      and application registries provide a mapping between files of a particular 
+      mime type and applications / bonobo components which can view or edit 
+      those files. Applications such as Nautilus use this database to generate 
+      appropriate actions when files are activated. 
+    </para>
+      &gnome-vfs-mime-sniff-buffer;
+      &gnome-vfs-application-registry;
+      &gnome-vfs-mime-magic;
+      &gnome-vfs-mime;
+      &gnome-vfs-mime-handlers;
+      &gnome-vfs-mime-info;
+      &gnome-vfs-mime-monitor;
+  </chapter>
+
+  <chapter id="modules">
+    <title>Filesystem Modules</title>
+    <para>
+      Modules are the mechanism by which GnomeVFS accesses different filesystems,
+      from http, to the local disk, to smb. Module authors must implement a simple
+      set of filesystem operations and can provide varying degrees of service (read-only,
+      read-write, seeking, etc). Modules are dynamically loaded based upon the URI
+      scheme passed into the high-level GnomeVFS APIs.
+    </para>
+      &gnome-vfs-module-api;
+      &gnome-vfs-method;
+      &gnome-vfs-module-shared;
+      &gnome-vfs-module;
+  </chapter>
+
+  <chapter id="everything-else">
+    <title>Other APIs</title>
+      &gnome-vfs-app-context;
+      &gnome-vfs-backend;
+      &gnome-vfs-cancellation;
+      &gnome-vfs-configuration;
+      &gnome-vfs-context;
+      &gnome-vfs-directory-filter;
+      &gnome-vfs-file-size;
+      &gnome-vfs-find-directory;
+      <comment>FIXME: I think this should be private&gnome-vfs-handle;</comment>
+      &gnome-vfs-inet-connection;
+      &gnome-vfs-init;
+      &gnome-vfs-iobuf;
+      &gnome-vfs-list-sort;
+      &gnome-vfs-parse-ls;
+      &gnome-vfs-process;
+      &gnome-vfs-regexp-filter;
+      &gnome-vfs-seekable;
+      &gnome-vfs-shellpattern-filter;
+      &gnome-vfs-ssl;
+      &gnome-vfs-utils;
   </chapter>
 </book>

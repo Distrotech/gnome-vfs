@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-mime
+
+MIME Type Detection
 
 <!-- ##### SECTION Short_Description ##### -->
 
+detecting the mime type of a URI
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
