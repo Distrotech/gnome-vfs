@@ -46,6 +46,7 @@ static GList *str_list_difference (GList *a, GList *b);
 static char *str_list_to_comma_separated_str (GList *list);
 static GList *gnome_vfs_strsplit_to_list (const char *str, const char *delim, int max);
 static char *gnome_vfs_strjoin_from_list (const char *separator, GList *list);
+static void g_list_free_deep (GList *list);
 
 
 GnomeVFSMimeActionType
@@ -53,8 +54,8 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
 {
 	const char *action_type_string;
 
-	action_type_string = gnome_vfs_mime_get_value (mime_type,
-						       "default_action_type");
+	action_type_string = gnome_vfs_mime_get_value
+		(mime_type, "default_action_type");
 
 	if (action_type_string == NULL) {
 		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
@@ -109,9 +110,8 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 {
 	const char *default_application_id;
 
-	default_application_id = gnome_vfs_mime_get_value (mime_type, 
-							   "default_application_id");
-
+	default_application_id = gnome_vfs_mime_get_value
+		(mime_type, "default_application_id");
 	return gnome_vfs_mime_application_new_from_id (default_application_id);
 }
 
@@ -127,11 +127,11 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	char *query;
 	char *sort[5];
 
-	CORBA_exception_init (&ev);
+	if (mime_type == NULL) {
+		return NULL;
+	}
 
-	default_component_iid = gnome_vfs_mime_get_value (mime_type, 
-							  "default_component_iid");
-	
+	CORBA_exception_init (&ev);
 
 	supertype = mime_type_get_supertype (mime_type);
 
@@ -141,14 +141,15 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	/* FIXME: should probably check for the right interfaces
            too. Also slightly semantically different from nautilus in
            other tiny ways. */
-
-	query = g_strconcat ("bonobo:supported_mime_types.has_one ([\'", mime_type, 
-			     "\', \'", supertype,
-			     "\', \'*\'])", NULL);
+	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
+			     "', '", supertype,
+			     "', '*'])", NULL);
 
 	/* First try the component specified in the mime database, if available. */
+	default_component_iid = gnome_vfs_mime_get_value
+		(mime_type, "default_component_iid");
 	if (default_component_iid != NULL) {
-		sort[0] = g_strconcat ("iid == \'", default_component_iid, "\'", NULL);
+		sort[0] = g_strconcat ("iid == '", default_component_iid, "'", NULL);
 	} else {
 		sort[0] = g_strdup ("true");
 	}
@@ -158,22 +159,25 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	
 	/* Prefer something that matches the exact type to something
            that matches the supertype */
-	sort[1] = g_strconcat ("bonobo:supported_mime_types.has (\'",mime_type,"\')", NULL);
+	sort[1] = g_strconcat ("bonobo:supported_mime_types.has ('", mime_type, "')", NULL);
+
 	/* Prefer something that matches the supertype to something that matches `*' */
-	sort[2] = g_strconcat ("bonobo:supported_mime_types.has (\'",supertype,"\')", NULL);
+	sort[2] = g_strconcat ("bonobo:supported_mime_types.has ('", supertype, "')", NULL);
 
 	/* At lowest priority, alphebetize by name, for the sake of consistency */
-	sort[3] = g_strconcat ("name", NULL);
+	sort[3] = g_strdup ("name");
 
 	sort[4] = NULL;
 
 	info_list = oaf_query (query, sort, &ev);
 	
-	if (ev._major == CORBA_NO_EXCEPTION  && info_list != NULL && info_list->_length > 0) {
-		server = OAF_ServerInfo__copy (&info_list->_buffer[0]);
-		/* FIXME: free info_list */
-	} else {
-		server = NULL;
+	server = NULL;
+	if (ev._major == CORBA_NO_EXCEPTION) {
+		if (info_list != NULL && info_list->_length > 0) {
+			server = OAF_ServerInfo__copy (&info_list->_buffer[0]);
+		}
+		/* FIXME: Need to free here, but the copying isn't done right yet. */
+		/* CORBA_free (info_list); */
 	}
 
 	g_free (supertype);
@@ -199,11 +203,12 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	char **short_list_addition_strv;
 	char **short_list_removal_strv;
 	GList *id_list;
-	GList *retval;
+	GList *preferred_applications;
 	GList *p;
 	int i;
 	char *user_level, *id_list_key;
-	
+	GnomeVFSMimeApplication *application;
+
 	if (mime_type == NULL) {
 		return NULL;
 	}
@@ -232,33 +237,36 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	short_list_removal_strv = strsplit_handle_null (short_list_id_user_removals, ",", 0);
 
 	id_list = NULL;
+
 	for (i = 0; short_list_strv[i] != NULL; i++) {
 		if (! strv_contains_str (short_list_removal_strv, short_list_strv[i])) {
-			id_list = g_list_prepend (id_list, g_strdup (short_list_strv[i]));
+			id_list = g_list_prepend (id_list, short_list_strv[i]);
 		}
 	}
 
 	for (i = 0; short_list_addition_strv[i] != NULL; i++) {
 		if ((! strv_contains_str (short_list_removal_strv, short_list_addition_strv[i])) &&
 		    (! strv_contains_str (short_list_strv, short_list_addition_strv[i]))) {
-			id_list = g_list_prepend (id_list, g_strdup (short_list_addition_strv[i]));
+			id_list = g_list_prepend (id_list, short_list_addition_strv[i]);
 		}
 	}
 
-	retval = NULL;
+	preferred_applications = NULL;
 	for (p = id_list; p != NULL; p = p->next) {
-		GnomeVFSMimeApplication *application;
-
 		application = gnome_vfs_mime_application_new_from_id (p->data);
-		
 		if (application != NULL) {
-			retval = g_list_prepend (retval, application);
+			preferred_applications = g_list_prepend
+				(preferred_applications, application);
 		}
 	}
+	/* No need to reverse the list since the id_list was also backwards. */
 
-	retval = g_list_reverse (retval);
+	g_list_free (id_list);
+	g_strfreev (short_list_strv);
+	g_strfreev (short_list_addition_strv);
+	g_strfreev (short_list_removal_strv);
 
-	return retval;
+	return preferred_applications;
 }
 
 
@@ -274,14 +282,14 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 	int i;
 	GList *iid_list;
 	OAF_ServerInfoList *info_list;
-	GList *retval;
+	GList *preferred_components;
 	CORBA_Environment ev;
 	char *supertype;
 	char *query;
 	char *sort[2];
 	char *iids_delimited;
 	char *user_level, *id_list_key;
-	
+
 	if (mime_type == NULL) {
 		return NULL;
 	}
@@ -310,32 +318,33 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 
 	iid_list = NULL;
 	for (i = 0; short_list_strv[i] != NULL; i++) {
-		if (! strv_contains_str (short_list_removal_strv, short_list_strv[i])) {
-			iid_list = g_list_prepend (iid_list, g_strdup (short_list_strv[i]));
+		if (!strv_contains_str (short_list_removal_strv, short_list_strv[i])) {
+			iid_list = g_list_prepend (iid_list, short_list_strv[i]);
 		}
 	}
 
 	for (i = 0; short_list_addition_strv[i] != NULL; i++) {
-		if ((! strv_contains_str (short_list_removal_strv, short_list_addition_strv[i])) &&
-		    (! strv_contains_str (short_list_strv, short_list_addition_strv[i]))) {
-			iid_list = g_list_prepend (iid_list, g_strdup (short_list_addition_strv[i]));
+		if (!strv_contains_str (short_list_removal_strv, short_list_addition_strv[i]) &&
+		    !strv_contains_str (short_list_strv, short_list_addition_strv[i])) {
+			iid_list = g_list_prepend (iid_list, short_list_addition_strv[i]);
 		}
 	}
 
 	/* Do usual query but requiring that IIDs be one of the ones
            in the short list IID list. */
 	
+	preferred_components = NULL;
 	if (iid_list != NULL) {
-
 		CORBA_exception_init (&ev);
 
-		iids_delimited = join_str_list ("\',\'", iid_list);
+		iids_delimited = join_str_list ("','", iid_list);
 		
 		supertype = mime_type_get_supertype (mime_type);
 		
-		query = g_strconcat ("bonobo:supported_mime_types.has_one ([\'", mime_type, 
-				     "\', \'", supertype,
-				     "\', \'*\']) && has ([\'", iids_delimited, "\'], iid)", NULL);
+		query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
+				     "', '", supertype,
+				     "', '*']) && has (['", iids_delimited, "'], iid)",
+				     NULL);
 		
 		/* Alphebetize by name, for the sake of consistency */
 		sort[0] = g_strdup ("name");
@@ -344,10 +353,9 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		info_list = oaf_query (query, sort, &ev);
 		
 		if (ev._major == CORBA_NO_EXCEPTION) {
-			retval = (OAF_ServerInfoList_to_ServerInfo_g_list (info_list));
-			/* FIXME: free info_list */
-		} else {
-			retval = NULL;
+			preferred_components = OAF_ServerInfoList_to_ServerInfo_g_list (info_list);
+			/* FIXME: Need to free here, but the copying isn't done right yet. */
+			/* CORBA_free (info_list); */
 		}
 
 		g_free (supertype);
@@ -355,11 +363,14 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		g_free (sort[0]);
 
 		CORBA_exception_free (&ev);
-	} else {
-		retval = NULL;
 	}
 
-	return retval;
+	g_list_free (iid_list);
+	g_strfreev (short_list_strv);
+	g_strfreev (short_list_addition_strv);
+	g_strfreev (short_list_removal_strv);
+
+	return preferred_components;
 }
 
 
@@ -371,7 +382,6 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
  	const char *user_all_application_ids;
 	GList *system_apps;
 	GList *user_apps;
-	GList *retval;
 
 	if (mime_type == NULL) {
 		return NULL;
@@ -394,16 +404,14 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 	
 	/* merge the two */
 
-	retval = g_list_concat (system_apps, user_apps);
-
-	return retval;
+	return g_list_concat (system_apps, user_apps);
 }
 
 GList *
 gnome_vfs_mime_get_all_components (const char *mime_type)
 {
 	OAF_ServerInfoList *info_list;
-	GList *retval;
+	GList *components_list;
 	CORBA_Environment ev;
 	char *supertype;
 	char *query;
@@ -415,18 +423,17 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 
 	CORBA_exception_init (&ev);
 
-	supertype = mime_type_get_supertype (mime_type);
-
 	/* Find a component that supports either the exact mime type,
            the supertype, or all mime types. */
 
 	/* FIXME: should probably check for the right interfaces
            too. Also slightly semantically different from nautilus in
            other tiny ways. */
-
-	query = g_strconcat ("bonobo:supported_mime_types.has_one ([\'", mime_type, 
-			     "\', \'", supertype,
-			     "\', \'*\'])", NULL);
+	supertype = mime_type_get_supertype (mime_type);
+	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
+			     "', '", supertype,
+			     "', '*'])", NULL);
+	g_free (supertype);
 	
 	/* Alphebetize by name, for the sake of consistency */
 	sort[0] = g_strdup ("name");
@@ -435,48 +442,53 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 	info_list = oaf_query (query, sort, &ev);
 	
 	if (ev._major == CORBA_NO_EXCEPTION) {
-		retval = (OAF_ServerInfoList_to_ServerInfo_g_list (info_list));
-		/* FIXME: free info_list */
+		components_list = OAF_ServerInfoList_to_ServerInfo_g_list (info_list);
+		/* FIXME: Need to free here, but the copying isn't done right yet. */
+		/* CORBA_free (info_list); */
 	} else {
-		retval = NULL;
+		components_list = NULL;
 	}
 
-	g_free (supertype);
 	g_free (query);
 	g_free (sort[0]);
 
 	CORBA_exception_free (&ev);
 
-	return retval;
+	return components_list;
 }
 
 
 
 
 void
-gnome_vfs_mime_set_default_action_type (const char              *mime_type,
-					GnomeVFSMimeActionType   action_type)
+gnome_vfs_mime_set_default_action_type (const char *mime_type,
+					GnomeVFSMimeActionType action_type)
 {
 	char *user_mime_file;
 	FILE *f;
 	const char *action_string;
 
+	if (mime_type == NULL) {
+		return;
+	}
+
 	switch (action_type) {
 	case GNOME_VFS_MIME_ACTION_TYPE_APPLICATION:
-		action_string="application";
+		action_string = "application";
 		break;		
 	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
-		action_string="component";
+		action_string = "component";
 		break;
 	case GNOME_VFS_MIME_ACTION_TYPE_NONE:
 	default:
-		action_string="none";
+		action_string = "none";
 	}
 
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
+	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
+	/* FIXME: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
-
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
 	fprintf (f, "\tdefault_action_type=%s\n", action_string);
@@ -485,16 +497,21 @@ gnome_vfs_mime_set_default_action_type (const char              *mime_type,
 	g_free (user_mime_file);
 }
 
-void gnome_vfs_mime_set_default_application (const char              *mime_type,
-				             const char              *application_id)
+void gnome_vfs_mime_set_default_application (const char *mime_type,
+				             const char *application_id)
 {
 	char *user_mime_file;
 	FILE *f;
 
+	if (mime_type == NULL) {
+		return;
+	}
+
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
+	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
+	/* FIXME: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
-
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
 	fprintf (f, "\tdefault_application_id=%s\n", application_id);
@@ -504,16 +521,21 @@ void gnome_vfs_mime_set_default_application (const char              *mime_type,
 }
 
 void
-gnome_vfs_mime_set_default_component (const char     *mime_type,
-				      const char     *component_iid)
+gnome_vfs_mime_set_default_component (const char *mime_type,
+				      const char *component_iid)
 {
 	char *user_mime_file;
 	FILE *f;
 
+	if (mime_type == NULL) {
+		return;
+	}
+
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
+	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
+	/* FIXME: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
-
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
 	fprintf (f, "\tdefault_component_iid=%s\n", component_iid);
@@ -524,7 +546,7 @@ gnome_vfs_mime_set_default_component (const char     *mime_type,
 
 void
 gnome_vfs_mime_set_short_list_applications (const char *mime_type,
-					    GList      *application_ids)
+					    GList *application_ids)
 {
 	char *user_mime_file;
 	char *user_level;
@@ -536,6 +558,10 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 	GList *short_list_addition_list;
 	GList *short_list_removal_list;
 	FILE *f;
+
+	if (mime_type == NULL) {
+		return;
+	}
 
 	/* Get base list. */
 	/* Base list depends on user level. */
@@ -558,6 +584,7 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 	addition_string = str_list_to_comma_separated_str (short_list_addition_list);
 	removal_string = str_list_to_comma_separated_str (short_list_removal_list);
 
+	g_list_free_deep (short_list_id_list);
 	g_list_free (short_list_addition_list);
 	g_list_free (short_list_removal_list);
 
@@ -565,8 +592,9 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
+	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
+	/* FIXME: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
-
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
 	fprintf (f, "\tshort_list_application_user_additions=%s\n", addition_string);
@@ -574,12 +602,15 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 	fclose (f);
 
 	g_free (user_mime_file);
+
+	g_free (addition_string);
+	g_free (removal_string);
 }
 
 
 void
 gnome_vfs_mime_set_short_list_components (const char *mime_type,
-					  GList      *component_iids)
+					  GList *component_iids)
 {
 	char *user_mime_file;
 	char *user_level;
@@ -591,6 +622,10 @@ gnome_vfs_mime_set_short_list_components (const char *mime_type,
 	GList *short_list_addition_list;
 	GList *short_list_removal_list;
 	FILE *f;
+
+	if (mime_type == NULL) {
+		return;
+	}
 
 	/* Get base list. */
 	/* Base list depends on user level. */
@@ -620,8 +655,9 @@ gnome_vfs_mime_set_short_list_components (const char *mime_type,
 
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
+	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
+	/* FIXME: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
-
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
 	fprintf (f, "\tshort_list_component_user_additions=%s\n", addition_string);
@@ -629,6 +665,8 @@ gnome_vfs_mime_set_short_list_components (const char *mime_type,
 	fclose (f);
 
 	g_free (user_mime_file);
+	g_free (addition_string);
+	g_free (removal_string);
 }
 
 /* FIXME: The next set of helper functions are all replicated in nautilus-mime-actions.c.
@@ -694,17 +732,17 @@ id_list_from_application_list (GList *applications)
 static GList *
 id_list_from_component_list (GList *components)
 {
-	GList *result;
+	GList *list;
 	GList *node;
 
-	result = NULL;
+	list = NULL;
 	
 	for (node = components; node != NULL; node = node->next) {
-		result = g_list_append 
-			(result, g_strdup (((OAF_ServerInfo *)node->data)->iid));
+		list = g_list_prepend 
+			(list, g_strdup (((OAF_ServerInfo *)node->data)->iid));
 	}
 
-	return result;
+	return g_list_reverse (list);
 }
 
 static void
@@ -714,8 +752,9 @@ g_list_free_deep (GList *list)
 	g_list_free (list);
 }
 
-void gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
-						   const char *application_id)
+void
+gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
+					      const char *application_id)
 {
 	GList *old_list, *new_list;
 
@@ -731,15 +770,17 @@ void gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
 	gnome_vfs_mime_application_list_free (old_list);
 }						   
 
-void gnome_vfs_mime_remove_application_from_short_list (const char *mime_type,
-						   	const char *application_id)
+void
+gnome_vfs_mime_remove_application_from_short_list (const char *mime_type,
+						   const char *application_id)
 {
 	GList *old_list, *matching_node, *new_list;
 
 	old_list = gnome_vfs_mime_get_short_list_applications (mime_type);
 
 	matching_node = g_list_find_custom 
-		(old_list, (gpointer)application_id, (GCompareFunc) gnome_vfs_mime_application_matches_id);
+		(old_list, (gpointer)application_id,
+		 (GCompareFunc) gnome_vfs_mime_application_matches_id);
 	if (matching_node != NULL) {
 		old_list = g_list_remove_link (old_list, matching_node);
 		gnome_vfs_mime_application_list_free (matching_node);
@@ -751,8 +792,9 @@ void gnome_vfs_mime_remove_application_from_short_list (const char *mime_type,
 	gnome_vfs_mime_application_list_free (old_list);
 }						   
 
-void gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
-						 const char *iid)
+void
+gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
+					    const char *iid)
 {
 	GList *old_list, *new_list;
 
@@ -768,8 +810,9 @@ void gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
 	gnome_vfs_mime_component_list_free (old_list);
 }						   
 
-void gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
-						      const char *iid)
+void
+gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
+						 const char *iid)
 {
 	GList *old_list, *matching_node, *new_list;
 
@@ -789,8 +832,9 @@ void gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
 }						   
 
 
-void gnome_vfs_mime_extend_all_applications (const char *mime_type,
-					     GList      *application_ids)
+void
+gnome_vfs_mime_extend_all_applications (const char *mime_type,
+					GList *application_ids)
 {
 	char *user_mime_file;
 	const char *user_all_application_ids;
@@ -800,7 +844,11 @@ void gnome_vfs_mime_extend_all_applications (const char *mime_type,
 	char *update_str;
 	FILE *f;
 
- 	user_all_application_ids = gnome_vfs_mime_get_value 
+ 	if (mime_type == NULL) {
+		return;
+	}
+
+	user_all_application_ids = gnome_vfs_mime_get_value 
 		(mime_type, "all_application_ids");
 	user_id_list = comma_separated_str_to_str_list (user_all_application_ids);
 
@@ -811,16 +859,15 @@ void gnome_vfs_mime_extend_all_applications (const char *mime_type,
 	update_str = str_list_to_comma_separated_str (update_list);
 
 	g_list_free (update_list);
-	/* FIXME: should be deep free */
-	g_list_free (user_id_list);
+	g_list_free_deep (user_id_list);
 	
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
+	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
+	/* FIXME: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
-
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
-
 	fprintf (f, "\tall_application_ids=%s\n", update_str);
 	fclose (f);
 
@@ -831,7 +878,7 @@ void gnome_vfs_mime_extend_all_applications (const char *mime_type,
 
 void
 gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
-					     GList      *application_ids)
+					     GList *application_ids)
 {
 	char *user_mime_file;
 	const char *user_all_application_ids;
@@ -839,6 +886,10 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 	GList *update_list;
 	char *update_str;
 	FILE *f;
+
+	if (mime_type == NULL) {
+		return;
+	}
 
  	user_all_application_ids = gnome_vfs_mime_get_value 
 		(mime_type, "all_application_ids");
@@ -849,16 +900,15 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 	update_str = str_list_to_comma_separated_str (update_list);
 
 	g_list_free (update_list);
-	/* FIXME: should be deep free */
-	g_list_free (user_id_list);
+	g_list_free_deep (user_id_list);
 	
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
+	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
+	/* FIXME: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
-
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", mime_type);
-
 	fprintf (f, "\tall_application_ids=%s\n", update_str);
 	fclose (f);
 
@@ -872,28 +922,28 @@ gnome_vfs_mime_define_application (GnomeVFSMimeApplication *application)
 	char *hack_mime_type;
 	char *user_mime_file;
 	FILE *f;
-	const char *can_open_multiple_files;
-	const char *can_open_uris;
 
+	g_return_if_fail (application != NULL);
 
 	hack_mime_type = g_strconcat ("x-application-registry-hack/", application->id, NULL);
 
-	can_open_multiple_files = bool_to_str (application->can_open_multiple_files);
-	can_open_uris = bool_to_str (application->can_open_uris);
-	
 	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
 
+	/* FIXME bugzilla.eazel.com 1119: Is it OK to always append? */
+	/* FIXME: Is it OK to ignore errors? */
 	f = fopen (user_mime_file, "a");
-
 	fputs ("\n", f);
 	fprintf (f, "%s:\n", hack_mime_type);
 	fprintf (f, "\tname=%s\n", application->name);
 	fprintf (f, "\tcommand=%s\n", application->command);
-	fprintf (f, "\tcan_open_multiple_files=%s\n", can_open_multiple_files);
-	fprintf (f, "\tcan_open_uris=%s\n", can_open_uris);
+	fprintf (f, "\tcan_open_multiple_files=%s\n",
+		 bool_to_str (application->can_open_multiple_files));
+	fprintf (f, "\tcan_open_uris=%s\n",
+		 bool_to_str (application->can_open_uris));
 	fclose (f);
 
 	g_free (user_mime_file);
+	g_free (hack_mime_type);
 }
 
 
@@ -926,19 +976,21 @@ gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application)
 void
 gnome_vfs_mime_action_free (GnomeVFSMimeAction *action) 
 {
-	return;
+	/* FIXME: Work to do here?
+	 * Do we own the component or application pointer?
+	 */
 }
 
 void
 gnome_vfs_mime_application_list_free (GList *list)
 {
-	g_list_foreach (list, (GFunc)gnome_vfs_mime_application_free, NULL);
+	g_list_foreach (list, (GFunc) gnome_vfs_mime_application_free, NULL);
 }
 
 void
 gnome_vfs_mime_component_list_free (GList *list)
 {
-	g_list_foreach (list, (GFunc)CORBA_free, NULL);
+	g_list_foreach (list, (GFunc) CORBA_free, NULL);
 }
 
 
@@ -946,15 +998,15 @@ gnome_vfs_mime_component_list_free (GList *list)
 static gboolean
 str_to_bool (const char *str)
 {
-	return ((str != NULL) &&
-		((strcasecmp (str, "true") == 0) || 
-		 (strcasecmp (str, "yes") == 0)));
+	return str != NULL &&
+		(strcasecmp (str, "true") == 0 ||
+		 strcasecmp (str, "yes") == 0);
 }
 
 static const char *
 bool_to_str (gboolean bool)
 {
-	return (bool ? "true" : "false");
+	return bool ? "true" : "false";
 }
 
 
@@ -966,12 +1018,13 @@ join_str_list (const char *separator, GList *list)
 	int i;
 	char *retval;
 
-	strv = g_new0 (char *, g_list_length (list) + 1);
-
+	/* Convert to a strv so we can use g_strjoinv.
+	 * Saves code but could be made faster if we want.
+	 */
+	strv = g_new (char *, g_list_length (list) + 1);
 	for (p = list, i = 0; p != NULL; p = p->next, i++) {
 		strv[i] = (char *) p->data;
 	}
-
 	strv[i] = NULL;
 
 	retval = g_strjoinv (separator, strv);
