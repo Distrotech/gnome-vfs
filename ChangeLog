@@ -1,3 +1,21 @@
+2000-11-15  Mathieu Lacage  <mathieu@eazel.com>
+
+	Buddy: pavel <pavel@eazel.com>
+	
+	Fix bug 2650. remove *_without_fallback code.
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_action_type),
+	(gnome_vfs_mime_get_default_action),
+	(gnome_vfs_mime_get_default_application),
+	(gnome_vfs_mime_get_icon), 
+	(gnome_vfs_mime_get_default_component):
+	remove code trying to test for the supertype 
+	of a mime type because the first lookup always
+	checks for the supertype anyway so the code was
+	useless.
+	* libgnomevfs/gnome-vfs-mime-handlers.h: remove 
+	*_without_fallback functions.
+
 2000-11-14  Pavel Cisler  <pavel@eazel.com>
 
 	Reviewed by: Mathieu Lacage  <mathieu@eazel.com>	

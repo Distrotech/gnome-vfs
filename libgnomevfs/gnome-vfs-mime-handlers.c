@@ -49,23 +49,6 @@ static GnomeVFSResult gnome_vfs_mime_edit_user_file           (const char       
 							       const char         *value);
 static gboolean       application_known_to_be_nonexistent     (const char         *application_id);
 
-static GnomeVFSMimeActionType
-gnome_vfs_mime_get_default_action_type_without_fallback (const char *mime_type)
-{
-	const char *action_type_string;
-
-	action_type_string = gnome_vfs_mime_get_value
-		(mime_type, "default_action_type");
-
-	if (action_type_string != NULL && strcasecmp (action_type_string, "application") == 0) {
-		return GNOME_VFS_MIME_ACTION_TYPE_APPLICATION;
-	} else if (action_type_string != NULL && strcasecmp (action_type_string, "component") == 0) {
-		return GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
-	} else {
-		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
-	}
-}
-
 /**
  * gnome_vfs_mime_get_description:
  * @mime_type: the mime type
@@ -83,38 +66,29 @@ gnome_vfs_mime_get_description (const char *mime_type)
 GnomeVFSMimeActionType
 gnome_vfs_mime_get_default_action_type (const char *mime_type)
 {
-	char *supertype;
-	GnomeVFSMimeActionType action_type;
+	const char *action_type_string;
+	GnomeVFSMimeActionType retval;
 
-	action_type = gnome_vfs_mime_get_default_action_type_without_fallback (mime_type);
+	action_type_string = gnome_vfs_mime_get_value (mime_type, "default_action_type");
 
-	/* FIXME bugzilla.eazel.com 2650: the current (and the previous) implementation of 
-	   gnome_vfs_mime_get_value
-	   tries the supertype. This means that the folowing code is useless.
-	   The correct fix for this is to add a new funciotn in gnome-vfs-mime-info.c
-	   gnome_vfs_mime_get_value_without_callback. Waiting for evolution guys to fix it.
-	   Might remove this code too if we can convince them that wht they do with this 
-	   function is bad.
-	*/
-	if (action_type == GNOME_VFS_MIME_ACTION_TYPE_NONE) {
-		/* Fall back to the supertype. */
-		supertype = mime_type_get_supertype (mime_type);
-
-		action_type = gnome_vfs_mime_get_default_action_type_without_fallback (supertype);
-		g_free (supertype);
+	if (action_type_string != NULL && strcasecmp (action_type_string, "application") == 0) {
+		return GNOME_VFS_MIME_ACTION_TYPE_APPLICATION;
+	} else if (action_type_string != NULL && strcasecmp (action_type_string, "component") == 0) {
+		return GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
+	} else {
+		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
 	}
 
-	return action_type;
 }
 
 GnomeVFSMimeAction *
-gnome_vfs_mime_get_default_action_without_fallback (const char *mime_type)
+gnome_vfs_mime_get_default_action (const char *mime_type)
 {
 	GnomeVFSMimeAction *action;
 
 	action = g_new0 (GnomeVFSMimeAction, 1);
 
-	action->action_type = gnome_vfs_mime_get_default_action_type_without_fallback (mime_type);
+	action->action_type = gnome_vfs_mime_get_default_action_type (mime_type);
 
 	switch (action->action_type) {
 	case GNOME_VFS_MIME_ACTION_TYPE_APPLICATION:
@@ -144,29 +118,11 @@ gnome_vfs_mime_get_default_action_without_fallback (const char *mime_type)
 	return action;
 }
 
-GnomeVFSMimeAction *
-gnome_vfs_mime_get_default_action (const char *mime_type)
-{
-	GnomeVFSMimeAction *action;
-	char *supertype;
-
-	action = gnome_vfs_mime_get_default_action_without_fallback (mime_type);
-	if (action == NULL) {
-		/* Fall back to the supertype. */
-		supertype = mime_type_get_supertype (mime_type);
-		action = gnome_vfs_mime_get_default_action_without_fallback (supertype);
-		g_free (supertype);
-	}
-
-	return action;
-}
-
 GnomeVFSMimeApplication *
 gnome_vfs_mime_get_default_application (const char *mime_type)
 {
 	const char *default_application_id;
 	GnomeVFSMimeApplication *default_application;
-	char *supertype;
 	GList *short_list;
 
 	default_application = NULL;
@@ -194,17 +150,6 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 		}
 	}
 
-	if (default_application == NULL) {
-		/* If that still fails, try the supertype */
-		supertype = mime_type_get_supertype (mime_type);
-
-		/* Check if already a supertype */
-		if (strcmp (supertype, mime_type) != 0) {
-			default_application = gnome_vfs_mime_get_default_application (supertype);
-		} 
-
-		g_free (supertype);
-	}
 
 	return default_application;
 }
@@ -212,7 +157,7 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 const char *
 gnome_vfs_mime_get_icon (const char *mime_type)
 {
-	return (gnome_vfs_mime_get_value (mime_type, "icon-filename"));
+	return gnome_vfs_mime_get_value (mime_type, "icon-filename");
 }
 
 GnomeVFSResult
