@@ -234,7 +234,7 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 					result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
 				}
 	
-				if (result != NULL) {
+				if ((result != NULL) && (result != XDG_MIME_TYPE_UNKNOWN)) {
 					return result;
 				}
 
