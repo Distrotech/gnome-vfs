@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.2.4\n"
-"POT-Creation-Date: 2003-05-05 12:39+0200\n"
-"PO-Revision-Date: 2003-05-04 18:17+0200\n"
+"Project-Id-Version: gnome-vfs 2.3.1\n"
+"POT-Creation-Date: 2003-05-17 18:51+0200\n"
+"PO-Revision-Date: 2003-05-17 18:48+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -35,22 +35,22 @@ msgstr "%s:%d ne contient pas de nom de module."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Le fichier de configuration « %s » n'a pas été trouvé : %s"
 
-#: libgnomevfs/gnome-vfs-job.c:744
+#: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Type d'op %u inconnu"
 
-#: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Impossible de créer un tube pour ouvrir GIOChannel : %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1668
+#: libgnomevfs/gnome-vfs-job.c:1684
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Type de tâche inconnu %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1701
+#: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
 msgstr "Opération arrêtée"
 
@@ -276,22 +276,22 @@ msgstr "Impossible de trouver le navigateur maître"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "Aucune action par défaut associée"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "Aucun gestionnaire pour ce type d'URL"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Error lors de l'analyse de la ligne de commande"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Erreur au lancement de la commande"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
@@ -321,7 +321,7 @@ msgstr "%.1f Mo"
 msgid "%.1f GB"
 msgstr "%.1f Go"
 
-#: libgnomevfs/gnome-vfs-utils.c:1088
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr " (Unicode non valide)"
 
