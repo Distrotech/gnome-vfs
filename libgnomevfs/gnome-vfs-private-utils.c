@@ -41,6 +41,9 @@
 #include <stdio.h>
 #include <ctype.h>
 
+#include <stdlib.h> /* for mkstemp */
+#include <unistd.h> /* for close */
+
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
@@ -320,16 +323,21 @@ gnome_vfs_create_temp (const gchar *prefix,
 	GnomeVFSHandle *handle;
 	GnomeVFSResult result;
 	gchar *name;
+	gint fd;
 
 	while (1) {
-		name = tempnam (NULL, prefix);
-		if (name == NULL)
+		name = g_strdup_printf("%sXXXXXX", prefix);
+		fd = mkstemp(name);
+
+		if (fd < 0)
 			return GNOME_VFS_ERROR_INTERNAL;
 
-		result = gnome_vfs_create
+		fchmod(fd, 0600);
+		close(fd);
+
+		result = gnome_vfs_open
 			(&handle, name,
-			 GNOME_VFS_OPEN_WRITE | GNOME_VFS_OPEN_READ,
-			 TRUE, 0600);
+			 GNOME_VFS_OPEN_WRITE | GNOME_VFS_OPEN_READ);
 
 		if (result == GNOME_VFS_OK) {
 			*name_return = name;

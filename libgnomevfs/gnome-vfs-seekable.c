@@ -30,6 +30,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <stdlib.h> /* for mkstemp */
+#include <unistd.h> /* for close */
+
 #include <glib.h>
 
 #include "gnome-vfs.h"
@@ -174,14 +177,22 @@ static GnomeVFSResult
 init_seek (SeekableMethodHandle *mh)
 {
 	GnomeVFSResult   result;
-	char            *stem;
+	gchar            *stem;
+	gint             fd;
 	
 	/* Create a temporary file name */
-	if (!(stem = tmpnam (NULL)))
+	stem = g_strdup("/tmp/gnome-vfs-seekable-temp-XXXXX"); /* template */
+	fd = mkstemp(stem);
+	if (fd < 0) {
+		g_free(stem);
 		return GNOME_VFS_ERROR_NO_SPACE;
+	}
 
 	mh->tmp_uri = g_strdup_printf ("file:%s", stem);
 	g_warning ("Opening temp seekable file '%s'", mh->tmp_uri);
+
+	close(fd);
+	g_free(stem);
 	
 	/* Open the file */
 	result = gnome_vfs_create (&mh->tmp_file, mh->tmp_uri, 

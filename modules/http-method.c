@@ -259,11 +259,16 @@ http_status_to_vfs_result (guint status)
 
 	/* FIXME bugzilla.eazel.com 1163 */
 	switch (status) {
-	case 401:
-	case 407:
+	case HTTP_STATUS_UNAUTHORIZED:
+	case HTTP_STATUS_PROXY_AUTH_REQUIRED:
 		return GNOME_VFS_ERROR_ACCESS_DENIED;
-	case 404:
+	case HTTP_STATUS_NOT_FOUND:
 		return GNOME_VFS_ERROR_NOT_FOUND;
+	case HTTP_STATUS_METHOD_NOT_ALLOWED:
+	case HTTP_STATUS_BAD_REQUEST:
+	case HTTP_STATUS_NOT_IMPLEMENTED:
+	case HTTP_STATUS_UNSUPPORTED_VERSION:
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	default:
 		return GNOME_VFS_ERROR_GENERIC;
 	}
@@ -711,7 +716,7 @@ do_create (GnomeVFSMethod *method,
      GnomeVFSContext *context)
 {
 	/* FIXME bugzilla.eazel.com 1159: do we need to do something more intelligent here? */
-	return do_open(method, method_handle, uri, mode, context);
+	return do_open(method, method_handle, uri, GNOME_VFS_OPEN_WRITE, context);
 }
 
 static GnomeVFSResult

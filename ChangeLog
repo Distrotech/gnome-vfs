@@ -1,3 +1,16 @@
+2000-07-06  Ian McKellar  <yakk@yakk.net.au>
+
+	* libgnomevfs/gnome-vfs-private-utils.c: (gnome_vfs_create_temp):
+	* libgnomevfs/gnome-vfs-seekable.c: (init_seek):
+	Changed to use safe temp file functions. (bugzilla.eazel.com: 1001)
+
+	* modules/http-method.c: (http_status_to_vfs_result):
+	Updated HTTP result -> GnomeVFSResult mapping.
+
+	* (do_create):
+	Fixed create method a bit.
+	
+
 2000-07-05  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/extfs-method.c: (get_dirname), (do_open_directory),
