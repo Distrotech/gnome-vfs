@@ -63,10 +63,15 @@
 
 #include "http-method.h"
 
+/* (this typedef is all the way up here so that  my_debug_printf can use it) */
+typedef gint64 utime_t;
+
 #if 0
 #include <stdio.h>
 #include <stdarg.h>
 #include <pthread.h>
+
+static utime_t get_utime (void);
 
 static void
 my_debug_printf(char *fmt, ...)
@@ -80,13 +85,16 @@ my_debug_printf(char *fmt, ...)
 
 	out = g_strdup_vprintf (fmt, args);
 
-	fprintf (stderr, "HTTP: [0x%08x] %s\n", (unsigned int) pthread_self(), out);
+	fprintf (stderr, "HTTP: [0x%08x] [0x%08x] %s\n", (unsigned int) get_utime(), (unsigned int) pthread_self(), out);
 
 	g_free (out);
 	va_end (args);
 }
 
 #define DEBUG_HTTP(x) my_debug_printf x
+
+#define ANALYZE_HTTP(x) my_debug_printf (x)
+
 #else
 static int nothing;
 #define DEBUG_HTTP(x) nothing = 1;
@@ -116,8 +124,6 @@ GHashTable * gl_file_info_cache = NULL;
 /* in-order list of cache entries  for expiration */
 GList * gl_file_info_cache_list = NULL;
 GList * gl_file_info_cache_list_last = NULL;
-
-typedef gint64 utime_t;
 
 typedef struct {
 	gchar *			uri_string;
@@ -1037,13 +1043,18 @@ get_header (GnomeVFSIOBuf *iobuf,
 	GnomeVFSFileSize bytes_read;
 	guint count;
 
+	ANALYZE_HTTP ("==> +get_header");
+
 	g_string_truncate (s, 0);
 
 	count = 0;
 	while (1) {
 		gchar c;
 
+		/* ANALYZE_HTTP ("==> +get_header read"); */
 		result = gnome_vfs_iobuf_read (iobuf, &c, 1, &bytes_read);
+		/* ANALYZE_HTTP ("==> -get_header read"); */
+
 		if (result != GNOME_VFS_OK) {
 			return result;
 		}
@@ -1079,6 +1090,9 @@ get_header (GnomeVFSIOBuf *iobuf,
 		count++;
 	}
 	
+
+	ANALYZE_HTTP ("==> -get_header");
+
 	return GNOME_VFS_OK;
 }
 
@@ -1097,6 +1111,8 @@ create_handle (HttpFileHandle **handle_return,
 	*handle_return = http_file_handle_new (connection, iobuf, uri);
 	header_string = g_string_new (NULL);
 
+	ANALYZE_HTTP ("==> +create_handle");
+
 	/* This is the status report string, which is the first header.  */
 	result = get_header (iobuf, header_string);
 	if (result != GNOME_VFS_OK) {
@@ -1114,6 +1130,9 @@ create_handle (HttpFileHandle **handle_return,
 		result = http_status_to_vfs_result (server_status);
 		goto error;
 	}
+
+
+	ANALYZE_HTTP ("==> +create_handle: fetching headers");
 
 	/* Header fetching loop.  */
 	while (1) {
@@ -1134,6 +1153,8 @@ create_handle (HttpFileHandle **handle_return,
 		 */
 		parse_header (*handle_return, header_string->str);
 	}
+
+	ANALYZE_HTTP ("==> -create_handle: fetching headers");
 
 	if (result != GNOME_VFS_OK) {
 		goto error;
@@ -1157,12 +1178,15 @@ create_handle (HttpFileHandle **handle_return,
 	}
 #endif /* HTTP_VFS_CONTEXT_MESSAGES */
 
+	ANALYZE_HTTP ("==> -create_handle");
 	return GNOME_VFS_OK;
 
  error:
 	http_file_handle_destroy (*handle_return);
 	*handle_return = NULL;
 	g_string_free (header_string, TRUE);
+
+	ANALYZE_HTTP ("==> -create_handle");
 	return result;
 }
 
@@ -1348,6 +1372,8 @@ make_request (HttpFileHandle **handle_return,
 	guint proxy_port;
 	const gchar *path;
 
+	ANALYZE_HTTP ("==> +make_request");
+
 	connection = NULL;
 	iobuf = NULL;
 	
@@ -1358,6 +1384,8 @@ make_request (HttpFileHandle **handle_return,
 	} else {
 		host_port = toplevel_uri->host_port;
 	}
+
+	ANALYZE_HTTP ("==> +Making connection");
 
 	if (toplevel_uri->host_name == NULL) {
 		result = GNOME_VFS_ERROR_INVALID_URI;
@@ -1378,6 +1406,8 @@ make_request (HttpFileHandle **handle_return,
 							   host_port,
 							   context ? gnome_vfs_context_get_cancellation(context) : NULL);
 	}
+
+	ANALYZE_HTTP ("==> -Making connection");
 
 	if (result != GNOME_VFS_OK) {
 		goto error;
@@ -1455,6 +1485,8 @@ make_request (HttpFileHandle **handle_return,
 	/* Empty line ends header section.  */
 	g_string_append (request, "\r\n");
 
+	ANALYZE_HTTP ("==> Writing request and header");
+
 	/* Send the request headers.  */
 	result = gnome_vfs_iobuf_write (iobuf, request->str, request->len,
 					&bytes_written);
@@ -1464,12 +1496,14 @@ make_request (HttpFileHandle **handle_return,
 		goto error;
 
 	if(data && data->data) {
-#if 0
-		g_print("sending data...\n");
-#endif
+		ANALYZE_HTTP ("==> Writing data");
+
 		result = gnome_vfs_iobuf_write (iobuf, data->data, data->len,
 						&bytes_written);
 	}
+
+	ANALYZE_HTTP ("==> Calling flush");
+	/* FIXME mfleming is this really necessary? */
 	if (result == GNOME_VFS_OK)
 		result = gnome_vfs_iobuf_flush (iobuf);
 	if (result != GNOME_VFS_OK) {
@@ -1480,14 +1514,23 @@ make_request (HttpFileHandle **handle_return,
 	result = create_handle (handle_return, uri, connection, iobuf,
 				context);
 
+#if 0
+	/* FIXME this was placed here to work around a bug in eazel services where
+	 * it would return EOF w/o status when a PUT exceeded a user's quota.
+	 * This problem has now been fixed on the server, so I think this code
+	 * should be axed -- mfleming
+	 */
 	/* Detect no more space puts */
 	if ((strcmp (method, "PUT") == 0) &&
 	    result == GNOME_VFS_ERROR_EOF) {
 		result = GNOME_VFS_ERROR_NO_SPACE;
 	}
+#endif
 	if (result != GNOME_VFS_OK)
 		goto error;
 
+
+	ANALYZE_HTTP ("==> -make_request");
 	return result;
 
  error:
@@ -1496,12 +1539,16 @@ make_request (HttpFileHandle **handle_return,
 	if (connection != NULL) {
 		gnome_vfs_inet_connection_destroy (connection, NULL);
 	}
+
+	ANALYZE_HTTP ("==> -make_request");
 	return result;
 }
 
 static void
 http_handle_close (HttpFileHandle *handle, GnomeVFSContext *context)
 {
+	ANALYZE_HTTP ("==> +http_handle_close");
+
 	if (handle) {
 		/* Both iobuf and connection can be NULL if a create and a close */
 		/* was done with no i/o */
@@ -1533,6 +1580,8 @@ http_handle_close (HttpFileHandle *handle, GnomeVFSContext *context)
 		
 		http_file_handle_destroy (handle);
 	}
+	
+	ANALYZE_HTTP ("==> -http_handle_close");
 }
 
 static GnomeVFSResult
@@ -1550,7 +1599,10 @@ do_open (GnomeVFSMethod *method,
 						mode & GNOME_VFS_OPEN_WRITE),
 			      GNOME_VFS_ERROR_INVALID_OPEN_MODE);
 
-	DEBUG_HTTP (("+Open"));
+	ANALYZE_HTTP ("==> +do_open");
+	DEBUG_HTTP (("+Open URI: '%s' mode:'%c'", gnome_vfs_uri_to_string(uri, 0), 
+		mode & GNOME_VFS_OPEN_READ ? 'R' : 'W'
+	));
 
 	if(mode & GNOME_VFS_OPEN_READ) {
 		result = make_request (&handle, uri, "GET", NULL, NULL,
@@ -1561,7 +1613,8 @@ do_open (GnomeVFSMethod *method,
 	if (result == GNOME_VFS_OK)
 		*method_handle = (GnomeVFSMethodHandle *) handle;
 
-	DEBUG_HTTP (("-Open"));
+	DEBUG_HTTP (("-Open (%d) handle:0x%08x", result, handle));
+	ANALYZE_HTTP ("==> -do_open");
 
 	return result;
 }
@@ -1583,7 +1636,8 @@ do_create (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 	GByteArray *bytes = g_byte_array_new();
 
-	DEBUG_HTTP (("+Create"));
+	ANALYZE_HTTP ("==> +do_create");
+	DEBUG_HTTP (("+Create URI: '%s'"));
 
 #ifndef DAV_NO_CACHE
 	cache_invalidate_uri_parent (uri);
@@ -1592,7 +1646,12 @@ do_create (GnomeVFSMethod *method,
 	/* Don't ignore exclusive; it should check first whether
 	   the file exists, since the http protocol default is to 
 	   overwrite by default */
+	/* FIXME we've stopped using HEAD -- we should use GET instead  */
+	/* FIXME we should check the cache here */
 	if (exclusive) {
+
+		ANALYZE_HTTP ("==> Checking to see if file exists");
+
 		result = make_request (&handle, uri, "HEAD", NULL, NULL,
 				       context);
 		http_handle_close (handle, context);
@@ -1605,6 +1664,8 @@ do_create (GnomeVFSMethod *method,
 			return GNOME_VFS_ERROR_FILE_EXISTS;
 		}
 	}
+
+	ANALYZE_HTTP ("==> Creating initial file");
 
       	result = make_request (&handle, uri, "PUT", bytes, NULL, context);
 	http_handle_close(handle, context);
@@ -1620,7 +1681,8 @@ do_create (GnomeVFSMethod *method,
 	/* FIXME bugzilla.eazel.com 1159: do we need to do something more intelligent here? */
 	result = do_open(method, method_handle, uri, GNOME_VFS_OPEN_WRITE, context);
 
-	DEBUG_HTTP (("-Create"));
+	DEBUG_HTTP (("-Create (%d) handle:0x%08x", result, handle));
+	ANALYZE_HTTP ("==> -do_create");
 
 	return result;
 }
@@ -1634,7 +1696,8 @@ do_close (GnomeVFSMethod *method,
 	HttpFileHandle *new_handle;
 	GnomeVFSResult result;
 
-	DEBUG_HTTP (("+Close"));
+	ANALYZE_HTTP ("==> +do_close");
+	DEBUG_HTTP (("+Close handle:0x%08x", method_handle));
 
 	old_handle = (HttpFileHandle *) method_handle;
 
@@ -1650,6 +1713,7 @@ do_close (GnomeVFSMethod *method,
 		cache_invalidate_uri (uri);
 #endif /* DAV_NO_CACHE */
 
+		ANALYZE_HTTP ("==> doing PUT");
 		result = make_request (&new_handle, uri, "PUT", bytes, NULL, context);
 		http_handle_close (new_handle, context);
 	} else {
@@ -1658,7 +1722,8 @@ do_close (GnomeVFSMethod *method,
 
 	http_handle_close (old_handle, context);
 
-	DEBUG_HTTP (("-Close"));
+	DEBUG_HTTP (("-Close (%d)", result));
+	ANALYZE_HTTP ("==> -do_close");
 
 	return result;
 }
@@ -1673,7 +1738,7 @@ do_write (GnomeVFSMethod *method,
 {
 	HttpFileHandle *handle;
 
-	DEBUG_HTTP (("+Write"));
+	DEBUG_HTTP (("+Write handle:0x%08x", method_handle));
 
 	handle = (HttpFileHandle *) method_handle;
 
@@ -1683,7 +1748,7 @@ do_write (GnomeVFSMethod *method,
 	handle->to_be_written = g_byte_array_append(handle->to_be_written, buffer, num_bytes);
 	*bytes_read = num_bytes;
 
-	DEBUG_HTTP (("+Write"));
+	DEBUG_HTTP (("-Write (0)"));
 	
 	return GNOME_VFS_OK;
 }
@@ -1700,7 +1765,8 @@ do_read (GnomeVFSMethod *method,
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
 
-	DEBUG_HTTP (("+Read"));
+	ANALYZE_HTTP ("==> +do_read");
+	DEBUG_HTTP (("+Read handle=0x%08x", method_handle));
 
 	handle = (HttpFileHandle *) method_handle;
 
@@ -1747,7 +1813,8 @@ do_read (GnomeVFSMethod *method,
 	}
 #endif /* HTTP_VFS_CONTEXT_MESSAGES */
 
-	DEBUG_HTTP (("-Read"));
+	DEBUG_HTTP (("-Read (%d)", result));
+	ANALYZE_HTTP ("==> -do_read");
 
 	return result;
 }
@@ -1976,6 +2043,8 @@ make_propfind_request (HttpFileHandle **handle_return,
 		/*"<D:allprop/>"*/
 		"</D:propfind>";
 
+	ANALYZE_HTTP ("==> +make_propfind_request");
+
 	request = g_byte_array_append(request, request_str, 
 			strlen(request_str));
 
@@ -2098,6 +2167,8 @@ cleanup:
 		*handle_return = NULL;
 	}
 
+	ANALYZE_HTTP ("==> -make_propfind_request");
+
 	return result;
 }
 
@@ -2117,6 +2188,7 @@ do_open_directory(GnomeVFSMethod *method,
 	GList *child_file_info_cached_list = NULL;
 #endif /*DAV_NO_CACHE*/
 
+	ANALYZE_HTTP ("==> +do_open_directory");
 	DEBUG_HTTP (("+Open_Directory options: %d dirfilter: 0x%08x URI: '%s'", options, (unsigned int) filter, gnome_vfs_uri_to_string( uri, 0)));
 
 #ifndef DAV_NO_CACHE
@@ -2176,7 +2248,8 @@ do_open_directory(GnomeVFSMethod *method,
 #ifndef DAV_NO_CACHE
 error:
 #endif /*DAV_NO_CACHE*/
-	DEBUG_HTTP (("-Open_Directory (%d)", result));
+	DEBUG_HTTP (("-Open_Directory (%d) handle:0x%08x", result, handle));
+	ANALYZE_HTTP ("==> -do_open_directory");
 
 	return result;
 }
@@ -2195,7 +2268,7 @@ do_close_directory (GnomeVFSMethod *method,
 
 	http_handle_close(handle, context);
 
-	DEBUG_HTTP (("-Close_Directory"));
+	DEBUG_HTTP (("-Close_Directory (0) handle:0x%08x", method_handle));
 
 	return GNOME_VFS_OK;
 }
@@ -2207,8 +2280,9 @@ do_read_directory (GnomeVFSMethod *method,
        GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
+	GnomeVFSResult result;
 
-	DEBUG_HTTP (("+Read_Directory"));
+	DEBUG_HTTP (("+Read_Directory handle:0x%08x", method_handle));
 
 	handle = (HttpFileHandle *) method_handle;
 
@@ -2225,18 +2299,19 @@ do_read_directory (GnomeVFSMethod *method,
 		/* remove our GnomeVFSFileInfo from the list */
 		handle->files = g_list_remove (handle->files, original_info);
 		gnome_vfs_file_info_unref (original_info);
-
-		DEBUG_HTTP (("-Read_Directory"));
 	
 		/* mfleming -- Is this necessary? */
 		if (found_entry) {
-			return GNOME_VFS_OK;
+			result = GNOME_VFS_OK;
+		} else {
+			result = do_read_directory (method, method_handle, file_info, context);
 		}
-
-		return do_read_directory (method, method_handle, file_info, context);
+	} else {
+		result = GNOME_VFS_ERROR_EOF;
 	}
-	DEBUG_HTTP (("-Read_Directory"));
-	return GNOME_VFS_ERROR_EOF;
+
+	DEBUG_HTTP (("-Read_Directory (%d)", result));
+	return result;
 }
  
 
@@ -2253,7 +2328,8 @@ do_get_file_info (GnomeVFSMethod *method,
 	GnomeVFSFileInfo * file_info_cached;
 #endif /*DAV_NO_CACHE*/
 
-	DEBUG_HTTP (("+Get_File_Info options: %d", options));
+	ANALYZE_HTTP ("==> +do_get_file_info");
+	DEBUG_HTTP (("+Get_File_Info options: %d URI: '%s'", options, gnome_vfs_uri_to_string( uri, 0)));
 
 #ifndef DAV_NO_CACHE
 	file_info_cached = cache_check_uri (uri);
@@ -2286,6 +2362,8 @@ do_get_file_info (GnomeVFSMethod *method,
 		 */ 
 		if (result == GNOME_VFS_OK) {
 			gnome_vfs_file_info_copy (file_info, handle->file_info);
+			http_handle_close (handle, context);
+			handle = NULL;
 		} else {
 			g_assert (handle == NULL); /* Make sure we're not leaking some old one */
 
@@ -2296,6 +2374,9 @@ do_get_file_info (GnomeVFSMethod *method,
 			 */
 			if (result != GNOME_VFS_OK) {
 				g_assert (handle == NULL); /* Make sure we're not leaking some old one */
+
+				ANALYZE_HTTP ("==> do_get_file_info: do GET ");
+
 				result = make_request (&handle, uri, "GET", NULL, NULL, context);
 				if (result == GNOME_VFS_OK) {
 					gnome_vfs_file_info_copy (file_info, handle->file_info);
@@ -2333,18 +2414,13 @@ do_get_file_info (GnomeVFSMethod *method,
 					gnome_vfs_uri_unref (tmpuri);
 				}
 			}
-
-
-			DEBUG_HTTP (("-Get_File_Info"));
-			return result;
 		}
-
-
-		http_handle_close (handle, context);
 #ifndef DAV_NO_CACHE
 	}
 #endif /* DAV_NO_CACHE */
-	DEBUG_HTTP (("-Get_File_Info"));
+
+	DEBUG_HTTP (("-Get_File_Info (%d)", result));
+	ANALYZE_HTTP ("==> -do_get_file_info");
 	
 	return result;
 }
@@ -2385,7 +2461,8 @@ do_make_directory (GnomeVFSMethod *method, GnomeVFSURI *uri,
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
 
-	DEBUG_HTTP (("+Make_Directory"));
+	DEBUG_HTTP (("+Make_Directory URI: '%s'", gnome_vfs_uri_to_string (uri, 0)));
+	ANALYZE_HTTP ("==> +do_get_file_info");
 
 	/*
 	 * MKCOL returns a 405 if you try to MKCOL on something that
@@ -2410,7 +2487,8 @@ do_make_directory (GnomeVFSMethod *method, GnomeVFSURI *uri,
 	}
 	http_handle_close (handle, context);
 
-	DEBUG_HTTP (("-Make_Directory"));
+	ANALYZE_HTTP ("==> -do_get_file_info");
+	DEBUG_HTTP (("-Make_Directory (%d)", result));
 
 	return result;
 }
@@ -2422,7 +2500,8 @@ do_remove_directory(GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *c
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
 
-	DEBUG_HTTP (("+Remove_Directory"));
+	ANALYZE_HTTP ("==> +do_remove_directory");
+	DEBUG_HTTP (("+Remove_Directory URI: '%s'", gnome_vfs_uri_to_string (uri, 0)));
 
 #ifndef DAV_NO_CACHE
 	cache_invalidate_uri_parent (uri);
@@ -2435,7 +2514,8 @@ do_remove_directory(GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *c
                         context);
 	http_handle_close (handle, context);
 
-	DEBUG_HTTP (("-Remove_Directory"));
+	DEBUG_HTTP (("-Remove_Directory (%d)", result));
+	ANALYZE_HTTP ("==> -do_remove_directory");
 
 	return result;
 }
@@ -2469,7 +2549,10 @@ do_move (GnomeVFSMethod *method,
 
 	gchar *destpath, *destheader;
 
-	DEBUG_HTTP (("+Move"));
+	ANALYZE_HTTP ("==> +do_move");
+	DEBUG_HTTP (("+Move URI: '%s' Dest: '%s'", 
+		gnome_vfs_uri_to_string (old_uri,0), 
+		gnome_vfs_uri_to_string (new_uri,0)));
 
 	if (!is_same_fs (old_uri, new_uri)) {
 		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
@@ -2486,7 +2569,8 @@ do_move (GnomeVFSMethod *method,
 	cache_invalidate_uri_parent (new_uri);
 #endif /*DAV_NO_CACHE*/
 
-	DEBUG_HTTP (("-Move"));
+	DEBUG_HTTP (("-Move (%d)", result));
+	ANALYZE_HTTP ("==> -do_move");
 
 	return result;
 }
@@ -2497,10 +2581,13 @@ do_unlink(GnomeVFSMethod * method,
 	GnomeVFSURI * uri, GnomeVFSContext * context)
 {
 	GnomeVFSResult result;
-	
-	DEBUG_HTTP (("+Unlink"));
+
+	/* FIXME need to make sure this fails on directories */
+	ANALYZE_HTTP ("==> +do_unlink");
+	DEBUG_HTTP (("+Unlink URI: '%s'", gnome_vfs_uri_to_string (uri,0)));
 	result = do_remove_directory(method, uri, context);
-	DEBUG_HTTP (("-Unlink"));
+	DEBUG_HTTP (("-Unlink (%d)", result));
+	ANALYZE_HTTP ("==> -do_unlink");
 
 	return result;
 }

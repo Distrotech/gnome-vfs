@@ -1,3 +1,15 @@
+2000-11-17  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c: (my_debug_printf), (get_header),
+	(create_handle), (make_request), (http_handle_close), (do_open),
+	(do_create), (do_close), (do_write), (do_read),
+	(make_propfind_request), (do_open_directory), (do_close_directory),
+	(do_read_directory), (do_get_file_info), (do_make_directory),
+	(do_remove_directory), (do_move), (do_unlink):
+	* test/http-postanalyze.pl:
+
+	Added timing debug code.
+
 2000-11-17  Mathieu Lacage  <mathieu@eazel.com>
 
 	reviewed by: Sullivan
