@@ -1,3 +1,13 @@
+gnome-vfs 2.3.2
+        * Features:
+	       + ipv6 uris supported
+	       + add some command line applications for gnome-vfs
+
+	* Bugs fixed:
+	       + mp3 mimetype is audio/mpeg, not audio/x-mp3
+	       + build issues fixed
+	       + fix ncpfs filesystem
+	
 gnome-vfs 2.3.1
         * Features:
 	       + New API gnome_vfs_url_show() and related calls

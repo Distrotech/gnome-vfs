@@ -1,3 +1,9 @@
+2003-05-19  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.3.2.
+
 2003-05-17  Bastien Nocera  <hadess@hadess.net>
 
 	* Makefile.am: add the programs subdir so the programs are built by
