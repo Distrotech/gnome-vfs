@@ -1462,12 +1462,19 @@ gnome_vfs_application_registry_unset_key (const char *app_id,
  */
 
 
+static void
+cb_application_collect (gpointer key, gpointer value, gpointer user_data)
+{
+	GList **list = user_data;
+	*list = g_list_prepend (*list, value);
+}
+
 /**
  * gnome_vfs_application_registry_get_applications
  * @mime_type:  mime type string
  *
  * This will return all applications from the registry that are associated with
- * the given mime type string.
+ * the given mime type string, if NULL it returns all applications.
  *
  * Returns: a list of the application IDs for all applications which
  * support the given mime type.
@@ -1480,11 +1487,15 @@ gnome_vfs_application_registry_get_applications (const char *mime_type)
 	GList *app_list, *app_list2, *retval, *li;
 	char *supertype;
 
-	g_return_val_if_fail (mime_type != NULL, NULL);
+	retval = NULL;
+	app_list2 = NULL;
 
 	maybe_reload ();
 
-	app_list2 = NULL;
+	if (mime_type == NULL) {
+		g_hash_table_foreach (global_applications, cb_application_collect, &retval);
+		return retval;
+	}
 
 	if (gnome_vfs_mime_type_is_supertype (mime_type)) {
 		app_list = g_hash_table_lookup (generic_mime_types, mime_type);
@@ -1498,7 +1509,6 @@ gnome_vfs_application_registry_get_applications (const char *mime_type)
 		}
 	}
 
-	retval = NULL;
 	for (li = app_list; li != NULL; li = li->next) {
 		Application *application = li->data;
 		/* Note that this list is sorted so to kill duplicates
