@@ -968,7 +968,7 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 					file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 				}
 			}
-			/* FIXME: 
+			/* FIXME bugzilla.eazel.com 2795: 
 			 * all date related properties:
 			 * creationdate
 			 * getlastmodified

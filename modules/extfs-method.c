@@ -858,7 +858,7 @@ static GnomeVFSMethod method = {
 	NULL,
 	do_truncate,
 	do_find_directory,
-	NULL     /* FIXME: do_create_symbolic_link */
+	NULL     /* FIXME bugzilla.eazel.com 2804: do_create_symbolic_link */
 };
 
 GnomeVFSMethod *

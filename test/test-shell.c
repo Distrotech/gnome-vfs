@@ -590,7 +590,7 @@ do_info (void)
 		fprintf (stdout, "Size invalid");
 	fprintf (stdout, "\n");
 
-	/* FIXME: hack here; should dump them all */
+	/* FIXME bugzilla.eazel.com 2800: hack here; should dump them all */
 	    
 	gnome_vfs_file_info_unref (info);
 }

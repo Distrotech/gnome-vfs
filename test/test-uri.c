@@ -289,18 +289,18 @@ main (int argc, char **argv)
 	test_uri_has_parent ("man:as", "FALSE");
 	test_uri_has_parent ("pipe:gnome-info2html2 as", "FALSE");
 
-	/* FIXME: Do we want GnomeVFSURI to just refuse to deal with
+	/* FIXME bugzilla.eazel.com 2801: Do we want GnomeVFSURI to just refuse to deal with
          * URIs that we don't have a module for?
 	 */
 	test_uri_to_string ("glorp:", "NULL", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_parent ("glorp:", "URI NULL");
 
-	/* FIXME: Is this the correct behavior for these cases? */
+	/* FIXME bugzilla.eazel.com 2802: Is this the correct behavior for these cases? */
 	test_uri_to_string ("file:", "file://", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("http:", "http://", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("file:/", "file:///", GNOME_VFS_URI_HIDE_NONE);
 
-	/* FIXME: Do we really want to add the "//" in this case? */
+	/* FIXME bugzilla.eazel.com 2803: Do we really want to add the "//" in this case? */
 	test_uri_to_string ("pipe:gnome-info2html2 as", "pipe://gnome-info2html2 as", GNOME_VFS_URI_HIDE_NONE);
 
 	/* Report to "make check" on whether it all worked or not. */

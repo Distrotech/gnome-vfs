@@ -1,3 +1,21 @@
+2000-09-05  John Sullivan  <sullivan@eazel.com>
+
+	Wrote bugs for the last (for now) 18 unbugged FIXMEs.
+
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	(drag_data_get):
+	* modules/bzip2-method.c: (do_get_file_info):
+	* modules/extfs-method.c:
+	* modules/file-method.c: (do_create_symbolic_link):
+	* modules/ftp-method.c: (internal_get_file_info):
+	* modules/gconf-method.c:
+	* modules/gzip-method.c: (do_get_file_info):
+	* modules/http-method.c: (process_propfind_propstat):
+	* modules/translate-method.c: (tr_apply_default_mime_type),
+	(tr_handle_exec), (tr_uri_translate):
+	* test/test-shell.c: (do_info):
+	* test/test-uri.c: (main):
+
 2000-09-05  Martin Baulig  <baulig@suse.de>
 
 	* Makefile.am (SUBDIRS): Remove the mime-type-capplet; this

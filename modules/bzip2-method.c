@@ -536,7 +536,7 @@ do_get_file_info  (GnomeVFSMethod *method,
 		gint namelen = strlen(file_info->name);
 		
 		/* work out the name */
-		/* FIXME handle uppercase */
+		/* FIXME bugzilla.eazel.com 2790: handle uppercase */
 		if(namelen > 4 &&
 				file_info->name[namelen-1] == '2' &&
 				file_info->name[namelen-2] == 'z' &&
@@ -548,7 +548,7 @@ do_get_file_info  (GnomeVFSMethod *method,
 		//file_info->valid_fields &= ~GNOME_VFS_FILE_INFO_FIELDS_SIZE;
 
 		/* guess the mime type of the file inside */
-		/* FIXME guess mime based on contents */
+		/* FIXME bugzilla.eazel.com 2791: guess mime based on contents */
 		g_free(file_info->mime_type);
 		file_info->mime_type = g_strdup(gnome_vfs_mime_type_from_name(file_info->name));
 	}

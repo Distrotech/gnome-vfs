@@ -1522,7 +1522,7 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 		g_free (target_full_name);
 		g_free (link_full_name);
 	} else {
-		/* FIXME: do a URI link */
+		/* FIXME bugzilla.eazel.com 2792: do a URI link */
 		result = GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 

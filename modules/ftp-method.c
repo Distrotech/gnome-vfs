@@ -861,7 +861,7 @@ internal_get_file_info (GnomeVFSMethod *method,
 
 	result = end_transfer (conn);
 
-	/* FIXME check return? */
+	/* FIXME bugzilla.eazel.com 2793: check return? */
 
 	ftp_connection_release (conn);
 

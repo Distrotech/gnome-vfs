@@ -482,7 +482,8 @@ do_close_directory (GnomeVFSMethod *method,
         return GNOME_VFS_OK;
 }
 
-/* FIXME: I dunno. There must be something to d there with metedata
+/* FIXME bugzilla.eazel.com 2794: 
+   I dunno. There must be something to d there with metedata
    -- Mathieu */
 static GnomeVFSResult
 file_info_value (GnomeVFSFileInfo *info,

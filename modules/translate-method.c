@@ -59,7 +59,8 @@ tr_apply_default_mime_type(TranslateMethod * tm,
 	/* Only apply the default mime-type if the real method returns
 	 * unknown mime-type and the the TranslateMethod /has/ a mime-type */
 	if (file_info->mime_type == NULL) {
-		/* FIXME: this may not be needed since methods need to
+		/* FIXME bugzilla.eazel.com 2799: 
+		 * this may not be needed since methods need to
 		 * return application/octet-stream if it is an unknown
 		 * mime-type, not NULL */
 		if (tm->pa.default_mime_type) {
@@ -300,7 +301,7 @@ error:
  * (note that sed won't work with -retain)
  */
 
-/* FIXME: this may be broken when the child produces compound URI's */
+/* FIXME bugzilla.eazel.com 2796: this may be broken when the child produces compound URI's */
 static GnomeVFSURI *tr_handle_exec (TranslateMethod *tm, const GnomeVFSURI * uri)
 {
 
@@ -362,7 +363,8 @@ static GnomeVFSURI *tr_handle_exec (TranslateMethod *tm, const GnomeVFSURI * uri
 	}
 
 
-	/* FIXME: just because we've appended the same scheme, doesn't mean
+	/* FIXME bugzilla.eazel.com 2797: 
+	 * just because we've appended the same scheme, doesn't mean
 	 * we're going to get the same method from gnome_vfs_uri_new
 	 */
 
@@ -445,7 +447,8 @@ static GnomeVFSURI *tr_uri_translate(TranslateMethod * tm,
 		g_assert (FALSE);
 	}
 
-	/* FIXME callers need to be aware that this can now return NULL */
+	/* FIXME bugzilla.eazel.com 2798: 
+	 * callers need to be aware that this can now return NULL */
 
 	return retval;
 }
