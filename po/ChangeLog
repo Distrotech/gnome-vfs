@@ -1,3 +1,8 @@
+2000-01-04  Kjartan Maraas  <kmaraas@online.no>
+
+	* update.sh: A little script that lets people
+	update the .pot file without makefiles etc.
+
 1999-12-29  Jesus Bravo Alvarez  <jba@pobox.com>
 
 	* gl.po: Added Galician translation.
