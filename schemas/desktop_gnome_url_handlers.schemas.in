@@ -262,8 +262,8 @@
       </locale>
     </schema>
     <schema>
-      <key>/schemas/desktop/gnome/url-handlers/aim/need-terminal</key>
-      <applyto>/desktop/gnome/url-handlers/aim/need-terminal</applyto>
+      <key>/schemas/desktop/gnome/url-handlers/aim/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/aim/needs_terminal</applyto>
       <owner>gnome</owner>
       <type>bool</type>
       <default>false</default>
