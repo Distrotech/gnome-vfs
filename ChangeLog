@@ -1,5 +1,8 @@
 2002-08-08  jacob berkman  <jacob@ximian.com>
 
+	* modules/Makefile.am (module_flags): add -module flag (fixes
+	building on OS X)
+
 	* modules/cdemenu-desktop-method.c (expand_env_vars): fix some
 	broken logic to make cde menu work when $LANG is not set
 
