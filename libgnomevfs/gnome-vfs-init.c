@@ -29,6 +29,9 @@
 #include "gnome-vfs-backend.h"
 #include "gnome-vfs-private.h"
 
+#include <liboaf/liboaf.h>
+
+
 
 static gboolean vfs_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (vfs_already_initialized);
@@ -36,10 +39,15 @@ G_LOCK_DEFINE_STATIC (vfs_already_initialized);
 gboolean gnome_vfs_init (void)
 {
 	gboolean retval;
+	char **bogus_argv = {NULL};
 
 	G_LOCK (vfs_already_initialized);
 
 	if (! vfs_already_initialized) {
+		if (oaf_orb_get() == NULL) {
+			oaf_init (0, bogus_argv);
+		}
+
 		retval = gnome_vfs_method_init ();
 		if (retval)
 			retval = gnome_vfs_process_init ();

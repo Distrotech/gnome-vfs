@@ -1,7 +1,7 @@
 /* gnome-vfs-mime-info.h
  *
  * Copyright (C) 1998 Miguel de Icaza
- * Copyright (C) 2000 Eazel.com
+ * Copyright (C) 2000 Eazel, Inc
  *
  * The Gnome Library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public License as
@@ -28,7 +28,7 @@
 BEGIN_GNOME_DECLS
 
 const char *gnome_vfs_mime_get_value		  (const char *mime_type,
-						   char *key);
+						   const char *key);
 GList      *gnome_vfs_mime_get_keys		  (const char *mime_type);
 
 const char *gnome_vfs_mime_program		  (const char* mime_type);

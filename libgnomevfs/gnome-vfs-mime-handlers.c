@@ -22,24 +22,206 @@
    Author: Maciej Stachowiak <mjs@eazel.com> */
 
 #include <gnome-vfs-mime-handlers.h>
-
+#include <gnome-vfs-mime-info.h>
 
 GnomeVFSMimeAction *
 gnome_vfs_mime_get_default_action (const char *mime_type)
 {
-	return NULL;
+	const char *action_type;
+	GnomeVFSMimeAction *action;
+
+	action = g_new0 (GnomeVFSMimeAction, 1);
+
+	action_type = gnome_vfs_mime_get_value (mime_type,
+						"default_action_type");
+	
+	if (strcasecmp (action_type, "application") == 0) {
+		action->action_type = GNOME_VFS_MIME_ACTION_TYPE_APPLICATION;
+		action->action.application = 
+			gnome_vfs_mime_get_default_application (mime_type);
+		if (action->action.application == NULL) {
+			g_free (action);
+			action = NULL;
+		}
+	} else if (strcasecmp (action_type, "component") == 0) {
+		action->action_type = GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
+		action->action.component = 
+			gnome_vfs_mime_get_default_component (mime_type);
+		if (action->action.component == NULL) {
+			g_free (action);
+			action = NULL;
+		}
+	} else {
+		g_free (action);
+		action = NULL;
+	}
+
+	return action;
 }
 
 GnomeVFSMimeApplication *
 gnome_vfs_mime_get_default_application (const char *mime_type)
 {
-	return NULL;
+	GnomeVFSMimeApplication *application;
+	const char *default_application_command;
+	const char *default_application_name;
+	const char *default_application_can_open_multiple_files;
+	const char *default_application_can_open_uris;
+
+
+	application = g_new0 (GnomeVFSMimeApplication, 1);
+	
+	default_application_command = gnome_vfs_mime_get_value (mime_type, 
+								"default_application_command");
+
+	if (default_application_command == NULL) {
+		g_free (application);
+		return NULL;
+	} else {
+		application->command = g_strdup (default_application_command);
+	}
+
+	default_application_name = gnome_vfs_mime_get_value (mime_type, 
+							     "default_application_name");
+	if (default_application_name == NULL) {
+		application->name = gnome_vfs_mime_program_name (application->command);
+	} else {
+		application->name = g_strdup (default_application_name);
+	}
+
+	default_application_can_open_multiple_files = gnome_vfs_mime_get_value (mime_type, 
+										"default_application_name");
+	
+	application->can_open_multiple_files = 
+		(strcasecmp (default_application_can_open_multiple_files, "true") == 0) || 
+		(strcasecmp (default_application_can_open_multiple_files, "yes") == 0);
+
+	default_application_can_open_uris = gnome_vfs_mime_get_value (mime_type, 
+								      "default_application_name");
+	
+	application->can_open_uris = 
+		(strcasecmp (default_application_can_open_uris, "true") == 0) || 
+		(strcasecmp (default_application_can_open_uris, "yes") == 0);
+
+	return application;
+}
+
+
+/* It might be worth moving this to nautilus-string.h at some point. */
+static char *
+extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix)
+{
+        const char *separator_position;
+        int prefix_length;
+        char *result;
+
+        separator_position = strstr (string, separator);
+        prefix_length = separator_position == NULL
+                ? strlen (string)
+                : separator_position - string;
+
+        result = g_malloc (prefix_length + strlen(suffix) + 1);
+        
+        strncpy (result, string, prefix_length);
+        result[prefix_length] = '\0';
+
+        strcat (result, suffix);
+
+        return result;
+}
+
+static char *
+mime_type_get_supertype (const char *mime_type)
+{
+        return extract_prefix_add_suffix (mime_type, "/", "/*");
+}
+
+
+static OAF_ServerInfo *
+OAF_ServerInfo__copy (OAF_ServerInfo *orig)
+{
+	OAF_ServerInfo *retval;
+
+	retval = OAF_ServerInfo__alloc ();
+	
+	retval->iid = CORBA_string_dup (orig->iid);
+	retval->server_type = CORBA_string_dup (orig->server_type);
+	retval->location_info = CORBA_string_dup (orig->location_info);
+	retval->username= CORBA_string_dup (orig->username);
+	retval->hostname= CORBA_string_dup (orig->hostname);
+	retval->domain= CORBA_string_dup (orig->domain);
+	retval->attrs = orig->attrs;
+	/* FIXME: this looks like a blatant kludge (but I cut & pasted
+           it from OAF) */
+	CORBA_sequence_set_release (&retval->attrs, CORBA_FALSE);
+
+	return retval;
 }
 
 OAF_ServerInfo *
 gnome_vfs_mime_get_default_component (const char *mime_type)
 {
-	return NULL;
+	const char *default_component_iid;
+	OAF_ServerInfoList *info_list;
+	OAF_ServerInfo *server;
+	CORBA_Environment ev;
+	char *supertype;
+	char *query;
+	char *sort[5];
+
+	CORBA_exception_init (&ev);
+
+	default_component_iid = gnome_vfs_mime_get_value (mime_type, 
+							  "default_component_iid");
+	
+
+	supertype = mime_type_get_supertype (mime_type);
+
+	/* Find a component that supports either the exact mime type,
+           the supertype, or all mime types. */
+
+	query = g_strconcat ("bonobo:supported_mime_types.has_one ([\'", mime_type, 
+			     "\', \'", supertype,
+			     "\', \'*\'])", NULL);
+
+	/* First try the component specified in the mime database, if available. */
+	if (default_component_iid != NULL) {
+		sort[0] = g_strconcat ("iid == \'", default_component_iid, "\'", NULL);
+	} else {
+		sort[0] = g_strdup ("true");
+	}
+
+	/* FIXME: We should then fall back to preferring one of the
+	   components on the current short list. */
+	
+	/* Prefer something that matches the exact type to something
+           that matches the supertype */
+	sort[1] = g_strconcat ("bonobo:supported_mime_types.has (\'",mime_type,"\')", NULL);
+	/* Prefer something that matches the supertype to something that matches `*' */
+	sort[2] = g_strconcat ("bonobo:supported_mime_types.has (\'",supertype,"\')", NULL);
+
+	/* At lowest priority, alphebetize by name, for the sake of consistency */
+	sort[3] = g_strconcat ("name", NULL);
+
+	sort[4] = NULL;
+
+	info_list = oaf_query (query, sort, &ev);
+	
+	if (ev._major == CORBA_NO_EXCEPTION  && info_list != NULL && info_list->_length > 0) {
+		server = OAF_ServerInfo__copy (&info_list->_buffer[0]);
+	} else {
+		server = NULL;
+	}
+
+	g_free (supertype);
+	g_free (query);
+	g_free (sort[1]);
+	g_free (sort[2]);
+	g_free (sort[3]);
+
+	CORBA_exception_free (&ev);
+
+	return server;
 }
 
 GList *

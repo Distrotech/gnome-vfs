@@ -533,7 +533,7 @@ maybe_reload (void)
  * should not free the result.
  */
 const char *
-gnome_vfs_mime_get_value (const char *mime_type, char *key)
+gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 {
 	char *value, *generic_type, *p;
 	GnomeMimeContext *context;

@@ -309,6 +309,9 @@ image/x-xbitmap
 
 image/x-xcf
 	description=GIMP image
+	default_action_type=application
+	default_application_command=gimp
+	default_application_name=The GIMP
 
 image/x-xpixmap
 	description=X pixmap
@@ -384,9 +387,16 @@ text/enriched
 
 text/html
 	description=HTML document
+	default_action_type=component
+	default_application_command=netscape
+	default_application_name=Netscape
+	default_component_iid=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b
 
 text/plain
 	description=plain text
+	default_action_type=component
+	default_application_command=emacs
+	default_application_name=GNU Emacs
 
 text/rfc822-headers
 	description=email headers

@@ -1,3 +1,25 @@
+2000-05-30  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/Makefile.am: Add OAF_CLAGS.
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): oaf_init if it
+	hasn't been done already.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_get_default_action,
+	gnome_vfs_mime_get_default_application,
+	gnome_vfs_mime_get_default_component): Implemented more or less
+	correctly (I hope).
+
+	(extract_prefix_add_suffix, mime_type_get_supertype,
+	OAF_ServerInfo__copy) : Helper functions cut & pasted from
+	elsewhere.
+
+	* test/test-mime-handlers.c: Test for gnome-vfs-mime-handlers API.
+	* test/Makefile.am: Add the above to the build.
+
+	* data/mime/gnome-vfs.keys: Put in some default
+	ation/application/component data for testing purposes.
+	
 2000-05-27  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job-slave.c:

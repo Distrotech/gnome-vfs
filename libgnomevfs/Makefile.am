@@ -19,7 +19,14 @@ EXTRA_DIST =					\
 libgnomevfs_la_LIBADD =				\
 	$(GNOME_LIBDIR)				\
 	$(GNOME_LIBS)				\
+	$(OAF_LIBS)	                        \
 	$(GLIB_LIBS)
+
+libgnomevfs_la_CFLAGS =				\
+	$(GNOME_CFLAGS)				\
+	$(OAF_CFLAGS)	                        \
+	$(GLIB_CFLAGS)
+
 
 libgnomevfsincludedir = $(includedir)/libgnomevfs
 libgnomevfsinclude_HEADERS =			\
