@@ -1,3 +1,7 @@
+2000-11-03  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* configure.in: upped version to 0.4.1 for release
+
 2000-11-03  Darin Adler  <darin@eazel.com>
 
 	* modules/http-method.c: (do_get_file_info): Improved comments
