@@ -561,6 +561,10 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 		return entry->parent_classes;
 	} else if (!strcmp (key, "aliases")) {
 		return entry->aliases;
+	} else if (!strcmp (key, "can_be_executable")) {
+		if (gnome_vfs_mime_type_get_equivalence (mime_type, "application/x-executable") != GNOME_VFS_MIME_UNRELATED ||
+		    gnome_vfs_mime_type_get_equivalence (mime_type, "text/plain") != GNOME_VFS_MIME_UNRELATED)
+			return "TRUE";
 	}
 
 	return NULL;
@@ -577,6 +581,8 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 gboolean
 gnome_vfs_mime_type_is_known (const char *mime_type)
 {
+	MimeEntry *entry;
+	
 	if (mime_type == NULL) {
 		return FALSE;
 	}
@@ -589,7 +595,12 @@ gnome_vfs_mime_type_is_known (const char *mime_type)
 
 	reload_if_needed ();
 
-	return FALSE;
+	entry = get_entry (mime_type);
+	
+	/* TODO: Should look for aliases too, which needs
+	   a alias -> mimetype mapping */
+
+	return entry != NULL;
 }
 
 /**
