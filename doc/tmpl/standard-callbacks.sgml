@@ -1,0 +1,42 @@
+<!-- ##### SECTION Title ##### -->
+standard-callbacks
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### MACRO GNOME_VFS_HOOKNAME_BASIC_AUTH ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GNOME_VFS_HOOKNAME_HTTP_PROXY_AUTH ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### TYPEDEF GnomeVFSCallbackSimpleAuthIn ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GnomeVFSCallbackSimpleAuthOut ##### -->
+<para>
+
+</para>
+
+

@@ -1,0 +1,44 @@
+<!-- ##### SECTION Title ##### -->
+Constants
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### MACRO GNOME_VFS_URI_MAGIC_CHR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GNOME_VFS_URI_MAGIC_STR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GNOME_VFS_URI_PATH_CHR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GNOME_VFS_URI_PATH_STR ##### -->
+<para>
+
+</para>
+
+
+

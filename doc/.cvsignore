@@ -1,0 +1,12 @@
+sgml
+html
+gnome-vfs-unused.txt
+gnome-vfs-decl-list.txt
+gnome-vfs-decl.txt
+Makefile.in
+Makefile
+gnome-vfs.signals
+gnome-vfs.args
+gnome-vfs.hierarchy
+*.stamp
+gnome-vfs-undocumented.txt

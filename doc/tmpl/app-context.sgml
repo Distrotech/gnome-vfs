@@ -1,0 +1,135 @@
+<!-- ##### SECTION Title ##### -->
+app-context
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION gnome_vfs_app_context_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_push_takesref ##### -->
+<para>
+
+</para>
+
+@app_context: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_push_override_takesref ##### -->
+<para>
+
+</para>
+
+@app_context: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_pop ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_set_attribute ##### -->
+<para>
+
+</para>
+
+@app_context: 
+@attribute_name: 
+@value: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_set_callback ##### -->
+<para>
+
+</para>
+
+@app_context: 
+@hook_name: 
+@callback: 
+@user_data: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_set_callback_full ##### -->
+<para>
+
+</para>
+
+@app_context: 
+@hook_name: 
+@callback: 
+@user_data: 
+@dispatch_on_job_thread: 
+@notify: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_peek_current ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_get_current ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_ref ##### -->
+<para>
+
+</para>
+
+@app_context: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_unref ##### -->
+<para>
+
+</para>
+
+@app_context: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_get_attribute ##### -->
+<para>
+
+</para>
+
+@app_context: 
+@attribute_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_app_context_get_callback ##### -->
+<para>
+
+</para>
+
+@app_context: 
+@hook_name: 
+@user_data: 
+@p_dispatch_on_job_thread: 
+@Returns: 
+
+

@@ -1,7 +1,7 @@
 if PLATFORM_GNOME_2
-SUBDIRS_GNOME=
+SUBDIRS_GNOME=doc
 else
-SUBDIRS_GNOME=test
+SUBDIRS_GNOME=doc test
 endif
 
 SUBDIRS =					\

@@ -1,0 +1,97 @@
+<!doctype book PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+<!entity gnome-vfs-File-Size SYSTEM "sgml/file-size.sgml">
+<!entity gnome-vfs-File-Matching SYSTEM "sgml/fnmatch.sgml">
+<!entity gnome-vfs-Application-Registry SYSTEM "sgml/application-registry.sgml">
+<!entity gnome-vfs-Asynchronous-Operations SYSTEM "sgml/async-ops.sgml">
+<!entity gnome-vfs-Backend SYSTEM "sgml/backend.sgml">
+<!entity gnome-vfs-Cancellable-Ops SYSTEM "sgml/cancellable-ops.sgml">
+<!entity gnome-vfs-Cancellation SYSTEM "sgml/cancellation.sgml">
+<!entity gnome-vfs-Configuration SYSTEM "sgml/configuration.sgml">
+<!entity gnome-vfs-Constants SYSTEM "sgml/constants.sgml">
+<!entity gnome-vfs-Context SYSTEM "sgml/context.sgml">
+<!entity gnome-vfs-Directory-Filter SYSTEM "sgml/directory-filter.sgml">
+<!entity gnome-vfs-Directory SYSTEM "sgml/directory.sgml">
+<!entity gnome-vfs-File-Info SYSTEM "sgml/file-info.sgml">
+<!entity gnome-vfs-Find-Directory SYSTEM "sgml/find-directory.sgml">
+<!entity gnome-vfs-Handle SYSTEM "sgml/handle.sgml">
+<!entity gnome-vfs-inet-connection SYSTEM "sgml/inet-connection.sgml">
+<!entity gnome-vfs-init SYSTEM "sgml/init.sgml">
+<!entity gnome-vfs-iobuf SYSTEM "sgml/iobuf.sgml">
+<!entity gnome-vfs-list-sort SYSTEM "sgml/list-sort.sgml">
+<!entity gnome-vfs-module-api SYSTEM "sgml/module-api.sgml">
+<!entity gnome-vfs-method SYSTEM "sgml/method.sgml">
+<!entity gnome-vfs-mime-handlers SYSTEM "sgml/mime-handlers.sgml">
+<!entity gnome-vfs-mime-info SYSTEM "sgml/mime-info.sgml">
+<!entity gnome-vfs-mime-magic SYSTEM "sgml/mime-magic.sgml">
+<!entity gnome-vfs-mime-monitor SYSTEM "sgml/mime-monitor.sgml">
+<!entity gnome-vfs-mime-sniff-buffer SYSTEM "sgml/mime-sniff-buffer.sgml">
+<!entity gnome-vfs-mime SYSTEM "sgml/mime.sgml">
+<!entity gnome-vfs-module-shared SYSTEM "sgml/module-shared.sgml">
+<!entity gnome-vfs-module SYSTEM "sgml/module.sgml">
+<!entity gnome-vfs-ops SYSTEM "sgml/ops.sgml">
+<!entity gnome-vfs-parse-ls SYSTEM "sgml/parse-ls.sgml">
+<!entity gnome-vfs-process SYSTEM "sgml/process.sgml">
+<!entity gnome-vfs-regexp-filter SYSTEM "sgml/regexp-filter.sgml">
+<!entity gnome-vfs-result SYSTEM "sgml/result.sgml">
+<!entity gnome-vfs-seekable SYSTEM "sgml/seekable.sgml">
+<!entity gnome-vfs-shellpattern-filter SYSTEM "sgml/shellpattern-filter.sgml">
+<!entity gnome-vfs-types SYSTEM "sgml/types.sgml">
+<!entity gnome-vfs-uri SYSTEM "sgml/uri.sgml">
+<!entity gnome-vfs-utils SYSTEM "sgml/utils.sgml">
+<!entity gnome-vfs-xfer SYSTEM "sgml/xfer.sgml">
+<!entity gnome-vfs-app-context SYSTEM "sgml/app-context.sgml">
+<!entity gnome-vfs-ssl SYSTEM "sgml/ssl.sgml">
+<!entity gnome-vfs-standard-callbacks SYSTEM "sgml/standard-callbacks.sgml">
+]>
+<book id="index">
+  <bookinfo>
+    <title>GNOME-VFS Reference Manual</title>
+  </bookinfo>
+
+  <chapter id="everything">
+    <title>GNOME-VFS Documentation</title>
+    &gnome-vfs-file-size;
+    &fnmatch;
+    &gnome-vfs-application-registry;
+    &gnome-vfs-async-ops;
+    &gnome-vfs-backend;
+    &gnome-vfs-cancellable-ops;
+    &gnome-vfs-cancellation;
+    &gnome-vfs-configuration;
+    &gnome-vfs-constants;
+    &gnome-vfs-context;
+    &gnome-vfs-directory-filter;
+    &gnome-vfs-directory;
+    &gnome-vfs-file-info;
+    &gnome-vfs-find-directory;
+    &gnome-vfs-handle;
+    &gnome-vfs-inet-connection;
+    &gnome-vfs-init;
+    &gnome-vfs-iobuf;
+    &gnome-vfs-list-sort;
+    &gnome-vfs-module-api;
+    &gnome-vfs-method;
+    &gnome-vfs-mime-handlers;
+    &gnome-vfs-mime-info;
+    &gnome-vfs-mime-magic;
+    &gnome-vfs-mime-monitor;
+    &gnome-vfs-mime-sniff-buffer;
+    &gnome-vfs-mime;
+    &gnome-vfs-module-shared;
+    &gnome-vfs-module;
+    &gnome-vfs-ops;
+    &gnome-vfs-parse-ls;
+    &gnome-vfs-process;
+    &gnome-vfs-regexp-filter;
+    &gnome-vfs-result;
+    &gnome-vfs-seekable;
+    &gnome-vfs-shellpattern-filter;
+    &gnome-vfs-types;
+    &gnome-vfs-uri;
+    &gnome-vfs-utils;
+    &gnome-vfs-xfer;
+    &gnome-vfs-app-context;
+    &gnome-vfs-ssl;
+    &gnome-vfs-standard-callbacks;
+  </chapter>
+</book>
