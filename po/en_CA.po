@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-11 15:35+0200\n"
-"PO-Revision-Date: 2004-09-01 16:30-0400\n"
+"POT-Creation-Date: 2004-10-19 10:57-0400\n"
+"PO-Revision-Date: 2004-10-19 16:30-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: English/Canada <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -55,56 +55,60 @@ msgstr ""
 msgid "desktop entries file does not start with legal start group"
 msgstr "desktop entries file does not start with legal start group"
 
-#: libgnomevfs/eggdesktopentries.c:702
+#: libgnomevfs/eggdesktopentries.c:670
+msgid "desktop entry does not start with legal start group"
+msgstr "desktop entry does not start with legal start group"
+
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "desktop entries contain line '%s' which is not UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:725
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "desktop entries contain unknown encoding '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:915 libgnomevfs/eggdesktopentries.c:1027
-#: libgnomevfs/eggdesktopentries.c:1212
+#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
+#: libgnomevfs/eggdesktopentries.c:1221
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "desktop entries do not have group '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1039
+#: libgnomevfs/eggdesktopentries.c:1048
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "desktop entries do not have key '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1095 libgnomevfs/eggdesktopentries.c:1268
-#: libgnomevfs/eggdesktopentries.c:1410 libgnomevfs/eggdesktopentries.c:1535
+#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
+#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr "desktop entries contain key '%s' whose value cannot be interpreted."
 
-#: libgnomevfs/eggdesktopentries.c:1293
+#: libgnomevfs/eggdesktopentries.c:1302
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 
-#: libgnomevfs/eggdesktopentries.c:2226
+#: libgnomevfs/eggdesktopentries.c:2235
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "desktop entries contain invalid escape sequence '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:2243
+#: libgnomevfs/eggdesktopentries.c:2252
 msgid "desktop entries contain escape character at end of line"
 msgstr "desktop entries contain escape character at end of line"
 
-#: libgnomevfs/eggdesktopentries.c:2268
+#: libgnomevfs/eggdesktopentries.c:2277
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Value '%s' cannot be interpreted as a number."
 
-#: libgnomevfs/eggdesktopentries.c:2295
+#: libgnomevfs/eggdesktopentries.c:2304
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Value '%s' cannot be interpreted as a boolean."
@@ -427,12 +431,12 @@ msgstr "Operation stopped"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1020
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1038
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1056
-#: libgnomevfs/gnome-vfs-mime-info.c:649 libgnomevfs/gnome-vfs-mime-info.c:656
-#: libgnomevfs/gnome-vfs-mime-info.c:664 libgnomevfs/gnome-vfs-mime-info.c:671
-#: libgnomevfs/gnome-vfs-mime-info.c:679 libgnomevfs/gnome-vfs-mime-info.c:696
-#: libgnomevfs/gnome-vfs-mime-info.c:703 libgnomevfs/gnome-vfs-mime-info.c:710
-#: libgnomevfs/gnome-vfs-mime-info.c:717 libgnomevfs/gnome-vfs-mime-info.c:725
-#: libgnomevfs/gnome-vfs-mime-info.c:732
+#: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
+#: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
+#: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
+#: libgnomevfs/gnome-vfs-mime-info.c:702 libgnomevfs/gnome-vfs-mime-info.c:709
+#: libgnomevfs/gnome-vfs-mime-info.c:716 libgnomevfs/gnome-vfs-mime-info.c:724
+#: libgnomevfs/gnome-vfs-mime-info.c:731
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -870,14 +874,12 @@ msgstr "Unknown volume"
 msgid "Network server"
 msgstr "Network server"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Unable to mount the volume. There is probably no media in the device."
