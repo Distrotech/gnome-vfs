@@ -1,6 +1,12 @@
 2001-06-06  Seth Nickell  <snickell@stanford.edu>
 
 	* gnome-vfs.applications:
+
+	Add http URI support to VideoLAN.
+
+2001-06-06  Seth Nickell  <snickell@stanford.edu>
+
+	* gnome-vfs.applications:
 	* gnome-vfs.keys.in:
 
 	Added plaympeg, a solid player if a little simple.

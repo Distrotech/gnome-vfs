@@ -415,6 +415,7 @@ vlc
 	name=VideoLAN MPEG Player
 	can_open_multiple_files=true
 	expects_uris=true
+	supported_uri_schemes=http,ftp,file
 	requires_terminal=false
 	mime_types=video/mpeg
 
