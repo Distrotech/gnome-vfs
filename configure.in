@@ -88,7 +88,7 @@ ALL_LINGUAS="am ar az be bg bn bs ca cs da de el eo es et eu fa fi fr ga gl he h
 AM_GLIB_GNU_GETTEXT
 
 AC_FUNC_ALLOCA
-AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs seteuid setegid setresuid setresgid readdir_r)
+AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc)
 AC_REPLACE_FUNCS(getdelim)
 
 dnl Specify the gconf configuration source, 
@@ -151,7 +151,7 @@ AC_SUBST(VFS_OFFSET_IS)
 AC_SUBST(VFS_SIZE_PRINTF)
 AC_SUBST(VFS_OFFSET_PRINTF)
 
-AC_CHECK_HEADERS(sys/param.h sys/resource.h sys/vfs.h sys/mount.h sys/statvfs.h)
+AC_CHECK_HEADERS(sys/param.h sys/resource.h sys/vfs.h sys/mount.h sys/statvfs.h wctype.h)
 
 dnl ====================================
 dnl =

@@ -29,8 +29,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+
+#ifdef HAVE_WCTYPE_H
 #include <wctype.h>
 #include <wchar.h>
+#endif
 
 #include <glib/garray.h>
 #include <glib/gmessages.h>
@@ -759,6 +762,7 @@ _gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	
  		if (g_utf8_get_char_validated(end, remaining_bytes) == -2)
 			return TRUE;
+#if defined(HAVE_WCTYPE_H) && defined (HAVE_MBRTOWC)
 		else {
 			size_t wlen;
 			wchar_t wc;
@@ -802,6 +806,7 @@ _gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 			}
 			return TRUE;
 		}
+#endif /* defined(HAVE_WCTYPE_H) && defined (HAVE_MBRTOWC) */
 	} 
 }
 
