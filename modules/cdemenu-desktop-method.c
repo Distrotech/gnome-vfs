@@ -149,9 +149,9 @@ get_icon_for_action(char *action)
 	char **dir, *expandeddir, *fullpath=NULL;
 	char *tmp=NULL;
 
-	char *iconsearchpath[] = {"/usr/dt/appconfig/icons/$LANG",
-			"/etc/dt/appconfig/icons/$LANG",
-   			"$HOME/.dt/icons", NULL };
+	char *iconsearchpath[] = {"/usr/dt/appconfig/icons/$LC_CTYPE",
+                       "/etc/dt/appconfig/icons/$LC_CTYPE",
+                       "$HOME/.dt/icons", NULL };
 
 	/*if action has arg strip the arg*/
 	if ((tmp=strchr(action,'\"'))) {*tmp='\0'; tmp=NULL;}
@@ -508,7 +508,7 @@ GnomeVFSMethod *
 vfs_module_init (const char *method_name, 
 		 const char *args)
 {
-	gchar *files[6];
+	gchar *files[7];
 	int i;
 	parent_method = gnome_vfs_method_get ("file");
 
@@ -519,21 +519,22 @@ vfs_module_init (const char *method_name,
 
 	/* find the right cde menu file to start with */
 	cdemenufiles = NULL;
-	files[0] = expand_env_vars("$HOME/.dt/$LANG/dtwmrc");
+	files[0] = expand_env_vars("$HOME/.dt/$LC_CTYPE/dtwmrc");
 	files[1] = expand_env_vars("$HOME/.dt/dtwmrc");
-	files[2] = expand_env_vars("/etc/dt/config/$LANG/sys.dtwmrc");
+	files[2] = expand_env_vars("/etc/dt/config/$LC_CTYPE/sys.dtwmrc");
 	files[3] = g_strdup("/etc/dt/config/sys.dtwmrc");
-	files[4] = expand_env_vars("/usr/dt/config/$LANG/sys.dtwmrc");
+	files[4] = expand_env_vars("/usr/dt/config/$LC_CTYPE/sys.dtwmrc");
 	files[5] = g_strdup("/usr/dt/config/sys.dtwmrc");
+	files[6] = g_strdup("/usr/dt/config/C/sys.dtwmrc");
 
-	for (i=0;i<6;i++){
+	for (i=0;i<7;i++){
 		if (g_file_test(files[i],G_FILE_TEST_EXISTS)){
 			cdemenufiles = g_slist_append(cdemenufiles,
 				g_strdup(files[i]));
 			break;
 		}	
 	}
-	for (i=0;i<6;i++) g_free(files[i]);
+	for (i=0;i<7;i++) g_free(files[i]);
 
 	/* if didnt find any menu start file then we are fecked */
 	if (cdemenufiles == NULL) return NULL;

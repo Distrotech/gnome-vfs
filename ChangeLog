@@ -1,3 +1,11 @@
+2002-06-17  Alex Graveley  <alex@ximian.com>
+
+	* modules/cdemenu-desktop-method.c (get_icon_for_action): Resolve
+	icon paths using $LC_CTYPE instead of $LANG.
+	(vfs_module_init): Ditto, add /usr/dt/config/C/sys.dtwmrc as a
+	fall back if all other paths fail.  Patch originally from
+	hidetoshi.tajima@sun.com.
+
 2002-06-15  James Henstridge  <james@daa.com.au>
 
 	* modules/Makefile.am: link VFS modules back against libgnomevfs-2.la
