@@ -1,3 +1,14 @@
+2001-02-05  Gene Z. Ragan  <gzr@eazel.com>
+
+	Work done to improve the mime tpye capplet.
+	Enable the capplet to be launched with a mime type.
+	If a mime type is an argument, have the capplet scroll
+	to that item in the list before the user begins interaction.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c: (main),
+	(list_move_vertical), (list_moveto), (list_reveal_row),
+	(init_mime_capplet), (populate_mime_list):
+
 2001-02-05  Rebecca Schulman  <rebecka@eazel.com>
 	Fix problem that the mozilla view was the default for webdav
 	directories (should be icon view) and that the music view was
