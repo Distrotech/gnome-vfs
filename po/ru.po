@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-12-13 16:13+0300\n"
-"PO-Revision-Date: 2000-12-13 16:25+03:00\n"
+"POT-Creation-Date: 2001-01-09 18:15+0300\n"
+"PO-Revision-Date: 2001-01-09 18:16+03:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -248,35 +248,35 @@ msgstr "Сервис не доступен"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "Request obsoletes service's data"
-msgstr ""
+msgstr "Запрос устаревших сервисных данных"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
 msgstr "Неизвестная ошибка"
 
-#: libgnomevfs/gnome-vfs-utils.c:66
+#: libgnomevfs/gnome-vfs-utils.c:64
 msgid "1 byte"
 msgstr "1 байт"
 
-#: libgnomevfs/gnome-vfs-utils.c:68
+#: libgnomevfs/gnome-vfs-utils.c:66
 #, c-format
 msgid "%u bytes"
 msgstr "%u байт"
 
-#: libgnomevfs/gnome-vfs-utils.c:75
+#: libgnomevfs/gnome-vfs-utils.c:73
 #, c-format
-msgid "%.1fK"
-msgstr "%.1fK"
+msgid "%.1f K"
+msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:77
 #, c-format
-msgid "%.1fM"
-msgstr "%.1fM"
+msgid "%.1f MB"
+msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:81
 #, c-format
-msgid "%.1fG"
-msgstr "%.1fG"
+msgid "%.1f GB"
+msgstr "%.1f GB"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
@@ -411,19 +411,19 @@ msgstr ""
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Ошибка записи в wakeup GnomeVFSJob channel."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:762
-#: libgnomevfs-pthread/gnome-vfs-job.c:1672
+#: libgnomevfs-pthread/gnome-vfs-job.c:767
+#: libgnomevfs-pthread/gnome-vfs-job.c:1677
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Неизвестный идентификатор задания %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1061
-#: libgnomevfs-pthread/gnome-vfs-job.c:1189
+#: libgnomevfs-pthread/gnome-vfs-job.c:1066
+#: libgnomevfs-pthread/gnome-vfs-job.c:1194
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Невозможно создать канал для открытого GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1705
+#: libgnomevfs-pthread/gnome-vfs-job.c:1710
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
@@ -463,7 +463,9 @@ msgstr "Выберите окна возникающие в меню для mime-типа \"%s\""
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
-msgstr "Введенный MIME-тип содержит заглавные символы. Символы в верхнем регистре будут заменены на символы в нижнем регистре."
+msgstr ""
+"Введенный MIME-тип содержит заглавные символы. Символы в верхнем регистре "
+"будут заменены на символы в нижнем регистре."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
 msgid "Add New MIME Type"
@@ -558,7 +560,7 @@ msgid "Edit Application"
 msgstr "Правка приложения"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:541
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1520
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1526
 msgid "Mime Type"
 msgstr "Mime-тип"
 
@@ -602,12 +604,8 @@ msgstr "Вернуть к исходным значениям"
 msgid "No Description"
 msgstr "Нет описания"
 
-#. Add default action to fourth column
 #: mime-type-capplet/nautilus-mime-type-capplet.c:817
 #: mime-type-capplet/nautilus-mime-type-capplet.c:962
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1127
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1313
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1435
 msgid "None"
 msgstr "Нет"
 
@@ -623,17 +621,31 @@ msgstr ""
 "собственных настроек MIME.\n"
 "Вернуть к исходным?\n"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1519
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1127
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1315
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1439
+msgid "none"
+msgstr "нет"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1164
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1345
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1475
+#, c-format
+msgid "View as %s"
+msgstr "Просмотреть как %s"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1525
 msgid "Description"
 msgstr "Описание"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1521
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1527
 msgid "Extension"
 msgstr "Расширение"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1522
-msgid "Action"
-msgstr "Действие"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1528
+msgid "Default Action"
+msgstr "Действие по умолчанию"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:272
 msgid "Can't find an hbox, using a normal file selection"
@@ -653,17 +665,17 @@ msgstr "Неизвестная GnomeVFSSeekPosition %d"
 msgid "%s to retrieve"
 msgstr "%s для восстановления"
 
-#: modules/http-method.c:1574
+#: modules/http-method.c:1577
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Закрытие соединения с %s"
 
-#: modules/http-method.c:1818
+#: modules/http-method.c:1821
 #, c-format
 msgid "%s of %s read"
 msgstr "%s из %s прочитано"
 
-#: modules/http-method.c:1821
+#: modules/http-method.c:1824
 #, c-format
 msgid "%s read"
 msgstr "%s прочитано"
