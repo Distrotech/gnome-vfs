@@ -1,3 +1,21 @@
+2001-02-16  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: John Sullivan <sullivan@eazel.com>
+
+	Fixed bug 6648, Able to add mime type even if "mime type"
+	and description fields are blank.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(validate_text_and_update_button),
+	(nautilus_mime_type_capplet_show_new_mime_window):
+	Set sensitive state of OK button based on content of
+	text entry item in dialog box.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(nautilus_mime_type_capplet_add_extension), (init_mime_capplet),
+	(add_mime_clicked):
+	Check for '\0' instead of ' ' to avoid empty strings
+	
 2001-02-16  Rebecca Schulman  <rebecka@eazel.com>
 	Fixed bugzilla.eazel.com 6220, that incorrect
 	file counts messed up the progress bar during FTP
