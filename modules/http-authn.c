@@ -209,7 +209,7 @@ static gint /* GCompareFunc */
 http_authn_glist_find_header (gconstpointer a, gconstpointer b)
 {
 	if ( NULL != a && NULL != b) {
-		return strncasecmp ( (const char *)a, (const char *)b, strlen((const char *)b));
+		return g_ascii_strncasecmp ( (const char *)a, (const char *)b, strlen((const char *)b));
 	} else {
 		return -1;
 	}
@@ -316,7 +316,7 @@ http_authn_parse_response_header_basic (enum AuthnHeaderType type, GList *respon
 			&& (*marker == ' ' || *marker == '\t') 
 		     ; marker++);
 
-		if (0 != strncasecmp ("Basic", marker, strlen ("Basic"))) {
+		if (0 != g_ascii_strncasecmp ("Basic", marker, strlen ("Basic"))) {
 			continue;
 		}
 
@@ -327,7 +327,7 @@ http_authn_parse_response_header_basic (enum AuthnHeaderType type, GList *respon
 				&& (*marker == ' ' || *marker == '\t' || *marker == ',') 
 			     ; marker++);
 
-			if (0 == strncasecmp ("realm=", marker, strlen ("realm="))) {
+			if (0 == g_ascii_strncasecmp ("realm=", marker, strlen ("realm="))) {
 				marker += strlen ("realm=");
 				*p_realm = http_authn_parse_quoted_string (marker, &marker);
 				break;

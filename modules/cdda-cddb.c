@@ -416,12 +416,12 @@ static void CDDBProcessLine(char *inbuffer,DiscData *data,
   int len = 0;
   char *st;
   
-  if(!strncasecmp(inbuffer,"DTITLE",6)) {
+  if(!g_ascii_strncasecmp(inbuffer,"DTITLE",6)) {
     len = strlen(data->data_title);
 
     strncpy(data->data_title+len,ChopWhite(inbuffer+7),256-len);
   }
-  else if(!strncasecmp(inbuffer,"DYEAR",5)) {
+  else if(!g_ascii_strncasecmp(inbuffer,"DYEAR",5)) {
     strtok(inbuffer,"=");
     
     st = strtok(NULL, "");
@@ -430,7 +430,7 @@ static void CDDBProcessLine(char *inbuffer,DiscData *data,
 
     data->data_year=atoi(ChopWhite(st));
   }
-  else if(!strncasecmp(inbuffer,"DGENRE",6)) {
+  else if(!g_ascii_strncasecmp(inbuffer,"DGENRE",6)) {
     strtok(inbuffer,"=");
     
     st = strtok(NULL, "");
@@ -439,7 +439,7 @@ static void CDDBProcessLine(char *inbuffer,DiscData *data,
     
     data->data_genre=CDDBGenreValue(ChopWhite(st));
   }
-  else if(!strncasecmp(inbuffer,"TTITLE",6)) {
+  else if(!g_ascii_strncasecmp(inbuffer,"TTITLE",6)) {
     track=atoi(strtok(inbuffer+6,"="));
     
     if(track<numtracks)
@@ -448,7 +448,7 @@ static void CDDBProcessLine(char *inbuffer,DiscData *data,
     strncpy(data->data_track[track].track_name+len,
 	    ChopWhite(strtok(NULL,"")),256-len);
   }
-  else if(!strncasecmp(inbuffer,"TARTIST",7)) {
+  else if(!g_ascii_strncasecmp(inbuffer,"TARTIST",7)) {
     data->data_multi_artist=TRUE;
 
     track=atoi(strtok(inbuffer+7,"="));
@@ -463,12 +463,12 @@ static void CDDBProcessLine(char *inbuffer,DiscData *data,
     strncpy(data->data_track[track].track_artist+len,
 	    ChopWhite(st),256-len);
   }
-  else if(!strncasecmp(inbuffer,"EXTD",4)) {
+  else if(!g_ascii_strncasecmp(inbuffer,"EXTD",4)) {
     len=strlen(data->data_extended);
 
     strncpy(data->data_extended+len,ChopWhite(inbuffer+5),4096-len);
   }
-  else if(!strncasecmp(inbuffer,"EXTT",4)) {
+  else if(!g_ascii_strncasecmp(inbuffer,"EXTT",4)) {
     track=atoi(strtok(inbuffer+4,"="));
     
     if(track<numtracks)
@@ -481,7 +481,7 @@ static void CDDBProcessLine(char *inbuffer,DiscData *data,
     strncpy(data->data_track[track].track_extended+len,
 	    ChopWhite(st),4096-len);
   }
-  else if(!strncasecmp(inbuffer,"PLAYORDER",5)) {
+  else if(!g_ascii_strncasecmp(inbuffer,"PLAYORDER",5)) {
     len=strlen(data->data_playlist);
 
     strncpy(data->data_playlist+len,ChopWhite(inbuffer+10),256-len);

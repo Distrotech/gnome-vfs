@@ -226,7 +226,7 @@ server_connection_acquire(GnomeVFSURI *uri, NfsServerConnection **conn)
 	next = server_connection_list;
 	while (next) {
 		cached = (NfsServerConnection *)next->data;
-		if (!g_strcasecmp(cached->hostname, hostname)) {
+		if (!g_ascii_strcasecmp(cached->hostname, hostname)) {
 			/* match */
 			*conn = cached;
 			G_UNLOCK(server_connection_list);

@@ -1,5 +1,13 @@
 2001-09-25  Darin Adler  <darin@bentspoon.com>
 
+	* modules/cdda-cddb.c: (CDDBProcessLine):
+	* modules/http-authn.c: (http_authn_glist_find_header),
+	(http_authn_parse_response_header_basic):
+	* modules/nfs-method.c: (server_connection_acquire):
+	Switched to new ascii version of strcasecmp family.
+
+2001-09-25  Darin Adler  <darin@bentspoon.com>
+
 	* configure.in: Require glib 1.3.9.
 
 	* libgnomevfs/gnome-vfs-mime.c:
