@@ -602,3 +602,27 @@ gnome_vfs_mime_extensions_list_free (GList *list)
 	g_list_foreach (list, (GFunc) g_free, NULL);
 	g_list_free (list);
 }
+
+void
+_gnome_vfs_mime_info_mark_user_mime_dir_dirty (void)
+{
+	/* FIXME: noop */
+}
+
+
+void
+_gnome_vfs_mime_info_mark_gnome_mime_dir_dirty (void)
+{
+	/* FIXME: noop */
+}
+
+GnomeVFSResult
+gnome_vfs_mime_set_registered_type_key (const char *mime_type, 
+					const char *key,
+					const char *value)
+{
+	/* FIXME: noop */
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+}
+
+ 

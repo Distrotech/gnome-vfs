@@ -1,3 +1,11 @@
+2004-07-17  Dave Camp  <dave@novell.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	(_gnome_vfs_mime_info_mark_user_mime_dir_dirty),
+	(_gnome_vfs_mime_info_mark_gnome_mime_dir_dirty),
+	(gnome_vfs_mime_set_registered_type_key): Adding back some noops 
+	temporarily.
+
 2004-07-16  Ray Strode  <rstrode@redhat.com
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.[ch]: initial working 
