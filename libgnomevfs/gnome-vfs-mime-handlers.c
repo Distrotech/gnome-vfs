@@ -1379,7 +1379,7 @@ get_user_level (void)
 		/* FIXME bugzilla.eazel.com 1150: This engine never gets freed. */
 	}
 
-	user_level = gconf_get_string (engine, "/nautilus/user_level", NULL);
+	user_level = gconf_get_string (engine, "/apps/nautilus/user_level", NULL);
 
 	/* FIXME bugzilla.eazel.com 1152: Nautilus just asserts this.
 	 * But it doesn't seem reasonable to assert something that's the result

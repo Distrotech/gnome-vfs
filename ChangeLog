@@ -1,5 +1,13 @@
 2000-06-06  Ramiro Estrugo  <ramiro@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (get_user_level):
+	Use "/apps/nautilus" instead of "/nautilus" to conform to the
+	gconf "standard"
+
+	Thanks to andersca@gnu.org for pointing this out.
+
+2000-06-06  Ramiro Estrugo  <ramiro@eazel.com>
+
 	* configure.in:
 	Require only "gconf" not "gconf-gtk"
 	
