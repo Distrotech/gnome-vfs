@@ -42,7 +42,8 @@ libmoniker_gnome_vfs_std_la_SOURCES = \
 	bonobo-moniker-vfs.c
 
 libmoniker_gnome_vfs_std_la_LIBADD = \
-	$(MONIKERS_LIBS)
+	$(MONIKERS_LIBS)             \
+	$(top_srcdir)/libgnomevfs/libgnomevfs-2.la             	
 
 libmoniker_gnome_vfs_std_la_LDFLAGS = \
 	-module -avoid-version 
