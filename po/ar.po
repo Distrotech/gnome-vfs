@@ -10,20 +10,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-26 04:07+0100\n"
+"POT-Creation-Date: 2004-01-12 10:09+0100\n"
 "PO-Revision-Date: 2004-01-09 22:09+0100\n"
 "Last-Translator: Arafat Medini <lumina@silverpen.de>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
-#: daemon/gnome-vfs-daemon.c:553
+#: daemon/gnome-vfs-daemon.c:573
 msgid "Could not initialize Bonobo"
 msgstr "لم يمكن تشغيل بونوبو"
 
-#: daemon/gnome-vfs-daemon.c:559
+#: daemon/gnome-vfs-daemon.c:579
 msgid "Could not initialize gnome vfs"
 msgstr "لم يمكن تشغيل جنوم vfs"
 
@@ -459,9 +459,11 @@ msgid "Unknown error"
 msgstr "خطأ مجهول"
 
 #: libgnomevfs/gnome-vfs-utils.c:84
-#, c-format
+#, fuzzy, c-format
 msgid "%u byte"
-msgstr "بايت %u"
+msgid_plural "%u bytes"
+msgstr[0] "بايت %u"
+msgstr[1] "بايت %u"
 
 #: libgnomevfs/gnome-vfs-utils.c:90
 #, c-format
@@ -635,7 +637,7 @@ msgstr "الدليل المنزلي"
 msgid "Filesystem"
 msgstr "نظام الملفات"
 
-#: modules/file-method.c:382
+#: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "جنوم VFSSeekPosition مجهول %d"
@@ -922,15 +924,13 @@ msgstr "اسم الجهاز الذي سيقع بركسية socks·عبره."
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr ""
-"منفذ الجهاز المعرف بـ \"/system/http_proxy/host\" و الذي تبروكسي عبره."
+msgstr "منفذ الجهاز المعرف بـ \"/system/http_proxy/host\" و الذي تبروكسي عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
-"منفذ الجهاز المعرف بـ \"/system/proxy/ftp_host\" و الذي تبروكسي عبره."
+msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/ftp_host\" و الذي تبروكسي عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -964,6 +964,19 @@ msgstr "استخدم بروكسي HTTP"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "اسم المستخدم الذي سيمرر عند القيام ببروكسية الـ HTTP."
+
+#: modules/network-method.c:257
+#, fuzzy
+msgid "Window Network"
+msgstr "الشبكة"
+
+#: schemas/system_smb.schemas.in.h:1
+msgid "SMB workgroup"
+msgstr ""
+
+#: schemas/system_smb.schemas.in.h:2
+msgid "The window workgroup the user is part of"
+msgstr ""
 
 #~ msgid "Hosts are not contacted via the proxy"
 #~ msgstr "المضيفين غير متصلين عبر البروكسي"

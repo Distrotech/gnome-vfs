@@ -149,7 +149,7 @@ libsmb_la_LIBADD = $(SAMBA_LIBS) $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `sftp' method
 
-libsftp_la_SOURCES = sftp-method.c pty-open.c
+libsftp_la_SOURCES = sftp-method.c pty-open.c sftp.h pty-open.h
 libsftp_la_LDFLAGS = $(module_flags)
 libsftp_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 

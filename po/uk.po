@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-12-28 11:03+0100\n"
+"POT-Creation-Date: 2004-01-12 10:09+0100\n"
 "PO-Revision-Date: 2003-01-27 04:26--500\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -13,12 +13,12 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: daemon/gnome-vfs-daemon.c:553
+#: daemon/gnome-vfs-daemon.c:573
 #, fuzzy
 msgid "Could not initialize Bonobo"
 msgstr "Не вдалось знайти головний переглядач"
 
-#: daemon/gnome-vfs-daemon.c:559
+#: daemon/gnome-vfs-daemon.c:579
 msgid "Could not initialize gnome vfs"
 msgstr ""
 
@@ -633,7 +633,7 @@ msgstr ""
 msgid "Filesystem"
 msgstr "Файл існує"
 
-#: modules/file-method.c:382
+#: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Невідомий GnomeVFSSeekPosition %d"
@@ -955,6 +955,18 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
+msgstr ""
+
+#: modules/network-method.c:257
+msgid "Window Network"
+msgstr ""
+
+#: schemas/system_smb.schemas.in.h:1
+msgid "SMB workgroup"
+msgstr ""
+
+#: schemas/system_smb.schemas.in.h:2
+msgid "The window workgroup the user is part of"
 msgstr ""
 
 #~ msgid "1 byte"

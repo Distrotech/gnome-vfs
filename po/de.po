@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.3\n"
-"POT-Creation-Date: 2003-12-28 11:03+0100\n"
+"POT-Creation-Date: 2004-01-12 10:09+0100\n"
 "PO-Revision-Date: 2003-12-21 13:38+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: daemon/gnome-vfs-daemon.c:553
+#: daemon/gnome-vfs-daemon.c:573
 msgid "Could not initialize Bonobo"
 msgstr "Bonobo konnte nicht initialisiert werden"
 
-#: daemon/gnome-vfs-daemon.c:559
+#: daemon/gnome-vfs-daemon.c:579
 msgid "Could not initialize gnome vfs"
 msgstr "GNOME-VFS konnte nicht initialisiert werden"
 
@@ -647,7 +647,7 @@ msgstr "Persönlicher Ordner"
 msgid "Filesystem"
 msgstr "Dateisystem"
 
-#: modules/file-method.c:382
+#: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GNOMEVFSSeekPosition %d unbekannt"
@@ -1011,3 +1011,16 @@ msgstr "HTTP-Proxy verwenden"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Zur HTTP-Proxy-Legitimation zu übergebender Benutzername."
+
+#: modules/network-method.c:257
+#, fuzzy
+msgid "Window Network"
+msgstr "Netzwerk"
+
+#: schemas/system_smb.schemas.in.h:1
+msgid "SMB workgroup"
+msgstr ""
+
+#: schemas/system_smb.schemas.in.h:2
+msgid "The window workgroup the user is part of"
+msgstr ""

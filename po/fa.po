@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-12-28 11:03+0100\n"
+"POT-Creation-Date: 2004-01-12 10:09+0100\n"
 "PO-Revision-Date: 2002-08-25 14:27+0430\n"
 "Last-Translator: Roozbeh Pournader <roozbeh@sharif.edu>\n"
 "Language-Team: Persian <farsi@lists.sharif.edu>\n"
@@ -13,12 +13,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: daemon/gnome-vfs-daemon.c:553
+#: daemon/gnome-vfs-daemon.c:573
 #, fuzzy
 msgid "Could not initialize Bonobo"
 msgstr "نمی‌توان تجزیه کرد: %s"
 
-#: daemon/gnome-vfs-daemon.c:559
+#: daemon/gnome-vfs-daemon.c:579
 msgid "Could not initialize gnome vfs"
 msgstr ""
 
@@ -634,7 +634,7 @@ msgstr ""
 msgid "Filesystem"
 msgstr "پرونده وجود دارد"
 
-#: modules/file-method.c:382
+#: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "‏GnomeVFSSeekPosition ناشناخته‌ی %d"
@@ -956,6 +956,18 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
+msgstr ""
+
+#: modules/network-method.c:257
+msgid "Window Network"
+msgstr ""
+
+#: schemas/system_smb.schemas.in.h:1
+msgid "SMB workgroup"
+msgstr ""
+
+#: schemas/system_smb.schemas.in.h:2
+msgid "The window workgroup the user is part of"
 msgstr ""
 
 #~ msgid "1 byte"

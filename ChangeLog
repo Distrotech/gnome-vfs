@@ -1,5 +1,10 @@
 2004-01-12  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/Makefile.am (libsftp_la_SOURCES): 
+	Add sftp.h and pty-open.h
+
+2004-01-12  Alexander Larsson  <alexl@redhat.com>
+
 	* NEWS: 
 	* configure.in: 
 	Update to 2.5.5

@@ -4,21 +4,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs-1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-09 00:20+0900\n"
+"POT-Creation-Date: 2004-01-12 10:09+0100\n"
 "PO-Revision-Date: 2004-01-09 02:01+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: daemon/gnome-vfs-daemon.c:553
+#: daemon/gnome-vfs-daemon.c:573
 msgid "Could not initialize Bonobo"
 msgstr "보노보를 초기화할 수 없습니다"
 
-#: daemon/gnome-vfs-daemon.c:559
+#: daemon/gnome-vfs-daemon.c:579
 msgid "Could not initialize gnome vfs"
 msgstr "그놈 VFS를 초기화할 수 없습니다"
 
@@ -522,7 +522,8 @@ msgstr "네트워크 서버"
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "플로피 드라이브를 마운트할 수 없습니다. 드라이브에 플로피가 없을 것입니다."
+msgstr ""
+"플로피 드라이브를 마운트할 수 없습니다. 드라이브에 플로피가 없을 것입니다."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
@@ -533,13 +534,17 @@ msgstr "해당 볼륨을 마운트할 수 없습니다. 해당 장치에 미디�
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr "플로피 드라이브를 마운트할 수 없습니다. 플로피가 마운트할 수 없는 형식일 것입니다."
+msgstr ""
+"플로피 드라이브를 마운트할 수 없습니다. 플로피가 마운트할 수 없는 형식일 것입"
+"니다."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "선택한 볼륨을 마운트할 수 없습니다. 해당 볼륨이 마운트할 수 없는 형식일 것입니다."
+msgstr ""
+"선택한 볼륨을 마운트할 수 없습니다. 해당 볼륨이 마운트할 수 없는 형식일 것입"
+"니다."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
@@ -678,7 +683,9 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr "볼려면 컴포넌트가 필요한 파일을 볼 때 사용할 프로그램. 인자 %s는 파일의 URI이고, 인자 %c는 컴포넌트 IID입니다."
+msgstr ""
+"볼려면 컴포넌트가 필요한 파일을 볼 때 사용할 프로그램. 인자 %s는 파일의 URI이"
+"고, 인자 %c는 컴포넌트 IID입니다."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -788,7 +795,8 @@ msgstr "참이면 \"command\"에 trash URL을 처리하는 프로그램이 들�
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr "참이면, 이 URL을 처리하는 프로그램을 터미널에서 실행해야 하는 경우입니다."
+msgstr ""
+"참이면, 이 URL을 처리하는 프로그램을 터미널에서 실행해야 하는 경우입니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -855,7 +863,10 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
-msgstr "참이면, 프록시 서버에 연결하는 데 인증이 필요합니다. 사용자 이름고 열쇠글은 \"/system/http_proxy/authentication_user\" 및 \"/system/http_proxy/authentication_password\"에서 지정합니다."
+msgstr ""
+"참이면, 프록시 서버에 연결하는 데 인증이 필요합니다. 사용자 이름고 열쇠글은 "
+"\"/system/http_proxy/authentication_user\" 및 \"/system/http_proxy/"
+"authentication_password\"에서 지정합니다."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -889,7 +900,9 @@ msgstr "보안 HTTP 프록시 포트"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "프록시 설정 모드를 선택합니다. 지원하는 값은 \"none\", \"manual\", \"auto\"입니다."
+msgstr ""
+"프록시 설정 모드를 선택합니다. 지원하는 값은 \"none\", \"manual\", \"auto\"입"
+"니다."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -923,13 +936,15 @@ msgstr "프록시에 사용할 포트 (\"/system/proxy/ftp_host\"에서 지정�
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "프록시에 사용할 포트 (\"/system/proxy/secure_host\"에서 지정한 기계에서)"
+msgstr ""
+"프록시에 사용할 포트 (\"/system/proxy/secure_host\"에서 지정한 기계에서)"
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "프록시에 사용할 포트 (\"/system/proxy/socks_host\"에서 지정한 기계에서)"
+msgstr ""
+"프록시에 사용할 포트 (\"/system/proxy/socks_host\"에서 지정한 기계에서)"
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -937,7 +952,11 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "이 키에는 (프록시가 사용 가능할 경우에도) 프록시를 통하지 않고 직접 연결할 호스트의 목록이 들어갑니다. 각 값들은 호스트 이름, 도메인 이름(*.foo.com과 같은 와일드 카드 사용), IP 호스트 주소(IPv4와 IPv6 모두 가능), 네트마스크를 사용한 네트워크 주소(192.168.0.0/24와 같이)를 쓸 수 있습니다."
+msgstr ""
+"이 키에는 (프록시가 사용 가능할 경우에도) 프록시를 통하지 않고 직접 연결할 호"
+"스트의 목록이 들어갑니다. 각 값들은 호스트 이름, 도메인 이름(*.foo.com과 같"
+"은 와일드 카드 사용), IP 호스트 주소(IPv4와 IPv6 모두 가능), 네트마스크를 사"
+"용한 네트워크 주소(192.168.0.0/24와 같이)를 쓸 수 있습니다."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -950,3 +969,16 @@ msgstr "HTTP 프록시 사용"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "HTTP 프록시를 쓸 때 인증하면서 넘기는 사용자 이름."
+
+#: modules/network-method.c:257
+#, fuzzy
+msgid "Window Network"
+msgstr "네트워크"
+
+#: schemas/system_smb.schemas.in.h:1
+msgid "SMB workgroup"
+msgstr ""
+
+#: schemas/system_smb.schemas.in.h:2
+msgid "The window workgroup the user is part of"
+msgstr ""
