@@ -703,7 +703,7 @@ gnome_vfs_list_deep_free (GList *list)
  * Create a local path for a file:/// URI. Do not use with URIs
  * of other methods.
  *
- * Return value: the local path 
+ * Return value: a newly allocated string containing the local path 
  * NULL is returned on error or if the uri isn't a file: URI
  * without a fragment identifier (or chained URI).
  **/
@@ -736,8 +736,8 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
  * 
  * Returns a file:/// URI for the local path @local_full_path.
  *
- * Return value: the URI corresponding to @local_full_path 
- * (NULL for some bad errors).
+ * Return value: a newly allocated string containing the URI corresponding 
+ * to @local_full_path (NULL for some bad errors).
  **/
 char *
 gnome_vfs_get_uri_from_local_path (const char *local_full_path)
@@ -1225,6 +1225,33 @@ gnome_vfs_escape_high_chars (const guchar *string)
 	return result;
 }
 
+/* http uris look like <something>.<2-4 letters>, possibly followed by a slash and some text. */
+static gboolean
+looks_like_http_uri (const char *str)
+{
+	int len;
+	int i;
+	char c;
+	const char *first_slash;
+
+	first_slash = strchr(str, '/');
+	if (first_slash == NULL) {
+		len = strlen (str);
+	} else {
+		len = first_slash - str;
+	}
+	for (i = 0; i < 5 && i < len; i++) {
+		c = str[len - 1 - i];
+		if (i >= 2 && c == '.') {
+			return TRUE;
+		}
+		if (!g_ascii_isalpha (c)) {
+			return FALSE;
+		}
+	}
+	return FALSE;
+}
+
 /* The strip_trailing_whitespace option is intended to make copy/paste of
  * URIs less error-prone when it is known that trailing whitespace isn't
  * part of the uri.
@@ -1289,9 +1316,13 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 	default:
 		if (has_valid_scheme (stripped)) {
 			uri = gnome_vfs_escape_high_chars (stripped);
-		} else {
+		} else if (looks_like_http_uri (stripped)) {
 			escaped = gnome_vfs_escape_high_chars (stripped);
 			uri = g_strconcat ("http://", escaped, NULL);
+			g_free (escaped);
+		} else {
+			escaped = gnome_vfs_escape_high_chars (stripped);
+			uri = g_strconcat ("file://", escaped, NULL);
 			g_free (escaped);
 		}
 	}
@@ -1335,7 +1366,7 @@ gnome_vfs_make_uri_from_input (const char *location)
  * tries to support paths relative to the specified directories (can be homedir
  * and/or current directory).
  *
- * Return value: the fully qualified URL
+ * Return value: a newly allocated string containing the fully qualified URL
  *
  * Since: 2.4
  */
@@ -1671,7 +1702,8 @@ gnome_vfs_make_uri_canonical (const char *uri)
  *
  * Retrieve the scheme used in @uri 
  *
- * Return value: A string containing the scheme
+ * Return value: A newly allocated string containing the scheme, NULL
+ * if @uri it doesn't seem to contain a scheme
  *
  * Since: 2.2
  **/
@@ -1939,6 +1971,7 @@ _gnome_vfs_uri_is_in_subdir (GnomeVFSURI *uri, GnomeVFSURI *dir)
 		gnome_vfs_uri_unref (parent);
 	}
 	gnome_vfs_file_info_unref (info);
+	gnome_vfs_file_info_unref (dirinfo);
 	return is_in_dir;
 }
 

@@ -5,12 +5,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
 "PO-Revision-Date: 2000-08-27 14:00+0000\n"
 "Last-Translator: Alastair McKinstry <mckinstry@computer.org>\n"
 "Language-Team: Irish <ga@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
@@ -79,7 +79,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
-msgstr "Earraidh intÌre"
+msgstr "Earraidh int√≠re"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -104,7 +104,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "FormÛid neamh-dhleathach"
+msgstr "Form√≥id neamh-dhleathach"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
@@ -114,7 +114,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "Comhad rÛ-mhÛr"
+msgstr "Comhad r√≥-mh√≥r"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
@@ -124,7 +124,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Cor·s chomad le·mh-amhain"
+msgstr "Cor√°s chomad le√°mh-amhain"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -159,7 +159,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "NÌl aon filltÈan ann"
+msgstr "N√≠l aon fillt√©an ann"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
@@ -189,12 +189,12 @@ msgstr ""
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
-msgstr "Is fillte·n ann"
+msgstr "Is fillte√°n ann"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Cuimhne ˙s·idte"
+msgstr "Cuimhne √∫s√°idte"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -229,7 +229,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "NÌl an fillte·n folamh"
+msgstr "N√≠l an fillte√°n folamh"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
@@ -239,7 +239,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Cor·s chomad le·mh-amhain"
+msgstr "Cor√°s chomad le√°mh-amhain"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
@@ -249,7 +249,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "Ainm rÛ-fhada"
+msgstr "Ainm r√≥-fhada"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
@@ -341,52 +341,52 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr ""
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr ""
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr ""
 
@@ -408,31 +408,31 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "directory information file"
-#~ msgstr "NÌl an fillte·n folamh"
+#~ msgstr "N√≠l an fillte√°n folamh"
 
 #, fuzzy
 #~ msgid "unknown type"
 #~ msgstr "Job ID gan aithne: %d"
 
 #~ msgid "Error reading: %s"
-#~ msgstr "Earraidh ag le·mh: %s"
+#~ msgstr "Earraidh ag le√°mh: %s"
 
 #~ msgid "Error writing: %s"
-#~ msgstr "Earraidh ag scrÌobh: %s"
+#~ msgstr "Earraidh ag scr√≠obh: %s"
 
 #~ msgid "Cannot write: %s"
-#~ msgstr "Teip ag scrÌobh: %s"
+#~ msgstr "Teip ag scr√≠obh: %s"
 
 #~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "⁄s·id: %s <ior>< [ior_fd]\n"
+#~ msgstr "√ös√°id: %s <ior>< [ior_fd]\n"
 
 #, fuzzy
 #~ msgid "Go to the parent directory"
-#~ msgstr "NÌl aon filltÈan ann"
+#~ msgstr "N√≠l aon fillt√©an ann"
 
 #, fuzzy
 #~ msgid "Go to the home directory"
-#~ msgstr "NÌl aon filltÈan ann"
+#~ msgstr "N√≠l aon fillt√©an ann"
 
 #~ msgid "ftpfs: abort error: %s"
 #~ msgstr "ftpfs: earraidh `abort: %s"
@@ -441,7 +441,7 @@ msgstr ""
 #~ msgstr "ftpfs: teip ar `abort'"
 
 #~ msgid "ftpfs: storing file %d (%d)"
-#~ msgstr "ftpfs: ag s·bh·il comhad %d (%d)"
+#~ msgstr "ftpfs: ag s√°bh√°il comhad %d (%d)"
 
 #~ msgid "ftpfs: CWD failed."
 #~ msgstr "ftpfs: Teip ar CWD."

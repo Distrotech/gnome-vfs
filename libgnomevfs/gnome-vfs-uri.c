@@ -106,7 +106,7 @@ UriStrspnSet uri_strspn_sets[] = {
 #define URI_DELIMITER_IPV6_SET (uri_strspn_sets + 3)
 
 #define BV_SET(bv, idx) (bv)[((guchar)(idx))>>3] |= (1 << ( (idx) & 7) )
-#define BV_IS_SET(bv, idx) ((bv)[(idx)>>3] & (1 << ( (idx) & 7)))
+#define BV_IS_SET(bv, idx) ((bv)[((guchar)(idx))>>3] & (1 << ( (idx) & 7)))
 
 static const char *
 uri_strspn_to(const char *str, UriStrspnSet *set, const char *path_end)
@@ -1175,9 +1175,11 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 	}
 
 	if (uri->parent != NULL) {
+		gchar *uri_str;
+		uri_str = gnome_vfs_uri_to_string (uri->parent, hide_options);
 		g_string_prepend_c (string, '#');
-		g_string_prepend (string, gnome_vfs_uri_to_string (uri->parent, 
-								   hide_options));
+		g_string_prepend (string, uri_str);
+		g_free (uri_str);
 	}
 
 	result = string->str;
@@ -1947,7 +1949,8 @@ gnome_vfs_uri_list_free (GList *list)
  * Returns a full URI given a full base URI, and a secondary URI which may
  * be relative.
  *
- * Return value: the URI (NULL for some bad errors).
+ * Return value: a newly allocated string containing the URI 
+ * (NULL for some bad errors).
  **/
 char *
 gnome_vfs_uri_make_full_from_relative (const char *base_uri,

@@ -1056,6 +1056,7 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 	GList *short_list_addition_list;
 	GList *short_list_removal_list;
 	GnomeVFSResult result;
+	GList *it;
 
 	/* Get base list. */
 	short_list_id_list = comma_separated_str_to_str_list
@@ -1066,6 +1067,18 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 	short_list_removal_list = str_list_difference (short_list_id_list, application_ids);
 	addition_string = str_list_to_comma_separated_str (short_list_addition_list);
 	removal_string = str_list_to_comma_separated_str (short_list_removal_list);
+
+	/* Make sure the newly added app_ids are already associated to this 
+	 * mime type in the application registry
+	 */
+	for (it = short_list_addition_list; it != NULL; it = it->next) {
+		/* add_mime_type won't do anything if mime_type is already
+		 * associated with it->data
+		 */
+		gnome_vfs_application_registry_add_mime_type (it->data, mime_type);		
+	}
+	gnome_vfs_application_registry_sync ();
+
 	g_list_free_deep (short_list_id_list);
 	g_list_free (short_list_addition_list);
 	g_list_free (short_list_removal_list);
@@ -1996,7 +2009,7 @@ expand_parameters (gpointer                 action,
 	char *path;
 	char *command = NULL;
 	char **c_argv, **r_argv;
-	int c_argc, r_argc;
+	int c_argc, max_r_argc;
 	int i, c;
 	gboolean added_arg;
 
@@ -2040,33 +2053,16 @@ expand_parameters (gpointer                 action,
 		return GNOME_VFS_ERROR_PARSE;
 	}
 	
-	/* figure out how many parameters we actually have */
-	if (app != NULL && app->can_open_multiple_files) {
-		r_argc = g_list_length (uris) + c_argc;
-		
-		if (strstr (command, "%s") != NULL) {
-			r_argc--;
-		}
-		
-	} else {
-		r_argc = c_argc;
-		
-		if (strstr (command, "%s") == NULL) {
-			r_argc++;
-		}
-	}
-	
-	r_argv = g_new0 (char *, r_argc + 1);
+	/* figure out how many parameters we can max have */
+	max_r_argc = g_list_length (uris) + c_argc + 1;
+	r_argv = g_new0 (char *, max_r_argc + 1);
 
 	added_arg = FALSE;
 	i = 0;
 	for (c = 0; c < c_argc; c++) {
 		/* replace %s with the uri parameters */
 		if (strcmp (c_argv[c], "%s") == 0) {
-			g_free (c_argv[c]);
-			
 			while (uris != NULL) {
-			
 				if (app != NULL) {
 					switch (app->expects_uris) {
 					case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS:
@@ -2100,35 +2096,30 @@ expand_parameters (gpointer                 action,
 				} else {
 					r_argv[i] = g_strdup (uris->data);
 				}
-
+				i++;
+				uris = uris->next;
+				
 				if (app != NULL && !app->can_open_multiple_files) {
 					break;
 				}
-				
-				i++;
-				uris = uris->next;
 			}
 			added_arg = TRUE;
 			
 		/* replace %c with the component iid */
 		} else if (server != NULL && strcmp (c_argv[c], "%c") == 0) {
-			g_free (c_argv[c]);
-			r_argv[i] = g_strdup (server->iid);
+			r_argv[i++] = g_strdup (server->iid);
 			added_arg = TRUE;
 			
 		/* otherwise take arg from command */
 		} else {
-			r_argv[i] = c_argv[c];
+			r_argv[i++] = g_strdup (c_argv[c]);
 		}
-		
-		if (i == c) i++;
 	}
+	g_strfreev (c_argv);
 	
 	/* if there is no %s or %c, append the parameters to the end */
 	if (!added_arg) {
-			
 		while (uris != NULL) {
-		
 			if (app != NULL) {
 				switch (app->expects_uris) {
 				case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS:
@@ -2138,7 +2129,6 @@ expand_parameters (gpointer                 action,
 				case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS:
 					r_argv[i] = gnome_vfs_get_local_path_from_uri (uris->data);
 					if (r_argv[i] == NULL) {
-						g_strfreev (c_argv);
 						g_strfreev (r_argv);
 						return GNOME_VFS_ERROR_NOT_SUPPORTED;
 					}
@@ -2162,20 +2152,17 @@ expand_parameters (gpointer                 action,
 			} else {
 				r_argv[i] = g_strdup (uris->data);
 			}
-
+			i++;
+			uris = uris->next;
+			
 			if (app != NULL && !app->can_open_multiple_files) {
 				break;
 			}
-
-			i++;			
-			uris = uris->next;
 		}
 	}		
 	
 	*argv = r_argv;
-	*argc = r_argc;
-
-	g_free (c_argv);
+	*argc = i;
 
 	return GNOME_VFS_OK;
 }

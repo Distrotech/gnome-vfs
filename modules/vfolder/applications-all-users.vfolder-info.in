@@ -41,7 +41,7 @@
       </And>
     </Query>
 
-    <!-- Accesories -->
+    <!-- Accessories -->
     <Folder>
       <Name>Accessories</Name>
       <Desktop>Accessories.directory</Desktop>
@@ -51,6 +51,22 @@
 	  <Keyword>Utility</Keyword>
 	  <Not>
 	    <Keyword>System</Keyword>
+	  </Not>
+	</And>
+      </Query>
+      <DontShowIfEmpty/>
+    </Folder>
+    
+    <!-- Accessibility -->
+    <Folder>
+      <Name>Accessibility</Name>
+      <Desktop>Accessibility.directory</Desktop>
+      <Query>
+	<And>
+	  <Keyword>Application</Keyword>
+	  <Keyword>Accessibility</Keyword>
+	  <Not>
+	    <Keyword>Settings</Keyword>
 	  </Not>
 	</And>
       </Query>

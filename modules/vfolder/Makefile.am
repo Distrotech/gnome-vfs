@@ -67,6 +67,8 @@ vfolder_DATA = 					\
 	server-settings.vfolder-info		\
 	system-settings.vfolder-info
 
+CLEANFILES = $(vfolder_DATA)
+
 VFOLDER_INFO_CREATE = 				 \
 	sed -e "s,\@datadir\@,$(datadir),"       \
 	    -e "s,\@sysconfdir\@,$(sysconfdir)," \

@@ -30,6 +30,8 @@
 
 #undef DEBUG_PRINT
 
+#define GNOME_VFS_THREAD_STACK_SIZE 256*1024
+
 #if 0
 #define DEBUG_PRINT(x) g_print x
 #else
@@ -77,7 +79,10 @@ new_thread_state (void)
 	/* spawn a new thread, call the entry point immediately -- it will block
 	 * until it receives a new entry_point for the first job to execute
 	 */
-	state->thread = g_thread_create (thread_entry, state, FALSE, &error);
+	state->thread = g_thread_create_full (thread_entry, state,
+					      GNOME_VFS_THREAD_STACK_SIZE,
+					      FALSE, FALSE,
+					      G_THREAD_PRIORITY_NORMAL, &error);
 
 	DEBUG_PRINT (("new thread %p\n", state->thread));
 	

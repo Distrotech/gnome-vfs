@@ -224,8 +224,9 @@ ssh_connect (SshHandle **handle_return,
 	g_spawn_async_with_pipes (NULL, argv, NULL, 
 				  G_SPAWN_SEARCH_PATH,
 				  NULL, NULL,
-				  &handle->pid, &handle->write_fd, &handle->read_fd,
-				  &handle->error_fd, &gerror);
+				  (gint *)&handle->pid, &handle->write_fd, 
+				  &handle->read_fd, &handle->error_fd, 
+				  &gerror);
 	g_strfreev (argv);
 
 	if (gerror) {

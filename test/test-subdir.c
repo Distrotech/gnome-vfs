@@ -57,5 +57,8 @@ main (int argc,
 		 argv[1], argv[2],
 		 _gnome_vfs_uri_is_in_subdir (uri1, uri2));
 
+	gnome_vfs_uri_unref (uri1);
+	gnome_vfs_uri_unref (uri2);
+
 	return 0;
 }

@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.2.x\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-03-05 10:29+0530\n"
+"Project-Id-Version:gnome-vfs.HEAD\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
+"PO-Revision-Date: 2003-07-05 10:29+0530\n"
 "Last-Translator: FSF-India <locale@gnu.org.in>\n"
 "Language-Team: Malayalam <locale@gnu.org.in>\n"
 "MIME-Version: 1.0\n"
@@ -165,15 +165,13 @@ msgstr "ഒരു കൂട് അല്ല"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
-#, fuzzy
 msgid "Operation in progress"
-msgstr "പ്രവ‌ര്‍ത്തനം അവസാനിപ്പിച്ചു"
+msgstr ""
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
-#, fuzzy
 msgid "Operation interrupted"
-msgstr "പ്രവ‌ര്‍ത്തനം അവസാനിപ്പിച്ചു"
+msgstr ""
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
@@ -187,9 +185,8 @@ msgstr ""
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
-#, fuzzy
 msgid "Operation not permitted"
-msgstr "വലിച്ചിടല്‍ നടത്തിയില്ല."
+msgstr ""
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
@@ -224,9 +221,8 @@ msgstr "പ്രവേശനം പരാചയപ്പെട്ടു"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
-#, fuzzy
 msgid "Operation cancelled"
-msgstr "പ്രവ‌ര്‍ത്തനം അവസാനിപ്പിച്ചു"
+msgstr ""
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
@@ -347,55 +343,54 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr ""
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
-msgstr ""
+msgstr "പ്രയോഗങ്ങള്‌"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
-#, fuzzy
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
-msgstr "രചന നിലവിലുണ്ട്"
+msgstr "രചനകള്"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
-msgstr ""
+msgstr "കൂടുകള്"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
-msgstr ""
+msgstr "സഹായം"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
-msgstr ""
+msgstr "ബന്ധങ്ങള്"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
-msgstr ""
+msgstr "തപാല്"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr ""
+msgstr "ഉപകരണങ്ങള്"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr ""
+msgstr "ജാലകങ്ങള്"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 #, fuzzy

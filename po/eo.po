@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.2.3\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-03-13 16:21+0500\n"
+"Project-Id-Version: gnome-vfs 2.3.5\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
+"PO-Revision-Date: 2003-07-01 14:57-0500\n"
 "Last-Translator: Charles Voelger <cvoelger@dweasel.com>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -275,22 +275,22 @@ msgstr "Ne eblis trovi mastran rigardilon"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "Neniu apriora ago asociata"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "Neniu traktilo por URL-kombino"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Eraro dum komandolinia analizo"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Eraro dum komandlanĉo"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
@@ -298,12 +298,12 @@ msgstr "Nekonata eraro"
 
 #: libgnomevfs/gnome-vfs-utils.c:84
 msgid "1 byte"
-msgstr "1 bajto"
+msgstr "1 Bitokoj"
 
 #: libgnomevfs/gnome-vfs-utils.c:86
 #, c-format
 msgid "%u bytes"
-msgstr "%u bajtoj"
+msgstr "%u Bitokoj"
 
 #: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
@@ -338,58 +338,57 @@ msgstr "Ne trovis validan agordodosieron je %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Uzi la %s mediovariablo por doni malsama situon.\n"
+msgstr "Uzi la %s mediovariablo por doni malsaman situon.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
-msgid "Applications"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
-msgid "Cards"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
-#, fuzzy
-msgid "Files"
-msgstr "Dosiero ekzistas"
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
-msgid "Folders"
-msgstr ""
-
-#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
-msgid "Help"
-msgstr ""
+msgid "Applications"
+msgstr "Aplikaĵoj"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
-msgid "Hosts"
-msgstr ""
+msgid "Cards"
+msgstr "Kartoj"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
-msgid "Links"
-msgstr ""
+msgid "Files"
+msgstr "Dosieroj"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
-msgid "Mail"
-msgstr ""
+msgid "Folders"
+msgstr "Dosierujoj"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
+msgid "Help"
+msgstr "Helpo"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:190
+msgid "Hosts"
+msgstr "Komputiloj"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:193
+msgid "Links"
+msgstr "Ligoj"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:196
+msgid "Mail"
+msgstr "Retpoŝto"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr ""
+msgstr "Iloj"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr ""
+msgstr "Fenestroj"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"

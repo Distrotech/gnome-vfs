@@ -1234,7 +1234,6 @@ copy_file (GnomeVFSFileInfo *info,
 {
 	GnomeVFSResult close_result, result;
 	GnomeVFSHandle *source_handle, *target_handle;
-	GnomeVFSSetFileInfoMask set_mask;
 
 	progress->progress_info->phase = GNOME_VFS_XFER_PHASE_OPENSOURCE;
 	progress->progress_info->bytes_copied = 0;
@@ -1296,21 +1295,21 @@ copy_file (GnomeVFSFileInfo *info,
 	}
 
 	if (result == GNOME_VFS_OK) {
+		/* ignore errors while setting file info attributes at this point */
+		
 		/* FIXME the modules should ignore setting of permissions if
 		 * "valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS" is clear
 		 * for now, make sure permissions aren't set to 000
 		 */
-
-		if ((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) == 0) {
-			set_mask = GNOME_VFS_SET_FILE_INFO_TIME;
-		} else {
-			set_mask = GNOME_VFS_SET_FILE_INFO_PERMISSIONS
-					| GNOME_VFS_SET_FILE_INFO_OWNER
-					| GNOME_VFS_SET_FILE_INFO_TIME;
+		if ((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) != 0) {
+			/* Call this separately from the time one, since one of them may fail,
+			   making the other not run. */
+			gnome_vfs_set_file_info_uri (target_uri, info, 
+						     GNOME_VFS_SET_FILE_INFO_OWNER | GNOME_VFS_SET_FILE_INFO_PERMISSIONS);
 		}
-
-		/* ignore errors while setting file info attributes at this point */
-		gnome_vfs_set_file_info_uri (target_uri, info, set_mask);
+		
+		/* Call this last so nothing else changes the times */
+		gnome_vfs_set_file_info_uri (target_uri, info, GNOME_VFS_SET_FILE_INFO_TIME);
 	}
 
 	if (*skip) {

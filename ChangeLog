@@ -1,3 +1,349 @@
+2003-09-18  William Jon McCann  <mccann@jhu.edu>
+
+	* test/test-shell.c (main):
+	* test/test-async-directory.c (main):
+	Process options before getting leftover arguments.
+
+2003-09-11 Mathieu Lacage <mathieu@gnome.org>
+
+	* libgnomevfs/gnome-vfs-file-info.c: make gnome_vfs_file_info_matches
+	match against everything in the FileInfo structure. This effectively makes
+	this function behave like an _equals function but we cannot change the 
+	name of the function.
+
+2003-09-18  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/vfolder/Makefile.am (CLEANFILES):
+	Remove generated vfolder files on make clean.
+	Fixes #121741, patch by Steve Chaplin.
+
+2003-09-17  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-async-job-map.c (_gnome_vfs_async_job_map_get_job):
+	Don't assert async_job_map != NULL.
+	Patch from Martin Wehner <martin.wehner@epost.de>
+
+2003-09-16  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (copy_file):
+	Correctly set utimes if the owner change fails.
+	Bug #117762
+	
+2003-09-16  Alexander Larsson  <alexl@redhat.com>
+
+	* schemas/system_http_proxy.schemas:
+	Add missing schemas.
+	Patch by Marco Pesenti Gritti.
+
+2003-09-15  Christophe Fergeau  <teuf@gnome.org>
+ 
+         * modules/http-method.c: define INET_ADDRSTRLEN if it's not defined
+           in the system headers (fixes #121720)
+
+2003-09-12  Alexander Larsson  <alexl@redhat.com>
+
+	* HACKING:
+	Fix list name.
+
+2003-09-11  Fatih Demir <kabalak@gtranslator.org>
+
+	* configure.in: Added "ta" (Tamil) to the languages' list.
+
+=== gnome-vfs 2.4.0 ===
+
+2003-09-08  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Version 2.4.0
+
+=== gnome-vfs 2.3.90 ===
+
+2003-09-02  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:  2.3.90
+
+2003-09-02  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-monitor.c:
+	Add a small delay to the mime db changed signal emission
+	to avoid sending multiple events for one change.
+
+2003-09-01  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "ne" to ALL_LINGUAS.
+
+=== gnome-vfs 2.3.8 ===
+
+2003-08-25  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.3.8
+
+2003-08-25  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_make_uri_from_input_internal):
+	Only add http: if the string looks like a http uri.
+
+2003-08-25  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/default-modules.conf:
+	Add dav: scheme, handled by the http module.
+
+2003-08-19  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/file-method.c (fam_do_iter_unlocked):
+	Don't do anything if fam_connection is NULL.
+	Should fix bug #120211
+
+2003-08-13  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	revert the ngettext usage.
+	
+2003-08-13  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/http-method.c: Fix the build for Solaris, FreeBSD (and
+	probably anything else that is "not Linux"). Fixes bug #119706.
+	based on patch by Malcolm Tredinnick
+	
+2003-08-12  Thomas Vander Stichele <thomas at apestaart dot org>
+
+        * configure.in: make maintainer builds work with aclocal
+
+2003-08-12  Leena Gunda  <leena.gunda@wipro.com>
+
+	* modules/cdemenu-desktop-method.c (get_title):
+	Added this to get the menu names without quotes.
+	* modules/cdemenu-desktop-method.c (do_open):
+	* modules/cdemenu-desktop-method.c (do_read_directory):
+	Make sure that for unquoted menu item names, the pointers are
+	not NULL. Bugzilla bug# 119425 
+
+=== gnome-vfs 2.3.7 ===
+
+2003-08-11  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: Update
+
+	* configure.in: Bump to 2.3.7.
+
+2003-08-11  Malcolm Tredinnick <malcolm@commsecure.com.au>
+
+	* modules/http-method.c:
+	Process the contents of the /system/http_proxy/ignore_hosts
+	gconf key and do not use the proxy when connecting to these
+	hosts.
+
+	* schemas/system_http_proxy.schemas:
+	Add an entry for /system/http_proxy/ignore_hosts.
+
+2003-08-04  Michael Meeks  <michael@ximian.com>
+
+	* test/test-shell.c (authentication_callback),
+	(get_input_string): don't pollute user/password with
+	trailing '\n's.
+
+2003-08-01  Michael Meeks  <michael@ximian.com>
+
+	* test/test-shell.c (do_ls): add ls [dir]
+	(main): quit properly at end of stream.
+
+2003-08-03  Danilo Segan  <dsegan@gmx.net>
+
+	* libgnomevfs/gnome-vfs-utils.c: uses ngettext
+	
+	(committed by teuf@gnome.org, please note this makes gnome-vfs
+	depend on a 'new enough' gettext implementation, and compilation 
+	will break if such a gettext impl is not available. Hopefully some
+	gnome module (intltool?) makes sure this is the case(?))
+
+=== gnome-vfs 2.3.6 ===
+
+2003-08-01  Christophe Fergeau  <teuf@gnome.org>
+
+	* NEWS: 
+	* configure.in: 
+	Bump version to 2.3.6.
+	
+2003-07-25  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-xfer.h: another gcc 3.3 fix, remove
+	  unnecessary ',' at the end of some enums. Fixes bug #118851
+
+2003-07-25  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-file-size.h.in: add G_GNUC_EXTENSION before
+	  GnomeVFSFileSize declaration to prevent g++ from spitting warnings
+	  about long long being forbidden in C++ when used with -pedantic
+	  (glib does exactly the same thing in its gint64 definition)
+	  Fixes bug #118315
+
+2003-07-24  Leena Gunda  <leena.gunda@wipro.com>
+
+	* libgnomevfs/gnome-vfs-process.c: 
+	Create hash table before associating signal handler for SIGCHLD.
+	Fixes bug #118059
+
+2003-07-18  Christophe Fergeau  <teuf@gnome.org>
+
+	* test/test-symlinks.c: removed unnecessary ;, fixes build on older
+	  gcc and bug #117818
+
+2003-07-18  Fredrik Jönsson  <fjo@nada.kth.se>
+
+	* modules/ssh-method.c: cast pid_t* to gint * (fixes compilation on 
+	  Solaris, bug #117788)
+	* modules/cde-method.c: removed unused variable (fixes compilation 
+	  on Solaris, bug #117789)
+	* modules/ftp-method.c: include strings.h (for index) (fixes #117787)
+
+2003-07-18  Christophe Fergeau  <teuf@gnome.org>
+
+	* test/Makefile.am: don't build test-subdir.c since it uses a private
+	  gnome-vfs symbol (prefixed with _) which breaks build on some non
+	  linux platforms (fixes bug #117791)
+	
+2003-07-18  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime.c: some stuff wasn't properly freed when 
+	  calling gnome_vfs_mime_shutdown
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_to_string): fixed a small
+	  leak
+	* libgnomevfs/gnome-vfs-uri.c
+	* libgnomevfs/gnome-vfs-utils.c: fixed a few function descriptions
+	  to explicitly say when these functions return a newly allocated 
+	  string
+	* libgnomevfs/gnome-vfs-utils.c (_gnome_vfs_uri_is_in_subdir): fixed
+	  a memory leak
+	* test/test-uri.c 
+	* test/test-subdir.c
+	* test/test-symlinks.c: fixed some memory leaks (it may seem pointless,
+	  but this will save some precious time the next time  someone runs 
+	  valgrind on those tests)
+
+2003-07-17  Christophe Fergeau  <teuf@gnome.org>
+
+	* test/test-mime-handlers.c: don't segfault on unknown mime types
+
+2003-07-17  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: fixed a memory leak, fixed a bug
+	where the last line of .mime and .keys files wouldn't be read properly
+	if it didn't end with a \n.
+
+2003-07-17  Christophe Fergeau  <teuf@gnome.org>
+	
+	* modules/vfolder/vfolder-info.c: properly ignore // which can
+	appear in <ItemDir> elements
+	* modules/vfolder/vfolder-util.h: fixes debug macro so that it compiles
+	with gcc 3.3
+
+2003-07-17  Christophe Fergeau  <teuf@gnome.org>
+
+	* test/test-mime-handlers.c: free all allocated memory before exiting
+	to make valgrind happy (and to identify the leaks which are truly
+	coming from gnome-vfs ;)
+
+2003-07-17  Christophe Fergeau  <teuf@gnome.org>
+
+	* test/test-mime.c: fixed a crash when using an absolute path
+
+2003-07-11  Calum Benson  <calum.benson@sun.com>
+
+	reviewed by: Alex Larsson <alexl@redhat.com>
+
+	* modules/vfolder/applications-all-users.vfolder-info.in:
+	Add an Accessibility menu to the Applications menu. Closes
+	#116379, #115979 and #115981.
+
+2003-07-11  Arvind Samptur  <arvind.samptur@wipro.com>
+
+	Reviewed by: Stephen Browne  <stephen.browne@sun.com>
+
+	* modules/cdemenu-desktop-method.c: (do_open),(do_open_directory),
+	(do_read_directory): Replace chars such as '/' and '#' with
+	appropriate % escape codes the then unescape again when used to
+	search 	the dtwmrc files.
+
+	* modules/cdemenu-desktop-method.c: (open_and_find_pointer_to_menu):
+	Do an exact match of the menu names (strcmp) from the dtwrmc file
+	and not just the first occurance of the string(strchr).
+
+2003-07-10  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-thread-pool.c (new_thread_state):
+	Make vfs thread stack size 256k
+
+2003-07-08  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-directory.c (gnome_vfs_directory_visit):
+	Handle NULL uris
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c (gnome_vfs_get_file_info_uri_cancellable):
+	Handle NULL uris
+
+2003-07-04  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (set_value_real):
+	  added missing g_string_free (fixes leak)
+	* test/Makefile.am: disabled test-resolv since it uses a private
+	  gnome-vfs symbol, which breaks compilation on some non-linux
+	  platforms
+
+2003-07-02  Leena Gunda  <leena.gunda@wipro.com>
+
+	* modules/cdemenu-desktop-method.c
+	(open_and_find_pointer_to_menu): Show the last custom menu
+	defined for the CDE menu items. Bugzilla bug #116101
+
+2003-06-28  Christophe Fergeau <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_set_short_list_applications): when adding an app
+	to the short_list for a mime-type, also add it to the global list
+	of apps able to handle this mime-type
+
+2003-06-28  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-uri.c (BV_IS_SET): don't read out of 
+	  the buffer bounds if the uri contains 8-bit chars (this fixes
+	  some problem when trying to parse uris containing UTF-8 chars)
+
+2003-06-25  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* programs/gnomevfs-mkdir.c: removed debugging code, fixes compilation
+	  with Forte on Solaris (bug #115862)
+
+=== gnome-vfs 2.3.5 ===
+
+2003-06-23  Dave Camp  <dave@ximian.com>
+
+	* NEWS: 
+	* configure.in: 
+	Bump version to 2.3.5.
+
+2003-06-13  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c (expand_parameters):
+	Fix memory handling. We were freeing already freed stuff in the
+	GNOME_VFS_ERROR_NOT_SUPPORTED case. 
+
+2003-06-11  Jon Svendsen  <jon-sven@frisurf.no>
+
+	* libgnomevfs/gnome-vfs-application-registry.h
+	(GNOME_VFS_APPLICATION_REGISTRY_STARTUP_NOTIFY): Add a macro 
+	describing a new application registry key to determine if an
+	application supports startup notification.
+
+2003-06-11  Leena Gunda  <leena.gunda@wipro.com>
+
+	* modules/cdemenu-desktop-method.c (do_open): 
+	Make sure that for unquoted menu item names, the pointers are 
+	not NULL. Bugzilla bug#114555
+
 2003-06-10  Alexander Larsson  <alexl@redhat.com>
 
 	* Makefile.am:

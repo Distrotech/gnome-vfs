@@ -1,19 +1,20 @@
-# Gnome yn Gymraeg.
+# gnome-vfs yn Gymraeg.
 # Copyright (C) 2003 Free Software Foundation, Inc.
 # www.gyfieithu.co.uk <kyfieithu@kyfieithu.co.uk>, 2003.
-# a Dafydd Harries 2003.
+# Dafydd Harries <daf@parnassus.ath.cx>, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-05-19 14:21+0200\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
+"PO-Revision-Date: 2003-08-14 12:07+0100\n"
 "Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
-"X-Generator: Kartouche 0.0.1c - 26 Feb 2003\n"
+"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
@@ -33,7 +34,7 @@ msgstr "Nid yw %s:%d yn cynnwys enw modiwl."
 #: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Ni chanfodwyd y ffeil ffurfweddu `%s': %s"
+msgstr "Ni chanfodwyd y ffeil cyfluniad `%s': %s"
 
 #: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
@@ -309,7 +310,7 @@ msgstr "%u beit"
 #: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
-msgstr "%.1f K"
+msgstr "%.1f C"
 
 #: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
@@ -342,52 +343,52 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Defnyddiwch y newidyn amgylcheddol %s er mwyn pennu lleoliad arall.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
 msgstr "Rhaglenni"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr "Cardiau"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr "Ffeiliau"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr "Plygellau"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr "Cymorth"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr "Gwesteiwyr"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr "Cysylltion"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr "Post"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr "Offer"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "Ffenestri"
 

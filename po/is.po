@@ -2,16 +2,16 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Samúel Jón Gunnarsson  <sammi@techattack.nu>, 2003
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-05-08 21:49--100\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
+"PO-Revision-Date: 2003-06-21 12:15--100\n"
 "Last-Translator: Samuel Jon Gunnarsson <sammi@techattack.nu>\n"
 "Language-Team: Icelandic <gnome@techattack.nu>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
@@ -22,12 +22,12 @@ msgstr "%s:%d inniheldur NUL tákn."
 #: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d inniheldur ekkert nafn fyrir aðgerð."
+msgstr "%s:%d inniheldur ekkert heiti fyrir aðgerð."
 
 #: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d inniheldur ekkert nafn fyrir einingu."
+msgstr "%s:%d inniheldur ekkert heiti fyrir einingu."
 
 #: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
@@ -56,11 +56,11 @@ msgstr "Aðgerð stöðvuð"
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Ekki tókst að greina: %s"
+msgstr "Ekki tókst að þátta: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Frekari greiningar verða hunsaðar."
+msgstr "Frekari þáttunarvillur verða hunsaðar."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -80,12 +80,12 @@ msgstr "Almenn villa"
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
-msgstr "Innbyrðis villa"
+msgstr "Innvær villa"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Ógild rök"
+msgstr "Ógild viðföng"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
@@ -145,12 +145,12 @@ msgstr "Ógild opnunaraðgerð"
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "Aðgangur meinaður"
+msgstr "Aðgangi hafnað"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "Of mörg opin skjöl"
+msgstr "Of margar opnar skrár"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
@@ -175,12 +175,12 @@ msgstr "Aðgerð stöðvuð"
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "Skráin finnst nú þegar"
+msgstr "Skráin er þegar til"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Hringrás í tenglum uppgötvaðist"
+msgstr "Hringrás í tenglum fannst"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
@@ -200,18 +200,17 @@ msgstr "Ekki nægjanlegt minni"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Hýsill fannst ekki"
+msgstr "Vélin fannst ekki"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
-#, fuzzy
 msgid "Host name not valid"
-msgstr "Nafn hýsils er ekki gilt"
+msgstr "Heiti vélarinnar er ógilt"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "Hýsill inniheldur enga slóð"
+msgstr "Vélin hefur ekkert vistfang"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
@@ -251,7 +250,7 @@ msgstr "Er ekki á sama skráarkerfi"
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "Nafnið er of langt"
+msgstr "Heitið er of langt"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
@@ -281,7 +280,7 @@ msgstr "Engin sjálgefin aðgerð tilbundin"
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr "Engin aðgerð fyrir URL skema"
+msgstr "Engin aðgerð fyrir URL skemu"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
@@ -323,7 +322,7 @@ msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
-msgstr "(ógildur Unicode)"
+msgstr " (ógilt Unicode)"
 
 #: modules/file-method.c:382
 #, c-format
@@ -332,76 +331,74 @@ msgstr "Óþekkt GnomeVFSSeekPosition %d"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
-#, fuzzy, c-format
+#, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Ekki tókst að finna gildar stillingar við %s\n"
+msgstr "Ekki tókst að finna gilda stillingaskrá í %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Notaðu %s umhverfisbreytuna til að tilgreina aðra staðsetningu.\n"
+msgstr "Notaðu umhverfisbreytuna %s til að tilgreina aðra staðsetningu.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
 msgstr "Forrit"
 
 #  Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr "Spjöld"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr "Skrár"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr "Möppur"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr "Hjálp"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
-#, fuzzy
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
-msgstr "Hýslar"
+msgstr "Vélar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr "Tenglar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr "Póstur"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr "Verkfæri"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "Gluggar"
 
+# Það þarf að finna eitthvað hentugt nafn á Moniker Factory, en eftir því sem mér skilts þá er moniker eitthvað form fyrir merkimiða.
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-#, fuzzy
 msgid "Standard Moniker factory"
-msgstr "Stöðluð Merkimiða verksmiðja"
+msgstr "Standard Moniker factory"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
-#, fuzzy
 msgid "file MonikerExtender"
-msgstr "skrá MerkimiðaFramlenging"
+msgstr "file MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
@@ -409,4 +406,4 @@ msgstr "almennur Gnome VFS merkimiði"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "almennur skráar merkimiði"
+msgstr "almennur skráarmerkimiði"

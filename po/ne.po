@@ -1,416 +1,404 @@
-# Danish translation of gnome-vfs.
-# Copyright (C) 1999, 2000, 01, 02, 03 Free Software Foundation, Inc.
-# Kenneth Christiansen <kenneth@ripen.dk>, 1999.
-# Birger Langkjer <birger.langkjer@image.dk>, 2000.
-# Keld Simonsen <keld@dkuug.dk>, 2000-2001.
-# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
-#
-# Konventioner:
-#
-#   script -> program (såfremt det er muligt, hvad det hidtil har været)
-#   video -> film
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs CVS\n"
+"Project-Id-Version: gnome-vfs 1.9.16\n"
 "POT-Creation-Date: 2003-08-25 13:18+0200\n"
-"PO-Revision-Date: 2003-08-21 22:41+0200\n"
-"Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
-"Language-Team: Danish <dansk@klid.dk>\n"
+"PO-Revision-Date: 2003-07-10 14:54-0300\n"
+"Last-Translator: Kshitij <obsession@enet.com.np>\n"
+"Language-Team: Nepali <info@mpp.org.np>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"First-Translator : Pawan Chitrakar<pawan@nplinux.org>\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d indeholder NUL-tegn."
+msgstr "%s:%d मा नल क्यारेक्टर छ।."
 
 #: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d indeholder intet metodenavn."
+msgstr "%s:%d मा मेथड नेम छैन।"
 
 #: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d indeholder intet modulnavn."
+msgstr "%s:%d मा मोड्युल नाम छैन"
 
 #: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Konfigurationsfilen '%s' kunne ikke findes: %s"
+msgstr "कन्फिगरेशन फाईल भेटाउन सकिएन`%s': %s"
 
 #: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Ukendt operationstype %u"
+msgstr "थाहा नभएको ओ पि टाईप %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan ikke oprette datakanal til åben GIOChannel: %s"
+msgstr "जि आई ओ च्यानल खोल्न पाईप बनाऊन सकेन: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1684
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Ukendt jobtype %u"
+msgstr "थाहा नभएको खाले काम %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
-msgstr "Operation stoppet"
+msgstr "अपरेशन रोकियो"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Kan ikke fortolke: %s"
+msgstr "फ्रेजगर्न सकिएन: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Yderligere tolkningsfejl bliver ignoreret."
+msgstr "अरु पार्सिंग एररलाई छोडिने छ"
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
-msgstr "Ingen fejl"
+msgstr "एरर छैन"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
-msgstr "Fil ikke fundet"
+msgstr "फाईल भेटिएन"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
-msgstr "Generel fejl"
+msgstr "जेनेरिक ऐरर"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
-msgstr "Intern fejl"
+msgstr "भित्री गल्ती"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Ugyldige parametre"
+msgstr "ईनभ्यालिड प्यारामिटर्स"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Ikke-understøttet operation"
+msgstr "सपोर्ट नगरिएको अपरेशन"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
-msgstr "I/O-fejl"
+msgstr "अई/ओ गल्ती"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Ødelagte data"
+msgstr "डाटा करप्ट छ।"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Ugyldigt format"
+msgstr "फर्मयाट भ्यालिड छैन"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Ugyldigt filhåndtag"
+msgstr "ब्याड फाईल ह्यन्डल"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "For stor fil"
+msgstr "फाईल एकदम ठुलो छ।"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Ikke mere plads på enhed"
+msgstr "डिभाईसमा ठाँउ छैन"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Skrivebeskyttet filsystem"
+msgstr "पढ्ने- मात्र  फाईल सिस्टम"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
-msgstr "Ugyldig URI"
+msgstr "ईनभ्यालिड यू आर आई"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Uåbnet fil"
+msgstr "फाईल खुल्ला छैन"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Ugyldig åbningstilstand"
+msgstr "ओपन मोड भ्यालिड छैन"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "Adgang forbudt"
+msgstr "भित्र जान दिईएन"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "For mange åbne filer"
+msgstr "खुलेको फाईल धेरै भयो"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "Slutning på fil"
+msgstr "फाईलको अन्त"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "Ikke en mappe"
+msgstr "डाईरेक्ट्रि होईन"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Operation er i gang"
+msgstr "अपरेशन अगाडि बड्दै छ"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
-msgstr "Operation afbrudt"
+msgstr "अपरेशनमा बाधा"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "Fil eksisterer"
+msgstr "फाईल छ"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Fandt henvisninger der peger i ring"
+msgstr "लुपिंग लिंक भेटियो"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "Operation ikke tilladt"
+msgstr "अपरेशन गर्न दिईएन"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
-msgstr "Er en mappe"
+msgstr "डाईरेक्ट्रि हो"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Ikke tilstrækkelig hukommelse"
+msgstr "पुग्दो मेमोरि छैन"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Vært ikke fundet"
+msgstr "होस्ट भेटिएन"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "Ugyldigt værtsnavn"
+msgstr "होस्टको नाम भ्यालिड छैन"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "Vært har ingen adresse"
+msgstr "होस्टको ठेगाना छैन"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "Logind mislykkedes"
+msgstr "लग ईन असफल"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
-msgstr "Operation annulleret"
+msgstr "अपरेशन क्यान्सल भयो"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "Mappen er optaget"
+msgstr "डाईरेक्टरि बिजि छ।"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "Mappen er ikke tomt"
+msgstr "डाईरेक्टरि खाली छैन।"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "For mange henvisninger"
+msgstr "धेरै लिंक भयो"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Skrivebeskyttet filsystem"
+msgstr "पढ्ने मात्र  फाईल सिस्टम"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Ikke på det samme filsystem"
+msgstr "ऊहि फाईल सिस्टममा छैन"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "Navnet er for langt"
+msgstr "नाम लामो भयो"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "Tjeneste ikke tilgængelig"
+msgstr "सेवा ऊपलब्ध छैन"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Forespørgsel overflødiggør tjenestens data"
+msgstr "रिक्वेस्ट ओबसोलेटस सर्भिस डेटा "
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Protocol error"
-msgstr "Protokolfejl"
+msgstr "प्रोटोकोल एरर"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Could not find master browser"
-msgstr "Kunne ikke finde hovedbrowser"
+msgstr "मास्टर ब्राउजर भेटाउन सकिएन"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr "Ingen forvalgt handling associeret"
+msgstr ""
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr "Ingen håndtering til URL-skema"
+msgstr ""
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr "Fejl ved fortolkning af kommandolinje"
+msgstr ""
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr "Fejl ved kørsel af kommando"
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
-msgstr "Ukendt fejl"
+msgstr "थाहा नभएको एरर "
 
 #: libgnomevfs/gnome-vfs-utils.c:84
 msgid "1 byte"
-msgstr "1 byte"
+msgstr "1 बाईट"
 
 #: libgnomevfs/gnome-vfs-utils.c:86
 #, c-format
 msgid "%u bytes"
-msgstr "%u byte"
+msgstr "%u बाईट्स"
 
 #: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
-msgstr "%.1f k"
+msgstr "%.1f के"
 
 #: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f Mb"
+msgstr "%.1f एम बि"
 
 #: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f Gb"
+msgstr "%.1f जि बि"
 
 #: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
-msgstr " (ugyldig Unicode)"
+msgstr " (अबैध यूनिकोड)"
 
 #: modules/file-method.c:382
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Ukendt GnomeVFSSeekPosition %d"
+msgstr "थाहा नभएको जिनोम भि एफ एस सिक पोजिसन%d"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
-#, c-format
+#, fuzzy, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Fandt ikke en gyldig opsætningsfil ved %s\n"
+msgstr " %s मा भ्यालिड सेटिंग फाईल भेटाउन सकिएन"
 
 #: modules/test-method.c:592
-#, c-format
+#, fuzzy, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Brug miljøvariablen %s til at angive en anden placering.\n"
+msgstr "आर्कै लोकेसन स्पेसिफाई गर्न %s  ईनभाईरोमेन्ट भएको भेरिएबल प्रयोग गर्नु "
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
-msgstr "Programmer"
+msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
-msgstr "Kort"
+msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
+#, fuzzy
 msgid "Files"
-msgstr "Filer"
+msgstr "फाईल छ"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
-msgstr "Mapper"
+msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Help"
-msgstr "Hjælp"
+msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
-msgstr "Værter"
+msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:193
 msgid "Links"
-msgstr "Henvisninger"
+msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
-msgstr "Post"
+msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr "Værktøjer"
+msgstr ""
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr "Vinduer"
+msgstr ""
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "Fabrik for standardprotokolhåndtering"
+msgstr "स्टयान्डर्ड मंकियर फ्याक्ट्रि"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr "fil-MonikerExtender"
+msgstr "मंकियर एक्टेन्डर फाईल"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr "generel Gnome VFS-protokolhåndtering"
+msgstr "जेनेरिक जिनोम भि एफ एस मंकियर"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "generel filprotokolhåndtering"
+msgstr "जेनेरिक फाईल मंकियर"

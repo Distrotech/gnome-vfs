@@ -1,3 +1,59 @@
+gnome-vfs 2.4.0
+
+	* Featurelets:
+		Updated translations
+		
+gnome-vfs 2.3.90
+
+	* Bugs fixed:
+	       + Just emit one mime db changed signal per change
+
+gnome-vfs 2.3.8
+
+	* Bugs fixed:
+	        + CDE menu fixes
+		+ IPV6 build fixes for non-linux
+		+ removed usage of ngettext (for now)
+		+ fix fam crash
+	* Featurelets:
+		+ add dav schema for webdav usage
+		+ Make gnome_vfs_make_uri_from_input be smarter about
+		  when to make http: uris
+
+gnome-vfs 2.3.7
+
+	* Bugs fixed:
+	        + Test fixes
+		+ translation fixes
+	* Featurelets:
+		+ ignore_hosts gconf key for proxies
+
+gnome-vfs 2.3.6
+
+	* Bugs fixed:
+		+ Fixes in CDE menu handling
+		+ Shrink default gnome-vfs stack size
+		+ Small API doc updates
+		+ Properly read .mime and .keys file not ending with \n
+		+ Compilation fixes when using gcc 3.3
+		+ Compilation fixes for Solaris
+		+ Leak fixes in URI and mime-type handling
+		+ When an unknown app is added to a mime-type short list, 
+		  also add it to this mime-type global list
+
+	* Featurelets:
+		+ Added an Accessibility submenu in the Applications menu
+		+ Improve parsing of URIs (wrongly) containing UTF-8 chars
+		+ Translation updates
+
+gnome-vfs 2.3.5:
+	* Features:
+		+ added a startup notification application registry key
+	* Bugs fixed:
+		+ Fix memory handling in mime handlers.
+		+ Make job_private static in gnome-vfs-job.c
+		+ Fixed CDE menu crash
+
 gnome-vfs 2.3.4:
 	* Bugs fixed:
 	       + Get Names of vfolder directories right

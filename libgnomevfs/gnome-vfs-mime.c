@@ -381,11 +381,11 @@ mime_init (void)
 void
 gnome_vfs_mime_shutdown (void)
 {
-	if (!module_inited)
-		return;
-
 	_gnome_vfs_mime_info_shutdown ();
 	_gnome_vfs_mime_clear_magic_table ();
+
+	if (!module_inited)
+		return;
 
 	mime_extensions_empty ();
 	
