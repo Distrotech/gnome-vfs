@@ -1,3 +1,9 @@
+2001-06-25  Sri Ramkrishna  <sri@aracnet.com>
+
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	Added gtkdocs for gnome_vfs_application_registry_*
+
+
 2001-06-20  Peter Williams  <peterw@ximian.com>
 
 	* configure.in (autodetected_gnome_2): Fix a syntax error in the test
