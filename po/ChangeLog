@@ -1,3 +1,7 @@
+2001-07-08  Akira TAGOH  <tagoh@gnome.gr.jp>
+
+	* Updated Japanese translation.
+
 2001-07-02  gettextize  <bug-gnu-utils@gnu.org>
 
 	* Makefile.in.in: Upgrade to gettext-0.10.37.
@@ -40,7 +44,7 @@
 
 	* zh_TW.Big5.po: Added by Joe Man <trmetal@yahoo.com.hk>
 
-2001-06-13  Carlos Perelló Marín <carlos@gnome-db.org>
+2001-06-13  Carlos Perell)Bó Marín <carlos@gnome-db.org>
 
 	* es.po: /s/vaciado de memoria/volcado de memoria
 	Thanks Eduardo Ferro <eferro@euskalnet.net>
@@ -165,7 +169,7 @@
 
 2001-03-01  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-02-27  Simos Xenitellis  <simos@hellug.gr>
 
@@ -220,7 +224,7 @@
 
 2001-02-26  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-02-26  Pablo Saratxaga <pablo@mandrakesoft.com>
 
@@ -251,7 +255,7 @@
 
 2001-02-24  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-02-23  Christophe Merlet  <redfox@eikonex.org>
 
@@ -263,7 +267,7 @@
 
 2001-02-22  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-02-21  Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>
 
@@ -271,7 +275,7 @@
 
 2001-02-21  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-02-21  Fatih Demir	<kabalak@gtranslator.org>
 
@@ -303,7 +307,7 @@
 
 2001-02-16  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-02-15  Kjartan Maraas  <kmaraas@gnome.org>
 
@@ -315,13 +319,13 @@
 
 2001-02-14  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-02-14  Stanislav Visnovsky  <visnovsky@nenya.ms.mff.cuni.cz>
 
 	* sk.po: Updated Slovak translation.
 
-2001-02-14  Martin Norbäck  <d95mback@dtek.chalmers.se>
+2001-02-14  Martin Norb)Bäck  <d95mback@dtek.chalmers.se>
 
 	* sv.po: Updated Swedish translation.
 
@@ -339,7 +343,7 @@
 
 2001-02-11  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-02-09  Stanislav Visnovsky  <visnovsky@nenya.ms.mff.cuni.cz>
 
@@ -397,11 +401,11 @@
 2001-02-04  Fatih Demir	<kabalak@gmx.net>
 
 	* tr.po: Committed updated Turkish translation by
-		Görkem Cetin.
+		G)Börkem Cetin.
 
 2001-02-02  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-02-01  Stanislav Visnovsky  <visnovsky@nenya.ms.mff.cuni.cz>
 
@@ -419,7 +423,7 @@
 
 	* no.po: Updated Norwegian translation.
 	
-2001-01-29  Martin Norbäck  <d95mback@dtek.chalmers.se>
+2001-01-29  Martin Norb)Bäck  <d95mback@dtek.chalmers.se>
 
 	* sv.po: Updated Swedish translation.
 
@@ -433,14 +437,14 @@
 
 2001-01-24  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-01-24  Szabolcs Ban  <shooby@gnome.hu>
 
         * hu.po: Tons of fixes by Andras and Emese (spelling,
           terminology, headers)
 
-2001-01-23  Martin Norbäck  <d95mback@dtek.chalmers.se>
+2001-01-23  Martin Norb)Bäck  <d95mback@dtek.chalmers.se>
 
 	* sv.po: Updated Swedish translation.
 
@@ -460,7 +464,7 @@
 
 	* ko.po: Committed updated Korean translation.
 
-2001-01-18  Martin Norbäck  <d95mback@dtek.chalmers.se>
+2001-01-18  Martin Norb)Bäck  <d95mback@dtek.chalmers.se>
 
 	* sv.po: Updated Swedish translation.
 
@@ -474,7 +478,7 @@
 
 2001-01-18  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* no.po: Updated Norwegian (bokmål) translation.
+	* no.po: Updated Norwegian (bokm)Bål) translation.
 	
 2001-01-11  Stanislav Visnovsky  <visnovsky@nenya.ms.mff.cuni.cz>
 
@@ -878,7 +882,7 @@
 
 	* gl.po: Added Galician translation.
 
-1999-12-28  Martin Norbäck  <d95mback@dtek.chalmers.se>
+1999-12-28  Martin Norb)Bäck  <d95mback@dtek.chalmers.se>
 
 	* sv.po: Added Swedish translation.
 
