@@ -1,5 +1,12 @@
 2004-09-21  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/http-neon-method.c (do_seek):
+	Don't restart read on seek, which causes problems
+	for seek-to-end (#153153)
+	Patch from Mark McLoughlin.
+
+2004-09-21  Alexander Larsson  <alexl@redhat.com>
+
 	* imported/neon/ne_gnomevfs.c: (ne_sock_close):
 	* libgnomevfs/gnome-vfs-dns-sd.c: (howl_input):
 	* libgnomevfs/gnome-vfs-resolve.c: (gnome_vfs_resolve):

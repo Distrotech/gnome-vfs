@@ -2579,12 +2579,8 @@ do_seek (GnomeVFSMethod	      *method,
 	handle->offset = new_position;
 	
 	if (handle->transfer_state == TRANSFER_READ) {
-				
 		http_transfer_abort (handle);
-		result = http_transfer_start (handle);
 	}
-	
-	
 	
 	return result;
 }
