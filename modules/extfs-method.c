@@ -337,7 +337,11 @@ do_open (GnomeVFSMethod *method,
 	args[4] = temp_name;
 	args[5] = NULL;
 	
-	/* FIXME args */
+	/* FIXME bugzilla.eazel.com 1223:
+	 * args 
+	 * Ettore needs to elaborate here some more, it is not clear what this
+	 * FIXME is about
+	 */
 	process_result = gnome_vfs_process_run_cancellable
 		(script_path, args, GNOME_VFS_PROCESS_CLOSEFDS,
 		 context ? gnome_vfs_context_get_cancellation(context) : NULL,
@@ -518,7 +522,7 @@ read_directory_list (FILE *p,
 		if (chars_read == -1)
 			break;
 
-		/* FIXME */
+		/* FIXME bugzilla.eazel.com 1223: */
 		fputs (line_buffer, stdout);
 
 		line_buffer[chars_read] = '\0';
@@ -610,7 +614,7 @@ do_open_directory (GnomeVFSMethod *method,
 		} else {
 			free_directory_entries (list);
 			if (result == GNOME_VFS_OK)
-				return GNOME_VFS_ERROR_IO; /* FIXME? */
+				return GNOME_VFS_ERROR_IO; /* FIXME bugzilla.eazel.com 1223:? */
 			else
 				return result;
 		}
@@ -624,7 +628,7 @@ do_open_directory (GnomeVFSMethod *method,
 		handle->meta_keys = g_list_prepend (handle->meta_keys, g_strdup (item->data));
 	}
 
-	handle->info_options = info_options; /* FIXME currently unused */
+	handle->info_options = info_options; /* FIXME bugzilla.eazel.com 1124: currently unused */
 	handle->filter = filter;
 
 	/* Remove all leading slashes, as they don't matter for us.  */
@@ -675,7 +679,8 @@ match (const ExtfsDirectoryHandle *handle,
 		return FALSE;
 
 	/* First check that this is in the subdirectory we want.  */
-	/* FIXME more canonicalization might be needed.  */
+	/* FIXME bugzilla.eazel.com 1125: 
+	 * more canonicalization might be needed.  */
 
 	if (entry->directory != NULL) {
 		for (p = entry->directory; *p == G_DIR_SEPARATOR; p++)

@@ -141,7 +141,7 @@ mc_lha_fs_copyin ()
 mc_lha_fs_run()
 {
    trap "rm $TMPCMD; rmdir $TMPDIR; exit 0" 1 2 3 4 15
-# FIXME: Try harder to generate a unique directory if this fails
+# FIXME bugzilla.eazel.com 1225: Try harder to generate a unique directory if this fails
    mkdir -m 0700 $TMPDIR || exit 1
    $LHA_GET $1 $2 > $TMPCMD  2> /dev/null
    chmod a+x $TMPCMD  2> /dev/null

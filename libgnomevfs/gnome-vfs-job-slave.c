@@ -142,7 +142,7 @@ gnome_vfs_job_slave_cancel (GnomeVFSJobSlave *slave)
 	pthread_cancel (slave->pthread);
 }
 
-/* FIXME: This is wrong.  */
+/* FIXME bugzilla.eazel.com 1227: This is wrong.  */
 void
 gnome_vfs_job_slave_destroy (GnomeVFSJobSlave *slave)
 {

@@ -1,5 +1,21 @@
 2000-06-05  Pavel Cisler  <pavel@eazel.com>
 
+	* libgnomevfs-corba/gnome-vfs-slave.c: (serve_channel_read),
+	(serve_channel_write):
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	* mime-type-capplet/edit-window.c: (populate_application_menu):
+	* mime-type-capplet/mime-data.c: (add_to_key):
+	* modules/extfs-method.c: (do_open), (read_directory_list),
+	(do_open_directory), (match):
+	* modules/extfs/cpio.in:
+	* modules/extfs/lha.in:
+	* modules/file-method.c: (read_directory):
+	* modules/gconf-method.c: (directory_handle_destroy):
+	Added more bug numbers to FIXMEs.
+	Fixed one misspelled FIXME that made it show up in the check-FIXME.pl tool.
+
+2000-06-05  Pavel Cisler  <pavel@eazel.com>
+
 	* libgnomevfs/gnome-vfs-xfer.c: (call_progress),
 	(count_items_and_size), (handle_name_conflicts), (copy_file),
 	(copy_directory), (copy_items), (gnome_vfs_xfer_uri_internal),

@@ -753,7 +753,7 @@ read_directory (DirectoryHandle *handle,
 	strcpy (handle->name_ptr, result->d_name);
 	full_name = handle->name_buffer;
 
-	/* FIXME: Correct?  */
+	/* FIXME bugzilla.eazel.com 1223: Correct?  */
 	if (get_stat_info (info, full_name, handle->options, &statbuf)
 	    != GNOME_VFS_OK)
 		return GNOME_VFS_ERROR_INTERNAL;

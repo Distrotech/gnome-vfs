@@ -186,7 +186,7 @@ directory_handle_new (GnomeVFSURI *uri,
 static void
 directory_handle_destroy (DirectoryHandle *handle) 
 {
-        /* FIXME bguzilla.eazel.com 1178: Free unused pairs */
+        /* FIXME bugzilla.eazel.com 1178: Free unused pairs */
         gnome_vfs_uri_unref (handle->uri);
 
 #ifdef G_THREADS_ENABLED

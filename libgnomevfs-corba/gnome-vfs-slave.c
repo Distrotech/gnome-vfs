@@ -499,7 +499,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 			continue;
 
 		if (result != GNOME_VFS_OK) {
-			/* FIXME */
+			/* FIXME bugzilla.eazel.com 1226: */
 			g_warning (_("Error reading: %s"),
 				   gnome_vfs_result_to_string (gnome_vfs_result_from_errno ()));
 			return;
@@ -521,7 +521,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 				if (errno == EINTR)
 					continue;
 
-				/* FIXME */
+				/* FIXME bugzilla.eazel.com 1226: */
 				g_warning (_("Error writing: %s"),
 					   g_strerror (errno));
 				return;
@@ -570,7 +570,7 @@ serve_channel_write (GnomeVFSHandle *handle,
 				continue;
 
 			if (result != GNOME_VFS_OK) {
-				/* FIXME */
+				/* FIXME bugzilla.eazel.com 1226: */
 				g_warning (_("Cannot write: %s"),
 					   g_strerror (errno));
 				return;
