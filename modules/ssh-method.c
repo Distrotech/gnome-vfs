@@ -31,7 +31,7 @@
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-parse-ls.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
-#include <libgnomevfs/gnome-vfs-authentication.h>
+#include "daemon/gnome-vfs-authentication.h"
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>

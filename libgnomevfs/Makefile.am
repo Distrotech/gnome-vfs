@@ -2,6 +2,7 @@ NULL =
 
 INCLUDES =					\
 	-I$(top_srcdir)				\
+	-I$(top_srcdir)/daemon			\
 	-I$(top_builddir)			\
 	-I/opt/gnome22/include/libbonobo-2.0	\
 	$(LIBGNOMEVFS_CFLAGS)			\
@@ -37,7 +38,8 @@ lib_LTLIBRARIES = libgnomevfs-2.la
 
 libgnomevfs_2_la_LIBADD =			\
 	$(LIBGNOMEVFS_LIBS)			\
-	$(NULL)
+	$(top_builddir)/daemon/libauthentication.la \
+	$(NULL)					
 
 libgnomevfs_2_la_LDFLAGS =			\
 	-version-info $(LIBGNOMEVFS_CURRENT):$(LIBGNOMEVFS_REVISION):$(LIBGNOMEVFS_AGE) \
@@ -54,7 +56,6 @@ noinst_HEADERS =				\
 	gnome-vfs-async-job-map.h		\
 	gnome-vfs-backend.h			\
 	gnome-vfs-cancellable-ops.h		\
-	gnome-vfs-client.h			\
 	gnome-vfs-configuration.h		\
 	gnome-vfs-handle-private.h		\
 	gnome-vfs-i18n.h			\
@@ -72,11 +73,9 @@ noinst_HEADERS =				\
 	gnome-vfs-process.h			\
 	gnome-vfs-ssl-private.h			\
 	gnome-vfs-thread-pool.h			\
-	GNOME_VFS_Daemon.h			\
 	$(NULL)
 
 libgnomevfsmoduleinclude_HEADERS =		\
-	gnome-vfs-authentication.h 		\
 	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-inet-connection.h		\
 	gnome-vfs-method.h			\
@@ -122,12 +121,10 @@ libgnomevfsinclude_HEADERS =			\
 
 libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-application-registry.c	\
-	gnome-vfs-authentication.c		\
 	gnome-vfs-async-job-map.c		\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-cancellation.c		\
-	gnome-vfs-client.c			\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
 	gnome-vfs-directory.c			\
@@ -168,9 +165,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	gnome-vfs-xfer.c			\
-	GNOME_VFS_Daemon-common.c		\
-	GNOME_VFS_Daemon-skels.c		\
-	GNOME_VFS_Daemon-stubs.c		\
 	$(NULL)
 
 #	$(GOB_SRCLIST)				\

@@ -32,7 +32,7 @@
 #include <netinet/in.h>
 
 #include <arpa/inet.h>
-#include <libgnomevfs/gnome-vfs-authentication.h>
+#include "daemon/gnome-vfs-authentication.h"
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-inet-connection.h>
 #include <libgnomevfs/gnome-vfs-socket-buffer.h>

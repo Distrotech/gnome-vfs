@@ -1,15 +1,21 @@
-bin_PROGRAMS=vfs-daemon test-authentication
+bin_PROGRAMS=vfs-daemon 
+noinst_PROGRAMS=test-authentication
+noinst_LTLIBRARIES=libauthentication.la
 
 INCLUDES=$(MONIKERS_CFLAGS)
 LIBS=$(MONIKERS_LIBS) -lgnomevfs-2
 #LIBS=$(MONIKERS_LIBS) -lgnomevfs-2 $(top_builddir)/mime/libmime.la
 
 test_authentication_SOURCES = \
-	gnome-vfs-client.c \
-	gnome-vfs-client.h \
-	gnome-vfs-authentication.c \
-	gnome-vfs-authentication.h \
-	test-authentication.c \
+	test-authentication.c 
+
+test_authentication_LDADD = libauthentication.la
+
+libauthentication_la_SOURCES =         \
+	gnome-vfs-client.c             \
+	gnome-vfs-client.h             \
+	gnome-vfs-authentication.c     \
+	gnome-vfs-authentication.h     \
 	$(CORBA_SOURCE)
 
 vfs_daemon_SOURCES = \
