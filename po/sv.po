@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-11-03 03:03+0100\n"
-"PO-Revision-Date: 2000-11-03 03:04+0100\n"
+"POT-Creation-Date: 2000-11-13 19:15+0100\n"
+"PO-Revision-Date: 2000-11-13 19:17+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -547,6 +547,11 @@ msgstr "Lägg till Mime-typ..."
 msgid "Delete this Mime type..."
 msgstr "Ta bort den här Mime-typen..."
 
+#. Set up top right area.
+#: mime-type-capplet/nautilus-mime-type-capplet.c:394
+msgid "Default Action:"
+msgstr "Standardåtgärd:"
+
 #: mime-type-capplet/nautilus-mime-type-capplet.c:404
 msgid "Use Viewer"
 msgstr "Använd visare"
@@ -559,6 +564,11 @@ msgstr "Öppna med program"
 msgid "Edit List"
 msgstr "Redigera lista"
 
+#. Set up bottom right area.
+#: mime-type-capplet/nautilus-mime-type-capplet.c:428
+msgid "Extensions:"
+msgstr "Filändelser:"
+
 #: mime-type-capplet/nautilus-mime-type-capplet.c:451
 msgid "Add"
 msgstr "Lägg till"
@@ -566,6 +576,10 @@ msgstr "Lägg till"
 #: mime-type-capplet/nautilus-mime-type-capplet.c:454
 msgid "Remove"
 msgstr "Ta bort"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:518
+msgid "No Description"
+msgstr "Ingen beskrivning"
 
 #. Add default action to fourth column
 #: mime-type-capplet/nautilus-mime-type-capplet.c:640
@@ -600,22 +614,22 @@ msgstr "Förhandsgranska"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Okänd GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1142
+#: modules/http-method.c:1149
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s att motta"
 
-#: modules/http-method.c:1507
+#: modules/http-method.c:1514
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Stänger anslutning till %s"
 
-#: modules/http-method.c:1719
+#: modules/http-method.c:1726
 #, c-format
 msgid "%s of %s read"
 msgstr "%s av %s läst"
 
-#: modules/http-method.c:1722
+#: modules/http-method.c:1729
 #, c-format
 msgid "%s read"
 msgstr "%s läst"
