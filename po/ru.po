@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-04-16 20:00+0400\n"
-"PO-Revision-Date: 2000-04-16 20:24+04:00\n"
+"POT-Creation-Date: 2000-04-26 22:29+0400\n"
+"PO-Revision-Date: 2000-04-26 22:39+04:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,11 @@ msgstr "%s:%d не содержит названия модуля."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Конфигурационный файл `%s' не найден: %s"
+
+#: libgnomevfs/gnome-vfs-file-info.c:483
+#, c-format
+msgid "Unknown sort rule %d"
+msgstr "Неизвестное правило сортировки %d"
 
 #: libgnomevfs/gnome-vfs-init.c:55
 msgid "GNOME VFS already initialized."
@@ -263,157 +268,157 @@ msgstr "%.1fM"
 msgid "%.1fG"
 msgstr "%.1fG"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
+#: libgnomevfs-corba/gnome-vfs-slave.c:340
 msgid "Dying."
 msgstr ""
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#: libgnomevfs-corba/gnome-vfs-slave.c:505
 #, c-format
 msgid "Error reading: %s"
 msgstr "Ошибка чтения: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#: libgnomevfs-corba/gnome-vfs-slave.c:527
 #, c-format
 msgid "Error writing: %s"
 msgstr "Ошибка записи: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#: libgnomevfs-corba/gnome-vfs-slave.c:576
 #, c-format
 msgid "Cannot write: %s"
 msgstr "Невозможно записать: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#: libgnomevfs-corba/gnome-vfs-slave.c:604
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Невозможно создать временный файл с именем '%s'"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:193
-#: libgnomevfs-corba/gnome-vfs-slave.c:614
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
+#: libgnomevfs-corba/gnome-vfs-slave.c:618
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "Невозможно создать сокет: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:632
+#: libgnomevfs-corba/gnome-vfs-slave.c:636
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "Невозможно связать '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:639
+#: libgnomevfs-corba/gnome-vfs-slave.c:643
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "Невозможно слушать на '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:661
+#: libgnomevfs-corba/gnome-vfs-slave.c:665
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Невозможно принять соединение на '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1379
+#: libgnomevfs-corba/gnome-vfs-slave.c:1402
 msgid "Cannot initialize CORBA."
 msgstr "Невозможно инициализировать CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1386
+#: libgnomevfs-corba/gnome-vfs-slave.c:1409
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1393
+#: libgnomevfs-corba/gnome-vfs-slave.c:1416
 msgid "Cannot activate POA manager."
 msgstr "Невозможно активировать диспетчер POA"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1418
+#: libgnomevfs-corba/gnome-vfs-slave.c:1441
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Используйте: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1429
+#: libgnomevfs-corba/gnome-vfs-slave.c:1452
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Невозможно открыть файловый дескриптор %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1452
+#: libgnomevfs-corba/gnome-vfs-slave.c:1475
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1462
+#: libgnomevfs-corba/gnome-vfs-slave.c:1485
 msgid "Cannot setup Request object."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1469
+#: libgnomevfs-corba/gnome-vfs-slave.c:1492
 msgid "Cannot extract IOR."
-msgstr ""
+msgstr "Невозможно извлечь IOR."
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #, c-format
 msgid "Got weird string from the slave process: `%s'"
-msgstr ""
+msgstr "Получена странная строка от подчиненного процесса: `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
-msgstr ""
+msgstr "Невозможно получить объект для `%s'"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:126
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr ""
+msgstr "Невозможно уничтожить GNOME::VFS::Slave::Notify -- исключение %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:203
 #, c-format
 msgid "Cannot connect socket `%s': %s"
 msgstr "Невозможно подключиться к сокету `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:802
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Невозможно инициализировать GNOME::VFS:Slave::Notify"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:119
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
+msgstr "Невозможно сбросить GNOME::VFS::Slave %s -- исключение %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:122
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
+msgstr "Невозможно сбросить GNOME::VFS::Slave (неизвестный IOR) -- исключение %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:153
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
+msgstr "Невозможно уничтожить GNOME::VFS::Slave %s -- исключение %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:156
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
+msgstr "Невозможно уничтожить GNOME::VFS::Slave (неизвестный IOR) исключение %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:129
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr ""
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1248
+#: libgnomevfs-pthread/gnome-vfs-job.c:445
+#: libgnomevfs-pthread/gnome-vfs-job.c:1282
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Неизвестный идентификатор задания %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:784
-#: libgnomevfs-pthread/gnome-vfs-job.c:879
+#: libgnomevfs-pthread/gnome-vfs-job.c:795
+#: libgnomevfs-pthread/gnome-vfs-job.c:890
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr ""
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1266
+#: libgnomevfs-pthread/gnome-vfs-job.c:1300
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
 #: modules/file-method.c:332
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr ""
+msgstr "Неизвестная GnomeVFSSeekPosition %d"
 
 #: modules/ftp-method.c:353
 msgid "ftpfs: Invalid host name."
@@ -470,11 +475,11 @@ msgstr "ftpfs: передача прервана."
 #: modules/ftp-method.c:829
 #, c-format
 msgid "ftpfs: abort error: %s"
-msgstr ""
+msgstr "ftpfs: ошибка прерывания: %s"
 
 #: modules/ftp-method.c:834
 msgid "ftpfs: abort failed"
-msgstr ""
+msgstr "ftpfs: прерывание не удалось"
 
 #: modules/ftp-method.c:911
 msgid "ftpfs: could not setup passive mode"
@@ -487,20 +492,20 @@ msgstr "ftpfs: хранение файла %d (%d)"
 
 #: modules/ftp-method.c:1305 modules/ftp-method.c:1507
 msgid "ftpfs: CWD failed."
-msgstr ""
+msgstr "ftpfs: не удалось выполнить CWD."
 
 #: modules/ftp-method.c:1315 modules/ftp-method.c:1322
 msgid "ftpfs: couldn't resolve symlink"
-msgstr ""
+msgstr "ftpfs: не удалось разрешить ссылку"
 
 #: modules/ftp-method.c:1374
 msgid "Resolving symlink..."
-msgstr ""
+msgstr "Разрешение символической ссылки..."
 
 #: modules/ftp-method.c:1498
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-msgstr ""
+msgstr "ftpfs: чтение FTP каталога %s... (не используйте параметры UNIX ls)"
 
 #: modules/ftp-method.c:1502
 #, c-format
@@ -527,32 +532,32 @@ msgstr "Запуск линейной передачи..."
 msgid "Preparing reget..."
 msgstr ""
 
-#: modules/http-method.c:500
+#: modules/http-method.c:502
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Неправильный заголовок '%s'"
 
-#: modules/http-method.c:517
+#: modules/http-method.c:519
 #, c-format
 msgid "%s to retrieve"
 msgstr ""
 
-#: modules/http-method.c:652
+#: modules/http-method.c:655
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Закрытие соединения с %s"
 
-#: modules/http-method.c:805
+#: modules/http-method.c:809
 #, c-format
 msgid "%s of %s read"
 msgstr "%s из %s прочитано"
 
-#: modules/http-method.c:808
+#: modules/http-method.c:812
 #, c-format
 msgid "%s read"
 msgstr "%s прочитано"
 
 #. Multi-Status
-#: modules/http-method.c:970
+#: modules/http-method.c:974
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr ""
