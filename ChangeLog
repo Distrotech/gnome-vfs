@@ -1,3 +1,10 @@
+2002-06-17  Damon Chaplin  <damon@ximian.com>
+
+	* libgnomevfs/gnome-vfs-monitor.c (gnome_vfs_monitor_do_add): if
+	the monitor_add call fails, return NULL as the handle. It was
+	returning a pointer to freed memory before. Fixes bug #84693.
+	Approved by Ian McKellar.
+
 2002-06-17  Seth Nickell  <snickell@stanford.edu>
 
 	* libgnomevfs/gnome-vfs-method.gob:
