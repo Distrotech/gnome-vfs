@@ -35,42 +35,62 @@ static gboolean strv_contains_str (char **strv, const char *str);
 static char *extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix);
 static char *mime_type_get_supertype (const char *mime_type);
 static char **strsplit_handle_null (const char *str, const char *delim, int max);
-static GnomeVFSMimeApplication *gnome_vfs_mime_application_new_from_id (const char *id);
 static OAF_ServerInfo *OAF_ServerInfo__copy (OAF_ServerInfo *orig);
 static GList *OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
 static GList *process_app_list (const char *id_list) ;
 
 
+GnomeVFSMimeActionType
+gnome_vfs_mime_get_default_action_type (const char *mime_type)
+{
+	const char *action_type_string;
+
+	action_type_string = gnome_vfs_mime_get_value (mime_type,
+						       "default_action_type");
+
+	if (action_type_string == NULL) {
+		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
+	} else if (strcasecmp (action_type_string, "application") == 0) {
+		return GNOME_VFS_MIME_ACTION_TYPE_APPLICATION;
+	} else if (strcasecmp (action_type_string, "component") == 0) {
+		return GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
+	} else {
+		return GNOME_VFS_MIME_ACTION_TYPE_NONE;
+	}
+}
+
 GnomeVFSMimeAction *
 gnome_vfs_mime_get_default_action (const char *mime_type)
 {
-	const char *action_type;
 	GnomeVFSMimeAction *action;
 
 	action = g_new0 (GnomeVFSMimeAction, 1);
 
-	action_type = gnome_vfs_mime_get_value (mime_type,
-						"default_action_type");
-	
-	if (strcasecmp (action_type, "application") == 0) {
-		action->action_type = GNOME_VFS_MIME_ACTION_TYPE_APPLICATION;
+	action->action_type = gnome_vfs_mime_get_default_action_type (mime_type);
+
+	switch (action->action_type) {
+	case GNOME_VFS_MIME_ACTION_TYPE_APPLICATION:
 		action->action.application = 
 			gnome_vfs_mime_get_default_application (mime_type);
 		if (action->action.application == NULL) {
 			g_free (action);
 			action = NULL;
 		}
-	} else if (strcasecmp (action_type, "component") == 0) {
-		action->action_type = GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
+		break;
+	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
 		action->action.component = 
 			gnome_vfs_mime_get_default_component (mime_type);
 		if (action->action.component == NULL) {
 			g_free (action);
 			action = NULL;
 		}
-	} else {
+		break;
+	case GNOME_VFS_MIME_ACTION_TYPE_NONE:
 		g_free (action);
 		action = NULL;
+		break;
+	default:
+		g_assert_not_reached ();
 	}
 
 	return action;
@@ -585,7 +605,7 @@ strsplit_handle_null (const char *str, const char *delim, int max)
 	return g_strsplit ((str == NULL ? "" : str), delim, max);
 }
 
-static GnomeVFSMimeApplication *
+GnomeVFSMimeApplication *
 gnome_vfs_mime_application_new_from_id (const char *id) {
 	GnomeVFSMimeApplication *application;
 	const char *command;

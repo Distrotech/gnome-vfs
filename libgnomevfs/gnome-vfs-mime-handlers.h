@@ -33,6 +33,7 @@
  */
 
 enum GnomeVFSMimeActionType {
+	GNOME_VFS_MIME_ACTION_TYPE_NONE,
 	GNOME_VFS_MIME_ACTION_TYPE_APPLICATION,
 	GNOME_VFS_MIME_ACTION_TYPE_COMPONENT
 };
@@ -65,6 +66,7 @@ GnomeVFSMimeApplication *gnome_vfs_mime_application_copy		  (GnomeVFSMimeApplica
 void		    gnome_vfs_mime_application_list_free		  (GList 		  *list);
 void		    gnome_vfs_mime_component_list_free		  	  (GList 		  *list);
 
+GnomeVFSMimeActionType gnome_vfs_mime_get_default_action_type (const char *mime_type);
 GnomeVFSMimeAction  *gnome_vfs_mime_get_default_action                    (const char             *mime_type);
 GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application           (const char             *mime_type);
 OAF_ServerInfo      *gnome_vfs_mime_get_default_component                 (const char             *mime_type);
@@ -93,6 +95,8 @@ void                gnome_vfs_mime_extend_all_applications                (const
 void                gnome_vfs_mime_remove_from_all_applications           (const char             *mime_type,
 								           GList                  *applications);
 
+
+GnomeVFSMimeApplication *gnome_vfs_mime_application_new_from_id           (const char              *id);
 
 void                gnome_vfs_mime_application_free                       (GnomeVFSMimeApplication *application);
 void                gnome_vfs_mime_action_free                            (GnomeVFSMimeAction      *action);

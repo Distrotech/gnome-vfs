@@ -1,3 +1,14 @@
+2000-06-01  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.h,
+	libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_get_default_action_type): New function which only
+	determines and returns the default action type. Needed for
+	_for_uri versions of stuff in nautilus.
+	(gnome_vfs_mime_get_default_action): Use it.
+
+	* data/mime/gnome-vfs.keys: Populated with a bit more data.
+
 2000-05-31  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.h,
