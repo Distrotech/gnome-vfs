@@ -1,3 +1,16 @@
+2001-02-27  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Darin Adler <darin@eazel.com>
+
+	Fixed bug 7095 (wrong icon used for HTML files in
+	bookmarks & icon views)
+
+	* data/mime/gnome-vfs.keys.in: Removed icon for
+	text/html. Nautilus has its own logic for dealing with
+	html files that gets broken by a hard-wired icon here.
+	Maybe we should change the logic in Nautilus someday,
+	but this is the safe right-before-release change.
+
 2001-02-27  Josh Barrow  <josh@eazel.com>
 
 	* AUTHORS:
