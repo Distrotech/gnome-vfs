@@ -708,34 +708,39 @@ gnome_vfs_uri_get_parent (const GnomeVFSURI *uri)
 		len = strlen (uri->text);
 		p = uri->text + len - 1;
 
-		/* Skip trailing slash.  */
-		if (*p == GNOME_VFS_URI_PATH_CHR && p != uri->text)
+		/* Skip trailing slashes  */
+		while (p != uri->text && *p == GNOME_VFS_URI_PATH_CHR)
 			p--;
 
-		/* Search backwards for next slash.  URIs are normalized, so
-                   the next slash we find cannot be a trailing one.  */
+		/* Search backwards to the next slash.  */
 		while (p != uri->text && *p != GNOME_VFS_URI_PATH_CHR)
 			p--;
 
+		/* Get the parent without slashes  */
+		while (p > uri->text + 1 && p[-1] == GNOME_VFS_URI_PATH_CHR)
+			p--;
+
 		if (p[1] != '\0') {
-			GnomeVFSURI *new;
+			GnomeVFSURI *new_uri;
+			char *new_uri_text;
+			int length;
 
-			/* The following is not extremely efficient, but quite
-			   safe in case we change the internals.  */
-
-			new = gnome_vfs_uri_dup (uri);
-			g_free (new->text);
-
-			if (p == uri->text) {
-				new->text = g_strdup (GNOME_VFS_URI_PATH_STR);
+			/* build a new parent text */
+			length = p - uri->text;			
+			if (length == 0) {
+				new_uri_text = g_strdup (GNOME_VFS_URI_PATH_STR);
 			} else {
-				new->text = g_malloc (p - uri->text + 2);
-				memcpy (new->text, uri->text, p - uri->text);
-				new->text[p - uri->text] = GNOME_VFS_URI_PATH_CHR;
-				new->text[p - uri->text + 1] = '\0';
+				new_uri_text = g_malloc (length + 1);
+				memcpy (new_uri_text, uri->text, length);
+				new_uri_text[length] = '\0';
 			}
 
-			return new;
+			/* copy the uri and replace the uri text with the new parent text */
+			new_uri = gnome_vfs_uri_dup (uri);
+			g_free (new_uri->text);
+			new_uri->text = new_uri_text;
+			
+			return new_uri;
 		}
 	}
 

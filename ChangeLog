@@ -1,3 +1,18 @@
+2000-03-28 Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(move_file): initialize "skip" properly.
+	
+	* libgnomevfs/gnome-vfs-uri.c:
+	(gnome_vfs_uri_get_parent): strip trailing slashes. Handle 
+	multiple slashes properly.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(execute_xfer): pass the proper job structure.
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_xfer): pass the proper job type selector.
+	
 2000-03-28 John Sullivan <sullivan@eazel.com>
 	* gnome-vfs-uri.c:
 	(gnome_vfs_uri_extract_short_name): Check for empty-string

@@ -713,7 +713,7 @@ pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 
 	gnome_vfs_job_prepare (job);
 
-	job->type = GNOME_VFS_JOB_LOAD_DIRECTORY;
+	job->type = GNOME_VFS_JOB_XFER;
 	job->callback = progress_callback;
 	job->callback_data = callback_data;
 

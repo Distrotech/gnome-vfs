@@ -697,11 +697,13 @@ move_file (Source *source,
 	gboolean force_replace;
 	gboolean retry;
 
+
 	if (*overwrite_mode & GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE)
 		force_replace = TRUE;
 	else
 		force_replace = FALSE;
 
+	*skip = FALSE;
 	do {
 		retry = FALSE;
 
@@ -857,10 +859,16 @@ fast_move (GnomeVFSURI *source_dir_uri,
 		}
 
 		if (skip) {
+			/* FIXME:
+			 * this looks like an infinite loop
+			 */
 			free_progress (&progress_info);
 			continue;
 		}
 		if (result != GNOME_VFS_OK) {
+			/* FIXME:
+			 * doesn't free_progress get called outside the for loop?
+			 */
 			free_progress (&progress_info);
 			break;
 		}

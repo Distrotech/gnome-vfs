@@ -1186,7 +1186,7 @@ execute_xfer (GnomeVFSJob *job)
 				 xfer_job->request.error_mode,
 				 xfer_job->request.overwrite_mode,
 				 xfer_callback,
-				 xfer_job);
+				 job);
 
 	/* If the xfer functions returns an error now, something really bad
            must have happened.  */
