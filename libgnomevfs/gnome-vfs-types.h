@@ -27,7 +27,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <time.h>
-#include <glibconfig.h>
+#include <glib.h>
 
 
 /* Basic enumerations.  */

@@ -1,3 +1,19 @@
+2000-05-26  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.h,
+	libgnomevfs/gnome-vfs-mime-handlers.c: Add stub implementations
+	for all functions. Add `gnome_vfs_mime_application_free' function.
+
+	* libgnomevfs/Makefile.am: Add
+	`libgnomevfs/gnome-vfs-mime-handlers.c' to the build.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.h: Add a "name" field to the
+	GnomeVFSMimeApplication struct, as John and I discussed.
+	
+	* libgnomevfs/gnome-vfs-types.h: include <glib.h>, not jsut
+	<glibconfig.h> (glibconfig is really supposed to be an internal
+	header anyway).
+
 2000-05-26  Gene Z. Ragan  <gzr@eazel.com>
 
 	All of the below is work in progress on the Files and Programs

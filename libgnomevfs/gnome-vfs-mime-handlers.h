@@ -41,9 +41,10 @@ typedef enum GnomeVFSMimeActionType GnomeVFSMimeActionType;
 
 
 struct GnomeVFSMimeApplication {
-  char *command;
-  gboolean can_open_multiple_files;
-  gboolean can_open_uris;
+	char *name;
+	char *command;
+	gboolean can_open_multiple_files;
+	gboolean can_open_uris;
 };
 
 typedef struct GnomeVFSMimeApplication GnomeVFSMimeApplication;
@@ -89,7 +90,7 @@ void                gnome_vfs_mime_set_default_component                  (const
 /* Stored as delta to current user level - API function computes delta and stores in prefs */
 void                gnome_vfs_mime_set_short_list_applications            (const char             *mime_type,
 								           GList                  *applications);
-GList              *gnome_vfs_mime_set_short_list_components              (const char             *mime_type,
+void                gnome_vfs_mime_set_short_list_components              (const char             *mime_type,
 								           GList                  *components);
 /* No way to override system list; can only add. */
 void                gnome_vfs_mime_extend_all_applications                (const char             *mime_type,
@@ -109,7 +110,7 @@ void                gnome_vfs_mime_set_default_component_for_uri          (const
 /* Stored as delta to current user level */
 void                gnome_vfs_mime_set_short_list_applications_for_uri    (const char             *mime_type,
 								           GList                  *applications);
-GList              *gnome_vfs_mime_set_short_list_components_for_uri      (const char             *mime_type,
+void                gnome_vfs_mime_set_short_list_components_for_uri      (const char             *mime_type,
 							  	           GList                  *components);
 /* No way to override system list; can only add. */
 void                gnome_vfs_mime_extend_all_applications_for_uri        (const char             *mime_type,
@@ -120,7 +121,8 @@ void                gnome_vfs_mime_remove_from_all_applications_for_uri   (const
 /* No way to add to all components; oafinfo database assumed trusted in this regard. */
 
 
+void                gnome_vfs_mime_application_free                       (GnomeVFSMimeApplication *application);
+void                gnome_vfs_mime_action_free                            (GnomeVFSMimeAction      *action);
 
-void                gnome_vfs_mime_action_free                            (GnomeVFSMimeAction *action);
 
 #endif

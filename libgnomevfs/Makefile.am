@@ -86,6 +86,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-messages.c			\
 	gnome-vfs-method.c			\
 	gnome-vfs-mime.c			\
+	gnome-vfs-mime-handlers.c		\
 	gnome-vfs-mime-info.c			\
 	gnome-vfs-mime-magic.c			\
 	gnome-vfs-mime-sniff-buffer.c		\
