@@ -10,6 +10,7 @@ SUBDIRS =					\
 	monikers				\
 	po
 
+ACLOCAL_AMFLAGS = -I /usr/share/aclocal/gnome2-macros
 
 EXTRA_DIST =					\
 	HACKING					\
