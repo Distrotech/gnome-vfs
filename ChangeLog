@@ -1,5 +1,10 @@
 2004-10-11  Alexander Larsson  <alexl@redhat.com>
 
+	* NEWS:
+	Update for release.
+
+2004-10-11  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/smb-method.c (do_read_directory),
 	(update_workgroup_cache): 
 	Ignore entries with empty name. (#154670)

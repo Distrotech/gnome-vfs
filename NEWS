@@ -1,3 +1,19 @@
+gnome-vfs 2.8.2
+
+    * Bugs fixed:
+	+ performance increase in gnome-vfs-volume-monitor
+	+ Update to latest eggdesktopentries.c, fixing leaks
+	+ Fix problem with http leak fix in last version
+	+ Fix leaks
+	+ Make folders open with components, to make run-dialog
+	  work for folders
+	+ Add support for additional headers to http backend
+	+ API docs updates
+	+ Default to the workgroup specified in smb.conf for network://
+	+ Fix queue handling for monitoring events
+	+ Add --disable-howl flag
+	+ Ignore smb files with empty names when enumerating
+    
 gnome-vfs 2.8.1
 
     * Bugs fixed:
