@@ -1,3 +1,8 @@
+2000-05-18  Rebecca Schulman <rebecka@eazel.com>
+	* libgnomevfs/gnome-vfs-uri.c
+	Fixed a memory leak in gnome_vfs_uri_new.  (method_string
+	sometime was never freed)
+
 2000-05-18  Maciej Stachowiak  <mjs@eazel.com>
 
 	* data/mime/gnome-vfs-mime-magic: Replaced mime type of "X pixmap
