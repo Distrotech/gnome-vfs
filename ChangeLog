@@ -1,3 +1,8 @@
+2004-02-19  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Don't fail if libgnomeui not found.
+
 2004-02-18  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-filesystem-type.c:

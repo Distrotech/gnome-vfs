@@ -222,7 +222,7 @@ dnl =
 dnl ====================================
 
 AM_CONDITIONAL(HAVE_GTK, false)
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.3.1 libgnomeui-2.0 >= 2.5.1, AM_CONDITIONAL(HAVE_GTK, true))
+PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.3.1 libgnomeui-2.0 >= 2.5.1, AM_CONDITIONAL(HAVE_GTK, true), :)
 GTK_VERSION=`$PKG_CONFIG --variable=gtk_binary_version gtk+-2.0`
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
