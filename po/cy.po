@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-08-14 12:06+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-25 17:34+0100\n"
 "PO-Revision-Date: 2003-08-14 12:07+0100\n"
 "Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
@@ -33,7 +34,7 @@ msgstr "Nid yw %s:%d yn cynnwys enw modiwl."
 #: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Ni chanfodwyd y ffeil ffurfweddu `%s': %s"
+msgstr "Ni chanfodwyd y ffeil cyfluniad `%s': %s"
 
 #: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
