@@ -23,4 +23,4 @@ endif
 
 EXTRA_DIST = $(schema_in_files) $(schema_DATA)
 
-MAINTAINERCLEANFILES = $(schema_DATA)
+DISTCLEANFILES = $(schema_DATA)

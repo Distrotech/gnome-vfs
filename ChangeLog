@@ -1,5 +1,12 @@
 2004-02-11  Alexander Larsson  <alexl@redhat.com>
 
+	* Makefile.am:
+	* modules/vfolder/Makefile.am:
+	* schemas/Makefile.am:
+	Fix distcheck
+
+2004-02-11  Alexander Larsson  <alexl@redhat.com>
+
 	* NEWS: 
 	* configure.in:
 	Bump to 2.5.7
