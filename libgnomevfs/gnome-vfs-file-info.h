@@ -34,6 +34,8 @@
 
 G_BEGIN_DECLS
 
+typedef GnomeVFSFileSize GnomeVFSInodeNumber;
+
 /* File flags.  */
 typedef enum {
 	GNOME_VFS_FILE_FLAGS_NONE = 0,
@@ -109,7 +111,7 @@ typedef enum {
 
 typedef struct {
 	/* Base name of the file (no path).  */
-	gchar *name;
+	char *name;
 
 	/* Fields which are actually valid in this strcture. */
 	GnomeVFSFileInfoFields valid_fields;
@@ -123,9 +125,9 @@ typedef struct {
 	/* Flags for this file.  */
 	GnomeVFSFileFlags flags;
 
-	/* This is only valid if `is_local' is TRUE (see below).  */
+	/* These are only valid if `is_local' is TRUE (see below).  */
 	dev_t device;
-	ino_t inode;
+	GnomeVFSInodeNumber inode;
 
 	/* Link count.  */
 	guint link_count;
@@ -150,10 +152,10 @@ typedef struct {
 
 	/* If the file is a symlink (see `flags'), this specifies the file the
            link points to.  */
-	gchar *symlink_name;
+	char *symlink_name;
 
 	/* MIME type.  */
-	gchar *mime_type;
+	char *mime_type;
 
 	guint refcount;
 } GnomeVFSFileInfo;
@@ -219,28 +221,20 @@ typedef struct {
 	       : ((info)->permissions &= ~GNOME_VFS_PERM_STICKY))
 
 
-GnomeVFSFileInfo *
-		 gnome_vfs_file_info_new 	(void);
-void 		 gnome_vfs_file_info_unref   	(GnomeVFSFileInfo *info);
-void 		 gnome_vfs_file_info_ref     	(GnomeVFSFileInfo *info);
-void 		 gnome_vfs_file_info_clear     	(GnomeVFSFileInfo *info);
-const gchar	*gnome_vfs_file_info_get_mime_type
-						(GnomeVFSFileInfo *info);
-
-void		 gnome_vfs_file_info_copy 	(GnomeVFSFileInfo *dest,
-						 const GnomeVFSFileInfo *src);
-
-GnomeVFSFileInfo *
-		 gnome_vfs_file_info_dup 	(const GnomeVFSFileInfo *orig);
-
-
-gboolean	 gnome_vfs_file_info_matches	(const GnomeVFSFileInfo *a,
-						 const GnomeVFSFileInfo *b);
-
-GList           *gnome_vfs_file_info_list_ref   (GList *list);
-GList           *gnome_vfs_file_info_list_unref (GList *list);
-GList           *gnome_vfs_file_info_list_copy  (GList *list);
-void             gnome_vfs_file_info_list_free  (GList *list);
+GnomeVFSFileInfo *gnome_vfs_file_info_new           (void);
+void              gnome_vfs_file_info_unref         (GnomeVFSFileInfo       *info);
+void              gnome_vfs_file_info_ref           (GnomeVFSFileInfo       *info);
+void              gnome_vfs_file_info_clear         (GnomeVFSFileInfo       *info);
+const char *      gnome_vfs_file_info_get_mime_type (GnomeVFSFileInfo       *info);
+void              gnome_vfs_file_info_copy          (GnomeVFSFileInfo       *dest,
+						     const GnomeVFSFileInfo *src);
+GnomeVFSFileInfo *gnome_vfs_file_info_dup           (const GnomeVFSFileInfo *orig);
+gboolean          gnome_vfs_file_info_matches       (const GnomeVFSFileInfo *a,
+						     const GnomeVFSFileInfo *b);
+GList *           gnome_vfs_file_info_list_ref      (GList                  *list);
+GList *           gnome_vfs_file_info_list_unref    (GList                  *list);
+GList *           gnome_vfs_file_info_list_copy     (GList                  *list);
+void              gnome_vfs_file_info_list_free     (GList                  *list);
 
 G_END_DECLS
 

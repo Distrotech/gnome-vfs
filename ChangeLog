@@ -1,3 +1,8 @@
+2002-02-09  Darin Adler  <darin@bentspoon.com>
+
+	* libgnomevfs/gnome-vfs-file-info.h: Oops. Missed that inode
+	numbers also are 64 bits when _FILE_OFFSET_BITS=64.
+
 2002-02-09  Bastien Nocera  <hadess@hadess.net>
 
 	reviewed by: Darin Adler <darin@bentspoon.com>
