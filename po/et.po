@@ -5,14 +5,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-05-07 23:10-0700\n"
-"PO-Revision-Date: 2002-01-29 10:27+0200\n"
-"Last-Translator: Ilmar Kerm <ikerm@hot.ee>\n"
+"POT-Creation-Date: 2002-06-05 14:37+0300\n"
+"PO-Revision-Date: 2002-06-05 14:39+0300\n"
+"Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.5\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
@@ -47,7 +46,7 @@ msgstr "Ei saa luua toru avatud GIOChannelile: %s"
 #: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
 msgid "Unknown job kind %u"
-msgstr ""
+msgstr "Tundmatu töö tüüp %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1632
 msgid "Operation stopped"
@@ -260,7 +259,7 @@ msgstr "Teenus ei ole kättesaadav"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr ""
+msgstr "Päring tühistab teenuse andmed"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -304,26 +303,25 @@ msgstr "Tundmatu GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Ei leia ühtegi korrektset sätete faili asukohast %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "Teise asukoha määramiseks kasuta keskkonnamuutujat %s.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Standard Moniker factory"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "file MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "generic Gnome VFS moniker"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Üldine viga"
+msgstr "generic file moniker"
