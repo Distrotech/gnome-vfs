@@ -1,3 +1,10 @@
+2004-09-29  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	* libgnomevfs/gnome-vfs-process.c:
+	Fix error in return type, found by gcc 3.4.1.
+
 2002-07-22  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* configure.in:
