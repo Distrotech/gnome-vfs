@@ -130,7 +130,7 @@ ALL_LINGUAS="af am ar az be bg bn bs ca cs cy da de el en_CA en_GB eo es et eu f
 AM_GLIB_GNU_GETTEXT
 
 
-AC_CHECK_FUNCS(ngettext, have_ngettext=yes)
+AC_CHECK_FUNCS(ngettext, have_ngettext=yes, [AC_CHECK_LIB(intl,ngettext,have_ngettext=yes)])
 
 if test x"$have_ngettext" != "xyes"; then
 	AC_MSG_ERROR([Your Gettext installation doesn't seem to support ngettext to handle translation of plural forms. Please install GNU Gettext])
