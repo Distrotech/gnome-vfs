@@ -5,7 +5,8 @@ INCLUDES =					\
 	$(GNOME_INCLUDEDIR)
 
 CPPFLAGS =					\
-	-D_REENTRANT
+	-D_REENTRANT				\
+	-D_POSIX_PTHREAD_SEMANTICS
 
 module_flags = -export_dynamic -avoid-version
 modulesdir = $(prefix)/lib/vfs/modules

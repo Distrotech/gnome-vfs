@@ -1,5 +1,9 @@
 1999-10-08  Ettore Perazzoli  <ettore@gnu.org>
 
+	* modules/Makefile.am (CPPFLAGS): #define
+	`_POSIX_PTHREAD_SEMANTICS'.
+	* libgnomevfs/Makefile.am (CPPFLAGS): Likewise.
+
 	* libgnomevfs-corba/gnome-vfs-slave-notify.c: #define `SUN_LEN()'
 	if not already #defined.
 

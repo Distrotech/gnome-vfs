@@ -48,6 +48,7 @@ gnome_vfs_shellpattern_filter_new (const gchar *pattern,
 	new = g_new (GnomeVFSShellpatternFilter, 1);
 
 	new->fnmatch_flags = 0;
+	/* FIXME this is a GNU extension.  */
 	if (options & GNOME_VFS_DIRECTORY_FILTER_IGNORECASE)
 		new->fnmatch_flags |= FNM_CASEFOLD;
 

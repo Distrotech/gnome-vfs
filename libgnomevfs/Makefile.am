@@ -5,6 +5,7 @@ INCLUDES =					\
 
 CPPFLAGS =					\
 	-D_REENTRANT				\
+	-D_POSIX_PTHREAD_SEMANTICS		\
 	-DPREFIX=\"$(prefix)\"			\
 	-DG_LOG_DOMAIN=\"GnomeVFS\"
 
