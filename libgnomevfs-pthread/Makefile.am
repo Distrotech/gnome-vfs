@@ -8,9 +8,7 @@ INCLUDES =					\
 	$(GLIB_CFLAGS)				\
 	$(GTK_CFLAGS)				\
 	$(GNOME_INCLUDEDIR)			\
-	$(VFS_CFLAGS) $(WERROR)
-
-CPPFLAGS =					\
+	$(VFS_CFLAGS) $(WERROR)			\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-DPREFIX=\"$(prefix)\"			\

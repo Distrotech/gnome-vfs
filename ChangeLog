@@ -1,3 +1,12 @@
+2000-10-26  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs-corba/Makefile.am:
+	* libgnomevfs-pthread/Makefile.am:
+	* libgnomevfs/Makefile.am:
+	* modules/Makefile.am:
+	Use INCLUDES instead of CPPFLAGS like the automake
+	documentation says.
+
 2000-10-25  Rebecca Schulman  <rebecka@eazel.com>
 
 	* modules/http-method.c: (do_create):
