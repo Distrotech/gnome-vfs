@@ -1,3 +1,19 @@
+2002-05-06  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/applications.vfolder-info.in:
+
+	Merge in .desktop files installed into /usr PREFIX.
+	
+	* modules/vfolder-desktop-method.c:
+	(vfolder_info_read_items_merge):
+
+	Do not set "Applications" category flag on merged
+	.desktop files that come from the Settings directory.
+
+	* modules/fstype.c: (fstype_internal_error):
+
+	Fix the build.
+	
 2002-05-03  David Emory Watson  <dwatson@cs.ucr.edu>
 
 	* libgnomevfs/gnome-vfs-uri.c:

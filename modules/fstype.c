@@ -54,7 +54,12 @@ extern int errno;
 #endif
 
 static char const *filesystem_type_uncached P_((char *path, char *relpath, struct stat *statp));
+
+void fstype_internal_error (int level, int num, char const *fmt, ...);
+
+#ifdef FSTYPE_MNTENT		/* 4.3BSD etc.  */
 static int xatoi P_((char *cp));
+#endif
 
 #ifdef FSTYPE_MNTENT		/* 4.3BSD, SunOS, HP-UX, Dynix, Irix.  */
 #include <mntent.h>
@@ -230,8 +235,8 @@ filesystem_type (path, relpath, statp)
   return current_fstype;
 }
 
-static void
-error (int level, int num, char const *fmt, ...)
+void
+fstype_internal_error (int level, int num, char const *fmt, ...)
 {
 }
 
@@ -255,7 +260,7 @@ filesystem_type_uncached (path, relpath, statp)
 
   mfp = setmntent (table, "r");
   if (mfp == NULL)
-    error (1, errno, "%s", table);
+    fstype_internal_error (1, errno, "%s", table);
 
   /* Find the entry with the same device number as STATP, and return
      that entry's fstype. */
@@ -291,7 +296,7 @@ filesystem_type_uncached (path, relpath, statp)
 #endif /* not hpux */
 	{
 	  if (stat (mnt->mnt_dir, &disk_stats) == -1)
-	    error (1, errno, "error in %s: %s", table, mnt->mnt_dir);
+	    fstype_internal_error (1, errno, "error in %s: %s", table, mnt->mnt_dir);
 	  dev = disk_stats.st_dev;
 	}
 
@@ -300,7 +305,7 @@ filesystem_type_uncached (path, relpath, statp)
     }
 
   if (endmntent (mfp) == 0)
-    error (0, errno, "%s", table);
+    fstype_internal_error (0, errno, "%s", table);
 #endif
 
 #ifdef FSTYPE_GETMNT		/* Ultrix.  */
@@ -323,7 +328,7 @@ filesystem_type_uncached (path, relpath, statp)
     {
       /* Don't die if a file was just removed. */
       if (errno != ENOENT)
-	error (1, errno, "%s", path);
+	fstype_internal_error (1, errno, "%s", path);
     }
   else if (!sysfs (GETFSTYP, fss.f_fstyp, typebuf))
     type = typebuf;
@@ -336,7 +341,7 @@ filesystem_type_uncached (path, relpath, statp)
     {
       /* Don't die if a file was just removed. */
       if (errno != ENOENT)
-	error (1, errno, "%s", path);
+	fstype_internal_error (1, errno, "%s", path);
     }
   else
     type = fss.f_basetype;
@@ -356,7 +361,7 @@ filesystem_type_uncached (path, relpath, statp)
       /* Don't die if symlink to nonexisting file, or a file that was
 	 just removed. */
       if (errno != ENOENT)
-	error (1, errno, "%s", path);
+	fstype_internal_error (1, errno, "%s", path);
     }
   else
     {
