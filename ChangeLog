@@ -1,5 +1,10 @@
 2003-04-11  Christophe Fergeau  <teuf@users.sourceforge.net>
 
+	* test/test-uri.c: added regression test for
+	  gnome_vfs_uri_make_full_from_relative
+
+2003-04-11  Christophe Fergeau  <teuf@users.sourceforge.net>
+
 	* libgnomevfs/gnome-vfs-i18n.c (read_aliases): make it work
 	* libgnomevfs/gnome-vfs-utils.c: removed bogus 
 	  #ifndef GNOME_VFS_DISABLE_DEPRECATED
