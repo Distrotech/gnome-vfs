@@ -115,15 +115,18 @@ typedef enum {
 
 /* File permissions.  These are the same as the Unix ones, but we wrap them
    into a nicer VFS-like enum.  */
-#ifdef S_ISVTX
-#define STICKY_MASK S_ISVTX
-#else
-#define STICKY_MASK 0
-#endif
+/* FIXME: It's silly to use the symbolic constants for POSIX here.
+ * This is supposed to be a virtual file system, so it makes no
+ * sense to use the values of the POSIX-required constants on the
+ * particular machine this code is compiled on. These should all be changed
+ * to use numeric constants like GNOME_VFS_PERM_STICKY does now. However,
+ * be careful in making such a change, since some existing code might
+ * wrongly assume these equivalencies.
+ */
 typedef enum {
 	GNOME_VFS_PERM_SUID = S_ISUID,
 	GNOME_VFS_PERM_SGID = S_ISGID,	
-	GNOME_VFS_PERM_STICKY = STICKY_MASK,
+	GNOME_VFS_PERM_STICKY = 01000,	/* S_ISVTX not defined on all systems */
 	GNOME_VFS_PERM_USER_READ = S_IRUSR,
 	GNOME_VFS_PERM_USER_WRITE = S_IWUSR,
 	GNOME_VFS_PERM_USER_EXEC = S_IXUSR,

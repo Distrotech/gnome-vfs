@@ -1,3 +1,12 @@
+2001-03-15  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Darin Adler <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-types.h: Reverted this part of
+	my eralier checkin after Darin convinced me that the
+	change I made here could actually make things worse.
+	Added a FIXME about how it should be changed later.
+
 2001-03-14  Pavel Cisler  <pavel@eazel.com>
 
 	Fix 7339: (dragging file inside ftp window causes "replace self"
