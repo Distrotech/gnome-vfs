@@ -1,3 +1,8 @@
+2002-06-03  Ian McKellar  <yakk@yakk.net>
+
+	* modules/ssh-method.c: Big improvement to the ssh method from
+	Robert Migues <mibus@bigpond.com>
+
 2002-06-02  Alex Graveley  <alex@ximian.com>
 
 	* modules/desktop-method.c (do_get_file_info): Set mime_type to
