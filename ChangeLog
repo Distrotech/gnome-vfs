@@ -1,3 +1,11 @@
+2000-11-08  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (execute_find_directory):
+	Changed a g_new to g_new0 to fix problem where result_item->uri
+	was sometimes uninitialized. Darin somehow found this bug when
+	I couldn't figure out why make check in Nautilus was crashing.
+	Hooray!
+
 2000-11-08  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* data/mime/gnome-vfs.applications:

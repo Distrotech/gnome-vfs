@@ -1514,7 +1514,7 @@ execute_find_directory (GnomeVFSJob *job)
 
 	op = &job->current_op->specifics.find_directory;
 	for (p = op->request.uris; p != NULL; p = p->next) {
-		result_item = g_new (GnomeVFSGetFileInfoResult, 1);
+		result_item = g_new0 (GnomeVFSGetFileInfoResult, 1);
 
 		result_item->result = gnome_vfs_find_directory_cancellable
 			((GnomeVFSURI *) p->data,
