@@ -8,7 +8,7 @@ INCLUDES =					\
 	$(XML_CFLAGS)	 			\
 	$(LIBEFS_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
-	$(WERROR)
+	$(VFS_CFLAGS) $(WERROR)
 
 CPPFLAGS =					\
 	-D_GNU_SOURCE				\

@@ -15,7 +15,7 @@ INCLUDES =					\
 	$(GNOME_INCLUDEDIR)			\
 	-I$(top_srcdir)				\
 	-DICONDIR=\"$(datadir)/pixmaps/mc\"	\
-	$(WERROR)
+	$(VFS_CFLAGS) $(WERROR)
 
 common_sources =				\
 	gicon.c					\

@@ -12,7 +12,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs		\
 	$(OAF_CFLAGS)				\
 	$(GNOME_INCLUDEDIR)			\
-	$(WERROR)
+	$(VFS_CFLAGS) $(WERROR)
 
 noinst_PROGRAMS =				\
 	test-async-cancel                       \

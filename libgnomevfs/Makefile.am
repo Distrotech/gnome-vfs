@@ -9,7 +9,7 @@ INCLUDES =					\
 	-I$(top_builddir)/libgnomevfs		\
 	$(OAF_CFLAGS)				\
 	$(GNOME_INCLUDEDIR)			\
-	$(WERROR)				\
+	$(VFS_CFLAGS) $(WERROR)			\
 	$(NULL)
 
 CPPFLAGS =					\
