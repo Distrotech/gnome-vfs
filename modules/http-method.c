@@ -1235,7 +1235,16 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	GByteArray *request = g_byte_array_new();
 	gchar *request_str = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
-		"<D:propfind xmlns:D=\"DAV:\"><D:allprop/></D:propfind>";
+		"<D:propfind xmlns:D=\"DAV:\">"
+		"<D:prop>"
+                "<D:creationdate/>"
+                "<D:getcontentlength/>"
+                "<D:getcontenttype/>"
+                "<D:getlastmodified/>"
+                "<D:resourcetype/>"
+		"</D:prop>"
+		/*"<D:allprop/>"*/
+		"</D:propfind>";
 
 	request = g_byte_array_append(request, request_str, 
 			strlen(request_str));
