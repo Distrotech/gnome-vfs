@@ -1,3 +1,13 @@
+2002-10-24 Brian Cameron <brian.cameron@sun.com>
+
+	* libgnomevfs/gnome-vfs-module-callback.c: Performance fix.
+	No longer copy the default callback functions to stack_info
+	in the function gnome_vfs_module_callback_get_stack_info.
+	Note that the function gnome_vfs_module_callback_invoke is
+	the only function to access the callback hashes, and it
+	already will get the callback from the default if it is not
+	in the private thread memory.
+
 2002-10-21 Stephen Browne <stephen.browne@sun.com>
 
 	* modules/cdemenu-desktop-method.c: Find correct titles 

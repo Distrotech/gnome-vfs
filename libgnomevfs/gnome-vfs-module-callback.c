@@ -339,17 +339,6 @@ copy_one_callback_to_stack (gpointer key,
 	push_callback_into_stack_table (table, callback_name, callback);
 }
 
-static GHashTable *
-duplicate_callback_table (GHashTable *table)
-{
-	GHashTable *copy;
-	
-	copy = g_hash_table_new (g_str_hash, g_str_equal);
-	g_hash_table_foreach (table, copy_one_callback, copy);
-	
-	return copy;
-}
-
 static void
 copy_callback_stack_tops (GHashTable *source, 
 			  GHashTable *target)
@@ -940,11 +929,11 @@ gnome_vfs_module_callback_get_stack_info (void)
 	GnomeVFSModuleCallbackStackInfo *stack_info;
 
 	stack_info = g_new (GnomeVFSModuleCallbackStackInfo, 1);
+	stack_info->current_callbacks = g_hash_table_new (g_str_hash, g_str_equal);
+	stack_info->current_async_callbacks = g_hash_table_new (g_str_hash, g_str_equal);
 
 	g_static_mutex_lock (&callback_table_lock);
 	initialize_global_if_needed ();
-	stack_info->current_callbacks = duplicate_callback_table (default_callbacks);
-	stack_info->current_async_callbacks = duplicate_callback_table (default_async_callbacks);
 	g_static_mutex_unlock (&callback_table_lock);
 
 	initialize_per_thread_if_needed ();
