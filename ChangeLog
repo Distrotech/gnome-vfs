@@ -1,3 +1,10 @@
+2000-02-21  Jonathan Blandford  <jrb@redhat.com>
+
+	* libgnomevfs/gnome-vfs-cancellation.c
+	(gnome_vfs_cancellation_check): change g_return_if_fail to be a
+	g_return_val_if_fail.  I don't know if the g_ function is right
+	here, but until that gets straightened out, make it compile.
+
 2000-02-21 Elliot Lee <sopwith@redhat.com>
 	* libgnomevfs/gnome-vfs-configuration.c: "Home made check" is supposed to be there.
 	g_return_if_fail inappropriate, change reverted.
