@@ -1,0 +1,715 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# Andraz Tori <andraz.tori1@guest.arnes.si>, 2000.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-vfs 0.1\n"
+"POT-Creation-Date: 2000-06-24 03:20+0200\n"
+"PO-Revision-Date: 2000-05-02 02:53+0200\n"
+"Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
+"Language-Team: sl <aagdsafdsaaaa@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso8599-2\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: libgnomevfs/gnome-vfs-configuration.c:187
+#, c-format
+msgid "%s:%d contains NUL characters."
+msgstr "%s:%d vsebuje NIÈELNE znake."
+
+#: libgnomevfs/gnome-vfs-configuration.c:204
+#, c-format
+msgid "%s:%d contains no method name."
+msgstr "%s:%d ne vsebuje imena metode."
+
+#: libgnomevfs/gnome-vfs-configuration.c:233
+#, c-format
+msgid "%s:%d contains no module name."
+msgstr "%s:%d ne vsebuje imea modula."
+
+#: libgnomevfs/gnome-vfs-configuration.c:286
+#, c-format
+msgid "Configuration file `%s' was not found: %s"
+msgstr "Nastavitvena datoteka `%s' ni bila najdena: %s"
+
+#: libgnomevfs/gnome-vfs-file-info.c:479
+#, c-format
+msgid "Unknown sort rule %d"
+msgstr "Neznano pravilo urejanja %d"
+
+#: libgnomevfs/gnome-vfs-init.c:67
+msgid "GNOME VFS already initialized."
+msgstr "GNOME VFS je ¾e inicializiran."
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#, c-format
+msgid "Could not parse: %s"
+msgstr "Ne morem razèleniti: %s"
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
+msgid "More parsing errors will be ignored."
+msgstr "Nadalnje napake pri razèlenitvi bodo ignorirane."
+
+#. GNOME_VFS_OK
+#: libgnomevfs/gnome-vfs-result.c:39
+msgid "No error"
+msgstr "Ni napak"
+
+#. GNOME_VFS_ERROR_NOT_FOUND
+#: libgnomevfs/gnome-vfs-result.c:40
+msgid "File not found"
+msgstr "Datoteke ni mogoèe najti"
+
+#. GNOME_VFS_ERROR_GENERIC
+#: libgnomevfs/gnome-vfs-result.c:41
+msgid "Generic error"
+msgstr "Generièna napaka"
+
+#. GNOME_VFS_ERROR_INTERNAL
+#: libgnomevfs/gnome-vfs-result.c:42
+msgid "Internal error"
+msgstr "Interna napaka"
+
+#. GNOME_VFS_ERROR_BAD_PARAMETERS
+#: libgnomevfs/gnome-vfs-result.c:43
+msgid "Invalid parameters"
+msgstr "Neveljavni parametri"
+
+#. GNOME_VFS_ERROR_NOT_SUPPORTED
+#: libgnomevfs/gnome-vfs-result.c:44
+msgid "Unsupported operation"
+msgstr "Nepodprta operacija"
+
+#. GNOME_VFS_ERROR_IO
+#: libgnomevfs/gnome-vfs-result.c:45
+msgid "I/O error"
+msgstr "V/I napaka"
+
+#. GNOME_VFS_ERROR_CORRUPTED_DATA
+#: libgnomevfs/gnome-vfs-result.c:46
+msgid "Data corrupted"
+msgstr "Podatki so pokvarjeni"
+
+#. GNOME_VFS_ERROR_WRONG_FORMAT
+#: libgnomevfs/gnome-vfs-result.c:47
+msgid "Format not valid"
+msgstr "Format ni veljaven"
+
+#. GNOME_VFS_ERROR_BAD_FILE
+#: libgnomevfs/gnome-vfs-result.c:48
+msgid "Bad file handle"
+msgstr "Neveljavna datoteèna roèica"
+
+#. GNOME_VFS_ERROR_TOO_BIG
+#: libgnomevfs/gnome-vfs-result.c:49
+msgid "File too big"
+msgstr "Datoteka je prevelika"
+
+#. GNOME_VFS_ERROR_NO_SPACE
+#: libgnomevfs/gnome-vfs-result.c:50
+msgid "No space left on device"
+msgstr "Na napravi ni veè prostora"
+
+#. GNOME_VFS_ERROR_READ_ONLY
+#: libgnomevfs/gnome-vfs-result.c:51
+msgid "Read-only file system"
+msgstr "Datoteèni sistem je mo¾no le brati"
+
+#. GNOME_VFS_ERROR_INVALID_URI
+#: libgnomevfs/gnome-vfs-result.c:52
+msgid "Invalid URI"
+msgstr "Neveljaven URI"
+
+#. GNOME_VFS_ERROR_NOT_OPEN
+#: libgnomevfs/gnome-vfs-result.c:53
+msgid "File not open"
+msgstr "Datoteka ni odprta"
+
+#. GNOME_VFS_ERROR_INVALID_OPEN_MODE
+#: libgnomevfs/gnome-vfs-result.c:54
+msgid "Open mode not valid"
+msgstr "Neveljaven naèin odpiranja"
+
+#. GNOME_VFS_ERROR_ACCESS_DENIED
+#: libgnomevfs/gnome-vfs-result.c:55
+msgid "Access denied"
+msgstr "Dostop zavrnjen"
+
+#. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
+#: libgnomevfs/gnome-vfs-result.c:56
+msgid "Too many open files"
+msgstr "Preveè odprtih datotek"
+
+#. GNOME_VFS_ERROR_EOF
+#: libgnomevfs/gnome-vfs-result.c:57
+msgid "End of file"
+msgstr "Konec datoteke"
+
+#. GNOME_VFS_ERROR_NOT_A_DIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:58
+msgid "Not a directory"
+msgstr "Ni imenik"
+
+#. GNOME_VFS_ERROR_IN_PROGRESS
+#: libgnomevfs/gnome-vfs-result.c:59
+msgid "Operation in progress"
+msgstr "Operacija poteka"
+
+#. GNOME_VFS_ERROR_INTERRUPTED
+#: libgnomevfs/gnome-vfs-result.c:60
+msgid "Operation interrupted"
+msgstr "Operacija je bila prekinjena"
+
+#. GNOME_VFS_ERROR_FILE_EXISTS
+#: libgnomevfs/gnome-vfs-result.c:61
+msgid "File exists"
+msgstr "Datoteka obstaja"
+
+#. GNOME_VFS_ERROR_LOOP
+#: libgnomevfs/gnome-vfs-result.c:62
+msgid "Looping links encountered"
+msgstr "Najdene so bile kro¾ne povezave"
+
+#. GNOME_VFS_ERROR_NOT_PERMITTED
+#: libgnomevfs/gnome-vfs-result.c:63
+msgid "Operation not permitted"
+msgstr "Nedovoljena operacija"
+
+#. GNOME_VFS_ERROR_IS_DIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:64
+msgid "Is a directory"
+msgstr "Je imenik"
+
+#. GNOME_VFS_ERROR_NO_MEMMORY
+#: libgnomevfs/gnome-vfs-result.c:65
+msgid "Not enough memory"
+msgstr "Spomina ni dovolj"
+
+#. GNOME_VFS_ERROR_HOST_NOT_FOUND
+#: libgnomevfs/gnome-vfs-result.c:66
+msgid "Host not found"
+msgstr "Gostitelj ni bil najden"
+
+#. GNOME_VFS_ERROR_INVALID_HOST_NAME
+#: libgnomevfs/gnome-vfs-result.c:67
+msgid "Host name not valid"
+msgstr "Gostitlejevo ime ni veljavno"
+
+#. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
+#: libgnomevfs/gnome-vfs-result.c:68
+msgid "Host has no address"
+msgstr "Gostitelj nima naslova"
+
+#. GNOME_VFS_ERROR_LOGIN_FAILED
+#: libgnomevfs/gnome-vfs-result.c:69
+msgid "Login failed"
+msgstr "Prijava ni uspela"
+
+#. GNOME_VFS_ERROR_CANCELLED
+#: libgnomevfs/gnome-vfs-result.c:70
+msgid "Operation cancelled"
+msgstr "Operacija preklicana"
+
+#. GNOME_VFS_ERROR_DIRECTORY_BUSY
+#: libgnomevfs/gnome-vfs-result.c:71
+msgid "Directory busy"
+msgstr "Imenik je zaseden"
+
+#. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
+#: libgnomevfs/gnome-vfs-result.c:72
+msgid "Directory not empty"
+msgstr "Imenik ni prazen"
+
+#. GNOME_VFS_ERROR_TOO_MANY_LINKS
+#: libgnomevfs/gnome-vfs-result.c:73
+msgid "Too many links"
+msgstr "Preveè povezav"
+
+#. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
+#: libgnomevfs/gnome-vfs-result.c:74
+msgid "Read only file system"
+msgstr "Datoteèni sistem je samo berljiv"
+
+#. GNOME_VFS_ERROR_NOT_SAME_FFILE_SYSTEM
+#: libgnomevfs/gnome-vfs-result.c:75
+msgid "Not on the same file system"
+msgstr "Ni na istem datoteènem sistemu"
+
+#. GNOME_VFS_ERROR_NAME_TOO_LONG
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Name too long"
+msgstr "Ime je predolgo"
+
+#: libgnomevfs/gnome-vfs-result.c:133
+msgid "Unknown error"
+msgstr "Neznana napaka"
+
+#: libgnomevfs/gnome-vfs-utils.c:41
+msgid "1 byte"
+msgstr "1 bajt"
+
+#: libgnomevfs/gnome-vfs-utils.c:43
+#, c-format
+msgid "%u bytes"
+msgstr "%u bajtov"
+
+#: libgnomevfs/gnome-vfs-utils.c:50
+#, c-format
+msgid "%.1fK"
+msgstr "%.1F"
+
+#: libgnomevfs/gnome-vfs-utils.c:54
+#, c-format
+msgid "%.1fM"
+msgstr "%.1fM"
+
+#: libgnomevfs/gnome-vfs-utils.c:58
+#, c-format
+msgid "%.1fG"
+msgstr "%.1fG"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:338
+msgid "Dying."
+msgstr "Umira."
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:503
+#, c-format
+msgid "Error reading: %s"
+msgstr "Napaka pri branju iz: %s"
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:525
+#, c-format
+msgid "Error writing: %s"
+msgstr "Napaka pri pisanju v: %s"
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:574
+#, c-format
+msgid "Cannot write: %s"
+msgstr "Ne morem zapisati v: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:602
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr "Ne morem ustvariti zaèasne datoteke `%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
+#: libgnomevfs-corba/gnome-vfs-slave.c:616
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr "Ne morem ustvariti vtièa %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:634
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr "Ne morem povezati `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:641
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr "Ne morem poslu¹ati na `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:663
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr "Ne morem sprejeti povezav na `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1397
+msgid "Cannot initialize CORBA."
+msgstr "Ne morem inicializirati CORBA-e."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1404
+msgid "Cannot resolve initial reference to RootPOA."
+msgstr "Ne morem razvozlati zaèetne reference na RootPOA."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1411
+msgid "Cannot activate POA manager."
+msgstr "Ne morem aktivirat POA upravljalca."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1436
+#, c-format
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "Uporaba: %s <ior> [<ior_fd>]\n"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1447
+#, c-format
+msgid "Cannot open file descriptor %d."
+msgstr "Ne morem odpreti datoteènega deskriptorja %d."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1470
+#, c-format
+msgid "Notify interface for `%s' not found."
+msgstr "Vmesnik za obvestila za `%s' ni bil najden."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1480
+msgid "Cannot setup Request object."
+msgstr "Ne morem nastaviti Request objekta."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1487
+msgid "Cannot extract IOR."
+msgstr "Ne morem izlu¹èiti IOR."
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
+#, c-format
+msgid "Got weird string from the slave process: `%s'"
+msgstr "Dobil sem èudno sporoèilo od su¾enjskega procesa: `%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
+#, c-format
+msgid "Cannot get object for `%s'"
+msgstr "Ne morem dobiti objekta za `%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+msgstr "Ne morem ubiti GNOME::VFS::Slave::Notify -- izjema %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
+#, c-format
+msgid "Cannot connect socket `%s': %s"
+msgstr "Ne morem povezati vtièa `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:801
+msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+msgstr "Ne morem inicializirati GNOME::VFS:Slave::Notify"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+msgstr "Ne morem resetirati GNOME::VFS::Slave %s -- izjema %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "Ne morem resetirati GNOME::VFS::Slave (IOR neznan) -- izjema %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+msgstr "Ne morem ubiti GNOME::VFS::Slave %s -- izjema %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "Ne morem ubiti GNOME::VFS::Slave (IOR neznan) -- izjema %s"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:161
+msgid "Error writing to the wakeup GnomeVFSJob channel."
+msgstr "Napaka pri bujenju GnomeVFSJob kanala."
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:545
+#: libgnomevfs-pthread/gnome-vfs-job.c:1449
+#, c-format
+msgid "Unknown job ID %d"
+msgstr "Neznan ID posla %d"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:949
+#: libgnomevfs-pthread/gnome-vfs-job.c:1044
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "Ne morem ustvariti cevi GIOChannel: %s"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:1482
+msgid "Operation stopped"
+msgstr "Operacija ustavljena"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:305
+msgid "Edit Applications List"
+msgstr "Uredi Seznam Programov"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:325
+#, c-format
+msgid "Select applications to appear in menu for mime type \"%s\""
+msgstr "Izberi programe, ki naj se ka¾ejo v menuju mime tipov \"%s\""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:348
+msgid "Add Application..."
+msgstr "Dodaj Program..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:352
+msgid "Edit Application..."
+msgstr "Uredi Program..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:356
+msgid "Delete Application"
+msgstr "Zbri¹i Program"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:381
+msgid "Edit Components List"
+msgstr "Uredi Seznam Komponent"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:401
+#, c-format
+msgid "Select views to appear in menu for mime type \"%s\""
+msgstr "Izberi poglede, ki naj se ka¾ejo v menuju mime tipov \"%s\""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:574
+msgid "Add Mime Type"
+msgstr "Dodaj Mime Tip"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:575
+msgid ""
+"Add a new Mime Type\n"
+"For example:  image/tiff; text/x-scheme"
+msgstr ""
+"Dodaj nov Mime Tip\n"
+"Naprimer:  image/tiff; text/x-scheme"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:580
+msgid "Mime Type:"
+msgstr "Mime Tip:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:593
+msgid "Type in a description for this mime-type."
+msgstr "Vnesite opis tega mime tipa"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:599
+msgid "Description:"
+msgstr "Opis:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:627
+msgid "Add New Extension"
+msgstr "Dodaj Novo Pripono"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:628
+msgid ""
+"Type in the extensions for this mime-type.\n"
+"For example:  .html, .htm"
+msgstr ""
+"Vnesite novo pripono za ta mime tip.\n"
+"Naprimer:  .html, .htm"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:633
+msgid "Extension:"
+msgstr "Pripona:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:702
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
+msgid "New Application"
+msgstr "Nov Program"
+
+#. Application Name label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:788
+msgid "Application Name:"
+msgstr "Ime Programa:"
+
+#. Application ID label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:796
+msgid "Application ID:"
+msgstr "ID Programa:"
+
+#. Application Command label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
+msgid "Application Command:"
+msgstr "Ukaz Programa:"
+
+#. Open Behavior frame
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:735
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:812
+msgid "Open Behavior"
+msgstr "Odpri Obna¹anje"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:741
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:818
+msgid "Can open multiple files"
+msgstr "Lahko odpre veè datotek"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:744
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:821
+msgid "Can open from URI"
+msgstr "Lahko odpre iz URI-a"
+
+#. Create label, menu and edit button for default applications
+#: mime-type-capplet/nautilus-mime-type-capplet.c:330
+msgid "Default Application:"
+msgstr "Privzet Program"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:337
+#: mime-type-capplet/nautilus-mime-type-capplet.c:348
+msgid "Edit List"
+msgstr "Uredi Seznam"
+
+#. Create label, menu and edit button for default components
+#: mime-type-capplet/nautilus-mime-type-capplet.c:342
+msgid "Default Viewer:"
+msgstr "Privzet Prikazovalnik:"
+
+#. Add icon box
+#: mime-type-capplet/nautilus-mime-type-capplet.c:353
+msgid "Select an icon..."
+msgstr "Izberi ikono..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:373
+msgid "Add"
+msgstr "Dodaj"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:377
+msgid "Remove"
+msgstr "Odstrani"
+
+#. Default Action frame
+#: mime-type-capplet/nautilus-mime-type-capplet.c:391
+msgid "Default Action"
+msgstr "Privzeto Dejanje"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:397
+msgid "No Default"
+msgstr "Ni Privzeto"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:403
+msgid "Use Application"
+msgstr "Uporabi Program"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:409
+msgid "Use Viewer"
+msgstr "Uporabi Pregledovalnik"
+
+#. Mime list Add and Delete buttons
+#: mime-type-capplet/nautilus-mime-type-capplet.c:415
+msgid "Add..."
+msgstr "Dodaj..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:419
+msgid "Delete"
+msgstr "Izbri¹i"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:562
+#: mime-type-capplet/nautilus-mime-type-capplet.c:704
+msgid "None"
+msgstr "Brez"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:933
+msgid "Mime Type"
+msgstr "Mime Tip"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:934
+msgid "Description"
+msgstr "Opis"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:935
+msgid "Application"
+msgstr "Program"
+
+#: modules/file-method.c:358
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "Neznan GnomeVFSSeekPosition %d"
+
+#: modules/http-method.c:503
+#, c-format
+msgid "Invalid header `%s'"
+msgstr "Napaèna glava `%s'"
+
+#: modules/http-method.c:520
+#, c-format
+msgid "%s to retrieve"
+msgstr "%s za prenos sem"
+
+#: modules/http-method.c:655
+#, c-format
+msgid "Closing connection to %s"
+msgstr "Zapiram povezavo do %s"
+
+#: modules/http-method.c:797
+#, c-format
+msgid "%s of %s read"
+msgstr "%s od %s prebranih"
+
+#: modules/http-method.c:800
+#, c-format
+msgid "%s read"
+msgstr "%s prebran"
+
+#. Multi-Status
+#: modules/http-method.c:962
+msgid "HTTP server returned an invalid PROPFIND response"
+msgstr "HTTP stre¾nik je vrnil napaèen PROPFIND odgovor"
+
+#~ msgid "Use None"
+#~ msgstr "Brez"
+
+#~ msgid "ftpfs: Invalid host name."
+#~ msgstr "ftpfs: Neveljavno ime gostitelja."
+
+#~ msgid "ftpfs: Invalid host address."
+#~ msgstr "ftpfs: Neveljaven naslov gostitelja."
+
+#~ msgid "ftpfs: making connection to %s"
+#~ msgstr "ftpfs: ustvarjam povezavo z %s"
+
+#~ msgid "ftpfs: connection interrupted by user"
+#~ msgstr "ftpfs: uporabnik je prekinil povezavo"
+
+#~ msgid "ftpfs: connection to server failed: %s"
+#~ msgstr "ftpfs: povezava do stre¾nika ni bila uspe¹na: %s"
+
+#~ msgid "Waiting to retry... %d (Control-C to cancel)"
+#~ msgstr "Èakam na ponovni poizkus... %d (Control-C za preklic)"
+
+#~ msgid " FTP: Password required for "
+#~ msgstr " FTP: Potrebno je geslo za "
+
+#~ msgid "ftpfs: sending login name"
+#~ msgstr "ftpfs: po¹iljam ime za prijavo"
+
+#~ msgid "ftpfs: sending user password"
+#~ msgstr "ftpfs: po¹iljam uporabnikovo geslo"
+
+#~ msgid "ftpfs: logged in"
+#~ msgstr "ftpfs: prijavljen sem"
+
+#~ msgid "ftpfs: Login incorrect for user %s "
+#~ msgstr "ftpfs: Napaèna prijava za uporabnika %s "
+
+#~ msgid "ftpfs: aborting transfer."
+#~ msgstr "ftpfs: prekinjam prenos."
+
+#~ msgid "ftpfs: abort error: %s"
+#~ msgstr "ftpfs: prekinitvena napaka: %s"
+
+#~ msgid "ftpfs: abort failed"
+#~ msgstr "ftpfs: prekinitev ni uspela"
+
+#~ msgid "ftpfs: could not setup passive mode"
+#~ msgstr "ftpfs: ne morem nastaviti pasivnega naèina"
+
+#~ msgid "ftpfs: storing file %d (%d)"
+#~ msgstr "ftpfs: shranjujem datoteko (%d) %D"
+
+#~ msgid "ftpfs: CWD failed."
+#~ msgstr "ftpfs: CWD (sprememba delovnega direktorija) ni uspela."
+
+#~ msgid "ftpfs: couldn't resolve symlink"
+#~ msgstr "ftpfs: ne morem razre¹iti simbolne povezave"
+
+#~ msgid "Resolving symlink..."
+#~ msgstr "Razvozljujem simbolno povezavo..."
+
+#~ msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
+#~ msgstr "ftpfs: Berem FTP imenik %s... (ne uporabljam UNIX ls opcij)"
+
+#~ msgid "ftpfs: Reading FTP directory %s..."
+#~ msgstr "ftpfs: Berem FTP imenik %s..."
+
+#~ msgid "ftpfs: reading FTP directory interrupt by user"
+#~ msgstr "ftpfs: branje FTP imenika je prekinil uporabnik"
+
+#~ msgid "ftpfs: got listing"
+#~ msgstr "ftpfs: seznam dobljen"
+
+#~ msgid "ftpfs: failed; nowhere to fallback to"
+#~ msgstr "ftpfs: spodletel; ni veè mo¾nih re¹itev"
+
+#~ msgid "Starting linear transfer..."
+#~ msgstr "Zaèenjam linearen prenos..."
+
+#~ msgid "Preparing reget..."
+#~ msgstr "Pripraljam ponvni prenos..."
