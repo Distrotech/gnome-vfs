@@ -1,3 +1,9 @@
+2002-07-26  Ian McKellar  <yakk@yakk.net>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_file):
+	Fixed up gnome-vfs-xfer problem pointed out by Josh Parsons. My fix
+	is slightly different than his proposed fix but the spirits the same.
+
 2002-07-25  Dave Camp  <dave@ximian.com>
 
 	* libgnomevfs/gnome-vfs-inet-connection.c
