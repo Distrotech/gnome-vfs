@@ -16,12 +16,6 @@ stores information about files, GnomeVFS equivalent of stat
 
 </para>
 
-<!-- ##### TYPEDEF GnomeVFSInodeNumber ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### ENUM GnomeVFSFileFlags ##### -->
 <para>
 
@@ -91,12 +85,6 @@ stores information about files, GnomeVFS equivalent of stat
 @GNOME_VFS_PERM_ACCESS_WRITABLE: 
 @GNOME_VFS_PERM_ACCESS_EXECUTABLE: 
 
-<!-- ##### TYPEDEF GnomeVFSFileInfo ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### ENUM GnomeVFSFileInfoOptions ##### -->
 <para>
 
@@ -121,6 +109,18 @@ stores information about files, GnomeVFS equivalent of stat
 @GNOME_VFS_SET_FILE_INFO_TIME: 
 
 <!-- ##### TYPEDEF GnomeVFSGetFileInfoResult ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GnomeVFSInodeNumber ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GnomeVFSFileInfo ##### -->
 <para>
 
 </para>
