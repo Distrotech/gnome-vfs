@@ -21,7 +21,8 @@ EXTRA_DIST =					\
 	gnome-vfs-module-2.0.pc.in		\
 	intltool-extract.in			\
 	intltool-merge.in			\
-	intltool-update.in
+	intltool-update.in			\
+	intltool-modules/XML/Parser/Style/OrigTree.pm
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gnome-vfs-2.0.pc gnome-vfs-module-2.0.pc
