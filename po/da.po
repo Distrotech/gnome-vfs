@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-02-18 00:15+0100\n"
+"POT-Creation-Date: 2004-07-06 20:03+0200\n"
+"PO-Revision-Date: 2004-07-06 20:14+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -515,7 +515,7 @@ msgstr "Kamera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
 msgid "Root Volume"
@@ -649,7 +649,7 @@ msgstr "Hjem"
 msgid "Filesystem"
 msgstr "Filsystem"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
@@ -661,7 +661,7 @@ msgstr "Windows-netværk"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "Identitet på den fjerne maskine (%s) er ukendt."
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -671,14 +671,17 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Dette forekommer når du logger på en maskine for første gang.\n"
+"\n"
+"Identiteten sendt fra den fjerne maskine er %s. Hvis du vil være absolut sikker på at det er sikkert at fortsætte, kan du kontakte systemadministratoren."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Log på alligevel"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "Annullér log ind"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -765,9 +768,8 @@ msgid "Handle HTTPS URLs"
 msgstr "Håndtér HTTPS-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle aim URLs"
-msgstr "Håndtér man-adresser"
+msgstr "Håndtér aim-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
@@ -801,69 +803,66 @@ msgstr "Kør program i terminal"
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
-"Sæt til sand for at få programmet angiv i \"command\" til at håndtere H323-"
+"Sæt til sand for at få programmet angivet i \"command\" til at håndtere H323-"
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
-"Sæt til sand for at få programmet angiv i \"command\" til at håndtere HTTP-"
+"Sæt til sand for at få programmet angivet i \"command\" til at håndtere HTTP-"
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
-"Sæt til sand for at få programmet angiv i \"command\" til at håndtere HTTPS-"
+"Sæt til sand for at få programmet angivet i \"command\" til at håndtere HTTPS-"
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle aim URLs."
-msgstr ""
-"Sæt til sand for at få programmet angiv i \"command\" til at håndtere man-"
-"adresser."
+msgstr "Sæt til sand for at få programmet angivet i \"command\" til at håndtere aim-adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
-"Sæt til sand for at få programmet angiv i \"command\" til at håndtere callto-"
+"Sæt til sand for at få programmet angivet i \"command\" til at håndtere callto-"
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
-"Sæt til sand for at få programmet angiv i \"command\" til at håndtere ghelp-"
+"Sæt til sand for at få programmet angivet i \"command\" til at håndtere ghelp-"
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
-"Sæt til sand for at få programmet angiv i \"command\" til at håndtere info-"
+"Sæt til sand for at få programmet angivet i \"command\" til at håndtere info-"
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
-"Sæt til sand for at få programmet angiv i \"command\" til at håndtere mailto-"
+"Sæt til sand for at få programmet angivet i \"command\" til at håndtere mailto-"
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
-"Sæt til sand for at få programmet angiv i \"command\" til at håndtere man-"
+"Sæt til sand for at få programmet angivet i \"command\" til at håndtere man-"
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
-"Sæt til sand for at få programmet angiv i \"command\" til at håndtere trash-"
+"Sæt til sand for at få programmet angivet i \"command\" til at håndtere trash-"
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
@@ -872,9 +871,8 @@ msgstr ""
 "Sand hvis programmet til at håndtere denne adresse skal køres i en terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid "aim URL handler"
-msgstr "man URL-håndtering"
+msgstr "aim URL-håndtering"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
@@ -904,19 +902,19 @@ msgstr "trash URL-håndtering"
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr ""
+msgstr "Komma-adskilt liste af DNS-SD-domæner som skal være synlige i netværksplaceringen."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Ekstra domæner som der skal kigges efter DNS-SD-tjenester i"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Hvordan en lokal DNS-SD-tjeneste skal vises"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr ""
+msgstr "Mulige værdier er \"merged\", \"separate\" og \"disabled\""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1081,9 +1079,6 @@ msgstr "SMB-arbejdsgruppe"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Den Windows-arbejdsgruppe som brugeren er en del af"
-
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "Bogmærkegemning mislykkedes (%s)"
 
 #~ msgid "Could not get information for file '%s': %s"
 #~ msgstr "Kunne ikke skaffe oplysninger om fil '%s': %s"
