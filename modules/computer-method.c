@@ -479,7 +479,11 @@ get_data_for_drive (GnomeVFSDrive *drive)
 		uri = gnome_vfs_volume_get_activation_uri (volume);
 		tmp1 = gnome_vfs_drive_get_display_name (drive);
 		tmp2 = gnome_vfs_volume_get_display_name (volume);
-		name = g_strconcat (tmp1, ": ", tmp2, NULL);
+		if (strcmp (tmp1, tmp2) != 0) {
+			name = g_strconcat (tmp1, ": ", tmp2, NULL);
+		} else {
+			name = g_strdup (tmp1);
+		}
 		g_free (tmp1);
 		g_free (tmp2);
 		icon = gnome_vfs_volume_get_icon (volume);
