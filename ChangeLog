@@ -1,3 +1,10 @@
+2001-07-16  Darin Adler  <darin@bentspoon.com>
+
+	* modules/Makefile.am: Had to remove HAVE_GCONF from here to
+	make things build again.
+
+	* AUTHORS: Updated my email address.
+
 2001-07-15  Darin Adler  <darin@bentspoon.com>
 
 	The checks for gconf were always coming out false due to
@@ -56,7 +63,7 @@
 	* modules/pipe-method.c:
 	* modules/ssh-method.c:
 
-	Make module's include more cleanely.
+	Make modules include more cleanly.
 	
 2001-07-07  Seth Nickell  <snickell@stanford.edu>
 
@@ -67,7 +74,7 @@
 	type declarations into a big muddy section called "Types",
 	types are defined in relavent sections. Secondary effects are
 	a more obvious include path and the ability to include more
-	files indepedently.
+	files independently.
 	
 	* doc/tmpl/gnome-vfs-unused.sgml:
 	* doc/tmpl/types.sgml:
@@ -248,7 +255,6 @@
 	gnome_vfs_directory_list_load (..) Add a petty code comment
 	so that people looking at the API's don't have to root around
 	the code trying to figure what is returned in the GList
-	
 
 2001-06-06  Seth Nickell  <snickell@stanford.edu>
 
@@ -390,7 +396,7 @@
 2001-05-31  Robin * Slomkowski  <rslomkow@rslomkow.org>
 
 	* gnome-vfs.spec.in:removed html/*.txt line as it doesn't seem
-		to get populated.
+	to get populated.
 
 2001-05-30  Seth Nickell  <snickell@stanford.edu>
 
@@ -520,7 +526,7 @@ Mon May 28 15:49:55 2001  Jonathan Blandford  <jrb@redhat.com>
 	* po/tr.po:
 	* po/uk.po:
 	* po/wa.po:
-		changed non-ascii mu to "mu" in the msgid 
+	changed non-ascii mu to "mu" in the msgid 
 
 2001-05-23  Chema Celorio  <chema@celorio.com>
 
@@ -698,6 +704,8 @@ Mon May 28 15:49:55 2001  Jonathan Blandford  <jrb@redhat.com>
 
 	* libgnomevfs/gnome-vfs-process.h:
 	Made some changes to make gtkdoc happy.
+
+==== gnome-vfs 1.0.1 ====
 
 2001-05-07  Darin Adler  <darin@eazel.com>
 
