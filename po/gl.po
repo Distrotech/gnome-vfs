@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-11-24 12:07+0100\n"
+"POT-Creation-Date: 2003-12-08 10:44+0100\n"
 "PO-Revision-Date: 2002-06-01 16:17+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <suso@trasno.net>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -482,7 +482,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1100
+#: libgnomevfs/gnome-vfs-utils.c:1105
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr ""
@@ -510,20 +510,20 @@ msgstr ""
 msgid "Camera"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:646
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
 msgid "Root Volume"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:725
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
 msgid "Audio CD"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:756
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
 #, fuzzy
 msgid "Unknown volume"
 msgstr "Erro descoñecido"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
 msgid "Network server"
 msgstr ""
 
@@ -700,6 +700,125 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:1
+msgid "How to handle callto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
+msgid "How to handle ghelp URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
+msgid "How to handle h323 URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
+msgid "How to handle http URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid "How to handle https URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid "How to handle info URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "How to handle mailto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+msgid "How to handle man URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+msgid "How to handle trash URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "Run program in terminal"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "Set to true to have a program specified in command handle callto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid "Set to true to have a program specified in command handle h323 URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+msgid "Set to true to have a program specified in command handle http URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+msgid "Set to true to have a program specified in command handle https URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid "Set to true to have a program specified in command handle mailto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid ""
+"Set to true to have a program specified in programs/ghelp handle ghelp URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid ""
+"Set to true to have a program specified in programs/info handle info URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+msgid "Set to true to have a program specified in programs/man handle man URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+msgid ""
+"Set to true to have a program specified in trash/command handle trash URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+msgid "True if the program to handle this URL should be run in a terminal"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+msgid "URL handler for callto uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+msgid "URL handler for ghelp pages"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+msgid "URL handler for h323 uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+msgid "URL handler for http uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+msgid "URL handler for https uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+msgid "URL handler for info pages"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+msgid "URL handler for mailto uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+msgid "URL handler for man pages"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+msgid "URL handler for trash pages"
 msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:1

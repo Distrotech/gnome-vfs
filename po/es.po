@@ -6,19 +6,20 @@
 # Juan Manuel García Molina <juanma_gm@wanadoo.es>, 2002,2003.
 # Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
 # Francisco Javier F. Serrador <franciscojavier.fernandez.serrador@hispalinux.es>, 2003.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-11-19 03:59+0100\n"
+"POT-Creation-Date: 2003-12-08 10:44+0100\n"
 "PO-Revision-Date: 2003-11-19 11:56+0100\n"
-"Last-Translator: Francisco Javier F. Serrador <franciscojavier.fernandez.serrador@hispalinux.es>\n"
+"Last-Translator: Francisco Javier F. Serrador <franciscojavier.fernandez."
 "serrador@hispalinux.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+"serrador@hispalinux.es>\n"
 "serrador@hispalinux.es>\n"
 "First-Translator: Mauricio Araya Polo <mauricio@eazel.com>\n"
 "X-Generator: KBabel 1.0.2\n"
@@ -485,7 +486,7 @@ msgstr "%.1f MiB"
 msgid "%.1f GB"
 msgstr "%.1f Gib"
 
-#: libgnomevfs/gnome-vfs-utils.c:1100
+#: libgnomevfs/gnome-vfs-utils.c:1105
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
@@ -513,43 +514,52 @@ msgstr "Barra de memoria"
 msgid "Camera"
 msgstr "Cámara"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:646
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
 msgid "Root Volume"
 msgstr "Volumen raíz"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:725
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
 msgid "Audio CD"
 msgstr "CD de sonido"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:756
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
 msgid "Unknown volume"
 msgstr "Volumen desconocido"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
 msgid "Network server"
 msgstr "Servidor de red"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en la unidad."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+"Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
+"la unidad."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Imposible montar el volumen. Probablemente no introdujo un soporte en el dispositivo."
+msgstr ""
+"Imposible montar el volumen. Probablemente no introdujo un soporte en el "
+"dispositivo."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr "Imposible montar la unidad de disquetes. El disquete está en un formato que no puede ser montado."
+msgstr ""
+"Imposible montar la unidad de disquetes. El disquete está en un formato que "
+"no puede ser montado."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "Imposible montar el volumen seleccionado. El volumen está probablemente en un formato que no puede ser montado."
+msgstr ""
+"Imposible montar el volumen seleccionado. El volumen está probablemente en "
+"un formato que no puede ser montado."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
@@ -652,7 +662,8 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr ""
+"Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -703,7 +714,131 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
+msgstr ""
+"El argumento de exec a usar para la aplicación de terminal predeterminada."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:1
+msgid "How to handle callto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
+msgid "How to handle ghelp URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
+msgid "How to handle h323 URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
+msgid "How to handle http URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid "How to handle https URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#, fuzzy
+msgid "How to handle info URLs"
+msgstr "No hay manejador para el esquema de URL"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "How to handle mailto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+msgid "How to handle man URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+#, fuzzy
+msgid "How to handle trash URLs"
+msgstr "No hay manejador para el esquema de URL"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "Run program in terminal"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "Set to true to have a program specified in command handle callto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid "Set to true to have a program specified in command handle h323 URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+msgid "Set to true to have a program specified in command handle http URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+msgid "Set to true to have a program specified in command handle https URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid "Set to true to have a program specified in command handle mailto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid ""
+"Set to true to have a program specified in programs/ghelp handle ghelp URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid ""
+"Set to true to have a program specified in programs/info handle info URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+msgid "Set to true to have a program specified in programs/man handle man URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+msgid ""
+"Set to true to have a program specified in trash/command handle trash URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+msgid "True if the program to handle this URL should be run in a terminal"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+msgid "URL handler for callto uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+#, fuzzy
+msgid "URL handler for ghelp pages"
+msgstr "No hay manejador para el esquema de URL"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+msgid "URL handler for h323 uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+msgid "URL handler for http uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+msgid "URL handler for https uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+msgid "URL handler for info pages"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+msgid "URL handler for mailto uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+msgid "URL handler for man pages"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+#, fuzzy
+msgid "URL handler for trash pages"
+msgstr "No hay manejador para el esquema de URL"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate connections to the proxy server"
@@ -862,4 +997,3 @@ msgstr "usuario del proxy http"
 
 #~ msgid "1 byte"
 #~ msgstr "1 byte"
-
