@@ -86,7 +86,6 @@ fi
 %{prefix}/lib/*.so
 %{prefix}/lib/vfs/extfs/*
 %{prefix}/lib/vfs/modules/*.so
-%{prefix}/man/man5/*.5*
 %{prefix}/share/application-registry/gnome-vfs.applications
 %{prefix}/share/locale/*/LC_MESSAGES/*.mo
 

@@ -1,5 +1,9 @@
 2002-01-28  Darin Adler  <darin@bentspoon.com>
 
+	* gnome-vfs.spec.in: Oops, one more thing to remove.
+
+2002-01-28  Darin Adler  <darin@bentspoon.com>
+
 	* gnome-vfs.spec.in: Patch from Roy-Magne Mo to fix spec file now
 	that gnome-mime-data is separate.
 
