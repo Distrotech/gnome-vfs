@@ -1,3 +1,11 @@
+2002-09-16  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (notify_children_changed_since):
+	Impl, traverse directory children looking for ones which have
+	changed since the last directory change, and emit CHANGED events.
+	(monitor_timeout_cb): Look for iter->data, not iter itself since
+	iter points to a copy of the monitor list.
+
 2002-09-13  Ghee Teo <ghee.teo@sun.com>
 	* Fixes #92132 in modules/http-method.c which leaks file descriptor
 	  on a bad page, error 405.
