@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2001-09-11 00:28-0700\n"
-"PO-Revision-Date: 2001-03-12 18:12-03:00\n"
+"Project-Id-Version: gnome-vfs 1.0.2\n"
+"POT-Creation-Date: 2001-09-16 09:45-0300\n"
+"PO-Revision-Date: 2001-09-16 09:46-03:00\n"
 "Last-Translator: Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br> \n"
 "MIME-Version: 1.0\n"
@@ -1245,9 +1245,8 @@ msgstr "Pedido torna obsoleto os dados do serviço"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:78
-#, fuzzy
 msgid "Protocol error"
-msgstr "Nenhum erro"
+msgstr "Erro de protocolo"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
@@ -1301,144 +1300,3 @@ msgstr "Operação paralizada"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition desconhecido %d"
-
-#~ msgid "Dying."
-#~ msgstr "Morrendo."
-
-#~ msgid "Error reading: %s"
-#~ msgstr "Erro lendo: %s"
-
-#~ msgid "Error writing: %s"
-#~ msgstr "Erro gravando: %s"
-
-#~ msgid "Cannot write: %s"
-#~ msgstr "Não é possível escrever: %s"
-
-#~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Não é possível criar arquivo temporário `%s'"
-
-#~ msgid "Cannot create socket: %s"
-#~ msgstr "Não é possível criar soquete: %s"
-
-#~ msgid "Cannot bind `%s': %s"
-#~ msgstr "Não é possível conectar a `%s': %s"
-
-#~ msgid "Cannot listen on `%s': %s"
-#~ msgstr "Não é possível ouvir em `%s': %s"
-
-#~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Não é possível aceitar conexões em `%s': %s"
-
-#~ msgid "Cannot initialize CORBA."
-#~ msgstr "Não é possível iniciar CORBA."
-
-#~ msgid "Cannot resolve initial reference to RootPOA."
-#~ msgstr "Não é possível resolver a referência inicial à RootPOA."
-
-#~ msgid "Cannot activate POA manager."
-#~ msgstr "Não é possível ativar gerenciador POA."
-
-#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "Uso: %s <ior> [<ior_fd>]\n"
-
-#~ msgid "Cannot open file descriptor %d."
-#~ msgstr "Não é possível abrir descritor de arquivos %d."
-
-#~ msgid "Notify interface for `%s' not found."
-#~ msgstr "Notificando interface para `%s' não encontrado."
-
-#~ msgid "Cannot setup Request object."
-#~ msgstr "Não é possível configurar objeto de Requisição."
-
-#~ msgid "Cannot extract IOR."
-#~ msgstr "Não é possível extrair IOR"
-
-#~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "Cadeia estranha recebida do processo escravo: `%s'"
-
-#~ msgid "Cannot get object for `%s'"
-#~ msgstr "Não é possível obter objeto para `%s'"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Não é possível terminar GNOME::VFS::Slave::Notify -- exceção %s"
-
-#~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "Não é possível conectar ao soquete `%s': %s"
-
-#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-#~ msgstr "Não é possível iniciar GNOME::VFS:Slave::Notify"
-
-#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Não é possível reiniciar GNOME::VFS::Slave %s -- exceção %s"
-
-#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr ""
-#~ "Não é possível reiniciar GNOME::VFS::Slave (IOR desconhecido) -- exceção %"
-#~ "s"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Não é possível terminar GNOME::VFS::Slave %s -- exceção %s"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr ""
-#~ "Não é possível terminar GNOME::VFS::Slave (IOR desconhecido) -- exceção %s"
-
-#~ msgid "%s to retrieve"
-#~ msgstr "%s para recuperar"
-
-#~ msgid "Closing connection to %s"
-#~ msgstr "Fechando conexão à %s"
-
-#~ msgid "%s of %s read"
-#~ msgstr "%s de %s lidos"
-
-#~ msgid "%s read"
-#~ msgstr "%s lidos"
-
-#~ msgid "Back"
-#~ msgstr "Voltar"
-
-#~ msgid "Go to the previously visited directory"
-#~ msgstr "Vai para o diretório visitado anteriormente"
-
-#~ msgid "Up"
-#~ msgstr "Acima"
-
-#~ msgid "Go to the parent directory"
-#~ msgstr "Vai para o diretório pai"
-
-#~ msgid "Forward"
-#~ msgstr "Avançar"
-
-#~ msgid "Go to the next visited directory"
-#~ msgstr "Vai para o próximo diretório visitado"
-
-#~ msgid "Rescan"
-#~ msgstr "Atualizar"
-
-#~ msgid "Rescan the current directory"
-#~ msgstr "Atualiza o diretório corrente"
-
-#~ msgid "Home"
-#~ msgstr "Início"
-
-#~ msgid "Go to the home directory"
-#~ msgstr "Vai para o seu diretório pessoal"
-
-#~ msgid "Name"
-#~ msgstr "Nome"
-
-#~ msgid "Size"
-#~ msgstr "Tamanho"
-
-#~ msgid "Date"
-#~ msgstr "Data"
-
-#~ msgid "Enter name:"
-#~ msgstr "Entre nome:"
-
-#~ msgid "Show:"
-#~ msgstr "Exibir:"
-
-#~ msgid "Show dotfiles"
-#~ msgstr "Exibir arquivos escondidos"
