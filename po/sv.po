@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-18 22:06+0200\n"
-"PO-Revision-Date: 2004-07-18 22:06+0200\n"
+"POT-Creation-Date: 2004-07-24 12:28+0200\n"
+"PO-Revision-Date: 2004-07-24 12:28+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,94 @@ msgstr "Kunde inte initiera Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Kunde inte initiera gnome-vfs"
+
+#: libgnomevfs/eggdesktopentries.c:226
+#, c-format
+msgid "File could not be opened: %s"
+msgstr "Filen kunde inte öppnas: %s"
+
+#: libgnomevfs/eggdesktopentries.c:325
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Misslyckades med att öppna filen \"%s\": %s"
+
+#: libgnomevfs/eggdesktopentries.c:338
+msgid "File is empty"
+msgstr "Filen är tom"
+
+#: libgnomevfs/eggdesktopentries.c:360
+#, c-format
+msgid "Failed to read from file '%s': %s"
+msgstr "Misslyckades med att läsa från filen \"%s\": %s"
+
+#: libgnomevfs/eggdesktopentries.c:575
+#, c-format
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr ""
+"skrivbordsposter innehåller raden \"%s\" som inte är en post, grupp eller "
+"kommentar"
+
+#: libgnomevfs/eggdesktopentries.c:651
+msgid "desktop entries file does not start with legal start group"
+msgstr "skrivbordspostfilen börjar inte med en tillåten startgrupp"
+
+#: libgnomevfs/eggdesktopentries.c:708
+#, c-format
+msgid "desktop entries contain line '%s' which is not UTF-8"
+msgstr "skrivbordsposter innehåller raden \"%s\" som inte är UTF-8"
+
+#: libgnomevfs/eggdesktopentries.c:731
+#, c-format
+msgid "desktop entries contain unknown encoding '%s'"
+msgstr "skrivbordsposter innehåller okända kodningen \"%s\""
+
+#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
+#: libgnomevfs/eggdesktopentries.c:1217
+#, c-format
+msgid "desktop entries do not have group '%s'"
+msgstr "skrivbordsposter har inte gruppen \"%s\""
+
+#: libgnomevfs/eggdesktopentries.c:1044
+#, c-format
+msgid "desktop entries do not have key '%s'"
+msgstr "skrivbordsposter har inte nyckeln \"%s\""
+
+#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
+#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#, c-format
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ""
+"skrivbordsposter innehåller nyckeln \"%s\" som har ett värde som inte kan "
+"tolkas."
+
+#: libgnomevfs/eggdesktopentries.c:1297
+#, c-format
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr ""
+"skrivbordsposter innehåller inget översatt värde för nyckeln \"%s\" i "
+"lokalen \"%s\"."
+
+#: libgnomevfs/eggdesktopentries.c:2218
+#, c-format
+msgid "desktop entries contain invalid escape sequence '%s'"
+msgstr "skrivbordsposter innehåller ogiltiga kontrollsekvensen \"%s\""
+
+#: libgnomevfs/eggdesktopentries.c:2235
+msgid "desktop entries contain escape character at end of line"
+msgstr "skrivbordsposter innehåller kontrolltecken vid radslut"
+
+#: libgnomevfs/eggdesktopentries.c:2260
+#, c-format
+msgid "Value '%s' cannot be interpreted as a number."
+msgstr "Värdet \"%s\" kan inte tolkas som ett tal."
+
+#: libgnomevfs/eggdesktopentries.c:2287
+#, c-format
+msgid "Value '%s' cannot be interpreted as a boolean."
+msgstr "Värdet \"%s\" kan inte tolkas som ett booleskt värde."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -173,26 +261,30 @@ msgid "Pcfs Solaris Volume"
 msgstr "Pcfs-Solarisvolym"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
+msgid "Sun SAM-QFS Volume"
+msgstr "Sun SAM-QFS-volym"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
 msgstr "Förbättrad DOS-volym"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT-volym"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
 msgstr "Xenixvolym"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XFS Linux Volume"
 msgstr "XFS-Linuxvolym"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XIAFS Volume"
 msgstr "XIAFS-volym"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:103
+#: libgnomevfs/gnome-vfs-filesystem-type.c:104
 msgid "Unknown"
 msgstr "Okänd"
 
@@ -326,6 +418,29 @@ msgstr "Okänd jobbtyp %u"
 #: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "Operationen stoppad"
+
+#: libgnomevfs/gnome-vfs-mime-handlers.c:82
+#: libgnomevfs/gnome-vfs-mime-handlers.c:237
+#: libgnomevfs/gnome-vfs-mime-handlers.c:288
+#: libgnomevfs/gnome-vfs-mime-handlers.c:558
+#: libgnomevfs/gnome-vfs-mime-handlers.c:577
+#: libgnomevfs/gnome-vfs-mime-handlers.c:595
+#: libgnomevfs/gnome-vfs-mime-handlers.c:614
+#: libgnomevfs/gnome-vfs-mime-handlers.c:633
+#: libgnomevfs/gnome-vfs-mime-handlers.c:774
+#: libgnomevfs/gnome-vfs-mime-handlers.c:796
+#: libgnomevfs/gnome-vfs-mime-handlers.c:815
+#: libgnomevfs/gnome-vfs-mime-handlers.c:834
+#: libgnomevfs/gnome-vfs-mime-handlers.c:887
+#: libgnomevfs/gnome-vfs-mime-handlers.c:904
+#: libgnomevfs/gnome-vfs-mime-handlers.c:921
+#: libgnomevfs/gnome-vfs-mime-handlers.c:939
+#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
+"Föråldrad funktion. Användarändringar i MIME-databasen stöds inte längre."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -567,7 +682,7 @@ msgid "Error launching command"
 msgstr "Fel vid start av kommando"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: libgnomevfs/gnome-vfs-result.c:84
+#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
 msgstr "Timeout nåddes"
 
@@ -576,7 +691,17 @@ msgstr "Timeout nåddes"
 msgid "Nameserver error"
 msgstr "Namnserverfel"
 
-#: libgnomevfs/gnome-vfs-result.c:200
+#. GNOME_VFS_ERROR_LOCKED
+#: libgnomevfs/gnome-vfs-result.c:87
+msgid "The resource is locked"
+msgstr "Resursen är låst"
+
+#. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
+#: libgnomevfs/gnome-vfs-result.c:88
+msgid "Function call deprecated"
+msgstr "Funktionsanropet är föråldrat"
+
+#: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
 msgstr "Okänt fel"
 
@@ -864,161 +989,214 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Exekveringsargumentet att använda för standardterminalprogrammet."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "H323 URL handler"
-msgstr "Hanterare för H323-URL:er"
+msgid "Run the command in a terminal"
+msgstr "Kör kommandot i ett terminalfönster"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "HTTP URL handler"
-msgstr "Hanterare för HTTP-URL:er"
+msgid "The command used to handle \"aim\" URLs, if enabled."
+msgstr "Kommandot som används för att hantera \"aim\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "HTTPS URL handler"
-msgstr "Hanterare för HTTPS-URL:er"
+msgid "The command used to handle \"callto\" URLs, if enabled."
+msgstr "Kommandot som används för att hantera \"callto\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-msgid "Handle H323 URLs"
-msgstr "Hantera h323-URL:er"
+msgid "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr "Kommandot som används för att hantera \"ghelp\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-msgid "Handle HTTP URLs"
-msgstr "Hantera HTTP-URL:er"
+msgid "The command used to handle \"info\" URLs, if enabled."
+msgstr "Kommandot som används för att hantera \"info\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "Handle HTTPS URLs"
-msgstr "Hantera HTTPS-URL:er"
+msgid "The command used to handle \"mailto\" URLs, if enabled."
+msgstr "Kommandot som används för att hantera \"mailto\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-msgid "Handle aim URLs"
-msgstr "Hantera aim-URL:er"
+msgid "The command used to handle \"man\" URLs, if enabled."
+msgstr "Kommandot som används för att hantera \"man\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "Handle callto URLs"
-msgstr "Hantera callto-URL:er"
+msgid "The command used to handle \"trash\" URLs, if enabled."
+msgstr "Kommandot som används för att hantera \"trash\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "Handle ghelp URLs"
-msgstr "Hantera ghelp-URL:er"
+msgid "The command used to handle H323 URLs, if enabled."
+msgstr "Kommandot som används för att hantera H323-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "Handle info URLs"
-msgstr "Hantera info-URL:er"
+msgid "The command used to handle HTTP URLs, if enabled."
+msgstr "Kommandot som används för att hantera HTTP-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Handle mailto URLs"
-msgstr "Hantera mailto-URL:er"
+msgid "The command used to handle HTTPS URLs, if enabled."
+msgstr "Kommandot som används för att hantera HTTPS-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Handle man URLs"
-msgstr "Hantera man-URL:er"
+msgid "The handler for \"aim\" URLs"
+msgstr "Hanteraren för \"aim\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Handle trash URLs"
-msgstr "Hantera trash-URL:er"
+msgid "The handler for \"callto\" URLs"
+msgstr "Hanteraren för \"callto\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Run program in terminal"
-msgstr "Kör program i terminalfönster"
+msgid "The handler for \"ghelp\" URLs"
+msgstr "Hanteraren för \"ghelp\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
-"hantera H323-URL:er."
+msgid "The handler for \"info\" URLs"
+msgstr "Hanteraren för \"info\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
-"hantera HTTP-URL:er."
+msgid "The handler for \"mailto\" URLs"
+msgstr "Hanteraren för \"mailto\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
-"hantera HTTPS-URL:er."
+msgid "The handler for \"man\" URLs"
+msgstr "Hanteraren för \"man\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle aim URLs."
-msgstr ""
-"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
-"hantera aim-URL:er."
+msgid "The handler for \"trash\" URLs"
+msgstr "Hanteraren för \"trash\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
-"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
-"hantera callto-URL:er."
+msgid "The handler for H323 URLs"
+msgstr "Hanteraren för H323-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
-"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
-"hantera ghelp-URL:er."
+msgid "The handler for HTTP URLs"
+msgstr "Hanteraren för HTTP-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
-"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
-"hantera info-URL:er."
+msgid "The handler for HTTPS URLs"
+msgstr "Hanteraren för HTTPS-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
 msgstr ""
-"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
-"hantera mailto-URL:er."
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"aim\"-"
+"URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
 msgstr ""
-"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
-"hantera man-URL:er."
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"callto"
+"\"-URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
 msgstr ""
-"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
-"hantera trash-URL:er."
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"ghelp\"-"
+"URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the program to handle this URL should be run in a terminal."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
 msgstr ""
-"Sant om programmet för att hantera denna URL ska köras i ett terminalfönster."
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"info\"-"
+"URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "aim URL handler"
-msgstr "Hanterare för aim-URL:er"
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"mailto"
+"\"-URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "callto URL handler"
-msgstr "Hanterare för callto-URL:er"
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"man\"-"
+"URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "ghelp URL handler"
-msgstr "Hanterare för ghelp-URL:er"
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
+msgstr ""
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"trash\"-"
+"URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "info URL handler"
-msgstr "Hanterare för info-URL:er"
+msgid ""
+"True if the command specified in the \"command\" key should handle H323 URLs."
+msgstr ""
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera H323-URL:"
+"er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "mailto URL handler"
-msgstr "Hanterare för mailto-URL:er"
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTP URLs."
+msgstr ""
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera HTTP-URL:"
+"er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "man URL handler"
-msgstr "Hanterare för man-URL:er"
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTPS "
+"URLs."
+msgstr ""
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera HTTPS-URL:"
+"er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "trash URL handler"
-msgstr "Hanterare för trash-URL:er"
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+msgstr ""
+"Sant om kommandot för att hantera denna typ av URL ska köras i ett "
+"terminalfönster."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:33
+msgid "Whether the specified command should handle \"aim\" URLs"
+msgstr "Huruvida det angivna kommandot ska hantera \"aim\"-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:34
+msgid "Whether the specified command should handle \"callto\" URLs"
+msgstr "Huruvida det angivna kommandot ska hantera \"callto\"-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:35
+msgid "Whether the specified command should handle \"ghelp\" URLs"
+msgstr "Huruvida det angivna kommandot ska hantera \"ghelp\"-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+msgid "Whether the specified command should handle \"info\" URLs"
+msgstr "Huruvida det angivna kommandot ska hantera \"info\"-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+msgid "Whether the specified command should handle \"mailto\" URLs"
+msgstr "Huruvida det angivna kommandot ska hantera \"mailto\"-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+msgid "Whether the specified command should handle \"man\" URLs"
+msgstr "Huruvida det angivna kommandot ska hantera \"man\"-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+msgid "Whether the specified command should handle \"trash\" URLs"
+msgstr "Huruvida det angivna kommandot ska hantera \"trash\"-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
+msgid "Whether the specified command should handle H323 URLs"
+msgstr "Huruvida det angivna kommandot ska hantera H323-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
+msgid "Whether the specified command should handle HTTP URLs"
+msgstr "Huruvida det angivna kommandot ska hantera HTTP-URL:er"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
+msgid "Whether the specified command should handle HTTPS URLs"
+msgstr "Huruvida det angivna kommandot ska hantera HTTPS-URL:er"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1036,8 +1214,8 @@ msgid "How to display local DNS-SD service"
 msgstr "Hur den lokala DNS-SD-tjänsten ska visas"
 
 #: schemas/system_dns_sd.schemas.in.h:4
-msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr "Möjliga värden är \"merged\", \"separate\" och \"disabled\""
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
+msgstr "Möjliga värden är \"merged\", \"separate\" och \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1204,9 +1382,59 @@ msgstr "SMB-arbetsgrupp"
 msgid "The window workgroup the user is part of"
 msgstr "Fönsterarbetsgruppen som användaren är del av"
 
-#, fuzzy
+#~ msgid "H323 URL handler"
+#~ msgstr "Hanterare för H323-URL:er"
+
+#~ msgid "HTTP URL handler"
+#~ msgstr "Hanterare för HTTP-URL:er"
+
+#~ msgid "HTTPS URL handler"
+#~ msgstr "Hanterare för HTTPS-URL:er"
+
+#~ msgid "Handle callto URLs"
+#~ msgstr "Hantera callto-URL:er"
+
+#~ msgid "Handle ghelp URLs"
+#~ msgstr "Hantera ghelp-URL:er"
+
+#~ msgid "Handle info URLs"
+#~ msgstr "Hantera info-URL:er"
+
+#~ msgid "Handle mailto URLs"
+#~ msgstr "Hantera mailto-URL:er"
+
+#~ msgid "Handle man URLs"
+#~ msgstr "Hantera man-URL:er"
+
+#~ msgid "Handle trash URLs"
+#~ msgstr "Hantera trash-URL:er"
+
+#~ msgid "aim URL handler"
+#~ msgstr "Hanterare för aim-URL:er"
+
+#~ msgid "callto URL handler"
+#~ msgstr "Hanterare för callto-URL:er"
+
+#~ msgid "ghelp URL handler"
+#~ msgstr "Hanterare för ghelp-URL:er"
+
+#~ msgid "info URL handler"
+#~ msgstr "Hanterare för info-URL:er"
+
+#~ msgid "mailto URL handler"
+#~ msgstr "Hanterare för mailto-URL:er"
+
+#~ msgid "man URL handler"
+#~ msgstr "Hanterare för man-URL:er"
+
+#~ msgid "trash URL handler"
+#~ msgstr "Hanterare för trash-URL:er"
+
+#~ msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
+#~ msgstr "Möjliga värden är \"merged\", \"separate\" och \"disabled\""
+
 #~ msgid "Could not write to file: %s"
-#~ msgstr "Kunde inte tolka: %s"
+#~ msgstr "Kunde inte skriva till filen: %s"
 
 #, fuzzy
 #~ msgid "Could not inflate data"
@@ -1308,14 +1536,8 @@ msgstr "Fönsterarbetsgruppen som användaren är del av"
 #~ msgid "Could not create SSL structure"
 #~ msgstr "Kunde inte tolka: %s"
 
-#~ msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-#~ msgstr "Möjliga värden är \"merged\", \"separate\" och \"disabled\"."
-
 #~ msgid "Bookmark saving failed (%s)"
 #~ msgstr "Sparande av bokmärke misslyckades (%s)"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Misslyckades med att öppna filen \"%s\": %s"
 
 #~ msgid ""
 #~ "Failed to load image '%s': reason not known, probably a corrupt image file"
@@ -1368,12 +1590,6 @@ msgstr "Fönsterarbetsgruppen som användaren är del av"
 #~ "Sätt detta till sant för att ett program som är angivet i programs/man "
 #~ "ska hantera man-URL:er"
 
-#~ msgid "URL handler for callto uris"
-#~ msgstr "URL-hanterare för callto-URI:er"
-
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "Ingen hanterare för ghelp-sidor"
-
 #~ msgid "URL handler for h323 uris"
 #~ msgstr "URL-hanterare för h323-URI:er"
 
@@ -1382,18 +1598,6 @@ msgstr "Fönsterarbetsgruppen som användaren är del av"
 
 #~ msgid "URL handler for https uris"
 #~ msgstr "URL-hanterare för https-URI:er"
-
-#~ msgid "URL handler for info pages"
-#~ msgstr "URL-hanterare för infosidor"
-
-#~ msgid "URL handler for mailto uris"
-#~ msgstr "URL-hanterare för mailto-URI:er"
-
-#~ msgid "URL handler for man pages"
-#~ msgstr "URL-hanterare för manualsidor"
-
-#~ msgid "URL handler for trash pages"
-#~ msgstr "URL-hanterare för papperskorgssidor"
 
 #~ msgid "Hosts are not contacted via the proxy"
 #~ msgstr "Värdar kontaktas inte via proxyservern"
