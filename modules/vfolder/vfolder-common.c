@@ -4,6 +4,7 @@
 #endif
 
 #include <string.h>
+#include <sys/time.h>
 
 #include <glib.h>
 #include <libgnomevfs/gnome-vfs-directory.h>
@@ -32,7 +33,9 @@ entry_new (VFolderInfo *info,
 	entry->displayname = g_strdup (displayname);
 	entry->user_private = user_private;
 
-	vfolder_info_add_entry (info, entry);
+	/* Lame-O special case .directory handling */
+	if (strcmp (displayname, ".directory") != 0)
+		vfolder_info_add_entry (info, entry);
 
 	return entry;
 }
@@ -62,28 +65,12 @@ void
 entry_alloc (Entry *entry)
 {
 	entry->allocs++;
-
-	/*
-	if (entry->allocs == 1) {
-		entry->info->unallocated_entries = 
-			g_slist_remove (entry->info->unallocated_entries, 
-					entry);
-	}
-	*/
 }
 
 void
 entry_dealloc (Entry *entry)
 {
 	entry->allocs--;
-
-	/*
-	if (entry->allocs == 0) {
-		entry->info->unallocated_entries = 
-			g_slist_prepend (entry->info->unallocated_entries, 
-					 entry);
-	}
-	*/
 }
 
 gboolean 
@@ -92,21 +79,40 @@ entry_is_allocated (Entry *entry)
 	return entry->allocs == 0;
 }
 
+static gchar *
+uniqueify_file_name (gchar *file)
+{
+	struct timeval tv;
+	gchar *ext;
+	int len = strlen (file);
+
+	gettimeofday (&tv, NULL);
+
+	ext = strstr (file, ".desktop");
+	if (ext) 
+		len -= strlen (".desktop");
+	
+	return g_strdup_printf ("%*s-%d.desktop", 
+				len, 
+				file, 
+				(int) (tv.tv_sec ^ tv.tv_usec));
+}
+
 gboolean 
 entry_make_user_private (Entry *entry)
 {
 	GnomeVFSURI *src_uri, *dest_uri;
 	GnomeVFSResult result;
-	gchar *filename;
+	gchar *uniqname, *filename;
 
 	if (entry->user_private)
 		return TRUE;
 
 	src_uri = entry_get_real_uri (entry);
 
-	// FIXME: get unique name for file, but leave displayname
-	filename = entry_get_displayname (entry);
-	filename = g_build_path (entry->info->write_dir, filename, NULL);
+	uniqname = uniqueify_file_name (entry_get_displayname (entry));
+	filename = g_build_path (entry->info->write_dir, uniqname, NULL);
+	g_free (uniqname);
 
 	dest_uri = gnome_vfs_uri_new (filename);
 
@@ -125,6 +131,8 @@ entry_make_user_private (Entry *entry)
 		entry_set_filename (entry, filename);
 		entry->user_private = TRUE;		
 	}
+
+	g_free (filename);
 	
 	return result == GNOME_VFS_OK;
 }
@@ -139,22 +147,55 @@ void
 entry_set_dirty (Entry *entry)
 {
 	gboolean changed = FALSE;
-	gchar *categories, *sortorder;
+	gchar *keywords, *only_show_in;
+	int i;
 
-	// FIXME: implement
-
-	// FIXME: OnlyShowIn
 	entry_quick_read_keys (entry, 
 			       "Categories",
-			       &categories,
-			       "SortOrder",
-			       &sortorder);
+			       &keywords,
+			       "OnlyShowIn",
+			       &only_show_in);
 
-	if (changed) {
-		vfolder_info_emit_change (entry->info,
-					  entry_get_filename (entry),
-					  GNOME_VFS_MONITOR_EVENT_CHANGED);
+	if (keywords) {
+		char **parsed = g_strsplit (keywords, ";", -1);
+		GSList *keylist = entry_get_keywords (entry);
+
+		for (i = 0; parsed[i] != NULL; i++) {
+			GQuark quark;
+			const char *word = parsed[i];
+
+			/* ignore empties (including end of list) */
+			if (word[0] == '\0')
+				continue;
+
+			quark = g_quark_from_string (word);
+			if (!g_slist_find (keylist, GINT_TO_POINTER (quark))) {
+				D (g_print ("ADDING KEYWORD: %s\n", word));
+				entry_add_implicit_keyword (
+					entry, 
+					g_quark_from_string (word));
+				changed = TRUE;
+			}
+		}
+		g_strfreev (parsed);
 	}
+
+	/* FIXME: Support this */
+	if (only_show_in != NULL) {
+		gboolean show = FALSE;
+		char **parsed = g_strsplit (only_show_in, ";", -1);
+
+		for (i = 0; parsed[i] != NULL; i++) {
+			if (strcmp (parsed[i], "GNOME") == 0) {
+				show = TRUE;
+				break;
+			}
+		}
+		g_strfreev (parsed);
+	}
+
+	g_free (only_show_in);
+	g_free (keywords);
 }
 
 void          
@@ -162,6 +203,8 @@ entry_set_filename (Entry *entry, gchar *name)
 {
 	g_free (entry->filename);
 	entry->filename = g_strdup (name);
+
+	entry_set_dirty (entry);
 }
 
 gchar *
@@ -196,13 +239,15 @@ entry_get_real_uri (Entry *entry)
 GSList *
 entry_get_keywords (Entry *entry)
 {
-	return g_slist_concat (entry->keywords, entry->added_keywords);
+	return entry->keywords;
 }
 
 void 
 entry_add_implicit_keyword (Entry *entry, GQuark keyword)
 {
-	g_slist_prepend (entry->keywords, GINT_TO_POINTER (keyword));
+	entry->has_implicit_keywords = TRUE;
+	entry->keywords = g_slist_prepend (entry->keywords, 
+					   GINT_TO_POINTER (keyword));
 }
 
 void 
@@ -282,6 +327,29 @@ entry_quick_read_keys (Entry  *entry,
 	gnome_vfs_close (handle);
 }
 
+void
+entry_dump (Entry *entry, int indent)
+{
+	gchar *space = g_strnfill (indent, ' ');
+	GSList *keywords = entry_get_keywords (entry), *iter;
+
+	g_print ("%s%s\n%s  Filename: %s\n%s  Keywords: ",
+		 space,
+		 entry_get_displayname (entry),
+		 space,
+		 entry_get_filename (entry),
+		 space);
+
+	for (iter = keywords; iter; iter = iter->next) {
+		GQuark quark = GPOINTER_TO_INT (iter->data);
+		g_print (g_quark_to_string (quark));
+	}
+
+	g_print ("\n");
+
+	g_free (space);
+}
+
 
 
 /* 
@@ -293,6 +361,7 @@ folder_new (VFolderInfo *info, gchar *name)
 	Folder *folder = g_new0 (Folder, 1);
 	folder->name = g_strdup (name);
 	folder->info = info;
+	folder->refcnt = 1;
 	return folder;
 }
 
@@ -308,12 +377,16 @@ folder_unref (Folder *folder)
 	folder->refcnt--;
 
 	if (folder->refcnt == 0) {
+		D (g_print ("DESTORYING FOLDER: %s\n", folder->name));
+
 		g_free (folder->name);
 		g_free (folder->extend_uri);
 		query_free (folder->query);
 
-		g_hash_table_destroy (folder->excludes);
-		g_hash_table_destroy (folder->includes_ht);
+		if (folder->excludes)
+			g_hash_table_destroy (folder->excludes);
+		if (folder->includes_ht)
+			g_hash_table_destroy (folder->includes_ht);
 		g_slist_free (folder->includes);
 
 		g_slist_foreach (folder->subfolders, 
@@ -321,10 +394,16 @@ folder_unref (Folder *folder)
 				 NULL);
 		g_slist_free (folder->subfolders);
 
+		if (folder->subfolders_ht)
+			g_hash_table_destroy (folder->subfolders_ht);
+
 		g_slist_foreach (folder->entries, 
 				 (GFunc) entry_unref, 
 				 NULL);
 		g_slist_free (folder->entries);
+
+		if (folder->entries_ht)
+			g_hash_table_destroy (folder->entries_ht);
 
 		g_free (folder);
 	}
@@ -341,7 +420,12 @@ folder_make_user_private (Folder *folder)
 		    !folder_make_user_private (folder->parent))
 			return FALSE;
 
-		folder->parent->has_user_private_subfolders = TRUE;
+		if (!folder->parent->has_user_private_subfolders) {
+			Folder *iter;
+
+			for (iter = folder->parent; iter; iter = iter->parent)
+				iter->has_user_private_subfolders = TRUE;
+		}
 	}
 
 	folder->user_private = TRUE;
@@ -363,10 +447,12 @@ check_include_exclude (Folder *folder, gchar *name)
 {
 	int retval = 0;
 
-	if (g_hash_table_lookup (folder->includes_ht, name))
+	if (folder->includes_ht && 
+	    g_hash_table_lookup (folder->includes_ht, name))
 		retval++;
 
-	if (g_hash_table_lookup (folder->excludes, name))
+	if (folder->excludes &&
+	    g_hash_table_lookup (folder->excludes, name))
 		retval--;
 
 	return retval;
@@ -375,48 +461,44 @@ check_include_exclude (Folder *folder, gchar *name)
 static gboolean
 read_extended_entries (Folder *folder)
 {
-	GnomeVFSDirectoryHandle *handle;
 	GnomeVFSResult result;
-	GnomeVFSFileInfo file_info;
 	Query *query;
+	GList *flist, *iter;
 	gboolean changed = FALSE;
 	gchar *extend_uri;
 
 	query = folder_get_query (folder);
 
 	extend_uri = folder_get_extend_uri (folder);
-	result = gnome_vfs_directory_open (&handle,
-					   extend_uri,
-					   GNOME_VFS_FILE_INFO_DEFAULT);
+	result = gnome_vfs_directory_list_load (&flist,
+						extend_uri,
+						GNOME_VFS_FILE_INFO_DEFAULT);
+	if (result != GNOME_VFS_OK)
+		return FALSE;
 
-	while (result == GNOME_VFS_OK) {
+	for (iter = flist; iter; iter = iter->next) {
+		GnomeVFSFileInfo *file_info = iter->data;
 		gchar *file_uri;
 
-		gnome_vfs_file_info_clear (&file_info);
+		file_uri = g_build_filename (extend_uri, file_info->name, NULL);
 
-		result = gnome_vfs_directory_read_next (handle, &file_info);
-		if (result != GNOME_VFS_OK)
-			break;
-
-		file_uri = g_build_filename (extend_uri, file_info.name, NULL);
-
-		if (file_info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			Folder *sub;
 
 			/* Include/Exclude of directories is just dirname */
 			if (check_include_exclude (folder, 
-						   file_info.name) == -1) {
+						   file_info->name) == -1) {
 				g_free (file_uri);
 				continue;
 			}
 
 			/* Don't allow duplicate named subfolders */
-			if (folder_get_subfolder (folder, file_info.name)) {
+			if (folder_get_subfolder (folder, file_info->name)) {
 				g_free (file_uri);
 				continue;
 			}
 
-			sub = folder_new (folder->info, file_info.name);
+			sub = folder_new (folder->info, file_info->name);
 			folder_set_extend_uri (sub, file_uri);
 
 			folder_add_subfolder (folder, sub);
@@ -436,12 +518,19 @@ read_extended_entries (Folder *folder)
 
 			entry = entry_new (folder->info, 
 					   file_uri,
-					   file_info.name, 
+					   file_info->name, 
 					   FALSE);
 			entry_set_filename (entry, file_uri);
 
 			/* Include unless specifically excluded by query */
 			if (!query || query_try_match (query, folder, entry)) {
+				D (g_print ("ADDING EXTENDED ENTRY: "
+					    "%s, %s, #%d!\n",
+					    folder_get_name (folder),
+					    entry_get_displayname (entry),
+					    g_slist_length ((GSList*)
+						folder_list_entries (folder))));
+
 				folder_add_entry (folder, entry);
 				entry_alloc (entry);
 
@@ -454,8 +543,7 @@ read_extended_entries (Folder *folder)
 		g_free (file_uri);
 	}
 
-	gnome_vfs_file_info_clear (&file_info);
-	gnome_vfs_directory_close (handle);
+	gnome_vfs_file_info_list_free (flist);
 
 	return changed;
 }
@@ -467,16 +555,15 @@ read_info_entry_pool (Folder *folder)
 	Query *query;
 	gboolean changed = FALSE;
 
+	if (folder->only_unallocated)
+		return FALSE;
+
 	query = folder_get_query (folder);
 	all_entries = vfolder_info_list_all_entries (folder->info);
 
 	for (iter = all_entries; iter; iter = iter->next) {
 		Entry *entry = iter->data;
 		int include;
-
-		if (folder->only_unallocated &&
-		    entry_is_allocated (entry)) 
-			continue;
 
 		include = check_include_exclude (folder, 
 						 entry_get_filename (entry));
@@ -486,16 +573,17 @@ read_info_entry_pool (Folder *folder)
 		/* Only include if matches query, or is explicitly included */
 		if (include == 1 || 
 		    (query && query_try_match (query, folder, entry))) {
+			D (g_print ("ADDING POOL ENTRY: %s, %s, #%d!!!!\n",
+				    folder_get_name (folder),
+				    entry_get_displayname (entry),
+				    g_slist_length ((GSList*)
+					    folder_list_entries (folder))));
+
 			folder_add_entry (folder, entry);
 			entry_alloc (entry);
 
 			changed = TRUE;
 		} 
-		else if (folder->only_unallocated &&
-			   !entry_is_allocated (entry)) {
-			// FIXME: This is broke
-			folder_add_entry (folder, entry);
-		}
 	}
 
 	return changed;
@@ -524,10 +612,15 @@ folder_emit_changed (Folder                   *folder,
 	g_free (uri);
 }
 
-void
-folder_set_dirty (Folder *folder)
+static void
+folder_reload_if_needed (Folder *folder)
 {
 	gboolean changed = FALSE;
+
+	if (!folder->dirty || folder->loading)
+		return;
+
+	folder->loading = TRUE;
 
 	if (folder_get_extend_uri (folder)) 
 		changed = read_extended_entries (folder);
@@ -536,7 +629,16 @@ folder_set_dirty (Folder *folder)
 		changed = read_info_entry_pool (folder);
 
 	if (changed)
-		folder_emit_changed (folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
+		folder_emit_changed (folder, GNOME_VFS_MONITOR_EVENT_CHANGED);	
+
+	folder->loading = FALSE;
+	folder->dirty = FALSE;
+}
+
+void
+folder_set_dirty (Folder *folder)
+{
+	folder->dirty = TRUE;
 }
 
 void 
@@ -544,6 +646,8 @@ folder_set_name (Folder *folder, gchar *name)
 {
 	g_free (folder->name);
 	folder->name = g_strdup (name);
+
+	vfolder_info_set_dirty (folder->info);
 }
 
 gchar *
@@ -559,6 +663,9 @@ folder_set_query (Folder *folder, Query *query)
 		query_free (folder->query);
 
 	folder->query = query;
+
+	folder_set_dirty (folder);
+	vfolder_info_set_dirty (folder->info);
 }
 
 Query *
@@ -572,6 +679,9 @@ folder_set_extend_uri (Folder *folder, gchar *uri)
 {
 	g_free (folder->extend_uri);
 	folder->extend_uri = g_strdup (uri);
+
+	folder_set_dirty (folder);
+	vfolder_info_set_dirty (folder->info);
 }
 
 gchar *
@@ -585,12 +695,15 @@ folder_set_desktop_file (Folder *folder, gchar *filename)
 {
 	g_free (folder->desktop_file);
 	folder->desktop_file = g_strdup (filename);
+
+	folder_set_dirty (folder); /* Is this needed? Just cache the sort */
+	vfolder_info_set_dirty (folder->info);
 }
 
-Entry *
-folder_get_desktop_file  (Folder *folder)
+gchar *
+folder_get_desktop_file (Folder *folder)
 {
-	return NULL;		
+	return folder->desktop_file;
 }
 
 gboolean 
@@ -601,7 +714,12 @@ folder_get_child  (Folder *folder, gchar *name, FolderChild *child)
 
 	memset (child, 0, sizeof (FolderChild));
 
-	subdir = folder_get_subfolder (folder, name);
+	if (name)
+		subdir = folder_get_subfolder (folder, name);
+	else
+		/* No name, just return the parent folder */
+		subdir = folder;
+
 	if (subdir) {
 		child->type = FOLDER;
 		child->folder = subdir;
@@ -615,12 +733,23 @@ folder_get_child  (Folder *folder, gchar *name, FolderChild *child)
 		return TRUE;
 	}
 
+	if (folder->only_unallocated) {
+		file = vfolder_info_lookup_entry (folder->info, name);
+		if (file) {
+			child->type = DESKTOP_FILE;
+			child->entry = file;
+			return TRUE;
+		}
+	}
+
 	return FALSE;
 }
 
 Entry *
 folder_get_entry (Folder *folder, gchar *filename)
 {
+	folder_reload_if_needed (folder);
+
 	if (!folder->entries_ht)
 		return NULL;
 
@@ -630,9 +759,15 @@ folder_get_entry (Folder *folder, gchar *filename)
 const GSList *
 folder_list_entries (Folder *folder)
 {
+	folder_reload_if_needed (folder);
+
 	return folder->entries;
 }
 
+/* 
+ * This doesn't set the folder dirty. 
+ * Use the include/exclude functions for that.
+ */
 void 
 folder_remove_entry (Folder *folder, Entry *entry)
 {
@@ -650,6 +785,10 @@ folder_remove_entry (Folder *folder, Entry *entry)
 	}
 }
 
+/* 
+ * This doesn't set the folder dirty. 
+ * Use the include/exclude functions for that.
+ */
 void 
 folder_add_entry (Folder *folder, Entry *entry)
 {
@@ -682,6 +821,9 @@ folder_add_include (Folder *folder, gchar *include)
 
 	folder->includes = g_slist_prepend (folder->includes, str);
 	g_hash_table_insert (folder->includes_ht, str, folder->includes);
+
+	folder_set_dirty (folder);
+	vfolder_info_set_dirty (folder->info);
 }
 
 void 
@@ -702,6 +844,9 @@ folder_remove_include (Folder *folder, gchar *file)
 		folder->includes = g_slist_delete_link (folder->includes, li);
 		g_hash_table_remove (folder->includes_ht, li);
 	}
+
+	folder_set_dirty (folder);
+	vfolder_info_set_dirty (folder->info);
 }
 
 void
@@ -718,6 +863,9 @@ folder_add_exclude (Folder *parent, gchar *exclude)
 
 	s = g_strdup (exclude);
 	g_hash_table_replace (parent->excludes, s, s);
+
+	folder_set_dirty (parent);
+	vfolder_info_set_dirty (parent->info);
 }
 
 void 
@@ -727,12 +875,17 @@ folder_remove_exclude (Folder *folder, gchar *file)
 		return;
 
 	g_hash_table_remove (folder->excludes, file);
+
+	folder_set_dirty (folder);
+	vfolder_info_set_dirty (folder->info);
 }
 
 Folder *
 folder_get_subfolder (Folder *folder, gchar *name)
 {
 	Folder *ret; 
+
+	folder_reload_if_needed (folder);
 
 	if (!folder->subfolders_ht)
 		return NULL;
@@ -747,13 +900,20 @@ folder_get_subfolder (Folder *folder, gchar *name)
 const GSList * 
 folder_list_subfolders (Folder *parent)
 {
+	folder_reload_if_needed (parent);
+
 	return parent->subfolders;
 }
 
 void
 folder_remove_subfolder (Folder *parent, Folder *child)
 {
-	gchar *name = folder_get_name (child);
+	gchar *name;
+
+	if (child->parent != parent || !parent->subfolders_ht)
+		return;
+
+	name = folder_get_name (child);
 
 	if (!child->user_private) {
 		folder_remove_include (parent, name);
@@ -761,35 +921,108 @@ folder_remove_subfolder (Folder *parent, Folder *child)
 	}
 
 	g_hash_table_remove (parent->subfolders_ht, name);
-	parent->subfolders = g_slist_remove (parent->subfolders, name);
+	parent->subfolders = g_slist_remove (parent->subfolders, child);
 
 	folder_emit_changed (child, GNOME_VFS_MONITOR_EVENT_DELETED);
 	folder_unref (child);
 
 	folder_set_dirty (parent);
+	vfolder_info_set_dirty (parent->info);
 }
 
 void
 folder_add_subfolder (Folder *parent, Folder *child)
 {
-	folder_remove_subfolder (parent, child);
+	if (child->parent == parent)
+		return;
 
-	if (child->user_private) {
+	if (child->user_private && !parent->has_user_private_subfolders) {
 		Folder *iter;
 
 		for (iter = parent; iter != NULL; iter = iter->parent)
 			iter->has_user_private_subfolders = TRUE;
 	}
 
+	if (!parent->subfolders_ht)
+		parent->subfolders_ht = g_hash_table_new (g_str_hash, 
+							  g_str_equal);
+
 	g_hash_table_insert (parent->subfolders_ht, 
 			     folder_get_name (child),
 			     child);
 	parent->subfolders = g_slist_append (parent->subfolders, child);
 
+	child->parent = parent;
+
 	folder_ref (child);
 	folder_emit_changed (child, GNOME_VFS_MONITOR_EVENT_CREATED);
 
 	folder_set_dirty (parent);
+	vfolder_info_set_dirty (parent->info);
+}
+
+void
+folder_dump_tree (Folder *folder, int indent)
+{
+	const GSList *iter;
+	gchar *space = g_strnfill (indent, ' ');
+
+	g_print ("%s(%p): %s\n",
+		 space,
+		 folder,
+		 folder ? folder_get_name (folder) : NULL);
+
+	g_free (space);
+
+	for (iter = folder_list_subfolders (folder); iter; iter = iter->next) {
+		Folder *child = iter->data;
+
+		folder_dump_tree (child, indent + 2);
+	}
+}
+
+/* This is a pretty lame hack */
+gboolean
+folder_is_hidden (Folder *folder)
+{
+	const GSList *iter, *ents;
+
+	if (folder->hidden || 
+	    folder->dont_show_if_empty == FALSE)
+		return FALSE;
+
+	if (folder->only_unallocated) {
+		iter = vfolder_info_list_all_entries (folder->info);
+		for (; iter; iter = iter->next) {
+			Entry *entry = iter->data;
+
+			if (!entry_is_allocated (entry))
+				return FALSE;
+		}
+	}
+
+	ents = folder_list_entries (folder);
+	if (ents) {
+		/* If there is only one entry, check it is not .directory */
+		if (!ents->next) {
+			Entry *dot_directory = ents->data;
+			gchar *name = entry_get_displayname (dot_directory);
+
+			if (strcmp (".directory", name) != 0)
+				return FALSE;
+		} else
+			return FALSE;
+	}
+
+	iter = folder_list_subfolders (folder);
+	for (; iter; iter = iter->next) {
+		Folder *child = iter->data;
+
+		if (!folder_is_hidden (child))
+			return FALSE;
+	}
+
+	return TRUE;
 }
 
 
@@ -870,28 +1103,25 @@ query_try_match (Query  *query,
 		}
 	case QUERY_KEYWORD:
 		{ 
-			GSList *keywords;
-			GQuark keyword;
-
-			keywords = entry_get_keywords (efile);
+			GSList *keywords = entry_get_keywords (efile);
 
 			for (li = keywords; li; li = li->next) {
-				keyword = GPOINTER_TO_INT (li->data);
+				GQuark keyword = GPOINTER_TO_INT (li->data);
 
 				if (keyword == query->val.keyword)
 					return INVERT_IF_NEEDED (TRUE);
 			}
-
-			g_slist_free (keywords);
 		}
 		return INVERT_IF_NEEDED (FALSE);
 	case QUERY_FILENAME:
-		if (strcmp (query->val.filename, 
-			    entry_get_filename (efile)) == 0) {
+		if (strchr (query->val.filename, '/') &&
+		    !strcmp (query->val.filename, entry_get_filename (efile)))
 			return INVERT_IF_NEEDED (TRUE);
-		} else {
+		else if (!strcmp (query->val.filename, 
+				  entry_get_displayname (efile)))
+			return INVERT_IF_NEEDED (TRUE);
+		else
 			return INVERT_IF_NEEDED (FALSE);
-		}
 	}
 
 	g_assert_not_reached ();

@@ -46,8 +46,12 @@ typedef struct {
 } StatLoc;
 
 typedef struct {
-	StatLoc                 statloc;
+	GnomeVFSMonitorType     type;
 	GnomeVFSMonitorHandle  *vfs_handle;
+
+	time_t                  ctime;
+	gchar                  *uri;
+
 	gboolean                frozen;
 
 	GnomeVFSMonitorCallback callback;

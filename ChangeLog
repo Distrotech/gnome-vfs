@@ -1,3 +1,22 @@
+2002-07-10  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (dir_handle_new): Fix typo,
+	handle unallocated folders, sorting, and the entry display name
+	being different from the source file's.
+
+	* modules/vfolder/vfolder-common.c: Redo lots of things
+	here. Notably fixes folder and entry dirtying, and dir loading
+	fixups.
+
+	* modules/vfolder/vfolder-info.c: Implement missing featues:
+	like correct .directory file handling and, implicit mergedir
+	keywords, and client monitors.
+
+	* modules/default-modules.conf (all-applications): Add
+	applications-all-users: and preferences-all-users: methods to
+	allow access to system-global vfolders, to allow administrator
+	changes and folder extension.
+
 2002-07-05  Stephen Browne <stephen.browne@sun.com>
 	* modules/cdemenu-desktop-method.c
 	Patch from rohit.raveendran@wipro.com

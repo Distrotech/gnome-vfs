@@ -4,6 +4,8 @@
 #endif
 
 #include <string.h>
+#include <libgnomevfs/gnome-vfs-file-info.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
 
 #include "vfolder-util.h"
 #include "vfolder-common.h"
@@ -68,7 +70,6 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 	return TRUE;
 }
 
-
 gboolean
 check_extension (const char *name, const char *ext_check)
 {
@@ -81,121 +82,127 @@ check_extension (const char *name, const char *ext_check)
 		return FALSE;
 }
 
-#if 0
 static void
-dump_unallocated_folders (Folder *folder)
+monitor_callback_internal (GnomeVFSMonitorHandle *handle,
+			   const gchar *monitor_uri,
+			   const gchar *info_uri,
+			   GnomeVFSMonitorEventType event_type,
+			   gpointer user_data)
 {
-	GSList *li;
-	for (li = folder->subfolders; li != NULL; li = li->next)
-		dump_unallocated_folders (li->data);
+	VFolderMonitor *monitor = (VFolderMonitor *) handle;
 
-	if (folder->only_unallocated &&
-	    folder->entries != NULL) {
-		g_slist_foreach (folder->entries,
-				 (GFunc) entry_dealloc, 
-				 NULL);
-		g_slist_foreach (folder->entries,
-				 (GFunc) entry_unref, 
-				 NULL);
-		g_slist_free (folder->entries);
-		folder->entries = NULL;
-	}
-}
-
-/* Run query, allocs and refs the entries */
-void
-append_query (VFolderInfo *info, Folder *folder)
-{
-	GSList *li;
-	GList *extend_file_infos = NULL;
-	GnomeVFSResult result;
-
-	if (folder->query == NULL &&
-	    ! folder->only_unallocated)
+	if (monitor->frozen)
 		return;
 
-	if (folder->only_unallocated) {
-		/* dump all folders that use unallocated
-		 * items only.  This sucks if you keep
-		 * reading one and then another such
-		 * folder, but oh well, life sucks for
-		 * you then, but at least you get
-		 * consistent results */
-		dump_unallocated_folders (info->root);
-
-		/* ensure all other folders, so that
-		 * after this we know which ones are
-		 * unallocated */
-		ensure_folder_unlocked (info,
-					info->root,
-					TRUE /* subfolders */,
-					folder /* except */,
-					/* avoid infinite loops */
-					TRUE /* ignore_unallocated */);
-	}
-
-	/* add vfolder's entry pool (gotten from mergedirs & itemdirs) */
-	for (li = info->entries; li != NULL; li = li->next) {
-		Entry *entry = li->data;
-		
-		/* don't include if already explicitly included */
-		if (folder->includes_ht &&
-		    g_hash_table_lookup (folder->includes_ht, 
-					 entry_get_displayname (entry)))
-			continue;
-
-		/* don't include if explicitly excluded */
-		if (folder->excludes &&
-		    g_hash_table_lookup (folder->excludes, 
-					 entry_get_displayname (entry)))
-			continue;
-
-		if (folder->only_unallocated && !entry_is_allocated (entry))
-			continue;
-
-		if (matches_query (folder, entry, folder->query)) { 
-			folder_add_entry (folder, entry);
-			entry_alloc (entry);
-		}
-	}
-
-	result = gnome_vfs_directory_list_load (&extend_file_infos,
-						folder_get_extend_uri (folder),
-						GNOME_VFS_FILE_INFO_GET_MIME_TYPE);
-	if (result == GNOME_VFS_OK) {
-		GList *iter;
-
-		for (iter = extend_file_infos; iter; iter = iter->next) {
-			GnomeVFSFileInfo *finfo = iter->data;
-
-			if (finfo->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-				Folder *known_sub;
-
-				/* Check is this folder is already extended */
-				known_sub = folder_get_subfolder (folder, 
-								  finfo->name);
-				if (!known_sub) {
-					known_sub = folder_new (folder->info, 
-								finfo->name);
-					folder_add_subfolder 
-				}
-			} else {
-			}
-		}
-
-		gnome_vfs_file_info_list_free (extend_file_infos);
-	}
+	(*monitor->callback) (handle,
+			      monitor_uri,
+			      info_uri,
+			      event_type,
+			      monitor->user_data);
 }
-#endif
 
+#define TIMEOUT_SECONDS 3
+
+static GSList *stat_monitors = NULL;
+G_LOCK_DEFINE_STATIC (stat_monitors);
+static guint stat_timeout_tag = 0;
+
+static time_t
+ctime_for_uri (gchar *uri)
+{
+	GnomeVFSFileInfo *info;
+	GnomeVFSResult result;
+	time_t ctime = 0;
+
+	info = gnome_vfs_file_info_new ();
+	
+	result = gnome_vfs_get_file_info (uri,
+					  info,
+					  GNOME_VFS_FILE_INFO_DEFAULT);
+	if (result == GNOME_VFS_OK) {
+		ctime = info->ctime;
+	}
+
+	gnome_vfs_file_info_unref (info);
+
+	return ctime;
+}
+
+static gboolean
+monitor_timeout_cb (gpointer user_data)
+{
+        GSList *iter;
+
+	G_LOCK (stat_monitors);
+	for (iter = stat_monitors; iter; iter = iter->next) {
+		VFolderMonitor *monitor = iter->data;
+		time_t ctime;
+
+		ctime = ctime_for_uri (monitor->uri);
+		if (ctime == monitor->ctime)
+			continue;
+
+		(*monitor->callback) ((GnomeVFSMonitorHandle *) monitor,
+				      monitor->uri,
+				      monitor->uri,
+				      ctime == 0 ?
+				              GNOME_VFS_MONITOR_EVENT_DELETED :
+				              GNOME_VFS_MONITOR_EVENT_CHANGED,
+				      monitor->user_data);
+
+		monitor->ctime = ctime;
+	}
+	G_UNLOCK (stat_monitors);
+
+	return TRUE;
+}
+
+static VFolderMonitor *
+monitor_start_internal (GnomeVFSMonitorType      type,
+			gchar                   *uri,
+			GnomeVFSMonitorCallback  callback,
+			gpointer                 user_data)
+{
+	GnomeVFSResult result;
+	VFolderMonitor *monitor;
+	
+	monitor = g_new0 (VFolderMonitor, 1);
+	monitor->callback = callback;
+	monitor->user_data = user_data;
+
+	result = gnome_vfs_monitor_add (&monitor->vfs_handle, 
+					uri,
+					type,
+					monitor_callback_internal,
+					monitor);
+	if (result == GNOME_VFS_ERROR_NOT_SUPPORTED) {
+		monitor->uri = g_strdup (uri);
+		monitor->ctime = ctime_for_uri (uri);
+
+		G_LOCK (stat_monitors);
+		if (stat_timeout_tag == 0) {
+			stat_timeout_tag = 
+				g_timeout_add (TIMEOUT_SECONDS * 1000,
+					       monitor_timeout_cb,
+					       NULL);
+		}
+
+		stat_monitors = g_slist_prepend (stat_monitors, monitor);
+		G_UNLOCK (stat_monitors);
+	}
+
+	return monitor;
+}
 
 VFolderMonitor *
 vfolder_monitor_directory_new (gchar                   *uri,
 			       GnomeVFSMonitorCallback  callback,
 			       gpointer                 user_data)
 {
-	// FIXME
-	return NULL;
+	return monitor_start_internal (GNOME_VFS_MONITOR_DIRECTORY, 
+				       uri, 
+				       callback,
+				       user_data);
 }
 
 VFolderMonitor *
@@ -203,21 +210,39 @@ vfolder_monitor_file_new (gchar                   *uri,
 			  GnomeVFSMonitorCallback  callback,
 			  gpointer                 user_data)
 {
-	// FIXME
-	return NULL;
+	return monitor_start_internal (GNOME_VFS_MONITOR_FILE, 
+				       uri, 
+				       callback,
+				       user_data);
 }
 
 void 
 vfolder_monitor_freeze (VFolderMonitor *monitor)
 {
+	monitor->frozen = TRUE;
 }
 
 void 
 vfolder_monitor_thaw (VFolderMonitor *monitor)
 {
+	monitor->frozen = FALSE;
 }
 
 void 
 vfolder_monitor_cancel (VFolderMonitor *monitor)
 {
+	if (monitor->vfs_handle)
+		gnome_vfs_monitor_cancel (monitor->vfs_handle);
+	else {
+		G_LOCK (stat_monitors);
+		stat_monitors = g_slist_remove (stat_monitors, monitor);
+
+		if (!stat_monitors) {
+			g_source_remove (stat_timeout_tag);
+			stat_timeout_tag = 0;
+		}
+		G_UNLOCK (stat_monitors);
+	}
+
+	g_free (monitor);
 }

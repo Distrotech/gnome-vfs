@@ -10,14 +10,10 @@
   <MergeDir>@datadir@/control-center-2.0/capplets/</MergeDir>
   <MergeDir>@datadir@/gnome/capplets/</MergeDir>
 
-  <ItemDir>all-applications-all-users:/</ItemDir>
-  <WriteDir>file:/home/orph/</WriteDir>
-
   <DesktopDir>@datadir@/gnome/vfolders/</DesktopDir>
 
   <!-- Root folder -->
   <Folder>
-    <Parent>applications-all-users:/</Parent>
     <Name>Applications</Name>
     <Desktop>Applications.directory</Desktop>
     <Exclude>gnome-search-tool.desktop</Exclude>
