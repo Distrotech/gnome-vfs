@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.6.0.0\n"
-"POT-Creation-Date: 2001-03-01 12:39+0100\n"
-"PO-Revision-Date: 2001-03-01 12:29+0100\n"
+"Project-Id-Version: gnome-vfs 1.1\n"
+"POT-Creation-Date: 2001-06-22 19:31+0200\n"
+"PO-Revision-Date: 2001-06-22 19:30+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@eikonex.org>\n"
 "Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -1010,154 +1010,27 @@ msgstr "Archive zip"
 msgid "zoo archive"
 msgstr "Archive zoo"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
-msgid "Dying."
-msgstr "Agonisant."
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
-#, c-format
-msgid "Error reading: %s"
-msgstr "Erreur en lisant : %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
-#, c-format
-msgid "Error writing: %s"
-msgstr "Erreur en écrivant : %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
-#, c-format
-msgid "Cannot write: %s"
-msgstr "Ne peut écrire : %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:601
-#, c-format
-msgid "Cannot create temporary file name `%s'"
-msgstr "Ne peut créer le fichier temporaire « %s »"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:615
-#, c-format
-msgid "Cannot create socket: %s"
-msgstr "Ne peut créer la socket : %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:633
-#, c-format
-msgid "Cannot bind `%s': %s"
-msgstr "Ne peut binder « %s » : %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:640
-#, c-format
-msgid "Cannot listen on `%s': %s"
-msgstr "Ne peut écouter sur « %s » : %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
-#, c-format
-msgid "Cannot accept connections on `%s': %s"
-msgstr "Ne peut accepter des connexions sur « %s » : %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1195
-msgid "Cannot initialize CORBA."
-msgstr "Ne peut initialiser CORBA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1202
-msgid "Cannot resolve initial reference to RootPOA."
-msgstr "Ne peut résoudre la référence initiale à RootPOA"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1209
-msgid "Cannot activate POA manager."
-msgstr "Ne peut activer le gestionnaire POA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1234
-#, c-format
-msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "Usage : %s <ior> [<ior_fd>]\n"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1245
-#, c-format
-msgid "Cannot open file descriptor %d."
-msgstr "Ne peut ouvrir le descripteur de fichiers %d."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1268
-#, c-format
-msgid "Notify interface for `%s' not found."
-msgstr "Interface de notification pour « %s » non trouvé."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
-msgid "Cannot setup Request object."
-msgstr "Ne peut configurer l'objet Request."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
-msgid "Cannot extract IOR."
-msgstr "Ne peut extraire l'IOR."
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
-#, c-format
-msgid "Got weird string from the slave process: `%s'"
-msgstr "Chaîne bizarre obtenue du processus esclave : « %s »"
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, c-format
-msgid "Cannot get object for `%s'"
-msgstr "Ne peut obtenir un objet pour « %s »"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "Ne peut tuer GNOME::VFS::Slave::Notify -- exception %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, c-format
-msgid "Cannot connect socket `%s': %s"
-msgstr "Ne peut de connecter la socket « %s » : %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
-msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "Ne peut initialiser GNOME::VFS:Slave::Notify"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Ne peut réinitialiser GNOME::VFS::Slave %s -- exception %s "
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Ne peut réinitialiser GNOME::VFS::Slave (IOR inconnu) -- exception %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "Ne peut tuer GNOME::VFS::Slave %s -- exception %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Ne peut tuer GNOME::VFS::Slave (IOR inconnu) -- exception %s"
-
-#: libgnomevfs/gnome-vfs-configuration.c:187
+#: libgnomevfs/gnome-vfs-configuration.c:224
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d contient des caractères NUL."
 
-#: libgnomevfs/gnome-vfs-configuration.c:204
+#: libgnomevfs/gnome-vfs-configuration.c:241
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d ne contient pas de nom de méthode."
 
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:270
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ne contient pas de nom de module."
 
-#: libgnomevfs/gnome-vfs-configuration.c:286
+#: libgnomevfs/gnome-vfs-configuration.c:323
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Le fichier de configuration « %s » n'a pas été trouvé : %s"
 
-#: libgnomevfs/gnome-vfs-init.c:69
+#: libgnomevfs/gnome-vfs-init.c:80
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS déjà initialisé."
 
@@ -1370,7 +1243,12 @@ msgstr "Service non disponible"
 msgid "Request obsoletes service's data"
 msgstr "Donnée de requête de service obsolète"
 
-#: libgnomevfs/gnome-vfs-result.c:141
+#. GNOME_VFS_ERROR_PROTOCOL_ERROR
+#: libgnomevfs/gnome-vfs-result.c:79
+msgid "Protocol error"
+msgstr "Erreur de protocole"
+
+#: libgnomevfs/gnome-vfs-result.c:142
 msgid "Unknown error"
 msgstr "Erreur inconnue"
 
@@ -1398,375 +1276,359 @@ msgstr "%.1f Mo"
 msgid "%.1f GB"
 msgstr "%.1f Go"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:688
+#: libgnomevfs-pthread/gnome-vfs-job.c:712
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Type d'op %u inconnu"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:974
-#: libgnomevfs-pthread/gnome-vfs-job.c:1119
+#: libgnomevfs-pthread/gnome-vfs-job.c:1000
+#: libgnomevfs-pthread/gnome-vfs-job.c:1145
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ne peut créer un pipeline pour ouvrir GIOChannel : %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1574
+#: libgnomevfs-pthread/gnome-vfs-job.c:1603
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Type de job %u inconnu"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1605
+#: libgnomevfs-pthread/gnome-vfs-job.c:1639
 msgid "Operation stopped"
 msgstr "Opération stoppée"
 
-#: mime-type-capplet/file-types-capplet.desktop.in.h:1
-msgid "File Types and Programs"
-msgstr "Type de fichiers et programmes"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:2
-msgid "Specify which programs are used to open or view each file type"
-msgstr "Éditeur d'association de type de fichiers et d'applications"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-msgid "MIME Type"
-msgstr "Type MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:742
-msgid "Change Icon"
-msgstr "Changer l'icône"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:749
-msgid "Change File Extensions"
-msgstr "Changer l'extension de fichier"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:757
-msgid "Default Action:"
-msgstr "Action par défaut :"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:769
-msgid "Use Viewer"
-msgstr "Utiliser un visualiseur"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:775
-msgid "Open With Application"
-msgstr "Ouvrir avec l'application"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:786
-msgid "Edit List"
-msgstr "Éditer la liste"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:811
-msgid "Add New MIME Type..."
-msgstr "Ajouter un nouveau type MIME..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-msgid "Delete This MIME Type"
-msgstr "Supprimer ce type MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:828
-msgid "Revert to System Defaults"
-msgstr "Revenir aux réglages par défaut"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
-msgid "None"
-msgstr "Aucun"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
-msgid ""
-"Reverting to system settings will lose any changes\n"
-"you have ever made to File Types and Programs.\n"
-"Revert anyway?"
-msgstr ""
-"Revenir aux réglages système perdra toutes les modifications\n"
-"que vous avez effectuées sur les types de fichiers et programmes.\n"
-"Revenir malgré tout ?"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-msgid "none"
-msgstr "aucun"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
-#, c-format
-msgid "View as %s"
-msgstr "Voir comme %s"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
-msgid "Description"
-msgstr "Description"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
-msgid "Extension"
-msgstr "Extension"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-msgid "Default Action"
-msgstr "Action par défaut"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
-msgid "Edit Applications List"
-msgstr "Éditez la liste des applications"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
-#, c-format
-msgid "Select applications to appear in menu for MIME type \"%s\""
-msgstr ""
-"Sélectionnez les applications à faire apparaître dans le menu pour le type "
-"MIME « %s »"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:433
-msgid "Add Application..."
-msgstr "Ajouter une application..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:440
-msgid "Edit Application..."
-msgstr "Éditer une application..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
-msgid "Delete Application"
-msgstr "Supprimer l'application"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:480
-msgid "Edit Components List"
-msgstr "Éditez la liste des composants"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:500
-#, c-format
-msgid "Select views to appear in menu for MIME type \"%s\""
-msgstr ""
-"Sélectionnez les vues à faire apparaître dans le menu pour le type MIME « %s "
-"»"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:720
-msgid ""
-"The MIME type entered contained upper case characters. Upper case characters "
-"were changed to lower case for you."
-msgstr ""
-"Le type MIME entré contient des caractères majuscules. Les caractères "
-"majuscules seront transformés en minuscules pour vous."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:723
-msgid "Add New MIME Type"
-msgstr "Ajoutez un nouveau type MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
-msgid "Add MIME Type"
-msgstr "Ajoutez un type MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:773
-msgid "New MIME type (e.g. image/x-thumper):"
-msgstr "Nouveau type MIME (par ex. image/x-thunder) :"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:780
-msgid "Description (e.g. Thumper image):"
-msgstr "Description (par ex. Image thunder) :"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:947
-msgid "File Extensions "
-msgstr "Extensions de fichiers "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:967
-msgid "Add..."
-msgstr "Ajouter..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:972
-msgid "    Remove    "
-msgstr "  Supprimer  "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1041
-msgid "Add New Extension"
-msgstr "Ajouter une nouvelle extension"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
-msgid ""
-"Type in the extensions for this mime-type (without dot).\n"
-"You can enter several extensions seperated by a space,\n"
-"for example: html htm"
-msgstr ""
-"Saisissez les extensions pour ce type MIME (sans le point).\n"
-"Vous pouvez saisir plusieurs extensions séparées par un espace,\n"
-"par exemple :  html htm"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
-msgid "Extension:"
-msgstr "Extension :"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
-msgid "You must enter a name."
-msgstr "Vous devez saisir un nom :"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
-msgid "You must enter a command."
-msgstr "Vous devez saisir une commande :"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
-#, c-format
-msgid ""
-"\"%s\" does not exist or is not executable.\n"
-"Check your spelling and make sure you have\n"
-"the right permissions to execute this file."
-msgstr ""
-"« %s » n'existe pas ou n'est pas exécutable.\n"
-"Veuillez vérifier l'orthographe et que vous\n"
-"avez les droits d'exécution sur ce fichier."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
-#, c-format
-msgid ""
-"The command \"%s\" cannot be found.\n"
-"You must use a command that can work from any command line."
-msgstr ""
-"La commande « %s » ne peut être trouvé.\n"
-"Vous devez utiliser une commande qui peut fonctionner depuis une ligne de "
-"commande;"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
-msgid "Bad Application Name"
-msgstr "Mauvais nom d'application"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
-msgid "Bad Application Command"
-msgstr "Mauvaise commande d'application"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
-msgid "Add Application"
-msgstr "Ajoutez une application"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
-msgid "Edit Application"
-msgstr "Éditer une application"
-
-#. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1271
-msgid "Application Name:"
-msgstr "Nom de l'application :"
-
-#. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1282
-msgid "Application Command:"
-msgstr "Commande de l'application :"
-
-#. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
-msgid "Open Behavior"
-msgstr "Comportement de l'ouverture"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1299
-msgid "Can open multiple files"
-msgstr "Il est possible d'ouvrir plusieurs fichiers"
-
-#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
-msgid "Can open from URI"
-msgstr "Il est possible d'ouvrir depuis une URI"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
-msgid "Can't find an hbox, using a normal file selection"
-msgstr "Ne peut trouver un hbox, utilise un sélecteur de fichier normal"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
-msgid "Preview"
-msgstr "Aperçu"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
-msgid "Select an icon"
-msgstr "Selectionnez une icône"
-
-#: modules/efs-method.c:493 modules/file-method.c:371
+#: modules/file-method.c:380
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d inconnue"
 
-#: modules/http-method.c:1179
-#, c-format
-msgid "%s to retrieve"
-msgstr "%s a récupérer"
+#~ msgid "Dying."
+#~ msgstr "Agonisant."
 
-#: modules/http-method.c:1584
-#, c-format
-msgid "Closing connection to %s"
-msgstr "Fermeture de la connexion vers %s"
+#~ msgid "Error reading: %s"
+#~ msgstr "Erreur en lisant : %s"
 
-#: modules/http-method.c:1850
-#, c-format
-msgid "%s of %s read"
-msgstr "%s de %s lu"
+#~ msgid "Error writing: %s"
+#~ msgstr "Erreur en écrivant : %s"
 
-#: modules/http-method.c:1853
-#, c-format
-msgid "%s read"
-msgstr "%s lu"
+#~ msgid "Cannot write: %s"
+#~ msgstr "Ne peut écrire : %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:667
-msgid "Back"
-msgstr "Retour"
+#~ msgid "Cannot create temporary file name `%s'"
+#~ msgstr "Ne peut créer le fichier temporaire « %s »"
 
-#: test/gnome-file-selection/gnome-file-selection.c:668
-msgid "Go to the previously visited directory"
-msgstr "Aller au répertoire précédemment visité"
+#~ msgid "Cannot create socket: %s"
+#~ msgstr "Ne peut créer la socket : %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:676
-msgid "Up"
-msgstr "Parent"
+#~ msgid "Cannot bind `%s': %s"
+#~ msgstr "Ne peut binder « %s » : %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:677
-msgid "Go to the parent directory"
-msgstr "Aller au répertoire parent"
+#~ msgid "Cannot listen on `%s': %s"
+#~ msgstr "Ne peut écouter sur « %s » : %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:685
-msgid "Forward"
-msgstr "Suivant"
+#~ msgid "Cannot accept connections on `%s': %s"
+#~ msgstr "Ne peut accepter des connexions sur « %s » : %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:686
-msgid "Go to the next visited directory"
-msgstr "Aller au répertoire visité suivant"
+#~ msgid "Cannot initialize CORBA."
+#~ msgstr "Ne peut initialiser CORBA."
 
-#: test/gnome-file-selection/gnome-file-selection.c:695
-msgid "Rescan"
-msgstr "Resruter"
+#~ msgid "Cannot resolve initial reference to RootPOA."
+#~ msgstr "Ne peut résoudre la référence initiale à RootPOA"
 
-#: test/gnome-file-selection/gnome-file-selection.c:696
-msgid "Rescan the current directory"
-msgstr "Rescrute le répertoire courant"
+#~ msgid "Cannot activate POA manager."
+#~ msgstr "Ne peut activer le gestionnaire POA."
 
-#: test/gnome-file-selection/gnome-file-selection.c:705
-msgid "Home"
-msgstr "Maison"
+#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
+#~ msgstr "Usage : %s <ior> [<ior_fd>]\n"
 
-#: test/gnome-file-selection/gnome-file-selection.c:706
-msgid "Go to the home directory"
-msgstr "Aller au répertoire maison"
+#~ msgid "Cannot open file descriptor %d."
+#~ msgstr "Ne peut ouvrir le descripteur de fichiers %d."
 
-#: test/gnome-file-selection/gnome-file-selection.c:802
-msgid "Name"
-msgstr "Nom"
+#~ msgid "Notify interface for `%s' not found."
+#~ msgstr "Interface de notification pour « %s » non trouvé."
 
-#: test/gnome-file-selection/gnome-file-selection.c:803
-msgid "Size"
-msgstr "Taille"
+#~ msgid "Cannot setup Request object."
+#~ msgstr "Ne peut configurer l'objet Request."
 
-#: test/gnome-file-selection/gnome-file-selection.c:804
-msgid "Date"
-msgstr "Date"
+#~ msgid "Cannot extract IOR."
+#~ msgstr "Ne peut extraire l'IOR."
 
-#: test/gnome-file-selection/gnome-file-selection.c:833
-msgid "Enter name:"
-msgstr "Saisissez le nom :"
+#~ msgid "Got weird string from the slave process: `%s'"
+#~ msgstr "Chaîne bizarre obtenue du processus esclave : « %s »"
 
-#: test/gnome-file-selection/gnome-file-selection.c:856
-msgid "Show:"
-msgstr "Afficher :"
+#~ msgid "Cannot get object for `%s'"
+#~ msgstr "Ne peut obtenir un objet pour « %s »"
 
-#: test/gnome-file-selection/gnome-file-selection.c:883
-msgid "Show dotfiles"
-msgstr "Afficher les fichiers cachés"
+#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+#~ msgstr "Ne peut tuer GNOME::VFS::Slave::Notify -- exception %s"
+
+#~ msgid "Cannot connect socket `%s': %s"
+#~ msgstr "Ne peut de connecter la socket « %s » : %s"
+
+#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+#~ msgstr "Ne peut initialiser GNOME::VFS:Slave::Notify"
+
+#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "Ne peut réinitialiser GNOME::VFS::Slave %s -- exception %s "
+
+#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr ""
+#~ "Ne peut réinitialiser GNOME::VFS::Slave (IOR inconnu) -- exception %s"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "Ne peut tuer GNOME::VFS::Slave %s -- exception %s"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr "Ne peut tuer GNOME::VFS::Slave (IOR inconnu) -- exception %s"
+
+#~ msgid "File Types and Programs"
+#~ msgstr "Type de fichiers et programmes"
+
+#~ msgid "Specify which programs are used to open or view each file type"
+#~ msgstr "Éditeur d'association de type de fichiers et d'applications"
+
+#~ msgid "MIME Type"
+#~ msgstr "Type MIME"
+
+#~ msgid "Change Icon"
+#~ msgstr "Changer l'icône"
+
+#~ msgid "Change File Extensions"
+#~ msgstr "Changer l'extension de fichier"
+
+#~ msgid "Default Action:"
+#~ msgstr "Action par défaut :"
+
+#~ msgid "Use Viewer"
+#~ msgstr "Utiliser un visualiseur"
+
+#~ msgid "Open With Application"
+#~ msgstr "Ouvrir avec l'application"
+
+#~ msgid "Edit List"
+#~ msgstr "Éditer la liste"
+
+#~ msgid "Add New MIME Type..."
+#~ msgstr "Ajouter un nouveau type MIME..."
+
+#~ msgid "Delete This MIME Type"
+#~ msgstr "Supprimer ce type MIME"
+
+#~ msgid "Revert to System Defaults"
+#~ msgstr "Revenir aux réglages par défaut"
+
+#~ msgid "None"
+#~ msgstr "Aucun"
+
+#~ msgid ""
+#~ "Reverting to system settings will lose any changes\n"
+#~ "you have ever made to File Types and Programs.\n"
+#~ "Revert anyway?"
+#~ msgstr ""
+#~ "Revenir aux réglages système perdra toutes les modifications\n"
+#~ "que vous avez effectuées sur les types de fichiers et programmes.\n"
+#~ "Revenir malgré tout ?"
+
+#~ msgid "none"
+#~ msgstr "aucun"
+
+#~ msgid "View as %s"
+#~ msgstr "Voir comme %s"
+
+#~ msgid "Description"
+#~ msgstr "Description"
+
+#~ msgid "Extension"
+#~ msgstr "Extension"
+
+#~ msgid "Default Action"
+#~ msgstr "Action par défaut"
+
+#~ msgid "Edit Applications List"
+#~ msgstr "Éditez la liste des applications"
+
+#~ msgid "Select applications to appear in menu for MIME type \"%s\""
+#~ msgstr ""
+#~ "Sélectionnez les applications à faire apparaître dans le menu pour le type "
+#~ "MIME « %s »"
+
+#~ msgid "Add Application..."
+#~ msgstr "Ajouter une application..."
+
+#~ msgid "Edit Application..."
+#~ msgstr "Éditer une application..."
+
+#~ msgid "Delete Application"
+#~ msgstr "Supprimer l'application"
+
+#~ msgid "Edit Components List"
+#~ msgstr "Éditez la liste des composants"
+
+#~ msgid "Select views to appear in menu for MIME type \"%s\""
+#~ msgstr ""
+#~ "Sélectionnez les vues à faire apparaître dans le menu pour le type MIME « %s "
+#~ "»"
+
+#~ msgid ""
+#~ "The MIME type entered contained upper case characters. Upper case characters "
+#~ "were changed to lower case for you."
+#~ msgstr ""
+#~ "Le type MIME entré contient des caractères majuscules. Les caractères "
+#~ "majuscules seront transformés en minuscules pour vous."
+
+#~ msgid "Add New MIME Type"
+#~ msgstr "Ajoutez un nouveau type MIME"
+
+#~ msgid "Add MIME Type"
+#~ msgstr "Ajoutez un type MIME"
+
+#~ msgid "New MIME type (e.g. image/x-thumper):"
+#~ msgstr "Nouveau type MIME (par ex. image/x-thunder) :"
+
+#~ msgid "Description (e.g. Thumper image):"
+#~ msgstr "Description (par ex. Image thunder) :"
+
+#~ msgid "File Extensions "
+#~ msgstr "Extensions de fichiers "
+
+#~ msgid "Add..."
+#~ msgstr "Ajouter..."
+
+#~ msgid "    Remove    "
+#~ msgstr "  Supprimer  "
+
+#~ msgid "Add New Extension"
+#~ msgstr "Ajouter une nouvelle extension"
+
+#~ msgid ""
+#~ "Type in the extensions for this mime-type (without dot).\n"
+#~ "You can enter several extensions seperated by a space,\n"
+#~ "for example: html htm"
+#~ msgstr ""
+#~ "Saisissez les extensions pour ce type MIME (sans le point).\n"
+#~ "Vous pouvez saisir plusieurs extensions séparées par un espace,\n"
+#~ "par exemple :  html htm"
+
+#~ msgid "Extension:"
+#~ msgstr "Extension :"
+
+#~ msgid "You must enter a name."
+#~ msgstr "Vous devez saisir un nom :"
+
+#~ msgid "You must enter a command."
+#~ msgstr "Vous devez saisir une commande :"
+
+#~ msgid ""
+#~ "\"%s\" does not exist or is not executable.\n"
+#~ "Check your spelling and make sure you have\n"
+#~ "the right permissions to execute this file."
+#~ msgstr ""
+#~ "« %s » n'existe pas ou n'est pas exécutable.\n"
+#~ "Veuillez vérifier l'orthographe et que vous\n"
+#~ "avez les droits d'exécution sur ce fichier."
+
+#~ msgid ""
+#~ "The command \"%s\" cannot be found.\n"
+#~ "You must use a command that can work from any command line."
+#~ msgstr ""
+#~ "La commande « %s » ne peut être trouvé.\n"
+#~ "Vous devez utiliser une commande qui peut fonctionner depuis une ligne de "
+#~ "commande;"
+
+#~ msgid "Bad Application Name"
+#~ msgstr "Mauvais nom d'application"
+
+#~ msgid "Bad Application Command"
+#~ msgstr "Mauvaise commande d'application"
+
+#~ msgid "Add Application"
+#~ msgstr "Ajoutez une application"
+
+#~ msgid "Edit Application"
+#~ msgstr "Éditer une application"
+
+#~ msgid "Application Name:"
+#~ msgstr "Nom de l'application :"
+
+#~ msgid "Application Command:"
+#~ msgstr "Commande de l'application :"
+
+#~ msgid "Open Behavior"
+#~ msgstr "Comportement de l'ouverture"
+
+#~ msgid "Can open multiple files"
+#~ msgstr "Il est possible d'ouvrir plusieurs fichiers"
+
+#~ msgid "Can open from URI"
+#~ msgstr "Il est possible d'ouvrir depuis une URI"
+
+#~ msgid "Can't find an hbox, using a normal file selection"
+#~ msgstr "Ne peut trouver un hbox, utilise un sélecteur de fichier normal"
+
+#~ msgid "Preview"
+#~ msgstr "Aperçu"
+
+#~ msgid "Select an icon"
+#~ msgstr "Selectionnez une icône"
+
+#~ msgid "%s to retrieve"
+#~ msgstr "%s a récupérer"
+
+#~ msgid "Closing connection to %s"
+#~ msgstr "Fermeture de la connexion vers %s"
+
+#~ msgid "%s of %s read"
+#~ msgstr "%s de %s lu"
+
+#~ msgid "%s read"
+#~ msgstr "%s lu"
+
+#~ msgid "Back"
+#~ msgstr "Retour"
+
+#~ msgid "Go to the previously visited directory"
+#~ msgstr "Aller au répertoire précédemment visité"
+
+#~ msgid "Up"
+#~ msgstr "Parent"
+
+#~ msgid "Go to the parent directory"
+#~ msgstr "Aller au répertoire parent"
+
+#~ msgid "Forward"
+#~ msgstr "Suivant"
+
+#~ msgid "Go to the next visited directory"
+#~ msgstr "Aller au répertoire visité suivant"
+
+#~ msgid "Rescan"
+#~ msgstr "Resruter"
+
+#~ msgid "Rescan the current directory"
+#~ msgstr "Rescrute le répertoire courant"
+
+#~ msgid "Home"
+#~ msgstr "Maison"
+
+#~ msgid "Go to the home directory"
+#~ msgstr "Aller au répertoire maison"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Size"
+#~ msgstr "Taille"
+
+#~ msgid "Date"
+#~ msgstr "Date"
+
+#~ msgid "Enter name:"
+#~ msgstr "Saisissez le nom :"
+
+#~ msgid "Show:"
+#~ msgstr "Afficher :"
+
+#~ msgid "Show dotfiles"
+#~ msgstr "Afficher les fichiers cachés"
 
 #~ msgid "New Application"
 #~ msgstr "Nouvelle application"
