@@ -1,5 +1,12 @@
 2000-10-20  John Sullivan  <sullivan@eazel.com>
 
+	* data/mime/gnome-vfs.keys:
+	* data/mime/gnome-vfs.mime: Changed staroffice types
+	from "x-soffice-*" to "x-staroffice-*" after user reported
+	such a MIME type.
+
+2000-10-20  John Sullivan  <sullivan@eazel.com>
+
 	* data/mime/gnome-vfs.keys: Added text/htmlH, which is used
 	by the help system; also moved application/mime-type-test to
 	alphabetical order so check-mime.pl doesn't gripe about it.

@@ -402,15 +402,15 @@ application/x-smil
 	description=SMIL script
 	[fr]description=Script SMIL
 
-application/x-soffice-presentation
+application/x-staroffice-presentation
 	description=StarOffice presentation
 
-application/x-soffice-spreadsheet
+application/x-staroffice-spreadsheet
 	description=StarOffice spreadsheet
 	[fr]description=Feuille de calcul StarOffice
 	icon-filename=i-spreadsheet
 
-application/x-soffice-word
+application/x-staroffice-words
 	description=StarOffice word processing document
 	[fr]description=Document traitement de texte StarOffice
 

@@ -186,13 +186,13 @@ application/x-shared-library-la
 application/x-smil
 	ext: smil smi sml
 
-application/x-soffice-presentation
+application/x-staroffice-presentation
 	ext: sdd
 
-application/x-soffice-spreadsheet
+application/x-staroffice-spreadsheet
 	ext: sdc
 
-application/x-soffice-word
+application/x-staroffice-words
 	ext: sdw
 
 application/x-sv4cpio
