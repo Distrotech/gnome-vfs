@@ -1,3 +1,9 @@
+2000-06-22  Michael Meeks  <michael@helixcode.com>
+
+	* test/Makefile.am: Add test-shell setup
+
+	* test/test-shell.c: Small lightweight gnome-vfs shell for testing.
+
 2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug #1434, Fix alignment of widgets in main capplet view.

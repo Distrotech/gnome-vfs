@@ -26,7 +26,8 @@ noinst_PROGRAMS =				\
 	test-symlinks				\
 	test-sync				\
 	test-sync-write				\
-	test-xfer
+	test-xfer				\
+	test-shell
 
 TESTS = test-async-cancel test-escape
 
@@ -94,6 +95,10 @@ test_channel_pthread_LDFLAGS =
 test_seek_SOURCES = test-seek.c
 test_seek_LDADD = $(libraries)
 test_seek_LDFLAGS =
+
+test_shell_SOURCES = test-shell.c
+test_shell_LDADD = $(libraries)
+test_shell_LDFLAGS =
 
 test_info_SOURCES = test-info.c
 test_info_LDADD = $(libraries)
