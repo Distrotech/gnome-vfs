@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-22 17:38+0530\n"
+"POT-Creation-Date: 2004-03-22 13:53+0100\n"
 "PO-Revision-Date: 2004-03-17 11:35+0530\n"
 "Last-Translator: Amanpreet Singh Alam <amanlinux@netscape.net>\n"
 "Language-Team: KBST Punjab <kbstpunjab@netscape.net>\n"
@@ -584,6 +584,7 @@ msgstr "ਅਣਪਛਾਤਾ ਵਾਲੀਅਮ"
 msgid "Network server"
 msgstr "ਨੈਟਵਰਕ ਸਰਵਰ"
 
+#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
@@ -591,6 +592,7 @@ msgstr ""
 "ਫਲਾਪੀ ਡਰਾੲਿਵ ਨੰੂ ਚਲਾੳੁਣ(ਮਾੳੂਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ੤ ੲਿਹ ਸੰਭਵ ਹੈ ਕਿ ਕੋੲੀ ਫਲਾਪੀ ਡਰਾੲਿਵ ਵਿੱਚ ਨਹੀ "
 "ਹੈ ੤"
 
+#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "ਵਾਲੀਅਮ ਨੰੂ ਚਲਾੳੁਣ(ਮਾੳੂਟ) ਵਿੱਚ ਅਸਫਲ ੤ ਸੰਭਵ ਹੈ ਕਿ ਯੰਤਰ ਵਿੱਚ ਮਾਧਿਅਮ ਨਹੀ ਹੈ ੤"

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"Report-Msgid-Bugs-To: <i18n@gnome.org>\n"
-"POT-Creation-Date: 2004-03-20 19:13+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-22 13:53+0100\n"
 "PO-Revision-Date: 2004-03-20 19:38+0200\n"
 "Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -587,7 +587,8 @@ msgstr "Ağ sunucusu"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Disket sürücü bağlanamadı. Sürücü içinde disket olmayabilir."
 
 #. All others
@@ -607,7 +608,8 @@ msgstr ""
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "Seçilen sistem bağlanamadı. Bu sistem muhtemelen bağlanamayacak bir biçimde."
+msgstr ""
+"Seçilen sistem bağlanamadı. Bu sistem muhtemelen bağlanamayacak bir biçimde."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -755,8 +757,8 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Görüntülemek için kullanılan uygulama, görüntülemek için içerik gerektirir. "
-"%s parametresi doyaların URI 'si ile, %c parametresi ise içeriğin IID'si ile "
+"Görüntülemek için kullanılan uygulama, görüntülemek için içerik gerektirir. %"
+"s parametresi doyaların URI 'si ile, %c parametresi ise içeriğin IID'si ile "
 "değiştirilecek. "
 
 #: schemas/desktop_default_applications.schemas.in.h:6
@@ -822,62 +824,72 @@ msgid "Run program in terminal"
 msgstr "Programı uçbirimde çalıştır"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" de belirtilen programın H323 URL'lerini işletmek için "
-"ayarlanır."
+"Eğer seçiliyse, \"command\" de belirtilen programın H323 URL'lerini işletmek "
+"için ayarlanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın HTTP URL'lerini işletmesi için "
-"ayalalanır."
+"Eğer seçiliyse, \"command\" da belirtilen programın HTTP URL'lerini "
+"işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın HTTPS URL'lerini işletmesi için "
-"ayalalanır."
+"Eğer seçiliyse, \"command\" da belirtilen programın HTTPS URL'lerini "
+"işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın callto URL'lerini işletmesi için "
-"ayalalanır."
+"Eğer seçiliyse, \"command\" da belirtilen programın callto URL'lerini "
+"işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın ghelp URL'lerini işletmesi için "
-"ayalalanır."
+"Eğer seçiliyse, \"command\" da belirtilen programın ghelp URL'lerini "
+"işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın info URL'lerini işletmesi için "
-"ayalalanır."
+"Eğer seçiliyse, \"command\" da belirtilen programın info URL'lerini "
+"işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın mailto URL'lerini işletmesi için "
-"ayalalanır."
+"Eğer seçiliyse, \"command\" da belirtilen programın mailto URL'lerini "
+"işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın man URL'lerini işletmesi için "
-"ayalalanır."
+"Eğer seçiliyse, \"command\" da belirtilen programın man URL'lerini işletmesi "
+"için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın trash URL'lerini işletmesi için "
-"ayalalanır."
+"Eğer seçiliyse, \"command\" da belirtilen programın trash URL'lerini "
+"işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr "Eğer seçiliyse, bu URL'yi işletecek program uçbirimde çalışması gerekiyor demektir."
+msgstr ""
+"Eğer seçiliyse, bu URL'yi işletecek program uçbirimde çalışması gerekiyor "
+"demektir."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -947,8 +959,8 @@ msgid ""
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "Eğer seçiliyse, vekil sunucusuna bağlantılar kimlik doğrulaması gerektirir. "
-"Kullanıcı / Şifre ikilisi \"/system/http_proxy/authentication_user\" ve  "
-"\"/system/http_proxy/authentication_password\" ile tanımlanır."
+"Kullanıcı / Şifre ikilisi \"/system/http_proxy/authentication_user\" ve  \"/"
+"system/http_proxy/authentication_password\" ile tanımlanır."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -982,7 +994,9 @@ msgstr "Güvenli HTTP sunucu portu"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "Vekil yapılandırma kipi seç. Geçerli değerler \"none\", \"manual\" ve \"auto\"dur."
+msgstr ""
+"Vekil yapılandırma kipi seç. Geçerli değerler \"none\", \"manual\" ve \"auto"
+"\"dur."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1013,8 +1027,8 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"\"/system/proxy/ftp_host\" ile tanımlanmış vekil olarak kullanacağınız makinenin "
-"portu."
+"\"/system/proxy/ftp_host\" ile tanımlanmış vekil olarak kullanacağınız "
+"makinenin portu."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
@@ -1063,4 +1077,3 @@ msgstr "SMB çalışma gurubu"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Pencere çalışma gurubu, kullanıcı ise:"
-

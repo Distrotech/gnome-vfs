@@ -1,3 +1,9 @@
+gnome-vfs 2.6.0
+	* Bugs fixed:
+	        + Some doc fixes
+		+ Fixed potential buffer in ftp readdir
+		+ Fix up needs_terminal usage in schema for url handlers
+
 gnome-vfs 2.5.91
 	* Bugs fixed:
 	        + build fixes

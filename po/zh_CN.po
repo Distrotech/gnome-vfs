@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-20 22:42+0800\n"
+"POT-Creation-Date: 2004-03-22 13:53+0100\n"
 "PO-Revision-Date: 2004-03-20 22:43+0800\n"
 "Last-Translator: LoneStar <lone@auvtech.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -522,11 +522,13 @@ msgstr "未知卷"
 msgid "Network server"
 msgstr "网络服务器"
 
+#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "无法挂载软盘驱动器。可能驱动器中没有软盘。"
 
+#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "无法挂载卷。可能设备中没有介质。"
