@@ -76,13 +76,13 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
 
 	action_type = gnome_vfs_mime_get_default_action_type_without_fallback (mime_type);
 
-	/* FIXME: the current (and the previous) implementation of gnome_vfs_mime_get_value
-	   do try the supertype. This means that the folowing code is useless.
-	   or this means that we need to fix the gnome_vfs_mime_get_value.
-	   The only code in gnome using this "potential" feature (since it never worked :)
-	   is http://cvs.gnome.org/lxr/source/evolution/mail/mail-format.c#334
-	   Note that this comment is true for all the file and there is potentially a
-	   _lot_ of code we can get rid of if we drop thi.
+	/* FIXME bugzilla.eazel.com 2650: the current (and the previous) implementation of 
+	   gnome_vfs_mime_get_value
+	   tries the supertype. This means that the folowing code is useless.
+	   The correct fix for this is to add a new funciotn in gnome-vfs-mime-info.c
+	   gnome_vfs_mime_get_value_without_callback. Waiting for evolution guys to fix it.
+	   Might remove this code too if we can convince them that wht they do with this 
+	   function is bad.
 	*/
 	if (action_type == GNOME_VFS_MIME_ACTION_TYPE_NONE) {
 		/* Fall back to the supertype. */
@@ -172,7 +172,7 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 		}
 	}
 
-	/* FIXME: Instead of returning NULL we need to chose from
+	/* FIXME bugzilla.eazel.com 2756: Instead of returning NULL we need to chose from
 	 * pruned system lists here.
 	 */
 
@@ -1589,7 +1589,7 @@ executable_in_path (const char *executable_name)
 static char *
 get_executable_name_from_command_string (const char *command)
 {
-	/* FIXME: Do we need to handle quoting? */
+	/* FIXME bugzilla.eazel.com 2757: Do we need to handle quoting? */
 	return strdup_to (command, strchr (command, ' '));
 }
 

@@ -990,9 +990,6 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 		}
 	}
 
-	/* FIXME. see FIXME in gnome_vfs_mime_get_default_action_type 
-	   to fix this functions, just remove the code above.
-	 */
 	generic_type = g_strdup (mime_type);
 	p = strchr (generic_type, '/');
 	if (p)
@@ -1405,9 +1402,7 @@ gnome_vfs_mime_flag (const char *mime_type, gchar *key, gchar *flag)
  * Returns a boolean value, whether the mime_type open
  * command will produce lots of output
  */
-/* FIXME: this API call is not obvious to me.
-   what is it supposed to do ? 
-   add a test for this in test-mime-auto.c
+/* FIXME bugzilla.eazel.com 2758: remove this API call with mjs approval.
 */
 gboolean 
 gnome_vfs_mime_get_copiousoutput (const char *mime_type, gchar *key)
@@ -1423,10 +1418,6 @@ gnome_vfs_mime_get_copiousoutput (const char *mime_type, gchar *key)
  * Returns a boolean value, whether the mime_type open
  * command will require a terminal.
  */
-/* FIXME: this API call is not obvious to me.
-   what is it supposed to do ? 
-   add a test for this in test-mime-auto.c
-*/
 gboolean
 gnome_vfs_mime_get_needsterminal (const char *mime_type, gchar *key)
 {
@@ -1487,7 +1478,7 @@ gnome_vfs_get_registered_mime_types (void)
 	maybe_reload ();
 
 	/* Extract mime type names */
-	/* FIXME: this will generate duplicates. Who cares ? */
+	/* FIXME bugzilla.eazel.com 2759: this will generate duplicates. Who cares ? */
 	g_hash_table_foreach (registered_types_user, get_key_name, &type_list);
 	g_hash_table_foreach (registered_types, get_key_name, &type_list);
 

@@ -1,5 +1,5 @@
 /*
- * gnome-vfs-mime-magic-magic.c
+ * gnome-vfs-mime-magic.c
  *
  * Written by:
  *    James Youngman (jay@gnu.org)
@@ -52,7 +52,7 @@ is_hex_digit (char ch)
 	return (ch >= 'A' && ch <= 'F');
 }
 
-/* FIXME:
+/* FIXME bugzilla.eazel.com 2760:
  * should return error here
  */
 static guchar
@@ -75,7 +75,7 @@ read_octal_byte (const char **pos)
 	return retval;
 }
 
-/* FIXME:
+/* FIXME bugzilla.eazel.com 2760:
  * should return error here
  */
 static guchar
@@ -105,7 +105,7 @@ read_hex_byte (const char **pos)
 	return retval;
 }
 
-/* FIXME:
+/* FIXME bguzilla.eazel.com 2760:
  * should return error here
  */
 static const char *
@@ -520,7 +520,7 @@ G_LOCK_DEFINE_STATIC (mime_magic_table_mutex);
 
 static GnomeMagicEntry *mime_magic_table = NULL;
 
-/* FIXME: This whole mmap optimization may be unnecessary. It complicates
+/* FIXME bugzilla.eazel.com 2761: This whole mmap optimization may be unnecessary. It complicates
  * this code quite a bit (and slows down "make install"). If it's not buying
  * a noticeable performance improvement we should get rid of it.
  */

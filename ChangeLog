@@ -1,3 +1,18 @@
+2000-09-04  Mathieu Lacage  <mathieu@eazel.com>
+
+	Add bugs to bugzilla.eazel.com for FIXMEs...
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_action_type),
+	(gnome_vfs_mime_get_default_application),
+	(get_executable_name_from_command_string):
+	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_get_value),
+	(gnome_vfs_get_registered_mime_types):
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	* libgnomevfs/gnome-vfs-uri.c:
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(mime_list_selected_row_callback), (init_mime_capplet),
+	(populate_viewer_menu), (delete_mime_clicked), (pixmap_file):
+
 2000-09-03  Mathieu Lacage  <mathieu@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c: (write_back_keys_user_file):

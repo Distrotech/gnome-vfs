@@ -37,8 +37,8 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
-/* FIXME: The uri->parent field is always NULL; we should get rid of it. */
-/* FIXME: This doesn't handle "../" or "./" like the RFC says it should. */
+/* FIXME bugzilla.eazel.com 2762: The uri->parent field is always NULL; we should get rid of it. */
+/* FIXME bugzilla.eazel.com 2763: This doesn't handle "../" or "./" like the RFC says it should. */
 
 
 #define ALLOCA_SUBSTRING(dest, src, len)		\
