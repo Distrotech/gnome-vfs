@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-30 15:33+0200\n"
-"PO-Revision-Date: 2004-08-17 10:23+0200\n"
+"POT-Creation-Date: 2004-09-01 19:22+0200\n"
+"PO-Revision-Date: 2004-09-01 19:22+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -738,50 +738,148 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1122
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:391
 msgid " (invalid Unicode)"
 msgstr " (ogiltig Unicode)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:629
 msgid "Floppy"
 msgstr "Diskett"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:632
 msgid "CD-ROM"
 msgstr "Cd-rom"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
-msgid "Zip Drive"
-msgstr "Zipenhet"
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+msgid "CD-R"
+msgstr "Cd-r"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+msgid "CD-RW"
+msgstr "Cd-rw"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+msgid "DVD-ROM"
+msgstr "Dvd-rom"
+
+# http://www.nada.kth.se/dataterm/rek.html#a23
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+msgid "DVD-RAM"
+msgstr "Dvd-ram"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+msgid "DVD-R"
+msgstr "Dvd-r"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+msgid "DVD-RW"
+msgstr "Dvd-rw"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+msgid "CD-ROM/DVD-ROM"
+msgstr "Cd-rom/dvd-rom"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+msgid "CD-ROM/DVD-RAM"
+msgstr "Cd-rom/dvd-ram"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+msgid "CD-ROM/DVD-R"
+msgstr "Cd-rom/dvd-r"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+msgid "CD-ROM/DVD-RW"
+msgstr "Cd-rom/dvd-rw"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+msgid "CD-R/DVD-ROM"
+msgstr "Cd-rom/dvd-rom"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+msgid "CD-R/DVD-RAM"
+msgstr "Cd-r/dvd-ram"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+msgid "CD-R/DVD-R"
+msgstr "Cd-r/dvd-r"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+msgid "CD-R/DVD-RW"
+msgstr "Cd-r/dvd-rw"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+msgid "CD-RW/DVD-ROM"
+msgstr "Cd-rw/dvd-rom"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+msgid "CD-RW/DVD-RAM"
+msgstr "Cd-rw/dvd-ram"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
+msgid "CD-RW/DVD-R"
+msgstr "Cd-rw/dvd-r"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+msgid "CD-RW/DVD-RW"
+msgstr "Cd-rw/dvd-rw"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+msgid "Disk"
+msgstr "Disk"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+msgid "USB Drive"
+msgstr "USB-enhet"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
+msgid "IEEE1394 Drive"
+msgstr "IEEE1394-enhet"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
+msgid "CF"
+msgstr "CF"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
+msgid "SD/MMC"
+msgstr "SD/MMC"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
 msgid "Memory Stick"
 msgstr "Minnespinne"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
+msgid "Smart Media"
+msgstr "Smart Media"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
+msgid "Zip Drive"
+msgstr "Zipenhet"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:605
 msgid "Camera"
 msgstr "Kamera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:606
 msgid "DVD"
 msgstr "Dvd"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:822
 msgid "Root Volume"
 msgstr "Rotvolym"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:903
 msgid "Audio CD"
 msgstr "Ljud-cd"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
 msgid "Unknown volume"
 msgstr "Okänd volym"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1116
 msgid "Network server"
 msgstr "Nätverksserver"
 
