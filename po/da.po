@@ -3,13 +3,14 @@
 # Kenneth Christiansen <kenneth@ripen.dk>, 1999.
 # Birger Langkjer <birger.langkjer@image.dk>, 2000.
 # Keld Simonsen <Keld@dkuug.dk>, 2000.
+# Ole Laursen <olau@hardworking.dk>, 2001.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2001-03-04 11:14+0100\n"
-"PO-Revision-Date: 2001-01-27 19:03+01:00\n"
-"Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
+"POT-Creation-Date: 2001-03-06 23:31+0100\n"
+"PO-Revision-Date: 2001-03-07 18:21+01:00\n"
+"Last-Translator: Ole Laursen <olau@hardworking.dk> \n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
@@ -480,9 +481,8 @@ msgid "Quicken document"
 msgstr "Quicken-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:117
-#, fuzzy
 msgid "Quicken for Windows document"
-msgstr "kalender eller begivenhedsdokument"
+msgstr "Quicken til Windows-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:118
 msgid "RAR archive"
@@ -577,9 +577,8 @@ msgid "Speedo font"
 msgstr "Speedo-skrifttype"
 
 #: data/mime/gnome-vfs.keys.in.h:141
-#, fuzzy
 msgid "Spreadsheet Interchange document"
-msgstr "FrameMaker-udbytningsdokument"
+msgstr "Regnearksbyttedokument"
 
 #: data/mime/gnome-vfs.keys.in.h:142
 msgid "Stampede package"
@@ -710,9 +709,8 @@ msgid "XPM image"
 msgstr "XPM-billede"
 
 #: data/mime/gnome-vfs.keys.in.h:174
-#, fuzzy
 msgid "Xbase database"
-msgstr "Palm OS-database"
+msgstr "Xbase-database"
 
 #: data/mime/gnome-vfs.keys.in.h:175
 msgid "active server page"
@@ -1414,9 +1412,9 @@ msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1574
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown job kind %u"
-msgstr "Ukendt job-ID %u"
+msgstr "Ukendt jobtype %u"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1605
 msgid "Operation stopped"
@@ -1518,7 +1516,7 @@ msgstr "Redigér applikationslisten"
 
 #. Add label
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
-#, fuzzy, c-format
+#, c-format
 msgid "Select applications to appear in menu for MIME type \"%s\""
 msgstr "Vælg applikationer som skal være i menuen for MIME-type \"%s\""
 
@@ -1585,14 +1583,13 @@ msgid "Add New Extension"
 msgstr "Tilføj ny filtype"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
-#, fuzzy
 msgid ""
 "Type in the extensions for this mime-type (without dot).\n"
 "You can enter several extensions seperated by a space,\n"
 "for example: html htm"
 msgstr ""
-"Indtast filtypen for denne MIME-type.\n"
-"For eksempel: .html, .htm"
+"Indtast endelserne for denne MIME-type (uden punktum).\n"
+"Flere endelser adskilles af et mellemrum, fx: html htm"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
 msgid "Extension:"
@@ -1613,6 +1610,8 @@ msgid ""
 "Check your spelling and make sure you have\n"
 "the right permissions to execute this file."
 msgstr ""
+"\"%s\" eksisterer ikke eller kan ikke køres.\n"
+"Tjek stavningen og kørselsrettighederne på filen."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
 #, c-format
@@ -1620,21 +1619,21 @@ msgid ""
 "The command \"%s\" cannot be found.\n"
 "You must use a command that can work from any command line."
 msgstr ""
+"Kommandoen \"%s\" kan ikke findes.\n"
+"Du skal bruge en kommando der kan virke\n"
+"ved enhver kommandolinje."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
-#, fuzzy
 msgid "Bad Application Name"
-msgstr "Applikationsnavn:"
+msgstr "Ugyldigt applikationsnavn"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
-#, fuzzy
 msgid "Bad Application Command"
-msgstr "Applikationskommando:"
+msgstr "Ugyldig applikationskommando"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
-#, fuzzy
 msgid "Add Application"
-msgstr "Tilføj applikation..."
+msgstr "Tilføj applikation"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
 msgid "Edit Application"
@@ -1763,7 +1762,7 @@ msgstr "Vis:"
 
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
-msgstr "Vis dotfiler"
+msgstr "Vis punktumfiler"
 
 #~ msgid "New Application"
 #~ msgstr "Ny applikation"
@@ -1867,14 +1866,6 @@ msgstr "Vis dotfiler"
 
 #~ msgid "class code"
 #~ msgstr "Klassekode"
-
-#, fuzzy
-#~ msgid "compressed GIMP image archive"
-#~ msgstr "bzip-arkiv"
-
-#, fuzzy
-#~ msgid "compressed bzip archive"
-#~ msgstr "bzip-arkiv"
 
 #~ msgid "enriched text"
 #~ msgstr "beriget tekst"
