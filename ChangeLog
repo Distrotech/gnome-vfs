@@ -1,5 +1,11 @@
 2004-09-16  Christophe Fergeau  <teuf@gnome.org>
 
+	* libgnomevfs/gnome-vfs-drive.h:
+	* libgnomevfs/gnome-vfs-volume-monitor.c:
+	* doc/tmpl/gnome-vfs-drive.sgml: API doc updates
+
+2004-09-16  Christophe Fergeau  <teuf@gnome.org>
+
 	* libgnomevfs/xdgmimeglob.c:
 	* libgnomevfs/xdgmimemagic.c: fix memleaks (sync with upstream),
 	  fixes #152768 and #152771
