@@ -1,11 +1,12 @@
 AC_INIT(libgnomevfs/gnome-vfs.h)
-AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE(gnome-vfs, 1.0.2)
+
+AM_PROG_XML_I18N_TOOLS
+
+AM_CONFIG_HEADER(config.h)
 AM_ACLOCAL_INCLUDE(macros)
 
 AM_MAINTAINER_MODE
-
-AM_PROG_XML_I18N_TOOLS
 
 AC_ISC_POSIX
 AC_PROG_CC
@@ -175,9 +176,6 @@ cflags_set=yes
 GNOME_COMPILE_WARNINGS
 VFS_CFLAGS="$warnCFLAGS $complCFLAGS"
 
-if test $GNOME_PLATFORM_VERSION -lt 1095000 ; then
-  GNOME_SUPPORT_CHECKS
-fi
 GNOME_PTHREAD_CHECK
 dnl semaphore functions are in librt.so on solaris
 AC_CHECK_LIB(rt, sem_wait)

@@ -1,3 +1,11 @@
+2001-09-15  Darin Adler  <darin@bentspoon.com>
+
+	* configure.in: Move AM_PROG_XML_I18N_TOOLS macro up.
+	Remove some unnecessary stuff.
+
+	* doc/tmpl/gnome-vfs-unused.sgml: Not sure why this is
+	checked in, but check in a newly updated version.
+
 ==== gnome-vfs 1.0.2 ====
 
 2001-09-11  Ian McKellar  <yakk@yakk.net>
