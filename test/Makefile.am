@@ -18,6 +18,7 @@ noinst_PROGRAMS =				\
 	test-info				\
 	test-seek				\
 	test-sync				\
+	test-sync-write				\
 	test-xfer
 
 libraries =						\
@@ -105,6 +106,10 @@ test_sync_SOURCES = test-sync.c
 test_sync_LDADD = $(libraries)
 test_sync_LDFLAGS =
 
+test_sync_write_SOURCES = test-sync-write.c
+test_sync_write_LDADD = $(libraries)
+test_sync_write_LDFLAGS =
+
 EXTRA_DIST =					\
 	test-async-directory.c			\
 	test-async.c				\
@@ -113,5 +118,6 @@ EXTRA_DIST =					\
 	test-directory.c			\
 	test-seek.c				\
 	test-sync.c				\
+	test-sync-write.c				\
 	test-xfer.c				\
 	vfs-run.in

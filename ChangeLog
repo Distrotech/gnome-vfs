@@ -1,3 +1,13 @@
+2000-03-07  Ian McKellar  <yakk@yakk.net>
+	* modules/http-method.c
+	Added PUT support (i.e. WebDAV or HTTP/1.1 file upload).
+
+	* test/test-sync-write.c
+	Added a test program which writes from stdin to a URI.
+
+	* test/test-sync.c
+	Patched test-sync.c to handle larger files.
+
 2000-03-06  Ettore Perazzoli  <ettore@helixcode.com>
 
 	* libgnomevfs/gnome-vfs-private-ops.c

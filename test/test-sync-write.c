@@ -19,7 +19,10 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org> */
+   Author: Ettore Perazzoli <ettore@gnu.org> 
+					 Ian McKellar <yakk@yakk.net>
+
+	 */
 
 #include "gnome-vfs.h"
 
@@ -62,17 +65,20 @@ main (int argc, char **argv)
 
 	text_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
-	result = gnome_vfs_open_uri (&handle, uri, GNOME_VFS_OPEN_READ);
+	result = gnome_vfs_open_uri (&handle, uri, GNOME_VFS_OPEN_WRITE);
 	show_result (result, "open", text_uri);
 
-	while( result==GNOME_VFS_OK ) {
-		result = gnome_vfs_read (handle, buffer, sizeof buffer - 1,
-				 	&bytes_read);
-		show_result (result, "read", text_uri);
-	
-		buffer[bytes_read] = 0;
-		puts (buffer);
+	while( result==GNOME_VFS_OK && !feof(stdin)) {
+		GnomeVFSFileSize temp;
+
+		g_print("[loop]\n");
+		bytes_read = fread(buffer, 1, sizeof buffer - 1, stdin);
 		if(!bytes_read) break;
+		buffer[bytes_read] = 0;
+		result = gnome_vfs_write (handle, buffer, bytes_read,
+				 	&temp);
+		show_result (result, "write", text_uri);
+	
 	}
 
 	result = gnome_vfs_close (handle);

@@ -19,8 +19,11 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org>, with some help from the
-   friendly GNU Wget sources.  */
+   Authors: 
+		 Ettore Perazzoli <ettore@gnu.org> (core HTTP)
+		 Ian McKellar <yakk@yakk.net> (WebDAV/PUT)
+		 The friendly GNU Wget sources
+	*/
 
 /* TODO:
    - Handle redirection.
@@ -117,6 +120,7 @@ struct _HttpFileHandle {
 	GnomeVFSInetConnection *connection;
 	GnomeVFSIOBuf *iobuf;
 	gchar *uri_string;
+	GnomeVFSURI *uri;
 	gchar *mime_type;
 	gchar *location;
 
@@ -130,6 +134,9 @@ struct _HttpFileHandle {
 
 	/* Bytes read so far.  */
 	GnomeVFSFileSize bytes_read;
+
+	/* Bytes to be written... */
+	GByteArray *to_be_written;
 };
 typedef struct _HttpFileHandle HttpFileHandle;
 
@@ -137,7 +144,7 @@ typedef struct _HttpFileHandle HttpFileHandle;
 static HttpFileHandle *
 http_file_handle_new (GnomeVFSInetConnection *connection,
 		      GnomeVFSIOBuf *iobuf,
-		      const GnomeVFSURI *uri)
+		      GnomeVFSURI *uri)
 {
 	HttpFileHandle *new;
 
@@ -146,6 +153,7 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 	new->connection = connection;
 	new->iobuf = iobuf;
 	new->uri_string = gnome_vfs_uri_to_string (uri, 0); /* FIXME */
+	new->uri = uri;
 
 	new->location = NULL;
 	new->mime_type = NULL;
@@ -153,6 +161,7 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 	new->size = 0;
 	new->size_is_known = FALSE;
 	new->bytes_read = 0;
+	new->to_be_written = NULL;
 
 	return new;
 }
@@ -506,6 +515,7 @@ static GnomeVFSResult
 make_request (HttpFileHandle **handle_return,
 	      GnomeVFSURI *uri,
 	      const gchar *method,
+				GByteArray *data,
 	      GnomeVFSContext *context)
 {
 	GnomeVFSInetConnection *connection;
@@ -554,17 +564,29 @@ make_request (HttpFileHandle **handle_return,
 	/* `Accept:' header.  */
 	g_string_append (request, "Accept: */*\r\n");
 
+	/* `Content-Length' header.  */
+	if(data)
+		g_string_sprintfa (request, "Content-Length: %d\r\n", data->len);
+
 	/* `User-Agent:' header.  */
 	g_string_sprintfa (request, "User-Agent: %s\r\n", USER_AGENT_STRING);
 
 	/* Empty line ends header section.  */
 	g_string_append (request, "\r\n");
 
-	/* Send the request.  */
+	/* Send the request headers.  */
 	result = gnome_vfs_iobuf_write (iobuf, request->str, request->len,
 					&bytes_written);
 	g_string_free (request, TRUE);
 
+	if (result != GNOME_VFS_OK)
+		goto error;
+
+	if(data) {
+		g_print("sending data...\n");
+		result = gnome_vfs_iobuf_write (iobuf, data->data, data->len,
+						&bytes_written);
+	}
 	if (result == GNOME_VFS_OK)
 		result = gnome_vfs_iobuf_flush (iobuf);
 	if (result != GNOME_VFS_OK)
@@ -618,15 +640,19 @@ do_open (GnomeVFSMethod *method,
 	 GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
-	GnomeVFSResult result;
+	GnomeVFSResult result = GNOME_VFS_OK;
 
 	g_return_val_if_fail (uri->parent == NULL, GNOME_VFS_ERROR_INVALIDURI);
-	g_return_val_if_fail (mode == GNOME_VFS_OPEN_READ,
+	g_return_val_if_fail (mode == GNOME_VFS_OPEN_READ || 
+						mode == GNOME_VFS_OPEN_WRITE,
 			      GNOME_VFS_ERROR_INVALIDOPENMODE);
 
-	result = make_request (&handle, uri, "GET",
-			       context);
-
+	if(mode == GNOME_VFS_OPEN_READ) {
+		result = make_request (&handle, uri, "GET", NULL, 
+			       	context);
+	} else {
+		handle = http_file_handle_new(NULL, NULL, uri); /* shrug */
+	}
 	if (result == GNOME_VFS_OK)
 		*method_handle = (GnomeVFSMethodHandle *) handle;
 
@@ -639,13 +665,64 @@ do_close (GnomeVFSMethod *method,
 	  GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
+	GnomeVFSResult result = GNOME_VFS_OK;
 
 	handle = (HttpFileHandle *) method_handle;
+
+	/* if the handle was opened in write mode then:
+	 * 1) there won't be a connection open, and
+	 * 2) there will be data to_be_written...
+	 */
+	if(handle->to_be_written) { /* != NULL */
+		GnomeVFSURI *uri = handle->uri;
+		GByteArray *bytes = handle->to_be_written;
+
+		http_file_handle_destroy(handle);
+
+		result = make_request(&handle, uri, "PUT", bytes, context);
+
+		if(result != GNOME_VFS_OK) {
+			http_handle_close (handle, context);
+			return result;
+		}
+
+		result = gnome_vfs_iobuf_write (handle->iobuf, bytes->data,
+				bytes->len, NULL /* we don't care how big it was */);
+		if(result != GNOME_VFS_OK) {
+			return result;
+		}
+
+		g_byte_array_free(bytes, TRUE);
+		g_free(uri);
+
+	}
 	http_handle_close (handle, context);
+
+	return result;
+}
+	
+static GnomeVFSResult
+do_write (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
+	 gpointer buffer,
+	 GnomeVFSFileSize num_bytes,
+	 GnomeVFSFileSize *bytes_read,
+	 GnomeVFSContext *context)
+{
+	HttpFileHandle *handle;
+
+	handle = (HttpFileHandle *) method_handle;
+
+	if(handle->to_be_written == NULL) {
+		handle->to_be_written = g_byte_array_new();
+	}
+	handle->to_be_written = g_byte_array_append(handle->to_be_written, buffer, num_bytes);
+	*bytes_read = num_bytes;
 
 	return GNOME_VFS_OK;
 }
-	
+
+
 static GnomeVFSResult
 do_read (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle *method_handle,
@@ -752,7 +829,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
 
-	result = make_request (&handle, uri, "HEAD",
+	result = make_request (&handle, uri, "HEAD", NULL, 
 			       context);
 	if (result != GNOME_VFS_OK)
 		return result;
@@ -790,7 +867,7 @@ static GnomeVFSMethod method = {
 	NULL,
 	do_close,
 	do_read,
-	NULL,
+	do_write,
 	NULL,
 	NULL,
 	NULL,
