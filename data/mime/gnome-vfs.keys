@@ -24,6 +24,7 @@
 #   text/richtext).
 # * Programming source code is called "<language> source code", unless there's
 #   another standard usage for a given language (e.g. "Perl script")
+# * Use lowercase letters except for proper names
 
 application/mime-type-test
 	open=mime-type-test
@@ -42,7 +43,7 @@ application/msword
 	description=Microsoft Word document
 
 application/octet-stream
-	description=Unknown data
+	description=unknown data
 
 application/oda
 	description=ODA document
@@ -141,6 +142,7 @@ application/x-cpio-compressed
 	description=CPIO archive
 	icon-filename=gnome-compressed.png
 
+# also text/x-csh
 application/x-csh
 	description=C-Shell script
 
@@ -158,7 +160,7 @@ application/x-e-theme
 	description=Enlightenment theme
 
 application/x-executable-file
-	description=Binary program
+	description=binary program
 
 application/x-font-afm
 	description=Adobe font metrics
@@ -262,6 +264,7 @@ application/x-pef-executable
 application/x-palm-database
 	description=Palm OS database
 
+# also text/x-perl
 application/x-perl
 	description=Perl script
 
@@ -301,7 +304,7 @@ application/x-smil
 	description=SMIL script
 
 application/x-stuffit
-	description=Macintosh StuffIt archive 
+	description=Macintosh StuffIt! archive 
 
 application/x-sv4cpio
 	description=SV4Cpio document 
@@ -328,7 +331,7 @@ application/x-unix-archive
 	description=archive
 
 application/x-ustar
-	description=UStar document
+	description=UStar archive
 
 application/x-wais-source
 	description=WAIS source code
@@ -398,8 +401,9 @@ audio/x-xi
 audio/x-xm
 	description=FastTracker II audio
 
+# also image/x-bmp
 image/bmp
-	description=Windows bitmap
+	description=Windows bitmap image
 	default_action_type=component
 	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
 	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
@@ -443,6 +447,7 @@ image/jpeg
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 
+# also image/x-png
 image/png
 	description=PNG image
 	default_action_type=component
@@ -482,7 +487,9 @@ image/x-3ds
 image/x-applix-graphic
 	description=Applix image
 
+# also image/bmp
 image/x-bmp
+	description=Windows bitmap image
 	default_action_type=component
 	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
 	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
@@ -492,7 +499,6 @@ image/x-bmp
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
-	description=Windows bitmap
 
 image/x-cmu-raster
 	description=CMU raster image
@@ -501,7 +507,7 @@ image/x-compressed-xcf
 	description=GIMP image archive
 
 image/x-ico
-	description=Icon image
+	description=Windows icon image
 
 image/x-iff
 	description=IFF image
@@ -515,6 +521,7 @@ image/x-lwo
 image/x-lws
 	description=LightWave scene
 
+# also image/png
 image/x-png
 	description=PNG image	
 	default_action_type=component
@@ -528,7 +535,7 @@ image/x-png
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 
 image/x-portable-anymap
-	description=portable image
+	description=PNM image
 	default_action_type=component
 	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
 	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
@@ -540,7 +547,7 @@ image/x-portable-anymap
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 	
 image/x-portable-bitmap
-	description=portable bitmap
+	description=PBM image
 	default_action_type=component
 	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
 	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
@@ -552,7 +559,7 @@ image/x-portable-bitmap
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 	
 image/x-portable-graymap
-	description=portable gray image
+	description=PGM image
 	default_action_type=component
 	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
 	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
@@ -564,7 +571,7 @@ image/x-portable-graymap
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 	
 image/x-portable-pixmap
-	description=portable pixmap
+	description=PPM image
 	default_action_type=component
 	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
 	short_list_component_iids_for_novice_user_level=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
@@ -576,7 +583,7 @@ image/x-portable-pixmap
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 
 image/x-psd
-	description=Photoshop image
+	description=Photoshop document
 	default_action_type=application
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp
@@ -590,7 +597,7 @@ image/x-tga
 	description=TarGA image
 
 image/x-xbitmap
-	description=X bitmap
+	description=X bitmap image
 	default_action_type=application
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp
@@ -764,6 +771,7 @@ text/x-copying
 text/x-credits
 	description=author credits
 
+# also application/x-csh
 text/x-csh
 	description=C-Shell script
 
@@ -798,11 +806,12 @@ text/x-ksh
 	description=Korn shell script
 
 text/x-makefile
-	description=makefile
+	description=Makefile
 
 text/x-patch
 	description=source code patch
 
+# also application/x-perl
 text/x-perl
 	description=Perl script
 
@@ -830,6 +839,7 @@ text/x-sql
 text/x-tcl
 	description=Tcl script
 
+# also text/tex
 text/x-tex
 	description=TeX document
 
@@ -850,7 +860,7 @@ text/x-troff-ms
 	description=Troff MS-macros document
 
 text/x-vcalendar
-	description=calendar document
+	description=calendar or event information
 
 text/x-vcard
 	description=address card

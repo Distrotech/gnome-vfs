@@ -1,3 +1,11 @@
+2000-09-07  Dan Winship  <danw@helixcode.com>
+
+	* data/mime/gnome-vfs.keys: lowercasify the handful of
+	descriptions that started with a capital letter that wasn't part
+	of a proper name. Rewrite a few descriptions to be more correct or
+	more user-friendly. Add comments pointing out duplicated entries
+	(like image/png and image/x-png) that need to be kept in sync.
+
 2000-09-08  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/http-method.c: (make_request):
