@@ -134,9 +134,10 @@ typedef struct {
 	GList *			filenames;	/* List of char * basenames for files that are in this 
 						 * collection/directory.  Empty for non-directories
 						 */
-	gboolean		has_filenames;	/* For directories, FALSE if the cache does not contain 
+	gboolean		has_filenames:1;/* For directories, FALSE if the cache does not contain 
 						 * the directory's children 
 						 */
+	gboolean		is_dav:1;	/* Did this result from a PROPFIND or a GET ? */
 } FileInfoCacheEntry;
 
 static FileInfoCacheEntry * 	cache_entry_new ();
@@ -146,15 +147,15 @@ static GnomeVFSFileInfo *	cache_check (const gchar * uri_string);
 static GnomeVFSFileInfo *	cache_check_uri (GnomeVFSURI *uri);
 static GnomeVFSFileInfo *	cache_check_directory (const gchar * uri_string, GList **p_child_file_info_list);
 static GnomeVFSFileInfo *	cache_check_directory_uri (GnomeVFSURI *uri, GList **p_child_file_info_list);
-static FileInfoCacheEntry *	cache_add_no_strdup (gchar * uri_string, GnomeVFSFileInfo * file_info);
-static FileInfoCacheEntry *	cache_add (const gchar * uri_string, GnomeVFSFileInfo * file_info);
+static FileInfoCacheEntry *	cache_add_no_strdup (gchar *uri_string, GnomeVFSFileInfo *file_info, gboolean is_dav);
+static FileInfoCacheEntry *	cache_add (const gchar *uri_string, GnomeVFSFileInfo *file_info, gboolean is_dav);
 static void			cache_add_uri_and_children (
 					GnomeVFSURI *uri, 
 					GnomeVFSFileInfo *file_info, 
 					GList *file_info_list
 				);
-static void			cache_add_uri (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info);
-static void			cache_invalidate (const gchar * uri_string);
+static void			cache_add_uri (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, gboolean is_dav);
+static void			cache_invalidate (const gchar *uri_string);
 static void			cache_invalidate_uri (GnomeVFSURI *uri);
 static void			cache_invalidate_entry_and_children (const gchar * uri_string);
 static void			cache_invalidate_uri_and_children (GnomeVFSURI *uri);
@@ -438,7 +439,7 @@ cache_check_directory_uri (GnomeVFSURI * uri, GList **p_child_file_info_list)
 
 /* Note that this neither strdups uri_string nor calls cache_trim() */
 static FileInfoCacheEntry *
-cache_add_no_strdup (gchar * uri_string, GnomeVFSFileInfo * file_info)
+cache_add_no_strdup (gchar * uri_string, GnomeVFSFileInfo * file_info, gboolean is_dav)
 {
 	FileInfoCacheEntry *entry_existing;
 	FileInfoCacheEntry *entry;
@@ -458,6 +459,8 @@ cache_add_no_strdup (gchar * uri_string, GnomeVFSFileInfo * file_info)
 
 	entry->uri_string =  uri_string; 
 	entry->file_info = file_info;
+	entry->is_dav = is_dav;
+	
 	gnome_vfs_file_info_ref (file_info);
 
 	g_hash_table_insert (gl_file_info_cache, entry->uri_string, entry);
@@ -468,10 +471,10 @@ cache_add_no_strdup (gchar * uri_string, GnomeVFSFileInfo * file_info)
 }
 
 static FileInfoCacheEntry *
-cache_add (const gchar * uri_string, GnomeVFSFileInfo * file_info)
+cache_add (const gchar * uri_string, GnomeVFSFileInfo * file_info, gboolean is_dav)
 {
 	cache_trim ();
-	return cache_add_no_strdup (g_strdup(uri_string), file_info);
+	return cache_add_no_strdup (g_strdup (uri_string), file_info, is_dav);
 }
 
 static void
@@ -488,9 +491,9 @@ cache_add_uri_and_children (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, GList
 
 	uri_string = cache_uri_to_string (uri);
 
-	if (uri_string) {
+	if (uri_string != NULL) {
 		/* Note--can't use no_strdup because we use uri_string below */ 
-		parent_entry = cache_add (uri_string, file_info);
+		parent_entry = cache_add (uri_string, file_info, TRUE);
 
 		parent_entry->filenames = NULL;
 
@@ -509,7 +512,7 @@ cache_add_uri_and_children (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, GList
 							child_name_escaped); 
 			child_name_escaped = NULL;
 
-			cache_add_no_strdup (child_string, child_info);
+			cache_add_no_strdup (child_string, child_info, TRUE);
 		}
 		/* I'm not sure that order matters... */
 		parent_entry->filenames = g_list_reverse (parent_entry->filenames);
@@ -522,11 +525,11 @@ cache_add_uri_and_children (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, GList
 }
 
 static void
-cache_add_uri (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info)
+cache_add_uri (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, gboolean is_dav)
 {
 	cache_trim ();
 
-	cache_add_no_strdup (cache_uri_to_string (uri), file_info);
+	cache_add_no_strdup (cache_uri_to_string (uri), file_info, is_dav);
 }
 
 
@@ -2187,7 +2190,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 	 */
 
 	if (depth == 0) {
-		cache_add_uri (uri, (*handle_return)->file_info);
+		cache_add_uri (uri, (*handle_return)->file_info, TRUE);
 	} else {
 		cache_add_uri_and_children (uri, (*handle_return)->file_info, (*handle_return)->files);
 	}
@@ -2236,6 +2239,7 @@ do_open_directory(GnomeVFSMethod *method,
 
 	if (file_info_cached) {
 		if ( GNOME_VFS_FILE_TYPE_DIRECTORY != file_info_cached->type ) {
+			ANALYZE_HTTP ("==> Cache Hit (Negative)");	
 			gnome_vfs_file_info_unref (file_info_cached);
 			result = GNOME_VFS_ERROR_NOT_A_DIRECTORY;
 			goto error;
@@ -2373,6 +2377,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	if (file_info_cached) {
 		gnome_vfs_file_info_copy (file_info, file_info_cached);
 		gnome_vfs_file_info_unref (file_info_cached);
+		ANALYZE_HTTP ("==> Cache Hit");	
 		result = GNOME_VFS_OK;
 	} else {
 #endif /*DAV_NO_CACHE*/
@@ -2416,6 +2421,9 @@ do_get_file_info (GnomeVFSMethod *method,
 				result = make_request (&handle, uri, "GET", NULL, NULL, context);
 				if (result == GNOME_VFS_OK) {
 					gnome_vfs_file_info_copy (file_info, handle->file_info);
+#ifndef DAV_NO_CACHE
+					cache_add_uri (uri, handle->file_info, FALSE);
+#endif /* DAV_NO_CACHE */
 					http_handle_close (handle, context);
 				}
 

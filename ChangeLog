@@ -1,3 +1,17 @@
+2000-11-21  Mike Fleming  <mfleming@eazel.com>
+
+	reviewed by: pavel@eazel.com
+
+	* modules/http-method.c: (cache_add_no_strdup), (cache_add),
+	(cache_add_uri_and_children), (cache_add_uri),
+	(make_propfind_request), (do_open_directory), (do_get_file_info):
+
+	Now caches non-DAV get_file_info's.  Mostly improves the situation
+	by allowing a subsequent do_open_directory to return an error
+	based on the file info in cache.
+
+	Also added more "is_dav" bit to the cache records
+
 2000-11-20  Mathieu Lacage  <mathieu@eazel.com>
 
 	reviewed by: <mjs@eazel.com>
