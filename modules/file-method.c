@@ -394,7 +394,7 @@ do_seek (GnomeVFSMethodHandle *method_handle,
 	file_handle = (FileHandle *) method_handle;
 	lseek_whence = seek_position_to_unix (whence);
 
-	if (LSEEK (file_handle->fd, offset, whence) == -1) {
+	if (LSEEK (file_handle->fd, offset, lseek_whence) == -1) {
 		if (errno == ESPIPE)
 			return GNOME_VFS_ERROR_NOTSUPPORTED;
 		else
