@@ -965,6 +965,7 @@ static GnomeVFSFileInfo *
 process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 {
 	GnomeVFSFileInfo *file_info = gnome_vfs_file_info_new();
+	GnomeVFSURI *second_base = gnome_vfs_uri_append_path(base_uri, "/");
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
@@ -978,8 +979,11 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 				gint len;
 				GnomeVFSURI *uri = gnome_vfs_uri_new(nodecontent);
 
-				if(gnome_vfs_uri_equal(base_uri, uri) || !strcmp(base_uri->text, uri->text)) {
-					file_info->name = NULL; /* no name */
+				if(gnome_vfs_uri_equal(base_uri, uri) ||
+						gnome_vfs_uri_equal(second_base, uri) || 
+						!strcmp(base_uri->text, uri->text) ||
+						!strcmp(second_base->text, uri->text)) {
+					file_info->name = NULL; /* this file is the . directory */
 				} else {
 					file_info->name = gnome_vfs_uri_extract_short_name(uri);
 					gnome_vfs_uri_unref(uri);
@@ -1025,6 +1029,9 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 		}
 		n = n->next;
 	}
+
+	gnome_vfs_uri_unref(second_base);
+
 	return file_info;
 }
 
