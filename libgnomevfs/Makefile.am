@@ -15,6 +15,7 @@ INCLUDES =					\
 	$(XML_CFLAGS)				\
 	$(GCONF_CFLAGS) 			\
 	$(VFS_CFLAGS) $(WERROR)			\
+        $(OPENSSL_CFLAGS)                       \
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
@@ -34,6 +35,7 @@ libgnomevfs_la_LIBADD =				\
 	$(OAF_LIBS)				\
 	$(XML_LIBS)				\
 	$(GCONF_LIBS) 				\
+	$(OPENSSL_LDFLAGS) 			\
 	$(NULL)
 
 libgnomevfsincludedir = $(includedir)/libgnomevfs
@@ -77,6 +79,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-result.h			\
 	gnome-vfs-seekable.h			\
 	gnome-vfs-shellpattern-filter.h		\
+	gnome-vfs-ssl.h				\
 	gnome-vfs-types.h			\
 	gnome-vfs-uri.h				\
 	gnome-vfs-utils.h			\
@@ -117,6 +120,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-result.c			\
 	gnome-vfs-seekable.c			\
 	gnome-vfs-shellpattern-filter.c		\
+	gnome-vfs-ssl.c				\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	gnome-vfs-xfer.c			\

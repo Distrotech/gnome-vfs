@@ -25,6 +25,7 @@ noinst_PROGRAMS =				\
 	test-seek				\
 	test-shell				\
 	test-symlinks				\
+	test-ssl				\
 	test-sync				\
 	test-sync-create			\
 	test-sync-write				\
@@ -91,6 +92,9 @@ test_directory_visit_LDADD = $(libraries)
 
 test_symlinks_SOURCES = test-symlinks.c
 test_symlinks_LDADD = $(libraries)
+
+test_ssl_SOURCES = test-ssl.c
+test_ssl_LDADD = $(libraries)
 
 test_sync_SOURCES = test-sync.c
 test_sync_LDADD = $(libraries)

@@ -437,6 +437,67 @@ AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h, [
 		AM_CONDITIONAL(HAVE_CDDA, true);
 	])
 
+dnl ******************************
+dnl OpenSSL
+dnl ******************************
+
+AC_ARG_WITH(openssl-includes, [  --with-openssl-includes=PREFIX     Location of OpenSSL includes.],
+	with_openssl_includes="$withval", with_openssl_includes="/usr/include")
+have_openssl_includes="no"
+if test "x${with_openssl_includes}" != "xno"; then
+	CPPFLAGS_save="$CPPFLAGS"
+	
+	AC_MSG_CHECKING(for OpenSSL includes)
+	AC_MSG_RESULT("")
+	
+	CPPFLAGS="$CPPFLAGS -I$with_openssl_includes"
+	AC_CHECK_HEADERS(openssl/ssl.h openssl/x509.h, [ openssl_includes="yes" ])
+	CPPFLAGS="$CPPFLAGS_save"
+	
+	if test "x{$openssl_includes}" != "xno" -a "x{$openssl_includes}" != "x"; then
+		have_openssl_includes="yes"
+		OPENSSL_CFLAGS="-I$with_openssl_includes"
+	else
+		OPENSSL_CFLAGS=""
+	fi
+else
+	AC_MSG_CHECKING(for OpenSSL includes)
+	AC_MSG_RESULT(no)
+fi
+
+AC_ARG_WITH(openssl-libs, [  --with-openssl-libs=PREFIX     	Location of OpenSSL libs.],
+	with_openssl_libs="$withval")
+msg_openssl="no"
+if test "x${with_openssl_libs}" != "xno" -a "x${have_openssl_includes}" != "xno"; then
+	LDFLAGS_save="$LDFLAGS"
+	
+	AC_CACHE_CHECK([for OpenSSL libraries], openssl_libs,
+	[
+dnl How can we test to see if we need to link to libld for sure?? 
+dnl RedHat 6.2 seems to need to but Debian Woody doesn't
+		LDFLAGS="$LDFLAGS -L$with_openssl_libs -lssl -lcrypto -ldl"
+		AC_TRY_LINK_FUNC(SSL_read, openssl_libs="yes", openssl_libs="no")
+		LDFLAGS="$LDFLAGS_save"
+	])
+	if test "x${openssl_libs}" != "xno"; then
+		AC_DEFINE(HAVE_OPENSSL)
+		msg_openssl="yes"
+		OPENSSL_LDFLAGS="-L$with_openssl_libs -lssl -lcrypto -ldl"
+		AM_CONDITIONAL(HAVE_SSL, true)
+	else
+		OPENSSL_CFLAGS=""
+		OPENSSL_LDFLAGS=""
+		AM_CONDITIONAL(HAVE_SSL, false)
+	fi
+else
+	AC_MSG_CHECKING(for OpenSSL libraries)
+	AC_MSG_RESULT(no)
+fi
+
+AC_SUBST(OPENSSL_CFLAGS)
+AC_SUBST(OPENSSL_LDFLAGS)
+
+
 
 dnl Final touch
 

@@ -28,6 +28,7 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-backend.h"
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-ssl-private.h"
 #include "gnome-vfs-mime.h"
 
 #ifdef USING_OAF
@@ -50,6 +51,8 @@ gnome_vfs_init (void)
 		if (oaf_orb_get() == NULL) {
 			oaf_init (0, bogus_argv);
 		}
+
+		gnome_vfs_ssl_init ();
 
 		retval = gnome_vfs_method_init ();
 		if (retval) {
