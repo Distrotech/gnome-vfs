@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-19 05:22+0200\n"
-"PO-Revision-Date: 2004-10-19 15:09+0530\n"
+"POT-Creation-Date: 2004-10-26 12:37+0200\n"
+"PO-Revision-Date: 2004-10-26 19:34+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "<magnet@magnet-i.com>\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -57,13 +58,9 @@ msgstr "ફાઈલ '%s' માંથી વાંચવામાં નિષ�
 msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr "ડેસ્કટોપ પ્રવેશ લીટી '%s' સમાવે છે કે પ્રવેશ, જૂથ, અથવા ટિપ્પળી નથી"
 
-#: libgnomevfs/eggdesktopentries.c:645
+#: libgnomevfs/eggdesktopentries.c:645 libgnomevfs/eggdesktopentries.c:670
 msgid "desktop entries file does not start with legal start group"
 msgstr "ડેસ્કટોપ પ્રવેશ ફાઈલ યોગ્ય શરુઆત જૂથથી શરુ થતા નથી"
-
-#: libgnomevfs/eggdesktopentries.c:670
-msgid "desktop entry does not start with legal start group"
-msgstr "ડેસ્કટોપ પ્રવેશ યોગ્ય શરુઆત જૂથથી શરુ થતા નથી"
 
 #: libgnomevfs/eggdesktopentries.c:711
 #, c-format
@@ -277,7 +274,7 @@ msgstr "સુધારેલ DOS કદ"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
-msgstr "વિન્ડોે VFAT કદ"
+msgstr "વિન્ડો VFAT કદ"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
@@ -494,7 +491,7 @@ msgstr "આંતરિક ભૂલ"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Invalid parameters"
-msgstr "અયોગ્ય પેરામીટર"
+msgstr "અયોગ્ય પરિમાણો"
 
 # libgnomevfs/gnome-vfs-result.c:40
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
@@ -507,7 +504,7 @@ msgstr "નિરાધારિત પ્રક્રિયાઓ"
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "I/O error"
-msgstr " ઇનપુટ/આઉટપુટની ભૂલ"
+msgstr "I/O ભૂલ"
 
 # libgnomevfs/gnome-vfs-result.c:42
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
@@ -732,7 +729,7 @@ msgstr "URL યોજના માટે કોઇ હેન્ડલર નથ�
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
-msgstr "અાદેશ વાક્યના પદચ્છેદ માં ભૂલ"
+msgstr "આદેશ વાક્યના પદચ્છેદમાં ભૂલ"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:83
@@ -804,7 +801,7 @@ msgstr "ફ્લોપી"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:632
 msgid "CD-ROM"
-msgstr "સીડી-રોમ"
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CD-R"
@@ -940,7 +937,7 @@ msgstr "નેટવર્ક સર્વર"
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ.કદાચિત ડ્રાઇવમાં કોઇ ફ્લોપી નથી."
+msgstr "ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. કદાચિત ડ્રાઇવમાં કોઇ ફ્લોપી નથી."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
@@ -952,14 +949,14 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. કદાચ ફ્લોપીનુ બેધારણ એવુ હશે કે જેથીતેને માઉન્ટ કરી શકાય "
+"ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. કદાચ ફ્લોપીનુ બેધારણ એવુ હશે કે જેથી તેને માઉન્ટ કરી શકાય "
 "નહિ."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "કદને માઉન્ટ કરવામાં ભૂલ. કદાચ કદનુ બેધારણ એવુ હશે કે જેથીતેને માઉન્ટ કરી શકાય નહિ."
+msgstr "કદને માઉન્ટ કરવામાં ભૂલ. કદાચ કદનુ બંધારણ એવુ હશે કે જેથી તેને માઉન્ટ કરી શકાય નહિ."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
@@ -1139,13 +1136,13 @@ msgid ""
 "will be replaced by the component IID."
 msgstr ""
 "ફાઇલોને જોવા માટે ઉપયોગમાં લેવાતા કાર્યક્રમ માટે તેને જોવા માટે ભાગ જરુરી છે. પરિમાણ %s "
-"ફાઇલના URIs થી બદલાઇ જશે, પરિમાણ %c ભાગIID થી બદલાઇ જશે."
+"ફાઇલના URI થી બદલાઇ જશે, પરિમાણ %c ભાગI ID થી બદલાઇ જશે."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr "કાર્યક્રમનો ઉપોયગ કરવા માટે મૂળભૂત ટર્મિનલ કાર્યક્રમ કે જેના માટે ટર્મિનલજરુરી છે."
+msgstr "કાર્યક્રમનો ઉપયોગ કરવા માટે મૂળભૂત ટર્મિનલ કાર્યક્રમ કે જેના માટે ટર્મિનલ જરુરી છે."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1157,143 +1154,143 @@ msgstr "આદેશને ટર્મિનલમાં કાર્યક્�
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr "\"aim\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
+msgstr "\"aim\" URL ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr "\"callto\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
+msgstr "\"callto\" URL ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr "\"ghelp\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
+msgstr "\"ghelp\" URL ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "\"H323\" URLs ને નિયંત્રિત કરવા માટેનો આદેશ, જો સક્રિય હોય."
+msgstr "\"H323\" URL ને નિયંત્રિત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "\"http\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
+msgstr "\"http\" URL ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "\"http\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
+msgstr "\"http\" URL ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr "\"info\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
+msgstr "\"info\" URL ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr "\"mailto\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
+msgstr "\"mailto\" URL ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr "\"man\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
+msgstr "\"man\" URL ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr "\"trash\" URLs ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
+msgstr "\"trash\" URL ને નિયંત્રત કરવા માટેનો આદેશ, જો સક્રિય હોય."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "\"aim\" URLs માટે નિયંત્રક"
+msgstr "\"aim\" URL માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "\"callto\" URLs માટે નિયંત્રક"
+msgstr "\"callto\" URL માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "\"ghelp\" URLs માટે નિયંત્રક"
+msgstr "\"ghelp\" URL માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
-msgstr "\"h323\" URLs માટે નિયંત્રક"
+msgstr "\"h323\" URL માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"http\" URLs"
-msgstr "\"http\" URLs માટે નિયંત્રક"
+msgstr "\"http\" URL માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"https\" URLs"
-msgstr "\"https\" URLs માટે નિયંત્રક"
+msgstr "\"https\" URL માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "\"info\" URLs માટે નિયંત્રક"
+msgstr "\"info\" URL માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "\"mailto\" URLs માટે નિયંત્રક"
+msgstr "\"mailto\" URL માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "\"man\" URLs માટે નિયંત્રક"
+msgstr "\"man\" URL માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "\"trash\" URLs માટે નિયંત્રક"
+msgstr "\"trash\" URL માટે નિયંત્રક"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"aim\" URLs ને નિયંત્રિત કરે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"aim\" URL ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"callto\" URLs ને નિયંત્રિત કરે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"callto\" URL ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"ghelp\" URLs ને નિયંત્રિત કરે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"ghelp\" URL ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"h323\" URLs ને નિયંત્રિત કરે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"h323\" URL ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"http\" URLs ને નિયંત્રિત કરે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"http\" URL ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"https\" URLs ને નિયંત્રિત કરે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"https\" URL ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"info\" URLs ને નિયંત્રિત કરે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"info\" URL ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"mailto\" URLs ને નિયંત્રિત કરે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"mailto\" URL ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"man\" URLs ને નિયંત્રિત કરે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"man\" URL ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"trash\" URLs ને નિયંત્રિત કરે."
+msgstr "સાચું જો \"command\" કી માં સ્પષ્ટ કરેલ આદેશ \"trash\" URL ને નિયંત્રિત કરે."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1303,43 +1300,43 @@ msgstr "સાચું જો આ પ્રકારના URL ને નિય
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "શું સ્પષ્ટ કરેલ આદેશ \"aim\" URLs ને નિયંત્રિત કરે"
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"aim\" URL ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "શું સ્પષ્ટ કરેલ આદેશ \"callto\" URLs ને નિયંત્રિત કરે"
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"callto\" URL ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "શું સ્પષ્ટ કરેલ આદેશ \"ghelp\" URLs ને નિયંત્રિત કરે"
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"ghelp\" URL ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "શું સ્પષ્ટ કરેલ આદેશ \"h323\" URLs ને નિયંત્રિત કરે"
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"h323\" URL ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "શું સ્પષ્ટ કરેલ આદેશ \"http\" URLs ને નિયંત્રિત કરે"
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"http\" URL ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "શું સ્પષ્ટ કરેલ આદેશ \"https\" URLs ને નિયંત્રિત કરે"
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"https\" URL ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "શું સ્પષ્ટ કરેલ આદેશ \"info\" URLs ને નિયંત્રિત કરે"
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"info\" URL ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "શું સ્પષ્ટ કરેલ આદેશ \"mailto\" URLs ને નિયંત્રિત કરે"
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"mailto\" URL ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "શું સ્પષ્ટ કરેલ આદેશ \"man\" URLs ને નિયંત્રિત કરે"
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"man\" URL ને નિયંત્રિત કરે"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "શું સ્પષ્ટ કરેલ આદેશ \"trash\" URLs ને નિયંત્રિત કરે"
+msgstr "શું સ્પષ્ટ કરેલ આદેશ \"trash\" URL ને નિયંત્રિત કરે"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1369,7 +1366,7 @@ msgstr "આપોઆપ પ્રોક્સી રુપરેખાંકિ�
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "ઇન્ટરનેટ ઉપર HTTPને પ્રપ્ત કરતા હોઇએ ત્યારે પ્રોક્સી સુયોજનાઓને સક્રિય કરો."
+msgstr "ઇન્ટરનેટ ઉપર HTTP ને પ્રપ્ત કરતા હોઇએ ત્યારે પ્રોક્સી સુયોજનાઓને સક્રિય કરો."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1402,30 +1399,30 @@ msgid ""
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "જો સાચુ, તો પ્રોક્સી સર્વર સાથે સંપર્ક ધરાવતા માટે સાચા છે કે નહિ તેની ખાતચરી કરવી જરુરી "
-"છે.વપરાશકર્તા/પાસવર્ડ કોમ્બો અે \"/સિસ્ટમ/http_પ્રોક્સી/authentication_વપારાશકર્તા\" "
-"અને \"/સિસ્ટમ/http_પ્રોક્સી/authentication_પાસવર્ડ\"ને દ્વારા વ્યાખ્યાયિત હતા."
+"છે. વપરાશકર્તા/પાસવર્ડ કોમ્બો એ \"/સિસ્ટમ/http_પ્રોક્સી/authentication_વપારાશકર્તા\" "
+"અને \"/સિસ્ટમ/http_પ્રોક્સી/authentication_પાસવર્ડ\" ના દ્વારા વ્યાખ્યાયિત હતા."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr "યજમાનો માટે કોઇ પ્રાેક્સી નથી"
+msgstr "યજમાનો માટે કોઇ પ્રોક્સી નથી"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
 msgstr ""
-"જ્યારે HTTPની પ્રોક્સી કરતા હોઇએ ત્યારે સાચુ છે કે નહિ તેની ખાતરી કરવા માટે આપવાનો "
+"જ્યારે HTTP ની પ્રોક્સી કરતા હોઇએ ત્યારે સાચુ છે કે નહિ તેની ખાતરી કરવા માટે આપવાનો "
 "પાસવર્ડ."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr "પ્રાેક્સી રુપરેખાંકનની સ્થિતિ"
+msgstr "પ્રોક્સી રુપરેખાંકનની સ્થિતિ"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr "SOCKS પ્રાેક્સી યજમાન નામ"
+msgstr "SOCKS પ્રોક્સી યજમાન નામ"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr "SOCKS પ્રાેક્સી પોર્ટ"
+msgstr "SOCKS પ્રોક્સી પોર્ટ"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
@@ -1440,7 +1437,7 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"પ્રોક્સી રુપરેખાંકનની સ્થિતિ પસંદ કરો. આધારિત કિંમતો \"કોઇનહિ\", \"માનવીય રીતે\", "
+"પ્રોક્સી રુપરેખાંકનની સ્થિતિ પસંદ કરો. આધારિત કિંમતો \"કોઇ નંહિ\", \"માનવીય રીતે\", "
 "\"આપોઆપ\" છે."
 
 #: schemas/system_http_proxy.schemas.in.h:19
@@ -1464,21 +1461,21 @@ msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/http_પ્રોક્સી/યજમાન\" કે જેની તમે સીધીપ્રોક્સી કરો "
+"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/http_પ્રોક્સી/યજમાન\" કે જેની તમે સીધી પ્રોક્સી કરો "
 "છો."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/ftp_યજમાન\" કે જેની તમે સીધીપ્રોક્સી કરો છો."
+msgstr "યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/ftp_યજમાન\" કે જેની તમે સીધી પ્રોક્સી કરો છો."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/સુરક્ષિત_યજમાન\" કે જેની તમે સીધીપ્રોક્સી કરો "
+"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/સુરક્ષિત_યજમાન\" કે જેની તમે સીધી પ્રોક્સી કરો "
 "છો."
 
 #: schemas/system_http_proxy.schemas.in.h:26
@@ -1486,7 +1483,7 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/socks_યજમાન\" કે જેની તમે સીધીપ્રોક્સી કરો "
+"યંત્ર પર વ્યાખ્યાયિત પોર્ટ \"/સિસ્ટમ/પ્રોક્સી/socks_યજમાન\" કે જેની તમે સીધી પ્રોક્સી કરો "
 "છો."
 
 #: schemas/system_http_proxy.schemas.in.h:27
@@ -1496,9 +1493,9 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"આ કી અેવા યજમાનોની યાદી ધરાવે છે કે જે પ્રત્યક્ષ રીતે સંકળાયેલા છે, પ્રોક્સીથી નહિ(જો તે "
-"સક્રિયહોય તે). કિંમતો યજમાનના નામો, પ્રદેશો (શરુઆતનુ વાઇલ્ડકાર્ડ વાપરીને જેવુ કે*.foo."
-"com), IP યજનામ સરનામુ(બંને IPv4 અને IPv6) અને નેટવર્કસરનામુ નેટમાસ્કની સાથે(જેવુ કે "
+"આ કી એવા યજમાનોની યાદી ધરાવે છે કે જે પ્રત્યક્ષ રીતે સંકળાયેલા છે, પ્રોક્સીથી નહિ (જો તે "
+"સક્રિયહોય તે). કિંમતો યજમાનના નામો, પ્રદેશો (શરુઆતનુ વાઇલ્ડકાર્ડ વાપરીને જેવુ કે *.foo."
+"com), IP યજનામ સરનામુ (બંને IPv4 અને IPv6) અને નેટવર્ક સરનામુ નેટમાસ્કની સાથે (જેવુ કે "
 "૧૯૨.૧૬૮.૦.૦/૨૪)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
@@ -1507,12 +1504,12 @@ msgstr "URL કે જે પ્રોક્સીની રુપરેખા�
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr "HTTP પ્રાેક્સીનો ઉપયોગ કરો"
+msgstr "HTTP પ્રોક્સીનો ઉપયોગ કરો"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
-"જ્યારે HTTPની પ્રાેક્સીનુ કામ કરતા હોઇએ ત્યારે સાચાની ખાતરી કરવા માટે આપવાનુ "
+"જ્યારે HTTPની પ્રોક્સીનુ કામ કરતા હોઇએ ત્યારે સાચાની ખાતરી કરવા માટે આપવાનુ "
 "વપરાશકર્તાનુ નામ."
 
 #: schemas/system_smb.schemas.in.h:1
