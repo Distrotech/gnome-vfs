@@ -351,7 +351,6 @@ add_cached_server (SMBCCTX *context, SMBCSRV *new,
 		   const char *domain, const char *username)
 {
 	SmbServerCacheEntry *entry = NULL;
-	GnomeVFSToplevelURI *toplevel;
 	SmbDefaultUser *default_user;
 
 	DEBUG_SMB(("add_cached_server: server: %s, share: %s, domain: %s, user: %s\n",
@@ -373,18 +372,13 @@ add_cached_server (SMBCCTX *context, SMBCSRV *new,
 
 	cache_access_failed = FALSE;
 
-	if (current_auth_context && current_auth_context->uri != NULL) {
-		toplevel = (GnomeVFSToplevelURI *)current_auth_context->uri;
-
-		if (toplevel->user_name == NULL ||
-		    toplevel->user_name[0] == 0) {
-			default_user = g_new0 (SmbDefaultUser, 1);
-			default_user->server_name = string_dup_nzero (server_name);
-			default_user->share_name = string_dup_nzero (share_name);
-			default_user->username = string_dup_nzero (username);
-			default_user->domain = string_dup_nzero (domain);
-			g_hash_table_replace (default_user_hashtable, default_user, default_user);
-		}
+	if (current_auth_context) {
+        	default_user = g_new0 (SmbDefaultUser, 1);
+		default_user->server_name = string_dup_nzero (server_name);
+		default_user->share_name = string_dup_nzero (share_name);
+		default_user->username = string_dup_nzero (username);
+		default_user->domain = string_dup_nzero (domain);
+		g_hash_table_replace (default_user_hashtable, default_user, default_user);
 	}
 
 	return 0;
@@ -733,9 +727,10 @@ initial_authentication (SmbAuthContext *actx)
 			actx->use_domain = NULL;
 			DEBUG_SMB(("[auth] User from URI: %s\n", actx->use_user));
 		}
+	} 
 
-	/* Lookup a default user and domain */
-	} else {
+        /* Lookup a default user and domain */
+        if (actx->use_user == NULL) {
 		
 		/* lookup default user/domain */
 		lookup.server_name = actx->for_server;
@@ -864,10 +859,14 @@ prompt_authentication (SmbAuthContext *actx)
 
 	if (invoked) {
 		cancelled = out_args.abort_auth;
-		g_free (actx->use_user);
-		actx->use_user = string_dup_nzero (out_args.username);
-		g_free (actx->use_domain);
-		actx->use_domain = string_dup_nzero (out_args.domain);
+                if (in_args.flags & GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME) {
+                     g_free (actx->use_user);
+                       actx->use_user = string_dup_nzero (out_args.username);
+                }
+                if (in_args.flags & GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_DOMAIN) {
+                      g_free (actx->use_domain);
+                     actx->use_domain = string_dup_nzero (out_args.domain);
+                }
 		g_free (actx->use_password);
 		actx->use_password = out_args.password ? g_strdup (out_args.password) : NULL;
 		g_free (actx->keyring);
