@@ -1,3 +1,12 @@
+2001-07-15  Darin Adler  <darin@bentspoon.com>
+
+	The checks for gconf were always coming out false due to
+	differences in name (gconf vs. gconf-2, etc.). So I re-enabled
+	the dependency on gconf. Since gconf seems to be working for
+	GNOME 2 now I hope this is not a problem.
+
+	* configure.in: Always require GCONF and define HAVE_GCONF.
+
 2001-07-14  Anders Carlsson  <andersca@codefactory.se>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c (join_str_list): Remove a
