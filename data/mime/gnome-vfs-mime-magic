@@ -20,8 +20,7 @@
 # Order magic patterns such that ambiguous ones (such as application/x-ms-dos-executable) are
 # at the end of the list and therefore get applied last.
 # Avoid rules that require a seek deep into the examined file. If you must, locate such rules
-# at the end of the list so that they get applied last (as is for example the rule 
-# for application/vnd.ms-excel)
+# at the end of the list so that they get applied last 
 # 
 # When designing new document formats, make them easily recognizable by defining a sufficiently unique
 # magic pattern near the end of the document start. A good pattern is at least four bytes long and

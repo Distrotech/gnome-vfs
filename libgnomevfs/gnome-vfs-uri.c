@@ -268,8 +268,12 @@ split_toplevel_uri (const gchar *path, guint path_len,
 	}
 
 	success = TRUE;
-done:
 
+	if (*host_return != NULL) {
+		g_strdown (*host_return);
+
+	}
+done:
 	/* If we didn't complete our mission, discard all the partials */
 	if (!success) {
 		g_free (*host_return);

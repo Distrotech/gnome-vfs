@@ -1,3 +1,19 @@
+2000-11-14  Pavel Cisler  <pavel@eazel.com>
+
+	Reviewed by: Mathieu Lacage  <mathieu@eazel.com>	
+
+	* libgnomevfs/gnome-vfs-uri.c: (split_toplevel_uri):
+	Fix 820, treating case-insensitive parts of URIs as such.
+	
+	* test/test-uri.c: (test_uri_match), (main):
+	Add test suites for the case-insensitive handling.
+
+	* data/mime/gnome-vfs-mime-magic:
+	Removed an obsolete comment.
+
+	* README:
+	Add some instructions.
+
 2000-11-14  Maciej Stachowiak  <mjs@eazel.com>
 
 	reviewed by: Rebecca Schulman  <rebecka@eazel.com>
