@@ -1,5 +1,19 @@
 2002-06-17  Seth Nickell  <snickell@stanford.edu>
 
+	* doc/tmpl/gnome-vfs-context.sgml:
+
+	Add a short description of GnomeVFSContext.
+	
+	* libgnomevfs/gnome-vfs-init.c:
+
+	Fix documentation for gnome_vfs_is_primary_thread()
+	
+	* libgnomevfs/gnome-vfs-utils.c:
+
+	Document several string escaping calls.
+	
+2002-06-17  Seth Nickell  <snickell@stanford.edu>
+
 	* HACKING:
 
 	Clean up the hacking file, add comments on making sure

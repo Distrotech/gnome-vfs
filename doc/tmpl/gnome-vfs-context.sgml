@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-gnome-vfs-context
+
+GnomeVFSContext
 
 <!-- ##### SECTION Short_Description ##### -->
 
+contexts allows modules to track thread usage and cancellation properly
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

@@ -232,24 +232,66 @@ gnome_vfs_escape_string_internal (const gchar *string,
 	return result;
 }
 
+/**
+ * gnome_vfs_escape_string:
+ * @string: string to be escaped
+ *
+ * Escapes @string, replacing any and all special characters 
+ * with equivalent escape sequences.
+ *
+ * Return value: a newly allocated string equivalent to @string
+ * but with all special characters escaped
+ **/
 gchar *
-gnome_vfs_escape_string (const gchar *file_name)
+gnome_vfs_escape_string (const gchar *string)
 {
-	return gnome_vfs_escape_string_internal (file_name, UNSAFE_ALL);
+	return gnome_vfs_escape_string_internal (string, UNSAFE_ALL);
 }
 
+/**
+ * gnome_vfs_escape_path_string:
+ * @path: string to be escaped
+ *
+ * Escapes @path, replacing only special characters that would not
+ * be found in paths (so '/', '&', '=', and '?' will not be escaped by
+ * this function).
+ *
+ * Return value: a newly allocated string equivalent to @path but
+ * with non-path characters escaped
+ **/
 gchar *
 gnome_vfs_escape_path_string (const gchar *path)
 {
 	return gnome_vfs_escape_string_internal (path, UNSAFE_PATH);
 }
 
+/**
+ * gnome_vfs_escape_host_and_path_string:
+ * @path: string to be escaped
+ *
+ * Escapes @path, replacing only special characters that would not
+ * be found in paths or host name (so '/', '&', '=', ':', '@' 
+ * and '?' will not be escaped by this function).
+ *
+ * Return value: a newly allocated string equivalent to @path but
+ * with non-path/host characters escaped
+ **/
 gchar *
 gnome_vfs_escape_host_and_path_string (const gchar *path)
 {
 	return gnome_vfs_escape_string_internal (path, UNSAFE_HOST);
 }
 
+/**
+ * gnome_vfs_escape_slashes:
+ * @string: string to be escaped
+ *
+ * Escapes only '/' and '%' characters in @string, replacing
+ * them with their escape sequence equivalents.
+ *
+ * Return value: a newly allocated string equivalent to @string,
+ * but with no unescaped '/' or '%' characters
+ **/
 gchar *
 gnome_vfs_escape_slashes (const gchar *string)
 {
@@ -311,6 +353,16 @@ gnome_vfs_escape_set (const char *string,
 	return result;
 }
 
+/**
+ * gnome_vfs_expand_initial_tilde:
+ * @path: a local file path which may start with a '~'
+ *
+ * If @path starts with a ~, representing the user's home
+ * directory, expand it to the actual path location.
+ *
+ * Return value: a newly allocated string with the initial
+ * tilde (if there was one) converted to an actual path
+ **/
 char *
 gnome_vfs_expand_initial_tilde (const char *path)
 {
@@ -377,12 +429,16 @@ unescape_character (const char *scanner)
 /**
  * gnome_vfs_unescape_string:
  * @escaped_string: an escaped URI, path, or other string
+ * @illegal_characters: a string containing a sequence of characters
+ * considered "illegal", '\0' is automatically in this list.
  *
- * Decodes escaped characters (e.g. PERCENTxx sequences) in @escaped_string.
+ * Decodes escaped characters (i.e. PERCENTxx sequences) in @escaped_string.
  * Characters are encoded in PERCENTxy form, where xy is the ASCII hex code 
  * for character 16x+y.
  * 
- * Return value: a newly allocated string with the unescaped equivalents
+ * Return value: a newly allocated string with the unescaped equivalents, 
+ * or %NULL if @escaped_string contained one of the characters 
+ * in @illegal_characters.
  **/
 char *
 gnome_vfs_unescape_string (const gchar *escaped_string, 
@@ -564,6 +620,17 @@ gnome_vfs_remove_optional_escapes (char *uri)
 	return GNOME_VFS_OK;
 }
 
+/**
+ * gnome_vfs_make_uri_canonical:
+ * @uri: URI to make canonical
+ *
+ * Converts @uri to the standard (i.e. "canonical") format. This makes
+ * the URI more appropriate for string comparisons as equivalent URIs
+ * will often have the same canonical form.
+ *
+ * Return value: newly allocated string containing the canonical form
+ * of @uri
+ **/
 char *
 gnome_vfs_make_uri_canonical (const char *original_uri_text)
 {
@@ -610,6 +677,12 @@ gnome_vfs_make_path_name_canonical (const gchar *path)
 	return path_clone;
 }
 
+/**
+ * gnome_vfs_list_deep_free:
+ * @list: list to be freed
+ *
+ * Free @list, and call g_free() on all data members.
+ **/
 void
 gnome_vfs_list_deep_free (GList *list)
 {

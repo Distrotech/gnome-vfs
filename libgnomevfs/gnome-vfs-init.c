@@ -192,6 +192,8 @@ gnome_vfs_postinit (gpointer app, gpointer modinfo)
 /**
  * gnome_vfs_is_primary_thread:
  *
+ * Check if the current thread is the thread with the main glib event loop.
+ *
  * Return value: %TRUE if the current thread is the thread with the 
  * main glib event loop
  **/
