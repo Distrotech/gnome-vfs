@@ -1,3 +1,8 @@
+2004-03-08  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/sftp-method.c (sftp_connect):
+	Return ACCESS DENIED for servers with unknown host key (for now)	
+
 === gnome-vfs 2.5.90 ===
 
 2004-03-08  Alexander Larsson  <alexl@redhat.com>

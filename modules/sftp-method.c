@@ -1082,7 +1082,12 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 					goto bail;
 				}
 				done_auth = TRUE;
-			}
+			} else if (g_str_has_prefix (buffer, "The authenticity of host")) {
+				/* FIXME: This should do a callback asking the user if the host id is ok */
+				/* For now we just fail */
+				res = GNOME_VFS_ERROR_ACCESS_DENIED;
+				goto bail;
+                        }
 		}
 	}
 
