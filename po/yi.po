@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2003-05-05 12:39+0200\n"
+"POT-Creation-Date: 2003-05-19 13:19+0200\n"
 "PO-Revision-Date: 2003-03-19\n"
 "Last-Translator: Raphael Finkel <raphael@cs.uky.edu>\n"
 "Language-Team: Yiddish <raphael@cs.uky.edu>\n"
@@ -33,22 +33,22 @@ msgstr "%s:%d איז ניט כּולל קײן מאָדול־נאָמען"
 msgid "Configuration file `%s' was not found: %s"
 msgstr "צופּאַס־טעקע %s איז ניט בנימצה: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:744
+#: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
 msgstr "אומבאַקאַנט אָפּעראַציע־סאָרט %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "ניט געקענט שאַפֿן קײן רער פֿאַר אַן אָפֿענעם GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1668
+#: libgnomevfs/gnome-vfs-job.c:1684
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "אומבאַקאַנט אַרבעטסאָרט %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1701
+#: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
 msgstr "אָפּעראַציע האָט זיך אױפֿגעהערט"
 
@@ -319,7 +319,7 @@ msgstr "%.1f מעגאַ־אַכטעלעך"
 msgid "%.1f GB"
 msgstr "%.1f גיגאַ־אַכטעלעך"
 
-#: libgnomevfs/gnome-vfs-utils.c:1088
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr " (אומלעקסיקער אוניקאָד)"
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.2\n"
-"POT-Creation-Date: 2003-05-05 12:39+0200\n"
+"POT-Creation-Date: 2003-05-19 13:19+0200\n"
 "PO-Revision-Date: 2001-07-02 03:36+02:00\n"
 "Last-Translator: Christopher R. Gabriel <cgabriel@pluto.linux.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -33,22 +33,22 @@ msgstr "%s:%d non contiene il nome del modulo."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Il file di configurazione `%s' non è stato trovato: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:744
+#: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Typo op %u sconosciuto."
 
-#: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Impossibile creare una pipe per aprire il GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1668
+#: libgnomevfs/gnome-vfs-job.c:1684
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipo di job %u sconosciuto."
 
-#: libgnomevfs/gnome-vfs-job.c:1701
+#: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
 msgstr "Operazione interrotta"
 
@@ -320,7 +320,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1088
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr ""
 

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
-"POT-Creation-Date: 2003-05-05 12:39+0200\n"
+"POT-Creation-Date: 2003-05-19 13:19+0200\n"
 "PO-Revision-Date: 2003-05-08 18:03+0200\n"
 "Last-Translator: Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -38,22 +38,22 @@ msgstr "%s:%d contiene un modulo sin nombre."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "No se encuentra el archivo de configuración `%s': %s"
 
-#: libgnomevfs/gnome-vfs-job.c:744
+#: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Tipo de op %u desconocido"
 
-#: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "No se puede crear el pipe para el canal de E/S abierto: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1668
+#: libgnomevfs/gnome-vfs-job.c:1684
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Tipo de trabajo %u desconocido"
 
-#: libgnomevfs/gnome-vfs-job.c:1701
+#: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
 msgstr "La operación ha sido detenida"
 
@@ -324,7 +324,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1088
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
 
@@ -342,7 +342,8 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr ""
+"Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:163
@@ -409,4 +410,3 @@ msgstr "Moniker genérico de Gnome VFS"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "Moniker de archivo genérico"
-

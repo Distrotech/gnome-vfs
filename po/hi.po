@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.x\n"
-"POT-Creation-Date: 2003-05-05 12:39+0200\n"
+"POT-Creation-Date: 2003-05-19 13:19+0200\n"
 "PO-Revision-Date: 2003-01-11 16:38+0530\n"
 "Last-Translator: Anurag Seetha <anuragseetha@yahoo.com>\n"
 "Language-Team: Gnome Hindi Team <indlinux-hindi-gnome@lists.sourceforge."
@@ -41,25 +41,25 @@ msgid "Configuration file `%s' was not found: %s"
 msgstr "कानफिगरेशन फाइल '%s' नहीं मिली : %s"
 
 # libgnomevfs/gnome-vfs-job.c:714
-#: libgnomevfs/gnome-vfs-job.c:744
+#: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
 msgstr "अज्ञात कारक प्रकार %u"
 
 # libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#: libgnomevfs/gnome-vfs-job.c:1033 libgnomevfs/gnome-vfs-job.c:1178
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "खुली GIO चैनल के लिए पाइप निर्मित नहीं किया जा सका : %s"
 
 # libgnomevfs/gnome-vfs-job.c:1596
-#: libgnomevfs/gnome-vfs-job.c:1668
+#: libgnomevfs/gnome-vfs-job.c:1684
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "अज्ञात कार्य प्रकार %u"
 
 # libgnomevfs/gnome-vfs-job.c:1632
-#: libgnomevfs/gnome-vfs-job.c:1701
+#: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
 msgstr "प्रक्रिया रोक दी गई है"
 
@@ -381,7 +381,7 @@ msgstr "%.1f मेगाबाइट्स"
 msgid "%.1f GB"
 msgstr "%.1f गीगाबाइट्स"
 
-#: libgnomevfs/gnome-vfs-utils.c:1088
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr "(अवैध यूनिकोड)"
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-05-08 21:33+0200\n"
+"POT-Creation-Date: 2003-05-19 13:19+0200\n"
 "PO-Revision-Date: 2003-05-08 21:49--100\n"
 "Last-Translator: Samuel Jon Gunnarsson <sammi@techattack.nu>\n"
 "Language-Team: Icelandic <gnome@techattack.nu>\n"
@@ -34,23 +34,22 @@ msgstr "%s:%d inniheldur ekkert nafn fyrir einingu."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Stillingarskráin `%s' fannst ekki: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:744
+#: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Óþekkt op gerð %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1033
-#: libgnomevfs/gnome-vfs-job.c:1178
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ekki tókst að stofna pípu fyrir opna GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1668
+#: libgnomevfs/gnome-vfs-job.c:1684
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Óþekkt vinnuaðgerð %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1701
+#: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
 msgstr "Aðgerð stöðvuð"
 
@@ -322,7 +321,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1088
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr "(ógildur Unicode)"
 
@@ -348,6 +347,7 @@ msgid "Applications"
 msgstr "Forrit"
 
 #  Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:166
 msgid "Cards"
 msgstr "Spjöld"
@@ -410,4 +410,3 @@ msgstr "almennur Gnome VFS merkimiði"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "almennur skráar merkimiði"
-
