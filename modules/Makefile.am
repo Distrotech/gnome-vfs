@@ -145,7 +145,7 @@ libgzip_la_LIBADD = -lz
 
 libbzip2_la_SOURCES = bzip2-method.c
 libbzip2_la_LDFLAGS = $(module_flags)
-libbzip2_la_LIBADD = -lbz2
+libbzip2_la_LIBADD = $(BZ2_LIBS)
 
 ### `ftp' method
 

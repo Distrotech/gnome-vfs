@@ -289,6 +289,11 @@ if test $have_gethostbyname = no; then
 fi
 
 AC_CHECK_LIB(bz2, bzCompressInit, AC_DEFINE(HAVE_OLDER_BZIP2))
+AC_CHECK_HEADERS(bzlib.h,
+	BZ2_LIBS="$BZ2_LIBS -lbz2",
+	AC_MSG_ERROR([Gnome-vfs requires libbz2 to compile.]);
+	)
+AC_SUBST(BZ2_LIBS)
 
 if test $have_socket = yes; then
     AC_STRUCT_LINGER

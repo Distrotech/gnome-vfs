@@ -1,3 +1,10 @@
+2002-02-09  Bastien Nocera  <hadess@hadess.net>
+
+	reviewed by: Darin Adler <darin@bentspoon.com>
+
+	* configure.in: check for bzlib.h, bomb if it's not there
+	* modules/Makefile.am: use BZ2_LIBS and CDDA_LIBS defines
+
 2002-02-09  Jon K Hellan  <hellan@acm.org>
 
 	* configure.in: s/OPENSSL_LDFLAGS/OPENSSL_LIBS/
