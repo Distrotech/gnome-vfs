@@ -49,9 +49,10 @@ $(CORBA_SOURCE): $(idls) $(ORBIT_IDL)
 
 serverfile = GNOME_VFS_Daemon.server.in
 serverdir = $(libdir)/bonobo/servers
+
 install-data-hook :
-	$(mkinstalldirs) $(serverdir)
-	sed -e "s|\@LIBEXECDIR\@|$(libexecdir)|" $(srcdir)/$(serverfile) > $(serverdir)/$(serverfile:.in=)
+	$(mkinstalldirs) $(DESTDIR)$(serverdir)
+	sed -e "s|\@LIBEXECDIR\@|$(libexecdir)|" $(srcdir)/$(serverfile) > $(DESTDIR)$(serverdir)/$(serverfile:.in=)
 
 
 EXTRA_DIST = $(serverfile)

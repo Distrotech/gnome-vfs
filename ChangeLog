@@ -1,3 +1,7 @@
+2004-01-30  Tomasz K³oczko <kloczek@pld.org.pl>
+
+	* daemon/Makefile.am: fixes for "make install DESTDIR=</install/prefix>".
+
 === gnome-vfs 2.5.6 ===
 
 2004-01-30  Alexander Larsson  <alexl@redhat.com>
