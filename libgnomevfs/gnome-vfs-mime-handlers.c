@@ -647,6 +647,8 @@ gnome_vfs_mime_application_new_from_id (const char *id) {
 	application->can_open_uris = str_to_bool (gnome_vfs_mime_get_value (id_hack_mime_type, 
 									    "default_application_name"));
 
+	application->id = g_strdup (id);
+
 	return application;
 }
 

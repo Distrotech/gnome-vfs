@@ -42,6 +42,7 @@ typedef enum GnomeVFSMimeActionType GnomeVFSMimeActionType;
 
 
 struct GnomeVFSMimeApplication {
+	char *id;
 	char *name;
 	char *command;
 	gboolean can_open_multiple_files;

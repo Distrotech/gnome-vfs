@@ -1,5 +1,10 @@
 2000-06-01  Maciej Stachowiak  <mjs@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.h: Added `id' field to
+	GnomeVFSMimeApplication struct.
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_application_new_from_id): Set the id field.
+
 	* libgnomevfs/gnome-vfs-mime-handlers.h,
 	libgnomevfs/gnome-vfs-mime-handlers.c
 	(gnome_vfs_mime_get_default_action_type): New function which only
