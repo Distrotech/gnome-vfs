@@ -1,3 +1,26 @@
+2004-07-16  Christian Kellner  <gicmo@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-resolve.h: 
+	* libgnomevfs/gnome-vfs-resolve.c
+	(gnome_vfs_resolve_reset_to_beginning): Implemented.
+	
+
+	* configure.in:
+	* acinclude.m4:
+	Moved some checks from neon into configure.in and removed
+	duplicated ones. 
+
+	* imported/neon/ne_gnomevfs.c: 
+	* imported/neon/ne_gnomevfs.h:
+	* imported/neon/Makefile.am:
+	Use the gnome-vfs io layer (inc. ssl stuff) in neon.
+
+	* imported/neon/ne_utils.h:
+	Use g_snprintf for ne_snprintf.
+	
+	* libgnomevfs/gnome-vfs-address.c (gnome_vfs_address_to_string):
+	Fixed typos.
+		
 2004-07-16  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
@@ -8,9 +31,9 @@
 
 	* programs/gnomevfs-ls.c: (main):
 	Call setlocale.
-
+	
 2004-07-16  Christian Kellner  <gicmo@gnome-de.org>
-
+	
 	* libgnomevfs/gnome-vfs-socket.c (gnome_vfs_socket_free):
 	Implemented new function for freeing the socket object.
 

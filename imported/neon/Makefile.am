@@ -2,7 +2,8 @@ NULL =
 
 INCLUDES =					\
 	$(NEON_CFLAGS)				\
-        $(NULL)
+	$(LIBGNOMEVFS_CFLAGS)		\
+     $(NULL)
 
 noinst_LTLIBRARIES = libneon.la
 
@@ -30,14 +31,15 @@ NEON_INCLUDES = \
 	ne_uri.h	\
 	ne_utils.h	\
 	ne_xml.h	\
+	ne_gnomevfs.h	\
 	$(NULL)
 
 
 NEON_BASE_SOURCES = ne_request.c ne_session.c 	\
-	ne_basic.c  ne_string.c 		\
+	ne_basic.c  ne_string.c	 		\
 	ne_uri.c ne_dates.c ne_alloc.c  	\
 	ne_md5.c ne_utils.c    			\
-	ne_socket.c ne_auth.c 			\
+	ne_auth.c 					\
 	ne_cookies.c ne_redirect.c		\
 	ne_compress.c
 
@@ -45,7 +47,7 @@ NEON_DAV_SOURCES = \
 	ne_207.c ne_xml.c \
 	ne_props.c ne_locks.c
 
-NEON_EXTRA_SOURCES = ne_acl.c ne_stubssl.c
+NEON_EXTRA_SOURCES = ne_acl.c ne_gnomevfs.c
 
 libneon_la_LIBADD =			\
 	$(NEON_LIBS) $(NEON_LTLIBS)	\
@@ -53,6 +55,7 @@ libneon_la_LIBADD =			\
 
 libneon_la_LDFLAGS =			\
 	$(NEON_LINK_FLAGS)			\
+	../../libgnomevfs/libgnomevfs-2.la \
 	$(NULL)
 
 libneon_la_SOURCES = \

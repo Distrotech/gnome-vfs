@@ -29,10 +29,8 @@
 
 #include "ne_defs.h"
 
-#ifdef NEON_TRIO
-/* no HAVE_TRIO_H check so this works from outside neon build tree. */
-#include <trio.h>
-#endif
+#include <glib/gprintf.h>
+
 
 BEGIN_NEON_DECLS
 
@@ -49,14 +47,9 @@ int ne_version_match(int major, int minor);
 /* Returns non-zero if neon has support for SSL. */
 int ne_supports_ssl(void);
 
-/* Use replacement snprintf's if trio is being used. */
-#ifdef NEON_TRIO
-#define ne_snprintf trio_snprintf
-#define ne_vsnprintf trio_vsnprintf
-#else
-#define ne_snprintf snprintf
-#define ne_vsnprintf vsnprintf
-#endif
+/* Use glibs snprintf implementation */
+#define ne_snprintf g_snprintf
+#define ne_vsnprintf g_vsnprintf
 
 #ifndef WIN32
 #undef min

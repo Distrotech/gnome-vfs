@@ -256,40 +256,10 @@ AC_REQUIRE([AC_FUNC_STRERROR_R])
 AC_CHECK_HEADERS([strings.h sys/time.h limits.h sys/select.h arpa/inet.h \
 	signal.h sys/socket.h netinet/in.h netinet/tcp.h netdb.h])
 
-AC_REQUIRE([NE_SNPRINTF])
 
 AC_REPLACE_FUNCS(strcasecmp)
 
 AC_CHECK_FUNCS(signal setvbuf setsockopt stpcpy)
-
-# Unixware 7 can only link gethostbyname with -lnsl -lsocket
-# Pick up -lsocket first, then the gethostbyname check will work.
-NE_SEARCH_LIBS(socket, socket inet)
-NE_SEARCH_LIBS(gethostbyname, nsl bind)
-
-# Enable getaddrinfo() support only if all the necessary functions
-# are found.
-ne_enable_gai=yes
-NE_CHECK_FUNCS(getaddrinfo gai_strerror inet_ntop,,[ne_enable_gai=no; break])
-if test $ne_enable_gai = yes; then
-   AC_DEFINE(USE_GETADDRINFO, 1, [Define if getaddrinfo() should be used])
-   AC_CACHE_CHECK([for working AI_ADDRCONFIG], [ne_cv_gai_addrconfig], [
-   AC_RUN_IFELSE([AC_LANG_PROGRAM([#include <netdb.h>],
-[struct addrinfo hints = {0}, *result;
-hints.ai_flags = AI_ADDRCONFIG;
-if (getaddrinfo("localhost", NULL, &hints, &result) != 0) return 1;])],
-   ne_cv_gai_addrconfig=yes, ne_cv_gai_addrconfig=no)])
-   if test $ne_cv_gai_addrconfig = yes; then
-      AC_DEFINE(USE_GAI_ADDRCONFIG, 1, [Define if getaddrinfo supports AI_ADDRCONFIG])
-   fi
-else
-   # Checks for non-getaddrinfo() based resolver interfaces.
-   NE_SEARCH_LIBS(hstrerror, resolv,,[:])
-   NE_CHECK_FUNCS(hstrerror)
-   # Older Unixes don't declare h_errno.
-   AC_CHECK_DECL(h_errno,,,[#define _XOPEN_SOURCE_EXTENDED 1
-#include <netdb.h>])
-fi
 
 AC_CHECK_MEMBERS(struct tm.tm_gmtoff,,
 AC_MSG_WARN([no timezone handling in date parsing on this platform]),
@@ -311,10 +281,15 @@ else
     NEON_EXTRAOBJS="$NEON_EXTRAOBJS ne_acl"
 fi
 
-NEON_SUPPORTS_SSL=no
-NEON_EXTRAOBJS="$NEON_EXTRAOBJS ne_stubssl"
+NEON_SUPPORTS_SSL=yes
+AC_DEFINE(NEON_SSL, 1, [Build neon ssl support])
 
-NEON_GSSAPI()
+if test "x$have_gssapi" = "xyes"; then
+
+	NEON_CFLAGS="$NEON_CFALGS $GSSAPI_CFLAGS"
+	NEON_LIBS="$NEON_LIBS $GSSAPI_LIBS"
+
+fi
 
 AC_SUBST(NEON_CFLAGS)
 AC_SUBST(NEON_LIBS)
@@ -500,16 +475,6 @@ AC_CHECK_FUNCS($@)
 LIBS=$ne_cf_save_LIBS])
 
 
-dnl Call to put lib/snprintf.o in LIBOBJS and define HAVE_SNPRINTF_H
-dnl if snprintf isn't in libc.
-
-AC_DEFUN([NEON_REPLACE_SNPRINTF], [
-# Check for snprintf
-AC_CHECK_FUNC(snprintf,,[
-	AC_DEFINE(HAVE_SNPRINTF_H, 1, [Define if need to include snprintf.h])
-	AC_LIBOBJ(lib/snprintf)])
-])
-
 dnl Find 'ar' and 'ranlib', fail if ar isn't found.
 AC_DEFUN([NE_FIND_AR], [
 
@@ -522,22 +487,6 @@ fi
 AC_PATH_TOOL(RANLIB, ranlib, :, $ne_PATH)
 
 ])
-
-AC_DEFUN([NE_SNPRINTF], [
-AC_CHECK_FUNCS(snprintf vsnprintf,,[
-   ne_save_LIBS=$LIBS
-   LIBS="$LIBS -lm"    # Always need -lm
-   AC_CHECK_LIB(trio, trio_vsnprintf,
-   [AC_CHECK_HEADERS(trio.h,,
-    AC_MSG_ERROR([trio installation problem? libtrio found but not trio.h]))
-    AC_MSG_NOTICE(using trio printf replacement library)
-    NEON_LIBS="$NEON_LIBS -ltrio -lm"
-    NEON_CFLAGS="$NEON_CFLAGS -DNEON_TRIO"],
-   [AC_MSG_NOTICE([no vsnprintf/snprintf detected in C library])
-    AC_MSG_ERROR([Install the trio library from http://daniel.haxx.se/trio/])])
-   LIBS=$ne_save_LIBS
-   break
-])])
 
 dnl Less noisy replacement for PKG_CHECK_MODULES
 AC_DEFUN([NE_PKG_CONFIG], [
@@ -565,36 +514,6 @@ else
    fi
 fi])
 
-dnl Check for Kerberos installation
-AC_DEFUN([NEON_GSSAPI], [
-AC_PATH_PROG([KRB5_CONFIG], krb5-config, none, $PATH:/usr/kerberos/bin)
-if test "x$KRB5_CONFIG" != "xnone"; then
-   ne_save_CPPFLAGS=$CPPFLAGS
-   ne_save_LIBS=$NEON_LIBS
-   NEON_LIBS="$NEON_LIBS `${KRB5_CONFIG} --libs gssapi`"
-   CPPFLAGS="$CPPFLAGS `${KRB5_CONFIG} --cflags gssapi`"
-   # MIT and Heimdal put gssapi.h in different places
-   AC_CHECK_HEADERS(gssapi/gssapi.h gssapi.h, [
-     NE_CHECK_FUNCS(gss_init_sec_context, [
-      ne_save_CPPFLAGS=$CPPFLAGS
-      ne_save_LIBS=$NEON_LIBS
-      AC_MSG_NOTICE([GSSAPI authentication support enabled])
-      AC_DEFINE(HAVE_GSSAPI, 1, [Define if GSSAPI support is enabled])
-      AC_CHECK_HEADERS(gssapi/gssapi_generic.h)
-      # MIT Kerberos lacks GSS_C_NT_HOSTBASED_SERVICE
-      AC_CHECK_DECL([GSS_C_NT_HOSTBASED_SERVICE],,
-        [AC_DEFINE([GSS_C_NT_HOSTBASED_SERVICE], gss_nt_service_name, 
-          [Define if GSS_C_NT_HOSTBASED_SERVICE is not defined otherwise])],
-        [#ifdef HAVE_GSSAPI_GSSAPI_H
-#include <gssapi/gssapi.h>
-#else
-#include <gssapi.h>
-#endif])])
-     break
-   ])
-   CPPFLAGS=$ne_save_CPPFLAGS
-   NEON_LIBS=$ne_save_LIBS
-fi])
 
 AC_DEFUN([NEON_COMMON_CHECKS], [
 

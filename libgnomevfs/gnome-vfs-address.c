@@ -224,7 +224,7 @@ gnome_vfs_address_to_string (GnomeVFSAddress *address)
 							    buf,
 							    sizeof (buf));
 #else
-			 text_addr = inet_ntoa (SIN (addres->sa)->sind_addr.s_addr);
+			 text_addr = inet_ntoa (SIN (address->sa)->sin_addr);
 #endif  /* HAVE_INET_NTOP */
 			 break;
 	   }
