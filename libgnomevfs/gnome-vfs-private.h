@@ -25,7 +25,7 @@
 #ifndef GNOME_VFS_PRIVATE_H
 #define GNOME_VFS_PRIVATE_H
 
-#define GNOME_VFS_MODULE_DIR     LIBDIR "/vfs/modules"
-#define GNOME_VFS_MODULE_CFGDIR  SYSCONFDIR "/vfs/modules"
+#define GNOME_VFS_MODULE_DIR     LIBDIR "/gnome-vfs-2.0/modules"
+#define GNOME_VFS_MODULE_CFGDIR  SYSCONFDIR "/gnome-vfs-2.0/modules"
 
 #endif /* GNOME_VFS_PRIVATE_H */

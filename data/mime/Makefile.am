@@ -16,8 +16,12 @@ applications_DATA = \
 	gnome-vfs.applications \
 	$(NULL)
 
-sysconf_DATA = gnome-vfs-mime-magic
+sysconf_DATA = gnome-vfs2-mime-magic
 
 @XML_I18N_MERGE_KEYS_RULE@
 
-EXTRA_DIST = $(keys_in_files) $(mime_DATA) $(sysconf_DATA) $(applications_DATA)
+EXTRA_DIST = $(keys_in_files) $(mime_DATA) $(sysconf_DATA) $(applications_DATA) \
+		gnome-vfs-mime-magic
+
+gnome-vfs2-mime-magic: gnome-vfs-mime-magic
+	cp -f gnome-vfs-mime-magic gnome-vfs2-mime-magic

@@ -1,3 +1,7 @@
+2001-09-18  Havoc Pennington  <hp@redhat.com>
+
+	* Makefile.am (gnome-vfs2-mime-magic): rename gnome-vfs-mime-magic
+
 2001-08-22  Dan Winship  <danw@ximian.com>
 
 	* gnome-vfs.mime: Map .ics to text/calendar

@@ -1,4 +1,17 @@
+2001-09-18  Havoc Pennington  <hp@redhat.com>
+
+	* libgnomevfs/gnome-vfs-private.h: update modules locations
+
+	* modules/Makefile.am (modulesdir): put modules in a new directory
+	(modulesconfdir): put modules conf in a new directory
+
+	* gnome-vfs-2.0.pc.in (Cflags): update
+
+	* libgnomevfs/Makefile.am (libgnomevfsincludedir): move headers 
+	into gnome-vfs-2.0 subdir
+
 2001-09-10  Frank Belew  <frb@ximian.com>
+
 	* configure.in: add check for librt for semaphore functions
 	(fixes undefined references on solaris)
 

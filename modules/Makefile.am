@@ -28,7 +28,7 @@ CDDA_LTLIBS =
 endif
 
 module_flags = -export_dynamic -avoid-version
-modulesdir = $(libdir)/vfs/modules
+modulesdir = $(libdir)/gnome-vfs-2.0/modules
 
 modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
@@ -47,7 +47,7 @@ modules_LTLIBRARIES =				\
 # Not currently supported
 #	libnfs.la
 
-modulesconfdir=$(sysconfdir)/vfs/modules
+modulesconfdir=$(sysconfdir)/gnome-vfs-2.0/modules
 if HAVE_CDDA
 CDDA_CONF = cdda-module.conf
 endif

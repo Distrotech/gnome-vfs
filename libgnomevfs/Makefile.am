@@ -18,17 +18,17 @@ INCLUDES =					\
 	-DG_LOG_DOMAIN=\"libgnomevfs\"		\
 	$(NULL)
 
-lib_LTLIBRARIES = libgnomevfs.la
+lib_LTLIBRARIES = libgnomevfs-2.la
 
 EXTRA_DIST =					\
 	getdelim.c
 
-libgnomevfs_la_LIBADD =				\
+libgnomevfs_2_la_LIBADD =				\
 	$(LIBGNOMEVFS_LIBS)			\
 	$(OPENSSL_LDFLAGS) 			\
 	$(NULL)
 
-libgnomevfsincludedir = $(includedir)/libgnomevfs
+libgnomevfsincludedir = $(includedir)/gnome-vfs-2.0/libgnomevfs
 
 libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-application-registry.h	\
@@ -77,7 +77,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs.h				\
 	$(NULL)
 
-libgnomevfs_la_SOURCES =			\
+libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-application-registry.c	\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-cancellable-ops.c	 	\
@@ -127,10 +127,10 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-process.h			\
 	$(NULL)
 
-libgnomevfs_la_LDFLAGS = $(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la
+libgnomevfs_2_la_LDFLAGS = $(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la
 $(lib_LTLIBRARIES): $(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la
 
 # Platform specific includes
-libgnomevfsplatformincludedir = $(libdir)/vfs/include
+libgnomevfsplatformincludedir = $(libdir)/gnome-vfs-2.0/include
 libgnomevfsplatforminclude_HEADERS =			\
 	gnome-vfs-file-size.h

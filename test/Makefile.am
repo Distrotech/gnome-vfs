@@ -52,7 +52,7 @@ endif
 TESTS = test-async-cancel test-escape test-uri $(auto_tests)
 
 libraries =						\
-	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
+	$(top_builddir)/libgnomevfs/libgnomevfs-2.la	\
 	$(TEST_LIBS)					\
 	$(LIBEFS_LIBS)
 
