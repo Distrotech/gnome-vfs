@@ -459,6 +459,24 @@ if test $have_socket = yes; then
     AC_STRUCT_LINGER
 fi
 
+dnl modules/cdda
+
+AC_CHECK_LIB(cdda_paranoia, paranoia_read, [
+	AC_CHECK_LIB(cdda_interface, cdda_open, [
+		CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia, -lcdda_interface";
+		AM_CONDITIONAL(HAVE_CDDA, true);
+	])
+])
+
+dnl modules/cdda
+
+AC_CHECK_LIB(cdda_paranoia, paranoia_read, [
+	AC_CHECK_LIB(cdda_interface, cdda_open, [
+		CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia, -lcdda_interface";
+		AM_CONDITIONAL(HAVE_CDDA, true);
+	])
+])
+
 dnl Final touch
 
 AC_SUBST(CFLAGS)

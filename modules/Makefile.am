@@ -20,6 +20,7 @@ INCLUDES =					\
 
 EXTRA_DIST =					\
 	default-modules.conf			\
+	cdda-module.conf			\
 	efs-method.c                            \
 	efs-method.h
 
@@ -31,6 +32,7 @@ module_flags = -export_dynamic -avoid-version
 modulesdir = $(libdir)/vfs/modules
 
 modules_LTLIBRARIES =				\
+	libcdda.la				\
 	libextfs.la				\
 	libfile.la				\
 	libvfs-test.la				\
@@ -44,22 +46,34 @@ modules_LTLIBRARIES =				\
 
 # Not currently supported
 #	libnfs.la				\
-#	libcdda-method.la			\
 
 modulesconfdir=$(sysconfdir)/vfs/modules
-modulesconf_DATA =				\
-	default-modules.conf
+if HAVE_CDDA
+CDDA_CONF += cdda-module.conf
+endif
 
+modulesconf_DATA = default-modules.conf $(CDDA_CONF)
 
 ###  `cdda' method
-#libcdda_la_SOURCES = 				\
-#	cdda-method.c 				\
-#	cdda-method.h				\
-#	cdda-cddb.c 				\
-#	cdda-cddb.h
 
-#libcdda_la_LDFLAGS = $(module_flags)
-#libcdda_la_LIBADD = -L/gnome/lib -lcdda_paranoia -lcdda_interface
+if HAVE_CDDA
+CDDASOURCES = 					\
+	cdda-method.c 				\
+	cdda-method.h				\
+	cdda-cddb.c 				\
+	cdda-cddb.h
+
+CDDALDFLAGS = $(module_flags)
+CDDALIBADD = -L/gnome/lib -lcdda_paranoia -lcdda_interface
+else
+CDDASOURCES =
+CDDALDFLAGS =
+CDDALIBADD =
+endif
+
+libcdda_la_SOURCES = $(CDDASOURCES)
+libcdda_la_LDFLAGS = $(CDDALDFLAGS)
+libcdda_la_LIBADD = $(CDDALIBADD)
 
 ###  `extfs' method
 

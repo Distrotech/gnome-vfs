@@ -1,3 +1,13 @@
+2001-03-15  Gene Z. Ragan  <gzr@eazel.com>
+
+	* configure.in:
+	* modules/Makefile.am:
+	* modules/cdda-cddb.c:
+	* modules/cdda-method.c: (cdda_context_new):
+	* modules/default-modules.conf:
+	Add cdda module to build using configure conditionals that depend
+	on the presence of libcdparanoia.
+	
 2001-03-15  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Darin Adler <darin@eazel.com>

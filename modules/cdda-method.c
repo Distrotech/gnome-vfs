@@ -31,6 +31,10 @@
 #include <gconf/gconf.h>
 #include <gconf/gconf-client.h>
 #include <gtk/gtk.h>
+#include <libgnomevfs/gnome-vfs.h>
+#include <libgnomevfs/gnome-vfs-cancellation.h>
+#include <libgnomevfs/gnome-vfs-context.h>
+#include <libgnomevfs/gnome-vfs-method.h>
 #include <pwd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -58,6 +62,13 @@
 #include "cdda-method.h"
 
 CDDAContext *global_context = NULL;
+
+/* This is here to work around a broken header file.
+ * cdda_interface.h has a statically defined array of
+ * chars that is unused. This will break our build
+ * due to our strict error checking.
+ */
+char **broken_header_fix = strerror_tr;
 
 static GnomeVFSResult do_open	         	(GnomeVFSMethod              	*method,
 						 GnomeVFSMethodHandle         	**method_handle,
@@ -87,9 +98,9 @@ static int 		write_wav_header 	(gpointer 			buffer,
 						 long 				bytes);
 
 
-static const char PROXY_HOST_KEY[] = "/system/gnome-vfs/http-proxy-host";
-static const char PROXY_PORT_KEY[] = "/system/gnome-vfs/http-proxy-port";
-static const char USE_PROXY_KEY[] = "/system/gnome-vfs/use-http-proxy";
+static const char PROXY_HOST_KEY[] = "/apps/nautilus/preferences/http-proxy-host";
+static const char PROXY_PORT_KEY[] = "/apps/nautilus/preferenceshttp-proxy-port";
+static const char USE_PROXY_KEY[] = "/apps/nautilus/preferencesuse-http-proxy";
 
 static CDDAContext *
 cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
@@ -110,9 +121,7 @@ cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
 
 	// Look up CDDB info
 	gconf_client = gconf_client_get_default ();
-
-	proxy_string = port = proxy = NULL;
-	
+		
 	use_proxy = gconf_client_get_bool (gconf_client, USE_PROXY_KEY, NULL);
 	if (use_proxy) {
 		proxy_host = gconf_client_get_string (gconf_client, PROXY_HOST_KEY, NULL);
