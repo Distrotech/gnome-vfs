@@ -1,11 +1,34 @@
-gnome-vfs 2.1.2
----------------
+gnome-vfs 2.1.2,3
 
 	* Featurelets
-		+ Break access checks into distinct flag (Christophe Fergeau)
+		+ vfolder re-write (Alex Graveley)
+		+ add access check API (Christophe Fergeau)
+		+ funky network: scheme (Bastien Nocera)
+		+ symlink following cp -R (Colin Walters)
+		+ async performance improvements (Brian Cameron)
+		+ favorites updates (Seth Nickell)
+		+ eel vfs utils merged (James Willcox)
+		+ 'uses_gnomevfs' in .application (Christophe Fergeau)
+		+ update docs (Ian McKellar)
+	* Bugs fixed
+		+ URI canonicalization (Frederic Crozat)
+		+ config source fix (Ian McKellar)
+		+ vfolder misc, lots. (Alex, Damon Chaplin)
+		+ turn off vfolder debug (Mark McLouglin)
+		+ CDE integration fixes (Stephen Browne,
+	 	  Arvind Samptur, HideToshi Tajima)
+		+ remove hard-coding (Seth)
+		+ ssh quoting fixes (Christophe)
+		+ several ERROR_EOF fixes (Christophe)
+		+ buffer overflow fix (Christophe)
+		+ http fd leak (Ghee Teo)
+		+ OP_XFER leak fix (Jody Goldberg)
+		+ fix trash locking, and IO (Michael Meeks)
+		+ g_memory management fix (Dave Camp)
+		+ newer findutils fixes (Federico Mena)
+		+ build fixes (Michael, Yanko Kaneti, Jacob Berkman)
 
 gnome-vfs 2.0.2
----------------
 
 	* Bugs fixed
 		+ gcc 3.1 build (Frederic Crozat)

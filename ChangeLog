@@ -133,11 +133,13 @@
 	validates.
 
 2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
-        * modules/ssh-method.c: 
+	
+	* modules/ssh-method.c: 
         Quote filenames using g_shell_quote before passing them to ssh
 
 2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
-        * modules/ssh-method.c: 
+	
+	* modules/ssh-method.c: 
         Make do_read return GNOME_VFS_ERROR_EOF when it read 0 byte
         Force C locale in ssh_connect before running ssh (the ls parsing 
         function expects ls output to be in this locale)
@@ -146,17 +148,20 @@
         Fix a possible buffer overflow in do_read_directory
 
 2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
- 	* modules/ftp-method.c: 
+	
+	* modules/ftp-method.c: 
  	Moved ftp authentification to a separate function (ftp_login)
  	Correctly return GNOME_VFS_ERROR_EOF when do_read didn't read anything
 
 2002-09-27  Arvind Samptur <arvind.samptur@wipro.com>
+	
 	* modules/Makefile.am : look for cde menus only if cde is present.
 	* cdemenu-module.conf : added the new file.
 	* default-modules.conf : remove cdemenu from defaults.
 	Fixes #86736. Patch from Stephen Browne.
 
 2002-09-20  Arvind Samptur <arvind.samptur@wipro.com>
+	
 	* modules/cde-desktop-method.c: Removing Comment field
 	from the desktop files. Fixes #88484
 	Redoing this since gnome-vfs-rewrite and gnome-2-0 branch
@@ -187,15 +192,16 @@
 
 2002-09-19  Christophe Fergeau  <teuf@users.sourceforge.net>
 
-        * libgnomevfs/gnome-vfs-application-registry.c
-        * libgnomevfs/gnome-vfs-application-registry.h
-        * libgnomevfs/gnome-vfs-configuration.c
-        * libgnomevfs/gnome-vfs-configuration.h: added support for
+	* libgnomevfs/gnome-vfs-application-registry.c
+	* libgnomevfs/gnome-vfs-application-registry.h
+	* libgnomevfs/gnome-vfs-configuration.c
+	* libgnomevfs/gnome-vfs-configuration.h: added support for
         uses_gnomevfs in .application file so that apps can indicate they 
 	can open all uris supported by gnomevfs
-        * doc/mime-data-specification.txt: updated doc accordingly
+	* doc/mime-data-specification.txt: updated doc accordingly
 
 2002-09-13  Ghee Teo <ghee.teo@sun.com>
+
 	* Fixes #92132 in modules/http-method.c which leaks file descriptor
 	  on a bad page, error 405.
 
@@ -979,6 +985,7 @@
 === end merge changes from gnome-vfs-2-0-vfolder-rewrite branch ===
 
 2002-08-16  Arvind Samptur <arvind.samptur@wipro.com>
+
 	*  modules/cde-desktop-method.c: Removing Comment field
 	from the desktop files. Fixes #88484
 	Re-doing this patch as Hidetoshi's patch to fix
