@@ -64,7 +64,6 @@ noinst_HEADERS =				\
 	gnome-vfs-ssl-private.h			\
 	gnome-vfs-thread-pool.h			\
 	$(NULL)
-#	gnome-vfs-metadata-private.h		\
 
 libgnomevfsmoduleinclude_HEADERS =		\
 	gnome-vfs-cancellable-ops.h		\
@@ -109,7 +108,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-xfer.h			\
 	gnome-vfs.h				\
 	$(NULL)
-#	gnome-vfs-metadata.h			\
 
 libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-application-registry.c	\

@@ -1,3 +1,11 @@
+2003-02-21  Alexander Larsson  <alexl@redhat.com>
+
+	* monikers/Makefile.am:
+	Assign CLEANFILES with normal assignment
+
+	* libgnomevfs/Makefile.am:
+	Remove commented out lines that were confusing automake.
+	
 2003-02-20  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-job.h:

@@ -17,7 +17,7 @@ GNOME_VFS_Moniker_std.server.in: $(srcdir)/GNOME_VFS_Moniker_std.server.in.in
 		$(srcdir)/GNOME_VFS_Moniker_std.server.in.in \
 		> GNOME_VFS_Moniker_std.server.in
 
-CLEANFILES+=GNOME_VFS_Moniker_std.server GNOME_VFS_Moniker_std.server.in
+CLEANFILES=GNOME_VFS_Moniker_std.server GNOME_VFS_Moniker_std.server.in
 
 serverdir = $(libdir)/bonobo/servers
 server_DATA = GNOME_VFS_Moniker_std.server
