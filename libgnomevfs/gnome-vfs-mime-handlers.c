@@ -1811,7 +1811,7 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 			(key_file, DESKTOP_ENTRY_GROUP, "GenericName", NULL, NULL);
  
 	app->priv->icon = g_key_file_get_string
-			(key_file, DESKTOP_ENTRY_GROUP, "IconName", NULL);	
+			(key_file, DESKTOP_ENTRY_GROUP, "Icon", NULL);	
 	
 	app->priv->startup_wm_class = g_key_file_get_string
 			(key_file, DESKTOP_ENTRY_GROUP, "StartupWMClass", NULL);

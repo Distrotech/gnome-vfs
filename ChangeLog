@@ -1,3 +1,9 @@
+2005-01-08  Anders Carlsson  <andersca@localhost.localdomain>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c 
+	(gnome_vfs_mime_application_new_from_desktop_id): 
+	The icon field name is "Icon", not "IconName".
+	
 2005-1-08  Paolo Borelli  <pborelli@katamail.com>
 
 	* programs/gnomevfs-mv.c: added.
