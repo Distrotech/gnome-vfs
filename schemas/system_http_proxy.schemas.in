@@ -80,7 +80,7 @@
       <list_type>string</list_type>
       <default>[localhost,127.0.0.0/8]</default>
       <locale name="C">
-        <short>Non-proxy host</short>
+        <short>Non-proxy hosts</short>
         <long>This key contains a list of hosts which are connected to
 	directly, rather than via the proxy (if it is active). The values can
 	be hostnames, domains (using an initial wildcard like *.foo.com), IP
