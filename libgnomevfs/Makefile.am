@@ -61,7 +61,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-file-size.h			\
 	gnome-vfs-find-directory.h		\
 	gnome-vfs-handle.h			\
-	gnome-vfs-helpers.h			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
 	gnome-vfs-mime-utils.h			\
@@ -94,7 +93,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-find-directory.c		\
 	gnome-vfs-handle.c			\
-	gnome-vfs-helpers.c			\
 	gnome-vfs-i18n.c			\
 	gnome-vfs-i18n.h			\
 	gnome-vfs-inet-connection.c		\

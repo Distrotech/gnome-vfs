@@ -1,3 +1,11 @@
+2001-11-08  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* libgnomevfs/gnome-vfs-helpers.c,
+	libgnomevfs/gnome-vfs-helpers.h, libgnomevfs/Makefile.am: Removed
+	because we don't want to lock in this messy API and there is no
+	time for proper cleanup. Some eel functions will probably migrate
+	to gnome-vfs later.
+
 2001-11-06  Maciej Stachowiak  <mjs@noisehavoc.org>
 	
 	* libgnomevfs/Makefile.am: Make gnome-vfs-mime.h a module header
