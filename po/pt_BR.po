@@ -683,8 +683,9 @@ msgstr "Exibir:"
 msgid "Show dotfiles"
 msgstr "Exibir arquivos escondidos"
 
+#, fuzzy
 msgid "Invalid header `%s'"
-msgstr "Cabeçalho inválido `%s'"
+msgstr "Parâmetros inválidos"
 
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "O servidor HTTP retornou uma resposta de PROPFIND inválido"
