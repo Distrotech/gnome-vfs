@@ -1418,8 +1418,8 @@ read_saved_cached_trash_entries (void)
 				}
 			}
 			
-			free (trash_path);
-			free (mount_point);
+			g_free (trash_path);
+			g_free (mount_point);
 		}
 		fclose (cache_file);	
 	}

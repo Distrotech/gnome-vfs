@@ -1,3 +1,8 @@
+2000-11-13  Martin Baulig  <baulig@suse.de>
+
+	* modules/file-method.c (read_saved_cached_trash_entries):
+	Use g_free() to free the `trash_path' and `mount_path'.
+
 2000-11-11  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* mime-type-capplet/nautilus-mime-type.desktop: Added norwegian translation.
