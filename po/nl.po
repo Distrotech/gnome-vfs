@@ -1,21 +1,22 @@
 # translation of gnome-vfs.HEAD.po to Dutch
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004.
 # Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003.
+# Reinout van Schouwen <reinout@cs.vu.nl>, 2004
 # Deze vertalingen zijn te zien als je het programma: .... gebruikt.
-# Nog uit te zoeken...................................^^^^
+# ^^^ Alle programma's die bestanden openen en opslaan via het
+# GNOME virtual filesystem.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-16 15:41+0200\n"
-"PO-Revision-Date: 2004-07-14 12:42+0200\n"
-"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"POT-Creation-Date: 2004-08-17 03:52+0200\n"
+"PO-Revision-Date: 2004-08-17 12:14+0200\n"
+"Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 # initialiseren?
@@ -29,55 +30,56 @@ msgid "Could not initialize gnome vfs"
 msgstr "Kan gnome vfs niet starten"
 
 #: libgnomevfs/eggdesktopentries.c:229
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "Kon niet verwerken: %s"
+msgstr "Kan bestand niet openen: %s"
 
 #: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
-msgstr "Kon bestand '%s' niet openen: %s"
+msgstr "Kan bestand '%s' niet openen: %s"
 
 #: libgnomevfs/eggdesktopentries.c:341
-#, fuzzy
 msgid "File is empty"
-msgstr "Bestand bestaat reeds"
+msgstr "Bestand is leeg"
 
 #: libgnomevfs/eggdesktopentries.c:363
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr "Kon bestand '%s' niet openen: %s"
+msgstr "Lezen van bestand '%s' mislukt: %s"
 
+# desktop entries maar onvertaald gelaten
 #: libgnomevfs/eggdesktopentries.c:578
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
+"desktop entries bevatten regel '%s' welke geen entry, groep of commentaar is"
 
 #: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "desktop entries-bestand begint niet met geldige startgroep"
 
 #: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "desktop entries bevatten regel '%s' die niet UTF-8 gecodeerd is"
 
 #: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "desktop entries bevatten onbekende codering '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
 #: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "desktop entries hebben geen groep '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "desktop entries hebben geen sleutel '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
 #: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
@@ -85,41 +87,44 @@ msgstr ""
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
+"desktop entries bevatten sleutel '%s' die een waarde heeft die niet "
+"geïnterpreteerd kan worden."
 
 #: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
+"desktop entries bevatten geen vertaalde waarde voor sleutel '%s' met "
+"taalgebied '%s'."
 
 #: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "desktop entries bevatten ongeldige escape sequence '%s'"
 
 #: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "desktop entries bevatten escape-teken aan het einde van de regel"
 
 #: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "Kan waarde '%s' niet als getal interpreteren"
 
 #: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "Kan waarde '%s' niet als boolean interpreteren."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 volume"
 
-# hier wordt waarschijnlijk NULL bedoeld ipv NUL
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d bevat NULL-tekens."
+msgstr "%s:%d bevat NUL-tekens."
 
 #: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
@@ -148,15 +153,15 @@ msgstr "Configuratiebestand '%s' is niet gevonden: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr "AFFS volume"
+msgstr "AFFS-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr "AFS Netwerkvolume"
+msgstr "AFS-netwerkvolumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr "Auto-gedetecteerd volume"
+msgstr "Automatisch bepaald volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
@@ -165,132 +170,130 @@ msgstr "CD-ROM apparaat"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr "Audio CD"
+msgstr "CD digitale audio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr "Hardware-apparaat volume"
+msgstr "Hardware-apparaat volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr "Ext2 linux volume"
+msgstr "Ext2 Linux-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
-msgstr "Ext3 linux volume"
+msgstr "Ext3 Linux-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
-msgstr "MSDOS volume"
+msgstr "MSDOS-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
-msgstr "MacOS volume"
+msgstr "MacOS-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
-msgstr "CD-ROM volume"
+msgstr "CD-ROM-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
-msgstr "HSFS CD-ROM volume"
+msgstr "HSFS CD-ROM-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
-msgstr "JFS volume"
+msgstr "JFS-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
-msgstr "Windows NT volume"
+msgstr "Windows NT-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
-msgstr "Systeemvolume"
+msgstr "Systeemvolumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
-msgstr "Geheugenvolume"
+msgstr "Geheugenvolumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
-msgstr "Minixvolume"
+msgstr "Minixvolumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr "NFS netwerk volume"
+msgstr "NFS netwerkvolumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
-msgstr "Netware volume"
+msgstr "Netware-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
-msgstr "ReiserFS linux volume"
+msgstr "ReiserFS Linux-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
-msgstr "Gedeeld windowsvolume"
+msgstr "Gedeeld Windowsvolumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
-msgstr "Supermount volume"
+msgstr "Supermount-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
-msgstr "DVD volume"
+msgstr "DVD-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
-msgstr "Solaris/BSD volume"
+msgstr "Solaris/BSD-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
-msgstr "UDFS Solaris volume"
+msgstr "UDFS Solaris-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
-msgstr "PCFS Solaris volume"
+msgstr "PCFS Solaris-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "AFFS volume"
+msgstr "Sun SAM-QFS-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
-msgstr "verbeterd DOS volume"
+msgstr "Verbeterd DOS-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
-msgstr "Windows VFAT volume"
+msgstr "Windows VFAT-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
-msgstr "Xenix volume"
+msgstr "Xenix-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XFS Linux Volume"
-msgstr "XFS linux volume"
+msgstr "XFS Linuxvolumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XIAFS Volume"
-msgstr "XIAFS volume"
+msgstr "XIAFS-volumen"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:104
 msgid "Unknown"
 msgstr "Onbekend"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "CD-R schijf"
+msgstr "CD-ROMschijf"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -378,33 +381,33 @@ msgstr "SD/MMC"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:658
 msgid "Floppy Disk"
-msgstr "Floppy"
+msgstr "Diskette"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
-msgstr "Mac OS schijf"
+msgstr "Mac OS-schijf"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
-msgstr "Mac OS X schijf"
+msgstr "Mac OS X-schijf"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:681
 msgid "Windows Disk"
-msgstr "Windows schijf"
+msgstr "Windows-schijf"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
-msgstr "Linux schijf"
+msgstr "Linux-schijf"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "Onbekend oper-type %u"
+msgstr "Onbekend operatietype %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan geen pijp creëren voor GIOChannel: %s"
+msgstr "Kan geen pijplijn aanmaken voor GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
@@ -442,11 +445,13 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
+"Afgeraden functie. Gebruikerswijzigingen aan de MIME-database zijn niet "
+"langer ondersteund."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Kon niet verwerken: %s"
+msgstr "Kan niet verwerken: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
@@ -490,7 +495,7 @@ msgstr "I/O-fout"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "Data corrupted"
-msgstr "Data beschadigd"
+msgstr "Gegevens beschadigd"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:46
@@ -690,19 +695,18 @@ msgstr "Timeout bereikt"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "Algemene fout"
+msgstr "Nameserver-fout"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "De bron is in gebruik"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Functie-aanroep afgeraden"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -996,265 +1000,234 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Te gebruiken exec argument voor het standaard terminalprogramma."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "Programma in terminal starten"
+msgstr "Opdracht in terminalvenster starten"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "De opdracht voor het afhandelen van \"aim\"-URL's, indien ingeschakeld"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "De opdracht voor het afhandelen van \"callto\"-URL's, indien ingeschakeld"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "De opdracht voor het afhandelen van \"ghelp\"-URL's, indien ingeschakeld"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr ""
-"Indien waar, moet het programma wat deze URL afhandelt in een terminal "
-"gestart worden."
+msgstr "De opdracht voor het afhandelen van \"h323\"-URL's, indien ingeschakeld"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr ""
-"Indien waar, moet het programma wat deze URL afhandelt in een terminal "
-"gestart worden."
+msgstr "De opdracht voor het afhandelen van \"http\"-URL's, indien ingeschakeld"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
-"Indien waar, moet het programma wat deze URL afhandelt in een terminal "
-"gestart worden."
+msgstr "De opdracht voor het afhandelen van \"https\"-URL's, indien ingeschakeld"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "De opdracht voor het afhandelen van \"info\"-URL's, indien ingeschakeld"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "De opdracht voor het afhandelen van \"mailto\"-URL's, indien ingeschakeld"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "De opdracht voor het afhandelen van \"man\"-URL's, indien ingeschakeld"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "De opdracht voor het afhandelen van \"trash\"-URL's, indien ingeschakeld"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "aim URL's afhandelen"
+msgstr "Het programma dat \"aim\" URL's afhandelt"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "callto URL's afhandelen"
+msgstr "Het programma dat \"callto\" URL's afhandelt"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "ghelp URL's afhandelen"
+msgstr "Het programma dat \"ghelp\" URL's afhandelt"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "H323 URL's afhandelen"
+msgstr "Het programma dat \"h323\" URL's afhandelt"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "ghelp URL's afhandelen"
+msgstr "Het programma dat \"http\" URL's afhandelt"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "ghelp URL's afhandelen"
+msgstr "Het programma dat \"https\" URL's afhandelt"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "info URL's afhandelen"
+msgstr "Het programma dat \"info\" URL's afhandelt"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "mailto URL's afhandelen"
+msgstr "Het programma dat \"mailto\" URL's afhandelt"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "man URL's afhandelen"
+msgstr "Het programma dat \"man\" URL's afhandelt"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "trash URL's afhandelen"
+msgstr "Het programma dat \"trash\" URL's afhandelt"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de aim URL's af."
+"Waar als de opdracht aangegeven in de \"command\" sleutel \"aim\" URL's "
+"af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de callto URL's af."
+"Waar als de opdracht aangegeven in de \"command\" sleutel \"callto\" URL's "
+"af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de ghelp URL's af."
+"Waar als de opdracht aangegeven in de \"command\" sleutel \"ghelp\" URL's "
+"af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de H323 URL's af."
+"Waar als de opdracht aangegeven in de \"command\" sleutel \"h323\" URL's "
+"af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de ghelp URL's af."
+"Waar als de opdracht aangegeven in de \"command\" sleutel \"http\" URL's "
+"af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de ghelp URL's af."
+"Waar als de opdracht aangegeven in de \"command\" sleutel \"https\" URL's "
+"af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de info URL's af."
+"Waar als de opdracht aangegeven in de \"command\" sleutel \"info\" URL's "
+"af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de mailto URL's af."
+"Waar als de opdracht aangegeven in de \"command\" sleutel \"mailto\" URL's "
+"af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de man URL's af."
+"Waar als de opdracht aangegeven in de \"command\" sleutel \"man\" URL's "
+"af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de trash URL's af."
+"Waar als de opdracht aangegeven in de \"command\" sleutel \"trash\" URL's "
+"af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Indien waar, moet het programma wat deze URL afhandelt in een terminal "
-"gestart worden."
+"Waar indien de opdracht om dit type URL af te handelen in een terminalvenster "
+"gestart dient te worden."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de aim URL's af."
+"Of de aangegeven opdracht \"aim\" URL's af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de callto URL's af."
+"Of de aangegeven opdracht \"callto\" URL's af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de ghelp URL's af."
+"Of de aangegeven opdracht \"ghelp\" URL's af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de H323 URL's af."
+"Of de aangegeven opdracht \"h323\" URL's af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de ghelp URL's af."
+"Of de aangegeven opdracht \"http\" URL's af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de trash URL's af."
+"Of de aangegeven opdracht \"https\" URL's af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de info URL's af."
+"Of de aangegeven opdracht \"info\" URL's af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de mailto URL's af."
+"Of de aangegeven opdracht \"mailto\" URL's af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de man URL's af."
+"Of de aangegeven opdracht \"man\" URL's af dient te handelen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr ""
-"Indien waar handelt het programma gegeven in \"opdracht\" de trash URL's af."
+"Of de aangegeven opdracht \"trash\" URL's af dient te handelen."
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
-"Door komma's gescheiden lijst met dns-sd domeinen die zichtbaar zouden "
-"moeten zijn in de netwerklokatie."
+"Door komma's gescheiden lijst met dns-sd domeinen die zichtbaar behoren "
+"te zijn in de netwerklokatie."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
@@ -1265,14 +1238,12 @@ msgid "How to display local DNS-SD service"
 msgstr "Hoe een lokale DNS-SD service wordt weergegeven"
 
 #: schemas/system_dns_sd.schemas.in.h:4
-#, fuzzy
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Mogelijke waarden zijn \"merged\", \"separate\" en \"disabled\""
+msgstr "Mogelijke waarden zijn \"merged\", \"separate\" en \"disabled\"."
 
-# Aanmelding? Authenticatie?
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "Identificatie gebruiken bij verbinden met de proxy"
+msgstr "Aanmeldingscontrole gebruiken bij proxyserver-verbindingen"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
@@ -1306,17 +1277,15 @@ msgstr "HTTP proxy poortnummer"
 msgid "HTTP proxy username"
 msgstr "HTTP proxy gebruikersnaam"
 
-# vertaling voor authentication: 'aanmelden'?
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Indien waar, zal identificatie gebruikt worden bij verbindingen met de "
-"proxy. De combinatie van gebruikersnaam en wachtwoord van \"/system/"
-"http_proxy/authentication_user en /system/http_proxy/authentication_password "
-"zal gebruikt worden."
+"Indien waar, dan vereisen verbindingen met de proxyserver aanmeldingscontrole. "
+"De combinatie van gebruikersnaam en wachtwoord komt voort uit \"/system/"
+"http_proxy/authentication_user\" en \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1416,7 +1385,7 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "RL voor automatische proxy-configuratie."
+msgstr "URL die de waardes geeft voor proxyconfiguratie."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
