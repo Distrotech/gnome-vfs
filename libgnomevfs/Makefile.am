@@ -81,8 +81,6 @@ libgnomevfsinclude_HEADERS =			\
 	$(NULL)
 
 libgnomevfs_la_SOURCES =			\
-	eel-cut-n-paste.c			\
-	stolen-glib-extensions.c		\
 	gnome-vfs-app-context.c			\
 	gnome-vfs-application-registry.c	\
 	gnome-vfs-async-ops.c			\
@@ -126,13 +124,11 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	gnome-vfs-xfer.c			\
-	eel-cut-n-paste.h			\
 	gnome-vfs-backend-private.h		\
 	gnome-vfs-i18n.h			\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer-private.h	\
 	gnome-vfs-process.h			\
-	stolen-glib-extensions.h		\
 	$(NULL)
 
 # Platform specific includes

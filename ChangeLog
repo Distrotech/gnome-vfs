@@ -1,3 +1,17 @@
+2001-09-01  Darin Adler  <darin@bentspoon.com>
+
+	* idl/.cvsignore: Remove this now that this directory is empty.
+	* libgnomevfs/.cvsignore: No need to ignore metafile-related
+	generated files since those files are gone.
+	* libgnomevfs/Makefile.am: Remove more code that was part of
+	the metafile support.
+	
+	* libgnomevfs/eel-cut-n-paste.c:
+	* libgnomevfs/eel-cut-n-paste.h:
+	* libgnomevfs/stolen-glib-extensions.c:
+	* libgnomevfs/stolen-glib-extensions.h:
+	Removed.
+
 2001-09-01  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* OUTSTANDING_API_ISSUES: Updated.
