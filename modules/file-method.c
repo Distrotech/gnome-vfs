@@ -1979,7 +1979,7 @@ do_check_same_fs (GnomeVFSMethod *method,
 	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
  
-	full_name_target = get_path_from_uri (target);
+	full_name_target = get_path_from_uri (target_uri);
 	retval = stat (full_name_target, &s_target);
 	g_free (full_name_target);
 
