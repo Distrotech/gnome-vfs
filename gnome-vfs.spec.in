@@ -1,27 +1,25 @@
-# Note that this is NOT a relocatable package
-%define name     @PACKAGE@
-%define ver      @VERSION@
-%define  RELEASE 1
-%define  rel     %{?CUSTOM_RELEASE} %{!?CUSTOM_RELEASE:%RELEASE}
-%define  prefix  /usr
-%define  sysconfdir /etc
+%define		localstatedir /var/lib
 
-Summary: The GNOME virtual file-system libraries
-Name: %name
-Version: %ver
-Release: %rel
-Vendor:		CVS
-Distribution:	GNOME
-Copyright: LGPL
-Group: System Environment/Libraries
-Source: ftp://ftp.gnome.org/pub/GNOME/sources/%name/%name-%{ver}.tar.gz
-URL: http://www.gnome.org/
-BuildRoot: /var/tmp/%{name}-root
-Requires: glib >= @GLIB_REQUIRED@
-Requires: GConf >= @GCONF_REQUIRED@
-Requires: oaf >= @OAF_REQUIRED@
-Docdir: %{prefix}/doc
-Summary:  GNOME VFS is the GNOME virtual file system.  It is used extensively by Nautilus.
+Name:		gnome_vfs
+Summary:	The GNOME virtual file-system libraries
+Version:	@VERSION@
+Release:	1_cvs
+License:	LGPL
+Group:		System Environment/Libraries
+Source:		ftp://ftp.gnome.org/pub/GNOME/stable/sources/%name/%name-%{version}.tar.gz
+URL:		http://www.gnome.org/
+BuildRoot:	/var/tmp/%{name}-root
+Requires:	control-center
+Requires:       glib >= @GLIB_REQUIRED@
+Requires:	GConf >= @GCONF_REQUIRED@
+Requires:       oaf >= @OAF_REQUIRED@
+BuildRequires:	gnome-libs-devel, control-center-devel
+BuildRequires:	bonobo-activation-devel >= @BONOBO_ACTIVATION_REQUIRED@
+BuildRequires:	bonobo-devel >= @BONOBO_REQUIRED@
+BuildRequires:	GConf-devel >= @GCONF_REQUIRED@
+BuildRequires:	gtk+-devel >= @GTK_REQUIRED@
+BuildRequires:	libidl-devel >= @LIBIDL_REQUIRED@
+BuildRequires:	ORBit-devel >= @ORBIT_REQUIRED@
 
 %description
 GNOME VFS is the GNOME virtual file system. It is the foundation of the
@@ -31,76 +29,93 @@ It provides a URI-based API, a backend supporting asynchronous file operations,
 a MIME type manipulation library and other features.
 
 %package devel
-Summary: Libraries and include files for developing GNOME VFS applications.
-Group: Development/Libraries
-Requires: %name = %{PACKAGE_VERSION}
-Requires: GConf-devel
-Requires: oaf-devel
+Summary:	Libraries and include files for developing GNOME VFS applications.
+Group:		Development/Libraries
+Requires:	%name = %{version}
+Requires:	glib-devel
+Requires:	bonobo-devel
 
 %description devel
 This package provides the necessary development libraries for writing
 GNOME VFS modules and applications that use the GNOME VFS APIs.
 
-%changelog
-* Tue Feb 22 2000 Ross Golder <rossigee@bigfoot.com>
-- Integrate into source tree
-
 %prep
 %setup -q
 
 %build
+
 %ifarch alpha
-MYARCH_FLAGS="--host=alpha-redhat-linux"
+    MYARCH_FLAGS="--host=alpha-redhat-linux"
 %endif
+
 # Needed for snapshot releases.
 MYCFLAGS="$RPM_OPT_FLAGS"
+
 if [ ! -f configure ]; then
-	CFLAGS="$MYCFLAGS" ./autogen.sh $MYARCH_FLAGS --enable-more-warnings --prefix=%prefix --localstatedir=/var/lib --sysconfdir=%{sysconfdir}
-else
-	CFLAGS="$MYCFLAGS" ./configure $MYARCH_FLAGS --enable-more-warnings --prefix=%prefix --localstatedir=/var/lib --sysconfdir=%{sysconfdir}
+    CFLAGS="$MYCFLAGS" ./autogen.sh $MYARCH_FLAGS \
+	--enable-more-warnings --prefix=%{_prefix} \
+	--localstatedir=%{localstatedir} --sysconfdir=%{_sysconfdir} \
+	--mandir=%{_mandir} --libdir=%{_libdir} \
+	--includedir=%{_includedir} --bindir=%{_bindir}
 fi
-make -k
+
+CFLAGS="$MYCFLAGS" ./configure $MYARCH_FLAGS --enable-more-warnings \
+    --prefix=%{_prefix} --localstatedir=%{localstatedir} \
+    --sysconfdir=%{_sysconfdir} --mandir=%{_mandir} \
+    --libdir=%{_libdir} --includedir=%{_includedir} \
+    --bindir=%{_bindir} 
+
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make -k sysconfdir=$RPM_BUILD_ROOT%{sysconfdir} prefix=$RPM_BUILD_ROOT%{prefix} install
+
+make -k sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} \
+    prefix=$RPM_BUILD_ROOT%{_prefix} mandir=$RPM_BUILD_ROOT%{_mandir} \
+    libdir=$RPM_BUILD_ROOT%{_libdir} bindir=$RPM_BUILD_ROOT\%{_bindir} \
+    includedir=$RPM_BUILD_ROOT%{_includedir} install
+
+%find_lang %name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-if ! grep %{prefix}/lib /etc/ld.so.conf > /dev/null ; then
-  echo "%{prefix}/lib" >> /etc/ld.so.conf
-fi
-/sbin/ldconfig
+%post -p /sbinn/ldconfig
 
 %postun -p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
-%config %{sysconfdir}/gnome-vfs-mime-magic
-%config %{sysconfdir}/vfs/modules/*.conf
-%dir %{prefix}/share/application-registry
-%{prefix}/lib/*.0
-%{prefix}/lib/*.sh
-%{prefix}/lib/*.so
-%{prefix}/lib/vfs/extfs/*
-%{prefix}/lib/vfs/modules/*.0
-%{prefix}/lib/vfs/modules/*.so
-%{prefix}/man/man5/*.5*
-%{prefix}/share/application-registry/gnome-vfs.applications
-%{prefix}/share/locale/*/LC_MESSAGES/*.mo
-%{prefix}/share/mime-info/*.keys
-%{prefix}/share/mime-info/*.mime
+%config %{_sysconfdir}/gnome-vfs-mime-magic
+%config %{_sysconfdir}/vfs/modules/*.conf
+%dir %{_datadir}/application-registry
+%{_libdir}/*.0
+%{_libdir}/*.sh
+%{_libdir}/*.so
+%{_libdir}/vfs/extfs/*
+%{_libdir}/vfs/modules/*.0
+%{_libdir}/vfs/modules/*.so
+%{_mandir}/man5/*.5*
+%{_datadir}/application-registry/gnome-vfs.applications
+%{_datadir}/mime-info/*.keys
+%{_datadir}/mime-info/*.mime
 
 %files devel
 %defattr(-, root, root)
-%{prefix}/include/libgnomevfs/*.h
-%{prefix}/lib/vfs/include/*.h
-%{prefix}/lib/*.a
-%{prefix}/lib/*.la
-%{prefix}/lib/vfs/modules/*.a
-%{prefix}/lib/vfs/modules/*.la
-%{prefix}/bin/gnome-vfs-config
+%{_includedir}/libgnomevfs
+%{_libdir}/vfs/include/*.h
+%{_libdir}/*.a
+%{_libdir}/*.la
+%{_libdir}/vfs/modules/*.a
+%{_libdir}/vfs/modules/*.la
+%{_bindir}/gnome-vfs-config
+
+
+%changelog
+
+* Sun Oct 21 2001 Gregory Leblanc <gleblanc@linuxweasel.com>
+- some messing around with Requires: and BuildRequires
+- cleaned up %files quite a bit (still not quite as good as it could be)
+- removed a bunch of unnecessary %defines

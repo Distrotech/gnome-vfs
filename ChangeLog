@@ -1,3 +1,8 @@
+2001-10-21  Gregory Leblanc  <gleblanc@linuxweasel.com>
+
+	* gnome-vfs.spec.in:  Bunch of updates, still not quite right.
+	Asked for some help from the gnome-vfs hackers.
+
 Sun Oct 21 02:52:48 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: implement create and some
