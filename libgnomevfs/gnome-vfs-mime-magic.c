@@ -786,6 +786,20 @@ gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	}
 
 	/*
+	 * Ignore StarOffice and Microsoft Office files which contain seemingly
+	 * valid (but totally false) MPEG audio headers starting 68 bytes into
+	 * the file.  Even mpg123 will attempt to "play" them.  Go figure.
+	 */
+	if ((sniff_buffer->buffer[0] == 0xd0u)
+		&& (sniff_buffer->buffer[1] == 0xcfu)
+		&& (sniff_buffer->buffer[2] == 0x11u)
+		&& (sniff_buffer->buffer[3] == 0xe0u)
+		&& (sniff_buffer->buffer[4] == 0xa1u)
+		&& (sniff_buffer->buffer[5] == 0xb1u)) {
+		return FALSE;
+	}
+
+	/*
 	 * Use algorithm described in "ID3 tag version 2.3.0 Informal Standard"
 	 * at "http://www.id3.org/id3v2.3.0.html" to detect a valid header, "An
 	 * ID3v2 tag can be detected with the following pattern:

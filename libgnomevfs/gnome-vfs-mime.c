@@ -554,20 +554,6 @@ gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *f
 				return "text/plain";
 
 			} else if (gnome_vfs_sniff_buffer_looks_like_mp3 (buffer)) {
-				/* MP3 file -- treat extensions as a more accurate source
-				 * of type information.
-				 * FIXME bugzilla.eazel.com 6831:
-				 * This should not have lesser priority than suffixes.
-				 */
-				if (file_name != NULL) {
-					result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
-				}
-
-				if (result != NULL) {
-					return result;
-				}
-	
-				/* Didn't find an extension match, assume MP3. */
 				return "audio/x-mp3";
 			}
 		}

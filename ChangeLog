@@ -1,3 +1,26 @@
+2001-02-23  Don Melton  <don@eazel.com>
+
+	reviewed by: Maciej Stachowiak  <mjs@eazel.com>
+
+	Fixed bug 6831 (extensions shouldn't take precedence over MP3 files)
+	* libgnomevfs/gnome-vfs-mime.c: (gnome_vfs_get_mime_type_internal):
+	Removed call to "gnome_vfs_mime_type_from_name_or_default" after
+	call to "gnome_vfs_sniff_buffer_looks_like_mp3" so filename
+	extensions don't take precendence over actual MPEG audio content.
+
+	Re-fixed bug 6612 (".doc", ".sdw", etc. are not MP3 files)
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_sniff_buffer_looks_like_mp3):
+	Added hack to ignore StarOffice and Microsoft Office files which
+	contain seemingly valid (but totally false) MPEG audio headers
+	starting 68 bytes into the file.  Do this here because adding mime
+	magic entry is really, really hard.
+
+	Re-fixed bug 5477 ("linux-2.4.0.tar.bz2" is not MP3 file)
+	* data/mime/gnome-vfs-mime-magic:
+	Corrected string pattern to detect bzip2 files.  Changed "Bzh" to
+	"BZh".
+
 2001-02-22  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/default-modules.conf:
