@@ -1,3 +1,9 @@
+2000-11-22  Michael K. Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c: (sig_gconf_value_changed):
+	Fixed bug where setting "/system/gnome-vfs/use-http-proxy"
+	wouldn't cause the new http proxy to be used
+
 2000-11-21  Mike Fleming  <mfleming@eazel.com>
 
 	reviewed by: pavel@eazel.com
