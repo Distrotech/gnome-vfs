@@ -1,3 +1,10 @@
+2004-11-30  Sebastien Bacher  <seb128@debian.org>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	(gnome_vfs_mime_get_all_desktop_entries):
+	Fix a memory leak, patch from Josselin Mouette <joss@debian.org>
+	(Closes: #159823).	
+
 2004-11-29  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
