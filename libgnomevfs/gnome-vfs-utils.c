@@ -43,6 +43,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include <sys/types.h>
 #if HAVE_SYS_STATVFS_H
 #include <sys/statvfs.h>
@@ -777,3 +778,124 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 }
 
 
+static char *
+strdup_to (const char *string, const char *end)
+{
+	if (end == NULL) {
+		return g_strdup (string);
+	}
+	return g_strndup (string, end - string);
+}
+
+static gboolean
+is_executable_file (const char *path)
+{
+	struct stat stat_buffer;
+
+	/* Check that it exists. */
+	if (stat (path, &stat_buffer) != 0) {
+		return FALSE;
+	}
+
+	/* Check that it is a file. */
+	if (!S_ISREG (stat_buffer.st_mode)) {
+		return FALSE;
+	}
+
+	/* Check that it's executable. */
+	if (access (path, X_OK) != 0) {
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+
+static gboolean
+executable_in_path (const char *executable_name)
+{
+	const char *path_list, *piece_start, *piece_end;
+	char *piece, *raw_path, *expanded_path;
+	gboolean is_good;
+
+	path_list = g_getenv ("PATH");
+
+	for (piece_start = path_list; ; piece_start = piece_end + 1) {
+		/* Find the next piece of PATH. */
+		piece_end = strchr (piece_start, ':');
+		piece = strdup_to (piece_start, piece_end);
+		g_strstrip (piece);
+		
+		if (piece[0] == '\0') {
+			is_good = FALSE;
+		} else {
+			/* Try out this path with the executable. */
+			raw_path = g_strconcat (piece, "/", executable_name, NULL);
+			expanded_path = gnome_vfs_expand_initial_tilde (raw_path);
+			g_free (raw_path);
+			
+			is_good = is_executable_file (expanded_path);
+			g_free (expanded_path);
+		}
+		
+		g_free (piece);
+		
+		if (is_good) {
+			return TRUE;
+		}
+
+		if (piece_end == NULL) {
+			return FALSE;
+		}
+	}
+}
+
+static char *
+get_executable_name_from_command_string (const char *command_string)
+{
+	/* FIXME bugzilla.eazel.com 2757: 
+	 * We need to handle quoting here for the full-path case */
+	return g_strstrip (strdup_to (command_string, strchr (command_string, ' ')));
+}
+
+/* Returns TRUE if commmand_string starts with the full path for an executable
+ * file, or starts with a command for an executable in $PATH.
+ */
+gboolean
+gnome_vfs_is_executable_command_string (const char *command_string)
+{
+	char *executable_name;
+	char *executable_path;
+	gboolean found;
+
+	/* Check whether command_string is a full path for an executable. */
+	if (command_string[0] == '/') {
+
+		/* FIXME bugzilla.eazel.com 2757:
+		 * Because we don't handle quoting, we can check for full
+		 * path including spaces, but no parameters, and full path
+		 * with no spaces with or without parameters. But this will
+		 * fail for quoted full path with spaces, and parameters.
+		 */
+
+		/* This works if command_string contains a space, but not
+		 * if command_string has parameters.
+		 */
+		if (is_executable_file (command_string)) {
+			return TRUE;
+		}
+
+		/* This works if full path has no spaces, with or without parameters */
+		executable_path = get_executable_name_from_command_string (command_string);
+		found = is_executable_file (executable_path);
+		g_free (executable_path);
+
+		return found;
+	}
+	
+	executable_name = get_executable_name_from_command_string (command_string);
+	found = executable_in_path (executable_name);
+	g_free (executable_name);
+
+	return found;
+}

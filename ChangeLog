@@ -1,3 +1,41 @@
+2001-02-25  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Gene Ragan <gzr@eazel.com>
+
+	Fixed bug 6675 (Capplet allows user to add application for
+	non-existent program (or not in path).
+
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c: (strdup_to), (is_executable_file),
+	(executable_in_path), (get_executable_name_from_command_string),
+	(gnome_vfs_is_executable_command_string): Moved code that tests
+	for executable commands from -mime-handlers.c to here. Made
+	gnome_vfs_is_executable_command_string public. Added FIXMEs 
+	and tweaked full-path handling code to work in more cases.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(application_known_to_be_nonexistent): Replaced the code testing
+	for executable commands with call to 
+	gnome_vfs_is_executable_command_string.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(initialize_edit_applications_dialog): Added FIXME.
+	(handle_invalid_application_input): New function, handles bad
+	name or command string with explanatory error message.
+	(run_edit_or_new_application_dialog): New function, guts of both
+	show_ and edit_new_application_window, which formerly had nearly
+	identical copy/pasted code. Now doesn't close dialog if input
+	is bad and user clicks OK; other minor cleanup.
+	(show_new_application_window), (show_edit_application_window):
+	Each of these now calls run_edit_or_new_application_dialog.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(add_mime_clicked), (update_mime_list_action),
+	(populate_mime_list): Added tests for missing icon files to
+	avoid zillions of GTK-CRITICALs from gdk_pixbuf if you run
+	the capplet without installing Nautilus firt (discovered during
+	clean rebuild); fixed a couple of leaking strings.
+
 2001-02-24  Marius Andreiana  <mandreiana@yahoo.com>
 
 	* configure.in: Added ro (Romanian) to ALL_LINGUAS.

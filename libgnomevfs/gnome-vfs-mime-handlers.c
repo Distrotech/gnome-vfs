@@ -32,8 +32,6 @@
 #include <gconf/gconf.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/stat.h>
-#include <unistd.h>
 
 static GConfEngine *gconf_engine = NULL;
 
@@ -1520,91 +1518,10 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 	return gnome_vfs_application_registry_get_mime_application (id);
 }
 
-static char *
-strdup_to (const char *string, const char *end)
-{
-	if (end == NULL) {
-		return g_strdup (string);
-	}
-	return g_strndup (string, end - string);
-}
-
-static gboolean
-is_executable_file (const char *path)
-{
-	struct stat stat_buffer;
-
-	/* Check that it exists. */
-	if (stat (path, &stat_buffer) != 0) {
-		return FALSE;
-	}
-
-	/* Check that it is a file. */
-	if (!S_ISREG (stat_buffer.st_mode)) {
-		return FALSE;
-	}
-
-	/* Check that it's executable. */
-	if (access (path, X_OK) != 0) {
-		return FALSE;
-	}
-
-	return TRUE;
-}
-
-
-static gboolean
-executable_in_path (const char *executable_name)
-{
-	const char *path_list, *piece_start, *piece_end;
-	char *piece, *raw_path, *expanded_path;
-	gboolean is_good;
-
-	path_list = g_getenv ("PATH");
-
-	for (piece_start = path_list; ; piece_start = piece_end + 1) {
-		/* Find the next piece of PATH. */
-		piece_end = strchr (piece_start, ':');
-		piece = strdup_to (piece_start, piece_end);
-		g_strstrip (piece);
-		
-		if (piece[0] == '\0') {
-			is_good = FALSE;
-		} else {
-			/* Try out this path with the executable. */
-			raw_path = g_strconcat (piece, "/", executable_name, NULL);
-			expanded_path = gnome_vfs_expand_initial_tilde (raw_path);
-			g_free (raw_path);
-			
-			is_good = is_executable_file (expanded_path);
-			g_free (expanded_path);
-		}
-		
-		g_free (piece);
-		
-		if (is_good) {
-			return TRUE;
-		}
-
-		if (piece_end == NULL) {
-			return FALSE;
-		}
-	}
-}
-
-static char *
-get_executable_name_from_command_string (const char *command)
-{
-	/* FIXME bugzilla.eazel.com 2757: Do we need to handle quoting? */
-	return strdup_to (command, strchr (command, ' '));
-}
-
 static gboolean
 application_known_to_be_nonexistent (const char *application_id)
 {
 	const char *command;
-	char *executable_name;
-	gboolean found;
 
 	g_return_val_if_fail (application_id != NULL, FALSE);
 
@@ -1615,18 +1532,8 @@ application_known_to_be_nonexistent (const char *application_id)
 	if (command == NULL) {
 		return TRUE;
 	}
-	
-	/* Check and see if a full path is being stored as the command. */
-	if (is_executable_file (command)) {
-		return FALSE;
-	}
-		
-	executable_name = get_executable_name_from_command_string (command);
-	g_strstrip (executable_name);
-	found = executable_in_path (executable_name);
-	g_free (executable_name);
 
-	return !found;
+	return !gnome_vfs_is_executable_command_string (command);
 }
 
 static GList *
