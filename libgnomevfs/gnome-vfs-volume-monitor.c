@@ -145,16 +145,18 @@ gnome_vfs_volume_monitor_init (GnomeVFSVolumeMonitor *volume_monitor)
 	volume_monitor->priv->mutex = g_mutex_new ();
 }
 
+G_LOCK_DEFINE_STATIC (volume_monitor_ref);
+
 GnomeVFSVolumeMonitor *
 gnome_vfs_volume_monitor_ref (GnomeVFSVolumeMonitor *volume_monitor)
 {
 	if (volume_monitor == NULL) {
 		return NULL;
 	}
-		
-	g_mutex_lock (volume_monitor->priv->mutex);
+	
+	G_LOCK (volume_monitor_ref);
 	g_object_ref (volume_monitor);
-	g_mutex_unlock (volume_monitor->priv->mutex);
+	G_UNLOCK (volume_monitor_ref);
 	return volume_monitor;
 }
 
@@ -165,9 +167,9 @@ gnome_vfs_volume_monitor_unref (GnomeVFSVolumeMonitor *volume_monitor)
 		return;
 	}
 	
-	g_mutex_lock (volume_monitor->priv->mutex);
+	G_LOCK (volume_monitor_ref);
 	g_object_unref (volume_monitor);
-	g_mutex_unlock (volume_monitor->priv->mutex);
+	G_UNLOCK (volume_monitor_ref);
 }
 
 
@@ -180,7 +182,24 @@ gnome_vfs_volume_monitor_finalize (GObject *object)
 	GnomeVFSVolumeMonitorPrivate *priv;
 
 	priv = volume_monitor->priv;
+	
+	g_list_foreach (priv->mtab_volumes,
+			(GFunc)gnome_vfs_volume_unref, NULL);
+	g_list_free (priv->mtab_volumes);
+	g_list_foreach (priv->server_volumes,
+			(GFunc)gnome_vfs_volume_unref, NULL);
+	g_list_free (priv->server_volumes);
+	g_list_foreach (priv->vfs_volumes,
+			(GFunc)gnome_vfs_volume_unref, NULL);
+	g_list_free (priv->vfs_volumes);
 
+	g_list_foreach (priv->fstab_drives,
+			(GFunc)gnome_vfs_drive_unref, NULL);
+	g_list_free (priv->fstab_drives);
+	g_list_foreach (priv->vfs_drives,
+			(GFunc)gnome_vfs_drive_unref, NULL);
+	g_list_free (priv->vfs_drives);
+	
 	g_mutex_free (priv->mutex);
 	g_free (priv);
 	volume_monitor->priv = NULL;
@@ -190,15 +209,16 @@ gnome_vfs_volume_monitor_finalize (GObject *object)
 }
 
 G_LOCK_DEFINE_STATIC (the_volume_monitor);
+static GnomeVFSVolumeMonitor *the_volume_monitor = NULL;
+static gboolean volume_monitor_was_shutdown = FALSE;
 
 GnomeVFSVolumeMonitor *
 gnome_vfs_get_volume_monitor (void)
 {
-	static GnomeVFSVolumeMonitor *the_volume_monitor = NULL;
-
 	G_LOCK (the_volume_monitor);
 	
-	if (the_volume_monitor == NULL) {
+	if (the_volume_monitor == NULL &&
+	    !volume_monitor_was_shutdown) {
 		if (gnome_vfs_get_is_daemon ()) {
 			the_volume_monitor = g_object_new (GNOME_VFS_TYPE_VOLUME_MONITOR_DAEMON, NULL);
 		} else {
@@ -210,6 +230,21 @@ gnome_vfs_get_volume_monitor (void)
 
 	return the_volume_monitor;
 }
+
+void
+_gnome_vfs_volume_monitor_shutdown (void)
+{
+	G_LOCK (the_volume_monitor);
+	
+	if (the_volume_monitor != NULL) {
+		gnome_vfs_volume_monitor_unref (the_volume_monitor);
+		the_volume_monitor = NULL;
+	}
+	volume_monitor_was_shutdown = TRUE;
+	
+	G_UNLOCK (the_volume_monitor);
+}
+
 
 GnomeVFSVolume *
 _gnome_vfs_volume_monitor_find_mtab_volume_by_activation_uri (GnomeVFSVolumeMonitor *volume_monitor,

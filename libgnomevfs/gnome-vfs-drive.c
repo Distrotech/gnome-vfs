@@ -119,7 +119,7 @@ gnome_vfs_drive_init (GnomeVFSDrive *drive)
 	static int drive_id_counter = 1;
 	
 	drive->priv = g_new0 (GnomeVFSDrivePrivate, 1);
-	
+
 	G_LOCK (drives);
 	drive->priv->id = drive_id_counter++;
 	G_UNLOCK (drives);

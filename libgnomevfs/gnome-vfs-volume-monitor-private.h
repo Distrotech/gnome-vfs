@@ -98,6 +98,8 @@ void _gnome_vfs_volume_monitor_connected    (GnomeVFSVolumeMonitor *volume_monit
 void _gnome_vfs_volume_monitor_disconnected (GnomeVFSVolumeMonitor *volume_monitor,
 					     GnomeVFSDrive         *drive);
 
+void _gnome_vfs_volume_monitor_shutdown (void);
+
 void            _gnome_vfs_volume_to_corba   (GnomeVFSVolume         *volume,
 					      GNOME_VFS_Volume       *corba_volume);
 GnomeVFSVolume *_gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
