@@ -1,3 +1,8 @@
+2003-05-14  Malcolm Tredinnick <malcolm@commsecure.com.au>
+
+	* modules/http-method.c: Bring comment about gconf keys into
+	line with reality.
+
 2003-05-13  Shailesh Mittal  <shailesh.mittal@wipro.com>
 
 	(applied by Ian McKellar <yakk@yakk.net>)

@@ -706,33 +706,32 @@ create_handle (GnomeVFSURI *uri,
  * Here's how the gconf gnome-vfs HTTP proxy variables
  * are intended to be used
  *
- * /system/gnome-vfs/use-http-proxy	
+ * /system/http_proxy/use_http_proxy	
  * 	Type: boolean
  *	If set to TRUE, the client should use an HTTP proxy to connect to all
- *	servers that are not "localhost".  The proxy is specified in other
- *	gconf variables below
+ *	servers. The proxy is specified in other gconf variables below.
  *
- * /system/gnome-vfs/http-proxy-host
+ * /system/http_proxy/host
  *	Type: string
- *	The hostname of the HTTP proxy this client should use.  If use-http-proxy
- *	is TRUE, this should be set.  If it is not set, the application should
- *	behave as if use-http-proxy is was set to FALSE.
+ *	The hostname of the HTTP proxy this client should use.  If
+ *	use-http-proxy is TRUE, this should be set.  If it is not set, the
+ *	application should behave as if use-http-proxy is was set to FALSE.
  *
- * /system/gnome-vfs/http-proxy-port
+ * /system/http_proxy/port
  *	Type: int
  *	The port number on the HTTP proxy host that the client should connect to
- *	If use-http-proxy and http-proxy-host are set but this is not set, 
- *	the application should use a default port value of 8080
+ *	If use_http_proxy and host are set but this is not set, the application
+ *	should use a default port value of 8080
  *
- * /system/gnome-vfs/http-proxy-authorization-user
+ * /system/http_proxy/authentication-user
  *	Type: string
  *	Username to pass to an authenticating HTTP proxy.
  *
- * /system/gnome-vfs/http-proxy-authorization-password
+ * /system/http_proxy/authentication_password
  *	Type: string
  *	Password to pass to an authenticating HTTP proxy.
  *  
- * /system/gnome-vfs/use-http-proxy-authorization
+ * /system/http_proxy/use-authentication
  *	Type: boolean
  * 	TRUE if the client should pass http-proxy-authorization-user and
  *	http-proxy-authorization-password an HTTP proxy
