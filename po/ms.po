@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
+"POT-Creation-Date: 2002-12-16 01:08+0800\n"
 "PO-Revision-Date: 2002-01-10 01:27+0800\n"
 "Last-Translator: Mohamad Afifi Omar (App) <mr_mohd_afifi@yahoo.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -268,7 +268,12 @@ msgstr "Meminta data servis yang ketinggalan zaman"
 msgid "Protocol error"
 msgstr "Ralat protokol"
 
-#: libgnomevfs/gnome-vfs-result.c:169
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Could not find master browser"
+msgstr "Tak menjumpai pelungsur induk"
+
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Ralat yang tidak diketahui"
 
