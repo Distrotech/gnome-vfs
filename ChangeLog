@@ -1,3 +1,18 @@
+2001-01-02  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Darin Adler  <darin@eazel.com>
+
+	Fixed bug 5339 (http proxy value reset when any Nautilus
+	preference changes). This is a low-priority bug but I
+	was working on another related bug and couldn't help
+	fixing this.
+
+	* libgnomevfs/gnome-vfs-mime-monitor.c: Fixed a copy/paste
+	error in a comment.
+	
+	* modules/http-method.c: (sig_gconf_value_changed):
+	Ignore keys other than the ones we care about.
+
 2001-01-03  Rebecca Schulman  <rebecka@eazel.com>
 
 	reviewed by: <delete if not using a buddy>

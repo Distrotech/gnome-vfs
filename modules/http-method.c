@@ -1257,26 +1257,29 @@ sig_gconf_value_changed (GConfClient* client, const gchar* key, GConfValue* valu
 	gboolean use_proxy_value;
 	char *proxy_value;
 
-	g_mutex_lock (gl_mutex);
+	if (strcmp (key, KEY_GCONF_USE_HTTP_PROXY) == 0 ||
+	    strcmp (key, KEY_GCONF_HTTP_PROXY) == 0) {
+		g_mutex_lock (gl_mutex);
 
-	/* Check and see if we are using the proxy */
-	use_proxy_value = gconf_client_get_bool (gl_client, KEY_GCONF_USE_HTTP_PROXY, NULL);
-	proxy_value = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_PROXY, NULL);
+		/* Check and see if we are using the proxy */
+		use_proxy_value = gconf_client_get_bool (gl_client, KEY_GCONF_USE_HTTP_PROXY, NULL);
+		proxy_value = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_PROXY, NULL);
 
-	if (use_proxy_value && proxy_value !=NULL) {
-		g_free (gl_http_proxy);
-		gl_http_proxy = proxy_value;
-		proxy_value = NULL;
-		DEBUG_HTTP (("New HTTP proxy: '%s'", gl_http_proxy));
-	} else {
-		DEBUG_HTTP (("HTTP proxy unset"));
-		g_free (gl_http_proxy);
-		gl_http_proxy = NULL;
-		g_free (proxy_value);
-		proxy_value = NULL;
+		if (use_proxy_value && proxy_value !=NULL) {
+			g_free (gl_http_proxy);
+			gl_http_proxy = proxy_value;
+			proxy_value = NULL;
+			DEBUG_HTTP (("New HTTP proxy: '%s'", gl_http_proxy));
+		} else {
+			DEBUG_HTTP (("HTTP proxy unset"));
+			g_free (gl_http_proxy);
+			gl_http_proxy = NULL;
+			g_free (proxy_value);
+			proxy_value = NULL;
+		}
+
+		g_mutex_unlock (gl_mutex);
 	}
-
-	g_mutex_unlock (gl_mutex);
 }
 
 /**

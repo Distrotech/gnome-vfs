@@ -76,7 +76,7 @@ gnome_vfs_mime_monitor_get_type (void)
 
 static GnomeVFSMIMEMonitor *global_mime_monitor = NULL;
 
-/* Return a pointer to the single global icon factory. */
+/* Return a pointer to the single global monitor. */
 GnomeVFSMIMEMonitor *
 gnome_vfs_mime_monitor_get (void)
 {
