@@ -31,6 +31,7 @@
 #include "gnome-vfs-backend.h"
 #include "gnome-vfs-types.h"
 #include "gnome-vfs-private-types.h"
+#include "gnome-vfs-backend-private.h"
 
 #include "gnome-vfs.h"
 #include <gmodule.h>
@@ -520,31 +521,35 @@ gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 	CALL_BACKEND (gnome_vfs_async_cancel, (handle));
 }
 
-guint
-gnome_vfs_async_add_status_callback (GnomeVFSAsyncHandle *handle,
-				     GnomeVFSStatusCallback callback,
-				     gpointer user_data)
+void
+gnome_vfs_backend_get_current_context (/* OUT */ GnomeVFSContext **context)
 {
-	static guint
-		(*real_gnome_vfs_async_add_status_callback) (GnomeVFSAsyncHandle *handle,
-							     GnomeVFSStatusCallback callback,
-							     gpointer user_data);
+	static void
+		(*real_gnome_vfs_get_current_context) (GnomeVFSContext **context);
 
-	CALL_BACKEND_RETURN (gnome_vfs_async_add_status_callback,
-			     (handle, callback, user_data));
+	CALL_BACKEND (gnome_vfs_get_current_context, (context));
+
 }
 
 void
-gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle *handle,
-					guint callback_id)
+gnome_vfs_backend_dispatch_callback (GnomeVFSCallback callback,
+				     gpointer user_data,
+				     gconstpointer in, size_t in_size,
+		 		     gpointer out, size_t out_size)
 {
 	static void
-		(*real_gnome_vfs_async_remove_status_callback) (GnomeVFSAsyncHandle *handle,
-								guint callback_id);
+		(*real_gnome_vfs_dispatch_callback) (GnomeVFSCallback callback,
+						     gpointer user_data,
+						     gconstpointer in, size_t in_size,
+				 		     gpointer out, size_t out_size);
 
-	CALL_BACKEND (gnome_vfs_async_remove_status_callback,
-		      (handle, callback_id));
+	CALL_BACKEND (gnome_vfs_dispatch_callback, (callback,
+						    user_data,
+						    in, in_size,
+						    out, out_size));
 }
+
+
 
 int
 gnome_vfs_backend_get_job_count (void)

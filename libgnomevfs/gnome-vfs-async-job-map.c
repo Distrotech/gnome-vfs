@@ -206,6 +206,7 @@ gnome_vfs_async_job_add_callback (GnomeVFSJob *job, GnomeVFSNotifyResult *notify
 
 	JOB_DEBUG (("adding callback %d ", notify_result->callback_id));
 
+	/* FIXME potential startup race here! */
 	if (async_job_callback_map == NULL) {
 		/* First job, allocate a new hash table. */
 		async_job_callback_map = g_hash_table_new (NULL, NULL);

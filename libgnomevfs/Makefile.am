@@ -60,7 +60,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-init.h			\
 	gnome-vfs-iobuf.h			\
 	gnome-vfs-list-sort.h			\
-	gnome-vfs-messages.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-mime.h			\
 	gnome-vfs-mime-handlers.h		\
@@ -83,7 +82,12 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-types.h			\
 	gnome-vfs-uri.h				\
 	gnome-vfs-utils.h			\
-	gnome-vfs-xfer.h
+	gnome-vfs-xfer.h			\
+	gnome-vfs-shellpattern-filter.h		\
+	gnome-vfs-app-context.h			\
+	gnome-vfs-standard-callbacks.h		\
+	gnome-vfs-module-api.h			\
+	$(NULL)
 
 libgnomevfs_la_SOURCES =			\
 	fnmatch.c				\
@@ -103,7 +107,6 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-init.c			\
 	gnome-vfs-iobuf.c			\
 	gnome-vfs-list-sort.c			\
-	gnome-vfs-messages.c			\
 	gnome-vfs-method.c			\
 	gnome-vfs-mime.c			\
 	gnome-vfs-mime-handlers.c               \
@@ -127,8 +130,13 @@ libgnomevfs_la_SOURCES =			\
 	fnmatch.h				\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer-private.h	\
-	gnome-vfs-process.h
+	gnome-vfs-process.h			\
+	gnome-vfs-app-context.c			\
+	$(NULL)
 
+noinst_HEADERS =				\
+	gnome-vfs-backend-private.h
+ 
 # Platform specific includes
 libgnomevfsplatofrmincludedir = $(libdir)/vfs/include
 libgnomevfsplatofrminclude_HEADERS =			\

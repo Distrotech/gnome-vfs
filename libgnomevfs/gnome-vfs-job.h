@@ -79,7 +79,11 @@ enum GnomeVFSOpType {
 	GNOME_VFS_OP_FIND_DIRECTORY,
 	GNOME_VFS_OP_XFER,
 	GNOME_VFS_OP_GET_FILE_INFO,
-	GNOME_VFS_OP_SET_FILE_INFO
+	GNOME_VFS_OP_SET_FILE_INFO,
+	/* This is not a real OpType; its intended to mark
+	 * GnomeVFSCallback's in the job_callback queue
+	 */
+	GNOME_VFS_OP_CALLBACK
 };
 
 typedef enum GnomeVFSOpType GnomeVFSOpType;
@@ -252,6 +256,15 @@ typedef struct {
 	int reply;
 } GnomeVFSXferOpResult;
 
+typedef struct {
+	GnomeVFSCallback	callback;
+	gpointer		user_data;
+	gconstpointer		in;
+	size_t			in_size;
+	gpointer		out;
+	size_t			out_size;
+} GnomeVFSCallbackOpResult;
+
 typedef union {
 	GnomeVFSOpenOp open;
 	GnomeVFSOpenAsChannelOp open_as_channel;
@@ -296,6 +309,7 @@ typedef union {
 	GnomeVFSFindDirectoryOpResult find_directory;
 	GnomeVFSLoadDirectoryOpResult load_directory;
 	GnomeVFSXferOpResult xfer;
+	GnomeVFSCallbackOpResult callback;
 } GnomeVFSSpecificNotifyResult;
 
 typedef struct {
@@ -360,6 +374,5 @@ void         	 gnome_vfs_job_module_cancel   	  (GnomeVFSJob	 	*job);
 int          	 gnome_vfs_job_get_count 	  (void);
 
 gboolean	 gnome_vfs_job_complete		  (GnomeVFSJob 		*job);
-
 
 #endif /* GNOME_VFS_JOB_PTHREAD_H */

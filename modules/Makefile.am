@@ -62,6 +62,7 @@ libcdda_la_SOURCES = \
 	cdda-cddb.c 				\
 	cdda-cddb.h				\
 	cdda-cdrom-extensions.h
+
 libcdda_la_LDFLAGS = $(module_flags)
 libcdda_la_LIBADD = -L/gnome/lib -lcdda_paranoia -lcdda_interface
 
@@ -133,7 +134,13 @@ libgconf_la_LDFLAGS = $(module_flags)
 
 libhttp_la_SOURCES =				\
 	http-method.c				\
-	http-method.h
+	http-method.h				\
+	http-authn.c				\
+	http-authn.h				\
+	http-cache.c				\
+	http-cache.h				\
+	$(NULL)
+	
 libhttp_la_LDFLAGS = $(module_flags)
 libhttp_la_LIBADD  = $(GLIB_LIBS) $(XML_LIBS) $(GCONF_LIBS)
 

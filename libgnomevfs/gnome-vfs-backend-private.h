@@ -1,6 +1,7 @@
-/* http-method.h - HTTP access method for the GNOME Virtual File System.
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+/* gnome-vfs-context-private.h
 
-   Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2001 Eazel, Inc
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -17,32 +18,19 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org>
-*/
+   Author: Michael Fleming <mfleming@eazel.com> */
 
-#ifndef HTTP_METHOD_H
-#define HTTP_METHOD_H
+#ifndef GNOME_VFS_CONTEXT_PRIVATE_H
+#define GNOME_VFS_CONTEXT_PRIVATE_H
 
-typedef gint64 utime_t;
+#include "gnome-vfs-context.h"
+#include "gnome-vfs-types.h"
 
-utime_t http_util_get_utime (void);
+void		gnome_vfs_backend_get_current_context (/* OUT */ GnomeVFSContext **context);
 
-gchar * http_util_base64 (const gchar *text);
+void		gnome_vfs_backend_dispatch_callback (GnomeVFSCallback callback,
+						     gpointer user_data,
+						     gconstpointer in, size_t in_size,
+				 		     gpointer out, size_t out_size);
 
-#undef DEBUG_HTTP_ENABLE
-
-#ifdef DEBUG_HTTP_ENABLE
-
-#define DEBUG_HTTP(x) http_debug_printf x
-void http_debug_printf(char *fmt, ...) G_GNUC_PRINTF (1,2);
-/* #define ANALYZE_HTTP(x) my_debug_printf (x) */
-#define ANALYZE_HTTP(x) 
-
-#else /* DEBUG_HTTP_ENABLE */
-
-#define DEBUG_HTTP(x)
-#define ANALYZE_HTTP(x) 
-
-#endif /* DEBUG_HTTP_ENABLE */
-
-#endif /* HTTP_METHOD_H */
+#endif /* GNOME_VFS_CONTEXT_PRIVATE_H */

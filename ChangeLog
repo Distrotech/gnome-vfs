@@ -1,3 +1,68 @@
+2001-05-14  Michael K. Fleming  <mikef@praxis.etla.net>
+
+	reviewed by: Ian McKellar <yakk@yakk.net>
+
+	GnomeVFSAppContext and GnomeVFSCallback implementation.
+
+	Allows application to register for module-defined synchronous callbacks.
+
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.c:
+	(gnome_vfs_async_job_add_callback):
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(dispatch_callback_callback), (dispatch_sync_job_callback),
+	(gnome_vfs_job_execute), (gnome_vfs_job_module_cancel),
+	(set_current_job), (clear_current_job),
+	(pthread_gnome_vfs_get_current_context),
+	(pthread_gnome_vfs_dispatch_callback):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-app-context.c:
+	* libgnomevfs/gnome-vfs-app-context.h:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend-private.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	(gnome_vfs_backend_get_current_context),
+	(gnome_vfs_backend_dispatch_callback):
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	(gnome_vfs_cancellation_cancel):
+	* libgnomevfs/gnome-vfs-context.c: (gnome_vfs_context_new),
+	(gnome_vfs_context_ref), (gnome_vfs_context_unref),
+	(gnome_vfs_context_get_cancellation),
+	(gnome_vfs_context_peek_current),
+	(gnome_vfs_context_check_cancellation_current),
+	(gnome_vfs_context_peek_app_context),
+	(gnome_vfs_context_peek_app_context_current):
+	* libgnomevfs/gnome-vfs-context.h:
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init),
+	(gnome_vfs_is_primary_thread):
+	* libgnomevfs/gnome-vfs-messages.c:
+	* libgnomevfs/gnome-vfs-messages.h:
+	* libgnomevfs/gnome-vfs-module-api.h:
+	* libgnomevfs/gnome-vfs-module-shared.h:
+	* libgnomevfs/gnome-vfs-private.h:
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-utils.h:
+	* modules/Makefile.am:
+	* modules/http-authn.c:
+	* modules/http-authn.h:
+	* modules/http-cache.c:
+	* modules/http-cache.h:
+	* modules/http-method.c: 
+	* modules/http-method.h:
+
+	Split http module into 3 files; implemented basic and proxy 
+	authentication callbacks and a simple authentication jar.
+	
+	* test/.cvsignore:
+	* test/Makefile.am:
+	* test/test-callback.c: (authn_callback),
+	(app_context_destroy_notify), (open_callback), (close_callback),
+	(stop_after_log), (make_asserts_break), (main):
+	* test/test-module-selftest.c: (stop_after_log),
+	(make_asserts_break), (main):
+
 2001-05-13  Maciej Stachowiak  <mjs@eazel.com>
 
 	* modules/http-method.c: Cleaned up formatting, minor style

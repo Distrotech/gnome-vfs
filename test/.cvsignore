@@ -27,4 +27,6 @@ test-sync-write
 test-unlink
 test-uri
 test-xfer
+test-callback
+test-module-selftest
 vfs-run

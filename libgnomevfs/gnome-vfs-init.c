@@ -39,6 +39,8 @@
 static gboolean vfs_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (vfs_already_initialized);
 
+static GPrivate * private_is_primary_thread;
+
 gboolean 
 gnome_vfs_init (void)
 {
@@ -68,6 +70,12 @@ gnome_vfs_init (void)
 		if (retval) {
 			signal (SIGPIPE, SIG_IGN);
 		}
+
+		if (g_thread_supported()) {
+			private_is_primary_thread = g_private_new (NULL);
+			g_private_set (private_is_primary_thread, GUINT_TO_POINTER (1));
+		}
+		
 	} else {
 		g_warning (_("GNOME VFS already initialized."));
 		retval = TRUE;	/* Who cares after all.  */
@@ -122,4 +130,14 @@ gnome_vfs_postinit(gpointer app, gpointer modinfo)
 
 	vfs_already_initialized = TRUE;
 	G_UNLOCK (vfs_already_initialized);
+}
+
+gboolean
+gnome_vfs_is_primary_thread (void)
+{
+	if (g_thread_supported()) {
+		return GPOINTER_TO_UINT(g_private_get (private_is_primary_thread)) == 1;
+	} else {
+		return TRUE;
+	}
 }

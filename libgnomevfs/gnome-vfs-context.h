@@ -24,6 +24,7 @@
 #define GNOME_VFS_CONTEXT_H
 
 #include "gnome-vfs.h"
+#include "gnome-vfs-app-context.h"
 
 GnomeVFSContext* gnome_vfs_context_new                   (void);
 void             gnome_vfs_context_ref                   (GnomeVFSContext *ctx);
@@ -32,21 +33,17 @@ void             gnome_vfs_context_unref                 (GnomeVFSContext *ctx);
 /* To be really thread-safe, these need to return objects with an increased
    refcount; however they don't, only one thread at a time
    can use GnomeVFSContext */
-GnomeVFSMessageCallbacks*
-                 gnome_vfs_context_get_message_callbacks (GnomeVFSContext *ctx);
 
 GnomeVFSCancellation*
-                 gnome_vfs_context_get_cancellation      (GnomeVFSContext *ctx);
-
-/* returns NULL if no redirection occurred */
-const gchar*     gnome_vfs_context_get_redirect_uri      (GnomeVFSContext *ctx);
-void             gnome_vfs_context_set_redirect_uri      (GnomeVFSContext *ctx,
-                                                          const gchar     *uri);
+                 gnome_vfs_context_get_cancellation      (const GnomeVFSContext *ctx);
 
 /* Convenience - both of these accept a NULL context object */
 #define          gnome_vfs_context_check_cancellation(x) (gnome_vfs_cancellation_check((x) ? gnome_vfs_context_get_cancellation((x)) : NULL))
 
-void             gnome_vfs_context_emit_message           (GnomeVFSContext *ctx,
-                                                           const gchar* message);
+const GnomeVFSContext *gnome_vfs_context_peek_current	  (void);
+gboolean	       gnome_vfs_context_check_cancellation_current (void);
+
+const GnomeVFSAppContext *gnome_vfs_context_peek_app_context (const GnomeVFSContext *ctx);
+const GnomeVFSAppContext *gnome_vfs_context_peek_app_context_current (void);
 
 #endif /* GNOME_VFS_CONTEXT_H */

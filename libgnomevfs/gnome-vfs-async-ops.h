@@ -153,10 +153,4 @@ void           gnome_vfs_async_find_directory         (GnomeVFSAsyncHandle      
 						       GnomeVFSAsyncFindDirectoryCallback     callback,
 						       gpointer                               user_data);
 
-guint          gnome_vfs_async_add_status_callback    (GnomeVFSAsyncHandle                   *handle,
-						       GnomeVFSStatusCallback                 callback,
-						       gpointer                               user_data);
-void           gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle                   *handle,
-						       guint                                  callback_id);
-
 #endif /* GNOME_VFS_ASYNC_OPS_H */

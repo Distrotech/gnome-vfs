@@ -1,6 +1,7 @@
-/* http-method.h - HTTP access method for the GNOME Virtual File System.
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+/* gnome-vfs-module-api.h - functions that a module can use, but not an applicatoin
 
-   Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2001 Free Software Foundation
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -17,32 +18,16 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org>
-*/
+   Author: Michael Fleming <mfleming@eazel.com> */
 
-#ifndef HTTP_METHOD_H
-#define HTTP_METHOD_H
+#ifndef GNOME_VFS_MODULE_API
+#define GNOME_VFS_MODULE_API
 
-typedef gint64 utime_t;
+#include <glib.h>
+#include <stdlib.h>
 
-utime_t http_util_get_utime (void);
+gboolean	gnome_vfs_callback_call_hook    (const char * hookname,
+						 gconstpointer in, size_t in_size,
+						 gpointer out, size_t out_size);
 
-gchar * http_util_base64 (const gchar *text);
-
-#undef DEBUG_HTTP_ENABLE
-
-#ifdef DEBUG_HTTP_ENABLE
-
-#define DEBUG_HTTP(x) http_debug_printf x
-void http_debug_printf(char *fmt, ...) G_GNUC_PRINTF (1,2);
-/* #define ANALYZE_HTTP(x) my_debug_printf (x) */
-#define ANALYZE_HTTP(x) 
-
-#else /* DEBUG_HTTP_ENABLE */
-
-#define DEBUG_HTTP(x)
-#define ANALYZE_HTTP(x) 
-
-#endif /* DEBUG_HTTP_ENABLE */
-
-#endif /* HTTP_METHOD_H */
+#endif /* GNOME_VFS_MODULE_API */

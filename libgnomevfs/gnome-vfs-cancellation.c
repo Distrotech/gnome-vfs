@@ -96,6 +96,8 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 {
 	g_return_if_fail (cancellation != NULL);
 
+	GNOME_VFS_ASSERT_PRIMARY_THREAD;
+
 	if (cancellation->cancelled)
 		return;
 

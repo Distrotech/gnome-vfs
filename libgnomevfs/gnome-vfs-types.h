@@ -646,4 +646,9 @@ typedef gpointer GnomeVFSMethodHandle;
 typedef struct GnomeVFSIOBuf GnomeVFSIOBuf;
 typedef struct GnomeVFSInetConnection GnomeVFSInetConnection;
 
+typedef void (*GnomeVFSCallback) (gpointer user_data,
+				  gconstpointer in, size_t in_size,
+				  gpointer out, size_t out_size);
+
+
 #endif /* _GNOME_VFS_TYPES_H */

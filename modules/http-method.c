@@ -3,6 +3,7 @@
    System.
 
    Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2000-2001 Eazel, Inc
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -63,31 +64,29 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <stdarg.h>
+#include <stdio.h>
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-sniff-buffer.h"
+#include "gnome-vfs-module.h"
+#include "gnome-vfs-module-api.h"
+#include "gnome-vfs-standard-callbacks.h"
 
 #include "http-method.h"
+#include "http-cache.h"
+#include "http-authn.h"
 
 #define EAZEL_XML_NS "http://services.eazel.com/namespaces"
 
-/* (this typedef is all the way up here so that  my_debug_printf can use it) */
-typedef gint64 utime_t;
-
-#if 0
-#include <stdio.h>
-#include <stdarg.h>
-#include <pthread.h>
-
-static utime_t get_utime (void);
-
-static void
-my_debug_printf (char *fmt, ...)
+#ifdef DEBUG_HTTP_ENABLE
+void
+http_debug_printf (char *fmt, ...)
 {
 	va_list args;
-	char * out;
+	gchar * out;
 
 	g_assert (fmt);
 
@@ -95,7 +94,7 @@ my_debug_printf (char *fmt, ...)
 
 	out = g_strdup_vprintf (fmt, args);
 
-	fprintf (stderr, "HTTP: [0x%08x] [0x%08x] %s\n", (unsigned int) get_utime (), (unsigned int) pthread_self (), out);
+	fprintf (stderr, "HTTP: [0x%08x] [0x%08x] %s\n", (unsigned int) http_util_get_utime (), (unsigned int) pthread_self(), out);
 
 	g_free (out);
 	va_end (args);
@@ -106,547 +105,7 @@ my_debug_printf (char *fmt, ...)
 /* #define ANALYZE_HTTP(x) my_debug_printf (x) */
 #define ANALYZE_HTTP(x) 
 
-#else
-static int nothing;
-#define DEBUG_HTTP(x) nothing = 1;
-#define ANALYZE_HTTP(x) nothing = 1;
-#endif
-
-#undef DAV_NO_CACHE
-#ifndef DAV_NO_CACHE
-
-/* Cache file info for 5 minutes */
-#define US_CACHE_FILE_INFO (1000 * 1000 * 60 * 5)
-/* Cache directory listings for 500 ms */
-#define US_CACHE_DIRECTORY (1000 * 500)
-
-/* Mutex for cache data structures */
-static pthread_mutex_t cache_rlock;
-
-/* Hash maps char * URI ---> FileInfoCacheEntry */
-GHashTable * gl_file_info_cache = NULL;
-/* in-order list of cache entries  for expiration */
-GList * gl_file_info_cache_list = NULL;
-GList * gl_file_info_cache_list_last = NULL;
-
-typedef struct {
-	char *			uri_string;
-	GnomeVFSFileInfo *	file_info;
-	utime_t			create_time;
-	GList *			my_list_node;	/*node for me in gl_file_info_cache_list*/
-	GList *			filenames;	/* List of char * basenames for files that are in this 
-						 * collection/directory.  Empty for non-directories
-						 */
-	gboolean		has_filenames:1;/* For directories, FALSE if the cache does not contain 
-						 * the directory's children 
-						 */
-	gboolean		is_dav:1;	/* Did this result from a PROPFIND or a GET ? */
-} FileInfoCacheEntry;
-
-static FileInfoCacheEntry * 	cache_entry_new ();
-static void 			cache_entry_free (FileInfoCacheEntry *entry);
-static void			cache_trim ();
-static GnomeVFSFileInfo *	cache_check (const char *uri_string);
-static GnomeVFSFileInfo *	cache_check_uri (GnomeVFSURI *uri);
-static GnomeVFSFileInfo *	cache_check_directory (const char *uri_string, GList **p_child_file_info_list);
-static GnomeVFSFileInfo *	cache_check_directory_uri (GnomeVFSURI *uri, GList **p_child_file_info_list);
-static FileInfoCacheEntry *	cache_add_no_strdup (char *uri_string, GnomeVFSFileInfo *file_info, gboolean is_dav);
-static FileInfoCacheEntry *	cache_add (const char *uri_string, GnomeVFSFileInfo *file_info, gboolean is_dav);
-static void			cache_add_uri_and_children (
-					GnomeVFSURI *uri, 
-					GnomeVFSFileInfo *file_info, 
-					GList *file_info_list
-				);
-static void			cache_add_uri (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, gboolean is_dav);
-static void			cache_invalidate (const char *uri_string);
-static void			cache_invalidate_uri (GnomeVFSURI *uri);
-static void			cache_invalidate_entry_and_children (const char *uri_string);
-static void			cache_invalidate_uri_and_children (GnomeVFSURI *uri);
-static void			cache_invalidate_uri_parent (GnomeVFSURI *uri);
-
-GnomeVFSResult			resolve_409 (GnomeVFSMethod *method, 
-					     GnomeVFSURI *uri, 
-					     GnomeVFSContext *context);
-
-
-static utime_t
-get_utime (void)
-{
-    struct timeval tmp;
-    gettimeofday (&tmp, NULL);
-    return (utime_t)tmp.tv_usec + ((gint64)tmp.tv_sec) * 1000000LL;
-}
-
-static void
-cache_init (void)
-{
-	pthread_mutex_lock (&cache_rlock);
-	gl_file_info_cache = g_hash_table_new (g_str_hash, g_str_equal);
-	pthread_mutex_unlock (&cache_rlock);
-}
-
-static void
-cache_shutdown (void)
-{
-	GList *node, *node_next;
-
-	pthread_mutex_lock (&cache_rlock);
-
-	for (node = g_list_first (gl_file_info_cache_list); 
-	     node != NULL; 
-	     node = node_next) {
-		node_next = g_list_next (node);
-		cache_entry_free ((FileInfoCacheEntry*) node->data);
-	}
-
-	g_list_free (gl_file_info_cache_list);
-	
-	g_hash_table_destroy (gl_file_info_cache);
-
-	pthread_mutex_unlock (&cache_rlock);
-}
-
-static FileInfoCacheEntry *
-cache_entry_new (void)
-{
-	FileInfoCacheEntry *ret;
-
-	pthread_mutex_lock (&cache_rlock);
-
-	ret = g_new0 (FileInfoCacheEntry, 1);
-	ret->create_time = get_utime();
-	
-	gl_file_info_cache_list = g_list_prepend (gl_file_info_cache_list, ret);
-
-	/* Note that since we've prepended, gl_file_info_cache_list points to us*/
-
-	ret->my_list_node = gl_file_info_cache_list;
-
-	if (gl_file_info_cache_list_last == NULL) {
-		gl_file_info_cache_list_last = ret->my_list_node;
-	}
-
-	pthread_mutex_unlock (&cache_rlock);
-
-	return ret;
-}
-
-/* Warning: as this function removes the cache entry from gl_file_info_cache_list, 
- * callee's must be careful when calling this during a list iteration
- */
-static void
-cache_entry_free (FileInfoCacheEntry *entry)
-{
-	if (entry != NULL) {
-		GList *node;
-		
-		pthread_mutex_lock (&cache_rlock);
-
-		g_hash_table_remove (gl_file_info_cache, entry->uri_string);
-		g_free (entry->uri_string);	/* This is the same string as in the hash table */
-		gnome_vfs_file_info_unref (entry->file_info);
-
-		if (gl_file_info_cache_list_last == entry->my_list_node) {
-			gl_file_info_cache_list_last = g_list_previous (entry->my_list_node);
-		}
-	
-		gl_file_info_cache_list = g_list_remove_link (gl_file_info_cache_list, entry->my_list_node);
-		g_list_free_1 (entry->my_list_node);
-
-		for (node = entry->filenames ; node ; node = g_list_next(node)) {
-			g_free (node->data);
-		}
-
-		g_list_free (entry->filenames); 
-		
-		g_free (entry);
-
-		pthread_mutex_unlock (&cache_rlock);
-	}
-}
-
-static void
-cache_trim (void)
-{
-	GList *node, *node_previous;
-	utime_t utime_expire;
-
-	pthread_mutex_lock (&cache_rlock);
-
-	utime_expire = get_utime() - US_CACHE_FILE_INFO;
-
-	for (node = gl_file_info_cache_list_last; 
-	     node && (utime_expire > ((FileInfoCacheEntry *)node->data)->create_time);
-	     node = node_previous) {
-		node_previous = g_list_previous (node);
-		
-		DEBUG_HTTP (("Cache: Expire: '%s'",((FileInfoCacheEntry *)node->data)->uri_string));
-		
-		cache_entry_free ((FileInfoCacheEntry *)(node->data));
-	}
-	
-	pthread_mutex_unlock (&cache_rlock);
-}
-
-/* Note: doesn't bother trimming entries, so the check can fast */
-static GnomeVFSFileInfo *
-cache_check (const char *uri_string)
-{
-	FileInfoCacheEntry *entry;
-	utime_t utime_expire;
-	GnomeVFSFileInfo *ret;
-
-	pthread_mutex_lock (&cache_rlock);
-
-	utime_expire = get_utime () - US_CACHE_FILE_INFO;
-
-	entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
-
-	if (entry && (utime_expire > entry->create_time)) {
-		entry = NULL;
-	}
-
-	if (entry) {
-		gnome_vfs_file_info_ref (entry->file_info);
-
-		DEBUG_HTTP (("Cache: Hit: '%s'",entry->uri_string));
-
-		ret = entry->file_info;
-	} else {
-		ret = NULL;
-	}
-	pthread_mutex_unlock (&cache_rlock);
-	return ret;
-}
-
-static char *
-cache_uri_to_string  (GnomeVFSURI *uri)
-{
-	char *uri_string;
-	size_t uri_length;
-
-	uri_string = gnome_vfs_uri_to_string (uri,
-					      GNOME_VFS_URI_HIDE_USER_NAME
-					      | GNOME_VFS_URI_HIDE_PASSWORD
-					      | GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
-
-	if (uri_string) {
-		uri_length = strlen (uri_string);
-		/* Trim off trailing '/'s */
-		if ( '/' == uri_string[uri_length-1] ) {
-			uri_string[uri_length-1] = 0;
-		}
-	}
-
-	return uri_string;
-}
-
-static GnomeVFSFileInfo *
-cache_check_uri (GnomeVFSURI *uri)
-{
-	char *uri_string;
-	GnomeVFSFileInfo *ret;
-
-	uri_string = cache_uri_to_string (uri);
-
-	ret = cache_check (uri_string);
-	g_free (uri_string);
-	return ret;
-}
-
-
-/* Directory operations demand fresher cache entries */
-static GnomeVFSFileInfo *
-cache_check_directory (const char *uri_string, 
-		       GList **p_child_file_info_list)
-{
-	FileInfoCacheEntry *entry;
-	utime_t utime_expire;
-	GnomeVFSFileInfo *ret;
-	GList *child_file_info_list = NULL;
-	gboolean cache_incomplete;
-
-	pthread_mutex_lock (&cache_rlock);
-
-	utime_expire = get_utime () - US_CACHE_DIRECTORY;
-
-	entry = (FileInfoCacheEntry *) g_hash_table_lookup (gl_file_info_cache, uri_string);
-
-	if (entry && (utime_expire > entry->create_time)) {
-		entry = NULL;
-	}
-
-	if (entry && entry->has_filenames) {
-		DEBUG_HTTP (("Cache: Hit: '%s'",entry->uri_string));
-
-		gnome_vfs_file_info_ref (entry->file_info);
-		ret = entry->file_info;
-	} else {
-		ret = NULL;
-	}
-
-	if (ret && p_child_file_info_list != NULL) {
-		GList *filename_node;
-
-		cache_incomplete = FALSE;
-		
-		for (filename_node = entry->filenames;
-		     filename_node; 
-		     filename_node = g_list_next (filename_node)) {
-			char *child_filename;
-			FileInfoCacheEntry *child_entry;
-			
-			child_filename = g_strconcat (uri_string, "/", (char *)filename_node->data, NULL);
-			
-			child_entry = (FileInfoCacheEntry *) g_hash_table_lookup (gl_file_info_cache, child_filename);
-			
-			/* Other HTTP requests on children can cause them to expire before the parent directory */
-			if (child_entry == NULL) {
-				cache_incomplete = TRUE;
-				break;
-			}
-
-			gnome_vfs_file_info_ref (child_entry->file_info);
-			child_file_info_list = g_list_prepend (child_file_info_list, child_entry->file_info);
-
-			g_free (child_filename);
-		}
-
-		if (cache_incomplete) {
-			DEBUG_HTTP (("Cache: Directory was incomplete: '%s'",entry->uri_string));
-
-			gnome_vfs_file_info_unref (ret);
-			ret = NULL;
-			*p_child_file_info_list = NULL;
-		} else {
-			*p_child_file_info_list = child_file_info_list;
-		}
-	}
-
-	pthread_mutex_unlock (&cache_rlock);
-
-	return ret;
-}
-
-static GnomeVFSFileInfo *
-cache_check_directory_uri (GnomeVFSURI *uri, 
-			   GList **p_child_file_info_list)
-{
-	char *uri_string;
-	GnomeVFSFileInfo *ret;
-
-	uri_string = cache_uri_to_string (uri);
-
-	ret = cache_check_directory (uri_string, 
-				     p_child_file_info_list);
-	g_free (uri_string);
-
-	return ret;
-}
-
-/* Note that this neither strdups uri_string nor calls cache_trim() */
-static FileInfoCacheEntry *
-cache_add_no_strdup (char *uri_string, 
-		     GnomeVFSFileInfo *file_info, 
-		     gboolean is_dav)
-{
-	FileInfoCacheEntry *entry_existing;
-	FileInfoCacheEntry *entry;
-	
-	pthread_mutex_lock (&cache_rlock);
-	
-	entry_existing = (FileInfoCacheEntry *) g_hash_table_lookup (gl_file_info_cache, uri_string);
-
-	DEBUG_HTTP (("Cache: Add: '%s'", uri_string));
-
-	if (entry_existing) {
-		cache_entry_free (entry_existing);
-		entry_existing = NULL;
-	}
-
-	entry = cache_entry_new();
-
-	entry->uri_string =  uri_string; 
-	entry->file_info = file_info;
-	entry->is_dav = is_dav;
-	
-	gnome_vfs_file_info_ref (file_info);
-
-	g_hash_table_insert (gl_file_info_cache, entry->uri_string, entry);
-
-	pthread_mutex_unlock (&cache_rlock);
-
-	return entry;
-}
-
-static FileInfoCacheEntry *
-cache_add (const char *uri_string, 
-	   GnomeVFSFileInfo *file_info,
-	   gboolean is_dav)
-{
-	cache_trim ();
-	return cache_add_no_strdup (g_strdup (uri_string), file_info, is_dav);
-}
-
-static void
-cache_add_uri_and_children (GnomeVFSURI *uri, 
-			    GnomeVFSFileInfo *file_info, 
-			    GList *file_info_list)
-{
-	char *uri_string;
-	char *child_string;
-	GList *node;
-	FileInfoCacheEntry *parent_entry;
-
-	cache_trim();
-
-	pthread_mutex_lock (&cache_rlock);
-
-	uri_string = cache_uri_to_string (uri);
-
-	if (uri_string != NULL) {
-		/* Note--can't use no_strdup because we use uri_string below */ 
-		parent_entry = cache_add (uri_string, file_info, TRUE);
-
-		parent_entry->filenames = NULL;
-
-		for (node = file_info_list ; node != NULL ; node = g_list_next (node)) {
-			GnomeVFSFileInfo *child_info;
-			char *child_name_escaped;
-
-			child_info = (GnomeVFSFileInfo *) node->data;
-
-			child_name_escaped = gnome_vfs_escape_path_string (child_info->name);
-			
-			child_string = g_strconcat (uri_string, "/", child_name_escaped, NULL);
-
-			parent_entry->filenames = g_list_prepend (
-							parent_entry->filenames, 
-							child_name_escaped); 
-			child_name_escaped = NULL;
-
-			cache_add_no_strdup (child_string, child_info, TRUE);
-		}
-		/* I'm not sure that order matters... */
-		parent_entry->filenames = g_list_reverse (parent_entry->filenames);
-		parent_entry->has_filenames = TRUE;
-	}
-
-	pthread_mutex_unlock (&cache_rlock);
-
-	g_free (uri_string);
-}
-
-static void
-cache_add_uri (GnomeVFSURI *uri, 
-	       GnomeVFSFileInfo *file_info, 
-	       gboolean is_dav)
-{
-	cache_trim ();
-	cache_add_no_strdup (cache_uri_to_string (uri), file_info, is_dav);
-}
-
-
-static void
-cache_invalidate (const char *uri_string)
-{
-	FileInfoCacheEntry *entry;
-	
-	pthread_mutex_lock (&cache_rlock);
-	
-	entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
-	
-	if (entry != NULL) {
-		DEBUG_HTTP (("Cache: Invalidate: '%s'", entry->uri_string));
-
-		cache_entry_free (entry);
-	}
-
-	pthread_mutex_unlock (&cache_rlock);
-}
-
-static void
-cache_invalidate_uri (GnomeVFSURI *uri)
-{
-	char *uri_string;
-
-	uri_string = cache_uri_to_string (uri);
-
-	if (uri_string != NULL) {
-		cache_invalidate (uri_string);
-	}
-
-	g_free (uri_string);
-}
-
-
-/* Invalidates entry and everything cached immediately beneath it */
-static void
-cache_invalidate_entry_and_children (const char *uri_string)
-{
-	FileInfoCacheEntry *entry;
-
-	pthread_mutex_lock (&cache_rlock);
-
-	entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
-
-	if (entry) {
-		GList *node;
-		
-		DEBUG_HTTP (("Cache: Invalidate Recursive: '%s'", entry->uri_string));
-
-		for (node = entry->filenames ; node ; node = g_list_next (node) ) {
-			char *child_filename;
-			child_filename = g_strconcat (uri_string, "/", (char *)node->data, NULL);
-			cache_invalidate (child_filename);
-			g_free (child_filename);
-		}
-		
-		cache_entry_free (entry);
-	}
-
-	pthread_mutex_unlock (&cache_rlock);
-}
-
-/* Invalidates entry and everything cached immediately beneath it */
-static void
-cache_invalidate_uri_and_children (GnomeVFSURI *uri)
-{
-	char *uri_string;
-
-	uri_string = cache_uri_to_string (uri);
-
-	if (uri_string) {
-		cache_invalidate_entry_and_children (uri_string);
-	}
-
-	g_free (uri_string);
-}
-
-/* Invalidate all of this uri's children and all of its parent's children */
-static void
-cache_invalidate_uri_parent (GnomeVFSURI *uri)
-{
-	char *uri_string;
-	char *last_slash;
-
-	uri_string = cache_uri_to_string (uri);
-
-	if (uri_string) {
-		cache_invalidate_entry_and_children (uri_string);
-
-		last_slash = strrchr (uri_string, (unsigned char)'/');
-		if (last_slash) {
-			*last_slash = 0;
-			cache_invalidate_entry_and_children (uri_string);
-		}
-	}
-
-	g_free (uri_string);
-}
-
-
-#endif /* DAV_NO_CACHE */
+#endif /* DEBUG_HTTP_ENABLE */
 
 /* What do we qualify ourselves as?  */
 /* FIXME bugzilla.eazel.com 1160: "gnome-vfs/1.0.0" may not be good. */
@@ -733,16 +192,21 @@ cache_invalidate_uri_parent (GnomeVFSURI *uri)
  */
 
 /* Global variables used by the HTTP proxy config */ 
-static GConfClient *gl_client = NULL;
-static GMutex *gl_mutex = NULL;
-static char *gl_http_proxy = NULL;
-static char *gl_http_proxy_auth = NULL;
+static GConfClient * gl_client = NULL;
+static GMutex *gl_mutex = NULL;		/* This mutex protects preference values
+					 * and ensures serialization of authentication
+					 * hook callbacks
+					 */
+static gchar *gl_http_proxy = NULL;
+static gchar *gl_http_proxy_auth = NULL;
 
-struct _HttpFileHandle {
+typedef struct {
 	GnomeVFSInetConnection *connection;
 	GnomeVFSIOBuf *iobuf;
 	char *uri_string;
 	GnomeVFSURI *uri;
+	/* The list of headers returned with this response, newlines removed */
+	GList *response_headers;
 
 	/* File info for this file */
 	GnomeVFSFileInfo *file_info;
@@ -758,8 +222,21 @@ struct _HttpFileHandle {
 
 	/* The last HTTP status code returned */
 	guint server_status;
-};
-typedef struct _HttpFileHandle HttpFileHandle;
+} HttpFileHandle;
+
+static GnomeVFSResult resolve_409 		(GnomeVFSMethod *method,
+						 GnomeVFSURI *uri,
+						 GnomeVFSContext *context);
+static void 	proxy_set_authn			(const char *username,
+						 const char *password);
+static void	proxy_unset_authn 		(void);
+static gboolean invoke_callback_basic_authn	(HttpFileHandle *handle, 
+			     			 enum AuthnHeaderType authn_which,
+			     			 gboolean previous_authn_failed);
+static gboolean check_authn_retry_request 	(HttpFileHandle * http_handle,
+			   			 enum AuthnHeaderType authn_which,
+			   			 const char *prev_authn_header);
+
 
 static GnomeVFSFileInfo *
 defaults_file_info_new (void)
@@ -789,7 +266,7 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 {
 	HttpFileHandle *result;
 
-	result = g_new (HttpFileHandle, 1);
+	result = g_new0 (HttpFileHandle, 1);
 
 	result->connection = connection;
 	result->iobuf = iobuf;
@@ -799,10 +276,6 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 
 	result->file_info = defaults_file_info_new();
 	result->file_info->name = gnome_vfs_uri_extract_short_name (uri);
-	result->bytes_read = 0;
-	result->to_be_written = NULL;
-	result->files = NULL;
-	result->server_status = 0;
 
 	return result;
 }
@@ -810,17 +283,24 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 static void
 http_file_handle_destroy (HttpFileHandle *handle)
 {
-	if (handle) {
-		gnome_vfs_uri_unref(handle->uri);
-		gnome_vfs_file_info_unref (handle->file_info);
-		g_free (handle->uri_string);
-		if (handle->to_be_written) {
-			g_byte_array_free(handle->to_be_written, TRUE);
-		}
-		g_list_foreach(handle->files, (GFunc)gnome_vfs_file_info_unref, NULL);
-		g_list_free(handle->files);
-		g_free (handle);
+	if (handle == NULL) {
+		return;
 	}
+
+	gnome_vfs_uri_unref(handle->uri);
+	gnome_vfs_file_info_unref (handle->file_info);
+	g_free (handle->uri_string);
+	if (handle->to_be_written) {
+		g_byte_array_free(handle->to_be_written, TRUE);
+	}
+
+	g_list_foreach (handle->response_headers, (GFunc) g_free, NULL);
+	g_list_free (handle->response_headers);
+
+	g_list_foreach(handle->files, (GFunc)gnome_vfs_file_info_unref, NULL);
+	g_list_free(handle->files);
+
+	g_free (handle);
 }
 
 /* The following comes from GNU Wget with minor changes by myself.
@@ -1125,17 +605,22 @@ get_header (GnomeVFSIOBuf *iobuf,
 
 /* rename this function? */
 static GnomeVFSResult
-create_handle (HttpFileHandle **handle_return,
-	       GnomeVFSURI *uri,
+create_handle (GnomeVFSURI *uri,
 	       GnomeVFSInetConnection *connection,
-	       GnomeVFSIOBuf *iobuf,
-	       GnomeVFSContext *context)
+	       GnomeVFSContext *context,
+	       /* OUT */ HttpFileHandle **p_handle)
 {
 	GString *header_string;
 	GnomeVFSResult result;
 	guint server_status;
+	GnomeVFSIOBuf *iobuf;
 
-	*handle_return = http_file_handle_new (connection, iobuf, uri);
+	g_return_val_if_fail (p_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
+
+	iobuf = gnome_vfs_inet_connection_get_iobuf (connection);
+	
+	*p_handle = http_file_handle_new (connection, iobuf, uri);
+
 	header_string = g_string_new (NULL);
 
 	ANALYZE_HTTP ("==> +create_handle");
@@ -1152,25 +637,24 @@ create_handle (HttpFileHandle **handle_return,
 		goto error;
 	}
 
-	(*handle_return)->server_status = server_status;
-
-	if (!HTTP_20X (server_status) && !HTTP_REDIRECTED (server_status)) {
-		result = http_status_to_vfs_result (server_status);
-		goto error;
-	}
-
+	(*p_handle)->server_status = server_status;
 
 	ANALYZE_HTTP ("==> +create_handle: fetching headers");
 
 	/* Header fetching loop.  */
-	while (TRUE) {
+	for (;;) {
 		result = get_header (iobuf, header_string);
-		if (result != GNOME_VFS_OK)
+		if (result != GNOME_VFS_OK) {
 			break;
+		}
 
 		/* Empty header ends header section.  */
-		if (header_string->str[0] == '\0')
+		if (header_string->str[0] == '\0') {
 			break;
+		}
+
+		(*p_handle)->response_headers = g_list_prepend ((*p_handle)->response_headers, 
+							g_strdup (header_string->str));
 
 		/* We don't really care if we successfully parse the
 		 * header or not. It might be nice to tell someone we
@@ -1179,7 +663,7 @@ create_handle (HttpFileHandle **handle_return,
 		 * past we would return NOT_FOUND if any header could
 		 * not be parsed, but that seems wrong.
 		 */
-		parse_header (*handle_return, header_string->str);
+		parse_header (*p_handle, header_string->str);
 	}
 
 	ANALYZE_HTTP ("==> -create_handle: fetching headers");
@@ -1188,82 +672,17 @@ create_handle (HttpFileHandle **handle_return,
 		goto error;
 	}
 
-	g_string_free (header_string, TRUE);
-
-#ifdef HTTP_VFS_CONTEXT_MESSAGES
-	if ((*handle_return)->size_is_known) {
-		char* msg;
-		char* sz;
-
-		sz = gnome_vfs_format_file_size_for_display ((*handle_return)->size);
-
-		msg = g_strdup_printf(_("%s to retrieve"), sz);
-
-		if (context != NULL) gnome_vfs_context_emit_message (context, msg);
-		
-		g_free (sz);
-		g_free (msg);
+	if (! HTTP_20X (server_status) && !HTTP_REDIRECTED(server_status)) {
+		result = http_status_to_vfs_result (server_status);
+		goto error;
 	}
-#endif /* HTTP_VFS_CONTEXT_MESSAGES */
 
-	ANALYZE_HTTP ("==> -create_handle");
-	return GNOME_VFS_OK;
-
+	result = GNOME_VFS_OK;
  error:
-	http_file_handle_destroy (*handle_return);
-	*handle_return = NULL;
 	g_string_free (header_string, TRUE);
 
 	ANALYZE_HTTP ("==> -create_handle");
 	return result;
-}
-
-/* BASE64 code ported from neon (http://www.webdav.org/neon) */
-static const char b64_alphabet[65] = {
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    "abcdefghijklmnopqrstuvwxyz"
-    "0123456789+/=" };
-
-static char *base64 (const char *text) {
-    /* The tricky thing about this is doing the padding at the end,
-     *      * doing the bit manipulation requires a bit of concentration only */
-    char *buffer, *point;
-    gint inlen, outlen;
-
-    /* Use 'buffer' to store the output. Work out how big it should be...
-     *      * This must be a multiple of 4 bytes */
-
-    inlen = strlen (text);
-    outlen = (inlen*4)/3;
-    if ((inlen % 3) > 0) /* got to pad */
-        outlen += 4 - (inlen % 3);
-
-    buffer = g_malloc( outlen + 1 ); /* +1 for the \0 */
-
-    /* now do the main stage of conversion, 3 bytes at a time,
-     *      * leave the trailing bytes (if there are any) for later */
-
-    for (point=buffer; inlen>=3; inlen-=3, text+=3) {
-        *(point++) = b64_alphabet [(*text) >> 2];
-        *(point++) = b64_alphabet [((*text) << 4 & 0x30) | (*(text + 1)) >> 4];
-        *(point++) = b64_alphabet [((*(text + 1)) << 2 & 0x3c) | (*(text + 2)) >> 6];
-        *(point++) = b64_alphabet [(*(text + 2)) & 0x3f ];
-    }
-
-    /* Now deal with the trailing bytes */
-    if (inlen != 0) {
-        /* We always have one trailing byte */
-        *(point++) = b64_alphabet[(*text) >> 2];
-        *(point++) = b64_alphabet[(((*text) << 4 & 0x30) |
-                                     (inlen == 2 ? (*(text + 1)) >> 4 : 0))];
-        *(point++) = (inlen == 1 ? '=' : b64_alphabet[(*(text + 1)) << 2 & 0x3c]);
-        *(point++) = '=';
-    }
-
-    /* Null-terminate */
-    *point = '\0';
-
-    return buffer;
 }
 
 /*
@@ -1349,28 +768,18 @@ sig_gconf_value_changed (GConfClient* client,
 		gboolean use_proxy_auth;
 		char *auth_user;
 		char *auth_pw;
-		char *credentials;
-		
+
 		g_mutex_lock (gl_mutex);
 		
 		use_proxy_auth = gconf_client_get_bool (gl_client, KEY_GCONF_HTTP_USE_AUTH, NULL);
 		auth_user = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_AUTH_USER, NULL);
 		auth_pw = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_AUTH_PW, NULL);
-		
-		g_free (gl_http_proxy_auth);
-		gl_http_proxy_auth = NULL;
-		
+
 		if (use_proxy_auth) {
-			credentials = g_strdup_printf ("%s:%s", 
-						       auth_user == NULL ? "" : auth_user, 
-						       auth_pw == NULL ? "" : auth_pw);
-
-			gl_http_proxy_auth = base64 (credentials);
-
+			proxy_set_authn (auth_user, auth_pw);
 			DEBUG_HTTP (("New HTTP proxy auth user: '%s'", auth_user));
-
-			g_free (credentials);
 		} else {
+			proxy_unset_authn ();
 			DEBUG_HTTP (("HTTP proxy auth unset"));
 		}
 
@@ -1407,50 +816,87 @@ host_port_from_string (const char *http_proxy,
 			return FALSE;
 		}
 	}
-	
+
 	return TRUE;
 }
 
+static gboolean
+proxy_should_for_hostname (const char *hostname)
+{
+	struct in_addr in, in_loop, in_mask;
+	gboolean ret;
+
+	ret = TRUE;
+
+	/* Don't force "localhost" or 127.x.x.x through the proxy */
+	/* This is a special case that we'd like to generalize into a gconf config */
+
+	inet_aton("127.0.0.0", &in_loop); 
+	inet_aton("255.0.0.0", &in_mask); 
+
+	if (hostname != NULL 
+		&& (strcasecmp (hostname, "localhost") == 0 || (inet_aton (hostname, &in) != 0
+			&& ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
+		ret = FALSE;
+	}
+
+	return ret;
+}
+
+static char *
+proxy_get_authn_header_for_uri_nolock (GnomeVFSURI * uri)
+{
+	char * ret;
+
+	ret = NULL;
+
+	/* FIXME this needs to be atomic */	
+	if (gl_http_proxy_auth != NULL) {
+		ret = g_strdup_printf ("Proxy-Authorization: Basic %s\r\n", gl_http_proxy_auth);
+	}
+
+	return ret;
+}
+
+static char *
+proxy_get_authn_header_for_uri (GnomeVFSURI * uri)
+{
+	char * ret;
+
+	g_mutex_lock (gl_mutex);
+
+	ret = proxy_get_authn_header_for_uri_nolock (uri);
+
+	g_mutex_unlock (gl_mutex);
+	
+	return ret;
+}
+
 /**
- * http_proxy_for_host_port
- * Retrives an appropriate HTTP proxy for a given host and port.
+ * proxy_for_uri
+ * Retrives an appropriate HTTP proxy for a given toplevel uri
  * Currently, only a single HTTP proxy is implemented (there's no way for
  * specifying non-proxy domain names's).  Returns FALSE if the connect should
  * take place directly
  */
 static gboolean
-http_proxy_for_host_port (const char *host,
-			  guint host_port,
-			  char **p_proxy_host,	 /* Callee must free */
-			  guint *p_proxy_port,
-			  char **p_authn_header) /* Callee must free */
+proxy_for_uri (
+	GnomeVFSToplevelURI * toplevel_uri,
+	gchar **p_proxy_host,		/* Callee must free */
+	guint *p_proxy_port)		/* Callee must free */
 {
-	gboolean ret = FALSE;
-	struct in_addr in, in_loop, in_mask;
+	gboolean ret;
+	
+	ret = proxy_should_for_hostname (toplevel_uri->host_name);
 
 	g_mutex_lock (gl_mutex);
 
-	/* Don't force "localhost" or 127.x.x.x through the proxy */
-	/* This is a special case that we'd like to generalize into a gconf config */
-
-	inet_aton ("127.0.0.0", &in_loop); 
-	inet_aton ("255.0.0.0", &in_mask); 
-
-	if (host != NULL 
-	    && (strcmp (host, "localhost") == 0 || 
-		(inet_aton (host, &in) != 0
-		 && ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
-		ret = FALSE;
-	} else if (gl_http_proxy) {
+	if (ret && gl_http_proxy != NULL) {
 		ret = host_port_from_string (gl_http_proxy, p_proxy_host, p_proxy_port);
 	} else {
 		p_proxy_host = NULL;
 		p_proxy_port = NULL;
 		ret = FALSE;
-	}
-	
-	if (ret && gl_http_proxy_auth != NULL && p_authn_header != NULL) {
-		*p_authn_header = g_strdup_printf ("Proxy-Authorization: Basic %s\r\n", gl_http_proxy_auth);
 	}
 
 	g_mutex_unlock (gl_mutex);
@@ -1458,39 +904,50 @@ http_proxy_for_host_port (const char *host,
 	return ret;
 }
 
+static void
+proxy_set_authn (const char *username, const char *password)
+{
+	char * credentials;
+
+	g_free (gl_http_proxy_auth);
+	gl_http_proxy_auth = NULL;
+
+	credentials = g_strdup_printf ("%s:%s", 
+			username == NULL ? "" : username, 
+			password == NULL ? "" : password);
+
+	gl_http_proxy_auth = http_util_base64 (credentials);
+
+	g_free (credentials);
+}
+
+static void
+proxy_unset_authn (void)
+{
+	g_free (gl_http_proxy_auth);
+	gl_http_proxy_auth = NULL;
+}
+
+
 
 static GnomeVFSResult
-make_request (HttpFileHandle **handle_return,
-	      GnomeVFSURI *uri,
-	      const char *method,
-	      GByteArray *data,
-	      char *extra_headers,
-	      GnomeVFSContext *context)
+connect_to_uri (
+	GnomeVFSToplevelURI *toplevel_uri, 
+	/* OUT */ GnomeVFSInetConnection **p_connection,
+	/* OUT */ gboolean * p_proxy_connect)
 {
-	GnomeVFSInetConnection *connection;
-	GnomeVFSIOBuf *iobuf;
-	GnomeVFSResult result;
-	GnomeVFSFileSize bytes_written;
-	GnomeVFSToplevelURI *toplevel_uri;
-	GString *request;
-	char *uri_string;
-	char *user_agent;
 	guint host_port;
-	gboolean proxy_connect = FALSE;
-	char *proxy_host = NULL;
-	char *proxy_auth_header = NULL;
+	char *proxy_host;
 	guint proxy_port;
-	const char *path;
+	GnomeVFSResult result;
+	GnomeVFSCancellation * cancellation;
 
-	ANALYZE_HTTP ("==> +make_request");
+	cancellation = gnome_vfs_context_get_cancellation (
+				gnome_vfs_context_peek_current());
 
-	proxy_connect = FALSE;
-	proxy_host= NULL;
-	proxy_auth_header = NULL;
-	connection = NULL;
-	iobuf = NULL;
-	
-	toplevel_uri = (GnomeVFSToplevelURI *) uri;
+	g_return_val_if_fail (p_connection != NULL, GNOME_VFS_ERROR_INTERNAL);
+	g_return_val_if_fail (p_proxy_connect != NULL, GNOME_VFS_ERROR_INTERNAL);
+	g_return_val_if_fail (toplevel_uri != NULL, GNOME_VFS_ERROR_INTERNAL);
 
 	if (toplevel_uri->host_port == 0) {
 		host_port = DEFAULT_HTTP_PORT;
@@ -1502,32 +959,43 @@ make_request (HttpFileHandle **handle_return,
 
 	if (toplevel_uri->host_name == NULL) {
 		result = GNOME_VFS_ERROR_INVALID_URI;
-	} else if ( http_proxy_for_host_port (toplevel_uri->host_name, host_port, 
-						&proxy_host, &proxy_port, &proxy_auth_header)) {
-		proxy_connect = TRUE;
+		goto error;
+	}
 
-		result = gnome_vfs_inet_connection_create (&connection,
+	if (proxy_for_uri (toplevel_uri, &proxy_host, &proxy_port)) {
+		*p_proxy_connect = TRUE;
+
+		result = gnome_vfs_inet_connection_create (p_connection,
 							   proxy_host,
 							   proxy_port,
-							   context ? gnome_vfs_context_get_cancellation(context) : NULL);
+							   cancellation);
 
 		g_free (proxy_host);
+		proxy_host = NULL;
 	} else {
-		proxy_connect = FALSE;
+		*p_proxy_connect = FALSE;
 
-		result = gnome_vfs_inet_connection_create (&connection,
+		result = gnome_vfs_inet_connection_create (p_connection,
 							   toplevel_uri->host_name,
 							   host_port,
-							   context ? gnome_vfs_context_get_cancellation(context) : NULL);
+							   cancellation);
 	}
 
 	ANALYZE_HTTP ("==> -Making connection");
 
-	if (result != GNOME_VFS_OK) {
-		goto error;
-	}
-	
-	iobuf = gnome_vfs_inet_connection_get_iobuf (connection);
+error:
+	return result;
+}
+
+static GString *
+build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean proxy_connect)
+{
+	gchar *uri_string = NULL;
+	GString *request;
+	GnomeVFSURI *uri;
+	gchar *user_agent;
+
+	uri = (GnomeVFSURI *)toplevel_uri;
 
 	if (proxy_connect) {
 		uri_string = gnome_vfs_uri_to_string (uri,
@@ -1542,125 +1010,189 @@ make_request (HttpFileHandle **handle_return,
 						      | GNOME_VFS_URI_HIDE_HOST_PORT
 						      | GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
 	}
-	
+
 	/* Request line.  */
-	request = g_string_new (method);
-	g_string_append (request, " ");
-	g_string_append (request, uri_string);
-	
+	request = g_string_new ("");
+
+	g_string_sprintfa (request, "%s %s%s HTTP/1.0\r\n", method, uri_string,
+		strlen(gnome_vfs_uri_get_path (uri)) == 0 ? "/" : "" );
+
 	DEBUG_HTTP (("-->Making request '%s %s'", method, uri_string));
 	
 	g_free (uri_string);
-	
-	path = gnome_vfs_uri_get_path (uri);
-	if (strlen (path) == 0) {
-		g_string_append (request, "/");
-	}
-
-
-	/* Our code doesn't handle the chunked transfer-encoding that mod_dav 
-	 * uses HTTP/1.1 request responses. */
-	g_string_append (request, " HTTP/1.0\r\n");
+	uri_string = NULL;
 
 	/* `Host:' header.  */
-	if (toplevel_uri->host_port && toplevel_uri->host_port != 80) {
+	if(toplevel_uri->host_port && toplevel_uri->host_port != 0) {
 		g_string_sprintfa (request, "Host: %s:%d\r\n",
 			   toplevel_uri->host_name, toplevel_uri->host_port);
 	} else {
-		g_string_sprintfa (request, "Host: %s\r\n",
+		g_string_sprintfa (request, "Host: %s:80\r\n",
 			   toplevel_uri->host_name);
 	}
 
-	/* Basic authentication */
-	if (toplevel_uri->user_name) {
-		char *raw = g_strdup_printf ("%s:%s", toplevel_uri->user_name,
-					     toplevel_uri->password?toplevel_uri->password:"");
-		char *enc = base64 (raw);
-		g_string_sprintfa (request, "Authorization: Basic %s\r\n", enc);
-		g_free (enc);
-		g_free (raw);
-	}
-	
-	/* Proxy Authentication */
-	if (proxy_auth_header != NULL) {
-		g_string_append (request, proxy_auth_header);
-		g_free (proxy_auth_header);
-		proxy_auth_header = NULL;
-	}
-	
 	/* `Accept:' header.  */
 	g_string_append (request, "Accept: */*\r\n");
-	
-	/* `Content-Length' header.  */
-	if (data != NULL) {
-		g_string_sprintfa (request, "Content-Length: %d\r\n", data->len);
-	}
 
 	/* `User-Agent:' header.  */
 	user_agent = getenv (CUSTOM_USER_AGENT_VARIABLE);
-	if(!user_agent) user_agent = USER_AGENT_STRING;
-	g_string_sprintfa (request, "User-Agent: %s\r\n", user_agent);
 
-	/* Extra headers. */
-	if (extra_headers != NULL) {
-		g_string_append (request, extra_headers);
+	if(user_agent == NULL) {
+		user_agent = USER_AGENT_STRING;
 	}
 
-	/* Empty line ends header section.  */
-	g_string_append (request, "\r\n");
+	g_string_sprintfa (request, "User-Agent: %s\r\n", user_agent);
+
+	return request;
+}
+
+static GnomeVFSResult
+xmit_request (GnomeVFSIOBuf *iobuf, GString * request, GByteArray *data)
+{
+	GnomeVFSResult result;
+	GnomeVFSFileSize bytes_written;
 
 	ANALYZE_HTTP ("==> Writing request and header");
 
-	/* Send the request headers.  */
+	/* Transmit the request headers.  */
 	result = gnome_vfs_iobuf_write (iobuf, request->str, request->len,
 					&bytes_written);
-	g_string_free (request, TRUE);
-	
+
 	if (result != GNOME_VFS_OK) {
 		goto error;
 	}
-	
-	if (data && data->data) {
+
+	/* Transmit the body */
+	if(data && data->data) {
 		ANALYZE_HTTP ("==> Writing data");
 		
 		result = gnome_vfs_iobuf_write (iobuf, data->data, data->len,
 						&bytes_written);
 	}
-	
-	ANALYZE_HTTP ("==> Calling flush");
-	/* FIXME mfleming is this really necessary? */
-	if (result == GNOME_VFS_OK) {
-		result = gnome_vfs_iobuf_flush (iobuf);
-	}
-	if (result != GNOME_VFS_OK) {
-		goto error;
-	}
-	
-	/* Read the headers and create our internal HTTP file handle.  */
-	result = create_handle (handle_return, uri, connection, iobuf,
-				context);
-	
-#if 0
-	/* FIXME this was placed here to work around a bug in eazel services where
-	 * it would return EOF w/o status when a PUT exceeded a user's quota.
-	 * This problem has now been fixed on the server, so I think this code
-	 * should be axed -- mfleming
-	 */
-	/* Detect no more space puts */
-	if ((strcmp (method, "PUT") == 0) &&
-	    result == GNOME_VFS_ERROR_EOF) {
-		result = GNOME_VFS_ERROR_NO_SPACE;
-	}
-#endif
-	if (result != GNOME_VFS_OK) {
-		goto error;
-	}
-	
-	ANALYZE_HTTP ("==> -make_request");
-	return result;
 
- error:
+	if (result != GNOME_VFS_OK) {
+		goto error;
+	}
+
+	result = gnome_vfs_iobuf_flush (iobuf);	
+
+error:
+	return result;
+}
+
+static GnomeVFSResult
+make_request (HttpFileHandle **handle_return,
+	      GnomeVFSURI *uri,
+	      const gchar *method,
+	      GByteArray *data,
+	      gchar *extra_headers,
+	      GnomeVFSContext *context)
+{
+	GnomeVFSInetConnection *connection;
+	GnomeVFSIOBuf *iobuf;
+	GnomeVFSResult result;
+	GnomeVFSToplevelURI *toplevel_uri;
+	GString *request;
+	gboolean proxy_connect;
+	char *authn_header_request;
+	char *authn_header_proxy;
+
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_INTERNAL);
  	*handle_return = NULL;
+
+	ANALYZE_HTTP ("==> +make_request");
+
+	connection		= NULL;
+	iobuf			= NULL;
+	request 		= NULL;
+	proxy_connect 		= FALSE;
+	authn_header_request	= NULL;
+	authn_header_proxy	= NULL;
+	
+	toplevel_uri = (GnomeVFSToplevelURI *) uri;
+
+	for (;;) {
+		result = connect_to_uri (toplevel_uri, &connection, &proxy_connect);
+		
+		if (result != GNOME_VFS_OK) {
+			break;
+		}
+		
+		iobuf = gnome_vfs_inet_connection_get_iobuf (connection);
+
+		request = build_request (method, toplevel_uri, proxy_connect);
+
+		authn_header_request = http_authn_get_header_for_uri (uri);
+
+		if (authn_header_request != NULL) {
+			g_string_append (request, authn_header_request);
+		}
+
+		if (proxy_connect) {
+			authn_header_proxy = proxy_get_authn_header_for_uri (uri);
+
+			if (authn_header_proxy != NULL) {
+				g_string_append (request, authn_header_proxy);
+			}
+		}
+		
+		/* `Content-Length' header.  */
+		if (data != NULL) {
+			g_string_sprintfa (request, "Content-Length: %d\r\n", data->len);
+		}
+		
+		/* Extra headers. */
+		if (extra_headers != NULL) {
+			g_string_append(request, extra_headers);
+		}
+
+		/* Empty line ends header section.  */
+		g_string_append (request, "\r\n");
+
+		result = xmit_request (iobuf, request, data);
+		g_string_free (request, TRUE);
+		request = NULL;
+
+		if (result != GNOME_VFS_OK) {
+			break;
+		}
+
+		/* Read the headers and create our internal HTTP file handle.  */
+		result = create_handle (uri, connection, context, handle_return);
+		iobuf = NULL;
+		connection = NULL;
+
+		if (result == GNOME_VFS_OK) {
+			break;
+		}
+
+		if ((*handle_return)->server_status == HTTP_STATUS_UNAUTHORIZED) {
+			if (! check_authn_retry_request (*handle_return, AuthnHeader_WWW, authn_header_request)) {
+				break;
+			}
+		} else if ((*handle_return)->server_status == HTTP_STATUS_PROXY_AUTH_REQUIRED) {
+			if (! check_authn_retry_request (*handle_return, AuthnHeader_WWW, authn_header_proxy)) {
+				break;
+			}
+		} else {
+			break;
+		}
+		http_file_handle_destroy (*handle_return);
+		*handle_return = NULL;
+	}
+
+	g_free (authn_header_request);
+	g_free (authn_header_proxy);
+
+	if (result != GNOME_VFS_OK && *handle_return != NULL) {
+		http_file_handle_destroy (*handle_return);
+		*handle_return = NULL;
+	}
+
+ 	if (request != NULL) {
+		g_string_free (request, TRUE);
+	}
+	
 	gnome_vfs_iobuf_destroy (iobuf);
 	if (connection != NULL) {
 		gnome_vfs_inet_connection_destroy (connection, NULL);
@@ -1690,20 +1222,6 @@ http_handle_close (HttpFileHandle *handle,
 							   context ? gnome_vfs_context_get_cancellation(context) : NULL);
 			handle->connection = NULL;
 		}
-		
-#ifdef HTTP_VFS_CONTEXT_MESSAGES
-		if (handle->uri_string != NULL) {
-			char *msg;
-			
-			msg = g_strdup_printf (_("Closing connection to %s"),
-					       handle->uri_string);
-
-			if (context != NULL) gnome_vfs_context_emit_message (context, msg);
-
-			g_free (msg);
-		}
-#endif /* HTTP_VFS_CONTEXT_MESSAGES */
-
 		
 		http_file_handle_destroy (handle);
 	}
@@ -1738,9 +1256,11 @@ do_open (GnomeVFSMethod *method,
 	}
 	if (result == GNOME_VFS_OK) {
 		*method_handle = (GnomeVFSMethodHandle *) handle;
+	} else {
+		*method_handle = NULL;
 	}
-	
-	DEBUG_HTTP (("-Open (%d) handle:0x%08x", result, handle));
+
+	DEBUG_HTTP (("-Open (%d) handle:0x%08x", result, (unsigned int)handle));
 	ANALYZE_HTTP ("==> -do_open");
 	
 	return result;
@@ -1764,12 +1284,10 @@ do_create (GnomeVFSMethod *method,
 	GByteArray *bytes = g_byte_array_new();
 	
 	ANALYZE_HTTP ("==> +do_create");
-	DEBUG_HTTP (("+Create URI: '%s'"));
-	
-#ifndef DAV_NO_CACHE
-	cache_invalidate_uri_parent (uri);
-#endif /* DAV_NO_CACHE */
-	
+	DEBUG_HTTP (("+Create URI: '%s'", gnome_vfs_uri_get_path (uri)));
+
+	http_cache_invalidate_uri_parent (uri);
+
 	/* Don't ignore exclusive; it should check first whether
 	   the file exists, since the http protocol default is to 
 	   overwrite by default */
@@ -1821,7 +1339,7 @@ do_create (GnomeVFSMethod *method,
 	/* FIXME bugzilla.eazel.com 1159: do we need to do something more intelligent here? */
 	result = do_open (method, method_handle, uri, GNOME_VFS_OPEN_WRITE, context);
 
-	DEBUG_HTTP (("-Create (%d) handle:0x%08x", result, handle));
+	DEBUG_HTTP (("-Create (%d) handle:0x%08x", result, (unsigned int)handle));
 	ANALYZE_HTTP ("==> -do_create");
 
 	return result;
@@ -1837,8 +1355,8 @@ do_close (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 	
 	ANALYZE_HTTP ("==> +do_close");
-	DEBUG_HTTP (("+Close handle:0x%08x", method_handle));
-	
+	DEBUG_HTTP (("+Close handle:0x%08x", (unsigned int)method_handle));
+
 	old_handle = (HttpFileHandle *) method_handle;
 	
 	/* if the handle was opened in write mode then:
@@ -1869,9 +1387,7 @@ do_close (GnomeVFSMethod *method,
 
 		}
 
-#ifndef DAV_NO_CACHE
-		cache_invalidate_uri (uri);
-#endif /* DAV_NO_CACHE */
+		http_cache_invalidate_uri (uri);
 
 		ANALYZE_HTTP ("==> doing PUT");
 		result = make_request (&new_handle, uri, "PUT", bytes, 
@@ -1900,7 +1416,7 @@ do_write (GnomeVFSMethod *method,
 {
 	HttpFileHandle *handle;
 
-	DEBUG_HTTP (("+Write handle:0x%08x", method_handle));
+	DEBUG_HTTP (("+Write handle:0x%08x", (unsigned int)method_handle));
 
 	handle = (HttpFileHandle *) method_handle;
 
@@ -1928,7 +1444,7 @@ do_read (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 
 	ANALYZE_HTTP ("==> +do_read");
-	DEBUG_HTTP (("+Read handle=0x%08x", method_handle));
+	DEBUG_HTTP (("+Read handle=0x%08x", (unsigned int) method_handle));
 
 	handle = (HttpFileHandle *) method_handle;
 
@@ -1947,35 +1463,6 @@ do_read (GnomeVFSMethod *method,
 	}				       
 
 	handle->bytes_read += *bytes_read;
-
-#ifdef HTTP_VFS_CONTEXT_MESSAGES
-	{
-		char *msg;
-		char *read_str = NULL;
-		char *total_str = NULL;
-
-		read_str = gnome_vfs_format_file_size_for_display (handle->bytes_read);
-
-		if (handle->file_info->flags & GNOME_VFS_FILE_INFO_FIELDS_SIZE) {
-			total_str = gnome_vfs_format_file_size_for_display (handle->size);
-		}
-		
-		if (total_str) {
-			msg = g_strdup_printf(_("%s of %s read"),
-					      read_str, total_str);
-		} else {
-			msg = g_strdup_printf(_("%s read"), read_str);
-		}
-
-		if (context != NULL) gnome_vfs_context_emit_message(context, msg);
-
-		g_free (msg);
-		g_free (read_str);
-		if (total_str != NULL) {
-			g_free (total_str);
-		}
-	}
-#endif /* HTTP_VFS_CONTEXT_MESSAGES */
 
 	DEBUG_HTTP (("-Read (%d)", result));
 	ANALYZE_HTTP ("==> -do_read");
@@ -2305,17 +1792,15 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	ANALYZE_HTTP ("==> +make_propfind_request");
 
-	request = g_byte_array_append (request, request_str, 
-				       strlen (request_str));
-	
-	parserContext = xmlCreatePushParserCtxt (NULL, NULL, "", 0, "PROPFIND");
-	
-#ifndef DAV_NO_CACHE
+	request = g_byte_array_append(request, request_str, 
+			strlen(request_str));
+
+	parserContext = xmlCreatePushParserCtxt(NULL, NULL, "", 0, "PROPFIND");
+
 	if (depth > 0) {
-		cache_invalidate_uri_and_children (uri);
+		http_cache_invalidate_uri_and_children (uri);
 	}
-#endif /* DAV_NO_CACHE */
-	
+
 	result = make_request (handle_return, uri, "PROPFIND", request, 
 			       extraheaders, context);
 	
@@ -2400,9 +1885,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 		result = GNOME_VFS_ERROR_GENERIC;
 		goto cleanup;
 	}
-	
-#ifndef DAV_NO_CACHE
-	
+
 	/*
 	 * RFC 2518
 	 * Section 8.1, final line
@@ -2411,13 +1894,12 @@ make_propfind_request (HttpFileHandle **handle_return,
 	 */
 	
 	if (depth == 0) {
-		cache_add_uri (uri, (*handle_return)->file_info, TRUE);
+		http_cache_add_uri (uri, (*handle_return)->file_info, TRUE);
 	} else {
-		cache_add_uri_and_children (uri, (*handle_return)->file_info, (*handle_return)->files);
+		http_cache_add_uri_and_children (uri, (*handle_return)->file_info, (*handle_return)->files);
 	}
-#endif /* DAV_NO_CACHE */
-	
- cleanup:
+
+cleanup:
 	g_free(buffer);
 	g_free(extraheaders);
 	xmlFreeParserCtxt(parserContext);
@@ -2443,21 +1925,18 @@ do_open_directory(GnomeVFSMethod *method,
 	/* TODO move to using the gnome_vfs_file_info_list family of functions */
 	GnomeVFSResult result;
 	HttpFileHandle *handle = NULL;
-#ifndef DAV_NO_CACHE
 	GnomeVFSFileInfo * file_info_cached;
 	GList *child_file_info_cached_list = NULL;
-#endif /*DAV_NO_CACHE*/
 
 	ANALYZE_HTTP ("==> +do_open_directory");
 	DEBUG_HTTP (("+Open_Directory options: %d dirfilter: 0x%08x URI: '%s'", options, (unsigned int) filter, gnome_vfs_uri_to_string( uri, 0)));
-	
-#ifndef DAV_NO_CACHE
+
 	/* Check the cache--is this even a directory?  
 	 * (Nautilus, in particular, seems to like to make this call on non directories
 	 */
-	
-	file_info_cached = cache_check_uri (uri);
-	
+
+	file_info_cached = http_cache_check_uri (uri);
+
 	if (file_info_cached) {
 		if (GNOME_VFS_FILE_TYPE_DIRECTORY != file_info_cached->type) {
 			ANALYZE_HTTP ("==> Cache Hit (Negative)");	
@@ -2471,15 +1950,14 @@ do_open_directory(GnomeVFSMethod *method,
 
 	
 	/* The check for directory contents is more stringent */
-	file_info_cached = cache_check_directory_uri (uri, &child_file_info_cached_list);
-	
+	file_info_cached = http_cache_check_directory_uri (uri, &child_file_info_cached_list);
+
 	if (file_info_cached) {
 		handle = http_file_handle_new (NULL, NULL, uri);
 		handle->file_info = file_info_cached;
 		handle->files = child_file_info_cached_list;
 		result = GNOME_VFS_OK;
 	} else {
-#endif /*DAV_NO_CACHE*/
 		result = make_propfind_request(&handle, uri, 1, context);
 		/* mfleming -- is this necessary?  Most DAV server's I've seen don't have the horrible
 		 * lack-of-trailing-/-is-a-301 problem for PROPFIND's
@@ -2500,16 +1978,12 @@ do_open_directory(GnomeVFSMethod *method,
 			http_handle_close (handle, context);
 			handle = NULL;
 		}
-#ifndef DAV_NO_CACHE
 	}
-#endif /*DAV_NO_CACHE*/
 	
 	*method_handle = (GnomeVFSMethodHandle *)handle;
-	
-#ifndef DAV_NO_CACHE
- error:
-#endif /*DAV_NO_CACHE*/
-	DEBUG_HTTP (("-Open_Directory (%d) handle:0x%08x", result, handle));
+
+error:
+	DEBUG_HTTP (("-Open_Directory (%d) handle:0x%08x", result, (unsigned int)handle));
 	ANALYZE_HTTP ("==> -do_open_directory");
 	
 	return result;
@@ -2527,8 +2001,8 @@ do_close_directory (GnomeVFSMethod *method,
 	handle = (HttpFileHandle *) method_handle;
 	
 	http_handle_close(handle, context);
-	
-	DEBUG_HTTP (("-Close_Directory (0) handle:0x%08x", method_handle));
+
+	DEBUG_HTTP (("-Close_Directory (0) handle:0x%08x", (unsigned int) method_handle));
 
 	return GNOME_VFS_OK;
 }
@@ -2541,9 +2015,9 @@ do_read_directory (GnomeVFSMethod *method,
 {
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
-	
-	DEBUG_HTTP (("+Read_Directory handle:0x%08x", method_handle));
-	
+
+	DEBUG_HTTP (("+Read_Directory handle:0x%08x", (unsigned int) method_handle));
+
 	handle = (HttpFileHandle *) method_handle;
 	
 	if (handle->files && g_list_length (handle->files)) {
@@ -2584,16 +2058,12 @@ do_get_file_info (GnomeVFSMethod *method,
 {
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
-	GnomeVFSFileInfo *file_info_cached;
-	
+	GnomeVFSFileInfo * file_info_cached;
+
 	ANALYZE_HTTP ("==> +do_get_file_info");
 	DEBUG_HTTP (("+Get_File_Info options: %d URI: '%s'", options, gnome_vfs_uri_to_string( uri, 0)));
-	
-#ifndef DAV_NO_CACHE
-	file_info_cached = cache_check_uri (uri);
-#else /* DAV_NO_CACHE */
-	file_info_cached == NULL;
-#endif /*DAV_NO_CACHE*/
+
+	file_info_cached = http_cache_check_uri (uri);
 
 	if (file_info_cached != NULL) {
 		gnome_vfs_file_info_copy (file_info, file_info_cached);
@@ -2623,32 +2093,33 @@ do_get_file_info (GnomeVFSMethod *method,
 			 * HEAD where a GET would succeed. In these
 			 * cases lets try to do a GET.
 			 */
-				
-			ANALYZE_HTTP ("==> do_get_file_info: do GET ");
-			
-			result = make_request (&handle, uri, "GET", NULL, NULL, context);
-			if (result == GNOME_VFS_OK) {
-				gnome_vfs_file_info_copy (file_info, handle->file_info);
-#ifndef DAV_NO_CACHE
-				cache_add_uri (uri, handle->file_info, FALSE);
-#endif /* DAV_NO_CACHE */
-				http_handle_close (handle, context);
-			}
-			
-			/* If we get a redirect, we should be
-			 * basing the MIME type on the type of
-			 * the page we'll be redirected
-			 * too. Maybe we even want to take the
-			 * "follow_links" setting into account.
-			 */
-			/* FIXME: For now we treat all
-			 * redirects as if they lead to a
-			 * text/html. That works pretty well,
-			 * but it's not correct.
-			 */
-			if (handle != NULL && HTTP_REDIRECTED (handle->server_status)) {
-				g_free (file_info->mime_type);
-				file_info->mime_type = g_strdup ("text/html");
+			if (result != GNOME_VFS_OK) {
+				g_assert (handle == NULL); /* Make sure we're not leaking some old one */
+
+				ANALYZE_HTTP ("==> do_get_file_info: do GET ");
+
+				result = make_request (&handle, uri, "GET", NULL, NULL, context);
+				if (result == GNOME_VFS_OK) {
+					gnome_vfs_file_info_copy (file_info, handle->file_info);
+					http_cache_add_uri (uri, handle->file_info, FALSE);
+					http_handle_close (handle, context);
+				}
+
+				/* If we get a redirect, we should be
+				 * basing the MIME type on the type of
+				 * the page we'll be redirected
+				 * too. Maybe we even want to take the
+				 * "follow_links" setting into account.
+				 */
+				/* FIXME: For now we treat all
+				 * redirects as if they lead to a
+				 * text/html. That works pretty well,
+				 * but it's not correct.
+				 */
+				if (handle != NULL && HTTP_REDIRECTED (handle->server_status)) {
+					g_free (file_info->mime_type);
+					file_info->mime_type = g_strdup ("text/html");
+				}
 			}
 			
 			if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
@@ -2666,9 +2137,7 @@ do_get_file_info (GnomeVFSMethod *method,
 				}
 			}
 		}
-#ifndef DAV_NO_CACHE
 	}
-#endif /* DAV_NO_CACHE */
 	
 	DEBUG_HTTP (("-Get_File_Info (%d)", result));
 	ANALYZE_HTTP ("==> -do_get_file_info");
@@ -2733,9 +2202,7 @@ do_make_directory (GnomeVFSMethod *method,
 		g_assert (handle == NULL);
 		
 		if (result == GNOME_VFS_ERROR_NOT_FOUND) {
-#ifndef DAV_NO_CACHE
-			cache_invalidate_uri_parent (uri);
-#endif /* DAV_NO_CACHE */
+			http_cache_invalidate_uri_parent (uri);
 			result = make_request (&handle, uri, "MKCOL", NULL, NULL, context);
 		}
 	}
@@ -2763,9 +2230,7 @@ do_remove_directory(GnomeVFSMethod *method,
 	ANALYZE_HTTP ("==> +do_remove_directory");
 	DEBUG_HTTP (("+Remove_Directory URI: '%s'", gnome_vfs_uri_to_string (uri, 0)));
 
-#ifndef DAV_NO_CACHE
-	cache_invalidate_uri_parent (uri);
-#endif /* DAV_NO_CACHE */
+	http_cache_invalidate_uri_parent (uri);
 
 	/* FIXME this should return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY if the
 	 * directory is not empty
@@ -2830,10 +2295,8 @@ do_move (GnomeVFSMethod *method,
 		result = resolve_409 (method, new_uri, context);
 	}
 
-#ifndef DAV_NO_CACHE
-	cache_invalidate_uri_parent (old_uri);
-	cache_invalidate_uri_parent (new_uri);
-#endif /*DAV_NO_CACHE*/
+	http_cache_invalidate_uri_parent (old_uri);
+	http_cache_invalidate_uri_parent (new_uri);
 
 	DEBUG_HTTP (("-Move (%d)", result));
 	ANALYZE_HTTP ("==> -do_move");
@@ -2938,8 +2401,7 @@ vfs_module_init (const char *method_name,
 	int argc = 1;
 	GError *gconf_error = NULL;
 	GConfValue *proxy_value;
-	pthread_mutexattr_t attr;
-	
+
 	LIBXML_TEST_VERSION
 		
 	/* Ensure GConf is initialized.  If more modules start to rely on
@@ -2966,21 +2428,7 @@ vfs_module_init (const char *method_name,
 	gtk_object_sink (GTK_OBJECT (gl_client));
 #endif
 
-#ifdef G_THREADS_ENABLED
-        if (g_thread_supported ()) {
-                gl_mutex = g_mutex_new ();
-        } else {
-                gl_mutex = NULL;
-        }
-#endif
-
-	/* Initialize cache_rlock to be a recursive mutex. (Not using the static
-	 * recursive mutex initializer macro here because it is not too portable.
-	 */
-	pthread_mutexattr_init (&attr);
-	pthread_mutexattr_settype (&attr, PTHREAD_MUTEX_RECURSIVE);
-	pthread_mutex_init (&cache_rlock, &attr);
-	pthread_mutexattr_destroy (&attr);
+	gl_mutex = g_mutex_new ();
 	
 	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_NONE, &gconf_error);
 
@@ -3017,10 +2465,8 @@ vfs_module_init (const char *method_name,
 		gconf_value_free (proxy_value);
 	}
 
-
-#ifndef DAV_NO_CACHE
-	cache_init ();
-#endif /*DAV_NO_CACHE*/
+	http_authn_init ();
+	http_cache_init ();
 
 	return &method;
 }
@@ -3039,21 +2485,14 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 	g_object_unref (G_OBJECT (gl_client));
 #endif
 
-#ifndef DAV_NO_CACHE
-	cache_shutdown ();
-#endif /*DAV_NO_CACHE*/
+	http_authn_shutdown ();
+	
+	http_cache_shutdown();
 
-#ifdef G_THREADS_ENABLED
-	if (g_thread_supported ()) {
-		g_mutex_free (gl_mutex);
-	}
-#endif
-
-	pthread_mutex_destroy (&cache_rlock);
+	g_mutex_free (gl_mutex);
 
 	gl_client = NULL;
 }
-
 
 /* A "409 Conflict" currently maps to GNOME_VFS_ERROR_NOT_FOUND because it can be returned
  * when the parent collection/directory does not exist.  Unfortunately, Xythos also returns
@@ -3063,10 +2502,8 @@ vfs_module_shutdown (GnomeVFSMethod *method)
  * The only way to resolve this is to ask...
  */
 
-GnomeVFSResult
-resolve_409 (GnomeVFSMethod *method,
-	     GnomeVFSURI *uri, 
-	     GnomeVFSContext *context)
+static GnomeVFSResult
+resolve_409 (GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *context)
 {
 	GnomeVFSFileInfo *file_info;
 	GnomeVFSURI *parent_dest_uri;
@@ -3110,3 +2547,234 @@ resolve_409 (GnomeVFSMethod *method,
 
 	return result;
 }
+
+static gboolean
+invoke_callback_basic_authn (HttpFileHandle *handle, 
+			     enum AuthnHeaderType authn_which,
+			     gboolean previous_authn_failed)
+{
+	GnomeVFSCallbackSimpleAuthIn in_args;
+	GnomeVFSCallbackSimpleAuthOut out_args;
+	gboolean ret;
+
+	ret = FALSE;
+	
+	memset (&in_args, 0, sizeof (in_args));
+	memset (&out_args, 0, sizeof (out_args));
+
+	in_args.previous_authn_failed = previous_authn_failed;
+		
+	in_args.uri = gnome_vfs_uri_to_string (handle->uri, GNOME_VFS_URI_HIDE_NONE);
+
+	ret = http_authn_parse_response_header_basic (authn_which, handle->response_headers, &in_args.realm);
+		
+	if (!ret) {
+		goto error;
+	}
+
+	DEBUG_HTTP (("Invoking %s authentication callback for uri %s",
+		authn_which == AuthnHeader_WWW ? "basic" : "proxy", in_args.uri));
+
+	in_args.auth_type = AuthTypeBasic;
+
+	ret = gnome_vfs_callback_call_hook (
+			authn_which == AuthnHeader_WWW 
+				? GNOME_VFS_HOOKNAME_BASIC_AUTH
+				: GNOME_VFS_HOOKNAME_HTTP_PROXY_AUTH, 
+			&in_args, sizeof (in_args), 
+			&out_args, sizeof (out_args)); 
+
+	if (!ret) {
+		DEBUG_HTTP (("No callback registered"));
+		goto error;
+	}
+
+	ret = (out_args.username != NULL);
+
+	if (!ret) {
+		DEBUG_HTTP (("No username provided by callback"));
+		goto error;
+	}
+
+	DEBUG_HTTP (("Back from authentication callback, adding credentials"));
+
+	if (authn_which == AuthnHeader_WWW) {
+		http_authn_session_add_credentials (handle->uri, out_args.username, out_args.password);
+	} else /* if (authn_which == AuthnHeader_Proxy) */ {
+		proxy_set_authn (out_args.username, out_args.password);
+	}
+error:
+	g_free (in_args.uri);
+	g_free (in_args.realm);
+	g_free (out_args.username);
+	g_free (out_args.password);
+
+	return ret;
+}
+
+static int
+strcmp_allow_nulls (const char *s1, const char *s2)
+{
+	return strcmp (s1 == NULL ? "" : s1, s2 == NULL ? "" : s2);
+}
+
+
+/* Returns TRUE if the given URL has changed authentication credentials
+ * from the last request (eg, another thread updated the authn information) 
+ * or if the application provided new credentials via a callback
+ *
+ * prev_authn_header is NULL if the previous request contained no authn information.
+ */
+
+gboolean
+check_authn_retry_request (HttpFileHandle * http_handle,
+			   enum AuthnHeaderType authn_which,
+			   const char *prev_authn_header)
+{
+	gboolean ret;
+	char *current_authn_header;
+
+	current_authn_header = NULL;
+	
+	g_mutex_lock (gl_mutex);
+
+	if (authn_which == AuthnHeader_WWW) {
+		current_authn_header = http_authn_get_header_for_uri (http_handle->uri);
+	} else if (authn_which == AuthnHeader_Proxy) {
+		current_authn_header = proxy_get_authn_header_for_uri_nolock (http_handle->uri);
+	} else {
+		g_assert_not_reached ();
+	}
+
+	ret = FALSE;
+	if (0 == strcmp_allow_nulls (current_authn_header, prev_authn_header)) {
+		ret = invoke_callback_basic_authn (http_handle, authn_which, prev_authn_header == NULL);
+	} else {
+		ret = TRUE;
+	}
+
+	g_mutex_unlock (gl_mutex);
+
+	g_free (current_authn_header);
+
+	return ret;
+} 
+
+
+utime_t
+http_util_get_utime (void)
+{
+    struct timeval tmp;
+    gettimeofday (&tmp, NULL);
+    return (utime_t)tmp.tv_usec + ((gint64)tmp.tv_sec) * 1000000LL;
+}
+
+
+/* BASE64 code ported from neon (http://www.webdav.org/neon) */
+static const gchar b64_alphabet[65] = {
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	"abcdefghijklmnopqrstuvwxyz"
+	"0123456789+/=" };
+
+gchar *
+http_util_base64 (const gchar *text)
+{
+	/* The tricky thing about this is doing the padding at the end,
+	 * doing the bit manipulation requires a bit of concentration only */
+	gchar *buffer, *point;
+	gint inlen, outlen;
+
+	/* Use 'buffer' to store the output. Work out how big it should be...
+	 * This must be a multiple of 4 bytes 
+	 */
+
+	inlen = strlen (text);
+	outlen = (inlen*4)/3;
+	if ((inlen % 3) > 0) { /* got to pad */
+		outlen += 4 - (inlen % 3);
+	}
+
+	buffer = g_malloc (outlen + 1); /* +1 for the \0 */
+
+	/* now do the main stage of conversion, 3 bytes at a time,
+	 * leave the trailing bytes (if there are any) for later
+	 */
+
+	for (point=buffer; inlen>=3; inlen-=3, text+=3) {
+		*(point++) = b64_alphabet[ (*text)>>2 ];
+		*(point++) = b64_alphabet[ ((*text)<<4 & 0x30) | (*(text+1))>>4 ];
+		*(point++) = b64_alphabet[ ((*(text+1))<<2 & 0x3c) | (*(text+2))>>6 ];
+		*(point++) = b64_alphabet[ (*(text+2)) & 0x3f ];
+	}
+
+	/* Now deal with the trailing bytes */
+	if (inlen) {
+		/* We always have one trailing byte */
+		*(point++) = b64_alphabet[ (*text)>>2 ];
+		*(point++) = b64_alphabet[ ( ((*text)<<4 & 0x30) |
+									 (inlen==2?(*(text+1))>>4:0) ) ];
+		*(point++) = (inlen==1?'=':b64_alphabet[ (*(text+1))<<2 & 0x3c ] );
+		*(point++) = '=';
+	}
+
+	/* Null-terminate */
+	*point = '\0';
+
+	return buffer;
+}
+
+static gboolean at_least_one_test_failed = FALSE;
+
+static void
+test_failed (const char *format, ...)
+{
+	va_list arguments;
+	char *message;
+
+	va_start (arguments, format);
+	message = g_strdup_vprintf (format, arguments);
+	va_end (arguments);
+
+	g_message ("test failed: %s", message);
+	at_least_one_test_failed = TRUE;
+}
+
+#define VERIFY_BOOLEAN_RESULT(function, expected) \
+	G_STMT_START {											\
+		gboolean result = function; 								\
+		if (! ((result && expected) || (!result && !expected))) {				\
+			test_failed ("%s: returned '%d' expected '%d'", #function, (int)result, (int)expected);	\
+		}											\
+	} G_STMT_END
+
+
+static gboolean
+http_self_test (void)
+{
+	g_message ("self-test: http\n");
+
+	VERIFY_BOOLEAN_RESULT (proxy_should_for_hostname ("localhost"), FALSE);
+	VERIFY_BOOLEAN_RESULT (proxy_should_for_hostname ("LocalHost"), FALSE);
+	VERIFY_BOOLEAN_RESULT (proxy_should_for_hostname ("127.0.0.1"), FALSE);
+	VERIFY_BOOLEAN_RESULT (proxy_should_for_hostname ("127.127.0.1"), FALSE);
+	VERIFY_BOOLEAN_RESULT (proxy_should_for_hostname ("www.yahoo.com"), TRUE);
+
+	return !at_least_one_test_failed;
+}
+
+gboolean vfs_module_self_test (void);
+
+gboolean
+vfs_module_self_test (void)
+{
+	gboolean ret;
+
+	ret = TRUE;
+
+	ret = http_authn_self_test () && ret;
+
+	ret = http_self_test () && ret;
+
+	return ret;
+}
+

@@ -1,3 +1,5 @@
+NULL =
+
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_srcdir)/intl			\
@@ -5,7 +7,8 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs		\
 	$(OAF_CFLAGS)				\
 	$(VFS_GNOMEUI_CFLAGS)			\
-	$(VFS_CFLAGS) $(WERROR)
+	$(VFS_CFLAGS) $(WERROR)			\
+	-DMODULES_PATH=\"$(libdir)/vfs/modules\"
 
 noinst_PROGRAMS =				\
 	test-async				\
@@ -31,7 +34,10 @@ noinst_PROGRAMS =				\
 	test-sync-write				\
 	test-unlink				\
 	test-uri				\
-	test-xfer
+	test-xfer				\
+	test-callback				\
+	test-module-selftest			\
+	$(NULL)
 
 test_files=		\
 	test.input	\
@@ -126,6 +132,11 @@ test_find_directory_LDADD = $(libraries)
 test_mime_info_SOURCES = test-mime-info.c
 test_mime_info_LDADD = $(libraries)
 
+test_callback_SOURCES = test-callback.c
+test_callback_LDADD = $(libraries)
+
+test_module_selftest_SOURCES = test-module-selftest.c
+test_module_selftest_LDADD = $(libraries)
 
 EXTRA_DIST =					\
 	$(test_files)				\
