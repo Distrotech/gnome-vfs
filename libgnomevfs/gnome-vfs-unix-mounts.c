@@ -37,6 +37,9 @@
 #include <sys/poll.h>
 #endif
 #endif
+#ifdef HAVE_POLL_H
+#include <poll.h>
+#endif
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>

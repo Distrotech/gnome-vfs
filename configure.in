@@ -207,7 +207,7 @@ AC_SUBST(VFS_OFFSET_IS)
 AC_SUBST(VFS_SIZE_PRINTF)
 AC_SUBST(VFS_OFFSET_PRINTF)
 
-AC_CHECK_HEADERS(sys/param.h sys/resource.h sys/vfs.h sys/mount.h sys/statfs.h sys/statvfs.h sys/param.h wctype.h sys/poll.h)
+AC_CHECK_HEADERS(sys/param.h sys/resource.h sys/vfs.h sys/mount.h sys/statfs.h sys/statvfs.h sys/param.h wctype.h sys/poll.h poll.h)
 
 dnl
 dnl file system type member in statfs struct

@@ -1,3 +1,10 @@
+2004-09-03  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* libgnomevfs/gnome-vfs-unix-mounts.c:
+	Fix build on NetBSD. (#151677)
+	Patch from Julio M. Merino Vidal
+
 2004-09-02  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c (get_drive_name):
