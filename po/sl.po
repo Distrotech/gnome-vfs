@@ -346,7 +346,7 @@ msgstr "Vmesnik za obvestila za `%s' ni bil najden."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1480
 msgid "Cannot setup Request object."
-msgstr "Ne morem nastaviti Request objekta."
+msgstr "Ne morem nastaviti Zahtevka po predmetu."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1487
 msgid "Cannot extract IOR."
@@ -360,7 +360,7 @@ msgstr "Dobil sem èudno sporoèilo od su¾enjskega procesa: `%s'"
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
-msgstr "Ne morem dobiti objekta za `%s'"
+msgstr "Ne morem dobiti predmeta za `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
