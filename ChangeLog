@@ -1,3 +1,56 @@
+2002-12-18  Diego Gonzalez   <diego@pemas.net>
+
+	* configure.in: accidentaly changed the version in the last merge
+
+2002-12-18  Diego Gonzalez  <diego@pemas.net>
+
+	* configure.in: check for gtk-doc version 0.10
+
+	* libgnomevfs/gnome-vfs-async-ops.[c-h]
+	* libgnomevfs/gnome-vfs-directory.h
+	* libgnomevfs/gnome-vfs-file-info.[c-h]
+	* libgnomevfs/gnome-vfs-handle.h
+	* libgnomevfs/gnome-vfs-init.c
+	* libgnomevfs/gnome-vfs-mime.[c-h]
+	* libgnomevfs/gnome-vfs-mime-info.h
+	* libgnomevfs/gnome-vfs-job.h
+	* libgnomevfs/gnome-vfs-mime-handlers.h
+	* libgnomevfs/gnome-vfs-open-fd.c
+	* libgnomevfs/gnome-vfs-ops.c
+	* libgnomevfs/gnome-vfs-monitor.h
+	* libgnomevfs/gnome-vfs-result.h
+	* libgnomevfs/gnome-vfs-utils.c
+	* libgnomevfs/gnome-vfs-xfer.[c-h]
+	add API docs
+
+	* doc/writing-modules.sgml:
+	* doc/gnome-vfs-sections.txt
+	* doc/gnome-vfs-docs.sgml
+	* doc/about.sgml
+	* doc/tmpl/gnome-vfs-async-ops.sgml
+	* doc/tmpl/gnome-vfs-directory.sgml
+	* doc/tmpl/gnome-vfs-file-info.sgml
+	* doc/tmpl/gnome-vfs-init.sgml
+	* doc/tmpl/gnome-vfs-metadata.sgml
+	* doc/tmpl/gnome-vfs-ops.sgml
+	* doc/tmpl/gnome-vfs-result.sgml
+	* doc/tmpl/gnome-vfs-uri.sgml
+	* doc/tmpl/gnome-vfs-utils.sgml
+	* doc/tmpl/gnome-vfs-xfer.sgml
+	* doc/Makefile.am
+	fix documentation, reorganize it and migrate the generation to use
+	xml and lixslt
+
+	* doc/tmpl/gnome-vfs-directory-basic-ops.sgml
+	* doc/tmpl/gnome-vfs-directory-find-ops.sgml
+	* doc/tmpl/gnome-vfs-directory-list-ops.sgml
+	* doc/tmpl/gnome-vfs-file-rw-ops.sgml
+	* doc/tmpl/gnome-vfs-file-trunc-ops.sgml
+	* doc/tmpl/gnome-vfs-file-basic-ops.sgml
+	* doc/tmpl/gnome-vfs-file-advanced-ops.sgml
+	* doc/tmpl/gnome-vfs-file-info-ops.sgml
+	new files
+
 2002-12-18  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime.h: 
