@@ -1,3 +1,8 @@
+2001-07-29  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* doc/outstanding-api-issues.txt: Add list of outstnading API
+	issues (perhaps not all of these are for GNOME 2).
+
 2001-07-29  Seth Nickell  <snickell@stanford.edu>
 
 	* bonobo-storage-fs.c:

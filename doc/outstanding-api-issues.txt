@@ -1,0 +1,20 @@
+
+* metadata API
+* monitoring API
+* real icon support
+* 8447
+* 8448
+* per-uri-scheme attributes
+* http post support
+* change module stacking to enable proper moniker support
+* redirect support
+* URI links
+* make xfer API not suck
+* deprecate GnomeVFSURI in public APIs
+* Install public headers and module-only headers in different places,
+separate pkgconfig targets
+* remove gnome-vfs-iobuf / gnome-vfs-socket-buffer duplication
+* remove directory filter / regexp filter stuff
+* Buffered I/O API
+* kill gnome-vfs-seekable
+ 
