@@ -1,3 +1,11 @@
+2004-03-19  Alexander Larsson  <alexl@redhat.com>
+
+	* doc/writing-modules.sgml:
+	Fixed some doc details wrt chained uri syntax
+
+	* modules/ftp-method.c (do_open_directory):
+	Fix potential buffer overrun.
+
 2004-03-18  Alexander Larsson  <alexl@redhat.com>
 
 	* schemas/desktop_gnome_url_handlers.schemas.in:

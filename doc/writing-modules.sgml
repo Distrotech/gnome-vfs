@@ -60,7 +60,7 @@
       <!-- FixMe what should I use here instead of programlisting? -->
       <programlisting>
 
-        ftp://username:password@host.net/path/to/file.tar.gz#gzip#tar/path/to/hello.c</programlisting>
+        ftp://username:password@host.net/path/to/file.tar.gz#gzip:#tar:/path/to/hello.c</programlisting>
 
       <para>Each method/subpath couple is called a <firstterm>URI
       element</firstterm>.  When URI elements are combined like this,
@@ -176,7 +176,7 @@
       <!-- FixMe what should I use here instead of programlisting? -->
       <programlisting>
 
-        file:/home/ettore/file.gz#gzip</programlisting>
+        file:/home/ettore/file.gz#gzip:</programlisting>
 
       <para>In this case, the GZIP method will be invoked with a
       pointer to the <structname>GnomeVFSURI</structname> describing the
@@ -208,7 +208,7 @@
       <filename>libfoo.so</filename>.  For example, the module
       implementing the <filename>ftp:</filename> access method is
       called <filename>libftp.so</filename>, the module implementing
-      <filename>#gzip</filename> access is called
+      <filename>#gzip:</filename> access is called
       <filename>libgzip.so</filename> and so on.</para>
 
       <para>This might change in the future.</para>

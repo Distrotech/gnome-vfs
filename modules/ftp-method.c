@@ -1443,7 +1443,7 @@ do_open_directory (GnomeVFSMethod *method,
 	FtpConnection *conn;
 	GnomeVFSResult result;
 	GnomeVFSFileSize num_bytes = BUFFER_SIZE, bytes_read;
-	gchar buffer[BUFFER_SIZE];
+	gchar buffer[BUFFER_SIZE+1];
 	GString *dirlist = g_string_new ("");
 
 	result = ftp_connection_acquire (uri, &conn, context);
