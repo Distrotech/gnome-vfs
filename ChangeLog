@@ -1,3 +1,10 @@
+1999-12-14  Darin Adler  <darin@eazel.com>
+
+	* .cvsignore: Ignore more generated files.
+	* libgnomevfs-corba/.cvsignore: Ignore more generated files.
+	* modules/extfs/.cvsignore: Ignore more generated files.
+	* test/.cvsignore: Ignore more generated files.
+
 1999-12-14  Elliot Lee  <sopwith@redhat.com>
 
 	* libgnomevfs-corba/gnome-vfs-async-ops.c: Implement gnome_vfs_async_load_directory_uri

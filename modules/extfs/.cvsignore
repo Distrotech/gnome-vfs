@@ -4,3 +4,10 @@ Makefile
 Makefile.in
 *.lo
 *.la
+ar
+cpio
+deb
+lha
+rar
+zip
+zoo
