@@ -4,6 +4,8 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include "gnome-vfs-daemon-handle.h"
 #include "gnome-vfs-cancellable-ops.h"
+#include "gnome-vfs-daemon.h"
+#include "gnome-vfs-async-daemon.h"
 
 BONOBO_CLASS_BOILERPLATE_FULL(
 	GnomeVFSDaemonHandle,
@@ -13,10 +15,21 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	BONOBO_TYPE_OBJECT);
 
 
+/* DAEMON-TODO: auth */
+
+
 static void
 gnome_vfs_daemon_handle_finalize (GObject *object)
 {
-	g_mutex_free (GNOME_VFS_DAEMON_HANDLE (object)->mutex);
+	GnomeVFSDaemonHandle *handle;
+
+	handle = GNOME_VFS_DAEMON_HANDLE (object);
+	
+	/* DAEMON-TODO: What thread does this run on? Does it matter? */
+        if (handle->real_handle != NULL) {
+		gnome_vfs_close_cancellable (handle->real_handle, NULL);
+	}
+	g_mutex_free (handle->mutex);
 	BONOBO_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
 }
 
@@ -26,23 +39,19 @@ gnome_vfs_daemon_handle_instance_init (GnomeVFSDaemonHandle *handle)
 	handle->mutex = g_mutex_new ();
 }
 
-/* TODO:
-   thread safety
-   cancallation
-   auth
-*/
 static GNOME_VFS_Result
 gnome_vfs_daemon_handle_read (PortableServer_Servant _servant,
 			      GNOME_VFS_buffer ** _buf,
 			      const GNOME_VFS_FileSize num_bytes,
 			      const GNOME_VFS_ClientCall client_call,
+			      const GNOME_VFS_Client client,
 			      CORBA_Environment * ev)
 {
 	GnomeVFSResult res;
 	GnomeVFSDaemonHandle *handle;
 	GnomeVFSFileSize bytes_written;
 	GNOME_VFS_buffer * buf;
-
+	GnomeVFSContext *context;
 
 	buf = CORBA_sequence_CORBA_octet__alloc ();
 	*_buf = buf;
@@ -52,12 +61,17 @@ gnome_vfs_daemon_handle_read (PortableServer_Servant _servant,
 	buf->_maximum = num_bytes;
 	
 	handle = GNOME_VFS_DAEMON_HANDLE (bonobo_object_from_servant (_servant));
+	g_print ("gnome_vfs_daemon_handle_read(%p) - thread %p\n", handle, g_thread_self());
 
+	context = gnome_vfs_async_daemon_get_context (client_call, client);
+	
 	res = gnome_vfs_read_cancellable (handle->real_handle,
 					  buf->_buffer,
 					  num_bytes,
 					  &bytes_written,
-					  NULL /*context*/);
+					  context);
+	
+	gnome_vfs_async_daemon_drop_context (client_call, client, context);
 
 	buf->_length = bytes_written;
 
@@ -68,19 +82,27 @@ gnome_vfs_daemon_handle_read (PortableServer_Servant _servant,
 static GNOME_VFS_Result
 gnome_vfs_daemon_handle_close (PortableServer_Servant _servant,
 			       const GNOME_VFS_ClientCall client_call,
+			       const GNOME_VFS_Client client,
 			       CORBA_Environment * ev)
 {
 	GnomeVFSDaemonHandle *handle;
 	GnomeVFSResult res;
-	
+
 	handle = GNOME_VFS_DAEMON_HANDLE (bonobo_object_from_servant (_servant));
+	g_print ("gnome_vfs_daemon_handle_close(%p) - thread: %p\n", handle, g_thread_self());
 
 	res = gnome_vfs_close_cancellable (handle->real_handle,
 					   NULL /* context */);
+	handle->real_handle = NULL;
+	
+	/* DAEMON-TODO: What if the close was cancelled? */
 
-	/* TODO: What if the close was cancelled? */
+	/* The client is now finished with the handle,
+	   remove it from the list and free it */
+	gnome_vfs_daemon_remove_client_handle (client,
+					       handle);
 	bonobo_object_unref (handle);
-
+	
 	return res;
 }
 
@@ -100,11 +122,14 @@ GnomeVFSDaemonHandle *
 gnome_vfs_daemon_handle_new (GnomeVFSHandle *real_handle)
 {
 	GnomeVFSDaemonHandle *daemon_handle;
+        PortableServer_POA poa;
 
-	/* TODO: Should this be per-request? */
+	/* DAEMON-TODO: Should this be per-request? */
+	poa = bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_REQUEST);
 	daemon_handle = g_object_new (GNOME_TYPE_VFS_DAEMON_HANDLE,
-				      "poa", bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_REQUEST),
+				      "poa", poa,
 				      NULL);
+	CORBA_Object_release ((CORBA_Object)poa, NULL);
 	daemon_handle->real_handle = real_handle;
 
 	return daemon_handle;

@@ -1,6 +1,24 @@
 bin_PROGRAMS=vfs-daemon
 
-INCLUDES=$(MONIKERS_CFLAGS) -I$(top_srcdir)/libgnomevfs
+INCLUDES= \
+	$(LIBGNOMEVFS_CFLAGS)			\
+	$(VFS_CFLAGS)				\
+	$(MONIKERS_CFLAGS)                      \
+	-D_FILE_OFFSET_BITS=64			\
+	-D_BSD_SOURCE				\
+	-D_GNU_SOURCE				\
+	-D_LARGEFILE64_SOURCE                   \
+	-D_POSIX_PTHREAD_SEMANTICS		\
+	-D_REENTRANT				\
+	-DG_DISABLE_DEPRECATED			\
+	-DDATADIR=\"$(datadir)\"		\
+	-DLIBDIR=\"$(libdir)\"			\
+	-DPREFIX=\"$(prefix)\"			\
+	-DGNOMEVFS_LOCALEDIR=\"$(prefix)/@DATADIRNAME@/locale\" \
+	-DSYSCONFDIR=\"$(sysconfdir)\"		\
+	-DG_LOG_DOMAIN=\"libgnomevfs\"		\
+	-I$(top_srcdir)/libgnomevfs             \
+	$(NULL)
 vfs_daemon_LDADD=$(MONIKERS_LIBS) $(top_builddir)/libgnomevfs/libgnomevfs-2.la
 
 vfs_daemon_SOURCES = \

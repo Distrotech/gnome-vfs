@@ -86,6 +86,7 @@ _gnome_vfs_client_call_get (GnomeVFSContext *context)
 {
 	GnomeVFSClientCall *client_call;
 	GnomeVFSCancellation *cancellation;
+        PortableServer_POA poa;
 
 	client_call = g_static_private_get (&job_private);
 
@@ -93,10 +94,11 @@ _gnome_vfs_client_call_get (GnomeVFSContext *context)
 		/* DAEMON-TODO: Verify that this poa thread hint is
 		 * correct and working.
 		 */
+		poa = bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_OBJECT);
 		client_call = g_object_new (GNOME_TYPE_VFS_CLIENT_CALL,
-					    /* DAEMON-TODO: Doesn't this leak the poa? */
-					    "poa", bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_OBJECT),
+					    "poa", poa,
 					    NULL);
+		CORBA_Object_release ((CORBA_Object)poa, NULL);
 		g_static_private_set (&job_private,
 				      client_call, (GDestroyNotify)bonobo_object_unref);
 	}

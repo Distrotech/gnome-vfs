@@ -17,9 +17,7 @@ typedef struct _GnomeVFSAsyncDaemon GnomeVFSAsyncDaemon;
 struct _GnomeVFSAsyncDaemon {
 	BonoboObject parent;
 
-	GList       *clients;
-
-	gpointer     private;
+	GHashTable *client_call_context;
 };
 
 typedef struct {
@@ -29,6 +27,12 @@ typedef struct {
 } GnomeVFSAsyncDaemonClass;
 
 GType gnome_vfs_async_daemon_get_type (void) G_GNUC_CONST;
+
+GnomeVFSContext *gnome_vfs_async_daemon_get_context  (const GNOME_VFS_ClientCall  client_call,
+						      const GNOME_VFS_Client      client);
+void             gnome_vfs_async_daemon_drop_context (const GNOME_VFS_ClientCall  client_call,
+						      const GNOME_VFS_Client      client,
+						      GnomeVFSContext            *context);
 
 G_END_DECLS
 

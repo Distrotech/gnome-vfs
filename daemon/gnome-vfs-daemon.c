@@ -2,6 +2,7 @@
 #include <bonobo/bonobo-main.h>
 #include <bonobo/bonobo-generic-factory.h>
 #include <libgnomevfs/gnome-vfs.h>
+#include <gconf/gconf.h>
 #include "gnome-vfs-daemon.h"
 #include "gnome-vfs-async-daemon.h"
 #include "gnome-vfs-private.h"
@@ -15,6 +16,8 @@ static GnomeVFSAsyncDaemon *async_daemon = NULL;
 typedef struct {
 	GNOME_VFS_Client client;
 	GList *outstanding_handles;
+	GList *outstanding_contexts;
+  /* DAEMON-TODO: outstanding_monitors + dir_handles */
 } ClientInfo;
 
 BONOBO_CLASS_BOILERPLATE_FULL(
@@ -25,6 +28,7 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	BONOBO_TYPE_OBJECT);
 
 
+/* Protects daemon->clients and their contents */
 G_LOCK_DEFINE_STATIC (client_list);
 
 
@@ -39,13 +43,61 @@ quit_timeout (gpointer data)
 }
 
 static ClientInfo *
+new_client_info (const GNOME_VFS_Client client)
+{
+	ClientInfo *client_info;
+	
+	client_info = g_new0 (ClientInfo, 1);
+	client_info->client = CORBA_Object_duplicate (client, NULL);
+	return client_info;
+}
+
+
+/* protected by client_lock */
+static void
+free_client_info (ClientInfo *client_info)
+{
+	GList *l;
+	GNOME_VFS_DaemonHandle handle;
+	GnomeVFSContext *context;
+	GnomeVFSCancellation *cancellation;
+
+	g_print ("free_client_info()\n");
+	
+	/* Cancel any outstanding operations for this client */
+	for (l = client_info->outstanding_contexts; l != NULL; l = l->next) {
+		context = l->data;
+		cancellation = gnome_vfs_context_get_cancellation (context);
+		if (cancellation) {
+			gnome_vfs_cancellation_cancel (cancellation);
+		}
+	}
+
+	/* Unref the handles outstanding for the client. If any
+	 * operations methods are still running they are fine, because
+	 * metods ref the object they correspond to while running.
+	 */
+	for (l = client_info->outstanding_handles; l != NULL; l = l->next) {
+		handle = l->data;
+		
+		bonobo_object_unref (handle);
+	}
+	g_list_free (client_info->outstanding_handles);
+
+	/* DAEMON-TODO: unref outstanding dir handles & monitors (?) */
+	
+	CORBA_Object_release (client_info->client, NULL);
+	g_free (client_info);
+}
+
+/* protected by client_list lock */
+static ClientInfo *
 lookup_client (GNOME_VFS_Client client)
 {
 	ClientInfo *client_info;
 	GList *l;
 	
-	l = daemon->clients;
-	while (l != NULL) {
+	for (l = daemon->clients; l != NULL; l = l->next) {
 		client_info = l->data;
 		if (client_info->client == client)
 			return client_info;
@@ -56,20 +108,19 @@ lookup_client (GNOME_VFS_Client client)
 
 
 static void
-remove_client (ORBitConnection *cnx,
+remove_client (gpointer *cnx,
 	       GNOME_VFS_Client client)
 {
 	ClientInfo *client_info;
 	
-	g_signal_handlers_disconnect_by_func (
-		cnx, G_CALLBACK (remove_client), client);
-
+	ORBit_small_unlisten_for_broken (client,
+					 G_CALLBACK (remove_client));
+	
 	G_LOCK (client_list);
 	client_info = lookup_client (client);
-	if (client_info) {
+	if (client_info != NULL) {
 		daemon->clients = g_list_remove (daemon->clients, client_info);
-		CORBA_Object_release (client_info->client, NULL);
-		g_free (client_info);
+		free_client_info (client_info);
 	}
 	G_UNLOCK (client_list);
 
@@ -82,7 +133,7 @@ de_register_client (PortableServer_Servant servant,
 		    const GNOME_VFS_Client client,
 		    CORBA_Environment     *ev)
 {
-	remove_client (ORBit_small_get_connection (client), client);
+	remove_client (NULL, client);
 }
 
 static void
@@ -90,32 +141,62 @@ register_client (PortableServer_Servant servant,
 		 const GNOME_VFS_Client client,
 		 CORBA_Environment     *ev)
 {
-	ORBitConnection *cnx;
+	ORBitConnectionStatus status;
 	ClientInfo *client_info;
 	
-	cnx = ORBit_small_get_connection (client);
-	if (!cnx) {
+
+	status = ORBit_small_listen_for_broken (client, 
+						G_CALLBACK (remove_client),
+						client);
+	if (status != ORBIT_CONNECTION_CONNECTED) {
 		g_warning ("client died already !");
 		return;
 	}
 
-	g_signal_connect (cnx, "broken",
-			  G_CALLBACK (remove_client),
-			  client);
-
-	client_info = g_new0 (ClientInfo, 1);
-	client_info->client = CORBA_Object_duplicate (client, NULL);
+	client_info = new_client_info (client);
 	
 	G_LOCK (client_list);
-	daemon->clients = g_list_prepend (
-		daemon->clients,
-		client_info);
+	daemon->clients = g_list_prepend (daemon->clients,
+					  client_info);
 	G_UNLOCK (client_list);
 }
 
 void
+gnome_vfs_daemon_add_context (const GNOME_VFS_Client client,
+			      GnomeVFSContext *context)
+{
+	
+	ClientInfo *client_info;
+	
+	G_LOCK (client_list);
+	client_info = lookup_client (client);
+	if (client_info) {
+		client_info->outstanding_contexts = g_list_prepend (client_info->outstanding_contexts,
+								    context);
+	}
+	G_UNLOCK (client_list);
+}
+
+void
+gnome_vfs_daemon_remove_context (const GNOME_VFS_Client client,
+				 GnomeVFSContext *context)
+{
+	
+	ClientInfo *client_info;
+	
+	G_LOCK (client_list);
+	client_info = lookup_client (client);
+	if (client_info) {
+		client_info->outstanding_contexts = g_list_remove (client_info->outstanding_contexts,
+								   context);
+	}
+	G_UNLOCK (client_list);
+}
+
+
+void
 gnome_vfs_daemon_add_client_handle (const GNOME_VFS_Client client,
-				    GNOME_VFS_DaemonHandle handle)
+				    GnomeVFSDaemonHandle *handle)
 {
 	ClientInfo *client_info;
 	
@@ -128,6 +209,22 @@ gnome_vfs_daemon_add_client_handle (const GNOME_VFS_Client client,
 	G_UNLOCK (client_list);
 }
 
+void
+gnome_vfs_daemon_remove_client_handle (const GNOME_VFS_Client client,
+				       GnomeVFSDaemonHandle *handle)
+{
+	ClientInfo *client_info;
+	
+	G_LOCK (client_list);
+	client_info = lookup_client (client);
+	if (client_info) {
+		client_info->outstanding_handles = g_list_remove (client_info->outstanding_handles,
+								  handle);
+	}
+	G_UNLOCK (client_list);
+}
+
+
 static void
 gnome_vfs_daemon_finalize (GObject *object)
 {
@@ -137,6 +234,7 @@ gnome_vfs_daemon_finalize (GObject *object)
 static void
 gnome_vfs_daemon_instance_init (GnomeVFSDaemon *daemon)
 {
+	bonobo_object_set_immortal (BONOBO_OBJECT (daemon), TRUE);
 }
 
 static void
@@ -158,17 +256,20 @@ gnome_vfs_daemon_factory (BonoboGenericFactory *factory,
 			  const char           *component_id,
 			  gpointer              closure)
 {
+        PortableServer_POA poa;
+	
 	if (!daemon) {
 		daemon = g_object_new (GNOME_TYPE_VFS_DAEMON, NULL);
-		bonobo_object_set_immortal (BONOBO_OBJECT (daemon), TRUE);
-		
+
+		poa = bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_REQUEST);
 		async_daemon = g_object_new (GNOME_TYPE_VFS_ASYNC_DAEMON,
-					     "poa", bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_REQUEST),
+					     "poa", poa,
 					     NULL);
+		CORBA_Object_release ((CORBA_Object)poa, NULL);
 		bonobo_object_add_interface (BONOBO_OBJECT (daemon),
 					     BONOBO_OBJECT (async_daemon));
 	}
-	return bonobo_object_ref (daemon);
+	return BONOBO_OBJECT (daemon);
 }
 
 int
@@ -176,21 +277,34 @@ main (int argc, char *argv [])
 {
 	BonoboGenericFactory *factory;
 	
-	if (!bonobo_init (&argc, argv)) 
+	if (!bonobo_init (&argc, argv)) {
 		g_error (_("Could not initialize Bonobo"));
+		return 1;
+	}
 
 	gnome_vfs_set_is_daemon ();
-	if (!gnome_vfs_init ())
+	if (!gnome_vfs_init ()) {
 		g_error (_("Could not initialize gnome vfs"));
-	
+		return 1;
+		}
 	
 	factory = bonobo_generic_factory_new ("OAFIID:GNOME_VFS_Daemon_Factory",
 					      gnome_vfs_daemon_factory,
 					      NULL);
+	
 	if (factory) {
+		g_print ("starting vfs daemon - Main thread: %p\n", g_thread_self());
 		bonobo_main ();
-		bonobo_object_unref (BONOBO_OBJECT (factory));
 		
+		bonobo_object_unref (BONOBO_OBJECT (factory));
+
+		if (daemon) {
+			bonobo_object_set_immortal (BONOBO_OBJECT (daemon), FALSE);
+			bonobo_object_unref (BONOBO_OBJECT (daemon));
+		}
+
+		gnome_vfs_shutdown();
+		gconf_debug_shutdown();
 		return bonobo_debug_shutdown ();
 	} else {
 		g_warning ("Failed to create factory\n");

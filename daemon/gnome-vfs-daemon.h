@@ -3,6 +3,7 @@
 
 #include <bonobo/bonobo-object.h>
 #include <GNOME_VFS_Daemon.h>
+#include <gnome-vfs-daemon-handle.h>
 
 G_BEGIN_DECLS
 
@@ -29,6 +30,18 @@ typedef struct {
 } GnomeVFSDaemonClass;
 
 GType gnome_vfs_daemon_get_type (void) G_GNUC_CONST;
+
+void gnome_vfs_daemon_add_context          (const GNOME_VFS_Client  client,
+					    GnomeVFSContext        *context);
+void gnome_vfs_daemon_remove_context       (const GNOME_VFS_Client  client,
+					    GnomeVFSContext        *context);
+void gnome_vfs_daemon_add_client_handle    (const GNOME_VFS_Client  client,
+					    GnomeVFSDaemonHandle   *handle);
+void gnome_vfs_daemon_remove_client_handle (const GNOME_VFS_Client  client,
+					    GnomeVFSDaemonHandle   *handle);
+
+
+
 
 G_END_DECLS
 
