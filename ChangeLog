@@ -21,7 +21,7 @@
 
 2002-07-24  Michael Meeks  <michael@ximian.com>
 
-	* test/Makefile.am (test_files): add auto-test,
+	* Version 2.0.2
 
 	* libgnomevfs/gnome-vfs-job.c (gnome_vfs_job_go): dump
 	debug before scheduling the job, rather than when job
