@@ -447,6 +447,10 @@ if test "x$KRB5_CONFIG" != "xnone"; then
    GSSAPI_LIBS="`${KRB5_CONFIG} --libs gssapi`"
    GSSAPI_CFLAGS="`${KRB5_CONFIG} --cflags gssapi`"
    
+   saved_CPPFLAGS="$CPPFLAGS"
+   saved_LIBS="$LIBS"
+   LIBS="$LIBS $GSSAPI_LIBS"
+   CPPFLAGS="$CPPFLAGS $GSSAPI_CFLAGS"
    # MIT and Heimdal put gssapi.h in different places
    AC_CHECK_HEADERS(gssapi/gssapi.h gssapi.h, [
        AC_CHECK_FUNCS(gss_init_sec_context, [
@@ -469,6 +473,8 @@ if test "x$KRB5_CONFIG" != "xnone"; then
 	  ])
      break
    ])
+   LIBS="$saved_LIBS" 
+   CPPFLAGS="$saved_CPPFLAGS" 
 fi   
 	   
 dnl ******************************

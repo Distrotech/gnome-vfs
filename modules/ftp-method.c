@@ -1125,12 +1125,16 @@ static GnomeVFSResult
 try_kerberos (GnomeVFSURI *uri,
 	      char **saved_ip,
 	      FtpConnection *conn,
-	      const char *user, 
+	      const char *user,
+	      gboolean *connection_failed,
 	      GnomeVFSCancellation *cancellation)
 {
-#ifdef HAVE_GSSAPI
 	GnomeVFSResult result;
 
+	/* Even without kerberos we do this login so we
+	   can see if the connection fails. The connection will
+	   be reused if we succeed */
+	*connection_failed = FALSE;
 	if (conn->socket_buf == NULL) {
 		result = try_connection (uri,
 					 saved_ip,
@@ -1138,10 +1142,12 @@ try_kerberos (GnomeVFSURI *uri,
 					 cancellation);
 		
 		if (result != GNOME_VFS_OK) {
+			*connection_failed = TRUE;
 			return result;
 		}
 	}
 	
+#ifdef HAVE_GSSAPI
         result = ftp_kerberos_login (conn, user, *saved_ip, cancellation);
 	
         if (result != GNOME_VFS_OK) {
@@ -1209,6 +1215,7 @@ ftp_connection_create (FtpConnectionPool *pool,
 	gboolean uri_has_username;
 	gboolean got_connection;
 	gboolean ret;
+	gboolean connection_failed;
 	
 	cancellation = get_cancellation (context);
 	
@@ -1224,8 +1231,16 @@ ftp_connection_create (FtpConnectionPool *pool,
 
 	result = try_kerberos (uri, &pool->ip, conn,
 			       gnome_vfs_uri_get_user_name (uri),
+			       &connection_failed,
 			       cancellation);
-	if (result == GNOME_VFS_OK) {
+	if (connection_failed) {
+		gnome_vfs_uri_unref (conn->uri);
+		g_string_free (conn->response_buffer, TRUE);
+		g_free (conn);
+		g_free (user);
+		g_free (pass);
+		return result;
+	} else if (result == GNOME_VFS_OK) {
 		/* Logged in successfully using kerberos */
 	} else if (pool->user != NULL &&
 		   pool->password != NULL) {

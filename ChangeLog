@@ -1,3 +1,12 @@
+2004-09-14  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Make kerberos detection actually work
+	
+	* modules/ftp-method.c: (try_kerberos), (ftp_connection_create):
+	Fail before requesting a password if we can't even
+	connect to the ftp site.
+
 2004-09-13  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
