@@ -1,3 +1,9 @@
+2004-07-20  Kurt Roeckx  <Q@ping.be>
+
+	* configure.in: fixes test for res_search in libresolv on amd64 
+	  (resolv.h needs to be included for the test to succeed). Fixes bug
+	  #147702
+
 2004-07-20  Christophe Fergeau  <teuf@gnome.org>
 	
 	* modules/sftp-method.c: use memset instead of bzero

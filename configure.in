@@ -103,7 +103,22 @@ dnl semaphore functions are in librt.so on solaris
 AC_SEARCH_LIBS(sem_wait, rt)
 
 dnl need libresolv for dns-sd stuff			 
-AC_SEARCH_LIBS(res_search, resolv)
+AC_MSG_CHECKING(for res_search)
+AC_TRY_LINK_FUNC(res_search, AC_MSG_RESULT(yes),
+	[ AC_MSG_RESULT(no)
+	saved_LIBS="$LIBS"
+	LIBS="$LIBS -lresolv"
+	AC_MSG_CHECKING(for res_search in -lresolv)
+	AC_LINK_IFELSE([[
+#include <resolv.h>
+int main()
+{
+	res_search (0, 0, 0, 0, 0);
+	return 0;
+}]],
+	[ LIBS="$LIBS -lresolv" AC_MSG_RESULT(yes)],
+	[ LIBS="$saved_LIBS" AC_MSG_RESULT(no)])
+])
 			 
 dnl Don't blindly #define them if they're typedef'ed in <sys/types.h>
 AM_GNOME_SIZE_T
