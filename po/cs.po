@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-07-04 17:02+0200\n"
+"POT-Creation-Date: 2004-07-08 04:24+0200\n"
+"PO-Revision-Date: 2004-07-08 19:08+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -455,7 +455,12 @@ msgstr "Chyba při zpracovávání příkazového řádku"
 msgid "Error launching command"
 msgstr "Chyba při spouštění příkazu"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+msgid "Timeout reached"
+msgstr "Čas vypršel"
+
+#: libgnomevfs/gnome-vfs-result.c:180
 msgid "Unknown error"
 msgstr "Neznámá chyba"
 
@@ -646,7 +651,7 @@ msgstr "Doma"
 msgid "Filesystem"
 msgstr "Systém souborů"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznámé GnomeVFSSeekPosition %d"
