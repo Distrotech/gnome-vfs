@@ -1,3 +1,15 @@
+gnome-vfs 2.6.2
+	* Bugs fixed:
+		+ portability fixes
+		+ tar method crash (Josselin Mouette)
+		+ don't lose files when using 'skip' during a file transfer
+		+ make translations for strings from gnome-vfs-daemon work
+		+ ftp method fixes (Narayana Pattipati)
+		+ sftp method fixes
+
+	* Translation updated:
+		+ pt_BR (Goedson Teixeira Paixao), bg (Peter "Peshka" Slavov)
+
 gnome-vfs 2.6.1
 	* Bugs fixed:
 	        + portability fixes

@@ -1,3 +1,7 @@
+2004-08-12  Christophe Fergeau  <teuf@gnome.org>
+
+	* NEWS: updated
+
 2004-08-12  Ryan Lortie  <desrt@desrt.ca>
 
 	* libgnomevfs/gnome-vfs-private-utils.c: (_gnome_vfs_have_ipv6):
