@@ -1,3 +1,10 @@
+2004-05-25  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/default-modules.conf (ssh): 
+	* modules/Makefile.am: 
+	* modules/ssh-method.c:
+	Remove ssh method, alias to sftp.
+
 2004-05-18  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c (get_device_type_from_device_and_mount):

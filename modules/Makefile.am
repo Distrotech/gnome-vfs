@@ -72,7 +72,6 @@ modules_LTLIBRARIES =				\
 	$(CDEMENU_LTLIBS)                       \
 	$(SMB_LTLIBS)	                        \
 	libsftp.la				\
-	libssh.la				\
 	libtar.la				\
 	$(NULL)
 
@@ -152,12 +151,6 @@ libsmb_la_LIBADD = $(SAMBA_LIBS) $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 libsftp_la_SOURCES = sftp-method.c pty-open.c sftp.h pty-open.h
 libsftp_la_LDFLAGS = $(module_flags)
 libsftp_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
-
-###  `ssh' method
-
-libssh_la_SOURCES = ssh-method.c
-libssh_la_LDFLAGS = $(module_flags)
-libssh_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `test' method
 
