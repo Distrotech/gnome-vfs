@@ -1,3 +1,7 @@
+2004-02-06  Robert Sedak  <robert.sedak@sk.htnet.hr>
+
+        * configure.in: Added "hr" (Croatian) to ALL_LINGUAS.
+
 2004-02-03  Thomas Cataldo  <thomas.cataldo@aliacom.fr>
 
 	* libgnomevfs/gnome-vfs-socket.c (gnome_vfs_socket_close):
