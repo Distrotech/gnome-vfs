@@ -2,16 +2,16 @@
 # Suomennos: http://gnome-fi.sourceforge.net/
 #
 # Copyright (C) 2002 Free Software Foundation, Inc.
-# Pauli Virtanen <pauli.virtanen@hut.fi>, 2000-2004.
+# Pauli Virtanen <pauli.virtanen@hut.fi>, 2000-2005.
 # Ilkka Tuohela <hile@iki.fi>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 15:10+0100\n"
-"PO-Revision-Date: 2004-09-05 16:11+0300\n"
-"Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
+"POT-Creation-Date: 2005-01-31 05:46+0100\n"
+"PO-Revision-Date: 2005-02-04 11:55+0200\n"
+"Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -534,7 +534,7 @@ msgstr "%.1f Mt"
 msgid "%.1f GB"
 msgstr "%.1f Gt"
 
-#: libgnomevfs/gnome-vfs-utils.c:1122
+#: libgnomevfs/gnome-vfs-utils.c:1131
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (virheellistä Unicodea)"
@@ -551,27 +551,27 @@ msgstr "CD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:554
 msgid "CD-R"
-msgstr "CD-R-levy"
+msgstr "CD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:555
 msgid "CD-RW"
-msgstr "CD-RW-levy"
+msgstr "CD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:556
 msgid "DVD-ROM"
-msgstr "DVD-ROM-levy"
+msgstr "DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:557
 msgid "DVD-RAM"
-msgstr "DVD-RAM-levy"
+msgstr "DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:558
 msgid "DVD-R"
-msgstr "DVD-R-levy"
+msgstr "DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:559
 msgid "DVD-RW"
-msgstr "DVD-RW-levy"
+msgstr "DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:560
 msgid "CD-ROM/DVD-ROM"
@@ -1112,8 +1112,8 @@ msgstr "HTTP-välipalvelimen käyttäjätunnus"
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "Jos tosi, yhteydet välipalvelimeen vaativat todennuksen. Käyttäjätunnus-"
 "salasana-yhdistelmän määrittelevät avaimet \"/system/http_proxy/"
@@ -1235,173 +1235,3 @@ msgstr "SMB-työryhmä"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Windows-työryhmä, johon käyttäjä kuuluu"
-
-#~ msgid "CD-ROM Disc"
-#~ msgstr "CD-ROM-levy"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Tyhjä CD-R-levy"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "CD-R-levy"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Tyhjä CD-RW-levy"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "CD-RW-levy"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "DVD-ROM-levy"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Tyhjä DVD-R-levy"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "DVD-R-levy"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Tyhjä DVD-RAM-levy"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "DVD-RAM-levy"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Tyhjä DVD-RW-levy"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "DVD-RW-levy"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Tyhjä DVD+RW-levy"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "DVD+RW-levy"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Tyhjä DVD+R-levy"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "DVD+R-levy"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Optinen levy"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Äänilevy"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Compact Flash -taltio"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "Muistitikku-taltio"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "Smart Media -taltio"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "SD/MMC-taltio"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Levyke"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Mac OS -levy"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Mac OS X -levy"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Windows-levy"
-
-#~ msgid "Linux Disk"
-#~ msgstr "Linux-levy"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "Tiedoston avaaminen epäonnistui: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Tiedoston \"%s\" avaaminen epäonnistui: %s"
-
-#~ msgid "File is empty"
-#~ msgstr "Tiedosto on tyhjä"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Tiedostosta \"%s\" lukeminen epäonnistui: %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "työpöydän kohdat sisältävät rivin \"%s\" joka ei ole merkintä, ryhmä tai "
-#~ "kommentti"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "työpöydän kohdat -tiedosto ei ala kelvollisella aloitusryhmällä"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr ""
-#~ "työpöydän kohdat sisältävät rivin \"%s\" joka ei ole UTF-8-merkistön "
-#~ "mukainen"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "työpöydän kohdat sisältävät tuntematonta merkistöä \"%s\""
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "työpöydän kohdissa ei ole ryhmää \"%s\""
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "työpöydän kohdissa ei ole avainta \"%s\""
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr ""
-#~ "työpöydän kohdat sisältävät avaimen \"%s\" jonka arvoa ei voi tulkita."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "työpöydän kohdat eivät sisällä maa-asetustolle \"%s\" käännettyjä avaimen "
-#~ "\"%s\" arvoja."
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "työpöydän kohdat sisältävät virheellisen ohjaussarjan \"%s\""
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "työpöydän kohdat sisältävät suojausmerkin rivin lopussa"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "Arvoa \"%s\" ei voi tulkita numeroksi."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "Arvoa \"%s\" ei voi tulkita totuusarvoksi."
-
-#~ msgid "Applications"
-#~ msgstr "Sovellukset"
-
-#~ msgid "Cards"
-#~ msgstr "Kortit"
-
-#~ msgid "Files"
-#~ msgstr "Tiedostot"
-
-#~ msgid "Folders"
-#~ msgstr "Kansiot"
-
-#~ msgid "Help"
-#~ msgstr "Ohje"
-
-#~ msgid "Hosts"
-#~ msgstr "Isäntäkoneet"
-
-#~ msgid "Links"
-#~ msgstr "Linkit"
-
-#~ msgid "Mail"
-#~ msgstr "Posti"
-
-#~ msgid "Tools"
-#~ msgstr "Työkalut"
-
-#~ msgid "Windows"
-#~ msgstr "Ikkunat"
