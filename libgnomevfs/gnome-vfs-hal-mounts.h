@@ -24,14 +24,6 @@
 #ifndef GNOME_VFS_HAL_MOUNTS_H
 #define GNOME_VFS_HAL_MOUNTS_H
 
-#include <glib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-
-#include <libhal.h>
-#include <dbus/dbus-glib.h>
-
 #include "gnome-vfs-volume-monitor-daemon.h"
 
 gboolean _gnome_vfs_monitor_hal_mounts_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);

@@ -104,7 +104,7 @@ libcdda_la_SOURCES = \
 	cdda-cdrom-extensions.h
 
 libcdda_la_LDFLAGS = $(module_flags)
-libcdda_la_LIBADD = -lcdda_paranoia -lcdda_interface ../libgnomevfs/libgnomevfs-2.la
+libcdda_la_LIBADD = $(MODULES_LIBS) $(CDDA_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `computer' method
 

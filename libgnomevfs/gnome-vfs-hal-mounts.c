@@ -25,13 +25,23 @@
 
 #ifdef USE_HAL
 
+#include <fstab.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <fstab.h>
+#include <sys/stat.h>
 #include <sys/sysmacros.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+#include <glib.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-i18n.h>
+
+#include <libhal.h>
+#include <dbus/dbus-glib.h>
+#include <dbus/dbus-glib-lowlevel.h>
+
 
 #include "gnome-vfs-hal-mounts.h"
 #include "gnome-vfs-volume-monitor-daemon.h"

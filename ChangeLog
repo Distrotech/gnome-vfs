@@ -1,3 +1,11 @@
+2004-08-19  Christophe Fergeau  <teuf@gnome.org>
+
+	* configure.in:
+	* libgnomevfs/gnome-vfs-hal-mounts.c:
+	* libgnomevfs/gnome-vfs-hal-mounts.h:
+	* modules/Makefile.am: fix compilation with --enable-hal with dbus
+	  0.22, fixed link flags for the cdda method
+
 2004-08-18  Anders Carlsson  <andersca@gnome.org>
 
 	* libgnomevfs/eggdesktopentries.c:

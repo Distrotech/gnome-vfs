@@ -429,9 +429,10 @@ dnl modules/cdda
 
 AM_CONDITIONAL(HAVE_CDDA, false)
 AC_CHECK_HEADERS(cdda_interface.h cdda_paranoia.h, [
-	CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia, -lcdda_interface"
+	CDDA_LIBS="$CDDA_LIBS -lcdda_paranoia -lcdda_interface"
 	AM_CONDITIONAL(HAVE_CDDA, true)
 ])
+AC_SUBST(CDDA_LIBS)
 
 dnl GSSAPI
 dnl Check for Kerberos installation
@@ -685,7 +686,7 @@ esac],
 
 if test "x$ENABLE_HAL" = "xyes"; then
 	PKG_CHECK_MODULES(HAL, hal >= 0.2.92,
-		[ USE_HAL="hal >= 0.2.92, dbus-1 >= 0.21, dbus-glib-1 >= 0.21"; AC_DEFINE(USE_HAL, 1, [defined if using libhal])],
+		[ USE_HAL="hal >= 0.2.92, dbus-1 >= 0.22, dbus-glib-1 >= 0.22"; AC_DEFINE(USE_HAL, 1, [defined if using libhal])],
 		[ USE_HAL=""])
 else
 	USE_HAL=""
