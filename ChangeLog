@@ -1,5 +1,10 @@
 2003-11-15  Christophe Fergeau  <teuf@gnome.org>
 
+	* docs/gnome-vfs-2.0-docs.sgml: forgot trailing ; at the end of an
+	  entity
+
+2003-11-15  Christophe Fergeau  <teuf@gnome.org>
+
         * docs/*
         * configure.in: added version number to the API docs start page
           (fixes #126027)

@@ -46,7 +46,7 @@
 <book id="index">
   <bookinfo>
     <title>GnomeVFS - Filesystem Abstraction library</title>
-    <releaseinfo>for GnomeVFS &version</releaseinfo>
+    <releaseinfo>for GnomeVFS &version;</releaseinfo>
     <authorgroup>
       <author>
 	<firstname>Seth</firstname>
