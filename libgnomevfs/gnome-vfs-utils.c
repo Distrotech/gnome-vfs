@@ -34,7 +34,7 @@
 
 
 gchar*
-gnome_vfs_file_size_to_string (GnomeVFSFileSize bytes)
+gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
 {
 	if (bytes < (GnomeVFSFileSize) 1e3) {
 		if (bytes == 1)
@@ -76,6 +76,13 @@ gnome_vfs_file_size_to_string (GnomeVFSFileSize bytes)
  * This routine returns a g_malloced string.
  */
 
+typedef enum {
+	UNSAFE_ALL        = 0x1,  /* Escape all unsafe characters   */
+	UNSAFE_ALLOW_PLUS = 0x2,  /* Allows '+'  */
+	UNSAFE_PATH       = 0x4,  /* Allows '/'  */
+	UNSAFE_DOS_PATH   = 0x8   /* Allows '/' and ':' */
+} UnsafeCharacterSet;
+
 static const guchar acceptable[96] =
 { /* X0  X1  X2  X3  X4  X5  X6  X7  X8  X9  XA  XB  XC  XD  XE  XF */
     0x0,0xF,0x0,0x0,0x0,0x0,0x0,0xF,0xF,0xF,0xF,0x2,0x0,0xF,0xF,0xC, /* 2X  !"#$%&'()*+,-./   */
@@ -88,9 +95,9 @@ static const guchar acceptable[96] =
 
 static const gchar hex[16] = "0123456789ABCDEF";
 
-gchar *
-gnome_vfs_escape_string (const gchar *string, 
-			 GnomeVFSURIUnsafeCharacterSet mask)
+static gchar *
+gnome_vfs_escape_string_internal (const gchar *string, 
+				  UnsafeCharacterSet mask)
 {
 #define ACCEPTABLE(a) ((a)>=32 && (a)<128 && (acceptable[(a)-32] & mask))
 
@@ -100,10 +107,10 @@ gnome_vfs_escape_string (const gchar *string,
 	guchar c;
 	gint unacceptable;
 
-	g_return_val_if_fail (mask == GNOME_VFS_URI_UNSAFE_ALL
-			      || mask == GNOME_VFS_URI_UNSAFE_ALLOW_PLUS
-			      || mask == GNOME_VFS_URI_UNSAFE_PATH
-			      || mask == GNOME_VFS_URI_UNSAFE_DOS_PATH, NULL);
+	g_return_val_if_fail (mask == UNSAFE_ALL
+			      || mask == UNSAFE_ALLOW_PLUS
+			      || mask == UNSAFE_PATH
+			      || mask == UNSAFE_DOS_PATH, NULL);
 
 	if (string == NULL) {
 		return NULL;
@@ -134,6 +141,18 @@ gnome_vfs_escape_string (const gchar *string,
 	*q = '\0';
 	
 	return result;
+}
+
+gchar *
+gnome_vfs_escape_string (const gchar *file_name)
+{
+	return gnome_vfs_escape_string_internal (file_name, UNSAFE_ALL);
+}
+
+gchar *
+gnome_vfs_escape_path_string (const gchar *path)
+{
+	return gnome_vfs_escape_string_internal (path, UNSAFE_PATH);
 }
 
 static int
@@ -220,7 +239,7 @@ gnome_vfs_unescape_string (const gchar *escaped, const gchar *illegal_characters
  *               replacing their escaped hex values
  **/
 gchar *
-gnome_vfs_unescape_for_display (const gchar *escaped)
+gnome_vfs_unescape_string_for_display (const gchar *escaped)
 {
 	const gchar *in, *start_escape;
 	gchar *out, *result;

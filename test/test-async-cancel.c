@@ -442,7 +442,6 @@ test_load_directory_cancel (int delay_till_cancel)
 {
 	GnomeVFSAsyncHandle *handle;
 	guint num_entries;
-	printf("testing load directory cancel\n");
 	gnome_vfs_async_load_directory (&handle,
 					"file:///etc",
 					GNOME_VFS_FILE_INFO_GETMIMETYPE

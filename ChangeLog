@@ -1,3 +1,26 @@
+2000-06-21  Darin Adler  <darin@eazel.com>
+
+	Improved the API of the utils (bug 1210).
+
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_format_file_size_for_display): Changed name from
+	gnome_vfs_file_size_as_string.
+	(gnome_vfs_escape_string_internal), (gnome_vfs_escape_string),
+	(gnome_vfs_escape_path_string): Replaced the old parameterized
+	escape_string function with 2 parameter-free versions for paths
+	and for other strings respectively.
+	(gnome_vfs_unescape_string_for_display): Added string to the name
+	to make it more like the other names.
+	
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_append_file_name),
+	(gnome_vfs_uri_extract_short_name):
+	* modules/http-method.c: (create_handle), (do_read):
+	* test/test-async-cancel.c: (test_load_directory_cancel):
+	* test/test-escape.c: (test_escape), (test_escape_path),
+	(test_unescape_display), (main):
+	Updated callers to use calls by their new names.
+
 2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug #583

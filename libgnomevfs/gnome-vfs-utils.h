@@ -30,34 +30,33 @@
 #include <glib.h>
 #include "gnome-vfs-types.h"
 
-typedef enum {
-	GNOME_VFS_URI_UNSAFE_ALL        = 0x1,  /* Escape all unsafe characters   */
-	GNOME_VFS_URI_UNSAFE_ALLOW_PLUS = 0x2,  /* Allows '+'  */
-	GNOME_VFS_URI_UNSAFE_PATH       = 0x4,  /* Allows '/'  */
-	GNOME_VFS_URI_UNSAFE_DOS_PATH   = 0x8   /* Allows '/' and ':' */
-} GnomeVFSURIUnsafeCharacterSet;
+/* Makes a human-readable string. */
+gchar *gnome_vfs_format_file_size_for_display (GnomeVFSFileSize  size);
 
-/* Attempts to make a human-readable string. */
-gchar *gnome_vfs_file_size_to_string (GnomeVFSFileSize               bytes);
-
-/* Converts unsafe characters to % sequences.
- * Parameter defines what unsafe means.
- * FIXME bugzilla.eazel.com 1210: Divide into four separate calls for clarity.
+/* Converts unsafe characters to % sequences so the string can be
+ * used as a piece of a URI. Escapes all reserved URI characters.
  */
-gchar *gnome_vfs_escape_string       (const gchar                   *string,
-				      GnomeVFSURIUnsafeCharacterSet  encoding);
+gchar *gnome_vfs_escape_string                (const gchar      *string);
 
-/* Returns NULL if any of the illegal character appear in escaped form.
- * If the illegal characters are in there unescaped, that's OK.
- * Typically you pass "/" for illegal characters when converting to a Unix path.
- * ASCII 0 is always illegal due to the limitations of NUL-terminated strings.
+/* Converts unsafe characters to % sequences so the path can be
+ * used as a piece of a URI. Escapes all reserved URI characters
+ * except for "/".
  */
-gchar *gnome_vfs_unescape_string     (const gchar                   *string,
-				      const gchar                   *illegal_characters);
+gchar *gnome_vfs_escape_path_string           (const gchar      *path);
 
-/* Prepare an escaped string for display - thus this function
- * does not unescape invalid escape sequences and ASCII 0
+/* Returns NULL if any of the illegal character appear in escaped
+ * form. If the illegal characters are in there unescaped, that's OK.
+ * Typically you pass "/" for illegal characters when converting to a
+ * Unix path, since pieces of Unix paths can't contain "/". ASCII 0
+ * is always illegal due to the limitations of NUL-terminated strings.
  */
-gchar *gnome_vfs_unescape_for_display (const gchar *escaped);
+gchar *gnome_vfs_unescape_string              (const gchar      *string,
+					       const gchar      *illegal_characters);
+
+/* Prepare an escaped string for display. Unlike gnome_vfs_unescape_string,
+ * this doesn't return NULL if an illegal sequences appears in the string,
+ * instead doing its best to provide a useful result.
+ */
+gchar *gnome_vfs_unescape_string_for_display  (const gchar      *escaped);
 
 #endif /* GNOME_VFS_UTILS_H */

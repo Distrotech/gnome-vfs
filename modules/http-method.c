@@ -515,7 +515,7 @@ create_handle (HttpFileHandle **handle_return,
 		gchar* msg;
 		gchar* sz;
 
-		sz = gnome_vfs_file_size_to_string ((*handle_return)->size);
+		sz = gnome_vfs_format_file_size_for_display ((*handle_return)->size);
 
 		msg = g_strdup_printf(_("%s to retrieve"), sz);
 
@@ -800,10 +800,10 @@ do_read (GnomeVFSMethod *method,
 		gchar *read_str = NULL;
 		gchar *total_str = NULL;
 
-		read_str = gnome_vfs_file_size_to_string(handle->bytes_read);
+		read_str = gnome_vfs_format_file_size_for_display (handle->bytes_read);
 
 		if (handle->size_is_known) {
-			total_str = gnome_vfs_file_size_to_string(handle->size);
+			total_str = gnome_vfs_format_file_size_for_display (handle->size);
 		}
 
 		if (total_str)
