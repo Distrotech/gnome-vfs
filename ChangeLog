@@ -1,5 +1,10 @@
 2004-08-25  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/pty-open.c (_gnome_vfs_pty_run_on_pty):
+	Fix valgrind warning.
+
+2004-08-25  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	Look for sys/poll.h and poll.
 

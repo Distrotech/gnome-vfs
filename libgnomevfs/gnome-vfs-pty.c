@@ -315,6 +315,8 @@ _gnome_vfs_pty_run_on_pty(int fd,
 		fprintf(stderr, "Child sending child-ready.\n");
 	}
 #endif
+	/* Initialize so valgrind doesn't complain */
+	c = 0;
 	n_write(ready_writer, &c, 1);
 	fsync(ready_writer);
 	n_read(ready_reader, &c, 1);
