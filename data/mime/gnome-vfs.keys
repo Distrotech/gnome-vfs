@@ -560,7 +560,9 @@ special/webdav-directory
 	short_list_component_iids_for_intermediate_user_level=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:ntl_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_hacker_user_level=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:ntl_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	default_application_id=netscape
-	short_list_application_ids=netscape,lynx
+	short_list_application_ids_for_novice_user_level=netscape,lynx
+	short_list_application_ids_for_intermediate_user_level=netscape,lynx
+	short_list_application_ids_for_hacker_user_level=netscape,lynx
 	system_all_application_ids=netscape,lynx
 
 special/symlink
@@ -586,7 +588,9 @@ text/html
 	short_list_component_iids_for_intermediate_user_level=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_component_iids_for_hacker_user_level=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	default_application_id=netscape
-	short_list_application_ids=netscape,lynx
+	short_list_application_ids_for_novice_user_level=netscape,lynx
+	short_list_application_ids_for_intermediate_user_level=netscape,lynx
+	short_list_application_ids_for_hacker_user_level=netscape,lynx
 	system_all_application_ids=netscape,lynx,emacs,nedit
 
 
@@ -595,7 +599,9 @@ text/plain
 	default_action_type=component
 	default_application_id=emacs
 	default_component_iid=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
-	short_list_application_ids=emacs,nedit
+	short_list_application_ids_for_novice_user_level=emacs,nedit
+	short_list_application_ids_for_intermediate_user_level=emacs,nedit
+	short_list_application_ids_for_hacker_user_level=emacs,nedit
 	system_all_application_ids=emacs,nedit
 
 text/rfc822-headers

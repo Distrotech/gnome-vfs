@@ -1,3 +1,8 @@
+2000-06-01  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys: Fixed the application short 
+	lists for text/plain, text/html, and special/webdav-directory.
+
 2000-06-01  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c: (get_user_level): Added
