@@ -1,3 +1,11 @@
+2000-10-31  Gene Z. Ragan  <gzr@eazel.com>
+
+	* modules/cdda-method.c: (cdda_context_new),
+	(get_track_index_from_uri), (do_open), (is_file_is_on_disc),
+	(do_get_file_info), (do_open_directory):
+	Unescape basenames when performing comparison operations
+	on cached cddb data.
+
 2000-10-31  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.spec.in: Got rid of vendor again. Checking this in is

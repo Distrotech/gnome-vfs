@@ -121,12 +121,12 @@ cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
 				proxy = g_strdup (proxy_string);
 				proxy [port - proxy_string] = '\0';
 				port++;
-			}			
+
+				strcpy (proxy_server.name, proxy);
+				proxy_server.port = atoi (port);
+			}
 		}						
 	}
-
-	strcpy (proxy_server.name, proxy);
-	proxy_server.port = atoi (port);
 
 	strcpy (cddb_server.name, "freedb.freedb.org");
 	strcpy (cddb_server.cgi_prog, "~cddb/cddb.cgi");
@@ -209,28 +209,29 @@ static int
 get_track_index_from_uri (CDDAContext *context, GnomeVFSURI *uri) {
 	const char *base_name;
 	int index;
+	char *escaped_name;
 	
 	base_name = gnome_vfs_uri_get_basename (uri);
 	if (base_name == NULL) {
 		return -1;
 	}
-
+	escaped_name = gnome_vfs_unescape_string_for_display (base_name);
+	
 	// Check and see if filename is in cddb data list
 	for (index = 0; index < context->drive->tracks; index++) {
-		if (strcmp (base_name, context->disc_data.data_track[index].track_name) == 0) {
+		if (strcmp (escaped_name, context->disc_data.data_track[index].track_name) == 0) {
+			g_free (escaped_name);
 			return index + 1;
 		}
 	}
-	
+
+	g_free (escaped_name);
 	return -1;
 }
 
 static GnomeVFSResult 
-do_open (GnomeVFSMethod *method,
-	 GnomeVFSMethodHandle **method_handle,
-	 GnomeVFSURI *uri,
-	 GnomeVFSOpenMode mode,
-	 GnomeVFSContext *context) 
+do_open (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
+	 GnomeVFSURI *uri, GnomeVFSOpenMode mode, GnomeVFSContext *context) 
 {
 	GnomeVFSResult result;
 	ReadHandle *read_handle;
@@ -458,6 +459,7 @@ is_file_is_on_disc (CDDAContext *context, const GnomeVFSURI *uri)
 {
 	int index;
 	const char *base_name;
+	char *escaped_name;
 	
 	if (context == NULL) {
 		return FALSE;
@@ -467,13 +469,16 @@ is_file_is_on_disc (CDDAContext *context, const GnomeVFSURI *uri)
 	if (base_name == NULL) {
 		return FALSE;
 	}
+	escaped_name = gnome_vfs_unescape_string_for_display (base_name);
 
 	for (index = 0; index < context->drive->tracks; index++) {
-		if (strcmp (base_name, context->disc_data.data_track[index].track_name) == 0) {
+		if (strcmp (escaped_name, context->disc_data.data_track[index].track_name) == 0) {
+			g_free (escaped_name);
 			return TRUE;
 		}
 	}
 
+	g_free (escaped_name);
 	return FALSE;
 }
 
@@ -525,6 +530,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	const char *base_name;
 	gboolean use_base, use_cache;
 	GnomeVFSResult result;
+	char *escaped_name;
 
 	g_message ("do_get_file_info: %s", gnome_vfs_uri_get_path (uri));
 	
@@ -535,6 +541,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	
 	// Get basename
 	base_name = gnome_vfs_uri_get_basename (uri);
+	escaped_name = gnome_vfs_unescape_string_for_display (base_name);
 	
 	// Extract path and attempt to open
 	drive = open_cdda_device (uri);
@@ -560,6 +567,7 @@ do_get_file_info (GnomeVFSMethod *method,
 			gnome_vfs_uri_unref (dir_uri);
 
 			if (drive == NULL) {
+				g_free (escaped_name);
 				return GNOME_VFS_ERROR_GENERIC;
 			}
 
@@ -588,7 +596,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	} else {
 		cdda_context_free (global_context);
 		global_context = cdda_context_new (drive, uri);
-		result = get_file_info_for_basename (global_context, base_name);
+		result = get_file_info_for_basename (global_context, escaped_name);
 		if (result == GNOME_VFS_OK) {
 			gnome_vfs_file_info_copy (file_info, global_context->file_info);
 		} else {
@@ -597,21 +605,20 @@ do_get_file_info (GnomeVFSMethod *method,
 		}
 	}
 
+	g_free (escaped_name);
 	return result;
 }
 
 static GnomeVFSResult 
-do_open_directory (GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle **method_handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSFileInfoOptions options,
-					 const GnomeVFSDirectoryFilter *filter,
-					 GnomeVFSContext *context)
+do_open_directory (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
+		   GnomeVFSURI *uri, GnomeVFSFileInfoOptions options,
+		   const GnomeVFSDirectoryFilter *filter, GnomeVFSContext *context)
 {
 	cdrom_drive *drive;
 	gboolean use_base, use_cache;
 	const char *base_name;
-
+	char *escaped_name;
+	
 	g_print ("do_open_directory () in uri: %s\n", gnome_vfs_uri_get_path (uri));
 
 	use_base = FALSE;
@@ -619,6 +626,7 @@ do_open_directory (GnomeVFSMethod *method,
 	
 	// Get basename
 	base_name = gnome_vfs_uri_get_basename (uri);
+	escaped_name = gnome_vfs_unescape_string_for_display (base_name);
 
 	// Make sure we can open URI
 	drive = open_cdda_device (uri);
@@ -644,6 +652,7 @@ do_open_directory (GnomeVFSMethod *method,
 			gnome_vfs_uri_unref (dir_uri);
 
 			if (drive == NULL) {
+				g_free (escaped_name);
 				return GNOME_VFS_ERROR_GENERIC;
 			}
 			use_base = TRUE;
@@ -667,14 +676,16 @@ do_open_directory (GnomeVFSMethod *method,
 		}
 	} else {
 		// This is a file. Blast cache.
-		g_message ("Use base: %s", base_name);
+		g_message ("Use base: %s", escaped_name);
 		cdda_context_free (global_context);
 		global_context = NULL;
 		*method_handle = NULL;
+		g_free (escaped_name);
 		return GNOME_VFS_ERROR_GENERIC;
 	}
 	
 	*method_handle = (GnomeVFSMethodHandle *) global_context;
+	g_free (escaped_name);
 	
 	return GNOME_VFS_OK;
 }
@@ -842,18 +853,6 @@ static GnomeVFSMethod method = {
 	NULL 	/* do_create_symbolic_link */
 };
 
-GnomeVFSMethod *
-vfs_module_init (const char *method_name, 
-		 const char *args)
-{
-	return &method;
-}
-
-void
-vfs_module_shutdown (GnomeVFSMethod *method)
-{
-}
-
 #if 0
 static void 
 put_num (long num, int f, int endianness, int bytes)
@@ -955,4 +954,25 @@ write_wav_header (gpointer buffer, long bytes)
 		memcpy (ptr, &bytes, 4); ptr += 4;
 
 		return 44;
+}
+
+GnomeVFSMethod *
+vfs_module_init (const char *method_name, 
+		 const char *args)
+{
+	char *argv[] = { "gnome-vfs-cdda-module", NULL };
+	
+	if (!gconf_is_initialized ()) {
+		gconf_init (1, argv, NULL);
+	}
+
+	gtk_type_init();
+	gtk_signal_init();
+	
+	return &method;
+}
+
+void
+vfs_module_shutdown (GnomeVFSMethod *method)
+{
 }
