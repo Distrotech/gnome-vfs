@@ -1,3 +1,13 @@
+gnome-vfs 2.6.1
+	* Bugs fixed:
+	        + portability fixes
+		+ work with GNUTLS 1.0
+		+ sftp: handles servers that ask for "Password" (not "password")
+		+ gnome_vfs_inet_connection_read handles EOF correctly
+		+ thread-safe gnome-vfs-parse-ls.c
+		+ fix mime crash
+		+ toplevel smb directories aren't writable
+
 gnome-vfs 2.6.0
 	* Bugs fixed:
 	        + Some doc fixes
