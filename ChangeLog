@@ -1,3 +1,11 @@
+2001-02-12  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 6471, wrong text in "add extension" dialog
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_extension_window):
+	Update text using new language from Vera.
+
 2001-02-12  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Gene Z. Ragan  <gzr@eazel.com> (under protest,
