@@ -769,6 +769,10 @@ gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	
 	gnome_vfs_mime_sniff_buffer_get (sniff_buffer, GNOME_VFS_TEXT_SNIFF_LENGTH);
 
+	if (sniff_buffer->buffer_length == 0) {
+		return FALSE;
+	}
+	
 	for (index = 0; index < sniff_buffer->buffer_length - 3; index++) {
 		ch = sniff_buffer->buffer[index];
 		if (!isprint (ch) && !isspace(ch)) {

@@ -1,3 +1,29 @@
+2000-09-30  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_sniff_buffer_looks_like_text):
+	Fix a MIME sniffing bug that Bud was seeing where 0-byte files
+	would show up as text/plain.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (remove_directory):
+	Part I of fix to 1314 - Move to Trash faild if name conflict in
+	trash.
+
+	* libgnomevfs/gnome-vfs-xfer.c: (empty_directory):
+	Handle errors during emptying directories properly. 
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (xfer_create_target), 
+	(move_items), (link_items):
+	Cleanups. Rework the duplicate handling code.
+
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_destination_is_writable),
+	(gnome_vfs_xfer_uri_internal):
+	Cleanups. Make the non-writable destination error and out of space on
+	disk error get reported. Make the non-writable destination check only
+	check on local file systems. Make the non-writable destination check
+	clean up after a botched previous check that left behind a temporary
+	file.
+
 2000-09-29  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.spec.in: Turn off "make check" again.  For some reason

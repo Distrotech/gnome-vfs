@@ -407,14 +407,25 @@ empty_directory (GnomeVFSURI *uri,
 {
 	GnomeVFSResult result;
 	GnomeVFSDirectoryHandle *directory_handle;
+	gboolean retry;
 
-	result = gnome_vfs_directory_open_from_uri (&directory_handle, uri, 
-						    GNOME_VFS_FILE_INFO_DEFAULT, 
-						    NULL);
 
-	if (result != GNOME_VFS_OK)
+	*skip = FALSE;
+	do {
+		result = gnome_vfs_directory_open_from_uri (&directory_handle, uri, 
+							    GNOME_VFS_FILE_INFO_DEFAULT, 
+							    NULL);
+		retry = FALSE;
+		if (result != GNOME_VFS_OK) {
+			retry = handle_error (&result, progress,
+					      error_mode, skip);
+		}
+	} while (retry);
+
+	if (result != GNOME_VFS_OK || *skip) {
 		return result;
-		
+	}
+	
 	for (;;) {
 		GnomeVFSFileInfo info;
 		GnomeVFSURI *item_uri;
@@ -467,7 +478,7 @@ remove_directory (GnomeVFSURI *uri,
 	gboolean retry;
 
 	result = GNOME_VFS_OK;
-	
+
 	if (recursive) {
 		result = empty_directory (uri, progress, xfer_options, 
 					  error_mode, skip);
@@ -481,10 +492,10 @@ remove_directory (GnomeVFSURI *uri,
 			retry = FALSE;
 
 			result = gnome_vfs_remove_directory_from_uri (uri);
-			if (result != GNOME_VFS_OK)
+			if (result != GNOME_VFS_OK) {
 				retry = handle_error (&result, progress,
 						      error_mode, skip);
-			else {
+			} else {
 				progress->progress_info->file_index++;
 				/* add some small size for each deleted item */
 				progress->progress_info->bytes_total += DEFAULT_SIZE_OVERHEAD;
@@ -1004,8 +1015,6 @@ xfer_create_target (GnomeVFSHandle **target_handle,
 
 		} else if (result != GNOME_VFS_OK) {
 			retry = handle_error (&result,  progress, error_mode, skip);
-		} else {
-			retry = FALSE;
 		}
 	} while (retry);
 
@@ -1360,13 +1369,12 @@ move_items (const GList *source_uri_list,
 			gnome_vfs_uri_extract_short_path_name
 			((GnomeVFSURI *)target_item->data);
 
-		retry = FALSE;
 		skip = FALSE;
 		conflict_count = 1;
 
 		do {
-			target_uri = gnome_vfs_uri_append_path
-				(target_dir_uri, 
+			retry = FALSE;
+			target_uri = gnome_vfs_uri_append_path (target_dir_uri, 
 				 progress->progress_info->duplicate_name);
 
 			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
@@ -1402,11 +1410,12 @@ move_items (const GList *source_uri_list,
 				}
 				conflict_count++;
 				result = GNOME_VFS_OK;
+				retry = TRUE;
+				continue;
 			}
 
 			if (result != GNOME_VFS_OK) {
-				retry = handle_error (&result, progress,
-						      error_mode, &skip);
+				retry = handle_error (&result, progress, error_mode, &skip);
 			}
 			if (call_progress_with_uris_often (progress, source_uri,
 				target_uri, GNOME_VFS_XFER_PHASE_MOVING) == 0) {
@@ -1451,7 +1460,7 @@ link_items (const GList *source_uri_list,
 
 	result = GNOME_VFS_OK;
 
-	/* go through the list of names, move each item */
+	/* go through the list of names, create a link to each item */
 	for (source_item = source_uri_list, target_item = target_uri_list; source_item != NULL;) {
 
 		source_uri = (GnomeVFSURI *)source_item->data;
@@ -1462,11 +1471,11 @@ link_items (const GList *source_uri_list,
 			gnome_vfs_uri_extract_short_path_name
 			((GnomeVFSURI *)target_item->data);
 
-		retry = FALSE;
 		skip = FALSE;
 		conflict_count = 1;
 
 		do {
+			retry = FALSE;
 			target_uri = gnome_vfs_uri_append_path
 				(target_dir_uri,
 				 progress->progress_info->duplicate_name);
@@ -1498,19 +1507,13 @@ link_items (const GList *source_uri_list,
 					break;
 				}
 				conflict_count++;
-				
-				result = gnome_vfs_create_symbolic_link (target_uri, source_reference);
-
+				result = GNOME_VFS_OK;
+				retry = TRUE;
+				continue;
 			}
 			
 			if (result != GNOME_VFS_OK) {
-				if (result == GNOME_VFS_ERROR_FILE_EXISTS) {
-					retry = TRUE;
-				} else {
-					retry = handle_error (&result, progress, error_mode, &skip);
-				}
-			} else {
-				retry = FALSE;
+				retry = handle_error (&result, progress, error_mode, &skip);
 			}
 
 			if (call_progress_with_uris_often (progress, source_uri,
@@ -1720,6 +1723,37 @@ gnome_vfs_new_directory_with_unique_name (const GnomeVFSURI *target_dir_uri,
 }
 
 static GnomeVFSResult
+gnome_vfs_destination_is_writable (const GnomeVFSURI *uri)
+{
+	GnomeVFSURI *test_uri;
+	GnomeVFSResult result;
+	GnomeVFSHandle *handle;
+
+	if (!gnome_vfs_uri_is_local (uri)) {
+		/* if destination is not local, do not test it for writability, just
+		 * assume it's writable
+		 */
+		return GNOME_VFS_OK;
+	}
+
+	/* test writability by creating and erasing a temporary file */
+	test_uri = gnome_vfs_uri_append_file_name (uri, ".vfs-write.tmp");
+	result = gnome_vfs_create_uri (&handle, test_uri, GNOME_VFS_OPEN_WRITE, TRUE, 0600);
+
+	if (result == GNOME_VFS_OK) {
+		gnome_vfs_close (handle);
+	}
+	
+	if (result == GNOME_VFS_OK || result == GNOME_VFS_ERROR_FILE_EXISTS) {
+		gnome_vfs_unlink_from_uri (test_uri);
+		result = GNOME_VFS_OK;
+	}
+	
+	gnome_vfs_uri_unref (test_uri);
+	return result;
+}
+
+static GnomeVFSResult
 gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			     const GList *target_uris,
 			     GnomeVFSXferOptions xfer_options,
@@ -1728,13 +1762,12 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			     GnomeVFSProgressCallbackState *progress)
 {
 	GnomeVFSResult result;
-	GnomeVFSHandle *handle;
 	GList *source_uri_list, *target_uri_list;
 	GList *source_uri, *target_uri;
 	GnomeVFSURI *target_dir_uri;
 	gboolean move, link;
 	GnomeVFSFileSize free_bytes;
-	GnomeVFSURI *write_uri;
+	gboolean skip;
 	
 	result = GNOME_VFS_OK;
 	move = FALSE;
@@ -1743,22 +1776,13 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 
 	/* Check and see if target is writable. Return error if it is not. */
 	target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)((GList *)target_uris)->data);
-	write_uri = gnome_vfs_uri_append_file_name (target_dir_uri, ".vfs-write.tmp");
-	result = gnome_vfs_create_uri (&handle, write_uri,GNOME_VFS_OPEN_WRITE, TRUE, 0600);
-	gnome_vfs_uri_unref (target_dir_uri);
-	target_dir_uri = NULL;
-
-	if (result == GNOME_VFS_OK) {
-		gnome_vfs_unlink_from_uri (write_uri);
-		gnome_vfs_uri_unref (write_uri);
-		write_uri = NULL;
-	} else {
-		gnome_vfs_uri_unref (write_uri);
-		write_uri = NULL;
+	result = gnome_vfs_destination_is_writable (target_dir_uri);
+	if (result != GNOME_VFS_OK) {
+		handle_error (&result, progress, &error_mode, &skip);
+		gnome_vfs_uri_unref (target_dir_uri);
 		return result;
 	}
-	gnome_vfs_close (handle);
-	
+
 	/* Create an owning list of source and destination uris.
 	 * We want to be able to remove items that we decide to skip during
 	 * name conflict check.
@@ -1778,9 +1802,8 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			source_uri = source_uri->next, target_uri = target_uri->next) {
 			gboolean same_fs;
 
-			if (target_dir_uri == NULL) {
-				target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_uri->data);
-			}
+			g_assert (target_dir_uri != NULL);
+
 			result = gnome_vfs_check_same_fs_uris ((GnomeVFSURI *)source_uri->data, 
 				target_dir_uri, &same_fs);
 
@@ -1816,8 +1839,10 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			}
 
 			if (result == GNOME_VFS_OK) {
-				if (progress->progress_info->bytes_total > free_bytes) {
-					return GNOME_VFS_ERROR_NO_SPACE;
+				if (!move && progress->progress_info->bytes_total > free_bytes) {
+					result = GNOME_VFS_ERROR_NO_SPACE;
+					handle_error (&result, progress, &error_mode, &skip);
+					return result;
 				}
 			}
 			
@@ -1831,7 +1856,6 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			progress->progress_info->total_bytes_copied = 0;
 
 			if (result != GNOME_VFS_OK) {
-				gboolean skip;
 				/* don't care about any results from handle_error */
 				handle_error (&result, progress, &error_mode, &skip);
 
