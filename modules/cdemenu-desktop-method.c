@@ -105,12 +105,23 @@ open_and_find_pointer_to_menu(gchar *name)
 		file = fopen((gchar*)filename->data,"r");
 		while (fgets(line,LINESIZE,file) != NULL){
 			if (strstr(line,"Menu") == line) {
-				if ((tmp = strstr(line,name)) != NULL){
-					tmp = g_strstrip(tmp);
-					if (strcmp(tmp,name) == 0) {
+				char *temp = NULL;
+
+				temp = (strtok(line," "));
+
+				 if (!temp)
+					temp = (strtok(line,"\t"));
+
+				 while (temp) {
+					temp = g_strstrip(temp);
+					 if (temp && !(strcmp(temp,name))) {
 						found = TRUE;
 						position = ftell (file);
+						break;
 					}
+					temp = (strtok (NULL," "));
+					if (!temp)
+						temp = (strtok (NULL,"\t"));
 				}
 			}
 		}
@@ -260,6 +271,7 @@ do_open (GnomeVFSMethod *method,
 {
 	FILE *file;
 	gchar *tmp, *tmp2, *end;
+	gchar *unescaped;
 	gchar line[LINESIZE];
 	gchar *name, *title, *exec=NULL, *icon=NULL;
 	gchar *menuname = g_path_get_basename(g_path_get_dirname(uri->text));
@@ -268,26 +280,26 @@ do_open (GnomeVFSMethod *method,
 	*method_handle = (GnomeVFSMethodHandle *)dtfile;
 
 	if (strcmp(menuname,"/") == 0) menuname = "DtRootMenu";
+	unescaped = gnome_vfs_unescape_string (menuname, NULL);
 
-	name = g_path_get_basename(uri->text);
+	name =  gnome_vfs_unescape_string (g_path_get_basename(uri->text), NULL);
 	/* Strip off the .desktop if this is a .desktop file */
 	tmp = strstr(name,".desktop"); if (tmp) *tmp='\0'; tmp=NULL;
 
-	/* disabling separators for now, panel is messing things up 
-	if (strstr(name,"separator")) {
-		dtfile->contents= g_strdup("[Desktop Entry]\nName=Separator\n"
-				"Comment=Separator\nIcon=\nType=Separator\n");
-		dtfile->current=dtfile->contents;
-		return GNOME_VFS_OK;
-	}*/
-	file = open_and_find_pointer_to_menu(menuname);
-	if(!file) return GNOME_VFS_ERROR_NOT_FOUND;
+	file = open_and_find_pointer_to_menu (unescaped);
+
+	if (!file) {
+		g_free (name);
+		g_free (unescaped);
+		return GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	if (strcmp(name,".directory") == 0) {
 				char *utf8_name = NULL;
-				if (!strcmp (menuname, "DtRootMenu"))
-					title = g_strdup_printf ("\"%s\"",menuname);
-				else title = find_title_for_menu(menuname);
+
+				if (!strcmp (unescaped, "DtRootMenu"))
+					title = g_strdup_printf ("\"%s\"",unescaped);
+				else title = find_title_for_menu (unescaped);
 
 				tmp = strchr(title,'\"'); 
                                 if(!tmp) {
@@ -407,6 +419,8 @@ do_open (GnomeVFSMethod *method,
 
 	dtfile->current=dtfile->contents;
 
+	g_free (unescaped);
+
 	return GNOME_VFS_OK;
 }
 
@@ -452,12 +466,17 @@ do_open_directory (GnomeVFSMethod *method,
 		   GnomeVFSContext *context)
 {
 	FILE *file;
+	gchar* unescaped;
 	gchar *menuname = g_path_get_basename(uri->text);
 	if (strcmp(menuname,"/") == 0) menuname = "DtRootMenu";
 	
-	file = open_and_find_pointer_to_menu(menuname);
-	
+	unescaped = gnome_vfs_unescape_string (menuname, NULL);
+
+	file = open_and_find_pointer_to_menu(unescaped);
+
 	*method_handle = (GnomeVFSMethodHandle *)file;
+
+	g_free (unescaped);
 
 	return file ? GNOME_VFS_OK : GNOME_VFS_ERROR_NOT_FOUND;
 }
@@ -479,7 +498,7 @@ do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSContext *context)
 {
 	gchar line[LINESIZE];
-	gchar *tmp, *tmp2;
+	gchar *tmp, *tmp2,*escaped_str;
 	FILE *file = (FILE *)method_handle;
 	/*static int sep=0;*/
 	
@@ -500,8 +519,10 @@ do_read_directory (GnomeVFSMethod *method,
 			else if (strstr(line,"f.action") || strstr(line,"f.exec")) {
 					tmp = strchr(line,'\"'); tmp ++;
 					tmp2 = strchr(tmp,'\"'); if(tmp2) *tmp2='\0';
-					file_info->name = g_strdup_printf("%s.desktop",tmp);
+					escaped_str = gnome_vfs_escape_string (tmp);
+					file_info->name = g_strdup_printf("%s.desktop",escaped_str);
 					file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+					g_free (escaped_str);
 					break;
 			}
 			/*
@@ -517,7 +538,7 @@ do_read_directory (GnomeVFSMethod *method,
 				tmp = strstr(line,"f.menu");
    				tmp+=6;
    				tmp = g_strstrip(tmp);
-           		file_info->name = g_strdup(tmp);
+				file_info->name = gnome_vfs_escape_string (tmp);
 				file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 				break;
 			}	

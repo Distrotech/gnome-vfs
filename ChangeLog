@@ -1,3 +1,16 @@
+2003-07-11  Arvind Samptur  <arvind.samptur@wipro.com>
+
+	Reviewed by: Stephen Browne  <stephen.browne@sun.com>
+
+	* modules/cdemenu-desktop-method.c: (do_open),(do_open_directory),
+	(do_read_directory): Replace chars such as '/' and '#' with
+	appropriate % escape codes the then unescape again when used to
+	search 	the dtwmrc files.
+
+	* modules/cdemenu-desktop-method.c: (open_and_find_pointer_to_menu):
+	Do an exact match of the menu names (strcmp) from the dtwrmc file
+	and not just the first occurance of the string(strchr).
+
 2003-07-10  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-thread-pool.c (new_thread_state):
