@@ -1,3 +1,8 @@
+2004-10-19  Alexander Shopov  <ash@contact.bg>
+
+	* bg.po: Updated Bulgarian translation by
+	Rostislav Raykov <zbrox@i-space.org>
+
 2004-10-19  Adam Weinberger  <adamw@gnome.org>
 
 	* en_CA.po: Updated Canadian English translation.
@@ -15,9 +20,9 @@
 	* zh_CN.po: Updated Simplified Chinese translation.
 
 2004-10-18  David Lodge <dave@cirt.net>
-                                                                                
-        * en_GB.po: Updated British English translation.
-                                                                                
+
+	* en_GB.po: Updated British English translation.
+
 === gnome-vfs 2.8.2 ===
 
 2004-10-10  Christophe Merlet  <redfox@redfoxcenter.org>
