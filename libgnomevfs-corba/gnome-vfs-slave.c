@@ -26,8 +26,6 @@
 #endif
 
 #include <glib.h>
-#include <gnome.h>
-#include <libgnorba/gnorba.h>
 #include <orb/orbit.h>
 
 #include <sys/socket.h>
