@@ -2783,6 +2783,7 @@ vfs_module_init (const char *method_name, const char *args)
 	if (gconf_error) {
 		DEBUG_HTTP (("GConf error during client_add_dir '%s'", gconf_error->message));
 		g_error_free (gconf_error);
+		gconf_error = NULL;
 	}
 
 	gtk_signal_connect (GTK_OBJECT (gl_client), "value_changed", (GtkSignalFunc) sig_gconf_value_changed, NULL);
@@ -2793,6 +2794,7 @@ vfs_module_init (const char *method_name, const char *args)
 	if (gconf_error != NULL) {
 		DEBUG_HTTP (("GConf error during client_get '%s'", gconf_error->message));
 		g_error_free (gconf_error);
+		gconf_error = NULL;
 	} else if (proxy_value != NULL) {
 		sig_gconf_value_changed (gl_client, KEY_GCONF_USE_HTTP_PROXY, proxy_value);
 		gconf_value_free (proxy_value);

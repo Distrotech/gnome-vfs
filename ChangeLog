@@ -1,3 +1,9 @@
+2001-02-05  Michael K. Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c: (vfs_module_init):
+
+	Bug 6303: GError was potentially being re-used after being free'd
+
 2001-02-03  Michael K. Fleming  <mfleming@eazel.com>
 
 	reviewed by: <pavel@eazel.com>
