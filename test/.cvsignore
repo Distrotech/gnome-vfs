@@ -2,7 +2,7 @@
 *.lo
 .deps
 .libs
-Makefile.am
+Makefile
 Makefile.in
 test-async-corba
 test-async-directory
