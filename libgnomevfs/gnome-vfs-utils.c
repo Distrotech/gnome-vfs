@@ -52,16 +52,14 @@
 
 #define KILOBYTE_FACTOR 1024.0
 
-/* 1024 * 1024 */
-#define MEGABYTE_FACTOR 1048576.0
+#define MEGABYTE_FACTOR (1024.0 * 1024.0)
 
-/* 1024 * 1024 * 1024 */
-#define GIGABYTE_FACTOR 1073741824.0
+#define GIGABYTE_FACTOR (1024.0 * 1024.0 * 1024.0)
 
 gchar*
 gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
 {
-	if (bytes < (GnomeVFSFileSize) 1e3) {
+	if (bytes < (GnomeVFSFileSize) KILOBYTE_FACTOR) {
 		if (bytes == 1)
 			return g_strdup (_("1 byte"));
 		else
@@ -70,11 +68,11 @@ gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
 	} else {
 		gdouble displayed_size;
 
-		if (bytes < (GnomeVFSFileSize) 1e6) {
+		if (bytes < (GnomeVFSFileSize) MEGABYTE_FACTOR) {
 			displayed_size = (gdouble) bytes / KILOBYTE_FACTOR;
 			return g_strdup_printf (_("%.1fK"),
 						       displayed_size);
-		} else if (bytes < (GnomeVFSFileSize) 1e9) {
+		} else if (bytes < (GnomeVFSFileSize) GIGABYTE_FACTOR) {
 			displayed_size = (gdouble) bytes / MEGABYTE_FACTOR;
 			return g_strdup_printf (_("%.1fM"),
 						       displayed_size);
