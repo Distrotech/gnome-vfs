@@ -428,11 +428,13 @@ parse_uri_substring (const gchar *substring, GnomeVFSURI *parent)
 GnomeVFSURI *
 gnome_vfs_uri_new (const gchar *text_uri)
 {
-	return gnome_vfs_uri_new_private (text_uri, FALSE);
+	return gnome_vfs_uri_new_private (text_uri, FALSE, FALSE);
 }
 
 GnomeVFSURI *
-gnome_vfs_uri_new_private (const gchar *text_uri, gboolean allow_unknown_methods)
+gnome_vfs_uri_new_private (const gchar *text_uri,
+			   gboolean allow_unknown_methods,
+			   gboolean allow_unsafe_methods)
 {
 	GnomeVFSMethod *method;
 	GnomeVFSTransform *trans;
@@ -448,6 +450,12 @@ gnome_vfs_uri_new_private (const gchar *text_uri, gboolean allow_unknown_methods
 		return NULL;
 	}
 
+	method_scanner = get_method_string (text_uri, &method_string);
+	if (strcmp (method_string, "pipe") == 0 && !allow_unsafe_methods) {
+		g_free (method_string);
+		return NULL;
+	}
+
 	toplevel = g_new (GnomeVFSToplevelURI, 1);
 	toplevel->host_name = NULL;
 	toplevel->host_port = 0;
@@ -457,7 +465,6 @@ gnome_vfs_uri_new_private (const gchar *text_uri, gboolean allow_unknown_methods
 	uri = (GnomeVFSURI *) toplevel;
 	uri->parent = NULL;
 
-	method_scanner = get_method_string (text_uri, &method_string);
 	trans = gnome_vfs_transform_get (method_string);
 	if (trans != NULL && trans->transform) {
 		GnomeVFSContext *context;

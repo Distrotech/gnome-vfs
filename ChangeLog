@@ -1,3 +1,30 @@
+2001-05-01  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Mike Fleming <mfleming@eazel.com>
+
+	Plugged the security hole created by the "pipe" method. It's now
+	only allowed indirectly through the translate method.
+
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_new): Don't allow
+	unsafe URIs.
+	(gnome_vfs_uri_new_private): Take a parameter which determines if
+	unsafe URIs are allowed, and don't allow any "pipe" URIs unless
+	unsafe ones are explicitly allowed.
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_make_uri_canonical):
+	Allow unsafe URIs.
+	* modules/translate-method.c: (tr_handle_exec),
+	(tr_uri_translate): Call gnome_vfs_uri_new_private so that the
+	result of a translate is allowed to be an unsafe URI.
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (does_string_contain_caps):
+	Renamed from does_string_contains_caps.
+	
+	* test/test-uri.c: (main): Updated tests affected by the fact that
+	gnome_vfs_uri_new won't accept "pipe" URIs any more.
+
+	* doc/mime-data-specification.txt: Remove trailing keys.
+
 2001-05-01  Seth Nickell  <snickell@stanford.edu>
 
 	* test/mime-test-files/somepage.php:

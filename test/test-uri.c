@@ -289,33 +289,13 @@ test_uri_part (const char *input,
 
 }
 
-static void
-test_uri_to_path (const char *input_uri, 
-	          const char *expected_path) 
-{
-	GnomeVFSURI *uri;
-	const char *path;
-
-	uri = gnome_vfs_uri_new (input_uri);
-
-	path = gnome_vfs_uri_get_path (uri);
-
-	if (strcmp (path, expected_path) != 0) {
-		test_failed ("gnome_vfs_uri_get_path (%s) resulted in \"%s\" instead of \"%s\"",
-			     input_uri, path, expected_path);
-	}
-	gnome_vfs_uri_unref (uri);
-}
-
-
 /*
  * Ensure that gnome_vfs_uri_get_host_port
  * return expected results
  */  
 static void
 test_uri_host_port (const char *input, 
-	       guint expected_port
-	       )
+		    guint expected_port)
 {
 	GnomeVFSURI *uri;
 	gboolean success = FALSE;
@@ -489,8 +469,7 @@ main (int argc, char **argv)
 	test_uri_parent ("http:", "NULL");
 	test_uri_parent ("file:/", "NULL");
 	test_uri_parent ("FILE://", "NULL");
-	test_uri_parent ("man:as", "NULL");
-	test_uri_parent ("pipe:gnome-info2html2 as", "NULL");
+	test_uri_parent ("pipe:gnome-info2html2 as", "URI NULL");
 	test_uri_parent ("file:///my/document.html#fragment", "file:///my");
 
 	test_uri_is_parent_shallow ("file:///path", "file:///path/child", TRUE);
@@ -524,8 +503,7 @@ main (int argc, char **argv)
 	test_uri_has_parent ("http:", "FALSE");
 	test_uri_has_parent ("file:/", "FALSE");
 	test_uri_has_parent ("FILE://", "FALSE");
-	test_uri_has_parent ("man:as", "FALSE");
-	test_uri_has_parent ("pipe:gnome-info2html2 as", "FALSE");
+	test_uri_has_parent ("pipe:gnome-info2html2 as", "URI NULL");
 
 	/* Test uri canonicalization */
 	test_uri_to_string ("/////", "file:///", GNOME_VFS_URI_HIDE_NONE);
@@ -560,6 +538,7 @@ main (int argc, char **argv)
 	test_make_canonical ("http:///?", "http:///?");
 	test_make_canonical ("http:///&", "http:///&");
 	test_make_canonical ("http:///x", "http:///x");
+	test_make_canonical ("pipe:foo", "pipe:foo");
 	test_make_canonical ("eazel-services:///%3F", "eazel-services:///%3F");
 	test_make_canonical ("eazel-services:///%78", "eazel-services:///x");
 	test_make_canonical ("eazel-services:///?", "eazel-services:///?");
@@ -617,8 +596,6 @@ main (int argc, char **argv)
 
 	/* FIXME bugzilla.eazel.com 4102: illegal? */
 	test_uri_to_string ("file:foo", "file:foo", GNOME_VFS_URI_HIDE_NONE);
-	/* correct */
-	test_uri_to_string ("pipe:foo", "pipe:foo", GNOME_VFS_URI_HIDE_NONE);
 
 	/* FIXME bugzilla.eazel.com 3830: This turns a good path with
 	 * a redundant "/" in it into a completely different one.
@@ -652,17 +629,6 @@ main (int argc, char **argv)
 	test_uri_to_string ("http://www.eazel.com?///xxx", "http://www.eazel.com?/xxx", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_parent ("http://www.eazel.com?///xxx", "http://www.eazel.com?/");
 	test_uri_parent ("http://www.eazel.com/dir?xxx/yyy", "http://www.eazel.com/dir?xxx");
-
-	test_uri_to_path ("pipe:gnome-db2html2%20'%2Fgnome%2Fshare%2Fgnome%2Fhelp"
-			  "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml", 
-			  "gnome-db2html2%20'%2Fgnome%2Fshare%2Fgnome%2Fhelp"
-			  "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml");
-
-	test_uri_to_string ("pipe:gnome-db2html2%20'%2Fgnome%2Fshare%2Fgnome%2Fhelp"
-			    "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml", 
-			    "pipe:gnome-db2html2%20'%2Fgnome%2Fshare%2Fgnome%2Fhelp"
-			    "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml",
-			    GNOME_VFS_URI_HIDE_NONE);
 
 	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri (""), NULL);
 	VERIFY_STRING_RESULT (gnome_vfs_get_local_path_from_uri ("/#"), NULL);

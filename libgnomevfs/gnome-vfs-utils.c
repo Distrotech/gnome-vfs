@@ -568,7 +568,7 @@ gnome_vfs_make_uri_canonical (const char *original_uri_text)
 	GnomeVFSURI *uri;
 	char *result;
 
-	uri = gnome_vfs_uri_new_private (original_uri_text, TRUE);
+	uri = gnome_vfs_uri_new_private (original_uri_text, TRUE, TRUE);
 	if (uri == NULL) {
 		return NULL;;
 	} 

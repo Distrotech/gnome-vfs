@@ -459,5 +459,3 @@ found?  Is there a specified ordering or preference if multiple
 applications request different values for the same key?  There is no
 test case for additional applications installing their own mime info
 file, so we have little understanding of concrete problems]
-
-

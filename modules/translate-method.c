@@ -415,7 +415,7 @@ static GnomeVFSURI *tr_handle_exec (TranslateMethod *tm, const GnomeVFSURI * uri
 		child_result = tmpstr;
 		tmpstr = NULL;		
 
-		retval = gnome_vfs_uri_new (child_result);
+		retval = gnome_vfs_uri_new_private (child_result, FALSE, TRUE);
 
 		if ( NULL == retval ) {
 			g_warning ("Unable to make URI from child process's result '%s'", child_result);
@@ -490,7 +490,7 @@ static GnomeVFSURI *tr_uri_translate(TranslateMethod * tm,
 		translated_uri = g_strconcat (tm->pa.real_method_name, ":", 
 					      translated_text, NULL);
 
-		retval = gnome_vfs_uri_new (translated_uri);
+		retval = gnome_vfs_uri_new_private (translated_uri, FALSE, TRUE);
 
 		g_free (translated_text);
 		g_free (translated_uri);
@@ -1246,7 +1246,8 @@ GnomeVFSMethod *vfs_module_init(const char *method_name, const char *args)
 	return (GnomeVFSMethod *) retval;
 }
 
-void vfs_module_shutdown (GnomeVFSMethod * method)
+void
+vfs_module_shutdown (GnomeVFSMethod * method)
 {
 	TranslateMethod *tmethod = (TranslateMethod *) method;
 

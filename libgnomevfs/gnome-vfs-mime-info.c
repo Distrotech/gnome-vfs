@@ -140,13 +140,12 @@ static GHashTable *registered_types_user;
 static void	      reload_if_needed (void);
 static GnomeVFSResult write_back_mime_user_file (void);
 static GnomeVFSResult write_back_keys_user_file (void);
-static gboolean       does_string_contains_caps (const char *string);
 static const char *   gnome_vfs_mime_get_registered_mime_type_key (const char *mime_type, 
 								   const char *key);
 
 
 static gboolean 
-does_string_contains_caps (const char *string)
+does_string_contain_caps (const char *string)
 {
 	const char *temp_c;
 
@@ -964,7 +963,7 @@ set_value_real (const char *mime_type, const char *key, const char *value,
 		return gnome_vfs_result_from_errno ();
 	}
 
-	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+	g_return_val_if_fail (!does_string_contain_caps (mime_type), 
 			      gnome_vfs_result_from_errno ());
 	
 	if (!gnome_vfs_mime_inited) {
@@ -1061,7 +1060,7 @@ get_value_real (const char *mime_type,
 		return NULL;
 	}
 	
-	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+	g_return_val_if_fail (!does_string_contain_caps (mime_type), 
 			      NULL);
 
 	reload_if_needed ();
@@ -1132,7 +1131,7 @@ gnome_vfs_mime_type_is_known (const char *mime_type)
 		return FALSE;
 	}
 
-	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+	g_return_val_if_fail (!does_string_contain_caps (mime_type), 
 			      FALSE);
 
 	if (!gnome_vfs_mime_inited)
@@ -1203,7 +1202,7 @@ gnome_vfs_mime_get_key_list (const char *mime_type)
 	if (mime_type == NULL) {
 		return NULL;
 	}
-	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+	g_return_val_if_fail (!does_string_contain_caps (mime_type), 
 			      NULL);
 
 	if (!gnome_vfs_mime_inited)
@@ -1294,7 +1293,7 @@ gnome_vfs_mime_get_extensions_list (const char *mime_type)
 	if (mime_type == NULL) {
 		return NULL;
 	}
-	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+	g_return_val_if_fail (!does_string_contain_caps (mime_type), 
 			      NULL);
 
 
@@ -1364,7 +1363,7 @@ gnome_vfs_mime_get_extensions_string (const char *mime_type)
 	if (mime_type == NULL) {
 		return NULL;
 	}
-	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+	g_return_val_if_fail (!does_string_contain_caps (mime_type), 
 			      NULL);
 
 
