@@ -1,5 +1,13 @@
 2001-02-20  John Sullivan  <sullivan@eazel.com>
 
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet): Changed "Delete this MIME type..."
+	to "Delete This MIME Type" because that follows the
+	capitalization rules, and because there's no dialog
+	involved so the "..." is a lie.
+
+2001-02-20  John Sullivan  <sullivan@eazel.com>
+
 	reviewed by: Seth Nickell  <seth@eazel.com>
 
 	Fixed various small capplet bugs while pondering the
