@@ -1,3 +1,14 @@
+2001-02-28  Rebecca Schulman  <rebecka@eazel.com>
+	Fix bugzilla.eazel.com bug 7093
+
+	reviewed by: Aaron Brick <aaron@eazel.com>
+
+	* data/mime/gnome-vfs.applications:
+	* data/mime/gnome-vfs.keys.in:
+	Remove gnorpm from the list of applications,
+	since it doesn't actually open rpm files when
+	they are passed as arguments.
+
 2001-02-27  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Gene Z. Ragan  <gzr@eazel.com>

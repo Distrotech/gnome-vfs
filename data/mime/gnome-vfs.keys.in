@@ -482,12 +482,6 @@ application/x-rpm
 	_description=RPM package
 	icon_filename=gnome-pack-rpm.png
 	default_action_type=component
-	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
-	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
-	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
-	short_list_application_ids_for_novice_user_level=gnorpm
-	short_list_application_ids_for_intermediate_user_level=gnorpm
-	short_list_application_ids_for_advanced_user_level=gnorpm
 
 application/x-shar
 	_description=shell archive

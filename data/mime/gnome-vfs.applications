@@ -359,14 +359,6 @@ gnucash
 	requires_terminal=false
 	mime_types=application/qif,application/x-qw,application/x-gnucash
 
-gnorpm
-	command=gnorpm
-	name=GnoRPM
-	can_open_multiple_files=true
-	expects_uris=false
-	requires_terminal=false
-	mime_types=application/x-rpm
-
 glade
 	command=glade
 	name=Glade
