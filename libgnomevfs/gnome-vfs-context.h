@@ -25,9 +25,11 @@
 #ifndef GNOME_VFS_CONTEXT_H
 #define GNOME_VFS_CONTEXT_H
 
-typedef struct GnomeVFSContext GnomeVFSContext;
-
 #include <libgnomevfs/gnome-vfs-cancellation.h>
+
+G_BEGIN_DECLS
+
+typedef struct GnomeVFSContext GnomeVFSContext;
 
 GnomeVFSContext* gnome_vfs_context_new                   (void);
 void             gnome_vfs_context_ref                   (GnomeVFSContext *ctx);

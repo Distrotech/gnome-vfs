@@ -1,3 +1,8 @@
+2001-12-05  ERDI Gergo  <cactus@cactus.rulez.org>
+
+	* libgnomevfs/gnome-vfs-context.h: balance G_END_DECLS with
+	G_BEGIN_DECLS
+
 Sun Dec 02 11:55:57 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c, modules/programs.vfolder-info.in:
