@@ -1,3 +1,9 @@
+2000-08-07  Rebecca Schulman  <rebecka@eazel.com>
+
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-types.h:
+	added a new error message GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
+
 2000-08-07  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-utils.c: Do not escape `?', `&', or `=' in
