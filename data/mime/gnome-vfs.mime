@@ -393,6 +393,8 @@ model/vrml
 	ext: wrl
 
 
+text/abiword
+	ext: abw
 
 text/bib
 	ext: bib

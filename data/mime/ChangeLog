@@ -1,3 +1,7 @@
+2001-01-30  Kenneth Christiansen  <kenneth@gnu.org>
+
+	* gnome-vfs.mime: add abiword abw files.
+
 2001-01-26  Aaron Brick  <aaron@eazel.com>
 
 	* renamed realplayer executable "realplay"
