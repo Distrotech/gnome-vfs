@@ -1,3 +1,15 @@
+2001-05-14  Seth Nickell  <snickell@stanford.edu>
+
+	* gnome-vfs-mime-magic:
+
+	Add more flexible checks for script files to handle things like
+	'#! /bin/sh'.
+	
+	* gnome-vfs.applications:
+
+	Change GIMP to not allow URIs. This seems to malfunction on
+	many copies of the GIMP in the file:// case.
+
 2001-05-01  Seth Nickell  <snickell@stanford.edu>
 
 	* data/mime/gnome-vfs-mime-magic:
