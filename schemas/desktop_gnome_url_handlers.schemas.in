@@ -239,7 +239,41 @@
        <long>True if the program to handle this URL should be run in a terminal.</long>
      </locale>
    </schema>
-   
+
+<schema>   
+     <key>/schemas/desktop/gnome/url-handlers/aim/enabled</key>
+     <applyto>/desktop/gnome/url-handlers/aim/enabled</applyto>
+     <owner>gnome</owner>
+     <type>bool</type>
+     <default>true</default>
+     <locale name="C">
+       <short>Handle aim URLs</short>
+       <long>Set to true to have a program specified in "command" handle aim URLs.</long>
+     </locale>
+   </schema>
+   <schema>
+     <key>/schemas/desktop/gnome/url-handlers/aim/command</key>
+     <applyto>/desktop/gnome/url-handlers/aim/command</applyto>
+     <owner>gnome</owner>
+     <type>string</type>
+     <default>gaim-remote uri "%s"</default>
+     <locale name="C">
+       <short>aim URL handler</short>
+       <long></long>
+     </locale>
+   </schema>
+   <schema>
+     <key>/schemas/desktop/gnome/url-handlers/aim/need-terminal</key>
+     <applyto>/desktop/gnome/url-handlers/aim/need-terminal</applyto>
+     <owner>gnome</owner>
+     <type>bool</type>
+     <default>false</default>
+     <locale name="C">
+       <short>Run program in terminal</short>
+       <long>True if the program to handle this URL should be run in a terminal.</long>
+     </locale>
+   </schema>
+
    <schema>   
      <key>/schemas/desktop/gnome/url-handlers/callto/enabled</key>
      <applyto>/desktop/gnome/url-handlers/callto/enabled</applyto>
