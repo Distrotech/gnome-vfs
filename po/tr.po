@@ -1,0 +1,460 @@
+# KTranslator Generated File
+
+# KTranslator Generated File
+
+# -------------------------------------------------------
+# Copyright (C) 1999 Free Software Foundation, Inc.
+# Fatih Demir <kabalak@gmx.net>, 1999.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-vfs December-1999-CVS\n"
+"POT-Creation-Date: 1999-12-22 16:13+0100\n"
+"PO-Revision-Date: 1999-12-22 16:12+0100\n"
+"Last-Translator: Fatih Demir <kabalak@gmx.net>\n"
+"Language-Team: Turkish Gnome Tranlation Team <gnotrap@gmx.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-9\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1394
+#, c-format
+msgid "%s\n"
+msgstr "%s\n"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:964
+#, c-format
+msgid "***SLAVE*** Notifying `%s'\n"
+msgstr "***TABAN*** `%s''yi tanýtýyorum \n"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:592
+msgid "/tmp/gnome-vfs-XXXXXX"
+msgstr "/tmp/gnome-vfs-XXXXXX"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:104
+msgid ": "
+msgstr ": "
+
+#: ../libgnomevfs/gnome-vfs-result.c:55
+msgid "Access denied"
+msgstr "Izin yok"
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:61
+msgid "Ack needed: lock notify ack."
+msgstr "Ack lazým : haber ack'ini kilitliyorum ."
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:63
+msgid "Ack needed: signaling condition."
+msgstr "Ack lazým : ortamý arýtýyorum ."
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:65
+msgid "Ack needed: unlocking notify ack."
+msgstr "Ack lazým : haber ack'inin kilidinin açýyorum ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:418
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:435
+msgid "All ok."
+msgstr "Herþey yolunda ."
+
+#: ../libgnomevfs/gnome-vfs-result.c:48
+msgid "Bad file handle"
+msgstr "Bozuk dosya kontrolü"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:305
+msgid "Broken"
+msgstr "Kýrýk"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:657
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr "%s : `%s''ye baðlantýlarý kabul edemiyorum"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1315
+msgid "Cannot activate POA manager."
+msgstr "POA yöneticisini iþletemiyorum ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:628
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr "%s : `%s''yi baðlayamadým "
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:420
+msgid "Cannot create job slave."
+msgstr "Iþlem tabanýný yaratamaým ."
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:645
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:733
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "%s: GIOChannel açmak için bir boruç yaratamadým "
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:393
+#, c-format
+msgid "Cannot create pipe for the new GnomeVFSJob: %s"
+msgstr "%s : Yeni bir GnomeVFSJob için boruç  yaratamadým"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:610
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr "%s : Socket'i yaratamadým"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:597
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr "Geçici `%s' dosyasýný yaratamadým"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1390
+msgid "Cannot extract IOR."
+msgstr "IOR'u ayýramadým "
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1301
+msgid "Cannot initialize CORBA."
+msgstr "CORBA'yý iþletemedim ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:635
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr "%s : `%s''yi dinleyemedim "
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1350
+#, c-format
+msgid "Cannot open file descriptor %d."
+msgstr "Dosya çevircisini ( %d ) açamadým ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1308
+msgid "Cannot resolve initial reference to RootPOA."
+msgstr "RootPOA için ana referansý çözemedim ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1383
+msgid "Cannot setup Request object."
+msgstr "Istek objesini kuramadým ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:569
+#, c-format
+msgid "Cannot write: %s"
+msgstr "%s'yi yazamadým "
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:59
+msgid "Checking if ack is needed."
+msgstr "ack gerekli mi diye kontrol ediyorum ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:670
+msgid "Closing file descriptors.\n"
+msgstr "Dosya çeviricilerini kapatýyorum .\n"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:663
+msgid "Connection established, now performing operation.\n"
+msgstr "Baðlantý saðlandý ,¨imdi iþlem yapýlacak .\n"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:420
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:705
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:733
+#, c-format
+msgid "Couldn't open file: %s"
+msgstr "%s'yi açamadým"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:413
+msgid "Creating FileHandle object"
+msgstr "Dosya kontrol objesini yaratýyorum"
+
+#: ../libgnomevfs/gnome-vfs-result.c:46
+msgid "Data corrupted"
+msgstr "Bu bilgi bana tatsýz geldi "
+
+#: ../libgnomevfs/gnome-vfs-result.c:71
+msgid "Directory busy"
+msgstr "Dizin kullanýmda"
+
+#: ../libgnomevfs/gnome-vfs-result.c:72
+msgid "Directory not empty"
+msgstr "Dizin boþ deðil"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:303
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:134
+msgid "Done"
+msgstr "Oldu"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:504
+msgid "Done reading file."
+msgstr "Dosya okundu ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:550
+msgid "Done writing file."
+msgstr "Dosya yazýldý ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:333
+msgid "Dying."
+msgstr "Ölüyorum ..."
+
+#: ../libgnomevfs/gnome-vfs-result.c:57
+msgid "End of file"
+msgstr "Dosya bitimi"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:433
+#, c-format
+msgid "Error %d"
+msgstr "%d hatasý oluþtu "
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:498
+#, c-format
+msgid "Error reading: %s"
+msgstr "%s'yi okurken hata oluþtu "
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:84
+msgid "Error writing to the wakeup GnomeVFSJob channel."
+msgstr "GnomeVFSJob kanalýný uyandýrmak için yazým yapamadým ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:520
+#, c-format
+msgid "Error writing: %s"
+msgstr "%s'yi yazamadým "
+
+#: ../libgnomevfs/gnome-vfs-result.c:61
+msgid "File exists"
+msgstr "Dosya zaten var"
+
+#: ../libgnomevfs/gnome-vfs-result.c:40
+msgid "File not found"
+msgstr "Dosya bulunamadý"
+
+#: ../libgnomevfs/gnome-vfs-result.c:53
+msgid "File not open"
+msgstr "Dosya açýk deðil (?)"
+
+#: ../libgnomevfs/gnome-vfs-result.c:49
+msgid "File too big"
+msgstr "Dosya fazlasýndan büyük"
+
+#: ../libgnomevfs/gnome-vfs-result.c:47
+msgid "Format not valid"
+msgstr "Geçerli formatta deðil"
+
+#: ../libgnomevfs/gnome-vfs-init.c:52
+msgid "GNOME VFS already initialized."
+msgstr "Gnome VFS çoktaan iþletildi ."
+
+#: ../libgnomevfs/gnome-vfs-result.c:41
+msgid "Generic error"
+msgstr "Genel bir hata oluþtu"
+
+#: ../libgnomevfs/gnome-vfs-result.c:68
+msgid "Host has no address"
+msgstr "Bu yuvanýn adresi yok"
+
+#: ../libgnomevfs/gnome-vfs-result.c:67
+msgid "Host name not valid"
+msgstr "Geçersiz yuva"
+
+#: ../libgnomevfs/gnome-vfs-result.c:66
+msgid "Host not found"
+msgstr "Yuva bulunamadý"
+
+#: ../libgnomevfs/gnome-vfs-result.c:45
+msgid "I/O error"
+msgstr "I/O hatasý"
+
+#: ../libgnomevfs/gnome-vfs-result.c:42
+msgid "Internal error"
+msgstr "Aramýzda bir hata var "
+
+#: ../libgnomevfs/gnome-vfs-result.c:52
+msgid "Invalid URI"
+msgstr "Geçersiz URI"
+
+#: ../libgnomevfs/gnome-vfs-result.c:43
+msgid "Invalid parameters"
+msgstr "Geçersiz seçenekler"
+
+#: ../libgnomevfs/gnome-vfs-result.c:64
+msgid "Is a directory"
+msgstr "Dizin idir"
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:114
+msgid "Locking notification lock"
+msgstr "Haber etme kilidini kilitliyorum (?)"
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:111
+msgid "Locking wakeup channel"
+msgstr "Uyandýrma kanalýný kilitliyorum"
+
+#: ../libgnomevfs/gnome-vfs-result.c:69
+msgid "Login failed"
+msgstr "Giriþ baþarýsýz oldu"
+
+#: ../libgnomevfs/gnome-vfs-result.c:62
+msgid "Looping links encountered"
+msgstr "Dönüþümlü baðlar bulundu"
+
+#: ../libgnomevfs/gnome-vfs-result.c:76
+msgid "Name too long"
+msgstr "Isim fazalsýndan uzun"
+
+#: ../libgnomevfs/gnome-vfs-result.c:39
+msgid "No error"
+msgstr "Hata yok"
+
+#: ../libgnomevfs/gnome-vfs-result.c:50
+msgid "No space left on device"
+msgstr "Kullanýlacak yer yok (disk,dolu disk ..)"
+
+#: ../libgnomevfs/gnome-vfs-result.c:58
+msgid "Not a directory"
+msgstr "Dizin deðil"
+
+#: ../libgnomevfs/gnome-vfs-result.c:65
+msgid "Not enough memory"
+msgstr "Yeterince bellek yok"
+
+#: ../libgnomevfs/gnome-vfs-result.c:75
+msgid "Not on the same file system"
+msgstr "Ayný dosya yönetim sisteminde deðil"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:297
+msgid "Notify close"
+msgstr "Kapatýlýþtan haberdar et"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1373
+#, c-format
+msgid "Notify interface for `%s' not found."
+msgstr "`%S' için haber etme \"yolu\" bulunamadý ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:900
+msgid "Notifying done"
+msgstr "Haber edildi"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:896
+msgid "Notifying load_directory"
+msgstr "load_directory haberi verildi"
+
+#: ../libgnomevfs/gnome-vfs-result.c:54
+msgid "Open mode not valid"
+msgstr "Açma þekli geçerli deðil"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:406
+msgid "Opening file"
+msgstr "Dosyayý açýyorum"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:700
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:728
+msgid "Opening file for channel"
+msgstr "Kanal için dosyayý açýyorum"
+
+#: ../libgnomevfs/gnome-vfs-result.c:70
+msgid "Operation cancelled"
+msgstr "Iþlem iptal edildi"
+
+#: ../libgnomevfs/gnome-vfs-result.c:59
+msgid "Operation in progress"
+msgstr "Iþlem yapýlýyor"
+
+#: ../libgnomevfs/gnome-vfs-result.c:60
+msgid "Operation interrupted"
+msgstr "Iþlem durduruldu"
+
+#: ../libgnomevfs/gnome-vfs-result.c:63
+msgid "Operation not permitted"
+msgstr "Iþlem için iznin yok"
+
+#: ../libgnomevfs/gnome-vfs-result.c:74
+msgid "Read only file system"
+msgstr "Salt okunur dosya yönetim sistemi"
+
+#: ../libgnomevfs/gnome-vfs-result.c:51
+msgid "Read-only file system"
+msgstr "Salt okunur dosya yönetim sistemi"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:348
+msgid "Requested to die."
+msgstr "Ölmem istendi ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:390
+msgid "Requested to reset."
+msgstr "Yeniden baþlamam istendi ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:363
+msgid "Requested to stop."
+msgstr "Durmam istendi ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:374
+msgid "Resetting."
+msgstr "Yeniden baþlýyorum ."
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1306
+msgid "RootPOA"
+msgstr "RootPOA"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:425
+msgid "Sending notification"
+msgstr "Haber gönderiyorum"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:641
+#, c-format
+msgid "Socket `%s' ready to accept connections...\n"
+msgstr "`%s' socketi baðlantýlarý kabul etmeye hazýr ...\n"
+
+#: ../libgnomevfs/gnome-vfs-result.c:73
+msgid "Too many links"
+msgstr "Çok fazla bað var"
+
+#: ../libgnomevfs/gnome-vfs-result.c:56
+msgid "Too many open files"
+msgstr "Çok fazla açýk dosya var"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1163
+#, c-format
+msgid "Unknown GnomeVFSXferProgressStatus %d"
+msgstr "Tanýnmayan GnomeVFSXferProgressStatus'u %d"
+
+#: ../libgnomevfs/gnome-vfs-result.c:133
+msgid "Unknown error"
+msgstr "Tanýnmayan hata"
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:374
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:1080
+#, c-format
+msgid "Unknown job ID %d"
+msgstr "Tanýnmayan iþlem numarasý %d"
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:130
+msgid "Unlock notify ack lock"
+msgstr "Haber ack kilidini açtým"
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:143
+msgid "Unlocking access lock"
+msgstr "Eriþim kilidini açýyorum"
+
+#: ../libgnomevfs/gnome-vfs-result.c:44
+msgid "Unsupported operation"
+msgstr "Desteklenmeyen iþlem"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1339
+#, c-format
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "Kullaným : %s <ior> [ <ior_fd> ] \n"
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:125
+msgid "Wait notify condition"
+msgstr "Haber gönderilmesini bekle"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:652
+#, c-format
+msgid "Waiting for connection on `%s'.\n"
+msgstr "`%s''de baðlantýyý bekle .\n"
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:79
+msgid "Wake up!"
+msgstr "Uyan !"
+
+#: ../libgnomevfs-corba/gnome-vfs-slave.c:1348
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:82
+msgid "a"
+msgstr "a"
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:98
+msgid "lock channel"
+msgstr "kanalý kitle"
+
+#: ../libgnomevfs-pthread/gnome-vfs-job.c:69
+msgid "unlocking wakeup channel."
+msgstr "uyandýrma kanalýnýn kilidini aç ."
