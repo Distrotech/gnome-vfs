@@ -1902,7 +1902,25 @@ do_read (GnomeVFSMethod *method,
 	return result;
 }
 
+
 /* Directory handling - WebDAV servers only */
+static void
+process_resourcetype_node (GnomeVFSFileInfo *file_info, xmlNodePtr node)
+{
+	xmlNodePtr it;
+	
+	file_info->valid_fields |= 
+		GNOME_VFS_FILE_INFO_FIELDS_TYPE;
+	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+	
+	for (it = node->xmlChildrenNode; it != NULL; it = it->next) {
+		if ((!xmlIsBlankNode (it))
+		    && (it->name != NULL)
+		    && (strcmp (it->name, "collection") == 0)) {
+			file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+		}
+	}
+}
 
 static void
 process_propfind_propstat (xmlNodePtr node, 
@@ -1950,14 +1968,7 @@ process_propfind_propstat (xmlNodePtr node,
 				node_content_xml = NULL;
 			}
 			if (strcmp ((char *)l->name, "resourcetype") == 0) {
-				file_info->valid_fields |= 
-					GNOME_VFS_FILE_INFO_FIELDS_TYPE;
-				file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-				
-				if (l->xmlChildrenNode && l->xmlChildrenNode->name 
-				    && strcmp ((char *)l->xmlChildrenNode->name, "collection") == 0) {
-					file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-				}
+				process_resourcetype_node (file_info, l);
 			}
 			l = l->next;
 		}
@@ -2236,7 +2247,20 @@ make_propfind_request (HttpFileHandle **handle_return,
 		result = GNOME_VFS_ERROR_GENERIC;
 		goto cleanup;
 	}
-	
+
+#if 0
+	/* Enable this block of code if you want to dump the xml answer
+	 * sent by the server 
+	 */
+	{
+		xmlChar *query_result;
+		int result_len;
+		xmlDocDumpMemory (doc, &query_result, &result_len);
+		g_print ("propfind query result: %s\n", query_result);
+		g_free (query_result);
+	}	
+#endif
+
 	cur = doc->xmlRootNode;
 	if (strcmp ((char *)cur->name, "multistatus") != 0) {
 		DEBUG_HTTP (("Couldn't find <multistatus>.\n"));

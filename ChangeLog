@@ -1,3 +1,9 @@
+2003-11-12  Christophe Fergeau  <teuf@gnome.org>
+
+	* modules/http-method.c: ignore non significant white spaces in webdav
+	messages. Fixes #118773. It may break some webdav servers, please file
+	bugs or email me if you encounter some webdav breakage.
+
 2003-11-11  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-volume.c (gnome_vfs_volume_handles_trash):
