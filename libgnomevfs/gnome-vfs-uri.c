@@ -49,8 +49,8 @@
 
    This function implements the following regexp: (whitespace for clarity)
 
-   ( ( ([^:@]*) (:[^@]*)? @ )? ([^/:]+) (:([0-9]*)?) )?  (/.*)?
-   ( ( ( user ) (  pw  )?   )?   (host)    (port)?   )? (path <return value>)?
+   ( ( ([^:@/]*) (:[^@/]*)? @ )? ([^/:]+) (:([0-9]*)?) )?  (/.*)?
+   ( ( ( user  ) (  pw  )?   )?   (host)    (port)?   )? (path <return value>)?
 
   It returns NULL if neither <host> nor <path> could be matched.
 
@@ -93,7 +93,7 @@ typedef struct {
 
 UriStrspnSet uri_strspn_sets[] = {
 	{":@" GNOME_VFS_URI_PATH_STR, FALSE, ""},
-	{"@", FALSE, ""},
+	{"@" GNOME_VFS_URI_PATH_STR, FALSE, ""},
 	{":" GNOME_VFS_URI_PATH_STR, FALSE, ""}
 };
 
@@ -140,6 +140,7 @@ split_toplevel_uri (const gchar *path, guint path_len,
 	const char *path_end;
 	const char *cur_tok_start;
 	const char *cur;
+	const char *next_delimiter;
 	char *ret;
 	gboolean success;
 
@@ -166,10 +167,17 @@ split_toplevel_uri (const gchar *path, guint path_len,
 	cur_tok_start = path;
 	cur = uri_strspn_to (cur_tok_start, URI_DELIMITER_ALL_SET, path_end);
 
+	if (cur != NULL) {
+		next_delimiter = uri_strspn_to (cur, URI_DELIMITER_USER_SET, path_end);
+	} else {
+		next_delimiter = NULL;
+	}
+	
 	if (cur != NULL
 		&& (*cur == '@'
-		    || uri_strspn_to (cur, URI_DELIMITER_USER_SET, path_end) != NULL)) {
-		/* *cur == ':' or '@' and string contains @ */
+		    || (next_delimiter != NULL && *next_delimiter != '/' ))) {
+
+		/* *cur == ':' or '@' and string contains a @ before a / */
 
 		if (uri_strlen_to (cur_tok_start, cur) > 0) {
 			*user_return = uri_strdup_to (cur_tok_start,cur);

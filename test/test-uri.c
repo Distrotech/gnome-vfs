@@ -441,6 +441,13 @@ main (int argc, char **argv)
 	test_uri_host_port ("http://yakk:womble@www.eazel.com:42/blah/", 42);
 	test_uri_part ("http://yakk:womble@www.eazel.com:42/blah/", "/blah/", gnome_vfs_uri_get_path );
 
+	test_uri_part ("http://foo.com/query?email=user@host", "/query?email=user@host", gnome_vfs_uri_get_path);
+	test_uri_part ("http://user@host:42/query?email=user@host", "host", gnome_vfs_uri_get_host_name);
+	test_uri_part ("http://@:/path", "NULL", gnome_vfs_uri_get_host_name);
+	test_uri_part ("http://@::/path", "NULL", gnome_vfs_uri_get_host_name);
+	test_uri_part ("http://::/path", "NULL", gnome_vfs_uri_get_host_name);
+	test_uri_part ("http://@pass/path", "pass", gnome_vfs_uri_get_host_name);
+
 	test_uri_parent ("", "URI NULL");
 	test_uri_parent ("http://www.eazel.com", "NULL");
 	test_uri_parent ("http://www.eazel.com/", "NULL");
@@ -506,6 +513,8 @@ main (int argc, char **argv)
 	test_make_canonical ("eazel-services:///?", "eazel-services:///?");
 	test_make_canonical ("eazel-services:///&", "eazel-services:///&");
 	test_make_canonical ("eazel-services:///x", "eazel-services:///x");
+
+	test_make_canonical ("http://www.eazel.com/query?email=email@eazel.com", "http://www.eazel.com/query?email=email@eazel.com");
 
 	/* test proper case-sensitivity handling */
 	test_uri_match ("http://www.zoo.com/ed", "HTTP://WWW.ZOO.COM/ed", TRUE);

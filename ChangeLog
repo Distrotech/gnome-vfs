@@ -1,3 +1,13 @@
+2001-02-20  Mike Fleming  <mfleming@eazel.com>
+
+	reviewed by: Pavel <pavel@eazel.com>
+
+	Bug 6770 -- URI's with @'s in the path break split_toplevel_uri
+	Fixed and added test cases
+
+	* libgnomevfs/gnome-vfs-uri.c: (split_toplevel_uri):
+	* test/test-uri.c: (main):
+
 2001-02-20  Pavel  <pavel@eazel.com>
 
 	reviewed by: Rebecca Schulman <rebecka@eazel.com>
