@@ -91,6 +91,10 @@ gnome_vfs_result_from_errno (void)
 		return GNOME_VFS_ERROR_NOTPERMITTED;
 	case EEXIST:
 		return GNOME_VFS_ERROR_FILEEXISTS;
+	case ENOMEM:
+		return GNOME_VFS_ERROR_NOMEM;
+	case EISDIR:
+		return GNOME_VFS_ERROR_ISDIRECTORY;
 	default:
 		return GNOME_VFS_ERROR_GENERIC;
 	}
