@@ -1,3 +1,8 @@
+2000-07-14  Mathieu Lacage <mathieu@eazel.com>
+
+	* mime-type-capplet/Makefile.am: add OAF_CFLAGS and OAF_LIBS
+	where it is needed to make it compile with strange prefixes.
+
 2000-07-13  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 1158, GnomeVFSMimeHandlers code needs error handling
