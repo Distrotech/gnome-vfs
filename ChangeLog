@@ -89,6 +89,15 @@
 	callback is done. Remove notification result fields from the different
 	op structures.
 
+2001-01-09  Aaron Brick <aaron@eazel.com>
+
+	* added MIME description guidelines in
+	doc/mime-descriptions-guidelines.txt, superceding old rules
+	in data/mime/gnome-vfs.keys.
+
+	* referred to the new file twice in mime-data-specification.txt
+	and in the comments of data/mime/gnome-vfs.keys.
+
 2001-01-08  Ian McKellar  <ian@eazel.com>
 
 	reviewed by: mfleming@eazel.com

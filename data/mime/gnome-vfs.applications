@@ -100,7 +100,7 @@ staroffice
 	can_open_multiple_files=true
 	can_open_uris=false
 	requires_terminal=false
-	mime_types=application/x-staroffice-presentation,application/x-staroffice-spreadsheet,application/x-staroffice-words,text/abiword,application/vnd.ms-excel,application/rtf,application/msword,application/mspowerpoint
+	mime_types=application/x-staroffice-presentation,application/x-staroffice-spreadsheet,application/x-staroffice-words,text/abiword,application/x-abiword,application/vnd.ms-excel,application/rtf,application/msword,application/mspowerpoint
 
 abiword
 	command=abiword
@@ -108,7 +108,7 @@ abiword
 	can_open_multiple_files=true
 	can_open_uris=false
 	requires_terminal=false
-	mime_types=text/*,text/abiword,application/rtf,application/msword
+	mime_types=text/*,text/abiword,application/x-abiword,application/rtf,application/msword
 
 xpdf
 	command=xpdf
@@ -277,3 +277,12 @@ acrobat
 	can_open_uris=false
 	requires_terminal=false
 	mime_types=application/pdf
+
+xfig
+	command=xfig
+	name=xfig
+	can_open_multiple_files=false
+	can_open_uris=false
+	requires_terminal=false
+	mime_types=image/x-xfig
+

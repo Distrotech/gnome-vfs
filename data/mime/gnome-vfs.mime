@@ -89,9 +89,6 @@ application/x-cgi
 application/x-chess-pgn
 	ext: pgn
 
-application/x-class-file
-	ext: class
-
 application/x-compress
 	ext: Z
 
@@ -152,6 +149,9 @@ application/x-gzip
 
 application/x-hdf
 	ext: hdf
+
+application/x-java-byte-code
+	ext: class
 
 application/x-kde-app-info
 	ext: kdelnk
@@ -225,7 +225,7 @@ application/x-troff-man-compressed
 	regex: ([^0-9]|^[^\.]*)\.([1-9][a-z]?|n)\.g?[Zz]$
 
 application/x-unix-archive
-	ext: a sa
+	ext: a
 
 application/x-ustar
 	ext: ustar
@@ -262,7 +262,7 @@ audio/x-mp3
 audio/x-mpegurl
         ext: m3u
 
-audio/x-pn-realaudio
+audio/x-real-audio
 	ext: rm ra ram
 
 audio/x-s3m
@@ -511,6 +511,9 @@ text/x-troff-man
 text/x-troff-me
 	ext: me
 
+text/x-troff-mm
+	ext: mm
+
 text/x-troff-ms
 	ext: ms
 
@@ -532,7 +535,7 @@ video/quicktime
 	ext: mov qt
 
 video/x-anim
-        ext: anim5 anim7
+	regex: *.anim[1-9j]
 
 video/x-flc
 	ext: flc

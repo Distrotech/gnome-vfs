@@ -1,3 +1,14 @@
+2001-01-15  Aaron Brick  <aaron@eazel.com>
+
+	* revised the english MIME descriptions according to the new rules.
+
+	* added alternate abiword type application/x-abiword
+	* standardized translation strategy for "README"
+	* obsoleted application/x-class-file in favor of /x-java-byte-code
+	* standardized nomenclature for references to troff macro sets
+	* removed *.sa mapping to application/x-unix-archive
+	* added file regex to map different kinds of ANIM animations
+
 2000-12-28  Aaron Brick  <aaron@eazel.com>
 
 	* renamed several MIME types to reflect their compressed nature.
