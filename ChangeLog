@@ -1,5 +1,17 @@
 2000-12-11  Mike Fleming  <mfleming@eazel.com>
 
+	* modules/http-method.c: (create_handle), (make_propfind_request),
+	(resolve_409):
+
+	Changed all protocol-related error returns to GNOME_VFS_ERROR_GENERIC
+	(they were CORRUPTED_DATA which was clearly wrong)
+
+	Fixed bug in resolve_409 that didn't handle URI's that have no parents.
+
+	Got rid of a FIXME that had been fixed.
+	
+2000-12-11  Mike Fleming  <mfleming@eazel.com>
+
 	* libgnomevfs/gnome-vfs-result.c:
 	* libgnomevfs/gnome-vfs-types.h:
 	* modules/http-method.c: (do_make_directory), (do_move):

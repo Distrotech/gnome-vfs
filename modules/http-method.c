@@ -1127,7 +1127,8 @@ create_handle (HttpFileHandle **handle_return,
 	}
 
 	if (! parse_status (header_string->str, &server_status)) {
-		result = GNOME_VFS_ERROR_NOT_FOUND; /* FIXME bugzilla.eazel.com 1161 */
+		/* An unparsable status line is fatal */
+		result = GNOME_VFS_ERROR_GENERIC;
 		goto error;
 	}
 
@@ -2142,7 +2143,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	doc = parserContext->myDoc;
 	if (doc == NULL) {
-		result = GNOME_VFS_ERROR_CORRUPTED_DATA;
+		result = GNOME_VFS_ERROR_GENERIC;
 		goto cleanup;
 	}
 
@@ -2150,7 +2151,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	if (strcmp((char *)cur->name, "multistatus") != 0) {
 		DEBUG_HTTP(("Couldn't find <multistatus>.\n"));
-		result = GNOME_VFS_ERROR_CORRUPTED_DATA;
+		result = GNOME_VFS_ERROR_GENERIC;
 		goto cleanup;
 	}
 
@@ -2183,7 +2184,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	if (!found_root_node_props) {
 		DEBUG_HTTP (("Failed to find root request node properties during propfind"));
-		result = GNOME_VFS_ERROR_CORRUPTED_DATA;
+		result = GNOME_VFS_ERROR_GENERIC;
 		goto cleanup;
 	}
 
@@ -2828,18 +2829,21 @@ resolve_409 (GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *context)
 	file_info = gnome_vfs_file_info_new ();
 	parent_dest_uri = gnome_vfs_uri_get_parent (uri);
 
-	result = do_get_file_info (method,
-			parent_dest_uri,
-			file_info,
-			GNOME_VFS_FILE_INFO_DEFAULT,
-			context);
+	if (parent_dest_uri != NULL) {
+		result = do_get_file_info (method,
+				parent_dest_uri,
+				file_info,
+				GNOME_VFS_FILE_INFO_DEFAULT,
+				context);
 
-	gnome_vfs_file_info_unref (file_info);
-	file_info = NULL;
+		gnome_vfs_file_info_unref (file_info);
+		file_info = NULL;
 
-	gnome_vfs_uri_unref (parent_dest_uri);
-	parent_dest_uri = NULL;
-
+		gnome_vfs_uri_unref (parent_dest_uri);
+		parent_dest_uri = NULL;
+	} else {
+		result = GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	if (result == GNOME_VFS_OK) {
 		/* The destination filename contains characters that are not allowed
