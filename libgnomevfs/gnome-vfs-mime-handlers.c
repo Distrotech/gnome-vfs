@@ -476,6 +476,7 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 		supertype_additions = NULL;
 		supertype_removals = NULL;
 	}
+	g_free (supertype);
 
 
 	/* compute list modified by delta */

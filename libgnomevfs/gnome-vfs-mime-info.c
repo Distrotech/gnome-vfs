@@ -1087,15 +1087,15 @@ get_value_real (const char *mime_type,
 	
 	value = get_value_from_hash_table (user_hash_table, generic_type, key);
 	if (value != NULL) {
+		g_free (generic_type);
 		return value;
 	}
 	
 	value = get_value_from_hash_table (system_hash_table, generic_type, key);
+	g_free (generic_type);
 	if (value != NULL) {
 		return value;
 	}
-	
-	g_free (generic_type);
 
 	return NULL;
 }

@@ -1,3 +1,11 @@
+2001-04-14  Dan Winship  <danw@ximian.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (get_value_real): Plug a
+	memory leak.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_get_short_list_applications): Ditto.
+
 2001-04-14  Maciej Stachowiak  <mjs@eazel.com>
 
 	* modules/translate-method.c (tr_uri_translate): Be less tricky so
