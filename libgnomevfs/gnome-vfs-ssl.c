@@ -133,6 +133,8 @@ gnome_vfs_ssl_enabled (void)
 
 #endif
 
+#if defined(HAVE_OPENSSL) || defined(HAVE_GNUTLS)
+
 static GnomeVFSResult
 handle_ssl_read_write (int fd, int error, struct timeval *timeout,
 		       GnomeVFSCancellation *cancellation)
@@ -187,6 +189,8 @@ handle_ssl_read_write (int fd, int error, struct timeval *timeout,
 	}
 	return GNOME_VFS_ERROR_INTERNAL;
 }
+
+#endif
 
 /**
  * gnome_vfs_ssl_create:

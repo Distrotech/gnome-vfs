@@ -1,5 +1,11 @@
 2004-09-03  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-ssl.c (handle_ssl_read_write):
+	Fix build without openssl/gnutls. (Bug 151632)
+	Patch from Morten Welinder.
+
+2004-09-03  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	* libgnomevfs/gnome-vfs-unix-mounts.c:
 	Fix build on NetBSD. (#151677)
