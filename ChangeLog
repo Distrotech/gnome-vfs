@@ -1,3 +1,20 @@
+2003-02-19  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	Fix vorbis sniff change.
+	(_gnome_vfs_sniff_buffer_looks_like_text):
+	Non utf8 text sniffing.
+
+	* schemas/Makefile.am (install-data-local):
+	Don't install schemas if --disable-schemas-install was passed
+
+	* test/test-shell.c:
+	Add support for get_info_from_handle.
+
+	* modules/http-method.c (do_get_file_info_from_handle):
+	For get_info_from_handle we use the cached file info to
+	avoid re-connecting.
+
 2003-02-18  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in: 

@@ -227,6 +227,7 @@ list_commands (void)
 	printf ("File operations:\n");
 	printf (" * open <handle> <name>:   open a file\n");
 	printf (" * create <handle> <name>: create a file\n");
+	printf (" * handleinfo <handle>:    information from handle\n");
 	printf (" * close <handle>:         close a file\n");
 	printf (" * read <handle> <bytes>:  read bytes from stream\n");
 	printf (" * seek <handle> <pos>:    seek set position\n");
@@ -541,24 +542,10 @@ do_findtrash (void)
 }
 
 static void
-do_info (void)
+print_info (GnomeVFSFileInfo *info)
 {
-	char             *from;
-	GnomeVFSResult    result;
-	GnomeVFSFileInfo *info;
 	const char *mime_type;
-       struct tm *loctime;
-
-	from = get_fname ();
-
-
-	info = gnome_vfs_file_info_new ();
-	result = gnome_vfs_get_file_info (
-		from, info, GNOME_VFS_FILE_INFO_GET_MIME_TYPE);
-
-	if (show_if_error (result, "getting info on: ", from))
-		return;
-
+	struct tm *loctime;
 	fprintf (stdout, "Name: '%s'\n", info->name);
 	if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE) {
 		fprintf (stdout, "Type: ");
@@ -586,8 +573,8 @@ do_info (void)
 			break;
 		case GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK:
 			fprintf (stdout, "symlink\n");
-                       fprintf (stdout, "symlink points to: %s", 
-                                                     info->symlink_name);
+			fprintf (stdout, "symlink points to: %s", 
+				 info->symlink_name);
 			break;
 		default:
 			fprintf (stdout, "Error; invalid value");
@@ -609,18 +596,38 @@ do_info (void)
 
 	fprintf (stdout, "Mime Type: %s \n", mime_type);
         
-       loctime = localtime(&info->atime);
-       fprintf (stdout, "Last Accessed: %s", asctime(loctime));
-       loctime = localtime(&info->mtime);
-       fprintf (stdout, "Last Modified: %s", asctime(loctime));
-       loctime = localtime(&info->ctime);
-       fprintf (stdout, "Last Changed: %s", asctime(loctime));
+	loctime = localtime(&info->atime);
+	fprintf (stdout, "Last Accessed: %s", asctime(loctime));
+	loctime = localtime(&info->mtime);
+	fprintf (stdout, "Last Modified: %s", asctime(loctime));
+	loctime = localtime(&info->ctime);
+	fprintf (stdout, "Last Changed: %s", asctime(loctime));
         
-       fprintf (stdout, "uid: %d\n", info->uid);
-       fprintf (stdout, "gid: %d\n", info->gid);
+	fprintf (stdout, "uid: %d\n", info->uid);
+
+	fprintf (stdout, "gid: %d\n", info->gid);
 	fprintf (stdout, "\n");
 	/* FIXME bugzilla.eazel.com 2800: hack here; should dump them all */
-	
+}
+
+static void
+do_info (void)
+{
+	char             *from;
+	GnomeVFSResult    result;
+	GnomeVFSFileInfo *info;
+
+	from = get_fname ();
+
+
+	info = gnome_vfs_file_info_new ();
+	result = gnome_vfs_get_file_info (
+		from, info, GNOME_VFS_FILE_INFO_GET_MIME_TYPE);
+
+	if (show_if_error (result, "getting info on: ", from))
+		return;
+
+	print_info (info);
 	gnome_vfs_file_info_unref (info);
 }
 
@@ -876,6 +883,27 @@ do_close (void)
 	close_file (get_handle ());
 }
 
+static void
+do_handleinfo (void)
+{
+	const char *handlename = get_handle ();
+	GnomeVFSResult    result;
+	GnomeVFSHandle *handle = lookup_file (handlename);
+	GnomeVFSFileInfo *info;
+
+	if (!handle)
+		return;
+
+	info = gnome_vfs_file_info_new ();
+	result = gnome_vfs_get_file_info_from_handle (handle, info,
+						      GNOME_VFS_FILE_INFO_GET_MIME_TYPE);
+
+	if (show_if_error (result, "getting info from handle: ", handlename))
+		return;
+
+	print_info (info);
+	gnome_vfs_file_info_unref (info);
+}
 
 /*
  * ---------------------------------------------------------------------
@@ -1046,6 +1074,8 @@ main (int argc, const char **argv)
 			do_create ();
 		else if (g_ascii_strcasecmp (ptr, "close") == 0)
 			do_close ();
+		else if (g_ascii_strcasecmp (ptr, "handleinfo") == 0)
+			do_handleinfo ();
 		else if (g_ascii_strcasecmp (ptr, "read") == 0)
 			do_read ();
 		else if (g_ascii_strcasecmp (ptr, "seek") == 0)

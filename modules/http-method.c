@@ -2346,16 +2346,17 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      GnomeVFSFileInfoOptions options,
 			      GnomeVFSContext *context)
 {
-	GnomeVFSResult result;
+	HttpFileHandle *handle;
 	
 	DEBUG_HTTP (("+Get_File_Info_From_Handle"));
 	
-	result = do_get_file_info (method, ((HttpFileHandle *)method_handle)->uri, 
-				   file_info, options, context);
-
+	handle = (HttpFileHandle *) method_handle;
+	
+	gnome_vfs_file_info_copy (file_info, handle->file_info);
+	
 	DEBUG_HTTP (("-Get_File_Info_From_Handle"));
 	
-	return result;
+	return GNOME_VFS_OK;
 }
 
 static gboolean

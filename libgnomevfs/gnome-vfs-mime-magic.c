@@ -28,6 +28,9 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <stdlib.h>
+#include <wctype.h>
+#include <wchar.h>
 
 #include <glib/garray.h>
 #include <glib/gmessages.h>
@@ -722,6 +725,7 @@ enum {
 	GNOME_VFS_TEXT_SNIFF_LENGTH = 256
 };
 
+
 /**
  * _gnome_vfs_sniff_buffer_looks_like_text:
  * @sniff_buffer: buffer to examine
@@ -753,7 +757,51 @@ _gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 
 		remaining_bytes -= (end-((gchar*)sniff_buffer->buffer));
 	
- 		return (g_utf8_get_char_validated(end, remaining_bytes) == -2);
+ 		if (g_utf8_get_char_validated(end, remaining_bytes) == -2)
+			return TRUE;
+		else {
+			size_t wlen;
+			wchar_t wc;
+			gchar *src, *end;
+			mbstate_t state;
+
+			src = sniff_buffer->buffer;
+			end = sniff_buffer->buffer + sniff_buffer->buffer_length;
+			
+			memset (&state, 0, sizeof (state));
+			while (src < end) {
+				/* Don't allow embedded zeros in textfiles */
+				if (*src == 0)
+					return FALSE;
+				
+				wlen = mbrtowc(&wc, src, end - src, &state);
+
+				if (wlen == (size_t)(-1)) {
+					/* Illegal mb sequence */
+					return FALSE;
+				}
+				
+				if (wlen == (size_t)(-2)) {
+					/* No complete mb char before end
+					 * Probably a cut off char which is ok */
+					return TRUE;
+				}
+
+				if (wlen == 0) {
+					/* Don't allow embedded zeros in textfiles */
+					return FALSE;
+				}
+				
+				if (!iswspace (wc)  && !iswprint(wc)) {
+					/* Not a printable or whitspace
+					 * Probably not a text file */
+					return FALSE;
+				}
+
+				src += wlen;
+			}
+			return TRUE;
+		}
 	} 
 }
 
@@ -856,10 +904,11 @@ _gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 		&& (sniff_buffer->buffer[8] < 0x80u)
 		&& (sniff_buffer->buffer[9] < 0x80u)) {
 		/* checks for existance of vorbis identification header */
-		if (g_strstr_len (sniff_buffer->buffer + 10,
-				  GNOME_VFS_MP3_SNIFF_LENGTH - 10,
-				  "\x01vorbis") != NULL) {
-			return FALSE;
+		for (offset=10; offset < GNOME_VFS_MP3_SNIFF_LENGTH-7; offset++) {
+			if (strncmp ((char *) &sniff_buffer->buffer[offset], 
+				     "\x01vorbis", 7) == 0) {
+				return FALSE;
+			}
 		}
 		return TRUE;
 	}
