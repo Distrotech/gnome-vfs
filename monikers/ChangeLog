@@ -1,3 +1,17 @@
+2002-01-02  Dave Camp  <dave@ximian.com>
+
+	* bonobo-storage-vfs.c (bonobo_storage_vfs_open): Removed the ununsed
+	mode parameter, changed the flags parameter to take a 
+	Bonobo_Storage_OpenMode, and changed the name of the flags parameter 
+	to mode.
+
+	* bonobo-stream-vfs.c (bonobo_stream_vfs_open): Removed the unused
+	flags parameter, and changed the mode parameter to take a 
+	Bonobo_Storage_OpenMode.
+
+	* bonobo-moniker-vfs.c (bonobo_moniker_vfs_resolve): Reflect changes
+	in bonobo_{storage/stream}_vfs_open().
+
 2001-10-17  Michael Meeks  <michael@ximian.com>
 
 	* bonobo-storage-fs.c: use the correct type constructor

@@ -25,7 +25,7 @@ typedef struct {
 
 GType             bonobo_storage_vfs_get_type (void);
 BonoboStorageVfs *bonobo_storage_vfs_open     (const char *path,
-					       gint flags, gint mode,
+					       Bonobo_Storage_OpenMode mode,
 					       CORBA_Environment *ev);
 
 G_END_DECLS

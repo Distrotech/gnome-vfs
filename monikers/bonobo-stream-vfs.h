@@ -35,7 +35,7 @@ typedef struct {
 
 GType            bonobo_stream_vfs_get_type (void);
 BonoboStreamVfs *bonobo_stream_vfs_open     (const char *path,
-					     gint flags, gint mode,
+					     Bonobo_Storage_OpenMode flags,
 					     CORBA_Environment *ev);
 void bonobo_stream_vfs_storageinfo_from_file_info (Bonobo_StorageInfo *si,
 						   GnomeVFSFileInfo   *fi);

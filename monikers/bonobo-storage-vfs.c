@@ -71,7 +71,7 @@ vfs_open_stream (PortableServer_Servant  storage,
 	char *full;
 
 	full = concat_dir_and_file (storage_vfs->path, path);
-	stream = bonobo_stream_vfs_open (full, 0664, mode, ev);
+	stream = bonobo_stream_vfs_open (full, mode, ev);
 	g_free (full);
 
 	return BONOBO_OBJREF (stream);
@@ -170,14 +170,13 @@ vfs_list_contents (PortableServer_Servant   storage,
 /** 
  * bonobo_storage_vfs_open:
  * @path: path to existing directory that represents the storage
- * @flags: open flags.
- * @mode: mode used if @flags containst BONOBO_SS_CREATE for the storage.
+ * @mode: open mode.
  *
  * Returns a BonoboStorage object that represents the storage at @path
  */
 BonoboStorageVfs *
 bonobo_storage_vfs_open (const char *path,
-			 gint flags, gint mode,
+			 Bonobo_Storage_OpenMode mode,
 			 CORBA_Environment *ev)
 {
 	GnomeVFSResult    result;
@@ -191,10 +190,10 @@ bonobo_storage_vfs_open (const char *path,
 		path, info, GNOME_VFS_FILE_INFO_DEFAULT);
 
 	if (result == GNOME_VFS_ERROR_NOT_FOUND &&
-	    (flags & Bonobo_Storage_CREATE))
+	    (mode & Bonobo_Storage_CREATE))
 		create = TRUE;
 	    
-	else if (flags & Bonobo_Storage_READ) {
+	else if (mode & Bonobo_Storage_READ) {
 		if (result != GNOME_VFS_OK) {
 			CORBA_exception_set (ev, CORBA_USER_EXCEPTION,
 					     ex_Bonobo_Stream_NoPermission, NULL);
@@ -208,7 +207,7 @@ bonobo_storage_vfs_open (const char *path,
 			return NULL;
 		}
 
-	} else if (flags & (Bonobo_Storage_WRITE)) {
+	} else if (mode & (Bonobo_Storage_WRITE)) {
 		if (result == GNOME_VFS_ERROR_NOT_FOUND)
 			create = TRUE;
 		else

@@ -316,7 +316,7 @@ bonobo_stream_vfs_get_type (void)
  * @path.  
  */
 BonoboStreamVfs *
-bonobo_stream_vfs_open (const char *path, gint flags, gint mode,
+bonobo_stream_vfs_open (const char *path, Bonobo_Storage_OpenMode mode, 
 			CORBA_Environment *ev)
 {
 	GnomeVFSResult   result;

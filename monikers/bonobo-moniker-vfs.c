@@ -30,7 +30,7 @@ bonobo_moniker_vfs_resolve (BonoboMoniker               *moniker,
 		BonoboObject *stream;
 		
 		stream = BONOBO_OBJECT (bonobo_stream_vfs_open (
-			fname, Bonobo_Storage_READ, 0664, ev));
+			fname, Bonobo_Storage_READ, ev));
 
 		if (BONOBO_EX (ev))
 			return CORBA_OBJECT_NIL;
@@ -49,7 +49,7 @@ bonobo_moniker_vfs_resolve (BonoboMoniker               *moniker,
 		BonoboObject *storage;
 		
 		storage = BONOBO_OBJECT (bonobo_storage_vfs_open (
-			fname, Bonobo_Storage_READ, 0664, ev));
+			fname, Bonobo_Storage_READ, ev));
 
 		if (BONOBO_EX (ev))
 			return CORBA_OBJECT_NIL;
