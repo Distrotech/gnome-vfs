@@ -1,3 +1,10 @@
+2000-06-05  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_copy),
+	(gnome_vfs_mime_application_free): Made these
+	two routines accept NULL parameters.
+
 2000-06-05  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs-corba/gnome-vfs-async-ops.c:

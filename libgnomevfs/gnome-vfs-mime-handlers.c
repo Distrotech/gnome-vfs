@@ -957,6 +957,10 @@ GnomeVFSMimeApplication *
 gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 {
 	GnomeVFSMimeApplication *result;
+
+	if (application == NULL) {
+		return NULL;
+	}
 	
 	result = g_new0 (GnomeVFSMimeApplication, 1);
 	result->id = g_strdup (application->id);
@@ -971,9 +975,11 @@ gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 void
 gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application) 
 {
-	g_free (application->name);
-	g_free (application->command);
-	g_free (application);
+	if (application != NULL) {
+		g_free (application->name);
+		g_free (application->command);
+		g_free (application);
+	}
 }
 
 
