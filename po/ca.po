@@ -1,16 +1,14 @@
-# Danish translation of gnome-vfs
-# Copyright (C) 1999 Free Software Foundation, Inc.
-# Kenneth Christiansen <kenneth@ripen.dk>, 1999.
-# Birger Langkjer <birger.langkjer@image.dk>, 2000.
-# Keld Simonsen <Keld@dkuug.dk>, 2000.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2000-04-19 15:50+0200\n"
 "PO-Revision-Date: 2000-03-04 20:03+01:00\n"
-"Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
-"Language-Team: Dansk/Danish <dansk@klid.dk>\n"
+"Last-Translator: Softcatala <linux@softcatala.org>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
@@ -18,229 +16,229 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d indeholder NUL-tegn."
+msgstr "%s:%d conté caràcters NULS."
 
 #: libgnomevfs/gnome-vfs-configuration.c:204
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d indeholder intet metodenavn."
+msgstr "%s:%d no conté cap nom de mètode."
 
 #: libgnomevfs/gnome-vfs-configuration.c:233
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d indeholder intet modulnavn."
+msgstr "%s:%d no conté cap nom de mòdul."
 
 #: libgnomevfs/gnome-vfs-configuration.c:285
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Konfigurationsfilen '%s' fandtes ikke: %s"
+msgstr "El fitxer de configuració `%s' no ha estat trobat: %s"
 
 #: libgnomevfs/gnome-vfs-init.c:55
 msgid "GNOME VFS already initialized."
-msgstr "GNOME VFS er allerede initialiseret."
+msgstr "GNOME VFS ja està inicialitzat."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Kan ikke tolke: %s"
+msgstr "No s'ha pogut analitzar: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Yderligere tolkningsfejl bliver ignoreret."
+msgstr "Els següent errors d'anàlisi seran ignorats"
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "No error"
-msgstr "Ingen fejl"
+msgstr "Cap error"
 
 #. GNOME_VFS_ERROR_NOTFOUND
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
-msgstr "Fil ikke fundet"
+msgstr "Fitxer no trobat"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "Generic error"
-msgstr "Genetisk fejl"
+msgstr "Error genèric"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Internal error"
-msgstr "Intern fejl"
+msgstr "Error intern"
 
 #. GNOME_VFS_ERROR_BADPARAMS
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Invalid parameters"
-msgstr "Ugyldige parametre"
+msgstr "Paràmetres no vàlids"
 
 #. GNOME_VFS_ERROR_NOTSUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Unsupported operation"
-msgstr "Ikke-understøttet operation"
+msgstr "Operació no suportada"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "I/O error"
-msgstr "I/O fejl"
+msgstr "Error E/S"
 
 #. GNOME_VFS_ERROR_CORRUPTEDDATA
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
-msgstr "Ødelagt data"
+msgstr "Dades corruptes"
 
 #. GNOME_VFS_ERROR_WRONGFORMAT
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
-msgstr "Ugyldigt format"
+msgstr "Format no vàlid"
 
 #. GNOME_VFS_ERROR_BADFILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
-msgstr "Dårlig filhåndterer"
+msgstr "Fitxer associat incorrecte"
 
 #. GNOME_VFS_ERROR_TOOBIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
-msgstr "For stor fil"
+msgstr "Fitxer massa gran"
 
 #. GNOME_VFS_ERROR_NOSPACE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "No space left on device"
-msgstr "Ikke mere plads på enhed"
+msgstr "No hi ha prou espai en el dispositiu"
 
 #. GNOME_VFS_ERROR_READONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
-msgstr "Skrivebeskyttet filsystem"
+msgstr "Sistema de fitxers de només lectura"
 
 #. GNOME_VFS_ERROR_INVALIDURI
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
-msgstr "Ugyldig URI"
+msgstr "URI no vàlid"
 
 #. GNOME_VFS_ERROR_NOTOPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
-msgstr "Uåbnet fil"
+msgstr "Fitxer no obert"
 
 #. GNOME_VFS_ERROR_INVALIDOPENMODE
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
-msgstr "Ugyldig åbningstilstand"
+msgstr "Mode d'obertura no vàlid"
 
 #. GNOME_VFS_ERROR_ACCESSDENIED
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Access denied"
-msgstr "Adgang forbudt"
+msgstr "Accés denegat"
 
 #. GNOME_VFS_ERROR_TOOMANYOPENFILES
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
-msgstr "For mange åbne filer"
+msgstr "Massa fitxers oberts"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "End of file"
-msgstr "Slutning på fil"
+msgstr "Fi del fitxer"
 
 #. GNOME_VFS_ERROR_NOTADIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Not a directory"
-msgstr "Ikke en mappe"
+msgstr "No és un directori"
 
 #. GNOME_VFS_ERROR_INPROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
-msgstr "Operation pågår"
+msgstr "Operació en progrés"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Operation interrupted"
-msgstr "Operation afbrudt"
+msgstr "Operació interrompuda"
 
 #. GNOME_VFS_ERROR_FILEEXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "File exists"
-msgstr "Fil eksisterer"
+msgstr "Fitxer ja existent"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Looping links encountered"
-msgstr "Fandt lænker der peger i ring"
+msgstr "Enllaços amb bucles trobats"
 
 #. GNOME_VFS_ERROR_NOTPERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation not permitted"
-msgstr "Operation ikke tilladt"
+msgstr "Operació no permesa"
 
 #. GNOME_VFS_ERROR_ISDIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Is a directory"
-msgstr "Er en mappe"
+msgstr "És un directori"
 
 #. GNOME_VFS_ERROR_NOMEM
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
-msgstr "Ikke nok hukommelse"
+msgstr "No hi ha prou memòria"
 
 #. GNOME_VFS_ERROR_HOSTNOTFOUND
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host not found"
-msgstr "Vært ikke fundet"
+msgstr "Servidor no trobat"
 
 #. GNOME_VFS_ERROR_INVALIDHOSTNAME
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
-msgstr "Ugyldigt værtsnavn"
+msgstr "Nom de servidor no vàlid"
 
 #. GNOME_VFS_ERROR_HOSTHASNOADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
-msgstr "Vært har ingen adresse"
+msgstr "Servidor sense adreça"
 
 #. GNOME_VFS_ERROR_LOGINFAILED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Login failed"
-msgstr "Logind fejlede"
+msgstr "Entrada fallida"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Operation cancelled"
-msgstr "Operation annulleret"
+msgstr "Operació cancel·lada"
 
 #. GNOME_VFS_ERROR_DIRECTORYBUSY
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory busy"
-msgstr "Mappen har travlt"
+msgstr "Directori ocupat"
 
 #. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Directory not empty"
-msgstr "Mappen er ikke tom"
+msgstr "Directori no buit"
 
 #. GNOME_VFS_ERROR_TOOMANYLINKS
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
-msgstr "For mange lænker"
+msgstr "Massa enllaços"
 
 #. GNOME_VFS_ERROR_READONLYFS
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
-msgstr "Skrivebeskyttet filsystem"
+msgstr "Sistema de fitxers de només lectura"
 
 #. GNOME_VFS_ERROR_NOTSAMEFS
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
-msgstr "Ikke på det samme filsystem"
+msgstr "No és del mateix sistema de fitxers"
 
 #. GNOME_VFS_ERROR_NAMETOOLONG
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Name too long"
-msgstr "Navnet er for langt"
+msgstr "Nom massa llarg"
 
 #: libgnomevfs/gnome-vfs-result.c:133
 msgid "Unknown error"
-msgstr "Ukendt fejl"
+msgstr "Error desconegut"
 
 #: libgnomevfs/gnome-vfs-utils.c:40
 msgid "1 byte"
@@ -249,7 +247,7 @@ msgstr "1 byte"
 #: libgnomevfs/gnome-vfs-utils.c:42
 #, c-format
 msgid "%u bytes"
-msgstr "%u byte"
+msgstr "%u bytes"
 
 #: libgnomevfs/gnome-vfs-utils.c:49
 #, c-format
@@ -268,297 +266,296 @@ msgstr "%.1fG"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
-msgstr "Døende."
+msgstr "Morint."
 
 #. FIXME
 #: libgnomevfs-corba/gnome-vfs-slave.c:501
 #, c-format
 msgid "Error reading: %s"
-msgstr "Fejl ved læsning af: %s"
+msgstr "Error llegint: %s"
 
 #. FIXME
 #: libgnomevfs-corba/gnome-vfs-slave.c:523
 #, c-format
 msgid "Error writing: %s"
-msgstr "Fejl ved skrivning til: %s"
+msgstr "Error escrivint: %s"
 
 #. FIXME
 #: libgnomevfs-corba/gnome-vfs-slave.c:572
 #, c-format
 msgid "Cannot write: %s"
-msgstr "Kan ikke skrive: %s"
+msgstr "No es pot escriure: %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:600
 #, c-format
 msgid "Cannot create temporary file name `%s'"
-msgstr "Kan ikke oprette midlertidigt filnavn '%s'"
+msgstr "No es pot crear el fitxer temporal de nom `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
 #: libgnomevfs-corba/gnome-vfs-slave.c:614
 #, c-format
 msgid "Cannot create socket: %s"
-msgstr "Kan ikke oprette sokkel: %s"
+msgstr "No es pot crear l'enllaç: %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:632
 #, c-format
 msgid "Cannot bind `%s': %s"
-msgstr "Kan ikke binde '%s': %s"
+msgstr "No es pot vincular `%s': %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:639
 #, c-format
 msgid "Cannot listen on `%s': %s"
-msgstr "Kan ikke lytte på '%s': %s"
+msgstr "No es pot atendre a `%s': %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:661
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
-msgstr "Kan ikke modtage forbindelser på '%s': %s"
+msgstr "No es poden acceptar connexions en `%s': %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1385
 msgid "Cannot initialize CORBA."
-msgstr "Kan ikke initialisere CORBA"
+msgstr "No es pot inicialitzar CORBA."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1392
 msgid "Cannot resolve initial reference to RootPOA."
-msgstr "Kan ikke læse første reference til RootPOA."
+msgstr "No es pot reoldre la referència inicial al RootPOA."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1399
 msgid "Cannot activate POA manager."
-msgstr "Kan ikke aktivere POA-håndtering"
+msgstr "No es pot activar el gestor POA."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1424
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "Brug: %s <ior> [<ior_fd>]\n"
+msgstr "Utilització: %s <ior> [<ior_fd>]\n"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1435
 #, c-format
 msgid "Cannot open file descriptor %d."
-msgstr "Kan ikke åbne filbeskriver %d"
+msgstr "No es pot obrir el descriptor de fitxers %d."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1458
 #, c-format
 msgid "Notify interface for `%s' not found."
-msgstr "Meddelelsesgrænsesnit for '%s' ikke fundet."
+msgstr "No s'ha trobat la interfície de notificació per a `%s'."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1468
 msgid "Cannot setup Request object."
-msgstr "Kan ikke opsætte forespørgselsobjekt."
+msgstr "No es pot configurar l'objecte demanat."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1475
 msgid "Cannot extract IOR."
-msgstr "Kan ikke få IOR."
+msgstr "No es pot extreure l'IOR."
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #, c-format
 msgid "Got weird string from the slave process: `%s'"
-msgstr "Modtog mærkelig streng fra slaveproces: '%s'"
+msgstr "S'ha obtingut una cadena estranya del procés esclau: `%s' "
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
-msgstr "Kan ikke få objekt for '%s'"
+msgstr "No es pot obtenir l'objecte per a `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "Kan ikke dræbe GNOME::VFS::Slave::Notify -- exception %s"
+msgstr "No es pot matar GNOME::VFS::Esclau::Notifica -- excepció %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:203
 #, c-format
 msgid "Cannot connect socket `%s': %s"
-msgstr "Kan ikke forbinde sokkel: '%s': %s"
+msgstr "No es pot connectar l'enllaç `%s': %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:782
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "Kan ikke initialisere GNOME::VFS:Slave::Notify"
+msgstr "No es pot inicialitzar GNOME::VFS:Esclau::Notifica"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:119
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan ikke genstarte GNOME::VFS::Slave %s -- undtagelse %s"
+msgstr "No es pot reinicialitzar GNOME::VFS::Esclau %s -- excepció %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:122
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan ikke genstarte GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
+msgstr ""
+"No es pot reinicialitzar GNOME::VFS::Esclau (IOR unknown) -- excepció %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:153
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan ikke dræbe GNOME::VFS::Slave %s -- undtagelse %s"
+msgstr "No es pot matar GNOME::VFS::Esclau %s -- excepció %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:156
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan ikke dræbe GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
+msgstr "No es pot matar GNOME::VFS::Esclau (IOR unknown) -- excepció %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:129
 msgid "Error writing to the wakeup GnomeVFSJob channel."
-msgstr "Fejl ved skrivning til 'wakeup GnomeVFSJob' kanalen."
+msgstr "Error en escriure en el canal d'avís GnomeVFSJob"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:434
 #: libgnomevfs-pthread/gnome-vfs-job.c:1253
 #, c-format
 msgid "Unknown job ID %d"
-msgstr "Ukendt job-ID %d"
+msgstr "Treball desconegut amb ID %d"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:784
 #: libgnomevfs-pthread/gnome-vfs-job.c:879
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
+msgstr "No es pot crear la connexió per obrir GIOChannel: %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1271
 msgid "Operation stopped"
-msgstr "Operation stoppet"
+msgstr "Operació aturada"
 
 #: modules/file-method.c:332
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Ukendt GnomeVFSSeekPosition %d"
+msgstr "Desconeguda GnomeVFSSeekPosition %d"
 
 #: modules/ftp-method.c:353
 msgid "ftpfs: Invalid host name."
-msgstr "ftpfs: Ugyldigt værtsnavn."
+msgstr "ftpfs: Nom de servidor no vàlid."
 
 #: modules/ftp-method.c:376
 msgid "ftpfs: Invalid host address."
-msgstr "ftpfs: Ugyldig værtsadresse."
+msgstr "ftpfs: Adreça de servidor no vàlida."
 
 #: modules/ftp-method.c:396
 #, c-format
 msgid "ftpfs: making connection to %s"
-msgstr "ftpfs: laver forbindelse til %s"
+msgstr "ftpfs: connectant-se a %s"
 
 #: modules/ftp-method.c:402
 msgid "ftpfs: connection interrupted by user"
-msgstr "ftpfs: forbindelse afbrudt af bruger"
+msgstr "ftpfs: connexió interrompuda per l'usuari"
 
 #: modules/ftp-method.c:404
 #, c-format
 msgid "ftpfs: connection to server failed: %s"
-msgstr "ftpfs: forbindelse til server fejlede: %s"
+msgstr "ftpfs: connexió al servidor fallida: %s"
 
 #: modules/ftp-method.c:480
 #, c-format
 msgid "Waiting to retry... %d (Control-C to cancel)"
-msgstr "Venter på at prøve igen... %d (Ctrl-C for at annullere)"
+msgstr "Esperant per reintentar-ho... %d (Control-C per cancel·lar-ho)"
 
 #: modules/ftp-method.c:751
 msgid " FTP: Password required for "
-msgstr " FTP: Adgangskode påkrævet for "
+msgstr " FTP: Contrasenya requerida per "
 
 #: modules/ftp-method.c:790
 msgid "ftpfs: sending login name"
-msgstr "Ftpfs: sender logindnavn"
+msgstr "ftpfs: enviant el nom d'entrada"
 
 #: modules/ftp-method.c:796
 msgid "ftpfs: sending user password"
-msgstr "ftpfs: sender brugeradgangskode"
+msgstr "ftpfs: enviant la contrasenya de l'usuari"
 
 #: modules/ftp-method.c:802
 msgid "ftpfs: logged in"
-msgstr "ftpfs: logget ind"
+msgstr "ftpfs: connectat"
 
 #: modules/ftp-method.c:814
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
-msgstr "ftpfs: Forkert logind for bruger %s "
+msgstr "ftpfs: Entrada incorrecta per a l'usuari %s "
 
 #: modules/ftp-method.c:827
 msgid "ftpfs: aborting transfer."
-msgstr "ftpfs: afbryder overførsel."
+msgstr "ftpfs: avortant la transferència."
 
 #: modules/ftp-method.c:829
 #, c-format
 msgid "ftpfs: abort error: %s"
-msgstr "ftpfs: afbrydningsfejl: %s"
+msgstr "ftpfs: error en avortar: %s"
 
 #: modules/ftp-method.c:834
 msgid "ftpfs: abort failed"
-msgstr "ftpfs: afbryd fejlede"
+msgstr "ftpfs: avortament fallit"
 
 #: modules/ftp-method.c:911
 msgid "ftpfs: could not setup passive mode"
-msgstr "ftpfs: kunne ikke opsætte passiv tilstand"
+msgstr "ftpfs: no s'ha pogut configurar el mode passiu"
 
 #: modules/ftp-method.c:1088
 #, c-format
 msgid "ftpfs: storing file %d (%d)"
-msgstr "ftpfs: gemmer filen %d (%d)"
+msgstr "ftpfs: emmagatzemant el fitxer %d (%d)"
 
 #: modules/ftp-method.c:1305 modules/ftp-method.c:1507
 msgid "ftpfs: CWD failed."
-msgstr "ftpfs: CWD fejlede."
+msgstr "ftpfs: CWD fallit."
 
 #: modules/ftp-method.c:1315 modules/ftp-method.c:1322
 msgid "ftpfs: couldn't resolve symlink"
-msgstr "ftpfs: kunne læse symlænke"
+msgstr "ftpfs: No s'ha pogut resoldre l'enllaç simbòlic"
 
 #: modules/ftp-method.c:1374
 msgid "Resolving symlink..."
-msgstr "Læser symlænke..."
+msgstr "Resolent l'enllaç simbòlic..."
 
 #: modules/ftp-method.c:1498
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-msgstr "ftpfs: Læser FTP-mappe %s... (brug ikke UNIX ls kommandoflag)"
+msgstr ""
+"ftpfs: Llegint el directori FTP %s... (no utilitzeu les opcions ls de UNIX)"
 
 #: modules/ftp-method.c:1502
 #, c-format
 msgid "ftpfs: Reading FTP directory %s..."
-msgstr "ftpfs: Læser FTP-mappe %s..."
+msgstr "ftpfs: Llegint el directori FTP %s..."
 
 #: modules/ftp-method.c:1568
 msgid "ftpfs: reading FTP directory interrupt by user"
-msgstr "ftpfs: læsning af FTP-mappe afbrudt af bruger"
+msgstr "ftpfs: lectura del directori FTP interrompuda per l'usuari"
 
 #: modules/ftp-method.c:1592
 msgid "ftpfs: got listing"
-msgstr "ftpfs: fik liste"
+msgstr "ftpfs: llistat rebut"
 
 #: modules/ftp-method.c:1644
 msgid "ftpfs: failed; nowhere to fallback to"
-msgstr "ftpfs: fejlede; ingen steder at falde tilbage til"
+msgstr "ftpfs: fallit; enlloc per anar"
 
 #: modules/ftp-method.c:2037
 msgid "Starting linear transfer..."
-msgstr "Starter lineær overførsel..."
+msgstr "Iniciant transferència lineal..."
 
 #: modules/ftp-method.c:2107
 msgid "Preparing reget..."
-msgstr "Forbereder fortryd..."
+msgstr "Preparant la recuperació..."
 
 #: modules/http-method.c:500
 #, c-format
 msgid "Invalid header `%s'"
-msgstr "Ugyldig header '%s'"
+msgstr "Encapçalament no vàlid `%s'"
 
 #: modules/http-method.c:517
 #, c-format
 msgid "%s to retrieve"
-msgstr "%s tilbage at hente"
+msgstr "%s per recuperar"
 
 #: modules/http-method.c:652
 #, c-format
 msgid "Closing connection to %s"
-msgstr "Lukker forbindelse til %s"
+msgstr "Tancant la connexió a %s"
 
 #: modules/http-method.c:805
 #, c-format
 msgid "%s of %s read"
-msgstr "%s af %s læst"
+msgstr "%s de %s llegit"
 
 #: modules/http-method.c:808
 #, c-format
 msgid "%s read"
-msgstr "%s læst"
+msgstr "%s llegit"
 
 #. Multi-Status
 #: modules/http-method.c:970
 msgid "HTTP server returned an invalid PROPFIND response"
-msgstr "HTTP-tjener returnerede et ugyldig PROPFIND-svar"
-
-#~ msgid "Destroying slave."
-#~ msgstr "Ødelægger slave."
+msgstr ""

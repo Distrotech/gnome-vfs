@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2000-04-08 09:57+0200\n"
+"POT-Creation-Date: 2000-04-19 15:50+0200\n"
 "PO-Revision-Date: 2000-04-08 9:58+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <gpul-traduccion@ceu.fi.udc.es>\n"
@@ -296,7 +296,7 @@ msgstr "Non se pode escribir: %s"
 msgid "Cannot create temporary file name `%s'"
 msgstr "Non se pode crea-lo ficheiro temporal `%s'"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:193
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
 #: libgnomevfs-corba/gnome-vfs-slave.c:614
 #, c-format
 msgid "Cannot create socket: %s"
@@ -317,38 +317,38 @@ msgstr "Non se pode escoitar en `%s': %s"
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Non se poden aceptar conexións en `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1379
+#: libgnomevfs-corba/gnome-vfs-slave.c:1385
 msgid "Cannot initialize CORBA."
 msgstr "Non se pode inicializar CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1386
+#: libgnomevfs-corba/gnome-vfs-slave.c:1392
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Non se pode resolver a referencia inicial a RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1393
+#: libgnomevfs-corba/gnome-vfs-slave.c:1399
 msgid "Cannot activate POA manager."
 msgstr "Non se pode activa-lo xestor POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1418
+#: libgnomevfs-corba/gnome-vfs-slave.c:1424
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Uso: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1429
+#: libgnomevfs-corba/gnome-vfs-slave.c:1435
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Non se pode abri-lo descritor de ficheiro %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1452
+#: libgnomevfs-corba/gnome-vfs-slave.c:1458
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Non se atopou a interfaz de notificación para `%s'."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1462
+#: libgnomevfs-corba/gnome-vfs-slave.c:1468
 msgid "Cannot setup Request object."
 msgstr "Non se pode activar un obxecto de petición."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1469
+#: libgnomevfs-corba/gnome-vfs-slave.c:1475
 msgid "Cannot extract IOR."
 msgstr "Non se pode extrae-lo IOR"
 
@@ -362,37 +362,37 @@ msgstr "Obteuse unha cadea estraña do proceso esclavo: `%s'"
 msgid "Cannot get object for `%s'"
 msgstr "Non se pode obter o obxecto para `%s'"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:126
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
 msgstr "Non se pode matar GNOME::VFS::Slave::Notify -- excepción %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:203
 #, c-format
 msgid "Cannot connect socket `%s': %s"
 msgstr "Non se pode conectar o socket `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:782
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Non se pode inicializar GNOME::VFS:Slave::Notify"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:119
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
 msgstr "Non se pode reiniciar GNOME::VFS::Slave %s -- excepción %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:122
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr ""
 "Non se pode reiniciar GNOME::VFS:Slave (IOR descoñecido) -- excepción %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:153
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
 msgstr "Non se pode matar GNOME::VFS::Slave %s -- excepción %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:156
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "Non se pode matar GNOME::VFS::Slave (IOR descoñecido) -- excepción %s"
@@ -402,7 +402,7 @@ msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Erro ó escribir á canle de avisos GnomeVFSJob."
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1248
+#: libgnomevfs-pthread/gnome-vfs-job.c:1253
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "ID de traballo %d descoñecido"
@@ -413,7 +413,7 @@ msgstr "ID de traballo %d descoñecido"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Non se pode crear unha canle para abrir GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1266
+#: libgnomevfs-pthread/gnome-vfs-job.c:1271
 msgid "Operation stopped"
 msgstr "Operación parada"
 
