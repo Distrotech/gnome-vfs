@@ -2,23 +2,6 @@
 
 	* check-mime.pl: Added check for i-regular.
 
-2001-01-22  John Sullivan  <sullivan@eazel.com>
-
-	Fixed bug 5845 (web bookmarks change to generic document
-	icon after visiting)
-
-	* data/mime/gnome-vfs.keys.in:
-
-	Removed all the lines that specify "i-regular" for an
-	icon filename. "i-regular" is the default anyway, so 
-	specifying it will have no useful effect. In the case
-	of bug 5845, it had a bad effect (prevented the special
-	web icon from being used). Aaron had intended to make
-	this change a while back.
-
-	Note: this bug was marked PR3 so we might want to make this
-	simple change on the branched gnome-vfs, if there is one.
-
 2001-01-22  Rebecca Schulman  <rebecka@eazel.com>
 	Fixed bugzilla.eazel.com bug 5498 about
 	symbolic links across file systems caused 
