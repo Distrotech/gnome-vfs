@@ -1074,7 +1074,6 @@ copy_file_data (GnomeVFSHandle *target_handle,
 		/* tiny (0 - sized) files still present non-zero overhead during a copy, make sure
 		 * we count at least a default amount for each file
 		 */
-		progress->progress_info->bytes_copied += DEFAULT_SIZE_OVERHEAD;
 		progress->progress_info->total_bytes_copied += DEFAULT_SIZE_OVERHEAD;
 
 		call_progress_often (progress, GNOME_VFS_XFER_PHASE_COPYING);
@@ -1588,7 +1587,7 @@ move_items (const GList *source_uri_list,
 			target_uri = gnome_vfs_uri_append_string (target_dir_uri, 
 				 progress->progress_info->duplicate_name);
 
-			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
+			progress->progress_info->file_size = 0;
 			progress->progress_info->bytes_copied = 0;
 			progress_set_source_target_uris (progress, source_uri, target_uri);
 			progress->progress_info->top_level_item = TRUE;
@@ -1694,7 +1693,7 @@ link_items (const GList *source_uri_list,
 				(target_dir_uri,
 				 progress->progress_info->duplicate_name);
 
-			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
+			progress->progress_info->file_size = 0;
 			progress->progress_info->bytes_copied = 0;
 			progress->progress_info->top_level_item = TRUE;
 			progress_set_source_target_uris (progress, source_uri, target_uri);

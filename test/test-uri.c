@@ -341,7 +341,7 @@ test_uri_host_port (const char *input,
 	G_STMT_START {											\
 		char *result = function; 								\
 		if (!((result == NULL && expected == NULL)						\
-		      || (result != NULL && expected != NULL && strcmp (result, expected) == 0))) {	\
+		      || (result != NULL && expected != NULL && strcmp (result, (char *)expected) == 0))) {	\
 			test_failed ("%s: returned '%s' expected '%s'", #function, result, expected);	\
 		}											\
 	} G_STMT_END

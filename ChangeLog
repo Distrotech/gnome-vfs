@@ -1,3 +1,15 @@
+2001-02-20  Ian McKellar  <ian@eazel.com>
+
+	reviewed by: Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_file_data), (move_items),
+	(link_items):
+	Don't add overhead to the transfer total for each file.
+	This fixes bug 6769.
+
+	* test/test-uri.c:
+	Fix a compile problem with the Debian compiler.
+
 2001-02-20  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Darin Adler <darin@eazel.com>
@@ -327,7 +339,6 @@
 	(column_clicked):
 	Remove some debugging cruft.
 	
->>>>>>> 1.944.2.24
 2001-02-14  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 6570, Initial tab order in "Add application"
