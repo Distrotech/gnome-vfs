@@ -1,33 +1,31 @@
 # Albanian translation for gnome-vfs
-# Copyright (C) 2001-2002,2003 Free Software Foundation, Inc.
-# Laurent Dhima <laurenti@albinux.net>, 2002.
-# Laurent Dhima <laurenti@alblinux.net>, 2003.
+# Copyright (C) 2001-2002,2003, 2004 Free Software Foundation, Inc.
+# Laurent Dhima <laurenti@alblinux.net>, 2003, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2004-01-12 10:09+0100\n"
-"PO-Revision-Date: 2003-08-31 02:05+0200\n"
+"Project-Id-Version: gnome-vfs.HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-16 00:48+0100\n"
+"PO-Revision-Date: 2004-01-16 01:35+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
-"X-Generator: KBabel 1.0.2\n"
+"X-Generator: KBabel 1.3\n"
 
 #: daemon/gnome-vfs-daemon.c:573
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "E pamundur gjetja e browser master"
+msgstr "E pamundur nisja e Bonobo"
 
 #: daemon/gnome-vfs-daemon.c:579
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "E pamundur nisja e gnome vfs"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "Volum ISO 9660"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -40,14 +38,14 @@ msgid "%s:%d contains no method name."
 msgstr "%s:%d nuk përmban emrin e metodës."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d nuk përmban emrin e metodës."
+msgstr "%s:%d nuk ka opcione përfundimi."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d ka opcione të panjohura %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -61,139 +59,138 @@ msgstr "File i konfigurimit `%s' nuk u gjet: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "Volum AFFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "Volum rrjeti AFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Volum i auto-përcaktuar"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "Njësia CD-ROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "CD Digital Audio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Volum Dispozitiv Hardware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Volum Linux Ext2"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Volum Linux Ext3"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "Volum MSDOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr ""
+msgstr "Volum MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr ""
+msgstr "Volumi CDROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Volum Hsfs CDROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr ""
+msgstr "Volum JFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
-msgstr ""
+msgstr "Volum Windows NT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr ""
+msgstr "Volum sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr ""
+msgstr "Volum memorje"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr ""
+msgstr "Volum Minix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "Volum rrjeti NFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr ""
+msgstr "Volum Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "Volum Linux ReiserFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Volum Windows i përbashkët"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "Volum SuperMount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr ""
+msgstr "Volum DVD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Volum Solaris/BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Volum Udfs Solaris"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "Volum Pcfs Solaris"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "Volum Dos i përparuar"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "Volum Windows VFAT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr ""
+msgstr "Volum Xenix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "Volum Linux XFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "Volum XIAFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
-#, fuzzy
 msgid "Unknown"
-msgstr "Gabim i panjohur"
+msgstr "I/e panjohur"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
@@ -336,7 +333,7 @@ msgstr "Operacion i ndërprerë"
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "File ekziston"
+msgstr "Ky file ekziston"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
@@ -457,29 +454,29 @@ msgstr "Gabim gjatë lëshimit të komandës"
 msgid "Unknown error"
 msgstr "Gabim i panjohur"
 
-#: libgnomevfs/gnome-vfs-utils.c:84
-#, fuzzy, c-format
+#: libgnomevfs/gnome-vfs-utils.c:85
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] "%u bytes"
-msgstr[1] "%u bytes"
+msgstr[0] "%u byte"
+msgstr[1] "%u byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:90
-#, fuzzy, c-format
+#: libgnomevfs/gnome-vfs-utils.c:91
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f K"
+msgstr "%.1f KB"
 
-#: libgnomevfs/gnome-vfs-utils.c:94
+#: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:98
+#: libgnomevfs/gnome-vfs-utils.c:99
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1105
+#: libgnomevfs/gnome-vfs-utils.c:1106
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr " (Unicode i pavlefshëm)"
@@ -487,90 +484,90 @@ msgstr " (Unicode i pavlefshëm)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
 msgid "Floppy"
-msgstr ""
+msgstr "Disketë floppy"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
 msgid "Zip Drive"
-msgstr ""
+msgstr "Drive Zip"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
 msgid "Memory Stick"
-msgstr ""
+msgstr "Memory Stick"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
 msgid "Root Volume"
-msgstr ""
+msgstr "Volum root"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
 msgid "Audio CD"
-msgstr ""
+msgstr "CD audio"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Gabim i panjohur"
+msgstr "Volum i panjohur"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
 msgid "Network server"
-msgstr ""
+msgstr "Server rrjeti"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "I pamundur montimi i dispozitivit floppy. Mesa duket mungon floppy në dispozitiv."
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "I pamundur montimi i volumit. Mesa duket nuk ka asnjë lloj suporti në dispozitiv."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"I pamundur montimi i dikut floppy. Ka mundësi të jetë i një formati që nuk "
+"mund të montohet."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"I pamundur montimi i volumit të zgjedhur. Ka mundësi të jetë i një formati që nuk "
+"mund të montohet."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "I pamundur montimi i drive floppy të zgjedhur."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "I pamundur montimi i volumit të zgjedhur."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "I pamundur zmontimi i volumit të zgjedhur."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:220
 #: libgnomevfs/gnome-vfs-volume-ops.c:252
 msgid "Failed to start command"
-msgstr ""
+msgstr "Nisja e komandës dështoi"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:245
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Nxjerrja e suportit është e pamundur"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "I pamundur zmontimi i server-it të lidhur"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -590,7 +587,7 @@ msgstr "Files"
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
-msgstr "Kartela"
+msgstr "Kartelat"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
@@ -610,30 +607,29 @@ msgstr "Lidhje"
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
-msgstr "Mail"
+msgstr "Posta"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr "Vegla"
+msgstr "Instrumente"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr "Dritare"
+msgstr "Dritaret"
 
 #: modules/computer-method.c:521
 msgid "Network"
-msgstr ""
+msgstr "Rrjeti"
 
 #: modules/computer-method.c:539
 msgid "Home"
-msgstr ""
+msgstr "Shtëpia"
 
 #: modules/computer-method.c:557
-#, fuzzy
 msgid "Filesystem"
-msgstr "Files"
+msgstr "File sistemi"
 
 #: modules/file-method.c:384
 #, c-format
@@ -671,15 +667,15 @@ msgstr "moniker i përgjithshëm për file"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Aplikativi i prezgjedhur për shikimin e komponuesit"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Aplikativi terminal i prezgjedhur"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Argumenti exec për terminalin e prezgjedhur"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -688,185 +684,191 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"Aplikativi që duhet përdorur për të shikuar files që kanë nevojë për një "
+"komponent që të shikohen. Parametri %s do të zevendësohet nga URl e file, "
+"parametri %c do të zevendësohet nga IID e komponentit."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
+"Aplikativi terminal i prezgjedhur që duhet përdorur për aplikativët që kërkojnë "
+"një terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "Argumenti exec që duhet përdorur për terminalin e prezgjedhur"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "Manazhuesi i URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "Manazhuesi i URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "Manazhuesi i URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "Handle H323 URLs"
-msgstr "No handler for URL scheme"
+msgstr "Manazhon URLs H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "Handle HTTP URLs"
-msgstr "No handler for URL scheme"
+msgstr "Manazhon URLs HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "Manazhon URLs HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle callto URLs"
-msgstr "No handler for URL scheme"
+msgstr "Manazhon thirrjet e URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "Handle ghelp URLs"
-msgstr "No handler for URL scheme"
+msgstr "Manazhon ghelp URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
-msgstr "No handler for URL scheme"
+msgstr "Manazhon info URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "Handle mailto URLs"
-msgstr "No handler for URL scheme"
+msgstr "Manazhon mailto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "Handle man URLs"
-msgstr "No handler for URL scheme"
+msgstr "Manazhon man URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "Handle trash URLs"
-msgstr "No handler for URL scheme"
+msgstr "Manazhon trash URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Ekzekuto programin në terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"Vendose në true për të patur një program të caktuar tek \"komanda\" manazhuese "
+"e URLve H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
+"Vendose në true për të patur një program të caktuar tek \"komanda\" manazhuese "
+"e URLve HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
+"Vendose në true për të patur një program të caktuar tek \"komanda\" manazhuese "
+"e URLve HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
+msgid "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"Vendose në true për të patur një program të caktuar tek \"komanda\" manazhuese "
+"e URLve callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
+"Vendose në true për të patur një program të caktuar tek \"komanda\" manazhuese "
+"e URLve ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
+msgid "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
+"Vendose në true për të patur një program të caktuar tek \"komanda\" manazhuese "
+"e URLve info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
+"Vendose në true për të patur një program të caktuar tek \"komanda\" manazhuese "
+"e URLve mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
+"Vendose në true për të patur një program të caktuar tek \"komanda\" manazhuese "
+"e URLve man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+msgid "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
+"Vendose në true për të patur një program të caktuar tek \"komanda\" manazhuese "
+"e URLve trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
+msgstr "E vërtetë nëse programi që manazhon këtë URL duhet të zbatohet në një terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "manazhuesi i URL callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "manazhuesi i URL ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "manazhuesi i URL info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "Manazhues i file jo korrekt"
+msgstr "manazhuesi i URL mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "manazhuesi i URL man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "manazhuesi i URL trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Autentifiko lidhjet proxy server"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "URL e konfigurimit automatik të proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "Aktivon rregullimet e proxy kur përdor HTTP në Internet."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "Emri i host proxy FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "Porta e proxy FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "Emri i host proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "Password e proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "Porta e proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "Username për proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -874,80 +876,90 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
+"Nëse e vërtetë, atëhere lidhjet me server-in proxy kanë nevojë për autentifikim. "
+"Kombinimi username/password përcaktohet nga \"/system/http_proxy/authentication_user\" dhe \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Asnjë host proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Password që duhet dhënë si autentifikuese kur kryen proxy HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Modaliteti i konfigurimit proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "Emri i host proxy SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "Porta e proxy SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "Emri i host i proxy të sigurtë HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "Porta e proxy të sigurt HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
+msgstr "Zgjidh modalitetin e konfigurimit proxy. Vlerat e pranuara janë \"asnjë\", \"manualisht\", \"automatikisht\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "Emri i makinës për kalimin tek proxy FTP."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "Emri i makinës për kalimin tek proxy HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "Emri i makinës për kalimin tek proxy i sigurt HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "Emri i makinës për kalimin tek proxy socks."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
+"Porta e makinës e përcaktuar nga \"/system/http_proxy/host\" nga do të kalojë "
+"proxy juaj."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
+"Porta e makinës e përcaktuar nga \"/system/proxy/ftp_host\" nga do të kalojë "
+"proxy juaj."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"Porta e makinës e përcaktuar nga \"/system/proxy/secure_host\" nga do të kalojë "
+"proxy juaj."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
+"Porta e makinës e përcaktuar nga \"/system/proxy/socks_host\" nga do të kalojë "
+"proxy juaj."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -956,38 +968,33 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Ky çelës përmban një listë me hostet e lidhur direkt, pa përdorur proxy "
+"(nëse ai është aktiv). Vlerat mund të jenë hostnames, domains (duke "
+"përdorur si parashtesë një wildcard si p.sh. *.foo.com), adresat IP të host "
+"(IPv4 dhe IPv6) dhe adresat e rrjetit me një netmask (diçka të ngjashme "
+"me 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "URL që ve në dispozicion vlerat e konfigurimit të proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "Përdor proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
 
 #: modules/network-method.c:257
-msgid "Window Network"
-msgstr ""
+msgid "Windows Network"
+msgstr "Rrjet Windows"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "Grup pune SMB"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "Grupi i punës Windows në të cilin bën pjesë përdoruesi"
 
-#, fuzzy
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "No handler for URL scheme"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "No handler for URL scheme"
-
-#~ msgid "1 byte"
-#~ msgstr "1 byte"
