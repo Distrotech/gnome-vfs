@@ -525,8 +525,8 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 		result = _gnome_vfs_mime_get_type_from_magic_table (buffer);
 		
 		if (result != NULL) {
-			if (strcmp (result, "application/x-gzip") == 0) {
-		
+			if ((strcmp (result, "application/x-gzip") == 0) ||
+			    (strcmp (result, "application/zip") == 0)) {
 				/* So many file types come compressed by gzip 
 				 * that extensions are more reliable than magic
 				 * typing. If the file has a suffix, then use 
@@ -535,18 +535,11 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 				 * FIXME bugzilla.gnome.org 46867:
 				 * Allow specific mime types to override 
 				 * magic detection
-			 */
-			if (file_name != NULL) {
-				result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
+				 */
+				if (file_name != NULL) {
+				        result = gnome_vfs_mime_type_from_name_or_default (file_name, result);
+				}
 			}
-			
-			if (result != NULL) {
-				return result;
-			}
-				/* Didn't find an extension match,
-				 * assume gzip. */
-			return "application/x-gzip";
-		}
 			return result;
 		}
 		

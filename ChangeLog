@@ -1,3 +1,8 @@
+2004-01-18  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime.c: special case application/zip files
+	  the same way as application/x-gzip files (fixes #123979)
+
 2004-01-08  Thomas Cataldo  <tom@aliacom.fr>
 
         * programs/gnomevfs-info.c: Fixed a memory leak
