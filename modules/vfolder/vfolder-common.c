@@ -164,19 +164,14 @@ entry_make_user_private (Entry *entry, Folder *folder)
 	gnome_vfs_uri_unref (dest_uri);
 
 	if (result == GNOME_VFS_OK) {
-		/* 
-		 * WriteDir is always loaded first, so just remove any existing
-		 * excludes or includes for this file.
-		 */
-		folder_remove_exclude (folder, entry_get_filename (entry));
-		folder_remove_exclude (folder, entry_get_displayname (entry));
-
+		/* Exclude current displayname. */
+		folder_add_exclude (folder, entry_get_displayname (entry));
+		/* Remove include for current filename. */
 		folder_remove_include (folder, entry_get_filename (entry));
-		folder_remove_include (folder, entry_get_displayname (entry));
+		/* Add include for new private filename. */
+		folder_add_include (folder, filename);
 
 		entry_set_filename (entry, filename);
-		folder_add_include (folder, filename);
-		folder_add_exclude (folder, entry_get_displayname (entry));
 
 		entry->user_private = TRUE;
 	}
@@ -621,6 +616,8 @@ folder_extend_monitor_cb (GnomeVFSMonitorHandle    *handle,
 		break;
 	}
 
+	folder->info->modification_time = time (NULL);
+
 	VFOLDER_INFO_WRITE_UNLOCK (folder->info);
 
 	gnome_vfs_uri_unref (uri);
@@ -703,80 +700,63 @@ create_dot_directory_entry (Folder *folder)
 	return entry != NULL;
 }
 
+static gboolean
+read_one_include (Folder *folder, const gchar *file_uri)
+{
+	Entry *entry;
+	GnomeVFSURI *uri;
+	gchar *basename;
+
+	if (!strchr (file_uri, '/')) {
+		if (folder_get_entry (folder, file_uri))
+			return FALSE;
+
+		entry = vfolder_info_lookup_entry (folder->info, file_uri);
+		if (!entry)
+			return FALSE;
+
+		folder_add_entry (folder, entry);
+		return TRUE;
+	}
+	else {
+		uri = gnome_vfs_uri_new (file_uri);
+		if (!uri || !gnome_vfs_uri_exists (uri))
+			return FALSE;
+
+		basename = gnome_vfs_uri_extract_short_name (uri);
+		if (!basename || folder_get_entry (folder, basename)) {
+			gnome_vfs_uri_unref (uri);
+			g_free (basename);
+			return FALSE;
+		}
+
+		entry = entry_new (folder->info, 
+				   file_uri,
+				   basename, 
+				   TRUE,
+				   1000 /*weight*/);
+
+		folder_add_entry (folder, entry);
+
+		entry_unref (entry);
+		gnome_vfs_uri_unref (uri);
+		g_free (basename);
+		return TRUE;
+	}
+}
+
 static gboolean 
 read_includes (Folder *folder)
 {
 	GSList *iter;
-	GnomeVFSURI *writedir_uri = NULL;
 	gboolean changed = FALSE;
-	FolderChild child;
-
-	/* FIXME: abstraction breaking */
-	if (folder->info->write_dir)
-		writedir_uri = gnome_vfs_uri_new (folder->info->write_dir);
 
 	for (iter = folder->includes; iter; iter = iter->next) {
 		gchar *include = iter->data;
-		gchar *base_name;
-		GnomeVFSURI *uri;
-		GnomeVFSFileInfo *file_info;
-		GnomeVFSResult result;
-		Entry *entry;
-		gboolean user_private;
 
-		uri = gnome_vfs_uri_new (include);
-		if (!uri) {
-			gnome_vfs_uri_unref (uri);
-			continue;
-		}
-
-		base_name = gnome_vfs_uri_extract_short_name (uri);
-
-		if (folder_get_child (folder, base_name, &child)) {
-			gnome_vfs_uri_unref (uri);
-			g_free (base_name);
-			continue;
-		}
-
-		file_info = gnome_vfs_file_info_new ();
-		result = 
-			gnome_vfs_get_file_info_uri (
-				uri,
-				file_info,
-				GNOME_VFS_FILE_INFO_DEFAULT);
-		if (result != GNOME_VFS_OK || 
-		    file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-			gnome_vfs_file_info_unref (file_info);
-			gnome_vfs_uri_unref (uri);
-			g_free (base_name);
-			continue;
-		}
-		gnome_vfs_file_info_unref (file_info);
-
-		if (writedir_uri)
-			user_private = gnome_vfs_uri_is_parent (writedir_uri,
-								uri, 
-								TRUE);
-		else
-			user_private = TRUE;
-
-		entry = entry_new (folder->info, 
-				   include,
-				   base_name, 
-				   user_private,
-				   1000 /*weight*/);
-
-		/* Add it */
-		folder_add_entry (folder, entry);
-		entry_unref (entry);
-
-		changed = TRUE;
-
-		gnome_vfs_uri_unref (uri);
-		g_free (base_name);
+		changed |= read_one_include (folder, include);
 	}
 
-	gnome_vfs_uri_unref (writedir_uri);
 	return changed;
 }
 

@@ -31,7 +31,6 @@
 
     <Include>evolution.desktop</Include>
     <Include>galeon.desktop</Include>
-    <Include>sep.desktop</Include>
 
     <Query>
       <And>

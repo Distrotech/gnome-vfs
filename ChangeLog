@@ -1,5 +1,50 @@
 2002-08-08  Alex Graveley  <alex@ximian.com>
 
+	* modules/vfolder/vfolder-method.c (do_create): Don't Forgot to
+	write unlock when returning from a failed parent directory
+	creation.
+	(dir_handle_new): Don't hold a read lock here, otherwise directory
+	deletion deadlocks as nautilus traverses the files and deletes
+	them one by one.
+	(dir_handle_new_all): Ditto.
+	(dir_handle_free): Don't read unlock, to match above.
+	(get_file_info_internal): Abstract the GnomeVFSFileInfo filling to
+	here to share code between do_read_directory() and
+	do_get_file_info().
+	(do_read_directory): Acquire read lock while reading the next
+	entry.
+	(do_make_directory): Add check to block against trying to create
+	the root folder, which always exists.  Don't forget to write
+	unlock if make_directory fails for a link folder's actual
+	destination.
+	(do_remove_directory_unlocked): Don't write unlock here, since
+	this is an _unlocked function :-)
+	(do_unlink_unlocked): Only add exclude for displayname if file is
+	not user-private.
+	(do_create_symbolic_link): Use GNOME_VFS_FILE_INFO_FOLLOW_LINKS
+	when stat'ing our target link, as we need to be able to tell if
+	the destination is really a directory.
+
+	* modules/vfolder/vfolder-info.c (filename_monitor_handle): Move
+	code from filename_monitor_cb, so we can be called from the
+	filename event timeout handler.
+	(filename_monitor_cb): For delete events set a 2 second delay
+	before processing .vfolder-info files, for create a .5 second
+	delay and process change events instantly. 
+
+	* modules/vfolder/vfolder-common.c (entry_make_user_private):
+	Clean up include/exclude handling.  Exclude current displayname,
+	remove include for current filename, and add include for new
+	filename.
+	(read_one_include): Simplify include loading, don't try to futz
+	with untimestamping filenames, handle include with just a
+	filename and not a full uri.
+
+	* modules/vfolder/applications-all-users.vfolder-info.in: Don't
+	include sep.desktop.
+
+2002-08-08  Alex Graveley  <alex@ximian.com>
+
 	* modules/vfolder/vfolder-method.c (do_unlink_unlocked): Call
 	folder_remove_include() if the entry is user-private, so we don't
 	leave old <Include> tags around.

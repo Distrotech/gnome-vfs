@@ -203,7 +203,7 @@ do_create (GnomeVFSMethod *method,
 	FolderChild child;
 	Entry *new_entry;
 	const gchar *dirname;
-	gchar *filename;
+	gchar *filename, *basename;
 
 	VFOLDER_URI_PARSE (uri, &vuri);
 
@@ -253,31 +253,29 @@ do_create (GnomeVFSMethod *method,
 	 * Create file in writedir unless writedir is not set or folder is
 	 * a <ParentLink>.  Otherwise create in parent if exists.
 	 */
-	dirname = info->write_dir;
-	if (dirname && !parent->is_link) {
-		gchar *basename;
-
+	if (info->write_dir && !parent->is_link) {
 		/* Create uniquely named file in write_dir */
+		dirname = info->write_dir;
 		basename = vfolder_timestamp_file_name (vuri.file);
 		filename = vfolder_build_uri (dirname, basename, NULL);
 		g_free (basename);
-	} else {
+	} else if (folder_get_extend_uri (parent)) {
 		/* No writedir, try modifying the parent */
 		dirname = folder_get_extend_uri (parent);
-		if (!dirname) {
-			/* Nowhere to create file, fail */
-			VFOLDER_INFO_WRITE_UNLOCK (info);
-			return GNOME_VFS_ERROR_READ_ONLY;
-		}
-
-		/* Use regular filename in extended dir */
 		filename = vfolder_build_uri (dirname, vuri.file, NULL);
+	} else {
+		/* Nowhere to create file, fail */
+		VFOLDER_INFO_WRITE_UNLOCK (info);
+		return GNOME_VFS_ERROR_READ_ONLY;
 	}
 
 	/* Make sure the destination directory exists */
 	result = vfolder_make_directory_and_parents (dirname, FALSE, 0700);
-	if (result != GNOME_VFS_OK)
-		return FALSE;
+	if (result != GNOME_VFS_OK) {
+		VFOLDER_INFO_WRITE_UNLOCK (info);
+		g_free (filename);
+		return result;
+	}
 
 	file_uri = gnome_vfs_uri_new (filename);
 	result = gnome_vfs_create_uri_cancellable (&file_handle,
@@ -520,8 +518,6 @@ dir_handle_new (VFolderInfo             *info,
 {
 	DirHandle *ret = g_new0 (DirHandle, 1);
 
-	VFOLDER_INFO_READ_LOCK (info);
-
 	ret->info = info;
 	ret->options = options;
 	ret->folder = folder;
@@ -538,8 +534,6 @@ dir_handle_new_all (VFolderInfo             *info,
 {
 	DirHandle *ret = g_new0 (DirHandle, 1);
 	const GSList *iter;
-
-	VFOLDER_INFO_READ_LOCK (info);
 
 	iter = vfolder_info_list_all_entries (info);
 	for (; iter; iter = iter->next) {
@@ -563,8 +557,6 @@ dir_handle_free (DirHandle *handle)
 {
 	if (handle->folder) 
 		folder_unref (handle->folder);
-
-	VFOLDER_INFO_READ_UNLOCK (handle->info);
 
 	g_slist_foreach (handle->list, (GFunc) g_free, NULL);
 	g_slist_free (handle->list);
@@ -635,24 +627,125 @@ do_close_directory (GnomeVFSMethod *method,
 
 
 static GnomeVFSResult
+get_file_info_internal (VFolderInfo             *info,
+			FolderChild              child,
+			GnomeVFSFileInfoOptions  options,
+			GnomeVFSFileInfo        *file_info,
+			GnomeVFSContext         *context)
+{
+	if (child.type == DESKTOP_FILE) {
+		GnomeVFSResult result;
+		GnomeVFSURI *file_uri;
+		gchar *displayname;
+
+		/* we always get mime-type by forcing it below */
+		if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
+			options &= ~GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
+
+		file_uri = entry_get_real_uri (child.entry);
+		displayname = g_strdup (entry_get_displayname (child.entry));
+
+		result = gnome_vfs_get_file_info_uri_cancellable (file_uri,
+								  file_info,
+								  options,
+								  context);
+		gnome_vfs_uri_unref (file_uri);
+
+		g_free (file_info->name);
+		file_info->name = displayname;
+
+		g_free (file_info->mime_type);
+		file_info->mime_type = 
+			g_strdup ("application/x-gnome-app-info");
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+
+		/* Now we wipe those fields we don't support */
+		file_info->valid_fields &= ~(UNSUPPORTED_INFO_FIELDS);
+
+		return result;
+	}
+
+	if (child.type != FOLDER)
+		return GNOME_VFS_ERROR_GENERIC;
+
+	if (!child.folder) {
+		/* all-applications root dir */
+		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
+		file_info->name = g_strdup ("/");
+		goto GENERIC_DIR_INFO;
+	} 
+
+	file_info->name = g_strdup (folder_get_name (child.folder));
+
+	if (child.folder->read_only) {
+		file_info->permissions = (GNOME_VFS_PERM_USER_READ |
+					  GNOME_VFS_PERM_GROUP_READ |
+					  GNOME_VFS_PERM_OTHER_READ);
+		file_info->valid_fields |= 
+			GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+	}
+
+#if 0
+	/* 
+	 * FIXME: Idealy we'd be able to present links as actual symbolic links,
+	 * but panel doesn't like symlinks in the menus, and nautilus seems to
+	 * ignore it altogether.  
+	 */
+	if (child.folder->is_link) {
+		if (options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS)
+			file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+		else
+			file_info->type = GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK;
+
+		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
+
+		file_info->symlink_name = 
+			g_strdup (folder_get_extend_uri (child.folder));
+		file_info->valid_fields |= 
+			GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
+	} else
+		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+#endif
+
+	file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
+
+ GENERIC_DIR_INFO:
+	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
+
+	file_info->mime_type = g_strdup ("x-directory/vfolder-desktop");
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+
+	file_info->ctime = info->modification_time;
+	file_info->mtime = info->modification_time;
+	file_info->valid_fields |= (GNOME_VFS_FILE_INFO_FIELDS_CTIME |
+				    GNOME_VFS_FILE_INFO_FIELDS_MTIME);
+
+	return GNOME_VFS_OK;
+}
+
+
+static GnomeVFSResult
 do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle,
 		   GnomeVFSFileInfo *file_info,
 		   GnomeVFSContext *context)
 {
+	GnomeVFSResult result;
 	DirHandle *dh;
 	gchar *entry_name;
-	GnomeVFSFileInfoOptions options;
 	FolderChild child;
 
 	dh = (DirHandle*) method_handle;
 
+	VFOLDER_INFO_READ_LOCK (dh->info);
+
  READ_NEXT_ENTRY:
 
-	if (!dh->current)
+	if (!dh->current) {
+		VFOLDER_INFO_READ_UNLOCK (dh->info);
 		return GNOME_VFS_ERROR_EOF;
-
-	options = dh->options;
+	}
 
 	entry_name = dh->current->data;
 	dh->current = dh->current->next;
@@ -669,60 +762,18 @@ do_read_directory (GnomeVFSMethod *method,
 			goto READ_NEXT_ENTRY;
 	}
 
-	if (child.type == DESKTOP_FILE) {
-		GnomeVFSURI *file_uri;
+	if (child.type == FOLDER && folder_is_hidden (child.folder))
+		goto READ_NEXT_ENTRY;
 
-		if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
-			options &= ~GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
+	result =  get_file_info_internal (dh->info,
+					  child, 
+					  dh->options,
+					  file_info,
+					  context);
 
-		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
+	VFOLDER_INFO_READ_UNLOCK (dh->info);
 
-		file_uri = entry_get_real_uri (child.entry);
-		gnome_vfs_get_file_info_uri_cancellable (file_uri,
-							 file_info,
-							 options,
-							 context);
-		gnome_vfs_uri_unref (file_uri);
-
-		g_free (file_info->name);
-		file_info->name = 
-			g_strdup (entry_get_displayname (child.entry));
-
-		/* 
-		 * we ignore errors from this since the file_info just won't be
-		 * filled completely if there's an error, that's all 
-		 */
-
-		g_free (file_info->mime_type);
-		file_info->mime_type = 
-			g_strdup ("application/x-gnome-app-info");
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-
-		/* Now we wipe those fields we don't support */
-		file_info->valid_fields &= ~(UNSUPPORTED_INFO_FIELDS);
-	} 
-	else if (child.type == FOLDER) {
-		if (folder_is_hidden (child.folder))
-			goto READ_NEXT_ENTRY;
-
-		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
-
-		file_info->name = g_strdup (folder_get_name (child.folder));
-		GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
-
-		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
-
-		file_info->mime_type = g_strdup ("x-directory/vfolder-desktop");
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-
-		file_info->ctime = dh->info->modification_time;
-		file_info->mtime = dh->info->modification_time;
-		file_info->valid_fields |= (GNOME_VFS_FILE_INFO_FIELDS_CTIME |
-					    GNOME_VFS_FILE_INFO_FIELDS_MTIME);
-	}
-
-	return GNOME_VFS_OK;
+	return result;
 }
 
 
@@ -773,79 +824,17 @@ do_get_file_info (GnomeVFSMethod *method,
 			VFOLDER_INFO_READ_UNLOCK (info);
 			return GNOME_VFS_ERROR_NOT_FOUND;
 		}
-	}		
-
-	if (child.type == DESKTOP_FILE) {
-		GnomeVFSURI *file_uri;
-		gchar *displayname;
-
-		/* we always get mime-type by forcing it below */
-		if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
-			options &= ~GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
-
-		file_uri = entry_get_real_uri (child.entry);
-		displayname = g_strdup (entry_get_displayname (child.entry));
-
-		VFOLDER_INFO_READ_UNLOCK (info);
-
-		result = gnome_vfs_get_file_info_uri_cancellable (file_uri,
-								  file_info,
-								  options,
-								  context);
-		gnome_vfs_uri_unref (file_uri);
-
-		g_free (file_info->name);
-		file_info->name = displayname;
-
-		g_free (file_info->mime_type);
-		file_info->mime_type = 
-			g_strdup ("application/x-gnome-app-info");
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-
-		/* Now we wipe those fields we don't support */
-		file_info->valid_fields &= ~(UNSUPPORTED_INFO_FIELDS);
-
-		return result;
 	}
-	else if (child.type == FOLDER) {
-		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
-		if (child.folder) {
-			file_info->name = 
-				g_strdup (folder_get_name (child.folder));
-
-			if (child.folder->read_only) {
-				file_info->permissions = 
-					(GNOME_VFS_PERM_USER_READ |
-					 GNOME_VFS_PERM_GROUP_READ |
-					 GNOME_VFS_PERM_OTHER_READ);
-				file_info->valid_fields |= 
-					GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
-			}
-		} else {
-			file_info->name = g_strdup ("/");
-		}
-
-		VFOLDER_INFO_READ_UNLOCK (info);
-
-		GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
-
-		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
-
-		file_info->mime_type = g_strdup ("x-directory/vfolder-desktop");
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-
-		file_info->ctime = info->modification_time;
-		file_info->mtime = info->modification_time;
-		file_info->valid_fields |= (GNOME_VFS_FILE_INFO_FIELDS_CTIME |
-					    GNOME_VFS_FILE_INFO_FIELDS_MTIME);
-
-		return GNOME_VFS_OK;
-	}
+	result = get_file_info_internal (info,
+					 child, 
+					 options, 
+					 file_info, 
+					 context);
 
 	VFOLDER_INFO_READ_UNLOCK (info);
-	return GNOME_VFS_ERROR_NOT_FOUND;
+
+	return result;
 }
 
 
@@ -911,6 +900,10 @@ do_make_directory (GnomeVFSMethod *method,
 
 	VFOLDER_URI_PARSE (uri, &vuri);
 
+	/* Root folder always exists */
+	if (vuri.file == NULL)
+		return GNOME_VFS_ERROR_FILE_EXISTS;
+
 	info = vfolder_info_locate (vuri.scheme);
 	if (!info)
 		return GNOME_VFS_ERROR_INVALID_URI;
@@ -969,8 +962,10 @@ do_make_directory (GnomeVFSMethod *method,
 					context);
 			gnome_vfs_uri_unref (new_uri);
 
-			if (result != GNOME_VFS_OK)
+			if (result != GNOME_VFS_OK) {
+				VFOLDER_INFO_WRITE_UNLOCK (info);
 				return result;
+			}
 		}
 
 		/* 
@@ -1081,10 +1076,8 @@ do_unlink_unlocked (VFolderInfo *info,
 	Entry *entry;
 
 	parent = vfolder_info_get_parent (info, vuri->path);
-	if (!parent) {
-		VFOLDER_INFO_WRITE_UNLOCK (info);
+	if (!parent)
 		return GNOME_VFS_ERROR_NOT_FOUND;
-	}
 
 	if (folder_get_subfolder (parent, vuri->file))
 		return GNOME_VFS_ERROR_IS_DIRECTORY;
@@ -1114,12 +1107,9 @@ do_unlink_unlocked (VFolderInfo *info,
 		if (entry_is_user_private (entry))
 			folder_remove_include (parent, 
 					       entry_get_filename (entry));
-
-		/* 
-		 * <Exclude> even if entry is user_private, since it may
-		 * override an existing entry, and we want neither showing up.  
-		 */
-		folder_add_exclude (parent, entry_get_displayname (entry));
+		else
+			folder_add_exclude (parent, 
+					    entry_get_displayname (entry));
 	}
 
 	folder_remove_entry (parent, entry);
@@ -1442,7 +1432,6 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 				new_uri,
 				target_reference,
 				context);
-		
 		if (result == GNOME_VFS_OK)
 			folder_set_dirty (parent);
 
@@ -1463,7 +1452,7 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 			gnome_vfs_get_file_info_uri_cancellable (
 				link_uri,
 				file_info,
-				GNOME_VFS_FILE_INFO_DEFAULT, 
+				GNOME_VFS_FILE_INFO_FOLLOW_LINKS, 
 				context);
 		if (result != GNOME_VFS_OK) {
 			VFOLDER_INFO_WRITE_UNLOCK (info);

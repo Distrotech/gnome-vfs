@@ -271,6 +271,7 @@ struct _VFolderInfo {
 
 	char           *filename;
 	VFolderMonitor *filename_monitor;
+	guint           filename_reload_tag;
 
 	/* dir where user changes to items are stored */
 	char           *write_dir; 

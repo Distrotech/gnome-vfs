@@ -1367,19 +1367,15 @@ check_monitors_foreach (gpointer key, gpointer val, gpointer user_data)
 
 static void vfolder_info_init (VFolderInfo *info);
 
-static void
-filename_monitor_cb (GnomeVFSMonitorHandle *handle,
-		     const gchar *monitor_uri,
-		     const gchar *info_uri,
-		     GnomeVFSMonitorEventType event_type,
-		     gpointer user_data)
+static gboolean
+filename_monitor_handle (gpointer user_data)
 {
-	VFolderInfo *info =  user_data;
+	VFolderInfo *info = user_data;
 	GHashTable *monitors;
 	GSList *iter;
 
-	g_print ("*** Filename monitor called! ***\n");
-
+	g_print ("*** PROCESSING .vfolder-info!!! ***\n");
+	
 	VFOLDER_INFO_WRITE_LOCK (info);
 	info->loading = TRUE;
 
@@ -1415,6 +1411,46 @@ filename_monitor_cb (GnomeVFSMonitorHandle *handle,
 
 	info->loading = FALSE;
 	VFOLDER_INFO_WRITE_UNLOCK (info);
+
+	return FALSE;
+}
+
+static void
+filename_monitor_cb (GnomeVFSMonitorHandle *handle,
+		     const gchar *monitor_uri,
+		     const gchar *info_uri,
+		     GnomeVFSMonitorEventType event_type,
+		     gpointer user_data)
+{
+	VFolderInfo *info = user_data;
+
+	g_print ("*** Filename monitor called! ***\n");
+
+	if (info->filename_reload_tag) {
+		g_source_remove (info->filename_reload_tag);
+		info->filename_reload_tag = 0;
+	}
+
+	/* 
+	 * Don't process the .vfolder-info for 2 seconds after a delete event or
+	 * .5 seconds after a create event.  This allows files to be rewritten
+	 * before we start reading it and possibly copying the system default
+	 * file over top of it.  
+	 */
+	switch (event_type) {
+	case GNOME_VFS_MONITOR_EVENT_DELETED:
+		info->filename_reload_tag = 
+			g_timeout_add (2000, filename_monitor_handle, info);
+		break;
+	case GNOME_VFS_MONITOR_EVENT_CREATED:
+		info->filename_reload_tag = 
+			g_timeout_add (500, filename_monitor_handle, info);
+		break;
+	case GNOME_VFS_MONITOR_EVENT_CHANGED:
+	default:
+		filename_monitor_handle (info);
+		break;
+	}
 }
 
 static gboolean
@@ -1630,6 +1666,9 @@ vfolder_info_destroy (VFolderInfo *info)
 		return;
 
 	vfolder_info_reset (info);
+
+	if (info->filename_reload_tag)
+		g_source_remove (info->filename_reload_tag);
 
 	g_static_rw_lock_free (&info->rw_lock);
 
