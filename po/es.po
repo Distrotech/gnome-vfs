@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "POT-Creation-Date: 2001-01-23 17:09-0800\n"
-"PO-Revision-Date: 2001-02-04 20:10+0200\n"
+"PO-Revision-Date: 2001-02-14 10:40+0200\n"
 "Last-Translator: Mauricio Araya Polo <mauricio@eazel.com>\n"
 "Language-Team: spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -149,12 +149,10 @@ msgid "FrameMaker font"
 msgstr "fuente FrameMaker"
 
 #: data/mime/gnome-vfs.keys.in.h:34
-#, fuzzy
 msgid "FrameMaker interchange document"
 msgstr "documento de intercambio de FrameMaker"
 
 #: data/mime/gnome-vfs.keys.in.h:35
-#, fuzzy
 msgid "G3 fax image"
 msgstr "imagen tipo fax de G3"
 
@@ -171,7 +169,6 @@ msgid "GMC link"
 msgstr "enlace de GMC"
 
 #: data/mime/gnome-vfs.keys.in.h:39
-#, fuzzy
 msgid "GNOME application information"
 msgstr "información de aplicación de GNOME"
 
@@ -180,7 +177,6 @@ msgid "GNU license"
 msgstr "licensia GNU"
 
 #: data/mime/gnome-vfs.keys.in.h:41
-#, fuzzy
 msgid "GNU mail message"
 msgstr "mensaje de correo de GNU"
 
@@ -242,7 +238,6 @@ msgid "Java source code"
 msgstr "código fuente Java"
 
 #: data/mime/gnome-vfs.keys.in.h:56
-#, fuzzy
 msgid "KDE application information"
 msgstr "información de aplicación de KDE"
 
@@ -287,9 +282,8 @@ msgid "MP3 audio"
 msgstr "audio MP3"
 
 #: data/mime/gnome-vfs.keys.in.h:67
-#, fuzzy
 msgid "MP3 audio playlist"
-msgstr "lista de ejecución de audio MP3"
+msgstr "lista de ejecución de MP3"
 
 #: data/mime/gnome-vfs.keys.in.h:68
 #, fuzzy
@@ -711,14 +705,12 @@ msgid "bibliography record"
 msgstr "registro bibliográffico"
 
 #: data/mime/gnome-vfs.keys.in.h:172
-#, fuzzy
 msgid "binary program"
-msgstr "programa en formao binario"
+msgstr "programa en formato binario"
 
 #: data/mime/gnome-vfs.keys.in.h:173
-#, fuzzy
 msgid "block device"
-msgstr "dispositivo para bloque"
+msgstr "dispositivo de bloque"
 
 #: data/mime/gnome-vfs.keys.in.h:174
 msgid "bzip archive"
@@ -733,9 +725,8 @@ msgid "calendar or event information"
 msgstr "evento o información de calendario"
 
 #: data/mime/gnome-vfs.keys.in.h:177
-#, fuzzy
 msgid "character device"
-msgstr "dispositivo para caracteres"
+msgstr "dispositivo de caracteres"
 
 #: data/mime/gnome-vfs.keys.in.h:178
 msgid "class code"
