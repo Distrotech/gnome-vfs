@@ -109,16 +109,28 @@ main (int argc, char **argv)
         GnomeVFSResult result;
 	GnomeVFSAsyncHandle *async_handle;
 	char *module_path;
+	char *authn_uri, *authn_uri_child;
 	GModule *module;
 	guint i;
 
-        gnome_init ("test-callback", "0.0", argc, argv);
+        gnome_init ("test-callback", "0.1", argc, argv);
 
 	make_asserts_break ("GLib");
 	make_asserts_break ("GnomeVFS");
 
        /* make the stupid "SaveYourself" warning not come up */
         gnome_client_disconnect (gnome_master_client ());
+
+	if (argc == 2) {
+		authn_uri = argv[1];
+		authn_uri_child = g_strdup_printf("%s/./", authn_uri);
+	} else if (argc == 3) {
+		authn_uri = argv[1];
+		authn_uri_child = argv[2];
+	} else {
+		authn_uri = AUTHN_URI;
+		authn_uri_child = AUTHN_URI_CHILD;
+	}
 
 	gnome_vfs_init ();
 
@@ -142,7 +154,7 @@ main (int argc, char **argv)
 
 	/* Test 1: Attempt to access a URI requiring authn w/o a callback registered */
 
-	result = gnome_vfs_open (&handle, AUTHN_URI, GNOME_VFS_OPEN_READ);
+	result = gnome_vfs_open (&handle, authn_uri, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_ERROR_ACCESS_DENIED);
 	handle = NULL;
 
@@ -174,7 +186,7 @@ main (int argc, char **argv)
 
 	gnome_vfs_async_open (
 		&async_handle, 
-		AUTHN_URI,
+		authn_uri,
 		GNOME_VFS_OPEN_READ,
 		open_callback,
 		NULL);
@@ -199,7 +211,7 @@ main (int argc, char **argv)
 	 */
 	
 	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, AUTHN_URI, GNOME_VFS_OPEN_READ);
+	result = gnome_vfs_open (&handle, authn_uri, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_OK);
 	gnome_vfs_close (handle);
 	handle = NULL;
@@ -211,7 +223,7 @@ main (int argc, char **argv)
 	 */
 
 	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, AUTHN_URI_CHILD, GNOME_VFS_OPEN_READ);
+	result = gnome_vfs_open (&handle, authn_uri_child, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_OK);
 	gnome_vfs_close (handle);
 	handle = NULL;
@@ -223,7 +235,7 @@ main (int argc, char **argv)
 	flush_credentials_func();
 
 	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, AUTHN_URI_CHILD, GNOME_VFS_OPEN_READ);
+	result = gnome_vfs_open (&handle, authn_uri_child, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_OK);
 	gnome_vfs_close (handle);
 	handle = NULL;
@@ -234,7 +246,7 @@ main (int argc, char **argv)
 	 */
 
 	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, AUTHN_URI, GNOME_VFS_OPEN_READ);
+	result = gnome_vfs_open (&handle, authn_uri, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_OK);
 	gnome_vfs_close (handle);
 	handle = NULL;
@@ -243,7 +255,7 @@ main (int argc, char **argv)
 	/* Test 7: Try same URL as in test 4, make sure callback doesn't get called */
 
 	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, AUTHN_URI_CHILD, GNOME_VFS_OPEN_READ);
+	result = gnome_vfs_open (&handle, authn_uri_child, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_OK);
 	gnome_vfs_close (handle);
 	handle = NULL;
@@ -257,7 +269,7 @@ main (int argc, char **argv)
 	authn_username = NULL;
 
 	authn_callback_called = FALSE;
-	result = gnome_vfs_open (&handle, AUTHN_URI_CHILD, GNOME_VFS_OPEN_READ);
+	result = gnome_vfs_open (&handle, authn_uri_child, GNOME_VFS_OPEN_READ);
 	g_assert (result == GNOME_VFS_ERROR_ACCESS_DENIED);
 	handle = NULL;
 	g_assert (authn_callback_called == TRUE);
@@ -288,7 +300,7 @@ main (int argc, char **argv)
 
 	gnome_vfs_async_open (
 		&async_handle, 
-		AUTHN_URI,
+		authn_uri,
 		GNOME_VFS_OPEN_READ,
 		open_callback,
 		NULL);

@@ -77,5 +77,27 @@ typedef struct {
 	char *password;		/* will be freed by g_free */
 } GnomeVFSCallbackSimpleAuthOut;
 
-#endif /* GNOME_VFS_CALLBACK_H */
+/*
+ * hook name: "status-message"
+ * In arg: GnomeVFSCallbackStatusMessageIn *
+ * Out arg: GnomeVFSCallbackStatusMessageOut *
+ * 
+ * Called when a GnomeVFS API or module has a status message to return to
+ * the user.
+ */
 
+#define GNOME_VFS_HOOKNAME_STATUS_MESSAGE "status-message"
+
+typedef struct {
+	char *uri;		/* Full URI of operation */
+	char *message;		/* A message indicating the current state or
+				 * NULL if there is no message */
+	gint percentage;	/* Percentage indicating completeness 0-100 or
+				 * -1 if there is no progress percentage to
+				 * report */
+} GnomeVFSCallbackStatusMessageIn;
+
+typedef struct {
+} GnomeVFSCallbackStatusMessageOut;
+
+#endif /* GNOME_VFS_CALLBACK_H */

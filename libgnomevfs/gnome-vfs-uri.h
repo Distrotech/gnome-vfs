@@ -33,6 +33,8 @@
 
 /* FUNCTIONS */
 GnomeVFSURI 	     *gnome_vfs_uri_new                   (const gchar *text_uri);
+GnomeVFSURI 	     *gnome_vfs_uri_relative_new          (const gchar *text_uri,
+							   const GnomeVFSURI *base);
 GnomeVFSURI 	     *gnome_vfs_uri_ref                   (GnomeVFSURI *uri);
 void        	      gnome_vfs_uri_unref                 (GnomeVFSURI *uri);
 

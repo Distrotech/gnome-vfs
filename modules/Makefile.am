@@ -44,6 +44,7 @@ modules_LTLIBRARIES =				\
 	libftp.la				\
 	libvfs-pipe.la				\
 	libvfs-translate.la			\
+	libssh.la				\
 	$(NULL)
 
 # Not currently supported
@@ -83,6 +84,13 @@ libfile_la_SOURCES = 				\
 	file-method.c 				\
 	file-method.h
 libfile_la_LDFLAGS = $(module_flags)
+
+###  `ssh' method
+
+libssh_la_SOURCES = 				\
+	ssh-method.c 				\
+	ssh-method.h
+libssh_la_LDFLAGS = $(module_flags)
 
 ###  `test' method
 

@@ -1,3 +1,33 @@
+2001-06-10  Ian McKellar  <yakk@yakk.net>
+
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	Initial work to add a status-message callback.
+
+	* libgnomevfs/gnome-vfs-uri.c: (is_uri_relative),
+	(remove_internal_relative_components),
+	(make_full_uri_from_relative), (gnome_vfs_uri_relative_new):
+	* libgnomevfs/gnome-vfs-uri.h:
+	Added gnome_vfs_uri_relative_new which does relative URI resolution.
+
+	* modules/Makefile.am:
+	* modules/default-modules.conf:
+	* modules/ssh-method.c: (ssh_connect), (ssh_destroy), (ssh_read),
+	(ssh_write), (ssh_escape), (ssh_send), (do_open), (do_create),
+	(do_close), (do_read), (do_write), (do_open_directory),
+	(do_close_directory), (do_read_directory), (do_get_file_info),
+	(do_get_file_info_from_handle), (do_is_local), (vfs_module_init),
+	(vfs_module_shutdown):
+	* modules/ssh-method.h:
+	Added ssl-method. Its currently quite primitive and only works if you
+	don't need password authentication (ie: you are running ssh-agent and
+	have your key in the remote machine's authorized keys)
+
+	* modules/ssl-modules.conf:
+	I forgot to upload this before :( Thanks Robin.
+
+	* test/test-callback.c: (main):
+	Allow the test URI to be specified.
+
 2001-06-07  Robin * Slomkowski <pretender@rslomkow.org>
 
 	* modules/ssl-modules.conf: created this so the build would
