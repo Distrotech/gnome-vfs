@@ -1,3 +1,7 @@
+2003-04-17  Michael Meeks  <michael@ximian.com>
+
+	* GNOME_VFS_Moniker_std.server.in.in: remove .so suffix.
+
 2003-02-04  Gustavo J. A. M. Carneiro  <gustavo@users.sourceforge.net>
 
 	* bonobo-storage-vfs.c (vfs_open_stream): Duplicate the
