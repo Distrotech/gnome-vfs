@@ -1,3 +1,7 @@
+2001-10-20  Anders Carlsson  <andersca@gnu.org>
+
+	* configure.in (ALL_LINGUAS): Don't use commas here.
+
 2001-10-15  Eskil Heyn Olsen  <eskil@eskil.dk>
 
 	* configure.in:
