@@ -1,3 +1,6 @@
+2000-03-25 Yukihiro Nakai <nakai@gnome.gr.jp>
+	* configure.in: Added Japanese translation from Akira Tagoh.
+
 2000-03-20 Pablo Saratxaga <pablo@mandrakesoft.com>
 	* configure.in,po/lt.po: Added Lithuanian language file
 
