@@ -1,3 +1,9 @@
+2001-04-20  Seth Nickell  <snickell@stanford.edu>
+
+	* data/mime/gnome-vfs.keys.in:
+	Fix bug #7216, jbuilder in the application database but
+	not listed for files of type text/x-java.
+	
 2001-04-17  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-utils.c:

@@ -1160,9 +1160,9 @@ text/x-install
 text/x-java
 	_description=Java source code
 	default_action_type=application
-	short_list_application_ids_for_novice_user_level=javac
-	short_list_application_ids_for_intermediate_user_level=javac
-	short_list_application_ids_for_advanced_user_level=javac
+	short_list_application_ids_for_novice_user_level=jbuilder,javac
+	short_list_application_ids_for_intermediate_user_level=jbuilder,javac
+	short_list_application_ids_for_advanced_user_level=jbuilder,javac
 
 text/x-ksh
 	can_be_executable=TRUE
