@@ -109,7 +109,7 @@ set_default_file_info (GnomeVFSFileInfo *file_info,
 				   | GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS);
 }
 
-#define SAFE_POPEN_CHARACTERS " +:-_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+#define SAFE_POPEN_CHARACTERS "?'/. +:-_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 
 static GnomeVFSResult
@@ -140,6 +140,7 @@ do_open (GnomeVFSMethod *method,
 	 * Without this "man:ls&shutdown -h now" would have undesired effects.
 	 */
 	if (strspn (real_uri, SAFE_POPEN_CHARACTERS) != strlen (real_uri)) {
+		g_message ("real_uri is %s, has illegal chars, failing", real_uri);
 		g_free (real_uri);
 		return GNOME_VFS_ERROR_NOT_PERMITTED;
 	}

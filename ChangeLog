@@ -1,3 +1,12 @@
+2001-05-03  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Darin Adler  <darin@eazel.com>
+
+	Fixed bug 8240 (Help document viewing is broken)
+
+	* modules/pipe-method.c: (do_open): Added more characters
+	to the "safe characters" set.
+
 2001-05-02  Ian McKellar  <ian@eazel.com>
 
 	reviewed by: Darin Adler  <darin@eazel.com>
