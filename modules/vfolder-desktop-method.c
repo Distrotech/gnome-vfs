@@ -5871,6 +5871,8 @@ do_monitor_add (GnomeVFSMethod *method,
 			gnome_vfs_uri_unref (file_uri);
 		}
 
+		*method_handle_return = (GnomeVFSMethodHandle *) handle;
+
 		G_UNLOCK (vfolder_lock);
 
 		return GNOME_VFS_OK;
@@ -5889,6 +5891,10 @@ do_monitor_cancel (GnomeVFSMethod *method,
 	GSList *li;
 
 	handle = (FileMonitorHandle *)method_handle;
+
+	/* FIXME: is this correct? */
+	if (method_handle == NULL)
+		return GNOME_VFS_OK;
 
 	VFOLDER_URI_PARSE (handle->uri, &vuri);
 

@@ -1,3 +1,8 @@
+Thu Jun 06 14:34:30 2002  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: Actually return the method
+	  handle on add and don't crash on NULL on cancel for file monitors.  
+
 Thu Jun 06 14:16:27 2002  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: implement file monitors
