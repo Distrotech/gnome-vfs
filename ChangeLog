@@ -1,3 +1,35 @@
+2000-06-01  Maciej Stachowiak  <mjs@eazel.com>
+
+	* data/mime/gnome-vfs.keys: Define short-list components for
+	text/plain
+
+	First half of task 370 (write APIs for mime handler stuff)
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.h,
+	libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_set_default_action_type,
+	gnome_vfs_mime_set_default_application,
+	gnome_vfs_mime_set_default_component,
+	gnome_vfs_mime_set_short_list_applications,
+	gnome_vfs_mime_set_short_list_components,
+	gnome_vfs_mime_extend_all_applications,
+	gnome_vfs_mime_remove_from_all_applications): Implemented (w/ some
+	slight interface changes relative to old headers/stubs.
+	
+	(gnome_vfs_mime_define_application): New function.
+
+	(bool_to_str, gnome_vfs_strsplit_to_list,
+	gnome_vfs_strjoin_from_list, comma_separated_str_to_str_list,
+	str_list_to_comma_separated_str, str_list_difference): More helper functions.
+
+	* test/test-mime-handlers-set.c: Test for mime handler setter
+	APIs.
+	* test/Makefile.am: Build it.
+	
+	* mime-type-capplet/edit-window.c (add_application): Remove
+	now-invalid call to gnome_vfs_mime_set_default_application w/
+	comment on how to do it better.
+	
 2000-06-01  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-utils.h:

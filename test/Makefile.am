@@ -20,6 +20,7 @@ noinst_PROGRAMS =				\
 	test-info				\
 	test-mime				\
 	test-mime-handlers			\
+	test-mime-handlers-set			\
 	test-seek				\
 	test-sync				\
 	test-sync-write				\
@@ -103,6 +104,10 @@ test_mime_LDFLAGS =
 test_mime_handlers_SOURCES = test-mime-handlers.c
 test_mime_handlers_LDADD = $(libraries)
 test_mime_handlers_LDFLAGS =
+
+test_mime_handlers_set_SOURCES = test-mime-handlers-set.c
+test_mime_handlers_set_LDADD = $(libraries)
+test_mime_handlers_set_LDFLAGS =
 
 test_xfer_SOURCES = test-xfer.c
 test_xfer_LDADD = $(libraries)

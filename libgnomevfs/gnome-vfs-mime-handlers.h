@@ -80,24 +80,25 @@ GList               *gnome_vfs_mime_get_all_components                    (const
 void                gnome_vfs_mime_set_default_action_type                (const char             *mime_type,
 								           GnomeVFSMimeActionType  action_type);
 void                gnome_vfs_mime_set_default_application                (const char             *mime_type,
-								           GnomeVFSMimeApplication    *application);
+								           const char             *application_id);
 void                gnome_vfs_mime_set_default_component                  (const char             *mime_type,
-								           OAF_ServerInfo         *component_iid);
+								           const char             *component_iid);
 
 /* Stored as delta to current user level - API function computes delta and stores in prefs */
 void                gnome_vfs_mime_set_short_list_applications            (const char             *mime_type,
-								           GList                  *applications);
+								           GList                  *application_ids);
 void                gnome_vfs_mime_set_short_list_components              (const char             *mime_type,
-								           GList                  *components);
+								           GList                  *component_ids);
 /* No way to override system list; can only add. */
 void                gnome_vfs_mime_extend_all_applications                (const char             *mime_type,
-								           GList                  *applications);
+								           GList                  *application_ids);
 /* Only "user" entries may be removed. */
 void                gnome_vfs_mime_remove_from_all_applications           (const char             *mime_type,
-								           GList                  *applications);
+								           GList                  *application_ids);
 
 
 GnomeVFSMimeApplication *gnome_vfs_mime_application_new_from_id           (const char              *id);
+void                     gnome_vfs_mime_define_application                (GnomeVFSMimeApplication *application);
 
 void                gnome_vfs_mime_application_free                       (GnomeVFSMimeApplication *application);
 void                gnome_vfs_mime_action_free                            (GnomeVFSMimeAction      *action);

@@ -27,9 +27,12 @@
 #include "gnome-vfs-mime-info.h"
 #include <gconf/gconf-client.h>
 #include <gtk/gtksignal.h>
+#include <stdio.h>
+#include <libgnome/gnome-util.h>
 
 static char *get_user_level (void);
 static gboolean str_to_bool (const char *str);
+static const char *bool_to_str (gboolean bool);
 static char *join_str_list (const char *separator, GList *list);
 static gboolean strv_contains_str (char **strv, const char *str);
 static char *extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix);
@@ -38,6 +41,11 @@ static char **strsplit_handle_null (const char *str, const char *delim, int max)
 static OAF_ServerInfo *OAF_ServerInfo__copy (OAF_ServerInfo *orig);
 static GList *OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
 static GList *process_app_list (const char *id_list);
+static GList *comma_separated_str_to_str_list (const char *str);
+static GList *str_list_difference (GList *a, GList *b);
+static char *str_list_to_comma_separated_str (GList *list);
+static GList *gnome_vfs_strsplit_to_list (const char *str, const char *delim, int max);
+static char *gnome_vfs_strjoin_from_list (const char *separator, GList *list);
 
 
 GnomeVFSMimeActionType
@@ -449,51 +457,288 @@ void
 gnome_vfs_mime_set_default_action_type (const char              *mime_type,
 					GnomeVFSMimeActionType   action_type)
 {
-	return;
+	char *user_mime_file;
+	FILE *f;
+	const char *action_string;
+
+	switch (action_type) {
+	case GNOME_VFS_MIME_ACTION_TYPE_APPLICATION:
+		action_string="application";
+		break;		
+	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
+		action_string="component";
+		break;
+	case GNOME_VFS_MIME_ACTION_TYPE_NONE:
+	default:
+		action_string="none";
+	}
+
+	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
+
+	f = fopen (user_mime_file, "a");
+
+	fputs ("\n", f);
+	fprintf (f, "%s:\n", mime_type);
+	fprintf (f, "\tdefault_action_type=%s\n", action_string);
+	fclose (f);
+
+	g_free (user_mime_file);
 }
 
 void gnome_vfs_mime_set_default_application (const char              *mime_type,
-				             GnomeVFSMimeApplication *application)
+				             const char              *application_id)
 {
-	return;
+	char *user_mime_file;
+	FILE *f;
+
+	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
+
+	f = fopen (user_mime_file, "a");
+
+	fputs ("\n", f);
+	fprintf (f, "%s:\n", mime_type);
+	fprintf (f, "\tdefault_application_id=%s\n", application_id);
+	fclose (f);
+
+	g_free (user_mime_file);
 }
 
 void
 gnome_vfs_mime_set_default_component (const char     *mime_type,
-				      OAF_ServerInfo *component_iid)
+				      const char     *component_iid)
 {
-	return;
+	char *user_mime_file;
+	FILE *f;
+
+	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
+
+	f = fopen (user_mime_file, "a");
+
+	fputs ("\n", f);
+	fprintf (f, "%s:\n", mime_type);
+	fprintf (f, "\tdefault_component_iid=%s\n", component_iid);
+	fclose (f);
+
+	g_free (user_mime_file);
 }
 
 void
 gnome_vfs_mime_set_short_list_applications (const char *mime_type,
-					    GList      *applications)
+					    GList      *application_ids)
 {
-	return;
+	char *user_mime_file;
+	char *user_level;
+	char *id_list_key;
+	char *addition_string;
+	char *removal_string;
+	const char *short_list_id_str;
+	GList *short_list_id_list;
+	GList *short_list_addition_list;
+	GList *short_list_removal_list;
+	FILE *f;
+
+	/* Get base list. */
+	/* Base list depends on user level. */
+	user_level = get_user_level ();
+	id_list_key = g_strconcat ("short_list_application_ids_for_",
+				   user_level,
+				   "_user_level",
+				   NULL);
+	g_free (user_level);
+	short_list_id_str = gnome_vfs_mime_get_value (mime_type, id_list_key);
+	g_free (id_list_key);
+
+	short_list_id_list = comma_separated_str_to_str_list (short_list_id_str);
+
+	/* Compute delta. */
+	
+	short_list_addition_list = str_list_difference (application_ids, short_list_id_list);
+	short_list_removal_list = str_list_difference (short_list_id_list, application_ids);
+
+	addition_string = str_list_to_comma_separated_str (short_list_addition_list);
+	removal_string = str_list_to_comma_separated_str (short_list_removal_list);
+
+	g_list_free (short_list_addition_list);
+	g_list_free (short_list_removal_list);
+
+	/* Write it. */
+
+	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
+
+	f = fopen (user_mime_file, "a");
+
+	fputs ("\n", f);
+	fprintf (f, "%s:\n", mime_type);
+	fprintf (f, "\tshort_list_application_user_additions=%s\n", addition_string);
+	fprintf (f, "\tshort_list_application_user_removals=%s\n", removal_string);
+	fclose (f);
+
+	g_free (user_mime_file);
 }
 
 
 void
 gnome_vfs_mime_set_short_list_components (const char *mime_type,
-					  GList      *components)
+					  GList      *component_iids)
 {
-	return;
+	char *user_mime_file;
+	char *user_level;
+	char *id_list_key;
+	char *addition_string;
+	char *removal_string;
+	const char *short_list_id_str;
+	GList *short_list_id_list;
+	GList *short_list_addition_list;
+	GList *short_list_removal_list;
+	FILE *f;
+
+	/* Get base list. */
+	/* Base list depends on user level. */
+	user_level = get_user_level ();
+	id_list_key = g_strconcat ("short_list_component_iids_for_",
+				   user_level,
+				   "_user_level",
+				   NULL);
+	g_free (user_level);
+	short_list_id_str = gnome_vfs_mime_get_value (mime_type, id_list_key);
+	g_free (id_list_key);
+
+	short_list_id_list = comma_separated_str_to_str_list (short_list_id_str);
+
+	/* Compute delta. */
+	
+	short_list_addition_list = str_list_difference (component_iids, short_list_id_list);
+	short_list_removal_list = str_list_difference (short_list_id_list, component_iids);
+
+	addition_string = str_list_to_comma_separated_str (short_list_addition_list);
+	removal_string = str_list_to_comma_separated_str (short_list_removal_list);
+
+	g_list_free (short_list_addition_list);
+	g_list_free (short_list_removal_list);
+
+	/* Write it. */
+
+	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
+
+	f = fopen (user_mime_file, "a");
+
+	fputs ("\n", f);
+	fprintf (f, "%s:\n", mime_type);
+	fprintf (f, "\tshort_list_component_user_additions=%s\n", addition_string);
+	fprintf (f, "\tshort_list_component_user_removals=%s\n", removal_string);
+	fclose (f);
+
+	g_free (user_mime_file);
 }
 
 
 void gnome_vfs_mime_extend_all_applications (const char *mime_type,
-					     GList      *applications)
+					     GList      *application_ids)
 {
-	return;
+	char *user_mime_file;
+	const char *user_all_application_ids;
+	GList *user_id_list;
+	GList *extras;
+	GList *update_list;
+	char *update_str;
+	FILE *f;
+
+ 	user_all_application_ids = gnome_vfs_mime_get_value 
+		(mime_type, "all_application_ids");
+	user_id_list = comma_separated_str_to_str_list (user_all_application_ids);
+
+	extras = str_list_difference (application_ids, user_id_list);
+
+	update_list = g_list_concat (g_list_copy (user_id_list), extras);
+
+	update_str = str_list_to_comma_separated_str (update_list);
+
+	g_list_free (update_list);
+	/* FIXME: should be deep free */
+	g_list_free (user_id_list);
+	
+	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
+
+	f = fopen (user_mime_file, "a");
+
+	fputs ("\n", f);
+	fprintf (f, "%s:\n", mime_type);
+
+	fprintf (f, "\tall_application_ids=%s\n", update_str);
+	fclose (f);
+
+	g_free (update_str);
+	g_free (user_mime_file);
 }
 
 
 void
 gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
-					     GList      *applications)
+					     GList      *application_ids)
 {
-	return;
+	char *user_mime_file;
+	const char *user_all_application_ids;
+	GList *user_id_list;
+	GList *update_list;
+	char *update_str;
+	FILE *f;
+
+ 	user_all_application_ids = gnome_vfs_mime_get_value 
+		(mime_type, "all_application_ids");
+	user_id_list = comma_separated_str_to_str_list (user_all_application_ids);
+
+	update_list = str_list_difference (user_id_list, application_ids);
+
+	update_str = str_list_to_comma_separated_str (update_list);
+
+	g_list_free (update_list);
+	/* FIXME: should be deep free */
+	g_list_free (user_id_list);
+	
+	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
+
+	f = fopen (user_mime_file, "a");
+
+	fputs ("\n", f);
+	fprintf (f, "%s:\n", mime_type);
+
+	fprintf (f, "\tall_application_ids=%s\n", update_str);
+	fclose (f);
+
+	g_free (update_str);
+	g_free (user_mime_file);
 }
+
+void
+gnome_vfs_mime_define_application (GnomeVFSMimeApplication *application)
+{
+	char *hack_mime_type;
+	char *user_mime_file;
+	FILE *f;
+	const char *can_open_multiple_files;
+	const char *can_open_uris;
+
+
+	hack_mime_type = g_strconcat ("x-application-registry-hack/", application->id, NULL);
+
+	can_open_multiple_files = bool_to_str (application->can_open_multiple_files);
+	can_open_uris = bool_to_str (application->can_open_uris);
+	
+	user_mime_file = gnome_util_home_file ("mime-info/user.keys");
+
+	f = fopen (user_mime_file, "a");
+
+	fputs ("\n", f);
+	fprintf (f, "%s:\n", hack_mime_type);
+	fprintf (f, "\tname=%s\n", application->name);
+	fprintf (f, "\tcommand=%s\n", application->command);
+	fprintf (f, "\tcan_open_multiple_files=%s\n", can_open_multiple_files);
+	fprintf (f, "\tcan_open_uris=%s\n", can_open_uris);
+	fclose (f);
+
+	g_free (user_mime_file);
+}
+
 
 
 
@@ -519,6 +764,7 @@ gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application)
 	g_free (application->command);
 	g_free (application);
 }
+
 
 void
 gnome_vfs_mime_action_free (GnomeVFSMimeAction *action) 
@@ -547,6 +793,13 @@ str_to_bool (const char *str)
 		((strcasecmp (str, "true") == 0) || 
 		 (strcasecmp (str, "yes") == 0)));
 }
+
+static const char *
+bool_to_str (gboolean bool)
+{
+	return (bool ? "true" : "false");
+}
+
 
 static char *
 join_str_list (const char *separator, GList *list)
@@ -794,3 +1047,78 @@ get_user_level (void)
 	 */
 	return user_level;
 }
+
+
+
+
+
+static GList *gnome_vfs_strsplit_to_list (const char *str, const char *delim, int max)
+{
+	char **strv;
+	GList *retval;
+	int i;
+
+	strv = strsplit_handle_null (str, delim, max);
+
+	retval = NULL;
+
+	for (i = 0; strv[i] != NULL; i++) {
+		retval = g_list_prepend (retval, strv[i]);
+	}
+
+	retval = g_list_reverse (retval);
+	
+	/* Don't strfreev, since we didn't copy the individual strings. */
+	g_free (strv);
+
+	return retval;
+}
+
+static char *gnome_vfs_strjoin_from_list (const char *separator, GList *list)
+{
+	char **strv;
+	int i;
+	GList *p;
+	char *retval;
+
+	strv = g_new0 (char *, (g_list_length (list) + 1));
+
+	for (p = list, i = 0; p != NULL; p = p->next, i++) {
+		strv[i] = p->data;
+	}
+
+	retval = g_strjoinv (separator, strv);
+
+	g_free (strv);
+
+	return retval;
+}
+
+static GList *comma_separated_str_to_str_list (const char *str)
+{
+	return gnome_vfs_strsplit_to_list (str, ",", 0);
+}
+
+static char *str_list_to_comma_separated_str (GList *list)
+{
+	return gnome_vfs_strjoin_from_list (",", list);
+}
+
+
+static GList *str_list_difference (GList *a, GList *b)
+{
+	GList *p;
+	GList *retval;
+
+	retval = NULL;
+
+	for (p = a; p != NULL; p = p->next) {
+		if (g_list_find_custom (b, p->data, (GCompareFunc) strcmp) == NULL) {
+			retval = g_list_prepend (retval, p->data);
+		}
+	}
+
+	retval = g_list_reverse (retval);
+	return retval;
+}
+
