@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-01 09:16+0200\n"
+"POT-Creation-Date: 2004-12-03 13:07+0200\n"
 "PO-Revision-Date: 2004-12-01 08:02+0200\n"
 "Last-Translator: Zuza Software Foundation <info@translate.org.za>\n"
 "Language-Team: Northern Sotho <translate-discuss-nso@lists.sourceforge.net>\n"
@@ -87,11 +87,11 @@ msgstr "Bolumo ya Sedirišwa sa Hardware"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr "Bolumo ya Koketšo ya 2 ya Linux"
+msgstr "Bolumo ya Ext2 ya Linux"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
-msgstr "Bolumo ya Koketšo ya 3 ya Linux"
+msgstr "Bolumo ya Ext3 ya Linux"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
@@ -961,19 +961,19 @@ msgstr "Phethagatša taelo kgokaganong ya dithapo"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
 msgstr ""
-"Taelo e dirišeditšwego go swaragana le di-STS tša \"maikemišetšo\" , ge eba "
-"di kgontšhitšwe."
+"Taelo e dirišeditšwego go swaragana le di-STS tša \"aim\" , ge eba di "
+"kgontšhitšwe."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
 msgstr ""
-"Taelo e dirišeditšwego go swaragana le di-STS tša \"letšetšago\", ge eba di "
+"Taelo e dirišeditšwego go swaragana le di-STS tša \"callto\", ge eba di "
 "kgontšhitšwe."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr ""
-"Taelo e dirišeditšwego go swaragana le di-STS tša \"thušoyag\", ge eba di "
+"Taelo e dirišeditšwego go swaragana le di-STS tša \"ghelp\", ge eba di "
 "kgontšhitšwe."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
@@ -985,50 +985,50 @@ msgstr ""
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
 msgstr ""
-"Taelo e dirišeditšwego go swaragana le di-STS tša \"pfsk\", ge eba di "
+"Taelo e dirišeditšwego go swaragana le di-STS tša \"http\", ge eba di "
 "kgontšhitšwe."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
 msgstr ""
-"Taelo e dirišeditšwego go swaragana le di-STS tša \"di-pfsk\", ge eba di "
+"Taelo e dirišeditšwego go swaragana le di-STS tša \"https\", ge eba di "
 "kgontšhitšwe."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr ""
-"Taelo e dirišeditšwego go swaragana le di-STS tša \"tshedimošo\" , ge eba di "
+"Taelo e dirišeditšwego go swaragana le di-STS tša \"info\" , ge eba di "
 "kgontšhitšwe."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr ""
-"Taelo e dirišeditšwego go swaragana le di-STS tša \"romelago\", ge eba di "
+"Taelo e dirišeditšwego go swaragana le di-STS tša \"mailto\", ge eba di "
 "kgontšhitšwe."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr ""
-"Taelo e dirišeditšwego go swaragana le di-STS tša \"motho\", ge eba di "
+"Taelo e dirišeditšwego go swaragana le di-STS tša \"man\", ge eba di "
 "kgontšhitšwe."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr ""
-"Taelo e dirišeditšwego go swaragana le di-STS tša \"ditlakala\", ge eba di "
+"Taelo e dirišeditšwego go swaragana le di-STS tša \"trash\", ge eba di "
 "kgontšhitšwe."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "Seswari sa di-STS tša \"maikemišetšo\""
+msgstr "Seswari sa di-STS tša \"aim\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "Seswari sa di-STS tša \"leletšago\""
+msgstr "Seswari sa di-STS tša \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Seswari sa di-STS tša \"thušoyag\""
+msgstr "Seswari sa di-STS tša \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "The handler for \"h323\" URLs"
@@ -1036,27 +1036,27 @@ msgstr "Seswari sa di-STS tša \"h323\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid "The handler for \"http\" URLs"
-msgstr "Seswari sa di-STS tša \"pfsk\""
+msgstr "Seswari sa di-STS tša \"http\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid "The handler for \"https\" URLs"
-msgstr "Seswari sa di-STS tša \"di-pfsk\""
+msgstr "Seswari sa di-STS tša \"https\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "Seswari sa di-STS tša \"tshedimošo\""
+msgstr "Seswari sa di-STS tša \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "Seswari sa di-STS tša \"romelago\""
+msgstr "Seswari sa di-STS tša \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "Seswari sa di-STS tša \"motho\""
+msgstr "Seswari sa di-STS tša \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "Seswari sa di-STS tša \"ditlakala\""
+msgstr "Seswari sa di-STS tša \"trash\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
@@ -1071,23 +1071,23 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Ke therešo gore ge taelo e laeditšwe go \"taelo\" senotlelo se swanetše go "
-"swaragana le di-STS tša \"leletšago\"."
+"Ke therešo gore ge taelo e laeditšwe go \"command\" senotlelo se swanetše go "
+"swaragana le di-STS tša \"callto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Ke therešo gore ge taelo e laeditšwe go \"taelo\" senotlelo se swanetše go "
-"swaragana le di-STS tša \"thušoyag\"."
+"Ke therešo gore ge taelo e laeditšwe go \"command\" senotlelo se swanetše go "
+"swaragana le di-STS tša \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Ke therešo gore ge taelo e laeditšwe go \"taelo\" senotlelo se swanetše go "
+"Ke therešo gore ge taelo e laeditšwe go \"command\" senotlelo se swanetše go "
 "swaragana le di-STS tša \"h323\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
@@ -1095,48 +1095,48 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Ke therešo gore ge taelo e laeditšwe go \"taelo\" senotlelo se swanetše go "
-"swaragana le di-STS tša \"pfsk\"."
+"Ke therešo gore ge taelo e laeditšwe go \"command\" senotlelo se swanetše go "
+"swaragana le di-STS tša \"http\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Ke therešo gore ge taelo e laeditšwe go \"taelo\" senotlelo se swanetše go "
-"swaragana le di-STS tša \"di-pfsk\"."
+"Ke therešo gore ge taelo e laeditšwe go \"command\" senotlelo se swanetše go "
+"swaragana le di-STS tša \"https\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Ke therešo gore ge taelo e laeditšwe go \"taelo\" senotlelo se swanetše go "
-"swaragana le di-STS tša \"tshedimošo\"."
+"Ke therešo gore ge taelo e laeditšwe go \"command\" senotlelo se swanetše go "
+"swaragana le di-STS tša \"info\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Ke therešo gore ge taelo e laeditšwe go \"taelo\" senotlelo se swanetše go "
-"swaragana le di-STS tša \"romelago\"."
+"Ke therešo gore ge taelo e laeditšwe go \"command\" senotlelo se swanetše go "
+"swaragana le di-STS tša \"mailto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Ke therešo gore ge taelo e laeditšwe go \"taelo\" senotlelo se swanetše go "
-"swaragana le di-STS tša \"motho\"."
+"Ke therešo gore ge taelo e laeditšwe go \"command\" senotlelo se swanetše go "
+"swaragana le di-STS tša \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Ke therešo gore ge taelo e laeditšwe go \"taelo\" senotlelo se swanetše go "
-"swaragana le di-STS tša \"ditlakala\"."
+"Ke therešo gore ge taelo e laeditšwe go \"command\" senotlelo se swanetše go "
+"swaragana le di-STS tša \"trash\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1149,20 +1149,17 @@ msgstr ""
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
 msgstr ""
-"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša "
-"\"maikemišetšo\""
+"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"aim\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
 msgstr ""
-"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"leletša go"
-"\""
+"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr ""
-"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"thušo ya g"
-"\""
+"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
@@ -1172,35 +1169,32 @@ msgstr ""
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
 msgstr ""
-"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"pfsk\""
+"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"http\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
 msgstr ""
-"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"di-pfsk\""
+"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"https\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
 msgstr ""
-"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"tshedimošo"
-"\""
+"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
 msgstr ""
-"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"romela go"
-"\""
+"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
 msgstr ""
-"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"motho\""
+"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr ""
-"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"ditlakala"
-"\""
+"Ge eba taelo e laeditšwego e swanetše go swaragana le di-STS tša \"trash\""
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1220,7 +1214,7 @@ msgstr "Kamoo o ka bonagatšago tirelo ya mo gae ya DNS-SD"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr "Mehola e kgonegago e a \"kopanywa\", \"arolwa\" le go \"paledišwa\"."
+msgstr "Boleng bjo ke  \"merged\", \"separate\" le \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
