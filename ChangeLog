@@ -1,3 +1,11 @@
+2001-08-19  Sri Ramkrishna <sri@aracnet.com>
+
+
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_private),
+	(gnome_vfs_xfer_uri):
+
+	Added new API docs to gnome-vfs-xfer.  
+
 2001-08-14  Michael Meeks  <michael@ximian.com>
 
 	* configure.in (BONOBO_ACTIVATION_REQUIRED): require 0.9.1

@@ -1757,6 +1757,7 @@ link_items (const GList *source_uri_list,
 	return result;
 }
 
+
 static GnomeVFSResult
 gnome_vfs_xfer_empty_directories (const GList *trash_dir_uris,
 			          GnomeVFSXferErrorMode error_mode,
@@ -1804,6 +1805,7 @@ gnome_vfs_xfer_empty_directories (const GList *trash_dir_uris,
 	return result;
 }
 
+
 static GnomeVFSResult
 gnome_vfs_xfer_delete_items_common (const GList *source_uri_list,
 			            GnomeVFSXferErrorMode error_mode,
@@ -1845,6 +1847,7 @@ gnome_vfs_xfer_delete_items_common (const GList *source_uri_list,
 	return result;
 }
 
+
 static GnomeVFSResult
 gnome_vfs_xfer_delete_items (const GList *source_uri_list,
 			     GnomeVFSXferErrorMode error_mode,
@@ -1876,6 +1879,7 @@ gnome_vfs_xfer_delete_items (const GList *source_uri_list,
 
 	return result;
 }
+
 
 static GnomeVFSResult
 gnome_vfs_new_directory_with_unique_name (const GnomeVFSURI *target_dir_uri,
@@ -2240,6 +2244,30 @@ gnome_vfs_xfer_private (const GList *source_uri_list,
 	result = GNOME_VFS_OK;
 
 	return result;
+/**
+ * gnome_vfs_xfer_uri_list:
+ *
+ * This function will transfer multiple files to a multiple targets.  Given a
+ * a source uri(s) and a destination uri(s).   There are a list of options that
+ * your application can use to control how the transfer is done.
+ *
+ * @source_urilist: A Glist of uris  (ie file;//)
+ * @target_uri_list: A GList of uris  
+ * @xfer_options: These are options you wish to set for the transfer. For
+ * instance by setting the xfer behavior you can either make a copy or a 
+ * move.  
+ * @error_mode:  Decide how to behave if the xfer is interrupted.  For instance
+ * you could set your application to return an error code in case of an
+ * interuption.
+ * @overwrite_mode: How to react if a file your copying is being overwritten.
+ * @progress_callback:  This is used to monitor the progress of a transfer.
+ * Common use would be to check to see if the transfer is asking for permission
+ * to overwrite a file.
+ * @data: Data to be want passed back in callbacks from the xfer engine
+ *
+ * Returns: If all goes well it returns GNOME_VFS_OK.  Check GnomeVFSResult for
+ * other values.
+ **/
 }
 
 GnomeVFSResult
@@ -2274,6 +2302,59 @@ gnome_vfs_xfer_uri_list (const GList *source_uri_list,
 
 	return result;
 }
+/**
+ * gnome_vfs_xfer_uri:
+ *
+ * This function will allow a person to copy data from one location to another.
+ * The location is specified using a URIs as the means to describe the location
+ * of the data.  Like any copy there are several options that can be set.
+ * These can be set using the xfer_options.    In addition there are callback
+ * mechanisms and error codes to provide feedback in the copy
+ * process.
+ *
+ * @source_uri: This is the location of where your data resides.  
+ * @target_uri: This is the location of where you want your data to go.
+ * @xfer_options: Set the kind of transfers you want.  These are:
+ * GNOME_VFS_XFER_DEFAULT:  Default behavior.  Which is to do a straight one to
+ * one copy.
+ * GNOME_VFS_XFER_FOLLOW_LINKS:  This means follow the value of the symbolic
+ * link when copying.  (ie treat a symbolic link as a directory)
+ * GNOME_VFS_RECURSIVE:  Do a recursive copy of the source to the destination.
+ * Equivalent to the cp -r option in GNU cp.
+ * GNOME_VFS_XFER_SAME_FS:  This only allows copying onto the same filesystem.
+ * GNOME_VFS_DELETE_ITEM: This is equivalent to a mv.  Where you will copy the
+ * contents of the source to the destination and then remove data from the
+ * source URI.
+ * GNOME_VFS_XFER_EMPTY_DIRECTORIES: <TBA>
+ * GNOME_VFS_XFER_NEW_UNIQUE_DIRECTORY:  This will create a directory if it
+ * doesn't exist in the destination area.  Useful with the
+ * GNOME_VFS_XFER_RECURSIVE xfer option.
+ * GNOME_VFS_XFER_REMOVESOURCE: This option will remove the source data after
+ * whatever xfer option has been taken.
+ * GNOME_VFS_USE_UNIQUE_NAMES:  This is a check ot make sure that what you copy
+ * onto the destination is not overwritten.  It will only copy the unique items
+ * from the source to the destjnation.
+ * GNOME_VFS_XFER_LINK_ITEMS: <TBA>
+ * @error_mode:  When this function returns you need to check the error code
+ * for the results of the copy.  The results are generally:
+ * GNOME_VFS_XFER_ERROR_MODE_ABORT: This means that the operation was aborted
+ * by some sort of signal that interrupted the transfer.
+ * GNOME_VFS_ERROR_MODE_QUERY: This means that no error has occured and that
+ * you should query with the GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR.  See
+ * 
+ * @overwrite_mode:  This sets the options to deal with data that are duplicate
+ * between the source and the destination.  Your choices are:
+ * GNOME_VFS_XFER_OVERWRITE_MODE_ABORT:  This means abort the transfer if you
+ * see duplicate data.
+ * GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE: Replace the files silently.  Don't
+ * worry be happy.
+ * GNOME_VFS_XFER_OVERWRITE_MODE_SKIP: Skip duplicate files silenty.
+ * target.
+ * @progress_callback:  This is an important call back because this is how you
+ * communicate with your copy process.  
+ * @data: Data to be want passed back in callbacks from the xfer engine
+ **/
+
 
 GnomeVFSResult	
 gnome_vfs_xfer_uri (const GnomeVFSURI *source_uri,
@@ -2302,6 +2383,16 @@ gnome_vfs_xfer_uri (const GnomeVFSURI *source_uri,
 	g_list_free (target_uri_list);
 
 	return result;
+
+/**
+ * gnome_vfs_xfer_delete_list:
+ *
+ * @uri_list:  This is a list containing uris
+ * @error_mode:  Decide how you want to deal with interruptions
+ * @xfer_options: Set whatever transfer options you need.
+ * @progress_callback: Callback to check on progress of transfer.
+ * @data: Data to be want passed back in callbacks from the xfer engine
+ **/
 }
 
 GnomeVFSResult 
