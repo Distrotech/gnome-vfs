@@ -1,3 +1,24 @@
+2004-07-18  Ray Strode  <rstrode@redhat.com>
+
+	Detect changes to cache files.  Note it's
+	still somehow broken cause nautilus locks
+	up when the test files change.
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	(gnome_vfs_mime_info_cache_dir_out_of_date):
+	(gnome_vfs_mime_info_cache_defaults_list_out_of_date):
+	new functions to detect whether cache should
+	be reloaded.
+	(gnome_vfs_mime_info_cache_dir_load):
+	(gnome_vfs_mime_info_cache_dir_load_defaults_list):
+	use aforementioned new functions.
+	(gnome_vfs_mime_info_cache_load):
+	Only create new mime_info_cache if it's never been
+	created before.
+
+	* test/test-mime-info-cache.c: update test file to
+	loop.
+
 2004-07-19  Dave Camp  <dave@novell.com>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c:

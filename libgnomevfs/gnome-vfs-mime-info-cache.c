@@ -22,7 +22,10 @@
 */
 
 #include <config.h>
+#include <errno.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <sys/time.h>
 #include <glib.h>
 #include "gnome-vfs-mime-info-cache.h"
 #include "eggdesktopentries.h"
@@ -32,6 +35,10 @@ typedef struct {
 	char *path;
 	GHashTable *mime_info_cache_map;
 	GHashTable *defaults_list_map;
+	time_t mime_info_cache_timestamp;
+        time_t mime_info_cache_last_stat_time;
+	time_t defaults_list_timestamp;
+	time_t defaults_list_last_stat_time;
 } GnomeVFSMimeInfoCacheDir;
 
 typedef struct {
@@ -44,8 +51,8 @@ static void gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir);
 static void gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir);
 static GnomeVFSMimeInfoCacheDir * gnome_vfs_mime_info_cache_dir_new (const char *path);
 static void gnome_vfs_mime_info_cache_dir_free (GnomeVFSMimeInfoCacheDir *dir);
-static char ** gnome_vfs_mime_info_cache_get_search_path (void);
-static char ** gnome_vfs_mime_info_cache_get_defaults_search_path (void);
+static char **gnome_vfs_mime_info_cache_get_search_path (void);
+static char **gnome_vfs_mime_info_cache_get_defaults_search_path (void);
 ;
 static gboolean gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *dir,
 								      const char *desktop_entry);
@@ -66,6 +73,96 @@ free_mime_info_cache_map_list (GList *list)
 	g_list_free (list);
 }
 
+static gboolean
+gnome_vfs_mime_info_cache_dir_out_of_date (GnomeVFSMimeInfoCacheDir *dir)
+{
+	struct stat buf;
+	char *filename;
+	struct timeval tv;
+	time_t current_time;
+	int retval = TRUE;
+
+	if (dir->mime_info_cache_map == NULL) {
+		return TRUE;
+	}
+
+	gettimeofday (&tv, NULL);
+	current_time = tv.tv_sec;
+
+	if (dir->mime_info_cache_last_stat_time == 0) {
+		dir->mime_info_cache_last_stat_time = current_time;
+		retval = TRUE;
+	} else if (current_time > dir->mime_info_cache_last_stat_time + 5) {
+		retval = TRUE;
+	} else {
+		retval = FALSE;
+	}
+
+	if (retval == FALSE)
+		return retval;
+
+	filename = g_build_filename (dir->path, "mimeinfo.cache", NULL);
+
+	if (stat (filename, &buf) < 0) {
+		g_free (filename);
+		dir->mime_info_cache_last_stat_time = current_time;
+		return TRUE;
+	}
+	g_free (filename);
+
+	dir->mime_info_cache_last_stat_time = current_time;
+
+	if (buf.st_mtime != dir->mime_info_cache_timestamp) 
+		return TRUE;
+
+	return FALSE;
+}
+
+static gboolean
+gnome_vfs_mime_info_cache_dir_defaults_list_out_of_date (GnomeVFSMimeInfoCacheDir *dir)
+{
+	struct stat buf;
+	char *filename;
+	struct timeval tv;
+	time_t current_time;
+	int retval = TRUE;
+
+	if (dir->defaults_list_map == NULL)
+		return TRUE;
+
+	gettimeofday (&tv, NULL);
+	current_time = tv.tv_sec;
+
+	if (dir->defaults_list_last_stat_time == 0) {
+		dir->defaults_list_last_stat_time = current_time;
+		retval = TRUE;
+	} else if (current_time >= dir->defaults_list_last_stat_time + 5) {
+		retval = TRUE;
+	} else {
+		retval = FALSE;
+	}
+
+	if (retval == FALSE)
+		return retval;
+
+	filename = g_build_filename (dir->path, "defaults.list", NULL);
+
+	if (stat (filename, &buf) < 0) {
+		g_free (filename);
+		dir->defaults_list_last_stat_time = current_time;
+		return TRUE;
+	}
+	g_free (filename);
+
+	dir->defaults_list_last_stat_time = current_time;
+	
+	if (buf.st_mtime != dir->defaults_list_timestamp) {
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
 static void
 gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 {
@@ -74,7 +171,15 @@ gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 	gchar *filename, **desktop_file_ids, **mime_types;
 	int i;
 	static gchar *allowed_start_groups[] = { "MIME Cache", NULL };
+	struct stat buf;
 
+	load_error = NULL;
+	mime_types = NULL;
+	entries = NULL;
+
+	if (!gnome_vfs_mime_info_cache_dir_out_of_date (dir))
+		return;
+	
 	if (dir->mime_info_cache_map != NULL) {
 		g_hash_table_destroy (dir->mime_info_cache_map);
 	}
@@ -85,7 +190,11 @@ gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 
 	filename = g_build_filename (dir->path, "mimeinfo.cache", NULL);
 
-	load_error = NULL;
+	if (stat (filename, &buf) < 0)
+		goto error;
+
+	dir->mime_info_cache_timestamp = buf.st_mtime;
+
 	entries =
 		egg_desktop_entries_new_from_file (allowed_start_groups,
 						   EGG_DESKTOP_ENTRIES_GENERATE_LOOKUP_MAP |
@@ -94,19 +203,16 @@ gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 						   filename,
 						   &load_error);
 	g_free (filename);
+	filename = NULL;
 
-	if (load_error != NULL) {
-		g_error_free (load_error);
-		return;
-	}
+	if (load_error != NULL)
+		goto error;
 
 	mime_types = egg_desktop_entries_get_keys (entries, "MIME Cache",
 						   NULL, &load_error);
 
-	if (load_error != NULL) {
-		g_error_free (load_error);
-		return;
-	}
+	if (load_error != NULL)
+		goto error;
 
 	for (i = 0; mime_types[i] != NULL; i++) {
 		desktop_file_ids = egg_desktop_entries_get_string_list (entries,
@@ -130,6 +236,20 @@ gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 
 	g_strfreev (mime_types);
 	egg_desktop_entries_free (entries);
+
+	return;
+error:
+	if (filename)
+		g_free (filename);
+
+	if (entries != NULL)
+		egg_desktop_entries_free (entries);
+
+	if (mime_types != NULL)
+		g_strfreev (mime_types);
+
+	if (load_error)
+		g_error_free (load_error);
 }
 
 static void
@@ -139,17 +259,30 @@ gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 	GError *load_error;
 	gchar *filename, *desktop_file_id, **mime_types;
 	int i;
+	struct stat buf;
 	static gchar *allowed_start_groups[] = { "MIME Cache", NULL };
+
+	load_error = NULL;
+	mime_types = NULL;
+	entries = NULL;
+
+	if (!gnome_vfs_mime_info_cache_dir_defaults_list_out_of_date (dir))
+		return;
 
 	if (dir->defaults_list_map != NULL) {
 		g_hash_table_destroy (dir->defaults_list_map);
 	}
+
 	dir->defaults_list_map = g_hash_table_new_full (g_str_hash, g_str_equal,
 							g_free, g_free);
 
 	filename = g_build_filename (dir->path, "defaults.list", NULL);
 
-	load_error = NULL;
+	if (stat (filename, &buf) < 0)
+		goto error;
+
+	dir->defaults_list_timestamp = buf.st_mtime;
+
 	entries =
 		egg_desktop_entries_new_from_file (allowed_start_groups,
 						   EGG_DESKTOP_ENTRIES_GENERATE_LOOKUP_MAP |
@@ -158,19 +291,16 @@ gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 						   filename,
 						   &load_error);
 	g_free (filename);
+	filename = NULL;
 
-	if (load_error != NULL) {
-		g_error_free (load_error);
-		return;
-	}
+	if (load_error != NULL)
+		goto error;
 
 	mime_types = egg_desktop_entries_get_keys (entries, "MIME Cache",
 						   NULL, &load_error);
 
-	if (load_error != NULL) {
-		g_error_free (load_error);
-		return;
-	}
+	if (load_error != NULL)
+		goto error;
 
 	for (i = 0; mime_types[i] != NULL; i++) {
 		GList *tmp;
@@ -219,6 +349,20 @@ gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 
 	g_strfreev (mime_types);
 	egg_desktop_entries_free (entries);
+
+	return;
+error:
+	if (filename)
+		g_free (filename);
+
+	if (entries != NULL)
+		egg_desktop_entries_free (entries);
+
+	if (mime_types != NULL)
+		g_strfreev (mime_types);
+
+	if (load_error)
+		g_error_free (load_error);
 }
 
 
@@ -419,51 +563,72 @@ gnome_vfs_mime_info_cache_dir_add_desktop_entries (GnomeVFSMimeInfoCacheDir *dir
 static void
 gnome_vfs_mime_info_cache_load (void)
 {
-	char **dirs;
-	int i;
-
-	gnome_vfs_mime_info_cache_flush ();
-
 	G_LOCK (mime_info_cache);
-	mime_info_cache = gnome_vfs_mime_info_cache_new ();
-	G_UNLOCK (mime_info_cache);
+	if (mime_info_cache == NULL) {
+		char **dirs;
+		int i;
 
-	dirs = gnome_vfs_mime_info_cache_get_search_path ();
+		mime_info_cache = gnome_vfs_mime_info_cache_new ();
 
-	for (i = 0; dirs[i] != NULL; i++) {
-		GnomeVFSMimeInfoCacheDir *dir;
+		dirs = gnome_vfs_mime_info_cache_get_search_path ();
 
-		dir = gnome_vfs_mime_info_cache_dir_new (dirs[i]);
+		for (i = 0; dirs[i] != NULL; i++) {
+			GnomeVFSMimeInfoCacheDir *dir;
 
-		if (dir != NULL) {
+			dir = gnome_vfs_mime_info_cache_dir_new (dirs[i]);
+
+			if (dir != NULL) {
+				gnome_vfs_mime_info_cache_dir_load (dir);
+				gnome_vfs_mime_info_cache_dir_load_defaults_list (dir);
+
+				mime_info_cache->dirs = g_list_append (mime_info_cache->dirs,
+							  	       dir);
+			}
+		}
+		g_strfreev (dirs);
+
+		dirs = gnome_vfs_mime_info_cache_get_defaults_search_path ();
+
+		for (i = 0; dirs[i] != NULL; i++) {
+			GnomeVFSMimeInfoCacheDir *dir;
+
+			dir = gnome_vfs_mime_info_cache_dir_new (dirs[i]);
+
+			if (dir != NULL) {
+				G_LOCK (mime_info_cache);
+				mime_info_cache->defaults_list_dirs =
+					g_list_append (mime_info_cache->defaults_list_dirs, dir);
+				G_UNLOCK (mime_info_cache);
+				gnome_vfs_mime_info_cache_dir_load_defaults_list (dir);
+			}
+		}
+
+		g_strfreev (dirs);
+
+	} else {
+		GList *tmp;
+		tmp = mime_info_cache->dirs;
+		while (tmp != NULL) {
+			GnomeVFSMimeInfoCacheDir *dir;
+
+			dir = (GnomeVFSMimeInfoCacheDir *) tmp->data;
 			gnome_vfs_mime_info_cache_dir_load (dir);
 			gnome_vfs_mime_info_cache_dir_load_defaults_list (dir);
 
-			G_LOCK (mime_info_cache);
-			mime_info_cache->dirs = g_list_append (mime_info_cache->dirs, dir);
-			G_UNLOCK (mime_info_cache);
+			tmp = tmp->next;
 		}
-	}
 
-	g_strfreev (dirs);
+		tmp = mime_info_cache->defaults_list_dirs;
+		while (tmp != NULL) {
+			GnomeVFSMimeInfoCacheDir *dir;
 
-	dirs = gnome_vfs_mime_info_cache_get_defaults_search_path ();
-
-	for (i = 0; dirs[i] != NULL; i++) {
-		GnomeVFSMimeInfoCacheDir *dir;
-
-		dir = gnome_vfs_mime_info_cache_dir_new (dirs[i]);
-
-		if (dir != NULL) {
-			G_LOCK (mime_info_cache);
-			mime_info_cache->defaults_list_dirs =
-				g_list_append (mime_info_cache->defaults_list_dirs, dir);
-			G_UNLOCK (mime_info_cache);
+			dir = (GnomeVFSMimeInfoCacheDir *) tmp->data;
 			gnome_vfs_mime_info_cache_dir_load_defaults_list (dir);
+
+			tmp = tmp->next;
 		}
 	}
-
-	g_strfreev (dirs);
+	G_UNLOCK (mime_info_cache);
 }
 
 
@@ -510,12 +675,7 @@ gnome_vfs_mime_get_all_desktop_entries (const char *mime_type)
 {
 	GList *desktop_entries, *list, *dir_list, *tmp;
 
-        /* FIXME: Need to stat some files to determine when to flush 
-	 * the cache.
-	 */
-	if (mime_info_cache == NULL) {
-		gnome_vfs_mime_info_cache_load ();
-	}
+	gnome_vfs_mime_info_cache_load ();
 
 	G_LOCK (mime_info_cache);
 	dir_list = mime_info_cache->dirs;
@@ -551,12 +711,7 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 	gchar *desktop_entry;
 	GList *dir_list;
 
-        /* FIXME: Need to stat some files to determine when to flush 
-	 * the cache.
-	 */
-	if (mime_info_cache == NULL) {
-		gnome_vfs_mime_info_cache_load ();
-	}
+	gnome_vfs_mime_info_cache_load ();
 
 	G_LOCK (mime_info_cache);
 	dir_list = mime_info_cache->defaults_list_dirs;
@@ -570,11 +725,14 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 						     mime_type);
 
 		if (desktop_entry != NULL)
-			return desktop_entry;
+			break;
 
 		dir_list = dir_list->next;
 	}
 	G_UNLOCK (mime_info_cache);
+
+	if (desktop_entry != NULL)
+		return desktop_entry;
 
 	G_LOCK (mime_info_cache);
 	dir_list = mime_info_cache->dirs;
@@ -588,11 +746,11 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 						     mime_type);
 
 		if (desktop_entry != NULL)
-			return desktop_entry;
+			break;
 
 		dir_list = dir_list->next;
 	}
 	G_UNLOCK (mime_info_cache);
 
-	return NULL;
+	return desktop_entry;
 }
