@@ -923,17 +923,21 @@ make_propfind_request (HttpFileHandle **handle_return,
 	xmlParserCtxtPtr parserContext;
 	xmlDocPtr doc = NULL;
 	xmlNodePtr cur = NULL;
-	gchar *uri_string = gnome_vfs_uri_to_string (uri,
+	gchar *raw_uri = gnome_vfs_uri_to_string (uri,
                 GNOME_VFS_URI_HIDE_USER_NAME
                 |GNOME_VFS_URI_HIDE_PASSWORD
                 |GNOME_VFS_URI_HIDE_HOST_NAME
                 |GNOME_VFS_URI_HIDE_HOST_PORT
                 |GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
+	gchar *uri_string = g_strdup_printf("%s/", raw_uri);
 	gchar *extraheaders = g_strdup_printf("Depth: %d\r\n", depth);
 
 	GByteArray *request = g_byte_array_new();
 	gchar *request_str = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
 		"<D:propfind xmlns:D=\"DAV:\"><D:allprop/></D:propfind>";
+
+
+	g_free(raw_uri);
 
 	request = g_byte_array_append(request, request_str, 
 			strlen(request_str));
@@ -1000,6 +1004,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 	}
 
 	g_free(buffer);
+	g_free(uri_string);
 	g_free(extraheaders);
 
 	xmlFreeParserCtxt(parserContext);
