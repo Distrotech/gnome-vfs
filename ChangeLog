@@ -1,3 +1,8 @@
+2005-01-24  Nate Nielsen <nielsen@memberwebs.com>
+
+	* modules/smb-method.c: (try_init) Use new flag for supressing automatic
+	guest login. See: https://bugzilla.samba.org/show_bug.cgi?id=2092#c5
+	
 2005-01-18  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/gnome-vfs-daemon.c: (main):

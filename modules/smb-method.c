@@ -648,8 +648,8 @@ try_init (void)
 #if defined(SMB_CTX_FLAG_USE_KERBEROS) && defined(SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS)
 		smb_context->flags |= SMB_CTX_FLAG_USE_KERBEROS | SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS;
 #endif
-#if defined(SMBCCTX_FLAG_NO_AUTO_ANON)
-		smb_context->flags |= SMBCCTX_FLAG_NO_AUTO_ANON;
+#if defined(SMBCCTX_FLAG_NO_AUTO_ANONYMOUS_LOGON)
+		smb_context->flags |= SMBCCTX_FLAG_NO_AUTO_ANONYMOUS_LOGON;
 #endif
 #endif		
 	}
