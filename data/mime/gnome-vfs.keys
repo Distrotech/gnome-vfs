@@ -42,6 +42,9 @@ application/pgp
 
 application/pdf
 	description=PDF document
+	default_action_type=component
+	default_component_iid=OAFIID:gpdf_componet:892f2727-e2ec-423c-91ad-6f7b75fec6c8
+	short_list_component_iids=OAFIID:gpdf_componet:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 
 application/pgp-encrypted
 	description=PGP encrypted data
@@ -159,6 +162,9 @@ application/x-perl
 application/x-rpm
 	description=RPM package
 	icon-filename=gnome-pack-rpm.png
+	default_action_type=component
+	default_component_iid=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
+	short_list_component_iids=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
 
 application/x-sh
 	description=shell script
@@ -279,6 +285,12 @@ font/x-speedo
 
 image/bmp
 	description=Windows bitmap
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 
 image/cgm
 	description=CGM image
@@ -288,26 +300,62 @@ image/g3fax
 
 image/gif
 	description=GIF image
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 
 image/ief
 	description=IEF image
 
 image/jpeg
 	description=JPEG image
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 
 image/png
 	description=PNG image
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 
 image/svg
 	description=SVG art
 
 image/tiff
 	description=TIFF image
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 
 image/xpm
 	description=XPM image	
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 
 image/x-bmp
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 	description=Windows bitmap
 
 image/x-compressed-xcf
@@ -315,32 +363,75 @@ image/x-compressed-xcf
 
 image/x-png
 	description=PNG image	
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 
 image/x-portable-anymap
 	description=portable image
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 	
 image/x-portable-bitmap
 	description=portable bitmap
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 	
 image/x-portable-graymap
 	description=portable gray image
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 	
 image/x-portable-pixmap
 	description=portable pixmap
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 
 image/x-rgb
 	description=RGB image
 	
 image/x-xbitmap
 	description=X bitmap
+	default_action_type=application
+	default_application_id=gimp
+	short_list_applications_ids=gimp
+	system_all_application_ids=gimp
 
 image/x-xcf
 	description=GIMP image
 	default_action_type=application
 	default_application_id=gimp
+	short_list_applications_ids=gimp
+	system_all_application_ids=gimp
 
 image/x-xpixmap
 	description=X pixmap
+	description=portable pixmap
+	default_action_type=component
+	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	short_list_component_iids=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
+	default_application_id=gimp
+	short_list_applications_ids=gimp,eog
+	system_all_application_ids=gimp,eog
 
 image/x-xwindowdump
 	description=X window image
@@ -397,6 +488,16 @@ special/directory
 	description=directory
 	default_action_type=component
 	default_component_iid=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058
+	short_list_component_iids=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:ntl_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
+
+special/webdav-directory
+	description=web directory
+	default_action_type=component
+	default_component_iid=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b
+	short_list_component_iids=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:ntl_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	default_application_id=netscape
+	short_list_application_ids=netscape,lynx
+	system_all_application_ids=netscape,lynx
 
 special/symlink
 	description=link
@@ -416,10 +517,12 @@ text/enriched
 text/html
 	description=HTML document
 	default_action_type=component
-	default_application_id=netscape
 	default_component_iid=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b
+	short_list_component_iids=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	default_application_id=netscape
+	short_list_application_ids=netscape,lynx
 	system_all_application_ids=netscape,lynx
-	short_list_component_iids=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821,OAFIID:something-erroneous:foo
+
 
 text/plain
 	description=plain text
@@ -427,6 +530,7 @@ text/plain
 	default_application_id=emacs
 	default_component_iid=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	short_list_application_ids=emacs,nedit
+	system_all_application_ids=emacs,nedit
 
 text/rfc822-headers
 	description=email headers

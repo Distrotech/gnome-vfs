@@ -1,5 +1,11 @@
 2000-06-01  Maciej Stachowiak  <mjs@eazel.com>
 
+	* data/mime/gnome-vfs.keys: Added short list and default
+	components to all appropriate types. Expanded application info for
+	some types.
+
+2000-06-01  Maciej Stachowiak  <mjs@eazel.com>
+
 	* libgnomevfs/gnome-vfs-mime-handlers.c
 	(gnome_vfs_mime_application_new_from_id): Get
 	"can_open_multiple_files" and "can_open_uris" from the right
