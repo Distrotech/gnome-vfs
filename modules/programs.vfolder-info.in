@@ -3,6 +3,8 @@
   <MergeDir>/etc/X11/applnk/</MergeDir>
   <MergeDir>@datadir@/gnome/apps/</MergeDir>
 
+  <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
+
   <!-- Root folder -->
   <Folder>
     <Name>Root</Name>
