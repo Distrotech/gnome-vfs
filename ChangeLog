@@ -1,3 +1,35 @@
+2000-07-12  Ian McKellar  <yakk@yakk.net.au>
+
+	* data/mime/gnome-vfs.keys:
+	Added `vfs-method' keys to a few mime types. This key indicates the
+	name of a GNOME VFS method that can be used to decode a file of this
+	type.
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_to_string):
+	Essentially rewrote gnome_vfs_uri_to_string. It was very broken
+	(especially for chained URIs).
+
+	* modules/bzip2-method.c: (do_open), (do_get_file_info):
+	* modules/gzip-method.c: (do_open), (do_get_file_info):
+	Fiddled with invalid URI detection.
+
+	* modules/extfs-method.c: (strip_separators), (get_basename),
+	(get_dirname), (do_open), (read_directory_list),
+	(do_open_directory), (do_close_directory), (do_read_directory),
+	(do_get_file_info):
+	Made it work - basically changed the way a bunch of the functions
+	do their stuff.
+
+	* modules/extfs/Makefile.am:
+	* modules/extfs/tar:
+	Added a `tar' extfs module - it isn't a good long-term solution for
+	tar file access, but it works for now.
+
+	* test/Makefile.am:
+	* test/test-uri.c: (stop_after_log), (make_asserts_break),
+	(test_failed), (test_uri_to_string), (main):
+	Added a test-uri program.
+
 2000-07-07  Michael Meeks  <michael@helixcode.com>
 
 	* modules/efs-method.c (do_create): remove serious locking bug.

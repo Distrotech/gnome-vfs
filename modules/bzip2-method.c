@@ -292,11 +292,11 @@ do_open (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
+	/* Check that the URI is valid.  */
+	if (!VALID_URI(uri)) return GNOME_VFS_ERROR_NOT_FOUND;
+
 	if (open_mode & GNOME_VFS_OPEN_WRITE)
 		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
-
-	/* Check that the URI is valid.  */
-	g_return_val_if_fail(VALID_URI(uri), GNOME_VFS_ERROR_NOT_FOUND);
 
 	parent_uri = uri->parent;
 
@@ -520,7 +520,8 @@ do_get_file_info  (GnomeVFSMethod *method,
 		   GnomeVFSContext *context) {
 	GnomeVFSResult result;
 
-	g_return_val_if_fail(VALID_URI(uri), GNOME_VFS_ERROR_NOT_FOUND);
+	/* Check that the URI is valid.  */
+	if (!VALID_URI(uri)) return GNOME_VFS_ERROR_NOT_FOUND;
 
 	result = gnome_vfs_get_file_info_uri(uri->parent, file_info, options,
 			NULL /*FIXME - meta_keys */);

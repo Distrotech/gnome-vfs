@@ -92,17 +92,6 @@ typedef struct _ExtfsDirectory ExtfsDirectory;
 static GHashTable *uri_to_directory_hash;
 G_LOCK_DEFINE_STATIC (uri_to_directory_hash);
 
-/* Directory handle struct.  */
-struct _ExtfsDirectoryHandle {
-	ExtfsDirectory *directory;
-	GList *prev_position;
-	gchar *sub_uri;
-	GList *meta_keys;
-	GnomeVFSFileInfoOptions info_options;
-	const GnomeVFSDirectoryFilter *filter;
-};
-typedef struct _ExtfsDirectoryHandle ExtfsDirectoryHandle;
-
 
 #define ERROR_IF_NOT_LOCAL(uri)					\
 	if ((!uri) || (!uri->parent) || (!(uri)->parent->method_string) || strcmp ((uri)->parent->method_string, "file") != 0)	\
@@ -170,31 +159,50 @@ get_script_path (const GnomeVFSURI *uri)
 }
 
 static gchar *
-get_dirname (const gchar *path)
+strip_separators (const gchar *pth)
+{
+	gchar *path_buf = g_strdup(pth);
+	gchar *path = path_buf, *p, *s;
+
+	while (*path == G_DIR_SEPARATOR) path++;
+	
+	p = path+strlen(path)-1;
+	while (p > path && *p == G_DIR_SEPARATOR) *(p--) = '\0';
+	s = g_strdup(path);
+
+	g_free(path_buf);
+
+	return s;
+}
+
+static gchar *
+get_basename (const gchar *pth)
+{
+	gchar *path = strip_separators(pth);
+	gchar *s;
+
+	s = g_strdup(g_basename(path));
+
+	g_free(path);
+
+	return s;
+}
+
+static gchar *
+get_dirname (const gchar *pth)
 {
 	gchar *p;
-	gchar *s;
-	guint len;
+	//gchar *s;
+	//guint len;
+	gchar *path = strip_separators(pth);
 
 	p = strrchr (path, G_DIR_SEPARATOR);
 	if (p == NULL)
 		return g_strdup("");
 
-	while (p != path && *p == G_DIR_SEPARATOR)
-		p--;
+	*p = '\0';
 
-	while (p != path && *path == G_DIR_SEPARATOR)
-		path++;
-
-	if (p == path)
-		return g_strdup("");
-
-	len = p - path;
-	s = g_malloc (len + 1);
-	memcpy (s, p, len);
-	s[len] = 0;
-
-	return s;
+	return path;
 }
 
 
@@ -248,6 +256,7 @@ extfs_directory_new (const GnomeVFSURI *uri,
 	return new;
 }
 
+#if 0
 static void
 extfs_directory_unref (ExtfsDirectory *dir)
 {
@@ -266,6 +275,7 @@ extfs_directory_unref (ExtfsDirectory *dir)
 
 	G_UNLOCK (uri_to_directory_hash);
 }
+#endif
 
 static ExtfsDirectory *
 extfs_directory_lookup (GnomeVFSURI *uri)
@@ -319,7 +329,7 @@ do_open (GnomeVFSMethod *method,
 	if (*stored_name == '\0')
 		return GNOME_VFS_ERROR_INVALID_URI;
 
-	result = gnome_vfs_create_temp ("extfs", &temp_name, &temp_handle);
+	result = gnome_vfs_create_temp ("/tmp/extfs", &temp_name, &temp_handle);
 	if (result != GNOME_VFS_OK)
 		return result;
 
@@ -528,8 +538,9 @@ read_directory_list (FILE *p,
 		line_buffer[chars_read] = '\0';
 
 		if (! gnome_vfs_parse_ls_lga (line_buffer, &statbuf,
-					      &name, &symlink_name))
+					      &name, &symlink_name)) {
 			continue;
+		}
 
 		info = gnome_vfs_file_info_new ();
 
@@ -537,14 +548,14 @@ read_directory_list (FILE *p,
 		gnome_vfs_stat_to_file_info (info, &statbuf);
 
 		GNOME_VFS_FILE_INFO_SET_LOCAL (info, FALSE);
-		info->name = g_strdup (g_basename (name));
+		info->name = g_strdup (get_basename (name));
 		info->symlink_name = symlink_name;
 
 		/* Notice that we always do stupid, fast MIME type checking.
                    Real checking based on contents would be too expensive.  */
 		if (info_options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
-			info->mime_type = g_strdup (gnome_vfs_mime_type_from_name
-						    (info->name));
+			info->mime_type = g_strdup (gnome_vfs_get_file_mime_type(
+						    info->name, &statbuf, FALSE));
 			info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		}
 
@@ -571,14 +582,18 @@ do_open_directory (GnomeVFSMethod *method,
 		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSContext *context)
 {
-	ExtfsDirectoryHandle *handle;
+	GList **handle;
+       	ExtfsDirectoryEntry *entry;
 	ExtfsDirectory *directory;
 	struct stat statbuf;
 	gchar *script_path;
 	gchar *quoted_file_name;
 	gchar *cmd;
-	const gchar *p;
-	const GList *item;
+	gchar *sub_uri;
+	//const gchar *p;
+	//const GList *item;
+	GList *entries=NULL;
+	GList *l;
 	FILE *pipe;
 
 	ERROR_IF_NOT_LOCAL (uri);
@@ -620,30 +635,54 @@ do_open_directory (GnomeVFSMethod *method,
 		}
 	}
 
-	handle = g_new (ExtfsDirectoryHandle, 1);
-	handle->directory = directory;
-	handle->prev_position = NULL;
-	handle->meta_keys = NULL; /* FIXME bugzilla.eazel.com 1120: currently unused */
-	for (item = meta_keys; item != NULL; item = item->next) {
-		handle->meta_keys = g_list_prepend (handle->meta_keys, g_strdup (item->data));
-	}
-
-	handle->info_options = info_options; /* FIXME bugzilla.eazel.com 1224: currently unused */
-	handle->filter = filter;
-
 	/* Remove all leading slashes, as they don't matter for us.  */
 	if (uri->text != NULL) {
-		for (p = uri->text; *p == G_DIR_SEPARATOR; p++) 
-			;
-		
-		handle->sub_uri = g_strdup (p);
+		sub_uri = strip_separators(uri->text);
 	} else {
-		handle->sub_uri = NULL;
+		sub_uri = NULL;
 	}
 
-	*method_handle = (GnomeVFSMethodHandle *) handle;
+       	l = directory->entries;
+	while (l != NULL) {
+		entry = l->data;
 
-	return GNOME_VFS_OK;
+		/* check if one of entry->directory or sub_uri is NULL */
+		if ((entry->directory != NULL && sub_uri == NULL) 
+				|| (entry->directory == NULL && 
+					sub_uri != NULL)) {
+			l = l->next;
+			continue;
+		}
+
+		/* check if the paths match */
+		if(strcmp(entry->directory, sub_uri)) {
+			l = l->next;
+			continue;
+		}
+
+		/* apply a directory filter */
+		if (! gnome_vfs_directory_filter_apply (filter, entry->info)) {
+			l = l->next;
+			continue;
+		}
+
+		entries = g_list_append(entries, entry->info);
+		l = l->next;
+	}
+	
+	g_free (sub_uri);
+
+	if(entries) {
+		handle = g_malloc( sizeof(GList *) );
+
+		*handle = entries;
+
+		*method_handle = (GnomeVFSMethodHandle *) handle;
+
+		return GNOME_VFS_OK;
+	} else {
+		return GNOME_VFS_ERROR_NOT_A_DIRECTORY;
+	}
 }
 
 static GnomeVFSResult
@@ -651,90 +690,15 @@ do_close_directory (GnomeVFSMethod *method,
 		    GnomeVFSMethodHandle *method_handle,
 		    GnomeVFSContext *context)
 {
-	ExtfsDirectoryHandle *handle;
 	GList *item;
+       
+	item = *((GList **)method_handle);
 
-	handle = (ExtfsDirectoryHandle *) method_handle;
+	g_list_free (g_list_first (item));
 
-	extfs_directory_unref (handle->directory);
-	g_free (handle->sub_uri);
-	for (item = handle->meta_keys; item != NULL; item = item->next) {
-		g_free (item->data);
-	}
-	g_list_free (handle->meta_keys);
-	g_free (handle);
-
+	g_free(method_handle);
 
 	return GNOME_VFS_OK;
-}
-
-static gboolean
-match (const ExtfsDirectoryHandle *handle,
-       const ExtfsDirectoryEntry *entry)
-{
-	const gchar *p;
-	guint len;
-
-	if ((entry->directory != NULL && handle->sub_uri == NULL)
-	    || (entry->directory == NULL && handle->sub_uri != NULL)) {
-		return FALSE;
-	}
-
-	/* First check that this is in the subdirectory we want.  */
-	/* FIXME bugzilla.eazel.com 1125: 
-	 * more canonicalization might be needed.  */
-
-	if (entry->directory != NULL) {
-		for (p = entry->directory; *p == G_DIR_SEPARATOR; p++)
-			;
-		len = strlen (handle->sub_uri);
-		if (p[len] != G_DIR_SEPARATOR && p[len] != '\0')
-			return FALSE;
-		if (strncmp (p, handle->sub_uri, len) != 0)
-			return FALSE;
-	}
-
-	if (! gnome_vfs_directory_filter_apply (handle->filter, entry->info))
-		return FALSE;
-
-	return TRUE;
-}
-
-static ExtfsDirectoryEntry *
-find_next (ExtfsDirectoryHandle *handle)
-{
-	ExtfsDirectory *directory;
-	GList *p;
-
-	directory = handle->directory;
-	p = handle->prev_position;
-
-	if (p == NULL) {
-		ExtfsDirectoryEntry *entry;
-
-		p = directory->entries;
-
-		if(p == NULL) 
-			return NULL;
-
-		entry = p->data;
-		if (match (handle, entry)) {
-			handle->prev_position = p;
-			return entry;
-		}
-	}
-
-	for (p = p->next; p != NULL; p = p->next) {
-		ExtfsDirectoryEntry *entry;
-
-		entry = p->data;
-		if (match (handle, entry)) {
-			handle->prev_position = p;
-			return entry;
-		}
-	}
-
-	return NULL;
 }
 
 static GnomeVFSResult
@@ -743,16 +707,18 @@ do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSFileInfo *file_info,
 		   GnomeVFSContext *context)
 {
-	ExtfsDirectoryHandle *handle;
-	ExtfsDirectoryEntry *next;
+	GList *item;
+       
+	item = *((GList **)method_handle);
 
-	handle = (ExtfsDirectoryHandle *) method_handle;
-
-	next = find_next (handle);
-	if (next == NULL)
+	if (item == NULL)
 		return GNOME_VFS_ERROR_EOF;
 
-	gnome_vfs_file_info_copy (file_info, next->info);
+	gnome_vfs_file_info_copy (file_info, (GnomeVFSFileInfo *)item->data);
+
+	//gnome_vfs_file_info_unref((GnomeVFSFileInfo *)item->data);
+
+	*((GList **)method_handle) = item->next;
 
 	return GNOME_VFS_OK;
 }
@@ -768,7 +734,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	GnomeVFSMethodHandle *method_handle;
 	GnomeVFSResult result;
 	GnomeVFSURI *parent = gnome_vfs_uri_get_parent(uri);
-	const gchar *filename = gnome_vfs_uri_get_basename(uri);
+	gchar *filename = gnome_vfs_uri_extract_short_name(uri);
 
 	if(strcmp(parent->method_string, uri->method_string)) {
 		
@@ -777,18 +743,22 @@ do_get_file_info (GnomeVFSMethod *method,
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 		g_free(file_info->mime_type);
 		file_info->mime_type = g_strdup("x-special/directory");
+		g_free(filename);
 		return result;
 	}
 	
 	result = do_open_directory(method, &method_handle, parent, options, meta_keys, NULL, context);
-	while(result == GNOME_VFS_OK) {
+	while(TRUE) {
 		result = do_read_directory(method, method_handle, file_info, context);
+		if(result != GNOME_VFS_OK) break;
+
 		if(!strcmp(file_info->name, filename)) break;
 	}
 	do_close_directory(method, method_handle, context);
 
 	if(result == GNOME_VFS_ERROR_EOF) result = GNOME_VFS_ERROR_NOT_FOUND;
 	
+	g_free(filename);
 	return result;
 }
 

@@ -31,6 +31,7 @@ noinst_PROGRAMS =				\
 	test-sync-write				\
 	test-xfer				\
 	test-shell				\
+	test-uri				\
 	$(oaf_programs)
 
 test_files=		\
@@ -44,7 +45,7 @@ else
 auto_tests=
 endif
 
-TESTS = test-async-cancel test-escape $(auto_tests)
+TESTS = test-async-cancel test-escape test-uri $(auto_tests)
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
@@ -163,6 +164,10 @@ test_async_cancel_LDFLAGS =
 test_escape_SOURCES = test-escape.c
 test_escape_LDADD = $(libraries)
 test_escape_LDFLAGS = 
+
+test_uri_SOURCES = test-uri.c
+test_uri_LDADD = $(libraries)
+test_uri_LDFLAGS = 
 
 EXTRA_DIST =					\
 	$(test_files)				\

@@ -18,6 +18,7 @@ extfs_SCRIPTS =					\
 	lha					\
 	rar					\
 	zip					\
+	tar					\
 	zoo
 
 EXTRA_DIST =					\
@@ -32,6 +33,7 @@ EXTRA_DIST =					\
 	patchfs					\
 	rar.in					\
 	rpm					\
+	tar					\
 	rpms					\
 	trpm					\
 	uha.in					\

@@ -92,10 +92,12 @@ application/x-bcpio
 
 application/x-bzip
 	description=bzip archive
+	vfs-method=bzip2
 
 application/x-bzip-compressed-tar
 	description=bzip archive
 	icon-filename=gnome-compressed.png
+	vfs-method=bzip2
 
 application/x-cgi
 	description=CGI program
@@ -165,6 +167,7 @@ application/x-gtar
 application/x-gzip
 	description=gzip archive
 	icon-filename=gnome-compressed.png
+	vfs-method=gzip
 
 application/x-gnome-app-info
 	description=GNOME application information
@@ -229,6 +232,7 @@ application/x-sv4crc
 application/x-tar
 	description=tar archive
 	icon-filename=gnome-package.png
+	vfs-method=tar
 
 application/x-theme
 	description=theme
@@ -251,6 +255,7 @@ application/x-wordperfect
 
 application/zip
 	description=zip archive
+	vfs-method=zip
 
 audio/basic
 	description=basic audio

@@ -550,113 +550,66 @@ gchar *
 gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 			 GnomeVFSURIHideOptions hide_options)
 {
-	gchar *toplevel_info;
-	const GnomeVFSURI *u;
-	const GnomeVFSToplevelURI *toplevel;
-	guint size, len;
-	gchar *s, *p;
+	GString *string = g_string_new(uri->method_string);
+	gchar *r;
 
-	g_return_val_if_fail (uri != NULL, NULL);
+	g_string_append_c(string, ':');
 
-	size = 0;
-	u = uri;
-	while (1) {
-		if (u->text != NULL)
-			size += strlen (u->text);
+	if(!uri->parent) {
+		GnomeVFSToplevelURI *turi = (GnomeVFSToplevelURI *)uri;
+		gboolean shown_user_pass = FALSE;
+		
+		g_string_append(string, "//");
 
-		if (u->parent != NULL
-		    || ! (hide_options
-			  & GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD)) {
-			if (u->method_string != NULL)
-				size += strlen (u->method_string);
-			size += 1;	/* '#' or ':' */
+		if(hide_options&GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD) {
+			g_string_free(string, TRUE); /* throw away method */
+			string = g_string_new("");
 		}
 
-		if (u->parent == NULL)
-			break;
-		u = u->parent;
+		if(turi->user_name && 
+				!(hide_options&GNOME_VFS_URI_HIDE_USER_NAME)) {
+			g_string_append(string, turi->user_name);
+			shown_user_pass = TRUE;
+		}
+
+		if(turi->password &&
+				!(hide_options&GNOME_VFS_URI_HIDE_PASSWORD)) {
+			g_string_append_c(string, ':');
+			g_string_append(string, turi->password);
+			shown_user_pass = TRUE;
+		}
+
+		if(shown_user_pass) {
+			g_string_append_c(string, '@');
+		}
+
+		if(turi->host_name &&
+				!(hide_options&GNOME_VFS_URI_HIDE_HOST_NAME))
+		       	g_string_append(string, turi->host_name);
+
+		if(turi->host_port > 0 &&
+				!(hide_options&GNOME_VFS_URI_HIDE_HOST_PORT)) {
+			gchar tmp[128];
+			sprintf(tmp, ":%d", turi->host_port);
+			g_string_append(string, tmp);
+		}
+
+
+	}
+	
+	if(uri->text[0] != '/') g_string_append_c(string, '/');
+	g_string_append(string, uri->text);
+
+	if(uri->parent) {
+		g_string_prepend_c(string, '#');
+		g_string_prepend(string, gnome_vfs_uri_to_string(uri->parent, 
+					hide_options));
 	}
 
-	toplevel = (GnomeVFSToplevelURI *) u;
-	if (toplevel->host_name != NULL) {
-		gchar *concat_list[9];
-		gchar *port_string;
-		guint count;
+	r = string->str;
+	g_string_free(string, FALSE);
 
-		count = 0;
-		if(!(hide_options & GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD))
-			concat_list[count++] = "//";
-
-		if (toplevel->user_name != NULL
-		    && ! (hide_options & GNOME_VFS_URI_HIDE_USER_NAME)) {
-			concat_list[count++] = toplevel->user_name;
-			if (toplevel->password != NULL
-			    && ! (hide_options & GNOME_VFS_URI_HIDE_PASSWORD)) {
-				concat_list[count++] = ":";
-				concat_list[count++] = toplevel->password;
-			}
-			concat_list[count++] = "@";
-		}
-
-		if(!(hide_options & GNOME_VFS_URI_HIDE_HOST_PORT))
-			concat_list[count++] = toplevel->host_name;
-
-		if (toplevel->host_port != 0 && !(hide_options & GNOME_VFS_URI_HIDE_HOST_PORT)) {
-			port_string = g_strdup_printf ("%d",
-						       toplevel->host_port);
-			concat_list[count++] = ":";
-			concat_list[count++] = port_string;
-		} else {
-			port_string = NULL;
-		}
-
-		concat_list[count] = NULL;
-
-		toplevel_info = g_strjoinv (NULL, concat_list);
-		size += strlen (toplevel_info);
-
-		g_free (port_string);
-	} else {
-		toplevel_info = NULL;
-	}
-
-	s = g_malloc (size + 1);
-	p = s + size;
-	*p = 0;
-
-	u = uri;
-	do {
-		if (u->text != NULL) {
-			len = strlen (u->text);
-			p -= len;
-			memcpy (p, u->text, len);
-		}
-
-		if (u->parent == NULL && toplevel_info != NULL) {
-			len = strlen (toplevel_info);
-			p -= len;
-			memcpy (p, toplevel_info, len);
-		}
-
-		if (u->method_string != NULL
-		    && (u->parent != NULL
-			|| ! (hide_options
-			      & GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD))) {
-			if (u->parent == NULL)
-				*(--p) = ':';
-			len = strlen (u->method_string);
-			p -= len;
-			memcpy (p, u->method_string, len);
-			if (u->parent != NULL)
-				*(--p) = '#';
-		}
-
-		u = u->parent;
-	} while (u != NULL);
-
-	g_free (toplevel_info);
-
-	return s;
+	return r;
 }
 
 
