@@ -1,5 +1,7 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
 /*
- * gnome-magic.c
+ * gnome-vfs-mime-magic-magic.c
  *
  * Written by:
  *    James Youngman (jay@gnu.org)
@@ -437,6 +439,8 @@ gnome_vfs_mime_get_magic_table (void)
 	struct stat sbuf;
 
 	G_LOCK (mime_magic_table_mutex);
+
+#ifdef _POSIX_MAPPED_FILES
 	if (mime_magic_table == NULL) {
 		/* try reading the pre-parsed table */
 		filename = gnome_config_file ("gnome-vfs-mime-magic.dat");
@@ -456,6 +460,8 @@ gnome_vfs_mime_get_magic_table (void)
 			g_free(filename);
 		}
   	}
+#endif /* _POSIX_MAPPED_FILES */
+
   	if (mime_magic_table == NULL) {
 		/* don't have a pre-parsed table, use original text file */
 		filename = gnome_config_file("gnome-vfs-mime-magic");
@@ -474,6 +480,7 @@ void
 gnome_vfs_mime_clear_magic_table (void)
 {
 	G_LOCK (mime_magic_table_mutex);
+	/* FIXME bugzilla.eazel.com 1302: Will this work if we loaded the table with mmap? */
   	g_free (mime_magic_table);
   	mime_magic_table = NULL;
 	G_UNLOCK (mime_magic_table_mutex);

@@ -1,3 +1,5 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
 /*
  * Copyright (C) 1998 Miguel de Icaza
  * Copyright (C) 1997 Paolo Molaro
@@ -26,6 +28,7 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-mime-sniff-buffer.h"
+#include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-module-shared.h"
 
 #include <libgnome/gnome-util.h>
@@ -196,8 +199,7 @@ mime_fill_from_file (const char *filename)
 				add_to_key (current_key, p);
 			}
 		} else {
-			if (current_key)
-				g_free (current_key);
+			g_free (current_key);
 
 			current_key = g_strdup (buf);
 			if (current_key [strlen (current_key)-1] == ':')
@@ -205,8 +207,7 @@ mime_fill_from_file (const char *filename)
 		}
 	}
 
-	if (current_key)
-		g_free (current_key);
+	g_free (current_key);
 
 	fclose (f);
 }
@@ -276,9 +277,10 @@ mime_load (mime_dir_source_t *source)
 }
 
 static gboolean
-mime_hash_func (gpointer key, gpointer value, gpointer user_data)
+remove_one_mime_hash_entry (gpointer key, gpointer value, gpointer user_data)
 {
 	g_free (key);
+	g_list_foreach (value, (GFunc) g_free, NULL);
 	g_list_free (value);
 
 	return TRUE;
@@ -290,10 +292,9 @@ mime_extensions_empty (void)
 	GList *p;
 	int i;
 	for (i = 0; i < 2; i++) {
-
 		if (mime_extensions [i] != NULL) {
 			g_hash_table_foreach_remove (mime_extensions [i], 
-				mime_hash_func, NULL);
+						     remove_one_mime_hash_entry, NULL);
 		}
 
 		for (p = mime_regexs [i]; p != NULL; p = p->next){
@@ -335,7 +336,6 @@ maybe_reload (void)
 
 	mime_load (&gnome_mime_dir);
 	mime_load (&user_mime_dir);
-
 	last_checked = time (NULL);
 }
 
@@ -350,19 +350,30 @@ mime_init (void)
 
 	user_mime_dir.dirname  = gnome_util_home_file ("mime-info");
 	user_mime_dir.system_dir = FALSE;
+
 	mime_load (&gnome_mime_dir);
 	mime_load (&user_mime_dir);
-
 	last_checked = time (NULL);
+
 	module_inited = TRUE;
 }
 
 void
 gnome_vfs_mime_shutdown (void)
 {
-	mime_extensions_empty ();
-	gnome_vfs_mime_info_clear ();
+	if (!module_inited)
+		return;
+
+	gnome_vfs_mime_info_shutdown ();
 	gnome_vfs_mime_clear_magic_table ();
+
+	mime_extensions_empty ();
+	
+	g_hash_table_destroy (mime_extensions[0]);
+	g_hash_table_destroy (mime_extensions[1]);
+	
+	g_free (gnome_mime_dir.dirname);
+	g_free (user_mime_dir.dirname);
 }
 
 /**
@@ -386,7 +397,6 @@ gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
 
 	G_LOCK (mime_mutex);
 
-	upext = NULL;
 	if (!filename)
 		goto done;
 	ext = strrchr (filename, '.');
@@ -412,11 +422,11 @@ gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
 			}
 
 			/* Search for UPPER case extension */
- 			g_free (upext);
 			upext = g_strdup (ext);
 			g_strup (upext);
 			list = g_hash_table_lookup (mime_extensions [priority], upext);
 			if (list) {
+				g_free (upext);
 				list = g_list_first (list);
 				result = (gchar *) list->data;
 				goto done;
@@ -425,12 +435,12 @@ gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
 			/* Final check for lower case */
 			g_strdown (upext);
 			list = g_hash_table_lookup (mime_extensions [priority], upext);
+ 			g_free (upext);
 			if (list) {
 				list = g_list_first (list);
 				result = (gchar *) list->data;
 				goto done;
 			}
-			
 		}
 
 		for (l = mime_regexs [priority]; l; l = l->next){
@@ -444,8 +454,6 @@ gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
 	}
 
  done:
- 	g_free (upext);
-
 	G_UNLOCK (mime_mutex);
 	return result;
 }
@@ -478,7 +486,7 @@ gnome_vfs_mime_type (const gchar * filename)
  */
 const char *
 gnome_vfs_mime_type_or_default_of_file (const char *existing_filename,
-				    const gchar *defaultv)
+					const gchar *defaultv)
 {
 	char *mime_type;
 
@@ -841,8 +849,8 @@ gnome_uri_extract_filename (const gchar* uri)
  * Releases all of the resources allocated by @list.
  */
 void
-gnome_uri_list_free_strings      (GList *list)
+gnome_uri_list_free_strings (GList *list)
 {
-	g_list_foreach (list, (GFunc)g_free, NULL);
+	g_list_foreach (list, (GFunc) g_free, NULL);
 	g_list_free (list);
 }

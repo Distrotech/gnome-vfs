@@ -1,3 +1,5 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
 /* gnome-vfs-mime-info.c - GNOME mime-information implementation.
 
    Copyright (C) 1998 Miguel de Icaza
@@ -19,9 +21,10 @@
    Boston, MA 02111-1307, USA.  */
 
 #include <config.h>
-
 #include "gnome-vfs-mime-info.h"
+
 #include "gnome-vfs-mime.h"
+#include "gnome-vfs-mime-private.h"
 
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-util.h>
@@ -441,7 +444,6 @@ mime_info_load (mime_dir_source_t *source)
 		g_free (filename);
 	}
 	closedir (dir);
-	
 }
 
 static void
@@ -517,14 +519,27 @@ maybe_reload (void)
 	}
 }
 
-void
+static void
 gnome_vfs_mime_info_clear (void)
 {
 	if (specific_types != NULL) {
 		g_hash_table_foreach_remove (specific_types, remove_keys, NULL);
 	}
-	if (generic_types) {
+	if (generic_types != NULL) {
 		g_hash_table_foreach_remove (generic_types, remove_keys, NULL);
+	}
+}
+
+void
+gnome_vfs_mime_info_shutdown (void)
+{
+	gnome_vfs_mime_info_clear ();
+
+	if (specific_types != NULL) {
+		g_hash_table_destroy (specific_types);
+	}
+	if (generic_types != NULL) {
+		g_hash_table_destroy (generic_types);
 	}
 }
 

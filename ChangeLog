@@ -1,3 +1,38 @@
+2000-06-08  Darin Adler  <darin@eazel.com>
+
+	More leak fixes.
+	
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-mime-private.h:
+	Added a private header for some new calls. Made it really
+	private, meaning it's not installed into the prefix include
+	directory, unlike the old "private" files which are installed.
+	
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	(gnome_vfs_mime_info_shutdown): Added this new function which
+	calls gnome_vfs_mime_info_clear and then does the rest of the
+	cleanup which can only be done at shutdown time.
+	
+	* libgnomevfs/gnome-vfs-mime-info.h: gnome_vfs_mime_info_clear
+	is now a private call.
+	
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_get_magic_table): Put the mmap call inside an
+	ifdef _POSIX_MAPPED_FILES for better portability.
+	(gnome_vfs_mime_clear_magic_table): Added a FIXME because we
+	can't undo an mmap call with a g_free call!
+	
+	* libgnomevfs/gnome-vfs-mime.c:
+	(remove_one_mime_hash_entry): Fixed leak by freeing the items
+	in the list, not just the list.
+	(gnome_vfs_mime_shutdown): Fixed leak by destroying the hash
+	tables and the directory names.
+	(gnome_vfs_mime_type_or_default): Simplified logic for freeing
+	the upext.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.h: Some formatting and
+	cleanup.
+
 2000-06-08  Maciej Stachowiak  <mjs@eazel.com
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

@@ -83,6 +83,7 @@ noinst_HEADERS=\
 	fnmatch.h
 
 libgnomevfs_la_SOURCES =			\
+	gnome-vfs-mime-private.h		\
 	gnome-vfs-backend.c			\
 	gnome-vfs-cancellation.c		\
 	gnome-vfs-configuration.c		\
