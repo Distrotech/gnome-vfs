@@ -1,3 +1,14 @@
+2000-12-18  John Sullivan  <sullivan@eazel.com>
+
+	Fixed bug 5216 (typing "deb:" in the uri text field
+	crashes Nautilus)
+
+	* modules/extfs-method.c: (do_get_file_info):
+
+	Another place in a different module that needed to
+	return GNOME_VFS_ERROR_INVALID_URI when the parent
+	URI is NULL.
+
 2000-12-15  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Mike Fleming <mfleming@eazel.com>
