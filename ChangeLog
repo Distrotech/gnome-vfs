@@ -1,3 +1,8 @@
+Sun Jul 18 21:03:35 2004  Jonathan Blandford  <jrb@gnome.org>
+
+	* libgnomevfs/xdgmime*: Sync from upstream.  Now it rereads when
+	the files change every 5 seconds.
+
 2004-07-18  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
