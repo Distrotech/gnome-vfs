@@ -11,6 +11,8 @@
 	* modules/sftp-method.c: (sftp_connect):
 	Call the new callback if host key is missing.
 
+	Patch from Mattias Eriksson <snaggen@acc.umu.se>
+
 2004-04-16  Alexander Larsson  <alexl@redhat.com>
 
 	* acinclude.m4:
