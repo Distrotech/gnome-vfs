@@ -29,6 +29,10 @@
 # include <config.h>
 #endif
 
+/* Debugging foo: */
+/*#define D(x) x */
+#define D(x) ;
+
 #include <glib.h>
 #include <sys/types.h>
 #include <dirent.h>
@@ -163,6 +167,7 @@ struct _VFolderInfo
 
 static Entry *	entry_ref	(Entry *entry);
 static void	entry_unref	(Entry *entry);
+static void	query_destroy	(Query *query);
 
 static void
 destroy_entry_file (EntryFile *efile)
@@ -182,22 +187,23 @@ destroy_folder (Folder *folder)
 	g_free (folder->desktop_file);
 	folder->desktop_file = NULL;
 
-	/* FIXME: free query */
+	query_destroy (folder->query);
+	folder->query = NULL;
 
 	if (folder->excludes != NULL) {
 		g_hash_table_destroy (folder->excludes);
 		folder->excludes = NULL;
 	}
 
-	g_slist_foreach (folder->includes, (GFunc)g_free, NULL)
+	g_slist_foreach (folder->includes, (GFunc)g_free, NULL);
 	g_slist_free (folder->includes);
 	folder->includes = NULL;
 
-	g_slist_foreach (folder->subfolders, (GFunc)entry_unref, NULL)
+	g_slist_foreach (folder->subfolders, (GFunc)entry_unref, NULL);
 	g_slist_free (folder->subfolders);
 	folder->subfolders = NULL;
 
-	g_slist_foreach (folder->entries, (GFunc)entry_unref, NULL)
+	g_slist_foreach (folder->entries, (GFunc)entry_unref, NULL);
 	g_slist_free (folder->entries);
 	folder->entries = NULL;
 
@@ -239,10 +245,11 @@ entries_from_files (VFolderInfo *info, GSList *filenames)
 
 	files = NULL;
 	for (li = filenames; li != NULL; li = li->next) {
-		char *filename = li->data
-		Entry *entry = g_hash_table_lookup (info->entries_ht, filename);
-		if (entry != NULL)
-			files = g_slist_prepend (files, entry_ref (entry));
+		char *filename = li->data;
+		GSList *entry_list = g_hash_table_lookup (info->entries_ht, filename);
+		if (entry_list != NULL)
+			files = g_slist_prepend (files,
+						 entry_ref (entry_list->data));
 	}
 
 	return g_slist_reverse (files);
@@ -281,7 +288,7 @@ matches_query (EntryFile *efile, Query *query)
 	case QUERY_FILENAME:
 		{
 			QueryFilename *qfilename = (QueryFilename *)query;
-			if (strcmp (qfilename->filename, ((Entry *)efile)->name) == 0)
+			if (strcmp (qfilename->filename, ((Entry *)efile)->name) == 0) {
 				return INVERT_IF_NEEDED (TRUE);
 			} else {
 				return INVERT_IF_NEEDED (FALSE);
@@ -289,13 +296,16 @@ matches_query (EntryFile *efile, Query *query)
 		}
 	}
 #undef INVERT_IF_NEEDED
+	g_assert_not_reached ();
+	/* huh? */
+	return FALSE;
 }
 
 /* Run query */
 static GSList *
 run_query (VFolderInfo *info, GSList *result, Query *query)
 {
-	GList *li;
+	GSList *li;
 
 	if (query == NULL)
 		return result;
@@ -334,6 +344,7 @@ ensure_folder (VFolderInfo *info, Folder *folder)
 
 	/* Exclude excludes */
 	if (folder->excludes != NULL) {
+		GSList *li;
 		GSList *entries = folder->entries;
 	       	folder->entries = NULL;
 		for (li = entries; li != NULL; li = li->next) {
@@ -365,7 +376,7 @@ ensure_folder_sort (VFolderInfo *info, Folder *folder)
 	folder->sorted = TRUE;
 }
 
-static Folder *
+static EntryFile *
 file_new (const char *name,
 	  const char *filename)
 {
@@ -391,6 +402,33 @@ folder_new (const char *name)
 	return folder;
 }
 
+static Query *
+query_new (int type)
+{
+	Query *query;
+
+	if (type == QUERY_KEYWORD)
+		query = (Query *)g_new0 (QueryKeyword, 1);
+	else if (type == QUERY_FILENAME)
+		query = (Query *)g_new0 (QueryFilename, 1);
+	else
+		query = g_new0 (Query, 1);
+
+	query->type = type;
+
+	return query;
+}
+
+static void
+query_destroy (Query *query)
+{
+	if (query == NULL)
+		return;
+
+	/* FIXME: */
+	g_free (query);
+}
+
 static void
 vfolder_info_init (VFolderInfo *info)
 {
@@ -404,6 +442,8 @@ vfolder_info_init (VFolderInfo *info)
 	/* Init the desktop paths */
 	list = NULL;
 	list = g_slist_prepend (list, g_strdup ("/usr/share/applications/"));
+	if (strcmp ("/usr/share/applications/", DATADIR "/applications/") != 0)
+		list = g_slist_prepend (list, g_strdup (DATADIR "/applications/"));
 	path = g_getenv ("DESKTOP_FILE_PATH");
 	if (path != NULL) {
 		int i;
@@ -418,7 +458,7 @@ vfolder_info_init (VFolderInfo *info)
 
 	info->entries_ht = g_hash_table_new (g_str_hash, g_str_equal);
 
-	info->root = NULL;
+	info->root = folder_new ("Root");
 }
 
 static void
@@ -454,11 +494,192 @@ vfolder_info_destroy (VFolderInfo *info)
 	g_free (info);
 }
 
-static Folder *
-folder_read (xmlNode *node)
+static Query *
+single_query_read (xmlNode *qnode)
 {
-	/* FIXME */
-	return NULL;
+	Query *query;
+	xmlNode *node;
+
+	if (qnode->name == NULL)
+		return NULL;
+
+	query = NULL;
+
+	if (g_ascii_strcasecmp (qnode->name, "Not") == 0 &&
+	    qnode->xmlChildrenNode != NULL) {
+		query = single_query_read
+			(qnode->xmlChildrenNode);
+		if (query != NULL) {
+			query->not = ! query->not;
+		}
+		return query;
+	} else if (g_ascii_strcasecmp (qnode->name, "Keyword") == 0) {
+		xmlChar *word = xmlNodeGetContent (qnode);
+		if (word != NULL) {
+			query = query_new (QUERY_KEYWORD);
+			((QueryKeyword *)query)->keyword =
+				g_quark_from_string (word);
+
+			xmlFree (word);
+		}
+		return query;
+	} else if (g_ascii_strcasecmp (qnode->name, "Filename") == 0) {
+		xmlChar *file = xmlNodeGetContent (qnode);
+		if (file != NULL) {
+			query = query_new (QUERY_FILENAME);
+			((QueryFilename *)query)->filename =
+				g_strdup (file);
+
+			xmlFree (file);
+		}
+		return query;
+	} else if (g_ascii_strcasecmp (qnode->name, "Or") == 0) {
+		query = query_new (QUERY_OR);
+	} else if (g_ascii_strcasecmp (qnode->name, "And") == 0) {
+		query = query_new (QUERY_AND);
+	} else {
+		/* We don't understand */
+		return NULL;
+	}
+
+	/* This must be OR or AND */
+	g_assert (query != NULL);
+
+	for (node = qnode->xmlChildrenNode; node != NULL; node = node->next) {
+		Query *new_query = single_query_read (node);
+
+		if (new_query != NULL)
+			query->queries = g_slist_prepend
+				(query->queries, new_query);
+	}
+
+	query->queries = g_slist_reverse (query->queries);
+
+	return query;
+}
+
+static void
+add_or_set_query (Query **query, Query *new_query)
+{
+	if (*query == NULL) {
+		*query = new_query;
+	} else {
+		Query *old_query = *query;
+		*query = query_new (QUERY_OR);
+		(*query)->queries = 
+			g_slist_append ((*query)->queries, old_query);
+		(*query)->queries = 
+			g_slist_append ((*query)->queries, new_query);
+	}
+}
+
+static Query *
+query_read (xmlNode *qnode)
+{
+	Query *query;
+	xmlNode *node;
+
+	query = NULL;
+
+	for (node = qnode->xmlChildrenNode; node != NULL; node = node->next) {
+		/* is this even possible? */
+		if (node->name == NULL)
+			continue;
+
+		if (g_ascii_strcasecmp (node->name, "Not") == 0 &&
+		    node->xmlChildrenNode != NULL) {
+			Query *new_query;
+			new_query = single_query_read
+				(node->xmlChildrenNode);
+			if (new_query != NULL) {
+				new_query->not = ! new_query->not;
+				add_or_set_query (&query, new_query);
+			}
+		} else {
+			Query *new_query = single_query_read (node);
+			if (new_query != NULL)
+				add_or_set_query (&query, new_query);
+		}
+	}
+
+	return query;
+}
+
+static Folder *
+folder_read (xmlNode *fnode)
+{
+	Folder *folder;
+	xmlNode *node;
+
+	folder = folder_new (NULL);
+
+	for (node = fnode->xmlChildrenNode; node != NULL; node = node->next) {
+		/* is this even possible? */
+		if (node->name == NULL)
+			continue;
+
+		if (g_ascii_strcasecmp (node->name, "Name") == 0) {
+			xmlChar *name = xmlNodeGetContent (node);
+			if (name != NULL) {
+				g_free (folder->entry.name);
+				folder->entry.name = g_strdup (name);
+				xmlFree (name);
+			}
+		} else if (g_ascii_strcasecmp (node->name, "Desktop") == 0) {
+			xmlChar *desktop = xmlNodeGetContent (node);
+			if (desktop != NULL) {
+				g_free (folder->desktop_file);
+				folder->desktop_file = g_strdup (desktop);
+				xmlFree (desktop);
+			}
+		} else if (g_ascii_strcasecmp (node->name, "Include") == 0) {
+			xmlChar *file = xmlNodeGetContent (node);
+			if (file != NULL) {
+				folder->includes = g_slist_prepend (folder->includes,
+								    g_strdup (file));
+				xmlFree (file);
+			}
+		} else if (g_ascii_strcasecmp (node->name, "Exclude") == 0) {
+			xmlChar *file = xmlNodeGetContent (node);
+			if (file != NULL) {
+				char *s;
+				if (folder->excludes == NULL) {
+					folder->excludes = g_hash_table_new_full
+						(g_str_hash,
+						 g_str_equal,
+						 (GDestroyNotify)g_free,
+						 NULL);
+				}
+				s = g_strdup (file);
+				g_hash_table_insert (folder->excludes, s, s);
+				xmlFree (file);
+			}
+		} else if (g_ascii_strcasecmp (node->name, "Query") == 0) {
+			Query *query = query_read (node);
+			if (query != NULL) {
+				if (folder->query != NULL)
+					query_destroy (folder->query);
+				folder->query = query;
+			}
+		} else if (g_ascii_strcasecmp (node->name, "Folder") == 0) {
+			Folder *new_folder = folder_read (node);
+			if (new_folder != NULL) {
+				folder->subfolders =
+					g_slist_append (folder->subfolders,
+							new_folder);
+			}
+		}
+	}
+
+	/* Name is required */
+	if (folder->entry.name == NULL) {
+		entry_unref ((Entry *)folder);
+		folder = NULL;
+	}
+
+	folder->includes = g_slist_reverse (folder->includes);
+
+	return folder;
 }
 
 /* Read vfolder-info.xml file */
@@ -495,7 +716,7 @@ folder_read (xmlNode *node)
  *       </Query>
  *       <Include>somefile.desktop</Include>
  *       <Include>someotherfile.desktop</Include>
- *       <Exclude>yetanother.desktop</Include>
+ *       <Exclude>yetanother.desktop</Exclude>
  *     </Folder>
  *   </Folder>
  * </VFolderInfo>
@@ -508,6 +729,8 @@ vfolder_info_read_info (VFolderInfo *info)
 	xmlNodePtr node;
 	gboolean got_a_vfolder_dir = FALSE;
 
+	D (g_print ("foo\n"));
+
 	doc = xmlParseFile (info->filename); 
 
 	if (doc == NULL
@@ -517,6 +740,7 @@ vfolder_info_read_info (VFolderInfo *info)
 		xmlFreeDoc(doc);
 		return;
 	}
+	D (g_print ("bar\n"));
 
 	for (node = doc->xmlRootNode->xmlChildrenNode; node != NULL; node = node->next) {
 		/* is this even possible? */
@@ -564,10 +788,286 @@ vfolder_info_read_info (VFolderInfo *info)
 	xmlFreeDoc(doc);
 }
 
+/* An EVIL function for quick reading of .desktop files,
+ * only reads in one or two keys, but that's ALL we need */
+static void
+readitem_entry (const char *filename,
+		const char *key1,
+		char **result1,
+		const char *key2,
+		char **result2)
+{
+	FILE *fp;
+	char buf[1024];
+	int keylen1, keylen2;
+
+	*result1 = NULL;
+	if (result2 != NULL)
+		*result2 = NULL;
+
+	fp = fopen (filename, "r");
+
+	if (fp == NULL)
+		return;
+
+	keylen1 = strlen (key1);
+	if (key2 != NULL)
+		keylen2 = strlen (key2);
+	else
+		keylen2 = -1;
+
+	/* This is slightly wrong, it should only look
+	 * at the correct section */
+	while (fgets (buf, sizeof (buf), fp) != NULL) {
+		char *p;
+		int len;
+		int keylen;
+		char **result = NULL;
+
+		/* check if it's one of the keys */
+		if (strncmp (buf, key1, keylen1) == 0) {
+			result = result1;
+			keylen = keylen1;
+		} else if (keylen2 >= 0 &&
+			   strncmp (buf, key2, keylen2) == 0) {
+			result = result2;
+			keylen = keylen2;
+		} else {
+			continue;
+		}
+
+		p = &buf[keylen];
+
+		/* still not our key */
+		if (*p != ' ' || *p != '=')
+			continue;
+
+		do
+			p++;
+		while (*p == ' ' || *p == '=');
+
+		/* get rid of trailing \n */
+		len = strlen (p);
+		if (p[len-1] == '\n' ||
+		    p[len-1] == '\r')
+			p[len-1] = '\0';
+
+		*result = g_strdup (p);
+
+		if (*result1 == NULL ||
+		    (result2 != NULL && *result2 == NULL))
+			break;
+	}
+
+	fclose (fp);
+}
+
+static void
+vfolder_info_insert_entry (VFolderInfo *info, EntryFile *efile)
+{
+	GSList *entry_list;
+
+	D (g_print ("INSERT: '%s'\n", efile->entry.name));
+
+	entry_list = g_hash_table_lookup (info->entries_ht, efile->entry.name);
+	if (entry_list != NULL) {
+		Entry *entry = entry_list->data;
+		info->entries = g_slist_remove_link (info->entries, 
+						     entry_list);
+		g_slist_free_1 (entry_list);
+		entry_unref (entry);
+	}
+
+	info->entries = g_slist_prepend (info->entries, efile);
+	/* The hash table contains the GSList pointer */
+	g_hash_table_insert (info->entries_ht, efile->entry.name, 
+			     info->entries);
+}
+
+static void
+vfolder_info_read_items_from (VFolderInfo *info, const char *item_dir)
+{
+	DIR *dir;
+	struct dirent *de;
+
+	dir = opendir (item_dir);
+	if (dir == NULL)
+		return;
+
+	while ((de = readdir (dir)) != NULL) {
+		char *ext;
+		char *categories;
+		char *only_show_in;
+		EntryFile *efile;
+		char **parsed;
+		int i;
+
+		/* read just links and regular files */
+		if (de->d_type != DT_REG &&
+		    de->d_type != DT_LNK)
+			continue;
+
+		/* files MUST be called .desktop */
+		ext = strrchr (de->d_name, '.');
+		if (ext == NULL ||
+		    strcmp (ext, ".desktop") != 0)
+			continue;
+
+		efile = file_new (de->d_name, NULL);
+		efile->filename = g_build_filename (item_dir,
+						    de->d_name, NULL);
+
+		readitem_entry (efile->filename,
+				"Categories",
+				&categories,
+				"OnlyShowIn",
+				&only_show_in);
+
+		if (only_show_in != NULL) {
+			gboolean show = FALSE;
+			parsed = g_strsplit (only_show_in, ";", -1);
+			for (i = 0; parsed[i] != NULL; i++) {
+				if (strcmp (parsed[i], "GNOME") == 0) {
+					show = TRUE;
+					break;
+				}
+			}
+			g_strfreev (parsed);
+			if ( ! show) {
+				entry_unref ((Entry *)efile);
+				continue;
+			}
+		}
+
+		if (categories != NULL) {
+			parsed = g_strsplit (only_show_in, ";", -1);
+			for (i = 0; parsed[i] != NULL; i++) {
+				GQuark quark;
+				const char *word = parsed[i];
+				/* ignore empties (including end of list) */
+				if (word[0] == '\0')
+					continue;
+				quark = g_quark_from_string (word);
+				efile->keywords = g_slist_prepend
+					(efile->keywords,
+					 GINT_TO_POINTER (quark));
+			}
+			g_strfreev (parsed);
+		}
+
+		vfolder_info_insert_entry (info, efile);
+	}
+
+	closedir (dir);
+}
+
+static void
+vfolder_info_read_items_merge (VFolderInfo *info, const char *merge_dir, const char *subdir)
+{
+	DIR *dir;
+	struct dirent *de;
+	GQuark extra_keyword;
+	GQuark Application;
+
+	D (g_print ("READ_ITEMS_MERGE: '%s' '%s'\n", merge_dir, subdir));
+
+	dir = opendir (merge_dir);
+	if (dir == NULL)
+		return;
+
+	Application = g_quark_from_static_string ("Application");
+
+	/* FIXME: this should be a hash or something */
+	extra_keyword = 0;
+	if (subdir == NULL)
+		extra_keyword = g_quark_from_static_string ("Core");
+	/*else if (g_ascii_strcasecmp (subdir, "Applications") == 0)
+		 ;*/
+	else if (g_ascii_strcasecmp (subdir, "Development") == 0)
+		extra_keyword = g_quark_from_static_string ("Development");
+	else if (g_ascii_strcasecmp (subdir, "Editors") == 0)
+		extra_keyword = g_quark_from_static_string ("TextEditor");
+	else if (g_ascii_strcasecmp (subdir, "Games") == 0)
+		extra_keyword = g_quark_from_static_string ("Game");
+	else if (g_ascii_strcasecmp (subdir, "Graphics") == 0)
+		extra_keyword = g_quark_from_static_string ("Graphics");
+	else if (g_ascii_strcasecmp (subdir, "Internet") == 0)
+		extra_keyword = g_quark_from_static_string ("Network");
+	else if (g_ascii_strcasecmp (subdir, "Multimedia") == 0)
+		extra_keyword = g_quark_from_static_string ("AudioVideo");
+	else if (g_ascii_strcasecmp (subdir, "Settings") == 0)
+		extra_keyword = g_quark_from_static_string ("Settings");
+	else if (g_ascii_strcasecmp (subdir, "System") == 0)
+		extra_keyword = g_quark_from_static_string ("System");
+	else if (g_ascii_strcasecmp (subdir, "Utility") == 0)
+		extra_keyword = g_quark_from_static_string ("Utility");
+
+	while ((de = readdir (dir)) != NULL) {
+		char *ext;
+		EntryFile *efile;
+
+		D (g_print ("ITEM: %c '%s'\n", de->d_type, de->d_name));
+
+		/* if this is a directory recurse */
+		if (de->d_type == DT_DIR &&
+		    de->d_name[0] != '.') {
+			char *fullname = g_build_filename (merge_dir, de->d_name, NULL);
+			vfolder_info_read_items_merge (info, fullname, de->d_name);
+			continue;
+		}
+
+		/* read just links and regular files */
+		if (de->d_type != DT_REG &&
+		    de->d_type != DT_LNK)
+			continue;
+
+		/* files MUST be called .desktop */
+		ext = strrchr (de->d_name, '.');
+		if (ext == NULL ||
+		    strcmp (ext, ".desktop") != 0)
+			continue;
+
+		/* FIXME: add some keywords about some known apps
+		 * like gimp and whatnot, perhaps take these from the vfolder
+		 * file or some such */
+
+		efile = file_new (de->d_name, NULL);
+		efile->filename = g_build_filename (merge_dir,
+						    de->d_name, NULL);
+
+		efile->keywords = g_slist_prepend
+			(efile->keywords,
+			 GINT_TO_POINTER (Application));
+		if (extra_keyword != 0) {
+			efile->keywords = g_slist_prepend
+				(efile->keywords,
+				 GINT_TO_POINTER (extra_keyword));
+		}
+
+		vfolder_info_insert_entry (info, efile);
+	}
+
+	closedir (dir);
+}
+
 static void
 vfolder_info_read_items (VFolderInfo *info)
 {
-	/*FIXME */
+	GSList *li;
+
+	/* First merge */
+	for (li = info->merge_dirs; li != NULL; li = li->next) {
+		const char *merge_dir = li->data;
+
+		vfolder_info_read_items_merge (info, merge_dir, NULL);
+	}
+
+	/* Then read the real thing (later overrides) */
+	for (li = info->item_dirs; li != NULL; li = li->next) {
+		const char *item_dir = li->data;
+
+		vfolder_info_read_items_from (info, item_dir);
+	}
 }
 
 static void
@@ -576,7 +1076,7 @@ ensure_info (void)
 	if (programs_info != NULL)
 		return;
 
-	programs_info = g_new0 (VFolderInfo);
+	programs_info = g_new0 (VFolderInfo, 1);
 	vfolder_info_init (programs_info);
 
 	vfolder_info_read_info (programs_info);
@@ -591,7 +1091,7 @@ find_entry (GSList *list, const char *name)
 	for (li = list; li != NULL; li = li->next) {
 		Entry *entry = li->data;
 		if (strcmp (name, entry->name) == 0)
-			return subfolder;
+			return entry;
 	}
 	return NULL;
 }
@@ -610,6 +1110,7 @@ next_non_empty (char **vec, int i)
 static Folder *
 resolve_folder (VFolderInfo *info,
 		const char *path,
+		gboolean ignore_basename,
 		gboolean create,
 		GnomeVFSResult *result)
 {
@@ -617,10 +1118,13 @@ resolve_folder (VFolderInfo *info,
 	int i;
 	Folder *folder = info->root;
 
+	D (g_print ("RESOLVE: %s\n", path);)
+
 	ppath = g_strsplit (path, "/", -1);
 
 	if (ppath == NULL ||
 	    ppath[0] == NULL) {
+		D (g_print ("RESOLVE EEK\n"));
 		g_strfreev (ppath);
 		*result = GNOME_VFS_ERROR_INVALID_URI;
 		return NULL;
@@ -628,19 +1132,25 @@ resolve_folder (VFolderInfo *info,
 
 	/* find first non_empty */
 	i = next_non_empty (ppath, -1);
+	D (g_print ("next non-empty: %d '%s'\n", i, ppath[i]));
 	while (ppath[i] != NULL && folder != NULL) {
 		const char *segment = ppath[i];
+		D (g_print ("SEGMENT: '%s'\n", segment));
 		i = next_non_empty (ppath, i);
-		if (ppath[i] == NULL) {
+		if (ignore_basename && ppath[i] == NULL) {
+			D (g_print ("THAT WAS IT!\n"));
 			return folder;
 		} else {
-			folder = (Folder *)find_entry (folder->subfolders, segment)
+			folder = (Folder *)find_entry (folder->subfolders, segment);
 		}
 	}
-
 	g_strfreev (ppath);
-	*result = GNOME_VFS_ERROR_NOT_FOUND;
-	return NULL;
+
+	if (folder == NULL) {
+		D (g_print ("EEK, NOT FOUND!\n"));
+		*result = GNOME_VFS_ERROR_NOT_FOUND;
+	}
+	return folder;
 }
 
 
@@ -652,7 +1162,10 @@ resolve_path (VFolderInfo *info,
 	      GnomeVFSResult *result)
 {
 	Entry *entry;
-	Folder *folder = resolve_folder (info, path, FALSE /* create */, result);
+	Folder *folder = resolve_folder (info, path,
+					 TRUE /* ignore_basename */,
+					 FALSE /* create */,
+					 result);
 
 	if (folder == NULL)
 		return NULL;
@@ -713,16 +1226,18 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 
 	/* if this is just the filename, get just the filename */
 	if (strchr (path, '/') == NULL) {
+		GSList *efile_list;
 		EntryFile *efile;
-		efile = g_hash_table_lookup (programs_info->entries_ht, path);
-		if (efile == NULL && create) {
+		efile_list = g_hash_table_lookup (programs_info->entries_ht, path);
+		if (efile_list == NULL && create) {
 			/* FIXME: create file, add to root vfolder */
 			/* FIXME: write vfolder */
 		}
-		if (efile == NULL) {
+		if (efile_list == NULL) {
 			*result = GNOME_VFS_ERROR_NOT_FOUND;
 			return NULL;
 		}
+		efile = efile_list->data;
 		filename = efile->filename;
 	} else {
 		filename = resolve_path (programs_info, path, basename, create, result);
@@ -739,6 +1254,7 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 	return uri;
 }
 
+/*
 static char*
 create_file_uri_in_dir (const char *dir,
 			const char *filename)
@@ -754,6 +1270,7 @@ create_file_uri_in_dir (const char *dir,
 	
 	return retval;
 }
+*/
 
 static GnomeVFSResult
 do_open (GnomeVFSMethod *method,
@@ -951,29 +1468,39 @@ do_open_directory (GnomeVFSMethod *method,
 {
 	GnomeVFSResult result = GNOME_VFS_OK;
 	const char *path;
-	DirHandler *dh;
+	DirHandle *dh;
 	Folder *folder;
+
+	D (g_print ("opendir1\n"));
 
 	path = gnome_vfs_uri_get_path (uri);
 	if (path == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
+	D (g_print ("opendir2\n"));
 
 	ensure_info ();
+	D (g_print ("opendir3\n"));
 
-	folder = resolve_folder (programs_info, path, FALSE /* create */, &result);
+	folder = resolve_folder (programs_info, path,
+				 FALSE /* ignore_basename */,
+				 FALSE /* create */,
+				 &result);
 	if (folder == NULL)
 		return result;
+	D (g_print ("opendir4\n"));
 
 	/* Make sure we have the entries and sorted here */
 	ensure_folder_sort (programs_info, folder);
+	D (g_print ("opendir5\n"));
 
 	dh = g_new0 (DirHandle, 1);
 	dh->folder = (Folder *)entry_ref ((Entry *)folder);
 	dh->list = g_slist_copy (folder->entries);
-	g_slist_foreach (folder->list, (GFunc)entry_ref, NULL);
+	g_slist_foreach (folder->entries, (GFunc)entry_ref, NULL);
 	dh->current = dh->list;
 
 	*method_handle = (GnomeVFSMethodHandle*) dh;
+	D (g_print ("opendir6\n"));
 
 	return GNOME_VFS_OK;
 }
@@ -1005,7 +1532,6 @@ do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSFileInfo *file_info,
 		   GnomeVFSContext *context)
 {
-	GnomeVFSResult result;
 	DirHandle *dh;
 	Entry *entry;
 
@@ -1070,7 +1596,10 @@ do_get_file_info (GnomeVFSMethod *method,
 
 		ensure_info ();
 
-		folder = resolve_folder (programs_info, path, FALSE /* create */, &result);
+		folder = resolve_folder (programs_info, path,
+					 FALSE /* ignore_basename */,
+					 FALSE /* create */,
+					 &result);
 		if (folder == NULL)
 			return result;
 
@@ -1359,8 +1888,6 @@ GnomeVFSMethod *
 vfs_module_init (const char *method_name, 
 		 const char *args)
 {
-	int i;
-	
 	parent_method = gnome_vfs_method_get ("file");
 
 	if (parent_method == NULL) {
