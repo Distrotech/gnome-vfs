@@ -1,3 +1,11 @@
+2003-12-04  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs.h:
+	Include gnome-vfs-standard-callbacks.h
+
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	Add new standard auth callbacks
+
 2003-12-01  Malcolm Tredinnick <malcolm@commsecure.com.au>
 
 	* libgnomevfs/Makefile.am: Install gnome-vfs-enum-types.h
