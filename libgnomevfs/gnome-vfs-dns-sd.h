@@ -22,7 +22,7 @@
 */
 
 #ifndef GNOME_VFS_DNS_SD_H
-#define GNOME_VFS_DSN_SD_H
+#define GNOME_VFS_DNS_SD_H
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -166,4 +166,4 @@ gnome_vfs_get_default_browse_domains (void);
 
 G_END_DECLS
 
-#endif /* GNOME_VFS_OPS_H */
+#endif /* GNOME_VFS_DNS_SD_H */

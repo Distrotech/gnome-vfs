@@ -1,3 +1,7 @@
+2004-07-08  Christian Kellner <gicmo@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-dns-sd.h: Fixed small typos.
+
 2004-07-07  Christian Kellner <gicmo@gnome-de.org>
 	* libgnomevfs/gnome-vfs-socket-buffer.[ch]:
 	added the gnome_vfs_socket_buffer_read_until function and fixed some
