@@ -1,3 +1,9 @@
+2003-10-21  Alexander Larsson  <alexl@redhat.com>
+
+	* schemas/Makefile.am (install-data-local):
+	Apparently builddir here is broken for some people.
+	But without it distcheck broke. WTF?
+
 === gnome-vfs 2.5.0 ===
 
 2003-10-20  Alexander Larsson  <alexl@redhat.com>
