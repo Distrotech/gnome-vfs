@@ -111,7 +111,7 @@ static GnomeVFSMethod method = {
 	do_write,		/* write */
 	NULL,			/* seek */
 	NULL,			/* tell */
-	NULL,			/* truncate_handle FIXME */
+	NULL,			/* truncate_handle FIXME bugzilla.eazel.com 1175 */
 	NULL,			/* open_directory */
 	NULL,			/* close_directory */
 	NULL,			/* read_directory */
@@ -207,7 +207,7 @@ gzip_method_handle_init_for_deflate (GZipMethodHandle *handle)
 	handle->zstream.next_out = handle->buffer;
 	handle->zstream.avail_out = Z_BUFSIZE;
 
-	/* FIXME: We want this to be user-configurable.  */
+	/* FIXME bugzilla.eazel.com 1174: We want this to be user-configurable.  */
 	if (deflateInit2 (&handle->zstream, Z_DEFAULT_COMPRESSION,
 			  Z_DEFLATED, -MAX_WBITS, MAX_MEM_LEVEL,
 			  Z_DEFAULT_STRATEGY) != Z_OK) {
@@ -227,7 +227,7 @@ result_from_z_result (gint z_result)
 {
 	switch (z_result) {
 	case Z_OK:
-	case Z_STREAM_END:          /* FIXME? */
+	case Z_STREAM_END: /* FIXME bugzilla.eazel.com 1173: Is this right? */
 		return GNOME_VFS_OK;
 	case Z_DATA_ERROR:
 		return GNOME_VFS_ERROR_CORRUPTEDDATA;
@@ -509,7 +509,7 @@ do_open (GnomeVFSMethod *method,
 		result = write_gzip_header (parent_handle);
 		RETURN_IF_FAIL (result);
 
-				/* FIXME modification_time */
+		/* FIXME bugzilla.eazel.com 1172: need to set modification_time */
 		gzip_handle = gzip_method_handle_new (parent_handle,
 						      (time_t) 0,
 						      uri,
@@ -542,7 +542,7 @@ do_create (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
-	return GNOME_VFS_ERROR_NOTSUPPORTED; /* FIXME */
+	return GNOME_VFS_ERROR_NOTSUPPORTED; /* FIXME bugzilla.eazel.com 1170 */
 }
 
 
@@ -568,7 +568,7 @@ do_close (GnomeVFSMethod *method,
 	if (result == GNOME_VFS_OK)
 		result = gnome_vfs_close (gzip_handle->parent_handle);
 
-	/* FIXME: How do we deal with close errors?  */
+	/* FIXME bugzilla.eazel.com 1169: How do we deal with close errors?  */
 	gzip_method_handle_destroy (gzip_handle);
 
 	return result;
@@ -606,7 +606,7 @@ fill_buffer (GZipMethodHandle *gzip_handle,
 	return GNOME_VFS_OK;
 }
 
-/* TODO:
+/* FIXME bugzilla.eazel.com 1165: TODO:
    - Concatenated GZIP file handling.  */
 static GnomeVFSResult
 do_read (GnomeVFSMethod *method,
@@ -622,7 +622,6 @@ do_read (GnomeVFSMethod *method,
 	int z_result;
 	guchar *crc_start;
 
-	/* FIXME: Wrong.  */
 	*bytes_read = 0;
 
 	crc_start = buffer;
@@ -643,7 +642,6 @@ do_read (GnomeVFSMethod *method,
 	zstream->next_out = buffer;
 	zstream->avail_out = num_bytes;
 
-	/* FIXME: Clean up.  */
 	while (zstream->avail_out != 0) {
 		result = fill_buffer (gzip_handle, num_bytes);
 		RETURN_IF_FAIL (result);
@@ -662,12 +660,12 @@ do_read (GnomeVFSMethod *method,
 			result = read_guint32 (gzip_handle->parent_handle,
 					       &crc);
 			if (result != GNOME_VFS_OK || crc != gzip_handle->crc) {
-				/* FIXME?  Set VFS error instead?  */
+				/* FIXME bugzilla.eazel.com 1167: Set VFS error instead?  */
 				gzip_handle->last_z_result = Z_DATA_ERROR;
 				break;
 			}
 		} else if (z_result != Z_OK) {	
-			/* FIXME: Concatenated GZIP files?  */
+			/* FIXME bugzilla.eazel.com 1165: Concatenated GZIP files?  */
 			gzip_handle->last_z_result = z_result;
 		}
 

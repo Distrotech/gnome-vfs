@@ -82,11 +82,6 @@ char *ftpfs_anonymous_passwd  = "nothing@";
 static GHashTable *connections_hash = NULL;
 G_LOCK_DEFINE_STATIC (connections_hash);
 
-/* FIXME ugly kludgy smelly globals.  Should be removed.  */
-/* static int code; FIXME this was evil, I hope I removed it correctly */
-/*  static int got_sigpipe; */
-/*  static char reply_str [80]; */
-
 static void            ftpfs_dir_unref (ftpfs_dir_t *dir);
 static GnomeVFSResult  login_server    (ftpfs_connection_t *conn);
 static GnomeVFSResult  get_file_entry  (ftpfs_uri_t *uri, int flags,

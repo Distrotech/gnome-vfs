@@ -153,7 +153,7 @@ bzip2_method_handle_init_for_decompress (Bzip2MethodHandle *handle)
 	handle->bzstream.next_in = handle->buffer;
 	handle->bzstream.avail_in = 0;
 
-	/* FIXME: Make small, and possibly verbosity, configurable! */
+	/* FIXME bugzilla.eazel.com 1177: Make small, and possibly verbosity, configurable! */
 	if (bzDecompressInit (&handle->bzstream, 0, 0) != BZ_OK) {
 		g_free (handle->buffer);
 		return FALSE;
@@ -181,7 +181,7 @@ bzip2_method_handle_init_for_compress (Bzip2MethodHandle *handle)
 	handle->bzstream.next_out = handle->buffer;
 	handle->bzstream.avail_out = BZ_BUFSIZE;
 
-	/* FIXME: We want this to be user configurable.  */
+	/* FIXME bugzilla.eazel.com 1174: We want this to be user configurable.  */
 	if (bzCompressInit (&handle->bzstream, 3, 0, 30) != BZ_OK) {
 		g_free (handle->buffer);
 		return FALSE;
@@ -354,8 +354,7 @@ do_close (GnomeVFSMethod *method,
 	if (result == GNOME_VFS_OK)
 		result = gnome_vfs_close (bzip2_handle->parent_handle);
 
-	/* FIXME: How do we deal with close errors? */
-
+	/* FIXME bugzilla.eazel.com 1169: How do we deal with close errors? */
 	bzip2_method_handle_destroy (bzip2_handle);
 
 	return result;
@@ -408,7 +407,6 @@ do_read (GnomeVFSMethod *method,
 	bz_stream *bzstream;
 	int bz_result;
 
-	/* FIXME: Wrong. */
 	*bytes_read = 0;
 
 	bzip2_handle = (Bzip2MethodHandle *) method_handle;
@@ -426,7 +424,6 @@ do_read (GnomeVFSMethod *method,
 	bzstream->next_out = buffer;
 	bzstream->avail_out = num_bytes;
 
-	/* FIXME: Clean up */
 	while (bzstream->avail_out != 0) {
 		result = fill_buffer (bzip2_handle, num_bytes);
 		RETURN_IF_FAIL (result);

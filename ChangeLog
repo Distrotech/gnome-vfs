@@ -1,3 +1,20 @@
+2000-06-05  Darin Adler  <darin@eazel.com>
+
+	* modules/bzip2-method.c:
+	(bzip2_method_handle_init_for_decompress),
+	(bzip2_method_handle_init_for_compress), (do_close), (do_read):
+	* modules/file-method.c: (do_close), (set_mime_type),
+	(do_find_directory), (rename_helper):
+	* modules/ftp-method.c:
+	* modules/gconf-method.c: (directory_handle_destroy),
+	(get_value_size):
+	* modules/gzip-method.c: (gzip_method_handle_init_for_deflate),
+	(result_from_z_result), (do_open), (do_create), (do_close),
+	(do_read):
+	* modules/http-method.c: (http_file_handle_new),
+	(http_status_to_vfs_result), (create_handle), (do_create):
+	Added more bug numbers to FIXMEs.
+
 2000-06-05  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

@@ -20,7 +20,7 @@
 
    Author: Dave Camp <campd@oit.edu> */
 
-/* FIXME: More error checking */
+/* FIXME bugzilla.eazel.com 1180: More error checking */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -186,7 +186,7 @@ directory_handle_new (GnomeVFSURI *uri,
 static void
 directory_handle_destroy (DirectoryHandle *handle) 
 {
-        /* FIXME: Free unused pairs */
+        /* FIXME bguzilla.eazel.com 1178: Free unused pairs */
         gnome_vfs_uri_unref (handle->uri);
 
 #ifdef G_THREADS_ENABLED
@@ -301,8 +301,9 @@ get_value_size (const GConfValue *value, GnomeVFSFileSize *size)
 		break;
 	case GCONF_VALUE_LIST :
                 *size = 0;
-		/* FIXME: This could be optimized, and may be a problem with
-                 * huge lists. */
+		/* FIXME bugzilla.eazel.com 1181: This could be
+                 * optimized, and may be a problem with huge lists.
+		 */
 		values = value->d.list_data.list;
 		while (values != NULL) {
 			result = get_value_size ((GConfValue*)values->data,

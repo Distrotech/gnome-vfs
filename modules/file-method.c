@@ -274,7 +274,7 @@ do_close (GnomeVFSMethod *method,
 	       && errno == EINTR
 	       && ! gnome_vfs_context_check_cancellation (context));
 
-	/* FIXME: Should do this even after a failure?  */
+	/* FIXME bugzilla.eazel.com 1163: Should do this even after a failure?  */
 	file_handle_destroy (file_handle);
 
 	if (close_retval == 0)
@@ -543,12 +543,15 @@ set_mime_type (GnomeVFSFileInfo *info,
 
 	mime_type = NULL;
 	if ((options & GNOME_VFS_FILE_INFO_FASTMIMETYPE) == 0) {
-		/* FIXME: This will also stat the file for us...  Which is
-                   not good at all, as we already have the stat info when we
-                   get here, but there is no other way to do this with the
-                   current gnome-libs.  */
-		/* FIXME: We actually *always* follow symlinks here.  It
-                   needs fixing.  */
+		/* FIXME bugzilla.eazel.com 1184: This will also stat
+		 * the file for us, which is not good at all, as we
+		 * already have the stat info when we get here. But
+		 * there was no other way to do this with the MIME
+		 * functions in gnome-libs; now there is a way.
+		 */
+		/* FIXME bugzilla.eazel.com 1183: We actually *always*
+		 * follow symlinks here. It needs fixing.
+		 */
 		mime_type = gnome_vfs_mime_type_from_magic (full_name);
 	}
 
@@ -998,8 +1001,7 @@ do_find_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_CANCELLED;
 
 	if (near_item_stat.st_dev != home_volume_stat.st_dev)
-		/* FIXME:
-		 */
+		/* FIXME bugzilla.eazel.com 1187 */
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
 	switch (kind) {
@@ -1059,12 +1061,13 @@ rename_helper (const gchar *old_full_name,
 
 	retval = rename (old_full_name, new_full_name);
 
-	/* FIXME?  The following assumes that, if `new_uri' and `old_uri' are
-           on different file systems, `rename()' will always return `EXDEV'
-           instead of `EISDIR', even if the old file is not a directory while
-           the new one is.  If this is not the case, we have to stat() both
-	   the old and new file.  */
-
+	/* FIXME bugzilla.eazel.com 1186: The following assumes that,
+	 * if `new_uri' and `old_uri' are on different file systems,
+	 * `rename()' will always return `EXDEV' instead of `EISDIR',
+	 * even if the old file is not a directory while the new one
+	 * is. If this is not the case, we have to stat() both the
+	 * old and new file.
+	 */
 	if (retval != 0 && errno == EISDIR && force_replace && old_exists) {
 		/* The Unix version of `rename()' fails if the original file is
 		   not a directory, while the new one is.  But we have been
@@ -1075,8 +1078,9 @@ rename_helper (const gchar *old_full_name,
 				return GNOME_VFS_ERROR_CANCELLED;
 			retval = rmdir (new_full_name);
 			if (retval != 0) {
-				/* FIXME: Maybe we could be more accurate
-				   here?  */
+				/* FIXME bugzilla.eazel.com 1185:
+				 * Maybe we could be more accurate here?
+				 */
 				return GNOME_VFS_ERROR_DIRECTORYNOTEMPTY;
 			}
 

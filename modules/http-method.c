@@ -63,7 +63,8 @@
 
 
 /* What do we qualify ourselves as?  */
-#define USER_AGENT_STRING 	"gnome-vfs/" VERSION /* FIXME */
+/* FIXME bugzilla.eazel.com 1160: "gnome-vfs/1.0.0" may not be good. */
+#define USER_AGENT_STRING 	"gnome-vfs/" VERSION
 
 /* Standard HTTP port.  */
 #define DEFAULT_HTTP_PORT 	80
@@ -163,7 +164,7 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 
 	new->connection = connection;
 	new->iobuf = iobuf;
-	new->uri_string = gnome_vfs_uri_to_string (uri, 0); /* FIXME */
+	new->uri_string = gnome_vfs_uri_to_string (uri, 0); /* FIXME bugzilla.eazel.com 1164 */
 	new->uri = uri;
 
 	new->location = NULL;
@@ -254,7 +255,7 @@ http_status_to_vfs_result (guint status)
 	if (HTTP_20X (status))
 		return GNOME_VFS_OK;
 
-	/* FIXME TODO */
+	/* FIXME bugzilla.eazel.com 1163 */
 	switch (status) {
 	case 401:
 	case 407:
@@ -456,7 +457,7 @@ get_header (GnomeVFSIOBuf *iobuf,
 	return GNOME_VFS_OK;
 }
 
-/* FIXME rename */
+/* rename this function? */
 static GnomeVFSResult
 create_handle (HttpFileHandle **handle_return,
 	       GnomeVFSURI *uri,
@@ -477,7 +478,7 @@ create_handle (HttpFileHandle **handle_return,
 		goto error;
 
 	if (! parse_status (header_string->str, &server_status)) {
-		result = GNOME_VFS_ERROR_NOTFOUND; /* FIXME */
+		result = GNOME_VFS_ERROR_NOTFOUND; /* FIXME bugzilla.eazel.com 1161 */
 		goto error;
 	}
 
@@ -500,7 +501,7 @@ create_handle (HttpFileHandle **handle_return,
 
 		if (! parse_header (*handle_return, header_string->str)) {
 			g_warning (_("Invalid header `%s'"), header_string->str);
-			result = GNOME_VFS_ERROR_NOTFOUND; /* FIXME */
+			result = GNOME_VFS_ERROR_NOTFOUND; /* FIXME bugzilla.eazel.com 1161 */
 			break;
 		}
 	}
@@ -701,7 +702,7 @@ do_create (GnomeVFSMethod *method,
      guint perm,
      GnomeVFSContext *context)
 {
-	/* FIXME - do we need to do something more intelligent here? */
+	/* FIXME bugzilla.eazel.com 1159: do we need to do something more intelligent here? */
 	return do_open(method, method_handle, uri, mode, context);
 }
 
