@@ -1,13 +1,13 @@
 # gnome-vfs yn Gymraeg.
 # Copyright (C) 2003 Free Software Foundation, Inc.
 # www.gyfieithu.co.uk <kyfieithu@kyfieithu.co.uk>, 2003.
-# Dafydd Harries, 2003.
+# Dafydd Harries <daf@parnassus.ath.cx>, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-08-04 14:08+0100\n"
-"PO-Revision-Date: 2003-05-19 14:21+0200\n"
+"POT-Creation-Date: 2003-08-14 12:06+0100\n"
+"PO-Revision-Date: 2003-08-14 12:07+0100\n"
 "Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
@@ -297,29 +297,31 @@ msgstr "Gwall wrth weithredu'r gorchymyn"
 msgid "Unknown error"
 msgstr "Gwall anhysbys"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
-#, c-format
-msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "%u beit"
-msgstr[1] "%u beit"
+#: libgnomevfs/gnome-vfs-utils.c:84
+msgid "1 byte"
+msgstr "1 beit"
 
-#: libgnomevfs/gnome-vfs-utils.c:89
+#: libgnomevfs/gnome-vfs-utils.c:86
 #, c-format
-msgid "%.1f K"
-msgstr "%.1f K"
+msgid "%u bytes"
+msgstr "%u beit"
 
 #: libgnomevfs/gnome-vfs-utils.c:93
+#, c-format
+msgid "%.1f K"
+msgstr "%.1f C"
+
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:97
+#: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1081
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr "(Unicode annilys)"
 
@@ -404,6 +406,3 @@ msgstr "moniker Gnome VFS generig"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "moniker ffeil generig"
-
-#~ msgid "1 byte"
-#~ msgstr "1 beit"
