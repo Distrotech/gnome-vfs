@@ -1,3 +1,13 @@
+2005-03-21  Mikael Hallendal  <micke@imendio.com>
+
+	* libgnomevfs/gnome-vfs-async-ops.c:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	- Deprecate the gnome_vfs_async_*_as_channel functions. One of them
+	  aren't even implemented and the others doesn't behave as intended.
+	  See bugs #157266, #157265, #157261, #138398 in GNOME Bugzilla. 
+	- If they are needed they can be fixed and undeprecated in a future
+	  version of GnomeVFS.
+
 2005-03-20  Christian Kellner <gicmo@gnome.org>
 
 	* configure.in: Add -Wno-pointer-sign if available. This will stop

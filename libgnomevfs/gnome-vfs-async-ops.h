@@ -106,6 +106,7 @@ typedef GnomeVFSAsyncCallback GnomeVFSAsyncCreateCallback;
  **/
 typedef GnomeVFSAsyncCallback GnomeVFSAsyncCloseCallback;
 
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
 /**
  * GnomeVFSAsyncOpenAsChannelCallback:
  * @handle: handle of the operation generating the callback
@@ -121,7 +122,9 @@ typedef void	(* GnomeVFSAsyncOpenAsChannelCallback)
 						 GIOChannel *channel,
 						 GnomeVFSResult result,
 						 gpointer callback_data);
+#endif
 
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
 /**
  * GnomeVFSAsyncCreateAsChannelCallback:
  * @handle: handle of the operation generating the callback
@@ -133,6 +136,7 @@ typedef void	(* GnomeVFSAsyncOpenAsChannelCallback)
  * Callback for the gnome_vfs_async_create_as_channel() function.
  **/
 typedef GnomeVFSAsyncOpenAsChannelCallback GnomeVFSAsyncCreateAsChannelCallback;
+#endif
 
 /**
  * GnomeVFSAsyncReadCallback:
@@ -304,6 +308,8 @@ void           gnome_vfs_async_open_uri               (GnomeVFSAsyncHandle      
 						       int				      priority,
 						       GnomeVFSAsyncOpenCallback              callback,
 						       gpointer                               callback_data);
+
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
 void           gnome_vfs_async_open_as_channel        (GnomeVFSAsyncHandle                  **handle_return,
 						       const gchar                           *text_uri,
 						       GnomeVFSOpenMode                       open_mode,
@@ -318,6 +324,8 @@ void           gnome_vfs_async_open_uri_as_channel    (GnomeVFSAsyncHandle      
 						       int				      priority,
 						       GnomeVFSAsyncOpenAsChannelCallback     callback,
 						       gpointer                               callback_data);
+#endif /* GNOME_VFS_DISABLE_DEPRECATED */
+
 void           gnome_vfs_async_create                 (GnomeVFSAsyncHandle                  **handle_return,
 						       const gchar                           *text_uri,
 						       GnomeVFSOpenMode                       open_mode,
@@ -340,6 +348,7 @@ void           gnome_vfs_async_create_symbolic_link   (GnomeVFSAsyncHandle      
 						       int				      priority,
 						       GnomeVFSAsyncOpenCallback              callback,
 						       gpointer                               callback_data);
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
 void           gnome_vfs_async_create_as_channel      (GnomeVFSAsyncHandle                  **handle_return,
 						       const gchar                           *text_uri,
 						       GnomeVFSOpenMode                       open_mode,
@@ -356,6 +365,8 @@ void           gnome_vfs_async_create_uri_as_channel  (GnomeVFSAsyncHandle      
 						       int				      priority,
 						       GnomeVFSAsyncCreateAsChannelCallback   callback,
 						       gpointer                               callback_data);
+#endif /* GNOME_VFS_DISABLE_DEPRECATED */
+
 void           gnome_vfs_async_close                  (GnomeVFSAsyncHandle                   *handle,
 						       GnomeVFSAsyncCloseCallback             callback,
 						       gpointer                               callback_data);

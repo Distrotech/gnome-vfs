@@ -223,6 +223,11 @@ async_open_as_channel (GnomeVFSURI *uri,
  * @callback will be called with @callback_data, the result of the operation,
  * and if the result was %GNOME_VFS_OK, a reference to a #GIOChannel pointing
  * at @uri in @open_mode.
+ *
+ * This function has been deprecated due to behaving weirdly which suggests 
+ * that it hasn't been used. See bugs #157266, #157265, #157261, #138398 in
+ * the GNOME Bugzilla. If the *_as_channel functions are needed they should be
+ * fixed and undeprecated.
  **/
 void
 gnome_vfs_async_open_uri_as_channel (GnomeVFSAsyncHandle **handle_return,
@@ -259,6 +264,11 @@ gnome_vfs_async_open_uri_as_channel (GnomeVFSAsyncHandle **handle_return,
  * @callback will be called with @callback_data, the result of the operation,
  * and if the result was %GNOME_VFS_OK, a reference to a #GIOChannel pointing
  * at @text_uri in @open_mode.
+ *
+ * This function has been deprecated due to behaving weirdly which suggests 
+ * that it hasn't been used. See bugs #157266, #157265, #157261, #138398 in
+ * the GNOME Bugzilla. If the *_as_channel functions are needed they should be
+ * fixed and undeprecated.
  **/
 void
 gnome_vfs_async_open_as_channel (GnomeVFSAsyncHandle **handle_return,
@@ -417,6 +427,11 @@ gnome_vfs_async_create (GnomeVFSAsyncHandle **handle_return,
  * been established @callback will be called with @callback_data, the result of the 
  * operation, and if the result was %GNOME_VFS_OK, a reference to a #GIOChannel pointing
  * at @text_uri in @open_mode.
+ *
+ * This function has been deprecated due to behaving weirdly which suggests 
+ * that it hasn't been used. See bugs #157266, #157265, #157261, #138398 in
+ * the GNOME Bugzilla. If the *_as_channel functions are needed they should be
+ * fixed and undeprecated.
  **/
 void
 gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
