@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.16\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
+"POT-Creation-Date: 2002-12-16 13:29+0100\n"
 "PO-Revision-Date: 2002-06-11 07:29+0800\n"
 "Last-Translator: Joe Man <trmetal@yahoo.com.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -267,7 +267,13 @@ msgstr "要求某些已過時服務的資料"
 msgid "Protocol error"
 msgstr "協定錯誤"
 
-#: libgnomevfs/gnome-vfs-result.c:169
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+#, fuzzy
+msgid "Could not find master browser"
+msgstr "不能解析：%s"
+
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "不明的錯誤"
 

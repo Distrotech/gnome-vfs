@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
+"POT-Creation-Date: 2002-12-16 13:29+0100\n"
 "PO-Revision-Date: 2000-07-07 02:53+0200\n"
 "Last-Translator: Andraz Tori <andraz.tori1@guest.arnes.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -266,7 +266,13 @@ msgstr "Zahtevek zastara podatke storitve"
 msgid "Protocol error"
 msgstr "Napaka v protokolu"
 
-#: libgnomevfs/gnome-vfs-result.c:169
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+#, fuzzy
+msgid "Could not find master browser"
+msgstr "Ne morem razčleniti: %s"
+
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Neznana napaka"
 

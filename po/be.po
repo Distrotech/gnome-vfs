@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
+"POT-Creation-Date: 2002-12-16 13:29+0100\n"
 "PO-Revision-Date: 2002-10-28 19:39+0200\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -317,8 +317,15 @@ msgstr "Запыт састарэлых даньняў паслуг"
 msgid "Protocol error"
 msgstr "Памылка пратаколу"
 
+# libgnomevfs/gnome-vfs-parse-ls.c:652
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+#, fuzzy
+msgid "Could not find master browser"
+msgstr "Ня атрымалася разабраць: %s"
+
 # libgnomevfs/gnome-vfs-result.c:137
-#: libgnomevfs/gnome-vfs-result.c:169
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Невядомая памылка"
 

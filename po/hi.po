@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
+"POT-Creation-Date: 2002-12-16 13:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Anurag Seetha <anuragseetha@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -320,8 +320,15 @@ msgstr "निरपेक्ष डाटा की मांग की गई 
 msgid "Protocol error"
 msgstr "प्रोटोकाॅल त्रुटि"
 
+# libgnomevfs/gnome-vfs-parse-ls.c:652
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+#, fuzzy
+msgid "Could not find master browser"
+msgstr "पार्सिंग नहीं किया जा सकता : %s"
+
 # libgnomevfs/gnome-vfs-result.c:137
-#: libgnomevfs/gnome-vfs-result.c:169
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "अज्ञात त्रुटि"
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.2\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
+"POT-Creation-Date: 2002-12-16 13:29+0100\n"
 "PO-Revision-Date: 2001-07-02 03:36+02:00\n"
 "Last-Translator: Christopher R. Gabriel <cgabriel@pluto.linux.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -266,7 +266,13 @@ msgstr "Richiesta dati da servizio obsoleto"
 msgid "Protocol error"
 msgstr "Errore protocollo"
 
-#: libgnomevfs/gnome-vfs-result.c:169
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+#, fuzzy
+msgid "Could not find master browser"
+msgstr "Impossibile analizzare: %s"
+
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Errore sconosciuto"
 

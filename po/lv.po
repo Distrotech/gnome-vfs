@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
+"POT-Creation-Date: 2002-12-16 13:29+0100\n"
 "PO-Revision-Date: 2002-07-13 14:33GMT+0200\n"
 "Last-Translator: Peteris Krisjanis <pecisk@inbox.lv>\n"
 "Language-Team: Latvian <ll10nt@inbox.lv>\n"
@@ -267,7 +267,13 @@ msgstr "Pieprasījums atsauc servisa datus"
 msgid "Protocol error"
 msgstr "Protokola kļūda"
 
-#: libgnomevfs/gnome-vfs-result.c:169
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+#, fuzzy
+msgid "Could not find master browser"
+msgstr "Nevarēju noparsēt: %s"
+
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Nezināma kļūda"
 

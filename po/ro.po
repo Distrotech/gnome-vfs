@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
+"POT-Creation-Date: 2002-12-16 13:29+0100\n"
 "PO-Revision-Date: 2001-02-24 11:22+0200\n"
 "Last-Translator: Marius Andreiana <mandreiana@yahoo.com>\n"
 "Language-Team: Românã <ro@li.org>\n"
@@ -268,7 +268,13 @@ msgstr "Cerere pentru date servicii ieºite din uz"
 msgid "Protocol error"
 msgstr "Nici o eroare"
 
-#: libgnomevfs/gnome-vfs-result.c:169
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+#, fuzzy
+msgid "Could not find master browser"
+msgstr "N-am putut procesa: %s"
+
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Eroare necunoscutã"
 

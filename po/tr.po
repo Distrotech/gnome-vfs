@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.3\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
+"POT-Creation-Date: 2002-12-16 13:29+0100\n"
 "PO-Revision-Date: 2002-02-23 18:35GMT+2\n"
 "Last-Translator: Sinan Imamoglu <sinan_imam@yahoo.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -318,8 +318,15 @@ msgstr "?stem hizmet verisinin yerine geçer"
 msgid "Protocol error"
 msgstr "Protokol hatas?"
 
+# libgnomevfs/gnome-vfs-parse-ls.c:654
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+#, fuzzy
+msgid "Could not find master browser"
+msgstr "%s taranamad?"
+
 # libgnomevfs/gnome-vfs-result.c:141
-#: libgnomevfs/gnome-vfs-result.c:169
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Bilinmeyen hata"
 

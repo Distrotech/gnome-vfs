@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.0\n"
-"POT-Creation-Date: 2002-12-09 12:44+0100\n"
+"POT-Creation-Date: 2002-12-16 13:29+0100\n"
 "PO-Revision-Date: 2002-12-12 16:15+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: albanian < gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -267,7 +267,13 @@ msgstr "Kërkesë të dhënash nga shërbim tepër i vjetër"
 msgid "Protocol error"
 msgstr "Gabim protokolli"
 
-#: libgnomevfs/gnome-vfs-result.c:169
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+#, fuzzy
+msgid "Could not find master browser"
+msgstr "I pamundur analizimi: %s"
+
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Gabim i panjohur"
 
@@ -332,4 +338,3 @@ msgstr "Moniker Gnome VFS i përgjithshëm"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "moniker i përgjithshëm për file"
-
