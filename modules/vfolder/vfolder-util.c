@@ -343,3 +343,62 @@ vfolder_check_extension (const char *name, const char *ext_check)
 	else
 		return FALSE;
 }
+
+/* Ripped from gfileutils.c:g_build_pathv() */
+gchar *
+vfolder_build_uri (const gchar *first_element,
+		   ...)
+{
+	GString *result;
+	gboolean is_first = TRUE;
+	const gchar *next_element;
+	va_list args;
+
+	va_start (args, first_element);
+
+	result = g_string_new (NULL);
+	next_element = first_element;
+
+	while (TRUE) {
+		const gchar *element;
+		const gchar *start;
+		const gchar *end;
+
+		if (next_element) {
+			element = next_element;
+			next_element = va_arg (args, gchar *);
+		}
+		else
+			break;
+
+		start = element;
+
+		if (!is_first)
+			start += strspn (start, "/");
+
+		end = start + strlen (start);
+
+		if (next_element) {
+			while (end > start + 1 && end [-1] == '/')
+				end--;
+
+			if (is_first)
+				if (end > start + 1 &&
+				    !strncmp (end - 1, "://", 3))
+					end += 2;
+		}
+
+		if (end > start) {
+			if (result->len > 0)
+				g_string_append_c (result, '/');
+
+			g_string_append_len (result, start, end - start);
+		}
+
+		is_first = FALSE;
+	}
+  
+	va_end (args);
+
+	return g_string_free (result, FALSE);
+}

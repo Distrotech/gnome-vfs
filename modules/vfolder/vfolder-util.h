@@ -71,6 +71,10 @@ gchar   *vfolder_untimestamp_file_name (gchar      *file);
 gboolean vfolder_check_extension       (const char *name, 
 					const char *ext_check);
 
+gchar   *vfolder_build_uri             (const char *first_element,
+					...);
+
+
 G_END_DECLS
 
 #endif /* VFOLDER_UTIL_H */

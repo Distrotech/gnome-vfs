@@ -216,7 +216,7 @@ do_create (GnomeVFSMethod *method,
 
 		/* Create uniquely named file in write_dir */
 		basename = vfolder_timestamp_file_name (vuri.file);
-		filename = g_build_filename (dirname, basename, NULL);
+		filename = vfolder_build_uri (dirname, basename, NULL);
 		g_free (basename);
 	} else {
 		/* No writedir, try modifying the parent */
@@ -228,7 +228,7 @@ do_create (GnomeVFSMethod *method,
 		}
 
 		/* Use regular filename in extended dir */
-		filename = g_build_filename (dirname, vuri.file, NULL);
+		filename = vfolder_build_uri (dirname, vuri.file, NULL);
 	}
 
 	/* Make sure the destination directory exists */

@@ -1,3 +1,15 @@
+2002-07-23  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (vfolder_build_uri): Rip off of
+	g_build_filename, but which handles the first element being a
+	uri scheme://.
+
+	* modules/vfolder/vfolder-method.c: Use vfolder_build_uri().
+
+	* modules/vfolder/vfolder-info.c: Use vfolder_build_uri().
+
+	* modules/vfolder/vfolder-common.c: Use vfolder_build_uri().
+
 2002-07-22  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-common.c (read_extended_entries): Use

@@ -113,7 +113,7 @@ entry_make_user_private (Entry *entry, Folder *folder)
 	 * files in different logical folders with the same filename.
 	 */
 	uniqname = vfolder_timestamp_file_name (entry_get_displayname (entry));
-	filename = g_build_filename (entry->info->write_dir, uniqname, NULL);
+	filename = vfolder_build_uri (entry->info->write_dir, uniqname, NULL);
 	g_free (uniqname);
 
 	src_uri = entry_get_real_uri (entry);
@@ -532,7 +532,9 @@ read_extended_entries (Folder *folder)
 		GnomeVFSFileInfo *file_info = iter->data;
 		gchar *file_uri;
 
-		file_uri = g_build_filename (extend_uri, file_info->name, NULL);
+		file_uri = vfolder_build_uri (extend_uri, 
+					      file_info->name, 
+					      NULL);
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			Folder *sub;

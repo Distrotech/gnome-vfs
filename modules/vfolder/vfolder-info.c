@@ -212,9 +212,9 @@ folder_create_dot_directory_entry (Folder *folder)
 			dirpath = folder->info->write_dir;
 
 		if (dirpath) {
-			full_path = g_build_filename (dirpath,
-						      dot_directory, 
-						      NULL);
+			full_path = vfolder_build_uri (dirpath,
+						       dot_directory, 
+						       NULL);
 			entry = entry_new (folder->info,
 					   full_path,
 					   ".directory",
@@ -577,8 +577,7 @@ create_entries_from_mergedir (VFolderInfo     *info,
 		    !strcmp (file_info->name, ".."))
 			continue;
 
-		/* FIXME: drop uniqueness tag from file_info->name */
-		file_uri = g_build_filename (uri, file_info->name, NULL);
+		file_uri = vfolder_build_uri (uri, file_info->name, NULL);
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			GQuark pass_keyword = 0;
@@ -657,15 +656,7 @@ create_entries_from_itemdir (VFolderInfo     *info,
 		    !strcmp (file_info->name, ".."))
 			continue;
 
-		/* FIXME: drop uniqueness tag from file_info->name */
-		file_uri = g_build_filename (uri, file_info->name, NULL);
-
-		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-			create_entries_from_itemdir (info, 
-						     file_uri, 
-						     strip_timestamp);
-			goto NEXT_ENTRY;
-		}
+		file_uri = vfolder_build_uri (uri, file_info->name, NULL);
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			create_entries_from_itemdir (info, 
@@ -1089,7 +1080,7 @@ static guint
 g_str_case_hash (gconstpointer key)
 {
 	const char *p = key;
-	guint h = *p;
+	guint h = g_ascii_toupper (*p);
 	
 	if (h)
 		for (p += 1; *p != '\0'; p++)
@@ -1178,7 +1169,7 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 
 		g_free (info->filename);
 		info->filename = 
-			g_build_filename (
+			vfolder_build_uri (
 				g_getenv ("GNOME_VFS_VFOLDER_INFODIR"),
 				filename,
 				NULL);
@@ -1188,7 +1179,7 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 	if (g_getenv ("GNOME_VFS_VFOLDER_WRITEDIR")) {
 		g_free (info->write_dir);
 		info->write_dir = 
-			g_build_filename (
+			vfolder_build_uri (
 				g_getenv ("GNOME_VFS_VFOLDER_WRITEDIR"),
 				scheme,
 				NULL);
