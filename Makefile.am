@@ -31,9 +31,9 @@ EXTRA_DIST =					\
 	vfsConf.sh.in				\
 	vfscorbaConf.sh.in			\
 	vfspthreadConf.sh.in			\
-	xml-i18n-extract			\
-	xml-i18n-merge				\
-	xml-i18n-update				\
+	xml-i18n-extract.in			\
+	xml-i18n-merge.in			\
+	xml-i18n-update.in			\
 	gnome-vfs-config.in
 
 bin_SCRIPTS = $(top_builddir)/gnome-vfs-config

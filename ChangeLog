@@ -1,3 +1,7 @@
+2001-02-06  Maciej Stachowiak  <mjs@eazel.com>
+
+	* Makefile.am, .cvsignore: Updated for new xml-i18n-tools.
+
 2001-02-05  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Seth Nickell  <seth@eazel.com>
