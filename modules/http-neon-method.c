@@ -1242,11 +1242,14 @@ propfind_result (void *userdata, const char *href, const ne_prop_result_set *set
 		ctx->target = info;
 		
 		/* Set the etag on target */
+		/* We are not requesting the etag information at 
+		 * the moment so don't even check for it 
 		value = ne_propset_value (set, &file_info_props[5]);
 		
 		if (value != NULL)
 			ctx->etag = g_strdup (value);
-		
+	
+		*/	
 	} else {
 		ctx->children = g_list_append (ctx->children, info);
 	}
