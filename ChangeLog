@@ -1,3 +1,14 @@
+2000-12-29  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	Fixed bug 3117 (Certain files incorrectly get the core file icon
+	in icon-view mode).
+	
+	* data/mime/gnome-vfs.mime: Changed the regular expression for core
+	files to match only files named "core", not all files with "core" in
+	their names. Added some FIXMEs.
+
 2000-12-28  Darin Adler  <darin@eazel.com>
 
 	reviewed by: Maciej Stachowiak <mjs@eazel.com>

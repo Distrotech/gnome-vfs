@@ -100,7 +100,7 @@ application/x-compressed-tar
 	ext: tgz
 
 application/x-core-file
-	regex: core
+	regex: ^core$
 
 application/x-cpio
 	ext: cpio
@@ -219,6 +219,8 @@ application/x-tar
 application/x-theme
         ext: theme
 
+# FIXME bugzilla.eazel.com 5372: This matches too many file
+# names, including virtually all file names that end in ".1.Z".
 application/x-troff-man-compressed
 	regex: ([^0-9]|^[^\.]*)\.([1-9][a-z]?|n)\.g?[Zz]$
 
@@ -392,7 +394,6 @@ model/vrml
 
 
 
-
 text/bib
 	ext: bib
 
@@ -501,6 +502,8 @@ text/x-texinfo
 text/x-troff
 	ext: roff t tr
 
+# FIXME bugzilla.eazel.com 5372: This matches too many file
+# names, including virtually all file names that end in ".1".
 text/x-troff-man
 	regex: (([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|n)|\.man)$
 	ext: man
@@ -519,6 +522,8 @@ text/x-vcard
 
 text/xml
 	ext: xml
+
+
 
 video/mpeg
 	ext: mp2 mpe mpeg mpg
