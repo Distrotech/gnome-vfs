@@ -2242,6 +2242,20 @@ do_monitor_cancel (GnomeVFSMethod *method,
 #endif
 }
 
+static GnomeVFSResult
+do_file_control (GnomeVFSMethod *method,
+		 GnomeVFSMethodHandle *method_handle,
+		 const char *operation,
+		 gpointer operation_data,
+		 GnomeVFSContext *context)
+{
+	if (strcmp (operation, "file:test") == 0) {
+		*(char **)operation_data = g_strdup ("test ok");
+		return GNOME_VFS_OK;
+	}
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+}
+
 static GnomeVFSMethod method = {
 	sizeof (GnomeVFSMethod),
 	do_open,
@@ -2268,7 +2282,8 @@ static GnomeVFSMethod method = {
 	do_find_directory,
 	do_create_symbolic_link,
 	do_monitor_add,
-	do_monitor_cancel
+	do_monitor_cancel,
+	do_file_control
 };
 
 GnomeVFSMethod *

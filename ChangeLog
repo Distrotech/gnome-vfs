@@ -1,3 +1,16 @@
+2002-12-05  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/default-modules.conf: 
+	* modules/console-method.c: 
+	* modules/Makefile.am:
+	Remove console method.
+
+	* libgnomevfs/Makefile.am: 
+	* libgnomevfs/gnome-vfs-open-fd.c: 
+	* libgnomevfs/gnome-vfs-utils.h:
+	Implement gnome_vfs_open_fd().
+	Patch from Giovanni Corriga <valkadesh@libero.it>
+
 2002-11-27  Jody Goldberg <jody@gnome.org>
 
 	* configure.in : post release version bump

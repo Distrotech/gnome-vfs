@@ -119,6 +119,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
 	gnome-vfs-directory.c			\
+	gnome-vfs-open-fd.c			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-find-directory.c		\
 	gnome-vfs-handle.c			\

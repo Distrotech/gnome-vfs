@@ -31,6 +31,7 @@
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-result.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
+#include <libgnomevfs/gnome-vfs-handle.h>
 
 G_BEGIN_DECLS
 
@@ -112,6 +113,10 @@ GnomeVFSResult	gnome_vfs_get_volume_free_space	(const GnomeVFSURI 	*vfs_uri,
 						 GnomeVFSFileSize 	*size);
 
 char *gnome_vfs_icon_path_from_filename       (const char *filename);
+
+/* Convert a file descriptor to a handle */
+GnomeVFSResult	gnome_vfs_open_fd	(GnomeVFSHandle	**handle,
+					 int filedes);
 
 /* TRUE if the current thread is the thread with the main glib event loop */
 gboolean	gnome_vfs_is_primary_thread (void);
