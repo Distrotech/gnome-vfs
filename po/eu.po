@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-11-29 18:51+0100\n"
+"POT-Creation-Date: 2004-12-21 13:47+0100\n"
 "PO-Revision-Date: 2004-08-23 12:35+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
@@ -201,114 +201,6 @@ msgstr "XIAFS bolumena"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:611
-msgid "CD-ROM Disc"
-msgstr "CD-ROM diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:614
-msgid "Blank CD-R Disc"
-msgstr "CD-R disko hutsa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:616
-msgid "CD-R Disc"
-msgstr "CD-R diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:619
-msgid "Blank CD-RW Disc"
-msgstr "CD-RW disko hutsa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:621
-msgid "CD-RW Disc"
-msgstr "CD-RW diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:623
-msgid "DVD-ROM Disc"
-msgstr "DVD-ROM diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:626
-msgid "Blank DVD-R Disc"
-msgstr "DVD-R disko hutsa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:628
-msgid "DVD-R Disc"
-msgstr "DVD-R diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:631
-msgid "Blank DVD-RAM Disc"
-msgstr "DVD-RAM disko hutsa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:633
-msgid "DVD-RAM Disc"
-msgstr "DVD-RAM diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:636
-msgid "Blank DVD-RW Disc"
-msgstr "DVD-RW disko hutsa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:638
-msgid "DVD-RW Disc"
-msgstr "DVD-RW diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:641
-msgid "Blank DVD+RW Disc"
-msgstr "DVD+RW disko hutsa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:643
-msgid "DVD+RW Disc"
-msgstr "DVD+RW diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:646
-msgid "Blank DVD+R Disc"
-msgstr "DVD+R disko hutsa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:648
-msgid "DVD+R Disc"
-msgstr "DVD+R diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:650
-msgid "Optical Disc"
-msgstr "Disko optikoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:656
-msgid "Audio Disc"
-msgstr "Audio-diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:660
-msgid "Compact Flash Media"
-msgstr "Flash trinkoa euskarria"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:662
-msgid "Memory Stick Media"
-msgstr "Memoria arkatza euskarria"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:664
-msgid "Smart Media Media"
-msgstr "Smart Media euskarria"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:666
-msgid "SD/MMC Media"
-msgstr "SD/MMC euskarria"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:668
-msgid "Floppy Disk"
-msgstr "Disketea"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:675
-msgid "Mac OS disk"
-msgstr "Mac OS diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:677
-msgid "Mac OS X disk"
-msgstr "Mac OS X diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:691
-msgid "Windows Disk"
-msgstr "Windows diskoa"
-
-#: libgnomevfs/gnome-vfs-hal-mounts.c:697
-msgid "Linux Disk"
-msgstr "Linux diskoa"
-
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown operation type %u"
@@ -345,12 +237,12 @@ msgstr "Eragiketa geldiarazita"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:970
 #: libgnomevfs/gnome-vfs-mime-handlers.c:988
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1006
-#: libgnomevfs/gnome-vfs-mime-info.c:648 libgnomevfs/gnome-vfs-mime-info.c:655
-#: libgnomevfs/gnome-vfs-mime-info.c:663 libgnomevfs/gnome-vfs-mime-info.c:670
-#: libgnomevfs/gnome-vfs-mime-info.c:678 libgnomevfs/gnome-vfs-mime-info.c:695
-#: libgnomevfs/gnome-vfs-mime-info.c:702 libgnomevfs/gnome-vfs-mime-info.c:709
-#: libgnomevfs/gnome-vfs-mime-info.c:716 libgnomevfs/gnome-vfs-mime-info.c:724
-#: libgnomevfs/gnome-vfs-mime-info.c:731
+#: libgnomevfs/gnome-vfs-mime-info.c:643 libgnomevfs/gnome-vfs-mime-info.c:650
+#: libgnomevfs/gnome-vfs-mime-info.c:658 libgnomevfs/gnome-vfs-mime-info.c:665
+#: libgnomevfs/gnome-vfs-mime-info.c:673 libgnomevfs/gnome-vfs-mime-info.c:690
+#: libgnomevfs/gnome-vfs-mime-info.c:697 libgnomevfs/gnome-vfs-mime-info.c:704
+#: libgnomevfs/gnome-vfs-mime-info.c:711 libgnomevfs/gnome-vfs-mime-info.c:719
+#: libgnomevfs/gnome-vfs-mime-info.c:726
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -644,162 +536,162 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1122
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:391
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (Unicode baliogabea)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:629
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:551
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:607
 msgid "Floppy"
 msgstr "Disketea"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:632
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:552
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:610
 msgid "CD-ROM"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:554
 #, fuzzy
 msgid "CD-R"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:555
 #, fuzzy
 msgid "CD-RW"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:556
 #, fuzzy
 msgid "DVD-ROM"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:557
 #, fuzzy
 msgid "DVD-RAM"
 msgstr "DVD-RAM diskoa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:558
 #, fuzzy
 msgid "DVD-R"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:559
 #, fuzzy
 msgid "DVD-RW"
 msgstr "DVD-RW diskoa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:560
 #, fuzzy
 msgid "CD-ROM/DVD-ROM"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:561
 #, fuzzy
 msgid "CD-ROM/DVD-RAM"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:562
 #, fuzzy
 msgid "CD-ROM/DVD-R"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
 #, fuzzy
 msgid "CD-ROM/DVD-RW"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
 #, fuzzy
 msgid "CD-R/DVD-ROM"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 msgid "CD-R/DVD-RAM"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
 msgid "CD-R/DVD-R"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R/DVD-RW"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 #, fuzzy
 msgid "CD-RW/DVD-ROM"
 msgstr "CDROMa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "CD-RW/DVD-RAM"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "CD-RW/DVD-R"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "CD-RW/DVD-RW"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "Disk"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 #, fuzzy
 msgid "USB Drive"
 msgstr "ZIP gailua"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "IEEE1394 Drive"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CF"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 #, fuzzy
 msgid "SD/MMC"
 msgstr "SD/MMC euskarria"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
 msgid "Memory Stick"
 msgstr "Memoria arkatza"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 #, fuzzy
 msgid "Smart Media"
 msgstr "Smart Media euskarria"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:613
 msgid "Zip Drive"
 msgstr "ZIP gailua"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:605
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
 msgid "Camera"
 msgstr "Kamara"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:606
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:822
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:807
 msgid "Root Volume"
 msgstr "Erroa bolumena"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:903
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:888
 msgid "Audio CD"
 msgstr "CD audioa"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:921
 msgid "Unknown volume"
 msgstr "Bolumen ezezaguna"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1122
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1109
 msgid "Network server"
 msgstr "Sareko zerbitzaria"
 
@@ -1356,6 +1248,87 @@ msgstr "SMB lan-taldea"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Windows-eko lan-taldea, erabiltzailea kide dena"
+
+#~ msgid "CD-ROM Disc"
+#~ msgstr "CD-ROM diskoa"
+
+#~ msgid "Blank CD-R Disc"
+#~ msgstr "CD-R disko hutsa"
+
+#~ msgid "CD-R Disc"
+#~ msgstr "CD-R diskoa"
+
+#~ msgid "Blank CD-RW Disc"
+#~ msgstr "CD-RW disko hutsa"
+
+#~ msgid "CD-RW Disc"
+#~ msgstr "CD-RW diskoa"
+
+#~ msgid "DVD-ROM Disc"
+#~ msgstr "DVD-ROM diskoa"
+
+#~ msgid "Blank DVD-R Disc"
+#~ msgstr "DVD-R disko hutsa"
+
+#~ msgid "DVD-R Disc"
+#~ msgstr "DVD-R diskoa"
+
+#~ msgid "Blank DVD-RAM Disc"
+#~ msgstr "DVD-RAM disko hutsa"
+
+#~ msgid "DVD-RAM Disc"
+#~ msgstr "DVD-RAM diskoa"
+
+#~ msgid "Blank DVD-RW Disc"
+#~ msgstr "DVD-RW disko hutsa"
+
+#~ msgid "DVD-RW Disc"
+#~ msgstr "DVD-RW diskoa"
+
+#~ msgid "Blank DVD+RW Disc"
+#~ msgstr "DVD+RW disko hutsa"
+
+#~ msgid "DVD+RW Disc"
+#~ msgstr "DVD+RW diskoa"
+
+#~ msgid "Blank DVD+R Disc"
+#~ msgstr "DVD+R disko hutsa"
+
+#~ msgid "DVD+R Disc"
+#~ msgstr "DVD+R diskoa"
+
+#~ msgid "Optical Disc"
+#~ msgstr "Disko optikoa"
+
+#~ msgid "Audio Disc"
+#~ msgstr "Audio-diskoa"
+
+#~ msgid "Compact Flash Media"
+#~ msgstr "Flash trinkoa euskarria"
+
+#~ msgid "Memory Stick Media"
+#~ msgstr "Memoria arkatza euskarria"
+
+#~ msgid "Smart Media Media"
+#~ msgstr "Smart Media euskarria"
+
+#~ msgid "SD/MMC Media"
+#~ msgstr "SD/MMC euskarria"
+
+#~ msgid "Floppy Disk"
+#~ msgstr "Disketea"
+
+#~ msgid "Mac OS disk"
+#~ msgstr "Mac OS diskoa"
+
+#~ msgid "Mac OS X disk"
+#~ msgstr "Mac OS X diskoa"
+
+#~ msgid "Windows Disk"
+#~ msgstr "Windows diskoa"
+
+#~ msgid "Linux Disk"
+#~ msgstr "Linux diskoa"
 
 #~ msgid "File could not be opened: %s"
 #~ msgstr "Ezin izan da fitxategia ireki: %s"

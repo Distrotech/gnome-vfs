@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-12 18:59+0200\n"
+"POT-Creation-Date: 2004-12-21 13:47+0100\n"
 "PO-Revision-Date: 2004-12-12 19:14+0200\n"
 "Last-Translator: Rostislav Raykov <zbrox@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
@@ -246,7 +246,9 @@ msgstr "Операцията е спряна"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "Остаряла фунцкия, да не се използва! Не се поддържат вече потребителски промени по базата с данни за типове MIME."
+msgstr ""
+"Остаряла фунцкия, да не се използва! Не се поддържат вече потребителски "
+"промени по базата с данни за типове MIME."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -534,147 +536,147 @@ msgid "%.1f GB"
 msgstr "%.1f ГБ"
 
 #: libgnomevfs/gnome-vfs-utils.c:1122
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:367
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (грешен уникод)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:549
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:605
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:551
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:607
 msgid "Floppy"
 msgstr "Дискета"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:550
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:608
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:552
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:610
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:552
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:554
 msgid "CD-R"
 msgstr "CD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:553
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:555
 msgid "CD-RW"
 msgstr "CD-RW"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:554
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:556
 msgid "DVD-ROM"
 msgstr "DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:555
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:557
 msgid "DVD-RAM"
 msgstr "DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:556
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:558
 msgid "DVD-R"
 msgstr "DVD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:557
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:559
 msgid "DVD-RW"
 msgstr "DVD-RW"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:558
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:560
 msgid "CD-ROM/DVD-ROM"
 msgstr "CD-ROM/DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:559
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:561
 msgid "CD-ROM/DVD-RAM"
 msgstr "CD-ROM/DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:560
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:562
 msgid "CD-ROM/DVD-R"
 msgstr "CD-ROM/DVD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:561
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
 msgid "CD-ROM/DVD-RW"
 msgstr "CD-ROM/DVD-RW"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:562
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
 msgid "CD-R/DVD-ROM"
 msgstr "CD-R/DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:563
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
 msgid "CD-R/DVD-RAM"
 msgstr "CD-R/DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:564
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
 msgid "CD-R/DVD-R"
 msgstr "CD-R/DVD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
 msgid "CD-R/DVD-RW"
 msgstr "CD-R/DVD-RW"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 msgid "CD-RW/DVD-ROM"
 msgstr "CD-RW/DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
 msgid "CD-RW/DVD-RAM"
 msgstr "CD-RW/DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
 msgid "CD-RW/DVD-R"
 msgstr "CD-RW/DVD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
 msgid "CD-RW/DVD-RW"
 msgstr "CD-RW/DVD-RW"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "Disk"
 msgstr "Диск"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:572
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
 msgid "USB Drive"
 msgstr "USB устройство"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
 msgid "IEEE1394 Drive"
 msgstr "IEEE1394 устройство"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
 msgid "CF"
 msgstr "CF"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:575
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
 msgid "SD/MMC"
 msgstr "SD/MMC"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
 msgid "Memory Stick"
 msgstr "Memory Stick"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
 msgid "Smart Media"
 msgstr "Smart Media"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:611
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:613
 msgid "Zip Drive"
 msgstr "Zip устройство"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
 msgid "Camera"
 msgstr "Фотоапарат"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:805
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:807
 msgid "Root Volume"
 msgstr "Root диск"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:886
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:888
 msgid "Audio CD"
 msgstr "Аудио CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:919
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:921
 msgid "Unknown volume"
 msgstr "Неизвестно устройство"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1107
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1109
 msgid "Network server"
 msgstr "Мрежови сървър"
 
@@ -1138,7 +1140,11 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
-msgstr "Ако е истина, връзките към сървъра-посредник изискват идентификация. Комбинацията \"потребителско име/парола\" е дефинирана в \"/system/http_proxy/authentication_user\" и \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Ако е истина, връзките към сървъра-посредник изискват идентификация. "
+"Комбинацията \"потребителско име/парола\" е дефинирана в \"/system/"
+"http_proxy/authentication_user\" и \"/system/http_proxy/"
+"authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1197,25 +1203,31 @@ msgstr "Името на сървъра-посредник за SOCKS връзк�
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "Портът на сървъра-посредник, който е дефиниран в \"/system/proxy/http_host\"."
+msgstr ""
+"Портът на сървъра-посредник, който е дефиниран в \"/system/proxy/http_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "Портът на сървъра-посредник, който е дефиниран в \"/system/proxy/ftp_host\"."
+msgstr ""
+"Портът на сървъра-посредник, който е дефиниран в \"/system/proxy/ftp_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "Портът на сървъра-посредник, който е дефиниран в \"/system/proxy/secure_host\"."
+msgstr ""
+"Портът на сървъра-посредник, който е дефиниран в \"/system/proxy/secure_host"
+"\"."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "Портът на сървъра-посредник, който е дефиниран в \"/system/proxy/socks_host\"."
+msgstr ""
+"Портът на сървъра-посредник, който е дефиниран в \"/system/proxy/socks_host"
+"\"."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
