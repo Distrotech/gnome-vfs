@@ -814,7 +814,7 @@ do_check_same_fs (GnomeVFSMethod *method,
       gboolean *same_fs_return,
       GnomeVFSContext *context)
 {
-	*same_fs_return = FALSE;
+	*same_fs_return = TRUE;
 
 	return GNOME_VFS_OK;
 }

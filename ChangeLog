@@ -1,3 +1,8 @@
+2000-11-01  Gene Z. Ragan  <gzr@eazel.com>
+
+	* modules/cdda-method.c: (do_check_same_fs):
+	Return TRUE always.
+	
 2000-10-31  Mathieu Lacage  <mathieu@eazel.com>
 
 	* modules/http-method.c: (do_get_file_info):
