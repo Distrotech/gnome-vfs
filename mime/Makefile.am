@@ -1,7 +1,7 @@
 noinst_LTLIBRARIES=libmime.la
 
 INCLUDES=$(LIBGNOMEVFS_CFLAGS)
-LIBS=$(LIBGNOMEVFS_LIBS) -lgnomevfs-2
+LIBS=$(LIBGNOMEVFS_LIBS)
 
 noinst_PROGRAMS=test-mime convert-mime-info
 
@@ -13,7 +13,10 @@ libmime_la_SOURCES = 				\
 test_mime_SOURCES = 				\
 	test-mime.c
 
-test_mime_LDADD = libmime.la
+test_mime_LDADD = libmime.la $(top_builddir)/libgnomevfs/libgnomevfs-2.la
+
 
 convert_mime_info_SOURCES = 			\
 	convert-mime-info.c
+convert_mime_info_LDADD = $(top_builddir)/libgnomevfs/libgnomevfs-2.la
+

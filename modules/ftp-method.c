@@ -608,6 +608,11 @@ ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContex
 		g_print ("Asking auth\n");
 		gnome_vfs_authn_ask_password (root, &user, &pass, 
 					      (retries == 0));
+		g_print ("got %s %s\n", user, pass);
+		if ((user == NULL) || (pass == NULL)) {
+			retries = 4;
+			break;
+		}
 		retries++;
 	} while (retries < 3);
 

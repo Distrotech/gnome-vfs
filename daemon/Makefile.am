@@ -3,13 +3,13 @@ noinst_PROGRAMS=test-authentication
 noinst_LTLIBRARIES=libauthentication.la
 
 INCLUDES=$(MONIKERS_CFLAGS)
-LIBS=$(MONIKERS_LIBS) -lgnomevfs-2
-#LIBS=$(MONIKERS_LIBS) -lgnomevfs-2 $(top_builddir)/mime/libmime.la
+LIBS=$(MONIKERS_LIBS)
+#LIBS=$(MONIKERS_LIBS) $(top_builddir)/mime/libmime.la
 
 test_authentication_SOURCES = \
 	test-authentication.c 
 
-test_authentication_LDADD = libauthentication.la
+test_authentication_LDADD = libauthentication.la $(top_builddir)/libgnomevfs/libgnomevfs-2.la
 
 libauthentication_la_SOURCES =         \
 	$(CORBA_SOURCE)		       \
@@ -17,6 +17,8 @@ libauthentication_la_SOURCES =         \
 	gnome-vfs-client.h             \
 	gnome-vfs-authentication.c     \
 	gnome-vfs-authentication.h 
+
+vfs_daemon_LDADD = $(top_builddir)/libgnomevfs/libgnomevfs-2.la
 
 vfs_daemon_SOURCES = \
 	$(CORBA_SOURCE)	   \

@@ -1,3 +1,15 @@
+2003-05-22  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* Makefile.am
+	* mime/Makefile.am
+	* daemon/convert-mime-info.c
+	* daemon/Makefile.am: I really suck at getting something which builds
+	(vfs-daemon probably won't build if gnome-vfs hasn't been built 
+	successfully once)
+	* daemon/gnome-vfs-daemon.c
+	* modules/ftp-method.c: small fixes
+	
+
 2003-05-21  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* configure.in

@@ -82,6 +82,7 @@ static void add_key_to_chain (GList **keychain, struct KeyChainEntry *entry)
 		if (strcmp (entry->username, cur_ent->username) == 0) {
 			*keychain = g_list_remove (*keychain, cur_ent);
 			keychain_entry_free (cur_ent);
+			break;
 		}
 	}
 	*keychain = g_list_append (*keychain, entry);
@@ -117,6 +118,7 @@ set_password (PortableServer_Servant servant,
 	GList *entries;
 
 	if (entry == NULL) {
+		g_print ("Aie Aie Aie\n");
 		/* Fail with CORBA error */
 	}
 	
@@ -186,6 +188,8 @@ get_password (PortableServer_Servant _servant,
 	entries = g_hash_table_lookup (keychain, parsed_uri);
 	g_free (parsed_uri);
 
+	
+	g_print ("looking %s - %s\n", uri, user);
 	auth_info = GNOME_VFS_AuthInfoList__alloc ();
 	auth_info->_length = 0;
 	auth_info->_maximum = 0;
@@ -194,6 +198,7 @@ get_password (PortableServer_Servant _servant,
 	entry = find_key_in_chain (entries, user);
 	
 	if (entry != NULL) {
+		g_print ("found\n");
 		auth_info->_maximum++;
 		auth_info->_buffer = 
 			GNOME_VFS_AuthInfoList_allocbuf(1);
