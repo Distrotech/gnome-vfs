@@ -6,6 +6,7 @@
 #include "gnome-vfs-cancellable-ops.h"
 #include "gnome-vfs-daemon.h"
 #include "gnome-vfs-async-daemon.h"
+#include "gnome-vfs-daemon-method.h"
 
 BONOBO_CLASS_BOILERPLATE_FULL(
 	GnomeVFSDaemonHandle,
@@ -109,6 +110,147 @@ gnome_vfs_daemon_handle_close (PortableServer_Servant _servant,
 	return res;
 }
 
+
+static GNOME_VFS_Result
+gnome_vfs_daemon_handle_write (PortableServer_Servant _servant,
+			       const GNOME_VFS_buffer *buf,
+			       GNOME_VFS_FileSize * bytes_written_return,
+			       const GNOME_VFS_ClientCall client_call,
+			       const GNOME_VFS_Client client,
+			       CORBA_Environment *ev)
+{
+	GnomeVFSResult res;
+	GnomeVFSDaemonHandle *handle;
+	GnomeVFSContext *context;
+	GnomeVFSFileSize bytes_written;
+	
+	handle = GNOME_VFS_DAEMON_HANDLE (bonobo_object_from_servant (_servant));
+
+	context = gnome_vfs_async_daemon_get_context (client_call, client);
+	
+	res = gnome_vfs_write_cancellable (handle->real_handle,
+					   buf->_buffer,
+					   buf->_length,
+					   &bytes_written,
+					   context);
+	*bytes_written_return = bytes_written;
+	
+	gnome_vfs_async_daemon_drop_context (client_call, client, context);
+
+	return res;
+}
+
+static GNOME_VFS_Result
+gnome_vfs_daemon_handle_seek (PortableServer_Servant _servant,
+			      const CORBA_long whence,
+			      const GNOME_VFS_FileOffset offset,
+			      const GNOME_VFS_ClientCall client_call,
+			      const GNOME_VFS_Client client,
+			      CORBA_Environment *ev)
+{
+	GnomeVFSResult res;
+	GnomeVFSDaemonHandle *handle;
+	GnomeVFSContext *context;
+	
+	handle = GNOME_VFS_DAEMON_HANDLE (bonobo_object_from_servant (_servant));
+
+	context = gnome_vfs_async_daemon_get_context (client_call, client);
+	
+	res = gnome_vfs_seek_cancellable (handle->real_handle,
+					  whence, offset,
+					  context);
+
+	gnome_vfs_async_daemon_drop_context (client_call, client, context);
+
+	return res;
+}
+
+static GNOME_VFS_Result
+gnome_vfs_daemon_handle_tell (PortableServer_Servant _servant,
+			      GNOME_VFS_FileOffset *offset_return,
+			      const GNOME_VFS_ClientCall client_call,
+			      const GNOME_VFS_Client client,
+			      CORBA_Environment *ev)
+{
+	GnomeVFSResult res;
+	GnomeVFSDaemonHandle *handle;
+	GnomeVFSContext *context;
+	GnomeVFSFileSize offset;
+	
+	handle = GNOME_VFS_DAEMON_HANDLE (bonobo_object_from_servant (_servant));
+
+	context = gnome_vfs_async_daemon_get_context (client_call, client);
+	
+	res = gnome_vfs_tell (handle->real_handle,
+			      &offset);
+	*offset_return = offset;
+
+	gnome_vfs_async_daemon_drop_context (client_call, client, context);
+
+	return res;
+}
+
+static GNOME_VFS_Result
+gnome_vfs_daemon_handle_get_file_info (PortableServer_Servant _servant,
+				       GNOME_VFS_FileInfo **corba_info,
+				       const CORBA_long options,
+				       const GNOME_VFS_ClientCall client_call,
+				       const GNOME_VFS_Client client,
+				       CORBA_Environment *ev)
+{
+	GnomeVFSResult res;
+	GnomeVFSDaemonHandle *handle;
+	GnomeVFSContext *context;
+	GnomeVFSFileInfo *file_info;
+	
+	*corba_info = NULL;
+	
+	handle = GNOME_VFS_DAEMON_HANDLE (bonobo_object_from_servant (_servant));
+
+	context = gnome_vfs_async_daemon_get_context (client_call, client);
+
+	file_info = gnome_vfs_file_info_new ();
+	res = gnome_vfs_get_file_info_from_handle_cancellable (handle->real_handle,
+							       file_info, options,
+							       context);
+
+	
+	if (res == GNOME_VFS_OK) {
+		*corba_info = GNOME_VFS_FileInfo__alloc ();
+		_gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
+	}
+	
+	gnome_vfs_async_daemon_drop_context (client_call, client, context);
+	
+	gnome_vfs_file_info_unref (file_info);
+
+	return res;
+}
+
+static GNOME_VFS_Result
+gnome_vfs_daemon_handle_truncate (PortableServer_Servant _servant,
+				  const GNOME_VFS_FileSize length,
+				  const GNOME_VFS_ClientCall client_call,
+				  const GNOME_VFS_Client client,
+				  CORBA_Environment *ev)
+{
+	GnomeVFSResult res;
+	GnomeVFSDaemonHandle *handle;
+	GnomeVFSContext *context;
+	
+	handle = GNOME_VFS_DAEMON_HANDLE (bonobo_object_from_servant (_servant));
+
+	context = gnome_vfs_async_daemon_get_context (client_call, client);
+	
+	res = gnome_vfs_truncate_handle_cancellable (handle->real_handle, length,
+						     context);
+
+	gnome_vfs_async_daemon_drop_context (client_call, client, context);
+
+	return res;
+}
+
+
 static void
 gnome_vfs_daemon_handle_class_init (GnomeVFSDaemonHandleClass *klass)
 {
@@ -117,6 +259,11 @@ gnome_vfs_daemon_handle_class_init (GnomeVFSDaemonHandleClass *klass)
 
 	epv->Read = gnome_vfs_daemon_handle_read;
 	epv->Close = gnome_vfs_daemon_handle_close;
+	epv->Write = gnome_vfs_daemon_handle_write;
+	epv->Seek = gnome_vfs_daemon_handle_seek;
+	epv->Tell = gnome_vfs_daemon_handle_tell;
+	epv->GetFileInfo = gnome_vfs_daemon_handle_get_file_info;
+	epv->Truncate = gnome_vfs_daemon_handle_truncate;
 	
 	object_class->finalize = gnome_vfs_daemon_handle_finalize;
 }
