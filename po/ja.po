@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs CVS-20000325\n"
-"POT-Creation-Date: 2000-03-25 00:39+0900\n"
-"PO-Revision-Date: 2000-03-25 03:17+0900\n"
+"Project-Id-Version: gnome-vfs CVS-20000414\n"
+"POT-Creation-Date: 2000-04-14 02:33+0900\n"
+"PO-Revision-Date: 2000-04-14 02:35+0900\n"
 "Last-Translator: Akira TAGOH <at@ff.iij4u.or.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -397,7 +397,7 @@ msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "GnomeVFSJob チャネルを起こすための書き込みエラーです"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1247
+#: libgnomevfs-pthread/gnome-vfs-job.c:1248
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "未知のジョブ ID %d"
@@ -408,7 +408,7 @@ msgstr "未知のジョブ ID %d"
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel を開くためのパイプを作成することが出来ません: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1265
+#: libgnomevfs-pthread/gnome-vfs-job.c:1266
 msgid "Operation stopped"
 msgstr "操作を停止しました"
 
@@ -531,27 +531,32 @@ msgstr "リニア転送を開始中..."
 msgid "Preparing reget..."
 msgstr "再取得の準備中..."
 
-#: modules/http-method.c:494
+#: modules/http-method.c:500
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "ヘッダ '%s' は無効です"
 
-#: modules/http-method.c:511
+#: modules/http-method.c:517
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s 回収"
 
-#: modules/http-method.c:646
+#: modules/http-method.c:652
 #, c-format
 msgid "Closing connection to %s"
 msgstr "%s への接続を閉じています"
 
-#: modules/http-method.c:786
+#: modules/http-method.c:805
 #, c-format
 msgid "%s of %s read"
 msgstr "%s / %s 読み込み"
 
-#: modules/http-method.c:789
+#: modules/http-method.c:808
 #, c-format
 msgid "%s read"
 msgstr "%s 読み込み"
+
+#. Multi-Status
+#: modules/http-method.c:970
+msgid "HTTP server returned an invalid PROPFIND response"
+msgstr "HTTP サーバは無効な PROPFIND 応答を返しました"
