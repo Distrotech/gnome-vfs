@@ -124,7 +124,6 @@ libgnomevfs_2_la_LIBADD =			\
 
 libgnomevfs_2_la_LDFLAGS =			\
 	-version-info $(LIBGNOMEVFS_CURRENT):$(LIBGNOMEVFS_REVISION):$(LIBGNOMEVFS_AGE) \
-	-export-symbols-regex "^[^_].*" \
 	-no-undefined \
 	$(NULL)
 

@@ -1,3 +1,9 @@
+2004-07-31  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/Makefile.am: removed -export-symbols-regex since it 
+	  doesn't seem to make a difference on linux anyway, and it breaks
+	  compilation on Solaris.
+
 2004-07-30  Christian Kellner <gicmo@gnome-de.org>
 	
 	* configure.in: Added checks for res_ninit and rearranged the
