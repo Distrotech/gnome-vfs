@@ -702,7 +702,7 @@ audio/x-mpeg
 
 audio/x-mpegurl
         description=MPEG URL
-        default_action=application
+        default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
 	short_list_application_ids_for_intermediate_user_level=xmms
@@ -745,7 +745,7 @@ audio/x-riff
 	[fr]description=Audio RIFF
 	[sv]description=RIFF-ljud
 	icon-filename=i-music
-        default_action=application
+        default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
 	short_list_application_ids_for_intermediate_user_level=xmms
@@ -777,7 +777,7 @@ audio/x-wav
 	[fr]description=Audio Wave
 	[sv]description=Wave-ljud
 	icon-filename=gnome-audio-x-wav.png
-        default_action=application
+        default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
 	short_list_application_ids_for_intermediate_user_level=xmms
