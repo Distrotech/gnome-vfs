@@ -72,7 +72,8 @@ static char *status_strings[] = {
 	/* GNOME_VFS_ERROR_NAME_TOO_LONG */		N_("Name too long"),
 	/* GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE */     N_("Service not available"),
 	/* GNOME_VFS_ERROR_SERVICE_OBSOLETE */          N_("Request obsoletes service's data"),
-	/* GNOME_VFS_ERROR_PROTOCOL_ERROR */		N_("Protocol error")
+	/* GNOME_VFS_ERROR_PROTOCOL_ERROR */		N_("Protocol error"),
+	/* GNOME_VFS_ERROR_NO_MASTER_BROWSER */		N_("Could not find master browser")
 };
 
 
