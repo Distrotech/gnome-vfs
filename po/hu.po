@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-28 16:22+0200\n"
-"PO-Revision-Date: 2004-09-12 12:21+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
+"POT-Creation-Date: 2004-12-23 13:09+0100\n"
+"PO-Revision-Date: 2004-12-23 18:18+0100\n"
+"Last-Translator: Laszlo Dvornik <dvornik@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +37,7 @@ msgstr "Nem lehet megnyitni a fájlt: %s"
 #: libgnomevfs/eggdesktopentries.c:324
 #, c-format
 msgid "Failed to open file '%s': %s"
-msgstr "A(z) '%s' fájl megnyitása sikertelen: %s"
+msgstr "Nem sikerült megnyitni a(z) '%s' fájlt: %s"
 
 #: libgnomevfs/eggdesktopentries.c:337
 msgid "File is empty"
@@ -1071,12 +1071,16 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"Az azon fájlok megtekintésére használt alkalmazás, amelyek megtekintéséhez "
+"egy összetevő szükséges. A %s paraméter a fájl URI-jére, a %c az összetevő "
+"IID-jére lesz cserélve."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
+"A terminált igénylő alkalmazásokhoz használandó alapértelmezett terminál."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1088,43 +1092,43 @@ msgstr "Parancs futtatása terminálban"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "Az \"aim\" URL-ek kezelésére használt parancs, ha engedélyezve van."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "A \"callto\" URL-ek kezelésére használt parancs, ha engedélyezve van."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "A \"ghelp\" URL-ek kezelésére használt parancs, ha engedélyezve van."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr ""
+msgstr "A \"h323\" URL-ek kezelésére használt parancs, ha engedélyezve van."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr ""
+msgstr "A \"http\" URL-ek kezelésére használt parancs, ha engedélyezve van."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
+msgstr "A \"https\" URL-ek kezelésére használt parancs, ha engedélyezve van."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "Az \"info\" URL-ek kezelésére használt parancs, ha engedélyezve van."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "A \"mailto\" URL-ek kezelésére használt parancs, ha engedélyezve van."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "A \"man\" URL-ek kezelésére használt parancs, ha engedélyezve van."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "A \"trash\" URL-ek kezelésére használt parancs, ha engedélyezve van."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1171,106 +1175,128 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancs kezeli az "
+"\"aim\" URL-eket."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancs kezeli a "
+"\"callto\" URL-eket."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancs kezeli a "
+"\"ghelp\" URL-eket."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancs kezeli a "
+"\"h323\" URL-eket."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancs kezeli a "
+"\"http\" URL-eket."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancs kezeli a "
+"\"https\" URL-eket."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancs kezeli az "
+"\"info\" URL-eket."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancs kezeli a "
+"\"mailto\" URL-eket."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancs kezeli a "
+"\"man\" URL-eket."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancs kezeli a "
+"\"trash\" URL-eket."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
+"Ha igazra van állítva, a \"command\" kulcsban beállított parancsnak "
+"terminálban kell futnia."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
+msgstr "A megadott parancs kezelje-e az \"aim\" URL-eket"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
+msgstr "A megadott parancs kezelje-e a \"callto\" URL-eket"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
+msgstr "A megadott parancs kezelje-e a \"ghelp\" URL-eket"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
+msgstr "A megadott parancs kezelje-e a \"h323\" URL-eket"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
+msgstr "A megadott parancs kezelje-e a \"http\" URL-eket"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
+msgstr "A megadott parancs kezelje-e a \"https\" URL-eket"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
+msgstr "A megadott parancs kezelje-e az \"info\" URL-eket"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
+msgstr "A megadott parancs kezelje-e a \"mailto\" URL-eket"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
+msgstr "A megadott parancs kezelje-e a \"man\" URL-eket"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
+msgstr "A megadott parancs kezelje-e a \"trash\" URL-eket"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1281,7 +1307,7 @@ msgstr ""
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Extra tartományok a dns-sd szolgáltatások kereséséhez"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
@@ -1293,15 +1319,15 @@ msgstr "Lehetséges értékek: \"merged\", \"separate\" és \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Kapcsolatok hitelesítése a proxy kiszolgálókhoz"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "Automatikus proxybeállítás URL-je"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Proxy-beállítások bekapcsolása interneten keresztüli HTTP-eléréskor."
+msgstr "Proxybeállítások bekapcsolása interneten keresztüli HTTP-eléréskor."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -1340,15 +1366,15 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Proxy nélkül elérhető kiszolgálók"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "HTTP-proxy használatakor hitelesítéshez használandó jelszó."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr "Proxy-beállítás módja"
+msgstr "Proxybeállítás módja"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
@@ -1371,48 +1397,49 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Válassza ki a proxy-beállítás módját. Támogatott értékek: \"none\", \"manual"
+"Válassza ki a proxybeállítás módját. Támogatott értékek: \"none\", \"manual"
 "\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "Az FTP-proxy gépneve."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "A HTTP-proxy gépneve."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "A biztonságos HTTP-proxy gépneve."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "A socks-proxy gépneve."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr ""
+msgstr "A \"/system/http_proxy/host\" kulcsban proxyként megadott gép portja."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
+msgstr "A \"/system/proxy/ftp_host\" kulcsban proxyként megadott gép portja."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"A \"/system/proxy/secure_host\" kulcsban proxyként megadott gép portja."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
+msgstr "A \"/system/proxy/socks_host\" kulcsban proxyként megadott gép portja."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1421,10 +1448,15 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Ez a kulcs azon kiszolgálók listáját tartalmazza, amelyekhez közvetlenül "
+"kapcsolódik, proxy használata nélkül (ha az aktív). Az értékek lehetnek "
+"kiszolgálónevek, tartományok (kezdő helyettesítő karakterek használhatóak, "
+"pl. *.akarmi.hu), IP-kiszolgálócímek (IPv4 és IPv6 egyaránt) és hálózati "
+"címek hálózati maszkkal (pl. 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "A proxy beállításokat tartalmazó URL."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
@@ -1432,7 +1464,7 @@ msgstr "HTTP-proxy használata"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "HTTP-proxy használatakor hitelesítéshez használandó felhasználónév."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
