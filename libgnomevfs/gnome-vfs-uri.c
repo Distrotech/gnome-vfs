@@ -1502,7 +1502,8 @@ uri_matches_as_parent (const GnomeVFSURI *possible_parent, const GnomeVFSURI *pa
 	GnomeVFSURI *alternate_possible_parent;
 	gboolean result;
 
-	if (strlen (possible_parent->text) == 0) {
+	if (possible_parent->text == NULL ||
+	    strlen (possible_parent->text) == 0) {
 		alternate_possible_parent = gnome_vfs_uri_append_string (possible_parent,
 			GNOME_VFS_URI_PATH_STR);
 

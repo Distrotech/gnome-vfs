@@ -1,3 +1,8 @@
+2001-07-06  Havoc Pennington  <hp@redhat.com>
+
+	* libgnomevfs/gnome-vfs-uri.c (uri_matches_as_parent): handle case
+	where uri->text is NULL
+
 2001-07-09  Ramiro Estrugo  <ramiro@fateware.com>
 
 	* libgnomevfs/gnome-vfs-file-info.h:
