@@ -1,38 +1,41 @@
-# Copyright (C) 2000-2002 Free Software Foundation, Inc.
+# translation of gnome-vfs.HEAD.be.po to Belarusian
+# translation of gnome-vfs.HEAD.be.po to belarusian
+# Copyright (C) 2000-2002,2003 Free Software Foundation, Inc.
 # Valek Filippov <frob@df.ru>, 2000-2002.
+# Vital Khilko <dojlid@mova.org>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-02-12 15:04+0100\n"
-"PO-Revision-Date: 2002-10-28 19:39+0200\n"
+"Project-Id-Version: gnome-vfs.HEAD.be\n"
+"POT-Creation-Date: 2003-02-07 20:02+0100\n"
+"PO-Revision-Date: 2003-02-12 17:33+0200\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"X-Generator: KBabel 1.0\n"
 
 # libgnomevfs/gnome-vfs-configuration.c:223
-#: libgnomevfs/gnome-vfs-configuration.c:219
+#: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d утрымлівае NUL сымбаляў."
 
 # libgnomevfs/gnome-vfs-configuration.c:240
-#: libgnomevfs/gnome-vfs-configuration.c:236
+#: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d ня ўтрымлівае назву мэтаду."
 
 # libgnomevfs/gnome-vfs-configuration.c:269
-#: libgnomevfs/gnome-vfs-configuration.c:265
+#: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d ня утрымлівае назву модулу."
 
 # libgnomevfs/gnome-vfs-configuration.c:322
-#: libgnomevfs/gnome-vfs-configuration.c:318
+#: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Канфігурацыйны файл `%s' адсутнічае: %s"
@@ -129,7 +132,7 @@ msgstr "Нядапушчальны фармат"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Памылковы загаловак файлу"
+msgstr "Памылковы загаловак файла"
 
 # libgnomevfs/gnome-vfs-result.c:45
 #. GNOME_VFS_ERROR_TOO_BIG
@@ -183,7 +186,7 @@ msgstr "Адчынена зашмат файлаў"
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "Канец файлу"
+msgstr "Канец файла"
 
 # libgnomevfs/gnome-vfs-result.c:54
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
@@ -243,7 +246,7 @@ msgstr "Вузел не адшуканы"
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "Нерэчаісны назоў вузла"
+msgstr "Нерэчаісная назва вузла"
 
 # libgnomevfs/gnome-vfs-result.c:64
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
@@ -297,13 +300,13 @@ msgstr "Ня ў той сама файлава сыстэме"
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "Задаўгое імя"
+msgstr "Задаўгая назва"
 
 # libgnomevfs/gnome-vfs-result.c:73
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "Паслуга не даступна"
+msgstr "Паслуга не даступная"
 
 # libgnomevfs/gnome-vfs-result.c:74
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
@@ -315,14 +318,13 @@ msgstr "Запыт састарэлых даньняў паслуг"
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Protocol error"
-msgstr "Памылка пратаколу"
+msgstr "Памылка пратакола"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "Ня атрымалася разабраць: %s"
+msgstr "Не магчыма адшукаць паслужнік прагляду"
 
 # libgnomevfs/gnome-vfs-result.c:137
 #: libgnomevfs/gnome-vfs-result.c:170
@@ -360,7 +362,7 @@ msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1109
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr " (нерэчаісны юнікод)"
 
 # modules/file-method.c:381
 #: modules/file-method.c:382
@@ -400,3 +402,4 @@ msgstr "агульная мянушка Gnome VFS"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "агульная мянушка файлу"
+
