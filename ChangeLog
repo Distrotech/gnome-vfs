@@ -1,3 +1,24 @@
+2000-11-16  Mathieu Lacage  <mathieu@eazel.com>
+
+	Fix bugs 2767 and 3228
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(nautilus_stop_in_debugger),
+	(nautilus_stop_after_default_log_handler),
+	(nautilus_set_stop_after_default_log_handler),
+	(nautilus_make_warnings_and_criticals_stop_in_debugger), 
+	add debugging functions. They are disabled by default.
+	(main), add call to debuggin funcitons if they are enabled.
+	(change_icon_clicked), implement.
+	(init_mime_capplet), tweaks, cleanups
+	(nautilus_mime_type_capplet_update_info), update icon.
+	(revert_mime_clicked), implement correctly.
+	(delete_mime_clicked), implement correctly.
+	(add_mime_clicked), cleanups
+	(capplet_get_icon_pixbuf), new function to get the pixbuf for 
+	a given mime type
+	(populate_mime_list): use the new function above, refactor.
+	(update_mime_list_action): idem.
+
 2000-11-15  Mathieu Lacage  <mathieu@eazel.com>
 
 	* mime-type-capplet/nautilus-mime-type-capplet.c:
