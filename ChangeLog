@@ -1,3 +1,9 @@
+2000-10-24  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.mime: Added extension-based MIME type
+	entries for Word and Excel, since we want them to play nice
+	with StarOffice at least.
+
 2000-10-24  Rebecca Schulman  <rebecka@eazel.com>
 	Fixed a bug in the gnome vfs mime magic that we weren't
 	actually seeking and reading the right chunks of files.

@@ -35,6 +35,9 @@ application/andrew-inset
 application/mspowerpoint
 	ext: ppt
 
+application/msword
+	ext: doc
+
 application/octet-stream
 	ext: bin
 
@@ -52,6 +55,9 @@ application/postscript
 
 application/rtf
 	ext: rtf
+
+application/vnd.ms-excel
+	ext: xls
 
 application/x-applix-spreadsheet
         ext: as
