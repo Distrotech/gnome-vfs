@@ -1,3 +1,9 @@
+2003-04-15  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* configure.in
+	* libgnomevfs/gnome-vfs-mime-magic.c: Don't try to use functions from
+	  wctype.h on platforms which don't have it (fixes #110226)
+
 2003-04-11  Hidetoshi Tajima  <hidetoshi.tajima@sun.com>
 
 	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): call bindtextdomain
