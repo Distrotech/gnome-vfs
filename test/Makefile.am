@@ -15,6 +15,7 @@ noinst_PROGRAMS =				\
 	test-channel_pthread			\
 	test-directory				\
 	test-directory-visit			\
+	test-info				\
 	test-seek				\
 	test-sync				\
 	test-xfer
@@ -83,6 +84,10 @@ test_channel_pthread_LDFLAGS =
 test_seek_SOURCES = test-seek.c
 test_seek_LDADD = $(libraries)
 test_seek_LDFLAGS =
+
+test_info_SOURCES = test-info.c
+test_info_LDADD = $(libraries)
+test_info_LDFLAGS =
 
 test_xfer_SOURCES = test-xfer.c
 test_xfer_LDADD = $(libraries)

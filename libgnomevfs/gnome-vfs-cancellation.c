@@ -107,7 +107,7 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
  * gnome_vfs_cancellation_check:
  * @cancellation: A GnomeVFSCancellation object
  * 
- * Check for cancellation.
+ * Check for pending cancellation.
  * 
  * Return value: %TRUE if the operation should be interrupted.
  **/

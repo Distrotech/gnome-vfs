@@ -24,6 +24,7 @@ modulesdir = $(prefix)/lib/vfs/modules
 modules_LTLIBRARIES =				\
 	libextfs.la				\
 	libfile.la				\
+	libhttp.la				\
 	libbzip2.la				\
 	libgzip.la				\
 	libftp.la
@@ -97,8 +98,8 @@ libgconf_la_LDFLAGS = $(module_flags)
 
 ### `http' method
 
-#libhttp_la_SOURCES =				\
-#	http-method.c				\
-#	http-method.h
-#libhttp_la_LDFLAGS = $(module_flags)
-#libhttp_la_LIBADD  = -lghttp
+libhttp_la_SOURCES =				\
+	http-method.c				\
+	http-method.h
+libhttp_la_LDFLAGS = $(module_flags)
+libhttp_la_LIBADD  = -lghttp

@@ -94,10 +94,16 @@ refill_input_buffer (GnomeVFSIOBuf *iobuf)
 	input_buffer->offset = 0;
 
 	r = read (iobuf->fd, &input_buffer->data, BUFFER_SIZE);
-	if (r == -1)
+	if (r == -1) {
 		input_buffer->last_error = gnome_vfs_result_from_errno ();
-	else
-		input_buffer->byte_count = r;
+		return FALSE;
+	}
+	if (r == 0) {
+		input_buffer->last_error = GNOME_VFS_ERROR_EOF;
+		return FALSE;
+	}
+
+	input_buffer->byte_count = r;
 
 	return TRUE;
 }
@@ -115,7 +121,6 @@ gnome_vfs_iobuf_read (GnomeVFSIOBuf *iobuf,
 
 	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (bytes_read != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	input_buffer = &iobuf->input_buffer;
 
@@ -126,14 +131,14 @@ gnome_vfs_iobuf_read (GnomeVFSIOBuf *iobuf,
 		if (input_buffer->byte_count > 0) {
 			GnomeVFSFileSize n;
 
-			n = MIN (bytes, input_buffer->byte_count);
+			n = MIN (bytes - read_count, input_buffer->byte_count);
 			memcpy (p, input_buffer->data + input_buffer->offset,
 				n);
 			input_buffer->byte_count -= n;
 			input_buffer->offset += n;
 			read_count += n;
 			p += n;
-		} else if (! refill_input_buffer (iobuf)) {
+		} else  if (! refill_input_buffer (iobuf)) {
 			/* The buffer is empty but we had an error last time we
                            filled it, so we report the error.  */
 			result = input_buffer->last_error;
@@ -142,8 +147,12 @@ gnome_vfs_iobuf_read (GnomeVFSIOBuf *iobuf,
 		}
 	}
 
-	*bytes_read = read_count;
+	if (bytes_read != NULL) {
+		*bytes_read = read_count;
+	}
 
+	if (result == GNOME_VFS_ERROR_EOF)
+		result = GNOME_VFS_OK;
 	return result;
 }
 
@@ -178,19 +187,20 @@ gnome_vfs_iobuf_peekc (GnomeVFSIOBuf *iobuf,
 static GnomeVFSResult
 flush (GnomeVFSIOBuf *iobuf)
 {
-	Buffer *input_buffer;
+	Buffer *output_buffer;
 	gint r;
 
-	input_buffer = &iobuf->input_buffer;
+	output_buffer = &iobuf->output_buffer;
 
-	while (input_buffer->byte_count > 0) {
-		r = write (iobuf->fd, input_buffer->data, BUFFER_SIZE);
+	while (output_buffer->byte_count > 0) {
+		r = write (iobuf->fd, output_buffer->data,
+			   output_buffer->byte_count);
 		if (r == -1) {
-			input_buffer->last_error =
+			output_buffer->last_error =
 				gnome_vfs_result_from_errno ();
-			return input_buffer->last_error;
+			return output_buffer->last_error;
 		} else {
-			input_buffer->byte_count -= r;
+			output_buffer->byte_count -= r;
 		}
 	}
 
@@ -236,7 +246,9 @@ gnome_vfs_iobuf_write (GnomeVFSIOBuf *iobuf,
 		}
 	}
 
-	*bytes_written = write_count;
+	if (bytes_written != NULL)
+		*bytes_written = write_count;
+
 	return result;
 }
 

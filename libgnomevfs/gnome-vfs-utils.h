@@ -24,27 +24,27 @@
 #ifndef _GNOME_VFS_UTILS_H
 #define _GNOME_VFS_UTILS_H
 
-GList 	*gnome_vfs_string_list_from_string_array (gchar *array[]);
-void	 gnome_vfs_free_string_list		 (GList *list);
-gchar   *gnome_vfs_canonicalize_pathname         (gchar *path);
+GList 		*gnome_vfs_string_list_from_string_array (gchar *array[]);
+void	 	 gnome_vfs_free_string_list		 (GList *list);
+gchar   	*gnome_vfs_canonicalize_pathname         (gchar *path);
 
-pid_t	 gnome_vfs_forkexec (const gchar *file_name,
-			     gchar *const argv[],
-			     GnomeVFSProcessOptions options,
-			     GnomeVFSProcessInitFunc init_func,
-			     gpointer data);
-
+pid_t	 	 gnome_vfs_forkexec 	(const gchar *file_name,
+					 gchar *const argv[],
+					 GnomeVFSProcessOptions options,
+					 GnomeVFSProcessInitFunc init_func,
+					 gpointer data);
 GnomeVFSProcessRunResult
-	 gnome_vfs_process_run_cancellable 	 (const gchar *file_name,
-						  gchar *const argv[],
-						  GnomeVFSProcessOptions
-						         options,
-						  GnomeVFSCancellation
-						         *cancellation,
-						  guint *exit_value);
+	 	gnome_vfs_process_run_cancellable
+					(const gchar *file_name,
+					 gchar *const argv[],
+					 GnomeVFSProcessOptions options,
+					 GnomeVFSCancellation *cancellation,
+					 guint *exit_value);
 
-GnomeVFSResult
-	gnome_vfs_create_temp (const gchar *prefix, gchar **name_return,
-			       GnomeVFSHandle **handle_return);
+GnomeVFSResult	gnome_vfs_create_temp 	(const gchar *prefix,
+					 gchar **name_return,
+					 GnomeVFSHandle **handle_return);
+gboolean	gnome_vfs_atotm		(const gchar *time_string,
+					 time_t *value_return);
 
 #endif /* _GNOME_VFS_UTILS_H */

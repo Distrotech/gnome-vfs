@@ -35,10 +35,6 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <time.h>
-#include "gnome-vfs-module.h"
-#include "module-shared.h"
-#include <libgnome/gnome-defs.h>
-#include <libgnome/gnome-mime.h>
 #include <netdb.h>		/* struct hostent */
 #include <sys/socket.h>		/* AF_INET */
 #include <netinet/in.h>		/* struct in_addr */
@@ -48,8 +44,17 @@
 #include <arpa/inet.h>
 #include <arpa/ftp.h>
 #include <arpa/telnet.h>
+
+#include <gnome.h>
+
+#include "gnome-vfs.h"
+#include "gnome-vfs-private.h"
+#include "gnome-vfs-module.h"
+#include "module-shared.h"
+
 #include "ftp-method.h"
 
+
 #define DEFAULT_PORT 21
 #define IS_LINEAR(mode) (! ((mode) & GNOME_VFS_OPEN_RANDOM))
 

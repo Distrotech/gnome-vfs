@@ -1,4 +1,6 @@
-/* http-method.h - HTTP access method for the GNOME Virtual File System.
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+/* gnome-vfs-inet-connection.h - Functions for creating and destroying Internet
+   connections.
 
    Copyright (C) 1999 Free Software Foundation
 
@@ -17,12 +19,22 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org>
-*/
+   Author: Ettore Perazzoli <ettore@gnu.org> */
 
-#ifndef _HTTP_METHOD_H
-#define _HTTP_METHOD_H
+#ifndef _GNOME_VFS_INET_CONNECTION_H
+#define _GNOME_VFS_INET_CONNECTION_H
 
-#include "gnome-vfs-module.h"
+GnomeVFSResult	 gnome_vfs_inet_connection_create
+					(GnomeVFSInetConnection **connection_return,
+					 const gchar *host_name,
+					 guint host_port,
+					 GnomeVFSCancellation *cancellation);
 
-#endif
+void		 gnome_vfs_inet_connection_destroy
+					(GnomeVFSInetConnection *connection,
+					 GnomeVFSCancellation *cancellation);
+
+GnomeVFSIOBuf	*gnome_vfs_inet_connection_get_iobuf
+					(GnomeVFSInetConnection *connection);
+
+#endif /* _GNOME_VFS_INET_CONNECTION_H */

@@ -1,0 +1,144 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+/* test-info.c - Test program for the `get_file_info()' functionality of the
+   GNOME Virtual File System.
+
+   Copyright (C) 1999 Free Software Foundation
+
+   The Gnome Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Library General Public License as
+   published by the Free Software Foundation; either version 2 of the
+   License, or (at your option) any later version.
+
+   The Gnome Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Library General Public License for more details.
+
+   You should have received a copy of the GNU Library General Public
+   License along with the Gnome Library; see the file COPYING.LIB.  If not,
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
+
+   Author: Ettore Perazzoli <ettore@comm2000.it> */
+
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <gnome.h>
+
+#include "gnome-vfs.h"
+
+
+static const gchar *
+type_to_string (GnomeVFSFileType type)
+{
+	switch (type) {
+	case GNOME_VFS_FILE_TYPE_UNKNOWN:
+		return "Unknown";
+	case GNOME_VFS_FILE_TYPE_REGULAR:
+		return "Regular";
+	case GNOME_VFS_FILE_TYPE_DIRECTORY:
+		return "Directory";
+	case GNOME_VFS_FILE_TYPE_BROKENSYMLINK:
+		return "Broken symlink";
+	case GNOME_VFS_FILE_TYPE_FIFO:
+		return "FIFO";
+	case GNOME_VFS_FILE_TYPE_SOCKET:
+		return "Socket";
+	case GNOME_VFS_FILE_TYPE_CHARDEVICE:
+		return "Character device";
+	case GNOME_VFS_FILE_TYPE_BLOCKDEVICE:
+		return "Block device";
+	default:
+		return "???";
+	}
+}
+
+/* FIXME this will not work nicely for binary metadata!  */
+static void
+print_meta_list (const GnomeVFSFileInfo *info)
+{
+	GList *p;
+
+	for (p = info->metadata_list; p != NULL; p = p->next) {
+		GnomeVFSFileMetadata *metadata;
+		gchar *buffer;
+
+		metadata = p->data;
+		buffer = g_malloc (metadata->value_size + 1);
+		memcpy (buffer, metadata->value, metadata->value_size);
+		buffer[metadata->value_size] = 0;
+		printf ("\tKey: %s\n\tValue: %s\n", metadata->key, buffer);
+	}
+}
+
+static void
+print_file_info (const GnomeVFSFileInfo *info)
+{
+	printf ("Name              : %s\n", info->name);
+	printf ("Type              : %s\n", type_to_string (info->type));
+	if (info->symlink_name != NULL)
+		printf ("Symlink to        : %s\n", info->symlink_name);
+	printf ("MIME type         : %s\n", info->mime_type);
+	printf ("Size              : %" GNOME_VFS_SIZE_FORMAT_STR "\n",
+		info->size);
+	printf ("Blocks            : %" GNOME_VFS_SIZE_FORMAT_STR "\n",
+		info->block_count);
+	printf ("I/O block size    : %d\n", info->io_block_size);
+	printf ("Local             : %s\n", info->is_local ? "YES" : "NO");
+	printf ("SUID              : %s\n", info->is_suid ? "YES" : "NO");
+	printf ("SGID              : %s\n", info->is_sgid ? "YES" : "NO");
+	printf ("Sticky            : %s\n", info->has_sticky_bit ? "YES" : "NO");
+	printf ("Permissions       : %04o\n", info->permissions);
+	printf ("Link count        : %d\n", info->link_count);
+	printf ("UID               : %d\n", info->uid);
+	printf ("GID               : %d\n", info->gid);
+	printf ("Access time       : %s", ctime (&info->atime));
+	printf ("Modification time : %s", ctime (&info->mtime));
+	printf ("Change time       : %s", ctime (&info->ctime));
+	printf ("Device #          : %ld\n", (gulong) info->device);
+	printf ("Inode #           : %ld\n", (gulong) info->inode);
+
+	print_meta_list (info);
+}
+
+
+int
+main (int argc,
+      char **argv)
+{
+	GnomeVFSFileInfo info;
+	GnomeVFSResult result;
+	gchar *uri;
+
+	if (argc != 2) {
+		fprintf (stderr, "Usage: %s <uri>\n", argv[0]);
+		return 1;
+	}
+
+	uri = argv[1];
+
+	if (! gnome_vfs_init ()) {
+		fprintf (stderr, "%s: Cannot initialize the GNOME Virtual File System.\n",
+			 argv[0]);
+		return 1;
+	}
+
+	gnome_vfs_file_info_init (&info);
+	result = gnome_vfs_get_file_info (uri, &info,
+					  GNOME_VFS_FILE_INFO_GETMIMETYPE,
+					  NULL);
+	if (result != GNOME_VFS_OK) {
+		fprintf (stderr, "%s: %s: %s\n",
+			 argv[0], uri, gnome_vfs_result_to_string (result));
+		return 1;
+	}
+
+	print_file_info (&info);
+
+	gnome_vfs_file_info_clear (&info);
+
+	return 0;
+}

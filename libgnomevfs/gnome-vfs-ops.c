@@ -274,8 +274,13 @@ gnome_vfs_get_file_info (const gchar *text_uri,
 	GList *meta_list;
 
 	uri = gnome_vfs_uri_new (text_uri);
-	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
+	if (uri->method->get_file_info == NULL) {
+		gnome_vfs_uri_unref (uri);
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+	}
+
+	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 	result = uri->method->get_file_info (uri, info, options, meta_list,
 					     NULL);
 

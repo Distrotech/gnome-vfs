@@ -39,6 +39,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <ctype.h>
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
@@ -345,4 +346,127 @@ gnome_vfs_create_temp (const gchar *prefix,
 			return result;
 		}
 	}
+}
+
+
+/* The following comes from GNU Wget with minor changes by myself.
+   Copyright (C) 1995, 1996, 1997, 1998 Free Software Foundation, Inc.  */
+
+/* Converts struct tm to time_t, assuming the data in tm is UTC rather
+   than local timezone (mktime assumes the latter).
+
+   Contributed by Roger Beeman <beeman@cisco.com>, with the help of
+   Mark Baushke <mdb@cisco.com> and the rest of the Gurus at CISCO.  */
+static time_t
+mktime_from_utc (struct tm *t)
+{
+	time_t tl, tb;
+
+	tl = mktime (t);
+	if (tl == -1)
+		return -1;
+	tb = mktime (gmtime (&tl));
+	return (tl <= tb ? (tl + (tl - tb)) : (tl - (tb - tl)));
+}
+
+/* Check whether the result of strptime() indicates success.
+   strptime() returns the pointer to how far it got to in the string.
+   The processing has been successful if the string is at `GMT' or
+   `+X', or at the end of the string.
+
+   In extended regexp parlance, the function returns 1 if P matches
+   "^ *(GMT|[+-][0-9]|$)", 0 otherwise.  P being NULL (a valid result of
+   strptime()) is considered a failure and 0 is returned.  */
+static int
+check_end (const gchar *p)
+{
+	if (!p)
+		return 0;
+	while (isspace (*p))
+		++p;
+	if (!*p
+	    || (p[0] == 'G' && p[1] == 'M' && p[2] == 'T')
+	    || ((p[0] == '+' || p[1] == '-') && isdigit (p[1])))
+		return 1;
+	else
+		return 0;
+}
+
+/* Convert TIME_STRING time to time_t.  TIME_STRING can be in any of
+   the three formats RFC2068 allows the HTTP servers to emit --
+   RFC1123-date, RFC850-date or asctime-date.  Timezones are ignored,
+   and should be GMT.
+
+   We use strptime() to recognize various dates, which makes it a
+   little bit slacker than the RFC1123/RFC850/asctime (e.g. it always
+   allows shortened dates and months, one-digit days, etc.).  It also
+   allows more than one space anywhere where the specs require one SP.
+   The routine should probably be even more forgiving (as recommended
+   by RFC2068), but I do not have the time to write one.
+
+   Return the computed time_t representation, or -1 if all the
+   schemes fail.
+
+   Needless to say, what we *really* need here is something like
+   Marcus Hennecke's atotm(), which is forgiving, fast, to-the-point,
+   and does not use strptime().  atotm() is to be found in the sources
+   of `phttpd', a little-known HTTP server written by Peter Erikson.  */
+gboolean
+gnome_vfs_atotm (const gchar *time_string,
+		 time_t *value_return)
+{
+	struct tm t;
+
+	/* Roger Beeman says: "This function dynamically allocates struct tm
+	   t, but does no initialization.  The only field that actually
+	   needs initialization is tm_isdst, since the others will be set by
+	   strptime.  Since strptime does not set tm_isdst, it will return
+	   the data structure with whatever data was in tm_isdst to begin
+	   with.  For those of us in timezones where DST can occur, there
+	   can be a one hour shift depending on the previous contents of the
+	   data area where the data structure is allocated."  */
+	t.tm_isdst = -1;
+
+	/* Note that under foreign locales Solaris strptime() fails to
+	   recognize English dates, which renders this function useless.  I
+	   assume that other non-GNU strptime's are plagued by the same
+	   disease.  We solve this by setting only LC_MESSAGES in
+	   i18n_initialize(), instead of LC_ALL.
+
+	   Another solution could be to temporarily set locale to C, invoke
+	   strptime(), and restore it back.  This is slow and dirty,
+	   however, and locale support other than LC_MESSAGES can mess other
+	   things, so I rather chose to stick with just setting LC_MESSAGES.
+
+	   Also note that none of this is necessary under GNU strptime(),
+	   because it recognizes both international and local dates.  */
+
+	/* NOTE: We don't use `%n' for white space, as OSF's strptime uses
+	   it to eat all white space up to (and including) a newline, and
+	   the function fails if there is no newline (!).
+
+	   Let's hope all strptime() implementations use ` ' to skip *all*
+	   whitespace instead of just one (it works that way on all the
+	   systems I've tested it on).  */
+
+	/* RFC1123: Thu, 29 Jan 1998 22:12:57 */
+	if (check_end (strptime (time_string, "%a, %d %b %Y %T", &t))) {
+		*value_return = mktime_from_utc (&t);
+		return TRUE;
+	}
+
+	/* RFC850:  Thu, 29-Jan-98 22:12:57 */
+	if (check_end (strptime (time_string, "%a, %d-%b-%y %T", &t))) {
+		*value_return = mktime_from_utc (&t);
+		return TRUE;
+	}
+
+	/* asctime: Thu Jan 29 22:12:57 1998 */
+	if (check_end (strptime (time_string, "%a %b %d %T %Y", &t))) {
+		*value_return = mktime_from_utc (&t);
+		return TRUE;
+	}
+
+	/* Failure.  */
+	return FALSE;
 }

@@ -1,3 +1,51 @@
+1999-10-23  Ettore Perazzoli  <ettore@gnu.org>
+
+	* modules/ftp-method.c: #include <gnome.h>, "gnome-vfs.h" and
+	"gnome-vfs-private.h".
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_get_file_info): If the
+	`get_file_info' function is not implemented, return
+	`GNOME_VFS_ERROR_NOTSUPPORTED'.
+
+	* test/test-info.c: New program for testing the
+	`gnome_vfs_get_file_info()' API call.
+
+	* libgnomevfs/gnome-vfs-iobuf.c (gnome_vfs_iobuf_read): Argh.
+	Don't put more than `bytes' bytes in `buffer'!
+
+1999-10-22  Ettore Perazzoli  <ettore@gnu.org>
+
+	* libgnomevfs/gnome-vfs-iobuf.c (gnome_vfs_iobuf_read): Do not use
+	`bytes_read' if NULL.
+	(gnome_vfs_iobuf_write): Likewise with `bytes_written'.
+	(flush): Flush output, not input.  :-P
+	(refill_input_buffer): Changed to return a `GnomeVFSResult'.
+	Return `GNOME_VFS_ERROR_EOF' at EOF.
+	(gnome_vfs_iobuf_read): Updated accordingly.
+
+	* libgnomevfs/gnome-vfs-method.c (load_module): Don't check for
+	the `create' function anymore.
+
+	* libgnomevfs/gnome-vfs-private.h: #include
+	"gnome-vfs-inet-connection.h".
+
+	* libgnomevfs/gnome-vfs-inet-connection.c: New file implementing
+	Internet connections.
+	* libgnomevfs/gnome-vfs-inet-connection.h: Corresponding header file.
+
+	* libgnomevfs/gnome-vfs-private-types.h: New opaque typedef
+	`GnomeVFSInetConnection'.
+
+	* modules/Makefile.am: Compile the HTTP method again.
+
+	* modules/http-method.c: New re-implementation from scratch, with
+	great help from the GNU Wget sources.
+	* modules/http-method.h: Corresponding header file.
+
+	* libgnomevfs/gnome-vfs-utils.c: #include <ctype.h>.
+	(gnome_vfs_atotm): New function, from GNU Wget.
+	* libgnomevfs/gnome-vfs-utils.h (gnome_vfs_atotm): Prototype here.
+
 1999-10-21  Ettore Perazzoli  <ettore@gnu.org>
 
 	* libgnomevfs/gnome-vfs-iobuf.c (refill_input_buffer): New helper

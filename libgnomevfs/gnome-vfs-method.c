@@ -179,9 +179,11 @@ load_module (const gchar *module_name)
 	if (method->open == NULL) {
 		g_warning ("module '%s' has no open fn", module_name);
 		return NULL;
+#if 0
 	} else if (method->create == NULL) {
 		g_warning ("module '%s' has no create fn", module_name);
 		return NULL;
+#endif
 	} else if (method->is_local == NULL) {
 		g_warning ("module '%s' has no is-local fn", module_name);
 		return NULL;
