@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-30 15:33+0200\n"
-"PO-Revision-Date: 2004-03-03 15:56+0100\n"
+"POT-Creation-Date: 2004-09-02 20:05+0200\n"
+"PO-Revision-Date: 2004-09-02 20:08+0200\n"
 "Last-Translator: Luca Ferretti <elle.uca@infinito.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -25,9 +25,9 @@ msgid "Could not initialize gnome vfs"
 msgstr "Impossibile inizializzare gnome vfs"
 
 #: libgnomevfs/eggdesktopentries.c:229
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "Impossibile analizzare: %s"
+msgstr "Il file non puù essere aperto: %s"
 
 #: libgnomevfs/eggdesktopentries.c:328
 #, c-format
@@ -35,77 +35,84 @@ msgid "Failed to open file '%s': %s"
 msgstr "Apertura del file «%s» fallita: %s"
 
 #: libgnomevfs/eggdesktopentries.c:341
-#, fuzzy
 msgid "File is empty"
-msgstr "Il file esiste"
+msgstr "Il file è vuoto"
 
 #: libgnomevfs/eggdesktopentries.c:363
-#, fuzzy, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Apertura del file «%s» fallita: %s"
-
-#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
+msgid "Failed to read from file '%s': %s"
+msgstr "Lettura del file «%s» fallita: %s"
+
+# credo che qui ed in seguito "desktop entries" sottintenda file
+# Quindi tutte queste voci dovrebbero cominiciare per "Il file desktop entries..."
+#: libgnomevfs/eggdesktopentries.c:578
+#, fuzzy, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
+msgstr "contiene la riga «%s» non non è una voce, un gruppo o un commento"
 
 #: libgnomevfs/eggdesktopentries.c:654
+#, fuzzy
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "non comincia per un gruppo legale di inizio"
 
 #: libgnomevfs/eggdesktopentries.c:711
-#, c-format
+#, fuzzy, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "contiene la riga «%s» che non è in UTF-8"
 
 #: libgnomevfs/eggdesktopentries.c:734
-#, c-format
+#, fuzzy, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "contiente la codifica sconoscitua «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
 #: libgnomevfs/eggdesktopentries.c:1221
-#, c-format
+#, fuzzy, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "non presenta il gruppo «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:1048
-#, c-format
+#, fuzzy, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "non presenta la chiave «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
 #: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr ""
+"contiene la chiave «%s» che presenta un valore che non può essere "
+"interpretato."
 
 #: libgnomevfs/eggdesktopentries.c:1302
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
+"non contiene alcun valore tradotto per la chiave «%s» nella localizzazione «%"
+"s»."
 
 #: libgnomevfs/eggdesktopentries.c:2223
-#, c-format
+#, fuzzy, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "contiene la sequenza di escape non valida «%s»"
 
 #: libgnomevfs/eggdesktopentries.c:2240
+#, fuzzy
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "contiene carattere di escape alla fine della riga"
 
 #: libgnomevfs/eggdesktopentries.c:2265
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "Il valore «%s» non può essere interpretato come numerico."
 
 #: libgnomevfs/eggdesktopentries.c:2292
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "Il valore «%s» non può essere interpretato come booleano."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -254,9 +261,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Volume Solaris pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "Volume AFFS"
+msgstr "Volume Sun SAM-QFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -283,125 +289,117 @@ msgid "Unknown"
 msgstr "Sconosciuto"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "Unità CD-ROM"
+msgstr "Disco CD-ROM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "Disco CD-R vergine"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "Unità CD-ROM"
+msgstr "Disco CD-R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:619
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "Disco CD-RW vergine"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "Unità CD-ROM"
+msgstr "Disco CD-RW"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "Unità CD-ROM"
+msgstr "Disco DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "Disco DVD-R vergine"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "Disco DVD-R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "Disco DVD-RAM vergine"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "Disco DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "Disco DVD-RM vergine"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "Disco DVD-RW"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:641
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "Disco DVD+RW vergine"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:643
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "Disco DVD+RW"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "Disco DVD+R vergine"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:648
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "Disco DVD+R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Optical Disc"
-msgstr ""
+msgstr "Disco ottico"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
-#, fuzzy
 msgid "Audio Disc"
-msgstr "CD audio"
+msgstr "Disco audio"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:660
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Memoria Compact Flash"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:662
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Stick di memoria"
+msgstr "Memoria Memory Stick"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:664
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Memoria Smart Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:666
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "Memoria SD/MMC"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:668
-#, fuzzy
 msgid "Floppy Disk"
-msgstr "Floppy"
+msgstr "Disco floppy"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:675
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Disco Mac OS"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:677
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Disco Mac OS X"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:691
-#, fuzzy
 msgid "Windows Disk"
-msgstr "Finestre"
+msgstr "Disco Windows"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:697
 msgid "Linux Disk"
-msgstr ""
+msgstr "Disco Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "Tipo di op %u sconosciuto"
+msgstr "Tipo di operazione %u sconosciuto"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -444,6 +442,8 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
+"Funzione deprecata. Le modifiche da parte dell'utente ad database dei tipi "
+"MIME non sono più supportate."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -686,24 +686,27 @@ msgstr "Errore nell'avviare il comando"
 
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
+#, fuzzy
 msgid "Timeout reached"
-msgstr ""
+msgstr "Timeout scaduto"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
 #, fuzzy
 msgid "Nameserver error"
-msgstr "Errore generico"
+msgstr "Errore del nameserver"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
+#, fuzzy
 msgid "The resource is locked"
-msgstr ""
+msgstr "La risorsa è bloccata"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
+#, fuzzy
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Chiamata a funzione deprecata"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -732,50 +735,150 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1122
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:391
 msgid " (invalid Unicode)"
 msgstr " (Unicode non valido)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:629
 msgid "Floppy"
 msgstr "Floppy"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:632
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
-msgid "Zip Drive"
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+msgid "CD-R"
+msgstr "CD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+msgid "CD-ROM/DVD-ROM"
+msgstr "CD-ROM/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+msgid "CD-ROM/DVD-RAM"
+msgstr "CD-ROM/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+msgid "CD-ROM/DVD-R"
+msgstr "CD-ROM/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+msgid "CD-ROM/DVD-RW"
+msgstr "CD-ROM/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+msgid "CD-R/DVD-ROM"
+msgstr "CD-R/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+msgid "CD-R/DVD-RAM"
+msgstr "CD-R/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+msgid "CD-R/DVD-R"
+msgstr "CD-R/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+msgid "CD-R/DVD-RW"
+msgstr "CD-R/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+msgid "CD-RW/DVD-ROM"
+msgstr "CD-RW/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+msgid "CD-RW/DVD-RAM"
+msgstr "CD-RW/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
+msgid "CD-RW/DVD-R"
+msgstr "CD-RW/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+msgid "CD-RW/DVD-RW"
+msgstr "CD-RW/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+msgid "Disk"
+msgstr "Disco"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+#, fuzzy
+msgid "USB Drive"
 msgstr "Unità Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
+msgid "IEEE1394 Drive"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
+msgid "CF"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
+#, fuzzy
+msgid "SD/MMC"
+msgstr "Memoria SD/MMC"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
 msgid "Memory Stick"
 msgstr "Stick di memoria"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
+#, fuzzy
+msgid "Smart Media"
+msgstr "Memoria Smart Media"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
+msgid "Zip Drive"
+msgstr "Unità Zip"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:605
 msgid "Camera"
 msgstr "Fotocamera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:606
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:822
 msgid "Root Volume"
 msgstr "Volume root"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:903
 msgid "Audio CD"
 msgstr "CD audio"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
 msgid "Unknown volume"
 msgstr "Volume sconosciuto"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1116
 msgid "Network server"
 msgstr "Server di rete"
 
@@ -909,7 +1012,7 @@ msgstr "Rete Windows"
 #: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "L'identità del computer remoto (%s) è sconosciuta."
 
 #: modules/sftp-method.c:1340
 #, c-format
@@ -919,14 +1022,18 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Ciò si verifica quando si fa il login in un computer per la prima volta.\n"
+"\n"
+"L'identità inviata dal computer remoto è «%s». Per essere assolutamente "
+"certi che è sicuro continuare, contattare l'amministratore di sistema."
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Login comunque"
 
 #: modules/sftp-method.c:1349
 msgid "Cancel Login"
-msgstr ""
+msgstr "Annulla login"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -992,135 +1099,118 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "L'argomento exec da usare per l'applicazione di terminale predefinita."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "Eseguire programma nel terminale"
+msgstr "Eseguire il comando in un terminale"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "Il comando usato per gestire gli URL \"aim\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "Il comando usato per gestire gli URL \"callto\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "Il comando usato per gestire gli URL \"ghelp\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 #, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr ""
-"Impostare a vero se il programma che gestisce quest'URL deve essere eseguito "
-"in un terminale."
+msgstr "Il comando usato per gestire gli URL H323, se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 #, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr ""
-"Impostare a vero se il programma che gestisce quest'URL deve essere eseguito "
-"in un terminale."
+msgstr "Il comando usato per gestire gli URL \"ghelp\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 #, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
-"Impostare a vero se il programma che gestisce quest'URL deve essere eseguito "
-"in un terminale."
+msgstr "Il comando usato per gestire gli URL \"trash\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "Il comando usato per gestire gli URL \"info\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "Il comando usato per gestire gli URL \"mailto\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "Il comando usato per gestire gli URL \"man\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "Il comando usato per gestire gli URL \"trash\", se abilitati."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Gestione di URL man"
+msgstr "Gestore di URL \"aim\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Gestione di URL callto"
+msgstr "Gestore di URL \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Gestione di URL ghelp"
+msgstr "Gestore di URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 #, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Gestione di URL H323"
+msgstr "Gestore di URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 #, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Gestione di URL ghelp"
+msgstr "Gestore di URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 #, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Gestione di URL ghelp"
+msgstr "Gestore di URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Gestione di URL info"
+msgstr "Gestore di URL \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Gestione di URL mailto"
+msgstr "Gestore di URL \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Gestione di URL man"
+msgstr "Gestore di URL \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Gestione di URL trash"
+msgstr "Gestore di URL \"trash\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL man."
+"Impostare a vero affiché in programma specificato nella chiave \"command\" "
+"gestisca gli URL \"aim\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL callto."
+"Impostare a vero affiché in programma specificato nella chiave \"command\" "
+"gestisca gli URL \"callto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL ghelp."
+"Impostare a vero affiché in programma specificato nella chiave \"command\" "
+"gestisca gli URL \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 #, fuzzy
@@ -1128,8 +1218,8 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL H323"
+"Impostare a vero affiché in programma specificato nella chiave \"command\" "
+"gestisca gli URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 #, fuzzy
@@ -1137,8 +1227,8 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL ghelp."
+"Impostare a vero affiché in programma specificato nella chiave \"command\" "
+"gestisca gli URL \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 #, fuzzy
@@ -1146,141 +1236,112 @@ msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL ghelp."
+"Impostare a vero affiché in programma specificato nella chiave \"command\" "
+"gestisca gli URL \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL info."
+"Impostare a vero affiché in programma specificato nella chiave \"command\" "
+"gestisca gli URL \"info\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL mailto."
+"Impostare a vero affiché in programma specificato nella chiave \"command\" "
+"gestisca gli URL \"mailto\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL man."
+"Impostare a vero affiché in programma specificato nella chiave \"command\" "
+"gestisca gli URL \"man\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Impostare a vero affiché in programma specificato in \"trash/command\" "
-"gestisca gli URL trash."
+"Impostare a vero affiché in programma specificato nella chiave \"trash/"
+"command\" gestisca gli URL \"trash\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Impostare a vero se il programma che gestisce quest'URL deve essere eseguito "
-"in un terminale."
+"Impostare a vero se il programma che gestisce questo tipo di URL deve essere "
+"eseguito in un terminale."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL man."
+msgstr "Indica se il comando specificato deve gestire gli URL \"aim\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL callto."
+msgstr "Indica se il comando specificato deve gestire gli URL \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL ghelp."
+msgstr "Indica se il comando specificao deve gestire gli URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 #, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL H323"
+msgstr "Indica se il comando specificato deve gestire gli URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
 #, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL ghelp."
+msgstr "Indica se il comando specificao deve gestire gli URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
 #, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
-"Impostare a vero affiché in programma specificato in \"trash/command\" "
-"gestisca gli URL trash."
+msgstr "Indica se il comando specificato deve gestire gli URL \"trash\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL info."
+msgstr "Indica se il comando specificato deve gestire gli URL \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL mailto."
+msgstr "Indica se il comando specificato deve gestire gli URL \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"Impostare a vero affiché in programma specificato in \"command\" gestisca "
-"gli URL man."
+msgstr "Indica se il comando specificato deve gestire gli URL \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"Impostare a vero affiché in programma specificato in \"trash/command\" "
-"gestisca gli URL trash."
+msgstr "Indica se il comando specificato deve gestire gli URL \"trash\""
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"Elenco separato da virgole di domini dns-sd che dovrebbero essere visibili "
+"nella posizione network://."
 
 #: schemas/system_dns_sd.schemas.in.h:2
+#, fuzzy
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Domini aggiuntivi da interrogare per servizi dns-sd"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Visualizzazione del servizio DNS-SD locale"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "Valori ammessi sono \"merged\", \"separate\" e \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1448,81 +1509,37 @@ msgstr "Workgroup SMB"
 msgid "The window workgroup the user is part of"
 msgstr "Il workgroup tipo Windows di cui fa parte l'utente"
 
-#, fuzzy
+#~ msgid "CD Disc"
+#~ msgstr "Disco CD"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "Il comando usato per gestire gli URL HTTP, se abilitati."
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "Il comando usato per gestire gli URL HTTPS, se abilitati."
+
 #~ msgid "The handler for HTTP URLs"
-#~ msgstr "Gestione di URL HTTP"
+#~ msgstr "Gestore di URL HTTP"
 
-#, fuzzy
 #~ msgid "The handler for HTTPS URLs"
-#~ msgstr "Gestione di URL HTTPS"
+#~ msgstr "Gestore di URL HTTPS"
 
-#, fuzzy
 #~ msgid ""
 #~ "True if the command specified in the \"command\" key should handle HTTP "
 #~ "URLs."
 #~ msgstr ""
-#~ "Impostare a vero affiché in programma specificato in \"command\" gestisca "
-#~ "gli URL HTTP."
+#~ "Impostare a vero affiché in programma specificato nella chiave \"command"
+#~ "\" gestisca gli URL HTTP."
 
-#, fuzzy
 #~ msgid ""
 #~ "True if the command specified in the \"command\" key should handle HTTPS "
 #~ "URLs."
 #~ msgstr ""
-#~ "Impostare a vero affiché in programma specificato in \"command\" gestisca "
-#~ "gli URL HTTPS."
+#~ "Impostare a vero affiché in programma specificato nella chiave \"command"
+#~ "\" gestisca gli URL HTTPS."
 
-#, fuzzy
 #~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr ""
-#~ "Impostare a vero affiché in programma specificato in \"command\" gestisca "
-#~ "gli URL HTTP."
+#~ msgstr "Indica se il comando specificato deve gestire gli URL HTTP"
 
-#, fuzzy
 #~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr ""
-#~ "Impostare a vero affiché in programma specificato in \"command\" gestisca "
-#~ "gli URL HTTPS."
-
-#~ msgid "H323 URL handler"
-#~ msgstr "Gestore URL H323"
-
-#~ msgid "HTTP URL handler"
-#~ msgstr "Gestore URL HTTP"
-
-#~ msgid "HTTPS URL handler"
-#~ msgstr "Gestore URL HTTPS"
-
-#, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "Gestore URL man"
-
-#~ msgid "callto URL handler"
-#~ msgstr "Gestore URL callto"
-
-#~ msgid "ghelp URL handler"
-#~ msgstr "Gestore URL ghelp"
-
-#~ msgid "info URL handler"
-#~ msgstr "Gestore URL info"
-
-#~ msgid "mailto URL handler"
-#~ msgstr "Gestore URL mailto"
-
-#~ msgid "man URL handler"
-#~ msgstr "Gestore URL man"
-
-#~ msgid "trash URL handler"
-#~ msgstr "Gestore URL trash"
-
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "Salvataggio segnalibro fallito (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "Impossibile ottenere informazioni per il file «%s»: %s"
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "Caricamento dell'immagine «%s» fallito: motivo sconosciuto, forse è un "
-#~ "file di immagine corrotto"
+#~ msgstr "Indica se il comando specificato deve gestire gli URL HTTPS"
