@@ -1,3 +1,8 @@
+Wed Jul 21 15:07:33 2004  Jonathan Blandford  <jrb@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-utils.h: move the comparison
+	functions into a public header.
+
 2004-07-20  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info-handlers.c: 

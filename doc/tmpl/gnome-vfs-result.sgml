@@ -67,6 +67,7 @@ Result of I/O operations, the equivalent of errno
 @GNOME_VFS_ERROR_PARSE: 
 @GNOME_VFS_ERROR_LAUNCH: 
 @GNOME_VFS_ERROR_TIMEOUT: 
+@GNOME_VFS_ERROR_NAMESERVER: 
 @GNOME_VFS_NUM_ERRORS: 
 
 <!-- ##### FUNCTION gnome_vfs_result_to_string ##### -->
