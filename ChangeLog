@@ -1,3 +1,9 @@
+2000-05-08  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(system_time):
+	Fix it to return a correct value.
+	
 2000-05-07  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-backend.c

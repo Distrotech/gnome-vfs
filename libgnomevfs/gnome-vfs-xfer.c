@@ -110,7 +110,7 @@ system_time()
 {
 	struct timeval tmp;
 	gettimeofday (&tmp, NULL);
-	return (gint64)tmp.tv_usec + (((gint64)tmp.tv_sec) << (8 * sizeof (long)));
+	return (gint64)tmp.tv_usec + ((gint64)tmp.tv_sec) * 1000000LL;
 }
 
 static void
