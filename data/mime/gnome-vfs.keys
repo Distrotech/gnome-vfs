@@ -773,7 +773,7 @@ audio/x-mp3
 	[sv]description=MP3-ljud
 	icon-filename=i-music
 	default_action_type=application
-	default_application=xmms
+	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=mpg123,xmms
 	short_list_application_ids_for_intermediate_user_level=mpg123,xmms
 	short_list_application_ids_for_hacker_user_level=mpg123,xmms
@@ -790,7 +790,7 @@ audio/x-mpeg
         [sv]description=MP3-ljud
         icon-filename=i-music 
 	default_action_type=application
-	default_application=xmms
+	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=mpg123,xmms
 	short_list_application_ids_for_intermediate_user_level=mpg123,xmms
 	short_list_application_ids_for_hacker_user_level=mpg123,xmms
