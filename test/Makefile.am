@@ -56,6 +56,7 @@ TESTS = test-async-cancel test-escape test-uri test-queue $(srcdir)/auto-test
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la	\
 	$(TEST_LIBS)					\
+	$(POPT_LIBS)					\
 	$(LIBEFS_LIBS)
 
 test_async_SOURCES = test-async.c

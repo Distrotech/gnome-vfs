@@ -1,3 +1,11 @@
+2002-07-25  Laszlo Peter  <laca@sun.com>
+
+	reviewed by Michael Meeks
+
+	* configure.in: added test for libpopt
+
+	* test/Makefile.am: link libpopt to the test programs.
+
 2002-07-25  Pablo Saratxaga  <pablo@mandrakesoft.com>
 
 	* configure.in: Added Bosnian (bs) to ALL_LINGUAS
