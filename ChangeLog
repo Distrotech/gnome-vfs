@@ -1,5 +1,12 @@
 2000-06-24  Michael Meeks  <michael@helixcode.com>
 
+	* modules/efs-method.c (do_make_directory): create if not found.
+
+	* test/test-shell.c (do_mv, do_rmdir, do_mkdir, do_rm): implement.
+	(main): use g_get_current_dir.
+
+2000-06-24  Michael Meeks  <michael@helixcode.com>
+
 	* modules/efs-method.c (open_efs_file): split.
 	(do_open, do_create): update. (do_unlink): implement.
 	(do_open_directory,do_get_file_info, do_make_directory): update.

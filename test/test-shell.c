@@ -296,9 +296,12 @@ do_cd (void)
 		char *newpath;
 
 		if (strchr (p, ':') ||
-		    p [0] == '/')
-			newpath = g_strdup (p);
-		else {
+		    p [0] == '/') {
+			if (p [strlen (p) - 1] != '/')
+				newpath = g_strconcat (p, "/", NULL);
+			else
+				newpath = g_strdup (p);
+		} else {
 			char *ptr;
 			
 			ptr = get_regexp_name (p, cur_dir, TRUE);
@@ -381,6 +384,66 @@ do_cat (void)
 	if (show_if_error (result, "close ", from))
 		return;
 	fprintf (stdout, "\n");
+}
+
+static void
+do_rm (void)
+{
+	char          *fname;
+	GnomeVFSResult result;
+
+	fname = get_fname ();
+
+	result = gnome_vfs_unlink (fname);
+	if (show_if_error (result, "unlink ", fname))
+		return;	
+}
+
+static void
+do_mkdir (void)
+{
+	char          *fname;
+	GnomeVFSResult result;
+
+	fname = get_fname ();
+
+	result = gnome_vfs_make_directory (fname, GNOME_VFS_PERM_USER_ALL);
+	if (show_if_error (result, "mkdir ", fname))
+		return;	
+}
+
+static void
+do_rmdir (void)
+{
+	char          *fname;
+	GnomeVFSResult result;
+
+	fname = get_fname ();
+
+	result = gnome_vfs_remove_directory (fname);
+	if (show_if_error (result, "rmdir ", fname))
+		return;	
+}
+
+static void
+do_mv (void)
+{
+	char          *from, *to;
+	char          *msg;
+	GnomeVFSResult result;
+
+	from = get_fname ();
+	to = get_fname ();
+	if (!from || !to) {
+		fprintf (stderr, "mv <from> <to>\n");
+		return;
+	}
+
+	result = gnome_vfs_move (from, to, FALSE);
+
+	msg = g_strdup_printf ("%s to %s", from, to);
+	show_if_error (result, "move ", msg);
+	g_free (msg);
 }
 
 static void
@@ -568,7 +631,7 @@ main (int argc, char **argv)
 	int exit = 0, interact = 0;
 	char *buffer = g_new (char, 1024) ;
 
-	cur_dir = g_strdup (getcwd (NULL, 0));
+	cur_dir = g_get_current_dir ();
 
 	if (cur_dir && cur_dir [strlen (cur_dir)] != '/')
 		cur_dir = g_strconcat (cur_dir, "/", NULL);
@@ -622,6 +685,14 @@ main (int argc, char **argv)
 			do_cat ();
 		else if (g_strcasecmp (ptr, "cp") == 0)
 			do_cp ();
+		else if (g_strcasecmp (ptr, "rm") == 0)
+			do_rm ();
+		else if (g_strcasecmp (ptr, "mkdir") == 0)
+			do_mkdir ();
+		else if (g_strcasecmp (ptr, "rmdir") == 0)
+			do_rmdir ();
+		else if (g_strcasecmp (ptr, "mv") == 0)
+			do_mv ();
 		else if (g_strcasecmp (ptr, "info") == 0 ||
 			 g_strcasecmp (ptr, "stat") == 0)
 			do_info ();

@@ -224,7 +224,18 @@ do_create (GnomeVFSMethod *method,
 	if (result != GNOME_VFS_OK)
 		return result;
 
-	file = efs_file_open (dir, uri->text, efs_mode);
+	if (!uri->text ||
+	    strlen  (uri->text) == 0 ||
+	    !strcmp (uri->text, "/")) {
+		/* FIXME: so it seems we need to do something painful here */
+		file = NULL;
+	} else {
+		file = efs_file_open (dir, uri->text, efs_mode);
+		if (!file) {
+			efs_close (dir);
+			return GNOME_VFS_ERROR_GENERIC;
+		}
+	}
 
 	file_handle = file_handle_new (uri, dir, file);
 
@@ -245,7 +256,10 @@ do_close (GnomeVFSMethod *method,
 
 	file_handle = (FileHandle *) method_handle;
 
-	close_retval = efs_file_close (file_handle->file);
+	if (file_handle->file)
+		close_retval = efs_file_close (file_handle->file);
+	else
+		g_warning ("FIXME: Opening of directories is tough");
 
 	fs_close_retval = efs_close (file_handle->dir);
 
@@ -702,7 +716,7 @@ do_make_directory (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri->text != NULL);
 
-	result = open_efs_file (&dir, uri, EFS_RDWR);
+	result = open_efs_file (&dir, uri, EFS_RDWR | EFS_CREATE);
 	if (result != GNOME_VFS_OK)
 		return result;
 
