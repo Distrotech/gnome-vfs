@@ -1,3 +1,9 @@
+Thu Jun 06 15:17:01 2002  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: some more monitors tinkering,
+	  this time it makes file create and delete monitors work as they
+	  should
+
 Thu Jun 06 14:34:30 2002  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: Actually return the method

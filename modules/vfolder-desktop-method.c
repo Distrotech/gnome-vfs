@@ -71,6 +71,7 @@ typedef struct _EntryFile EntryFile;
 typedef struct _Keyword Keyword;
 typedef struct _FileMonitorHandle FileMonitorHandle;
 typedef struct _StatLoc StatLoc;
+typedef struct _VFolderURI VFolderURI;
 
 /* TODO before 2.0: */
 /* FIXME: also check/monitor desktop_dirs like we do the vfolder
@@ -282,7 +283,15 @@ struct _FileMonitorHandle {
 	gboolean is_directory_file;
 };
 
-#define ALL_SCHEME_P(scheme)	((scheme) != NULL && strncmp ((scheme), "all-", 4) == 0)
+struct _VFolderURI {
+	const gchar *scheme;
+	gboolean     is_all_scheme;
+	gboolean     ends_in_slash;
+	gchar       *path;
+	gchar       *file;
+	GnomeVFSURI *uri;
+};
+
 
 static Entry *	entry_ref			(Entry *entry);
 static Entry *	entry_ref_alloc			(Entry *entry);
@@ -325,6 +334,79 @@ static gboolean	vfolder_info_read_items		(VFolderInfo *info,
 						 GnomeVFSResult *result,
 						 GnomeVFSContext *context);
 
+/* assumes vuri->path already set */
+static gboolean
+vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
+{
+	vuri->scheme = (gchar *) gnome_vfs_uri_get_scheme (uri);
+
+	vuri->ends_in_slash = FALSE;
+
+	if (strncmp (vuri->scheme, "all-", strlen ("all-")) == 0) {
+		vuri->scheme += strlen ("all-");
+		vuri->is_all_scheme = TRUE;
+	} else
+		vuri->is_all_scheme = FALSE;
+
+	if (vuri->path != NULL) {
+		int last_slash = strlen (vuri->path) - 1;
+		char *first;
+
+		/* Note: This handling of paths is somewhat evil, may need a
+		 * bit of a rework */
+
+		/* kill leading slashes, that is make sure there is
+		 * only one */
+		for (first = vuri->path; *first == '/'; first++)
+			;
+		if (first != vuri->path) {
+			first--;
+			vuri->path = first;
+		}
+
+		/* kill trailing slashes (leave first if all slashes) */
+		while (last_slash > 0 && vuri->path [last_slash] == '/') {
+			vuri->path [last_slash--] = '\0';
+			vuri->ends_in_slash = TRUE;
+		}
+
+		/* get basename start */
+		while (last_slash >= 0 && vuri->path [last_slash] != '/')
+			last_slash--;
+
+		if (last_slash > -1)
+			vuri->file = vuri->path + last_slash + 1;
+		else
+			vuri->file = vuri->path;
+
+		if (vuri->file[0] == '\0' &&
+		    strcmp (vuri->path, "/") == 0) {
+			vuri->file = NULL;
+		}
+	} else {
+		vuri->ends_in_slash = TRUE;
+		vuri->path = "/";
+		vuri->file = NULL;
+	}
+
+	vuri->uri = uri;
+
+	return TRUE;
+}
+
+#define VFOLDER_URI_PARSE(_uri, _vuri) {                                    \
+	gchar *path;                                                        \
+	path = gnome_vfs_unescape_string ((_uri)->text, G_DIR_SEPARATOR_S); \
+	if (path != NULL) {                                                 \
+		(_vuri)->path = g_alloca (strlen (path) + 1);               \
+		strcpy ((_vuri)->path, path);                               \
+		g_free (path);                                              \
+	} else {                                                            \
+		(_vuri)->path = NULL;                                       \
+	}                                                                   \
+	vfolder_uri_parse_internal ((_uri), (_vuri));                       \
+}
+
 static FileMonitorHandle *
 file_monitor_handle_ref_unlocked (FileMonitorHandle *h)
 {
@@ -361,6 +443,37 @@ emit_monitor (Folder *folder, int type)
 		FileMonitorHandle *handle = li->data;
 		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *) handle,
 					    handle->uri, type);
+	}
+}
+
+static void
+emit_file_deleted_monitor (VFolderInfo *info, Entry *entry, Folder *folder)
+{
+	GSList *li;
+	for (li = entry->monitors;
+	     li != NULL;
+	     li = li->next) {
+		VFolderURI vuri;
+		Folder *f;
+		GnomeVFSResult result;
+		FileMonitorHandle *handle = li->data;
+
+		/* Evil! EVIL URI PARSING. this will eat a lot of
+		 * stack if we have lots of monitors */
+
+		VFOLDER_URI_PARSE (handle->uri, &vuri);
+
+		f = resolve_folder (info, 
+				    vuri.path,
+				    TRUE /* ignore_basename */,
+				    &result,
+				    NULL);
+
+		if (f == folder)
+			gnome_vfs_monitor_callback
+				((GnomeVFSMethodHandle *) handle,
+				 handle->uri,
+				 GNOME_VFS_MONITOR_EVENT_DELETED);
 	}
 }
 
@@ -521,88 +634,6 @@ any_subdir (const char *dirname)
 		}
 	}
 	return FALSE;
-}
-
-typedef struct {
-	const gchar *scheme;
-	gboolean     is_all_scheme;
-	gboolean     ends_in_slash;
-	gchar       *path;
-	gchar       *file;
-	GnomeVFSURI *uri;
-} VFolderURI;
-
-/* assumes vuri->path already set */
-static gboolean
-vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
-{
-	vuri->scheme = (gchar *) gnome_vfs_uri_get_scheme (uri);
-
-	vuri->ends_in_slash = FALSE;
-
-	if (strncmp (vuri->scheme, "all-", strlen ("all-")) == 0) {
-		vuri->scheme += strlen ("all-");
-		vuri->is_all_scheme = TRUE;
-	} else
-		vuri->is_all_scheme = FALSE;
-
-	if (vuri->path != NULL) {
-		int last_slash = strlen (vuri->path) - 1;
-		char *first;
-
-		/* Note: This handling of paths is somewhat evil, may need a
-		 * bit of a rework */
-
-		/* kill leading slashes, that is make sure there is
-		 * only one */
-		for (first = vuri->path; *first == '/'; first++)
-			;
-		if (first != vuri->path) {
-			first--;
-			vuri->path = first;
-		}
-
-		/* kill trailing slashes (leave first if all slashes) */
-		while (last_slash > 0 && vuri->path [last_slash] == '/') {
-			vuri->path [last_slash--] = '\0';
-			vuri->ends_in_slash = TRUE;
-		}
-
-		/* get basename start */
-		while (last_slash >= 0 && vuri->path [last_slash] != '/')
-			last_slash--;
-
-		if (last_slash > -1)
-			vuri->file = vuri->path + last_slash + 1;
-		else
-			vuri->file = vuri->path;
-
-		if (vuri->file[0] == '\0' &&
-		    strcmp (vuri->path, "/") == 0) {
-			vuri->file = NULL;
-		}
-	} else {
-		vuri->ends_in_slash = TRUE;
-		vuri->path = "/";
-		vuri->file = NULL;
-	}
-
-	vuri->uri = uri;
-
-	return TRUE;
-}
-
-#define VFOLDER_URI_PARSE(_uri, _vuri) {                                    \
-	gchar *path;                                                        \
-	path = gnome_vfs_unescape_string ((_uri)->text, G_DIR_SEPARATOR_S); \
-	if (path != NULL) {                                                 \
-		(_vuri)->path = g_alloca (strlen (path) + 1);               \
-		strcpy ((_vuri)->path, path);                               \
-		g_free (path);                                              \
-	} else {                                                            \
-		(_vuri)->path = NULL;                                       \
-	}                                                                   \
-	vfolder_uri_parse_internal ((_uri), (_vuri));                       \
 }
 
 static void
@@ -2704,6 +2735,19 @@ vfolder_info_read_items_merge (VFolderInfo *info,
 	return TRUE;
 }
 
+static Entry *
+find_entry (GSList *list, const char *name)
+{
+	GSList *li;
+
+	for (li = list; li != NULL; li = li->next) {
+		Entry *entry = li->data;
+		if (strcmp (name, entry->name) == 0)
+			return entry;
+	}
+	return NULL;
+}
+
 static void
 file_monitor (GnomeVFSMonitorHandle *handle,
 	      const gchar *monitor_uri,
@@ -2759,15 +2803,33 @@ try_free_file_monitors_create_files_unlocked (VFolderInfo *info)
 
 			entry = (Entry *)folder;
 		} else {
-			GSList *efile_list;
+			VFolderURI vuri;
+			Folder *f;
+			GnomeVFSResult result;
 
-			efile_list = g_hash_table_lookup (info->entries_ht,
-							  handle->filename);
+			entry = NULL;
 
-			if (efile_list == NULL)
+			/* Evil! EVIL URI PARSING. this will eat a lot of
+			 * stack if we have lots of monitors */
+
+			VFOLDER_URI_PARSE (handle->uri, &vuri);
+
+			f = resolve_folder (info, 
+					    vuri.path,
+					    TRUE /* ignore_basename */,
+					    &result,
+					    NULL);
+
+			if (f != NULL) {
+				ensure_folder (info, f,
+					       FALSE /* subfolders */,
+					       NULL /* except */,
+					       FALSE /* ignore_unallocated */);
+				entry = find_entry (f->entries, vuri.file);
+			}
+
+			if (entry == NULL)
 				continue;
-
-			entry = efile_list->data;
 		}
 
 		info->free_file_monitors =
@@ -2814,7 +2876,7 @@ try_free_file_monitors_create_files_unlocked (VFolderInfo *info)
 }
 
 static void
-readd_monitors (VFolderInfo *info)
+rescan_monitors (VFolderInfo *info)
 {
 	GSList *li;
 
@@ -2865,12 +2927,32 @@ readd_monitors (VFolderInfo *info)
 
 			entry = (Entry *)folder;
 		} else {
-			GSList *efile_list;
+			VFolderURI vuri;
+			Folder *f;
+			GnomeVFSResult result;
 
-			efile_list = g_hash_table_lookup (info->entries_ht,
-							  h->filename);
+			entry = NULL;
 
-			if (efile_list == NULL) {
+			/* Evil! EVIL URI PARSING. this will eat a lot of
+			 * stack if we have lots of monitors */
+
+			VFOLDER_URI_PARSE (h->uri, &vuri);
+
+			f = resolve_folder (info, 
+					    vuri.path,
+					    TRUE /* ignore_basename */,
+					    &result,
+					    NULL);
+
+			if (f != NULL) {
+				ensure_folder (info, f,
+					       FALSE /* subfolders */,
+					       NULL /* except */,
+					       FALSE /* ignore_unallocated */);
+				entry = find_entry (f->entries, vuri.file);
+			}
+
+			if (entry == NULL) {
 				h->exists = FALSE;
 				gnome_vfs_monitor_callback
 					((GnomeVFSMethodHandle *)h,
@@ -2883,8 +2965,6 @@ readd_monitors (VFolderInfo *info)
 				 * whacked */
 				continue;
 			}
-
-			entry = efile_list->data;
 		}
 
 		/* recreate a handle */
@@ -2954,7 +3034,7 @@ vfolder_info_read_items (VFolderInfo *info,
 			return FALSE;
 	}
 
-	readd_monitors (info);
+	rescan_monitors (info);
 
 	return TRUE;
 }
@@ -3155,6 +3235,11 @@ vfolder_info_reload_unlocked (VFolderInfo *info,
 	vfolder_info_free_internals_unlocked (info);
 	memcpy (info, newinfo, sizeof (VFolderInfo));
 	g_free (newinfo);
+
+	/* must rescan the monitors here */
+	if (info->entries_valid) {
+		rescan_monitors (info);
+	}
 
 	if ( ! info->entries_valid &&
 	    force_read_items) {
@@ -3688,19 +3773,6 @@ make_dirfile_private (VFolderInfo *info, Folder *folder)
 	g_free (fname);
 
 	return ret;
-}
-
-static Entry *
-find_entry (GSList *list, const char *name)
-{
-	GSList *li;
-
-	for (li = list; li != NULL; li = li->next) {
-		Entry *entry = li->data;
-		if (strcmp (name, entry->name) == 0)
-			return entry;
-	}
-	return NULL;
 }
 
 static Folder *
@@ -5689,9 +5761,10 @@ do_unlink (GnomeVFSMethod *method,
 		l = g_slist_find (folder->entries, entry);
 		if (l == NULL) {
 			remove_file (folder, vuri.file);
-			emit_monitor (folder, GNOME_VFS_MONITOR_EVENT_CHANGED);
 		}
 	}
+
+	emit_file_deleted_monitor (info, entry, the_folder);
 
 	/* FIXME: if this was a user file and this is the only
 	 * reference to it, unlink it. */
