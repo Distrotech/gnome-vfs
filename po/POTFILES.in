@@ -1,6 +1,7 @@
 libgnomevfs/gnome-vfs-configuration.c
 libgnomevfs/gnome-vfs-file-info.c
 libgnomevfs/gnome-vfs-init.c
+libgnomevfs/gnome-vfs-mime-info.c
 libgnomevfs/gnome-vfs-parse-ls.c
 libgnomevfs/gnome-vfs-result.c
 libgnomevfs/gnome-vfs-utils.c

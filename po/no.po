@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.0.1\n"
-"POT-Creation-Date: 2002-01-20 19:29+0100\n"
-"PO-Revision-Date: 2001-06-28 01:28+0200\n"
+"POT-Creation-Date: 2002-05-21 20:48+0200\n"
+"PO-Revision-Date: 2002-02-02 23:37+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -36,6 +36,19 @@ msgstr "Konfigurasjonsfilen `%s' ble ikke funnet: %s"
 #: libgnomevfs/gnome-vfs-init.c:79
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS er allerede initialisert."
+
+#: libgnomevfs/gnome-vfs-mime-info.c:315
+msgid "Invalid byte sequence in conversion input"
+msgstr "Ugyldig byte-sekvens i inndata for konvertering"
+
+#: libgnomevfs/gnome-vfs-mime-info.c:319
+#, c-format
+msgid "Error during conversion: %s"
+msgstr "Feil under konvertering: %s"
+
+#: libgnomevfs/gnome-vfs-mime-info.c:333
+msgid "Partial character sequence at end of input"
+msgstr "Del av tegnsekvens ved slutten på inndata"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:650
 #, c-format
@@ -299,7 +312,7 @@ msgstr "Ukjent type jobb %u"
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
 
-#: modules/file-method.c:380
+#: modules/file-method.c:369
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukjent GnomeVFSSeekPosition %d"
@@ -1068,9 +1081,6 @@ msgstr "Ukjent GnomeVFSSeekPosition %d"
 
 #~ msgid "Error reading: %s"
 #~ msgstr "Feil under lesing: %s"
-
-#~ msgid "Error writing: %s"
-#~ msgstr "Feil under skriving: %s"
 
 #~ msgid "Cannot write: %s"
 #~ msgstr "Kan ikke skrive: %s"
