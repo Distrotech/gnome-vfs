@@ -178,7 +178,7 @@ cdda_set_file_info_for_root (CDDAContext *context, GnomeVFSURI *uri)
 	// We don't know the io_block size
 	context->file_info->io_block_size = 0;
 	context->file_info->valid_fields -= GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;		
-	context->file_info->name = gnome_vfs_uri_extract_short_name (uri);
+	context->file_info->name = gnome_vfs_uri_extract_short_path_name (uri);
 	//context->file_info->name = g_strdup (context->disc_data.data_title);		
 	context->file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 	context->file_info->mime_type = g_strdup ("x-directory/normal");
@@ -223,16 +223,14 @@ read_handle_destroy (ReadHandle *handle)
 
 static int
 get_track_index_from_uri (CDDAContext *context, GnomeVFSURI *uri) {
-	const char *base_name;
+	char *base_name;
 	int index;
 	char *escaped_name;
 	
-	base_name = gnome_vfs_uri_get_basename (uri);
-	if (base_name == NULL) {
-		return -1;
-	}
+	base_name = gnome_vfs_uri_extract_short_path_name (uri);
 	escaped_name = gnome_vfs_unescape_string_for_display (base_name);
-	
+	g_free (base_name);
+
 	// Check and see if filename is in cddb data list
 	for (index = 0; index < context->drive->tracks; index++) {
 		if (strcmp (escaped_name, context->disc_data.data_track[index].track_name) == 0) {
@@ -252,7 +250,7 @@ do_open (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 	GnomeVFSResult result;
 	ReadHandle *read_handle;
 	GnomeVFSFileInfoOptions options;
-	const char *base_name;
+	char *base_name;
 	char *dirname, *schemedir, *sep;
 	GnomeVFSURI *dir_uri;
 	
@@ -263,9 +261,12 @@ do_open (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 
 	// Load in context for disc if we not yet done so.
 	if (global_context == NULL) {
-		base_name = gnome_vfs_uri_get_basename (uri);
-		if (base_name == NULL) {
+		base_name = gnome_vfs_uri_extract_short_path_name (uri);
+		if (base_name[0] == GNOME_VFS_URI_PATH_CHR) {
+			g_free (base_name);
 			return result;
+		} else {
+			g_free (base_name);
 		}
 
 		dirname = gnome_vfs_uri_extract_dirname (uri);			
@@ -504,18 +505,16 @@ static gboolean
 is_file_is_on_disc (CDDAContext *context, const GnomeVFSURI *uri)
 {
 	int index;
-	const char *base_name;
+	char *base_name;
 	char *escaped_name;
 	
 	if (context == NULL) {
 		return FALSE;
 	}
 
-	base_name = gnome_vfs_uri_get_basename (uri);
-	if (base_name == NULL) {
-		return FALSE;
-	}
+	base_name = gnome_vfs_uri_extract_short_path_name (uri);
 	escaped_name = gnome_vfs_unescape_string_for_display (base_name);
+	g_free (base_name);
 
 	for (index = 0; index < context->drive->tracks; index++) {
 		if (strcmp (escaped_name, context->disc_data.data_track[index].track_name) == 0) {
@@ -573,7 +572,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSContext *context) 
 {		
 	cdrom_drive *drive;
-	const char *base_name;
+	char *base_name;
 	gboolean use_base, use_cache;
 	GnomeVFSResult result;
 	char *escaped_name;
@@ -586,9 +585,10 @@ do_get_file_info (GnomeVFSMethod *method,
 	result = GNOME_VFS_OK;
 	
 	// Get basename
-	base_name = gnome_vfs_uri_get_basename (uri);
+	base_name = gnome_vfs_uri_extract_short_path_name (uri);
 	escaped_name = gnome_vfs_unescape_string_for_display (base_name);
-	
+	g_free (base_name);
+
 	// Extract path and attempt to open
 	drive = open_cdda_device (uri);
 	if (drive == NULL) {
@@ -663,7 +663,7 @@ do_open_directory (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 {
 	cdrom_drive *drive;
 	gboolean use_base, use_cache;
-	const char *base_name;
+	char *base_name;
 	char *escaped_name;
 	
 	g_print ("do_open_directory () in uri: %s\n", gnome_vfs_uri_get_path (uri));
@@ -672,8 +672,9 @@ do_open_directory (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 	use_cache = FALSE;
 	
 	// Get basename
-	base_name = gnome_vfs_uri_get_basename (uri);
+	base_name = gnome_vfs_uri_extract_short_path_name (uri);
 	escaped_name = gnome_vfs_unescape_string_for_display (base_name);
+	g_free (base_name);
 
 	// Make sure we can open URI
 	drive = open_cdda_device (uri);
@@ -795,10 +796,7 @@ get_data_size_from_uri (GnomeVFSURI *uri, CDDAContext *context)
 		return size;
 	}
 
-	base_name = gnome_vfs_uri_get_basename (uri);
-	if (base_name == NULL) {
-		return size;
-	}
+	base_name = gnome_vfs_uri_extract_short_path_name (uri);
 	
 	// Check and see if filename is in cddb data list
 	for (index = 0; index < context->drive->tracks; index++) {
@@ -813,9 +811,11 @@ get_data_size_from_uri (GnomeVFSURI *uri, CDDAContext *context)
 				total_seconds = (minutes * 60) + seconds;
 				size = ((total_seconds * 44) * 2 * 2) * 1024;
 			}
+			g_free (base_name);
 			return size;
 		}		
 	}
+	g_free (base_name);
 	return size;
 }
 #endif

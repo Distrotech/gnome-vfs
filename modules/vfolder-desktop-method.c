@@ -248,12 +248,9 @@ ensure_dir (const char *dirname, gboolean ignore_basename)
 static char *
 get_basename (GnomeVFSURI *uri)
 {
-	const char *bname = gnome_vfs_uri_get_basename (uri);
 	const char *path = gnome_vfs_uri_get_path (uri);
-	if (bname != NULL)
-		return g_strdup (bname);
-	else
-		return g_path_get_basename (path);
+
+	return g_path_get_basename (path);
 }
 
 static void
@@ -2393,7 +2390,7 @@ do_create (GnomeVFSMethod *method,
 	GSList *li;
 
 	scheme = gnome_vfs_uri_get_scheme (uri);
-	basename = gnome_vfs_uri_get_basename (uri);
+	basename = get_basename (uri);
 	path = gnome_vfs_uri_get_path (uri);
 	if (scheme == NULL ||
 	    basename == NULL ||
@@ -3398,8 +3395,7 @@ do_move (GnomeVFSMethod *method,
 			new_folder = (Folder *)new_entry;
 		} else {
 			/* well, let's see new_entry == NULL */
-			const char *basename =
-				gnome_vfs_uri_get_basename (new_uri);
+			const char *basename = get_basename (new_uri);
 			/* a file and a totally different one */
 			if (basename != NULL &&
 			    strcmp (basename, old_entry->name) != 0) {
@@ -3459,7 +3455,7 @@ do_unlink (GnomeVFSMethod *method,
 	if (info == NULL)
 		return result;
 
-	basename = gnome_vfs_uri_get_basename (uri);
+	basename = get_basename (uri);
 	if (basename == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 

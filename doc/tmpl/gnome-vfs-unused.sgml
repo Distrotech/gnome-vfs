@@ -64,6 +64,13 @@ Constants
 </para>
 
 
+<!-- ##### USER_FUNCTION GnomeVFSProcessInitFunc ##### -->
+<para>
+
+</para>
+
+@data: 
+
 <!-- ##### ENUM GnomeVFSDirectoryFilterOptions ##### -->
 <para>
 
@@ -103,14 +110,23 @@ Constants
 @data: 
 @Returns: 
 
-<!-- ##### MACRO FNM_PATHNAME ##### -->
+<!-- ##### USER_FUNCTION GnomeVFSProcessCallback ##### -->
 <para>
 
 </para>
 
+@process: 
+@status: 
+@data: 
 
 <!-- ##### SECTION ./tmpl/seekable.sgml:Short_Description ##### -->
 
+
+
+<!-- ##### MACRO FNM_PATHNAME ##### -->
+<para>
+
+</para>
 
 
 <!-- ##### FUNCTION gnome_vfs_app_context_push_override_takesref ##### -->
@@ -162,6 +178,20 @@ Constants
 
 </para>
 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_process_new ##### -->
+<para>
+
+</para>
+
+@file_name: 
+@argv: 
+@options: 
+@init_func: 
+@init_data: 
+@callback: 
+@callback_data: 
 @Returns: 
 
 <!-- ##### FUNCTION gnome_vfs_backend_shutdown ##### -->
@@ -269,14 +299,14 @@ Constants
 @p_dispatch_on_job_thread: 
 @Returns: 
 
-<!-- ##### SECTION ./tmpl/fnmatch.sgml:Title ##### -->
-File Matching
-
-
 <!-- ##### MACRO FNM_LEADING_DIR ##### -->
 <para>
 
 </para>
+
+
+<!-- ##### SECTION ./tmpl/fnmatch.sgml:Title ##### -->
+File Matching
 
 
 <!-- ##### SECTION ./tmpl/seekable.sgml:See_Also ##### -->
@@ -306,6 +336,17 @@ regexp-filter
 
 </para>
 
+
+<!-- ##### ENUM GnomeVFSProcessRunResult ##### -->
+<para>
+
+</para>
+
+@GNOME_VFS_PROCESS_RUN_OK: 
+@GNOME_VFS_PROCESS_RUN_ERROR: 
+@GNOME_VFS_PROCESS_RUN_CANCELLED: 
+@GNOME_VFS_PROCESS_RUN_SIGNALED: 
+@GNOME_VFS_PROCESS_RUN_STOPPED: 
 
 <!-- ##### SECTION ./tmpl/app-context.sgml:Long_Description ##### -->
 <para>
@@ -337,6 +378,12 @@ regexp-filter
 </para>
 
 
+<!-- ##### STRUCT GnomeVFSProcess ##### -->
+<para>
+
+</para>
+
+
 <!-- ##### FUNCTION gnome_vfs_backend_loadinit ##### -->
 <para>
 
@@ -361,6 +408,17 @@ regexp-filter
 
 
 
+<!-- ##### ENUM GnomeVFSProcessResult ##### -->
+<para>
+
+</para>
+
+@GNOME_VFS_PROCESS_OK: 
+@GNOME_VFS_PROCESS_ERROR_UNKNOWN: 
+@GNOME_VFS_PROCESS_ERROR_INVALIDSIGNAL: 
+@GNOME_VFS_PROCESS_ERROR_NOPERM: 
+@GNOME_VFS_PROCESS_ERROR_NOPROCESS: 
+
 <!-- ##### SECTION ./tmpl/module-api.sgml:Long_Description ##### -->
 <para>
 
@@ -382,6 +440,13 @@ regexp-filter
 @attribute_name: 
 @Returns: 
 
+<!-- ##### FUNCTION gnome_vfs_process_free ##### -->
+<para>
+
+</para>
+
+@process: 
+
 <!-- ##### FUNCTION gnome_vfs_backend_get_job_count ##### -->
 <para>
 
@@ -398,6 +463,14 @@ Directory Filter
 
 </para>
 
+
+<!-- ##### FUNCTION gnome_vfs_uri_get_basename ##### -->
+<para>
+
+</para>
+
+@uri: 
+@Returns: 
 
 <!-- ##### FUNCTION gnome_vfs_ssl_new ##### -->
 <para>
@@ -436,16 +509,16 @@ seekable
 
 
 
-<!-- ##### SECTION ./tmpl/module-api.sgml:Title ##### -->
-module-api
-
-
 <!-- ##### FUNCTION gnome_vfs_app_context_unref ##### -->
 <para>
 
 </para>
 
 @app_context: 
+
+<!-- ##### SECTION ./tmpl/module-api.sgml:Title ##### -->
+module-api
+
 
 <!-- ##### FUNCTION gnome_vfs_seek_emulate ##### -->
 <para>
@@ -516,6 +589,13 @@ app-context
 </para>
 
 
+<!-- ##### FUNCTION gnome_vfs_process_init ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
 <!-- ##### MACRO FNM_FILE_NAME ##### -->
 <para>
 
@@ -528,6 +608,16 @@ app-context
 </para>
 
 @Returns: 
+
+<!-- ##### ENUM GnomeVFSProcessOptions ##### -->
+<para>
+
+</para>
+
+@GNOME_VFS_PROCESS_DEFAULT: 
+@GNOME_VFS_PROCESS_USEPATH: 
+@GNOME_VFS_PROCESS_CLOSEFDS: 
+@GNOME_VFS_PROCESS_SETSID: 
 
 <!-- ##### FUNCTION gnome_vfs_list_sort ##### -->
 <para>

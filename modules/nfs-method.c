@@ -317,7 +317,7 @@ fhandle_recurse_lookup (GnomeVFSURI *uri, NfsServerConnection *conn, NfsFileHand
 	g_assert(conn != NULL);
 	g_assert(fh != NULL);
 
-	args.name = gnome_vfs_uri_extract_short_name(uri);
+	args.name = gnome_vfs_uri_extract_short_path_name(uri);
 	memset((char *)&args.dir, 0, sizeof(nfs_fh));
 	memcpy(args.dir.data, fh->handle.data, NFS_FHSIZE * sizeof(char));
 
@@ -537,7 +537,7 @@ nfs_create (GnomeVFSURI *uri,
 
 	g_print("NFS_METHOD: nfs_create -- %s\n", gnome_vfs_uri_get_path(uri));
 	memcpy(c.where.dir.data, fh->handle.data, NFS_FHSIZE * sizeof(char));
-	c.where.name = g_strdup(gnome_vfs_uri_get_basename(uri));
+	c.where.name = g_strdup(gnome_vfs_uri_extract_short_path_name (uri));
 	c.attributes.mode = perm;
 	c.attributes.uid = getuid();
 	c.attributes.gid = getgid();
@@ -552,11 +552,13 @@ nfs_create (GnomeVFSURI *uri,
 			(xdrproc_t)xdr_createargs, (caddr_t)&c,
 			(xdrproc_t)xdr_diropres, (caddr_t)&res, 
 			conn->nfs_timeval, &res.status)) != RPC_SUCCESS) {
+		g_free (c.where.name);
 		clnt_perror(conn->nfs_client, "create");
 		result = GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE;
 		g_mutex_unlock(conn->nfs_sock_mutex);
 		goto error;
 	}
+	g_free (c.where.name);
 	g_mutex_unlock(conn->nfs_sock_mutex);
 
 	if(res.status != 0) {
@@ -844,12 +846,13 @@ nfs_export_list(GnomeVFSURI *uri,
 		GnomeVFSFileInfo *info = gnome_vfs_file_info_new();
 		char *name;
 		const char *basename;
-		basename = gnome_vfs_uri_get_basename(uri);
+		basename = gnome_vfs_uri_extract_short_path_name (uri);
 		if (basename[0]=='/' && basename[1]) {
 			name = e->ex_dir+1;
 		} else {
 			name = e->ex_dir;
 		}
+		g_free (basename);
 
 		info->name = g_strdup(name);
 		info->mime_type = g_strdup("x-directory/normal");
@@ -1294,7 +1297,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		result = nfs_get_attr(uri, conn, file_info);
 		if (result != GNOME_VFS_OK) return result;
 
-		file_info->name = gnome_vfs_uri_extract_short_name(uri);
+		file_info->name = gnome_vfs_uri_extract_short_path_name(uri);
 		if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
 			if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 				file_info->mime_type = 
@@ -1329,7 +1332,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	result = nfs_get_attr(h->uri, conn, file_info);
 	if (result == GNOME_VFS_OK) return result;
 
-	file_info->name = gnome_vfs_uri_extract_short_name(h->uri);
+	file_info->name = gnome_vfs_uri_extract_short_path_name(h->uri);
 	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			file_info->mime_type = 
@@ -1367,7 +1370,7 @@ nfs_mkdir (GnomeVFSURI *uri,
 	enum clnt_stat clnt_stat;
 
 	memcpy(c.where.dir.data, fh->handle.data, NFS_FHSIZE * sizeof(char));
-	c.where.name = g_strdup(gnome_vfs_uri_get_basename(uri));
+	c.where.name = g_strdup (gnome_vfs_uri_extract_short_name (uri));
 	c.attributes.mode = perm;
 	c.attributes.uid = getuid();
 	c.attributes.gid = getgid();
@@ -1381,6 +1384,7 @@ nfs_mkdir (GnomeVFSURI *uri,
 			(xdrproc_t)xdr_createargs, (caddr_t)&c,
 			(xdrproc_t)xdr_diropres, (caddr_t)&res, 
 			conn->nfs_timeval, &res.status)) != RPC_SUCCESS) {
+		g_free (c.where.name);
 		clnt_perror(conn->nfs_client, "mkdir");
 		result = GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE;
 		g_mutex_unlock(conn->nfs_sock_mutex);
@@ -1389,10 +1393,12 @@ nfs_mkdir (GnomeVFSURI *uri,
 	g_mutex_unlock(conn->nfs_sock_mutex);
 	g_free(c.where.name);
 	if (res.status != 0) {
+		g_free (c.where.name);
 		g_print("NFS_METHOD: mkdir error... %s\n", strerror(res.status));
 		result = gnome_vfs_result_from_errno_code(res.status);
 		goto error;
 	}
+	g_free (c.where.name);
 	g_print("NFS_METHOD: Directory created! (%d, %d)\n", res.diropres_u.diropres.attributes.uid, res.diropres_u.diropres.attributes.gid);
 
 	result = GNOME_VFS_OK;
@@ -1448,20 +1454,21 @@ nfs_rmdir (GnomeVFSURI *uri,
 	enum clnt_stat clnt_stat;
 
 	memcpy(d.dir.data, f->handle.data, NFS_FHSIZE * sizeof(char));
-	d.name = NULL;
-	d.name = (char *)gnome_vfs_uri_get_basename(uri);
+	d.name = gnome_vfs_uri_extract_short_name (uri);
 
 	g_mutex_lock(conn->nfs_sock_mutex);
 	if ((clnt_stat = nfs_clnt_call(conn->nfs_client, NFSPROC_RMDIR,
 			(xdrproc_t)xdr_diropargs, (caddr_t)&d,
 			(xdrproc_t)xdr_nfsstat, (caddr_t)&s, 
 			conn->nfs_timeval, &s)) != RPC_SUCCESS) {
+		g_free (d.name);
 		clnt_perror(conn->nfs_client, "readdir");
 		result = GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE;
 		g_mutex_unlock(conn->nfs_sock_mutex);
 		goto error;
 	}
 	g_mutex_unlock(conn->nfs_sock_mutex);
+	g_free (d.name);
 	if(s != 0) {
 		g_print("NFS_METHOD: rmdir error... %s\n", strerror(s));
 		result = gnome_vfs_result_from_errno_code(s);
@@ -1531,19 +1538,20 @@ nfs_unlink (GnomeVFSURI *uri,
 	enum clnt_stat clnt_stat;
 
 	memcpy(d.dir.data, f->handle.data, NFS_FHSIZE * sizeof(char));
-	d.name = NULL;
-	d.name = (char *)gnome_vfs_uri_get_basename(uri);
+	d.name = gnome_vfs_uri_extract_short_name (uri);
 
 	g_mutex_lock(conn->nfs_sock_mutex);
 	if ((clnt_stat = nfs_clnt_call(conn->nfs_client, NFSPROC_REMOVE,
 			(xdrproc_t)xdr_diropargs, (caddr_t)&d,
 			(xdrproc_t)xdr_nfsstat, (caddr_t)&s, 
 			conn->nfs_timeval, &s)) != RPC_SUCCESS) {
+		g_free (d.name);
 		clnt_perror(conn->nfs_client, "readdir");
 		result = GNOME_VFS_ERROR_GENERIC;
 		g_mutex_unlock(conn->nfs_sock_mutex);
 		goto error;
 	}
+	g_free (d.name);
 	g_mutex_unlock(conn->nfs_sock_mutex);
 	g_print("NFS_METHOD: status = %d\n", s);
 	if(s != 0) {
@@ -1606,8 +1614,8 @@ nfs_rename (GnomeVFSURI *from, GnomeVFSURI *to,
 	memcpy(r.from.dir.data, from_dir->handle.data, NFS_FHSIZE * sizeof(char));
 	memcpy(r.to.dir.data, to_dir->handle.data, NFS_FHSIZE * sizeof(char));
 
-	r.from.name = (char *)gnome_vfs_uri_get_basename(from);
-	r.to.name = (char *)gnome_vfs_uri_get_basename(to);
+	r.from.name = (char *)gnome_vfs_uri_extract_short_path_name (from);
+	r.to.name = (char *)gnome_vfs_uri_extract_short_path_name (to);
 
 	g_mutex_lock(from_conn->nfs_sock_mutex);
 	if ((clnt_stat = nfs_clnt_call(from_conn->nfs_client, NFSPROC_RENAME,

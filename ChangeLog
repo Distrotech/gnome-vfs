@@ -1,3 +1,34 @@
+2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* libgnomevfs/gnome-vfs-uri.h, libgnomevfs/gnome-vfs-uri.c: Remove
+	gnome_vfs_get_basename, fixing bug 40822
+
+	Remove a bunch of uses of gnome_vfs_uri_get_basename and replace
+	mostly with extract_short_path_name. All appeared to be buggy as
+	written!
+	
+	* libgnomevfs/gnome-vfs-mime.c:
+	(gnome_vfs_get_mime_type_from_uri_internal),
+	(gnome_vfs_get_mime_type):
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_private):
+	* modules/cdda-method.c: (cdda_set_file_info_for_root),
+	(get_track_index_from_uri), (do_open), (is_file_is_on_disc),
+	(do_get_file_info), (do_open_directory), (get_data_size_from_uri):
+	* modules/nfs-method.c: (fhandle_recurse_lookup), (nfs_create),
+	(nfs_export_list), (do_get_file_info),
+	(do_get_file_info_from_handle), (nfs_mkdir), (nfs_rmdir),
+	(nfs_unlink), (nfs_rename):
+	* modules/vfolder-desktop-method.c: (get_basename, do_create,
+	do_move, do_unlink): 
+
+	* doc/tmpl/gnome-vfs-unused.sgml, doc/tmpl/process.sgml,
+	doc/tmpl/uri.sgml: gtk-doc works its magic.
+	
+2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* libgnomevfs/Makefile.am: Move a few more headers into the module
+	API.
+
 2001-11-02  Seth Nickell  <snickell@stanford.edu>
 
 	* Makefile.am:

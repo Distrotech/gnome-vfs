@@ -487,15 +487,18 @@ gnome_vfs_mime_type_from_name (const gchar * filename)
 static const char *
 gnome_vfs_get_mime_type_from_uri_internal (GnomeVFSURI *uri)
 {
-	const char *base_name;
+	char *base_name;
+	const char *mime_type;
 
 	/* Return a mime type based on the file extension or NULL if no match. */
-	base_name = gnome_vfs_uri_get_basename (uri);
+	base_name = gnome_vfs_uri_extract_short_path_name (uri);
 	if (base_name == NULL) {
 		return NULL;
 	}
 
-	return gnome_vfs_mime_type_from_name_or_default (base_name, NULL);
+	mime_type = gnome_vfs_mime_type_from_name_or_default (base_name, NULL);
+	g_free (base_name);
+	return mime_type;
 }
 
 const char *
@@ -578,6 +581,7 @@ const char *
 gnome_vfs_get_mime_type (GnomeVFSURI *uri)
 {
 	const char *result;
+	char *base_name;
 	GnomeVFSMimeSniffBuffer *buffer;
 	GnomeVFSHandle *handle;
 	GnomeVFSResult error;
@@ -597,7 +601,9 @@ gnome_vfs_get_mime_type (GnomeVFSURI *uri)
 	
 	buffer = gnome_vfs_mime_sniff_buffer_new_from_handle (handle);
 
-	result = gnome_vfs_get_mime_type_internal (buffer, gnome_vfs_uri_get_basename (uri));
+	base_name = gnome_vfs_uri_extract_short_path_name (uri);
+	result = gnome_vfs_get_mime_type_internal (buffer, base_name);
+	g_free (base_name);
 
 	gnome_vfs_mime_sniff_buffer_free (buffer);
 	gnome_vfs_close (handle);

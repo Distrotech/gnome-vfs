@@ -236,15 +236,6 @@ uri
 @Returns: 
 
 
-<!-- ##### FUNCTION gnome_vfs_uri_get_basename ##### -->
-<para>
-
-</para>
-
-@uri: 
-@Returns: 
-
-
 <!-- ##### FUNCTION gnome_vfs_uri_get_fragment_identifier ##### -->
 <para>
 

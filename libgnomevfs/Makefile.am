@@ -33,8 +33,10 @@ libgnomevfsincludedir = $(includedir)/gnome-vfs-2.0/libgnomevfs
 libgnomevfsmoduleincludedir = $(includedir)/gnome-vfs-module-2.0/
 
 libgnomevfsmoduleinclude_HEADERS =		\
+	gnome-vfs-cancellation.h		\
 	gnome-vfs-context.h			\
 	gnome-vfs-inet-connection.h		\
+	gnome-vfs-iobuf.h			\
 	gnome-vfs-parse-ls.h			\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-info.h			\
@@ -48,13 +50,14 @@ libgnomevfsmoduleinclude_HEADERS =		\
 	gnome-vfs-module.h			\
 	gnome-vfs-ssl.h				\
 	gnome-vfs-transform.h			\
+	gnome-vfs-socket-buffer.h		\
+	gnome-vfs-socket.h			\
 	$(NULL)
 
 
 libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-application-registry.h	\
 	gnome-vfs-async-ops.h			\
-	gnome-vfs-cancellation.h		\
 	gnome-vfs-configuration.h		\
 	gnome-vfs-directory.h			\
 	gnome-vfs-file-info.h			\
@@ -63,14 +66,11 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-handle.h			\
 	gnome-vfs-helpers.h			\
 	gnome-vfs-init.h			\
-	gnome-vfs-iobuf.h			\
 	gnome-vfs-job-limit.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-monitor.h			\
 	gnome-vfs-ops.h				\
 	gnome-vfs-result.h			\
-	gnome-vfs-socket-buffer.h		\
-	gnome-vfs-socket.h			\
 	gnome-vfs-standard-callbacks.h		\
 	gnome-vfs-types.h			\
 	gnome-vfs-uri.h				\

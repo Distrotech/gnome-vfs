@@ -1624,41 +1624,6 @@ gnome_vfs_uri_get_fragment_identifier (const GnomeVFSURI *uri)
 }
 
 /**
- * gnome_vfs_uri_get_basename:
- * @uri: A GnomeVFSURI
- * 
- * Retrieve base file name for @uri.
- * 
- * Return value: A pointer to the base file name in @uri.  Notice that the
- * pointer points to the name store in @uri, so the name returned must not
- * be modified nor freed.
- **/
-const gchar *
-gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
-{
-	/* FIXME bugzilla.eazel.com 1472: query parts of URIs aren't handled */
-	gchar *p;
-
-	g_return_val_if_fail (uri != NULL, NULL);
-
-	if (uri->text == NULL) {
-		return NULL;
-	}
-
-	p = strrchr (uri->text, GNOME_VFS_URI_PATH_CHR);
-	if (p == NULL) {
-		return NULL;
-	}
-
-	p++;
-	if (*p == '\0') {
-		return NULL;
-	}
-
-	return p;
-}
-
-/**
  * gnome_vfs_uri_extract_dirname:
  * @uri: A GnomeVFSURI
  * 
@@ -1676,8 +1641,9 @@ gnome_vfs_uri_extract_dirname (const GnomeVFSURI *uri)
 
 	g_return_val_if_fail (uri != NULL, NULL);
 
-	base = gnome_vfs_uri_get_basename (uri);
-	if (base == NULL || base == uri->text) {
+	base = strrchr (uri->text, GNOME_VFS_URI_PATH_CHR);
+
+	if (base == NULL || base[1] == '\0') {
 		return g_strdup (GNOME_VFS_URI_PATH_STR);
 	}
 

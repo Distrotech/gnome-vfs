@@ -2175,6 +2175,7 @@ gnome_vfs_xfer_private (const GList *source_uri_list,
 	GnomeVFSXferProgressInfo progress_info;
 	GnomeVFSURI *target_dir_uri;
 	GnomeVFSResult result;
+	char *short_name;
 	
 	init_progress (&progress_state, &progress_info);
 	progress_state.sync_callback = sync_progress_callback;
@@ -2206,12 +2207,10 @@ gnome_vfs_xfer_private (const GList *source_uri_list,
 		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *) target_uri_list->data);
 		result = GNOME_VFS_ERROR_INVALID_URI;
 		if (target_dir_uri != NULL) { 
-			if (gnome_vfs_uri_get_basename ((GnomeVFSURI *) target_uri_list->data) != NULL) {
-		
-				result = gnome_vfs_new_directory_with_unique_name (target_dir_uri, 
-					gnome_vfs_uri_get_basename ((GnomeVFSURI *) target_uri_list->data),
-					error_mode, overwrite_mode, &progress_state);
-			}
+			short_name = gnome_vfs_uri_extract_short_path_name ((GnomeVFSURI *) target_uri_list->data);
+			result = gnome_vfs_new_directory_with_unique_name (target_dir_uri, short_name,
+									   error_mode, overwrite_mode, &progress_state);
+			g_free (short_name);
 			gnome_vfs_uri_unref (target_dir_uri);
 		}
 	} else {
