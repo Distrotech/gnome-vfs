@@ -1428,7 +1428,7 @@ error:
 }
 
 static GString *
-build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean proxy_connect)
+build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean proxy_connect, gboolean force_slash_at_end)
 {
 	gchar *uri_string = NULL;
 	GString *request;
@@ -1451,6 +1451,14 @@ build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean
 						      | GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
 	}
 
+	if (force_slash_at_end && uri_string[strlen (uri_string) - 1] != '/') {
+		char *tmp;
+
+		tmp = uri_string;
+		uri_string = g_strconcat (tmp, "/", NULL);
+		g_free (tmp);
+	}
+	
 	/* Request line.  */
 	request = g_string_new ("");
 
@@ -1538,7 +1546,8 @@ make_request (HttpFileHandle **handle_return,
 	      const gchar *method,
 	      GByteArray *data,
 	      gchar *extra_headers,
-	      GnomeVFSContext *context)
+	      GnomeVFSContext *context,
+	      gboolean force_slash_at_end)
 {
 	GnomeVFSSocketBuffer *socket_buffer;
 	GnomeVFSResult result;
@@ -1577,8 +1586,9 @@ make_request (HttpFileHandle **handle_return,
 		if (result != GNOME_VFS_OK) {
 			break;
 		}
-		
-		request = build_request (method, toplevel_uri, proxy_connect);
+
+		request = build_request (method, toplevel_uri, proxy_connect,
+					 force_slash_at_end);
 
 		authn_header_request = http_authn_get_header_for_uri (uri);
 
@@ -1731,7 +1741,7 @@ do_open (GnomeVFSMethod *method,
 	
 	if (mode & GNOME_VFS_OPEN_READ) {
 		result = make_request (&handle, uri, "GET", NULL, NULL,
-				       context);
+				       context, FALSE);
 	} else {
 		handle = http_file_handle_new(NULL, uri); /* shrug */
 	}
@@ -1779,7 +1789,7 @@ do_create (GnomeVFSMethod *method,
 		ANALYZE_HTTP ("==> Checking to see if file exists");
 		
 		result = make_request (&handle, uri, "HEAD", NULL, NULL,
-				       context);
+				       context, FALSE);
 		http_handle_close (handle, context);
 		
 		if (result != GNOME_VFS_OK &&
@@ -1793,7 +1803,7 @@ do_create (GnomeVFSMethod *method,
 	
 	ANALYZE_HTTP ("==> Creating initial file");
 	bytes  = g_byte_array_new();
-      	result = make_request (&handle, uri, "PUT", bytes, NULL, context);
+      	result = make_request (&handle, uri, "PUT", bytes, NULL, context, FALSE);
 	http_handle_close(handle, context);
 	g_byte_array_free (bytes, TRUE);
 		
@@ -1870,7 +1880,7 @@ do_close (GnomeVFSMethod *method,
 
 		ANALYZE_HTTP ("==> doing PUT");
 		result = make_request (&new_handle, uri, "PUT", bytes, 
-				       extraheader, context);
+				       extraheader, context, FALSE);
 		g_free (extraheader);
 		http_handle_close (new_handle, context);
 	} else {
@@ -2213,12 +2223,55 @@ process_propfind_response(xmlNodePtr n,
 }
 
 
+static gint /* GCompareFunc */
+http_glist_find_header (gconstpointer a, gconstpointer b)
+{
+	if ( NULL != a && NULL != b) {
+		return g_ascii_strncasecmp ( (const char *)a, (const char *)b, strlen((const char *)b));
+	} else {
+		return -1;
+	}
+}
+
+static char *
+redirect_parse_response_header (GList *response_headers)
+{
+	char *header;
+	const char *uri;
+	GList *node;
+	
+	node = g_list_find_custom (response_headers, (gpointer)"Location:", http_glist_find_header);
+	for (; node != NULL 
+	     ; node = g_list_find_custom (g_list_next (node), (gpointer)"Location:", http_glist_find_header)) {
+
+		header = (char *)node->data;
+
+		/* skip through the header name */
+		uri = strchr (header, (unsigned char)':');
+
+		if (uri == NULL) {
+			continue;
+		}
+
+		uri++;
+
+		/* skip to the uri */
+		for (; *uri != '\0' 
+			&& (*uri == ' ' || *uri == '\t') 
+		     ; uri++);
+
+		return g_strdup (uri);
+	}
+	return NULL;
+}
+
 
 static GnomeVFSResult
 make_propfind_request (HttpFileHandle **handle_return,
-	GnomeVFSURI *uri,
-	gint depth,
-	GnomeVFSContext *context)
+		       GnomeVFSURI *uri,
+		       gint depth,
+		       GnomeVFSContext *context,
+		       gboolean force_slash_at_end)
 {
 	GnomeVFSResult result = GNOME_VFS_OK;
 	GnomeVFSFileSize bytes_read, num_bytes=(64*1024);
@@ -2228,6 +2281,9 @@ make_propfind_request (HttpFileHandle **handle_return,
 	xmlNodePtr cur = NULL;
 	char *extraheaders = g_strdup_printf("Depth: %d\r\n", depth);
 	gboolean found_root_node_props;
+	char *redirect_to;
+	int redirect_depth;
+	GnomeVFSURI *redirect_uri;
 
 	GByteArray *request = g_byte_array_new();
 	char *request_str = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
@@ -2252,8 +2308,43 @@ make_propfind_request (HttpFileHandle **handle_return,
 		http_cache_invalidate_uri_and_children (uri);
 	}
 
+	redirect_depth = 0;
+	redirect_uri = NULL;
+ redirect:
 	result = make_request (handle_return, uri, "PROPFIND", request, 
-			       extraheaders, context);
+			       extraheaders, context,
+			       (redirect_depth == 0) ? force_slash_at_end : FALSE);
+
+	/* Handle PROPFIND redirects. We often get this because we missed a / at the end
+	   of the uri for a folder */
+	if (result == GNOME_VFS_OK &&
+	    ((*handle_return)->server_status == 301 ||
+	     (*handle_return)->server_status == 302)) {
+		redirect_to = redirect_parse_response_header ((*handle_return)->response_headers);
+		redirect_depth++;
+		if (redirect_to != NULL && redirect_depth < 7) {
+			if (redirect_uri != NULL) {
+				gnome_vfs_uri_unref (redirect_uri);
+			}
+			redirect_uri = gnome_vfs_uri_new (redirect_to);
+
+			/* HACK: Work around apache 2.0.47 issue which returned a
+			 * https redirect forcing port 80 for me (ALEX) */
+			if (g_ascii_strcasecmp (gnome_vfs_uri_get_scheme (redirect_uri), 
+						"https")  == 0 &&
+			    gnome_vfs_uri_get_host_port (redirect_uri) == 80) {
+				gnome_vfs_uri_set_host_port (redirect_uri, 0);
+			}
+			    
+			uri = redirect_uri;
+			http_handle_close (*handle_return, context);
+			*handle_return = NULL;
+			g_free (redirect_to);
+			goto redirect;
+		}
+		g_free (redirect_to);
+		result = GNOME_VFS_ERROR_TOO_MANY_LINKS;
+	}
 	
 	/* FIXME bugzilla.gnome.org 43834: It looks like some http
 	 * servers (eg, www.yahoo.com) treat PROPFIND as a GET and
@@ -2380,6 +2471,9 @@ make_propfind_request (HttpFileHandle **handle_return,
 	}
 
 cleanup:
+	if (redirect_uri != NULL) {
+		gnome_vfs_uri_unref (redirect_uri);
+	}
 	g_free(buffer);
 	g_free(extraheaders);
 	g_byte_array_free (request, TRUE);
@@ -2439,20 +2533,18 @@ do_open_directory(GnomeVFSMethod *method,
 		handle->files = child_file_info_cached_list;
 		result = GNOME_VFS_OK;
 	} else {
-		result = make_propfind_request(&handle, uri, 1, context);
-		/* mfleming -- is this necessary?  Most DAV server's I've seen don't have the horrible
-		 * lack-of-trailing-/-is-a-301 problem for PROPFIND's
-		 */
-		if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
-			if (uri->text != NULL && *uri->text != '\0'
-			   && uri->text[strlen (uri->text) - 1] != '/') {
-				GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path (uri, "/");
-				result = do_open_directory (method, (GnomeVFSMethodHandle **)&handle, tmpuri, options, context);
-				gnome_vfs_uri_unref (tmpuri);
+		/* Make sure we have a slash on the end of the uri for the
+		   folder PROPFIND request, see bugzilla #92908.
+		   This is not needed since we handle redirects, but it means
+		   we send less PROPFIND requests. */
+		result = make_propfind_request(&handle, uri, 1, context, TRUE);
 
-			}
+		/* Work around the case where there was a non-directory existing
+		   with that name and we got a 301 redirect, due to the slash
+		   added above */
+		if (result == GNOME_VFS_ERROR_NOT_SUPPORTED) {
+			result = GNOME_VFS_ERROR_NOT_A_DIRECTORY;
 		}
-
 		if (result == GNOME_VFS_OK
 		    && handle->file_info->type != GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			result = GNOME_VFS_ERROR_NOT_A_DIRECTORY;
@@ -2556,7 +2648,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		 * Start off by making a PROPFIND request.  Fall back to a HEAD if it fails
 		 */
 		
-		result = make_propfind_request (&handle, uri, 0, context);
+		result = make_propfind_request (&handle, uri, 0, context, FALSE);
 		
 		/* Note that theoretically we could not bother with this request if we get a 404 back,
 		 * but since some servers seem to return wierd things on PROPFIND (mostly 200 OK's...)
@@ -2579,7 +2671,7 @@ do_get_file_info (GnomeVFSMethod *method,
 
 				ANALYZE_HTTP ("==> do_get_file_info: do GET ");
 
-				result = make_request (&handle, uri, "GET", NULL, NULL, context);
+				result = make_request (&handle, uri, "GET", NULL, NULL, context, FALSE);
 				if (result == GNOME_VFS_OK) {
 					gnome_vfs_file_info_copy (file_info, handle->file_info);
 					http_cache_add_uri (uri, handle->file_info, FALSE);
@@ -2676,7 +2768,7 @@ do_make_directory (GnomeVFSMethod *method,
 	 * So we do a PROPFIND first to find out
 	 */
 	/* FIXME check cache here */
-	result = make_propfind_request(&handle, uri, 0, context);
+	result = make_propfind_request(&handle, uri, 0, context, FALSE);
 
 	if (result == GNOME_VFS_OK) {
 		result = GNOME_VFS_ERROR_FILE_EXISTS;
@@ -2686,7 +2778,7 @@ do_make_directory (GnomeVFSMethod *method,
 		
 		if (result == GNOME_VFS_ERROR_NOT_FOUND) {
 			http_cache_invalidate_uri_parent (uri);
-			result = make_request (&handle, uri, "MKCOL", NULL, NULL, context);
+			result = make_request (&handle, uri, "MKCOL", NULL, NULL, context, FALSE);
 		}
 	}
 	http_handle_close (handle, context);
@@ -2719,7 +2811,7 @@ do_remove_directory(GnomeVFSMethod *method,
 	 * directory is not empty
 	 */
 	result = make_request (&handle, uri, "DELETE", NULL, NULL,
-			       context);
+			       context, FALSE);
 	http_handle_close (handle, context);
 	
 	DEBUG_HTTP (("-Remove_Directory (%d)", result));
@@ -2770,7 +2862,7 @@ do_move (GnomeVFSMethod *method,
 	destpath = gnome_vfs_uri_to_string (new_uri, GNOME_VFS_URI_HIDE_USER_NAME|GNOME_VFS_URI_HIDE_PASSWORD);
 	destheader = g_strdup_printf ("Destination: %s\r\nOverwrite: %c\r\n", destpath, force_replace ? 'T' : 'F' );
 
-	result = make_request (&handle, old_uri, "MOVE", NULL, destheader, context);
+	result = make_request (&handle, old_uri, "MOVE", NULL, destheader, context, FALSE);
 	http_handle_close (handle, context);
 	g_free (destheader);
 	handle = NULL;
