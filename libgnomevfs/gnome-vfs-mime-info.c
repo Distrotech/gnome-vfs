@@ -63,6 +63,10 @@ typedef struct {
 	unsigned int system_dir : 1;
 } mime_dir_source_t;
 
+
+#define DELETED_KEY "deleted"
+#define DELETED_VALUE "moilegrandvizir"
+
 /* These ones are used to automatically reload mime info on demand */
 static mime_dir_source_t gnome_mime_dir, user_mime_dir;
 static time_t last_checked;
@@ -108,6 +112,8 @@ static GHashTable *registered_types_user;
 static GnomeVFSResult write_back_mime_user_file (void);
 static GnomeVFSResult write_back_keys_user_file (void);
 static gboolean       does_string_contains_caps (const char *string);
+static const char *   gnome_vfs_mime_get_registered_mime_type_key (const char *mime_type, 
+								   const char *key);
 
 
 static gboolean 
@@ -485,7 +491,6 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 			in_comment = FALSE;
 			column = 0;
 			if (state == STATE_ON_MIME_TYPE){
-
 				/* set previous key to nothing
 				   for this mime type */
 				g_free(previous_key);
@@ -512,8 +517,9 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 			continue;
 		}
 
-		if (in_comment)
+		if (in_comment) {
 			continue;
+		}
 
 		switch (state){
 		case STATE_NONE:
@@ -1347,17 +1353,27 @@ get_key_name (gpointer key, gpointer value, gpointer user_data)
 	char *name;
 	GList **list = user_data;
 	GList *duplicate;
+	const char *deleted;
 	
 	if (value == NULL || key == NULL) {
 		return;
 	}
 	
-
 	context = (GnomeMimeContext *) value;
+
+	if (context->mime_type[0] == '#') {
+		return;
+	}
+
+	deleted = gnome_vfs_mime_get_registered_mime_type_key (context->mime_type,
+							       DELETED_KEY);
+	if (deleted != NULL && strcmp (deleted, DELETED_VALUE) == 0) {
+		return;
+	}
 
 	/* Get name from key and exit if key is NULL or string is empty */	
 	name = (char *)key;
-	if (key == NULL || strlen (name) == 0) {
+	if (name == NULL || strlen (name) == 0) {
 		return;
 	}
 
@@ -1369,6 +1385,41 @@ get_key_name (gpointer key, gpointer value, gpointer user_data)
 
 }
 
+/**
+ * gnome_vfs_mime_reset
+ *
+ * resets the user's mime database to the system defaults.
+ */
+void 
+gnome_vfs_mime_reset (void)
+{
+	char *filename;
+
+	filename = g_strconcat (user_mime_dir.dirname, "/user.keys", NULL);
+	unlink (filename);
+	g_free (filename);
+       
+	filename = g_strconcat (user_mime_dir.dirname, "/user.mime", NULL);
+	unlink (filename);
+	g_free (filename);
+}
+
+
+/**
+ * gnome_vfs_mime_registered_mime_type_delete
+ *
+ * Delete a mime type for the user which runs this command.
+ * You can undo this only by calling gnome_vfs_mime_reset
+ */
+
+void
+gnome_vfs_mime_registered_mime_type_delete (const char *mime_type)
+{
+	gnome_vfs_mime_set_registered_type_key (mime_type,
+						DELETED_KEY,
+						DELETED_VALUE);
+
+}
 
 /*
  * gnome_vfs_get_registered_mime_types
@@ -1467,6 +1518,79 @@ gnome_vfs_mime_set_registered_type_key (const char *mime_type, const char *key, 
 	return result;
 }
 
+/**
+ * gnome_vfs_mime_get_registered_mime_type_key
+ * @mime_type: a mime type.
+ * @key: A key to lookup for the given mime-type
+ *
+ * This function retrieves the value associated with @key in 
+ * the given GnomeMimeContext.  The string is private, you
+ * should not free the result.
+ */
+static const char *
+gnome_vfs_mime_get_registered_mime_type_key (const char *mime_type, const char *key)
+{
+	char *value, *generic_type, *p;
+	GnomeMimeContext *context;
+	
+	g_return_val_if_fail (key != NULL, NULL);
+
+	if (mime_type == NULL) {
+		return NULL;
+	}
+	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+			      NULL);
+
+
+	if (!gnome_vfs_mime_inited)
+		gnome_vfs_mime_init ();
+
+	maybe_reload ();
+	
+	context = g_hash_table_lookup (registered_types_user, mime_type);
+	if (context){
+		value = g_hash_table_lookup (context->keys, key);
+		if (value != NULL) {
+			return value;
+		}
+	}
+
+	context = g_hash_table_lookup (registered_types, mime_type);
+	if (context){
+		value = g_hash_table_lookup (context->keys, key);
+		if (value != NULL) {
+			return value;
+		}
+	}
+
+	generic_type = g_strdup (mime_type);
+	p = strchr (generic_type, '/');
+	if (p)
+		*(p+1) = '\0';
+	
+	context = g_hash_table_lookup (registered_types_user, generic_type);
+	if (context){
+		value = g_hash_table_lookup (context->keys, key);
+		if (value != NULL) {
+			g_free (generic_type);
+			return value;
+		}
+	}
+
+	context = g_hash_table_lookup (registered_types, generic_type);
+	if (context){
+		value = g_hash_table_lookup (context->keys, key);
+		if (value != NULL) {
+			g_free (generic_type);
+			return value;
+		}
+	}
+
+	g_free (generic_type);
+
+	return NULL;
+}
+
 
 static DIR *
 ensure_user_directory_exist (void)
@@ -1513,7 +1637,6 @@ void  write_back_mime_user_file_context_callback (gpointer key,
 	file = (FILE *) user_data;
 
 	fprintf (file, "\t%s: %s\n", key_data, value_data);
-
 }
 
 void  write_back_mime_user_file_callback (gpointer key,

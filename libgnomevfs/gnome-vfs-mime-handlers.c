@@ -67,7 +67,6 @@ GnomeVFSMimeActionType
 gnome_vfs_mime_get_default_action_type (const char *mime_type)
 {
 	const char *action_type_string;
-	GnomeVFSMimeActionType retval;
 
 	action_type_string = gnome_vfs_mime_get_value (mime_type, "default_action_type");
 

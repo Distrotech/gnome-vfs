@@ -61,8 +61,8 @@ void	         gnome_vfs_mime_registered_mime_type_list_free 	(GList      *list);
 GnomeVFSResult	 gnome_vfs_mime_set_registered_type_key 	(const char *mime_type, 
 							  	 const char *key, 
 							  	 const char *data);
-
-
+void             gnome_vfs_mime_registered_mime_type_delete     (const char *mime_type);
+void             gnome_vfs_mime_reset                           (void);
 
 
 #ifdef __cplusplus

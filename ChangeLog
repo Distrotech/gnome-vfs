@@ -2,6 +2,25 @@
 
 	Buddy: pavel <pavel@eazel.com>
 	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_action_type): fix a compilation warning.
+	remove a unused variable.
+	* libgnomevfs/gnome-vfs-mime-info.c: 
+	(load_mime_list_info_from), spaces...
+	(get_key_name), add checks not to return deleted mime types and
+	not to return comments as mime types.
+	(gnome_vfs_mime_reset), new API function: resets to system defaults.
+	(gnome_vfs_mime_registered_mime_type_delete), new API fution: deletes 
+	a mime type.
+	(gnome_vfs_mime_get_registered_mime_type_key), new non-exported function.
+	(write_back_mime_user_file_context_callback): spaces...
+	* libgnomevfs/gnome-vfs-mime-info.h: new prototypes.
+	* test/test-mime-info.c: (main): add testing code for teh new API.
+
+2000-11-15  Mathieu Lacage  <mathieu@eazel.com>
+
+	Buddy: pavel <pavel@eazel.com>
+	
 	Fix bug 2650. remove *_without_fallback code.
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
 	(gnome_vfs_mime_get_default_action_type),
