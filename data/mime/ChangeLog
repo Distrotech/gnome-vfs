@@ -1,3 +1,8 @@
+2001-05-01  Darin Adler  <darin@eazel.com>
+
+	* gnome-vfs.applications: Update entry for The Gimp so it
+	knows that it can use http URLs.
+
 2001-04-25  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.applications: Put in alphabetical order.
