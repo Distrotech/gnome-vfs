@@ -147,9 +147,7 @@ static void			cache_add_uri_and_children (
 					GnomeVFSFileInfo *file_info, 
 					GList *file_info_list
 				);
-#if 0
 static void			cache_add_uri (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info);
-#endif
 static void			cache_invalidate (const gchar * uri_string);
 static void			cache_invalidate_uri (GnomeVFSURI *uri);
 static void			cache_invalidate_entry_and_children (const gchar * uri_string);
@@ -511,7 +509,6 @@ cache_add_uri_and_children (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, GList
 	g_free (uri_string);
 }
 
-#if 0
 static void
 cache_add_uri (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info)
 {
@@ -519,7 +516,6 @@ cache_add_uri (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info)
 
 	cache_add_no_strdup (cache_uri_to_string (uri), file_info);
 }
-#endif
 
 
 static void
@@ -1990,7 +1986,11 @@ make_propfind_request (HttpFileHandle **handle_return,
 	}
 
 #ifndef DAV_NO_CACHE
-	cache_add_uri_and_children (uri, handle->file_info, handle->files);
+	if (depth == 0) {
+		cache_add_uri (uri, handle->file_info);
+	} else {
+		cache_add_uri_and_children (uri, handle->file_info, handle->files);
+	}
 #endif /* DAV_NO_CACHE */
 
 
@@ -2299,6 +2299,20 @@ my_strcmp(const gchar *a, const gchar *b) {
 	return strcmp(a,b);
 }
 
+static gboolean is_same_fs (GnomeVFSURI *a, GnomeVFSURI *b)
+{
+	if(	my_strcmp(gnome_vfs_uri_get_scheme(a), gnome_vfs_uri_get_scheme(a))
+		|| my_strcmp(gnome_vfs_uri_get_host_name(a), gnome_vfs_uri_get_host_name(a))
+	  	|| my_strcmp(gnome_vfs_uri_get_user_name(a), gnome_vfs_uri_get_user_name(a)) 
+	  	|| my_strcmp(gnome_vfs_uri_get_password(a), gnome_vfs_uri_get_password(a)) 
+		|| (gnome_vfs_uri_get_host_port(a) != gnome_vfs_uri_get_host_port(a))
+	) {
+		return FALSE;
+	} else {
+		return TRUE;
+	}
+}
+
 static GnomeVFSResult
 do_move (GnomeVFSMethod *method,
 	 GnomeVFSURI *old_uri,
@@ -2315,15 +2329,9 @@ do_move (GnomeVFSMethod *method,
 
 	DEBUG_HTTP (("+Move"));
 
-	if(my_strcmp(gnome_vfs_uri_get_scheme(old_uri), gnome_vfs_uri_get_scheme(new_uri)) ||
-		my_strcmp(gnome_vfs_uri_get_host_name(old_uri), gnome_vfs_uri_get_host_name(new_uri)) ||
-	  	my_strcmp(gnome_vfs_uri_get_user_name(old_uri), gnome_vfs_uri_get_user_name(new_uri)) ||
-	  	my_strcmp(gnome_vfs_uri_get_password(old_uri), gnome_vfs_uri_get_password(new_uri)) ||
-		(gnome_vfs_uri_get_host_port(old_uri) != gnome_vfs_uri_get_host_port(new_uri))) {
-
-		/* the host/username/password/port are different */
+	if ( ! is_same_fs (old_uri, new_uri)) {
 		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
-	}
+	}	
 
 	destpath = gnome_vfs_uri_to_string(new_uri, GNOME_VFS_URI_HIDE_USER_NAME|GNOME_VFS_URI_HIDE_PASSWORD);
 	destheader = g_strdup_printf("Destination: %s\r\n", destpath);
@@ -2356,6 +2364,19 @@ static GnomeVFSResult do_unlink(GnomeVFSMethod * method,
 	return result;
 }
 
+static GnomeVFSResult do_check_same_fs (
+		GnomeVFSMethod *method,
+		GnomeVFSURI *a,
+		GnomeVFSURI *b,
+		gboolean *same_fs_return,
+		GnomeVFSContext *context)
+{
+	*same_fs_return = is_same_fs (a, b);
+
+	return GNOME_VFS_OK;
+}
+
+
 
 static GnomeVFSMethod method = {
 	do_open,
@@ -2376,7 +2397,7 @@ static GnomeVFSMethod method = {
 	do_remove_directory,
 	do_move,
 	do_unlink,
-	NULL,
+	do_check_same_fs,
 	NULL, /* truncate */
 	NULL, /* find_directory */
 	NULL  /* create_symbolic_link */
