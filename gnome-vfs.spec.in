@@ -96,8 +96,8 @@ fi
 
 %files devel
 %defattr(-, root, root)
-%{prefix}/include/libgnomevfs/*.h
-%{prefix}/lib/vfs/include/*.h
+%{prefix}/include/gnome-vfs-1.0/libgnomevfs/*.h
+%{prefix}/lib/gnome-vfs-1.0/include/*.h
 %{prefix}/lib/*.a
 %{prefix}/lib/*.la
 %{prefix}/bin/gnome-vfs-config
