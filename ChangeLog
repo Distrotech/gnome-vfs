@@ -1,3 +1,9 @@
+2003-03-23  Murray Cumming  <murrayc@usa.net>
+
+	* doc/about.sgml: Simple Sample Progam: Allocated memory for the 
+	read buffer. Initializing this to 0 would show the error. I don't
+	know how this ran without crashing before.
+	
 2003-03-24  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-job.c (_gnome_vfs_job_destroy_notify_result):

@@ -124,7 +124,7 @@ main (int argc, char **argv)
   const char *input_uri_string = argv[1];
   const char *output_uri_string = argv[2];
   GnomeVFSFileSize bytes_read, bytes_written;
-  gpointer buffer;
+  guint buffer[BYTES_TO_PROCESS];
   GnomeVFSResult result;
 
   /* remember to initialize GnomeVFS! */
