@@ -1,3 +1,11 @@
+2003-04-18  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-private-utils.h: removed misleading comment
+	* modules/cdemenu-module.conf
+	* modules/default-modules.conf: removed .so extension to module names
+	  since this is added automatically by gmodule, and it breaks on
+	  some unices (eg HPUX). Fixes #110986
+
 2003-4-17  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 
 	* modules/cdemenu-desktop-method.c (get_icon_for_menu): 

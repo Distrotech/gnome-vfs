@@ -59,7 +59,6 @@ GnomeVFSResult	gnome_vfs_create_temp 	(const gchar *prefix,
 gboolean	gnome_vfs_atotm		(const gchar *time_string,
 					 time_t *value_return);
 
-/* Wrapper around gnome_i18n_get_language_list(). */
 GList	       *gnome_vfs_i18n_get_language_list
 					(const gchar *category_name);
 
