@@ -1093,14 +1093,16 @@ find_replacement_for_delete (ItemDir *id, Entry *entry)
 				continue;
 			}
 
-			rel_path  = strstr (uristr, id_next->uri);
-			rel_path += strlen (id_next->uri);
-
 			entry_set_filename (entry, uristr);
 			entry_set_weight (entry, id_next->weight);
 
-			/* Add keywords based on relative path */
-			set_mergedir_entry_keywords (entry, rel_path);
+			if (id_next->is_mergedir) {
+				rel_path  = strstr (uristr, id_next->uri);
+				rel_path += strlen (id_next->uri);
+
+				/* Add keywords based on relative path */
+				set_mergedir_entry_keywords (entry, rel_path);
+			}
 
 			g_free (uristr);
 			return TRUE;
@@ -1173,12 +1175,12 @@ itemdir_monitor_handle (ItemDir                  *id,
 	gboolean replaced;
 	const gchar *rel_path;
 
-	rel_path  = strstr (full_uristr, id->uri);
-	rel_path += strlen (id->uri);
-
 	switch (event_type) {
 	case GNOME_VFS_MONITOR_EVENT_CREATED:
 	case GNOME_VFS_MONITOR_EVENT_CHANGED:
+		rel_path  = strstr (full_uristr, id->uri);
+		rel_path += strlen (id->uri);
+
 		/* Look for an existing entry with the same displayname */
 		entry = vfolder_info_lookup_entry (id->info, displayname);
 		if (entry) {
@@ -1196,8 +1198,11 @@ itemdir_monitor_handle (ItemDir                  *id,
 				entry_set_filename (entry, full_uristr);
 				entry_set_weight (entry, id->weight);
 
-				/* Add keywords based on relative path */
-				set_mergedir_entry_keywords (entry, rel_path);
+				if (id->is_mergedir) {
+					/* Add keywords from relative path */
+					set_mergedir_entry_keywords (entry, 
+								     rel_path);
+				}
 			}
 
 			gnome_vfs_uri_unref (real_uri);
@@ -1297,6 +1302,15 @@ itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
 	filename = gnome_vfs_uri_extract_short_name (uri);
 
 	if (id->untimestamp_files) {
+		/* 
+		 * We only care about changed events, otherwise the 
+		 * filename_monitor should keep us up-to-date.
+		 */
+		if (event_type != GNOME_VFS_MONITOR_EVENT_CHANGED) {
+			VFOLDER_INFO_WRITE_UNLOCK (id->info);
+			return;
+		}
+
 		filename_ts = filename;
 		filename = vfolder_untimestamp_file_name (filename);
 		g_free (filename_ts);
@@ -1342,9 +1356,9 @@ check_monitors_foreach (gpointer key, gpointer val, gpointer user_data)
 
 		/* 
 		 * FIXME: If someone has an <OnlyUnallocated> folder which also
-		 * has a <Query>, we won't receive change events for children
-		 * matching the query... I think this is corner enough to ignore
-		 * though. 
+		 *        has a <Query>, we won't receive change events for
+		 *        children matching the query... I think this is corner
+		 *        enough to ignore * though.  
 		 */
 		if (folder->only_unallocated)
 			return;
@@ -1594,72 +1608,102 @@ copy_user_default_file (VFolderInfo *info, GnomeVFSURI *user_file_uri)
 	return result == GNOME_VFS_OK;
 }
 
-static void
+static gboolean
 vfolder_info_find_filenames (VFolderInfo *info)
 {
 	gchar *scheme = info->scheme;
+	GnomeVFSURI *file_uri;
+	gboolean ok;
 
 	/* 
 	 * FIXME: load from gconf 
 	 */
 
-	if (strstr (scheme, "-all-users")) {
-		GSList *list = NULL;
+	/* set default write directory */
+	info->write_dir = g_build_filename (g_get_home_dir (),
+					    "/" DOT_GNOME "/vfolders/",
+					    scheme,
+					    NULL);
+
+	/* 
+	 * 1st: Try user-private ~/.gnome2/vfolders/scheme.vfolder-info 
+	 */
+	info->filename = g_strconcat (g_get_home_dir (),
+				      "/" DOT_GNOME "/vfolders/",
+				      scheme, ".vfolder-info",
+				      NULL);
+	file_uri = gnome_vfs_uri_new (info->filename);
+
+	ok = gnome_vfs_uri_exists (file_uri);
+	if (!ok) {
+		/* 
+		 * 2nd: Try copying system defaults file at
+		 *      /etc/gnome-vfs-2.0/vfolders/scheme.vfolder-info-default
+		 *      to user-private location.
+		 */
+		ok = copy_user_default_file (info, file_uri);
+		if (!ok) {
+			gchar *system_file;
+
+			/* 
+			 * 3rd: Try system-global file located at 
+			 *      /etc/gnome-vfs-2.0/vfolders/scheme.vfolder-info,
+			 *      and fallback to user-private file if it doesn't
+			 *      exist.
+			 */
+			system_file = 
+				g_strconcat (SYSCONFDIR,
+					     "/gnome-vfs-2.0/vfolders/",
+					     scheme, ".vfolder-info",
+					     NULL);
+
+			gnome_vfs_uri_unref (file_uri);
+			file_uri = gnome_vfs_uri_new (system_file);
+
+			ok = gnome_vfs_uri_exists (file_uri);
+			if (ok) {
+				g_free (info->filename);
+				info->filename = system_file;
+			} else
+				g_free (system_file);
+		}
+	}
+
+	gnome_vfs_uri_unref (file_uri);
+
+	/* 
+	 * Special case for applications-all-users where we want to add any
+	 * paths specified in $GNOME2_PATH, for people installing in strange
+	 * places.
+	 */
+	if (strcmp (scheme, "applications-all-users")) {
 		int i;
 		const char *path;
 		char *dir, **ppath;
 		ItemDir *id;
 		int weight = 800;
 
-		info->filename = g_strconcat (SYSCONFDIR,
-					      "/gnome-vfs-2.0/vfolders/",
-					      scheme, ".vfolder-info",
-					      NULL);
-
 		path = g_getenv ("GNOME2_PATH");
-		if (!path)
-			return;
+		if (path) {
+			ppath = g_strsplit (path, ":", -1);
 
-		ppath = g_strsplit (path, ":", -1);
-		for (i = 0; ppath[i] != NULL; i++) {
-			dir = g_build_filename (ppath[i], 
-						"/share/applications/",
-						NULL);
-			id = itemdir_new (info, dir, FALSE, FALSE, weight--);
-			g_free (dir);
-			
-			list = g_slist_prepend (list, id);
+			for (i = 0; ppath[i] != NULL; i++) {
+				dir = g_build_filename (ppath[i], 
+							"/share/applications/",
+							NULL);
+				id = itemdir_new (info, 
+						  dir, 
+						  FALSE, 
+						  FALSE, 
+						  weight--);
+				g_free (dir);
+			}
+
+			g_strfreev (ppath);
 		}
-		g_strfreev (ppath);
-
-		info->item_dirs = g_slist_reverse (list);
-	} 
-	else {
-		GnomeVFSURI *file_uri;
-
-		/* output .vfolder-info filename */
-		info->filename = g_strconcat (g_get_home_dir (),
-					      "/" DOT_GNOME "/vfolders/",
-					      scheme, ".vfolder-info",
-					      NULL);
-
-		/* default write directory */
-		info->write_dir = g_build_filename (g_get_home_dir (),
-						    "/" DOT_GNOME "/vfolders/",
-						    scheme,
-						    NULL);
-
-		file_uri = gnome_vfs_uri_new (info->filename);
-
-		/* 
-		 * Check user's .vfolder-info exists, and try to copy the
-		 * default if not. 
-		 */
-		if (!gnome_vfs_uri_exists (file_uri))
-			copy_user_default_file (info, file_uri);
-
-		gnome_vfs_uri_unref (file_uri);
 	}
+
+	return ok;
 }
 
 static void
