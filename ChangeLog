@@ -1,3 +1,10 @@
+2000-04-26  Ian McKellar  <yakk@yakk.net>
+
+	Fixed bug #489 (http://bugzilla.eazel.com/show_bug.cgi?id=489)
+
+	* modules/http-method.c: checked for handle==NULL in 
+	http_file_handle_destroy and http_handle_close.
+
 2000-04-25  Darin Adler  <darin@eazel.com>
 
 	Changed the async. get_file_info to do multiple files at a time.

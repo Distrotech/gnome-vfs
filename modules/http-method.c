@@ -182,14 +182,16 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 static void
 http_file_handle_destroy (HttpFileHandle *handle)
 {
-	g_free (handle->uri_string);
-	g_free (handle->mime_type);
-	if(handle->to_be_written)
-		g_byte_array_free(handle->to_be_written, TRUE);
-	/* this should work... */
-	g_list_foreach(handle->files, (GFunc)gnome_vfs_file_info_unref, NULL);
-	g_list_free(handle->files);
-	g_free (handle);
+	if(handle) {
+		g_free (handle->uri_string);
+		g_free (handle->mime_type);
+		if(handle->to_be_written)
+			g_byte_array_free(handle->to_be_written, TRUE);
+		/* this should work... */
+		g_list_foreach(handle->files, (GFunc)gnome_vfs_file_info_unref, NULL);
+		g_list_free(handle->files);
+		g_free (handle);
+	}
 }
 
 
@@ -641,23 +643,25 @@ static void
 http_handle_close (HttpFileHandle *handle,
 		   GnomeVFSContext *context)
 {
-	gnome_vfs_iobuf_flush (handle->iobuf);
-	gnome_vfs_iobuf_destroy (handle->iobuf);
-	gnome_vfs_inet_connection_destroy (handle->connection,
-					   context ? gnome_vfs_context_get_cancellation(context) : NULL);
+	if(handle) {
+		gnome_vfs_iobuf_flush (handle->iobuf);
+		gnome_vfs_iobuf_destroy (handle->iobuf);
+		gnome_vfs_inet_connection_destroy (handle->connection,
+							 context ? gnome_vfs_context_get_cancellation(context) : NULL);
 
-	if (handle->uri_string) {
-		gchar* msg;
+		if (handle->uri_string) {
+			gchar* msg;
 
-		msg = g_strdup_printf(_("Closing connection to %s"),
-				      handle->uri_string);
+			msg = g_strdup_printf(_("Closing connection to %s"),
+								handle->uri_string);
 
-		gnome_vfs_context_emit_message(context, msg);
+			gnome_vfs_context_emit_message(context, msg);
 
-		g_free(msg);
+			g_free(msg);
+		}
+		
+		http_file_handle_destroy (handle);
 	}
-	
-	http_file_handle_destroy (handle);
 }
 
 
