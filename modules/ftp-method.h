@@ -58,4 +58,4 @@ typedef struct _FtpConnection {
 	gchar *dirlistptr;
 } FtpConnection;
 
-#endif /* NEWFTP_METHOD_H */
+#endif /* FTP_METHOD_H */

@@ -1,3 +1,12 @@
+2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug #1434, Fix alignment of widgets in main capplet view.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet):
+	Replaced use of multiple pack boxes with a table.  Things
+	look much better now.
+	
 2000-06-21  Seth Nickell  <seth@eazel.com>
 
 	Added more complete symlink support to gnome-vfs.

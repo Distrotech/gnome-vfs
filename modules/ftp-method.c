@@ -194,12 +194,12 @@ static GnomeVFSResult read_response_line(FtpConnection *conn, gchar **line) {
 
 	while(!strstr(conn->response_buffer->str, "\r\n")) {
 		/* we don't have a full line. Lets read some... */
-		//ftp_debug(conn,g_strdup_printf("response `%s' is incomplete", conn->response_buffer->str));
+		/*ftp_debug(conn,g_strdup_printf("response `%s' is incomplete", conn->response_buffer->str));*/
 		bytes_read = 0;
 		result = gnome_vfs_iobuf_read(conn->iobuf, buf,
 				bytes, &bytes_read);
 		buf[bytes_read] = '\0';
-		//ftp_debug(conn,g_strdup_printf("read `%s'", buf));
+		/*ftp_debug(conn,g_strdup_printf("read `%s'", buf));*/
 		conn->response_buffer = g_string_append(conn->response_buffer, buf);
 		if(result != GNOME_VFS_OK) {
 			g_warning("Error `%s' during read\n", gnome_vfs_result_to_string(result));
@@ -224,9 +224,7 @@ static GnomeVFSResult get_response(FtpConnection *conn) {
 	/* all that should be pending is a response to the last command */
 	GnomeVFSResult result;
 
-	
-	//ftp_debug(conn,g_strdup_printf("get_response(%p)",  conn));
-
+	/*ftp_debug(conn,g_strdup_printf("get_response(%p)",  conn));*/
 
 	while(TRUE) {
 		gchar *line = NULL;
@@ -323,7 +321,7 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 		ptr = strchr(response, '(');
 		if(!ptr ||
 			(sscanf(ptr+1,"%d,%d,%d,%d,%d,%d", &a1, &a2, &a3, &a4, &p1, &p2) != 6)) {
-			//ftp_debug(conn,g_strdup_printf("PASV response parse error `%s'", ptr?ptr+1:response));
+			/*ftp_debug(conn,g_strdup_printf("PASV response parse error `%s'", ptr?ptr+1:response));*/
 			g_free(response);
 			return GNOME_VFS_ERROR_CORRUPTED_DATA; /* uhh - I guess */
 		}
@@ -333,7 +331,7 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 
 		g_free(response);
 
-		//ftp_debug(conn,g_strdup_printf("connecting to %s:%d", host, port));
+		/*ftp_debug(conn,g_strdup_printf("connecting to %s:%d", host, port));*/
 	}
 
 	/* connect */
@@ -343,7 +341,7 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 
   if(result != GNOME_VFS_OK) {
     /* FIXME - should really return the error to the app somehow */
-		//ftp_debug(conn,g_strdup_printf("gnome_vfs_inet_connection_create failed."));
+		/*ftp_debug(conn,g_strdup_printf("gnome_vfs_inet_connection_create failed."));*/
 		g_free(host);
     return result;
   }
@@ -370,7 +368,7 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 		return result;
 	}
 
-	//ftp_debug(conn,g_strdup_printf("`%s' returned `%s'", command, gnome_vfs_result_to_string(result)));
+	/*ftp_debug(conn,g_strdup_printf("`%s' returned `%s'", command, gnome_vfs_result_to_string(result)));*/
 
 	return result;
 }
@@ -378,7 +376,7 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 static GnomeVFSResult end_transfer(FtpConnection *conn) {
 	GnomeVFSResult result;
 
-	//ftp_debug(conn, g_strdup("end_transfer()"));
+	/*ftp_debug(conn, g_strdup("end_transfer()"));*/
 
 	if(conn->data_connection) {
 		gnome_vfs_inet_connection_destroy(conn->data_connection, NULL);
@@ -516,7 +514,7 @@ static GnomeVFSResult ftp_connection_aquire(FtpUri *furi, FtpConnection **connec
 	G_LOCK(spare_connections);
 
 	if(spare_connections == NULL) {
-		//ftp_debug(NULL, strdup("creating spare_connections hash"));
+		/*ftp_debug(NULL, strdup("creating spare_connections hash"));*/
 		spare_connections = 
 			g_hash_table_new(ftp_connection_uri_hash, ftp_connection_uri_equal);
 	}
@@ -703,12 +701,12 @@ static gboolean ls_to_file_info(gchar *ls, GnomeVFSFileInfo *file_info) {
 
 		if(file_info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
 			gchar *mime_type = (gchar *)gnome_vfs_mime_type_or_default(file_info->name, NULL);
-			//ftp_debug(conn, g_strdup_printf("1: mimetype = %s", mime_type));
+			/*ftp_debug(conn, g_strdup_printf("1: mimetype = %s", mime_type));*/
 			if(mime_type == NULL) {
-				//ftp_debug(conn, g_strdup_printf("mode = %d", s.st_mode));
+				/*ftp_debug(conn, g_strdup_printf("mode = %d", s.st_mode));*/
 				mime_type = (gchar *)gnome_vfs_mime_type_from_mode(s.st_mode);
 			}
-			//ftp_debug(conn, g_strdup_printf("2: mimetype = %s", mime_type));
+			/*ftp_debug(conn, g_strdup_printf("2: mimetype = %s", mime_type));*/
 			file_info->mime_type = g_strdup(mime_type);
 		} else {
 			file_info->mime_type = g_strdup(gnome_vfs_mime_type_from_mode(s.st_mode));
@@ -716,7 +714,7 @@ static gboolean ls_to_file_info(gchar *ls, GnomeVFSFileInfo *file_info) {
 
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
-		//ftp_debug(conn, g_strdup_printf("info got name `%s'", file_info->name));
+		/*ftp_debug(conn, g_strdup_printf("info got name `%s'", file_info->name));*/
 
 		if(filename) g_free(filename);
 
@@ -754,7 +752,7 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 	result = gnome_vfs_iobuf_read(conn->data_iobuf, buffer, num_bytes, &bytes_read);
 
 	if(result != GNOME_VFS_OK) {
-		//ftp_debug(conn, g_strdup("gnome_vfs_iobuf_read failed"));
+		/*ftp_debug(conn, g_strdup("gnome_vfs_iobuf_read failed"));*/
 		ftp_connection_release(conn);
 		return result;
 	}
@@ -766,7 +764,7 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 	ftp_connection_release(conn);
 
 	if(result != GNOME_VFS_OK) {
-		//ftp_debug(conn,g_strdup("LIST for get_file_info failed."));
+		/*ftp_debug(conn,g_strdup("LIST for get_file_info failed."));*/
 		return result;
 	}
 
