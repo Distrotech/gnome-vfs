@@ -1,3 +1,9 @@
+2000-06-22  Gene Z. Ragan  <gzr@eazel.com>
+
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(show_new_application_window), (show_edit_application_window):
+	Clean up work on layout of capplet dialogs.
+	
 2000-06-22  John Sullivan  <sullivan@eazel.com>
 
 	Moved SUID, SGID, and Sticky bits from flags
