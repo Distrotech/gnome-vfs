@@ -71,19 +71,23 @@ test_failed (const char *format, ...)
 }
 
 static void
-test_uri_to_string (const char *input, const char *expected_output,
-		GnomeVFSURIHideOptions hide_options)
+test_uri_to_string (const char *input,
+		    const char *expected_output,
+		    GnomeVFSURIHideOptions hide_options)
 {
-	GnomeVFSURI *uri = gnome_vfs_uri_new(input);
+	GnomeVFSURI *uri;
 	char *output;
 
-	/* output might be expected to be the same as the input */
-	if(!expected_output) expected_output = input;
-
-	output = gnome_vfs_uri_to_string(uri, hide_options);
+	uri = gnome_vfs_uri_new (input);
+	if (uri == NULL) {
+		output = g_strdup ("NULL");
+	} else {
+		output = gnome_vfs_uri_to_string (uri, hide_options);
+		gnome_vfs_uri_unref (uri);
+	}
 
 	if (strcmp (output, expected_output) != 0) {
-		test_failed ("gnome_vfs_uri_to_string(%s, %d) resulted in %s instead of %s",
+		test_failed ("gnome_vfs_uri_to_string (%s, %d) resulted in %s instead of %s",
 			     input, hide_options, output, expected_output);
 	}
 
@@ -93,19 +97,38 @@ test_uri_to_string (const char *input, const char *expected_output,
 int
 main (int argc, char **argv)
 {
+	make_asserts_break ("GLib");
 	make_asserts_break ("GnomeVFS");
 
 	/* Initialize the libraries we use. */
 	g_thread_init (NULL);
 	gnome_vfs_init ();
 
-	test_uri_to_string("http://www.eazel.com/", 			
-			"http://www.eazel.com/", GNOME_VFS_URI_HIDE_NONE);
-	test_uri_to_string("http://yakk:womble@www.eazel.com:42/blah/", 
-			"http://yakk:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_NONE);
-	test_uri_to_string("http://yakk:womble@www.eazel.com:42/blah/", 
-			"http://:womble@www.eazel.com:42/blah/", 
-			GNOME_VFS_URI_HIDE_NONE|GNOME_VFS_URI_HIDE_USER_NAME);
+	test_uri_to_string ("", "NULL", GNOME_VFS_URI_HIDE_NONE);
+
+	test_uri_to_string ("http://www.eazel.com", "http://www.eazel.com/", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("http://www.eazel.com/", "http://www.eazel.com/", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("http://www.eazel.com/dir", "http://www.eazel.com/dir", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("http://www.eazel.com/dir/", "http://www.eazel.com/dir/", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("http://yakk:womble@www.eazel.com:42/blah/", "http://yakk:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_NONE);
+
+	test_uri_to_string ("http://yakk:womble@www.eazel.com:42/blah/", "http://:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_USER_NAME);
+
+	/* FIXME: Do we want GnomeVFSURI to just refuse to deal with
+         * URIs that we don't have a module for?
+	 */
+	test_uri_to_string ("glorp:", "NULL", GNOME_VFS_URI_HIDE_NONE);
+
+	/* FIXME: Is this the correct behavior for these cases? */
+	test_uri_to_string ("file:", "file://", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("http:", "http://", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("file:/", "file:///", GNOME_VFS_URI_HIDE_NONE);
+
+	/* FIXME: URI schemes are not supposed to be case sensitive. */
+	test_uri_to_string ("FILE://", "NULL" /* "file://" */, GNOME_VFS_URI_HIDE_NONE);
+
+	/* FIXME: Do we really want to add the "///" in this case? */
+	test_uri_to_string ("pipe:gnome-info2html2 as", "pipe:///gnome-info2html2 as", GNOME_VFS_URI_HIDE_NONE);
 
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;

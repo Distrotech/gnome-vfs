@@ -1,3 +1,17 @@
+2000-07-11  Darin Adler  <darin@eazel.com>
+
+	* test/.cvsignore:
+	* test/test-uri.c: (test_uri_to_string), (main):
+	Added some more tests that demonstrate some more problems with the
+	GnomeVFSURI functions. A lot of FIXMEs in here now about the
+	problems.
+	
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_to_string):
+	Added a check for uri->text of NULL so that URIs like "http:"
+	would not cause a core dump. But perhaps they should return NULL
+	instead of creating a legal URI? Also fixed a little of the
+	formatting to fit the gnome-vfs standard.
+
 2000-07-12  Ian McKellar  <yakk@yakk.net.au>
 
 	* data/mime/gnome-vfs.keys:

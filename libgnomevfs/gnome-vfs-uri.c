@@ -550,45 +550,47 @@ gchar *
 gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 			 GnomeVFSURIHideOptions hide_options)
 {
-	GString *string = g_string_new(uri->method_string);
+	GString *string;
 	gchar *r;
 
-	g_string_append_c(string, ':');
+	string = g_string_new(uri->method_string);
+	g_string_append_c (string, ':');
 
-	if(!uri->parent) {
+	if (uri->parent == NULL) {
 		GnomeVFSToplevelURI *turi = (GnomeVFSToplevelURI *)uri;
 		gboolean shown_user_pass = FALSE;
 		
-		g_string_append(string, "//");
+		g_string_append (string, "//");
 
-		if(hide_options&GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD) {
-			g_string_free(string, TRUE); /* throw away method */
-			string = g_string_new("");
+		if (hide_options&GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD) {
+			g_string_free (string, TRUE); /* throw away method */
+			string = g_string_new ("");
 		}
 
 		if(turi->user_name && 
 				!(hide_options&GNOME_VFS_URI_HIDE_USER_NAME)) {
-			g_string_append(string, turi->user_name);
+			g_string_append (string, turi->user_name);
 			shown_user_pass = TRUE;
 		}
 
-		if(turi->password &&
-				!(hide_options&GNOME_VFS_URI_HIDE_PASSWORD)) {
-			g_string_append_c(string, ':');
-			g_string_append(string, turi->password);
+		if (turi->password &&
+		    !(hide_options&GNOME_VFS_URI_HIDE_PASSWORD)) {
+			g_string_append_c (string, ':');
+			g_string_append (string, turi->password);
 			shown_user_pass = TRUE;
 		}
 
-		if(shown_user_pass) {
-			g_string_append_c(string, '@');
+		if (shown_user_pass) {
+			g_string_append_c (string, '@');
 		}
 
-		if(turi->host_name &&
-				!(hide_options&GNOME_VFS_URI_HIDE_HOST_NAME))
-		       	g_string_append(string, turi->host_name);
-
-		if(turi->host_port > 0 &&
-				!(hide_options&GNOME_VFS_URI_HIDE_HOST_PORT)) {
+		if (turi->host_name &&
+		    !(hide_options & GNOME_VFS_URI_HIDE_HOST_NAME)) {
+		       	g_string_append (string, turi->host_name);
+		}
+		
+		if (turi->host_port > 0 &&
+		    !(hide_options & GNOME_VFS_URI_HIDE_HOST_PORT)) {
 			gchar tmp[128];
 			sprintf(tmp, ":%d", turi->host_port);
 			g_string_append(string, tmp);
@@ -597,17 +599,21 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 
 	}
 	
-	if(uri->text[0] != '/') g_string_append_c(string, '/');
-	g_string_append(string, uri->text);
+	if (uri->text != NULL) {
+		if (uri->text[0] != '/') {
+			g_string_append_c (string, '/');
+		}
+		g_string_append (string, uri->text);
+	}
 
-	if(uri->parent) {
-		g_string_prepend_c(string, '#');
-		g_string_prepend(string, gnome_vfs_uri_to_string(uri->parent, 
-					hide_options));
+	if (uri->parent != NULL) {
+		g_string_prepend_c (string, '#');
+		g_string_prepend (string, gnome_vfs_uri_to_string (uri->parent, 
+								   hide_options));
 	}
 
 	r = string->str;
-	g_string_free(string, FALSE);
+	g_string_free (string, FALSE);
 
 	return r;
 }

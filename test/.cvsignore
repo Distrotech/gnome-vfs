@@ -24,5 +24,6 @@ test-shell
 test-symlinks
 test-sync
 test-sync-write
+test-uri
 test-xfer
 vfs-run
