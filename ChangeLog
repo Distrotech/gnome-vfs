@@ -1,3 +1,22 @@
+2001-02-23  Pavel Cisler <pavel@eazel.com>
+
+	reviewed by: Gene Ragan <gzr@eazel.com>
+
+	Fixed 5786 the sequence of async open->read->cancel->close
+		   can crash.
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_close):
+	Before scheduling a close, wait for read/write to complete. If
+	read/write is still executing, wait for a tiny bit.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_complete),
+	(gnome_vfs_op_destroy), (gnome_vfs_job_execute):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	Add a new job op state - GNOME_VFS_OP_READ_WRITE_DONE.
+	Set it when read/write is done so that close can tell it can
+	proceed.
+
 2001-02-23  Don Melton  <don@eazel.com>
 
 	reviewed by: Maciej Stachowiak  <mjs@eazel.com>

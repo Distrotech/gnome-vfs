@@ -116,6 +116,9 @@ gnome_vfs_job_complete (GnomeVFSJob *job)
 
 	case GNOME_VFS_OP_READ:
 	case GNOME_VFS_OP_WRITE:
+		g_assert_not_reached();
+		return FALSE;
+	case GNOME_VFS_OP_READ_WRITE_DONE:
 		return FALSE;
 	
 	default:
@@ -679,6 +682,7 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 	case GNOME_VFS_OP_READ:
 	case GNOME_VFS_OP_WRITE:
 	case GNOME_VFS_OP_CLOSE:
+	case GNOME_VFS_OP_READ_WRITE_DONE:
 		break;
 	default:
 		g_warning (_("Unknown op type %u"), op->type);
@@ -1567,9 +1571,19 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 			execute_set_file_info (job);
 			break;
 		default:
-			g_warning (_("Unknown job ID %u"), job->op->type);
+			g_warning (_("Unknown job kind %u"), job->op->type);
 			break;
 		}
+	}
+	
+	switch (job->op->type) {
+		case GNOME_VFS_OP_READ:
+		case GNOME_VFS_OP_WRITE:
+			job->op->type = GNOME_VFS_OP_READ_WRITE_DONE;
+			break;
+
+		default:
+			break;
 	}
 	
 	JOB_DEBUG (("done %u", GPOINTER_TO_UINT (job->job_handle)));
