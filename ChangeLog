@@ -1,3 +1,8 @@
+2003-10-17  Jody Goldberg <jody@gnome.org>
+
+	* autogen.sh : Add an explicit depend on automake >= 1.6 to get things
+	  building again with the new daemon code.
+
 2003-10-17  Alexander Larsson  <alexl@redhat.com>
 
         Merge the ALEX_DAEMON branch
