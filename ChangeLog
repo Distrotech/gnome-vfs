@@ -1,3 +1,11 @@
+2001-03-04  Ramiro Estrugo  <ramiro@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* data/mime/gnome-vfs-mime-magic:
+	Make Postscript Fonts magic work for all fonts versioned 1.x, not
+	just 1.0.
+	
 2001-03-04  Pavel Cisler <pavel@eazel.com>
 
 	reviewed by: Darin Adler  <darin@eazel.com>
