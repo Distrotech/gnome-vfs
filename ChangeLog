@@ -1,5 +1,14 @@
 2001-03-06  Darin Adler  <darin@eazel.com>
 
+	* configure.in: Updated version number to 1.1.
+
+2001-03-06  Darin Adler  <darin@eazel.com>
+
+	Created the gnome-vfs-1-0 branch, for 1.0 development.
+	HEAD is now for post-1.0.
+
+2001-03-06  Darin Adler  <darin@eazel.com>
+
 	Merged all changes back here from the gnome-vfs-1 branch.
 
 === start of changes from gnome-vfs-1 branch ===
