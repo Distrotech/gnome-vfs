@@ -1,5 +1,10 @@
 2003-07-25  Christophe Fergeau  <teuf@gnome.org>
 
+	* libgnomevfs/gnome-vfs-xfer.h: another gcc 3.3 fix, remove
+	  unnecessary ',' at the end of some enums. Fixes bug #118851
+
+2003-07-25  Christophe Fergeau  <teuf@gnome.org>
+
 	* libgnomevfs/gnome-vfs-file-size.h.in: add G_GNUC_EXTENSION before
 	  GnomeVFSFileSize declaration to prevent g++ from spitting warnings
 	  about long long being forbidden in C++ when used with -pedantic
