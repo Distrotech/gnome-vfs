@@ -23,16 +23,34 @@ Basic recommendations to avoid application breakage:
 
 * 8450 - [API] The new metadata API in gnome-vfs needs to be finished
 * 8451 - [API] gnome-vfs needs an API for filesystem monitoring
+* 8447 - [API] Authentication callback API is not threadsafe
+* 8448 - [API] Authentication callbacks require explicit threading when using async API
+*  870 - [API] Many calls have sync. versions only, no async. versions.
+* 7911 - [API] URI handling scheme cleanup and generalization
+* 1203 - [API] GNOME_VFS_FILE_INFO_DEFAULT is not a good name
+* 4554 - [API] GNOME-VFS symlinks need to support cross-scheme symlinks
+* 1202 - [API] some of GnomeVFSFileInfo could be private
+* 1206 - [API] GnomeVFSXferProgressInfo has fields source_name and target_name that hold URI strings
+* 1377 - [API] Reconsider URI method chaining design
+*  798 - [API] API inconsistent about GnomeVFSURI * vs. char *
+* 6483 - [API] gnome-vfs should standardize removable device detection, access and naming
+*  458 - [API] Indicate whether a file operation can succeed.
+* 4103 - [API] text/* is not a valid wildcard
+*  837 - [API] gnome_vfs_async_xfer returns a result unlike other async. ops
+* 1086 - [API] GnomeVFSURI path functions need better names, comments
+* 1198 - [API] Should have a context for file methods to allow setting a prefix
+*  799 - [API] No fast way to count directory items
+* 1192 - [API] progress callbacks need a cleaner set of return values
+* 1107 - [API] for clarity and "%00" handling, make all file name APIs be URI encoded
+* 1205 - [API] separate xfer options and xfer actions
+* 6840 - [API] There is no way to remove a system wide default application.
+* 2801 - [API] GnomeVFSURI should handle URIs with schemes that no module can handle
 * real icon support
-* 8447
-* 8448
 * per-uri-scheme attributes
 * http post support
 * change module stacking to enable proper moniker support
 * redirect support
-* URI links
 * make xfer API not suck
-* deprecate GnomeVFSURI in public APIs (libgnomevfs/gnome-vfs-ops.h)
 * Install public headers and module-only headers in different places,
   separate pkgconfig targets
 * remove gnome-vfs-iobuf / gnome-vfs-socket-buffer duplication
@@ -47,3 +65,4 @@ Basic recommendations to avoid application breakage:
   Nautilus
 * kill half-baked port of metadata
 * rename `method' to something else (`module'? `protocol'? `scheme'? `scheme handler'?)
+
