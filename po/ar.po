@@ -1,3 +1,4 @@
+# translation of gnome-vfs.HEAD.ar.po to 
 # translation of gnome-vfs.po to Arabic
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER.
@@ -8,16 +9,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs\n"
+"Project-Id-Version: gnome-vfs.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-10 12:25+0100\n"
-"PO-Revision-Date: 2004-08-30 19:29+0300\n"
-"Last-Translator: Ayman Hourieh <aymanh@gmail.com>\n"
-"Language-Team: Arabic <doc@arabeyes.org>\n"
+"POT-Creation-Date: 2004-12-30 12:26+0100\n"
+"PO-Revision-Date: 2004-12-30 15:09+0100\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3.1\n"
+"X-Generator: KBabel 1.9.1\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -27,7 +28,7 @@ msgstr "لم يمكن تشغيل بونوبو"
 msgid "Could not initialize gnome vfs"
 msgstr "لم يمكن تشغيل جنوم vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:235
+#: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
 msgstr "حجم ISO 9660"
 
@@ -221,22 +222,22 @@ msgid "Operation stopped"
 msgstr "اوقفت العمليّة"
 
 #: libgnomevfs/gnome-vfs-mime-handlers.c:101
-#: libgnomevfs/gnome-vfs-mime-handlers.c:255
-#: libgnomevfs/gnome-vfs-mime-handlers.c:306
-#: libgnomevfs/gnome-vfs-mime-handlers.c:600
-#: libgnomevfs/gnome-vfs-mime-handlers.c:619
-#: libgnomevfs/gnome-vfs-mime-handlers.c:637
-#: libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: libgnomevfs/gnome-vfs-mime-handlers.c:675
-#: libgnomevfs/gnome-vfs-mime-handlers.c:816
-#: libgnomevfs/gnome-vfs-mime-handlers.c:838
-#: libgnomevfs/gnome-vfs-mime-handlers.c:857
-#: libgnomevfs/gnome-vfs-mime-handlers.c:876
-#: libgnomevfs/gnome-vfs-mime-handlers.c:929
-#: libgnomevfs/gnome-vfs-mime-handlers.c:946
-#: libgnomevfs/gnome-vfs-mime-handlers.c:963
-#: libgnomevfs/gnome-vfs-mime-handlers.c:981
-#: libgnomevfs/gnome-vfs-mime-handlers.c:999
+#: libgnomevfs/gnome-vfs-mime-handlers.c:262
+#: libgnomevfs/gnome-vfs-mime-handlers.c:313
+#: libgnomevfs/gnome-vfs-mime-handlers.c:607
+#: libgnomevfs/gnome-vfs-mime-handlers.c:626
+#: libgnomevfs/gnome-vfs-mime-handlers.c:644
+#: libgnomevfs/gnome-vfs-mime-handlers.c:663
+#: libgnomevfs/gnome-vfs-mime-handlers.c:682
+#: libgnomevfs/gnome-vfs-mime-handlers.c:823
+#: libgnomevfs/gnome-vfs-mime-handlers.c:845
+#: libgnomevfs/gnome-vfs-mime-handlers.c:864
+#: libgnomevfs/gnome-vfs-mime-handlers.c:883
+#: libgnomevfs/gnome-vfs-mime-handlers.c:936
+#: libgnomevfs/gnome-vfs-mime-handlers.c:953
+#: libgnomevfs/gnome-vfs-mime-handlers.c:970
+#: libgnomevfs/gnome-vfs-mime-handlers.c:988
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1006
 #: libgnomevfs/gnome-vfs-mime-info.c:643 libgnomevfs/gnome-vfs-mime-info.c:650
 #: libgnomevfs/gnome-vfs-mime-info.c:658 libgnomevfs/gnome-vfs-mime-info.c:665
 #: libgnomevfs/gnome-vfs-mime-info.c:673 libgnomevfs/gnome-vfs-mime-info.c:690
@@ -515,8 +516,8 @@ msgstr "خطأ مجهول"
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] "بايت واحد"
-msgstr[1] "بايتان"
+msgstr[0] "%u بايتات"
+msgstr[1] "%u بايتا"
 msgstr[2] "%u بايتات"
 msgstr[3] "%u بايت"
 
@@ -535,7 +536,7 @@ msgstr "%.1f ميغابايت"
 msgid "%.1f GB"
 msgstr "%.1f جيغابايت"
 
-#: libgnomevfs/gnome-vfs-utils.c:1131
+#: libgnomevfs/gnome-vfs-utils.c:1122
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (يونوكود غير سليم)"
@@ -606,16 +607,19 @@ msgid "CD-R/DVD-ROM"
 msgstr "قرص مدمج"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:565
+#, fuzzy
 msgid "CD-R/DVD-RAM"
-msgstr ""
+msgstr "سجل قرص فيديو رقمي"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:566
+#, fuzzy
 msgid "CD-R/DVD-R"
-msgstr ""
+msgstr "سجل قرص فيديو رقمي سجل"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:567
+#, fuzzy
 msgid "CD-R/DVD-RW"
-msgstr ""
+msgstr "سجل قرص فيديو رقمي"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:568
 #, fuzzy
@@ -623,16 +627,19 @@ msgid "CD-RW/DVD-ROM"
 msgstr "قرص مدمج"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:569
+#, fuzzy
 msgid "CD-RW/DVD-RAM"
-msgstr ""
+msgstr "قرص فيديو رقمي"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:570
+#, fuzzy
 msgid "CD-RW/DVD-R"
-msgstr ""
+msgstr "قرص فيديو رقمي سجل"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:571
+#, fuzzy
 msgid "CD-RW/DVD-RW"
-msgstr ""
+msgstr "قرص فيديو رقمي"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
 msgid "Disk"
@@ -696,18 +703,16 @@ msgid "Network server"
 msgstr "نادل شبكة"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب عدم وجود قرص مرن في السواقة."
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب عدم وجود قرص مرن في السواقة."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:117
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "لا يمكن تجهيز الحجم. ربما لعدم وجود وسيط في السواقة."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:123
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -715,34 +720,34 @@ msgstr ""
 "لا يمكن تجهيز سواقة الأقراص المرنة. ربما بسبب تهيئة القرص المرن التي لا يمكن "
 "تجهيزها."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:126
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr "لا يمكن تجهيز الحجم المختار. ربما لكون الحجم في تهيئة لا يمكن تجهيزها."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:131
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
 msgstr "لا يمكن تجهيز سواقة الأقراص المرنة المنتقات."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
 msgstr "لا يمكن تجهيز الحجم المختار."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:145
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
 msgstr "لا يمكن إلغاء تجهيز الحجم المختار."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:257
-#: libgnomevfs/gnome-vfs-volume-ops.c:313
+#: libgnomevfs/gnome-vfs-volume-ops.c:256
+#: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
 msgstr "فشل تشغيل الأمر"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:301
+#: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
 msgstr "لا يمكن طرد الوسيط"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:499
+#: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "لا يمكن إلغاء تجهيز النادل المتصل"
 
@@ -758,7 +763,7 @@ msgstr "الدليل المنزلي"
 msgid "Filesystem"
 msgstr "نظام الملفات"
 
-#: modules/file-method.c:413
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "جنوم VFSSeekPosition مجهول %d"
@@ -767,12 +772,12 @@ msgstr "جنوم VFSSeekPosition مجهول %d"
 msgid "Windows Network"
 msgstr "شبكة ونداوس"
 
-#: modules/sftp-method.c:1338
+#: modules/sftp-method.c:1346
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "هويّة الكمبيوتر البعيد (%s) مجهولة."
 
-#: modules/sftp-method.c:1339
+#: modules/sftp-method.c:1347
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -785,11 +790,11 @@ msgstr ""
 "الهوية المرسلة للكمبيوتر البعيد هي %s. إذا أردتّ التأكد بشكل مطلق من أنّ "
 "المتابعة آمنة، اتّصل بمدير النظام."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1355
 msgid "Log In Anyway"
 msgstr "تسجيل الدخول بكلّ الأحوال"
 
-#: modules/sftp-method.c:1348
+#: modules/sftp-method.c:1356
 msgid "Cancel Login"
 msgstr "إلغاء تسجيل الدخول"
 
@@ -846,8 +851,7 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
-"الشاشة الطرفية الافتراضية التي ستستعمل لالتطبيقات التي تتطلب شاشة طرفية."
+msgstr "الشاشة الطرفية الافتراضية التي ستستعمل لالتطبيقات التي تتطلب شاشة طرفية."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1122,11 +1126,10 @@ msgid "HTTP proxy username"
 msgstr "اسم مستخدم بروكسي الـ HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo is defined by \"/system/http_proxy/"
-"authentication_user\" and \"/system/http_proxy/authentication_password\"."
+"username/password combo defined by \"/system/http_proxy/authentication_user"
+"\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "اذا ضبط لـ true، فستطلب الاتصلات لنادل البروكسي التوثيق. مجموعةالـ username/"
 "password المعرف بـ \"/system/http_proxy/authentication_user\"·و·\"/system/"
@@ -1164,8 +1167,7 @@ msgstr "منفذ بروكسي HTTP آمن"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
-"اختر نسق إعداد البروكسي. القيم المدعومة هي \"لا شيئ\" و \"يدوي\" و \"آلي\"."
+msgstr "اختر نسق إعداد البروكسي. القيم المدعومة هي \"لا شيئ\" و \"يدوي\" و \"آلي\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1199,15 +1201,13 @@ msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/ftp_host\" و ا
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
-"منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذيتبروكسي عبره."
+msgstr "منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذيتبروكسي عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
-"منفذ الجهاز المعرف بـ \"/system/proxy/socks_host\" و الذي تبروكسي عبره."
+msgstr "منفذ الجهاز المعرف بـ \"/system/proxy/socks_host\" و الذي تبروكسي عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1241,168 +1241,3 @@ msgstr "مجموعة عمل SMB (صمبا)"
 msgid "The window workgroup the user is part of"
 msgstr "نافذة مجموعة العملالتي لا ينتمي إليها المستخدم"
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "قرص مدمج"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "قرص مدمج قابل للكتابة فارغ"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "قرص مدمج قابل للكتابة"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "قرص مدمج قابل لإعادة الكتابة فارغ"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "قرص مدمج قابل لإعادة الكتابة"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "قرص DVD-ROM"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "قرص DVD-R فارغ"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "قرص DVD-R"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "قرص DVD-RAM فارغ"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "قرص DVD-RAM"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "قرص DVD-RW فارغ"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "قرص DVD-RW"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "قرص DVD+RW فارغ"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "قرص DVD+RW"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "قرص DVD+R فارغ"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "قرص DVD+R"
-
-#~ msgid "Optical Disc"
-#~ msgstr "قرص بصري"
-
-#~ msgid "Audio Disc"
-#~ msgstr "قرص صوتي"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "وسيط فلاش"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "وسيط إصبع ذاكرة"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "وسيط وسيط ذكي"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "وسيط SD/MMC"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "قرص مرن"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "قرص Mac OS"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "قرص Max OS X"
-
-#~ msgid "Windows Disk"
-#~ msgstr "قرص ونداوس"
-
-#~ msgid "Linux Disk"
-#~ msgstr "قرص لينكس"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "لم يمكن فتح الملف: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "فشل فتح الملف '%s': %s"
-
-#~ msgid "File is empty"
-#~ msgstr "الملف فارغ"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "فشلت القراءة من الملف '%s': %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "تحوي مدخلات سطح المكتب السطر '%s' الذي هو ليس مدخلاً، مجموعة، أو تعليقاً."
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "لا يبدأ ملف مدخلات سطح المكتب بمجموعة بدء قانونيّة"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "تحوي مدخلات سطح المكتب السطر '%s' الذي هو ليس UTF-8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "تحوي مدخلات سطح المكتب ترميزاً غير معروف '%s'"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "ليس لمدخلات سطح المكتب المجموعة '%s'"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "ليس لمدخلات سطح المكتب المفتاح '%s'"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr "تحوي مدخلات سطح المكتب المفتاح '%s' الذي يملك قيمة لا يمكن تفسيرها."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "لا تحوي مدخلات سطح المكتب على قيمة مترجمة للمفتاح '%s' بالإعداد المحلّي '%"
-#~ "s'."
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "حوي مدخلات سطح المكتب تسلسل تجاهل غير صالح '%s'"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "تحوي مدخلات سطح المكتب رمز تجاهل في نهاية سطر"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "لا يمكن تفسير القيمة '%s' كعدد."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "لا يمكن تفسير القيمة '%s' كقيمة منطقية."
-
-#~ msgid "Applications"
-#~ msgstr "تطبيقات"
-
-#~ msgid "Cards"
-#~ msgstr "بطاقات"
-
-#~ msgid "Files"
-#~ msgstr "ملفات"
-
-#~ msgid "Folders"
-#~ msgstr "دلائل"
-
-#~ msgid "Help"
-#~ msgstr "مساعدة"
-
-#~ msgid "Hosts"
-#~ msgstr "مضيفين"
-
-#~ msgid "Links"
-#~ msgstr "وصلات"
-
-#~ msgid "Mail"
-#~ msgstr "بريد إلكتروني"
-
-#~ msgid "Tools"
-#~ msgstr "أدوات"
-
-#~ msgid "Windows"
-#~ msgstr "نوافذ"
