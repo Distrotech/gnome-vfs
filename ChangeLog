@@ -1,3 +1,7 @@
+2003-04-24  Michael Meeks  <michael@ximian.com>
+
+	* TODO: waffle unproductively - this file is really stale.
+
 2003-04-23  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c (gnome_vfs_mime_type_is_known):
