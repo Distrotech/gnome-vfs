@@ -198,7 +198,8 @@ impl_Notify_open_as_channel (PortableServer_Servant servant,
 			saddr.sun_family = AF_UNIX;
 			strncpy (saddr.sun_path, sock_path,
 				 sizeof (saddr.sun_path));
-			r = connect (fd, &saddr, SUN_LEN (&saddr));
+			r = connect (fd, (struct sockaddr *)&saddr,
+				     SUN_LEN (&saddr));
 			if (r < 0) {
 				g_warning (_("Cannot connect socket `%s': %s"),
 					   saddr.sun_path, g_strerror (errno));

@@ -1,3 +1,11 @@
+2000-05-27  Dan Winship  <danw@helixcode.com>
+
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c
+	(impl_Notify_open_as_channel): cast "struct sockaddr_un *"
+	argument to connect to "struct sockaddr *".
+
+	* libgnomevfs/gnome-vfs-private.h: Fix the getdelim prototype.
+
 2000-05-26  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.h,

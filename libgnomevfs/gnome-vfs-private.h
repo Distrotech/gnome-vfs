@@ -70,7 +70,7 @@ char *alloca ();
 #ifndef HAVE_GETDELIM
 #include <stdio.h>
 #include <unistd.h> /* ssize_t */
-ssize_t getdelim (char **lineptr, size_t n, int terminator, FILE *stream);
+ssize_t getdelim (char **lineptr, size_t *n, int terminator, FILE *stream);
 #endif
 
 END_GNOME_DECLS
