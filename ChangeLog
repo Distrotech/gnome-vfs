@@ -1,5 +1,10 @@
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
+	* Makefile.am: Disable the mime-type-capplet for the moment and
+	only build the test subdirectory for the GNOME 1.2 platform.
+
+2000-08-31  Martin Baulig  <baulig@suse.de>
+
 	We can't use gnome-config for the GNOME 2 platform since gnome-vfs
 	doesn't depend on gnome-libs on it; this gnome-vfs-config script
 	works for both platforms, however using gnome-config may be saner
