@@ -2165,6 +2165,8 @@ vfolder_info_insert_entry (VFolderInfo *info, EntryFile *efile)
 {
 	GSList *entry_list;
 
+	entry_ref ((Entry *)efile);
+
 	entry_list = g_hash_table_lookup (info->entries_ht, efile->entry.name);
 	if (entry_list != NULL) {
 		Entry *entry = entry_list->data;
@@ -2174,7 +2176,6 @@ vfolder_info_insert_entry (VFolderInfo *info, EntryFile *efile)
 		entry_unref (entry);
 	}
 
-	entry_ref ((Entry *)efile);
 	info->entries = g_slist_prepend (info->entries, efile);
 	/* The hash table contains the GSList pointer */
 	g_hash_table_insert (info->entries_ht, efile->entry.name, 
@@ -4088,9 +4089,11 @@ do_open_directory (GnomeVFSMethod *method,
 
 	path = gnome_vfs_uri_get_path (uri);
 	scheme = gnome_vfs_uri_get_scheme (uri);
-	if (path == NULL ||
-	    scheme == NULL)
+	if (scheme == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
+
+	if (path == NULL)
+		path = "/";
 
 	info = get_vfolder_info (scheme, &result, context);
 	if (info == NULL)

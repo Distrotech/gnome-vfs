@@ -1,3 +1,9 @@
+Thu Jan 17 01:55:23 2002  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: Fix open_directory with
+	  NULL path and treat it just like "/".  Also a ref fix in
+	  insert_entry (probably just being anal though)
+
 2002-01-17  Anders Carlsson  <andersca@gnu.org>
 
 	* test/test-mime.c (main): Ugh, don't try to free argv.
