@@ -1,3 +1,8 @@
+2005-02-11  Christian Kellner  <gicmo@gnome.org>
+
+	* modules/sftp-method.c: Plug some leaks. This should fix 
+	bug #153264.
+
 2005-02-11  Nate Nielsen  <nielsen@memberwebs.com>
 
 	* modules/smb-method.c (lookup_user_cache): Fix crash when user 

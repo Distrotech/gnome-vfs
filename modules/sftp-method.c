@@ -161,9 +161,6 @@ static gboolean sftp_connection_process_errors (GIOChannel *channel,
 						GIOCondition cond,
 						GnomeVFSResult *status);
 
-
-static guint inited_buffers = 0;
-
 typedef struct
 {
 	guchar  *base;
@@ -211,8 +208,6 @@ buffer_init (Buffer *buf)
 	buf->read_ptr = buf->base + sizeof (guint);
 	buf->write_ptr = buf->base + sizeof (guint);
 	buf->alloc = INIT_BUFFER_ALLOC;
-
-	++inited_buffers;
 }
 
 static void
@@ -220,16 +215,14 @@ buffer_free (Buffer *buf)
 {
 	g_return_if_fail (buf != NULL);
 
-	if (inited_buffers == 0) {
+	if (buf->base == NULL) {
 		g_critical ("No initialized buffers present. Something is being double-freed");
 		return;
 	}
 
 	g_free (buf->base);
-	buf->base = buf->read_ptr = buf->write_ptr = (gpointer) 0xdeadbeef;
+	buf->base = buf->read_ptr = buf->write_ptr = NULL;
 	buf->alloc = 0;
-
-	--inited_buffers;
 }
 
 static void
@@ -239,7 +232,6 @@ buffer_check_alloc (Buffer *buf, guint32 size)
 
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Allocating %p to %d", buf, size));
 
@@ -258,7 +250,6 @@ buffer_clear (Buffer *buf)
 {
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Clearing %p", buf));
 
@@ -272,7 +263,6 @@ buffer_read (Buffer *buf, gpointer data, guint32 size)
 
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Reading %d from %p to %p", size, buf, data));
 
@@ -289,7 +279,6 @@ buffer_write (Buffer *buf, gconstpointer data, guint32 size)
 {
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Writing %d from %p to %p", size, data, buf));
 
@@ -308,7 +297,6 @@ buffer_send (Buffer *buf, int fd)
 
 	g_return_val_if_fail (buf != NULL, GNOME_VFS_ERROR_INTERNAL);
 	g_return_val_if_fail (buf->base != NULL, GNOME_VFS_ERROR_INTERNAL);
-	g_return_val_if_fail (buf->base != (gpointer) 0xdeadbeef, GNOME_VFS_ERROR_INTERNAL);
 
 	DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Sending message of length %d from %p to %d",
 		       __FUNCTION__, len, buf, fd));
@@ -344,7 +332,6 @@ buffer_recv (Buffer *buf, int fd)
 
 	g_return_val_if_fail (buf != NULL, GNOME_VFS_ERROR_INTERNAL);
 	g_return_val_if_fail (buf->base != NULL, GNOME_VFS_ERROR_INTERNAL);
-	g_return_val_if_fail (buf->base != (gpointer) 0xdeadbeef, GNOME_VFS_ERROR_INTERNAL);
 
 	DEBUG2 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "%s: Receiving message from %d to %p",
 		       __FUNCTION__, fd, buf));
@@ -394,7 +381,6 @@ buffer_read_gchar (Buffer *buf)
 
 	g_return_val_if_fail (buf != NULL, 0);
 	g_return_val_if_fail (buf->base != NULL, 0);
-	g_return_val_if_fail (buf->base != (gpointer) 0xdeadbeef, 0);
 
 	buffer_read (buf, &data, sizeof (gchar));
 
@@ -410,7 +396,6 @@ buffer_read_gint32 (Buffer *buf)
 
 	g_return_val_if_fail (buf != NULL, 0);
 	g_return_val_if_fail (buf->base != NULL, 0);
-	g_return_val_if_fail (buf->base != (gpointer) 0xdeadbeef, 0);
 
 	buffer_read (buf, &data, sizeof (gint32));
 
@@ -427,7 +412,6 @@ buffer_read_gint64 (Buffer *buf)
 
 	g_return_val_if_fail (buf != NULL, 0);
 	g_return_val_if_fail (buf->base != NULL, 0);
-	g_return_val_if_fail (buf->base != (gpointer) 0xdeadbeef, 0);
 
 	buffer_read (buf, &data, sizeof (gint64));
 
@@ -445,7 +429,6 @@ buffer_read_block (Buffer *buf, gint32 *p_len)
 
 	g_return_val_if_fail (buf != NULL, NULL);
 	g_return_val_if_fail (buf->base != NULL, NULL);
-	g_return_val_if_fail (buf->base != (gpointer) 0xdeadbeef, NULL);
 
 	if (p_len == NULL)
 		p_len = &len;
@@ -467,7 +450,6 @@ buffer_read_string (Buffer *buf, gint32 *p_len)
 
 	g_return_val_if_fail (buf != NULL, NULL);
 	g_return_val_if_fail (buf->base != NULL, NULL);
-	g_return_val_if_fail (buf->base != (gpointer) 0xdeadbeef, NULL);
 
 	if (p_len == NULL)
 		p_len = &len;
@@ -493,7 +475,6 @@ buffer_read_file_info (Buffer *buf, GnomeVFSFileInfo *info)
 
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	flags = buffer_read_gint32 (buf);
 
@@ -551,7 +532,6 @@ buffer_write_gchar (Buffer *buf, gchar data)
 {
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Writing byte %d to %p", data, buf));
 
@@ -565,7 +545,6 @@ buffer_write_gint32 (Buffer *buf, gint32 data)
 
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Writing word %d to %p", data, buf));
 
@@ -580,7 +559,6 @@ buffer_write_gint64 (Buffer *buf, gint64 data)
 
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Writing doubleword %lld to %p", data, buf));
 
@@ -593,7 +571,6 @@ buffer_write_block (Buffer *buf, gconstpointer ptr, gint32 len)
 {
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Writing block of length %d to %p", len, buf));
 
@@ -608,7 +585,6 @@ buffer_write_string (Buffer *buf, const gchar *data)
 
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	len = strlen (data);
 
@@ -627,7 +603,6 @@ buffer_write_file_info (Buffer *buf, const GnomeVFSFileInfo *info, GnomeVFSSetFi
 
 	g_return_if_fail (buf != NULL);
 	g_return_if_fail (buf->base != NULL);
-	g_return_if_fail (buf->base != (gpointer) 0xdeadbeef);
 
 	DEBUG4 (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "Writing file info to %p", buf));
 
@@ -1714,6 +1689,7 @@ get_real_path (SftpConnection *conn, const gchar *path, gchar **realpath)
 
 	if (res != GNOME_VFS_OK) {
 		g_critical ("Error receiving message: %d", res);
+		buffer_free (&msg);
 		return res;
 	}
 
@@ -1809,7 +1785,8 @@ do_open (GnomeVFSMethod        *method,
 	buffer_write_file_info (&msg, &info, GNOME_VFS_SET_FILE_INFO_NONE);
 
 	buffer_send (&msg, conn->out_fd);
-
+	buffer_free (&msg);
+	
 	sftp_res = iobuf_read_handle (conn->in_fd, &sftp_handle, id, &sftp_handle_len);
 
 	if (sftp_res == SSH2_FX_OK) {
@@ -2047,6 +2024,7 @@ do_read (GnomeVFSMethod       *method,
 		outstanding--;
 
 		if (result != GNOME_VFS_OK) {
+			buffer_free (&msg);
 			sftp_connection_unlock (handle->connection);
 			return result;
 		}
@@ -2565,12 +2543,12 @@ do_read_directory (GnomeVFSMethod       *method,
 
 	if (type == SSH2_FXP_STATUS) {
 		status = buffer_read_gint32 (&msg);
-
+		buffer_free (&msg);
+		
 		if (status == SSH2_FX_EOF || SSH2_FX_OK) {
 			DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,
 				      "%s: End of directory reached (EOF status)",
 				      __FUNCTION__));
-			buffer_free (&msg);
 			sftp_connection_unlock (handle->connection);
 			return GNOME_VFS_ERROR_EOF;
 		} else {
@@ -2652,6 +2630,8 @@ do_read_directory (GnomeVFSMethod       *method,
 		return GNOME_VFS_ERROR_PROTOCOL_ERROR;
 	}
 
+	buffer_free (&msg);
+	
 	if (handle->info_read_ptr < handle->info_write_ptr) {
 		gnome_vfs_file_info_copy (file_info, &(handle->info[handle->info_read_ptr]));
 		g_free (handle->info[handle->info_read_ptr].name);
@@ -2754,8 +2734,6 @@ do_move (GnomeVFSMethod  *method,
 	res = sftp_get_connection (&conn, old_uri);
 	if (res != GNOME_VFS_OK) return res;
 
-	buffer_init (&msg);
-
 	old_path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (old_uri), NULL);
 	if (old_path == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
@@ -2778,6 +2756,7 @@ do_move (GnomeVFSMethod  *method,
 			goto bail;
 	}
 
+	buffer_init (&msg);
 	buffer_write_gchar (&msg, SSH2_FXP_RENAME);
 	buffer_write_gint32 (&msg, id);
 	buffer_write_string (&msg, old_path);
@@ -2815,8 +2794,6 @@ do_rename (GnomeVFSMethod  *method,
 	res = sftp_get_connection (&conn, old_uri);
 	if (res != GNOME_VFS_OK) return res;
 
-	buffer_init (&msg);
-
 	old_path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (old_uri), NULL);
 	if (old_path == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
@@ -2831,6 +2808,7 @@ do_rename (GnomeVFSMethod  *method,
 
 	id = sftp_connection_get_id (conn);
 
+	buffer_init (&msg);
 	buffer_write_gchar (&msg, SSH2_FXP_RENAME);
 	buffer_write_gint32 (&msg, id);
 	buffer_write_string (&msg, old_path);
@@ -2980,14 +2958,13 @@ do_create_symlink (GnomeVFSMethod   *method,
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 	
-	buffer_init (&msg);
-
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
 	if (path == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
 	id = sftp_connection_get_id (conn);
-
+	
+	buffer_init (&msg);
 	buffer_write_gchar (&msg, SSH2_FXP_SYMLINK);
 	buffer_write_gint32 (&msg, id);
 	buffer_write_string (&msg, path);
@@ -3055,9 +3032,4 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 	G_LOCK (sftp_connection_table);
 	g_hash_table_foreach_remove (sftp_connection_table, (GHRFunc) close_thunk, NULL);
 	G_UNLOCK (sftp_connection_table);
-
-	if (inited_buffers != 0)
-		g_critical ("%d buffers leaked", inited_buffers);
-	else
-		DEBUG (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG, "inited_buffers is ok"));
 }
