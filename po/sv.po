@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-02-11 13:53-0800\n"
-"PO-Revision-Date: 2002-01-27 17:13+0100\n"
+"POT-Creation-Date: 2002-02-25 00:42+0100\n"
+"PO-Revision-Date: 2002-02-25 00:42+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "Korrupt data"
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Felaktigt format"
+msgstr "Ogiltigt format"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
@@ -142,12 +142,12 @@ msgstr "Filen är inte öppen"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Felaktigt öppningsläge"
+msgstr "Ogiltigt öppningsläge"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "Åtkomst nekas"
+msgstr "Åtkomst nekad"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
@@ -182,7 +182,7 @@ msgstr "Filen finns"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Loop i länkar upptäckt"
+msgstr "Slinga i länkar påträffad"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
@@ -306,7 +306,7 @@ msgstr "Okänd GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Hittade inte en giltig inställningsfil vid %s\n"
+msgstr "Hittade ingen giltig inställningsfil vid %s\n"
 
 #: modules/test-method.c:592
 #, c-format
