@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.0\n"
 "POT-Creation-Date: 2000-02-21 16:53-0500\n"
-"PO-Revision-Date: 2000-01-24 21:11-0500\n"
+"PO-Revision-Date: 2000-04-05 16:21-0500\n"
 "Last-Translator: Spiros Papadimitirou <spapadim+@cs.cmu.edu>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -36,16 +36,16 @@ msgstr "Το αρχείο ρυθμίσεων `%s' δε βρέθηκε: %s"
 
 #: libgnomevfs/gnome-vfs-init.c:55
 msgid "GNOME VFS already initialized."
-msgstr "Το GNOME VFS έχει ήδη αρχικοποιηθεί."
+msgstr "Το Ιδεατό Σύστημα Αρχείων GNOME έχει ήδη αρχικοποιηθεί."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr ""
+msgstr "Συντακτική ανάλυση αδύνατη: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr ""
+msgstr "Επιπλεόν συντακτικά σφάλματα θα αγνοηθούν."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -85,17 +85,17 @@ msgstr "Σφάλμα εισόδου/εξόδου"
 #. GNOME_VFS_ERROR_CORRUPTEDDATA
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
-msgstr ""
+msgstr "Διεφθαρμένα δεδομένα"
 
 #. GNOME_VFS_ERROR_WRONGFORMAT
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
-msgstr ""
+msgstr "Άκυρη μορφή"
 
 #. GNOME_VFS_ERROR_BADFILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
-msgstr ""
+msgstr "Άκυρος χειριστής αρχείου"
 
 #. GNOME_VFS_ERROR_TOOBIG
 #: libgnomevfs/gnome-vfs-result.c:49
@@ -125,7 +125,7 @@ msgstr "Το αρχείο δεν είναι ανοιχτό"
 #. GNOME_VFS_ERROR_INVALIDOPENMODE
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
-msgstr ""
+msgstr "Άκυρη κατάσταση ανοίγματος"
 
 #. GNOME_VFS_ERROR_ACCESSDENIED
 #: libgnomevfs/gnome-vfs-result.c:55
@@ -165,7 +165,7 @@ msgstr "Το αρχείο υπάρχει"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Looping links encountered"
-msgstr ""
+msgstr "Βρέθηκε βρόγχος συντομεύσεων"
 
 #. GNOME_VFS_ERROR_NOTPERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
@@ -185,22 +185,22 @@ msgstr "Μνήμη ανεπαρκής"
 #. GNOME_VFS_ERROR_HOSTNOTFOUND
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host not found"
-msgstr ""
+msgstr "Κόμβος δε βρέθηκε"
 
 #. GNOME_VFS_ERROR_INVALIDHOSTNAME
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
-msgstr ""
+msgstr "Άκυρο όνομα κόμβου"
 
 #. GNOME_VFS_ERROR_HOSTHASNOADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
-msgstr ""
+msgstr "Ο κόμβος δεν έχει διεύθυνση"
 
 #. GNOME_VFS_ERROR_LOGINFAILED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Login failed"
-msgstr ""
+msgstr "Είσοδος στο σύστημα ανεπιτυχής"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:70
@@ -220,7 +220,7 @@ msgstr "Κατάλογος δεν είναι άδειος"
 #. GNOME_VFS_ERROR_TOOMANYLINKS
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
-msgstr ""
+msgstr "Πάρα πολλές συντομεύσεις"
 
 #. GNOME_VFS_ERROR_READONLYFS
 #: libgnomevfs/gnome-vfs-result.c:74
@@ -296,17 +296,17 @@ msgstr "Δημιουργία προσωρινού αρχείου `%s' αδύνατη"
 #: libgnomevfs-corba/gnome-vfs-slave.c:614
 #, c-format
 msgid "Cannot create socket: %s"
-msgstr ""
+msgstr "Αδυναμία δημιουργίας υποδοχέα: %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:632
 #, c-format
 msgid "Cannot bind `%s': %s"
-msgstr ""
+msgstr "Αδυναμία δέσμευσης (bind) του `%s': %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:639
 #, c-format
 msgid "Cannot listen on `%s': %s"
-msgstr ""
+msgstr "Αδυναμία ακρόασης (listen) στο `%s': %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:661
 #, c-format
@@ -319,7 +319,7 @@ msgstr "Αρχικοποίηση CORBA ανεπιτυχής."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1386
 msgid "Cannot resolve initial reference to RootPOA."
-msgstr ""
+msgstr "Αδυναμία επίλυσης αρχικής αναφοράς στο RootPOA."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1393
 msgid "Cannot activate POA manager."
@@ -333,7 +333,7 @@ msgstr "Χρήση: %s <ior> [<ior_fd>]\n"
 #: libgnomevfs-corba/gnome-vfs-slave.c:1429
 #, c-format
 msgid "Cannot open file descriptor %d."
-msgstr ""
+msgstr "Αδυναμία ανοίγματος περιγραφέα αρχείου %d."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1452
 #, c-format
@@ -356,7 +356,7 @@ msgstr "Λήψη παράξενης ακολουθίας από την διεργασία υπηρέτη: `%s'"
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
-msgstr ""
+msgstr "Αδυναμία απόκτησης αντικειμένου για το `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:126
 #, c-format
@@ -366,7 +366,7 @@ msgstr "Τερματισμός του GNOME::VFS::Slave::Notify αδύνατη -- εξαίρεση %s"
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
 #, c-format
 msgid "Cannot connect socket `%s': %s"
-msgstr ""
+msgstr "Αδυναμία σύνδεσης με τον υποδοχέα `%s': %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
@@ -375,23 +375,23 @@ msgstr "Αρχικοποίηση του GNOME::VFS:Slave::Notify ανεπιτυχής"
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
+msgstr "Ανεπιτυχής επαναρχικοποίηση του GNOME::VFS::Slave %s -- εξαίρεση %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
+msgstr "Ανεπιτυχής επαναρχικοποίηση του GNOME::VFS::Slave (άγνωστο IOR) -- εξαίρεση %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "Τερματισμός του GNOME::VFS::Slave ανεπιτυχής -- εξαίρεση %s"
+msgstr "Ανεπιτυχής τερματισμός του GNOME::VFS::Slave %s -- εξαίρεση %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr ""
-"Τερματισμός του GNOME::VFS::Slave ανεπιτυχής (άγνωστο IOR) -- εξαίρεση %s"
+"Ανεπιτυχής τερματισμός του GNOME::VFS::Slave (άγνωστο IOR) -- εξαίρεση %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:129
 msgid "Error writing to the wakeup GnomeVFSJob channel."
@@ -407,7 +407,7 @@ msgstr "Άγνωστος κωδικος εργασίας %d"
 #: libgnomevfs-pthread/gnome-vfs-job.c:879
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr ""
+msgstr "Ανεπιτυχής δημιουργία διασωλήνωσης για το ανοιχτό GIOChannel: %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1265
 msgid "Operation stopped"
@@ -451,20 +451,20 @@ msgstr " FTP: Απαιτείται κωδικός για το "
 
 #: modules/ftp-method.c:790
 msgid "ftpfs: sending login name"
-msgstr ""
+msgstr "ftpfs: αποστολή ονόματος χρήστη"
 
 #: modules/ftp-method.c:796
 msgid "ftpfs: sending user password"
-msgstr ""
+msgstr "ftpfs: αποστολή συνθηματικού χρήστη"
 
 #: modules/ftp-method.c:802
 msgid "ftpfs: logged in"
-msgstr ""
+msgstr "ftpfs: είσοδος στο σύστημα"
 
 #: modules/ftp-method.c:814
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
-msgstr ""
+msgstr "ftpfs: Ανεπιτυχής έλεχγος αυθεντικότητας χρήστη %s "
 
 #: modules/ftp-method.c:827
 msgid "ftpfs: aborting transfer."
@@ -481,7 +481,7 @@ msgstr "ftpfs: ακύρωση ανεπιτυχής"
 
 #: modules/ftp-method.c:911
 msgid "ftpfs: could not setup passive mode"
-msgstr ""
+msgstr "ftpfs: αδυναμία μετάβασης σε παθητική κατάσταση"
 
 #: modules/ftp-method.c:1088
 #, c-format
@@ -494,11 +494,11 @@ msgstr "ftpfs: CWD ανεπιτυχές."
 
 #: modules/ftp-method.c:1315 modules/ftp-method.c:1322
 msgid "ftpfs: couldn't resolve symlink"
-msgstr ""
+msgstr "ftpfs: αδυναμία διαλεύκανσης συντόμευσης"
 
 #: modules/ftp-method.c:1374
 msgid "Resolving symlink..."
-msgstr ""
+msgstr "Διαλεύκανση συντόμευσης..."
 
 #: modules/ftp-method.c:1498
 #, c-format
@@ -517,11 +517,11 @@ msgstr "ftpfs: ανάγνωση καταλόγου FTP διεκόπη από το χρήστη"
 
 #: modules/ftp-method.c:1592
 msgid "ftpfs: got listing"
-msgstr ""
+msgstr "ftpfs: κατάλογος ελήφθη"
 
 #: modules/ftp-method.c:1644
 msgid "ftpfs: failed; nowhere to fallback to"
-msgstr ""
+msgstr "ftpfs: αποτυχία -- καμία εναλλακτική δυνατότητα"
 
 #: modules/ftp-method.c:2037
 msgid "Starting linear transfer..."
@@ -549,15 +549,15 @@ msgstr "Τερματισμός σύνδεσης με %s"
 #: modules/http-method.c:686
 #, c-format
 msgid "%s of %s read"
-msgstr "Ανάγνωση %s από %s"
+msgstr "%s από %s αναγνώστηκαν"
 
 #: modules/http-method.c:689
 #, c-format
 msgid "%s read"
-msgstr "Ανάγνωση %s"
+msgstr "%s αναγνώστηκαν"
 
 #~ msgid "Unknown sort rule %d"
-#~ msgstr "Άγνωστος κανόνας (%d) ταξινόμισης"
+#~ msgstr "Άγνωστος κανόνας (%d) ταξινόμησης"
 
 #~ msgid "Destroying slave."
-#~ msgstr "Τερματισμός υπηρέτη."
+#~ msgstr "Τερματισμός διεργασίας-υπηρέτη."
