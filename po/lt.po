@@ -1,20 +1,21 @@
 # Lithuanian translation of gnome-vfs
-# Copyright (C) 2000 Free Software Foundation, Inc.
-# Gediminas Paulauskas <menesis@delfi.lt>, 2000
+# Copyright (C) 2000-2004 Free Software Foundation, Inc.
+# Gediminas Paulauskas <menesis@delfi.lt>, 2000.
+# Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
+# Žygimantas Beručka <uid0@akl.lt>, 2004.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.0.4\n"
+"Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-08 13:11+0100\n"
-"PO-Revision-Date: 2003-12-29 21:42+0200\n"
-"Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
+"POT-Creation-Date: 2004-03-21 16:28+0200\n"
+"PO-Revision-Date: 2004-03-21 19:57+0200\n"
+"Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
-"100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
@@ -109,86 +110,86 @@ msgstr "CDROM Skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
-msgstr "Hsfs CDROM Skirsnis"
+msgstr "Hsfs CDROM skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
-msgstr "JFS Skirsnis"
+msgstr "JFS skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
-msgstr "Windows NT Skirsnis"
+msgstr "Windows NT skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
-msgstr "Sisteminis Skirsnis"
+msgstr "Sisteminis skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
-msgstr "Atmintinės Skirsnis"
+msgstr "Atmintinės skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
-msgstr "Minix Skirsnis"
+msgstr "Minix skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr "NFS Tinklo Skirsnis"
+msgstr "NFS tinklo skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
-msgstr "Netware Skirsnis"
+msgstr "Netware skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
-msgstr "ReiserFS Linux Skirsnis"
+msgstr "ReiserFS Linux skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
-msgstr "SMB Tinklo Skirsnis"
+msgstr "SMB tinklo skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
-msgstr "SuperMount Skirsnis"
+msgstr "SuperMount skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
-msgstr "DVD Skirsnis"
+msgstr "DVD skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
-msgstr "Solaris/BSD Skirsnis"
+msgstr "Solaris/BSD skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
-msgstr "Udfs Solaris Skirsnis"
+msgstr "Udfs Solaris skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
-msgstr "Pcfs Solaris Skirsnis"
+msgstr "Pcfs Solaris skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
-msgstr "Išplėstas DOS Skirsnis"
+msgstr "Pagerintas DOS skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows VFAT Volume"
-msgstr "Windows VFAT Skirsnis"
+msgstr "Windows VFAT skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Xenix Volume"
-msgstr "Xenix Skirsnis"
+msgstr "Xenix skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XFS Linux Volume"
-msgstr "XFS Linux Skirsnis"
+msgstr "XFS Linux skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XIAFS Volume"
-msgstr "XIAFS Skirsnis"
+msgstr "XIAFS skirsnis"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
@@ -527,40 +528,40 @@ msgstr "Tinklo serveris"
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Nepavyko primontuoti diskelio. Greičiausiai diskelio nėra įrenginyje."
+msgstr "Nepavyko prijungti diskelio. Greičiausiai diskelio nėra įrenginyje."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Nepavyko primontuoti skirsnio. Greičiausiai diskelio nėra įrenginyje."
+msgstr "Nepavyko prijungti skirsnio. Greičiausiai diskelio nėra įrenginyje."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Nepavyko primontuoti diskelio. Greičiausiai diskelio formatas toks, kurio "
-"neina primontuoti."
+"Nepavyko prijungti diskelio. Greičiausiai diskelio formatas toks, kurio "
+"negalima prijungti."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Nepavyko primontuoti skirsnio. Greičiausiai skirsnio formatas toks, kurio "
-"neina primontuoti."
+"Nepavyko prijungti skirsnio. Greičiausiai skirsnio formatas toks, kurio "
+"neina prijungti."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr "Nepavyko primontuoti nurodyto diskelio."
+msgstr "Nepavyko prijungti nurodyto diskelio."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr "Nepavyko primontuoti nurodyto skirsnio."
+msgstr "Nepavyko prijungti nurodyto skirsnio."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr "Nepavyko numontuoti nurodyto skirsnio."
+msgstr "Nepavyko atjungti nurodyto skirsnio."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
 #: libgnomevfs/gnome-vfs-volume-ops.c:298
@@ -573,7 +574,7 @@ msgstr "Nepavyko išstumti disko"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:477
 msgid "Unable to unmount connected server"
-msgstr "Nepavyko nutraukti susijungimo su serveriu"
+msgstr "Nepavyko atjungti prisijungusio serverio"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -643,9 +644,8 @@ msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nežinoma GnomeVFSSeekPosition %d"
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Tinklas"
+msgstr "Windows tinklas"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -999,8 +999,8 @@ msgstr "Vartotojo vardas naudojamas jungiantis per HTTP tarpinę stotį."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB darbo grupė"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "Windows darbo grupė, kuriai priklauso vartotojas"
