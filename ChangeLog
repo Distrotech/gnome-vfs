@@ -1,5 +1,11 @@
 2003-02-12  Alexander Larsson  <alexl@redhat.com>
 
+	* NEWS: 
+	* configure.in: 
+	Bump to 2.2.2
+	
+2003-02-12  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_monitor_add):
 	Free uri if no monitor_add implementation. Plugs leak.
 

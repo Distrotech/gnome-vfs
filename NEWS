@@ -1,3 +1,10 @@
+gnome-vfs 2.2.2
+
+	* Bugs fixed:
+	       + fixed memleak in monitors
+	       + fixed some ssh method problems
+	       + fixed some vfs moniker bugs
+
 gnome-vfs 2.2.1
 
 	* Bugs fixed:
