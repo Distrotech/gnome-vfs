@@ -1,3 +1,10 @@
+2002-12-18  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* modules/Makefile.am:
+	* modules/extfs-method.c:
+	* modules/extfs/Makefile.am:
+	use $(libdir) instead of $(prefix)/lib (needed for AMD x86-64)
+
 2002-12-18  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-private-utils.h:
