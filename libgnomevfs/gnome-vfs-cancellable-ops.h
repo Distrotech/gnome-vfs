@@ -24,6 +24,10 @@
 #ifndef _GNOME_VFS_CANCELLABLE_OPS_H
 #define _GNOME_VFS_CANCELLABLE_OPS_H
 
+#include <libgnomevfs/gnome-vfs-find-directory.h>
+#include <libgnomevfs/gnome-vfs-xfer.h>
+#include <libgnomevfs/gnome-vfs-directory.h>
+
 GnomeVFSResult gnome_vfs_open_uri_cancellable
 					(GnomeVFSHandle **handle,
 					 GnomeVFSURI *uri,

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 1997, 1998, 1999, 2000 Free Software Foundation
+ * Copyright (C) 1997-2001 Free Software Foundation
  * Copyright (C) 2000, 2001 Eazel, Inc.
  * All rights reserved.
  *
@@ -25,7 +25,14 @@
 #define GNOME_VFS_MIME_H
 
 #include <glib.h>
-#include "gnome-vfs-types.h"
+#include <libgnomevfs/gnome-vfs-uri.h>
+#include <ctype.h>
+#include <dirent.h>
+#include <regex.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #ifdef __cplusplus
 extern "C" {

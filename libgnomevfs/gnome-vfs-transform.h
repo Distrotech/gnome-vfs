@@ -1,6 +1,5 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* gnome-vfs-cancellation.h - Cancellation handling for the GNOME Virtual File
-   System access methods.
+/* gnome-vfs-transform.h - transform function declarations
 
    Copyright (C) 1999, 2001 Free Software Foundation
 
@@ -19,24 +18,26 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org> 
+   Author: Ettore Perazzoli <ettore@gnu.org>
            Seth Nickell <snickell@stanford.edu>
 */
 
-#ifndef _GNOME_VFS_CANCELLATION_H
-#define _GNOME_VFS_CANCELLATION_H
+#ifndef _GNOME_VFS_TRANSFORM_H
+#define _GNOME_VFS_TRANSFORM_H
 
-#include <glib.h>
+#include <libgnomevfs/gnome-vfs-result.h>
+#include <libgnomevfs/gnome-vfs-context.h>
 
-typedef struct GnomeVFSCancellation GnomeVFSCancellation;
+typedef struct GnomeVFSTransform GnomeVFSTransform;
+typedef GnomeVFSTransform * (* GnomeVFSTransformInitFunc)(const char *method_name, const char *config_args);
 
+typedef GnomeVFSResult (* GnomeVFSTransformFunc) (GnomeVFSTransform *transform,
+						  const gchar *old_uri,
+						  gchar **new_uri,
+						  GnomeVFSContext *context);
 
-GnomeVFSCancellation *
-	 gnome_vfs_cancellation_new     (void);
-void     gnome_vfs_cancellation_destroy (GnomeVFSCancellation *cancellation);
-void     gnome_vfs_cancellation_cancel  (GnomeVFSCancellation *cancellation);
-gboolean gnome_vfs_cancellation_check   (GnomeVFSCancellation *cancellation);
-void     gnome_vfs_cancellation_ack	(GnomeVFSCancellation *cancellation);
-gint	 gnome_vfs_cancellation_get_fd  (GnomeVFSCancellation *cancellation);
+struct GnomeVFSTransform {
+	GnomeVFSTransformFunc transform;
+};
 
-#endif /* _GNOME_VFS_CANCELLATION_H */
+#endif

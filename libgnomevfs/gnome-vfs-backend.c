@@ -32,6 +32,7 @@
 #include "gnome-vfs-types.h"
 #include "gnome-vfs-private-types.h"
 #include "gnome-vfs-backend-private.h"
+#include "gnome-vfs-callbacks.h"
 
 #include "gnome-vfs.h"
 #include <gmodule.h>

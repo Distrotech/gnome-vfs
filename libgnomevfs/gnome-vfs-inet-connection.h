@@ -25,6 +25,10 @@
 #define _GNOME_VFS_INET_CONNECTION_H
 
 #include "gnome-vfs-socket.h"
+#include <libgnomevfs/gnome-vfs-iobuf.h>
+#include <libgnomevfs/gnome-vfs-cancellation.h>
+
+typedef struct GnomeVFSInetConnection GnomeVFSInetConnection;
 
 GnomeVFSResult	 gnome_vfs_inet_connection_create
 					(GnomeVFSInetConnection **connection_return,

@@ -24,7 +24,8 @@
 #ifndef _GNOME_VFS_IOBUF_H
 #define _GNOME_VFS_IOBUF_H
 
-
+typedef struct GnomeVFSIOBuf GnomeVFSIOBuf;
+
 GnomeVFSIOBuf   *gnome_vfs_iobuf_new     (gint fd);
 void		 gnome_vfs_iobuf_destroy (GnomeVFSIOBuf *iobuf);
 GnomeVFSResult   gnome_vfs_iobuf_read    (GnomeVFSIOBuf *iobuf,

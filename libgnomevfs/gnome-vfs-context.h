@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /* gnome-vfs-context.h - context VFS modules can use to communicate with gnome-vfs proper
 
-   Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 1999, 2001 Free Software Foundation
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -18,13 +18,17 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Havoc Pennington <hp@redhat.com> */
+   Author: Havoc Pennington <hp@redhat.com> 
+           Seth Nickell <snickell@stanford.edu>
+*/
 
 #ifndef GNOME_VFS_CONTEXT_H
 #define GNOME_VFS_CONTEXT_H
 
-#include "gnome-vfs.h"
-#include "gnome-vfs-app-context.h"
+typedef struct GnomeVFSContext GnomeVFSContext;
+
+#include <libgnomevfs/gnome-vfs-app-context.h>
+#include <libgnomevfs/gnome-vfs-cancellation.h>
 
 GnomeVFSContext* gnome_vfs_context_new                   (void);
 void             gnome_vfs_context_ref                   (GnomeVFSContext *ctx);

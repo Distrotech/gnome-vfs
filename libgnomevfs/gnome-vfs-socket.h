@@ -29,7 +29,9 @@
 #ifndef _GNOME_VFS_SOCKET_H
 #define _GNOME_VFS_SOCKET_H
 
-#include "gnome-vfs-types.h"
+#include <glib.h>
+#include <libgnomevfs/gnome-vfs-file-size.h>
+#include <libgnomevfs/gnome-vfs-result.h>
 
 typedef struct GnomeVFSSocket GnomeVFSSocket;
 

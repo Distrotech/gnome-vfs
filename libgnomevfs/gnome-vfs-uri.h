@@ -24,6 +24,65 @@
 #ifndef GNOME_VFS_URI_H
 #define GNOME_VFS_URI_H
 
+#include <glib.h>
+#include <libgnomevfs/gnome-vfs-method-type.h>
+
+/* This describes a URI element.  */
+typedef struct GnomeVFSURI {
+	/* Reference count.  */
+	guint ref_count;
+
+	/* Text for the element: eg. some/path/name.  */
+	gchar *text;
+
+	/* Text for uri fragment: eg, #anchor  */
+	gchar *fragment_id;
+	
+	/* Method string: eg. `gzip', `tar', `http'.  This is necessary as
+	   one GnomeVFSMethod can be used for different method strings
+	   (e.g. extfs handles zip, rar, zoo and several other ones).  */
+	gchar *method_string;
+
+	/* VFS method to access the element.  */
+	GnomeVFSMethod *method;
+
+	/* Pointer to the parent element, or NULL for toplevel elements.  */
+	struct GnomeVFSURI *parent;
+} GnomeVFSURI;
+
+/* This is the toplevel URI element.  A toplevel method implementations should
+   cast the `GnomeVFSURI' argument to this type to get the additional host/auth
+   information.  If any of the elements is 0, it is unspecified.  */
+typedef struct {
+	/* Base object.  */
+	GnomeVFSURI uri;
+
+	/* Server location information.  */
+	gchar *host_name;
+	guint host_port;
+
+	/* Authorization information.  */
+	gchar *user_name;
+	gchar *password;
+
+	/* The parent URN, if it exists */
+	gchar *urn;
+} GnomeVFSToplevelURI;
+
+
+/* This is used for hiding information when transforming the GnomeVFSURI into a
+   string.  */
+typedef enum {
+	GNOME_VFS_URI_HIDE_NONE = 0,
+	GNOME_VFS_URI_HIDE_USER_NAME = 1 << 0,
+	GNOME_VFS_URI_HIDE_PASSWORD = 1 << 1,
+	GNOME_VFS_URI_HIDE_HOST_NAME = 1 << 2,
+	GNOME_VFS_URI_HIDE_HOST_PORT = 1 << 3,
+	GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD = 1 << 4,
+	GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER = 1 << 8
+} GnomeVFSURIHideOptions;
+
+
 /* CONSTANTS */
 #define GNOME_VFS_URI_MAGIC_CHR	'#'
 #define GNOME_VFS_URI_MAGIC_STR "#"

@@ -44,6 +44,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-application-registry.h	\
 	gnome-vfs-async-ops.h			\
 	gnome-vfs-backend.h			\
+	gnome-vfs-callbacks.h			\
 	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-configuration.h		\
@@ -59,6 +60,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-init.h			\
 	gnome-vfs-iobuf.h			\
 	gnome-vfs-method.h			\
+	gnome-vfs-method-type.h			\
 	gnome-vfs-mime.h			\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-info.h			\
@@ -82,6 +84,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-ssl.h				\
 	gnome-vfs-ssl-private.h			\
 	gnome-vfs-types.h			\
+	gnome-vfs-transform.h			\
 	gnome-vfs-uri.h				\
 	gnome-vfs-utils.h			\
 	gnome-vfs-xfer.h			\

@@ -24,7 +24,7 @@
 #ifndef GNOME_VFS_MIME_INFO_H
 #define GNOME_VFS_MIME_INFO_H
 
-#include <libgnomevfs/gnome-vfs-types.h> /* for GnomeVFSResult */
+#include <libgnomevfs/gnome-vfs-result.h>
 #include <glib.h>
 
 #ifdef __cplusplus

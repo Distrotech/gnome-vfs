@@ -24,6 +24,7 @@
 #include "gnome-vfs-cancellation.h"
 #include "gnome-vfs-backend-private.h"
 #include "gnome-vfs-private-utils.h"
+#include "gnome-vfs-utils.h"
 
 #include <stdio.h>
 

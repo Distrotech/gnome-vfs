@@ -1,10 +1,8 @@
 <!-- ##### SECTION Title ##### -->
-
-URI Manipulation
+uri
 
 <!-- ##### SECTION Short_Description ##### -->
 
-URIs form the backbone of GnomeVFS' filesystem operations
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>

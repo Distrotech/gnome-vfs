@@ -30,7 +30,7 @@
 
 #include "gnome-vfs-mime-sniff-buffer-private.h"
 #include "gnome-vfs-ops.h"
-
+#include "gnome-vfs-handle.h"
 
 static GnomeVFSResult
 handle_seek_glue (gpointer context, GnomeVFSSeekPosition whence, 

@@ -33,6 +33,7 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
+#include <libgnomevfs/gnome-vfs-transform.h>
 
 /* FIXME bugzilla.eazel.com 2762: The uri->parent field is always NULL; we should get rid of it. */
 

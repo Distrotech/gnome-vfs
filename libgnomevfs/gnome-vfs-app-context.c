@@ -26,6 +26,8 @@
 
 #include "gnome-vfs-backend-private.h"
 #include "gnome-vfs-module-api.h"
+#include "gnome-vfs-utils.h"
+
 #include <stdio.h>
 #include <string.h>
 

@@ -43,6 +43,9 @@ extern "C" {
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-uri.h"
 #include "gnome-vfs-utils.h"
+#include "gnome-vfs-callbacks.h"
+#include "gnome-vfs-transform.h"
+#include "gnome-vfs-utils.h"
 
 #ifdef __cplusplus
 }

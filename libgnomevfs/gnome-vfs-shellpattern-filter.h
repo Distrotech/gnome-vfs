@@ -24,6 +24,9 @@
 #ifndef _GNOME_VFS_FNMATCH_FILTER_H
 #define _GNOME_VFS_FNMATCH_FILTER_H
 
+
+typedef struct GnomeVFSShellpatternFilter GnomeVFSShellpatternFilter;
+
 GnomeVFSShellpatternFilter *
 	gnome_vfs_shellpattern_filter_new 	(const gchar *pattern,
 				      		 GnomeVFSDirectoryFilterOptions

@@ -2,7 +2,7 @@
 /* gnome-vfs-ops.h - Synchronous operations for the GNOME Virtual File
    System.
 
-   Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 1999, 2001 Free Software Foundation
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -19,12 +19,18 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@comm2000.it> 
+           Seth Nickell <snickell@stanford.edu>
+*/
 
 #ifndef GNOME_VFS_OPS_H
 #define GNOME_VFS_OPS_H
 
+#include <libgnomevfs/gnome-vfs-file-info.h>
+#include <libgnomevfs/gnome-vfs-handle.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-types.h>
+
 
 GnomeVFSResult	 gnome_vfs_open			(GnomeVFSHandle **handle,
 						 const gchar *text_uri,

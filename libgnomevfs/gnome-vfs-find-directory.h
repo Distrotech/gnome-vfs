@@ -3,6 +3,7 @@
    File System.
 
    Copyright (C) 2000 Eazel, Inc.
+   Copyright (C) 2001 Free Software Foundation
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -20,13 +21,19 @@
    Boston, MA 02111-1307, USA.
 
    Authors: Pavel Cisler <pavel@eazel.com>
+            Seth Nickell <snickell@stanford.edu>
 */
 
 #ifndef _GNOME_VFS_FIND_DIRECTORY_H
 #define _GNOME_VFS_FIND_DIRECTORY_H
 
+typedef enum {
+	GNOME_VFS_DIRECTORY_KIND_DESKTOP = 1000,
+	GNOME_VFS_DIRECTORY_KIND_TRASH = 1001
+} GnomeVFSFindDirectoryKind;
+
 #include <glib.h>
-#include "gnome-vfs-types.h"
+#include <libgnomevfs/gnome-vfs-uri.h>
 
 GnomeVFSResult	gnome_vfs_find_directory (GnomeVFSURI 			*near_uri,
 					  GnomeVFSFindDirectoryKind 	kind,

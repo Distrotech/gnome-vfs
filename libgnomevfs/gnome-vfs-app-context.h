@@ -38,9 +38,7 @@
 #define GNOME_VFS_APP_CONTEXT_H
 
 #include <glib.h>
-
-#include "gnome-vfs.h"
-#include "gnome-vfs-types.h"
+#include <libgnomevfs/gnome-vfs-callbacks.h>
 
 typedef struct GnomeVFSAppContext GnomeVFSAppContext;
 

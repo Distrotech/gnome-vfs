@@ -24,6 +24,49 @@
 #ifndef _GNOME_VFS_DIRECTORY_FILTER_H
 #define _GNOME_VFS_DIRECTORY_FILTER_H
 
+#include <libgnomevfs/gnome-vfs-file-info.h>
+
+typedef enum {
+	GNOME_VFS_DIRECTORY_FILTER_NONE,
+	GNOME_VFS_DIRECTORY_FILTER_SHELLPATTERN,
+	GNOME_VFS_DIRECTORY_FILTER_REGEXP
+} GnomeVFSDirectoryFilterType;
+typedef enum {
+	GNOME_VFS_DIRECTORY_FILTER_DEFAULT = 0,
+	GNOME_VFS_DIRECTORY_FILTER_NODIRS = 1 << 0,
+	GNOME_VFS_DIRECTORY_FILTER_DIRSONLY = 1 << 1,
+	GNOME_VFS_DIRECTORY_FILTER_NODOTFILES = 1 << 2,
+	GNOME_VFS_DIRECTORY_FILTER_IGNORECASE = 1 << 3,
+	GNOME_VFS_DIRECTORY_FILTER_EXTENDEDREGEXP =  1 << 4,
+	GNOME_VFS_DIRECTORY_FILTER_NOSELFDIR = 1 << 5,
+	GNOME_VFS_DIRECTORY_FILTER_NOPARENTDIR = 1 << 6,
+	GNOME_VFS_DIRECTORY_FILTER_NOBACKUPFILES = 1 << 7
+} GnomeVFSDirectoryFilterOptions;
+
+typedef enum {
+	GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING = 0,
+	GNOME_VFS_DIRECTORY_FILTER_NEEDS_NAME = 1 << 0,
+	GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE = 1 << 1,
+	GNOME_VFS_DIRECTORY_FILTER_NEEDS_STAT = 1 << 2,
+	GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE = 1 << 3,
+} GnomeVFSDirectoryFilterNeeds;
+
+typedef enum {
+	GNOME_VFS_DIRECTORY_VISIT_DEFAULT = 0,
+	GNOME_VFS_DIRECTORY_VISIT_SAMEFS = 1 << 0,
+	GNOME_VFS_DIRECTORY_VISIT_LOOPCHECK = 1 << 1
+} GnomeVFSDirectoryVisitOptions;
+
+typedef struct GnomeVFSDirectoryFilter GnomeVFSDirectoryFilter;
+
+typedef gboolean (* GnomeVFSDirectoryFilterFunc) (const GnomeVFSFileInfo *info,
+						  gpointer data);
+typedef gboolean (* GnomeVFSDirectoryVisitFunc)	 (const gchar *rel_path,
+						  GnomeVFSFileInfo *info,
+						  gboolean recursing_will_loop,
+						  gpointer data,
+						  gboolean *recurse);
+
 GnomeVFSDirectoryFilter *
 	gnome_vfs_directory_filter_new	(GnomeVFSDirectoryFilterType type,
 					 GnomeVFSDirectoryFilterOptions

@@ -2,7 +2,7 @@
 /* gnome-vfs-method.h - Virtual class for access methods in the GNOME
    Virtual File System.
 
-   Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 1999, 2001 Free Software Foundation
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -19,10 +19,25 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@comm2000.it> 
+           Seth Nickell <snickell@stanford.edu>
+*/
 
 #ifndef _GNOME_VFS_METHOD_H
 #define _GNOME_VFS_METHOD_H
+
+#include <glib.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
+#include <libgnomevfs/gnome-vfs-result.h>
+#include <libgnomevfs/gnome-vfs-context.h>
+#include <libgnomevfs/gnome-vfs-file-info.h>
+#include <libgnomevfs/gnome-vfs-find-directory.h>
+#include <libgnomevfs/gnome-vfs-directory-filter.h>
+#include <libgnomevfs/gnome-vfs-transform.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
+#include <libgnomevfs/gnome-vfs-method-type.h>
+
+typedef gpointer GnomeVFSMethodHandle;
 
 #define _GNOME_VFS_METHOD_PARAM_CHECK(expression)			\
 	g_return_val_if_fail ((expression), GNOME_VFS_ERROR_BAD_PARAMETERS);

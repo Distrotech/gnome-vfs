@@ -1,3 +1,4 @@
+
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /* gnome-vfs-async-ops.h - Asynchronous operations in the GNOME Virtual File
    System.
@@ -24,6 +25,85 @@
 #ifndef GNOME_VFS_ASYNC_OPS_H
 #define GNOME_VFS_ASYNC_OPS_H
 
+/* Types for asynchronous operations.  */
+
+#include <libgnomevfs/gnome-vfs-file-info.h>
+#include <libgnomevfs/gnome-vfs-xfer.h>
+#include <libgnomevfs/gnome-vfs-directory-filter.h>
+#include <libgnomevfs/gnome-vfs-find-directory.h>
+
+typedef struct GnomeVFSAsyncHandle GnomeVFSAsyncHandle;
+
+typedef void	(* GnomeVFSAsyncCallback)	(GnomeVFSAsyncHandle *handle,
+						 GnomeVFSResult result,
+						 gpointer callback_data);
+
+typedef GnomeVFSAsyncCallback GnomeVFSAsyncOpenCallback;
+typedef GnomeVFSAsyncCallback GnomeVFSAsyncCreateCallback;
+
+typedef void	(* GnomeVFSAsyncOpenAsChannelCallback)
+						(GnomeVFSAsyncHandle *handle,
+						 GIOChannel *channel,
+						 GnomeVFSResult result,
+						 gpointer callback_data);
+
+typedef GnomeVFSAsyncOpenAsChannelCallback GnomeVFSAsyncCreateAsChannelCallback;
+
+#define GnomeVFSAsyncCloseCallback	GnomeVFSAsyncCallback
+
+typedef void	(* GnomeVFSAsyncReadCallback)	(GnomeVFSAsyncHandle *handle,
+						 GnomeVFSResult result,
+						 gpointer buffer,
+						 GnomeVFSFileSize bytes_requested,
+						 GnomeVFSFileSize bytes_read,
+						 gpointer callback_data);
+
+typedef void	(* GnomeVFSAsyncWriteCallback)	(GnomeVFSAsyncHandle *handle,
+						 GnomeVFSResult result,
+						 gconstpointer buffer,
+						 GnomeVFSFileSize bytes_requested,
+						 GnomeVFSFileSize bytes_written,
+						 gpointer callback_data);
+
+
+typedef void    (* GnomeVFSAsyncGetFileInfoCallback)
+                                                (GnomeVFSAsyncHandle *handle,
+						 GList *results, /* GnomeVFSGetFileInfoResult* items */
+						 gpointer callback_data);
+
+typedef void	(* GnomeVFSAsyncSetFileInfoCallback)	
+						(GnomeVFSAsyncHandle *handle,
+						 GnomeVFSResult result,
+						 GnomeVFSFileInfo *file_info,
+						 gpointer callback_data);
+
+
+typedef void	(* GnomeVFSAsyncDirectoryLoadCallback)
+						(GnomeVFSAsyncHandle *handle,
+						 GnomeVFSResult result,
+						 GList *list,
+						 guint entries_read,
+						 gpointer callback_data);
+
+typedef gint    (* GnomeVFSAsyncXferProgressCallback)
+						(GnomeVFSAsyncHandle *handle,
+						 GnomeVFSXferProgressInfo *info,
+						 gpointer data);
+
+typedef struct {
+	GnomeVFSURI *uri;
+	GnomeVFSResult result;
+} GnomeVFSFindDirectoryResult;
+
+typedef void    (* GnomeVFSAsyncFindDirectoryCallback)
+						(GnomeVFSAsyncHandle *handle,
+						 GList *results /* GnomeVFSFindDirectoryResult */,
+						 gpointer data);
+
+
+#include <libgnomevfs/gnome-vfs-file-info.h>
+#include <libgnomevfs/gnome-vfs-handle.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-types.h>
 
 void           gnome_vfs_async_cancel                 (GnomeVFSAsyncHandle                   *handle);

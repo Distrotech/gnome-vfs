@@ -29,7 +29,9 @@
 
 #include <glib.h>
 
+#include "gnome-vfs-handle.h"
 #include "gnome-vfs-types.h"
+
 
 typedef GnomeVFSResult (* GnomeVFSSniffBufferSeekCall)(gpointer context, 
 		GnomeVFSSeekPosition whence, GnomeVFSFileOffset offset);

@@ -1,3 +1,72 @@
+2001-07-07  Seth Nickell  <snickell@stanford.edu>
+
+	Deprecate (other than a couple structs I didn't find a home
+	for) gnome-vfs-types.h in favour of having types distributed
+	throughout corresponding .h files. The primary motivation for
+	this is to achieve better docs: rather than clustering all the
+	type declarations into a big muddy section called "Types",
+	types are defined in relavent sections. Secondary effects are
+	a more obvious include path and the ability to include more
+	files indepedently.
+	
+	* doc/tmpl/gnome-vfs-unused.sgml:
+	* doc/tmpl/types.sgml:
+	* doc/tmpl/uri.sgml:
+	* doc/tmpl/utils.sgml:
+	* doc/tmpl/xfer.sgml:
+
+	gtk-doc has updated the base sgml files to deal with the new
+	locations of declarations.
+	
+	* libgnomevfs/Makefile.am:
+
+	Add gnome-vfs-callbacks.h, gnome-vfs-transform.h, and
+	gnome-vfs-method-type.h to the include header list.
+	
+	* libgnomevfs/gnome-vfs-app-context.c:
+	* libgnomevfs/gnome-vfs-app-context.h:
+	* libgnomevfs/gnome-vfs-application-registry.h:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	* libgnomevfs/gnome-vfs-callbacks.h:
+	* libgnomevfs/gnome-vfs-cancellable-ops.h:
+	* libgnomevfs/gnome-vfs-cancellation.h:
+	* libgnomevfs/gnome-vfs-context.c:
+	* libgnomevfs/gnome-vfs-context.h:
+	* libgnomevfs/gnome-vfs-directory-filter.h:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-find-directory.h:
+	* libgnomevfs/gnome-vfs-handle.h:
+	* libgnomevfs/gnome-vfs-inet-connection.h:
+	* libgnomevfs/gnome-vfs-iobuf.h:
+	* libgnomevfs/gnome-vfs-method-type.h:
+	* libgnomevfs/gnome-vfs-method.c:
+	* libgnomevfs/gnome-vfs-method.h:
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.h:
+	* libgnomevfs/gnome-vfs-mime.h:
+	* libgnomevfs/gnome-vfs-module-shared.h:
+	* libgnomevfs/gnome-vfs-ops.h:
+	* libgnomevfs/gnome-vfs-private-types.h:
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	* libgnomevfs/gnome-vfs-regexp-filter.h:
+	* libgnomevfs/gnome-vfs-result.h:
+	* libgnomevfs/gnome-vfs-shellpattern-filter.h:
+	* libgnomevfs/gnome-vfs-socket.h:
+	* libgnomevfs/gnome-vfs-transform.h:
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-uri.c:
+	* libgnomevfs/gnome-vfs-uri.h:
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-xfer.h:
+	* libgnomevfs/gnome-vfs.h:
+
+	Shuffling around includes and struct declerations
+	to achieve the cleanest arrangement that also minimizes
+	changes to applications like Nautilus that already heavily
+	depend on GnomeVFS.
+
 2001-07-05  Darin Adler  <darin@bentspoon.com>
 
 	* libgnomevfs/gnome-vfs-ssl.c: Added missing <string.h>

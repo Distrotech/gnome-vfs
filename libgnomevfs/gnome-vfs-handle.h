@@ -24,6 +24,13 @@
 #ifndef GNOME_VFS_HANDLE_H
 #define GNOME_VFS_HANDLE_H
 
+/* A file handle.  */
+typedef struct GnomeVFSHandle GnomeVFSHandle;
+
+#include <libgnomevfs/gnome-vfs-file-size.h>
+#include <libgnomevfs/gnome-vfs-types.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+
 GnomeVFSHandle *gnome_vfs_handle_new		(GnomeVFSURI *uri,
 						 GnomeVFSMethodHandle
 						 	*method_handle,

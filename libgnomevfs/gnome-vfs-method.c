@@ -33,9 +33,9 @@
 #include <glib.h>
 #include <gmodule.h>
 
-#include "gnome-vfs-types.h"
-#include "gnome-vfs-private.h"
-#include "gnome-vfs-module.h"
+#include <libgnomevfs/gnome-vfs-transform.h>
+#include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-private.h>
 
 
 struct _ModuleElement {
