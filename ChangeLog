@@ -1,3 +1,10 @@
+2000-08-31  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	(gnome_vfs_mime_info_shutdown):
+	Fix two typos.  The same 2 hash tables were being freed twice.
+	Also make the hash tables NULL after freeing them.
+	
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
 	* acinclude.m4: New file.

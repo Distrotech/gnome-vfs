@@ -828,15 +828,19 @@ gnome_vfs_mime_info_shutdown (void)
 
 	if (specific_types != NULL) {
 		g_hash_table_destroy (specific_types);
+		specific_types = NULL;
 	}
 	if (registered_types != NULL) {
 		g_hash_table_destroy (registered_types);
+		registered_types = NULL;
 	}
 	if (specific_types_user != NULL) {
-		g_hash_table_destroy (specific_types);
+		g_hash_table_destroy (specific_types_user);
+		specific_types_user = NULL;
 	}
 	if (registered_types_user != NULL) {
-		g_hash_table_destroy (registered_types);
+		g_hash_table_destroy (registered_types_user);
+		registered_types_user = NULL;
 	}
 }
 
