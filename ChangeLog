@@ -1,4 +1,35 @@
+1999-10-15  Ettore Perazzoli  <ettore@gnu.org>
+
+	* modules/Makefile.am (CPPFLAGS): #define `PREFIX'.
+
+	* libgnomevfs/gnome-vfs-process.c (gnome_vfs_process_new): Use
+	`gnome_fs_forkexec()'.
+
+	* libgnomevfs/gnome-vfs-process.c (get_max_fds): Removed.
+	(shut_down_file_descriptors): Removed.
+	* libgnomevfs/gnome-vfs-utils.c: Moved here.
+
+	* libgnomevfs/gnome-vfs-utils.c
+	(gnome_vfs_process_run_cancellable): New function.
+	(gnome_vfs_forkexec): New function, cut & paste from
+	`gnome_vfs_process_new()'.
+	(gnome_vfs_create_temp): New function.
+	* libgnomevfs/gnome-vfs-utils.h: Prototypes here.
+
+	* libgnomevfs/gnome-vfs-process.c: #include "gnome-vfs.h" and
+	"gnome-vfs-private.h", instead of just "gnome-vfs-process.h".
+
+	* libgnomevfs/gnome-vfs-process.h
+	(gnome_vfs_process_run_cancellable): Prototype.
+
+	* libgnomevfs/gnome-vfs-process.h: New enum
+	`GnomeVFSProcessRunResult'.
+
 1999-10-14  Ettore Perazzoli  <ettore@gnu.org>
+
+	* modules/extfs-method.c: New file, implementing MC-style extfs.
+	* modules/extfs-method.h: Corresponding header.
+	* modules/Makefile.am: Compile it in `libextfs.so'.
 
 	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_uri): Report
 	progress for the operation of deleting the source directories.

@@ -28,6 +28,9 @@
 typedef struct _GnomeVFSCancellation GnomeVFSCancellation;
 typedef gpointer GnomeVFSMethodHandle;
 
+
+/* VFS methods.  */
+
 typedef GnomeVFSResult (* GnomeVFSMethodOpenFunc)
 					(GnomeVFSMethodHandle
 			       	 	**method_handle_return,

@@ -27,6 +27,11 @@
 #include <glib.h>
 #include <signal.h>		/* For the signal values.  */
 
+
+/* WARNING: These types should go into "gnome-vfs-private-types.h", but we have
+   decided to make these API calls public for now, so I prefer to leave them
+   here.  */
+
 enum _GnomeVFSProcessResult {
 	GNOME_VFS_PROCESS_OK,
 	GNOME_VFS_PROCESS_ERROR_UNKNOWN,
@@ -35,6 +40,15 @@ enum _GnomeVFSProcessResult {
 	GNOME_VFS_PROCESS_ERROR_NOPROCESS
 };
 typedef enum _GnomeVFSProcessResult GnomeVFSProcessResult;
+
+enum _GnomeVFSProcessRunResult {
+	GNOME_VFS_PROCESS_RUN_OK,
+	GNOME_VFS_PROCESS_RUN_ERROR,
+	GNOME_VFS_PROCESS_RUN_CANCELLED,
+	GNOME_VFS_PROCESS_RUN_SIGNALED,
+	GNOME_VFS_PROCESS_RUN_STOPPED
+};
+typedef enum _GnomeVFSProcessRunResult GnomeVFSProcessRunResult;
 
 enum _GnomeVFSProcessOptions {
 	GNOME_VFS_PROCESS_DEFAULT = 0,

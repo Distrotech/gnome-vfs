@@ -6,7 +6,8 @@ INCLUDES =					\
 
 CPPFLAGS =					\
 	-D_REENTRANT				\
-	-D_POSIX_PTHREAD_SEMANTICS
+	-D_POSIX_PTHREAD_SEMANTICS		\
+	-DPREFIX=\"$(prefix)\"
 
 EXTRA_DIST =					\
 	modules.conf
@@ -18,6 +19,7 @@ module_flags = -export_dynamic -avoid-version
 modulesdir = $(prefix)/lib/vfs/modules
 
 modules_LTLIBRARIES =				\
+	libextfs.la				\
 	libfile.la				\
 	libbzip2.la				\
 	libgzip.la				\
@@ -25,6 +27,17 @@ modules_LTLIBRARIES =				\
 
 modules_DATA =					\
 	modules.conf
+
+
+###  `extfs' method
+
+libextfs_la_SOURCES = 				\
+	extfs-method.c 				\
+	extfs-method.h				\
+	module-shared.c				\
+	module-shared.h
+
+libextfs_la_LDFLAGS = $(module_flags)
 
 
 ###  `file' method

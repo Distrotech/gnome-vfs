@@ -21,9 +21,9 @@
    Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
-/* WARNING: This is *NOT* MT-safe at all.  It is supposed to call all processes
-   from the main thread.  But for now this is fine, because we are only using
-   this module internally.  */
+/* WARNING: This is *NOT* MT-safe at all.  It is designed to call all processes
+   from the main thread exclusively.  But for now this is fine, because we are
+   only using this module internally.  */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -37,7 +37,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include "gnome-vfs-process.h"
+#include "gnome-vfs.h"
+#include "gnome-vfs-private.h"
 
 
 /* A launched process.  */
@@ -144,41 +145,6 @@ wake_up (GIOChannel *source,
 }
 
 
-static glong
-get_max_fds (void)
-{
-#if defined _SC_OPEN_MAX
-	return sysconf (_SC_OPEN_MAX);
-#elif defined RLIMIT_NOFILE
-	{
-		struct rlimit rlimit;
-
-		if (getrlimit (RLIMIT_NOFILE, &rlimit) == 0)
-			return rlimit.rlim_max;
-		else
-			return -1;
-	}
-#elif defined HAVE_GETDTABLESIZE
-	return getdtablesize();
-#else
-#warning Cannot determine the number of available file descriptors
-	return 1024;		/* bogus */
-#endif
-}
-
-/* Close all the currrently opened file descriptors.  */
-static void
-shut_down_file_descriptors (void)
-{
-	glong i, max_fds;
-
-	max_fds = get_max_fds ();
-
-	for (i = 3; i < max_fds; i++)
-		close (i);
-}
-
-
 gboolean
 gnome_vfs_process_init (void)
 {
@@ -254,20 +220,11 @@ gnome_vfs_process_new (const gchar *file_name,
 	sigaddset (&sigchld_mask, SIGCHLD);
 	sigprocmask (SIG_BLOCK, &sigchld_mask, &old_mask);
 
-	child_pid = fork ();
-	if (child_pid == 0) {
-		if (init_func != NULL)
-			(* init_func) (init_data);
-		if (options & GNOME_VFS_PROCESS_SETSID)
-			setsid ();
-		if (options & GNOME_VFS_PROCESS_CLOSEFDS)
-			shut_down_file_descriptors ();
-		if (options & GNOME_VFS_PROCESS_USEPATH)
-			execvp (file_name, argv);
-		else
-			execv (file_name, argv);
-		_exit (1);
-	}
+	child_pid = gnome_vfs_forkexec (file_name, argv, options,
+					init_func, init_data);
+
+	if (child_pid == -1)
+		return NULL;
 
 	g_warning ("Launched PID %d.", child_pid);
 
@@ -306,7 +263,7 @@ gnome_vfs_process_free (GnomeVFSProcess *process)
  * 
  * Return value: A numeric value reporting the result of the operation.
  **/
-GnomeVFSProcessResult
+GnomeVFSProcessRunResult
 gnome_vfs_process_signal (GnomeVFSProcess *process,
 			  guint signal_number)
 {
@@ -327,3 +284,4 @@ gnome_vfs_process_signal (GnomeVFSProcess *process,
 		return GNOME_VFS_PROCESS_ERROR_UNKNOWN;
 	}
 }
+

@@ -29,7 +29,16 @@
 #include <config.h>
 #endif
 
+#include <errno.h>
+#include <glib.h>
+#include <signal.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
@@ -169,4 +178,160 @@ gnome_vfs_canonicalize_pathname (gchar *path)
 	return path;
 }
 
+
+static glong
+get_max_fds (void)
+{
+#if defined _SC_OPEN_MAX
+	return sysconf (_SC_OPEN_MAX);
+#elif defined RLIMIT_NOFILE
+	{
+		struct rlimit rlimit;
 
+		if (getrlimit (RLIMIT_NOFILE, &rlimit) == 0)
+			return rlimit.rlim_max;
+		else
+			return -1;
+	}
+#elif defined HAVE_GETDTABLESIZE
+	return getdtablesize();
+#else
+#warning Cannot determine the number of available file descriptors
+	return 1024;		/* bogus */
+#endif
+}
+
+/* Close all the currrently opened file descriptors.  */
+static void
+shut_down_file_descriptors (void)
+{
+	glong i, max_fds;
+
+	max_fds = get_max_fds ();
+
+	for (i = 3; i < max_fds; i++)
+		close (i);
+}
+
+/* FIXME I am not sure the following stuff should be here.  This is a bit
+   messy.  */
+
+pid_t
+gnome_vfs_forkexec (const gchar *file_name,
+		    gchar *const argv[],
+		    GnomeVFSProcessOptions options,
+		    GnomeVFSProcessInitFunc init_func,
+		    gpointer init_data)
+{
+	pid_t child_pid;
+
+	child_pid = fork ();
+	if (child_pid == 0) {
+		if (init_func != NULL)
+			(* init_func) (init_data);
+		if (options & GNOME_VFS_PROCESS_SETSID)
+			setsid ();
+		if (options & GNOME_VFS_PROCESS_CLOSEFDS)
+			shut_down_file_descriptors ();
+		if (options & GNOME_VFS_PROCESS_USEPATH)
+			execvp (file_name, argv);
+		else
+			execv (file_name, argv);
+		_exit (1);
+	}
+
+	return child_pid;
+}
+
+/**
+ * gnome_vfs_process_run_cancellable:
+ * @file_name: Name of the executable to run
+ * @argv: NULL-terminated argument list
+ * @options: Options
+ * @cancellation: Cancellation object
+ * @return_value: Pointer to an integer that will contain the exit value
+ * on return.
+ * 
+ * Run @file_name with argument list @argv, according to the specified
+ * @options.
+ * 
+ * Return value: 
+ **/
+GnomeVFSProcessResult
+gnome_vfs_process_run_cancellable (const gchar *file_name,
+				   gchar *const argv[],
+				   GnomeVFSProcessOptions options,
+				   GnomeVFSCancellation *cancellation,
+				   guint *exit_value)
+{
+	pid_t child_pid;
+
+	child_pid = gnome_vfs_forkexec (file_name, argv, options, NULL, NULL);
+	if (child_pid == -1)
+		return GNOME_VFS_PROCESS_RUN_ERROR;
+
+	while (1) {
+		pid_t pid;
+		int status;
+
+		pid = waitpid (child_pid, &status, WUNTRACED);
+		if (pid == -1) {
+			if (errno != EINTR)
+				return GNOME_VFS_PROCESS_RUN_ERROR;
+			if (gnome_vfs_cancellation_check (cancellation)) {
+				*exit_value = 0;
+				return GNOME_VFS_PROCESS_RUN_CANCELLED;
+			}
+		} else if (pid == child_pid) {
+			if (WIFEXITED (status)) {
+				*exit_value = WEXITSTATUS (status);
+				return GNOME_VFS_PROCESS_RUN_OK;
+			}
+			if (WIFSIGNALED (status)) {
+				*exit_value = WTERMSIG (status);
+				return GNOME_VFS_PROCESS_RUN_SIGNALED;
+			}
+			if (WIFSTOPPED (status)) {
+				*exit_value = WSTOPSIG (status);
+				return GNOME_VFS_PROCESS_RUN_SIGNALED;
+			}
+		}
+	}
+
+}
+
+
+/**
+ * gnome_vfs_create_temp:
+ * @prefix: Prefix for the name of the temporary file
+ * @name_return: Pointer to a pointer that, on return, will point to
+ * the dynamically allocated name for the new temporary file created.
+ * @fd_return: Pointer to a variable that will hold a file descriptor for
+ * the new temporary file on return.
+ * 
+ * Create a temporary file whose name is prefixed with @prefix, and return an
+ * open file descriptor for it in @*fd_return.
+ * 
+ * Return value: An integer value representing the result of the operation
+ **/
+GnomeVFSResult
+gnome_vfs_create_temp (const gchar *prefix,
+		       gchar **name_return,
+		       gint *fd_return)
+{
+	gchar *name;
+	gint fd;
+
+	while (1) {
+		name = tempnam (NULL, prefix);
+		if (name == NULL)
+			return GNOME_VFS_ERROR_INTERNAL;
+
+		fd = open (name, O_WRONLY | O_CREAT | O_EXCL, 0700);
+		if (fd != -1) {
+			*name_return = name;
+			*fd_return = fd;
+			return GNOME_VFS_OK;
+		}
+	}
+}
