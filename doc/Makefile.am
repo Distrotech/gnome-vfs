@@ -79,7 +79,7 @@ EXTRA_DIST = 				\
 	$(DOC_MODULE)-overrides.txt
 
 DOC_STAMPS=scan-build.stamp tmpl-build.stamp sgml-build.stamp html-build.stamp \
-	   $(srcdir)/tmpl.stamp $(srcdir)/sgml.stamp $(srcdir)/html.stamp
+	   $(srcdir)/tmpl.stamp $(srcdir)/sgml.stamp
 
 SCANOBJ_FILES = 		\
 	$(DOC_MODULE).args 	\
@@ -116,7 +116,7 @@ tmpl-build.stamp: $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections
 	touch tmpl-build.stamp
 
 tmpl.stamp: tmpl-build.stamp
-	@true
+	touch $(srcdir)/tmpl.stamp
 
 #### sgml ####
 
@@ -127,7 +127,7 @@ sgml-build.stamp: tmpl.stamp $(CFILE_GLOB) $(srcdir)/tmpl/*.sgml
 	touch sgml-build.stamp
 
 sgml.stamp: sgml-build.stamp
-	@true
+	touch $(srcdir)/sgml.stamp
 
 #### html ####
 

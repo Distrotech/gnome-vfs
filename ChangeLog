@@ -1,3 +1,8 @@
+2001-09-07  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* doc/Makefile.am: Fix stamp creation so the docs get built only
+	when something actually changes, not every single time.
+
 2001-09-06  Darin Adler  <darin@bentspoon.com>
 
 	* modules/ftp-method.c: (do_path_command): Fix leak.
