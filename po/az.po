@@ -7,15 +7,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.az\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-11 12:14+0200\n"
-"PO-Revision-Date: 2003-08-12 17:10+0300\n"
+"POT-Creation-Date: 2003-08-19 04:09+0200\n"
+"PO-Revision-Date: 2003-08-21 15:33+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
 "Language-Team: Azerbaijani <gnome@azitt.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0.1\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
@@ -42,7 +40,8 @@ msgstr "Quraşdırma faylı `%s' tapıla bilmədi: %s"
 msgid "Unknown op type %u"
 msgstr "Namə'lum op növü %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
+#: libgnomevfs/gnome-vfs-job.c:1048
+#: libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel açmaq üçün boru yaradıla bilmir: %s"
@@ -299,29 +298,31 @@ msgstr "Əmr verilərkən xəta"
 msgid "Unknown error"
 msgstr "Namə'lum xəta"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
-#, c-format
-msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "%u bayt"
-msgstr[1] "%u bayt"
+#: libgnomevfs/gnome-vfs-utils.c:84
+msgid "1 byte"
+msgstr "1 bayt"
 
-#: libgnomevfs/gnome-vfs-utils.c:89
+#: libgnomevfs/gnome-vfs-utils.c:86
+#, c-format
+msgid "%u bytes"
+msgstr "%u bayt"
+
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:93
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:97
+#: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1081
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr "(hökmsüz Yunikod)"
 
@@ -389,7 +390,7 @@ msgstr "Vasitələr"
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr "Pənərələr"
+msgstr "Pəncərələr"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
