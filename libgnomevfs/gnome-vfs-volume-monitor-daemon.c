@@ -205,6 +205,7 @@ static GnomeVFSDeviceType
 get_device_type_from_device_and_mount (const char *device_path, const char *mount_path)
 {
 	const char *name;
+	char *basename;
 	
 	if (g_str_has_prefix (device_path, "/dev/loop")) {
 		return GNOME_VFS_DEVICE_TYPE_LOOPBACK;
@@ -220,26 +221,6 @@ get_device_type_from_device_and_mount (const char *device_path, const char *moun
 	    	return GNOME_VFS_DEVICE_TYPE_CDROM;
 	} else if (g_str_has_prefix (device_path, "/dev/cd")) {
 	    	return GNOME_VFS_DEVICE_TYPE_CDROM;
-	} else if (g_str_has_prefix (mount_path, "/mnt/")) {		
-		name = mount_path + strlen ("/mnt/");
-		
-		if (g_str_has_prefix (name, "cdrom") ||
-		    g_str_has_prefix (name, "burn")) {
-			return GNOME_VFS_DEVICE_TYPE_CDROM;
-		} else if (g_str_has_prefix (name, "floppy")) {
-			return GNOME_VFS_DEVICE_TYPE_FLOPPY;
-		} else if (g_str_has_prefix (name, "zip")) {
-			return GNOME_VFS_DEVICE_TYPE_ZIP;
-		} else if (g_str_has_prefix (name, "jaz")) {
-			return GNOME_VFS_DEVICE_TYPE_JAZ;
-		} else if (g_str_has_prefix (name, "camera")) {
-			return GNOME_VFS_DEVICE_TYPE_CAMERA;
-		} else if (g_str_has_prefix (name, "memstick") ||
-			   g_str_has_prefix (name, "ram")) {
-			return GNOME_VFS_DEVICE_TYPE_MEMORY_STICK;
-		} else if (g_str_has_prefix (name, "ipod")) {
-			return GNOME_VFS_DEVICE_TYPE_MUSIC_PLAYER;
-		} 
 	} else if (g_str_has_prefix (device_path, "/vol/")) {
 			name = mount_path + strlen ("/");
 
@@ -258,8 +239,36 @@ get_device_type_from_device_and_mount (const char *device_path, const char *moun
 			} else if (g_str_has_prefix (name, "memstick")) {
 				return GNOME_VFS_DEVICE_TYPE_MEMORY_STICK;
 			}
-		}
-
+	} else {
+		basename = g_path_get_basename (mount_path);
+		if (g_str_has_prefix (basename, "cdrom") ||
+		    g_str_has_prefix (basename, "cdwriter") ||
+		    g_str_has_prefix (basename, "burn")) {
+			g_free (basename);
+			return GNOME_VFS_DEVICE_TYPE_CDROM;
+		} else if (g_str_has_prefix (basename, "floppy")) {
+			g_free (basename);
+			return GNOME_VFS_DEVICE_TYPE_FLOPPY;
+		} else if (g_str_has_prefix (basename, "zip")) {
+			g_free (basename);
+			return GNOME_VFS_DEVICE_TYPE_ZIP;
+		} else if (g_str_has_prefix (basename, "jaz")) {
+			g_free (basename);
+			return GNOME_VFS_DEVICE_TYPE_JAZ;
+		} else if (g_str_has_prefix (basename, "camera")) {
+			g_free (basename);
+			return GNOME_VFS_DEVICE_TYPE_CAMERA;
+		} else if (g_str_has_prefix (basename, "memstick") ||
+			   g_str_has_prefix (basename, "ram")) {
+			g_free (basename);
+			return GNOME_VFS_DEVICE_TYPE_MEMORY_STICK;
+		} else if (g_str_has_prefix (basename, "ipod")) {
+			g_free (basename);
+			return GNOME_VFS_DEVICE_TYPE_MUSIC_PLAYER;
+		} 
+		g_free (basename);
+	}
+	
 	return GNOME_VFS_DEVICE_TYPE_HARDDRIVE;
 }
 

@@ -1,3 +1,8 @@
+2004-05-18  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c (get_device_type_from_device_and_mount):
+	Figure out type by looking at mountpoint basename even outside /mnt.
+
 2004-05-17  Christophe Fergeau  <teuf@gnome.org>
 
         * modules/ftp-method.c: reset connection offset in
