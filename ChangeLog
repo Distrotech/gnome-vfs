@@ -1,6 +1,15 @@
 2000-05-19  Pavel Cisler  <pave@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c: 
+	* libgnomevfs-pthread/gnome-vfs-job.h: 
+	(dispatch_job_callback), (serve_channel_write),
+	(gnome_vfs_job_new): Fixed up the rest of the g_io_channel_read
+	calls to prevent them from returning without reading any input
+	when a thread is signalled. Added more debugging code.
+
+2000-05-19  Pavel Cisler  <pave@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: 
 	(dispatch_job_callback): Handle a bug where g_io_channel_read
 	would sometimes return with an error and without any characters
 	read, failing to synchronize with the slave thread. I need to 

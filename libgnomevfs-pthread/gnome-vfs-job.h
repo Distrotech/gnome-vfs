@@ -48,8 +48,13 @@ G_STMT_START{					\
 	fflush (stdout);			\
 	g_static_mutex_unlock (&debug_mutex);	\
 }G_STMT_END
+
+#define JOB_DEBUG_ONLY(x) x
+
 #else
 #define JOB_DEBUG(x)
+#define JOB_DEBUG_ONLY(x)
+
 #endif
 
 enum GnomeVFSOpType {

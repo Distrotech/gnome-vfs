@@ -3,6 +3,7 @@ gnome-vfs-job.c - Jobs for asynchronous operation of the GNOME Virtual File
 System (version for POSIX threads).
 
    Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2000 Eazel
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -19,7 +20,12 @@ System (version for POSIX threads).
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org> */
+   Authors: 
+   	Ettore Perazzoli <ettore@gnu.org> 
+  	Pavel Cisler <pavel@eazel.com> 
+  	Darin Adler <darin@eazel.com> 
+
+   */
 
 /* FIXME the slave threads do not die properly.  */
 /* FIXME check that all the data is freed properly //in the callback dispatching
@@ -58,7 +64,6 @@ static void gnome_vfs_job_release_current_op (GnomeVFSJob *job);
 static void gnome_vfs_job_release_notify_op  (GnomeVFSJob *job);
 static void gnome_vfs_job_finish_destroy     (GnomeVFSJob *job);
 
-
 static void
 set_fl(int fd, int flags)
 {
@@ -444,7 +449,11 @@ dispatch_job_callback (GIOChannel *source,
 	job = (GnomeVFSJob *) data;
 
 	JOB_DEBUG (("waiting for channel wakeup %p", job));
-	g_io_channel_read (job->wakeup_channel_in, &c, 1, &bytes_read);
+	for (;;) {
+		g_io_channel_read (job->wakeup_channel_in, &c, 1, &bytes_read);
+		if (bytes_read > 0)
+			break;
+	}
 	JOB_DEBUG (("got channel wakeup %p %c %d", job, c, bytes_read));
 
 	op = job->notify_op;
@@ -577,17 +586,14 @@ gnome_vfs_job_new (void)
 	/* Wait for the thread to come up. 
 	 *
 	 * Keep reading until we get the synch character from the slave thread --
-	 * in some weird cases (bug in g_io_channel ??)the read will return with 
+	 * When the thread receives a signal, the read will return with 
 	 * nothing the first time but will succeed if we retry.
-	 * 
-	 * FIXME:
-	 * would be nice to find out why this can happen
-	 * 
 	 */
 	for (;;) {
 		error = g_io_channel_read (new_job->wakeup_channel_in, &c, 1, &bytes_read);
 		JOB_DEBUG (("new job ready to rip %p, %c, %d, %d", 
 			new_job, c, bytes_read, error));
+		JOB_DEBUG_ONLY(if (error !=  G_IO_ERROR_NONE) perror("system error:"));
 		if (bytes_read > 0)
 			break;
 	}
@@ -841,7 +847,8 @@ serve_channel_write (GnomeVFSHandle *handle,
 
 		io_result = g_io_channel_read (channel_in, buffer, buffer_size,
 					       &bytes_read);
-		if (io_result == G_IO_ERROR_AGAIN)
+		if (io_result == G_IO_ERROR_AGAIN || io_result == G_IO_ERROR_UNKNOWN)
+			/* we will get G_IO_ERROR_UNKNOWN if a signal occurrs */
 			continue;
 		if (io_result != G_IO_ERROR_NONE || bytes_read == 0)
 			goto end;
