@@ -55,6 +55,9 @@
 #include <sys/ucred.h>
 #include <sys/mount.h>
 #include <fstab.h>
+#ifdef HAVE_SYS_SYSCTL_H
+#include <sys/sysctl.h>
+#endif
 #endif
 
 
@@ -765,12 +768,21 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 {
     	struct fstab *fstab = NULL;
 	GnomeVFSUnixMountPoint *mount_entry;
+#ifdef HAVE_SYS_SYSCTL_H
+	int usermnt = 0;
+	size_t len = sizeof(usermnt);
+	struct stat sb;
+#endif
 
 	*return_list = NULL;
 
 	if (!setfsent ()) {
 	    	return TRUE;
 	}
+
+#ifdef HAVE_SYS_SYSCTL_H
+	sysctlbyname ("vfs.usermount", &usermnt, &len, NULL, 0);
+#endif
 
 	while ((fstab = getfsent ()) != NULL) {
 	    	if (strcmp (fstab->fs_vfstype, "swap") == 0) {
@@ -786,6 +798,16 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 		if (strcmp (fstab->fs_type, "ro") == 0) {
 		    	mount_entry->is_read_only = TRUE;
 		}
+
+#ifdef HAVE_SYS_SYSCTL_H
+		if (usermnt != 0) {
+			if (stat (fstab->fs_file, &sb) == 0) {
+				if (sb.st_uid != 0) {
+					mount_entry->is_user_mountable = TRUE;
+				}
+			}
+		}
+#endif
 
 		*return_list = g_list_prepend (*return_list, mount_entry);
 	}
