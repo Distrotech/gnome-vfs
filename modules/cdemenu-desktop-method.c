@@ -47,7 +47,7 @@
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 
 #define LINESIZE 1024
-#define CDE_ICON_NAME_CACHE "/tmp/g-cdemenu.tmp"
+#define CDE_ICON_NAME_CACHE "/.gnome/g-cdeiconnames"
 
 static GSList *cdemenufiles;
 
@@ -148,6 +148,7 @@ get_icon_for_action(char *action)
 	FILE *file;
 	char **dir, *expandeddir, *fullpath=NULL;
 	char *tmp=NULL;
+	char *icon_name_cache_path;
 
 	char *iconsearchpath[] = {"/usr/dt/appconfig/icons/$LANG",
 			"/etc/dt/appconfig/icons/$LANG",
@@ -157,7 +158,9 @@ get_icon_for_action(char *action)
 	if ((tmp=strchr(action,'\"'))) {*tmp='\0'; tmp=NULL;}
 	
 	/*Return NULL icon if icon DB does not exist*/
-	file = fopen(CDE_ICON_NAME_CACHE,"r");
+	icon_name_cache_path = g_strconcat (g_get_home_dir (), CDE_ICON_NAME_CACHE, NULL);
+	file = fopen(icon_name_cache_path,"r");
+	g_free(icon_name_cache_path);
 	if (!file) return NULL;
 
 	while (fgets(line,LINESIZE,file) != NULL){
@@ -492,13 +495,19 @@ create_cde_icon_name_cache (void)
 {
 	/* fork the dttypes command to create the icon name cache */
 	int fd, t;
+	mode_t old_mask;
+	char *icon_name_cache_path;
 	
 	if ((t = fork ()) < 0) g_error ("Unable to fork.");
 	else if (t) wait(NULL);
 	else {
-		fd = open (CDE_ICON_NAME_CACHE, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		icon_name_cache_path = g_strconcat (g_get_home_dir (), CDE_ICON_NAME_CACHE, NULL);
+		old_mask = umask(033);
+		fd = open (icon_name_cache_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		dup2 (fd, 1);
 		fchmod (fd, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH); 
+		g_free(icon_name_cache_path);
+		umask(old_mask);
 		execl("/usr/dt/bin/dttypes", "dttypes", "-w", "fld_name", "ICON",
 			  "-l", "fld_name", "ICON", NULL);
 	}
@@ -510,6 +519,8 @@ vfs_module_init (const char *method_name,
 {
 	gchar *files[6];
 	int i;
+	char *icon_name_cache_path;
+
 	parent_method = gnome_vfs_method_get ("file");
 
 	if (parent_method == NULL) {
@@ -542,9 +553,11 @@ vfs_module_init (const char *method_name,
 	find_all_included_files(cdemenufiles->data);
 
 	/*create the icon name cache if it does not exist*/
-	if (!g_file_test(CDE_ICON_NAME_CACHE, G_FILE_TEST_EXISTS))
+	icon_name_cache_path = g_strconcat (g_get_home_dir (), CDE_ICON_NAME_CACHE, NULL);
+	if (!g_file_test(icon_name_cache_path, G_FILE_TEST_EXISTS))
 		create_cde_icon_name_cache();
 
+	g_free(icon_name_cache_path);
 	return &method;
 }
 
