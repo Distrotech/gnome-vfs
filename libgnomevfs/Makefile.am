@@ -7,7 +7,8 @@ CPPFLAGS =					\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
-	-DPREFIX=\"$(prefix)\"			\
+	-DLIBDIR=\"$(libdir)\"			\
+	-DSYSCONFDIR=\"$(sysconfdir)\"		\
 	-DG_LOG_DOMAIN=\"GnomeVFS\"
 
 lib_LTLIBRARIES = libgnomevfs.la

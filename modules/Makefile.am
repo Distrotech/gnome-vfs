@@ -20,7 +20,7 @@ EXTRA_DIST =					\
 ###  Module setup
 
 module_flags = -export_dynamic -avoid-version
-modulesdir = $(prefix)/lib/vfs/modules
+modulesdir = $(libdir)/vfs/modules
 
 modules_LTLIBRARIES =				\
 	libextfs.la				\
@@ -31,8 +31,9 @@ modules_LTLIBRARIES =				\
 	libftp.la				\
 	libvfs-pipe.la
 
-modules_DATA =					\
-	modules.conf
+modulesconfdir=$(sysconfdir)/vfs/modules
+modulesconf_DATA =				\
+	default-modules.conf
 
 
 ###  `extfs' method

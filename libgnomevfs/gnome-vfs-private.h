@@ -31,6 +31,9 @@
 
 BEGIN_GNOME_DECLS
 
+#define GNOME_VFS_MODULE_DIR     LIBDIR "/vfs/modules"
+#define GNOME_VFS_MODULE_CFGDIR  SYSCONFDIR "/vfs/modules"
+
 #include "gnome-vfs-private-types.h"
 
 #include "gnome-vfs-cancellation.h"

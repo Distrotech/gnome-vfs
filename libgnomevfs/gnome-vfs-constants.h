@@ -41,9 +41,4 @@
 #define GNOME_VFS_OFFSET_FORMAT_STR "ld"
 #endif
 
-
-/* FIXME */
-#define GNOME_VFS_MODULE_DIR     PREFIX "/lib/vfs/modules"
-#define GNOME_VFS_MODULE_CFGFILE GNOME_VFS_MODULE_DIR "/modules.conf"
-
 #endif /* _GNOME_VFS_CONSTANTS_H */

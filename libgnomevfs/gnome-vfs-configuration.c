@@ -28,6 +28,7 @@
 #include <errno.h>
 #include <string.h>
 #include <stdio.h>
+#include <dirent.h>
 
 #include <glib.h>
 
@@ -311,26 +312,79 @@ parse_file (Configuration *configuration,
 }
 
 /* Load configuration.  */
+static char **config_dirs = NULL;
+static int num_config_dirs = 0;
+
+#define MAX_CFG_FILES 128
+
 static Configuration *
 configuration_load (void)
 {
 	Configuration *new;
-	const gchar *file_name;
-
-	file_name = GNOME_VFS_MODULE_CFGFILE;
+	const gchar *file_names[MAX_CFG_FILES];
+	int i = 0, dirnum;
+	DIR *dirh;
+	char *dirname;
 
 	new = g_new (Configuration, 1);
 	new->method_to_module_path = g_hash_table_new (g_str_hash, g_str_equal);
 
-	if (! parse_file (new, file_name)) {
-		configuration_destroy (new);
-		return NULL;
+	/* Go through the list of configuration directories and build up a list of config files */
+	for(dirnum = -1;
+	    i < MAX_CFG_FILES
+		    && dirnum < num_config_dirs
+		    && (dirname = (dirnum<0)?GNOME_VFS_MODULE_CFGDIR:config_dirs[dirnum]);
+	    dirnum++) {
+		struct dirent *dent;
+		int dlen;
+
+		dirh = opendir(dirname);
+		if(!dirh)
+			continue;
+
+		dlen = strlen(dirname) + 2;
+
+		while((dent = readdir(dirh))) {
+			char *ctmp;
+			ctmp = strstr(dent->d_name, ".conf");
+			if(!ctmp || strcmp(ctmp, ".conf"))
+				continue;
+			file_names[i] = alloca(dlen + strlen(dent->d_name));
+			sprintf(file_names[i], "%s/%s", dirname, dent->d_name);
+			i++;
+		}
+		closedir(dirh);
 	}
+	file_names[i++] = NULL;
+
+	/* Now read these cfg files */
+	for(i = 0; file_names[i]; i++) {
+		if (! parse_file (new, file_names[i])) {
+			configuration_destroy (new);
+			return NULL;
+		}
+	}
+
+	g_strfreev(config_dirs); config_dirs = NULL;
+	num_config_dirs = 0;
 
 	return new;
 }
 
-
+void
+gnome_vfs_configuration_add_directory (const char *dir)
+{
+	if(configuration)
+		return;
+
+	if(!strcmp(dir, GNOME_VFS_MODULE_CFGDIR))
+		return;
+
+	config_dirs = g_realloc(config_dirs, sizeof(char *) * (++num_config_dirs + 1));
+	config_dirs[num_config_dirs-1] = g_strdup(dir);
+	config_dirs[num_config_dirs] = NULL;
+}
+
 gboolean
 gnome_vfs_configuration_init (void)
 {

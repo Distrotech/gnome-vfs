@@ -1,3 +1,10 @@
+2000-01-28  Elliot Lee  <sopwith@redhat.com>
+
+	* libgnomevfs/gnome-vfs-configuration.c: Support reading multiple configuration files from multiple directories.
+	* libgnomevfs/gnome-vfs-{configuration,private}.h: Move #defines from gnome-vfs-configuration.h to gnome-vfs-private.h
+	* libgnomevfs/Makefile.am: Add defines of sysconfdir and libdir to cflags, remove prefix define. 
+	* modules/Makefile.am: Rename modules.conf to default-modules.conf, and install into $(sysconfdir)/vfs/modules instead.
+
 2000-01-27  Elliot Lee  <sopwith@redhat.com>
 
 	* modules/pipe-method.[ch]: Implement a stupid one-cent trick pipe method - produces output of a pipe.
