@@ -1,5 +1,9 @@
 2003-11-15  Christophe Fergeau  <teuf@gnome.org>
 
+	* */.cvsignore: updates
+
+2003-11-15  Christophe Fergeau  <teuf@gnome.org>
+
 	* docs/*
 	* configure.in: added version number to the API docs start page
 	  (fixes #126027)

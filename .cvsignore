@@ -27,6 +27,7 @@ missing
 mkinstalldirs
 sgml
 stamp-h
+stamp-h1
 stamp-h.in
 vfsConf.sh
 gnome-vfs-config
