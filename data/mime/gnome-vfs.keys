@@ -108,6 +108,7 @@ application/vnd.ms-excel
 
 application/x-applix-spreadsheet
 	description=Applix spreadsheet
+	icon-filename=i-spreadsheet.png
 
 application/x-applix-word
 	description=Applix Word document
@@ -235,6 +236,7 @@ application/x-gnumeric
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
 	short_list_application_ids_for_hacker_user_level=gnumeric
+	icon-filename=i-spreadsheet.png
 
 application/x-gtar
 	description=gtar archive
@@ -326,6 +328,7 @@ application/x-soffice-presentation
 
 application/x-soffice-spreadsheet
 	description=StarOffice spreadsheet
+	icon-filename=i-spreadsheet.png
 
 application/x-soffice-word
 	description=StarOffice word processing document
@@ -397,7 +400,7 @@ audio/x-mod
 
 audio/x-mp3
 	description=MP3 audio
-	icon-filename=gnome-audio-x-mp3.png
+	icon-filename=i-music.png
 
 audio/x-mp3-playlist
 	description=MP3 audio playlist
@@ -412,6 +415,7 @@ audio/x-real-audio
 
 audio/x-riff
 	description=RIFF audio
+	icon-filename=i-music.png
 
 audio/x-s3m
 	description=Scream Tracker 3 audio
