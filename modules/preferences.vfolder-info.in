@@ -1,5 +1,5 @@
 <VFolderInfo>
-  <ItemDir>@datadir/control-center/capplets</ItemDir>
+  <ItemDir>@datadir@/control-center/capplets</ItemDir>
   <!-- Merge dirs optional -->
   <MergeDir>@datadir@/gnome/apps/Settings</MergeDir>
 

@@ -1,5 +1,12 @@
 2001-12-14  Seth Nickell  <snickell@stanford.edu>
 
+	* modules/preferences.vfolder-info.in:
+
+	Fix stupid typo that was breaking substitution
+	of @datadir@
+
+2001-12-14  Seth Nickell  <snickell@stanford.edu>
+
 	* modules/Makefile.am:
 	* modules/default-modules.conf:
 	* modules/desktop-method.c: (vfs_module_init):
