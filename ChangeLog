@@ -1,3 +1,10 @@
+2001-01-30  Darin Adler  <darin@eazel.com>
+
+	reviewed by: John Sullivan <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs-mime-magic: Change magic so it recognizes
+	Nautilus links with lower-case XML tags instead of upper-case.
+
 2001-01-30  Rebecca Schulman  <rebecka@eazel.com>
         Removed all instances of "default_application_id"
 	and "default_component_id" from the system

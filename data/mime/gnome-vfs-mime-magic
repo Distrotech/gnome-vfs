@@ -1,31 +1,38 @@
-# Copyright (C) Eazel, Inc. 2000
+# Copyright (C) Eazel, Inc. 2000, 2001
 #
-# MIME magic patterns as used by the GnomeVFS library
+# MIME magic patterns as used by the Gnome VFS library
 #
 # The format of magic entries is:
 #
-# offsetStart[:offsetEnd] type pattern [&patternMask] type
+#     offset_start[:offset_end] pattern_type pattern [&pattern_mask] type
 #
-# offsetStart and offsetEnd are decimal numbers
+# <offset_start> and <offset_end> are decimal numbers (file offsets).
 #
-# type is: (byte | short | long | string | date | beshort | belong | bedate | leshort | lelong | ledate")
+# <pattern_type> is (byte | short | long | string | date | beshort |
+#                    belong | bedate | leshort | lelong | ledate).
 #
-# pattern is an ascii string with non-printable characters escaped as hex or octal numbers,
-# spaces and other important whitespace escaped with '\'
+# <pattern> is an ASCII string with non-printable characters escaped
+# as hex or octal escape sequences, and spaces and other important
+# whitespace escaped with '\'.
 #
-# pattern mask is a string of hex digits; pattern mask must be the same length as the pattern
+# <pattern_mask> is a string of hex digits. The mask must be the same
+# length as the pattern.
 #
-# type is a valid MIME type
+# <type> is a valid MIME type.
 #
-# Order magic patterns such that ambiguous ones (such as application/x-ms-dos-executable) are
-# at the end of the list and therefore get applied last.
-# Avoid rules that require a seek deep into the examined file. If you must, locate such rules
-# at the end of the list so that they get applied last
+# Order magic patterns such that ambiguous ones (such as
+# application/x-ms-dos-executable) are at the end of the list and
+# therefore get applied last.
 #
-# When designing new document formats, make them easily recognizable by defining a sufficiently unique
-# magic pattern near the end of the document start. A good pattern is at least four bytes long and
-# contains one or two non-printable characters.
+# Avoid rules that require a seek deep into the examined file. If you
+# must, locate such rules at the end of the list so that they get
+# applied last
 #
+# When designing new document formats, make them easily recognizable
+# by defining a sufficiently unique magic pattern near the document
+# start. A good pattern is at least four bytes long and contains one
+# or two non-printable characters so that text files won't be
+# misidentified.
 
 0	string		%PDF-					application/pdf
 0	string		\177ELF					application/x-executable-binary
@@ -65,7 +72,7 @@
 0	string		8BPS\ \ \000\000\000\000 &0xffffffff0000ffffffff image/x-psd
 
 # special Nautilus link type
-0:32	string		\<NAUTILUS_OBJECT\ NAUTILUS_LINK	application/x-nautilus-link
+0:32	string		\<nautilus_object\ nautilus_link	application/x-nautilus-link
 
 # special GMC link type
 0:32	string		\URL:					application/x-gmc-link
@@ -103,8 +110,7 @@
 0	string		RIFF					audio/x-riff
 8	string		WAVE					audio/x-wav
 8	string		WAV\ 					audio/x-wav
-# The below is set to 'application/x-ogg' at the request of Ogg Vorbis
-# developers
+# The below is set to 'application/x-ogg' at the request of Ogg Vorbis developers
 0	string		OggS					application/x-ogg
 0	string		SIT! 					application/x-stuffit
 0	string		\312\376\272\276			application/x-java-byte-code
