@@ -651,7 +651,7 @@ vfs_module_init (const char *method_name,
 			 * this, but we don't know where to yet
 			 */
 			schemes[i].directories[0] =
-				g_strconcat (DATADIR, "/control-center", NULL);
+				g_strconcat (DATADIR, "/control-center/capplets", NULL);
 			break;
 		case SCHEME_START_HERE:
 			schemes[i].directories[0] = g_strconcat (SYSCONFDIR,

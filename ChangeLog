@@ -1,6 +1,16 @@
 2001-12-14  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/Makefile.am:
+	* modules/default-modules.conf:
+	* modules/desktop-method.c: (vfs_module_init):
+	* modules/preferences.vfolder-info.in:
+
+	Switch the "preferences:/" URI over to using the vfolder
+	method and create a vfolder for preferences.
+	
+2001-12-14  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/Makefile.am:
 	* modules/applications.vfolder-info.in:
 	* modules/default-modules.conf:
 	* modules/programs.vfolder-info.in:

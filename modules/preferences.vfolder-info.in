@@ -1,0 +1,42 @@
+<VFolderInfo>
+  <ItemDir>@datadir/control-center/capplets</ItemDir>
+  <!-- Merge dirs optional -->
+  <MergeDir>@datadir@/gnome/apps/Settings</MergeDir>
+
+  <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
+
+  <!-- Root folder -->
+  <Folder>
+    <Name>Root</Name>
+
+    <Query>
+      <Or>
+        <Keyword>Settings</Keyword>
+      </Or>
+    </Query>
+
+    <!-- Other folders -->
+
+    <!-- Applications -->
+    <Folder>
+      <Name>Other Preferences</Name>
+      <Desktop>OtherPreferences.directory</Desktop>
+      <OnlyUnallocated/>
+      <Query>
+        <Keyword>Settings</Keyword>
+      </Query>
+      <DontShowIfEmpty/>
+    </Folder>
+    <Folder>
+      <Name>System</Name>
+      <Desktop>System.directory</Desktop>
+      <Query>
+        <And>
+	  <Keyword>System</Keyword>
+	  <Keyword>Settings</Keyword>
+        </And>
+      </Query>
+      <DontShowIfEmpty/>
+    </Folder>
+  </Folder>
+</VFolderInfo>
