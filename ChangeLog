@@ -1,3 +1,9 @@
+2000-08-28  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	Added application/x-palm-database, reported by a 
+	Nautilus user.
+
 2000-08-27 Alastair McKinstry <mckinstry@computer.org>
 
 	* ga.po: Added Irish translation.

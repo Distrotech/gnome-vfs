@@ -252,6 +252,9 @@ application/x-object-file
 application/x-pef-executable
 	description=PEF document
 
+application/x-palm-database
+	description=Palm OS database
+
 application/x-perl
 	description=Perl script
 
