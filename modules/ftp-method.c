@@ -1158,13 +1158,23 @@ do_open_directory (GnomeVFSMethod *method,
 
 	/*g_print ("do_open_directory () in uri: %s\n", gnome_vfs_uri_get_path(uri));*/
 
+	/* LIST does not return an error if called on a file, but CWD
+	 * should. This allows us to have proper gnome-vfs semantics.
+	 * does the cwd break other things though?  ie, are
+	 * connections stateless?
+	 */
+	conn->fivefifty = GNOME_VFS_ERROR_NOT_A_DIRECTORY;
+	result = do_path_command (conn, "CWD", uri);
+	if (result != GNOME_VFS_OK) {
+		ftp_connection_release (conn);
+		return result;
+	}
+
 	if(strstr(conn->server_type,"MACOS")) {
 		/* don't ask for symlinks from MacOS servers */
-		result = do_path_transfer_command (conn, 
-			"LIST", uri, context);
+		result = do_transfer_command (conn, "LIST", context);
 	} else {
-		result = do_path_transfer_command (conn, 
-			"LIST -L", uri, context);
+		result = do_transfer_command (conn, "LIST -L", context);
 	}
 
 	if (result != GNOME_VFS_OK) {

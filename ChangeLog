@@ -1,3 +1,8 @@
+2001-08-06  jacob berkman  <jacob@ximian.com>
+
+	* modules/ftp-method.c (do_open_directory): do a CWD command so we
+	can correctly return an error code when trying to open a file.
+
 2001-08-06  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c:
