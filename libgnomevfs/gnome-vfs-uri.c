@@ -254,7 +254,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 
 		p2 = p1 + 1;
 		if (*p2 == 0) {
-			gnome_vfs_uri_destroy (new_uri);
+			gnome_vfs_uri_unref (new_uri);
 			return NULL;
 		}
 
@@ -266,7 +266,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 
 		if (new_method == NULL) {
 			/* FIXME: Better error handling/reporting?  */
-			gnome_vfs_uri_destroy (new_uri);
+			gnome_vfs_uri_unref (new_uri);
 			return NULL;
 		}
 
@@ -337,32 +337,14 @@ gnome_vfs_uri_unref (GnomeVFSURI *uri)
 	GnomeVFSURI *p, *parent;
 
 	g_return_if_fail (uri != NULL);
+	g_return_if_fail (uri->ref_count > 0);
 
 	for (p = uri; p != NULL; p = parent) {
 		parent = p->parent;
+		g_assert (p->ref_count > 0);
 		p->ref_count--;
 		if (p->ref_count == 0)
 			destroy_element (p);
-	}
-}
-
-/**
- * gnome_vfs_uri_destroy:
- * @uri: A GnomeVFSURI.
- * 
- * Destroy @uri.
- **/
-void
-gnome_vfs_uri_destroy (GnomeVFSURI *uri)
-{
-	g_return_if_fail (uri != NULL);
-
-	while (uri != NULL) {
-		GnomeVFSURI *parent;
-
-		parent = uri->parent;
-		destroy_element (uri);
-		uri = parent;
 	}
 }
 

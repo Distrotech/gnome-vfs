@@ -1,3 +1,13 @@
+2000-01-18  Federico Mena Quintero  <federico@helixcode.com>
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_destroy): Removed.
+	It does not make sense to have this function, as we have proper
+	reference counting of URIs.
+	(gnome_vfs_uri_new): Use gnome_vfs_uri_unref() instead of
+	destroy() for the new_uri.
+	(gnome_vfs_uri_unref): Added a sanity check for the reference
+	count.
+
 2000-01-18  Elliot Lee  <sopwith@redhat.com>
 
 	* configure.in: We want ORBit, not gnorba.
