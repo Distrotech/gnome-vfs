@@ -1,3 +1,8 @@
+2000-06-19  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	Make mozilla the default 
+	
 2000-06-19  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c: (mime_type_get_supertype):
