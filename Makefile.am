@@ -1,8 +1,8 @@
 SUBDIRS_GNOME=monikers doc
 
 SUBDIRS =					\
-	libgnomevfs				\
 	libgnomevfs-pthread			\
+	libgnomevfs				\
 	modules					\
 	data					\
 	man					\

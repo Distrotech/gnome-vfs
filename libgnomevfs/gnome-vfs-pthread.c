@@ -3,7 +3,7 @@
 #include "gnome-vfs-thread-pool.h"
 
 gboolean
-gnome_vfs_pthread_init(gboolean init_deps)
+gnome_vfs_pthread_init (gboolean init_deps)
 {
 	if (!g_threads_got_initialized) {
 		g_thread_init(NULL);

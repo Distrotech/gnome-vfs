@@ -40,6 +40,7 @@ System (version for POSIX threads).
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-i18n.h>
 #include <libgnomevfs/gnome-vfs-module-api.h>
+#include <libgnomevfs/gnome-vfs-backend.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -1649,10 +1650,8 @@ clear_current_job (void)
 	g_static_private_set (&job_private, NULL, NULL);
 }
 
-void pthread_gnome_vfs_get_current_context (GnomeVFSContext **context);
-
 void
-pthread_gnome_vfs_get_current_context (GnomeVFSContext **context)
+gnome_vfs_get_current_context (GnomeVFSContext **context)
 {
 	GnomeVFSJob *job;
 	
@@ -1668,16 +1667,10 @@ pthread_gnome_vfs_get_current_context (GnomeVFSContext **context)
 }
 
 void
-pthread_gnome_vfs_dispatch_callback (GnomeVFSCallback callback,
-				     gpointer user_data,
-				     gconstpointer in, size_t in_size,
-		 		     gpointer out, size_t out_size);
-
-void
-pthread_gnome_vfs_dispatch_callback (GnomeVFSCallback callback,
-				     gpointer user_data,
-				     gconstpointer in, size_t in_size,
-		 		     gpointer out, size_t out_size)
+gnome_vfs_dispatch_callback (GnomeVFSCallback callback,
+			     gpointer user_data,
+			     gconstpointer in, size_t in_size,
+	 		     gpointer out, size_t out_size)
 {
 	GnomeVFSJob *job;
 	GnomeVFSNotifyResult notify_result;

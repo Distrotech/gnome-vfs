@@ -24,7 +24,6 @@
 #include <config.h>
 #include "gnome-vfs-init.h"
 
-#include "gnome-vfs-backend.h"
 #include "gnome-vfs-ssl-private.h"
 #include "gnome-vfs-mime.h"
 
@@ -35,6 +34,8 @@
 #include "gnome-vfs-utils.h"
 #include <bonobo-activation/bonobo-activation.h>
 #include <glib/gmessages.h>
+#include <libgnomevfs-pthread/gnome-vfs-pthread.h>
+#include <libgnomevfs-pthread/gnome-vfs-job-slave.h>
 
 static gboolean vfs_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (vfs_already_initialized);
@@ -64,8 +65,7 @@ gnome_vfs_init (void)
 			retval = gnome_vfs_configuration_init ();
 		}
 		if (retval) {
-			gnome_vfs_backend_loadinit(NULL, NULL);
-			retval = gnome_vfs_backend_init (TRUE);
+			retval = gnome_vfs_pthread_init (TRUE);
 		}
 		if (retval) {
 			signal (SIGPIPE, SIG_IGN);
@@ -101,31 +101,30 @@ gnome_vfs_initialized (void)
 void
 gnome_vfs_shutdown (void)
 {
-	gnome_vfs_backend_shutdown ();
+	gnome_vfs_thread_backend_shutdown ();
 	gnome_vfs_mime_shutdown ();
 }
 
 void
-gnome_vfs_loadinit(gpointer app, gpointer modinfo)
-{
-	gnome_vfs_backend_loadinit(app, modinfo);
-}
-
-void
-gnome_vfs_preinit(gpointer app, gpointer modinfo)
+gnome_vfs_loadinit (gpointer app, gpointer modinfo)
 {
 }
 
 void
-gnome_vfs_postinit(gpointer app, gpointer modinfo)
+gnome_vfs_preinit (gpointer app, gpointer modinfo)
+{
+}
+
+void
+gnome_vfs_postinit (gpointer app, gpointer modinfo)
 {
 	G_LOCK (vfs_already_initialized);
 
-	gnome_vfs_method_init();
-	gnome_vfs_process_init();
-	gnome_vfs_configuration_init();
-	gnome_vfs_backend_init(FALSE);
-	signal(SIGPIPE, SIG_IGN);
+	gnome_vfs_method_init ();
+	gnome_vfs_process_init ();
+	gnome_vfs_configuration_init ();
+	gnome_vfs_pthread_init (FALSE);
+	signal (SIGPIPE, SIG_IGN);
 
 	vfs_already_initialized = TRUE;
 	G_UNLOCK (vfs_already_initialized);

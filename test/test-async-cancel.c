@@ -30,8 +30,8 @@
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
-#include <libgnomevfs/gnome-vfs-backend.h>
 #include <libgnomevfs/gnome-vfs-init.h>
+#include <libgnomevfs-pthread/gnome-vfs-job.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -119,18 +119,18 @@ wait_for_boolean (gboolean *wait_for_it)
 }
 
 static gboolean
-wait_until_vfs_threads_gone (void)
+wait_until_vfs_jobs_gone (void)
 {
 	int i;
 
-	if (gnome_vfs_backend_get_job_count () == 0) {
+	if (gnome_vfs_job_get_count () == 0) {
 		return TRUE;
 	}
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
 		usleep (1);
 		g_main_context_iteration (NULL, FALSE);
-		if (gnome_vfs_backend_get_job_count () == 0) {
+		if (gnome_vfs_job_get_count () == 0) {
 			return TRUE;
 		}
 	}
@@ -138,17 +138,17 @@ wait_until_vfs_threads_gone (void)
 }
 
 static gboolean
-wait_until_vfs_threads_gone_no_main (void)
+wait_until_vfs_jobs_gone_no_main (void)
 {
 	int i;
 
-	if (gnome_vfs_backend_get_job_count () == 0) {
+	if (gnome_vfs_job_get_count () == 0) {
 		return TRUE;
 	}
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
 		usleep (1);
-		if (gnome_vfs_backend_get_job_count () == 0) {
+		if (gnome_vfs_job_get_count () == 0) {
 			return TRUE;
 		}
 	}
@@ -223,7 +223,7 @@ first_get_file_info (void)
 
 	/* Wait until it is done. */
 	TEST_ASSERT (wait_for_boolean (&test_done), ("first_get_file_info: callback was not called"));
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("first_get_file_info: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("first_get_file_info: job never went away"));
 
 	/* For some reason, this consumes file descriptors.
 	 * I don't know why.
@@ -248,7 +248,7 @@ test_get_file_info (void)
 
 	/* Wait until it is done. */
 	TEST_ASSERT (wait_for_boolean (&test_done), ("get_file_info 1: callback was not called"));
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("get_file_info 1: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("get_file_info 1: job never went away"));
 	TEST_ASSERT (get_used_file_descriptor_count () == 0,
 		     ("get_file_info 1: %d file descriptors leaked", get_used_file_descriptor_count ()));
 	free_at_start = get_free_file_descriptor_count ();
@@ -267,7 +267,7 @@ test_get_file_info (void)
 	g_free (test_callback_data);
 
 	/* Wait until it is done. */
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("get_file_info 2: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("get_file_info 2: job never went away"));
 	TEST_ASSERT (get_used_file_descriptor_count () == 0,
 		     ("get_file_info 2: %d file descriptors leaked", get_used_file_descriptor_count ()));
 	TEST_ASSERT (test_done == FALSE, ("get_file_info 2: callback was called"));
@@ -387,7 +387,7 @@ test_open_read_close (void)
 
 	TEST_ASSERT (wait_for_boolean (&file_closed_flag), ("open read close: close callback was not called"));
 
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open read cancel close: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open read cancel close: job never went away"));
 	TEST_ASSERT (get_used_file_descriptor_count () == 0,
 		     ("open read cancel close: %d file descriptors leaked", get_used_file_descriptor_count ()));
 	free_at_start = get_free_file_descriptor_count ();
@@ -420,7 +420,7 @@ test_open_read_cancel_close (void)
 	TEST_ASSERT (wait_for_boolean (&file_closed_flag), ("open read cancel close: callback was not called"));
 	TEST_ASSERT (!file_read_flag, ("open read cancel close: read callback was called"));
 
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open read cancel close: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open read cancel close: job never went away"));
 	TEST_ASSERT (get_used_file_descriptor_count () == 0,
 		     ("open read cancel close: %d file descriptors leaked", get_used_file_descriptor_count ()));
 	free_at_start = get_free_file_descriptor_count ();
@@ -445,7 +445,7 @@ test_open_close (void)
 
 	TEST_ASSERT (wait_for_boolean (&file_closed_flag), ("open close: close callback was not called"));
 	
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 1: job never went away"));
 	TEST_ASSERT (get_used_file_descriptor_count () == 0,
 		     ("open cancel 1: %d file descriptors leaked", get_used_file_descriptor_count ()));
 	free_at_start = get_free_file_descriptor_count ();
@@ -462,7 +462,7 @@ test_open_cancel (void)
 			      test_callback_data);
 	gnome_vfs_async_cancel (test_handle);
 
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 1: job never went away"));
 	TEST_ASSERT (!file_open_flag, ("open cancel 1: open callback was called"));
 	TEST_ASSERT (get_used_file_descriptor_count () == 0,
 		     ("open cancel 1: %d file descriptors leaked", get_used_file_descriptor_count ()));
@@ -474,12 +474,12 @@ test_open_cancel (void)
 			      GNOME_VFS_OPEN_READ,
 			      file_open_callback,
 			      test_callback_data);
-	wait_until_vfs_threads_gone_no_main ();
+	wait_until_vfs_jobs_gone_no_main ();
 	gnome_vfs_async_cancel (test_handle);
 	TEST_ASSERT (wait_until_file_descriptors_gone (),
 		     ("open cancel 2: %d file descriptors leaked", get_used_file_descriptor_count ()));
 	free_at_start = get_free_file_descriptor_count ();
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 2: later thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 2: later job never went away"));
 	TEST_ASSERT (!file_open_flag, ("open cancel 2: open callback was called"));
 }
 
@@ -505,7 +505,7 @@ test_open_fail (void)
 			      file_open_fail_callback,
 			      test_callback_data);
 	TEST_ASSERT (wait_for_boolean (&file_open_flag), ("open fail 1: callback was not called"));
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open fail 1: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open fail 1: job never went away"));
 	TEST_ASSERT (get_used_file_descriptor_count () == 0,
 		     ("open fail 1: %d file descriptors leaked", get_used_file_descriptor_count ()));
 	free_at_start = get_free_file_descriptor_count ();
@@ -540,7 +540,7 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 	
 	directory_load_flag = FALSE;
 	gnome_vfs_async_cancel (handle);
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 1: job never went away"));
 	TEST_ASSERT (!directory_load_flag, ("load directory cancel 1: load callback was called"));
 
 	gnome_vfs_async_load_directory (&handle,
@@ -556,7 +556,7 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 	
 	directory_load_flag = FALSE;
 	gnome_vfs_async_cancel (handle);
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 2: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 2: job never went away"));
 	TEST_ASSERT (!directory_load_flag, ("load directory cancel 2: load callback was called"));
 }
 
@@ -577,7 +577,7 @@ test_load_directory_fail (void)
 					&num_entries);
 		
 	TEST_ASSERT (wait_for_boolean (&directory_load_failed_flag), ("load directory cancel 1: load callback was not called"));
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 1: job never went away"));
 }
 
 static gboolean find_directory_flag;
@@ -630,7 +630,7 @@ test_find_directory (int delay_till_cancel)
 	usleep (delay_till_cancel * 100);
 	
 	gnome_vfs_async_cancel (handle);
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 2: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 2: job never went away"));
 	TEST_ASSERT (!find_directory_flag, ("find directory cancel 2: callback was called"));
 
 	
@@ -642,7 +642,7 @@ test_find_directory (int delay_till_cancel)
 	
 	find_directory_flag = FALSE;
 	gnome_vfs_async_cancel (handle);
-	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 3: thread never went away"));
+	TEST_ASSERT (wait_until_vfs_jobs_gone (), ("open cancel 3: job never went away"));
 	TEST_ASSERT (!find_directory_flag, ("find directory cancel 3: callback was called"));
 
 	gnome_vfs_uri_list_free (vfs_uri_as_list);
@@ -659,7 +659,7 @@ main (int argc, char **argv)
 
 	/* Do the basic tests of our own tools. */
 	TEST_ASSERT (get_used_file_descriptor_count () == 0, ("file descriptor count"));
-	TEST_ASSERT (gnome_vfs_backend_get_job_count () == 0, ("VFS thread count"));
+	TEST_ASSERT (gnome_vfs_job_get_count () == 0, ("VFS job count"));
 
 	/* Spend those first few file descriptors. */
 	first_get_file_info ();

@@ -1,3 +1,47 @@
+2001-09-04  Darin Adler  <darin@bentspoon.com>
+
+	Remove more of the obsolete back-end machinery.
+
+	* Makefile.am: Build libgnomevfs-pthread first, so we can link
+	it into libgnomevfs.
+	
+	* libgnomevfs-pthread/Makefile.am: Make a convenience library
+	instead of a shared library. Also put all the headers in
+	SOURCES instead of noinst_HEADERS, as recommended by automake
+	experts.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	Remove pthread_ prefix from all the names of entry points since we
+	now link to these directly.
+	
+	* libgnomevfs/Makefile.am: Link in the new convenience library
+	and remove gnome-vfs-backend.c.
+	
+	* libgnomevfs/gnome-vfs-app-context.c:
+	(gnome_vfs_callback_call_hook), (dispatch_destroy_notify):
+	* libgnomevfs/gnome-vfs-context.c:
+	(gnome_vfs_context_peek_current):
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init),
+	(gnome_vfs_shutdown), (gnome_vfs_loadinit), (gnome_vfs_preinit),
+	(gnome_vfs_postinit):
+	Call functions by their real names in the pthread library,
+	rather than using back-end wrapper names.
+	
+	* libgnomevfs/gnome-vfs-backend.c: Removed.
+	* libgnomevfs/gnome-vfs-backend.h: Removed most of the
+	contents of this file. Later we can delete it completely.
+	
+	* test/Makefile.am: Removed the environment setup that made it
+	so tests could find the back end.
+	
+	* test/test-async-cancel.c: Renamed things to reflect the fact
+	that we count "jobs" not "threads".
+
+	* libgnomevfs/gnome-vfs-async-ops.h: Get rid of "const GList *".
+
+	* libgnomevfs-pthread/gnome-vfs-pthread.c: Formatting tweak.
+
 2001-09-04  jacob berkman  <jacob@ximian.com>
 
 	* modules/*.conf: remove lib prefix and .so suffix from the

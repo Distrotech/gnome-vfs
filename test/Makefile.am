@@ -49,8 +49,6 @@ else
 auto_tests=
 endif
 
-# Set up the environment so the tests can find the back end.
-TESTS_ENVIRONMENT = LD_LIBRARY_PATH=$(top_builddir)/libgnomevfs-pthread/.libs/
 TESTS = test-async-cancel test-escape test-uri $(auto_tests)
 
 libraries =						\

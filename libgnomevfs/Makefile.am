@@ -15,7 +15,7 @@ INCLUDES =					\
 	-DG_DISABLE_DEPRECATED			\
 	-DLIBDIR=\"$(libdir)\"			\
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
-	-DG_LOG_DOMAIN=\"GnomeVFS\"		\
+	-DG_LOG_DOMAIN=\"libgnomevfs\"		\
 	$(NULL)
 
 lib_LTLIBRARIES = libgnomevfs.la
@@ -82,7 +82,6 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-app-context.c			\
 	gnome-vfs-application-registry.c	\
 	gnome-vfs-async-ops.c			\
-	gnome-vfs-backend.c			\
 	gnome-vfs-callbacks.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-cancellation.c		\
@@ -127,6 +126,9 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-mime-sniff-buffer-private.h	\
 	gnome-vfs-process.h			\
 	$(NULL)
+
+libgnomevfs_la_LDFLAGS = $(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la
+$(lib_LTLIBRARIES): $(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la
 
 # Platform specific includes
 libgnomevfsplatformincludedir = $(libdir)/vfs/include

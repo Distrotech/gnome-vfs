@@ -468,9 +468,9 @@ gnome_vfs_callback_call_hook  (const char *hookname,
 		if (gnome_vfs_is_primary_thread () || dispatch_on_job_thread) {
 			callback (user_data, in, in_size, out, out_size);
 		} else {
-			gnome_vfs_backend_dispatch_callback (callback, user_data, 
-							     in, in_size,
-							     out, out_size);
+			gnome_vfs_dispatch_callback (callback, user_data, 
+						     in, in_size,
+						     out, out_size);
 		}
 	}
 
@@ -511,9 +511,9 @@ dispatch_destroy_notify (GDestroyNotify notify_func,
 		if (gnome_vfs_is_primary_thread ()) {
 			destroy_notify_callback (user_data, &in_arg, sizeof (in_arg), NULL, 0);
 		} else {
-			gnome_vfs_backend_dispatch_callback (destroy_notify_callback, user_data, 
-							     &in_arg, sizeof (in_arg),
-							     NULL, 0);
+			gnome_vfs_dispatch_callback (destroy_notify_callback, user_data, 
+						     &in_arg, sizeof (in_arg),
+						     NULL, 0);
 		}
 	}
 }
