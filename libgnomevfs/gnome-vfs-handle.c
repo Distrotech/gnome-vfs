@@ -183,3 +183,12 @@ GnomeVFSResult gnome_vfs_handle_do_truncate     (GnomeVFSHandle *handle,
 {
 	INVOKE_AND_RETURN (handle, truncate_handle, (handle->uri->method, handle->method_handle, length, context));
 }
+
+GnomeVFSResult
+gnome_vfs_handle_do_file_control  (GnomeVFSHandle          *handle,
+				   const char              *operation,
+				   gpointer                 operation_data,
+				   GnomeVFSContext         *context)
+{
+	INVOKE_AND_RETURN (handle, file_control, (handle->uri->method, handle->method_handle, operation, operation_data, context));
+}

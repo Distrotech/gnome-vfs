@@ -786,3 +786,25 @@ gnome_vfs_monitor_cancel (GnomeVFSMonitorHandle *handle)
 	return gnome_vfs_monitor_do_cancel (handle);
 }
 
+/**
+ * gnome_vfs_file_control:
+ * @handle: handle of the file to affect
+ * @operation: The operation to execute
+ * @operation_data: The data needed to execute the operation
+ *
+ * Execute a backend dependent operation specified by the string @operation.
+ * This is typically used for specialized vfs backends that need additional
+ * operations that gnome-vfs doesn't have. Compare it to the unix call ioctl().
+ * The format of @operation_data depends on the operation. Operation that are
+ * backend specific are normally namespaced by their module name.
+ *
+ * Return value: an integer representing the success of the operation
+ **/
+GnomeVFSResult
+gnome_vfs_file_control (GnomeVFSHandle *handle,
+			const char *operation,
+			gpointer operation_data)
+{
+	return gnome_vfs_file_control_cancellable (handle, operation, operation_data, NULL);
+}
+

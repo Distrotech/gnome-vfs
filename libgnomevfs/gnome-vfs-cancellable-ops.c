@@ -429,3 +429,19 @@ gnome_vfs_set_file_info_cancellable (GnomeVFSURI *a,
 
 	return a->method->set_file_info (a->method, a, info, mask, context);
 }
+
+GnomeVFSResult
+gnome_vfs_file_control_cancellable (GnomeVFSHandle *handle,
+				    const char *operation,
+				    gpointer operation_data,
+				    GnomeVFSContext *context)
+{
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (operation != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
+	return gnome_vfs_handle_do_file_control (handle, operation, operation_data, context);
+}
+

@@ -131,6 +131,7 @@ gnome_vfs_job_complete (GnomeVFSJob *job)
 		g_assert_not_reached();
 		return FALSE;
 	case GNOME_VFS_OP_READ_WRITE_DONE:
+	case GNOME_VFS_OP_FILE_CONTROL:
 		return FALSE;
 	
 	default:
@@ -314,6 +315,15 @@ dispatch_module_callback (GnomeVFSNotifyResult *notify_result)
 }
 
 static void
+dispatch_file_control_callback (GnomeVFSNotifyResult *notify_result)
+{
+	notify_result->specifics.file_control.callback (notify_result->job_handle,
+							notify_result->specifics.file_control.result,
+							notify_result->specifics.file_control.operation_data,
+							notify_result->specifics.file_control.callback_data);
+}
+
+static void
 empty_close_callback (GnomeVFSAsyncHandle *handle,
 		      GnomeVFSResult result,
 		      gpointer callback_data)
@@ -377,6 +387,14 @@ gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
 	case GNOME_VFS_OP_READ:
 	case GNOME_VFS_OP_XFER:
+		g_free (notify_result);
+		break;
+		
+	case GNOME_VFS_OP_FILE_CONTROL:
+		if (notify_result->specifics.file_control.operation_data_destroy_func) {
+			notify_result->specifics.file_control.operation_data_destroy_func (
+					    notify_result->specifics.file_control.operation_data);
+		}
 		g_free (notify_result);
 		break;
 		
@@ -559,6 +577,9 @@ dispatch_job_callback (gpointer data)
 	case GNOME_VFS_OP_WRITE:
 		dispatch_write_callback (notify_result);
 		break;
+	case GNOME_VFS_OP_FILE_CONTROL:
+		dispatch_file_control_callback (notify_result);
+		break;
 	default:
 		g_assert_not_reached ();
 		break;
@@ -702,6 +723,9 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 	case GNOME_VFS_OP_WRITE:
 	case GNOME_VFS_OP_CLOSE:
 	case GNOME_VFS_OP_READ_WRITE_DONE:
+		break;
+	case GNOME_VFS_OP_FILE_CONTROL:
+		g_free (op->specifics.file_control.operation);
 		break;
 	default:
 		g_warning (_("Unknown op type %u"), op->type);
@@ -1536,6 +1560,33 @@ execute_xfer (GnomeVFSJob *job)
 	}
 }
 
+static void
+execute_file_control (GnomeVFSJob *job)
+{
+	GnomeVFSFileControlOp *file_control_op;
+	GnomeVFSNotifyResult *notify_result;
+	
+	file_control_op = &job->op->specifics.file_control;
+
+	notify_result = g_new0 (GnomeVFSNotifyResult, 1);
+	notify_result->job_handle = job->job_handle;
+	notify_result->type = job->op->type;
+	notify_result->specifics.file_control.callback = (GnomeVFSAsyncFileControlCallback) job->op->callback;
+	notify_result->specifics.file_control.callback_data = job->op->callback_data;
+	notify_result->specifics.file_control.operation_data = file_control_op->operation_data;
+	notify_result->specifics.file_control.operation_data_destroy_func = file_control_op->operation_data_destroy_func;
+	
+	notify_result->specifics.file_control.result = gnome_vfs_file_control_cancellable (job->handle,
+											   file_control_op->operation,
+											   file_control_op->operation_data,
+											   job->op->context);
+
+	job->op->type = GNOME_VFS_OP_FILE_CONTROL;
+
+	job_oneway_notify (job, notify_result);
+}
+
+
 /*
  * gnome_vfs_job_execute:
  * @job: the job to execute
@@ -1596,6 +1647,9 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 			break;
 		case GNOME_VFS_OP_SET_FILE_INFO:
 			execute_set_file_info (job);
+			break;
+		case GNOME_VFS_OP_FILE_CONTROL:
+			execute_file_control (job);
 			break;
 		default:
 			g_warning (_("Unknown job kind %u"), job->op->type);

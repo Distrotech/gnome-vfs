@@ -271,6 +271,10 @@ typedef void    (* GnomeVFSAsyncFindDirectoryCallback)
 						 GList *results /* GnomeVFSFindDirectoryResult */,
 						 gpointer data);
 
+typedef void	(* GnomeVFSAsyncFileControlCallback)	(GnomeVFSAsyncHandle *handle,
+							 GnomeVFSResult result,
+							 gpointer operation_data,
+							 gpointer callback_data);
 
 void           gnome_vfs_async_cancel                 (GnomeVFSAsyncHandle                   *handle);
 
@@ -407,6 +411,13 @@ void           gnome_vfs_async_find_directory         (GnomeVFSAsyncHandle      
 						       int				      priority,
 						       GnomeVFSAsyncFindDirectoryCallback     callback,
 						       gpointer                               user_data);
+
+void           gnome_vfs_async_file_control           (GnomeVFSAsyncHandle                   *handle,
+						       const char                            *operation,
+						       gpointer                               operation_data,
+						       GDestroyNotify                         operation_data_destroy_func,
+						       GnomeVFSAsyncFileControlCallback       callback,
+						       gpointer                               callback_data);
 
 G_END_DECLS
 

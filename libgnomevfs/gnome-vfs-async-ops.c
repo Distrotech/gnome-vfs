@@ -950,6 +950,59 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	return GNOME_VFS_OK;
 }
 
+/**
+ * gnome_vfs_async_file_control:
+ * @handle: handle of the file to affect
+ * @operation: The operation to execute
+ * @operation_data: The data needed to execute the operation
+ * @operation_data_destroy_func: Called to destroy operation_data when its no longer needed
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Execute a backend dependent operation specified by the string @operation.
+ * This is typically used for specialized vfs backends that need additional
+ * operations that gnome-vfs doesn't have. Compare it to the unix call ioctl().
+ * The format of @operation_data depends on the operation. Operation that are
+ * backend specific are normally namespaced by their module name.
+ *
+ * When the operation is complete, @callback will be called with the
+ * result of the operation, @operation_data and @callback_data.
+ **/
+void
+gnome_vfs_async_file_control (GnomeVFSAsyncHandle *handle,
+			      const char *operation,
+			      gpointer operation_data,
+			      GDestroyNotify operation_data_destroy_func,
+			      GnomeVFSAsyncFileControlCallback callback,
+			      gpointer callback_data)
+{
+	GnomeVFSJob *job;
+	GnomeVFSFileControlOp *file_control_op;
+
+	g_return_if_fail (handle != NULL);
+	g_return_if_fail (operation != NULL);
+	g_return_if_fail (callback != NULL);
+
+	gnome_vfs_async_job_map_lock ();
+	job = gnome_vfs_async_job_map_get_job (handle);
+	if (job == NULL) {
+		g_warning ("trying to call file_control on a non-existing handle");
+		gnome_vfs_async_job_map_unlock ();
+		return;
+	}
+
+	gnome_vfs_job_set (job, GNOME_VFS_OP_FILE_CONTROL,
+			   (GFunc) callback, callback_data);
+
+	file_control_op = &job->op->specifics.file_control;
+	file_control_op->operation = g_strdup (operation);
+	file_control_op->operation_data = operation_data;
+	file_control_op->operation_data_destroy_func = operation_data_destroy_func;
+
+	gnome_vfs_job_go (job);
+	gnome_vfs_async_job_map_unlock ();
+}
+
 #ifdef OLD_CONTEXT_DEPRECATED
 
 guint

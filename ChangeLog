@@ -1,3 +1,22 @@
+2002-11-12  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-method.h:
+	Added file_control to ops
+	
+	* libgnomevfs/gnome-vfs-async-ops.[ch]:
+	Added gnome_vfs_async_file_control
+	
+	* libgnomevfs/gnome-vfs-cancellable-ops.[ch]:
+	Added gnome_vfs_file_control_cancellable
+	
+	* libgnomevfs/gnome-vfs-ops.[ch]:
+	Added gnome_vfs_file_control
+	
+	* libgnomevfs/gnome-vfs-handle-private.h:
+	* libgnomevfs/gnome-vfs-handle.c:
+	* libgnomevfs/gnome-vfs-job.[ch]:
+	Implement file_control
+
 2002-11-08 Giovanni Corriga <valkadesh@rocketmail.com>
 
 	* modules/Makefile.am

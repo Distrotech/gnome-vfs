@@ -137,6 +137,10 @@ GnomeVFSResult gnome_vfs_monitor_add (GnomeVFSMonitorHandle **handle,
 
 GnomeVFSResult gnome_vfs_monitor_cancel (GnomeVFSMonitorHandle *handle);
 
+GnomeVFSResult gnome_vfs_file_control   (GnomeVFSHandle *handle,
+					 const char *operation,
+					 gpointer operation_data);
+
 G_END_DECLS
 
 #endif /* GNOME_VFS_OPS_H */

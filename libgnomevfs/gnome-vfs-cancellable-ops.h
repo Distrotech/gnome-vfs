@@ -152,6 +152,12 @@ GnomeVFSResult  gnome_vfs_directory_open_from_uri_cancellable
 					 GnomeVFSFileInfoOptions options,
 					 GnomeVFSContext *context);
 
+GnomeVFSResult  gnome_vfs_file_control_cancellable
+                                        (GnomeVFSHandle *handle,
+					 const char *operation,
+					 gpointer operation_data,
+					 GnomeVFSContext *context);
+
 G_END_DECLS
 
 #endif /* GNOME_VFS_CANCELLABLE_OPS_H */

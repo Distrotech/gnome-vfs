@@ -91,7 +91,8 @@ enum GnomeVFSOpType {
 	/* This is not a real OpType; its intended to mark
 	 * GnomeVFSAsyncModuleCallback's in the job_callback queue
 	 */
-	GNOME_VFS_OP_MODULE_CALLBACK
+	GNOME_VFS_OP_MODULE_CALLBACK,
+	GNOME_VFS_OP_FILE_CONTROL
 };
 
 typedef enum GnomeVFSOpType GnomeVFSOpType;
@@ -272,6 +273,20 @@ typedef struct {
 	gpointer                       response_data;
 } GnomeVFSModuleCallbackOpResult;
 
+typedef struct {
+	char *operation;
+	gpointer operation_data;
+	GDestroyNotify operation_data_destroy_func;
+} GnomeVFSFileControlOp;
+
+typedef struct {
+	GnomeVFSAsyncFileControlCallback callback;
+	gpointer callback_data;
+	GnomeVFSResult result;
+	gpointer operation_data;
+	GDestroyNotify operation_data_destroy_func;
+} GnomeVFSFileControlOpResult;
+
 typedef union {
 	GnomeVFSOpenOp open;
 	GnomeVFSOpenAsChannelOp open_as_channel;
@@ -286,6 +301,7 @@ typedef union {
 	GnomeVFSGetFileInfoOp get_file_info;
 	GnomeVFSSetFileInfoOp set_file_info;
 	GnomeVFSFindDirectoryOp find_directory;
+	GnomeVFSFileControlOp file_control;
 } GnomeVFSSpecificOp;
 
 typedef struct {
@@ -318,6 +334,7 @@ typedef union {
 	GnomeVFSLoadDirectoryOpResult load_directory;
 	GnomeVFSXferOpResult xfer;
 	GnomeVFSModuleCallbackOpResult callback;
+	GnomeVFSFileControlOpResult file_control;
 } GnomeVFSSpecificNotifyResult;
 
 typedef struct {

@@ -61,6 +61,10 @@ GnomeVFSResult   gnome_vfs_handle_do_get_file_info   (GnomeVFSHandle          *h
 GnomeVFSResult   gnome_vfs_handle_do_truncate        (GnomeVFSHandle          *handle,
 						      GnomeVFSFileSize         length,
 						      GnomeVFSContext         *context);
+GnomeVFSResult   gnome_vfs_handle_do_file_control    (GnomeVFSHandle          *handle,
+						      const char              *operation,
+						      gpointer                 operation_data,
+						      GnomeVFSContext         *context);
 
 G_END_DECLS
 
