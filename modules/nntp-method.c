@@ -242,27 +242,26 @@ static GnomeVFSResult do_control_write (NNTPConnection *conn,
 	GnomeVFSResult result = gnome_vfs_iobuf_write (conn->iobuf,
 						       actual_command, bytes, &bytes_written);
 	gnome_vfs_iobuf_flush (conn->iobuf);
-
-	if(result != GNOME_VFS_OK) {
-		g_free (actual_command);
-		return result;
-	}
-
-	if(bytes != bytes_written) {
-		g_free (actual_command);
-		return result;
-	}
-
 	g_free (actual_command);
 
 	return result;
+}
+
+static void
+nntp_connection_reset_buffer (NNTPConnection *conn)
+{	
+	g_string_erase (conn->response_buffer, 0, strlen(conn->response_buffer->str));
 }
 
 static GnomeVFSResult 
 do_basic_command (NNTPConnection *conn, 
 		  gchar *command) 
 {
-	GnomeVFSResult result = do_control_write(conn, command);
+	GnomeVFSResult result;
+
+	nntp_connection_reset_buffer (conn);	
+	
+	result = do_control_write(conn, command);
 
 	if (result != GNOME_VFS_OK) {
 		return result;
@@ -1307,6 +1306,11 @@ load_file_fragment(NNTPConnection *connection)
 		result = start_loading_article(connection, fragment);
 	}
 	
+	if (connection->current_fragment == NULL) {
+		connection->eof_flag = TRUE;
+		return GNOME_VFS_ERROR_EOF;
+	}
+	
 	fragment = (nntp_fragment *) connection->current_fragment->data;	
 	result = load_from_article(connection, fragment, first_line_flag);
 	return result;
@@ -1823,7 +1827,7 @@ do_is_local (GnomeVFSMethod *method,
 }
 
 static void
-prepare_to_read_file(NNTPConnection *conn, nntp_file *file)
+prepare_to_read_file (NNTPConnection *conn, nntp_file *file)
 {
 	conn->current_file = file;
 	conn->current_fragment = NULL;
@@ -1832,8 +1836,8 @@ prepare_to_read_file(NNTPConnection *conn, nntp_file *file)
 	conn->eof_flag = FALSE;
 	conn->uu_decode_mode = FALSE;
 	conn->base_64_decode_mode = FALSE;
-
-	g_string_erase (conn->response_buffer, 0, strlen(conn->response_buffer->str));
+	
+	nntp_connection_reset_buffer (conn);
 }
 
 static GnomeVFSResult 
@@ -1865,7 +1869,7 @@ do_open (GnomeVFSMethod *method,
 		nntp_connection_release (conn);
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	} else {
-		prepare_to_read_file(conn, file);		
+		prepare_to_read_file (conn, file);		
 	}
 	
 	if (result == GNOME_VFS_OK) {

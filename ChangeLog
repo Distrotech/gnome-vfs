@@ -1,3 +1,13 @@
+2002-01-14  Andy Hertzfeld  <andy@differnet.com>
+
+	fixed synchronization problems by adding a routine to reset the
+	response buffer, and using it when to start a command.  Also,
+	made a few minor formatting fixes.
+	
+	* modules/nntp-method.c: (do_control_write),
+	(nntp_connection_reset_buffer), (do_basic_command),
+	(load_file_fragment), (prepare_to_read_file), (do_open):
+
 2002-01-13  Andy Hertzfeld  <andy@differnet.com>
 
 	checkin of new nntp-method for gnome-vfs, which allows binary files
