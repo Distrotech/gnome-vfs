@@ -1335,6 +1335,7 @@ get_key_name (gpointer key, gpointer value, gpointer user_data)
 	GnomeMimeContext *context;
 	char *name;
 	GList **list = user_data;
+	GList *duplicate;
 	
 	if (value == NULL || key == NULL) {
 		return;
@@ -1348,15 +1349,22 @@ get_key_name (gpointer key, gpointer value, gpointer user_data)
 	if (key == NULL || strlen (name) == 0) {
 		return;
 	}
-		
-	(*list) = g_list_insert_sorted ((*list), g_strdup(context->mime_type), mime_list_sort);
+
+	duplicate = NULL;
+	duplicate = g_list_find ((*list), context->mime_type);
+	if (duplicate == NULL) {
+		(*list) = g_list_insert_sorted ((*list), g_strdup(context->mime_type), mime_list_sort);		
+	}
+
 }
+
 
 /*
  * gnome_vfs_get_registered_mime_types
  *
  *  Return the list containing the name of all 
  *  registrered mime types.
+ *  This function is costly in terms of speed.
  */
 GList *
 gnome_vfs_get_registered_mime_types (void)
@@ -1370,7 +1378,6 @@ gnome_vfs_get_registered_mime_types (void)
 	maybe_reload ();
 
 	/* Extract mime type names */
-	/* FIXME bugzilla.eazel.com 2759: this will generate duplicates. Who cares ? */
 	g_hash_table_foreach (registered_types_user, get_key_name, &type_list);
 	g_hash_table_foreach (registered_types, get_key_name, &type_list);
 

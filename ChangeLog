@@ -1,3 +1,9 @@
+2000-09-15  Mathieu Lacage  <mathieu@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (get_key_name),
+	(gnome_vfs_get_registered_mime_types): fix bug 2759.
+	no duplicates are returned anymore.
+
 2000-09-15  Ali Abdin  <aliabdin@aucegypt.edu>
 
 	* modules/pipe-method.c,
