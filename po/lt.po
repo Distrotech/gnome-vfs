@@ -5,13 +5,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.0.4\n"
-"POT-Creation-Date: 2003-08-25 13:18+0200\n"
-"PO-Revision-Date: 2001-09-23 20:34+0200\n"
-"Last-Translator: Gediminas Paulauskas <menesis@delfi.lt>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-26 03:06+0100\n"
+"PO-Revision-Date: 2003-10-26 16:01+0200\n"
+"Last-Translator: Tomas Kuliavas <tokul@users.sourceforge.net>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
@@ -41,12 +42,12 @@ msgstr "Nežinomas op tipas %u"
 #: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr ""
+msgstr "Nepavyko sukurti kanalo skirto atverti GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1684
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown job kind %u"
-msgstr "Nežinomas job'o ID %d"
+msgstr "Nežinomas užduoties tipas %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
@@ -109,7 +110,7 @@ msgstr "Formatas neteisingas"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr ""
+msgstr "Netinkama bylos rodyklė"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
@@ -254,12 +255,12 @@ msgstr "Vardas per ilgas"
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr ""
+msgstr "Paslauga neprieinama"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr ""
+msgstr "Užklausa atšaukia turimus paslaugos duomenis"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -268,29 +269,28 @@ msgstr "Protokolo klaida"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "Negalėjau parsinti: %s"
+msgstr "Nepavyko rasti pagrindinės naršyklės"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "Joks standartinis veiksmas nesusietas"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "Nežinoma adreso apdorojimo schema"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Įvyko klaida apdorojant komandos eilutę"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Įvyko klaida paleidžiant komandą"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
@@ -322,7 +322,7 @@ msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr "(klaidingas Unikodas)"
 
 #: modules/file-method.c:382
 #, c-format
@@ -333,568 +333,562 @@ msgstr "Nežinoma GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Tarp %s nepavyko rasti tinkamos nustatymų bylos\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "Naudokite aplinkos kintamąjį %s, kad nurodyti kitą vietą.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
-msgstr ""
+msgstr "Programos"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
-msgstr ""
+msgstr "Kortelės"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
-#, fuzzy
 msgid "Files"
-msgstr "Byla egzistuoja"
+msgstr "Bylos"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
-#, fuzzy
 msgid "Folders"
-msgstr "aplankas"
+msgstr "Aplankai"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Help"
-msgstr ""
+msgstr "Pagalba"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
-msgstr ""
+msgstr "Kompiuteriai"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:193
 msgid "Links"
-msgstr ""
+msgstr "Nuorodos"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
-msgstr ""
+msgstr "Paštas"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr ""
+msgstr "Įrankiai"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr ""
+msgstr "Langai"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Įprasta vardų gamykla"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "bylos VardoIšplėtimas"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "bendrinis Gnome VFS vardas"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Paprasta klaida"
+msgstr "bendrinis bylų vardas"
 
-#~ msgid "3D Studio image"
-#~ msgstr "3D Studio paveikslėlis"
+msgid "3D Studio image"
+msgstr "3D Studio paveikslėlis"
 
-#~ msgid "AIFC audio"
-#~ msgstr "AIFC garsas"
+msgid "AIFC audio"
+msgstr "AIFC garsas"
 
-#~ msgid "AIFF audio"
-#~ msgstr "AIFF garsas"
+msgid "AIFF audio"
+msgstr "AIFF garsas"
 
-#~ msgid "ANIM animation"
-#~ msgstr "ANIM animacija"
+msgid "ANIM animation"
+msgstr "ANIM animacija"
 
-#~ msgid "AbiWord document"
-#~ msgstr "AbiWord dokumentas"
+msgid "AbiWord document"
+msgstr "AbiWord dokumentas"
 
-#~ msgid "Adobe FrameMaker font"
-#~ msgstr "Adobe FrameMaker šriftas"
+msgid "Adobe FrameMaker font"
+msgstr "Adobe FrameMaker šriftas"
 
-#~ msgid "ApplixWare Graphics image"
-#~ msgstr "ApplixWare Graphics paveikslėlis"
+msgid "ApplixWare Graphics image"
+msgstr "ApplixWare Graphics paveikslėlis"
 
-#~ msgid "Applixware Words document"
-#~ msgstr "Applixware Words dokumentas"
+msgid "Applixware Words document"
+msgstr "Applixware Words dokumentas"
 
-#~ msgid "Applixware spreadsheet"
-#~ msgstr "Applixware spreadsheet"
+msgid "Applixware spreadsheet"
+msgstr "Applixware spreadsheet"
 
-#~ msgid "AutoCAD image"
-#~ msgstr "AutoCAD brėžinys"
+msgid "AutoCAD image"
+msgstr "AutoCAD brėžinys"
 
-#~ msgid "BCPIO document"
-#~ msgstr "BCPIO dokumentas"
+msgid "BCPIO document"
+msgstr "BCPIO dokumentas"
 
-#~ msgid "BDF font"
-#~ msgstr "BDF šriftas"
+msgid "BDF font"
+msgstr "BDF šriftas"
 
-#~ msgid "CGI program"
-#~ msgstr "CGI programa"
+msgid "CGI program"
+msgstr "CGI programa"
 
-#~ msgid "CGM image"
-#~ msgstr "CGM paveikslėlis"
+msgid "CGM image"
+msgstr "CGM paveikslėlis"
 
-#~ msgid "CPIO archive"
-#~ msgstr "CPIO archyvas"
+msgid "CPIO archive"
+msgstr "CPIO archyvas"
 
-#~ msgid "DOS font"
-#~ msgstr "DOS šriftas"
+msgid "DOS font"
+msgstr "DOS šriftas"
 
-#~ msgid "DOS/Windows program"
-#~ msgstr "DOS/Windows programa"
+msgid "DOS/Windows program"
+msgstr "DOS/Windows programa"
 
-#~ msgid "DSSSL document"
-#~ msgstr "DSSSL dokumentas"
+msgid "DSSSL document"
+msgstr "DSSSL dokumentas"
 
-#~ msgid "Debian package"
-#~ msgstr "Debian paketas"
+msgid "Debian package"
+msgstr "Debian paketas"
 
-#~ msgid "Dia diagram"
-#~ msgstr "Dia diagrama"
+msgid "Dia diagram"
+msgstr "Dia diagrama"
 
-#~ msgid "GIF image"
-#~ msgstr "GIF paveikslėlis"
+msgid "GIF image"
+msgstr "GIF paveikslėlis"
 
-#~ msgid "GIMP document"
-#~ msgstr "GIMP dokumentas"
+msgid "GIMP document"
+msgstr "GIMP dokumentas"
 
-#~ msgid "GMC link"
-#~ msgstr "GMC nuoroda"
+msgid "GMC link"
+msgstr "GMC nuoroda"
 
-#~ msgid "Glade project"
-#~ msgstr "Glade projektas"
+msgid "Glade project"
+msgstr "Glade projektas"
 
-#~ msgid "HDF document"
-#~ msgstr "HDF dokumentas"
+msgid "HDF document"
+msgstr "HDF dokumentas"
 
-#~ msgid "HTML page"
-#~ msgstr "HTML puslapis"
+msgid "HTML page"
+msgstr "HTML puslapis"
 
-#~ msgid "IDL document"
-#~ msgstr "IDL dokumentas"
+msgid "IDL document"
+msgstr "IDL dokumentas"
 
-#~ msgid "IEF image"
-#~ msgstr "IEF paveikslėlis"
+msgid "IEF image"
+msgstr "IEF paveikslėlis"
 
-#~ msgid "IFF image"
-#~ msgstr "IFF paveikslėlis"
+msgid "IFF image"
+msgstr "IFF paveikslėlis"
 
-#~ msgid "ILBM image"
-#~ msgstr "ILBM paveikslėlis"
+msgid "ILBM image"
+msgstr "ILBM paveikslėlis"
 
-#~ msgid "JBuilder Project"
-#~ msgstr "JBuilder Projektas"
+msgid "JBuilder Project"
+msgstr "JBuilder Projektas"
 
-#~ msgid "JPEG image"
-#~ msgstr "JPEG paveikslėlis"
+msgid "JPEG image"
+msgstr "JPEG paveikslėlis"
 
-#~ msgid "KIllustrator document"
-#~ msgstr "KIllustrator dokumentas"
+msgid "KIllustrator document"
+msgstr "KIllustrator dokumentas"
 
-#~ msgid "KWord document"
-#~ msgstr "KWord dokumentas"
+msgid "KWord document"
+msgstr "KWord dokumentas"
 
-#~ msgid "LHA archive"
-#~ msgstr "LHA archyvas"
+msgid "LHA archive"
+msgstr "LHA archyvas"
 
-#~ msgid "LHARC archive"
-#~ msgstr "LHARC archyvas"
+msgid "LHARC archive"
+msgstr "LHARC archyvas"
 
-#~ msgid "LIBGRX font"
-#~ msgstr "LIBGRX šriftas"
+msgid "LIBGRX font"
+msgstr "LIBGRX šriftas"
 
-#~ msgid "LightWave object"
-#~ msgstr "LightWave objektas"
+msgid "LightWave object"
+msgstr "LightWave objektas"
 
-#~ msgid "LightWave scene"
-#~ msgstr "LightWave scena"
+msgid "LightWave scene"
+msgstr "LightWave scena"
 
-#~ msgid "MathML document"
-#~ msgstr "MathML dokumentas"
+msgid "MathML document"
+msgstr "MathML dokumentas"
 
-#~ msgid "Microsoft PowerPoint document"
-#~ msgstr "Microsoft PowerPoint dokumentas"
+msgid "Microsoft PowerPoint document"
+msgstr "Microsoft PowerPoint dokumentas"
 
-#~ msgid "Microsoft Word document"
-#~ msgstr "Microsoft Word dokumentas"
+msgid "Microsoft Word document"
+msgstr "Microsoft Word dokumentas"
 
-#~ msgid "Nautilus link"
-#~ msgstr "Nautilus nuoroda"
+msgid "Nautilus link"
+msgstr "Nautilus nuoroda"
 
-#~ msgid "ODA document"
-#~ msgstr "ODA dokumentas"
+msgid "ODA document"
+msgstr "ODA dokumentas"
 
-#~ msgid "PBM image"
-#~ msgstr "PBM paveikslėlis"
+msgid "PBM image"
+msgstr "PBM paveikslėlis"
 
-#~ msgid "PCF font"
-#~ msgstr "PCF šriftas"
+msgid "PCF font"
+msgstr "PCF šriftas"
 
-#~ msgid "PDF document"
-#~ msgstr "PDF dokumentas"
+msgid "PDF document"
+msgstr "PDF dokumentas"
 
-#~ msgid "PEF program"
-#~ msgstr "PEF programa"
+msgid "PEF program"
+msgstr "PEF programa"
 
-#~ msgid "PGM image"
-#~ msgstr "PGM paveikslėlis"
+msgid "PGM image"
+msgstr "PGM paveikslėlis"
 
-#~ msgid "PN RealAudio document"
-#~ msgstr "PN RealAudio dokumentas"
+msgid "PN RealAudio document"
+msgstr "PN RealAudio dokumentas"
 
-#~ msgid "PNG image"
-#~ msgstr "PNG paveikslėlis"
+msgid "PNG image"
+msgstr "PNG paveikslėlis"
 
-#~ msgid "PNM image"
-#~ msgstr "PNM paveikslėlis"
+msgid "PNM image"
+msgstr "PNM paveikslėlis"
 
-#~ msgid "PPM image"
-#~ msgstr "PPM paveikslėlis"
+msgid "PPM image"
+msgstr "PPM paveikslėlis"
 
-#~ msgid "Photoshop document"
-#~ msgstr "Photoshop dokumentas"
+msgid "Photoshop document"
+msgstr "Photoshop dokumentas"
 
-#~ msgid "PostScript Type 1 font"
-#~ msgstr "PostScript Type 1 šriftas"
+msgid "PostScript Type 1 font"
+msgstr "PostScript Type 1 šriftas"
 
-#~ msgid "PostScript document"
-#~ msgstr "PostScript dokumentas"
+msgid "PostScript document"
+msgstr "PostScript dokumentas"
 
-#~ msgid "Quicken document"
-#~ msgstr "Quicken dokumentas"
+msgid "Quicken document"
+msgstr "Quicken dokumentas"
 
-#~ msgid "Quicken for Windows document"
-#~ msgstr "Quicken for Windows dokumentas"
+msgid "Quicken for Windows document"
+msgstr "Quicken for Windows dokumentas"
 
-#~ msgid "RAR archive"
-#~ msgstr "RAR archyvas"
+msgid "RAR archive"
+msgstr "RAR archyvas"
 
-#~ msgid "README document"
-#~ msgstr "README dokumentas"
+msgid "README document"
+msgstr "README dokumentas"
 
-#~ msgid "RGB image"
-#~ msgstr "RGB paveikslėlis"
+msgid "RGB image"
+msgstr "RGB paveikslėlis"
 
-#~ msgid "RPM package"
-#~ msgstr "RPM paketas"
+msgid "RPM package"
+msgstr "RPM paketas"
 
-#~ msgid "RealAudio/Video document"
-#~ msgstr "RealAudio/Video dokumentas"
+msgid "RealAudio/Video document"
+msgstr "RealAudio/Video dokumentas"
 
-#~ msgid "S/MIME file"
-#~ msgstr "S/MIME byla"
+msgid "S/MIME file"
+msgstr "S/MIME byla"
 
-#~ msgid "S/MIME signature"
-#~ msgstr "S/MIME parašas"
+msgid "S/MIME signature"
+msgstr "S/MIME parašas"
 
-#~ msgid "SGML document"
-#~ msgstr "SGML dokumentas"
+msgid "SGML document"
+msgstr "SGML dokumentas"
 
-#~ msgid "SV4 CPIO archive"
-#~ msgstr "SV4 CPIO archyvas"
+msgid "SV4 CPIO archive"
+msgstr "SV4 CPIO archyvas"
 
-#~ msgid "Setext document"
-#~ msgstr "Setext dokumentas"
+msgid "Setext document"
+msgstr "Setext dokumentas"
 
-#~ msgid "Speech document"
-#~ msgstr "Speech dokumentas"
+msgid "Speech document"
+msgstr "Speech dokumentas"
 
-#~ msgid "Speedo font"
-#~ msgstr "Speedo šriftas"
+msgid "Speedo font"
+msgstr "Speedo šriftas"
 
-#~ msgid "Spreadsheet Interchange document"
-#~ msgstr "Spreadsheet Interchange dokumentas"
+msgid "Spreadsheet Interchange document"
+msgstr "Spreadsheet Interchange dokumentas"
 
-#~ msgid "Stampede package"
-#~ msgstr "Stampede paketas"
+msgid "Stampede package"
+msgstr "Stampede paketas"
 
-#~ msgid "StarOffice Writer document"
-#~ msgstr "StarOffice Writer dokumentas"
+msgid "StarOffice Writer document"
+msgstr "StarOffice Writer dokumentas"
 
-#~ msgid "SunOS News font"
-#~ msgstr "SunOS News šriftas"
+msgid "SunOS News font"
+msgstr "SunOS News šriftas"
 
-#~ msgid "TIFF image"
-#~ msgstr "TIFF paveikslėlis"
+msgid "TIFF image"
+msgstr "TIFF paveikslėlis"
 
-#~ msgid "TarGA image"
-#~ msgstr "TarGA paveikslėlis"
+msgid "TarGA image"
+msgstr "TarGA paveikslėlis"
 
-#~ msgid "TeX document"
-#~ msgstr "TeX dokumentas"
+msgid "TeX document"
+msgstr "TeX dokumentas"
 
-#~ msgid "TeX dvi document"
-#~ msgstr "TeX dvi dokumentas"
+msgid "TeX dvi document"
+msgstr "TeX dvi dokumentas"
 
-#~ msgid "TeX font"
-#~ msgstr "TeX šriftas"
+msgid "TeX font"
+msgstr "TeX šriftas"
 
-#~ msgid "TeXInfo document"
-#~ msgstr "TeXInfo dokumentas"
+msgid "TeXInfo document"
+msgstr "TeXInfo dokumentas"
 
-#~ msgid "ToutDoux document"
-#~ msgstr "ToutDoux dokumentas"
+msgid "ToutDoux document"
+msgstr "ToutDoux dokumentas"
 
-#~ msgid "TrueType font"
-#~ msgstr "TrueType šriftas"
+msgid "TrueType font"
+msgstr "TrueType šriftas"
 
-#~ msgid "Unidata netCDF document"
-#~ msgstr "Unidata netCDF dokumentas"
+msgid "Unidata netCDF document"
+msgstr "Unidata netCDF dokumentas"
 
-#~ msgid "V font"
-#~ msgstr "V šriftas"
+msgid "V font"
+msgstr "V šriftas"
 
-#~ msgid "VRML document"
-#~ msgstr "VRML dokumentas"
+msgid "VRML document"
+msgstr "VRML dokumentas"
 
-#~ msgid "WordPerfect document"
-#~ msgstr "WordPerfect dokumentas"
+msgid "WordPerfect document"
+msgstr "WordPerfect dokumentas"
 
-#~ msgid "X bitmap image"
-#~ msgstr "X bitmap paveikslėlis"
+msgid "X bitmap image"
+msgstr "X bitmap paveikslėlis"
 
-#~ msgid "X window image"
-#~ msgstr "X window paveikslėlis"
+msgid "X window image"
+msgstr "X window paveikslėlis"
 
-#~ msgid "XML document"
-#~ msgstr "XML dokumentas"
+msgid "XML document"
+msgstr "XML dokumentas"
 
-#~ msgid "XPM image"
-#~ msgstr "XPM paveikslėlis"
+msgid "XPM image"
+msgstr "XPM paveikslėlis"
 
-#~ msgid "address card"
-#~ msgstr "adreso kortelė"
+msgid "address card"
+msgstr "adreso kortelė"
 
-#~ msgid "ar archive"
-#~ msgstr "ar archyvas"
+msgid "ar archive"
+msgstr "ar archyvas"
 
-#~ msgid "arj archive"
-#~ msgstr "arj archyvas"
+msgid "arj archive"
+msgstr "arj archyvas"
 
-#~ msgid "authors list"
-#~ msgstr "autorių sąrašas"
+msgid "authors list"
+msgstr "autorių sąrašas"
 
-#~ msgid "directory information file"
-#~ msgstr "katalogo informacijos byla"
+msgid "directory information file"
+msgstr "katalogo informacijos byla"
 
-#~ msgid "email headers"
-#~ msgstr "el. pašto antraštės"
+msgid "email headers"
+msgstr "el. pašto antraštės"
 
-#~ msgid "email message"
-#~ msgstr "el. pašto laiškas"
+msgid "email message"
+msgstr "el. pašto laiškas"
 
-#~ msgid "encrypted message"
-#~ msgstr "užšifruotas laiškas"
+msgid "encrypted message"
+msgstr "užšifruotas laiškas"
 
-#~ msgid "gtar archive"
-#~ msgstr "gtar archyvas"
+msgid "gtar archive"
+msgstr "gtar archyvas"
 
-#~ msgid "help page"
-#~ msgstr "pagalbos puslapis"
+msgid "help page"
+msgstr "pagalbos puslapis"
 
-#~ msgid "multi-part message"
-#~ msgstr "kelių dalių laiškas"
+msgid "multi-part message"
+msgstr "kelių dalių laiškas"
 
-#~ msgid "search results"
-#~ msgstr "paieškos rezultatai"
+msgid "search results"
+msgstr "paieškos rezultatai"
 
-#~ msgid "signed message"
-#~ msgstr "pasirašytas laiškas"
+msgid "signed message"
+msgstr "pasirašytas laiškas"
 
-#~ msgid "symbolic link"
-#~ msgstr "simbolinė nuoroda"
+msgid "symbolic link"
+msgstr "simbolinė nuoroda"
 
-#~ msgid "tar archive"
-#~ msgstr "tar archyvas"
+msgid "tar archive"
+msgstr "tar archyvas"
 
-#~ msgid "theme"
-#~ msgstr "tema"
+msgid "theme"
+msgstr "tema"
 
-#~ msgid "troff document"
-#~ msgstr "troff dokumentas"
+msgid "troff document"
+msgstr "troff dokumentas"
 
-#~ msgid "unknown type"
-#~ msgstr "nežinomas tipas"
+msgid "unknown type"
+msgstr "nežinomas tipas"
 
-#~ msgid "zip archive"
-#~ msgstr "zip archyvas"
+msgid "zip archive"
+msgstr "zip archyvas"
 
-#~ msgid "zoo archive"
-#~ msgstr "zoo archyvas"
+msgid "zoo archive"
+msgstr "zoo archyvas"
 
-#~ msgid "GNOME VFS already initialized."
-#~ msgstr "GNOME VFS jau inicializuota."
+msgid "GNOME VFS already initialized."
+msgstr "GNOME VFS jau inicializuota."
 
-#~ msgid "Dying."
-#~ msgstr "Mirštu."
+msgid "Dying."
+msgstr "Mirštu."
 
-#~ msgid "Error reading: %s"
-#~ msgstr "Klaida skaitant: %s"
+msgid "Error reading: %s"
+msgstr "Klaida skaitant: %s"
 
-#~ msgid "Error writing: %s"
-#~ msgstr "Klaida rašant: %s"
+msgid "Error writing: %s"
+msgstr "Klaida rašant: %s"
 
-#~ msgid "Cannot write: %s"
-#~ msgstr "Negaliu rašyti: %s"
+msgid "Cannot write: %s"
+msgstr "Negaliu rašyti: %s"
 
-#~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Negaliu sukurti laikinos bylos vardu „%s“"
+msgid "Cannot create temporary file name `%s'"
+msgstr "Negaliu sukurti laikino bylos vardo `%s'"
 
-#~ msgid "Cannot create socket: %s"
-#~ msgstr "Negaliu sukurti lizdo: %s"
+msgid "Cannot create socket: %s"
+msgstr "Negaliu sukurti jungties: %s"
 
-#~ msgid "Cannot bind `%s': %s"
-#~ msgstr "Negaliu susieti „%s“: %s"
+msgid "Cannot bind `%s': %s"
+msgstr "Negaliu susieti „%s“: %s"
 
-#~ msgid "Cannot listen on `%s': %s"
-#~ msgstr "Negaliu klausytis per „%s“: %s"
+msgid "Cannot listen on `%s': %s"
+msgstr "Negaliu klausytis per „%s“: %s"
 
-#~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Negaliu priimti prisijungimų per „%s“: %s"
+msgid "Cannot accept connections on `%s': %s"
+msgstr "Negaliu priimti prisijungimų per „%s“: %s"
 
-#~ msgid "Cannot initialize CORBA."
-#~ msgstr "Negaliu inicializuoti CORBA."
+msgid "Cannot initialize CORBA."
+msgstr "Negaliu inicializuoti CORBA."
 
-#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "Vartojimas: %s <ior> [<ior_fd>]\n"
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "Vartojimas: %s <ior> [<ior_fd>]\n"
 
-#~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "Gauta keista eilutė iš vaikinio proceso: „%s“"
+msgid "Got weird string from the slave process: `%s'"
+msgstr "Gauta keista eilutė iš vaikinio proceso: „%s“"
 
-#~ msgid "Cannot get object for `%s'"
-#~ msgstr "Negaliu gauti objekto, skirto „%s“"
+msgid "Cannot get object for `%s'"
+msgstr "Negaliu gauti objekto, skirto „%s“"
 
-#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Negaliu nužudyti GNOME::VFS::Slave::Notify -- išimtis %s"
+msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+msgstr "Negaliu nužudyti GNOME::VFS::Slave::Notify -- išimtis %s"
 
-#~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "Negaliu prijungti lizdo „%s“: %s"
+msgid "Cannot connect socket `%s': %s"
+msgstr "Negaliu prijungti lizdo „%s“: %s"
 
-#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-#~ msgstr "Negaliu inicializuoti GNOME::VFS:Slave::Notify"
+msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+msgstr "Negaliu inicializuoti GNOME::VFS:Slave::Notify"
 
-#, fuzzy
-#~ msgid "Can open multiple files"
-#~ msgstr "Per daug atidarytų bylų"
+msgid "Can open multiple files"
+msgstr "Galiu atidaryti kelias bylas"
 
-#~ msgid "%s to retrieve"
-#~ msgstr "%s, kurį parsiųsti"
+msgid "%s to retrieve"
+msgstr "%s, kurį parsiųsti"
 
-#~ msgid "Closing connection to %s"
-#~ msgstr "Uždarau jungtį su %s"
+msgid "Closing connection to %s"
+msgstr "Uždarau jungtį su %s"
 
-#~ msgid "%s of %s read"
-#~ msgstr "%s iš %s perskaityti"
+msgid "%s of %s read"
+msgstr "%s iš %s perskaityti"
 
-#~ msgid "%s read"
-#~ msgstr "%s perskaityti"
+msgid "%s read"
+msgstr "%s perskaityti"
 
-#, fuzzy
-#~ msgid "Go to the parent directory"
-#~ msgstr "Ne katalogas"
+msgid "Go to the parent directory"
+msgstr "Eiti į aukštesnį katalogą"
 
-#, fuzzy
-#~ msgid "Go to the home directory"
-#~ msgstr "Ne katalogas"
+msgid "Go to the home directory"
+msgstr "Eiti į namų katalogą"
 
-#, fuzzy
-#~ msgid "Unknown sort rule %d"
-#~ msgstr "Nežinomas job'o ID %d"
+msgid "Unknown sort rule %d"
+msgstr "Nežinoma rūšiavimo taisyklė %d"
 
-#~ msgid "HTTP server returned an invalid PROPFIND response"
-#~ msgstr "HTTP serveris grąžino negalimą PROPFIND atsakymą"
+msgid "HTTP server returned an invalid PROPFIND response"
+msgstr "HTTP serveris grąžino negalimą PROPFIND atsakymą"
 
-#~ msgid "ftpfs: Invalid host name."
-#~ msgstr "ftpfs: Negaliojantis hosto vardas."
+msgid "ftpfs: Invalid host name."
+msgstr "ftpfs: Negaliojantis hosto vardas."
 
-#~ msgid "ftpfs: Invalid host address."
-#~ msgstr "ftpfs: Negaliojantis hosto adresas."
+msgid "ftpfs: Invalid host address."
+msgstr "ftpfs: Negaliojantis hosto adresas."
 
-#~ msgid "ftpfs: making connection to %s"
-#~ msgstr "ftpfs: bandau prisijungti prie %s"
+msgid "ftpfs: making connection to %s"
+msgstr "ftpfs: bandau prisijungti prie %s"
 
-#~ msgid "ftpfs: connection interrupted by user"
-#~ msgstr "ftpfs: jungtis pertraukta vartotojo"
+msgid "ftpfs: connection interrupted by user"
+msgstr "ftpfs: jungimasis pertrauktas vartotojo"
 
-#~ msgid "ftpfs: connection to server failed: %s"
-#~ msgstr "ftpfs: prisijungimas prie serverio nepavyko: %s"
+msgid "ftpfs: connection to server failed: %s"
+msgstr "ftpfs: prisijungimas prie serverio nepavyko: %s"
 
-#~ msgid "Waiting to retry... %d (Control-C to cancel)"
-#~ msgstr "Laukiu kito bandymo... %d (Control-C atšaukti)"
+msgid "Waiting to retry... %d (Control-C to cancel)"
+msgstr "Laukiu kito bandymo... %d (Control-C atšaukti)"
 
-#~ msgid " FTP: Password required for "
-#~ msgstr " FTP: Slaptažodis reikalingas "
+msgid " FTP: Password required for "
+msgstr " FTP: Slaptažodis reikalingas "
 
-#~ msgid "ftpfs: sending login name"
-#~ msgstr "ftpfs: siunčiu prisijungimo vardą"
+msgid "ftpfs: sending login name"
+msgstr "ftpfs: siunčiu prisijungimo vardą"
 
-#~ msgid "ftpfs: sending user password"
-#~ msgstr "ftpfs: siunčiu vartotojo slaptažodį"
+msgid "ftpfs: sending user password"
+msgstr "ftpfs: siunčiu vartotojo slaptažodį"
 
-#~ msgid "ftpfs: logged in"
-#~ msgstr "ftpfs: prisijungta"
+msgid "ftpfs: logged in"
+msgstr "ftpfs: prisijungta"
 
-#~ msgid "ftpfs: Login incorrect for user %s "
-#~ msgstr "ftpfs: neteisingas prisijungimas vartotojui %s"
+msgid "ftpfs: Login incorrect for user %s "
+msgstr "ftpfs: neteisingas prisijungimas vartotojui %s"
 
-#~ msgid "ftpfs: aborting transfer."
-#~ msgstr "ftpfs: nutraukiu siuntimą."
+msgid "ftpfs: aborting transfer."
+msgstr "ftpfs: nutraukiu siuntimą."
 
-#~ msgid "ftpfs: abort error: %s"
-#~ msgstr "ftpfs: nutraukimo klaida: %s"
+msgid "ftpfs: abort error: %s"
+msgstr "ftpfs: nutraukimo klaida: %s"
 
-#~ msgid "ftpfs: abort failed"
-#~ msgstr "ftpfs: nutraukimas nepavyko"
+msgid "ftpfs: abort failed"
+msgstr "ftpfs: nutraukimas nepavyko"
 
-#~ msgid "ftpfs: could not setup passive mode"
-#~ msgstr "ftpfs: negalėjau pereiti į pasyvų režimą"
+msgid "ftpfs: could not setup passive mode"
+msgstr "ftpfs: negalėjau pereiti į pasyvų režimą"
 
-#~ msgid "ftpfs: storing file %d (%d)"
-#~ msgstr "ftpfs: įrašau bylą %d (%d)"
+msgid "ftpfs: storing file %d (%d)"
+msgstr "ftpfs: įrašau bylą %d (%d)"
 
-#~ msgid "ftpfs: CWD failed."
-#~ msgstr "ftpfs: CWD nepavyko."
+msgid "ftpfs: CWD failed."
+msgstr "ftpfs: CWD nepavyko."
 
-#~ msgid "ftpfs: couldn't resolve symlink"
-#~ msgstr "ftpfs: negalėjau atsekti symlinko"
+msgid "ftpfs: couldn't resolve symlink"
+msgstr "ftpfs: negalėjau atsekti symlinko"
 
-#~ msgid "Resolving symlink..."
-#~ msgstr "Atseku symlinką..."
+msgid "Resolving symlink..."
+msgstr "Atseku symlinką..."
 
-#~ msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-#~ msgstr "ftpfs: Skaitau FTP katalogą %s... (nenaudok UNIX ls pasirinkčių)"
+msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
+msgstr "ftpfs: Skaitau FTP katalogą %s... (nenaudok UNIX ls pasirinkčių)"
 
-#~ msgid "ftpfs: Reading FTP directory %s..."
-#~ msgstr "ftpfs: Skaitau FTP katalogą %s..."
+msgid "ftpfs: Reading FTP directory %s..."
+msgstr "ftpfs: Skaitau FTP katalogą %s..."
 
-#~ msgid "ftpfs: reading FTP directory interrupt by user"
-#~ msgstr "ftpfs: FTP katalogo skaitymas nutrauktas vartotojo"
+msgid "ftpfs: reading FTP directory interrupt by user"
+msgstr "ftpfs: FTP katalogo skaitymas nutrauktas vartotojo"
 
-#~ msgid "ftpfs: got listing"
-#~ msgstr "ftpfs: gavau sąrašą"
+msgid "ftpfs: got listing"
+msgstr "ftpfs: gavau sąrašą"
 
-#~ msgid "ftpfs: failed; nowhere to fallback to"
-#~ msgstr "ftpfs: nepavyko; nėra kur besugrįžti"
+msgid "ftpfs: failed; nowhere to fallback to"
+msgstr "ftpfs: nepavyko; nėra kur besugrįžti"
 
-#~ msgid "Starting linear transfer..."
-#~ msgstr "Pradedu tiesinį siuntimą..."
+msgid "Starting linear transfer..."
+msgstr "Pradedu tiesinį siuntimą..."
 
-#~ msgid "Preparing reget..."
-#~ msgstr "Paruošiu gavimo pratęsimą..."
+msgid "Preparing reget..."
+msgstr "Paruošiu gavimo pratęsimą..."
+
