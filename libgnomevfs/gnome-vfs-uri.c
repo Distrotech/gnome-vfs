@@ -94,14 +94,16 @@ typedef struct {
 } UriStrspnSet; 
 
 UriStrspnSet uri_strspn_sets[] = {
-	{":@" GNOME_VFS_URI_PATH_STR, FALSE, ""},
+	{":@]" GNOME_VFS_URI_PATH_STR, FALSE, ""},
 	{"@" GNOME_VFS_URI_PATH_STR, FALSE, ""},
-	{":" GNOME_VFS_URI_PATH_STR, FALSE, ""}
+	{":" GNOME_VFS_URI_PATH_STR, FALSE, ""},
+	{"]" GNOME_VFS_URI_PATH_STR, FALSE, ""}
 };
 
 #define URI_DELIMITER_ALL_SET (uri_strspn_sets + 0)
 #define URI_DELIMITER_USER_SET (uri_strspn_sets + 1)
 #define URI_DELIMITER_HOST_SET (uri_strspn_sets + 2)
+#define URI_DELIMITER_IPV6_SET (uri_strspn_sets + 3)
 
 #define BV_SET(bv, idx) (bv)[((guchar)(idx))>>3] |= (1 << ( (idx) & 7) )
 #define BV_IS_SET(bv, idx) ((bv)[(idx)>>3] & (1 << ( (idx) & 7)))
@@ -171,6 +173,35 @@ split_toplevel_uri (const gchar *path, guint path_len,
 	cur = uri_strspn_to (cur_tok_start, URI_DELIMITER_ALL_SET, path_end);
 
 	if (cur != NULL) {
+		const char *tmp;
+
+		if (*cur == ':') {
+			/* This ':' belongs to username or IPv6 address.*/
+			tmp = uri_strspn_to (cur_tok_start, URI_DELIMITER_USER_SET, path_end);
+
+			if (tmp == NULL || *tmp != '@') {
+				tmp = uri_strspn_to (cur_tok_start, URI_DELIMITER_IPV6_SET, path_end);
+
+				if (tmp != NULL && *tmp == ']') {
+					cur = tmp;
+				}
+			}
+		}
+	}
+
+	if (cur != NULL) {
+
+		/* Check for IPv6 address. */
+		if (*cur == ']') {
+
+			/*  No username:password in the URI  */
+			/*  cur points to ']'  */
+
+			cur = uri_strspn_to (cur, URI_DELIMITER_HOST_SET, path_end);
+		}
+	}
+
+	if (cur != NULL) {
 		next_delimiter = uri_strspn_to (cur, URI_DELIMITER_USER_SET, path_end);
 	} else {
 		next_delimiter = NULL;
@@ -201,7 +232,15 @@ split_toplevel_uri (const gchar *path, guint path_len,
 
 		if (*cur != '/') {
 			URI_MOVE_PAST_DELIMITER;
-			cur = uri_strspn_to (cur_tok_start, URI_DELIMITER_HOST_SET, path_end);
+
+			/* Move cur to point to ':' after ']' */
+			cur = uri_strspn_to (cur_tok_start, URI_DELIMITER_IPV6_SET, path_end);
+
+			if (cur != NULL && *cur == ']') {  /* For IPv6 address */
+				cur = uri_strspn_to (cur, URI_DELIMITER_HOST_SET, path_end);
+			} else {
+				cur = uri_strspn_to (cur_tok_start, URI_DELIMITER_HOST_SET, path_end);
+			}
 		} else {
 			cur_tok_start = cur;
 		}
@@ -278,7 +317,16 @@ split_toplevel_uri (const gchar *path, guint path_len,
 
 done:
 	if (*host_return != NULL) {
-		host = g_ascii_strdown (*host_return, -1);
+
+		/* Check for an IPv6 address in square brackets.*/
+		if (strchr (*host_return, '[') && strchr (*host_return, ']') && strchr (*host_return, ':')) {
+
+			/* Extract the IPv6 address from square braced string. */
+			host = g_ascii_strdown ((*host_return) + 1, strlen (*host_return) - 2);
+		} else {
+			host = g_ascii_strdown (*host_return, -1);
+		}
+
 		g_free (*host_return);
 		*host_return = host;
 
@@ -1095,7 +1143,16 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 
 		if (top_level_uri->host_name != NULL
 			&& (hide_options & GNOME_VFS_URI_HIDE_HOST_NAME) == 0) {
-		       	g_string_append (string, top_level_uri->host_name);
+
+			/* Check for an IPv6 address. */
+
+			if (strchr (top_level_uri->host_name, ':')) {
+				g_string_append_c (string, '[');
+				g_string_append (string, top_level_uri->host_name);
+				g_string_append_c (string, ']');
+			} else {
+				g_string_append (string, top_level_uri->host_name);
+			}
 		}
 		
 		if (top_level_uri->host_port > 0 

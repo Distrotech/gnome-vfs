@@ -1,3 +1,19 @@
+2003-05-13  Shailesh Mittal  <shailesh.mittal@wipro.com>
+
+	(applied by Ian McKellar <yakk@yakk.net>)
+
+	Changes are made by keeping nautilus in focus.
+
+	* libgnomevfs/gnome-vfs-uri.c:
+	Macro for URI_DELIMITER_IPV6_SET is added and a value 
+	is added to array of structures uri_strspn_sets[].
+
+	(split_toplevel_uri): Changed to parse IPv6 address 
+	(given in square brackets) like [fe80::203:baff:fe0b:a63d].
+
+	(gnome_vfs_uri_to_string): Modified to enclose an IPv6
+	address within '[' and ']', while converting uri to string. 
+
 2003-05-12  Michael Meeks  <michael@ximian.com>
 
 	* libgnomevfs/gnome-vfs-job.c: update misc. calls
