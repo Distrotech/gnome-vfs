@@ -48,8 +48,8 @@
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
-#include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-module.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-parse-ls.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <stdio.h> /* for sscanf */
@@ -504,12 +504,32 @@ end_transfer (FtpConnection *conn)
 
 }
 
+
+static GnomeVFSResult ftp_login (FtpConnection *conn, 
+                                 const char *user, const char *password)
+{
+	gchar *tmpstring;
+	GnomeVFSResult result;
+	
+	tmpstring = g_strdup_printf ("USER %s", user);
+	result = do_basic_command (conn, tmpstring);
+	g_free (tmpstring);
+
+	if (IS_300 (conn->response_code)) {
+		tmpstring = g_strdup_printf ("PASS %s", password);
+		result = do_basic_command (conn, tmpstring);
+		g_free (tmpstring);
+	}
+
+	return result;
+}
+
+
 static GnomeVFSResult 
 ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContext *context) 
 {
 	FtpConnection *conn = g_new0 (FtpConnection, 1);
 	GnomeVFSResult result;
-	gchar *tmpstring;
 	gint port = control_port;
 	const gchar *user = anon_user;
 	const gchar *pass = anon_pass;
@@ -573,15 +593,7 @@ ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContex
 		return result;
 	}
 
-	tmpstring = g_strdup_printf ("USER %s", user);
-	result = do_basic_command (conn, tmpstring);
-	g_free (tmpstring);
-
-	if (IS_300 (conn->response_code)) {
-		tmpstring = g_strdup_printf ("PASS %s", pass);
-		result = do_basic_command (conn, tmpstring);
-		g_free (tmpstring);
-	}
+	result = ftp_login(conn, user, pass);
 
 	if (result != GNOME_VFS_OK) {
 		/* login failed */
@@ -592,6 +604,7 @@ ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContex
 		gnome_vfs_uri_unref (conn->uri);
 		g_string_free (conn->response_buffer, TRUE);
 		g_free (conn);
+			
 		return result;
 	}
 
@@ -860,7 +873,7 @@ do_read (GnomeVFSMethod *method,
 	 GnomeVFSContext *context) 
 {
 	FtpConnection *conn = (FtpConnection * )method_handle;
-
+	GnomeVFSResult result;
 #if 0
 	/*
 	if (conn->operation != FTP_READ) {
@@ -870,7 +883,11 @@ do_read (GnomeVFSMethod *method,
 	g_print ("do_read (%p)\n", method_handle);
 #endif
 
-	return gnome_vfs_iobuf_read (conn->data_iobuf, buffer, num_bytes, bytes_read);
+	result = gnome_vfs_iobuf_read (conn->data_iobuf, buffer, num_bytes, bytes_read);
+	if (*bytes_read == 0) {
+		result = GNOME_VFS_ERROR_EOF;
+	}
+	return result;
 }
 
 static GnomeVFSResult 

@@ -1,3 +1,8 @@
+2002-09-19  Christophe Fergeau  <teuf@users.sourceforge.net>
+        * modules/ftp-method.c: 
+        Moved ftp authentification to a separate function (ftp_login)
+        Correctly return GNOME_VFS_ERROR_EOF when do_read didn't read anything
+
 2002-09-27  Arvind Samptur <arvind.samptur@wipro.com>
 	* modules/Makefile.am : look for cde menus only if cde is present.
 	* cdemenu-module.conf : added the new file.
