@@ -7,7 +7,7 @@
 
 	* libgnomevfs/gnome-vfs-backend.c (gnome_vfs_backend_loadinit):
 	fix a buffer overflow, and use g_module_build_path() so we work on
-	hp-ux
+	hp-ux.  fixes gnome bug #51966
 
 	* libgnomevfs/Makefile.am: remove an extraneous space
 
