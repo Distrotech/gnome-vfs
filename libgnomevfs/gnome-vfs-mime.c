@@ -124,10 +124,15 @@ add_to_key (char *mime_type, char *def)
 		s = p = g_strdup (def);
 
 		while ((ext = strtok_r (s, " \t\n\r,", &tokp)) != NULL) {
-			list = (GList *) g_hash_table_lookup (mime_extensions [priority], ext);
+			gboolean found;
+			gpointer orig_key;
+
+			found = g_hash_table_lookup_extended (mime_extensions [priority], ext,
+							      &orig_key, (gpointer *)&list);
 			if (!g_list_find_custom (list, mime_type, list_find_type)) {
 				list = g_list_prepend (list, g_strdup (mime_type));
-				g_hash_table_insert (mime_extensions [priority], g_strdup (ext), list);
+				g_hash_table_insert (mime_extensions [priority],
+						     found ? orig_key : g_strdup (ext), list);
 			}
 			s = NULL;
 		}

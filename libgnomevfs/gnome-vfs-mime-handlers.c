@@ -34,7 +34,6 @@
 #include <stdio.h>
 #include <string.h>
 
-static char *         get_user_level                          (void);
 static GList *        Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList *info_list);
 static GList *        copy_str_list                           (GList *string_list);
 static GList *        comma_separated_str_to_str_list         (const char         *str);
@@ -47,6 +46,8 @@ static GnomeVFSResult gnome_vfs_mime_edit_user_file           (const char       
 							       const char         *key,
 							       const char         *value);
 static gboolean       application_known_to_be_nonexistent     (const char         *application_id);
+static const char    *gnome_vfs_mime_maybe_get_user_level_value (const char         *mime_type,
+								 const char         *key);
 
 /**
  * gnome_vfs_mime_get_description:
@@ -429,35 +430,13 @@ gnome_vfs_mime_str_list_apply_delta (GList *list_to_process,
 	return processed_list;
 }
 
-static const char *
-gnome_vfs_mime_get_value_for_user_level (const char *mime_type, 
-					 const char *key_prefix)
-{
-	char *user_level;
-	char *full_key;
-	const char *value;
-
-	/* Base list depends on user level. */
-	user_level = get_user_level ();
-	full_key = g_strconcat (key_prefix,
-				"_for_",
-				user_level,
-				"_user_level",
-				NULL);
-	g_free (user_level);
-	value = gnome_vfs_mime_get_value (mime_type, full_key);
-	g_free (full_key);
-
-	return value;
-}
-
-
-static GList *gnome_vfs_mime_do_short_list_processing (GList *short_list, 
-						       GList *additions,
-						       GList *removals, 
-						       GList *supertype_short_list, 
-						       GList *supertype_additions, 
-						       GList *supertype_removals)
+static GList *
+gnome_vfs_mime_do_short_list_processing (GList *short_list, 
+					 GList *additions,
+					 GList *removals, 
+					 GList *supertype_short_list, 
+					 GList *supertype_additions, 
+					 GList *supertype_removals)
 {
 	GList *processed_supertype_list;
 	GList *merged_system_and_supertype;
@@ -529,7 +508,7 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	}
 
 
-	system_short_list = comma_separated_str_to_str_list (gnome_vfs_mime_get_value_for_user_level 
+	system_short_list = comma_separated_str_to_str_list (gnome_vfs_mime_maybe_get_user_level_value
 							     (mime_type, 
 							      "short_list_application_ids"));
 	system_short_list = prune_ids_for_nonexistent_applications
@@ -551,7 +530,7 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 
 	if (!gnome_vfs_mime_type_is_supertype (mime_type) && system_short_list == NULL) {
 		supertype_short_list = comma_separated_str_to_str_list 
-			(gnome_vfs_mime_get_value_for_user_level 
+			(gnome_vfs_mime_maybe_get_user_level_value
 			 (supertype, 
 			  "short_list_application_ids"));
 		supertype_short_list = prune_ids_for_nonexistent_applications
@@ -674,7 +653,7 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 
 
 	/* get short list IIDs for that user level */
-	system_short_list = comma_separated_str_to_str_list (gnome_vfs_mime_get_value_for_user_level 
+	system_short_list = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
 							     (mime_type, 
 							      "short_list_component_iids"));
 
@@ -693,7 +672,7 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 	
 	if (strcmp (supertype, mime_type) != 0) {
 		supertype_short_list = comma_separated_str_to_str_list 
-			(gnome_vfs_mime_get_value_for_user_level 
+			(gnome_vfs_mime_get_value
 			 (supertype, 
 			  "short_list_component_iids"));
 
@@ -1062,7 +1041,6 @@ GnomeVFSResult
 gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 					    GList *application_ids)
 {
-	char *user_level, *id_list_key;
 	char *addition_string, *removal_string;
 	GList *short_list_id_list;
 	GList *short_list_addition_list;
@@ -1070,16 +1048,8 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 	GnomeVFSResult result;
 
 	/* Get base list. */
-	/* Base list depends on user level. */
-	user_level = get_user_level ();
-	id_list_key = g_strconcat ("short_list_application_ids_for_",
-				   user_level,
-				   "_user_level",
-				   NULL);
-	g_free (user_level);
 	short_list_id_list = comma_separated_str_to_str_list
-		(gnome_vfs_mime_get_value (mime_type, id_list_key));
-	g_free (id_list_key);
+		(gnome_vfs_mime_maybe_get_user_level_value (mime_type, "short_list_application_ids"));
 
 	/* Compute delta. */
 	short_list_addition_list = str_list_difference (application_ids, short_list_id_list);
@@ -1118,24 +1088,14 @@ GnomeVFSResult
 gnome_vfs_mime_set_short_list_components (const char *mime_type,
 					  GList *component_iids)
 {
-	char *user_level, *id_list_key;
 	char *addition_string, *removal_string;
 	GList *short_list_id_list;
 	GList *short_list_addition_list;
 	GList *short_list_removal_list;
 	GnomeVFSResult result;
 
-	/* Get base list. */
-	/* Base list depends on user level. */
-	user_level = get_user_level ();
-	id_list_key = g_strconcat ("short_list_component_iids_for_",
-				   user_level,
-				   "_user_level",
-				   NULL);
-	g_free (user_level);
 	short_list_id_list = comma_separated_str_to_str_list
-		(gnome_vfs_mime_get_value (mime_type, id_list_key));
-	g_free (id_list_key);
+		(gnome_vfs_mime_get_value (mime_type, "short_list_component_iids"));
 
 	/* Compute delta. */
 	short_list_addition_list = str_list_difference (component_iids, short_list_id_list);
@@ -1858,46 +1818,6 @@ Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList *info_list)
 	return retval;
 }
 
-/* Returns the Nautilus user level, a string.
- * This does beg the question: Why does gnome-vfs have the Nautilus
- * user level coded into it? Eventually we might want to call this the
- * GNOME user level or something if we can figure out a clear concept
- * that works across GNOME.
- */
-static char *
-get_user_level (void)
-{
-	char *user_level = NULL;
-	static GConfClient *gconf_client = NULL;
-
-	/* Create the gconf client once. */
-	if (gconf_client == NULL) {
-		/* This sequence is needed in case no one has initialized GConf. */
-		if (!gconf_is_initialized ()) {
-			char *fake_argv[] = { "gnome-vfs", NULL };
-			gconf_init (1, fake_argv, NULL);
-		}
-
-		gconf_client = gconf_client_get_default ();
-	}
-
-	user_level = gconf_client_get_string (gconf_client, "/apps/nautilus/user_level", NULL);
-
-	if (user_level == NULL) {
-		user_level = g_strdup ("novice");
-	}
-
-	/* If value is invalid, assume "novice". */
-	if (strcmp (user_level, "novice") != 0 &&
-	    strcmp (user_level, "intermediate") != 0 &&
-	    strcmp (user_level, "advanced") != 0) {
-		g_free (user_level);
-		user_level = g_strdup ("novice");
-	}
-
-	return user_level;
-}
-
 static char **
 strsplit_handle_null (const char *str, const char *delim, int max)
 {
@@ -1991,4 +1911,28 @@ copy_str_list (GList *string_list)
 				       g_strdup ((char *) node->data));
 				       }
 	return g_list_reverse (copy);
+}
+
+static const char *
+gnome_vfs_mime_maybe_get_user_level_value (const char *mime_type, const char *key)
+{
+	const char *return_value;
+	char *new_key;
+	
+	/* This function checks for a key and falls back
+	 * to the "advanced" user level preference if the key
+	 * doesn't exist.
+	 */
+
+	return_value = gnome_vfs_mime_get_value (mime_type, key);
+
+	if (return_value != NULL) {
+		return return_value;
+	}
+
+	new_key = g_strconcat (key, "_for_advanced_user_level", NULL);
+	return_value = gnome_vfs_mime_get_value (mime_type, new_key);
+	g_free (new_key);
+	
+	return return_value;
 }

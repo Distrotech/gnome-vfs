@@ -1,3 +1,20 @@
+2002-04-21  Anders Carlsson  <andersca@gnu.org>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_do_short_list_processing),
+	(gnome_vfs_mime_get_short_list_applications),
+	(gnome_vfs_mime_get_short_list_components),
+	(gnome_vfs_mime_set_short_list_applications),
+	(gnome_vfs_mime_set_short_list_components), (copy_str_list),
+	(gnome_vfs_mime_maybe_get_user_level_value):
+	Don't look at the user level for components, just use
+	"short_list_component_iids". We do the same thing for
+	applications, except that we fall back to the advanced
+	user level if we don't find any items at first.
+	
+	* libgnomevfs/gnome-vfs-mime.c: (add_to_key):
+	Plug a memory leak.
+	
 2002-04-16  Jody Goldberg <jody@gnome.org>
 
 	* modules/file-method.c (do_monitor_cancel) : really cancel things.
