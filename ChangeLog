@@ -1,5 +1,10 @@
 2004-09-21  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-unix-mounts.c (_gnome_vfs_monitor_unix_mounts):
+	Make stating actually work (#152114). Patch from danek.duvall@sun.com.
+
+2004-09-21  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-info-cache.c:
 	Cache global default lookups, to avoid re-reading and validating desktop files.
 	Blow away global cache if any directory changes.

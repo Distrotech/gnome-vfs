@@ -230,19 +230,18 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 	stat_file = get_mtab_monitor_file ();
 
 	*return_list = NULL;
-	
-	if (last_mtime != 0) {
-		if (stat (stat_file, &sb) < 0) {
-			g_warning ("Unable to stat %s: %s", stat_file,
-				   g_strerror (errno));
-			return TRUE;
-		}
-		
-		if (sb.st_mtime == last_mtime) {
-			return FALSE;
-		}
-		last_mtime = sb.st_mtime;
+
+	if (stat (stat_file, &sb) < 0) {
+		g_warning ("Unable to stat %s: %s", stat_file,
+			   g_strerror (errno));
+		return TRUE;
 	}
+
+	if (sb.st_mtime == last_mtime) {
+		return FALSE;
+	}
+
+	last_mtime = sb.st_mtime;
 
 	file = setmntent (read_file, "r");
 	if (file == NULL) {
@@ -327,18 +326,18 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 	stat_file = get_mtab_monitor_file ();
 
 	*return_list = NULL;
-	
-	if (last_mtime != 0) {
-		if (stat (stat_file, &sb) < 0) {
-			g_warning ("Unable to stat %s: %s", stat_file,
-				   g_strerror (errno));
-			return TRUE;
-		}
-		
-		if (sb.st_mtime == last_mtime) {
-			return FALSE;
-		}
+
+	if (stat (stat_file, &sb) < 0) {
+		g_warning ("Unable to stat %s: %s", stat_file,
+			   g_strerror (errno));
+		return TRUE;
 	}
+
+	if (sb.st_mtime == last_mtime) {
+		return FALSE;
+	}
+
+	last_mtime = sb.st_mtime;
 
 	file = setmntent (read_file, "r");
 	if (file == NULL) {
@@ -521,18 +520,18 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 	stat_file = read_file = get_fstab_file ();
 
 	*return_list = NULL;
-	
-	if (last_mtime != 0) {
-		if (stat (stat_file, &sb) < 0) {
-			g_warning ("Unable to stat %s: %s", stat_file,
-				   g_strerror (errno));
-			return TRUE;
-		}
-		
-		if (sb.st_mtime == last_mtime) {
-			return FALSE;
-		}
+
+	if (stat (stat_file, &sb) < 0) {
+		g_warning ("Unable to stat %s: %s", stat_file,
+			   g_strerror (errno));
+		return TRUE;
 	}
+
+	if (sb.st_mtime == last_mtime) {
+		return FALSE;
+	}
+
+	last_mtime = sb.st_mtime;
 
 	file = setmntent (read_file, "r");
 	if (file == NULL) {
@@ -607,18 +606,18 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 	stat_file = read_file = get_fstab_file ();
 
 	*return_list = NULL;
-	
-	if (last_mtime != 0) {
-		if (stat (stat_file, &sb) < 0) {
-			g_warning ("Unable to stat %s: %s", stat_file,
-				   g_strerror (errno));
-			return TRUE;
-		}
-		
-		if (sb.st_mtime == last_mtime) {
-			return FALSE;
-		}
+
+	if (stat (stat_file, &sb) < 0) {
+		g_warning ("Unable to stat %s: %s", stat_file,
+			   g_strerror (errno));
+		return TRUE;
 	}
+
+	if (sb.st_mtime == last_mtime) {
+		return FALSE;
+	}
+
+	last_mtime = sb.st_mtime;
 
 	file = setmntent (read_file, "r");
 	if (file == NULL) {
