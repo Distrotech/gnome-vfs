@@ -38,15 +38,19 @@ html/book1.html: sgml/libgnome-vfs.sgml
 sgml/libgnome-vfs.sgml: $(tmpl_sources)
 	$(MAKE) sgml	
 
+gnome-vfs-decl.txt: scan
+
 scan:
 	cd $(srcdir) \
 	&& gtkdoc-scan --module=$(DOC_MODULE) \
 		       --source-dir=$(DOC_SOURCE_DIR)
 
-templates: scan
+templates: gnome-vfs-decl.txt
 	cd $(srcdir) && gtkdoc-mktmpl --module=$(DOC_MODULE)
 
-sgml:
+$(tmpl_sources): templates
+
+sgml: 
 	cd $(srcdir) \
 	&& gtkdoc-mkdb --module=$(DOC_MODULE) --source-dir=$(DOC_SOURCE_DIR)
 
@@ -58,7 +62,7 @@ clean-local:
 	rm -f *~ *.bak *.hierarchy *.signals *-unused.txt
 
 maintainer-clean-local: clean
-	cd $(srcdir) && rm -rf sgml html $(DOC_MODULE)-decl-list.txt $(DOC_MODULE)-decl.txt 
+	cd $(srcdir) && rm -rf sgml html tmpl $(DOC_MODULE)-decl-list.txt $(DOC_MODULE)-decl.txt 
 
 install-data-local: 
 	$(mkinstalldirs) $(DESTDIR)$(TARGET_DIR)

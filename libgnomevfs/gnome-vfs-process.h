@@ -32,31 +32,28 @@
    decided to make these API calls public for now, so I prefer to leave them
    here.  */
 
-enum _GnomeVFSProcessResult {
+typedef enum {
 	GNOME_VFS_PROCESS_OK,
 	GNOME_VFS_PROCESS_ERROR_UNKNOWN,
 	GNOME_VFS_PROCESS_ERROR_INVALIDSIGNAL,
 	GNOME_VFS_PROCESS_ERROR_NOPERM,
 	GNOME_VFS_PROCESS_ERROR_NOPROCESS
-};
-typedef enum _GnomeVFSProcessResult GnomeVFSProcessResult;
+} GnomeVFSProcessResult;
 
-enum _GnomeVFSProcessRunResult {
+typedef enum {
 	GNOME_VFS_PROCESS_RUN_OK,
 	GNOME_VFS_PROCESS_RUN_ERROR,
 	GNOME_VFS_PROCESS_RUN_CANCELLED,
 	GNOME_VFS_PROCESS_RUN_SIGNALED,
 	GNOME_VFS_PROCESS_RUN_STOPPED
-};
-typedef enum _GnomeVFSProcessRunResult GnomeVFSProcessRunResult;
+} GnomeVFSProcessRunResult;
 
-enum _GnomeVFSProcessOptions {
+typedef enum {
 	GNOME_VFS_PROCESS_DEFAULT = 0,
 	GNOME_VFS_PROCESS_USEPATH = 1 << 0,
 	GNOME_VFS_PROCESS_CLOSEFDS = 1 << 1,
 	GNOME_VFS_PROCESS_SETSID = 1 << 2
-};
-typedef enum _GnomeVFSProcessOptions GnomeVFSProcessOptions;
+} GnomeVFSProcessOptions;
 
 typedef struct _GnomeVFSProcess GnomeVFSProcess;
 
