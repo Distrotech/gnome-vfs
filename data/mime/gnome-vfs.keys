@@ -96,7 +96,7 @@ application/pdf
 	short_list_component_iids_for_novice_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_intermediate_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_hacker_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
-	default_application_id=xpdf
+	#default_application_id=xpdf
 	short_list_application_ids_for_novice_user_level=gv,xpdf
 	short_list_application_ids_for_intermediate_user_level=gv,xpdf
 	short_list_application_ids_for_hacker_user_level=gv,xpdf
@@ -149,6 +149,11 @@ application/postscript
 	[fr]description=Document PostScript
 	[no]description=PostScript dokument
 	[sv]description=PostScript-dokument
+	default_action_type=application
+	default_application_id=gv
+	short_list_application_ids_for_novice_user_level=gv,ghostview
+	short_list_application_ids_for_intermediate_user_level=gv,ghostview
+	short_list_application_ids_for_hacker_user_level=gv,ghostview
 
 application/rtf
 	description=rich text
@@ -519,6 +524,7 @@ application/x-object-file
 	[sv]description=objektkod
 	icon-filename=gnome-objectfile.png
 
+# also audio/x-ogg
 application/x-ogg
 	description=ogg file
 	[da]description=oog-lydfil
@@ -803,6 +809,7 @@ audio/x-mpegurl
 	short_list_application_ids_for_intermediate_user_level=xmms
 	short_list_application_ids_for_hacker_user_level=xmms
 
+# also application/x-ogg
 audio/x-ogg
 	description=OGG Audio
 	[fr]description=Audio OGG
