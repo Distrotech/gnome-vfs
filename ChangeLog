@@ -1,3 +1,14 @@
+2002-05-20  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder-desktop-method.c (vfolder_uri_parse_internal):
+	Set vuri->file to the basename of the URL, strip trailing slashes.
+	(resolve_folder): Simplify lookup as trailing slashes are now
+	stripped.
+	(get_entry_unlocked): Don't call any_subdir, just let the lookup
+	fail.
+	(get_entry_unlocked): Resolve optinal leading path for
+	all-applictions:
+
 2002-05-20  Mark McLoughlin  <mark@skynet.ie>
 
 	* modules/vfolder-desktop-method.c:

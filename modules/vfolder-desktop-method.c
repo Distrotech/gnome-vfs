@@ -472,14 +472,21 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 	} else
 		vuri->is_all_scheme = FALSE;
 
-	if (vuri->path != NULL && 
-	    strlen (vuri->path) > 0 &&
-	    any_subdir (vuri->path) == TRUE) {
-		vuri->file = strrchr (vuri->path, '/');
-		if (vuri->file == NULL)
-			vuri->file = vuri->path;
+	if (vuri->path != NULL) {
+		int last_slash = strlen (vuri->path) - 1;
+
+		/* kill trailing slashes (leave first if all slashes) */
+		while (last_slash > 0 && vuri->path [last_slash] == '/')
+			vuri->path [last_slash--] = '\0';
+
+		/* get basename start */
+		while (last_slash >= 0 && vuri->path [last_slash] != '/')
+			last_slash--;
+
+		if (last_slash > -1)
+			vuri->file = vuri->path + last_slash + 1;
 		else
-			vuri->file++;
+			vuri->file = NULL;
 	} else {
 		vuri->path = "/";
 		vuri->file = NULL;
@@ -3096,17 +3103,6 @@ find_entry (GSList *list, const char *name)
 	return NULL;
 }
 
-static int
-next_non_empty (char **vec, int i)
-{
-	do
-		i++;
-	while (vec[i] != NULL &&
-	       *(vec[i]) == '\0');
-
-	return i;
-}
-
 static Folder *
 resolve_folder (VFolderInfo *info,
 		const char *path,
@@ -3127,29 +3123,31 @@ resolve_folder (VFolderInfo *info,
 		return NULL;
 	}
 
-	/* find first non_empty */
-	i = next_non_empty (ppath, -1);
-	while (ppath[i] != NULL && folder != NULL) {
+	for (i = 0; ppath [i] != NULL; i++) {
 		const char *segment = ppath[i];
 
-		if (gnome_vfs_context_check_cancellation (context)) {
-			*result = GNOME_VFS_ERROR_CANCELLED;
-			return NULL;
-		}
+		if (*segment == '\0')
+			continue;
 
-		i = next_non_empty (ppath, i);
-		if (ignore_basename && ppath[i] == NULL) {
-			g_strfreev (ppath);
-			return folder;
-		} else {
-			folder = (Folder *)find_entry (folder->subfolders, segment);
+		if (ignore_basename && ppath [i + 1] == NULL)
+			break;
+		else {
+			folder = (Folder *) find_entry (folder->subfolders, 
+							segment);
+			if (folder == NULL)
+				break;
 		}
 	}
 	g_strfreev (ppath);
 
-	if (folder == NULL) {
-		*result = GNOME_VFS_ERROR_NOT_FOUND;
+	if (gnome_vfs_context_check_cancellation (context)) {
+		*result = GNOME_VFS_ERROR_CANCELLED;
+		return NULL;
 	}
+
+	if (folder == NULL)
+		*result = GNOME_VFS_ERROR_NOT_FOUND;
+
 	return folder;
 }
 
@@ -3219,10 +3217,14 @@ get_entry_unlocked (VFolderURI *vuri,
 	if (vuri->is_all_scheme) {
 		GSList *efile_list;
 
-		if (vuri->file == NULL || 
-		    any_subdir (vuri->path)) {
-			*result = GNOME_VFS_ERROR_NOT_FOUND;
-			return NULL;
+		if (vuri->file == NULL) {
+			entry = resolve_path (info, 
+					      vuri->path, 
+					      vuri->file, 
+					      parent, 
+					      result, 
+					      context);
+			return entry;
 		}
 
 		efile_list = g_hash_table_lookup (info->entries_ht, vuri->file);
@@ -4317,7 +4319,6 @@ do_get_file_info (GnomeVFSMethod *method,
 		return result;
 
 	if (file_uri != NULL) {
-
 		/* we always get mime-type by forcing it below */
 		if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
 			options &= ~GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
