@@ -1317,22 +1317,25 @@ gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
 GnomeVFSResult
 gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
 {
+	GnomeVFSResult result;
 	GList *list, *element;
 	gchar *extensions, *old_extensions;
 
 	extensions = NULL;
 	old_extensions = NULL;
 
+	result = GNOME_VFS_OK;
+	
 	list = gnome_vfs_mime_get_extensions_list (mime_type);	
 	if (list == NULL) {
-		return GNOME_VFS_OK;
+		return result;
 	}
 
 	/* Check for duplicates */
 	for (element = list; element != NULL; element = element->next) {
 		if (strcmp (extension, (char *)element->data) == 0) {					
 			gnome_vfs_mime_extensions_list_free (list);
-			return GNOME_VFS_OK;
+			return result;
 		}
 	}
 
@@ -1354,13 +1357,12 @@ gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
 
 		/* Add extensions to hash table and flush into the file. */
 		gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions);
-		/* FIXME: No possibility of error? */
-		gnome_vfs_mime_commit_registered_types ();
+		result = gnome_vfs_mime_commit_registered_types ();
 	}
 	
 	gnome_vfs_mime_extensions_list_free (list);
 
-	return GNOME_VFS_OK;
+	return result;
 }
 
 GnomeVFSResult
@@ -1369,14 +1371,16 @@ gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
 	GList *list, *element;
 	gchar *extensions, *old_extensions;
 	gboolean in_list;
-	
+	GnomeVFSResult result;
+
+	result = GNOME_VFS_OK;
 	extensions = NULL;
 	old_extensions = NULL;
 	in_list = FALSE;
 	
 	list = gnome_vfs_mime_get_extensions_list (mime_type);	
 	if (list == NULL) {
-		return GNOME_VFS_OK;
+		return result;
 	}
 
 	/* See if extension is in list */
@@ -1397,7 +1401,7 @@ gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
 	/* Exit if we found no match */
 	if (!in_list) {
 		gnome_vfs_mime_extensions_list_free (list);
-		return GNOME_VFS_OK;
+		return result;
 	}
 	
 	/* Create new extension list */
@@ -1414,13 +1418,12 @@ gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
 	if (extensions != NULL) {
 		/* Add extensions to hash table and flush into the file */
 		gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions);
-		/* FIXME: No possibility of error? */
-		gnome_vfs_mime_commit_registered_types ();
+		result = gnome_vfs_mime_commit_registered_types ();
 	}
 	
 	gnome_vfs_mime_extensions_list_free (list);
 
-	return GNOME_VFS_OK;
+	return result;
 }
 
 

@@ -1,3 +1,18 @@
+2000-07-13  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 1158, GnomeVFSMimeHandlers code needs error handling
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_add_extension), 
+	(gnome_vfs_mime_remove_extension):
+	These functions now return a valid GNomeVFSResult.
+
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	(gnome_vfs_mime_commit_registered_types),
+	(write_registered_mime_data):
+	These functions now return a valid GNomeVFSResult. 
+	
 2000-07-13  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c:

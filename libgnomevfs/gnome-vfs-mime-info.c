@@ -25,6 +25,7 @@
 
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-private.h"
+#include "gnome-vfs-result.h"
 
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-util.h>
@@ -90,7 +91,7 @@ static GHashTable *generic_types;
 static GHashTable *registered_types;
 
 /* Prototypes */
-static void write_registered_mime_data (void);
+static GnomeVFSResult write_registered_mime_data (void);
 
 
 static GnomeMimeContext *
@@ -1285,10 +1286,10 @@ gnome_vfs_get_registered_mime_types (void)
  * hash table to disk.
  */
 
-void
+GnomeVFSResult
 gnome_vfs_mime_commit_registered_types (void)
 {
-	write_registered_mime_data ();
+	return write_registered_mime_data ();
 }
 
 /**
@@ -1343,7 +1344,7 @@ write_mime_data_foreach (gpointer key, gpointer value, gpointer data)
 	fwrite ("\n", 1, 1, file);
 }
 
-static void
+static GnomeVFSResult
 write_registered_mime_data (void)
 {
 	DIR *dir;
@@ -1360,13 +1361,13 @@ write_registered_mime_data (void)
 	dir = opendir (gnome_mime_dir.dirname);
 	if (!dir){
 		gnome_mime_dir.valid = FALSE;
-		return;
+		return gnome_vfs_result_from_errno ();
 	}
 	
 	if (gnome_mime_dir.system_dir){
 		list = gnome_vfs_get_registered_mime_types ();
-		if (list == NULL) {
-			return;
+		if (list == NULL) {			
+			return GNOME_VFS_ERROR_INTERNAL;
 		}
 		
 		filename = g_concat_dir_and_file (gnome_mime_dir.dirname, "gnome-vfs.mime");
@@ -1374,7 +1375,7 @@ write_registered_mime_data (void)
         	remove (filename);
 		file = fopen (filename, "w");
 		if (file == NULL) {
-			return;
+			return gnome_vfs_result_from_errno ();
 		}
 
 		/* Get data in list */
@@ -1393,6 +1394,8 @@ write_registered_mime_data (void)
 
 		gnome_vfs_mime_registered_mime_type_list_free (list);
 	}
+
+	return GNOME_VFS_OK;
 }
 
 
