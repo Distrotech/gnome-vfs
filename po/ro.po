@@ -2,6 +2,7 @@
 # Copyright (C) YEAR Free Software Foundation, Inc.
 # Marius Andreiana <mandreiana@yahoo.com>, 2001.
 #
+#
 #, fuzzy
 msgid ""
 msgstr ""
