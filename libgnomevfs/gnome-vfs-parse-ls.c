@@ -54,7 +54,8 @@
 #endif
 
 
-/* FIXME remove these globals.  */
+/* FIXME bugzilla.eazel.com 1179:
+ * remove these globals.  */
 static gint saveuid = -993;
 static gchar saveuname[TUNMLEN];
 static gint my_uid = -993;
@@ -217,7 +218,8 @@ static gint is_year (const gchar *str, struct tm *tim)
 }
 
 /*
- * FIXME: this is broken. Consider following entry:
+ * FIXME bugzilla.eazel.com 1182:
+ * this is broken. Consider following entry:
  * -rwx------   1 root     root            1 Aug 31 10:04 2904 1234
  * where "2904 1234" is filename. Well, this code decodes it as year :-(.
  */

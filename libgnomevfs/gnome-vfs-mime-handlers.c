@@ -990,7 +990,7 @@ gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application)
 void
 gnome_vfs_mime_action_free (GnomeVFSMimeAction *action) 
 {
-	/* FIXME: Work to do here?
+	/* FIXME bugzilla.eazel.com 1157: Work to do here?
 	 * Do we own the component or application pointer?
 	 */
 }

@@ -343,7 +343,7 @@ gnome_vfs_mime_magic_matches_p(FILE *fh, GnomeMagicEntry *ent)
     retval &= !memcmp(ent->test, buf, ent->test_len);
 
   if(ent->mask != 0xFFFFFFFF) {
-  /* FIXME:
+  /* FIXME bugzilla.eazel.com 1166:
    * this never worked
    */
     switch(ent->test_len) {
@@ -574,7 +574,7 @@ gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	for (index = 0; index < sniff_buffer->buffer_length; index++) {
 		/* Do a simple detection of printable text.
 		 * 
-		 * FIXME:
+		 * FIXME bugzilla.eazel.com 1168:
 		 * Add UTF-8 support here.
 		 */ 
 		if (!isprint (sniff_buffer->buffer[index])

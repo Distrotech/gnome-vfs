@@ -1,3 +1,17 @@
+2000-06-05  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_action_free):
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_magic_matches_p),
+	(gnome_vfs_sniff_buffer_looks_like_text):
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	(gnome_vfs_mime_type_from_mode), 
+	(gnome_vfs_get_special_mime_type):
+	* libgnomevfs/gnome-vfs-parse-ls.c:
+	Added more bug numbers to FIXMEs.
+
 2000-06-05  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

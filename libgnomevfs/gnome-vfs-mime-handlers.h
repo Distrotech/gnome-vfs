@@ -28,7 +28,7 @@
 #include <liboaf/liboaf.h>
 
 /* 
- * FIXME: need error handling
+ * FIXME bugzilla.eazel.com 1158: need error handling
  *
  */
 

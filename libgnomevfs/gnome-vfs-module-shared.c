@@ -22,7 +22,7 @@ gnome_vfs_mime_type_from_mode (mode_t mode)
 {
 	const gchar *mime_type;
 
-	/* FIXME:
+	/* FIXME bugzilla.eazel.com 1171:
 	 * The following returned values are not valid MIME types.
 	 * Should the returned types be "application/x-directory" 
 	 * or "x-special/directory"?
@@ -38,7 +38,7 @@ gnome_vfs_mime_type_from_mode (mode_t mode)
 	else if (S_ISFIFO (mode))
 		mime_type = "special/fifo";
 	else if (S_ISLNK (mode))
-		mime_type = "special/symlink"; /* FIXME? */
+		mime_type = "special/symlink";
 	else if (S_ISSOCK (mode))
 		mime_type = "special/socket";
 	else
@@ -61,7 +61,7 @@ gnome_vfs_get_special_mime_type (GnomeVFSURI *uri)
 		return NULL;
 	}
 
-	/* FIXME:
+	/* FIXME bugzilla.eazel.com 1171:
 	 * The following returned values are not valid MIME types.
 	 * Should the returned types be "application/x-directory" 
 	 * or "x-special/directory"?
@@ -149,7 +149,8 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 }
 
 
-/* FIXME Thread safeness.  */
+/* FIXME bugzilla.eazel.com 1176:
+ * Thread safety.  */
 GnomeVFSResult
 gnome_vfs_set_meta (GnomeVFSFileInfo *info,
 		    const gchar *file_name,
