@@ -162,6 +162,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-mime-monitor.c		\
 	gnome-vfs-mime-sniff-buffer.c		\
 	gnome-vfs-mime.c			\
+	gnome-vfs-mime-magic.c			\
 	gnome-vfs-module-callback-marshall.c	\
 	gnome-vfs-module-callback-module-api.c	\
 	gnome-vfs-module-callback-private.c	\

@@ -640,7 +640,7 @@ _xdg_mime_magic_free (XdgMimeMagic *mime_magic)
 }
 
 int
-_xdg_mime_magic_get_buffer_extents (XdgMimeMagic *mime_magic)
+_xdg_mime_magic_get_max_buffer_extents (XdgMimeMagic *mime_magic)
 {
   return mime_magic->max_extent;
 }

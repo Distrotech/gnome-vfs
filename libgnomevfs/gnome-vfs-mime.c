@@ -105,15 +105,23 @@ const char *
 gnome_vfs_mime_type_from_name_or_default (const char *filename, const char *defaultv)
 {
 	const char *mime_type;
+	const char *separator;
 
 	if (filename == NULL) {
 		return defaultv;
 	}
 
+	separator = g_utf8_strrchr (filename, -1, '/');
+	if (separator != NULL) {
+		separator++;
+		if (*separator == '\000')
+			return defaultv;
+	} else {
+		separator = filename;
+	}
+
 	G_LOCK (mime_mutex);
-
-	mime_type = xdg_mime_get_mime_type_from_file_name (filename);
-
+	mime_type = xdg_mime_get_mime_type_from_file_name (separator);
 	G_UNLOCK (mime_mutex);
 
 	if (mime_type)
@@ -153,20 +161,49 @@ gnome_vfs_get_mime_type_from_uri_internal (GnomeVFSURI *uri)
 	return mime_type;
 }
 
+enum
+{
+	MAX_SNIFF_BUFFER_ALLOWED=4096
+};
+static const char *
+_gnome_vfs_read_mime_from_buffer (GnomeVFSMimeSniffBuffer *buffer)
+{
+	int max_extents;
+	GnomeVFSResult result = GNOME_VFS_OK;
+	const char *mime_type;
+
+	max_extents = xdg_mime_get_max_buffer_extents ();
+	max_extents = CLAMP (max_extents, 0, MAX_SNIFF_BUFFER_ALLOWED);
+
+	if (!buffer->read_whole_file) {
+		result = _gnome_vfs_mime_sniff_buffer_get (buffer, max_extents);
+	}
+	if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF) {
+		return NULL;
+	}
+	G_LOCK (mime_mutex);
+
+	mime_type = xdg_mime_get_mime_type_for_data (buffer->buffer, buffer->buffer_length);
+
+	G_UNLOCK (mime_mutex);
+
+	return mime_type;
+	
+}
+
 const char *
 _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *file_name)
 {
 	const char *result;
 
 	result = NULL;
-	
+
 	if (buffer != NULL) {
-		/* FIXMEMIME:  */
-		result = NULL;//_gnome_vfs_mime_get_type_from_magic_table (buffer);
-		
-		if (result != NULL) {
+		result = _gnome_vfs_read_mime_from_buffer (buffer);
+
+		if (result != NULL && result != XDG_MIME_TYPE_UNKNOWN) {
 			if (strcmp (result, "application/x-gzip") == 0) {
-		
+				
 				/* So many file types come compressed by gzip 
 				 * that extensions are more reliable than magic
 				 * typing. If the file has a suffix, then use 
@@ -175,22 +212,22 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 				 * FIXME bugzilla.gnome.org 46867:
 				 * Allow specific mime types to override 
 				 * magic detection
-			 */
-			if (file_name != NULL) {
-				result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
-			}
-			
-			if (result != NULL) {
-				return result;
-			}
+				 */
+				if (file_name != NULL) {
+					result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
+				}
+				
+				if (result != NULL) {
+					return result;
+				}
 				/* Didn't find an extension match,
 				 * assume gzip. */
-			return "application/x-gzip";
-		}
+				return "application/x-gzip";
+			}
 			return result;
 		}
 		
-		if (result == NULL) {
+		if (result == NULL || result == XDG_MIME_TYPE_UNKNOWN) {
 			if (_gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
 				/* Text file -- treat extensions as a more 
 				 * accurate source of type information.
@@ -212,7 +249,7 @@ _gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *
 		}
 	}
 	
-	if (result == NULL && file_name != NULL) {
+	if ((result == NULL || result == XDG_MIME_TYPE_UNKNOWN) && file_name != NULL) {
 		/* No type recognized -- fall back on extensions. */
 		result = gnome_vfs_mime_type_from_name_or_default (file_name, NULL);
 	}

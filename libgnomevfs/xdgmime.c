@@ -181,7 +181,7 @@ xdg_mime_get_mime_type_for_file (const char *file_name)
   /* FIXME: Need to make sure that max_extent isn't totally broken.  This could
    * be large and need getting from a stream instead of just reading it all
    * in. */
-  max_extent = _xdg_mime_magic_get_buffer_extents (global_magic);
+  max_extent = _xdg_mime_magic_get_max_buffer_extents (global_magic);
   data = malloc (max_extent);
   if (data == NULL)
     return XDG_MIME_TYPE_UNKNOWN;
@@ -232,6 +232,14 @@ xdg_mime_is_valid_mime_type (const char *mime_type)
   /* FIXME: We should make this a better test
    */
   return _xdg_utf8_validate (mime_type);
+}
+
+int
+xdg_mime_get_max_buffer_extents (void)
+{
+  xdg_mime_init ();
+
+  return _xdg_mime_magic_get_max_buffer_extents (global_magic);
 }
 
 void
