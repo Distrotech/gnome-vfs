@@ -117,13 +117,12 @@ main (int argc,
 	GnomeVFSFileInfo info;
 	GnomeVFSResult result;
 	gchar *uri;
+	int i=1;
 
-	if (argc != 2) {
-		fprintf (stderr, "Usage: %s <uri>\n", argv[0]);
+	if (argc < 2) {
+		fprintf (stderr, "Usage: %s <uri> [<uri>...]\n", argv[0]);
 		return 1;
 	}
-
-	uri = argv[1];
 
 	if (! gnome_vfs_init ()) {
 		fprintf (stderr, "%s: Cannot initialize the GNOME Virtual File System.\n",
@@ -131,20 +130,30 @@ main (int argc,
 		return 1;
 	}
 
-	gnome_vfs_file_info_init (&info);
-	result = gnome_vfs_get_file_info (uri, &info,
-					  (GNOME_VFS_FILE_INFO_GETMIMETYPE
-					   | GNOME_VFS_FILE_INFO_FOLLOWLINKS),
-					  NULL);
-	if (result != GNOME_VFS_OK) {
-		fprintf (stderr, "%s: %s: %s\n",
-			 argv[0], uri, gnome_vfs_result_to_string (result));
-		return 1;
+	while(i < argc) {
+
+		uri = argv[i];
+
+		g_print("Getting info for \"%s\".\n", uri);
+
+		gnome_vfs_file_info_init (&info);
+		result = gnome_vfs_get_file_info (uri, &info,
+							(GNOME_VFS_FILE_INFO_GETMIMETYPE
+							 | GNOME_VFS_FILE_INFO_FOLLOWLINKS),
+							NULL);
+		if (result != GNOME_VFS_OK) {
+			fprintf (stderr, "%s: %s: %s\n",
+				 argv[0], uri, gnome_vfs_result_to_string (result));
+			i++;
+			continue;
+		}
+
+		print_file_info (&info);
+
+		gnome_vfs_file_info_clear (&info);
+
+		i++;
 	}
-
-	print_file_info (&info);
-
-	gnome_vfs_file_info_clear (&info);
 
 	return 0;
 }

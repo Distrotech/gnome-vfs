@@ -30,6 +30,7 @@ modules_LTLIBRARIES =				\
 	libbzip2.la				\
 	libgzip.la				\
 	libftp.la				\
+	libnewftp.la				\
 	libvfs-pipe.la				\
 	libvfs-translate.la
 
@@ -79,6 +80,12 @@ libbzip2_la_LIBADD = -lbz2
 libftp_la_SOURCES = 				\
 	ftp-method.c				\
 	ftp-method.h
+
+### `newftp' method
+
+libnewftp_la_SOURCES = 				\
+	newftp-method.c				\
+	newftp-method.h
 
 ### `gconf' method
 

@@ -1,3 +1,17 @@
+2000-05-16  Ian McKellar  <yakk@yakk.net.au>
+
+	* modules/Makefile.am:
+	* modules/default-modules.conf:
+	* modules/newftp-method.c:
+	* modules/newftp-method.h:
+	New FTP method. It doesn't currently work with Netpresenz servers, but
+	it is thread safe. Play with it, break it, mail me the addresses of FTP
+	servers that don't work. This is a complete reimplementation, so I've
+	left the old ftp-method in cvs as a reference.
+
+	* test/test-info.c: (main):
+	Accept multiple URIs on the command line.
+
 2000-05-11  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c:
