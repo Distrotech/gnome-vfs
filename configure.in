@@ -123,7 +123,7 @@ dnl
 CAPPLET_LIBDIR='-L${libdir}'
 CAPPLET_INCLUDEDIR='-I${includedir}'
 CAPPLET_INCLUDEDIR="$CAPPLET_INCLUDEDIR `gnome-config --cflags gnome gnomeui capplet`"
-CAPPLET_LIBS="-lgnomevfs -lgnomevfs-corba `gnome-config --libs gnome gnomeui capplet`"
+CAPPLET_LIBS="`gnome-config --libs gnome gnomeui capplet`"
 AC_SUBST(CAPPLET_LIBDIR)
 AC_SUBST(CAPPLET_INCLUDEDIR)
 AC_SUBST(CAPPLET_LIBS)

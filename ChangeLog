@@ -1,5 +1,11 @@
 2000-05-23  Ramiro Estrugo  <ramiro@eazel.com>
 
+	* configure.in:
+
+	Removed -lgnomevfs from CAPPLET_LIBS.
+
+2000-05-23  Ramiro Estrugo  <ramiro@eazel.com>
+
 	* Makefile.am:
 	* configure.in:
 	* mime-type-capplet/.cvsignore:
