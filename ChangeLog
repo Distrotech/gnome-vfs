@@ -1,5 +1,22 @@
 2000-06-20  Gene Z. Ragan  <gzr@eazel.com>
 
+	Fixed bug #1221
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(application_menu_activated), (populate_application_menu),
+	(component_menu_activated), (populate_component_menu):
+	Add handling of the case where a default application or
+	component is not in the default applicaiton or component list.
+	This involved some UI work and adding the default app to 
+	the default list.  Hopefully the gnome-vfs-mime-handler API
+	will not allow this to happen, but we handle it just in case.
+
+	Cleaned up the way the menu items for the default application
+	and component are set and added a signal handler to set
+	the user's choice of application or component to be the default.
+
+2000-06-20  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug #1055
 	
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
