@@ -70,15 +70,15 @@ gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
 
 		if (bytes < (GnomeVFSFileSize) MEGABYTE_FACTOR) {
 			displayed_size = (gdouble) bytes / KILOBYTE_FACTOR;
-			return g_strdup_printf (_("%.1fK"),
+			return g_strdup_printf (_("%.1f K"),
 						       displayed_size);
 		} else if (bytes < (GnomeVFSFileSize) GIGABYTE_FACTOR) {
 			displayed_size = (gdouble) bytes / MEGABYTE_FACTOR;
-			return g_strdup_printf (_("%.1fM"),
+			return g_strdup_printf (_("%.1f MB"),
 						       displayed_size);
 		} else {
 			displayed_size = (gdouble) bytes / GIGABYTE_FACTOR;
-			return g_strdup_printf (_("%.1fG"),
+			return g_strdup_printf (_("%.1f GB"),
 						       displayed_size);
 		}
 	}

@@ -1,3 +1,17 @@
+2000-12-28  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Maciej Stachowiak <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_format_file_size_for_display): Changed format from
+	"1.1M" to "1.1 MB". For kilobytes, I decided to do the same thing
+	we did for the Macintosh Finder, and use "123 K" instead of the
+	correct but obscure "123 kB".  These strings are marked for
+	translation as before, so it can be changed for different
+	countries. One reason these have to be changed is that they are
+	currently inconsistent with the hard-drive size numbers displayed
+	in the Nautilus hardware view (so one or the other had to change).
+
 2000-12-22  John Sullivan  <sullivan@eazel.com>
 
 	* modules/http-method.c: (vfs_module_init):
