@@ -1,3 +1,7 @@
+2000-07-19  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Added nl to ALL_LINGUAS.
+	
 2000-07-18  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/translate-method.c: (tr_forkexec_cb), (tr_getline),
