@@ -1113,9 +1113,15 @@ text/x-authors
 
 text/x-c
 	_description=C source code
+	icon_filename=gnome-application-x-c-source
 
 text/x-c++
 	_description=C++ source code
+	icon_filename=gnome-application-x-cc-source
+
+text/x-c-header
+	_description=C source code header
+	icon_filename=gnome-application-x-c-header
 
 text/x-comma-separated-values
 	_description=comma-separated text document
@@ -1162,6 +1168,7 @@ text/x-install
 
 text/x-java
 	_description=Java source code
+	icon_filename=gnome-application-x-java-source
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=jbuilder,javac
 	short_list_application_ids_for_intermediate_user_level=jbuilder,javac

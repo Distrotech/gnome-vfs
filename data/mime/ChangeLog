@@ -1,3 +1,12 @@
+2001-10-24  Seth Nickell  <snickell@stanford.edu>
+
+	* gnome-vfs.applications:
+	* gnome-vfs.keys.in:
+	* gnome-vfs.mime:
+
+	Seperate C header files from C source code at the request
+	of gIDE folks.
+	
 2001-10-11  Seth Nickell  <snickell@stanford.edu>
 
 	* gnome-vfs.applications:

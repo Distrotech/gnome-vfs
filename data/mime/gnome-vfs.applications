@@ -60,7 +60,7 @@ emacs
 	can_open_multiple_files=true
 	expects_uris=false
 	requires_terminal=false
-	mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++,text/x-perl
+	mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++,text/x-c-header,text/x-perl
 
 eog
 	command=eog
@@ -191,7 +191,7 @@ gvim
 	can_open_multiple_files=false
 	expects_uris=false
 	requires_terminal=false
-	mime_types=text/*,text/plain,text/x-c,text/x-c++,text/x-perl
+	mime_types=text/*,text/plain,text/x-c,text/x-c++,text/x-c-header,text/x-perl
 
 java
 	command=java
@@ -223,7 +223,7 @@ jcc
 	can_open_multiple_files=true
 	expects_uris=false
 	requires_terminal=false
-	mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++
+	mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++,text/x-c-header
 
 killustrator
 	command=killustrator
@@ -360,7 +360,7 @@ pico
 	can_open_multiple_files=false
 	expects_uris=false
 	requires_terminal=true
-	mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++,text/x-perl
+	mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++,text/x-c-header,text/x-perl
 
 plaympeg
 	command=plaympeg
@@ -409,7 +409,7 @@ vi
 	can_open_multiple_files=false
 	expects_uris=false
 	requires_terminal=true
-	mime_types=text/*,text/plain,text/x-c,text/x-c++,text/x-perl
+	mime_types=text/*,text/plain,text/x-c,text/x-c-header,text/x-c++,text/x-perl
 
 vlc
 	command=vlc
@@ -442,7 +442,7 @@ xemacs
 	can_open_multiple_files=true
 	expects_uris=false
 	requires_terminal=false
-	mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++,text/x-perl
+	mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++,text/x-c-header,text/x-perl
 
 xfig
 	command=xfig
@@ -458,7 +458,7 @@ xfte
 	can_open_multiple_files=true
 	expects_uris=false
 	requires_terminal=false
-	mime_types=text/*,text/plain,text/x-c,text/x-c++,text/x-perl
+	mime_types=text/*,text/plain,text/x-c,text/x-c-header,text/x-c++,text/x-perl
 
 xmms
 	command=xmms
