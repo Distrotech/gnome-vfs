@@ -128,6 +128,9 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 ALL_LINGUAS="am ar az be bg bn bs ca cs cy da de el eo es et eu fa fi fr ga gl he hi hu id is it ja ko lt lv mk ml mn ms nl nn no pl pt pt_BR ro ru sk sl sq sr sr@Latn sv tr uk vi wa yi zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
+AC_CHECK_LIB(nsl, t_accept)
+AC_CHECK_LIB(socket, socket)
+
 AC_FUNC_ALLOCA
 AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton getdelim)
 
@@ -314,9 +317,6 @@ av_struct_linger=no
 ])
 AC_MSG_RESULT($av_struct_linger)
 ])
-
-AC_CHECK_LIB(nsl, t_accept)
-AC_CHECK_LIB(socket, socket)
 
 have_socket=no
 AC_CHECK_FUNCS(socket, have_socket=yes)

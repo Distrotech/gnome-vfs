@@ -1,3 +1,8 @@
+2003-05-21  Hidetoshi Tajima  <hidetoshi.tajima@sun.com>
+
+	* configure.in (GETTEXT_PACKAGE): do libnsl and libsocket checks
+	before inet_pton (#113325).
+
 2003-05-20  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* modules/ftp-method.c
