@@ -1,28 +1,31 @@
+# translation of gnome-vfs.HEAD.he.po to Hebrew
 # translation of gnome-vfs.gnome-2-0.he.po to Hebrew
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # Gil Osher <dolfin@rpg.org.il>, 2002
+# Gil 'Dolfin' Osher <dolfin@rpg.org.il>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.gnome-2-0.he\n"
-"POT-Creation-Date: 2002-11-30 05:43+0100\n"
-"PO-Revision-Date: 2002-09-17 22:05+0300\n"
-"Last-Translator: Gil Osher <dolfin@rpg.org.il>\n"
+"Project-Id-Version: gnome-vfs.HEAD.he\n"
+"POT-Creation-Date: 2003-01-05 06:19+0100\n"
+"PO-Revision-Date: 2003-01-05 22:14+0200\n"
+"Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr ""
+msgstr "%s:%d מכיל תוים ריקים."
 
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr ""
+msgstr "%s:%d לא מכיל שם שיטה."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
@@ -34,33 +37,33 @@ msgstr "%s: %d לא מכיל שם מודול."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "קובץ ההגדרות '%s' לא נמצא: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:707
+#: libgnomevfs/gnome-vfs-job.c:731
 #, c-format
 msgid "Unknown op type %u"
-msgstr ""
+msgstr "סוג op לא ידוע %u"
 
-#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
+#: libgnomevfs/gnome-vfs-job.c:1020 libgnomevfs/gnome-vfs-job.c:1165
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr ""
+msgstr "לא ניתן ליצור צינור כדי לפתוח GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1601
+#: libgnomevfs/gnome-vfs-job.c:1655
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "סוג עבודה לא ידוע %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1634
+#: libgnomevfs/gnome-vfs-job.c:1688
 msgid "Operation stopped"
 msgstr "פעולה נעצרה"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr ""
+msgstr "לא ניתן לפענח: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr ""
+msgstr "התעלמות משגיאות הפיענוח הבאות."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -85,7 +88,7 @@ msgstr "שגיאה פנימית"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr ""
+msgstr "פרמטרים לא תקניים"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
@@ -105,7 +108,7 @@ msgstr "מידע פגום"
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr ""
+msgstr "מבנה לא תקני"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
@@ -140,7 +143,7 @@ msgstr "הקובץ לא פתוח"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr ""
+msgstr "מצב פתיחה לא תקין"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
@@ -265,51 +268,60 @@ msgstr ""
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Protocol error"
-msgstr ""
+msgstr "שגיאת פרוטוקול"
 
-#: libgnomevfs/gnome-vfs-result.c:137
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Could not find master browser"
+msgstr "לא ניתן למצוא דפדפן ראשי"
+
+#: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "שגיאה לא ידועה"
 
-#: libgnomevfs/gnome-vfs-utils.c:65
+#: libgnomevfs/gnome-vfs-utils.c:83
 msgid "1 byte"
 msgstr "בית אחד"
 
-#: libgnomevfs/gnome-vfs-utils.c:67
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u bytes"
 msgstr "%u בתים"
 
-#: libgnomevfs/gnome-vfs-utils.c:74
+#: libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f K"
 msgstr "KB %.1f"
 
-#: libgnomevfs/gnome-vfs-utils.c:78
+#: libgnomevfs/gnome-vfs-utils.c:96
 #, c-format
 msgid "%.1f MB"
 msgstr "MB %.1f"
 
-#: libgnomevfs/gnome-vfs-utils.c:82
+#: libgnomevfs/gnome-vfs-utils.c:100
 #, c-format
 msgid "%.1f GB"
 msgstr "GB %.1f"
 
+#: libgnomevfs/gnome-vfs-utils.c:1109
+msgid " (invalid Unicode)"
+msgstr " (יוניקוד לא תקני)"
+
 #: modules/file-method.c:382
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr ""
+msgstr "GnomeVFSSeekPosition לא ידוע %d"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "לא נמצא קובץ הגדרות תקני ב %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "השתמש במשתנה הסביבה %s כדי לציין מיקום אחר.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -326,3 +338,4 @@ msgstr ""
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr ""
+
