@@ -23,4 +23,4 @@ EXTRA_DIST =					\
 	intltool-update.in
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = gnome-vfs-2.0.pc gnome-vfs-module-2.0.pc.in
+pkgconfig_DATA = gnome-vfs-2.0.pc gnome-vfs-module-2.0.pc
