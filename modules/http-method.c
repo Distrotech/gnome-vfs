@@ -745,6 +745,7 @@ make_request (HttpFileHandle **handle_return,
 	gboolean proxy_connect = FALSE;
 	gchar *proxy_host = NULL;
 	guint proxy_port;
+	const gchar *path;
 
 	toplevel_uri = (GnomeVFSToplevelURI *) uri;
 
@@ -798,6 +799,13 @@ make_request (HttpFileHandle **handle_return,
 	g_string_append (request, " ");
 	g_string_append (request, uri_string);
 	g_free (uri_string);
+
+	path = gnome_vfs_uri_get_path (uri);
+	if (strlen (path) == 0) {
+		g_string_append (request, "/");
+	}
+
+
 	/* Our code doesn't handle the chunked transfer-encoding that mod_dav 
 	 * uses HTTP/1.1 request responses. */
 	g_string_append (request, " HTTP/1.0\r\n");

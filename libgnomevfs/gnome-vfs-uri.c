@@ -332,6 +332,7 @@ split_toplevel_uri (const gchar *path, guint path_len,
 		return NULL;
 	}
 	
+
 	path_end = path + path_len;
 
 	cur_tok_start = path;
@@ -375,7 +376,11 @@ split_toplevel_uri (const gchar *path, guint path_len,
 		/* [^:/]+$ */
 		if( 0 < uri_strlen_to (cur_tok_start, path_end)) {
 			*host_return = uri_strdup_to (cur_tok_start, path_end);
-			ret = g_strdup (GNOME_VFS_URI_PATH_STR);
+			if ( GNOME_VFS_URI_PATH_CHR == *(path_end - 1)) {
+				ret = g_strdup (GNOME_VFS_URI_PATH_STR);
+			} else {
+				ret = g_strdup ("");
+			}
 			success = TRUE;
 		} else { /* No host, no path */
 			success = FALSE;

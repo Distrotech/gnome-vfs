@@ -1,3 +1,19 @@
+2000-09-21  Mathieu Lacage  <mathieu@eazel.com>
+
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	(gnome_vfs_canonicalize_pathname): make it not transform
+	'method://foo' to 'method://foo.'
+	* libgnomevfs/gnome-vfs-uri.c: (split_toplevel_uri):
+	make it differentiate 'method://foo/' from 'method://foo'
+	* modules/ftp-method.c: (do_path_command),
+	(do_path_transfer_command), (ftp_connection_create),
+	(ls_to_file_info), (do_open_directory):
+	fix to handle the fact the gnome_vfs_uri_get_path can
+	return a string of length zero.
+	* modules/http-method.c: (make_request): handle the same 
+	special case as above.
+	* test/test-uri.c: (main): add tests to test my new stuff.
+
 2000-09-21  Darin Adler  <darin@eazel.com>
 
 	Fixed code that was creating a separate "job slave" object that

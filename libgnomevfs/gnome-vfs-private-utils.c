@@ -66,7 +66,7 @@ gnome_vfs_canonicalize_pathname (gchar *path)
 	int i, start;
 	gchar stub_gchar;
 
-	if (path == NULL)
+	if (path == NULL || strlen (path) == 0)
 		return NULL;
 
 	stub_gchar = ((*path == GNOME_VFS_URI_PATH_CHR)

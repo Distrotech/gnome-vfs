@@ -287,14 +287,24 @@ do_basic_command (FtpConnection *conn,
 static GnomeVFSResult 
 do_path_command (FtpConnection *conn, 
 		 gchar *command,
-		 GnomeVFSURI *uri) {
+		 GnomeVFSURI *uri) 
+{
+	const char *path;
+	char *actual_command;
+	GnomeVFSResult result;
 	/* as some point we may need to make this execute a CD and then
   	 * a command using the basename rather than the full path. I am yet
 	 * to come across such a system.
 	 */
-	gchar *actual_command = g_strdup_printf ("%s %s", command,
-						 gnome_vfs_uri_get_path (uri));
-	GnomeVFSResult result = do_basic_command (conn, actual_command);
+	path = gnome_vfs_uri_get_path (uri);
+
+	if (path == NULL || strlen (path) == 0) {
+		path = ".";
+	}
+
+	actual_command = g_strdup_printf ("%s %s", command, path);
+
+	result = do_basic_command (conn, actual_command);
 	g_free (actual_command);
 	return result;
 }
@@ -395,13 +405,22 @@ do_path_transfer_command (FtpConnection *conn,
 			  gchar *command, 
 			  GnomeVFSURI *uri) 
 {
+	const char *path;
+	char *actual_command;
+	GnomeVFSResult result;
 	/* as some point we may need to make this execute a CD and then
   	 * a command using the basename rather than the full path. I am yet
 	 * to come across such a system.
 	 */
-	gchar *actual_command = g_strdup_printf ("%s %s", command,
-		gnome_vfs_uri_get_path (uri));
-	GnomeVFSResult result = do_transfer_command (conn, actual_command);
+	path = gnome_vfs_uri_get_path (uri);
+
+	if (path == NULL || strlen (path) == 0) {
+		path = ".";
+	}
+
+	actual_command = g_strdup_printf ("%s %s", command, path);
+
+	result = do_transfer_command (conn, actual_command);
 	g_free (actual_command);
 	return result;
 }
@@ -450,14 +469,17 @@ ftp_connection_create (FtpConnection **connptr,
 	conn->response_message = NULL;
 	conn->response_code = -1;
 
-	if (gnome_vfs_uri_get_host_port (uri))
+	if (gnome_vfs_uri_get_host_port (uri)) {
 		port = gnome_vfs_uri_get_host_port (uri);
+	}
 
-	if (gnome_vfs_uri_get_user_name (uri))
+	if (gnome_vfs_uri_get_user_name (uri)) {
 		user = gnome_vfs_uri_get_user_name (uri);
+	}
 
-	if (gnome_vfs_uri_get_password (uri))
+	if (gnome_vfs_uri_get_password (uri)) {
 		pass = gnome_vfs_uri_get_password (uri);
+	}
 
 	result = gnome_vfs_inet_connection_create (&conn->inet_connection, 
 						   gnome_vfs_uri_get_host_name (uri), port, 
@@ -803,6 +825,8 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info)
 
 	gnome_vfs_parse_ls_lga (ls, &s, &filename, &linkname);
 
+	/* g_print ("filename: %s, linkname: %s\n", filename, linkname); */
+
 	if (filename) {
 
 		gnome_vfs_stat_to_file_info (file_info, &s);
@@ -986,7 +1010,7 @@ static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 		return result;
 	}
 
-	//g_print ("do_open_directory ()\n");
+	g_print ("do_open_directory () in uri: %s\n", gnome_vfs_uri_get_path(uri));
 
 	result = do_path_transfer_command (conn, "LIST", uri);
 

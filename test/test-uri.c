@@ -222,7 +222,7 @@ main (int argc, char **argv)
 
 	test_uri_to_string ("", "NULL", GNOME_VFS_URI_HIDE_NONE);
 
-	test_uri_to_string ("http://www.eazel.com", "http://www.eazel.com/", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("http://www.eazel.com", "http://www.eazel.com", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("http://www.eazel.com/", "http://www.eazel.com/", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("http://www.eazel.com/dir", "http://www.eazel.com/dir", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("http://www.eazel.com/dir/", "http://www.eazel.com/dir/", GNOME_VFS_URI_HIDE_NONE);
