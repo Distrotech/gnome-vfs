@@ -1,14 +1,14 @@
-# Finnish translation for gnome-vfs.
-# Copyright (C) 2000 Free Software Foundation, Inc.
-# Pauli Virtanen <pauli.virtanen@saunalahti.fi>, 2000
-#
-# GNOME Finnish Translation Team: http://gnome-fi.sourceforge.net/
+# gnome-vfs Finnish translation
+# Suomennos: http://gnome-fi.sourceforge.net/
+#  
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Pauli Virtanen <pauli.virtanen@saunalahti.fi>, 2000-2001
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-09-21 16:52-0400\n"
-"PO-Revision-Date: 2001-01-10 23:17+02:00\n"
+"Project-Id-Version: gnome-vfs 1.0.2\n"
+"POT-Creation-Date: 2001-10-10 20:06+0300\n"
+"PO-Revision-Date: 2001-10-06 20:52+0300\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@saunalahti.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -597,7 +597,7 @@ msgstr "StarOffice-taulukko"
 
 #: data/mime/gnome-vfs.keys.in.h:146
 msgid "Sun mu-law audio"
-msgstr "Sun µ-law -‰‰ni"
+msgstr "Sun mu-law -‰‰ni"
 
 #: data/mime/gnome-vfs.keys.in.h:147
 msgid "SunOS News font"
@@ -1246,9 +1246,8 @@ msgstr "Pyyntˆ vanhentaa palvelun datan"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:78
-#, fuzzy
 msgid "Protocol error"
-msgstr "Ei virhett‰"
+msgstr "Protokollavirhe"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
@@ -1292,7 +1291,7 @@ msgstr "GIOChannelille ei voi luoda putkea: %s"
 #: libgnomevfs-pthread/gnome-vfs-job.c:1604
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Tuntematon tyˆntyyppi %u"
+msgstr "Tuntematon tyˆtyyppi %u"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1640
 msgid "Operation stopped"
@@ -1302,325 +1301,3 @@ msgstr "Toiminta pys‰ytetty"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Tuntematon GnomeVFSSeekPosition %d"
-
-#~ msgid "Dying."
-#~ msgstr "Kuolee."
-
-#~ msgid "Error reading: %s"
-#~ msgstr "Virhe lukiessa: %s"
-
-#~ msgid "Error writing: %s"
-#~ msgstr "Virhe kirjoittaessa: %s"
-
-#~ msgid "Cannot write: %s"
-#~ msgstr "Ei voi kirjoittaa: %s"
-
-#~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "V‰liaikaista tiedostonnime‰ '%s' ei voi luoda"
-
-#~ msgid "Cannot create socket: %s"
-#~ msgstr "Pistoketta ei voi luoda: %s"
-
-#~ msgid "Cannot bind `%s': %s"
-#~ msgstr "Pistoketta ei voi bindata '%s': %s"
-
-#~ msgid "Cannot listen on `%s': %s"
-#~ msgstr "Pistoketta ei voi kuunnella '%s': %s"
-
-#~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Pistokkeesta ei voi hyv‰ksy‰ yhteyksi‰ '%s': %s"
-
-#~ msgid "Cannot initialize CORBA."
-#~ msgstr "CORBAa ei voi alustaa."
-
-#~ msgid "Cannot resolve initial reference to RootPOA."
-#~ msgstr "Alkuviittausta RootPOA:an ei voi selvitt‰‰."
-
-#~ msgid "Cannot activate POA manager."
-#~ msgstr "POA-manageria ei voi aktivoida."
-
-#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "K‰yttˆ: %s <ior> [<ior_fd>]\n"
-
-#~ msgid "Cannot open file descriptor %d."
-#~ msgstr "Tiedostokahvaa %d ei voi avata."
-
-#~ msgid "Notify interface for `%s' not found."
-#~ msgstr "Ilmoitusrajapintaa IOR:lle '%s' ei lˆytynyt."
-
-#~ msgid "Cannot setup Request object."
-#~ msgstr "Request-oliota ei voi alustaa."
-
-#~ msgid "Cannot extract IOR."
-#~ msgstr "IOR:‰‰ ei voi erottaa."
-
-#~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "Orjaprosessilta saatu kummallinen merkkijono: '%s'"
-
-#~ msgid "Cannot get object for `%s'"
-#~ msgstr "IOR:in '%s' oliota ei voi hakea"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "GNOME::VFS::Slave::Notify:‰ ei voi sulkea -- poikkeus %s"
-
-#~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "Pistoketta '%s' ei voi yhdist‰‰: %s"
-
-#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-#~ msgstr "GNOME::VFS::Slave::Notify:‰ ei voi alustaa"
-
-#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "GNOME::VFS::Slavea %s ei voi palauttaa -- poikkeus %s"
-
-#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr "GNOME::VFS::Slavea (IOR tuntematon) ei voi palauttaa -- poikkeus %s"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "GNOME::VFS::Slavea %s ei voi sulkea -- poikkeus %s"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr "GNOME::VFS::Slavea (IOR tuntematon) ei voi sulkea -- poikkeus %s"
-
-#~ msgid "File Types and Programs"
-#~ msgstr "Tiedostotyypit ja ohjelmat"
-
-#~ msgid "Specify which programs are used to open or view each file type"
-#~ msgstr "M‰‰rit‰, mill‰ ohjelmilla tiedostoja k‰sitell‰‰n"
-
-#~ msgid "MIME Type"
-#~ msgstr "MIME-tyyppi"
-
-#~ msgid "Change Icon"
-#~ msgstr "Vaihda kuvaketta"
-
-#~ msgid "Change File Extensions"
-#~ msgstr "Muuta tiedostojen p‰‰tteit‰"
-
-#~ msgid "Default Action:"
-#~ msgstr "Oletustoiminto:"
-
-#~ msgid "Use Viewer"
-#~ msgstr "K‰yt‰ katselinta"
-
-#~ msgid "Open With Application"
-#~ msgstr "Avaa sovelluksella"
-
-#~ msgid "Edit List"
-#~ msgstr "Muokkaa luetteloa"
-
-#~ msgid "Add New MIME Type..."
-#~ msgstr "Lis‰‰ uusi MIME-tyyppi..."
-
-#~ msgid "Delete This MIME Type"
-#~ msgstr "Poista t‰m‰ MIME-tyyppi"
-
-#~ msgid "Revert to System Defaults"
-#~ msgstr "K‰yt‰ j‰rjestelm‰n oletuksia"
-
-#~ msgid "None"
-#~ msgstr "Ei mik‰‰n"
-
-#~ msgid ""
-#~ "Reverting to system settings will lose any changes\n"
-#~ "you have ever made to File Types and Programs.\n"
-#~ "Revert anyway?"
-#~ msgstr ""
-#~ "Kun j‰rjestelm‰n oletukset otetaan k‰yttˆˆn, niin\n"
-#~ "kaikki tekem‰si muutokset h‰vi‰v‰t.\n"
-#~ "\n"
-#~ "Haluatko silti k‰ytt‰‰ j‰rjestelm‰n oletuksia?"
-
-#~ msgid "none"
-#~ msgstr "ei mik‰‰n"
-
-#~ msgid "View as %s"
-#~ msgstr "N‰yt‰ muotona %s"
-
-#~ msgid "Description"
-#~ msgstr "Kuvaus"
-
-#~ msgid "Extension"
-#~ msgstr "P‰‰te"
-
-#~ msgid "Default Action"
-#~ msgstr "Oletustoiminto"
-
-#~ msgid "Edit Applications List"
-#~ msgstr "Muokkaa sovellusluetteloa"
-
-#~ msgid "Select applications to appear in menu for MIME type \"%s\""
-#~ msgstr "Valitse sovellukset, jotka n‰kyv‰t MIME-tyypin \"%s\" valikossa"
-
-#~ msgid "Add Application..."
-#~ msgstr "Lis‰‰ sovellus..."
-
-#~ msgid "Edit Application..."
-#~ msgstr "Muokkaa sovellusta..."
-
-#~ msgid "Delete Application"
-#~ msgstr "Poista sovellus"
-
-#~ msgid "Edit Components List"
-#~ msgstr "Muokkaa komponenttiluetteloa"
-
-#~ msgid "Select views to appear in menu for MIME type \"%s\""
-#~ msgstr "Valitse n‰kym‰t, jotka ovat MIME-tyypin \"%s\" valikossa"
-
-#~ msgid ""
-#~ "The MIME type entered contained upper case characters. Upper case "
-#~ "characters were changed to lower case for you."
-#~ msgstr ""
-#~ "Annetussa MIME-tyypiss‰ oli isoja kirjaimia, jotka muutetaan pieniksi."
-
-#~ msgid "Add New MIME Type"
-#~ msgstr "Lis‰‰ uusi MIME-tyyppi"
-
-#~ msgid "Add MIME Type"
-#~ msgstr "Lis‰‰ MIME-tyyppi"
-
-#~ msgid "New MIME type (e.g. image/x-thumper):"
-#~ msgstr "Uusi MIME-tyyppi (esim. image/x-isku):"
-
-#~ msgid "Description (e.g. Thumper image):"
-#~ msgstr "Kuvaus (esim. Iskukuva):"
-
-#~ msgid "File Extensions "
-#~ msgstr "Tiedostojen p‰‰tteet:"
-
-#~ msgid "Add..."
-#~ msgstr "Lis‰‰..."
-
-#~ msgid "    Remove    "
-#~ msgstr "    Poista    "
-
-#~ msgid "Add New Extension"
-#~ msgstr "Lis‰‰ uusi p‰‰te"
-
-#~ msgid ""
-#~ "Type in the extensions for this mime-type (without dot).\n"
-#~ "You can enter several extensions seperated by a space,\n"
-#~ "for example: html htm"
-#~ msgstr ""
-#~ "Kirjoita t‰m‰n mime-tyypin tiedostojen p‰‰tteit‰ (ilman pistett‰).\n"
-#~ "Esimerkiksi:  html, htm"
-
-#~ msgid "Extension:"
-#~ msgstr "P‰‰tteet:"
-
-#~ msgid "You must enter a name."
-#~ msgstr "Nimi t‰ytyy antaa."
-
-#~ msgid "You must enter a command."
-#~ msgstr "Komento t‰ytyy antaa."
-
-#~ msgid ""
-#~ "\"%s\" does not exist or is not executable.\n"
-#~ "Check your spelling and make sure you have\n"
-#~ "the right permissions to execute this file."
-#~ msgstr ""
-#~ "\"%s\" ei ole olemassa tai ei ole suoritettava.\n"
-#~ "Tarkista, ett‰ kirjoitit oikein, ja ett‰\n"
-#~ "sinulla on t‰m‰n tiedoston suoritusoikeudet."
-
-#~ msgid ""
-#~ "The command \"%s\" cannot be found.\n"
-#~ "You must use a command that can work from any command line."
-#~ msgstr ""
-#~ "Komentoa \"%s\" ei lˆydy.\n"
-#~ "Sinun t‰ytyy k‰ytt‰‰ komentoa, joka toimii komentorivilt‰."
-
-#~ msgid "Bad Application Name"
-#~ msgstr "Virheellinen sovelluksen nimi"
-
-#~ msgid "Bad Application Command"
-#~ msgstr "Virheellinen sovelluksen komento"
-
-#~ msgid "Add Application"
-#~ msgstr "Lis‰‰ sovellus"
-
-#~ msgid "Edit Application"
-#~ msgstr "Muokkaussovellus"
-
-#~ msgid "Application Name:"
-#~ msgstr "Sovelluksen nimi:"
-
-#~ msgid "Application Command:"
-#~ msgstr "Sovelluksen komento:"
-
-#~ msgid "Open Behavior"
-#~ msgstr "Avaamisk‰ytt‰ytyminen"
-
-#~ msgid "Can open multiple files"
-#~ msgstr "Voi avata useita tiedostoja"
-
-#~ msgid "Can open from URI"
-#~ msgstr "Voi avata URI:n"
-
-#~ msgid "Can't find an hbox, using a normal file selection"
-#~ msgstr "Hboxia ei lˆydy: k‰ytet‰‰n tavallista tiedoston valintaa"
-
-#~ msgid "Preview"
-#~ msgstr "Esikatselu"
-
-#~ msgid "Select an icon"
-#~ msgstr "Valitse kuvake"
-
-#~ msgid "%s to retrieve"
-#~ msgstr "Haettava %s"
-
-#~ msgid "Closing connection to %s"
-#~ msgstr "Suljetaan yhteys kohteeseen %s"
-
-#~ msgid "%s of %s read"
-#~ msgstr "%s/%s luettu"
-
-#~ msgid "%s read"
-#~ msgstr "%s luettu"
-
-#~ msgid "Back"
-#~ msgstr "Takaisin"
-
-#~ msgid "Go to the previously visited directory"
-#~ msgstr "Siirry edelliseen hakemistoon"
-
-#~ msgid "Up"
-#~ msgstr "Ylˆs"
-
-#~ msgid "Go to the parent directory"
-#~ msgstr "Siirry yl‰hakemistoon"
-
-#~ msgid "Forward"
-#~ msgstr "Eteenp‰in"
-
-#~ msgid "Go to the next visited directory"
-#~ msgstr "Siirry seuraavaan hakemistoon"
-
-#~ msgid "Rescan"
-#~ msgstr "Lue uudelleen"
-
-#~ msgid "Rescan the current directory"
-#~ msgstr "Lue nykyinen hakemisto uudelleen"
-
-#~ msgid "Home"
-#~ msgstr "Koti"
-
-#~ msgid "Go to the home directory"
-#~ msgstr "Siirry kotihakemistoon"
-
-#~ msgid "Name"
-#~ msgstr "Nimi"
-
-#~ msgid "Size"
-#~ msgstr "Koko"
-
-#~ msgid "Date"
-#~ msgstr "P‰iv‰m‰‰r‰"
-
-#~ msgid "Enter name:"
-#~ msgstr "Anna nimi:"
-
-#~ msgid "Show:"
-#~ msgstr "N‰yt‰:"
-
-#~ msgid "Show dotfiles"
-#~ msgstr "N‰yt‰  pisteell‰ alkavat tiedostot"
