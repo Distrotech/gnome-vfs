@@ -1,3 +1,11 @@
+2002-07-05  Stephen Browne <stephen.browne@sun.com>
+	* modules/cdemenu-desktop-method.c
+	Patch from rohit.raveendran@wipro.com
+	modified the code so that the function create_cde_icon_name_cache
+	creates the file g-cdeiconnames with permissions 644 in .gnome 
+	directory in the users home directory.
+	Fixes #87267
+
 2002-06-27  Michael Meeks  <michael@ximian.com>
 
 	* modules/vfolder-desktop-method.c
