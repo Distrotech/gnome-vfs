@@ -114,6 +114,7 @@ typedef struct {
 	struct stat s;
 	unsigned int valid : 1;
 	unsigned int system_dir : 1;
+	unsigned int force_reload : 1;
 } mime_dir_source_t;
 
 
@@ -163,6 +164,18 @@ static GnomeVFSResult write_back_mime_user_file (void);
 static GnomeVFSResult write_back_keys_user_file (void);
 static const char *   gnome_vfs_mime_get_registered_mime_type_key (const char *mime_type,
 								   const char *key);
+
+void
+_gnome_vfs_mime_info_mark_gnome_mime_dir_dirty (void)
+{
+	gnome_mime_dir.force_reload = TRUE;
+}
+
+void
+_gnome_vfs_mime_info_mark_user_mime_dir_dirty (void)
+{
+	user_mime_dir.force_reload = TRUE;
+}
 
 static gboolean
 does_string_contain_caps (const char *string)
@@ -670,8 +683,12 @@ reload_if_needed (void)
 	gboolean need_reload = FALSE;
 	struct stat s;
 
-	if (last_checked + 5 >= now)
-		return;
+	if (now > last_checked + 5)
+		need_reload = TRUE;
+
+	if (gnome_mime_dir.force_reload ||
+	    user_mime_dir.force_reload)
+		need_reload = TRUE;
 
 	if (stat (gnome_mime_dir.dirname, &s) != -1)
 		if (s.st_mtime != gnome_mime_dir.s.st_mtime)
@@ -740,6 +757,10 @@ gnome_vfs_mime_info_reload (void)
 
 	/* 2. Reload */
 	load_mime_type_info ();
+
+	/* 3. clear our force flags */
+	gnome_mime_dir.force_reload = FALSE;
+	user_mime_dir.force_reload = FALSE;
 
 	/* 3. Tell anyone who cares */
 	gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
