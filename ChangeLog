@@ -1,3 +1,10 @@
+2003-03-05  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Try pkg-config for detecting openssl.
+	Add --disable-openssl to not use openssl
+	Add --enable-gnutls to enable gnutls.
+
 2003-02-25  Taneem Ahmed  <taneem@eyetap.org>
 
 	* configure.in: Added "bn" to ALL_LINGUAS.
