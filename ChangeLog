@@ -1,3 +1,15 @@
+Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
+
+	* modules/cdemenu-desktop-method.c (expand_env_vars): get LC_CTYPE
+	from setlocale when no LC_CTYPE environment variable is set. Fixes #86462
+
+	* modules/cdemenu-desktop-method.c (get_icon_for_action): use
+	/usr/dt/appconfig/icons/C for fallback to avoid returning
+	"ICON=NONE" which makes gnome-panel crash in many locales.
+	* modules/cdemenu-desktop-method.c (do_open): Patch to fix the cde
+	menus to correctly translate to utf-8, originally by George Lebl
+	<jirka@5z.com> Fixes #84074
+
 2002-02-29  Arvind Samptur <arvind.samptur@wipro.com>
 	* modules/cde-desktop-method.c: Removing Comment field
 	from the desktop files. Fixes #88484
