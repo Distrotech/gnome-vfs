@@ -37,6 +37,8 @@
 #include <unistd.h>
 #include <signal.h>
 
+#define LINE_LENGTH 4096 /* max line length we'll grok */
+
 typedef struct {
 	GnomeVFSMethodHandle method_handle;
 	GnomeVFSURI *uri;
@@ -153,16 +155,20 @@ ssh_connect (SshHandle **handle_return,
 	char ** argv;
 	SshHandle *handle;
 	char *command_line;
+	const gchar *username;
 	int argc;
 	GError *gerror = NULL;
 
+	username = gnome_vfs_uri_get_user_name(uri);
+	if (username == NULL) {
+		username = g_get_user_name();
+	}
 	
-	command_line  = g_strconcat ("ssh -oBatchmode=yes -x -l ", 
-				     gnome_vfs_uri_get_user_name (uri),
+	command_line  = g_strconcat ("ssh -oBatchMode=yes -x -l ", 
+				     username,
 				     " ", gnome_vfs_uri_get_host_name (uri),
-				     " ", command,
+				     " ", "\"LC_ALL=C;", command,"\"",
 				     NULL);
-
 
 	g_shell_parse_argv (command_line, &argc, &argv, &gerror);
 	g_free (command_line);
@@ -397,8 +403,14 @@ do_read (GnomeVFSMethod *method,
 	 GnomeVFSFileSize *bytes_read,
 	 GnomeVFSContext *context)
 {
-	return ssh_read ((SshHandle *)method_handle, buffer, num_bytes,
+	GnomeVFSResult result;
+
+	result =  ssh_read ((SshHandle *)method_handle, buffer, num_bytes,
 			bytes_read);
+	if (*bytes_read == 0) {	
+		result = GNOME_VFS_ERROR_EOF;
+	}
+	return result;
 }
 
 /* alternative impl:
@@ -461,8 +473,6 @@ do_close_directory (GnomeVFSMethod *method,
 	return ssh_destroy ((SshHandle *)method_handle);
 }
 
-#define LINE_LENGTH 4096 /* max line length we'll grok */
-
 static GnomeVFSResult 
 do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle,
@@ -470,10 +480,10 @@ do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSContext *context)
 {
 	GnomeVFSResult result = GNOME_VFS_OK;
-	char line[LINE_LENGTH];
+	char line[LINE_LENGTH+1];
 	char c;
 	int i=0;
-	GnomeVFSFileSize j;
+	GnomeVFSFileSize bytes_read;
 	struct stat st;
 	char *tempfilename, *filename, *linkname;
 
@@ -482,11 +492,12 @@ do_read_directory (GnomeVFSMethod *method,
 		filename = NULL;
 		linkname = NULL;
 		i = 0;
-		j = 0;
+		bytes_read = 0;
 
 		while (i<LINE_LENGTH) {
-			result = ssh_read ((SshHandle *)method_handle, &c, 1, &j);
-			if (j == 0 || c == '\r' || c == '\n') {
+			result = ssh_read ((SshHandle *)method_handle, &c,
+					   sizeof(char), &bytes_read);
+			if (bytes_read == 0 || c == '\r' || c == '\n') {
 				break;
 			}
 
@@ -497,7 +508,9 @@ do_read_directory (GnomeVFSMethod *method,
 			line[i] = c;
 			i++;
 		}
-
+		/* Here we can have i == LINE_LENGTH which explains 
+		 * why the size of line is LINE_LENGTH+1
+		 */
 		line[i] = 0;
 		if (i == 0) {
 			return GNOME_VFS_ERROR_EOF;

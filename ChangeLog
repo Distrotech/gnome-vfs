@@ -1,4 +1,13 @@
-2002-09-19  Christophe Fergeau  <teuf@users.sourceforge.net>
+2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
+        * modules/ssh-method.c: 
+        Make do_read return GNOME_VFS_ERROR_EOF when it read 0 byte
+        Force C locale in ssh_connect before running ssh (the ls parsing 
+        function expects ls output to be in this locale)
+        When the uri contains no username, use the name of the current user
+        (otherwise ssh://localhost won't work).
+        Fix a possible buffer overflow in do_read_directory
+
+2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
         * modules/ftp-method.c: 
         Moved ftp authentification to a separate function (ftp_login)
         Correctly return GNOME_VFS_ERROR_EOF when do_read didn't read anything
