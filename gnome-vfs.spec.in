@@ -80,9 +80,7 @@ fi
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
-%config %{sysconfdir}/gnome-vfs-mime-magic
 %config %{sysconfdir}/vfs/modules/*.conf
-%dir %{prefix}/share/application-registry
 %{prefix}/lib/*.0
 %{prefix}/lib/*.sh
 %{prefix}/lib/*.so
@@ -91,8 +89,6 @@ fi
 %{prefix}/man/man5/*.5*
 %{prefix}/share/application-registry/gnome-vfs.applications
 %{prefix}/share/locale/*/LC_MESSAGES/*.mo
-%{prefix}/share/mime-info/*.keys
-%{prefix}/share/mime-info/*.mime
 
 %files devel
 %defattr(-, root, root)
