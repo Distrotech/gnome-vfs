@@ -108,6 +108,7 @@
 1:16	string		/bin/csh				text/x-csh
 1:16	string		/bin/ksh				text/x-ksh
 1:16	string		/bin/perl				text/x-perl
+0	string		BEGIN:VCARD				text/x-vcard
 8	string		AVI\ 					video/x-msvideo
 0	string		MOVI					video/x-sgi-movie
 0	string		.snd					audio/basic
