@@ -94,7 +94,7 @@ fi
 %{prefix}/lib/vfs/modules/*.so
 %{prefix}/man/man5/*.5*
 %{prefix}/share/application-registry/gnome-vfs.applications
-%{prefix}/share/control-center/*.desktop
+%{prefix}/share/control-center/Documents/*.desktop
 %{prefix}/share/gnome/apps/Settings/*.desktop
 %{prefix}/share/gnome/html/*.txt
 %{prefix}/share/locale/*/LC_MESSAGES/*.mo
