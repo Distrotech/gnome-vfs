@@ -1,3 +1,10 @@
+2003-06-28  Christophe Fergeau,,,  <set EMAIL_ADDRESS environment variable>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_set_short_list_applications): when adding an app
+	to the short_list for a mime-type, also add it to the global list
+	of apps able to handle this mime-type
+
 2003-06-28  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* libgnomevfs/gnome-vfs-uri.c (BV_IS_SET): don't read out of 

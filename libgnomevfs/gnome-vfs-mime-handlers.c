@@ -1056,6 +1056,7 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 	GList *short_list_addition_list;
 	GList *short_list_removal_list;
 	GnomeVFSResult result;
+	GList *it;
 
 	/* Get base list. */
 	short_list_id_list = comma_separated_str_to_str_list
@@ -1066,6 +1067,18 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 	short_list_removal_list = str_list_difference (short_list_id_list, application_ids);
 	addition_string = str_list_to_comma_separated_str (short_list_addition_list);
 	removal_string = str_list_to_comma_separated_str (short_list_removal_list);
+
+	/* Make sure the newly added app_ids are already associated to this 
+	 * mime type in the application registry
+	 */
+	for (it = short_list_addition_list; it != NULL; it = it->next) {
+		/* add_mime_type won't do anything if mime_type is already
+		 * associated with it->data
+		 */
+		gnome_vfs_application_registry_add_mime_type (it->data, mime_type);		
+	}
+	gnome_vfs_application_registry_sync ();
+
 	g_list_free_deep (short_list_id_list);
 	g_list_free (short_list_addition_list);
 	g_list_free (short_list_removal_list);
