@@ -96,7 +96,7 @@ gnumeric
 	can_open_multiple_files=true
 	expects_uris=false
 	requires_terminal=false
-	mime_types=application/x-gnumeric,application/vnd.ms-excel
+	mime_types=application/x-gnumeric,application/x-applix-spreadsheet,application/vnd.ms-excel,application/vnd.lotus-1-2-3,application/x-oleo,application/x-xbase,text/spreadsheet,text/x-comma-separated-values,text/tab-separated-values
 
 staroffice
 	command=soffice
@@ -104,7 +104,7 @@ staroffice
 	can_open_multiple_files=true
 	expects_uris=false
 	requires_terminal=false
-	mime_types=application/x-staroffice-presentation,application/x-staroffice-spreadsheet,application/x-staroffice-words,text/abiword,application/vnd.ms-excel,application/rtf,application/msword,application/mspowerpoint
+	mime_types=application/x-staroffice-presentation,application/x-staroffice-spreadsheet,application/x-staroffice-words,text/abiword,application/vnd.ms-excel,application/rtf,application/msword,application/vnd.ms-powerpoint
 
 abiword
 	command=abiword
@@ -195,6 +195,15 @@ xmms
 	expects_uris=true
 	requires_terminal=false
 	supported_uri_schemes=http,ftp,file
+	mime_types=audio/x-mp3,audio/x-mpeg,application/x-ogg,audio/x-mpegurl,audio/x-wav,audio/x-riff
+
+freeamp
+	command=freeamp
+	name=FreeAmp
+	can_open_multiple_files=true
+	expects_uris=true
+	requires_terminal=false
+	supported_uri_schemes=http,file
 	mime_types=audio/x-mp3,audio/x-mpeg,application/x-ogg,audio/x-mpegurl,audio/x-wav
 
 realplayer
@@ -301,3 +310,164 @@ pico
 	expects_uris=false
 	requires_terminal=true
 	mime_types=text/*,text/html,text/plain,text/x-c,text/x-c++,text/x-perl
+
+dia
+	command=dia
+	name=Diagram Editor (dia)
+	can_open_multiple_files=true
+	expects_uris=false
+	requires_terminal=false
+	mime_types=application/x-dia,application/x-dia-diagram
+
+gnomecard
+	command=gnomecard
+	name=GnomeCard
+	can_open_multiple_files=false
+	expects_uris=false
+	requires_terminal=false
+	mime_types=text/x-vcard
+
+gnomecal
+	command=gnomecal
+	name=Gnome Calendar
+	can_open_multiple_files=false
+	expects_uris=false
+	requires_terminal=false
+	mime_types=text/x-vcalendar
+
+guitar
+	command=guitar
+	name=guiTAR
+	can_open_multiple_files=true
+	expects_uris=false
+	requires_terminal=false
+	mime_types=application/x-bzip,application/x-bzip-compressed-tar,application/x-arj,application/x-compress,application/x-compressed-tar,application/x-gtar,application/x-gzip,application/x-lha,application/x-lhz,application/x-tar,application/zip,application/x-rar-compressed
+
+sodipodi
+	command=sodipodi
+	name=Sodipodi
+	can_open_multiple_files=true
+	expects_uris=false
+	requires_terminal=false
+	mime_types=image/svg
+
+gnucash
+	command=gnucash
+	name=GnuCash
+	can_open_multiple_files=false
+	expects_uris=false
+	requires_terminal=false
+	mime_types=application/qif,application/x-qw,application/x-gnucash
+
+gnorpm
+	command=gnorpm
+	name=GnoRPM
+	can_open_multiple_files=true
+	expects_uris=false
+	requires_terminal=false
+	mime_types=application/x-rpm
+
+glade
+	command=glade
+	name=Glade
+	can_open_multiple_files=false
+	expects_uris=false
+	requires_terminal=false
+	mime_types=application/x-glade
+
+grecord
+	command=grecord
+	name=Sound Recorder
+	can_open_multiple_files=false
+	expects_uris=false
+	requires_terminal=false
+	mime_types=audio/x-aiff,audio/x-aifc,audio/x-ulaw,audio/x-voc,audio/x-wav
+
+xmps
+	command=xmps
+	name=X Movie Player (xmps)
+	can_open_multiple_files=true
+	expects_uris=false
+	requires_terminal=false
+	mime_types=video/x-msvideo,video/x-ms-asf,video/mpeg,audio/x-mp3,audio/ac3,audio/x-wav
+
+omsomi
+	command=omi_gtk
+	name=Open Media System Player
+	can_open_multiple_files=false
+	expects_uirs=false
+	requires_terminal=false
+	mime_types=video/mpeg,video/x-msvideo,audio/ac3
+
+gtv
+	command=gtv
+	name=smpeg gtv
+	can_open_multiple_files=false
+	expects_uris=false
+	requires_terminal=false
+	mime_types=video/mpeg
+
+java
+	command=java
+	name=Java Interpreter
+	can_open_multiple_files=false
+	expects_uris=false
+	requires_terminal=true
+	mime_types=application/x-java-byte-code
+
+javac
+	command=javac
+	name=Java compiler
+	can_open_multiple_files=true
+	expects_uris=false
+	requires_terminal=true
+	mime_types=text/x-java
+
+jbuilder
+	command=jbuilder
+	name=Borland JBuilder
+	can_open_multiple_files=true
+	expects_uris=false
+	requires_terminal=false
+	mime_types=text/x-java,application/x-jbuilder-project
+
+kword
+	command=kword
+	name=KWord
+	can_open_multiple_files=true
+	expects_uris=true
+	requires_terminal=false
+	supported_uri_schemes=file,http,ftp
+	mime_types=application/x-kword,text/x-abiword,application/msword
+
+kspread
+	command=kspread
+	name=KSpread
+	can_open_multiple_files=true
+	expects_uris=true
+	requires_terminal=false
+	supported_uri_schemes=file,http,ftp
+	mime_types=application/x-kspread,text/x-comma-separated-values
+
+killustrator
+	command=killustrator
+	name=KIllustrator
+	can_open_multiple_files=true
+	expects_uris=true
+	requires_terminal=false
+	supported_uri_schemes=file,http,ftp
+	mime_types=application/x-killustrator,application/x-xfig,image/x-wmf
+kpresenter
+	command=kpresenter
+	name=KPrestenter
+	can_open_multiple_files=true
+	expects_uris=true
+	requires_terminal=false
+	supported_uri_schemes=file,http,ftp
+	mime_types=application/x-kpresenter,application/vnd.ms-powerpoint
+
+
+
+
+
+

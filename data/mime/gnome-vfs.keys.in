@@ -42,6 +42,7 @@ application/oda
 
 application/pdf
 	_description=PDF document
+	icon_filename=gnome-application-pdf.png
 	default_action_type=application
 	short_list_component_iids_for_novice_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_intermediate_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
@@ -52,6 +53,7 @@ application/pdf
 
 application/pgp
 	_description=PGP message
+	icon_filename=gnome-application-pgp.png
 
 application/pgp-encrypted
 	_description=PGP-encrypted file
@@ -70,10 +72,18 @@ application/pkcs7-signature
 
 application/postscript
 	_description=PostScript document
+	icon_filename=gnome-application-postscript.png
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=ggv,gv,ghostview
 	short_list_application_ids_for_intermediate_user_level=ggv,gv,ghostview
 	short_list_application_ids_for_advanced_user_level=ggv,gv,ghostview
+
+application/qif
+	description=Quicken document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=gnucash
+	short_list_application_ids_for_intermediate_user_level=gnucash
+	short_list_application_ids_for_advanced_user_level=gnucash	
 
 application/rtf
 	_description=rich text document
@@ -83,11 +93,20 @@ application/rtf
 	short_list_application_ids_for_advanced_user_level=abiword,staroffice,applix
 
 application/vnd.ms-excel
-	_description=Microsoft Excel document
+	_description=Microsoft Excel spreadsheet
+	icon_filename=i-spreadsheet
 	default_action_type=application
-	short_list_application_ids_for_novice_user_level=staroffice,applix,gnumeric
-	short_list_application_ids_for_intermediate_user_level=staroffice,applix,gnumeric
-	short_list_application_ids_for_advanced_user_level=staroffice,applix,gnumeric
+	short_list_application_ids_for_novice_user_level=staroffice,gnumeric,applix
+	short_list_application_ids_for_intermediate_user_level=staroffice,gnumeric,applix
+	short_list_application_ids_for_advanced_user_level=staroffice,gnumeric,applix
+
+application/vnd.lotus-1-2-3
+	_description=Lotus 1-2-3 spreadsheet
+	icon_filename=i-spreadsheet
+	default_action=application
+	short_list_application_ids_for_novice_user_level=gnumeric
+	short_list_application_ids_for_intermediate_user_level=gnumeric
+	short_list_application_ids_for_advanced_user_level=gnumeric
 
 # also audio/x-pn-realaudio, audio/x-real-audio
 application/vnd.rn-realmedia
@@ -101,6 +120,7 @@ application/vnd.rn-realmedia
 # also text/abiword
 application/x-abiword
 	_description=AbiWord document
+	icon_filename=i-regular
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=abiword,staroffice
 	short_list_application_ids_for_intermediate_user_level=abiword,staroffice
@@ -123,6 +143,11 @@ application/x-applix-word
 
 application/x-arj
 	_description=arj archive
+	icon_filename=gnome-compressed.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-asp
 	_description=active server page
@@ -136,11 +161,21 @@ application/x-bcpio
 application/x-bzip
 	_description=bzip-compressed file
 	vfs_method=bzip2
+	icon_filename=gnome-compressed.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-bzip-compressed-tar
 	_description=tar archive (bzip2-compressed)
 	icon_filename=gnome-compressed.png
 	vfs_method=bzip2
+	icon_filename=gnome-compressed.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-cgi
 	_description=CGI program
@@ -152,14 +187,34 @@ application/x-chess-pgn
 # this one is deprecated
 application/x-class-file
 	_description=Java byte code
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=java
+	short_list_application_ids_for_intermediate_user_level=java
+	short_list_application_ids_for_advanced_user_level=java
+
+application/x-jbuilder-project
+	_description=JBuilder Project
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=jbuilder
+	short_list_application_ids_for_intermediate_user_level=jbuilder
+	short_list_application_ids_for_advanced_user_level=jbuilder
 
 # we are aware of the crappiness of this description
 application/x-compress
 	_description=compress-compressed file
+	icon_filename=gnome-compressed.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-compressed-tar
 	_description=tar archive (gzip-compressed)
 	icon_filename=gnome-package.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-core-file
 	_description=memory dump
@@ -183,6 +238,11 @@ application/x-deb
 
 application/x-dia-diagram
 	_description=Dia diagram
+	icon_filename=dia-diagram.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=dia
+	short_list_application_ids_for_intermediate_user_level=dia
+	short_list_application_ids_for_advanced_user_level=dia
 
 application/x-dvi
 	_description=TeX dvi document
@@ -196,6 +256,7 @@ application/x-executable-binary
 
 application/x-font-afm
 	_description=Adobe font metrics
+	icon_filename=gnome-font-afm.png
 
 application/x-font-bdf
 	_description=BDF font
@@ -214,6 +275,7 @@ application/x-font-linux-psf
 
 application/x-font-pcf
 	_description=PCF font
+	icon-filename=gnome-font-x-pcf.png
 
 application/x-font-speedo
 	_description=Speedo font
@@ -229,6 +291,7 @@ application/x-font-tex-tfm
 
 application/x-font-ttf
 	_description=TrueType font
+	icon-filename=gnome-font-ttf.png
 
 application/x-font-type1
 	_description=PostScript Type 1 font
@@ -236,14 +299,29 @@ application/x-font-type1
 application/x-font-vfont
 	_description=V font
 
+application/x-glade
+	_description=Glade project
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=glade
+	short_list_application_ids_for_intermediate_user_level=glade
+	short_list_application_ids_for_advanced_user_level=glade
+
 application/x-gmc-link
 	_description=GMC link
 
 application/x-gnome-app-info
 	_description=GNOME application details
 
+application/x-gnucash
+	_description=GnuCash Workbook
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=gnucash
+	short_list_application_ids_for_intermediate_user_level=gnucash
+	short_list_application_ids_for_advanced_user_level=gnucash
+
 application/x-gnumeric
 	_description=Gnumeric spreadsheet
+	icon_filename=i-spreadsheet
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
@@ -253,11 +331,19 @@ application/x-gnumeric
 application/x-gtar
 	_description=gtar archive
 	icon_filename=gnome-package.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-gzip
 	_description=gzip-compressed file
 	icon_filename=gnome-compressed.png
 	vfs_method=gzip
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-hdf
 	_description=HDF document
@@ -265,15 +351,60 @@ application/x-hdf
 # also application/x-class-file
 application/x-java-byte-code
 	_description=Java byte code
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=java
+	short_list_application_ids_for_intermediate_user_level=java
+	short_list_application_ids_for_advanced_user_level=java
 
 application/x-kde-app-info
 	_description=KDE application details
+	icon_filename=gnome-application-x-kde-app-info.png
+
+application/x-killustrator
+	_description=KIllustrator document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=killustrator
+	short_list_application_ids_for_intermediate_user_level=killustrator
+	short_list_application_ids_for_advanced_user_level=killustrator
+
+application/x-kpresenter
+	_description=KPresenter presentation
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=kpresenter
+	short_list_application_ids_for_intermediate_user_level=kpresenter
+	short_list_application_ids_for_advanced_user_level=kpresenter
+
+application/x-kspread
+	_description=KSpread spreadsheet
+	icon_filename=i-spreadsheet
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=kspread
+	short_list_application_ids_for_intermediate_user_level=kspread
+	short_list_application_ids_for_advanced_user_level=kspread
+
+application/x-kword
+	_description=KWord document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=kword
+	short_list_application_ids_for_intermediate_user_level=kword
+	short_list_application_ids_for_advanced_user_level=kword
+
 
 application/x-lha
 	_description=LHARC archive
+	icon_filename=gnome-compressed.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-lhz
 	_description=LHA archive
+	icon_filename=gnome-compressed.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-mif
 	_description=FrameMaker interchange document
@@ -294,9 +425,17 @@ application/x-object-file
 application/x-ogg
 	_description=ogg audio
 	default_action_type=application
-	short_list_application_ids_for_novice_user_level=ogg123,xmms
-	short_list_application_ids_for_intermediate_user_level=ogg123,xmms
-	short_list_application_ids_for_advanced_user_level=ogg123,xmms
+	short_list_application_ids_for_novice_user_level=ogg123,xmms,freeamp
+	short_list_application_ids_for_intermediate_user_level=ogg123,xmms,freeamp
+	short_list_application_ids_for_advanced_user_level=ogg123,xmms,freeamp
+
+application/x-oleo
+	_description=GNU Oleo Spreadsheet
+	icon_filename=i-spreadsheet
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=gnumeric
+	short_list_application_ids_for_intermediate_user_level=gnumeric
+	short_list_application_ids_for_advanced_user_level=gnumeric
 
 application/x-palm-database
 	_description=Palm OS database
@@ -311,15 +450,38 @@ application/x-perl
 
 application/x-php
 	_description=PHP script
+	icon_filename=gnome-application-x-php.png
 
 application/x-profile
 	_description=profiler results
 
+application/x-qw
+	_description=Quicken for Windows document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=gnucash
+	short_list_application_ids_for_intermediate_user_level=gnucash
+	short_list_application_ids_for_advanced_user_level=gnucash
+
+#also application/x-rar-compressed
 application/x-rar
 	_description=RAR archive
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-reject
 	_description=rejected patch file
+	icon_filename=gnome-application-x-reject.png
+
+#also application/x-rar
+application/x-rar-compressed
+	_description=RAR archive
+	icon_filename=gnome-package.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-rpm
 	_description=RPM package
@@ -328,6 +490,9 @@ application/x-rpm
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
 	short_list_component_iids_for_advanced_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
+	short_list_application_ids_for_novice_user_level=gnorpm
+	short_list_application_ids_for_intermediate_user_level=gnorpm
+	short_list_application_ids_for_advanced_user_level=gnorpm
 
 application/x-shar
 	_description=shell archive
@@ -382,6 +547,10 @@ application/x-tar
 	_description=tar archive
 	icon_filename=gnome-package.png
 	vfs_method=tar
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
 
 application/x-tex
 	_description=TeX document
@@ -399,13 +568,21 @@ application/x-troff
 
 application/x-troff-man-compressed
 	_description=manual page (compressed)
-	icon_filename=gnome-manpage.png
+	icon_filename=manual.png
 
 application/x-unix-archive
 	_description=ar archive
 
 application/x-ustar
 	_description=ustar archive
+
+application/x-xbase
+	_description=Xbase database
+	icon_filename=i-spreadsheet
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=gnumeric
+	short_list_application_ids_for_intermediate_user_level=gnumeric
+	short_list_application_ids_for_advanced_user_level=gnumeric
 
 application/x-wais-source
 	_description=WAIS source code
@@ -418,7 +595,20 @@ application/x-zoo
 
 application/zip
 	_description=zip archive
+	icon_filename=gnome-compressed.png
 	vfs_method=zip
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=guitar
+	short_list_application_ids_for_intermediate_user_level=guitar
+	short_list_application_ids_for_advanced_user_level=guitar
+
+audio/ac3
+	_description=Dolby Digital audio
+	icon_filename=i-music
+	default_action=application
+	short_list_application_ids_for_novice_user_level=xmps,omsomi
+	short_list_application_ids_for_intermediate_user_level=xmps,omsomi
+	short_list_application_ids_for_advanced_user_level=xmps,omsomi
 
 audio/basic
 	_description=basic audio
@@ -430,6 +620,18 @@ audio/x-aifc
 audio/x-aiff
 	_description=AIFF audio
 	icon_filename=gnome-audio-x-aiff.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=grecord
+	short_list_application_ids_for_intermediate_user_level=grecord
+	short_list_application_ids_for_advanced_user_level=grecord
+
+audio/x-aiffc
+	_description=AIFF audio
+	icon_filename=gnome-audio-x-aiff.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=grecord
+	short_list_application_ids_for_intermediate_user_level=grecord
+	short_list_application_ids_for_advanced_user_level=grecord
 
 audio/x-it
 	_description=Impulse Tracker audio
@@ -451,28 +653,33 @@ audio/x-mp3
 	_description=MP3 audio
 	icon_filename=i-music
 	default_action_type=application
-	short_list_application_ids_for_novice_user_level=xmms,mpg123
-	short_list_application_ids_for_intermediate_user_level=xmms,mpg123
-	short_list_application_ids_for_advanced_user_level=xmms,mpg123
+	short_list_application_ids_for_novice_user_level=xmms,freeamp,mpg123
+	short_list_application_ids_for_intermediate_user_level=xmms,freeamp,mpg123
+	short_list_application_ids_for_advanced_user_level=xmms,freeamp,mpg123
 
 audio/x-mp3-playlist
 	_description=MP3 audio playlist
+	icon_filename=i-music
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=xmms,freeamp
+	short_list_application_ids_for_intermediate_user_level=xmms,freeamp
+	short_list_application_ids_for_advanced_user_level=xmms,freeamp
 
 # also audio/x-mp3
 audio/x-mpeg
 	_description=MP3 audio
 	icon_filename=i-music
 	default_action_type=application
-	short_list_application_ids_for_novice_user_level=xmms,mpg123
-	short_list_application_ids_for_intermediate_user_level=xmms,mpg123
-	short_list_application_ids_for_advanced_user_level=xmms,mpg123
+	short_list_application_ids_for_novice_user_level=xmms,freeamp,mpg123
+	short_list_application_ids_for_intermediate_user_level=xmms,freeamp,mpg123
+	short_list_application_ids_for_advanced_user_level=xmms,freeamp,mpg123
 
 audio/x-mpegurl
 	_description=M3 audio URL
 	default_action_type=application
-	short_list_application_ids_for_novice_user_level=xmms
-	short_list_application_ids_for_intermediate_user_level=xmms
-	short_list_application_ids_for_advanced_user_level=xmms
+	short_list_application_ids_for_novice_user_level=xmms,freeamp
+	short_list_application_ids_for_intermediate_user_level=xmms,freeamp
+	short_list_application_ids_for_advanced_user_level=xmms,freeamp
 
 # also application/vnd.rn-realmedia, audio/x-real-audio
 audio/x-pn-realaudio
@@ -509,17 +716,25 @@ audio/x-stm
 audio/x-ulaw
 	_description=Sun µ-law audio
 	icon_filename=gnome-audio-ulaw.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=grecord
+	short_list_application_ids_for_intermediate_user_level=grecord
+	short_list_application_ids_for_advanced_user_level=grecord
 
 audio/x-voc
 	_description=VOC audio
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=grecord
+	short_list_application_ids_for_intermediate_user_level=grecord
+	short_list_application_ids_for_advanced_user_level=grecord
 
 audio/x-wav
 	_description=wave audio
 	icon_filename=gnome-audio-x-wav.png
 	default_action_type=application
-	short_list_application_ids_for_novice_user_level=xmms
-	short_list_application_ids_for_intermediate_user_level=xmms
-	short_list_application_ids_for_advanced_user_level=xmms
+	short_list_application_ids_for_novice_user_level=grecord,xmms,freeamp
+	short_list_application_ids_for_intermediate_user_level=grecord,xmms,freeamp
+	short_list_application_ids_for_advanced_user_level=grecord,xmms,freeamp
 
 audio/x-xi
 	_description=Scream Tracker instrument
@@ -585,6 +800,10 @@ image/png
 
 image/svg
 	_description=SVG art
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=sodipodi
+	short_list_application_ids_for_intermediate_user_level=sodipodi
+	short_list_application_ids_for_advanced_user_level=sodipodi
 
 image/tiff
 	_description=TIFF image
@@ -630,6 +849,7 @@ image/x-cmu-raster
 
 image/x-compressed-xcf
 	_description=compressed GIMP document
+	icon-filename=gnome-gimp.png
 
 image/x-ico
 	_description=Windows icon image
@@ -836,6 +1056,7 @@ text/enriched
 
 text/html
 	_description=HTML page
+	icon_filename=gnome-text-html.png
 	default_action_type=component
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
@@ -874,8 +1095,20 @@ text/richtext
 text/sgml
 	_description=SGML document
 
+text/spreadsheet
+	_description=Spreadsheet Interchange document
+	icon_filename=i-spreadsheet
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=gnumeric
+	short_list_application_ids_for_intermediate_user_level=gnumeric
+	short_list_application_ids_for_advanced_user_level=gnumeric
+
 text/tab-separated-values
 	_description=tab-separated text document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=gnumeric
+	short_list_application_ids_for_intermediate_user_level=gnumeric
+	short_list_application_ids_for_advanced_user_level=gnumeric
 
 # Note that text/tex should be text/x-tex, but a user reported
 # a complaint about text/tex in Nautilus, so some non-gnome-vfs
@@ -885,21 +1118,31 @@ text/tex
 
 text/x-authors
 	_description=authors list
+	icon_filename=gnome-text-x-authors.png
 
 text/x-c
 	_description=C source code
+	icon_filename=gnome-application-x-c-source.png
 
 text/x-c++
 	_description=C++ source code
+	icon_filename=gnome-application-x-cc-source.png
 
 text/x-comma-separated-values
 	_description=comma-separated text document
+	icon_filename=i-spreadsheet
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=gnumeric,kspread
+	short_list_application_ids_for_intermediate_user_level=gnumeric,kspread
+	short_list_application_ids_for_advanced_user_level=gnumeric,kspread
 
 text/x-copying
 	_description=software license terms
+	icon_filename=gnome-text-x-copying.png
 
 text/x-credits
 	_description=software author credits
+	icon_filename=gnome-text-x-credits.png
 
 # also application/x-csh
 text/x-csh
@@ -929,9 +1172,15 @@ text/x-idl
 
 text/x-install
 	_description=software installation instructions
+	icon_filename=gnome-text-x-install.png
 
 text/x-java
 	_description=Java source code
+	icon_filename=gnome-application-x-java-source.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=javac
+	short_list_application_ids_for_intermediate_user_level=javac
+	short_list_application_ids_for_advanced_user_level=javac
 
 text/x-ksh
 	can_be_executable=TRUE
@@ -939,6 +1188,7 @@ text/x-ksh
 
 text/x-makefile
 	_description=makefile
+	icon_filename=gnome-text-x-makefile.png
 
 text/x-patch
 	_description=source code patch
@@ -957,6 +1207,7 @@ text/x-readme
 
 text/x-scheme
 	_description=Scheme source code
+	icon_filename=gnome-application-x-scheme-source.png
 
 text/x-setext
 	_description=Setext document
@@ -970,6 +1221,7 @@ text/x-speech
 
 text/x-sql
 	_description=SQL code
+	icon_filename=gnome-application-x-sql.png
 
 text/x-tcl
 	_description=Tcl script
@@ -987,7 +1239,7 @@ text/x-troff
 
 text/x-troff-man
 	_description=manual page
-	icon_filename=gnome-manpage.png
+	icon_filename=manual.png
 
 # the acronym is not capitalized, per common usage
 text/x-troff-me
@@ -1001,9 +1253,17 @@ text/x-troff-ms
 
 text/x-vcalendar
 	_description=calendar or event document
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=gnomecal
+	short_list_application_ids_for_intermediate_user_level=gnomecal
+	short_list_application_ids_for_advanced_user_level=gnomecal
 
 text/x-vcard
 	_description=address card
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=gnomecard
+	short_list_application_ids_for_intermediate_user_level=gnomecard
+	short_list_application_ids_for_advanced_user_level=gnomecard
 
 text/xml
 	_description=XML document
@@ -1020,19 +1280,28 @@ video/isivideo
 
 video/mpeg
 	_description=MPEG video
+	icon_filename=gnome-video-mpeg.png
 	default_action_type=application
-	short_list_application_ids_for_novice_user_level=mtvp,mtv,mpeg_play
-	short_list_application_ids_for_intermediate_user_level=mtvp,mtv,mpeg_play
-	short_list_application_ids_for_advanced_user_level=mtvp,mtv,mpeg_play
+	short_list_application_ids_for_novice_user_level=xmps,omsomi,mtvp,mtv,mpeg_play
+	short_list_application_ids_for_intermediate_user_level=xmps,omsomi,mtvp,mtv,mpeg_play
+	short_list_application_ids_for_advanced_user_level=xmps,omsomi,mtvp,mtv,mpeg_play
 
 video/msvideo
 	_description=MS video
-	short_list_application_ids_for_novice_user_level=xanim
-	short_list_application_ids_for_intermediate_user_level=xanim
-	short_list_application_ids_for_advanced_user_level=xanim
+	icon_filename=gnome-video-x-msvideo.png
+	short_list_application_ids_for_novice_user_level=xmps,omsomi,gtv,xanim
+	short_list_application_ids_for_intermediate_user_level=xmps,omsomi,gtv,xanim
+	short_list_application_ids_for_advanced_user_level=xmps,omsomi,gtv,xanim
+
+video/x-ms-asf
+	_description=MS ASF video
+	short_list_application_ids_for_novice_user_level=xmps
+	short_list_application_ids_for_intermediate_user_level=xmps
+	short_list_application_ids_for_advanced_user_level=xmps
 
 video/quicktime
 	_description=QuickTime movie
+	icon_filename=gnome-video-quicktime.png
 	default_action_type=application
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
@@ -1074,9 +1343,10 @@ video/x-fli
 
 video/x-msvideo
 	_description=Microsoft video
-	short_list_application_ids_for_novice_user_level=xanim
-	short_list_application_ids_for_intermediate_user_level=xanim
-	short_list_application_ids_for_advanced_user_level=xanim
+	icon_filename=gnome-video-x-msvideo.png
+	short_list_application_ids_for_novice_user_level=xmps,omsomi,xanim
+	short_list_application_ids_for_intermediate_user_level=xmps,omsomi,xanim
+	short_list_application_ids_for_advanced_user_level=xmps,omsomi,xanim
 
 video/x-real-video
 	_description=RealVideo video
@@ -1137,15 +1407,19 @@ x-directory/webdav
 
 x-special/device-block
 	_description=block device
+	icon_filename=i-harddisk.png
 
 x-special/device-char
 	_description=character device
+	icon-filename=i-chardev.png
 
 x-special/fifo
 	_description=named pipe
+	icon_filename=i-fifo.png
 
 x-special/socket
 	_description=socket
+	icon_filename=i-sock.png
 
 x-special/symlink
 	_description=symbolic link
