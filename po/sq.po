@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-17 19:54+0200\n"
+"POT-Creation-Date: 2004-08-18 03:52+0200\n"
 "PO-Revision-Date: 2004-08-18 00:11+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -44,7 +44,8 @@ msgstr "Leximi nga file '%s' dështoi: %s"
 
 #: libgnomevfs/eggdesktopentries.c:578
 #, c-format
-msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
 "elementi i desktop përmban rreshtin '%s' që nuk është një zë, grup, apo "
 "koment"
@@ -77,12 +78,15 @@ msgstr "elementi i desktop nuk ka kyçin '%s'"
 #: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
 #: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
-msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "elementi i desktop përmban kyçin '%s' që ka një vlerë të pa interpretueshme."
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ""
+"elementi i desktop përmban kyçin '%s' që ka një vlerë të pa interpretueshme."
 
 #: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
-msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 "elementi i desktop përmban vlerën e papërkthyer për kyçin '%s' në gjuhën '%"
 "s'."
@@ -772,7 +776,8 @@ msgstr "Server rrjeti"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "I pamundur montimi i dispozitivit disketë. Mesa duket mungon disketa në "
 "dispozitiv."
@@ -1373,7 +1378,8 @@ msgstr "Përdor proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
+msgstr ""
+"Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1382,4 +1388,3 @@ msgstr "Grup pune SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Grupi i punës Windows në të cilin bën pjesë përdoruesi"
-
