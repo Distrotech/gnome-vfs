@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-23 12:38+0100\n"
-"PO-Revision-Date: 2004-02-22 21:05+0000\n"
+"POT-Creation-Date: 2004-02-23 12:03+0000\n"
+"PO-Revision-Date: 2004-02-23 12:03+0000\n"
 "Last-Translator: Dafydd Harries <daf@muse.19inch.net>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Methwyd ymgychwyn gnome vfs"
 msgid "Filesystem"
 msgstr "System Ffeil"
 
-#: gtk/gtkfilesystemgnomevfs.c:1461
+#: gtk/gtkfilesystemgnomevfs.c:1458
 #, c-format
 msgid "Bookmark saving failed (%s)"
 msgstr "Methodd cadw llyfrnod (%s)"
@@ -720,7 +720,7 @@ msgid ""
 msgstr ""
 "Y rhaglen i'w ddefnyddio i bori ffeiliau sydd angen cydran er mwyn eu "
 "gwylio. Amnweidir y paramedr %s gan URI y ffeil, ac amnewidir y paramedr %c "
-"can IID y cydran."
+"gan IID y cydran."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -736,172 +736,189 @@ msgstr ""
 "Yr ymresymiad exec i'w ddefnyddio ar gyfer y rhaglen derfynell rhagosodedig."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
-msgid "H323 URL handler"
-msgstr "trinydd LAU \"mailto\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-#, fuzzy
-msgid "HTTP URL handler"
-msgstr "trinydd LAU \"mailto\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-#, fuzzy
-msgid "HTTPS URL handler"
-msgstr "trinydd LAU \"mailto\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
-msgid "Handle H323 URLs"
-msgstr "Ymdrin â LAU \"callto\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
-msgid "Handle HTTP URLs"
-msgstr "Ymdrin â LAU \"callto\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
-msgid "Handle HTTPS URLs"
-msgstr "Ymdrin â LAU \"callto\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "Handle callto URLs"
 msgstr "Ymdrin â LAU \"callto\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
-msgid "Handle ghelp URLs"
-msgstr "Ymdrin â LAU \"callto\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
-msgid "Handle info URLs"
-msgstr "Ymdrin â LAU \"mailto\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "Handle mailto URLs"
 msgstr "Ymdrin â LAU \"mailto\""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
-msgid "Handle man URLs"
-msgstr "Ymdrin â LAU \"mailto\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
-msgid "Handle trash URLs"
-msgstr "Ymdrin â LAU \"callto\""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
-msgid "Run program in terminal"
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
+msgid "Run command in terminal"
 msgstr "Rhedeg y gorchymyn mewn terfynell"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"callto\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"callto\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"callto\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
 "LAU \"callto\"."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+"Set to true to have the command specified in \"command\" handle mailto URLs."
 msgstr ""
 "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"callto\"."
+"LAU \"mailto\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle H323 "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU H323."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle "
+"HTTPS URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU HTTPS."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle "
+"ghelp URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU \"ghelp\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle http "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU HTTP."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle info "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU \"info\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle man "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU \"man\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle "
+"trash URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
+"LAU \"trash\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+msgid "The command used to handle \"callto\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"callto\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+msgid "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"ghelp\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid "The command used to handle \"info\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"info\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid "The command used to handle \"man\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"man\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid "The command used to handle \"trash\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"trash\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+msgid "The command used to handle H323 URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU H323, os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"callto\"."
+msgid "The command used to handle HTTP URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTP, os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"callto\"."
+msgid "The command used to handle HTTPS URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTPS, os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"callto\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr ""
-"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin â "
-"LAU \"callto\"."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
-msgid "True if the program to handle this URL should be run in a terminal."
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
 msgstr ""
 "Gosodwch hyn yn wir os mai mewn terfynell y dylid rhedeg y rhaglen sy'n "
 "delio â'r math yma o LAU."
 
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+msgid "URL handler for \"callto\" locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"callto\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+msgid "URL handler for \"ghelp\" locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
+
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
-msgid "callto URL handler"
-msgstr "trinydd LAU \"mailto\""
+msgid "URL handler for \"info\" locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
-msgid "ghelp URL handler"
-msgstr "trinydd LAU \"mailto\""
+msgid "URL handler for \"man\" locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
-msgid "info URL handler"
-msgstr "trinydd LAU \"mailto\""
+msgid "URL handler for \"trash\" locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"trash\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "mailto URL handler"
-msgstr "trinydd LAU \"mailto\""
+msgid "URL handler for H323 locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
-msgid "man URL handler"
-msgstr "trinydd LAU \"mailto\""
+msgid "URL handler for HTTP locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
-msgid "trash URL handler"
+msgid "URL handler for HTTPS locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau HTTPS"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
+msgid "Whether specified command should handle H323 URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU H323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
+msgid "Whether specified command should handle HTTP URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTP"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
+msgid "Whether specified command should handle HTTPS URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTPS"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:33
+msgid "Whether the specified command should handle ghelp URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"ghelp\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:34
+msgid "Whether the specified command should handle info URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"info\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:35
+msgid "Whether the specified command should handle man URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+msgid "Whether the specified command should handle trash URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"trash\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+msgid "mailto URL handler"
 msgstr "trinydd LAU \"mailto\""
 
 #: schemas/system_http_proxy.schemas.in.h:1
@@ -1067,130 +1084,121 @@ msgstr "Grŵp SMB"
 msgid "The window workgroup the user is part of"
 msgstr "Y grŵp Windows mae'r defnyddiwr yn rhan ohoni"
 
+#, fuzzy
+#~ msgid "H323 URL handler"
+#~ msgstr "trinydd LAU \"mailto\""
+
+#, fuzzy
+#~ msgid "HTTP URL handler"
+#~ msgstr "trinydd LAU \"mailto\""
+
+#, fuzzy
+#~ msgid "HTTPS URL handler"
+#~ msgstr "trinydd LAU \"mailto\""
+
+#, fuzzy
+#~ msgid "Handle H323 URLs"
+#~ msgstr "Ymdrin â LAU \"callto\""
+
+#, fuzzy
+#~ msgid "Handle HTTP URLs"
+#~ msgstr "Ymdrin â LAU \"callto\""
+
+#, fuzzy
+#~ msgid "Handle HTTPS URLs"
+#~ msgstr "Ymdrin â LAU \"callto\""
+
+#, fuzzy
+#~ msgid "Handle ghelp URLs"
+#~ msgstr "Ymdrin â LAU \"callto\""
+
+#, fuzzy
+#~ msgid "Handle info URLs"
+#~ msgstr "Ymdrin â LAU \"mailto\""
+
+#, fuzzy
+#~ msgid "Handle man URLs"
+#~ msgstr "Ymdrin â LAU \"mailto\""
+
+#, fuzzy
+#~ msgid "Handle trash URLs"
+#~ msgstr "Ymdrin â LAU \"callto\""
+
+#, fuzzy
 #~ msgid ""
-#~ "Set to true to have the command specified in \"command\" handle mailto "
-#~ "URLs."
+#~ "Set to true to have a program specified in \"command\" handle H323 URLs."
 #~ msgstr ""
 #~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU \"mailto\"."
+#~ "â LAU \"callto\"."
 
+#, fuzzy
 #~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "H323 URLs."
+#~ "Set to true to have a program specified in \"command\" handle HTTP URLs."
 #~ msgstr ""
 #~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU H323."
+#~ "â LAU \"callto\"."
 
+#, fuzzy
 #~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "HTTPS URLs."
+#~ "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 #~ msgstr ""
 #~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU HTTPS."
+#~ "â LAU \"callto\"."
 
+#, fuzzy
 #~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "ghelp URLs."
+#~ "Set to true to have a program specified in \"command\" handle ghelp URLs."
 #~ msgstr ""
 #~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU \"ghelp\"."
+#~ "â LAU \"callto\"."
 
+#, fuzzy
 #~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "http URLs."
+#~ "Set to true to have a program specified in \"command\" handle info URLs."
 #~ msgstr ""
 #~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU HTTP."
+#~ "â LAU \"callto\"."
 
+#, fuzzy
 #~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "info URLs."
+#~ "Set to true to have a program specified in \"command\" handle mailto URLs."
 #~ msgstr ""
 #~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU \"info\"."
+#~ "â LAU \"callto\"."
 
+#, fuzzy
 #~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "man URLs."
+#~ "Set to true to have a program specified in \"command\" handle man URLs."
 #~ msgstr ""
 #~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU \"man\"."
+#~ "â LAU \"callto\"."
 
+#, fuzzy
 #~ msgid ""
-#~ "Set to true to have the command specified in the \"command\" key handle "
-#~ "trash URLs."
+#~ "Set to true to have a program specified in \"command\" handle trash URLs."
 #~ msgstr ""
 #~ "Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
-#~ "â LAU \"trash\"."
+#~ "â LAU \"callto\"."
 
-#~ msgid "The command used to handle \"callto\" URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"callto\", os yn alluog."
+#, fuzzy
+#~ msgid "callto URL handler"
+#~ msgstr "trinydd LAU \"mailto\""
 
-#~ msgid "The command used to handle \"ghelp\" URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"ghelp\", os yn alluog."
+#, fuzzy
+#~ msgid "ghelp URL handler"
+#~ msgstr "trinydd LAU \"mailto\""
 
-#~ msgid "The command used to handle \"info\" URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"info\", os yn alluog."
+#, fuzzy
+#~ msgid "info URL handler"
+#~ msgstr "trinydd LAU \"mailto\""
 
-#~ msgid "The command used to handle \"man\" URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"man\", os yn alluog."
+#, fuzzy
+#~ msgid "man URL handler"
+#~ msgstr "trinydd LAU \"mailto\""
 
-#~ msgid "The command used to handle \"trash\" URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"trash\", os yn alluog."
-
-#~ msgid "The command used to handle H323 URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU H323, os yn alluog."
-
-#~ msgid "The command used to handle HTTP URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTP, os yn alluog."
-
-#~ msgid "The command used to handle HTTPS URLs, if enabled."
-#~ msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTPS, os yn alluog."
-
-#~ msgid "URL handler for \"callto\" locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau \"callto\""
-
-#~ msgid "URL handler for \"ghelp\" locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
-
-#~ msgid "URL handler for \"info\" locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau \"info\""
-
-#~ msgid "URL handler for \"man\" locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau \"man\""
-
-#~ msgid "URL handler for \"trash\" locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau \"trash\""
-
-#~ msgid "URL handler for H323 locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau H323"
-
-#~ msgid "URL handler for HTTP locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau HTTP"
-
-#~ msgid "URL handler for HTTPS locations"
-#~ msgstr "Trinydd LAU ar gyfer lleoliadau HTTPS"
-
-#~ msgid "Whether specified command should handle H323 URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU H323"
-
-#~ msgid "Whether specified command should handle HTTP URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTP"
-
-#~ msgid "Whether specified command should handle HTTPS URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTPS"
-
-#~ msgid "Whether the specified command should handle ghelp URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"ghelp\""
-
-#~ msgid "Whether the specified command should handle info URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"info\""
-
-#~ msgid "Whether the specified command should handle man URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
-
-#~ msgid "Whether the specified command should handle trash URLs"
-#~ msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"trash\""
+#, fuzzy
+#~ msgid "trash URL handler"
+#~ msgstr "trinydd LAU \"mailto\""
 
 #~ msgid "1 byte"
 #~ msgstr "1 beit"
