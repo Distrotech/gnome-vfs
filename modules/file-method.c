@@ -1999,7 +1999,6 @@ fam_callback (GIOChannel *source,
 	      gpointer data)
 {
 	FileMonitorHandle *handle;
-	GnomeVFSURI *info_uri = NULL;
 	GnomeVFSMonitorEventType event_type = GNOME_VFS_MONITOR_EVENT_CHANGED;
 
 	G_LOCK (fam_connection);
@@ -2015,9 +2014,6 @@ fam_callback (GIOChannel *source,
 		}
 
 		handle = (FileMonitorHandle *)ev.userdata;
-
-		info_uri = gnome_vfs_uri_append_file_name (handle->uri, 
-				ev.filename);
 
 		switch (ev.code) {
 			case FAMChanged:
@@ -2045,8 +2041,17 @@ fam_callback (GIOChannel *source,
 				break;
 		}
 
-
+		/* WARNING WARNING WARNING
+		 * the handle may actually be freed memory.
+		 * After we cancel ther are pending events that may reference
+		 * the freed structure.  For now the simple solution seems to
+		 * be to just be more delicate about when we actually
+		 * dereference the handle.  The pending events _seem_ to be
+		 * ones tha are ignored.
+		 */
 		if (event_type != -1) {
+			GnomeVFSURI *info_uri = gnome_vfs_uri_append_file_name (
+				handle->uri, ev.filename);
 			gnome_vfs_monitor_callback (
 					(GnomeVFSMethodHandle *)handle,
 					info_uri, event_type);
@@ -2146,8 +2151,21 @@ do_monitor_cancel (GnomeVFSMethod *method,
 	FAMCancelMonitor (fam_connection, &handle->request);
 	G_UNLOCK (fam_connection);
 
-	gnome_vfs_uri_unref (handle->uri);
+	/* WARNING WARNING WARNING
+	 * There may still be pending events that reference this handle.
+	 * That results in reading the memory we are about to free.
+	 *
+	 * I'm tempted to add
+	 while (FAMPending (fam_connection))
+		 fam_callback (NULL, G_IO_IN, NULL);
 
+	 * here to drain the queued events.  However, that reentrancy may
+	 * confuse things.  For now I'll patch the event handler to only use
+	 * the handle if necessary.  The pending events seem to be ignored
+	 * so we get away with our skin.
+	 */
+
+	gnome_vfs_uri_unref (handle->uri);
 	g_free (handle);
 
 	return GNOME_VFS_OK;

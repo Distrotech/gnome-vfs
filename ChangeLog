@@ -1,3 +1,11 @@
+2002-03-30  Jody Goldberg <jody@gnome.org>
+
+        http://bugzilla.gnome.org/show_bug.cgi?id=71391
+	* modules/file-method.c (do_monitor_cancel) : add a comment
+	  explaining the issue here.
+	(fam_callback) : and here.  Then patch the problem by not accessing
+	  the uri unless we really need to.
+
 2002-03-31  Murray Cumming  <murrayc@usa.net>
 
 	* monikers/bonobo-stream-fs.c & monikers/bonobo-stream-vfs.c:
