@@ -1,3 +1,30 @@
+gnome-vfs 2.9.91
+
+    Note: The handling of dav:// and http:// changed with this release.
+     If you use http:// the http-mehtod will be in http-only 
+     mode and won't try to retrive file information through webdav.
+     Be sure to use dav:// and davs:// for webdav resources!
+
+    * Features:
+	+ Browse for the new sftp-ssh service
+
+    * Bugs fixed:
+	+ fix gnomevfs-copy to have cp semantics so it 
+	  won't override directories
+	+ fix copying data to FAT 16 file systems
+	+ sftp-method: clear up closed ssh connections and processes
+	+ sftp-method: increased timeout for initiating connections 
+	+ http-method: work around broken icecast server
+	+ http-method: update to neon version 0.24.7
+	+ http-method: fix a possible crasher and plug a few leaks
+	+ ftp-method: fix directory listings for windows ftp servers
+	+ smb-method: fix connection cache lookups
+	+ fix gnome_vfs_uri_extract_short_name to never return NULL
+	+ better default folder handler mechanism
+	+ fix bad grammar in http-proxy schema file
+	+ various doc and translation updates
+	+ build fixes
+
 gnome-vfs 2.9.90
 
     * Features:

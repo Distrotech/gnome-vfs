@@ -1,3 +1,8 @@
+2005-02-10  Christian Kellner  <gicmo@gnome.org>
+
+	* NEWS:
+	Update for release.
+
 2005-02-09  Christian Kellner  <gicmo@gnome.org>
 
 	* doc/gnome-vfs-2.0-sections.txt:
@@ -9,11 +14,13 @@
 	Doc updates! This fixes bug #160837.
 
 2005-02-09  Christian Kellner  <gicmo@gnome.org>
+	
 	* libgnomevfs/gnome-vfs-directory.h (gnome_vfs_directory_visit):
 	Rename uri to text_uri to be consistent with the other functions.
 	Fixes bug #140939.
 
 2005-02-09  Christian Kellner  <gicmo@gnome.org>
+	
 	* libgnomevfs/gnome-vfs-cdrom.c (_gnome_vfs_get_cdrom_type):
 	return CDS_NO_INFO on OS X to fix broken build.
 
