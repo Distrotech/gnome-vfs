@@ -1,3 +1,10 @@
+Tue Nov 20 19:32:11 2001  Owen Taylor  <otaylor@redhat.com>
+
+	* configure.in (FAM_LIBS): Add some more quoting that
+	is needed for some autoconf versions.
+
+	* libgnomevfs/gnome-vfs-mime-monitor.c: Remove gobject/gsignal.h.
+
 2001-11-18  Miles Lane  <miles@megapathdsl.net>
 
 	* libgnomevfs/gnome-vfs-mime-monitor.h: 

@@ -26,8 +26,6 @@
 #include "gnome-vfs-mime-monitor.h"
 #include "gnome-vfs-mime-private.h"
 
-#include <gobject/gsignal.h>
-
 enum {
 	DATA_CHANGED,
 	LAST_SIGNAL
