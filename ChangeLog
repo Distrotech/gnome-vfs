@@ -1,3 +1,8 @@
+2004-02-09  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/http-method.c (parse_ignore_host):
+	Fix up a couple of issues with masks.
+
 2004-02-06  Anthony Taranto  <voltron@emptyrhetoric.com>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c (mount_unmount_thread):

@@ -838,9 +838,10 @@ parse_ignore_host (gpointer data, gpointer user_data)
 {
 	gchar *hostname, *input, *netmask;
 	gboolean ip_addr = FALSE, has_error = FALSE;
-	struct in_addr host, mask;
+	guint32 mask;
+	struct in_addr host;
 #ifdef ENABLE_IPV6
-	struct in6_addr host6, mask6;
+	struct in6_addr host6;
 #endif
 	ProxyHostAddr *elt;
 	gint i;
@@ -865,8 +866,9 @@ parse_ignore_host (gpointer data, gpointer user_data)
 			if (*endptr != '\0' || width < 0 || width > 32) {
 				has_error = TRUE;
 			}
-			elt->mask.s_addr = htonl(~0 << width);
-			elt->addr.s_addr &= mask.s_addr;
+			mask = ~0 << width;
+			elt->mask.s_addr = htonl (mask);
+			elt->addr.s_addr = htonl (ntohl(elt->addr.s_addr) & mask);
 		}
 		else {
 			elt->mask.s_addr = 0xffffffff;
@@ -893,7 +895,7 @@ parse_ignore_host (gpointer data, gpointer user_data)
 				elt->mask6.s6_addr[i] = 0xff;
 			}
 			elt->mask6.s6_addr[i] = (0xff << (8 - width % 8)) & 0xff;
-			ipv6_network_addr (&elt->addr6, &mask6, &elt->addr6);
+			ipv6_network_addr (&elt->addr6, &elt->mask6, &elt->addr6);
 		}
 		else {
 			for (i = 0; i < 16; ++i) {
