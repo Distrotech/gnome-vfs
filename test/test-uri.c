@@ -96,6 +96,56 @@ test_uri_to_string (const char *input,
 }
 
 static void
+test_file_path_to_uri_string (const char *input,
+		    const char *expected_output,
+		    GnomeVFSURIHideOptions hide_options)
+{
+	GnomeVFSURI *uri, *resulting_uri;
+	char *output;
+	char *unescaped_output;
+
+	uri = gnome_vfs_uri_new ("file:/");
+	resulting_uri = gnome_vfs_uri_append_path (uri, input);
+	gnome_vfs_uri_unref (uri);
+
+	output = gnome_vfs_uri_to_string (resulting_uri, hide_options);
+	gnome_vfs_uri_unref (resulting_uri);
+
+	unescaped_output = gnome_vfs_unescape_string (output, "/");
+	g_free (output);
+
+	if (strcmp (unescaped_output, expected_output) != 0) {
+		test_failed ("gnome_vfs_uri_to_string (%s, %d) resulted in %s instead of %s",
+			     input, hide_options, unescaped_output, expected_output);
+	}
+
+	g_free (unescaped_output);
+}
+
+static void
+test_uri_has_fragment_id (const char *input,
+		          const char *expected_output)
+{
+	GnomeVFSURI *uri;
+	char *output;
+	
+	uri = gnome_vfs_uri_new (input);
+	if (uri == NULL) {
+		output = g_strdup ("NULL");
+	} else {
+		output = g_strdup (gnome_vfs_uri_get_fragment_identifier (uri));
+	}
+
+	if (strcmp (output, expected_output) != 0) {
+		test_failed ("test_uri_has_fragment_id (%s) resulted in %s instead of %s",
+			     input, output, expected_output);
+	}
+
+	g_free (output);
+	gnome_vfs_uri_unref (uri);
+}
+
+static void
 test_uri_parent (const char *input,
 		 const char *expected_output)
 {
@@ -292,6 +342,24 @@ main (int argc, char **argv)
 	test_uri_has_parent ("man:as", "FALSE");
 	test_uri_has_parent ("pipe:gnome-info2html2 as", "FALSE");
 
+	/* Test chained uris */
+	test_uri_to_string ("/tmp/t.efs#http:///foobar/", "file:///tmp/t.efs#http:/foobar/", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_parent ("/tmp/t.efs#http:/", "file:///tmp/t.efs");
+	test_uri_to_string ("/tmp/t.efs#zip:/", "file:///tmp/t.efs#zip:/", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_parent ("/tmp/t.efs#zip:/", "file:///tmp/t.efs");
+	test_uri_to_string ("/tmp/t.efs#unknownmethod:/", "file:///tmp/t.efs", GNOME_VFS_URI_HIDE_NONE);
+
+	/* Test fragment identifiers. */
+	test_uri_to_string ("/tmp/#junk", "file:///tmp/#junk", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/tmp/#junk", "file:///tmp/", GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER);
+	test_uri_to_string ("/tmp/#junk#", "file:///tmp/#junk#", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_has_fragment_id ("/tmp/#junk", "junk");
+	test_uri_has_fragment_id ("/tmp/#junk#", "junk#");
+
+	/* test a escaping->unescaping round trip for funny characters */
+	test_file_path_to_uri_string ("/tmp/#backup_file#", "file:///tmp/#backup_file#", GNOME_VFS_URI_HIDE_NONE);
+	test_file_path_to_uri_string ("/tmp/percent%percent", "file:///tmp/percent%percent", GNOME_VFS_URI_HIDE_NONE);
+
 	/* FIXME: Is this useful behavior? It turns a partial path
 	 * name into a host name!
 	 */
@@ -320,18 +388,6 @@ main (int argc, char **argv)
          * "//" in this case?
 	 */
 	test_uri_to_string ("pipe:gnome-info2html2 as", "pipe://gnome-info2html2 as", GNOME_VFS_URI_HIDE_NONE);
-
-	/* FIXME bugzilla.eazel.com 2840: What should these results be? */
-	test_uri_to_string ("/tmp/t.efs#xxx:/", "file:///tmp/t.efs#file:", GNOME_VFS_URI_HIDE_NONE);
-	test_uri_parent ("/tmp/t.efs#xxx:/", "file:///tmp/t.efs");
-
-	/* FIXME: Mathieu thinks these are broken, but Darin is pretty
-	 * sure they are correct.
-	 */
-	test_uri_to_string ("/tmp/#test", "file:///tmp/", GNOME_VFS_URI_HIDE_NONE);
-	test_uri_to_string ("/tmp/#test#", "file:///tmp/", GNOME_VFS_URI_HIDE_NONE);
-
-	/* Add more test cases for URIs with # in them? */
 
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;

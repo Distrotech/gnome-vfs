@@ -441,7 +441,7 @@ empty_directory (GnomeVFSURI *uri,
 			continue;
 		}
 
-		item_uri = gnome_vfs_uri_append_path (uri, info.name);
+		item_uri = gnome_vfs_uri_append_string (uri, info.name);
 		
 		if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			result = remove_directory (item_uri, TRUE, 
@@ -478,7 +478,7 @@ PrependOneURIToList (const gchar *rel_path, GnomeVFSFileInfo *info,
 	PrependOneURIParams *params;
 
 	params = (PrependOneURIParams *)cast_to_params;
-	params->uri_list = g_list_prepend (params->uri_list, gnome_vfs_uri_append_path (
+	params->uri_list = g_list_prepend (params->uri_list, gnome_vfs_uri_append_string (
 		params->base_uri, rel_path));
 
 	if (recursing_will_loop) {
@@ -1330,7 +1330,7 @@ copy_items (const GList *source_uri_list,
 			for (count = 1; ; count++) {
 				GnomeVFSXferOverwriteMode overwrite_mode_abort;
 
-				target_uri = gnome_vfs_uri_append_path
+				target_uri = gnome_vfs_uri_append_string
 					(target_dir_uri, 
 					 progress->progress_info->duplicate_name);
 
@@ -1454,7 +1454,7 @@ move_items (const GList *source_uri_list,
 
 		do {
 			retry = FALSE;
-			target_uri = gnome_vfs_uri_append_path (target_dir_uri, 
+			target_uri = gnome_vfs_uri_append_string (target_dir_uri, 
 				 progress->progress_info->duplicate_name);
 
 			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
@@ -1556,7 +1556,7 @@ link_items (const GList *source_uri_list,
 
 		do {
 			retry = FALSE;
-			target_uri = gnome_vfs_uri_append_path
+			target_uri = gnome_vfs_uri_append_string
 				(target_dir_uri,
 				 progress->progress_info->duplicate_name);
 
@@ -1767,7 +1767,7 @@ gnome_vfs_new_directory_with_unique_name (const GnomeVFSURI *target_dir_uri,
 
 	for (conflict_count = 1; ; conflict_count++) {
 
-		target_uri = gnome_vfs_uri_append_path
+		target_uri = gnome_vfs_uri_append_string
 			(target_dir_uri, 
 			 progress->progress_info->duplicate_name);
 		result = create_directory (target_uri, 

@@ -24,57 +24,61 @@
 #ifndef GNOME_VFS_URI_H
 #define GNOME_VFS_URI_H
 
-GnomeVFSURI 	     *gnome_vfs_uri_new          (const gchar *text_uri);
-GnomeVFSURI 	     *gnome_vfs_uri_ref          (GnomeVFSURI *uri);
-void        	      gnome_vfs_uri_unref        (GnomeVFSURI *uri);
-GnomeVFSURI          *gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
-						     const char *path);
-GnomeVFSURI          *gnome_vfs_uri_append_file_name (const GnomeVFSURI *uri,
-						     const gchar *filename);
-gchar       	     *gnome_vfs_uri_to_string    (const GnomeVFSURI *uri,
-						  GnomeVFSURIHideOptions hide_options);
-GnomeVFSURI 	     *gnome_vfs_uri_dup          (const GnomeVFSURI *uri);
-gboolean    	      gnome_vfs_uri_is_local     (const GnomeVFSURI *uri);
-gboolean	      gnome_vfs_uri_has_parent	 (const GnomeVFSURI *uri);
-GnomeVFSURI	     *gnome_vfs_uri_get_parent   (const GnomeVFSURI *uri);
+GnomeVFSURI 	     *gnome_vfs_uri_new                   (const gchar *text_uri);
+GnomeVFSURI 	     *gnome_vfs_uri_ref                   (GnomeVFSURI *uri);
+void        	      gnome_vfs_uri_unref                 (GnomeVFSURI *uri);
 
-GnomeVFSToplevelURI *gnome_vfs_uri_get_toplevel  (const GnomeVFSURI *uri);
+GnomeVFSURI          *gnome_vfs_uri_append_string         (const GnomeVFSURI *uri,
+						           const char *path);
+GnomeVFSURI          *gnome_vfs_uri_append_path           (const GnomeVFSURI *uri,
+						           const char *path);
+GnomeVFSURI          *gnome_vfs_uri_append_file_name      (const GnomeVFSURI *uri,
+						           const gchar *filename);
+gchar       	     *gnome_vfs_uri_to_string             (const GnomeVFSURI *uri,
+						           GnomeVFSURIHideOptions hide_options);
+GnomeVFSURI 	     *gnome_vfs_uri_dup                   (const GnomeVFSURI *uri);
+gboolean    	      gnome_vfs_uri_is_local              (const GnomeVFSURI *uri);
+gboolean	      gnome_vfs_uri_has_parent	          (const GnomeVFSURI *uri);
+GnomeVFSURI	     *gnome_vfs_uri_get_parent            (const GnomeVFSURI *uri);
 
-const gchar 	    *gnome_vfs_uri_get_host_name (const GnomeVFSURI *uri);
-const gchar         *gnome_vfs_uri_get_scheme    (const GnomeVFSURI *uri);
-guint 	    	     gnome_vfs_uri_get_host_port (const GnomeVFSURI *uri);
-const gchar 	    *gnome_vfs_uri_get_user_name (const GnomeVFSURI *uri);
-const gchar	    *gnome_vfs_uri_get_password  (const GnomeVFSURI *uri);
+GnomeVFSToplevelURI *gnome_vfs_uri_get_toplevel           (const GnomeVFSURI *uri);
 
-void		     gnome_vfs_uri_set_host_name (GnomeVFSURI *uri,
-						  const gchar *host_name);
-void 	    	     gnome_vfs_uri_set_host_port (GnomeVFSURI *uri,
-						  guint host_port);
-void		     gnome_vfs_uri_set_user_name (GnomeVFSURI *uri,
-						  const gchar *user_name);
-void		     gnome_vfs_uri_set_password  (GnomeVFSURI *uri,
-						  const gchar *password);
+const gchar 	    *gnome_vfs_uri_get_host_name          (const GnomeVFSURI *uri);
+const gchar         *gnome_vfs_uri_get_scheme             (const GnomeVFSURI *uri);
+guint 	    	     gnome_vfs_uri_get_host_port          (const GnomeVFSURI *uri);
+const gchar 	    *gnome_vfs_uri_get_user_name          (const GnomeVFSURI *uri);
+const gchar	    *gnome_vfs_uri_get_password           (const GnomeVFSURI *uri);
 
-gboolean	     gnome_vfs_uri_equal	 (const GnomeVFSURI *a,
-						  const GnomeVFSURI *b);
+void		     gnome_vfs_uri_set_host_name          (GnomeVFSURI *uri,
+						           const gchar *host_name);
+void 	    	     gnome_vfs_uri_set_host_port          (GnomeVFSURI *uri,
+						           guint host_port);
+void		     gnome_vfs_uri_set_user_name          (GnomeVFSURI *uri,
+						           const gchar *user_name);
+void		     gnome_vfs_uri_set_password           (GnomeVFSURI *uri,
+						           const gchar *password);
 
-gboolean	     gnome_vfs_uri_is_parent	 (const GnomeVFSURI *parent,
-						  const GnomeVFSURI *item,
-						  gboolean recursive);
+gboolean	     gnome_vfs_uri_equal	          (const GnomeVFSURI *a,
+						           const GnomeVFSURI *b);
+
+gboolean	     gnome_vfs_uri_is_parent	          (const GnomeVFSURI *parent,
+						           const GnomeVFSURI *item,
+						           gboolean recursive);
 				  
-const gchar 	    *gnome_vfs_uri_get_path           (const GnomeVFSURI *uri);
-const gchar 	    *gnome_vfs_uri_get_basename       (const GnomeVFSURI *uri);
-gchar 		    *gnome_vfs_uri_extract_dirname    (const GnomeVFSURI *uri);
-gchar		    *gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri);
+const gchar 	    *gnome_vfs_uri_get_path                (const GnomeVFSURI *uri);
+const gchar 	    *gnome_vfs_uri_get_basename            (const GnomeVFSURI *uri);
+const gchar 	    *gnome_vfs_uri_get_fragment_identifier (const GnomeVFSURI *uri);
+gchar 		    *gnome_vfs_uri_extract_dirname         (const GnomeVFSURI *uri);
+gchar		    *gnome_vfs_uri_extract_short_name      (const GnomeVFSURI *uri);
 gchar		    *gnome_vfs_uri_extract_short_path_name (const GnomeVFSURI *uri);
 
-gint		     gnome_vfs_uri_hequal 	 (gconstpointer a,
-						  gconstpointer b);
-guint		     gnome_vfs_uri_hash		 (gconstpointer p);
+gint		     gnome_vfs_uri_hequal 	           (gconstpointer a,
+						            gconstpointer b);
+guint		     gnome_vfs_uri_hash		           (gconstpointer p);
 
-GList               *gnome_vfs_uri_list_ref      (GList *list);
-GList               *gnome_vfs_uri_list_unref    (GList *list);
-GList               *gnome_vfs_uri_list_copy     (GList *list);
-void                 gnome_vfs_uri_list_free     (GList *list);
+GList               *gnome_vfs_uri_list_ref                (GList *list);
+GList               *gnome_vfs_uri_list_unref              (GList *list);
+GList               *gnome_vfs_uri_list_copy               (GList *list);
+void                 gnome_vfs_uri_list_free               (GList *list);
 
 #endif /* GNOME_VFS_URI_H */

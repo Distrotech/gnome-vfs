@@ -40,7 +40,6 @@
 /* FIXME bugzilla.eazel.com 2762: The uri->parent field is always NULL; we should get rid of it. */
 /* FIXME bugzilla.eazel.com 2763: This doesn't handle "../" or "./" like the RFC says it should. */
 
-
 #define ALLOCA_SUBSTRING(dest, src, len)		\
         do {						\
 	      (dest) = alloca ((len) + 1);		\
@@ -49,7 +48,6 @@
 	      dest[(len)] = 0;				\
         } while (0)
 
-
 /* 
    split_toplevel_uri
 
@@ -103,6 +101,7 @@ split_toplevel_uri_old (const gchar *path, guint path_len,
 #define SAME(x) (((x##_old == NULL) && (x##_new == NULL)) \
 	|| (((x##_old != NULL) && (x##_new != NULL)) && 0 == strcmp (x##_new, x##_old)))
 #define CHECK_NULL(x)  ( NULL == x ? "<NULL>" : (x))
+
 static gchar *
 split_toplevel_uri (const gchar *path, guint path_len,
 		    gchar **host_return, gchar **user_return,
@@ -158,8 +157,9 @@ split_toplevel_uri_old (const gchar *path, guint path_len,
 	*password_return = NULL;
 	retval = NULL;
 
-	if (path_len == 0)
+	if (path_len == 0) {
 		return retval;
+	}
 
 	path_end = path + path_len;
     
@@ -167,10 +167,11 @@ split_toplevel_uri_old (const gchar *path, guint path_len,
 	dir = memchr (path, GNOME_VFS_URI_PATH_CHR, path_len);
 	if (dir != NULL) {
 		retval = g_strndup (dir, path_len - (dir - path));
-		if (dir != path)
+		if (dir != path) {
 			at = memchr (path, '@', dir - path);
-		else
+		} else {
 			at = NULL;
+		}
 	} else {
 		retval = g_strdup (GNOME_VFS_URI_PATH_STR);
 		at = strchr (path, '@');
@@ -189,10 +190,11 @@ split_toplevel_uri_old (const gchar *path, guint path_len,
 			*user_return = g_strndup (path, at - path);
 		}
 
-		if (path_end == at + 1)
+		if (path_end == at + 1) {
 			rest = at;
-		else
+		} else {
 			rest = at + 1;
+		}
 	} else {
 		rest = path;
 	}
@@ -204,8 +206,9 @@ split_toplevel_uri_old (const gchar *path, guint path_len,
 			*host_return = g_strndup (rest, colon - rest);
 
 			if (sscanf (colon + 1, "%d", port_return) == 1) {
-				if (*port_return > 0xffff)
+				if (*port_return > 0xffff) {
 					*port_return = 0;
+				}
 			} else {
 				while (1) {
 					colon++;
@@ -276,10 +279,10 @@ uri_strspn_to(const char *str, UriStrspnSet *set, const char *path_end)
 	const char *cur;
 	const char *cur_chr;
 
-	if ( ! set->primed ) {
+	if (!set->primed) {
 		memset (set->bv, 0, sizeof(set->bv));
 	
-		for ( cur_chr = set->chrs; '\0' != *cur_chr; cur_chr++) {
+		for (cur_chr = set->chrs; '\0' != *cur_chr; cur_chr++) {
 			BV_SET (set->bv, *cur_chr);
 		}
 
@@ -287,13 +290,14 @@ uri_strspn_to(const char *str, UriStrspnSet *set, const char *path_end)
 		set->primed = TRUE;
 	}
 	
-	for ( cur = str; cur < path_end && ! BV_IS_SET (set->bv, *cur); cur++ ) ;
+	for (cur = str; cur < path_end && ! BV_IS_SET (set->bv, *cur); cur++) 
+		;
 
-	if ( cur >= path_end || '\0' == *cur ) {
+	if (cur >= path_end || '\0' == *cur) {
 		return NULL;
-	} else {
-		return cur;
 	}
+
+	return cur;
 }
 
 
@@ -315,10 +319,10 @@ split_toplevel_uri (const gchar *path, guint path_len,
 	char *ret;
 	gboolean success;
 
-	g_assert ( NULL != host_return );
-	g_assert ( NULL != user_return );
-	g_assert ( NULL != port_return );
-	g_assert ( NULL != password_return );
+	g_assert (host_return != NULL);
+	g_assert (user_return != NULL);
+	g_assert (port_return != NULL);
+	g_assert (password_return != NULL);
 
 	*host_return = NULL;
 	*user_return = NULL;
@@ -328,7 +332,7 @@ split_toplevel_uri (const gchar *path, guint path_len,
 
 	success = FALSE;
 
-	if (NULL == path || 0 == path_len) {
+	if (path == NULL || path_len == 0) {
 		return NULL;
 	}
 	
@@ -338,33 +342,29 @@ split_toplevel_uri (const gchar *path, guint path_len,
 	cur_tok_start = path;
 	cur = uri_strspn_to (cur_tok_start, URI_DELIMITER_ALL_SET, path_end);
 
-	if (NULL != cur 
-		&& ('@' == *cur
-		    || NULL != uri_strspn_to (cur, URI_DELIMITER_USER_SET, path_end)
-		)
-	) {
+	if (cur != NULL
+		&& (*cur == '@'
+		    || uri_strspn_to (cur, URI_DELIMITER_USER_SET, path_end) != NULL)) {
 		/* *cur == ':' or '@' and string contains @ */
 
-		if( 0 < uri_strlen_to (cur_tok_start, cur)) {
+		if (uri_strlen_to (cur_tok_start, cur) > 0) {
 			*user_return = uri_strdup_to (cur_tok_start,cur);
 		}
 
-		if ( ':' == *cur ) {
+		if (*cur == ':') {
 			URI_MOVE_PAST_DELIMITER;
 
 			cur = uri_strspn_to(cur_tok_start, URI_DELIMITER_USER_SET, path_end);
 
-			if ( NULL == cur || '@' != *cur ) {
+			if (cur == NULL || *cur != '@') {
 				success = FALSE;
 				goto done;
-			} else /* '@' == *cur */ {
-				if( 0 < uri_strlen_to (cur_tok_start, cur)) {
-					*password_return = uri_strdup_to (cur_tok_start,cur);
-				}
+			} else if (uri_strlen_to (cur_tok_start, cur) > 0) {
+				*password_return = uri_strdup_to (cur_tok_start,cur);
 			}
 		}
 
-		if ('/' != *cur) {
+		if (*cur != '/') {
 			URI_MOVE_PAST_DELIMITER;
 			cur = uri_strspn_to (cur_tok_start, URI_DELIMITER_HOST_SET, path_end);
 		} else {
@@ -372,11 +372,11 @@ split_toplevel_uri (const gchar *path, guint path_len,
 		}
 	}
 
-	if (NULL == cur) {
+	if (cur == NULL) {
 		/* [^:/]+$ */
-		if( 0 < uri_strlen_to (cur_tok_start, path_end)) {
+		if (uri_strlen_to (cur_tok_start, path_end) > 0) {
 			*host_return = uri_strdup_to (cur_tok_start, path_end);
-			if ( GNOME_VFS_URI_PATH_CHR == *(path_end - 1)) {
+			if (*(path_end - 1) == GNOME_VFS_URI_PATH_CHR) {
 				ret = g_strdup (GNOME_VFS_URI_PATH_STR);
 			} else {
 				ret = g_strdup ("");
@@ -388,11 +388,11 @@ split_toplevel_uri (const gchar *path, guint path_len,
 
 		goto done;
 
-	} else if ( ':' == *cur ) {
+	} else if (*cur == ':') {
 		guint port;
 		/* [^:/]*:.* */
 
-		if( 0 < uri_strlen_to (cur_tok_start, cur)) {
+		if (uri_strlen_to (cur_tok_start, cur) > 0) {
 			*host_return = uri_strdup_to (cur_tok_start, cur);
 		} else {
 			success = FALSE;
@@ -409,12 +409,12 @@ split_toplevel_uri (const gchar *path, guint path_len,
 		}
 
 		/* We let :(/.*)$ be treated gracefully */
-		if ( ! ( '\0' == *cur || GNOME_VFS_URI_PATH_CHR == *cur ) ) {
+		if (*cur != '\0' && *cur != GNOME_VFS_URI_PATH_CHR) {
 			success = FALSE;
 			goto done;	/* ...but this would be an error */
 		} 
 
-		if ( 0xffff < port ) {
+		if (port > 0xffff) {
 			success = FALSE;
 			goto done;
 		}
@@ -426,9 +426,9 @@ split_toplevel_uri (const gchar *path, guint path_len,
 	} else /* GNOME_VFS_URI_PATH_CHR == *cur */ {
 		/* ^[^:@/]+/.*$ */
 
-		if( 0 < uri_strlen_to (cur_tok_start, cur)) {
+		if (uri_strlen_to (cur_tok_start, cur) > 0) {
 			*host_return = uri_strdup_to (cur_tok_start, cur);
-		} else if ( NULL != *user_return || NULL != *password_return ) {
+		} else if (*user_return != NULL || *password_return != NULL ) {
 			/* If we got a user / password but no host, that's an error */
 			success = FALSE;
 			goto done;	
@@ -437,20 +437,17 @@ split_toplevel_uri (const gchar *path, guint path_len,
 		cur_tok_start = cur;
 	}
 
-	if( '\0' != *cur_tok_start && 0 < uri_strlen_to (cur_tok_start, path_end)) {
+	if (*cur_tok_start != '\0' && uri_strlen_to (cur_tok_start, path_end) > 0) {
 		ret = uri_strdup_to(cur, path_end);
-	} else {
-		/* Either host or path...*/
-		if ( NULL != host_return ) {
-			ret = g_strdup (GNOME_VFS_URI_PATH_STR);
-		}
+	} else if (*host_return != NULL) {
+		ret = g_strdup (GNOME_VFS_URI_PATH_STR);
 	}
 
 	success = TRUE;
 done:
 
 	/* If we didn't complete our mission, discard all the partials */
-	if ( ! success ) {
+	if (!success) {
 		g_free (*host_return);
 		g_free (*user_return);
 		g_free (*password_return);
@@ -467,7 +464,6 @@ done:
 }
 
 
-
 static void
 set_uri_element (GnomeVFSURI *uri,
 		 const gchar *text,
@@ -532,15 +528,16 @@ static GnomeVFSURI *
 parse_uri_substring (const gchar *substring, GnomeVFSURI *parent)
 {
 	GnomeVFSMethod *method;
-	GnomeVFSURI    *uri, *new_uri;
-	gchar          *method_string;
-	const gchar    *p;
-	gchar          *p1;
+	GnomeVFSURI *uri, *child_uri;
+	gchar *method_string;
+	const gchar *method_scanner;
+	const gchar *extension_scanner;
 
-	if (!substring || *substring == '\000')
+	if (substring == NULL || *substring == '\0') {
 		return NULL;
-
-	p = get_method_string (substring, &method_string);
+	}
+	
+	method_scanner = get_method_string (substring, &method_string);
 
 	method = gnome_vfs_method_get (method_string);
 	if (!method) {
@@ -549,30 +546,35 @@ parse_uri_substring (const gchar *substring, GnomeVFSURI *parent)
 	}
 
 	uri = g_new0 (GnomeVFSURI, 1);
-	uri->method        = method;
+	uri->method = method;
 	uri->method_string = method_string;
-	uri->ref_count     = 1;
-	uri->parent        = parent;
+	uri->ref_count = 1;
+	uri->parent = parent;
 
-	p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
+	extension_scanner = strchr (method_scanner, GNOME_VFS_URI_MAGIC_CHR);
 
-	if (!p1) {
-		set_uri_element (uri, p, strlen (p));
+	if (extension_scanner == NULL) {
+		set_uri_element (uri, method_scanner, strlen (method_scanner));
 		return uri;
 	}
 
-	set_uri_element (uri, p, p1 - p);
+	/* handle '#' */
+	set_uri_element (uri, method_scanner, extension_scanner - method_scanner);
 
-	if (! strchr (p1, ':')) {
+	if (strchr (extension_scanner, ':') == NULL) {
+		/* extension is a fragment identifier */
+		uri->fragment_id = g_strdup (extension_scanner + 1);
 		return uri;
 	}
 
-	new_uri = parse_uri_substring (p1 + 1, uri);
+	/* extension is a uri chain */
+	child_uri = parse_uri_substring (extension_scanner + 1, uri);
 
-	if (new_uri)
-		return new_uri;
-	else
-		return uri;
+	if (child_uri != NULL) {
+		return child_uri;
+	}
+
+	return uri;
 }
 
 /**
@@ -589,15 +591,16 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	GnomeVFSMethod *method;
 	GnomeVFSTransform *trans;
 	GnomeVFSToplevelURI *toplevel;
-	GnomeVFSURI *uri, *new_uri;
-	const gchar *p, *p1;
+	GnomeVFSURI *uri, *child_uri;
+	const gchar *method_scanner, *extension_scanner;
 	gchar *method_string;
 	gchar *new_uri_string = NULL;
 
 	g_return_val_if_fail (text_uri != NULL, NULL);
 
-	if (text_uri[0] == 0)
+	if (text_uri[0] == '\0') {
 		return NULL;
+	}
 
 	toplevel = g_new (GnomeVFSToplevelURI, 1);
 	toplevel->host_name = NULL;
@@ -608,20 +611,21 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	uri = (GnomeVFSURI *) toplevel;
 	uri->parent = NULL;
 
-	p = get_method_string (text_uri, &method_string);
+	method_scanner = get_method_string (text_uri, &method_string);
 	trans = gnome_vfs_transform_get (method_string);
-	if (trans && trans->transform) {
+	if (trans != NULL && trans->transform) {
 		GnomeVFSContext *context;
 
 		context = gnome_vfs_context_new ();
-		(* trans->transform) (trans, p, &new_uri_string, context);
+		(* trans->transform) (trans, method_scanner, &new_uri_string, context);
 		gnome_vfs_context_unref (context);
 		if (new_uri_string != NULL) {
 			toplevel->urn = g_strdup (text_uri);
 			g_free (method_string);
-			p = get_method_string (new_uri_string, &method_string);
+			method_scanner = get_method_string (new_uri_string, &method_string);
 		}
 	}
+	g_free (new_uri_string);
 	
 	method = gnome_vfs_method_get (method_string);
 	/* The toplevel URI element is special, as it also contains host/user
@@ -630,42 +634,43 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	uri->ref_count = 1;
 	uri->method_string = method_string;
 	uri->text = NULL;
+	uri->fragment_id = NULL;
 	if (method == NULL) {
 		gnome_vfs_uri_unref (uri);
-		g_free (new_uri_string);
 		return NULL;
 	}
 
-	p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
-	if (p1 == NULL) {
-		set_uri_element (uri, p, strlen (p));
-		g_free (new_uri_string);
+	extension_scanner = strchr (method_scanner, GNOME_VFS_URI_MAGIC_CHR);
+	if (extension_scanner == NULL) {
+		set_uri_element (uri, method_scanner, strlen (method_scanner));
 		return uri;
 	}
 
-	set_uri_element (uri, p, p1 - p);
+	/* handle '#' */
+	set_uri_element (uri, method_scanner, extension_scanner - method_scanner);
 
-	if (strchr (p1, ':') == NULL) {
-		g_free (new_uri_string);
+	if (strchr (extension_scanner, ':') == NULL) {
+		/* extension is a fragment identifier */
+		uri->fragment_id = g_strdup (extension_scanner + 1);
 		return uri;
 	}
 
-	new_uri = parse_uri_substring (p1, uri);
+	/* extension is a uri chain */
+	child_uri = parse_uri_substring (extension_scanner + 1, uri);
 
-	g_free (new_uri_string);
-
-	if (new_uri)
-		return new_uri;
-
+	if (child_uri != NULL) {
+		return child_uri;
+	}
+	
 	return uri;
 }
 
-
 /* Destroy an URI element, but not its parent.  */
 static void
 destroy_element (GnomeVFSURI *uri)
 {
 	g_free (uri->text);
+	g_free (uri->fragment_id);
 	g_free (uri->method_string);
 
 	if (uri->parent == NULL) {
@@ -725,7 +730,6 @@ gnome_vfs_uri_unref (GnomeVFSURI *uri)
 	}
 }
 
-
 /**
  * gnome_vfs_uri_dup:
  * @uri: A GnomeVFSURI.
@@ -738,12 +742,13 @@ GnomeVFSURI *
 gnome_vfs_uri_dup (const GnomeVFSURI *uri)
 {
 	const GnomeVFSURI *p;
-	GnomeVFSURI *new, *child;
+	GnomeVFSURI *new_uri, *child;
 
-	if (uri == NULL)
+	if (uri == NULL) {
 		return NULL;
+	}
 
-	new = NULL;
+	new_uri = NULL;
 	child = NULL;
 	for (p = uri; p != NULL; p = p->parent) {
 		GnomeVFSURI *new_element;
@@ -767,26 +772,27 @@ gnome_vfs_uri_dup (const GnomeVFSURI *uri)
 
 		new_element->ref_count = 1;
 		new_element->text = g_strdup (p->text);
+		new_element->fragment_id = g_strdup (p->fragment_id);
 		new_element->method_string = g_strdup (p->method_string);
 		new_element->method = p->method;
 		new_element->parent = NULL;
 
-		if (child != NULL)
+		if (child != NULL) {
 			child->parent = new_element;
-		else
-			new = new_element;
+		} else {
+			new_uri = new_element;
+		}
 			
 		child = new_element;
 	}
 
-	return new;
+	return new_uri;
 }
 
-
 /**
- * gnome_vfs_uri_append_append_path:
+ * gnome_vfs_uri_append_string:
  * @uri: A GnomeVFSURI.
- * @path: A piece of a URI (ie a fully escaped partial path)
+ * @uri_fragment_string: A piece of a URI (ie a fully escaped partial path)
  * 
  * Create a new URI obtained by appending @path to @uri.  This will take care
  * of adding an appropriate directory separator between the end of @uri and
@@ -795,43 +801,70 @@ gnome_vfs_uri_dup (const GnomeVFSURI *uri)
  * Return value: The new URI obtained by combining @uri and @path.
  **/
 GnomeVFSURI *
-gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
-			   const gchar *path)
+gnome_vfs_uri_append_string (const GnomeVFSURI *uri,
+			     const gchar *uri_part_string)
 {
 	gchar *uri_string;
-	GnomeVFSURI *new;
+	GnomeVFSURI *new_uri;
 	gchar *new_string;
 	guint len;
 
 	g_return_val_if_fail (uri != NULL, NULL);
-	g_return_val_if_fail (path != NULL, NULL);
-
-	/* FIXME bugzilla.eazel.com 1209: this is just a reminder.  */
-	if (strchr (path, '#') != NULL)
-		g_warning ("gnome_vfs_uri_append_path() is broken with names containing `#'.");
+	g_return_val_if_fail (uri_part_string != NULL, NULL);
 
 	uri_string = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 	len = strlen (uri_string);
 	if (len == 0) {
 		g_free (uri_string);
-		return gnome_vfs_uri_new (path);
+		return gnome_vfs_uri_new (uri_part_string);
 	}
 
 	len--;
-	while (uri_string[len] == GNOME_VFS_URI_PATH_CHR && len > 0)
+	while (uri_string[len] == GNOME_VFS_URI_PATH_CHR && len > 0) {
 		len--;
+	}
+
 	uri_string[len + 1] = '\0';
 
-	while (*path == GNOME_VFS_URI_PATH_CHR)
-		path++;
+	while (*uri_part_string == GNOME_VFS_URI_PATH_CHR) {
+		uri_part_string++;
+	}
 
-	new_string = g_strconcat (uri_string, GNOME_VFS_URI_PATH_STR, path, NULL);
-	new = gnome_vfs_uri_new (new_string);
+	if (uri_part_string[0] != GNOME_VFS_URI_MAGIC_CHR) {
+		new_string = g_strconcat (uri_string, GNOME_VFS_URI_PATH_STR, uri_part_string, NULL);
+	} else {
+		new_string = g_strconcat (uri_string, uri_part_string, NULL);
+	}
+	new_uri = gnome_vfs_uri_new (new_string);
 
 	g_free (new_string);
 	g_free (uri_string);
 
-	return new;
+	return new_uri;
+}
+
+/**
+ * gnome_vfs_uri_append_path:
+ * @uri: A GnomeVFSURI.
+ * @path: A non-escaped file path
+ * 
+ * Create a new URI obtained by appending @path to @uri.  This will take care
+ * of adding an appropriate directory separator between the end of @uri and
+ * the start of @path if necessary as well as escaping @path as necessary.
+ * 
+ * Return value: The new URI obtained by combining @uri and @path.
+ **/
+GnomeVFSURI *
+gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
+			   const gchar *path)
+{
+	gchar *escaped_string;
+	GnomeVFSURI *new_uri;
+	
+	escaped_string = gnome_vfs_escape_path_string (path);
+	new_uri = gnome_vfs_uri_append_string (uri, escaped_string);
+	g_free (escaped_string);
+	return new_uri;
 }
 
 /**
@@ -853,7 +886,7 @@ gnome_vfs_uri_append_file_name (const GnomeVFSURI *uri,
 	GnomeVFSURI *new_uri;
 	
 	escaped_string = gnome_vfs_escape_string (file_name);
-	new_uri = gnome_vfs_uri_append_path (uri, escaped_string);
+	new_uri = gnome_vfs_uri_append_string (uri, escaped_string);
 	g_free (escaped_string);
 	return new_uri;
 }
@@ -875,32 +908,32 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 			 GnomeVFSURIHideOptions hide_options)
 {
 	GString *string;
-	gchar *r;
+	gchar *result;
 
 	string = g_string_new(uri->method_string);
 	g_string_append_c (string, ':');
 
 	if (uri->parent == NULL) {
-		GnomeVFSToplevelURI *turi = (GnomeVFSToplevelURI *)uri;
+		GnomeVFSToplevelURI *top_level_uri = (GnomeVFSToplevelURI *)uri;
 		gboolean shown_user_pass = FALSE;
 		
 		g_string_append (string, "//");
 
-		if (hide_options&GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD) {
+		if ((hide_options & GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD) != 0) {
 			g_string_free (string, TRUE); /* throw away method */
 			string = g_string_new ("");
 		}
 
-		if(turi->user_name && 
-				!(hide_options&GNOME_VFS_URI_HIDE_USER_NAME)) {
-			g_string_append (string, turi->user_name);
+		if (top_level_uri->user_name 
+			&& (hide_options & GNOME_VFS_URI_HIDE_USER_NAME) == 0) {
+			g_string_append (string, top_level_uri->user_name);
 			shown_user_pass = TRUE;
 		}
 
-		if (turi->password &&
-		    !(hide_options&GNOME_VFS_URI_HIDE_PASSWORD)) {
+		if (top_level_uri->password 
+			&& (hide_options & GNOME_VFS_URI_HIDE_PASSWORD) == 0) {
 			g_string_append_c (string, ':');
-			g_string_append (string, turi->password);
+			g_string_append (string, top_level_uri->password);
 			shown_user_pass = TRUE;
 		}
 
@@ -908,23 +941,28 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 			g_string_append_c (string, '@');
 		}
 
-		if (turi->host_name &&
-		    !(hide_options & GNOME_VFS_URI_HIDE_HOST_NAME)) {
-		       	g_string_append (string, turi->host_name);
+		if (top_level_uri->host_name 
+			&& (hide_options & GNOME_VFS_URI_HIDE_HOST_NAME) == 0) {
+		       	g_string_append (string, top_level_uri->host_name);
 		}
 		
-		if (turi->host_port > 0 &&
-		    !(hide_options & GNOME_VFS_URI_HIDE_HOST_PORT)) {
+		if (top_level_uri->host_port > 0 
+			&& (hide_options & GNOME_VFS_URI_HIDE_HOST_PORT) == 0) {
 			gchar tmp[128];
-			sprintf(tmp, ":%d", turi->host_port);
-			g_string_append(string, tmp);
+			sprintf (tmp, ":%d", top_level_uri->host_port);
+			g_string_append (string, tmp);
 		}
-
 
 	}
 	
 	if (uri->text != NULL) {
 		g_string_append (string, uri->text);
+	}
+
+	if (uri->fragment_id != NULL 
+		&& (hide_options & GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER) == 0) {
+		g_string_append_c (string, '#');
+		g_string_append (string, uri->fragment_id);
 	}
 
 	if (uri->parent != NULL) {
@@ -933,13 +971,12 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 								   hide_options));
 	}
 
-	r = string->str;
+	result = string->str;
 	g_string_free (string, FALSE);
 
-	return r;
+	return result;
 }
 
-
 /**
  * gnome_vfs_uri_is_local:
  * @uri: A GnomeVFSURI.
@@ -1043,7 +1080,6 @@ gnome_vfs_uri_get_parent (const GnomeVFSURI *uri)
 	return gnome_vfs_uri_dup (uri->parent);
 }
 
-
 /**
  * gnome_vfs_uri_get_toplevel:
  * @uri: A GnomeVFSURI.
@@ -1065,7 +1101,6 @@ gnome_vfs_uri_get_toplevel (const GnomeVFSURI *uri)
 	return (GnomeVFSToplevelURI *) p;
 }
 
-
 /**
  * gnome_vfs_uri_get_host_name:
  * @uri: A GnomeVFSURI.
@@ -1157,7 +1192,6 @@ gnome_vfs_uri_get_password (const GnomeVFSURI *uri)
 	return toplevel->password;
 }
 
-
 /**
  * gnome_vfs_uri_set_host_name:
  * @uri: A GnomeVFSURI.
@@ -1246,8 +1280,7 @@ gnome_vfs_uri_set_password (GnomeVFSURI *uri,
 }
 
 static gboolean
-my_streq (const gchar *a,
-	  const gchar *b)
+string_match (const gchar *a, const gchar *b)
 {
 	if (a == NULL || *a == '\0') {
 		return b == NULL || *b == '\0';
@@ -1263,15 +1296,12 @@ static gboolean
 compare_elements (const GnomeVFSURI *a,
 		  const GnomeVFSURI *b)
 {
-	if (! my_streq (a->text, b->text)
-	    || ! my_streq (a->method_string, b->method_string))
+	if (!string_match (a->text, b->text)
+		|| !string_match (a->method_string, b->method_string))
 		return FALSE;
 
-	/* The following should not happen, but we make sure anyway.  */
-	if (a->method != b->method)
-		return FALSE;
-
-	return TRUE;
+	/* The following should never fail, but we make sure anyway. */
+	return a->method == b->method;
 }
 
 /**
@@ -1294,29 +1324,29 @@ gnome_vfs_uri_equal (const GnomeVFSURI *a,
 	g_return_val_if_fail (b != NULL, FALSE);
 
 	/* First check non-toplevel elements.  */
-	while (a->parent != NULL && b->parent != NULL)
-		if (! compare_elements (a, b))
+	while (a->parent != NULL && b->parent != NULL) {
+		if (!compare_elements (a, b)) {
 			return FALSE;
+		}
+	}
 
 	/* Now we should be at toplevel for both.  */
-	if (a->parent != NULL || b->parent != NULL)
+	if (a->parent != NULL || b->parent != NULL) {
 		return FALSE;
+	}
 
-	if (! compare_elements (a, b))
+	if (!compare_elements (a, b)) {
 		return FALSE;
+	}
 
 	toplevel_a = (GnomeVFSToplevelURI *) a;
 	toplevel_b = (GnomeVFSToplevelURI *) b;
 
 	/* Finally, compare the extra toplevel members.  */
-
-	if (toplevel_a->host_port != toplevel_b->host_port
-	    || ! my_streq (toplevel_a->host_name, toplevel_b->host_name)
-	    || ! my_streq (toplevel_a->user_name, toplevel_b->user_name)
-	    || ! my_streq (toplevel_a->password, toplevel_b->password))
-		return FALSE;
-
-	return TRUE;
+	return toplevel_a->host_port == toplevel_b->host_port
+	    && string_match (toplevel_a->host_name, toplevel_b->host_name)
+	    && string_match (toplevel_a->user_name, toplevel_b->user_name)
+	    && string_match (toplevel_a->password, toplevel_b->password);
 }
 
 /**
@@ -1343,8 +1373,9 @@ gnome_vfs_uri_is_parent (const GnomeVFSURI *possible_parent,
 	if (!recursive) {
 		item_parent_uri = gnome_vfs_uri_get_parent (possible_child);
 
-		if (item_parent_uri == NULL) 
+		if (item_parent_uri == NULL) {
 			return FALSE;
+		}
 
 		result = gnome_vfs_uri_equal (item_parent_uri, possible_parent);	
 		gnome_vfs_uri_unref (item_parent_uri);
@@ -1357,8 +1388,9 @@ gnome_vfs_uri_is_parent (const GnomeVFSURI *possible_parent,
 		item_parent_uri = gnome_vfs_uri_get_parent (item);
 		gnome_vfs_uri_unref (item);
 		
-		if (item_parent_uri == NULL) 
+		if (item_parent_uri == NULL) {
 			return FALSE;
+		}
 
 		result = gnome_vfs_uri_equal (item_parent_uri, possible_parent);
 	
@@ -1390,7 +1422,25 @@ gnome_vfs_uri_get_path (const GnomeVFSURI *uri)
 	/* this is based on the assumtion that uri->text won't contain the
 	 * query string.
 	 */
+	g_return_val_if_fail (uri != NULL, NULL);
+
 	return uri->text;
+}
+
+/**
+ * gnome_vfs_uri_get_fragment_id:
+ * @uri: A GnomeVFSURI
+ * 
+ * Retrieve the optional fragment identifier for @uri.
+ * 
+ * Return value: A pointer to the fragment identifier for the uri or NULL.
+ **/
+const gchar *
+gnome_vfs_uri_get_fragment_identifier (const GnomeVFSURI *uri)
+{
+	g_return_val_if_fail (uri != NULL, NULL);
+
+	return uri->fragment_id;
 }
 
 /**
@@ -1411,16 +1461,19 @@ gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
 
 	g_return_val_if_fail (uri != NULL, NULL);
 
-	if (uri->text == NULL)
+	if (uri->text == NULL) {
 		return NULL;
+	}
 
 	p = strrchr (uri->text, GNOME_VFS_URI_PATH_CHR);
-	if (p == NULL)
+	if (p == NULL) {
 		return NULL;
+	}
 
 	p++;
-	if (*p == '\0')
+	if (*p == '\0') {
 		return NULL;
+	}
 
 	return p;
 }
@@ -1444,8 +1497,9 @@ gnome_vfs_uri_extract_dirname (const GnomeVFSURI *uri)
 	g_return_val_if_fail (uri != NULL, NULL);
 
 	base = gnome_vfs_uri_get_basename (uri);
-	if (base == NULL || base == uri->text)
+	if (base == NULL || base == uri->text) {
 		return g_strdup (GNOME_VFS_URI_PATH_STR);
+	}
 
 	return g_strndup (uri->text, base - uri->text);
 }
@@ -1478,7 +1532,7 @@ gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri)
 
 	host_name = NULL;
 	if (short_path_name != NULL
-	    && strcmp (short_path_name, GNOME_VFS_URI_PATH_STR) == 0) {
+		&& strcmp (short_path_name, GNOME_VFS_URI_PATH_STR) == 0) {
 		host_name = gnome_vfs_uri_get_host_name (uri);
 	}
 
@@ -1513,8 +1567,9 @@ gnome_vfs_uri_extract_short_path_name (const GnomeVFSURI *uri)
 
 	g_return_val_if_fail (uri != NULL, NULL);
 
-	if (uri->text == NULL)
+	if (uri->text == NULL) {
 		return NULL;
+	}
 
 	/* Search for the last run of non-'/' characters. */
 	p = uri->text;
@@ -1539,14 +1594,14 @@ gnome_vfs_uri_extract_short_path_name (const GnomeVFSURI *uri)
 	   directory separators. Since it can't be an empty string, that means
 	   it points to the root, so "/" is a good result.
 	*/
-	if (short_name_start == NULL)
+	if (short_name_start == NULL) {
 		return g_strdup (GNOME_VFS_URI_PATH_STR);
+	}
 
 	/* Return a copy of the short name. */
 	return g_strndup (short_name_start, short_name_end - short_name_start);
 }
 
-
 /* The following functions are useful for creating URI hash tables.  */
 
 gint

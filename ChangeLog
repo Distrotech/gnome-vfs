@@ -1,3 +1,59 @@
+2000-10-17  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c:
+	(gnome_vfs_uri_new):
+	Fix bug 2840 - URI parsing works wrong for URIs with # characters.
+	The substring after '#' was being improperly parsed.
+
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-uri.c:
+	(gnome_vfs_uri_append_string), (gnome_vfs_uri_append_path):
+	* libgnomevfs/gnome-vfs-xfer.c: (empty_directory),
+	(PrependOneURIToList), (copy_items), (move_items), (link_items),
+	(gnome_vfs_new_directory_with_unique_name):
+	Made gnome_vfs_uri_append_path escape the supplied path for convenience. 
+	New gnome_vfs_uri_append_string now replaces the original behavior that
+	expects the supplied uri part to be properly escaped. Hopefully this will
+	be somewhat less confusing and easier to use.
+	Used gnome_vfs_uri_append_string as needed in code that relied on
+	old gnome_vfs_uri_append_path behavior.
+
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-uri.c:
+	(gnome_vfs_uri_new), (destroy_element), (gnome_vfs_uri_dup),
+	(gnome_vfs_uri_to_string), (gnome_vfs_uri_get_fragment_identifier):
+	Added proper support for uri fragment identifiers, this seemed like
+	a necessary addition to fixing bug 2840 properly.
+	Fragment identifiers are now stored in a special field of GnomeVFSURI 
+	and they no longer get returned as a part or the uri path or stripped.
+	They can be optionally excluded by gnome_vfs_uri_to_string using the
+	new GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER flag.
+	
+	* libgnomevfs/gnome-vfs-uri.c:
+	(split_toplevel_uri):
+	Fix a bug where host_return was incorrectly checked causing "/" to
+	always get appened to the resulting uri text.
+	
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-uri.c:
+	(split_toplevel_uri_old), (uri_strspn_to), (split_toplevel_uri),
+	(parse_uri_substring), (gnome_vfs_uri_new), (gnome_vfs_uri_dup),
+	(gnome_vfs_uri_append_string), (gnome_vfs_uri_append_path),
+	(gnome_vfs_uri_append_file_name), (gnome_vfs_uri_to_string),
+	(string_match), (compare_elements), (gnome_vfs_uri_equal),
+	(gnome_vfs_uri_is_parent), (gnome_vfs_uri_get_path),
+	(gnome_vfs_uri_get_basename), (gnome_vfs_uri_extract_dirname),
+	(gnome_vfs_uri_extract_short_name),
+	(gnome_vfs_uri_extract_short_path_name)
+	Ton of cleanups.
+	
+	* test/test-uri.c: (test_file_path_to_uri_string),
+	(test_uri_has_fragment_id), (main):
+	Add tests for new fragment identifier support.
+	Fix up/extend tests for extended uri support.
+	Add test for path escaping/unescaping.
+	Eliminate FIXMEs that were fixed by this.
+
 2000-10-17  Jarkko Ranta  <jjranta@cc.joensuu.fi>
 
 	* configure.in: added fi to all_linguas
