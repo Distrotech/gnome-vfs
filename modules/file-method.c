@@ -436,7 +436,7 @@ struct _DirectoryHandle
 	GnomeVFSFileInfoOptions options;
 	const GList *meta_keys;
 
-	struct dirent current_entry;
+	struct dirent *current_entry;
 
 	gchar *name_buffer;
 	gchar *name_ptr;
@@ -461,6 +461,9 @@ directory_handle_new (GnomeVFSURI *uri,
 	new->uri = gnome_vfs_uri_ref (uri);
 	new->dir = dir;
 
+	/* Reserve extra space for readdir_r, see man page */
+	new->current_entry = g_malloc (sizeof (struct dirent) + GET_PATH_MAX() + 1);
+
 	MAKE_ABSOLUTE (full_name, uri->text);
 	full_name_len = strlen (full_name);
 
@@ -484,6 +487,7 @@ directory_handle_destroy (DirectoryHandle *directory_handle)
 {
 	gnome_vfs_uri_unref (directory_handle->uri);
 	g_free (directory_handle->name_buffer);
+	g_free (directory_handle->current_entry);
 	g_free (directory_handle);
 }
 
@@ -674,9 +678,7 @@ read_directory (DirectoryHandle *handle,
 		filter_needs = GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING;
 	}
 
-	if (readdir_r (handle->dir,
-		       &handle->current_entry,
-		       &result) != 0)
+	if (readdir_r (handle->dir, handle->current_entry, &result) != 0)
 		return gnome_vfs_result_from_errno ();
 
 	if (result == NULL)
