@@ -178,6 +178,8 @@ struct _VFolderInfo
 	int inhibit_write;
 };
 
+#define ALL_SCHEME_P(scheme)	((scheme) != NULL && strncmp ((scheme), "all-", 4) == 0)
+
 static Entry *	entry_ref	(Entry *entry);
 static void	entry_unref	(Entry *entry);
 static void	query_destroy	(Query *query);
@@ -1628,6 +1630,11 @@ get_vfolder_info (const char *scheme)
 {
 	VFolderInfo *info;
 
+	/* if this is an all scheme, skip first 4
+	 * bytes to read the info */
+	if (ALL_SCHEME_P (scheme))
+		scheme += 4;
+
 	if (infos != NULL &&
 	    (info = g_hash_table_lookup (infos, scheme)) != NULL) {
 		return info;
@@ -2041,13 +2048,20 @@ get_entry (GnomeVFSURI *uri,
 	info = get_vfolder_info (scheme);
 	g_assert (info != NULL);
 
+	if (ALL_SCHEME_P (scheme)) {
+		/* FIXME: if there is a dir structure in the uri,
+		 * file shouldn't found no matter what */
+		path = basename;
+	}
+
 	/* if this is just the filename, get just the filename */
 	if (strchr (path, '/') == NULL) {
 		GSList *efile_list;
 
+		efile_list = g_hash_table_lookup (info->entries_ht, path);
+
 		g_free (basename);
 
-		efile_list = g_hash_table_lookup (info->entries_ht, path);
 		if (efile_list == NULL) {
 			*result = GNOME_VFS_ERROR_NOT_FOUND;
 			return NULL;
@@ -2057,11 +2071,11 @@ get_entry (GnomeVFSURI *uri,
 	} else if (strcmp (basename, ".directory") == 0) {
 		Folder *folder;
 
-		g_free (basename);
-
 		folder = resolve_folder (info, path,
 					 TRUE /* ignore_basename */,
 					 result);
+
+		g_free (basename);
 
 		if (folder == NULL) {
 			*result = GNOME_VFS_ERROR_NOT_FOUND;
@@ -2095,9 +2109,9 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 	Entry *entry;
 
 	entry = get_entry (desktop_uri,
-			    the_folder,
-			    &is_directory_file,
-			    result);
+			   the_folder,
+			   &is_directory_file,
+			   result);
 
 	if (the_entry != NULL)
 		*the_entry = entry;
@@ -2227,19 +2241,33 @@ static gboolean
 open_check (GnomeVFSMethod *method,
 	    GnomeVFSURI *uri,
 	    GnomeVFSMethodHandle **method_handle,
+	    GnomeVFSOpenMode mode,
 	    GnomeVFSResult *result)
 {
 	const char *path = gnome_vfs_uri_get_path (uri);
-	if (path == NULL) {
+	const char *scheme = gnome_vfs_uri_get_scheme (uri);
+
+	if (path == NULL ||
+	    scheme == NULL) {
 		*result = GNOME_VFS_ERROR_INVALID_URI;
 		return FALSE;
 	}
+
+	if (ALL_SCHEME_P (scheme)) {
+		if (mode & GNOME_VFS_OPEN_WRITE) {
+			*result = GNOME_VFS_ERROR_READ_ONLY;
+			return FALSE;
+		}
+	}
+
 	if (strcmp (path, "gibberish.txt") == 0) {
 		/* a bit of evil never hurt no-one */
+		*result = GNOME_VFS_OK;
 		*method_handle = (GnomeVFSMethodHandle *)method;
-		return TRUE;
+		return FALSE;
 	}
-	return FALSE;
+
+	return TRUE;
 }
 
 typedef struct _FileHandle FileHandle;
@@ -2304,7 +2332,7 @@ do_open (GnomeVFSMethod *method,
 	if (info == NULL)
 		return result;
 
-	if (open_check (method, uri, method_handle, &result))
+	if ( ! open_check (method, uri, method_handle, mode, &result))
 		return result;
 
 	file_uri = desktop_uri_to_file_uri (uri,
@@ -2399,6 +2427,10 @@ do_create (GnomeVFSMethod *method,
 	      ! strcmp (basename, ".directory") == 0)) {
 		return GNOME_VFS_ERROR_INVALID_URI;
 	}
+
+	/* all scheme is read only */
+	if (ALL_SCHEME_P (scheme))
+		return GNOME_VFS_ERROR_READ_ONLY;
 
 	info = get_vfolder_info (scheme);
 	g_assert (info != NULL);
@@ -2736,6 +2768,14 @@ do_truncate (GnomeVFSMethod *method,
 	GnomeVFSResult result = GNOME_VFS_OK;
 	VFolderInfo *info;
 	Entry *entry;
+	const char *scheme;
+
+	scheme = gnome_vfs_uri_get_scheme (uri);
+	if (scheme == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
+	if (ALL_SCHEME_P (scheme))
+		return GNOME_VFS_ERROR_READ_ONLY;
 
 	info = vfolder_info_from_uri (uri, &result);
 	if (info == NULL)
@@ -2776,6 +2816,8 @@ typedef struct _DirHandle DirHandle;
 struct _DirHandle {
 	Folder *folder;
 
+	GnomeVFSFileInfoOptions options;
+
 	/* List of Entries */
 	GSList *list;
 	GSList *current;
@@ -2805,6 +2847,19 @@ do_open_directory (GnomeVFSMethod *method,
 	info = get_vfolder_info (scheme);
 	g_assert (info != NULL);
 
+	/* In the all- scheme just list all filenames */
+	if (ALL_SCHEME_P (scheme)) {
+		/* FIXME: if directory not / then return not found */
+		dh = g_new0 (DirHandle, 1);
+		dh->options = options;
+		dh->folder = NULL;
+		dh->list = g_slist_copy (info->entries);
+		g_slist_foreach (dh->list, (GFunc)entry_ref, NULL);
+		dh->current = dh->list;
+		*method_handle = (GnomeVFSMethodHandle*) dh;
+		return GNOME_VFS_OK;
+	}
+
 	folder = resolve_folder (info, path,
 				 FALSE /* ignore_basename */,
 				 &result);
@@ -2815,6 +2870,7 @@ do_open_directory (GnomeVFSMethod *method,
 	ensure_folder_sort (info, folder);
 
 	dh = g_new0 (DirHandle, 1);
+	dh->options = options;
 	dh->folder = (Folder *)entry_ref ((Entry *)folder);
 	dh->list = g_slist_copy (folder->entries);
 	g_slist_foreach (folder->entries, (GFunc)entry_ref, NULL);
@@ -2847,6 +2903,8 @@ do_close_directory (GnomeVFSMethod *method,
 	dh->list = NULL;
 
 	dh->current = NULL;
+	if (dh->folder != NULL)
+		entry_unref ((Entry *)dh->folder);
 	dh->folder = NULL;
 
 	g_free (dh);
@@ -2862,6 +2920,7 @@ do_read_directory (GnomeVFSMethod *method,
 {
 	DirHandle *dh;
 	Entry *entry;
+	GnomeVFSFileInfoOptions options;
 
 	dh = (DirHandle*) method_handle;
 
@@ -2872,22 +2931,35 @@ do_read_directory (GnomeVFSMethod *method,
 	entry = dh->current->data;
 	dh->current = dh->current->next;
 
+	options = dh->options;
+
 	if (entry->type == ENTRY_FILE &&
 	    ((EntryFile *)entry)->filename != NULL) {
 		EntryFile *efile = (EntryFile *)entry;
 		char *furi = gnome_vfs_get_uri_from_local_path (efile->filename);
 		GnomeVFSURI *uri = gnome_vfs_uri_new (furi);
 
+		/* we always get mime-type by forcing it below */
+		if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
+			options &= ~GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
+
+		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
+
 		/* Get the file info for this */
 		(* parent_method->get_file_info) (parent_method,
 						  uri,
 						  file_info,
-						  0 /* options */,
+						  options,
 						  context);
 
 		/* we ignore errors from this since the file_info just
 		 * won't be filled completely if there's an error, that's all */
 
+		g_free (file_info->mime_type);
+		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+
+		gnome_vfs_uri_unref (uri);
 		g_free (furi);
 	} else if (entry->type == ENTRY_FILE) {
 		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
@@ -2899,7 +2971,7 @@ do_read_directory (GnomeVFSMethod *method,
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 
 		/* FIXME: there should be a mime-type for these */
-		file_info->mime_type = g_strdup ("text/plain");
+		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 	} else /* ENTRY_FOLDER */ {
 		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
@@ -2939,11 +3011,20 @@ do_get_file_info (GnomeVFSMethod *method,
 		return result;
 
 	if (file_uri != NULL) {
+
+		/* we always get mime-type by forcing it below */
+		if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
+			options &= ~GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
+
 		result = (* parent_method->get_file_info) (parent_method,
 							   file_uri,
 							   file_info,
 							   options,
 							   context);
+
+		g_free (file_info->mime_type);
+		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
 		gnome_vfs_uri_unref (file_uri);
 
@@ -2976,14 +3057,27 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 	FileHandle *handle = (FileHandle *)method_handle;
 
-	if (method_handle == (GnomeVFSMethodHandle *)method)
+	if (method_handle == (GnomeVFSMethodHandle *)method) {
+		g_free (file_info->mime_type);
+		file_info->mime_type = g_strdup ("text/plain");
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		return GNOME_VFS_OK;
-	
+	}
+
+	/* we always get mime-type by forcing it below */
+	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
+		options &= ~GNOME_VFS_FILE_INFO_GET_MIME_TYPE;
+
 	result = (* parent_method->get_file_info_from_handle) (parent_method,
 							       handle->handle,
 							       file_info,
 							       options,
 							       context);
+
+	/* any file is of the .desktop type */
+	g_free (file_info->mime_type);
+	file_info->mime_type = g_strdup ("application/x-gnome-app-info");
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
 	return result;
 }
@@ -3015,6 +3109,9 @@ do_make_directory (GnomeVFSMethod *method,
 	if (scheme == NULL ||
 	    path == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
+
+	if (ALL_SCHEME_P (scheme))
+		return GNOME_VFS_ERROR_READ_ONLY;
 
 	info = get_vfolder_info (scheme);
 	g_assert (info != NULL);
@@ -3065,7 +3162,11 @@ do_remove_directory (GnomeVFSMethod *method,
 	    path == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
+	if (ALL_SCHEME_P (scheme))
+		return GNOME_VFS_ERROR_READ_ONLY;
+
 	info = get_vfolder_info (scheme);
+	g_assert (info != NULL);
 
 	if (info->user_filename == NULL)
 		return GNOME_VFS_ERROR_READ_ONLY;
@@ -3318,6 +3419,9 @@ do_move (GnomeVFSMethod *method,
 	if (strcmp (old_scheme, new_scheme) != 0)
 		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
 
+	if (ALL_SCHEME_P (old_scheme))
+		return GNOME_VFS_ERROR_READ_ONLY;
+
 	info = vfolder_info_from_uri (old_uri, &result);
 	if (info == NULL)
 		return result;
@@ -3450,10 +3554,19 @@ do_unlink (GnomeVFSMethod *method,
 	gboolean is_directory_file;
 	VFolderInfo *info;
 	const char *basename;
+	const char *scheme;
 
 	info = vfolder_info_from_uri (uri, &result);
 	if (info == NULL)
 		return result;
+
+	scheme = gnome_vfs_uri_get_scheme (uri);
+
+	if (scheme == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
+	if (ALL_SCHEME_P (scheme))
+		return GNOME_VFS_ERROR_READ_ONLY;
 
 	basename = get_basename (uri);
 	if (basename == NULL)
@@ -3513,7 +3626,8 @@ do_check_same_fs (GnomeVFSMethod *method,
 	    target_scheme == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
-	if (strcmp (source_scheme, target_scheme) == 0)
+	if (strcmp (source_scheme, target_scheme) == 0 &&
+	    ! ALL_SCHEME_P (source_scheme))
 		*same_fs_return = TRUE;
 	else
 		*same_fs_return = FALSE;
@@ -3530,6 +3644,17 @@ do_set_file_info (GnomeVFSMethod *method,
 {
 	GnomeVFSResult result = GNOME_VFS_OK;
 	GnomeVFSURI *file_uri;
+	const char *scheme;
+
+	scheme = gnome_vfs_uri_get_scheme (uri);
+
+	if (scheme == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
+	if (ALL_SCHEME_P (scheme))
+		return GNOME_VFS_ERROR_READ_ONLY;
+
+	/* FIXME: can one set mime-type? if so circumvent it */
 
 	/* FIXME: what to do with folders? I suppose nothing */
 	file_uri = desktop_uri_to_file_uri (uri,
