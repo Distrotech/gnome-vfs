@@ -1718,8 +1718,6 @@ gnome_vfs_make_uri_from_shell_arg (const char *location)
 	return uri;
 }
 
-#ifndef GNOME_VFS_DISABLE_DEPRECATED
-
 /**
  * gnome_vfs_make_uri_full_from_relative:
  * 
@@ -1739,8 +1737,6 @@ gnome_vfs_make_uri_full_from_relative (const char *base_uri, const char *relativ
 {
 	return gnome_vfs_uri_make_full_from_relative (base_uri, relative_uri);
 }
-#endif /* GNOME_VFS_DISABLE_DEPRECATED */
-
 
 GnomeVFSResult
 _gnome_vfs_uri_resolve_all_symlinks_uri (GnomeVFSURI *uri,
