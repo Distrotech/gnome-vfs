@@ -1,3 +1,16 @@
+gnome-vfs 2.9.2
+
+    * Features:
+	+ Deprecate parts of GnomeVFSMimeApplication structure
+	+ AIX support
+	+ Better mime detection
+	+ New HAL support for volumes/drives
+	
+    * Bugs fixed:
+	+ Fix memory leak
+	+ Detect mime data changed in mime monitor
+	+ Fix EOF problem in sftp method
+
 gnome-vfs 2.9.1
 
     * Features:
