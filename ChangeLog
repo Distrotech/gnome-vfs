@@ -1,3 +1,10 @@
+2002-05-26  Alex Graveley  <alex@ximian.com>
+
+	* configure.in (FAM_LIBS): Don't use C++ compiler to compile FAM
+	test, as the problem is really with a miscompiled libfam which
+	doesn't pull in the needed libstdc++.so, and hence won't link.
+	Removing as per alexl's suggestion on bug #80826.
+
 2002-05-24  Alex Graveley  <alex@ximian.com>
 
 	* modules/applications.vfolder-info.in: Remove explicit
