@@ -67,6 +67,9 @@ application/x-applix-spreadsheet
 application/x-arj
 	description=arj archive
 
+application/x-asp
+	description=active server page
+
 application/x-backup
 	description=backup document
 

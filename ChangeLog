@@ -1,3 +1,8 @@
+2000-05-17  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	Added application/x-asp
+
 2000-05-16  Gene Z. Ragan  <gzr@eazel.com>
 
 	* libgnomevfs/gnome-vfs-uri.c:
