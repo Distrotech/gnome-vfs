@@ -1,3 +1,10 @@
+gno2000-12-22  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-monitor.c:
+	(gnome_vfs_mime_monitor_emit_data_changed):
+	Save the world by adding a newline to the end of file.
+	New gcc 2.96 is picky about that.
+
 2000-12-22  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Pavel Cisler  <pavel@eazel.com>
