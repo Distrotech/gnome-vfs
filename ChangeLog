@@ -1,5 +1,12 @@
 2002-06-17  Seth Nickell  <snickell@stanford.edu>
 
+	* libgnomevfs/gnome-vfs-method.gob:
+
+	Initial (non-working) pass at converting GnomeVFSMethods
+	into a GObject.
+	
+2002-06-17  Seth Nickell  <snickell@stanford.edu>
+
 	* doc/tmpl/gnome-vfs-context.sgml:
 
 	Add a short description of GnomeVFSContext.
