@@ -1,3 +1,4 @@
+# traducción de es.po al Spanish
 # translation of es.po to Spanish
 # translation of gnome-vfs.HEAD.po to Spanish
 # Spanish translation.
@@ -13,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-03-06 19:24+0100\n"
+"POT-Creation-Date: 2004-07-08 00:12+0200\n"
+"PO-Revision-Date: 2004-07-08 00:16+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,8 +25,8 @@ msgstr ""
 "serrador@hispalinux.es>\n"
 "serrador@hispalinux.es>\n"
 "First-Translator: Mauricio Araya Polo <mauricio@eazel.com>\n"
-"X-Generator: KBabel 1.0.2\n"
-"Plural-Forms: nplurals=2; plural=(n == 1);\n"
+"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -463,7 +464,12 @@ msgstr "Error al analizar la línea de comandos"
 msgid "Error launching command"
 msgstr "Error al lanzar comando"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+msgid "Timeout reached"
+msgstr "Se ha alcanzado el tiempo de espera establecido"
+
+#: libgnomevfs/gnome-vfs-result.c:180
 msgid "Unknown error"
 msgstr "Error desconocido"
 
@@ -519,7 +525,7 @@ msgstr "Cámara"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
 msgid "Root Volume"
@@ -539,8 +545,7 @@ msgstr "Servidor de red"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
@@ -655,7 +660,7 @@ msgstr "Directorio inicial"
 msgid "Filesystem"
 msgstr "Sistema de archivos"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d desconocida"
@@ -667,7 +672,7 @@ msgstr "Red de Windows"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "La identidad de la computadora remota (%s) es desconocida."
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -677,14 +682,17 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Esto ocurre cuando inicia sesión en una computadora por primera vez.\n"
+"\n"
+"La identidad enviada por la computadora remota es %s. Si quiere estar absolutamente seguro de que es seguro continuar, consulte con el administrador del sistema."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Iniciar sesión de todas formas"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "Cancelar inicio de sesión"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -695,8 +703,7 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -747,8 +754,7 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
-"El argumento de exec a usar para la aplicación de terminal predeterminada."
+msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
@@ -775,9 +781,8 @@ msgid "Handle HTTPS URLs"
 msgstr "Manipula las URLs HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle aim URLs"
-msgstr "Manipula las URLs man"
+msgstr "Manipula las URLs aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
@@ -808,57 +813,49 @@ msgid "Run program in terminal"
 msgstr "Ejecutar programa en terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
 "Establecer a «true» para tener el programa especificado en «comando» para "
 "manipular las URLs HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 "Establecer a «true» para tener el programa especificado en «comando» para "
 "manipular las URLs HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle aim URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
-"manipular las URLs man."
+"manipular las URLs aim."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
+msgid "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 "Establecer a «true» para tener el programa especificado en «comando» para "
 "manipular las URLs ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
+msgid "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs mailto."
@@ -870,8 +867,7 @@ msgstr ""
 "manipular las URLs man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+msgid "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» que "
 "manipule las URLs trash."
@@ -883,9 +879,8 @@ msgstr ""
 "terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid "aim URL handler"
-msgstr "Manipulador de URL man"
+msgstr "Manipulador de URL aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
@@ -915,19 +910,19 @@ msgstr "Manipulador de URL trash"
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr ""
+msgstr "Lista separada por comas de dominios dns-sd que deberían ser visibles en la ubicación de red."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Dominios adicionales en los que buscar servicios dns-sd"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Cómo mostrar el servicio DNS-SD local"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr ""
+msgstr "los valores posibles son «merged», «separate» y «disabled»"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1182,3 +1177,4 @@ msgstr "El grupo de trabajo de windows del que el usuario es parte"
 
 #~ msgid "1 byte"
 #~ msgstr "1 byte"
+
