@@ -1,3 +1,8 @@
+2004-05-15  Michael Wilson <Michael.Wilson@bull.net>
+
+	* libgnomevfs/xdgmimeglob.h: removed unnecessary comma at the end of
+	  an enum
+
 2004-05-11  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
