@@ -1,3 +1,7 @@
+2000-01-18  Elliot Lee  <sopwith@redhat.com>
+
+	* configure.in: We want ORBit, not gnorba.
+
 2000-01-16  John Sullivan  <sullivan@eazel.com>
 
 	Split utils into public and private, and moved file-size-as-string
