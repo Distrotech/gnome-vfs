@@ -1,3 +1,30 @@
+2000-11-19  Mathieu Lacage  <mathieu@eazel.com>
+
+	Fix bug 4811
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	(gnome_vfs_mime_set_extensions_list): add new function.
+	Ultimately, I wished we could get rid of the direct access 
+	to the internal hastables but this is at least a first step.
+	* libgnomevfs/gnome-vfs-mime-info.h: add prototype.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(add_extension_clicked): implement
+	(remove_extension_clicked): implement
+	(extension_list_selected): grey/ungrey delete button when selecting/unselecting
+	(extension_list_deselected): idem
+	(get_extensions_from_gtk_list): helper function.
+	(nautilus_mime_type_capplet_show_change_extension_window): implement.
+	(nautilus_mime_type_capplet_show_new_extension_window): fix a number of segfaults.
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.h: change prototypes.
+	* mime-type-capplet/nautilus-mime-type-capplet.c: 
+	(get_selected_row_number),helper function.
+	(get_selected_mime_type), helper function (refactoring :)
+	(really_change_icon): fix segfault.
+	(update_extensions_list): update extensions when you change them.
+	(change_file_extensions_clicked): create dialog.
+	(init_mime_capplet): spaces.
+	(nautilus_mime_type_capplet_update_info): make it use get_selected_mime_type.
+
 2000-11-17  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c: (my_debug_printf), (get_header),

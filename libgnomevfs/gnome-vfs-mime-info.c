@@ -1162,7 +1162,25 @@ str_cmp_callback  (gconstpointer a,
 }
 
 /**
- * gnome_vfs_mime_extensions_list:
+ * gnome_vfs_mime_set_extensions_list:
+ * @mime_type: the mime type.
+ * @extensions_list: a whitespace-separated list of the 
+ *                   extensions to set for this mime type.
+ *
+ * Sets the extensions for a given mime type. Overrides
+ * the previously set extensions.
+ *
+ */
+GnomeVFSResult
+gnome_vfs_mime_set_extensions_list (const char *mime_type,
+				    const char *extensions_list)
+{
+	return gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions_list);
+}
+
+
+/**
+ * gnome_vfs_mime_get_extensions_list:
  * @mime_type: the mime type
  *
  * Returns a list of extensions for this mime-type
