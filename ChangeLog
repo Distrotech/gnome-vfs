@@ -1,5 +1,11 @@
 2004-09-21  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/http-proxy.c: (construct_gl_http_proxy):
+	Make sure proxy is non-empty before using it.
+	Patch from Mark McLoughlin.
+
+2004-09-21  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/http-neon-method.c:
 	Don't modify the uri object passed in in http_context_set_uri
 	Handle redirects in do_move.
