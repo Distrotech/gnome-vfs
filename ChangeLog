@@ -1,5 +1,10 @@
 2001-04-13  Darin Adler  <darin@eazel.com>
 
+	* gnome-vfs.spec.in: Remove the slave program from the spec
+	file, now that we don't use it any more.
+
+2001-04-13  Darin Adler  <darin@eazel.com>
+
 	* configure.in: Missed Makefile list.
 
 2001-04-13  Darin Adler  <darin@eazel.com>

@@ -83,7 +83,6 @@ fi
 %config %{sysconfdir}/gnome-vfs-mime-magic
 %config %{sysconfdir}/vfs/modules/*.conf
 %dir %{prefix}/share/application-registry
-%{prefix}/bin/gnome-vfs-slave
 %{prefix}/lib/*.0
 %{prefix}/lib/*.sh
 %{prefix}/lib/*.so
@@ -106,7 +105,3 @@ fi
 %{prefix}/lib/vfs/modules/*.a
 %{prefix}/lib/vfs/modules/*.la
 %{prefix}/bin/gnome-vfs-config
-
-
-
-
