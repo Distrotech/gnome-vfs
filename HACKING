@@ -1,9 +1,9 @@
-Please send patches to gnome-vfs@helixcode.com with detailed
+Please send patches to gnome-vfs@ximian.com with detailed
 ChangeLog entires for review before committing, and get approval from
-Pavel or Ettore. Please send to the list and not to anyone directly so
+Ian McKellar. Please send to the list and not to anyone directly so
 all Gnome VFS hackers have the opportunity to comment. 
 
-Please do not check in changes with an approval.
+Please do not check in changes without approval.
 
 Please do not check in changes without a ChangeLog entry. 
 
@@ -33,9 +33,7 @@ FIXME entries are periodically converted into bugzilla bugs.
 Do not use any other format to draw attention to problems, comments that do
 not contain "FIXME" are not going to be found by our problem tracking tools.
 
-GnomeVFS bugs and open tasks are tracked at bugzilla.eazel.com in the "GNOME VFS"
-product.
+GnomeVFS bugs and open tasks are tracked in ... (bugzilla.gnome.org? please stay tuned
+as we transition away Eazel Bugzilla)
 
-For IRC help/feedback use irc.mint.net/#nautilus.
-
- - Pavel Cisler <pavel@eazel.com>
+For IRC help/feedback use irc.gnome.org/#nautilus.
