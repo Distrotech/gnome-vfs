@@ -75,21 +75,31 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
-%{prefix}/bin/*
-%{prefix}/lib/lib*.so*
+%{config} %{sysconfdir}/etc/*.dat
+%{config} %{sysconfdir}/etc/gnome-vfs-mime-magi
+%{config} %{sysconfdir}/etc/vfs/modules/*.conf
+%{prefix}/bin/gnome-vfs-gen-mimedb
+%{prefix}/bin/gnome-vfs-slave
+%{prefix}/bin/nautilus-mime-type-capplet
+%{prefix}/lib/*.0
+%{prefix}/lib/*.sh
+%{prefix}/lib/*.so
 %{prefix}/lib/vfs/extfs/*
-%{prefix}/lib/vfs/modules/lib*.so*
-%{prefix}/man/man5/*
-%{prefix}/share/gnome/apps/Settings/*
-%{prefix}/share/gnome/html/*
-%{prefix}/share/control-center/*
-%{prefix}/share/mime-info/*
-%config %{sysconfdir}/*
+%{prefix}/lib/vfs/modules/*.0
+%{prefix}/lib/vfs/modules/*.so
+%{prefix}/man/man5/*.5
+%{prefix}/share/control-center/*.desktop
+%{prefix}/share/gnome/apps/Settings/*.desktop
+%{prefix}/share/gnome/html/*.txt
+%{prefix}/share/locale/*/LC_MESSAGES/*.mo
+%{prefix}/share/mime-info/*.keys
+%{prefix}/share/mime-info/*.mime
 
 %files devel
 %defattr(-, root, root)
+%{prefix}/include/libgnomevfs/*.h
+%{prefix}/lib/vfs/include/*.h
 %{prefix}/lib/*.a
-%{prefix}/lib/*.sh
+%{prefix}/lib/*.la
 %{prefix}/lib/vfs/modules/*.a
-%{prefix}/include/libgnomevfs/*
-
+%{prefix}/lib/vfs/modules/*.la

@@ -1,3 +1,7 @@
+2000-08-09  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* gnome-vfs.spec.in: should work again
+
 2000-08-09  Pavel Cisler  <pavel@eazel.com>
 
 	* modules/file-method.c: (find_trash_in_one_hierarchy_level),
