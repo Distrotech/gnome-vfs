@@ -58,232 +58,210 @@ class Gnome:Vfs:Method from G:Object {
 
   public guint method_table_size;
 
-virtual public GnomeVFSResult open
-					(self,
-					 GnomeVFSMethodHandle
-			       	 	**method_handle_return,
-					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode,
-					 GnomeVFSContext *context);
+  virtual public GnomeVFSResult open             (self,
+						  GnomeVFSMethodHandle
+						  **method_handle_return,
+						  GnomeVFSURI *uri,
+						  GnomeVFSOpenMode mode,
+						  GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult create           (self,
+						  GnomeVFSMethodHandle
+						  **method_handle_return,
+						  GnomeVFSURI *uri,
+						  GnomeVFSOpenMode mode,
+						  gboolean exclusive,
+						  guint perm,
+						  GnomeVFSContext *context);
 
-virtual public GnomeVFSResult create
-					(self,
-					 GnomeVFSMethodHandle
-			       	 	**method_handle_return,
-					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode,
-					 gboolean exclusive,
-					 guint perm,
-					 GnomeVFSContext *context);
+  virtual public GnomeVFSResult close            (self,
+						  GnomeVFSMethodHandle *method_handle,
+						  GnomeVFSContext *context);
 
-virtual public GnomeVFSResult close
-					(self,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult read
-					(self,
-					 GnomeVFSMethodHandle *method_handle,
-					 gpointer buffer,
-					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_read_return,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult write
-					(self,
-					 GnomeVFSMethodHandle *method_handle,
-					 gconstpointer buffer,
-					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_written_return,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult seek
-					(self,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSSeekPosition  whence,
-					 GnomeVFSFileOffset    offset,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult tell
-					(self,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileOffset *offset_return);
-
-virtual public GnomeVFSResult open_directory
-					(self,
-					 GnomeVFSMethodHandle **method_handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSFileInfoOptions options,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult close_directory
-					(self,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult read_directory
-					(self,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult get_file_info
-					(self,
-					 GnomeVFSURI *uri,
-					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSFileInfoOptions options,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult get_file_info_from_handle
-					(self,
-					 GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSFileInfoOptions options,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult truncate (self,
-						       GnomeVFSURI *uri,
-						       GnomeVFSFileSize length,
-						       GnomeVFSContext *context);
-virtual public GnomeVFSResult truncate_handle (self,
-							     GnomeVFSMethodHandle *handle,
-							     GnomeVFSFileSize length,
-							     GnomeVFSContext *context);
-
-virtual public gboolean       is_local
-					(self,
-					 const GnomeVFSURI *uri);
-
-virtual public GnomeVFSResult make_directory
-					(self,
-					 GnomeVFSURI *uri,
-					 guint perm,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult find_directory
-					(self,
-					 GnomeVFSURI *find_near_uri,
-					 GnomeVFSFindDirectoryKind kind,
-					 GnomeVFSURI **result_uri,
-					 gboolean create_if_needed,
-					 gboolean find_if_needed,
-					 guint perm,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult remove_directory
-					(self,
-					 GnomeVFSURI *uri,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult move
-					(self,
-					 GnomeVFSURI *old_uri,
-					 GnomeVFSURI *new_uri,
-					 gboolean force_replace,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult unlink
-                                        (self,
-					 GnomeVFSURI *uri,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult check_same_fs
-					(self,
-					 GnomeVFSURI *a,
-					 GnomeVFSURI *b,
-					 gboolean *same_fs_return,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult set_file_info
-					(self,
-					 GnomeVFSURI *a,
-					 const GnomeVFSFileInfo *info,
-					 GnomeVFSSetFileInfoMask mask,
-					 GnomeVFSContext *context);
-
-virtual public GnomeVFSResult create_symbolic_link
-                                        (self,
-                                         GnomeVFSURI *uri,
-                                         const gchar *target_reference,
-                                         GnomeVFSContext *context);
-
-virtual public GnomeVFSResult monitor_add
-     					(self,
-      					 GnomeVFSMethodHandle **method_handle_return,
-      					 GnomeVFSURI *uri,
-      					 GnomeVFSMonitorType monitor_type);
-
-virtual public GnomeVFSResult monitor_cancel
-     					(self,
-      					 GnomeVFSMethodHandle *handle);
-
+  virtual public GnomeVFSResult read             (self,
+						  GnomeVFSMethodHandle *method_handle,
+						  gpointer buffer,
+						  GnomeVFSFileSize num_bytes,
+						  GnomeVFSFileSize *bytes_read_return,
+						  GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult write            (self,
+						  GnomeVFSMethodHandle *method_handle,
+						  gconstpointer buffer,
+						  GnomeVFSFileSize num_bytes,
+						  GnomeVFSFileSize *bytes_written_return,
+						  GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult seek             (self,
+						  GnomeVFSMethodHandle *method_handle,
+						  GnomeVFSSeekPosition  whence,
+						  GnomeVFSFileOffset    offset,
+						  GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult tell             (self,
+						  GnomeVFSMethodHandle *method_handle,
+						  GnomeVFSFileOffset *offset_return);
+  
+  virtual public GnomeVFSResult open_directory   (self,
+						  GnomeVFSMethodHandle **method_handle,
+						  GnomeVFSURI *uri,
+						  GnomeVFSFileInfoOptions options,
+						  GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult close_directory  (self,
+						  GnomeVFSMethodHandle *method_handle,
+						  GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult read_directory   (self,
+						  GnomeVFSMethodHandle *method_handle,
+						  GnomeVFSFileInfo *file_info,
+						  GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult get_file_info    (self,
+						  GnomeVFSURI *uri,
+						  GnomeVFSFileInfo *file_info,
+						  GnomeVFSFileInfoOptions options,
+						  GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult get_file_info_from_handle (self,
+							   GnomeVFSMethodHandle *method_handle,
+							   GnomeVFSFileInfo *file_info,
+							   GnomeVFSFileInfoOptions options,
+							   GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult truncate          (self,
+						   GnomeVFSURI *uri,
+						   GnomeVFSFileSize length,
+						   GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult truncate_handle   (self,
+						   GnomeVFSMethodHandle *handle,
+						   GnomeVFSFileSize length,
+						   GnomeVFSContext *context);
+  
+  virtual public gboolean       is_local          (self,
+						   const GnomeVFSURI *uri);
+  
+  virtual public GnomeVFSResult make_directory    (self,
+						   GnomeVFSURI *uri,
+						   guint perm,
+						   GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult find_directory    (self,
+						   GnomeVFSURI *find_near_uri,
+						   GnomeVFSFindDirectoryKind kind,
+						   GnomeVFSURI **result_uri,
+						   gboolean create_if_needed,
+						   gboolean find_if_needed,
+						   guint perm,
+						   GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult remove_directory  (self,
+						   GnomeVFSURI *uri,
+						   GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult move             (self,
+						  GnomeVFSURI *old_uri,
+						  GnomeVFSURI *new_uri,
+						  gboolean force_replace,
+						  GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult unlink            (self,
+						   GnomeVFSURI *uri,
+						   GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult check_same_fs     (self,
+						   GnomeVFSURI *a,
+						   GnomeVFSURI *b,
+						   gboolean *same_fs_return,
+						   GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult set_file_info     (self,
+						   GnomeVFSURI *a,
+						   const GnomeVFSFileInfo *info,
+						   GnomeVFSSetFileInfoMask mask,
+						   GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult create_symbolic_link (self,
+						      GnomeVFSURI *uri,
+						      const gchar *target_reference,
+						      GnomeVFSContext *context);
+  
+  virtual public GnomeVFSResult monitor_add       (self,
+						   GnomeVFSMethodHandle **method_handle_return,
+						   GnomeVFSURI *uri,
+						   GnomeVFSMonitorType monitor_type);
+  
+  virtual public GnomeVFSResult monitor_cancel    (self,
+						   GnomeVFSMethodHandle *handle);
+  
   public gboolean initialize (void) {
-	G_LOCK (method_already_initialized);
-
-	if (method_already_initialized) {
-		G_UNLOCK (method_already_initialized);
-		return TRUE;
-	}
-
-	if (! self_init_hash_table ())
-		return FALSE;
-	if (! self_init_path_list ())
-		return FALSE;
-
-	method_already_initialized = TRUE;
-	G_UNLOCK (method_already_initialized);
-
-	return TRUE;
+    G_LOCK (method_already_initialized);
+    
+    if (method_already_initialized) {
+      G_UNLOCK (method_already_initialized);
+      return TRUE;
+    }
+    
+    if (! self_init_hash_table ())
+      return FALSE;
+    if (! self_init_path_list ())
+      return FALSE;
+    
+    method_already_initialized = TRUE;
+    G_UNLOCK (method_already_initialized);
+    
+    return TRUE;
   }
-
+  
   public GnomeVfsMethod *get (const gchar *name) {
-	ModuleElement *module_element;
-
-	g_return_val_if_fail (name != NULL, NULL);
-
-	G_LOCK (module_hash);
-	module_element = g_hash_table_lookup (module_hash, name);
-	G_UNLOCK (module_hash);
-
-	if (module_element != NULL)
-		return module_element->method;
-
-	if (self_add_module_to_hash_table (name)) {
-		G_LOCK (module_hash);
-		module_element = g_hash_table_lookup (module_hash, name);
-		G_UNLOCK (module_hash);
-		
-		if (module_element != NULL)
-			return module_element->method;
-	}
-
-	return NULL;
+    ModuleElement *module_element;
+    
+    g_return_val_if_fail (name != NULL, NULL);
+    
+    G_LOCK (module_hash);
+    module_element = g_hash_table_lookup (module_hash, name);
+    G_UNLOCK (module_hash);
+    
+    if (module_element != NULL)
+      return module_element->method;
+    
+    if (self_add_module_to_hash_table (name)) {
+      G_LOCK (module_hash);
+      module_element = g_hash_table_lookup (module_hash, name);
+      G_UNLOCK (module_hash);
+      
+      if (module_element != NULL)
+	return module_element->method;
+    }
+    
+    return NULL;
   }
-
+  
   public GnomeVFSTransform *gnome_vfs_transform_get (const gchar *name) {
-	ModuleElement *module_element;
-
-	g_return_val_if_fail (name != NULL, NULL);
-
-	G_LOCK (module_hash);
-	module_element = g_hash_table_lookup (module_hash, name);
-	G_UNLOCK (module_hash);
-
-	if (module_element != NULL)
-		return module_element->transform;
-
-	if (self_add_module_to_hash_table (name)) {
-		G_LOCK (module_hash);
-		module_element = g_hash_table_lookup (module_hash, name);
-		G_UNLOCK (module_hash);
-		
-		if (module_element != NULL)
-			return module_element->transform;
-	}
-
-	return NULL;
+    ModuleElement *module_element;
+    
+    g_return_val_if_fail (name != NULL, NULL);
+    
+    G_LOCK (module_hash);
+    module_element = g_hash_table_lookup (module_hash, name);
+    G_UNLOCK (module_hash);
+    
+    if (module_element != NULL)
+      return module_element->transform;
+    
+    if (self_add_module_to_hash_table (name)) {
+      G_LOCK (module_hash);
+      module_element = g_hash_table_lookup (module_hash, name);
+      G_UNLOCK (module_hash);
+      
+      if (module_element != NULL)
+	return module_element->transform;
+    }
+    
+    return NULL;
   }
-
+  
   private gboolean init_hash_table (void) {
     G_LOCK (module_hash);
     module_hash = g_hash_table_new (g_str_hash, g_str_equal);

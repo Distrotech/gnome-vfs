@@ -2,6 +2,12 @@
 
 	* libgnomevfs/gnome-vfs-method.gob:
 
+	Formatting improvements.
+
+2002-06-17  Seth Nickell  <snickell@stanford.edu>
+
+	* libgnomevfs/gnome-vfs-method.gob:
+
 	Initial (non-working) pass at converting GnomeVFSMethods
 	into a GObject.
 	
