@@ -2,11 +2,6 @@ noinst_PROGRAMS =				\
 	gnome-file-selection-test_corba		\
 	gnome-file-selection-test_pthread
 
-
-# FIXME this will be re-enabled as soon as the pthread backend is made 
-# functional again.
-#	gnome-file-selection-test_pthread
-
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\

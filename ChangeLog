@@ -1,3 +1,11 @@
+2000-05-19  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_new): There was
+	a bug in the change to free method_string. This should fix it.
+	
+	* libgnomevfs/gnome-vfs.h: Fixed a FIXME.
+	* test/gnome-file-selection/Makefile.am: Fixed a FIXME.
+
 2000-05-19  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_new): Actually, now
@@ -10,6 +18,7 @@
 	strange things for me and others.
 
 2000-05-18  Rebecca Schulman <rebecka@eazel.com>
+	
 	* libgnomevfs/gnome-vfs-uri.c
 	Fixed a memory leak in gnome_vfs_uri_new.  (method_string
 	sometime was never freed)

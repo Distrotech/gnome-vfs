@@ -32,6 +32,7 @@ BEGIN_GNOME_DECLS
 #include "gnome-vfs-constants.h"
 #include "gnome-vfs-types.h"
 
+#include "gnome-vfs-async-ops.h"
 #include "gnome-vfs-directory.h"
 #include "gnome-vfs-directory-filter.h"
 #include "gnome-vfs-directory-list.h"
@@ -41,7 +42,6 @@ BEGIN_GNOME_DECLS
 #include "gnome-vfs-xfer.h"
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-process.h"
-#include "gnome-vfs-async-ops.h" /* FIXME should be on top when we move the types from `gnome-vfs-complex-ops.h' to `gnome-vfs-types.h'.  */
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-uri.h"
 #include "gnome-vfs-utils.h"

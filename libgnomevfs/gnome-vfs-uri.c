@@ -302,9 +302,8 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	}
 	
 	method = gnome_vfs_method_get (method_string);
-	g_free (method_string);
-
 	if (method == NULL) {
+		g_free (method_string);
 		gnome_vfs_uri_unref (uri);
 		g_free (new_uri_string);
 		return NULL;
@@ -314,7 +313,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
            information.  */
 	uri->method = method;
 	uri->ref_count = 1;
-	uri->method_string = g_strdup (method_string);
+	uri->method_string = method_string;
 	
 	p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
 	if (p1 == NULL) {
