@@ -9,15 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-19 16:48+0100\n"
-"PO-Revision-Date: 2003-12-19 16:49+0100\n"
-"Last-Translator: Данило Шеган <dsegan@gmx.net>\n"
+"POT-Creation-Date: 2003-12-20 05:39+0100\n"
+"PO-Revision-Date: 2003-12-20 05:46+0100\n"
+"Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: daemon/gnome-vfs-daemon.c:553
 msgid "Could not initialize Bonobo"
@@ -708,142 +707,139 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Аргумент извршавања за подразумевани терминалски програм."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "How to handle callto URLs"
-msgstr "Како баратати callto адресама"
+msgid "H323 URL handler"
+msgstr "Руковалац H323 адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "How to handle ghelp URLs"
-msgstr "Како баратати ghelp адресама"
+msgid "HTTP URL handler"
+msgstr "Руковалац HTTP адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "How to handle h323 URLs"
-msgstr "Како баратати h323 адресама"
+msgid "HTTPS URL handler"
+msgstr "Руковалац HTTPS адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-msgid "How to handle http URLs"
-msgstr "Како баратати http адресама"
+msgid "Handle H323 URLs"
+msgstr "Баратај H323 адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-msgid "How to handle https URLs"
-msgstr "Како баратати https адресама"
+msgid "Handle HTTP URLs"
+msgstr "Баратај HTTP адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "How to handle info URLs"
-msgstr "Како баратати info адресама"
+msgid "Handle HTTPS URLs"
+msgstr "Баратај HTTPS адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-msgid "How to handle mailto URLs"
-msgstr "Како баратати mailto адресама"
+msgid "Handle callto URLs"
+msgstr "Баратај callto адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "How to handle man URLs"
-msgstr "Како баратати man адресама"
+msgid "Handle ghelp URLs"
+msgstr "Баратај ghelp адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "How to handle trash URLs"
-msgstr "Како баратати trash адресама"
+msgid "Handle info URLs"
+msgstr "Баратај info адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "Handle mailto URLs"
+msgstr "Баратај mailto адресама"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "Handle man URLs"
+msgstr "Баратај man адресама"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid "Handle trash URLs"
+msgstr "Баратај trash адресама"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
 msgstr "Покрени програм у терминалу"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Set to true to have a program specified in command handle callto URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у наредби барата callto адресама"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Set to true to have a program specified in command handle h323 URLs"
-msgstr "Укључите ако желите да програм наведен у наредби барата h323 адресама"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Set to true to have a program specified in command handle http URLs"
-msgstr "Укључите ако желите да програм наведен у наредби барата http адресама"
-
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in command handle https URLs"
-msgstr "Укључите ако желите да програм наведен у наредби барата https адресама"
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgstr "Укључите ако желите да програм наведен у „command“ барата H323 адресама."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in command handle mailto URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у наредби барата mailto адресама"
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgstr "Укључите ако желите да програм наведен у „command“ барата HTTP адресама."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
-"Set to true to have a program specified in programs/ghelp handle ghelp URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у programs/ghelp барата ghelp адресама"
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgstr "Укључите ако желите да програм наведен у „command“ барата HTTPS адресама."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
-"Set to true to have a program specified in programs/info handle info URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у programs/info барата info адресама"
+"Set to true to have a program specified in \"command\" handle callto URLs."
+msgstr "Укључите ако желите да програм наведен у „command“ барата callto адресама."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in programs/man handle man URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у programs/man барата man адресама"
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgstr "Укључите ако желите да програм наведен у „command“ барата ghelp адресама."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
-"Set to true to have a program specified in trash/command handle trash URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у trash/command барата trash адресама"
+"Set to true to have a program specified in \"command\" handle info URLs."
+msgstr "Укључите ако желите да програм наведен у „command“ барата info адресама."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "True if the program to handle this URL should be run in a terminal"
-msgstr ""
-"Постављено ако је потребно покренути програм за баратање овом адресом у "
-"терминалу"
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgstr "Укључите ако желите да програм наведен у „command“ барата mailto адресама."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "URL handler for callto uris"
-msgstr "Руковаоц callto адресама"
+msgid "Set to true to have a program specified in \"command\" handle man URLs."
+msgstr "Укључите ако желите да програм наведен у „command“ барата man адресама."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "URL handler for ghelp pages"
-msgstr "Руковаоц адресама за ghelp странице"
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr "Укључите ако желите да програм наведен у „command“ барата trash адресама."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "URL handler for h323 uris"
-msgstr "Руковаоц h323 адресама"
+msgid "True if the program to handle this URL should be run in a terminal."
+msgstr "Укључите ако желите да програм наведен у „command“ барата terminal адресама."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "URL handler for http uris"
-msgstr "Руковаоц http адресама"
+msgid "callto URL handler"
+msgstr "Руковалац callto адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "URL handler for https uris"
-msgstr "Руковаоц https адресама"
+msgid "ghelp URL handler"
+msgstr "Руковалац ghelp адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "URL handler for info pages"
-msgstr "Руковаоц адресама за info странице"
+msgid "info URL handler"
+msgstr "Руковалац info адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "URL handler for mailto uris"
-msgstr "Руковаоц mailto адресама"
+msgid "mailto URL handler"
+msgstr "Руковалац mailto адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "URL handler for man pages"
-msgstr "Руковаоц адресама за man странице"
+msgid "man URL handler"
+msgstr "Руковалац man адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "URL handler for trash pages"
-msgstr "Руковаоц адресама за trash странице"
+msgid "trash URL handler"
+msgstr "Руковалац trash адресама"
 
 #: schemas/system_http_proxy.schemas.in.h:1
-msgid "Authenticate connections to the proxy server"
-msgstr "Идентификација веза са посредничким сервером"
+msgid "Authenticate proxy server connections"
+msgstr "Идентификуј везе са посредничким сервером"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
 msgstr "Адреса за самоподешавање посредника"
 
 #: schemas/system_http_proxy.schemas.in.h:3
-msgid "Enables the proxy settings when accessing http over the internet."
+msgid "Enables the proxy settings when accessing HTTP over the Internet."
 msgstr "Укључује подешавања посредника при приступу вебу преко Интернета."
 
 #: schemas/system_http_proxy.schemas.in.h:4
@@ -859,98 +855,99 @@ msgid "HTTP proxy host name"
 msgstr "Име HTTP посредника"
 
 #: schemas/system_http_proxy.schemas.in.h:7
+msgid "HTTP proxy password"
+msgstr "Лозинка HTTP посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
 msgstr "Порт HTTP посредника"
 
-#: schemas/system_http_proxy.schemas.in.h:8
-msgid "Hosts are not contacted via the proxy"
-msgstr "Рачунарима се не приступа преко посредника"
-
 #: schemas/system_http_proxy.schemas.in.h:9
-msgid ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by /system/http_proxy/authentication_user "
-"and /system/http_proxy/authentication_password."
-msgstr ""
-"Уколико је постављено, везе са посредничким сервером се идентификују. Пар "
-"корисник/лозинка се узима из /system/http_proxy/authentication_user и /"
-"system/http_proxy/authentication_password."
+msgid "HTTP proxy username"
+msgstr "Корисник HTTP посредника"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-msgid "Password to pass as authentication when doing http proxying"
-msgstr "Лозинка која се користи за идентификацију код веб посредника"
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by \"/system/http_proxy/authentication_user"
+"\" and \"/system/http_proxy/authentication_password\"."
+msgstr "Уколико је постављено, везе са посредничким сервером се идентификују. Пар корисник/лозинка се узима из „/system/http_proxy/authentication_user“ и „/system/http_proxy/authentication_password“."
 
 #: schemas/system_http_proxy.schemas.in.h:11
+msgid "Non-proxy hosts"
+msgstr "Беспосредничке адресе"
+
+#: schemas/system_http_proxy.schemas.in.h:12
+msgid "Password to pass as authentication when doing HTTP proxying."
+msgstr "Лозинка која се користи за идентификацију код веб посредника."
+
+#: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
 msgstr "Режим подешавања посредника"
 
-#: schemas/system_http_proxy.schemas.in.h:12
-msgid "Secure http proxy host name"
-msgstr "Име безбедног HTTP посредника"
-
-#: schemas/system_http_proxy.schemas.in.h:13
-msgid "Secure http proxy port"
-msgstr "Порт безбедног HTTP посредника"
-
 #: schemas/system_http_proxy.schemas.in.h:14
-msgid ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\""
-msgstr ""
-"Изаберите режим подешавања посредника. Допуштене вредности су „none“, "
-"„manual“ и „auto“"
-
-#: schemas/system_http_proxy.schemas.in.h:15
-msgid "Socks proxy host name"
+msgid "SOCKS proxy host name"
 msgstr "Име SOCKS посредника"
 
-#: schemas/system_http_proxy.schemas.in.h:16
-msgid "Socks proxy port"
+#: schemas/system_http_proxy.schemas.in.h:15
+msgid "SOCKS proxy port"
 msgstr "Порт SOCKS посредника"
 
+#: schemas/system_http_proxy.schemas.in.h:16
+msgid "Secure HTTP proxy host name"
+msgstr "Име безбедног HTTP посредника"
+
 #: schemas/system_http_proxy.schemas.in.h:17
+msgid "Secure HTTP proxy port"
+msgstr "Порт безбедног HTTP посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:18
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
+msgstr "Изаберите режим подешавања посредника. Допуштене вредности су „none“, „manual“ и „auto“."
+
+#: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
 msgstr "Име рачунара FTP посредника."
 
-#: schemas/system_http_proxy.schemas.in.h:18
-msgid "The machine name to proxy http through."
-msgstr "Име рачунара HTTP посредника."
-
-#: schemas/system_http_proxy.schemas.in.h:19
-msgid "The machine name to proxy secure http through."
-msgstr "Име рачунара безбедног HTTP посредника."
-
 #: schemas/system_http_proxy.schemas.in.h:20
+msgid "The machine name to proxy HTTP through."
+msgstr "Име рачунара за веб (HTTP) посредовање."
+
+#: schemas/system_http_proxy.schemas.in.h:21
+msgid "The machine name to proxy secure HTTP through."
+msgstr "Име рачунара за безбедно веб (HTTPS) посредовање."
+
+#: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
 msgstr "Име рачунара SOCKS посредника."
 
-#: schemas/system_http_proxy.schemas.in.h:21
-msgid ""
-"The port on the machine defined by /system/http_proxy/host that you proxy "
-"through"
-msgstr "Порт машине одређене помоћу /system/http_proxy/host која је посредник"
-
-#: schemas/system_http_proxy.schemas.in.h:22
-msgid ""
-"The port on the machine defined by /system/proxy/ftp_host that you proxy "
-"through"
-msgstr "Порт машине одређене помоћу /system/proxy/ftp_proxy која је посредник"
-
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
-"The port on the machine defined by /system/proxy/secure_host that you proxy "
-"through"
-msgstr ""
-"Порт машине одређене помоћу /system/proxy/secure_proxy која је посредник"
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
+msgstr "Порт машине одређене помоћу „/system/http_proxy/host“ која је посредник."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
-"The port on the machine defined by /system/proxy/socks_host that you proxy "
-"through"
-msgstr ""
-"Порт машине одређене помоћу /system/proxy/socks_proxy која је посредник"
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
+msgstr "Порт машине одређене помоћу „/system/proxy/ftp_proxy“ која је посредник."
 
 #: schemas/system_http_proxy.schemas.in.h:25
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr "Порт машине одређене помоћу „/system/proxy/secure_proxy“ која је посредник."
+
+#: schemas/system_http_proxy.schemas.in.h:26
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr "Порт машине одређене помоћу „/system/proxy/socks_proxy“ која је посредник."
+
+#: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
 "This key contains a list of hosts which are connected to directly, rather "
 "than via the proxy (if it is active). The values can be hostnames, domains "
@@ -963,25 +960,87 @@ msgstr ""
 "(било ИПв4 било ИПв6) и адресе мрежа уз мрежну маску (нешто као што је "
 "192.168.0.0/24)."
 
-#: schemas/system_http_proxy.schemas.in.h:26
-msgid "URL that provides proxy configuration values"
-msgstr "Адреса која обезбеђује вредности за подешавање посредника"
-
-#: schemas/system_http_proxy.schemas.in.h:27
-msgid "Use proxy settings when accessing http"
-msgstr "Користи подешавања посредника при приступу вебу"
-
 #: schemas/system_http_proxy.schemas.in.h:28
-msgid "User name to pass as authentication when doing http proxying"
-msgstr "Корисничко име које се шаље при идентификацији код веб посредника"
+msgid "URL that provides proxy configuration values."
+msgstr "Адреса која обезбеђује вредности за подешавање посредника."
 
 #: schemas/system_http_proxy.schemas.in.h:29
-msgid "http proxy password"
-msgstr "Лозинка HTTP посредника"
+msgid "Use HTTP proxy"
+msgstr "Користи веб посредника"
 
 #: schemas/system_http_proxy.schemas.in.h:30
-msgid "http proxy username"
-msgstr "Корисничко име HTTP посредника"
+msgid "User name to pass as authentication when doing HTTP proxying."
+msgstr "Корисничко име које се шаље при идентификацији код веб посредника."
+
+#~ msgid "How to handle http URLs"
+#~ msgstr "Како баратати http адресама"
+
+#~ msgid "How to handle https URLs"
+#~ msgstr "Како баратати https адресама"
+
+#~ msgid "Set to true to have a program specified in command handle https URLs"
+#~ msgstr ""
+#~ "Укључите ако желите да програм наведен у наредби барата https адресама"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in programs/ghelp handle ghelp "
+#~ "URLs"
+#~ msgstr ""
+#~ "Укључите ако желите да програм наведен у programs/ghelp барата ghelp "
+#~ "адресама"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in programs/info handle info URLs"
+#~ msgstr ""
+#~ "Укључите ако желите да програм наведен у programs/info барата info "
+#~ "адресама"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in programs/man handle man URLs"
+#~ msgstr ""
+#~ "Укључите ако желите да програм наведен у programs/man барата man адресама"
+
+#~ msgid "URL handler for callto uris"
+#~ msgstr "Руковаоц callto адресама"
+
+#~ msgid "URL handler for ghelp pages"
+#~ msgstr "Руковаоц адресама за ghelp странице"
+
+#~ msgid "URL handler for h323 uris"
+#~ msgstr "Руковаоц h323 адресама"
+
+#~ msgid "URL handler for http uris"
+#~ msgstr "Руковаоц http адресама"
+
+#~ msgid "URL handler for https uris"
+#~ msgstr "Руковаоц https адресама"
+
+#~ msgid "URL handler for info pages"
+#~ msgstr "Руковаоц адресама за info странице"
+
+#~ msgid "URL handler for mailto uris"
+#~ msgstr "Руковаоц mailto адресама"
+
+#~ msgid "URL handler for man pages"
+#~ msgstr "Руковаоц адресама за man странице"
+
+#~ msgid "URL handler for trash pages"
+#~ msgstr "Руковаоц адресама за trash странице"
+
+#~ msgid "Hosts are not contacted via the proxy"
+#~ msgstr "Рачунарима се не приступа преко посредника"
+
+#~ msgid "The machine name to proxy http through."
+#~ msgstr "Име рачунара HTTP посредника."
+
+#~ msgid "Use proxy settings when accessing http"
+#~ msgstr "Користи подешавања посредника при приступу вебу"
+
+#~ msgid "http proxy password"
+#~ msgstr "Лозинка HTTP посредника"
+
+#~ msgid "http proxy username"
+#~ msgstr "Корисничко име HTTP посредника"
 
 # bug: plural-forms
 #~ msgid "1 byte"
