@@ -1,3 +1,15 @@
+2001-01-08  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 3041, "Action" column text is confusing
+
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(add_mime_clicked), (update_mime_list_action),
+	(populate_mime_list), (create_mime_list_and_scroller):
+	Made changes according to input from John and Arlo.
+	Changed "Action" column to "Default Action."
+	Changed action text when a viewer is specified to
+	"View as" preprended to the action type.
+	
 2001-01-08  Mike Fleming  <mfleming@eazel.com>
 
 	reviewed by: pavel@eazel.com
