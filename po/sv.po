@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-16 15:41+0200\n"
-"PO-Revision-Date: 2004-07-24 12:28+0200\n"
+"POT-Creation-Date: 2004-08-17 10:23+0200\n"
+"PO-Revision-Date: 2004-08-17 10:23+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -288,10 +288,10 @@ msgstr "XIAFS-volym"
 msgid "Unknown"
 msgstr "Okänd"
 
+# http://www.nada.kth.se/dataterm/rek.html#a23
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "Cd-r-skiva"
+msgstr "Cd-romskiva"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -309,6 +309,7 @@ msgstr "Tom cd-rw-skiva"
 msgid "CD-RW Disc"
 msgstr "Cd-rw-skiva"
 
+# http://www.nada.kth.se/dataterm/rek.html#a23
 #: libgnomevfs/gnome-vfs-hal-mounts.c:613
 msgid "DVD-ROM Disc"
 msgstr "Dvd-romskiva"
@@ -321,10 +322,12 @@ msgstr "Tom dvd-r-skiva"
 msgid "DVD-R Disc"
 msgstr "Dvd-r-skiva"
 
+# http://www.nada.kth.se/dataterm/rek.html#a23
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
 msgstr "Tom dvd-ramskiva"
 
+# http://www.nada.kth.se/dataterm/rek.html#a23
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
 msgstr "Dvd-ramskiva"
@@ -402,9 +405,9 @@ msgid "Linux Disk"
 msgstr "Linux-disk"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "Okänd operandtyp %u"
+msgstr "Okänd operationstyp %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -1012,19 +1015,16 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Kommandot som används för att hantera \"ghelp\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Kommandot som används för att hantera H323-URL:er, om aktiverat."
+msgstr "Kommandot som används för att hantera \"h323\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Kommandot som används för att hantera \"ghelp\"-URL:er, om aktiverat."
+msgstr "Kommandot som används för att hantera \"http\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Kommandot som används för att hantera \"trash\"-URL:er, om aktiverat."
+msgstr "Kommandot som används för att hantera \"https\"-URL:er, om aktiverat."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
@@ -1055,19 +1055,16 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "Hanteraren för \"ghelp\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Hanteraren för H323-URL:er"
+msgstr "Hanteraren för \"h323\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Hanteraren för \"ghelp\"-URL:er"
+msgstr "Hanteraren för \"http\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Hanteraren för \"ghelp\"-URL:er"
+msgstr "Hanteraren för \"https\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
@@ -1110,30 +1107,27 @@ msgstr ""
 "URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera H323-URL:"
-"er."
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"h323\"-"
+"URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"ghelp\"-"
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"http\"-"
 "URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"ghelp\"-"
+"Sant om kommandot som är angivet i nyckeln \"command\" ska hantera \"https\"-"
 "URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
@@ -1189,19 +1183,16 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Huruvida det angivna kommandot ska hantera \"ghelp\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Huruvida det angivna kommandot ska hantera H323-URL:er"
+msgstr "Huruvida det angivna kommandot ska hantera \"h323\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Huruvida det angivna kommandot ska hantera \"ghelp\"-URL:er"
+msgstr "Huruvida det angivna kommandot ska hantera \"http\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Huruvida det angivna kommandot ska hantera \"trash\"-URL:er"
+msgstr "Huruvida det angivna kommandot ska hantera \"https\"-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
