@@ -1,3 +1,12 @@
+2001-01-03  Pavel Cisle <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
+
+	Fix a problem in my previous change -- in a certain sequence the
+	job would expire and never call the last callback which in turn
+	would cause the job spawner to try to cancel it or otherwise
+	misbehave.
+
 2001-01-03  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Darin Adler  <darin@eazel.com>

@@ -42,14 +42,16 @@ static void *
 thread_routine (void *data)
 {
 	GnomeVFSJob *job;
+	GnomeVFSAsyncHandle *job_handle;
 
 	job = (GnomeVFSJob *) data;
  
 	while (gnome_vfs_job_execute (job))
 		;
 
-	gnome_vfs_async_job_expired (job->job_handle);
+	job_handle = job->job_handle;
 	gnome_vfs_job_destroy (job);
+	gnome_vfs_async_job_expired (job_handle);
 
 	return NULL;
 }
