@@ -37,6 +37,8 @@
 #include <libgnomevfs/gnome-vfs-find-directory.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-ssl.h>
+#include <libgnomevfs/gnome-vfs-module-callback.h>
+#include <libgnomevfs/gnome-vfs-standard-callbacks.h>
 #include <popt.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -956,6 +958,35 @@ callback (GIOChannel *source,
 	return TRUE;
 }
 
+static void
+authentication_callback (gconstpointer in, size_t in_size,
+			 gpointer out, size_t out_size,
+			 gpointer user_data)
+{
+	char buffer[512];
+ 	GnomeVFSModuleCallbackAuthenticationIn *in_real;
+ 	GnomeVFSModuleCallbackAuthenticationOut *out_real;
+
+ 	g_return_if_fail (sizeof (GnomeVFSModuleCallbackAuthenticationIn) == in_size
+ 		&& sizeof (GnomeVFSModuleCallbackAuthenticationOut) == out_size);
+
+	g_return_if_fail (in != NULL);
+	g_return_if_fail (out != NULL);
+
+ 	in_real = (GnomeVFSModuleCallbackAuthenticationIn *)in;
+ 	out_real = (GnomeVFSModuleCallbackAuthenticationOut *)out;
+	
+	printf ("Authenticate for uri: %s realm: %s\n", in_real->uri, in_real->realm);
+
+	printf ("Username:\n");
+	fgets (buffer, 511, stdin);
+	out_real->username = g_strndup (buffer, 512);
+
+	printf ("Password:\n");
+	fgets (buffer, 511, stdin);
+ 	out_real->password = g_strndup (buffer, 512);
+}
+
 int
 main (int argc, const char **argv)
 {
@@ -982,6 +1013,9 @@ main (int argc, const char **argv)
 		fprintf (vfserr, "Cannot initialize gnome-vfs.\n");
 		return 1;
 	}
+	gnome_vfs_module_callback_push
+		(GNOME_VFS_MODULE_CALLBACK_AUTHENTICATION,
+		 authentication_callback, NULL, NULL);
 
 	instream = stdin;
 	args = poptGetArgs (popt_context);
@@ -1110,3 +1144,4 @@ main (int argc, const char **argv)
 
 	return 0;
 }
+

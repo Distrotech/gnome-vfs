@@ -1,3 +1,8 @@
+2003-04-11  Michael Meeks  <michael@ximian.com>
+
+	* test/test-shell.c (authentication_callback, main):
+	hook up some really dumb authentication bits.
+
 2003-04-11  Alexander Larsson  <alexl@redhat.com>
 
 	* test/test-async.c (file_control_callback):
