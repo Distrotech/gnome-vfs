@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.2.0\n"
-"POT-Creation-Date: 2000-07-12 12:40-0300\n"
-"PO-Revision-Date: 2000-07-06 14:41-03:00\n"
+"Project-Id-Version: gnome-vfs 0.3.0\n"
+"POT-Creation-Date: 2000-08-19 15:01-0300\n"
+"PO-Revision-Date: 2000-08-20 15:12-03:00\n"
 "Last-Translator: Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br> \n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "%s:%d não possui nome de módulo."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Arquivo de configuração `%s' não foi achado: %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:479
+#: libgnomevfs/gnome-vfs-file-info.c:269
 #, c-format
 msgid "Unknown sort rule %d"
 msgstr "Regra de ordenação %d desconhecida"
@@ -43,12 +43,12 @@ msgstr "Regra de ordenação %d desconhecida"
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS já iniciado."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:653
+#: libgnomevfs/gnome-vfs-parse-ls.c:656
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Não é possível analisar: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:655
+#: libgnomevfs/gnome-vfs-parse-ls.c:658
 msgid "More parsing errors will be ignored."
 msgstr "Mais erros de análise serão ignorados."
 
@@ -204,9 +204,8 @@ msgstr "Máquina não tem endereço"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:69
-#, fuzzy
 msgid "Login failed"
-msgstr "Autenticação falhou"
+msgstr "Falhou o login"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:70
@@ -233,7 +232,7 @@ msgstr "Muitos vínculos"
 msgid "Read only file system"
 msgstr "Sistema de arquivos somente para leitura"
 
-#. GNOME_VFS_ERROR_NOT_SAME_FFILE_SYSTEM
+#. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
 msgstr "Não no mesmo sistema de arquivos"
@@ -243,7 +242,12 @@ msgstr "Não no mesmo sistema de arquivos"
 msgid "Name too long"
 msgstr "Nome muito extenso"
 
-#: libgnomevfs/gnome-vfs-result.c:133
+#. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
+#: libgnomevfs/gnome-vfs-result.c:77
+msgid "Service not available"
+msgstr "Serviço não disponível"
+
+#: libgnomevfs/gnome-vfs-result.c:134
 msgid "Unknown error"
 msgstr "Erro desconhecido"
 
@@ -271,86 +275,86 @@ msgstr "%.1fM"
 msgid "%.1fG"
 msgstr "%.1fG"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:338
+#: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
 msgstr "Morrendo."
 
 #. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:503
+#: libgnomevfs-corba/gnome-vfs-slave.c:501
 #, c-format
 msgid "Error reading: %s"
 msgstr "Erro lendo: %s"
 
 #. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:525
+#: libgnomevfs-corba/gnome-vfs-slave.c:523
 #, c-format
 msgid "Error writing: %s"
 msgstr "Erro gravando: %s"
 
 #. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:574
+#: libgnomevfs-corba/gnome-vfs-slave.c:572
 #, c-format
 msgid "Cannot write: %s"
 msgstr "Não é possível escrever: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:602
+#: libgnomevfs-corba/gnome-vfs-slave.c:600
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Não é possível criar arquivo temporário `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:616
+#: libgnomevfs-corba/gnome-vfs-slave.c:614
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "Não é possível criar soquete: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:634
+#: libgnomevfs-corba/gnome-vfs-slave.c:632
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "Não é possível conectar a `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:641
+#: libgnomevfs-corba/gnome-vfs-slave.c:639
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "Não é possível ouvir em `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
+#: libgnomevfs-corba/gnome-vfs-slave.c:661
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Não é possível aceitar conexões em `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1397
+#: libgnomevfs-corba/gnome-vfs-slave.c:1279
 msgid "Cannot initialize CORBA."
 msgstr "Não é possível iniciar CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1404
+#: libgnomevfs-corba/gnome-vfs-slave.c:1286
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Não é possível resolver a referência inicial à RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1411
+#: libgnomevfs-corba/gnome-vfs-slave.c:1293
 msgid "Cannot activate POA manager."
 msgstr "Não é possível ativar gerenciador POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1436
+#: libgnomevfs-corba/gnome-vfs-slave.c:1318
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Uso: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1447
+#: libgnomevfs-corba/gnome-vfs-slave.c:1329
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Não é possível abrir descritor de arquivos %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1470
+#: libgnomevfs-corba/gnome-vfs-slave.c:1352
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Notificando interface para `%s' não encontrado."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1480
+#: libgnomevfs-corba/gnome-vfs-slave.c:1362
 msgid "Cannot setup Request object."
 msgstr "Não é possível configurar objeto de Requisição."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1487
+#: libgnomevfs-corba/gnome-vfs-slave.c:1369
 msgid "Cannot extract IOR."
 msgstr "Não é possível extrair IOR"
 
@@ -374,7 +378,7 @@ msgstr "Não é possível terminar GNOME::VFS::Slave::Notify -- exceção %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "Não é possível conectar ao soquete `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:801
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:750
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Não é possível iniciar GNOME::VFS:Slave::Notify"
 
@@ -404,59 +408,59 @@ msgstr ""
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Erro escrevendo ao canal de alerta GnomeVFSJob."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:568
-#: libgnomevfs-pthread/gnome-vfs-job.c:1524
+#: libgnomevfs-pthread/gnome-vfs-job.c:605
+#: libgnomevfs-pthread/gnome-vfs-job.c:1589
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "ID de trabalho desconhecido %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:972
-#: libgnomevfs-pthread/gnome-vfs-job.c:1093
+#: libgnomevfs-pthread/gnome-vfs-job.c:1007
+#: libgnomevfs-pthread/gnome-vfs-job.c:1128
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Não é possível criar pipe para abrir GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1557
+#: libgnomevfs-pthread/gnome-vfs-job.c:1622
 msgid "Operation stopped"
 msgstr "Operação paralizada"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:305
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:306
 msgid "Edit Applications List"
 msgstr "Editar lista de aplicativos"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:325
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:326
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
 msgstr "Selecione aplicativos que aparecerão no menu para o tipo MIME \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:348
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:349
 msgid "Add Application..."
 msgstr "Incluir aplicativo..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:352
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:353
 msgid "Edit Application..."
 msgstr "Editar aplicativo..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:356
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:357
 msgid "Delete Application"
 msgstr "Excluir aplicativo"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:381
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:382
 msgid "Edit Components List"
 msgstr "Editar lista de componentes"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:401
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:402
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
 msgstr "Selecione visualizações que aparecerão no menu para o tipo MIME \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:574
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:575
 msgid "Add Mime Type"
 msgstr "Incluir tipo MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:575
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:576
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
@@ -464,23 +468,23 @@ msgstr ""
 "Inclua um novo tipo MIME\n"
 "Por exemplo:  image/tiff; text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:580
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:581
 msgid "Mime Type:"
 msgstr "Tipo MIME:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:593
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:594
 msgid "Type in a description for this mime-type."
 msgstr "Digite uma descrição para este tipo MIME."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:599
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:600
 msgid "Description:"
 msgstr "Descrição:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:627
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:628
 msgid "Add New Extension"
 msgstr "Incluir nova extensão"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:628
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:629
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
@@ -488,130 +492,202 @@ msgstr ""
 "Digite as extensões para este tipo MIME.\n"
 "Por exemplo:  .html, .htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:633
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:634
 msgid "Extension:"
 msgstr "Extensão:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:702
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:770
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:707
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:775
 msgid "New Application"
 msgstr "Novo aplicativo"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:716
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:784
 msgid "Application Name:"
 msgstr "Nome do aplicativo:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:787
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:724
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:792
 msgid "Application Command:"
 msgstr "Comando do aplicativo"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:795
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:732
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:800
 msgid "Open Behavior"
 msgstr "Comportamento de abertura"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:733
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:801
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:738
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:806
 msgid "Can open multiple files"
 msgstr "Pode abrir vários arquivos"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:736
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:741
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:809
 msgid "Can open from URI"
 msgstr "Pode abrir a partir de URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:356
+#: mime-type-capplet/nautilus-mime-type-capplet.c:371
 msgid "Change Icon"
 msgstr "Mudar ícone"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:368
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1061
+#: mime-type-capplet/nautilus-mime-type-capplet.c:385
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1103
 msgid "Mime Type"
 msgstr "Tipo MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:389
+#: mime-type-capplet/nautilus-mime-type-capplet.c:407
 msgid "Add new Mime type..."
 msgstr "Incluir novo tipo MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:396
+#: mime-type-capplet/nautilus-mime-type-capplet.c:414
 msgid "Delete this Mime type..."
 msgstr "Excluir este tipo MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:411
+#: mime-type-capplet/nautilus-mime-type-capplet.c:429
 msgid "Use Viewer"
 msgstr "Usar visualizador"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:417
+#: mime-type-capplet/nautilus-mime-type-capplet.c:435
 msgid "Open With Application"
 msgstr "Abrir com aplicativo"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:429
+#: mime-type-capplet/nautilus-mime-type-capplet.c:447
 msgid "Edit List"
 msgstr "Editar lista"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:458
+#: mime-type-capplet/nautilus-mime-type-capplet.c:476
 msgid "Add"
 msgstr "Incluir"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:461
+#: mime-type-capplet/nautilus-mime-type-capplet.c:479
 msgid "Remove"
 msgstr "Excluir"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:640
-#: mime-type-capplet/nautilus-mime-type-capplet.c:782
-#: mime-type-capplet/nautilus-mime-type-capplet.c:987
+#: mime-type-capplet/nautilus-mime-type-capplet.c:657
+#: mime-type-capplet/nautilus-mime-type-capplet.c:799
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1006
 msgid "None"
 msgstr "Nenhum"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1060
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1102
 msgid "Description"
 msgstr "Descrição"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1062
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1104
 msgid "Extension"
 msgstr "Extensão"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1063
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1105
 msgid "Action"
 msgstr "Ação"
 
-#: modules/file-method.c:357
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:265
+msgid "Can't find an hbox, using a normal file selection"
+msgstr "Não é possível localizar um hbox, usando uma seleção normal de arquivo"
+
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:271
+msgid "Preview"
+msgstr "Visualizar"
+
+#: modules/efs-method.c:493 modules/file-method.c:359
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition desconhecido %d"
 
-#: modules/http-method.c:520
+#: modules/http-method.c:522
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Cabeçalho inválido `%s'"
 
-#: modules/http-method.c:537
+#: modules/http-method.c:539
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s para recuperar"
 
-#: modules/http-method.c:734
+#: modules/http-method.c:736
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Fechando conexão à %s"
 
-#: modules/http-method.c:878
+#: modules/http-method.c:880
 #, c-format
 msgid "%s of %s read"
 msgstr "%s de %s lidos"
 
-#: modules/http-method.c:881
+#: modules/http-method.c:883
 #, c-format
 msgid "%s read"
 msgstr "%s lidos"
 
 #. Multi-Status
-#: modules/http-method.c:1060
+#: modules/http-method.c:1071
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "O servidor HTTP retornou uma resposta de PROPFIND inválido"
+
+#: test/gnome-file-selection/gnome-file-selection.c:671
+msgid "Back"
+msgstr "Voltar"
+
+#: test/gnome-file-selection/gnome-file-selection.c:672
+msgid "Go to the previously visited directory"
+msgstr "Vai para o diretório visitado anteriormente"
+
+#: test/gnome-file-selection/gnome-file-selection.c:680
+msgid "Up"
+msgstr "Acima"
+
+#: test/gnome-file-selection/gnome-file-selection.c:681
+msgid "Go to the parent directory"
+msgstr "Vai para o diretório pai"
+
+#: test/gnome-file-selection/gnome-file-selection.c:689
+msgid "Forward"
+msgstr "Avançar"
+
+#: test/gnome-file-selection/gnome-file-selection.c:690
+msgid "Go to the next visited directory"
+msgstr "Vai para o próximo diretório visitado"
+
+#: test/gnome-file-selection/gnome-file-selection.c:699
+msgid "Rescan"
+msgstr "Atualizar"
+
+#: test/gnome-file-selection/gnome-file-selection.c:700
+msgid "Rescan the current directory"
+msgstr "Atualiza o diretório corrente"
+
+#: test/gnome-file-selection/gnome-file-selection.c:709
+msgid "Home"
+msgstr "Início"
+
+#: test/gnome-file-selection/gnome-file-selection.c:710
+msgid "Go to the home directory"
+msgstr "Vai para o seu diretório pessoal"
+
+#: test/gnome-file-selection/gnome-file-selection.c:806
+msgid "Name"
+msgstr "Nome"
+
+#: test/gnome-file-selection/gnome-file-selection.c:807
+msgid "Size"
+msgstr "Tamanho"
+
+#: test/gnome-file-selection/gnome-file-selection.c:808
+msgid "Date"
+msgstr "Data"
+
+#: test/gnome-file-selection/gnome-file-selection.c:837
+msgid "Enter name:"
+msgstr "Entre nome:"
+
+#: test/gnome-file-selection/gnome-file-selection.c:860
+msgid "Show:"
+msgstr "Exibir:"
+
+#: test/gnome-file-selection/gnome-file-selection.c:887
+msgid "Show dotfiles"
+msgstr "Exibir arquivos escondidos"
