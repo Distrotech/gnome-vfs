@@ -3,6 +3,7 @@ Main VFS engine:
 
 VFS engine contributors:
 	Elliot Lee <sopwith@redhat.com>
+	Miguel de Icaza  <miguel@nuclecu.unam.mx>
 	Maciej Stachowiak <mjs@eazel.com>
 	Darin Adler <darin@eazel.com>
 	John Sullivan <sullivan@eazel.com>
@@ -47,6 +48,8 @@ MIME API and the MIME capplet:
 	Pavel Cisler <pavel@eazel.com>
 	Maciej Stachowiak <mjs@eazel.com>
 	Gene Ragan <gzr@eazel.com>
+	Rebecca Schulman  <rebecka@eazel.com>
+	Aaron Brick <aaron@eazel.com>
 
 Misc changes:
 	J Shane Culpepper  <pepper@eazel.com>
@@ -61,3 +64,11 @@ Misc changes:
 	Kjartan Maraas  <kmaraas@gnome.org>
 	Christophe Merlet  <christophe@merlet.net>
 	Ramiro Estrugo  <ramiro@eazel.com>
+	Don Melton  <don@eazel.com>
+	Robin * Slomkowski  <rslomkow@rslomkow.org>
+	Robey Pointer  <robey@eazel.com>
+	Rolf Grossmann <grossman@securitas.net>
+	Kenneth Christiansen  <kenneth@gnu.org>
+	Lutz Müller <urc8@rz.uni-karlsruhe.de>
+	Matt Bissiri  <matt@bissiri.org>
+	Yukihiro Nakai  <nakai@gnome.gr.jp>

@@ -1,3 +1,10 @@
+2001-02-27  Pavel Cisler  <pavel@eazel.com>
+
+	* AUTHORS:
+	* HACKING:
+	* NEWS:
+	Getting these ready for a release.
+
 2001-02-27  Maciej Stachowiak  <mjs@eazel.com>
 
 	another unreviewed change to fix tinderox
