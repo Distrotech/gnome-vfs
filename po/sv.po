@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-08-25 13:18+0200\n"
-"PO-Revision-Date: 2003-08-04 00:20+0200\n"
+"POT-Creation-Date: 2003-10-05 03:07+0200\n"
+"PO-Revision-Date: 2003-10-05 03:09+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -327,22 +327,6 @@ msgstr "%.1f GB"
 msgid " (invalid Unicode)"
 msgstr " (ogiltig Unicode)"
 
-#: modules/file-method.c:382
-#, c-format
-msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Okänd GnomeVFSSeekPosition %d"
-
-#. FIXME: we probably shouldn't use printf to output the message
-#: modules/test-method.c:590
-#, c-format
-msgid "Didn't find a valid settings file at %s\n"
-msgstr "Hittade ingen giltig inställningsfil vid %s\n"
-
-#: modules/test-method.c:592
-#, c-format
-msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Använd miljövariabeln %s för att ange en annan plats.\n"
-
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
@@ -394,6 +378,22 @@ msgstr "Verktyg"
 msgid "Windows"
 msgstr "Fönster"
 
+#: modules/file-method.c:382
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "Okänd GnomeVFSSeekPosition %d"
+
+#. FIXME: we probably shouldn't use printf to output the message
+#: modules/test-method.c:590
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "Hittade ingen giltig inställningsfil vid %s\n"
+
+#: modules/test-method.c:592
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr "Använd miljövariabeln %s för att ange en annan plats.\n"
+
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
 msgstr "Standardmonikerfabrik"
@@ -409,6 +409,206 @@ msgstr "allmän Gnome VFS-moniker"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "Allmän filmoniker"
+
+#: schemas/desktop_default_applications.schemas.in.h:1
+msgid "Default component viewer application"
+msgstr "Standardprogram för komponentvisning"
+
+#: schemas/desktop_default_applications.schemas.in.h:2
+msgid "Default terminal application"
+msgstr "Standardterminalprogram"
+
+#: schemas/desktop_default_applications.schemas.in.h:3
+msgid "Exec argument for default terminal"
+msgstr "Exekveringsargument för standardterminal"
+
+#: schemas/desktop_default_applications.schemas.in.h:5
+#, no-c-format
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"Programmet som används för visning av filer som kräver en komponent för att "
+"visa dem. Parametern %s kommer att ersättas av filens URI:er, och parametern "
+"%c kommer att ersättas av komponent-IID."
+
+#: schemas/desktop_default_applications.schemas.in.h:6
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+"Standardterminalprogrammet att använda för program som kräver en terminal."
+
+#: schemas/desktop_default_applications.schemas.in.h:7
+msgid "The exec argument to use for the default terminal application."
+msgstr "Exekveringsargumentet att använda för standardterminalprogrammet."
+
+#: schemas/system_http_proxy.schemas.in.h:1
+msgid "Authenticate connections to the proxy server"
+msgstr "Autentisera anslutningar till proxyservern"
+
+#: schemas/system_http_proxy.schemas.in.h:2
+msgid "Automatic proxy configuration URL"
+msgstr "URL för automatisk proxykonfiguration"
+
+#: schemas/system_http_proxy.schemas.in.h:3
+msgid "Enables the proxy settings when accessing http over the internet."
+msgstr "Aktiverar proxyinställningarna vid åtkomst av http över internet."
+
+#: schemas/system_http_proxy.schemas.in.h:4
+msgid "FTP proxy host name"
+msgstr "Värdnamn för FTP-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:5
+msgid "FTP proxy port"
+msgstr "Port för FTP-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:6
+msgid "HTTP proxy host name"
+msgstr "Värdnamn för HTTP-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:7
+msgid "HTTP proxy port"
+msgstr "Port för HTTP-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:8
+msgid "Hosts are not contacted via the proxy"
+msgstr "Värdar kontaktas inte via proxyservern"
+
+#: schemas/system_http_proxy.schemas.in.h:9
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by /system/http_proxy/authentication_user "
+"and /system/http_proxy/authentication_password."
+msgstr ""
+"Om detta är sant kräver anslutningarna till proxyservern autentisering. "
+"Användarnamn- och lösenordsparet definieras av /system/http_proxy/"
+"authentication_user och /system/http_proxy/authentication_password."
+
+#: schemas/system_http_proxy.schemas.in.h:10
+msgid "Password to pass as authentication when doing http proxying"
+msgstr ""
+"Lösenord att skicka som autentisering vid användning av http-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:11
+msgid "Proxy configuration mode"
+msgstr "Proxykonfigurationsläge"
+
+#: schemas/system_http_proxy.schemas.in.h:12
+msgid "Secure http proxy host name"
+msgstr "Värdnamn för säker http-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:13
+msgid "Secure http proxy port"
+msgstr "Port för säker http-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:14
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\""
+msgstr ""
+"Välj proxykonfigurationsläget. Värden som stöds är \"none\", \"manual\", "
+"\"auto\""
+
+#: schemas/system_http_proxy.schemas.in.h:15
+msgid "Socks proxy host name"
+msgstr "Värdnamn för socks-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:16
+msgid "Socks proxy port"
+msgstr "Port för socks-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:17
+msgid "The machine name to proxy FTP through."
+msgstr "Namnet på maskinen som ska agera proxyserver för FTP."
+
+#: schemas/system_http_proxy.schemas.in.h:18
+msgid "The machine name to proxy http through."
+msgstr "Namnet på maskinen som ska agera proxyserver för http."
+
+#: schemas/system_http_proxy.schemas.in.h:19
+msgid "The machine name to proxy secure http through."
+msgstr "Namnet på maskinen som ska agera proxyserver för http."
+
+#: schemas/system_http_proxy.schemas.in.h:20
+msgid "The machine name to proxy socks through."
+msgstr "Namnet på maskinen som ska agera proxyserver för socks."
+
+#: schemas/system_http_proxy.schemas.in.h:21
+msgid ""
+"The port on the machine defined by /system/http_proxy/host that you proxy "
+"through"
+msgstr ""
+"Porten på maskinen som definieras av /system/http_proxy/host som du använder "
+"som proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:22
+msgid ""
+"The port on the machine defined by /system/proxy/ftp_host that you proxy "
+"through"
+msgstr ""
+"Porten på maskinen som definieras av /system/proxy/ftp_host som du använder "
+"som proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:23
+msgid ""
+"The port on the machine defined by /system/proxy/secure_host that you proxy "
+"through"
+msgstr ""
+"Porten på maskinen som definieras av /system/proxy/secure_host som du "
+"använder som proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:24
+msgid ""
+"The port on the machine defined by /system/proxy/socks_host that you proxy "
+"through"
+msgstr ""
+"Porten på maskinen som definieras av /system/proxy/socks_host som du "
+"använder som proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:25
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"Denna nyckel innehåller en lista med värdar som ansluts till direkt istället "
+"för att gå via proxyservern (om den är igång). Värdena kan vara värdnamn, "
+"domäner (genom användning av ett inledande jokertecken som *.blaha.se), IP-"
+"värdadresser (både IPv4 och IPv6) och nätverksadresser med en nätmask "
+"(någonting liknande 192.168.0.0/24)."
+
+#: schemas/system_http_proxy.schemas.in.h:26
+msgid "URL that provides proxy configuration values"
+msgstr "URL som tillhandahåller proxykonfigurationsvärden"
+
+#: schemas/system_http_proxy.schemas.in.h:27
+msgid "Use proxy settings when accessing http"
+msgstr "Använd proxyinställningar vid åtkomst av http"
+
+#: schemas/system_http_proxy.schemas.in.h:28
+msgid "User name to pass as authentication when doing http proxying"
+msgstr ""
+"Användarnamn att skicka som autentisering vid användning av http-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:29
+msgid "http proxy password"
+msgstr "Lösenord för http-proxyserver"
+
+#: schemas/system_http_proxy.schemas.in.h:30
+msgid "http proxy username"
+msgstr "Användarnamn för http-proxyserver"
+
+#~ msgid ""
+#~ "The application to use for viewing files that require a component to view "
+#~ "them. The parameter %s will be replaced by the file's URI, the parameter %"
+#~ "c will be replaced by the component IID."
+#~ msgstr ""
+#~ "Programmet som används för visning av filer som kräver en komponent för "
+#~ "att visa dem. Parametern %s kommer att ersättas av filens URI, och "
+#~ "parametern %c kommer att ersättas av komponent-IID."
 
 #~ msgid "%u byte"
 #~ msgid_plural "%u bytes"
