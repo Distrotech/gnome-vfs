@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-02-23 19:29+0100\n"
+"POT-Creation-Date: 2000-02-25 14:26+0100\n"
 "PO-Revision-Date: 1999-12-28 15:28+0100\n"
-"Last-Translator: Martin Norbäck <d95mback@dtek.chalmers.se>\n"
+"Last-Translator: Andreas Hyden <ahyden@staffanstorp.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -38,12 +38,13 @@ msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS har redan initaliserats."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
+#, c-format
 msgid "Could not parse: %s"
-msgstr ""
+msgstr "Kunde inte tolka: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr ""
+msgstr "Flera tolkningsfel kommer att ignoreras."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -313,7 +314,7 @@ msgstr "Kan inte ta emot uppkopplingar på '%s': %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1379
 msgid "Cannot initialize CORBA."
-msgstr "Kan inte initialisera CORBA."
+msgstr "Kan inte initiera CORBA."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1386
 msgid "Cannot resolve initial reference to RootPOA."
@@ -352,41 +353,43 @@ msgid "Got weird string from the slave process: `%s'"
 msgstr "Fick en konstig sträng från slavprocessen: `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
+#, c-format
 msgid "Cannot get object for `%s'"
 msgstr "Kan inte få objektet för `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:126
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr ""
+msgstr "Kan inte döda GNOME::VFS:Slave::Notify -- undantag %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
+#, c-format
 msgid "Cannot connect socket `%s': %s"
 msgstr "Kan ansluta socket: `%s': %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr ""
+msgstr "Kan inte initiera GNOME::VFS:Slave:Notify"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
+msgstr "Kan inte nollställa GNOME::VFS::Slave %s -- undantag %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
+msgstr "Kan inte nollställa GNOME::VFS::Slave (IOR okänt) -- undantag %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
+msgstr "Kan inte döda GNOME::VFS::Slave %s -- undantag %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
+msgstr "Kan inte döda GNOME::VFS::Slave (IOR okänt) -- undantag %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:129
 msgid "Error writing to the wakeup GnomeVFSJob channel."
@@ -411,7 +414,7 @@ msgstr "Operation stoppad"
 #: modules/file-method.c:332
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr ""
+msgstr "Okänt GnomeVFSSeekPosition %d"
 
 #: modules/ftp-method.c:353
 msgid "ftpfs: Invalid host name."
@@ -438,7 +441,7 @@ msgstr "ftpfs: anslutning till server misslyckades: %s"
 #: modules/ftp-method.c:480
 #, c-format
 msgid "Waiting to retry... %d (Control-C to cancel)"
-msgstr ""
+msgstr "Väntar på återförsök... %d (Kontroll-C för att avbryta)"
 
 #: modules/ftp-method.c:751
 msgid " FTP: Password required for "
@@ -468,15 +471,15 @@ msgstr "ftpfs: avbryter överföring."
 #: modules/ftp-method.c:829
 #, c-format
 msgid "ftpfs: abort error: %s"
-msgstr ""
+msgstr "ftpfs: abortfel: %s"
 
 #: modules/ftp-method.c:834
 msgid "ftpfs: abort failed"
-msgstr ""
+msgstr "ftpfs: abort misslyckades"
 
 #: modules/ftp-method.c:911
 msgid "ftpfs: could not setup passive mode"
-msgstr ""
+msgstr "ftpfs: kunde inte ställa in passivt läge"
 
 #: modules/ftp-method.c:1088
 #, c-format
@@ -485,20 +488,20 @@ msgstr "ftpfs: sparar filen %d (%d)"
 
 #: modules/ftp-method.c:1305 modules/ftp-method.c:1507
 msgid "ftpfs: CWD failed."
-msgstr ""
+msgstr "ftpfs: CWD misslyckades."
 
 #: modules/ftp-method.c:1315 modules/ftp-method.c:1322
 msgid "ftpfs: couldn't resolve symlink"
-msgstr ""
+msgstr "ftpfs: kunde inte lösa symlink"
 
 #: modules/ftp-method.c:1374
 msgid "Resolving symlink..."
-msgstr ""
+msgstr "Löser symlink..."
 
 #: modules/ftp-method.c:1498
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-msgstr ""
+msgstr "ftpfs: Läser FTP katalogen %s... (använd inte UNIX ls alternativ)"
 
 #: modules/ftp-method.c:1502
 #, c-format
@@ -511,11 +514,11 @@ msgstr "ftpfs: läsning av FTP katalogen avbruten av användare"
 
 #: modules/ftp-method.c:1592
 msgid "ftpfs: got listing"
-msgstr ""
+msgstr "ftpfs: fick lista"
 
 #: modules/ftp-method.c:1644
 msgid "ftpfs: failed; nowhere to fallback to"
-msgstr ""
+msgstr "ftpfs: misslyckades; ingenstans att falla tillbaks till"
 
 #: modules/ftp-method.c:2037
 msgid "Starting linear transfer..."
@@ -523,12 +526,11 @@ msgstr "Startar linjär överföring"
 
 #: modules/ftp-method.c:2107
 msgid "Preparing reget..."
-msgstr ""
+msgstr "Förbereder återtagning..."
 
 #: modules/http-method.c:471
-#, fuzzy, c-format
 msgid "Invalid header `%s'"
-msgstr "Ogiltiga parametrar"
+msgstr "Ogiltig header `%s'"
 
 #: modules/http-method.c:488
 #, c-format
