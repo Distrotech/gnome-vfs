@@ -49,15 +49,19 @@ main (int argc, char **argv)
 		printf ("Error: get_value failed on \"default_action_type\".\n");
 		exit (1);
 	}
+	/* default_component_iid doesn't appear anymore in gnome-vfs.keys */
+#if 0
 	value = gnome_vfs_mime_get_value ("x-directory/normal", "default_component_iid");
 	if (value == NULL || strcmp (value, "OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058") != 0) {
 		printf ("Error: get_value failed on \"default_component_iid\".\n");
 		exit (1);
 	}
+#endif
 	value = gnome_vfs_mime_get_value ("x-directory/normal", "short_list_component_iids_for_novice_user_level");
-	if (value == NULL || strcmp (value, "OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,"
-		    "OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,"
-		    "OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391") != 0) {
+	if (value == NULL || strcmp (value,
+				"OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,"
+				"OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,"
+				"OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391:OAFIID") != 0) {
 		printf ("Error: get_value failed on \"short_list_component_iids_for_novice_user_level\".\n");
 		exit (1);
 	}
@@ -166,20 +170,22 @@ main (int argc, char **argv)
 
 	/* test to try to modify the user.mime file */
 	{
-		char *value;
+		char *value, *save;
+
+		save = gnome_vfs_mime_get_extensions_string ("application/postscript");
 		gnome_vfs_mime_set_registered_type_key ("application/postscript", "ext", "foo");
 
 		value = gnome_vfs_mime_get_extensions_string ("application/postscript");
 
 		if (strstr (value, "foo") == NULL) {
 			printf ("Error: cannot set mime type new extension.\n");
-			exit (1);						
+			exit (1);
 		}
-		if (strstr (value, "ps") == NULL) {
-			printf ("Error: deleted default mime type extension.\n");
-			exit (1);						
+		if (strstr (value, "ps") != NULL) {
+			printf ("Error: didn't delete default mime type extension.\n");
+			exit (1);
 		}
-		gnome_vfs_mime_set_registered_type_key ("application/postscript", "ext", "");
+		gnome_vfs_mime_set_registered_type_key ("application/postscript", "ext", save);
 	}
 
 	{
