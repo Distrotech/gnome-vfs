@@ -1,5 +1,10 @@
 2000-12-08  Pavel Cisler  <pavel@eazel.com>
 
+	* modules/ftp-method.c: (do_read_directory):
+	Oops. Fix the build.
+
+2000-12-08  Pavel Cisler  <pavel@eazel.com>
+
 	reviewed by: Gene Z. Ragan  <gzr@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime.c: (gnome_vfs_mime_type_from_name),

@@ -1257,7 +1257,7 @@ do_read_directory (GnomeVFSMethod *method,
 					GNOME_VFS_FILE_INFO_FOLLOW_LINKS) && 
 				(file_info->type == 
 				 GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK)) {
-			 * Need to follow symbolic links to match behavior Nautilus
+			/* Need to follow symbolic links to match behavior Nautilus
 			 * requires for sensible display (otherwise symlinks all appear
 			 * broken)
 			 */
