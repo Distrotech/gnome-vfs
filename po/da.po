@@ -272,9 +272,8 @@ msgid "Linux PSF console font"
 msgstr "Linux PSF-konsolskrift"
 
 #: data/mime/gnome-vfs.keys.in.h:65
-#, fuzzy
 msgid "M3 audio URL"
-msgstr "MP3-lydfil"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:66
 msgid "MIDI audio"
@@ -481,9 +480,8 @@ msgid "SQL code"
 msgstr "SQL-kode"
 
 #: data/mime/gnome-vfs.keys.in.h:117
-#, fuzzy
 msgid "SV4 CPIO archive"
-msgstr "skalarkiv"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:118
 msgid "SV4 CPIP archive (with CRC)"
@@ -522,9 +520,8 @@ msgid "Speedo font"
 msgstr "Speedo-skrifttype"
 
 #: data/mime/gnome-vfs.keys.in.h:127
-#, fuzzy
 msgid "StarOffice Writer document"
-msgstr "StarOffice-tekstbehandlingsdokument"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:128
 msgid "StarOffice presentation"
@@ -643,9 +640,8 @@ msgid "XML document"
 msgstr "XML-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:157
-#, fuzzy
 msgid "XPM image"
-msgstr "XPM-billede"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:158
 msgid "active server page"
@@ -656,9 +652,8 @@ msgid "address card"
 msgstr "adressekort"
 
 #: data/mime/gnome-vfs.keys.in.h:160
-#, fuzzy
 msgid "ar archive"
-msgstr "tar-arkiv"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:161
 msgid "arj archive"
@@ -669,9 +664,8 @@ msgid "authors list"
 msgstr "forfatterliste"
 
 #: data/mime/gnome-vfs.keys.in.h:163
-#, fuzzy
 msgid "backup file"
-msgstr "Makefil"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:164
 msgid "basic audio"
@@ -690,47 +684,40 @@ msgid "block device"
 msgstr "blokenhed"
 
 #: data/mime/gnome-vfs.keys.in.h:168
-#, fuzzy
 msgid "bzip-compressed file"
-msgstr "skalarkiv"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:169
-#, fuzzy
 msgid "calendar file"
-msgstr "kalenderinformation"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:170
-#, fuzzy
 msgid "calendar or event document"
-msgstr "kalender eller evenementsinformation"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:171
 msgid "character device"
 msgstr "tegnenhed"
 
 #: data/mime/gnome-vfs.keys.in.h:172
-#, fuzzy
 msgid "comma-separated text document"
-msgstr "kommasepareret tekst"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:173
 msgid "compound document"
 msgstr "sammensat dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:174
-#, fuzzy
 msgid "compress-compressed file"
-msgstr "skalarkiv"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:175
-#, fuzzy
 msgid "compressed GIMP document"
-msgstr "sammensat dokument"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:176
-#, fuzzy
 msgid "directory information file"
-msgstr "kataloginformation"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:177
 msgid "document type definition"
@@ -749,9 +736,8 @@ msgid "encrypted message"
 msgstr "krypteret meddelelse"
 
 #: data/mime/gnome-vfs.keys.in.h:181
-#, fuzzy
 msgid "enriched text document"
-msgstr "Setext-dokument"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:182
 msgid "folder"
@@ -762,9 +748,8 @@ msgid "gtar archive"
 msgstr "gtar-arkiv"
 
 #: data/mime/gnome-vfs.keys.in.h:184
-#, fuzzy
 msgid "gzip-compressed file"
-msgstr "skalarkiv"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:185
 msgid "help page"
@@ -791,9 +776,8 @@ msgid "manual page"
 msgstr "manualside"
 
 #: data/mime/gnome-vfs.keys.in.h:191
-#, fuzzy
 msgid "manual page (compressed)"
-msgstr "arkiv med manualsider"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:192
 msgid "memory dump"
@@ -828,9 +812,8 @@ msgid "partial email message"
 msgstr "del af elektronisk brev"
 
 #: data/mime/gnome-vfs.keys.in.h:200
-#, fuzzy
 msgid "plain text document"
-msgstr "Setext-dokument"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:201
 msgid "profiler results"
@@ -845,9 +828,8 @@ msgid "rejected patch file"
 msgstr "afvist kildekodelap"
 
 #: data/mime/gnome-vfs.keys.in.h:204
-#, fuzzy
 msgid "rich text document"
-msgstr "Setext-dokument"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:205
 msgid "search results"
@@ -878,9 +860,8 @@ msgid "software author credits"
 msgstr "forfatterliste"
 
 #: data/mime/gnome-vfs.keys.in.h:212
-#, fuzzy
 msgid "software installation instructions"
-msgstr "Installationsinstruktioner"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:213
 msgid "software license terms"
@@ -899,9 +880,8 @@ msgid "symbolic link"
 msgstr "symbolsk lænke"
 
 #: data/mime/gnome-vfs.keys.in.h:217
-#, fuzzy
 msgid "tab-separated text document"
-msgstr "tabulatorsepareret tekst"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:218
 msgid "tar archive"
@@ -920,34 +900,28 @@ msgid "theme"
 msgstr "tema"
 
 #: data/mime/gnome-vfs.keys.in.h:222
-#, fuzzy
 msgid "troff me input document"
-msgstr "Troff-dokument"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:223
-#, fuzzy
 msgid "troff mm input document"
-msgstr "Troff-dokument"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:224
-#, fuzzy
 msgid "troff ms input document"
-msgstr "Troff-dokument"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:225
-#, fuzzy
 msgid "unknown type"
-msgstr "data af ukendt type"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:226
-#, fuzzy
 msgid "ustar archive"
-msgstr "tar-arkiv"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:227
-#, fuzzy
 msgid "wave audio"
-msgstr "Wave-lydfil"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:228
 msgid "web folder"
