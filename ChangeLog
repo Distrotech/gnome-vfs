@@ -1,3 +1,8 @@
+2004-03-12  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/smb-method.c (auth_fn):
+	Fix compiler errors due to typo.
+
 2004-03-10  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-cancellable-ops.c

@@ -907,10 +907,10 @@ auth_fn (const char *server_name, const char *share_name,
 	if (strcmp (share_name,"IPC$") == 0) {
 		/* Don't authenticate to IPC$ using dialog, but allow name+domain in uri */
 		if (username != NULL) {
-			strncpy (username_out, real_username, unmaxlen);
+			strncpy (username_out, username, unmaxlen);
 		}
 		if (domain != NULL) {
-			strncpy (domain_out, real_domain, domainmaxlen);
+			strncpy (domain_out, domain, domainmaxlen);
 		}
 		strncpy (password_out, "", pwmaxlen);
 		g_free (username);
