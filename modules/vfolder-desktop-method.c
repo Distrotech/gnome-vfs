@@ -1372,9 +1372,9 @@ readitem_entry (const char *filename,
 		p = &buf[keylen];
 
 		/* still not our key */
-		if (*p != ' ' || *p != '=')
+		if (!(*p == '=' || *p == ' ')) {
 			continue;
-
+		}
 		do
 			p++;
 		while (*p == ' ' || *p == '=');

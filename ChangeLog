@@ -1,5 +1,12 @@
 2001-11-27  Seth Nickell  <snickell@stanford.edu>
 
+	* modules/vfolder-desktop-method.c: (readitem_entry):
+
+	Fix incorrect boolean comparison, makes readitem_entry
+	actually work.
+
+2001-11-27  Seth Nickell  <snickell@stanford.edu>
+
 	* modules/vfolder-desktop-method.c:
 	(vfolder_info_read_items_merge):
 
