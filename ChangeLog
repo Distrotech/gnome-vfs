@@ -1,3 +1,20 @@
+2000-03-09  Jonathan Blandford  <jrb@redhat.com>
+
+	* libgnomevfs/gnome-vfs-types.h: Add a urn field to
+	GnomeVFSToplevelURI.  This will let us add VFS modules that simply
+	change a totally virtual name to a actual URL.
+
+	* modules/help-method.c: New module to allow for "help:*" URL's.
+	* modules/help-method.h:
+
+	* modules/Makefile.am: added help module.
+
+	* libgnomevfs/gnome-vfs-method.c (gnome_vfs_transform_get): Allow
+	Transformations.  Clean up the code a little.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new): changed to
+	allow for translations.  Also, code cleaned up a lot.
+
 2000-03-09  Ian McKellar  <yakk@yakk.net>
 	* modules/http-method.c
 	Added (open|read|close)_directory support for WebDAV servers.

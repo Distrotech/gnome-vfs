@@ -29,7 +29,8 @@
 	g_return_val_if_fail ((expression), GNOME_VFS_ERROR_BADPARAMS);
 
 
-gboolean	gnome_vfs_method_init	(void);
-GnomeVFSMethod *gnome_vfs_method_get	(const gchar *name);
+gboolean	   gnome_vfs_method_init   (void);
+GnomeVFSMethod    *gnome_vfs_method_get    (const gchar *name);
+GnomeVFSTransform *gnome_vfs_transform_get (const gchar *name);
 
 #endif /* _GNOME_VFS_METHOD_H */

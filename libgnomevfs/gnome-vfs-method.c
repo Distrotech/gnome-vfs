@@ -36,19 +36,20 @@
 #include "gnome-vfs-module.h"
 
 
-struct _MethodElement {
+struct _ModuleElement {
 	char *name;
 	const char *args;
 	GnomeVFSMethod *method;
+	GnomeVFSTransform *transform;
 	int nusers;
 };
-typedef struct _MethodElement MethodElement;
+typedef struct _ModuleElement ModuleElement;
 
 static gboolean method_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (method_already_initialized);
 
-static GHashTable *method_hash = NULL;
-G_LOCK_DEFINE_STATIC (method_hash);
+static GHashTable *module_hash = NULL;
+G_LOCK_DEFINE_STATIC (module_hash);
 
 static GList *module_path_list = NULL;
 G_LOCK_DEFINE_STATIC (module_path_list);
@@ -57,9 +58,9 @@ G_LOCK_DEFINE_STATIC (module_path_list);
 static gboolean
 init_hash_table (void)
 {
-	G_LOCK (method_hash);
-	method_hash = g_hash_table_new (g_str_hash, g_str_equal);
-	G_UNLOCK (method_hash);
+	G_LOCK (module_hash);
+	module_hash = g_hash_table_new (g_str_hash, g_str_equal);
+	G_UNLOCK (module_hash);
 
 	return TRUE;
 }
@@ -154,114 +155,131 @@ gnome_vfs_method_init (void)
 	return TRUE;
 }
 
-static GnomeVFSMethod *
-load_module (const gchar *module_name, const char *method_name, const char *args)
+static void
+load_module (const gchar *module_name, const char *method_name, const char *args,
+	     GnomeVFSMethod **method, GnomeVFSTransform **transform)
 {
-	GnomeVFSMethod *method;
-	GModule        *module;
+	GModule *module;
+	GnomeVFSMethod *temp_method = NULL;
+	GnomeVFSTransform *temp_transform = NULL;
+	
 	GnomeVFSMethodInitFunc init_function = NULL;
+	GnomeVFSTransformInitFunc transform_function = NULL;
 	GnomeVFSMethodShutdownFunc shutdown_function = NULL;
 
 	module = g_module_open (module_name, G_MODULE_BIND_LAZY);
 	if (module == NULL) {
 		g_warning ("Cannot load module `%s'", module_name);
-		return NULL;
+		return;
 	}
 
-	if (! g_module_symbol (module, GNOME_VFS_MODULE_INIT,
-			       (gpointer *) &init_function)
-	    || init_function == NULL) {
-		g_warning ("module '%s' has no init fn", module_name);
-		return NULL;
+        g_module_symbol (module, GNOME_VFS_MODULE_INIT,
+			 (gpointer *) &init_function);
+	g_module_symbol (module, GNOME_VFS_MODULE_TRANSFORM,
+			 (gpointer *) &transform_function);
+	g_module_symbol (module, GNOME_VFS_MODULE_SHUTDOWN,
+			 (gpointer *) &shutdown_function);
+	
+	if ((init_function == NULL || shutdown_function == NULL) &&
+	    (transform_function == NULL)) {
+		g_warning ("module '%s' has no init function", module_name);
+		return;
 	}
 
-	if (! g_module_symbol (module, GNOME_VFS_MODULE_SHUTDOWN,
-			       (gpointer *) &shutdown_function)
-	    || shutdown_function == NULL)
-		g_warning ("module '%s' has no shutdown fn", module_name);
+	if (init_function)
+		temp_method = (* init_function) (method_name, args);
 
-	method = init_function (method_name, args);
-
-	if (method == NULL) {
+	if (temp_method == NULL && init_function) {
 		g_warning ("module '%s' returned a NULL handle", module_name);
-		return NULL;
+		return;
 	}
 
-	/* Some basic checks */
-	if (method->open == NULL) {
-		g_warning ("module '%s' has no open fn", module_name);
-		return NULL;
+	if (temp_method != NULL) {
+		/* Some basic checks */
+		if (temp_method->open == NULL) {
+			g_warning ("module '%s' has no open fn", module_name);
+			return;
 #if 0
-	} else if (method->create == NULL) {
-		g_warning ("module '%s' has no create fn", module_name);
-		return NULL;
+		} else if (temp_method->create == NULL) {
+			g_warning ("module '%s' has no create fn", module_name);
+			return;
 #endif
-	} else if (method->is_local == NULL) {
-		g_warning ("module '%s' has no is-local fn", module_name);
-		return NULL;
-	}
+		} else if (temp_method->is_local == NULL) {
+			g_warning ("module '%s' has no is-local fn", module_name);
+			return;
+		}
 #if 0
-	else if (method->get_file_info == NULL) {
-		g_warning ("module '%s' has no get-file-info fn", module_name);
-		return NULL;
-	}
+		else if (temp_method->get_file_info == NULL) {
+			g_warning ("module '%s' has no get-file-info fn", module_name);
+			return;
+		}
 #endif
 
-	/* More advanced assumptions.  */
-	if (method->tell != NULL && method->seek == NULL) {
-		g_warning ("module '%s' has seek and no tell", module_name);
-		return NULL;
+		/* More advanced assumptions.  */
+		if (temp_method->tell != NULL && temp_method->seek == NULL) {
+			g_warning ("module '%s' has seek and no tell", module_name);
+			return;
+		}
 	}
 
-	return method;
+	if (transform_function)
+		temp_transform = (* transform_function) (method_name, args);
+	if (temp_transform) {
+		if (temp_transform->transform == NULL) {
+			g_warning ("module '%s' has no transform method", module_name);
+			return;
+		}
+	}
+
+	*method = temp_method;
+	*transform = temp_transform;
 }
 
-static GnomeVFSMethod *
-load_module_in_path_list (const gchar *base_name, const char *method_name, const char *args)
+static void
+load_module_in_path_list (const gchar *base_name, const char *method_name, const char *args,
+			  GnomeVFSMethod **method, GnomeVFSTransform **transform)
 {
 	GList *p;
 
+	*method = NULL;
+	*transform = NULL;
+	
 	for (p = module_path_list; p != NULL; p = p->next) {
-		GnomeVFSMethod *method;
 		const gchar *path;
 		gchar *name;
 
 		path = p->data;
 		name = g_strconcat (path, "/", base_name, NULL);
 
-		method = load_module (name, method_name, args);
-
+		load_module (name, method_name, args, method, transform);
 		g_free (name);
 
-		if (method != NULL)
-			return method;
+		if (*method != NULL || *transform != NULL)
+			return;
 	}
-
-	return NULL;
 }
 
-GnomeVFSMethod *
-gnome_vfs_method_get (const gchar *name)
+static gboolean
+fill_hash_table (const gchar *name)
 {
-	GnomeVFSMethod *method;
-	MethodElement *method_element;
+	GnomeVFSMethod *method = NULL;
+	GnomeVFSTransform *transform = NULL;
+	ModuleElement *module_element;
 	const char *module_name;
 	pid_t saved_uid;
 	gid_t saved_gid;
 	const char *args;
 
-	g_return_val_if_fail (name != NULL, NULL);
+	G_LOCK (module_hash);
+	module_element = g_hash_table_lookup (module_hash, name);
+	G_UNLOCK (module_hash);
 
-	G_LOCK (method_hash);
-	method_element = g_hash_table_lookup (method_hash, name);
-	G_UNLOCK (method_hash);
-
-	if (method_element != NULL)
-		return method_element->method;
+	if (module_element != NULL)
+		return TRUE;
 
 	module_name = gnome_vfs_configuration_get_module_path (name, &args);
 	if (module_name == NULL)
-		return NULL;
+		return FALSE;
 
 	/* Set the effective UID/GID to the user UID/GID to prevent attacks to
            setuid/setgid executables.  */
@@ -272,23 +290,76 @@ gnome_vfs_method_get (const gchar *name)
 	setegid (getgid ());
 
 	if (g_path_is_absolute (module_name))
-		method = load_module (module_name, name, args);
+		load_module (module_name, name, args, &method, &transform);
 	else
-		method = load_module_in_path_list (module_name, name, args);
+		load_module_in_path_list (module_name, name, args, &method, &transform);
 
 	seteuid (saved_uid);
 	setegid (saved_gid);
 
-	if (method == NULL)
-		return NULL;
+	if (method == NULL && transform == NULL)
+		return FALSE;
 
-	method_element = g_new (MethodElement, 1);
-	method_element->name = g_strdup (name);
-	method_element->method = method;
+	module_element = g_new (ModuleElement, 1);
+	module_element->name = g_strdup (name);
+	module_element->method = method;
+	module_element->transform = transform;
 
-	G_LOCK (method_hash);
-	g_hash_table_insert (method_hash, method_element->name, method_element);
-	G_UNLOCK (method_hash);
+	G_LOCK (module_hash);
+	g_hash_table_insert (module_hash, module_element->name, module_element);
+	G_UNLOCK (module_hash);
 
-	return method;
+	return TRUE;
+}
+
+GnomeVFSMethod *
+gnome_vfs_method_get (const gchar *name)
+{
+	ModuleElement *module_element;
+
+	g_return_val_if_fail (name != NULL, NULL);
+
+	G_LOCK (module_hash);
+	module_element = g_hash_table_lookup (module_hash, name);
+	G_UNLOCK (module_hash);
+
+	if (module_element != NULL)
+		return module_element->method;
+
+	if (fill_hash_table (name)) {
+		G_LOCK (module_hash);
+		module_element = g_hash_table_lookup (module_hash, name);
+		G_UNLOCK (module_hash);
+		
+		if (module_element != NULL)
+			return module_element->method;
+	}
+
+	return NULL;
+}
+
+GnomeVFSTransform *
+gnome_vfs_transform_get (const gchar *name)
+{
+	ModuleElement *module_element;
+
+	g_return_val_if_fail (name != NULL, NULL);
+
+	G_LOCK (module_hash);
+	module_element = g_hash_table_lookup (module_hash, name);
+	G_UNLOCK (module_hash);
+
+	if (module_element != NULL)
+		return module_element->transform;
+
+	if (fill_hash_table (name)) {
+		G_LOCK (module_hash);
+		module_element = g_hash_table_lookup (module_hash, name);
+		G_UNLOCK (module_hash);
+		
+		if (module_element != NULL)
+			return module_element->transform;
+	}
+
+	return NULL;
 }

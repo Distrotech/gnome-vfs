@@ -27,10 +27,12 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
-#define GNOME_VFS_MODULE_INIT     "vfs_module_init"
-#define GNOME_VFS_MODULE_SHUTDOWN "vfs_module_shutdown"
+#define GNOME_VFS_MODULE_INIT      "vfs_module_init"
+#define GNOME_VFS_MODULE_TRANSFORM "vfs_module_transform"
+#define GNOME_VFS_MODULE_SHUTDOWN  "vfs_module_shutdown"
 
-extern GnomeVFSMethod *vfs_module_init     (const char *method_name, const char *args);
-extern void            vfs_module_shutdown (GnomeVFSMethod *method);
+extern GnomeVFSMethod    *vfs_module_init      (const char *method_name, const char *args);
+extern GnomeVFSTransform *vfs_module_transform (const char *method_name, const char *args);
+extern void               vfs_module_shutdown  (GnomeVFSMethod *method);
 
 #endif /* _GNOME_VFS_MODULE_H */

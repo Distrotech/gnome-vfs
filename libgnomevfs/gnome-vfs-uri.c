@@ -185,6 +185,66 @@ set_uri_element (GnomeVFSURI *uri,
 	gnome_vfs_canonicalize_pathname (uri->text);
 }
 
+static const gchar *
+get_method_string (const gchar *substring, gchar **method_string)
+{
+	const gchar *p;
+	
+	/* FIXME: Correct to look for alpha only?  */
+	for (p = substring; isalpha (*p); p++)
+		;
+
+	if (*p == ':') {
+		/* Found toplevel method specification.  */
+		*method_string = g_strndup (substring, p - substring);
+		p++;
+	} else {
+		*method_string = g_strdup ("file");
+		p = substring;
+	}
+	return p;
+}
+
+static GnomeVFSURI *
+parse_uri_substring (const gchar *substring)
+{
+	GnomeVFSMethod *method;
+	GnomeVFSURI *uri, *new_uri;
+	const gchar *p;
+	gchar *p1;
+	gchar *method_string;
+
+	if (substring == NULL || *substring == '\000')
+		return NULL;
+
+
+	/* FIXME: Correct to look for alpha only?  */
+	p = get_method_string (substring, &method_string);
+
+	method = gnome_vfs_method_get (method_string);
+	if (method == NULL) {
+		g_free (method_string);
+		return NULL;
+	}
+
+	uri = g_new0 (GnomeVFSURI, 1);
+	uri->method = method;
+	uri->method_string = method_string;
+	uri->ref_count = 1;
+
+	p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
+	if (p1 == NULL) {
+		set_uri_element (uri, p, strlen (p));
+		return uri;
+	}
+
+	set_uri_element (uri, p, p1 - p);
+
+	new_uri = parse_uri_substring (p1 + 1);
+	if (new_uri != NULL)
+		new_uri->parent = uri;
+	return uri;
+}
 /**
  * gnome_vfs_uri_new:
  * @text_uri: A string representing a URI.
@@ -197,94 +257,78 @@ GnomeVFSURI *
 gnome_vfs_uri_new (const gchar *text_uri)
 {
 	GnomeVFSMethod *method;
+	GnomeVFSTransform *trans;
 	GnomeVFSToplevelURI *toplevel;
 	GnomeVFSURI *uri, *new_uri;
-	const gchar *p;
+	const gchar *p, *p1, *p2;
 	gchar *method_string;
+	gchar *new_uri_string = NULL;
 
 	g_return_val_if_fail (text_uri != NULL, NULL);
 
 	if (text_uri[0] == 0)
 		return NULL;
 
-	/* FIXME: Correct to look for alpha only?  */
-	for (p = text_uri; isalpha (*p); p++)
-		;
-
-	if (*p == ':') {
-		/* Found toplevel method specification.  */
-		ALLOCA_SUBSTRING (method_string, text_uri, p - text_uri);
-		method = gnome_vfs_method_get (method_string);
-		if (method == NULL)
-			return NULL;
-		p++;
-	} else {
-		/* No toplevel method specification.  Use "file" as
-                   the default.  */
-		method_string = "file";
-		method = gnome_vfs_method_get (method_string);
-		if (method == NULL)
-			return NULL;
-		p = text_uri;
-	}
-
-	/* The toplevel URI element is special, as it also contains host/user
-           information.  */
 	toplevel = g_new (GnomeVFSToplevelURI, 1);
 	toplevel->host_name = NULL;
 	toplevel->host_port = 0;
 	toplevel->user_name = NULL;
 	toplevel->password = NULL;
 
-	new_uri = (GnomeVFSURI *) toplevel;
-	new_uri->parent = NULL;
+	uri = (GnomeVFSURI *) toplevel;
+	uri->parent = NULL;
 
-	while (1) {
-		GnomeVFSMethod *new_method;
-		const gchar *p1, *p2;
-		gchar *new_method_string;
+	p = get_method_string (text_uri, &method_string);
+	trans = gnome_vfs_transform_get (method_string);
+	if (trans && trans->transform) {
+		GnomeVFSContext *context;
 
-		new_uri->method = method;
-		new_uri->method_string = g_strdup (method_string);
-		new_uri->ref_count = 1;
-
-		p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
-		if (p1 == NULL) {
-			set_uri_element (new_uri, p, strlen (p));
-			uri = new_uri;
-			break;
+		context = gnome_vfs_context_new ();
+		(* trans->transform) (trans, p, &new_uri_string, context);
+		g_print ("new_uri_string: %s\n", new_uri_string);
+		gnome_vfs_context_unref (context);
+		if (new_uri_string != NULL) {
+			toplevel->urn = g_strdup (text_uri);
+			g_free (method_string);
+			p = get_method_string (new_uri_string, &method_string);
 		}
-
-		set_uri_element (new_uri, p, p1 - p);
-
-		p2 = p1 + 1;
-		if (*p2 == 0) {
-			gnome_vfs_uri_unref (new_uri);
-			return NULL;
-		}
-
-		while (*p2 != 0 && *p2 != GNOME_VFS_URI_PATH_CHR && *p2 != GNOME_VFS_URI_MAGIC_CHR)
-			p2++;
-
-		ALLOCA_SUBSTRING (new_method_string, p1 + 1, p2 - p1 - 1);
-		new_method = gnome_vfs_method_get (new_method_string);
-
-		if (new_method == NULL) {
-			/* FIXME: Better error handling/reporting?  */
-			gnome_vfs_uri_unref (new_uri);
-			return NULL;
-		}
-
-		p = p2;
-
-		method = new_method;
-		method_string = new_method_string;
-		uri = new_uri;
-
-		new_uri = g_new (GnomeVFSURI, 1);
-		new_uri->parent = uri;
+	}
+	
+	method = gnome_vfs_method_get (method_string);
+	if (method == NULL) {
+		gnome_vfs_uri_unref (uri);
+		g_free (new_uri_string);
+		return NULL;
 	}
 
+	/* The toplevel URI element is special, as it also contains host/user
+           information.  */
+	uri->method = method;
+	uri->ref_count = 1;
+	uri->method_string = g_strdup (method_string);
+	
+	p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
+	if (p1 == NULL) {
+		set_uri_element (uri, p, strlen (p));
+		g_free (new_uri_string);
+		return uri;
+	}
+
+	set_uri_element (uri, p, p1 - p);
+
+	p2 = p1 + 1;
+		
+	if (*p2 == 0) {
+		gnome_vfs_uri_unref (uri);
+		g_free (new_uri_string);
+		return NULL;
+	}
+	new_uri = parse_uri_substring (p2);
+
+	if (new_uri != NULL)
+		new_uri->parent = uri;
+
+	g_free (new_uri_string);
 	return uri;
 }
 

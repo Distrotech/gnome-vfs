@@ -179,6 +179,9 @@ struct _GnomeVFSToplevelURI {
 	/* Authorization information.  */
 	gchar *user_name;
 	gchar *password;
+
+	/* The parent URN, if it exists */
+	gchar *urn;
 };
 typedef struct _GnomeVFSToplevelURI GnomeVFSToplevelURI;
 

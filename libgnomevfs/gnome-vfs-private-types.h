@@ -205,6 +205,22 @@ struct _GnomeVFSMethod {
 };
 
 
+
+/* VFS Transform */
+
+typedef struct _GnomeVFSTransform GnomeVFSTransform;
+typedef GnomeVFSTransform * (* GnomeVFSTransformInitFunc)(const char *method_name, const char *config_args);
+
+typedef GnomeVFSResult (* GnomeVFSTransformFunc) (GnomeVFSTransform *transform,
+						  const gchar *old_uri,
+						  gchar **new_uri,
+						  GnomeVFSContext *context);
+
+struct _GnomeVFSTransform {
+	GnomeVFSTransformFunc transform;
+};
+
+
 typedef struct _GnomeVFSShellpatternFilter GnomeVFSShellpatternFilter;
 typedef struct _GnomeVFSRegexpFilter GnomeVFSRegexpFilter;
 
