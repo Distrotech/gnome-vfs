@@ -41,7 +41,6 @@
 #include <arpa/ftp.h>
 #include <arpa/telnet.h>
 #include "ftp-method.h"
-#include "util-url.h"
 #include "parse.h"
 
 #define DEFAULT_PORT 21
@@ -1109,7 +1108,7 @@ ftpfs_chdir_internal (ftpfs_connection_t *conn, const char *remote_path)
 		return COMPLETE;
 	
 	p = translate_path (conn, remote_path);
-	r = command (conn, WAIT_REPLY, NULL, 0, "CWD %s", p) / 100;
+	r = command (conn, 1, NULL, 0, "CWD %s", p) / 100;
 	g_free (p);
 	
 	if (r == COMPLETE){
@@ -1323,7 +1322,7 @@ ftpfs_get_current_directory (ftpfs_connection_t *conn)
 {
 	char buf[4096], *bufp, *bufq;
 	
-	if (!(command (conn, NONE, NULL, 0, "PWD") / 100 == COMPLETE &&
+	if (!(command (conn, FALSE, NULL, 0, "PWD") / 100 == COMPLETE &&
 	      get_reply(conn->sock, buf, sizeof(buf)) / 100 == COMPLETE))
 		return NULL;
 	

@@ -1,3 +1,14 @@
+1999-09-11  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/ftp-method.c: Do not #include "util-url.h" anymore.
+
+	* modules/util-url.c: Removed.
+	* modules/util-url.h: Removed.
+
+	* modules/ftp-method.c (ftpfs_chdir_internal): Ooops.  Use `TRUE'
+	instead of `WAIT_REPLY'.
+	(ftpfs_get_current_directory): Use `FALSE' instead of `NONE'.
+
 1999-09-10  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* modules/ftp-method.c: Removed `reply_str' global.  Removed
