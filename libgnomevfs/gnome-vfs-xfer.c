@@ -1862,6 +1862,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 	/* Check and see if target is writable. Return error if it is not. */
 	target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)((GList *)target_uris)->data);
 	result = gnome_vfs_destination_is_writable (target_dir_uri);
+	progress_set_source_target_uris (progress, NULL, target_dir_uri);
 	if (result != GNOME_VFS_OK) {
 		handle_error (&result, progress, &error_mode, &skip);
 		gnome_vfs_uri_unref (target_dir_uri);

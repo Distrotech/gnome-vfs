@@ -873,6 +873,9 @@ main (int argc, char **argv)
 	gnome_init_with_popt_table ("test-vfs", "0.0", argc, argv,
 				    options, 0, &popt_context);
 
+	/* make the stupid "SaveYourself" warning not come up */
+	gnome_client_disconnect (gnome_master_client ());
+
 	if (interactive)
 		vfserr = stderr;
 	else

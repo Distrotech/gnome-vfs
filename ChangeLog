@@ -1,3 +1,20 @@
+2000-10-31  Pavel Cisler  <pavel@eazel.com>
+
+	* AUTHORS:
+	* NEWS:
+	Updates for the upcoming release.
+	
+	* libgnomevfs/gnome-vfs-uri.c:
+	Take out an old FIXME that has been fixed.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_uri_internal):
+	Set up the target uri so that an alert about a target not being 
+	writable can actually display the name.
+
+	* test/test-shell.c: (main):
+	Make the test-shell not cause GConf to display the super-annoying
+	"Failed to respond to the SaveYourself ..." dialogs.
+
 2000-10-31  Gene Z. Ragan  <gzr@eazel.com>
 
 	* modules/cdda-method.c: (cdda_context_new),
@@ -455,7 +472,7 @@
 
 2000-10-23  Pavel Cisler  <pavel@eazel.com>
 
-	More work on 2989, this should conclud the GnomeVFS portion of the work.
+	More work on 2989, this should conclude the GnomeVFS portion of the work.
 
 	* libgnomevfs/gnome-vfs-find-directory.c:
 	Add comments about the meaning of the parameters.

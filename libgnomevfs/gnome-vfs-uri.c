@@ -34,7 +34,6 @@
 #include "gnome-vfs-private.h"
 
 /* FIXME bugzilla.eazel.com 2762: The uri->parent field is always NULL; we should get rid of it. */
-/* FIXME bugzilla.eazel.com 2763: This doesn't handle "../" or "./" like the RFC says it should. */
 
 /* 
    split_toplevel_uri
