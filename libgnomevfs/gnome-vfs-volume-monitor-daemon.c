@@ -62,7 +62,9 @@ static GnomeVFSVolumeMonitorClass *parent_class = NULL;
  * This is also useful for maintaing the non-HAL code on a system with
  * HAL installed.
  */
+#ifdef USE_HAL
 static gboolean dont_use_hald = TRUE;
+#endif /* USE_HAL */
 
 /* Locking strategy:
  *
