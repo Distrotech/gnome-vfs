@@ -228,7 +228,8 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 {
 	EggDesktopEntries *entries;
 	GError *load_error;
-	gchar *filename, *desktop_file_id, **mime_types;
+	gchar *filename, **mime_types;
+	char **desktop_file_ids;
 	int i;
 	struct stat buf;
 	static gchar *allowed_start_groups[] = { "Default Applications", NULL };
@@ -248,7 +249,7 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 	}
 
 	dir->defaults_list_map = g_hash_table_new_full (g_str_hash, g_str_equal,
-							g_free, g_free);
+							g_free, (GDestroyNotify)g_strfreev);
 
 	filename = g_build_filename (dir->path, "defaults.list", NULL);
 
@@ -280,10 +281,11 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 		goto error;
 
 	for (i = 0; mime_types[i] != NULL; i++) {
-		desktop_file_id = egg_desktop_entries_get_string (entries,
-								  "Default Applications",
-								  mime_types[i],
-								  &load_error);
+		desktop_file_ids = egg_desktop_entries_get_string_list (entries,
+								       "Default Applications",
+								       mime_types[i],
+								       NULL,
+								       &load_error);
 		if (load_error != NULL) {
 			g_error_free (load_error);
 			load_error = NULL;
@@ -292,7 +294,7 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 		
 		g_hash_table_replace (dir->defaults_list_map,
 				      g_strdup (mime_types[i]),
-				      desktop_file_id);
+				      desktop_file_ids);
 	}
 
 	g_strfreev (mime_types);
@@ -776,8 +778,10 @@ gchar *
 gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 {
 	gchar *desktop_entry;
+	char **desktop_entries;
 	GList *dir_list;
 	GnomeVFSMimeInfoCacheDir *dir;
+	int i;
 
 	gnome_vfs_mime_info_cache_init ();
 
@@ -793,14 +797,17 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 	desktop_entry = NULL;
 	for (dir_list = mime_info_cache->dirs; dir_list != NULL; dir_list = dir_list->next) {
 		dir = dir_list->data;
-		desktop_entry = g_hash_table_lookup (dir->defaults_list_map,
-						     mime_type);
-		if (desktop_entry != NULL &&
-		    gnome_vfs_mime_info_desktop_entry_is_valid (desktop_entry)) {
-			g_hash_table_insert (mime_info_cache->global_defaults_cache,
-					     g_strdup (mime_type), g_strdup (desktop_entry));
-			G_UNLOCK (mime_info_cache);
-			return g_strdup (desktop_entry);
+		desktop_entries = g_hash_table_lookup (dir->defaults_list_map,
+						       mime_type);
+		for (i = 0; desktop_entries != NULL && desktop_entries[i] != NULL; i++) {
+			desktop_entry = desktop_entries[i];
+			if (desktop_entry != NULL &&
+			    gnome_vfs_mime_info_desktop_entry_is_valid (desktop_entry)) {
+				g_hash_table_insert (mime_info_cache->global_defaults_cache,
+						     g_strdup (mime_type), g_strdup (desktop_entry));
+				G_UNLOCK (mime_info_cache);
+				return g_strdup (desktop_entry);
+			}
 		}
 	}
 	G_UNLOCK (mime_info_cache);
