@@ -728,6 +728,20 @@ gnome_vfs_uri_exists (GnomeVFSURI *uri)
 	return result == GNOME_VFS_OK;
 }
 
+/**
+ * gnome_vfs_monitor_add:
+ * @handle: after the call, @handle will be a pointer to an operation handle
+ * @text_uri: URI to monitor
+ * @monitor_type: add a directory or file monitor
+ * @callback: function to call when the monitor is tripped
+ * @user_data: data to pass to @callback
+ *
+ * Watch the file or directory at @text_uri for changes (or the creation/deletion of the file)
+ * and call @callback when there is a change. If a directory monitor is added, @callback is
+ * notified when any file in the directory changes.
+ *
+ * Return value: an integer representing the success of the operation
+ **/
 GnomeVFSResult 
 gnome_vfs_monitor_add (GnomeVFSMonitorHandle **handle,
                        const gchar *text_uri,
@@ -755,6 +769,14 @@ gnome_vfs_monitor_add (GnomeVFSMonitorHandle **handle,
 	return result;
 }
 
+/**
+ * gnome_vfs_monitor_cancel:
+ * @handle: handle of the monitor to cancel
+ *
+ * Cancel the monitor pointed to be @handle.
+ *
+ * Return value: an integer representing the success of the operation
+ **/
 GnomeVFSResult 
 gnome_vfs_monitor_cancel (GnomeVFSMonitorHandle *handle)
 {

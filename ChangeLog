@@ -1,5 +1,13 @@
 2002-06-16  Seth Nickell  <snickell@stanford.edu>
 
+	* libgnomevfs/gnome-vfs-metadata.gob:
+	* libgnomevfs/gnome-vfs-monitor.h:
+	* libgnomevfs/gnome-vfs-ops.c:
+
+	Add some documentation for metadata and monitoring APIs.
+
+2002-06-16  Seth Nickell  <snickell@stanford.edu>
+
 	* doc/gnome-vfs-docs.sgml:
 	* doc/gnome-vfs-sections.txt:
 	* doc/tmpl/gnome-vfs-async-ops.sgml:
@@ -127,7 +135,6 @@
 	* libgnomevfs/gnome-vfs-module.h:
 	* libgnomevfs/gnome-vfs-ops.c:
 	* libgnomevfs/gnome-vfs-result.c: (gnome_vfs_result_to_string):
-	* libgnomevfs/gnome-vfs-types.h:
 	* libgnomevfs/gnome-vfs-utils.c:
 
 	Document a bunch of functions.
@@ -138,6 +145,9 @@
 	Use noinst_HEADERS instead of including non-installed
 	headers in the source. This makes it easier to find headers
 	that should not be included in documentation.
+
+	* libgnomevfs/gnome-vfs-types.h:
+	Remove deprecated header.
 	
 2002-06-15  Seth Nickell  <snickell@stanford.edu>
 

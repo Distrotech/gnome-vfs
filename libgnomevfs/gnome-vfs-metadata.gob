@@ -12,6 +12,15 @@ requires 1.90.0
 %}
 
 class Gnome:Vfs:Metadata from G:Object {
+  /**
+   * get_string:
+   * @self: Metadata object to get the property of
+   * @key: key to retrieve
+   *
+   * Gets the piece of string metadata associated with @key.
+   *
+   * Return value: the string associated with @key
+   **/
   virtual public char *get_string (self, const char *key) {
     const char *value;
     if (!self->_priv->keys_loaded) self_load_keys (self);
@@ -33,6 +42,15 @@ class Gnome:Vfs:Metadata from G:Object {
     self_save_keys (self);
   }
 
+  /**
+   * get_int:
+   * @self: Metadata object to get the property of
+   * @key: key to retrieve
+   *
+   * Gets the piece of integer metadata associated with @key.
+   *
+   * Return value: the integer associated with @key
+   **/
   virtual public int get_int (self, const char *key) {
     gpointer value;
     if (!self->_priv->keys_loaded) self_load_keys (self);

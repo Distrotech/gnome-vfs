@@ -42,6 +42,18 @@ typedef enum {
 
 typedef struct GnomeVFSMonitorHandle GnomeVFSMonitorHandle;
 
+/**
+ * GnomeVFSMonitorCallback:
+ * @handle: the handle of the monitor that created the event
+ * @monitor_uri: the URI of the monitor that was triggered
+ * @info_uri: the URI of the actual file this event is concerned with (this can be different
+ * from @monitor_uri if it was a directory monitor)
+ * @event_type: what happened to @info_uri
+ * @user_data: user data passed to gnome_vfs_monitor_add() when the monitor was created
+ *
+ * Function called when a monitor detects a change.
+ *
+ **/
 typedef void (* GnomeVFSMonitorCallback) (GnomeVFSMonitorHandle *handle,
                                           const gchar *monitor_uri,
                                           const gchar *info_uri,
