@@ -10,13 +10,13 @@ msgstr ""
 "Last-Translator: Gediminas Paulauskas <menesis@delfi.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-13\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d turi savyje NUL simboliø."
+msgstr "%s:%d turi savyje NUL simboliÅ³."
 
 #: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
@@ -31,12 +31,12 @@ msgstr "%s:%d neturi savyje modulio vardo."
 #: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Konfigûracijos byla ¥%s´ nerasta: %s"
+msgstr "KonfigÅ«racijos byla â€%sâ€œ nerasta: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Neşinomas op tipas %u"
+msgstr "NeÅ¾inomas op tipas %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
@@ -46,7 +46,7 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-job.c:1684
 #, fuzzy, c-format
 msgid "Unknown job kind %u"
-msgstr "Neşinomas job'o ID %d"
+msgstr "NeÅ¾inomas job'o ID %d"
 
 #: libgnomevfs/gnome-vfs-job.c:1717
 msgid "Operation stopped"
@@ -55,16 +55,16 @@ msgstr "Operacija sustabdyta"
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Negalëjau parsinti: %s"
+msgstr "NegalÄ—jau parsinti: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Vëlesnës parsinimo klaidos bus ignoruotos."
+msgstr "VÄ—lesnÄ—s parsinimo klaidos bus ignoruotos."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
-msgstr "Nëra klaidø"
+msgstr "NÄ—ra klaidÅ³"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
@@ -79,7 +79,7 @@ msgstr "Paprasta klaida"
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
-msgstr "Vidinë klaida"
+msgstr "VidinÄ— klaida"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -114,17 +114,17 @@ msgstr ""
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "Byla per didelë"
+msgstr "Byla per didelÄ—"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Kaupiklyje nebëra vietos"
+msgstr "Kaupiklyje nebÄ—ra vietos"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Tik skaitoma bylø sistema"
+msgstr "Tik skaitoma bylÅ³ sistema"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -139,17 +139,17 @@ msgstr "Byla neatidaryta"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Atidarymo bûdas negaliojantis"
+msgstr "Atidarymo bÅ«das negaliojantis"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "Priëjimas uşdraustas"
+msgstr "PriÄ—jimas uÅ¾draustas"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "Per daug atidarytø bylø"
+msgstr "Per daug atidarytÅ³ bylÅ³"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
@@ -179,12 +179,12 @@ msgstr "Byla egzistuoja"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Rasti amşini ciklai nuorodose"
+msgstr "Rasti amÅ¾ini ciklai nuorodose"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "Operacija neleidşiama"
+msgstr "Operacija neleidÅ¾iama"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
@@ -229,22 +229,22 @@ msgstr "Katalogas naudojamas"
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "Katalogas netuğèias"
+msgstr "Katalogas netuÅ¡Äias"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "Per daug nuorodø"
+msgstr "Per daug nuorodÅ³"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Tik skaitoma bylø sistema"
+msgstr "Tik skaitoma bylÅ³ sistema"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Ne toje paèioje bylø sistemoje"
+msgstr "Ne toje paÄioje bylÅ³ sistemoje"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
@@ -270,7 +270,7 @@ msgstr "Protokolo klaida"
 #: libgnomevfs/gnome-vfs-result.c:76
 #, fuzzy
 msgid "Could not find master browser"
-msgstr "Negalëjau parsinti: %s"
+msgstr "NegalÄ—jau parsinti: %s"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
@@ -294,7 +294,7 @@ msgstr ""
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
-msgstr "Neşinoma klaida"
+msgstr "NeÅ¾inoma klaida"
 
 #: libgnomevfs/gnome-vfs-utils.c:84
 msgid "1 byte"
@@ -303,7 +303,7 @@ msgstr "1 baitas"
 #: libgnomevfs/gnome-vfs-utils.c:86
 #, c-format
 msgid "%u bytes"
-msgstr "%u baitø"
+msgstr "%u baitÅ³"
 
 #: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
@@ -327,7 +327,7 @@ msgstr ""
 #: modules/file-method.c:382
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Neşinoma GnomeVFSSeekPosition %d"
+msgstr "NeÅ¾inoma GnomeVFSSeekPosition %d"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -410,7 +410,7 @@ msgid "generic file moniker"
 msgstr "Paprasta klaida"
 
 #~ msgid "3D Studio image"
-#~ msgstr "3D Studio paveikslëlis"
+#~ msgstr "3D Studio paveikslÄ—lis"
 
 #~ msgid "AIFC audio"
 #~ msgstr "AIFC garsas"
@@ -425,10 +425,10 @@ msgstr "Paprasta klaida"
 #~ msgstr "AbiWord dokumentas"
 
 #~ msgid "Adobe FrameMaker font"
-#~ msgstr "Adobe FrameMaker ğriftas"
+#~ msgstr "Adobe FrameMaker Å¡riftas"
 
 #~ msgid "ApplixWare Graphics image"
-#~ msgstr "ApplixWare Graphics paveikslëlis"
+#~ msgstr "ApplixWare Graphics paveikslÄ—lis"
 
 #~ msgid "Applixware Words document"
 #~ msgstr "Applixware Words dokumentas"
@@ -437,25 +437,25 @@ msgstr "Paprasta klaida"
 #~ msgstr "Applixware spreadsheet"
 
 #~ msgid "AutoCAD image"
-#~ msgstr "AutoCAD brëşinys"
+#~ msgstr "AutoCAD brÄ—Å¾inys"
 
 #~ msgid "BCPIO document"
 #~ msgstr "BCPIO dokumentas"
 
 #~ msgid "BDF font"
-#~ msgstr "BDF ğriftas"
+#~ msgstr "BDF Å¡riftas"
 
 #~ msgid "CGI program"
 #~ msgstr "CGI programa"
 
 #~ msgid "CGM image"
-#~ msgstr "CGM paveikslëlis"
+#~ msgstr "CGM paveikslÄ—lis"
 
 #~ msgid "CPIO archive"
 #~ msgstr "CPIO archyvas"
 
 #~ msgid "DOS font"
-#~ msgstr "DOS ğriftas"
+#~ msgstr "DOS Å¡riftas"
 
 #~ msgid "DOS/Windows program"
 #~ msgstr "DOS/Windows programa"
@@ -470,7 +470,7 @@ msgstr "Paprasta klaida"
 #~ msgstr "Dia diagrama"
 
 #~ msgid "GIF image"
-#~ msgstr "GIF paveikslëlis"
+#~ msgstr "GIF paveikslÄ—lis"
 
 #~ msgid "GIMP document"
 #~ msgstr "GIMP dokumentas"
@@ -491,19 +491,19 @@ msgstr "Paprasta klaida"
 #~ msgstr "IDL dokumentas"
 
 #~ msgid "IEF image"
-#~ msgstr "IEF paveikslëlis"
+#~ msgstr "IEF paveikslÄ—lis"
 
 #~ msgid "IFF image"
-#~ msgstr "IFF paveikslëlis"
+#~ msgstr "IFF paveikslÄ—lis"
 
 #~ msgid "ILBM image"
-#~ msgstr "ILBM paveikslëlis"
+#~ msgstr "ILBM paveikslÄ—lis"
 
 #~ msgid "JBuilder Project"
 #~ msgstr "JBuilder Projektas"
 
 #~ msgid "JPEG image"
-#~ msgstr "JPEG paveikslëlis"
+#~ msgstr "JPEG paveikslÄ—lis"
 
 #~ msgid "KIllustrator document"
 #~ msgstr "KIllustrator dokumentas"
@@ -518,7 +518,7 @@ msgstr "Paprasta klaida"
 #~ msgstr "LHARC archyvas"
 
 #~ msgid "LIBGRX font"
-#~ msgstr "LIBGRX ğriftas"
+#~ msgstr "LIBGRX Å¡riftas"
 
 #~ msgid "LightWave object"
 #~ msgstr "LightWave objektas"
@@ -542,10 +542,10 @@ msgstr "Paprasta klaida"
 #~ msgstr "ODA dokumentas"
 
 #~ msgid "PBM image"
-#~ msgstr "PBM paveikslëlis"
+#~ msgstr "PBM paveikslÄ—lis"
 
 #~ msgid "PCF font"
-#~ msgstr "PCF ğriftas"
+#~ msgstr "PCF Å¡riftas"
 
 #~ msgid "PDF document"
 #~ msgstr "PDF dokumentas"
@@ -554,25 +554,25 @@ msgstr "Paprasta klaida"
 #~ msgstr "PEF programa"
 
 #~ msgid "PGM image"
-#~ msgstr "PGM paveikslëlis"
+#~ msgstr "PGM paveikslÄ—lis"
 
 #~ msgid "PN RealAudio document"
 #~ msgstr "PN RealAudio dokumentas"
 
 #~ msgid "PNG image"
-#~ msgstr "PNG paveikslëlis"
+#~ msgstr "PNG paveikslÄ—lis"
 
 #~ msgid "PNM image"
-#~ msgstr "PNM paveikslëlis"
+#~ msgstr "PNM paveikslÄ—lis"
 
 #~ msgid "PPM image"
-#~ msgstr "PPM paveikslëlis"
+#~ msgstr "PPM paveikslÄ—lis"
 
 #~ msgid "Photoshop document"
 #~ msgstr "Photoshop dokumentas"
 
 #~ msgid "PostScript Type 1 font"
-#~ msgstr "PostScript Type 1 ğriftas"
+#~ msgstr "PostScript Type 1 Å¡riftas"
 
 #~ msgid "PostScript document"
 #~ msgstr "PostScript dokumentas"
@@ -590,7 +590,7 @@ msgstr "Paprasta klaida"
 #~ msgstr "README dokumentas"
 
 #~ msgid "RGB image"
-#~ msgstr "RGB paveikslëlis"
+#~ msgstr "RGB paveikslÄ—lis"
 
 #~ msgid "RPM package"
 #~ msgstr "RPM paketas"
@@ -602,7 +602,7 @@ msgstr "Paprasta klaida"
 #~ msgstr "S/MIME byla"
 
 #~ msgid "S/MIME signature"
-#~ msgstr "S/MIME parağas"
+#~ msgstr "S/MIME paraÅ¡as"
 
 #~ msgid "SGML document"
 #~ msgstr "SGML dokumentas"
@@ -617,7 +617,7 @@ msgstr "Paprasta klaida"
 #~ msgstr "Speech dokumentas"
 
 #~ msgid "Speedo font"
-#~ msgstr "Speedo ğriftas"
+#~ msgstr "Speedo Å¡riftas"
 
 #~ msgid "Spreadsheet Interchange document"
 #~ msgstr "Spreadsheet Interchange dokumentas"
@@ -629,13 +629,13 @@ msgstr "Paprasta klaida"
 #~ msgstr "StarOffice Writer dokumentas"
 
 #~ msgid "SunOS News font"
-#~ msgstr "SunOS News ğriftas"
+#~ msgstr "SunOS News Å¡riftas"
 
 #~ msgid "TIFF image"
-#~ msgstr "TIFF paveikslëlis"
+#~ msgstr "TIFF paveikslÄ—lis"
 
 #~ msgid "TarGA image"
-#~ msgstr "TarGA paveikslëlis"
+#~ msgstr "TarGA paveikslÄ—lis"
 
 #~ msgid "TeX document"
 #~ msgstr "TeX dokumentas"
@@ -644,7 +644,7 @@ msgstr "Paprasta klaida"
 #~ msgstr "TeX dvi dokumentas"
 
 #~ msgid "TeX font"
-#~ msgstr "TeX ğriftas"
+#~ msgstr "TeX Å¡riftas"
 
 #~ msgid "TeXInfo document"
 #~ msgstr "TeXInfo dokumentas"
@@ -653,13 +653,13 @@ msgstr "Paprasta klaida"
 #~ msgstr "ToutDoux dokumentas"
 
 #~ msgid "TrueType font"
-#~ msgstr "TrueType ğriftas"
+#~ msgstr "TrueType Å¡riftas"
 
 #~ msgid "Unidata netCDF document"
 #~ msgstr "Unidata netCDF dokumentas"
 
 #~ msgid "V font"
-#~ msgstr "V ğriftas"
+#~ msgstr "V Å¡riftas"
 
 #~ msgid "VRML document"
 #~ msgstr "VRML dokumentas"
@@ -668,19 +668,19 @@ msgstr "Paprasta klaida"
 #~ msgstr "WordPerfect dokumentas"
 
 #~ msgid "X bitmap image"
-#~ msgstr "X bitmap paveikslëlis"
+#~ msgstr "X bitmap paveikslÄ—lis"
 
 #~ msgid "X window image"
-#~ msgstr "X window paveikslëlis"
+#~ msgstr "X window paveikslÄ—lis"
 
 #~ msgid "XML document"
 #~ msgstr "XML dokumentas"
 
 #~ msgid "XPM image"
-#~ msgstr "XPM paveikslëlis"
+#~ msgstr "XPM paveikslÄ—lis"
 
 #~ msgid "address card"
-#~ msgstr "adreso kortelë"
+#~ msgstr "adreso kortelÄ—"
 
 #~ msgid "ar archive"
 #~ msgstr "ar archyvas"
@@ -689,19 +689,19 @@ msgstr "Paprasta klaida"
 #~ msgstr "arj archyvas"
 
 #~ msgid "authors list"
-#~ msgstr "autoriø sàrağas"
+#~ msgstr "autoriÅ³ sÄ…raÅ¡as"
 
 #~ msgid "directory information file"
 #~ msgstr "katalogo informacijos byla"
 
 #~ msgid "email headers"
-#~ msgstr "el. pağto antrağtës"
+#~ msgstr "el. paÅ¡to antraÅ¡tÄ—s"
 
 #~ msgid "email message"
-#~ msgstr "el. pağto laiğkas"
+#~ msgstr "el. paÅ¡to laiÅ¡kas"
 
 #~ msgid "encrypted message"
-#~ msgstr "uşğifruotas laiğkas"
+#~ msgstr "uÅ¾Å¡ifruotas laiÅ¡kas"
 
 #~ msgid "gtar archive"
 #~ msgstr "gtar archyvas"
@@ -710,16 +710,16 @@ msgstr "Paprasta klaida"
 #~ msgstr "pagalbos puslapis"
 
 #~ msgid "multi-part message"
-#~ msgstr "keliø daliø laiğkas"
+#~ msgstr "keliÅ³ daliÅ³ laiÅ¡kas"
 
 #~ msgid "search results"
-#~ msgstr "paieğkos rezultatai"
+#~ msgstr "paieÅ¡kos rezultatai"
 
 #~ msgid "signed message"
-#~ msgstr "pasirağytas laiğkas"
+#~ msgstr "pasiraÅ¡ytas laiÅ¡kas"
 
 #~ msgid "symbolic link"
-#~ msgstr "simbolinë nuoroda"
+#~ msgstr "simbolinÄ— nuoroda"
 
 #~ msgid "tar archive"
 #~ msgstr "tar archyvas"
@@ -731,7 +731,7 @@ msgstr "Paprasta klaida"
 #~ msgstr "troff dokumentas"
 
 #~ msgid "unknown type"
-#~ msgstr "neşinomas tipas"
+#~ msgstr "neÅ¾inomas tipas"
 
 #~ msgid "zip archive"
 #~ msgstr "zip archyvas"
@@ -743,31 +743,31 @@ msgstr "Paprasta klaida"
 #~ msgstr "GNOME VFS jau inicializuota."
 
 #~ msgid "Dying."
-#~ msgstr "Mirğtu."
+#~ msgstr "MirÅ¡tu."
 
 #~ msgid "Error reading: %s"
 #~ msgstr "Klaida skaitant: %s"
 
 #~ msgid "Error writing: %s"
-#~ msgstr "Klaida rağant: %s"
+#~ msgstr "Klaida raÅ¡ant: %s"
 
 #~ msgid "Cannot write: %s"
-#~ msgstr "Negaliu rağyti: %s"
+#~ msgstr "Negaliu raÅ¡yti: %s"
 
 #~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Negaliu sukurti laikinos bylos vardu ¥%s´"
+#~ msgstr "Negaliu sukurti laikinos bylos vardu â€%sâ€œ"
 
 #~ msgid "Cannot create socket: %s"
 #~ msgstr "Negaliu sukurti lizdo: %s"
 
 #~ msgid "Cannot bind `%s': %s"
-#~ msgstr "Negaliu susieti ¥%s´: %s"
+#~ msgstr "Negaliu susieti â€%sâ€œ: %s"
 
 #~ msgid "Cannot listen on `%s': %s"
-#~ msgstr "Negaliu klausytis per ¥%s´: %s"
+#~ msgstr "Negaliu klausytis per â€%sâ€œ: %s"
 
 #~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Negaliu priimti prisijungimø per ¥%s´: %s"
+#~ msgstr "Negaliu priimti prisijungimÅ³ per â€%sâ€œ: %s"
 
 #~ msgid "Cannot initialize CORBA."
 #~ msgstr "Negaliu inicializuoti CORBA."
@@ -776,32 +776,32 @@ msgstr "Paprasta klaida"
 #~ msgstr "Vartojimas: %s <ior> [<ior_fd>]\n"
 
 #~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "Gauta keista eilutë iğ vaikinio proceso: ¥%s´"
+#~ msgstr "Gauta keista eilutÄ— iÅ¡ vaikinio proceso: â€%sâ€œ"
 
 #~ msgid "Cannot get object for `%s'"
-#~ msgstr "Negaliu gauti objekto, skirto ¥%s´"
+#~ msgstr "Negaliu gauti objekto, skirto â€%sâ€œ"
 
 #~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Negaliu nuşudyti GNOME::VFS::Slave::Notify -- iğimtis %s"
+#~ msgstr "Negaliu nuÅ¾udyti GNOME::VFS::Slave::Notify -- iÅ¡imtis %s"
 
 #~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "Negaliu prijungti lizdo ¥%s´: %s"
+#~ msgstr "Negaliu prijungti lizdo â€%sâ€œ: %s"
 
 #~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 #~ msgstr "Negaliu inicializuoti GNOME::VFS:Slave::Notify"
 
 #, fuzzy
 #~ msgid "Can open multiple files"
-#~ msgstr "Per daug atidarytø bylø"
+#~ msgstr "Per daug atidarytÅ³ bylÅ³"
 
 #~ msgid "%s to retrieve"
-#~ msgstr "%s, kurá parsiøsti"
+#~ msgstr "%s, kurÄ¯ parsiÅ³sti"
 
 #~ msgid "Closing connection to %s"
-#~ msgstr "Uşdarau jungtá su %s"
+#~ msgstr "UÅ¾darau jungtÄ¯ su %s"
 
 #~ msgid "%s of %s read"
-#~ msgstr "%s iğ %s perskaityti"
+#~ msgstr "%s iÅ¡ %s perskaityti"
 
 #~ msgid "%s read"
 #~ msgstr "%s perskaityti"
@@ -816,10 +816,10 @@ msgstr "Paprasta klaida"
 
 #, fuzzy
 #~ msgid "Unknown sort rule %d"
-#~ msgstr "Neşinomas job'o ID %d"
+#~ msgstr "NeÅ¾inomas job'o ID %d"
 
 #~ msgid "HTTP server returned an invalid PROPFIND response"
-#~ msgstr "HTTP serveris gràşino negalimà PROPFIND atsakymà"
+#~ msgstr "HTTP serveris grÄ…Å¾ino negalimÄ… PROPFIND atsakymÄ…"
 
 #~ msgid "ftpfs: Invalid host name."
 #~ msgstr "ftpfs: Negaliojantis hosto vardas."
@@ -837,16 +837,16 @@ msgstr "Paprasta klaida"
 #~ msgstr "ftpfs: prisijungimas prie serverio nepavyko: %s"
 
 #~ msgid "Waiting to retry... %d (Control-C to cancel)"
-#~ msgstr "Laukiu kito bandymo... %d (Control-C atğaukti)"
+#~ msgstr "Laukiu kito bandymo... %d (Control-C atÅ¡aukti)"
 
 #~ msgid " FTP: Password required for "
-#~ msgstr " FTP: Slaptaşodis reikalingas "
+#~ msgstr " FTP: SlaptaÅ¾odis reikalingas "
 
 #~ msgid "ftpfs: sending login name"
-#~ msgstr "ftpfs: siunèiu prisijungimo vardà"
+#~ msgstr "ftpfs: siunÄiu prisijungimo vardÄ…"
 
 #~ msgid "ftpfs: sending user password"
-#~ msgstr "ftpfs: siunèiu vartotojo slaptaşodá"
+#~ msgstr "ftpfs: siunÄiu vartotojo slaptaÅ¾odÄ¯"
 
 #~ msgid "ftpfs: logged in"
 #~ msgstr "ftpfs: prisijungta"
@@ -855,7 +855,7 @@ msgstr "Paprasta klaida"
 #~ msgstr "ftpfs: neteisingas prisijungimas vartotojui %s"
 
 #~ msgid "ftpfs: aborting transfer."
-#~ msgstr "ftpfs: nutraukiu siuntimà."
+#~ msgstr "ftpfs: nutraukiu siuntimÄ…."
 
 #~ msgid "ftpfs: abort error: %s"
 #~ msgstr "ftpfs: nutraukimo klaida: %s"
@@ -864,37 +864,37 @@ msgstr "Paprasta klaida"
 #~ msgstr "ftpfs: nutraukimas nepavyko"
 
 #~ msgid "ftpfs: could not setup passive mode"
-#~ msgstr "ftpfs: negalëjau pereiti á pasyvø reşimà"
+#~ msgstr "ftpfs: negalÄ—jau pereiti Ä¯ pasyvÅ³ reÅ¾imÄ…"
 
 #~ msgid "ftpfs: storing file %d (%d)"
-#~ msgstr "ftpfs: árağau bylà %d (%d)"
+#~ msgstr "ftpfs: Ä¯raÅ¡au bylÄ… %d (%d)"
 
 #~ msgid "ftpfs: CWD failed."
 #~ msgstr "ftpfs: CWD nepavyko."
 
 #~ msgid "ftpfs: couldn't resolve symlink"
-#~ msgstr "ftpfs: negalëjau atsekti symlinko"
+#~ msgstr "ftpfs: negalÄ—jau atsekti symlinko"
 
 #~ msgid "Resolving symlink..."
-#~ msgstr "Atseku symlinkà..."
+#~ msgstr "Atseku symlinkÄ…..."
 
 #~ msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-#~ msgstr "ftpfs: Skaitau FTP katalogà %s... (nenaudok UNIX ls pasirinkèiø)"
+#~ msgstr "ftpfs: Skaitau FTP katalogÄ… %s... (nenaudok UNIX ls pasirinkÄiÅ³)"
 
 #~ msgid "ftpfs: Reading FTP directory %s..."
-#~ msgstr "ftpfs: Skaitau FTP katalogà %s..."
+#~ msgstr "ftpfs: Skaitau FTP katalogÄ… %s..."
 
 #~ msgid "ftpfs: reading FTP directory interrupt by user"
 #~ msgstr "ftpfs: FTP katalogo skaitymas nutrauktas vartotojo"
 
 #~ msgid "ftpfs: got listing"
-#~ msgstr "ftpfs: gavau sàrağà"
+#~ msgstr "ftpfs: gavau sÄ…raÅ¡Ä…"
 
 #~ msgid "ftpfs: failed; nowhere to fallback to"
-#~ msgstr "ftpfs: nepavyko; nëra kur besugráşti"
+#~ msgstr "ftpfs: nepavyko; nÄ—ra kur besugrÄ¯Å¾ti"
 
 #~ msgid "Starting linear transfer..."
-#~ msgstr "Pradedu tiesiná siuntimà..."
+#~ msgstr "Pradedu tiesinÄ¯ siuntimÄ…..."
 
 #~ msgid "Preparing reget..."
-#~ msgstr "Paruoğiu gavimo pratæsimà..."
+#~ msgstr "ParuoÅ¡iu gavimo pratÄ™simÄ…..."
