@@ -14,7 +14,7 @@ CPPFLAGS =					\
 	-DPREFIX=\"$(prefix)\"
 
 EXTRA_DIST =					\
-	modules.conf
+	default-modules.conf
 
 
 ###  Module setup
@@ -118,4 +118,3 @@ libvfs_translate_la_SOURCES =			\
 	translate-method.c
 libvfs_translate_la_LDFLAGS = $(module_flags)
 libvfs_translate_la_LIBADD  = $(GLIB_LIBS)
-

@@ -1,6 +1,6 @@
 AC_INIT(libgnomevfs/gnome-vfs.h)
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-vfs, 0.0)
+AM_INIT_AUTOMAKE(gnome-vfs, 0.1)
 AM_ACLOCAL_INCLUDE(macros)
 
 AM_MAINTAINER_MODE
@@ -60,7 +60,7 @@ AC_SUBST(VFSPTHREAD_LIBS)
 
 dnl Default backend (CORBA for now).
 if test -z "$default_backend"; then
-	default_backend="corba"
+	default_backend="pthread"
 fi
 AC_DEFINE_UNQUOTED(GNOME_VFS_DEFAULT_BACKEND, "$default_backend")
 

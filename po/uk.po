@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-02-09 12:13+0200\n"
+"POT-Creation-Date: 2000-02-21 16:53-0500\n"
 "PO-Revision-Date: 1999-12-28 13:44+0200\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -13,22 +13,22 @@ msgstr ""
 "Content-Type: text/plain; charset=koi8-u\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: libgnomevfs/gnome-vfs-configuration.c:186
+#: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d м╕стить символи NUL."
 
-#: libgnomevfs/gnome-vfs-configuration.c:203
+#: libgnomevfs/gnome-vfs-configuration.c:204
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d не м╕стить назви методу."
 
-#: libgnomevfs/gnome-vfs-configuration.c:232
+#: libgnomevfs/gnome-vfs-configuration.c:233
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d не м╕стить назви модулю."
 
-#: libgnomevfs/gnome-vfs-configuration.c:284
+#: libgnomevfs/gnome-vfs-configuration.c:285
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Не знайдено конф╕гурац╕йного файлу \"%s\": %s"
@@ -264,133 +264,129 @@ msgstr "%.1fM"
 msgid "%.1fG"
 msgstr "%.1fG"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:333
+#: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
 msgstr ""
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:498
+#: libgnomevfs-corba/gnome-vfs-slave.c:501
 #, c-format
 msgid "Error reading: %s"
 msgstr "Помилка зситування: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:520
+#: libgnomevfs-corba/gnome-vfs-slave.c:523
 #, c-format
 msgid "Error writing: %s"
 msgstr "Помилка запису: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:569
+#: libgnomevfs-corba/gnome-vfs-slave.c:572
 #, c-format
 msgid "Cannot write: %s"
 msgstr "Неможливо записати: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:597
+#: libgnomevfs-corba/gnome-vfs-slave.c:600
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Неможливо створити тимчасовий файл \"%s\""
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:195
-#: libgnomevfs-corba/gnome-vfs-slave.c:611
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:193
+#: libgnomevfs-corba/gnome-vfs-slave.c:614
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "Неможливо створити сокет: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:629
+#: libgnomevfs-corba/gnome-vfs-slave.c:632
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "Неможливо зв'язати \"%s\": %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:636
+#: libgnomevfs-corba/gnome-vfs-slave.c:639
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "Неможливе прослуховування на \"%s\": %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:658
+#: libgnomevfs-corba/gnome-vfs-slave.c:661
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Неможливо прийняти з'╓днання на \"%s\": %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1376
+#: libgnomevfs-corba/gnome-vfs-slave.c:1379
 msgid "Cannot initialize CORBA."
 msgstr "Неможливо ╕н╕ц╕ал╕зувати CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1383
+#: libgnomevfs-corba/gnome-vfs-slave.c:1386
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1390
+#: libgnomevfs-corba/gnome-vfs-slave.c:1393
 msgid "Cannot activate POA manager."
 msgstr "Неможливо актив╕зувати менеджер POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1414
+#: libgnomevfs-corba/gnome-vfs-slave.c:1418
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Використання: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1425
+#: libgnomevfs-corba/gnome-vfs-slave.c:1429
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Неможливо в╕дкрити файловий дескриптор %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1448
+#: libgnomevfs-corba/gnome-vfs-slave.c:1452
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1458
+#: libgnomevfs-corba/gnome-vfs-slave.c:1462
 msgid "Cannot setup Request object."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1465
+#: libgnomevfs-corba/gnome-vfs-slave.c:1469
 msgid "Cannot extract IOR."
 msgstr "Неможливо отримати IOR."
 
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:176
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #, c-format
 msgid "Got weird string from the slave process: `%s'"
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:183
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:128
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:126
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
 msgstr "Неможливо знищити GNOME::VFS::Slave::Notify -- виключення %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:206
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
 #, c-format
 msgid "Cannot connect socket `%s': %s"
 msgstr "Неможливо з'╓днати сокет \"%s\": %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:785
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Неможливо ╕н╕ц╕ал╕зувати GNOME::VFS:Slave::Notify"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:121
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:124
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:137
-msgid "Destroying slave."
-msgstr ""
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:158
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
 msgstr "Не вдалося знищити GNOME::VFS::Slave %s -- виключення %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:161
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "Не вдалося знищити GNOME::VFS::Slave (нев╕домий IOR) -- виключення %s"
@@ -532,27 +528,27 @@ msgstr "Початок л╕н╕йно╖ передач╕..."
 msgid "Preparing reget..."
 msgstr "П╕дготування reget..."
 
-#: modules/http-method.c:474
+#: modules/http-method.c:471
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Нев╕рний заголовок \"%s\""
 
-#: modules/http-method.c:491
+#: modules/http-method.c:488
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s для в╕дновлення"
 
-#: modules/http-method.c:604
+#: modules/http-method.c:601
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Закриття з'╓днання з %s"
 
-#: modules/http-method.c:689
+#: modules/http-method.c:686
 #, c-format
 msgid "%s of %s read"
 msgstr "%s з %s зчитано"
 
-#: modules/http-method.c:692
+#: modules/http-method.c:689
 #, c-format
 msgid "%s read"
 msgstr "%s зчитано"
