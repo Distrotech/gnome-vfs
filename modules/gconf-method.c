@@ -140,7 +140,7 @@ directory_handle_destroy (DirectoryHandle *handle)
         g_free (handle);
 }
 
-static void 
+static GnomeVFSResult 
 set_mime_type_value (GnomeVFSFileInfo *info,
                      const GConfValue *value,
                      GnomeVFSFileInfoOptions options)
@@ -179,14 +179,18 @@ set_mime_type_value (GnomeVFSFileInfo *info,
         }
 
         info->mime_type = g_strdup (mime_type);
+
+	return GNOME_VFS_OK;
 }
 
-static void
+static GnomeVFSResult
 set_mime_type_dir (GnomeVFSFileInfo *info,
                    const gchar *dirname,
                    GnomeVFSFileInfoOptions options)
 {
         info->mime_type = g_strdup ("special/directory");
+
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -240,7 +244,8 @@ get_value_size (const GConfValue *value, GnomeVFSFileSize *size)
 		break;
 	case G_CONF_VALUE_LIST :
                 *size = 0;
-		/* FIXME: This could be optimized */
+		/* FIXME: This could be optimized, and may be a problem with
+                 * huge lists. */
 		values = value->d.list_data.list;
 		while (values != NULL) {
 			result = get_value_size ((GConfValue*)values->data,
@@ -273,8 +278,6 @@ get_value_size (const GConfValue *value, GnomeVFSFileSize *size)
 	
 	return GNOME_VFS_OK;
 }
-
-
 	
 static GnomeVFSResult
 set_stat_info_value (GnomeVFSFileInfo *info,
@@ -308,7 +311,7 @@ set_stat_info_value (GnomeVFSFileInfo *info,
 	return GNOME_VFS_OK;
 }
 
-static void
+static GnomeVFSResult
 set_stat_info_dir (GnomeVFSFileInfo *info,
                    GnomeVFSFileInfoOptions options)
 {
@@ -330,6 +333,8 @@ set_stat_info_dir (GnomeVFSFileInfo *info,
         info->is_suid = FALSE;
         info->is_sgid = FALSE;
         info->has_sticky_bit = FALSE;
+
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -413,13 +418,17 @@ file_info_value (GnomeVFSFileInfo *info,
                  GConfValue *value,
                  const char *key)
 {
-        info->name = g_strdup (key);
-        set_stat_info_value (info, value, options);
+        GnomeVFSResult result;
+
+	info->name = g_strdup (key);
+        result = set_stat_info_value (info, value, options);
+	
+	if (result != GNOME_VFS_OK) return result;
         
         if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
-                set_mime_type_value (info, value, options);
-        
-        return GNOME_VFS_OK;
+                result = set_mime_type_value (info, value, options);
+
+        return result;
 }
 
 static GnomeVFSResult
@@ -427,13 +436,18 @@ file_info_dir (GnomeVFSFileInfo *info,
                GnomeVFSFileInfoOptions options,
                gchar *dirname)
 {
+	GnomeVFSResult result;
+	
         info->name = g_strdup (dirname);
-        set_stat_info_dir (info, options);
+        
+	result = set_stat_info_dir (info, options);
+
+	if (result != GNOME_VFS_OK) return result;
 
         if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
-                set_mime_type_dir (info, dirname, options);
+                result = set_mime_type_dir (info, dirname, options);
         
-        return GNOME_VFS_OK;
+        return result;
 }
 
         
@@ -442,7 +456,7 @@ read_directory (DirectoryHandle *handle,
 		GnomeVFSFileInfo *file_info,
 		gboolean *skip)
 {
-        GnomeVFSResult retval;
+        GnomeVFSResult result;
         GSList *tmp;
 	const GnomeVFSDirectoryFilter *filter;
 	GnomeVFSDirectoryFilterNeeds filter_needs;
@@ -460,21 +474,25 @@ read_directory (DirectoryHandle *handle,
 	/* Get the next key info */
         if (handle->subdirs != NULL) {
                 gchar *dirname = handle->subdirs->data;
-                retval = file_info_dir (file_info, handle->options, dirname);
+                result = file_info_dir (file_info, handle->options, dirname);
                 g_free (handle->subdirs->data);
                 tmp = g_slist_next (handle->subdirs);
                 g_slist_free_1 (handle->subdirs);
                 handle->subdirs = tmp;
         } else if (handle->pairs != NULL) {
                 GConfEntry *pair = handle->pairs->data;
-                retval = file_info_value (file_info, handle->options,
+                result = file_info_value (file_info, handle->options,
                                           pair->value, pair->key);
                 g_free (handle->pairs->data);
                 tmp = g_slist_next (handle->subdirs);
                 g_slist_free_1 (handle->pairs);
                 handle->pairs = tmp;
         } else {
-		return GNOME_VFS_ERROR_EOF;
+		result = GNOME_VFS_ERROR_EOF;
+	}
+	
+	if (result != GNOME_VFS_OK) {
+		return result;
 	}
 	
 	/* Filter the file */
@@ -493,9 +511,8 @@ read_directory (DirectoryHandle *handle,
 		filter_called = TRUE;
 	}
 
-	return retval;
+	return result;
 }
-
 
 static GnomeVFSResult 
 do_read_directory (GnomeVFSMethodHandle *method_handle,

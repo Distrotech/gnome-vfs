@@ -1,5 +1,15 @@
 1999-09-01  Dave Camp  <campd@oit.edu>
 
+	* modules/gconf-method.c (set_mime_type_value): Return a 
+	GnomeVFSResult, check return value of calls.
+	(set_mime_type_dir): Ditto.
+	(set_stat_info_dir): Ditto.
+	(file_info_value): Ditto.
+	(file_info_dir): Ditto.
+	(read_directory): Ditto.
+
+1999-09-01  Dave Camp  <campd@oit.edu>
+
 	* configure.in: Check for GConf.
 
 	* modules/Makefile.am: Build libgconf.la if HAVE_GCONF is set.
