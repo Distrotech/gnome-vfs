@@ -1,3 +1,7 @@
+2001-10-29  Christian Rose  <menthos@menthos.com>
+
+	* sv.po: Updated Swedish translation.
+
 2001-10-25  Christophe Merlet  <redfox@eikonex.org>
 
 	* fr.po: Updated French translation.
@@ -44,20 +48,6 @@
 
 	* hu.po: Updated Hungarian translation.
 
-2001-08-14  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.39.
-
-2001-08-08  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.39.
-
-2001-08-08  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.39.
-	* cat-id-tbl.c: Remove file.
-	* stamp-cat-id: Remove file.
-
 2001-08-03  Seth Nickell  <snickell@stanford.edu>
 
 	reviewed by: <delete if not using a buddy>
@@ -95,10 +85,6 @@
 
 	* de.po: Updated German translation.
 
-2001-07-23  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.37.
-
 2001-07-17  Stanislav Visnovsky  <visnovsky@nenya.ms.mff.cuni.cz>
 
 	* sk.po: Updated Slovak translation.
@@ -114,32 +100,6 @@
 2001-07-08  Akira TAGOH  <tagoh@gnome.gr.jp>
 
 	* Updated Japanese translation.
-
-2001-07-02  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.37.
-
-2001-07-02  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.37.
-
-2001-07-02  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.37.
-
-2001-07-02  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.37.
-
-2001-07-02  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.37.
-
-2001-07-02  gettextize  <bug-gnu-utils@gnu.org>
-
-	* Makefile.in.in: Upgrade to gettext-0.10.37.
-	* cat-id-tbl.c: Remove file.
-	* stamp-cat-id: Remove file.
 
 2001-07-02  Christopher R. Gabriel  <cgabriel@softwarelibero.org>
 
