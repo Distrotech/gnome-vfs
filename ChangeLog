@@ -1,3 +1,8 @@
+2000-07-28  Christophe Merlet  <christophe@merlet.net>
+
+	* mime-type-capplet/nautilus-mime-type.desktop: Added the
+	French strings.
+
 2000-09-27  Mike Fleming  <mfleming@eazel.com>
 
 	get_file_info now makes a PROPFIND before a HEAD request, and does not
