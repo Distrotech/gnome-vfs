@@ -342,10 +342,9 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 				GnomeVFSAsyncDirectoryLoadCallback callback,
 				gpointer callback_data)
 {
-	GnomeVFSAsyncDirectoryOpInfo *op_info;
-	GNOME_VFS_Slave_DirectoryFilter *my_filter;
-	GNOME_VFS_Slave_DirectorySortRuleList *my_sort_rules;
-	GNOME_VFS_MetadataKeyList *my_meta_keys;
+	GNOME_VFS_Slave_DirectoryFilter my_filter;
+	GNOME_VFS_Slave_DirectorySortRuleList my_sort_rules;
+	GNOME_VFS_MetadataKeyList my_meta_keys;
 	GnomeVFSSlaveProcess *slave;
 	guint num_meta_keys, num_sort_rules;
 	guint i;
@@ -367,6 +366,8 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	slave->callback = callback;
 	slave->callback_data = callback_data;
 
+#if 0
+	GnomeVFSAsyncDirectoryOpInfo *op_info;
 	op_info = &slave->op_info.directory;
 
 	op_info->list = NULL;
@@ -378,45 +379,36 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 		for (i = 0; i < num_meta_keys; i++)
 			op_info->meta_keys[i] = g_strdup (meta_keys[i]);
 	}
+#endif
 
 	/* Prepare the CORBA parameters.  */
 
-	my_meta_keys = GNOME_VFS_MetadataKeyList__alloc ();
-	my_meta_keys->_length = my_meta_keys->_maximum = num_meta_keys;
-	my_meta_keys->_buffer = meta_keys;
+	my_meta_keys._length = my_meta_keys._maximum = num_meta_keys;
+	my_meta_keys._buffer = meta_keys;
+	CORBA_sequence_set_release (&my_meta_keys, FALSE);
 
-	my_filter = GNOME_VFS_Slave_DirectoryFilter__alloc ();
-	my_filter->type = filter_type;
-	my_filter->options = filter_options;
+	my_filter.type = filter_type;
+	my_filter.options = filter_options;
 	if (filter_pattern == NULL)
-		my_filter->pattern = CORBA_string_dup ("");
+		my_filter.pattern = "";
 	else
-		my_filter->pattern = CORBA_string_dup (filter_pattern);
+		my_filter.pattern = filter_pattern;
 
-	my_sort_rules = GNOME_VFS_Slave_DirectorySortRuleList__alloc ();
-	my_sort_rules->_length = my_sort_rules->_maximum = num_sort_rules;
-	my_sort_rules->_buffer
-		= CORBA_sequence_GNOME_VFS_Slave_DirectorySortRule_allocbuf
-			(num_sort_rules);
-	for (i = 0; i < num_sort_rules; i++)
-		my_sort_rules->_buffer[i] = sort_rules[i];
-	CORBA_sequence_set_release (my_sort_rules, TRUE);
+	my_sort_rules._length = my_sort_rules._maximum = num_sort_rules;
+	my_sort_rules._buffer = sort_rules;
+	CORBA_sequence_set_release (&my_sort_rules, FALSE);
 
 	/* Here we go...  */
 
 	GNOME_VFS_Slave_Request_load_directory (slave->request_objref,
 						uri,
 						options,
-						my_meta_keys,
-						my_filter,
-						my_sort_rules,
+						&my_meta_keys,
+						&my_filter,
+						&my_sort_rules,
 						reverse_order,
 						items_per_notification,
 						&slave->ev);
-
-	CORBA_free (my_meta_keys);
-	CORBA_free (my_filter);
-	CORBA_free (my_sort_rules);
 
 	if (slave->ev._major != CORBA_NO_EXCEPTION) {
 		gnome_vfs_slave_process_destroy (slave);
@@ -468,11 +460,13 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 		      GnomeVFSAsyncXferProgressCallback progress_callback,
 		      gpointer data)
 {
-	GNOME_VFS_Slave_FileNameList *corba_source_list;
-	GNOME_VFS_Slave_FileNameList *corba_target_list;
+	GNOME_VFS_Slave_FileNameList corba_source_list;
+	GNOME_VFS_Slave_FileNameList corba_target_list;
 	GnomeVFSXferProgressInfo *progress_info;
 	GnomeVFSAsyncXferOpInfo *op_info;
 	GnomeVFSSlaveProcess *slave;
+	int i;
+	GSList *cur;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (source_dir != NULL, GNOME_VFS_ERROR_BADPARAMS);
@@ -484,12 +478,20 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	if (slave == NULL)
 		return GNOME_VFS_ERROR_INTERNAL;
 
-	corba_source_list = g_list_to_file_name_list (source_name_list);
-	corba_target_list = g_list_to_file_name_list (target_name_list);
+	corba_source_list._length = g_list_length(source_name_list);
+	corba_source_list._buffer = alloca(corba_source_list._length * sizeof(char *));
+	for(i = 0, cur = source_name_list; i < corba_source_list._length; i++, cur = cur->next) {
+		corba_source_list._buffer[i] = cur->data;
+	}
+	corba_target_list._length = g_list_length(target_name_list);
+	corba_target_list._buffer = alloca(corba_target_list._length * sizeof(char *));
+	for(i = 0, cur = target_name_list; i < corba_target_list._length; i++, cur = cur->next) {
+		corba_target_list._buffer[i] = cur->data;
+	}
 
 	GNOME_VFS_Slave_Request_xfer (slave->request_objref,
-				      source_dir, corba_source_list,
-				      target_dir, corba_target_list,
+				      source_dir, &corba_source_list,
+				      target_dir, &corba_target_list,
 				      xfer_options, overwrite_mode,
 				      &slave->ev);
 
@@ -519,9 +521,6 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	progress_info->file_size = 0;
 	progress_info->bytes_copied = 0;
 	progress_info->total_bytes_copied = 0;
-
-	CORBA_free (corba_source_list);
-	CORBA_free (corba_target_list);
 
 	*handle_return = (GnomeVFSAsyncHandle *) slave;
 

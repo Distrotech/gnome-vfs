@@ -1,5 +1,8 @@
 1999-11-29  Elliot Lee  <sopwith@redhat.com>
 
+	* libgnomevfs-corba/*.c: Don't __alloc() buffers for temporary usage only.
+	* libgnomevfs/gnome-vfs-cancellation.c (gnome_vfs_cancellation_cancel): Now guaranteed signal-safe.
+
 	* libgnomevfs/gnome-vfs-method.c: If init_path_list() has already been called, return TRUE to indicate success.
 
 	* libgnomevfs/gnome-vfs-result.c: I declare the errno->GnomeVFSResult translation function "complete enough".

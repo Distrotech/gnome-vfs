@@ -244,28 +244,25 @@ impl_FileHandle_read (PortableServer_Servant servant,
 		      const CORBA_unsigned_long count,
 		      CORBA_Environment *ev)
 {
-	GNOME_VFS_Buffer *buffer;
+	GNOME_VFS_Buffer buffer;
 	GnomeVFSHandle *handle;
 	GnomeVFSResult result;
 	GnomeVFSFileOffset bytes_read;
 
 	handle = ((FileHandleServant *) servant)->handle;
 
-	buffer = GNOME_VFS_Buffer__alloc ();
-	buffer->_buffer = CORBA_sequence_CORBA_octet_allocbuf (count);
-	buffer->_maximum = count;
-	CORBA_sequence_set_release (buffer, TRUE);
+	buffer._buffer = alloca(count);
+	buffer._length = count;
+	CORBA_sequence_set_release (&buffer, FALSE);
 
-	result = gnome_vfs_read (handle, buffer->_buffer, count, &bytes_read);
+	result = gnome_vfs_read (handle, buffer._buffer, count, &bytes_read);
 
-	buffer->_length = bytes_read;
+	buffer._length = bytes_read;
 
 	GNOME_VFS_Slave_Notify_read (notify_objref,
 				     (GNOME_VFS_Result) result,
-				     buffer,
+				     &buffer,
 				     ev);
-
-	CORBA_free (buffer);
 }
 
 static void
