@@ -1,3 +1,12 @@
+2000-06-08  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_get_basename),
+	(gnome_vfs_uri_extract_short_path_name):
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_escape_string),
+	(gnome_vfs_unescape_string), (gnome_vfs_unescape_for_display):
+	Added code to handle NULL for the text of a URI. The old code
+	would overreact and segfault.
+
 2000-06-08  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c

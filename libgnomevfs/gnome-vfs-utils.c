@@ -100,11 +100,14 @@ gnome_vfs_escape_string (const gchar *string,
 	guchar c;
 	gint unacceptable;
 
-	g_return_val_if_fail (string != NULL, NULL);
 	g_return_val_if_fail (mask == GNOME_VFS_URI_UNSAFE_ALL
 			      || mask == GNOME_VFS_URI_UNSAFE_ALLOW_PLUS
 			      || mask == GNOME_VFS_URI_UNSAFE_PATH
 			      || mask == GNOME_VFS_URI_UNSAFE_DOS_PATH, NULL);
+
+	if (string == NULL) {
+		return NULL;
+	}
 	
 	unacceptable = 0;
 	for (p = string; *p != '\0'; p++) {
@@ -158,7 +161,9 @@ gnome_vfs_unescape_string (const gchar *escaped, const gchar *illegal_characters
 	gint i;
 	gchar c;
 	
-	g_return_val_if_fail (escaped != NULL, NULL);
+	if (escaped == NULL) {
+		return NULL;
+	}
 
 	result = g_malloc (strlen (escaped) + 1);
 	
@@ -223,7 +228,9 @@ gnome_vfs_unescape_for_display (const gchar *escaped)
 	gchar c;
 	gint invalid_escape;
 
-	g_return_val_if_fail (escaped != NULL, NULL);
+	if (escaped == NULL) {
+		return NULL;
+	}
 
 	result = g_malloc (strlen (escaped) + 1);
 	

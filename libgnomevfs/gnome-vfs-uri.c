@@ -1101,6 +1101,9 @@ gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
 
 	g_return_val_if_fail (uri != NULL, NULL);
 
+	if (uri->text == NULL)
+		return NULL;
+
 	p = strrchr (uri->text, GNOME_VFS_URI_PATH_CHR);
 	if (p == NULL)
 		return NULL;
@@ -1199,8 +1202,9 @@ gnome_vfs_uri_extract_short_path_name (const GnomeVFSURI *uri)
 	const gchar *p, *short_name_start, *short_name_end;
 
 	g_return_val_if_fail (uri != NULL, NULL);
-	g_return_val_if_fail (uri->text != NULL, NULL);
-	g_return_val_if_fail (uri->text[0] != '\0', NULL);
+
+	if (uri->text == NULL)
+		return NULL;
 
 	/* Search for the last run of non-'/' characters. */
 	p = uri->text;
