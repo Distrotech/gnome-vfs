@@ -195,7 +195,7 @@ rpc_init_tcp(NfsServerConnection *c)
 		clnt_pcreateerror("clnttcp_create");
 		return GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE;
 	}
-	if ((c->mount_client = clnttcp_create(c->nfs_server_addr,
+	if ((c->nfs_client = clnttcp_create(c->nfs_server_addr,
 					NFS_PROGRAM, NFS_VERSION,
 					&c->nfs_sock, 0, 0)) == NULL) {
 		clnt_pcreateerror("clnttcp_create");

@@ -1,3 +1,9 @@
+2001-10-07  Maciej Stachowiak  <mjs@noisehavoc.org>
+ 
+ 	* modules/nfs-method.c: (rpc_init_tcp): Fix bug 55805 (mistake in
+ 	gnome-vfs/modules/nfs-method.c), patch from Martin Pool
+ 	<mbp@samba.org>.
+ 
 2001-10-02  Darin Adler  <darin@bentspoon.com>
 
 	* modules/http-method.c: (build_request), (make_request):
