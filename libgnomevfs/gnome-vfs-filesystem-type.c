@@ -68,6 +68,7 @@ static struct FSInfo fs_data[] = {
 	{ "ufs"      , N_("Solaris/BSD Volume"), 1 },
 	{ "udfs"     , N_("Udfs Solaris Volume"), 1 },
 	{ "pcfs"     , N_("Pcfs Solaris Volume"), 1 },
+	{ "samfs"    , N_("Sun SAM-QFS Volume"), 1 },
 	{ "umsdos"   , N_("Enhanced DOS Volume"), 0 },
 	{ "vfat"     , N_("Windows VFAT Volume"), 1 },
 	{ "xenix"    , N_("Xenix Volume"), 0 },

@@ -1,3 +1,9 @@
+2004-07-05  Narayana Pattipati  <narayana.pattipati@wipro.com>
+
+        * libgnomevfs/gnome-vfs-filesystem-type.c:
+          Add an entry for Sun SAM-QFS filesystem. Bugzilla bug#145442.
+
+	
 2004-07-20  Kurt Roeckx  <Q@ping.be>
 
 	* configure.in: fixes test for res_search in libresolv on amd64 
