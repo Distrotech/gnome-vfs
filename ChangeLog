@@ -1,5 +1,11 @@
 2003-09-16  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-xfer.c (copy_file):
+	Correctly set utimes if the owner change fails.
+	Bug #117762
+	
+2003-09-16  Alexander Larsson  <alexl@redhat.com>
+
 	* schemas/system_http_proxy.schemas:
 	Add missing schemas.
 	Patch by Marco Pesenti Gritti.
