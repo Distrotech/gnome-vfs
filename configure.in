@@ -118,12 +118,12 @@ AC_CACHE_CHECK([for off64_t],
 	ac_cv_have_off64_t=yes,
 	ac_cv_have_off64_t=no))
 if test x"$ac_cv_have_off64_t" = "xyes" ; then
-	AC_DEFINE(HAVE_OFF64_T)
+	AC_DEFINE(HAVE_OFF64_T, 1, [Whether off64_t type is available])
 fi
 
 GETTEXT_PACKAGE=gnome-vfs-2.0
 AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Name of the gettext package])
 
 ALL_LINGUAS="af am ar az be bg bn bs ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu id is it ja ko li lt lv mk ml mn mr ms ne nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@ije sr@Latn sv ta th tr uk vi wa yi zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
@@ -289,7 +289,7 @@ ENABLE_PROFILER=
 AC_ARG_ENABLE(profiler,
 [  --enable-profiler		Enable profiler],
 ENABLE_PROFILER=1
-AC_DEFINE(ENABLE_PROFILER))
+AC_DEFINE(ENABLE_PROFILER, 1, [Whether to enable profiler support]))
 
 if test "x$ENABLE_PROFILER" = "x1"
 then
@@ -398,7 +398,7 @@ main ()
     exit (0);
 }
 ],[
-AC_DEFINE(HAVE_STRUCT_LINGER)
+AC_DEFINE(HAVE_STRUCT_LINGER, 1, [Define to 1 if struct linger is available])
 av_struct_linger=yes
 ],[
 av_struct_linger=no
@@ -416,21 +416,12 @@ if test $have_socket = no; then
     AC_CHECK_LIB($lib, socket, [
 	  LIBS="$LIBS -l$lib"
 	  have_socket=yes
-	  AC_DEFINE(HAVE_SOCKET)
+	  AC_DEFINE(HAVE_SOCKET, 1, [Whether we have socket])
 	  break])
   done
 fi
 
-have_gethostbyname=no
-AC_CHECK_FUNC(gethostbyname, have_gethostbyname=yes)
-if test $have_gethostbyname = no; then
-  # gethostbyname is not in the default libraries.  See if it's in some other.
-  for lib in bsd socket inet; do
-    AC_CHECK_LIB($lib, gethostbyname, [LIBS="$LIBS -l$lib"; have_gethostbyname=yes; break])
-  done
-fi
-
-AC_CHECK_LIB(bz2, bzCompressInit, AC_DEFINE(HAVE_OLDER_BZIP2))
+AC_CHECK_LIB(bz2, bzCompressInit, AC_DEFINE(HAVE_OLDER_BZIP2, 1, [Define to 1 if older bzip2 version is used]))
 AC_CHECK_HEADERS(bzlib.h,
 	BZ2_LIBS="$BZ2_LIBS -lbz2",
 	AC_MSG_ERROR([Gnome-vfs requires libbz2 to compile.])
@@ -543,7 +534,7 @@ AM_CONDITIONAL(HAVE_SSL, false)
 AC_ARG_ENABLE(openssl, [  --disable-openssl       build without openssl support])
 if test "x$enable_openssl" != "xno"; then
   PKG_CHECK_MODULES(OPENSSL, openssl, [AM_CONDITIONAL(HAVE_SSL, true)
-				       AC_DEFINE(HAVE_OPENSSL)],[
+				       AC_DEFINE(HAVE_OPENSSL, 1, [Define to 1 if OpenSSL is available])],[
   AC_ARG_WITH(openssl-includes, [  --with-openssl-includes=PREFIX     Location of OpenSSL includes.],
 	      with_openssl_includes="$withval", with_openssl_includes="/usr/include")
   have_openssl_includes="no"
@@ -588,7 +579,7 @@ dnl RedHat 6.2 seems to need to but Debian Woody doesn't
 		LDFLAGS="$LDFLAGS_save"
 	])
 	if test "x${openssl_libs}" != "xno"; then
-		AC_DEFINE(HAVE_OPENSSL)
+		AC_DEFINE(HAVE_OPENSSL, 1, [Define to 1 if OpenSSL is available])
 		msg_openssl="yes"
                 if test x$with_openssl_libs != x/usr/lib; then
                         OPENSSL_LIBS="-L$with_openssl_libs -lssl -lcrypto"
@@ -596,7 +587,7 @@ dnl RedHat 6.2 seems to need to but Debian Woody doesn't
                 	OPENSSL_LIBS="-lssl -lcrypto"
                 fi
 		AM_CONDITIONAL(HAVE_SSL, true)
-		AC_DEFINE(HAVE_OPENSSL)
+		AC_DEFINE(HAVE_OPENSSL, 1, [Define to 1 if OpenSSL is available])
 	else
 		OPENSSL_CFLAGS=""
 		OPENSSL_LIBS=""
@@ -619,12 +610,12 @@ if test "x$enable_gnutls" = "xyes"; then
   if test "x${OPENSSL_LIBS}" != "x"; then
     AC_MSG_ERROR([*** Can't use both openssl and gnutls at the same time. Please pick one only. ***])
   else
-    AM_PATH_LIBGNUTLS(1.0.0, [AC_DEFINE(HAVE_GNUTLS)
+    AM_PATH_LIBGNUTLS(1.0.0, [AC_DEFINE(HAVE_GNUTLS, 1, [Define to 1 if GnuTLS is available])
     			      AM_CONDITIONAL(HAVE_SSL, true)])
 
     if test "x${LIBGNUTLS_LIBS}" = "x"; then
-      AM_PATH_LIBGNUTLS(0.5.1, [AC_DEFINE(HAVE_GNUTLS)
-                                AC_DEFINE(GNUTLS_COMPAT)
+      AM_PATH_LIBGNUTLS(0.5.1, [AC_DEFINE(HAVE_GNUTLS, 1, [Define to 1 if GnuTLS is available])
+                                AC_DEFINE(GNUTLS_COMPAT, 1, [FIXME])
                                 AM_CONDITIONAL(HAVE_SSL, true)],
                                AC_MSG_ERROR([Unable to find GNUTLS]))
     fi
@@ -696,7 +687,7 @@ FAM_MISSING_WARNING="Gnome-vfs depends on FAM to provide notification when files
 FAM_LIBS=
 AC_CHECK_LIB(fam, FAMOpen,
   [AC_CHECK_HEADERS(fam.h,
-    [AC_DEFINE(HAVE_FAM)
+    [AC_DEFINE(HAVE_FAM, [], [Define if we have FAM])
      FAM_LIBS="-lfam"],
     AC_MSG_WARN(*** FAM support will not be built (header files not found) $FAM_MISSING_WARNING ***))],
   AC_MSG_WARN(*** FAM support will not be built (FAM library not found) $FAM_MISSING_WARNING ***))
@@ -718,7 +709,7 @@ dnl and relicensed as LGPL by the FSF
 
 AC_ARG_WITH(afs,
 [  --with-afs              support -fstype afs],
-[  AC_DEFINE(AFS)
+[  AC_DEFINE(AFS, [], [Define if you have the Andrew File System])
   CPPFLAGS="$CPPFLAGS -I/usr/afsws/include"
   LIBS="$LIBS -L/usr/afsws/lib -L/usr/afsws/lib/afs -lsys -lrx -llwp"])
 
@@ -726,24 +717,30 @@ AC_MSG_CHECKING(how to get filesystem type)
 fstype=no
 # The order of these tests is important.
 AC_TRY_CPP([#include <sys/statvfs.h>
-#include <sys/fstyp.h>], AC_DEFINE(FSTYPE_STATVFS) fstype=SVR4)
+#include <sys/fstyp.h>], AC_DEFINE(FSTYPE_STATVFS, [],
+							[Define to use SVR4 statvfs to get filesystem type]) fstype=SVR4)
 if test $fstype = no; then
 AC_TRY_CPP([#include <sys/statfs.h>
-#include <sys/fstyp.h>], AC_DEFINE(FSTYPE_USG_STATFS) fstype=SVR3)
+#include <sys/fstyp.h>], AC_DEFINE(FSTYPE_USG_STATFS, [],
+							[Define to use SVR3.2 statfs to get filesystem type]) fstype=SVR3)
 fi
 if test $fstype = no; then
 AC_TRY_CPP([#include <sys/statfs.h>
-#include <sys/vmount.h>], AC_DEFINE(FSTYPE_AIX_STATFS) fstype=AIX)
+#include <sys/vmount.h>], AC_DEFINE(FSTYPE_AIX_STATFS, [],
+							 [Define to use AIX3 statfs to get filesystem type]) fstype=AIX)
 fi
 if test $fstype = no; then  
-AC_TRY_CPP([#include <mntent.h>], AC_DEFINE(FSTYPE_MNTENT) fstype=4.3BSD)
+AC_TRY_CPP([#include <mntent.h>], AC_DEFINE(FSTYPE_MNTENT, [],
+						    [Define to use 4.3BSD getmntent to get filesystem typ]) fstype=4.3BSD)
 fi
 if test $fstype = no; then  
-AC_EGREP_HEADER(f_type;, sys/mount.h, AC_DEFINE(FSTYPE_STATFS) fstype=4.4BSD/OSF1)
+AC_EGREP_HEADER(f_type;, sys/mount.h, AC_DEFINE(FSTYPE_STATFS, [],
+							   [Define to use 4.4BSD and OSF1 statfs to get filesystem typ]) fstype=4.4BSD/OSF1)
 fi
 if test $fstype = no; then  
 AC_TRY_CPP([#include <sys/mount.h>
-#include <sys/fs_types.h>], AC_DEFINE(FSTYPE_GETMNT) fstype=Ultrix)
+#include <sys/fs_types.h>], AC_DEFINE(FSTYPE_GETMNT, [],
+							   [Define to use Ultrix getmnt to get filesystem typ]) fstype=Ultrix)
 fi
 AC_MSG_RESULT($fstype)
 
@@ -765,6 +762,174 @@ dnl This is needed by `test/vfs-run.in'
 TOP_BUILDDIR="`pwd`"
 AC_SUBST(TOP_BUILDDIR)
 
+dnl ==============================================================================
+dnl Check for a supported resolver functions
+dnl ==============================================================================
+dnl This is just a mix of the old code and new one taken from the gnet library and
+dnl evolution.
+    
+have_getaddrinfo=no
+have_resolver=no
+AC_CHECK_FUNC(getaddrinfo, have_getaddrinfo=yes; have_resolver=yes)
+if test "x$have_getaddrinfo" != "xyes"; then
+
+    # getaddrinfo is not in the default libraries.  See if it's in some other.
+    for lib in bsd socket inet; do
+        AC_CHECK_LIB($lib, getaddrinfo, [
+					  LIBS="$LIBS -l$lib"
+					  have_getaddrinfo=yes
+					  have_resolver=yes
+					  break
+	   ])
+    done
+fi
+
+if test "x$have_getaddrinfo" = "xyes"; then
+	AC_DEFINE(USE_GETADDRINFO, 1, [Define to 1 if getaddrinfo is used for name resolution])
+	AC_TRY_COMPILE([
+		#include "confdefs.h"
+		#include <sys/types.h>
+		#include <sys/socket.h>
+		#include <netinet/in.h>
+		#include <netdb.h>
+
+	],[
+		struct addrinfo hints;
+		
+		hints.ai_flags = AI_ADDRCONFIG;
+	],[
+		AC_DEFINE(HAVE_AI_ADDRCONFIG, 1,
+				[Define if the system defines the AI_ADDRCONFIG flag for getaddrinfo])
+	])
+fi
+
+if test "x$have_resolver" = "xno"; then
+dnl looks like we dont have getaddrinfo try gethostbyname_r
+AC_CHECK_FUNC(gethostbyname_r, [
+	   dnl  First check for the glibc variant of gethostbyname_r
+	   
+	   AC_MSG_CHECKING(for glibc gethostbyname_r)
+	   AC_TRY_LINK([
+			 #include <netdb.h>
+	   ], [
+			 struct hostent result_buf;
+			 char buf[1024];
+			 struct hostent* result;
+			 int h_errnop;
+
+			 gethostbyname_r ("localhost",
+						   &result_buf,
+						   buf,
+						   sizeof(buf),
+						   &result,
+						   &h_errnop);
+	   ], [
+
+			 dnl Have glibc gethostbyname_r
+
+			 AC_MSG_RESULT(yes)
+			 AC_DEFINE(HAVE_GETHOSTBYNAME_R_GLIBC, 1,
+				[Define if you have a glibc-style gethostbyname_r()])
+			 AC_DEFINE(USE_GETHOSTBYNAME_R, 1,
+			     [Define to 1 if gethostbyname_r is used for name resolution])
+			 have_resolver=yes
+
+	   ], [
+			 AC_MSG_RESULT(no)
+        				
+
+	   dnl  If we don't have glibc gethostbyname_r, check
+	   dnl  for Solaris/Irix gethostbyname_r
+
+
+	   AC_MSG_CHECKING(for Solaris/Irix gethostbyname_r)
+	   AC_TRY_LINK([
+			 #include <netdb.h>
+	   ], [
+			 struct hostent result;
+			 char buf[1024];
+			 int h_errnop;
+
+			 gethostbyname_r ("localhost",
+						    &result,
+						    buf,
+						    sizeof(buf),
+						    &h_errnop);
+
+	   ], [
+
+			 dnl Have Solaris/Irix gethostbyname_r
+
+			 AC_MSG_RESULT(yes)
+			 AC_DEFINE(HAVE_GETHOSTBYNAME_R_SOLARIS, 1,
+					 [Define if you have a Solaris-style gethostbyname_r()])
+			 AC_DEFINE(USE_GETHOSTBYNAME_R, 1,
+			     [Define to 1 if gethostbyname_r is used for name resolution])
+		      have_resolver=yes
+
+	  ], [
+
+	           AC_MSG_RESULT(no)
+	  
+	   dnl  If don't have Solaris/Irix gethostbyname_r, check
+	   dnl  for HP-UX gethostbyname_r
+
+	   AC_MSG_CHECKING(for HP-UX gethostbyname_r)
+
+	   AC_TRY_LINK([
+			 #include <netdb.h>
+	   ], [
+			 struct hostent result;
+
+			 char buf[1024];
+			 gethostbyname_r ("localhost",
+						   &result,
+						   buf);
+        ], [
+        
+			 dnl Have HP-UX gethostbyname_r
+
+			 AC_MSG_RESULT(yes)
+			 AC_DEFINE(HAVE_GETHOSTBYNAME_R_HPUX, 1,
+					 [Define if you have an HP-UX-style gethostbyname_r()])
+			 AC_DEFINE(USE_GETHOSTBYNAME_R, 1,
+			     [Define to 1 if gethostbyname_r is used for name resolution])
+			 have_resolver=yes
+			 
+	  ], [
+			 AC_MSG_RESULT(no)
+	  ] #hpux
+     )] #solaris
+  )] #glibc
+)]) #check func
+    
+fi
+
+if test x$have_resolver = "xno" ; then
+   have_gethostbyname=no
+
+   AC_CHECK_FUNC(gethostbyname, have_gethostbyname=yes)
+
+   if test $have_gethostbyname = no; then
+	 # gethostbyname is not in the default libraries.  See if it's in some other.
+	 for lib in bsd socket inet; do
+		AC_CHECK_LIB($lib, gethostbyname, [
+					    LIBS="$LIBS -l$lib"
+					    have_gethostbyname=yes
+					    have_resolver=yes
+
+					    AC_DEFINE(USE_GETHOSTBYNAME, 1,
+							 [Define if gethostbyname is used for name resolution])
+					    break
+		])
+      done
+   fi
+fi
+    
+dnl ==============================================================================
+dnl End of resolver functions check
+dnl ==============================================================================
+
 dnl ====================================================================
 dnl Code for checking whether IPv6 is enabled on the system....
 dnl ====================================================================
@@ -773,41 +938,26 @@ AC_ARG_ENABLE(ipv6, [ --enable-ipv6 enable IPv6 extensions], ,enable_ipv6=yes)
 if test $enable_ipv6 = yes; then
   save_libs=$LIBS
 
-  dnl ====================================================================
-  dnl Code for checking presence of AF_INET6 on the system.... 
-  dnl ====================================================================
+
   AC_TRY_COMPILE([ 
-    #include <sys/types.h>
-    #include <sys/socket.h>], [
-    socket(AF_INET6, SOCK_STREAM, 0)
-    ],
-    have_ipv6=yes,
-    have_ipv6=no
+		#include <sys/types.h>
+		#include <sys/socket.h>
+    ], [
+	     socket(AF_INET6, SOCK_STREAM, 0)
+    ], [
+          have_ipv6=yes
+		AC_DEFINE(ENABLE_IPV6, [], [Define to enable IPv6 support])
+    ], have_ipv6=no
   )
+  
   AC_MSG_RESULT($have_ipv6)
 
-  dnl =================================================================
-  dnl Now we would check for specific functions like getaddrinfo.
-  dnl =================================================================
-  have_getaddrinfo=no
-  if test $have_ipv6 = yes; then
-    AC_CHECK_FUNC(getaddrinfo, have_getaddrinfo=yes)
-    if test $have_getaddrinfo != yes; then
-      # getaddrinfo is not in the default libraries.  See if it's in some other.
-      for lib in bsd socket inet; do
-        AC_CHECK_LIB($lib, getaddrinfo, [LIBS="$LIBS -l$lib";have_getaddrinfo=yes; break])
-      done
-    fi
-    if test $have_getaddrinfo = yes; then
-      AC_DEFINE(ENABLE_IPV6)
-    fi
-  fi 		
 fi
 dnl ==============================================================================
 dnl End of IPv6 checks
 dnl ==============================================================================
-dnl Output files
 
+    
 
 dnl Disable rebuild of glib-mkenum -generated source code:
 AC_ARG_ENABLE(rebuilds, [  --disable-rebuilds      disable all source autogeneration rules],,enable_rebuilds=yes)
