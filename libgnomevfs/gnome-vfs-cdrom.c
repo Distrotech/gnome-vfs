@@ -89,9 +89,15 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 	return type;
 #elif defined(HAVE_SYS_MNTCTL_H)
 	return CDS_NO_INFO;
-#elif defined(__FreeBSD__)
+#elif defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__NetBSD__)
 	struct ioc_toc_header header;
+#if defined(__FreeBSD__)
 	struct ioc_read_toc_single_entry entry;
+#else
+	struct ioc_read_toc_entry entries;
+	struct cd_toc_entry entry;
+	int i;
+#endif
 	int type;
 #ifndef CDROM_DATA_TRACK
 #define CDROM_DATA_TRACK 4
@@ -107,6 +113,7 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 	}
 
 	type = CDS_DATA_1;
+#if defined(__FreeBSD__)
 	for (entry.track = header.starting_track;
 		entry.track <= header.ending_track;
 		entry.track++) {
@@ -119,6 +126,21 @@ _gnome_vfs_get_cdrom_type (const char *vol_dev_path, int* fd)
 		}
 	}
 
+#else /* defined(__FreeBSD__) */
+	entries.data_len = sizeof(entry);
+	entries.data = &entry;
+	for (i = header.starting_track; i <= header.ending_track; i++) {
+		entries.starting_track = i;
+	    	entries.address_format = CD_LBA_FORMAT;
+		if (ioctl (*fd, CDIOREADTOCENTRYS, &entries) == 0) {
+		    	if (entry.control & CDROM_DATA_TRACK) {
+			    	type = CDS_AUDIO;
+				break;
+			}
+		}
+	}
+
+#endif /* defined(__FreeBSD__) */
 	return type;
 #else
 	*fd = open (vol_dev_path, O_RDONLY|O_NONBLOCK);

@@ -1,3 +1,7 @@
+2004-02-14  Julio M. Merino Vidal <jmmv@menta.net>
+
+	* libgnomevfs/gnome-vfs-cdrom.c: fixed compilation on NetBSD
+
 2004-02-11  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/computer-method.c (get_data_for_drive):
