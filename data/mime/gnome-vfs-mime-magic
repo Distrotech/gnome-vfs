@@ -28,7 +28,7 @@
 0	string		***\ 			text/x-patch
 0	string		Only\ in\ 		text/x-patch
 0	string		Common\ subdirectories:\ 	text/x-patch
-0	string		FONT			application/x-font
+0	string		FONT			font/x-vfont
 0	string		IIN1			image/tiff
 0	string		MM\x00\x2a		image/tiff
 0	string		II\x2a\x00		image/tiff
@@ -63,6 +63,40 @@
 0       string		\037\213		application/x-gzip
 0	string		%!			application/x-postscript
 0	string		\037\235		application/compress
-0	string		\xed\xab\xee\xdb	application/x-rpm
-
+4       string		\x11\xAF		video/x-fli
+4       string		\x12\xAF		video/x-flc
+0	string		%!PS-AdobeFont-1.0	font/type1
+6	string		%!PS-AdobeFont-1.0	font/type1
+0	string		STARTFONT\040		font/x-bdf
+0	string		\001fcp			font/x-pcf
+0	string		D1.0\015		font/x-speedo
+0	string		\x14\x02\x59\x19	font/x-libgrx
+0	string		\xff\x46\x4f\x4e	font/x-dos
+7	string		\x00\x45\x47\x41	font/x-dos
+7	string		\x00\x56\x49\x44	font/x-dos
+4098	string		DOSFONT			font/x-dos
+0	string		\<MakerScreenFont	font/x-framemaker
+0	string		\000\001\000\000\000	font/ttf
+0	string		\x36\x04		font/linux-psf
+0	string		FFIL			font/ttf
+65	string		FFIL			font/ttf
+0	string		LWFN			font/type1
+65	string		LWFN			font/type1
+0	string		MZ	application/x-ms-dos-executable
+2080	string	Microsoft\ Word\ 6.0\ Document	text/vnd.ms-word
+2080	string	Documento\ Microsoft\ Word\ 6	text/vnd.ms-word
+2112	string		MSWordDoc		text/vnd.ms-word
+0	string	\x31\xbe\x00\x00		text/vnd.ms-word
+0       string  	PO^Q`           	text/vnd.ms-word
+2080	string	Microsoft\ Excel\ 5.0\ Worksheet	application/vnd.ms-excel
+2114	string		Biff5			application/vnd.ms-excel
+1       string          WPC          		text/vnd.wordperfect
+0	string		StartFont		font/x-sunos-news
+0	string		\x13\x7A\x29		font/x-sunos-news
+8	string		\x13\x7A\x2B		font/x-sunos-news
+0	string		\367\203		font/x-tex
+0	string		\367\131		font/x-tex
+0	string		\367\312		font/x-tex
+2	string		\000\021		font/x-tex-tfm
+2	string		\000\022		font/x-tex-tfm
 
