@@ -1,3 +1,39 @@
+2000-12-05  Pavel Cisler <pavel@eazel.com>
+
+	reviewed by: Gene Ragan <gzr@eazel.com>
+	
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-xfer.c: (progress_set_source_target),
+	(remove_file), (empty_directory), (non_recursive_empty_directory),
+	(gnome_vfs_visit_list), (count_each_file_size_one),
+	(handle_name_conflicts), (gnome_vfs_xfer_delete_items_common),
+	(copy_directory), (copy_items) (gnome_vfs_xfer_uri_internal):
+	Part of fix 4894 "Dragging /proc from the tree view to /home causes
+	a file not found".	
+	Part of fix to 3232 "Error message when copying rwx file from
+	r-x folder to rwx folder".	
+	Part of fix to 3237 "No error occurs if move file to folder w/o
+	write access".
+	Part of fix to 3748 "misleading file operation error dialog"
+	Made each of these properly set up the name of the copied item
+	to fix all the cases where we got "Error moving (NULL) ..."
+	messages that I came across while fixing the other bugs.
+	Added a new phase, GNOME_VFS_XFER_CHECKING_DESTINATION and used
+	it in gnome_vfs_xfer_uri_internal so I can distinguish between
+	failures on read and failures on write.
+	
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(copy_directory), (copy_items):
+	Fixed 4895 Copying /dev into my home directory crashes Nautilus.
+	
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(gnome_vfs_xfer_empty_trash), (gnome_vfs_xfer_delete_items),
+	(gnome_vfs_xfer_uri_internal), (gnome_vfs_xfer_private),
+	(gnome_vfs_xfer_uri_list), (gnome_vfs_xfer_delete_list):
+	Moved calls to initial and last call_progress to the calling
+	routine.
+
+
 2000-12-05  Rebecca Schulman  <rebecka@eazel.com>
 
 	reviewed by: Pavel Cisler <pavel@eazel.com>

@@ -453,6 +453,8 @@ typedef enum {
 typedef enum {
 	/* Initial phase */
 	GNOME_VFS_XFER_PHASE_INITIAL,
+	/* Checking if destination can handle move/copy */
+	GNOME_VFS_XFER_CHECKING_DESTINATION,
 	/* Collecting file list */
 	GNOME_VFS_XFER_PHASE_COLLECTING,
 	/* File list collected (*) */
