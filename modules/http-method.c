@@ -1174,8 +1174,8 @@ build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean
 	/* Request line.  */
 	request = g_string_new ("");
 
-	g_string_printfa (request, "%s %s%s HTTP/1.0\r\n", method, uri_string,
-			  strlen(gnome_vfs_uri_get_path (uri)) == 0 ? "/" : "" );
+	g_string_append_printf (request, "%s %s%s HTTP/1.0\r\n", method, uri_string,
+				gnome_vfs_uri_get_path (uri)[0] == '\0' ? "/" : "" );
 
 	DEBUG_HTTP (("-->Making request '%s %s'", method, uri_string));
 	
@@ -1184,11 +1184,11 @@ build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean
 
 	/* `Host:' header.  */
 	if(toplevel_uri->host_port && toplevel_uri->host_port != 0) {
-		g_string_printfa (request, "Host: %s:%d\r\n",
-				  toplevel_uri->host_name, toplevel_uri->host_port);
+		g_string_append_printf (request, "Host: %s:%d\r\n",
+					toplevel_uri->host_name, toplevel_uri->host_port);
 	} else {
-		g_string_printfa (request, "Host: %s:80\r\n",
-				  toplevel_uri->host_name);
+		g_string_append_printf (request, "Host: %s:80\r\n",
+					toplevel_uri->host_name);
 	}
 
 	/* `Accept:' header.  */
@@ -1201,7 +1201,7 @@ build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean
 		user_agent = USER_AGENT_STRING;
 	}
 
-	g_string_printfa (request, "User-Agent: %s\r\n", user_agent);
+	g_string_append_printf (request, "User-Agent: %s\r\n", user_agent);
 
 	return request;
 }
@@ -1300,7 +1300,7 @@ make_request (HttpFileHandle **handle_return,
 		
 		/* `Content-Length' header.  */
 		if (data != NULL) {
-			g_string_printfa (request, "Content-Length: %d\r\n", data->len);
+			g_string_append_printf (request, "Content-Length: %d\r\n", data->len);
 		}
 		
 		/* Extra headers. */

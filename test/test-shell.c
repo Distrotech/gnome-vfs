@@ -342,7 +342,7 @@ do_cd (void)
 			return;
 
 		while (tmp [lp + 1]) {
-			g_string_printfa (newp, "%s/", tmp [lp]);
+			g_string_append_printf (newp, "%s/", tmp [lp]);
 			lp++;
 		}
 		g_free (cur_dir);

@@ -1,5 +1,11 @@
 2001-10-02  Darin Adler  <darin@bentspoon.com>
 
+	* modules/http-method.c: (build_request), (make_request):
+	* test/test-shell.c: (do_cd):
+	g_string_printfa -> g_string_append_printf
+
+2001-10-02  Darin Adler  <darin@bentspoon.com>
+
 	* .cvsignore:
 	* Makefile.am:
 	* configure.in:
