@@ -33,7 +33,38 @@ module GNOME {
 		
 		typedef sequence<FileInfo> FileInfoList;
 
+		struct Volume {
+			long id;
+			long volume_type;
+			long device_type;
+			long drive;
+			string activation_uri;
+			string filesystem_type;
+			string display_name;
+			string icon;
+			boolean is_user_visible;
+			boolean is_read_only;
+			boolean is_mounted;
+			string device_path;
+			long unix_device;
+			string gconf_id;
+		};
+		typedef sequence<Volume> VolumeList;
 
+		struct Drive {
+			long id;
+			long device_type;
+			long volume;
+			string device_path;
+			string activation_uri;
+			string display_name;
+			string icon;
+			boolean is_user_visible;
+			boolean is_connected;
+		};
+		
+		typedef sequence<Drive> DriveList;
+		
 		/* Standard module callbacks: */
 		
 		struct ModuleCallbackAuthenticationIn {
@@ -67,6 +98,13 @@ module GNOME {
 						     in string monitor_uri,
 						     in string info_uri,
 						     in long event_type);
+
+			/* For volume monitoring: */
+			oneway void VolumeMounted (in Volume volume);
+			oneway void VolumePreUnmount (in long id);
+			oneway void VolumeUnmounted (in long id);
+			oneway void DriveConnected (in Drive drive);
+			oneway void DriveDisconnected (in long id);
 		};
 		
 		/* Each call to the client passes one of these, which is
@@ -125,6 +163,13 @@ module GNOME {
 			/* Lifecycle slaved to 'client' lifecycle */
 			void registerClient   (in Client client);
 			void deRegisterClient (in Client client);
+
+			void registerVolumeMonitor (in Client client);
+			void deRegisterVolumeMonitor (in Client client);
+			VolumeList getVolumes (in Client client);
+			DriveList getDrives (in Client client);
+			void emitPreUnmountVolume (in Client client,
+						   in long volume_id);
 		};
 
 		interface AsyncDaemon : Bonobo::Unknown {

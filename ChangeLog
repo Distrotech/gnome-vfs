@@ -1,3 +1,64 @@
+2003-11-05  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Check for more headers/funcs
+	
+	* daemon/gnome-vfs-daemon.c:
+	Renames to fix collision with system headers
+	Implement proxying of volume monitoring
+	
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	Added interfaces to proxy volumes
+	
+	* libgnomevfs/Makefile.am:
+	Add new files
+	
+	* libgnomevfs/gnome-vfs-iso9660.h:
+	* libgnomevfs/gnome-vfs-cdrom.[ch]:
+	CDROM utilities
+	
+	* libgnomevfs/gnome-vfs-client.c:
+	Volume proxy code
+	
+	* libgnomevfs/gnome-vfs-filesystem-type.[ch]:
+	Filesystem info
+	
+	* libgnomevfs/gnome-vfs-drive.[ch]:
+	New GnomeVFSDrive API
+	
+	* libgnomevfs/gnome-vfs-init.c:
+	Shut down volume monitor on shutdown
+	
+	* libgnomevfs/gnome-vfs-unix-mounts.[ch]:
+	Code to read mtabs/fstabs.
+	
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h:
+	private volume monitor details
+	
+	* libgnomevfs/gnome-vfs-volume-monitor-client.[ch]:
+	Client implementation of volume monitoring
+	
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.[ch]:
+	vfs daemon implementation of volume monitoring
+	
+	* libgnomevfs/gnome-vfs-volume-monitor.[ch]:
+	Common volume monitoring code.
+	
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	Mount/Unmount/Eject code
+	
+	* libgnomevfs/gnome-vfs-volume.[ch]:
+	New GnomeVFSVolume API
+	
+	* modules/Makefile.am:
+	* modules/computer-method.c:
+	* modules/default-modules.conf:
+	New computer:/// method
+	
+	* test/Makefile.am:
+	* test/test-volumes.c:
+	Test code for volume monitoring.
+
 2003-10-31  Stanislav Brabec  <sbrabec@suse.cz>
 
 	* modules/vfolder/vfolder-info.c: Fixed special case for
