@@ -1,4 +1,10 @@
 2002-09-19  Christophe Fergeau  <teuf@users.sourceforge.net>
+	
+	* libgnomevfs/gnome-vfs-application-registry.c
+	* libgnomevfs/gnome-vfs-application-registry.h: doh! My previous
+	  commit added new API, fixing that
+
+2002-09-19  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* libgnomevfs/gnome-vfs-application-registry.c
 	* libgnomevfs/gnome-vfs-application-registry.h

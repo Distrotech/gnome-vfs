@@ -46,6 +46,11 @@
 #include <time.h>
 #include <unistd.h>
 
+/* Defined there and not with the other constants in the header file not to 
+ * break 2.0 api freeze
+ */
+#define GNOME_VFS_APPLICATION_REGISTRY_USES_GNOMEVFS "uses_gnomevfs"
+
 #if !defined getc_unlocked && !defined HAVE_GETC_UNLOCKED
 # define getc_unlocked(fp) getc (fp)
 #endif
