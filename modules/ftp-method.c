@@ -24,6 +24,7 @@
 #include <string.h>
 #include <limits.h>
 #include <sys/stat.h>
+#include <ctype.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <time.h>
@@ -39,16 +40,10 @@
 #include <arpa/inet.h>
 #include <arpa/ftp.h>
 #include <arpa/telnet.h>
-#ifndef SCO_FLAVOR
-#	include <sys/time.h>	/* alex: this redefines struct timeval */
-#endif /* SCO_FLAVOR */
-
-#ifdef USE_TERMNET
-#include <termnet.h>
-#endif
-
 #include "ftp-method.h"
 #include "util-url.h"
+
+#define IS_LINEAR(mode) (! ((mode) & GNOME_VFS_OPEN_RANDOM))
 
 static GHashTable *connections_hash;
 static FILE *logfile;
@@ -58,8 +53,9 @@ static int code;
 #define NONE        0x00
 #define WAIT_REPLY  0x01
 #define WANT_STRING 0x02
+static char reply_str [80];
 
-void
+static void
 print_vfs_message (char *msg, ...)
 {
 	char *str;
@@ -406,12 +402,210 @@ abort_transfer (ftpfs_connection_t *conn, int dsock)
 		get_reply (conn->sock, NULL, 0);
 }
 
+/* Setup Passive ftp connection, we use it for source routed connections */
+static int
+setup_passive (int my_socket, ftpfs_connection_t *conn, struct sockaddr_in *sa)
+{
+	int xa, xb, xc, xd, xe, xf;
+	char n [6];
+	char *c = reply_str;
+	
+	if (command (conn, WAIT_REPLY | WANT_STRING, "PASV") != COMPLETE)
+		return 0;
+	
+	/* Parse remote parameters */
+	for (c = reply_str + 4; (*c) && (!isdigit (*c)); c++)
+		;
+	if (!*c)
+		return 0;
+	if (!isdigit (*c))
+		return 0;
+	if (sscanf (c, "%d,%d,%d,%d,%d,%d", &xa, &xb, &xc, &xd, &xe, &xf) != 6)
+		return 0;
+	n [0] = (unsigned char) xa;
+	n [1] = (unsigned char) xb;
+	n [2] = (unsigned char) xc;
+	n [3] = (unsigned char) xd;
+	n [4] = (unsigned char) xe;
+	n [5] = (unsigned char) xf;
+	
+	memcpy (&(sa->sin_addr.s_addr), (void *)n, 4);
+	memcpy (&(sa->sin_port),        (void *)&n[4], 2);
+
+	if (connect (my_socket, (struct sockaddr *) sa, sizeof (struct sockaddr_in)) < 0)
+		return 0;
+
+	return 1;
+}
+
+static int
+initconn (ftpfs_connection_t *conn)
+{
+	struct sockaddr_in data_addr;
+	int data, len = sizeof(data_addr);
+	struct protoent *pe;
+	
+	getsockname (conn->sock, (struct sockaddr *) &data_addr, &len);
+	data_addr.sin_port = 0;
+	
+	pe = getprotobyname("tcp");
+	if (pe == NULL)
+		return -1;
+	
+	data = socket (AF_INET, SOCK_STREAM, pe->p_proto);
+	if (data < 0)
+		return -1;
+
+	if (conn->use_passive_connection){
+		if ((conn->use_passive_connection = setup_passive (data, conn, &data_addr)))
+			return data;
+
+		conn->use_passive_connection = 0;
+		print_vfs_message (_("ftpfs: could not setup passive mode"));
+	}
+
+	/* If passive setup fails, fallback to active connections */
+	/* Active FTP connection */
+	if (bind (data, (struct sockaddr *)&data_addr, len) < 0)
+		goto error_return;
+
+	getsockname(data, (struct sockaddr *) &data_addr, &len);
+	if (listen (data, 1) < 0)
+		goto error_return;
+	{
+		unsigned char *a = (unsigned char *)&data_addr.sin_addr;
+		unsigned char *p = (unsigned char *)&data_addr.sin_port;
+		
+		if (command (conn, WAIT_REPLY, "PORT %d,%d,%d,%d,%d,%d", a[0], a[1], 
+			     a[2], a[3], p[0], p[1]) != COMPLETE)
+			goto error_return;
+	}
+	return data;
+
+ error_return:
+	close(data);
+	return -1;
+}
+
+
+/* some defines only used by changetype */
+/* These two are valid values for the second parameter */
+#define TYPE_ASCII    0
+#define TYPE_BINARY   1
+
+/* This one is only used to initialize bucket->isbinary, don't use it as
+   second parameter to changetype. */
+#define TYPE_UNKNOWN -1 
+
+static int
+changetype (ftpfs_connection_t *conn, int binary)
+{
+	if (binary != conn->is_binary) {
+		if (command (conn, WAIT_REPLY, "TYPE %c", binary ? 'I' : 'A') != COMPLETE)
+			return -1;
+		conn->is_binary = binary;
+	}
+	return binary;
+}
+
+/*
+ * char *translate_path (struct ftpfs_connection_t *conn, char *remote_path)
+ * Translate a Unix path, i.e. gnome-vfs's internal path representation (e.g. 
+ * /somedir/somefile) to a path valid for the remote server. Every path 
+ * transfered to the remote server has to be mangled by this function 
+ * right prior to sending it.
+ * Currently only Amiga ftp servers are handled in a special manner.
+   
+ * When the remote server is an amiga:
+ * a) strip leading slash if necesarry
+ * b) replace first occurance of ":/" with ":"
+ * c) strip trailing "/."
+ */
+
+static char *
+translate_path (ftpfs_connection_t *conn, char *remote_path)
+{
+	char *p;
+	
+	if (!conn->remote_is_amiga)
+		return g_strdup (remote_path);
+	else {
+		char *ret;
+		
+		if (logfile) {
+			fprintf (logfile, "ftpfs -- translate_path: %s\n", remote_path);
+			fflush (logfile);
+		}
+		
+		/*
+		 * Don't change "/" into "", e.g. "CWD " would be
+		 * invalid.
+		 */
+		if (*remote_path == '/' && remote_path[1] == '\0')
+			return g_strdup ("."); 
+		
+		/* strip leading slash */
+		if (*remote_path == '/')
+			ret = g_strdup (remote_path + 1);
+		else
+			ret = g_strdup (remote_path);
+		
+		/* replace first occurance of ":/" with ":" */
+		if ((p = strchr (ret, ':')) && *(p + 1) == '/')
+			strcpy (p + 1, p + 2);
+		
+		/* strip trailing "/." */
+		if ((p = strrchr (ret, '/')) && *(p + 1) == '.' && *(p + 2) == '\0')
+			*p = '\0';
+		return ret;
+	}
+}
+
+static int
+open_data_connection (ftpfs_connection_t *conn,
+		      char *cmd, char *remote, 
+		      int isbinary, int reget)
+{
+	struct sockaddr_in from;
+	int s, j, data, fromlen = sizeof(from);
+	
+	if ((s = initconn (conn)) == -1)
+		return -1;
+	if (changetype (conn, isbinary) == -1)
+		return -1;
+
+	if (reget > 0){
+		j = command (conn, WAIT_REPLY, "REST %d", reget);
+		if (j != CONTINUE)
+			return -1;
+	}
+	if (remote){
+		j = command (conn, WAIT_REPLY, "%s %s", cmd, 
+			     translate_path (conn, remote));
+	} else
+		j = command (conn, WAIT_REPLY, "%s", cmd);
+	if (j != PRELIM)
+		return -1;
+
+	if (conn->use_passive_connection)
+		data = s;
+	else {
+		data = accept (s, (struct sockaddr *)&from, &fromlen);
+		if (data < 0) {
+			close(s);
+			return -1;
+		}
+		close(s);
+	} 
+	return data;
+}
+
 static GnomeVFSResult
 linear_start (ftpfs_direntry_t *fe, int offset)
 {
 	fe->local_stat.st_mtime = 0;
 	fe->data_sock = open_data_connection (
-		fe->bucket, "RETR", fe->remote_filename, TYPE_BINARY, offset);
+		fe->conn, "RETR", fe->remote_filename, TYPE_BINARY, offset);
 	if (fe->data_sock == -1)
 		return GNOME_VFS_ERROR_ACCESSDENIED;
 	
@@ -420,14 +614,14 @@ linear_start (ftpfs_direntry_t *fe, int offset)
 }
 
 static void
-linear_abort (struct ftpfs_direntry_t *fe)
+linear_abort (ftpfs_direntry_t *fe)
 {
 	abort_transfer (fe->conn, fe->data_sock);
 	fe->data_sock = -1;
 }
 
 static GnomeVFSResult
-linear_read (struct ftpfs_direntry_t *fe, void *buf, int len)
+linear_read (ftpfs_direntry_t *fe, void *buf, int len)
 {
 	int n;
 	GnomeVFSResult error = GNOME_VFS_OK;
@@ -451,7 +645,7 @@ linear_read (struct ftpfs_direntry_t *fe, void *buf, int len)
 }
 
 static void
-linear_close (struct ftpfs_direntry_t *fe)
+linear_close (ftpfs_direntry_t *fe)
 {
 	if (fe->data_sock != -1)
 		linear_abort (fe);
@@ -468,6 +662,7 @@ retrieve_dir (ftpfs_uri_t *uri, char *remote_path, gboolean resolve_symlinks)
 static GnomeVFSResult
 retrieve_file (ftpfs_direntry_t *fe)
 {
+	GnomeVFSResult ret;
 	int total = 0;
 	char buffer [8192];
 	int local_handle, n;
@@ -498,18 +693,17 @@ retrieve_file (ftpfs_direntry_t *fe)
 			break;
 		
 		total += n;
-		vfs_print_stats ("Getting file", fe->remote_filename, total, stat_size);
+		print_vfs_message ("Getting file", fe->remote_filename, total, stat_size);
 		
 		while (write (local_handle, buffer, n) < 0) {
 			if (errno == EINTR) {
 #warning Here
-				my_errno = EINTR;
+				ret = GNOME_VFS_ERROR_IO;
 				goto error_2;
 			} else
 				continue;
+			goto error_1;
 		}
-		my_errno = errno;
-		goto error_1;
 	}
 
 	linear_close (fe);
@@ -525,14 +719,10 @@ retrieve_file (ftpfs_direntry_t *fe)
  error_3:
 	close (local_handle);
 	unlink (fe->local_filename);
- error_4:
 	g_free (fe->local_filename);
 	fe->local_filename = NULL;
 	return ret;
 }
-
-#warning IS_LINEAR exists
-#define IS_LINEAR(x) 0
 
 static GnomeVFSResult
 get_file_entry (ftpfs_uri_t *uri, int flags,
@@ -732,7 +922,7 @@ ftpfs_open (GnomeVFSMethodHandle **method_handle,
 #endif
 	ftpfs_connection_ref (fe->conn);
 
-	*method_handle = fh;
+	*method_handle = (GnomeVFSMethodHandle *) fh;
 	
 	return GNOME_VFS_OK;
 }

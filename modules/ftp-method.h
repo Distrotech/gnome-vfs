@@ -29,6 +29,10 @@ typedef struct {
 	 * "LIST" instead
 	 */
 	unsigned int  strict_rfc959_list_cmd;
+
+	/* Whether we have to use passive connections */
+	int use_passive_connection;
+	int is_binary;
 } ftpfs_connection_t;
 
 typedef struct {
