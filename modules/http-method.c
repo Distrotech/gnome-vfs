@@ -897,6 +897,7 @@ parse_ignore_host (gpointer data, gpointer user_data)
 					inet_ntop(AF_INET, &elt->mask, dst, INET_ADDRSTRLEN)));
 			g_free (dst);
 		}
+		g_free (hostname);
 	}
 	else {
 		/* It is a hostname. */
@@ -1089,8 +1090,9 @@ proxy_should_for_hostname (const char *hostname)
 				DEBUG_HTTP (("Host %s using direct connection.", hn));
 				g_free (hn);
 				return FALSE;
-			}
+			}			
 		}
+		g_free (hn);
 	}
 
 	return TRUE;
