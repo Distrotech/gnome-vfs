@@ -12,16 +12,16 @@
 #
 # pattern is an ascii string with non-printable characters escaped as hex or octal numbers,
 # spaces and other important whitespace escaped with '\'
-# 
+#
 # pattern mask is a string of hex digits; pattern mask must be the same length as the pattern
-# 
+#
 # type is a valid MIME type
 #
 # Order magic patterns such that ambiguous ones (such as application/x-ms-dos-executable) are
 # at the end of the list and therefore get applied last.
 # Avoid rules that require a seek deep into the examined file. If you must, locate such rules
-# at the end of the list so that they get applied last 
-# 
+# at the end of the list so that they get applied last
+#
 # When designing new document formats, make them easily recognizable by defining a sufficiently unique
 # magic pattern near the end of the document start. A good pattern is at least four bytes long and
 # contains one or two non-printable characters.
@@ -131,7 +131,7 @@
 7	string		\x00\x56\x49\x44			application/x-font-dos
 0	string		\<MakerScreenFont			application/x-font-framemaker
 0	string		\000\001\000\000\000			application/x-font-ttf
-1       string          WPC        		  		application/x-wordperfect
+1       string          WPC        				application/x-wordperfect
 0	string		MZ					application/x-ms-dos-executable
 0	string		%!					application/postscript
 0	string		/*					text/x-c

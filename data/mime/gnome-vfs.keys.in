@@ -7,7 +7,7 @@
 
 application/andrew-inset
 	_description=Andrew Toolkit inset
-	
+
 application/mac-binhex40
 	_description=Macintosh BinHex-encoded file
 
@@ -87,7 +87,7 @@ application/rtf
 	short_list_application_ids_for_novice_user_level=staroffice,abiword,applix
 	short_list_application_ids_for_intermediate_user_level=staroffice,abiword,applix
 	short_list_application_ids_for_hacker_user_level=staroffice,abiword,applix
-	
+
 application/vnd.ms-excel
 	_description=Microsoft Excel document
 	default_action_type=application
@@ -373,7 +373,7 @@ application/x-staroffice-words
 	short_list_application_ids_for_hacker_user_level=staroffice
 
 application/x-stuffit
-	_description=Macintosh StuffIt archive 
+	_description=Macintosh StuffIt archive
 
 application/x-sv4cpio
 	_description=SV4 CPIO archive
@@ -451,14 +451,14 @@ audio/x-mp3
 	short_list_application_ids_for_novice_user_level=xmms,mpg123
 	short_list_application_ids_for_intermediate_user_level=xmms,mpg123
 	short_list_application_ids_for_hacker_user_level=xmms,mpg123
-	
+
 audio/x-mp3-playlist
 	_description=MP3 audio playlist
 
 # also audio/x-mp3
 audio/x-mpeg
 	_description=MP3 audio
-	icon_filename=i-music 
+	icon_filename=i-music
 	default_action_type=application
 	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms,mpg123
@@ -662,7 +662,7 @@ image/x-lws
 
 # also image/png
 image/x-png
-	_description=PNG image	
+	_description=PNG image
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -685,7 +685,7 @@ image/x-portable-anymap
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	
+
 image/x-portable-bitmap
 	_description=PBM image
 	default_action_type=component
@@ -698,7 +698,7 @@ image/x-portable-bitmap
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
 	icon_filename=gnome-image-pbm.png
-	
+
 image/x-portable-graymap
 	_description=PGM image
 	default_action_type=component
@@ -710,7 +710,7 @@ image/x-portable-graymap
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	
+
 image/x-portable-pixmap
 	_description=PPM image
 	default_action_type=component
@@ -736,7 +736,7 @@ image/x-psd
 image/x-rgb
 	_description=RGB image
 	icon_filename=gnome-image-rgb.png
-	
+
 image/x-tga
 	_description=TarGA image
 	icon_filename=gnome-image-tga.png
@@ -1061,7 +1061,7 @@ video/mpeg
 	short_list_application_ids_for_novice_user_level=mtvp,mtv,mpeg_play
 	short_list_application_ids_for_intermediate_user_level=mtvp,mtv,mpeg_play
 	short_list_application_ids_for_hacker_user_level=mtvp,mtv,mpeg_play
-       
+
 video/msvideo
 	_description=MS video
 	default_application_id=xanim

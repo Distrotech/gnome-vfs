@@ -1,3 +1,13 @@
+2001-01-22  Darin Adler  <darin@eazel.com>
+
+	* gnome-vfs-mime-magic:
+	* gnome-vfs.applications:
+	* gnome-vfs.keys.in:
+	* gnome-vfs.mime:
+	Got rid of minor whitespace anomalies -- always use tabs to
+	indent, don't put any tab on blank lines, no trailing
+	whitespace allowed.
+
 2001-01-22  Aaron Brick  <aaron@eazel.com>
 
 	* removed references to obsolete application/x-abiword
