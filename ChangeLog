@@ -1,3 +1,17 @@
+2001-09-06  Darin Adler  <darin@bentspoon.com>
+
+	* modules/ftp-method.c: (do_path_command): Fix leak.
+	(do_transfer_command): Simplify code.
+	(do_path_transfer_command): Fix leak.
+	(ftp_connection_create): Fix leak of uri in many cases and of
+	response_buffer in one case.
+	(my_str_hash): Simplify code.
+	(my_str_equal): Simplify code.
+	(ftp_connection_acquire): Formatting tweak.
+	(do_get_file_info): Fix leak in the ERROR_NOT_FOUND case.
+	(vfs_module_init): Remove gconf initialization since this module
+	doesn't use gconf.
+
 2001-09-07  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	Fixed many problems in the in-line and out-of-line docs that were
