@@ -45,6 +45,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
+#include <time.h>
 #include <unistd.h>
 
 
@@ -952,7 +953,7 @@ write_wav_header (gpointer buffer, long bytes)
 		
 		*ptr = "RIFF"; ptr += 4;
 		*ptr = bytes + 44 - 8; ptr += 4;
-		*ptr = "WAVEfmt "); ptr += 8;
+		*ptr = "WAVEfmt "; ptr += 8;
 		*ptr = 16; ptr += 4;
 		*ptr = 1; ptr += 2;
 		*ptr = 2; ptr += 2;
@@ -961,7 +962,7 @@ write_wav_header (gpointer buffer, long bytes)
 		*ptr = 4; ptr += 2;
 		*ptr = 16; ptr += 2;		
 		*ptr = "data"; ptr += 4;
-		*ptr = bytes, 4); ptr += 4;
+		*ptr = bytes; ptr += 4;
 
 		return 44;
 }

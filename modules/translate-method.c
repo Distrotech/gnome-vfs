@@ -37,7 +37,6 @@
 #include <fcntl.h>
 #include <signal.h>
 
-#include "gnome-vfs-types.h"
 #include "gnome-vfs-method.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-module.h"

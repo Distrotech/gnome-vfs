@@ -100,17 +100,13 @@ libvfs_test_la_LIBADD = $(XML_LIBS)
 
 ### `gzip' method
 
-libgzip_la_SOURCES = 				\
-	gzip-method.c 				\
-	gzip-method.h
+libgzip_la_SOURCES = gzip-method.c
 libgzip_la_LDFLAGS = $(module_flags)
 libgzip_la_LIBADD = -lz
 
 ### `bzip2' method
 
-libbzip2_la_SOURCES =				\
-	bzip2-method.c				\
-	bzip2-method.h
+libbzip2_la_SOURCES = bzip2-method.c
 libbzip2_la_LDFLAGS = $(module_flags)
 libbzip2_la_LIBADD = -lbz2
 

@@ -4,7 +4,6 @@
 
 	* libgnomevfs/fnmatch.c:
 	* libgnomevfs/gnome-vfs-app-context.c:
-	(gnome_vfs_callback_call_hook), (destroy_notify_callback):
 	* libgnomevfs/gnome-vfs-app-context.h:
 	* libgnomevfs/gnome-vfs-application-registry.c:
 	* libgnomevfs/gnome-vfs-application-registry.h:

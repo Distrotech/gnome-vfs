@@ -35,7 +35,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "gnome-vfs.h"
-#include "gnome-vfs-private-types.h"
 #include "gnome-vfs-private-utils.h"
 #include <glib.h>
 #include <gmodule.h>

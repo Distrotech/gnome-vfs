@@ -25,9 +25,8 @@
 #ifndef HTTP_CACHE_H
 #define HTTP_CACHE_H
 
-#include <glib.h>
-#include <gnome-vfs-types.h>
-
+#include <libgnomevfs/gnome-vfs-file-info.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 
 void			http_cache_init 				(void);
 void			http_cache_shutdown				(void);

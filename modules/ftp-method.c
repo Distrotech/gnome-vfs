@@ -52,7 +52,6 @@
 #endif
 
 #include "gnome-vfs-context.h"
-#include "gnome-vfs-types.h"
 #include "gnome-vfs-iobuf.h"
 #include "gnome-vfs-inet-connection.h"
 #include "gnome-vfs-method.h"
@@ -60,6 +59,7 @@
 #include "gnome-vfs-module-shared.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-parse-ls.h"
+#include "gnome-vfs-utils.h"
 
 #include "ftp-method.h"
 
