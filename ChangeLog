@@ -1,3 +1,21 @@
+2000-04-13  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	Changed the async. operations so they report their errors through
+	the callbacks all the time instead of sometimes returning an error
+	code immediately. This is more convenient for callers, although
+	it's a bit more complex to implement.
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c
+	(pthread_gnome_vfs_async_load_directory):
+        * test/test-async-directory.c (main):
+        * test/test-async.c (main):
+        * test/test-channel.c (main):
+	Fix callers so they no longer expect a result code.
+	
+	* .cvsignore: Another generated file to ignore.
+
 2000-04-12  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c.c:

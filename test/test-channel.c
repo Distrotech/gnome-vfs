@@ -97,7 +97,6 @@ int
 main (int argc, char **argv)
 {
 	GnomeVFSAsyncHandle *handle;
-	GnomeVFSResult result;
 
 	if (argc < 2) {
 		fprintf (stderr, "Usage: %s <uri>\n", argv[0]);
@@ -122,14 +121,11 @@ main (int argc, char **argv)
 	gnome_vfs_init ();
 
 	printf ("Starting open for `%s'...\n", argv[1]);
-	result = gnome_vfs_async_open_as_channel (&handle, argv[1],
-						  GNOME_VFS_OPEN_READ,
-						  BUFFER_SIZE,
-						  open_callback,
-						  "open_callback");
-	if (result != GNOME_VFS_OK)
-		fprintf (stderr, "Error starting open: %s\n",
-			 gnome_vfs_result_to_string (result));
+	gnome_vfs_async_open_as_channel (&handle, argv[1],
+					 GNOME_VFS_OPEN_READ,
+					 BUFFER_SIZE,
+					 open_callback,
+					 "open_callback");
 
 	puts ("GTK+ main loop running.");
 	gtk_main ();

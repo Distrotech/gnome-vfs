@@ -563,7 +563,6 @@ pthread_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 					gpointer callback_data)
 {
 	GnomeVFSURI *uri;
-	GnomeVFSResult retval;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
@@ -573,20 +572,20 @@ pthread_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	if (uri == NULL)
 		return GNOME_VFS_ERROR_INVALIDURI;
 
-	retval = gnome_vfs_async_load_directory_uri (handle_return, uri,
-						     options, meta_keys,
-						     sort_rules,
-						     reverse_order,
-						     filter_type,
-						     filter_options,
-						     filter_pattern,
-						     items_per_notification,
-						     callback,
-						     callback_data);
-
+	gnome_vfs_async_load_directory_uri (handle_return, uri,
+					    options, meta_keys,
+					    sort_rules,
+					    reverse_order,
+					    filter_type,
+					    filter_options,
+					    filter_pattern,
+					    items_per_notification,
+					    callback,
+					    callback_data);
+	
 	gnome_vfs_uri_unref (uri);
 
-	return retval;
+	return GNOME_VFS_OK;
 }
 
 GnomeVFSResult

@@ -157,7 +157,6 @@ int
 main (int argc, char **argv)
 {
 	GnomeVFSAsyncHandle *handle;
-	GnomeVFSResult result;
 	poptContext popt_context;
 	char **args;
 	gchar *text_uri;
@@ -209,7 +208,7 @@ main (int argc, char **argv)
 	}
 
 	num_entries = 0;
-	result = gnome_vfs_async_load_directory
+	gnome_vfs_async_load_directory
 		(&handle, /* handle */
 		 text_uri, /* text_uri */
 		 (GNOME_VFS_FILE_INFO_GETMIMETYPE
