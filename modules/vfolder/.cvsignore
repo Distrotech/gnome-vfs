@@ -4,8 +4,6 @@ Makefile
 Makefile.in
 *.lo
 *.la
-applications.vfolder-info
-preferences.vfolder-info
-test-vfolder.vfolder-info
-test-vfolder-parent.vfolder-info
+*.vfolder-info
+*.vfolder-info-default
 test-vfolder
