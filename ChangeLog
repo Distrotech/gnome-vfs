@@ -1,3 +1,15 @@
+2000-10-16  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 3040, Action column has wrong contents
+
+	Corrected an instance where text was not getting freed
+	and reset.  Also fixed a few leaks in the list
+	population code.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(populate_application_menu), (populate_viewer_menu),
+	(add_mime_clicked), (populate_mime_list):
+
 2000-10-16  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* modules/file-method.c:
