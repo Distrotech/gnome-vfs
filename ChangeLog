@@ -1,3 +1,30 @@
+2000-06-14  Gene Z. Ragan  <gzr@eazel.com>
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.h:
+	New files. Trying to clean up current capplet source and
+	organize it in a sensible way.
+	
+	(edit_application_dialog_destroy), (edit_component_dialog_destroy),
+	(populate_default_applications_list),
+	(populate_preferred_applications_list), (component_is_in_list),
+	(component_button_toggled_callback),
+	(populate_default_components_box),
+	(populate_preferred_components_list),
+	(initialize_edit_applications_dialog),
+	(initialize_edit_components_dialog),
+	(show_edit_applications_dialog), (show_edit_components_dialog),
+	Brand new functions.
+
+	* mime-type-capplet/Makefile.am:
+	Added new source file listed above.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet), (populate_application_menu),
+	(populate_component_menu), (edit_applications_clicked),
+	(edit_components_clicked):
+	Work on setting up info view.
+
 2000-06-14  Maciej Stachowiak  <mjs@eazel.com>
 
 	Part of task 1057: Terminal-based programs should open into a new terminal window
