@@ -221,12 +221,29 @@ dnl = Gtk+ support
 dnl =
 dnl ====================================
 
-AM_CONDITIONAL(HAVE_GTK, false)
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.3.1 libgnomeui-2.0 >= 2.5.1, AM_CONDITIONAL(HAVE_GTK, true), :)
-GTK_VERSION=`$PKG_CONFIG --variable=gtk_binary_version gtk+-2.0`
-AC_SUBST(GTK_CFLAGS)
-AC_SUBST(GTK_LIBS)
-AC_SUBST(GTK_VERSION)
+AC_ARG_WITH(gtk, AC_HELP_STRING([--with-gtk=auto/yes/no],
+            [build the gtkfilechooser module, default=auto]),
+            want_gtk=${withval}, want_gtk=auto)
+
+have_gtk=no
+if test "x${want_gtk}" != "xno"; then
+  PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.3.1 libgnomeui-2.0 >= 2.5.1,
+                    have_gtk=yes, have_gtk=no)
+
+  if test "x${want_gtk}" = "xyes" && test "x${have_gtk}" = "xno"; then
+    AC_MSG_ERROR([
+*** Cannot find gtk+-2.0 and/or libgnomeui-2.0.
+*** Please install these two packages and run configure again, or disable
+*** the gtkfilechooser module using the --with-gtk=no argument.])
+  fi
+
+  GTK_VERSION=`$PKG_CONFIG --variable=gtk_binary_version gtk+-2.0`
+  AC_SUBST(GTK_CFLAGS)
+  AC_SUBST(GTK_LIBS)
+  AC_SUBST(GTK_VERSION)
+fi
+
+AM_CONDITIONAL(HAVE_GTK, test "x${have_gtk}" = "xyes")
 
 dnl ====================================
 dnl =
