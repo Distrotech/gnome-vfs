@@ -237,7 +237,7 @@ job_can_start (int priority)
 	int actual_limit;
 
 	/* Move the highest priority to the zero point */
-	transformed_priority = priority + GNOME_VFS_MIN_PRIORITY;
+	transformed_priority = priority + GNOME_VFS_PRIORITY_MIN;
 
 	if (running_job_count >= thread_count_limit) {
 		/* Max number of jobs are already running */

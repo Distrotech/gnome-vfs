@@ -34,9 +34,9 @@
 
 G_BEGIN_DECLS
 
-#define GNOME_VFS_MIN_PRIORITY     -10
-#define GNOME_VFS_MAX_PRIORITY     10
-#define GNOME_VFS_DEFAULT_PRIORITY 0
+#define GNOME_VFS_PRIORITY_MIN     -10
+#define GNOME_VFS_PRIORITY_MAX     10
+#define GNOME_VFS_PRIORITY_DEFAULT 0
 
 typedef struct GnomeVFSAsyncHandle GnomeVFSAsyncHandle;
 

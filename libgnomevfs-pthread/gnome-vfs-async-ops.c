@@ -89,8 +89,8 @@ gnome_vfs_async_open_uri (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (uri != NULL);
 	g_return_if_fail (callback != NULL);
-      	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+      	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	*handle_return = async_open (uri, open_mode, priority,
 				     callback, callback_data);
@@ -109,8 +109,8 @@ gnome_vfs_async_open (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (text_uri != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	*handle_return = async_open (uri, open_mode, priority,
@@ -157,8 +157,8 @@ gnome_vfs_async_open_uri_as_channel (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (uri != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	*handle_return = async_open_as_channel (uri, open_mode, advised_block_size,
 						priority, callback, callback_data);
@@ -178,8 +178,8 @@ gnome_vfs_async_open_as_channel (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (text_uri != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	*handle_return = async_open_as_channel (uri, open_mode, advised_block_size,
@@ -229,8 +229,8 @@ gnome_vfs_async_create_uri (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (uri != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	*handle_return = async_create (uri, open_mode, exclusive, perm,
 				       priority, callback, callback_data);
@@ -251,8 +251,8 @@ gnome_vfs_async_create (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (text_uri != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	*handle_return = async_create (uri, open_mode, exclusive, perm,
@@ -279,8 +279,8 @@ gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (text_uri != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	job = gnome_vfs_job_new (GNOME_VFS_OP_CREATE_AS_CHANNEL, priority, (GFunc) callback, callback_data);
 
@@ -414,8 +414,8 @@ gnome_vfs_async_create_symbolic_link (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (uri != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	job = gnome_vfs_job_new (GNOME_VFS_OP_CREATE_SYMBOLIC_LINK, priority, (GFunc) callback, callback_data);
 
@@ -440,8 +440,8 @@ gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	job = gnome_vfs_job_new (GNOME_VFS_OP_GET_FILE_INFO, priority, (GFunc) callback, callback_data);
 
@@ -472,8 +472,8 @@ gnome_vfs_async_set_file_info (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (uri != NULL);
 	g_return_if_fail (info != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	job = gnome_vfs_job_new (GNOME_VFS_OP_SET_FILE_INFO, priority, (GFunc) callback, callback_data);
 
@@ -505,8 +505,8 @@ gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
 
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	job = gnome_vfs_job_new (GNOME_VFS_OP_FIND_DIRECTORY, priority, (GFunc) callback, user_data);
 
@@ -562,8 +562,8 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (text_uri != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	*handle_return = async_load_directory (uri, options,
@@ -587,8 +587,8 @@ gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 	g_return_if_fail (handle_return != NULL);
 	g_return_if_fail (uri != NULL);
 	g_return_if_fail (callback != NULL);
-	g_return_if_fail (priority >= GNOME_VFS_MIN_PRIORITY);
-	g_return_if_fail (priority <= GNOME_VFS_MAX_PRIORITY);
+	g_return_if_fail (priority >= GNOME_VFS_PRIORITY_MIN);
+	g_return_if_fail (priority <= GNOME_VFS_PRIORITY_MAX);
 
 	*handle_return = async_load_directory (uri, options,
 					       items_per_notification,
@@ -614,8 +614,8 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (progress_update_callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
-	g_return_val_if_fail (priority >= GNOME_VFS_MIN_PRIORITY, GNOME_VFS_ERROR_BAD_PARAMETERS);
-	g_return_val_if_fail (priority <= GNOME_VFS_MAX_PRIORITY, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (priority >= GNOME_VFS_PRIORITY_MIN, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (priority <= GNOME_VFS_PRIORITY_MAX, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = gnome_vfs_job_new (GNOME_VFS_OP_XFER,
 				 priority, 

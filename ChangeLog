@@ -1,3 +1,10 @@
+2001-10-27  jacob berkman  <jacob@ximian.com>
+
+	* libgnomevfs/gnome-vfs-async-ops.h: 
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c: 
+	* libgnomevfs-pthread/gnome-vfs-job-queue.c: rename
+	GNOME_VFS_*_PRIORITY to GNOME_VFS_PRIORITY_*
+
 2001-10-26  Laszlo Peter  <laca@ireland.sun.com>
 
 	* modules/vfolder-desktop-method.c: fix undefined symbol.
