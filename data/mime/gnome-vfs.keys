@@ -216,6 +216,9 @@ application/x-object-file
 application/x-perl
 	description=Perl script
 
+application/x-php
+	description=PHP script
+
 application/x-rpm
 	description=RPM package
 	icon-filename=gnome-pack-rpm.png
@@ -253,6 +256,9 @@ application/x-tar
 application/x-theme
 	description=theme
 
+application/x-toutdoux
+	description=ToutDoux document
+
 application/x-troff-man-compressed
 	description=manual page archive
 	icon-filename=gnome-manpage.png
@@ -285,6 +291,9 @@ audio/x-midi
 audio/x-mp3
 	description=MP3 audio
 	icon-filename=gnome-audio-x-mp3.png
+
+audio/x-mp3-playlist
+	description=MP3 audio playlist
 
 audio/x-pn-realaudio
 	description=PN RealAudio document
@@ -372,6 +381,9 @@ image/tiff
 	short_list_application_ids_for_novice_user_level=gimp,eog
 	short_list_application_ids_for_intermediate_user_level=gimp,eog
 	short_list_application_ids_for_hacker_user_level=gimp,eog
+
+image/vnd.dwg
+	description=AutoCAD document
 
 image/x-xpixmap
 	description=XPM image	
@@ -563,6 +575,9 @@ text/*
 	short_list_application_ids_for_novice_user_level=emacs,nedit
 	short_list_application_ids_for_intermediate_user_level=emacs,nedit
 	short_list_application_ids_for_hacker_user_level=emacs,nedit
+
+text/abiword
+	description=AbiWord document
 
 text/calendar
 	description=calendar information

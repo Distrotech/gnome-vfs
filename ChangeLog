@@ -1,3 +1,18 @@
+2000-08-17  John Sullivan  <sullivan@eazel.com>
+
+	Fixed bug 1724 (some MIME types without descriptions)
+
+	* data/mime/gnome-vfs.keys:
+
+	Added descriptions for the following MIME types that users
+	had run into:
+
+	application/x-php
+	application/x-toutdoux
+	audio/x-mp3-playlist
+	image/vnd.dwg
+	text/abiword
+
 2000-08-14  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-backend.c:
