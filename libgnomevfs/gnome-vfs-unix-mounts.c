@@ -34,6 +34,9 @@
 
 #include "gnome-vfs-unix-mounts.h"
 
+#define MOUNT_POLL_INTERVAL 3000
+
+
 #ifdef HAVE_MNTENT_H
 #include <mntent.h>
 #elif defined (HAVE_SYS_MNTTAB_H)
@@ -802,6 +805,8 @@ static GnomeVFSMonitorHandle *fstab_monitor = NULL;
 static GnomeVFSUnixMountCallback fstab_callback = NULL;
 static GnomeVFSMonitorHandle *mtab_monitor = NULL;
 static GnomeVFSUnixMountCallback mtab_callback = NULL;
+guint mtab_poll_tag = 0;
+guint fstab_poll_tag = 0;
 
 static void
 fstab_monitor_callback (GnomeVFSMonitorHandle *handle,
@@ -823,6 +828,20 @@ mtab_monitor_callback (GnomeVFSMonitorHandle *handle,
 	(*mtab_callback) (user_data);
 }
 
+static gboolean
+poll_fstab (gpointer user_data)
+{
+	(*fstab_callback) (user_data);
+	return TRUE;
+}
+
+static gboolean
+poll_mtab (gpointer user_data)
+{
+	(*mtab_callback) (user_data);
+	return TRUE;
+}
+
 void
 _gnome_vfs_monitor_unix_mounts (GnomeVFSUnixMountCallback mount_table_changed,
 				gpointer mount_table_changed_user_data,
@@ -837,10 +856,12 @@ _gnome_vfs_monitor_unix_mounts (GnomeVFSUnixMountCallback mount_table_changed,
 	g_assert (fstab_monitor == NULL);
 	g_assert (mtab_monitor == NULL);
 
+	fstab_callback = mount_table_changed;
+	mtab_callback = current_mounts_changed;
+	
 	fstab_file = get_fstab_file ();
 	if (fstab_file != NULL) {
 		fstab_uri = gnome_vfs_get_uri_from_local_path (fstab_file);
-		fstab_callback = mount_table_changed;
 		gnome_vfs_monitor_add (&fstab_monitor,
 				       fstab_uri,
 				       GNOME_VFS_MONITOR_FILE,
@@ -852,7 +873,6 @@ _gnome_vfs_monitor_unix_mounts (GnomeVFSUnixMountCallback mount_table_changed,
 	mtab_file = get_mtab_monitor_file ();
 	if (mtab_file != NULL) {
 		mtab_uri = gnome_vfs_get_uri_from_local_path (mtab_file);
-		mtab_callback = current_mounts_changed;
 		gnome_vfs_monitor_add (&mtab_monitor,
 				       mtab_uri,
 				       GNOME_VFS_MONITOR_FILE,
@@ -861,9 +881,16 @@ _gnome_vfs_monitor_unix_mounts (GnomeVFSUnixMountCallback mount_table_changed,
 		g_free (mtab_uri);
 	}
 
-
-	/* TODO: Add timeout if monitors not supported */
-	
+	if (fstab_monitor == NULL) {
+		fstab_poll_tag = g_timeout_add (MOUNT_POLL_INTERVAL,
+						poll_fstab,
+						mount_table_changed_user_data);
+	}
+	if (mtab_monitor == NULL) {
+		mtab_poll_tag = g_timeout_add (MOUNT_POLL_INTERVAL,
+					       poll_mtab,
+					       current_mounts_user_data);
+	}	
 }
 
 void
@@ -877,8 +904,16 @@ _gnome_vfs_stop_monitoring_unix_mounts (void)
 		gnome_vfs_monitor_cancel (mtab_monitor);
 		mtab_monitor = NULL;
 	}
-}
 
+	if (mtab_poll_tag != 0) {
+		g_source_remove (mtab_poll_tag);
+		mtab_poll_tag = 0;
+	}
+	if (fstab_poll_tag != 0) {
+		g_source_remove (fstab_poll_tag);
+		fstab_poll_tag = 0;
+	}
+}
 
 void
 _gnome_vfs_unix_mount_free (GnomeVFSUnixMount *mount_entry)
