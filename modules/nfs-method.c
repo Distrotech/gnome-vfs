@@ -86,8 +86,8 @@ G_LOCK_DEFINE_STATIC (server_connection_list);
 
 /* Module entry points. */
 GnomeVFSMethod *vfs_module_init     (const char     *method_name,
-				     const char     *args);
-void            vfs_module_shutdown (GnomeVFSMethod *method);
+				        const char     *args);
+void            vfs_module_shutdown  (GnomeVFSMethod *method);
 
 static GnomeVFSResult
 nfs_get_attr(GnomeVFSURI *uri, NfsServerConnection *conn, GnomeVFSFileInfo *info);
@@ -1731,6 +1731,7 @@ nfs_hash_foreach (gpointer key, gpointer value, gpointer user_data)
 
 
 static GnomeVFSMethod method = {
+	sizeof (GnomeVFSMethod),
 	do_open,
 	do_create,
 	do_close,

@@ -106,8 +106,8 @@ result_strings[NUM_RESULT_STRINGS] = {
 
 /* Module entry points. */
 GnomeVFSMethod *vfs_module_init     (const char     *method_name,
-				     const char     *args);
-void            vfs_module_shutdown (GnomeVFSMethod *method);
+				        const char     *args);
+void            vfs_module_shutdown  (GnomeVFSMethod *method);
 
 static GnomeVFSURI *
 translate_uri (GnomeVFSURI *uri)
@@ -512,6 +512,7 @@ do_create_symbolic_link (GnomeVFSMethod *method,
 }
 
 static GnomeVFSMethod method = {
+	sizeof (GnomeVFSMethod),
 	do_open,
 	do_create,
 	do_close,

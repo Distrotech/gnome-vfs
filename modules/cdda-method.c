@@ -60,34 +60,35 @@
 CDDAContext *global_context = NULL;
 
 static GnomeVFSResult do_open	         	(GnomeVFSMethod              	*method,
-					  						 GnomeVFSMethodHandle         	**method_handle,
-					  						 GnomeVFSURI                   	*uri,
-					  						 GnomeVFSOpenMode               mode,
-					  						 GnomeVFSContext               	*context);
-static gboolean       do_is_local        	(GnomeVFSMethod                	*method,
-					  						 const GnomeVFSURI             	*uri);
-static GnomeVFSResult do_open_directory  	(GnomeVFSMethod                	*method,
-					  						 GnomeVFSMethodHandle         	**method_handle,
-					  						 GnomeVFSURI                   	*uri,
-					  						 GnomeVFSFileInfoOptions        options,
-					  						 const GnomeVFSDirectoryFilter 	*filter,
-					  						 GnomeVFSContext               	*context);
-static GnomeVFSResult do_close_directory 	(GnomeVFSMethod                	*method,
-					  						 GnomeVFSMethodHandle          	*method_handle,
-					  						 GnomeVFSContext               	*context);
-static GnomeVFSResult do_read_directory  	(GnomeVFSMethod                	*method,
-		                          			 GnomeVFSMethodHandle          	*method_handle,
-		                          			 GnomeVFSFileInfo              	*file_info,
-		                          			 GnomeVFSContext               	*context);
-static int		get_data_size 				(cdrom_drive 					*drive, 
-											 int 							track);
-static gboolean	is_file_is_on_disc 			(CDDAContext 					*context, 
-											 const GnomeVFSURI 				*uri);
-static int 		write_wav_header 			(gpointer 						buffer, 
-											 long 							bytes);
+						 GnomeVFSMethodHandle         	**method_handle,
+						 GnomeVFSURI                   	*uri,
+					  	 GnomeVFSOpenMode               mode,
+					  	 GnomeVFSContext               	*context);
+static gboolean       do_is_local        	(GnomeVFSMethod               	*method,
+					  	 const GnomeVFSURI             	*uri);
+static GnomeVFSResult do_open_directory  	(GnomeVFSMethod               	*method,
+					  	 GnomeVFSMethodHandle         	**method_handle,
+					  	 GnomeVFSURI                   	*uri,
+					  	 GnomeVFSFileInfoOptions        options,
+					  	 const GnomeVFSDirectoryFilter 	*filter,
+					  	 GnomeVFSContext               	*context);
+static GnomeVFSResult do_close_directory 	(GnomeVFSMethod               	*method,
+					  	 GnomeVFSMethodHandle          	*method_handle,
+					  	 GnomeVFSContext               	*context);
+static GnomeVFSResult do_read_directory  	(GnomeVFSMethod               	*method,
+                          			 GnomeVFSMethodHandle          	*method_handle,
+                          			 GnomeVFSFileInfo              	*file_info,
+                          			 GnomeVFSContext               	*context);
+static int		get_data_size 		(cdrom_drive 			*drive, 
+						 int 				track);
+static gboolean	is_file_is_on_disc 		(CDDAContext 			*context, 
+						 const GnomeVFSURI 		*uri);
+static int 		write_wav_header 	(gpointer 			buffer, 
+						 long 				bytes);
 
 
-static const char PROXY_KEY[] = "/system/gnome-vfs/http-proxy";
+static const char PROXY_HOST_KEY[] = "/system/gnome-vfs/http-proxy-host";
+static const char PROXY_PORT_KEY[] = "/system/gnome-vfs/http-proxy-port";
 static const char USE_PROXY_KEY[] = "/system/gnome-vfs/use-http-proxy";
 
 static CDDAContext *
@@ -95,7 +96,7 @@ cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
 {
 	CDDAContext *context;
 	GConfClient *gconf_client;
-	char *proxy_string, *port, *proxy;
+	char *proxy_host;
 	gboolean use_proxy;
 	ProxyServer proxy_server;
 	CDDBServer cddb_server;
@@ -114,18 +115,15 @@ cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
 	
 	use_proxy = gconf_client_get_bool (gconf_client, USE_PROXY_KEY, NULL);
 	if (use_proxy) {
-		proxy_string = gconf_client_get_string (gconf_client, PROXY_KEY, NULL);
-		if (proxy_string != NULL) {
-			port = strchr (proxy_string, ':');
-			if (port != NULL) {
-				proxy = g_strdup (proxy_string);
-				proxy [port - proxy_string] = '\0';
-				port++;
+		proxy_host = gconf_client_get_string (gconf_client, PROXY_HOST_KEY, NULL);
+		proxy_server.port = gconf_client_get_int (gconf_client, PROXY_PORT_KEY, NULL);
 
-				strcpy (proxy_server.name, proxy);
-				proxy_server.port = atoi (port);
-			}
-		}						
+		if (proxy_host != NULL) {	
+			strcpy (proxy_server.name, proxy_host);
+			g_free (proxy_host);
+		} else {
+			use_proxy = FALSE;
+		}					
 	}
 
 	strcpy (cddb_server.name, "freedb.freedb.org");
@@ -871,6 +869,7 @@ do_is_local (GnomeVFSMethod *method, const GnomeVFSURI *uri)
 
 
 static GnomeVFSMethod method = {
+	sizeof (GnomeVFSMethod),
 	do_open,
 	NULL, 	/* do_create */
 	do_close,

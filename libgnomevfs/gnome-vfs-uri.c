@@ -844,7 +844,7 @@ gnome_vfs_uri_is_local (const GnomeVFSURI *uri)
 	 * That's why we fail here. If we decide that it's legal,
 	 * then we can change this into an if statement.
 	 */
-	g_return_val_if_fail (uri->method->is_local != NULL, FALSE);
+	g_return_val_if_fail (VFS_METHOD_HAS_FUNC (uri->method, is_local), FALSE);
 
 	return uri->method->is_local (uri->method, uri);
 }

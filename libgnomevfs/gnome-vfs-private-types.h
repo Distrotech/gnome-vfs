@@ -192,9 +192,18 @@ typedef GnomeVFSResult (* GnomeVFSMethodCreateSymbolicLinkFunc)
                                          GnomeVFSContext *context);
 
 
+
+/* Use this macro to test whether a given function is implemented in
+ * a given GnomeVFSMethod.  Note that it checks the expected size of the structure
+ * prior to testing NULL.
+ */
+ 
+#define VFS_METHOD_HAS_FUNC(method,func) ((((char *)&((method)->func)) - ((char *)(method)) < (method)->method_table_size) && method->func != NULL)
+
 /* Structure defining an access method.	 This is also defined as an
    opaque type in `gnome-vfs-types.h'.	*/
 struct GnomeVFSMethod {
+	size_t		method_table_size;			/* Used for versioning */
 	GnomeVFSMethodOpenFunc open;
 	GnomeVFSMethodCreateFunc create;
 	GnomeVFSMethodCloseFunc close;

@@ -2083,6 +2083,7 @@ do_set_file_info (GnomeVFSMethod *method,
 }
 
 static GnomeVFSMethod method = {
+	sizeof (GnomeVFSMethod),
 	do_open,
 	do_create,
 	do_close,

@@ -95,6 +95,7 @@ static gboolean       do_is_local       (GnomeVFSMethod *method,
 					 const GnomeVFSURI *uri);
 
 static GnomeVFSMethod method = {
+	sizeof (GnomeVFSMethod),
         do_open,
         NULL, /* create */
         do_close,

@@ -1,3 +1,70 @@
+2001-01-29  Mike Fleming  <mfleming@eazel.com>
+
+	reviewed by: <pavel@eazel.com>
+
+	Bug 5011: New versionable GnomeVFS module interface
+
+	The GnomeVFSMethod now has a "method_table_size" as its first
+	member, which should be set to sizeof (GnomeVFSMethod) so that
+	GnomeVFS knows what version of the interface the method is using. 
+
+	Old modules will get compile-time warnings and will more than likely 
+	be not loaded at runtime.  (If they do manage to load, they will break)
+
+	Also: fixed cdda module to use new gconf HTTP proxy format
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	(gnome_vfs_open_uri_cancellable),
+	(gnome_vfs_create_uri_cancellable),
+	(gnome_vfs_get_file_info_uri_cancellable),
+	(gnome_vfs_truncate_uri_cancellable),
+	(gnome_vfs_make_directory_for_uri_cancellable),
+	(gnome_vfs_find_directory_cancellable),
+	(gnome_vfs_remove_directory_from_uri_cancellable),
+	(gnome_vfs_unlink_from_uri_cancellable),
+	(gnome_vfs_create_symbolic_link_cancellable),
+	(gnome_vfs_move_uri_cancellable),
+	(gnome_vfs_check_same_fs_uris_cancellable),
+	(gnome_vfs_set_file_info_cancellable):
+	* libgnomevfs/gnome-vfs-directory.c:
+	* libgnomevfs/gnome-vfs-handle.c: (gnome_vfs_handle_new):
+	* libgnomevfs/gnome-vfs-method.c: (load_module):
+	* libgnomevfs/gnome-vfs-module.h:
+	* libgnomevfs/gnome-vfs-private-types.h:
+	* libgnomevfs/gnome-vfs-seekable.c: (gnome_vfs_seek_emulate):
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_is_local):
+	* modules/bzip2-method.c:
+	* modules/cdda-method.c: (cdda_context_new):
+	* modules/efs-method.c:
+	* modules/extfs-method.c:
+	* modules/file-method.c:
+	* modules/ftp-method.c:
+	* modules/gconf-method.c:
+	* modules/gzip-method.c:
+	* modules/http-method.c:
+	* modules/nfs-method.c:
+	* modules/pipe-method.c:
+	* modules/test-method.c:
+	* modules/translate-method.c: (vfs_module_init),
+	(vfs_module_shutdown):
+
+2001-01-17  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c: (sig_gconf_value_changed),
+	(vfs_module_init):
+
+	Changed gconf http proxy format
+
+	Old:
+
+	/system/gnome-vfs/use-http-proxy (bool)
+	/system/gnome-vfs/http-proxy (string; host:port)
+
+	New:
+	/system/gnome-vfs/use-http-proxy (bool)
+	/system/gnome-vfs/http-proxy-host (string)
+	/system/gnome-vfs/http-proxy-port (int)
+
 2001-01-29  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Gene Z. Ragan <gzr@eazel.com>
@@ -208,7 +275,6 @@
 	* modules/file-method.h:
 	Fix messed up header guards.
 
->>>>>>> 1.915
 2001-01-25  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Gene Z. Ragan <gzr@eazel.com>

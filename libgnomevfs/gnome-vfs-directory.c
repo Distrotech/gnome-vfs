@@ -45,7 +45,7 @@ struct GnomeVFSDirectoryHandle {
 
 #define CHECK_IF_SUPPORTED(vfs_method, what)		\
 G_STMT_START{						\
-	if (vfs_method->what == NULL)			\
+	if (!VFS_METHOD_HAS_FUNC(vfs_method, what))			\
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;	\
 }G_STMT_END
 

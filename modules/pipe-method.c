@@ -223,6 +223,7 @@ is_local(GnomeVFSMethod *method,
 }
 
 static GnomeVFSMethod method = {
+	sizeof (GnomeVFSMethod),
 	do_open,
 	NULL, /* create */
 	do_close,

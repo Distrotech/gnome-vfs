@@ -71,12 +71,12 @@ static const char PROXY_KEY[] = "/system/gnome-vfs/http-proxy";
 static const char USE_PROXY_KEY[] = "/system/gnome-vfs/use-http-proxy";
 
 
-static GnomeVFSResult do_open	         (GnomeVFSMethod                *method,
+static GnomeVFSResult do_open	         (GnomeVFSMethod               *method,
 					  GnomeVFSMethodHandle         **method_handle,
 					  GnomeVFSURI                   *uri,
 					  GnomeVFSOpenMode               mode,
 					  GnomeVFSContext               *context);
-static gboolean       do_is_local        (GnomeVFSMethod                *method,
+static gboolean       do_is_local        (GnomeVFSMethod               *method,
 					  const GnomeVFSURI             *uri);
 static GnomeVFSResult do_open_directory  (GnomeVFSMethod                *method,
 					  GnomeVFSMethodHandle         **method_handle,
@@ -84,10 +84,10 @@ static GnomeVFSResult do_open_directory  (GnomeVFSMethod                *method,
 					  GnomeVFSFileInfoOptions        options,
 					  const GnomeVFSDirectoryFilter *filter,
 					  GnomeVFSContext               *context);
-static GnomeVFSResult do_close_directory (GnomeVFSMethod                *method,
+static GnomeVFSResult do_close_directory (GnomeVFSMethod               *method,
 					  GnomeVFSMethodHandle          *method_handle,
 					  GnomeVFSContext               *context);
-static GnomeVFSResult do_read_directory  (GnomeVFSMethod                *method,
+static GnomeVFSResult do_read_directory  (GnomeVFSMethod               *method,
 		                          GnomeVFSMethodHandle          *method_handle,
 		                          GnomeVFSFileInfo              *file_info,
 		                          GnomeVFSContext               *context);
@@ -1370,6 +1370,7 @@ do_set_file_info (GnomeVFSMethod *method,
 }
 
 static GnomeVFSMethod method = {
+	sizeof (GnomeVFSMethod),
 	do_open,
 	do_create,
 	do_close,
