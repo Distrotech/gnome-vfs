@@ -1,5 +1,20 @@
 2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
 
+	Follow up to bug #1162.
+
+	GnomeVFSFilePermissions had some items to be renamed as well.
+	
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	(gnome_vfs_get_special_mime_type), (gnome_vfs_stat_to_file_info):
+	* libgnomevfs/gnome-vfs-types.h:
+	* modules/file-method.c: (set_mime_type), (get_stat_info):
+	* modules/ftp-method.c: (_ftpfs_read_directory), (fill_file_info):
+	* test/test-directory-visit.c: (type_to_string):
+	* test/test-directory.c: (type_to_string):
+	* test/test-info.c: (type_to_string):
+
+2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug #1162.
 
 	Changed naming of gnome-vfs errors to seperate words with

@@ -41,15 +41,15 @@ type_to_string (GnomeVFSFileType type)
 		return "Regular";
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
 		return "Directory";
-	case GNOME_VFS_FILE_TYPE_BROKENSYMLINK:
+	case GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK:
 		return "Broken symlink";
 	case GNOME_VFS_FILE_TYPE_FIFO:
 		return "FIFO";
 	case GNOME_VFS_FILE_TYPE_SOCKET:
 		return "Socket";
-	case GNOME_VFS_FILE_TYPE_CHARDEVICE:
+	case GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE:
 		return "Character device";
-	case GNOME_VFS_FILE_TYPE_BLOCKDEVICE:
+	case GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:
 		return "Block device";
 	default:
 		return "???";

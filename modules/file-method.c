@@ -557,7 +557,7 @@ set_mime_type (GnomeVFSFileInfo *info,
 
 	if (mime_type == NULL) {
 		if ((options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
-		    && info->type != GNOME_VFS_FILE_TYPE_BROKENSYMLINK
+		    && info->type != GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK
 		    && info->symlink_name != NULL)
 			mime_name = info->symlink_name;
 		else
@@ -626,7 +626,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 		if (options & GNOME_VFS_FILE_INFO_FOLLOWLINKS) {
 			if (stat (full_name, statptr) != 0)
 				file_info->type
-					= GNOME_VFS_FILE_TYPE_BROKENSYMLINK;
+					= GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK;
 		}
 	}
 

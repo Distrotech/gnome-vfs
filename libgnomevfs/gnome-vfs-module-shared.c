@@ -69,9 +69,9 @@ gnome_vfs_get_special_mime_type (GnomeVFSURI *uri)
 	switch (info.type) {
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
 		return "x-special/directory";
-	case GNOME_VFS_FILE_TYPE_CHARDEVICE:
+	case GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE:
 		return "x-special/device-char";
-	case GNOME_VFS_FILE_TYPE_BLOCKDEVICE:
+	case GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:
 		return "x-special/device-block";
 	case GNOME_VFS_FILE_TYPE_FIFO:
 		return "x-special/fifo";
@@ -91,9 +91,9 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 	if (S_ISDIR (statptr->st_mode))
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 	else if (S_ISCHR (statptr->st_mode))
-		file_info->type = GNOME_VFS_FILE_TYPE_CHARDEVICE;
+		file_info->type = GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE;
 	else if (S_ISBLK (statptr->st_mode))
-		file_info->type = GNOME_VFS_FILE_TYPE_BLOCKDEVICE;
+		file_info->type = GNOME_VFS_FILE_TYPE_BLOCK_DEVICE;
 	else if (S_ISFIFO (statptr->st_mode))
 		file_info->type = GNOME_VFS_FILE_TYPE_FIFO;
 	else if (S_ISSOCK (statptr->st_mode))

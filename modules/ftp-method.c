@@ -2265,7 +2265,7 @@ _ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 		const char *mime_type;
 		
 		if ((dent->options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
-		    && info->type != GNOME_VFS_FILE_TYPE_BROKENSYMLINK
+		    && info->type != GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK
 		    && info->symlink_name != NULL)
 			mime_name = info->symlink_name;
 		else
@@ -2358,7 +2358,7 @@ fill_file_info (const char *filename,
 		const char *mime_type = NULL;
 		
 		if ((options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
-		    && file_info->type != GNOME_VFS_FILE_TYPE_BROKENSYMLINK
+		    && file_info->type != GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK
 		    && file_info->symlink_name != NULL)
 			mime_name = file_info->symlink_name;
 		else
