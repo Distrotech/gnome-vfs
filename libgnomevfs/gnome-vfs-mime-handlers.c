@@ -40,6 +40,7 @@
 
 #define GCONF_DEFAULT_VIEWER_EXEC_PATH   "/desktop/gnome/applications/component_viewer/exec"
 
+extern GList * _gnome_vfs_configuration_get_methods_list (void);
 
 static GnomeVFSResult expand_parameters                          (gpointer                  action,
 								  GnomeVFSMimeActionType    type,
@@ -1079,8 +1080,6 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 	GError *entries_error;
 	GnomeVFSMimeApplication *application;
 	char *filename, *p;
-	static char *uri_schemes_kluge[] = {"bzip2", "cdda", "computer", "dns-sd", "file", "test", "ftp", "network", "nntp", "gzip", "ugzip", "http", "dav", "davs", "pipe", "a", "ar", "arj", "cpio", "deb", "hp48", "lha", "mailfs", "patchfs", "rar", "rpm", "rpms", "trpm", "zip", "zoo", "applications", "applications-all-users", "all-applications", "preferences", "preferences-all-users", "all-preferences", "favorites", "start-here", "system-settings", "server-settings", "tar", NULL};
-	int i;
 
 	application = NULL;
 	entries_error = NULL;
@@ -1147,23 +1146,17 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 		*p = '\0';
 		application->can_open_multiple_files = FALSE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
-		application->supported_uri_schemes = NULL;
+		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
 	} else if ((p = strstr (application->command, "%U")) != NULL) {
 		*p = '\0';
 		application->can_open_multiple_files = TRUE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS; 
-		application->supported_uri_schemes = NULL;
+		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
 	} else if ((p = strstr (application->command, "%k")) != NULL) {
 		*p = '\0';
 		application->can_open_multiple_files = FALSE;
 		application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES; 
-		application->supported_uri_schemes = NULL;
-	}
-
-	for (i = 0; uri_schemes_kluge[i] != NULL; i++) {
-		application->supported_uri_schemes =
-			g_list_append (application->supported_uri_schemes, 
-					g_strdup (uri_schemes_kluge[i]));
+		application->supported_uri_schemes = _gnome_vfs_configuration_get_methods_list ();
 	}
 
 	return application;

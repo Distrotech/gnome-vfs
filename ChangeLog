@@ -1,5 +1,11 @@
 2004-07-19  Ray Strode  <rstrode@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c: 
+	use new found _gnome_vfs_configuration_get_methods_list
+	function for getting supported uri schemes.
+
+2004-07-19  Ray Strode  <rstrode@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
 	ping mime monitor after successfully reading 
 	in cache, so it doesn't get pinged superfluously
