@@ -103,6 +103,13 @@ static int nothing;
 
 /* Mutex for cache data structures */
 /* The GLib mutex abstraction doesn't allow recursive mutexs */
+
+/* For Solaris and other systems that don't have this define */
+#ifndef PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP
+#define  PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP  \
+             {0, 0, 0, PTHREAD_MUTEX_RECURSIVE, {0, 0}}
+#endif
+
 static pthread_mutex_t cache_rlock = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
 
 /* Hash maps char * URI ---> FileInfoCacheEntry */
