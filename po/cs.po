@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-01-25 17:13+0100\n"
+"POT-Creation-Date: 2004-02-12 03:54+0100\n"
+"PO-Revision-Date: 2004-02-12 15:39+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,27 @@ msgstr "Nemohu inicializovat Bonobo"
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
 msgstr "Nemohu inicializovat gnome vfs"
+
+#: gtk/gtkfilesystemgnomevfs.c:1457
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Ukládání záložek selhalo (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "Nemohu získat informace o souboru '%s': %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Nemohu otevřít soubor '%s': %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr "Nemohu načíst obrázek '%s': důvod není znám, pravděpodobně poškozený soubor s obrázkem"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
@@ -629,15 +650,15 @@ msgstr "Tools"
 msgid "Windows"
 msgstr "Windows"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "Síť"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "Doma"
 
-#: modules/computer-method.c:557
+#: modules/computer-method.c:561
 msgid "Filesystem"
 msgstr "Systém souborů"
 
@@ -645,6 +666,10 @@ msgstr "Systém souborů"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznámé GnomeVFSSeekPosition %d"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Síť Windows"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -995,10 +1020,6 @@ msgstr "Používat HTTP proxy"
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
 "Jméno uživatele, které předávat jako autentizaci při používání HTTP proxy."
-
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "Síť Windows"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
