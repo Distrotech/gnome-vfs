@@ -1,3 +1,37 @@
+1999-09-01  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/http-method.c: Explicitly set the `remove_directory'
+	method to NULL.
+
+	* modules/ftp-method.c (ftpfs_remove_directory): New function, for
+	future implementation of the `remove_directory' method.
+
+	* modules/gzip-method.c: Explicitly set the `remove_directory' and
+	`rename' methods to NULL.
+
+	* modules/file-method.c (do_remove_directory): New function,
+	implementing the `remove_directory' method.
+
+	* libgnomevfs/gnome-vfs-ops.c
+	(gnome_vfs_remove_directory_from_uri): New function.
+	(gnome_vfs_remove_directory): New function.
+
+	* libgnomevfs/gnome-vfs-private-types.h: New typedef
+	`GnomeVFSMethodRemoveDirectoryFunc'.  Added member
+	`remove_directory' to `GnomeVFSMethod'.
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_tell): Removed parameter
+	`whence'.
+
+	* libgnomevfs/gnome-vfs-handle.c (gnome_vfs_handle_do_tell):
+	Removed parameter `whence'.
+
+	* libgnomevfs/gnome-vfs-private-types.h: Removed parameter
+	`whence' from the `GnomeVFSMethodTellFunc' function typedef.
+	* modules/file-method.c: Updated accordingly.
+	* modules/ftp-method.c: Updated accordingly.
+	* modules/http-method.c: Updated accordingly.
+
 1999-09-01  Dave Camp  <campd@oit.edu>
 
 	* modules/gconf-method.c (set_mime_type_value): Return a 

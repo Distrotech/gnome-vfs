@@ -1997,7 +1997,6 @@ ftpfs_seek (GnomeVFSMethodHandle *method_handle,
 
 static GnomeVFSResult
 ftpfs_tell (GnomeVFSMethodHandle *method_handle,
-	    GnomeVFSSeekPosition whence,
 	    GnomeVFSFileOffset *offset_return)
 {
 	return GNOME_VFS_ERROR_INTERNAL;
@@ -2059,6 +2058,12 @@ ftpfs_make_directory (GnomeVFSURI *uri, guint perm)
 	return GNOME_VFS_ERROR_IO;
 }
 
+static GnomeVFSResult
+ftpfs_remove_directory (GnomeVFSURI *uri)
+{
+	return GNOME_VFS_ERROR_IO;
+}
+
 static GnomeVFSMethod method = {
 	ftpfs_open,
 	ftpfs_create,
@@ -2074,6 +2079,7 @@ static GnomeVFSMethod method = {
 	ftpfs_get_file_info,
 	ftpfs_is_local,
 	ftpfs_make_directory,
+	ftpfs_remove_directory,
 	NULL
 };
 

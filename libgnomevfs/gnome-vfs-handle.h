@@ -52,7 +52,6 @@ GnomeVFSResult	gnome_vfs_handle_do_seek	(GnomeVFSHandle *handle,
 						 GnomeVFSSeekPosition whence,
 						 GnomeVFSFileSize offset);
 GnomeVFSResult	gnome_vfs_handle_do_tell	(GnomeVFSHandle *handle,
-						 GnomeVFSSeekPosition whence,
 						 GnomeVFSFileSize *offset_return);
 
 #endif /* _GNOME_VFS_HANDLE_H */

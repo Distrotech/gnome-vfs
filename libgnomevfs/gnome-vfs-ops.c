@@ -163,12 +163,11 @@ gnome_vfs_seek (GnomeVFSHandle *handle,
 
 GnomeVFSResult
 gnome_vfs_tell (GnomeVFSHandle *handle,
-		GnomeVFSSeekPosition whence,
 		GnomeVFSFileSize *offset_return)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	return gnome_vfs_handle_do_tell (handle, whence, offset_return);
+	return gnome_vfs_handle_do_tell (handle, offset_return);
 }
 
 
@@ -240,6 +239,40 @@ gnome_vfs_make_directory (const gchar *text_uri,
 		return GNOME_VFS_ERROR_INVALIDURI;
 
 	result = gnome_vfs_make_directory_for_uri (uri, perm);
+
+	gnome_vfs_uri_unref (uri);
+
+	return result;
+}
+
+
+GnomeVFSResult
+gnome_vfs_remove_directory_from_uri (GnomeVFSURI *uri)
+{
+	GnomeVFSResult result;
+
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (uri->method->remove_directory == NULL)
+		return GNOME_VFS_ERROR_NOTSUPPORTED;
+
+	result = uri->method->remove_directory (uri);
+	return result;
+}
+
+GnomeVFSResult
+gnome_vfs_remove_directory (const gchar *text_uri)
+{
+	GnomeVFSResult result;
+	GnomeVFSURI *uri;
+
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
+	result = gnome_vfs_remove_directory_from_uri (uri);
 
 	gnome_vfs_uri_unref (uri);
 

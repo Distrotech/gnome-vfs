@@ -61,7 +61,6 @@ GnomeVFSResult	 gnome_vfs_seek			(GnomeVFSHandle *handle,
 						 GnomeVFSFileOffset offset);
 
 GnomeVFSResult	 gnome_vfs_tell			(GnomeVFSHandle *handle,
-						 GnomeVFSSeekPosition whence,
 						 GnomeVFSFileSize *offset_return);
 
 GnomeVFSResult	 gnome_vfs_get_file_info	(const gchar *text_uri,
@@ -81,5 +80,9 @@ GnomeVFSResult	 gnome_vfs_make_directory_for_uri
 						(GnomeVFSURI *uri, guint perm);
 GnomeVFSResult	 gnome_vfs_make_directory	(const gchar *text_uri,
 						 guint perm);
+
+GnomeVFSResult	 gnome_vfs_remove_directory_from_uri
+						(GnomeVFSURI *uri);
+GnomeVFSResult	 gnome_vfs_remove_directory	(const gchar *text_uri);
 
 #endif /* _GNOME_VFS_OPS_H */

@@ -63,7 +63,6 @@ typedef GnomeVFSResult (* GnomeVFSMethodSeekFunc)
 
 typedef GnomeVFSResult (* GnomeVFSMethodTellFunc)
 					(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSSeekPosition whence,
 					 GnomeVFSFileOffset *offset_return);
 
 typedef GnomeVFSResult (* GnomeVFSMethodTruncateFunc)
@@ -101,6 +100,9 @@ typedef GnomeVFSResult (* GnomeVFSMethodMakeDirectoryFunc)
 					(GnomeVFSURI *uri,
 					 guint perm);
 
+typedef GnomeVFSResult (* GnomeVFSMethodRemoveDirectoryFunc)
+					(GnomeVFSURI *uri);
+
 
 /* Structure defining an access method.	 This is also defined as an
    opaque type in `gnome-vfs-types.h'.	*/
@@ -119,6 +121,7 @@ struct _GnomeVFSMethod {
 	GnomeVFSMethodGetFileInfoFunc get_file_info;
 	GnomeVFSMethodIsLocalFunc is_local;
 	GnomeVFSMethodMakeDirectoryFunc make_directory;
+	GnomeVFSMethodRemoveDirectoryFunc remove_directory;
 	GnomeVFSMethodRenameFunc rename;
 };
 

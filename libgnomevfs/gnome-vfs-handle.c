@@ -156,9 +156,8 @@ gnome_vfs_handle_do_seek (GnomeVFSHandle *handle,
 
 GnomeVFSResult
 gnome_vfs_handle_do_tell (GnomeVFSHandle *handle,
-			  GnomeVFSSeekPosition whence,
 			  GnomeVFSFileSize *offset_return)
 {
 	INVOKE_AND_RETURN (handle, tell, (handle->method_handle,
-					  whence, offset_return));
+					  offset_return));
 }

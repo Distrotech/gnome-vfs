@@ -73,6 +73,7 @@ static GnomeVFSMethod method = {
 	do_get_file_info,
 	do_is_local,
 	NULL,
+	NULL,
 	NULL
 };
 
@@ -247,7 +248,6 @@ do_seek (GnomeVFSMethodHandle *method_handle,
 
 static GnomeVFSResult
 do_tell (GnomeVFSMethodHandle *method_handle,
-	 GnomeVFSSeekPosition whence,
 	 GnomeVFSFileOffset *offset_return)
 {
 	FileHandle *file_handle;
