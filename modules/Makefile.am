@@ -28,11 +28,17 @@ EXTRA_DIST =					\
 
 ###  Module setup
 
+if HAVE_CDDA
+CDDA_LTLIBS = libcdda.la
+else
+CDDA_LTLIBS =
+endif
+
 module_flags = -export_dynamic -avoid-version
 modulesdir = $(libdir)/vfs/modules
 
 modules_LTLIBRARIES =				\
-	libcdda.la				\
+	$(CDDA_LTLIBS)				\
 	libextfs.la				\
 	libfile.la				\
 	libvfs-test.la				\
@@ -43,6 +49,7 @@ modules_LTLIBRARIES =				\
 	libvfs-pipe.la				\
 	libvfs-translate.la			\
 	$(NULL)
+
 
 # Not currently supported
 #	libnfs.la				\
