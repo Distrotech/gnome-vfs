@@ -1,3 +1,9 @@
+2004-03-08  Christophe Fergeau  <teuf@gnome.org>
+
+	* configure.in: properly install ssl-modules.conf when using GNU TLS
+	* libgnomevfs/gnome-vfs-ssl.c: (gnome_vfs_ssl_create_from_fd): fix
+	implicit cast from int to pointer
+
 2004-03-07  Christophe Fergeau  <teuf@gnome.org>
 
 	* configure.in: Need to define HAVE_OPENSSL when SSL is available ;)
