@@ -1,3 +1,13 @@
+2000-10-26  Andy Hertzfeld  <andy@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	at Bart's request, made star office the default application
+	for star office documents.
+	
+	* data/mime/gnome-vfs.applications:
+	changed the path for invoking star office from "office52/soffice"
+	to "soffice" so it works with a broader range of versions
+	
 2000-10-26  John Sullivan  <sullivan@eazel.com>
 
 	* test/test-uri.c: (main): Added test case and two

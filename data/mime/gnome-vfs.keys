@@ -89,6 +89,10 @@ application/pdf
 	short_list_component_iids_for_novice_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_intermediate_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_hacker_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
+	default_application_id=ghostview
+	short_list_application_ids_for_novice_user_level=ghostview
+	short_list_application_ids_for_intermediate_user_level=ghostview
+	short_list_application_ids_for_hacker_user_level=ghostview
 
 application/pgp
 	description=PGP message
@@ -564,12 +568,22 @@ application/x-staroffice-presentation
 	description=StarOffice presentation
 	[no]description=StarOffice presentasjon
 	[sv]description=StarOffice-presentation
+	default_action_type=application
+	default_application_id=staroffice
+	short_list_application_ids_for_novice_user_level=staroffice
+	short_list_application_ids_for_intermediate_user_level=staroffice
+	short_list_application_ids_for_hacker_user_level=staroffice
 
 application/x-staroffice-spreadsheet
 	description=StarOffice spreadsheet
 	[fr]description=Feuille de calcul StarOffice
 	[no]description=StarOffice regneark
 	[sv]description=StarOffice-kalkylblad
+	default_action_type=application
+	default_application_id=staroffice
+	short_list_application_ids_for_novice_user_level=staroffice
+	short_list_application_ids_for_intermediate_user_level=staroffice
+	short_list_application_ids_for_hacker_user_level=staroffice
 	icon-filename=i-spreadsheet
 
 application/x-staroffice-words
@@ -577,6 +591,11 @@ application/x-staroffice-words
 	[fr]description=Document traitement de texte StarOffice
 	[no]description=StarOffice dokument
 	[sv]description=StarOffice-ordbehandlingsdokument
+	default_action_type=application
+	default_application_id=staroffice
+	short_list_application_ids_for_novice_user_level=staroffice
+	short_list_application_ids_for_intermediate_user_level=staroffice
+	short_list_application_ids_for_hacker_user_level=staroffice
 
 application/x-stuffit
 	description=Macintosh StuffIt! archive 

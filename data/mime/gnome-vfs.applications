@@ -63,7 +63,7 @@ gnumeric
 	mime_types=application/x-gnumeric,application/vnd.ms-excel
 
 staroffice
-	command=office52/soffice
+	command=soffice
 	name=StarOffice
 	can_open_multiple_files=true
 	can_open_uris=false
