@@ -16,10 +16,12 @@
  * (C) 1997, 1998, 1999 Norbert Warmuth
  */
 #include <config.h>
+#include <sys/param.h>
 #include <stdio.h>
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <string.h>
 #include <limits.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -28,10 +30,48 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
+#include <netdb.h>		/* struct hostent */
+#include <sys/socket.h>		/* AF_INET */
+#include <netinet/in.h>		/* struct in_addr */
+#ifdef HAVE_SETSOCKOPT
+#    include <netinet/ip.h>	/* IP options */
+#endif
+#include <arpa/inet.h>
+#include <arpa/ftp.h>
+#include <arpa/telnet.h>
+#ifndef SCO_FLAVOR
+#	include <sys/time.h>	/* alex: this redefines struct timeval */
+#endif /* SCO_FLAVOR */
+
+#ifdef USE_TERMNET
+#include <termnet.h>
+#endif
+
 #include "ftp-method.h"
 #include "util-url.h"
 
 static GHashTable *connections_hash;
+static FILE *logfile;
+static int code;
+
+/* command wait_flag: */
+#define NONE        0x00
+#define WAIT_REPLY  0x01
+#define WANT_STRING 0x02
+
+void
+print_vfs_message (char *msg, ...)
+{
+	char *str;
+	va_list args;
+	
+	va_start  (args,msg);
+	str = g_strdup_vprintf (msg, args);
+	va_end    (args);
+	
+	puts (str);
+	g_free (str);
+}
 
 static ftpfs_connection_t *
 ftpfs_connection_ref (ftpfs_connection_t *conn)
@@ -213,6 +253,210 @@ ftpfs_direntry_unref (ftpfs_direntry_t *fe)
 	g_free(fe);
 }
 
+static int
+get_line (int sock, char *buf, int buf_len, char term)
+{
+	int i, status;
+	char c;
+	
+	for (i = 0; i < buf_len; i++, buf++) {
+		if (read(sock, buf, sizeof(char)) <= 0)
+			return 0;
+		if (logfile){
+			fwrite (buf, 1, 1, logfile);
+			fflush (logfile);
+		}
+		if (*buf == term) {
+			*buf = 0;
+			return 1;
+		}
+	}
+	*buf = 0;
+	while ((status = read(sock, &c, sizeof(c))) > 0){
+		if (logfile){
+			fwrite (&c, 1, 1, logfile);
+			fflush (logfile);
+		}
+		if (c == '\n')
+			return 1;
+	}
+	return 0;
+}
+
+
+/* Returns a reply code, check /usr/include/arpa/ftp.h for possible values */
+static int
+get_reply (int sock, char *string_buf, int string_len)
+{
+	char answer [1024];
+	int i;
+	
+	for (;;) {
+		if (!get_line (sock, answer, sizeof (answer), '\n')){
+			if (string_buf)
+				*string_buf = 0;
+			code = 421;
+			return 4;
+		}
+		switch (sscanf(answer, "%d", &code)){
+		case 0:
+			if (string_buf) {
+				strncpy (string_buf, answer, string_len - 1);
+				*(string_buf + string_len - 1) = 0;
+			}
+			code = 500;
+			return 5;
+		case 1:
+			if (answer[3] == '-') {
+				while (1) {
+					if (!get_line (sock, answer, sizeof(answer), '\n')){
+						if (string_buf)
+							*string_buf = 0;
+						code = 421;
+						return 4;
+					}
+					if ((sscanf (answer, "%d", &i) > 0) && 
+					    (code == i) && (answer[3] == ' '))
+						break;
+				}
+			}
+			if (string_buf){
+				strncpy (string_buf, answer, string_len - 1);
+				*(string_buf + string_len - 1) = 0;
+			}
+			return code / 100;
+		}
+	}
+}
+
+static int
+command (ftpfs_connection_t *conn, int wait_reply, char *fmt, ...)
+{
+	va_list ap;
+	char *str, *fmt_str;
+	int status;
+	int sock = conn->sock;
+	int got_sigpipe;
+	
+	va_start (ap, fmt);
+	
+	fmt_str = g_strdup_vprintf (fmt, ap);
+	va_end (ap);
+	
+	str = g_strconcat (fmt_str, "\r\n", NULL);
+	g_free (fmt_str);
+
+	if (logfile){
+		if (strncmp (str, "PASS ", 5) == 0){
+			char *tmp = "PASS <Password not logged>\r\n";
+			
+			fwrite (tmp, strlen (tmp), 1, logfile);
+		} else
+			fwrite (str, strlen (str), 1, logfile);
+		
+		fflush (logfile);
+	}
+
+	got_sigpipe = 0;
+	status = write (sock, str, strlen (str));
+	g_free (str);
+    
+	if (status < 0){
+		code = 421;
+		
+		if (errno == EPIPE){
+			got_sigpipe = 1;
+		}
+		return TRANSIENT;
+	}
+	if (wait_reply)
+		return get_reply (
+			sock, (wait_reply & WANT_STRING) ? reply_str : NULL,
+			sizeof (reply_str)-1);
+	return COMPLETE;
+}
+
+static void
+abort_transfer (ftpfs_connection_t *conn, int dsock)
+{
+	static unsigned char ipbuf[3] = { IAC, IP, IAC };
+	fd_set mask;
+	char buf [1024];
+	
+	print_vfs_message (_("ftpfs: aborting transfer."));
+	if (send (conn->sock, ipbuf, sizeof (ipbuf), MSG_OOB) != sizeof(ipbuf)) {
+		print_vfs_message(_("ftpfs: abort error: %s"), g_strerror (errno));
+		return;
+	}
+    
+	if (command (conn, NONE, "%cABOR", DM) != COMPLETE){
+		print_vfs_message (_("ftpfs: abort failed"));
+		return;
+	}
+
+	if (dsock != -1) {
+		FD_ZERO (&mask);
+		FD_SET (dsock, &mask);
+		if (select (dsock + 1, &mask, NULL, NULL, NULL) > 0)
+			while (read (dsock, buf, sizeof(buf)) > 0)
+				;
+	}
+
+	if ((get_reply (conn->sock, NULL, 0) == TRANSIENT) && (code == 426))
+		get_reply (conn->sock, NULL, 0);
+}
+
+static GnomeVFSResult
+linear_start (ftpfs_direntry_t *fe, int offset)
+{
+	fe->local_stat.st_mtime = 0;
+	fe->data_sock = open_data_connection (
+		fe->bucket, "RETR", fe->remote_filename, TYPE_BINARY, offset);
+	if (fe->data_sock == -1)
+		return GNOME_VFS_ERROR_ACCESSDENIED;
+	
+	fe->linear_state = LS_LINEAR_OPEN;
+	return GNOME_VFS_OK;
+}
+
+static void
+linear_abort (struct ftpfs_direntry_t *fe)
+{
+	abort_transfer (fe->conn, fe->data_sock);
+	fe->data_sock = -1;
+}
+
+static GnomeVFSResult
+linear_read (struct ftpfs_direntry_t *fe, void *buf, int len)
+{
+	int n;
+	GnomeVFSResult error = GNOME_VFS_OK;
+	
+	while ((n = read (fe->data_sock, buf, len)) < 0) {
+		if (errno == EINTR)
+			continue;
+		break;
+	}
+
+	if (n < 0)
+	    linear_abort (fe);
+
+	if (!n) {
+		if ((get_reply (fe->conn->sock, NULL, 0) != COMPLETE))
+			error = GNOME_VFS_ERROR_IO;
+		close (fe->data_sock);
+		fe->data_sock = -1;
+	}
+	return error;
+}
+
+static void
+linear_close (struct ftpfs_direntry_t *fe)
+{
+	if (fe->data_sock != -1)
+		linear_abort (fe);
+}
+
 static ftpfs_dir_t *
 retrieve_dir (ftpfs_uri_t *uri, char *remote_path, gboolean resolve_symlinks)
 {
@@ -224,7 +468,6 @@ retrieve_dir (ftpfs_uri_t *uri, char *remote_path, gboolean resolve_symlinks)
 static GnomeVFSResult
 retrieve_file (ftpfs_direntry_t *fe)
 {
-#if 0
 	int total = 0;
 	char buffer [8192];
 	int local_handle, n;
@@ -233,16 +476,14 @@ retrieve_file (ftpfs_direntry_t *fe)
 	if (fe->local_filename)
 		return GNOME_VFS_OK;
 	
-	if (!(fe->local_filename = tempnam (NULL, X)))
+	if (!(fe->local_filename = tempnam (NULL, "ftpfs")))
 		return GNOME_VFS_ERROR_NOMEM;
 
 	fe->local_is_temp = 1;
 	
 	local_handle = open (fe->local_filename, O_RDWR | O_CREAT | O_TRUNC | O_EXCL, 0600);
-	if (local_handle == -1) {
-		ret = GNOME_VFS_ERROR_NOSPACE;
-		goto error_4;
-	}
+	if (local_handle == -1) 
+		return GNOME_VFS_ERROR_NOSPACE;
 
 	ret = linear_start (fe, 0);
 	if (ret != GNOME_VFS_OK)
@@ -288,7 +529,6 @@ retrieve_file (ftpfs_direntry_t *fe)
 	g_free (fe->local_filename);
 	fe->local_filename = NULL;
 	return ret;
-#endif
 }
 
 #warning IS_LINEAR exists
