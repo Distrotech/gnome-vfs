@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.0\n"
-"POT-Creation-Date: 2000-11-24 13:28+0100\n"
+"POT-Creation-Date: 2000-12-05 15:26+0100\n"
 "PO-Revision-Date: 2000-11-24 13:29+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -255,26 +255,26 @@ msgstr "Forespørsel ugyldiggjør tjenestens data"
 msgid "Unknown error"
 msgstr "Ukjent feil"
 
-#: libgnomevfs/gnome-vfs-utils.c:58
+#: libgnomevfs/gnome-vfs-utils.c:66
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:60
+#: libgnomevfs/gnome-vfs-utils.c:68
 #, c-format
 msgid "%u bytes"
 msgstr "%u bytes"
 
-#: libgnomevfs/gnome-vfs-utils.c:67
+#: libgnomevfs/gnome-vfs-utils.c:75
 #, c-format
 msgid "%.1fK"
 msgstr "%.1fK"
 
-#: libgnomevfs/gnome-vfs-utils.c:71
+#: libgnomevfs/gnome-vfs-utils.c:79
 #, c-format
 msgid "%.1fM"
 msgstr "%.1fM"
 
-#: libgnomevfs/gnome-vfs-utils.c:75
+#: libgnomevfs/gnome-vfs-utils.c:83
 #, c-format
 msgid "%.1fG"
 msgstr "%.1fG"
