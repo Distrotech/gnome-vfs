@@ -11,18 +11,8 @@
 #	 [fi]description=Machintoshin BinHex-paketti
 #	 [sv]description=Macintosh BinHex-arkiv
 #
-# Conventions used in this file:
-# ==============================
-# * MIME types are listed in alphabetical (case-insensitive) order
-# * Human language is preferable to acronyms.
-# * Short descriptions are necessary (so acronyms are often used anyway).
-# * Don't distinguish "file" from "document", call them both "document".
-# * It's undesirable to use the same description for multiple types, though
-#   sometimes unavoidable (e.g. "rich text" for both application/rtf and
-#   text/richtext).
-# * Programming source code is called "<language> source code", unless there's
-#   another standard usage for a given language (e.g. "Perl script")
-# * Use lowercase letters except for proper names
+# Conventions used in this file are described in detail in
+# gnome-vfs/doc/mime-descriptions-guidelines.txt.
 
 application/andrew-inset
 	description=Andrew Toolkit inset

@@ -24,7 +24,8 @@ these categories:
 
 1.  Data used to deduce the MIME type for a file.
 
-2.  For each MIME type, a human language description.
+2.  For each MIME type, a human language description (see the file
+    mime-descriptions-guidelines.txt).
 
 3.  For each application, a human readable name.
 
@@ -206,10 +207,11 @@ Possible keys include the following:
 1.  description - The human readable description for the mime type in
     the default language, English
 
-2.  [fi]description - The human readable description for the mime type
-    in another language, in this case Finnish.  The particular language is
+2.  [fi]description - The human readable description for the mime type in
+    another language, in this case Finnish.  The particular language is
     entered in the brackets preceding "description", and is the languages
-    two letter abbreviation.
+    two letter abbreviation. See the file mime-descriptions-guidelines.txt
+    for detail on the construction of (English) descriptions.
 
 [known problem: Translators like to edit .po files, not learn multiple
  file formats for translating.]
