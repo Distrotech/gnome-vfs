@@ -1,3 +1,7 @@
+2000-07-07  Michael Meeks  <michael@helixcode.com>
+
+	* modules/efs-method.c (do_create): remove serious locking bug.
+
 2000-07-10  Darin Adler  <darin@eazel.com>
 
 	Added async. set_file_info. Sadly, I didn't yet write a test

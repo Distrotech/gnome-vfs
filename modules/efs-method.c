@@ -375,9 +375,7 @@ do_create (GnomeVFSMethod *method,
 	if (exclusive)
 		efs_mode |= EFS_EXCL;
 
-	gnome_vfs_file_system_lock (fs);
-		result = open_efs_file (&fs, uri, efs_mode);
-	gnome_vfs_file_system_unlock (fs);
+	result = open_efs_file (&fs, uri, efs_mode);
 
 	if (result != GNOME_VFS_OK)
 		return result;
