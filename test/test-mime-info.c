@@ -42,7 +42,7 @@ main (int argc, char **argv)
 
 	/* test reading of gnome-vfs.keys file */
 	value = gnome_vfs_mime_get_value ("x-directory/normal", "description");
-	if (value == NULL || strcmp (value, "directory") != 0) {
+	if (value == NULL || strcmp (value, "folder") != 0) {
 		printf ("Error: get_value failed on \"description\".\n");
 		exit (1);
 	}
