@@ -1,6 +1,7 @@
 1999-12-15  Elliot Lee  <sopwith@redhat.com>
 
 	* libgnomevfs*/*.c: Fix warnings.
+	* configure.in: Add --with-default-backend=...
 
 1999-12-15  Darin Adler  <darin@eazel.com>
 
