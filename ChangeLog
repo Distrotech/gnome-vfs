@@ -1,5 +1,10 @@
 2000-05-02  John Sullivan  <sullivan@eazel.com>
 
+	* data/mime/gnome-vfs.mime: Alphabetized the mime types,
+	and removed the duplicate entry for video/x-msvideo (avi)
+
+2000-05-02  John Sullivan  <sullivan@eazel.com>
+
 	Another step towards getting all the MIME handling code
 	into gnome-vfs and out of gnome-libs. This step gets the
 	data files and mime-magic stuff into gnome-vfs.
