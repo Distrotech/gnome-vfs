@@ -1,3 +1,6 @@
+2000-03-20 Pablo Saratxaga <pablo@mandrakesoft.com>
+	* configure.in,po/lt.po: Added Lithuanian language file
+
 2000-03-13 Elliot Lee <sopwith@redhat.com>
 	* modules/Makefile.am: Finish the help-method move. Move module-shared stuff to
 	libgnomevfs.

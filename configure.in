@@ -29,7 +29,7 @@ GNOME_COMPILE_WARNINGS
 GNOME_SUPPORT_CHECKS
 GNOME_PTHREAD_CHECK
 
-ALL_LINGUAS="da de el it fr gl no pl pt_BR sv tr uk"
+ALL_LINGUAS="da de el it fr gl lt no pl pt_BR sv tr uk"
 AM_GNOME_GETTEXT
 
 AC_FUNC_ALLOCA
