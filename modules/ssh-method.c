@@ -649,6 +649,8 @@ do_read_directory (GnomeVFSMethod *method,
 	SshHandle *handle = (SshHandle *)method_handle;
 	const char *mime_type;
 	char *target_name, *parent;
+	GnomeVFSFileInfo *target_info;
+	GnomeVFSURI *target_uri;
 
 	for (;;) {
 		tempfilename = NULL;
@@ -711,25 +713,41 @@ do_read_directory (GnomeVFSMethod *method,
 
 		/* FIXME: support symlinks to directories correctly */
 
-		if (handle->info_opts & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
-			if (file_info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
-				if ((handle->info_opts & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0) {
-					mime_type = "x-special/symlink";
-				} else {
-					parent = gnome_vfs_uri_to_string (handle->uri, 0);
-					target_name = gnome_vfs_make_uri_full_from_relative (parent, file_info->symlink_name);
-					mime_type = gnome_vfs_get_file_mime_type (target_name, NULL, FALSE);
-					D(("Looking up mime-type for '%s'\n\n", target_name));
-					g_free (target_name);
-					g_free (parent);
-				}
+		if (file_info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
+			parent = gnome_vfs_uri_to_string
+				(handle->uri, 0);
+			target_name =
+				gnome_vfs_make_uri_full_from_relative
+				(parent, file_info->symlink_name);
+
+			if ((handle->info_opts
+				& GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0) {
+				mime_type = "x-special/symlink";
 			} else {
-				mime_type = (gnome_vfs_get_file_mime_type
-					 (filename, &st, FALSE));
+				target_uri = gnome_vfs_uri_new (target_name);
+				mime_type = gnome_vfs_get_file_mime_type
+					(target_name, NULL, FALSE);
+				D(("Looking up mime-type for '%s'\n\n",
+							target_name));
+				target_info = gnome_vfs_file_info_new ();
+				do_get_file_info (method, target_uri,
+						target_info, handle->info_opts,
+						context);
+				file_info->type = target_info->type;
+				gnome_vfs_file_info_unref (target_info);
+				gnome_vfs_uri_unref (target_uri);
 			}
 
+			g_free (target_name);
+			g_free (parent);
+		} else {
+			mime_type = (gnome_vfs_get_file_mime_type
+					(filename, &st, FALSE));
+		}
+
+		if (handle->info_opts & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
 			file_info->mime_type = g_strdup (mime_type);
-			file_info->valid_fields 
+			file_info->valid_fields
 				|= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		}
 

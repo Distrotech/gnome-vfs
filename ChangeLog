@@ -1,5 +1,10 @@
 2003-02-17  Bastien Nocera  <hadess@hadess.net>
 
+	* modules/ssh-method.c: (do_read_directory): implement setting the
+	type of the file when we have a symlink (Closes: #92630)
+
+2003-02-17  Bastien Nocera  <hadess@hadess.net>
+
 	* modules/ssh-method.c: (do_read_directory): implement mime-type
 	checking for symlinks, still doesn't work for directories
 
