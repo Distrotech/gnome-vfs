@@ -1,3 +1,18 @@
+2001-01-18  Pavel Cisler <pavel@eazel.com>
+
+	Part of fix to 4221 (Pressing Cancel button does not cancel)
+	* libgnomevfs-pthread/gnome-vfs-job.c: (job_notify),
+	(dispatch_xfer_callback), (dispatch_sync_job_callback):
+	Make the xfer job notify callback return the same result
+	when it gets cancelled by gnome_vfs_async_cancel as if
+	the callback requested a cancellation.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (call_progress),
+	(call_progress_with_current_names), (call_progress_uri),
+	(call_progress_with_uris_often), (remove_file), (empty_directory),
+	(remove_directory):
+	Fixed a lot of white space.
+
 2001-01-18  Mike Fleming  <mfleming@eazel.com>
 
 	reviewed by: Ramiro Estrugo  <ramiro@eazel.com>

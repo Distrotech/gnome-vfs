@@ -145,7 +145,8 @@ static void
 job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *wakeup_context)
 {
 	if (job->cancelled) {
-		JOB_DEBUG (("job cancelled, bailing %u", GPOINTER_TO_UINT (wakeup_context->job_handle)));
+		JOB_DEBUG (("job cancelled, bailing %u",
+			GPOINTER_TO_UINT (wakeup_context->job_handle)));
 		return;
 	}
 
@@ -288,8 +289,14 @@ dispatch_set_file_info_callback (GnomeVFSNotifyResult *notify_result)
 }
 
 static void
-dispatch_xfer_callback (GnomeVFSNotifyResult *notify_result)
+dispatch_xfer_callback (GnomeVFSNotifyResult *notify_result, gboolean cancelled)
 {
+	if (cancelled) {
+		/* make the xfer operation stop */
+		notify_result->specifics.xfer.reply = 0;
+		return;
+	}
+	
 	notify_result->specifics.xfer.reply = (* notify_result->specifics.xfer.callback) (
 							    notify_result->job_handle,
 							    notify_result->specifics.xfer.progress_info,
@@ -410,15 +417,13 @@ dispatch_sync_job_callback (gpointer data)
 
 	g_assert (valid);
 
-	if (!cancelled) {
-		switch (notify_result->type) {
-		case GNOME_VFS_OP_XFER:
-			dispatch_xfer_callback (notify_result);
-			break;
-		default:
-			g_assert_not_reached ();
-			break;
-		}
+	switch (notify_result->type) {
+	case GNOME_VFS_OP_XFER:
+		dispatch_xfer_callback (notify_result, cancelled);
+		break;
+	default:
+		g_assert_not_reached ();
+		break;
 	}
 	
 	gnome_vfs_async_job_map_lock ();

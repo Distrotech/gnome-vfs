@@ -152,9 +152,10 @@ call_progress (GnomeVFSProgressCallbackState *progress, GnomeVFSXferPhase phase)
 	if (progress->sync_callback != NULL)
 		result = (* progress->sync_callback) (progress->progress_info, progress->user_data);
 
-	if (progress->update_callback != NULL)
+	if (progress->update_callback != NULL) {
 		result = (* progress->update_callback) (progress->progress_info, 
-		progress->async_job_data);
+			progress->async_job_data);
+	}
 
 	return result;	
 }
@@ -171,12 +172,14 @@ call_progress_with_current_names (GnomeVFSProgressCallbackState *progress, Gnome
 	
 	progress->progress_info->phase = phase;
 
-	if (progress->sync_callback != NULL)
+	if (progress->sync_callback != NULL) {
 		result = (* progress->sync_callback) (progress->progress_info, progress->user_data);
-
-	if (progress->update_callback != NULL)
+	}
+	
+	if (progress->update_callback != NULL) {
 		result = (* progress->update_callback) (progress->progress_info, 
-		progress->async_job_data);
+			progress->async_job_data);
+	}
 
 	return result;	
 }
@@ -196,12 +199,15 @@ call_progress_uri (GnomeVFSProgressCallbackState *progress,
 	
 	progress->progress_info->phase = phase;
 
-	if (progress->sync_callback != NULL)
+	if (progress->sync_callback != NULL) {
 		result = (* progress->sync_callback) (progress->progress_info, progress->user_data);
-
-	if (progress->update_callback != NULL)
-		result = (* progress->update_callback) (progress->progress_info, progress->async_job_data);
-
+	}
+	
+	if (progress->update_callback != NULL) {
+		result = (* progress->update_callback) (progress->progress_info,
+			progress->async_job_data);
+	}
+	
 	return result;	
 }
 
@@ -246,16 +252,19 @@ call_progress_with_uris_often (GnomeVFSProgressCallbackState *progress,
 
 	progress->progress_info->phase = phase;
 
-	if (progress->sync_callback != NULL)
+	if (progress->sync_callback != NULL) {
 		result = (* progress->sync_callback) (progress->progress_info, progress->user_data);
-
-	if (now < progress->next_text_update_callback_time)
+	}
+	
+	if (now < progress->next_text_update_callback_time) {
 		return result;
+	}
 
 	progress->next_text_update_callback_time = now + progress->update_callback_period;
 	
-	if (progress->update_callback != NULL)
+	if (progress->update_callback != NULL) {
 		result = (* progress->update_callback) (progress->progress_info, progress->async_job_data);
+	}
 
 	return result;
 }
@@ -381,10 +390,10 @@ remove_file (GnomeVFSURI *uri,
 	do {
 		retry = FALSE;
 		result = gnome_vfs_unlink_from_uri (uri);		
-		if (result != GNOME_VFS_OK)
+		if (result != GNOME_VFS_OK) {
 			retry = handle_error (&result, progress,
 					      error_mode, skip);
-		else {
+		} else {
 			progress->progress_info->file_index++;
 			/* add some small size for each deleted item because delete overhead
 			 * does not depend on file/directory size
@@ -453,23 +462,26 @@ empty_directory (GnomeVFSURI *uri,
 		
 		if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			result = remove_directory (item_uri, TRUE, 
-					    progress, xfer_options, error_mode, 
-					    skip);
+						   progress, xfer_options, error_mode, 
+						   skip);
 		} else {
 			result = remove_file (item_uri, progress, 
-					    xfer_options, error_mode, 
-					    skip);
+					      xfer_options,
+					      error_mode, 
+					      skip);
 		}
 
 		gnome_vfs_uri_unref (item_uri);
 
-		if (result != GNOME_VFS_OK)
+		if (result != GNOME_VFS_OK) {
 			break;
+		}
 	}
 	gnome_vfs_directory_close (directory_handle);
 
-	if (result == GNOME_VFS_ERROR_EOF)
+	if (result == GNOME_VFS_ERROR_EOF) {
 		result = GNOME_VFS_OK;
+	}
 
 	return result;
 }
@@ -573,8 +585,9 @@ remove_directory (GnomeVFSURI *uri,
 		}
 	}
 
-	if (result == GNOME_VFS_ERROR_EOF)
+	if (result == GNOME_VFS_ERROR_EOF) {
 		result = GNOME_VFS_OK;
+	}
 
 	if (result == GNOME_VFS_OK) {
 		do {
