@@ -32,7 +32,7 @@
 
 #include <glib.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <libgnomevfs/gnome-vfs-monitor-private.h>
+#include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxml/xmlmemory.h>

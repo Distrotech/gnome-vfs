@@ -1,5 +1,10 @@
 2004-07-20  Christophe Fergeau <teuf@gnome.org>
 
+	* modules/vfolder/vfolder-info.c: fix compilation after the previous
+	  commit
+
+2004-07-20  Christophe Fergeau <teuf@gnome.org>
+
         * libgnomevfs/gnome-vfs-monitor-private.h
 	* libgnomevfs/gnome-vfs-monitor.c
         * libgnomevfs/gnome-vfs-module-shared.h: export
