@@ -1,5 +1,16 @@
 2002-06-15  Seth Nickell  <snickell@stanford.edu>
 
+	* .cvsignore:
+	* libgnomevfs/.cvsignore:
+
+	Don't pay attention to weird GOB crap.
+	
+	* test/test-metadata.c: (main):
+
+	Oops, forgot a cvs add.
+
+2002-06-15  Seth Nickell  <snickell@stanford.edu>
+
 	* libgnomevfs/gnome-vfs-metadata.gob:
 
 	Load XML properly using GnomeVFS rather than just from local files.
