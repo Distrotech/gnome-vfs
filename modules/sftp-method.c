@@ -1275,7 +1275,12 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 			if (g_str_has_suffix (buffer, "password: ") ||
 			    g_str_has_suffix (buffer, "Password: ") ||
 			    g_str_has_prefix (buffer, "Enter passphrase for key")) {
-				if (!done_auth && invoke_fill_auth (uri, buffer, &password) && password != NULL) {
+				if (!done_auth && gnome_vfs_uri_get_password (uri) != NULL) {
+					password = g_strdup (gnome_vfs_uri_get_password (uri));
+					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
+					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
+					g_io_channel_flush (tty_channel, NULL);
+				} else if (!done_auth && invoke_fill_auth (uri, buffer, &password) && password != NULL) {
 					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
 					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
 					g_io_channel_flush (tty_channel, NULL);

@@ -1,5 +1,11 @@
 2004-09-21  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/sftp-method.c (sftp_connect):
+	Use password from uri if availible (#152639).
+	Patch from Bastien Nocera.
+
+2004-09-21  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-unix-mounts.c:
 	Include sys/vfstab.h if found (#152115)
 	Patch from danek.duvall@sun.com.
