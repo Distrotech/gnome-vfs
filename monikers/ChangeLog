@@ -1,3 +1,9 @@
+2004-08-01  Gustavo J. A. M. Carneiro  <gustavo@users.sourceforge.net>
+
+	* bonobo-stream-vfs.c
+	(bonobo_stream_vfs_storageinfo_from_file_info): Don't crash if
+	fi->name is NULL.
+
 2003-04-17  Michael Meeks  <michael@ximian.com>
 
 	* GNOME_VFS_Moniker_std.server.in.in: remove .so suffix.

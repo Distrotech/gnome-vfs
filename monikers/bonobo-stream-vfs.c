@@ -26,7 +26,7 @@ bonobo_stream_vfs_storageinfo_from_file_info (Bonobo_StorageInfo *si,
 	g_return_if_fail (si != NULL);
 	g_return_if_fail (fi != NULL);
 
-	si->name = CORBA_string_dup (fi->name);
+	si->name = CORBA_string_dup (fi->name? fi->name : "");
 
 	if (fi->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE)
 		si->size = fi->size;
