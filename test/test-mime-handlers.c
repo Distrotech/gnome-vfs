@@ -20,6 +20,10 @@
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
 
+#ifdef TEXT_EXEC_MACRO_EXPANSION
+void test_exec_macro_expansion (void);
+#endif
+
 static void
 print_application_info (GnomeVFSMimeApplication *app)
 {
@@ -106,6 +110,11 @@ main (int argc, char **argv)
 		g_print ("-----------------------------\n");
 	}
 	gnome_vfs_mime_application_list_free (applications);	
+
+#ifdef TEXT_EXEC_MACRO_EXPANSION
+	g_print ("Test exec macro expansion\n");
+	test_exec_macro_expansion ();
+#endif
 
 	gnome_vfs_shutdown ();
 	return 0;

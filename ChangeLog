@@ -1,3 +1,16 @@
+2004-11-23  Marco Pesenti Gritti  <marco@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_launch_with_env),
+	(expand_macro_single), (expand_macro),
+	(expand_application_parameters), (print_expansion_data),
+	(print_macro_expansion), (test_exec_array),
+	(test_exec_macro_expansion):
+	* test/test-mime-handlers.c: (main):
+
+	Improve expand_application_parameters. Now it handles
+	--open-uri=%u correctly. Add tests for macro expansion.
+
 2004-11-22  Marco Pesenti Gritti  <marco@gnome.org>
 
 	* .cvsignore:

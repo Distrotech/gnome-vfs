@@ -57,7 +57,7 @@ struct _GnomeVFSMimeApplicationPrivate
 
 extern GList * _gnome_vfs_configuration_get_methods_list (void);
 
-static GnomeVFSResult expand_application_parameters              (GnomeVFSMimeApplication  *application,
+static GnomeVFSResult expand_application_parameters              (const char               *exec,
 								  GList                   **uri_list,
 								  int                      *argc,
 								  char                   ***argv);
@@ -1298,7 +1298,8 @@ gnome_vfs_mime_application_launch_with_env (GnomeVFSMimeApplication *app,
 	
 	while (uris != NULL) {
 		
-		result = expand_application_parameters (app, &uris, &argc, &argv);
+		result = expand_application_parameters (app->priv->exec, &uris,
+							&argc, &argv);
 		
 		if (result != GNOME_VFS_OK) {
 			return result;
@@ -1329,135 +1330,208 @@ gnome_vfs_mime_application_launch_with_env (GnomeVFSMimeApplication *app,
 	return GNOME_VFS_OK;		
 }
 
-static GnomeVFSResult
-expand_application_parameters (GnomeVFSMimeApplication *app,
-			       GList                  **uri_list,
-			       int                     *argc,
-			       char                  ***argv)		   
+static char *
+expand_macro_single (char macro, const char *uri)
 {
-	GList *uris = *uri_list;
-	GnomeVFSResult result = GNOME_VFS_OK;
-	GPtrArray *args;
-	int c_argc, i;
-	char **c_argv;
-	char *path;
+	char *result = NULL, *path;
 
-	if (!g_shell_parse_argv (app->priv->exec, &c_argc, &c_argv, NULL)) {
-		return GNOME_VFS_ERROR_PARSE;
+	switch (macro) {
+		case 'u':
+		case 'U':	
+			result = g_shell_quote (uri);
+			break;
+		case 'f':
+		case 'F':
+			path = gnome_vfs_get_local_path_from_uri (uri);
+			if (path) {
+				result = g_shell_quote (path);
+				g_free (path);
+			}
+			break;
+		case 'd':
+		case 'D':
+			path = gnome_vfs_get_local_path_from_uri (uri);
+			if (path) {
+				result = g_shell_quote (g_path_get_dirname (path));
+				g_free (path);
+			}
+			break;
+		case 'n':
+		case 'N':
+			path = gnome_vfs_get_local_path_from_uri (uri);
+			if (path) {
+				result = g_shell_quote (g_path_get_basename (path));
+				g_free (path);
+			}
+			break;
 	}
-
-	args = g_ptr_array_new ();
-
-	for (i = 0; i < c_argc && uris != NULL; i++) {
-		/* replace %u with a single URL */
-		if (strcmp (c_argv[i], "%u") == 0) {
-			g_ptr_array_add (args, g_strdup (uris->data));
-			uris = uris->next;
-
-		/* replace %U with a list of URLS */
-		} else if (strcmp (c_argv[i], "%U") == 0) {
-			while (uris != NULL) {
-				g_ptr_array_add (args, g_strdup (uris->data));
-				uris = uris->next;
-			}
-
-		/* replace %f with a local path */
-		} else if (strcmp (c_argv[i], "%f") == 0) {
-			path = gnome_vfs_get_local_path_from_uri (uris->data);
-
-			if (path != NULL)
-				g_ptr_array_add (args, g_strdup (path));
-			else
-				result = GNOME_VFS_ERROR_NOT_SUPPORTED;
-
-			uris = uris->next;
-
-		/* replace %F with a list of local paths */
-		} else if (strcmp (c_argv[i], "%F") == 0) {
-			while (uris != NULL) {
-				path = gnome_vfs_get_local_path_from_uri (uris->data);
-
-				if (path != NULL)
-					g_ptr_array_add (args, g_strdup (path));
-				else
-					result = GNOME_VFS_ERROR_NOT_SUPPORTED;
-				
-				uris = uris->next;
-			}
-
-		/* replace %d with a single directory */
-		} else if (strcmp (c_argv[i], "%d") == 0) {
-			path = gnome_vfs_get_local_path_from_uri (uris->data);
-
-			if (path != NULL) {
-				g_ptr_array_add (args, g_path_get_dirname (path));
-				uris = uris->next;
-			}
-			else
-				result = GNOME_VFS_ERROR_NOT_SUPPORTED;
-
-		/* replace %D with a list of directories */
-		} else if (strcmp (c_argv[i], "%D") == 0) {
-			while (uris != NULL) {
-				path = gnome_vfs_get_local_path_from_uri (uris->data);
-
-				if (path != NULL)
-				{
-					path = g_path_get_dirname (path);
-					g_ptr_array_add (args, g_strdup (path));
-					uris = uris->next;
-				}
-				else
-					result = GNOME_VFS_ERROR_NOT_SUPPORTED;
-			}
-
-		/* replace %n with a filename */
-		} else if (strcmp (c_argv[i], "%n") == 0) {
-			path = gnome_vfs_get_local_path_from_uri (uris->data);
-
-			if (path != NULL) {
-				g_ptr_array_add (args, g_path_get_basename (path));
-				uris = uris->next;
-			}
-			else
-				result = GNOME_VFS_ERROR_NOT_SUPPORTED;
-
-		/* replace %N with a list of filenames */
-		} else if (strcmp (c_argv[i], "%N") == 0) {
-			while (uris != NULL)
-			{
-				path = gnome_vfs_get_local_path_from_uri (uris->data);
-
-				if (path != NULL) {
-					g_ptr_array_add (args, g_path_get_basename (path));
-					uris = uris->next;
-				}
-				else
-					result = GNOME_VFS_ERROR_NOT_SUPPORTED;
-			}
-
-		/* otherwise take arg from command */
-		} else {
-			g_ptr_array_add (args, g_strdup (c_argv[i]));
-		}
-	}
-
-	g_strfreev (c_argv);
-
-	g_ptr_array_add (args, NULL);
-	*argc = args->len;
-	*argv = (char **)args->pdata;
-	
-	g_ptr_array_free (args, FALSE);
-
-	/* Break the cycle if there are no substitutions */
-	if (*uri_list == uris)
-		*uri_list = NULL;
-	else
-		*uri_list = uris;
 
 	return result;
 }
+
+static void
+expand_macro (char macro, GString *exec, GList **uri_list)
+{
+	GList *uris = *uri_list;
+	char *expanded;
+
+	g_return_if_fail (uris != NULL);
+	g_return_if_fail (exec != NULL);
+
+	if (uris == NULL) {
+		return;
+	}
+
+	switch (macro) {
+		case 'u':
+		case 'f':
+		case 'd':
+		case 'n':
+			expanded = expand_macro_single (macro, uris->data);
+			if (expanded) {
+				g_string_append (exec, expanded);
+				g_free (expanded);
+			}
+			uris = uris->next;
+			break;
+		case 'U':	
+		case 'F':
+		case 'D':
+		case 'N':
+			while (uris) {
+				expanded = expand_macro_single (macro, uris->data);
+				if (expanded) {
+					g_string_append (exec, expanded);
+					g_free (expanded);
+				}
+
+				uris = uris->next;
+
+				if (uris != NULL && expanded) {
+					g_string_append_c (exec, ' ');
+				}
+			}
+			break;
+	}
+
+	*uri_list = uris;
+}
+
+static GnomeVFSResult
+expand_application_parameters (const char     *exec,
+			       GList         **uris,
+			       int            *argc,
+			       char         ***argv)		   
+{
+	const char *p = exec;
+	GString *expanded_exec = g_string_new (NULL);
+
+	g_return_val_if_fail (p != NULL, GNOME_VFS_ERROR_PARSE);
+
+	while (*p) {
+		if (p[0] == '%' && p[1] != '\0') {
+			expand_macro (p[1], expanded_exec, uris);
+			p++;
+		} else {
+			g_string_append_c (expanded_exec, *p);
+		}
+
+		p++;
+	}
+
+	if (!g_shell_parse_argv (expanded_exec->str, argc, argv, NULL)) {
+		return GNOME_VFS_ERROR_PARSE;
+	}
+
+	return GNOME_VFS_OK;
+}
+
+#ifdef TEXT_EXEC_MACRO_EXPANSION
+static void
+print_expansion_data (GList *uris, const char *exec)
+{
+	GList *l;
+	int i;
+
+	g_print ("Exec %s\n", exec);
+
+	for (l = uris, i = 0; l != NULL; l = l->next, i++)
+	{
+		g_print ("URI %d: %s\n", i, (char *)l->data);
+	}
+}
+
+static void
+print_macro_expansion (char **argv, GnomeVFSResult res)
+{
+	int i;
+
+	if (res != GNOME_VFS_OK) {
+		g_print ("Error\n");
+	} else {
+		for (i = 0; argv[i] != NULL; i++)
+		{
+			g_print ("Arg %d: %s\n", i, argv[i]);
+		}
+	}
+}
+
+static void
+test_exec_array (const char **execs, GList *uris)
+{
+	int argc, i;
+	char **argv;
+
+	for (i = 0; execs[i] != NULL; i++)
+	{
+		GList *l = uris;
+
+		print_expansion_data (uris, execs[i]);
+		while (l != NULL) {
+			GnomeVFSResult res;
+
+			res = expand_application_parameters
+					(execs[i], &l, &argc, &argv);
+			print_macro_expansion (argv, res);
+			g_strfreev (argv);
+		}
+
+		g_print ("---------------------\n");
+	}
+}
+
+void test_exec_macro_expansion (void);
+
+void
+test_exec_macro_expansion (void)
+{
+	GList *uris = NULL;
+	
+	const char *local[] = { "test --open-file=%f",
+				"test --open-files %F",
+				"test %d",
+				"test %D",
+				"test %n",
+				"test %N",
+				NULL };
+
+	const char *remote[] = { "test --open-uri=%u",
+				"test --open-uris %U",
+				"test %u",
+				"test %U",
+				NULL };
+
+	uris = g_list_append (uris, "file:///home/test/test1.txt");
+	uris = g_list_append (uris, "file:///home/test/test2.txt");
+	test_exec_array (local, uris);
+	
+	uris = g_list_append (uris, "http://www.test.org/test1.txt");
+	uris = g_list_append (uris, "http://www.test.org/test2.txt");
+	test_exec_array (remote, uris);
+
+	g_list_free (uris);
+}
+#endif
 
 static GnomeVFSResult
 expand_component_parameters (gpointer                 action,
