@@ -1,3 +1,13 @@
+2001-03-29  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	(gnome_vfs_move_uri_cancellable): Make a move where both the from
+	and to are identical succeed without involving the module.
+	* libgnomevfs/gnome-vfs-xfer.c: (handle_name_conflicts): Don't
+	treat a file that's being moved on top of itself as a conflict.
+
 2001-03-24  Martin Baulig  <baulig@suse.de>
 
 	* gnomevfs-2.0.pc.in: Renamed to gnome-vfs-2.0.pc.in.

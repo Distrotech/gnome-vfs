@@ -363,6 +363,10 @@ gnome_vfs_move_uri_cancellable (GnomeVFSURI *old,
 	if (! check_same_fs_in_uri (old, new))
 		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
 
+	if (gnome_vfs_uri_equal (old, new)) {
+		return GNOME_VFS_OK;
+	}
+
 	if (!VFS_METHOD_HAS_FUNC(old->method, move))
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 

@@ -845,13 +845,17 @@ handle_name_conflicts (GList **source_uri_list,
 	     target_item != NULL;) {
 		gboolean replace;
 		gboolean skip;
-		GnomeVFSURI *uri;
+		gboolean is_move_to_self;
+		GnomeVFSURI *uri, *source_uri;
 		GnomeVFSFileInfo *info;
 		
 		skip = FALSE;
+		source_uri = (GnomeVFSURI *)source_item->data;
 		uri = (GnomeVFSURI *)target_item->data;
-		if (gnome_vfs_uri_exists (uri)) {
-			progress_set_source_target_uris (progress, NULL, uri);
+		is_move_to_self = (xfer_options & GNOME_VFS_XFER_REMOVESOURCE) != 0
+			&& gnome_vfs_uri_equal (source_uri, uri);
+		if (!is_move_to_self && gnome_vfs_uri_exists (uri)) {
+			progress_set_source_target_uris (progress, source_uri, uri);
 			 
 			/* no error getting info -- file exists, ask what to do */
 			replace = handle_overwrite (&result, progress, error_mode,
