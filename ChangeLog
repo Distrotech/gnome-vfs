@@ -1,3 +1,28 @@
+2002-08-08  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_unlink_unlocked): Call
+	folder_remove_include() if the entry is user-private, so we don't
+	leave old <Include> tags around.
+
+	* modules/vfolder/vfolder-info.c (itemdir_free): g_slist_free()
+	monitor list.
+	(vfolder_info_write_user): Check filename monitor exists before
+	trying to freeze/thaw it.  This should fix bug #90160.
+	(integrate_entry): Skip <OnlyUnallocated> folders.  Emit a monitor
+	event based on the outcome here.
+	(itemdir_monitor_handle): Update info->modification_time.  Fix
+	botched relative path handling on create events.
+	(itemdir_monitor_cb): Fix typo causing double write lock instead
+	of an unlock. Doh :)
+	(copy_user_default_file): Call
+	vfolder_make_directory_and_parents() before trying to copy the
+	default .vfolder-info file.
+
+	* modules/vfolder/vfolder-common.c (folder_emit_changed): Make
+	non-static.
+
+	Add some monitor-related debugging g_prints.
+
 2002-08-06  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-util.c (vfolder_monitor_freeze): Use

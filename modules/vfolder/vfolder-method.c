@@ -1110,9 +1110,14 @@ do_unlink_unlocked (VFolderInfo *info,
 		if (!folder_make_user_private (parent))
 			return GNOME_VFS_ERROR_READ_ONLY;
 
+		/* Clear out the <Include> */
+		if (entry_is_user_private (entry))
+			folder_remove_include (parent, 
+					       entry_get_filename (entry));
+
 		/* 
-		 * Exclude even if entry is user_private, since it may override
-		 * an existing entry, and we want neither showing up.  
+		 * <Exclude> even if entry is user_private, since it may
+		 * override an existing entry, and we want neither showing up.  
 		 */
 		folder_add_exclude (parent, entry_get_displayname (entry));
 	}

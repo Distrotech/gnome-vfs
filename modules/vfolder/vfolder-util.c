@@ -109,14 +109,12 @@ monitor_callback_internal (GnomeVFSMonitorHandle *handle,
 	if (monitor->frozen)
 		return;
 
-#if 0
 	g_print ("RECEIVED MONITOR: %s, %s, %s%s%s\n", 
 		 monitor_uri, 
 		 info_uri + strlen (monitor_uri),
 		 event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED" : "",
 		 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED" : "",
 		 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED" : "");
-#endif
 
 	(*monitor->callback) (handle,
 			      monitor_uri,

@@ -533,10 +533,6 @@ static gboolean read_one_extended_entry (Folder           *folder,
 
 static gboolean read_one_info_entry_pool (Folder *folder, Entry *entry);
 
-static void     folder_emit_changed (Folder                   *folder,
-				     const gchar              *child,
-				     GnomeVFSMonitorEventType  event_type);
-
 static Entry *
 get_entry_for_real_uri (Folder *folder, GnomeVFSURI *uri)
 {
@@ -953,7 +949,7 @@ read_info_entry_pool (Folder *folder)
 	return changed;
 }
 
-static void
+void
 folder_emit_changed (Folder                   *folder,
 		     const gchar              *child,
 		     GnomeVFSMonitorEventType  event_type)

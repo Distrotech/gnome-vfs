@@ -67,8 +67,6 @@ typedef struct {
 
 	char           *displayname;
 	char           *filename;
-	VFolderMonitor *monitor;
-
 	GnomeVFSURI    *uri;
 
 	GSList         *keywords;          /* GQuark */
@@ -224,7 +222,9 @@ gboolean      folder_is_hidden         (Folder *folder);
 
 void          folder_dump_tree         (Folder *folder, int indent);
 
-void          folder_start_monitor     (Folder *folder);
+void          folder_emit_changed      (Folder                   *folder,
+					const gchar              *child,
+					GnomeVFSMonitorEventType  event_type);
 
 
 /* 
