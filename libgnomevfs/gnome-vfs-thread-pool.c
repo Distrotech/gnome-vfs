@@ -129,9 +129,30 @@ make_thread_available (GnomeVFSThreadState *state)
 static void
 gnome_vfs_thread_pool_wait_for_work (GnomeVFSThreadState *state)
 {
-	DEBUG_PRINT (("thread %x waiting for work \n", (guint)state->thread_id));
-	pthread_cond_wait (&state->waiting_for_work_lock_condition,
-		&state->waiting_for_work_lock);
+	/* FIXME: The Eazel profiler should be taught about this call
+	 * and ignore any timings it collects from the program hanging out
+	 * in here.
+	 */
+
+	/* Wait to get scheduled to do some work. */
+	DEBUG_PRINT (("thread %x getting ready to wait for work \n",
+		(guint)state->thread_id));
+
+	pthread_mutex_lock (&state->waiting_for_work_lock);
+	if (state->entry_point != NULL) {
+		DEBUG_PRINT (("thread %x ready to work right away \n",
+			(guint)state->thread_id));
+	} else {
+		while (state->entry_point == NULL) {
+			/* Don't have any work yet, wait till we get some. */
+			DEBUG_PRINT (("thread %x waiting for work \n", (guint)state->thread_id));
+			pthread_cond_wait (&state->waiting_for_work_lock_condition,
+				&state->waiting_for_work_lock);
+		}
+	}
+
+	pthread_mutex_unlock (&state->waiting_for_work_lock);
+	DEBUG_PRINT (("thread %x woken up\n", (guint)state->thread_id));
 }
 
 static void *
@@ -140,25 +161,13 @@ thread_entry (void *cast_to_state)
 	GnomeVFSThreadState *state = (GnomeVFSThreadState *)cast_to_state;
 
 	for (;;) {
-		/* Wait to get scheduled to do some work. */
-		DEBUG_PRINT (("thread %x getting ready to wait for work \n",
-			(guint)state->thread_id));
-		pthread_mutex_lock (&state->waiting_for_work_lock);
-		if (state->entry_point == NULL) {
-			/* Don't have any work yet, wait till we get some. */
-			gnome_vfs_thread_pool_wait_for_work (state);
-		} else
-			DEBUG_PRINT (("thread %x ready to work right away \n",
-				(guint)state->thread_id));
-
-		pthread_mutex_unlock (&state->waiting_for_work_lock);
-		DEBUG_PRINT (("thread %x woken up\n", (guint)state->thread_id));
 		
 		if (state->exit_requested) {
 			/* We have been explicitly asked to expire */
 			break;
 		}
 		
+		gnome_vfs_thread_pool_wait_for_work (state);
 		g_assert (state->entry_point);
 
 		/* Enter the actual thread entry point. */
