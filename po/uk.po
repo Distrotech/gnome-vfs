@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-01-20 20:46+0100\n"
-"PO-Revision-Date: 2002-05-31 19:18+0200\n"
+"POT-Creation-Date: 2003-01-27 15:12+0200\n"
+"PO-Revision-Date: 2003-01-27 04:26--500\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,8 @@ msgstr "Не знайдено конфігураційного файлу \"%s\"
 msgid "Unknown op type %u"
 msgstr "Невідомий тип операції %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1026 libgnomevfs/gnome-vfs-job.c:1171
+#: libgnomevfs/gnome-vfs-job.c:1026
+#: libgnomevfs/gnome-vfs-job.c:1171
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Неможливо створити канал для GIOChannel: %s"
@@ -55,7 +56,7 @@ msgstr "Операцію зупинено"
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Неможливо проаналізувати: %s"
+msgstr "Не вдалось проаналізувати: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
@@ -268,9 +269,8 @@ msgstr "Помилка протоколу"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "Неможливо проаналізувати: %s"
+msgstr "Не вдалось знайти головний переглядач"
 
 #: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
@@ -302,7 +302,7 @@ msgstr "%.1f Гб"
 
 #: libgnomevfs/gnome-vfs-utils.c:1109
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr "(неправильний знак Юнікоду)"
 
 #: modules/file-method.c:382
 #, c-format
@@ -335,3 +335,4 @@ msgstr "загальний монікер GNOME VFS"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "загальний файловий монікер"
+
