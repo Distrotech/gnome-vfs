@@ -1,3 +1,8 @@
+2001-06-07  Robin * Slomkowski <pretender@rslomkow.org>
+
+	* modules/ssl-modules.conf: created this so the build would
+	work.
+
 2001-06-06  Glynn Foster  <glynn.foster@sun.com>
 
 	* libgnomevfs/gnome-vfs-directory.c: 
