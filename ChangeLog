@@ -1,3 +1,18 @@
+2001-02-01  Ian McKellar  <ian@eazel.com>
+
+	reviewed by: Eskil Olsen <eskil@eazel.com>
+
+	* modules/ftp-method.c: (do_path_command),
+	(do_path_transfer_command):
+	Decode path before doing operations.
+
+	(do_open_directory):
+	Removed debugging output.
+
+	* test/test-remote:
+	* test/test-sync-create.c: (main):
+	Fixed bugs in test code.
+
 2001-01-31  Maciej Stachowiak  <mjs@eazel.com>
 
 	reviewed by: Rebecca Schulman  <rebecka@eazel.com>

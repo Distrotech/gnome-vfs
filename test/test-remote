@@ -42,7 +42,8 @@ if [ $RESULT -eq 1 ]; then echo failed; exit; fi
 
 REMOTE_LARGE_FILE=$REMOTE_TEMP/largefile
 echo Uploading $LARGE_FILE to $REMOTE_LARGE_FILE
-./test-sync-create $REMOTE_LARGE_FILE < $LARGE_FILE || RESULT=1
+#./test-sync-create $REMOTE_LARGE_FILE < $LARGE_FILE || RESULT=1
+./test-xfer $LARGE_FILE $REMOTE_LARGE_FILE || RESULT=1
 if [ $RESULT -eq 1 ]; then echo failed; exit; fi
 
 echo Checking remote large file info
@@ -57,7 +58,8 @@ if [ $RESULT -eq 1 ]; then echo failed; exit; fi
 
 LARGE_FILE_COPY=$LARGE_FILE-copy
 echo Downloading $REMOTE_LARGE_FILE to $LARGE_FILE_COPY
-./test-sync $REMOTE_LARGE_FILE > $LARGE_FILE_COPY || RESULT=1
+#./test-sync $REMOTE_LARGE_FILE > $LARGE_FILE_COPY || RESULT=1
+./test-xfer $REMOTE_LARGE_FILE $LARGE_FILE_COPY || RESULT=1
 if [ $RESULT -eq 1 ]; then echo failed; exit; fi
 
 echo Comparing $LARGE_FILE_COPY to $LARGE_FILE

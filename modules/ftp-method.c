@@ -96,7 +96,9 @@ static GnomeVFSResult do_read_directory  (GnomeVFSMethod               *method,
 
 guint                 ftp_connection_uri_hash  (gconstpointer c);
 gint                  ftp_connection_uri_equal (gconstpointer c, gconstpointer d);
-static GnomeVFSResult ftp_connection_acquire   (GnomeVFSURI *uri, FtpConnection **connection, GnomeVFSContext *context);
+static GnomeVFSResult ftp_connection_acquire   (GnomeVFSURI *uri, 
+		                                FtpConnection **connection, 
+		                                GnomeVFSContext *context);
 static void           ftp_connection_release   (FtpConnection *conn);
 
 
@@ -137,8 +139,10 @@ static void dircache_expire(GnomeVFSURI *uri) {
 }
 #endif
 
-#define ftp_debug(c,g) FTP_DEBUG((c),(g),__FILE__, __LINE__, __PRETTY_FUNCTION__)
 
+#if ENABLE_FTP_DEBUG
+
+#define ftp_debug(c,g) FTP_DEBUG((c),(g),__FILE__, __LINE__, __PRETTY_FUNCTION__)
 static void 
 FTP_DEBUG (FtpConnection *conn, 
 	   gchar *text, 
@@ -155,6 +159,12 @@ FTP_DEBUG (FtpConnection *conn,
 
 	g_free (text);
 }
+
+#else 
+
+#define ftp_debug(c,g) (g)
+
+#endif
 
 static GnomeVFSResult 
 ftp_response_to_vfs_result (FtpConnection *conn) 
@@ -341,17 +351,11 @@ do_path_command (FtpConnection *conn,
 	char *actual_command;
 	GnomeVFSResult result;
 
-	/* FIXME: This doesn't interpret escape sequences, which is a
-	 * major problem. The FTP protocol doesn't use escape
-	 * sequences, so we should do the right kind of unescaping
-	 * (like file-method.c does).
-	 */
-
 	/* as some point we may need to make this execute a CD and then
   	 * a command using the basename rather than the full path. I am yet
 	 * to come across such a system.
 	 */
-	path = gnome_vfs_uri_get_path (uri);
+	path = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
 
 	if (path == NULL || strlen (path) == 0) {
 		path = ".";
@@ -420,7 +424,6 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 	}
 
 	/* connect */
-	g_message ("Connect #2");
 	result = gnome_vfs_inet_connection_create (&conn->data_connection,
 						   host, 
 						   port,
@@ -469,7 +472,7 @@ do_path_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSURI *uri,
   	 * a command using the basename rather than the full path. I am yet
 	 * to come across such a system.
 	 */
-	path = gnome_vfs_uri_get_path (uri);
+	path = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
 
 	if (path == NULL || strlen (path) == 0) {
 		path = "/";
@@ -1123,7 +1126,7 @@ do_open_directory (GnomeVFSMethod *method,
 		return result;
 	}
 
-	g_print ("do_open_directory () in uri: %s\n", gnome_vfs_uri_get_path(uri));
+	/*g_print ("do_open_directory () in uri: %s\n", gnome_vfs_uri_get_path(uri));*/
 
 	if(strstr(conn->server_type,"MACOS")) {
 		/* don't ask for symlinks from MacOS servers */
