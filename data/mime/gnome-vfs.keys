@@ -66,10 +66,10 @@ application/msword
 	[no]description=Microsoft Word dokument
 	[sv]description=Microsoft Word-dokument
 	default_action_type=application
-	default_application_id=abiword
-	short_list_application_ids_for_novice_user_level=staroffice,abiword,applix
-	short_list_application_ids_for_intermediate_user_level=staroffice,abiword,applix
-	short_list_application_ids_for_hacker_user_level=staroffice,abiword,applix
+	default_application_id=staroffice
+	short_list_application_ids_for_novice_user_level=staroffice,applix,abiword
+	short_list_application_ids_for_intermediate_user_level=staroffice,applix,abiword
+	short_list_application_ids_for_hacker_user_level=staroffice,applix,abiword
 
 application/octet-stream
 	description=unknown data
@@ -174,10 +174,10 @@ application/vnd.ms-excel
 	[no]description=Microsoft Excel dokument
 	[sv]description=Microsoft Excel-dokument
 	default_action_type=application
-	default_application_id=gnumeric
-	short_list_application_ids_for_novice_user_level=gnumeric,staroffice,applix
-	short_list_application_ids_for_intermediate_user_level=gnumeric,staroffice,applix
-	short_list_application_ids_for_hacker_user_level=gnumeric,staroffice,applix
+	default_application_id=staroffice
+	short_list_application_ids_for_novice_user_level=staroffice,applix,gnumeric
+	short_list_application_ids_for_intermediate_user_level=staroffice,applix,gnumeric
+	short_list_application_ids_for_hacker_user_level=staroffice,applix,gnumeric
 	
 application/x-applix-spreadsheet
 	description=Applix spreadsheet

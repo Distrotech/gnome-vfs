@@ -1,3 +1,18 @@
+2000-11-03  Maciej Stachowiak  <mjs@eazel.com>
+
+	Fix bugs 4445 and 2756.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_get_default_application): Make
+	`gnome_vfs_mime_get-default_application' fall back to the short
+	list if the default application is not found in the path.
+
+	* data/mime/gnome-vfs.keys: Set StarOffice as the default for
+	"application/msword" and "application/vnd.ms-excel"; set the short
+	list preference order to StarOffice, then Applix, then AbiWord and
+	Gnumeric respectively (on the assumption that if you have the
+	proprietary apps installed, you probably wnat to use them).
+
 2000-11-02  Mike Fleming  <mfleming@eazel.com>
 
 	* libgnomevfs/gnome-vfs-uri.c:

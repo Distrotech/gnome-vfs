@@ -58,6 +58,8 @@ static GList *        prune_ids_for_nonexistent_applications  (GList            
 static GnomeVFSResult gnome_vfs_mime_edit_user_file           (const char         *mime_type,
 							       const char         *key,
 							       const char         *value);
+static gboolean       application_known_to_be_nonexistent     (const char         *application_id);
+
 
 static GConfEngine *gconf_engine = NULL;
 
@@ -181,28 +183,45 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 	const char *default_application_id;
 	GnomeVFSMimeApplication *default_application;
 	char *supertype;
+	GList *short_list;
 
+	default_application = NULL;
+
+	/* First, try the default for the mime type */
 	default_application_id = gnome_vfs_mime_get_value
 		(mime_type, "default_application_id");
 
-	if (default_application_id == NULL || strcmp (default_application_id, "") == 0) {
-		/* Fall back to the supertype. */
+	if (default_application_id != NULL && 
+	    strcmp (default_application_id, "") != 0
+	    && ! application_known_to_be_nonexistent (default_application_id)) {
+		default_application = 
+			gnome_vfs_application_registry_get_mime_application (default_application_id);
+	}
+
+	if (default_application == NULL) {
+		/* Failing that, try something from the short list */
+
+		short_list = gnome_vfs_mime_get_short_list_applications (mime_type);
+
+		if (short_list != NULL) {
+			default_application = gnome_vfs_mime_application_copy 
+				((GnomeVFSMimeApplication *) (short_list->data));
+			gnome_vfs_mime_application_list_free (short_list);
+		}
+	}
+
+	if (default_application == NULL) {
+		/* If that still fails, try the supertype */
+
 		supertype = mime_type_get_supertype (mime_type);
 		/* Check if already a supertype */
 		if (strcmp (supertype, mime_type) != 0) {
 			default_application = gnome_vfs_mime_get_default_application (supertype);
-			g_free (supertype);
-			return default_application;
-		} else {
-			return NULL;
-		}
+		} 
+		g_free (supertype);
 	}
 
-	/* FIXME bugzilla.eazel.com 2756: Instead of returning NULL we need to chose from
-	 * pruned system lists here.
-	 */
-
-	return gnome_vfs_application_registry_get_mime_application (default_application_id);
+	return default_application;
 }
 
 const char *
