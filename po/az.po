@@ -1,48 +1,51 @@
+# gnome-vfs.HEAD.az.po faylının Azərbaycan dilinə tərcüməsi
 # gnome-vfs faylınınn Azərbaycan dilinə tərcüməsi
-# Copyright (C) 2001 Free Software Foundation, Inc.
+# Copyright (C) 2001,2003 Free Software Foundation, Inc.
 # Vasif Ismailoglu MD <azerb_linux@hotmail.com>, 2001 .
+# Mətin Əmirov <metin@karegen.com>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.3.1.0\n"
-"POT-Creation-Date: 2003-06-22 12:58+0200\n"
-"PO-Revision-Date: 2003-06-22 18:01+0200\n"
+"Project-Id-Version: gnome-vfs.HEAD.az\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-11 12:14+0200\n"
+"PO-Revision-Date: 2003-08-12 17:10+0300\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
-"Language-Team: Azerbaijani Turkish <gnome@azitt.com>\n"
+"Language-Team: Azerbaijani <gnome@azitt.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0.1\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s : %d NUL hərfləini daxil edir."
+msgstr "%s:%d NUL hərflərini daxil edir."
 
 #: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s : %d metod adını daxil etmir ."
+msgstr "%s:%d metod adını daxil etmir."
 
 #: libgnomevfs/gnome-vfs-configuration.c:265
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s : %d modul adını daxil etmir ."
+msgstr "%s:%d modul adını daxil etmir."
 
 #: libgnomevfs/gnome-vfs-configuration.c:318
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Quraşdırma faylı `%s' tapıla bilmədi : %s"
+msgstr "Quraşdırma faylı `%s' tapıla bilmədi: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:758
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Namə'lum gedişat nömrəsi %u"
+msgstr "Namə'lum op növü %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1048
-#: libgnomevfs/gnome-vfs-job.c:1193
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "%s: GIOChannel açmaq üçün bir boru yarada bilmədim "
+msgstr "GIOChannel açmaq üçün boru yaradıla bilmir: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1684
 #, c-format
@@ -56,11 +59,11 @@ msgstr "Əməliyyat dayandırıldı"
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "%syi daraya bilmədim "
+msgstr "Oxuna bilmədi: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "İndidən sonra ortaya çıxacaq xətalar diqqətə alınmayacaq."
+msgstr "Növbəti oxuma xətaları diqqətə alınmayacaq."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -75,7 +78,7 @@ msgstr "Fayl tapıla bilmədi"
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
-msgstr "Ümumi bir xəta meydana gəldi"
+msgstr "Ümumi xəta"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -85,7 +88,7 @@ msgstr "Daxili xəta"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Hökmsüz seçənəklər"
+msgstr "Hökmsüz parametrlər"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
@@ -100,12 +103,12 @@ msgstr "I/O xətası"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Bu mə'lumat xəsərlidir"
+msgstr "Mə'lumat xəsərlidir"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Hazırkı şəkilləndirmə hökmsüzdür"
+msgstr "Şəkil hökmsüzdür"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
@@ -120,12 +123,12 @@ msgstr "Fayl çox böyükdür"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "İstifadə ediləcək yer yoxdur (disk,dolu disk ..)"
+msgstr "Avadanlıqda yer yoxdur"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Sırf oxunan fayl idarə sistemi"
+msgstr "Yalınz oxuna bilən fayl sistemi"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -135,12 +138,12 @@ msgstr "Hökmsüz URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Fayl açıq deyildir (?)"
+msgstr "Fayl açıq deyil"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Açma şəkli hökmlü deyildir"
+msgstr "Açma modu hökmlü deyil"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
@@ -150,7 +153,7 @@ msgstr "İcazə yoxdur"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "Çox çox açıq fayl vardır"
+msgstr "Həddindən çox açıq fayl"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
@@ -160,12 +163,12 @@ msgstr "Fayl sonu"
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "Qovluq deyildir"
+msgstr "Qovluq deyil"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Əməliyyat Gedir"
+msgstr "Əməliyyat gedir"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
@@ -175,7 +178,7 @@ msgstr "Əməliyyat dayandırıldı"
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "Fayl onsuz da vardır"
+msgstr "Fayl mövcuddur"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
@@ -185,7 +188,7 @@ msgstr "Döngəli bağlar tapıldı"
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "Əməliyyat üçün icazən yoxdur"
+msgstr "Əməliyyata icazə verilmir"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
@@ -200,17 +203,17 @@ msgstr "Kifayət qədər yaddaş yoxdur"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Yuva tapıla bilmədi"
+msgstr "Qovşaq tapıla bilmədi"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "Hökmsüz yuva"
+msgstr "Hökmsüz qovşaq adı"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "Bu yuvanın ünvanı yoxdur"
+msgstr "Qovşağın ünvanı yoxdur"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
@@ -230,7 +233,7 @@ msgstr "Qovluq məşğuldur"
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "Qovluq boş deyildir"
+msgstr "Qovluq boş deyil"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
@@ -240,12 +243,12 @@ msgstr "Çox bağ var"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Sırf oxunan fayl idarə sistemi"
+msgstr "Yalnız oxuna bilən fayl sistemi"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Eyni fayl idarə sistemində deyildir"
+msgstr "Eyni fayl sistemində deyil"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
@@ -255,12 +258,12 @@ msgstr "Ad çox uzundur"
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "Xidmət yoxdur"
+msgstr "Xidmət mövcud deyil"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Dəqiq verici datasını istə"
+msgstr "Dəqiq xidmət datasını istə"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -270,7 +273,7 @@ msgstr "Protokol xətası"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Could not find master browser"
-msgstr "Əsas səyyahı tapa bilmədim"
+msgstr "Əsas səyyah tapıla bilmədi"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
@@ -285,42 +288,40 @@ msgstr "URL sxemi üçün idarəçi yoxdur"
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr "Əmr sətri təhlil edilirkən xəta"
+msgstr "Əmr sətri təhlil edilərkən xəta"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr "Əmr verilirkən xəta"
+msgstr "Əmr verilərkən xəta"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
 msgstr "Namə'lum xəta"
 
-#: libgnomevfs/gnome-vfs-utils.c:84
-msgid "1 byte"
-msgstr "1 bayt"
-
-#: libgnomevfs/gnome-vfs-utils.c:86
+#: libgnomevfs/gnome-vfs-utils.c:83
 #, c-format
-msgid "%u bytes"
-msgstr "%u bayt"
+msgid "%u byte"
+msgid_plural "%u bytes"
+msgstr[0] "%u bayt"
+msgstr[1] "%u bayt"
 
-#: libgnomevfs/gnome-vfs-utils.c:93
+#: libgnomevfs/gnome-vfs-utils.c:89
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:97
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:101
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1085
+#: libgnomevfs/gnome-vfs-utils.c:1081
 msgid " (invalid Unicode)"
 msgstr "(hökmsüz Yunikod)"
 
@@ -333,66 +334,66 @@ msgstr "Namə'lum GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "%s -da hökmlü qurğu tapa bilmədim \n"
+msgstr "%s ünvanında hökmlü qurğu faylı tapıla bilmədi\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Başqa yer göstərmək üçün %s mühit dəyişənini işlədin.\n"
+msgstr "Başqa mövqe tə'yin etmək üçün %s mühit dəyişənini işlədin.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
-msgstr "Təminatlar"
+msgstr "Tə'minatlar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr "Kartlar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr "Fayllar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr "Qovluqlar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr "Yardım"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr "Qovşaqlar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr "Körpülər"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr "Poçt"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr "Vasitələr"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "Pənərələr"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "Sıravi Moniker fabrikası"
+msgstr "Sıravi Moniker e'malatxanası"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
