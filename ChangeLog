@@ -1,3 +1,13 @@
+2003-08-11  Malcolm Tredinnick <malcolm@commsecure.com.au>
+
+	* modules/http-method.c:
+	Process the contents of the /system/http_proxy/ignore_hosts
+	gconf key and do not use the proxy when connecting to these
+	hosts.
+
+	* schemas/system_http_proxy.schemas:
+	Add an entry for /system/http_proxy/ignore_hosts.
+
 2003-08-04  Michael Meeks  <michael@ximian.com>
 
 	* test/test-shell.c (authentication_callback),

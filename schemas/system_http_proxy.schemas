@@ -72,5 +72,21 @@
         <long>Password to pass as authentication when doing http proxying</long>
       </locale>
     </schema>
+    <schema>
+      <key>/schemas/system/http_proxy/ignore_hosts</key>
+      <applyto>/system/http_proxy/ignore_hosts</applyto>
+      <owner>gnome-vfs</owner>
+      <type>list</type>
+      <list_type>string</list_type>
+      <default>[localhost,127.0.0.0/8]</default>
+      <locale name="C">
+        <short>Hosts are not contacted via the proxy</short>
+        <long>This key contains a list of hosts which are connected to
+	directly, rather than via the proxy (if it is active). The values can
+	be hostnames, domains (using an initial wildcard like *.foo.com), IP
+	host addresses (both IPv4 and IPv6) and network addresses with a
+	netmask (something like 192.168.0.0/24).</long>
+      </locale>
+    </schema>
   </schemalist>
 </gconfschemafile>

@@ -114,6 +114,8 @@ http_debug_printf (char *fmt, ...)
 #define KEY_GCONF_HTTP_AUTH_PW (PATH_GCONF_GNOME_VFS "/" "authentication_password")
 #define KEY_GCONF_HTTP_USE_AUTH (PATH_GCONF_GNOME_VFS "/" "use_authentication")
 
+#define KEY_GCONF_HTTP_PROXY_IGNORE_HOSTS (PATH_GCONF_GNOME_VFS "/" "ignore_hosts")
+
 
 /* Some status code validation macros.  */
 #define HTTP_20X(x)        (((x) >= 200) && ((x) < 300))
@@ -179,6 +181,25 @@ static GMutex *gl_mutex = NULL;		/* This mutex protects preference values
 					 */
 static gchar *gl_http_proxy = NULL;
 static gchar *gl_http_proxy_auth = NULL;
+static GSList *gl_ignore_hosts = NULL;	/* Elements are strings. */
+static GSList *gl_ignore_addrs = NULL;	/* Elements are ProxyHostAddrs */
+
+/* Store IP addresses that may represent network or host addresses and may be
+ * IPv4 or IPv6. */
+typedef enum {
+	PROXY_IPv4 = 4,
+	PROXY_IPv6 = 6
+} ProxyAddrType;
+
+typedef struct {
+	ProxyAddrType type;
+	struct in_addr addr;
+	struct in_addr mask;
+#ifdef ENABLE_IPV6
+	struct in6_addr addr6;
+	struct in6_addr mask6;
+#endif
+} ProxyHostAddr;
 
 typedef struct {
 	GnomeVFSSocketBuffer *socket_buffer;
@@ -218,8 +239,13 @@ static gboolean invoke_callback_basic_authn	 (HttpFileHandle *handle,
 static gboolean check_authn_retry_request 	 (HttpFileHandle * http_handle,
 			   			  enum AuthnHeaderType authn_which,
 			   			  const char *prev_authn_header);
-
+static void parse_ignore_host 			 (gpointer data,
+						  gpointer user_data);
 #ifdef ENABLE_IPV6
+static void ipv6_network_addr 			 (const struct in6_addr *addr,
+						  const struct in6_addr *mask,
+						  struct in6_addr *res);
+
 /*Check whether the node is IPv6 enabled.*/
 static gboolean
 have_ipv6 (void)
@@ -709,7 +735,8 @@ create_handle (GnomeVFSURI *uri,
  * /system/http_proxy/use_http_proxy	
  * 	Type: boolean
  *	If set to TRUE, the client should use an HTTP proxy to connect to all
- *	servers. The proxy is specified in other gconf variables below.
+ *	servers (except those specified in the ignore_hosts key -- see below).
+ *	The proxy is specified in other gconf variables below.
  *
  * /system/http_proxy/host
  *	Type: string
@@ -735,6 +762,11 @@ create_handle (GnomeVFSURI *uri,
  *	Type: boolean
  * 	TRUE if the client should pass http-proxy-authorization-user and
  *	http-proxy-authorization-password an HTTP proxy
+ *
+ * /system/http_proxy/ignore_hosts
+ * 	Type: list of strings
+ * 	A list of hosts (hostnames, wildcard domains, IP addresses, and CIDR
+ * 	network addresses) that should be accessed directly.
  */
 
 static void
@@ -743,9 +775,17 @@ construct_gl_http_proxy (gboolean use_proxy)
 	g_free (gl_http_proxy);
 	gl_http_proxy = NULL;
 
+	g_slist_foreach (gl_ignore_hosts, (GFunc) g_free, NULL);
+	g_slist_free (gl_ignore_hosts);
+	gl_ignore_hosts = NULL;
+	g_slist_foreach (gl_ignore_addrs, (GFunc) g_free, NULL);
+	g_slist_free (gl_ignore_addrs);
+	gl_ignore_addrs = NULL;
+
 	if (use_proxy) {
 		char *proxy_host;
 		int   proxy_port;
+		GSList *ignore;
 
 		proxy_host = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_PROXY_HOST, NULL);
 		proxy_port = gconf_client_get_int (gl_client, KEY_GCONF_HTTP_PROXY_PORT, NULL);
@@ -763,6 +803,116 @@ construct_gl_http_proxy (gboolean use_proxy)
 		
 		g_free (proxy_host);
 		proxy_host = NULL;
+
+		ignore = gconf_client_get_list (gl_client, KEY_GCONF_HTTP_PROXY_IGNORE_HOSTS, GCONF_VALUE_STRING, NULL);
+		g_slist_foreach (ignore, (GFunc) parse_ignore_host, NULL);
+		g_slist_foreach (ignore, (GFunc) g_free, NULL);
+		g_slist_free (ignore);
+		ignore = NULL;
+	}
+}
+
+static void
+parse_ignore_host (gpointer data, gpointer user_data)
+{
+	gchar *hostname, *input, *netmask;
+	gboolean ip_addr = FALSE, has_error = FALSE;
+	struct in_addr host, mask;
+#ifdef ENABLE_IPV6
+	struct in6_addr host6, mask6;
+#endif
+	ProxyHostAddr *elt;
+
+	input = (gchar*) data;
+	elt = g_new0 (ProxyHostAddr, 1);
+	if ((netmask = strchr (input, '/')) != NULL) {
+		hostname = g_strndup (input, netmask - input);
+		++netmask;
+	}
+	else {
+		hostname = g_ascii_strdown (input, -1);
+	}
+	if (inet_pton (AF_INET, hostname, &host) > 0) {
+		ip_addr = TRUE;
+		elt->type = PROXY_IPv4;
+		elt->addr.s_addr = host.s_addr;
+		if (netmask) {
+			gchar *endptr;
+			gint width = strtol (netmask, &endptr, 10);
+
+			if (*endptr != '\0' || width < 0 || width > 32) {
+				has_error = TRUE;
+			}
+			elt->mask.s_addr = htonl(~0 << width);
+			elt->addr.s_addr &= mask.s_addr;
+		}
+		else {
+			elt->mask.s_addr = 0xffff;
+		}
+	}
+#ifdef ENABLE_IPV6
+	else if (have_ipv6 () && inet_pton (AF_INET6, hostname, &host6) > 0) {
+		ip_addr = TRUE;
+		elt->type = PROXY_IPv6;
+		elt->addr6.s6_addr32[0] = host6.s6_addr32[0];
+		elt->addr6.s6_addr32[1] = host6.s6_addr32[1];
+		elt->addr6.s6_addr32[2] = host6.s6_addr32[2];
+		elt->addr6.s6_addr32[3] = host6.s6_addr32[3];
+		if (netmask) {
+			gchar *endptr;
+			gint width = strtol (netmask, &endptr, 10);
+
+			if (*endptr != '\0' || width < 0 || width > 128) {
+				has_error = TRUE;
+			}
+			elt->mask6.s6_addr32[0] = 0;
+			elt->mask6.s6_addr32[1] = 0;
+			elt->mask6.s6_addr32[2] = 0;
+			elt->mask6.s6_addr32[3] = 0;
+			if (width <= 32) {
+				elt->mask6.s6_addr32[0] = htonl (~0 << width);
+			}
+			else if (width <= 64) {
+				elt->mask6.s6_addr32[0] = 0xffff;
+				elt->mask6.s6_addr32[1] = htonl (~0 << width % 32);
+			}
+			else if (width <= 96) {
+				elt->mask6.s6_addr32[0] = 0xffff;
+				elt->mask6.s6_addr32[1] = 0xffff;
+				elt->mask6.s6_addr32[2] = htonl (~0 << width % 32);
+			}
+			else {
+				elt->mask6.s6_addr32[0] = 0xffff;
+				elt->mask6.s6_addr32[1] = 0xffff;
+				elt->mask6.s6_addr32[2] = 0xffff;
+				elt->mask6.s6_addr32[3] = htonl (~0 << width % 32);
+			}
+			ipv6_network_addr (&elt->addr6, &mask6, &elt->addr6);
+		}
+		else {
+			elt->mask6.s6_addr32[0] = 0xffff;
+			elt->mask6.s6_addr32[1] = 0xffff;
+			elt->mask6.s6_addr32[2] = 0xffff;
+			elt->mask6.s6_addr32[3] = 0xffff;
+		}
+	}
+#endif
+
+	if (ip_addr) {
+		if (!has_error) {
+			gchar *dst = g_new0 (gchar, INET_ADDRSTRLEN);
+	
+			gl_ignore_addrs = g_slist_append (gl_ignore_addrs, elt);
+			DEBUG_HTTP (("Host %s/%s does not go through proxy.",
+					hostname,
+					inet_ntop(AF_INET, &elt->mask, dst, INET_ADDRSTRLEN)));
+			g_free (dst);
+		}
+	}
+	else {
+		/* It is a hostname. */
+		gl_ignore_hosts = g_slist_append (gl_ignore_hosts, hostname);
+		DEBUG_HTTP (("Host %s does not go through proxy.", hostname));
 	}
 }
 
@@ -802,6 +952,7 @@ notify_gconf_value_changed (GConfClient *client,
 	key = gconf_entry_get_key (entry);
 
 	if (strcmp (key, KEY_GCONF_USE_HTTP_PROXY) == 0
+	    || strcmp (key, KEY_GCONF_HTTP_PROXY_IGNORE_HOSTS) == 0
 	    || strcmp (key, KEY_GCONF_HTTP_PROXY_HOST) == 0
 	    || strcmp (key, KEY_GCONF_HTTP_PROXY_PORT) == 0) {
 		gboolean use_proxy_value;
@@ -870,83 +1021,85 @@ inet_pton(int af, const char *hostname, void *pton)
 }
 #endif
 
+#ifdef ENABLE_IPV6
+static void
+ipv6_network_addr (const struct in6_addr *addr, const struct in6_addr *mask, struct in6_addr *res)
+{
+	res->s6_addr32[0] = addr->s6_addr32[0] & mask->s6_addr32[0];
+	res->s6_addr32[1] = addr->s6_addr32[1] & mask->s6_addr32[1];
+	res->s6_addr32[2] = addr->s6_addr32[2] & mask->s6_addr32[2];
+	res->s6_addr32[3] = addr->s6_addr32[3] & mask->s6_addr32[3];
+}
+#endif
+
 static gboolean
 proxy_should_for_hostname (const char *hostname)
 {
 #ifdef ENABLE_IPV6
-	struct addrinfo hints, *res, *result;
-	struct in6_addr in6;
+	struct in6_addr in6, net6;
 #endif
-	struct in_addr in, in_loop, in_mask;
-	gboolean ret;
+	struct in_addr in;
+	GSList *elt;
+	ProxyHostAddr *addr;
 
-	ret = TRUE;
 
-	/* Don't force "localhost" or 127.x.x.x through the proxy */
-	/* This is a special case that we'd like to generalize into a gconf config */
-
-	inet_pton(AF_INET, "127.0.0.0", &in_loop); 
-	inet_pton(AF_INET, "255.0.0.0", &in_mask); 
-
-	memset (&in, 0, sizeof (in));
-
+	/* IPv4 address */
+	if (inet_pton (AF_INET, hostname, &in) > 0) {
+		for (elt = gl_ignore_addrs; elt; elt = g_slist_next (elt)) {
+			addr = (ProxyHostAddr*) (elt->data);
+			if (addr->type == PROXY_IPv4
+			    && (in.s_addr & addr->mask.s_addr) == addr->addr.s_addr) {
+				DEBUG_HTTP (("Host %s using direct connection.", hostname)); 
+				return FALSE;
+			}
+		}
+	}
 #ifdef ENABLE_IPV6
-	if (have_ipv6 ()) {
-		result = NULL;
-
-		memset (&in6, 0, sizeof (in6));
-
-		memset (&hints, 0, sizeof (hints));
-		hints.ai_socktype = SOCK_STREAM;
-
-		if (getaddrinfo (hostname, NULL, &hints, &result) == 0) {
-			
-			for (res = result; res; res = res->ai_next) {
-
-				if (res->ai_family == AF_INET6 || res->ai_family == AF_INET) {
-					break;
-				}
+	else if (have_ipv6 () && inet_pton (AF_INET6, hostname, &in6)) {
+		for (elt = gl_ignore_addrs; elt; elt = g_slist_next (elt)) {
+			addr = (ProxyHostAddr*) (elt->data);
+			ipv6_network_addr (&in6, &addr->mask6, &net6);
+			if (addr->type == PROXY_IPv6 
+			    && IN6_ARE_ADDR_EQUAL (&net6, &addr->addr6)) {
+				DEBUG_HTTP (("Host %s using direct connection.", hostname)); 
+				return FALSE;
 			}
-
-			if (res) {
-				if (res->ai_family == AF_INET6) {
-					memcpy (&in6, &((struct sockaddr_in6 *)res->ai_addr)->sin6_addr, sizeof (struct in6_addr));
-					if (IN6_IS_ADDR_V4MAPPED (&in6)) {
-						/*Converting IPv4-mapped IPv6 address to IPv4 address.*/
-						memcpy (&in, &in6.s6_addr[12], 4);
-					}
-				}
-			
-				if (res->ai_family == AF_INET) { 
-					memcpy (&in, &((struct sockaddr_in *)res->ai_addr)->sin_addr, sizeof (struct in_addr));
-				}
-			}
-
-			/*to test for the ipv4 addresses on a ipv6 enabled machine*/
-			if (hostname != NULL
-			    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (res
-			    && ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
-				ret = FALSE;
-			} else {
-				if (hostname != NULL
-				    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (res
-				    && (IN6_IS_ADDR_LOOPBACK (&in6) || IN6_IS_ADDR_LINKLOCAL (&in6))))) {
-					ret = FALSE;
-				}
+			/* Handle IPv6-wrapped IPv4 addresses. */
+			else if (addr->type == PROXY_IPv4
+			         && IN6_IS_ADDR_V4MAPPED (&net6)
+				 && (net6.s6_addr32[3] & addr->mask.s_addr) == addr->addr.s_addr) {
+				DEBUG_HTTP (("Host %s using direct connection.", hostname)); 
+				return FALSE;
 			}
 		}
 	}
-	else
 #endif
-	{
-		if (hostname != NULL 
-		    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (inet_pton (AF_INET, hostname, &in) > 0
-		    && ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
-			ret = FALSE;
+	/* All hostnames (foo.bar.com) -- independent of IPv4 or IPv6 */
+
+	/* If there are IPv6 addresses in the ignore_hosts list but we do not
+	 * have IPv6 available at runtime, then those addresses will also fall
+	 * through to here (and harmlessly fail to match). */
+	else {
+		gchar *hn = g_ascii_strdown (hostname, -1);
+
+		for (elt = gl_ignore_hosts; elt; elt = g_slist_next (elt)) {
+			if (*(gchar*) (elt->data) == '*' ) {
+				if (g_str_has_suffix (hn,
+						(gchar*) (elt->data) + 1)) {
+					DEBUG_HTTP (("Host %s using direct connection.", hn));
+					g_free (hn);
+					return FALSE;
+				}
+			}
+			else if (strcmp (hn, elt->data) == 0) {
+				DEBUG_HTTP (("Host %s using direct connection.", hn));
+				g_free (hn);
+				return FALSE;
+			}
 		}
 	}
 
-	return ret;
+	return TRUE;
 }
 
 static char *
