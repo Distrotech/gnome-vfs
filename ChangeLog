@@ -1,5 +1,10 @@
 2000-05-05  Darin Adler  <darin@eazel.com>
 
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_destroy):
+	Oops. One loose end. Gotta avoid a little race condition.
+
+2000-05-05  Darin Adler  <darin@eazel.com>
+
 	Fixed the leak of a ton of objects and 4 file descriptors for
 	every async. call.
 

@@ -513,6 +513,8 @@ gnome_vfs_job_destroy (GnomeVFSJob *job)
 {
 	job->done = TRUE;
 	job_notify (job);
+	g_mutex_lock (job->wakeup_channel_lock);
+	g_mutex_unlock (job->wakeup_channel_lock);
 
 	g_assert (job->is_empty);
 
