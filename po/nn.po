@@ -3,21 +3,21 @@
 # Copyright (C) 2002 Free Software Foundation
 # Kjartan Maraas  <kmaraas@gnome.org>, 2001.
 # Roy-Magne Mo <rmo@sunnmore.net>, 2001-2002.
-# Åsmund Skjæveland <aasmunds@fys.uio.no>, 2003.
+# Åsmund Skjæveland <aasmunds@fys.uio.no>, 2003, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-08 13:11+0100\n"
-"PO-Revision-Date: 2003-12-23 19:51+0100\n"
-"Last-Translator: Åsmund Skjæveland <aasmunds@fys.uio.no>\n"
+"POT-Creation-Date: 2004-03-21 21:42+0100\n"
+"PO-Revision-Date: 2004-03-21 21:43+0100\n"
+"Last-Translator: Åsmund Skjæveland\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.0.2\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.3.1\n"
 
 #: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
@@ -84,7 +84,7 @@ msgstr "Digital CD-lyd"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Maskinvaredataeining"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
@@ -199,7 +199,7 @@ msgstr "Ukjend"
 
 # TRN: Hø?
 #: libgnomevfs/gnome-vfs-job.c:774
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown op type %u"
 msgstr "Ukjend op-type %u"
 
@@ -435,7 +435,7 @@ msgstr "Protokollfeil"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Could not find master browser"
-msgstr ""
+msgstr "Fann ingen hovudlesar"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
@@ -529,8 +529,7 @@ msgstr "Nettverkstenar"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Kan ikkje montera disketten. Det er truleg ikkje nokon diskett i "
 "diskettstasjonen."
@@ -649,9 +648,8 @@ msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukjend GnomeVFSSeekPosition %d"
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Nettverk"
+msgstr "Windows-nettverk"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -665,7 +663,6 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Bruk miljøvariabelen «%s» om du vil spesifisera ei anna plassering.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
-#, fuzzy
 msgid "Standard Moniker factory"
 msgstr "Standard Moniker-fabrikk"
 
@@ -674,12 +671,10 @@ msgid "file MonikerExtender"
 msgstr "fil MonikerExternder"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
-#, fuzzy
 msgid "generic Gnome VFS moniker"
 msgstr "generisk Gnome VFS-moniker"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
 msgstr "generell fil-moniker"
 
@@ -710,8 +705,7 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
-"Standard terminalemulator som skal brukast til program som krev ein terminal."
+msgstr "Standard terminalemulator som skal brukast til program som krev ein terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -770,51 +764,40 @@ msgid "Run program in terminal"
 msgstr "Køyr program i terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr "Sett til «true» for å la programmet i «command» handsama H323-URL-ar."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr "Sett til «true» for å la programmet i «command» handsama HTTP-URL-ar."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr "Sett til «true» for å la programmet i «command» handsama HTTPS-URL-ar."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
-"Sett til «true» for å la programmet i «command» handsama callto-URL-ar."
+msgid "Set to true to have a program specified in \"command\" handle callto URLs."
+msgstr "Sett til «true» for å la programmet i «command» handsama callto-URL-ar."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr "Sett til «true» for å la programmet i «command» handsama ghelp-URL-ar."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
+msgid "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr "Sett til «true» for å la programmet i «command» handsama info-URL-ar."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
-"Sett til «true» for å la programmet i «command» handsama mailto-URL-ar."
+msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
+msgstr "Sett til «true» for å la programmet i «command» handsama mailto-URL-ar."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr "Sett til «true» for å la programmet i «command» handsama man-URL-ar."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr ""
-"Sett til «true» for å la programmet i «command» handsama papirkorg-URL-ar."
+msgid "Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr "Sett til «true» for å la programmet i «command» handsama papirkorg-URL-ar."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
@@ -884,14 +867,12 @@ msgstr "Brukarnamn på HTTP-mellomtenar"
 
 # TRN: Gives not the meaning.
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"(msgid gjev ikkje meining. Dette er ei omsetjing av kva eg trur det skulle "
-"stått.)Dersom denne er sann, skal tilkoplingar til mellomtenaren "
+"Dersom denne er sann, skal tilkoplingar til mellomtenaren "
 "autentiserast. Brukarnamn og passord er definerte i nøklane «/system/"
 "http_proxy/authentication_user» og «/system/http_proxy/"
 "authentication_password»."
@@ -1013,763 +994,9 @@ msgstr ""
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB-arbeidsgruppe"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "Windows-arbeidsgruppa brukaren er med i"
 
-#, fuzzy
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "Ingen handsamar for URL-skjema"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "Ingen handsamar for URL-skjema"
-
-#~ msgid "Hosts are not contacted via the proxy"
-#~ msgstr "Vertane vert ikkje kontakta gjennom mellomtenaren"
-
-#~ msgid "The machine name to proxy http through."
-#~ msgstr "Namnet på maskinen som er http-mellomtenar."
-
-#~ msgid "Use proxy settings when accessing http"
-#~ msgstr "Bruk mellomtenarinnstillingane for http"
-
-#~ msgid "http proxy password"
-#~ msgstr "passord på http-mellomtenar"
-
-#~ msgid "http proxy username"
-#~ msgstr "brukarnamn på http-mellomtenar"
-
-#~ msgid "1 byte"
-#~ msgstr "1 byte"
-
-#~ msgid "3D Studio image"
-#~ msgstr "3D Studio bilete"
-
-#~ msgid "AIFC audio"
-#~ msgstr "AIFC-lyd"
-
-#~ msgid "AIFF audio"
-#~ msgstr "AIFF-lyd"
-
-#~ msgid "ANIM animation"
-#~ msgstr "ANIM-animasjon"
-
-#~ msgid "AVI video"
-#~ msgstr "AVI-video"
-
-#~ msgid "AbiWord document"
-#~ msgstr "AbiWord-dokument"
-
-#~ msgid "Adobe FrameMaker font"
-#~ msgstr "Adobe FrameMaker skrifttype"
-
-#~ msgid "Adobe font metrics"
-#~ msgstr "Adobe skrifttypemetrikk"
-
-#~ msgid "Andrew Toolkit inset"
-#~ msgstr "Andrew Toolkit innsats"
-
-#~ msgid "ApplixWare Graphics image"
-#~ msgstr "Applixware grafikkobjekt"
-
-#~ msgid "Applixware Words document"
-#~ msgstr "Applixware Words-dokument"
-
-#~ msgid "Applixware spreadsheet"
-#~ msgstr "Applixware reikneark"
-
-#~ msgid "AutoCAD image"
-#~ msgstr "AutoCAD-bilete"
-
-#~ msgid "BCPIO document"
-#~ msgstr "BCPIO-dokument"
-
-#~ msgid "BDF font"
-#~ msgstr "BDF-skrifttype"
-
-#~ msgid "C shell script"
-#~ msgstr "C-skalskript"
-
-#~ msgid "C source code"
-#~ msgstr "C-kjeldekode"
-
-#~ msgid "C source code header"
-#~ msgstr "C-kjeldekode header"
-
-#~ msgid "C++ source code"
-#~ msgstr "C++-kjeldekode"
-
-#~ msgid "CGI program"
-#~ msgstr "CGI-program"
-
-#~ msgid "CGM image"
-#~ msgstr "CGM-bilete"
-
-#~ msgid "CMU raster image"
-#~ msgstr "CMU raster-bilete"
-
-#~ msgid "CPIO archive"
-#~ msgstr "CPIO-arkiv"
-
-#~ msgid "CPIO archive (gzip-compressed)"
-#~ msgstr "CPIO-arkiv (gzip-komprimering)"
-
-#~ msgid "DCL script"
-#~ msgstr "DCL-skript"
-
-#~ msgid "DOS font"
-#~ msgstr "DOS-skrifttype"
-
-#~ msgid "DOS/Windows program"
-#~ msgstr "DOS/Windows program"
-
-#~ msgid "DSSSL document"
-#~ msgstr "DSSSL-dokument"
-
-#~ msgid "DXF vector graphic"
-#~ msgstr "DXF vektorgrafikk"
-
-#~ msgid "Debian package"
-#~ msgstr "Debian pakke"
-
-#~ msgid "Dia diagram"
-#~ msgstr "Dia diagram"
-
-#~ msgid "Emacs Lisp source code"
-#~ msgstr "Emacs Lisp kjeldekode"
-
-#~ msgid "Enlightenment theme"
-#~ msgstr "Enlightenment-tema"
-
-#~ msgid "FLC animation"
-#~ msgstr "FLC-animasjon"
-
-#~ msgid "FLI animation"
-#~ msgstr "FLI-animasjon"
-
-#~ msgid "FastTracker II audio"
-#~ msgstr "FastTracker II lyd"
-
-#~ msgid "Fortran source code"
-#~ msgstr "Fortran-kjeldekode"
-
-#~ msgid "FrameMaker interchange document"
-#~ msgstr "FrameMaker interchange dokument"
-
-#~ msgid "G3 fax image"
-#~ msgstr "G3 faksbilete"
-
-#~ msgid "GIF image"
-#~ msgstr "GIF-bilete"
-
-#~ msgid "GIMP document"
-#~ msgstr "GIMP-dokument"
-
-#~ msgid "GMC link"
-#~ msgstr "GMC-lenkje"
-
-#~ msgid "GNOME application details"
-#~ msgstr "Detaljar for GNOME applikasjoner"
-
-#~ msgid "GNU Oleo Spreadsheet"
-#~ msgstr "GNU Oleo-rekneark"
-
-#~ msgid "GNU mail message"
-#~ msgstr "GNU e-post melding"
-
-#~ msgid "Glade project"
-#~ msgstr "Glade prosjekt"
-
-#~ msgid "GnuCash Workbook"
-#~ msgstr "GnuCash arbeidsbok"
-
-#~ msgid "Gnumeric spreadsheet"
-#~ msgstr "Gnumeric reikneark"
-
-#~ msgid "HDF document"
-#~ msgstr "HDF-dokument"
-
-#~ msgid "HTML page"
-#~ msgstr "HTML-side"
-
-#~ msgid "IDL document"
-#~ msgstr "IDL-dokument"
-
-#~ msgid "IEF image"
-#~ msgstr "IEF-bilete"
-
-#~ msgid "IFF image"
-#~ msgstr "IFF-bilete"
-
-#~ msgid "ILBM image"
-#~ msgstr "ILMB-bilete"
-
-#~ msgid "ISI video"
-#~ msgstr "ISI video"
-
-#~ msgid "Impulse Tracker audio"
-#~ msgstr "Impulse Tracker lyd"
-
-#~ msgid "JBuilder Project"
-#~ msgstr "JBuilder-prosjekt"
-
-#~ msgid "JPEG image"
-#~ msgstr "JPEG-bilete"
-
-#~ msgid "Java byte code"
-#~ msgstr "Jave byte-kode"
-
-#~ msgid "Java source code"
-#~ msgstr "Java kjeldekode"
-
-#~ msgid "KIllustrator document"
-#~ msgstr "KIllustrator-dokument"
-
-#~ msgid "KPresenter presentation"
-#~ msgstr "Kpresenter-presentasjon"
-
-#~ msgid "KSpread spreadsheet"
-#~ msgstr "KSpread-reikneark"
-
-#~ msgid "KWord document"
-#~ msgstr "KWord-dokument"
-
-#~ msgid "Korn shell script"
-#~ msgstr "Korn skalskript"
-
-#~ msgid "LHA archive"
-#~ msgstr "LHA-arkiv"
-
-#~ msgid "LHARC archive"
-#~ msgstr "LHARC-arkiv"
-
-#~ msgid "LIBGRX font"
-#~ msgstr "LIBGRX skrifttype"
-
-#~ msgid "LightWave object"
-#~ msgstr "LightWave-objekt"
-
-#~ msgid "LightWave scene"
-#~ msgstr "LightWave-scene"
-
-#~ msgid "Linux PSF console font"
-#~ msgstr "Linux PSF konsoll-skrifttype"
-
-#~ msgid "Lotus 1-2-3 spreadsheet"
-#~ msgstr "Lotus 1-2-3 rekneark"
-
-#~ msgid "M3 audio URL"
-#~ msgstr "M3 lyd-URL"
-
-#~ msgid "MIDI audio"
-#~ msgstr "MIDI-lyd"
-
-#~ msgid "MOD audio"
-#~ msgstr "MOD-lyd"
-
-#~ msgid "MP3 audio"
-#~ msgstr "MP3-lyd"
-
-#~ msgid "MP3 audio playlist"
-#~ msgstr "MP3-lyd spelelister"
-
-#~ msgid "MPEG video"
-#~ msgstr "MPEG-video"
-
-#~ msgid "MS ASF video"
-#~ msgstr "MS ASF-video"
-
-#~ msgid "MS video"
-#~ msgstr "MS-video"
-
-#~ msgid "Macintosh AppleDouble-encoded file"
-#~ msgstr "Macintosh AppleDouble-koda fil"
-
-#~ msgid "Macintosh BinHex-encoded file"
-#~ msgstr "Macintosh BinHex-koda fil"
-
-#~ msgid "Macintosh StuffIt archive"
-#~ msgstr "Macintosh StuffIt arkiv"
-
-#~ msgid "Macromedia Flash file"
-#~ msgstr "Macromedia Flash fil"
-
-#~ msgid "MathML document"
-#~ msgstr "MathML-dokument"
-
-#~ msgid "Microsoft Excel spreadsheet"
-#~ msgstr "Microsoft Excel reikneark"
-
-#~ msgid "Microsoft PowerPoint document"
-#~ msgstr "Microsoft PowerPoint-dokument"
-
-#~ msgid "Microsoft Word document"
-#~ msgstr "Microsoft Word-dokument"
-
-#~ msgid "Microsoft video"
-#~ msgstr "Microsoft video"
-
-#~ msgid "Nautilus link"
-#~ msgstr "Nautilus lenke"
-
-#~ msgid "ODA document"
-#~ msgstr "ODA-dokument"
-
-#~ msgid "PBM image"
-#~ msgstr "PBM-bilete"
-
-#~ msgid "PCF font"
-#~ msgstr "PCF-skrifttype"
-
-#~ msgid "PDF document"
-#~ msgstr "PDF-dokument"
-
-#~ msgid "PEF program"
-#~ msgstr "PEF-program"
-
-#~ msgid "PGM image"
-#~ msgstr "PGM-bilete"
-
-#~ msgid "PGN chess game"
-#~ msgstr "PGN-sjakkspel"
-
-#~ msgid "PGP keys"
-#~ msgstr "PGP-nøkler"
-
-#~ msgid "PGP message"
-#~ msgstr "PGP-melding"
-
-#~ msgid "PGP signature"
-#~ msgstr "PGP-signatur"
-
-#~ msgid "PGP-encrypted file"
-#~ msgstr "PGP-kryptert fil"
-
-#~ msgid "PHP script"
-#~ msgstr "PHP-skript"
-
-#~ msgid "PN RealAudio document"
-#~ msgstr "PN RealAudio- dokumentet"
-
-#~ msgid "PNG image"
-#~ msgstr "PNG-bilete"
-
-#~ msgid "PNM image"
-#~ msgstr "PNM-bilete"
-
-#~ msgid "PPM image"
-#~ msgstr "PPM-bilete"
-
-#~ msgid "Palm OS database"
-#~ msgstr "Palm OS database"
-
-#~ msgid "Perl script"
-#~ msgstr "Perl skript"
-
-#~ msgid "Photoshop document"
-#~ msgstr "Photoshop-dokument"
-
-#~ msgid "PostScript Type 1 font"
-#~ msgstr "Postscript Type 1 skrifttype"
-
-#~ msgid "PostScript document"
-#~ msgstr "PostScript-dokument"
-
-#~ msgid "Python source code"
-#~ msgstr "Python kjeldekode"
-
-#~ msgid "QuickTime movie"
-#~ msgstr "QuickTime-film"
-
-#~ msgid "Quicken document"
-#~ msgstr "Quicken-dokument"
-
-#~ msgid "Quicken for Windows document"
-#~ msgstr "Dokument for Quicken for Windows"
-
-#~ msgid "RAR archive"
-#~ msgstr "RAR-arkiv"
-
-#~ msgid "README document"
-#~ msgstr "README-dokument"
-
-#~ msgid "RGB image"
-#~ msgstr "RGB-bilete"
-
-#~ msgid "RIFF audio"
-#~ msgstr "RIFF-lyd"
-
-#~ msgid "RPM package"
-#~ msgstr "RPM-pakke"
-
-#~ msgid "RealAudio/Video document"
-#~ msgstr "RealAudio/Video-dokument"
-
-#~ msgid "RealVideo video"
-#~ msgstr "RealVideo-film"
-
-#~ msgid "S/MIME file"
-#~ msgstr "S/MIME-fil"
-
-#~ msgid "S/MIME signature"
-#~ msgstr "S/MIME-signatur"
-
-#~ msgid "SGI video"
-#~ msgstr "SGI-video"
-
-#~ msgid "SGML document"
-#~ msgstr "SGML-dokument"
-
-#~ msgid "SMIL script"
-#~ msgstr "SMIL-skript"
-
-#~ msgid "SQL code"
-#~ msgstr "SQL-kode"
-
-#~ msgid "SV4 CPIO archive"
-#~ msgstr "SV4 CPIO-arkiv"
-
-#~ msgid "SV4 CPIP archive (with CRC)"
-#~ msgstr "SV4 CPIP arkiv (med SRS)"
-
-#~ msgid "SVG art"
-#~ msgstr "SVG-bilete"
-
-#~ msgid "Scheme source code"
-#~ msgstr "Scheme kjeldekode"
-
-#~ msgid "Scream Tracker 3 audio"
-#~ msgstr "Sream Tracker 3 lyd"
-
-#~ msgid "Scream Tracker audio"
-#~ msgstr "Scream Tracker lyd"
-
-#~ msgid "Scream Tracker instrument"
-#~ msgstr "Scream Tracker instrument"
-
-#~ msgid "Setext document"
-#~ msgstr "Setext-dokument"
-
-#~ msgid "Speech document"
-#~ msgstr "Syntetisk tale"
-
-#~ msgid "Speedo font"
-#~ msgstr "Speedo-skrifttype"
-
-#~ msgid "Spreadsheet Interchange document"
-#~ msgstr "Spreadsheet interchange dokument"
-
-#~ msgid "Stampede package"
-#~ msgstr "Stampede-pakke"
-
-#~ msgid "StarOffice Writer document"
-#~ msgstr "StarOffice Writer-dokument"
-
-#~ msgid "StarOffice presentation"
-#~ msgstr "StarOffice presentasjon"
-
-#~ msgid "StarOffice spreadsheet"
-#~ msgstr "StarOffice-rekneark"
-
-#~ msgid "Sun mu-law audio"
-#~ msgstr "Sun mu-law lyd"
-
-#~ msgid "SunOS News font"
-#~ msgstr "SunOS NEWS-skrifttype"
-
-#~ msgid "TIFF image"
-#~ msgstr "TIFF-bilete"
-
-#~ msgid "TarGA image"
-#~ msgstr "TarGA-bilete"
-
-#~ msgid "Tcl script"
-#~ msgstr "Tcl-skript"
-
-#~ msgid "TeX document"
-#~ msgstr "TeX-dokument"
-
-#~ msgid "TeX dvi document"
-#~ msgstr "TeX dvi-dokument"
-
-#~ msgid "TeX font"
-#~ msgstr "TeX-skrifttype"
-
-#~ msgid "TeX font metrics"
-#~ msgstr "TeX skrifttypemetrikk"
-
-#~ msgid "TeXInfo document"
-#~ msgstr "TeXInfo-dokument"
-
-#~ msgid "ToutDoux document"
-#~ msgstr "ToutDoux-dokument"
-
-#~ msgid "TrueType font"
-#~ msgstr "TrueType-skrifttype"
-
-#~ msgid "USENET news message"
-#~ msgstr "USENET diskusjonsmelding"
-
-#~ msgid "Unidata netCDF document"
-#~ msgstr "Unidata netCDF-dokument"
-
-#~ msgid "V font"
-#~ msgstr "V-skrifttype"
-
-#~ msgid "VOC audio"
-#~ msgstr "VOC-lyd"
-
-#~ msgid "VRML document"
-#~ msgstr "VRML-dokument"
-
-#~ msgid "Vivo video"
-#~ msgstr "Vivo-film"
-
-#~ msgid "WAIS source code"
-#~ msgstr "WAIS-kjeldekode"
-
-#~ msgid "Wavelet video"
-#~ msgstr "Wavelet video"
-
-#~ msgid "Windows bitmap image"
-#~ msgstr "Windows bitmap-bilete"
-
-#~ msgid "Windows metafile graphics"
-#~ msgstr "Windows metafil grafikk"
-
-#~ msgid "WordPerfect document"
-#~ msgstr "WordPerfect-dokument"
-
-#~ msgid "X bitmap image"
-#~ msgstr "Bilete i X Bitmap-format"
-
-#~ msgid "X window image"
-#~ msgstr "X window bilete"
-
-#~ msgid "XML document"
-#~ msgstr "XML-dokument"
-
-#~ msgid "XPM image"
-#~ msgstr "XPM-bilete"
-
-#~ msgid "Xbase database"
-#~ msgstr "Xbase-database"
-
-#~ msgid "active server page"
-#~ msgstr "active server side"
-
-#~ msgid "address card"
-#~ msgstr "adressekort"
-
-#~ msgid "ar archive"
-#~ msgstr "ar-arkiv"
-
-#~ msgid "arj archive"
-#~ msgstr "arj-arkiv"
-
-#~ msgid "authors list"
-#~ msgstr "forfattarliste"
-
-#~ msgid "backup file"
-#~ msgstr "reservekopi"
-
-#~ msgid "basic audio"
-#~ msgstr "enkel lyd"
-
-#~ msgid "bibliography record"
-#~ msgstr "bibliografi oppføring"
-
-#~ msgid "binary program"
-#~ msgstr "binærprogram"
-
-#~ msgid "block device"
-#~ msgstr "blokkeining"
-
-#~ msgid "bzip-compressed file"
-#~ msgstr "bzip-komprimert fil"
-
-#~ msgid "calendar file"
-#~ msgstr "kalenderfil"
-
-#~ msgid "calendar or event document"
-#~ msgstr "kalender eller hendingsfil"
-
-#~ msgid "character device"
-#~ msgstr "teikneining"
-
-#~ msgid "comma-separated text document"
-#~ msgstr "kommadelt tekstdokument"
-
-#~ msgid "compound document"
-#~ msgstr "samansett dokument"
-
-#~ msgid "compress-compressed file"
-#~ msgstr "compress-komprimert fil"
-
-#~ msgid "compressed GIMP document"
-#~ msgstr "komprimert GIMP dokument"
-
-#~ msgid "directory information file"
-#~ msgstr "katalog-informasjons fil"
-
-#~ msgid "document type definition"
-#~ msgstr "dokumenttype definisjon"
-
-#~ msgid "email message"
-#~ msgstr "e-post melding"
-
-#~ msgid "encrypted message"
-#~ msgstr "kryptert melding"
-
-#~ msgid "enriched text document"
-#~ msgstr "riktekst tekstdokument"
-
-#~ msgid "gtar archive"
-#~ msgstr "gtar arkiv"
-
-#~ msgid "gzip-compressed file"
-#~ msgstr "gzip-komprimert fil"
-
-#~ msgid "help page"
-#~ msgstr "hjelpeside"
-
-#~ msgid "mail delivery report"
-#~ msgstr "e-post leveringsrapport"
-
-#~ msgid "mail disposition report"
-#~ msgstr "e-post disposisjonsrapport"
-
-#~ msgid "mail system report"
-#~ msgstr "e-postsystem rapport"
-
-#~ msgid "makefile"
-#~ msgstr "makefil"
-
-#~ msgid "manual page"
-#~ msgstr "manual-side"
-
-#~ msgid "manual page (compressed)"
-#~ msgstr "manual-side (komprimert)"
-
-#~ msgid "message digest"
-#~ msgstr "meldingsamandrag"
-
-#~ msgid "message in several formats"
-#~ msgstr "meldinga i fleire format"
-
-#~ msgid "multi-part message"
-#~ msgstr "melding med fleire delar"
-
-#~ msgid "named pipe"
-#~ msgstr "namngitt røyr"
-
-#~ msgid "object code"
-#~ msgstr "objektkode"
-
-#~ msgid "ogg audio"
-#~ msgstr "ogg lyd"
-
-#~ msgid "partial email message"
-#~ msgstr "del av e-post-melding"
-
-#~ msgid "plain text document"
-#~ msgstr "rein tekst dokument"
-
-#~ msgid "profiler results"
-#~ msgstr "resultat frå profiler"
-
-#~ msgid "reference to remote file"
-#~ msgstr "referanse til fil over nettverk."
-
-#~ msgid "rejected patch file"
-#~ msgstr "fil avvist av patch"
-
-#~ msgid "rich text document"
-#~ msgstr "rikt tekst dokument"
-
-#~ msgid "search results"
-#~ msgstr "søkeresultat"
-
-#~ msgid "shared library"
-#~ msgstr "delt bibliotek"
-
-#~ msgid "shell archive"
-#~ msgstr "unix-skal arkiv"
-
-#~ msgid "shell script"
-#~ msgstr "skalskript"
-
-#~ msgid "signed message"
-#~ msgstr "signert melding"
-
-#~ msgid "socket"
-#~ msgstr "sokkel"
-
-#~ msgid "software author credits"
-#~ msgstr "forfattarliste for programvare"
-
-#~ msgid "software installation instructions"
-#~ msgstr "instruksjonar for å innstallere programvare"
-
-#~ msgid "software license terms"
-#~ msgstr "lisensavtale for programvare"
-
-#~ msgid "source code patch"
-#~ msgstr "patchfil for kjeldekode"
-
-#~ msgid "style sheet"
-#~ msgstr "stilark"
-
-#~ msgid "symbolic link"
-#~ msgstr "symbolsk lenkje"
-
-#~ msgid "tab-separated text document"
-#~ msgstr "tabulatordelt tekstdokument"
-
-#~ msgid "tar archive"
-#~ msgstr "tar-arkiv"
-
-#~ msgid "tar archive (bzip2-compressed)"
-#~ msgstr "tar-arkiv (bzip2-komprimert)"
-
-#~ msgid "tar archive (gzip-compressed)"
-#~ msgstr "tar-arkiv (gzip-komprimert)"
-
-#~ msgid "theme"
-#~ msgstr "tema"
-
-#~ msgid "troff document"
-#~ msgstr "troff-dokument"
-
-#~ msgid "troff me input document"
-#~ msgstr "troff me inndata dokument"
-
-#~ msgid "troff mm input document"
-#~ msgstr "troff mm inndata dokument"
-
-#~ msgid "troff ms input document"
-#~ msgstr "troff ms inndata dokument"
-
-#~ msgid "unknown type"
-#~ msgstr "ukjend type"
-
-#~ msgid "ustar archive"
-#~ msgstr "ustar-arkiv"
-
-#~ msgid "wave audio"
-#~ msgstr "lydbølge lyd"
-
-#~ msgid "web folder"
-#~ msgstr "vevmappe"
-
-#~ msgid "xfig vector graphic"
-#~ msgstr "xfig vektorgrafikk"
-
-#~ msgid "zoo archive"
-#~ msgstr "zoo-arkiv"
-
-#~ msgid "GNOME VFS already initialized."
-#~ msgstr "GNOME VFS allereie initialisert."
