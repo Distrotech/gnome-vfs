@@ -1,3 +1,8 @@
+2002-04-12  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (set_value_real) : just use
+	  g_hash_table_replace.  Avoid double freeing memory.
+
 2002-04-10  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/applications.vfolder-info.in:
