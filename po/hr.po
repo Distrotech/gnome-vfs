@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-03-13 13:07+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
@@ -24,7 +24,7 @@ msgstr "Ne mogu inicijalizirati Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Nisam mogao pokrenuti  gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 disk"
 
@@ -691,18 +691,18 @@ msgid "Network server"
 msgstr "Mrežni poslužitelj"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Ne mogu montirati meki disk. Moguće je da nema diska u disketnom uređaju."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Ne mogu montirati disk.  Moguće je da nema medija u uređaju."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -710,7 +710,7 @@ msgstr ""
 "Ne mogu montirati meki disk. Moguće je da je meki disk u obliku koji ne može "
 "biti montiran."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -718,28 +718,28 @@ msgstr ""
 "Ne mogu montirati odabrani disk. Moguće je da je disk u obliku koji ne može "
 "biti montiran."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Ne mogu montirati odabrani uređaj za meki disk. "
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Ne mogu montirati odabrani disk. "
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Ne mogu isključiti odabrani disk. "
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Nije uspjelo pokretanje naredbe"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Ne mogu izbaciti medij"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Ne mogu isključiti povezani poslužitelj"
 
@@ -755,7 +755,7 @@ msgstr "Početno"
 msgid "Filesystem"
 msgstr "Datotečni sustav"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nepoznati GnomeVFS pretraživanje položaja %d"

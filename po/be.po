@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2003-12-16 18:06+0200\n"
 "Last-Translator: Ales Nyakhaychyk <nab@mail.by>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -27,7 +27,7 @@ msgstr "Немагчыма прызначыць пачатковыя значэ�
 msgid "Could not initialize gnome vfs"
 msgstr "Немагчыма прызначыць пачатковыя значэньні для gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "Падзел ISO 9660"
 
@@ -755,17 +755,17 @@ msgid "Network server"
 msgstr "Сеткавы паслужнік"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Немагчыма прымацаваць гнуткі дыск. Магчыма, ён адсутнічае ў прыладзе."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Немагчыма прымацаваць падзел. Магчыма, носьбіт адсутнічае ў прыладзе."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -773,7 +773,7 @@ msgstr ""
 "Немагчыма прымацаваць гнуткі дыск. Магчыма, ён мае фармат, які немагчыма "
 "прымацаваць."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -781,28 +781,28 @@ msgstr ""
 "Немагчыма прымацаваць падзел. Магчыма, ён мае фармат, які немагчыма "
 "прымацаваць."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Немагчыма прымацаваць вылучаны гнуткі дыск."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Немагчыма прымацаваць вылучаны падзел."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Немагчыма размацаваць вылучаны падзел."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Збой запуску загада"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Немагчыма вызваліць носьбіт"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Немагчыма размацаваць далучаны паслужнік"
 
@@ -820,7 +820,7 @@ msgid "Filesystem"
 msgstr "Файлавая сыстэма"
 
 # modules/file-method.c:381
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Невядомая GnomeVFSSeekPosition %d"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-12-01 08:02+0200\n"
 "Last-Translator: Zuza Software Foundation <info@translate.org.za>\n"
 "Language-Team: Northern Sotho <translate-discuss-nso@lists.sourceforge.net>\n"
@@ -25,7 +25,7 @@ msgstr "E ka se kgone go beakanya Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "E ka se kgone go beakanya gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "Bolumo ya ISO 9660"
 
@@ -679,7 +679,7 @@ msgid "Network server"
 msgstr "Seabi sa neteweke"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -687,13 +687,13 @@ msgstr ""
 "draeveng."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Ga e kgone go tsentšha bolumo. Mohlomongwe ga go na methopo e fapa-fapanego "
 "ya ditaba ka sedirišweng."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -701,7 +701,7 @@ msgstr ""
 "Ga e kgone go tsentšha draeve ya flopi. Mohlomongwe flopi e ka sebopego seo "
 "e ka se tsentšhwego ka sona."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -709,28 +709,28 @@ msgstr ""
 "Ga e kgone go tsentšha bolumo e kgethilwego. Mohlomongwe bolumo e ka "
 "sebopego seo e ka se tsentšhwego ka sona."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Ga e kgone go tsentšha draeve e kgethilwego ya flopi."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Ga e kgone go tsentšha bolumo e kgethilwego."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Ga e kgone go ntšha bolumo e kgethilwego."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "E paletšwe ke go thoma taelo"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Ga e kgone go ntšha methopo e fapa-fapanego ya ditaba"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Ga e kgone go ntšha seabi se kgokagantšwego"
 
@@ -746,7 +746,7 @@ msgstr "Gae"
 msgid "Filesystem"
 msgstr "Tshepedišo ya faele"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFS ya go Nyaka Boemo ya %d e sa tsebjwego"

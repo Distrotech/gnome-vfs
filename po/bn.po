@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2003-02-12 10:19+0530\n"
 "Last-Translator: Sayamindu Dasgupta <unmadindu@Softhome.net>\n"
 "Language-Team: Bengali (bn) <gnome-translation@bengalinux.org>\n"
@@ -24,7 +24,7 @@ msgstr "বোনোবো চালু করা গেল না"
 msgid "Could not initialize gnome vfs"
 msgstr "গ্নোম ভি-এফ-এস চালু করা গেল না"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "আই-এস-ও ৯৬৬০ ভলিউম"
 
@@ -692,17 +692,17 @@ msgid "Network server"
 msgstr "নেটওয়ার্ক সার্ভার"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ফ্লপি ড্রাইভ মাউন্ট করা গেল না । সম্ভবত ড্রাইভে কোন ডিস্ক নেই।"
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "ভলিউম মাউন্ট করা গেল না । সম্ভবত ডিভাইসে কোন মিডিয়া নেই।"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -710,7 +710,7 @@ msgstr ""
 "ফ্লপি ড্রাইভ মাউন্ট করা গেল না । সম্ভবত ফ্লপির ফরম্যাট এমন যে সেটিকে মাউন্ট করা "
 "যাবে না। "
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -718,28 +718,28 @@ msgstr ""
 "নির্বাচিত ভলিউম মাউন্ট করা গেল না । সম্ভবত ভলিউম ফরম্যাট এমন যে সেটিকে মাউন্ট করা "
 "যাবে না। "
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "নির্বাচিত ফ্লপি ড্রাইভকে মাউন্ট করা গেল না ।"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "নির্বাচিত ভলিউমকে মাউন্ট করা গেল না ।"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "নির্বাচিত ভলিউমকে আনমাউন্ট করা গেল না ।"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "কমান্ড চালু করা গেল না"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "মিডিয়াকে বের করে দেওয়া গেল না"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "সার্ভারের সঙ্গে সংযোগ বিচ্ছিন্ন করা গেল না"
 
@@ -755,7 +755,7 @@ msgstr "ব্যক্তিগত ফোল্ডার (হোম)"
 msgid "Filesystem"
 msgstr "ফাইলসিস্টেম"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "অজানা GnomeVFSSeekPosition %d"

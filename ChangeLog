@@ -1,5 +1,8 @@
 2005-01-25  Alexander Larsson  <alexl@redhat.com>
 
+	* test/test-uri.c (main):
+	Fix test
+
 	* NEWS:
 	Update for release.
 

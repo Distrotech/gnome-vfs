@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-09-04 00:23+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -36,7 +36,7 @@ msgstr "No se pudo inicializar Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "No se pudo inicializar gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "Volumen ISO 9660"
 
@@ -690,7 +690,7 @@ msgid "Network server"
 msgstr "Servidor de red"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -698,13 +698,13 @@ msgstr ""
 "la unidad."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Imposible montar el volumen. Probablemente no introdujo un soporte en el "
 "dispositivo."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -712,7 +712,7 @@ msgstr ""
 "Imposible montar la unidad de disquetes. El disquete probablemente está en "
 "un formato que no puede ser montado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -720,28 +720,28 @@ msgstr ""
 "Imposible montar el volumen seleccionado. El volumen probablemente está en "
 "un formato que no puede ser montado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Imposible montar la unidad de disquetes seleccionada."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Imposible montar el volumen seleccionado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Imposible desmontar el volumen seleccionado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Falló al iniciar el comando"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "No se pudo expulsar el soporte"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "No se pudo desmontar el servidor conectado"
 
@@ -757,7 +757,7 @@ msgstr "Directorio inicial"
 msgid "Filesystem"
 msgstr "Sistema de archivos"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d desconocida"

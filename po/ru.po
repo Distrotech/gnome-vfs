@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-09-27 13:16+0300\n"
 "Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team:  <ru@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Не удалось проинициализировать подсис�
 msgid "Could not initialize gnome vfs"
 msgstr "Не удалось проинициализировать подсистему gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "Том ISO9660"
 
@@ -683,19 +683,19 @@ msgid "Network server"
 msgstr "Сетевой сервер"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Невозможно подсоединить дискету. Возможно, дискета отсутствует в дисководе."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Невозможно подсоединить том. Возможно, носитель отсутствует в устройстве."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -703,7 +703,7 @@ msgstr ""
 "Невозможно подсоединить дискету. Возможно, дискета в формате, который не "
 "может быть подсоединен."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -711,28 +711,28 @@ msgstr ""
 "Невозможно подсоединить выбранный том. Возможно, том в формате, который не "
 "может быть подсоединён."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Невозможно подсоединить выбранную дискету."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Невозможно подсоединить выбранный том."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Невозможно отсоединить выбранный том."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Ошибка при запуске команды"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Невозможно извлечь носитель"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Невозможно отсоединить подключённый сервер"
 
@@ -748,7 +748,7 @@ msgstr "Начало"
 msgid "Filesystem"
 msgstr "Файловая система"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестное значение GnomeVFSSeekPosition %d"

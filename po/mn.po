@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-08-10 00:50+0200\n"
 "Last-Translator: Sanlig Badral <badral@users.sf.net>\n"
 "Language-Team: Mongolian <openmn-gnome@lists.sf.net>\n"
@@ -27,7 +27,7 @@ msgstr "Bonobo-г инициацалж чадсангүй"
 msgid "Could not initialize gnome vfs"
 msgstr "гноме vfs -г инициацлаж чадахгүй байна."
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "ИСО 9660 :өгөгдөл хадгалагч"
 
@@ -700,18 +700,18 @@ msgid "Network server"
 msgstr "Сүлжээний сервер"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Уян диск хөтлөгчийг залгах боломжгүй. Хөтлөгчид магад диск алга."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Өгөгдөл хадгалагчийг залгах боломжгүй. Төхөөрөмжид өгөгдөл хадгалагч алга."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -719,7 +719,7 @@ msgstr ""
 "Уян диск хөтлөгчийг залгах боломжгүй. Уян диск магад залгагдах нөхцөлгүй "
 "хэлбэрт байна."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -727,28 +727,28 @@ msgstr ""
 "Сонгосон өгөгдөл хадгалагчийг залгах боломжгүй. Магад өгөгдөл хадгалагч "
 "залгагдах нөхцөлгүй хэлбэрт байна."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Сонгосон уян диск хөтлөгчийг залгах боломжгүй."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Сонгосон өгөгдөл хадгалагчийг залгах боломжгүй."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Сонгосон өгөгдөл хадгалагчийг салгах боломжгүй."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Тушаалыг эхлүүлж чадсангүй"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Дискийг түлхэх боломжгүй"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Холбоотой серверийг салгах боломжгүй"
 
@@ -764,7 +764,7 @@ msgstr "Гэр"
 msgid "Filesystem"
 msgstr "Файл систем"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Тодорхойгүй GNOMEVFSSeekPosition %d"

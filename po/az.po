@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.az\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-02-22 19:52+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
 "Language-Team: Azerbaijani Turkish <translation-team-az@lists.sourceforge."
@@ -25,7 +25,7 @@ msgstr "Bonobo başladıla bilmədi"
 msgid "Could not initialize gnome vfs"
 msgstr "Gnome vfs başladıla bilmədi"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 Həcmi"
 
@@ -691,17 +691,17 @@ msgid "Network server"
 msgstr "Şəbəkə vericisi"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Disket sürücüsü bağlana bilmədi. Deyəsən sürücüdə disket yoxdur."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Sürücü bağlana bilmədi. Deyəsən sürücüdə mediya yoxdur."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -709,7 +709,7 @@ msgstr ""
 "Disket sürücüsü bağlana bilmədi. Deyəsən sürücüdəki disketin şəkilləndirməsi "
 "bağlanmaq üçün uyğun deyil."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -717,28 +717,28 @@ msgstr ""
 "Seçili sürücü bağlana bilmədi. Deyəsən sürücünün şəkilləndirməsi bağlamaq "
 "üçün uyğun deyil."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Seçili floppi sürücüsü bağlana bilmədi."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Seçili sürücü bağlana bilmədi."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Seçili sürücü ayırıla bilmədi."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Əmr başladıla bilmədi"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Mediya çıxardıla bilmədi"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Bağlı verici ayırıla bilmədi"
 
@@ -754,7 +754,7 @@ msgstr "Ev"
 msgid "Filesystem"
 msgstr "Fayl sistemi"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Namə'lum GnomeVFSSeekPosition %d"

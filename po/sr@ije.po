@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-02-25 14:34+0100\n"
 "Last-Translator: Bojan Suzic <bojans@teol.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
@@ -29,7 +29,7 @@ msgstr "Не могу да покренем Бонобо"
 msgid "Could not initialize gnome vfs"
 msgstr "Не могу да покренем Гномов VFS"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "ИСО 9660 диск"
 
@@ -701,17 +701,17 @@ msgid "Network server"
 msgstr "Мрежни сервер"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Не могу да прикључим дискету. Вјероватно дискета није у уређају. "
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Не могу да прикључим диск. Вјероватно нема медија у уређају. "
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -719,7 +719,7 @@ msgstr ""
 "Не могу да прикључим дискету. Вјероватно је дискета у запису који се не може "
 "читати."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -727,28 +727,28 @@ msgstr ""
 "Не могу да прикључим изабрани диск. Вјероватно је диск у запису који се не "
 "може читати."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Не могу да прикључим изабрану дискету."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Не могу да прикључим изабрани диск."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Не могу да искључим изабрани диск."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Неуспјешно покретање наредбе"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Не могу да избацим медиј"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Не могу да искључим везу са сервером"
 
@@ -764,7 +764,7 @@ msgstr "Лични"
 msgid "Filesystem"
 msgstr "Систем датотека"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Непознато GnomeVFSSeekPosition %d"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2003-06-12 15:24+0700\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesia <id@li.org>\n"
@@ -24,7 +24,7 @@ msgstr "Bonobo gagal diinisialisasi"
 msgid "Could not initialize gnome vfs"
 msgstr "Gagal menginisialisasi gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "Volume ISO 9660"
 
@@ -690,18 +690,18 @@ msgid "Network server"
 msgstr "Server Jaringan"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Tidak dapat memasang disket. Disketnya belum dimasukkan?"
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Tidak dapat memasang volume ini. Mungkin tidak ada media dalam perangkatnya."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -709,7 +709,7 @@ msgstr ""
 "Tidak dapat memasang disket. Mungkin format disketnya tidak dapat dipasang "
 "pada sistem ini."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -717,28 +717,28 @@ msgstr ""
 "Tidak dapat memasang volume yang dipilih. Mungkin tipenya tidak dapat "
 "dipasang pada sistem ini."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Tidak dapat memasang disket yang sudah dipilih."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Tidak dapat memasang volume yang sudah dipilih."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Tidak dapat melepas volume yang sudah dipilih."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Gagal menjalankan perintah"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Tidak dapat mengeluarkan isi media"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Tidak dapat melepas server yang sedang tersambung ini"
 
@@ -754,7 +754,7 @@ msgstr "Rumah"
 msgid "Filesystem"
 msgstr "Sistem File"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d tidak dikenal"

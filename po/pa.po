@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.pa\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-09-02 20:22+0530\n"
 "Last-Translator: Amanpreet Singh Alam <aalam@redhat.com>\n"
 "Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
@@ -32,7 +32,7 @@ msgstr "ਬੋਨਬੋ ਨੂੰ ਸ਼ੁਰੂ ਨਹੀ ਕੀਤਾ ਸਕ�
 msgid "Could not initialize gnome vfs"
 msgstr "ਗਨੋਮ ਵੀਐਫਐਸ(vfs) ਨੂੰ ਸ਼ੁਰੂ ਨਹੀ ਕੀਤਾ ਸਕਿਆ ਹੈ"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "ਆਈਐਸਓ(ISO) 9660 ਵਾਲੀਅਮ"
 
@@ -746,18 +746,18 @@ msgid "Network server"
 msgstr "ਨੈਟਵਰਕ ਸਰਵਰ"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ(ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਕੋਈ ਫਲਾਪੀ ਡਰਾਇਵ ਵਿੱਚ ਨਹੀ ਹੈ ।"
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "ਵਾਲੀਅਮ ਨੂੰ ਚਲਾਉਣ(ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ । ਸੰਭਵ ਹੈ ਕਿ ਯੰਤਰ ਵਿੱਚ ਮਾਧਿਅਮ ਨਹੀ ਹੈ ।"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -765,7 +765,7 @@ msgstr ""
 "ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ(ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਵਿੱਚਲੀ ਫਲਾਪੀ ਦਾ ਫਾਰਮਿਟ ਉਹ "
 "ਹੈ , ਜਿਸ ਨੂੰ ਮਾਊਟ ਨਹੀ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ ।"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -773,28 +773,28 @@ msgstr ""
 "ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਚਲਾਉਣ(ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਵਾਲੀਅਮ ਦਾ ਫਾਰਮਿਟ ਉਹ ਹੈ , ਜਿਸ "
 "ਨੂੰ ਮਾਊਟ ਨਹੀ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ ।"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "ਚੁਣੀ ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ ।"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ ਹੈ ।"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "ਚੁਣੇ ਵਾਲੀਅਮ ਨੂੰ ਅਨ-ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ ਹੈ ।"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "ਕਮਾਂਡ ਚਾਲੂ ਕਰਨ ਵਿੱਚ ਅਸਫਲ "
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "ਮਾਧਿਅਮ ਕੱਢਣ ਵਿੱਚ ਅਸਫਲ "
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "ਜੁਡ਼ੇ ਸਰਵਰ ਨੂੰ ਅਨ-ਮਾਊਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ"
 
@@ -811,7 +811,7 @@ msgid "Filesystem"
 msgstr "ਫਾਇਲ ਸਿਸਟਮ"
 
 # modules/file-method.c:381
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "ਅਣਪਛਾਤੀ ਗਨੋਮ VFSSeek ਥਾਂ %d"

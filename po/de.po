@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.7.90\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-08-15 20:26+0200\n"
 "Last-Translator: Hendrik Richter <hendrik@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -28,7 +28,7 @@ msgstr "Bonobo konnte nicht initialisiert werden"
 msgid "Could not initialize gnome vfs"
 msgstr "GNOME-VFS konnte nicht initialisiert werden"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660-Datenträger"
 
@@ -687,7 +687,7 @@ msgid "Network server"
 msgstr "Netzwerk-Server"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -695,13 +695,13 @@ msgstr ""
 "sich keine Diskette im Laufwerk."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Der Datenträger konnte nicht eingebunden werden. Vermutlich befindet sich "
 "kein Medium im Gerät."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -709,7 +709,7 @@ msgstr ""
 "Das Diskettenlaufwerk konnte nicht eingebunden werden. Vermutlich liegt die "
 "Diskette in einem nicht einbindbaren Format vor."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -717,29 +717,29 @@ msgstr ""
 "Der gewählte Datenträger konnte nicht eingebunden werden. Vermutlich liegt "
 "der Datenträger in einem nicht einbindbaren Format vor."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Das gewählte Diskettenlaufwerk konnte nicht eingebunden werden."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Der gewählte Datenträger konnte nicht eingebunden werden."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Der gewählte Datenträger konnte nicht ausgehängt werden."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Befehl konnte nicht ausgeführt werden"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Medium konnte nicht ausgeworfen werden"
 
 # CHECK
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Verbundener Server konnte nicht ausgehängt werden"
 
@@ -755,7 +755,7 @@ msgstr "Persönlicher Ordner"
 msgid "Filesystem"
 msgstr "Dateisystem"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GNOMEVFSSeekPosition %d unbekannt"

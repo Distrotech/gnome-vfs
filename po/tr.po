@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-09-05 02:36+0300\n"
 "Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -26,7 +26,7 @@ msgstr "Bonobo başlatılamadı"
 msgid "Could not initialize gnome vfs"
 msgstr "Gnome vfs başlatılamadı"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 Sistemi"
 
@@ -742,17 +742,17 @@ msgid "Network server"
 msgstr "Ağ sunucusu"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Disket sürücü bağlanamadı. Sürücü içinde disket olmayabilir."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Bu sistem bağlanamadı. Sürücü içinde aygıt olmayabilir."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -760,35 +760,35 @@ msgstr ""
 "Disket sürücü bağlanamadı. Disket, bağlanmasını engelleyen bir biçime sahip "
 "olabilir."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
 "Seçilen sistem bağlanamadı. Bu sistem muhtemelen bağlanamayacak bir biçimde."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Seçilen disket sürücüsü bağlanamadı."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Seçilen sistem bağlanamadı."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Seçilen sistem ayrılamadı."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Komut başlatılamadı"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Aygıt çıkartılamadı"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Bağlı olan sunucudan ayrılma işlemi gerçekleştirilemedi"
 
@@ -806,7 +806,7 @@ msgid "Filesystem"
 msgstr "Dosya sistemi"
 
 # modules/file-method.c:380
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Bilinmeyen GnomeVFSSeekPosition %d"

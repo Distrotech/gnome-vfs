@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.8-branch\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-12-09 12:32+0200\n"
 "Last-Translator: Zuza Software Foundation <info@translate.org.za>\n"
 "Language-Team: Zulu <translate-discuss-zu@lists.sourceforge.net>\n"
@@ -25,7 +25,7 @@ msgstr "Ngakhonanga ukuqalisa uBonono"
 msgid "Could not initialize gnome vfs"
 msgstr "Ngakhonanga ukuqalisa gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "Ivolumu ye ISO 9660"
 
@@ -679,17 +679,17 @@ msgid "Network server"
 msgstr "Umsezi wolwembu"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Ngakhoni ukuthola umkhawu wefloppy: Kungenza akuna-floppy emkhawini."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Ngakhoni ukuthola ivolumu. Kungeza akunamthonga esithweni."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -697,7 +697,7 @@ msgstr ""
 "Ngakhoni ukuthola umkhamu wefloppy. Kungenzeka ifloppy lesimweni "
 "esingetholakale."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -705,28 +705,28 @@ msgstr ""
 "Ngakhona ukuthola ivolumu ekhethiwe. Kungenzeka ivolumu isesimweni "
 "esingetholakale."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Ngakhoni ukuthola ukhawu wefloppy okhethiwe."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Ngakhoni ukuthola ivolumu ekhethiwe."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Ngakhoni ukungatholi ivolumu ekhethiwe."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Hlelekile ukuqala umlayelo"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Ngakhoni ukukhipha umthonga"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Ngakhoni ukungatholi isebenzisi esixhumanisiwe"
 
@@ -742,7 +742,7 @@ msgstr "Ekhaya"
 msgid "Filesystem"
 msgstr "Uhlelo-hele"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSFunaSikhundla %d ongaziwa"

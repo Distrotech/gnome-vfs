@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-09-03 14:41+0200\n"
 "Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -29,7 +29,7 @@ msgstr "Kan bonobo niet starten"
 msgid "Could not initialize gnome vfs"
 msgstr "Kan gnome vfs niet starten"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 volume"
 
@@ -684,7 +684,7 @@ msgid "Network server"
 msgstr "Netwerkserver"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -692,13 +692,13 @@ msgstr ""
 "apparaat."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Kan het volumen niet aankoppelen. Er zit waarschijnlijk geen schijf in het "
 "apparaat."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -706,7 +706,7 @@ msgstr ""
 "Kan het diskettestation niet aankoppelen. De diskette bevat waarschijnlijk "
 "een niet ondersteund bestandssysteem."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -714,28 +714,28 @@ msgstr ""
 "Kan het geselecteerde volumen niet aankoppelen. Het volumen bevat "
 "waarschijnlijk een niet ondersteund bestandssysteem."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Kan de het geselecteerde diskettestation niet aankoppelen."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Kan het geselecteerde volumen niet aankoppelen."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Kan het geselecteerde volumen niet ontkoppelen."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Kan opdracht niet starten"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Kan media niet uitwerpen"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Kan aangekoppelde server niet ontkoppelen"
 
@@ -751,7 +751,7 @@ msgstr "Thuis"
 msgid "Filesystem"
 msgstr "Bestandssysteem"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"

@@ -501,7 +501,7 @@ main (int argc, char **argv)
 	test_uri_to_string ("http://yakk:womble@www.eazel.com:42/blah/", "http://yakk:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_NONE);
 
 	test_uri_to_string ("http://yakk:womble@www.eazel.com:42/blah/", "http://:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_USER_NAME);
-	test_uri_to_string ("FILE://", "file:", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("FILE://", "file:///", GNOME_VFS_URI_HIDE_NONE);
 
 	test_uri_to_string ("file:///trash", "file:///trash", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("file:///Users/mikef", "file:///Users/mikef", GNOME_VFS_URI_HIDE_NONE);

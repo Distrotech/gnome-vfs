@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-09-05 16:11+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -26,7 +26,7 @@ msgstr "Bonobon käynnistys epäonnistui"
 msgid "Could not initialize gnome vfs"
 msgstr "Gnome-vfs:n alustus epäonnistui"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "ISO-9660-taltio"
 
@@ -680,18 +680,18 @@ msgid "Network server"
 msgstr "Verkkopalvelin"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Levykeaseman liittäminen ei onnistu. Luultavasti asemassa ei ole levykettä."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Taltion liittäminen ei onnistu. Luultavasti asemassa ei ole levyä."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -699,7 +699,7 @@ msgstr ""
 "Levykeaseman liittäminen ei onnistu. Levyke on luultavasti muodossa, jota ei "
 "voi liittää."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -707,28 +707,28 @@ msgstr ""
 "Valitun taltion liittäminen ei onnistu. Taltio on luultavasti muodossa, jota "
 "ei voi liittää."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Valitun levykeaseman liittäminen ei onnistu."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Valitun taltion liittäminen ei onnistu."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Valitun taltion irrottaminen ei onnistu."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Komennon käynnistäminen epäonnistui"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Levyn poistaminen asemasta ei onnistu"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Yhdistetyn palvelimen irrottaminen ei onnistu"
 
@@ -744,7 +744,7 @@ msgstr "Koti"
 msgid "Filesystem"
 msgstr "Tiedostojärjestelmä"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Tuntematon GnomeVFSSeekPosition %d"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.6-branch\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 09:20+0100\n"
+"POT-Creation-Date: 2005-01-25 15:10+0100\n"
 "PO-Revision-Date: 2004-03-30 17:02+0200\n"
 "Last-Translator: Zuza Software Foundation <info@translate.org.za>\n"
 "Language-Team: Afrikaans <translate-discuss-af@lists.sourceforge.net>\n"
@@ -25,7 +25,7 @@ msgstr "Kon nie Bonobo inisialiseer nie"
 msgid "Could not initialize gnome vfs"
 msgstr "Kon nie gnome vfs inisialiseer nie"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:210
+#: libgnomevfs/gnome-vfs-cdrom.c:235
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660-volume"
 
@@ -691,7 +691,7 @@ msgid "Network server"
 msgstr "Netwerkbediener"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
+#: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -699,12 +699,12 @@ msgstr ""
 "in die aandrywer nie."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
+#: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Kon nie die volume heg nie. Daar is waarskynlik nie media in die toestel nie."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
+#: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -712,7 +712,7 @@ msgstr ""
 "Kon nie die sagteskyfaandrywer heg nie. Die sagteskyf is waarskynlik in 'n "
 "formaat wat nie geheg kan word nie."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
+#: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -720,28 +720,28 @@ msgstr ""
 "Kon nie die geselekteerde volume heg nie. Die volume is waarskynlik in 'n "
 "formaat wat nie geheg kan word nie."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
+#: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
 msgstr "Kon nie die geselekteerde sagteskyfaandrywer heg nie."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
+#: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
 msgstr "Kon nie die geselekteerde volume heg nie."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
+#: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
 msgstr "Kon nie die geselekteerde volume ontheg nie."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:256
-#: libgnomevfs/gnome-vfs-volume-ops.c:302
+#: libgnomevfs/gnome-vfs-volume-ops.c:257
+#: libgnomevfs/gnome-vfs-volume-ops.c:313
 msgid "Failed to start command"
 msgstr "Kon nie bevel begin nie"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:292
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Unable to eject media"
 msgstr "Kan nie media uitskiet nie"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:481
+#: libgnomevfs/gnome-vfs-volume-ops.c:499
 msgid "Unable to unmount connected server"
 msgstr "Kan nie gekoppelde bediener ontheg nie"
 
@@ -757,7 +757,7 @@ msgstr "Tuis"
 msgid "Filesystem"
 msgstr "Lêerstelsel"
 
-#: modules/file-method.c:387
+#: modules/file-method.c:413
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"
