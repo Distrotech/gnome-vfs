@@ -15,3 +15,5 @@
 #undef ENABLE_PROFILER
 #undef HAVE_OPENSSL
 #undef HAVE_FAM
+#undef GETTEXT_PACKAGE
+

@@ -1,3 +1,11 @@
+2001-10-29  jacob berkman  <jacob@ximian.com>
+
+	* libgnomevfs/gnome-vfs-i18n.h (_): use GETTEXT_PACAKGE
+
+	* configure.in: set GETTEXT_PACKAGE and use AM_GLIB_GNU_GETTEXT
+
+	* acconfig.h: add GETTEXT_PACAKGE
+
 2001-10-27  jacob berkman  <jacob@ximian.com>
 
 	* libgnomevfs/gnome-vfs-async-ops.h: 

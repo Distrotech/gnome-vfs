@@ -84,8 +84,12 @@ dnl Don't blindly #define them if they're typedef'ed in <sys/types.h>
 AM_GNOME_SIZE_T
 AM_GNOME_OFF_T
 
+GETTEXT_PACKAGE=gnome-vfs-2.0
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
+
 ALL_LINGUAS="az ca da de el es fi fr ga gl hu it ja ko lt nl nn no pl pt_BR ro ru sk sl sv tr uk wa zh_TW"
-AM_GNOME2_GETTEXT
+AM_GLIB_GNU_GETTEXT
 
 AC_FUNC_ALLOCA
 AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs)
