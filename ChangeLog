@@ -1,3 +1,9 @@
+2000-11-13  Darin Adler  <darin@eazel.com>
+
+	* gnome-vfs.spec.in: Turn "make check" off again.
+	It doesn't work because the front end can't find the
+	back end when it's not installed.
+
 2000-11-13  Gene Z. Ragan  <gzr@eazel.com>
 
 	Some more capplet work.  The mime list now updates
