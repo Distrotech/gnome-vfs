@@ -1202,19 +1202,18 @@ auth_callback (const char *server_name, const char *share_name,
 		initial_authentication (actx);
 	
 	/* If we have a valid user and password then go for it */
-	if (actx->use_user && actx->use_password) {
-		DEBUG_SMB(("[auth] Using credentials: %s@%s:%s\n", actx->use_user, actx->use_domain, actx->use_password));
+	if (actx->use_user) {
 		strncpy (username_out, actx->use_user, unmaxlen);
-		strncpy (password_out, actx->use_password, pwmaxlen);
-		if (actx->use_domain)
-			strncpy (domain_out, actx->use_domain, domainmaxlen);
-
+                strncpy (password_out, actx->use_password ? actx->use_password : "", pwmaxlen);
+                strncpy (domain_out, actx->use_domain ? actx->use_domain : "", domainmaxlen);
+                DEBUG_SMB(("[auth] Using credentials: %s:%s@%s\n", username_out, password_out, domain_out));
+                        
 	/* We have no credentials ... */			
 	} else {
-		DEBUG_SMB(("[auth] No credentials, returning null values\n"));
 		strncpy (username_out, "", unmaxlen);
 		strncpy (password_out, "", pwmaxlen);
 		strncpy (domain_out, "", domainmaxlen);
+                DEBUG_SMB(("[auth] No credentials, returning null values\n"));
 	}
 }
 
@@ -1799,6 +1798,7 @@ do_open_directory (GnomeVFSMethod *method,
 	/* Important: perform_authentication leaves and re-enters the lock! */
 	while (perform_authentication (&actx) > 0) {
 		dir = smb_context->opendir (smb_context, path);
+                DEBUG_SMB(("opendir errno: %d, dir: %X\n", errno, dir));
 		actx.res = (dir != NULL) ? GNOME_VFS_OK : gnome_vfs_result_from_errno ();
 	}
 

@@ -9,6 +9,7 @@
 	name specified in smb URI. See bug #167075. 
 	Thanks Narayana Pattipati <narayana.pattipati@wipro.com>
 	* modules/smb-method.c: Fix server cache access for IPC$ shares.
+	* modules/smb-method.c: Allow authentication with an empty password.
 	
 2005-02-11  Christian Kellner  <gicmo@gnome.org>
 
