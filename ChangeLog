@@ -1,3 +1,9 @@
+2005-02-11  Nate Nielsen  <nielsen@memberwebs.com>
+
+	* modules/smb-method.c (lookup_user_cache): Fix crash when user 
+	name specified in smb URI. See bug #167075. 
+	Thanks Narayana Pattipati <narayana.pattipati@wipro.com>
+	
 2005-02-11  Christian Kellner  <gicmo@gnome.org>
 
 	* test/test-uri.c: Replaced old obsolete uri

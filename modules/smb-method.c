@@ -700,12 +700,12 @@ lookup_user_cache (SmbAuthContext *actx, gboolean with_share, gboolean with_user
         user = (SmbCachedUser*)g_hash_table_lookup (user_cache, key);
         g_free (key);
        
-        /* If the caller specified we already have a user name double check that... */
-        if (with_user && (!string_compare (user->username, actx->use_user) ||
-                          !string_compare (user->domain, actx->use_domain)))
-                return FALSE;
-                        
         if (user) {
+                /* If the caller specified we already have a user name double check that... */
+                if (with_user && (!string_compare (user->username, actx->use_user) ||
+                                  !string_compare (user->domain, actx->use_domain)))
+                    return FALSE;
+
                 actx->use_user = string_realloc (actx->use_user, user->username);
                 actx->use_domain = string_realloc (actx->use_domain, user->domain);
                 actx->use_password = string_realloc (actx->use_password, user->password);
