@@ -1,3 +1,10 @@
+2000-11-03  Mike Fleming  <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (set_uri_element):
+	* test/test-uri.c: (main):
+	"eazel-services:" needs to be treated like "http:" in Pavel's evil
+	escaping fix.
+
 2000-11-03  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* configure.in: upped development version to 0.4.1.0

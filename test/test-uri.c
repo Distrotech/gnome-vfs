@@ -471,6 +471,11 @@ main (int argc, char **argv)
 	test_make_canonical ("http:///?", "http:///?");
 	test_make_canonical ("http:///&", "http:///&");
 	test_make_canonical ("http:///x", "http:///x");
+	test_make_canonical ("eazel-services:///%3F", "eazel-services:///%3F");
+	test_make_canonical ("eazel-services:///%78", "eazel-services:///x");
+	test_make_canonical ("eazel-services:///?", "eazel-services:///?");
+	test_make_canonical ("eazel-services:///&", "eazel-services:///&");
+	test_make_canonical ("eazel-services:///x", "eazel-services:///x");
 
 	/* Test chained uris */
 	test_uri_to_string ("/tmp/t.efs#http:///foobar/", "file:///tmp/t.efs#http:/foobar/", GNOME_VFS_URI_HIDE_NONE);

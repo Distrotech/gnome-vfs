@@ -321,7 +321,9 @@ set_uri_element (GnomeVFSURI *uri,
 	 * '?' to %3F in every method except "http" where it has a special 
 	 * meaning.
 	 */
-	if (strcmp (uri->method_string, "http") != 0) {
+	if ( ! (strcmp (uri->method_string, "http") == 0 
+	        && strcmp (uri->method_string, "eazel-services") == 0 )) {
+
 		escaped_text = gnome_vfs_escape_set (uri->text, ";?&=+$,");
 		g_free (uri->text);
 		uri->text = escaped_text;
