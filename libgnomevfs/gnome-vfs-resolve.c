@@ -22,10 +22,6 @@ Boston, MA 02111-1307, USA.
 #include <config.h>
 
 #include <errno.h>
-#include <glib/gmem.h>
-#include <glib/gmessages.h>
-#include <glib/gthread.h>
-#include <glib-object.h>
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
@@ -50,6 +46,11 @@ Boston, MA 02111-1307, USA.
 /* RELOAD_TIMEVAL specifies the minimum of seconds between resolver reloads */
 #define RELOAD_TIMEVAL 2
 #endif
+
+#include <glib/gmem.h>
+#include <glib/gmessages.h>
+#include <glib/gthread.h>
+#include <glib-object.h>
 
 #include <libgnomevfs/gnome-vfs-resolve.h>
 
