@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.HEAD\n"
+"Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-08 13:11+0100\n"
-"PO-Revision-Date: 2004-03-01 12:01+0100\n"
+"POT-Creation-Date: 2004-03-11 00:37+0100\n"
+"PO-Revision-Date: 2004-03-11 00:47+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -40,12 +40,12 @@ msgstr "%s:%d nuk përmban emrin e metodës."
 #: libgnomevfs/gnome-vfs-configuration.c:284
 #, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d nuk ka opcione përfundimi."
+msgstr "%s:%d nuk ka opsione përfundimi."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr "%s:%d ka opcione të panjohura %s."
+msgstr "%s:%d ka opsione të panjohura %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -206,7 +206,7 @@ msgstr "I pamundur krijimi i një pipe për të hapur GIOChannel: %s"
 #: libgnomevfs/gnome-vfs-job.c:1727
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Tip job %u i panjohur"
+msgstr "Lloj i panjohur pune %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1760
 msgid "Operation stopped"
@@ -485,7 +485,7 @@ msgstr " (Unicode e pavlefshme)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
-msgstr "Disketë floppy"
+msgstr "Disketë"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
@@ -523,10 +523,9 @@ msgstr "Server rrjeti"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
-"I pamundur montimi i dispozitivit floppy. Mesa duket mungon floppy në "
+"I pamundur montimi i dispozitivit disketë. Mesa duket mungon disketa në "
 "dispozitiv."
 
 #. All others
@@ -541,7 +540,7 @@ msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"I pamundur montimi i diskut floppy. Ka mundësi të jetë i një formati që nuk "
+"I pamundur montimi i disketës. Ka mundësi të jetë i një formati që nuk "
 "mund të montohet."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
@@ -554,7 +553,7 @@ msgstr ""
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr "I pamundur montimi i dispozitivit floppy të zgjedhur."
+msgstr "I pamundur montimi i dispozitivit disketë të zgjedhur."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
@@ -642,7 +641,7 @@ msgstr "Filesistemi"
 #: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "GnomeVFSSeekPosition %d e panjohur"
+msgstr "GnomeVFSSeekPosition %d i panjohur"
 
 #: modules/network-method.c:257
 msgid "Windows Network"
@@ -765,65 +764,57 @@ msgid "Run program in terminal"
 msgstr "Ekzekuto programin në terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
-"Vendose në true për të patur një program të caktuar tek \"komanda\" që "
+"Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
-"Vendose në true për të patur një program të caktuar tek \"komanda\" që "
+"Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
-"Vendose në true për të patur një program të caktuar tek \"komanda\" që "
+"Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
+msgid "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
-"Vendose në true për të patur një program të caktuar tek \"komanda\" që "
+"Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton thirrjet e URLve."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
-"Vendose në true për të patur një program të caktuar tek \"komanda\" që "
+"Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
+msgid "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
-"Vendose në true për të patur një program të caktuar tek \"komanda\" që "
+"Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
-"Vendose në true për të patur një program të caktuar tek \"komanda\" që "
+"Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
-"Vendose në true për të patur një program të caktuar tek \"komanda\" që "
+"Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+msgid "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
-"Vendose në true për të patur një program të caktuar tek \"komanda\" që "
+"Vendose në \"true\" për të patur një program të caktuar tek \"komanda\" që "
 "trajton URLtë trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
@@ -1010,8 +1001,7 @@ msgstr "Përdor proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
-"Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
+msgstr "Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1021,17 +1011,3 @@ msgstr "Grup pune SMB"
 msgid "The window workgroup the user is part of"
 msgstr "Grupi i punës Windows në të cilin bën pjesë përdoruesi"
 
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "Ruajtja e libërshënuesit dështoi (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "E pamundur marrja e informacioneve për file '%s': %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "E pamundur hapja e file '%s': %s"
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "Hapja e figurës '%s' dështoi: shkaku nuk njihet, ndoshta file është i "
-#~ "dëmtuar"
