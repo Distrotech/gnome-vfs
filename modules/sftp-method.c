@@ -514,13 +514,14 @@ buffer_read_file_info (Buffer *buf, GnomeVFSFileInfo *info)
 			       info->permissions));
 
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
-		if (info->permissions & S_IFREG) info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-		else if (info->permissions & S_IFDIR) info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-		else if (info->permissions & S_IFIFO) info->type = GNOME_VFS_FILE_TYPE_FIFO;
-		else if (info->permissions & S_IFSOCK) info->type = GNOME_VFS_FILE_TYPE_SOCKET;
-		else if (info->permissions & S_IFCHR) info->type = GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE;
-		else if (info->permissions & S_IFBLK) info->type = GNOME_VFS_FILE_TYPE_BLOCK_DEVICE;
-		else if (info->permissions & S_IFLNK) info->type = GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK;
+		
+		if (S_ISREG (info->permissions)) info->type = GNOME_VFS_FILE_TYPE_REGULAR;		
+		else if (S_ISDIR (info->permissions)) info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+		else if (S_ISFIFO (info->permissions)) info->type = GNOME_VFS_FILE_TYPE_FIFO;
+		else if (S_ISSOCK (info->permissions)) info->type = GNOME_VFS_FILE_TYPE_SOCKET;
+		else if (S_ISCHR (info->permissions)) info->type = GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE;
+		else if (S_ISBLK (info->permissions)) info->type = GNOME_VFS_FILE_TYPE_BLOCK_DEVICE;
+		else if (S_ISLNK (info->permissions)) info->type = GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK;
 		else info->type = GNOME_VFS_FILE_TYPE_UNKNOWN;
 
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_FLAGS;

@@ -1,5 +1,10 @@
 2004-05-15  Christophe Fergeau  <teuf@gnome.org>
 
+	* modules/sftp-method.c: fix filling of the 'type' field in 
+	  GnomeVFSFileInfo, fixes bug #139371
+
+2004-05-15  Christophe Fergeau  <teuf@gnome.org>
+
 	* modules/sftp-method.c: truncate existing files when using 
 	  gnome_vfs_create, fixes bug #140551
 
