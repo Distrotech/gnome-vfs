@@ -137,9 +137,9 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 		return GNOME_VFS_ERROR_EOF;
 	}
 
+	/* If we've read the whole file, don't try to read any more. */
 	if (buffer->read_whole_file) {
-		/* If we've read the whole file, don't read any more */
-		return GNOME_VFS_OK;
+		return GNOME_VFS_ERROR_EOF;
 	}
 
 	if (size < GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK) {
@@ -173,6 +173,9 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 				   buffer->buffer + buffer->buffer_length,
 				   size - buffer->buffer_length,
 				   &bytes_read);
+	if (result != GNOME_VFS_OK) {
+		return result;
+	}
 	buffer->buffer_length += bytes_read;
 
 	/* check to be sure we got enough data */

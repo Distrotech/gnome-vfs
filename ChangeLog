@@ -1,6 +1,12 @@
 2000-10-25  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
+	(gnome_vfs_mime_sniff_buffer_get): Oops, got it wrong. This fixes
+	another case that I missed.
+
+2000-10-25  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
 	(gnome_vfs_mime_sniff_buffer_get): Fixed error with the handling
 	of a case where the file is smaller than the requested sniff
 	buffer. The check was broken, and it also didn't set an error
