@@ -282,6 +282,9 @@ audio/x-mp3
 audio/x-pn-realaudio
 	description=PN RealAudio document
 
+audio/x-riff
+	description=RIFF audio
+
 audio/x-ulaw
 	description=audio
 
