@@ -1,3 +1,17 @@
+2000-11-13  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 3107, Setting na icon for a mime type does not work.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	* mime-type-capplet/nautilus-mime-type-capplet.h:
+	(nautilus_mime_type_capplet_update_mime_list_icon):
+	New function that sets/updates the icon in the mime list.
+	
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	(icon_selected_cb), (nautilus_mime_type_show_icon_selection):
+	Add call to new nautilus_mime_type_capplet_update_mime_list_icon
+	function.
+
 2000-11-13  Martin Baulig  <baulig@suse.de>
 
 	* modules/file-method.c (read_saved_cached_trash_entries):
