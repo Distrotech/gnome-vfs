@@ -1717,10 +1717,12 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info, char **etag)
 	DEBUG_HTTP ("%d, %d", res, ne_get_status (req)->code);
 	ne_propfind_destroy (pfh);
 	
-	/* some server (eg. gws) colse the connection on an unknown command 
-	   so fall back to head for these too */
-	if (result != GNOME_VFS_ERROR_GENERIC  && 
-	    result != GNOME_VFS_ERROR_NOT_SUPPORTED) {
+	/* Let's be very cautious here! If the server doesn't respond with a 
+	   207 here just fall back to HEAD because some server server (eg. gws) 
+	   colse the connection on an unknown command, most (stupid) php scripts
+	   will treat PROPFIND as GET and some servers may deny us PROFIND but
+	   allow us HEAD. */
+	if (res == NE_OK && ne_get_status (req)->code == 207) {
 		
 		if (result == GNOME_VFS_OK) {
 			gnome_vfs_file_info_copy (info, pfctx.target);

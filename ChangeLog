@@ -1,3 +1,10 @@
+2004-09-15  Christian Kellner  <gicmo@gnome-de.org>
+
+	* modules/http-neon-method.c (http_get_file_info):
+	Be a little more cautious and fall back to HEAD in any
+	case except a 207 result. This should fix bug #152577 and
+	also make gtik (the stock ticker applet) working again.
+
 2004-09-14  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
