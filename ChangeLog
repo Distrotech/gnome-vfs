@@ -1,3 +1,8 @@
+2002-07-16  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/ABOUT: Add file describing the vfolder
+	architecture somewhat.
+
 2002-07-12  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-info.c (read_vfolder_from_file): Load
