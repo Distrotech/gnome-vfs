@@ -1,3 +1,8 @@
+2003-02-18  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Define HAVE_SYS_PARAM_H. Patch from jmmv@hispabsd.org.
+
 2003-02-18  Roozbeh Pournader  <roozbeh@sharif.edu>
 
 	* configure.in: Added "fa" to ALL_LINGUAS.

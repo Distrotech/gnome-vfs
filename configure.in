@@ -151,7 +151,7 @@ AC_SUBST(VFS_OFFSET_IS)
 AC_SUBST(VFS_SIZE_PRINTF)
 AC_SUBST(VFS_OFFSET_PRINTF)
 
-AC_CHECK_HEADERS(sys/resource.h sys/vfs.h sys/mount.h sys/statvfs.h)
+AC_CHECK_HEADERS(sys/param.h sys/resource.h sys/vfs.h sys/mount.h sys/statvfs.h)
 
 dnl ====================================
 dnl =
