@@ -1,3 +1,7 @@
+2004-07-10  Laurent Dhima  <laurenti@alblinux.net>
+
+	* sq.po: Updated Albanian translation.
+
 2004-07-10  Takeshi AIHANA <aihana@gnome.gr.jp>
 
 	* ja.po: Updated Japanese translation.
@@ -93,7 +97,7 @@
 
 	* th.po: Fix spellings.
 
-2004-04-15  IÒaki LarraÒaga  <dooteo@euskalgnu.org>
+2004-04-15  IÔøΩki LarraÔøΩga  <dooteo@euskalgnu.org>
 
 	* eu.po:  Updated Basque translation.
 
@@ -127,7 +131,7 @@
 
 	* sk.po: Updated Slovak translation.
 
-2004-03-22  Tomasz K?Çoczko <kloczek@pld.org.pl>
+2004-03-22  Tomasz K?oczko <kloczek@pld.org.pl>
 
 	* pt_BR.po: added missing "Plural-Forms:" field.
 
@@ -142,11 +146,11 @@
 
 	* pt_BR.po: minor translation update.
 
-2004-03-21  ?Ösmund Skj?¶veland  <aasmunds@fys.uio.no>
+2004-03-21  ?smund Skj?veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation.
 
-2004-03-21  ?Ωygimantas Beru?çka  <uid0@akl.lt>
+2004-03-21  ?ygimantas Beru?ka  <uid0@akl.lt>
 
 	* lt.po: Updated Lithuanian translation.
 
@@ -195,7 +199,7 @@
 2004-03-15  Mugurel Tudor  <mugurelu@go.ro>
 
 	* ro.po: Updated Romanian translation by
-	Mi?üu Moldovan  <dumol@go.ro>
+	Mi?u Moldovan  <dumol@go.ro>
 
 2004-03-15  Nikos Charonitakis  <frolix68@yahoo.gr>
 
@@ -234,7 +238,7 @@
 	* it.po: Updated Italian translation by
 	Luca Ferretti <elle.uca@infinito.it>.
 
-2004-03-08  Tomasz K?Çoczko <kloczek@pld.org.pl>
+2004-03-08  Tomasz K?oczko <kloczek@pld.org.pl>
 
 	* hr.po, ja.po: added missing Plural-Forms field in header
 	(neccessary for current gettext).
@@ -245,7 +249,7 @@
 
 	* zh_CN.po: Updated Simplified Chinese translation.
 
-2004-03-06  M?ôtin ?èmirov  <metin@karegen.com>
+2004-03-06  M?tin ?mirov  <metin@karegen.com>
 
 	* az.po: Translation updated.
 
@@ -269,12 +273,12 @@
 
 	* et.po: Translation updated.
 
-2004-02-25  Danilo ?†egan  <dsegan@gmx.net>
+2004-02-25  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr@ije.po: Added Serbian Jekavian translation by
-	Bojan Suzi?á <bojans@teol.net>.
+	Bojan Suzi? <bojans@teol.net>.
 
-2004-02-25  Danilo ?†egan  <dsegan@gmx.net>
+2004-02-25  Danilo ?egan  <dsegan@gmx.net>
 
 	* POTFILES.in: Removed gtk/*.
 
@@ -309,7 +313,7 @@
 
 	* nl.po: Translation updated by Tino Meinen.
 
-2004-02-22  M?ôtin ?èmirov  <metin@karegen.com>
+2004-02-22  M?tin ?mirov  <metin@karegen.com>
 
 	* az.po: Updated Azerbaijani translation.
 
@@ -343,7 +347,7 @@
 	* it.po: Updated Italian translation by
 	Luca Ferretti <elle.uca@infinito.it>.
 
-2004-02-15  M?ôtin ?èmirov  <metin@karegen.com>
+2004-02-15  M?tin ?mirov  <metin@karegen.com>
 
 	* az.po: Translation updated.
 
@@ -389,7 +393,7 @@
 
 	* sv.po: Updated Swedish translation.
 
-2004-02-12  Danilo ?†egan  <dsegan@gmx.net>
+2004-02-12  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Reviewed and updated Serbian translation.
 	* POTFILES.in: Added gtk/* files.
@@ -416,7 +420,7 @@
 
 	* fi.po: Updated Finnish translation.
 
-2004-02-05  M?ôtin ?èmirov  <metin@karegen.com>
+2004-02-05  M?tin ?mirov  <metin@karegen.com>
 
 	* az.po: Translation updated.
 
@@ -464,7 +468,7 @@
 
 	* cs.po: Fixed Czech translation.
 
-2004-01-27  ?Ösmund Skj?¶veland  <aasmunds@fys.uio.no>
+2004-01-27  ?smund Skj?veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation.
 
@@ -528,7 +532,7 @@
 
 	* cs.po: Updated Czech translation.
 
-2004-01-15  Danilo ?†egan  <dsegan@gmx.net>
+2004-01-15  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Updated Serbian translation.
 
@@ -562,7 +566,7 @@
 
 === gnome-vfs 2.5.5 ===
 
-2004-01-12  Danilo ?†egan  <dsegan@gmx.net>
+2004-01-12  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Updated Serbian translation.
 
@@ -593,7 +597,7 @@
 	* fr.po: Updated French translation from
 	Baptiste Mille-Mathias <bmm80@ifrance.com>.
 
-2003-12-31  ?Ωygimantas Beru?çka  <uid0@tuxfamily.org>
+2003-12-31  ?ygimantas Beru?ka  <uid0@tuxfamily.org>
 
 	* lt.po: Updated Lithuanian translation by Tomas Kuliavas.
 
@@ -625,12 +629,12 @@
 
 	* pt.po: Updated Portuguese translation.
 
-2003-12-23  ?Ösmund Skj?¶veland  <aasmunds@fys.uio.no>
+2003-12-23  ?smund Skj?veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation:
 	         merged translations from GNOME 2.6 branch with 2.4 branch.
 
-2003-12-23  ?Ösmund Skj?¶veland  <aasmunds@fys.uio.no>
+2003-12-23  ?smund Skj?veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation.
 
@@ -662,7 +666,7 @@
                                                                                 
         * ar.po: Updated Arabic translation
 
-2003-12-20  Danilo ?†egan  <dsegan@gmx.net>
+2003-12-20  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Updated Serbian translation.
 
@@ -670,7 +674,7 @@
 
 	* de.po: Updated German translation.
 
-2003-12-19  Danilo ?†egan  <dsegan@gmx.net>
+2003-12-19  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Updated Serbian translation.
 
@@ -709,7 +713,7 @@
 
 === gnome-vfs 2.5.3 ===
 
-2003-12-07  Danilo ?†egan  <dsegan@gmx.net>
+2003-12-07  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Updated Serbian translation.
 
@@ -761,7 +765,7 @@
 
 	* cs.po: Updated Czech translation.
 
-2003-11-19  ?Ösmund Skj?¶veland  <aasmunds@fys.uio.no>
+2003-11-19  ?smund Skj?veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation.
 
@@ -773,7 +777,7 @@
 
 	* ms.po: Updated Malay translation.
 
-2003-11-15  Danilo ?†egan  <dsegan@gmx.net>
+2003-11-15  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Updated Serbian translation.
 
@@ -812,7 +816,7 @@
 
 	* nl.po: Dutch translation updated by Vincent van Adrighem.
 
-2003-10-18  Danilo ?†egan  <dsegan@gmx.net>
+2003-10-18  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Updated Serbian translation.
 
@@ -838,7 +842,7 @@
 
 	* sv.po: Updated Swedish translation.
 
-2003-10-04  Danilo ?†egan  <dsegan@gmx.net>
+2003-10-04  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Updated Serbian translation.
 
@@ -863,7 +867,7 @@
 2003-09-09  Mugurel Tudor  <mugurelu@go.ro>
 
 	* ro.po: Updated Romanian translation by
-		Mi?üu Moldovan  <dumol@go.ro>
+		Mi?u Moldovan  <dumol@go.ro>
 
 2003-09-09  Roozbeh Pournader  <roozbeh@sharif.edu>
 
@@ -962,7 +966,7 @@
 
 	* cy.po: Updated Welsh translation.
 
-2003-08-14  Danilo ?†egan  <dsegan@gmx.net>
+2003-08-14  Danilo ?egan  <dsegan@gmx.net>
 
 	* be.po: Updated Belarusian translation by Ales Nyakhaychyk
 	<nab@mail.by>. 
@@ -971,7 +975,7 @@
 
 	* pl.po: Updated Polish translation.
 
-2003-08-14  Danilo ?†egan  <dsegan@gmx.net>
+2003-08-14  Danilo ?egan  <dsegan@gmx.net>
 
 	* sr.po, sr@Latn.po: Updated Serbian translation.
 
