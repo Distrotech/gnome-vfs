@@ -1364,12 +1364,14 @@ void
 gnome_vfs_mime_application_list_free (GList *list)
 {
 	g_list_foreach (list, (GFunc) gnome_vfs_mime_application_free, NULL);
+	g_list_free (list);
 }
 
 void
 gnome_vfs_mime_component_list_free (GList *list)
 {
 	g_list_foreach (list, (GFunc) CORBA_free, NULL);
+	g_list_free (list);
 }
 
 
