@@ -37,7 +37,6 @@
 #include <libgnomevfs/gnome-vfs-transform.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-xfer.h>
 
 #endif /* GNOME_VFS_H */
