@@ -75,8 +75,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
-%config %{sysconfdir}/dat
-%config %{sysconfdir}/gnome-vfs-mime-magi
+%config %{sysconfdir}/*.dat
+%config %{sysconfdir}/gnome-vfs-mime-magic
 %config %{sysconfdir}/vfs/modules/*.conf
 %{prefix}/bin/gnome-vfs-gen-mimedb
 %{prefix}/bin/gnome-vfs-slave
