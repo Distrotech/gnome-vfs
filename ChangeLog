@@ -1,3 +1,18 @@
+2000-07-15  Ali Abdin  <aliabdin@aucegypt.edu>
+
+	* modules/pipe-methpd.c:
+	(mime_from_uri), (str_without_suffix), (do_get_file_info),
+	(do_get_file_info_from_handle), (do_open):
+	We are now allowed to specify mime-type over the URI using the pipe
+	method (as in pipe:command;mime-type=text/html)
+
+	Also - you can now escape strings passed to the pipe method (before
+	they had to be unescaped)
+
+	This closes bug #1322. (We still need a test-suite for this though).
+
+	Also - expect a commit for a 'fix' to libvfs-translate.so
+
 2000-07-14  Gene Z. Ragan  <gzr@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

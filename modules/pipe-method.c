@@ -8,6 +8,7 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-shared.h"
+#include "gnome-vfs-utils.h"
 #include "pipe-method.h"
 
 struct _FileHandle {
@@ -38,6 +39,38 @@ file_handle_destroy (FileHandle *handle)
 	g_free (handle);
 }
 
+static char *
+str_without_suffix (const char *str)
+{
+	const char *semicolon;
+
+	semicolon = strchr (str, ';');
+	
+	return g_strndup (str, (semicolon == NULL) ? strlen (str) : semicolon - str);
+}
+
+static char *
+mime_from_uri (const gchar *uri)
+{
+	const char *mime;
+	char *result;
+	
+	mime = strstr (uri, ";mime-type=");
+
+	if (mime != NULL) {
+		result = str_without_suffix (mime + 11);
+		if (result[0] == '\0') {
+			/* No mime-type specified */
+			g_free (result);
+			result = g_strdup ("application/octet-stream");
+		}
+	} else {
+		result = g_strdup ("application/octet-stream");
+	}
+	return result;
+}
+
+
 static void
 set_default_file_info (GnomeVFSFileInfo *file_info,
 		       GnomeVFSURI *uri)
@@ -63,6 +96,7 @@ do_open (GnomeVFSMethod *method,
 {
 	FileHandle *file_handle;
 	FILE *fh;
+	char *real_uri;
 
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
@@ -70,7 +104,9 @@ do_open (GnomeVFSMethod *method,
 	if (!(mode & GNOME_VFS_OPEN_READ))
 		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 
-	fh = popen(uri->text, "r");
+	real_uri = str_without_suffix (gnome_vfs_unescape_string (uri->text, ""));
+	fh = popen (real_uri, "r");
+	g_free (real_uri);
 
 	if (!fh)
 		return gnome_vfs_result_from_errno ();
@@ -135,6 +171,9 @@ do_get_file_info (GnomeVFSMethod *method,
 {
         set_default_file_info (file_info, uri);
 
+	file_info->mime_type = mime_from_uri (gnome_vfs_unescape_string (uri->text, ""));
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+
         return GNOME_VFS_OK;
 }
 
@@ -151,6 +190,9 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	handle = (FileHandle *) method_handle;
 
         set_default_file_info (file_info, handle->uri);
+
+	file_info->mime_type = mime_from_uri (gnome_vfs_unescape_string (handle->uri->text, ""));
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
 	return GNOME_VFS_OK;
 }
