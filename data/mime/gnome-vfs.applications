@@ -250,7 +250,7 @@ applix
 acrobat
 	command=acrobat
 	name=Adobe Acrobat
-	can_open_multiple_files=false
+	can_open_multiple_files=true
 	can_open_urls=false
 	requires_terminal=false
 	mime_types=application/pdf
