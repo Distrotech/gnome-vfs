@@ -33,7 +33,7 @@ modulesdir = $(libdir)/vfs/modules
 modules_LTLIBRARIES =				\
 	libextfs.la				\
 	libfile.la				\
-	libfoobar.la				\
+	libvfs-test.la				\
 	libhttp.la				\
 	libbzip2.la				\
 	libgzip.la				\
@@ -64,10 +64,10 @@ libfile_la_SOURCES = 				\
 libfile_la_LDFLAGS = $(module_flags)
 
 
-###  'foobar' method
+###  `test' method
 
-libfoobar_la_SOURCES =				\
-	foobar-method.c				
+libvfs_test_la_SOURCES =			\
+	test-method.c				
 
 ### `gzip' method
 

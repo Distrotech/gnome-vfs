@@ -1,5 +1,5 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* foobar-method.c: Gnome-VFS testing method
+/* Test-method.c: Gnome-VFS testing method
 
    Copyright (C) 2000 Eazel
 
@@ -20,15 +20,15 @@
 
    Authors: Seth Nickell      (seth@eazel.com) */
 
-/* To use: create a /gnome/etc/vfs/foobar-conf.xml, and point gnome-vfs
- * clients to foobar:restofuri which will translate into the "real" method
+/* To use: create a /gnome/etc/vfs/Test-conf.xml, and point gnome-vfs
+ * clients to Test:restofuri which will translate into the "real" method
  *
  * here's a sample config file (pointing to the file method):
  *
  *    <?xml version="1.0"?>
- *        <FoobarModule method="file">
+ *        <TestModule method="file">
  *	      <Function name="do_open_directory" result="GNOME_VFS_OK" execute_operation="TRUE" delay="2000"/>
- *        </FoobarModule>
+ *        </TestModule>
  *
  */
 
@@ -53,12 +53,12 @@ typedef struct {
 
 #define NUM_RESULT_STRINGS 41
 
-static char FoobarMethodName[10];
+static char TestMethodName[10];
 
-static GList *FoobarOperationConfig;
+static GList *TestOperationConfig;
 
 static char
-FoobarGnomeVFSResultString[NUM_RESULT_STRINGS][40] = {
+TestGnomeVFSResultString[NUM_RESULT_STRINGS][40] = {
 			 "GNOME_VFS_OK",
 			 "GNOME_VFS_ERROR_NOT_FOUND",
 			 "GNOME_VFS_ERROR_GENERIC",
@@ -116,7 +116,7 @@ translate_uri (GnomeVFSURI *uri)
 
 	uri_text = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 	no_method = strchr (uri_text, ':');
-	translated_uri_text = g_strconcat (FoobarMethodName, no_method, NULL);
+	translated_uri_text = g_strconcat (TestMethodName, no_method, NULL);
 
 	translated_uri = gnome_vfs_uri_new (translated_uri_text);
 
@@ -144,7 +144,7 @@ get_operation_configuration (char *function_identifier, GnomeVFSResult *result,
 	Interposition *found_config = NULL;
 
 	printf ("get_operation_configuration for %s\n", function_identifier);
-	for (node = FoobarOperationConfig; node != NULL; node = node->next) {
+	for (node = TestOperationConfig; node != NULL; node = node->next) {
 	        operation_config = node->data;
 		if (strcmp (operation_config->operation_name, function_identifier)) {
 		        found_config = operation_config;
@@ -244,7 +244,7 @@ parse_results_text (char *result) {
 	gboolean found = FALSE;
 
 	for (i = 0; i < NUM_RESULT_STRINGS && !found; i++) {
-		found = g_strcasecmp (result, FoobarGnomeVFSResultString[i]);
+		found = g_strcasecmp (result, TestGnomeVFSResultString[i]);
 	}
 	
 	if (found) {
@@ -270,15 +270,15 @@ load_config_file (char *filename)
 
 	/* FIXME: the module shouldn't crash when the config file doesn't exist */
 	
-	if(!doc->root || !doc->root->name || g_strcasecmp(doc->root->name,"FoobarModule")!=0) {
+	if(!doc->root || !doc->root->name || g_strcasecmp(doc->root->name,"TestModule")!=0) {
 		xmlFreeDoc(doc);
 		return FALSE;
 	}
 
 	method_name = xmlGetProp(doc->root, "method");
-	g_snprintf (FoobarMethodName, 10, "%s", method_name);
+	g_snprintf (TestMethodName, 10, "%s", method_name);
 	
-	printf ("target method: %s\n", FoobarMethodName);
+	printf ("target method: %s\n", TestMethodName);
 
 	for(node = doc->root->childs; node != NULL; node = node->next) {
 		if (xmlGetProp (node, "name") != NULL) {
@@ -667,7 +667,7 @@ GnomeVFSMethod *
 vfs_module_init (const char *method_name, const char *args)
 {
 	/* FIXME: the path to the config file should not be hardcoded */
-	FoobarOperationConfig = load_config_file ("/gnome/etc/vfs/foobar-conf.xml");
+	TestOperationConfig = load_config_file ("/gnome/etc/vfs/Test-conf.xml");
 	printf ("Module initialized.\n");
 	return &method;
 }
