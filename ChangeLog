@@ -1,3 +1,9 @@
+2000-09-05  Martin Baulig  <baulig@suse.de>
+
+	* Makefile.am (SUBDIRS): Remove the mime-type-capplet; this
+	a) breaks the GNOME 2 platform and is b) compiled twice on the
+	GNOME 1.x platform otherwise.
+
 2000-09-05  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c: Fixed spelling in a FIXME.

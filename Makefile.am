@@ -26,8 +26,7 @@ SUBDIRS =					\
 	man					\
 	devel-docs				\
 	$(SUBDIRS_GNOME)			\
-	po					\
-	mime-type-capplet
+	po
 
 
 EXTRA_DIST =					\
