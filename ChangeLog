@@ -1,3 +1,8 @@
+2002-05-03  jacob berkman  <jacob@ximian.com>
+
+	* doc/Makefile.am $(TARGET_DIR): don't conflict with the gnome-vfs
+	1 docs
+
 2002-05-02  Bastien Nocera  <hadess@hadess.net>
 
 	* test/test-directory.c: (show_result):

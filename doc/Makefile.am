@@ -72,7 +72,9 @@ dist-hook-local:
 # Everything below here is generic #
 ####################################
 
-TARGET_DIR=$(HTML_DIR)/$(DOC_MODULE)
+# ... except for TARGET_DIR, which we override
+
+TARGET_DIR=$(HTML_DIR)/$(DOC_MODULE)-2.0
 
 EXTRA_DIST = 				\
 	$(content_files)		\
