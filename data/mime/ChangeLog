@@ -1,3 +1,18 @@
+2001-04-25  Darin Adler  <darin@eazel.com>
+
+	* gnome-vfs.applications: Put in alphabetical order.
+
+2001-04-23  John Sullivan  <sullivan@eazel.com>
+
+	* gnome-vfs.keys.in: Added can_be_executable
+	flag to text/x-python so they will work as Nautilus scripts.
+
+2001-04-20  Seth Nickell  <snickell@stanford.edu>
+
+	* gnome-vfs.keys.in:
+	Fix bug #7216, jbuilder in the application database but
+	not listed for files of type text/x-java.
+	
 2001-03-01  Aaron Brick  <aaron@eazel.com>
 
 	* added application/x-rar to the list of guitar's supported types
