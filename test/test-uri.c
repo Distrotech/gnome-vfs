@@ -348,8 +348,6 @@ main (int argc, char **argv)
 	test_uri_to_string ("file:///Users/mikef", "file:///Users/mikef", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("/trash", "file:///trash", GNOME_VFS_URI_HIDE_NONE);
 
-	test_uri_to_string ("http://www.eazel.com:80", "http://www.eazel.com:80/", GNOME_VFS_URI_HIDE_NONE);
-
 	/* test URI parts */
 	test_uri_part ("http://www.eazel.com:80/", "http", gnome_vfs_uri_get_scheme);
 	test_uri_part ("http://www.eazel.com:80/", "www.eazel.com", gnome_vfs_uri_get_host_name);
@@ -439,10 +437,16 @@ main (int argc, char **argv)
 	test_file_path_to_uri_string ("/tmp/#backup_file#", "file:///tmp/#backup_file#", GNOME_VFS_URI_HIDE_NONE);
 	test_file_path_to_uri_string ("/tmp/percent%percent", "file:///tmp/percent%percent", GNOME_VFS_URI_HIDE_NONE);
 
+	/* FIXME bugzilla.eazel.com 4101: Why append a slash in this case, but not in the http://www.eazel.com case? */
+	test_uri_to_string ("http://www.eazel.com:80", "http://www.eazel.com:80/", GNOME_VFS_URI_HIDE_NONE);
+
 	/* FIXME bugzilla.eazel.com 3829: Is this useful behavior?
 	 * It turns a partial path name into a host name!
 	 */
 	test_uri_to_string ("trash", "file://trash", GNOME_VFS_URI_HIDE_NONE);
+
+	/* FIXME bugzilla.eazel.com 4102: Is this useful behavior? */
+	test_uri_to_string ("file:trash", "file://trash", GNOME_VFS_URI_HIDE_NONE);
 
 	/* FIXME bugzilla.eazel.com 3830: This turns a good path with
 	 * a redundant "/" in it into a completely different one.
