@@ -1,3 +1,9 @@
+2000-09-08  Ian McKellar  <yakk@yakk.net.au>
+
+	* modules/http-method.c: (make_request):
+	Implemented custom user-agent headers - specified by the
+	GNOME_VFS_HTTP_USER_AGENT environment variable.
+
 2000-09-06  Pavel Cisler  <pavel@eazel.com>
 
 	* configure.in:

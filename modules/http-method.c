@@ -71,6 +71,9 @@ static int nothing;
 /* FIXME bugzilla.eazel.com 1160: "gnome-vfs/1.0.0" may not be good. */
 #define USER_AGENT_STRING 	"gnome-vfs/" VERSION
 
+/* Custom User-Agent environment variable */
+#define CUSTOM_USER_AGENT_VARIABLE "GNOME_VFS_HTTP_USER_AGENT"
+
 /* Standard HTTP port.  */
 #define DEFAULT_HTTP_PORT 	80
 
@@ -616,6 +619,7 @@ make_request (HttpFileHandle **handle_return,
 	GnomeVFSToplevelURI *toplevel_uri;
 	GString *request;
 	gchar *uri_string;
+	gchar *user_agent;
 	guint host_port;
 
 	toplevel_uri = (GnomeVFSToplevelURI *) uri;
@@ -677,7 +681,9 @@ make_request (HttpFileHandle **handle_return,
 		g_string_sprintfa (request, "Content-Length: %d\r\n", data->len);
 
 	/* `User-Agent:' header.  */
-	g_string_sprintfa (request, "User-Agent: %s\r\n", USER_AGENT_STRING);
+	user_agent = getenv(CUSTOM_USER_AGENT_VARIABLE);
+	if(!user_agent) user_agent = USER_AGENT_STRING;
+	g_string_sprintfa (request, "User-Agent: %s\r\n", user_agent);
 
 	/* Extra headers. */
 	if(extra_headers)
