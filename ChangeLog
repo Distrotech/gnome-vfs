@@ -1,7 +1,7 @@
-2000-11-03  Mike Fleming  <mfleming@eazel.com>
+2000-11-03  Aaron Brick <aaron@eazel.com>
 
-	* modules/http-method.c:
-	Let's turn *off* verbose HTTP logging
+	* gnome-vfs.applications:
+	adobe acrobat can open multiple files.
 
 2000-11-03  Mike Fleming  <mfleming@eazel.com>
 
