@@ -133,15 +133,6 @@ gnome_vfs_configuration_get_module_path
 </SECTION>
 
 <SECTION>
-<FILE>constants</FILE>
-<TITLE>Constants</TITLE>
-GNOME_VFS_URI_MAGIC_CHR
-GNOME_VFS_URI_MAGIC_STR
-GNOME_VFS_URI_PATH_CHR
-GNOME_VFS_URI_PATH_STR
-</SECTION>
-
-<SECTION>
 <FILE>context</FILE>
 <TITLE>Context</TITLE>
 gnome_vfs_context_new
@@ -536,6 +527,10 @@ GnomeVFSCallback
 
 <SECTION>
 <FILE>uri</FILE>
+GNOME_VFS_URI_MAGIC_CHR
+GNOME_VFS_URI_MAGIC_STR
+GNOME_VFS_URI_PATH_CHR
+GNOME_VFS_URI_PATH_STR
 gnome_vfs_uri_new
 gnome_vfs_uri_ref
 gnome_vfs_uri_unref

@@ -61,6 +61,7 @@ a collection of structs for purposes ranging from error messages to file informa
 @GNOME_VFS_ERROR_NAME_TOO_LONG: 
 @GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE: 
 @GNOME_VFS_ERROR_SERVICE_OBSOLETE: 
+@GNOME_VFS_ERROR_PROTOCOL_ERROR: 
 @GNOME_VFS_NUM_ERRORS: 
 
 <!-- ##### ENUM GnomeVFSOpenMode ##### -->

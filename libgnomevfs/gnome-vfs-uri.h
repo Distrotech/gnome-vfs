@@ -24,6 +24,14 @@
 #ifndef GNOME_VFS_URI_H
 #define GNOME_VFS_URI_H
 
+/* CONSTANTS */
+#define GNOME_VFS_URI_MAGIC_CHR	'#'
+#define GNOME_VFS_URI_MAGIC_STR "#"
+
+#define GNOME_VFS_URI_PATH_CHR '/'
+#define GNOME_VFS_URI_PATH_STR "/"
+
+/* FUNCTIONS */
 GnomeVFSURI 	     *gnome_vfs_uri_new                   (const gchar *text_uri);
 GnomeVFSURI 	     *gnome_vfs_uri_ref                   (GnomeVFSURI *uri);
 void        	      gnome_vfs_uri_unref                 (GnomeVFSURI *uri);

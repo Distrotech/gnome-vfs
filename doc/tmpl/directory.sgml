@@ -129,23 +129,3 @@ loading and parsing directory contents
 @Returns: 
 
 
-
-<!-- ##### FUNCTION gnome_vfs_directory_filter_new ##### -->
-<para>
-
-</para>
-
-@type: 
-@Param2: 
-@filter_pattern: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gnome_vfs_directory_filter_destroy ##### -->
-<para>
-
-</para>
-
-@filter: 
-
-

@@ -6,7 +6,6 @@
 <!entity gnome-vfs-cancellable-ops SYSTEM "sgml/cancellable-ops.sgml">
 <!entity gnome-vfs-cancellation SYSTEM "sgml/cancellation.sgml">
 <!entity gnome-vfs-configuration SYSTEM "sgml/configuration.sgml">
-<!entity gnome-vfs-constants SYSTEM "sgml/constants.sgml">
 <!entity gnome-vfs-context SYSTEM "sgml/context.sgml">
 <!entity gnome-vfs-directory-filter SYSTEM "sgml/directory-filter.sgml">
 <!entity gnome-vfs-directory SYSTEM "sgml/directory.sgml">
@@ -98,7 +97,7 @@
 	without the use of threads.
       </para>
       &gnome-vfs-async-ops;
-    <comment>FIXME: should we display this?&gnome-vfs-cancellable-ops;</comment>
+    <--FIXME: should we display this?&gnome-vfs-cancellable-ops;-->
       &gnome-vfs-ops;
       &gnome-vfs-directory;
       &gnome-vfs-xfer;
@@ -106,7 +105,6 @@
   <chapter id="data-types">
     <title>Common Data Types</title>
       &gnome-vfs-types;
-    <comment>FIXME: this seems better put in uri&gnome-vfs-constants;</comment>
       &gnome-vfs-file-info;
       &gnome-vfs-result;
       &gnome-vfs-standard-callbacks;
@@ -158,7 +156,7 @@
       &gnome-vfs-directory-filter;
       &gnome-vfs-file-size;
       &gnome-vfs-find-directory;
-      <comment>FIXME: I think this should be private&gnome-vfs-handle;</comment>
+      <--FIXME: I think this should be private&gnome-vfs-handle;-->
       &gnome-vfs-inet-connection;
       &gnome-vfs-init;
       &gnome-vfs-iobuf;

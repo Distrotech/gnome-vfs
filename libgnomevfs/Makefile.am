@@ -47,7 +47,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-configuration.h		\
-	gnome-vfs-constants.h			\
 	gnome-vfs-context.h			\
 	gnome-vfs-directory-filter.h		\
 	gnome-vfs-directory.h			\

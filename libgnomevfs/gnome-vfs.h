@@ -30,7 +30,6 @@
 extern "C" {
 #endif /*__cplusplus*/
 
-#include "gnome-vfs-constants.h"
 #include "gnome-vfs-types.h"
 
 #include "gnome-vfs-async-ops.h"

@@ -32,7 +32,7 @@
 #include "gnome-vfs-private-utils.h"
 
 #include "gnome-vfs-cancellation.h"
-#include "gnome-vfs-constants.h"
+#include "gnome-vfs-uri.h"
 #include "gnome-vfs-ops.h"
 #include <ctype.h>
 #include <errno.h>

@@ -22,25 +22,6 @@ ssl
 @Returns: 
 
 
-<!-- ##### FUNCTION gnome_vfs_ssl_new ##### -->
-<para>
-
-</para>
-
-@host: 
-@port: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gnome_vfs_ssl_new_from_uri ##### -->
-<para>
-
-</para>
-
-@uri: 
-@Returns: 
-
-
 <!-- ##### FUNCTION gnome_vfs_ssl_read ##### -->
 <para>
 

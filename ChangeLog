@@ -1,5 +1,35 @@
 2001-06-02  Seth Nickell  <snickell@stanford.edu>
 
+	* doc/gnome-vfs-docs.sgml:
+	* doc/gnome-vfs-sections.txt:
+	* doc/tmpl/directory.sgml:
+	* doc/tmpl/find-directory.sgml:
+	* doc/tmpl/gnome-vfs-unused.sgml:
+	* doc/tmpl/ssl.sgml:
+	* doc/tmpl/types.sgml:
+	* doc/tmpl/uri.sgml:
+
+	Add some more descrptions, shuffle functions around
+	between files to reduce the number of sections.
+	
+	* libgnomevfs/gnome-vfs-constants.h:
+
+	Move the four constants contained in this file to
+	gnome-vfs-uri.h (which is a better home anyway) and
+	remove the file.
+	
+	* libgnomevfs/gnome-vfs-uri.h:
+
+	Move some constants here from gnome-vfs-constants.h
+	
+	* libgnomevfs/gnome-vfs.h:	
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	* libgnomevfs/Makefile.am:
+
+	Change includes and build to remove gnome-vfs-constants.h.
+
+2001-06-02  Seth Nickell  <snickell@stanford.edu>
+
 	* libgnomevfs/gnome-vfs-socket-buffer.c:
 	* libgnomevfs/gnome-vfs-socket-buffer.h:
 	* libgnomevfs/gnome-vfs-socket-private.h:
