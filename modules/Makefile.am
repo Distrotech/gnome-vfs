@@ -12,7 +12,7 @@ modulesdir = $(prefix)/lib/vfs/modules
 
 modules_LTLIBRARIES =				\
 	libfile.la				\
-#	libbzip2.la				\
+	libbzip2.la				\
 	libgzip.la				\
 	libftp.la
 
@@ -28,11 +28,11 @@ libgzip_la_SOURCES = 				\
 libgzip_la_LDFLAGS = $(module_flags)
 libgzip_la_LIBADD = -lz
 
-#libbzip2_la_SOURCES =				\
-#	bzip2-method.c				\
-#	bzip2-method.h
-#libbzip2_la_LDFLAGS = $(module_flags)
-#libbzip2_la_LIBADD = -lbz2
+libbzip2_la_SOURCES =				\
+	bzip2-method.c				\
+	bzip2-method.h
+libbzip2_la_LDFLAGS = $(module_flags)
+libbzip2_la_LIBADD = -lbz2
 
 libftp_la_SOURCES = 				\
 	ftp-method.c				\

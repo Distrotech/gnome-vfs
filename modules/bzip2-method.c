@@ -40,7 +40,6 @@ struct _Bzip2MethodHandle
    GnomeVFSURI      *uri;
    GnomeVFSHandle   *parent_handle;
    GnomeVFSOpenMode open_mode;
-   time_t           modification_time;
 
    BZFILE           *file;
    GnomeVFSResult   last_vfs_result;
@@ -50,11 +49,6 @@ struct _Bzip2MethodHandle
 };
 
 typedef struct _Bzip2MethodHandle Bzip2MethodHandle;
-
-static GnomeVFSResult bzip2_read_open(GnomeVFSHandle *parent_handle,
-                                      GnomeVFSURI *parent_uri,
-                                      GnomeVFSURI *uri,
-                                      Bzip2MethodHandle *bzip2_handle);
 
 static GnomeVFSResult do_open(GnomeVFSMethodHandle **method_handle,
                               GnomeVFSURI *uri,
@@ -128,7 +122,6 @@ G_STMT_START					\
 
 static Bzip2MethodHandle
 *bzip2_method_handle_new(GnomeVFSHandle *parent_handle,
-                         time_t modification_time,
                          GnomeVFSURI *uri,
                          GnomeVFSOpenMode open_mode)
 {
@@ -137,7 +130,6 @@ static Bzip2MethodHandle
    new = g_new(Bzip2MethodHandle, 1);
 
    new->parent_handle = parent_handle;
-   new->modification_time = modification_time;
    new->uri = gnome_vfs_uri_ref(uri);
    new->open_mode = open_mode;
 
@@ -287,82 +279,50 @@ static GnomeVFSResult do_open(GnomeVFSMethodHandle **method_handle,
                               GnomeVFSURI *uri,
                               GnomeVFSOpenMode open_mode)
 {
-   GnomeVFSHandle *parent_handle;
-   GnomeVFSURI *parent_uri;
-   GnomeVFSResult result;
-   Bzip2MethodHandle *bzip2_handle;
-   time_t modification_time;
-   gchar *filename;
-   FILE *file;
-   int bzerr;
+    GnomeVFSHandle *parent_handle;
+    GnomeVFSURI *parent_uri;
+    GnomeVFSResult result;
+    Bzip2MethodHandle *bzip2_handle;
+    FILE *file;
+    int bzerr;
 
-   _GNOME_VFS_METHOD_PARAM_CHECK(method_handle != NULL);
-   _GNOME_VFS_METHOD_PARAM_CHECK(uri != NULL);
+    _GNOME_VFS_METHOD_PARAM_CHECK(method_handle != NULL);
+    _GNOME_VFS_METHOD_PARAM_CHECK(uri != NULL);
 
-   /* We don't allow any paths in the bzip2 file. */
-   if(uri->text != NULL && uri->text[0] != 0)
-      return GNOME_VFS_ERROR_INVALIDURI;
+    if (open_mode & GNOME_VFS_OPEN_WRITE)
+        return GNOME_VFS_ERROR_INVALIDOPENMODE;
 
-   parent_uri = uri->parent;
+    /* We don't allow any paths in the bzip2 file. */
+    if(uri->text != NULL && uri->text[0] != 0)
+        return GNOME_VFS_ERROR_INVALIDURI;
 
-   if(open_mode & GNOME_VFS_OPEN_RANDOM)
-      return GNOME_VFS_ERROR_NOTSUPPORTED;
+    parent_uri = uri->parent;
 
-   result = gnome_vfs_open_from_uri(&parent_handle, parent_uri, open_mode);
-   RETURN_IF_FAIL(result);
+    if(open_mode & GNOME_VFS_OPEN_RANDOM)
+        return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-   MAKE_ABSOLUTE(filename, uri->text);
+    result = gnome_vfs_open_from_uri(&parent_handle, parent_uri, open_mode);
+    RETURN_IF_FAIL(result);
 
-   if(open_mode & GNOME_VFS_OPEN_READ)
-   {
-      file = fopen(filename, "r");
-      g_return_val_if_fail(file != NULL, GNOME_VFS_ERROR_IO);
+    bzip2_handle = bzip2_method_handle_new(parent_handle, uri, open_mode);
 
-      bzip2_handle = bzip2_method_handle_new(parent_handle,
-                                             modification_time,
-                                             uri,
-                                             open_mode);
+    if(result != GNOME_VFS_OK)
+    {
+        gnome_vfs_close(parent_handle);
+        bzip2_method_handle_destroy(bzip2_handle);
+        return result;
+    }
 
-      bzip2_handle->file = bzReadOpen(&bzerr, file, 0, 0, 0, 0);
+    if(!bzip2_method_handle_init_for_decompress(bzip2_handle))
+    {
+        gnome_vfs_close(parent_handle);
+        bzip2_method_handle_destroy(bzip2_handle);
+        return GNOME_VFS_ERROR_INTERNAL;
+    }
 
-      if(result != GNOME_VFS_OK)
-      {
-         gnome_vfs_close(parent_handle);
-         bzip2_method_handle_destroy(bzip2_handle);
-         return result;
-      }
+    *method_handle = (GnomeVFSMethodHandle *) bzip2_handle;
 
-      if(!bzip2_method_handle_init_for_decompress(bzip2_handle))
-      {
-         gnome_vfs_close(parent_handle);
-         bzip2_method_handle_destroy(bzip2_handle);
-         return GNOME_VFS_ERROR_INTERNAL;
-      }
-   }
-   else
-   {
-      file = fopen(filename, "w");
-      g_return_val_if_fail(file != NULL, GNOME_VFS_ERROR_IO);
-
-      /* FIXME: modification_time */
-      bzip2_handle = bzip2_method_handle_new(parent_handle,
-                                             (time_t) 0,
-                                             uri,
-                                             open_mode);
-
-      bzip2_handle->file = bzWriteOpen(&bzerr, file, 3, 0, 30);
-
-      if(!bzip2_method_handle_init_for_compress(bzip2_handle))
-      {
-         gnome_vfs_close(parent_handle);
-         bzip2_method_handle_destroy(bzip2_handle);
-         return GNOME_VFS_ERROR_INTERNAL;
-      }
-   }
-
-   *method_handle = (GnomeVFSMethodHandle *) bzip2_handle;
-
-   return GNOME_VFS_OK;
+    return GNOME_VFS_OK;
 }
 
 /* Create */

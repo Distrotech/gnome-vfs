@@ -1,3 +1,15 @@
+1999-09-25  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/bzip2-method.c (struct _Bzip2MethodHandle): Removed
+	`modification_time' member.
+	(bzip2_method_handle_new): Removed `modification_time' parameter.
+	(do_open): Do not pass it as an uninitialized value nor zero
+	anymore.  Open the file using the parent URI correctly.
+	(bzip2_read_open): Removed bogus static prototype.
+	(do_open): Write mode `#if 0'ed out as it wouldn't work anyway.
+
+	* modules/Makefile.am: Enable compilation of the bzip2 module.
+
 1999-09-25  Kjartan Maraas  <kmaraas@online.no>
 
 	* configure.in: Added da to ALL_LINGUAS.
