@@ -54,4 +54,10 @@ GnomeVFSResult	gnome_vfs_handle_do_seek	(GnomeVFSHandle *handle,
 GnomeVFSResult	gnome_vfs_handle_do_tell	(GnomeVFSHandle *handle,
 						 GnomeVFSFileSize *offset_return);
 
+GnomeVFSResult gnome_vfs_handle_do_get_file_info
+						(GnomeVFSHandle *handle,
+						 GnomeVFSFileInfo *info,
+						 GnomeVFSFileInfoOptions options,
+						 const GList *meta_keys);
+
 #endif /* _GNOME_VFS_HANDLE_H */

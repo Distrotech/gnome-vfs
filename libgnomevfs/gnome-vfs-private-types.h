@@ -89,6 +89,12 @@ typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFunc)
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys);
 
+typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFromHandleFunc)
+					(GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSFileInfo *file_info,
+					 GnomeVFSFileInfoOptions options,
+					 const GList *meta_keys);
+
 typedef gboolean       (* GnomeVFSMethodIsLocalFunc)
 					(const GnomeVFSURI *uri);
 
@@ -119,6 +125,7 @@ struct _GnomeVFSMethod {
 	GnomeVFSMethodCloseDirectoryFunc close_directory;
 	GnomeVFSMethodReadDirectoryFunc read_directory;
 	GnomeVFSMethodGetFileInfoFunc get_file_info;
+	GnomeVFSMethodGetFileInfoFromHandleFunc get_file_info_from_handle;
 	GnomeVFSMethodIsLocalFunc is_local;
 	GnomeVFSMethodMakeDirectoryFunc make_directory;
 	GnomeVFSMethodRemoveDirectoryFunc remove_directory;

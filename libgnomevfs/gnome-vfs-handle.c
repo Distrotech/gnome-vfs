@@ -161,3 +161,14 @@ gnome_vfs_handle_do_tell (GnomeVFSHandle *handle,
 	INVOKE_AND_RETURN (handle, tell, (handle->method_handle,
 					  offset_return));
 }
+
+
+GnomeVFSResult
+gnome_vfs_handle_do_get_file_info (GnomeVFSHandle *handle,
+				   GnomeVFSFileInfo *info,
+				   GnomeVFSFileInfoOptions options,
+				   const GList *meta_keys)
+{
+	INVOKE_AND_RETURN (handle, get_file_info_from_handle,
+			   (handle->method_handle, info, options, meta_keys));
+}

@@ -71,6 +71,7 @@ static GnomeVFSMethod method = {
 	NULL,
 	NULL,
 	do_get_file_info,
+	NULL,			/* get_file_info_from_handle FIXME */
 	do_is_local,
 	NULL,
 	NULL,

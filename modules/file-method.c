@@ -87,6 +87,12 @@ static GnomeVFSResult	do_get_file_info
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys);
 
+static GnomeVFSResult	do_get_file_info_from_handle
+					(GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSFileInfo *file_info,
+					 GnomeVFSFileInfoOptions options,
+					 const GList *meta_keys);
+
 static gboolean		do_is_local	(const GnomeVFSURI *uri);
 
 static GnomeVFSResult	do_make_directory
@@ -109,6 +115,7 @@ static GnomeVFSMethod method = {
 	do_close_directory,
 	do_read_directory,
 	do_get_file_info,
+	do_get_file_info_from_handle,
 	do_is_local,
 	do_make_directory,
 	do_remove_directory,
@@ -247,7 +254,7 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	gboolean exclusive,
 	guint perm)
 {
-	FileHandle *file_method;
+	FileHandle *file_handle;
 	gint fd;
 	mode_t unix_mode;
 	gchar *file_name;
@@ -268,8 +275,8 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	if (fd == -1)
 		return gnome_vfs_result_from_errno ();
 
-	file_method = file_handle_new (uri, fd);
-	*method_handle = (GnomeVFSMethodHandle *) file_method;
+	file_handle = file_handle_new (uri, fd);
+	*method_handle = (GnomeVFSMethodHandle *) file_handle;
 
 	return GNOME_VFS_OK;
 }
@@ -626,31 +633,10 @@ read_link (const gchar *full_name)
 	}
 }
 
-static GnomeVFSResult
-get_stat_info (GnomeVFSFileInfo *file_info,
-	       const gchar *full_name,
-	       GnomeVFSFileInfoOptions options,
-	       struct stat *statptr)
+static void
+stat_to_file_info (GnomeVFSFileInfo *file_info,
+		   const struct stat *statptr)
 {
-	struct stat statbuf;
-
-	if (statptr == NULL)
-		statptr = &statbuf;
-
-	if (lstat (full_name, statptr) != 0)
-		return gnome_vfs_result_from_errno ();
-
-	if (S_ISLNK (statptr->st_mode)) {
-		file_info->is_symlink = TRUE;
-		file_info->symlink_name = read_link (full_name);
-
-		if (options & GNOME_VFS_FILE_INFO_FOLLOWLINKS) {
-			if (stat (full_name, statptr) != 0)
-				file_info->type
-					= GNOME_VFS_FILE_TYPE_BROKENSYMLINK;
-		}
-	}
-
 	if (S_ISDIR (statptr->st_mode))
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 	else if (S_ISCHR (statptr->st_mode))
@@ -697,6 +683,53 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 #else
 	file_info->has_sticky_bit = FALSE;
 #endif
+}
+
+static GnomeVFSResult
+get_stat_info (GnomeVFSFileInfo *file_info,
+	       const gchar *full_name,
+	       GnomeVFSFileInfoOptions options,
+	       struct stat *statptr)
+{
+	struct stat statbuf;
+
+	if (statptr == NULL)
+		statptr = &statbuf;
+
+	if (lstat (full_name, statptr) != 0)
+		return gnome_vfs_result_from_errno ();
+
+	if (S_ISLNK (statptr->st_mode)) {
+		file_info->is_symlink = TRUE;
+		file_info->symlink_name = read_link (full_name);
+
+		if (options & GNOME_VFS_FILE_INFO_FOLLOWLINKS) {
+			if (stat (full_name, statptr) != 0)
+				file_info->type
+					= GNOME_VFS_FILE_TYPE_BROKENSYMLINK;
+		}
+	}
+
+	stat_to_file_info (file_info, statptr);
+
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
+get_stat_info_from_handle (GnomeVFSFileInfo *file_info,
+			   FileHandle *handle,
+			   GnomeVFSFileInfoOptions options,
+			   struct stat *statptr)
+{
+	struct stat statbuf;
+
+	if (statptr == NULL)
+		statptr = &statbuf;
+
+	if (fstat (handle->fd, statptr) != 0)
+		return gnome_vfs_result_from_errno ();
+
+	stat_to_file_info (file_info, statptr);
 
 	return GNOME_VFS_OK;
 }
@@ -872,7 +905,36 @@ do_get_file_info (GnomeVFSURI *uri,
 
 	file_info->name = g_strdup (g_basename (full_name));
 
-	result = get_stat_info (file_info, full_name, options, &statbuf);
+	result = get_stat_info (file_info, full_name, options, NULL);
+	if (result != GNOME_VFS_OK)
+		return result;
+
+	if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
+		set_mime_type (file_info, full_name, options, &statbuf);
+
+	set_meta_for_list (file_info, full_name, meta_keys);
+
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
+do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
+			      GnomeVFSFileInfo *file_info,
+			      GnomeVFSFileInfoOptions options,
+			      const GList *meta_keys)
+{
+	FileHandle *file_handle;
+	gchar *full_name;
+	struct stat statbuf;
+	GnomeVFSResult result;
+
+	file_handle = (FileHandle *) method_handle;
+
+	MAKE_ABSOLUTE (full_name, file_handle->uri->text);
+	file_info->name = g_strdup (g_basename (full_name));
+
+	result = get_stat_info_from_handle (file_info, file_handle,
+					    options, &statbuf);
 	if (result != GNOME_VFS_OK)
 		return result;
 

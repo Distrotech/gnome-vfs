@@ -76,6 +76,13 @@ GnomeVFSResult	 gnome_vfs_get_file_info_from_uri
 						 	options,
 						 gchar *meta_keys[]);
 
+GnomeVFSResult	 gnome_vfs_get_file_info_from_handle
+						(GnomeVFSHandle *handle,
+						 GnomeVFSFileInfo *info,
+						 GnomeVFSFileInfoOptions
+						 	options,
+						 gchar *meta_keys[]);
+
 GnomeVFSResult	 gnome_vfs_make_directory_for_uri
 						(GnomeVFSURI *uri, guint perm);
 GnomeVFSResult	 gnome_vfs_make_directory	(const gchar *text_uri,

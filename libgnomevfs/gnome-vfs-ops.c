@@ -209,6 +209,28 @@ gnome_vfs_get_file_info_from_uri (GnomeVFSURI *uri,
 	return result;
 }
 
+GnomeVFSResult
+gnome_vfs_get_file_info_from_handle (GnomeVFSHandle *handle,
+				     GnomeVFSFileInfo *info,
+				     GnomeVFSFileInfoOptions options,
+				     gchar *meta_keys[])
+
+{
+	GnomeVFSResult result;
+	GList *meta_list;
+
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
+
+	result =  gnome_vfs_handle_do_get_file_info (handle, info,
+						     options, meta_list);
+
+	gnome_vfs_free_string_list (meta_list);
+
+	return result;
+}
+
 
 GnomeVFSResult
 gnome_vfs_make_directory_for_uri (GnomeVFSURI *uri,

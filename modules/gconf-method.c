@@ -80,6 +80,7 @@ static GnomeVFSMethod method = {
         do_close_directory,
         do_read_directory,
         do_get_file_info,
+	do_get_file_info_from_handle, /* FIXME */
         do_is_local,
         NULL,
 	NULL,

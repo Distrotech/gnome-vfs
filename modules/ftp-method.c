@@ -2077,6 +2077,7 @@ static GnomeVFSMethod method = {
 	ftpfs_close_directory,
 	ftpfs_read_directory,
 	ftpfs_get_file_info,
+	NULL,			/* get_file_info_from_handle FIXME */
 	ftpfs_is_local,
 	ftpfs_make_directory,
 	ftpfs_remove_directory,

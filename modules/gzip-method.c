@@ -101,6 +101,7 @@ static GnomeVFSMethod method = {
 	NULL,			/* close_directory */
 	NULL,			/* read_directory */
 	NULL,			/* get_file_info */
+	NULL,			/* get_file_info_from_handle */
 	do_is_local,
 	NULL,			/* make_directory */
 	NULL,			/* remove_directory */

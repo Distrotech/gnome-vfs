@@ -1,3 +1,33 @@
+1999-09-04  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/file-method.c (stat_to_file_info): New helper function.
+	(get_stat_info_from_handle): New function to get GnomeVFSFileInfo
+	from an existing handle.
+	(do_get_file_info_from_handle): New function, implementing the
+	`get_file_info_from_handle' method.
+
+	* modules/ftp-method.c: Likewise.
+	* modules/gconf-method.c: Likewise.
+	* modules/http-method.c: Likewise.
+
+	* modules/gzip-method.c: Set the `get_file_info_from_handle'
+	method to NULL.
+
+	* libgnomevfs/gnome-vfs-private-types.h: New member
+	`get_file_info_from_handle' in `GnomeVFSMethod'.
+
+	* libgnomevfs/gnome-vfs-handle.c
+	(gnome_vfs_handle_do_get_file_info): New function.
+
+	* libgnomevfs/gnome-vfs-ops.c
+	(gnome_vfs_get_file_info_from_handle): New function.
+
+	* libgnomevfs/gnome-vfs-private-types.h: New typedef.
+	`GnomeVFSMethodGetFileInfoFromHandleFunc'.
+
+	* modules/file-method.c (do_create): Renamed `file_method' to
+	`file_handle'.
+
 1999-09-02  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs/gnome-vfs-process.c: Improved SIGCHLD handling.
