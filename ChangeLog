@@ -1,4 +1,9 @@
 2000-03-28 John Sullivan <sullivan@eazel.com>
+	* gnome-vfs-uri.c:
+	(gnome_vfs_uri_extract_short_name): Check for empty-string
+	host name as well as NULL.
+
+2000-03-28 John Sullivan <sullivan@eazel.com>
 
 	* gnome-vfs-uri.h,
 	* gnome-vfs-uri.c:

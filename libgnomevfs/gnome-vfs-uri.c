@@ -1090,7 +1090,7 @@ gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri)
 		host_name = gnome_vfs_uri_get_host_name (uri);
 	}
 
-	if (host_name == NULL) {
+	if (host_name == NULL || strlen (host_name) == 0) {
 		return short_path_name;
 	}
 
