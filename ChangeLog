@@ -1,3 +1,11 @@
+2000-03-09  Ian McKellar  <yakk@yakk.net>
+	* modules/http-method.c
+	Added (open|read|close)_directory support for WebDAV servers.
+
+	* configure.in modules/Makefile.am
+	Added checks for gnome-xml as are required for the WebDAV directory
+	code.
+
 2000-03-07  Ian McKellar  <yakk@yakk.net>
 	* modules/http-method.c
 	Added PUT support (i.e. WebDAV or HTTP/1.1 file upload).

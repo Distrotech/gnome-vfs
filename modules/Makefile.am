@@ -5,6 +5,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	$(GNOME_INCLUDEDIR)			\
+	$(XML_CFLAGS)	 			\
 	$(GCONF_CFLAGS)
 
 CPPFLAGS =					\
@@ -106,7 +107,7 @@ libhttp_la_SOURCES =				\
 	http-method.c				\
 	http-method.h
 libhttp_la_LDFLAGS = $(module_flags)
-libhttp_la_LIBADD  = $(GLIB_LIBS)
+libhttp_la_LIBADD  = $(GLIB_LIBS) $(XML_LIBS)
 
 libvfs_pipe_la_SOURCES =			\
 	pipe-method.c				\

@@ -40,6 +40,11 @@
 
 #include <glib.h>
 
+#include <stdlib.h> /* for atoi */
+
+#include <gnome-xml/parser.h>
+#include <gnome-xml/tree.h>
+
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
@@ -137,6 +142,9 @@ struct _HttpFileHandle {
 
 	/* Bytes to be written... */
 	GByteArray *to_be_written;
+
+	/* Files from a directory listing */
+	GList *files;
 };
 typedef struct _HttpFileHandle HttpFileHandle;
 
@@ -162,6 +170,7 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 	new->size_is_known = FALSE;
 	new->bytes_read = 0;
 	new->to_be_written = NULL;
+	new->files = NULL;
 
 	return new;
 }
@@ -171,6 +180,11 @@ http_file_handle_destroy (HttpFileHandle *handle)
 {
 	g_free (handle->uri_string);
 	g_free (handle->mime_type);
+	if(handle->to_be_written)
+		g_byte_array_free(handle->to_be_written, TRUE);
+	/* this should work... */
+	g_list_foreach(handle->files, (GFunc)gnome_vfs_file_info_unref, NULL);
+	g_list_free(handle->files);
 	g_free (handle);
 }
 
@@ -516,6 +530,7 @@ make_request (HttpFileHandle **handle_return,
 	      GnomeVFSURI *uri,
 	      const gchar *method,
 				GByteArray *data,
+				gchar *extra_headers,
 	      GnomeVFSContext *context)
 {
 	GnomeVFSInetConnection *connection;
@@ -555,7 +570,9 @@ make_request (HttpFileHandle **handle_return,
 	request = g_string_new (method);
 	g_string_append (request, " ");
 	g_string_append (request, uri_string);
-	g_string_append (request, " HTTP/1.1\r\n");
+	/* Our code doesn't handle the chunked transfer-encoding that mod_dav 
+	 * uses for HTTP/1.1 requests. */
+	g_string_append (request, " HTTP/1.0\r\n");
 
 	/* `Host:' header.  */
 	g_string_sprintfa (request, "Host: %s:%d\r\n",
@@ -570,6 +587,10 @@ make_request (HttpFileHandle **handle_return,
 
 	/* `User-Agent:' header.  */
 	g_string_sprintfa (request, "User-Agent: %s\r\n", USER_AGENT_STRING);
+
+	/* Extra headers. */
+	if(extra_headers)
+		g_string_append(request, extra_headers);
 
 	/* Empty line ends header section.  */
 	g_string_append (request, "\r\n");
@@ -648,7 +669,7 @@ do_open (GnomeVFSMethod *method,
 			      GNOME_VFS_ERROR_INVALIDOPENMODE);
 
 	if(mode == GNOME_VFS_OPEN_READ) {
-		result = make_request (&handle, uri, "GET", NULL, 
+		result = make_request (&handle, uri, "GET", NULL, NULL,
 			       	context);
 	} else {
 		handle = http_file_handle_new(NULL, NULL, uri); /* shrug */
@@ -679,7 +700,7 @@ do_close (GnomeVFSMethod *method,
 
 		http_file_handle_destroy(handle);
 
-		result = make_request(&handle, uri, "PUT", bytes, context);
+		result = make_request(&handle, uri, "PUT", bytes, NULL, context);
 
 		if(result != GNOME_VFS_OK) {
 			http_handle_close (handle, context);
@@ -777,6 +798,242 @@ do_read (GnomeVFSMethod *method,
 }
 
 
+/* Directory handling - WebDAV servers only */
+
+static void
+process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
+{
+	xmlNodePtr l;
+
+	while(node != NULL) {
+		if(strcmp((char *)node->name, "prop")) {
+			/* node name != "prop" - prop is all we care about */
+			node = node->next;
+			continue;
+		}
+		/* properties of the file */
+		l = node->childs;
+		while(l != NULL) {
+			if(!strcmp((char *)l->name, "getcontenttype")) {
+				file_info->valid_fields |= 
+					GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+				file_info->mime_type = 
+					g_strdup(xmlNodeGetContent(l));
+
+				g_print("found content-type: %s\n", 
+					xmlNodeGetContent(l));
+
+			} else if(!strcmp((char *)l->name, "getcontentlength")){
+				file_info->valid_fields |= 
+					GNOME_VFS_FILE_INFO_FIELDS_SIZE;
+				file_info->size = atoi(xmlNodeGetContent(l));
+
+				g_print("found content-length: %s\n", 
+					xmlNodeGetContent(l));
+
+			} else if(!strcmp((char *)l->name, "resourcetype")) {
+				file_info->valid_fields |= 
+					GNOME_VFS_FILE_INFO_FIELDS_TYPE;
+				file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+
+				if(l->childs && l->childs->name && 
+					  !strcmp((char *)l->childs->name, 
+					  "collection"))
+					file_info->type = 
+						GNOME_VFS_FILE_TYPE_DIRECTORY;
+			}
+			/* TODO: all date related properties:
+			 * creationdate
+			 * getlastmodified
+			 */
+			l = l->next;
+		}
+		node = node->next;
+	}
+}
+
+static GnomeVFSFileInfo *
+process_propfind_response(xmlNodePtr n, gchar *uri_string)
+{
+	GnomeVFSFileInfo *file_info = gnome_vfs_file_info_new();
+
+	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
+
+	gnome_vfs_file_info_init(file_info);
+	while(n != NULL) {
+		if(!strcmp((char *)n->name, "href")) {
+			gchar *nodecontent = xmlNodeGetContent(n);
+			g_print("  found href=\"%s\"\n", nodecontent);
+			if(!strncmp(uri_string, nodecontent, 
+					strlen(uri_string))) {
+				/* our DAV server is prepending the 
+				 * current path
+				 */
+				if(strcmp(uri_string, nodecontent))
+					file_info->name = 
+						g_strdup(nodecontent+
+						strlen(uri_string));
+			} else {
+				file_info->name = 
+					g_strdup(xmlNodeGetContent(n));
+			}
+		} else if(!strcmp((char *)n->name, "propstat")) {
+			//g_print("  got <propstat>\n");
+			process_propfind_propstat(n->childs, file_info);
+		} else {
+		/*
+			g_print("  <%s>\n", n->name);
+			m = n->childs;
+			while(m != NULL) {
+				g_print("    <%s>\n", m->name);
+				m = m->next;
+			}
+		*/
+		}
+		n = n->next;
+	}
+	return file_info;
+}
+
+
+static GnomeVFSResult
+do_open_directory(GnomeVFSMethod *method,
+	GnomeVFSMethodHandle **method_handle,
+	GnomeVFSURI *uri,
+	GnomeVFSFileInfoOptions options,
+	const GList *meta_keys,
+	const GnomeVFSDirectoryFilter *filter,
+	GnomeVFSContext *context) 
+{
+	HttpFileHandle *handle;
+	GnomeVFSResult result = GNOME_VFS_OK;
+
+	GnomeVFSFileSize bytes_read, num_bytes=(64*1024);
+	gchar *buffer = g_malloc(num_bytes);
+	xmlParserCtxtPtr parserContext;
+	xmlDocPtr doc = NULL;
+	xmlNodePtr cur = NULL;
+	gchar *uri_string = gnome_vfs_uri_to_string (uri,
+                GNOME_VFS_URI_HIDE_USER_NAME
+                |GNOME_VFS_URI_HIDE_PASSWORD
+                |GNOME_VFS_URI_HIDE_HOST_NAME
+                |GNOME_VFS_URI_HIDE_HOST_PORT
+                |GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
+
+	GByteArray *request = g_byte_array_new();
+	gchar *request_str = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
+		"<D:propfind xmlns:D=\"DAV:\"><D:allprop/></D:propfind>";
+
+	request = g_byte_array_append(request, request_str, 
+			strlen(request_str));
+
+	parserContext = xmlCreatePushParserCtxt(NULL,NULL, "", 0, "PROPFIND");
+
+	result = make_request (&handle, uri, "PROPFIND", request, 
+			"Depth: 1\r\n", context);
+
+	if (result == GNOME_VFS_OK) {
+		*method_handle = (GnomeVFSMethodHandle *) handle;
+	} else {
+		xmlFreeParserCtxt(parserContext);
+		g_free(buffer);
+		return result;
+	}
+
+	do {
+		result = do_read(method, *method_handle, buffer, num_bytes, 
+			&bytes_read, context);
+		if(result != GNOME_VFS_OK) {
+			xmlFreeParserCtxt(parserContext);
+			g_free(buffer);
+			return result;
+		}
+		xmlParseChunk(parserContext, buffer, bytes_read, 0);
+		buffer[bytes_read]=0;
+	} while( bytes_read > 0 );
+	xmlParseChunk(parserContext, "", 0, 1);
+
+	doc = parserContext->myDoc;
+
+	cur = doc->root;
+
+	if(strcmp((char *)cur->name, "multistatus")) {
+		g_print("Couldn't find <multistatus>.\n");
+		return GNOME_VFS_ERROR_CORRUPTEDDATA;
+	}
+
+	cur = cur->childs;
+
+	while(cur != NULL) {
+		if(!strcmp((char *)cur->name, "response")) {
+			GnomeVFSFileInfo *file_info = 
+				process_propfind_response(cur->childs, 
+					uri_string);
+
+			if(file_info->name) /* if the file has a filename */
+				handle->files = g_list_append(handle->files, file_info);
+		} else {
+			g_print("expecting <response> got <%s>\n", cur->name);
+		}
+		cur = cur->next;
+	}
+
+	g_free(buffer);
+
+	xmlFreeParserCtxt(parserContext);
+
+	return result;
+}
+
+static GnomeVFSResult
+do_close_directory (GnomeVFSMethod *method,
+	GnomeVFSMethodHandle *method_handle,
+	GnomeVFSContext *context) 
+{
+	
+	HttpFileHandle *handle;
+
+	handle = (HttpFileHandle *) method_handle;
+
+	http_handle_close(handle, context);
+
+	return GNOME_VFS_OK;
+}
+       
+static GnomeVFSResult
+do_read_directory (GnomeVFSMethod *method,
+       GnomeVFSMethodHandle *method_handle,
+       GnomeVFSFileInfo *file_info,
+       GnomeVFSContext *context)
+{
+	HttpFileHandle *handle;
+
+	handle = (HttpFileHandle *) method_handle;
+
+	if(handle->files && g_list_length(handle->files)) {
+		GnomeVFSFileInfo *original_info = g_list_nth_data(handle->files, 0);
+
+		/* copy file info from our GnomeVFSFileInfo to the one that was
+		 * passed to us.
+		 */
+		/*
+		file_info->name = g_strdup(original_info->name);
+		file_info->mime_type = g_strdup(original_info->mime_type);
+		file_info->size = original_info->size;
+		*/
+		memcpy(file_info, original_info, sizeof(*file_info));
+
+		/* discard our GnomeVFSFileInfo */
+		handle->files = g_list_remove(handle->files, original_info);
+		//gnome_vfs_file_info_unref(original_info);
+		g_free(original_info);
+
+		return GNOME_VFS_OK;
+	} else {
+		return GNOME_VFS_ERROR_EOF;
+	}
+}
+ 
 /* File info handling.  */
 
 static GnomeVFSResult
@@ -829,7 +1086,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
 
-	result = make_request (&handle, uri, "HEAD", NULL, 
+	result = make_request (&handle, uri, "HEAD", NULL, NULL, 
 			       context);
 	if (result != GNOME_VFS_OK)
 		return result;
@@ -871,9 +1128,9 @@ static GnomeVFSMethod method = {
 	NULL,
 	NULL,
 	NULL,
-	NULL,
-	NULL,
-	NULL,
+	do_open_directory,
+	do_close_directory,
+	do_read_directory,
 	do_get_file_info,
 	do_get_file_info_from_handle,
 	do_is_local,
