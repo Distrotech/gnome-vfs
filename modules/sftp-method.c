@@ -2280,7 +2280,7 @@ do_read_directory (GnomeVFSMethod       *method,
 				handle->info_alloc *= 2;
 				handle->info = g_renew (GnomeVFSFileInfo, handle->info, handle->info_alloc);
 				memset (&(handle->info[handle->info_write_ptr]),
-					0
+					0,
 				       sizeof (GnomeVFSFileInfo) *
 				       (handle->info_alloc - handle->info_write_ptr));
 			}

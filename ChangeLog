@@ -1,5 +1,9 @@
 2004-08-10  Christophe Fergeau  <teuf@gnome.org>
 
+	* modules/sftp-method.c: add missing comma to fix compilation
+
+2004-08-10  Christophe Fergeau  <teuf@gnome.org>
+
 	Backport fixes from HEAD:
 	* modules/sftp-method.c: fix potential deadlock in sftp_get_connection
 	  (Ryan Lortie <desrt@desrt.ca>, fixes #149273)
