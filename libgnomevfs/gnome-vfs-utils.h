@@ -83,4 +83,9 @@ gchar *gnome_vfs_get_uri_from_local_path      (const gchar      *local_full_path
 /* Free the list, freeing each item data with a g_free */
 void   gnome_vfs_list_deep_free               (GList            *list);
 
+
+/* Return amount of free space on target */
+GnomeVFSResult	gnome_vfs_get_volume_free_space	(const GnomeVFSURI 	*vfs_uri, 
+						 GnomeVFSFileSize 	*size);
+
 #endif /* GNOME_VFS_UTILS_H */

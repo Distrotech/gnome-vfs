@@ -1721,26 +1721,21 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			     GnomeVFSProgressCallbackState *progress)
 {
 	GnomeVFSResult result;
-	GnomeVFSHandle *handle;
+	//GnomeVFSHandle *handle;
 	GList *source_uri_list, *target_uri_list;
 	GList *source_uri, *target_uri;
 	GnomeVFSURI *target_dir_uri;
 	gboolean move, link;
-
+	//GnomeVFSFileSize free_bytes;
+	
 	result = GNOME_VFS_OK;
 	move = FALSE;
 	link = FALSE;
 	target_dir_uri = NULL;
 
-	/* Create an owning list of source and destination uris.
-	 * We want to be able to remove items that we decide to skip during
-	 * name conflict check.
-	 */
-	source_uri_list = gnome_vfs_uri_list_copy ((GList *)source_uris);
-	target_uri_list = gnome_vfs_uri_list_copy ((GList *)target_uris);
-
+#if 0
 	/* Check and see if target is writable. Return error if it is not. */
-	target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_uri_list->data);
+	target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)((GList *)target_uris)->data);
 	result = gnome_vfs_open_uri (&handle, target_dir_uri, GNOME_VFS_OPEN_WRITE);	
 	gnome_vfs_uri_unref (target_dir_uri);	
 	target_dir_uri = NULL;
@@ -1748,7 +1743,15 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 		return result;
 	}
 	gnome_vfs_close (handle);
+#endif
 	
+	/* Create an owning list of source and destination uris.
+	 * We want to be able to remove items that we decide to skip during
+	 * name conflict check.
+	 */
+	source_uri_list = gnome_vfs_uri_list_copy ((GList *)source_uris);
+	target_uri_list = gnome_vfs_uri_list_copy ((GList *)target_uris);
+
 	move = (xfer_options & GNOME_VFS_XFER_REMOVESOURCE) != 0;
 	link = (xfer_options & GNOME_VFS_XFER_LINK_ITEMS) != 0;
 
@@ -1792,6 +1795,17 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			 * and bail if not
 			 */
 
+#if 0
+			/* Calculate free space on destination. If we return an error, we just 
+			 * forge ahead and hope for the best 
+			 */
+			result = gnome_vfs_get_volume_free_space (target_dir_uri, &free_bytes);
+			if (result == GNOME_VFS_OK) {
+				if (progress->progress_info->bytes_total > free_bytes) {
+					return GNOME_VFS_ERROR_NO_SPACE;
+				}
+			}
+#endif			
 			if ((xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) == 0) {
 				result = handle_name_conflicts (&source_uri_list, &target_uri_list,
 							        xfer_options, &error_mode, &overwrite_mode,

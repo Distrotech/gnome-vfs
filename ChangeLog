@@ -1,5 +1,22 @@
 2000-09-19  Gene Z. Ragan  <gzr@eazel.com>
 
+	Backing out previous change until current work on
+	free space calculation is done as well.
+
+	Work in progress on verifying free space on target copy
+	location.
+
+	* libgnomevfs/gnome-vfs-utils.c: (str_has_prefix),
+	* libgnomevfs/gnome-vfs-utils.h:
+	(gnome_vfs_get_volume_free_space):
+	New function to return free space on destination volume.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: 
+	(gnome_vfs_xfer_uri_internal):
+	Commented out checks until code is complete.
+
+2000-09-19  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug 1213, add a check to figure out if destination
 	is writable.
 

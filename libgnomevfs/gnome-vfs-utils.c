@@ -429,3 +429,54 @@ gnome_vfs_get_uri_from_local_path (const char *local_path)
 	g_free (escaped_path);
 	return result;
 }
+
+static gboolean
+str_has_prefix (const char *haystack, const char *needle)
+{
+	const char *h, *n;
+
+	/* Eat one character at a time. */
+	h = haystack == NULL ? "" : haystack;
+	n = needle == NULL ? "" : needle;
+	do {
+		if (*n == '\0') {
+			return TRUE;
+		}
+		if (*h == '\0') {
+			return FALSE;
+		}
+	} while (*h++ == *n++);
+	return FALSE;
+}
+
+
+GnomeVFSResult
+gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *size)
+{	
+	//size_t total_blocks, block_size;
+	//struct statfs statfs_buffer;
+        //int statfs_result;
+	const char *base_name;
+
+ 	*size = 0;
+		
+        /* We only handle the file: scheme for now */
+	if (!str_has_prefix (gnome_vfs_uri_get_scheme (vfs_uri), "file://")) {
+		g_message ("Bad scheme: %s", gnome_vfs_uri_get_scheme (vfs_uri));
+		//return GNOME_VFS_ERROR_GENERIC;
+	}
+
+	base_name = gnome_vfs_uri_get_basename (vfs_uri);
+	g_message ("Base name: %s", base_name);
+	
+	//statfs_result = statfs (root_directory, &statfs_buffer);
+	//g_return_val_if_fail (statfs_result == 0, FALSE);
+	//block_size = statfs_buffer.f_bsize; 
+	//total_blocks_to_index = statfs_buffer.f_blocks;
+        
+	return GNOME_VFS_OK;
+}
+
+
+
+
