@@ -1,3 +1,9 @@
+2000-06-05	Mathieu Lacage <mathieu@gnome.org>
+
+	* libgnomevfs/Makefile.am: add OAF_CFLAGS to include
+	so that oaf.h is picked up when oaf is not in GNOME prefix.
+	* test/Makefile.am : idem.
+
 2000-06-05  Darin Adler  <darin@eazel.com>
 
 	* modules/http-method.c:

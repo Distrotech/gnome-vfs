@@ -4,6 +4,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
+	$(OAF_CFLAGS)					\
 	$(GNOME_INCLUDEDIR)
 
 noinst_PROGRAMS =				\
