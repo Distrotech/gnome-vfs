@@ -150,4 +150,5 @@ test_queue_LDADD = $(libraries)
 
 EXTRA_DIST =					\
 	$(test_files)				\
+	auto-test				\
 	vfs-run.in
