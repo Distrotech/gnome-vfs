@@ -127,7 +127,7 @@ msgstr "vektorska grafika DXF"
 
 #: data/mime/gnome-vfs.keys.in.h:29
 msgid "Debian package"
-msgstr "Debianov paket"
+msgstr "paket Debian"
 
 #: data/mime/gnome-vfs.keys.in.h:30
 msgid "Dia diagram"
@@ -579,7 +579,7 @@ msgstr "dokument preglednice Interchange"
 
 #: data/mime/gnome-vfs.keys.in.h:142
 msgid "Stampede package"
-msgstr "Stampedov paket"
+msgstr "paket Stampedo"
 
 #: data/mime/gnome-vfs.keys.in.h:143
 msgid "StarOffice Writer document"
