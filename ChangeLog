@@ -1,3 +1,24 @@
+2001-02-21  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	Fixed bug 6654 (after deleting MIME type from database,
+	info about that MIME type still appears in Nautilus)
+
+	Turns out the support for MIME type deletion was skin deep.
+	The info was stored, but the only place respecting it was
+	the code to return a complete list of MIME types.
+
+	* libgnomevfs/gnome-vfs-mime-info.c: 
+	(is_mime_type_deleted): New function, extracted from
+	get_key_name
+	(get_key_name): Now calls extracted function
+	(get_value_from_hash_table): New function, holds some code
+	that was repeated 4 times in get_value_real
+	(get_value_real): Return NULL if MIME type is deleted (unless
+	we're checking DELETED_KEY itself); use get_value_from_hash_table
+	to save code.
+
 2001-02-21  Gene Z. Ragan  <gzr@eazel.com>
 
 	reviewed by: John Sullivan<sullivan@eazel.com>
