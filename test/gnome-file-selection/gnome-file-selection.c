@@ -64,6 +64,18 @@ struct _GnomeFileSelectionPrivate {
 
 /* Utility functions.  */
 
+static void
+clean_file_list (GnomeFileSelectionPrivate *priv)
+{
+	GList *l;
+
+	while ((l = priv->file_list)) {
+		g_free (l->data);
+		priv->file_list = g_list_remove (priv->file_list, l->data);
+	}
+}
+
+
 static GtkWidget *
 create_scrolled_window (void)
 {
@@ -153,9 +165,9 @@ populate_callback (GnomeVFSAsyncContext *context,
 			} else {
 				add_file_to_icon_list (info,
 						       fs->file_icon_list);
+				fs->priv->file_list = g_list_append (fs->priv->file_list,
+								     g_strdup (info->name));
 			}
-			fs->priv->file_list = g_list_append (fs->priv->file_list,
-							     g_strdup (info->name));
 			info = gnome_vfs_directory_list_next (list);
 		}
 	}
@@ -380,6 +392,7 @@ change_dir (GnomeFileSelection *fs,
 		if (do_history)
 			gnome_file_selection_history_add (fs->priv->history,
 							  fs->directory);
+		clean_file_list (fs->priv);
 		update_toolbar (fs);
 		start_populating (fs);
 		update_directory_combo_entry (fs);
@@ -897,17 +910,13 @@ static void
 destroy (GtkObject *object)
 {
 	GnomeFileSelection *fs;
-	GList *l;
 
 	fs = GNOME_FILE_SELECTION (object);
 
 	g_free (fs->directory);
 
 	while (fs->priv->populating_in_progress) ;
-	while ((l = fs->priv->file_list)) {
-		g_free (l->data);
-		fs->priv->file_list = g_list_remove (fs->priv->file_list, l);
-	}
+	clean_file_list (fs->priv);
 
 	gnome_vfs_async_context_destroy (fs->priv->vfs_async_context);
 

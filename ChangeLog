@@ -1,5 +1,11 @@
 1999-08-26  Michael Meeks  <michael@imaginator.com>
 
+	* test/gnome-file-selection/gnome-file-selection.c
+	(clean_file_list): Added. (change_dir): Clean list.
+	(populate_callback): Add only files.
+
+1999-08-26  Michael Meeks  <michael@imaginator.com>
+
 	* test/gnome-file-selection/gnome-file-selection.c (destroy): 
 	Destroy file_list.
 	(GnomeFileSelectionPrivate): Changed file_list to GList.
