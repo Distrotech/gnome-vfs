@@ -1,3 +1,7 @@
+2004-03-22  Gareth Owen  <gowen72@yahoo.com>
+
+	* configure.in: Added en_GB to ALL_LINGUAS
+
 === gnome-vfs 2.4.3 ===
 
 2004-03-09  Christophe Fergeau  <teuf@gnome.org>
