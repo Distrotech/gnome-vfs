@@ -955,7 +955,7 @@ gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
 		g_list_free_deep (new_list);
 	}
 
-	gnome_vfs_mime_application_list_free (old_list);
+	gnome_vfs_mime_component_list_free (old_list);
 }						   
 
 
