@@ -1,4 +1,17 @@
 ===================================
+gnome-vfs 1.9.8
+---------------
+
+* NNTP method has authentication support (Andy)
+* More random menu tweaks (Seth)
+* MIME database loading performance improvements (Michael)
+* Performance test (Michael)
+* Prioritize suffix matching over gzip sniffing, fixing
+  a lot of gzip'd document types (Seth)
+* Fix a segfault in the desktop method (Alex)
+* Fix Solaris compile (Morten Welinder)
+
+===================================
 gnome-vfs 1.9.7
 ---------------
 

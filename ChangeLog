@@ -1,3 +1,10 @@
+2002-02-25  Seth Nickell  <snickell@stanford.edu>
+
+	* NEWS:
+	* configure.in:
+
+	Release 1.9.8
+	
 2002-02-23  Andy Hertzfeld  <andy@differnet.com>
 
 	* modules/nntp-method.c: (do_basic_command), (get_auth_info),
