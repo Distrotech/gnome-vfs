@@ -1967,9 +1967,8 @@ gnome_vfs_xfer_uri_list (const GList *source_uri_list,
 
 	g_return_val_if_fail (source_uri_list != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (target_uri_list != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);	
-	g_return_val_if_fail (progress_callback == NULL 
-		&& error_mode != GNOME_VFS_XFER_ERROR_MODE_QUERY,
-		GNOME_VFS_ERROR_BAD_PARAMETERS);	
+	g_return_val_if_fail (progress_callback != NULL || error_mode != GNOME_VFS_XFER_ERROR_MODE_QUERY,
+			      GNOME_VFS_ERROR_BAD_PARAMETERS);	
 		
 	init_progress (&progress_state, &progress_info);
 	progress_state.sync_callback = progress_callback;
@@ -1992,10 +1991,9 @@ gnome_vfs_xfer_uri (const GnomeVFSURI *source_uri,
 	GnomeVFSResult result;
 
 	g_return_val_if_fail (source_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
-	g_return_val_if_fail (source_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);	
-	g_return_val_if_fail (progress_callback == NULL 
-		&& error_mode != GNOME_VFS_XFER_ERROR_MODE_QUERY,
-		GNOME_VFS_ERROR_BAD_PARAMETERS);	
+	g_return_val_if_fail (target_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);	
+	g_return_val_if_fail (progress_callback != NULL || error_mode != GNOME_VFS_XFER_ERROR_MODE_QUERY,
+			      GNOME_VFS_ERROR_BAD_PARAMETERS);	
 
 	source_uri_list = g_list_append (NULL, (void *)source_uri);
 	target_uri_list = g_list_append (NULL, (void *)target_uri);
@@ -2021,9 +2019,8 @@ gnome_vfs_xfer_delete_list (const GList *uri_list,
 	GnomeVFSXferProgressInfo progress_info;
 
 	g_return_val_if_fail (uri_list != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
-	g_return_val_if_fail (progress_callback == NULL 
-		&& error_mode != GNOME_VFS_XFER_ERROR_MODE_QUERY,
-		GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (progress_callback != NULL || error_mode != GNOME_VFS_XFER_ERROR_MODE_QUERY,
+			      GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	init_progress (&progress_state, &progress_info);
 	progress_state.sync_callback = progress_callback;

@@ -1,3 +1,9 @@
+2000-09-29  Eskil Heyn Olsen  <eskil@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_uri_list),
+	(gnome_vfs_xfer_uri), (gnome_vfs_xfer_delete_list):
+	Fixed the g_return_val_if_fails.
+
 2000-09-29  John Sullivan  <sullivan@eazel.com>
 
 	Fixed bug I ran into where I would crash at Nautilus startup 
