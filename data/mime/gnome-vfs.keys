@@ -26,19 +26,20 @@
 #   another standard usage for a given language (e.g. "Perl script")
 # * Use lowercase letters except for proper names
 
-application/mime-type-test
-	open=mime-type-test
-	description=mon test a moi
-	test=est-ce un test?
-	compose=eh?ah.
-	copiousoutput=
-
 application/andrew-inset
 	description=Andrew Toolkit inset
 
 application/mac-binhex40
 	description=Macintosh BinHex archive
 	[fr]description=Archive BinHex Macintosh
+
+# This is used by automated tests ("make check")
+application/mime-type-test
+	open=mime-type-test
+	description=mon test a moi
+	test=est-ce un test?
+	compose=eh?ah.
+	copiousoutput=
 
 application/mspowerpoint
 	description=Microsoft PowerPoint document
@@ -945,6 +946,10 @@ text/html
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,lynx
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx
 
+text/htmlH
+	description=Help page
+	default_action_type=component
+	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 
 text/mathml
 	description=MathML document
