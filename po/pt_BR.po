@@ -10,18 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-08 13:11+0100\n"
-"PO-Revision-Date: 2004-03-11 11:53-0500\n"
+"POT-Creation-Date: 2004-03-11 04:00+0100\n"
+"PO-Revision-Date: 2004-03-11 04:20-0300\n"
 "Last-Translator: Everson Santos Araujo <nobios@por.com.br>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
-msgstr "Não foi possível encontrar o servidor de domínio"
+msgstr "Não foi possível localizar o servidor de domínio"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
@@ -433,7 +432,7 @@ msgstr "Erro de protocolo"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Could not find master browser"
-msgstr "Não foi possível encontrar o servidor de domínio"
+msgstr "Não foi possível localizar o servidor de domínio"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
@@ -462,9 +461,7 @@ msgstr "Erro desconhecido"
 #: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "%u byte"
-msgstr[1] "%u bytes"
+msgstr "%u byte"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -530,30 +527,28 @@ msgstr "Servidor de rede"
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
-"Não foi possível montar o drive de disquete. Provavelmente não há disquete "
-"no drive."
+"Não foi possível montar o drive de disquete. Provavelmente não há disquete no drive."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
-"Não foi possível montar volume. Provavelmente não há mídia no dispositivo."
+msgstr "Não foi possível montar volume. Provavelmente não há mídia no dispositivo."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Não foi possível montar o drive de disquete. Provavelmente o disquete está "
-"formatado em um sistema que não se pode montar."
+"Não foi possível montar o drive de disquete. Provavelmente o disquete "
+"está formatado em um sistema que não se pode montar."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Não foi possível montar o volume selecionado. Provavelmente o volume está "
-"formatado em um sistema que não se pode montar."
+"Não foi possível montar o volume selecionado. Provavelmente o volume está"
+"formatado·em·um·sistema·que·não·se pode·montar."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -561,11 +556,11 @@ msgstr "Não foi possível montar o drive de disquete selecionado."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr "Não foi possível montar o volume selecionado."
+msgstr "Não·foi·possível·montar·o volume·selecionado."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr "Não foi possível desmontar o volume selecionado."
+msgstr "Não·foi·possível·desmontar·o·volume·selecionado."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
 #: libgnomevfs/gnome-vfs-volume-ops.c:298
@@ -660,8 +655,7 @@ msgstr "Não encontrei um arquivo de configurações válido em %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"Use a variável de ambiente %s para especificar uma localização diferente.\n"
+msgstr "Use a variável de ambiente %s para especificar uma localização diferente.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -698,16 +692,17 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"A aplicação para ser usada na visualização de arquivos que requerem um "
-"componente para serem visualizados. O parametro %s será substituído pelas "
-"URIs dos arquivos. O parametro %c será substituído pelo IID do componente."
+"A aplicação para ser usada na visualização de arquivos que requerem um"
+"componente para serem visualizados. O parametro %s será substituído pelas"
+"URIs dos arquivos. o parametro %c será substituído pelo IID do componente."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"O terminal padrão para ser utilizado por aplicações que requeremo terminal."
+"O terminal padrão para ser utilizado por aplicações que requerem"
+"o terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -723,7 +718,7 @@ msgstr "Manipulador de URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr "Manipulador de URL HTTPS"
+msgstr "Manipulador·de·URL·HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "Handle H323 URLs"
@@ -735,11 +730,11 @@ msgstr "Manipular URLs HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr "Manipular URLs HTTPS"
+msgstr "Manipular·URLs·HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "Handle callto URLs"
-msgstr "Manipular URLs callto"
+msgstr "Manipular·URLs·callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle ghelp URLs"
@@ -769,68 +764,57 @@ msgstr "Executar programa em um terminal"
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
-"Marque verdadeiro para ter um programa especificado no \"comando\" de "
-"manipulação de URLs H323."
+"Marque verdadeiro para ter um programa especificado no \"comando\" de manipulação de URLs H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
-"Marque verdadeiro para ter um programa especificado no \"comando\" de "
-"manipulação de URLs HTTP."
+"Marque·verdadeiro·para·ter·um·programa·especificado·no·\"comando\"·de·manipulação·de·URLs·HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
-"Marque verdadeiro para ter um programa especificado no \"comando\" de "
-"manipulação de URLs HTTPS."
+"Marque·verdadeiro·para·ter·um·programa·especificado·no·\"comando\"·de·manipulação·de·URLs·HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
-"Marque verdadeiro para ter um programa especificado no \"comando\" de "
-"manipulação de URLs callto."
+"Marque·verdadeiro·para·ter·um·programa·especificado·no·\"comando\"·de·manipulação·de·URLs·callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
-"Marque verdadeiro para ter um programa especificado no \"comando\" de "
-"manipulação de URLs ghelp."
+"Marque·verdadeiro·para·ter·um·programa·especificado·no·\"comando\"·de·manipulação·de·URLs·ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
-"Marque verdadeiro para ter um programa especificado no \"comando\" de "
-"manipulação de URLs info."
+"Marque·verdadeiro·para·ter·um·programa·especificado·no·\"comando\"·de·manipulação·de·URLs·info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
-"Marque verdadeiro para ter um programa especificado no \"comando\" de "
-"manipulação de URLs mailto."
+"Marque·verdadeiro·para·ter·um·programa·especificado·no·\"comando\"·de·manipulação·de·URLs·mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr ""
-"Marque verdadeiro para ter um programa especificado no \"comando\" de "
-"manipulação de URLs man."
+msgstr "Marque·verdadeiro·para·ter·um·programa·especificado·no·\"comando\"·de·manipulação·de·URLs·man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
-"Marque verdadeiro para ter um programa especificado no \"comando\" de "
-"manipulação de URLs lixeira."
+"Marque·verdadeiro·para·ter·um·programa·especificado·no·\"comando\"·de·manipulação·de·URLs·lixeira."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
-"Verdadeiro se o programa para manipular essa URL deve rodar em um terminal."
+msgstr "Verdadeiro se o programa para manipular essa URL deve rodar em um terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -898,9 +882,9 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Verdadeiro se as conexões ao servidor de proxy requerem autenticação. A "
-"caixa usuário/senha são definidas por \"/system/http_proxy/"
-"authentication_user\" e \"/system/http_proxy/authentication_password\"."
+"Verdadeiro se as conexões ao servidor de proxy requerem autenticação. A"
+"caixa usuário/senha são definidas por \"/system/http_proxy/authentication_user"
+"\"·e·\"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -935,8 +919,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Selecione os modos de configuração do proxy. Valores aceitos são \"none\", "
-"\"manual\", \"auto\"."
+"Selecione os modos de configuração do proxy. Valores aceitos são \"none\", \"manual"
+"\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -944,22 +928,22 @@ msgstr "O nome da máquina para acessar o proxy de FTP."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr "O nome da máquina para acessar o proxy de HTTP."
+msgstr "O·nome·da·máquina·para·acessar·o·proxy·de·HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr "O nome da máquina para acessar o proxy de HTTP seguro."
+msgstr "O·nome·da·máquina·para·acessar·o·proxy·de·HTTP seguro."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr "O nome da máquina para acessar o proxy de SOCKS."
+msgstr "O·nome·da·máquina·para·acessar·o·proxy·de·SOCKS."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"A porta na máquina definida por \"/system/http_proxy/host\" que você "
+"A porta na máquina definida por \"/system/http_proxy/host\" que você"
 "acessará o proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:24
@@ -967,24 +951,24 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"A porta na máquina definida por \"/system/http_proxy/ftp_host\" que você "
-"acessará o proxy."
+"A·porta·na·máquina·definida·por·\"/system/http_proxy/ftp_host\"·que·você"
+"acessará·o·proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"A porta na máquina definida por \"/system/http_proxy/secure_host\" que você "
-"acessará o proxy."
+"A·porta·na·máquina·definida·por·\"/system/http_proxy/secure_host\"·que·você"
+"acessará·o·proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"A porta na máquina definida por \"/system/http_proxy/socks_host\" que você "
-"acessará o proxy."
+"A·porta·na·máquina·definida·por·\"/system/http_proxy/socks_host\"·que·você"
+"acessará·o·proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -993,11 +977,9 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Esse campo contém a lista de máquinas que são conectadas diretamente, ao "
-"invés de via proxy (se estiver ativo). Os valores podem ser nome de máquina, "
-"dominios (usando-se um curinga inicial como *.foo.com), endereços IP (IPv4 e "
-"IPv6) e endereços de rede como uma máscara de rede (algo como "
-"192.168.0.0/24)."
+"Esse campo contém a lista de máquinas que são conectadas diretamente, ao"
+"invés de via proxy (se estiver ativo). Os valores podem ser nome de máquina,"
+"dominios (usando-se "
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1009,9 +991,7 @@ msgstr "Usar proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
-"Nome de usuário para ser enviado na autenticação ao se realizar proxy de "
-"HTTP."
+msgstr "Nome de usuário para ser enviado na autenticação ao se realizar proxy de HTTP."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1020,3 +1000,14 @@ msgstr "Grupo de trabalho SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "A janela do grupo de trabalho que o usuário participa"
+
+#, fuzzy
+#~ msgid "URL handler for ghelp pages"
+#~ msgstr "Não há ferramenta de gerenciamento para o esquema de URL"
+
+#, fuzzy
+#~ msgid "URL handler for trash pages"
+#~ msgstr "Não há ferramenta de gerenciamento para o esquema de URL"
+
+#~ msgid "1 byte"
+#~ msgstr "1 byte"
