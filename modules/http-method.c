@@ -1903,13 +1903,14 @@ make_propfind_request (HttpFileHandle **handle_return,
 	result = make_request (&handle, uri, "PROPFIND", request, 
 			extraheaders, context);
 
-	/* FIXME -- it looks like some http servers (eg, www.yahoo.com) treat
-	 * PROPFIND as a GET and return a 200 OK.  Others may return access
-	 * denied errors or redirects or any other legal response.  This
-	 * case probably needs to be made more robust
+	/* FIXME bugzilla.eazel.com 3834: It looks like some http
+	 * servers (eg, www.yahoo.com) treat PROPFIND as a GET and
+	 * return a 200 OK. Others may return access denied errors or
+	 * redirects or any other legal response. This case probably
+	 * needs to be made more robust.
 	 */
-	if(result == GNOME_VFS_OK && handle->server_status != 207) { /* Multi-Status */
-		DEBUG_HTTP(("HTTP server returned an invalid PROPFIND response: %d", handle->server_status));
+	if (result == GNOME_VFS_OK && handle->server_status != 207) { /* Multi-Status */
+		DEBUG_HTTP (("HTTP server returned an invalid PROPFIND response: %d", handle->server_status));
 		result = GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
@@ -2188,10 +2189,10 @@ do_get_file_info (GnomeVFSMethod *method,
 				gnome_vfs_file_info_copy (file_info, handle->file_info);
 			} else {
 				if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
-					/* FIXME - mfleming - is this code really appropriate?
+					/* FIXME bugzilla.eazel.com 3835: mfleming: Is this code really appropriate?
 					 * In any case, it doesn't seem to be appropriate for a DAV-enabled
 					 * server, since they don't seem to send 301's when you PROPFIND collections
-					 * without a trailing '/'
+					 * without a trailing '/'.
 					 */
 					if(uri->text && *uri->text &&
 							uri->text[strlen(uri->text)-1] != '/') {

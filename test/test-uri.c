@@ -360,13 +360,13 @@ main (int argc, char **argv)
 	test_file_path_to_uri_string ("/tmp/#backup_file#", "file:///tmp/#backup_file#", GNOME_VFS_URI_HIDE_NONE);
 	test_file_path_to_uri_string ("/tmp/percent%percent", "file:///tmp/percent%percent", GNOME_VFS_URI_HIDE_NONE);
 
-	/* FIXME: Is this useful behavior? It turns a partial path
-	 * name into a host name!
+	/* FIXME bugzilla.eazel.com 3829: Is this useful behavior?
+	 * It turns a partial path name into a host name!
 	 */
 	test_uri_to_string ("trash", "file://trash", GNOME_VFS_URI_HIDE_NONE);
 
-	/* FIXME: This turns a good path with a redundant "/" in it
-	 * into a completely different one.
+	/* FIXME bugzilla.eazel.com 3830: This turns a good path with
+	 * a redundant "/" in it into a completely different one.
 	 */
 	test_uri_to_string ("//trash", "file://trash", GNOME_VFS_URI_HIDE_NONE);
 

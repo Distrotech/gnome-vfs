@@ -655,7 +655,7 @@ gnome_vfs_job_new (void)
 	
 	if (!gnome_vfs_job_create_slave (new_job)) {
 		g_warning ("Cannot create job slave.");
-		/* FIXME: A lot of leaked objects here. */
+		/* FIXME bugzilla.eazel.com 3833: A lot of leaked objects here. */
 		g_free (new_job);
 		return NULL;
 	}

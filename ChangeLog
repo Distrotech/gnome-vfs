@@ -1,3 +1,13 @@
+2000-10-17  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_new):
+	* modules/http-method.c: (make_propfind_request),
+	(do_get_file_info):
+	* modules/test-method.c: (load_config_file), (do_move),
+	(do_check_same_fs), (vfs_module_init):
+	* test/test-uri.c: (main):
+	Marked FIXMEs with bug numbers.
+
 2000-10-17  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-uri.c:

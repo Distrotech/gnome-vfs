@@ -268,7 +268,7 @@ load_config_file (char *filename)
 
 	doc = xmlParseFile(filename); 
 
-	/* FIXME: the module shouldn't crash when the config file doesn't exist */
+	/* FIXME bugzilla.eazel.com 3836: the module shouldn't crash when the config file doesn't exist */
 	
 	if(!doc || !doc->root || !doc->root->name || g_strcasecmp(doc->root->name,"TestModule")!=0) {
 		xmlFreeDoc(doc);
@@ -529,7 +529,7 @@ do_move (GnomeVFSMethod *method,
 	 gboolean force_replace,
 	 GnomeVFSContext *context)
 {
-	/* FIXME: special case */
+	/* FIXME bugzilla.eazel.com 3837: special case */
 	GnomeVFSResult result;
 	result = gnome_vfs_move_uri_cancellable (old_uri, new_uri, force_replace, context);
 	return result;
@@ -555,7 +555,7 @@ do_check_same_fs (GnomeVFSMethod *method,
 		  gboolean *same_fs_return,
 		  GnomeVFSContext *context)
 {
-	/* FIXME: special case */
+	/* FIXME bugzilla.eazel.com 3837: special case */
 	GnomeVFSResult result;
 	result = gnome_vfs_check_same_fs_uris_cancellable (a, b, same_fs_return, context);
 	return result;
@@ -666,7 +666,7 @@ static GnomeVFSMethod method = {
 GnomeVFSMethod *
 vfs_module_init (const char *method_name, const char *args)
 {
-	/* FIXME: the path to the config file should not be hardcoded */
+	/* FIXME bugzilla.eazel.com 3838: the path to the config file should not be hardcoded */
 	TestOperationConfig = load_config_file ("/gnome/etc/vfs/Test-conf.xml");
 	printf ("Module initialized.\n");
 	return &method;
