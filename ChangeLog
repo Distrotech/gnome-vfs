@@ -1,3 +1,11 @@
+2003-04-05  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-uri.c
+	* libgnomevfs/gnome-vfs-utils.c
+	* libgnomevfs/gnome-vfs-utils.h: removed duplicated code, deprecated
+	gnome_vfs_make_uri_full_from_relative, use 
+	gnome_vfs_uri_make_full_from_relative instead
+
 2003-04-04  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* modules/fstype.c: don't try to call getmntent with a NULL parameter

@@ -148,8 +148,11 @@ char * gnome_vfs_make_uri_canonical_strip_fragment (const char *uri);
 gboolean gnome_vfs_uris_match (const char *uri_1, const char *uri_2);
 char * gnome_vfs_get_uri_scheme (const char *uri);
 char * gnome_vfs_make_uri_from_shell_arg (const char *uri);
+
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
 char * gnome_vfs_make_uri_full_from_relative (const char *base_uri,
 					      const char *relative_uri);
+#endif /* GNOME_VFS_DISABLE_DEPRECATED */
 
 G_END_DECLS
 
