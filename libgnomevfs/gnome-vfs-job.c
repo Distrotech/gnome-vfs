@@ -241,7 +241,8 @@ dispatch_load_directory_callback (GnomeVFSNotifyResult *notify_result)
 {
 	(* notify_result->specifics.load_directory.callback) (notify_result->job_handle,
 							      notify_result->specifics.load_directory.result,
-							      notify_result->specifics.load_directory.list->list,
+							      notify_result->specifics.load_directory.list != NULL
+							      ?  notify_result->specifics.load_directory.list->list : NULL,
 							      notify_result->specifics.load_directory.entries_read,
 							      notify_result->specifics.load_directory.callback_data);
 }
@@ -1217,7 +1218,10 @@ gnome_vfs_shared_directory_list_ref (GnomeVFSSharedDirectoryList *list)
 static void
 gnome_vfs_shared_directory_list_unref (GnomeVFSSharedDirectoryList *list)
 {
-	g_assert (list != NULL);
+	if (list == NULL) {
+		return;
+	}
+	
 	g_assert (list->ref_count > 0);
 
 	if (--list->ref_count == 0) {
@@ -1260,6 +1264,8 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 			(GnomeVFSAsyncDirectoryLoadCallback) job->op->callback;
 		notify_result->specifics.load_directory.callback_data = job->op->callback_data;
 		job_oneway_notify (job, notify_result);
+		
+		return;
 	}
 
 	directory_list = gnome_vfs_shared_directory_list_new ();

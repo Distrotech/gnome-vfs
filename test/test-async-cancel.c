@@ -347,6 +347,19 @@ directory_load_callback (GnomeVFSAsyncHandle *handle,
 	directory_load_flag = TRUE;
 }
 
+static gboolean directory_load_failed_flag;
+
+static void
+directory_load_failed_callback (GnomeVFSAsyncHandle *handle,
+				GnomeVFSResult result,
+				GnomeVFSDirectoryList *list,
+				guint entries_read,
+				gpointer callback_data)
+{
+	g_assert (result != GNOME_VFS_OK);
+	directory_load_failed_flag = TRUE;
+}
+
 static void
 test_open_read_close (void)
 {
@@ -533,6 +546,31 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
 }
 
+static void
+test_load_directory_fail (void)
+{
+	GnomeVFSAsyncHandle *handle;
+	guint num_entries;
+	
+	directory_load_failed_flag = FALSE;
+	gnome_vfs_async_load_directory (&handle,
+					"file:///strcprstskrzkrk",
+					GNOME_VFS_FILE_INFO_GET_MIME_TYPE
+		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
+		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
+					NULL,
+					FALSE,
+					GNOME_VFS_DIRECTORY_FILTER_NONE,
+					0,
+					NULL,
+					32,
+					directory_load_failed_callback,
+					&num_entries);
+		
+	TEST_ASSERT (wait_for_boolean (&directory_load_failed_flag), ("load directory cancel 1: load callback was not called"));
+	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
+}
+
 int
 main (int argc, char **argv)
 {
@@ -572,6 +610,7 @@ main (int argc, char **argv)
 	test_open_read_cancel_close ();
 	test_open_read_cancel_close ();
 
+	test_load_directory_fail ();
 	test_load_directory_cancel (0, 1);
 	test_load_directory_cancel (1, 1);
 	test_load_directory_cancel (10, 1);

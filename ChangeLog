@@ -1,3 +1,17 @@
+2001-01-16  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(dispatch_load_directory_callback),
+	(gnome_vfs_shared_directory_list_unref),
+	(execute_load_directory_not_sorted):
+	Fix several crashes when load directory hits an error and ends
+	up with an empty directory list.
+	
+	* test/test-async-cancel.c: (directory_load_failed_callback),
+	(test_load_directory_fail), (main):
+	Add a test to the test rig that catches the bug I fixed.
+	
+
 2001-01-16  Seth Nickell  <seth@eazel.com>
 
 	reviewed by: Pavel Cisler <pavel@eazel.com>
