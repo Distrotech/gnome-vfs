@@ -129,6 +129,8 @@ struct _EntryFile {
 struct _Folder {
 	Entry entry;
 
+	Folder *parent;
+
 	char *desktop_file; /* the .directory file */
 
 	Query *query;
@@ -199,6 +201,9 @@ check_ext (const char *name, const char *ext_check)
 static void
 destroy_entry_file (EntryFile *efile)
 {
+	if (efile == NULL)
+		return;
+
 	g_free (efile->filename);
 	efile->filename = NULL;
 
@@ -211,6 +216,18 @@ destroy_entry_file (EntryFile *efile)
 static void
 destroy_folder (Folder *folder)
 {
+	GSList *list;
+
+	if (folder == NULL)
+		return;
+
+	if (folder->parent != NULL) {
+		folder->parent->subfolders =
+			g_slist_remove (folder->parent->subfolders, folder);
+		folder->parent->up_to_date = FALSE;
+		folder->parent = NULL;
+	}
+
 	g_free (folder->desktop_file);
 	folder->desktop_file = NULL;
 
@@ -226,13 +243,15 @@ destroy_folder (Folder *folder)
 	g_slist_free (folder->includes);
 	folder->includes = NULL;
 
-	g_slist_foreach (folder->subfolders, (GFunc)entry_unref, NULL);
-	g_slist_free (folder->subfolders);
+	list = folder->subfolders;
 	folder->subfolders = NULL;
+	g_slist_foreach (list, (GFunc)entry_unref, NULL);
+	g_slist_free (list);
 
-	g_slist_foreach (folder->entries, (GFunc)entry_unref, NULL);
-	g_slist_free (folder->entries);
+	list = folder->entries;
 	folder->entries = NULL;
+	g_slist_foreach (list, (GFunc)entry_unref, NULL);
+	g_slist_free (list);
 
 	g_free (folder);
 }
@@ -873,6 +892,7 @@ folder_read (xmlNode *fnode)
 				folder->subfolders =
 					g_slist_append (folder->subfolders,
 							new_folder);
+				new_folder->parent = folder;
 			}
 		}
 	}
@@ -1534,7 +1554,6 @@ static Folder *
 resolve_folder (VFolderInfo *info,
 		const char *path,
 		gboolean ignore_basename,
-		gboolean create,
 		GnomeVFSResult *result)
 {
 	char **ppath;
@@ -1584,7 +1603,6 @@ resolve_path (VFolderInfo *info,
 
 	folder = resolve_folder (info, path,
 				 TRUE /* ignore_basename */,
-				 FALSE /* create */,
 				 result);
 
 	if (return_folder != NULL)
@@ -1670,7 +1688,6 @@ get_entry (GnomeVFSURI *uri,
 
 		folder = resolve_folder (info, path,
 					 TRUE /* ignore_basename */,
-					 FALSE /* create */,
 					 result);
 
 		if (folder == NULL) {
@@ -2051,7 +2068,6 @@ do_open_directory (GnomeVFSMethod *method,
 
 	folder = resolve_folder (info, path,
 				 FALSE /* ignore_basename */,
-				 FALSE /* create */,
 				 &result);
 	if (folder == NULL)
 		return result;
@@ -2246,35 +2262,45 @@ do_make_directory (GnomeVFSMethod *method,
 		   guint perm,
 		   GnomeVFSContext *context)
 {
+	GnomeVFSResult result = GNOME_VFS_OK;
 	const char *scheme;
+	const char *basename;
+	const char *path;
 	VFolderInfo *info;
+	Folder *parent, *folder;
 
 	scheme = gnome_vfs_uri_get_scheme (uri);
-	if (scheme == NULL)
+	basename = gnome_vfs_uri_get_basename (uri);
+	path = gnome_vfs_uri_get_path (uri);
+	if (scheme == NULL ||
+	    basename == NULL ||
+	    path == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
 	info = get_vfolder_info (scheme);
+	g_assert (info != NULL);
 
 	if (info->user_filename == NULL)
 		return GNOME_VFS_ERROR_READ_ONLY;
 
-	/* FIXME: For now a read only FS */
-	return GNOME_VFS_ERROR_READ_ONLY;
+	parent = resolve_folder (info, path,
+				 TRUE /* ignore_basename */,
+				 &result);
+	if (parent == NULL)
+		return result;
 
-	/*
-	GnomeVFSURI *file_uri;
-	GnomeVFSResult result;
+	folder = (Folder *)find_entry (parent->subfolders,
+				       basename);
+	if (folder != NULL)
+		return GNOME_VFS_ERROR_FILE_EXISTS;
 
-	file_uri = desktop_uri_to_file_uri (uri);
-	result = (* parent_method->make_directory) (parent_method,
-						    file_uri,
-						    perm,
-						    context);
-	
-	gnome_vfs_uri_unref (file_uri);
+	folder = folder_new (basename);
+	parent->subfolders = g_slist_append (parent->subfolders, folder);
+	parent->up_to_date = FALSE;
 
-	return result;
-	*/
+	vfolder_info_write_user (info);
+
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -2282,11 +2308,16 @@ do_remove_directory (GnomeVFSMethod *method,
 		     GnomeVFSURI *uri,
 		     GnomeVFSContext *context)
 {
+	GnomeVFSResult result = GNOME_VFS_OK;
+	Folder *folder;
 	const char *scheme;
+	const char *path;
 	VFolderInfo *info;
 
 	scheme = gnome_vfs_uri_get_scheme (uri);
-	if (scheme == NULL)
+	path = gnome_vfs_uri_get_path (uri);
+	if (scheme == NULL ||
+	    path == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
 	info = get_vfolder_info (scheme);
@@ -2294,21 +2325,54 @@ do_remove_directory (GnomeVFSMethod *method,
 	if (info->user_filename == NULL)
 		return GNOME_VFS_ERROR_READ_ONLY;
 
-	/* FIXME: For now a read only FS */
-	return GNOME_VFS_ERROR_READ_ONLY;
-	/*
-	GnomeVFSURI *file_uri;
-	GnomeVFSResult result;
+	path = gnome_vfs_uri_get_path (uri);
+	scheme = gnome_vfs_uri_get_scheme (uri);
+	if (path == NULL ||
+	    scheme == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
 
-	file_uri = desktop_uri_to_file_uri (uri);
-	result = (* parent_method->remove_directory) (parent_method,
-						      file_uri,
-						      context);
-	
-	gnome_vfs_uri_unref (file_uri);
+	info = get_vfolder_info (scheme);
+	g_assert (info != NULL);
 
-	return result;
-	*/
+	folder = resolve_folder (info, path,
+				 FALSE /* ignore_basename */,
+				 &result);
+	if (folder == NULL)
+		return result;
+
+	/* don't make removing directories easy */
+	if (folder->desktop_file != NULL) {
+		return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
+	}
+
+	/* Make sure we have the entries */
+	ensure_folder (info, folder);
+
+	/* don't make removing directories easy */
+	if (folder->entries != NULL) {
+		return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
+	}
+
+	if (folder == info->root) {
+		info->root = NULL;
+		entry_unref ((Entry *)folder);
+		info->root = folder_new ("Root");
+	} else {
+		Folder *parent = folder->parent;
+
+		g_assert (parent != NULL);
+
+		parent->subfolders =
+			g_slist_remove (parent->subfolders, folder);
+
+		parent->up_to_date = FALSE;
+
+		entry_unref ((Entry *)folder);
+	}
+
+	vfolder_info_write_user (info);
+
+	return GNOME_VFS_OK;
 }
 
 static void
@@ -2407,8 +2471,16 @@ do_move (GnomeVFSMethod *method,
 	Folder *old_folder, *new_folder;
 	Entry *old_entry, *new_entry;
 	gboolean old_is_directory_file, new_is_directory_file;
+	const char *old_scheme, *new_scheme;
 
-	/* FIXME: check schemes to be equal */
+	old_scheme = gnome_vfs_uri_get_scheme (old_uri);
+	new_scheme = gnome_vfs_uri_get_scheme (new_uri);
+	if (old_scheme == NULL ||
+	    new_scheme == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
+	if (strcmp (old_scheme, new_scheme) != 0)
+		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
 
 	info = vfolder_info_from_uri (old_uri, &result);
 	if (info == NULL)
@@ -2585,7 +2657,21 @@ do_check_same_fs (GnomeVFSMethod *method,
 		  gboolean *same_fs_return,
 		  GnomeVFSContext *context)
 {
-	*same_fs_return = TRUE;
+	const char *source_scheme, *target_scheme;
+
+	*same_fs_return = FALSE;
+
+	source_scheme = gnome_vfs_uri_get_scheme (source_uri);
+	target_scheme = gnome_vfs_uri_get_scheme (target_uri);
+	if (source_scheme == NULL ||
+	    target_scheme == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
+	if (strcmp (source_scheme, target_scheme) == 0)
+		*same_fs_return = TRUE;
+	else
+		*same_fs_return = FALSE;
+
 	return GNOME_VFS_OK;
 }
 
