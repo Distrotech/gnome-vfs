@@ -790,7 +790,7 @@ msgstr "Ka¾i nastavitevene datoteke"
 #~ msgstr "ftpfs: povezava do stre¾nika ni bila uspe¹na: %s"
 
 #~ msgid "Waiting to retry... %d (Control-C to cancel)"
-#~ msgstr "Èakam na ponovni poizkus... %d (Control-C za preklic)"
+#~ msgstr "Èakam na nov poizkus... %d (Control-C za preklic)"
 
 #~ msgid " FTP: Password required for "
 #~ msgstr " FTP: Potrebno je geslo za "
