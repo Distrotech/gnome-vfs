@@ -11,18 +11,48 @@ Gnome-VFS stores information about a way of dividing files by the way
 their content should be interpreted called MIME types.  There are
 several basic classes of files including directories, application
 text, images, and audio files, and special files, including devices
-and sockets.  Within each of these toplevel categories there are
+and sockets.  Within each of these top level categories there are
 different specific data formats, and some of the categories don't
 perfectly match the type of information a file contains, but are
-catchalls for a number of types of data.  The toplevel category
+catchalls for a number of types of data.  The top level category
 "application," for example, includes executables, as well as binary
 data used by applications.
 
-MIME type information can roughly be divided into these categories:
-1.  Mapping of MIME type to either file name or content patterns
-2.  Mapping of MIME type to English descriptions
-3.  Mapping of applications to MIME types that they can effectively work with.
-4.  Mapping of MIME type to preferred applications for each user level.
+MIME type and application information can roughly be divided into
+these categories:
+
+1.  Data used to deduce the MIME type for a file.
+
+2.  For each MIME type, a human language description.
+
+3.  For each application, a human readable name.
+
+4.  For each application, information about how it should be invoked,
+    which includes the name of the command, whether file locations
+    should be passed as URIs or as file system paths, whether multiple
+    files can be opened with a single command, and whether the
+    application should be opened inside a terminal window.
+
+5.  For each application, a list of MIME types for files that
+    application can open when passed as command line arguments and
+    schemes for locations it can understand as command line arguments.
+
+6.  For each MIME type, an ordered list of preferred applications and
+    components for each user level, from most to least preferred.
+    This list need not include all applications that can open files of
+    this MIME type.
+
+7.  For each MIME type, the name of a vfs scheme that can be used to
+    "crack open" a file of this type and view its contents through
+    GNOME VFS.
+
+8.  For some MIME types, a file name that specifies which icon to use
+    when displaying a file of this type.
+
+[some discussion of supertypes needed]
+
+[Information about components is stored in oaf (explain that's why
+it's not in the list above)]
 
 MIME types aren't the only information that is used by gnome VFS to
 choose an application to display a location.  Other information can
@@ -35,30 +65,54 @@ that an application will require.
 Data involving mime typing and application information is stored in 4
 files in GnomeVFS.
 
-gnome-vfs.mime contains part of the first mapping, specifically file name patterns
-gnome-vfs-mime-magic the other part of the first mapping, that is the file content patterns
-gnome-vfs.keys contains (2) and (4)
-gnome-vfs.applications contains the third mapping, as well as information
-about the set of locations an application can handle.
+Default settings for MIME type and application information are stored
+in 4 files installed by GNOME VFS. Some of these can be extended or
+overridden by other modules when they are installed or by user
+preferences.
 
+	gnome-vfs-mime-magic contains part of (1), file content patterns
+	gnome-vfs.mime contains part of (1), file name patterns
+	gnome-vfs.keys contains (2), (6), (7), and (8)
+	gnome-vfs.applications contains (3), (4), and (5)
 
-These files are installed in $share/mime-info.  In typical fashion, the
-default (system wide) ones are in $GNOMEDIR/share/mime-info ands a
-user-modified ones are saved in $HOME/.gnome/share/mime-info.
+These files are installed in <gnome-vfs-prefix>/share/mime-info. If
+files by the same names are present in $HOME/.gnome/share/mime-info
+then the ones installed by GNOME VFS are ignored ]Is this true?].
 
-There can be multiple versions of each file. There is one system file,
-and applications can submit files to add to the system defaults. In addition, 
-files exist per user, to store individual user preferences.  
+[Need to correctly explain how other modules extend and override
+here. This is not completely accurate.] There can be multiple versions
+of each file. There is one system file, and applications can submit
+files to add to the system defaults. In addition, files exist per
+user, to store individual user preferences.
 
 ----------------------------------------------------
 
 The next section of this document details the specification for each
 of the MIME file formats.  All files are standard text files.
 Comments can be added throughout the files by prepending the line
-containing the comment with a '#' character.  For some files,
-the parser may not be correctly handling comments that exist after
-non-commented lines.  Most of the files have a short description
-that describes their ostensible format.  
+containing the comment with a '#' character.
+
+[Move to "known problems" section. For some files,
+the parser may not be correctly handling comments on the end of
+non-comment lines.]
+
+The default files inside GNOME VFS source have a header that includes
+a brief description of the file's format.
+
+[known problem: These headers are not in all files, and have both
+incorrect and hard-to-understand information.]
+
+[known problem: We have separate parsers for each of these files,
+hence probably different sets of bugs for each.]
+
+[known problem: We have had problems with stray whitespace confusing
+the parser in the past, problems of this type may still exist.]
+
+[known problem: File formats are similar with subtle differences which
+can be confusing.]
+
+[known problem: File formats may depend on tab vs. space in some
+cases, which is bad since editors tend to blur this distinction.]
 
 .mime file
 -----------
@@ -66,91 +120,145 @@ The format is like so:
 
 mime-type
     ext[,<priority>]: <list of extensions separated by spaces> 
-    regex[,<priority>]: <regular expression matching  filename>
+    regex[,<priority>]: <regular expressions [can you have more than one?]>
 
 Note that the character before the extension or regular expression
-is a tab ('\t').   The priority is optional (defaults to 1).  
-It is used to clarify which choice of mime type is correct in 
-the case where several patterns match.  1 seems to be the lowest priority.
-However, code inspection seems to indicate that the priority scheme is
-not read by the parser, and that all mappings which include
-priority are ignored.
+must be a tab ('\t').  The priority is optional (defaults to 1).
+It is used to control which choice of MIME type is used in 
+the case where several patterns match. Higher numbers win.
 
-extensions (the information after the "ext" tag) are strings tacked
-onto the end of a file's name, preceded by a period.  For example, the
-file mime-data-specification.txt would match an extension of txt.
+[known problem: However, code inspection seems to indicate that the
+priority scheme is not read by the parser, and that all mappings which
+include priority are ignored.]
 
-The regular expressions referred to here are POSIX regular expressions
-that can match anywhere in the file's name.
+Regular expressions are POSIX regular expressions that can match
+anywhere in the file's name. For example, the file
+"mime-data-specification.txt" would match a regular expression of
+"ata.*-".
+
+Extensions are file name suffixes, which must be preceded by a period
+in the file name. For example, the file "mime-data-specification.txt"
+would match an extension of "txt".
 
 mime-magic file
 ---------------
-For some reason this file has a different name than the other files
-(it's gnome-vfs-mime-magic, rather than gnome-vfs.mime-magic) The file
-contains string patterns that, when found in a file at a particular
-offset, determine a file's mime type.  For example, a file that begins
-with the characters "%PDF-" is a PDF file.  
 
-The information about these rules is encoded per row in the mime magic file.
-The columns are as follows:
+[known problem: Why doesn't this file's name match the style of the
+other file names, with an extension?]
+
+This file contains content patterns that, when found in a file at a
+particular offset, determine a file's mime type.  For example, a file
+that begins with the characters "%PDF-" is a PDF file. These content
+patterns are more reliable than file name patterns, hence the GNOME
+VFS algorithm only looks at file name patterns for files that do not
+match any content pattern.
+
+The information about these rules is encoded per row in the mime magic
+file. The columns are as follows:
+
+[known poblem: The types other than "string" are unused, hence
+untested. Also, they're not really needed so we can probably delete
+this column.]
+
+[known problem: Priority scheme is "first pattern wins" which is not
+as flexible as the numeric priority scheme nor is it easy to
+understand/remember.]
+
+[known problem: All content patterns have higher priority than all
+file name patterns. It would be better to be able to interleave them.]
+
+[known problem: This file is not extensible by adding multiple files
+in the same way that the others are.]
+
 1.  The offset (or offset range) that a pattern should be found at
 2   The type the pattern information takes on (only string is used currently in the
-mime magic file, and it is not clear whether the other types are useful or work)
+    mime magic file, and it is not clear whether the other types are useful or work)
 3.  The pattern itself, represented as a nonquoted string, with non-printable characters 
-written as \ + three number ascii code corresponding to the character
+    written as \ + three number ascii code corresponding to the character
 4.  The mime type that should be used to desccribe a file matching the
     pattern in the third column.
 
-Ambiguities in pattern matching (duplicate matches occurring in a
-single file) are resolved currently by the order of the magic entries
-in the mime magic file.  It may be useful to include specific
-priorities at some point, however, because algorithmic sniffers used
-in gnome-vfs cannot be given any priority with this system.  Since the
-algorithmic sniffers currently run first, they have implicitly the
-highest priority.
+In addition to the entries in this file, GNOME VFS has some built-in
+hard-coded algorithmic sniffers for MIME types where the content
+pattern mechanism is insufficient. These have the highest priority.
+
+[known problem: Is it OK for them to always have the highest priority?]
 
 .keys file
 -----------
-All mime types found in the .mime files are duplicated in this file.
 
-This file lists a mime type, followed by tab indented entries that
-contain information about the mime type.  The information is encoded in the form
+MIME types found in the .mime files should be duplicated in this
+file. Otherwise, the MIME type of a file can be identified, but a
+human readable description can't be provided, and all other MIME type
+information must fall back on defaults.
+
+This file lists a mime type, followed by tab-indented entries that
+contain information about the mime type. The information is encoded in
+the form:
+
 	key=value
 
-Separate entries appear to be separated by an empty line in the file,
-and the beginning of each new entry is a non-tab indented mime type 
-immediately after the single blank line.
+The beginning of each MIME type section is a non-tab-indented MIME type.
 
 Possible keys include the following:
 
 1.  description - The human readable description for the mime type in
-the default language, English
+    the default language, English
 
 2.  [fi]description - The human readable description for the mime type
-in another language, in this case Finnish.  The particular language is
-entered in the brackets preceding "description", and is the languages
-two letter abbreviation.
+    in another language, in this case Finnish.  The particular language is
+    entered in the brackets preceding "description", and is the languages
+    two letter abbreviation.
 
-3.  icon-filename - The name of the icon to be used to represent files
-    of this mime type There is apparently some desire to create a
-    "template" system whereby the information given here could be used
-    to automatically generate the names for the normal and
-    anti-aliased icons, as well as the different sizes of icon that
-    are used at specific zoom levels.  Apparently Mathieu Lacage
-    <mathieu@eazel.com> was working on this at some point, and I
-    haven't investigated its completeness.
+[known problem: Translators like to edit .po files, not learn multiple
+ file formats for translating.]
 
-4.  vfs-method - A VFS method is a gnome-vfs module that can parse information of
-particular mime types, using a standard file system API.  a vfs module
-is used to parse gzipped and tarred files for example.  In this case no 
-external applicationsor components are necessary.
+[known problem: Without the .pot/.po system, there's no way for
+ translators to notice when the default string is changed so they can
+ update their translation.]
 
-5.  default_action_type -  This key can apparently have the value "application"
+[known problem: If we want to use the scripts Maciej has written for
+ translation of .oaf files, then we need to either teach them to parse
+ our .keys and .applications file formats, or change to XML.]
+
+3.  icon_filename - The name of the icon to be used to represent files
+    of this mime type. This is simple file name, not a path name, and
+    it must be a PNG format file, with a ".png" file name suffix.
+    [Is this true?]
+
+[There is apparently some desire to create a "template" system whereby
+ the information given here could be used to automatically generate
+ the names for the normal and anti-aliased icons, as well as the
+ different sizes of icon that are used at specific zoom levels.
+ Apparently Mathieu Lacage <mathieu@eazel.com> was working on this at
+ some point, and I haven't investigated its completeness.]
+
+[Need to discuss search path used with the name, whether "/" are
+ allowed in the name and if names can be "/", whehter the name is
+ an actual file name or a template, if a template what hte template
+ algorithm is.]
+
+[known problem: There is no convenient code to get an icon given the
+ file name.]
+
+[known problem: The "template" scheme causes file names to be
+ misleading -- in some cases there is no actual file of that name at
+ all.]
+
+4.  vfs_method - A VFS method is a gnome-vfs module that can parse information of
+    particular mime types, using a standard file system API.  a vfs module
+    is used to parse gzipped and tarred files for example.  In this case no 
+    external applications or components are necessary.
+
+5.  default_action_type - This key can apparently have the value "application"
     or "component," and determines the way that the viewer for files of this
     mime type is loaded.  "component" refers to a method of starting the 
     application using oaf, and in this case a keys entry should include 
     the IIDs corresponding to preferred components.
 
+[known problem: This is not user-level-specific, and also arbitrarily
+ means that either all applications come first or all components come first
+ in the default order/]
 
 6.  short_list_component_iids_for_novice_user_level,
     short_list_component_iids_for_intermediate_user_level,
@@ -178,63 +286,124 @@ external applicationsor components are necessary.
     and other necessary attributes are stored in the
     gnome-vfs.applications file.
 
-7. Obsolete fields
+[known problem: We want to use the term "preferred" not "short list" here.]
 
-The gnome vfs keys file includes several fields which are either
-deprecated, or currently obsolete.  These fields only remain as
-part of the mime type test, and should be removed.
+[This doesn't document the default field, but we plan to remove that anyway.]
 
-a.  open
-b.  test
-c.  compose
-d.  copiousoutput
+[known problem: Some test files still contain obsolete fields, including the following:
 
+       a.  open
+       b.  test
+       c.  compose
+       d.  copiousoutput]
 
 .applications files
 -------------------
 
 The applications file exists to give gnome vfs information about
-particular applications.  The set of information included to activate
-components is included their respective .oafinfo files, and the
-additional information about specific applications is given here.
+particular applications. The set of information included to activate
+components is included their respective .oaf files, and the additional
+information about specific applications is given here.
 
 The layout for a .application file is the same as for the .keys file.
-The header for each entry is an application in this case, rather than a mime type.
-Unlike the .keys file, all of the fields in a .applications entry appear to be required,
-so each application should have an identical set of keys.
+The header for each entry is an application in this case, rather than
+a mime type. Unlike the .keys file, all of the fields in a
+.applications entry appear to be required, so each application should
+have an identical set of keys.
 
 The key value pairs for a .application file are as follows:
 
 1. command - The command is the string used to launch the application.
-The application is assumed to be found in the user's default path.
+   The application is assumed to be found in the user's path.
 
-2. name - The human readable name for the application.  There is
-currently no ability to represent these names in more than one
-language, but application names are usually language independent, and
-so this hasn't been an issue so far.  We may want to include such a
-capability at some point, though.
+[known problem: GNOME VFS has to assume that the current PATH at the
+ time lists are requested is the appropriate one, since it omits
+ "non-existent" applications. This is probably not a file format
+ issue, but it does make the API tricky.]
 
-3. can_open_multiple_files, can_open_uris, requires_terminal - These
-fields accept two values: the strings "true" and "false."
-can_open_muliple_files refers to the ability to accept a list of files
-on the command line and to open them simultaneously.  A "true" value
-for can_open_uris means that the application uses gnome-vfs to open
-uris and can deal with any file that gnome-vfs can.  A "true" value
-for requires_terminal means that the application expects to be opened
-in an X terminal.
+2. name - The human readable name for the application.
 
-4. mime_types - The list of mime types that an application supports.
-All mime types are listed here, and the list of applications that you
-can use to view a file with beyond the short list of preferred applications
-is compiled using this information.
+[known problem: This needs some kind of translation scheme.]
 
-Fields we would like to include in the near future:
-5. supported_uri_schemes - Right now the only granularity of
-information about the type of locations that an application can handle
-are whether an application can recognize a general gnome VFS uri.
-However many applications are aware of certain uri schemes, such as
-http:, using their own code or a different library.  A list of
-supported uri schemes would allow using these applications with their
-supported uri schemes.
+3. can_open_multiple_files: If "true", the application will open all
+   files passed on the command line if more than one is passed. If
+   "false" (default), GNOME VFS clients should not attempt to open
+   multiple files at once with this application.
+
+4. can_open_uris: If "false" (default), all file names should be passed on the
+   command line as path names, and no non-"file:" URIs can be opened
+   by this application, regardless of the value of other values (like
+   supported_uri_schemes). If "true", all file names should be passed
+   on the command line as URIs, including "file:" file names, "file:"
+   URIs. If "non-file", then all file names that can be passed as path
+   names should be, and other file names should be passed as
+   URIs. (This third case is required for some known applications that
+   support "http" scheme URIs and local file paths, but not "file"
+   scheme URIs.)
+
+[known problem: Currently can_open_uris means more than this and the
+"non-file" feature does not exist.]
+
+5. all_gnome_vfs_schemes_supported: If "true", all gnome-vfs schemes
+   should be included in the set of "supported schemes". Other schemes
+   can be added by also including a supported_uri_schemes key as well.
+
+[known problem: This is a proposal, not currently implemented.]
+
+[may want to discuss issue of using cover scripts to make programs
+easily invokable rather than teaching clients to pass command-line
+options]
+
+6. requires_terminal: If "false", the application should be started
+   and it is expected to create any needed X windows [where should
+   standard error and output go in this case?]. If "true", the
+   application must be opened in an X terminal.
+
+[known problem: Since component output will go wherever oafd output
+ goes, sending application output somewhere useful might not be
+ helpful and only confuse matters further.]
+
+7. mime_types - The list of mime types that an application can open.
+   The complete list of all MIME types the application can open is
+   listed here. If a MIME type doesn't appear here, this application
+   should not appear on the preferred list for that MIME type, but if
+   it does, it should be ignored. To determine the complete set of
+   applications that can handle a MIME type, this information must be
+   used, the preferred list is not supposed be a complete list of all
+   applications that can open files of that type.  To be included in
+   this list, an application must respond to a passed file in a way
+   that makes sense for a command named "Open"; in some cases an
+   application might know how to "handle" MIME types in some
+   non-"Open" way and those types would be omitted from this list.
+
+8. supported_uri_schemes - A comma-separated list of schemes that this
+   application can accept in a command-line URI. If this is omitted,
+   the default list is "file". Note that all schemes supported by
+   GNOME VFS are also included if all_gnome_vfs_schemes_supported is
+   "true". Re-listing a scheme that GNOME VFS accepts has no
+   additional effect in this case.
+
+[known problem: This is a proposal, not currently implemented.]
+
+[known problem: It's possible to overwrite single fields of an entry
+for a mime type.  If this is the case, and default fields are allowed,
+we need to be sure that changing the value for one key will not
+change the meaning of other keys.]
+
+[known problem: If a scheme not supported by GNOME VFS is specified,
+ it's unlikely the client can determine the MIME type so unclear how
+ this application will be identified as a candidate.]
+
+[known problem: Assuming the above is solved by treating unknown
+ file's types as application/octet-string (for example), we might
+ still have no way to specify that a program can handle both normal
+ files of a certain type and URLs with a scheme not supported by GNOME
+ VFS.]
+
+[known problem: how are .keys files installed by other applications
+found?  Is there a specified ordering or preference if multiple
+applications request different values for the same key?  There is no
+test case for additional applications installing their own mime info
+file, so we have little understanding of concrete problems]
 
 
