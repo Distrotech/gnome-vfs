@@ -172,7 +172,7 @@ AC_SUBST(VFS_OFFSET_IS)
 AC_SUBST(VFS_SIZE_PRINTF)
 AC_SUBST(VFS_OFFSET_PRINTF)
 
-AC_CHECK_HEADERS(sys/resource.h)
+AC_CHECK_HEADERS(sys/resource.h sys/vfs.h sys/mount.h)
 
 dnl turn warnings into errors to enforce clean code
 

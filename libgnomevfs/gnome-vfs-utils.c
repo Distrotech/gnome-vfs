@@ -36,7 +36,14 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#ifdef HAVE_SYS_PARAM_H
+#include <sys/param.h>
+#endif
+#if HAVE_SYS_VFS_H
 #include <sys/vfs.h>
+#elif HAVE_SYS_MOUNT_H
+#include <sys/mount.h>
+#endif
 
 gchar*
 gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)

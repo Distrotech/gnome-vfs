@@ -1,3 +1,13 @@
+2000-09-21  Chris Toshok  <toshok@helixcode.com>
+
+	* configure.in: add checks for sys/vfs.h and sys/mount.h
+
+	* libgnomevfs/gnome-vfs-utils.c: sys/vfs.h doesn't exist on some
+	systems, so wrap #if HAVE_SYS_VFS_H.  if there's no sys/vfs.h, try
+	sys/mount.h.  also, include sys/param.h if it's available (since
+	including sys/mount.h on freebsd without first including
+	sys/param.h breaks, at least in some versions of 4.x.)
+
 2000-10-04  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* acconfig.h:
