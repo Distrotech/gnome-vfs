@@ -1,3 +1,10 @@
+2000-11-02  Andy Hertzfeld  <andy@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	removed web browsers from the short list for webdav directories,
+	since we don't want the buttons for launching web browsers to
+	show up when looking at directories.
+	
 2000-11-02  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* gnome-vfs.spec.in: updated summary and added
