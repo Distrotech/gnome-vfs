@@ -1,3 +1,7 @@
+1999-11-19  Kjartan Maraas  <kmaraas@online.no>
+
+	* configure.in: Added "no" to ALL_LINGUAS.
+	
 1999-11-18  Ettore Perazzoli  <ettore@gnu.org>
 
 	* modules/file-method.c: Removed the static function prototypes
