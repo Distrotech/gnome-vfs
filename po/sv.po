@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-12-13 14:22+0100\n"
-"PO-Revision-Date: 2003-12-13 15:08+0100\n"
+"POT-Creation-Date: 2003-12-16 23:11+0100\n"
+"PO-Revision-Date: 2003-12-16 23:12+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -669,7 +669,7 @@ msgstr "allmän Gnome VFS-moniker"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "Allmän filmoniker"
+msgstr "allmän filmoniker"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -707,36 +707,35 @@ msgstr "Exekveringsargumentet att använda för standardterminalprogrammet."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "How to handle callto URLs"
-msgstr ""
+msgstr "Hur callto-URL:er ska hanteras"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "How to handle ghelp URLs"
-msgstr ""
+msgstr "Hur ghelp-URL:er ska hanteras"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "How to handle h323 URLs"
-msgstr ""
+msgstr "Hur h323-URL:er ska hanteras"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "How to handle http URLs"
-msgstr ""
+msgstr "Hur http-URL:er ska hanteras"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "How to handle https URLs"
-msgstr ""
+msgstr "Hur https-URL:er ska hanteras"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "How to handle info URLs"
-msgstr "Ingen hanterare för URL-schema"
+msgstr "Hur info-URL:er ska hanteras"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "How to handle mailto URLs"
-msgstr ""
+msgstr "Hur mailto-URL:er ska hanteras"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "How to handle man URLs"
-msgstr ""
+msgstr "Hur man-URL:er ska hanteras"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "How to handle trash URLs"
@@ -749,45 +748,64 @@ msgstr "Kör program i terminalfönster"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Set to true to have a program specified in command handle callto URLs"
 msgstr ""
+"Sätt detta till sant för att ett program som är angivet i kommando ska "
+"hantera callto-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Set to true to have a program specified in command handle h323 URLs"
 msgstr ""
+"Sätt detta till sant för att ett program som är angivet i kommando ska "
+"hantera h323-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Set to true to have a program specified in command handle http URLs"
 msgstr ""
+"Sätt detta till sant för att ett program som är angivet i kommando ska "
+"hantera http-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "Set to true to have a program specified in command handle https URLs"
 msgstr ""
+"Sätt detta till sant för att ett program som är angivet i kommando ska "
+"hantera https-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "Set to true to have a program specified in command handle mailto URLs"
 msgstr ""
+"Sätt detta till sant för att ett program som är angivet i kommando ska "
+"hantera mailto-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in programs/ghelp handle ghelp URLs"
 msgstr ""
+"Sätt detta till sant för att ett program som är angivet i programs/ghelp ska "
+"hantera ghelp-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in programs/info handle info URLs"
 msgstr ""
+"Sätt detta till sant för att ett program som är angivet i programs/info ska "
+"hantera info-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "Set to true to have a program specified in programs/man handle man URLs"
 msgstr ""
+"Sätt detta till sant för att ett program som är angivet i programs/man ska "
+"hantera man-URL:er"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:1
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in trash/command handle trash URLs"
 msgstr ""
+"Sätt detta till sant för att ett program som är angivet i trash/command ska "
+"hantera h323-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "True if the program to handle this URL should be run in a terminal"
 msgstr ""
+"Sant om programmet för att hantera denna URL ska köras i ett terminalfönster"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "URL handler for callto uris"
@@ -981,6 +999,9 @@ msgstr "Lösenord för http-proxyserver"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "http proxy username"
 msgstr "Användarnamn för http-proxyserver"
+
+#~ msgid "Generic file moniker"
+#~ msgstr "Allmän filmoniker"
 
 #~ msgid "1 byte"
 #~ msgstr "1 byte"
