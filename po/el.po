@@ -7,12 +7,13 @@
 # simos: 384 messages, 14Feb2001, (sgpbea).
 # simos: 384 messages, 18Feb2001, two fuzzies.
 # simos: 405 messages, 27Feb2001, (rgmtsgpbea).
+# simos: 406 messages, 01Mar2001, (rgmtsgpbea).
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.2\n"
-"POT-Creation-Date: 2001-02-27 16:12+0000\n"
-"PO-Revision-Date: 2001-02-27 16:24:49+0900\n"
+"POT-Creation-Date: 2001-03-01 23:38+0000\n"
+"PO-Revision-Date: 2001-03-01 23:39:19+0900\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -360,656 +361,790 @@ msgid "Macintosh StuffIt archive"
 msgstr "Αρχείο Macintosh StuffIt"
 
 #: data/mime/gnome-vfs.keys.in.h:86
+msgid "Macromedia Flash file"
+msgstr "Αρχείο Macromedia Flash"
+
+#: data/mime/gnome-vfs.keys.in.h:87
 msgid "MathML document"
 msgstr "Έγγραφο MathML"
 
-#: data/mime/gnome-vfs.keys.in.h:87
+#: data/mime/gnome-vfs.keys.in.h:88
 msgid "Microsoft Excel spreadsheet"
 msgstr "Λογιστικό φύλλο Microsoft Excel"
 
-#: data/mime/gnome-vfs.keys.in.h:88
+#: data/mime/gnome-vfs.keys.in.h:89
 msgid "Microsoft PowerPoint document"
 msgstr "Έγγραφο Microsoft PowerPoint"
 
-#: data/mime/gnome-vfs.keys.in.h:89
+#: data/mime/gnome-vfs.keys.in.h:90
 msgid "Microsoft Word document"
 msgstr "Έγγραφο Microsoft Word"
 
-#: data/mime/gnome-vfs.keys.in.h:90
+#: data/mime/gnome-vfs.keys.in.h:91
 msgid "Microsoft video"
 msgstr "Βίντεο Microsoft"
 
-#: data/mime/gnome-vfs.keys.in.h:91
+#: data/mime/gnome-vfs.keys.in.h:92
 msgid "Nautilus link"
 msgstr "Σύνδεσμος Nautilus"
 
-#: data/mime/gnome-vfs.keys.in.h:92
+#: data/mime/gnome-vfs.keys.in.h:93
 msgid "ODA document"
 msgstr "Έγγραφο ODA"
 
-#: data/mime/gnome-vfs.keys.in.h:93
+#: data/mime/gnome-vfs.keys.in.h:94
 msgid "PBM image"
 msgstr "Εικόνα PBM"
 
-#: data/mime/gnome-vfs.keys.in.h:94
+#: data/mime/gnome-vfs.keys.in.h:95
 msgid "PCF font"
 msgstr "Γραμματοσειρά PCF"
 
-#: data/mime/gnome-vfs.keys.in.h:95
+#: data/mime/gnome-vfs.keys.in.h:96
 msgid "PDF document"
 msgstr "Έγγραφο PDF"
 
-#: data/mime/gnome-vfs.keys.in.h:96
+#: data/mime/gnome-vfs.keys.in.h:97
 msgid "PEF program"
 msgstr "Πρόγραμμα PEF"
 
-#: data/mime/gnome-vfs.keys.in.h:97
+#: data/mime/gnome-vfs.keys.in.h:98
 msgid "PGM image"
 msgstr "Εικόνα PGM"
 
-#: data/mime/gnome-vfs.keys.in.h:98
+#: data/mime/gnome-vfs.keys.in.h:99
 msgid "PGN chess game"
 msgstr "Παρτίδα σκακιού PGN"
 
-#: data/mime/gnome-vfs.keys.in.h:99
+#: data/mime/gnome-vfs.keys.in.h:100
 msgid "PGP keys"
 msgstr "Κλειδιά PGP"
 
-#: data/mime/gnome-vfs.keys.in.h:100
+#: data/mime/gnome-vfs.keys.in.h:101
 msgid "PGP message"
 msgstr "Μήνυμα PGP"
 
-#: data/mime/gnome-vfs.keys.in.h:101
+#: data/mime/gnome-vfs.keys.in.h:102
 msgid "PGP signature"
 msgstr "Υπογραφή PGP"
 
-#: data/mime/gnome-vfs.keys.in.h:102
+#: data/mime/gnome-vfs.keys.in.h:103
 msgid "PGP-encrypted file"
 msgstr "Αρχείο κρυπτογραφημένο PGP"
 
-#: data/mime/gnome-vfs.keys.in.h:103
+#: data/mime/gnome-vfs.keys.in.h:104
 msgid "PHP script"
 msgstr "Πρόγραμμα εντολών PHP"
 
-#: data/mime/gnome-vfs.keys.in.h:104
+#: data/mime/gnome-vfs.keys.in.h:105
 msgid "PN RealAudio document"
 msgstr "Έγγραφο PN RealAudio"
 
-#: data/mime/gnome-vfs.keys.in.h:105
+#: data/mime/gnome-vfs.keys.in.h:106
 msgid "PNG image"
 msgstr "Εικόνα PNG"
 
-#: data/mime/gnome-vfs.keys.in.h:106
+#: data/mime/gnome-vfs.keys.in.h:107
 msgid "PNM image"
 msgstr "Εικόνα PNM"
 
-#: data/mime/gnome-vfs.keys.in.h:107
+#: data/mime/gnome-vfs.keys.in.h:108
 msgid "PPM image"
 msgstr "Εικόνα PPM"
 
-#: data/mime/gnome-vfs.keys.in.h:108
+#: data/mime/gnome-vfs.keys.in.h:109
 msgid "Palm OS database"
 msgstr "Βάση δεδομένων Palm OS"
 
-#: data/mime/gnome-vfs.keys.in.h:109
+#: data/mime/gnome-vfs.keys.in.h:110
 msgid "Perl script"
 msgstr "Πρόγραμμα εντολών Perl"
 
-#: data/mime/gnome-vfs.keys.in.h:110
+#: data/mime/gnome-vfs.keys.in.h:111
 msgid "Photoshop document"
 msgstr "Έγγραφο Photoshop"
 
-#: data/mime/gnome-vfs.keys.in.h:111
+#: data/mime/gnome-vfs.keys.in.h:112
 msgid "PostScript Type 1 font"
 msgstr "Γραμματοσειρά Postscript Type 1"
 
-#: data/mime/gnome-vfs.keys.in.h:112
+#: data/mime/gnome-vfs.keys.in.h:113
 msgid "PostScript document"
 msgstr "Έγγραφο PostScript"
 
-#: data/mime/gnome-vfs.keys.in.h:113
+#: data/mime/gnome-vfs.keys.in.h:114
 msgid "Python source code"
 msgstr "Πηγαίος κώδικας Python"
 
-#: data/mime/gnome-vfs.keys.in.h:114
+#: data/mime/gnome-vfs.keys.in.h:115
 msgid "QuickTime movie"
 msgstr "Ταινία QuickTime"
 
-#: data/mime/gnome-vfs.keys.in.h:115
+#: data/mime/gnome-vfs.keys.in.h:116
 msgid "Quicken document"
 msgstr "Έγγραφο Quicken"
 
-#: data/mime/gnome-vfs.keys.in.h:116
+#: data/mime/gnome-vfs.keys.in.h:117
 msgid "Quicken for Windows document"
 msgstr "Έγγραφο Quicken για Windows"
 
-#: data/mime/gnome-vfs.keys.in.h:117
+#: data/mime/gnome-vfs.keys.in.h:118
 msgid "RAR archive"
 msgstr "Αρχείο RAR"
 
-#: data/mime/gnome-vfs.keys.in.h:118
+#: data/mime/gnome-vfs.keys.in.h:119
 msgid "README document"
 msgstr "Έγγραφο README"
 
-#: data/mime/gnome-vfs.keys.in.h:119
+#: data/mime/gnome-vfs.keys.in.h:120
 msgid "RGB image"
 msgstr "Εικόνα RGB"
 
-#: data/mime/gnome-vfs.keys.in.h:120
+#: data/mime/gnome-vfs.keys.in.h:121
 msgid "RIFF audio"
 msgstr "Ήχος RIFF"
 
-#: data/mime/gnome-vfs.keys.in.h:121
+#: data/mime/gnome-vfs.keys.in.h:122
 msgid "RPM package"
 msgstr "Πακέτο RPM"
 
-#: data/mime/gnome-vfs.keys.in.h:122
+#: data/mime/gnome-vfs.keys.in.h:123
 msgid "RealAudio/Video document"
 msgstr "Έγγραφο RealAudio/Βίντεο"
 
-#: data/mime/gnome-vfs.keys.in.h:123
+#: data/mime/gnome-vfs.keys.in.h:124
 msgid "RealVideo video"
 msgstr "Βίντεο RealVideo"
 
-#: data/mime/gnome-vfs.keys.in.h:124
+#: data/mime/gnome-vfs.keys.in.h:125
 msgid "S/MIME file"
 msgstr "Αρχείο S/MIME"
 
-#: data/mime/gnome-vfs.keys.in.h:125
+#: data/mime/gnome-vfs.keys.in.h:126
 msgid "S/MIME signature"
 msgstr "Υπογραφή S/MIME"
 
-#: data/mime/gnome-vfs.keys.in.h:126
+#: data/mime/gnome-vfs.keys.in.h:127
 msgid "SGI video"
 msgstr "Βίντεο SGI"
 
-#: data/mime/gnome-vfs.keys.in.h:127
+#: data/mime/gnome-vfs.keys.in.h:128
 msgid "SGML document"
 msgstr "Έγγραφο SGML"
 
-#: data/mime/gnome-vfs.keys.in.h:128
+#: data/mime/gnome-vfs.keys.in.h:129
 msgid "SMIL script"
 msgstr "Πρόγραμμα εντολών SMIL"
 
-#: data/mime/gnome-vfs.keys.in.h:129
+#: data/mime/gnome-vfs.keys.in.h:130
 msgid "SQL code"
 msgstr "Πηγαίος κώδικας SQL"
 
-#: data/mime/gnome-vfs.keys.in.h:130
+#: data/mime/gnome-vfs.keys.in.h:131
 msgid "SV4 CPIO archive"
 msgstr "Αρχείο SV4 CPIO"
 
-#: data/mime/gnome-vfs.keys.in.h:131
+#: data/mime/gnome-vfs.keys.in.h:132
 msgid "SV4 CPIP archive (with CRC)"
 msgstr "Αρχείο SV4 CPIP (με Κυκλικό Έλεγχο Αθροίσματος)"
 
-#: data/mime/gnome-vfs.keys.in.h:132
+#: data/mime/gnome-vfs.keys.in.h:133
 msgid "SVG art"
 msgstr "Τέχνημα SVG"
 
-#: data/mime/gnome-vfs.keys.in.h:133
+#: data/mime/gnome-vfs.keys.in.h:134
 msgid "Scheme source code"
 msgstr "Πηγαίος κώδικας Scheme"
 
-#: data/mime/gnome-vfs.keys.in.h:134
+#: data/mime/gnome-vfs.keys.in.h:135
 msgid "Scream Tracker 3 audio"
 msgstr "Ήχος Scream Tracker 3"
 
-#: data/mime/gnome-vfs.keys.in.h:135
+#: data/mime/gnome-vfs.keys.in.h:136
 msgid "Scream Tracker audio"
 msgstr "Ήχος Scream Tracker"
 
-#: data/mime/gnome-vfs.keys.in.h:136
+#: data/mime/gnome-vfs.keys.in.h:137
 msgid "Scream Tracker instrument"
 msgstr "Μουσικό όργανο Scream Tracker"
 
-#: data/mime/gnome-vfs.keys.in.h:137
+#: data/mime/gnome-vfs.keys.in.h:138
 msgid "Setext document"
 msgstr "Έγγραφο Setext"
 
-#: data/mime/gnome-vfs.keys.in.h:138
+#: data/mime/gnome-vfs.keys.in.h:139
 msgid "Speech document"
 msgstr "Έγγραφο ομιλίας"
 
-#: data/mime/gnome-vfs.keys.in.h:139
+#: data/mime/gnome-vfs.keys.in.h:140
 msgid "Speedo font"
 msgstr "Γραμματοσειρά Speedo"
 
-#: data/mime/gnome-vfs.keys.in.h:140
+#: data/mime/gnome-vfs.keys.in.h:141
 msgid "Spreadsheet Interchange document"
 msgstr "Έγγραφο Ανταλλαγής Λογιστικού Φύλλου"
 
-#: data/mime/gnome-vfs.keys.in.h:141
+#: data/mime/gnome-vfs.keys.in.h:142
 msgid "Stampede package"
 msgstr "Πακέτο Stampede"
 
-#: data/mime/gnome-vfs.keys.in.h:142
+#: data/mime/gnome-vfs.keys.in.h:143
 msgid "StarOffice Writer document"
 msgstr "Έγγραφο StarOffice Writer"
 
-#: data/mime/gnome-vfs.keys.in.h:143
+#: data/mime/gnome-vfs.keys.in.h:144
 msgid "StarOffice presentation"
 msgstr "Παρουσίαση StarOffice"
 
-#: data/mime/gnome-vfs.keys.in.h:144
+#: data/mime/gnome-vfs.keys.in.h:145
 msgid "StarOffice spreadsheet"
 msgstr "Λογιστικό φύλλο StarOffice"
 
-#: data/mime/gnome-vfs.keys.in.h:145
+#: data/mime/gnome-vfs.keys.in.h:146
 msgid "Sun ΅-law audio"
 msgstr "Ήχος Sun ΅-law"
 
-#: data/mime/gnome-vfs.keys.in.h:146
+#: data/mime/gnome-vfs.keys.in.h:147
 msgid "SunOS News font"
 msgstr "Γραμματοσειρά SunOS News"
 
-#: data/mime/gnome-vfs.keys.in.h:147
+#: data/mime/gnome-vfs.keys.in.h:148
 msgid "TIFF image"
 msgstr "Εικόνα TIFF"
 
-#: data/mime/gnome-vfs.keys.in.h:148
+#: data/mime/gnome-vfs.keys.in.h:149
 msgid "TarGA image"
 msgstr "Εικόνα TarGA"
 
-#: data/mime/gnome-vfs.keys.in.h:149
+#: data/mime/gnome-vfs.keys.in.h:150
 msgid "Tcl script"
 msgstr "Πρόγραμμα εντολών Tcl"
 
-#: data/mime/gnome-vfs.keys.in.h:150
+#: data/mime/gnome-vfs.keys.in.h:151
 msgid "TeX document"
 msgstr "Έγγραφο TeX"
 
-#: data/mime/gnome-vfs.keys.in.h:151
+#: data/mime/gnome-vfs.keys.in.h:152
 msgid "TeX dvi document"
 msgstr "Έγγραφο TeX dvi"
 
-#: data/mime/gnome-vfs.keys.in.h:152
+#: data/mime/gnome-vfs.keys.in.h:153
 msgid "TeX font"
 msgstr "Γραμματοσειρά TeX"
 
-#: data/mime/gnome-vfs.keys.in.h:153
+#: data/mime/gnome-vfs.keys.in.h:154
 msgid "TeX font metrics"
 msgstr "Μετρικά γραμματοσειράς TeX"
 
-#: data/mime/gnome-vfs.keys.in.h:154
+#: data/mime/gnome-vfs.keys.in.h:155
 msgid "TeXInfo document"
 msgstr "Έγγραφο TeXInfo"
 
-#: data/mime/gnome-vfs.keys.in.h:155
+#: data/mime/gnome-vfs.keys.in.h:156
 msgid "ToutDoux document"
 msgstr "Έγγραφο ToutDoux"
 
-#: data/mime/gnome-vfs.keys.in.h:156
+#: data/mime/gnome-vfs.keys.in.h:157
 msgid "TrueType font"
 msgstr "Γραμματοσειρά TrueType"
 
-#: data/mime/gnome-vfs.keys.in.h:157
+#: data/mime/gnome-vfs.keys.in.h:158
 msgid "USENET news message"
 msgstr "Μήνυμα νέων USENET"
 
-#: data/mime/gnome-vfs.keys.in.h:158
+#: data/mime/gnome-vfs.keys.in.h:159
 msgid "Unidata netCDF document"
 msgstr "Έγγραφο Unidata netCDF"
 
-#: data/mime/gnome-vfs.keys.in.h:159
+#: data/mime/gnome-vfs.keys.in.h:160
 msgid "V font"
 msgstr "Γραμματοσειρά V"
 
-#: data/mime/gnome-vfs.keys.in.h:160
+#: data/mime/gnome-vfs.keys.in.h:161
 msgid "VOC audio"
 msgstr "Ήχος VOC"
 
-#: data/mime/gnome-vfs.keys.in.h:161
+#: data/mime/gnome-vfs.keys.in.h:162
 msgid "VRML document"
 msgstr "Έγγραφο VRML"
 
-#: data/mime/gnome-vfs.keys.in.h:162
+#: data/mime/gnome-vfs.keys.in.h:163
 msgid "Vivo video"
 msgstr "Βίντεο Vivo"
 
-#: data/mime/gnome-vfs.keys.in.h:163
+#: data/mime/gnome-vfs.keys.in.h:164
 msgid "WAIS source code"
 msgstr "Πηγαίος κώδικας WAIS"
 
-#: data/mime/gnome-vfs.keys.in.h:164
+#: data/mime/gnome-vfs.keys.in.h:165
 msgid "Wavelet video"
 msgstr "Βίντεο Wavelet"
 
-#: data/mime/gnome-vfs.keys.in.h:165
+#: data/mime/gnome-vfs.keys.in.h:166
 msgid "Windows bitmap image"
 msgstr "Εικόνα Windows bitmap"
 
-#: data/mime/gnome-vfs.keys.in.h:166
+#: data/mime/gnome-vfs.keys.in.h:167
 msgid "Windows icon image"
 msgstr "Εικονίδιο Windows"
 
-#: data/mime/gnome-vfs.keys.in.h:167
+#: data/mime/gnome-vfs.keys.in.h:168
 msgid "Windows metafile graphics"
 msgstr "Μετά-αρχείο γραφικών Windows"
 
-#: data/mime/gnome-vfs.keys.in.h:168
+#: data/mime/gnome-vfs.keys.in.h:169
 msgid "WordPerfect document"
 msgstr "Έγγραφο WordPerfect"
 
-#: data/mime/gnome-vfs.keys.in.h:169
+#: data/mime/gnome-vfs.keys.in.h:170
 msgid "X bitmap image"
 msgstr "Εικόνα X bitmap"
 
-#: data/mime/gnome-vfs.keys.in.h:170
+#: data/mime/gnome-vfs.keys.in.h:171
 msgid "X window image"
 msgstr "Εικόνα περιβάλλοντος X "
 
-#: data/mime/gnome-vfs.keys.in.h:171
+#: data/mime/gnome-vfs.keys.in.h:172
 msgid "XML document"
 msgstr "Έγγραφο XML"
 
-#: data/mime/gnome-vfs.keys.in.h:172
+#: data/mime/gnome-vfs.keys.in.h:173
 msgid "XPM image"
 msgstr "Εικόνα XPM"
 
-#: data/mime/gnome-vfs.keys.in.h:173
+#: data/mime/gnome-vfs.keys.in.h:174
 msgid "Xbase database"
 msgstr "Βάση δεδομένων Xbase"
 
-#: data/mime/gnome-vfs.keys.in.h:174
+#: data/mime/gnome-vfs.keys.in.h:175
 msgid "active server page"
 msgstr "ενεργή σελίδα εξυπηρετητή"
 
-#: data/mime/gnome-vfs.keys.in.h:175
+#: data/mime/gnome-vfs.keys.in.h:176
 msgid "address card"
 msgstr "κάρτα διεύθυνσης"
 
-#: data/mime/gnome-vfs.keys.in.h:176
+#: data/mime/gnome-vfs.keys.in.h:177
 msgid "ar archive"
 msgstr "αρχείο ar"
 
-#: data/mime/gnome-vfs.keys.in.h:177
+#: data/mime/gnome-vfs.keys.in.h:178
 msgid "arj archive"
 msgstr "αρχείο arj"
 
-#: data/mime/gnome-vfs.keys.in.h:178
+#: data/mime/gnome-vfs.keys.in.h:179
 msgid "authors list"
 msgstr "λίστα συγγραφέων"
 
-#: data/mime/gnome-vfs.keys.in.h:179
+#: data/mime/gnome-vfs.keys.in.h:180
 msgid "backup file"
 msgstr "αρχείο ασφαλείας"
 
-#: data/mime/gnome-vfs.keys.in.h:180
+#: data/mime/gnome-vfs.keys.in.h:181
 msgid "basic audio"
 msgstr "βασικός ήχος"
 
-#: data/mime/gnome-vfs.keys.in.h:181
+#: data/mime/gnome-vfs.keys.in.h:182
 msgid "bibliography record"
 msgstr "βιβλιογραφική εγγραφή"
 
-#: data/mime/gnome-vfs.keys.in.h:182
+#: data/mime/gnome-vfs.keys.in.h:183
 msgid "binary program"
 msgstr "δυαδικό πρόγραμμα"
 
-#: data/mime/gnome-vfs.keys.in.h:183
+#: data/mime/gnome-vfs.keys.in.h:184
 msgid "block device"
 msgstr "συσκευή μπλοκ"
 
-#: data/mime/gnome-vfs.keys.in.h:184
+#: data/mime/gnome-vfs.keys.in.h:185
 msgid "bzip-compressed file"
 msgstr "αρχείο συμπιεσμένο με bzip"
 
-#: data/mime/gnome-vfs.keys.in.h:185
+#: data/mime/gnome-vfs.keys.in.h:186
 msgid "calendar file"
 msgstr "αρχείο ημερολογίου"
 
-#: data/mime/gnome-vfs.keys.in.h:186
+#: data/mime/gnome-vfs.keys.in.h:187
 msgid "calendar or event document"
 msgstr "έγγραφο ημερολογίου ή γεγονότος"
 
-#: data/mime/gnome-vfs.keys.in.h:187
+#: data/mime/gnome-vfs.keys.in.h:188
 msgid "character device"
 msgstr "συσκευή χαρακτήρα"
 
-#: data/mime/gnome-vfs.keys.in.h:188
+#: data/mime/gnome-vfs.keys.in.h:189
 msgid "comma-separated text document"
 msgstr "έγγραφο κειμένου διαχώρισης με κόμμα"
 
-#: data/mime/gnome-vfs.keys.in.h:189
+#: data/mime/gnome-vfs.keys.in.h:190
 msgid "compound document"
 msgstr "σύνθετο έγγραφο"
 
-#: data/mime/gnome-vfs.keys.in.h:190
+#: data/mime/gnome-vfs.keys.in.h:191
 msgid "compress-compressed file"
 msgstr "αρχείο συμπιεσμένο με compress"
 
-#: data/mime/gnome-vfs.keys.in.h:191
+#: data/mime/gnome-vfs.keys.in.h:192
 msgid "compressed GIMP document"
 msgstr "συμπιεσμένο έγγραφο GIMP"
 
-#: data/mime/gnome-vfs.keys.in.h:192
+#: data/mime/gnome-vfs.keys.in.h:193
 msgid "directory information file"
 msgstr "αρχείο πληροφοριών καταλόγου"
 
-#: data/mime/gnome-vfs.keys.in.h:193
+#: data/mime/gnome-vfs.keys.in.h:194
 msgid "document type definition"
 msgstr "ορισμός τύπου εγγράφου"
 
-#: data/mime/gnome-vfs.keys.in.h:194
+#: data/mime/gnome-vfs.keys.in.h:195
 msgid "email headers"
 msgstr "κεφαλίδα ηλεκ. μηνύματος"
 
-#: data/mime/gnome-vfs.keys.in.h:195
+#: data/mime/gnome-vfs.keys.in.h:196
 msgid "email message"
 msgstr "ηλεκτρονικό μήνυμα"
 
-#: data/mime/gnome-vfs.keys.in.h:196
+#: data/mime/gnome-vfs.keys.in.h:197
 msgid "encrypted message"
 msgstr "κρυπτογραφημένο μήνυμα"
 
-#: data/mime/gnome-vfs.keys.in.h:197
+#: data/mime/gnome-vfs.keys.in.h:198
 msgid "enriched text document"
 msgstr "έγγραφο εμπλουτισμένου κειμένου"
 
-#: data/mime/gnome-vfs.keys.in.h:198
+#: data/mime/gnome-vfs.keys.in.h:199
 msgid "folder"
 msgstr "φάκελος"
 
-#: data/mime/gnome-vfs.keys.in.h:199
+#: data/mime/gnome-vfs.keys.in.h:200
 msgid "gtar archive"
 msgstr "αρχείο gtar"
 
-#: data/mime/gnome-vfs.keys.in.h:200
+#: data/mime/gnome-vfs.keys.in.h:201
 msgid "gzip-compressed file"
 msgstr "αρχείο συμπιεσμένο με gzip"
 
-#: data/mime/gnome-vfs.keys.in.h:201
+#: data/mime/gnome-vfs.keys.in.h:202
 msgid "help page"
 msgstr "σελίδα βοηθείας"
 
-#: data/mime/gnome-vfs.keys.in.h:202
+#: data/mime/gnome-vfs.keys.in.h:203
 msgid "mail delivery report"
 msgstr "αναφορά παράδοσης αλληλογραφίας"
 
-#: data/mime/gnome-vfs.keys.in.h:203
+#: data/mime/gnome-vfs.keys.in.h:204
 msgid "mail disposition report"
 msgstr "αναφορά παράδοσης αλληλογραφίας"
 
-#: data/mime/gnome-vfs.keys.in.h:204
+#: data/mime/gnome-vfs.keys.in.h:205
 msgid "mail system report"
 msgstr "αναφορά συστήματος αλληλογραφίας"
 
-#: data/mime/gnome-vfs.keys.in.h:205
+#: data/mime/gnome-vfs.keys.in.h:206
 msgid "makefile"
 msgstr "makefile"
 
-#: data/mime/gnome-vfs.keys.in.h:206
+#: data/mime/gnome-vfs.keys.in.h:207
 msgid "manual page"
 msgstr "σελίδα τεκμηρίωσης"
 
-#: data/mime/gnome-vfs.keys.in.h:207
+#: data/mime/gnome-vfs.keys.in.h:208
 msgid "manual page (compressed)"
 msgstr "σελίδα τεκμηρίωσης (συμπιεσμένη)"
 
-#: data/mime/gnome-vfs.keys.in.h:208
+#: data/mime/gnome-vfs.keys.in.h:209
 msgid "memory dump"
 msgstr "αποτύπωση μνήμης"
 
-#: data/mime/gnome-vfs.keys.in.h:209
+#: data/mime/gnome-vfs.keys.in.h:210
 msgid "message digest"
 msgstr "επιτομή μηνύματος"
 
-#: data/mime/gnome-vfs.keys.in.h:210
+#: data/mime/gnome-vfs.keys.in.h:211
 msgid "message in several formats"
 msgstr "μήνυμα πολλών μορφών"
 
-#: data/mime/gnome-vfs.keys.in.h:211
+#: data/mime/gnome-vfs.keys.in.h:212
 msgid "multi-part message"
 msgstr "μήνυμα πολλών τμημάτων"
 
-#: data/mime/gnome-vfs.keys.in.h:212
+#: data/mime/gnome-vfs.keys.in.h:213
 msgid "named pipe"
 msgstr "επώνυμη σωλήνωση"
 
-#: data/mime/gnome-vfs.keys.in.h:213
+#: data/mime/gnome-vfs.keys.in.h:214
 msgid "object code"
 msgstr "ενδιάμεσος κώδικας"
 
-#: data/mime/gnome-vfs.keys.in.h:214
+#: data/mime/gnome-vfs.keys.in.h:215
 msgid "ogg audio"
 msgstr "ήχος ogg"
 
-#: data/mime/gnome-vfs.keys.in.h:215
+#: data/mime/gnome-vfs.keys.in.h:216
 msgid "partial email message"
 msgstr "μερικό μήνυμα ηλεκ. αλληλογραφίας"
 
-#: data/mime/gnome-vfs.keys.in.h:216
+#: data/mime/gnome-vfs.keys.in.h:217
 msgid "plain text document"
 msgstr "έγγραφο απλού κειμένου"
 
-#: data/mime/gnome-vfs.keys.in.h:217
+#: data/mime/gnome-vfs.keys.in.h:218
 msgid "profiler results"
 msgstr "αποτελέσματα προφίλ"
 
-#: data/mime/gnome-vfs.keys.in.h:218
+#: data/mime/gnome-vfs.keys.in.h:219
 msgid "reference to remote file"
 msgstr "αναφορά σε απομακρυσμένο αρχείο"
 
-#: data/mime/gnome-vfs.keys.in.h:219
+#: data/mime/gnome-vfs.keys.in.h:220
 msgid "rejected patch file"
 msgstr "αρχείο απόρριψης επιρράμματος"
 
-#: data/mime/gnome-vfs.keys.in.h:220
+#: data/mime/gnome-vfs.keys.in.h:221
 msgid "rich text document"
 msgstr "έγγραφο εμπλουτισμένου κειμένου"
 
-#: data/mime/gnome-vfs.keys.in.h:221
+#: data/mime/gnome-vfs.keys.in.h:222
 msgid "search results"
 msgstr "αποτελέσματα αναζήτησης"
 
-#: data/mime/gnome-vfs.keys.in.h:222
+#: data/mime/gnome-vfs.keys.in.h:223
 msgid "shared library"
 msgstr "διαμοιραζόμενη βιβλιοθήκη"
 
-#: data/mime/gnome-vfs.keys.in.h:223
+#: data/mime/gnome-vfs.keys.in.h:224
 msgid "shell archive"
 msgstr "αρχείο φλοιού"
 
-#: data/mime/gnome-vfs.keys.in.h:224
+#: data/mime/gnome-vfs.keys.in.h:225
 msgid "shell script"
 msgstr "πρόγραμμα εντολών φλοιού"
 
-#: data/mime/gnome-vfs.keys.in.h:225
+#: data/mime/gnome-vfs.keys.in.h:226
 msgid "signed message"
 msgstr "υπογεγραμένο μήνυμα"
 
-#: data/mime/gnome-vfs.keys.in.h:226
+#: data/mime/gnome-vfs.keys.in.h:227
 msgid "socket"
 msgstr "υποδοχή"
 
-#: data/mime/gnome-vfs.keys.in.h:227
+#: data/mime/gnome-vfs.keys.in.h:228
 msgid "software author credits"
 msgstr "μνεία συγγραφέων λογισμικού"
 
-#: data/mime/gnome-vfs.keys.in.h:228
+#: data/mime/gnome-vfs.keys.in.h:229
 msgid "software installation instructions"
 msgstr "εντολές εγκατάστασης λογισμικού"
 
-#: data/mime/gnome-vfs.keys.in.h:229
+#: data/mime/gnome-vfs.keys.in.h:230
 msgid "software license terms"
 msgstr "συνθήκες άδειας λογισμικού"
 
-#: data/mime/gnome-vfs.keys.in.h:230
+#: data/mime/gnome-vfs.keys.in.h:231
 msgid "source code patch"
 msgstr "επίρραμμα πηγαίου κώδικα"
 
-#: data/mime/gnome-vfs.keys.in.h:231
+#: data/mime/gnome-vfs.keys.in.h:232
 msgid "style sheet"
 msgstr "επίστρωμα ύφους"
 
-#: data/mime/gnome-vfs.keys.in.h:232
+#: data/mime/gnome-vfs.keys.in.h:233
 msgid "symbolic link"
 msgstr "συμβολικός σύνδεσμος"
 
-#: data/mime/gnome-vfs.keys.in.h:233
+#: data/mime/gnome-vfs.keys.in.h:234
 msgid "tab-separated text document"
 msgstr "έγγραφο κειμένου διαχώρισης με στηλοθέτες"
 
-#: data/mime/gnome-vfs.keys.in.h:234
+#: data/mime/gnome-vfs.keys.in.h:235
 msgid "tar archive"
 msgstr "αρχείο tar"
 
-#: data/mime/gnome-vfs.keys.in.h:235
+#: data/mime/gnome-vfs.keys.in.h:236
 msgid "tar archive (bzip2-compressed)"
 msgstr "αρχείο tar (συμπίεσης bzip2)"
 
-#: data/mime/gnome-vfs.keys.in.h:236
+#: data/mime/gnome-vfs.keys.in.h:237
 msgid "tar archive (gzip-compressed)"
 msgstr "αρχείο tar (συμπίεσης gzip)"
 
-#: data/mime/gnome-vfs.keys.in.h:237
+#: data/mime/gnome-vfs.keys.in.h:238
 msgid "theme"
 msgstr "θέμα"
 
-#: data/mime/gnome-vfs.keys.in.h:238
+#: data/mime/gnome-vfs.keys.in.h:239
 msgid "troff document"
 msgstr "Έγγραφο troff"
 
-#: data/mime/gnome-vfs.keys.in.h:239
+#: data/mime/gnome-vfs.keys.in.h:240
 msgid "troff me input document"
 msgstr "έγγραφο εισόδου troff me"
 
-#: data/mime/gnome-vfs.keys.in.h:240
+#: data/mime/gnome-vfs.keys.in.h:241
 msgid "troff mm input document"
 msgstr "έγγραφο εισόδου troff mm"
 
-#: data/mime/gnome-vfs.keys.in.h:241
+#: data/mime/gnome-vfs.keys.in.h:242
 msgid "troff ms input document"
 msgstr "έγγραφο εισόδου troff ms"
 
-#: data/mime/gnome-vfs.keys.in.h:242
+#: data/mime/gnome-vfs.keys.in.h:243
 msgid "unknown type"
 msgstr "άγνωστος τύπος"
 
-#: data/mime/gnome-vfs.keys.in.h:243
+#: data/mime/gnome-vfs.keys.in.h:244
 msgid "ustar archive"
 msgstr "αρχείο ustar"
 
-#: data/mime/gnome-vfs.keys.in.h:244
+#: data/mime/gnome-vfs.keys.in.h:245
 msgid "wave audio"
 msgstr "ήχος κυμματομορφής"
 
-#: data/mime/gnome-vfs.keys.in.h:245
+#: data/mime/gnome-vfs.keys.in.h:246
 msgid "web folder"
 msgstr "φάκελος web"
 
-#: data/mime/gnome-vfs.keys.in.h:246
+#: data/mime/gnome-vfs.keys.in.h:247
 msgid "xfig vector graphic"
 msgstr "διανυσματικό γραφικό xfig"
 
-#: data/mime/gnome-vfs.keys.in.h:247
+#: data/mime/gnome-vfs.keys.in.h:248
 msgid "zip archive"
 msgstr "αρχείο zip"
 
-#: data/mime/gnome-vfs.keys.in.h:248
+#: data/mime/gnome-vfs.keys.in.h:249
 msgid "zoo archive"
 msgstr "αρχείο zoo"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:336
+msgid "Dying."
+msgstr "Τερματισμός."
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#, c-format
+msgid "Error reading: %s"
+msgstr "Σφάλμα ανάγνωσης: %s"
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#, c-format
+msgid "Error writing: %s"
+msgstr "Σφάλμα εγγραφής: %s"
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#, c-format
+msgid "Cannot write: %s"
+msgstr "Εγγραφή αδύνατη: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:601
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr "Αδύνατη η δημιουργία προσωρινού αρχείου `%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
+#: libgnomevfs-corba/gnome-vfs-slave.c:615
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr "Αδυναμία δημιουργίας υποδοχέα: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:633
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr "Αδυναμία δέσμευσης (bind) του `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:640
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr "Αδυναμία ακρόασης (listen) στο `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:663
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr "Λήψη συνδέσεων στο `%s' αδύνατη: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1195
+msgid "Cannot initialize CORBA."
+msgstr "Αρχικοποίηση CORBA ανεπιτυχής."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1202
+msgid "Cannot resolve initial reference to RootPOA."
+msgstr "Αδυναμία επίλυσης αρχικής αναφοράς στο RootPOA."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1209
+msgid "Cannot activate POA manager."
+msgstr "Ενεργοποίηση διαχειριστή POA ανεπιτυχής."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1234
+#, c-format
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "Χρήση: %s <ior> [<ior_fd>]\n"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1245
+#, c-format
+msgid "Cannot open file descriptor %d."
+msgstr "Αδυναμία ανοίγματος περιγραφέα αρχείου %d."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1268
+#, c-format
+msgid "Notify interface for `%s' not found."
+msgstr "Διεπιφάνεια ειδοποίησης για το `%s' δε βρέθηκε."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1278
+msgid "Cannot setup Request object."
+msgstr "Δημιουργία αντικειμένου Request (αίτησης) ανεπιτυχής."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1285
+msgid "Cannot extract IOR."
+msgstr "Εξαγωγή IOR αδύνατη."
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
+#, c-format
+msgid "Got weird string from the slave process: `%s'"
+msgstr "Λήψη παράξενης ακολουθίας από την διεργασία υπηρέτη: `%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
+#, c-format
+msgid "Cannot get object for `%s'"
+msgstr "Αδυναμία απόκτησης αντικειμένου για το `%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+msgstr "Τερματισμός του GNOME::VFS::Slave::Notify αδύνατη -- εξαίρεση %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
+#, c-format
+msgid "Cannot connect socket `%s': %s"
+msgstr "Αδυναμία σύνδεσης με τον υποδοχέα `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
+msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+msgstr "Αρχικοποίηση του GNOME::VFS:Slave::Notify ανεπιτυχής"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+msgstr "Ανεπιτυχής επαναρχικοποίηση του GNOME::VFS::Slave %s -- εξαίρεση %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr ""
+"Ανεπιτυχής επαναρχικοποίηση του GNOME::VFS::Slave (άγνωστο IOR) -- εξαίρεση "
+"%s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+msgstr "Ανεπιτυχής τερματισμός του GNOME::VFS::Slave %s -- εξαίρεση %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr ""
+"Ανεπιτυχής τερματισμός του GNOME::VFS::Slave (άγνωστο IOR) -- εξαίρεση %s"
 
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
@@ -1272,136 +1407,6 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GΒ"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
-msgid "Dying."
-msgstr "Τερματισμός."
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
-#, c-format
-msgid "Error reading: %s"
-msgstr "Σφάλμα ανάγνωσης: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
-#, c-format
-msgid "Error writing: %s"
-msgstr "Σφάλμα εγγραφής: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
-#, c-format
-msgid "Cannot write: %s"
-msgstr "Εγγραφή αδύνατη: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:601
-#, c-format
-msgid "Cannot create temporary file name `%s'"
-msgstr "Αδύνατη η δημιουργία προσωρινού αρχείου `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:615
-#, c-format
-msgid "Cannot create socket: %s"
-msgstr "Αδυναμία δημιουργίας υποδοχέα: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:633
-#, c-format
-msgid "Cannot bind `%s': %s"
-msgstr "Αδυναμία δέσμευσης (bind) του `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:640
-#, c-format
-msgid "Cannot listen on `%s': %s"
-msgstr "Αδυναμία ακρόασης (listen) στο `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
-#, c-format
-msgid "Cannot accept connections on `%s': %s"
-msgstr "Λήψη συνδέσεων στο `%s' αδύνατη: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1195
-msgid "Cannot initialize CORBA."
-msgstr "Αρχικοποίηση CORBA ανεπιτυχής."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1202
-msgid "Cannot resolve initial reference to RootPOA."
-msgstr "Αδυναμία επίλυσης αρχικής αναφοράς στο RootPOA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1209
-msgid "Cannot activate POA manager."
-msgstr "Ενεργοποίηση διαχειριστή POA ανεπιτυχής."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1234
-#, c-format
-msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "Χρήση: %s <ior> [<ior_fd>]\n"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1245
-#, c-format
-msgid "Cannot open file descriptor %d."
-msgstr "Αδυναμία ανοίγματος περιγραφέα αρχείου %d."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1268
-#, c-format
-msgid "Notify interface for `%s' not found."
-msgstr "Διεπιφάνεια ειδοποίησης για το `%s' δε βρέθηκε."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
-msgid "Cannot setup Request object."
-msgstr "Δημιουργία αντικειμένου Request (αίτησης) ανεπιτυχής."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
-msgid "Cannot extract IOR."
-msgstr "Εξαγωγή IOR αδύνατη."
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
-#, c-format
-msgid "Got weird string from the slave process: `%s'"
-msgstr "Λήψη παράξενης ακολουθίας από την διεργασία υπηρέτη: `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, c-format
-msgid "Cannot get object for `%s'"
-msgstr "Αδυναμία απόκτησης αντικειμένου για το `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "Τερματισμός του GNOME::VFS::Slave::Notify αδύνατη -- εξαίρεση %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, c-format
-msgid "Cannot connect socket `%s': %s"
-msgstr "Αδυναμία σύνδεσης με τον υποδοχέα `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
-msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "Αρχικοποίηση του GNOME::VFS:Slave::Notify ανεπιτυχής"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Ανεπιτυχής επαναρχικοποίηση του GNOME::VFS::Slave %s -- εξαίρεση %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
-"Ανεπιτυχής επαναρχικοποίηση του GNOME::VFS::Slave (άγνωστο IOR) -- εξαίρεση "
-"%s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "Ανεπιτυχής τερματισμός του GNOME::VFS::Slave %s -- εξαίρεση %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
-"Ανεπιτυχής τερματισμός του GNOME::VFS::Slave (άγνωστο IOR) -- εξαίρεση %s"
-
 #: libgnomevfs-pthread/gnome-vfs-job.c:688
 #, c-format
 msgid "Unknown op type %u"
@@ -1421,6 +1426,98 @@ msgstr "Άγνωστη είδος εργασίας %u"
 #: libgnomevfs-pthread/gnome-vfs-job.c:1605
 msgid "Operation stopped"
 msgstr "Η λειτουργία διακόπηκε"
+
+#: mime-type-capplet/file-types-capplet.desktop.in.h:1
+msgid "File Types and Programs"
+msgstr "Είδη Αρχείων και Προγράμματα"
+
+#: mime-type-capplet/file-types-capplet.desktop.in.h:2
+msgid "Specify which programs are used to open or view each file type"
+msgstr ""
+"Καθορισμός των προγραμμάτων που ανοίγουν ή εμφανίζουν κάθε είδος αρχείων"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:735
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
+msgid "MIME Type"
+msgstr "Είδος MIME"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:742
+msgid "Change Icon"
+msgstr "Αλλαγή Εικονιδίου"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:749
+msgid "Change File Extensions"
+msgstr "Αλλαγή Επέκτασης Αρχείου"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:757
+msgid "Default Action:"
+msgstr "Εξ' ορισμού Ενέργεια:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:769
+msgid "Use Viewer"
+msgstr "Χρήση Θέασης"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:775
+msgid "Open With Application"
+msgstr "Άνοιγμα με Εφαρμογή"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:786
+msgid "Edit List"
+msgstr "Επεξεργασία Λίστας"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:811
+msgid "Add New MIME Type..."
+msgstr "Προσθήκη Νέου Είδους MIME..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:817
+msgid "Delete This MIME Type"
+msgstr "Διαγραφή Αυτού Του Είδους MIME"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:828
+msgid "Revert to System Defaults"
+msgstr "Επαναφορά στα Εξ΄ Ορισμού Συστήματος"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
+msgid "None"
+msgstr "Τίποτα"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
+msgid ""
+"Reverting to system settings will lose any changes\n"
+"you have ever made to File Types and Programs.\n"
+"Revert anyway?"
+msgstr ""
+"Η επαναφορά στις ρυθμίσεις συστήματος θα διαγράψει\n"
+"ΌΛΕΣ τις αλλαγές που έχετε κάνει στα Είδη Αρχείων\n"
+"και Προγράμματα.\n"
+"Επαναφορά στις Ρυθμίσεις Συστήματος;"
+
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
+msgid "none"
+msgstr "τίποτα"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
+#, c-format
+msgid "View as %s"
+msgstr "Εμφάνιση ως %s"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
+msgid "Description"
+msgstr "Περιγραφή"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
+msgid "Extension"
+msgstr "Επέκταση"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
+msgid "Default Action"
+msgstr "Εξ' ορισμού ενέργεια"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
 msgid "Edit Applications List"
@@ -1534,8 +1631,8 @@ msgid ""
 "You must use a command that can work from any command line."
 msgstr ""
 "Η εντολή \"%s\" δε βρέθηκε.\n"
-"Πρέπει να χρησιμοποιήσετε μια εντολή που να είναι προσβάσιμη από κάθε "
-"γραμμή εντολών."
+"Πρέπει να χρησιμοποιήσετε μια εντολή που να είναι προσβάσιμη από κάθε γραμμή "
+"εντολών."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
 msgid "Bad Application Name"
@@ -1576,89 +1673,6 @@ msgstr "Μπορούν να ανοιχτούν πολλαπλά αρχεία"
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
 msgid "Can open from URI"
 msgstr "Μπορεί να ανοιχτεί από URI"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-msgid "MIME Type"
-msgstr "Είδος MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:742
-msgid "Change Icon"
-msgstr "Αλλαγή Εικονιδίου"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:749
-msgid "Change File Extensions"
-msgstr "Αλλαγή Επέκτασης Αρχείου"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:757
-msgid "Default Action:"
-msgstr "Εξ' ορισμού Ενέργεια:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:769
-msgid "Use Viewer"
-msgstr "Χρήση Θέασης"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:775
-msgid "Open With Application"
-msgstr "Άνοιγμα με Εφαρμογή"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:786
-msgid "Edit List"
-msgstr "Επεξεργασία Λίστας"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:811
-msgid "Add New MIME Type..."
-msgstr "Προσθήκη Νέου Είδους MIME..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-msgid "Delete This MIME Type"
-msgstr "Διαγραφή Αυτού Του Είδους MIME"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:828
-msgid "Revert to System Defaults"
-msgstr "Επαναφορά στα Εξ΄ Ορισμού Συστήματος"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
-msgid "None"
-msgstr "Τίποτα"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
-msgid ""
-"Reverting to system settings will lose any changes\n"
-"you have ever made to File Types and Programs.\n"
-"Revert anyway?"
-msgstr ""
-"Η επαναφορά στις ρυθμίσεις συστήματος θα διαγράψει\n"
-"ΌΛΕΣ τις αλλαγές που έχετε κάνει στα Είδη Αρχείων\n"
-"και Προγράμματα.\n"
-"Επαναφορά στις Ρυθμίσεις Συστήματος;"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-msgid "none"
-msgstr "τίποτα"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
-#, c-format
-msgid "View as %s"
-msgstr "Εμφάνιση ως %s"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
-msgid "Description"
-msgstr "Περιγραφή"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
-msgid "Extension"
-msgstr "Επέκταση"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-msgid "Default Action"
-msgstr "Εξ' ορισμού ενέργεια"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
 msgid "Can't find an hbox, using a normal file selection"
@@ -1760,14 +1774,6 @@ msgstr "Εμφάνιση:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Εμφάνιση κρυφών αρχείων"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:1
-msgid "File Types and Programs"
-msgstr "Είδη Αρχείων και Προγράμματα"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:2
-msgid "Specify which programs are used to open or view each file type"
-msgstr "Καθορισμός των προγραμμάτων που ανοίγουν ή εμφανίζουν κάθε είδος αρχείων"
 
 #~ msgid "New Application"
 #~ msgstr "Νέα Εφαρμογή"
