@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-10-05 03:07+0200\n"
-"PO-Revision-Date: 2003-10-05 03:09+0200\n"
+"POT-Creation-Date: 2003-10-18 11:47+0200\n"
+"PO-Revision-Date: 2003-10-18 11:49+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,42 +17,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: libgnomevfs/gnome-vfs-configuration.c:219
+#: daemon/gnome-vfs-daemon.c:320
+msgid "Could not initialize Bonobo"
+msgstr "Kunde inte initiera Bonobo"
+
+#: daemon/gnome-vfs-daemon.c:326
+msgid "Could not initialize gnome vfs"
+msgstr "Kunde inte initiera gnome-vfs"
+
+#: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d innehåller NUL-tecken."
 
-#: libgnomevfs/gnome-vfs-configuration.c:236
+#: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d innehåller inget metodnamn."
 
-#: libgnomevfs/gnome-vfs-configuration.c:265
+#: libgnomevfs/gnome-vfs-configuration.c:284
+#, c-format
+msgid "%s:%d has no options endmarker."
+msgstr "%s:%d har ingen slutmarkör för flaggor."
+
+#: libgnomevfs/gnome-vfs-configuration.c:295
+#, c-format
+msgid "%s:%d has unknown options %s."
+msgstr "%s:%d har okända flaggor %s."
+
+#: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d innehåller inget modulnamn."
 
-#: libgnomevfs/gnome-vfs-configuration.c:318
+#: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigurationsfilen \"%s\" hittades inte: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:758
+#: libgnomevfs/gnome-vfs-job.c:760
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Okänd operandtyp %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
+#: libgnomevfs/gnome-vfs-job.c:1050 libgnomevfs/gnome-vfs-job.c:1195
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan inte skapa rör till öppen GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1684
+#: libgnomevfs/gnome-vfs-job.c:1686
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Okänd jobbtyp %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1717
+#: libgnomevfs/gnome-vfs-job.c:1719
 msgid "Operation stopped"
 msgstr "Operationen stoppad"
 
@@ -600,6 +618,9 @@ msgstr "Lösenord för http-proxyserver"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "http proxy username"
 msgstr "Användarnamn för http-proxyserver"
+
+#~ msgid "Could not initialize gnome-vfs"
+#~ msgstr "Kunde inte initiera gnome-vfs"
 
 #~ msgid ""
 #~ "The application to use for viewing files that require a component to view "
