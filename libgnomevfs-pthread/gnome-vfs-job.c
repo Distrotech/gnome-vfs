@@ -342,39 +342,43 @@ dispatch_job_callback (GIOChannel *source,
 
 	g_io_channel_read (job->wakeup_channel_in, &c, 1, &bytes_read);
 
-	retval = TRUE;
-
-	switch (job->type) {
-	case GNOME_VFS_JOB_OPEN:
-		dispatch_open_callback (job);
-		break;
-	case GNOME_VFS_JOB_OPEN_AS_CHANNEL:
-		dispatch_open_as_channel_callback (job);
-		break;
-	case GNOME_VFS_JOB_CREATE:
-		dispatch_create_callback (job);
-		break;
-	case GNOME_VFS_JOB_CREATE_AS_CHANNEL:
-		dispatch_create_as_channel_callback (job);
-		break;
-	case GNOME_VFS_JOB_CLOSE:
-		dispatch_close_callback (job);
-		break;
-	case GNOME_VFS_JOB_READ:
-		dispatch_read_callback (job);
-		break;
-	case GNOME_VFS_JOB_WRITE:
-		dispatch_write_callback (job);
-		break;
-	case GNOME_VFS_JOB_LOAD_DIRECTORY:
-		dispatch_load_directory_callback (job);
-		break;
-	case GNOME_VFS_JOB_XFER:
-		dispatch_xfer_callback (job);
-		break;
-	default:
-		g_warning (_("Unknown job ID %d"), job->type);
+	if (job->cancelled) {
 		retval = FALSE;
+	} else {
+		retval = TRUE;
+
+		switch (job->type) {
+		case GNOME_VFS_JOB_OPEN:
+			dispatch_open_callback (job);
+			break;
+		case GNOME_VFS_JOB_OPEN_AS_CHANNEL:
+			dispatch_open_as_channel_callback (job);
+			break;
+		case GNOME_VFS_JOB_CREATE:
+			dispatch_create_callback (job);
+			break;
+		case GNOME_VFS_JOB_CREATE_AS_CHANNEL:
+			dispatch_create_as_channel_callback (job);
+			break;
+		case GNOME_VFS_JOB_CLOSE:
+			dispatch_close_callback (job);
+			break;
+		case GNOME_VFS_JOB_READ:
+			dispatch_read_callback (job);
+			break;
+		case GNOME_VFS_JOB_WRITE:
+			dispatch_write_callback (job);
+			break;
+		case GNOME_VFS_JOB_LOAD_DIRECTORY:
+			dispatch_load_directory_callback (job);
+			break;
+		case GNOME_VFS_JOB_XFER:
+			dispatch_xfer_callback (job);
+			break;
+		default:
+			g_warning (_("Unknown job ID %d"), job->type);
+			retval = FALSE;
+		}
 	}
 
 	job_ack_notify (job);
@@ -408,6 +412,7 @@ gnome_vfs_job_new (void)
 	new->notify_ack_lock = g_mutex_new ();
 
 	new->is_empty = TRUE;
+	new->cancelled = FALSE;
 
 	new->wakeup_channel_in = g_io_channel_unix_new (pipefd[0]);
 	new->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
@@ -598,7 +603,7 @@ execute_open (GnomeVFSJob *job)
 
 	notify_retval = job_oneway_notify_and_close (job);
 
-	if (result == GNOME_VFS_OK)
+	if (! job->cancelled && result == GNOME_VFS_OK)
 		return notify_retval;
 	else
 		return FALSE;
@@ -683,7 +688,7 @@ execute_create (GnomeVFSJob *job)
 
 	notify_retval = job_oneway_notify_and_close (job);
 
-	if (result == GNOME_VFS_OK)
+	if (! job->cancelled && result == GNOME_VFS_OK)
 		return notify_retval;
 	else
 		return FALSE;
@@ -815,6 +820,9 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 
 	count = 0;
 	while (1) {
+		if (job->cancelled)
+			break;
+
 		info = gnome_vfs_file_info_new ();
 		result = gnome_vfs_directory_read_next (handle, info);
 
@@ -850,6 +858,8 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 		}
 	}
 
+	gnome_vfs_directory_close (handle);
+
 	job_close (job);
 
 	return FALSE;
@@ -874,7 +884,7 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 		 load_directory_job->request.meta_keys,
 		 filter);
 
-	if (result != GNOME_VFS_OK) {
+	if (job->cancelled || result != GNOME_VFS_OK) {
 		load_directory_job->notify.result = result;
 		load_directory_job->notify.list = NULL;
 		load_directory_job->notify.entries_read = 0;
@@ -902,6 +912,8 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 
 	previous_p = p;
 	while (p != NULL) {
+		if (job->cancelled)
+			break;
 		count++;
 		p = gnome_vfs_directory_list_position_next (p);
 		if (p == NULL
@@ -972,6 +984,9 @@ xfer_callback (const GnomeVFSXferProgressInfo *info,
 
 	job = (GnomeVFSJob *) data;
 	xfer_job = &job->info.xfer;
+
+	if (job->cancelled)
+		return FALSE;
 
 	/* Forward the callback to the master thread, which will fill in the
            `notify_answer' member appropriately.  */
@@ -1064,7 +1079,7 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 {
 	g_return_val_if_fail (job != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	/* FIXME */
+	job->cancelled = TRUE;
 
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_OK;
 }

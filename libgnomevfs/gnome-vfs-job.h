@@ -205,7 +205,8 @@ struct _GnomeVFSJob {
            until the job is really finished.  */
 	GMutex *notify_ack_lock;
 
-	/* Whether this struct contains a job ready for execution.  */
+	/* Whether this struct is ready for containing a new job for
+	   execution.  */
 	gboolean is_empty;
 
 	/* I/O channels used to wake up the master thread.  When the slave
@@ -230,6 +231,9 @@ struct _GnomeVFSJob {
 
 	/* Extra parameter to pass to the callback for this job.  */
 	gpointer callback_data;
+
+	/* Whether this job has been requested to be cancelled.  */
+	gboolean cancelled;
 
 	/* Job-specific information.  */
 	union {

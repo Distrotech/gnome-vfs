@@ -1,3 +1,21 @@
+1999-09-18  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (gnome_vfs_job_new):
+	Initialize the `cancelled' member to `FALSE'.
+	(gnome_vfs_job_cancel): Set `cancelled' to `TRUE'.
+	(dispatch_job_callback): If the job was cancelled, do not dispatch
+	the callback.
+	(execute_open): If the job was cancelled, return FALSE so that the
+	thread dies.
+	(execute_create): Likewise.
+	(execute_load_directory_not_sorted): Interrupt if job is
+	cancelled.  Also, close the directory handle on exit.
+	(execute_load_directory_sorted): Likewise.
+	(xfer_callback): If the job is cancelled, return FALSE.
+
+	* libgnomevfs-pthread/gnome-vfs-job.h (struct _GnomeVFSJob): New
+	member `cancelled'.
+
 1999-09-18  Michael Meeks  <michael@nuclecu.unam.mx>
 
 	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_has_parent): remove
