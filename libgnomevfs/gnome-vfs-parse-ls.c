@@ -32,6 +32,7 @@
 #include <glib/gmem.h>
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>
+#include <sys/types.h>
 #include <grp.h>
 #include <pwd.h>
 #include <stdio.h>

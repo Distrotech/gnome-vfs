@@ -27,9 +27,11 @@
 #include <errno.h>
 #include <glib/gmem.h>
 #include <glib/gmessages.h>
+#include <string.h>
+/* Keep <sys/types.h> above the network includes for FreeBSD. */
+#include <sys/types.h>
 #include <netdb.h>
 #include <netinet/in.h>
-#include <string.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>

@@ -36,6 +36,10 @@
 
 #include "http-authn.h"
 #include "http-cache.h"
+/* Keep <sys/types.h> above any network includes for FreeBSD. */
+#include <sys/types.h>
+/* Keep <netinet/in.h> above <arpa/inet.h> for FreeBSD. */
+#include <netinet/in.h>
 #include <arpa/inet.h>
 #include <ctype.h>
 #include <gconf/gconf-client.h>
@@ -52,7 +56,6 @@
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxml/xmlmemory.h>
-#include <netinet/in.h>
 #include <pthread.h>
 #include <stdarg.h>
 #include <stdio.h>

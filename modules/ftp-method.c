@@ -35,6 +35,10 @@
 
 #include <config.h>
 
+/* Keep <sys/types.h> above any network includes for FreeBSD. */
+#include <sys/types.h>
+/* Keep <netinet/in.h> above <arpa/inet.h> for FreeBSD. */
+#include <netinet/in.h>
 #include <arpa/inet.h>
 #include <ctype.h> /* for isspace */
 #include <gconf/gconf-client.h>
@@ -47,11 +51,9 @@
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-parse-ls.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
-#include <netinet/in.h>
 #include <stdio.h> /* for sscanf */
 #include <stdlib.h> /* for atoi */
 #include <string.h>
-#include <sys/types.h>
 
 /* Standard FTP proxy port */
 #define DEFAULT_FTP_PROXY_PORT 8080

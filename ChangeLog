@@ -1,3 +1,13 @@
+2001-08-21  Theo van Klaveren  <t.vanklaveren@student.utwente.nl>
+
+	* libgnomevfs/gnome-vfs-inet-connection.c,
+	libgnomevfs/gnome-vfs-mime.h, libgnomevfs/gnome-vfs-ls-parse.c,
+	modules/file-method.c, modules/ftp-method.c, modules/http-method.c:
+	Fix includes on FreeBSD by adding <sys/types.h> where needed,
+	moving <net*> includes to below <sys/types.h>, moving
+	<netinet/in.h> above <arpa/inet.h> and replacing <malloc.h> by
+	<stdlib.h>.
+
 2001-08-20  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* configure.in: Check for bonobo-activation's IDL directory, not
