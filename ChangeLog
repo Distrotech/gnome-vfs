@@ -1,3 +1,26 @@
+2001-02-06  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Mike Fleming <mfleming@eazel.com>
+
+	Fix 3451 (Loading a directory with a circular symbolic link
+		  causes the load to be interrupted)
+	
+	Fix 6221 (Nautilus shows only 6 of the 56 items in my home directory)
+	
+	* libgnomevfs/gnome-vfs-types.h:
+	* modules/file-method.c: (get_stat_info),
+	(get_stat_info_from_handle), (read_directory), (do_get_file_info),
+	(do_get_file_info_from_handle):
+	Make erors while obtaining stat info and mime type not interrupt
+	directory loading.
+	Make do_get_file_info not give up as easily when dealing with
+	recursive links.
+
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_empty_directories):
+	Fix a problem where an error in directory emptying preflight or
+	emptying itself would cause the operation to stop rather than
+	continue with deleting the remaining items. 
+	
 2001-02-06  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 6258, Determine initial capplet sort column

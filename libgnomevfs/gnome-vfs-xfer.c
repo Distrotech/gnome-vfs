@@ -1780,28 +1780,21 @@ gnome_vfs_xfer_empty_directories (const GList *trash_dir_uris,
 			result = GNOME_VFS_OK;
 			break;
 		}
-		if (result != GNOME_VFS_OK)
-			break;
 		/* set up a fake total size to represent the bulk of the operation
 		 * -- we'll subtract a proportional value for every deletion
 		 */
 		progress->progress_info->bytes_total 
 			= progress->progress_info->files_total * DEFAULT_SIZE_OVERHEAD;
 	}
-	if (result == GNOME_VFS_OK) {
-		call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
-		for (p = trash_dir_uris;  p != NULL; p = p->next) {
-			result = empty_directory ((GnomeVFSURI *)p->data, progress, 
-				GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 
+	call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
+	for (p = trash_dir_uris;  p != NULL; p = p->next) {
+		result = empty_directory ((GnomeVFSURI *)p->data, progress, 
+			GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 
+			&error_mode, &skip);
+		if (result == GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES) {
+			result = non_recursive_empty_directory ((GnomeVFSURI *)p->data, 
+				progress, GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 
 				&error_mode, &skip);
-			if (result == GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES) {
-				result = non_recursive_empty_directory ((GnomeVFSURI *)p->data, 
-					progress, GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 
-					&error_mode, &skip);
-			}
-			if (result != GNOME_VFS_OK) {
-				break;
-			}
 		}
 	}
 

@@ -119,7 +119,6 @@ get_base_from_uri (GnomeVFSURI *uri)
 	return base;
 }
 
-
 typedef struct {
 	GnomeVFSURI *uri;
 	gint fd;
@@ -587,8 +586,17 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	       GnomeVFSFileInfoOptions options,
 	       struct stat *statptr)
 {
+	GnomeVFSResult result;
 	struct stat statbuf;
 	gboolean followed_symlink;
+	gboolean recursive;
+
+	result = GNOME_VFS_OK;
+	followed_symlink = FALSE;
+	
+	recursive = FALSE;
+
+	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
 
 	if (statptr == NULL) {
 		statptr = &statbuf;
@@ -600,29 +608,30 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 
 	if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) && S_ISLNK (statptr->st_mode)) {
 		if (stat (full_name, statptr) != 0) {
-			if (errno == ENOENT) {
-				/* its a broken symlink, revert to the lstat */
-				lstat (full_name, statptr);
-				followed_symlink = TRUE;
-			} else {
-				/* go straight to jail, do not pass GO, do not collect $200 */
-				return gnome_vfs_result_from_errno();
+			if (errno == ELOOP) {
+				recursive = TRUE;
 			}
-		} else {
-			followed_symlink = TRUE;
-		}		
-	} else {
-		/* follow links wasn't on, or this wasn't a symlink */
-		followed_symlink = FALSE;
+
+			result = gnome_vfs_result_from_errno ();
+
+			/* It's a broken symlink, revert to the lstat. This is sub-optimal but
+			 * acceptable because it's not a common case.
+			 */
+			if (lstat (full_name, statptr) != 0) {
+				return gnome_vfs_result_from_errno ();
+			}
+		}
+		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
+		followed_symlink = TRUE;
 	}
 
 	gnome_vfs_stat_to_file_info (file_info, statptr);
-	GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, followed_symlink);
 
-	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
-
-	if (S_ISLNK (statptr->st_mode)) {
-		file_info->type = GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK;
+	if (result == GNOME_VFS_OK && S_ISLNK (statptr->st_mode)) {
+		/* FIXME: call read_link in a loop unless recursive is TRUE.
+		 * Currently for more than one-level symlinks the symlink_name
+		 * field will be wrong when follow links is specified
+		 */
 		file_info->symlink_name = read_link (full_name);
 		if (file_info->symlink_name == NULL) {
 			return gnome_vfs_result_from_errno ();
@@ -630,7 +639,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
 	}
 
-	return GNOME_VFS_OK;
+	return result;
 }
 
 static GnomeVFSResult
@@ -641,12 +650,14 @@ get_stat_info_from_handle (GnomeVFSFileInfo *file_info,
 {
 	struct stat statbuf;
 
-	if (statptr == NULL)
+	if (statptr == NULL) {
 		statptr = &statbuf;
+	}
 
-	if (fstat (handle->fd, statptr) != 0)
+	if (fstat (handle->fd, statptr) != 0) {
 		return gnome_vfs_result_from_errno ();
-
+	}
+	
 	gnome_vfs_stat_to_file_info (file_info, statptr);
 	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
 
@@ -714,6 +725,7 @@ read_directory (DirectoryHandle *handle,
 	/* This makes sure we don't try to filter the file more than
            once.  */
 	filter_called = FALSE;
+	*skip = FALSE;
 
 	filter = handle->filter;
 	if (filter != NULL) {
@@ -749,15 +761,17 @@ read_directory (DirectoryHandle *handle,
 	strcpy (handle->name_ptr, result->d_name);
 	full_name = handle->name_buffer;
 
-	/* FIXME bugzilla.eazel.com 1223: Correct?  */
-	if (get_stat_info (info, full_name, handle->options, &statbuf) != GNOME_VFS_OK)
-		return GNOME_VFS_ERROR_INTERNAL;
-
-	if (filter != NULL
-	    && !filter_called
-	    && (filter_needs
-		  & GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE) == 0) {
-		if (! gnome_vfs_directory_filter_apply (filter, info)) {
+	if (get_stat_info (info, full_name, handle->options, &statbuf) != GNOME_VFS_OK) {
+		/* Return OK - this should not terminate the directory iteration
+		 * and we will know from the valid_fields that we don't have the
+		 * stat info.
+		 */
+		return GNOME_VFS_OK;
+	}
+	
+	if (filter != NULL && !filter_called
+	    && (filter_needs & GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE) == 0) {
+		if (!gnome_vfs_directory_filter_apply (filter, info)) {
 			*skip = TRUE;
 			return GNOME_VFS_OK;
 		}
@@ -768,8 +782,7 @@ read_directory (DirectoryHandle *handle,
 		get_mime_type (info, full_name, handle->options, &statbuf);
 	}
 
-	if (filter != NULL
-	    && !filter_called) {
+	if (filter != NULL && !filter_called) {
 		if (!gnome_vfs_directory_filter_apply (filter, info)) {
 			*skip = TRUE;
 			return GNOME_VFS_OK;
@@ -784,8 +797,6 @@ read_directory (DirectoryHandle *handle,
 		}
 		filter_called = TRUE;
 	}
-
-	*skip = FALSE;
 
 	return GNOME_VFS_OK;
 }
@@ -861,11 +872,12 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 
 	file_handle = (FileHandle *) method_handle;
 
-	full_name = get_path_from_uri (file_handle->uri);
-	if (full_name == NULL)
-		return GNOME_VFS_ERROR_INVALID_URI;
-
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
+
+	full_name = get_path_from_uri (file_handle->uri);
+	if (full_name == NULL) {
+		return GNOME_VFS_ERROR_INVALID_URI;
+	}
 
 	file_info->name = get_base_from_uri (file_handle->uri);
 	g_assert (file_info->name != NULL);
@@ -877,8 +889,9 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 		return result;
 	}
 
-	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
+	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
 		get_mime_type (file_info, full_name, options, &statbuf);
+	}
 
 	g_free (full_name);
 
