@@ -1,3 +1,17 @@
+2000-06-08  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_short_list_applications,
+	gnome_vfs_mime_get_short_list_components): Refactored and
+	corrected memory management (should not leak or double-free now).
+	
+	(gnome_vfs_mime_get_all_components,
+	gnome_vfs_mime_get_default_component): Fixed bugzilla.eazel.com
+	1146.
+	
+	(gnome_vfs_mime_str_list_apply_delta,
+	gnome_vfs_mime_get_value_for_user_level): New helper functions.
+
 2000-06-07  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_shutdown):
