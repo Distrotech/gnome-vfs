@@ -1,3 +1,15 @@
+2002-04-19  Mark McLoughlin  <mark@skynet.ie>
+
+	* modules/http-method.c: (construct_gl_http_proxy),
+	(set_proxy_auth): split these methods out from
+	sig_gconf_value_changed.
+	(notify_gconf_value_changed): rename from
+	sig_gconf_value_changed
+	(vfs_module_init): don't use gconf_init. Also use
+	gconf_client_notify_add instead of the 'value-changed' signal
+	on GConfClient so that we don't get notified of other user
+	changes.
+
 2002-05-15  Mark McLoughlin <mark@skynet.ie>
 
 	* schema/system_http_proxy.schemas: set default for

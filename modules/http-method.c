@@ -723,33 +723,20 @@ create_handle (GnomeVFSURI *uri,
  *	http-proxy-authorization-password an HTTP proxy
  */
 
-/**
- * sig_gconf_value_changed 
- * GTK signal function for when HTTP proxy GConf key has changed.
- */
 static void
-sig_gconf_value_changed (GConfClient* client, 
-			 const char* key, 
-			 GConfValue* value)
+construct_gl_http_proxy (gboolean use_proxy)
 {
-	if (strcmp (key, KEY_GCONF_USE_HTTP_PROXY) == 0
-	    || strcmp (key, KEY_GCONF_HTTP_PROXY_HOST) == 0
-	    || strcmp (key, KEY_GCONF_HTTP_PROXY_PORT) == 0) {
-		gboolean use_proxy_value;
+	g_free (gl_http_proxy);
+	gl_http_proxy = NULL;
+
+	if (use_proxy) {
 		char *proxy_host;
-		int proxy_port;
-		
-		g_mutex_lock (gl_mutex);
-		
-		/* Check and see if we are using the proxy */
-		use_proxy_value = gconf_client_get_bool (gl_client, KEY_GCONF_USE_HTTP_PROXY, NULL);
+		int   proxy_port;
+
 		proxy_host = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_PROXY_HOST, NULL);
 		proxy_port = gconf_client_get_int (gl_client, KEY_GCONF_HTTP_PROXY_PORT, NULL);
-		
-		g_free (gl_http_proxy);
-		gl_http_proxy = NULL;
-		
-		if (use_proxy_value && proxy_host !=NULL) {
+
+		if (proxy_host) {
 			if (0 != proxy_port && 0xffff >= (unsigned) proxy_port) {
 				gl_http_proxy = g_strdup_printf ("%s:%u", proxy_host, (unsigned)proxy_port);
 			} else {
@@ -762,31 +749,65 @@ sig_gconf_value_changed (GConfClient* client,
 		
 		g_free (proxy_host);
 		proxy_host = NULL;
+	}
+}
+
+static void
+set_proxy_auth (gboolean use_proxy_auth)
+{
+	char *auth_user;
+	char *auth_pw;
+
+	auth_user = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_AUTH_USER, NULL);
+	auth_pw = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_AUTH_PW, NULL);
+
+	if (use_proxy_auth) {
+		proxy_set_authn (auth_user, auth_pw);
+		DEBUG_HTTP (("New HTTP proxy auth user: '%s'", auth_user));
+	} else {
+		proxy_unset_authn ();
+		DEBUG_HTTP (("HTTP proxy auth unset"));
+	}
+
+	g_free (auth_user);
+	g_free (auth_pw);
+}
+
+/**
+ * sig_gconf_value_changed 
+ * GGconf notify function for when HTTP proxy GConf key has changed.
+ */
+static void
+notify_gconf_value_changed (GConfClient *client,
+			    guint        cnxn_id,
+			    GConfEntry  *entry,
+			    gpointer     data)
+{
+	const char *key;
+
+	key = gconf_entry_get_key (entry);
+
+	if (strcmp (key, KEY_GCONF_USE_HTTP_PROXY) == 0
+	    || strcmp (key, KEY_GCONF_HTTP_PROXY_HOST) == 0
+	    || strcmp (key, KEY_GCONF_HTTP_PROXY_PORT) == 0) {
+		gboolean use_proxy_value;
+		
+		g_mutex_lock (gl_mutex);
+		
+		/* Check and see if we are using the proxy */
+		use_proxy_value = gconf_client_get_bool (gl_client, KEY_GCONF_USE_HTTP_PROXY, NULL);
+		construct_gl_http_proxy (use_proxy_value);
 		
 		g_mutex_unlock (gl_mutex);
 	} else if (strcmp (key, KEY_GCONF_HTTP_AUTH_USER) == 0
 	    || strcmp (key, KEY_GCONF_HTTP_AUTH_PW) == 0
 	    || strcmp (key, KEY_GCONF_HTTP_USE_AUTH) == 0) {
 		gboolean use_proxy_auth;
-		char *auth_user;
-		char *auth_pw;
 
 		g_mutex_lock (gl_mutex);
 		
 		use_proxy_auth = gconf_client_get_bool (gl_client, KEY_GCONF_HTTP_USE_AUTH, NULL);
-		auth_user = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_AUTH_USER, NULL);
-		auth_pw = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_AUTH_PW, NULL);
-
-		if (use_proxy_auth) {
-			proxy_set_authn (auth_user, auth_pw);
-			DEBUG_HTTP (("New HTTP proxy auth user: '%s'", auth_user));
-		} else {
-			proxy_unset_authn ();
-			DEBUG_HTTP (("HTTP proxy auth unset"));
-		}
-
-		g_free (auth_user);
-		g_free (auth_pw);
+		set_proxy_auth (use_proxy_auth);
 
 		g_mutex_unlock (gl_mutex);
 	}
@@ -2547,57 +2568,49 @@ GnomeVFSMethod *
 vfs_module_init (const char *method_name, 
 		 const char *args)
 {
-	char *argv[] = {"dummy"};
-	int argc = 1;
 	GError *gconf_error = NULL;
-	GConfValue *proxy_value;
+	gboolean use_proxy;
+	gboolean use_proxy_auth;
 
 	LIBXML_TEST_VERSION
 		
-	/* Ensure GConf is initialized.  If more modules start to rely on
-	 * GConf, then this should probably be moved into a more 
-	 * central location
-	 */
-
-	if (!gconf_is_initialized ()) {
-		/* auto-initializes OAF if necessary */
-		gconf_init (argc, argv, NULL);
-	}
-
 	gl_client = gconf_client_get_default ();
 
 	gl_mutex = g_mutex_new ();
 	
 	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_ONELEVEL, &gconf_error);
-	g_signal_connect (G_OBJECT (gl_client), "value_changed", G_CALLBACK (sig_gconf_value_changed), NULL);
-
 	if (gconf_error) {
 		DEBUG_HTTP (("GConf error during client_add_dir '%s'", gconf_error->message));
 		g_error_free (gconf_error);
 		gconf_error = NULL;
 	}
 
-	/* Load the http proxy setting */	
-	proxy_value = gconf_client_get (gl_client, KEY_GCONF_USE_HTTP_PROXY, &gconf_error);
-
-	if (gconf_error != NULL) {
-		DEBUG_HTTP (("GConf error during client_get '%s'", gconf_error->message));
+	gconf_client_notify_add (gl_client, PATH_GCONF_GNOME_VFS, notify_gconf_value_changed, NULL, NULL, &gconf_error);
+	if (gconf_error) {
+		DEBUG_HTTP (("GConf error during notify_error '%s'", gconf_error->message));
 		g_error_free (gconf_error);
 		gconf_error = NULL;
-	} else if (proxy_value != NULL) {
-		sig_gconf_value_changed (gl_client, KEY_GCONF_USE_HTTP_PROXY, proxy_value);
-		gconf_value_free (proxy_value);
 	}
 
-	proxy_value = gconf_client_get (gl_client, KEY_GCONF_HTTP_USE_AUTH, &gconf_error);
+	/* Load the http proxy setting */	
+	use_proxy = gconf_client_get_bool (gl_client, KEY_GCONF_USE_HTTP_PROXY, &gconf_error);
 
 	if (gconf_error != NULL) {
-		DEBUG_HTTP (("GConf error during client_get '%s'", gconf_error->message));
+		DEBUG_HTTP (("GConf error during client_get_bool '%s'", gconf_error->message));
 		g_error_free (gconf_error);
 		gconf_error = NULL;
-	} else if (proxy_value != NULL) {
-		sig_gconf_value_changed (gl_client, KEY_GCONF_HTTP_USE_AUTH, proxy_value);
-		gconf_value_free (proxy_value);
+	} else {
+		construct_gl_http_proxy (use_proxy);
+	}
+
+	use_proxy_auth = gconf_client_get_bool (gl_client, KEY_GCONF_HTTP_USE_AUTH, &gconf_error);
+
+	if (gconf_error != NULL) {
+		DEBUG_HTTP (("GConf error during client_get_bool '%s'", gconf_error->message));
+		g_error_free (gconf_error);
+		gconf_error = NULL;
+	} else {
+		set_proxy_auth (use_proxy_auth);
 	}
 
 	http_authn_init ();
