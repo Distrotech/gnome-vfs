@@ -219,6 +219,7 @@ egg_find_file_in_data_dirs (const gchar  *file,
                                    candidate_file, NULL);
 
           fd = open (path, O_RDONLY);
+          g_free (path);
 
           if (fd < 0 && file_error == NULL)
             g_set_error (&file_error, G_FILE_ERROR,
