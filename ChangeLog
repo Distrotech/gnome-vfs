@@ -1,5 +1,11 @@
 2000-09-29  Darin Adler  <darin@eazel.com>
 
+	* gnome-vfs.spec.in: Turn off "make check" since it doesn't work
+	until the library is installed because of the back end.
+	* test/test-uri.c: (main): Add some test cases.
+
+2000-09-29  Darin Adler  <darin@eazel.com>
+
 	* gnome-vfs.spec.in: Make RPM builds do "make check" and also make
 	them compile with warnings on. This make the Tinderbox more
 	strict. Also use "make -k" so we get more errors at once on the

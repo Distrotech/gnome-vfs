@@ -231,7 +231,9 @@ main (int argc, char **argv)
 	test_uri_to_string ("http://yakk:womble@www.eazel.com:42/blah/", "http://:womble@www.eazel.com:42/blah/", GNOME_VFS_URI_HIDE_USER_NAME);
 	test_uri_to_string ("FILE://", "file://", GNOME_VFS_URI_HIDE_NONE);
 
+	test_uri_to_string ("file:///trash", "file:///trash", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("file:///Users/mikef", "file:///Users/mikef", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/trash", "file:///trash", GNOME_VFS_URI_HIDE_NONE);
 
 	test_uri_to_string ("http://www.eazel.com:80", "http://www.eazel.com:80/", GNOME_VFS_URI_HIDE_NONE);
 
@@ -289,30 +291,42 @@ main (int argc, char **argv)
 	test_uri_has_parent ("man:as", "FALSE");
 	test_uri_has_parent ("pipe:gnome-info2html2 as", "FALSE");
 
-	/* FIXME bugzilla.eazel.com 2801: Do we want GnomeVFSURI to just refuse to deal with
-         * URIs that we don't have a module for?
+	/* FIXME: Is this useful behavior? It turns a partial path
+	 * name into a host name!
+	 */
+	test_uri_to_string ("trash", "file://trash", GNOME_VFS_URI_HIDE_NONE);
+
+	/* FIXME bugzilla.eazel.com 2801: Do we want GnomeVFSURI to
+         * just refuse to deal with URIs that we don't have a module
+         * for?
 	 */
 	test_uri_to_string ("glorp:", "NULL", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_parent ("glorp:", "URI NULL");
 
-	/* FIXME bugzilla.eazel.com 2802: Is this the correct behavior for these cases? */
+	/* FIXME bugzilla.eazel.com 2802: Is this the correct behavior
+	 * for these cases?
+	 */
 	test_uri_to_string ("file:", "file://", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("http:", "http://", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("file:/", "file:///", GNOME_VFS_URI_HIDE_NONE);
 
-	/* FIXME bugzilla.eazel.com 2803: Do we really want to add the "//" in this case? */
+	/* FIXME bugzilla.eazel.com 2803: Do we really want to add the
+         * "//" in this case?
+	 */
 	test_uri_to_string ("pipe:gnome-info2html2 as", "pipe://gnome-info2html2 as", GNOME_VFS_URI_HIDE_NONE);
 
 	/* FIXME bugzilla.eazel.com 2840: What should these results be? */
 	test_uri_to_string ("/tmp/t.efs#xxx:/", "file:///tmp/t.efs#file:", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_parent ("/tmp/t.efs#xxx:/", "file:///tmp/t.efs");
 
-	/* Add more test cases for these URIs with # in them. */
-	/* FIXME: Mathieu thinks these are broken, but Darin is pretty sure they are correct. */
+	/* FIXME: Mathieu thinks these are broken, but Darin is pretty
+	 * sure they are correct.
+	 */
 	test_uri_to_string ("/tmp/#test", "file:///tmp/", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("/tmp/#test#", "file:///tmp/", GNOME_VFS_URI_HIDE_NONE);
+
+	/* Add more test cases for URIs with # in them? */
 
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;
 }
-
