@@ -68,7 +68,8 @@ CDDASOURCES = 					\
 	cdda-method.c 				\
 	cdda-method.h				\
 	cdda-cddb.c 				\
-	cdda-cddb.h
+	cdda-cddb.h				\
+	cdda-cdrom-extensions.h
 
 CDDALDFLAGS = $(module_flags)
 CDDALIBADD = -L/gnome/lib -lcdda_paranoia -lcdda_interface
