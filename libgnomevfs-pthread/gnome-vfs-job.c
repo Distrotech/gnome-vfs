@@ -1325,8 +1325,9 @@ execute_xfer (GnomeVFSJob *job)
 		xfer_op->notify.progress_info = &info;
 
 		job_notify (job);
-		return FALSE;
 	}
+
+	job_close (job);
 
 	return FALSE;
 }

@@ -1,6 +1,13 @@
 2000-05-09  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(execute_xfer):
+	Add a missing job_close that was triggering an assert for
+	various file system operations.
+	
+2000-05-09  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
 	(job_oneway_notify):
 	Handle the case where job_oneway_notify gets called from 
 	gnome_vfs_job_destroy properly - the current_op is NULL 
