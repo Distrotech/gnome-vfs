@@ -1,3 +1,9 @@
+2005-01-30  Christian Kellner  <gicmo@gnome.org>
+
+	* imported/neon/*: Import of neon upstream version 0.24.7.
+	I also moved the some ChangeLog entries from imported/neon/ to
+	this file.
+
 2005-01-29  Christian Kellner  <gicmo@gnome.org>
 
 	* modules/http-neon-method.c: Some small code cleanups. Also remove the
@@ -924,7 +930,13 @@
 	* libgnomevfs/gnome-vfs-mime-info-cache.c (gnome_vfs_mime_info_cache_get_search_path) 
 	(gnome_vfs_mime_info_cache_get_defaults_search_path):
 	Don't reorder search paths.
+	
+2004-09-16  Jeffrey Stedfast  <fejj@novell.com>
 
+	* imported/neon/Makefile.am: Add $(GSSAPI_CFLAGS) to INCLUDES section so that
+	ne_auth.c will have the proper include path for the gssapi
+	headers.
+	
 2004-09-16  JP Rosevear  <jpr@novell.com>
 
 	* modules/ftp-method.c (ftp_kerberos_login): use
