@@ -1,5 +1,5 @@
 NULL =
-SUBDIRS = extfs vfolder
+SUBDIRS = vfolder
 
 INCLUDES =					\
 	-I$(top_srcdir)				\
@@ -61,7 +61,6 @@ modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
 	libcomputer.la				\
 	libdns-sd.la				\
-	libextfs.la				\
 	libfile.la				\
 	libnetwork.la				\
 	libnntp.la				\
@@ -118,12 +117,6 @@ libcomputer_la_LIBADD = $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 libdns_sd_la_SOURCES = dns-sd-method.c
 libdns_sd_la_LDFLAGS = $(module_flags)
 libdns_sd_la_LIBADD = $(MODULES_LIBS) $(HOWL_LIBS) ../libgnomevfs/libgnomevfs-2.la
-
-###  `extfs' method
-
-libextfs_la_SOURCES = extfs-method.c
-libextfs_la_LDFLAGS = $(module_flags)
-libextfs_la_LIBADD = $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `file' method
 

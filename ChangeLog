@@ -1,3 +1,13 @@
+2004-08-13  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* modules/Makefile.am:
+	* modules/default-modules.conf:
+	* modules/extfs-method.c:
+	* modules/extfs/*:
+	Remove extfs module. It had security issues
+	and it doesn't work well anyway.
+
 2004-08-12  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.c:
