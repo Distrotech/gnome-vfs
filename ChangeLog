@@ -1,3 +1,20 @@
+2001-02-16  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: Mike Enger <engber@eazel.com>
+	
+	Fixed bug 6624, Selected mime type/description displayed
+	below the list is incorrect after reverting to system defaults.
+	
+	Fixed bug 6644, List sorting after using "revert to system defaults"
+	is inconsistent.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(revert_real_cb):
+	Sort the list using current sort column and select the
+	first item to force an update of the dialog contents.
+	Also freeze and thaw list to avoid annoying flicker while
+	list is being repopulated.
+
 2001-02-16  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Gene Z. Ragan  <gzr@eazel.com>
