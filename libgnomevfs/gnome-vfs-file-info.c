@@ -31,11 +31,9 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
-/* Special refcount used on stack-allocated file_info's */
-#define FILE_INFO_REFCOUNT_STACK ((guint)(-1))
-
 /* Mutex for making GnomeVFSFileInfo ref's/unref's atomic */
 /* Note that an atomic increment function (such as is present in NSPR) is preferable */
+/* FIXME: This mutex is probably not needed and might be causing performance issues */
 static GStaticMutex file_info_ref_lock = G_STATIC_MUTEX_INIT;
 
 
@@ -61,35 +59,55 @@ gnome_vfs_file_info_new (void)
 	return new;
 }
 
+
 /**
- * gnome_vfs_file_info_init:
- * @info: 
+ * gnome_vfs_file_info_ref:
+ * @info: Pointer to a file information struct
  * 
- * Initialize @info.  This is different from %gnome_vfs_file_info_clear,
- * because it will not de-allocate any memory.  This is supposed to be used
- * when a new %GnomeVFSFileInfo struct is allocated on the stack, and you want
- * to initialize it.
+ * Increment reference count
  **/
 void
-gnome_vfs_file_info_init (GnomeVFSFileInfo *info)
+gnome_vfs_file_info_ref (GnomeVFSFileInfo *info)
 {
 	g_return_if_fail (info != NULL);
+	g_return_if_fail (info->refcount > 0);
 
-	/* This is enough to initialize everything (we just want all
-           the members to be set to zero).  */
-	memset (info, 0, sizeof (*info));
-
-	info->refcount = FILE_INFO_REFCOUNT_STACK;
+	g_static_mutex_lock (&file_info_ref_lock);
+	info->refcount += 1;
+	g_static_mutex_unlock (&file_info_ref_lock);
+	
 }
+
+/**
+ * gnome_vfs_file_info_unref:
+ * @info: Pointer to a file information struct
+ * 
+ * Destroy @info
+ **/
+void
+gnome_vfs_file_info_unref (GnomeVFSFileInfo *info)
+{
+	g_return_if_fail (info != NULL);
+	g_return_if_fail (info->refcount > 0);
+
+	g_static_mutex_lock (&file_info_ref_lock);
+	info->refcount -= 1;
+	g_static_mutex_unlock (&file_info_ref_lock);
+
+	if (info->refcount == 0) {
+		gnome_vfs_file_info_clear (info);
+		g_free (info);
+	}
+}
+
 
 /**
  * gnome_vfs_file_info_clear:
  * @info: Pointer to a file information struct
  * 
- * Clear @info so that it's ready to accept new data.  This is different from
- * %gnome_vfs_file_info_init as it will free associated memory too.  This is
+ * Clear @info so that it's ready to accept new data. This is
  * supposed to be used when @info already contains meaningful information which
- * we want to get rid of.
+ * we want to replace.
  **/
 void
 gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
@@ -110,52 +128,7 @@ gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
 	info->refcount = old_refcount;
 
 	g_static_mutex_unlock (&file_info_ref_lock);
-
 }
-
-
-/**
- * gnome_vfs_file_info_ref:
- * @info: Pointer to a file information struct
- * 
- * Increment reference count
- **/
-void
-gnome_vfs_file_info_ref (GnomeVFSFileInfo *info)
-{
-	g_return_if_fail (info != NULL);
-	g_return_if_fail (info->refcount != FILE_INFO_REFCOUNT_STACK);
-	g_return_if_fail (info->refcount > 0);
-
-	g_static_mutex_lock (&file_info_ref_lock);
-	info->refcount += 1;
-	g_static_mutex_unlock (&file_info_ref_lock);
-	
-}
-
-/**
- * gnome_vfs_file_info_unref:
- * @info: Pointer to a file information struct
- * 
- * Destroy @info
- **/
-void
-gnome_vfs_file_info_unref (GnomeVFSFileInfo *info)
-{
-	g_return_if_fail (info != NULL);
-	g_return_if_fail (info->refcount != FILE_INFO_REFCOUNT_STACK);
-	g_return_if_fail (info->refcount > 0);
-
-	g_static_mutex_lock (&file_info_ref_lock);
-	info->refcount -= 1;
-	g_static_mutex_unlock (&file_info_ref_lock);
-
-	if (info->refcount == 0) {
-		gnome_vfs_file_info_clear (info);
-		g_free (info);
-	}
-}
-
 
 
 /**
@@ -174,7 +147,6 @@ gnome_vfs_file_info_get_mime_type (GnomeVFSFileInfo *info)
 	return info->mime_type;
 }
 
-
 /**
  * gnome_vfs_file_info_copy:
  * @dest: Pointer to a struct to copy @src's information into

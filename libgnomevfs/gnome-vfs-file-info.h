@@ -65,13 +65,11 @@
 	       : ((info)->permissions &= ~GNOME_VFS_PERM_STICKY))
 
 
-
 GnomeVFSFileInfo *
 		 gnome_vfs_file_info_new 	(void);
-void		 gnome_vfs_file_info_init	(GnomeVFSFileInfo *info);
-void		 gnome_vfs_file_info_clear	(GnomeVFSFileInfo *info);
 void 		 gnome_vfs_file_info_unref   	(GnomeVFSFileInfo *info);
 void 		 gnome_vfs_file_info_ref     	(GnomeVFSFileInfo *info);
+void 		 gnome_vfs_file_info_clear     	(GnomeVFSFileInfo *info);
 const gchar	*gnome_vfs_file_info_get_mime_type
 						(GnomeVFSFileInfo *info);
 

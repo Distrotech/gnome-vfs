@@ -558,7 +558,8 @@ pthread_gnome_vfs_async_set_file_info (GnomeVFSAsyncHandle **handle_return,
 	op = &job->op->specifics.set_file_info;
 
 	op->uri = gnome_vfs_uri_ref (uri);
-	gnome_vfs_file_info_copy (&op->info, info);
+	op->info = gnome_vfs_file_info_new ();
+	gnome_vfs_file_info_copy (op->info, info);
 	op->mask = mask;
 	op->options = options;
 

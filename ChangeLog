@@ -1,3 +1,37 @@
+2001-01-31  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Gene Z. Ragan <gzr@eazel.com>
+
+	Fix 5324 (Should get rid of stack-based GnomeVFSFileInfo)
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_set_file_info):
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(dispatch_set_file_info_callback),
+	(gnome_vfs_job_destroy_notify_result), (gnome_vfs_op_destroy),
+	(execute_set_file_info):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs/gnome-vfs-file-info.c: (gnome_vfs_file_info_ref),
+	(gnome_vfs_file_info_unref), (gnome_vfs_file_info_clear):
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-ops.c: (gnome_vfs_uri_exists):
+	* libgnomevfs/gnome-vfs-xfer.c: (empty_directory),
+	(non_recursive_empty_directory), (gnome_vfs_visit_list),
+	(handle_name_conflicts), (copy_directory), (copy_items),
+	(gnome_vfs_xfer_delete_items_common):
+	* test/test-info.c: (main):
+	Get rid of gnome_vfs_file_info_init.
+	Replace all instances of stack-based GnomeVFSFileInfo
+	structures, replace all calls to gnome_vfs_file_info_init
+	with gnome_vfs_file_info_new.
+	Replace most calls to gnome_vfs_file_info_clear with
+	gnome_vfs_file_info_unref.
+
+	* libgnomevfs/gnome-vfs-file-info.c: (gnome_vfs_file_info_ref),
+	(gnome_vfs_file_info_unref):
+	Get rid of FILE_INFO_REFCOUNT_STACK.
+	
+
 2001-01-30  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Darin Adler <darin@eazel.com>

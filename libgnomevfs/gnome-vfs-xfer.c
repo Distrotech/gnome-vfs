@@ -442,37 +442,43 @@ empty_directory (GnomeVFSURI *uri,
 	}
 	
 	for (;;) {
-		GnomeVFSFileInfo info;
+		GnomeVFSFileInfo *info;
 		GnomeVFSURI *item_uri;
 		
-		gnome_vfs_file_info_init (&info);
-		result = gnome_vfs_directory_read_next (directory_handle, &info);
-		if (result != GNOME_VFS_OK)
+		item_uri = NULL;
+		info = gnome_vfs_file_info_new ();
+		result = gnome_vfs_directory_read_next (directory_handle, info);
+		if (result != GNOME_VFS_OK) {
+			gnome_vfs_file_info_unref (info);
 			break;
+		}
 
 		/* Skip "." and "..".  */
-		if (strcmp (info.name, ".") == 0 
-		    || strcmp (info.name, "..") == 0) {
-			continue;
+		if (strcmp (info->name, ".") != 0 && strcmp (info->name, "..") != 0) {
+
+			item_uri = gnome_vfs_uri_append_file_name (uri, info->name);
+			
+			progress_set_source_target_uris (progress, item_uri, NULL);
+			
+			if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+				result = remove_directory (item_uri, TRUE, 
+							   progress, xfer_options, error_mode, 
+							   skip);
+			} else {
+				result = remove_file (item_uri, progress, 
+						      xfer_options,
+						      error_mode,
+						      skip);
+			}
+
 		}
 
-		item_uri = gnome_vfs_uri_append_file_name (uri, info.name);
+		gnome_vfs_file_info_unref (info);
 		
-		progress_set_source_target_uris (progress, item_uri, NULL);
-		
-		if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-			result = remove_directory (item_uri, TRUE, 
-						   progress, xfer_options, error_mode, 
-						   skip);
-		} else {
-			result = remove_file (item_uri, progress, 
-					      xfer_options,
-					      error_mode, 
-					      skip);
+		if (item_uri != NULL) {
+			gnome_vfs_uri_unref (item_uri);
 		}
-
-		gnome_vfs_uri_unref (item_uri);
-
+		
 		if (result != GNOME_VFS_OK) {
 			break;
 		}
@@ -525,7 +531,7 @@ non_recursive_empty_directory (GnomeVFSURI *directory_uri,
 	GList *p;
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
-	GnomeVFSFileInfo info;
+	GnomeVFSFileInfo *info;
 	PrependOneURIParams visit_params;
 
 	/* Build up the list so that deep items appear before their parents
@@ -543,11 +549,11 @@ non_recursive_empty_directory (GnomeVFSURI *directory_uri,
 		for (p = uri_list; p != NULL; p = p->next) {
 
 			uri = (GnomeVFSURI *)p->data;
-			gnome_vfs_file_info_init (&info);
-			result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT);
+			info = gnome_vfs_file_info_new ();
+			result = gnome_vfs_get_file_info_uri (uri, info, GNOME_VFS_FILE_INFO_DEFAULT);
 			progress_set_source_target_uris (progress, uri, NULL);
 			if (result == GNOME_VFS_OK) {
-				if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+				if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 					result = remove_directory (uri, FALSE, 
 						progress, xfer_options, error_mode, skip);
 				} else {
@@ -555,7 +561,7 @@ non_recursive_empty_directory (GnomeVFSURI *directory_uri,
 						xfer_options, error_mode, skip);
 				}
 			}
-			gnome_vfs_file_info_clear (&info);
+			gnome_vfs_file_info_unref (info);
 		}
 	}
 
@@ -631,7 +637,7 @@ gnome_vfs_visit_list (const GList *name_uri_list,
 	GnomeVFSResult result;
 	const GList *p;
 	GnomeVFSURI *uri;
-	GnomeVFSFileInfo info;
+	GnomeVFSFileInfo *info;
 	gboolean tmp_recurse;
 	
 	result = GNOME_VFS_OK;
@@ -641,29 +647,32 @@ gnome_vfs_visit_list (const GList *name_uri_list,
 		
 		/* get the URI and VFSFileInfo for each */
 		uri = (GnomeVFSURI *)p->data;
-		gnome_vfs_file_info_init (&info);
-		result = gnome_vfs_get_file_info_uri (uri, &info, info_options);
+		info = gnome_vfs_file_info_new ();
+		result = gnome_vfs_get_file_info_uri (uri, info, info_options);
 		
 		if (result == GNOME_VFS_OK) {
 			tmp_recurse = TRUE;
 			
 			/* call our callback on each item*/
-			if (!callback (gnome_vfs_uri_get_path (uri), &info, FALSE, data, &tmp_recurse)) {
+			if (!callback (gnome_vfs_uri_get_path (uri), info, FALSE, data, &tmp_recurse)) {
 				result = GNOME_VFS_ERROR_INTERRUPTED;
 			}
 			
 			if (result == GNOME_VFS_OK
 			    && recursive
-			    && info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+			    && info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 				/* let gnome_vfs_directory_visit_uri call our callback 
 				 * recursively 
 				 */
 				result = gnome_vfs_directory_visit_uri (uri, info_options, 
 					NULL, visit_options, callback, data);
 			}
-		}		
-		if (result != GNOME_VFS_OK)
+		}
+		gnome_vfs_file_info_unref (info);
+		
+		if (result != GNOME_VFS_OK) {
 			break;
+		}
 	}
 	return result;
 }
@@ -836,7 +845,7 @@ handle_name_conflicts (GList **source_uri_list,
 		gboolean replace;
 		gboolean skip;
 		GnomeVFSURI *uri;
-		GnomeVFSFileInfo info;
+		GnomeVFSFileInfo *info;
 		
 		skip = FALSE;
 		uri = (GnomeVFSURI *)target_item->data;
@@ -853,17 +862,17 @@ handle_name_conflicts (GList **source_uri_list,
 
 			/* get rid of the conflicting file */
 			if (replace) {
-				gnome_vfs_file_info_init (&info);
-				gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT);
+				info = gnome_vfs_file_info_new ();
+				gnome_vfs_get_file_info_uri (uri, info, GNOME_VFS_FILE_INFO_DEFAULT);
 				progress_set_source_target_uris (progress, uri, NULL);
-				if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+				if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 					remove_directory (uri, TRUE, progress, 
 						xfer_options, error_mode, &skip);
 				} else {
 					remove_file (uri, progress,
 						xfer_options, error_mode, &skip);
 				}
-				gnome_vfs_file_info_clear (&info);
+				gnome_vfs_file_info_unref (info);
 			}
 		}
 
@@ -1308,39 +1317,47 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 		do {
 			GnomeVFSURI *source_uri;
 			GnomeVFSURI *dest_uri;
-			GnomeVFSFileInfo info;
+			GnomeVFSFileInfo *info;
 
-			gnome_vfs_file_info_init (&info);
+			source_uri = NULL;
+			dest_uri = NULL;
+			info = gnome_vfs_file_info_new ();
 
-			result = gnome_vfs_directory_read_next (source_directory_handle, &info);
+			result = gnome_vfs_directory_read_next (source_directory_handle, info);
 			if (result != GNOME_VFS_OK) {
+				gnome_vfs_file_info_unref (info);	
 				break;
 			}
 			
 			/* Skip "." and "..".  */
-			if (strcmp (info.name, ".") == 0 || strcmp (info.name, "..") == 0) {
-				continue;
-			}
+			if (strcmp (info->name, ".") != 0 && strcmp (info->name, "..") != 0) {
 
-			source_uri = gnome_vfs_uri_append_file_name (source_dir_uri, info.name);
-			dest_uri = gnome_vfs_uri_append_file_name (target_dir_uri, info.name);
-			
-			if (info.type == GNOME_VFS_FILE_TYPE_REGULAR) {
-				result = copy_file (&info, source_uri, dest_uri, 
-					xfer_options, error_mode, overwrite_mode, 
-					progress, skip);
-			} else if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-				result = copy_directory (&info, source_uri, dest_uri, 
-					xfer_options, error_mode, overwrite_mode, 
-					progress, skip);
-			} else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
-				result = copy_symlink (source_uri, dest_uri, info.symlink_name,
-					progress);
+				source_uri = gnome_vfs_uri_append_file_name (source_dir_uri, info->name);
+				dest_uri = gnome_vfs_uri_append_file_name (target_dir_uri, info->name);
+				
+				if (info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
+					result = copy_file (info, source_uri, dest_uri, 
+						xfer_options, error_mode, overwrite_mode, 
+						progress, skip);
+				} else if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+					result = copy_directory (info, source_uri, dest_uri, 
+						xfer_options, error_mode, overwrite_mode, 
+						progress, skip);
+				} else if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
+					result = copy_symlink (source_uri, dest_uri, info->symlink_name,
+						progress);
+				}
+				/* just ignore all the other special file system objects here */
 			}
-			/* just ignore all the other special file system objects here */
 			
-			gnome_vfs_uri_unref (dest_uri);
-			gnome_vfs_uri_unref (source_uri);
+			gnome_vfs_file_info_unref (info);
+			
+			if (dest_uri != NULL) {
+				gnome_vfs_uri_unref (dest_uri);
+			}
+			if (source_uri != NULL) {
+				gnome_vfs_uri_unref (source_uri);
+			}
 
 		} while (result == GNOME_VFS_OK);
 	}
@@ -1395,7 +1412,7 @@ copy_items (const GList *source_uri_list,
 		GnomeVFSURI *target_uri;
 		GnomeVFSURI *target_dir_uri;
 
-		GnomeVFSFileInfo info;
+		GnomeVFSFileInfo *info;
 		gboolean skip;
 		int count;
 		int progress_result;
@@ -1407,8 +1424,8 @@ copy_items (const GList *source_uri_list,
 		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_item->data);
 		
 		/* get source URI and file info */
-		gnome_vfs_file_info_init (&info);
-		result = gnome_vfs_get_file_info_uri (source_uri, &info, 
+		info = gnome_vfs_file_info_new ();
+		result = gnome_vfs_get_file_info_uri (source_uri, info, 
 						      GNOME_VFS_FILE_INFO_DEFAULT);
 
 		progress->progress_info->duplicate_name =
@@ -1425,7 +1442,7 @@ copy_items (const GList *source_uri_list,
 					 progress->progress_info->duplicate_name);
 
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
-				progress->progress_info->file_size = info.size;
+				progress->progress_info->file_size = info->size;
 				progress->progress_info->bytes_copied = 0;
 				progress->progress_info->top_level_item = TRUE;
 
@@ -1437,18 +1454,18 @@ copy_items (const GList *source_uri_list,
 				overwrite_mode_abort = GNOME_VFS_XFER_OVERWRITE_MODE_ABORT;
 				
 				
-				if (info.type == GNOME_VFS_FILE_TYPE_REGULAR) {
-					result = copy_file (&info, source_uri, target_uri, 
+				if (info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
+					result = copy_file (info, source_uri, target_uri, 
 							    xfer_options, error_mode, 
 							    &overwrite_mode_abort, 
 							    progress, &skip);
-				} else if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-					result = copy_directory (&info, source_uri, target_uri, 
+				} else if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+					result = copy_directory (info, source_uri, target_uri, 
 								 xfer_options, error_mode,
 								 &overwrite_mode_abort,
 								 progress, &skip);
-                                } else if (info.type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
-					result = copy_symlink (source_uri, target_uri, info.symlink_name,
+                                } else if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
+					result = copy_symlink (source_uri, target_uri, info->symlink_name,
 						progress);
                                 }
 				/* just ignore all the other special file system objects here */
@@ -1496,6 +1513,7 @@ copy_items (const GList *source_uri_list,
 			}
 		}
 
+		gnome_vfs_file_info_unref (info);
 		g_free (progress->progress_info->duplicate_name);
 
 		if (result != GNOME_VFS_OK) {
@@ -1778,7 +1796,7 @@ gnome_vfs_xfer_delete_items_common (const GList *source_uri_list,
 			            GnomeVFSXferOptions xfer_options,
 			            GnomeVFSProgressCallbackState *progress)
 {
-	GnomeVFSFileInfo info;
+	GnomeVFSFileInfo *info;
 	GnomeVFSResult result;
 	GnomeVFSURI *uri;
 	const GList *p;
@@ -1792,8 +1810,8 @@ gnome_vfs_xfer_delete_items_common (const GList *source_uri_list,
 		/* get the URI and VFSFileInfo for each */
 		uri = p->data;
 
-		gnome_vfs_file_info_init (&info);
-		result = gnome_vfs_get_file_info_uri (uri, &info, 
+		info = gnome_vfs_file_info_new ();
+		result = gnome_vfs_get_file_info_uri (uri, info, 
 						      GNOME_VFS_FILE_INFO_DEFAULT);
 
 		if (result != GNOME_VFS_OK) {
@@ -1801,7 +1819,7 @@ gnome_vfs_xfer_delete_items_common (const GList *source_uri_list,
 		}
 
 		progress_set_source_target_uris (progress, uri, NULL);
-		if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+		if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			remove_directory (uri, TRUE, progress, xfer_options, 
 					  &error_mode, &skip);
 		} else {

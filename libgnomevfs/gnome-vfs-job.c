@@ -282,7 +282,7 @@ dispatch_set_file_info_callback (GnomeVFSNotifyResult *notify_result)
 		
 	(* notify_result->specifics.set_file_info.callback) (notify_result->job_handle,
 							     notify_result->specifics.set_file_info.set_file_info_result,
-							     new_info_is_valid ? &notify_result->specifics.set_file_info.info : NULL,
+							     new_info_is_valid ? notify_result->specifics.set_file_info.info : NULL,
 							     notify_result->specifics.set_file_info.callback_data);
 }
 
@@ -379,7 +379,7 @@ gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 		break;
 		
 	case GNOME_VFS_OP_SET_FILE_INFO:
-		gnome_vfs_file_info_clear (&notify_result->specifics.set_file_info.info);
+		gnome_vfs_file_info_unref (notify_result->specifics.set_file_info.info);
 		g_free (notify_result);
 		break;
 		
@@ -674,6 +674,7 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 		break;
 	case GNOME_VFS_OP_SET_FILE_INFO:
 		gnome_vfs_uri_unref (op->specifics.set_file_info.uri);
+		gnome_vfs_file_info_unref (op->specifics.set_file_info.info);
 		break;
 	case GNOME_VFS_OP_XFER:
 		gnome_vfs_uri_list_free (op->specifics.xfer.source_uri_list);
@@ -1262,7 +1263,7 @@ execute_set_file_info (GnomeVFSJob *job)
 
 	notify_result->specifics.set_file_info.set_file_info_result =
 		gnome_vfs_set_file_info_cancellable (set_file_info_op->uri,
-			&set_file_info_op->info, set_file_info_op->mask,
+			set_file_info_op->info, set_file_info_op->mask,
 		 	job->op->context);
 
 	/* Get the new URI after the set_file_info. The name may have
@@ -1274,7 +1275,7 @@ execute_set_file_info (GnomeVFSJob *job)
 		parent_uri = gnome_vfs_uri_get_parent (set_file_info_op->uri);
 		if (parent_uri != NULL) {
 			uri_after = gnome_vfs_uri_append_file_name
-				(parent_uri, set_file_info_op->info.name);
+				(parent_uri, set_file_info_op->info->name);
 			gnome_vfs_uri_unref (parent_uri);
 		}
 	}
@@ -1283,10 +1284,7 @@ execute_set_file_info (GnomeVFSJob *job)
 		gnome_vfs_uri_ref (uri_after);
 	}
 
-	/* Always get new file info, even if setter failed. Init here
-	 * and clear in dispatch_set_file_info.
-	 */
-	gnome_vfs_file_info_init (&notify_result->specifics.set_file_info.info);
+	notify_result->specifics.set_file_info.info = gnome_vfs_file_info_new ();
 	if (uri_after == NULL) {
 		notify_result->specifics.set_file_info.get_file_info_result
 			= GNOME_VFS_ERROR_INVALID_URI;
@@ -1294,7 +1292,7 @@ execute_set_file_info (GnomeVFSJob *job)
 		notify_result->specifics.set_file_info.get_file_info_result
 			= gnome_vfs_get_file_info_uri_cancellable
 			(uri_after,
-			 &notify_result->specifics.set_file_info.info,
+			 notify_result->specifics.set_file_info.info,
 			 set_file_info_op->options,
 			 job->op->context);
 		gnome_vfs_uri_unref (uri_after);
