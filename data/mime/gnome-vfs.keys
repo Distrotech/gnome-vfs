@@ -39,8 +39,21 @@ application/andrew-inset
 application/mac-binhex40
 	description=Macintosh BinHex archive
 
+application/mspowerpoint
+	description=Microsoft PowerPoint document
+	default_action_type=application
+	default_application_id=staroffice
+	short_list_application_ids_for_novice_user_level=staroffice
+	short_list_application_ids_for_intermediate_user_level=staroffice
+	short_list_application_ids_for_hacker_user_level=staroffice
+
 application/msword
 	description=Microsoft Word document
+	default_action_type=application
+	default_application_id=staroffice
+	short_list_application_ids_for_novice_user_level=staroffice
+	short_list_application_ids_for_intermediate_user_level=staroffice
+	short_list_application_ids_for_hacker_user_level=staroffice
 
 application/octet-stream
 	description=unknown data
@@ -79,14 +92,19 @@ application/postscript
 
 application/rtf
 	description=rich text
+	default_action_type=application
+	default_application_id=staroffice
+	short_list_application_ids_for_novice_user_level=staroffice
+	short_list_application_ids_for_intermediate_user_level=staroffice
+	short_list_application_ids_for_hacker_user_level=staroffice
 
 application/vnd.ms-excel
 	description=Microsoft Excel document
 	default_action_type=application
 	default_application_id=gnumeric
-	short_list_application_ids_for_novice_user_level=gnumeric
-	short_list_application_ids_for_intermediate_user_level=gnumeric
-	short_list_application_ids_for_hacker_user_level=gnumeric
+	short_list_application_ids_for_novice_user_level=gnumeric,staroffice
+	short_list_application_ids_for_intermediate_user_level=gnumeric,staroffice
+	short_list_application_ids_for_hacker_user_level=gnumeric,staroffice
 
 application/x-applix-spreadsheet
 	description=Applix spreadsheet
@@ -302,6 +320,15 @@ application/x-shared-library-la
 
 application/x-smil
 	description=SMIL script
+
+application/x-soffice-presentation
+	description=StarOffice presentation
+
+application/x-soffice-spreadsheet
+	description=StarOffice spreadsheet
+
+application/x-soffice-word
+	description=StarOffice word processing document
 
 application/x-stuffit
 	description=Macintosh StuffIt! archive 
@@ -691,6 +718,11 @@ text/*
 
 text/abiword
 	description=AbiWord document
+	default_action_type=application
+	default_application_id=staroffice
+	short_list_application_ids_for_novice_user_level=staroffice
+	short_list_application_ids_for_intermediate_user_level=staroffice
+	short_list_application_ids_for_hacker_user_level=staroffice
 
 text/bib
 	description=bibliography record

@@ -32,6 +32,9 @@
 application/andrew-inset
 	ext: ez
 
+application/mspowerpoint
+	ext: ppt
+
 application/octet-stream
 	ext: bin
 
@@ -182,6 +185,15 @@ application/x-shared-library-la
 
 application/x-smil
 	ext: smil smi sml
+
+application/x-soffice-presentation
+	ext: sdd
+
+application/x-soffice-spreadsheet
+	ext: sdc
+
+application/x-soffice-word
+	ext: sdw
 
 application/x-sv4cpio
 	ext: sv4cpio

@@ -1,3 +1,15 @@
+2000-09-13  John Sullivan  <sullivan@eazel.com>
+
+	Added StarOffice information to the MIME data.
+	It's not well tested, because (A) I don't have
+	StarOffice installed, and (B) the File Types
+	& Programs capplet seems horribly broken in
+	numerous unreported ways.
+
+	* data/mime/gnome-vfs.applications:
+	* data/mime/gnome-vfs.keys:
+	* data/mime/gnome-vfs.mime:
+
 2000-09-13  Pavel Cisler  <pavel@eazel.com>
 
 	* modules/file-method.c: (do_create_symbolic_link):
