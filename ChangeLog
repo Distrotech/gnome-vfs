@@ -1,5 +1,15 @@
 2000-09-25  Pavel Cisler  <pavel@eazel.com>
 
+	* test/test-async-directory.c: (test_read_file_close_callback),
+	(test_read_file_succeeded), (test_read_file_failed),
+	(test_read_file_read_callback), (test_read_file_read_chunk),
+	(test_read_file_open_callback), (test_read_file_async),
+	(directory_load_callback), (main):
+	Add optional file read testing to the directory async test for 
+	performance measurement.
+	
+2000-09-25  Pavel Cisler  <pavel@eazel.com>
+
 	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
 	* libgnomevfs-pthread/gnome-vfs-job.c:
 	(dispatch_job_callback), (gnome_vfs_job_new):

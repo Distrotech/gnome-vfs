@@ -37,6 +37,7 @@
 static int measure_speed = 0;
 static int sort = 0;
 static int items_per_notification = 1;
+static int read_files = 0;
 
 struct poptOption options[] = {
 	{
@@ -64,6 +65,15 @@ struct poptOption options[] = {
 		&sort,
 		0,
 		"Sort entries",
+		NULL
+	},
+	{
+		"read-files",
+		'r',
+		POPT_ARG_NONE,
+		&read_files,
+		0,
+		"Test file reading",
 		NULL
 	},
 	{
@@ -103,26 +113,96 @@ type_to_string (GnomeVFSFileType type)
 }
 
 static void
-print_list (GnomeVFSDirectoryList *list, guint num_entries)
+test_read_file_close_callback (GnomeVFSAsyncHandle *handle,
+			  GnomeVFSResult result,
+			  gpointer callback_data)
 {
-	GnomeVFSFileInfo *info;
-	guint i;
-
-	info = gnome_vfs_directory_list_current (list);
-	for (i = 0; i < num_entries && info != NULL; i++) {
-		printf ("  File `%s'%s (%s, %s), "
-			"size %"GNOME_VFS_SIZE_FORMAT_STR", mode %04o\n",
-			info->name,
-			(info->flags & GNOME_VFS_FILE_FLAGS_SYMLINK) ? " [link]" : "",
-			type_to_string (info->type),
-			gnome_vfs_file_info_get_mime_type (info),
-			info->size, info->permissions);
-		fflush (stdout);
-
-		info = gnome_vfs_directory_list_next (list);
-	}
 }
 
+
+static void
+test_read_file_succeeded (GnomeVFSAsyncHandle *handle)
+{
+	gnome_vfs_async_close (handle,
+			       test_read_file_close_callback,
+			       NULL);
+}
+
+static void
+test_read_file_failed (GnomeVFSAsyncHandle *handle, GnomeVFSResult result)
+{
+	gnome_vfs_async_close (handle,
+			       test_read_file_close_callback,
+			       NULL);
+}
+
+/* A read is complete, so we might or might not be done. */
+static void
+test_read_file_read_callback (GnomeVFSAsyncHandle *handle,
+				GnomeVFSResult result,
+				gpointer buffer,
+				GnomeVFSFileSize bytes_requested,
+				GnomeVFSFileSize bytes_read,
+				gpointer callback_data)
+{
+	/* Check for a failure. */
+	if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF) {
+		test_read_file_failed (handle, result);
+		return;
+	}
+
+	/* If at the end of the file, we win! */
+	test_read_file_succeeded (handle);
+}
+
+char buffer[256];
+
+/* Start reading a chunk. */
+static void
+test_read_file_read_chunk (GnomeVFSAsyncHandle *handle)
+{
+	gnome_vfs_async_read (handle,
+			      buffer,
+			      10,
+			      test_read_file_read_callback,
+			      handle);
+}
+
+/* Once the open is finished, read a first chunk. */
+static void
+test_read_file_open_callback (GnomeVFSAsyncHandle *handle,
+			 GnomeVFSResult result,
+			 gpointer callback_data)
+{
+	if (result != GNOME_VFS_OK) {
+		test_read_file_failed (handle, result);
+		return;
+	}
+
+	test_read_file_read_chunk (handle);
+}
+
+/* Set up the read handle and start reading. */
+static GnomeVFSAsyncHandle *
+test_read_file_async (GnomeVFSURI *uri)
+{
+	GnomeVFSAsyncHandle *result;
+	
+	gnome_vfs_async_open_uri (&result,
+			      uri,
+			      GNOME_VFS_OPEN_READ,
+			      test_read_file_open_callback,
+			      NULL);
+
+	return result;
+}
+
+typedef struct {
+	const char *parent_uri;
+	int num_entries_read;
+} CallbackData;
+
+volatile int async_task_counter; 
 static void
 directory_load_callback (GnomeVFSAsyncHandle *handle,
 			 GnomeVFSResult result,
@@ -130,25 +210,56 @@ directory_load_callback (GnomeVFSAsyncHandle *handle,
 			 guint entries_read,
 			 gpointer callback_data)
 {
-	guint *num_entries_ptr;
+	CallbackData *data;
+	GnomeVFSFileInfo *info;
+	GnomeVFSURI *parent_uri;
+	GnomeVFSURI *uri;
+	guint i;
+
+	data = (CallbackData *)callback_data;
+
 
 	if (!measure_speed) {
-#if 0
 		printf ("Directory load callback: %s, %d entries, callback_data `%s'\n",
 			gnome_vfs_result_to_string (result),
 			entries_read,
-			(gchar *) callback_data);
-#endif
-
-		if (list != NULL)
-			print_list (list, entries_read);
+			(gchar *) data->parent_uri);
 	}
 
-	num_entries_ptr = (guint *) callback_data;
-	*num_entries_ptr += entries_read;
+	parent_uri = gnome_vfs_uri_new (data->parent_uri);
+	info = gnome_vfs_directory_list_current (list);
+	for (i = 0; i < entries_read && info != NULL; i++) {
+		if (!measure_speed) {
+			printf ("  File `%s'%s (%s, %s), "
+				"size %"GNOME_VFS_SIZE_FORMAT_STR", mode %04o\n",
+				info->name,
+				(info->flags & GNOME_VFS_FILE_FLAGS_SYMLINK) ? " [link]" : "",
+				type_to_string (info->type),
+				gnome_vfs_file_info_get_mime_type (info),
+				info->size, info->permissions);
+			fflush (stdout);
+		}
+		if (read_files) {
+			if ((info->type & GNOME_VFS_FILE_TYPE_REGULAR) != 0) {
+				uri = gnome_vfs_uri_append_file_name (parent_uri, info->name);
+				test_read_file_async (uri);
+				gnome_vfs_uri_unref (uri);
+			}
+			if (!measure_speed) {
+				printf ("reading a bit of %s\n", info->name);
+			}
+		}
+		info = gnome_vfs_directory_list_next (list);
+	}
 
+	
+	data->num_entries_read += entries_read;
+
+	gnome_vfs_uri_unref (parent_uri);
 	if (result != GNOME_VFS_OK) {
-		gtk_main_quit ();
+		if (--async_task_counter == 0) {
+			gtk_main_quit ();
+		}
 	}
 }
 
@@ -164,10 +275,10 @@ main (int argc, char **argv)
 		GNOME_VFS_DIRECTORY_SORT_NONE
 	};
 	GTimer *timer;
-	guint num_entries;
 #ifdef WITH_CORBA
 	CORBA_Environment ev;
 #endif
+	CallbackData callback_data;
 
 #ifdef WITH_PTHREAD
 	puts ("Initializing threads...");
@@ -206,7 +317,9 @@ main (int argc, char **argv)
 		timer = NULL;
 	}
 
-	num_entries = 0;
+	callback_data.num_entries_read = 0;
+	callback_data.parent_uri = text_uri;
+	async_task_counter = 1;
 	gnome_vfs_async_load_directory
 		(&handle, /* handle */
 		 text_uri, /* text_uri */
@@ -219,8 +332,39 @@ main (int argc, char **argv)
 		 NULL, /* filter_pattern */
 		 items_per_notification, /* items_per_notification */
 		 directory_load_callback, /* callback */
-		 &num_entries); /* callback_data */
+		 &callback_data); /* callback_data */
 
+#if 0
+	async_task_counter++;
+	gnome_vfs_async_load_directory
+		(&handle, /* handle */
+		 text_uri, /* text_uri */
+		 (GNOME_VFS_FILE_INFO_GET_MIME_TYPE
+		  | GNOME_VFS_FILE_INFO_FOLLOW_LINKS), /* options */
+		 sort ? sort_rules : NULL, /* sort_rules */
+		 FALSE, /* reverse_order */
+		 GNOME_VFS_DIRECTORY_FILTER_NONE, /* filter_type */
+		 0, /* filter_options */
+		 NULL, /* filter_pattern */
+		 items_per_notification, /* items_per_notification */
+		 directory_load_callback, /* callback */
+		 &callback_data); /* callback_data */
+
+	async_task_counter++;
+	gnome_vfs_async_load_directory
+		(&handle, /* handle */
+		 text_uri, /* text_uri */
+		 (GNOME_VFS_FILE_INFO_GET_MIME_TYPE
+		  | GNOME_VFS_FILE_INFO_FOLLOW_LINKS), /* options */
+		 sort ? sort_rules : NULL, /* sort_rules */
+		 FALSE, /* reverse_order */
+		 GNOME_VFS_DIRECTORY_FILTER_NONE, /* filter_type */
+		 0, /* filter_options */
+		 NULL, /* filter_pattern */
+		 items_per_notification, /* items_per_notification */
+		 directory_load_callback, /* callback */
+		 &callback_data); /* callback_data */
+#endif
 
 	if (!measure_speed)
 		puts ("GTK+ main loop running.");
@@ -233,8 +377,8 @@ main (int argc, char **argv)
 		g_timer_stop (timer);
 		elapsed_seconds = g_timer_elapsed (timer, NULL);
 		printf ("%.5f seconds for %d entries, %.5f entries/sec.\n",
-			elapsed_seconds, num_entries,
-			(double) num_entries / elapsed_seconds);
+			elapsed_seconds, callback_data.num_entries_read,
+			(double) callback_data.num_entries_read / elapsed_seconds);
 	}
 
 	if (!measure_speed)
