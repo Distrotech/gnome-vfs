@@ -461,6 +461,10 @@ static void tr_exec_cleanup (ExecState *exec_state)
 static GnomeVFSURI *tr_uri_translate(TranslateMethod * tm,
 				     const GnomeVFSURI * uri)
 {
+	const char *text_uri;
+	const char *text_uri_no_method;
+	char *translated_text;
+	char *translated_uri;
 	GnomeVFSURI *retval;
 
 	retval = NULL;
@@ -471,15 +475,25 @@ static GnomeVFSURI *tr_uri_translate(TranslateMethod * tm,
 	/* Hack it all up to pieces */
 
 	if (MODE_BASIC == tm->pa.mode) {
-		retval = gnome_vfs_uri_dup(uri);
-		g_free(retval->text);
+		text_uri = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+		text_uri_no_method = strchr (text_uri, ':');
 
-		retval->text =
-		    g_strdup_printf(tm->pa.u.basic.trans_string, uri->text, uri->text,
-				    uri->text, uri->text, uri->text);
-		g_free(retval->method_string);
-		retval->method_string = g_strdup(tm->pa.real_method_name);
-		retval->method = tm->real_method;
+		if (text_uri_no_method == NULL) {
+			text_uri_no_method = text_uri;
+		} else {
+			text_uri_no_method = text_uri_no_method + 1;
+		}
+			
+		translated_text = g_strdup_printf (tm->pa.u.basic.trans_string, 
+						   uri->text, uri->text,
+						   uri->text, uri->text, uri->text);
+		translated_uri = g_strconcat (tm->pa.real_method_name, ":", 
+					      translated_text, NULL);
+
+		retval = gnome_vfs_uri_new (translated_uri);
+
+		g_free (translated_text);
+		g_free (translated_uri);
 	} else if (MODE_EXEC == tm->pa.mode) {
 		retval = tr_handle_exec (tm, uri);
 	} else {

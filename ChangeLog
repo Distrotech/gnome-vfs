@@ -1,3 +1,9 @@
+2001-04-14  Maciej Stachowiak  <mjs@eazel.com>
+
+	* modules/translate-method.c (tr_uri_translate): Be less tricky so
+	that translate patterns that include a hostname, port, user, etc
+	will work properly.
+
 2001-04-13  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.spec.in: Remove the slave program from the spec
