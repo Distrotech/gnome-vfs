@@ -237,6 +237,9 @@ application/x-shared-library
 application/x-shared-library-la
 	ext: la
 
+application/x-shockwave-flash
+	ext: swf
+
 application/x-smil
 	ext: smil smi sml
 

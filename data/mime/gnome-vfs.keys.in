@@ -494,6 +494,9 @@ application/x-shared-library-la
 	_description=shared library
 	icon_filename=gnome-library.png
 
+application/x-shockwave-flash
+	_description=Macromedia Flash file
+
 application/x-slp
 	_description=Stampede package
 	icon_filename=gnome-pack-slp.png

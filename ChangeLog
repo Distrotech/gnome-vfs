@@ -1,7 +1,19 @@
+2001-02-28  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+	
+	Fixed bug 7148, Flash files identified as mp3
+	
+	* data/mime/gnome-vfs-mime-magic:
+	* data/mime/gnome-vfs.keys.in:
+	* data/mime/gnome-vfs.mime:
+	Add application/x-shockwave-flash information.
+	
 2001-02-28  Rebecca Schulman  <rebecka@eazel.com>
-	Fix bugzilla.eazel.com bug 7093
 
 	reviewed by: Aaron Brick <aaron@eazel.com>
+
+	Fix bugzilla.eazel.com bug 7093
 
 	* data/mime/gnome-vfs.applications:
 	* data/mime/gnome-vfs.keys.in:
