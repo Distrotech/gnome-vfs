@@ -12,15 +12,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-20 15:02+0100\n"
+"POT-Creation-Date: 2003-12-28 11:03+0100\n"
 "PO-Revision-Date: 2003-12-20 15:17+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
-"serrador@hispalinux.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+"serrador@hispalinux.es>\n"
 "serrador@hispalinux.es>\n"
 "serrador@hispalinux.es>\n"
 "First-Translator: Mauricio Araya Polo <mauricio@eazel.com>\n"
@@ -534,7 +534,8 @@ msgstr "Servidor de red"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
@@ -663,7 +664,8 @@ msgstr "No se ha encontrado un archivo de configuración válido para %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Use la variable de entorno %s para especificar una ubicación diferente\n"
+msgstr ""
+"Use la variable de entorno %s para especificar una ubicación diferente\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -714,7 +716,8 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "El argumento de exec a usar para la aplicación de terminal predeterminada."
+msgstr ""
+"El argumento de exec a usar para la aplicación de terminal predeterminada."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
@@ -769,60 +772,72 @@ msgid "Run program in terminal"
 msgstr "Ejecutar programa en terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
 "Establecer a «true» para tener el programa especificado en «comando» para "
 "manipular las URLs HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 "Establecer a «true» para tener el programa especificado en «comando» para "
 "manipular las URLs HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "Establecer a «true» para tener un programa especificado en «comando» para "
 "manipular las URLs callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 "Establecer a «true» para tener el programa especificado en «comando» para "
 "manipular las URLs ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
-"Establecer a «true» para tener un programa especificado en «comando» "
-"para manipular las URLs info."
+"Establecer a «true» para tener un programa especificado en «comando» para "
+"manipular las URLs info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
-"Establecer a «true» para tener un programa especificado en «comando» "
-"para manipular las URLs mailto."
+"Establecer a «true» para tener un programa especificado en «comando» para "
+"manipular las URLs mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "Establecer a «true» para tener un programa especificado en «comando» para manipular las URLs man."
+msgstr ""
+"Establecer a «true» para tener un programa especificado en «comando» para "
+"manipular las URLs man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
-"Establecer a «true» para tener un programa especificado en «comando» "
-"que manipule las URLs trash."
+"Establecer a «true» para tener un programa especificado en «comando» que "
+"manipule las URLs trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr "Verdadero si el programa que manipula esta URL debe ejecutarse en un terminal."
+msgstr ""
+"Verdadero si el programa que manipula esta URL debe ejecutarse en un "
+"terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -892,7 +907,8 @@ msgid ""
 msgstr ""
 "Si es true (verdadero), las conexiones al servidor proxy requieren "
 "autenticación. La combinación usuario/contraseña definida por \"/system/"
-"HTTP_proxy/authentication_user\" y \"/system/HTTP_proxy/authentication_password\"."
+"HTTP_proxy/authentication_user\" y \"/system/HTTP_proxy/"
+"authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -967,16 +983,16 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"El puerto de la máquina definida por \"/system/proxy/secure_host\" que hace de "
-"proxy."
+"El puerto de la máquina definida por \"/system/proxy/secure_host\" que hace "
+"de proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"El puerto de la máquina definida por \"/system/proxy/socks_host\" que hace de "
-"proxy."
+"El puerto de la máquina definida por \"/system/proxy/socks_host\" que hace "
+"de proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1077,4 +1093,3 @@ msgstr "Nombre de usuario para pasar como autenticación al hacer proxy HTTP."
 
 #~ msgid "1 byte"
 #~ msgstr "1 byte"
-

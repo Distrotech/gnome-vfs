@@ -8,15 +8,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.4\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-20 05:39+0100\n"
+"POT-Creation-Date: 2003-12-28 11:03+0100\n"
 "PO-Revision-Date: 2003-12-20 05:46+0100\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Report-Msgid-Bugs-To: \n"
+"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: daemon/gnome-vfs-daemon.c:553
 msgid "Could not initialize Bonobo"
@@ -761,50 +762,60 @@ msgstr "Pokreni program u terminalu"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr "Uključite ako želite da program naveden u „command“ barata H323 adresama."
+msgstr ""
+"Uključite ako želite da program naveden u „command“ barata H323 adresama."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr "Uključite ako želite da program naveden u „command“ barata HTTP adresama."
+msgstr ""
+"Uključite ako želite da program naveden u „command“ barata HTTP adresama."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr "Uključite ako želite da program naveden u „command“ barata HTTPS adresama."
+msgstr ""
+"Uključite ako želite da program naveden u „command“ barata HTTPS adresama."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr "Uključite ako želite da program naveden u „command“ barata callto adresama."
+msgstr ""
+"Uključite ako želite da program naveden u „command“ barata callto adresama."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr "Uključite ako želite da program naveden u „command“ barata ghelp adresama."
+msgstr ""
+"Uključite ako želite da program naveden u „command“ barata ghelp adresama."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr "Uključite ako želite da program naveden u „command“ barata info adresama."
+msgstr ""
+"Uključite ako želite da program naveden u „command“ barata info adresama."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr "Uključite ako želite da program naveden u „command“ barata mailto adresama."
+msgstr ""
+"Uključite ako želite da program naveden u „command“ barata mailto adresama."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "Uključite ako želite da program naveden u „command“ barata man adresama."
+msgstr ""
+"Uključite ako želite da program naveden u „command“ barata man adresama."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr "Uključite ako želite da program naveden u „command“ barata trash adresama."
+msgstr ""
+"Uključite ako želite da program naveden u „command“ barata trash adresama."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr "Uključite ako želite da program naveden u „command“ barata terminal adresama."
+msgstr ""
+"Uključite ako želite da program naveden u „command“ barata terminal adresama."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -871,7 +882,10 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
-msgstr "Ukoliko je postavljeno, veze sa posredničkim serverom se identifikuju. Par korisnik/lozinka se uzima iz „/system/http_proxy/authentication_user“ i „/system/http_proxy/authentication_password“."
+msgstr ""
+"Ukoliko je postavljeno, veze sa posredničkim serverom se identifikuju. Par "
+"korisnik/lozinka se uzima iz „/system/http_proxy/authentication_user“ i „/"
+"system/http_proxy/authentication_password“."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -905,7 +919,9 @@ msgstr "Port bezbednog HTTP posrednika"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "Izaberite režim podešavanja posrednika. Dopuštene vrednosti su „none“, „manual“ i „auto“."
+msgstr ""
+"Izaberite režim podešavanja posrednika. Dopuštene vrednosti su „none“, "
+"„manual“ i „auto“."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -927,25 +943,29 @@ msgstr "Ime računara SOCKS posrednika."
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "Port mašine određene pomoću „/system/http_proxy/host“ koja je posrednik."
+msgstr ""
+"Port mašine određene pomoću „/system/http_proxy/host“ koja je posrednik."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "Port mašine određene pomoću „/system/proxy/ftp_proxy“ koja je posrednik."
+msgstr ""
+"Port mašine određene pomoću „/system/proxy/ftp_proxy“ koja je posrednik."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "Port mašine određene pomoću „/system/proxy/secure_proxy“ koja je posrednik."
+msgstr ""
+"Port mašine određene pomoću „/system/proxy/secure_proxy“ koja je posrednik."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "Port mašine određene pomoću „/system/proxy/socks_proxy“ koja je posrednik."
+msgstr ""
+"Port mašine određene pomoću „/system/proxy/socks_proxy“ koja je posrednik."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""

@@ -7,14 +7,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-20 04:14+0100\n"
+"POT-Creation-Date: 2003-12-28 11:03+0100\n"
 "PO-Revision-Date: 2003-12-20 15:57+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
@@ -762,37 +762,44 @@ msgstr "Spustit program v terminálu"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL H323."
+msgstr ""
+"Nastavte na true, aby program určený v \"command\" obsluhoval URL H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL HTTP."
+msgstr ""
+"Nastavte na true, aby program určený v \"command\" obsluhoval URL HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr "Nastavte na true, aby program určený v \"command- obsluhoval URL HTTPS."
+msgstr ""
+"Nastavte na true, aby program určený v \"command- obsluhoval URL HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL callto."
+msgstr ""
+"Nastavte na true, aby program určený v \"command\" obsluhoval URL callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL ghelp."
+msgstr ""
+"Nastavte na true, aby program určený v \"command\" obsluhoval URL ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL info."
+msgstr ""
+"Nastavte na true, aby program určený v \"command\" obsluhoval URL info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL mailto."
+msgstr ""
+"Nastavte na true, aby program určený v \"command\" obsluhoval URL mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
@@ -801,11 +808,13 @@ msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL man.
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr "Nastavte na true, aby program určený v \"command\" obsluhoval URL trash."
+msgstr ""
+"Nastavte na true, aby program určený v \"command\" obsluhoval URL trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr "True, pokud by měl být program pro obsluhu tohoto URL spouštěn v terminálu."
+msgstr ""
+"True, pokud by měl být program pro obsluhu tohoto URL spouštěn v terminálu."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -872,7 +881,10 @@ msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
-msgstr "Je-li true, vyžadují připojení k proxy serveru autentizaci. Kombinace jméno uživatele/heslo je definována v \"/system/http_proxy/authentication_user\" a \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Je-li true, vyžadují připojení k proxy serveru autentizaci. Kombinace jméno "
+"uživatele/heslo je definována v \"/system/http_proxy/authentication_user\" a "
+"\"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -906,7 +918,9 @@ msgstr "Port proxy zabezpečeného HTTP"
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr "Vyberte režim nastavení proxy. Podporované hodnoty jsou \"none\", \"manual\", \"auto\"."
+msgstr ""
+"Vyberte režim nastavení proxy. Podporované hodnoty jsou \"none\", \"manual"
+"\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -928,25 +942,33 @@ msgstr "Jméno počítače, který používat jako socks proxy."
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "Port na počítači definovaném v \"/system/http_proxy/host\", který používat pro proxy."
+msgstr ""
+"Port na počítači definovaném v \"/system/http_proxy/host\", který používat "
+"pro proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "Port na počítači definovaném v \"/system/proxy/ftp_host\", který používat pro proxy."
+msgstr ""
+"Port na počítači definovaném v \"/system/proxy/ftp_host\", který používat "
+"pro proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "Port na počítači definovaném v \"/system/proxy/secure_host\", který používat pro proxy."
+msgstr ""
+"Port na počítači definovaném v \"/system/proxy/secure_host\", který používat "
+"pro proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "Port na počítači definovaném v \"/system/proxy/socks_host\", který používat pro proxy."
+msgstr ""
+"Port na počítači definovaném v \"/system/proxy/socks_host\", který používat "
+"pro proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -970,4 +992,5 @@ msgstr "Používat HTTP proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Jméno uživatele, které předávat jako autentizaci při používání HTTP proxy."
+msgstr ""
+"Jméno uživatele, které předávat jako autentizaci při používání HTTP proxy."

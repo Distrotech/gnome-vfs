@@ -1,3 +1,9 @@
+2003-12-28  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Update for 2.5.4
+
 2003-12-19  Christian Neumair  <chris@gnome-de.org>
 
 	* schemas/desktop_gnome_url_handlers.schemas.in:

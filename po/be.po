@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-12-05 15:02+0100\n"
+"POT-Creation-Date: 2003-12-28 11:03+0100\n"
 "PO-Revision-Date: 2003-12-16 18:06+0200\n"
 "Last-Translator: Ales Nyakhaychyk <nab@mail.by>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.0.2\n"
@@ -27,7 +27,7 @@ msgstr "Немагчыма прызначыць пачатковыя значэ�
 msgid "Could not initialize gnome vfs"
 msgstr "Немагчыма прызначыць пачатковыя значэньні для gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:178
+#: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
 msgstr "Падзел ISO 9660"
 
@@ -524,8 +524,8 @@ msgstr[2] "%u байтаў"
 
 # libgnomevfs/gnome-vfs-utils.c:74
 #: libgnomevfs/gnome-vfs-utils.c:90
-#, c-format
-msgid "%.1f K"
+#, fuzzy, c-format
+msgid "%.1f KB"
 msgstr "%.1f K"
 
 # libgnomevfs/gnome-vfs-utils.c:78
@@ -587,7 +587,8 @@ msgstr "Сеткавы паслужнік"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Немагчыма прымацаваць гнуткі дыск. Магчыма, ён адсутнічае ў прыладзе."
 
 #. All others
@@ -599,13 +600,17 @@ msgstr "Немагчыма прымацаваць падзел. Магчыма, 
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr "Немагчыма прымацаваць гнуткі дыск. Магчыма, ён мае фармат, які немагчыма прымацаваць."
+msgstr ""
+"Немагчыма прымацаваць гнуткі дыск. Магчыма, ён мае фармат, які немагчыма "
+"прымацаваць."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr "Немагчыма прымацаваць падзел. Магчыма, ён мае фармат, які немагчыма прымацаваць."
+msgstr ""
+"Немагчыма прымацаваць падзел. Магчыма, ён мае фармат, які немагчыма "
+"прымацаваць."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
@@ -754,24 +759,152 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Дастасаваньне для прагляду файлаў, якія патрабуюць кампанэнт, "
-"каб прагледзіць іх. Парамэтар %s будзе заменены на URI файлаў, "
-"парамэтар %c будзе заменены IID кампанэнта."
+"Дастасаваньне для прагляду файлаў, якія патрабуюць кампанэнт, каб "
+"прагледзіць іх. Парамэтар %s будзе заменены на URI файлаў, парамэтар %c "
+"будзе заменены IID кампанэнта."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"Дапомнае дастасаваньне тэрмінала, каб выкарыстоўваць у дастасаваньнях, "
-"якія патрабуюць тэрмінал."
+"Дапомнае дастасаваньне тэрмінала, каб выкарыстоўваць у дастасаваньнях, якія "
+"патрабуюць тэрмінал."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
 msgstr "Довад выкананьня для дапомнага тэрмінальнага дастасаваньня."
 
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:1
+msgid "H323 URL handler"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
+msgid "HTTP URL handler"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
+msgid "HTTPS URL handler"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
+msgid "Handle H323 URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid "Handle HTTP URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid "Handle HTTPS URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "Handle callto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+msgid "Handle ghelp URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+#, fuzzy
+msgid "Handle info URLs"
+msgstr "Адсутнічае апрацоўнік для схемы URL"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "Handle mailto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "Handle man URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid "Handle trash URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+msgid "Run program in terminal"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+msgid "Set to true to have a program specified in \"command\" handle man URLs."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+msgid "True if the program to handle this URL should be run in a terminal."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+msgid "callto URL handler"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+msgid "ghelp URL handler"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+msgid "info URL handler"
+msgstr ""
+
+# libgnomevfs/gnome-vfs-result.c:44
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#, fuzzy
+msgid "mailto URL handler"
+msgstr "Памылковы загаловак файла"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+msgid "man URL handler"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+msgid "trash URL handler"
+msgstr ""
+
 #: schemas/system_http_proxy.schemas.in.h:1
-msgid "Authenticate connections to the proxy server"
+#, fuzzy
+msgid "Authenticate proxy server connections"
 msgstr "Аўтэнтыфікаваць далучэньні да паўнамоцнага паслужніка"
 
 #: schemas/system_http_proxy.schemas.in.h:2
@@ -779,8 +912,11 @@ msgid "Automatic proxy configuration URL"
 msgstr "URL для аўтаматычнае наладкі паўнамоцнага паслужніка"
 
 #: schemas/system_http_proxy.schemas.in.h:3
-msgid "Enables the proxy settings when accessing http over the internet."
-msgstr "Уключае ўсталёўкі паўнамоцнага паслужніка, калі ідзе доступ да http праз інтарнэт."
+#, fuzzy
+msgid "Enables the proxy settings when accessing HTTP over the Internet."
+msgstr ""
+"Уключае ўсталёўкі паўнамоцнага паслужніка, калі ідзе доступ да http праз "
+"інтарнэт."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -795,105 +931,130 @@ msgid "HTTP proxy host name"
 msgstr "Назва вузла, паўнамоцнага па HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
-msgid "HTTP proxy port"
+#, fuzzy
+msgid "HTTP proxy password"
 msgstr "Порт паўнамоцнага па HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
-msgid "Hosts are not contacted via the proxy"
-msgstr "Вузлы, якія не далучаны праз паўнамоцны паслужнік"
+msgid "HTTP proxy port"
+msgstr "Порт паўнамоцнага па HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:9
-msgid ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by /system/http_proxy/authentication_user "
-"and /system/http_proxy/authentication_password."
-msgstr ""
-"Калі ісьціна, тады далучэньні да паўнамоцнага паслужніка будуць "
-"патрабаваць аўтэнтыфікацыі. Зьвяз уліковае_імя/пароль вызначаецца "
-"ключамі /system/http_proxy/authentication_user і "
-"/system/http_proxy/authentication_password."
+#, fuzzy
+msgid "HTTP proxy username"
+msgstr "Назва вузла, паўнамоцнага па HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-msgid "Password to pass as authentication when doing http proxying"
-msgstr "Пароль, каб прайсьці аўтэнтыфікацыю пад час перадачы паўнамоцтваў на http"
+#, fuzzy
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by \"/system/http_proxy/authentication_user"
+"\" and \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Калі ісьціна, тады далучэньні да паўнамоцнага паслужніка будуць патрабаваць "
+"аўтэнтыфікацыі. Зьвяз уліковае_імя/пароль вызначаецца ключамі /system/"
+"http_proxy/authentication_user і /system/http_proxy/authentication_password."
 
 #: schemas/system_http_proxy.schemas.in.h:11
+#, fuzzy
+msgid "Non-proxy hosts"
+msgstr "Назва вузла, паўнамоцнага па Socks"
+
+#: schemas/system_http_proxy.schemas.in.h:12
+#, fuzzy
+msgid "Password to pass as authentication when doing HTTP proxying."
+msgstr ""
+"Пароль, каб прайсьці аўтэнтыфікацыю пад час перадачы паўнамоцтваў на http"
+
+#: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
 msgstr "Рэжым наладкі паўнамоцнага паслужніка"
 
-#: schemas/system_http_proxy.schemas.in.h:12
-msgid "Secure http proxy host name"
-msgstr "Назва вузла, паўнамоцнага па бясьпечнаму HTTP"
-
-#: schemas/system_http_proxy.schemas.in.h:13
-msgid "Secure http proxy port"
-msgstr "Порт паўнамоцнага па бясьпечнаму HTTP"
-
 #: schemas/system_http_proxy.schemas.in.h:14
-msgid ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\""
-msgstr ""
-"Вылучыце рэжым наладкі паўнамоцнага паслужніка. Рэчаіснымі значэньнямі "
-"зьяўляюцца:  \"none\" (няма), \"manual\" (адмысловая), \"auto\" (аўтамытычная)"
-
-#: schemas/system_http_proxy.schemas.in.h:15
-msgid "Socks proxy host name"
+#, fuzzy
+msgid "SOCKS proxy host name"
 msgstr "Назва вузла, паўнамоцнага па Socks"
 
-#: schemas/system_http_proxy.schemas.in.h:16
-msgid "Socks proxy port"
+#: schemas/system_http_proxy.schemas.in.h:15
+#, fuzzy
+msgid "SOCKS proxy port"
 msgstr "Порт паўнамоцнага па Socks"
 
+#: schemas/system_http_proxy.schemas.in.h:16
+#, fuzzy
+msgid "Secure HTTP proxy host name"
+msgstr "Назва вузла, паўнамоцнага па бясьпечнаму HTTP"
+
 #: schemas/system_http_proxy.schemas.in.h:17
+#, fuzzy
+msgid "Secure HTTP proxy port"
+msgstr "Порт паўнамоцнага па бясьпечнаму HTTP"
+
+#: schemas/system_http_proxy.schemas.in.h:18
+#, fuzzy
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
+msgstr ""
+"Вылучыце рэжым наладкі паўнамоцнага паслужніка. Рэчаіснымі значэньнямі "
+"зьяўляюцца:  \"none\" (няма), \"manual\" (адмысловая), \"auto"
+"\" (аўтамытычная)"
+
+#: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
 msgstr "Назва машыны, якая зьяўляецца паўнамоцнай па FTP."
 
-#: schemas/system_http_proxy.schemas.in.h:18
-msgid "The machine name to proxy http through."
-msgstr "Назва машыны, якая зьяўляецца паўнамоцнай па HTTP."
+#: schemas/system_http_proxy.schemas.in.h:20
+#, fuzzy
+msgid "The machine name to proxy HTTP through."
+msgstr "Назва машыны, якая зьяўляецца паўнамоцнай па FTP."
 
-#: schemas/system_http_proxy.schemas.in.h:19
-msgid "The machine name to proxy secure http through."
+#: schemas/system_http_proxy.schemas.in.h:21
+#, fuzzy
+msgid "The machine name to proxy secure HTTP through."
 msgstr "Назва машыны, якая зьяўляецца паўнамоцнай па HTTPS."
 
-#: schemas/system_http_proxy.schemas.in.h:20
+#: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
 msgstr "Назва машыны, якая зьяўляецца паўнамоцнай па SOCKS."
 
-#: schemas/system_http_proxy.schemas.in.h:21
-msgid ""
-"The port on the machine defined by /system/http_proxy/host that you proxy "
-"through"
-msgstr ""
-"Порт на машыне, якая вызначана ў /system/http_proxy/host, якой "
-"належаць паўнамоцтвы"
-
-#: schemas/system_http_proxy.schemas.in.h:22
-msgid ""
-"The port on the machine defined by /system/proxy/ftp_host that you proxy "
-"through"
-msgstr ""
-"Порт на машыне, якая вызначана ў /system/proxy/ftp_host, якой "
-"належаць паўнамоцтвы"
-
 #: schemas/system_http_proxy.schemas.in.h:23
+#, fuzzy
 msgid ""
-"The port on the machine defined by /system/proxy/secure_host that you proxy "
-"through"
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
 msgstr ""
-"Порт на машыне, якая вызначана ў /system/proxy/secure_host, якой "
-"належаць паўнамоцтвы"
+"Порт на машыне, якая вызначана ў /system/http_proxy/host, якой належаць "
+"паўнамоцтвы"
 
 #: schemas/system_http_proxy.schemas.in.h:24
+#, fuzzy
 msgid ""
-"The port on the machine defined by /system/proxy/socks_host that you proxy "
-"through"
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
 msgstr ""
-"Порт на машыне, якая вызначана ў /system/proxy/socks_host, якой "
-"належаць паўнамоцтвы"
+"Порт на машыне, якая вызначана ў /system/proxy/ftp_host, якой належаць "
+"паўнамоцтвы"
 
 #: schemas/system_http_proxy.schemas.in.h:25
+#, fuzzy
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr ""
+"Порт на машыне, якая вызначана ў /system/proxy/secure_host, якой належаць "
+"паўнамоцтвы"
+
+#: schemas/system_http_proxy.schemas.in.h:26
+#, fuzzy
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr ""
+"Порт на машыне, якая вызначана ў /system/proxy/socks_host, якой належаць "
+"паўнамоцтвы"
+
+#: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
 "This key contains a list of hosts which are connected to directly, rather "
 "than via the proxy (if it is active). The values can be hostnames, domains "
@@ -902,26 +1063,38 @@ msgid ""
 msgstr ""
 "Гэты ключ зьмяшчае сьпіс вузлоў, якія далучаны наўпрост, а не праз "
 "паўнамоцны паслужнік (калі ён задзейнічаны). Гэтыя значэньні могуць быць "
-"назвамі вузлоў, маёнткаў (з выкарыстаньнем узораў; напрыклад, *.foo.com), "
-"IP адрасоў (вэрсыі 4 і 6) і сеткавых адрасоў з маскай сеткі (напрыклад, 192.168.0.0/24)."
-
-#: schemas/system_http_proxy.schemas.in.h:26
-msgid "URL that provides proxy configuration values"
-msgstr "URL, які пастаўляе значэньні наладкі паўнамоцнага паслужніка"
-
-#: schemas/system_http_proxy.schemas.in.h:27
-msgid "Use proxy settings when accessing http"
-msgstr "Выкарыстоўваць усталёўкі паўнамоцнага паслужніка для доступу да http"
+"назвамі вузлоў, маёнткаў (з выкарыстаньнем узораў; напрыклад, *.foo.com), IP "
+"адрасоў (вэрсыі 4 і 6) і сеткавых адрасоў з маскай сеткі (напрыклад, "
+"192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
-msgid "User name to pass as authentication when doing http proxying"
-msgstr "Уліковае імя, каб прайсьці аўтэнтыфікацыю на паўнамоцным паслужніку па http"
+#, fuzzy
+msgid "URL that provides proxy configuration values."
+msgstr "URL, які пастаўляе значэньні наладкі паўнамоцнага паслужніка"
 
 #: schemas/system_http_proxy.schemas.in.h:29
-msgid "http proxy password"
-msgstr "пароль на паўнамоцным па http"
+#, fuzzy
+msgid "Use HTTP proxy"
+msgstr "Порт паўнамоцнага па HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
-msgid "http proxy username"
-msgstr "уліковае імя на паўнамоцным па http"
+#, fuzzy
+msgid "User name to pass as authentication when doing HTTP proxying."
+msgstr ""
+"Уліковае імя, каб прайсьці аўтэнтыфікацыю на паўнамоцным паслужніку па http"
 
+#~ msgid "Hosts are not contacted via the proxy"
+#~ msgstr "Вузлы, якія не далучаны праз паўнамоцны паслужнік"
+
+#~ msgid "The machine name to proxy http through."
+#~ msgstr "Назва машыны, якая зьяўляецца паўнамоцнай па HTTP."
+
+#~ msgid "Use proxy settings when accessing http"
+#~ msgstr ""
+#~ "Выкарыстоўваць усталёўкі паўнамоцнага паслужніка для доступу да http"
+
+#~ msgid "http proxy password"
+#~ msgstr "пароль на паўнамоцным па http"
+
+#~ msgid "http proxy username"
+#~ msgstr "уліковае імя на паўнамоцным па http"
