@@ -1,5 +1,25 @@
 2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
 
+	Added renamed new-ftp module files as ftp modules.
+	
+	* modules/ftp-method.c: (FTP_DEBUG), (ftp_response_to_vfs_result),
+	* modules/ftp-method.h:
+	(read_response_line), (get_response), (do_control_write),
+	(do_basic_command), (do_transfer_command), (end_transfer),
+	(ftp_connection_create), (ftp_connection_uri_hash),
+	(ftp_connection_uri_equal), (ftp_connection_uri_to_string),
+	(ftp_uri_to_string), (ftp_connection_aquire),
+	(ftp_connection_release), (ftp_uri_create), (do_is_local),
+	(do_open), (do_close), (do_read), (do_write), (ls_to_file_info),
+	(internal_get_file_info), (do_get_file_info),
+	(do_get_file_info_from_handle), (do_open_directory),
+	(do_close_directory), (do_read_directory), (do_check_same_fs),
+	(do_make_directory), (do_remove_directory), (do_move), (do_unlink),
+	(vfs_module_init), (vfs_module_shutdown):
+	
+
+2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
+
 	Part of renaming and replacing of old
 	ftp module with new ftp module.
 	
