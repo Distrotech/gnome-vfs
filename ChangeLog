@@ -1,3 +1,10 @@
+2002-10-25  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (folder_add_include): Don't add
+	the include to a hashtable, since a) we don't use it and b) it was
+	causing memory corruption on folder free.  Fixes #95965.
+	(folder_remove_include): Drop hashtable removing code.
+
 2002-10-04  Mark McLoughlin  <mark@skynet.ie>
 
 	* modules/vfolder/vfolder-common.h: turn on VFOLDER_DEBUG

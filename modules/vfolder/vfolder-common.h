@@ -147,7 +147,6 @@ struct _Folder {
 	/* The following is for per file access */
 	GHashTable        *excludes;         /* excluded by dirname/fileuri */
 	GSList            *includes;         /* included by dirname/fileuri */
-	GHashTable        *includes_ht;
 
 	GSList            *subfolders;
 	GHashTable        *subfolders_ht;
