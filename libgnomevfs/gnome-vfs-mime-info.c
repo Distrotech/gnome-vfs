@@ -267,7 +267,7 @@ typedef enum {
 } ParserState;
 
 static void
-load_mime_type_info_from (char *filename)
+load_mime_type_info_from (const char *filename)
 {
 	FILE *mime_file;
 	gboolean in_comment, context_used;
@@ -439,7 +439,7 @@ load_mime_type_info_from (char *filename)
  */
  
 static void
-load_mime_list_info_from (char *filename)
+load_mime_list_info_from (const char *filename)
 {
 	FILE *mime_file;
 	gboolean in_comment, context_used;
@@ -735,7 +735,7 @@ load_mime_type_info (void)
 }
 
 static void
-gnome_vfs_mime_init ()
+gnome_vfs_mime_init (void)
 {
 	/*
 	 * The hash tables that store the mime keys.
@@ -746,7 +746,7 @@ gnome_vfs_mime_init ()
 	
 	current_lang = gnome_i18n_get_language_list ("LC_MESSAGES");
 	if(current_lang)
-		current_lang = g_list_reverse(current_lang);
+		current_lang = g_list_reverse(g_list_copy(current_lang));
 
 	/*
 	 * Setup the descriptors for the information loading

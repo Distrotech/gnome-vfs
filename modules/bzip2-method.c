@@ -27,6 +27,7 @@
 #endif
 
 #include <stdio.h>
+#include <string.h>
 #include <bzlib.h>
 #include <time.h>
 #include <string.h>

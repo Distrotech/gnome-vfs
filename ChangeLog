@@ -1,3 +1,14 @@
+Sun Aug 06 15:10:01 2000  George Lebl <jirka@5z.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (load_mime_type_info_from)
+	  (load_mime_list_info_from) (gnome_vfs_mime_init):  Be more correct
+	  in function prototypes
+	  (gnome_vfs_mime_init): gnome_i18n_get_language_list returns a
+	  "constant" list.  So make a copy before inverting it.
+
+	* bzip2-method.c, gzip-method.c:  #include <string.h> to make it
+	  compile on alpha
+
 2000-08-07  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/http-method.c: (process_propfind_propstat),

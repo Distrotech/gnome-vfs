@@ -32,6 +32,7 @@
 #include <zlib.h>
 #include <time.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-mime.h"
