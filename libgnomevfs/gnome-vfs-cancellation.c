@@ -94,8 +94,7 @@ gnome_vfs_cancellation_destroy (GnomeVFSCancellation *cancellation)
 void
 gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 {
-	if(!cancellation)
-		return;
+	g_return_if_fail (cancellation != NULL);
 
 	if (cancellation->cancelled)
 		return;
@@ -115,8 +114,8 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 gboolean
 gnome_vfs_cancellation_check (GnomeVFSCancellation *cancellation)
 {
-	if (cancellation == NULL)
-		return FALSE;
+	g_return_if_fail (cancellation != NULL)
+
 	return cancellation->cancelled;
 }
 

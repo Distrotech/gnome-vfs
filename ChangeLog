@@ -1,3 +1,11 @@
+2000-02-20  Mathieu Lacage <mathieu@advogato.org>
+
+	* libgnomevfs/gnome-vfs-configuration.c: plug memory leak in
+	module_path_element_free intorduced by someone who forgot
+	the arg element. Change a home-made check in g_return_if_fail.
+	* libgnomevfs/gnome-vfs-cancelation.c: Change home-made check
+	in g_return_if_fail.
+
 2000-02-18  Maciej Stachowiak  <mjs@eazel.com>
 
 	* modules/file-method.c (do_get_file_info,

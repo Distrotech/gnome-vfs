@@ -67,7 +67,7 @@ module_path_element_new (const char *method_name,
 	new = g_new (ModulePathElement, 1);
 	new->method_name = g_strdup (method_name);
 	new->path = g_strdup (path);
-	new->args = g_strdup(args);
+	new->args = g_strdup (args);
 
 	return new;
 }
@@ -77,6 +77,7 @@ module_path_element_free (ModulePathElement *module_path)
 {
 	g_free (module_path->method_name);
 	g_free (module_path->path);
+	g_free (module_path->args);
 	g_free (module_path);
 }
 
@@ -375,8 +376,7 @@ gnome_vfs_configuration_add_directory (const char *dir)
 	if(configuration)
 		return;
 
-	if(!strcmp(dir, GNOME_VFS_MODULE_CFGDIR))
-		return;
+	g_return_if_fail (strcmp(dir, GNOME_VFS_MODULE_CFGDIR)))
 
 	config_dirs = g_realloc(config_dirs, sizeof(char *) * (++num_config_dirs + 1));
 	config_dirs[num_config_dirs-1] = g_strdup(dir);
