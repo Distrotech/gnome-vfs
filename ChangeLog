@@ -1,5 +1,26 @@
 2001-05-01  Darin Adler  <darin@eazel.com>
 
+	Fixes to make documentation work again after the "pipe" method
+	fix.
+
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	* libgnomevfs/gnome-vfs-uri.c: (set_uri_element): Add more methods
+	to the list that are allowed to have ? characters in them. This is
+	required to make help work right now that we don't translate so
+	early. I'm starting to think it should be "file" that's special
+	cased.
+	(gnome_vfs_uri_new): Allow transformation.
+	(gnome_vfs_uri_new_private): Add a flag to control whether
+	transformation can happen.
+	
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_make_uri_canonical):
+	Don't do any transformation.
+	
+	* modules/translate-method.c: (tr_handle_exec),
+	(tr_uri_translate): Allow transformation.
+
+2001-05-01  Darin Adler  <darin@eazel.com>
+
 	reviewed by: Mike Fleming <mfleming@eazel.com>
 
 	Plugged the security hole created by the "pipe" method. It's now

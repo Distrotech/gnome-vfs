@@ -2,6 +2,7 @@
 /* gnome-vfs-uri.c - URI handling for the GNOME Virtual File System.
 
    Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2000, 2001 Eazel, Inc.
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -331,7 +332,11 @@ set_uri_element (GnomeVFSURI *uri,
 	 * meaning.
 	 */
 	if ( ! (strcmp (uri->method_string, "http") == 0 
-	        || strcmp (uri->method_string, "eazel-services") == 0 )) {
+	        || strcmp (uri->method_string, "eazel-services") == 0
+	        || strcmp (uri->method_string, "ghelp") == 0
+	        || strcmp (uri->method_string, "gnome-help") == 0
+	        || strcmp (uri->method_string, "help") == 0
+		)) {
 
 		escaped_text = gnome_vfs_escape_set (uri->text, ";?&=+$,");
 		g_free (uri->text);
@@ -428,13 +433,14 @@ parse_uri_substring (const gchar *substring, GnomeVFSURI *parent)
 GnomeVFSURI *
 gnome_vfs_uri_new (const gchar *text_uri)
 {
-	return gnome_vfs_uri_new_private (text_uri, FALSE, FALSE);
+	return gnome_vfs_uri_new_private (text_uri, FALSE, FALSE, TRUE);
 }
 
 GnomeVFSURI *
 gnome_vfs_uri_new_private (const gchar *text_uri,
 			   gboolean allow_unknown_methods,
-			   gboolean allow_unsafe_methods)
+			   gboolean allow_unsafe_methods,
+			   gboolean allow_transforms)
 {
 	GnomeVFSMethod *method;
 	GnomeVFSTransform *trans;
@@ -465,17 +471,19 @@ gnome_vfs_uri_new_private (const gchar *text_uri,
 	uri = (GnomeVFSURI *) toplevel;
 	uri->parent = NULL;
 
-	trans = gnome_vfs_transform_get (method_string);
-	if (trans != NULL && trans->transform) {
-		GnomeVFSContext *context;
-
-		context = gnome_vfs_context_new ();
-		(* trans->transform) (trans, method_scanner, &new_uri_string, context);
-		gnome_vfs_context_unref (context);
-		if (new_uri_string != NULL) {
-			toplevel->urn = g_strdup (text_uri);
-			g_free (method_string);
-			method_scanner = get_method_string (new_uri_string, &method_string);
+	if (allow_transforms) {
+		trans = gnome_vfs_transform_get (method_string);
+		if (trans != NULL && trans->transform) {
+			GnomeVFSContext *context;
+			
+			context = gnome_vfs_context_new ();
+			(* trans->transform) (trans, method_scanner, &new_uri_string, context);
+			gnome_vfs_context_unref (context);
+			if (new_uri_string != NULL) {
+				toplevel->urn = g_strdup (text_uri);
+				g_free (method_string);
+				method_scanner = get_method_string (new_uri_string, &method_string);
+			}
 		}
 	}
 	
