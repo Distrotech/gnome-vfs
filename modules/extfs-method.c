@@ -39,6 +39,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <libgnome/libgnome.h>
+
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
@@ -458,6 +460,7 @@ do_truncate (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 read_directory_list (FILE *p,
 		     GList **list_return,
+		     GnomeVFSFileInfoOptions info_options,
 		     GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult result;
@@ -502,6 +505,12 @@ read_directory_list (FILE *p,
 		info->name = g_strdup (g_basename (name));
 		info->symlink_name = symlink_name;
 
+		/* Notice that we always do stupid, fast MIME type checking.
+                   Real checking based on contents would be too expensive.  */
+		if (info_options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
+			info->mime_type = g_strdup (gnome_mime_type
+						    (info->name));
+
 		entry = g_new (ExtfsDirectoryEntry, 1);
 		entry->info = info;
 		entry->directory = get_dirname (name);
@@ -519,7 +528,7 @@ read_directory_list (FILE *p,
 static GnomeVFSResult
 do_open_directory (GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri,
-		   GnomeVFSFileInfoOptions options,
+		   GnomeVFSFileInfoOptions info_options,
 		   const GList *meta_keys,
 		   const GnomeVFSDirectoryFilter *filter,
 		   GnomeVFSCancellation *cancellation)
@@ -558,7 +567,8 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 		if (pipe == NULL)
 			return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-		result = read_directory_list (pipe, &list, cancellation);
+		result = read_directory_list (pipe, &list, info_options,
+					      cancellation);
 
 		if (pclose (pipe) == 0 && result == GNOME_VFS_OK) {
 			directory = extfs_directory_new (uri->parent, list);
@@ -575,7 +585,7 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 	handle->directory = directory;
 	handle->prev_position = NULL;
 	handle->meta_keys = meta_keys; /* FIXME currently unused FIXME strdup? */
-	handle->info_options = options; /* FIXME currently unused */
+	handle->info_options = info_options; /* FIXME currently unused */
 	handle->filter = filter;
 
 	/* Remove all leading slashes, as they don't matter for us.  */

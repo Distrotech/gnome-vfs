@@ -1,5 +1,11 @@
 1999-10-19  Ettore Perazzoli  <ettore@gnu.org>
 
+	* modules/extfs-method.c (read_directory_list): New parameter
+	`info_options'.  If the `GNOME_VFS_FILE_INFO_GETMIMETYPE' bit is
+	set, set the MIME type in the file information struct according to
+	the file name.
+	(do_open_directory): Updated accordingly.
+
 	* modules/ftp-method.c: Do not #include "parse.h" anymore.
 
 	* libgnomevfs/gnome-vfs-cancellation.c [HAVE_CONFIG_H]: #include
