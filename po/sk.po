@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-11-07 14:27+0100\n"
-"PO-Revision-Date: 2000-11-07 14:27CET\n"
+"POT-Creation-Date: 2000-11-14 14:26+0100\n"
+"PO-Revision-Date: 2000-11-14 14:27CET\n"
 "Last-Translator: Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@rak.isternet.sk>\n"
 "MIME-Version: 1.0\n"
@@ -247,7 +247,12 @@ msgstr "Meno príli¹ dlhé"
 msgid "Service not available"
 msgstr "Slu¾ba nie je k dispozícii"
 
-#: libgnomevfs/gnome-vfs-result.c:140
+#. GNOME_VFS_ERROR_SERVICE_OBSOLETE
+#: libgnomevfs/gnome-vfs-result.c:78
+msgid "Request obsoletes service's data"
+msgstr "Po¾iadavka zneplatòuje dáta slu¾by"
+
+#: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
 msgstr "Neznáma chyba"
 
@@ -530,68 +535,83 @@ msgstr "Mô¾e otvori» URI"
 msgid "Edit Application"
 msgstr "Upravi» aplikáciu"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:349
+#: mime-type-capplet/nautilus-mime-type-capplet.c:356
 msgid "Change Icon"
 msgstr "Zmeni» ikonu"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:361
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1216
+#: mime-type-capplet/nautilus-mime-type-capplet.c:368
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1346
 msgid "Mime Type"
 msgstr "Typ mime"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:382
+#: mime-type-capplet/nautilus-mime-type-capplet.c:389
 msgid "Add new Mime type..."
 msgstr "Pridá nový typ mime..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:389
+#: mime-type-capplet/nautilus-mime-type-capplet.c:396
 msgid "Delete this Mime type..."
 msgstr "Vyma¾e tento typ mime..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:404
+#. Set up top right area.
+#: mime-type-capplet/nautilus-mime-type-capplet.c:401
+msgid "Default Action:"
+msgstr "©tandardná akcia:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:411
 msgid "Use Viewer"
 msgstr "Pou¾i» zobrazovaè"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:410
+#: mime-type-capplet/nautilus-mime-type-capplet.c:417
 msgid "Open With Application"
 msgstr "Otvori» aplikáciou"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:422
+#: mime-type-capplet/nautilus-mime-type-capplet.c:429
 msgid "Edit List"
 msgstr "Upravi» zoznam"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:451
+#. Set up bottom right area.
+#: mime-type-capplet/nautilus-mime-type-capplet.c:435
+msgid "Extensions:"
+msgstr "Prípony:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:458
 msgid "Add"
 msgstr "Prida»"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:454
+#: mime-type-capplet/nautilus-mime-type-capplet.c:461
 msgid "Remove"
 msgstr "Odstráni»"
 
+#: mime-type-capplet/nautilus-mime-type-capplet.c:525
+msgid "No Description"
+msgstr "Bez popisu"
+
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:640
-#: mime-type-capplet/nautilus-mime-type-capplet.c:784
-#: mime-type-capplet/nautilus-mime-type-capplet.c:919
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1108
+#: mime-type-capplet/nautilus-mime-type-capplet.c:648
+#: mime-type-capplet/nautilus-mime-type-capplet.c:793
+#: mime-type-capplet/nautilus-mime-type-capplet.c:928
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1138
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1238
 msgid "None"
 msgstr "®iadna"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1215
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1345
 msgid "Description"
 msgstr "Popis"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1217
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1347
 msgid "Extension"
 msgstr "Prípona"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1218
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1348
 msgid "Action"
 msgstr "Akcia"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:267
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:272
 msgid "Can't find an hbox, using a normal file selection"
 msgstr "Nemô¾em nájs» hbox, pou¾ijem normálny výber súboru"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:273
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:278
 msgid "Preview"
 msgstr "Uká¾ka"
 
