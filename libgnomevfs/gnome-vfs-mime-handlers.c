@@ -81,6 +81,11 @@ static GList *        copy_str_list                              (GList         
 const char *
 gnome_vfs_mime_get_description (const char *mime_type)
 {
+	/* We use a different folder type than the freedesktop spec */
+	if (strcmp (mime_type, "x-directory/normal") == 0) {
+		mime_type = "inode/directory";
+	}
+		
 	return gnome_vfs_mime_get_value (mime_type, "description");
 }
 

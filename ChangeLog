@@ -1,3 +1,8 @@
+2005-02-24  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c (gnome_vfs_mime_get_description):
+	Special case folders to get the right description.
+
 2005-02-23  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_read_entire_file):
