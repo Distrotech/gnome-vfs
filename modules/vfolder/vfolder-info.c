@@ -1363,10 +1363,12 @@ integrate_writedir_entry_changed (Folder      *folder,
 	if (entry) {
 		real_uri = entry_get_real_uri (entry);
 
-		if (gnome_vfs_uri_equal (real_uri, changed_uri))
+		if (gnome_vfs_uri_equal (real_uri, changed_uri)) {
+			entry_set_dirty (entry);
 			folder_emit_changed (folder, 
 					     displayname,
 					     GNOME_VFS_MONITOR_EVENT_CHANGED);
+		}
 
 		gnome_vfs_uri_unref (real_uri);
 	}
@@ -1392,7 +1394,8 @@ writedir_monitor_cb (GnomeVFSMonitorHandle    *handle,
 
 	/* Operating on the whole directory, ignore */
 	if (!strcmp (monitor_uri, info_uri) ||
-	    !vfolder_check_extension (info_uri, ".desktop"))
+	    (!vfolder_check_extension (info_uri, ".desktop") && 
+	     !vfolder_check_extension (info_uri, ".directory")))
 		return;
 
 	switch (event_type) {

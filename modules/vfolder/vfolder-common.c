@@ -449,6 +449,8 @@ folder_new (VFolderInfo *info, const gchar *name, gboolean user_private)
 	folder->info         = info;
 	folder->refcnt       = 1;
 
+	folder->dirty = TRUE;
+
 	return folder;
 }
 
@@ -477,6 +479,7 @@ unalloc_exclude (gpointer key, gpointer val, gpointer user_data)
 static void
 folder_reset_entries (Folder *folder)
 {
+	/* entries */
 	g_slist_foreach (folder->entries, (GFunc) entry_dealloc, NULL);
 	g_slist_foreach (folder->entries, (GFunc) entry_unref, NULL);
 	g_slist_free (folder->entries);
@@ -518,6 +521,7 @@ folder_unref (Folder *folder)
 			g_hash_table_destroy (folder->includes_ht);
 		g_slist_free (folder->includes);
 
+		/* subfolders */
 		g_slist_foreach (folder->subfolders, 
 				 (GFunc) folder_unref, 
 				 NULL);
@@ -536,30 +540,6 @@ static gboolean read_one_extended_entry (Folder           *folder,
 					 const gchar      *file_uri, 
 					 GnomeVFSFileInfo *file_info);
 
-static gboolean read_one_info_entry_pool (Folder *folder, Entry *entry);
-
-static Entry *
-get_entry_for_real_uri (Folder *folder, GnomeVFSURI *uri)
-{
-	GSList *iter;
-	Entry *entry = NULL;
-
-	for (iter = folder->entries; iter; iter = iter->next) {
-		Entry *eiter = iter->data;
-		GnomeVFSURI *euri = entry_get_real_uri (eiter);
-		
-		if (gnome_vfs_uri_equal (uri, euri)) {
-			gnome_vfs_uri_unref (euri);
-			entry = eiter;
-			break;
-		}
-
-		gnome_vfs_uri_unref (euri);
-	}
-
-	return entry;
-}
-
 static void
 folder_extend_monitor_cb (GnomeVFSMonitorHandle    *handle,
 			  const gchar              *monitor_uri,
@@ -568,10 +548,16 @@ folder_extend_monitor_cb (GnomeVFSMonitorHandle    *handle,
 			  gpointer                  user_data)
 {
 	Folder *folder = user_data;
+	FolderChild child;
 	Entry *entry = NULL;
 	GnomeVFSFileInfo *file_info;
 	GnomeVFSResult result;
-	GnomeVFSURI *uri;
+	GnomeVFSURI *uri, *entry_uri;
+	gchar *filename;
+
+	/* Operating on the whole directory, ignore */
+	if (!strcmp (monitor_uri, info_uri))
+		return;
 
 	g_print ("*** Exdended folder %s ('%s') monitor %s%s%s called! ***\n",
 		 folder->name,
@@ -580,36 +566,65 @@ folder_extend_monitor_cb (GnomeVFSMonitorHandle    *handle,
 		 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED":"",
 		 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":"");
 
-	/* Operating on the whole directory, ignore */
-	if (!strcmp (monitor_uri, info_uri))
-		return;
-
 	uri = gnome_vfs_uri_new (info_uri);
+	filename = gnome_vfs_uri_extract_short_name (uri);
 
 	VFOLDER_INFO_WRITE_LOCK (folder->info);
 
 	switch (event_type) {
 	case GNOME_VFS_MONITOR_EVENT_CHANGED:
-		entry = get_entry_for_real_uri (folder, uri);
-		if (!entry)
-			break;
+		/* 
+		 * We only care about entries here, as the extend_monitor_cb on
+		 * the subfolders themselves should take care of emitting
+		 * changes.
+		 */
+		entry = folder_get_entry (folder, filename);
+		if (entry) {
+			entry_uri = entry_get_real_uri (child.entry);
 
-		entry_set_dirty (entry);
+			if (gnome_vfs_uri_equal (entry_uri, uri)) {
+				entry_set_dirty (entry);
+				folder_emit_changed (
+					folder, 
+					entry_get_displayname (entry),
+					GNOME_VFS_MONITOR_EVENT_CHANGED);
+			}
 
-		/* From the parent, blindly emit changed */
-		folder_emit_changed (folder, 
-				     entry_get_displayname (entry),
-				     GNOME_VFS_MONITOR_EVENT_CHANGED);
+			gnome_vfs_uri_unref (entry_uri);
+		}
 		break;
 	case GNOME_VFS_MONITOR_EVENT_DELETED:
-		entry = get_entry_for_real_uri (folder, uri);
-		if (!entry)
-			break;
+		folder_get_child (folder, filename, &child);
 
-		folder_emit_changed (folder, 
-				     entry_get_displayname (entry),
-				     GNOME_VFS_MONITOR_EVENT_DELETED);
-		folder_remove_entry (folder, entry);
+		/* 
+		 * FIXME: should look for replacement in info's entry
+		 * pool here, before sending event 
+		 */
+
+		if (child.type == DESKTOP_FILE) {
+			entry_uri = entry_get_real_uri (child.entry);
+
+			if (gnome_vfs_uri_equal (uri, entry_uri)) {
+				folder_remove_entry (folder, child.entry);
+				folder_emit_changed (
+					folder, 
+					filename,
+					GNOME_VFS_MONITOR_EVENT_DELETED);
+			}
+
+			gnome_vfs_uri_unref (entry_uri);
+		} 
+		else if (child.type == FOLDER) {
+			if (folder_is_user_private (child.folder)) {
+				folder_set_dirty (child.folder);
+			} else {
+				folder_remove_subfolder (folder, child.folder);
+				folder_emit_changed (
+					folder, 
+					filename,
+					GNOME_VFS_MONITOR_EVENT_DELETED);
+			}
+		}
 		break;
 	case GNOME_VFS_MONITOR_EVENT_CREATED:
 		file_info = gnome_vfs_file_info_new ();
@@ -636,6 +651,7 @@ folder_extend_monitor_cb (GnomeVFSMonitorHandle    *handle,
 	VFOLDER_INFO_WRITE_UNLOCK (folder->info);
 
 	gnome_vfs_uri_unref (uri);
+	g_free (filename);
 }
 
 gboolean
@@ -686,8 +702,8 @@ create_dot_directory_entry (Folder *folder)
 		entry = entry_new (folder->info, 
 				   dot_directory, 
 				   ".directory", 
-				   TRUE /*user_private*/,
-				   1000 /*weight*/);
+				   FALSE /*user_private*/,
+				   950   /*weight*/);
 	} else {
 		gchar *dirpath = NULL;
 		gchar *full_path;
@@ -706,8 +722,8 @@ create_dot_directory_entry (Folder *folder)
 			entry = entry_new (folder->info,
 					   full_path,
 					   ".directory",
-					   TRUE /*user_private*/,
-					   1000 /*weight*/);
+					   FALSE /*user_private*/,
+					   950   /*weight*/);
 			g_free (full_path);
 		}
 	}
@@ -997,10 +1013,24 @@ folder_emit_changed (Folder                   *folder,
 }
 
 static void
+remove_extended_subfolders (Folder *folder)
+{
+	GSList *iter, *copy;
+	Folder *sub;
+
+	copy = g_slist_copy ((GSList *) folder_list_subfolders (folder));
+	for (iter = copy; iter; iter = iter->next) {
+		sub = iter->data;
+		if (!folder_is_user_private (sub))
+			folder_remove_subfolder (folder, sub);
+	}
+	g_slist_free (copy);
+}
+
+static void
 folder_reload_if_needed (Folder *folder)
 {
 	gboolean changed = FALSE;
-	GSList *iter;
 
 	if (!folder->dirty || folder->loading)
 		return;
@@ -1012,21 +1042,10 @@ folder_reload_if_needed (Folder *folder)
 	folder->info->loading = TRUE;
 
 	folder_reset_entries (folder);
+	remove_extended_subfolders (folder);
 
 	if (folder_get_desktop_file (folder))
 		changed |= create_dot_directory_entry (folder);
-
-	/* Handle excluded subfolders */
-	for (iter = folder->subfolders; iter; iter = iter->next) {
-		Folder *sub = iter->data;
-
-		if (is_excluded (folder, 
-				 folder_get_extend_uri (sub),
-				 folder_get_name (sub))) {
-			folder_remove_subfolder (folder, sub);
-			iter = folder->subfolders;
-		}
-	}
 
 	if (folder->includes)
 		changed |= read_includes (folder);
@@ -1433,41 +1452,46 @@ folder_list_subfolders (Folder *parent)
 void
 folder_remove_subfolder (Folder *parent, Folder *child)
 {
-	if (child->parent != parent || !parent->subfolders_ht)
+	const gchar *name;
+	Folder *existing;
+
+	if (!parent->subfolders_ht)
 		return;
 
-	g_hash_table_remove (parent->subfolders_ht, folder_get_name (child));
-	parent->subfolders = g_slist_remove (parent->subfolders, child);
-
-	folder_unref (child);
-
-	vfolder_info_set_dirty (parent->info);
+	name = folder_get_name (child);
+	existing = g_hash_table_lookup (parent->subfolders_ht, name);
+	if (existing) {
+		g_hash_table_remove (parent->subfolders_ht, name);
+		parent->subfolders = g_slist_remove (parent->subfolders, 
+						     existing);
+		existing->parent = NULL;
+		folder_unref (existing);
+		vfolder_info_set_dirty (parent->info);
+	}
 }
 
 void
 folder_add_subfolder (Folder *parent, Folder *child)
 {
-	Folder *iter;
-
-	if (child->parent == parent)
-		return;
-
 	if (child->user_private && !parent->has_user_private_subfolders) {
+		Folder *iter;
 		for (iter = parent; iter != NULL; iter = iter->parent)
 			iter->has_user_private_subfolders = TRUE;
 	}
 
+	folder_ref (child);
+	child->parent = parent;
+
 	if (!parent->subfolders_ht)
 		parent->subfolders_ht = g_hash_table_new (g_str_hash, 
 							  g_str_equal);
+	else
+		folder_remove_subfolder (parent, child);
 
 	g_hash_table_insert (parent->subfolders_ht, 
 			     (gchar *) folder_get_name (child),
 			     child);
 	parent->subfolders = g_slist_append (parent->subfolders, child);
-
-	folder_ref (child);
-	child->parent = parent;
 
 	vfolder_info_set_dirty (parent->info);
 }

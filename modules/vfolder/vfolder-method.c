@@ -1017,11 +1017,14 @@ do_remove_directory_unlocked (VFolderInfo *info,
 		return GNOME_VFS_ERROR_READ_ONLY;
 
 	if (folder->is_link) {
-		GnomeVFSURI *real_uri, *new_uri;
+		gchar *uristr;
+		GnomeVFSURI *new_uri;
 
-		real_uri = gnome_vfs_uri_new (folder_get_extend_uri (folder));
-		new_uri = gnome_vfs_uri_append_file_name (real_uri, vuri->file);
-		gnome_vfs_uri_unref (real_uri);
+		uristr = vfolder_build_uri (folder_get_extend_uri (folder),
+					    vuri->file,
+					    NULL);
+		new_uri = gnome_vfs_uri_new (uristr);
+		g_free (uristr);
 
 		/* Remove from the parent as well as in our .vfolder-info */
 		result = 
@@ -1302,8 +1305,8 @@ do_move (GnomeVFSMethod *method,
 		folder_remove_subfolder (old_parent, old_child.folder);
 		folder_add_exclude (old_parent, old_vuri.file);
 
-		folder_set_name (old_child.folder, new_vuri.file);
 		folder_make_user_private (old_child.folder);
+		folder_set_name (old_child.folder, new_vuri.file);
 		folder_add_subfolder (new_parent, old_child.folder);
 
 		folder_unref (old_child.folder);
