@@ -398,6 +398,7 @@ main (int argc, char **argv)
 	test_make_canonical_path ("a/../../d", "../d");
 	test_make_canonical_path ("a/b/.././.././c", "c");
 	test_make_canonical_path ("a/.././.././b/c", "../b/c");
+	test_make_canonical_path ("\\", "\\");
 
 	test_uri_to_string ("", "NULL", GNOME_VFS_URI_HIDE_NONE);
 

@@ -55,32 +55,12 @@
 static int
 find_next_slash (const char *path, int current_offset)
 {
-	int i;
-	gboolean escaped;
-
-	escaped = FALSE;
-	i = current_offset;
-
-	while (path[i]) {
-		if (escaped) {
-			escaped = FALSE;
-			continue;
-		}
-		if (path[i] == '\\') {
-			escaped = TRUE;
-			continue;
-		}
-		if (path[i] == GNOME_VFS_URI_PATH_CHR) {
-			break;
-		}
-		i++;
-	}
-
-	if (path[i] == '\0') {
-		return -1;
-	}
-
-	return i;
+	const char *match;
+	
+	g_assert (current_offset <= strlen (path));
+	
+	match = strchr (path + current_offset, GNOME_VFS_URI_PATH_CHR);
+	return match == NULL ? -1 : match - path;
 }
 
 static int

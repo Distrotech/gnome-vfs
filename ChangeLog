@@ -1,3 +1,15 @@
+2001-02-23  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Mike Fleming <mfleming@eazel.com>
+
+	Fix 6391 nautilus crashes on any \ in the homedir preference
+
+	* test/test-uri.c: (main):
+	Add a test that broke before the fix.
+	
+	* libgnomevfs/gnome-vfs-private-utils.c: (find_next_slash):
+	Remove the confused '\' unescaping.
+
 2001-02-23  Pavel Cisler <pavel@eazel.com>
 
 	reviewed by: Gene Ragan <gzr@eazel.com>
