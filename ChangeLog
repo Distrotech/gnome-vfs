@@ -1,3 +1,9 @@
+2002-11-04  bugzilla-gnome@thewrittenword.com
+	
+	* configure.in:
+	* libgnomevfs/gnome-vfs-method.c: check whether to use seteuid/setegid
+	  or setresuid/setregid (fixes #96078)
+
 2002-11-04  Jens Elkner <elkner@linofee.org>
 
 	* configure.in: fixes --with-openssl-includes
