@@ -28,7 +28,8 @@ modules_LTLIBRARIES =				\
 	libhttp.la				\
 	libbzip2.la				\
 	libgzip.la				\
-	libftp.la
+	libftp.la				\
+	libvfs-pipe.la
 
 modules_DATA =					\
 	modules.conf
@@ -104,3 +105,10 @@ libhttp_la_SOURCES =				\
 	http-method.h
 libhttp_la_LDFLAGS = $(module_flags)
 libhttp_la_LIBADD  = $(GLIB_LIBS) -lghttp
+
+libvfs_pipe_la_SOURCES =			\
+	pipe-method.c				\
+	pipe-method.h
+libvfs_pipe_la_LDFLAGS = $(module_flags)
+libvfs_pipe_la_LIBADD  = $(GLIB_LIBS)
+
