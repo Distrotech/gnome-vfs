@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.0\n"
-"POT-Creation-Date: 2000-12-31 10:10+0100\n"
-"PO-Revision-Date: 2000-12-31 10:11+01:00\n"
+"POT-Creation-Date: 2001-01-18 14:57+0100\n"
+"PO-Revision-Date: 2001-01-18 14:57+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -255,26 +255,26 @@ msgstr "Forespørsel ugyldiggjør tjenestens data"
 msgid "Unknown error"
 msgstr "Ukjent feil"
 
-#: libgnomevfs/gnome-vfs-utils.c:64
+#: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:66
+#: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
 msgstr "%u bytes"
 
-#: libgnomevfs/gnome-vfs-utils.c:73
+#: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:77
+#: libgnomevfs/gnome-vfs-utils.c:78
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:81
+#: libgnomevfs/gnome-vfs-utils.c:82
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
@@ -406,23 +406,23 @@ msgstr "Kan ikke drepe GNOME::VFS::Slave %s -- unntak %s"
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "Kan ikke drepe GNOME::VFS::Slave (IOR ukjent) -- unntak %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:157
-msgid "Error writing to the wakeup GnomeVFSJob channel."
-msgstr "Feil under skriving til oppvåknings GnomeVFSJob kanalen."
-
-#: libgnomevfs-pthread/gnome-vfs-job.c:762
-#: libgnomevfs-pthread/gnome-vfs-job.c:1672
+#: libgnomevfs-pthread/gnome-vfs-job.c:690
 #, c-format
-msgid "Unknown job ID %d"
-msgstr "Ukjent jobb ID %d"
+msgid "Unknown op type %u"
+msgstr "Ukjent op-type %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1061
-#: libgnomevfs-pthread/gnome-vfs-job.c:1189
+#: libgnomevfs-pthread/gnome-vfs-job.c:976
+#: libgnomevfs-pthread/gnome-vfs-job.c:1121
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke opprette rør for åpen GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1705
+#: libgnomevfs-pthread/gnome-vfs-job.c:1727
+#, c-format
+msgid "Unknown job ID %u"
+msgstr "Ukjent jobb-ID %u"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:1750
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
 
@@ -559,7 +559,7 @@ msgid "Edit Application"
 msgstr "Redigér applikasjon"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:541
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1520
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1532
 msgid "Mime Type"
 msgstr "MIME-type"
 
@@ -587,32 +587,28 @@ msgstr "Åpne med applikasjon"
 msgid "Edit List"
 msgstr "Rediger liste"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:612
+#: mime-type-capplet/nautilus-mime-type-capplet.c:618
 msgid "Add new Mime type..."
 msgstr "Legg til ny MIME-type..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:618
+#: mime-type-capplet/nautilus-mime-type-capplet.c:624
 msgid "Delete this Mime type..."
 msgstr "Slett denne MIME-typen..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:629
+#: mime-type-capplet/nautilus-mime-type-capplet.c:635
 msgid "Revert to System Defaults"
 msgstr "Gå tilbake til standardverdier"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:687
+#: mime-type-capplet/nautilus-mime-type-capplet.c:693
 msgid "No Description"
 msgstr "Ingen beskrivelse"
 
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-#: mime-type-capplet/nautilus-mime-type-capplet.c:962
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1127
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1313
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1435
+#: mime-type-capplet/nautilus-mime-type-capplet.c:823
+#: mime-type-capplet/nautilus-mime-type-capplet.c:968
 msgid "None"
 msgstr "Ingen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1058
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1064
 msgid ""
 "Reverting to system settings\n"
 "will lose all your personal \n"
@@ -624,23 +620,37 @@ msgstr ""
 "alle personlige MIME-innstillinger.\n"
 "Gå tilbake til systeminnstillinger?\n"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1519
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1133
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1321
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1445
+msgid "none"
+msgstr "ingen"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1170
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1351
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1481
+#, c-format
+msgid "View as %s"
+msgstr "Vis som %s"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1531
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1521
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1533
 msgid "Extension"
 msgstr "Filtype"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1522
-msgid "Action"
-msgstr "Handling"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1534
+msgid "Default Action"
+msgstr "Standard handling"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:272
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:255
 msgid "Can't find an hbox, using a normal file selection"
 msgstr "Kan ikke finne en hboks, bruker normalt filvalg"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:278
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:261
 msgid "Preview"
 msgstr "Forhåndsvis"
 
@@ -649,22 +659,22 @@ msgstr "Forhåndsvis"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukjent GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1180
+#: modules/http-method.c:1184
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s å hente"
 
-#: modules/http-method.c:1574
+#: modules/http-method.c:1589
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:1818
+#: modules/http-method.c:1833
 #, c-format
 msgid "%s of %s read"
 msgstr "%s av %s lest"
 
-#: modules/http-method.c:1821
+#: modules/http-method.c:1836
 #, c-format
 msgid "%s read"
 msgstr "%s lest"
@@ -732,3 +742,9 @@ msgstr "Vis:"
 #: test/gnome-file-selection/gnome-file-selection.c:887
 msgid "Show dotfiles"
 msgstr "Vis dotfiler"
+
+#~ msgid "Error writing to the wakeup GnomeVFSJob channel."
+#~ msgstr "Feil under skriving til oppvåknings GnomeVFSJob kanalen."
+
+#~ msgid "Action"
+#~ msgstr "Handling"
