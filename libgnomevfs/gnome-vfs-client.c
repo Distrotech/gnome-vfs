@@ -21,13 +21,27 @@ static void activate_daemon (GnomeVFSClient *client);
 
 static GnomeVFSClient *the_client = NULL;
 G_LOCK_DEFINE_STATIC (the_client);
+
+/* These are used for client calls to avoid reentrancy except for
+ * client_poa objects, which are used for client_calls to allow
+ * auth callbacks on the main loop.
+ */
 static ORBitPolicy *client_policy = NULL;
-PortableServer_POA client_poa;
+static PortableServer_POA client_poa;
 
 static void
 gnome_vfs_client_finalize (GObject *object)
 {
 	GnomeVFSClient *client = GNOME_VFS_CLIENT (object);
+
+	if (client->priv->async_daemon != CORBA_OBJECT_NIL) {
+		CORBA_Object_release (client->priv->async_daemon, NULL);
+		client->priv->async_daemon = CORBA_OBJECT_NIL;
+	}
+	if (client->priv->daemon != CORBA_OBJECT_NIL) {
+		CORBA_Object_release (client->priv->daemon, NULL);
+		client->priv->daemon = CORBA_OBJECT_NIL;
+	}
 	
 	g_free (client->priv);
 	
@@ -86,6 +100,7 @@ daemon_connection_broken (gpointer connection,
 }
 
 
+/* Run with the the_daemon lock held */
 static void
 activate_daemon (GnomeVFSClient *client)
 {
@@ -103,7 +118,10 @@ activate_daemon (GnomeVFSClient *client)
 					  client_policy);
 
 		CORBA_exception_init (&ev);
+		
+		/* Should not deadlock due to disabled reentrancy */
 		GNOME_VFS_Daemon_registerClient (client->priv->daemon, BONOBO_OBJREF (client), &ev);
+		
 		/* If the registration fails for some reason we release the
 		 * daemon object and return NIL. */
 		if (BONOBO_EX (&ev)) {
@@ -178,11 +196,11 @@ _gnome_vfs_client_get_async_daemon (GnomeVFSClient *client)
 			if (client->priv->async_daemon == CORBA_OBJECT_NIL) {
 				CORBA_exception_free (&ev);
 				g_warning ("Failed to get async daemon interface");
+			} else {
+				/* Don't allow reentrancy on object */
+				ORBit_object_set_policy  ((CORBA_Object) client->priv->async_daemon,
+							  client_policy);
 			}
-			/* Don't allow reentrancy on object */
-			ORBit_object_set_policy  ((CORBA_Object) client->priv->async_daemon,
-						  client_policy);
-			
 		}
 	}
 	
@@ -211,20 +229,12 @@ _gnome_vfs_get_client_poa (void)
 GnomeVFSClient *
 _gnome_vfs_get_client (void)
 {
-	CORBA_PolicyList    policies;
-	CORBA_Environment   ev[1];
-
 	/* DAEMON-TODO: Policies and "allow" isn't actually implemented in ORBit2 yet */
 	
 	G_LOCK (the_client);
 	if (the_client == NULL) {
-		policies._length = 0;
-		policies._buffer = NULL;
-		
-		CORBA_exception_init (ev);
-		client_poa = bonobo_poa_new_from (bonobo_poa (),
-						  "GnomeVFSClientPOA", &policies, ev);
-		if (ev->_major != CORBA_NO_EXCEPTION) {
+		client_poa = bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_OBJECT);
+		if (client_poa == CORBA_OBJECT_NIL) {
 			g_error ("Can't allocate gnome-vfs client POA");
 			G_UNLOCK (the_client);
 			return NULL;

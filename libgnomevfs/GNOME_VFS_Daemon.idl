@@ -32,6 +32,21 @@ module GNOME {
 		};
 		
 		typedef sequence<FileInfo> FileInfoList;
+
+
+		/* Standard module callbacks: */
+		
+		struct ModuleCallbackAuthenticationIn {
+			string uri;
+			string realm;
+			boolean previous_attempt_failed;
+			unsigned short auth_type;
+		};
+		struct ModuleCallbackAuthenticationOut {
+			string username;
+			boolean no_username;
+			string password;
+		};
 		
 		/* Reference to a file/directory monitor object in
 		   the server. When this monitor triggers the
@@ -63,12 +78,9 @@ module GNOME {
 		 * of all outstanding daemon calls to cancel.
 		 */
 		interface ClientCall : Bonobo::Unknown {
-			void SimpleAuthCallback (in string uri,
-						 in string realm,
-						 in boolean previous_attempt_failed,
-						 in long auth_type,
-						 out string username,
-						 out string password);
+			boolean ModuleCallbackInvoke (in string name,
+						      in any module_in,
+						      out any module_out);
 		};
 
 

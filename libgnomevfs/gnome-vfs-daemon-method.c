@@ -27,7 +27,6 @@
 #include "gnome-vfs-daemon-method.h"
 #include <string.h>
 
-
 static GnomeVFSResult
 do_open (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle **method_handle,
@@ -43,6 +42,8 @@ do_open (GnomeVFSMethod *method,
 	char *uri_str;
 	GnomeVFSClientCall *client_call;
 
+	g_print ("do_open() - thread %p\n", g_thread_self());
+	
 	client = _gnome_vfs_get_client ();
 	daemon = _gnome_vfs_client_get_async_daemon (client);
 	
@@ -83,6 +84,7 @@ do_open (GnomeVFSMethod *method,
 
 	CORBA_Object_release (daemon, NULL);
 					  
+	g_print ("end do_open() res: %d, handle: %p - thread %p\n", res, handle, g_thread_self());
 	return res;
 }
 
@@ -114,7 +116,9 @@ do_close (GnomeVFSMethod *method,
 		res = GNOME_VFS_ERROR_INTERNAL;
 	}
 
-	CORBA_Object_release ((GNOME_VFS_DaemonHandle) method_handle, NULL);
+	if (res == GNOME_VFS_OK) {
+		CORBA_Object_release ((GNOME_VFS_DaemonHandle) method_handle, NULL);
+	}
 	
 	return res;
 }

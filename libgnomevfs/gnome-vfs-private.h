@@ -25,9 +25,12 @@
 #ifndef GNOME_VFS_PRIVATE_H
 #define GNOME_VFS_PRIVATE_H
 
+#include <glib.h>
+
 #define GNOME_VFS_MODULE_DIR     LIBDIR "/gnome-vfs-2.0/modules"
 #define GNOME_VFS_MODULE_CFGDIR  SYSCONFDIR "/gnome-vfs-2.0/modules"
 
 void gnome_vfs_set_is_daemon (void);
+gboolean gnome_vfs_get_is_daemon (void);
 
 #endif /* GNOME_VFS_PRIVATE_H */

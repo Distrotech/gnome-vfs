@@ -167,6 +167,8 @@ job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 		JOB_DEBUG (("Barfing on oneway cancel %u (%d) type '%s'",
 			    GPOINTER_TO_UINT (notify_result->job_handle),
 			    job->op->type, JOB_DEBUG_TYPE (job->op->type)));
+		/* TODO: We can leak handle here, if an open succeded.
+		 * See bug #123472 */
 		_gnome_vfs_job_destroy_notify_result (notify_result);
 	}
 }
@@ -391,13 +393,13 @@ _gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 	JOB_DEBUG (("%u", notify_result->callback_id));
 
 	switch (notify_result->type) {
-	case GNOME_VFS_OP_CLOSE:
+	case GNOME_VFS_OP_OPEN:
+	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
 	case GNOME_VFS_OP_CREATE:
 	case GNOME_VFS_OP_CREATE_AS_CHANNEL:
 	case GNOME_VFS_OP_CREATE_SYMBOLIC_LINK:
+	case GNOME_VFS_OP_CLOSE:
 	case GNOME_VFS_OP_WRITE:
-	case GNOME_VFS_OP_OPEN:
-	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
 	case GNOME_VFS_OP_READ:
 		g_free (notify_result);
 		break;

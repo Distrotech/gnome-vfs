@@ -66,6 +66,12 @@ gnome_vfs_set_is_daemon (void)
 	gnome_vfs_is_daemon = TRUE;
 }
 
+gboolean
+gnome_vfs_get_is_daemon (void)
+{
+	return gnome_vfs_is_daemon;
+}
+
 static gboolean
 init_hash_table (void)
 {

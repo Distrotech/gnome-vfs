@@ -6,6 +6,7 @@
 #include "gnome-vfs-client-call.h"
 #include "gnome-vfs-cancellable-ops.h"
 #include "gnome-vfs-cancellation-private.h"
+#include "gnome-vfs-module-callback-private.h"
 
 BONOBO_CLASS_BOILERPLATE_FULL(
 	GnomeVFSClientCall,
@@ -13,6 +14,23 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	GNOME_VFS_ClientCall,
 	BonoboObject,
 	BONOBO_TYPE_OBJECT);
+
+
+static GStaticPrivate daemon_client_call_private = G_STATIC_PRIVATE_INIT;
+
+
+GNOME_VFS_ClientCall
+_gnome_vfs_daemon_get_current_daemon_client_call (void)
+{
+	return (GNOME_VFS_ClientCall) g_static_private_get (&daemon_client_call_private);
+}
+
+void
+_gnome_vfs_daemon_set_current_daemon_client_call (GNOME_VFS_ClientCall client_call)
+{
+	g_static_private_set (&daemon_client_call_private, client_call, NULL);
+}
+
 
 static GStaticPrivate client_call_private = G_STATIC_PRIVATE_INIT;
 
@@ -37,18 +55,14 @@ gnome_vfs_client_call_instance_init (GnomeVFSClientCall *client_call)
 	client_call->delay_finish = FALSE;
 }
 
-static void
-simple_auth_callback (PortableServer_Servant _servant,
-		      const CORBA_char * uri,
-		      const CORBA_char * realm,
-		      const CORBA_boolean previous_attempt_failed,
-		      const CORBA_long auth_type,
-		      CORBA_string * username,
-		      CORBA_string * password,
-		      CORBA_Environment * ev)
+static CORBA_boolean
+module_callback_invoke (PortableServer_Servant _servant,
+			const CORBA_char * name,
+			const CORBA_any * module_in,
+			CORBA_any ** module_out,
+			CORBA_Environment * ev)
 {
-  /* DAEMON-TODO: Implement. Plus the whole auth marshalling thing needs
-     to be reworked */
+	return _gnome_vfs_module_callback_demarshal_invoke (name, module_in, module_out);
 }
 
 
@@ -58,7 +72,7 @@ gnome_vfs_client_call_class_init (GnomeVFSClientCallClass *klass)
 	GObjectClass *object_class = (GObjectClass *) klass;
 	POA_GNOME_VFS_ClientCall__epv *epv = &klass->epv;
 
-	epv->SimpleAuthCallback = simple_auth_callback;
+	epv->ModuleCallbackInvoke = module_callback_invoke;
 	
 	object_class->finalize = gnome_vfs_client_call_finalize;
 }
@@ -90,10 +104,16 @@ _gnome_vfs_client_call_get (GnomeVFSContext *context)
 
 	client_call = g_static_private_get (&client_call_private);
 
+	/* DAEMON-TODO: If this is called on non-vfs threads the client_call
+	   object won't be destroyed at gnome_vfs_shutdown() time, except for
+	   the main thread one (which is manually destroyed in
+	   _gnome_vfs_client_call_destroy
+	*/
 	if (client_call == NULL) {
 		client_call = g_object_new (GNOME_TYPE_VFS_CLIENT_CALL,
 					    "poa", _gnome_vfs_get_client_poa (),
 					    NULL);
+		ORBit_ObjectAdaptor_object_bind_to_current_thread (BONOBO_OBJREF (client_call));
 		g_static_private_set (&client_call_private,
 				      client_call, (GDestroyNotify)bonobo_object_unref);
 	}

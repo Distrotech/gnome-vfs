@@ -119,14 +119,15 @@ _gnome_vfs_cancellation_remove_client_call (GnomeVFSCancellation *cancellation,
  * @cancellation: A GnomeVFSCancellation object
  * 
  * Send a cancellation request through @cancellation.
+ * Must be called on the main thread.
  **/
 void
 gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 {
 	GNOME_VFS_AsyncDaemon daemon;
 	GnomeVFSClient *client;
-	GNOME_VFS_ClientCall client_call;
-	
+	GnomeVFSClientCall *client_call;
+
 	g_return_if_fail (cancellation != NULL);
 
 	GNOME_VFS_ASSERT_PRIMARY_THREAD;
@@ -145,21 +146,22 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 		 * if the job finishes after we drop the lock.
 		 */
 		_gnome_vfs_client_call_delay_finish (cancellation->client_call);
-		client_call = CORBA_Object_duplicate (BONOBO_OBJREF (cancellation->client_call), NULL);
+		client_call = cancellation->client_call;
+		bonobo_object_ref (client_call);
 	}
 	G_UNLOCK (client_call);
 
-	if (client_call != CORBA_OBJECT_NIL) {
+	cancellation->cancelled = TRUE;
+
+	if (client_call != NULL) {
 		client = _gnome_vfs_get_client ();
 		daemon = _gnome_vfs_client_get_async_daemon (client);
 
-		/* DAEMON-TODO: Doesn't this cause reentrancy? Do we care? */
-		GNOME_VFS_AsyncDaemon_Cancel (daemon, client_call, NULL);
-		_gnome_vfs_client_call_delay_finish_done (cancellation->client_call);
-		CORBA_Object_release (client_call, NULL);
+		GNOME_VFS_AsyncDaemon_Cancel (daemon, BONOBO_OBJREF (client_call), NULL);
+		_gnome_vfs_client_call_delay_finish_done (client_call);
+		bonobo_object_unref (client_call);
+		CORBA_Object_release (daemon, NULL);
 	}
-
-	cancellation->cancelled = TRUE;
 }
 
 /**
@@ -187,8 +189,6 @@ gnome_vfs_cancellation_check (GnomeVFSCancellation *cancellation)
  * `gnome_vfs_cancellation_check()' returns %TRUE or if `select()' reports that
  * input is available on the file descriptor returned by
  * `gnome_vfs_cancellation_get_fd()'.
- *
- * This is an old deprecated function, don't call it, you don't need to.
  **/
 void
 gnome_vfs_cancellation_ack (GnomeVFSCancellation *cancellation)
@@ -197,8 +197,9 @@ gnome_vfs_cancellation_ack (GnomeVFSCancellation *cancellation)
 
 	/* ALEX: What the heck is this supposed to be used for?
 	 * It seems totatlly wrong, and isn't used by anything.
+	 * Also, the read() seems to block if it was cancelled before
+	 * the pipe was gotten.
 	 */
-	g_assert_not_reached ();
 	
 	if (cancellation == NULL)
 		return;
