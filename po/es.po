@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-02-14 10:48-0800\n"
+"POT-Creation-Date: 2001-02-15 12:49-0800\n"
 "PO-Revision-Date: 2001-02-14 11:30+0200\n"
 "Last-Translator: Mauricio Araya Polo <mauricio@eazel.com>\n"
 "Language-Team: spanish <es@li.org>\n"
@@ -96,9 +96,8 @@ msgid "CGM image"
 msgstr "imagen CGM"
 
 #: data/mime/gnome-vfs.keys.in.h:21
-#, fuzzy
 msgid "CMU raster image"
-msgstr "imagen CMU raster"
+msgstr "imagen rasterizada CMU"
 
 #: data/mime/gnome-vfs.keys.in.h:22
 msgid "CPIO archive"
@@ -276,7 +275,6 @@ msgid "Linux PSF console font"
 msgstr "fuente PSF para consola de Linux"
 
 #: data/mime/gnome-vfs.keys.in.h:65
-#, fuzzy
 msgid "M3 audio URL"
 msgstr "URL para audio M3"
 
@@ -660,7 +658,6 @@ msgid "address card"
 msgstr "tarjeta de direcciones"
 
 #: data/mime/gnome-vfs.keys.in.h:160
-#, fuzzy
 msgid "ar archive"
 msgstr "archivo ar"
 
@@ -1325,7 +1322,8 @@ msgstr "No se puede resetear GNOME::VFS::Slave %s -- excepción %s"
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "No se puede resetear GNOME::VFS::Slave (IOR desconocido) -- excepción %s"
+msgstr ""
+"No se puede resetear GNOME::VFS::Slave (IOR desconocido) -- excepción %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
@@ -1335,7 +1333,8 @@ msgstr "No se puede matar a GNOME::VFS::Slave %s -- excepción %s"
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "No se puede matar a GNOME::VFS::Slave (IOR desconocido) -- excepción %s"
+msgstr ""
+"No se puede matar a GNOME::VFS::Slave (IOR desconocido) -- excepción %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:688
 #, c-format
