@@ -1,33 +1,25 @@
 # Translation of gnome-vfs to Croatian
 # Copyright (C) Croatian team
 # Translators: Automatski Prijevod <>,Robert Sedak <robert.sedak@sk.tel.hr>,
-# Translation of gnome-vfs to Croatian
-# Copyright (C) Croatian team
-# Translators: Automatski Prijevod <>,Robert Sedak <robert.sedak@sk.tel.hr>,
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Project-Id-Version: gnome-vfs 0\n"
-"POT-Creation-Date: 2003-12-26 15:25+0100\n"
-"PO-Revision-Date: 2003-12-26 21:03+0100\n"
-"Last-Translator: Robert Sedak <robert.sedak@sk.tel.hr>\n"
+"POT-Creation-Date: 2003-11-06 18:10+0100\n"
+"PO-Revision-Date: 2003-12-30 19:30+CET\n"
+"Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: TransDict server\n"
 
-#: daemon/gnome-vfs-daemon.c:553
+#: daemon/gnome-vfs-daemon.c:320
 msgid "Could not initialize Bonobo"
 msgstr "Ne mogu inicijalizirati Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:559
+#: daemon/gnome-vfs-daemon.c:326
 msgid "Could not initialize gnome vfs"
 msgstr "Nisam mogao pokrenuti  gnome vfs"
-
-#: libgnomevfs/gnome-vfs-cdrom.c:180
-msgid "ISO 9660 Volume"
-msgstr "ISO 9660 disk"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -58,141 +50,6 @@ msgstr "%s:%d ne sadrži ime modula."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Nije nađena datoteka s postavkama `%s': %s"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:37
-msgid "AFFS Volume"
-msgstr "AFFS disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:38
-msgid "AFS Network Volume"
-msgstr "AFS mrežni disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:39
-msgid "Auto-detected Volume"
-msgstr "Automatski prepoznat disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:40
-#: libgnomevfs/gnome-vfs-filesystem-type.c:42
-msgid "CD-ROM Drive"
-msgstr "CD-ROM uređaj"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:41
-msgid "CD Digital Audio"
-msgstr "CD digitalni zvuk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:43
-msgid "Hardware Device Volume"
-msgstr "Disk na hardverskom uređaju"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:44
-msgid "Ext2 Linux Volume"
-msgstr "Ext2 disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:45
-msgid "Ext3 Linux Volume"
-msgstr "Ext3 disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:46
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
-#: libgnomevfs/gnome-vfs-filesystem-type.c:57
-msgid "MSDOS Volume"
-msgstr "MS-DOS disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:47
-#: libgnomevfs/gnome-vfs-filesystem-type.c:48
-msgid "MacOS Volume"
-msgstr "MacOS disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:49
-msgid "CDROM Volume"
-msgstr "CD-ROM disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:50
-msgid "Hsfs CDROM Volume"
-msgstr "Hsfs CDROM disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:51
-msgid "JFS Volume"
-msgstr "JFS disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:52
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
-msgid "Windows NT Volume"
-msgstr "Windows NT disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
-#: libgnomevfs/gnome-vfs-filesystem-type.c:62
-msgid "System Volume"
-msgstr "Sistemski disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:54
-msgid "Memory Volume"
-msgstr "Memorijski disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:55
-msgid "Minix Volume"
-msgstr "Minix disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
-msgid "NFS Network Volume"
-msgstr "NFS mrežni disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
-msgid "Netware Volume"
-msgstr "Mrežni disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
-msgid "ReiserFS Linux Volume"
-msgstr "ReiserFS Linux disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:64
-msgid "Windows Shared Volume"
-msgstr "Dijeljeni Windows disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
-msgid "SuperMount Volume"
-msgstr "SuperMount disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
-msgid "DVD Volume"
-msgstr "DVD disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
-msgid "Solaris/BSD Volume"
-msgstr "Solaris/BSD disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
-msgid "Udfs Solaris Volume"
-msgstr "Udfs Solaris disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:69
-msgid "Pcfs Solaris Volume"
-msgstr "Pcfs Solaris disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:70
-msgid "Enhanced DOS Volume"
-msgstr "Enhanced DOS disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
-msgid "Windows VFAT Volume"
-msgstr "Windows VFAT disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
-msgid "Xenix Volume"
-msgstr "Xenix disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
-msgid "XFS Linux Volume"
-msgstr "XFS Linux disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
-msgid "XIAFS Volume"
-msgstr "XIAFS disk"
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:102
-msgid "Unknown"
-msgstr "Nepoznato"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
@@ -456,120 +313,32 @@ msgstr "Greška kod pokretanja naredbe"
 msgid "Unknown error"
 msgstr "Nepoznata greška"
 
-#. plural form
 #: libgnomevfs/gnome-vfs-utils.c:84
-#, c-format
-msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "%u bajt"
-msgstr[1] "%u bajta"
-msgstr[2] "%u bajtova"
+msgid "1 byte"
+msgstr "1 bajt"
 
-#: libgnomevfs/gnome-vfs-utils.c:90
-#, c-format
-msgid "%.1f KB"
-msgstr "%.1f KB"
+#: libgnomevfs/gnome-vfs-utils.c:86
+msgid "%u bytes"
+msgstr "%u bajtova"
 
-#: libgnomevfs/gnome-vfs-utils.c:94
+#: libgnomevfs/gnome-vfs-utils.c:93
+#, c-format
+msgid "%.1f K"
+msgstr "%.1f K"
+
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:98
+#: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1105
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr " (neispravni Unicode)"
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
-msgid "Floppy"
-msgstr "Disketa"
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
-msgid "CD-ROM"
-msgstr "CD-ROM"
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
-msgid "Zip Drive"
-msgstr "Zip uređaj"
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
-msgid "Memory Stick"
-msgstr "Memorijski štapić"
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
-msgid "Camera"
-msgstr "Kamera"
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
-msgid "Root Volume"
-msgstr "Korijenski disk"
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
-msgid "Audio CD"
-msgstr "Zvučni CD"
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
-msgid "Unknown volume"
-msgstr "Nepoznati disk"
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
-msgid "Network server"
-msgstr "Mrežni poslužitelj"
-
-#. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr "Ne mogu montirati meki disk. Moguće je da nema diska u disketnom uređaju."
-
-#. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:116
-msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Ne mogu montirati disk.  Moguće je da nema medija u uređaju."
-
-#: libgnomevfs/gnome-vfs-volume-ops.c:122
-msgid ""
-"Unable to mount the floppy drive. The floppy is probably in a format that "
-"cannot be mounted."
-msgstr "Ne mogu montirati meki disk. Moguće je da je meki disk u obliku koji ne može biti montiran."
-
-#: libgnomevfs/gnome-vfs-volume-ops.c:125
-msgid ""
-"Unable to mount the selected volume. The volume is probably in a format that "
-"cannot be mounted."
-msgstr "Ne mogu montirati odabrani disk. Moguće je da je disk u obliku koji ne može biti montiran."
-
-#: libgnomevfs/gnome-vfs-volume-ops.c:130
-msgid "Unable to mount the selected floppy drive."
-msgstr "Ne mogu montirati odabrani uređaj za meki disk. "
-
-#: libgnomevfs/gnome-vfs-volume-ops.c:132
-msgid "Unable to mount the selected volume."
-msgstr "Ne mogu montirati odabrani disk. "
-
-#: libgnomevfs/gnome-vfs-volume-ops.c:144
-msgid "Unable to unmount the selected volume."
-msgstr "Ne moguod montirati odabrani disk. "
-
-#: libgnomevfs/gnome-vfs-volume-ops.c:220
-#: libgnomevfs/gnome-vfs-volume-ops.c:252
-msgid "Failed to start command"
-msgstr "Nije uspjelo pokretanje naredbe"
-
-#: libgnomevfs/gnome-vfs-volume-ops.c:245
-msgid "Unable to eject media"
-msgstr "Ne mogu izbaciti medij"
-
-#: libgnomevfs/gnome-vfs-volume-ops.c:421
-msgid "Unable to unmount connected server"
-msgstr "Ne mogu odmontirati povezani poslužitelj"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -620,18 +389,6 @@ msgstr "Alati"
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "Windows"
-
-#: modules/computer-method.c:521
-msgid "Network"
-msgstr "Mreža"
-
-#: modules/computer-method.c:539
-msgid "Home"
-msgstr "Polazno"
-
-#: modules/computer-method.c:557
-msgid "Filesystem"
-msgstr "Datotečni sustav"
 
 #: modules/file-method.c:382
 #, c-format
@@ -700,124 +457,8 @@ msgstr ""
 msgid "The exec argument to use for the default terminal application."
 msgstr "Izvršni argument koji se koristi za uobičajeni terminalni program."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "H323 URL handler"
-msgstr "Rukovatelj H323 URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "HTTP URL handler"
-msgstr "Rukovatelj HTTP URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "HTTPS URL handler"
-msgstr "Rukovatelj HTTPS URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-msgid "Handle H323 URLs"
-msgstr "Rukuje s H323-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-msgid "Handle HTTP URLs"
-msgstr "Rukuje s HTTP URL-ovima "
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "Handle HTTPS URLs"
-msgstr "Rukuje HTTPS URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-msgid "Handle callto URLs"
-msgstr "Rukuje s pozivima ne URL-ove"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "Handle ghelp URLs"
-msgstr "Rukuje s URL-ovima ghelp-a"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "Handle info URLs"
-msgstr "Rukuje s informacijskim URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "Handle mailto URLs"
-msgstr "Rukuje s URL-ovima e-pošte"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Handle man URLs"
-msgstr "Rukuje s URL-ovima stranica uputstva"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Handle trash URLs"
-msgstr "Rukuje s odbačenim URL-ovima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Run program in terminal"
-msgstr "Pokreni program u treminalu"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za H323 URL-ove."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za HTTP URL-ove."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za HTTPS URL-ove."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za pozivne URL-ove."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-ove ghelp-a."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-ove informacija."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-ove e-pošte."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za URL-ove stranica uputstva."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr "Postavite kako biste imali program određen u rukovatelju \"naredbe\" za odbačene URL-ove."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "True if the program to handle this URL should be run in a terminal."
-msgstr "Postavite ako program treba raditi s ovim URL-om u terminalu."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "callto URL handler"
-msgstr "rukovatelj poziva URL-a"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "ghelp URL handler"
-msgstr "rukovatelj URL-om ghelp-a"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "info URL handler"
-msgstr "rukovatelj URL-om informacija"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "mailto URL handler"
-msgstr "Rukovatelj RUL-a e-pošte"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "man URL handler"
-msgstr "Rukovatelj URL-a stranice s uputstvima"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "trash URL handler"
-msgstr "rukovatelj odbačenog URL-a"
-
 #: schemas/system_http_proxy.schemas.in.h:1
-msgid "Authenticate proxy server connections"
+msgid "Authenticate connections to the proxy server"
 msgstr "Provjerite vjerodostojnost veze prema proxy poslužitelju"
 
 #: schemas/system_http_proxy.schemas.in.h:2
@@ -825,7 +466,7 @@ msgid "Automatic proxy configuration URL"
 msgstr "Automatska po postavljanje proxy URL-a"
 
 #: schemas/system_http_proxy.schemas.in.h:3
-msgid "Enables the proxy settings when accessing HTTP over the Internet."
+msgid "Enables the proxy settings when accessing http over the internet."
 msgstr "Omogućava postavljanje proxy-a kod pristupa http protokolom prema internetu."
 
 #: schemas/system_http_proxy.schemas.in.h:4
@@ -841,105 +482,96 @@ msgid "HTTP proxy host name"
 msgstr "Ime HTTP proxy računala"
 
 #: schemas/system_http_proxy.schemas.in.h:7
-msgid "HTTP proxy password"
-msgstr "Lozinka za HTTP proxy"
-
-#: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
 msgstr "HTTP proxy port"
 
-#: schemas/system_http_proxy.schemas.in.h:9
-msgid "HTTP proxy username"
-msgstr "Ime korisnika HTTP proxy-a"
+#: schemas/system_http_proxy.schemas.in.h:8
+msgid "Hosts are not contacted via the proxy"
+msgstr "Računalo nije spojeno preko proxy-a"
 
-#: schemas/system_http_proxy.schemas.in.h:10
+#: schemas/system_http_proxy.schemas.in.h:9
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
+"username/password combo defined by /system/http_proxy/authentication_user "
+"and /system/http_proxy/authentication_password."
 msgstr ""
 "Ako je \"točno\", tada veze na proxy poslužitelj zahtjevaju provjeru "
-"vjerodostojnosti. Kombinacija ime_korisnika/lozinka je definirana u "
-"datotekama /system/http_proxy/authentication_user i /system/http_proxy/"
-"authentication_password."
+"vjerodostojnosti. Kombinacija ime_korisnika/lozinka je definirana u datotekama "
+"/system/http_proxy/authentication_user i /system/http_proxy/authentication_password."
+
+#: schemas/system_http_proxy.schemas.in.h:10
+msgid "Password to pass as authentication when doing http proxying"
+msgstr "Lozinka za prolazak provjere vjerodostojnosti kod korištenja http proxy-a"
 
 #: schemas/system_http_proxy.schemas.in.h:11
-msgid "Non-proxy hosts"
-msgstr "Računala bez proxy-a"
-
-#: schemas/system_http_proxy.schemas.in.h:12
-msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Lozinka za prolazak provjere vjerodostojnosti kod korištenja http proxy-a."
-
-#: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
 msgstr "Način postavljanja proxy-a"
 
-#: schemas/system_http_proxy.schemas.in.h:14
-msgid "SOCKS proxy host name"
-msgstr "Spaja ime proxy računala"
-
-#: schemas/system_http_proxy.schemas.in.h:15
-msgid "SOCKS proxy port"
-msgstr "Spaja proxy port"
-
-#: schemas/system_http_proxy.schemas.in.h:16
-msgid "Secure HTTP proxy host name"
+#: schemas/system_http_proxy.schemas.in.h:12
+msgid "Secure http proxy host name"
 msgstr "Ime računala sigurnog http proxy-a"
 
-#: schemas/system_http_proxy.schemas.in.h:17
-msgid "Secure HTTP proxy port"
+#: schemas/system_http_proxy.schemas.in.h:13
+msgid "Secure http proxy port"
 msgstr "Port sigurnog http proxy-a"
 
-#: schemas/system_http_proxy.schemas.in.h:18
+#: schemas/system_http_proxy.schemas.in.h:14
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\"."
+"\", \"auto\""
 msgstr ""
-"Označite način postavljanja proxy-a. Podržane vrijednosti su \"bez\", \"ručno"
+"Označite način postavljanje proxy-a. Podržane vrijednosti su \"bez\", \"ručno"
 "\", \"automatsko\""
 
-#: schemas/system_http_proxy.schemas.in.h:19
+#: schemas/system_http_proxy.schemas.in.h:15
+msgid "Socks proxy host name"
+msgstr "Spaja ime proxy računala"
+
+#: schemas/system_http_proxy.schemas.in.h:16
+msgid "Socks proxy port"
+msgstr "Spaja proxy port"
+
+#: schemas/system_http_proxy.schemas.in.h:17
 msgid "The machine name to proxy FTP through."
 msgstr "Naziv računala s FTP proxy-em."
 
-#: schemas/system_http_proxy.schemas.in.h:20
-msgid "The machine name to proxy HTTP through."
+#: schemas/system_http_proxy.schemas.in.h:18
+msgid "The machine name to proxy http through."
 msgstr "Naziv računala s HTTP proxy-em."
 
-#: schemas/system_http_proxy.schemas.in.h:21
-msgid "The machine name to proxy secure HTTP through."
+#: schemas/system_http_proxy.schemas.in.h:19
+msgid "The machine name to proxy secure http through."
 msgstr "Naziv računala sa sigurnim HTTP proxy-em."
 
-#: schemas/system_http_proxy.schemas.in.h:22
+#: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy socks through."
 msgstr "Naziv računala s proxy utičnicama."
 
+#: schemas/system_http_proxy.schemas.in.h:21
+msgid ""
+"The port on the machine defined by /system/http_proxy/host that you proxy "
+"through"
+msgstr "Port na računalu je određen u datoteci /system/http_proxy/host"
+
+#: schemas/system_http_proxy.schemas.in.h:22
+msgid ""
+"The port on the machine defined by /system/proxy/ftp_host that you proxy "
+"through"
+msgstr "Port na računalu je određen u datoteci /system/proxy/ftp_host"
+
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
-"The port on the machine defined by \"/system/http_proxy/host\" that you "
-"proxy through."
-msgstr "Port na računalu je određen u datoteci /system/http_proxy/host računala s proxy-em."
+"The port on the machine defined by /system/proxy/secure_host that you proxy "
+"through"
+msgstr "Port na računalu je određen u datoteci /system/proxy/secure_host"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
-"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
-"through."
-msgstr "Port na računalu je određen u datoteci /system/proxy/ftp_host računala s proxy-em."
+"The port on the machine defined by /system/proxy/socks_host that you proxy "
+"through"
+msgstr "Port na računalu je određen u datoteci /system/proxy/socks_host"
 
 #: schemas/system_http_proxy.schemas.in.h:25
-msgid ""
-"The port on the machine defined by \"/system/proxy/secure_host\" that you "
-"proxy through."
-msgstr "Port na računalu je određen u datoteci /system/proxy/secure_host računala s proxy-em."
-
-#: schemas/system_http_proxy.schemas.in.h:26
-msgid ""
-"The port on the machine defined by \"/system/proxy/socks_host\" that you "
-"proxy through."
-msgstr "Port na računalu je određen u datoteci /system/proxy/socks_host računala s proxy-em."
-
-#: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
 "This key contains a list of hosts which are connected to directly, rather "
 "than via the proxy (if it is active). The values can be hostnames, domains "
@@ -951,33 +583,23 @@ msgstr ""
 "(koristeći početne zamjenske znakove kao *.foo.com), IP adrese računala (obje "
 "IPv4 i IPv6) i mrežne adrese s mrežnim maskama (npr. 192.168.0.0/24)."
 
-#: schemas/system_http_proxy.schemas.in.h:28
-msgid "URL that provides proxy configuration values."
+#: schemas/system_http_proxy.schemas.in.h:26
+msgid "URL that provides proxy configuration values"
 msgstr "URL koji omogućuje postavljanje vrijednosti proxy-a"
 
+#: schemas/system_http_proxy.schemas.in.h:27
+msgid "Use proxy settings when accessing http"
+msgstr "Koristi postavke proxy-a nakon pristupa http-u"
+
+#: schemas/system_http_proxy.schemas.in.h:28
+msgid "User name to pass as authentication when doing http proxying"
+msgstr "Korisničko ime koje treba proći provjeru vjerodostojnosti kod http proxy-a"
+
 #: schemas/system_http_proxy.schemas.in.h:29
-msgid "Use HTTP proxy"
-msgstr "Koristi HTTP proxy"
+msgid "http proxy password"
+msgstr "Lozinka za http proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:30
-msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Korisničko ime koje treba proći provjeru vjerodostojnosti kod http proxy-a."
-
-#~ msgid "1 byte"
-#~ msgstr "1 bajt"
-
-#~ msgid "Hosts are not contacted via the proxy"
-#~ msgstr "Računalo nije spojeno preko proxy-a"
-
-#~ msgid "The machine name to proxy http through."
-#~ msgstr "Naziv računala s HTTP proxy-em."
-
-#~ msgid "Use proxy settings when accessing http"
-#~ msgstr "Koristi postavke proxy-a nakon pristupa http-u"
-
-#~ msgid "http proxy password"
-#~ msgstr "Lozinka za http proxy"
-
-#~ msgid "http proxy username"
-#~ msgstr "Korisničko ime za http proxy"
+msgid "http proxy username"
+msgstr "Korisničko ime za http proxy"
 
