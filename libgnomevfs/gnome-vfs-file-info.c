@@ -103,6 +103,8 @@ gnome_vfs_file_info_new (void)
 	/* `g_new0()' is enough to initialize everything (we just want
            all the members to be set to zero).  */
 
+	new->refcount = 1;
+	
 	return new;
 }
 
@@ -123,6 +125,8 @@ gnome_vfs_file_info_init (GnomeVFSFileInfo *info)
 	/* This is enough to initialize everything (we just want all
            the members to be set to zero).  */
 	memset (info, 0, sizeof (*info));
+
+	info->refcount = 1;
 }
 
 /**
@@ -146,22 +150,46 @@ gnome_vfs_file_info_clear (GnomeVFSFileInfo *info)
 	free_metadata_list (info);
 
 	memset (info, 0, sizeof (*info));
+
+	info->refcount = 1;
+}
+
+
+/**
+ * gnome_vfs_file_info_ref:
+ * @info: Pointer to a file information struct
+ * 
+ * Increment reference count
+ **/
+void
+gnome_vfs_file_info_ref (GnomeVFSFileInfo *info)
+{
+	g_return_if_fail (info != NULL);
+	g_return_if_fail (info->refcount > 0);
+
+	info->refcount += 1;
 }
 
 /**
- * gnome_vfs_file_info_destroy:
+ * gnome_vfs_file_info_unref:
  * @info: Pointer to a file information struct
  * 
  * Destroy @info
  **/
 void
-gnome_vfs_file_info_destroy (GnomeVFSFileInfo *info)
+gnome_vfs_file_info_unref (GnomeVFSFileInfo *info)
 {
 	g_return_if_fail (info != NULL);
+	g_return_if_fail (info->refcount > 0);
 
-	gnome_vfs_file_info_clear (info);
-	g_free (info);
+	info->refcount -= 1;
+
+	if (info->refcount == 0) {
+		gnome_vfs_file_info_clear (info);
+		g_free (info);
+	}
 }
+
 
 
 /**

@@ -69,7 +69,9 @@ GnomeVFSFileInfo *
 		 gnome_vfs_file_info_new 	(void);
 void		 gnome_vfs_file_info_init	(GnomeVFSFileInfo *info);
 void		 gnome_vfs_file_info_clear	(GnomeVFSFileInfo *info);
-void 		 gnome_vfs_file_info_destroy 	(GnomeVFSFileInfo *info);
+#define          gnome_vfs_file_info_destroy    gnome_vfs_file_info_unref
+void 		 gnome_vfs_file_info_unref   	(GnomeVFSFileInfo *info);
+void 		 gnome_vfs_file_info_ref     	(GnomeVFSFileInfo *info);
 gboolean 	 gnome_vfs_file_info_get_metadata
 						(GnomeVFSFileInfo *info,
 						 const gchar *key,

@@ -272,6 +272,8 @@ struct _GnomeVFSFileInfo {
            the metadata for the file, but rather only the data that has been
            requested in the call that returned this information.  */
 	GList *metadata_list;
+
+	guint refcount;
 };
 typedef struct _GnomeVFSFileInfo GnomeVFSFileInfo;
 

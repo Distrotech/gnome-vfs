@@ -1,3 +1,16 @@
+1999-12-18  Havoc Pennington  <hp@pobox.com>
+
+	* libgnomevfs/gnome-vfs-file-info.c (gnome_vfs_file_info_new):
+	init refcount
+	(gnome_vfs_file_info_init): init refcount
+	(gnome_vfs_file_info_destroy): remove in favor of unref(), 
+	with compatibility #define
+	(gnome_vfs_file_info_unref): new function
+	(gnome_vfs_file_info_ref): new function
+
+	* libgnomevfs/gnome-vfs-types.h: Add refcount to GnomeVFSFileInfo.
+	The refcount won't be used if the object is on the stack of course.
+	
 1999-12-16  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs-corba/gnome-vfs-async-ops.c,
