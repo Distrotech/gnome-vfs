@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-02-21 16:53-0500\n"
-"PO-Revision-Date: 2000-01-19 18:19-05:00\n"
+"POT-Creation-Date: 2000-03-10 14:46+0100\n"
+"PO-Revision-Date: 2000-02-26 01:00+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -528,33 +528,27 @@ msgstr "Startere lineær overføring..."
 msgid "Preparing reget..."
 msgstr "Forbereder gjenhenting..."
 
-#: modules/http-method.c:471
+#: modules/http-method.c:494
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Ugyldige header  `%s'"
 
-#: modules/http-method.c:488
+#: modules/http-method.c:511
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s å hente"
 
-#: modules/http-method.c:601
+#: modules/http-method.c:644
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:686
+#: modules/http-method.c:784
 #, c-format
 msgid "%s of %s read"
 msgstr "%s av %s lest"
 
-#: modules/http-method.c:689
+#: modules/http-method.c:787
 #, c-format
 msgid "%s read"
 msgstr "%s lest"
-
-#~ msgid "Unknown sort rule %d"
-#~ msgstr "Ukjent sorteringsregel %d"
-
-#~ msgid "Destroying slave."
-#~ msgstr "Ødelegger slave."
