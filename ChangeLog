@@ -1,3 +1,27 @@
+2001-02-05  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Seth Nickell  <seth@eazel.com>
+
+	Fix 5930 (Copy dialog often shows "1" as total number of
+		  fields in operation)
+	Fix a ton of problems with the progress calculation.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (remove_file), (remove_directory),
+	(count_each_file_size_one), (gnome_vfs_xfer_empty_directories),
+	(gnome_vfs_xfer_delete_items), (gnome_vfs_xfer_uri_internal),
+	(gnome_vfs_xfer_private):
+	When removing during a copy conflict, do not update the progress.
+	Store and retireve the preflight results when doing a conflict
+	handling during copy.
+	Properly calculate removed file size -- use a nominal per-file
+	overhead rather than the file size.
+	Properly calculate progress for files with zero or near-zero
+	size.
+	Fix numerous wrong uses of total_bytes_copied and bytes_total.
+	
+	* configure.in:
+	Bump GnomeVFS version.
+	
 2001-02-05  Gene Z. Ragan  <gzr@eazel.com>
 
 	Work done to improve the mime tpye capplet.
