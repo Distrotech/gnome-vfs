@@ -1,3 +1,8 @@
+2002-06-28  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (reload_if_needed) : no need to
+	  run stat if we have already decided to reload.
+
 2002-07-16  Michael Meeks  <michael@ximian.com>
 
 	* libgnomevfs/gnome-vfs-async-job-map.c:
