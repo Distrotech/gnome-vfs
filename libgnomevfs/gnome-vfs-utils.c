@@ -653,7 +653,7 @@ istr_has_prefix (const char *haystack, const char *needle)
  * Return a local path for a file:/// URI.
  *
  * Return value: the local path 
- * NULL is returned on error of if the uri isn't a file: URI
+ * NULL is returned on error or if the uri isn't a file: URI
  * without a fragment identifier (or chained URI).
  **/
 char *
