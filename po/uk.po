@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-12-29 14:48+0200\n"
+"POT-Creation-Date: 2001-01-04 11:25+0200\n"
 "PO-Revision-Date: 1999-12-28 13:44+0200\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -266,18 +266,18 @@ msgstr "%u байт╕в"
 
 #: libgnomevfs/gnome-vfs-utils.c:73
 #, c-format
-msgid "%.1fK"
-msgstr "%.1fK"
+msgid "%.1f K"
+msgstr "%.1f Кб"
 
 #: libgnomevfs/gnome-vfs-utils.c:77
 #, c-format
-msgid "%.1fM"
-msgstr "%.1fM"
+msgid "%.1f MB"
+msgstr "%.1f Мб"
 
 #: libgnomevfs/gnome-vfs-utils.c:81
 #, c-format
-msgid "%.1fG"
-msgstr "%.1fG"
+msgid "%.1f GB"
+msgstr "%.1f Гб"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
@@ -463,7 +463,9 @@ msgstr "Вибрати програми перегляду в меню для типу MIME \"%s\""
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
-msgstr "Введений тип MIME м╕стить велик╕ л╕тери. Л╕тери у верхньому ре╜╕стр╕ буду зам╕нено на символи в нижньому ре╜╕стр╕."
+msgstr ""
+"Введений тип MIME м╕стить велик╕ л╕тери. Л╕тери у верхньому ре╜╕стр╕ буду "
+"зам╕нено на символи в нижньому ре╜╕стр╕."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
 msgid "Add New MIME Type"
@@ -653,17 +655,17 @@ msgstr "Нев╕домий GnomeVFSSeekPosition %d"
 msgid "%s to retrieve"
 msgstr "%s для в╕дновлення"
 
-#: modules/http-method.c:1574
+#: modules/http-method.c:1577
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Закриття з'╓днання з %s"
 
-#: modules/http-method.c:1818
+#: modules/http-method.c:1821
 #, c-format
 msgid "%s of %s read"
 msgstr "%s з %s зчитано"
 
-#: modules/http-method.c:1821
+#: modules/http-method.c:1824
 #, c-format
 msgid "%s read"
 msgstr "%s зчитано"
