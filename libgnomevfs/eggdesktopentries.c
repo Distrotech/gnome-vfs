@@ -1969,9 +1969,9 @@ egg_desktop_entries_get_locale_encoding (const gchar *locale)
   q = strstr (p, "@");
 
   if (!q)
-    encoding_len = q - p;
-  else
     encoding_len = strlen (p);
+  else
+    encoding_len = q - p;
 
   if (encoding_len <= 0)
     {
