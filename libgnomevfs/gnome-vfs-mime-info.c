@@ -1098,9 +1098,7 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
  */
 gboolean
 gnome_vfs_mime_type_is_known (const char *mime_type)
-{
-	GnomeMimeContext *context;
-	
+{	
 	if (mime_type == NULL) {
 		return FALSE;
 	}
