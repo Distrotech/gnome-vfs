@@ -250,6 +250,7 @@ parse_uri_substring (const gchar *substring)
 	new_uri = parse_uri_substring (p1 + 1);
 	if (new_uri != NULL)
 		new_uri->parent = uri;
+	
 	return uri;
 }
 /**
@@ -474,8 +475,7 @@ gnome_vfs_uri_dup (const GnomeVFSURI *uri)
  * 
  * Return value: The new URI obtained by combining @uri and @path.
  **/
-/* FIXME this must be implemented in a much smarter way.  The most important
-   issue is that a `#' in `path' will break things rather badly.  */
+
 GnomeVFSURI *
 gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 			   const gchar *path)
@@ -483,20 +483,20 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 	gchar *uri_string;
 	GnomeVFSURI *new;
 	gchar *new_string;
+	gchar *escape_path;
 	guint len;
 
 	g_return_val_if_fail (uri != NULL, NULL);
 	g_return_val_if_fail (path != NULL, NULL);
 
-	/* FIXME this is just a reminder.  */
-	if (strchr (path, '#') != NULL)
-		g_warning ("gnome_vfs_uri_append_path() is broken with names containing `#'.");
-
+	/* Escape the path */
+	escape_path = gnome_vfs_escape_string (path, GNOME_VFS_URI_ENCODING_PATH);
+	
 	uri_string = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 	len = strlen (uri_string);
 	if (len == 0) {
 		g_free (uri_string);
-		return gnome_vfs_uri_new (path);
+		return gnome_vfs_uri_new (escape_path);
 	}
 
 	len--;
@@ -504,10 +504,10 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 		len--;
 	uri_string[len + 1] = '\0';
 
-	while (*path == GNOME_VFS_URI_PATH_CHR)
-		path++;
+	while (*escape_path == GNOME_VFS_URI_PATH_CHR)
+		escape_path++;
 
-	new_string = g_strconcat (uri_string, GNOME_VFS_URI_PATH_STR, path, NULL);
+	new_string = g_strconcat (uri_string, GNOME_VFS_URI_PATH_STR, escape_path, NULL);
 	new = gnome_vfs_uri_new (new_string);
 
 	g_free (new_string);

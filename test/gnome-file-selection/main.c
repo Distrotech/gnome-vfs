@@ -2,7 +2,7 @@
 #include <gnome.h>
 #include <libgnorba/gnorba.h>
 
-#include "gnome-vfs.h"
+#include "libgnomevfs/gnome-vfs.h"
 
 #include "gnome-file-selection.h"
 
