@@ -2073,6 +2073,7 @@ monitor_setup (void)
 			g_print ("FAMOpen failed, FAMErrno=%d\n", FAMErrno);
 			g_free(fam_connection);
 			fam_connection = NULL;
+			G_UNLOCK (fam_connection);
 			return FALSE;
 		}
 		ioc = g_io_channel_unix_new (FAMCONNECTION_GETFD(fam_connection));
