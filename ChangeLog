@@ -1,5 +1,11 @@
 2004-03-10  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-cancellable-ops.c
+	(gnome_vfs_find_directory_cancellable):
+	For NULL near_uri, expand home dir if symlink.
+	
+2004-03-10  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-private-utils.[ch]
 	(gnome_vfs_process_run_cancellable):
 	Use correct return type.
