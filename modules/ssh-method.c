@@ -190,7 +190,7 @@ ssh_connect (SshHandle **handle_return,
 
 	username = gnome_vfs_uri_get_user_name(uri);
 
-	cmd_line = g_string_new ("ssh -oBatchMode=yes -x");
+	cmd_line = g_string_new (SSH_PROGRAM " -oBatchMode=yes -x");
 	if (username != NULL) {
 		g_string_append_printf (cmd_line, " -l %s", username);
 	}

@@ -1,3 +1,27 @@
+2004-01-08  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Add checks for pty stuff
+		
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	* modules/http-method.c: (invoke_callback_basic_authn):
+	* modules/smb-method.c: (invoke_full_auth):
+	Add saving_supported flag
+	
+	* modules/ssh-method.c: (ssh_connect):
+	
+	* modules/Makefile.am:
+	* modules/default-modules.conf:
+	* modules/sftp-method.c:
+	* modules/sftp.h:
+	* modules/pty-open.[ch]:
+	Added sftp method by Bradford Hovinen, with a few
+	fixes and new features.
+	pty-open.c is based on pty.c from vte.
+
+	* libgnomevfs/xdgmimeglob.c: (_xdg_glob_hash_free_nodes):
+	Fix crash on shutdown
+	
 2004-01-08  Thomas Cataldo  <tom@aliacom.fr>
 
 	* programs/gnomevfs-info.c: Fixed a memory leak

@@ -3148,7 +3148,7 @@ invoke_callback_basic_authn (HttpFileHandle *handle,
 	in_args.protocol = "http";
 	in_args.authtype = authn_which == AuthnHeader_WWW ? "basic" : "proxy";
 
-	in_args.flags = GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_PASSWORD;
+	in_args.flags = GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_PASSWORD | GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_SAVING_SUPPORTED;
 	if (in_args.username == NULL) {
 		in_args.flags |= GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_USERNAME;
 	}	

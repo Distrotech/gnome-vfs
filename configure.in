@@ -536,6 +536,21 @@ LIBGNOMEVFS_LIBS="$LIBGNOMEVFS_LIBS $OPENSSL_LIBS $LIBGNUTLS_LIBS"
 AC_SUBST(LIBGNOMEVFS_CFLAGS)
 AC_SUBST(LIBGNOMEVFS_LIBS)
 
+dnl ****************************
+dnl *** Checks for pty stuff ***
+dnl ****************************
+
+AC_CHECK_HEADERS(sys/un.h stropts.h termios.h)
+
+# Check for PTY handling functions.
+AC_CHECK_FUNCS(getpt grantpt unlockpt ptsname ptsname_r)
+
+# Pull in the right libraries for various functions which might not be
+# bundled into an exploded libc.
+AC_CHECK_FUNC(socketpair,[have_socketpair=1],AC_CHECK_LIB(socket,socketpair,[have_socketpair=1; LIBS="$LIBS -lsocket"]))
+if test x$have_socketpair = x1 ; then
+	AC_DEFINE(HAVE_SOCKETPAIR,1,[Define if you have the socketpair function.])
+fi
   
 dnl **********************
 dnl *** Checks for FAM ***

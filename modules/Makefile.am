@@ -15,6 +15,7 @@ INCLUDES =					\
 	-D_LARGEFILE64_SOURCE			\
 	-D_POSIX_PTHREAD_SEMANTICS		\
 	-D_REENTRANT				\
+	-DSSH_PROGRAM=\"$(SSH_PROGRAM)\"	\
 	-DG_DISABLE_DEPRECATED			\
 	-DDATADIR=\"$(datadir)\"		\
 	-DPREFIX=\"$(prefix)\"			\
@@ -69,6 +70,7 @@ modules_LTLIBRARIES =				\
 	libvfs-translate.la			\
 	$(CDEMENU_LTLIBS)                       \
 	$(SMB_LTLIBS)	                        \
+	libsftp.la				\
 	libssh.la				\
 	libtar.la				\
 	$(NULL)
@@ -137,6 +139,12 @@ libcdemenu_desktop_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 libsmb_la_SOURCES = smb-method.c
 libsmb_la_LDFLAGS = $(module_flags)
 libsmb_la_LIBADD = $(SAMBA_LIBS) $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la 
+
+###  `sftp' method
+
+libsftp_la_SOURCES = sftp-method.c pty-open.c
+libsftp_la_LDFLAGS = $(module_flags)
+libsftp_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `ssh' method
 

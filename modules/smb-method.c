@@ -724,7 +724,7 @@ invoke_full_auth (const char *server,
 	
 	memset (&in_args, 0, sizeof (in_args));
 	in_args.uri = gnome_vfs_uri_to_string (current_uri, 0);
-	in_args.flags = GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_PASSWORD;
+	in_args.flags = GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_PASSWORD | GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_SAVING_SUPPORTED;
 	if (done_auth) {
 		in_args.flags |= GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_PREVIOUS_ATTEMPT_FAILED;
 	}
