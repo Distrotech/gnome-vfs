@@ -13,6 +13,8 @@
   <Folder>
     <Name>Applications</Name>
 
+    <Exclude>gnome-search-tool.desktop</Exclude>
+
     <Query>
       <Or>
         <Keyword>Core</Keyword>
@@ -21,7 +23,7 @@
 
     <!-- Other folders -->
 
-    <!-- Applications -->
+    <!-- Accesories -->
     <Folder>
       <Name>Accesories</Name>
       <Desktop>Accessories.directory</Desktop>
@@ -47,6 +49,9 @@
       </Query>
       <DontShowIfEmpty/>
 
+      <Exclude>vumeter.desktop</Exclude>
+      <Exclude>reclevel.desktop</Exclude>
+      <Exclude>gnome-search-tool.desktop</Exclude>
       <Exclude>cddb-slave.desktop</Exclude>
       <Exclude>gnomecc.desktop</Exclude>
     </Folder>
@@ -113,6 +118,10 @@
 	  <Keyword>AudioVideo</Keyword>
         </And>
       </Query>
+
+      <Exclude>vumeter.desktop</Exclude>
+      <Exclude>reclevel.desktop</Exclude>
+
       <DontShowIfEmpty/>
     </Folder>
 

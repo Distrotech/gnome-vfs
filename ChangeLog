@@ -1,3 +1,15 @@
+2002-04-10  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/applications.vfolder-info.in:
+
+	Hide search tool since it will be in actions (we'd
+	still like it to show up in non-gnome-panel situations
+	so we leave the .desktop file as installed)
+
+	* modules/file-method.c: (do_monitor_cancel):
+
+	Fix build warning.
+
 2002-04-02  Jody Goldberg <jody@gnome.org>
 
 	* modules/file-method.c (fam_callback) : Alex pointed out the

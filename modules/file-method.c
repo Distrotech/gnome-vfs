@@ -2157,7 +2157,9 @@ do_monitor_cancel (GnomeVFSMethod *method,
 	FAMCancelMonitor (fam_connection, &handle->request);
 	G_UNLOCK (fam_connection);
 
-	g_return_if_fail (!handle->cancelled);
+	if (!handle->cancelled) {
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
 
 	return GNOME_VFS_OK;
 #else
