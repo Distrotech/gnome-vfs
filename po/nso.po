@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-12-01 08:02+0200\n"
 "Last-Translator: Zuza Software Foundation <info@translate.org.za>\n"
 "Language-Team: Northern Sotho <translate-discuss-nso@lists.sourceforge.net>\n"
@@ -746,7 +746,7 @@ msgstr "Gae"
 msgid "Filesystem"
 msgstr "Tshepedišo ya faele"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFS ya go Nyaka Boemo ya %d e sa tsebjwego"
@@ -755,12 +755,12 @@ msgstr "GnomeVFS ya go Nyaka Boemo ya %d e sa tsebjwego"
 msgid "Windows Network"
 msgstr "Neteweke ya Windows"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Boitsebišo bja khomphuthara e lego kgole (%s) ga bo tsebjwe."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -774,11 +774,11 @@ msgstr ""
 "go kgonthišega ka kgonthe ge eba go bolokegile go tšwela pele, ikopanye le "
 "molaodi wa tshepedišo."
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "Lega go le bjalo tsena"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "Khansela go Tsena ka gare"
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-10-18 21:54+0100\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: English (British) <en@li.org>\n"
@@ -744,7 +744,7 @@ msgstr "Home"
 msgid "Filesystem"
 msgstr "Filesystem"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Unknown GnomeVFSSeekPosition %d"
@@ -753,12 +753,12 @@ msgstr "Unknown GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows Network"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "The identity of the remote computer (%s) is unknown."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -771,11 +771,11 @@ msgstr ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "Log In Anyway"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "Cancel Login"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-09-27 13:16+0300\n"
 "Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team:  <ru@li.org>\n"
@@ -748,7 +748,7 @@ msgstr "Начало"
 msgid "Filesystem"
 msgstr "Файловая система"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестное значение GnomeVFSSeekPosition %d"
@@ -757,12 +757,12 @@ msgstr "Неизвестное значение GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Сеть Windows"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Идентификационная информация удалённого компьютера (%s) неизвестна."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -776,11 +776,11 @@ msgstr ""
 "убедиться, что продолжение соединения будет полностью безопасна, свяжитесь с "
 "ситемным администратором."
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "Войти всё равно"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "Отменить вход"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.8-branch\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-12-09 12:32+0200\n"
 "Last-Translator: Zuza Software Foundation <info@translate.org.za>\n"
 "Language-Team: Zulu <translate-discuss-zu@lists.sourceforge.net>\n"
@@ -742,7 +742,7 @@ msgstr "Ekhaya"
 msgid "Filesystem"
 msgstr "Uhlelo-hele"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSFunaSikhundla %d ongaziwa"
@@ -751,12 +751,12 @@ msgstr "GnomeVFSFunaSikhundla %d ongaziwa"
 msgid "Windows Network"
 msgstr "Ifasitela lelwembu"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Isikhombisi sesiga-nyezi (%s) esibuqamama asaziwa."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -769,11 +769,11 @@ msgstr ""
 "Isikhombisi esithunyelwe isiga-nyezi esibuqamama yi-%s. Mawufuna ukuqiniseka "
 "ukuthi ungaqhubeka, xhumana nomphathi hlelo."
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "Ngena nje"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "Cima umngenisi-ngena"
 

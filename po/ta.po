@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-09-03 17:04+0530\n"
 "Last-Translator: Jayaradha N <jaya@pune.redhat.com>\n"
 "Language-Team: Tamil <zhakanini@yahoogroups.com>\n"
@@ -742,7 +742,7 @@ msgstr "இல்லம்"
 msgid "Filesystem"
 msgstr "கோப்பு அமைப்புகள்"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "தெரியாத GnomeVFSSeekPosition %d"
@@ -751,12 +751,12 @@ msgstr "தெரியாத GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "விண்டோஸ் வலைப்பின்னல்்"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "(%s) தொலை கணினியை கண்டுபிடிக்க முடியவில்லை"
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -769,11 +769,11 @@ msgstr ""
 "தொலை கணினி %s க்கு அடைளாளம் அனுப்பப்படும். தொடர்வது பாதுகாப்பானது என நீங்கள் நினைத்தால் "
 "கணினி மேலாளரை அணுகவும்."
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "எப்படி இருந்தாலும் உள்நுழையவும்"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "உள் நுழைவதை ரத்து செய்யவும்"
 

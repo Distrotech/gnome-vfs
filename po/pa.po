@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.pa\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-09-02 20:22+0530\n"
 "Last-Translator: Amanpreet Singh Alam <aalam@redhat.com>\n"
 "Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
@@ -811,7 +811,7 @@ msgid "Filesystem"
 msgstr "ਫਾਇਲ ਸਿਸਟਮ"
 
 # modules/file-method.c:381
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "ਅਣਪਛਾਤੀ ਗਨੋਮ VFSSeek ਥਾਂ %d"
@@ -820,12 +820,12 @@ msgstr "ਅਣਪਛਾਤੀ ਗਨੋਮ VFSSeek ਥਾਂ %d"
 msgid "Windows Network"
 msgstr "ਵਿੰਡੋ ਨੈਟਵਰਕ"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "ਰਿਮੋਟ ਕੰਪਿਊਟਰ(%s) ਦੀ ਪਛਾਣ ਅਣਜਾਣੀ ਹੈ"
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -838,11 +838,11 @@ msgstr ""
 "ਇਹ ਪਛਾਣ %s ਰਿਮੋਟ ਕੰਪਿਊਟਰ ਨੇ ਭੇਜੀ ਹੈ, ਜੇਕਰ ਤੁਸੀਂ ਇਹ ਯਕੀਨੀ ਬਂਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ ਕਿ ਇਹ ਸੁਰੱਖਿਅਤ "
 "ਹੈ ਤਾਂ ਆਪਣੇ ਸਿਸਟਮ ਪ੍ਰਬੰਧਕ ਨਾਲ ਸੰਪਰਕ ਕਰੋ"
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "ਕਿਸੇਤਰਾਂ ਵੀ ਲਾਗਆਨ ਕਰੋ"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "ਲਾਗਆਨ ਰੱਦ"
 

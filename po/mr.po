@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2003-01-11 16:38+0530\n"
 "Last-Translator: Jitendra Shah <jitendras@vsnl.com>\n"
 "Language-Team: Marathi <www.indictrans.org>\n"
@@ -804,7 +804,7 @@ msgid "Filesystem"
 msgstr "फाइल उपलब्ध आहे"
 
 # modules/file-method.c:381
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "अज्ञात जीनोम VFSSeek स्थिति %d"
@@ -813,12 +813,12 @@ msgstr "अज्ञात जीनोम VFSSeek स्थिति %d"
 msgid "Windows Network"
 msgstr ""
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr ""
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -827,11 +827,11 @@ msgid ""
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr ""
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-09-03 22:39+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -746,7 +746,7 @@ msgstr "ホーム"
 msgid "Filesystem"
 msgstr "ファイルシステム"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "不明な GnomeVFSSeekPosition %d です"
@@ -755,12 +755,12 @@ msgstr "不明な GnomeVFSSeekPosition %d です"
 msgid "Windows Network"
 msgstr "Windows ネットワーク"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "リモート・コンピュータ (%s) を識別できません"
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -773,11 +773,11 @@ msgstr ""
 "リモート・コンピュータから送られた識別子は %s です。その識別子が絶対確実だと"
 "思う場合は、システム管理者に問い合わせて下さい。"
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "とにかくログイン"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "キャンセル"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-09-18 12:06+0300\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -743,7 +743,7 @@ msgstr "Namai"
 msgid "Filesystem"
 msgstr "Bylų sistema"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nežinoma GnomeVFSSeekPosition %d"
@@ -752,12 +752,12 @@ msgstr "Nežinoma GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows tinklas"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Nutolusio kompiuterio (%s) tapatybė yra nežinoma."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -770,11 +770,11 @@ msgstr ""
 "Nutolusio kompiuterio atsiųsta tapatybė yra %s. Jeigu norite būti visiškai "
 "tikri, kad tęsti yra saugu, susisiekit su sistemos administratoriumi."
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "Vistiek prisijungti"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "Atšaukti prisijungimą"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-08-26 06:40+0730\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@my-penguin.org>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
@@ -755,7 +755,7 @@ msgstr "Rumah"
 msgid "Filesystem"
 msgstr "Sistem fail"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition yang tidak diketahui %d"
@@ -764,12 +764,12 @@ msgstr "GnomeVFSSeekPosition yang tidak diketahui %d"
 msgid "Windows Network"
 msgstr "Rangkaian Windows"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identiti bagi komputer jauh (%s) tak diketahui."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -782,11 +782,11 @@ msgstr ""
 "Identiti dihantar oleh komputer jauh adalah %s. Jika anda memang pasti ia "
 "selamat untuk diteruskan, hubungi pentadbir sistem."
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "Log Masuk Juga"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "Batal Logmasuk"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-10-26 19:34+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati\n"
@@ -810,7 +810,7 @@ msgid "Filesystem"
 msgstr "ફાઇલસિસ્ટમ"
 
 # modules/file-method.c:381
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "અજાણીતી જીનોમ VFSSeek સ્થિતિ %d"
@@ -819,12 +819,12 @@ msgstr "અજાણીતી જીનોમ VFSSeek સ્થિતિ %d"
 msgid "Windows Network"
 msgstr "વિન્ડો નેટવર્ક"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "દૂરસ્થ કમ્પ્યુટર (%s) ની ઓળખ અજ્ઞાત છે."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -837,11 +837,11 @@ msgstr ""
 "દૂરસ્થ કમ્પ્યુટર દ્વારા મોકલવામાં આવતી ઓળખ %s છે. જો તમે સંપૂર્ણપણે ચોક્કસ થવા માંગો તો ચાલુ "
 "રાખવા માટે એ સુરક્ષિત છે, સિસ્ટમ સંચાલકનો સંપર્ક કરો."
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "કોઈપણ રીતે પ્રવેશો"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "પ્રવેશ રદ કરો"
 

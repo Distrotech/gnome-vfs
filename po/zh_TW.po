@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.7.93\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-09-13 02:22+0800\n"
 "Last-Translator: Li-Jen Hsin <hsin@med.cgu.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -736,7 +736,7 @@ msgstr "個人資料夾"
 msgid "Filesystem"
 msgstr "檔案系統"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "不明的 GnomeVFSSeekPosition (搜尋位置) %d"
@@ -745,12 +745,12 @@ msgstr "不明的 GnomeVFSSeekPosition (搜尋位置) %d"
 msgid "Windows Network"
 msgstr "Windows 網路"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "遠端電腦 (%s) 的身份不明。"
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -763,11 +763,11 @@ msgstr ""
 "遠端主機傳送來的身份為 %s。若您希望完全確定繼續動作是安全的，請與您的系統管理"
 "者接洽。"
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "繼續登入"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "取消登入"
 

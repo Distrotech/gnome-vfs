@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-09-03 15:59+0200\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
@@ -749,7 +749,7 @@ msgstr "Lični"
 msgid "Filesystem"
 msgstr "Sistem datoteka"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nepoznato GnomeVFSSeekPosition %d"
@@ -758,12 +758,12 @@ msgstr "Nepoznato GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Vindouz mreža"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Identitet udaljenog računara (%s) nije poznat."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -777,11 +777,11 @@ msgstr ""
 "potpuno sigurni da je bezbedno da nastavite, stupite u vezu sa "
 "administratorom sistema."
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "Ipak se prijavi"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "Otkaži prijavu"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-10-19 10:27+0800\n"
 "Last-Translator: LoneStar <lone@auvtech.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -735,7 +735,7 @@ msgstr "主文件夹"
 msgid "Filesystem"
 msgstr "文件系统"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "未知的 GnomeVFSSeekPosition %d"
@@ -744,12 +744,12 @@ msgstr "未知的 GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows 网络"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "远程计算机(%s)的身份未知。"
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -761,11 +761,11 @@ msgstr ""
 "\n"
 "远程计算机发送的身份是 %s。如果您绝对相信继续进行是安全的，请联系系统管理员。"
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "仍然登录"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "取消登录"
 

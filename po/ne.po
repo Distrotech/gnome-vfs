@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-08-29 10:42+0545\n"
 "Last-Translator: Pawan Chitrakar <pawan@nplinux.org>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -804,7 +804,7 @@ msgstr "घर"
 msgid "Filesystem"
 msgstr "फाइल पद्दति"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "%d जिनोम भि एफ एस सोधपुछ गर्ने स्थिति अज्ञात छ"
@@ -813,12 +813,12 @@ msgstr "%d जिनोम भि एफ एस सोधपुछ गर्न�
 msgid "Windows Network"
 msgstr "विण्ढो सञ्जाल"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "टाडाको कम्प्युटर (%s) को पहिचान अज्ञात"
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -831,11 +831,11 @@ msgstr ""
 "टाढाको कम्प्युटरले पठाएको परिचय %s  हो । यदि तपाईँ ढुक्कसँग यसलाई नियमित गर्न चाहनुहुन्छ "
 "भने तपाईँको पद्धति प्रशासकसँग संपर्क राख्नुस्"
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "जसरी भए पानि प्रवेश गर "
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "लगिन रद्द गर"
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-12-21 13:47+0100\n"
+"POT-Creation-Date: 2005-01-11 09:20+0100\n"
 "PO-Revision-Date: 2004-08-23 12:35+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
@@ -759,7 +759,7 @@ msgstr "Etxea"
 msgid "Filesystem"
 msgstr "Fitxategi-sistema"
 
-#: modules/file-method.c:386
+#: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "%d nomeVFSSeekPosition ezezaguna"
@@ -768,12 +768,12 @@ msgstr "%d nomeVFSSeekPosition ezezaguna"
 msgid "Windows Network"
 msgstr "Windows sarea"
 
-#: modules/sftp-method.c:1346
+#: modules/sftp-method.c:1338
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "Urruneko ordenagailuaren (%s) identitatea ezezaguna da."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1339
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -786,11 +786,11 @@ msgstr ""
 "Urruneko ordenagailuak bidalitako idetitatea %s da. Jar zaitez sistemako "
 "arduradunarekin harremanetan erabateko segurtasuna duela ziurtatzeko."
 
-#: modules/sftp-method.c:1355
+#: modules/sftp-method.c:1347
 msgid "Log In Anyway"
 msgstr "Sartu hala ere"
 
-#: modules/sftp-method.c:1356
+#: modules/sftp-method.c:1348
 msgid "Cancel Login"
 msgstr "Utzi saioa amaitzea bertan behera"
 
