@@ -2,9 +2,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-03-25 18:03+0100\n"
-"PO-Revision-Date: 2000-03-25 18:03+0100\n"
-"Last-Translator: GNOME PL Team<gnomepl@pandora.info.bielsko.pl>\n"
+"POT-Creation-Date: 2000-10-17 02:54+0200\n"
+"PO-Revision-Date: 2000-10-18 21:12+0200\n"
+"Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-2\n"
@@ -29,6 +29,11 @@ msgstr "%s:%d nie zawiera nazwy modu³u."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Nie odnaleziono pliku konfiguracyjnego `%s': %s"
+
+#: libgnomevfs/gnome-vfs-file-info.c:1
+#, c-format
+msgid "Unknown sort rule %d"
+msgstr "Nieznana regu³a sortowania %d"
 
 #: libgnomevfs/gnome-vfs-init.c:1
 msgid "GNOME VFS already initialized."
@@ -194,6 +199,10 @@ msgstr "To nie ten sam system plików"
 #: libgnomevfs/gnome-vfs-result.c:1
 msgid "Name too long"
 msgstr "Zbyt d³uga nazwa"
+
+#: libgnomevfs/gnome-vfs-result.c:1
+msgid "Service not available"
+msgstr "Us³uga nie jest dostêpna"
 
 #: libgnomevfs/gnome-vfs-result.c:1
 msgid "Unknown error"
@@ -367,128 +376,174 @@ msgstr "Nie mo¿na utworzyæ potoku dla GIOChannel: %s"
 msgid "Operation stopped"
 msgstr "Zatrzymano operacjê"
 
-#: modules/file-method.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Edit Applications List"
+msgstr "Zmodyfikuj listê aplikacji"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+#, c-format
+msgid "Select applications to appear in menu for mime type \"%s\""
+msgstr "Wybierz aplikacje pojawiaj±ce siê w menu dla typu MIME \"%s\""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Add Application..."
+msgstr "Dodaj aplikacjê..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Edit Application..."
+msgstr "Zmodyfikuj aplikacjê..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Delete Application"
+msgstr "Usuñ aplikacjê"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Edit Components List"
+msgstr "Zmodyfikuj listê komponentów"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+#, c-format
+msgid "Select views to appear in menu for mime type \"%s\""
+msgstr "Wybierz przegl±darki pojawiaj±ce siê w menu dla typu MIME \"%s\""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Add Mime Type"
+msgstr "Dodaj typ MIME"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid ""
+"Add a new Mime Type\n"
+"For example:  image/tiff; text/x-scheme"
+msgstr ""
+"Dodaj nowy typ MIME\n"
+"Na przyk³ad:  image/tiff, text/x-scheme"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Mime Type:"
+msgstr "Typ MIME:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Type in a description for this mime-type."
+msgstr "Wprowad¼ opis typu MIME."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Description:"
+msgstr "Opis:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Add New Extension"
+msgstr "Dodaj nowe rozszerzenie"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid ""
+"Type in the extensions for this mime-type.\n"
+"For example:  .html, .htm"
+msgstr ""
+"Wprowad¼ rozszerzenie dla tego typu pliku.\n"
+"Na przyk³ad:  .html, .htm"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Extension:"
+msgstr "Rozszerzenie:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "New Application"
+msgstr "Nowa aplikacja"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Application Name:"
+msgstr "Nazwa aplikacji:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Application Command:"
+msgstr "Polecenie uruchamiaj±ce aplikacjê:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Open Behavior"
+msgstr "Zachowanie przy otwarciu"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Can open multiple files"
+msgstr "Mo¿e otwieraæ wiele plików"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1
+msgid "Can open from URI"
+msgstr "Mo¿e otwieraæ na podstawie URI"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Change Icon"
+msgstr "Zmieñ ikonê"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Mime Type"
+msgstr "Typ MIME"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Add new Mime type..."
+msgstr "Dodaj nowy typ MIME..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Delete this Mime type..."
+msgstr "Usuñ typ MIME..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Use Viewer"
+msgstr "Wykorzystanie przegl±darki"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Open With Application"
+msgstr "Otwórz przy u¿yciu aplikacji"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Edit List"
+msgstr "Zmodyfikuj listê"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Add"
+msgstr "Dodaj"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Remove"
+msgstr "Usuñ"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "None"
+msgstr "Brak"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Description"
+msgstr "Opis"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Extension"
+msgstr "Rozszerzenie"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1
+msgid "Action"
+msgstr "Akcja"
+
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:1
+msgid "Can't find an hbox, using a normal file selection"
+msgstr "Nie mo¿na odnale¼æ widgetu hbox, wykorzystany zwyk³y wybór pliku"
+
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:1
+msgid "Preview"
+msgstr "Podgl±d"
+
+#: modules/efs-method.c:1 modules/file-method.c:1
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nieznana warto¶æ %d GnomeVFSSeekPosition"
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: Invalid host name."
-msgstr "ftpfs: Niepoprawna nazwa komputera."
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: Invalid host address."
-msgstr "ftpfs: Niepoprawny adres komputera."
-
-#: modules/ftp-method.c:1
-#, c-format
-msgid "ftpfs: making connection to %s"
-msgstr "ftpfs: Nawi±zywanie po³±czenia z %s"
-
-#
-#: modules/ftp-method.c:1
-msgid "ftpfs: connection interrupted by user"
-msgstr "ftpfs: Operacja przerwana przez u¿ytkownika"
-
-#: modules/ftp-method.c:1
-#, c-format
-msgid "ftpfs: connection to server failed: %s"
-msgstr "ftpfs: Po³±czenie z serwerem nie powiod³o siê: %s"
-
-#: modules/ftp-method.c:1
-#, c-format
-msgid "Waiting to retry... %d (Control-C to cancel)"
-msgstr "Oczekiwanie na ponowienie... %d (Control-C aby anulowaæ)"
-
-#: modules/ftp-method.c:1
-msgid " FTP: Password required for "
-msgstr " FTP: Wymagane has³o dla "
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: sending login name"
-msgstr "ftpfs: Wysy³anie loginu"
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: sending user password"
-msgstr "ftpfs: Wysy³anie has³a u¿ytkownika"
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: logged in"
-msgstr "ftpfs: Zalogowany"
-
-#: modules/ftp-method.c:1
-#, c-format
-msgid "ftpfs: Login incorrect for user %s "
-msgstr "ftpfs: Niepoprawne has³o dla u¿ytkownika %s "
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: aborting transfer."
-msgstr "Rezygnacja z transferu..."
-
-#: modules/ftp-method.c:1
-#, c-format
-msgid "ftpfs: abort error: %s"
-msgstr "ftpfs: B³±d przy rezygnacji: %s"
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: abort failed"
-msgstr "ftpfs: Rezygnacja nie powiod³a siê"
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: could not setup passive mode"
-msgstr "ftpfs: Nie mo¿na ustawiæ trybu pasywnego"
-
-#: modules/ftp-method.c:1
-#, c-format
-msgid "ftpfs: storing file %d (%d)"
-msgstr "ftpfs: Zapisywanie pliku %d (%d)"
-
-#: modules/ftp-method.c:1 modules/ftp-method.c:1
-msgid "ftpfs: CWD failed."
-msgstr "ftpfs: Operacja CWD nie powiod³a siê."
-
-#: modules/ftp-method.c:1 modules/ftp-method.c:1
-msgid "ftpfs: couldn't resolve symlink"
-msgstr "ftpts: Nie mo¿na odnale¼æ pliku docelowego dowi±zania symbolicznego"
-
-#: modules/ftp-method.c:1
-msgid "Resolving symlink..."
-msgstr "Analizowanie dowi±zañ symbolicznych..."
-
-#: modules/ftp-method.c:1
-#, c-format
-msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-msgstr "ftpfs: Odczyt katalogu FTP %s... (bez uniksowych opcji ls)"
-
-#: modules/ftp-method.c:1
-#, c-format
-msgid "ftpfs: Reading FTP directory %s..."
-msgstr "ftpfs: Odczyt katalogu FTP %s..."
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: reading FTP directory interrupt by user"
-msgstr "ftpfs: Odczyt katalogu FTP zosta³ przerwany przez u¿ytkownika"
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: got listing"
-msgstr "ftpfs: Otrzymano listê plików"
-
-#: modules/ftp-method.c:1
-msgid "ftpfs: failed; nowhere to fallback to"
-msgstr "ftpfs: Niepowodzenie; brak mo¿liwo¶ci wycofania"
-
-#: modules/ftp-method.c:1
-msgid "Starting linear transfer..."
-msgstr "Rozpoczynanie liniowego transferu..."
-
-#: modules/ftp-method.c:1
-msgid "Preparing reget..."
-msgstr "Przygotowanie wznowienia transferu..."
-
-#: modules/http-method.c:1
-#, c-format
-msgid "Invalid header `%s'"
-msgstr "Niepoprawny nag³ówek '%s'"
 
 #: modules/http-method.c:1
 #, c-format
@@ -509,3 +564,67 @@ msgstr "odczytano %s z %s"
 #, c-format
 msgid "%s read"
 msgstr "odczytano %s"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Back"
+msgstr "Wstecz"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Go to the previously visited directory"
+msgstr "Przechodzi do ostatnio odwiedzonego katalogu"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Up"
+msgstr "Góra"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Go to the parent directory"
+msgstr "Przechodzi do katalogu nadrzêdnego"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Forward"
+msgstr "Naprzód"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Go to the next visited directory"
+msgstr "Przechodzi do nastêpnego odwiedzonego katalogu"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Rescan"
+msgstr "Od¶wie¿"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Rescan the current directory"
+msgstr "Od¶wie¿a bie¿±cy katalog"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Home"
+msgstr "Pocz±tek"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Go to the home directory"
+msgstr "Przechodzi do katalogu nadrzêdnego"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Name"
+msgstr "Nazwa"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Size"
+msgstr "Rozmiar"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Date"
+msgstr "Data"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Enter name:"
+msgstr "Wprowad¼ nazwê:"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Show:"
+msgstr "Wyswietlanie:"
+
+#: test/gnome-file-selection/gnome-file-selection.c:1
+msgid "Show dotfiles"
+msgstr "Wy¶wietlanie plików kropkowych"
