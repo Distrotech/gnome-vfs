@@ -98,7 +98,6 @@ open_and_find_pointer_to_menu(gchar *name)
 	FILE *filesave = NULL, *file = NULL;
 	glong position = 0;
 	gboolean found = FALSE;
-	gchar *tmp=NULL;
 	
 	for (filename = cdemenufiles; filename !=NULL; filename=filename->next){
 		found = FALSE;

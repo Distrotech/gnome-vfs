@@ -1,3 +1,17 @@
+2003-07-18  Fredrik Jönsson  <fjo@nada.kth.se>
+
+	* modules/ssh-method.c: cast pid_t* to gint * (fixes compilation on 
+	  Solaris, bug #117788)
+	* modules/cde-method.c: removed unused variable (fixes compilation 
+	  on Solaris, bug #117789)
+	* modules/ftp-method.c: include strings.h (for index) (fixes #117787)
+
+2003-07-18  Christophe Fergeau  <teuf@gnome.org>
+
+	* test/Makefile.am: don't build test-subdir.c since it uses a private
+	  gnome-vfs symbol (prefixed with _) which breaks build on some non
+	  linux platforms (fixes bug #117791)
+	
 2003-07-18  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime.c: some stuff wasn't properly freed when 

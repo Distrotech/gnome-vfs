@@ -45,6 +45,9 @@
 #include <stdio.h> /* for sscanf */
 #include <stdlib.h> /* for atoi */
 #include <string.h>
+#ifdef HAVE_STRINGS_H
+#include <strings.h>
+#endif
 #include <time.h>
 
 /* maximum size of response we're expecting to get */

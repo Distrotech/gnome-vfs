@@ -27,7 +27,6 @@ noinst_PROGRAMS =				\
 	test-performance			\
 	test-seek				\
 	test-shell				\
-	test-subdir				\
 	test-symlinks				\
 	test-ssl				\
 	test-sync				\
@@ -68,8 +67,8 @@ test_performance_LDADD = $(libraries)
 #test_resolv_SOURCES = test-resolv.c
 #test_resolv_LDADD = $(libraries)
 
-test_subdir_SOURCES = test-subdir.c
-test_subdir_LDADD = $(libraries)
+#test_subdir_SOURCES = test-subdir.c
+#test_subdir_LDADD = $(libraries)
 
 test_async_directory_SOURCES = test-async-directory.c
 test_async_directory_LDADD = $(libraries)
