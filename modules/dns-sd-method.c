@@ -30,6 +30,9 @@
 #include <sys/time.h>
 
 #ifdef HAVE_HOWL
+/* Need to work around howl exporting its config file... */
+#undef PACKAGE
+#undef VERSION
 #include <howl.h>
 #endif
 
@@ -287,14 +290,14 @@ local_browse (gboolean add,
 }
 
 static sw_result
-local_browse_callback_sync (sw_discovery_browse_handler  handler,
-			    sw_discovery                 discovery,
-			    sw_discovery_browse_id       id,
+local_browse_callback_sync (sw_discovery                 discovery,
+			    sw_discovery_oid             id,
 			    sw_discovery_browse_status   status,
-			    sw_const_string               name,
-			    sw_const_string               type,
-			    sw_const_string               domain,
-			    sw_opaque                     extra)
+			    sw_uint32			 interface_index,
+			    sw_const_string              name,
+			    sw_const_string              type,
+			    sw_const_string              domain,
+			    sw_opaque                    extra)
 {
 	if (status == SW_DISCOVERY_BROWSE_ADD_SERVICE)
 		local_browse (TRUE, name, type, domain);
@@ -329,7 +332,7 @@ init_local (void)
 		sw_salt salt;
 		sw_ulong timeout;
 		struct timeval end_tv, tv;
-		sw_discovery_browse_id *sync_handles;
+		sw_discovery_oid *sync_handles;
 		int timeout_msec;
 		sw_result swres;
 		
@@ -358,12 +361,12 @@ init_local (void)
 			return;
 		}
 
-		sync_handles = g_new0 (sw_discovery_browse_id, G_N_ELEMENTS (dns_sd_types));
+		sync_handles = g_new0 (sw_discovery_oid, G_N_ELEMENTS (dns_sd_types));
 
 		for (i = 0; i < G_N_ELEMENTS (dns_sd_types); i++) {
 			sw_discovery_browse (session,
+					     0, 
 					     dns_sd_types[i].type, "local",
-					     NULL,
 					     local_browse_callback_sync,
 					     NULL,
 					     &(sync_handles[i]));
@@ -390,7 +393,7 @@ init_local (void)
 		
 		for (i = 0; i < G_N_ELEMENTS (dns_sd_types); i++) {
 			if (sync_handles[i] != 0) {
-				sw_discovery_stop_browse (session, sync_handles[i]);
+				sw_discovery_cancel (session, sync_handles[i]);
 			}
 		}
 					  

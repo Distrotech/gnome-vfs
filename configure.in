@@ -663,7 +663,7 @@ dnl ****************************
 dnl Howl
 dnl ****************************
 
-PKG_CHECK_MODULES(HOWL, howl >= 0.9.5,
+PKG_CHECK_MODULES(HOWL, howl >= 0.9.6,
 		  [AM_CONDITIONAL(HAVE_HOWL, true)
 		   AC_DEFINE(HAVE_HOWL, [], [Set if we can use howl])],
 	          [AM_CONDITIONAL(HAVE_HOWL, false)])

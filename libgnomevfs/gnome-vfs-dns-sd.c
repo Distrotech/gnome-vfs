@@ -37,6 +37,9 @@
 #include <unistd.h>
 
 #ifdef HAVE_HOWL
+/* Need to work around howl exporting its config file... */
+#undef PACKAGE
+#undef VERSION
 #include <howl.h>
 #endif
 
@@ -770,7 +773,7 @@ struct GnomeVFSDNSSDBrowseHandle {
 	/* multicast: */
 
 #ifdef HAVE_HOWL
-	sw_discovery_browse_id howl_id;
+	sw_discovery_oid howl_id;
 #endif
 	
 	/* unicast data: */
@@ -892,14 +895,14 @@ free_browse_handle_idle (gpointer data)
 }
 
 static sw_result
-howl_browse_reply (sw_discovery_browse_handler  handler,
-		   sw_discovery                 discovery,
-		   sw_discovery_browse_id       id,
+howl_browse_reply (sw_discovery                 discovery,
+		   sw_discovery_oid             oid,
 		   sw_discovery_browse_status   status,
-		   sw_const_string               name,
-		   sw_const_string               type,
-		   sw_const_string               domain,
-		   sw_opaque                     extra)
+		   sw_uint32			interface_index,
+		   sw_const_string              name,
+		   sw_const_string              type,
+		   sw_const_string              domain,
+		   sw_opaque                    extra)
 {
 	GnomeVFSDNSSDBrowseHandle *handle;
 	struct howl_browse_idle_data *idle_data;
@@ -1002,8 +1005,8 @@ gnome_vfs_dns_sd_browse (GnomeVFSDNSSDBrowseHandle **handle_out,
 		session = get_global_howl_session ();
 		if (session) {
 			res = sw_discovery_browse (session,
+						   0, 
 						   type, domain,
-						   NULL,
 						   howl_browse_reply,
 						   handle,
 						   &handle->howl_id);
@@ -1046,7 +1049,7 @@ gnome_vfs_dns_sd_stop_browse (GnomeVFSDNSSDBrowseHandle *handle)
 	if (handle->is_local) {
 #ifdef HAVE_HOWL
 		handle->cancelled = TRUE;
-		sw_discovery_stop_browse (get_global_howl_session (), handle->howl_id);
+		sw_discovery_cancel (get_global_howl_session (), handle->howl_id);
 #endif
 		return GNOME_VFS_OK;
 	} else {
@@ -1075,7 +1078,7 @@ struct GnomeVFSDNSSDResolveHandle {
 	
 	/* multicast: */
 #ifdef HAVE_HOWL
-	sw_discovery_resolve_id howl_id;
+	sw_discovery_oid howl_id;
 	guint timeout_tag;
 #endif
 	
@@ -1187,15 +1190,14 @@ howl_resolve_idle (gpointer data)
 
 
 static sw_result
-howl_resolve_reply (sw_discovery_resolve_handler  handler,
-		    sw_discovery                  discovery,
-		    sw_discovery_resolve_id       id,
+howl_resolve_reply (sw_discovery                   discovery,
+		    sw_discovery_oid               id,
+		    sw_uint32 			   interface_index,
 		    sw_const_string                name,
 		    sw_const_string                type,
 		    sw_const_string                domain,
 		    sw_ipv4_address                address,
 		    sw_port                        port,
-		    sw_const_string                text_record_string,
 		    sw_octets                      text_record,
 		    sw_ulong                       text_record_len,
 		    sw_opaque                      extra)
@@ -1213,8 +1215,8 @@ howl_resolve_reply (sw_discovery_resolve_handler  handler,
 	handle->text_len = text_record_len;
 
 	/* We want no more replies */
-	sw_discovery_stop_resolve (get_global_howl_session (),
-				   handle->howl_id);
+	sw_discovery_cancel (get_global_howl_session (),
+			     handle->howl_id);
 	g_source_remove (handle->timeout_tag);
 	
 	handle->idle_tag = g_idle_add_full (G_PRIORITY_DEFAULT_IDLE,
@@ -1245,8 +1247,8 @@ howl_resolve_timeout (gpointer data)
 		/* TODO: We shouldn't get any callbacks after stopping,
 		   but there is a bug in howl 0.9.5 where it can still
 		   happen */
-		sw_discovery_stop_resolve (get_global_howl_session (),
-					   handle->howl_id);
+		sw_discovery_cancel (get_global_howl_session (),
+				     handle->howl_id);
 	}
 	
 	free_resolve_handle (handle);
@@ -1312,10 +1314,10 @@ gnome_vfs_dns_sd_resolve (GnomeVFSDNSSDResolveHandle **handle_out,
 		session = get_global_howl_session ();
 		if (session) {
 			res = sw_discovery_resolve (session,
+						    0, 
 						    name,
 						    type,
 						    domain,
-						    NULL,
 						    howl_resolve_reply,
 						    handle,
 						    &handle->howl_id);
@@ -1369,8 +1371,8 @@ gnome_vfs_dns_sd_cancel_resolve (GnomeVFSDNSSDResolveHandle *handle)
 			/* TODO: We shouldn't get any callbacks after stopping,
 			   but there is a bug in howl 0.9.5 where it can still
 			   happen */
-			sw_discovery_stop_resolve (get_global_howl_session (),
-						   handle->howl_id);
+			sw_discovery_cancel (get_global_howl_session (),
+					     handle->howl_id);
 		}
 		free_resolve_handle (handle);
 		
@@ -1407,10 +1409,10 @@ find_existing_service (GArray *array,
 
 
 static sw_result
-howl_browse_reply_sync (sw_discovery_browse_handler  handler,
-			sw_discovery                 discovery,
-			sw_discovery_browse_id       id,
-			sw_discovery_browse_status   status,
+howl_browse_reply_sync (sw_discovery                  discovery,
+			sw_discovery_oid              id,
+			sw_discovery_browse_status    status,
+			sw_uint32		      interface_index,
 			sw_const_string               name,
 			sw_const_string               type,
 			sw_const_string               domain,
@@ -1508,7 +1510,7 @@ gnome_vfs_dns_sd_browse_sync (const char *domain,
 		sw_salt salt;
 		sw_result res;
 		sw_ulong timeout;
-		sw_discovery_browse_id browse_id;
+		sw_discovery_oid browse_id;
 		struct timeval end_tv, tv;
 		GArray *array;
 
@@ -1525,8 +1527,8 @@ gnome_vfs_dns_sd_browse_sync (const char *domain,
 		
 		array = g_array_new (FALSE, FALSE, sizeof (GnomeVFSDNSSDService));
 		res = sw_discovery_browse (session,
+					   0,
 					   type, domain,
-					   NULL,
 					   howl_browse_reply_sync,
 					   array,
 					   &browse_id);
@@ -1554,7 +1556,7 @@ gnome_vfs_dns_sd_browse_sync (const char *domain,
 				(end_tv.tv_usec - tv.tv_usec) / 1000;
 		} while (timeout_msec > 0);
 		
-		sw_discovery_stop_browse (session, browse_id);
+		sw_discovery_cancel (session, browse_id);
 					  
 		sw_discovery_fina (session);
 
@@ -1582,15 +1584,14 @@ struct sync_resolve_data {
 };
 
 static sw_result
-howl_resolve_reply_sync (sw_discovery_resolve_handler  handler,
-			 sw_discovery                  discovery,
-			 sw_discovery_resolve_id       id,
+howl_resolve_reply_sync (sw_discovery                   discovery,
+			 sw_discovery_oid               id,
+			 sw_uint32	                interface_index,
 			 sw_const_string                name,
 			 sw_const_string                type,
 			 sw_const_string                domain,
-			 sw_ipv4_address                     address,
+			 sw_ipv4_address                address,
 			 sw_port                        port,
-			 sw_const_string                text_record_string,
 			 sw_octets                      text_record,
 			 sw_ulong                       text_record_len,
 			 sw_opaque                      extra)
@@ -1651,7 +1652,7 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 		sw_salt salt;
 		sw_result res;
 		sw_ulong timeout;
-		sw_discovery_resolve_id resolve_id;
+		sw_discovery_oid resolve_id;
 		struct timeval end_tv, tv;
 		struct sync_resolve_data resolve_data = {0};
 		
@@ -1667,8 +1668,8 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 		}
 		
 		res = sw_discovery_resolve (session,
+					    0, 
 					    name, type, domain,
-					    NULL,
 					    howl_resolve_reply_sync,
 					    &resolve_data,
 					    &resolve_id);
@@ -1695,7 +1696,7 @@ gnome_vfs_dns_sd_resolve_sync (const char *name,
 				(end_tv.tv_usec - tv.tv_usec) / 1000;
 		} while (!resolve_data.got_data && timeout_msec > 0);
 		
-		sw_discovery_stop_resolve (session, resolve_id);
+		sw_discovery_cancel (session, resolve_id);
 					  
 		sw_discovery_fina (session);
 
