@@ -196,7 +196,7 @@ functions for getting information about files based on their MIME type
 @Returns: 
 
 
-<!-- ##### FUNCTION gnome_vfs_mime_application_get_startup_notify ##### -->
+<!-- ##### FUNCTION gnome_vfs_mime_application_get_startup_wm_class ##### -->
 <para>
 
 </para>
@@ -205,7 +205,25 @@ functions for getting information about files based on their MIME type
 @Returns: 
 
 
-<!-- ##### FUNCTION gnome_vfs_mime_application_get_startup_wm_class ##### -->
+<!-- ##### FUNCTION gnome_vfs_mime_application_supports_startup_notification ##### -->
+<para>
+
+</para>
+
+@app: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_mime_application_get_binary_name ##### -->
+<para>
+
+</para>
+
+@app: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gnome_vfs_mime_application_supports_uris ##### -->
 <para>
 
 </para>

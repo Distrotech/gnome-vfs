@@ -43,8 +43,8 @@ print_application_info (GnomeVFSMimeApplication *app)
 		 gnome_vfs_mime_application_supports_uris (app));
 	g_print ("Requires terminal %d\n",
 		 gnome_vfs_mime_application_requires_terminal (app));
-	g_print ("Startup notify %d\n",
-		 gnome_vfs_mime_application_get_startup_notify (app));
+	g_print ("Supports startup notification %d\n",
+		 gnome_vfs_mime_application_supports_startup_notification (app));
 	g_print ("Startup WM class %s\n",
 		 gnome_vfs_mime_application_get_startup_wm_class (app));
 	g_print ("Binary name %s\n",

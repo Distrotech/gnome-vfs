@@ -57,49 +57,49 @@ typedef struct {
 
 /* Database */
 
-GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application           (const char              *mime_type);
-GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application_for_uri   (const char		   *uri,
-									   const char              *mime_type);
-GList *                  gnome_vfs_mime_get_all_applications              (const char              *mime_type);
-GList *			 gnome_vfs_mime_get_all_applications_for_uri	  (const char              *uri,
-									   const char              *mime_type);
-Bonobo_ServerInfo *      gnome_vfs_mime_get_default_component             (const char              *mime_type);
-GList *                  gnome_vfs_mime_get_all_components                (const char              *mime_type);
+GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application                   (const char              *mime_type);
+GnomeVFSMimeApplication *gnome_vfs_mime_get_default_application_for_uri           (const char		   *uri,
+									           const char              *mime_type);
+GList *                  gnome_vfs_mime_get_all_applications                      (const char              *mime_type);
+GList *			 gnome_vfs_mime_get_all_applications_for_uri	          (const char              *uri,
+									           const char              *mime_type);
+Bonobo_ServerInfo *      gnome_vfs_mime_get_default_component                     (const char              *mime_type);
+GList *                  gnome_vfs_mime_get_all_components                        (const char              *mime_type);
 
 /* MIME types */
 
-const char  		*gnome_vfs_mime_get_icon 			  (const char 		   *mime_type);
-const char 	        *gnome_vfs_mime_get_description   		  (const char              *mime_type);
-gboolean 	         gnome_vfs_mime_can_be_executable   		  (const char              *mime_type);
+const char  		*gnome_vfs_mime_get_icon 			          (const char 		   *mime_type);
+const char 	        *gnome_vfs_mime_get_description   		          (const char              *mime_type);
+gboolean 	         gnome_vfs_mime_can_be_executable   		          (const char              *mime_type);
 
 /* Application */
 
-GnomeVFSMimeApplication *gnome_vfs_mime_application_new_from_desktop_id   (const char              *id);
-GnomeVFSResult           gnome_vfs_mime_application_launch                (GnomeVFSMimeApplication *app,
-									   GList                   *uris);
-GnomeVFSResult           gnome_vfs_mime_application_launch_with_env	  (GnomeVFSMimeApplication *app,
-									   GList                   *uris,
-									   char                   **envp);
-const char		*gnome_vfs_mime_application_get_desktop_id	  (GnomeVFSMimeApplication *app);
-const char		*gnome_vfs_mime_application_get_desktop_file_path (GnomeVFSMimeApplication *app);
-const char		*gnome_vfs_mime_application_get_name              (GnomeVFSMimeApplication *app);
-const char              *gnome_vfs_mime_application_get_generic_name      (GnomeVFSMimeApplication *app);
-const char              *gnome_vfs_mime_application_get_icon              (GnomeVFSMimeApplication *app);
-const char		*gnome_vfs_mime_application_get_exec		  (GnomeVFSMimeApplication *app);
-const char		*gnome_vfs_mime_application_get_binary_name	  (GnomeVFSMimeApplication *app);
-gboolean		 gnome_vfs_mime_application_supports_uris	  (GnomeVFSMimeApplication *app);
-gboolean		 gnome_vfs_mime_application_requires_terminal     (GnomeVFSMimeApplication *app);
-gboolean		 gnome_vfs_mime_application_get_startup_notify    (GnomeVFSMimeApplication *app);
-const char		*gnome_vfs_mime_application_get_startup_wm_class  (GnomeVFSMimeApplication *app);
-GnomeVFSMimeApplication *gnome_vfs_mime_application_copy                  (GnomeVFSMimeApplication *app);
-gboolean		 gnome_vfs_mime_application_equal		  (GnomeVFSMimeApplication *app_a,
-									   GnomeVFSMimeApplication *app_b);
-void                     gnome_vfs_mime_application_free                  (GnomeVFSMimeApplication *app);
+GnomeVFSMimeApplication *gnome_vfs_mime_application_new_from_desktop_id           (const char              *id);
+GnomeVFSResult           gnome_vfs_mime_application_launch                        (GnomeVFSMimeApplication *app,
+									           GList                   *uris);
+GnomeVFSResult           gnome_vfs_mime_application_launch_with_env	          (GnomeVFSMimeApplication *app,
+									           GList                   *uris,
+									           char                   **envp);
+const char		*gnome_vfs_mime_application_get_desktop_id	          (GnomeVFSMimeApplication *app);
+const char		*gnome_vfs_mime_application_get_desktop_file_path         (GnomeVFSMimeApplication *app);
+const char		*gnome_vfs_mime_application_get_name                      (GnomeVFSMimeApplication *app);
+const char              *gnome_vfs_mime_application_get_generic_name              (GnomeVFSMimeApplication *app);
+const char              *gnome_vfs_mime_application_get_icon                      (GnomeVFSMimeApplication *app);
+const char		*gnome_vfs_mime_application_get_exec		          (GnomeVFSMimeApplication *app);
+const char		*gnome_vfs_mime_application_get_binary_name	          (GnomeVFSMimeApplication *app);
+gboolean		 gnome_vfs_mime_application_supports_uris	          (GnomeVFSMimeApplication *app);
+gboolean		 gnome_vfs_mime_application_requires_terminal             (GnomeVFSMimeApplication *app);
+gboolean		 gnome_vfs_mime_application_supports_startup_notification (GnomeVFSMimeApplication *app);
+const char		*gnome_vfs_mime_application_get_startup_wm_class          (GnomeVFSMimeApplication *app);
+GnomeVFSMimeApplication *gnome_vfs_mime_application_copy                          (GnomeVFSMimeApplication *app);
+gboolean		 gnome_vfs_mime_application_equal		          (GnomeVFSMimeApplication *app_a,
+									           GnomeVFSMimeApplication *app_b);
+void                     gnome_vfs_mime_application_free                          (GnomeVFSMimeApplication *app);
 
 /* Lists */
 
-void                     gnome_vfs_mime_application_list_free             (GList                   *list);
-void                     gnome_vfs_mime_component_list_free               (GList                   *list);
+void                     gnome_vfs_mime_application_list_free                     (GList                   *list);
+void                     gnome_vfs_mime_component_list_free                       (GList                   *list);
 
 G_END_DECLS
 

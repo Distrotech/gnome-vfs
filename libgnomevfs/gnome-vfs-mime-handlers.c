@@ -52,7 +52,7 @@ struct _GnomeVFSMimeApplicationPrivate
 	char *exec;
 	char *binary_name;
 	gboolean supports_uris;
-	gboolean startup_notify;
+	gboolean startup_notification;
 	char *startup_wm_class;
 };
 
@@ -1060,7 +1060,7 @@ gnome_vfs_mime_application_copy (GnomeVFSMimeApplication *application)
 	result->priv->exec = g_strdup (application->priv->exec); 
 	result->priv->binary_name = g_strdup (application->priv->binary_name);
 	result->priv->supports_uris = application->priv->supports_uris;
-	result->priv->startup_notify = application->priv->startup_notify;
+	result->priv->startup_notification = application->priv->startup_notification;
 	result->priv->startup_wm_class = g_strdup (application->priv->startup_wm_class);
 
 	return result;
@@ -1799,12 +1799,12 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 		app->requires_terminal = FALSE;
 	}
 
-	app->priv->startup_notify = g_key_file_get_boolean
+	app->priv->startup_notification = g_key_file_get_boolean
 			(key_file, DESKTOP_ENTRY_GROUP, "StartupNotify", &err);
 	if (err) {
 		g_error_free (err);
 		err = NULL;
-		app->priv->startup_notify = FALSE;
+		app->priv->startup_notification = FALSE;
 	}
 
 	app->priv->generic_name = g_key_file_get_locale_string
@@ -2165,7 +2165,7 @@ gnome_vfs_mime_application_requires_terminal (GnomeVFSMimeApplication *app)
 }
 
 /**
- * gnome_vfs_mime_application_get_startup_notify:
+ * gnome_vfs_mime_application_supports_startup_notification:
  * @app: a #GnomeVFSMimeApplication
  *
  * Returns whether the application supports startup notification.
@@ -2178,7 +2178,7 @@ gnome_vfs_mime_application_requires_terminal (GnomeVFSMimeApplication *app)
  * Since: 2.8
  */
 gboolean
-gnome_vfs_mime_application_get_startup_notify (GnomeVFSMimeApplication *app)
+gnome_vfs_mime_application_supports_startup_notification (GnomeVFSMimeApplication *app)
 {
 	g_return_val_if_fail (app != NULL, FALSE);
 	
@@ -2187,7 +2187,7 @@ gnome_vfs_mime_application_get_startup_notify (GnomeVFSMimeApplication *app)
 		return FALSE;
 	}
 
-	return app->priv->startup_notify;
+	return app->priv->startup_notification;
 }
 
 /**
