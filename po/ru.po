@@ -1,13 +1,13 @@
-# Copyright (C) 2000 Free Software Foundation, Inc.
-# Valek Filippov <frob@df.ru>, 2000.
+# Copyright (C) 2000-2002 Free Software Foundation, Inc.
+# Valek Filippov <frob@df.ru>, 2000-2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-02-11 13:53-0800\n"
-"PO-Revision-Date: 2001-10-13 17:58+0400\n"
+"POT-Creation-Date: 2002-03-14 08:01-0500\n"
+"PO-Revision-Date: 2002-03-15 14:50+0300\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=koi8-r\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -302,12 +302,12 @@ msgstr "Неизвестная GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Не найден правильный файл установок в %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "Используйте переменную окружения %s для указания другого места.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -322,9 +322,8 @@ msgid "generic Gnome VFS moniker"
 msgstr ""
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Общая ошибка"
+msgstr "обычный моникер файла"
 
 #~ msgid "3D Studio image"
 #~ msgstr "Изображение 3D Studi"
