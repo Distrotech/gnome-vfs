@@ -1,3 +1,8 @@
+2001-08-27  Sander Vesik <sander.vesik@sun.com>
+	* libgnomevfs/gnome-vfs-uri.c: cast argument to isspace so -Werror
+	does not cause breakage on solaris - using char as a subscript
+	generates a warning.
+
 2001-08-27  Martin Baulig  <baulig@suse.de>
 
 	* modules/file-method.c: Only #include <fam.h> if we HAVE_FAM.
