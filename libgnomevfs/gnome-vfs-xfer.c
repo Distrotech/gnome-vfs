@@ -1091,7 +1091,7 @@ xfer_create_target (GnomeVFSHandle **target_handle,
 
 		result = gnome_vfs_create_uri (target_handle, target_uri,
 					       GNOME_VFS_OPEN_WRITE,
-					       exclusive, 0600);
+					       exclusive, 0666);
 
 		if (result == GNOME_VFS_ERROR_FILE_EXISTS) {
 			gboolean replace;
@@ -1127,6 +1127,7 @@ copy_file (GnomeVFSFileInfo *info,
 {
 	GnomeVFSResult close_result, result;
 	GnomeVFSHandle *source_handle, *target_handle;
+	GnomeVFSSetFileInfoMask set_mask;
 
 	progress->progress_info->phase = GNOME_VFS_XFER_PHASE_OPENSOURCE;
 	progress->progress_info->bytes_copied = 0;
@@ -1189,11 +1190,21 @@ copy_file (GnomeVFSFileInfo *info,
 	}
 
 	if (result == GNOME_VFS_OK) {
+		/* FIXME the modules should ignore setting of permissions if
+		 * "valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS" is clear
+		 * for now, make sure permissions aren't set to 000
+		 */
+
+		if ((info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) == 0) {
+			set_mask = GNOME_VFS_SET_FILE_INFO_TIME;
+		} else {
+			set_mask = GNOME_VFS_SET_FILE_INFO_PERMISSIONS
+					| GNOME_VFS_SET_FILE_INFO_OWNER
+					| GNOME_VFS_SET_FILE_INFO_TIME;
+		}
+
 		/* ignore errors while setting file info attributes at this point */
-		gnome_vfs_set_file_info_uri (target_uri, info,
-			GNOME_VFS_SET_FILE_INFO_PERMISSIONS
-			| GNOME_VFS_SET_FILE_INFO_OWNER
-			| GNOME_VFS_SET_FILE_INFO_TIME);
+		gnome_vfs_set_file_info_uri (target_uri, info, set_mask);
 	}
 
 	if (*skip) {
@@ -1216,6 +1227,7 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 	GnomeVFSResult result;
 	GnomeVFSDirectoryHandle *source_directory_handle;
 	GnomeVFSDirectoryHandle *dest_directory_handle;
+	GnomeVFSSetFileInfoMask set_mask;
 
 	source_directory_handle = NULL;
 	dest_directory_handle = NULL;
@@ -1310,11 +1322,21 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 	gnome_vfs_directory_close (source_directory_handle);
 
 	if (result == GNOME_VFS_OK) {
+		/* FIXME the modules should ignore setting of permissions if
+		 * "valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS" is clear
+		 * for now, make sure permissions aren't set to 000
+		 */
+
+		if ((source_file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS) == 0) {
+			set_mask = GNOME_VFS_SET_FILE_INFO_TIME;
+		} else {
+			set_mask = GNOME_VFS_SET_FILE_INFO_PERMISSIONS
+					| GNOME_VFS_SET_FILE_INFO_OWNER
+					| GNOME_VFS_SET_FILE_INFO_TIME;
+		}
+
 		/* ignore errors while setting file info attributes at this point */
-		gnome_vfs_set_file_info_uri (target_dir_uri, source_file_info,
-			GNOME_VFS_SET_FILE_INFO_PERMISSIONS
-			| GNOME_VFS_SET_FILE_INFO_OWNER
-			| GNOME_VFS_SET_FILE_INFO_TIME);
+		gnome_vfs_set_file_info_uri (target_dir_uri, source_file_info, set_mask);
 	}
 
 	return result;
@@ -1326,7 +1348,8 @@ copy_items (const GList *source_uri_list,
 	    GnomeVFSXferOptions xfer_options,
 	    GnomeVFSXferErrorMode *error_mode,
 	    GnomeVFSXferOverwriteMode overwrite_mode,
-	    GnomeVFSProgressCallbackState *progress)
+	    GnomeVFSProgressCallbackState *progress,
+	    GList **p_source_uris_copied_list)
 {
 	GnomeVFSResult result;
 	const GList *source_item, *target_item;
@@ -1397,6 +1420,11 @@ copy_items (const GList *source_uri_list,
                                 }
 				/* just ignore all the other special file system objects here */
 
+				if (result == GNOME_VFS_OK && !skip) {
+					/* Add to list of successfully copied files... */
+					*p_source_uris_copied_list = g_list_prepend (*p_source_uris_copied_list, source_uri);
+					gnome_vfs_uri_ref (source_uri);
+				}
 
 				if (result != GNOME_VFS_ERROR_FILE_EXISTS) {
 					/* whatever happened, it wasn't a name conflict */
@@ -1887,6 +1915,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 	GnomeVFSResult result;
 	GList *source_uri_list, *target_uri_list;
 	GList *source_uri, *target_uri;
+	GList *source_uri_list_copied;
 	GnomeVFSURI *target_dir_uri;
 	gboolean move, link;
 	GnomeVFSFileSize free_bytes;
@@ -1896,6 +1925,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 	move = FALSE;
 	link = FALSE;
 	target_dir_uri = NULL;
+	source_uri_list_copied = NULL;
 
 	/* Check and see if target is writable. Return error if it is not. */
 	call_progress (progress, GNOME_VFS_XFER_CHECKING_DESTINATION);
@@ -2006,13 +2036,14 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			} else {
 				result = copy_items (source_uri_list, target_uri_list,
 						     xfer_options, &error_mode, overwrite_mode, 
-						     progress);
+						     progress, &source_uri_list_copied);
 			}
 			
 			if (result == GNOME_VFS_OK) {
 				if (xfer_options & GNOME_VFS_XFER_REMOVESOURCE) {
 					call_progress (progress, GNOME_VFS_XFER_PHASE_CLEANUP);
-					result = gnome_vfs_xfer_delete_items_common (source_uri_list,
+					result = gnome_vfs_xfer_delete_items_common ( 
+						(move || link) ? source_uri_list : source_uri_list_copied,
 						error_mode, xfer_options, progress);
 				}
 			}
@@ -2021,6 +2052,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 
 	gnome_vfs_uri_list_free (source_uri_list);
 	gnome_vfs_uri_list_free (target_uri_list);
+	gnome_vfs_uri_list_free (source_uri_list_copied);
 
 	return result;
 }

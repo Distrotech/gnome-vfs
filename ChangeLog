@@ -1,3 +1,21 @@
+2001-01-08  Mike Fleming  <mfleming@eazel.com>
+
+	reviewed by: pavel@eazel.com
+
+	* libgnomevfs/gnome-vfs-xfer.c: (xfer_create_target), (copy_file),
+	(copy_directory), (copy_items), (gnome_vfs_xfer_uri_internal):
+
+	Bug 5250 (Hitting "skip" during a move operation across filesystems
+	causes skipped file not to be copied but still to be deleted).
+	
+	The new behaviour builds a list of successfully copied URI's.  It
+	is these files that are deleted, not all of the original source URI's.
+
+	Also: fix bug where files and directories copied from HTTP DAV server
+	to local filesystem would have permissions of 000 set.  Now, files
+	and directories are left with permissions set according to the user's
+	umask
+
 2001-01-05  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Darin Adler  <darin@eazel.com>
