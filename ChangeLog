@@ -1,3 +1,18 @@
+2000-11-02  Gene Z. Ragan  <gzr@eazel.com>
+
+	Some more capplet cleanup.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(check_button_status), (initialize_edit_applications_dialog),
+	(initialize_edit_components_dialog):
+	Have the Add, Edit and Delete buttons in the Edit Applications
+	dialog be enabled/disabled properly based on the contents
+	of the application list.
+
+	Remove Cancel button from the Edit Component and Edit Application
+	dialog, as we currently do not have a way to roll back the changed
+	made.
+
 2000-11-02  Andy Hertzfeld  <andy@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
