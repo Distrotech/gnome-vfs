@@ -33,6 +33,9 @@
 #ifdef HAVE_SYS_MOUNT_H
 #include <sys/mount.h>
 #endif
+#ifdef HAVE_SYS_POLL_H
+#include <sys/poll.h>
+#endif
 #endif
 #include <stdio.h>
 #include <unistd.h>
@@ -73,6 +76,8 @@
 #endif
 #endif
 
+#define STAT_TIMEOUT_SECONDS 3
+
 
 /* Ideally this should not nonblocking stat, since that can block on
  * downed NFS mounts forever, however there seems to be no good way
@@ -86,8 +91,12 @@ _gnome_vfs_unix_mount_get_unix_device (GnomeVFSUnixMount *mount)
 	dev_t unix_device;
 	pid_t pid;
 	int pipes[2];
-	fd_set read_fds;
+#ifdef HAVE_POLL
+	struct pollfd poll_fd;
+#else
 	struct timeval tv;
+	fd_set read_fds;
+#endif
 	int res;
 	int status;
 
@@ -98,6 +107,8 @@ _gnome_vfs_unix_mount_get_unix_device (GnomeVFSUnixMount *mount)
 	pid = fork ();
 
 	if (pid == -1) {
+		close (pipes[0]);
+		close (pipes[1]);
 		return 0;
 	}
 
@@ -119,12 +130,14 @@ _gnome_vfs_unix_mount_get_unix_device (GnomeVFSUnixMount *mount)
 				write (pipes[1], (char *)&statbuf.st_dev, sizeof (dev_t));
 			}
 		} else {
-			close (pipes[0]);
 			close (pipes[1]);
 		}
 
 		_exit (0);
 	} else {
+		/* Parent */
+		close (pipes[1]);
+		
         wait_again:
 		if (waitpid (pid, &status, 0) < 0) {
 			if (errno == EINTR)
@@ -134,20 +147,25 @@ _gnome_vfs_unix_mount_get_unix_device (GnomeVFSUnixMount *mount)
 			else
 				g_warning ("waitpid() should not fail in gnome_vfs_unix_mount_get_unix_device");
 		}
+
+
+		do {
+#ifdef HAVE_POLL
+			poll_fd.fd = pipes[0];
+			poll_fd.events = POLLIN;
+			res = poll (&poll_fd, 1, STAT_TIMEOUT_SECONDS*1000);
+#else
+			tv.tv_sec = STAT_TIMEOUT_SECONDS;
+			tv.tv_usec = 0;
+			
+			FD_ZERO(&read_fds);
+			FD_SET(pipes[0], &read_fds);
+			
+			res = select (pipes[0] + 1,
+				      &read_fds, NULL, NULL, &tv);
+#endif
+		} while (res == -1 && errno == EINTR);
 		
-		/* Parent */
-		close (pipes[1]);
-
-		FD_ZERO(&read_fds);
-		FD_SET(pipes[0], &read_fds);
-
-		/* Wait max one second */
-		tv.tv_sec = 2;
-		tv.tv_usec = 0;
-
-		res = select(pipes[0] + 1,
-			     &read_fds, NULL, NULL, &tv);
-
 		if (res > 0) {
 			if (read (pipes[0], (char *)&unix_device, sizeof (dev_t)) != sizeof (dev_t)) {
 				unix_device = 0; 
