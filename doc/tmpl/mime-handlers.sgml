@@ -228,8 +228,10 @@ mime-handlers
 </para>
 
 @mime_type: 
-@component_ids: 
+@component_iids: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@component_ids: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_add_application_to_short_list ##### -->
@@ -237,9 +239,11 @@ mime-handlers
 
 </para>
 
-@uri: 
+@mime_type: 
 @application_id: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@uri: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_remove_application_from_short_list ##### -->
@@ -247,9 +251,11 @@ mime-handlers
 
 </para>
 
-@uri: 
+@mime_type: 
 @application_id: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@uri: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_add_component_to_short_list ##### -->
@@ -257,9 +263,11 @@ mime-handlers
 
 </para>
 
-@uri: 
+@mime_type: 
 @iid: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@uri: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_remove_component_from_short_list ##### -->
@@ -267,9 +275,11 @@ mime-handlers
 
 </para>
 
-@uri: 
+@mime_type: 
 @iid: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@uri: 
 
 
 <!-- ##### FUNCTION gnome_vfs_mime_add_extension ##### -->

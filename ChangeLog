@@ -1,3 +1,25 @@
+2001-05-27  Seth Nickell  <snickell@stanford.edu>
+
+	* devel-docs/gnome-vfs/tmpl/gnome-vfs-mime-info.sgml:
+	* devel-docs/gnome-vfs/tmpl/gnome-vfs-mime.sgml:
+	* doc/tmpl/gnome-vfs-unused.sgml:
+	* doc/tmpl/list-sort.sgml:
+	* doc/tmpl/mime-handlers.sgml:
+
+	gtk-doc apparently wants to change these files from its
+	auto-scans (found some new functions). Owen thinks I should 
+	just check in the changes. I don't know gtk-doc procedure, so 
+	I'm trusting his judgement.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	
+	Documented all public functions.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+
+	Changed some arguments to match their name/usage within the
+	corresponding declarations within gnome-vfs-mime-handlers.c.
+	
 2001-05-27  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	reviewed by: Seth Nickell <snickell@stanford.edu>
