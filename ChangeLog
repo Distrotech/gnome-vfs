@@ -2,6 +2,20 @@
 
 	reviewed by: John Sullivan  <sullivan@eazel.com>
 
+	Fix bug 5816 (Clicking "Refresh" in View as Image crashes
+	Nautilus) by getting rid of a "free non-malloc'd memory" problem.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_all_applications): Fixed problem where the
+	prune function was freeing application IDs that we don't own.
+	(prune_ids_for_nonexistent_applications): Used g_list_free_1 for
+	clarity. The old code used g_list_free, which will also work,
+	since the removed node is a list of length 1.
+
+2001-01-19  Darin Adler  <darin@eazel.com>
+
+	reviewed by: John Sullivan  <sullivan@eazel.com>
+
 	* .cvsignore: Ignore the xml-i18n-tools files.
 	* libgnomevfs-pthread/gnome-vfs-async-job-map.c:
 	(callback_map_cancel_one), (gnome_vfs_async_job_cancel_callbacks):

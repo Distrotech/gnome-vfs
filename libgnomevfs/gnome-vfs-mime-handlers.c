@@ -697,31 +697,40 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 GList *
 gnome_vfs_mime_get_all_applications (const char *mime_type)
 {
-	GList *applications, *li;
+	GList *applications, *node, *next;
+	char *application_id;
+	GnomeVFSMimeApplication *application;
 
 	g_return_val_if_fail (mime_type != NULL, NULL);
 
 	applications = gnome_vfs_application_registry_get_applications (mime_type);
 
+	/* We get back a list of const char *, but the prune function
+	 * wants a list of strings that we own.
+	 */
+	for (node = applications; node != NULL; node = node->next) {
+		node->data = g_strdup (node->data);
+	}
+
 	/* Remove application ids representing nonexistent (not in path) applications */
 	applications = prune_ids_for_nonexistent_applications (applications);
 
-	/* convert list to list of GnomeVFSMimeApplication's */
-	li = applications;
-	while (li != NULL) {
-		const char *application_id = li->data;
-		li->data = gnome_vfs_application_registry_get_mime_application (application_id);
-		/* Make sure we get no NULLs */
-		if (li->data == NULL) {
-			GList *link_to_remove = li;
+	/* Convert to GnomeVFSMimeApplication's (leaving out NULLs) */
+	for (node = applications; node != NULL; node = next) {
+		next = node->next;
 
-			li = li->next;
+		application_id = node->data;
+		application = gnome_vfs_application_registry_get_mime_application (application_id);
 
-			applications = g_list_remove_link (applications,
-							   link_to_remove);
-			g_list_free_1 (link_to_remove);
-		} else
-			li = li->next;
+		/* Replace the application ID with the application */
+		if (application == NULL) {
+			applications = g_list_remove_link (applications, node);
+			g_list_free_1 (node);
+		} else {
+			node->data = application;
+		}
+
+		g_free (application_id);
 	}
 
 	return applications;
@@ -1681,7 +1690,7 @@ prune_ids_for_nonexistent_applications (GList *list)
 		if (application_known_to_be_nonexistent (p->data)) {
 			list = g_list_remove_link (list, p);
 			g_free (p->data);
-			g_list_free (p);
+			g_list_free_1 (p);
 		}
 	}
 
