@@ -380,14 +380,14 @@ remove_file (GnomeVFSURI *uri,
 			 * does not depend on file/directory size
 			 */
 			progress->progress_info->bytes_copied += DEFAULT_SIZE_OVERHEAD;
+			if (call_progress_with_uris_often (progress, uri, NULL, 
+							   GNOME_VFS_XFER_PHASE_DELETESOURCE) 
+				== GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
+				result = GNOME_VFS_ERROR_INTERRUPTED;
+				break;
+			}
 		}
 
-		if (call_progress_with_uris_often (progress, uri, NULL, 
-						   GNOME_VFS_XFER_PHASE_DELETESOURCE) 
-			== GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
-			result = GNOME_VFS_ERROR_INTERRUPTED;
-			break;
-		}
 
 	} while (retry);
 
@@ -576,12 +576,13 @@ remove_directory (GnomeVFSURI *uri,
 				/* add some small size for each deleted item */
 				progress->progress_info->bytes_total += DEFAULT_SIZE_OVERHEAD;
 				progress->progress_info->total_bytes_copied += DEFAULT_SIZE_OVERHEAD;
-			}
-			if (call_progress_with_uris_often (progress, uri, NULL, 
-							   GNOME_VFS_XFER_PHASE_DELETESOURCE) 
-				== GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
-				result = GNOME_VFS_ERROR_INTERRUPTED;
-				break;
+
+				if (call_progress_with_uris_often (progress, uri, NULL, 
+					GNOME_VFS_XFER_PHASE_DELETESOURCE) 
+					== GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
+					result = GNOME_VFS_ERROR_INTERRUPTED;
+					break;
+				}
 			}
 
 		} while (retry);
@@ -1139,10 +1140,8 @@ copy_file (GnomeVFSFileInfo *info,
 		return result;
 	}
 
-	if (call_progress_with_uris_often (progress, 
-			       source_uri, target_uri, 
-			       GNOME_VFS_XFER_PHASE_OPENTARGET) 
-			       != GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
+	if (call_progress_with_uris_often (progress, source_uri, target_uri, 
+		GNOME_VFS_XFER_PHASE_OPENTARGET) != GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
 
 
 		result = copy_file_data (target_handle, source_handle,
@@ -1156,7 +1155,8 @@ copy_file (GnomeVFSFileInfo *info,
 	}
 
 	progress->progress_info->file_index++;
-	if (call_progress_often (progress, GNOME_VFS_XFER_PHASE_CLOSETARGET) == 0) {
+	if (result == GNOME_VFS_OK 
+		&& call_progress_often (progress, GNOME_VFS_XFER_PHASE_CLOSETARGET) == 0) {
 		result = GNOME_VFS_ERROR_INTERRUPTED;
 	}
 
@@ -1491,7 +1491,9 @@ move_items (const GList *source_uri_list,
 			if (result != GNOME_VFS_OK) {
 				retry = handle_error (&result, progress, error_mode, &skip);
 			}
-			if (call_progress_with_uris_often (progress, source_uri,
+
+			if (result == GNOME_VFS_OK 
+				&& call_progress_with_uris_often (progress, source_uri,
 				target_uri, GNOME_VFS_XFER_PHASE_MOVING) == 0) {
 				result = GNOME_VFS_ERROR_INTERRUPTED;
 				gnome_vfs_uri_unref (target_uri);
@@ -1590,7 +1592,8 @@ link_items (const GList *source_uri_list,
 				retry = handle_error (&result, progress, error_mode, &skip);
 			}
 
-			if (call_progress_with_uris_often (progress, source_uri,
+			if (result == GNOME_VFS_OK
+				&& call_progress_with_uris_often (progress, source_uri,
 						target_uri, GNOME_VFS_XFER_PHASE_OPENTARGET) == 0) {
 				result = GNOME_VFS_ERROR_INTERRUPTED;
 				gnome_vfs_uri_unref (target_uri);

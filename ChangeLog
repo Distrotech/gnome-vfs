@@ -1,3 +1,11 @@
+2000-10-31  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (remove_file), (remove_directory),
+	(copy_file), (move_items), (link_items):
+	Fix 848 - Failed copy operations still cause an icon to appear.
+	Made xfer callbacks only get called when items were successfully
+	moved, created and removed.
+
 2000-10-31  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed offset glitch. Now files are extracted properly.
