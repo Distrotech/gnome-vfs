@@ -417,6 +417,18 @@ dispatch_get_file_info_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 }
 
 static void
+dispatch_set_file_info_callback (GnomeVFSJob *job, GnomeVFSOp *op)
+{
+	GnomeVFSAsyncCallback callback;
+
+	callback = (GnomeVFSAsyncCallback) op->callback;
+
+	(* callback) ((GnomeVFSAsyncHandle *) job,
+		      op->specifics.set_file_info.notify.result,
+		      op->callback_data);
+}
+
+static void
 dispatch_xfer_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 {
 	GnomeVFSAsyncXferProgressCallback callback;
@@ -511,6 +523,7 @@ dispatch_job_callback (GIOChannel *source,
 		case GNOME_VFS_OP_LOAD_DIRECTORY:
 		case GNOME_VFS_OP_XFER:
 		case GNOME_VFS_OP_GET_FILE_INFO:
+		case GNOME_VFS_OP_SET_FILE_INFO:
 			break;
 		}
 	} else {
@@ -547,6 +560,9 @@ dispatch_job_callback (GIOChannel *source,
 			break;
 		case GNOME_VFS_OP_GET_FILE_INFO:
 			dispatch_get_file_info_callback (job, op);
+			break;
+		case GNOME_VFS_OP_SET_FILE_INFO:
+			dispatch_set_file_info_callback (job, op);
 			break;
 		default:
 			g_warning (_("Unknown job ID %d"), op->type);
@@ -1337,7 +1353,26 @@ execute_get_file_info (GnomeVFSJob *job)
 	}
 	gijob->notify.result_list = g_list_reverse (gijob->notify.result_list);
 
+	/* FIXME: These leak if the operation is cancelled. */
 	g_strfreev (gijob->request.meta_keys);
+
+	job_oneway_notify_and_close (job);
+	return FALSE;
+}
+
+static gboolean
+execute_set_file_info (GnomeVFSJob *job)
+{
+	GnomeVFSSetFileInfoOp *op;
+
+	op = &job->current_op->specifics.set_file_info;
+
+	op->notify.result = gnome_vfs_set_file_info_cancellable
+		(op->request.uri, &op->request.info, op->request.mask,
+		 job->current_op->context);
+
+	/* FIXME: Leaks if the operation is cancelled. */
+	gnome_vfs_file_info_clear (&op->request.info);
 
 	job_oneway_notify_and_close (job);
 	return FALSE;
@@ -1483,6 +1518,8 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 		return execute_xfer (job);
 	case GNOME_VFS_OP_GET_FILE_INFO:
 		return execute_get_file_info (job);
+	case GNOME_VFS_OP_SET_FILE_INFO:
+		return execute_set_file_info (job);
 	default:
 		g_warning (_("Unknown job ID %d"), job->current_op->type);
 		return FALSE;

@@ -599,11 +599,12 @@ typedef gint (* GnomeVFSXferProgressCallback) 	(GnomeVFSXferProgressInfo *info,
 
 typedef struct GnomeVFSAsyncHandle GnomeVFSAsyncHandle;
 
-typedef void	(* GnomeVFSAsyncOpenCallback)	(GnomeVFSAsyncHandle *handle,
+typedef void	(* GnomeVFSAsyncCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
 						 gpointer callback_data);
 
-typedef GnomeVFSAsyncOpenCallback GnomeVFSAsyncCreateCallback;
+typedef GnomeVFSAsyncCallback GnomeVFSAsyncOpenCallback;
+typedef GnomeVFSAsyncCallback GnomeVFSAsyncCreateCallback;
 
 typedef void	(* GnomeVFSAsyncOpenAsChannelCallback)
 						(GnomeVFSAsyncHandle *handle,

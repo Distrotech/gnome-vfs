@@ -69,6 +69,7 @@ enum GnomeVFSOpType {
 	GNOME_VFS_OP_LOAD_DIRECTORY,
 	GNOME_VFS_OP_XFER,
 	GNOME_VFS_OP_GET_FILE_INFO,
+	GNOME_VFS_OP_SET_FILE_INFO
 };
 typedef enum GnomeVFSOpType GnomeVFSOpType;
 
@@ -187,6 +188,18 @@ typedef struct {
 	} notify;
 } GnomeVFSGetFileInfoOp;
 
+typedef struct {
+	struct {
+		GnomeVFSURI *uri;
+		GnomeVFSFileInfo info;
+		GnomeVFSSetFileInfoMask mask;
+	} request;
+
+	struct {
+		GnomeVFSResult result;
+	} notify;
+} GnomeVFSSetFileInfoOp;
+
 
 
 /* "Complex operations.  */
@@ -247,6 +260,7 @@ typedef union {
 	GnomeVFSLoadDirectoryOp load_directory;
 	GnomeVFSXferOp xfer;
 	GnomeVFSGetFileInfoOp get_file_info;
+	GnomeVFSSetFileInfoOp set_file_info;
 } GnomeVFSSpecificOp;
 
 typedef struct {

@@ -127,6 +127,13 @@ void             gnome_vfs_async_get_file_info  (GnomeVFSAsyncHandle **handle_re
 						 GnomeVFSAsyncGetFileInfoCallback callback,
 						 gpointer callback_data);
 
+void             gnome_vfs_async_set_file_info  (GnomeVFSAsyncHandle **handle_return,
+						 GnomeVFSURI *uri,
+						 GnomeVFSFileInfo *info,
+						 GnomeVFSSetFileInfoMask mask,
+						 GnomeVFSAsyncCallback callback,
+						 gpointer callback_data);
+
 void          	 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
 						 GnomeVFSFileInfoOptions

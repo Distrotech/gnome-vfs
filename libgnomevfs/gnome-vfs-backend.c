@@ -152,7 +152,7 @@ G_STMT_START { \
 typedef struct {
 	GnomeVFSResult result;
 	union {
-		GnomeVFSAsyncOpenCallback open;
+		GnomeVFSAsyncCallback simple;
 		GnomeVFSAsyncOpenAsChannelCallback open_as_channel;
 		GnomeVFSAsyncCloseCallback close;
 		GnomeVFSAsyncReadCallback read;
@@ -168,12 +168,12 @@ typedef struct {
 } CallbackData;
 
 static gboolean
-report_failure_open_callback (gpointer callback_data)
+report_failure_simple_callback (gpointer callback_data)
 {
 	CallbackData *data;
 
 	data = callback_data;
-	(* data->callback.open) (NULL,
+	(* data->callback.simple) (NULL,
 				 data->result,
 				 data->callback_data);
 	g_free (data);
@@ -182,9 +182,9 @@ report_failure_open_callback (gpointer callback_data)
 }
 
 static void
-report_failure_open (GnomeVFSResult result,
-		     GnomeVFSAsyncOpenCallback callback,
-		     gpointer callback_data)
+report_failure_simple (GnomeVFSResult result,
+		       GnomeVFSAsyncCallback callback,
+		       gpointer callback_data)
 {
 	CallbackData *data;
 
@@ -192,10 +192,10 @@ report_failure_open (GnomeVFSResult result,
 		return;
 
 	data = g_new0 (CallbackData, 1);
-	data->callback.open = callback;
+	data->callback.simple = callback;
 	data->result = result;
 	data->callback_data = callback_data;
-	g_idle_add (report_failure_open_callback, data);
+	g_idle_add (report_failure_simple_callback, data);
 }
 
 void
@@ -215,7 +215,7 @@ gnome_vfs_async_open (GnomeVFSAsyncHandle **handle_return,
 
 	CALL_BACKEND (gnome_vfs_async_open,
 		      (handle_return, text_uri, open_mode, callback, callback_data));
-	report_failure_open (result, callback, callback_data);
+	report_failure_simple (result, callback, callback_data);
 }
 
 void
@@ -235,7 +235,7 @@ gnome_vfs_async_open_uri (GnomeVFSAsyncHandle **handle_return,
 
 	CALL_BACKEND (gnome_vfs_async_open_uri,
 		      (handle_return, uri, open_mode, callback, callback_data));
-	report_failure_open (result, callback, callback_data);
+	report_failure_simple (result, callback, callback_data);
 }
 
 static gboolean
@@ -315,7 +315,7 @@ gnome_vfs_async_create (GnomeVFSAsyncHandle **handle_return,
 	CALL_BACKEND (gnome_vfs_async_create,
 		      (handle_return, text_uri, open_mode, exclusive, perm,
 		       callback, callback_data));
-	report_failure_open (result, callback, callback_data);
+	report_failure_simple (result, callback, callback_data);
 }
 
 void
@@ -360,33 +360,33 @@ gnome_vfs_async_create_uri (GnomeVFSAsyncHandle **handle_return,
 						    gboolean exclusive,
 						    guint perm,
 						    GnomeVFSAsyncOpenCallback callback,
-						    gpointer callback_data) = NULL;
+						    gpointer callback_data);
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_create_uri,
 		      (handle_return, text_uri, open_mode, exclusive, perm,
 		       callback, callback_data));
-	report_failure_open (result, callback, callback_data);
+	report_failure_simple (result, callback, callback_data);
 }
 
 
 void
 gnome_vfs_async_create_symbolic_link (GnomeVFSAsyncHandle **handle_return,
-			     GnomeVFSURI *uri,
-			     const gchar *uri_reference,
-			     GnomeVFSAsyncOpenCallback callback,
-			     gpointer callback_data)
+				      GnomeVFSURI *uri,
+				      const gchar *uri_reference,
+				      GnomeVFSAsyncOpenCallback callback,
+				      gpointer callback_data)
 {
 	static GnomeVFSResult
 		(*real_gnome_vfs_async_create_symbolic_link) (GnomeVFSAsyncHandle **handle_return,
 							      GnomeVFSURI *uri,
 							      const gchar *uri_reference,
 							      GnomeVFSAsyncOpenCallback callback,
-							      gpointer callback_data) = NULL;
+							      gpointer callback_data);
 	GnomeVFSResult result;
 	CALL_BACKEND (gnome_vfs_async_create_symbolic_link,
 		      (handle_return, uri, uri_reference, callback, callback_data));
-	report_failure_open (result, callback, callback_data);
+	report_failure_simple (result, callback, callback_data);
 }
 
 static gboolean
@@ -430,7 +430,7 @@ gnome_vfs_async_close (GnomeVFSAsyncHandle *handle,
 	static GnomeVFSResult	 
 		(*real_gnome_vfs_async_close) (GnomeVFSAsyncHandle *handle,
 					       GnomeVFSAsyncCloseCallback callback,
-					       gpointer callback_data) = NULL;
+					       gpointer callback_data);
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_close,
@@ -490,7 +490,7 @@ gnome_vfs_async_read (GnomeVFSAsyncHandle *handle,
 					      gpointer buffer,
 					      guint bytes,
 					      GnomeVFSAsyncReadCallback callback,
-					      gpointer callback_data) = NULL;
+					      gpointer callback_data);
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_read,
@@ -553,7 +553,7 @@ gnome_vfs_async_write (GnomeVFSAsyncHandle *handle,
 					       gconstpointer buffer,
 					       guint bytes,
 					       GnomeVFSAsyncWriteCallback callback,
-					       gpointer callback_data) = NULL;
+					       gpointer callback_data);
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_write,
@@ -635,13 +635,37 @@ gnome_vfs_async_get_file_info  (GnomeVFSAsyncHandle **handle_return,
 						       GnomeVFSFileInfoOptions options,
 						       const char * const meta_keys[],
 						       GnomeVFSAsyncGetFileInfoCallback callback,
-						       gpointer callback_data) = NULL;
+						       gpointer callback_data);
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_get_file_info,
 		      (handle_return, uris, options, meta_keys,
 		       callback, callback_data));
 	report_failure_get_file_info (result, uris, callback, callback_data);
+}
+
+void
+gnome_vfs_async_set_file_info  (GnomeVFSAsyncHandle **handle_return,
+				GnomeVFSURI *uri,
+				GnomeVFSFileInfo *info,
+				GnomeVFSSetFileInfoMask mask,
+				GnomeVFSAsyncCallback callback,
+				gpointer callback_data)
+{
+	static GnomeVFSResult	 
+		(*real_gnome_vfs_async_set_file_info) (GnomeVFSAsyncHandle **handle_return,
+						       GnomeVFSURI *uri,
+						       GnomeVFSFileInfo *info,
+						       GnomeVFSSetFileInfoMask mask,
+						       GnomeVFSAsyncCallback callback,
+						       gpointer callback_data);
+
+	GnomeVFSResult result;
+
+	CALL_BACKEND (gnome_vfs_async_set_file_info,
+		      (handle_return, uri, info, mask,
+		       callback, callback_data));
+	report_failure_simple (result, callback, callback_data);
 }
 
 static gboolean
@@ -703,7 +727,7 @@ gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 							    const gchar *filter_pattern,
 							    guint items_per_notification,
 							    GnomeVFSAsyncDirectoryLoadCallback callback,
-							    gpointer callback_data) = NULL;
+							    gpointer callback_data);
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_load_directory_uri,
@@ -740,7 +764,7 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 							const gchar *filter_pattern,
 							guint items_per_notification,
 							GnomeVFSAsyncDirectoryLoadCallback callback,
-							gpointer callback_data) = NULL;
+							gpointer callback_data);
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_load_directory,
@@ -776,7 +800,7 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 					      GnomeVFSAsyncXferProgressCallback progress_update_callback,
 					      gpointer update_callback_data,
 					      GnomeVFSXferProgressCallback progress_sync_callback,
-					      gpointer sync_callback_data) = NULL;
+					      gpointer sync_callback_data);
 
 	CALL_BACKEND_RETURN (gnome_vfs_async_xfer,
 			     (handle_return,
@@ -791,7 +815,7 @@ GnomeVFSResult
 gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 {
 	static GnomeVFSResult
-		(*real_gnome_vfs_async_cancel)(GnomeVFSAsyncHandle *handle) = NULL;
+		(*real_gnome_vfs_async_cancel)(GnomeVFSAsyncHandle *handle);
 
 	CALL_BACKEND_RETURN (gnome_vfs_async_cancel, (handle));
 }
@@ -804,7 +828,7 @@ gnome_vfs_async_add_status_callback (GnomeVFSAsyncHandle *handle,
 	static guint
 		(*real_gnome_vfs_async_add_status_callback) (GnomeVFSAsyncHandle *handle,
 							     GnomeVFSStatusCallback callback,
-							     gpointer user_data) = NULL;
+							     gpointer user_data);
 
 	CALL_BACKEND_RETURN (gnome_vfs_async_add_status_callback,
 			     (handle, callback, user_data));
@@ -816,14 +840,15 @@ gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle *handle,
 {
 	static void
 		(*real_gnome_vfs_async_remove_status_callback) (GnomeVFSAsyncHandle *handle,
-								guint callback_id) = NULL;
+								guint callback_id);
 
-	if (!real_gnome_vfs_async_remove_status_callback)
-	{
-		real_gnome_vfs_async_remove_status_callback = (void (*)())
-			func_lookup("gnome_vfs_async_remove_status_callback");
-		if (!real_gnome_vfs_async_remove_status_callback)
+	if (real_gnome_vfs_async_remove_status_callback == NULL) {
+		real_gnome_vfs_async_remove_status_callback = (void (*) (GnomeVFSAsyncHandle *, guint))
+			func_lookup ("gnome_vfs_async_remove_status_callback");
+		if (real_gnome_vfs_async_remove_status_callback == NULL) {
+			/* Silently do nothing. */
 			return;
+		}
 	}
 
 	real_gnome_vfs_async_remove_status_callback (handle, callback_id);

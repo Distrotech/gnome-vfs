@@ -1,3 +1,38 @@
+2000-07-10  Darin Adler  <darin@eazel.com>
+
+	Added async. set_file_info. Sadly, I didn't yet write a test
+	for it and I haven't yet added it to the CORBA back end.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_set_file_info):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(dispatch_set_file_info_callback), (dispatch_job_callback),
+	(execute_get_file_info), (execute_set_file_info),
+	(gnome_vfs_job_execute):
+	Added set_file_info to the thread back end.
+
+	* libgnomevfs/gnome-vfs-types.h:
+	Made the standard callback that just returns a result code have
+	the name GnomeVFSAsyncCallback since it can be used for any number
+	of simple calls.
+	
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	Added async. set_file_info to the async. ops list.
+	
+	* libgnomevfs/gnome-vfs-backend.c:
+	(report_failure_simple_callback), (report_failure_simple): Make
+	the open-specific callback helper into something that can be
+	shared by multiple calls.
+	(gnome_vfs_async_open), (gnome_vfs_async_open_uri),
+	(gnome_vfs_async_create), (gnome_vfs_async_create_uri),
+	(gnome_vfs_async_create_symbolic_link): Use the callback helper by
+	its new name.
+	(gnome_vfs_async_set_file_info): Add async. set_file_info.
+	
+	* modules/newftp-method.c: [removed]
+	* modules/newftp-method.h: [removed]
+
 2000-07-09  Ian McKellar  <yakk@yakk.net.au>
 
 	* libgnomevfs/gnome-vfs-private-types.h:

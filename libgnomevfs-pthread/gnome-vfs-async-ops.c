@@ -98,6 +98,12 @@ GnomeVFSResult pthread_gnome_vfs_async_get_file_info          (GnomeVFSAsyncHand
 							       const gchar * const                  meta_keys[],
 							       GnomeVFSAsyncGetFileInfoCallback     callback,
 							       gpointer                             callback_data);
+GnomeVFSResult pthread_gnome_vfs_async_set_file_info          (GnomeVFSAsyncHandle                **handle_return,
+							       GnomeVFSURI                         *uri,
+							       GnomeVFSFileInfo                    *info,
+							       GnomeVFSSetFileInfoMask              mask,
+							       GnomeVFSAsyncCallback                callback,
+							       gpointer                             callback_data);
 GnomeVFSResult pthread_gnome_vfs_async_load_directory         (GnomeVFSAsyncHandle                **handle_return,
 							       const gchar                         *text_uri,
 							       GnomeVFSFileInfoOptions              options,
@@ -546,6 +552,41 @@ pthread_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 	return GNOME_VFS_OK;
 }
 
+GnomeVFSResult
+pthread_gnome_vfs_async_set_file_info (GnomeVFSAsyncHandle **handle_return,
+				       GnomeVFSURI *uri,
+				       GnomeVFSFileInfo *info,
+				       GnomeVFSSetFileInfoMask mask,
+				       GnomeVFSAsyncCallback callback,
+				       gpointer callback_data)
+{
+	GnomeVFSJob *job;
+	GnomeVFSSetFileInfoOp *op;
+
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (info != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	job = gnome_vfs_job_new ();
+	if (job == NULL)
+		return GNOME_VFS_ERROR_INTERNAL;
+
+	gnome_vfs_job_prepare (job, GNOME_VFS_OP_SET_FILE_INFO,
+			       (GFunc) callback, callback_data);
+
+	op = &job->current_op->specifics.set_file_info;
+
+	op->request.uri = gnome_vfs_uri_dup (uri);
+	gnome_vfs_file_info_copy (&op->request.info, info);
+	op->request.mask = mask;
+
+	gnome_vfs_job_go (job);
+
+	*handle_return = (GnomeVFSAsyncHandle *) job;
+
+	return GNOME_VFS_OK;
+}
 
 static GnomeVFSDirectorySortRule *
 copy_sort_rules (GnomeVFSDirectorySortRule *rules)
