@@ -746,18 +746,22 @@ do_get_file_info (GnomeVFSMethod *method,
 		return result;
 	}
 	
-	result = do_open_directory(method, &method_handle, parent, options, context);
-	while(TRUE) {
-		result = do_read_directory(method, method_handle, file_info, context);
-		if(result != GNOME_VFS_OK) break;
+	result = do_open_directory (method, &method_handle, parent, options, context);
+	if (result != GNOME_VFS_OK)
+		return result;
 
-		if(!strcmp(file_info->name, filename)) break;
+	while (TRUE) {
+		result = do_read_directory (method, method_handle, file_info, context);
+		if (result != GNOME_VFS_OK ||
+		    !strcmp (file_info->name, filename))
+			break;
 	}
-	do_close_directory(method, method_handle, context);
+	do_close_directory (method, method_handle, context);
 
-	if(result == GNOME_VFS_ERROR_EOF) result = GNOME_VFS_ERROR_NOT_FOUND;
+	if (result == GNOME_VFS_ERROR_EOF)
+		result = GNOME_VFS_ERROR_NOT_FOUND;
 	
-	g_free(filename);
+	g_free (filename);
 	return result;
 }
 

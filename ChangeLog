@@ -1,3 +1,8 @@
+2002-11-12  Michael Meeks  <michael@server.home>
+
+	* modules/extfs-method.c (do_get_file_info): check
+	result before using the handle.
+
 2002-11-03  Dmitry G. Mastrukov  <dmitry@taurussoft.org>
 
 	* configure.in: Added Belarusian to ALL_LINGUAS
@@ -130,7 +135,6 @@
 	* libgnomevfs/gnome-vfs-job.c (gnome_vfs_job_destroy_notify_result) :
 	  Add an entry to OP_XFER.
 
-=======
 2002-09-04  Ian McKellar  <yakk@yakk.net>
 
         * libgnomevfs/gnome-vfs-configuration.c:
