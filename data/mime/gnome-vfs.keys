@@ -61,6 +61,9 @@ application/postscript
 application/rtf
 	description=rich text
 
+application/vnd.ms-excel
+	description=Excel document
+
 application/x-applix-spreadsheet
 	description=Applix spreadsheet
 
@@ -133,6 +136,9 @@ application/x-gnome-app-info
 
 application/x-kde-app-info
 	description=KDE application information
+
+application/x-ms-dos-executable
+	description=DOS/Windows program
 
 application/x-object-file
 	description=object code
@@ -244,11 +250,23 @@ audio/x-wav
 font/afm
 	description=Adobe font metrics
 
+font/linux-psf
+	description=Linux psf console font
+
 font/ttf
 	description=TrueType font
 
+font/type1
+	description=PostScript Type 1 font
+
+font/x-bdf
+	description=BDF font
+
 font/x-pcf
 	description=PCF font
+
+font/x-speedo
+	description=Speedo font
 
 image/bmp
 	description=Windows bitmap
@@ -416,6 +434,12 @@ text/sgml
 text/tab-separated-values
 	description=tab-separated text
 
+text/vnd.ms-word
+	description=MS-Word document
+
+text/vnd.wordperfect
+	description=WordPerfect document
+
 text/xml
 	description=XML document
 
@@ -494,7 +518,7 @@ video/isivideo
 video/mpeg
 	description=MPEG movie
 
-video/msvideo:
+video/msvideo
 	description=MS video
 
 video/quicktime
@@ -509,8 +533,15 @@ video/wavelet
 video/x-anim
 	description=animation
 
-video/x-msvideo:
+video/x-flc
+	description=FLC video animation
+
+video/x-fli
+	description=FLI video animation
+
+video/x-msvideo
 	description=MS video
 
 video/x-sgi-movie
 	description=SGI movie
+

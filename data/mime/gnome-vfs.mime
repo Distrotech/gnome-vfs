@@ -263,13 +263,23 @@ audio/x-xm
 font/afm
 	ext: afm
 
+font/linux-psf
+	ext: psf
+
 font/ttf
-	ext: ttf
+	ext: ttf TTF
+
+font/type1
+	ext: pfa pfb
+
+font/x-bdf
+	ext: bdf
 
 font/x-pcf
 	ext: pcf
 
-
+font/x-speedo
+	ext: spd
 
 image/cgm
 	ext: cgm
@@ -483,6 +493,12 @@ video/quicktime
 
 video/x-anim
         ext: anim5 anim7
+
+video/x-fli
+	ext: fli
+
+video/x-flc
+	ext: flc
 
 video/x-msvideo:
 	ext: avi
