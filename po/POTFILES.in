@@ -1,8 +1,6 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
 daemon/gnome-vfs-daemon.c
-gtk/gtkfilesystemgnomevfs.c
-gtk/testfilechooser.c
 libgnomevfs/gnome-vfs-cdrom.c
 libgnomevfs/gnome-vfs-configuration.c
 libgnomevfs/gnome-vfs-file-info.c
