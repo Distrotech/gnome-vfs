@@ -22,11 +22,6 @@ gnome_vfs_mime_type_from_mode (mode_t mode)
 {
 	const gchar *mime_type;
 
-	/* FIXME bugzilla.eazel.com 1171:
-	 * The following returned values are not valid MIME types.
-	 * Should the returned types be "application/x-directory" 
-	 * or "x-special/directory"?
-	 */
 	if (S_ISREG (mode))
 		mime_type = NULL;
 	else if (S_ISDIR (mode))
@@ -61,11 +56,6 @@ gnome_vfs_get_special_mime_type (GnomeVFSURI *uri)
 		return NULL;
 	}
 
-	/* FIXME bugzilla.eazel.com 1171:
-	 * The following returned values are not valid MIME types.
-	 * Should the returned types be "application/x-directory" 
-	 * or "x-special/directory"?
-	 */
 	switch (info.type) {
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
 		return "x-special/directory";

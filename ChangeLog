@@ -1,3 +1,9 @@
+2000-08-02  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	(gnome_vfs_mime_type_from_mode), (gnome_vfs_get_special_mime_type):
+	Removed some old FIXMEs that were left after the bug was fixed.
+
 2000-08-02  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 1836, Description list item icon wrong.
