@@ -40,14 +40,6 @@
 /* FIXME bugzilla.eazel.com 2762: The uri->parent field is always NULL; we should get rid of it. */
 /* FIXME bugzilla.eazel.com 2763: This doesn't handle "../" or "./" like the RFC says it should. */
 
-#define ALLOCA_SUBSTRING(dest, src, len)		\
-        do {						\
-	      (dest) = alloca ((len) + 1);		\
-	      if ((len) > 0)				\
-	              memcpy ((dest), (src), (len));	\
-	      dest[(len)] = 0;				\
-        } while (0)
-
 /* 
    split_toplevel_uri
 
@@ -83,162 +75,6 @@
   /Users/mikef       host=""                 host=NULL
 
 */ 
-
-/* This debugging code should be removed for the next release-- mfleming 8/5/00 */
-#define NO_MKF_DEBUG		
-#ifndef NO_MKF_DEBUG
-
-static gchar *
-split_toplevel_uri_new (const gchar *path, guint path_len,
-		    gchar **host_return, gchar **user_return,
-		    guint *port_return, gchar **password_return);
-
-static gchar *
-split_toplevel_uri_old (const gchar *path, guint path_len,
-		    gchar **host_return, gchar **user_return,
-		    guint *port_return, gchar **password_return);
-
-#define SAME(x) (((x##_old == NULL) && (x##_new == NULL)) \
-	|| (((x##_old != NULL) && (x##_new != NULL)) && 0 == strcmp (x##_new, x##_old)))
-#define CHECK_NULL(x)  ( NULL == x ? "<NULL>" : (x))
-
-static gchar *
-split_toplevel_uri (const gchar *path, guint path_len,
-		    gchar **host_return, gchar **user_return,
-		    guint *port_return, gchar **password_return)
-{
-	char *host_old, *user_old, *password_old, *ret_old;
-	char *host_new, *user_new, *password_new, *ret_new;
-	guint port_old, port_new;
-
-	ret_old = split_toplevel_uri_old (path, path_len, &host_old, &user_old, &port_old, &password_old);
-
-	ret_new = split_toplevel_uri_new (path, path_len, &host_new, &user_new, &port_new, &password_new);
-
-	
-	if ( ! ( SAME(ret) && SAME(host) && SAME (user) && SAME (password) && port_old == port_new)) {
-		char * tmp;
-		if ( NULL != path && 0 < path_len ) {
-			tmp = g_strndup (path, path_len); 
-		} else {
-			tmp = g_strdup("");
-		}
-		g_warning ("split different for '%s': \nret: '%s' '%s'\n"
-			   "host: '%s' '%s'\n" "user: '%s' '%s'\n" "pw: '%s' '%s'\n" "port: %u %u",
-			   tmp,
-			   CHECK_NULL (ret_old), CHECK_NULL (ret_new),
-			   CHECK_NULL (host_old), CHECK_NULL (host_new),
-			   CHECK_NULL (user_old), CHECK_NULL (user_new),
-			   CHECK_NULL (password_old), CHECK_NULL (password_new),
-			   port_old, port_new
-		);			   
-	}
-
-	*host_return = host_new;
-	*user_return = user_new;
-	*password_return = password_new;
-	*port_return = port_new;
-
-	return ret_new;
-}
-
-static gchar *
-split_toplevel_uri_old (const gchar *path, guint path_len,
-		    gchar **host_return, gchar **user_return,
-		    guint *port_return, gchar **password_return)
-{
-	const gchar *dir, *colon, *at, *rest;
-	const gchar *path_end;
-	gchar *retval;
-
-	*host_return = NULL;
-	*port_return = 0;
-	*user_return = NULL;
-	*password_return = NULL;
-	retval = NULL;
-
-	if (path_len == 0) {
-		return retval;
-	}
-
-	path_end = path + path_len;
-    
-	/* Locate path component.  */
-	dir = memchr (path, GNOME_VFS_URI_PATH_CHR, path_len);
-	if (dir != NULL) {
-		retval = g_strndup (dir, path_len - (dir - path));
-		if (dir != path) {
-			at = memchr (path, '@', dir - path);
-		} else {
-			at = NULL;
-		}
-	} else {
-		retval = g_strdup (GNOME_VFS_URI_PATH_STR);
-		at = strchr (path, '@');
-	}
-
-	/* Check for username/password.  */
-	if (at != NULL && at != path) {
-		const gchar *p;
-
-		p = memchr (path, ':', at - path );
-		if (p != NULL && at - p > 1) {
-			*password_return = g_strndup (p + 1, at - p - 1);
-			if (p != path)
-				*user_return = g_strndup (path, p - path);
-		} else {
-			*user_return = g_strndup (path, at - path);
-		}
-
-		if (path_end == at + 1) {
-			rest = at;
-		} else {
-			rest = at + 1;
-		}
-	} else {
-		rest = path;
-	}
-
-	/* Check if the host comes with a port spec, if so, chop it.  */
-	if(dir) {
-		colon = memchr (rest, ':', dir - rest);
-		if (colon != NULL && colon != dir - 1) {
-			*host_return = g_strndup (rest, colon - rest);
-
-			if (sscanf (colon + 1, "%d", port_return) == 1) {
-				if (*port_return > 0xffff) {
-					*port_return = 0;
-				}
-			} else {
-				while (1) {
-					colon++;
-					switch(*colon) {
-					case 'C':
-						*port_return = 1;
-						g_warning("Setting *port_return = 1");
-						break;
-					case 'r':
-						*port_return = 2;
-						g_warning("Setting *port_return = 2");
-						break;
-					case 0:
-						*port_return = 0;
-						goto done;
-					}
-				}
-			}
-		} else {
-			*host_return = g_strndup (rest, dir - rest);
-		}
-	} else {
-		*host_return = g_strdup(path);
-	}
-
- done:
-	return retval;
-}
-
-#endif
 
 
 #define URI_MOVE_PAST_DELIMITER \
@@ -301,17 +137,10 @@ uri_strspn_to(const char *str, UriStrspnSet *set, const char *path_end)
 }
 
 
-#ifndef NO_MKF_DEBUG
-static gchar *
-split_toplevel_uri_new (const gchar *path, guint path_len,
-		    gchar **host_return, gchar **user_return,
-		    guint *port_return, gchar **password_return)
-#else
 static gchar *
 split_toplevel_uri (const gchar *path, guint path_len,
 		    gchar **host_return, gchar **user_return,
 		    guint *port_return, gchar **password_return)
-#endif
 {
 	const char *path_end;
 	const char *cur_tok_start;
@@ -484,19 +313,7 @@ set_uri_element (GnomeVFSURI *uri,
 						&toplevel->host_port,
 						&toplevel->password);
 	} else {
-#if 0
-/* This causes problems for URI's that may not be relative, but may still not have a leading / */
-		if (text[0] != '/') {
-			uri->text = g_malloc (len + 2);
-			uri->text[0] = '/';
-			memcpy (uri->text + 1, text, len);
-			uri->text[len + 1] = 0;
-		} else {
-#endif
-			uri->text = g_strndup (text, len);
-#if 0
-		}
-#endif
+		uri->text = g_strndup (text, len);
 	}
 
 	gnome_vfs_canonicalize_pathname (uri->text);

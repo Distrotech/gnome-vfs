@@ -26,9 +26,11 @@
 
 #include <config.h>
 
-#include "gnome-vfs.h"
 #include <stdlib.h>
 #include <string.h>
+#include "gnome-vfs.h"
+#include "gnome-vfs-private-types.h"
+#include "gnome-vfs-private-utils.h"
 
 #define TEST_ASSERT(expression, message) \
 	G_STMT_START { if (!(expression)) test_failed message; } G_STMT_END
@@ -69,6 +71,24 @@ test_failed (const char *format, ...)
 
 	g_message ("test failed: %s", message);
 	at_least_one_test_failed = TRUE;
+}
+
+static void
+test_canonicalize (const char *input,
+		   const char *expected_output)
+{
+	char *input_copy;
+	const char *output;
+
+	input_copy = g_strdup (input);
+	output = gnome_vfs_canonicalize_pathname (input_copy);
+
+	if (strcmp (output, expected_output) != 0) {
+		test_failed ("test_canonicalize (%s) resulted in %s instead of %s",
+			     input, output, expected_output);
+	}
+
+	g_free (input_copy);
 }
 
 static void
@@ -271,6 +291,48 @@ main (int argc, char **argv)
 	g_thread_init (NULL);
 	gnome_vfs_init ();
 
+	/* Test the private canonicalization routine. */
+	test_canonicalize ("", "");
+	test_canonicalize ("/", "/");
+	test_canonicalize ("/.", "/");
+	test_canonicalize ("/./.", "/");
+	test_canonicalize ("/.//.", "/");
+	test_canonicalize ("/.///.", "/");
+	test_canonicalize ("a", "a");
+	test_canonicalize ("/a/b/..", "/a");
+	test_canonicalize ("a///", "a/");
+	test_canonicalize ("./a", "a");
+	test_canonicalize ("../a", "../a");
+	test_canonicalize ("..//a", "../a");
+	test_canonicalize ("a/.", "a");
+	test_canonicalize ("/a/.", "/a");
+	test_canonicalize ("/a/..", "/");
+	test_canonicalize ("a//.", "a");
+	test_canonicalize ("./a/.", "a");
+	test_canonicalize (".//a/.", "a");
+	test_canonicalize ("./a//.", "a");
+	test_canonicalize ("a/..", "");
+	test_canonicalize ("a//..", "");
+	test_canonicalize ("./a/..", "");
+	test_canonicalize (".//a/..", "");
+	test_canonicalize ("./a//..", "");
+	test_canonicalize (".//a//..", "");
+	test_canonicalize ("a/b/..", "a");
+	test_canonicalize ("./a/b/..", "a");
+	test_canonicalize ("/./a/b/..", "/a");
+	test_canonicalize ("/a/./b/..", "/a");
+	test_canonicalize ("/a/b/./..", "/a");
+	test_canonicalize ("/a/b/../.", "/a");
+	test_canonicalize ("a/b/../..", "");
+	test_canonicalize ("./a/b/../..", "");
+	test_canonicalize ("././a/b/../..", "");
+	test_canonicalize ("a/b/c/../..", "a");
+	test_canonicalize ("a/b/c/../../d", "a/d");
+	test_canonicalize ("a/b/../../d", "d");
+	test_canonicalize ("a/../../d", "../d");
+	test_canonicalize ("a/b/.././.././c", "c");
+	test_canonicalize ("a/.././.././b/c", "../b/c");
+
 	test_uri_to_string ("", "NULL", GNOME_VFS_URI_HIDE_NONE);
 
 	test_uri_to_string ("http://www.eazel.com", "http://www.eazel.com", GNOME_VFS_URI_HIDE_NONE);
@@ -341,6 +403,23 @@ main (int argc, char **argv)
 	test_uri_has_parent ("FILE://", "FALSE");
 	test_uri_has_parent ("man:as", "FALSE");
 	test_uri_has_parent ("pipe:gnome-info2html2 as", "FALSE");
+
+	/* Test uri canonicalization */
+	test_uri_to_string ("/////", "file:///", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/.", "file:///", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/./.", "file:///", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/.///.", "file:///", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/a/..", "file:///", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/a/b/..", "file:///a", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/a/b//..", "file:///a", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/./a/b/..", "file:///a", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/a/./b/..", "file:///a", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/a/b/./..", "file:///a", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/a///b//..", "file:///a", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/a/b/../..", "file:///", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/a/b/c/../..", "file:///a", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/a/../b/..", "file:///", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("/a/../b/../c", "file:///c", GNOME_VFS_URI_HIDE_NONE);
 
 	/* Test chained uris */
 	test_uri_to_string ("/tmp/t.efs#http:///foobar/", "file:///tmp/t.efs#http:/foobar/", GNOME_VFS_URI_HIDE_NONE);

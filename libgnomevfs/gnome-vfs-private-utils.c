@@ -52,6 +52,72 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
+static int
+find_next_slash (const char *path, int current_offset)
+{
+	int i;
+	gboolean escaped;
+
+	escaped = FALSE;
+	i = current_offset;
+
+	while (path[i]) {
+		if (escaped) {
+			escaped = FALSE;
+			continue;
+		}
+		if (path[i] == '\\') {
+			escaped = TRUE;
+			continue;
+		}
+		if (path[i] == GNOME_VFS_URI_PATH_CHR) {
+			break;
+		}
+		i++;
+	}
+
+	if (path[i] == '\0') {
+		return -1;
+	}
+
+	return i;
+}
+
+static int
+find_slash_before_offset (const char *path, int to)
+{
+	int result;
+	int next_offset;
+
+	result = -1;
+	next_offset = 0;
+	for (;;) {
+		next_offset = find_next_slash (path, next_offset);
+		if (next_offset < 0 || next_offset >= to) {
+			break;
+		}
+		result = next_offset;
+		next_offset++;
+	}
+	return result;
+}
+
+static void
+collapse_slash_runs (char *path, int from_offset)
+{
+	int i;
+	/* Collapse multiple `/'s in a row. */
+	for (i = from_offset;; i++) {
+		if (path[i] != GNOME_VFS_URI_PATH_CHR) {
+			break;
+		}
+	}
+
+	if (from_offset < i) {
+		strcpy (path + from_offset, path + i);
+		i = from_offset + 1;
+	}
+}
 
 /* Canonicalize path, and return a new path.  Do everything in situ.  The new
    path differs from path in:
@@ -63,96 +129,97 @@
 gchar *
 gnome_vfs_canonicalize_pathname (gchar *path)
 {
-	int i, start;
-	gchar stub_gchar;
+	int i, marker;
 
-	if (path == NULL || strlen (path) == 0)
-		return NULL;
-
-	stub_gchar = ((*path == GNOME_VFS_URI_PATH_CHR)
-		      ? GNOME_VFS_URI_PATH_CHR : '.');
+	if (path == NULL || strlen (path) == 0) {
+		return "";
+	}
 
 	/* Walk along path looking for things to compact. */
-	i = 0;
-	for (;;) {
+	for (i = 0, marker = 0;;) {
 		if (!path[i])
 			break;
-
-		while (path[i] && path[i] != GNOME_VFS_URI_PATH_CHR)
-			i++;
-
-		start = i++;
-
-		/* If we didn't find any slashes, then there is nothing left to do. */
-		if (!path[start])
-			break;
-
-		/* Handle multiple `/'s in a row. */
-		while (path[i] == GNOME_VFS_URI_PATH_CHR)
-			i++;
-
-		if ((start + 1) != i) {
-			strcpy (path + start + 1, path + i);
-			i = start + 1;
-		}
-
-		/* Handle backquoted `/'. */
-		if (start > 0 && path[start - 1] == '\\')
-			continue;
-
-#if 0
-		/* Check for trailing `/'. */
-		if (start && !path[i]) {
-		zero_last:
-			path[--i] = '\0';
-			break;
-		}
-#endif
 
 		/* Check for `../', `./' or trailing `.' by itself. */
 		if (path[i] == '.') {
 			/* Handle trailing `.' by itself. */
-			if (!path[i + 1]) {
-				path[--i] = '\0';
+			if (path[i + 1] == '\0') {
+				if (i > 1 && path[i - 1] == GNOME_VFS_URI_PATH_CHR) {
+					/* strip the trailing /. */
+					path[i - 1] = '\0';
+				} else {
+					/* convert path "/." to "/" */
+					path[i] = '\0';
+				}
 				break;
 			}
 
 			/* Handle `./'. */
 			if (path[i + 1] == GNOME_VFS_URI_PATH_CHR) {
-				strcpy (path + i, path + i + 1);
-				i = start;
+				strcpy (path + i, path + i + 2);
+				if (i == 0) {
+					/* don't leave leading '/' for paths that started
+					 * as relative (.//foo)
+					 */
+					collapse_slash_runs (path, i);
+					marker = 0;
+				}
 				continue;
 			}
 
 			/* Handle `../' or trailing `..' by itself. 
-			   Remove the previous ?/ part with the exception of
-			   ../, which we should leave intact. */
+			 * Remove the previous xxx/ part 
+			 */
 			if (path[i + 1] == '.'
 			    && (path[i + 2] == GNOME_VFS_URI_PATH_CHR
 				|| path[i + 2] == '\0')) {
-				while (start > 0) {
-					start--;
-					if (path[start] == GNOME_VFS_URI_PATH_CHR)
-						break;
+
+				/* ignore ../ at the beginning of a path */
+				if (i != 0) {
+					marker = find_slash_before_offset (path, i - 1);
+
+					/* Either advance past '/' or point to the first character */
+					marker ++;
+					if (path [i + 2] == '\0' && marker > 1) {
+						/* If we are looking at a /.. at the end of the uri and we
+						 * need to eat the last '/' too.
+						 */
+						 marker--;
+					}
+					g_assert(marker < i);
+					
+					if (path[i + 2] == GNOME_VFS_URI_PATH_CHR) {
+						/* strip the entire ../ string */
+						i++;
+					}
+
+					strcpy (path + marker, path + i + 2);
+					i = marker;
+				} else {
+					i = 2;
+					if (path[i] == GNOME_VFS_URI_PATH_CHR) {
+						i++;
+					}
 				}
-				if (strncmp (path + start + 1, "../", 3) == 0)
-					continue;
-				strcpy (path + start + 1, path + i + 2);
-				i = start;
+				collapse_slash_runs (path, i);
 				continue;
 			}
 		}
-	}
+		
+		/* advance to the next '/' */
+		i = find_next_slash (path, i);
 
-	if (!*path) {
-		*path = stub_gchar;
-		path[1] = '\0';
-	}
+		/* If we didn't find any slashes, then there is nothing left to do. */
+		if (i < 0) {
+			break;
+		}
 
+		marker = i++;
+		collapse_slash_runs (path, i);
+	}
 	return path;
 }
 
-
 static glong
 get_max_fds (void)
 {
