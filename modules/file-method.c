@@ -190,8 +190,8 @@ do_open (GnomeVFSMethod *method,
 	}
 
 	if (! (mode & GNOME_VFS_OPEN_RANDOM) && (mode & GNOME_VFS_OPEN_WRITE))
-		mode |= O_TRUNC;
-
+		unix_mode |= O_TRUNC;
+	
 	file_name = get_path_from_uri (uri);
 	if (file_name == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
@@ -667,7 +667,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 			                /* if we had an earlier ELOOP, don't get in an infinite loop here */
 			        || recursive
 					/* we don't care to follow links */
-				|| lstat (file_info->symlink_name, statptr) != 0
+				|| lstat (symlink_name, statptr) != 0
 					/* we can't make out where this points to */
 				|| !S_ISLNK (statptr->st_mode)) {
 					/* the next level is not a link */
