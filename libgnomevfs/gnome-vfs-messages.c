@@ -159,14 +159,14 @@ my_g_slist_filter (GSList* list, MyGSListFilterFunc func, gpointer user_data)
 static gboolean
 callback_equal_predicate (gpointer callback, gpointer func)
 {
-        return (((Callback*)callback)->callback_func ==
+        return !(((Callback*)callback)->callback_func ==
                 ((GnomeVFSStatusCallback)func));
 }
 
 static gboolean
 data_equal_predicate (gpointer callback, gpointer data)
 {
-        return ((Callback*)callback)->user_data == data;
+        return !(((Callback*)callback)->user_data == data);
 }
 
 struct func_and_data {
@@ -180,7 +180,7 @@ all_equal_predicate (gpointer callback, gpointer func_and_data)
         Callback *cb = callback;
         struct func_and_data* fd = func_and_data;
 
-        return (cb->callback_func == fd->func && cb->user_data == fd->data);
+        return !(cb->callback_func == fd->func && cb->user_data == fd->data);
 }
 
 void

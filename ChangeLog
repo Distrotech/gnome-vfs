@@ -1,5 +1,10 @@
 1999-12-02  Havoc Pennington  <hp@pobox.com>
 
+	* libgnomevfs/gnome-vfs-messages.c: all my filter predicates were
+	backward
+
+1999-12-02  Havoc Pennington  <hp@pobox.com>
+
 	* libgnomevfs/gnome-vfs-messages.h,
 	libgnomevfs/gnome-vfs-messages.c: New file, a simple data type to
 	manage status-message callback lists. Untested, not in the build.	
