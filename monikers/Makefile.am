@@ -2,7 +2,7 @@ INCLUDES = \
 	-I$(topsrcdir)				\
 	-I$(topbuilddir)			\
 	$(VFS_CFLAGS)				\
-	$(BONOBO_CFLAGS)			\
+	$(MONIKERS_CFLAGS)			\
 	-DG_DISABLE_DEPRECATED			\
 	-DG_LOG_DOMAIN=\"GnomeVFSMonikers\"
 
@@ -43,4 +43,4 @@ libmoniker_gnome_vfs_std_la_SOURCES = \
 	bonobo-moniker-vfs.c
 
 libmoniker_gnome_vfs_std_la_LIBADD = \
-	$(BONOBO_LIBS)
+	$(MONIKERS_LIBS)

@@ -3,7 +3,7 @@ NULL =
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
-	$(BONOBO_ACTIVATION_CFLAGS)		\
+	$(TEST_CFLAGS)				\
 	$(VFS_CFLAGS)				\
 	-DG_DISABLE_DEPRECATED			\
 	-DMODULES_PATH=\"$(libdir)/vfs/modules\"
@@ -54,7 +54,7 @@ TESTS = test-async-cancel test-escape test-uri $(auto_tests)
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
-	$(GCONF_LIBS)					\
+	$(TEST_LIBS)					\
 	$(LIBEFS_LIBS)
 
 test_async_SOURCES = test-async.c

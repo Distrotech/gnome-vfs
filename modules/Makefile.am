@@ -4,10 +4,8 @@ SUBDIRS = extfs
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
-	$(GLIB_CFLAGS)				\
-	$(XML_CFLAGS)	 			\
+	$(MODULES_XML_GCONF_CFLAGS)		\
 	$(LIBEFS_CFLAGS)			\
-	$(GCONF_CFLAGS)				\
 	$(VFS_CFLAGS)				\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
@@ -87,7 +85,7 @@ libssh_la_LDFLAGS = $(module_flags)
 
 libvfs_test_la_SOURCES = test-method.c
 libvfs_test_la_LDFLAGS = $(module_flags)
-libvfs_test_la_LIBADD = $(XML_LIBS)
+libvfs_test_la_LIBADD = $(MODULES_XML_LIBS)
 
 ### `gzip' method
 
@@ -112,7 +110,7 @@ gconfmoduledir = $(modulesdir)
 gconfmodule_LTLIBRARIES = libgconf.la
 
 libgconf_la_SOURCES = gconf-method.c
-libgconf_la_LIBADD = $(GCONF_LIBS) $(GLIB_LIBS)
+libgconf_la_LIBADD = $(MODULES_GCONF_LIBS)
 libgconf_la_LDFLAGS = $(module_flags)
 
 ### `nfs' method
@@ -139,15 +137,15 @@ libhttp_la_SOURCES =				\
 	http-cache.h				\
 	$(NULL)
 libhttp_la_LDFLAGS = $(module_flags)
-libhttp_la_LIBADD  = $(GLIB_LIBS) $(XML_LIBS) $(GCONF_LIBS)
+libhttp_la_LIBADD  = $(MODULES_GCONF_LIBS)
 
 libvfs_pipe_la_SOURCES = pipe-method.c
 libvfs_pipe_la_LDFLAGS = $(module_flags)
-libvfs_pipe_la_LIBADD  = $(GLIB_LIBS)
+libvfs_pipe_la_LIBADD  = $(MODULES_LIBS)
 
 libvfs_translate_la_SOURCES = translate-method.c
 libvfs_translate_la_LDFLAGS = $(module_flags)
-libvfs_translate_la_LIBADD  = $(GLIB_LIBS)
+libvfs_translate_la_LIBADD  = $(MODULES_LIBS)
 
 #if HAVE_LIBEFS
 #vefsmoduledir = $(modulesdir)
@@ -155,5 +153,5 @@ libvfs_translate_la_LIBADD  = $(GLIB_LIBS)
 #
 #libvefs_la_SOURCES =	\
 #	efs-method.c
-#libvefs_la_LIBADD = $(LIBEFS_LIBS) $(GLIB_LIBS)
+#libvefs_la_LIBADD = $(LIBEFS_LIBS) $(MODULES_LIBS)
 #endif

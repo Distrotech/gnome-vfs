@@ -3,9 +3,7 @@ lib_LTLIBRARIES = libgnomevfs-pthread.la
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
-	$(GLIB_CFLAGS)				\
-	$(GTK_CFLAGS)				\
-	$(GNOME_INCLUDEDIR)			\
+	$(LIBGNOMEVFS_CFLAGS)			\
 	$(VFS_CFLAGS)				\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\

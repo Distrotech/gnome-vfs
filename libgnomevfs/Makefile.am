@@ -7,14 +7,9 @@ INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	-I$(builddir)				\
-	$(BONOBO_CFLAGS)			\
-	$(GCONF_CFLAGS) 			\
-	$(GLIB_CFLAGS)				\
-	$(BONOBO_ACTIVATION__CFLAGS)		\
+	$(LIBGNOMEVFS_CFLAGS)			\
         $(OPENSSL_CFLAGS)                       \
-	$(ORBIT_CFLAGS)				\
 	$(VFS_CFLAGS)				\
-	$(XML_CFLAGS)				\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
@@ -46,13 +41,8 @@ EXTRA_DIST =					\
 	getdelim.c
 
 libgnomevfs_la_LIBADD =				\
-	$(BONOBO_LIBS)				\
-	$(GCONF_LIBS) 				\
-	$(GLIB_LIBS)				\
-	$(BONOBO_ACTIVATION_LIBS)		\
+	$(LIBGNOMEVFS_LIBS)			\
 	$(OPENSSL_LDFLAGS) 			\
-	$(ORBIT_LIBS)				\
-	$(XML_LIBS)				\
 	$(NULL)
 
 libgnomevfsincludedir = $(includedir)/libgnomevfs

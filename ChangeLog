@@ -1,3 +1,12 @@
+2001-08-07  Martin Baulig  <baulig@suse.de>
+
+	* configure.in: Fix all the PKG_CHECK_MODULES checks.
+	You need to check for all dependencies for any given target in a
+	single PKG_CHECK_MODULES command, otherwise you'll get duplicate
+	-ldl etc. into your *.la files.
+
+	* */Makefile.am: Use the correct _LIBS and _CFLAGS.
+
 2001-08-06  jacob berkman  <jacob@ximian.com>
 
 	* modules/ftp-method.c (do_open_directory): do a CWD command so we
