@@ -1,5 +1,11 @@
 2000-10-18  Mike Fleming  <mfleming@eazel.com>
 
+	* modules/http-method.c: (make_propfind_request):
+	See John, I told you that EOF change would break stuff :)
+	(minor case of internal use of do_read not expecting the EOF error)
+
+2000-10-18  Mike Fleming  <mfleming@eazel.com>
+
 	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
 	Return GNOME_VFS_ERROR_NOT_SUPPORTED instead of ERROR_GENERIC when
 	this call is attempted on a non-local filesystem.

@@ -64,7 +64,7 @@
 #include "http-method.h"
 
 
-#if 0
+#if 1
 #include <stdio.h>
 #include <stdarg.h>
 #include <pthread.h>
@@ -1947,9 +1947,15 @@ make_propfind_request (HttpFileHandle **handle_return,
 	}
 
 	do {
-		result = do_read(NULL, (GnomeVFSMethodHandle *) *handle_return, 
+		result = do_read(NULL, (GnomeVFSMethodHandle *) *handle_return,
 			buffer, num_bytes, &bytes_read, context);
-		if(result != GNOME_VFS_OK) {
+
+		if ( result == GNOME_VFS_ERROR_EOF ) {
+			result = GNOME_VFS_OK;
+			break;
+		}
+		
+		if(result != GNOME_VFS_OK ) {
 			xmlFreeParserCtxt(parserContext);
 			g_free(buffer);
 			g_free(extraheaders);
