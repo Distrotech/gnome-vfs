@@ -1,3 +1,16 @@
+2001-06-02  Seth Nickell  <snickell@stanford.edu>
+
+	* libgnomevfs/gnome-vfs-socket-buffer.c:
+	* libgnomevfs/gnome-vfs-socket-buffer.h:
+	* libgnomevfs/gnome-vfs-socket-private.h:
+	* libgnomevfs/gnome-vfs-socket.c: (gnome_vfs_socket_new):
+	* libgnomevfs/gnome-vfs-socket.h:
+
+	I think Ian forgot these in his checkin. WARNING!!! These
+	are not the actual files but skeleton with enough declarations
+	to get GnomeVFS compiling again. Must get the real things
+	checked in :-)
+	
 2001-06-01  Seth Nickell  <snickell@stanford.edu>
 
 	* configure.in:
