@@ -1,5 +1,14 @@
 2000-11-29  Rebecca Schulman  <rebecka@eazel.com>
 
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* test/test-mime.c: (main):
+	Added a --help argument that lists available arguments,
+	and made the script understand both paths and uris,
+	and report the case where a uri or path is not valid.
+
+2000-11-29  Rebecca Schulman  <rebecka@eazel.com>
+
 	* modules/file-method.c: (rename_helper):
 	Fixed bug 1185, that removing a directory 
 	always returns NOT_EMPTY on an error.
