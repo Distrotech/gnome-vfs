@@ -111,6 +111,8 @@ main (int argc, char **argv)
 	GnomeVFSMimeAction *default_action;
 	GList *all_components;
 	GList *all_applications;
+	GList *short_list_components;
+	GList *short_list_applications;
 
 	oaf_init (argc, argv);
 	gnome_vfs_init ();
@@ -123,7 +125,7 @@ main (int argc, char **argv)
 	type = argv[1];
 	
 	default_action = gnome_vfs_mime_get_default_action (type);
-	puts ("Default Component");
+	puts ("Default Action");
 	print_action (default_action);
 	puts ("");
 
@@ -135,6 +137,16 @@ main (int argc, char **argv)
 	default_component = gnome_vfs_mime_get_default_component (type);
 	puts("Default Component");
 	print_component (default_component);
+	puts ("");
+
+	short_list_applications = gnome_vfs_mime_get_short_list_applications (type); 
+	puts("Short List Applications");
+	print_application_list (short_list_applications);
+	puts ("");
+
+	short_list_components = gnome_vfs_mime_get_short_list_components (type); 
+	puts("Short List Components");
+	print_component_list (short_list_components);
 	puts ("");
 
 	all_applications = gnome_vfs_mime_get_all_applications (type); 
