@@ -183,8 +183,8 @@ entry_reload_if_needed (Entry *entry)
 
 			D (g_print ("ADDING KEYWORD: %s\n", word));
 
-			g_slist_prepend (entry->keywords, 
-					 GINT_TO_POINTER (quark));
+			entry->keywords = g_slist_prepend (entry->keywords, 
+							   GINT_TO_POINTER (quark));
 			changed = TRUE;
 		}
 		g_strfreev (parsed);

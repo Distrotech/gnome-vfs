@@ -1,3 +1,8 @@
+2002-07-17  Damon Chaplin  <damon@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (entry_reload_if_needed): store
+	the value returned from g_slist_prepend(). Fixes bug #88132.
+
 2002-07-17  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-method.c (do_create): If there is a
