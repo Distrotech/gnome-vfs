@@ -1,5 +1,6 @@
 # French translation of gnome-vfs.
 # Copyright (C) 1999-2004 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-vfs package.
 #
 # Vincent Renardias <vincent@ldsol.com>, 1999-2000.
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
@@ -10,20 +11,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-03 12:18+0100\n"
-"PO-Revision-Date: 2004-01-03 11:51+0100\n"
-"Last-Translator: Baptiste Mille-Mathias <bmm80@ifrance.com>\n"
+"POT-Creation-Date: 2004-01-11 23:07+0100\n"
+"PO-Revision-Date: 2004-01-11 23:07+0100\n"
+"Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
-#: daemon/gnome-vfs-daemon.c:553
+#: daemon/gnome-vfs-daemon.c:573
 msgid "Could not initialize Bonobo"
 msgstr "Impossible d'initialiser Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:559
+#: daemon/gnome-vfs-daemon.c:579
 msgid "Could not initialize gnome vfs"
 msgstr "Impossible d'initialiser gnome-vfs"
 
@@ -640,7 +641,7 @@ msgstr "Dossier personnel"
 msgid "Filesystem"
 msgstr "Système de fichiers"
 
-#: modules/file-method.c:382
+#: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d inconnue"
@@ -1012,6 +1013,18 @@ msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
 "Nom d'utilisateur à fournir comme authentification lors de l'utilisation du "
 "proxy HTTP."
+
+#: modules/network-method.c:257
+msgid "Window Network"
+msgstr "Réseau Windows"
+
+#: schemas/system_smb.schemas.in.h:1
+msgid "SMB workgroup"
+msgstr "Groupe de travail SMB"
+
+#: schemas/system_smb.schemas.in.h:2
+msgid "The window workgroup the user is part of"
+msgstr "Le groupe de travail Windows auquel appartient l'utilisateur"
 
 #, fuzzy
 #~ msgid "URL handler for ghelp pages"
