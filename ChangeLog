@@ -1,5 +1,10 @@
 2001-03-15  Gene Z. Ragan  <gzr@eazel.com>
 
+	* modules/cdda-module.conf:
+	Add new cdda configuration file to build.
+
+2001-03-15  Gene Z. Ragan  <gzr@eazel.com>
+
 	* configure.in:
 	* modules/Makefile.am:
 	* modules/cdda-cddb.c:
