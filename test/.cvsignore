@@ -18,6 +18,7 @@ test-escape
 test-info
 test-mime
 test-mime-handlers
+test-mime-handlers-set
 test-seek
 test-sync
 test-sync-write

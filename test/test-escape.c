@@ -183,11 +183,11 @@ main (int argc, char **argv)
 	test_escape (GNOME_VFS_URI_UNSAFE_PATH, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 	test_escape (GNOME_VFS_URI_UNSAFE_PATH, "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz");
 	test_escape (GNOME_VFS_URI_UNSAFE_PATH, "0123456789", "0123456789");
-	test_escape (GNOME_VFS_URI_UNSAFE_PATH, "-_.!~*'()+/", "-_.!~*'()+/");
+	test_escape (GNOME_VFS_URI_UNSAFE_PATH, "-_.!~*'()/", "-_.!~*'()/");
 
 	test_escape (GNOME_VFS_URI_UNSAFE_PATH, "\x01\x02\x03\x04\x05\x06\x07", "%01%02%03%04%05%06%07");
 	test_escape (GNOME_VFS_URI_UNSAFE_PATH, "\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F", "%08%09%0A%0B%0C%0D%0E%0F");
-	test_escape (GNOME_VFS_URI_UNSAFE_PATH, " \"#$%&,", "%20%22%23%24%25%26%2C");
+	test_escape (GNOME_VFS_URI_UNSAFE_PATH, " \"#$%&+,", "%20%22%23%24%25%26%2B%2C");
 	test_escape (GNOME_VFS_URI_UNSAFE_PATH, ":;<=>?@", "%3A%3B%3C%3D%3E%3F%40");
 	test_escape (GNOME_VFS_URI_UNSAFE_PATH, "[\\]^`", "%5B%5C%5D%5E%60");
 	test_escape (GNOME_VFS_URI_UNSAFE_PATH, "{|}\x7F", "%7B%7C%7D%7F");
@@ -214,11 +214,11 @@ main (int argc, char **argv)
 	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, "abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz");
 	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, "0123456789", "0123456789");
-	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, "-_.!~*'()+/:", "-_.!~*'()+/:");
+	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, "-_.!~*'()/:", "-_.!~*'()/:");
 
 	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, "\x01\x02\x03\x04\x05\x06\x07", "%01%02%03%04%05%06%07");
 	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, "\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F", "%08%09%0A%0B%0C%0D%0E%0F");
-	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, " \"#$%&,", "%20%22%23%24%25%26%2C");
+	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, " \"#$%&+,", "%20%22%23%24%25%26%2B%2C");
 	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, ";<=>?@", "%3B%3C%3D%3E%3F%40");
 	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, "[\\]^`", "%5B%5C%5D%5E%60");
 	test_escape (GNOME_VFS_URI_UNSAFE_DOS_PATH, "{|}\x7F", "%7B%7C%7D%7F");
@@ -246,7 +246,15 @@ main (int argc, char **argv)
 	test_unescape ("", "/:", "");
 
 	test_unescape ("/", "/", "/");
+	test_unescape ("%2f", NULL, "/");
+	test_unescape ("%2F", NULL, "/");
 	test_unescape ("%2F", "/", NULL);
+	test_unescape ("%", NULL, NULL);
+	test_unescape ("%1", NULL, NULL);
+	test_unescape ("%aa", NULL, "\xAA");
+	test_unescape ("%ag", NULL, NULL);
+	test_unescape ("%g", NULL, NULL);
+	test_unescape ("%%", NULL, NULL);
 
 	test_unescape ("ABCDEFGHIJKLMNOPQRSTUVWXYZ", NULL, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 	test_unescape ("abcdefghijklmnopqrstuvwxyz", NULL, "abcdefghijklmnopqrstuvwxyz");

@@ -33,8 +33,8 @@
 typedef enum {
 	GNOME_VFS_URI_UNSAFE_ALL        = 0x1,  /* Escape all unsafe characters   */
 	GNOME_VFS_URI_UNSAFE_ALLOW_PLUS = 0x2,  /* Allows '+'  */
-	GNOME_VFS_URI_UNSAFE_PATH       = 0x4,  /* Allows '+' and '/'  */
-	GNOME_VFS_URI_UNSAFE_DOS_PATH   = 0x8   /* Allows '+', '/', ':' */
+	GNOME_VFS_URI_UNSAFE_PATH       = 0x4,  /* Allows '/'  */
+	GNOME_VFS_URI_UNSAFE_DOS_PATH   = 0x8   /* Allows '/' and ':' */
 } GnomeVFSURIUnsafeCharacterSet;
 
 /* Attempts to make a human-readable string. */

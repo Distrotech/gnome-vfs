@@ -1,3 +1,14 @@
+2000-06-02  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	* libgnomevfs/gnome-vfs-utils.h:
+	* test/test-escape.c: (main):
+	Updated escape and test to not escape "+" except if explicitly
+	asked. This makes the path escape function more useful for the
+	real case of converting a path to a URI.
+	
+	* test/.cvsignore: Ignore test-mime-handlers-set.
+
 2000-06-02  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c: (get_user_level):
