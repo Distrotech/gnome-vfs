@@ -1,21 +1,32 @@
 Things to complete
 ------------------
 
-* FTP, HTTP, SMB, extfs, tar methods.
-  --- If you want to help, this is the right place to start ---  :-)
+* tar method.
 
 * GZIP write support might be broken.
 
-* The transfer function does not honour all the flags appropriately,
-  it doesn't set the attributes, it cannot copy special files and file
-  moving is completely unimplemented.  This is going to be fixed soon.
+* FTP is *extremely* broken, and is nowhere near being MT-safe.  I
+  wonder if we shouldn't rewrite it from scratch borrowing code from
+  somewhere else (wget comes to mind and, even if it's GPL, I think
+  the FSF would not mind allowing us to distribute a modified version
+  of it as LGPL).
+
+* Complete HTTP support.
+
+* Implement SMB support through Wayne's cool librarified Samba client
+  stuff.
+
+* The xfer function does not honour all the flags appropriately: it
+  doesn't set the attributes and it cannot copy special files.
 
 * Names containing the `#' character are likely to cause disasters.
+  We need to provide quoting everywhere.
 
 * Make sure that only one module is initialized at a given time
   (i.e. add a lock that must be obtained before calling the
   `vfs_module_init()' function).
 
+* Complete the cancellation code.
 
 API issues
 ----------
@@ -26,17 +37,16 @@ you need to initialize it with `g_thread_init()'.  This is not good.
 
 * Better hiding of private stuff.
 
-* 64-bit support?
-
-* We definitely need an `URI context', which is basically a URI prefix which
-is used for subsequent calls.  When creating a context, backends can
-assume they are going to get several requests for sub-URIs starting
-from that URI, and can try to optimize things.
+* We definitely need an `URI context', which is basically a URI prefix
+which is used for subsequent calls.  When creating a context, backends
+can assume they are going to get several requests for sub-URIs
+starting from that URI, and can try to optimize things.  OR maybe we
+can just have a function to "lock" a certain URI.  This will make
+everything easier to implement.
 
 * The asynchronous directory reading stuff needs a timeout.
 
 * Make directory/xfer calls cancellable as well.
-
 
 Installation issues
 -------------------
@@ -62,8 +72,6 @@ Implementation issues
 * Destroying a job or an asynchronous handle should be done better in the
   pthread version.
 
-* It should normalize URIs before using them.
-
 * Complete unfinished errno -> GnomeVFSError translation
   (`gnome_vfs_error_from_errno()' in `gnome-vfs-error.c').
 
@@ -73,10 +81,9 @@ Implementation issues
   metadata.  Should this be fixed so that we use the "type" metadata key
   instead?
 
-* MIME/metadata functions in GNOME are non-reentrant.  We
-  need to wrap them somehow, or the threaded version of the VFS will
-  suffer major breakage when accessing metadata or figuring out MIME
-  types.
+* MIME functions in GNOME are non-reentrant.  We need to wrap them
+  somehow, or the threaded version of the VFS will suffer major
+  breakage when figuring out MIME types.
 
 * Metadata key lists are passed as arrays to the API calls, but are passed
   as GLists to the backend modules.  This requires conversion, and might
