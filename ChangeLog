@@ -1,3 +1,10 @@
+2000-12-04  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_get_magic_table): Added missing NULL check that
+	made gnome_vfs very slow since it kept reading the MIME database
+	over and over again! My apologies.
+
 2000-12-04  Rebecca Schulman  <rebecka@eazel.com>
 
 	reviewed by: Pavel Cisler <pavel@eazel.com>

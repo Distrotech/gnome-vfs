@@ -1,3 +1,5 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
 /*
  * gnome-vfs-mime-magic.c
  *
@@ -554,11 +556,11 @@ gnome_vfs_mime_get_magic_table (void)
 
 	G_LOCK (mime_magic_table_mutex);
 
-	/* don't have a pre-parsed table, use original text file */
-
-	filename = g_strconcat (GNOME_VFS_CONFDIR, "/gnome-vfs-mime-magic", NULL);
-	mime_magic_table = gnome_vfs_mime_magic_parse (filename, NULL);
-	g_free (filename);
+	if (mime_magic_table == NULL) {
+		filename = g_strconcat (GNOME_VFS_CONFDIR, "/gnome-vfs-mime-magic", NULL);
+		mime_magic_table = gnome_vfs_mime_magic_parse (filename, NULL);
+		g_free (filename);
+	}
 
 	G_UNLOCK (mime_magic_table_mutex);
 
