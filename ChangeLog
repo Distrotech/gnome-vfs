@@ -1,3 +1,12 @@
+2001-01-31  Maciej Stachowiak  <mjs@eazel.com>
+
+	reviewed by: Rebecca Schulman  <rebecka@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_get_default_component): Remove FIXME 1142 (OAF
+	queries don't precisely match those used in Nautilus), upon
+	further review I decided this was OK.
+
 2001-01-31  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Gene Z. Ragan <gzr@eazel.com>

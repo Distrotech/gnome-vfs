@@ -239,10 +239,6 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 		}
 	}
 
-	/* FIXME bugzilla.eazel.com 1142: should probably check for
-           the right interfaces too. Also slightly semantically
-           different from nautilus in other tiny ways.
-	*/
 	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 			     "', '", supertype,
 			     "', '*'])", NULL);
