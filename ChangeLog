@@ -1,3 +1,8 @@
+2004-07-03  Christophe Fergeau  <teuf@gnome.org>
+
+        * libgnomevfs/gnome-vfs-utils.c: use dngettext instead of ngettext
+          since gnome-vfs is a library, fixes bug #145344
+
 2004-07-03  Takao Fujiwara  <takao.fujiwara@sun.com>
  
  	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c: add a 'DVD' to the 

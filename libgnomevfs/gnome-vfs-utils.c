@@ -82,7 +82,7 @@ gchar*
 gnome_vfs_format_file_size_for_display (GnomeVFSFileSize size)
 {
 	if (size < (GnomeVFSFileSize) KILOBYTE_FACTOR) {
-		return g_strdup_printf (ngettext("%u byte", "%u bytes",(guint) size), (guint) size);
+		return g_strdup_printf (dngettext(GETTEXT_PACKAGE, "%u byte", "%u bytes",(guint) size), (guint) size);
 	} else {
 		gdouble displayed_size;
 
