@@ -6,14 +6,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.6\n"
-"POT-Creation-Date: 2003-12-08 10:44+0100\n"
-"PO-Revision-Date: 2003-12-07 19:35+0000\n"
+"Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
+"POT-Creation-Date: 2003-12-25 04:14+0000\n"
+"PO-Revision-Date: 2003-12-25 04:25+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: daemon/gnome-vfs-daemon.c:553
@@ -24,7 +24,7 @@ msgstr "Incapaz de inicializar Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Incapaz de inicializar gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:178
+#: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
 msgstr "Volume ISO 9660"
 
@@ -464,8 +464,8 @@ msgstr[1] "%u bytes"
 
 #: libgnomevfs/gnome-vfs-utils.c:90
 #, c-format
-msgid "%.1f K"
-msgstr "%.1f K"
+msgid "%.1f KB"
+msgstr "%.1f KB"
 
 #: libgnomevfs/gnome-vfs-utils.c:94
 #, c-format
@@ -710,146 +710,151 @@ msgstr ""
 "O argumento de execução a utilizar para a aplicação de consola por omissão."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "How to handle callto URLs"
-msgstr "Como manipulador URLs callto"
+msgid "H323 URL handler"
+msgstr "Manipulador de URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "How to handle ghelp URLs"
-msgstr "Como manipulador URLs ghelp"
+msgid "HTTP URL handler"
+msgstr "Manipulador de URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "How to handle h323 URLs"
-msgstr "Como manipulador URLs h323"
+msgid "HTTPS URL handler"
+msgstr "Manipulador de URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-msgid "How to handle http URLs"
-msgstr "Como manipulador URLs http"
+msgid "Handle H323 URLs"
+msgstr "Manipulador de URLs H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-msgid "How to handle https URLs"
-msgstr "Como manipulador URLs https"
+msgid "Handle HTTP URLs"
+msgstr "Manipulador de URLs HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "How to handle info URLs"
-msgstr "Como manipulador URLs info"
+msgid "Handle HTTPS URLs"
+msgstr "Manipulador de URLs HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-msgid "How to handle mailto URLs"
-msgstr "Como manipulador URLs mailto"
+msgid "Handle callto URLs"
+msgstr "Manipulador de URLs callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "How to handle man URLs"
-msgstr "Como manipulador URLs man"
+msgid "Handle ghelp URLs"
+msgstr "Manipulador de URLs ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "How to handle trash URLs"
-msgstr "Como manipulador URLs de lixo"
+msgid "Handle info URLs"
+msgstr "Manipulador de URLs info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "Handle mailto URLs"
+msgstr "Manipulador de URLs mailto"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "Handle man URLs"
+msgstr "Manipulador de URLs man"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid "Handle trash URLs"
+msgstr "Manipulador de URLs de lixo"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
 msgstr "Executar aplicação na consola"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Set to true to have a program specified in command handle callto URLs"
-msgstr ""
-"Definir como verdadeiro para que aplicação especificada no comando manipule "
-"URLs callto"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Set to true to have a program specified in command handle h323 URLs"
-msgstr ""
-"Definir como verdadeiro para que aplicação especificada no comando manipule "
-"URLs h323"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Set to true to have a program specified in command handle http URLs"
-msgstr ""
-"Definir como verdadeiro para que aplicação especificada no comando manipule "
-"URLs http"
-
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in command handle https URLs"
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
-"Definir como verdadeiro para que aplicação especificada no comando manipule "
-"URLs https"
+"Definir como verdadeiro para que a aplicação especificada em \"command\" "
+"manipule URLs H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in command handle mailto URLs"
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
-"Definir como verdadeiro para que aplicação especificada no comando manipule "
-"URLs mailto"
+"Definir como verdadeiro para que a aplicação especificada em \"command\" "
+"manipule URLs HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
-"Set to true to have a program specified in programs/ghelp handle ghelp URLs"
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
-"Definir como verdadeiro para que aplicação especificada em aplicações/ghelp "
-"manipule URLs ghelp"
+"Definir como verdadeiro para que a aplicação especificada em \"command\" "
+"manipule URLs HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
-"Set to true to have a program specified in programs/info handle info URLs"
+"Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
-"Definir como verdadeiro para que aplicação especificada em aplicações/info "
-"manipule URLs info"
+"Definir como verdadeiro para que a aplicação especificada em \"command\" "
+"manipule URLs callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in programs/man handle man URLs"
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
-"Definir como verdadeiro para que aplicação especificada em aplicações/man "
-"manipule URLs man"
+"Definir como verdadeiro para que a aplicação especificada em \"command\" "
+"manipule URLs ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
-"Set to true to have a program specified in trash/command handle trash URLs"
+"Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
-"Definir como verdadeiro para que aplicação especificada em lixo/comando "
-"manipule URLs de lixo"
+"Definir como verdadeiro para que a aplicação especificada em \"command\" "
+"manipule URLs info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "True if the program to handle this URL should be run in a terminal"
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
-"Verdadeiro se a aplicação para manipular este URL deverá ser executada numa "
-"consola"
+"Definir como verdadeiro para que a aplicação especificada em \"command\" "
+"manipule URLs mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "URL handler for callto uris"
-msgstr "Manipulador de URL para uris callto"
+msgid "Set to true to have a program specified in \"command\" handle man URLs."
+msgstr ""
+"Definir como verdadeiro para que a aplicação especificada em \"command\" "
+"manipule URLs man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "URL handler for ghelp pages"
-msgstr "Manipulador de URL para páginas ghelp"
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr ""
+"Definir como verdadeiro para que a aplicação especificada em \"command\" "
+"manipule URLs de lixo."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "URL handler for h323 uris"
-msgstr "Manipulador de URL para uris h323"
+msgid "True if the program to handle this URL should be run in a terminal."
+msgstr ""
+"Verdadeiro se a aplicação para manipular este URL deverá ser executada numa "
+"consola."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "URL handler for http uris"
-msgstr "Manipulador de URL para uris http"
+msgid "callto URL handler"
+msgstr "Manipulador de URL callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "URL handler for https uris"
-msgstr "Manipulador de URL para uris https"
+msgid "ghelp URL handler"
+msgstr "Manipulador de URL ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "URL handler for info pages"
-msgstr "Manipulador de URL para páginas info"
+msgid "info URL handler"
+msgstr "Manipulador de URL info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "URL handler for mailto uris"
-msgstr "Manipulador de URL para uris mailto"
+msgid "mailto URL handler"
+msgstr "Manipulador de URL mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "URL handler for man pages"
-msgstr "Manipulador de URL para páginas man"
+msgid "man URL handler"
+msgstr "Manipulador de URL man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "URL handler for trash pages"
-msgstr "Manipulador de URL para páginas de lixo"
+msgid "trash URL handler"
+msgstr "Manipulador de URL de lixo"
 
 #: schemas/system_http_proxy.schemas.in.h:1
-msgid "Authenticate connections to the proxy server"
+msgid "Authenticate proxy server connections"
 msgstr "Autenticar ligações ao servidor proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:2
@@ -857,8 +862,8 @@ msgid "Automatic proxy configuration URL"
 msgstr "URL de configuração automática de proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:3
-msgid "Enables the proxy settings when accessing http over the internet."
-msgstr "Activa as definições de proxy ao aceder por http sobre a internet."
+msgid "Enables the proxy settings when accessing HTTP over the Internet."
+msgstr "Activa as definições de proxy ao aceder por HTTP à Internet."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -873,104 +878,112 @@ msgid "HTTP proxy host name"
 msgstr "Nome de máquina da proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
+msgid "HTTP proxy password"
+msgstr "Senha da proxy HTTP"
+
+#: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
 msgstr "Porto do proxy HTTP"
 
-#: schemas/system_http_proxy.schemas.in.h:8
-msgid "Hosts are not contacted via the proxy"
-msgstr "Máquinas não são contactadas através da proxy"
-
 #: schemas/system_http_proxy.schemas.in.h:9
-msgid ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by /system/http_proxy/authentication_user "
-"and /system/http_proxy/authentication_password."
-msgstr ""
-"Se verdadeiro, ligações ao servidor proxy requerem autenticação. O conjunto "
-"utilizador/senha são definidos por /system/http_proxy/authentication_user e /"
-"system/http_proxy/authentication_password."
+msgid "HTTP proxy username"
+msgstr "Utilizador da proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-msgid "Password to pass as authentication when doing http proxying"
-msgstr "Senha a indicar como autenticação ao efectuar proxy de http"
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by \"/system/http_proxy/authentication_user"
+"\" and \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Se verdadeiro, ligações ao servidor proxy requerem autenticação. O conjunto "
+"utilizador/senha são definidos por \"/system/http_proxy/authentication_user\" "
+" e \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
+msgid "Non-proxy hosts"
+msgstr "Máquina não-proxy"
+
+#: schemas/system_http_proxy.schemas.in.h:12
+msgid "Password to pass as authentication when doing HTTP proxying."
+msgstr "Senha a indicar como autenticação ao efectuar proxy de HTTP."
+
+#: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
 msgstr "Modo de configuração proxy"
 
-#: schemas/system_http_proxy.schemas.in.h:12
-msgid "Secure http proxy host name"
-msgstr "Nome de máquina de proxy de http seguro"
-
-#: schemas/system_http_proxy.schemas.in.h:13
-msgid "Secure http proxy port"
-msgstr "Porto de proxy de http seguro"
-
 #: schemas/system_http_proxy.schemas.in.h:14
-msgid ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\""
-msgstr ""
-"Seleccione o modo de configuração de proxy. Valores suportados são \"none"
-"\" (nenhum), \"manual\", \"auto\""
+msgid "SOCKS proxy host name"
+msgstr "Nome de máquina de proxy SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:15
-msgid "Socks proxy host name"
-msgstr "Nome de máquina de proxy Socks"
+msgid "SOCKS proxy port"
+msgstr "Porto de proxy SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:16
-msgid "Socks proxy port"
-msgstr "Porto de proxy Socks"
+msgid "Secure HTTP proxy host name"
+msgstr "Nome de máquina de proxy de HTTP seguro"
 
 #: schemas/system_http_proxy.schemas.in.h:17
+msgid "Secure HTTP proxy port"
+msgstr "Porto de proxy de HTTP seguro"
+
+#: schemas/system_http_proxy.schemas.in.h:18
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
+msgstr ""
+"Seleccione o modo de configuração de proxy. Valores suportados são \"none"
+"\" (nenhum), \"manual\", \"auto\"."
+
+#: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
 msgstr "O nome da máquina através da qual efectuar proxy de FTP."
 
-#: schemas/system_http_proxy.schemas.in.h:18
-msgid "The machine name to proxy http through."
-msgstr "O nome da máquina através da qual efectuar proxy de http."
-
-#: schemas/system_http_proxy.schemas.in.h:19
-msgid "The machine name to proxy secure http through."
-msgstr "O nome da máquina através da qual efectuar proxy de http seguro."
-
 #: schemas/system_http_proxy.schemas.in.h:20
+msgid "The machine name to proxy HTTP through."
+msgstr "O nome da máquina através da qual efectuar proxy de HTTP."
+
+#: schemas/system_http_proxy.schemas.in.h:21
+msgid "The machine name to proxy secure HTTP through."
+msgstr "O nome da máquina através da qual efectuar proxy de HTTP seguro."
+
+#: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
 msgstr "O nome da máquina através da qual efectuar proxy socks."
 
-#: schemas/system_http_proxy.schemas.in.h:21
-msgid ""
-"The port on the machine defined by /system/http_proxy/host that you proxy "
-"through"
-msgstr ""
-"O porto na máquina, definido por /system/http_proxy/host, através do qual "
-"efectuar proxy"
-
-#: schemas/system_http_proxy.schemas.in.h:22
-msgid ""
-"The port on the machine defined by /system/proxy/ftp_host that you proxy "
-"through"
-msgstr ""
-"O porto na máquina, definido por /system/proxy/ftp_host, através do qual "
-"efectuar proxy"
-
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
-"The port on the machine defined by /system/proxy/secure_host that you proxy "
-"through"
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
 msgstr ""
-"O porto na máquina, definido por /system/proxy/secure_host, através do qual "
-"efectuar proxy"
+"O porto na máquina, definido por \"/system/http_proxy/host\", através do "
+"qual efectuar proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
-"The port on the machine defined by /system/proxy/socks_host that you proxy "
-"through"
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
 msgstr ""
-"O porto na máquina, definido por /system/proxy/socks_host, através do qual "
-"efectuar proxy"
+"O porto na máquina, definido por \"/system/proxy/ftp_host\", através do qual "
+"efectuar proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:25
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr ""
+"O porto na máquina, definido por \"/system/proxy/secure_host\", através do "
+"qual efectuar proxy."
+
+#: schemas/system_http_proxy.schemas.in.h:26
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr ""
+"O porto na máquina, definido por \"/system/proxy/socks_host\", através do "
+"qual efectuar proxy."
+
+#: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
 "This key contains a list of hosts which are connected to directly, rather "
 "than via the proxy (if it is active). The values can be hostnames, domains "
@@ -983,22 +996,86 @@ msgstr ""
 "exemplo.pt), endereços IP (tanto IPv4 como IPv6) e endereços de rede com uma "
 "máscara de rede (algo como 192.168.0.0/24)."
 
-#: schemas/system_http_proxy.schemas.in.h:26
-msgid "URL that provides proxy configuration values"
-msgstr "URL que disponibiliza valores de configuração da proxy"
-
-#: schemas/system_http_proxy.schemas.in.h:27
-msgid "Use proxy settings when accessing http"
-msgstr "Utilizar definições da proxy ao aceder por http"
-
 #: schemas/system_http_proxy.schemas.in.h:28
-msgid "User name to pass as authentication when doing http proxying"
-msgstr "Utilizador a indicar como autenticação ao efectuar proxy de http"
+msgid "URL that provides proxy configuration values."
+msgstr "URL que disponibiliza valores de configuração da proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:29
-msgid "http proxy password"
-msgstr "Senha de proxy http"
+msgid "Use HTTP proxy"
+msgstr "Utilizar proxy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
-msgid "http proxy username"
-msgstr "Utilizador de proxy http"
+msgid "User name to pass as authentication when doing HTTP proxying."
+msgstr "Utilizador a indicar como autenticação ao efectuar proxy de HTTP."
+
+#~ msgid "How to handle http URLs"
+#~ msgstr "Como manipulador URLs http"
+
+#~ msgid "How to handle https URLs"
+#~ msgstr "Como manipulador URLs https"
+
+#~ msgid "Set to true to have a program specified in command handle https URLs"
+#~ msgstr ""
+#~ "Definir como verdadeiro para que aplicação especificada no comando "
+#~ "manipule URLs https"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in programs/ghelp handle ghelp "
+#~ "URLs"
+#~ msgstr ""
+#~ "Definir como verdadeiro para que aplicação especificada em aplicações/"
+#~ "ghelp manipule URLs ghelp"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in programs/info handle info URLs"
+#~ msgstr ""
+#~ "Definir como verdadeiro para que aplicação especificada em aplicações/"
+#~ "info manipule URLs info"
+
+#~ msgid ""
+#~ "Set to true to have a program specified in programs/man handle man URLs"
+#~ msgstr ""
+#~ "Definir como verdadeiro para que aplicação especificada em aplicações/man "
+#~ "manipule URLs man"
+
+#~ msgid "URL handler for callto uris"
+#~ msgstr "Manipulador de URL para uris callto"
+
+#~ msgid "URL handler for ghelp pages"
+#~ msgstr "Manipulador de URL para páginas ghelp"
+
+#~ msgid "URL handler for h323 uris"
+#~ msgstr "Manipulador de URL para uris h323"
+
+#~ msgid "URL handler for http uris"
+#~ msgstr "Manipulador de URL para uris http"
+
+#~ msgid "URL handler for https uris"
+#~ msgstr "Manipulador de URL para uris https"
+
+#~ msgid "URL handler for info pages"
+#~ msgstr "Manipulador de URL para páginas info"
+
+#~ msgid "URL handler for mailto uris"
+#~ msgstr "Manipulador de URL para uris mailto"
+
+#~ msgid "URL handler for man pages"
+#~ msgstr "Manipulador de URL para páginas man"
+
+#~ msgid "URL handler for trash pages"
+#~ msgstr "Manipulador de URL para páginas de lixo"
+
+#~ msgid "Hosts are not contacted via the proxy"
+#~ msgstr "Máquinas não são contactadas através da proxy"
+
+#~ msgid "The machine name to proxy http through."
+#~ msgstr "O nome da máquina através da qual efectuar proxy de http."
+
+#~ msgid "Use proxy settings when accessing http"
+#~ msgstr "Utilizar definições da proxy ao aceder por http"
+
+#~ msgid "http proxy password"
+#~ msgstr "Senha de proxy http"
+
+#~ msgid "http proxy username"
+#~ msgstr "Utilizador de proxy http"
