@@ -1,5 +1,10 @@
 2002-07-18  Damon Chaplin  <damon@ximian.com>
 
+	* modules/vfolder/vfolder-common.c (folder_emit_changed): for the
+	root folder pass "/" as the uri rather than NULL.
+
+2002-07-18  Damon Chaplin  <damon@ximian.com>
+
 	* modules/vfolder/vfolder-common.c (entry_quick_read_keys): oops.
 	didn't need to add '\0' to a GString. That was silly.
 

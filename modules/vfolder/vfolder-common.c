@@ -645,7 +645,7 @@ folder_emit_changed (Folder                   *folder,
 		uri = tmp;
 	}
 	
-	vfolder_info_emit_change (folder->info, uri, event_type);
+	vfolder_info_emit_change (folder->info, uri ? uri : "/", event_type);
 
 	g_free (uri);
 }
