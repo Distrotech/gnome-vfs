@@ -2330,7 +2330,7 @@ static gboolean
 vfolder_info_read_items_merge (VFolderInfo *info,
 			       const char *merge_dir,
 			       const char *subdir,
-			       gboolean in_settings_dir,
+			       GQuark inherited_keyword,
 			       GnomeVFSResult *result,
 			       GnomeVFSContext *context)
 {
@@ -2338,27 +2338,23 @@ vfolder_info_read_items_merge (VFolderInfo *info,
 	struct dirent *de;
 	GQuark extra_keyword;
 	GQuark Application;
-	gboolean is_application;
+	GQuark Merged;
+	GQuark inheritance;
+	gboolean pass_down_extra_keyword = TRUE;
 
 	dir = opendir (merge_dir);
 	if (dir == NULL)
 		return TRUE;
 
-	if (!in_settings_dir) {
-		is_application = TRUE;
-	} else {
-		is_application = FALSE;
-	}
-
 	Application = g_quark_from_static_string ("Application");
-	
+	Merged = g_quark_from_static_string ("Merged");
+
 	/* FIXME: this should be a hash or something */
 	extra_keyword = 0;
-	if (subdir == NULL)
+	if (subdir == NULL) {
 		extra_keyword = g_quark_from_static_string ("Core");
-	/*else if (g_ascii_strcasecmp (subdir, "Applications") == 0)
-		 ;*/
-	else if (g_ascii_strcasecmp (subdir, "Development") == 0)
+		pass_down_extra_keyword = FALSE;
+	} else if (g_ascii_strcasecmp (subdir, "Development") == 0)
 		extra_keyword = g_quark_from_static_string ("Development");
 	else if (g_ascii_strcasecmp (subdir, "Editors") == 0)
 		extra_keyword = g_quark_from_static_string ("TextEditor");
@@ -2370,10 +2366,9 @@ vfolder_info_read_items_merge (VFolderInfo *info,
 		extra_keyword = g_quark_from_static_string ("Network");
 	else if (g_ascii_strcasecmp (subdir, "Multimedia") == 0)
 		extra_keyword = g_quark_from_static_string ("AudioVideo");
-	else if (g_ascii_strcasecmp (subdir, "Settings") == 0) {
-		is_application = FALSE;
+	else if (g_ascii_strcasecmp (subdir, "Settings") == 0)
 		extra_keyword = g_quark_from_static_string ("Settings");
-	} else if (g_ascii_strcasecmp (subdir, "System") == 0)
+	else if (g_ascii_strcasecmp (subdir, "System") == 0)
 		extra_keyword = g_quark_from_static_string ("System");
 	else if (g_ascii_strcasecmp (subdir, "Utilities") == 0)
 		extra_keyword = g_quark_from_static_string ("Utility");
@@ -2397,10 +2392,16 @@ vfolder_info_read_items_merge (VFolderInfo *info,
 		if ( ! check_ext (de->d_name, ".desktop")) {
 			/* if this is a directory recurse */
 			char *fullname = g_build_filename (merge_dir, de->d_name, NULL);
+			if ((pass_down_extra_keyword == TRUE) && (extra_keyword != 0)) {
+				inheritance = extra_keyword;
+			} else {
+				inheritance = inherited_keyword;
+			}
+
 			if ( ! vfolder_info_read_items_merge (info,
 							      fullname,
 							      de->d_name,
-							      !is_application,
+							      inheritance,
 							      result,
 							      context)) {
 				g_free (fullname);
@@ -2420,12 +2421,20 @@ vfolder_info_read_items_merge (VFolderInfo *info,
 
 		/* If no keywords set, then add the standard ones */
 		if (efile->keywords == NULL) {
-			if (is_application == TRUE) {
+			efile->keywords = g_slist_prepend
+				(efile->keywords,
+				 GINT_TO_POINTER (Application));
+
+			efile->keywords = g_slist_prepend
+				(efile->keywords,
+				 GINT_TO_POINTER (Merged));
+
+			if (inherited_keyword != 0) {
 				efile->keywords = g_slist_prepend
 					(efile->keywords,
-					 GINT_TO_POINTER (Application));
+					 GINT_TO_POINTER (inherited_keyword));
 			}
-
+			
 			if (extra_keyword != 0) {
 				efile->keywords = g_slist_prepend
 					(efile->keywords,

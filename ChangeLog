@@ -1,3 +1,20 @@
+2002-05-07  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/vfolder-desktop-method.c:
+	(vfolder_info_read_items_merge):
+
+	Inherit all keywords to lower level directories, allowing
+	nested directories (not common, but they exist) to figure
+	out their main category name unless they match a "closer"
+	category.
+
+	Flag merged .desktop files with "Merged" so we can optionally
+	handle them specially in the vfolder.
+
+	* modules/applications.vfolder-info.in:
+	
+	Merge "Merged" capplets into Advanced by default.
+	
 2002-05-06  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/vfolder-desktop-method.c:

@@ -156,11 +156,12 @@
 	<And>
 	  <Keyword>Settings</Keyword>
 	  <Not>
-          <Or>
+	    <Or>
 	      <Keyword>AdvancedSettings</Keyword>
 	      <Keyword>Sawfish</Keyword>
 	      <Keyword>System</Keyword>
-	    <Keyword>Accessibility</Keyword>
+	      <Keyword>Accessibility</Keyword>
+	      <Keyword>Merged</Keyword>
 	    </Or>
 	  </Not>
 	</And>
@@ -173,10 +174,16 @@
 	<Name>Advanced</Name>
 	<Desktop>Advanced.directory</Desktop>
 	<Query>
-	  <And>
-	    <Keyword>Settings</Keyword>
-	    <Keyword>AdvancedSettings</Keyword>
-	  </And>
+	  <Or>
+	    <And>
+	      <Keyword>Settings</Keyword>
+	      <Keyword>Merged</Keyword>
+	    </And>
+	    <And>
+	      <Keyword>Settings</Keyword>
+	      <Keyword>AdvancedSettings</Keyword>
+	    </And>
+	  </Or>
 	</Query>
 	<Exclude>cddb-slave.desktop</Exclude>
 	<DontShowIfEmpty/>
@@ -203,7 +210,6 @@
 	</Query>
 	<DontShowIfEmpty/>
       </Folder>
-      
       <Folder>
 	<Name>System</Name>
 	<Desktop>System.directory</Desktop>
