@@ -27,6 +27,8 @@ INCLUDES =					\
 	$(NULL)
 
 EXTRA_DIST =					\
+	$(HTTP_NEON_SOURCES)			\
+	$(HTTP_OLD_SOURCES)			\
 	default-modules.conf			\
 	smb-module.conf				\
 	cdda-module.conf			\

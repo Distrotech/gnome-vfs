@@ -1,3 +1,9 @@
+2004-09-13  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/Makefile.am:
+	Properly dist both http methods.
+	Patch from Rodney Dawes
+
 2004-09-10  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_get_value):
