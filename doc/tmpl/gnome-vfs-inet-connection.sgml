@@ -53,6 +53,15 @@ gnome-vfs-inet-connection
 @Returns: 
 
 
+<!-- ##### FUNCTION gnome_vfs_inet_connection_to_socket_buffer ##### -->
+<para>
+
+</para>
+
+@connection: 
+@Returns: 
+
+
 <!-- ##### FUNCTION gnome_vfs_inet_connection_get_fd ##### -->
 <para>
 

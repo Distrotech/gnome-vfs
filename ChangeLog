@@ -1,5 +1,15 @@
 2002-06-16  Seth Nickell  <snickell@stanford.edu>
 
+	* doc/tmpl/gnome-vfs-async-ops.sgml:
+	* doc/tmpl/gnome-vfs-inet-connection.sgml:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	* libgnomevfs/gnome-vfs-uri.h:
+
+	More documentation.
+	
+2002-06-16  Seth Nickell  <snickell@stanford.edu>
+
 	* doc/gnome-vfs-sections.txt:
 	* doc/tmpl/gnome-vfs-directory.sgml:
 	* doc/tmpl/gnome-vfs-inet-connection.sgml:

@@ -65,11 +65,10 @@ POSIX-style file operations that run outside your main loop
 </para>
 
 
-<!-- ##### MACRO GnomeVFSAsyncCloseCallback ##### -->
+<!-- ##### TYPEDEF GnomeVFSAsyncCloseCallback ##### -->
 <para>
 
 </para>
-
 
 
 <!-- ##### USER_FUNCTION GnomeVFSAsyncReadCallback ##### -->

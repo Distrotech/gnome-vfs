@@ -73,14 +73,15 @@ typedef struct {
 
 /* This is used for hiding information when transforming the GnomeVFSURI into a
    string.  */
-typedef enum {
-	GNOME_VFS_URI_HIDE_NONE = 0,
-	GNOME_VFS_URI_HIDE_USER_NAME = 1 << 0,
-	GNOME_VFS_URI_HIDE_PASSWORD = 1 << 1,
-	GNOME_VFS_URI_HIDE_HOST_NAME = 1 << 2,
-	GNOME_VFS_URI_HIDE_HOST_PORT = 1 << 3,
-	GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD = 1 << 4,
-	GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER = 1 << 8
+typedef enum 
+{
+	GNOME_VFS_URI_HIDE_NONE = 0,                    /* hide no parts of the URI */
+	GNOME_VFS_URI_HIDE_USER_NAME = 1 << 0,          /* hide the user name */
+	GNOME_VFS_URI_HIDE_PASSWORD = 1 << 1,           /* hide the password */
+	GNOME_VFS_URI_HIDE_HOST_NAME = 1 << 2,          /* hide the host name */
+	GNOME_VFS_URI_HIDE_HOST_PORT = 1 << 3,          /* hide the port */
+	GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD = 1 << 4,    /* hide the access method */
+	GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER = 1 << 8 /* hide the fragment identifier */
 } GnomeVFSURIHideOptions;
 
 

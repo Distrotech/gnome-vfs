@@ -39,12 +39,55 @@ G_BEGIN_DECLS
 
 typedef struct GnomeVFSAsyncHandle GnomeVFSAsyncHandle;
 
+/**
+ * GnomeVFSAsyncCallback:
+ * @handle: handle of the operation generating the callback
+ * @result: %GNOME_VFS_OK if the operation was successful, otherwise
+ * an error code.
+ * @callback_data: user data defined when the callback was established
+ *
+ * Basic callback from an async operation that passes no data back,
+ * informing the user of the @result of the operation.
+ **/
 typedef void	(* GnomeVFSAsyncCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
 						 gpointer callback_data);
 
+/**
+ * GnomeVFSAsyncOpenCallback:
+ * @handle: handle of the operation generating the callback
+ * @result: %GNOME_VFS_OK if the operation was successful, otherwise
+ * an error code.
+ * @callback_data: user data defined when the callback was established
+ *
+ * Basic callback from an async operation that passes no data back,
+ * informing the user of the @result of the operation.
+ **/
 typedef GnomeVFSAsyncCallback GnomeVFSAsyncOpenCallback;
+
+/**
+ * GnomeVFSAsyncCreateCallback:
+ * @handle: handle of the operation generating the callback
+ * @result: %GNOME_VFS_OK if the operation was successful, otherwise
+ * an error code.
+ * @callback_data: user data defined when the callback was established
+ *
+ * Basic callback from an async operation that passes no data back,
+ * informing the user of the @result of the operation.
+ **/
 typedef GnomeVFSAsyncCallback GnomeVFSAsyncCreateCallback;
+
+/**
+ * GnomeVFSAsyncCloseCallback:
+ * @handle: handle of the operation generating the callback
+ * @result: %GNOME_VFS_OK if the operation was successful, otherwise
+ * an error code.
+ * @callback_data: user data defined when the callback was established
+ *
+ * Basic callback from an async operation that passes no data back,
+ * informing the user of the @result of the operation.
+ **/
+typedef GnomeVFSAsyncCallback GnomeVFSAsyncCloseCallback;
 
 typedef void	(* GnomeVFSAsyncOpenAsChannelCallback)
 						(GnomeVFSAsyncHandle *handle,
@@ -53,8 +96,6 @@ typedef void	(* GnomeVFSAsyncOpenAsChannelCallback)
 						 gpointer callback_data);
 
 typedef GnomeVFSAsyncOpenAsChannelCallback GnomeVFSAsyncCreateAsChannelCallback;
-
-#define GnomeVFSAsyncCloseCallback	GnomeVFSAsyncCallback
 
 typedef void	(* GnomeVFSAsyncReadCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
