@@ -1574,6 +1574,8 @@ move_items (const GList *source_uri_list,
 		int conflict_count;
 		int progress_result;
 
+		progress->progress_info->file_index++;
+
 		source_uri = (GnomeVFSURI *)source_item->data;
 		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_item->data);
 
@@ -1677,6 +1679,8 @@ link_items (const GList *source_uri_list,
 
 	/* go through the list of names, create a link to each item */
 	for (source_item = source_uri_list, target_item = target_uri_list; source_item != NULL;) {
+
+		progress->progress_info->file_index++;
 
 		source_uri = (GnomeVFSURI *)source_item->data;
 		source_reference = gnome_vfs_uri_to_string (source_uri, GNOME_VFS_URI_HIDE_NONE);
