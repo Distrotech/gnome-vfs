@@ -41,6 +41,10 @@
 	
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
+	* modules/Makefile.am (INCLUDES): Added $(GLIB_CFLAGS).
+	* libgnomevfs-pthread/Makefile.am (INCLUDES): Likewise.
+	* libgnomevfs-corba/Makefile.am (INCLUDES): Likewise.
+
 	* configure.in: Don't modify CFLAGS but set VFS_CLFAGS instead.
 	Otherwise CFLAGS gets longer every time config.status is run.
 	* */Makefile.am (INCLUDES): Add $(VFS_CFLAGS).
@@ -48,6 +52,8 @@
 	* configure.in: Don't put -Werror into CFLAGS but into WERROR
 	and AC_SUBST it. Some configure checks don't work with -Werror.
 	* */Makefile.am (INCLUDES): Add $(WERROR).
+
+	* test/.cvsignore: Added test-mime-info.
 
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
@@ -76,6 +82,14 @@
 
 	* configure.in: Only check for GNOME if we're on the GNOME 1.2
 	platform.
+	(VFS_GNOME_CFLAGS, VFS_GNOMEUI_CFLAGS, VFS_CAPPLET_CFLAGS): Added.
+	(VFS_GNOME_LIBS, VFS_GNOMEUI_LIBS, VFS_CAPPLET_LIBS): Added.
+	For the GNOME 1.2 platform, they contain the appropriate GNOME cflags
+	and libs (set with `gnome-config --cflags/--libs'); for the GNOME 2
+	platform they only contain the appropriate GLIB cflags and libs
+	(set with `glib-config-2.0 --cflags/--libs').
+	(VFS_GLIB_CONFIG): Added. This is either `glib-config' for the GNOME 1.2
+	platform or `glib-config-2.0' for the GNOME 2 platform.
 
 	* gnome-vfs-config.in: New file. Template for gnome-vfs-config.
 	We can't use gnome-config for the GNOME 2 platform since gnome-vfs
@@ -83,6 +97,7 @@
 	works for both platforms, however using gnome-config may be saner
 	for the GNOME 1.2 one.
 	* Makefile.am: Create a gnome-vfs-config script.
+	* .cvsignore: Added gnome-vfs-config.
 
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
