@@ -44,6 +44,13 @@ gchar *gnome_vfs_escape_string                (const gchar      *string);
  */
 gchar *gnome_vfs_escape_path_string           (const gchar      *path);
 
+/* Converts unsafe characters to % sequences so the host/path segment
+ * can be used as a piece of a URI.  Allows ":" and "@" in the host
+ * section (everything up to the first "/"), and after that, it behaves
+ * like gnome_vfs_escape_path_string.
+ */
+gchar *gnome_vfs_escape_host_and_path_string  (const gchar	*path);
+
 /* Returns NULL if any of the illegal character appear in escaped
  * form. If the illegal characters are in there unescaped, that's OK.
  * Typically you pass "/" for illegal characters when converting to a

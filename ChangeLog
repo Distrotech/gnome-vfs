@@ -1,3 +1,13 @@
+2000-08-04  Robey Pointer  <robey@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_escape_string_internal), (gnome_vfs_escape_path_string),
+	(gnome_vfs_escape_host_and_path_string):
+	* libgnomevfs/gnome-vfs-utils.h:
+
+	Add an _escape_host_and_path_string() call to cope intelligently
+	with uri's that have a host:port section before the path.
+
 2000-08-05  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/http-method.c: (process_propfind_response),
