@@ -850,10 +850,16 @@ do_read_directory (GnomeVFSMethod *method,
 
 	file_info->mime_type = g_strdup ("application/x-gnome-app-info");
 	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-	file_info->flags |=
+	file_info->valid_fields |=
 		GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE |
 		GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 
+	file_info->permissions =
+		GNOME_VFS_PERM_USER_READ |
+		GNOME_VFS_PERM_OTHER_READ |
+		GNOME_VFS_PERM_GROUP_READ;
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+	
 	return GNOME_VFS_OK;
 }
 
@@ -871,7 +877,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		
 		file_info->mime_type = g_strdup ("x-directory/normal");
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-		file_info->flags |=
+		file_info->valid_fields |=
 			GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE |
 			GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 	} else {
@@ -879,7 +885,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		
 		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-		file_info->flags |=
+		file_info->valid_fields |=
 			GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE |
 			GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 	}
@@ -887,7 +893,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		GNOME_VFS_PERM_USER_READ |
 		GNOME_VFS_PERM_OTHER_READ |
 		GNOME_VFS_PERM_GROUP_READ;
-	file_info->flags |= GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
 	
 	return GNOME_VFS_OK;
 }
@@ -908,7 +914,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	file_info->mime_type = g_strdup ("application/x-gnome-app-info");
 	file_info->size = file_handle->len;
 	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-	file_info->flags |=
+	file_info->valid_fields |=
 		GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE |
 		GNOME_VFS_FILE_INFO_FIELDS_SIZE |
 		GNOME_VFS_FILE_INFO_FIELDS_TYPE;
