@@ -1225,6 +1225,33 @@ gnome_vfs_escape_high_chars (const guchar *string)
 	return result;
 }
 
+/* http uris look like <something>.<2-4 letters>, possibly followed by a slash and some text. */
+static gboolean
+looks_like_http_uri (const char *str)
+{
+	int len;
+	int i;
+	char c;
+	const char *first_slash;
+
+	first_slash = strchr(str, '/');
+	if (first_slash == NULL) {
+		len = strlen (str);
+	} else {
+		len = first_slash - str;
+	}
+	for (i = 0; i < 5 && i < len; i++) {
+		c = str[len - 1 - i];
+		if (i >= 2 && c == '.') {
+			return TRUE;
+		}
+		if (!g_ascii_isalpha (c)) {
+			return FALSE;
+		}
+	}
+	return FALSE;
+}
+
 /* The strip_trailing_whitespace option is intended to make copy/paste of
  * URIs less error-prone when it is known that trailing whitespace isn't
  * part of the uri.
@@ -1289,9 +1316,13 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 	default:
 		if (has_valid_scheme (stripped)) {
 			uri = gnome_vfs_escape_high_chars (stripped);
-		} else {
+		} else if (looks_like_http_uri (stripped)) {
 			escaped = gnome_vfs_escape_high_chars (stripped);
 			uri = g_strconcat ("http://", escaped, NULL);
+			g_free (escaped);
+		} else {
+			escaped = gnome_vfs_escape_high_chars (stripped);
+			uri = g_strconcat ("file://", escaped, NULL);
 			g_free (escaped);
 		}
 	}

@@ -1,5 +1,10 @@
 2003-08-25  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_make_uri_from_input_internal):
+	Only add http: if the string looks like a http uri.
+
+2003-08-25  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/default-modules.conf:
 	Add dav: scheme, handled by the http module.
 
