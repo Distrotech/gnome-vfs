@@ -29,6 +29,7 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include <glib.h>
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
