@@ -80,10 +80,8 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-seekable.h			\
 	gnome-vfs-shellpattern-filter.h
 
-noinst_HEADERS=\
-	fnmatch.h
-
 libgnomevfs_la_SOURCES =			\
+	fnmatch.h				\
 	gnome-vfs-backend.c			\
 	gnome-vfs-cancellation.c		\
 	gnome-vfs-configuration.c		\
