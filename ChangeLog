@@ -1,3 +1,10 @@
+2004-10-07  Christian Kellner  <gicmo@gnome.org>
+
+	* doc/tmpl/gnome-vfs-inet-connection.sgml:
+	* doc/tmpl/gnome-vfs-socket-buffer.sgml:
+	* doc/tmpl/gnome-vfs-socket.sgml:
+	API doc updates.
+
 2004-10-06  Christian Kellner  <gicmo@gnome-de.org>
 
 	* modules/http-neon-method.c: Add support for additional and received
