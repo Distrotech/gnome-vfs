@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-02-14 00:20+0900\n"
+"POT-Creation-Date: 2004-07-10 15:17+0900\n"
+"PO-Revision-Date: 2004-07-10 15:15+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -194,6 +194,114 @@ msgstr "XIAFS ボリューム"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "不明"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:610
+msgid "CD Disc"
+msgstr "CD ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+msgid "Blank CD-R Disc"
+msgstr "空の CD-R ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:615
+msgid "CD-R Disc"
+msgstr "CD-R ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+msgid "Blank CD-RW Disc"
+msgstr "空の CD-RW ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:620
+msgid "CD-RW Disc"
+msgstr "CD-RW ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:622
+msgid "DVD-ROM Disc"
+msgstr "DVD-ROM ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:625
+msgid "Blank DVD-R Disc"
+msgstr "空の DVD-R ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:627
+msgid "DVD-R Disc"
+msgstr "DVD-R ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:630
+msgid "Blank DVD-RAM Disc"
+msgstr "空の DVD-RAM ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:632
+msgid "DVD-RAM Disc"
+msgstr "DVD-RAM ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:635
+msgid "Blank DVD-RW Disc"
+msgstr "空の DVD-RW ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:637
+msgid "DVD-RW Disc"
+msgstr "DVD-RW ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+msgid "Blank DVD+RW Disc"
+msgstr "空の DVD+RW ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:642
+msgid "DVD+RW Disc"
+msgstr "DVD+RW ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:645
+msgid "Blank DVD+R Disc"
+msgstr "空の DVD+R ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:647
+msgid "DVD+R Disc"
+msgstr "DVD+R ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:649
+msgid "Optical Disc"
+msgstr "光学ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:655
+msgid "Audio Disc"
+msgstr "オーディオ・ディスク"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:659
+msgid "Compact Flash Media"
+msgstr "コンパクト・フラッシュ"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:661
+msgid "Memory Stick Media"
+msgstr "メモリ・スティック"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:663
+msgid "Smart Media Media"
+msgstr "スマート・メディア"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+msgid "SD/MMC Media"
+msgstr "SD/MMC メディア"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+msgid "Floppy Disk"
+msgstr "フロッピー"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:674
+msgid "Mac OS disk"
+msgstr "Mac OS"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:676
+msgid "Mac OS X disk"
+msgstr "Mac OS X"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:690
+msgid "Windows Disk"
+msgstr "Windows"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:696
+msgid "Linux Disk"
+msgstr "Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -453,7 +561,12 @@ msgstr "コマンド・ラインを解析する際にエラーが発生しまし
 msgid "Error launching command"
 msgstr "コマンドを起動する際にエラーが発生しました"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+msgid "Timeout reached"
+msgstr "タイムアウトです"
+
+#: libgnomevfs/gnome-vfs-result.c:180
 msgid "Unknown error"
 msgstr "不明なエラーです"
 
@@ -480,50 +593,50 @@ msgid "%.1f GB"
 msgstr "%.1f Gバイト"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:364
 msgid " (invalid Unicode)"
 msgstr " (Unicode が正しくありません)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:492
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:520
 msgid "Floppy"
 msgstr "フロッピー"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:493
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:523
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:494
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:526
 msgid "Zip Drive"
 msgstr "Zip ドライブ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:495
 msgid "Memory Stick"
 msgstr "メモリ・スティック"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
 msgid "Camera"
 msgstr "カメラ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:713
 msgid "Root Volume"
 msgstr "Root ボリューム"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:794
 msgid "Audio CD"
 msgstr "オーディオ CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:825
 msgid "Unknown volume"
 msgstr "不明なボリューム"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1005
 msgid "Network server"
 msgstr "ネットワーク・サーバ"
 
@@ -645,7 +758,7 @@ msgstr "ホーム"
 msgid "Filesystem"
 msgstr "ファイルシステム"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "不明な GnomeVFSSeekPosition %d です"
@@ -657,7 +770,7 @@ msgstr "Windows ネットワーク"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "リモート・コンピュータ (%s) を識別できません"
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -667,14 +780,18 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"これは、コンピュータへ初めてログインした際に発生します。\n"
+"\n"
+"リモート・コンピュータから送られた識別子は %s です。その識別子が絶対確実だと"
+"思う場合は、システム管理者に問い合わせて下さい。"
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "とにかくログイン"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "キャンセル"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -763,9 +880,8 @@ msgid "Handle HTTPS URLs"
 msgstr "HTTPS の URL の扱い方"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle aim URLs"
-msgstr "'man URL' の扱い方"
+msgstr "'aim URL' の扱い方"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
@@ -814,10 +930,9 @@ msgstr ""
 "'HTTPS URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle aim URLs."
 msgstr ""
-"'man URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
+"'aim URL' を扱うコマンドで指定したプログラムがある場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
@@ -859,9 +974,8 @@ msgid "True if the program to handle this URL should be run in a terminal."
 msgstr "この URL を扱うプログラムを端末内で実行する場合は TRUE にします。"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid "aim URL handler"
-msgstr "man URL ハンドラ"
+msgstr "aim URL ハンドラ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
@@ -892,18 +1006,20 @@ msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"コンマ (,) で区切った DNS-SD のリストで、\"ネットワーク\" の中に表示されま"
+"す。"
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "サービス DNS-SD から検索する追加ドメイン"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "ローカルの DNS-SD サービスの表示方法"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr ""
+msgstr "設定可能な値: \"merged\"、\"separate\"、\"disable\""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1067,18 +1183,3 @@ msgstr "SMB ワークグループ"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "ユーザが接続している Windows ワークグループです。"
-
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "ブックマークの保存に失敗 (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "ファイル '%s' の情報を取得できませんでした: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "ファイル '%s' を開けませんでした: %s"
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "画像 '%s' を読み込めませんでした: 理由は不明ですが、おそらく画像ファイルが"
-#~ "壊れています"
