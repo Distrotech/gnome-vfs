@@ -1,3 +1,9 @@
+2001-09-10  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* configure.in: Move installed headers to allow for parallel
+	development environments with GNOME 2.0.
+	* libgnomevfs/Makefile.am: Likewise.
+
 2001-09-08  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	Fix make distcheck:

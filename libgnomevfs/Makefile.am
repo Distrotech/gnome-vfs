@@ -38,7 +38,7 @@ libgnomevfs_la_LIBADD =				\
 	$(OPENSSL_LDFLAGS) 			\
 	$(NULL)
 
-libgnomevfsincludedir = $(includedir)/libgnomevfs
+libgnomevfsincludedir = $(includedir)/gnome-vfs-1.0/libgnomevfs
 
 libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-application-registry.h	\
@@ -148,6 +148,6 @@ noinst_HEADERS =				\
 	gnome-vfs-backend-private.h
  
 # Platform specific includes
-libgnomevfsplatofrmincludedir = $(libdir)/vfs/include
+libgnomevfsplatofrmincludedir = $(libdir)/gnome-vfs-1.0/include
 libgnomevfsplatofrminclude_HEADERS =			\
 	gnome-vfs-file-size.h
