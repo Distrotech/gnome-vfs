@@ -1,3 +1,10 @@
+2005-03-02  Nate Nielsen <nielsen@memberwebs.com>
+
+        * modules/smb-method.c: (perform_authentication, auth_callback)
+        Fix problems when not on a domain and browsing smb://, or 
+        anonymous shares. Fixes bug #168864 and bug #167020. 
+        Approval for code freeze breakage by luis and kmaraas
+
 2005-03-01  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

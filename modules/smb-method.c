@@ -1130,11 +1130,12 @@ perform_authentication (SmbAuthContext *actx)
 			save_authentication (actx);
 			ret = 0;
 
-		/* If authentication failed, but we already have a connection ... */
-		} else if (actx->cache_used && !actx->cache_added) {
+		/* If authentication failed, but we already have a connection 
+		   ... and access failed on a file, then we return the error */
+		} else if ((actx->cache_used && !actx->cache_added) && 
+			(!actx->uri || smb_uri_type (actx->uri) == SMB_URI_SHARE_FILE)) {
 
-			/* ... we just return the error */
-			DEBUG_SMB(("[auth] Not reauthenticating a cached connection.\n"));
+			DEBUG_SMB(("[auth] Not reauthenticating a open connection.\n"));
 			ret = -1;
 
 		/* A failed authentication */
@@ -1219,23 +1220,26 @@ auth_callback (const char *server_name, const char *share_name,
 	if (actx->use_user) {
 		strncpy (username_out, actx->use_user, unmaxlen);
                 strncpy (password_out, actx->use_password ? actx->use_password : "", pwmaxlen);
-                strncpy (domain_out, actx->use_domain ? actx->use_domain : "", domainmaxlen);
+		if (actx->use_domain)
+			strncpy (domain_out, actx->use_domain, domainmaxlen);
                 DEBUG_SMB(("[auth] Using credentials: %s:%s@%s\n", username_out, password_out, domain_out));
 
         /* On first login try a guest login */
         } else if (actx->passes == 1) {
                 strncpy (username_out, "guest", unmaxlen);
                 strncpy (password_out, "", pwmaxlen);
-                strncpy (domain_out, "", domainmaxlen);
                 DEBUG_SMB(("[auth] No credentials, trying 'guest' user login\n"));
 
 	/* We have no credentials ... */			
 	} else {
 		strncpy (username_out, "", unmaxlen);
 		strncpy (password_out, "", pwmaxlen);
-		strncpy (domain_out, "", domainmaxlen);
                 DEBUG_SMB(("[auth] No credentials, returning null values\n"));
 	}
+
+	/* Put in the default workgroup if none specified */
+	if (domain_out[0] == 0 && smb_context->workgroup)
+		strncpy (domain_out, smb_context->workgroup, domainmaxlen);
 }
 
 static char *
