@@ -484,7 +484,7 @@ gnome_vfs_uri_new_private (const gchar *text_uri,
 			
 			context = gnome_vfs_context_new ();
 			(* trans->transform) (trans, method_scanner, &new_uri_string, context);
-			gnome_vfs_context_unref (context);
+			gnome_vfs_context_free (context);
 			if (new_uri_string != NULL) {
 				toplevel->urn = g_strdup (text_uri);
 				g_free (method_string);

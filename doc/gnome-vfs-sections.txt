@@ -288,8 +288,7 @@ gnome_vfs_async_module_callback_pop
 <SECTION>
 <FILE>gnome-vfs-context</FILE>
 gnome_vfs_context_new
-gnome_vfs_context_ref
-gnome_vfs_context_unref
+gnome_vfs_context_free
 gnome_vfs_context_get_cancellation
 gnome_vfs_context_check_cancellation
 gnome_vfs_context_peek_current

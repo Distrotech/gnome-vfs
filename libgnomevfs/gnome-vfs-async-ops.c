@@ -32,6 +32,13 @@
 #include <glib/gstrfuncs.h>
 #include <unistd.h>
 
+/**
+ * gnome_vfs_async_cancel:
+ * @handle: handle of the async operation to be cancelled
+ *
+ * Cancel an asynchronous operation and close all its callbacks.
+ * Its possible to still receive another call or two on the callback.
+ **/
 void
 gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 {
@@ -178,6 +185,23 @@ async_open_as_channel (GnomeVFSURI *uri,
 	return result;
 }
 
+/**
+ * gnome_vfs_async_open_uri_as_channel:
+ * @handle_return: A pointer to a pointer to a GnomeVFSHandle object
+ * @uri: URI to open as a #GIOChannel
+ * @open_mode: open for reading, writing, random, etc
+ * @advised_block_size: the preferred block size for #GIOChannel to read
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ *
+ * Open @uri as a #GIOChannel. Once the channel has been established
+ * @callback will be called with @callback_data, the result of the operation,
+ * and if the result was %GNOME_VFS_OK, a reference to a #GIOChannel pointing
+ * at @uri in @open_mode.
+ **/
 void
 gnome_vfs_async_open_uri_as_channel (GnomeVFSAsyncHandle **handle_return,
 				     GnomeVFSURI *uri,
@@ -197,6 +221,23 @@ gnome_vfs_async_open_uri_as_channel (GnomeVFSAsyncHandle **handle_return,
 						priority, callback, callback_data);
 }
 
+/**
+ * gnome_vfs_async_open_as_channel:
+ * @handle_return: A pointer to a pointer to a GnomeVFSHandle object
+ * @text_uri: string of the URI to open as a #GIOChannel
+ * @open_mode: open for reading, writing, random, etc
+ * @advised_block_size: the preferred block size for #GIOChannel to read
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ *
+ * Open @text_uri as a #GIOChannel. Once the channel has been established
+ * @callback will be called with @callback_data, the result of the operation,
+ * and if the result was %GNOME_VFS_OK, a reference to a #GIOChannel pointing
+ * at @text_uri in @open_mode.
+ **/
 void
 gnome_vfs_async_open_as_channel (GnomeVFSAsyncHandle **handle_return,
 				 const gchar *text_uri,
@@ -337,6 +378,23 @@ gnome_vfs_async_create (GnomeVFSAsyncHandle **handle_return,
 	}
 }
 
+/**
+ * gnome_vfs_async_create_as_channel:
+ * @handle_return: A pointer to a pointer to a GnomeVFSHandle object
+ * @text_uri: string of the URI to open as a #GIOChannel, creating it as necessary
+ * @open_mode: open for reading, writing, random, etc
+ * @advised_block_size: the preferred block size for #GIOChannel to use
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ *
+ * Open @text_uri as a #GIOChannel, creating it as necessary. Once the channel has 
+ * been established @callback will be called with @callback_data, the result of the 
+ * operation, and if the result was %GNOME_VFS_OK, a reference to a #GIOChannel pointing
+ * at @text_uri in @open_mode.
+ **/
 void
 gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 				   const gchar *text_uri,
@@ -824,6 +882,33 @@ gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 					       callback, callback_data);
 }
 
+/**
+ * gnome_vfs_async_xfer:
+ * @handle_return: when the function returns will point to a handle for
+ * @source_uri_list: #GList of #GnomeVFSURI representing the files to be transferred
+ * @target_uri_list: #GList of #GnomeVFSURI, the target locations for the elements
+ * in @source_uri_list
+ * @xfer_options: various options controlling the details of the transfer. Use %GNOME_VFS_XFER_REMOUVESOURCE to make the operation a move rather than a copy.
+ * @error_mode: report errors to the @progress_sync_callback, or simply abort
+ * @overwrite_mode: controls whether the xfer engine will overwrite automatically, skip the file, abort the operation, or query @progress_sync_callback
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @progress_update_callback: called periodically to keep the client appraised of progress
+ * in completing the XFer operation, and the current phase of operation.
+ * @update_callback_data: user data passed to @progress_update_callback
+ * @progress_sync_callback: called when the program requires responses to interactive queries
+ * (e.g. overwriting files, handling errors, etc)
+ * @sync_callback_data: user data passed to @progress_sync_callback
+ *
+ * Perform a copy operation in a seperate thread. @progress_update_callback will be periodically
+ * polled with status of the operation (percent done, the current phase of operation, the
+ * current file being operated upon). If the xfer engine needs to query the caller to make
+ * a decision or report on important error it will do so on @progress_sync_callback.
+ *
+ * Return value: %GNOME_VFS_OK if the paramaters were in order, 
+ * or %GNOME_VFS_ERROR_BAD_PARAMETERS if something was wrong in the passed in arguments.
+ **/
 GnomeVFSResult
 gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 		      GList *source_uri_list,

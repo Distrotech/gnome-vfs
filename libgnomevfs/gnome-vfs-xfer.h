@@ -70,8 +70,19 @@ typedef enum {
 	GNOME_VFS_XFER_OVERWRITE_MODE_SKIP = 3
 } GnomeVFSXferOverwriteMode;
 
-/* This defines the actions to perform before a file is being overwritten
-   (i.e., these are the answers that can be given to a replace query).  */
+/**
+ * GnomeVFSXferOverwriteAction:
+ * @GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT: abort the transfer
+ * @GONME_VFS_XFER_OVERWRITE_ACTION_REPLACE: replace the existing file
+ * @GNOME_VFS_XFER_OVERWRITE_ACTION_REPLACE_ALL: replace the existing file, and all future files
+ * without prompting the callback.
+ * @GNOME_VFS_XFER_OVERWRITE_ACTION_SKIP: don't copy over the existing file
+ * @GNOME_VFS_XFER_OVERWRITE_ACTION_SKIP_ALL: don't copy over the existing file, and all future
+ * files without prompting the callback.
+ * 
+ * This defines the actions to perform before a file is being overwritten
+ * (i.e., these are the answers that can be given to a replace query).  
+ **/
 typedef enum {
 	GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT = 0,
 	GNOME_VFS_XFER_OVERWRITE_ACTION_REPLACE = 1,

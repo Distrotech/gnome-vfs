@@ -22,15 +22,7 @@ gnome-vfs-context
 @Returns: 
 
 
-<!-- ##### FUNCTION gnome_vfs_context_ref ##### -->
-<para>
-
-</para>
-
-@ctx: 
-
-
-<!-- ##### FUNCTION gnome_vfs_context_unref ##### -->
+<!-- ##### FUNCTION gnome_vfs_context_free ##### -->
 <para>
 
 </para>

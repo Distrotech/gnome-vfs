@@ -3,6 +3,7 @@
    Virtual File System.
 
    Copyright (C) 1999,2001 Free Software Foundation
+   Copyright (C) 2002 Seth Nickell
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -36,21 +37,36 @@ G_BEGIN_DECLS
 
 typedef GnomeVFSFileSize GnomeVFSInodeNumber;
 
-/* File flags.  */
+/**
+ * GnomeVFSFileFlags:
+ * @GNOME_VFS_FILE_FLAGS_NONE: no flags
+ * @GNOME_VFS_FILE_FLAGS_SYMLINK: whether the file is a symlink.
+ * @GNOME_VFS_FILE_FLAGS_LOCAL: whether the file is on a local filesystem
+ *
+ * Packed boolean bitfield representing special
+ * flags a #GnomeVFSFileInfo struct can have.
+ **/
 typedef enum {
 	GNOME_VFS_FILE_FLAGS_NONE = 0,
-	/* Whether the file is a symlink.  */
 	GNOME_VFS_FILE_FLAGS_SYMLINK = 1 << 0,
-	/* Whether the file is on a local file system.  */
 	GNOME_VFS_FILE_FLAGS_LOCAL = 1 << 1,
 } GnomeVFSFileFlags;
 
-/* Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
-   Name is always assumed valid (how else would you have gotten a
-   FileInfo struct otherwise?)
- */
-
-/* The file type.  */
+/**
+ * GnomeVFSFileType:
+ * @GNOME_VFS_FILE_TYPE_UNKNOWN:
+ * @GNOME_VFS_FILE_TYPE_REGULAR:
+ * @GNOME_VFS_FILE_TYPE_DIRECTORY:
+ * @GNOME_VFS_FILE_TYPE_FIFO:
+ * @GNOME_VFS_FILE_TYPE_SOCKET:
+ * @GNOME_VFS_FILE_TYPE_CHARACTER_DEVICE:
+ * @GNOME_VFS_FILE_TYPE_BLOCK_DEVICE:
+ * @GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK:
+ *
+ * Enumeration identify the kind of file represented
+ * by a #GnomeVFSFileInfo struct. (note, use of MIME types
+ * is preferred as this field may eventually disappear)
+ **/
 typedef enum {
 	GNOME_VFS_FILE_TYPE_UNKNOWN,
 	GNOME_VFS_FILE_TYPE_REGULAR,
@@ -61,6 +77,29 @@ typedef enum {
 	GNOME_VFS_FILE_TYPE_BLOCK_DEVICE,
 	GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK
 } GnomeVFSFileType;
+
+/**
+ * GnomeVFSFileInfoFields:
+ * @GNOME_VFS_FILE_INFO_FIELDS_NONE: No fields are valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_TYPE: Type field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS: Permissions field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_FLAGS: Flags field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_DEVICE: Device field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_INODE: Inode field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_LINK_COUNT: Link count field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_SIZE: Size field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_BLOCK_COUNT: Block count field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE: I/O Block Size field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_ATIME: Access time field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_MTIME: Modification time field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_CTIME: Creating time field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME: Symlink name field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE: Mime type field is valid
+ *
+ * Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
+ * Name is always assumed valid (how else would you have gotten a
+ * FileInfo struct otherwise?)
+ **/
 
 typedef enum {
 	GNOME_VFS_FILE_INFO_FIELDS_NONE = 0,
@@ -160,6 +199,21 @@ typedef struct {
 	guint refcount;
 } GnomeVFSFileInfo;
 
+/**
+ * GnomeVFSFileInfoOptions:
+ * @GNOME_VFS_FILE_INFO_DEFAULT: default flags
+ * @GNOME_VFS_FILE_INFO_GET_MIME_TYPE: detect the MIME type
+ * @GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE: only use fast MIME type detection (extensions)
+ * @GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE: force slow MIME type detection where available
+ * (sniffing, algorithmic detection, etc)
+ * @GNOME_VFS_FILE_INFO_FOLLOW_LINKS: automatically follow symbolic links and retrieve the
+ * properties of their target (recommended)
+ *
+ * Packed boolean bitfield representing options that can
+ * be passed into a gnome_vfs_get_file_info() call (or other
+ * related calls that return file info) and affect the operation
+ * of get_file_info.
+ **/
 typedef enum {
 	GNOME_VFS_FILE_INFO_DEFAULT = 0, /* FIXME bugzilla.eazel.com 1203: name sucks */
 	GNOME_VFS_FILE_INFO_GET_MIME_TYPE = 1 << 0,
@@ -168,6 +222,17 @@ typedef enum {
 	GNOME_VFS_FILE_INFO_FOLLOW_LINKS = 1 << 3
 } GnomeVFSFileInfoOptions;
 
+/**
+ * GnomeVFSSetFileInfoMask:
+ * @GNOME_VFS_SET_FILE_INFO_NONE: don't set any file info fields
+ * @GNOME_VFS_SET_FILE_INFO_NAME: change the name
+ * @GNOME_VFS_SET_FILE_INFO_PERMISSIONS: change the permissions
+ * @GNOME_VFS_SET_FILE_INFO_OWNER: change the file's owner
+ * @GNOME_VFS_SET_FILE_INFO_TIME: change the file's time stamp(s)
+ *
+ * Packed boolean bitfield representing the aspects of the file
+ * to be changed in a gnome_vfs_set_file_info() call.
+ **/
 typedef enum {
 	GNOME_VFS_SET_FILE_INFO_NONE = 0,
 	GNOME_VFS_SET_FILE_INFO_NAME = 1 << 0,

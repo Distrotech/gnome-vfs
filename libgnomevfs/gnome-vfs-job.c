@@ -716,7 +716,7 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 	
 	g_assert (gnome_vfs_context_get_cancellation (op->context) != NULL);
 	
-	gnome_vfs_context_unref (op->context);
+	gnome_vfs_context_free (op->context);
 	gnome_vfs_module_callback_free_stack_info (op->stack_info);
 	
 	g_free (op);

@@ -1,5 +1,27 @@
 2002-06-16  Seth Nickell  <snickell@stanford.edu>
 
+	* doc/tmpl/gnome-vfs-context.sgml:
+	* libgnomevfs/gnome-vfs-context.c: (gnome_vfs_context_new),
+	(gnome_vfs_context_free):
+	* libgnomevfs/gnome-vfs-context.h:
+
+	Remove "unref" and "ref" calls. Replace with "free".
+
+	Document context.
+	
+	* doc/gnome-vfs-sections.txt:
+	* libgnomevfs/gnome-vfs-async-ops.c:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-job.c: (gnome_vfs_op_destroy):
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_new_private):
+	* libgnomevfs/gnome-vfs-uri.h:
+	* libgnomevfs/gnome-vfs-xfer.h:
+
+	Finish URI documentation, document xfer, and some enums
+	in file-info.
+
+2002-06-16  Seth Nickell  <snickell@stanford.edu>
+
 	* doc/tmpl/gnome-vfs-async-ops.sgml:
 	* doc/tmpl/gnome-vfs-inet-connection.sgml:
 	* libgnomevfs/gnome-vfs-async-ops.h:
