@@ -45,7 +45,6 @@ modulesdir = $(libdir)/gnome-vfs-2.0/modules
 
 modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
-	libdesktop.la				\
 	libextfs.la				\
 	libfile.la				\
 	libnntp.la				\
@@ -102,14 +101,8 @@ libnntp_la_SOURCES = nntp-method.c nntp-method.h
 libnntp_la_LDFLAGS = $(module_flags)
 libnntp_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
 
-###  `desktop' method
-
-libdesktop_la_SOURCES = desktop-method.c
-libdesktop_la_LDFLAGS = $(module_flags)
-libdesktop_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
-
 ###  `cdemenu-desktop' method
- 
+
 libcdemenu_desktop_la_SOURCES = cdemenu-desktop-method.c
 libcdemenu_desktop_la_LDFLAGS = $(module_flags)
 libcdemenu_desktop_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la

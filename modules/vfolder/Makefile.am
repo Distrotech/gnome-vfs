@@ -25,6 +25,10 @@ EXTRA_DIST =					\
 	applications.vfolder-info-default.in	\
 	applications-all-users.vfolder-info.in	\
 	preferences-all-users.vfolder-info.in	\
+	favorites.vfolder-info.in		\
+	start-here.vfolder-info.in		\
+	server-settings.vfolder-info.in		\
+	system-settings.vfolder-info.in		\
 	test-vfolder.vfolder-info.in		\
 	test-vfolder-parent.vfolder-info.in	\
 	test-vfolder-modules.conf
@@ -54,7 +58,11 @@ vfolderdir=$(sysconfdir)/gnome-vfs-2.0/vfolders
 vfolder_DATA = 					\
 	applications.vfolder-info-default	\
 	applications-all-users.vfolder-info 	\
-	preferences-all-users.vfolder-info
+	preferences-all-users.vfolder-info	\
+	favorites.vfolder-info			\
+	start-here.vfolder-info			\
+	server-settings.vfolder-info		\
+	system-settings.vfolder-info
 
 %.vfolder-info: %.vfolder-info.in 
 	sed -e "s,\@datadir\@,$(datadir)," \
