@@ -1,6 +1,14 @@
 2004-07-18  Ray Strode  <rstrode@redhat.com>
 
-	* libgnomevfs/egg*.[ch]: sync up from libegg
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	(gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid):
+	new function for checking if desktop files are meant for
+	GNOME.
+	(gnome_vfs_mime_info_cache_dir_reload_default_associations):
+	prune defaults lists from $XDG_CONFIG_DIRS/mime based on
+	desktop files in $XDG_DATA_DIRS/applications
+	(gnome_vfs_mime_get_default_desktop_entry):
+	check defaults lists from $XDG_CONFIG_DIRS/mime, too.	
 
 2004-07-18  Ray Strode  <rstrode@redhat.com>
 
