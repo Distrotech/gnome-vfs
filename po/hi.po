@@ -6,11 +6,11 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2003-01-06 10:28+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: gnome-vfs 2.x\n"
+"POT-Creation-Date: 2003-01-10 03:59+0100\n"
+"PO-Revision-Date: 2003-01-11 16:38+0530\n"
 "Last-Translator: Anurag Seetha <anuragseetha@yahoo.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Gnome Hindi Team <indlinux-hindi-gnome@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -107,8 +107,8 @@ msgstr "अवैध पैरामीटर से"
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr ""
-"प्रक्रिया परिभाषित नहीं है; प्रक्रिया करना संभव नहीं; यह प्रक्रिया नहीं की जा सकती"
+msgstr "प्रक्रिया समर्थित नही"
+# "प्रक्रिया परिभाषित नहीं है"; प्रक्रिया करना संभव नहीं; यह प्रक्रिया नहीं की जा सकती"
 
 # libgnomevfs/gnome-vfs-result.c:41
 #. GNOME_VFS_ERROR_IO
@@ -323,9 +323,8 @@ msgstr "प्रोटोकाॅल त्रुटि"
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "पार्सिंग नहीं किया जा सकता : %s"
+msgstr "मास्टर ब्राउसर को नही ढूंढ पाए"
 
 # libgnomevfs/gnome-vfs-result.c:137
 #: libgnomevfs/gnome-vfs-result.c:170
@@ -363,13 +362,13 @@ msgstr "%.1f गीगाबाइट्स"
 
 #: libgnomevfs/gnome-vfs-utils.c:1109
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr "(अवैध यूनिकोड)"
 
 # modules/file-method.c:381
 #: modules/file-method.c:382
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "अज्ञात जीनोम VFSSeek स्थिति %d"
+msgstr "अज्ञात गनोम VFSSeek स्थिति %d"
 
 # modules/test-method.c:590
 #. FIXME: we probably shouldn't use printf to output the message
@@ -382,8 +381,7 @@ msgstr "%s पर कोई वैध समायोजन फाइल नह�
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"किसी अन्य विशिष्ठ स्थान को बताने के लिए इनवाॅयरमेन्ट परिवर्तनांक %s का प्रयोग करें \n"
+msgstr "किसी अन्य विशिष्ठ स्थान को बताने के लिए इनवाॅयरमेन्ट परिवर्तनांक %s का प्रयोग करें \n"
 
 # monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
