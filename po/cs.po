@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-16 15:41+0200\n"
-"PO-Revision-Date: 2004-07-25 15:18+0200\n"
+"POT-Creation-Date: 2004-08-21 11:52+0200\n"
+"PO-Revision-Date: 2004-08-21 19:12+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -67,19 +67,19 @@ msgstr "položky desktop obsahují řádek '%s', který není v UTF-8"
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "položky desktop obsahují neznámé kódování '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
-#: libgnomevfs/eggdesktopentries.c:1220
+#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
+#: libgnomevfs/eggdesktopentries.c:1221
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "položky desktop nemají skupinu '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1047
+#: libgnomevfs/eggdesktopentries.c:1048
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "položky desktop nemají klíč '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
-#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
+#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
+#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
@@ -87,28 +87,28 @@ msgstr ""
 "položky desktop obsahují klíč '%s', který má hodnotu, kterou nelze "
 "interpretovat."
 
-#: libgnomevfs/eggdesktopentries.c:1300
+#: libgnomevfs/eggdesktopentries.c:1302
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
 "položky desktop neobsahují přeloženou hodnotu pro klíč '%s' s locale '%s'."
 
-#: libgnomevfs/eggdesktopentries.c:2221
+#: libgnomevfs/eggdesktopentries.c:2223
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "položky desktop obsahují neplatnou escape posloupnost '%s'"
 
-#: libgnomevfs/eggdesktopentries.c:2238
+#: libgnomevfs/eggdesktopentries.c:2240
 msgid "desktop entries contain escape character at end of line"
 msgstr "položky desktop obsahují znak escape na konci řádku"
 
-#: libgnomevfs/eggdesktopentries.c:2263
+#: libgnomevfs/eggdesktopentries.c:2265
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "Hodnotu '%s' nelze interpretovat jako číslo."
 
-#: libgnomevfs/eggdesktopentries.c:2290
+#: libgnomevfs/eggdesktopentries.c:2292
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "Hodnotu '%s' nelze interpretovat jako booleovskou hodnotu."
@@ -287,117 +287,116 @@ msgstr "Svazek XIAFS"
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:601
-#, fuzzy
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
 msgid "CD-ROM Disc"
-msgstr "Disk CD-R"
+msgstr "Disk CD-ROM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:604
+#: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
 msgstr "Prázdný disk CD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:606
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "CD-R Disc"
 msgstr "Disk CD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:609
+#: libgnomevfs/gnome-vfs-hal-mounts.c:619
 msgid "Blank CD-RW Disc"
 msgstr "Prázdný disk CD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:611
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "CD-RW Disc"
 msgstr "Disk CD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-ROM Disc"
 msgstr "Disk DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:616
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-R Disc"
 msgstr "Prázdný disk DVD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-R Disc"
 msgstr "Disk DVD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:621
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD-RAM Disc"
 msgstr "Prázdný disk DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:623
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD-RAM Disc"
 msgstr "Disk DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:626
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD-RW Disc"
 msgstr "Prázdný disk DVD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:628
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD-RW Disc"
 msgstr "Disk DVD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:631
+#: libgnomevfs/gnome-vfs-hal-mounts.c:641
 msgid "Blank DVD+RW Disc"
 msgstr "Prázdný disk DVD+RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:633
+#: libgnomevfs/gnome-vfs-hal-mounts.c:643
 msgid "DVD+RW Disc"
 msgstr "Disk DVD+RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:636
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Blank DVD+R Disc"
 msgstr "Prázdný disk DVD+R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:638
+#: libgnomevfs/gnome-vfs-hal-mounts.c:648
 msgid "DVD+R Disc"
 msgstr "Disk DVD+R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Optical Disc"
 msgstr "Optický disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:646
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "Audio Disc"
 msgstr "Zvukový disk"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:650
+#: libgnomevfs/gnome-vfs-hal-mounts.c:660
 msgid "Compact Flash Media"
 msgstr "Médium Compact Flash"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:652
+#: libgnomevfs/gnome-vfs-hal-mounts.c:662
 msgid "Memory Stick Media"
 msgstr "Médium Memory Stick"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:654
+#: libgnomevfs/gnome-vfs-hal-mounts.c:664
 msgid "Smart Media Media"
 msgstr "Médium Smart Media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:656
+#: libgnomevfs/gnome-vfs-hal-mounts.c:666
 msgid "SD/MMC Media"
 msgstr "Médium SD/MMC"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:658
+#: libgnomevfs/gnome-vfs-hal-mounts.c:668
 msgid "Floppy Disk"
 msgstr "Disketa"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+#: libgnomevfs/gnome-vfs-hal-mounts.c:675
 msgid "Mac OS disk"
 msgstr "Disk Mac OS"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+#: libgnomevfs/gnome-vfs-hal-mounts.c:677
 msgid "Mac OS X disk"
 msgstr "Disk Mac OS X"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:681
+#: libgnomevfs/gnome-vfs-hal-mounts.c:691
 msgid "Windows Disk"
 msgstr "Disk Windows"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:687
+#: libgnomevfs/gnome-vfs-hal-mounts.c:697
 msgid "Linux Disk"
 msgstr "Disk Linuxu"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
 msgstr "Neznámý typ operace %u"
 
@@ -1008,19 +1007,16 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Příkaz používaný pro obsluhu URL \"ghelp\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL H323, je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL \"h323\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"ghelp\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL \"http\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Příkaz používaný pro obsluhu URL \"trash\", je-li povolen."
+msgstr "Příkaz používaný pro obsluhu URL \"https\", je-li povolen."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
@@ -1051,19 +1047,16 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "Obsluha pro URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Obsluha pro URL H323"
+msgstr "Obsluha pro URL \"h323\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Obsluha pro URL \"ghelp\""
+msgstr "Obsluha pro URL \"http\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Obsluha pro URL \"ghelp\""
+msgstr "Obsluha pro URL \"https\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
@@ -1103,27 +1096,22 @@ msgstr ""
 "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"ghelp\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL H323."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"h323\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
-"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"ghelp\"."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"http\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
-"True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"ghelp\"."
+msgstr "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL \"https\"."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
@@ -1174,19 +1162,16 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Jestli má určený příkaz obsluhovat URL \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL H323"
+msgstr "Jestli má určený příkaz obsluhovat URL \"h323\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"ghelp\""
+msgstr "Jestli má určený příkaz obsluhovat URL \"http\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Jestli má určený příkaz obsluhovat URL \"trash\""
+msgstr "Jestli má určený příkaz obsluhovat URL \"https\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
@@ -1386,39 +1371,6 @@ msgstr "Pracovní skupina SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Pracovní skupina Windows, jejímž je uživatel členem"
-
-#~ msgid "CD Disc"
-#~ msgstr "Disk CD"
-
-#~ msgid "The command used to handle HTTP URLs, if enabled."
-#~ msgstr "Příkaz používaný pro obsluhu URL HTTP, je-li povolen."
-
-#~ msgid "The command used to handle HTTPS URLs, if enabled."
-#~ msgstr "Příkaz používaný pro obsluhu URL HTTPS, je-li povolen."
-
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "Obsluha pro URL HTTP"
-
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "Obsluha pro URL HTTPS"
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTP "
-#~ "URLs."
-#~ msgstr ""
-#~ "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL HTTP."
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTPS "
-#~ "URLs."
-#~ msgstr ""
-#~ "True, pokud má příkaz určený v klíči \"command\" obsluhovat URL HTTPS."
-
-#~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr "Jestli má určený příkaz obsluhovat URL HTTP"
-
-#~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr "Jestli má určený příkaz obsluhovat URL HTTPS"
 
 #~ msgid "Bookmark saving failed (%s)"
 #~ msgstr "Ukládání záložek selhalo (%s)"
