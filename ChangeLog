@@ -1,5 +1,20 @@
 2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
 
+	Fixed bug #583
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(initialize_edit_applications_dialog),
+	(show_new_application_window), (show_edit_application_window):
+	New dialog and items to indicate and allow user to 
+	set application behavior concerning multiple launch and
+	URI handling.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet):
+	Removed old UI code and migrated to dialog.
+	
+2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
+
 	Follow up to bug #1162.
 
 	GnomeVFSFilePermissions had some items to be renamed as well.
