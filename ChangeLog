@@ -1,3 +1,7 @@
+2001-06-11  Carlos Perelló Marín <carlos@gnome-db.org>
+
+	* modules/cdda-method.c: Fixed to compile with Gtk 2.0
+
 2001-06-10  Ian McKellar  <yakk@yakk.net>
 
 	* libgnomevfs/gnome-vfs-standard-callbacks.h:

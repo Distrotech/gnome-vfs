@@ -1022,9 +1022,12 @@ vfs_module_init (const char *method_name,
 		gconf_init (1, argv, NULL);
 	}
 
-	gtk_type_init();
-	gtk_signal_init();
-	
+#if GNOME_PLATFORM_VERSION < 1095000
+        gtk_type_init ();
+#else
+        gtk_type_init (G_TYPE_DEBUG_NONE);
+#endif
+
 	return &method;
 }
 
