@@ -27,6 +27,7 @@
 #include <bonobo-activation/bonobo-activation.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
+#include <libgnomevfs/gnome-vfs-mime-info.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -174,6 +175,11 @@ main (int argc, char **argv)
 	}
 
 	type = argv[1];
+
+	if (!gnome_vfs_mime_type_is_known (type)) {
+		fprintf (stderr, "Unknown mime type: %s\n", type);
+		return 1;
+	}
 	
 	description = gnome_vfs_mime_get_description (type);
 	printf ("Description: %s\n", description);

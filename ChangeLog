@@ -1,5 +1,9 @@
 2003-07-17  Christophe Fergeau  <teuf@gnome.org>
 
+	* test/test-mime-handlers.c: don't segfault on unknown mime types
+
+2003-07-17  Christophe Fergeau  <teuf@gnome.org>
+
 	* libgnomevfs/gnome-vfs-mime-info.c: fixed a memory leak, fixed a bug
 	where the last line of .mime and .keys files wouldn't be read properly
 	if it didn't end with a \n.
