@@ -1,3 +1,9 @@
+2004-08-08  Christian Kellner  <gicmo@gnome-de.org>
+
+	* modules/http-neon-method.c (do_get_file_info):
+	Don't free HttpContext if http_context_open failed.
+	Patch from desrt@desrt.ca. Fixes bug #149268.
+
 2004-08-06  Christian Kellner  <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-resolve.c (gnome_vfs_resolve_next_address):

@@ -2715,8 +2715,10 @@ do_get_file_info (GnomeVFSMethod 		*method,
 
 	result = http_context_open (uri, &hctx);
 	
-	if (result == GNOME_VFS_OK)
-		result = http_get_file_info (hctx, file_info, NULL);
+	if (result != GNOME_VFS_OK)
+		return result;
+		
+	result = http_get_file_info (hctx, file_info, NULL);
 	
 	http_context_free (hctx);
 	
