@@ -145,6 +145,9 @@ struct _HttpFileHandle {
 
 	/* Files from a directory listing */
 	GList *files;
+
+	/* The last HTTP status code returned */
+	guint server_status;
 };
 typedef struct _HttpFileHandle HttpFileHandle;
 
@@ -171,6 +174,7 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 	new->bytes_read = 0;
 	new->to_be_written = NULL;
 	new->files = NULL;
+	new->server_status = 0;
 
 	return new;
 }
@@ -474,6 +478,8 @@ create_handle (HttpFileHandle **handle_return,
 		result = GNOME_VFS_ERROR_NOTFOUND; /* FIXME */
 		goto error;
 	}
+
+	(*handle_return)->server_status = server_status;
 
 	if (! HTTP_20X (server_status) && !HTTP_REDIRECTED(server_status)) {
 		result = http_status_to_vfs_result (server_status);
@@ -959,6 +965,11 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	result = make_request (&handle, uri, "PROPFIND", request, 
 			extraheaders, context);
+
+	if(result == GNOME_VFS_OK && handle->server_status != 207) { /* Multi-Status */
+		g_warning(_("HTTP server returned an invalid PROPFIND response"));
+		result = GNOME_VFS_ERROR_NOTSUPPORTED;
+	}
 
 	if (result == GNOME_VFS_OK) {
 		*handle_return = handle;

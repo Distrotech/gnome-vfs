@@ -1,3 +1,9 @@
+2000-04-06  Ian McKellar <yakk@yakk.net>
+
+	* modules/http-method.c:
+	Added code to recognise stupid web servers that return an invalid
+	reply to PROPFIND requests.
+
 2000-04-05  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c (fast_move): Fixed an infinite
@@ -7,8 +13,8 @@
 	in a g_warning.
 
 2000-04-05  Ian McKellar <yakk@yakk.net>
-	
-	* modules/http-method.c
+
+	* modules/http-method.c:
 	Added a create method, and fixed the write/close method so that
 	Nautilus can successfully store metafiles, and so writing to WebDAV
 	repositories will work in the future.
@@ -21,8 +27,8 @@
 	calling unref.
 	
 2000-04-04  Ian McKellar <yakk@yakk.net>
-	
-	* modules/http-method.c
+
+	* modules/http-method.c:
 	Fixed WebDAV directory code to remove leading "/" from filenames.
 
 2000-03-29  Darin Adler  <darin@eazel.com>
