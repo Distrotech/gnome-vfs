@@ -1,3 +1,16 @@
+2004-12-09  Marco Pesenti Gritti  <marco@gnome.org>
+
+	reviewed by: Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: (get_all_parent_types):
+	* libgnomevfs/gnome-vfs-mime-info.c: (get_entry),
+	(gnome_vfs_mime_get_value), (gnome_vfs_mime_type_is_known):
+	* libgnomevfs/gnome-vfs-mime.c: (gnome_vfs_mime_type_is_equal),
+	(gnome_vfs_mime_type_get_equivalence):
+
+	Finish up aliases implementation using xdgmime whenever possible.
+	Fix #160102
+
 2004-12-09  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/xdgmime.c: (xdg_mime_unalias_mime_type),

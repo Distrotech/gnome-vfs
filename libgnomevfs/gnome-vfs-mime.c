@@ -589,54 +589,11 @@ gboolean
 gnome_vfs_mime_type_is_equal (const char *a,
 			      const char *b)
 {
-	const gchar *alias_list;
-	gchar **aliases;
-	
 	g_return_val_if_fail (a != NULL, FALSE);
 	g_return_val_if_fail (b != NULL, FALSE);
 
-	/* First -- check if they're identical strings */
-	if (a == b)
-		return TRUE;
-	if (strcmp (a, b) == 0)
-		return TRUE;
+	xdg_mime_mime_type_equal (a, b);
 
-	/* next, check to see if 'a' is an alias for 'b' */
-	alias_list = gnome_vfs_mime_get_value (a, "aliases");
-	if (alias_list != NULL) {
-		int i;
-
-		aliases = g_strsplit (alias_list,
-				      ":",
-				      -1);
-		for (i = 0; aliases && aliases[i] != NULL; i++) {
-			if (strcmp (b, aliases[i]) == 0) {
-				g_strfreev (aliases);
-				return TRUE;
-			}
-		}
-		g_strfreev (aliases);
-	}
-
-	/* Finally, see if 'b' is an alias for 'a' */
-	alias_list = gnome_vfs_mime_get_value (b, "aliases");
-	if (alias_list != NULL) {
-		int i;
-
-		aliases = g_strsplit (alias_list,
-				      ":",
-				      -1);
-		for (i = 0; aliases && aliases[i] != NULL; i++) {
-			if (strcmp (a, aliases[i]) == 0) {
-				g_strfreev (aliases);
-				return TRUE;
-			}
-		}
-		g_strfreev (aliases);
-	}
-
-	/* FIXME: If 'a' and 'b' are both aliases for another MIME type, we
-	 * don't catch it, #148516 */
 	return FALSE;
 }
 
@@ -664,60 +621,14 @@ GnomeVFSMimeEquivalence
 gnome_vfs_mime_type_get_equivalence (const char *mime_type,
 				     const char *base_mime_type)
 {
-	const gchar *parent_list;
-	char *supertype;
-
 	g_return_val_if_fail (mime_type != NULL, GNOME_VFS_MIME_UNRELATED);
 	g_return_val_if_fail (base_mime_type != NULL, GNOME_VFS_MIME_UNRELATED);
 
-	if (gnome_vfs_mime_type_is_equal (mime_type, base_mime_type))
+	if (gnome_vfs_mime_type_is_equal (mime_type, base_mime_type)) {
 		return GNOME_VFS_MIME_IDENTICAL;
-
-	supertype = gnome_vfs_get_supertype_from_mime_type (mime_type);
-
-	/* First, check if base_mime_type is a super type, and if it is, if
-	 * mime_type is one */
-	if (gnome_vfs_mime_type_is_supertype (base_mime_type)) {
-		if (! strcmp (supertype, base_mime_type)) {
-			g_free (supertype);
-			return GNOME_VFS_MIME_PARENT;
-		}
-	}
-
-	/* Both application/octet-stream and text/plain are special cases */
-	if (strcmp (base_mime_type, "text/plain") == 0 &&
-	    strcmp (supertype, "text/*") == 0) {
-		g_free (supertype);
+	} else if (xdg_mime_mime_type_subclass (mime_type, base_mime_type)) {
 		return GNOME_VFS_MIME_PARENT;
 	}
-	g_free (supertype);
-
-	if (strcmp (base_mime_type, "application/octet-stream") == 0)
-		return GNOME_VFS_MIME_PARENT;
-
-	/* Then, check the parent-types of mime_type and compare  */
-	parent_list = gnome_vfs_mime_get_value (mime_type, "parent_classes");
-	if (parent_list) {
-		char **parents;
-		gboolean found_parent = FALSE;
-		int i;
-
-		parents = g_strsplit (parent_list, ":", -1);
-		for (i = 0; parents && parents[i] != NULL; i++) {
-			if (gnome_vfs_mime_type_get_equivalence (parents[i], base_mime_type)) {
-				found_parent = TRUE;
-				break;
-			}
-		}
-		g_strfreev (parents);
-
-		if (found_parent) {
-			return GNOME_VFS_MIME_PARENT;
-		}
-	}
-
-	/* FIXME: If 'mime_type' is an alias for a mime type that's a child of
-	 * 'base_mime_type', #148517 */
 
 	return GNOME_VFS_MIME_UNRELATED;
 }

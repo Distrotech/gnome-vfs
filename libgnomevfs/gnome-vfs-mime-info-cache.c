@@ -34,6 +34,7 @@
 #include "gnome-vfs-monitor.h"
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-utils.h"
+#include "xdgmime.h"
 
 typedef struct {
 	char *path;
@@ -662,55 +663,24 @@ gnome_vfs_mime_info_cache_reload (const char *dir)
 	}
 }
 
-
-
-
-static void
-get_all_parent_types_helper (GList **mime_types, const char *mime_type)
-{
-	const gchar *parent_list;
-	
-	if (!g_list_find_custom (*mime_types, mime_type,
-				 (GCompareFunc) strcmp)) {
-		*mime_types = g_list_prepend (*mime_types, g_strdup (mime_type));
-	}
-
-	parent_list = gnome_vfs_mime_get_value (mime_type, "parent_classes");
-	if (parent_list) {
-		char **parents;
-		int i;
-		
-		parents = g_strsplit (parent_list, ":", -1);
-		for (i = 0; parents && parents[i] != NULL; i++) {
-			get_all_parent_types_helper (mime_types, parents[i]);
-		}
-		g_strfreev (parents);
-	}
-
-	if (g_str_has_prefix (mime_type, "text/")) {
-		if (!g_list_find_custom (*mime_types, "text/plain",
-					 (GCompareFunc) strcmp)) {
-			*mime_types = g_list_prepend (*mime_types, g_strdup ("text/plain"));
-		}
-	}
-	if (!g_str_has_prefix (mime_type, "inode/")) {
-		if (!g_list_find_custom (*mime_types, "application/octet-stream",
-					 (GCompareFunc) strcmp)) {
-			*mime_types = g_list_prepend (*mime_types, g_strdup ("application/octet-stream"));
-		}
-	}
-}
-
 static GList *
 get_all_parent_types (const char *mime_type)
 {
-	GList *mime_types;
+	const char *umime;
+	const char **parents;
+	GList *l = NULL;
+	int i;
 
-	/* TODO: Unalias mime_type first */
-	
-	mime_types = NULL;
-	get_all_parent_types_helper (&mime_types, mime_type);
-	return g_list_reverse (mime_types);
+	umime = xdg_mime_unalias_mime_type (mime_type);
+	l = g_list_prepend (l, g_strdup (umime));
+
+	parents = xdg_mime_get_mime_parents (mime_type);
+
+	for (i = 0; parents && parents[i] != NULL; i++) {
+		l = g_list_prepend (l, g_strdup (parents[i]));
+	}
+
+	return g_list_reverse (l);
 }
 
 GList *

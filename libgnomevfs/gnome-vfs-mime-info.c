@@ -34,6 +34,7 @@
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-private-utils.h"
+#include "xdgmime.h"
 #include <libgnomevfs/gnome-vfs-i18n.h>
 
 #include <libxml/xmlreader.h>
@@ -486,21 +487,24 @@ get_mime_entry_path (const char *mime_type)
 static MimeEntry *
 get_entry (const char *mime_type)
 {
+	const char *umime;
 	MimeEntry *entry;
 	char *path;
-	
-	entry = g_hash_table_lookup (mime_entries, mime_type);
+
+	umime =	xdg_mime_unalias_mime_type (mime_type);
+
+	entry = g_hash_table_lookup (mime_entries, umime);
 	
 	if (entry) {
 		return entry;
 	}
 	
-	path = get_mime_entry_path (mime_type);
+	path = get_mime_entry_path (umime);
 
 	if (path) {
-		entry = load_mime_entry (mime_type, path);
+		entry = load_mime_entry (umime, path);
 		g_hash_table_insert (mime_entries, 
-				     g_strdup (mime_type), 
+				     g_strdup (umime), 
 				     entry);
 		g_free (path);
 		return entry;
@@ -550,12 +554,6 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 	if (!gnome_vfs_mime_inited)
 		gnome_vfs_mime_init ();
 
-	/* TODO: We really should handle aliases here.
-	   For now, special case dirs */
-	if (strcmp (mime_type, "x-directory/normal") == 0)
-	  mime_type = "inode/directory";
-	  
-	
 	entry = get_entry (mime_type);
 
 	if (!entry) {
@@ -604,9 +602,6 @@ gnome_vfs_mime_type_is_known (const char *mime_type)
 
 	entry = get_entry (mime_type);
 	
-	/* TODO: Should look for aliases too, which needs
-	   a alias -> mimetype mapping */
-
 	return entry != NULL;
 }
 
