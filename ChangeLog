@@ -1,3 +1,8 @@
+2000-11-08  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* data/mime/gnome-vfs.applications:
+	XMMS can open uris.
+	
 2000-11-06  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* configure.in: upped development version to 0.4.2.0
