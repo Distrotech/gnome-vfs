@@ -46,33 +46,60 @@
 #include "gnomesupport.h"
 #endif
 
+#define FAST_FILE_EOF -1
+#define FAST_FILE_BUFFER_SIZE (1024 * 16)
 
-#if !defined getc_unlocked && !defined HAVE_GETC_UNLOCKED
-# define getc_unlocked(fp) getc (fp)
-#endif
+typedef struct {
+	guchar *ptr;
+	guchar *buffer;
+	int     length;
+	FILE   *fh;
+} FastFile;
 
-
-/* The only goal of this function is to make sure no comment line is ever returned
-   to the 2 parsers below.
-   It is evil because I could not figure out what was wrong with those parsers.
-   They should ignore all comments but they do not ignore them. They insert them 
-   in the hash table. This function makes sure this never ever happens.
-   -- Mathieu - who takes all responsbility for this complete evilness.
-*/
-static int 
-hack_getc (FILE *stream) 
+static void
+fast_file_close (FastFile *ffh)
 {
-	static int previous_char = '\n';
-	int current_char;
+	fclose (ffh->fh);
+	g_free (ffh->buffer);
+}
 
-	current_char = getc_unlocked (stream);
+static gboolean
+fast_file_open (FastFile *ffh, const char *filename)
+{
+	memset (ffh, 0, sizeof (FastFile));
 
-	if (current_char == '#' && 
-	    previous_char == '\n') {
-		while (getc_unlocked (stream) != '\n') {}
-		return hack_getc (stream);
-	} else {
-		return current_char;
+	ffh->fh = fopen (filename, "r");
+	if (ffh->fh == NULL) {
+		return FALSE;
+	}
+
+	ffh->buffer = g_malloc (FAST_FILE_BUFFER_SIZE);
+	ffh->ptr = ffh->buffer;
+
+	ffh->length = fread (ffh->buffer, 1, FAST_FILE_BUFFER_SIZE, ffh->fh);
+
+	if (ffh->length < 0) {
+		fast_file_close (ffh);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static inline int
+fast_file_getc (FastFile *ffh)
+{
+	if (ffh->ptr < ffh->buffer + ffh->length)
+		return *(ffh->ptr++);
+	else {
+		ffh->length = fread (ffh->buffer, 1, FAST_FILE_BUFFER_SIZE, ffh->fh);
+
+		if (!ffh->length)
+			return FAST_FILE_EOF;
+		else {
+			ffh->ptr = ffh->buffer;
+			return *(ffh->ptr++);
+		}
 	}
 }
 
@@ -258,6 +285,8 @@ context_add_key (GnomeMimeContext *context, char *key, char *lang, char *value)
 	if (lang_level < 0)
 		return;
 
+/*	fprintf (stderr, "Add key: '%s' '%s' '%s'\n", key, lang, value); */
+
 	/* if we have some language defined and
 	   if there was a previous_key */
 	if (lang_level > 0 && previous_key) {
@@ -309,7 +338,7 @@ typedef enum {
 static void
 load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 {
-	FILE *mime_file;
+	FastFile mime_file;
 	gboolean in_comment, context_used;
 	GString *line;
 	int column, c;
@@ -317,10 +346,10 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 	GnomeMimeContext *context;
 	char *key;
 	char *lang;
-	
-	mime_file = fopen (filename, "r");
-	if (mime_file == NULL)
+
+	if (!fast_file_open (&mime_file, filename)) {
 		return;
+	}
 
 	in_comment = FALSE;
 	context_used = FALSE;
@@ -331,20 +360,28 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 	line = g_string_sized_new (120);
 	state = STATE_NONE;
 	
-	while ((c = hack_getc (mime_file)) != EOF){
+	while ((c = fast_file_getc (&mime_file)) != EOF) {
 		column++;
 		if (c == '\r')
 			continue;
 
-		if (c == '#' && column == 0){		
+		if (c == '#' && column == 0) {
 			in_comment = TRUE;
 			continue;
 		}
-		
-		if (c == '\n'){
+
+		if (in_comment) {
+			if (c == '\n') {
+				in_comment = FALSE;
+				column = -1;
+			}
+			continue;
+		}
+
+		if (c == '\n') {
 			in_comment = FALSE;
 			column = -1;
-			if (state == STATE_ON_MIME_TYPE){
+			if (state == STATE_ON_MIME_TYPE) {
 
 				/* set previous key to nothing
 				   for this mime type */
@@ -358,7 +395,7 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 				state = STATE_LOOKING_FOR_KEY;
 				continue;
 			}
-			if (state == STATE_ON_VALUE){
+			if (state == STATE_ON_VALUE) {
 				context_used = TRUE;
 				context_add_key (context, key, lang, line->str);
 				g_string_assign (line, "");
@@ -372,10 +409,7 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 			continue;
 		}
 
-		if (in_comment)
-			continue;
-
-		switch (state){
+		switch (state) {
 		case STATE_NONE:
 			if (c != ' ' && c != '\t')
 				state = STATE_ON_MIME_TYPE;
@@ -384,7 +418,7 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 			/* fall down */
 			
 		case STATE_ON_MIME_TYPE:
-			if (c == ':'){
+			if (c == ':') {
 				in_comment = TRUE;
 				break;
 			}
@@ -395,12 +429,12 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 			if (c == '\t' || c == ' ')
 				break;
 
-			if (c == '['){
+			if (c == '[') {
 				state = STATE_LANG;
 				break;
 			}
 
-			if (column == 0){
+			if (column == 0) {
 				state = STATE_ON_MIME_TYPE;
 				g_string_append_c (line, c);
 				break;
@@ -409,12 +443,12 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 			/* falldown */
 
 		case STATE_ON_KEY:
-			if (c == '\\'){
-				c = hack_getc (mime_file);
+			if (c == '\\') {
+				c = fast_file_getc (&mime_file);
 				if (c == EOF)
 					break;
 			}
-			if (c == '='){
+			if (c == '=') {
 				key = g_strdup (line->str);
 				g_string_assign (line, "");
 				state = STATE_ON_VALUE;
@@ -428,9 +462,9 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 			break;
 			
 		case STATE_LANG:
-			if (c == ']'){
+			if (c == ']') {
 				state = STATE_ON_KEY;      
-				if (line->str [0]){
+				if (line->str [0]) {
 					g_free(lang);
 					lang = g_strdup(line->str);
 				} else {
@@ -462,7 +496,7 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 	previous_key = NULL;
 	previous_key_lang_level = -1;
 
-	fclose (mime_file);
+	fast_file_close (&mime_file);
 }
 
 /*
@@ -481,7 +515,7 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 static void
 load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 {
-	FILE *mime_file;
+	FastFile mime_file;
 	gboolean in_comment, context_used;
 	GString *line;
 	int column, c;
@@ -490,9 +524,9 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 	char *key;
 	char *lang;
 	
-	mime_file = fopen (filename, "r");
-	if (mime_file == NULL)
+	if (!fast_file_open (&mime_file, filename)) {
 		return;
+	}
 
 	in_comment = FALSE;
 	context_used = FALSE;
@@ -503,20 +537,34 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 	line = g_string_sized_new (120);
 	state = STATE_NONE;
 	
-	while ((c = hack_getc (mime_file)) != EOF){
+	while ((c = fast_file_getc (&mime_file)) != EOF) {
+	handle_char:
 		column++;
 		if (c == '\r')
 			continue;
 
-		if (c == '#' && column == 0){
+		if (c == '#' && column == 0) {
 			in_comment = TRUE;
 			continue;
 		}
+
+		if (c == '#' && column == 0) {
+			in_comment = TRUE;
+			continue;
+		}
+
+		if (in_comment) {
+			if (c == '\n') {
+				in_comment = FALSE;
+				column = -1;
+			}
+			continue;
+		}
 		
-		if (c == '\n'){
+		if (c == '\n') {
 			in_comment = FALSE;
 			column = 0;
-			if (state == STATE_ON_MIME_TYPE){
+			if (state == STATE_ON_MIME_TYPE) {
 				/* set previous key to nothing
 				   for this mime type */
 				g_free(previous_key);
@@ -529,7 +577,7 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 				state = STATE_LOOKING_FOR_KEY;
 				continue;
 			}
-			if (state == STATE_ON_VALUE){
+			if (state == STATE_ON_VALUE) {
 				context_used = TRUE;
 				context_add_key (context, key, lang, line->str);
 				g_string_assign (line, "");
@@ -543,11 +591,7 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 			continue;
 		}
 
-		if (in_comment) {
-			continue;
-		}
-
-		switch (state){
+		switch (state) {
 		case STATE_NONE:
 			if (c != ' ' && c != '\t')
 				state = STATE_ON_MIME_TYPE;
@@ -556,7 +600,7 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 			/* fall down */
 			
 		case STATE_ON_MIME_TYPE:
-			if (c == ':'){
+			if (c == ':') {
 				in_comment = TRUE;
 				break;
 			}
@@ -567,12 +611,12 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 			if (c == '\t' || c == ' ')
 				break;
 
-			if (c == '['){
+			if (c == '[') {
 				state = STATE_LANG;
 				break;
 			}
 
-			if (column == 1){
+			if (column == 1) {
 				state = STATE_ON_MIME_TYPE;
 				g_string_append_c (line, c);
 				break;
@@ -581,8 +625,8 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 			/* falldown */
 
 		case STATE_ON_KEY:
-			if (c == '\\'){
-				c = hack_getc (mime_file);
+			if (c == '\\') {
+				c = fast_file_getc (&mime_file);
 				if (c == EOF)
 					break;
 			}			
@@ -599,10 +643,13 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 
 				/* Skip space after colon.  There should be one
 				 * there.  That is how the file is defined. */
-				c = hack_getc (mime_file);
+				c = fast_file_getc (&mime_file);
 				if (c != ' ') {
-					/* Revert seek */
-					ungetc (c, mime_file);
+					if (c == EOF) {
+						break; 
+					} else {
+						goto handle_char;
+					}
 				} else {
 					column++;
 				}
@@ -621,7 +668,7 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 		case STATE_LANG:
 			if (c == ']') {
 				state = STATE_ON_KEY;      
-				if (line->str [0]){
+				if (line->str [0]) {
 					g_free(lang);
 					lang = g_strdup(line->str);
 				} else {
@@ -653,7 +700,7 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 	previous_key = NULL;
 	previous_key_lang_level = -1;
 
-	fclose (mime_file);
+	fast_file_close (&mime_file);
 }
 
 static void
@@ -670,17 +717,17 @@ mime_info_load (mime_dir_source_t *source)
 		source->valid = FALSE;
 	
 	dir = opendir (source->dirname);
-	if (!dir){
+	if (!dir) {
 		source->valid = FALSE;
 		return;
 	}
-	if (source->system_dir){
+	if (source->system_dir) {
 		filename = g_strconcat (source->dirname, "/gnome-vfs.keys", NULL);
 		load_mime_type_info_from (filename, specific_types);
 		g_free (filename);
 	}
 
-	while ((dent = readdir (dir)) != NULL){
+	while ((dent = readdir (dir)) != NULL) {
 		
 		int len = strlen (dent->d_name);
 
@@ -727,17 +774,17 @@ mime_list_load (mime_dir_source_t *source)
 		source->valid = FALSE;
 	
 	dir = opendir (source->dirname);
-	if (!dir){
+	if (!dir) {
 		source->valid = FALSE;
 		return;
 	}
-	if (source->system_dir){
+	if (source->system_dir) {
 		filename = g_strconcat (source->dirname, "/gnome-vfs.mime", NULL);
 		load_mime_list_info_from (filename, registered_types);
 		g_free (filename);
 	}
 
-	while ((dent = readdir (dir)) != NULL){
+	while ((dent = readdir (dir)) != NULL) {
 		
 		int len = strlen (dent->d_name);
 
@@ -1233,12 +1280,12 @@ gnome_vfs_mime_get_key_list (const char *mime_type)
 	}
 
 	g_free (generic_type);
-	for (l = list; l;){
-		if (l->next){
+	for (l = list; l;) {
+		if (l->next) {
 			void *this = l->data;
 			GList *m;
 
-			for (m = l->next; m; m = m->next){
+			for (m = l->next; m; m = m->next) {
 				if (strcmp ((char*) this, (char*) m->data) != 0)
 					continue;
 				list = g_list_remove (list, m->data);
@@ -1655,7 +1702,7 @@ ensure_user_directory_exist (void)
 
 	dir = NULL;
 	dir = opendir (user_mime_dir.dirname);
-	if (dir == NULL){
+	if (dir == NULL) {
 		int result;
 
 		result = mkdir (user_mime_dir.dirname, S_IRWXU );
@@ -1664,7 +1711,7 @@ ensure_user_directory_exist (void)
 			return NULL;
 		}
 		dir = opendir (user_mime_dir.dirname);
-		if (dir == NULL){
+		if (dir == NULL) {
 			user_mime_dir.valid = FALSE;
 		}
 	} 
@@ -1731,7 +1778,7 @@ write_back_mime_user_file (void)
 	}
 
 	
-	if (!user_mime_dir.system_dir){
+	if (!user_mime_dir.system_dir) {
 		filename = g_strconcat (user_mime_dir.dirname, "/user.mime", NULL);
 
         	remove (filename);
@@ -1814,7 +1861,7 @@ write_back_keys_user_file (void)
 		return gnome_vfs_result_from_errno ();
 	}
 
-	if (!user_mime_dir.system_dir){
+	if (!user_mime_dir.system_dir) {
 		filename = g_strconcat (user_mime_dir.dirname, "/user.keys", NULL);
 
         	remove (filename);
@@ -1838,16 +1885,3 @@ write_back_keys_user_file (void)
 
 	return GNOME_VFS_OK;	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

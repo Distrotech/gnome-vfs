@@ -143,7 +143,9 @@ do_ls (void)
 	GnomeVFSFileInfo *info;
 
 	result = gnome_vfs_directory_list_load (
-		&list, cur_dir, GNOME_VFS_FILE_INFO_DEFAULT);
+		&list, cur_dir,
+		GNOME_VFS_FILE_INFO_DEFAULT |
+		GNOME_VFS_FILE_INFO_GET_MIME_TYPE);
 	if (show_if_error (result, "open directory ", cur_dir))
 		return;
 
@@ -195,6 +197,11 @@ do_ls (void)
 			long i = info->size;
 			printf (" : %ld bytes", i);
 		}
+
+		if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) {
+			printf (", type '%s'", info->mime_type);
+		}
+
 		printf ("\n");
 	}
 	

@@ -24,6 +24,7 @@ noinst_PROGRAMS =				\
 	test-mime-handlers-set			\
 	test-mime-info				\
 	test-monitor				\
+	test-performance			\
 	test-seek				\
 	test-shell				\
 	test-symlinks				\
@@ -63,6 +64,9 @@ libraries =						\
 
 test_async_SOURCES = test-async.c
 test_async_LDADD = $(libraries)
+
+test_performance_SOURCES = test-performance.c
+test_performance_LDADD = $(libraries)
 
 test_async_directory_SOURCES = test-async-directory.c
 test_async_directory_LDADD = $(libraries)

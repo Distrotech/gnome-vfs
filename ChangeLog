@@ -1,3 +1,20 @@
+2002-02-20  Michael Meeks  <michael@ximian.com>
+
+	* test/test-performance.c: add.
+
+	* test/Makefile.am: upd.
+
+	* libgnomevfs/gnome-vfs-mime-info.c
+	(fast_file_getc, fast_file_open, fast_file_close): impl.
+	(hack_getc): expunge the crack smoking evil.
+	(load_mime_type_info_from),
+	(load_mime_list_info_from): adapt to not need
+	hack_getc, these parsers sucked - they couldn't cope with
+	two lines starting with '#', remove need for ungetc.
+	switch to the faster read methods.
+
+	* test/test-shell.c: dump the mime type.
+
 Tue Feb 19 17:11:41 2002  George Lebl <jirka@5z.com>
 
 	* tests/test-monitor.c: when printing out value of a pointer use
