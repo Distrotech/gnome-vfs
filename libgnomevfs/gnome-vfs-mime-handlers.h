@@ -64,8 +64,6 @@ struct GnomeVFSMimeAction {
 typedef struct GnomeVFSMimeAction GnomeVFSMimeAction;
 
 GnomeVFSMimeApplication *gnome_vfs_mime_application_copy		  (GnomeVFSMimeApplication *application);
-void		    gnome_vfs_mime_application_list_free		  (GList 		  *list);
-void		    gnome_vfs_mime_component_list_free		  	  (GList 		  *list);
 
 GnomeVFSMimeActionType gnome_vfs_mime_get_default_action_type (const char *mime_type);
 GnomeVFSMimeAction  *gnome_vfs_mime_get_default_action                    (const char             *mime_type);
@@ -111,5 +109,20 @@ void                     gnome_vfs_mime_define_application                (Gnome
 void                gnome_vfs_mime_application_free                       (GnomeVFSMimeApplication *application);
 void                gnome_vfs_mime_action_free                            (GnomeVFSMimeAction      *action);
 
+/* List manipulation helper functions */
+void		    gnome_vfs_mime_application_list_free		  (GList 		   *list);
+void		    gnome_vfs_mime_component_list_free		  	  (GList 		   *list);
+gboolean	    gnome_vfs_mime_id_in_application_list 		  (const char 		   *id, 
+									   GList 		   *applications);
+gboolean	    gnome_vfs_mime_id_in_component_list 		  (const char 		   *iid, 
+									   GList 		   *components);
+GList 		   *gnome_vfs_mime_remove_application_from_list		  (GList 		   *applications,
+									   const char 		   *application_id,
+									   gboolean		   *did_remove);
+GList 		   *gnome_vfs_mime_remove_component_from_list		  (GList 		   *components,
+									   const char 		   *iid,
+									   gboolean		   *did_remove);
+GList		   *gnome_vfs_mime_id_list_from_component_list		  (GList		   *components);
+GList		   *gnome_vfs_mime_id_list_from_application_list	  (GList		   *applications);
 
 #endif

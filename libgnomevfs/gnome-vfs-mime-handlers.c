@@ -711,20 +711,55 @@ gnome_vfs_mime_component_matches_id (OAF_ServerInfo *component, const char *iid)
 {
 	return gnome_vfs_mime_id_matches_component (iid, component);
 }
-static gboolean
+
+/**
+ * gnome_vfs_mime_id_in_application_list:
+ * 
+ * Check whether an application id is in a list of GnomeVFSMimeApplications.
+ * 
+ * @id: An application id.
+ * @applications: A GList * whose nodes are GnomeVFSMimeApplications, such as the
+ * result of gnome_vfs_mime_get_short_list_applications.
+ * 
+ * Return value: TRUE if an application whose id matches @id is in @applications.
+ */
+gboolean
 gnome_vfs_mime_id_in_application_list (const char *id, GList *applications)
 {
 	return g_list_find_custom (applications, (gpointer) id, (GCompareFunc) gnome_vfs_mime_application_matches_id) != NULL;
 }
 
-static gboolean
+/**
+ * gnome_vfs_mime_id_in_component_list:
+ * 
+ * Check whether a component iid is in a list of OAF_ServerInfos.
+ * 
+ * @iid: A component iid.
+ * @applications: A GList * whose nodes are OAF_ServerInfos, such as the
+ * result of gnome_vfs_mime_get_short_list_components.
+ * 
+ * Return value: TRUE if a component whose iid matches @iid is in @components.
+ */
+gboolean
 gnome_vfs_mime_id_in_component_list (const char *iid, GList *components)
 {
 	return g_list_find_custom (components, (gpointer) iid, (GCompareFunc) gnome_vfs_mime_component_matches_id) != NULL;
 }
 
-static GList *
-id_list_from_application_list (GList *applications)
+/**
+ * gnome_vfs_mime_id_list_from_application_list:
+ * 
+ * Create a list of application ids from a list of GnomeVFSMimeApplications.
+ * 
+ * @applications: A GList * whose nodes are GnomeVFSMimeApplications, such as the
+ * result of gnome_vfs_mime_get_short_list_applications.
+ * 
+ * Return value: A new list where each GnomeVFSMimeApplication in the original
+ * list is replaced by a char * with the application's id. The original list is
+ * not modified.
+ */
+GList *
+gnome_vfs_mime_id_list_from_application_list (GList *applications)
 {
 	GList *result;
 	GList *node;
@@ -739,8 +774,20 @@ id_list_from_application_list (GList *applications)
 	return result;
 }
 
-static GList *
-id_list_from_component_list (GList *components)
+/**
+ * gnome_vfs_mime_id_list_from_component_list:
+ * 
+ * Create a list of component iids from a list of OAF_ServerInfos.
+ * 
+ * @components: A GList * whose nodes are OAF_ServerInfos, such as the
+ * result of gnome_vfs_mime_get_short_list_components.
+ * 
+ * Return value: A new list where each OAF_ServerInfo in the original
+ * list is replaced by a char * with the component's iid. The original list is
+ * not modified.
+ */
+GList *
+gnome_vfs_mime_id_list_from_component_list (GList *components)
 {
 	GList *list;
 	GList *node;
@@ -771,7 +818,7 @@ gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
 	old_list = gnome_vfs_mime_get_short_list_applications (mime_type);
 
 	if (!gnome_vfs_mime_id_in_application_list (application_id, old_list)) {
-		new_list = g_list_append (id_list_from_application_list (old_list), 
+		new_list = g_list_append (gnome_vfs_mime_id_list_from_application_list (old_list), 
 					  g_strdup (application_id));
 		gnome_vfs_mime_set_short_list_applications (mime_type, new_list);
 		g_list_free_deep (new_list);
@@ -780,21 +827,55 @@ gnome_vfs_mime_add_application_to_short_list (const char *mime_type,
 	gnome_vfs_mime_application_list_free (old_list);
 }						   
 
+/**
+ * gnome_vfs_mime_remove_application_from_list:
+ * 
+ * Remove an application specified by id from a list of GnomeVFSMimeApplications.
+ * 
+ * @applications: A GList * whose nodes are GnomeVFSMimeApplications, such as the
+ * result of gnome_vfs_mime_get_short_list_applications.
+ * @application_id: The id of an application to remove from @applications.
+ * @did_remove: If non-NULL, this is filled in with TRUE if the application
+ * was found in the list, FALSE otherwise.
+ * 
+ * Return value: The modified list. If the application is not found, the list will 
+ * be unchanged.
+ */
+GList *
+gnome_vfs_mime_remove_application_from_list (GList *applications, 
+					     const char *application_id,
+					     gboolean *did_remove)
+{
+	GList *matching_node;
+	
+	matching_node = g_list_find_custom 
+		(applications, (gpointer)application_id,
+		 (GCompareFunc) gnome_vfs_mime_application_matches_id);
+	if (matching_node != NULL) {
+		applications = g_list_remove_link (applications, matching_node);
+		gnome_vfs_mime_application_list_free (matching_node);
+	}
+
+	if (did_remove != NULL) {
+		*did_remove = matching_node != NULL;
+	}
+
+	return applications;
+}					     
+
 void
 gnome_vfs_mime_remove_application_from_short_list (const char *mime_type,
 						   const char *application_id)
 {
-	GList *old_list, *matching_node, *new_list;
+	GList *old_list, *new_list;
+	gboolean was_in_list;
 
 	old_list = gnome_vfs_mime_get_short_list_applications (mime_type);
+	old_list = gnome_vfs_mime_remove_application_from_list 
+		(old_list, application_id, &was_in_list);
 
-	matching_node = g_list_find_custom 
-		(old_list, (gpointer)application_id,
-		 (GCompareFunc) gnome_vfs_mime_application_matches_id);
-	if (matching_node != NULL) {
-		old_list = g_list_remove_link (old_list, matching_node);
-		gnome_vfs_mime_application_list_free (matching_node);
-		new_list = id_list_from_application_list (old_list);
+	if (was_in_list) {
+		new_list = gnome_vfs_mime_id_list_from_application_list (old_list);
 		gnome_vfs_mime_set_short_list_applications (mime_type, new_list);
 		g_list_free_deep (new_list);
 	}
@@ -811,7 +892,7 @@ gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
 	old_list = gnome_vfs_mime_get_short_list_components (mime_type);
 
 	if (!gnome_vfs_mime_id_in_component_list (iid, old_list)) {
-		new_list = g_list_append (id_list_from_component_list (old_list), 
+		new_list = g_list_append (gnome_vfs_mime_id_list_from_component_list (old_list), 
 					  g_strdup (iid));
 		gnome_vfs_mime_set_short_list_components (mime_type, new_list);
 		g_list_free_deep (new_list);
@@ -820,20 +901,55 @@ gnome_vfs_mime_add_component_to_short_list (const char *mime_type,
 	gnome_vfs_mime_component_list_free (old_list);
 }						   
 
+/**
+ * gnome_vfs_mime_remove_component_from_list:
+ * 
+ * Remove a component specified by iid from a list of OAF_ServerInfos.
+ * 
+ * @components: A GList * whose nodes are OAF_ServerInfos, such as the
+ * result of gnome_vfs_mime_get_short_list_components.
+ * @iid: The iid of a component to remove from @components.
+ * @did_remove: If non-NULL, this is filled in with TRUE if the component
+ * was found in the list, FALSE otherwise.
+ * 
+ * Return value: The modified list. If the component is not found, the list will 
+ * be unchanged.
+ */
+GList *
+gnome_vfs_mime_remove_component_from_list (GList *components, 
+					   const char *iid,
+					   gboolean *did_remove)
+{
+	GList *matching_node;
+	
+	matching_node = g_list_find_custom 
+		(components, (gpointer)iid,
+		 (GCompareFunc) gnome_vfs_mime_component_matches_id);
+	if (matching_node != NULL) {
+		components = g_list_remove_link (components, matching_node);
+		gnome_vfs_mime_component_list_free (matching_node);
+	}
+
+	if (did_remove != NULL) {
+		*did_remove = matching_node != NULL;
+	}
+
+	return components;
+}					     
+
 void
 gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
 						 const char *iid)
 {
-	GList *old_list, *matching_node, *new_list;
+	GList *old_list, *new_list;
+	gboolean was_in_list;
 
 	old_list = gnome_vfs_mime_get_short_list_components (mime_type);
+	old_list = gnome_vfs_mime_remove_component_from_list 
+		(old_list, iid, &was_in_list);
 
-	matching_node = g_list_find_custom 
-		(old_list, (gpointer) iid, (GCompareFunc) gnome_vfs_mime_component_matches_id);
-	if (matching_node != NULL) {
-		old_list = g_list_remove_link (old_list, matching_node);
-		gnome_vfs_mime_component_list_free (matching_node);
-		new_list = id_list_from_component_list (old_list);
+	if (was_in_list) {
+		new_list = gnome_vfs_mime_id_list_from_component_list (old_list);
 		gnome_vfs_mime_set_short_list_components (mime_type, new_list);
 		g_list_free_deep (new_list);
 	}

@@ -1,3 +1,32 @@
+2000-06-05  John Sullivan  <sullivan@eazel.com>
+
+	Refactored and made some helper functions public so 
+	clients that modify the program lists don't need to 
+	replicate a bunch of code.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_id_in_application_list),
+	(gnome_vfs_mime_id_in_component_list):
+	Made these functions public.
+	
+	(gnome_vfs_mime_id_list_from_application_list),
+	(gnome_vfs_mime_id_list_from_component_list):
+	Gave these existing functions more public-sounding
+	names and made them public.
+	
+	(gnome_vfs_mime_remove_application_from_list),
+	(gnome_vfs_mime_remove_component_from_list):
+	New public helper functions, extracted from the
+	_short_list versions.
+
+	(gnome_vfs_mime_add_application_to_short_list),
+	(gnome_vfs_mime_add_component_to_short_list),
+	(gnome_vfs_mime_remove_application_from_short_list),
+	(gnome_vfs_mime_remove_component_from_short_list):
+	Modified to call the new helper functions and
+	reflect the renamings.
+
 2000-06-05  Darin Adler  <darin@eazel.com>
 
 	* modules/bzip2-method.c:
