@@ -1,5 +1,10 @@
 2004-07-31  Christophe Fergeau  <teuf@gnome.org>
 
+	* modules/sftp-method.c: support ssh.com ssh server, patch from 
+	  William Jon McCann <mccann@jhu.edu>, fixes #147444
+
+2004-07-31  Christophe Fergeau  <teuf@gnome.org>
+
 	* libgnomevfs/Makefile.am: removed -export-symbols-regex since it 
 	  doesn't seem to make a difference on linux anyway, and it breaks
 	  compilation on Solaris.

@@ -1040,6 +1040,43 @@ invoke_save_auth (const GnomeVFSURI *uri,
 }
 	
 
+typedef enum {
+	SFTP_VENDOR_INVALID = 0,
+	SFTP_VENDOR_OPENSSH,
+	SFTP_VENDOR_SSH
+} SFTPClientVendor;
+
+static SFTPClientVendor
+get_sftp_client_vendor ()
+{
+	char *ssh_stderr;
+	char *args[3];
+	gint ssh_exitcode;
+	SFTPClientVendor res = SFTP_VENDOR_INVALID;
+	
+	args[0] = g_strdup (SSH_PROGRAM);
+	args[1] = g_strdup ("-V");
+	args[2] = NULL;
+	if (g_spawn_sync (NULL, args, NULL,
+			  G_SPAWN_SEARCH_PATH | G_SPAWN_STDOUT_TO_DEV_NULL,
+			  NULL, NULL,
+			  NULL, &ssh_stderr,
+			  &ssh_exitcode, NULL)) {
+		if (ssh_stderr == NULL)
+			res = SFTP_VENDOR_INVALID;
+		else if (strstr (ssh_stderr, "OpenSSH") != NULL)
+			res = SFTP_VENDOR_OPENSSH;
+		else if (strstr (ssh_stderr, "SSH Secure Shell") != NULL)
+			res = SFTP_VENDOR_SSH;
+		else
+			res = SFTP_VENDOR_INVALID;
+	}
+	g_free (args[0]);
+	g_free (args[1]);
+
+	return res;
+}
+
 /* Derived from OpenSSH, sftp.c:main */
 
 static GnomeVFSResult
@@ -1070,20 +1107,36 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	gboolean invoked; 		  
 	GnomeVFSModuleCallbackQuestionIn in_args; 
 	GnomeVFSModuleCallbackQuestionOut out_args;
+
+	SFTPClientVendor client_vendor;
 	
 	DEBUG (gchar *tmp);
 
+	client_vendor = get_sftp_client_vendor ();
+	
 	/* Fill in the first few args */
 	last_arg = 0;
 	args[last_arg++] = g_strdup (SSH_PROGRAM);
-	args[last_arg++] = g_strdup ("-oForwardX11 no");
-	args[last_arg++] = g_strdup ("-oForwardAgent no");
-	args[last_arg++] = g_strdup ("-oClearAllForwardings yes");
-	args[last_arg++] = g_strdup ("-oProtocol 2");
+
+	if (client_vendor == SFTP_VENDOR_OPENSSH) {
+		args[last_arg++] = g_strdup ("-oForwardX11 no");
+		args[last_arg++] = g_strdup ("-oForwardAgent no");
+		args[last_arg++] = g_strdup ("-oClearAllForwardings yes");
+		args[last_arg++] = g_strdup ("-oProtocol 2");
+		args[last_arg++] = g_strdup ("-oNoHostAuthenticationForLocalhost yes");
 #ifndef USE_PTY
-	args[last_arg++] = g_strdup ("-oBatchMode yes");
+		args[last_arg++] = g_strdup ("-oBatchMode yes");
 #endif
-	args[last_arg++] = g_strdup ("-oNoHostAuthenticationForLocalhost yes");
+
+	} else if (client_vendor == SFTP_VENDOR_SSH) {
+		args[last_arg++] = g_strdup ("-x");
+	} else {
+		for (i = 0; i < last_arg; i++) {
+			g_free (args[i]);
+		}
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
+
 
 	/* Disable login prompt for now */
 	/* args[last_arg++] = g_strdup ("-oBatchMode yes"); */
@@ -1107,8 +1160,13 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 
 	args[last_arg++] = g_strdup ("-s");
 
-	args[last_arg++] = g_strdup (gnome_vfs_uri_get_host_name (uri));
-	args[last_arg++] = g_strdup ("sftp");
+	if (client_vendor == SFTP_VENDOR_SSH) {
+		args[last_arg++] = g_strdup ("sftp");
+		args[last_arg++] = g_strdup (gnome_vfs_uri_get_host_name (uri));
+	} else {
+		args[last_arg++] = g_strdup (gnome_vfs_uri_get_host_name (uri));
+		args[last_arg++] = g_strdup ("sftp");
+	}
 
 	args[last_arg++] = NULL;
 
@@ -1169,6 +1227,8 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		fd_set ifds;
 		struct timeval tv;
 		int ret;
+		int prompt_fd;
+		GIOChannel *prompt_channel;
 		GIOStatus io_status;
 		char buffer[1024];
 		gsize len;
@@ -1176,92 +1236,113 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		char *pos;
 		char *startpos;
 		char *endpos;
-		char hostname[256];
-		char fingerprint[256];
+		char *hostname = NULL;
+		char *fingerprint = NULL;
+
+		if (client_vendor == SFTP_VENDOR_SSH) {
+			prompt_fd = err_fd;
+			prompt_channel = error_channel;
+		} else {
+			prompt_fd = tty_fd;
+			prompt_channel = tty_channel;
+		}
 		
 		FD_ZERO (&ifds);
 		FD_SET (in_fd, &ifds);
-		FD_SET (tty_fd, &ifds);
-		
+		FD_SET (prompt_fd, &ifds);
+
 		tv.tv_sec = 10;
 		tv.tv_usec = 0;
-		
-		ret = select (MAX (in_fd, tty_fd)+1, &ifds, NULL, NULL, &tv);
-		if (ret == 0) {
+
+		ret = select (MAX (in_fd, prompt_fd)+1, &ifds, NULL, NULL, &tv);
+
+		if (ret <= 0) {
 			/* Timeout */
 			res = GNOME_VFS_ERROR_IO;
 			goto bail;
 		}
-		
+
 		if (FD_ISSET (in_fd, &ifds)) {
 			break;
 		}
 
-		g_assert (FD_ISSET (tty_fd, &ifds));
+		g_assert (FD_ISSET (prompt_fd, &ifds));
 
 		error = NULL;
-		io_status = g_io_channel_read_chars (tty_channel, buffer, sizeof(buffer)-1, &len, &error);
+		io_status = g_io_channel_read_chars (prompt_channel, buffer, sizeof(buffer)-1, &len, &error);
 		if (io_status == G_IO_STATUS_NORMAL) {
 			buffer[len] = 0;
 			if (g_str_has_suffix (buffer, "password: ") ||
 			    g_str_has_suffix (buffer, "Password: ") ||
 			    g_str_has_prefix (buffer, "Enter passphrase for key")) {
 				if (!done_auth && invoke_fill_auth (uri, buffer, &password) && password != NULL) {
-					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
-					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
-					g_io_channel_flush (tty_channel, NULL);
+					g_io_channel_write_chars (prompt_channel, password, -1, &len, NULL);
+					g_io_channel_write_chars (prompt_channel, "\n", 1, &len, NULL);
+					g_io_channel_flush (prompt_channel, NULL);
 				} else if (invoke_full_auth (uri, done_auth, buffer, &password, &keyring, 
 							     &user, &object, &authtype, &save_password) && password != NULL) {
 					full_auth = TRUE;
-					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
-					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
-					g_io_channel_flush (tty_channel, NULL);
+					g_io_channel_write_chars (prompt_channel, password, -1, &len, NULL);
+					g_io_channel_write_chars (prompt_channel, "\n", 1, &len, NULL);
+					g_io_channel_flush (prompt_channel, NULL);
 				} else {
 					res = GNOME_VFS_ERROR_ACCESS_DENIED;
 					goto bail;
 				}
 				done_auth = TRUE;
-			} else if (g_str_has_prefix (buffer, "The authenticity of host '")) {
+			} else if (g_str_has_prefix (buffer, "The authenticity of host '") ||
+				   strstr (buffer, "Key fingerprint:") != NULL) {
 
-				pos = strchr (&buffer[26], '\'');
-				if (pos == NULL) {
-					res = GNOME_VFS_ERROR_GENERIC;
-					goto bail;
-				}
+				if (g_str_has_prefix (buffer, "The authenticity of host '")) {
+					/* OpenSSH */
+					pos = strchr (&buffer[26], '\'');
+					if (pos == NULL) {
+						res = GNOME_VFS_ERROR_GENERIC;
+						goto bail;
+					}
 
-				if (pos - (&buffer[26]) < 255) {
-					strncpy (hostname, &buffer[26], pos - (&buffer[26]));
-					hostname[pos-(&buffer[26])]='\0';
+
+					hostname = g_strndup (&buffer[26], pos - (&buffer[26]));
+
+					startpos = strstr (pos, " key fingerprint is ");
+					if (startpos == NULL) {
+						res = GNOME_VFS_ERROR_GENERIC;
+						g_free (hostname);
+						goto bail;
+					}
+
+					startpos = startpos + 20;
+					endpos = strchr (startpos, '.');
+					if (endpos == NULL) {
+						res = GNOME_VFS_ERROR_GENERIC;
+						g_free (hostname);
+						goto bail;
+					}
+					fingerprint = g_strndup (startpos, endpos - startpos);
+				} else if (strstr (buffer, "Key fingerprint:") != NULL) {
+					/* SSH.com*/
+					hostname = g_strdup (gnome_vfs_uri_get_host_name (uri));
+					startpos = strstr (buffer, "Key fingerprint:");
+					if (startpos == NULL) {
+						g_free (hostname);
+						res = GNOME_VFS_ERROR_GENERIC;
+						goto bail;
+					}
+					startpos = startpos + 18;
+					endpos = strchr (startpos, '\r');
+					fingerprint = g_strndup (startpos, endpos - startpos);
 				} else {
-					strncpy (hostname, &buffer[26], 255);
-					hostname[255]='\0';
-				}
-				
-				startpos = strstr (pos, "RSA key fingerprint is ");
-				if (startpos == NULL) {
 					res = GNOME_VFS_ERROR_GENERIC;
-					goto bail;
-				}
-			
-				startpos = startpos + 23;
-				endpos = strchr (startpos, '.');
-				if (endpos == NULL) {
-					res = GNOME_VFS_ERROR_GENERIC;
-					goto bail;
-				}
-				
-				if (endpos - startpos < 255) {
-					strncpy (fingerprint, startpos, endpos - startpos);
-					fingerprint[endpos - startpos]='\0';
-				} else {
-					strncpy (fingerprint, startpos, 255);
-					fingerprint[255]='\0';
+					goto bail;	
 				}
 				
 				in_args.primary_message = g_strdup_printf (_("The identity of the remote computer (%s) is unknown."), hostname);
 				in_args.secondary_message = g_strdup_printf (_("This happens when you log in to a computer the first time.\n\n"
 									       "The identity sent by the remote computer is %s. "
 									       "If you want to be absolutely sure it is safe to continue, contact the system administrator."), fingerprint);
+
+				g_free (hostname);
+				g_free (fingerprint);
 
 				in_args.choices = choices;
 				in_args.choices[0] = _("Log In Anyway");
@@ -1275,19 +1356,19 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 				
 				if (invoked) {
 					if (out_args.answer == 0) {
-						g_io_channel_write_chars (tty_channel, "yes\n", -1, &len, NULL);
+						g_io_channel_write_chars (prompt_channel, "yes\n", -1, &len, NULL);
 					} else {
-						g_io_channel_write_chars (tty_channel, "no\n", -1, &len, NULL);
+						g_io_channel_write_chars (prompt_channel, "no\n", -1, &len, NULL);
 						g_free (in_args.primary_message);
 						g_free (in_args.secondary_message);
 						res = GNOME_VFS_ERROR_ACCESS_DENIED;
 						goto bail;
 					}
-					g_io_channel_flush (tty_channel, NULL);
+					g_io_channel_flush (prompt_channel, NULL);
 					buffer[0]='\0';
 				} else {
-					g_io_channel_write_chars (tty_channel, "no\n", -1, &len, NULL);
-					g_io_channel_flush (tty_channel, NULL);
+					g_io_channel_write_chars (prompt_channel, "no\n", -1, &len, NULL);
+					g_io_channel_flush (prompt_channel, NULL);
 					buffer[0]='\0';
 					g_free (in_args.primary_message);
 					g_free (in_args.secondary_message);
@@ -1355,6 +1436,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	if (res != GNOME_VFS_OK) {
 		close (in_fd);
 		close (out_fd);
+		close (err_fd);
 		*connection = NULL;
 
 		/* TODO: Do we leak error_channel and connection? */
