@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs 2.3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-09-07 19:59+0200\n"
-"PO-Revision-Date: 2004-09-07 20:37+0200\n"
+"PO-Revision-Date: 2004-09-07 20:45+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -1006,7 +1006,7 @@ msgid ""
 msgstr ""
 "Això passa quan entreu en un ordinador per primera vegada.\n"
 "\n"
-"La identitat enviada per l'ordinador remot és %s. Si voleu estar completament segur de que és segur continuar, contacteu amb l'administrador del sistema."
+"La identitat enviada per l'ordinador remot és %s. Si voleu estar completament segur que és prudent continuar, contacteu amb l'administrador del sistema."
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
@@ -1175,55 +1175,55 @@ msgstr "Vertader si el programa especificat en la clau «command» hauria de ges
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr ""
+msgstr "Vertader si el programa especificat en la clau «command» hauria de gestionar les URL «callto»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr ""
+msgstr "Vertader si el programa especificat en la clau «command» hauria de gestionar les URL «ghelp»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr ""
+msgstr "Vertader si el programa especificat en la clau «command» hauria de gestionar les URL «h323»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
+msgstr "Vertader si el programa especificat en la clau «command» hauria de gestionar les URL «http»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
+msgstr "Vertader si el programa especificat en la clau «command» hauria de gestionar les URL «https»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr ""
+msgstr "Vertader si el programa especificat en la clau «command» hauria de gestionar les URL «info»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr ""
+msgstr "Vertader si el programa especificat en la clau «command» hauria de gestionar les URL «mailto»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
+msgstr "Vertader si el programa especificat en la clau «command» hauria de gestionar les URL «man»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr ""
+msgstr "Vertader si el programa especificat en la clau «command» hauria de gestionar les URL «trash»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1234,92 +1234,62 @@ msgstr ""
 "un terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL man."
+msgstr "Si l'ordre especificada hauria de gestionar les URL «aim»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL callto."
+msgstr "Si l'ordre especificada hauria de gestionar les URL «callto»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL ghelp."
+msgstr "Si l'ordre especificada hauria de gestionar les URL «ghelp»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL H323."
+msgstr "Si l'ordre especificada hauria de gestionar les URL «h323»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL ghelp."
+msgstr "Si l'ordre especificada hauria de gestionar les URL «http»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL trash."
+msgstr "Si l'ordre especificada hauria de gestionar les URL «https»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL info."
+msgstr "Si l'ordre especificada hauria de gestionar les URL «info»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL mailto."
+msgstr "Si l'ordre especificada hauria de gestionar les URL «mailto»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL man."
+msgstr "Si l'ordre especificada hauria de gestionar les URL «man»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL trash."
+msgstr "Si l'ordre especificada hauria de gestionar les URL «trash»"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr ""
+msgstr "Llista separada per comes de dominis dns-sd que haurien de ser visibles a la ubicació de xarxa."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Dominis extra dins dels quals cercar serveis dns-sd"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Com mostrar serveis DNS-SD locals"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "Els valors possibles són «merged», «separate» i «disabled»."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
