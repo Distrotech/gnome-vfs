@@ -1312,11 +1312,11 @@ itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
 	gchar *filename;
 	GnomeVFSURI *uri;
 
-	g_print ("*** Itemdir '%s' monitor %s%s%s called! ***\n", 
-		 info_uri,
-		 event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED":"",
-		 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED":"",
-		 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":"");
+	D (g_print ("*** Itemdir '%s' monitor %s%s%s called! ***\n", 
+		    info_uri,
+		    event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED":"",
+		    event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED":"",
+		    event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":""));
 
 	/* Operating on the whole directory, ignore */
 	if (!strcmp (monitor_uri, info_uri) ||
@@ -1564,7 +1564,7 @@ filename_monitor_handle (gpointer user_data)
 	GHashTable *monitors;
 	GSList *iter;
 
-	g_print ("*** PROCESSING .vfolder-info!!! ***\n");
+	D (g_print ("*** PROCESSING .vfolder-info!!! ***\n"));
 	
 	monitors = g_hash_table_new (g_direct_hash, g_direct_equal);
 
@@ -1619,11 +1619,11 @@ filename_monitor_cb (GnomeVFSMonitorHandle *handle,
 {
 	VFolderInfo *info = user_data;
 
-	g_print ("*** Filename '%s' monitor %s%s%s called! ***\n",
-		 info_uri,
-		 event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED":"",
-		 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED":"",
-		 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":"");
+	D (g_print ("*** Filename '%s' monitor %s%s%s called! ***\n",
+		    info_uri,
+		    event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED":"",
+		    event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED":"",
+		    event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":""));
 
 	if (info->filename_reload_tag) {
 		g_source_remove (info->filename_reload_tag);
@@ -2084,6 +2084,7 @@ vfolder_info_remove_entry (VFolderInfo *info, Entry *entry)
 			     entry_get_displayname (entry));
 }
 
+#ifdef VFOLDER_DEBUG
 #define DEBUG_CHANGE_EMIT(_change_uri, _handle_uri)                         \
 	g_print ("EMITTING CHANGE: %s for %s, %s%s%s\n",                    \
 		 _change_uri,                                               \
@@ -2091,6 +2092,9 @@ vfolder_info_remove_entry (VFolderInfo *info, Entry *entry)
 		 event_type==GNOME_VFS_MONITOR_EVENT_CREATED?"CREATED":"",  \
 		 event_type==GNOME_VFS_MONITOR_EVENT_DELETED?"DELETED":"",  \
 		 event_type==GNOME_VFS_MONITOR_EVENT_CHANGED?"CHANGED":"")
+#else
+#define DEBUG_CHANGE_EMIT(_change_uri, _handle_uri)
+#endif
 
 void 
 vfolder_info_emit_change (VFolderInfo              *info,
@@ -2146,8 +2150,8 @@ vfolder_info_add_monitor (VFolderInfo           *info,
 	info->requested_monitors = g_slist_prepend (info->requested_monitors,
 						    monitor);
 
-	g_print ("EXTERNALLY WATCHING: %s\n", 
-		 gnome_vfs_uri_to_string (uri, 0));
+	D (g_print ("EXTERNALLY WATCHING: %s\n", 
+		    gnome_vfs_uri_to_string (uri, 0)));
 	
 	*handle = (GnomeVFSMethodHandle *) monitor;
 }

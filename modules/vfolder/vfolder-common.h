@@ -35,7 +35,15 @@
 
 G_BEGIN_DECLS
 
-#if 0
+/* Turn this on to test the non-FAM monitoring code
+ */
+#undef VFOLDER_DEBUG_WITHOUT_MONITORING
+
+/* Turn this on to spew debugging info
+ */
+#undef VFOLDER_DEBUG
+
+#ifdef VFOLDER_DEBUG
 #define D(x) x
 #else
 #define D(x) do {} while (0)

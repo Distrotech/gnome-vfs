@@ -1,3 +1,17 @@
+2002-10-04  Mark McLoughlin  <mark@skynet.ie>
+
+	* modules/vfolder/vfolder-common.h: turn on VFOLDER_DEBUG
+	for debugging spew and VFOLDER_DEBUG_WITHOUT_MONITORING
+	for testing non-FAM monitoring code.
+
+	* modules/vfolder/vfolder-common.c:
+	* modules/vfolder/vfolder-info.c: only spew debugging info
+	if VFOLDER_DEBUG.
+
+	* modules/vfolder/vfolder-util.c: (monitor_callback_internal):
+	Use non-FAM monitoring code if VFOLDER_DEBUG_WITHOUT_MONITORING
+	is defined.
+
 2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
         * modules/ssh-method.c: 
         Quote filenames using g_shell_quote before passing them to ssh

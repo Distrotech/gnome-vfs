@@ -110,13 +110,13 @@ monitor_callback_internal (GnomeVFSMonitorHandle *handle,
 	if (monitor->frozen)
 		return;
 
-	g_print (
+	D (g_print (
 		"RECEIVED MONITOR: %s, %s, %s%s%s\n", 
 		monitor_uri, 
 		info_uri + strlen (monitor_uri),
 		event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED" : "",
 		event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED" : "",
-		event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED" : "");
+		event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED" : ""));
 
 	(*monitor->callback) (handle,
 			      monitor_uri,
@@ -286,11 +286,16 @@ monitor_start_internal (GnomeVFSMonitorType      type,
 	monitor->user_data = user_data;
 	monitor->uri = g_strdup (uri);
 
+#ifndef VFOLDER_DEBUG_WITHOUT_MONITORING
 	result = gnome_vfs_monitor_add (&monitor->vfs_handle, 
 					uri,
 					type,
 					monitor_callback_internal,
 					monitor);
+#else
+	result = GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
+
 	if (result == GNOME_VFS_ERROR_NOT_SUPPORTED) {
 		monitor->ctime = ctime_for_uri (uri);
 
