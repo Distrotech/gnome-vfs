@@ -1,3 +1,8 @@
+2003-12-05  Mark McLoughlin  <mark@skynet.ie>
+
+	* schemas/desktop_gnome_url_handlers.schemas.in: remove CVS surgery
+	remnants from this branch.
+
 2003-11-15  Christophe Fergeau  <teuf@gnome.org>
 
 	* docs/gnome-vfs-2.0-docs.sgml: forgot trailing ; at the end of an
