@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2001-03-15 11:18+0100\n"
-"PO-Revision-Date: 2001-01-27 19:03+01:00\n"
+"PO-Revision-Date: 2001-03-23 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -480,9 +480,8 @@ msgid "Quicken document"
 msgstr "Quicken-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:117
-#, fuzzy
 msgid "Quicken for Windows document"
-msgstr "kalender eller begivenhedsdokument"
+msgstr "Quicken for Windows-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:118
 msgid "RAR archive"
@@ -577,9 +576,8 @@ msgid "Speedo font"
 msgstr "Speedo-skrifttype"
 
 #: data/mime/gnome-vfs.keys.in.h:141
-#, fuzzy
 msgid "Spreadsheet Interchange document"
-msgstr "FrameMaker-udbytningsdokument"
+msgstr "Regneark-udvekslingsdokument"
 
 #: data/mime/gnome-vfs.keys.in.h:142
 msgid "Stampede package"
@@ -710,9 +708,8 @@ msgid "XPM image"
 msgstr "XPM-billede"
 
 #: data/mime/gnome-vfs.keys.in.h:174
-#, fuzzy
 msgid "Xbase database"
-msgstr "Palm OS-database"
+msgstr "Xbase database"
 
 #: data/mime/gnome-vfs.keys.in.h:175
 msgid "active server page"
@@ -744,7 +741,7 @@ msgstr "grundlæggende lydfil"
 
 #: data/mime/gnome-vfs.keys.in.h:182
 msgid "bibliography record"
-msgstr "bibliografish opfølgning"
+msgstr "bibliografisk opfølgning"
 
 #: data/mime/gnome-vfs.keys.in.h:183
 msgid "binary program"
@@ -792,7 +789,7 @@ msgstr "kataloginformationsfil"
 
 #: data/mime/gnome-vfs.keys.in.h:194
 msgid "document type definition"
-msgstr "dokumenttypedefination"
+msgstr "dokumenttypedefinition"
 
 #: data/mime/gnome-vfs.keys.in.h:195
 msgid "email headers"
@@ -1414,9 +1411,9 @@ msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1574
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown job kind %u"
-msgstr "Ukendt job-ID %u"
+msgstr "Ukendt opgavetype %u"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1605
 msgid "Operation stopped"
