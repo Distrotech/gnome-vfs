@@ -1,3 +1,20 @@
+2004-07-18  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_new_from_id):
+	For now, hard code the available uri schemes
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	(gnome_vfs_mime_get_all_desktop_entries),
+	(gnome_vfs_mime_get_default_desktop_entry):
+	okay so rereading the cache every time killed
+	performance.
+	(gnome_vfs_mime_info_cache_dir_load_defaults_list),
+	(gnome_vfs_mime_info_cache_load),
+	(gnome_vfs_mime_info_cache_flush):
+	Add lock guards, but probably is wrong, will need to
+	look it over again.
+
 Sun Jul 18 21:03:35 2004  Jonathan Blandford  <jrb@gnome.org>
 
 	* libgnomevfs/xdgmime*: Sync from upstream.  Now it rereads when

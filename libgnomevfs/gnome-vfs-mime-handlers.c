@@ -1084,6 +1084,8 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 	GError *entries_error;
 	GnomeVFSMimeApplication *application;
 	char *filename, *p;
+	static char *uri_schemes_kluge[] = {"bzip2", "cdda", "computer", "dns-sd", "file", "test", "ftp", "network", "nntp", "gzip", "ugzip", "http", "dav", "davs", "pipe", "a", "ar", "arj", "cpio", "deb", "hp48", "lha", "mailfs", "patchfs", "rar", "rpm", "rpms", "trpm", "zip", "zoo", "applications", "applications-all-users", "all-applications", "preferences", "preferences-all-users", "all-preferences", "favorites", "start-here", "system-settings", "server-settings", "tar", NULL};
+	int i;
 
 	application = NULL;
 	entries_error = NULL;
@@ -1163,6 +1165,12 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 		application->supported_uri_schemes = NULL;
 	}
 
+	for (i = 0; uri_schemes_kluge[i] != NULL; i++) {
+		application->supported_uri_schemes =
+			g_list_append (application->supported_uri_schemes, 
+					g_strdup (uri_schemes_kluge[i]));
+	}
+
 	return application;
 
 error:
@@ -1175,7 +1183,7 @@ error:
 	return NULL;
 }
 
-/**
+/** 
  * gnome_vfs_mime_action_launch:
  * @action: the GnomeVFSMimeAction to launch
  * @uris: parameters for the GnomeVFSMimeAction
