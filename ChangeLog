@@ -1,3 +1,11 @@
+2000-07-06  Gene Z. Ragan  <gzr@eazel.com>
+
+	* mime-type-capplet/nautilus-mime-type-capplet.c: (column_clicked),
+	(create_mime_list_and_scroller):
+	Added sorting functionality to the column buttons.  Enabled
+	columns to respond to a click.  Clicking a column header
+	toggles between ascending and descending sort for that column.
+	
 2000-07-06  Dan Winship  <danw@helixcode.com>
 
 	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c
