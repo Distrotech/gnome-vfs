@@ -1,3 +1,13 @@
+2000-06-06  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-directory-list.c:
+	(gnome_vfs_directory_list_load),
+	(gnome_vfs_directory_list_load_from_uri):
+	Fix a storage and file descriptor leak.
+	
+	* libgnomevfs/gnome-vfs-mime.c: (gnome_vfs_mime_type_or_default):
+	Fix a leak.
+
 2000-06-06  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c: (get_user_level):

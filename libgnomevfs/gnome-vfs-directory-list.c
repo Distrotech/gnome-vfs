@@ -586,7 +586,10 @@ gnome_vfs_directory_list_load (GnomeVFSDirectoryList **list,
 	if (result != GNOME_VFS_OK)
 		return result;
 
-	return load_from_handle (list, handle);
+	result = load_from_handle (list, handle);
+
+	gnome_vfs_directory_close (handle);
+	return result;
 }
 
 /**
@@ -618,6 +621,9 @@ gnome_vfs_directory_list_load_from_uri (GnomeVFSDirectoryList **list,
 	if (result != GNOME_VFS_OK)
 		return result;
 
-	return load_from_handle (list, handle);
+	result = load_from_handle (list, handle);
+
+	gnome_vfs_directory_close (handle);
+	return result;
 }
 

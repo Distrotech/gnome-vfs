@@ -368,6 +368,7 @@ gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
 
 	G_LOCK (mime_mutex);
 
+	upext = NULL;
 	if (!filename)
 		goto done;
 	ext = strrchr (filename, '.');
@@ -424,6 +425,8 @@ gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
 	}
 
  done:
+ 	g_free (upext);
+
 	G_UNLOCK (mime_mutex);
 	return result;
 }
