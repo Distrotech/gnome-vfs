@@ -1,3 +1,9 @@
+2002-03-22  jacob berkman  <jacob@ximian.com>
+
+	* modules/extfs/Makefile.am (extfsdir): 
+	* modules/extfs-method.c (EXTFS_COMMAND_DIR): move into a 2.0
+	subdirectory for parallel install
+
 2002-03-14  Seth Nickell  <snickell@stanford.edu>
 
 	* HACKING:

@@ -100,6 +100,7 @@ main (int argc, char **argv)
 	}
 
 	puts ("Initializing gnome-vfs...");
+	g_type_init (0);
 	gnome_vfs_init ();
 
 	puts ("Creating async context...");
