@@ -884,7 +884,7 @@ auth_fn (const char *server_name, const char *share_name,
 		tmp = strchr (current_toplevel_uri->user_name, ';');
 		if (tmp != NULL) {
 			domain = g_strndup (current_toplevel_uri->user_name,
-					    current_toplevel_uri->user_name - tmp);
+					    tmp - current_toplevel_uri->user_name);
 			username = g_strdup (tmp + 1);
 		} else {
 			username = g_strdup (current_toplevel_uri->user_name);

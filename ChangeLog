@@ -1,5 +1,12 @@
 2004-08-25  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/smb-method.c (auth_fn):
+	Fix domain name from uri parsing. Patch from George Karabin.
+	Fixes bug #140313
+
+2004-08-25  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/smb-method.c (auth_fn): 
 	* configure.in (XML_REQUIRED):
 	Add back MODULES_XML, as we're still using that.
 	Fixes bug #149297
