@@ -1,5 +1,26 @@
 2000-04-26  Darin Adler  <darin@eazel.com>
 
+	* gnome-vfs-private-ops.c: 
+	(gnome_vfs_open_uri_cancellable),
+	(gnome_vfs_create_uri_cancellable), (gnome_vfs_close_cancellable),
+	(gnome_vfs_read_cancellable), (gnome_vfs_write_cancellable),
+	(gnome_vfs_seek_cancellable),
+	(gnome_vfs_get_file_info_uri_cancellable),
+	(gnome_vfs_get_file_info_from_handle_canc),
+	(gnome_vfs_truncate_uri_cancellable),
+	(gnome_vfs_truncate_handle_cancellable),
+	(gnome_vfs_make_directory_for_uri_cancell),
+	(gnome_vfs_find_directory_cancellable),
+	(gnome_vfs_remove_directory_from_uri_canc),
+	(gnome_vfs_unlink_from_uri_cancellable),
+	(gnome_vfs_move_uri_cancellable),
+	(gnome_vfs_check_same_fs_uris_cancellable),
+	(gnome_vfs_set_file_info_cancellable):
+	Changed these all so they will handle the case where the are
+	cancelled before they even begin.
+
+2000-04-26  Darin Adler  <darin@eazel.com>
+
 	* libgnomevfs/gnome-vfs-job.c: (execute_get_file_info):
 	Fixed bug that would result in a thread that never dies.
 
