@@ -50,6 +50,14 @@
 #include <sys/mount.h>
 #endif
 
+#define KILOBYTE_FACTOR 1024.0
+
+/* 1024 * 1024 */
+#define MEGABYTE_FACTOR 1048576.0
+
+/* 1024 * 1024 * 1024 */
+#define GIGABYTE_FACTOR 1073741824.0
+
 gchar*
 gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
 {
@@ -63,15 +71,15 @@ gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
 		gdouble displayed_size;
 
 		if (bytes < (GnomeVFSFileSize) 1e6) {
-			displayed_size = (gdouble) bytes / 1.0e3;
+			displayed_size = (gdouble) bytes / KILOBYTE_FACTOR;
 			return g_strdup_printf (_("%.1fK"),
 						       displayed_size);
 		} else if (bytes < (GnomeVFSFileSize) 1e9) {
-			displayed_size = (gdouble) bytes / 1.0e6;
+			displayed_size = (gdouble) bytes / MEGABYTE_FACTOR;
 			return g_strdup_printf (_("%.1fM"),
 						       displayed_size);
 		} else {
-			displayed_size = (gdouble) bytes / 1.0e9;
+			displayed_size = (gdouble) bytes / GIGABYTE_FACTOR;
 			return g_strdup_printf (_("%.1fG"),
 						       displayed_size);
 		}

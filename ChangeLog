@@ -1,3 +1,12 @@
+2000-12-03  Maciej Stachowiak  <mjs@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.c
+	(gnome_vfs_format_file_size_for_display): Changed factor for
+	kilobytes to 1024 from 1000, megabytes to 1024*1024 from 1,000,000
+	and gigabytes to 1024*1024*1024 from 1,000,000,000.
+
 2000-11-29  Darin Adler  <darin@eazel.com>
 
 	reviewed by: Mike Fleming <mfleming@eazel.com>
