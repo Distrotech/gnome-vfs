@@ -1,3 +1,9 @@
+2004-10-08  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Add --disable-howl flag.
+	Patch from Peter Johanson <latexer@gentoo.org>
+
 2004-10-07  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-monitor.c (send_uri_changes_now):
