@@ -17,7 +17,10 @@ CPPFLAGS =					\
 	-DPREFIX=\"$(prefix)\"
 
 EXTRA_DIST =					\
-	default-modules.conf
+	default-modules.conf			\
+	efs-method.c				\
+        efs-method.h
+	
 
 
 ###  Module setup
