@@ -12,14 +12,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
-"POT-Creation-Date: 2004-01-12 10:09+0100\n"
-"PO-Revision-Date: 2003-12-20 15:17+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-14 18:07+0100\n"
+"PO-Revision-Date: 2004-01-14 18:08+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "serrador@hispalinux.es>\n"
 "serrador@hispalinux.es>\n"
 "serrador@hispalinux.es>\n"
@@ -466,29 +466,29 @@ msgstr "Error al lanzar «comando»"
 msgid "Unknown error"
 msgstr "Error desconocido"
 
-#: libgnomevfs/gnome-vfs-utils.c:84
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u byte"
 msgstr[1] "%u bytes"
 
-#: libgnomevfs/gnome-vfs-utils.c:90
+#: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
 msgid "%.1f KB"
 msgstr "%.1f Kib"
 
-#: libgnomevfs/gnome-vfs-utils.c:94
+#: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MiB"
 
-#: libgnomevfs/gnome-vfs-utils.c:98
+#: libgnomevfs/gnome-vfs-utils.c:99
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Gib"
 
-#: libgnomevfs/gnome-vfs-utils.c:1105
+#: libgnomevfs/gnome-vfs-utils.c:1106
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
@@ -532,7 +532,6 @@ msgstr "Volumen desconocido"
 msgid "Network server"
 msgstr "Servidor de red"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
@@ -540,7 +539,6 @@ msgstr ""
 "Imposible montar la unidad de disquetes. Probablemente no hay un disquete en "
 "la unidad."
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
@@ -1020,13 +1018,12 @@ msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Nombre de usuario para pasar como autenticación al hacer proxy HTTP."
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Window Network"
-msgstr "Red"
+msgstr "Red de Windows"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "Grupo SMB"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
