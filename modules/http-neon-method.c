@@ -1,4 +1,4 @@
-//* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /* http-neon-method.c - The HTTP method implementation for the GNOME Virtual 
    File System using the neon http/webdav library.
 
@@ -1111,7 +1111,7 @@ static const ne_propname file_info_props[] = {
 	{"DAV:", "getcontenttype"},
 	{"DAV:", "getcontentlength"},
 	{"DAV:", "getetag"},
-	//	{"http://apache.org/dav/props/", "executable"},
+	/*	{"http://apache.org/dav/props/", "executable"}, */
 	{NULL}
 };
 

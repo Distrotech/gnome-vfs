@@ -286,7 +286,7 @@ static void CDDBSkipHTTP(int sock)
 		do {
 			read(sock,&inchar,1);
 			len++;
-			//g_message ("%c",inchar);
+			/* g_message ("%c",inchar); */
 		}
 		while(inchar!='\n');
 	}	
@@ -308,7 +308,7 @@ static int CDDBReadLine(int sock,char *inbuffer,int len)
 
     if(inchar == '\n') {
       	inbuffer[index] = '\0';
-     	//g_message ("[%s]\n",pos);
+     	/* g_message ("[%s]\n",pos); */
       	pos=inbuffer+index;
 
 		if(inbuffer[0] == '.')
@@ -345,12 +345,12 @@ static void CDDBMakeRequest(CDDBServer *server,
     g_snprintf(outbuf,outlen,
 	     "GET http://%s/%s?cmd=%s%s&proto=%s HTTP/1.1\r\nHost: %s\r\nUser-Agent: %s/%s\r\nAccept: text/plain\n\n",
 	     server->name,server->cgi_prog,cmd,hellobuf,
-	     //CDDA_CDDB_LEVEL, server->name, Program, Version);
+	       /* CDDA_CDDB_LEVEL, server->name, Program, Version);*/
 	     CDDA_CDDB_LEVEL, server->name, "Loser", "1.0");
   else
     g_snprintf(outbuf,outlen,"GET /%s?cmd=%s%s&proto=%s HTTP/1.1\r\nHost: %s\r\nUser-Agent: %s/%s\r\nAccept: text/plain\n\n",
 	     server->cgi_prog,cmd,hellobuf,CDDA_CDDB_LEVEL,server->name,
-	     //Program,Version);
+	       /* Program,Version); */
 	     "Loser", "1.0");
 }
 
@@ -365,7 +365,7 @@ CDDBDoQuery (cdrom_drive *cd_desc, CDDBServer *server, CDDBHello *hello, CDDBQue
 
 	socket = CDDBConnect (server);
 	if (socket==-1) {
-		//g_message ("CDDBConnect failure");
+		/* g_message ("CDDBConnect failure"); */
   		return FALSE;
 	}
 
@@ -373,7 +373,7 @@ CDDBDoQuery (cdrom_drive *cd_desc, CDDBServer *server, CDDBHello *hello, CDDBQue
 
   	CDStat (cd_desc->ioctl_fd, &disc, TRUE);
 	
-	// Figure out a good buffer size -- 7 chars per track, plus 256 for the rest of the query
+	/* Figure out a good buffer size -- 7 chars per track, plus 256 for the rest of the query */
 	tot_len = (disc.disc_totaltracks * 7) + 256;
 
 	offset_buffer = malloc(tot_len);
@@ -397,7 +397,7 @@ CDDBDoQuery (cdrom_drive *cd_desc, CDDBServer *server, CDDBHello *hello, CDDBQue
 
 	CDDBMakeRequest (server, hello, query_buffer, http_buffer, tot_len);
 
-	//g_message ("Query is [%s]\n",http_buffer);
+	/* g_message ("Query is [%s]\n",http_buffer); */
 
 	write (socket, http_buffer, strlen (http_buffer));
 
@@ -413,11 +413,11 @@ CDDBDoQuery (cdrom_drive *cd_desc, CDDBServer *server, CDDBHello *hello, CDDBQue
 
 	/* Skip the keep-alive */
 	if((strlen(inbuffer)<5)||!strncmp(inbuffer,"Keep",4)) {
-		//g_message("Skipping keepalive\n");
+		/* g_message("Skipping keepalive\n"); */
 		CDDBReadLine (socket,inbuffer,256);
 	}
 
-  	//g_message ("Reply is [%s]\n",inbuffer);
+  	/* g_message ("Reply is [%s]\n",inbuffer); */
 
 	switch(strtol(strtok(inbuffer," "),NULL,10)) {
     /* 200 - exact match */
@@ -599,7 +599,7 @@ gboolean CDDBRead(cdrom_drive *cd_desc, CDDBServer *server,
   socket=CDDBConnect(server);
   if(socket==-1) return FALSE;
   
-  //CDStat(cd_desc,&disc,TRUE);
+  /* CDStat(cd_desc,&disc,TRUE); */
   
   data->data_genre=entry->entry_genre;
   data->data_id=CDDBDiscid(cd_desc);
@@ -629,7 +629,7 @@ gboolean CDDBRead(cdrom_drive *cd_desc, CDDBServer *server,
 
   /* Skip the keep-alive */
   if((strlen(inbuffer)<5)||!strncmp(inbuffer,"Keep",4)) {
-		//g_message ("Skipping keepalive\n");
+	  /* g_message ("Skipping keepalive\n"); */
 		CDDBReadLine(socket,inbuffer,256);
   }
 
@@ -651,11 +651,11 @@ gboolean CDDBRead(cdrom_drive *cd_desc, CDDBServer *server,
 gboolean CDDBStatDiscData(cdrom_drive *cd_desc)
 {
   int index,id;
-  //disc_info disc;
+  /* disc_info disc; */
   struct stat st;
   char root_dir[256], file[256];
   
-  //CDStat(cd_desc,&disc,TRUE);
+  /* CDStat(cd_desc,&disc,TRUE); */
 
   id=CDDBDiscid(cd_desc);
   
@@ -888,12 +888,13 @@ CDDBLookupDisc (CDDBServer *server, cdrom_drive *drive, DiscData *disc_data)
 	CDDBEntry entry;
 	gboolean success = FALSE;
 
-	if(server->use_proxy) {
-    	//g_message ("Querying %s (through %s:%d) for disc %02x.\n", server->name,
-	   	//server->proxy->name, server->proxy->port, CDDBDiscid (drive));
+	/*	if(server->use_proxy) {
+		 g_message ("Querying %s (through %s:%d) for disc %02x.\n", server->name,
+		   server->proxy->name, server->proxy->port, CDDBDiscid (drive)); 
 	} else {
-		//g_message ("Querying %s for disc %02x.\n",server->name, CDDBDiscid (drive));
+		g_message ("Querying %s for disc %02x.\n",server->name, CDDBDiscid (drive));
 	}
+	*/
 	
 	strncpy (hello.hello_program, "Loser", 256);
 	strncpy (hello.hello_version, "1.0", 256);
@@ -904,19 +905,19 @@ CDDBLookupDisc (CDDBServer *server, cdrom_drive *drive, DiscData *disc_data)
 		switch(query.query_match) {
 			case MATCH_INEXACT:
 			case MATCH_EXACT:
-				//g_message ("Match for \"%s / %s\"\nDownloading data...\n",
-				//			query.query_list[0].list_artist,
-				//			query.query_list[0].list_title);
+				/*g_message ("Match for \"%s / %s\"\nDownloading data...\n",
+							query.query_list[0].list_artist,
+							query.query_list[0].list_title);*/
 				entry.entry_genre = query.query_list[0].list_genre;
       			entry.entry_id = query.query_list[0].list_id;
       			CDDBRead (drive, server, &hello, &entry, disc_data);
 		
-      			//g_message ("Done\n");
+      			/* g_message ("Done\n"); */
       			success = TRUE;
 		
-      			//if (CDDBWriteDiscData (drive, disc_data, NULL, TRUE) < 0) {
-				//	printf ("Error saving disc data\n");
-				//}		
+      			/* if (CDDBWriteDiscData (drive, disc_data, NULL, TRUE) < 0) {
+					printf ("Error saving disc data\n");
+					} */
 				break;
 			
     		case MATCH_NOMATCH:
@@ -939,9 +940,9 @@ CDStat (int cd_desc, disc_info *disc, gboolean read_toc)
 	int retcode;
 
 	retcode = ioctl(cd_desc, CDROM_DRIVE_STATUS, CDSL_CURRENT);
-	//g_message("Drive status is %d\n", retcode);
+	/* g_message("Drive status is %d\n", retcode); */
 	if (retcode < 0) {
-      //g_message("Drive doesn't support drive status check (assume CDS_NO_INFO)\n");
+		/* g_message("Drive doesn't support drive status check (assume CDS_NO_INFO)\n"); */
 	} else if (retcode != CDS_DISC_OK && retcode != CDS_NO_INFO) {
 		return -1;
 	}
@@ -949,7 +950,7 @@ CDStat (int cd_desc, disc_info *disc, gboolean read_toc)
 	disc->disc_present = 1;
 
 	if (read_toc) {
-		//g_message ("Reading TOC");
+		/* g_message ("Reading TOC"); */
 		/* Read the Table Of Contents header */
 		if(ioctl(cd_desc, CDROMREADTOCHDR, &cdth) < 0) {
 			printf("Error: Failed to read disc contents\n");

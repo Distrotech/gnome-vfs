@@ -1116,7 +1116,6 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 			vol->priv->display_name = _gnome_vfs_volume_monitor_uniquify_volume_name (volume_monitor, name);
 			vol->priv->icon = g_strdup(icon);
 			vol->priv->is_user_visible = desktop_visible;
-			vol->priv->hal_udi = g_strdup (udi);
 			
 			vol->priv->drive = drive;
 			_gnome_vfs_drive_add_mounted_volume (drive, vol);

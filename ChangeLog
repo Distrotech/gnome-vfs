@@ -1,3 +1,10 @@
+2004-07-25  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_add_volume): removed 
+	  duplicate setting of the hal_udi member
+	* modules/cdda-cddb.c: 
+	* modules/http-neon-method.c: replaced // comments with /* */
+
 2004-07-24  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/http-proxy.c: forgot to #define HTTP_DEBUG(x) to an empty 
