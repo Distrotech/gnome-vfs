@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-03 16:33+0200\n"
+"POT-Creation-Date: 2004-07-05 10:32+0200\n"
 "PO-Revision-Date: 2004-07-04 01:32+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 # initialiseren?
-#: daemon/gnome-vfs-daemon.c:590
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
 msgstr "Kan bonobo niet starten"
 
 # initialiseren?
-#: daemon/gnome-vfs-daemon.c:596
+#: daemon/gnome-vfs-daemon.c:602
 msgid "Could not initialize gnome vfs"
 msgstr "Kan gnome vfs niet starten"
 
@@ -489,17 +489,17 @@ msgid " (invalid Unicode)"
 msgstr " (ongeldige Unicode)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
 msgid "Floppy"
 msgstr "Floppy"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
 msgid "Zip Drive"
 msgstr "Zipdrive"
 
@@ -511,19 +511,23 @@ msgstr "Draagbaar geheugen"
 msgid "Camera"
 msgstr "Camera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+msgid "DVD"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
 msgid "Root Volume"
 msgstr "Hoofdvolume"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
 msgid "Audio CD"
 msgstr "Audio CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
 msgid "Unknown volume"
 msgstr "Onbekend volume"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
 msgid "Network server"
 msgstr "Netwerkserver"
 
@@ -654,6 +658,28 @@ msgstr "Onbekende GnomeVFSSeekPosition %d"
 #: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Windows netwerk"
+
+#: modules/sftp-method.c:1261
+#, c-format
+msgid "The identity of the remote computer (%s) is unknown."
+msgstr ""
+
+#: modules/sftp-method.c:1262
+#, c-format
+msgid ""
+"This happens when you log in to a computer the first time.\n"
+"\n"
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
+msgstr ""
+
+#: modules/sftp-method.c:1267
+msgid "Log In Anyway"
+msgstr ""
+
+#: modules/sftp-method.c:1268
+msgid "Cancel Login"
+msgstr ""
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -798,7 +824,8 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "Set to true to have a program specified in \"command\" handle aim URLs."
-msgstr "Indien waar handelt het programma gegeven in \"opdracht\" de aim URL's af."
+msgstr ""
+"Indien waar handelt het programma gegeven in \"opdracht\" de aim URL's af."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
@@ -869,6 +896,24 @@ msgstr "Actie voor man URL"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid "trash URL handler"
 msgstr "Actie voor trash URL"
+
+#: schemas/system_dns_sd.schemas.in.h:1
+msgid ""
+"Comma separated list of dns-sd domains that should be visible in the network "
+"location."
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:2
+msgid "Extra domains to look for dns-sd services in"
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:3
+msgid "How to display local DNS-SD service"
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:4
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
+msgstr ""
 
 # Aanmelding? Authenticatie?
 #: schemas/system_http_proxy.schemas.in.h:1

@@ -1,3 +1,15 @@
+gnome-vfs 2.7.3
+
+	* Bugs fixed:
+	       + FreeBSD portability fixes
+	       + DragonFly portability fixes
+	       + translate strings in daemon
+	       + made ngettext translations work
+	* Features
+	       + New function to list dns-sd browse domains
+	       + authentication in ftp backend
+	       + better performance in ftp backend
+	       
 gnome-vfs 2.7.2
 
 	* Bugs fixed:

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-18 13:07+0200\n"
+"POT-Creation-Date: 2004-07-05 10:32+0200\n"
 "PO-Revision-Date: 2003-02-12 10:19+0530\n"
 "Last-Translator: Sayamindu Dasgupta <unmadindu@Softhome.net>\n"
 "Language-Team: Bengali (bn) <gnome-translation@bengalinux.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: daemon/gnome-vfs-daemon.c:590
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
 msgstr "বোনোবো চালু করা গেল না"
 
-#: daemon/gnome-vfs-daemon.c:596
+#: daemon/gnome-vfs-daemon.c:602
 msgid "Could not initialize gnome vfs"
 msgstr "গ্নোম ভি-এফ-এস চালু করা গেল না"
 
@@ -486,17 +486,17 @@ msgid " (invalid Unicode)"
 msgstr "বেঠিক ইউনিকোড"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
 msgid "Floppy"
 msgstr "ফ্লপি"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
 msgid "CD-ROM"
 msgstr "সিডি-রম"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
 msgid "Zip Drive"
 msgstr "জিপ ড্রাইভ"
 
@@ -508,19 +508,23 @@ msgstr "মেমরি স্টিক্‌"
 msgid "Camera"
 msgstr "ক্যামেরা"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+msgid "DVD"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
 msgid "Root Volume"
 msgstr "রুট ভলিউম"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
 msgid "Audio CD"
 msgstr "অডিও সিডি"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
 msgid "Unknown volume"
 msgstr "অজানা ভলিউম"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
 msgid "Network server"
 msgstr "নেটওয়ার্ক সার্ভার"
 
@@ -647,6 +651,28 @@ msgstr "অজানা GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "উইন্ডোজ নেটওয়ার্ক"
 
+#: modules/sftp-method.c:1261
+#, c-format
+msgid "The identity of the remote computer (%s) is unknown."
+msgstr ""
+
+#: modules/sftp-method.c:1262
+#, c-format
+msgid ""
+"This happens when you log in to a computer the first time.\n"
+"\n"
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
+msgstr ""
+
+#: modules/sftp-method.c:1267
+msgid "Log In Anyway"
+msgstr ""
+
+#: modules/sftp-method.c:1268
+msgid "Cancel Login"
+msgstr ""
+
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
@@ -731,124 +757,159 @@ msgid "Handle HTTPS URLs"
 msgstr "HTTPS ইউ-আর-এল সামলাও"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "Handle aim URLs"
+msgstr "man ইউ-আর-এল সামলাও"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
 msgstr "callto ইউ-আর-এল সামলাও"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "Handle ghelp URLs"
 msgstr "ghelp ইউ-আর-এল সামলাও"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Handle info URLs"
 msgstr "info ইউ-আর-এল সামলাও"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Handle mailto URLs"
 msgstr "mailto ইউ-আর-এল সামলাও"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Handle man URLs"
 msgstr "man ইউ-আর-এল সামলাও"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Handle trash URLs"
 msgstr "trash ইউ-আর-এল সামলাও"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "Run program in terminal"
 msgstr "টার্মিনালে প্রোগ্রাম চালাও"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 "H323 ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য সত্য "
 "হিসাবে নির্ধারণ করুন"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
 "HTTP ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য সত্য "
 "হিসাবে নির্ধারণ করুন"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 "HTTPS ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য সত্য "
 "হিসাবে নির্ধারণ করুন"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#, fuzzy
+msgid "Set to true to have a program specified in \"command\" handle aim URLs."
+msgstr ""
+"man ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য সত্য "
+"হিসাবে নির্ধারণ করুন"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "callto ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য "
 "সত্য হিসাবে নির্ধারণ করুন"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 "ghelp ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য সত্য "
 "হিসাবে নির্ধারণ করুন"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
 "info ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য সত্য "
 "হিসাবে নির্ধারণ করুন"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 "mailto ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য "
 "সত্য হিসাবে নির্ধারণ করুন"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
 "man ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য সত্য "
 "হিসাবে নির্ধারণ করুন"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 "trash ইউ-আর-এল সামলানোর জন্য \"কম্যান্ড\"-এ নির্দিষ্ট প্রোগ্রাম ব্যবহার করার জন্য সত্য "
 "হিসাবে নির্ধারণ করুন"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
 "এই ইউ-আর-এল সামলানোর প্রোগ্রামটিকে টার্মিনালে চালাতে চাইলে সত্য হিসাবে নির্ধারণ "
 "করুন"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid "aim URL handler"
+msgstr "man ইউ-আর-এল হ্যান্ডলার "
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
 msgstr "callto ইউ-আর-এল হ্যান্ডলার"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "ghelp URL handler"
 msgstr "ghelp ইউ-আর-এল হ্যান্ডলার"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "info URL handler"
 msgstr "info ইউ-আর-এল হ্যান্ডলার"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid "mailto URL handler"
 msgstr "mailto ইউ-আর-এল হ্যান্ডলার"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid "man URL handler"
 msgstr "man ইউ-আর-এল হ্যান্ডলার "
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid "trash URL handler"
 msgstr "trash ইউ-আর-এল হ্যান্ডলার"
+
+#: schemas/system_dns_sd.schemas.in.h:1
+msgid ""
+"Comma separated list of dns-sd domains that should be visible in the network "
+"location."
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:2
+msgid "Extra domains to look for dns-sd services in"
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:3
+msgid "How to display local DNS-SD service"
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:4
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
+msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"

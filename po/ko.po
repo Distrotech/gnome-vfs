@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-18 13:07+0200\n"
+"POT-Creation-Date: 2004-07-05 10:32+0200\n"
 "PO-Revision-Date: 2004-02-24 23:45+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: daemon/gnome-vfs-daemon.c:590
+#: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
 msgstr "보노보를 초기화할 수 없습니다"
 
-#: daemon/gnome-vfs-daemon.c:596
+#: daemon/gnome-vfs-daemon.c:602
 msgid "Could not initialize gnome vfs"
 msgstr "그놈 VFS를 초기화할 수 없습니다"
 
@@ -481,17 +481,17 @@ msgid " (invalid Unicode)"
 msgstr " (잘못된 유니코드)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
 msgid "Floppy"
 msgstr "플로피"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
 msgid "Zip Drive"
 msgstr "Zip 드라이브"
 
@@ -503,19 +503,23 @@ msgstr "메모리 스틱"
 msgid "Camera"
 msgstr "카메라"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+msgid "DVD"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
 msgid "Root Volume"
 msgstr "루트 볼륨"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
 msgid "Audio CD"
 msgstr "음악 CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
 msgid "Unknown volume"
 msgstr "알 수 없는 볼륨"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
 msgid "Network server"
 msgstr "네트워크 서버"
 
@@ -643,6 +647,28 @@ msgstr "알 수 없는 GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Windows 네트워크"
 
+#: modules/sftp-method.c:1261
+#, c-format
+msgid "The identity of the remote computer (%s) is unknown."
+msgstr ""
+
+#: modules/sftp-method.c:1262
+#, c-format
+msgid ""
+"This happens when you log in to a computer the first time.\n"
+"\n"
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
+msgstr ""
+
+#: modules/sftp-method.c:1267
+msgid "Log In Anyway"
+msgstr ""
+
+#: modules/sftp-method.c:1268
+msgid "Cancel Login"
+msgstr ""
+
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
@@ -727,105 +753,138 @@ msgid "Handle HTTPS URLs"
 msgstr "HTTPS URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#, fuzzy
+msgid "Handle aim URLs"
+msgstr "man URL을 처리합니다"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
 msgstr "callto URL을 처리합니다"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "Handle ghelp URLs"
 msgstr "ghelp URL을 처리합니다"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Handle info URLs"
 msgstr "info URL을 처리합니다"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Handle mailto URLs"
 msgstr "mailto URL을 처리합니다"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Handle man URLs"
 msgstr "man URL을 처리합니다"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Handle trash URLs"
 msgstr "trash URL을 처리합니다"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "Run program in terminal"
 msgstr "터미널에서 프로그램을 실행합니다"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr "참이면 \"command\"에 H323 URL을 처리하는 프로그램이 들어갑니다."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr "참이면 \"command\"에 HTTP URL을 처리하는 프로그램이 들어갑니다."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr "참이면 \"command\"에 HTTPS URL을 처리하는 프로그램이 들어갑니다."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#, fuzzy
+msgid "Set to true to have a program specified in \"command\" handle aim URLs."
+msgstr "참이면 \"command\"에 man URL을 처리하는 프로그램이 들어갑니다."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr "참이면 \"command\"에 callto URL을 처리하는 프로그램이 들어갑니다."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr "참이면 \"command\"에 ghelp URL을 처리하는 프로그램이 들어갑니다."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr "참이면 \"command\"에 info URL을 처리하는 프로그램이 들어갑니다."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr "참이면 \"command\"에 mailto URL을 처리하는 프로그램이 들어갑니다."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr "참이면 \"command\"에 man URL을 처리하는 프로그램이 들어갑니다."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr "참이면 \"command\"에 trash URL을 처리하는 프로그램이 들어갑니다."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
 "참이면, 이 URL을 처리하는 프로그램을 터미널에서 실행해야 하는 경우입니다."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid "aim URL handler"
+msgstr "man URL 핸들러"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
 msgstr "callto URL 핸들러"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "ghelp URL handler"
 msgstr "ghelp URL 핸들러"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "info URL handler"
 msgstr "info URL 핸들러"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid "mailto URL handler"
 msgstr "mailto URL 핸들러"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid "man URL handler"
 msgstr "man URL 핸들러"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid "trash URL handler"
 msgstr "trash URL 핸들러"
+
+#: schemas/system_dns_sd.schemas.in.h:1
+msgid ""
+"Comma separated list of dns-sd domains that should be visible in the network "
+"location."
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:2
+msgid "Extra domains to look for dns-sd services in"
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:3
+msgid "How to display local DNS-SD service"
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:4
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
+msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"

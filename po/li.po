@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-18 13:07+0200\n"
+"POT-Creation-Date: 2004-07-05 10:32+0200\n"
 "PO-Revision-Date: 2003-06-05 10:01+0100\n"
 "Last-Translator: Mathieu van Woerkom <mathieu@brabants.org>\n"
 "Language-Team: Limburgish\n"
@@ -12,12 +12,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: daemon/gnome-vfs-daemon.c:590
+#: daemon/gnome-vfs-daemon.c:596
 #, fuzzy
 msgid "Could not initialize Bonobo"
 msgstr "Kós de huid-browser neet vènje"
 
-#: daemon/gnome-vfs-daemon.c:596
+#: daemon/gnome-vfs-daemon.c:602
 msgid "Could not initialize gnome vfs"
 msgstr ""
 
@@ -483,17 +483,17 @@ msgid " (invalid Unicode)"
 msgstr " (óngeljige Unicode)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
 msgid "Floppy"
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
 msgid "CD-ROM"
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
 msgid "Zip Drive"
 msgstr ""
 
@@ -505,20 +505,24 @@ msgstr ""
 msgid "Camera"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+msgid "DVD"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
 msgid "Root Volume"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
 msgid "Audio CD"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
 #, fuzzy
 msgid "Unknown volume"
 msgstr "Ónbekènde faeler"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
 msgid "Network server"
 msgstr ""
 
@@ -644,6 +648,28 @@ msgstr "Ónbekènde GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Vinsters"
 
+#: modules/sftp-method.c:1261
+#, c-format
+msgid "The identity of the remote computer (%s) is unknown."
+msgstr ""
+
+#: modules/sftp-method.c:1262
+#, c-format
+msgid ""
+"This happens when you log in to a computer the first time.\n"
+"\n"
+"The identity sent by the remote computer is %s. If you want to be absolutely "
+"sure it is safe to continue, contact the system administrator."
+msgstr ""
+
+#: modules/sftp-method.c:1267
+msgid "Log In Anyway"
+msgstr ""
+
+#: modules/sftp-method.c:1268
+msgid "Cancel Login"
+msgstr ""
+
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
@@ -730,109 +756,141 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 #, fuzzy
-msgid "Handle callto URLs"
+msgid "Handle aim URLs"
 msgstr "Gein aksie veur URL sjema"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 #, fuzzy
-msgid "Handle ghelp URLs"
+msgid "Handle callto URLs"
 msgstr "Gein aksie veur URL sjema"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 #, fuzzy
-msgid "Handle info URLs"
+msgid "Handle ghelp URLs"
 msgstr "Gein aksie veur URL sjema"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 #, fuzzy
-msgid "Handle mailto URLs"
+msgid "Handle info URLs"
 msgstr "Gein aksie veur URL sjema"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 #, fuzzy
-msgid "Handle man URLs"
+msgid "Handle mailto URLs"
 msgstr "Gein aksie veur URL sjema"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 #, fuzzy
-msgid "Handle trash URLs"
+msgid "Handle man URLs"
 msgstr "Gein aksie veur URL sjema"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Run program in terminal"
-msgstr ""
+#, fuzzy
+msgid "Handle trash URLs"
+msgstr "Gein aksie veur URL sjema"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid "Run program in terminal"
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
+"Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid "Set to true to have a program specified in \"command\" handle aim URLs."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
+"Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+"Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "True if the program to handle this URL should be run in a terminal."
+msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "callto URL handler"
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "ghelp URL handler"
+msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#, fuzzy
+msgid "aim URL handler"
+msgstr "Sjlechte besjtandj-handle"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+msgid "callto URL handler"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+msgid "ghelp URL handler"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "info URL handler"
 msgstr ""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 #, fuzzy
 msgid "mailto URL handler"
 msgstr "Sjlechte besjtandj-handle"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid "man URL handler"
 msgstr ""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid "trash URL handler"
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:1
+msgid ""
+"Comma separated list of dns-sd domains that should be visible in the network "
+"location."
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:2
+msgid "Extra domains to look for dns-sd services in"
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:3
+msgid "How to display local DNS-SD service"
+msgstr ""
+
+#: schemas/system_dns_sd.schemas.in.h:4
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
 msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:1

@@ -1,3 +1,11 @@
+2004-07-05  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS:
+	Update for 2.7.3
+	
+	* imported/neon/Makefile.am:
+	Build using automake
+
 2004-07-03  Christophe Fergeau  <teuf@gnome.org>
 
         * libgnomevfs/gnome-vfs-utils.c: use dngettext instead of ngettext
