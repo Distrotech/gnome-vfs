@@ -1,5 +1,45 @@
 2001-02-15  John Sullivan  <sullivan@eazel.com>
 
+	reviewed by: Gene Ragan <gzr@eazel.com>
+
+	Fixed some problems and cleaned up some code
+	that I ran into while investigating bug 5777 (Nautilus
+	does not pick up MIME preferences right away)
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_short_list_applications):
+	Prune user's short list additions of nonexistent
+	applications (already pruned other lists); removed
+	mysteriously incorrect FIXME; deployed
+	gnome_vfs_mime_type_is_supertype() one more place.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(insert_item), (create_application_list_item):
+	New helper functions used for dialogs showing lists
+	of applications, extracted and simplified from existing
+	code.
+	(populate_default_applications_list): Use helper functions
+	instead of repeating all the code here.
+	(initialize_edit_applications_dialog): Swapped order of two
+	lines for clarity & slight efficiency gain.
+	(add_item_to_application_list): Use helper functions instead
+	of repeating all the code here; select newly-added item.
+	(show_new_application_window): Removed two initialized but
+	never used variables.
+	(show_edit_applications_dialog), (show_edit_components_dialog),
+	(nautilus_mime_type_capplet_show_new_mime_window),
+	(nautilus_mime_type_capplet_show_change_extension_window),
+	(nautilus_mime_type_capplet_show_new_extension_window),
+	(show_new_application_window), (show_edit_application_window): 
+	Cleaned up all callers of gnome_dialog_run; some were not 
+	handling the close box properly; others were just using more 
+	lines of code than needed; none were using GNOME_OK for clarity.
+
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(revert_mime_clicked): Improved some error message text a little.
+
+2001-02-15  John Sullivan  <sullivan@eazel.com>
+
 	reviewed by: Darin Adler <darin@eazel.com>
 
 	Fixed bug 6660 (list of all apps for text/xml

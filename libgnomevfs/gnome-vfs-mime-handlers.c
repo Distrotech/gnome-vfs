@@ -440,16 +440,16 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	short_list_additions = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
 								(mime_type,
 								 "short_list_application_user_additions"));
+	short_list_additions = prune_ids_for_nonexistent_applications (short_list_additions);
 	short_list_removals = comma_separated_str_to_str_list (gnome_vfs_mime_get_value
 							       (mime_type,
 								"short_list_application_user_removals"));
-	/* FIXME: gnome_vfs_mime_get_value also checks the supertype.
-	   This code has no effect */
+
 	/* Only include the supertype in the short list if we came up empty with
 	   the specific types */
 	supertype = gnome_vfs_get_supertype_from_mime_type (mime_type);
 
-	if ((strcmp (supertype, mime_type) != 0) && (system_short_list == NULL)) {
+	if (!gnome_vfs_mime_type_is_supertype (mime_type) && system_short_list == NULL) {
 		supertype_short_list = comma_separated_str_to_str_list 
 			(gnome_vfs_mime_get_value_for_user_level 
 			 (supertype, 
