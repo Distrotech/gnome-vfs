@@ -1,3 +1,23 @@
+gnome-vfs 2.9.3
+
+    * Features:
+	+ gnomevfs-mv program added
+	+ Added GNOME_VFS_OPEN_TRUNCATE open flag
+    
+    * Bugs fixed:
+	+ ssh: New mechanism for handling authentication
+	
+	  NOTE: This should work a lot better then before, but unless
+	  you first apply the samba patch from
+	  https://bugzilla.samba.org/show_bug.cgi?id=2092
+	  there can be problems with logging in as a user on shares
+	  that support anonymous logins.
+	  
+	+ sftp: Honour force_replace flag in move
+	+ use right icon name field in mime files
+	+ fix mimetype detection for names with a dot in
+	+ build fixes on IA64
+    
 gnome-vfs 2.9.2
 
     * Features:
