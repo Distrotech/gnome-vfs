@@ -1,3 +1,11 @@
+2001-08-06  jacob berkman  <jacob@ximian.com>
+
+	* modules/ftp-method.c (do_open_directory): do a CWD before LIST
+	so that we can generate an error if the uri we are passed is a
+	file rather than directory
+
+	(commit to the right branch this time)
+
 2001-08-06  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c:
