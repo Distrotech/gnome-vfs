@@ -1,3 +1,9 @@
+2004-01-15  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-socket-buffer.c (gnome_vfs_socket_buffer_read):
+	Don't return OK on EOF.
+	Fixes bug #62147
+
 2004-01-14  Christian Neumair  <chris@gnome-de.org>
 
 	* modules/network-method.c:

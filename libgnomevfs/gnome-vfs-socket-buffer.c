@@ -203,10 +203,6 @@ gnome_vfs_socket_buffer_read (GnomeVFSSocketBuffer *socket_buffer,
 		}
 	}
 
-	if (result == GNOME_VFS_ERROR_EOF) {
-		result = GNOME_VFS_OK;
-	}
-
 	return result;
 }
 
