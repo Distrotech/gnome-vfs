@@ -1,5 +1,5 @@
-# Swedish translation of gnome-vfs
-# Copyright (C) 1999-2001 Free Software Foundation, Inc.
+# Swedish translation of gnome-vfs.
+# Copyright (C) 1999, 2000, 2001 Free Software Foundation, Inc.
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000-2001.
 # Christian Rose <menthos@menthos.com>, 2000-2001.
 #
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-03-07 03:22+0100\n"
-"PO-Revision-Date: 2001-03-07 03:26+0100\n"
+"POT-Creation-Date: 2001-06-02 00:37+0200\n"
+"PO-Revision-Date: 2001-06-02 00:38+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1012,154 +1012,27 @@ msgstr "zip-arkiv"
 msgid "zoo archive"
 msgstr "zoo-arkiv"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
-msgid "Dying."
-msgstr "Dör."
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
-#, c-format
-msgid "Error reading: %s"
-msgstr "Fel vid läsning: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
-#, c-format
-msgid "Error writing: %s"
-msgstr "Fel vid skrivning: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
-#, c-format
-msgid "Cannot write: %s"
-msgstr "Kan inte skriva: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:601
-#, c-format
-msgid "Cannot create temporary file name `%s'"
-msgstr "Kan inte skapa det temporära filnamnet \"%s\""
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:615
-#, c-format
-msgid "Cannot create socket: %s"
-msgstr "Kan inte skapa uttag (socket): %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:633
-#, c-format
-msgid "Cannot bind `%s': %s"
-msgstr "Kan inte binda till \"%s\": %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:640
-#, c-format
-msgid "Cannot listen on `%s': %s"
-msgstr "Kan inte lyssna på \"%s\": %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
-#, c-format
-msgid "Cannot accept connections on `%s': %s"
-msgstr "Kan inte ta emot anslutningar på \"%s\": %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1195
-msgid "Cannot initialize CORBA."
-msgstr "Kan inte initiera CORBA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1202
-msgid "Cannot resolve initial reference to RootPOA."
-msgstr "Kan inte slå upp första referensen till RootPOA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1209
-msgid "Cannot activate POA manager."
-msgstr "Kan inte aktivera POA-hanteraren."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1234
-#, c-format
-msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "Användning: %s <ior> [<ior_fd>]\n"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1245
-#, c-format
-msgid "Cannot open file descriptor %d."
-msgstr "Kan inte öppna fildeskriptor %d."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1268
-#, c-format
-msgid "Notify interface for `%s' not found."
-msgstr "Meddelandegränssnitt för \"%s\" kunde inte hittas."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
-msgid "Cannot setup Request object."
-msgstr "Kan inte skapa ett Request-objekt."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
-msgid "Cannot extract IOR."
-msgstr "Kan inte extrahera IOR."
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
-#, c-format
-msgid "Got weird string from the slave process: `%s'"
-msgstr "Fick en konstig sträng från slavprocessen: \"%s\""
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, c-format
-msgid "Cannot get object for `%s'"
-msgstr "Kan inte få objektet för \"%s\""
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "Kan inte döda GNOME::VFS:Slave::Notify -- undantag %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, c-format
-msgid "Cannot connect socket `%s': %s"
-msgstr "Kan inte ansluta uttag (socket): \"%s\": %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
-msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "Kan inte initiera GNOME::VFS:Slave:Notify"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan inte återställa GNOME::VFS::Slave %s -- undantag %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan inte återställa GNOME::VFS::Slave (IOR okänt) -- undantag %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan inte döda GNOME::VFS::Slave %s -- undantag %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan inte döda GNOME::VFS::Slave (IOR okänt) -- undantag %s"
-
-#: libgnomevfs/gnome-vfs-configuration.c:187
+#: libgnomevfs/gnome-vfs-configuration.c:224
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr "%s:%d innehåller NUL-tecken."
 
-#: libgnomevfs/gnome-vfs-configuration.c:204
+#: libgnomevfs/gnome-vfs-configuration.c:241
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr "%s:%d innehåller inget metodnamn."
 
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:270
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr "%s:%d innehåller inget modulnamn."
 
-#: libgnomevfs/gnome-vfs-configuration.c:286
+#: libgnomevfs/gnome-vfs-configuration.c:323
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigurationsfilen \"%s\" hittades inte: %s"
 
-#: libgnomevfs/gnome-vfs-init.c:69
+#: libgnomevfs/gnome-vfs-init.c:80
 msgid "GNOME VFS already initialized."
 msgstr "GNOME-VFS har redan initierats."
 
@@ -1372,7 +1245,12 @@ msgstr "Tjänsten är inte tillgänglig"
 msgid "Request obsoletes service's data"
 msgstr "Begäran föråldrar tjänstens data"
 
-#: libgnomevfs/gnome-vfs-result.c:141
+#. GNOME_VFS_ERROR_PROTOCOL_ERROR
+#: libgnomevfs/gnome-vfs-result.c:79
+msgid "Protocol error"
+msgstr "Protokollfel"
+
+#: libgnomevfs/gnome-vfs-result.c:142
 msgid "Unknown error"
 msgstr "Okänt fel"
 
@@ -1400,520 +1278,503 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:688
+#: libgnomevfs-pthread/gnome-vfs-job.c:712
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Okänd operandtyp %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:974
-#: libgnomevfs-pthread/gnome-vfs-job.c:1119
+#: libgnomevfs-pthread/gnome-vfs-job.c:1000
+#: libgnomevfs-pthread/gnome-vfs-job.c:1145
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan inte skapa rör till öppen GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1574
+#: libgnomevfs-pthread/gnome-vfs-job.c:1603
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Okänd jobbtyp %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1605
+#: libgnomevfs-pthread/gnome-vfs-job.c:1639
 msgid "Operation stopped"
 msgstr "Operationen stoppad"
 
-#: mime-type-capplet/file-types-capplet.desktop.in.h:1
-msgid "File Types and Programs"
-msgstr "Filtyper och program"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:2
-msgid "Specify which programs are used to open or view each file type"
-msgstr "Ange de program som används för att öppna eller visa varje filtyp"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-msgid "MIME Type"
-msgstr "MIME-typ"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:742
-msgid "Change Icon"
-msgstr "Ändra ikon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:749
-msgid "Change File Extensions"
-msgstr "Ändra filändelser"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:757
-msgid "Default Action:"
-msgstr "Standardåtgärd:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:769
-msgid "Use Viewer"
-msgstr "Använd visare"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:775
-msgid "Open With Application"
-msgstr "Öppna med program"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:786
-msgid "Edit List"
-msgstr "Redigera lista"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:811
-msgid "Add New MIME Type..."
-msgstr "Lägg till ny MIME-typ..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-msgid "Delete This MIME Type"
-msgstr "Ta bort denna MIME-typ"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:828
-msgid "Revert to System Defaults"
-msgstr "Återgå till systemets standardinställningar"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
-msgid "None"
-msgstr "Inget"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
-msgid ""
-"Reverting to system settings will lose any changes\n"
-"you have ever made to File Types and Programs.\n"
-"Revert anyway?"
-msgstr ""
-"Att återgå till systemets inställningar kommer att\n"
-"göra att alla de inställningar du någonsin gjort i\n"
-"fliken Filtyper och program går förlorade.\n"
-"Återställ ändå?"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-msgid "none"
-msgstr "inget"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
-#, c-format
-msgid "View as %s"
-msgstr "Visa som %s"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
-msgid "Description"
-msgstr "Beskrivning"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
-msgid "Extension"
-msgstr "Filändelse"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-msgid "Default Action"
-msgstr "Standardåtgärd"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
-msgid "Edit Applications List"
-msgstr "Redigera programlista"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
-#, c-format
-msgid "Select applications to appear in menu for MIME type \"%s\""
-msgstr "Välj program som ska finnas i menyn för MIME-typen \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:433
-msgid "Add Application..."
-msgstr "Lägg till program..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:440
-msgid "Edit Application..."
-msgstr "Redigera program..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
-msgid "Delete Application"
-msgstr "Ta bort program"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:480
-msgid "Edit Components List"
-msgstr "Redigera komponentlista"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:500
-#, c-format
-msgid "Select views to appear in menu for MIME type \"%s\""
-msgstr "Välj vyer som ska finnas i menyn för MIME-typen \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:720
-msgid ""
-"The MIME type entered contained upper case characters. Upper case characters "
-"were changed to lower case for you."
-msgstr ""
-"MIME-typen som angivits innehåller stora bokstäver. De stora bokstäverna "
-"ändrades till små åt dig."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:723
-msgid "Add New MIME Type"
-msgstr "Lägg till ny MIME-typ"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
-msgid "Add MIME Type"
-msgstr "Lägg till MIME-typ"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:773
-msgid "New MIME type (e.g. image/x-thumper):"
-msgstr "Ny MIME-typ (t.ex. image/x-thumper):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:780
-msgid "Description (e.g. Thumper image):"
-msgstr "Beskrivning (t.ex. Thumper-bild):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:947
-msgid "File Extensions "
-msgstr "Filändelser"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:967
-msgid "Add..."
-msgstr "Lägg till..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:972
-msgid "    Remove    "
-msgstr "    Ta bort   "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1041
-msgid "Add New Extension"
-msgstr "Lägg till ny filändelse"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
-msgid ""
-"Type in the extensions for this mime-type (without dot).\n"
-"You can enter several extensions seperated by a space,\n"
-"for example: html htm"
-msgstr ""
-"Ange filändelserna för denna mime-typ (utan punkt).\n"
-"Du kan ange flera ändelser med mellanslag mellan,\n"
-"till exempel: html htm"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
-msgid "Extension:"
-msgstr "Filändelse:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
-msgid "You must enter a name."
-msgstr "Du måste ange ett namn."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
-msgid "You must enter a command."
-msgstr "Du måste ange ett kommando."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
-#, c-format
-msgid ""
-"\"%s\" does not exist or is not executable.\n"
-"Check your spelling and make sure you have\n"
-"the right permissions to execute this file."
-msgstr ""
-"\"%s\" finns inte eller är inte körbar.\n"
-"Kontrollera din stavning och försäkra dig\n"
-"om att du har nödvändiga rättigheter för\n"
-"att köra denna fil."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
-#, c-format
-msgid ""
-"The command \"%s\" cannot be found.\n"
-"You must use a command that can work from any command line."
-msgstr ""
-"Kommandot \"%s\" kan inte hittas.\n"
-"Du måste använda ett kommando som kan användas från komandoraden."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
-msgid "Bad Application Name"
-msgstr "Felaktigt programnamn"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
-msgid "Bad Application Command"
-msgstr "Felaktigt programkommando"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
-msgid "Add Application"
-msgstr "Lägg till program"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
-msgid "Edit Application"
-msgstr "Redigera program"
-
-#. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1271
-msgid "Application Name:"
-msgstr "Programnamn:"
-
-#. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1282
-msgid "Application Command:"
-msgstr "Programkommando:"
-
-#. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
-msgid "Open Behavior"
-msgstr "Öppningsbeteende"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1299
-msgid "Can open multiple files"
-msgstr "Kan öppna flera filer"
-
-#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
-msgid "Can open from URI"
-msgstr "Kan öppna från URI"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
-msgid "Can't find an hbox, using a normal file selection"
-msgstr "Kan inte hitta en hbox, använder normalt filval"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
-msgid "Preview"
-msgstr "Förhandsgranska"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
-msgid "Select an icon"
-msgstr "Välj en ikon"
-
-#: modules/efs-method.c:493 modules/file-method.c:371
+#: modules/file-method.c:380
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Okänd GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1179
-#, c-format
-msgid "%s to retrieve"
-msgstr "%s att motta"
-
-#: modules/http-method.c:1584
-#, c-format
-msgid "Closing connection to %s"
-msgstr "Stänger anslutning till %s"
-
-#: modules/http-method.c:1850
-#, c-format
-msgid "%s of %s read"
-msgstr "%s av %s läst"
-
-#: modules/http-method.c:1853
-#, c-format
-msgid "%s read"
-msgstr "%s läst"
+#~ msgid "Dying."
+#~ msgstr "Dör."
 
-#: test/gnome-file-selection/gnome-file-selection.c:667
-msgid "Back"
-msgstr "Föregående"
+#~ msgid "Error reading: %s"
+#~ msgstr "Fel vid läsning: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:668
-msgid "Go to the previously visited directory"
-msgstr "Gå till den katalog som besöktes innan"
+#~ msgid "Error writing: %s"
+#~ msgstr "Fel vid skrivning: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:676
-msgid "Up"
-msgstr "Upp"
+#~ msgid "Cannot write: %s"
+#~ msgstr "Kan inte skriva: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:677
-msgid "Go to the parent directory"
-msgstr "Gå till förälderkatalogen"
+#~ msgid "Cannot create temporary file name `%s'"
+#~ msgstr "Kan inte skapa det temporära filnamnet \"%s\""
 
-#: test/gnome-file-selection/gnome-file-selection.c:685
-msgid "Forward"
-msgstr "Nästa"
+#~ msgid "Cannot create socket: %s"
+#~ msgstr "Kan inte skapa uttag (socket): %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:686
-msgid "Go to the next visited directory"
-msgstr "Gå till nästa besökta katalog"
+#~ msgid "Cannot bind `%s': %s"
+#~ msgstr "Kan inte binda till \"%s\": %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:695
-msgid "Rescan"
-msgstr "Läs om"
+#~ msgid "Cannot listen on `%s': %s"
+#~ msgstr "Kan inte lyssna på \"%s\": %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:696
-msgid "Rescan the current directory"
-msgstr "Läs om den aktuella katalogen"
+#~ msgid "Cannot accept connections on `%s': %s"
+#~ msgstr "Kan inte ta emot anslutningar på \"%s\": %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:705
-msgid "Home"
-msgstr "Hem"
+#~ msgid "Cannot initialize CORBA."
+#~ msgstr "Kan inte initiera CORBA."
 
-#: test/gnome-file-selection/gnome-file-selection.c:706
-msgid "Go to the home directory"
-msgstr "Gå till hemkatalogen"
+#~ msgid "Cannot resolve initial reference to RootPOA."
+#~ msgstr "Kan inte slå upp första referensen till RootPOA."
 
-#: test/gnome-file-selection/gnome-file-selection.c:802
-msgid "Name"
-msgstr "Namn"
+#~ msgid "Cannot activate POA manager."
+#~ msgstr "Kan inte aktivera POA-hanteraren."
 
-#: test/gnome-file-selection/gnome-file-selection.c:803
-msgid "Size"
-msgstr "Storlek"
+#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
+#~ msgstr "Användning: %s <ior> [<ior_fd>]\n"
 
-#: test/gnome-file-selection/gnome-file-selection.c:804
-msgid "Date"
-msgstr "Datum"
+#~ msgid "Cannot open file descriptor %d."
+#~ msgstr "Kan inte öppna fildeskriptor %d."
 
-#: test/gnome-file-selection/gnome-file-selection.c:833
-msgid "Enter name:"
-msgstr "Ange namn:"
+#~ msgid "Notify interface for `%s' not found."
+#~ msgstr "Meddelandegränssnitt för \"%s\" kunde inte hittas."
 
-#: test/gnome-file-selection/gnome-file-selection.c:856
-msgid "Show:"
-msgstr "Visa:"
+#~ msgid "Cannot setup Request object."
+#~ msgstr "Kan inte skapa ett Request-objekt."
 
-#: test/gnome-file-selection/gnome-file-selection.c:883
-msgid "Show dotfiles"
-msgstr "Visa punktfiler"
+#~ msgid "Cannot extract IOR."
+#~ msgstr "Kan inte extrahera IOR."
 
-msgid "New Application"
-msgstr "Nytt program"
+#~ msgid "Got weird string from the slave process: `%s'"
+#~ msgstr "Fick en konstig sträng från slavprocessen: \"%s\""
 
-msgid "Expects URIs as arguments"
-msgstr "Förväntar sig URI:er som argument"
+#~ msgid "Cannot get object for `%s'"
+#~ msgstr "Kan inte få objektet för \"%s\""
 
-msgid ""
-"Add a new MIME Type\n"
-"For example:  image/tiff; text/x-scheme"
-msgstr ""
-"Lägg till en ny MIME-typ\n"
-"Till exempel:  image/tiff; text/x-schema"
+#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+#~ msgstr "Kan inte döda GNOME::VFS:Slave::Notify -- undantag %s"
 
-msgid "MIME Type:"
-msgstr "MIME-typ:"
+#~ msgid "Cannot connect socket `%s': %s"
+#~ msgstr "Kan inte ansluta uttag (socket): \"%s\": %s"
 
-msgid "Type a description for this MIME type."
-msgstr "Ange en beskrivning för denna mime-typ."
+#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+#~ msgstr "Kan inte initiera GNOME::VFS:Slave:Notify"
 
-msgid "Description:"
-msgstr "Beskrivning:"
+#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "Kan inte återställa GNOME::VFS::Slave %s -- undantag %s"
 
-msgid "Add new MIME type..."
-msgstr "Lägg till MIME-typ..."
+#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr "Kan inte återställa GNOME::VFS::Slave (IOR okänt) -- undantag %s"
 
-msgid "No Description"
-msgstr "Ingen beskrivning"
+#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "Kan inte döda GNOME::VFS::Slave %s -- undantag %s"
 
-msgid "Unknown sort rule %d"
-msgstr "Okänd sorteringsregel %d"
+#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr "Kan inte döda GNOME::VFS::Slave (IOR okänt) -- undantag %s"
 
-msgid "Add Mime Type"
-msgstr "Lägg till Mime-typ"
+#~ msgid "File Types and Programs"
+#~ msgstr "Filtyper och program"
 
-msgid "Mime Type"
-msgstr "Mime-typ"
+#~ msgid "Specify which programs are used to open or view each file type"
+#~ msgstr "Ange de program som används för att öppna eller visa varje filtyp"
 
-msgid "Audio-Video Interleave"
-msgstr "Audio/Video-fil (AVI-fil)"
+#~ msgid "MIME Type"
+#~ msgstr "MIME-typ"
 
-msgid "C-Shell script"
-msgstr "C-skalskript"
+#~ msgid "Change Icon"
+#~ msgstr "Ändra ikon"
 
-msgid "FLC video animation"
-msgstr "FLC-videoanimation"
+#~ msgid "Change File Extensions"
+#~ msgstr "Ändra filändelser"
 
-msgid "FLI video animation"
-msgstr "FLI-videoanimation"
+#~ msgid "Default Action:"
+#~ msgstr "Standardåtgärd:"
 
-msgid "GIMP image"
-msgstr "GIMP-bild"
+#~ msgid "Use Viewer"
+#~ msgstr "Använd visare"
 
-msgid "GNU license"
-msgstr "GNU-licens"
+#~ msgid "Open With Application"
+#~ msgstr "Öppna med program"
 
-msgid "HTML document"
-msgstr "HTML-dokument"
+#~ msgid "Edit List"
+#~ msgstr "Redigera lista"
 
-msgid "MPEG URL"
-msgstr "MPEG-URL"
+#~ msgid "Add New MIME Type..."
+#~ msgstr "Lägg till ny MIME-typ..."
 
-msgid "PEF document"
-msgstr "PEF-dokument"
+#~ msgid "Delete This MIME Type"
+#~ msgstr "Ta bort denna MIME-typ"
 
-msgid "PNG image\t"
-msgstr "PNG-bild"
+#~ msgid "Revert to System Defaults"
+#~ msgstr "Återgå till systemets standardinställningar"
 
-msgid "Python script"
-msgstr "Pythonskript"
+#~ msgid "None"
+#~ msgstr "Inget"
 
-msgid "README file"
-msgstr "README-fil"
+#~ msgid ""
+#~ "Reverting to system settings will lose any changes\n"
+#~ "you have ever made to File Types and Programs.\n"
+#~ "Revert anyway?"
+#~ msgstr ""
+#~ "Att återgå till systemets inställningar kommer att\n"
+#~ "göra att alla de inställningar du någonsin gjort i\n"
+#~ "fliken Filtyper och program går förlorade.\n"
+#~ "Återställ ändå?"
 
-msgid "S/MIME data"
-msgstr "S/MIME-data"
+#~ msgid "none"
+#~ msgstr "inget"
 
-msgid "SGI movie"
-msgstr "SGI-film"
+#~ msgid "View as %s"
+#~ msgstr "Visa som %s"
 
-msgid "SV4Cpio document "
-msgstr "SV4CPIO-dokument"
+#~ msgid "Description"
+#~ msgstr "Beskrivning"
 
-msgid "SV4Crc document "
-msgstr "SV4Crc-dokument"
+#~ msgid "Extension"
+#~ msgstr "Filändelse"
 
-msgid "Troff ME-macros document"
-msgstr "Troff ME-makrodokument"
+#~ msgid "Default Action"
+#~ msgstr "Standardåtgärd"
 
-msgid "Troff MS-macros document"
-msgstr "Troff MS-makrodokument"
+#~ msgid "Edit Applications List"
+#~ msgstr "Redigera programlista"
 
-msgid "UStar archive"
-msgstr "UStar-arkiv"
+#~ msgid "Select applications to appear in menu for MIME type \"%s\""
+#~ msgstr "Välj program som ska finnas i menyn för MIME-typen \"%s\""
 
-msgid "VRML data"
-msgstr "VRML-data"
+#~ msgid "Add Application..."
+#~ msgstr "Lägg till program..."
 
-msgid "backup document"
-msgstr "säkerhetskopia"
+#~ msgid "Edit Application..."
+#~ msgstr "Redigera program..."
 
-msgid "bzip archive"
-msgstr "bzip-arkiv"
+#~ msgid "Delete Application"
+#~ msgstr "Ta bort program"
 
-msgid "class code"
-msgstr "klasskod"
+#~ msgid "Edit Components List"
+#~ msgstr "Redigera komponentlista"
 
-msgid "compressed GIMP image archive"
-msgstr "komprimerat GIMP-bildarkiv"
+#~ msgid "Select views to appear in menu for MIME type \"%s\""
+#~ msgstr "Välj vyer som ska finnas i menyn för MIME-typen \"%s\""
 
-msgid "compressed bzip archive"
-msgstr "komprimerat bzip-arkiv"
+#~ msgid ""
+#~ "The MIME type entered contained upper case characters. Upper case characters "
+#~ "were changed to lower case for you."
+#~ msgstr ""
+#~ "MIME-typen som angivits innehåller stora bokstäver. De stora bokstäverna "
+#~ "ändrades till små åt dig."
 
-msgid "enriched text"
-msgstr "enriched text"
+#~ msgid "Add New MIME Type"
+#~ msgstr "Lägg till ny MIME-typ"
 
-msgid "gzip archive"
-msgstr "gzip-arkiv"
+#~ msgid "Add MIME Type"
+#~ msgstr "Lägg till MIME-typ"
 
-msgid "link"
-msgstr "länk"
+#~ msgid "New MIME type (e.g. image/x-thumper):"
+#~ msgstr "Ny MIME-typ (t.ex. image/x-thumper):"
 
-msgid "ogg file"
-msgstr "ogg-fil"
+#~ msgid "Description (e.g. Thumper image):"
+#~ msgstr "Beskrivning (t.ex. Thumper-bild):"
 
-msgid "plain text"
-msgstr "vanlig text"
+#~ msgid "File Extensions "
+#~ msgstr "Filändelser"
 
-msgid "pointer to remote data"
-msgstr "pekare till fjärrdata"
+#~ msgid "Add..."
+#~ msgstr "Lägg till..."
 
-msgid "rich text"
-msgstr "rik text"
+#~ msgid "    Remove    "
+#~ msgstr "    Ta bort   "
 
-msgid "xfig image"
-msgstr "xfig-bild"
+#~ msgid "Add New Extension"
+#~ msgstr "Lägg till ny filändelse"
 
-msgid "Error writing to the wakeup GnomeVFSJob channel."
-msgstr "Fel vid skrivning till GnomeVFSJob-kanalen."
+#~ msgid ""
+#~ "Type in the extensions for this mime-type (without dot).\n"
+#~ "You can enter several extensions seperated by a space,\n"
+#~ "for example: html htm"
+#~ msgstr ""
+#~ "Ange filändelserna för denna mime-typ (utan punkt).\n"
+#~ "Du kan ange flera ändelser med mellanslag mellan,\n"
+#~ "till exempel: html htm"
 
-msgid "Action"
-msgstr "Åtgärd"
+#~ msgid "Extension:"
+#~ msgstr "Filändelse:"
 
-msgid "Extensions:"
-msgstr "Filändelser:"
+#~ msgid "You must enter a name."
+#~ msgstr "Du måste ange ett namn."
 
-msgid "Invalid header `%s'"
-msgstr "Ogiltigt huvud \"%s\""
+#~ msgid "You must enter a command."
+#~ msgstr "Du måste ange ett kommando."
 
-msgid "HTTP server returned an invalid PROPFIND response"
-msgstr "HTTP-servern returnerade ett ogiltigt PROPFIND-svar"
+#~ msgid ""
+#~ "\"%s\" does not exist or is not executable.\n"
+#~ "Check your spelling and make sure you have\n"
+#~ "the right permissions to execute this file."
+#~ msgstr ""
+#~ "\"%s\" finns inte eller är inte körbar.\n"
+#~ "Kontrollera din stavning och försäkra dig\n"
+#~ "om att du har nödvändiga rättigheter för\n"
+#~ "att köra denna fil."
+
+#~ msgid ""
+#~ "The command \"%s\" cannot be found.\n"
+#~ "You must use a command that can work from any command line."
+#~ msgstr ""
+#~ "Kommandot \"%s\" kan inte hittas.\n"
+#~ "Du måste använda ett kommando som kan användas från komandoraden."
+
+#~ msgid "Bad Application Name"
+#~ msgstr "Felaktigt programnamn"
+
+#~ msgid "Bad Application Command"
+#~ msgstr "Felaktigt programkommando"
+
+#~ msgid "Add Application"
+#~ msgstr "Lägg till program"
+
+#~ msgid "Edit Application"
+#~ msgstr "Redigera program"
+
+#~ msgid "Application Name:"
+#~ msgstr "Programnamn:"
+
+#~ msgid "Application Command:"
+#~ msgstr "Programkommando:"
+
+#~ msgid "Open Behavior"
+#~ msgstr "Öppningsbeteende"
+
+#~ msgid "Can open multiple files"
+#~ msgstr "Kan öppna flera filer"
+
+#~ msgid "Can open from URI"
+#~ msgstr "Kan öppna från URI"
+
+#~ msgid "Can't find an hbox, using a normal file selection"
+#~ msgstr "Kan inte hitta en hbox, använder normalt filval"
+
+#~ msgid "Preview"
+#~ msgstr "Förhandsgranska"
+
+#~ msgid "Select an icon"
+#~ msgstr "Välj en ikon"
+
+#~ msgid "%s to retrieve"
+#~ msgstr "%s att motta"
+
+#~ msgid "Closing connection to %s"
+#~ msgstr "Stänger anslutning till %s"
+
+#~ msgid "%s of %s read"
+#~ msgstr "%s av %s läst"
+
+#~ msgid "%s read"
+#~ msgstr "%s läst"
+
+#~ msgid "Back"
+#~ msgstr "Föregående"
+
+#~ msgid "Go to the previously visited directory"
+#~ msgstr "Gå till den katalog som besöktes innan"
+
+#~ msgid "Up"
+#~ msgstr "Upp"
+
+#~ msgid "Go to the parent directory"
+#~ msgstr "Gå till förälderkatalogen"
+
+#~ msgid "Forward"
+#~ msgstr "Nästa"
+
+#~ msgid "Go to the next visited directory"
+#~ msgstr "Gå till nästa besökta katalog"
+
+#~ msgid "Rescan"
+#~ msgstr "Läs om"
+
+#~ msgid "Rescan the current directory"
+#~ msgstr "Läs om den aktuella katalogen"
+
+#~ msgid "Home"
+#~ msgstr "Hem"
+
+#~ msgid "Go to the home directory"
+#~ msgstr "Gå till hemkatalogen"
+
+#~ msgid "Name"
+#~ msgstr "Namn"
+
+#~ msgid "Size"
+#~ msgstr "Storlek"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "Enter name:"
+#~ msgstr "Ange namn:"
+
+#~ msgid "Show:"
+#~ msgstr "Visa:"
+
+#~ msgid "Show dotfiles"
+#~ msgstr "Visa punktfiler"
+
+#~ msgid "New Application"
+#~ msgstr "Nytt program"
+
+#~ msgid "Expects URIs as arguments"
+#~ msgstr "Förväntar sig URI:er som argument"
+
+#~ msgid ""
+#~ "Add a new MIME Type\n"
+#~ "For example:  image/tiff; text/x-scheme"
+#~ msgstr ""
+#~ "Lägg till en ny MIME-typ\n"
+#~ "Till exempel:  image/tiff; text/x-schema"
+
+#~ msgid "MIME Type:"
+#~ msgstr "MIME-typ:"
+
+#~ msgid "Type a description for this MIME type."
+#~ msgstr "Ange en beskrivning för denna mime-typ."
+
+#~ msgid "Description:"
+#~ msgstr "Beskrivning:"
+
+#~ msgid "Add new MIME type..."
+#~ msgstr "Lägg till MIME-typ..."
+
+#~ msgid "No Description"
+#~ msgstr "Ingen beskrivning"
+
+#~ msgid "Unknown sort rule %d"
+#~ msgstr "Okänd sorteringsregel %d"
+
+#~ msgid "Add Mime Type"
+#~ msgstr "Lägg till Mime-typ"
+
+#~ msgid "Mime Type"
+#~ msgstr "Mime-typ"
+
+#~ msgid "Audio-Video Interleave"
+#~ msgstr "Audio/Video-fil (AVI-fil)"
+
+#~ msgid "C-Shell script"
+#~ msgstr "C-skalskript"
+
+#~ msgid "FLC video animation"
+#~ msgstr "FLC-videoanimation"
+
+#~ msgid "FLI video animation"
+#~ msgstr "FLI-videoanimation"
+
+#~ msgid "GIMP image"
+#~ msgstr "GIMP-bild"
+
+#~ msgid "GNU license"
+#~ msgstr "GNU-licens"
+
+#~ msgid "HTML document"
+#~ msgstr "HTML-dokument"
+
+#~ msgid "MPEG URL"
+#~ msgstr "MPEG-URL"
+
+#~ msgid "PEF document"
+#~ msgstr "PEF-dokument"
+
+#~ msgid "PNG image\t"
+#~ msgstr "PNG-bild"
+
+#~ msgid "Python script"
+#~ msgstr "Pythonskript"
+
+#~ msgid "README file"
+#~ msgstr "README-fil"
+
+#~ msgid "S/MIME data"
+#~ msgstr "S/MIME-data"
+
+#~ msgid "SGI movie"
+#~ msgstr "SGI-film"
+
+#~ msgid "SV4Cpio document "
+#~ msgstr "SV4CPIO-dokument"
+
+#~ msgid "SV4Crc document "
+#~ msgstr "SV4Crc-dokument"
+
+#~ msgid "Troff ME-macros document"
+#~ msgstr "Troff ME-makrodokument"
+
+#~ msgid "Troff MS-macros document"
+#~ msgstr "Troff MS-makrodokument"
+
+#~ msgid "UStar archive"
+#~ msgstr "UStar-arkiv"
+
+#~ msgid "VRML data"
+#~ msgstr "VRML-data"
+
+#~ msgid "backup document"
+#~ msgstr "säkerhetskopia"
+
+#~ msgid "bzip archive"
+#~ msgstr "bzip-arkiv"
+
+#~ msgid "class code"
+#~ msgstr "klasskod"
+
+#~ msgid "compressed GIMP image archive"
+#~ msgstr "komprimerat GIMP-bildarkiv"
+
+#~ msgid "compressed bzip archive"
+#~ msgstr "komprimerat bzip-arkiv"
+
+#~ msgid "enriched text"
+#~ msgstr "enriched text"
+
+#~ msgid "gzip archive"
+#~ msgstr "gzip-arkiv"
+
+#~ msgid "link"
+#~ msgstr "länk"
+
+#~ msgid "ogg file"
+#~ msgstr "ogg-fil"
+
+#~ msgid "plain text"
+#~ msgstr "vanlig text"
+
+#~ msgid "pointer to remote data"
+#~ msgstr "pekare till fjärrdata"
+
+#~ msgid "rich text"
+#~ msgstr "rik text"
+
+#~ msgid "xfig image"
+#~ msgstr "xfig-bild"
+
+#~ msgid "Error writing to the wakeup GnomeVFSJob channel."
+#~ msgstr "Fel vid skrivning till GnomeVFSJob-kanalen."
+
+#~ msgid "Action"
+#~ msgstr "Åtgärd"
+
+#~ msgid "Extensions:"
+#~ msgstr "Filändelser:"
+
+#~ msgid "Invalid header `%s'"
+#~ msgstr "Ogiltigt huvud \"%s\""
+
+#~ msgid "HTTP server returned an invalid PROPFIND response"
+#~ msgstr "HTTP-servern returnerade ett ogiltigt PROPFIND-svar"
