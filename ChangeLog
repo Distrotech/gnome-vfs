@@ -1,3 +1,10 @@
+1999-12-16  Ettore Perazzoli  <ettore@helixcode.com>
+
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c
+	(impl_Notify_load_directory): Actually set the list in the
+	`GnomeVFSAsyncDirectoryOpInfo' struct when creating it from
+	scratch.
+
 1999-12-15  Elliot Lee  <sopwith@redhat.com>
 
 	* libgnomevfs*/*.c: Fix warnings.

@@ -581,8 +581,10 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 	meta_keys = op_info->meta_keys;
 
 	if (list == NULL) {
-		if (files->_length > 0)
-			list = gnome_vfs_directory_list_new ();
+		if (files->_length > 0) {
+			op_info->list = gnome_vfs_directory_list_new ();
+			list = op_info->list;
+		}
 	} else {
 		gnome_vfs_directory_list_last (list);
 	}
