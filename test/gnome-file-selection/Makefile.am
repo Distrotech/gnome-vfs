@@ -34,7 +34,8 @@ gnome_file_selection_test_corba_LDADD =				\
 	$(top_builddir)/libgnomevfs-corba/libgnomevfs-corba.la	\
 	$(GNOME_LIBDIR)						\
 	$(GNOMEUI_LIBS)						\
-	$(GNOMEGNORBA_LIBS)
+	$(GNOMEGNORBA_LIBS)                                     \
+        $(GCONF_LIBS)
 
 main_pthread.o: main.c
 	$(COMPILE) -DWITH_PTHREAD -o $@ -c $<

@@ -1,3 +1,11 @@
+1999-09-01  Dave Camp  <campd@oit.edu>
+
+	* configure.in: Check for GConf.
+
+	* modules/Makefile.am: Build libgconf.la if HAVE_GCONF is set.
+
+	* modules/gconf-method.c: New file.
+
 1999-09-01  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* test/test-async-directory.c (directory_load_callback): Added

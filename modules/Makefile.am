@@ -8,7 +8,6 @@ CPPFLAGS =					\
 	-D_REENTRANT
 
 module_flags = -export_dynamic -avoid-version
-
 modulesdir = $(prefix)/lib/vfs/modules
 
 modules_LTLIBRARIES =				\
@@ -35,6 +34,19 @@ libftp_la_SOURCES = 				\
 	util-url.h				\
 	parse.c					\
 	parse.h
+
+if HAVE_GCONF
+gconfmoduledir = $(modulesdir)
+gconfmodule_LTLIBRARIES = libgconf.la
+
+libgconf_la_SOURCES =                           \
+	gconf-method.c                          \
+        gconf-method.h
+libgconf_la_LIBADD = $(GCONF_LIBS)
+endif
+
+libgconf_la_LDFLAGS = $(module_flags)
+
 
 #libhttp_la_SOURCES =				\
 #	http-method.c				\

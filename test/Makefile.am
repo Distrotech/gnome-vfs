@@ -21,7 +21,8 @@ libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
 	$(GNOME_LIBDIR)					\
 	$(GNOMEUI_LIBS)					\
-	$(GNOMEGNORBA_LIBS)
+	$(GNOMEGNORBA_LIBS)                             \
+	$(GCONF_LIBS)
 
 test-async_pthread.o: test-async.c
 	$(COMPILE) -DWITH_PTHREAD -o $@ -c $<

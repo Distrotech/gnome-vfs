@@ -57,6 +57,24 @@ AC_SUBST(VFS_LIBDIR)
 AC_SUBST(VFS_INCLUDEDIR)
 AC_SUBST(VFS_LIBS)
 
+dnl 
+dnl gconf-method.c
+dnl
+AC_PATH_PROG(GCONF_CONFIG, gconf-config, no)
+if test x$GCONF_CONFIG = xno; then
+  AC_MSG_WARN([*** \`gconf' method will not be build ***])
+  GCONF_LIBS=
+  GCONF_CFLAGS=
+else
+  GCONF_LIBS=`gconf-config --libs`
+  GCONF_CFLAGS=`gconf-config --cflags`
+fi
+
+AM_CONDITIONAL(HAVE_GCONF, test -n "$GCONF_LIBS") 
+
+AC_SUBST(GCONF_LIBS)
+AC_SUBST(GCONF_CFLAGS)
+
 dnl
 dnl ftp-method.c
 dnl
