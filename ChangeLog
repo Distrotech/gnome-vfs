@@ -1,3 +1,12 @@
+2003-11-29  Murray Cumming  <murrayc@usa.net>
+   
+   	* libgnomevfs/Makefile.am: Use glib-mkenums to generate
+   	the get_type() functions for the gnome-vfs enums. The build file
+   	stuff is based on the same stuff in pango.
+ 	* libgnomevfs/gnome-vfs-uri.[h|cc]: Hand-code a get_type() function
+ 	for GnomeVFSURIHideOptions because glib-mkenums can not guess the
+ 	correct get_type() function name.
+
 2003-11-28  Jody Goldberg <jody@gnome.org>
 
 	* libgnomevfs/gnome-vfs-unix-mounts.c (get_fstab_file) : fix the
