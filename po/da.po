@@ -651,22 +651,22 @@ msgstr "Smugkig"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1176
+#: modules/http-method.c:1180
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:1570
+#: modules/http-method.c:1574
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:1801
+#: modules/http-method.c:1818
 #, c-format
 msgid "%s of %s read"
 msgstr "%s af %s læst"
 
-#: modules/http-method.c:1804
+#: modules/http-method.c:1821
 #, c-format
 msgid "%s read"
 msgstr "%s læst"
