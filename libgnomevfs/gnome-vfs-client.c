@@ -350,7 +350,7 @@ _gnome_vfs_get_client (void)
 		/* All Client callback happens in idle */
 		idle_poa = bonobo_poa_get_threaded (ORBIT_THREAD_HINT_ALL_AT_IDLE);
 		the_client = g_object_new (GNOME_TYPE_VFS_CLIENT,
-					   "poa", idle_poa);
+					   "poa", idle_poa, NULL);
 		CORBA_Object_release ((CORBA_Object) idle_poa, NULL);
 	}
 	G_UNLOCK (the_client);
