@@ -8,8 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.he\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-04-29 17:36+0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-21 04:40+0200\n"
+"PO-Revision-Date: 2003-06-21 11:00+0300\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +21,7 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d מכיל תוים ריקים."
+msgstr "%s:%d מכיל תווים ריקים."
 
 #: libgnomevfs/gnome-vfs-configuration.c:236
 #, c-format
@@ -63,7 +64,7 @@ msgstr "לא ניתן לפענח: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "התעלמות משגיאות הפיענוח הבאות."
+msgstr "התעלמות משגיאות הפענוח הבאות."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -113,7 +114,7 @@ msgstr "מבנה לא תקני"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr ""
+msgstr "מזהה קובץ שגוי"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
@@ -163,7 +164,7 @@ msgstr "סוף הקובץ"
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "לא סיפרייה"
+msgstr "לא ספרייה"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
@@ -173,7 +174,7 @@ msgstr "הפעולה בתהליך"
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
-msgstr "הפעולה הפורעה"
+msgstr "הפעולה הופרעה"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
@@ -198,7 +199,7 @@ msgstr "הוא ספרייה"
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "אין מספיק זכרון"
+msgstr "אין מספיק זיכרון"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -228,12 +229,12 @@ msgstr "הפעולה התבטלה"
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "הסיפרייה עסוקה"
+msgstr "הספרייה עסוקה"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "הסיפרייה לא ריקה"
+msgstr "הספרייה לא ריקה"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
@@ -283,12 +284,12 @@ msgstr "לא שוייכה פעולה ברירת מחדל"
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "אין מזהה לסכימת הכתובת"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr "שגיאה בפיענוח שורת הפקודה"
+msgstr "שגיאה בפרוק שורת הפקודה"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
@@ -408,3 +409,4 @@ msgstr "Gnome VFS moniker כללי"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "קובץ moniker רגיל"
+
