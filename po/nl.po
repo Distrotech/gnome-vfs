@@ -16,7 +16,7 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d heeft NUL waarden als karakter"
+msgstr "%s:%d bevat NUL karakters"
 
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
@@ -31,7 +31,7 @@ msgstr "%s:%d bevat geen modulenaam"
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Configuratiebestand '%s' was niet gevonden: %s"
+msgstr "Configuratiebestand '%s' is niet gevonden: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
@@ -65,52 +65,52 @@ msgstr "Interne fout"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Ongeldige waarden"
+msgstr "Ongeldige parameters"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Niet ondersteunde operatie"
+msgstr "Niet-ondersteunde operatie"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
-msgstr "I/O fout"
+msgstr "I/O-fout"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Data gecorruppeerd"
+msgstr "Data beschadigd"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Formaat niet gevonden"
+msgstr "Ongeldig formaat"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Foute bestand afhandeling"
+msgstr "Slechte bestandshandle"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "Bestand is te groot"
+msgstr "Bestand te groot"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Geen ruimte vrij op het device"
+msgstr "Geen ruimte vrij op het apparaat"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Alleen lezen bestandssysteem"
+msgstr "Alleen-lezen bestandssysteem"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
-msgstr "ongeldige URI"
+msgstr "Ongeldige URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
@@ -120,7 +120,7 @@ msgstr "Bestand niet open"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Openening modus niet geldig"
+msgstr "Ongeldige openingsmodus"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
@@ -145,7 +145,7 @@ msgstr "Geen directory"
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Operatie in werking..."
+msgstr "Operatie is bezig"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
@@ -155,12 +155,12 @@ msgstr "Operatie onderbroken"
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "Bestand bestaat al"
+msgstr "Bestand bestaat reeds"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Looping links gevonden"
+msgstr "Circulaire koppelingen gevonden"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
@@ -170,12 +170,12 @@ msgstr "Operatie niet toegestaan"
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
-msgstr "Is een directory"
+msgstr "Is een map"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Niet genoeg geheugen"
+msgstr "Onvoldoende geheugen"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -215,12 +215,12 @@ msgstr "Directory is niet leeg"
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "Teveel links"
+msgstr "Teveel koppelingen"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Alleen lezen bestandssysteem"
+msgstr "Alleen-lezen bestandssysteem"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
@@ -235,18 +235,17 @@ msgstr "Naam te lang"
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr ""
+msgstr "Dienst is niet beschikbaar"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr ""
+msgstr "Verzoek maakt gegevens van de dienst achterhaald"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
-#, fuzzy
 msgid "Protocol error"
-msgstr "Geen fout"
+msgstr "Protocolfout"
 
 #: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
@@ -262,348 +261,41 @@ msgid "%u bytes"
 msgstr "%u bytes"
 
 #: libgnomevfs/gnome-vfs-utils.c:74
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f K"
 msgstr "%.1fK"
 
 #: libgnomevfs/gnome-vfs-utils.c:78
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f MB"
-msgstr "%.1fM"
+msgstr "%.1fMb"
 
 #: libgnomevfs/gnome-vfs-utils.c:82
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f GB"
-msgstr "%.1fG"
+msgstr "%.1fGb"
 
 #: libgnomevfs/gnome-vfs-job.c:714
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown op type %u"
-msgstr "Onbekend proces ID %d"
+msgstr "Onbekend oper-type %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan geen 'pipe' creeren voor GIOChannel: %s"
+msgstr "Kan geen pijp creëren voor GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1596
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown job kind %u"
-msgstr "Onbekend proces ID %d"
+msgstr "Onbekend taaktype %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1632
 msgid "Operation stopped"
-msgstr "Operatie afgebroken"
+msgstr "Operatie gestopt"
 
 #: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"
 
-#, fuzzy
-#~ msgid "DCL script"
-#~ msgstr "Beschrijving"
-
-#, fuzzy
-#~ msgid "GNOME application details"
-#~ msgstr "Bewerk de applicatielijst"
-
-#, fuzzy
-#~ msgid "KDE application details"
-#~ msgstr "Bewerk de applicatielijst"
-
-#, fuzzy
-#~ msgid "Perl script"
-#~ msgstr "Beschrijving"
-
-#, fuzzy
-#~ msgid "S/MIME file"
-#~ msgstr "Mime-type"
-
-#, fuzzy
-#~ msgid "directory information file"
-#~ msgstr "Directory is niet leeg"
-
-#, fuzzy
-#~ msgid "email headers"
-#~ msgstr "Ongeldige header '%s'"
-
-#, fuzzy
-#~ msgid "shell script"
-#~ msgstr "Beschrijving"
-
-#, fuzzy
-#~ msgid "unknown type"
-#~ msgstr "Onbekend proces ID %d"
-
-#~ msgid "GNOME VFS already initialized."
-#~ msgstr "GNOME VFS is al geinitialiseerd."
-
-#~ msgid "Dying."
-#~ msgstr "Drogen"
-
-#~ msgid "Error reading: %s"
-#~ msgstr "Fout bij lezen: %s"
-
-#~ msgid "Error writing: %s"
-#~ msgstr "Fout bij schrijven: %s"
-
-#~ msgid "Cannot write: %s"
-#~ msgstr "Kan niet schrijven: %s"
-
-#~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Kan geen tijdelijk bestand maken met de naam '%s'"
-
-#~ msgid "Cannot create socket: %s"
-#~ msgstr "Kan geen socket maken: %s"
-
-#~ msgid "Cannot bind `%s': %s"
-#~ msgstr "Kan '%s' niet binden: %s"
-
-#~ msgid "Cannot listen on `%s': %s"
-#~ msgstr "Kan niet luisteren op '%s': %s"
-
-#~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Kan niet accepteren op '%s': %s"
-
-#~ msgid "Cannot initialize CORBA."
-#~ msgstr "Kan CORBA niet initializeren"
-
-#~ msgid "Cannot resolve initial reference to RootPOA."
-#~ msgstr " Cannot resolve initial reference to RootPOA."
-
-#~ msgid "Cannot activate POA manager."
-#~ msgstr "Kan de POA manager niet activeren."
-
-#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "Gebruik: %s <ior> [<iro_fd>]\n"
-
-#~ msgid "Cannot open file descriptor %d."
-#~ msgstr "Kan bestandsbeschrijver %d niet openen."
-
-#~ msgid "Notify interface for `%s' not found."
-#~ msgstr "Waarschuwings interface voor '%s' niet gevonden."
-
-#~ msgid "Cannot setup Request object."
-#~ msgstr "Kan het gevraagde Object niet opzetten."
-
-#~ msgid "Cannot extract IOR."
-#~ msgstr "Kan IOR niet extracten."
-
-#~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "(lame?)Got weird string from the slave process: `%s'"
-
-#~ msgid "Cannot get object for `%s'"
-#~ msgstr "Kan object niet krijgen voor '%s'"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Kan GNOME::VFS::Slave:Notify niet killen -- uitzondering %s"
-
-#~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "Kan socket niet openen voor '%s': %s"
-
-#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-#~ msgstr "Kan GNOME::VFS:Slave::Notify niet initaliazeren"
-
-#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Kan  GNOME::VFS::Slave %s niet herstarten -- uitzondering %s"
-
-#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr ""
-#~ "Kan GNOME::VFS::Slave (IOR unknown) niet herstarten -- uitzondering %s"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Kan GNOME::VFS::Slave %s niet afsluiten -- uitzondering %s"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr ""
-#~ "Kan GNOME::VFS::Slave (IOR unknown) niet afsluiten -- uitzondering %s"
-
-#~ msgid "Edit Applications List"
-#~ msgstr "Bewerk de applicatielijst"
-
-#, fuzzy
-#~ msgid "Select applications to appear in menu for MIME type \"%s\""
-#~ msgstr "Select applicaties die in het menu voorkomen voor mime-type \"%s\""
-
-#~ msgid "Add Application..."
-#~ msgstr "Voeg applicatie toe"
-
-#~ msgid "Edit Application..."
-#~ msgstr "Bewerk applicatie..."
-
-#~ msgid "Delete Application"
-#~ msgstr "Verwijder Applicatie"
-
-#~ msgid "Edit Components List"
-#~ msgstr "Edit Componentenlijst"
-
-#, fuzzy
-#~ msgid "Select views to appear in menu for MIME type \"%s\""
-#~ msgstr "Select de bekijkmethoden die in het menu voorkomen voor \"%s\""
-
-#, fuzzy
-#~ msgid "Add New MIME Type"
-#~ msgstr "Voeg mime-type toe"
-
-#, fuzzy
-#~ msgid "Add MIME Type"
-#~ msgstr "Voeg mime-type toe"
-
-#, fuzzy
-#~ msgid "File Extensions "
-#~ msgstr "Extensie"
-
-#, fuzzy
-#~ msgid "Add..."
-#~ msgstr "Toevoegen"
-
-#, fuzzy
-#~ msgid "    Remove    "
-#~ msgstr "Verwijderen"
-
-#~ msgid "Add New Extension"
-#~ msgstr "Voeg een nieuwe extensie toe"
-
-#, fuzzy
-#~ msgid ""
-#~ "Type in the extensions for this mime-type (without dot).\n"
-#~ "You can enter several extensions seperated by a space,\n"
-#~ "for example: html htm"
-#~ msgstr ""
-#~ "Type de extenties in voor dit mime-type\n"
-#~ "Bijvoorbeeld:  .html, .htm"
-
-#~ msgid "Extension:"
-#~ msgstr "Extensie"
-
-#, fuzzy
-#~ msgid "Bad Application Name"
-#~ msgstr "Applicatienaam:"
-
-#, fuzzy
-#~ msgid "Bad Application Command"
-#~ msgstr "Applicatiecommando:"
-
-#, fuzzy
-#~ msgid "Add Application"
-#~ msgstr "Voeg applicatie toe"
-
-#, fuzzy
-#~ msgid "Edit Application"
-#~ msgstr "Bewerk applicatie..."
-
-#~ msgid "Application Name:"
-#~ msgstr "Applicatienaam:"
-
-#~ msgid "Application Command:"
-#~ msgstr "Applicatiecommando:"
-
-#~ msgid "Open Behavior"
-#~ msgstr "Open methode"
-
-#~ msgid "Can open multiple files"
-#~ msgstr "Kan niet meerdere bestanden openen"
-
-#~ msgid "Can open from URI"
-#~ msgstr "Kan niet openen vanaf een URI"
-
-#, fuzzy
-#~ msgid "MIME Type"
-#~ msgstr "Mime-type"
-
-#~ msgid "Change Icon"
-#~ msgstr "Verander het icoon"
-
-#, fuzzy
-#~ msgid "Change File Extensions"
-#~ msgstr "Voeg een nieuwe extensie toe"
-
-#, fuzzy
-#~ msgid "Default Action:"
-#~ msgstr "Verwijder Applicatie"
-
-#~ msgid "Use Viewer"
-#~ msgstr "gebruiker bekijker....."
-
-#~ msgid "Open With Application"
-#~ msgstr "Open met applicatie"
-
-#~ msgid "Edit List"
-#~ msgstr "Bewerk lijst"
-
-#, fuzzy
-#~ msgid "Add New MIME Type..."
-#~ msgstr "Voed nieuw mime-type toe....."
-
-#, fuzzy
-#~ msgid "Delete This MIME Type"
-#~ msgstr "verwijder dit mime-type...."
-
-#~ msgid "None"
-#~ msgstr "Geen"
-
-#, fuzzy
-#~ msgid "none"
-#~ msgstr "Geen"
-
-#~ msgid "Description"
-#~ msgstr "Beschrijving"
-
-#~ msgid "Extension"
-#~ msgstr "Extensie"
-
-#, fuzzy
-#~ msgid "Default Action"
-#~ msgstr "Verwijder Applicatie"
-
-#~ msgid "%s to retrieve"
-#~ msgstr "%s te ontvangen"
-
-#~ msgid "Closing connection to %s"
-#~ msgstr "sluit verbinding naar %s"
-
-#~ msgid "%s of %s read"
-#~ msgstr "%s of %s gelezen"
-
-#~ msgid "%s read"
-#~ msgstr "%s gelezen"
-
-#, fuzzy
-#~ msgid "Go to the parent directory"
-#~ msgstr "Geen directory"
-
-#, fuzzy
-#~ msgid "Go to the home directory"
-#~ msgstr "Geen directory"
-
-#~ msgid "Unknown sort rule %d"
-#~ msgstr "Onbekent soort regel %d"
-
-#~ msgid "Error writing to the wakeup GnomeVFSJob channel."
-#~ msgstr "Error writing to the wakeup GnomeVFSJob channel.(DO NOT TRANSLATE)"
-
-#~ msgid ""
-#~ "Add a new Mime Type\n"
-#~ "For example:  image/tiff; text/x-scheme"
-#~ msgstr ""
-#~ "Voer een nieuw mimetype toe:\n"
-#~ "Bijvoorbeeld:  image/tiff; text/x-scheme"
-
-#~ msgid "Mime Type:"
-#~ msgstr "Mimetype:"
-
-#~ msgid "Type in a description for this mime-type."
-#~ msgstr "Type de beschrijving in voor dit mime-type."
-
-#~ msgid "Description:"
-#~ msgstr "Beschrijving:"
-
-#~ msgid "New Application"
-#~ msgstr "Nieuwe applicatie"
-
-#~ msgid "Action"
-#~ msgstr "Actie"
-
-#~ msgid "HTTP server returned an invalid PROPFIND response"
-#~ msgstr "HTTP server retourneerde een ongeldig PROPFIND antwoord"
