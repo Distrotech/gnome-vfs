@@ -74,6 +74,9 @@
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-api.h"
 #include "gnome-vfs-standard-callbacks.h"
+#include "gnome-vfs-socket-buffer.h"
+#include "gnome-vfs-socket.h"
+#include "gnome-vfs-ssl.h"
 
 #include "http-method.h"
 #include "http-cache.h"
@@ -114,8 +117,9 @@ http_debug_printf (char *fmt, ...)
 /* Custom User-Agent environment variable */
 #define CUSTOM_USER_AGENT_VARIABLE "GNOME_VFS_HTTP_USER_AGENT"
 
-/* Standard HTTP port.  */
+/* Standard HTTP[S] port.  */
 #define DEFAULT_HTTP_PORT 	80
+#define DEFAULT_HTTPS_PORT 	443
 
 /* Standard HTTP proxy port */
 #define DEFAULT_HTTP_PROXY_PORT 8080
@@ -201,8 +205,7 @@ static gchar *gl_http_proxy = NULL;
 static gchar *gl_http_proxy_auth = NULL;
 
 typedef struct {
-	GnomeVFSInetConnection *connection;
-	GnomeVFSIOBuf *iobuf;
+	GnomeVFSSocketBuffer *socket_buffer;
 	char *uri_string;
 	GnomeVFSURI *uri;
 	/* The list of headers returned with this response, newlines removed */
@@ -260,16 +263,14 @@ defaults_file_info_new (void)
 }
 
 static HttpFileHandle *
-http_file_handle_new (GnomeVFSInetConnection *connection,
-		      GnomeVFSIOBuf *iobuf,
+http_file_handle_new (GnomeVFSSocketBuffer *socket_buffer,
 		      GnomeVFSURI *uri)
 {
 	HttpFileHandle *result;
 
 	result = g_new0 (HttpFileHandle, 1);
 
-	result->connection = connection;
-	result->iobuf = iobuf;
+	result->socket_buffer = socket_buffer;
 	result->uri_string = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE );
 	result->uri = uri;
 	gnome_vfs_uri_ref(result->uri);
@@ -553,7 +554,7 @@ parse_header (HttpFileHandle *handle,
 /* Header/status reading.  */
 
 static GnomeVFSResult
-get_header (GnomeVFSIOBuf *iobuf,
+get_header (GnomeVFSSocketBuffer *socket_buffer,
 	    GString *s)
 {
 	GnomeVFSResult result;
@@ -569,7 +570,8 @@ get_header (GnomeVFSIOBuf *iobuf,
 		char c;
 
 		/* ANALYZE_HTTP ("==> +get_header read"); */
-		result = gnome_vfs_iobuf_read (iobuf, &c, 1, &bytes_read);
+		result = gnome_vfs_socket_buffer_read (socket_buffer, &c, 1,
+				&bytes_read);
 		/* ANALYZE_HTTP ("==> -get_header read"); */
 
 		if (result != GNOME_VFS_OK) {
@@ -584,7 +586,8 @@ get_header (GnomeVFSIOBuf *iobuf,
 			if (count != 0 && (count != 1 || s->str[0] != '\r')) {
 				char next;
 
-				result = gnome_vfs_iobuf_peekc (iobuf, &next);
+				result = gnome_vfs_socket_buffer_peekc (
+						socket_buffer, &next);
 				if (result != GNOME_VFS_OK) {
 					return result;
 				}
@@ -616,27 +619,24 @@ get_header (GnomeVFSIOBuf *iobuf,
 /* rename this function? */
 static GnomeVFSResult
 create_handle (GnomeVFSURI *uri,
-	       GnomeVFSInetConnection *connection,
+	       GnomeVFSSocketBuffer *socket_buffer,
 	       GnomeVFSContext *context,
 	       /* OUT */ HttpFileHandle **p_handle)
 {
 	GString *header_string;
 	GnomeVFSResult result;
 	guint server_status;
-	GnomeVFSIOBuf *iobuf;
 
 	g_return_val_if_fail (p_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
 
-	iobuf = gnome_vfs_inet_connection_get_iobuf (connection);
-	
-	*p_handle = http_file_handle_new (connection, iobuf, uri);
+	*p_handle = http_file_handle_new (socket_buffer, uri);
 
 	header_string = g_string_new (NULL);
 
 	ANALYZE_HTTP ("==> +create_handle");
 
 	/* This is the status report string, which is the first header.  */
-	result = get_header (iobuf, header_string);
+	result = get_header (socket_buffer, header_string);
 	if (result != GNOME_VFS_OK) {
 		goto error;
 	}
@@ -653,7 +653,7 @@ create_handle (GnomeVFSURI *uri,
 
 	/* Header fetching loop.  */
 	for (;;) {
-		result = get_header (iobuf, header_string);
+		result = get_header (socket_buffer, header_string);
 		if (result != GNOME_VFS_OK) {
 			break;
 		}
@@ -939,11 +939,121 @@ proxy_unset_authn (void)
 }
 
 
+static GnomeVFSResult
+https_proxy (GnomeVFSSocket **socket_return,
+	     gchar *proxy_host,
+	     gint proxy_port,
+	     gchar *server_host,
+	     gint server_port)
+{
+	/* use CONNECT to do https proxying. It goes something like this:
+	 * >CONNECT server:port HTTP/1.0
+	 * >
+	 * <HTTP/1.0 200 Connection-established
+	 * <Proxy-agent: Apache/1.3.19 (Unix) Debian/GNU
+	 * <
+	 * and then we've got an open connection.
+	 *
+	 * So we sent "CONNECT server:port HTTP/1.0\r\n\r\n"
+	 * Check the HTTP status.
+	 * Wait for "\r\n\r\n"
+	 * Start doing the SSL dance.
+	 */
+
+	GnomeVFSResult result;
+	GnomeVFSInetConnection *http_connection;
+	GnomeVFSSocket *http_socket;
+	GnomeVFSSocket *https_socket;
+	GnomeVFSSSL *ssl;
+	char *buffer;
+	GnomeVFSFileSize bytes;
+	guint status_code;
+	gint fd;
+
+	result = gnome_vfs_inet_connection_create (&http_connection, 
+			proxy_host, proxy_port, NULL);
+
+	if (result != GNOME_VFS_OK) {
+		return result;
+	}
+
+	fd = gnome_vfs_inet_connection_get_fd (http_connection);
+
+	http_socket = gnome_vfs_inet_connection_to_socket (http_connection);
+
+	buffer = g_strdup_printf ("CONNECT %s:%d HTTP/1.0\r\n\r\n",
+			server_host, server_port);
+	result = gnome_vfs_socket_write (http_socket, buffer, strlen(buffer),
+			&bytes);
+	g_free (buffer);
+
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_socket_close (http_socket);
+		return result;
+	}
+
+	buffer = proxy_get_authn_header_for_uri (NULL); /* FIXME need uri */
+	if (buffer != NULL) {
+		result = gnome_vfs_socket_write (http_socket, buffer, 
+				strlen(buffer), &bytes);
+		g_free (buffer);
+	}
+
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_socket_close (http_socket);
+		return result;
+	}
+
+	bytes = 8192;
+	buffer = g_malloc0 (bytes);
+
+	result = gnome_vfs_socket_read (http_socket, buffer, bytes-1, &bytes);
+
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_socket_close (http_socket);
+		g_free (buffer);
+		return result;
+	}
+
+	if (!parse_status (buffer, &status_code)) {
+		gnome_vfs_socket_close (http_socket);
+		g_free (buffer);
+		return GNOME_VFS_ERROR_PROTOCOL_ERROR;
+	}
+
+	result = http_status_to_vfs_result (status_code);
+
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_socket_close (http_socket);
+		g_free (buffer);
+		return result;
+	}
+
+	/* okay - at this point we've read some stuff from the socket.. */
+	/* FIXME: for now we'll assume thats all the headers and nothing but. */
+
+	g_free (buffer);
+
+	result = gnome_vfs_ssl_create_from_fd (&ssl, fd);
+
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_socket_close (http_socket);
+		return result;
+	}
+
+	https_socket = gnome_vfs_ssl_to_socket (ssl);
+
+	*socket_return = https_socket;
+
+	return GNOME_VFS_OK;
+}
+
+
 
 static GnomeVFSResult
 connect_to_uri (
 	GnomeVFSToplevelURI *toplevel_uri, 
-	/* OUT */ GnomeVFSInetConnection **p_connection,
+	/* OUT */ GnomeVFSSocketBuffer **p_socket_buffer,
 	/* OUT */ gboolean * p_proxy_connect)
 {
 	guint host_port;
@@ -951,16 +1061,32 @@ connect_to_uri (
 	guint proxy_port;
 	GnomeVFSResult result;
 	GnomeVFSCancellation * cancellation;
+	GnomeVFSInetConnection *connection;
+	GnomeVFSSSL *ssl;
+	GnomeVFSSocket *socket;
+	gboolean https = FALSE;
 
 	cancellation = gnome_vfs_context_get_cancellation (
 				gnome_vfs_context_peek_current());
 
-	g_return_val_if_fail (p_connection != NULL, GNOME_VFS_ERROR_INTERNAL);
+	g_return_val_if_fail (p_socket_buffer != NULL, GNOME_VFS_ERROR_INTERNAL);
 	g_return_val_if_fail (p_proxy_connect != NULL, GNOME_VFS_ERROR_INTERNAL);
 	g_return_val_if_fail (toplevel_uri != NULL, GNOME_VFS_ERROR_INTERNAL);
 
+	if (!strcasecmp (gnome_vfs_uri_get_scheme (&toplevel_uri->uri), 
+				"https")) {
+		if (!gnome_vfs_ssl_enabled ()) {
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;
+		}
+		https = TRUE;
+	}
+
 	if (toplevel_uri->host_port == 0) {
-		host_port = DEFAULT_HTTP_PORT;
+		if (https) {
+			host_port = DEFAULT_HTTPS_PORT;
+		} else {
+			host_port = DEFAULT_HTTP_PORT;
+		}
 	} else {
 		host_port = toplevel_uri->host_port;
 	}
@@ -973,22 +1099,64 @@ connect_to_uri (
 	}
 
 	if (proxy_for_uri (toplevel_uri, &proxy_host, &proxy_port)) {
-		*p_proxy_connect = TRUE;
+		if (https) {
+			*p_proxy_connect = FALSE;
 
-		result = gnome_vfs_inet_connection_create (p_connection,
-							   proxy_host,
-							   proxy_port,
-							   cancellation);
+			result = https_proxy (&socket, proxy_host, proxy_port,
+					toplevel_uri->host_name, host_port);
 
-		g_free (proxy_host);
-		proxy_host = NULL;
+			g_free (proxy_host);
+			proxy_host = NULL;
+
+			if (result != GNOME_VFS_OK) {
+				return result;
+			}
+
+		} else {
+			*p_proxy_connect = TRUE;
+
+			result = gnome_vfs_inet_connection_create (&connection,
+							proxy_host,
+							proxy_port, 
+							cancellation);
+			if (result != GNOME_VFS_OK) {
+				return result;
+			}
+			socket = gnome_vfs_inet_connection_to_socket 
+								(connection);
+
+			g_free (proxy_host);
+			proxy_host = NULL;
+		}
 	} else {
 		*p_proxy_connect = FALSE;
 
-		result = gnome_vfs_inet_connection_create (p_connection,
-							   toplevel_uri->host_name,
-							   host_port,
-							   cancellation);
+		if (https) {
+			result = gnome_vfs_ssl_create (&ssl, 
+					toplevel_uri->host_name, host_port);
+
+			if (result != GNOME_VFS_OK) {
+				return result;
+			}
+			socket = gnome_vfs_ssl_to_socket (ssl);
+		} else {
+			result = gnome_vfs_inet_connection_create (&connection,
+						   toplevel_uri->host_name,
+						   host_port,
+						   cancellation);
+			if (result != GNOME_VFS_OK) {
+				return result;
+			}
+			socket = gnome_vfs_inet_connection_to_socket 
+								(connection);
+		}
+	}
+
+	*p_socket_buffer = gnome_vfs_socket_buffer_new (socket);
+
+	if (*p_socket_buffer == NULL) {
+		gnome_vfs_socket_close (socket);
+		return GNOME_VFS_ERROR_INTERNAL;
 	}
 
 	ANALYZE_HTTP ("==> -Making connection");
@@ -1057,7 +1225,8 @@ build_request (const char * method, GnomeVFSToplevelURI * toplevel_uri, gboolean
 }
 
 static GnomeVFSResult
-xmit_request (GnomeVFSIOBuf *iobuf, GString * request, GByteArray *data)
+xmit_request (GnomeVFSSocketBuffer *socket_buffer, GString * request, 
+		GByteArray *data)
 {
 	GnomeVFSResult result;
 	GnomeVFSFileSize bytes_written;
@@ -1065,8 +1234,8 @@ xmit_request (GnomeVFSIOBuf *iobuf, GString * request, GByteArray *data)
 	ANALYZE_HTTP ("==> Writing request and header");
 
 	/* Transmit the request headers.  */
-	result = gnome_vfs_iobuf_write (iobuf, request->str, request->len,
-					&bytes_written);
+	result = gnome_vfs_socket_buffer_write (socket_buffer, request->str, 
+			request->len, &bytes_written);
 
 	if (result != GNOME_VFS_OK) {
 		goto error;
@@ -1076,15 +1245,15 @@ xmit_request (GnomeVFSIOBuf *iobuf, GString * request, GByteArray *data)
 	if(data && data->data) {
 		ANALYZE_HTTP ("==> Writing data");
 		
-		result = gnome_vfs_iobuf_write (iobuf, data->data, data->len,
-						&bytes_written);
+		result = gnome_vfs_socket_buffer_write (socket_buffer, 
+				data->data, data->len, &bytes_written);
 	}
 
 	if (result != GNOME_VFS_OK) {
 		goto error;
 	}
 
-	result = gnome_vfs_iobuf_flush (iobuf);	
+	result = gnome_vfs_socket_buffer_flush (socket_buffer);	
 
 error:
 	return result;
@@ -1098,8 +1267,7 @@ make_request (HttpFileHandle **handle_return,
 	      gchar *extra_headers,
 	      GnomeVFSContext *context)
 {
-	GnomeVFSInetConnection *connection;
-	GnomeVFSIOBuf *iobuf;
+	GnomeVFSSocketBuffer *socket_buffer;
 	GnomeVFSResult result;
 	GnomeVFSToplevelURI *toplevel_uri;
 	GString *request;
@@ -1112,8 +1280,6 @@ make_request (HttpFileHandle **handle_return,
 
 	ANALYZE_HTTP ("==> +make_request");
 
-	connection		= NULL;
-	iobuf			= NULL;
 	request 		= NULL;
 	proxy_connect 		= FALSE;
 	authn_header_request	= NULL;
@@ -1122,14 +1288,16 @@ make_request (HttpFileHandle **handle_return,
 	toplevel_uri = (GnomeVFSToplevelURI *) uri;
 
 	for (;;) {
-		result = connect_to_uri (toplevel_uri, &connection, &proxy_connect);
+		g_free (authn_header_request);
+		g_free (authn_header_proxy);
+
+		result = connect_to_uri (toplevel_uri, &socket_buffer, 
+				&proxy_connect);
 		
 		if (result != GNOME_VFS_OK) {
 			break;
 		}
 		
-		iobuf = gnome_vfs_inet_connection_get_iobuf (connection);
-
 		request = build_request (method, toplevel_uri, proxy_connect);
 
 		authn_header_request = http_authn_get_header_for_uri (uri);
@@ -1159,7 +1327,7 @@ make_request (HttpFileHandle **handle_return,
 		/* Empty line ends header section.  */
 		g_string_append (request, "\r\n");
 
-		result = xmit_request (iobuf, request, data);
+		result = xmit_request (socket_buffer, request, data);
 		g_string_free (request, TRUE);
 		request = NULL;
 
@@ -1168,9 +1336,8 @@ make_request (HttpFileHandle **handle_return,
 		}
 
 		/* Read the headers and create our internal HTTP file handle.  */
-		result = create_handle (uri, connection, context, handle_return);
-		iobuf = NULL;
-		connection = NULL;
+		result = create_handle (uri, socket_buffer, context, handle_return);
+		socket_buffer = NULL;
 
 		if (result == GNOME_VFS_OK) {
 			break;
@@ -1203,9 +1370,8 @@ make_request (HttpFileHandle **handle_return,
 		g_string_free (request, TRUE);
 	}
 	
-	gnome_vfs_iobuf_destroy (iobuf);
-	if (connection != NULL) {
-		gnome_vfs_inet_connection_destroy (connection, NULL);
+	if (socket_buffer != NULL) {
+		gnome_vfs_socket_buffer_destroy (socket_buffer, TRUE);
 	}
 	
 	ANALYZE_HTTP ("==> -make_request");
@@ -1219,20 +1385,13 @@ http_handle_close (HttpFileHandle *handle,
 	ANALYZE_HTTP ("==> +http_handle_close");
 	
 	if (handle != NULL) {
-		/* Both iobuf and connection can be NULL if a create and a close */
-		/* was done with no i/o */
-		if (handle->iobuf) {
-			gnome_vfs_iobuf_flush (handle->iobuf);
-			gnome_vfs_iobuf_destroy (handle->iobuf);
-			handle->iobuf = NULL;
+		if (handle->socket_buffer) {
+			gnome_vfs_socket_buffer_flush (handle->socket_buffer);
+			gnome_vfs_socket_buffer_destroy (handle->socket_buffer,
+					TRUE);
+			handle->socket_buffer = NULL;
 		}
 
-		if (handle->connection) {
-			gnome_vfs_inet_connection_destroy (handle->connection,
-							   context ? gnome_vfs_context_get_cancellation(context) : NULL);
-			handle->connection = NULL;
-		}
-		
 		http_file_handle_destroy (handle);
 	}
 	
@@ -1262,7 +1421,7 @@ do_open (GnomeVFSMethod *method,
 		result = make_request (&handle, uri, "GET", NULL, NULL,
 				       context);
 	} else {
-		handle = http_file_handle_new(NULL, NULL, uri); /* shrug */
+		handle = http_file_handle_new(NULL, uri); /* shrug */
 	}
 	if (result == GNOME_VFS_OK) {
 		*method_handle = (GnomeVFSMethodHandle *) handle;
@@ -1465,8 +1624,8 @@ do_read (GnomeVFSMethod *method,
 		num_bytes = MIN (max_bytes, num_bytes);
 	}
 
-	result = gnome_vfs_iobuf_read (handle->iobuf, buffer, num_bytes,
-				       bytes_read);
+	result = gnome_vfs_socket_buffer_read (handle->socket_buffer, buffer, 
+			num_bytes, bytes_read);
 	
 	if (*bytes_read == 0) {
 		return GNOME_VFS_ERROR_EOF;
@@ -1580,9 +1739,10 @@ process_propfind_propstat (xmlNodePtr node,
 static GnomeVFSURI *
 propfind_href_to_vfs_uri (const char *propfind_href_uri)
 {
+#ifdef THIS_IS_EVIL_AND_NOBODY_NEEDS_IT_ANY_MORE
 	size_t https_len = strlen ("https:");
 	GnomeVFSURI *ret;
-	
+
 	if (strncmp (propfind_href_uri, "https:", https_len) == 0) {
 		char *new_uri;
 		new_uri = g_strconcat ("http:", https_len + propfind_href_uri, NULL);
@@ -1593,6 +1753,9 @@ propfind_href_to_vfs_uri (const char *propfind_href_uri)
 	}
 	
 	return ret;
+#else
+	return gnome_vfs_uri_new (propfind_href_uri);
+#endif
 }
 
 /* a strcmp that doesn't barf on NULLs */
@@ -1963,7 +2126,7 @@ do_open_directory(GnomeVFSMethod *method,
 	file_info_cached = http_cache_check_directory_uri (uri, &child_file_info_cached_list);
 
 	if (file_info_cached) {
-		handle = http_file_handle_new (NULL, NULL, uri);
+		handle = http_file_handle_new (NULL, uri);
 		handle->file_info = file_info_cached;
 		handle->files = child_file_info_cached_list;
 		result = GNOME_VFS_OK;

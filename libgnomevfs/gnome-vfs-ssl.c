@@ -34,6 +34,7 @@
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-ssl-private.h"
 #include "gnome-vfs-ssl.h"
+#include "gnome-vfs-socket-private.h"
 
 #ifdef HAVE_OPENSSL
 #include <openssl/ssl.h>
@@ -83,12 +84,12 @@ gnome_vfs_ssl_enabled ()
 }
 
 /* FIXME: add *some* kind of cert verification! */
-GnomeVFSSSL *
-gnome_vfs_ssl_new (const char *host, unsigned int port)
+GnomeVFSResult
+gnome_vfs_ssl_create (GnomeVFSSSL **handle_return, 
+		      const char *host, 
+		      unsigned int port)
 {
 #ifdef HAVE_OPENSSL
-	GnomeVFSSSL *ssl;
-	SSL_CTX *ssl_ctx = NULL;
 	int fd;
 	int ret;
 	struct hostent *h;
@@ -99,18 +100,33 @@ gnome_vfs_ssl_new (const char *host, unsigned int port)
 
 	if (h == NULL) {
 		/* host lookup failed */
-		return NULL;
+		return gnome_vfs_result_from_h_errno ();
 	}
 
         sin.sin_family = h->h_addrtype;
         memcpy (&sin.sin_addr, h->h_addr, sizeof (sin.sin_addr));
 
         fd = socket (h->h_addrtype, SOCK_STREAM, 0);
+	if (fd < 0) {
+		return gnome_vfs_result_from_errno ();
+	}
+
 	ret = connect (fd, (struct sockaddr *)&sin, sizeof (sin));
 	if (ret == -1) {
 		/* connect failed */
-		return NULL;
+		return gnome_vfs_result_from_errno ();
 	}
+
+	return gnome_vfs_ssl_create_from_fd (handle_return, fd);
+}
+
+GnomeVFSResult
+gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return, 
+		              gint fd)
+{
+	GnomeVFSSSL *ssl;
+	SSL_CTX *ssl_ctx = NULL;
+	int ret;
 
 	ssl = g_new0 (GnomeVFSSSL, 1);
 	ssl->private = g_new0 (GnomeVFSSSLPrivate, 1);
@@ -120,14 +136,14 @@ gnome_vfs_ssl_new (const char *host, unsigned int port)
         ssl_ctx = SSL_CTX_new (SSLv23_client_method ());
 
 	if (ssl_ctx == NULL) {
-		return NULL;
+		return GNOME_VFS_ERROR_INTERNAL;
 	}
 
         /* FIXME: SSL_CTX_set_verify (ssl_ctx, SSL_VERIFY_PEER, &ssl_verify);*/
         ssl->private->ssl = SSL_new (ssl_ctx);
 
 	if (ssl->private->ssl == NULL) {
-		return NULL;
+		return GNOME_VFS_ERROR_IO;
 	}
 
         SSL_set_fd (ssl->private->ssl, fd);
@@ -142,28 +158,19 @@ gnome_vfs_ssl_new (const char *host, unsigned int port)
                 SSL_free (ssl->private->ssl);
 		g_free (ssl->private);
 		g_free (ssl);
-		return NULL;
+		return GNOME_VFS_ERROR_IO;
 	}
 
-	return ssl;
+	*handle_return = ssl;
+
+	return GNOME_VFS_OK;
 
 
 #else
-	return NULL;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif
 }
 
-GnomeVFSSSL *
-gnome_vfs_ssl_new_from_uri (GnomeVFSURI *uri)
-{
-	unsigned int port;
-	const char *hostname;
-
-	port = gnome_vfs_uri_get_host_port (uri);
-	hostname = gnome_vfs_uri_get_host_name (uri);
-
-	return gnome_vfs_ssl_new (hostname, port);
-}
 GnomeVFSResult 
 gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 		    gpointer buffer,
@@ -188,10 +195,11 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 #endif
 }
 
-GnomeVFSResult gnome_vfs_ssl_write        (GnomeVFSSSL *ssl,
-					   gconstpointer buffer,
-					   GnomeVFSFileSize bytes,
-					   GnomeVFSFileSize *bytes_written)
+GnomeVFSResult 
+gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
+		     gconstpointer buffer,
+		     GnomeVFSFileSize bytes,
+		     GnomeVFSFileSize *bytes_written)
 {
 #if HAVE_OPENSSL
 	if (bytes == 0) {
@@ -222,4 +230,16 @@ gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl) {
 #endif
 	g_free (ssl->private);
 	g_free (ssl);
+}
+
+static GnomeVFSSocketImpl ssl_socket_impl = {
+	(GnomeVFSSocketReadFunc)gnome_vfs_ssl_read,
+	(GnomeVFSSocketWriteFunc)gnome_vfs_ssl_write,
+	(GnomeVFSSocketCloseFunc)gnome_vfs_ssl_destroy
+};
+
+GnomeVFSSocket *
+gnome_vfs_ssl_to_socket (GnomeVFSSSL *ssl)
+{
+	return gnome_vfs_socket_new (&ssl_socket_impl, ssl);
 }

@@ -28,26 +28,32 @@
 
 #include <glib.h>
 
+#include "gnome-vfs.h"
+#include "gnome-vfs-socket.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif /*__cplusplus*/
 
 typedef struct GnomeVFSSSL GnomeVFSSSL;
 
-gboolean       gnome_vfs_ssl_enabled      (void);
+gboolean        gnome_vfs_ssl_enabled        (void);
 /* FIXME: add *some* kind of cert verification! */
-GnomeVFSSSL   *gnome_vfs_ssl_new          (const char *host, 
-		                           unsigned int port);
-GnomeVFSSSL   *gnome_vfs_ssl_new_from_uri (GnomeVFSURI *uri);
-GnomeVFSResult gnome_vfs_ssl_read         (GnomeVFSSSL *ssl,
-					   gpointer buffer,
-					   GnomeVFSFileSize bytes,
-				      	   GnomeVFSFileSize *bytes_read);
-GnomeVFSResult gnome_vfs_ssl_write        (GnomeVFSSSL *ssl,
-					   gconstpointer buffer,
-					   GnomeVFSFileSize bytes,
-					   GnomeVFSFileSize *bytes_written);
-void           gnome_vfs_ssl_destroy      (GnomeVFSSSL *ssl);
+GnomeVFSResult  gnome_vfs_ssl_create         (GnomeVFSSSL **handle_return,
+		                              const char *host, 
+		                              unsigned int port);
+GnomeVFSResult  gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
+					      gint fd);
+GnomeVFSResult  gnome_vfs_ssl_read           (GnomeVFSSSL *ssl,
+					      gpointer buffer,
+					      GnomeVFSFileSize bytes,
+				      	      GnomeVFSFileSize *bytes_read);
+GnomeVFSResult  gnome_vfs_ssl_write          (GnomeVFSSSL *ssl,
+					      gconstpointer buffer,
+					      GnomeVFSFileSize bytes,
+					      GnomeVFSFileSize *bytes_written);
+void            gnome_vfs_ssl_destroy        (GnomeVFSSSL *ssl);
+GnomeVFSSocket *gnome_vfs_ssl_to_socket      (GnomeVFSSSL *ssl);
 
 #ifdef __cplusplus
 }

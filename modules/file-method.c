@@ -315,11 +315,11 @@ do_read (GnomeVFSMethod *method,
 
 	file_handle = (FileHandle *) method_handle;
 
-	do
+	do {
 		read_val = read (file_handle->fd, buffer, num_bytes);
-	while (read_val == -1
-	       && errno == EINTR
-	       && ! gnome_vfs_context_check_cancellation (context));
+	} while (read_val == -1
+	         && errno == EINTR
+	         && ! gnome_vfs_context_check_cancellation (context));
 
 	if (read_val == -1) {
 		*bytes_read = 0;

@@ -1,3 +1,30 @@
+2001-05-31  Ian McKellar  <yakk@yakk.net>
+
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-inet-connection.c:
+	(gnome_vfs_inet_connection_create),
+	(gnome_vfs_inet_connection_get_iobuf),
+	(gnome_vfs_inet_connection_get_fd),
+	(gnome_vfs_inet_connection_read),
+	(gnome_vfs_inet_connection_write),
+	(gnome_vfs_inet_connection_to_socket):
+	* libgnomevfs/gnome-vfs-inet-connection.h:
+	* libgnomevfs/gnome-vfs-iobuf.c: (gnome_vfs_iobuf_flush):
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-ssl.c: (gnome_vfs_ssl_create),
+	(gnome_vfs_ssl_create_from_fd), (gnome_vfs_ssl_write),
+	(gnome_vfs_ssl_destroy), (gnome_vfs_ssl_to_socket):
+	* libgnomevfs/gnome-vfs-ssl.h:
+	* libgnomevfs/gnome-vfs-types.h:
+	* modules/Makefile.am:
+	* modules/file-method.c: (do_read):
+	* modules/http-method.c: (http_file_handle_new), (get_header),
+	(create_handle), (https_proxy), (connect_to_uri), (xmit_request),
+	(make_request), (http_handle_close), (do_open), (do_read),
+	(propfind_href_to_vfs_uri), (do_open_directory):
+	* test/test-ssl.c: (show_result), (main):
+	Added SSL and HTTPS support.
+
 2001-05-31  Robin * Slomkowski  <rslomkow@rslomkow.org>
 
 	* gnome-vfs.spec.in:removed html/*.txt line as it doesn't seem

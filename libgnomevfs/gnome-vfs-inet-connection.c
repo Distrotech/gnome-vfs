@@ -30,6 +30,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <string.h>
+#include <errno.h>
 
 #include <netdb.h>
 extern int h_errno;
@@ -38,6 +39,7 @@ extern int h_errno;
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-socket-private.h"
 
 
 struct GnomeVFSInetConnection {
@@ -66,18 +68,21 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 		return gnome_vfs_result_from_errno ();
 
 	host_info = gethostbyname (host_name);
-	if (gnome_vfs_cancellation_check (cancellation))
+	if (gnome_vfs_cancellation_check (cancellation)) {
 		return GNOME_VFS_ERROR_CANCELLED;
+	}
 
-	if (host_info == NULL)
+	if (host_info == NULL) {
 		return gnome_vfs_result_from_h_errno ();
+	}
 
 	addr.sin_family = host_info->h_addrtype;
 	addr.sin_addr = * (struct in_addr *) host_info->h_addr;
 	addr.sin_port = htons (host_port);
 
-	if (connect (sock, (struct sockaddr *) &addr, sizeof (addr)) < 0)
+	if (connect (sock, (struct sockaddr *) &addr, sizeof (addr)) < 0) {
 		return gnome_vfs_result_from_errno ();
+	}
 
 	new = g_new (GnomeVFSInetConnection, 1);
 	memcpy (&new->addr, &addr, sizeof (addr));
@@ -105,4 +110,67 @@ gnome_vfs_inet_connection_get_iobuf (GnomeVFSInetConnection *connection)
 	g_return_val_if_fail (connection != NULL, NULL);
 
 	return gnome_vfs_iobuf_new (connection->sock);
+}
+
+gint 
+gnome_vfs_inet_connection_get_fd (GnomeVFSInetConnection *connection)
+{
+	g_return_val_if_fail (connection != NULL, -1);
+	return connection->sock;
+}
+
+/* SocketImpl for InetConnections */
+
+static GnomeVFSResult 
+gnome_vfs_inet_connection_read (GnomeVFSInetConnection *connection,
+		                gpointer buffer,
+		                GnomeVFSFileSize bytes,
+		                GnomeVFSFileSize *bytes_read)
+{
+	gint read_val;
+
+	do {
+		read_val = read (connection->sock, buffer, bytes);
+	} while (read_val == -1 && errno == EINTR);
+
+	if (read_val == -1) {
+		*bytes_read = 0;
+		return gnome_vfs_result_from_errno ();
+	} else {
+		*bytes_read = read_val;
+	}
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult 
+gnome_vfs_inet_connection_write (GnomeVFSInetConnection *connection,
+			         gconstpointer buffer,
+			         GnomeVFSFileSize bytes,
+			         GnomeVFSFileSize *bytes_written)
+{
+	gint write_val;
+
+	do {
+		write_val = write (connection->sock, buffer, bytes);
+	} while (write_val == -1 && errno == EINTR);
+
+	if (write_val == -1) {
+		*bytes_written = 0;
+		return gnome_vfs_result_from_errno ();
+	} else {
+		*bytes_written = write_val;
+		return GNOME_VFS_OK;
+	}
+}
+
+static GnomeVFSSocketImpl inet_connection_socket_impl = {
+	(GnomeVFSSocketReadFunc)gnome_vfs_inet_connection_read,
+	(GnomeVFSSocketWriteFunc)gnome_vfs_inet_connection_write,
+	(GnomeVFSSocketCloseFunc)gnome_vfs_inet_connection_destroy
+};
+
+GnomeVFSSocket *
+gnome_vfs_inet_connection_to_socket (GnomeVFSInetConnection *connection)
+{
+	return gnome_vfs_socket_new (&inet_connection_socket_impl, connection);
 }

@@ -19,7 +19,8 @@ INCLUDES =					\
 
 EXTRA_DIST =					\
 	default-modules.conf			\
-	cdda-module.conf
+	cdda-module.conf			\
+	ssl-modules.conf
 
 ###  Module setup
 
@@ -52,7 +53,10 @@ modulesconfdir=$(sysconfdir)/vfs/modules
 if HAVE_CDDA
 CDDA_CONF = cdda-module.conf
 endif
-modulesconf_DATA = default-modules.conf $(CDDA_CONF)
+if HAVE_SSL
+SSL_CONF = ssl-modules.conf
+endif
+modulesconf_DATA = default-modules.conf $(CDDA_CONF) $(SSL_CONF)
 
 ###  `cdda' method
 

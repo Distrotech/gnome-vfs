@@ -263,4 +263,3 @@ gnome_vfs_iobuf_flush (GnomeVFSIOBuf *iobuf)
 
 	return flush (iobuf);
 }
-

@@ -77,6 +77,9 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-result.h			\
 	gnome-vfs-seekable.h			\
 	gnome-vfs-shellpattern-filter.h		\
+	gnome-vfs-socket.h			\
+	gnome-vfs-socket-private.h		\
+	gnome-vfs-socket-buffer.h		\
 	gnome-vfs-ssl.h				\
 	gnome-vfs-ssl-private.h			\
 	gnome-vfs-types.h			\
@@ -122,6 +125,8 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-result.c			\
 	gnome-vfs-seekable.c			\
 	gnome-vfs-shellpattern-filter.c		\
+	gnome-vfs-socket.c			\
+	gnome-vfs-socket-buffer.c		\
 	gnome-vfs-ssl.c				\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
