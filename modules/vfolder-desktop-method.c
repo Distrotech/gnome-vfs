@@ -317,6 +317,8 @@ static gboolean vfolder_info_reload 		(VFolderInfo *info,
 static gboolean vfolder_info_reload_unlocked	(VFolderInfo *info,
 						 GnomeVFSResult *result,
 						 GnomeVFSContext *context);
+static void     invalidate_folder_subfolders    (Folder   *folder,
+						 gboolean  lock_taken);
 
 static gboolean
 check_ext (const char *name, const char *ext_check)
@@ -1021,24 +1023,43 @@ query_destroy (Query *query)
 	g_free (query);
 }
 
-static void
+static inline void
+invalidate_folder_T (Folder *folder)
+{
+	folder->up_to_date = FALSE;
+
+	invalidate_folder_subfolders (folder, TRUE);
+}
+
+static inline void
 invalidate_folder (Folder *folder)
 {
-	GSList *li;
-
 	G_LOCK (vfolder_lock);
 	folder->up_to_date = FALSE;
 	G_UNLOCK (vfolder_lock);
 
+	invalidate_folder_subfolders (folder, FALSE);
+}
+
+static void
+invalidate_folder_subfolders (Folder   *folder,
+			      gboolean  lock_taken)
+{
+	GSList *li;
+
 	for (li = folder->subfolders; li != NULL; li = li->next) {
 		Folder *subfolder = li->data;
 
-		invalidate_folder (subfolder);
+		if (!lock_taken)
+			invalidate_folder (subfolder);
+		else
+			invalidate_folder_T (subfolder);
 	}
 
-	if (folder->monitored) {
-		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *)folder->monitor_handle, folder->monitor_handle->uri, GNOME_VFS_MONITOR_EVENT_CHANGED);
-	}
+	if (folder->monitored)
+		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *) folder->monitor_handle,
+					    folder->monitor_handle->uri,
+					    GNOME_VFS_MONITOR_EVENT_CHANGED);
 }
 
 /* FIXME: this is UGLY!, we need to figure out when the file
@@ -3894,7 +3915,7 @@ do_close (GnomeVFSMethod *method,
 		 * nothing */
 
 		/* Perhaps a bit drastic */
-		invalidate_folder (handle->info->root);
+		invalidate_folder_T (handle->info->root);
 	}
 
 	whack_handle (handle);

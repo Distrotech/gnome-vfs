@@ -1,3 +1,11 @@
+2002-02-08  Mark McLoughlin  <mark@skynet.ie>
+
+	* modules/vfolder-desktop-method.c:
+	(invalidate_folder_T): impl lock taken version.
+	(invalidate_folder): split out subfolder stuff to
+	(invalidate_folder_subfolders): here.
+	(do_close): use _T here to avoid deadlock.
+
 2002-02-09  Darin Adler  <darin@bentspoon.com>
 
 	* libgnomevfs/gnome-vfs-file-info.h: Oops. Missed that inode
