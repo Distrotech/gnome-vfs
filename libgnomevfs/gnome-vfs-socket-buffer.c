@@ -98,12 +98,13 @@ gnome_vfs_socket_buffer_new (GnomeVFSSocket *socket)
  **/
 GnomeVFSResult   
 gnome_vfs_socket_buffer_destroy  (GnomeVFSSocketBuffer *socket_buffer, 
-				  gboolean close_socket)
+				  gboolean close_socket,
+				  GnomeVFSCancellation *cancellation)
 {
-	gnome_vfs_socket_buffer_flush (socket_buffer);
+	gnome_vfs_socket_buffer_flush (socket_buffer, cancellation);
 
         if (close_socket) {
-		gnome_vfs_socket_close (socket_buffer->socket);
+		gnome_vfs_socket_close (socket_buffer->socket, cancellation);
 	}
 	g_free (socket_buffer);
 	return GNOME_VFS_OK;
@@ -113,7 +114,8 @@ gnome_vfs_socket_buffer_destroy  (GnomeVFSSocketBuffer *socket_buffer,
 
 
 static gboolean
-refill_input_buffer (GnomeVFSSocketBuffer *socket_buffer)
+refill_input_buffer (GnomeVFSSocketBuffer *socket_buffer,
+		     GnomeVFSCancellation *cancellation)
 {
 	Buffer *input_buffer;
 	GnomeVFSResult result;
@@ -131,10 +133,11 @@ refill_input_buffer (GnomeVFSSocketBuffer *socket_buffer)
 	result = gnome_vfs_socket_read (socket_buffer->socket,
 					&input_buffer->data, 
 					BUFFER_SIZE,
-					&bytes_read);
+					&bytes_read,
+					cancellation);
 	
-	if (bytes_read == 0) {
-		input_buffer->last_error = GNOME_VFS_ERROR_EOF;
+	if (result != GNOME_VFS_OK) {
+		input_buffer->last_error = result;
 		return FALSE;
 	}
 
@@ -159,7 +162,8 @@ GnomeVFSResult
 gnome_vfs_socket_buffer_read (GnomeVFSSocketBuffer *socket_buffer,
 			      gpointer buffer,
 			      GnomeVFSFileSize bytes,
-			      GnomeVFSFileSize *bytes_read)
+			      GnomeVFSFileSize *bytes_read,
+			      GnomeVFSCancellation *cancellation)
 {
 	Buffer *input_buffer;
 	GnomeVFSResult result;
@@ -181,7 +185,7 @@ gnome_vfs_socket_buffer_read (GnomeVFSSocketBuffer *socket_buffer,
 	result = GNOME_VFS_OK;
 
 	if (input_buffer->byte_count == 0) {
-		if (! refill_input_buffer (socket_buffer)) {
+		if (! refill_input_buffer (socket_buffer, cancellation)) {
 			/* The buffer is empty but we had an error last time we
 			   filled it, so we report the error.  */
 			result = input_buffer->last_error;
@@ -220,7 +224,8 @@ gnome_vfs_socket_buffer_read (GnomeVFSSocketBuffer *socket_buffer,
  **/
 GnomeVFSResult
 gnome_vfs_socket_buffer_peekc (GnomeVFSSocketBuffer *socket_buffer,
-			       gchar *character)
+			       gchar *character,
+			       GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult result;
 	Buffer *input_buffer;
@@ -232,7 +237,7 @@ gnome_vfs_socket_buffer_peekc (GnomeVFSSocketBuffer *socket_buffer,
 	result = GNOME_VFS_OK;
 
 	if (input_buffer->byte_count == 0) {
-		if (!refill_input_buffer (socket_buffer)) {
+		if (!refill_input_buffer (socket_buffer, cancellation)) {
 			/* The buffer is empty but we had an error last time we
 			   filled it, so we report the error.  */
 			result = input_buffer->last_error;
@@ -250,7 +255,8 @@ gnome_vfs_socket_buffer_peekc (GnomeVFSSocketBuffer *socket_buffer,
 
 
 static GnomeVFSResult
-flush (GnomeVFSSocketBuffer *socket_buffer)
+flush (GnomeVFSSocketBuffer *socket_buffer,
+       GnomeVFSCancellation *cancellation)
 {
 	Buffer *output_buffer;
 	GnomeVFSResult result;
@@ -262,8 +268,14 @@ flush (GnomeVFSSocketBuffer *socket_buffer)
 		result = gnome_vfs_socket_write (socket_buffer->socket, 
 						 output_buffer->data,
 						 output_buffer->byte_count,
-						 &bytes_written);
+						 &bytes_written,
+						 cancellation);
 		output_buffer->last_error = result;
+
+		if (result != GNOME_VFS_OK) {
+			return result;
+		}
+		
 		output_buffer->byte_count -= bytes_written;
 	}
 
@@ -286,7 +298,8 @@ GnomeVFSResult
 gnome_vfs_socket_buffer_write (GnomeVFSSocketBuffer *socket_buffer, 
 			       gconstpointer buffer,
 			       GnomeVFSFileSize bytes,
-			       GnomeVFSFileSize *bytes_written)
+			       GnomeVFSFileSize *bytes_written,
+			       GnomeVFSCancellation *cancellation)
 {
 	Buffer *output_buffer;
 	GnomeVFSFileSize write_count;
@@ -315,7 +328,7 @@ gnome_vfs_socket_buffer_write (GnomeVFSSocketBuffer *socket_buffer,
 			write_count += n;
 			output_buffer->byte_count += n;
 		} else {
-			result = flush (socket_buffer);
+			result = flush (socket_buffer, cancellation);
 			if (result != GNOME_VFS_OK) {
 				break;
 			}
@@ -338,11 +351,12 @@ gnome_vfs_socket_buffer_write (GnomeVFSSocketBuffer *socket_buffer,
  * Return value: GnomeVFSResult indicating the success of the operation
  **/
 GnomeVFSResult   
-gnome_vfs_socket_buffer_flush (GnomeVFSSocketBuffer *socket_buffer)
+gnome_vfs_socket_buffer_flush (GnomeVFSSocketBuffer *socket_buffer,
+			       GnomeVFSCancellation *cancellation)
 {
 	g_return_val_if_fail (socket_buffer != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return flush (socket_buffer);
+	return flush (socket_buffer, cancellation);
 }
 
 

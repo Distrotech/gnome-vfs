@@ -80,6 +80,7 @@ _gnome_vfs_ssl_init () {
 #ifdef HAVE_OPENSSL
 	SSL_library_init ();
 #elif defined HAVE_GNUTLS
+#error "Need to update the GNUTLS code to support non-blocking fds and cancellation"
 	gnutls_global_init();
 #endif
 }
@@ -102,6 +103,53 @@ gnome_vfs_ssl_enabled ()
 #endif
 }
 
+#ifdef HAVE_OPENSSL
+static GnomeVFSResult
+handle_ssl_read_write (int fd, int error,
+		       GnomeVFSCancellation *cancellation)
+{
+	fd_set   read_fds;
+	fd_set   write_fds;
+	int res;
+	int max_fd;
+	int cancel_fd;
+
+	cancel_fd = -1;
+	
+ retry:
+	FD_ZERO (&read_fds);
+	FD_ZERO (&write_fds);
+	max_fd = fd;
+	
+	if (cancellation != NULL) {
+		cancel_fd = gnome_vfs_cancellation_get_fd (cancellation);
+		FD_SET (cancel_fd, &read_fds);
+		max_fd = MAX (max_fd, cancel_fd);
+	}
+	
+	if (error == SSL_ERROR_WANT_READ) {
+		FD_SET (fd, &read_fds);
+	}
+	if (error == SSL_ERROR_WANT_WRITE) {
+		FD_SET (fd, &write_fds);
+	}
+
+	res = select (max_fd + 1, &read_fds, &write_fds, NULL, NULL);
+	if (res == -1 && errno == EINTR) {
+		goto retry;
+	}
+	
+	if (res > 0) {
+		if (cancel_fd != -1 && FD_ISSET (cancel_fd, &read_fds)) {
+			return GNOME_VFS_ERROR_CANCELLED;
+		}
+
+		return GNOME_VFS_OK;
+	}
+	return GNOME_VFS_ERROR_INTERNAL;
+}
+#endif
+
 /**
  * gnome_vfs_ssl_create:
  * @handle_return: pointer to a GnmoeVFSSSL struct, which will
@@ -117,7 +165,8 @@ gnome_vfs_ssl_enabled ()
 GnomeVFSResult
 gnome_vfs_ssl_create (GnomeVFSSSL **handle_return, 
 		      const char *host, 
-		      unsigned int port)
+		      unsigned int port,
+		      GnomeVFSCancellation *cancellation)
 {
 /* FIXME: add *some* kind of cert verification! */
 #if defined(HAVE_OPENSSL) || defined(HAVE_GNUTLS)
@@ -208,7 +257,9 @@ gnome_vfs_ssl_create (GnomeVFSSSL **handle_return,
 		return gnome_vfs_result_from_errno ();
 	}
 
-	return gnome_vfs_ssl_create_from_fd (handle_return, fd);
+	_gnome_vfs_set_fd_flags (fd, O_NONBLOCK);
+	
+	return gnome_vfs_ssl_create_from_fd (handle_return, fd, cancellation);
 #else
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif
@@ -228,6 +279,7 @@ static const int mac_priority[] =
 	{GNUTLS_MAC_SHA, GNUTLS_MAC_MD5, 0};
 #endif
 
+
 /**
  * gnome_vfs_ssl_create_from_fd:
  * @handle_return: pointer to a GnmoeVFSSSL struct, which will
@@ -240,12 +292,15 @@ static const int mac_priority[] =
  **/
 GnomeVFSResult
 gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return, 
-		              gint fd)
+		              gint fd,
+			      GnomeVFSCancellation *cancellation)
 {
 #ifdef HAVE_OPENSSL
 	GnomeVFSSSL *ssl;
 	SSL_CTX *ssl_ctx = NULL;
 	int ret;
+	int error;
+	GnomeVFSResult res;
 
 	ssl = g_new0 (GnomeVFSSSL, 1);
 	ssl->private = g_new0 (GnomeVFSSSLPrivate, 1);
@@ -267,9 +322,31 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 
         SSL_set_fd (ssl->private->ssl, fd);
 
+ retry:
 	ret = SSL_connect (ssl->private->ssl);
 	if (ret != 1) {
-                SSL_shutdown (ssl->private->ssl);
+		error = SSL_get_error (ssl->private->ssl, ret);
+		res = GNOME_VFS_ERROR_IO;
+		if (error == SSL_ERROR_WANT_READ ||
+		    error == SSL_ERROR_WANT_WRITE) {
+			res = handle_ssl_read_write (fd, error, cancellation);
+			if (res == GNOME_VFS_OK) {
+				goto retry;
+			} 
+		} else if (error == SSL_ERROR_SYSCALL && ret != 0) {
+			res = gnome_vfs_result_from_errno ();
+		}
+
+	retry_shutdown:
+                ret = SSL_shutdown (ssl->private->ssl);
+		if (ret != 1) {
+			error = SSL_get_error (ssl->private->ssl, ret);
+			if (error == SSL_ERROR_WANT_READ ||
+			    error == SSL_ERROR_WANT_WRITE) {
+				/* No fancy select stuff here, just busy loop */
+				goto retry_shutdown;
+			}
+		}
 
                 if (ssl->private->ssl->ctx)
                         SSL_CTX_free (ssl->private->ssl->ctx);
@@ -277,7 +354,7 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
                 SSL_free (ssl->private->ssl);
 		g_free (ssl->private);
 		g_free (ssl);
-		return GNOME_VFS_ERROR_IO;
+		return res;
 	}
 
 	*handle_return = ssl;
@@ -352,20 +429,45 @@ GnomeVFSResult
 gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 		    gpointer buffer,
 		    GnomeVFSFileSize bytes,
-		    GnomeVFSFileSize *bytes_read)
+		    GnomeVFSFileSize *bytes_read,
+		    GnomeVFSCancellation *cancellation)
 {
 #if HAVE_OPENSSL
+	int ret, error;
+	GnomeVFSResult res;
+	
 	if (bytes == 0) {
 		*bytes_read = 0;
 		return GNOME_VFS_OK;
 	}
 
-	*bytes_read = SSL_read (ssl->private->ssl, buffer, bytes);
-
-	if (*bytes_read <= 0) {
+ retry:
+	ret = SSL_read (ssl->private->ssl, buffer, bytes);
+	if (ret <= 0) {
+		res = GNOME_VFS_ERROR_IO;
+		error = SSL_get_error (ssl->private->ssl, ret);
+		if (error == SSL_ERROR_WANT_READ ||
+		    error == SSL_ERROR_WANT_WRITE) {
+			res = handle_ssl_read_write (SSL_get_fd (ssl->private->ssl),
+						     error, cancellation);
+			if (res == GNOME_VFS_OK) {
+				goto retry;
+			}
+		} else if (error == SSL_ERROR_SYSCALL) {
+			if (ret == 0) {
+				res = GNOME_VFS_ERROR_EOF;
+			} else {
+				res = gnome_vfs_result_from_errno ();
+			}
+		} else if (error == SSL_ERROR_ZERO_RETURN) {
+			res = GNOME_VFS_ERROR_EOF;
+		}
+		
 		*bytes_read = 0;
-		return GNOME_VFS_ERROR_GENERIC;
+		return res;
 	}
+	*bytes_read = ret;
+	
 	return GNOME_VFS_OK;
 #elif defined HAVE_GNUTLS
 	if (bytes == 0) {
@@ -401,20 +503,40 @@ GnomeVFSResult
 gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 		     gconstpointer buffer,
 		     GnomeVFSFileSize bytes,
-		     GnomeVFSFileSize *bytes_written)
+		     GnomeVFSFileSize *bytes_written,
+		     GnomeVFSCancellation *cancellation)
 {
 #if HAVE_OPENSSL
+	int ret, error;
+	GnomeVFSResult res;
+	
 	if (bytes == 0) {
 		*bytes_written = 0;
 		return GNOME_VFS_OK;
 	}
 
-	*bytes_written = SSL_write (ssl->private->ssl, buffer, bytes);
+ retry:
+	ret = SSL_write (ssl->private->ssl, buffer, bytes);
 
-	if (*bytes_written <= 0) {
+	if (ret <= 0) {
+		res = GNOME_VFS_ERROR_IO;
+		
+		error = SSL_get_error (ssl->private->ssl, ret);
+		if (error == SSL_ERROR_WANT_READ ||
+		    error == SSL_ERROR_WANT_WRITE) {
+			res = handle_ssl_read_write (SSL_get_fd (ssl->private->ssl),
+						     error, cancellation);
+			if (res == GNOME_VFS_OK) {
+				goto retry;
+			}
+		} else if (error == SSL_ERROR_SYSCALL) {
+			res = gnome_vfs_result_from_errno ();
+		}
+	
 		*bytes_written = 0;
-		return GNOME_VFS_ERROR_GENERIC;
+		return res;
 	}
+	*bytes_written = ret;
 	return GNOME_VFS_OK;
 #elif defined HAVE_GNUTLS
 	if (bytes == 0) {
@@ -441,10 +563,27 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
  * Free resources used by @ssl and close the connection.
  */
 void
-gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl) 
+gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl,
+		       GnomeVFSCancellation *cancellation) 
 {
 #if HAVE_OPENSSL
-	SSL_shutdown (ssl->private->ssl);
+	int ret, error;
+	GnomeVFSResult res;
+
+ retry:
+	ret = SSL_shutdown (ssl->private->ssl);
+	if (ret != 1) {
+		error = SSL_get_error (ssl->private->ssl, ret);
+		if (error == SSL_ERROR_WANT_READ ||
+		    error == SSL_ERROR_WANT_WRITE) {
+			res = handle_ssl_read_write (SSL_get_fd (ssl->private->ssl),
+						     error, cancellation);
+			if (res == GNOME_VFS_OK) {
+				goto retry;
+			}
+		}
+	}
+	
 	SSL_CTX_free (ssl->private->ssl->ctx);
 	SSL_free (ssl->private->ssl);
 	close (ssl->private->sockfd);

@@ -1,3 +1,57 @@
+2004-04-01  Alexander Larsson  <alexl@redhat.com>
+
+	Partially based on patch from Christian Kellner
+	
+	* doc/tmpl/gnome-vfs-socket-buffer.sgml:
+	* doc/tmpl/gnome-vfs-socket.sgml:
+	* doc/tmpl/gnome-vfs-ssl.sgml:
+	Docs updates.
+	
+	* libgnomevfs/gnome-vfs-socket.h:
+	* libgnomevfs/gnome-vfs-socket.c: (gnome_vfs_socket_write),
+	(gnome_vfs_socket_close), (gnome_vfs_socket_read):
+	Make sockets have cancellable arguments.
+	
+	* libgnomevfs/gnome-vfs-inet-connection.c:
+	(gnome_vfs_inet_connection_create),
+	(gnome_vfs_inet_connection_close),
+	(gnome_vfs_inet_connection_read),
+	(gnome_vfs_inet_connection_write):
+	Make fd non-blocking, implement cancelability
+	
+	* libgnomevfs/gnome-vfs-socket-buffer.[ch]:
+	(gnome_vfs_socket_buffer_destroy), (refill_input_buffer),
+	(gnome_vfs_socket_buffer_read), (gnome_vfs_socket_buffer_peekc),
+	(flush), (gnome_vfs_socket_buffer_write),
+	(gnome_vfs_socket_buffer_flush):
+	Make cancellable.
+	
+	* libgnomevfs/gnome-vfs-ssl.[ch]: (_gnome_vfs_ssl_init),
+	(handle_ssl_read_write), (gnome_vfs_ssl_create),
+	(gnome_vfs_ssl_create_from_fd), (gnome_vfs_ssl_read),
+	(gnome_vfs_ssl_write), (gnome_vfs_ssl_destroy):
+	Make cancellable, handle non-blocking fds.
+	Note: gnutls version not updated yet, will not build.
+	
+	* modules/ftp-method.c: (get_cancellation), (read_response_line),
+	(get_response), (do_control_write), (do_basic_command),
+	(do_path_command), (do_path_command_completely),
+	(do_transfer_command), (end_transfer), (ftp_login),
+	(ftp_connection_create), (ftp_connection_destroy),
+	(ftp_connection_acquire), (do_close), (do_read), (do_write),
+	(do_seek), (do_open_directory), (do_move):
+	Support cancellation.
+	
+	* modules/http-method.c: (get_header), (create_handle),
+	(https_proxy), (connect_to_uri), (xmit_request), (make_request),
+	(http_handle_close), (do_read):
+	Support cancellation.
+	
+	* modules/nntp-method.c: (read_response_line), (do_control_write),
+	(nntp_connection_create), (nntp_connection_destroy):
+	* test/test-ssl.c: (main):
+	Update for new API.
+
 2004-04-01  Christian Kellner  <gicmo@xatom.net>
 
 	* libgnomevfs/gnome-vfs-job.c: 

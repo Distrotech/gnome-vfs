@@ -35,6 +35,8 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <sys/select.h>
+#include <fcntl.h>
 #include <unistd.h>
 
 /* AIX #defines h_errno */
@@ -185,6 +187,9 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 		new->sock = sock;
 
 	}
+
+	_gnome_vfs_set_fd_flags (new->sock, O_NONBLOCK);
+
 	*connection_return = new;
 	return GNOME_VFS_OK;
 }
@@ -214,9 +219,10 @@ gnome_vfs_inet_connection_destroy (GnomeVFSInetConnection *connection,
  * Closes @connection, freeing all used resources.
  **/
 static void
-gnome_vfs_inet_connection_close (GnomeVFSInetConnection *connection)
+gnome_vfs_inet_connection_close (GnomeVFSInetConnection *connection,
+				 GnomeVFSCancellation *cancellation)
 {
-	gnome_vfs_inet_connection_destroy (connection, NULL);
+	gnome_vfs_inet_connection_destroy (connection, cancellation);
 }
 
 /**
@@ -252,22 +258,63 @@ static GnomeVFSResult
 gnome_vfs_inet_connection_read (GnomeVFSInetConnection *connection,
 		                gpointer buffer,
 		                GnomeVFSFileSize bytes,
-		                GnomeVFSFileSize *bytes_read)
+		                GnomeVFSFileSize *bytes_read,
+				GnomeVFSCancellation *cancellation)
 {
-	gint read_val;
+	gint     read_val;
+	fd_set   read_fds;
+	int max_fd, cancel_fd;
 
-	do {
-		read_val = read (connection->sock, buffer, bytes);
-	} while (read_val == -1 && errno == EINTR);
+	cancel_fd = -1;
+	
+read_loop:
+	read_val = read (connection->sock, buffer, bytes);
 
+	if (read_val == -1 && errno == EAGAIN) {
+
+		FD_ZERO (&read_fds);
+		FD_SET (connection->sock, &read_fds);
+		max_fd = connection->sock;
+	
+		if (cancellation != NULL) {
+			cancel_fd = gnome_vfs_cancellation_get_fd (cancellation);
+			FD_SET (cancel_fd, &read_fds);
+			max_fd = MAX (max_fd, cancel_fd);
+		}
+		
+		read_val = select (max_fd + 1, &read_fds, NULL, NULL, NULL);
+
+		if (read_val != -1) { 	
+
+			if (cancel_fd != -1 && FD_ISSET (cancel_fd, &read_fds)) {
+				return GNOME_VFS_ERROR_CANCELLED;
+			}
+			
+			if (FD_ISSET (connection->sock, &read_fds)) {
+				goto read_loop;
+			}
+
+		}
+	} 
+	
 	if (read_val == -1) {
 		*bytes_read = 0;
-		return gnome_vfs_result_from_errno ();
+
+		if (gnome_vfs_cancellation_check (cancellation)) {
+			return GNOME_VFS_ERROR_CANCELLED;
+		} 
+		
+		if (errno == EINTR) {
+			goto read_loop;
+		} else {
+			return gnome_vfs_result_from_errno ();
+		}
+
 	} else {
 		*bytes_read = read_val;
 	}
 
-	return bytes_read == 0 ? GNOME_VFS_ERROR_EOF : GNOME_VFS_OK;
+	return *bytes_read == 0 ? GNOME_VFS_ERROR_EOF : GNOME_VFS_OK;
 }
 
 /**
@@ -286,17 +333,59 @@ static GnomeVFSResult
 gnome_vfs_inet_connection_write (GnomeVFSInetConnection *connection,
 			         gconstpointer buffer,
 			         GnomeVFSFileSize bytes,
-			         GnomeVFSFileSize *bytes_written)
+			         GnomeVFSFileSize *bytes_written,
+				 GnomeVFSCancellation *cancellation)
 {
-	gint write_val;
+	gint    write_val;
+	fd_set  write_fds;
+	int max_fd, cancel_fd;
 
-	do {
-		write_val = write (connection->sock, buffer, bytes);
-	} while (write_val == -1 && errno == EINTR);
+
+	cancel_fd = -1;
+	
+write_loop:	
+	write_val = write (connection->sock, buffer, bytes);
+		
+	if (write_val == -1 && errno == EAGAIN) {
+			
+         	FD_ZERO (&write_fds);
+		FD_SET (connection->sock, &write_fds);
+		max_fd = connection->sock;
+
+		if (cancellation != NULL) {
+			cancel_fd = gnome_vfs_cancellation_get_fd (cancellation);
+			FD_SET (cancel_fd, &write_fds);
+			max_fd = MAX (max_fd, cancel_fd);
+		}
+		
+		write_val = select (max_fd + 1, NULL, &write_fds, NULL, NULL);
+				
+		if (write_val != -1) { 	
+
+			if (cancel_fd != -1 && FD_ISSET (cancel_fd, &write_fds)) {
+				return GNOME_VFS_ERROR_CANCELLED;
+			}
+			
+			if (FD_ISSET (connection->sock, &write_fds)) {
+				goto write_loop;
+			}
+
+		}
+	}
 
 	if (write_val == -1) {
 		*bytes_written = 0;
-		return gnome_vfs_result_from_errno ();
+
+	        if (gnome_vfs_cancellation_check (cancellation)) {
+			return GNOME_VFS_ERROR_CANCELLED;
+		}
+
+		if (errno == EINTR) {
+			goto write_loop;
+		} else {
+			return gnome_vfs_result_from_errno ();
+		}
+
 	} else {
 		*bytes_written = write_val;
 		return GNOME_VFS_OK;

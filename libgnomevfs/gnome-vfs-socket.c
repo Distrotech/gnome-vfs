@@ -68,6 +68,7 @@ GnomeVFSSocket* gnome_vfs_socket_new (GnomeVFSSocketImpl *impl,
  * @bytes: number of bytes from @buffer to write to @socket
  * @bytes_written: pointer to a GnomeVFSFileSize, will contain
  * the number of bytes actually written to the socket on return.
+ * @cancellation: optional cancellation object
  *
  * Write @bytes bytes of data from @buffer to @socket.
  *
@@ -77,24 +78,28 @@ GnomeVFSResult
 gnome_vfs_socket_write (GnomeVFSSocket *socket, 
 			gconstpointer buffer,
 			int bytes, 
-			GnomeVFSFileSize *bytes_written)
+			GnomeVFSFileSize *bytes_written,
+			GnomeVFSCancellation *cancellation)
 {
 	return socket->impl->write (socket->connection,
-				    buffer, bytes, bytes_written);
+				    buffer, bytes, bytes_written,
+				    cancellation);
 }
 
 /**
  * gnome_vfs_socket_close:
  * @socket: the socket to be closed
+ * @cancellation: optional cancellation object
  *
  * Close @socket, freeing any resources it may be using.
  *
  * Return value: GnomeVFSResult indicating the success of the operation
  **/
 GnomeVFSResult  
-gnome_vfs_socket_close (GnomeVFSSocket *socket)
+gnome_vfs_socket_close (GnomeVFSSocket *socket,
+			GnomeVFSCancellation *cancellation)
 {
-	socket->impl->close (socket->connection);
+	socket->impl->close (socket->connection, cancellation);
 	g_free (socket);
 	return GNOME_VFS_OK;
 }
@@ -106,6 +111,7 @@ gnome_vfs_socket_close (GnomeVFSSocket *socket)
  * @bytes: number of bytes to read from @socket into @buffer
  * @bytes_read: pointer to a GnomeVFSFileSize, will contain
  * the number of bytes actually read from the socket on return.
+ * @cancellation: optional cancellation object
  *
  * Read @bytes bytes of data from the @socket into @buffer.
  *
@@ -115,8 +121,10 @@ GnomeVFSResult
 gnome_vfs_socket_read  (GnomeVFSSocket *socket, 
 			gpointer buffer, 
 			GnomeVFSFileSize bytes,
-			GnomeVFSFileSize *bytes_read)
+			GnomeVFSFileSize *bytes_read,
+			GnomeVFSCancellation *cancellation)
 {
 	return socket->impl->read (socket->connection,
-				   buffer, bytes, bytes_read);
+				   buffer, bytes, bytes_read,
+				   cancellation);
 }

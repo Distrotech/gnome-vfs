@@ -23,6 +23,7 @@ gnome-vfs-socket
 @buffer: 
 @bytes: 
 @bytes_read: 
+@cancellation: 
 @Returns: 
 
 
@@ -35,6 +36,7 @@ gnome-vfs-socket
 @buffer: 
 @bytes: 
 @bytes_written: 
+@cancellation: 
 @Returns: 
 
 
@@ -44,6 +46,7 @@ gnome-vfs-socket
 </para>
 
 @connection: 
+@cancellation: 
 
 
 <!-- ##### STRUCT GnomeVFSSocketImpl ##### -->
@@ -74,6 +77,7 @@ gnome-vfs-socket
 @buffer: 
 @bytes: 
 @bytes_written: 
+@cancellation: 
 @Returns: 
 
 
@@ -83,6 +87,7 @@ gnome-vfs-socket
 </para>
 
 @socket: 
+@cancellation: 
 @Returns: 
 
 
@@ -95,6 +100,7 @@ gnome-vfs-socket
 @buffer: 
 @bytes: 
 @bytes_read: 
+@cancellation: 
 @Returns: 
 
 
