@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-30 15:33+0200\n"
-"PO-Revision-Date: 2004-03-20 19:38+0200\n"
+"POT-Creation-Date: 2004-09-05 02:37+0300\n"
+"PO-Revision-Date: 2004-09-05 02:36+0300\n"
 "Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,88 +28,90 @@ msgstr "Gnome vfs başlatılamadı"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:654
 #: libgnomevfs/eggdesktopentries.c:229
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "Ayrıştırılamadı: %s"
+msgstr "Dosya açılamadı: %s"
 
 #: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
-msgstr ""
+msgstr "'%s' dosyası açılamadı: %s"
 
 # libgnomevfs/gnome-vfs-result.c:61
 #: libgnomevfs/eggdesktopentries.c:341
-#, fuzzy
 msgid "File is empty"
-msgstr "Dosya zaten var"
+msgstr "Dosya boş"
 
 #: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr ""
+msgstr "'%s' dosyasından okunurken başarısız olundu: %s"
 
-#: libgnomevfs/eggdesktopentries.c:578
+#: libgnomevfs/eggdesktopentries.c:575
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr ""
+"masaüstü girdileri girdi, grup ya da açıklama olmayan '%s' satırını içeriyor"
 
-#: libgnomevfs/eggdesktopentries.c:654
+#: libgnomevfs/eggdesktopentries.c:648
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "masaüstü girdi dosyaları legal başlangıç grubu ile başlamaz"
 
-#: libgnomevfs/eggdesktopentries.c:711
+#: libgnomevfs/eggdesktopentries.c:705
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "masaüstü girdileri UTF-8 olmayan '%s' satırı içeriyor"
 
-#: libgnomevfs/eggdesktopentries.c:734
+#: libgnomevfs/eggdesktopentries.c:728
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "masaüstü girdileri bilinmeyen kodlama olan '%s' içeriyor"
 
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
+#: libgnomevfs/eggdesktopentries.c:918 libgnomevfs/eggdesktopentries.c:1030
+#: libgnomevfs/eggdesktopentries.c:1215
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "masaüstü girdileri '%s' grubuna sahip değil"
 
-#: libgnomevfs/eggdesktopentries.c:1048
+#: libgnomevfs/eggdesktopentries.c:1042
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "masaüstü girdileri '%s' anahtarına sahip değil"
 
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
+#: libgnomevfs/eggdesktopentries.c:1098 libgnomevfs/eggdesktopentries.c:1271
+#: libgnomevfs/eggdesktopentries.c:1413 libgnomevfs/eggdesktopentries.c:1538
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
+msgstr "masaüstü girdileri değeri kullanılamayan '%s' anahtarı içeriyor."
 
-#: libgnomevfs/eggdesktopentries.c:1302
+#: libgnomevfs/eggdesktopentries.c:1296
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
 msgstr ""
+"masaüstü girdileri '%2$s' yereli ve '%1$s' anatharı için çevirilmiş bir "
+"değer içermiyor"
 
-#: libgnomevfs/eggdesktopentries.c:2223
+#: libgnomevfs/eggdesktopentries.c:2229
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "masaüstü girdileri geçersiz çıkış (escape) serisi '%s' içeriyor"
 
-#: libgnomevfs/eggdesktopentries.c:2240
+#: libgnomevfs/eggdesktopentries.c:2246
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "masaüstü girdileri satır sonunda çıkış (escape) karakteri içeriyor"
 
-#: libgnomevfs/eggdesktopentries.c:2265
+#: libgnomevfs/eggdesktopentries.c:2271
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "'%s' değeri bir sayı olarak kullanılamadı."
 
-#: libgnomevfs/eggdesktopentries.c:2292
+#: libgnomevfs/eggdesktopentries.c:2298
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "'%s' değeri bir mantıksal değer olarak kullanılamadı."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -131,7 +133,7 @@ msgstr "%s:%d metod adı içermiyor."
 #: libgnomevfs/gnome-vfs-configuration.c:284
 #, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d seçenek sonlandrıcısı içermiyor."
+msgstr "%s:%d seçenek sonlandırıcısı içermiyor."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
@@ -165,7 +167,7 @@ msgstr "Otomatik Tanınan Sistem"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr "CD-ROM Sürücü"
+msgstr "CD-ROM Sürücüsü"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
@@ -263,9 +265,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "AFFS Sistemi"
+msgstr "Sun SAM-QFS Sistemi"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -293,126 +294,118 @@ msgid "Unknown"
 msgstr "Bilinmeyen"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "CD-ROM Sürücü"
+msgstr "CD-ROM Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "Boş CD-R Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "CD-ROM Sürücü"
+msgstr "CD-R Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:619
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "Boş CD-RW Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "CD-ROM Sürücü"
+msgstr "CD-RW Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "CD-ROM Sürücü"
+msgstr "DVD-ROM Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "Boş DVD-R Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "DVD-R Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "Boş DVD-RAM Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "DVD-RAM Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "Boş DVD-RW Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "DVD-RW Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:641
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "Boş DVD+RW Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:643
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "DVD+RW Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "Boş DVD+R Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:648
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "DVD+R Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Optical Disc"
-msgstr ""
+msgstr "Optik Disk"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
-#, fuzzy
 msgid "Audio Disc"
-msgstr "Ses CD'si"
+msgstr "Ses Diski"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:660
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Compact Flash Aygıtı"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:662
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Memory Stick"
+msgstr "Hafıza Çubuğu"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:664
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Smart Media Aygıtı"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:666
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "SD/MMC Aygıtı"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:668
-#, fuzzy
 msgid "Floppy Disk"
 msgstr "Disket"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:675
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Mac OS disketi"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:677
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Mac OS X disketi"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:691
-#, fuzzy
 msgid "Windows Disk"
-msgstr "Windows"
+msgstr "Windows Disketi"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:697
 msgid "Linux Disk"
-msgstr ""
+msgstr "Linux Disketi"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:712
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "Bilinmeyen op türü %u"
+msgstr "Bilinmeyen işlem türü %u"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1000
 # libgnomevfs-pthread/gnome-vfs-job.c:1145
@@ -435,20 +428,20 @@ msgstr "İşlem durduruldu"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:83
 #: libgnomevfs/gnome-vfs-mime-handlers.c:305
 #: libgnomevfs/gnome-vfs-mime-handlers.c:356
-#: libgnomevfs/gnome-vfs-mime-handlers.c:626
-#: libgnomevfs/gnome-vfs-mime-handlers.c:645
-#: libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: libgnomevfs/gnome-vfs-mime-handlers.c:682
-#: libgnomevfs/gnome-vfs-mime-handlers.c:701
-#: libgnomevfs/gnome-vfs-mime-handlers.c:842
-#: libgnomevfs/gnome-vfs-mime-handlers.c:864
-#: libgnomevfs/gnome-vfs-mime-handlers.c:883
-#: libgnomevfs/gnome-vfs-mime-handlers.c:902
-#: libgnomevfs/gnome-vfs-mime-handlers.c:955
-#: libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: libgnomevfs/gnome-vfs-mime-handlers.c:989
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
+#: libgnomevfs/gnome-vfs-mime-handlers.c:650
+#: libgnomevfs/gnome-vfs-mime-handlers.c:669
+#: libgnomevfs/gnome-vfs-mime-handlers.c:687
+#: libgnomevfs/gnome-vfs-mime-handlers.c:706
+#: libgnomevfs/gnome-vfs-mime-handlers.c:725
+#: libgnomevfs/gnome-vfs-mime-handlers.c:866
+#: libgnomevfs/gnome-vfs-mime-handlers.c:888
+#: libgnomevfs/gnome-vfs-mime-handlers.c:907
+#: libgnomevfs/gnome-vfs-mime-handlers.c:926
+#: libgnomevfs/gnome-vfs-mime-handlers.c:979
+#: libgnomevfs/gnome-vfs-mime-handlers.c:996
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1013
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1031
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1049
 #: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
 #: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
 #: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
@@ -459,6 +452,8 @@ msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
 msgstr ""
+"Uygulamadan kalkmış fonksiyon. MIME veritabanına kullanıcı düzenlemesi artık "
+"desteklenmiyor."
 
 # libgnomevfs/gnome-vfs-parse-ls.c:654
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
@@ -529,7 +524,7 @@ msgstr "Biçim geçersiz"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Bad file handle"
-msgstr "Yanlış dosya tutacağı"
+msgstr "Yanlış dosya işleyicisi"
 
 # libgnomevfs/gnome-vfs-result.c:49
 #. GNOME_VFS_ERROR_TOO_BIG
@@ -746,24 +741,23 @@ msgstr "Komut çalıştırılması sırasında hata oluştu"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "Zaman aşımı"
 
 # libgnomevfs/gnome-vfs-result.c:41
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "Genel hata"
+msgstr "İsim sunucusu hatası"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "Kaynak kilitli"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Fonksiyon çağrısı artık kullanılmıyor"
 
 # libgnomevfs/gnome-vfs-result.c:141
 #: libgnomevfs/gnome-vfs-result.c:203
@@ -797,51 +791,148 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1122
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:391
 msgid " (invalid Unicode)"
 msgstr " (geçersiz Unikod)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:629
 msgid "Floppy"
 msgstr "Disket"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:632
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
-msgid "Zip Drive"
-msgstr "Zip Sürücü"
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+msgid "CD-R"
+msgstr "CD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+msgid "CD-ROM/DVD-ROM"
+msgstr "CD-ROM/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+msgid "CD-ROM/DVD-RAM"
+msgstr "CD-ROM/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+msgid "CD-ROM/DVD-R"
+msgstr "CD-ROM/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+msgid "CD-ROM/DVD-RW"
+msgstr "CD-ROM/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+msgid "CD-R/DVD-ROM"
+msgstr "CD-R/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+msgid "CD-R/DVD-RAM"
+msgstr "CD-R/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+msgid "CD-R/DVD-R"
+msgstr "CD-R/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+msgid "CD-R/DVD-RW"
+msgstr "CD-R/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+msgid "CD-RW/DVD-ROM"
+msgstr "CD-RW/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+msgid "CD-RW/DVD-RAM"
+msgstr "CD-RW/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
+msgid "CD-RW/DVD-R"
+msgstr "CD-RW/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+msgid "CD-RW/DVD-RW"
+msgstr "CD-RW/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+msgid "Disk"
+msgstr "Disket"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+msgid "USB Drive"
+msgstr "USB Sürücü"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
+msgid "IEEE1394 Drive"
+msgstr "IEEE1394 Sürücü"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
+msgid "CF"
+msgstr "CF"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
+msgid "SD/MMC"
+msgstr "SD/MMC"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
 msgid "Memory Stick"
 msgstr "Memory Stick"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
+msgid "Smart Media"
+msgstr "Smart Media"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
+msgid "Zip Drive"
+msgstr "Zip Sürücü"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:605
 msgid "Camera"
 msgstr "Fotoğraf makinesi"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:606
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:822
 msgid "Root Volume"
 msgstr "Kök Sistemi"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:903
 msgid "Audio CD"
 msgstr "Ses CD'si"
 
 # libgnomevfs/gnome-vfs-result.c:141
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
 msgid "Unknown volume"
 msgstr "Bilinmeyen sistem"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1116
 msgid "Network server"
 msgstr "Ağ sunucusu"
 
@@ -973,7 +1064,7 @@ msgstr "Windows Ağı"
 #: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "Uzaktaki bilgisayarın (%s) kimliği bilinmiyor."
 
 #: modules/sftp-method.c:1340
 #, c-format
@@ -983,14 +1074,19 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Bu bilgisayara ilk defa giriş yaptığınızdan olur.\n"
+"\n"
+"Uzaktaki bilgisayardan gelen kimlik bilgisi %s. Eğer devam etmenin "
+"kesinlikle güvenli olacağından emin olmak istiyorsanız, sistem yöneticisine "
+"danışın. "
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Gene de Giriş Yap"
 
 #: modules/sftp-method.c:1349
 msgid "Cancel Login"
-msgstr ""
+msgstr "Girişi İptal Et"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -1054,201 +1150,170 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Öntanımlı uçbirim uygulamsı için çalıştırma argümanları."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "Programı uçbirimde çalıştır"
+msgstr "Komutu uçbirim içinde çalıştır"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "Eğer etkinse, \"aim\" URL'lerinin işlemek için kullanılacak komut."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "Eğer etkinse, \"callto\" URL'lerinin işlemek için kullanılacak komut."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "Eğer etkinse, \"ghelp\" URL'lerinin işlemek için kullanılacak komut."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr ""
-"Eğer seçiliyse, bu URL'yi işletecek program uçbirimde çalışması gerekiyor "
-"demektir."
+msgstr "Eğer etkinse, \"h323\" URL'lerinin işlemek için kullanılacak komut."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr ""
-"Eğer seçiliyse, bu URL'yi işletecek program uçbirimde çalışması gerekiyor "
-"demektir."
+msgstr "Eğer etkinse, \"http\" URL'lerinin işlemek için kullanılacak komut."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
-"Eğer seçiliyse, bu URL'yi işletecek program uçbirimde çalışması gerekiyor "
-"demektir."
+msgstr "Eğer etkinse, \"https\" URL'lerinin işlemek için kullanılacak komut."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "Eğer etkinse, \"info\" URL'lerinin işlemek için kullanılacak komut."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "Eğer etkinse, \"mailto\" URL'lerinin işlemek için kullanılacak komut."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "Eğer etkinse, \"man\" URL'lerinin işlemek için kullanılacak komut."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "Eğer etkinse, \"trash\" URL'lerinin işlemek için kullanılacak komut."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Man URL'lerini işlet"
+msgstr "\"aim\" URL'leri için işleyici"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Callto URL'lerini işlet"
+msgstr "\"callto\" URL'leri için işleyici"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Ghelp URL'lerini işlet"
+msgstr "\"ghelp\" URL'leri için işleyici"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "H324 URL'lerini işlet"
+msgstr "\"h323\" URL'leri için işleyici"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Ghelp URL'lerini işlet"
+msgstr "\"http\" URL'leri için işleyici"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Ghelp URL'lerini işlet"
+msgstr "\"https\" URL'leri için işleyici"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Info URL'lerini işlet"
+msgstr "\"info\" URL'leri için işleyici"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Mailto URL'lerini işlet"
+msgstr "\"mailto\" URL'leri için işleyici"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Man URL'lerini işlet"
+msgstr "\"man\" URL'leri için işleyici"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Trash URL'lerini işlet"
+msgstr "\"trash\" URL'leri için işleyici"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın man URL'lerini işletmesi "
-"için ayalalanır."
+"Eğer seçiliyse, \"command\" da belirtilen programın \"aim\" URL'lerini "
+"işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın callto URL'lerini "
+"Eğer seçiliyse, \"command\" da belirtilen programın \"callto\" URL'lerini "
 "işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın ghelp URL'lerini "
+"Eğer seçiliyse, \"command\" da belirtilen programın \"ghelp\" URL'lerini "
 "işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" de belirtilen programın H323 URL'lerini işletmek "
-"için ayarlanır."
+"Eğer seçiliyse, \"command\" de belirtilen programın \"h323\" URL'lerini "
+"işletmek için ayarlanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın ghelp URL'lerini "
+"Eğer seçiliyse, \"command\" da belirtilen programın \"http\" URL'lerini "
 "işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın ghelp URL'lerini "
+"Eğer seçiliyse, \"command\" da belirtilen programın \"https\" URL'lerini "
 "işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın info URL'lerini "
+"Eğer seçiliyse, \"command\" da belirtilen programın \"info\" URL'lerini "
 "işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın mailto URL'lerini "
+"Eğer seçiliyse, \"command\" da belirtilen programın \"mailto\" URL'lerini "
 "işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın man URL'lerini işletmesi "
-"için ayalalanır."
+"Eğer seçiliyse, \"command\" da belirtilen programın \"man\" URL'lerini "
+"işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın trash URL'lerini "
+"Eğer seçiliyse, \"command\" da belirtilen programın \"trash\" URL'lerini "
 "işletmesi için ayalalanır."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
@@ -1257,96 +1322,70 @@ msgstr ""
 "demektir."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın man URL'lerini işletmesi "
-"için ayalalanır."
+msgstr "Belirtilen komutun \"aim\" URL'lerini işlemesi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın callto URL'lerini "
-"işletmesi için ayalalanır."
+msgstr "Belirtilen komutun \"callto\" URL'lerini işlemesi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın ghelp URL'lerini "
-"işletmesi için ayalalanır."
+msgstr "Belirtilen komutun \"ghelp\" URL'lerini işlemesi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
-"Eğer seçiliyse, \"command\" de belirtilen programın H323 URL'lerini işletmek "
-"için ayarlanır."
+msgstr "Belirtilen komutun \"h323\" URL'lerini işlemesi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın ghelp URL'lerini "
-"işletmesi için ayalalanır."
+msgstr "Belirtilen komutun \"http\" URL'lerini işlemesi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın trash URL'lerini "
-"işletmesi için ayalalanır."
+msgstr "Belirtilen komutun \"https\" URL'lerini işlemesi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın info URL'lerini "
-"işletmesi için ayalalanır."
+msgstr "Belirtilen komutun \"info\" URL'lerini işlemesi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın mailto URL'lerini "
-"işletmesi için ayalalanır."
+msgstr "Belirtilen komutun \"mailto\" URL'lerini işlemesi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın man URL'lerini işletmesi "
-"için ayalalanır."
+msgstr "Belirtilen komutun \"man\" URL'lerini işlemesi"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"Eğer seçiliyse, \"command\" da belirtilen programın trash URL'lerini "
-"işletmesi için ayalalanır."
+msgstr "Belirtilen komutun \"trash\" URL'lerini işlemesi"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"Ağ konumlarında görülmesi gereken dns-sd alan adlarını virgül ile ayırılmış "
+"listesi."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "İçinde dns-sd servislerini aramak için ek alan adları"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Yerel DNS-SD servislerinin nasıl gösterileceği"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
 msgstr ""
+"Geçerli değerler, \"merged\" (birleşik), \"separate\" (ayrık) ve \"disabled"
+"\" (kapalı)'dir."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "Vekil sunucu bağlantılarında kimlik denetimi yap"
+msgstr "Vekil sunucu bağlantılarında kimlik doğrulaması yap"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
@@ -1505,71 +1544,3 @@ msgstr "SMB çalışma gurubu"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Pencere çalışma gurubu, kullanıcı ise:"
-
-#, fuzzy
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "HTTP URL'lerini işlet"
-
-#, fuzzy
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "HTTPS URL'lerini işlet"
-
-#, fuzzy
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTP "
-#~ "URLs."
-#~ msgstr ""
-#~ "Eğer seçiliyse, \"command\" da belirtilen programın HTTP URL'lerini "
-#~ "işletmesi için ayalalanır."
-
-#, fuzzy
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTPS "
-#~ "URLs."
-#~ msgstr ""
-#~ "Eğer seçiliyse, \"command\" da belirtilen programın HTTPS URL'lerini "
-#~ "işletmesi için ayalalanır."
-
-#, fuzzy
-#~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr ""
-#~ "Eğer seçiliyse, \"command\" da belirtilen programın HTTP URL'lerini "
-#~ "işletmesi için ayalalanır."
-
-#, fuzzy
-#~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr ""
-#~ "Eğer seçiliyse, \"command\" da belirtilen programın HTTPS URL'lerini "
-#~ "işletmesi için ayalalanır."
-
-#~ msgid "H323 URL handler"
-#~ msgstr "H323 URL tutacağı"
-
-#~ msgid "HTTP URL handler"
-#~ msgstr "HTTP URL tutcağı"
-
-#~ msgid "HTTPS URL handler"
-#~ msgstr "HTTPS URL tutacağı"
-
-#, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "man URL işleticisi"
-
-#~ msgid "callto URL handler"
-#~ msgstr "callto URL işleticisi"
-
-#~ msgid "ghelp URL handler"
-#~ msgstr "ghelp URL işleticisi"
-
-#~ msgid "info URL handler"
-#~ msgstr "info URL işleticisi"
-
-# libgnomevfs/gnome-vfs-result.c:48
-#~ msgid "mailto URL handler"
-#~ msgstr "mailto URL işleticisi"
-
-#~ msgid "man URL handler"
-#~ msgstr "man URL işleticisi"
-
-#~ msgid "trash URL handler"
-#~ msgstr "trash URL işleticisi"
