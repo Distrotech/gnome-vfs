@@ -1,3 +1,9 @@
+2003-02-17  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* modules/file-method.c: (read_link): fix memleak when readlink
+	fails.
+	* test/.cvsignore : quiet CVS, quiet.
+
 2003-02-13  Bastien Nocera  <hadess@hadess.net>
 
 	* modules/ssh-method.c: (do_move), (do_unlink), (do_check_same_fs):

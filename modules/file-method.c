@@ -582,6 +582,7 @@ read_link (const gchar *full_name)
 
                 read_size = readlink (full_name, buffer, size);
 		if (read_size < 0) {
+			g_free (buffer);
 			return NULL;
 		}
                 if (read_size < size) {
