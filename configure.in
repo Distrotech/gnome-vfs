@@ -137,6 +137,11 @@ AC_CHECK_LIB(socket, socket)
 AC_FUNC_ALLOCA
 AC_CHECK_FUNCS(getdtablesize open64 lseek64 statvfs seteuid setegid setresuid setresgid readdir_r mbrtowc inet_pton getdelim)
 
+dnl Volume monitor stuff			     
+AC_CHECK_FUNCS(setmntent endmntent hasmntopt getmntinfo)
+AC_CHECK_HEADERS(mntent.h sys/mnttab.h sys/vfstab.h sys/cdio.h sys/mount.h sys/mntctl.h sys/vfs.h sys/vmount.h fstab.h)
+
+			     
 dnl Specify the gconf configuration source, 
 dnl default to xml::$(sysconfdir)/gconf/gconf.xml.defaults
 

@@ -54,20 +54,23 @@ noinst_HEADERS =				\
 	gnome-vfs-async-job-map.h		\
 	gnome-vfs-backend.h			\
 	gnome-vfs-cancellable-ops.h		\
-	gnome-vfs-client.h			\
-	gnome-vfs-client-call.h			\
 	gnome-vfs-cancellation-private.h	\
+	gnome-vfs-cdrom.h			\
+	gnome-vfs-client-call.h			\
+	gnome-vfs-client.h			\
 	gnome-vfs-configuration.h		\
 	gnome-vfs-daemon-method.h		\
+	gnome-vfs-filesystem-type.h		\
 	gnome-vfs-handle-private.h		\
 	gnome-vfs-i18n.h			\
+	gnome-vfs-iso9660.h			\
 	gnome-vfs-job-queue.h			\
 	gnome-vfs-job-slave.h			\
 	gnome-vfs-job.h				\
 	gnome-vfs-mime-magic.h			\
 	gnome-vfs-mime-private.h		\
-	gnome-vfs-mime-sniff-buffer.h		\
 	gnome-vfs-mime-sniff-buffer-private.h	\
+	gnome-vfs-mime-sniff-buffer.h		\
 	gnome-vfs-module-callback-private.h	\
 	gnome-vfs-monitor-private.h		\
 	gnome-vfs-private-utils.h		\
@@ -75,6 +78,9 @@ noinst_HEADERS =				\
 	gnome-vfs-process.h			\
 	gnome-vfs-ssl-private.h			\
 	gnome-vfs-thread-pool.h			\
+	gnome-vfs-unix-mounts.h 		\
+	gnome-vfs-volume-monitor-daemon.h	\
+	gnome-vfs-volume-monitor-private.h 	\
 	$(NULL)
 
 libgnomevfsmoduleinclude_HEADERS =		\
@@ -100,15 +106,16 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-context.h			\
 	gnome-vfs-directory.h			\
+	gnome-vfs-drive.h			\
 	gnome-vfs-file-info.h			\
 	gnome-vfs-file-size.h			\
 	gnome-vfs-find-directory.h		\
 	gnome-vfs-handle.h			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
-	gnome-vfs-mime-utils.h			\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-monitor.h		\
+	gnome-vfs-mime-utils.h			\
 	gnome-vfs-module-callback.h		\
 	gnome-vfs-monitor.h			\
 	gnome-vfs-ops.h				\
@@ -117,6 +124,8 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-types.h			\
 	gnome-vfs-uri.h				\
 	gnome-vfs-utils.h			\
+	gnome-vfs-volume-monitor.h		\
+	gnome-vfs-volume.h			\
 	gnome-vfs-xfer.h			\
 	gnome-vfs.h				\
 	$(NULL)
@@ -134,14 +143,16 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-cancellation.c		\
-	gnome-vfs-client.c			\
+	gnome-vfs-cdrom.c			\
 	gnome-vfs-client-call.c			\
+	gnome-vfs-client.c			\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
-	gnome-vfs-directory.c			\
 	gnome-vfs-daemon-method.c		\
-	gnome-vfs-open-fd.c			\
+	gnome-vfs-directory.c			\
+	gnome-vfs-drive.c			\
 	gnome-vfs-file-info.c			\
+	gnome-vfs-filesystem-type.c		\
 	gnome-vfs-find-directory.c		\
 	gnome-vfs-handle.c			\
 	gnome-vfs-i18n.c			\
@@ -164,6 +175,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-module-shared.c		\
 	gnome-vfs-module.c			\
 	gnome-vfs-monitor.c			\
+	gnome-vfs-open-fd.c			\
 	gnome-vfs-ops.c				\
 	gnome-vfs-parse-ls.c			\
 	gnome-vfs-private-utils.c		\
@@ -175,8 +187,12 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-ssl.c				\
 	gnome-vfs-thread-pool.c			\
 	gnome-vfs-transform.c			\
+	gnome-vfs-unix-mounts.c			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
+	gnome-vfs-volume-monitor-daemon.c	\
+	gnome-vfs-volume-monitor.c		\
+	gnome-vfs-volume.c			\
 	gnome-vfs-xfer.c			\
 	$(NULL)
 
