@@ -1,3 +1,9 @@
+2004-01-09  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/sftp-method.c (do_rename): 
+	Fix rename.
+	based on patch from David O'Callaghan <david.ocallaghan@cs.tcd.ie>
+
 2004-01-08  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

@@ -2368,11 +2368,12 @@ do_rename (GnomeVFSMethod  *method,
 {
 	SftpConnection *conn;
 	GnomeVFSResult res;
+	char *old_dirname;
 
 	Buffer msg;
 	guint id;
 
-	gchar *old_path;
+	gchar *old_path, *new_path;
 
 	res = sftp_get_connection (&conn, old_uri);
 	if (res != GNOME_VFS_OK) return res;
@@ -2380,17 +2381,21 @@ do_rename (GnomeVFSMethod  *method,
 	buffer_init (&msg);
 
 	old_path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (old_uri), NULL);
+	old_dirname = g_path_get_dirname (old_path);
+	new_path = g_build_filename (old_dirname, new_name, NULL);
+	g_free (old_dirname);
 
 	id = sftp_connection_get_id (conn);
 
 	buffer_write_gchar (&msg, SSH2_FXP_RENAME);
 	buffer_write_gint32 (&msg, id);
 	buffer_write_string (&msg, old_path);
-	buffer_write_string (&msg, new_name);
+	buffer_write_string (&msg, new_path);
 	buffer_send (&msg, conn->out_fd);
 	buffer_free (&msg);
 
 	g_free (old_path);
+	g_free (new_path);
 
 	res = sftp_status_to_vfs_result (iobuf_read_result (conn->in_fd, id));
 
