@@ -43,3 +43,6 @@ libmoniker_gnome_vfs_std_la_SOURCES = \
 
 libmoniker_gnome_vfs_std_la_LIBADD = \
 	$(MONIKERS_LIBS)
+
+libmoniker_gnome_vfs_std_la_LDFLAGS = \
+	-module -avoid-version 

@@ -1,3 +1,7 @@
+2001-10-05  jacob berkman  <jacob@ximian.com>
+
+	* Makefile.am: set LDFLAGS to -module -avoid-version
+
 2001-10-02  Darin Adler  <darin@bentspoon.com>
 
 	* Makefile.am: Change from xml-i18n-tools to intltool.
