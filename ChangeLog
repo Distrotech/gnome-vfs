@@ -1,3 +1,11 @@
+2001-02-08  Ian McKellar  <ian@eazel.com>
+
+	reviewed by: Robey Pointer  <robey@eazel.com>
+
+	* libgnomevfs/gnome-vfs-parse-ls.c: (gnome_vfs_parse_ls_lga):
+	Fixing bug 6214 - the ls parser now correctly handles filenames
+	with spaces in them.
+
 2001-02-06  Robin * Slomkowski  <rslomkow@eazel.com>
 	
 	THIS IS THE gnome-vfs-1 branch
