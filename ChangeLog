@@ -1,3 +1,8 @@
+2001-02-20  Robin * Slomkowski  <rslomkow@rslomkow.org>
+
+	* gnome-vfs.spec.in: changed nautilus-mime-type-capplet
+	                     to file-types-capplet
+
 2001-02-16  Michael K. Fleming  <mfleming@eazel.com>
  
  	reviewed by: <darin@eazel.com>
