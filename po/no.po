@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.0.0\n"
-"POT-Creation-Date: 2001-02-27 16:25+0100\n"
-"PO-Revision-Date: 2001-02-27 00:13+01:00\n"
+"POT-Creation-Date: 2001-03-01 02:06+0100\n"
+"PO-Revision-Date: 2001-03-01 02:06+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -354,656 +354,787 @@ msgid "Macintosh StuffIt archive"
 msgstr "Macintosh StuffIt arkiv"
 
 #: data/mime/gnome-vfs.keys.in.h:86
+msgid "Macromedia Flash file"
+msgstr "Macromedia Flash fil"
+
+#: data/mime/gnome-vfs.keys.in.h:87
 msgid "MathML document"
 msgstr "MathML-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:87
+#: data/mime/gnome-vfs.keys.in.h:88
 msgid "Microsoft Excel spreadsheet"
 msgstr "Microsoft Excel regneark"
 
-#: data/mime/gnome-vfs.keys.in.h:88
+#: data/mime/gnome-vfs.keys.in.h:89
 msgid "Microsoft PowerPoint document"
 msgstr "Microsoft PowerPoint dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:89
+#: data/mime/gnome-vfs.keys.in.h:90
 msgid "Microsoft Word document"
 msgstr "Microsoft Word dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:90
+#: data/mime/gnome-vfs.keys.in.h:91
 msgid "Microsoft video"
 msgstr "Microsoft-film"
 
-#: data/mime/gnome-vfs.keys.in.h:91
+#: data/mime/gnome-vfs.keys.in.h:92
 msgid "Nautilus link"
 msgstr "Nautilus-lenke"
 
-#: data/mime/gnome-vfs.keys.in.h:92
+#: data/mime/gnome-vfs.keys.in.h:93
 msgid "ODA document"
 msgstr "ODA-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:93
+#: data/mime/gnome-vfs.keys.in.h:94
 msgid "PBM image"
 msgstr "PBM-bilde"
 
-#: data/mime/gnome-vfs.keys.in.h:94
+#: data/mime/gnome-vfs.keys.in.h:95
 msgid "PCF font"
 msgstr "PCF-skrifttype"
 
-#: data/mime/gnome-vfs.keys.in.h:95
+#: data/mime/gnome-vfs.keys.in.h:96
 msgid "PDF document"
 msgstr "PDF-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:96
+#: data/mime/gnome-vfs.keys.in.h:97
 msgid "PEF program"
 msgstr "PEF-program"
 
-#: data/mime/gnome-vfs.keys.in.h:97
+#: data/mime/gnome-vfs.keys.in.h:98
 msgid "PGM image"
 msgstr "PGM-bilde"
 
-#: data/mime/gnome-vfs.keys.in.h:98
+#: data/mime/gnome-vfs.keys.in.h:99
 msgid "PGN chess game"
 msgstr "PGN skakspil"
 
-#: data/mime/gnome-vfs.keys.in.h:99
+#: data/mime/gnome-vfs.keys.in.h:100
 msgid "PGP keys"
 msgstr "PGP-nøkler"
 
-#: data/mime/gnome-vfs.keys.in.h:100
+#: data/mime/gnome-vfs.keys.in.h:101
 msgid "PGP message"
 msgstr "PGP-melding"
 
-#: data/mime/gnome-vfs.keys.in.h:101
+#: data/mime/gnome-vfs.keys.in.h:102
 msgid "PGP signature"
 msgstr "PGP-signatur"
 
-#: data/mime/gnome-vfs.keys.in.h:102
+#: data/mime/gnome-vfs.keys.in.h:103
 msgid "PGP-encrypted file"
 msgstr "PGP-kryptert fil"
 
-#: data/mime/gnome-vfs.keys.in.h:103
+#: data/mime/gnome-vfs.keys.in.h:104
 msgid "PHP script"
 msgstr "PHP-skript"
 
-#: data/mime/gnome-vfs.keys.in.h:104
+#: data/mime/gnome-vfs.keys.in.h:105
 msgid "PN RealAudio document"
 msgstr "PN RealAudio-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:105
+#: data/mime/gnome-vfs.keys.in.h:106
 msgid "PNG image"
 msgstr "PNG-bilde"
 
-#: data/mime/gnome-vfs.keys.in.h:106
+#: data/mime/gnome-vfs.keys.in.h:107
 msgid "PNM image"
 msgstr "PNM-bilde"
 
-#: data/mime/gnome-vfs.keys.in.h:107
+#: data/mime/gnome-vfs.keys.in.h:108
 msgid "PPM image"
 msgstr "PPM-bilde"
 
-#: data/mime/gnome-vfs.keys.in.h:108
+#: data/mime/gnome-vfs.keys.in.h:109
 msgid "Palm OS database"
 msgstr "Palm OS-database"
 
-#: data/mime/gnome-vfs.keys.in.h:109
+#: data/mime/gnome-vfs.keys.in.h:110
 msgid "Perl script"
 msgstr "Perl skript"
 
-#: data/mime/gnome-vfs.keys.in.h:110
+#: data/mime/gnome-vfs.keys.in.h:111
 msgid "Photoshop document"
 msgstr "Photoshop-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:111
+#: data/mime/gnome-vfs.keys.in.h:112
 msgid "PostScript Type 1 font"
 msgstr "PostScript Type 1-skrifttype"
 
-#: data/mime/gnome-vfs.keys.in.h:112
+#: data/mime/gnome-vfs.keys.in.h:113
 msgid "PostScript document"
 msgstr "PostScript dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:113
+#: data/mime/gnome-vfs.keys.in.h:114
 msgid "Python source code"
 msgstr "Python-kildekode"
 
-#: data/mime/gnome-vfs.keys.in.h:114
+#: data/mime/gnome-vfs.keys.in.h:115
 msgid "QuickTime movie"
 msgstr "QuickTime-film"
 
-#: data/mime/gnome-vfs.keys.in.h:115
+#: data/mime/gnome-vfs.keys.in.h:116
 msgid "Quicken document"
 msgstr "Quicken-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:116
+#: data/mime/gnome-vfs.keys.in.h:117
 msgid "Quicken for Windows document"
 msgstr "Quicken for Windows dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:117
+#: data/mime/gnome-vfs.keys.in.h:118
 msgid "RAR archive"
 msgstr "RAR-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:118
+#: data/mime/gnome-vfs.keys.in.h:119
 msgid "README document"
 msgstr "README-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:119
+#: data/mime/gnome-vfs.keys.in.h:120
 msgid "RGB image"
 msgstr "RGB-bilde"
 
-#: data/mime/gnome-vfs.keys.in.h:120
+#: data/mime/gnome-vfs.keys.in.h:121
 msgid "RIFF audio"
 msgstr "RIFF-lyd"
 
-#: data/mime/gnome-vfs.keys.in.h:121
+#: data/mime/gnome-vfs.keys.in.h:122
 msgid "RPM package"
 msgstr "RPM-pakke"
 
-#: data/mime/gnome-vfs.keys.in.h:122
+#: data/mime/gnome-vfs.keys.in.h:123
 msgid "RealAudio/Video document"
 msgstr "RealAudio/Video-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:123
+#: data/mime/gnome-vfs.keys.in.h:124
 msgid "RealVideo video"
 msgstr "RealVideo film"
 
-#: data/mime/gnome-vfs.keys.in.h:124
+#: data/mime/gnome-vfs.keys.in.h:125
 msgid "S/MIME file"
 msgstr "S/MIME-fil"
 
-#: data/mime/gnome-vfs.keys.in.h:125
+#: data/mime/gnome-vfs.keys.in.h:126
 msgid "S/MIME signature"
 msgstr "S/MIME-signatur"
 
-#: data/mime/gnome-vfs.keys.in.h:126
+#: data/mime/gnome-vfs.keys.in.h:127
 msgid "SGI video"
 msgstr "SGI-film"
 
-#: data/mime/gnome-vfs.keys.in.h:127
+#: data/mime/gnome-vfs.keys.in.h:128
 msgid "SGML document"
 msgstr "SGML-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:128
+#: data/mime/gnome-vfs.keys.in.h:129
 msgid "SMIL script"
 msgstr "SMIL-skript"
 
-#: data/mime/gnome-vfs.keys.in.h:129
+#: data/mime/gnome-vfs.keys.in.h:130
 msgid "SQL code"
 msgstr "SQL-kildekode"
 
-#: data/mime/gnome-vfs.keys.in.h:130
+#: data/mime/gnome-vfs.keys.in.h:131
 msgid "SV4 CPIO archive"
 msgstr "SV4 CPIO-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:131
+#: data/mime/gnome-vfs.keys.in.h:132
 msgid "SV4 CPIP archive (with CRC)"
 msgstr "SV4 CPIO-arkiv (med CRC)"
 
-#: data/mime/gnome-vfs.keys.in.h:132
+#: data/mime/gnome-vfs.keys.in.h:133
 msgid "SVG art"
 msgstr "SVG-kunst"
 
-#: data/mime/gnome-vfs.keys.in.h:133
+#: data/mime/gnome-vfs.keys.in.h:134
 msgid "Scheme source code"
 msgstr "Scheme-kildekode"
 
-#: data/mime/gnome-vfs.keys.in.h:134
+#: data/mime/gnome-vfs.keys.in.h:135
 msgid "Scream Tracker 3 audio"
 msgstr "Scream Tracker 3-lyd"
 
-#: data/mime/gnome-vfs.keys.in.h:135
+#: data/mime/gnome-vfs.keys.in.h:136
 msgid "Scream Tracker audio"
 msgstr "Scream Tracker-lyd"
 
-#: data/mime/gnome-vfs.keys.in.h:136
+#: data/mime/gnome-vfs.keys.in.h:137
 msgid "Scream Tracker instrument"
 msgstr "Scream Tracker-instrument"
 
-#: data/mime/gnome-vfs.keys.in.h:137
+#: data/mime/gnome-vfs.keys.in.h:138
 msgid "Setext document"
 msgstr "Setext-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:138
+#: data/mime/gnome-vfs.keys.in.h:139
 msgid "Speech document"
 msgstr "Speech-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:139
+#: data/mime/gnome-vfs.keys.in.h:140
 msgid "Speedo font"
 msgstr "Speedo-skrifttype"
 
-#: data/mime/gnome-vfs.keys.in.h:140
+#: data/mime/gnome-vfs.keys.in.h:141
 msgid "Spreadsheet Interchange document"
 msgstr "Dokument for regnearkutveksling"
 
-#: data/mime/gnome-vfs.keys.in.h:141
+#: data/mime/gnome-vfs.keys.in.h:142
 msgid "Stampede package"
 msgstr "Stampede-pakke"
 
-#: data/mime/gnome-vfs.keys.in.h:142
+#: data/mime/gnome-vfs.keys.in.h:143
 msgid "StarOffice Writer document"
 msgstr "StarOffice Writer dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:143
+#: data/mime/gnome-vfs.keys.in.h:144
 msgid "StarOffice presentation"
 msgstr "StarOffice-presentasjon"
 
-#: data/mime/gnome-vfs.keys.in.h:144
+#: data/mime/gnome-vfs.keys.in.h:145
 msgid "StarOffice spreadsheet"
 msgstr "StarOffice-regneark"
 
-#: data/mime/gnome-vfs.keys.in.h:145
+#: data/mime/gnome-vfs.keys.in.h:146
 msgid "Sun µ-law audio"
 msgstr "Sun u-law lyd"
 
-#: data/mime/gnome-vfs.keys.in.h:146
+#: data/mime/gnome-vfs.keys.in.h:147
 msgid "SunOS News font"
 msgstr "SunOS News-skrifttype"
 
-#: data/mime/gnome-vfs.keys.in.h:147
+#: data/mime/gnome-vfs.keys.in.h:148
 msgid "TIFF image"
 msgstr "TIFF-bilde"
 
-#: data/mime/gnome-vfs.keys.in.h:148
+#: data/mime/gnome-vfs.keys.in.h:149
 msgid "TarGA image"
 msgstr "TarGA-bilde"
 
-#: data/mime/gnome-vfs.keys.in.h:149
+#: data/mime/gnome-vfs.keys.in.h:150
 msgid "Tcl script"
 msgstr "Tcl-skript"
 
-#: data/mime/gnome-vfs.keys.in.h:150
+#: data/mime/gnome-vfs.keys.in.h:151
 msgid "TeX document"
 msgstr "TeX-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:151
+#: data/mime/gnome-vfs.keys.in.h:152
 msgid "TeX dvi document"
 msgstr "TeX dvi dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:152
+#: data/mime/gnome-vfs.keys.in.h:153
 msgid "TeX font"
 msgstr "TeX-skrifttype"
 
-#: data/mime/gnome-vfs.keys.in.h:153
+#: data/mime/gnome-vfs.keys.in.h:154
 msgid "TeX font metrics"
 msgstr "TeX skrifttypemetrikk"
 
-#: data/mime/gnome-vfs.keys.in.h:154
+#: data/mime/gnome-vfs.keys.in.h:155
 msgid "TeXInfo document"
 msgstr "TeXInfo-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:155
+#: data/mime/gnome-vfs.keys.in.h:156
 msgid "ToutDoux document"
 msgstr "ToutDoux-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:156
+#: data/mime/gnome-vfs.keys.in.h:157
 msgid "TrueType font"
 msgstr "TrueType-skrifttype"
 
-#: data/mime/gnome-vfs.keys.in.h:157
+#: data/mime/gnome-vfs.keys.in.h:158
 msgid "USENET news message"
 msgstr "USENET nyhetsmelding"
 
-#: data/mime/gnome-vfs.keys.in.h:158
+#: data/mime/gnome-vfs.keys.in.h:159
 msgid "Unidata netCDF document"
 msgstr "Unidata netCDF-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:159
+#: data/mime/gnome-vfs.keys.in.h:160
 msgid "V font"
 msgstr "V-skrifttype"
 
-#: data/mime/gnome-vfs.keys.in.h:160
+#: data/mime/gnome-vfs.keys.in.h:161
 msgid "VOC audio"
 msgstr "VOC-lyd"
 
-#: data/mime/gnome-vfs.keys.in.h:161
+#: data/mime/gnome-vfs.keys.in.h:162
 msgid "VRML document"
 msgstr "VRML-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:162
+#: data/mime/gnome-vfs.keys.in.h:163
 msgid "Vivo video"
 msgstr "Vivo-film"
 
-#: data/mime/gnome-vfs.keys.in.h:163
+#: data/mime/gnome-vfs.keys.in.h:164
 msgid "WAIS source code"
 msgstr "WAIS-kildekode"
 
-#: data/mime/gnome-vfs.keys.in.h:164
+#: data/mime/gnome-vfs.keys.in.h:165
 msgid "Wavelet video"
 msgstr "Wavelet-film"
 
-#: data/mime/gnome-vfs.keys.in.h:165
+#: data/mime/gnome-vfs.keys.in.h:166
 msgid "Windows bitmap image"
 msgstr "Windows-bitmapbilde"
 
-#: data/mime/gnome-vfs.keys.in.h:166
+#: data/mime/gnome-vfs.keys.in.h:167
 msgid "Windows icon image"
 msgstr "Windows-ikonbilde"
 
-#: data/mime/gnome-vfs.keys.in.h:167
+#: data/mime/gnome-vfs.keys.in.h:168
 msgid "Windows metafile graphics"
 msgstr "Windows metafil grafikk"
 
-#: data/mime/gnome-vfs.keys.in.h:168
+#: data/mime/gnome-vfs.keys.in.h:169
 msgid "WordPerfect document"
 msgstr "WordPerfect-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:169
+#: data/mime/gnome-vfs.keys.in.h:170
 msgid "X bitmap image"
 msgstr "X-bitmapbilde"
 
-#: data/mime/gnome-vfs.keys.in.h:170
+#: data/mime/gnome-vfs.keys.in.h:171
 msgid "X window image"
 msgstr "X-Windows skjermbilde"
 
-#: data/mime/gnome-vfs.keys.in.h:171
+#: data/mime/gnome-vfs.keys.in.h:172
 msgid "XML document"
 msgstr "XML-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:172
+#: data/mime/gnome-vfs.keys.in.h:173
 msgid "XPM image"
 msgstr "XPM-bilde"
 
-#: data/mime/gnome-vfs.keys.in.h:173
+#: data/mime/gnome-vfs.keys.in.h:174
 msgid "Xbase database"
 msgstr "Xbase-database"
 
-#: data/mime/gnome-vfs.keys.in.h:174
+#: data/mime/gnome-vfs.keys.in.h:175
 msgid "active server page"
 msgstr "Active Server Page"
 
-#: data/mime/gnome-vfs.keys.in.h:175
+#: data/mime/gnome-vfs.keys.in.h:176
 msgid "address card"
 msgstr "adressekort"
 
-#: data/mime/gnome-vfs.keys.in.h:176
+#: data/mime/gnome-vfs.keys.in.h:177
 msgid "ar archive"
 msgstr "ar-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:177
+#: data/mime/gnome-vfs.keys.in.h:178
 msgid "arj archive"
 msgstr "ARJ-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:178
+#: data/mime/gnome-vfs.keys.in.h:179
 msgid "authors list"
 msgstr "forfatterliste"
 
-#: data/mime/gnome-vfs.keys.in.h:179
+#: data/mime/gnome-vfs.keys.in.h:180
 msgid "backup file"
 msgstr "sikkerhetskopi"
 
-#: data/mime/gnome-vfs.keys.in.h:180
+#: data/mime/gnome-vfs.keys.in.h:181
 msgid "basic audio"
 msgstr "grunnleggende lyd"
 
-#: data/mime/gnome-vfs.keys.in.h:181
+#: data/mime/gnome-vfs.keys.in.h:182
 msgid "bibliography record"
 msgstr "bibliografipost"
 
-#: data/mime/gnome-vfs.keys.in.h:182
+#: data/mime/gnome-vfs.keys.in.h:183
 msgid "binary program"
 msgstr "Binærprogram"
 
-#: data/mime/gnome-vfs.keys.in.h:183
+#: data/mime/gnome-vfs.keys.in.h:184
 msgid "block device"
 msgstr "blokkenhet"
 
-#: data/mime/gnome-vfs.keys.in.h:184
+#: data/mime/gnome-vfs.keys.in.h:185
 msgid "bzip-compressed file"
 msgstr "bzip-pakket fil"
 
-#: data/mime/gnome-vfs.keys.in.h:185
+#: data/mime/gnome-vfs.keys.in.h:186
 msgid "calendar file"
 msgstr "kalenderfil"
 
-#: data/mime/gnome-vfs.keys.in.h:186
+#: data/mime/gnome-vfs.keys.in.h:187
 msgid "calendar or event document"
 msgstr "kalender eller hendelsesdokument"
 
-#: data/mime/gnome-vfs.keys.in.h:187
+#: data/mime/gnome-vfs.keys.in.h:188
 msgid "character device"
 msgstr "tegnenhet"
 
-#: data/mime/gnome-vfs.keys.in.h:188
+#: data/mime/gnome-vfs.keys.in.h:189
 msgid "comma-separated text document"
 msgstr "kommaseparert tekstdokument"
 
-#: data/mime/gnome-vfs.keys.in.h:189
+#: data/mime/gnome-vfs.keys.in.h:190
 msgid "compound document"
 msgstr "sammensatt dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:190
+#: data/mime/gnome-vfs.keys.in.h:191
 msgid "compress-compressed file"
 msgstr "compress-pakket fil"
 
-#: data/mime/gnome-vfs.keys.in.h:191
+#: data/mime/gnome-vfs.keys.in.h:192
 msgid "compressed GIMP document"
 msgstr "pakket GIMP-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:192
+#: data/mime/gnome-vfs.keys.in.h:193
 msgid "directory information file"
 msgstr "kataloginformasjonsfil"
 
-#: data/mime/gnome-vfs.keys.in.h:193
+#: data/mime/gnome-vfs.keys.in.h:194
 msgid "document type definition"
 msgstr "dokumenttypdefinisjon"
 
-#: data/mime/gnome-vfs.keys.in.h:194
+#: data/mime/gnome-vfs.keys.in.h:195
 msgid "email headers"
 msgstr "e-posthode"
 
-#: data/mime/gnome-vfs.keys.in.h:195
+#: data/mime/gnome-vfs.keys.in.h:196
 msgid "email message"
 msgstr "e-postmelding"
 
-#: data/mime/gnome-vfs.keys.in.h:196
+#: data/mime/gnome-vfs.keys.in.h:197
 msgid "encrypted message"
 msgstr "kryptert melding"
 
-#: data/mime/gnome-vfs.keys.in.h:197
+#: data/mime/gnome-vfs.keys.in.h:198
 msgid "enriched text document"
 msgstr "riktekst-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:198
+#: data/mime/gnome-vfs.keys.in.h:199
 msgid "folder"
 msgstr "mappe"
 
-#: data/mime/gnome-vfs.keys.in.h:199
+#: data/mime/gnome-vfs.keys.in.h:200
 msgid "gtar archive"
 msgstr "gtar-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:200
+#: data/mime/gnome-vfs.keys.in.h:201
 msgid "gzip-compressed file"
 msgstr "gzip-pakket fil"
 
-#: data/mime/gnome-vfs.keys.in.h:201
+#: data/mime/gnome-vfs.keys.in.h:202
 msgid "help page"
 msgstr "hjelpside"
 
-#: data/mime/gnome-vfs.keys.in.h:202
+#: data/mime/gnome-vfs.keys.in.h:203
 msgid "mail delivery report"
 msgstr "e-postleveranserapport"
 
-#: data/mime/gnome-vfs.keys.in.h:203
+#: data/mime/gnome-vfs.keys.in.h:204
 msgid "mail disposition report"
 msgstr "e-postdispositionsrapport"
 
-#: data/mime/gnome-vfs.keys.in.h:204
+#: data/mime/gnome-vfs.keys.in.h:205
 msgid "mail system report"
 msgstr "e-postsystemrapport"
 
-#: data/mime/gnome-vfs.keys.in.h:205
+#: data/mime/gnome-vfs.keys.in.h:206
 msgid "makefile"
 msgstr "makefil"
 
-#: data/mime/gnome-vfs.keys.in.h:206
+#: data/mime/gnome-vfs.keys.in.h:207
 msgid "manual page"
 msgstr "manualside"
 
-#: data/mime/gnome-vfs.keys.in.h:207
+#: data/mime/gnome-vfs.keys.in.h:208
 msgid "manual page (compressed)"
 msgstr "manualside (pakket)"
 
-#: data/mime/gnome-vfs.keys.in.h:208
+#: data/mime/gnome-vfs.keys.in.h:209
 msgid "memory dump"
 msgstr "Minnedump"
 
-#: data/mime/gnome-vfs.keys.in.h:209
+#: data/mime/gnome-vfs.keys.in.h:210
 msgid "message digest"
 msgstr "medldingssamling"
 
-#: data/mime/gnome-vfs.keys.in.h:210
+#: data/mime/gnome-vfs.keys.in.h:211
 msgid "message in several formats"
 msgstr "melding i flere formater"
 
-#: data/mime/gnome-vfs.keys.in.h:211
+#: data/mime/gnome-vfs.keys.in.h:212
 msgid "multi-part message"
 msgstr "melding i flere deler"
 
-#: data/mime/gnome-vfs.keys.in.h:212
+#: data/mime/gnome-vfs.keys.in.h:213
 msgid "named pipe"
 msgstr "navngitt rør"
 
-#: data/mime/gnome-vfs.keys.in.h:213
+#: data/mime/gnome-vfs.keys.in.h:214
 msgid "object code"
 msgstr "objektkode"
 
-#: data/mime/gnome-vfs.keys.in.h:214
+#: data/mime/gnome-vfs.keys.in.h:215
 msgid "ogg audio"
 msgstr "ogg lyd"
 
-#: data/mime/gnome-vfs.keys.in.h:215
+#: data/mime/gnome-vfs.keys.in.h:216
 msgid "partial email message"
 msgstr "del av e-postmelding"
 
-#: data/mime/gnome-vfs.keys.in.h:216
+#: data/mime/gnome-vfs.keys.in.h:217
 msgid "plain text document"
 msgstr "vanlig tekstdokument"
 
-#: data/mime/gnome-vfs.keys.in.h:217
+#: data/mime/gnome-vfs.keys.in.h:218
 msgid "profiler results"
 msgstr "profileingsresultat"
 
-#: data/mime/gnome-vfs.keys.in.h:218
+#: data/mime/gnome-vfs.keys.in.h:219
 msgid "reference to remote file"
 msgstr "referanse til ekstern fil"
 
-#: data/mime/gnome-vfs.keys.in.h:219
+#: data/mime/gnome-vfs.keys.in.h:220
 msgid "rejected patch file"
 msgstr "avvist patchfil"
 
-#: data/mime/gnome-vfs.keys.in.h:220
+#: data/mime/gnome-vfs.keys.in.h:221
 msgid "rich text document"
 msgstr "riktekst-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:221
+#: data/mime/gnome-vfs.keys.in.h:222
 msgid "search results"
 msgstr "søkeresultat"
 
-#: data/mime/gnome-vfs.keys.in.h:222
+#: data/mime/gnome-vfs.keys.in.h:223
 msgid "shared library"
 msgstr "delt bibliotek"
 
-#: data/mime/gnome-vfs.keys.in.h:223
+#: data/mime/gnome-vfs.keys.in.h:224
 msgid "shell archive"
 msgstr "skallarkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:224
+#: data/mime/gnome-vfs.keys.in.h:225
 msgid "shell script"
 msgstr "skallskript"
 
-#: data/mime/gnome-vfs.keys.in.h:225
+#: data/mime/gnome-vfs.keys.in.h:226
 msgid "signed message"
 msgstr "signert melding"
 
-#: data/mime/gnome-vfs.keys.in.h:226
+#: data/mime/gnome-vfs.keys.in.h:227
 msgid "socket"
 msgstr "socket"
 
-#: data/mime/gnome-vfs.keys.in.h:227
+#: data/mime/gnome-vfs.keys.in.h:228
 msgid "software author credits"
 msgstr "forfatterliste for programvare"
 
-#: data/mime/gnome-vfs.keys.in.h:228
+#: data/mime/gnome-vfs.keys.in.h:229
 msgid "software installation instructions"
 msgstr "installationsinstruksjoner for programvare"
 
-#: data/mime/gnome-vfs.keys.in.h:229
+#: data/mime/gnome-vfs.keys.in.h:230
 msgid "software license terms"
 msgstr "lisensbestemmelser for programvare"
 
-#: data/mime/gnome-vfs.keys.in.h:230
+#: data/mime/gnome-vfs.keys.in.h:231
 msgid "source code patch"
 msgstr "kildekodepatch"
 
-#: data/mime/gnome-vfs.keys.in.h:231
+#: data/mime/gnome-vfs.keys.in.h:232
 msgid "style sheet"
 msgstr "stilmal"
 
-#: data/mime/gnome-vfs.keys.in.h:232
+#: data/mime/gnome-vfs.keys.in.h:233
 msgid "symbolic link"
 msgstr "symbolsk lenke"
 
-#: data/mime/gnome-vfs.keys.in.h:233
+#: data/mime/gnome-vfs.keys.in.h:234
 msgid "tab-separated text document"
 msgstr "tabulatorseparert tekstdokument"
 
-#: data/mime/gnome-vfs.keys.in.h:234
+#: data/mime/gnome-vfs.keys.in.h:235
 msgid "tar archive"
 msgstr "tar-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:235
+#: data/mime/gnome-vfs.keys.in.h:236
 msgid "tar archive (bzip2-compressed)"
 msgstr "tar-arkiv (bzip2-pakket)"
 
-#: data/mime/gnome-vfs.keys.in.h:236
+#: data/mime/gnome-vfs.keys.in.h:237
 msgid "tar archive (gzip-compressed)"
 msgstr "tar-arkiv (gzip-pakket)"
 
-#: data/mime/gnome-vfs.keys.in.h:237
+#: data/mime/gnome-vfs.keys.in.h:238
 msgid "theme"
 msgstr "tema"
 
-#: data/mime/gnome-vfs.keys.in.h:238
+#: data/mime/gnome-vfs.keys.in.h:239
 msgid "troff document"
 msgstr "troff-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:239
+#: data/mime/gnome-vfs.keys.in.h:240
 msgid "troff me input document"
 msgstr "troff me inndatadokument"
 
-#: data/mime/gnome-vfs.keys.in.h:240
+#: data/mime/gnome-vfs.keys.in.h:241
 msgid "troff mm input document"
 msgstr "troff mm inndatadokument"
 
-#: data/mime/gnome-vfs.keys.in.h:241
+#: data/mime/gnome-vfs.keys.in.h:242
 msgid "troff ms input document"
 msgstr "troff ms inndatadokument"
 
-#: data/mime/gnome-vfs.keys.in.h:242
+#: data/mime/gnome-vfs.keys.in.h:243
 msgid "unknown type"
 msgstr "ukjent type"
 
-#: data/mime/gnome-vfs.keys.in.h:243
+#: data/mime/gnome-vfs.keys.in.h:244
 msgid "ustar archive"
 msgstr "ustar-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:244
+#: data/mime/gnome-vfs.keys.in.h:245
 msgid "wave audio"
 msgstr "wave-lyd"
 
-#: data/mime/gnome-vfs.keys.in.h:245
+#: data/mime/gnome-vfs.keys.in.h:246
 msgid "web folder"
 msgstr "webmappe"
 
-#: data/mime/gnome-vfs.keys.in.h:246
+#: data/mime/gnome-vfs.keys.in.h:247
 msgid "xfig vector graphic"
 msgstr "xfig vektorgrafikk"
 
-#: data/mime/gnome-vfs.keys.in.h:247
+#: data/mime/gnome-vfs.keys.in.h:248
 msgid "zip archive"
 msgstr "zip-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:248
+#: data/mime/gnome-vfs.keys.in.h:249
 msgid "zoo archive"
 msgstr "zoo-arkiv"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:336
+msgid "Dying."
+msgstr "Dør."
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#, c-format
+msgid "Error reading: %s"
+msgstr "Feil under lesing: %s"
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#, c-format
+msgid "Error writing: %s"
+msgstr "Feil under skriving: %s"
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#, c-format
+msgid "Cannot write: %s"
+msgstr "Kan ikke skrive: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:601
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr "Kan ikke opprette midlertidig fil ved navn `%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
+#: libgnomevfs-corba/gnome-vfs-slave.c:615
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr "Kan ikke opprette socket: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:633
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr "Kan ikke binde `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:640
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr "Kan ikke lytte på `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:663
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr "Kan ikke motta forbindelser på `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1195
+msgid "Cannot initialize CORBA."
+msgstr "Kan ikke initialisere CORBA."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1202
+msgid "Cannot resolve initial reference to RootPOA."
+msgstr "Kan ikke oppløse initiell referanse til RootPOA."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1209
+msgid "Cannot activate POA manager."
+msgstr "Kan ikke aktivere POA-håndterer."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1234
+#, c-format
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "Bruk: %s <ior> [<ior_fd>]\n"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1245
+#, c-format
+msgid "Cannot open file descriptor %d."
+msgstr "Kan ikke åpne file descriptor %d."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1268
+#, c-format
+msgid "Notify interface for `%s' not found."
+msgstr "Meldingsgrensesnitt for `%s' ikke funnet."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1278
+msgid "Cannot setup Request object."
+msgstr "Kan ikke sette opp Request objekt."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1285
+msgid "Cannot extract IOR."
+msgstr "Kan ikke hente ut IOR."
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
+#, c-format
+msgid "Got weird string from the slave process: `%s'"
+msgstr "Mottok rar streng fra slaveprosess: `%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
+#, c-format
+msgid "Cannot get object for `%s'"
+msgstr "Kan ikke finne objekt for `%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+msgstr "Kan ikke drepe GNOME::VFS::Slave::Notify -- unntak %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
+#, c-format
+msgid "Cannot connect socket `%s': %s"
+msgstr "Kan ikke koble til socket `%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
+msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+msgstr "Kan ikke initialisere GNOME::VFS::Slave::Notify"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+msgstr "Kan ikke nullstille GNOME::VFS::Slave %s -- unntak %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "Kan ikke nullstille GNOME::VFS::Slave (IOR ukjent) -- unntak %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+msgstr "Kan ikke drepe GNOME::VFS::Slave %s -- unntak %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "Kan ikke drepe GNOME::VFS::Slave (IOR ukjent) -- unntak %s"
 
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
@@ -1266,133 +1397,6 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
-msgid "Dying."
-msgstr "Dør."
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
-#, c-format
-msgid "Error reading: %s"
-msgstr "Feil under lesing: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
-#, c-format
-msgid "Error writing: %s"
-msgstr "Feil under skriving: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
-#, c-format
-msgid "Cannot write: %s"
-msgstr "Kan ikke skrive: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:601
-#, c-format
-msgid "Cannot create temporary file name `%s'"
-msgstr "Kan ikke opprette midlertidig fil ved navn `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:615
-#, c-format
-msgid "Cannot create socket: %s"
-msgstr "Kan ikke opprette socket: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:633
-#, c-format
-msgid "Cannot bind `%s': %s"
-msgstr "Kan ikke binde `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:640
-#, c-format
-msgid "Cannot listen on `%s': %s"
-msgstr "Kan ikke lytte på `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
-#, c-format
-msgid "Cannot accept connections on `%s': %s"
-msgstr "Kan ikke motta forbindelser på `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1195
-msgid "Cannot initialize CORBA."
-msgstr "Kan ikke initialisere CORBA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1202
-msgid "Cannot resolve initial reference to RootPOA."
-msgstr "Kan ikke oppløse initiell referanse til RootPOA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1209
-msgid "Cannot activate POA manager."
-msgstr "Kan ikke aktivere POA-håndterer."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1234
-#, c-format
-msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "Bruk: %s <ior> [<ior_fd>]\n"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1245
-#, c-format
-msgid "Cannot open file descriptor %d."
-msgstr "Kan ikke åpne file descriptor %d."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1268
-#, c-format
-msgid "Notify interface for `%s' not found."
-msgstr "Meldingsgrensesnitt for `%s' ikke funnet."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
-msgid "Cannot setup Request object."
-msgstr "Kan ikke sette opp Request objekt."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
-msgid "Cannot extract IOR."
-msgstr "Kan ikke hente ut IOR."
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
-#, c-format
-msgid "Got weird string from the slave process: `%s'"
-msgstr "Mottok rar streng fra slaveprosess: `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, c-format
-msgid "Cannot get object for `%s'"
-msgstr "Kan ikke finne objekt for `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "Kan ikke drepe GNOME::VFS::Slave::Notify -- unntak %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, c-format
-msgid "Cannot connect socket `%s': %s"
-msgstr "Kan ikke koble til socket `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
-msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "Kan ikke initialisere GNOME::VFS::Slave::Notify"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan ikke nullstille GNOME::VFS::Slave %s -- unntak %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan ikke nullstille GNOME::VFS::Slave (IOR ukjent) -- unntak %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan ikke drepe GNOME::VFS::Slave %s -- unntak %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan ikke drepe GNOME::VFS::Slave (IOR ukjent) -- unntak %s"
-
 #: libgnomevfs-pthread/gnome-vfs-job.c:688
 #, c-format
 msgid "Unknown op type %u"
@@ -1412,6 +1416,96 @@ msgstr "Ukjent type jobb %u"
 #: libgnomevfs-pthread/gnome-vfs-job.c:1605
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
+
+#: mime-type-capplet/file-types-capplet.desktop.in.h:1
+msgid "File Types and Programs"
+msgstr "Filtyper og programmer"
+
+#: mime-type-capplet/file-types-capplet.desktop.in.h:2
+msgid "Specify which programs are used to open or view each file type"
+msgstr "Koblinger mellom filtyper og programmer"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:735
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
+msgid "MIME Type"
+msgstr "MIME-type"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:742
+msgid "Change Icon"
+msgstr "Endre ikon"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:749
+msgid "Change File Extensions"
+msgstr "Endre filtyper"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:757
+msgid "Default Action:"
+msgstr "Standard handling:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:769
+msgid "Use Viewer"
+msgstr "Bruk visningsprogram"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:775
+msgid "Open With Application"
+msgstr "Åpne med applikasjon"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:786
+msgid "Edit List"
+msgstr "Rediger liste"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:811
+msgid "Add New MIME Type..."
+msgstr "Legg til ny MIME-type..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:817
+msgid "Delete This MIME Type"
+msgstr "Slett denne MIME-typen"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:828
+msgid "Revert to System Defaults"
+msgstr "Gå tilbake til standardverdier"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
+msgid "None"
+msgstr "Ingen"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
+msgid ""
+"Reverting to system settings will lose any changes\n"
+"you have ever made to File Types and Programs.\n"
+"Revert anyway?"
+msgstr ""
+"Ved å gå tilbake til systeminnstillingene vil du miste\n"
+"alle endringer du har gjort for filtyper og programmer.\n"
+"Gå tilbake likevel?"
+
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
+msgid "none"
+msgstr "ingen"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
+#, c-format
+msgid "View as %s"
+msgstr "Vis som %s"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
+msgid "Extension"
+msgstr "Filtype"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
+msgid "Default Action"
+msgstr "Standard handling"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
 msgid "Edit Applications List"
@@ -1567,88 +1661,6 @@ msgstr "Kan åpne flere filer"
 msgid "Can open from URI"
 msgstr "Kan åpne fra URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-msgid "MIME Type"
-msgstr "MIME-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:742
-msgid "Change Icon"
-msgstr "Endre ikon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:749
-msgid "Change File Extensions"
-msgstr "Endre filtyper"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:757
-msgid "Default Action:"
-msgstr "Standard handling:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:769
-msgid "Use Viewer"
-msgstr "Bruk visningsprogram"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:775
-msgid "Open With Application"
-msgstr "Åpne med applikasjon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:786
-msgid "Edit List"
-msgstr "Rediger liste"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:811
-msgid "Add New MIME Type..."
-msgstr "Legg til ny MIME-type..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-msgid "Delete This MIME Type"
-msgstr "Slett denne MIME-typen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:828
-msgid "Revert to System Defaults"
-msgstr "Gå tilbake til standardverdier"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
-msgid "None"
-msgstr "Ingen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
-msgid ""
-"Reverting to system settings will lose any changes\n"
-"you have ever made to File Types and Programs.\n"
-"Revert anyway?"
-msgstr ""
-"Ved å gå tilbake til systeminnstillingene vil du miste\n"
-"alle endringer du har gjort for filtyper og programmer.\n"
-"Gå tilbake likevel?"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-msgid "none"
-msgstr "ingen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
-#, c-format
-msgid "View as %s"
-msgstr "Vis som %s"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
-msgid "Description"
-msgstr "Beskrivelse"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
-msgid "Extension"
-msgstr "Filtype"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-msgid "Default Action"
-msgstr "Standard handling"
-
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
 msgid "Can't find an hbox, using a normal file selection"
 msgstr "Kan ikke finne en hboks, bruker normalt filvalg"
@@ -1749,11 +1761,3 @@ msgstr "Vis:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Vis dotfiler"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:1
-msgid "File Types and Programs"
-msgstr "Filtyper og programmer"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:2
-msgid "Specify which programs are used to open or view each file type"
-msgstr "Koblinger mellom filtyper og programmer"
