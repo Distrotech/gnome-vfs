@@ -342,10 +342,6 @@ struct GnomeVFSJob {
            until the job is really finished.  */
 	GMutex *notify_ack_lock;
 
-	/* Whether this struct is ready for containing a new job for
-	   execution.  */
-	gboolean is_empty;
-
 	/* Operations that are being done and those that are completed and
 	 * ready for notification to take place.
 	 */

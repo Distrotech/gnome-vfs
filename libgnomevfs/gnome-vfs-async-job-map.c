@@ -242,7 +242,7 @@ void
 gnome_vfs_async_job_cancel_callbacks (GnomeVFSAsyncHandle *job_handle)
 {
 	if (async_job_callback_map == NULL) {
-		JOB_DEBUG (("job %d, no callbacks scheduled yet", s));
+		JOB_DEBUG (("job %d, no callbacks scheduled yet", GPOINTER_TO_UINT (job_handle)));
 		return;
 	}
 

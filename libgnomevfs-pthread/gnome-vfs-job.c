@@ -144,8 +144,9 @@ job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *wakeup_context)
 static void
 job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *wakeup_context)
 {
-	if (gnome_vfs_context_check_cancellation (job->op->context)) {
+	if (job->cancelled) {
 		JOB_DEBUG (("job cancelled, bailing %u", GPOINTER_TO_UINT (wakeup_context->job_handle)));
+		return;
 	}
 
 	gnome_vfs_async_job_add_callback (wakeup_context);
@@ -161,9 +162,18 @@ job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *wakeup_context)
 	gnome_vfs_async_job_add_callback (wakeup_context);
 	g_idle_add (dispatch_sync_job_callback, wakeup_context);
 
+	/* FIXME:
+	 * unlock here to prevent deadlock with async cancel. We should not use the
+	 * access lock at all in the case of synch operaitons like xfer.
+	 * Unlocking here is perfectly OK, even though it's a hack.
+	 */
+	g_mutex_unlock (job->access_lock);
+
 	JOB_DEBUG (("Wait notify condition %u", GPOINTER_TO_UINT (wakeup_context->job_handle)));
 	/* Wait for the notify condition.  */
 	g_cond_wait (job->notify_ack_condition, job->notify_ack_lock);
+
+	g_mutex_lock (job->access_lock);
 
 	JOB_DEBUG (("Unlock notify ack lock %u", GPOINTER_TO_UINT (wakeup_context->job_handle)));
 	/* Acknowledgment got: unlock the mutex.  */
