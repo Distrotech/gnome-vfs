@@ -1,3 +1,10 @@
+2002-11-08 Giovanni Corriga <valkadesh@rocketmail.com>
+
+	* modules/Makefile.am
+	* modules/default-modules.conf
+	* modules/console-method.c: added console method (which adds
+	console:///stdin, console:///stdout, console:///stderr uris)
+
 2002-11-08  Christophe Fergeau <teuf@users.sourceforge.net>
 
 	* libgnomevfs/gnome-vfs-file-info.h: documented 

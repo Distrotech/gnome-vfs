@@ -59,6 +59,7 @@ modules_LTLIBRARIES =				\
 	$(CDEMENU_LTLIBS)                       \
 	libssh.la				\
 	libtar.la				\
+	libconsole.la				\
 	$(NULL)
 
 # Not currently supported
@@ -178,6 +179,13 @@ libvfs_translate_la_LIBADD  = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 libtar_la_SOURCES = tar-method.c tarpet.h 
 libtar_la_LDFLAGS = $(module_flags)
 libtar_la_LIBADD  = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
+
+### 'console' method
+
+libconsole_la_SOURCES = console-method.c 
+libconsole_la_LDFLAGS = $(module_flags)
+libconsole_la_LIBADD  = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
+
 
 #if HAVE_LIBEFS
 #vefsmoduledir = $(modulesdir)
