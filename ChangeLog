@@ -1,3 +1,11 @@
+2004-10-29  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Update version to 2.9.1.
+	Gnome 2.8 versions are now on the gnome-2-8 branch.
+
+==== gnome-2-8 branched from here ===	
+
 2004-10-28  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
