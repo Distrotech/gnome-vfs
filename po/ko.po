@@ -1,11 +1,11 @@
 # gnome-vfs ko.po
 # Young-Ho Cha <ganadist@dacome.co.kr>, 2000.
-# Changwoo Ryu <cwryu@debian.org>, 2002-2003.
+# Changwoo Ryu <cwryu@debian.org>, 2002-2004.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs-1\n"
+"Project-Id-Version: $PACKAGE $VERSION, no-define\n"
 "POT-Creation-Date: 2004-01-12 10:09+0100\n"
-"PO-Revision-Date: 2004-01-09 02:01+0900\n"
+"PO-Revision-Date: 2004-01-21 00:06+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -971,14 +971,13 @@ msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "HTTP 프록시를 쓸 때 인증하면서 넘기는 사용자 이름."
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Window Network"
-msgstr "네트워크"
+msgstr "Windows 네트워크"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB 워크그룹"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "사용자가 속해 있는 Windows 워크그룹"
