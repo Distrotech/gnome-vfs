@@ -1,5 +1,6 @@
 # Danish translation of gnome-vfs.
 # Copyright (C) 1999, 2000, 01, 02, 03, 04 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-vfs package.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1999.
 # Birger Langkjer <birger.langkjer@image.dk>, 2000.
 # Keld Simonsen <keld@dkuug.dk>, 2000-2001.
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-16 15:41+0200\n"
-"PO-Revision-Date: 2004-08-03 13:19+0200\n"
+"POT-Creation-Date: 2004-08-17 13:39+0200\n"
+"PO-Revision-Date: 2004-08-17 13:36+0200\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -297,9 +298,8 @@ msgid "Unknown"
 msgstr "Ukendt"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "Cd-r-skive"
+msgstr "Cd-rom-skive"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -406,7 +406,7 @@ msgid "Linux Disk"
 msgstr "Linux-drev"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
 msgstr "Ukendt operationstype %u"
 
@@ -1019,21 +1019,19 @@ msgstr ""
 "Kommandoen der bruges til at håndtere \"ghelp\"-adresser, hvis aktiveret."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Kommandoen der bruges til at håndtere H323-adresser, hvis aktiveret."
+msgstr ""
+"Kommandoen der bruges til at håndtere \"h323\"-adresser, hvis aktiveret."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
 msgstr ""
-"Kommandoen der bruges til at håndtere \"ghelp\"-adresser, hvis aktiveret."
+"Kommandoen der bruges til at håndtere \"http\"-adresser, hvis aktiveret."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
 msgstr ""
-"Kommandoen der bruges til at håndtere \"trash\"-adresser, hvis aktiveret."
+"Kommandoen der bruges til at håndtere \"https\"-adresser, hvis aktiveret."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
@@ -1068,19 +1066,16 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "Håndtering af \"ghelp\"-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Håndtering af H323-adresser"
+msgstr "Håndtering af \"h323\"-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Håndtering af \"ghelp\"-adresser"
+msgstr "Håndtering af \"http\"-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Håndtering af \"ghelp\"-adresser"
+msgstr "Håndtering af \"https\"-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
@@ -1122,29 +1117,25 @@ msgstr ""
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere H323-adresser."
+"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"h323\"-adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"ghelp\"-"
-"adresser."
+"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"http\"-adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"ghelp\"-"
+"Sand hvis kommandoen angivet i \"command\"-nøglen håndtere \"https\"-"
 "adresser."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
@@ -1197,19 +1188,16 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Om den specificerede kommando skal håndtere \"ghelp\"-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Om den specificerede kommando skal håndtere H323-adresser"
+msgstr "Om den specificerede kommando skal håndtere \"h323\"-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Om den specificerede kommando skal håndtere \"ghelp\"-adresser"
+msgstr "Om den specificerede kommando skal håndtere \"http\"-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Om den specificerede kommando skal håndtere \"trash\"-adresser"
+msgstr "Om den specificerede kommando skal håndtere \"https\"-adresser"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
