@@ -1721,29 +1721,36 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 			     GnomeVFSProgressCallbackState *progress)
 {
 	GnomeVFSResult result;
-	//GnomeVFSHandle *handle;
+	GnomeVFSHandle *handle;
 	GList *source_uri_list, *target_uri_list;
 	GList *source_uri, *target_uri;
 	GnomeVFSURI *target_dir_uri;
 	gboolean move, link;
 	GnomeVFSFileSize free_bytes;
+	GnomeVFSURI *write_uri;
 	
 	result = GNOME_VFS_OK;
 	move = FALSE;
 	link = FALSE;
 	target_dir_uri = NULL;
 
-#if 0
 	/* Check and see if target is writable. Return error if it is not. */
 	target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)((GList *)target_uris)->data);
-	result = gnome_vfs_open_uri (&handle, target_dir_uri, GNOME_VFS_OPEN_WRITE);	
-	gnome_vfs_uri_unref (target_dir_uri);	
+	write_uri = gnome_vfs_uri_append_file_name (target_dir_uri, ".vfs-write.tmp");
+	result = gnome_vfs_create_uri (&handle, write_uri,GNOME_VFS_OPEN_WRITE, TRUE, 0600);
+	gnome_vfs_uri_unref (target_dir_uri);
 	target_dir_uri = NULL;
-	if (result != GNOME_VFS_OK) {
+
+	if (result == GNOME_VFS_OK) {
+		gnome_vfs_unlink_from_uri (write_uri);
+		gnome_vfs_uri_unref (write_uri);
+		write_uri = NULL;
+	} else {
+		gnome_vfs_uri_unref (write_uri);
+		write_uri = NULL;
 		return result;
 	}
 	gnome_vfs_close (handle);
-#endif
 	
 	/* Create an owning list of source and destination uris.
 	 * We want to be able to remove items that we decide to skip during

@@ -1,5 +1,12 @@
 2000-09-20  Gene Z. Ragan  <gzr@eazel.com>
 
+	Renabled and cleaned up read only volume check now.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: 
+	(gnome_vfs_xfer_uri_internal):
+
+2000-09-20  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug 1214, check if copy destination has enough room.
 
 	This only works for local file systems.
