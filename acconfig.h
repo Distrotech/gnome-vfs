@@ -7,3 +7,6 @@
 #undef HAVE_STPCPY
 #undef ENABLE_NLS
 #undef USE_PTHREAD
+#undef HAVE_SOCKET
+#undef HAVE_STRUCT_LINGER
+#undef HAVE_NSL
