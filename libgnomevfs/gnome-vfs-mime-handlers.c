@@ -250,11 +250,11 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 
 	short_list = gnome_vfs_mime_get_short_list_components (mime_type);
 
-	if (p != NULL) {
+	if (short_list != NULL) {
 		sort[1] = g_strdup ("has (['");
 
 		for (p = short_list; p != NULL; p = p->next) {
-			prev = sort[1];
+ 			prev = sort[1];
 			
 			if (p->next != NULL) {
 				sort[1] = g_strconcat (prev, ((OAF_ServerInfo *) (p->data))->iid, 
@@ -383,7 +383,7 @@ static GList *gnome_vfs_mime_do_short_list_processing (GList *short_list,
 									supertype_removals);
 
 	merged_system_and_supertype = gnome_vfs_mime_str_list_merge (short_list,
-								     processed_supertype_list);
+					     			     processed_supertype_list);
 
 	final_list = gnome_vfs_mime_str_list_apply_delta (merged_system_and_supertype,
 							  additions,
@@ -602,7 +602,7 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		CORBA_exception_init (&ev);
 
 		iids_delimited = join_str_list ("','", iid_list);
-		
+
 		/* FIXME bugzilla.eazel.com 1142: should probably check for
 		   the right interfaces too. Also slightly semantically
 		   different from nautilus in other tiny ways.
