@@ -1,3 +1,8 @@
+2001-05-07  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (write_back_mime_user_file):
+	Remove message that threatens users with death.
+
 2001-05-03  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Darin Adler  <darin@eazel.com>
