@@ -72,7 +72,7 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-mime-sniff-buffer.h"
 #include "gnome-vfs-module.h"
-#include "gnome-vfs-module-api.h"
+#include "gnome-vfs-module-callback-module-api.h"
 #include "gnome-vfs-standard-callbacks.h"
 #include "gnome-vfs-socket-buffer.h"
 #include "gnome-vfs-socket.h"
@@ -235,7 +235,7 @@ static void 	proxy_set_authn			(const char *username,
 static void	proxy_unset_authn 		(void);
 static gboolean invoke_callback_basic_authn	(HttpFileHandle *handle, 
 			     			 enum AuthnHeaderType authn_which,
-			     			 gboolean previous_authn_failed);
+			     			 gboolean previous_attempt_failed);
 static gboolean check_authn_retry_request 	(HttpFileHandle * http_handle,
 			   			 enum AuthnHeaderType authn_which,
 			   			 const char *prev_authn_header);
@@ -1067,7 +1067,7 @@ connect_to_uri (
 	gboolean https = FALSE;
 
 	cancellation = gnome_vfs_context_get_cancellation (
-				gnome_vfs_context_peek_current());
+				gnome_vfs_context_peek_current ());
 
 	g_return_val_if_fail (p_socket_buffer != NULL, GNOME_VFS_ERROR_INTERNAL);
 	g_return_val_if_fail (p_proxy_connect != NULL, GNOME_VFS_ERROR_INTERNAL);
@@ -2726,10 +2726,10 @@ resolve_409 (GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *context)
 static gboolean
 invoke_callback_basic_authn (HttpFileHandle *handle, 
 			     enum AuthnHeaderType authn_which,
-			     gboolean previous_authn_failed)
+			     gboolean previous_attempt_failed)
 {
-	GnomeVFSCallbackSimpleAuthIn in_args;
-	GnomeVFSCallbackSimpleAuthOut out_args;
+	GnomeVFSModuleCallbackAuthenticationIn in_args;
+	GnomeVFSModuleCallbackAuthenticationOut out_args;
 	gboolean ret;
 
 	ret = FALSE;
@@ -2737,7 +2737,7 @@ invoke_callback_basic_authn (HttpFileHandle *handle,
 	memset (&in_args, 0, sizeof (in_args));
 	memset (&out_args, 0, sizeof (out_args));
 
-	in_args.previous_authn_failed = previous_authn_failed;
+	in_args.previous_attempt_failed = previous_attempt_failed;
 		
 	in_args.uri = gnome_vfs_uri_to_string (handle->uri, GNOME_VFS_URI_HIDE_NONE);
 
@@ -2752,12 +2752,11 @@ invoke_callback_basic_authn (HttpFileHandle *handle,
 
 	in_args.auth_type = AuthTypeBasic;
 
-	ret = gnome_vfs_callback_call_hook (
-			authn_which == AuthnHeader_WWW 
-				? GNOME_VFS_HOOKNAME_BASIC_AUTH
-				: GNOME_VFS_HOOKNAME_HTTP_PROXY_AUTH, 
-			&in_args, sizeof (in_args), 
-			&out_args, sizeof (out_args)); 
+	ret = gnome_vfs_module_callback_invoke (authn_which == AuthnHeader_WWW 
+						? GNOME_VFS_MODULE_CALLBACK_AUTHENTICATION
+						: GNOME_VFS_MODULE_CALLBACK_HTTP_PROXY_AUTHENTICATION, 
+						&in_args, sizeof (in_args), 
+						&out_args, sizeof (out_args)); 
 
 	if (!ret) {
 		DEBUG_HTTP (("No callback registered"));

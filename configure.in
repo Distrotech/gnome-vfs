@@ -141,26 +141,6 @@ AC_SUBST(VFS_GNOMEUI_LIBS)
 AC_SUBST(VFS_CAPPLET_LIBS)
 AC_SUBST(VFS_GNOMEGNORBA_LIBS)
 
-AC_CHECK_PROG(GTKDOC, gtkdoc-mkdb, true, false)
-AM_CONDITIONAL(HAVE_GTK_DOC, $GTKDOC)
-AC_SUBST(HAVE_GTK_DOC)
-
-dnl Let people disable the gtk-doc stuff.
-AC_ARG_ENABLE(gtk-doc, [  --enable-gtk-doc  Use gtk-doc to build documentation [default=auto]], enable_gtk_doc="$enableval", enable_gtk_doc=auto)
-
-if test x$enable_gtk_doc = xauto ; then
-  if test x$GTKDOC = xtrue ; then
-    enable_gtk_doc=yes
-  else
-    enable_gtk_doc=no
-  fi
-fi
-
-dnl NOTE: We need to use a separate automake conditional for this
-dnl       to make this work with the tarballs.
-AM_CONDITIONAL(ENABLE_GTK_DOC, test x$enable_gtk_doc = xyes)
-dnl end documentation support
-
 AC_ARG_ENABLE(gconf,
               [  --enable-gconf          Enable GConf access backend],
               gconf_enabled="yes")
@@ -190,8 +170,6 @@ AM_PATH_GTK(1.2.0,,
 *** Gtk+ 1.2.0 or better is required. The latest version of Gtk+
 *** is always available from ftp://ftp.gtk.org/.]),
     gmodule gthread)
-
-GNOME_GTKDOC_CHECK
 
 cflags_set=yes
 GNOME_COMPILE_WARNINGS
@@ -536,23 +514,22 @@ fi
 
 AC_SUBST(HTML_DIR)
 
-
 AC_CHECK_PROG(GTKDOC, gtkdoc-mkdb, true, false)
 
-gtk_doc_min_version=0.6
-if $GTKDOC ; then 
-    gtk_doc_version=`gtkdoc-mkdb --version`
-    AC_MSG_CHECKING([gtk-doc version ($gtk_doc_version) >= $gtk_doc_min_version])
-    if perl <<EOF ; then
-      exit (("$gtk_doc_version" =~ /^[[0-9]]+\.[[0-9]]+$/) &&
-            ("$gtk_doc_version" >= "$gtk_doc_min_version") ? 0 : 1);
-EOF
-      AC_MSG_RESULT(yes)
-   else
-      AC_MSG_RESULT(no)
-      GTKDOC=false
-   fi
-fi
+#gtk_doc_min_version=0.6
+#if $GTKDOC ; then 
+#    gtk_doc_version=`gtkdoc-mkdb --version`
+#    AC_MSG_CHECKING([gtk-doc version ($gtk_doc_version) >= $gtk_doc_min_version])
+#    if perl <<EOF ; then
+#      exit (("$gtk_doc_version" =~ /^[[0-9]]+\.[[0-9]]+$/) &&
+#            ("$gtk_doc_version" >= "$gtk_doc_min_version") ? 0 : 1);
+#EOF
+#      AC_MSG_RESULT(yes)
+#   else
+#      AC_MSG_RESULT(no)
+#      GTKDOC=false
+#   fi
+#fi
 
 AM_CONDITIONAL(HAVE_GTK_DOC, $GTKDOC)
 AC_SUBST(HAVE_GTK_DOC)
@@ -563,17 +540,24 @@ AM_CONDITIONAL(HAVE_DOCBOOK, $DB2HTML)
 dnl Let people disable the gtk-doc stuff.
 AC_ARG_ENABLE(gtk-doc, [  --enable-gtk-doc  Use gtk-doc to build documentation [default=auto]], enable_gtk_doc="$enableval", enable_gtk_doc=auto)
 
-if test x$enable_gtk_doc = xauto ; then
-  if test x$GTKDOC = xtrue ; then
+if test "x$enable_gtk_doc" = xauto ; then
+  if test "x$GTKDOC" = xtrue ; then
     enable_gtk_doc=yes
   else
     enable_gtk_doc=no 
   fi
 fi
 
+if test "x$enable_gtk_doc" = xyes; then
+	ENABLE_GTK_DOC=true
+else
+ 	ENABLE_GTK_DOC=false
+fi
+
+
 dnl NOTE: We need to use a separate automake conditional for this
 dnl       to make this work with the tarballs.
-AM_CONDITIONAL(ENABLE_GTK_DOC, test x$enable_gtk_doc = xyes)
+AM_CONDITIONAL(ENABLE_GTK_DOC, $ENABLE_GTK_DOC)
 
 
 

@@ -1,3 +1,117 @@
+2001-09-03  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	Simplification of the callback API, in the process fixing bugs
+	8447 ([API] Authentication callback API is not threadsafe) and
+	8448 ([API] Authentication callbacks require explicit threading
+	when using async API) and documenting all of it.
+	
+	* libgnomevfs/gnome-vfs-module-callback.h,
+	libgnomevfs/gnome-vfs-module-callback.c:
+	(gnome_vfs_module_callback_set_default,
+	gnome_vfs_module_callback_push, gnome_vfs_module_callback_pop):
+	New callback interface, replacing gnome-vfs-app-context.
+	(gnome_vfs_async_module_callback_set_default,
+	gnome_vfs_async_module_callback_push,
+	gnome_vfs_async_module_callback_pop): Calls for managing async
+	callbacks.
+	(gnome_vfs_module_callback_invoke): Function to be used by modules
+	to invoke a callback.
+	(gnome_vfs_module_callback_get_stack_info,
+	gnome_vfs_module_callback_free_stack_info,
+	gnome_vfs_module_callback_use_stack_info,
+	gnome_vfs_module_callback_clear_stacks,
+	gnome_vfs_module_callback_set_in_async_thread): Private calls used
+	by gnome-vfs-job to make sure async jobs are called with the same
+	set of callbacks as the thread that launches them.
+	(callback_info_new, callback_info_ref, callback_info_unref,
+	async_callback_response, async_callback_invoke,
+	async_callback_destroy, async_callback_info_new,
+	insert_callback_into_table, push_callback_into_stack_table,
+	pop_stack_table, copy_one_callback, copy_one_stack_top,
+	copy_one_callback_to_stack, duplicate_callback_table,
+	copy_callback_stack_tops, copy_callback_table_to_stack_table,
+	callback_info_unref_x, remove_one_stack, remove_one_callback,
+	clear_stack_table, clear_callback_table, stack_table_destroy,
+	stack_keys_alloc, free_default_callbacks,
+	initialize_global_if_needed, initialize_per_thread_if_needed):
+	Helper functions for the above.
+	* libgnomevfs/gnome-vfs-module-callback-module-api.h: Prototypes
+	for module-only calls relating to callbacks.
+	* libgnomevfs/gnome-vfs-module-callback-private.h: Prototypes
+	for internal calls relating to callbacks.
+	* libgnomevfs/gnome-vfs-module-callback-private.c,
+	libgnomevfs/gnome-vfs-module-callback-module-api.c: Files that
+	only include the corresponding headers to make sure they are
+	standalone includable.
+	* libgnomevfs/gnome-vfs-standard-callbacks.h: Changed some names
+	to fit better with the new API.
+
+	* libgnomevfs/gnome-vfs-app-context.c,
+	libgnomevfs/gnome-vfs-app-context.h,
+	libgnomevfs/gnome-vfs-callbacks.c,
+	libgnomevfs/gnome-vfs-callbacks.h,
+	libgnomevfs/gnome-vfs-context.h,
+	libgnomevfs/gnome-vfs-module-api.c,
+	libgnomevfs/gnome-vfs-module-api.h: Removed.
+
+	* libgnomevfs/gnome-vfs-private-types.h,
+	libgnomevfs/gnome-vfs-private.h, libgnomevfs/gnome-vfs-types.h,
+	libgnomevfs/gnome-vfs.h: Pull in new headers where appropriate.
+	* libgnomevfs/gnome-vfs-backend-private.h,
+	libgnomevfs/gnome-vfs-backend.c
+	(gnome_vfs_backend_dispatch_module_callback): Adjust for new
+	interface of async module callbacks.
+	* libgnomevfs/gnome-vfs-context.c: (gnome_vfs_context_new,
+	gnome_vfs_context_unref,
+	gnome_vfs_context_check_cancellation_current): Remove app-context
+	code.
+	* libgnomevfs/gnome-vfs-messages.h: Move typedef of
+	GnomeVFSStatusCallback here.
+	* libgnomevfs/Makefile.am: Add new files to build, remove ones
+	that are gone.
+
+	* libgnomevfs-pthread/gnome-vfs-job.h,
+	libgnomevfs-pthread/gnome-vfs-job.c:
+	(gnome_vfs_job_set, set_current_job, clear_current_job,
+	gnome_vfs_op_destroy): Copy callback state so async jobs get the
+	same set of callbacks as the calling thread.
+	(gnome_vfs_job_execute,
+	pthread_gnome_vfs_dispatch_module_callback,
+	dispatch_module_callback, dispatch_sync_job_callback): Adjust for
+	new interface of module callbacks.
+	
+	* modules/http-method.c
+	(connect_to_uri,
+	invoke_callback_basic_authn): Adjusted for above API changes.
+	* modules/http-authn.c:
+	(http_authentication_test_flush_credentials): Renamed to
+	authentication from authn.
+	* modules/Makefile.am: Remove a stray trailing slash (caused
+	problems with newer automake).
+
+	* test/test-callback.c: (authentication_callback,
+	destroy_notify, main): Adjusted for API changes.
+
+	* configure.in: Don't check gtk-doc version (I have an older
+	version, it seems to work fine) and remove redundant checks.
+	
+	* doc/gnome-vfs-docs.sgml, doc/gnome-vfs-sections.txt: Add new
+	module callback stuff.
+
+	* doc/tmpl/module-callback-module-api.sgml,
+	doc/tmpl/module-callback-private.sgml,
+	doc/tmpl/module-callback.sgml, doc/tmpl/standard-callbacks.sgml,
+	doc/tmpl/context.sgml: New and updated out-of-line part of the
+	docs for the module callback interface.
+
+	* doc/tmpl/app-context.sgml, doc/tmpl/constants.sgml,
+	doc/tmpl/module-api.sgml: Removed (corresponding sections are
+	gone).
+
+	* doc/tmpl/gnome-vfs-unused.sgml, doc/tmpl/list-sort.sgml,
+	doc/tmpl/shellpattern-filter.sgml, doc/tmpl/types.sgml,
+	doc/tmpl/xfer.sgml: Mysteriously changed by gtk-doc.
+
 2001-09-04  jacob berkman  <jacob@ximian.com>
 
 	* modules/*.conf: remove lib prefix and .so suffix from the
