@@ -38,6 +38,7 @@ noinst_HEADERS =				\
 	gnome-vfs-list-sort.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-module.h			\
+	gnome-vfs-private-ops.h			\
 	gnome-vfs-private-types.h		\
 	gnome-vfs-private.h			\
 	gnome-vfs-regexp-filter.h		\
@@ -59,6 +60,7 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-method.c			\
 	gnome-vfs-xfer.c			\
 	gnome-vfs-ops.c				\
+	gnome-vfs-private-ops.c			\
 	gnome-vfs-process.c			\
 	gnome-vfs-result.c			\
 	gnome-vfs-regexp-filter.c		\

@@ -37,6 +37,7 @@ BEGIN_GNOME_DECLS
 #include "gnome-vfs-handle.h"
 #include "gnome-vfs-list-sort.h"
 #include "gnome-vfs-method.h"
+#include "gnome-vfs-private-ops.h"
 #include "gnome-vfs-regexp-filter.h"
 #include "gnome-vfs-seekable.h"
 #include "gnome-vfs-shellpattern-filter.h"

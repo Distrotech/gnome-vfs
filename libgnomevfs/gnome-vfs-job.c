@@ -601,8 +601,9 @@ execute_open (GnomeVFSJob *job)
 
 	open_job = &job->info.open;
 
-	result = gnome_vfs_open_uri (&handle, open_job->request.uri,
-				     open_job->request.open_mode);
+	result = gnome_vfs_open_uri_cancellable (&handle, open_job->request.uri,
+						 open_job->request.open_mode,
+						 job->cancellation);
 
 	job->handle = handle;
 	open_job->notify.result = result;
@@ -627,9 +628,11 @@ execute_open_as_channel (GnomeVFSJob *job)
 
 	open_as_channel_job = &job->info.open_as_channel;
 
-	result = gnome_vfs_open_uri
-		(&handle, open_as_channel_job->request.uri,
-		 open_as_channel_job->request.open_mode);
+	result = gnome_vfs_open_uri_cancellable
+		(&handle,
+		 open_as_channel_job->request.uri,
+		 open_as_channel_job->request.open_mode,
+		 job->cancellation);
 
 	if (result != GNOME_VFS_OK) {
 		open_as_channel_job->notify.channel = NULL;
@@ -683,11 +686,13 @@ execute_create (GnomeVFSJob *job)
 
 	create_job = &job->info.create;
 
-	result = gnome_vfs_create_uri (&handle,
-				       create_job->request.uri,
-				       create_job->request.open_mode,
-				       create_job->request.exclusive,
-				       create_job->request.perm);
+	result = gnome_vfs_create_uri_cancellable
+						(&handle,
+						 create_job->request.uri,
+						 create_job->request.open_mode,
+						 create_job->request.exclusive,
+						 create_job->request.perm,
+						 job->cancellation);
 
 	job->handle = handle;
 	create_job->notify.result = result;
@@ -711,9 +716,11 @@ execute_create_as_channel (GnomeVFSJob *job)
 
 	create_as_channel_job = &job->info.create_as_channel;
 
-	result = gnome_vfs_open_uri
-		(&handle, create_as_channel_job->request.uri,
-		 create_as_channel_job->request.open_mode);
+	result = gnome_vfs_open_uri_cancellable
+		(&handle,
+		 create_as_channel_job->request.uri,
+		 create_as_channel_job->request.open_mode,
+		 job->cancellation);
 
 	if (result != GNOME_VFS_OK) {
 		create_as_channel_job->notify.channel = NULL;
@@ -754,7 +761,8 @@ execute_close (GnomeVFSJob *job)
 
 	close_job = &job->info.close;
 
-	close_job->notify.result = gnome_vfs_close (job->handle);
+	close_job->notify.result
+		= gnome_vfs_close_cancellable (job->handle, job->cancellation);
 
 	job_notify_and_close (job);
 
@@ -768,10 +776,12 @@ execute_read (GnomeVFSJob *job)
 
 	read_job = &job->info.read;
 
-	read_job->notify.result = gnome_vfs_read (job->handle,
-						  read_job->request.buffer,
-						  read_job->request.num_bytes,
-						  &read_job->notify.bytes_read);
+	read_job->notify.result
+		= gnome_vfs_read_cancellable (job->handle,
+					      read_job->request.buffer,
+					      read_job->request.num_bytes,
+					      &read_job->notify.bytes_read,
+					      job->cancellation);
 
 	return job_oneway_notify_and_close (job);
 }
@@ -784,10 +794,11 @@ execute_write (GnomeVFSJob *job)
 	write_job = &job->info.write;
 
 	write_job->notify.result
-		= gnome_vfs_write (job->handle,
-				   write_job->request.buffer,
-				   write_job->request.num_bytes,
-				   &write_job->notify.bytes_written);
+		= gnome_vfs_write_cancellable (job->handle,
+					       write_job->request.buffer,
+					       write_job->request.num_bytes,
+					       &write_job->notify.bytes_written,
+					       job->cancellation);
 
 	return job_oneway_notify_and_close (job);
 }

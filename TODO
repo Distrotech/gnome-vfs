@@ -6,12 +6,6 @@ Things to complete
 
 * GZIP write support might be broken.
 
-* In the current code, the name of the backend plugin always matches the
-one of the backend specifier in the URI (e.g. file.gz#gzip ->
-libgzip.so, file:/some/file.c -> libfile.so). We need a more flexible
-method so that one single plugin can be associated with more
-specifiers.
-
 * The transfer function does not honour all the flags appropriately,
 it doesn't set the attributes, it cannot copy special files and file
 moving is completely unimplemented.  This is going to be fixed soon.
@@ -33,13 +27,20 @@ is used for subsequent calls.  When creating a context, backends can
 assume they are going to get several requests for sub-URIs starting
 from that URI, and can try to optimize things.
 
-* We need an "open and get file info" kind of call in the backends.
+* The asynchronous directory reading stuff needs a timeout.
+
+* Make directory/xfer calls cancellable as well.
 
 
 Installation issues
 -------------------
 
 * Modules are currently installed under $prefix/lib/vfs/modules.
+
+* We probably need to install the private headers too.  Otherwise, it
+  is not possible to write new modules without the full gnome-vfs
+  source code.  Maybe we need to have more than two levels (i.e. more
+  than just "private" and "public" headers).
 
 
 Implementation issues
@@ -48,12 +49,12 @@ Implementation issues
 * find . -name '*.[ch]' -print | xargs grep FIXME
 
 * Every time you read or write asynchronously, the CORBA backend will
-dynamically allocate the buffer.  This is lame: we should just
-re-allocate the buffer only if the required is bigger than the one of
-the previous call.
+  dynamically allocate the buffer.  This is lame: we should just
+  re-allocate the buffer only if the required is bigger than the one of
+  the previous call.
 
 * Destroying a job or an asynchronous handle should be done better in the
-pthread version.
+  pthread version.
 
 * It should normalize URIs before using them.
 
@@ -63,24 +64,16 @@ pthread version.
 * Portability checks and fixes.  I am sure I forgot lots of details.
 
 * We currently use GNOME MIME functions for file types instead of GNOME
-metadata.  Should this be fixed so that we use the "type" metadata key
-instead?
+  metadata.  Should this be fixed so that we use the "type" metadata key
+  instead?
 
 * MIME/metadata functions in GNOME are non-reentrant.  We
-need to wrap them somehow, or the threaded version of the VFS will
-suffer major breakage when accessing metadata or figuring out MIME
-types.
+  need to wrap them somehow, or the threaded version of the VFS will
+  suffer major breakage when accessing metadata or figuring out MIME
+  types.
 
 * Metadata key lists are passed as arrays to the API calls, but are passed
-as GLists to the backend modules.  This requires conversion, and might
-be a performance issue.  Maybe we should just use arrays for the
-modules as well.
+  as GLists to the backend modules.  This requires conversion, and might
+  be a performance issue.  Maybe we should just use arrays for the
+  modules as well.
 
-
-Wishful thinking
-----------------
-
-* Instead of passing a fixed amount of data to the callbacks when reading
-directories or files, we could use a shared buffer and poll it at
-fixed intervals of time.  This might give better overall performance
-and responsiveness to interactive applications.

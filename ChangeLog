@@ -1,5 +1,37 @@
 1999-10-12  Ettore Perazzoli  <ettore@gnu.org>
 
+	* TODO: Updated.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (execute_open): Use
+	cancellable version of the primitive.
+	(execute_open_as_channel): Likewise.
+	(execute_create): Likewise.
+	(execute_create_as_channel): Likewise.
+	(execute_close): Likewise
+	(execute_read): Likewise.
+
+	* libgnomevfs/gnome-vfs-configuration.c [HAVE_CONFIG_H]: #include
+	<config.h>.
+
+	* libgnomevfs/gnome-vfs-private.h: #include "gnome-vfs-private-ops.h".
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_open_uri): Made a simple
+	wrapper for the cancellable version in `gnome-vfs-private-ops.c'.
+	(gnome_vfs_create_uri): Likewise.
+	(gnome_vfs_close): Likewise.
+	(gnome_vfs_read): Likewise.
+	(gnome_vfs_write): Likewise.
+	(gnome_vfs_seek): Likewise.
+	(gnome_vfs_get_file_info_uri): Likewise.
+	(gnome_vfs_get_file_info_from_handle): Likewise.
+	(gnome_vfs_make_directory_for_uri): Likewise.
+	(gnome_vfs_remove_directory_from_uri): Likewise.
+	(gnome_vfs_unlink_from_uri): Likewise.
+
+	* libgnomevfs/gnome-vfs-private-ops.h: New file.
+
+	* libgnomevfs/gnome-vfs-private-ops.c: New file.
+
 	* libgnomevfs/gnome-vfs-result.c: New error description for
 	`GNOME_VFS_ERROR_CANCELLED'.
 
