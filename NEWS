@@ -1,3 +1,11 @@
+gnome-vfs 2.2.0
+
+	* Bugs fixed:
+	       + races and bugs in the GIOChannel support (Josh Parsons)
+	* Featurelets
+	       + Added (disabled for now) gnutls ssl lib (Andrew McDonald)
+	         This will be enabled later when its been tested more.
+
 gnome-vfs 2.1.91
 
 	* Bugs fixed:
