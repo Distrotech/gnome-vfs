@@ -1,4 +1,23 @@
-2000-09-29  J Shane Culpepper  <set EMAIL_ADDRESS environment variable>
+2000-09-29  J Shane Culpepper  <pepper@eazel.com>
+
+	* test/gnome-file-selection/gnome-file-selection-history.c:
+	* test/test-dirop.c:
+	* test/test-escape.c:
+	* test/test-mime-handlers-set.c:
+	* test/test-mime-handlers.c:
+	* test/test-mime-info.c:
+	* test/test-mime.c:
+	* test/test-sync-create.c:
+	* test/test-sync-write.c:
+	* test/test-sync.c:
+	* test/test-unlink.c:
+	* test/test-uri.c:
+
+	Fixing heaps of inlined function errors.  The new redhat compilers
+	do not recognize functions like exit, strcmp, etc without the correct
+	header anymore.  gnome-vfs now builds happily on RedHat 7.0.
+
+2000-09-29  J Shane Culpepper  <pepper@eazel.com>
 
 	* libgnomevfs/gnome-vfs-directory-filter.c:
 

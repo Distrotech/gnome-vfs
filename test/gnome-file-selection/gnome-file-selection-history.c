@@ -1,7 +1,7 @@
 #include <stdio.h>              /* FIXME bugzilla.eazel.com 1127: We should remove this debug code some day. */
 
 #include "gnome-file-selection-history.h"
-
+#include <string.h>
 
 
 static guint get_offset (GnomeFileSelectionHistory *h);

@@ -27,6 +27,7 @@
 #include "gnome-vfs.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 static void
 show_result (GnomeVFSResult result, const gchar *what, const gchar *text_uri)

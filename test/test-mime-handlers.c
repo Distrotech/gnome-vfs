@@ -29,6 +29,7 @@
 #include "gnome-vfs-mime-handlers.h"
 
 #include <stdio.h>
+#include <string.h>
 
 
 static void

@@ -28,6 +28,7 @@
 
 #include "gnome-vfs.h"
 #include <stdlib.h>
+#include <string.h>
 
 #define TEST_ASSERT(expression, message) \
 	G_STMT_START { if (!(expression)) test_failed message; } G_STMT_END
