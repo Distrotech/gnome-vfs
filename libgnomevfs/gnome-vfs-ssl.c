@@ -85,7 +85,7 @@ struct GnomeVFSSSL {
 };
 
 void 
-_gnome_vfs_ssl_init () {
+_gnome_vfs_ssl_init (void) {
 #ifdef HAVE_OPENSSL
 	SSL_library_init ();
 #elif defined HAVE_GNUTLS
@@ -103,7 +103,7 @@ _gnome_vfs_ssl_init () {
  * otherwise %FALSE.
  **/
 gboolean
-gnome_vfs_ssl_enabled ()
+gnome_vfs_ssl_enabled (void)
 {
 #if defined HAVE_OPENSSL || defined HAVE_GNUTLS
 	return TRUE;

@@ -220,10 +220,7 @@ char *filesystem_type (char *path, char *relpath, struct stat *statp);
    Return "unknown" if its filesystem type is unknown.  */
 
 char *
-filesystem_type (path, relpath, statp)
-     char *path;
-     char *relpath;
-     struct stat *statp;
+filesystem_type (char *path, char *relpath, struct stat *statp)
 {
   static char *current_fstype = NULL;
   static dev_t current_dev;
@@ -250,10 +247,7 @@ fstype_internal_error (int level, int num, char const *fmt, ...)
    Return "unknown" if its filesystem type is unknown.  */
 
 static char *
-filesystem_type_uncached (path, relpath, statp)
-     char *path;
-     char *relpath;
-     struct stat *statp;
+filesystem_type_uncached (char *path, char *relpath, struct stat *statp)
 {
   char *type = NULL;
 
@@ -404,8 +398,7 @@ filesystem_type_uncached (path, relpath, statp)
    part of CP. */
 
 static int
-xatoi (cp)
-     char *cp;
+xatoi (char *cp)
 {
   int val;
   

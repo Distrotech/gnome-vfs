@@ -524,7 +524,7 @@ notify_gconf_value_changed(GConfClient * client,
     }
 }
 
-void proxy_init()
+void proxy_init(void)
 {
     GError *gconf_error = NULL;
     gboolean use_proxy;
@@ -581,7 +581,7 @@ void proxy_init()
 }
 
 
-void proxy_shutdown()
+void proxy_shutdown(void)
 {
     g_object_unref(G_OBJECT(gl_client));
 }

@@ -1047,7 +1047,7 @@ typedef enum {
 } SFTPClientVendor;
 
 static SFTPClientVendor
-get_sftp_client_vendor ()
+get_sftp_client_vendor (void)
 {
 	char *ssh_stderr;
 	char *args[3];

@@ -527,7 +527,7 @@ http_auth_cache_cleanup (gpointer *data)
 
 
 static void
-http_auth_cache_init ()
+http_auth_cache_init (void)
 {
 	auth_cache_proxy = g_hash_table_new_full (http_session_uri_hash, 
 						  http_session_uri_equal,
@@ -540,20 +540,15 @@ http_auth_cache_init ()
 						  NULL,
 						  (GDestroyNotify) 
 						  http_auth_info_free);
-	
 }
 
 
 static void
-http_auth_cache_shutdown ()
+http_auth_cache_shutdown (void)
 {
-	
 	g_hash_table_destroy (auth_cache_proxy);
 	
 	g_hash_table_destroy (auth_cache_basic);
-	
-	
-	
 }
 
 
@@ -1035,7 +1030,7 @@ struct HttpMethod {
 static GHashTable *http_methods = NULL;
 
 static void
-quick_allow_lookup_init ()
+quick_allow_lookup_init (void)
 {
 	struct HttpMethod *iter;
 	
@@ -1047,7 +1042,7 @@ quick_allow_lookup_init ()
 }
 
 static void
-quit_allow_lookup_destroy ()
+quit_allow_lookup_destroy (void)
 {
 	g_hash_table_destroy (http_methods);
 }
@@ -1289,19 +1284,17 @@ neon_session_pool_destroy (NeonSessionPool *pool)
 
 
 static void
-neon_session_pool_init ()
+neon_session_pool_init (void)
 {
 	neon_session_table = g_hash_table_new_full (http_session_uri_hash, 
 						    http_session_uri_equal, NULL,
 						    (GDestroyNotify) neon_session_pool_destroy);	
-	
 }
 
 
 static void
-neon_session_pool_shutdown ()
+neon_session_pool_shutdown (void)
 {
-	
 	g_hash_table_destroy (neon_session_table);
 }
 

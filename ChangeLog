@@ -1,3 +1,22 @@
+2004-08-12  Ryan Lortie  <desrt@desrt.ca>
+
+	* libgnomevfs/gnome-vfs-private-utils.c: (_gnome_vfs_have_ipv6):
+	* libgnomevfs/gnome-vfs-resolve.c: (restart_resolve):
+	* libgnomevfs/gnome-vfs-ssl.c: (_gnome_vfs_ssl_init),
+	(gnome_vfs_ssl_enabled):
+	* modules/computer-method.c: (get_data_for_network),
+	(get_data_for_home), (get_data_for_root):
+	* modules/extfs-method.c: (getdelim):
+	* modules/fstype.c: (filesystem_type), (filesystem_type_uncached),
+	(xatoi):
+	* modules/http-neon-method.c: (http_auth_cache_init),
+	(http_auth_cache_shutdown), (quick_allow_lookup_init),
+	(quit_allow_lookup_destroy), (neon_session_pool_init),
+	(neon_session_pool_shutdown):
+	* modules/http-proxy.c: (proxy_init), (proxy_shutdown):
+	* modules/sftp-method.c: (get_sftp_client_vendor): don't use old K&R
+	function prototypes, use ANSI prototypes.
+
 2004-08-11  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-i18n.c (gnome_vfs_i18n_get_language_list):

@@ -135,7 +135,7 @@ resolvehandle_from_hostent (struct hostent *he, GnomeVFSResolveHandle **handle)
 #endif
 
 static gboolean
-restart_resolve ()
+restart_resolve (void)
 {
 #ifdef HAVE_RES_NINIT
 	   static GTimeVal last_reload = { 0, 0 };

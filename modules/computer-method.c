@@ -532,7 +532,7 @@ get_data_for_drive (GnomeVFSDrive *drive)
 }
 
 static char *
-get_data_for_network ()
+get_data_for_network (void)
 {
 	char *data;
 
@@ -548,7 +548,7 @@ get_data_for_network ()
 }
 
 static char *
-get_data_for_home ()
+get_data_for_home (void)
 {
 	char *data;
 	char *uri;
@@ -568,7 +568,7 @@ get_data_for_home ()
 }
 
 static char *
-get_data_for_root ()
+get_data_for_root (void)
 {
 	char *data;
 
