@@ -1,3 +1,11 @@
+2001-02-19  Ian McKellar,,,  <ian@eazel.com>
+
+	reviewed by: Eskil Olsen <eskil@eazel.com>
+
+	* modules/file-method.c: (do_find_directory):
+	Changed lstat to stat so that the device ID can be correctly
+	determined (fixing bug 4980).
+
 2001-02-16  Gene Z. Ragan  <gzr@eazel.com>
 
 	reviewed by: Mike Enger <engber@eazel.com>

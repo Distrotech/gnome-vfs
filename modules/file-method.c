@@ -1692,7 +1692,7 @@ do_find_directory (GnomeVFSMethod *method,
 	char *target_directory_path;
 	char *target_directory_uri;
 
-
+	
 	target_directory_path = NULL;
 	*result_uri = NULL;
 
@@ -1708,7 +1708,7 @@ do_find_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_CANCELLED;
 	}
 
-	retval = lstat (full_name_near, &near_item_stat);
+	retval = stat (full_name_near, &near_item_stat);
 	if (retval != 0) {
 		g_free (full_name_near);
 		return gnome_vfs_result_from_errno ();
@@ -1719,7 +1719,7 @@ do_find_directory (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_CANCELLED;
 	}
 	
-	retval = lstat (home_directory, &home_volume_stat);
+	retval = stat (home_directory, &home_volume_stat);
 	if (retval != 0) {
 		g_free (full_name_near);
 		return gnome_vfs_result_from_errno ();
@@ -1745,7 +1745,7 @@ do_find_directory (GnomeVFSMethod *method,
 			target_directory_path = find_trash_directory (full_name_near,  
 				near_item_stat.st_dev, create_if_needed, find_if_needed,
 				permissions, context);
-					
+
 			if (gnome_vfs_context_check_cancellation (context)) {
 				return GNOME_VFS_ERROR_CANCELLED;
 			}
