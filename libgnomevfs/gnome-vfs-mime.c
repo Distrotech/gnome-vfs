@@ -638,7 +638,7 @@ gnome_vfs_mime_type_is_equal (const char *a,
 }
 
 /**
- * gnome_vfs_mime_type_is_equivalent:
+ * gnome_vfs_mime_type_get_equivalence:
  * @mime_type: A const char * containing a mime type, e.g. "image/png"
  * @base_mime_type: A const char * containing either a mime type or a subtype.
  * 
@@ -658,7 +658,7 @@ gnome_vfs_mime_type_is_equal (const char *a,
  * Return value:
  **/
 GnomeVFSMimeEquivalence
-gnome_vfs_mime_type_get_equivalance (const char *mime_type,
+gnome_vfs_mime_type_get_equivalence (const char *mime_type,
 				     const char *base_mime_type)
 {
 	const gchar *parent_list;
@@ -701,7 +701,7 @@ gnome_vfs_mime_type_get_equivalance (const char *mime_type,
 
 		parents = g_strsplit (parent_list, ":", -1);
 		for (i = 0; parents && parents[i] != NULL; i++) {
-			if (gnome_vfs_mime_type_get_equivalance (parents[i], base_mime_type)) {
+			if (gnome_vfs_mime_type_get_equivalence (parents[i], base_mime_type)) {
 				found_parent = TRUE;
 				break;
 			}

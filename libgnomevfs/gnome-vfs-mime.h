@@ -64,7 +64,7 @@ typedef enum {
   GNOME_VFS_MIME_PARENT
 } GnomeVFSMimeEquivalence;
 
-GnomeVFSMimeEquivalence gnome_vfs_mime_type_get_equivalance (const char *mime_type,
+GnomeVFSMimeEquivalence gnome_vfs_mime_type_get_equivalence (const char *mime_type,
 							     const char *base_mime_type);
 gboolean                gnome_vfs_mime_type_is_equal        (const char *a,
 							     const char *b);
