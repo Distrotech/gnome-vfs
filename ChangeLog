@@ -1,5 +1,10 @@
 2000-11-06  Maciej Stachowiak  <mjs@eazel.com>
 
+	* data/mime/gnome-vfs.applications: Commented out entries for vi
+	and lynx. This is the fix for 4468.
+
+2000-11-06  Maciej Stachowiak  <mjs@eazel.com>
+
 	* data/mime/gnome-vfs.applications, data/mime/gnome-vfs.keys: Some
 	minor changes. Added Electric Eyes and made it the most preferred
 	image viewer. Added ggv and made it more preferred than gv or
