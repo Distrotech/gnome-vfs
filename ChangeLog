@@ -1,3 +1,11 @@
+2005-01-15  Nate Nielsen <nielsen@memberwebs.com>
+
+	* modules/smb-method.c (add_cached_server), (initial_authentication)
+	(prompt_authentication):
+	Fix problems with user/domain contained in smb uri. (see #132933)	
+	
+	Patch from Narayana Pattipati  <narayana.pattipati@wipro.com>
+
 2005-01-12  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
