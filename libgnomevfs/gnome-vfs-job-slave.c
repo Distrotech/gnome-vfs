@@ -191,7 +191,11 @@ gnome_vfs_thread_backend_shutdown (void)
 		/* Some threads are still trying to quit, wait a bit until they
 		 * are done.
 		 */
+#if GNOME_PLATFORM_VERSION >= 1095000
+		g_main_iteration (FALSE);
+#else
 		gtk_main_iteration_do (FALSE);
+#endif
 		usleep (20000);		
 	}
 }

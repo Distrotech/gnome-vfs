@@ -1,5 +1,11 @@
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c
+	(gnome_vfs_thread_backend_shutdown): Use g_main_iteration() for
+	the GNOME 2 platform.
+
+2000-08-31  Martin Baulig  <baulig@suse.de>
+
 	* configure.in: Only check for GNOME if we're on the GNOME 1.2
 	platform.
 
