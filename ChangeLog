@@ -1,3 +1,8 @@
+2003-04-11  Hidetoshi Tajima  <hidetoshi.tajima@sun.com>
+
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): call bindtextdomain
+	inside #ifdef ENABLE_NLS. Fixes bug #110213.
+
 2003-04-11  Michael Meeks  <michael@ximian.com>
 
 	* test/test-shell.c (authentication_callback, main):
