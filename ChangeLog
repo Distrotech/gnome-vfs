@@ -1,3 +1,122 @@
+1999-09-08  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (execute_open): Do not set
+	`handle' on the notification.
+	(execute_create): Likewise.
+	(execute_close): Likewise.
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c
+	(gnome_vfs_async_close): Do not set `handle' on the request.
+	(gnome_vfs_async_read): Likewise.
+	(gnome_vfs_async_write): Likewise.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (gnome_vfs_job_new):
+	Initialize the `handle' member to NULL.
+	(execute_open): Set `handle'.
+	(execute_create): Likewise.
+	(execute_close): Use `job->handle' instead of the (now gone)
+	request-specific member.
+	(execute_read): Likewise.
+	(execute_write): Likewise.
+	(execute_close): Set `handle' to NULL.
+
+	* libgnomevfs-pthread/gnome-vfs-job.h: Removed `handle' members
+	from all the `*Job' structs.
+	(struct _GnomeVFSJob): New member `handle'.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (execute_xfer): Return FALSE.
+	(execute_load_directory): Return FALSE;
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c
+	(gnome_vfs_async_context_new): Removed.
+	(gnome_vfs_async_context_destroy): Removed.
+	(struct _GnomeVFSAsyncContext): Removed.
+	(struct _GnomeVFSAsyncHandle): Removed.
+	(gnome_vfs_async_open): Updated for the new API.  Create a new job
+	for this file and return it as the handle.
+	(gnome_vfs_async_open_as_channel): Likewise.
+	(gnome_vfs_async_create): Likewise.
+	(gnome_vfs_async_create_as_channel): Likewise.
+	(gnome_vfs_async_close): Updated for the new API.  
+	(gnome_vfs_async_read): Updated for the new API.
+	(gnome_vfs_async_write): Updated for the new API.
+	(gnome_vfs_async_load_directory): Updated for the new API.  Create
+	a new job for this file and return it as the handle.
+	(gnome_vfs_async_xfer): Likewise.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (gnome_vfs_job_new): Removed
+	parameter `context'.
+	(dispatch_open_callback): Updated to match the new number of
+	parameters of callback functions.  Pass the job as the
+	`GnomeVFSAsyncHandle' parameter.
+	(dispatch_create_callback): Likewise.
+	(dispatch_open_as_channel_callback): Likewise.
+	(dispatch_create_as_channel_callback): Likewise.
+	(dispatch_read_callback): Likewise.
+	(dispatch_write_callback): Likewise.
+	(dispatch_xfer_callback): Likewise.
+	(dispatch_close_callback): Likewise.  Destroy the job on return.
+	(dispatch_load_directory_callback): Likewise.
+
+	* libgnomevfs-pthread/gnome-vfs-job.h (struct _GnomeVFSJob):
+	Removed member `context'.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (gnome_vfs_job_new): Create
+	new slave first.  If this fails, return NULL.
+
+	* test/test-channel.c (io_channel_callback): Handle combined
+	conditions.
+
+	* libgnomevfs/gnome-vfs-types.h: Removed `GnomeVFSAsyncContext'
+	definition.
+
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c (impl_Notify_open):
+	Duplicate the file handle object.
+	(impl_Notify_close): Relese the file handle object.
+
+	* test/test-async.c: Adapted to the new API.
+	* test/test-async-channel.c: Likewise.
+	* test/test-channel.c: Likewise.
+
+	* test/Makefile.am: Do not compile the pthread versions of the
+	tests anymore.  Do not compile the gnome-file-selection test for
+	now.
+
+	* libgnomevfs-corba/gnome-vfs-async-ops.c: Updated all the
+	functions to handle the new parameters and use the new modules.
+	(gnome_vfs_async_context_destroy): Removed.
+	(gnome_vfs_async_context_reset): Removed.
+	(gnome_vfs_async_context_new): Removed.
+	(create_notify_object): Removed.
+	(context_from_servant): Removed.
+
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c: New file,
+	implementing the `GNOME::VFS::Slave::Notify' interface.
+	* libgnomevfs-corba/gnome-vfs-slave-notify.h: Header for it.
+
+	* libgnomevfs-corba/gnome-vfs-slave-process.c: New file,
+	replacing GnomeVFSAsyncContext handling.
+	* libgnomevfs-corba/gnome-vfs-slave-process.h: Header for it.
+
+	* libgnomevfs/gnome-vfs-types.h: Removed
+	`GnomeVFSAsyncContextResetCallback' typedef.
+
+	* libgnomevfs/gnome-vfs-types.h: The callbacks no longer take a
+	`GnomeVFSAsyncContext *' parameter.  Instead, they now take a
+	`GnomeVFSAsyncHandle *' parameter.
+
+	* libgnomevfs/gnome-vfs-async-ops.h: Removed prototypes for
+	(gnome_vfs_async_context_new): Removed prototype.
+	(gnome_vfs_async_context_reset): Removed prototype.
+	(gnome_vfs_async_context_destroy): Remove prototype.
+	(gnome_vfs_async_open): Removed parameter `context'; new parameter
+	`handle_return'.
+	(gnome_vfs_async_open_as_channel): Likewise.
+	(gnome_vfs_async_create): Likewise.
+	(gnome_vfs_async_create_as_channel): Likewise.
+	(gnome_vfs_async_load_directory): Likewise.
+	(gnome_vfs_async_xfer): Likewise.
+
 1999-09-08  Michael Meeks  <michael@nuclecu.unam.mx>
 
 	* libgnomevfs/gnome-vfs-seekable.c (init_seek): Split out file read

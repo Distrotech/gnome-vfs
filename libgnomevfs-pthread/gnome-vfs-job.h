@@ -48,7 +48,6 @@ struct _GnomeVFSOpenJob {
 
 	struct {
 		GnomeVFSResult result;
-		GnomeVFSHandle *handle;
 	} notify;
 };
 typedef struct _GnomeVFSOpenJob GnomeVFSOpenJob;
@@ -77,7 +76,6 @@ struct _GnomeVFSCreateJob {
 
 	struct {
 		GnomeVFSResult result;
-		GnomeVFSHandle *handle;
 	} notify;
 };
 typedef struct _GnomeVFSCreateJob GnomeVFSCreateJob;
@@ -99,7 +97,6 @@ typedef struct _GnomeVFSCreateAsChannelJob GnomeVFSCreateAsChannelJob;
 
 struct _GnomeVFSCloseJob {
 	struct {
-		GnomeVFSHandle *handle;
 	} request;
 
 	struct {
@@ -110,7 +107,6 @@ typedef struct _GnomeVFSCloseJob GnomeVFSCloseJob;
 
 struct _GnomeVFSReadJob {
 	struct {
-		GnomeVFSHandle *handle;
 		GnomeVFSFileSize num_bytes;
 		gpointer buffer;
 	} request;
@@ -124,7 +120,6 @@ typedef struct _GnomeVFSReadJob GnomeVFSReadJob;
 
 struct _GnomeVFSWriteJob {
 	struct {
-		GnomeVFSHandle *handle;
 		GnomeVFSFileSize num_bytes;
 		gconstpointer buffer;
 	} request;
@@ -184,8 +179,12 @@ typedef struct _GnomeVFSXferJob GnomeVFSXferJob;
 
 /* FIXME: Move private stuff.  */
 struct _GnomeVFSJob {
-	/* The context this job belongs to.  */
-	GnomeVFSAsyncContext *context;
+	/* The slave thread that executes jobs (see module
+           `gnome-vfs-job-slave.c'). */
+	GnomeVFSJobSlave *slave;
+
+	/* Handle being used for file access.  */
+	GnomeVFSHandle *handle;
 
 	/* Global lock for accessing data.  */
 	GMutex *access_lock;
@@ -220,10 +219,6 @@ struct _GnomeVFSJob {
            into the channel.  */
 	GMutex *wakeup_channel_lock;
 
-	/* The slave thread that executes jobs (see module
-           `gnome-vfs-job-slave.c'). */
-	GnomeVFSJobSlave *slave;
-
 	/* ID of the job (e.g. open, create, close...).  */
 	GnomeVFSJobType type;
 
@@ -251,7 +246,7 @@ struct _GnomeVFSJob {
 };
 
 
-GnomeVFSJob	*gnome_vfs_job_new	(GnomeVFSAsyncContext *context);
+GnomeVFSJob	*gnome_vfs_job_new	(void);
 gboolean	 gnome_vfs_job_destroy	(GnomeVFSJob *job);
 void		 gnome_vfs_job_prepare	(GnomeVFSJob *job);
 void		 gnome_vfs_job_go	(GnomeVFSJob *job);

@@ -42,39 +42,36 @@ static gboolean io_channel_callback (GIOChannel *source,
 				     GIOCondition condition,
 				     gpointer data)
 {
-	GnomeVFSAsyncContext *context;
 	gchar buffer[BUFFER_SIZE + 1];
 	guint bytes_read;
 
-	context = (GnomeVFSAsyncContext *) data;
-
 	printf ("\n\n************ IO Channel callback!\n");
 
-	switch (condition) {
-	case G_IO_IN:
+	if (condition & G_IO_IN) {
 		g_io_channel_read (source, buffer, sizeof (buffer) - 1, &bytes_read);
 		buffer[bytes_read] = 0;
 		printf ("---> Read %d byte(s):\n%s\n\n(***END***)\n",
 			bytes_read, buffer);
-		return TRUE;
+		fflush (stdout);
+	}
 
-	case G_IO_NVAL:
+	if (condition & G_IO_NVAL) {
 		g_warning ("channel_callback got NVAL condition.");
 		return FALSE;
+	}
 
-	case G_IO_HUP:
+	if (condition & G_IO_HUP) {
 		printf ("\n----- EOF -----\n");
+		fflush (stdout);
 		g_io_channel_close (source);
 		gtk_main_quit ();
 		return FALSE;
-
-	default:
-		g_warning ("Unexpected condition 0x%04x\n", condition);
-		return FALSE;
 	}
+
+	return TRUE;
 }
 
-static void open_callback (GnomeVFSAsyncContext *context,
+static void open_callback (GnomeVFSAsyncHandle *handle,
 			   GIOChannel *channel,
 			   GnomeVFSResult result,
 			   gpointer data)
@@ -89,7 +86,7 @@ static void open_callback (GnomeVFSAsyncContext *context,
 	g_io_add_watch_full (channel,
 			     G_PRIORITY_HIGH,
 			     G_IO_IN | G_IO_NVAL | G_IO_HUP,
-			     io_channel_callback, context,
+			     io_channel_callback, handle,
 			     NULL);
 
 	g_io_channel_unref (channel);
@@ -99,7 +96,7 @@ static void open_callback (GnomeVFSAsyncContext *context,
 int
 main (int argc, char **argv)
 {
-	GnomeVFSAsyncContext *context;
+	GnomeVFSAsyncHandle *handle;
 	GnomeVFSResult result;
 
 	if (argc < 2) {
@@ -124,18 +121,8 @@ main (int argc, char **argv)
 	puts ("Initializing gnome-vfs...");
 	gnome_vfs_init ();
 
-	puts ("Creating async context...");
-	context = gnome_vfs_async_context_new ();
-	if (context == NULL) {
-		fprintf (stderr, "Cannot create async context!\n");
-#ifdef WITH_CORBA
-		CORBA_exception_free (&ev);
-#endif
-		return 1;
-	}
-
 	printf ("Starting open for `%s'...\n", argv[1]);
-	result = gnome_vfs_async_open_as_channel (context, argv[1],
+	result = gnome_vfs_async_open_as_channel (&handle, argv[1],
 						  GNOME_VFS_OPEN_READ,
 						  BUFFER_SIZE,
 						  open_callback,
@@ -147,8 +134,7 @@ main (int argc, char **argv)
 	puts ("GTK+ main loop running.");
 	gtk_main ();
 
-	puts ("GTK+ main loop finished: destroying context.");
-	gnome_vfs_async_context_destroy (context);
+	puts ("GTK+ main loop finished.");
 
 #ifdef WITH_CORBA
 	CORBA_exception_free (&ev);

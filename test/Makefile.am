@@ -1,4 +1,4 @@
-SUBDIRS = gnome-file-selection
+# SUBDIRS = gnome-file-selection
 
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\
@@ -7,8 +7,8 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs
 
 noinst_PROGRAMS =				\
-	test-async_pthread			\
 	test-async_corba			\
+	test-async_pthread			\
 	test-async-directory			\
 	test-channel_corba			\
 	test-channel_pthread			\

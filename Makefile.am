@@ -1,7 +1,7 @@
 SUBDIRS =					\
 	libgnomevfs				\
-	libgnomevfs-pthread			\
 	libgnomevfs-corba			\
+	libgnomevfs-pthread			\
 	idl					\
 	modules					\
 	test					\

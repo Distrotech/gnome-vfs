@@ -27,12 +27,16 @@ $(gnome_vfs_slave_built): $(top_srcdir)/idl/gnome-vfs-slave.idl
 
 noinst_HEADERS =				\
 	gnome-vfs-corba.h			\
-	gnome-vfs-slave-launch.h
+	gnome-vfs-slave-launch.h		\
+	gnome-vfs-slave-notify.h		\
+	gnome-vfs-slave-process.h
 
 libgnomevfs_corba_la_SOURCES =			\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-corba.c			\
 	gnome-vfs-slave-launch.c		\
+	gnome-vfs-slave-notify.c		\
+	gnome-vfs-slave-process.c		\
 	$(gnome_vfs_slave_built)
 
 gnome_vfs_slave_SOURCES =			\

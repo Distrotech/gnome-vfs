@@ -479,39 +479,34 @@ typedef gint (* GnomeVFSXferProgressCallback) 	(const GnomeVFSXferProgressInfo *
 
 /* Types for asynchronous operations.  */
 
-typedef struct _GnomeVFSAsyncContext GnomeVFSAsyncContext;
-
 typedef struct _GnomeVFSAsyncHandle GnomeVFSAsyncHandle;
 
-typedef void	(* GnomeVFSAsyncOpenCallback)	(GnomeVFSAsyncContext *context,
-						 GnomeVFSAsyncHandle *handle,
+typedef void	(* GnomeVFSAsyncOpenCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
 						 gpointer callback_data);
 
 typedef GnomeVFSAsyncOpenCallback GnomeVFSAsyncCreateCallback;
 
 typedef void	(* GnomeVFSAsyncOpenAsChannelCallback)
-						(GnomeVFSAsyncContext *context,
+						(GnomeVFSAsyncHandle *handle,
 						 GIOChannel *channel,
 						 GnomeVFSResult result,
 						 gpointer callback_data);
 
 typedef GnomeVFSAsyncOpenAsChannelCallback GnomeVFSAsyncCreateAsChannelCallback;
 
-typedef void	(* GnomeVFSAsyncCloseCallback)	(GnomeVFSAsyncContext *context,
+typedef void	(* GnomeVFSAsyncCloseCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
 						 gpointer callback_data);
 
-typedef void	(* GnomeVFSAsyncReadCallback)	(GnomeVFSAsyncContext *context,
-						 GnomeVFSAsyncHandle *handle,
+typedef void	(* GnomeVFSAsyncReadCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
 						 gpointer buffer,
 						 GnomeVFSFileSize bytes_requested,
 						 GnomeVFSFileSize bytes_read,
 						 gpointer callback_data);
 
-typedef void	(* GnomeVFSAsyncWriteCallback)	(GnomeVFSAsyncContext *context,
-						 GnomeVFSAsyncHandle *handle,
+typedef void	(* GnomeVFSAsyncWriteCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
 						 gconstpointer buffer,
 						 GnomeVFSFileSize bytes_requested,
@@ -519,19 +514,16 @@ typedef void	(* GnomeVFSAsyncWriteCallback)	(GnomeVFSAsyncContext *context,
 						 gpointer callback_data);
 
 typedef void	(* GnomeVFSAsyncDirectoryLoadCallback)
-						(GnomeVFSAsyncContext *context,
+						(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
 						 GnomeVFSDirectoryList *list,
 						 guint entries_read,
 						 gpointer callback_data);
 
 typedef gint    (* GnomeVFSAsyncXferProgressCallback)
-						(GnomeVFSAsyncContext *context,
+						(GnomeVFSAsyncHandle *handle,
 						 const GnomeVFSXferProgressInfo *info,
 						 gpointer data);
 
-typedef void	(* GnomeVFSAsyncContextResetCallback)
-						(GnomeVFSAsyncContext *context,
-						 gpointer callback_data);
 
 #endif /* _GNOME_VFS_TYPES_H */

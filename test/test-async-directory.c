@@ -78,7 +78,7 @@ print_list (GnomeVFSDirectoryList *list)
 }
 
 static void
-directory_load_callback (GnomeVFSAsyncContext *context,
+directory_load_callback (GnomeVFSAsyncHandle *handle,
 			 GnomeVFSResult result,
 			 GnomeVFSDirectoryList *list,
 			 guint entries_read,
@@ -98,7 +98,7 @@ directory_load_callback (GnomeVFSAsyncContext *context,
 int
 main (int argc, char **argv)
 {
-	GnomeVFSAsyncContext *context;
+	GnomeVFSAsyncHandle *handle;
 	GnomeVFSResult result;
 	CORBA_Environment ev;
 	guint num_iterations;
@@ -125,17 +125,9 @@ main (int argc, char **argv)
 	gnome_vfs_init ();
 
 	puts ("Creating async context...");
-	context = gnome_vfs_async_context_new ();
-	if (context == NULL) {
-		fprintf (stderr, "Cannot create async context!\n");
-#ifdef WITH_CORBA
-		CORBA_exception_free (&ev);
-#endif
-		return 1;
-	}
 
 	result = gnome_vfs_async_load_directory
-		(context, /* context */
+		(&handle, /* handle */
 		 argv[1], /* text_uri */
 		 (GNOME_VFS_FILE_INFO_GETMIMETYPE
 		  | GNOME_VFS_FILE_INFO_FASTMIMETYPE
@@ -153,8 +145,10 @@ main (int argc, char **argv)
 	puts ("GTK+ main loop running.");
 	gtk_main ();
 
-	puts ("GTK+ main loop finished: destroying context.");
-	gnome_vfs_async_context_destroy (context);
+	puts ("GTK+ main loop finished.");
+
+	while (1)
+		;
 
 	return 0;
 }

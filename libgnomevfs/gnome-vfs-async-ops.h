@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* gnome-vfs-async-context.h - Context for asynchronous operations in
-   the GNOME Virtual File System.
+/* gnome-vfs-async-ops.h - Asynchronous operations in the GNOME Virtual File
+   System.
 
    Copyright (C) 1999 Free Software Foundation
 
@@ -21,20 +21,10 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifndef _GNOME_VFS_ASYNC_CONTEXT_H
-#define _GNOME_VFS_ASYNC_CONTEXT_H
+#ifndef _GNOME_VFS_ASYNC_OPS_H
+#define _GNOME_VFS_ASYNC_OPS_H
 
-GnomeVFSAsyncContext *
-		 gnome_vfs_async_context_new	(void);
-void	 	 gnome_vfs_async_context_destroy
-						(GnomeVFSAsyncContext
-						 	*context);
-void		 gnome_vfs_async_context_reset	(GnomeVFSAsyncContext *context,
-						 GnomeVFSAsyncContextResetCallback
-						 	callback,
-						 gpointer callback_data);
-
-GnomeVFSResult	 gnome_vfs_async_open		(GnomeVFSAsyncContext *context,
+GnomeVFSResult	 gnome_vfs_async_open		(GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
 						 GnomeVFSOpenMode open_mode,
 						 GnomeVFSAsyncOpenCallback
@@ -42,7 +32,7 @@ GnomeVFSResult	 gnome_vfs_async_open		(GnomeVFSAsyncContext *context,
 						 gpointer callback_data);
 
 GnomeVFSResult	 gnome_vfs_async_open_as_channel
-						(GnomeVFSAsyncContext *context,
+						(GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
 						 GnomeVFSOpenMode open_mode,
 						 guint advised_block_size,
@@ -50,7 +40,7 @@ GnomeVFSResult	 gnome_vfs_async_open_as_channel
 						        callback,
 						 gpointer callback_data);
 
-GnomeVFSResult	 gnome_vfs_async_create		(GnomeVFSAsyncContext *context,
+GnomeVFSResult	 gnome_vfs_async_create		(GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
 						 GnomeVFSOpenMode open_mode,
 						 gboolean exclusive,
@@ -60,7 +50,7 @@ GnomeVFSResult	 gnome_vfs_async_create		(GnomeVFSAsyncContext *context,
 						 gpointer callback_data);
 
 GnomeVFSResult	 gnome_vfs_async_create_as_channel
-						(GnomeVFSAsyncContext *context,
+						(GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
 						 GnomeVFSOpenMode open_mode,
 						 gboolean exclusive,
@@ -69,29 +59,26 @@ GnomeVFSResult	 gnome_vfs_async_create_as_channel
 	                                                 callback,
 						 gpointer callback_data);
 
-GnomeVFSResult	 gnome_vfs_async_close		(GnomeVFSAsyncContext *context,
-						 GnomeVFSAsyncHandle *handle,
+GnomeVFSResult	 gnome_vfs_async_close		(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSAsyncCloseCallback
 						 	callback,
 						 gpointer callback_data);
 
-GnomeVFSResult	 gnome_vfs_async_read		(GnomeVFSAsyncContext *context,
-						 GnomeVFSAsyncHandle *handle,
+GnomeVFSResult	 gnome_vfs_async_read		(GnomeVFSAsyncHandle *handle,
 						 gpointer buffer,
 						 guint bytes,
 						 GnomeVFSAsyncReadCallback
 						 	callback,
 						 gpointer callback_data);
 
-GnomeVFSResult	 gnome_vfs_async_write		(GnomeVFSAsyncContext *context,
-						 GnomeVFSAsyncHandle *handle,
+GnomeVFSResult	 gnome_vfs_async_write		(GnomeVFSAsyncHandle *handle,
 						 gconstpointer buffer,
 						 guint bytes,
 						 GnomeVFSAsyncWriteCallback
 						 	callback,
 						 gpointer callback_data);
 
-GnomeVFSResult	 gnome_vfs_async_load_directory (GnomeVFSAsyncContext *context,
+GnomeVFSResult	 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 						 const gchar *text_uri,
 						 GnomeVFSFileInfoOptions
 						         options,
@@ -109,7 +96,7 @@ GnomeVFSResult	 gnome_vfs_async_load_directory (GnomeVFSAsyncContext *context,
 						         callback,
 						 gpointer callback_data);
 
-GnomeVFSResult	 gnome_vfs_async_xfer		(GnomeVFSAsyncContext *context,
+GnomeVFSResult	 gnome_vfs_async_xfer		(GnomeVFSAsyncHandle **handle_return,
 						 const gchar *source_dir,
 						 const GList *source_name_list,
 						 const gchar *target_dir,
@@ -124,4 +111,4 @@ GnomeVFSResult	 gnome_vfs_async_xfer		(GnomeVFSAsyncContext *context,
 						 	progress_callback,
 						 gpointer callback_data);
 
-#endif /* _GNOME_VFS_ASYNC_CONTEXT_H */
+#endif /* _GNOME_VFS_ASYNC_OPS_H */

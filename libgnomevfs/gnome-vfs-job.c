@@ -21,6 +21,8 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
+/* FIXME the slave threads do not die properly.  */
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -145,8 +147,7 @@ dispatch_open_callback (GnomeVFSJob *job)
 
 	callback = (GnomeVFSAsyncOpenCallback) job->callback;
 
-	(* callback) (job->context,
-		      (GnomeVFSAsyncHandle *) open_job->notify.handle,
+	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      open_job->notify.result,
 		      job->callback_data);
 }
@@ -161,8 +162,7 @@ dispatch_create_callback (GnomeVFSJob *job)
 
 	callback = (GnomeVFSAsyncCreateCallback) job->callback;
 
-	(* callback) (job->context,
-		      (GnomeVFSAsyncHandle *) create_job->notify.handle,
+	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      create_job->notify.result,
 		      job->callback_data);
 }
@@ -177,7 +177,7 @@ dispatch_open_as_channel_callback (GnomeVFSJob *job)
 
 	callback = (GnomeVFSAsyncOpenAsChannelCallback) job->callback;
 
-	(* callback) (job->context,
+	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      open_as_channel_job->notify.channel,
 		      open_as_channel_job->notify.result,
 		      job->callback_data);
@@ -193,7 +193,7 @@ dispatch_create_as_channel_callback (GnomeVFSJob *job)
 
 	callback = (GnomeVFSAsyncCreateAsChannelCallback) job->callback;
 
-	(* callback) (job->context,
+	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      create_as_channel_job->notify.channel,
 		      create_as_channel_job->notify.result,
 		      job->callback_data);
@@ -209,9 +209,11 @@ dispatch_close_callback (GnomeVFSJob *job)
 
 	callback = (GnomeVFSAsyncCloseCallback) job->callback;
 
-	(* callback) (job->context,
+	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      close_job->notify.result,
 		      job->callback_data);
+
+	gnome_vfs_job_destroy (job);
 }
 
 static void
@@ -224,8 +226,7 @@ dispatch_read_callback (GnomeVFSJob *job)
 
 	read_job = &job->info.read;
 
-	(* callback) (job->context,
-		      (GnomeVFSAsyncHandle *) read_job->request.handle,
+	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      read_job->notify.result,
 		      read_job->request.buffer,
 		      read_job->request.num_bytes,
@@ -243,8 +244,7 @@ dispatch_write_callback (GnomeVFSJob *job)
 
 	write_job = &job->info.write;
 
-	(* callback) (job->context,
-		      (GnomeVFSAsyncHandle *) write_job->request.handle,
+	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      write_job->notify.result,
 		      write_job->request.buffer,
 		      write_job->request.num_bytes,
@@ -262,7 +262,7 @@ dispatch_load_directory_callback (GnomeVFSJob *job)
 
 	load_directory_job = &job->info.load_directory;
 
-	(* callback) (job->context,
+	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      load_directory_job->notify.result,
 		      load_directory_job->notify.list,
 		      load_directory_job->notify.entries_read,
@@ -280,7 +280,7 @@ dispatch_xfer_callback (GnomeVFSJob *job)
 
 	xfer_job = &job->info.xfer;
 
-	callback_retval = (* callback) (job->context,
+	callback_retval = (* callback) ((GnomeVFSAsyncHandle *) job,
 					xfer_job->notify.progress_info,
 					job->callback_data);
 
@@ -343,8 +343,9 @@ dispatch_job_callback (GIOChannel *source,
 
 
 GnomeVFSJob *
-gnome_vfs_job_new (GnomeVFSAsyncContext *context)
+gnome_vfs_job_new (void)
 {
+	GnomeVFSJobSlave *slave;
 	GnomeVFSJob *new;
 	gint pipefd[2];
 	gchar c;
@@ -358,7 +359,16 @@ gnome_vfs_job_new (GnomeVFSAsyncContext *context)
 
 	new = g_new (GnomeVFSJob, 1);
 
-	new->context = context;
+	slave = gnome_vfs_job_slave_new (new);
+	if (slave == NULL) {
+		g_warning ("Cannot create job slave.");
+		g_free (new);
+		return NULL;
+	}
+
+	new->slave = slave;
+
+	new->handle = NULL;
 
 	new->access_lock = g_mutex_new ();
 
@@ -375,8 +385,6 @@ gnome_vfs_job_new (GnomeVFSAsyncContext *context)
 
 	g_io_add_watch_full (new->wakeup_channel_in, G_PRIORITY_LOW, G_IO_IN,
 			     dispatch_job_callback, new, NULL);
-
-	new->slave = gnome_vfs_job_slave_new (new);
 
 	/* Wait for the thread to come up.  */
 	g_io_channel_read (new->wakeup_channel_in, &c, 1, &bytes_read);
@@ -551,14 +559,10 @@ execute_open (GnomeVFSJob *job)
 						  uri,
 						  open_job->request.open_mode);
 
-	if (result != GNOME_VFS_OK)
-		open_job->notify.handle = NULL;
-	else
-		open_job->notify.handle = handle;
-
 	g_free (open_job->request.text_uri);
 	gnome_vfs_uri_unref (uri);
 
+	job->handle = handle;
 	open_job->notify.result = result;
 
 	return job_oneway_notify_and_close (job);
@@ -647,14 +651,10 @@ execute_create (GnomeVFSJob *job)
 						   create_job->request.exclusive,
 						   create_job->request.perm);
 
-	if (result != GNOME_VFS_OK)
-		create_job->notify.handle = NULL;
-	else
-		create_job->notify.handle = handle;
-
 	g_free (create_job->request.text_uri);
 	gnome_vfs_uri_unref (uri);
 
+	job->handle = handle;
 	create_job->notify.result = result;
 
 	return job_oneway_notify_and_close (job);
@@ -720,8 +720,7 @@ execute_close (GnomeVFSJob *job)
 
 	close_job = &job->info.close;
 
-	close_job->notify.result
-		= gnome_vfs_close (close_job->request.handle);
+	close_job->notify.result = gnome_vfs_close (job->handle);
 
 	return job_oneway_notify_and_close (job);
 }
@@ -733,11 +732,10 @@ execute_read (GnomeVFSJob *job)
 
 	read_job = &job->info.read;
 
-	read_job->notify.result
-		= gnome_vfs_read (read_job->request.handle,
-				  read_job->request.buffer,
-				  read_job->request.num_bytes,
-				  &read_job->notify.bytes_read);
+	read_job->notify.result = gnome_vfs_read (job->handle,
+						  read_job->request.buffer,
+						  read_job->request.num_bytes,
+						  &read_job->notify.bytes_read);
 
 	return job_oneway_notify_and_close (job);
 }
@@ -750,7 +748,7 @@ execute_write (GnomeVFSJob *job)
 	write_job = &job->info.write;
 
 	write_job->notify.result
-		= gnome_vfs_write (write_job->request.handle,
+		= gnome_vfs_write (job->handle,
 				   write_job->request.buffer,
 				   write_job->request.num_bytes,
 				   &write_job->notify.bytes_written);
@@ -908,6 +906,8 @@ execute_load_directory (GnomeVFSJob *job)
 
 	gnome_vfs_directory_filter_destroy (filter);
 
+	job_close (job);
+
 	g_free (load_directory_job->request.text_uri);
 	g_free (load_directory_job->request.sort_rules);
 	g_free (load_directory_job->request.filter_pattern);
@@ -920,9 +920,7 @@ execute_load_directory (GnomeVFSJob *job)
 		g_free (load_directory_job->request.meta_keys);
 	}
 
-	job_close (job);
-
-	return retval;
+	return FALSE;
 }
 
 
@@ -983,7 +981,7 @@ execute_xfer (GnomeVFSJob *job)
 		return FALSE;
 	}
 
-	return TRUE;
+	return FALSE;
 }
 
 

@@ -38,7 +38,7 @@ CORBA_Environment ev;
 
 /* Callbacks.  */
 static void
-close_callback (GnomeVFSAsyncContext *context,
+close_callback (GnomeVFSAsyncHandle *handle,
 		GnomeVFSResult result,
 		gpointer callback_data)
 {
@@ -47,8 +47,7 @@ close_callback (GnomeVFSAsyncContext *context,
 }
 
 static void
-read_callback (GnomeVFSAsyncContext *context,
-	       GnomeVFSAsyncHandle *handle,
+read_callback (GnomeVFSAsyncHandle *handle,
 	       GnomeVFSResult result,
                gpointer buffer,
                GnomeVFSFileSize bytes_requested,
@@ -67,13 +66,11 @@ read_callback (GnomeVFSAsyncContext *context,
 	}
 
 	printf ("Now closing the file.\n");
-	gnome_vfs_async_close (context, handle, close_callback,
-			       "close");
+	gnome_vfs_async_close (handle, close_callback, "close");
 }
 
 static void
-open_callback  (GnomeVFSAsyncContext *context,
-		GnomeVFSAsyncHandle *handle,
+open_callback  (GnomeVFSAsyncHandle *handle,
 		GnomeVFSResult result,
                 gpointer callback_data)
 {
@@ -89,8 +86,7 @@ open_callback  (GnomeVFSAsyncContext *context,
 			(gchar *) callback_data);
 
 		buffer = g_malloc (buffer_size);
-		gnome_vfs_async_read (context,
-				      handle,
+		gnome_vfs_async_read (handle,
 				      buffer,
 				      buffer_size - 1,
 				      read_callback,
@@ -102,8 +98,8 @@ open_callback  (GnomeVFSAsyncContext *context,
 int
 main (int argc, char **argv)
 {
-	GnomeVFSAsyncContext *context;
 	GnomeVFSResult result;
+	GnomeVFSAsyncHandle *handle;
 
 	if (argc < 2) {
 		fprintf (stderr, "Usage: %s <uri>\n", argv[0]);
@@ -128,17 +124,9 @@ main (int argc, char **argv)
 	gnome_vfs_init ();
 
 	puts ("Creating async context...");
-	context = gnome_vfs_async_context_new ();
-	if (context == NULL) {
-		fprintf (stderr, "Cannot create async context!\n");
-#ifdef WITH_CORBA
-		CORBA_exception_free (&ev);
-#endif
-		return 1;
-	}
 
 	printf ("Starting open for `%s'...\n", argv[1]);
-	result = gnome_vfs_async_open (context, argv[1], GNOME_VFS_OPEN_READ,
+	result = gnome_vfs_async_open (&handle, argv[1], GNOME_VFS_OPEN_READ,
 				       open_callback, "open_callback");
 	if (result != GNOME_VFS_OK)
 		fprintf (stderr, "Error starting open: %s\n",
@@ -147,8 +135,7 @@ main (int argc, char **argv)
 	puts ("GTK+ main loop running.");
 	gtk_main ();
 
-	puts ("GTK+ main loop finished: destroying context.");
-	gnome_vfs_async_context_destroy (context);
+	puts ("GTK+ main loop finished.");
 
 #ifdef WITH_CORBA
 	CORBA_exception_free (&ev);

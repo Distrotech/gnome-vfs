@@ -1,6 +1,10 @@
 noinst_PROGRAMS =				\
-	gnome-file-selection-test_corba		\
-	gnome-file-selection-test_pthread
+	gnome-file-selection-test_corba
+
+
+# FIXME this will be re-enabled as soon as the pthread backend is made 
+# functional again.
+#	gnome-file-selection-test_pthread
 
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\
@@ -37,15 +41,15 @@ gnome_file_selection_test_corba_LDADD =				\
 	$(GNOMEGNORBA_LIBS)                                     \
         $(GCONF_LIBS)
 
-main_pthread.o: main.c
-	$(COMPILE) -DWITH_PTHREAD -o $@ -c $<
-gnome_file_selection_test_pthread_SOURCES = $(common_sources)
-gnome_file_selection_test_pthread_LDADD =				\
-	main_pthread.o							\
-	$(top_builddir)/libgnomevfs/libgnomevfs.la			\
-	$(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la	\
-	$(GNOME_LIBDIR)							\
-	$(GNOMEUI_LIBS)
+# main_pthread.o: main.c
+# 	$(COMPILE) -DWITH_PTHREAD -o $@ -c $<
+# gnome_file_selection_test_pthread_SOURCES = $(common_sources)
+# gnome_file_selection_test_pthread_LDADD =				\
+# 	main_pthread.o							\
+# 	$(top_builddir)/libgnomevfs/libgnomevfs.la			\
+# 	$(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la	\
+# 	$(GNOME_LIBDIR)							\
+# 	$(GNOMEUI_LIBS)
 
 noinst_HEADERS =				\
 	gicon.h					\
