@@ -229,7 +229,7 @@ filesystem_type (path, relpath, statp)
     {
       if (fstype_known && statp->st_dev == current_dev)
 	return current_fstype;	/* Cached value.  */
-      free (current_fstype);
+      g_free (current_fstype);
     }
   current_dev = statp->st_dev;
   current_fstype = filesystem_type_uncached (path, relpath, statp);
