@@ -1,3 +1,9 @@
+2003-4-17  HideToshi Tajima  <hidetoshi.tajima@sun.com>
+
+	* modules/cdemenu-desktop-method.c (get_icon_for_menu): 
+ 	Fixes bug #103306. Translators, please translate these messages
+	exactly the same in CDE's sys.dtwmrc file of the locale.
+
 2003-04-17  Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
 
 	* modules/http-method.c: Changed private symbol inet_aton

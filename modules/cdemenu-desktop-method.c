@@ -46,6 +46,7 @@
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-i18n.h>
 
 #define LINESIZE 1024
 #define CDE_ICON_NAME_CACHE "/.gnome/g-cdeiconnames"
@@ -158,25 +159,35 @@ expand_env_vars(char *s)
 static char*
 get_icon_for_menu (char *name) 
 {
-	if (!strcmp(name,"Applications")) 
+	/* Translate exactly the same in CDE's sys.dtwmrc file of the locale */
+	if (!strcmp(name, _("Applications")))
 		return ("/usr/dt/appconfig/icons/C/Dtapps.m.pm");
-	if (!strcmp(name,"Cards")) 
+	/* Translate  exactly the same in CDE's sys.dtwmrc file of the locale */
+	if (!strcmp(name, _("Cards")))
 		return ("/usr/dt/appconfig/icons/C/SDtCard.m.pm");
-	if (!strcmp(name,"Files")) 
+	/* Translate  exactly the same in CDE's sys.dtwmrc file of the locale */
+	if (!strcmp(name, _("Files")))
 		return ("/usr/dt/appconfig/icons/C/Dtdata.m.pm");
-	if (!strcmp(name,"Folders")) 
+	/* Translate  exactly the same in CDE's sys.dtwmrc file of the locale */
+	if (!strcmp(name, _("Folders")))
 		return ("/usr/dt/appconfig/icons/C/DtdirB.m.pm");
-	if (!strcmp(name,"Help")) 
+	/* Translate  exactly the same in CDE's sys.dtwmrc file of the locale */
+	if (!strcmp(name, _("Help")))
 		return ("/usr/dt/appconfig/icons/C/Dthelp.m.pm");
-	if (!strcmp(name,"Hosts")) 
+	/* Translate  exactly the same in CDE's sys.dtwmrc file of the locale */
+	if (!strcmp(name, _("Hosts")))
 		return ("/usr/dt/appconfig/icons/C/Dtterm.m.pm");
-	if (!strcmp(name,"Links")) 
+	/* Translate  exactly the same in CDE's sys.dtwmrc file of the locale */
+	if (!strcmp(name, _("Links")))
 		return ("/usr/dt/appconfig/icons/C/SDturlweb.m.pm");
-	if (!strcmp(name,"Mail")) 
+	/* Translate  exactly the same in CDE's sys.dtwmrc file of the locale */
+	if (!strcmp(name, _("Mail")))
 		return ("/usr/dt/appconfig/icons/C/Dtmail.m.pm");
-	if (!strcmp(name,"Tools")) 
+	/* Translate  exactly the same in CDE's sys.dtwmrc file of the locale */
+	if (!strcmp(name, _("Tools")))
 		return ("/usr/dt/appconfig/icons/C/SDtGears.m.pm");
-	if (!strcmp(name,"Windows")) 
+	/* Translate exactly the same in CDE's sys.dtwmrc file of the locale */
+	if (!strcmp(name, _("Windows")))
 		return ("/usr/dt/appconfig/icons/C/DtDtwm.m.pm");
 	return ("");
 }
@@ -296,8 +307,8 @@ do_open (GnomeVFSMethod *method,
 					 "Comment=\n"
 					 "Icon=%s\n"
 					 "Type=Directory\n",
-					 utf8_name,
-					 get_icon_for_menu(tmp));
+					 utf8_name, 
+					 get_icon_for_menu(utf8_name));
 
 				g_free (utf8_name);
 				g_free (title);

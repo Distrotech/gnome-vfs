@@ -1,3 +1,9 @@
+2003-04-17  HideToshi Tajima  <hidetoshi.tajima@sun.com>
+
+	* POTFILES.in: Added cdemenu-desktop-method.c.
+ 	Fixes bug #103306. Translators, please translate these messages
+	exactly the same in CDE's sys.dtwmrc file of the locale.
+
 ==== gnome-vfs 2.2.4 ====
 	
 2003-03-26  Christian Rose  <menthos@menthos.com>
