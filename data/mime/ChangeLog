@@ -1,3 +1,10 @@
+2001-01-18  Kenneth Christiansen  <kenneth@gnu.org>
+
+	* Makefile.am: Added support for xml-i18n-tools to
+	manage the keys.in file.
+	* gnome-vfs.keys: Removed.
+	* gnome-vfa.keys.in: Added.
+
 2001-01-16  Christophe Merlet  <redfox@eikonex.org>
 
 	* gnome-vfs.keys: Updated French strings.
