@@ -4,12 +4,16 @@ else
 SUBDIRS_OAF=
 endif
 
+if HAVE_GCONF
+SUBDIRS_GCONF=mime-type-capplet
+else
 SUBDIRS_GCONF=
+endif
 
 if PLATFORM_GNOME_2
 SUBDIRS_GNOME=
 else
-SUBDIRS_GNOME=test
+SUBDIRS_GNOME=test $(SUBDIRS_GCONF)
 endif
 
 SUBDIRS =					\
@@ -21,7 +25,6 @@ SUBDIRS =					\
 	data					\
 	man					\
 	devel-docs				\
-	$(SUBDIRS_GCONF)			\
 	$(SUBDIRS_GNOME)			\
 	po
 
