@@ -1,3 +1,11 @@
+2000-08-24  Ali Abdin <aliabdin@aucegypt.edu>
+
+        * modules/pipe-method.c:
+        (do_close): Removed a FIXME because Darin says (in a prior cvs-commit)
+        that we should destroy the handle even if it doesn't return
+        GNOME_VFS_OK. Besides - this functions always returns GNOME_VFS_OK (if
+        file_handle is allocated)
+
 2000-08-24  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c:

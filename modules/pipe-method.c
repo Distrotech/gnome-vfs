@@ -128,7 +128,6 @@ do_close (GnomeVFSMethod *method,
 
 	file_handle = (FileHandle *) method_handle;
 
-	/* FIXME bugzilla.eazel.com 1134: Should do this even after a failure?  */
 	file_handle_destroy (file_handle);
 
 	return GNOME_VFS_OK;
