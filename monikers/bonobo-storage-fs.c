@@ -11,19 +11,22 @@
  *
  * Copyright 2001, Ximian, Inc
  */
+
 #include <config.h>
+#include "bonobo-storage-fs.h"
+
 #include <stdio.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <dirent.h>
 #include <errno.h>
+#include <string.h>
 
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <bonobo/bonobo-storage.h>
 
 #include "bonobo-stream-fs.h"
-#include "bonobo-storage-fs.h"
 
 static char *
 concat_dir_and_file (const char *dir, const char *file)
