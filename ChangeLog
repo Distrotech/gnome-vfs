@@ -1,3 +1,7 @@
+2004-11-26  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/xdgmimeparent.h: added missing file
+
 2004-11-26  Marco Pesenti Gritti  <marco@gnome.org>
 
 	* libgnomevfs/Makefile.am:
