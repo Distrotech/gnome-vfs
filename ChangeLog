@@ -1,3 +1,175 @@
+2001-07-26  Seth Nickell  <snickell@stanford.edu>
+
+	* configure.in:
+
+	Add Bonobo dependency. Comment out -Werror because ORBit2
+	or libidl is generating stubs with a few warnings. Should
+	be the only warnings though, so watch carefully when you
+	compile!.
+	
+	* doc/tmpl/gnome-vfs-unused.sgml:
+	* doc/tmpl/shellpattern-filter.sgml:
+	* doc/tmpl/xfer.sgml:
+
+	Ask the documentation system!
+	
+	* idl/Makefile.am:
+
+	Add gnome-vfs-metafile-server.idl
+	
+	* idl/gnome-vfs-metafile-server.idl:
+
+	err. Add gnome-vfs-metafile-server.idl
+
+	* libgnomevfs/Makefile.am:
+
+	Add the eel cut-n-paste code, and the new metafile
+	stuff, as well as actually using the idl file.
+	
+	* libgnomevfs/gnome-vfs-metafile-backend.c:
+	(gnome_vfs_metafile_class_init), (gnome_vfs_metafile_init),
+	(destroy), (construct_private_metafile_vfs_uri),
+	(gnome_vfs_metafile_set_directory_uri), (gnome_vfs_metafile_new),
+	(gnome_vfs_metafile_make_uri_canonical), (gnome_vfs_metafile_get),
+	(schedule_next_read), (async_read_start), (async_read_done),
+	(async_read_cancel), (corba_is_read), (corba_get),
+	(corba_get_list), (corba_set), (corba_set_list), (corba_copy),
+	(corba_remove), (corba_rename), (corba_rename_directory),
+	(find_monitor_node), (corba_register_monitor),
+	(corba_unregister_monitor),
+	(gnome_vfs_metafile_notify_metafile_ready),
+	(call_metafile_changed), (file_list_filler_ghfunc),
+	(call_metafile_changed_for_all_files_mentioned_in_metafile),
+	(call_metafile_changed_for_one_file), (get_metadata_from_node),
+	(get_metadata_list_from_node), (create_metafile_root),
+	(get_file_node), (get_metadata_string_from_metafile),
+	(get_metadata_list_from_metafile),
+	(set_metadata_string_in_metafile), (set_metadata_list_in_metafile),
+	(metadata_value_new), (metadata_value_new_list),
+	(metadata_value_destroy), (metadata_value_equal),
+	(set_metadata_in_metafile), (get_metadata_string_from_table),
+	(get_metadata_list_from_table), (str_or_null_hash),
+	(str_or_null_equal), (set_metadata_eat_value),
+	(free_file_table_entry), (free_directory_table_entry),
+	(destroy_metadata_changes_hash_table), (destroy_xml_string_key),
+	(metafile_free_metadata), (get_file_metadata),
+	(get_file_metadata_list), (set_file_metadata),
+	(set_file_metadata_list), (rename_file_metadata),
+	(apply_one_change), (apply_file_changes), (apply_one_file_changes),
+	(gnome_vfs_metafile_apply_pending_changes), (copy_file_metadata),
+	(remove_file_metadata), (gnome_vfs_metafile_set_metafile_contents),
+	(metafile_read_cancel), (can_use_public_metafile),
+	(metafile_read_mark_done), (metafile_read_done),
+	(metafile_read_try_public_metafile),
+	(metafile_read_check_for_directory_callback),
+	(metafile_read_check_for_directory), (metafile_read_failed),
+	(metafile_read_done_callback), (metafile_read_restart),
+	(metafile_read_start), (metafile_write_done),
+	(metafile_write_failed), (metafile_write_failure_close_callback),
+	(metafile_write_success_close_callback), (metafile_write_callback),
+	(metafile_write_create_callback), (metafile_write_start),
+	(metafile_write), (metafile_write_idle_callback),
+	(directory_request_write_metafile):
+	* libgnomevfs/gnome-vfs-metafile-backend.h:
+
+	Add the metafile backend from Nautilus and hack it up so
+	it works in GnomeVFS. Interfaces should be the same, and
+	it shouldn't depend on eel (whew, that was a pile of boring
+	work).
+	
+	* libgnomevfs/gnome-vfs-metafile-factory.c:
+	(nautilus_metafile_factory_class_init),
+	(nautilus_metafile_factory_init), (destroy),
+	(nautilus_metafile_factory_new), (free_factory_instance),
+	(nautilus_metafile_factory_get_instance), (corba_open):
+	* libgnomevfs/gnome-vfs-metafile-factory.h:
+
+	Add the metafile factory from Nautilus and hack it up so
+	it works in GnomeVFS. Interfaces should be the same, and
+	it shouldn't depend on eel (whew, that was a pile of boring
+	work).
+	
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_list_free),
+	(is_uri_partial), (gnome_vfs_uri_make_full_from_relative):
+	* libgnomevfs/gnome-vfs-uri.h:
+
+	Add some code that was formerly in eel-vfs-extensions but
+	really belongs in GnomeVFSURI.
+
+	* po/ChangeLog:
+
+	* libgnomevfs/eel-cut-n-paste.c: (stolen_strcasecmp),
+	(stolen_strcmp_case_breaks_ties), (stolen_strcoll),
+	(stolen_xml_remove_node), (stolen_str_has_prefix),
+	(stolen_istr_has_prefix), (stolen_str_strip_trailing_chr),
+	(stolen_strcmp), (stolen_str_is_empty),
+	(stolen_xml_get_root_children), (stolen_xml_get_children),
+	(stolen_xml_get_property_for_children):
+	* libgnomevfs/eel-cut-n-paste.h:
+
+	Functions snitched from eel to make the metafile backend
+	compile.
+	
+	* libgnomevfs/gnome-vfs-helpers.c: (stolen_strcmp), (str_is_equal),
+	(str_has_prefix), (istr_has_prefix),
+	(gnome_vfs_x_read_entire_file), (read_file_close_callback),
+	(read_file_close), (read_file_succeeded), (read_file_failed),
+	(read_file_read_callback), (read_file_read_chunk),
+	(read_file_open_callback),
+	(pthread_gnome_vfs_x_read_file_callback_idle_binder),
+	(pthread_gnome_vfs_x_read_file_callback_common),
+	(pthread_gnome_vfs_x_read_file_synchronous_callback),
+	(pthread_gnome_vfs_x_read_file_asynchronous_callback),
+	(pthread_gnome_vfs_x_read_file_thread_entry),
+	(pthread_gnome_vfs_x_read_file_async),
+	(pthread_gnome_vfs_x_read_file_async_cancel),
+	(gnome_vfs_x_read_file_async),
+	(gnome_vfs_x_read_entire_file_async),
+	(gnome_vfs_x_read_file_cancel), (gnome_vfs_x_uri_is_trash),
+	(gnome_vfs_x_uri_is_trash_folder), (gnome_vfs_x_uri_is_in_trash),
+	(gnome_vfs_x_format_uri_for_display), (is_valid_scheme_character),
+	(has_valid_scheme), (gnome_vfs_x_make_uri_from_input),
+	(file_uri_from_local_relative_path),
+	(gnome_vfs_x_make_uri_from_shell_arg),
+	(gnome_vfs_x_uri_get_basename), (gnome_vfs_x_uri_get_scheme),
+	(gnome_vfs_x_uri_is_local_scheme),
+	(gnome_vfs_x_handle_trailing_slashes),
+	(gnome_vfs_x_make_uri_canonical),
+	(gnome_vfs_x_make_uri_canonical_strip_fragment),
+	(gnome_vfs_x_make_uri_from_half_baked_uri), (uris_match),
+	(gnome_vfs_x_uris_match),
+	(gnome_vfs_x_uris_match_ignore_fragments),
+	(gnome_vfs_x_is_remote_uri),
+	(gnome_vfs_x_make_directory_and_parents),
+	(gnome_vfs_x_copy_uri_simple):
+	* libgnomevfs/gnome-vfs-helpers.h:
+
+	GnomeVFSHelpers used to be eel-vfs-extensions. Now moved into
+	GnomeVFS. It needs to have the checks re-enabled...but I'm
+	working on that.
+
+	* libgnomevfs/stolen-glib-extensions.c:
+	(stolen_g_list_exactly_one_item),
+	(stolen_g_list_more_than_one_item), (stolen_g_list_equal),
+	(stolen_g_list_copy), (stolen_g_str_list_equal),
+	(stolen_g_str_list_copy), (stolen_g_str_list_alphabetize),
+	(stolen_g_list_free_deep_custom), (stolen_g_list_free_deep),
+	(stolen_g_list_safe_for_each), (stolen_g_list_sort_merge),
+	(stolen_g_list_is_already_sorted), (stolen_g_list_sort_custom),
+	(compare_pointers),
+	(stolen_g_lists_sort_and_check_for_intersection),
+	(stolen_g_list_partition), (print_key_string),
+	(free_hash_tables_at_exit), (stolen_g_hash_table_new_free_at_exit),
+	(flatten_hash_table_element), (stolen_g_hash_table_safe_for_each),
+	(stolen_g_hash_table_remove_deep_custom),
+	(stolen_g_hash_table_remove_deep), (destroy_deep_helper),
+	(stolen_g_hash_table_destroy_deep_custom),
+	(stolen_g_hash_table_destroy_deep):
+	* libgnomevfs/stolen-glib-extensions.h:
+
+	Snitched some necessary hash table and list glib extensions
+	from eel and made them work without the rest of eel. :-P
+	
 2001-07-25  Maciej Stachowiak  <mjs@noisehavoc.org>
  
 	Fix bug 8296 (News Sidebar crashes when not connected to network),

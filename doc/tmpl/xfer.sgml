@@ -23,10 +23,13 @@ xfer
 @target_uri_list: 
 @xfer_options: 
 @error_mode: 
-@Param5: 
-@Param6: 
+@overwrite_mode: 
+@progress_callback: 
 @data: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@Param5: 
+@Param6: 
 
 
 <!-- ##### FUNCTION gnome_vfs_xfer_uri ##### -->
@@ -38,10 +41,13 @@ xfer
 @target_uri: 
 @xfer_options: 
 @error_mode: 
-@Param5: 
-@Param6: 
+@overwrite_mode: 
+@progress_callback: 
 @data: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@Param5: 
+@Param6: 
 
 
 <!-- ##### FUNCTION gnome_vfs_xfer_delete_list ##### -->
@@ -52,8 +58,10 @@ xfer
 @source_uri_list: 
 @error_mode: 
 @xfer_options: 
-@Param4: 
+@progress_callback: 
 @data: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@Param4: 
 
 

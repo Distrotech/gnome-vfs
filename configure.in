@@ -37,24 +37,25 @@ fi
 GNOME_PLATFORM_GNOME_2($autodetected_gnome_2)
 
 if test $platform_gnome_2 = yes ; then
+  BONOBO_REQUIRED=1.97.0
   GLIB_REQUIRED=1.3.1
   GCONF_REQUIRED=1.1
+  LIBIDL_REQUIRED=0.7.0
   OAF_REQUIRED=0.7.0
-  XML_REQUIRED=2.2.8
   ORBIT_REQUIRED=2.3.90
+  XML_REQUIRED=2.2.8
 else
-  GLIB_REQUIRED=1.2.6
-  GCONF_REQUIRED=0.9
-  OAF_REQUIRED=0.3.0
-  XML_REQUIRED=1.8.8
-  ORBIT_REQUIRED=0.5.8
+  AC_ERROR("This version of GnomeVFS requires the GNOME2 platform to build. Please try downloading an older release of GnomeVFS.")
 fi
 
+AC_SUBST(BONOBO_REQUIRED)
 AC_SUBST(GLIB_REQUIRED)
 AC_SUBST(GCONF_REQUIRED)
+AC_SUBST(LIBIDL_REQUIRED)
 AC_SUBST(OAF_REQUIRED)
-AC_SUBST(XML_REQUIRED)
 AC_SUBST(ORBIT_REQUIRED)
+AC_SUBST(XML_REQUIRED)
+
 
 dnl ===========================================================================
 
@@ -140,59 +141,33 @@ dnl ====================================
 dnl = Profiling support
 dnl ====================================
 
-if test $platform_gnome_2 = yes ; then
-  GNOME_PKGCONFIG_CHECK_MODULES(GLIB, glib-2.0:$GLIB_REQUIRED gmodule-2.0:$GLIB_REQUIRED gthread-2.0:$GLIB_REQUIRED gtk+-2.0:$GLIB_REQUIRED)
-  dnl GNOME_PKGCONFIG_CHECK_MODULES(ORBIT, ORBit-2.0:$ORBIT_REQUIRED)
-  GNOME_PKGCONFIG_CHECK_MODULES(OAF, oaf-2.0:$OAF_REQUIRED)
-  GNOME_PKGCONFIG_CHECK_MODULES(XML, libxml-2.0:$XML_REQUIRED)
-  GNOME_PKGCONFIG_CHECK_MODULES(GCONF, gconf-2.0:$GCONF_REQUIRED)
+GNOME_PKGCONFIG_CHECK_MODULES(BONOBO, libbonobo-2.0:$BONOBO_REQUIRED)
+GNOME_PKGCONFIG_CHECK_MODULES(IDL, libIDL-2.0:$LIBIDL_REQUIRED)
+GNOME_PKGCONFIG_CHECK_MODULES(GLIB, glib-2.0:$GLIB_REQUIRED gmodule-2.0:$GLIB_REQUIRED gthread-2.0:$GLIB_REQUIRED gtk+-2.0:$GLIB_REQUIRED)
+GNOME_PKGCONFIG_CHECK_MODULES(OAF, oaf-2.0:$OAF_REQUIRED)
+GNOME_PKGCONFIG_CHECK_MODULES(ORBIT, ORBit-2.0:$ORBIT_REQUIRED)
+GNOME_PKGCONFIG_CHECK_MODULES(XML, libxml-2.0:$XML_REQUIRED)
 
-  VFS_GNOME_CFLAGS="$GLIB_CFLAGS"
-  VFS_GNOMEUI_CFLAGS="$GLIB_CFLAGS"
-  VFS_CAPPLET_CFLAGS=
-  VFS_GNOME_LIBS="$GLIB_LIBS"
-  VFS_GNOMEUI_LIBS="GLIB_LIBS"
-  VFS_CAPPLET_LIBS=
-  VFS_GLIB_CFLAGS="$GLIB_CFLAGS"
-  VFS_GLIB_LIBS="$GMODULE_LIBS $GTHREAD_LIBS $GLIB_LIBS"
+GNOME_PKGCONFIG_CHECK_OPTIONAL_MODULES(GCONF, gconf-2.0:$GCONF_REQUIRED)
 
-  AC_DEFINE(GNOME_PLATFORM_VERSION, 1095000)
-else
-  echo "Yeah, doing GNOME1 configuration"
-  GNOME_PKGCONFIG_CHECK_MODULES(GLIB, glib:$GLIB_REQUIRED gmodule:$GLIB_REQUIRED gthread:$GLIB_REQUIRED gtk+:$GLIB_REQUIRED)
-  GNOME_PKGCONFIG_CHECK_MODULES(ORBIT, ORBit:$ORBIT_REQUIRED)
-  GNOME_PKGCONFIG_CHECK_MODULES(OAF, oaf:$OAF_REQUIRED)
+VFS_GNOME_CFLAGS="$GLIB_CFLAGS"
+VFS_GNOMEUI_CFLAGS="$GLIB_CFLAGS"
+VFS_CAPPLET_CFLAGS=
+VFS_GNOME_LIBS="$GLIB_LIBS"
+VFS_GNOMEUI_LIBS="GLIB_LIBS"
+VFS_CAPPLET_LIBS=
+VFS_GLIB_CONFIG="glib-config-2.0"
+VFS_GLIB_CFLAGS="$GLIB_CFLAGS"
+VFS_GLIB_LIBS="$GMODULE_LIBS $GTHREAD_LIBS $GLIB_LIBS"
 
-  dnl Cant use this unless we make sure the libxml we are using
-  dnl exports libxml.pc.  Currently gnome-vfs/nautilus hackers
-  dnl use libxml 1.8.10 which doesnt export libxml.pc.
-  dnl
-  dnl GNOME_PKGCONFIG_CHECK_MODULES(XML, libxml:$XML_REQUIRED)
-  dnl
-  dnl Do the libxml check the "old fashioned" way for now
-  AC_PATH_PROG(XML_CONFIG,xml-config,no)
-  if test x$XML_CONFIG = "xno"; then
-    AC_MSG_ERROR(Couldn't find xml-config please install the gnome-xml package)
-  fi
-  XML_LIBS=`$XML_CONFIG --libs`
-  XML_CFLAGS=`$XML_CONFIG --cflags`
-  AC_SUBST(XML_LIBS)
-  AC_SUBST(XML_CFLAGS)
+ORBIT_IDL="`$PKG_CONFIG --variable=orbit_idl ORBit-2.0`"
+AC_SUBST(ORBIT_IDL)
 
-  GNOME_PKGCONFIG_CHECK_MODULES(GCONF, gconfgtk:$GCONF_REQUIRED)
+BONOBO_IDLDIR="`$PKG_CONFIG --variable=idldir libbonobo-2.0`"
+AC_SUBST(BONOBO_IDLDIR)
 
-  VFS_GNOME_CFLAGS="`gnome-config --cflags gnome`"
-  VFS_GNOMEUI_CFLAGS="`gnome-config --cflags gnome gnomeui`"
-  VFS_GNOMEGNORBA_CFLAGS="`gnome-config --cflags gnome gnomeui gnorba`"
-  VFS_CAPPLET_CFLAGS="`gnome-config --cflags gnome gnomeui capplet`"
-  VFS_GNOME_LIBS="`gnome-config --libs gnome`"
-  VFS_GNOMEUI_LIBS="`gnome-config --libs gnome gnomeui`"
-  VFS_GNOMEGNORBA_LIBS="`gnome-config --libs gnome gnomeui gnorba`"
-  VFS_CAPPLET_LIBS="`gnome-config --libs gnome gnomeui capplet`"
-  VFS_GLIB_CFLAGS="`glib-config --cflags gthread gmodule`"
-  VFS_GLIB_LIBS="`glib-config --libs gthread gmodule`"
-  AC_DEFINE(GNOME_PLATFORM_VERSION, 1002000)
-fi
+AC_DEFINE(GNOME_PLATFORM_VERSION, 1095000)
+
 AC_SUBST(VFS_GNOME_CFLAGS)
 AC_SUBST(VFS_GNOMEUI_CFLAGS)
 AC_SUBST(VFS_GNOMEGNORBA_CFLAGS)
@@ -212,11 +187,13 @@ AC_SUBST(GTHREAD_LIBS)
 AC_SUBST(GTHREAD_CFLAGS)
 AC_SUBST(ORBIT_LIBS)
 AC_SUBST(ORBIT_CFLAGS)
+AC_SUBST(IDL_CFLAGS)
 AC_SUBST(XML_LIBS)
 AC_SUBST(XML_CFLAGS)
 AC_SUBST(GCONF_LIBS)
 AC_SUBST(GCONF_CFLAGS)
-
+AC_SUBST(BONOBO_CFLAGS)
+AC_SUBST(BONOBO_LIBS)
 AC_DEFINE(USING_OAF)
 AC_SUBST(OAF_LIBS)
 AC_SUBST(OAF_CFLAGS)
@@ -311,7 +288,7 @@ if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 	VFS_CFLAGS="-Wall \
 	-Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes \
 	-Wnested-externs -Wpointer-arith"
-	WERROR="-Werror"
+	WERROR=""
 
 	for option in -Wsign-promo -Wno-sign-compare; do
 		SAVE_CFLAGS="$CFLAGS"
@@ -620,16 +597,6 @@ Enable profiler         : YES"
 echo "
 Enable profiler         : NO"
 echo
-;;
-esac
-case "$platform_gnome_2" in
-Xyes)
-echo "
-GNOME platform          : 2.0"
-;;
-*)
-echo "
-GNOME platform          : 1.x"
 ;;
 esac
 

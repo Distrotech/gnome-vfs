@@ -20,8 +20,10 @@ shellpattern-filter
 </para>
 
 @pattern: 
-@Param2: 
+@options: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@Param2: 
 
 
 <!-- ##### FUNCTION gnome_vfs_shellpattern_filter_destroy ##### -->
