@@ -1,3 +1,11 @@
+2002-08-15  Michael Meeks  <michael@ximian.com>
+
+	* modules/file-method.c
+	(read_saved_cached_trash_entries): code should agree
+	on the size of the buffer and how much to read into it.
+	(find_trash_directory): hold a lock on the trash cache
+	while operating on it. #10438
+
 2002-08-08  jacob berkman  <jacob@ximian.com>
 
 	* modules/Makefile.am (module_flags): add -module flag (fixes
