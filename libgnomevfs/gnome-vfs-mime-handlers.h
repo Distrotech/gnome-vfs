@@ -43,10 +43,17 @@ typedef struct _GnomeVFSMimeApplicationPrivate GnomeVFSMimeApplicationPrivate;
 typedef struct {
 	char *id; /* PRIVATE */
 	char *name;
-	char *command; /* DEPRECATED */
-	gboolean can_open_multiple_files; /* DEPRECATED */
-	GnomeVFSMimeApplicationArgumentType expects_uris; /* DEPRECATED */
-	GList *supported_uri_schemes; /* DEPRECATED */
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
+	char *command;
+	gboolean can_open_multiple_files;
+	GnomeVFSMimeApplicationArgumentType expects_uris;
+	GList *supported_uri_schemes;
+#else
+	char *_command;
+	gboolean _can_open_multiple_files;
+	GnomeVFSMimeApplicationArgumentType _expects_uris;
+	GList *_supported_uri_schemes;
+#endif
 	gboolean requires_terminal;
 
 	/* Padded to avoid future breaks in ABI compatibility */
