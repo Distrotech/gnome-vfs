@@ -206,5 +206,73 @@
      </locale>
    </schema>
 
+   <schema>   
+     <key>/schemas/desktop/gnome/url-handlers/mailto/enabled</key>
+     <applyto>/desktop/gnome/url-handlers/mailto/enabled</applyto>
+     <owner>gnome</owner>
+     <type>bool</type>
+     <default>true</default>
+     <locale name="C">
+       <short>How to handle mailto URLs</short>
+       <long>Set to true to have a program specified in command handle mailto URLs</long>
+     </locale>
+   </schema>
+   <schema>
+     <key>/schemas/desktop/gnome/url-handlers/mailto/command</key>
+     <applyto>/desktop/gnome/url-handlers/mailto/command</applyto>
+     <owner>gnome</owner>
+     <type>string</type>
+     <default>evolution %s</default>
+     <locale name="C">
+       <short>URL handler for mailto uris</short>
+       <long>URL handler for mailto uris</long>
+     </locale>
+   </schema>
+   <schema>
+     <key>/schemas/desktop/gnome/url-handlers/mailto/need-terminal</key>
+     <applyto>/desktop/gnome/url-handlers/mailto/need-terminal</applyto>
+     <owner>gnome</owner>
+     <type>bool</type>
+     <default>false</default>
+     <locale name="C">
+       <short>Run program in terminal</short>
+       <long>True if the program to handle this URL should be run in a terminal</long>
+     </locale>
+   </schema>
+   
+   <schema>   
+     <key>/schemas/desktop/gnome/url-handlers/callto/enabled</key>
+     <applyto>/desktop/gnome/url-handlers/callto/enabled</applyto>
+     <owner>gnome</owner>
+     <type>bool</type>
+     <default>true</default>
+     <locale name="C">
+       <short>How to handle callto URLs</short>
+       <long>Set to true to have a program specified in command handle callto URLs</long>
+     </locale>
+   </schema>
+   <schema>
+     <key>/schemas/desktop/gnome/url-handlers/callto/command</key>
+     <applyto>/desktop/gnome/url-handlers/callto/command</applyto>
+     <owner>gnome</owner>
+     <type>string</type>
+     <default>gnomemeeting %s</default>
+     <locale name="C">
+       <short>URL handler for callto uris</short>
+       <long>URL handler for callto uris</long>
+     </locale>
+   </schema>
+   <schema>
+     <key>/schemas/desktop/gnome/url-handlers/callto/need-terminal</key>
+     <applyto>/desktop/gnome/url-handlers/callto/need-terminal</applyto>
+     <owner>gnome</owner>
+     <type>bool</type>
+     <default>false</default>
+     <locale name="C">
+       <short>Run program in terminal</short>
+       <long>True if the program to handle this URL should be run in a terminal</long>
+     </locale>
+   </schema>
+   
   </schemalist>
 </gconfschemafile>
