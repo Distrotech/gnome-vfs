@@ -57,6 +57,7 @@
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-monitor-private.h>
 
 #define DOT_GNOME ".gnome2"
 
@@ -88,6 +89,9 @@ typedef struct _StatLoc StatLoc;
  * file: filesystems.  Such as having the vfolder info file on http
  * somewhere or some such nonsense :) */
 
+typedef struct {
+	GnomeVFSURI *uri;
+} FileMonitorHandle;
 
 static GnomeVFSMethod *parent_method = NULL;
 
@@ -168,6 +172,9 @@ struct _Folder {
 	char *desktop_file; /* the .directory file */
 
 	Query *query;
+
+	gboolean monitored;
+	FileMonitorHandle *monitor_handle;
 
 	/* The following is for per file
 	 * access */
@@ -1027,6 +1034,10 @@ invalidate_folder (Folder *folder)
 		Folder *subfolder = li->data;
 
 		invalidate_folder (subfolder);
+	}
+
+	if (folder->monitored) {
+		gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *)folder->monitor_handle, folder->monitor_handle->uri, GNOME_VFS_MONITOR_EVENT_CHANGED);
 	}
 }
 
@@ -5143,8 +5154,50 @@ do_monitor_add (GnomeVFSMethod *method,
 		GnomeVFSURI *uri,
 		GnomeVFSMonitorType monitor_type)
 {
-	/* FIXME: implement */
-	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	VFolderInfo *info;
+	const char *scheme;
+	const char *path;
+	GnomeVFSContext *context;
+	GnomeVFSResult result;
+	Folder *folder;
+
+	FileMonitorHandle *handle;
+
+	context = gnome_vfs_context_new();
+
+	path = gnome_vfs_uri_get_path (uri);
+	scheme = gnome_vfs_uri_get_scheme (uri);
+	if (scheme == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
+	if (monitor_type == GNOME_VFS_MONITOR_DIRECTORY) {
+
+		printf ("bam\n");
+		info = get_vfolder_info (scheme, &result, context);
+		if (info == NULL)
+			return result;
+
+		folder = resolve_folder (info, path,
+					 FALSE /* ignore_basename */,
+					 &result,
+					 context);
+
+		if (folder == NULL)
+			return result;
+
+		handle = g_new0 (FileMonitorHandle, 1);
+		handle->uri = uri;
+		gnome_vfs_uri_ref (uri);
+
+		folder->monitor_handle = handle;
+		folder->monitored = TRUE;
+
+		*method_handle_return = (GnomeVFSMethodHandle *) handle;
+
+		return GNOME_VFS_OK;
+	} else {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
 }
 
 static GnomeVFSResult

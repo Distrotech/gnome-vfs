@@ -1,3 +1,24 @@
+2002-01-29  Seth Nickell  <snickell@stanford.edu>
+
+	* libgnomevfs/gnome-vfs-monitor.c: (gnome_vfs_monitor_do_add):
+	* test/test-monitor.c: (main):
+
+	Fix a bug in the monitor code... wasn't returning the method
+	handle (oops!).
+	
+	* modules/applications.vfolder-info.in:
+	* modules/preferences.vfolder-info.in:
+	* modules/vfolder-desktop-method.c: (invalidate_folder),
+	(do_monitor_add):
+
+	Add rudimentary monitoring support to the vfolder method.
+	Its currently wildly overzealous (basically notifies 
+	everyone anytime anything changes), but the menu structure
+	shouldn't be jumping around that often, and rereading the
+	entire menu structure ain't that costly.
+
+	Currently doesn't work for deletions.
+	
 2002-01-28  Seth Nickell  <snickell@stanford.edu>
 
 	* modules/applications.vfolder-info.in:

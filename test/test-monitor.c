@@ -91,6 +91,7 @@ main (int argc, char **argv)
 
 	result = gnome_vfs_monitor_add (&handle, text_uri,
 			GNOME_VFS_MONITOR_DIRECTORY, callback, "user data");
+	printf ("handle is %d\n", (int)handle);
 	show_result (result, "monitor_add", text_uri);
 
 	if (result == GNOME_VFS_OK) {

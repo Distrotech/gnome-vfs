@@ -95,6 +95,8 @@ gnome_vfs_monitor_do_add (GnomeVFSMethod *method,
 		G_UNLOCK (handle_hash);
 	}
 
+	*handle = monitor_handle;
+
 	return result;
 }
 
