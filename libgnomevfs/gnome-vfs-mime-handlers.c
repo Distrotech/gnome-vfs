@@ -376,7 +376,10 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	CORBA_Environment ev;
 	char *supertype;
 	char *query;
-	char *sort[5];
+	char *sort[6];
+        GList *short_list;
+	GList *p;
+	char *prev;
 
 	if (mime_type == NULL) {
 		return NULL;
@@ -405,15 +408,39 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 		sort[0] = g_strdup ("true");
 	}
 
+	short_list = gnome_vfs_mime_get_short_list_components (mime_type);
+	short_list = g_list_concat (short_list,
+				    gnome_vfs_mime_get_short_list_components (supertype));
+	if (short_list != NULL) {
+		sort[1] = g_strdup ("prefer_by_list_order(iid, ['");
+
+		for (p = short_list; p != NULL; p = p->next) {
+ 			prev = sort[1];
+			
+			if (p->next != NULL) {
+				sort[1] = g_strconcat (prev, ((Bonobo_ServerInfo *) (p->data))->iid, 
+								    "','", NULL);
+			} else {
+				sort[1] = g_strconcat (prev, ((Bonobo_ServerInfo *) (p->data))->iid, 
+								    "'])", NULL);
+			}
+			g_free (prev);
+		}
+		gnome_vfs_mime_component_list_free (short_list);
+	} else {
+		sort[1] = g_strdup ("true");
+	}
+
+
 	/* Prefer something that matches the exact type to something
            that matches the supertype */
-	sort[1] = g_strconcat ("bonobo:supported_mime_types.has ('", mime_type, "')", NULL);
+	sort[2] = g_strconcat ("bonobo:supported_mime_types.has ('", mime_type, "')", NULL);
 
 	/* Prefer something that matches the supertype to something that matches `*' */
-	sort[2] = g_strconcat ("bonobo:supported_mime_types.has ('", supertype, "')", NULL);
+	sort[3] = g_strconcat ("bonobo:supported_mime_types.has ('", supertype, "')", NULL);
 
-	sort[3] = g_strdup ("name");
-	sort[4] = NULL;
+	sort[4] = g_strdup ("name");
+	sort[5] = NULL;
 
 	info_list = bonobo_activation_query (query, sort, &ev);
 	
@@ -431,6 +458,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	g_free (sort[1]);
 	g_free (sort[2]);
 	g_free (sort[3]);
+	g_free (sort[4]);
 
 	CORBA_exception_free (&ev);
 
@@ -474,59 +502,7 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 GList *
 gnome_vfs_mime_get_short_list_components (const char *mime_type)
 {
-	Bonobo_ServerInfoList *info_list;
-	GList *components_list;
-	CORBA_Environment ev;
-	char *supertype;
-	char *query;
-	char *sort[4];
-
-	if (mime_type == NULL) {
-		return NULL;
-	}
-
-	CORBA_exception_init (&ev);
-
-	/* Find a component that supports either the exact mime type,
-           the supertype, or all mime types. */
-
-	/* FIXME bugzilla.eazel.com 1142: should probably check for
-           the right interfaces too. Also slightly semantically
-           different from nautilus in other tiny ways.
-	*/
-	supertype = gnome_vfs_get_supertype_from_mime_type (mime_type);
-	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
-			     "', '", supertype,
-			     "', '*'])", NULL);
-	g_free (supertype);
-	
-        /* Prefer something that matches the exact type to something
-           that matches the supertype */
-	sort[0] = g_strconcat ("bonobo:supported_mime_types.has ('", mime_type, "')", NULL);
-
-	/* Prefer something that matches the supertype to something that matches `*' */
-	sort[1] = g_strconcat ("bonobo:supported_mime_types.has ('", supertype, "')", NULL);
-
-	sort[2] = g_strdup ("name");
-	sort[3] = NULL;
-
-	info_list = bonobo_activation_query (query, sort, &ev);
-	
-	if (ev._major == CORBA_NO_EXCEPTION) {
-		components_list = Bonobo_ServerInfoList_to_ServerInfo_g_list (info_list);
-		CORBA_free (info_list);
-	} else {
-		components_list = NULL;
-	}
-
-	g_free (query);
-	g_free (sort[0]);
-	g_free (sort[1]);
-	g_free (sort[2]);
-
-	CORBA_exception_free (&ev);
-
-	return components_list;
+	return gnome_vfs_mime_get_all_components (mime_type);
 }
 
 

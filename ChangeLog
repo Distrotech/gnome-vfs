@@ -1,3 +1,10 @@
+2004-09-07  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_component),
+	(gnome_vfs_mime_get_short_list_components): 
+	revert change that breaks code freeze (oops!).
+
 2004-09-06  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/smb-method.c: (do_read_directory):
