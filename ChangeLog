@@ -1,3 +1,26 @@
+2002-09-19  James Willcox  <jwillcox@gnome.org>
+
+	Moved some of eel-vfs-extensions.c into gnome-vfs-utils.c
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_escape_string_internal),
+	(gnome_vfs_make_uri_canonical_old), (gnome_vfs_make_valid_utf8),
+	(gnome_vfs_format_uri_for_display_internal),
+	(gnome_vfs_format_uri_for_display), (is_valid_scheme_character),
+	(has_valid_scheme), (gnome_vfs_escape_high_chars),
+	(gnome_vfs_make_uri_from_input_internal),
+	(gnome_vfs_make_uri_from_input),
+	(gnome_vfs_make_uri_canonical_strip_fragment), (uris_match),
+	(gnome_vfs_uris_match), (gnome_vfs_str_has_prefix),
+	(gnome_vfs_uri_is_local_scheme),
+	(gnome_vfs_handle_trailing_slashes),
+	(gnome_vfs_make_uri_canonical), (gnome_vfs_get_uri_scheme),
+	(file_uri_from_local_relative_path),
+	(gnome_vfs_make_uri_from_shell_arg), (is_uri_partial),
+	(remove_internal_relative_components),
+	(gnome_vfs_make_uri_full_from_relative):
+	* libgnomevfs/gnome-vfs-utils.h:
+
 2002-09-19  Christophe Fergeau  <teuf@users.sourceforge.net>
 
         * libgnomevfs/gnome-vfs-application-registry.c

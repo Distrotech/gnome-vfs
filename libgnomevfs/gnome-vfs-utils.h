@@ -137,6 +137,15 @@ GnomeVFSResult  gnome_vfs_read_entire_file (const char *uri,
 					    int *file_size,
 					    char **file_contents);
 
+char * gnome_vfs_format_uri_for_display (const char *uri);
+char * gnome_vfs_make_uri_from_input (const char *uri);
+char * gnome_vfs_make_uri_canonical_strip_fragment (const char *uri);
+gboolean gnome_vfs_uris_match (const char *uri_1, const char *uri_2);
+char * gnome_vfs_get_uri_scheme (const char *uri);
+char * gnome_vfs_make_uri_from_shell_arg (const char *uri);
+char * gnome_vfs_make_uri_full_from_relative (const char *base_uri,
+					      const char *relative_uri);
+
 G_END_DECLS
 
 #endif /* GNOME_VFS_UTILS_H */
