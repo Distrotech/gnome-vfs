@@ -1,3 +1,11 @@
+2001-05-02  Ramiro Estrugo  <ramiro@eazel.com>
+
+	* configure.in:
+	Cant use pkgconfig for detecting libxml unless we are sure that
+	the libxml we are using exports libxml.pc.  Currently
+	gnome-vfs/nautilus hackers use libxml 1.8.10 which doesnt export
+	libxml.pc.  Do the libxml check the "old fashioned" way for now.
+
 2001-05-01  Darin Adler  <darin@eazel.com>
 
 	Fixes to make documentation work again after the "pipe" method
