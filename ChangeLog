@@ -1,3 +1,10 @@
+2000-06-08  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_get_short_list_components,
+	gnome_vfs_mime_get_all_components): Expand the queries to be
+	closer to giving a superset of what Nautilus does.
+
 2000-06-08  Darin Adler  <darin@eazel.com>
 
 	More leak fixes.

@@ -355,8 +355,8 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 		*/
 		query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 				     "', '", supertype,
-				     "', '*']) && has (['", iids_delimited, "'], iid)",
-				     NULL);
+				     "', '*']) OR (! bonobo:supported_mime_types.defined() "
+				     "AND bonobo:supported_uri_schemes.defined()", NULL);
 		
 		/* Alphebetize by name, for the sake of consistency */
 		sort[0] = g_strdup ("name");
@@ -446,7 +446,8 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 	supertype = mime_type_get_supertype (mime_type);
 	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 			     "', '", supertype,
-			     "', '*'])", NULL);
+			     "', '*']) OR (! bonobo:supported_mime_types.defined() "
+			     "AND bonobo:supported_uri_schemes.defined()", NULL);
 	g_free (supertype);
 	
 	/* Alphebetize by name, for the sake of consistency */
