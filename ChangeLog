@@ -1,3 +1,10 @@
+2002-05-14  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/applications.vfolder-info.in:
+	* modules/preferences.vfolder-info.in:
+
+	Tweak merging so we don't get so much crap from GNOME 1.4
+
 2002-05-14  Jody Goldberg <jody@gnome.org>
 
 	From ali.akcaagac@stud.fh-wilhelmshaven.de (Ali Akcaagac) 

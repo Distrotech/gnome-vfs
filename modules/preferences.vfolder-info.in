@@ -7,36 +7,42 @@
 
   <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
 
-  <!-- Root folder -->
+  <!-- Settings -->
   <Folder>
     <Name>Preferences</Name>
     <Desktop>Settings.directory</Desktop>
     <Query>
       <And>
-        <Keyword>Settings</Keyword>
-        <Not>
-          <Or>
+	<Keyword>Settings</Keyword>
+	<Not>
+	  <Or>
 	    <Keyword>AdvancedSettings</Keyword>
 	    <Keyword>Sawfish</Keyword>
 	    <Keyword>System</Keyword>
 	    <Keyword>Accessibility</Keyword>
+	    <Keyword>Merged</Keyword>
 	  </Or>
-        </Not>
+	</Not>
       </And>
     </Query>
-
+    
     <Exclude>gnomecc.desktop</Exclude>
-
+    
     <Folder>
       <Name>Advanced</Name>
       <Desktop>Advanced.directory</Desktop>
       <Query>
-	<And>
-	  <Keyword>Settings</Keyword>
-	  <Keyword>AdvancedSettings</Keyword>
-        </And>
+	<Or>
+	  <And>
+	    <Keyword>Settings</Keyword>
+	    <Keyword>Merged</Keyword>
+	  </And>
+	  <And>
+	    <Keyword>Settings</Keyword>
+	    <Keyword>AdvancedSettings</Keyword>
+	  </And>
+	</Or>
       </Query>
-      <Exclude>cddb-slave.desktop</Exclude>
       <DontShowIfEmpty/>
       <Folder>
 	<Name>Sawfish</Name>
@@ -57,18 +63,18 @@
 	<And>
 	  <Keyword>Settings</Keyword>
 	  <Keyword>Accessibility</Keyword>
-        </And>
+	</And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
-
     <Folder>
       <Name>System</Name>
       <Desktop>System.directory</Desktop>
       <Query>
-        <And>
+	<And>
 	  <Keyword>System</Keyword>
 	  <Keyword>Settings</Keyword>
-        </And>
+	</And>
       </Query>
       <DontShowIfEmpty/>
     </Folder>

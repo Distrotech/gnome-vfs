@@ -19,12 +19,13 @@
     <Exclude>gnome-search-tool.desktop</Exclude>
 
     <Query>
-      <Or>
+      <And>
         <Keyword>Core</Keyword>
-      </Or>
+	<Not>
+	  <Keyword>Merged</Keyword>
+        </Not>
+      </And>
     </Query>
-
-    <!-- Other folders -->
 
     <!-- Accesories -->
     <Folder>
@@ -48,13 +49,17 @@
       <Desktop>Applications.directory</Desktop>
       <OnlyUnallocated/>
       <Query>
-        <Keyword>Application</Keyword>
+	<And>
+          <Keyword>Application</Keyword>
+          <Not>
+            <Keyword>Settings</Keyword>
+          </Not>
+        </And>
       </Query>
       
       <Exclude>vumeter.desktop</Exclude>
       <Exclude>reclevel.desktop</Exclude>
       <Exclude>gnome-search-tool.desktop</Exclude>
-      <Exclude>cddb-slave.desktop</Exclude>
       <Exclude>gnomecc.desktop</Exclude>
 
       <DontShowIfEmpty/>
@@ -174,16 +179,10 @@
 	<Name>Advanced</Name>
 	<Desktop>Advanced.directory</Desktop>
 	<Query>
-	  <Or>
-	    <And>
-	      <Keyword>Settings</Keyword>
-	      <Keyword>Merged</Keyword>
-	    </And>
-	    <And>
-	      <Keyword>Settings</Keyword>
-	      <Keyword>AdvancedSettings</Keyword>
-	    </And>
-	  </Or>
+	  <And>
+	    <Keyword>Settings</Keyword>
+	    <Keyword>AdvancedSettings</Keyword>
+	  </And>
 	</Query>
 	<Exclude>cddb-slave.desktop</Exclude>
 	<DontShowIfEmpty/>
