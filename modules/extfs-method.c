@@ -29,6 +29,7 @@
 #include <config.h>
 #endif
 
+#include <errno.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
@@ -48,22 +49,35 @@
 /* Our private handle struct.  */
 struct _ExtfsHandle {
 	GnomeVFSOpenMode open_mode;
+	GnomeVFSHandle *vfs_handle;
 	gchar *local_path;
-	gint fd;
 };
 typedef struct _ExtfsHandle ExtfsHandle;
+
+#define VFS_HANDLE(method_handle) \
+	((ExtfsHandle *) method_handle)->vfs_handle
 
 /* List of current handles, for cleaning up in `vfs_module_shutdown()'.  */
 static GList *handle_list;
 G_LOCK_DEFINE_STATIC (handle_list);
 
 
-static void
+static GnomeVFSResult
 extfs_handle_close (ExtfsHandle *handle)
 {
+	GnomeVFSResult close_result;
+
+	close_result = gnome_vfs_close (handle->vfs_handle);
+
+	/* Maybe we could use the VFS functions here.  */
+	if (unlink (handle->local_path) != 0)
+		g_warning ("Cannot unlink temporary file `%s': %s",
+			   handle->local_path, g_strerror (errno));
+
 	g_free (handle->local_path);
-	close (handle->fd);
 	g_free (handle);
+
+	return close_result;
 }
 
 
@@ -75,18 +89,18 @@ do_open (GnomeVFSMethodHandle **method_handle,
 {
 	GnomeVFSResult result;
 	GnomeVFSProcessResult process_result;
-	gchar *script_path;
-	const gchar *p;
-	gchar *args[5];
-	gchar *temp_name;
+	GnomeVFSHandle *temp_handle;
 	ExtfsHandle *handle;
+	gchar *script_path;
+	const gchar *stored_name;
+	gchar *args[6];
+	gchar *temp_name;
 	gboolean cleanup;
-	gint temp_fd;
 	gint process_exit_value;
 
 	/* TODO: Support archives on non-local file systems.  Although I am not
            that sure it's such a terrific idea anymore.  */
-	if (! gnome_vfs_uri_is_local (uri->parent))
+	if (strcmp (uri->parent->method_string, "file") != 0)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
 	/* TODO: Support write mode.  */
@@ -99,19 +113,19 @@ do_open (GnomeVFSMethodHandle **method_handle,
 	if (uri->method_string == NULL)
 		return GNOME_VFS_ERROR_INTERNAL;
 
-	p = uri->text;
-	while (*p == G_DIR_SEPARATOR)
-		p++;
+	stored_name = uri->text;
+	while (*stored_name == G_DIR_SEPARATOR)
+		stored_name++;
 
-	if (uri->text[0] == '\0')
+	if (*stored_name == '\0')
 		return GNOME_VFS_ERROR_INVALIDURI;
 
-	result = gnome_vfs_create_temp ("extfs", &temp_name, &temp_fd);
+	result = gnome_vfs_create_temp ("extfs", &temp_name, &temp_handle);
 	if (result != GNOME_VFS_OK)
 		return result;
 
 	handle = g_new (ExtfsHandle, 1);
-	handle->fd = temp_fd;
+	handle->vfs_handle = temp_handle;
 	handle->open_mode = mode;
 	handle->local_path = temp_name;
 
@@ -120,9 +134,10 @@ do_open (GnomeVFSMethodHandle **method_handle,
 
 	args[0] = uri->method_string;
 	args[1] = "copyout";
-	args[2] = uri->text;
-	args[3] = temp_name;
-	args[4] = NULL;
+	args[2] = uri->parent->text;
+	args[3] = stored_name;
+	args[4] = temp_name;
+	args[5] = NULL;
 	
 	/* FIXME args */
 	process_result = gnome_vfs_process_run_cancellable
@@ -131,8 +146,15 @@ do_open (GnomeVFSMethodHandle **method_handle,
 
 	switch (process_result) {
 	case GNOME_VFS_PROCESS_RUN_OK:
-		result = GNOME_VFS_OK;
-		cleanup = FALSE;
+		if (process_exit_value == 0) {
+			result = GNOME_VFS_OK;
+			cleanup = FALSE;
+		} else {
+			/* This is not very accurate, but it should be
+			   enough.  */
+			result = GNOME_VFS_ERROR_NOTFOUND;
+			cleanup = TRUE;
+		}
 		break;
 	case GNOME_VFS_PROCESS_RUN_CANCELLED:
 		result = GNOME_VFS_ERROR_CANCELLED;
@@ -148,8 +170,8 @@ do_open (GnomeVFSMethodHandle **method_handle,
 		break;
 	case GNOME_VFS_PROCESS_RUN_ERROR:
 	default:
-		/* If we get `GNOME_VFS_PROCESS_RUN_ERRO', it means we could
-		   not run the executable for some reason.*/
+		/* If we get `GNOME_VFS_PROCESS_RUN_ERROR', it means that we
+		   could not run the executable for some weird reason.*/
 		result = GNOME_VFS_ERROR_INTERNAL;
 		cleanup = TRUE;
 		break;
@@ -157,7 +179,6 @@ do_open (GnomeVFSMethodHandle **method_handle,
 
 	if (cleanup) {
 		extfs_handle_close (handle);
-		unlink (temp_name);
 	} else {
 		*method_handle = (GnomeVFSMethodHandle *) handle;
 		G_LOCK (handle_list);
@@ -165,7 +186,6 @@ do_open (GnomeVFSMethodHandle **method_handle,
 		G_UNLOCK (handle_list);
 	}
 
-	g_free (temp_name);
 	g_free (script_path);
 	return result;
 }
@@ -185,7 +205,11 @@ static GnomeVFSResult
 do_close (GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSCancellation *cancellation)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	ExtfsHandle *extfs_handle;
+
+	extfs_handle = (ExtfsHandle *) method_handle;
+
+	return extfs_handle_close (extfs_handle);
 }
 
 static GnomeVFSResult
@@ -195,7 +219,9 @@ do_read (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSFileSize *bytes_read,
 	 GnomeVFSCancellation *cancellation)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return gnome_vfs_read_cancellable (VFS_HANDLE (method_handle),
+					   buffer, num_bytes, bytes_read,
+					   cancellation);
 }
 
 static GnomeVFSResult
@@ -205,7 +231,7 @@ do_write (GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSFileSize *bytes_written,
 	  GnomeVFSCancellation *cancellation)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_READONLYFS;
 }
 
 static GnomeVFSResult
@@ -214,14 +240,15 @@ do_seek (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSFileOffset offset,
 	 GnomeVFSCancellation *cancellation)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return gnome_vfs_seek_cancellable (VFS_HANDLE (method_handle),
+					   whence, offset, cancellation);
 }
 
 static GnomeVFSResult
 do_tell (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSFileOffset *offset_return)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return gnome_vfs_tell (VFS_HANDLE (method_handle), offset_return);
 }
 
 static GnomeVFSResult

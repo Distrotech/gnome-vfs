@@ -45,6 +45,6 @@ GnomeVFSProcessRunResult
 
 GnomeVFSResult
 	gnome_vfs_create_temp (const gchar *prefix, gchar **name_return,
-			       gint *fd_return);
+			       GnomeVFSHandle **handle_return);
 
 #endif /* _GNOME_VFS_UTILS_H */

@@ -9,6 +9,7 @@ GNOME_INIT
 
 AC_ISC_POSIX
 AC_PROG_CC
+AC_PROG_AWK
 AM_PROG_LIBTOOL
 
 AC_ARG_ENABLE(gconf,
@@ -155,10 +156,18 @@ AC_OUTPUT([
 Makefile
 idl/Makefile
 intl/Makefile
-libgnomevfs/Makefile
-libgnomevfs-pthread/Makefile
 libgnomevfs-corba/Makefile
+libgnomevfs-pthread/Makefile
+libgnomevfs/Makefile
 modules/Makefile
+modules/extfs/Makefile
+modules/extfs/ar
+modules/extfs/cpio
+modules/extfs/deb
+modules/extfs/lha
+modules/extfs/rar
+modules/extfs/zip
+modules/extfs/zoo
 po/Makefile.in
 test/Makefile
 test/gnome-file-selection/Makefile

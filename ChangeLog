@@ -1,3 +1,56 @@
+1999-10-17  Ettore Perazzoli  <ettore@gnu.org>
+
+	* modules/extfs-method.c (do_open): If the return value from the
+	script is nonzero, return `GNOME_VFS_ERROR_NOTFOUND'.  Check that
+	the parent URI is accessed through the `file' method.  Completed
+	parameters passed to the extfs script.
+
+	* modules/modules.conf: Added entries for `extfs'.
+
+	* modules/extfs/README: New file.
+	* modules/extfs/a: New file.
+	* modules/extfs/deb.in: New file.
+	* modules/extfs/hp48: New file.
+	* modules/extfs/mailfs: New file.
+	* modules/extfs/patchfs: New file.
+	* modules/extfs/rpm: New file.
+	* modules/extfs/rpms: New file.
+	* modules/extfs/trpm: New file.
+	* modules/extfs/ar.in: New file.
+	* modules/extfs/arj: New file.
+	* modules/extfs/cpio.in: New file.
+	* modules/extfs/lha.in: New file.
+	* modules/extfs/rar.in: New file.
+	* modules/extfs/zip.in: New file.
+	* modules/extfs/zoo.in: New file.
+	* configure.in: Generate scripts from the `.in' files.
+
+	* configure.in: Check for `awk' using `AC_PROG_AWK'.
+
+	* modules/extfs: New subdirectory.
+	* modules/extfs/Makefile.am: New file.
+	* modules/Makefile.am: Updated accordingly.
+
+	* modules/extfs-method.c: Replaced member `fd' in `ExtfsHandle'
+	with `vfs_handle' (i.e. we use a VFS handle instead of a UNIX file
+	descriptor).  #include <errno.h>.
+	(VFS_HANDLE): New helper macro.
+	(extfs_handle_close): Updated accordingly.  Return value changed
+	from `void' to `GnomeVFSResult', so that we can return the result
+	of the `close' operation.  Also, remove `local_path'.
+	(do_open): Updated accordingly.  Also updated for the new version
+	of `gnome_vfs_create_temp()'.
+	(do_close): Implementated (`close' operation).
+	(do_read): Implemented (`read' operation).
+	(do_tell): Implemented (`tell') operation.
+	(do_write): Return `GNOME_VFS_ERROR_READONLYFS' instead of
+	`GNOME_VFS_ERROR_NOTSUPPORTED'.
+
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_create_temp): Changed
+	so that it returns a GnomeVFSHandle instead of a plain Unix file
+	descriptor.  Abort if creating the file fails with something
+	different from a "file exists" error.
+
 1999-10-15  Ettore Perazzoli  <ettore@gnu.org>
 
 	* modules/Makefile.am (CPPFLAGS): #define `PREFIX'.

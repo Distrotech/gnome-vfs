@@ -306,32 +306,43 @@ gnome_vfs_process_run_cancellable (const gchar *file_name,
  * @prefix: Prefix for the name of the temporary file
  * @name_return: Pointer to a pointer that, on return, will point to
  * the dynamically allocated name for the new temporary file created.
- * @fd_return: Pointer to a variable that will hold a file descriptor for
+ * @handle_return: Pointer to a variable that will hold a file handle for
  * the new temporary file on return.
  * 
  * Create a temporary file whose name is prefixed with @prefix, and return an
- * open file descriptor for it in @*fd_return.
+ * open file handle for it in @*handle_return.
  * 
  * Return value: An integer value representing the result of the operation
  **/
 GnomeVFSResult
 gnome_vfs_create_temp (const gchar *prefix,
 		       gchar **name_return,
-		       gint *fd_return)
+		       GnomeVFSHandle **handle_return)
 {
+	GnomeVFSHandle *handle;
+	GnomeVFSResult result;
 	gchar *name;
-	gint fd;
 
 	while (1) {
 		name = tempnam (NULL, prefix);
 		if (name == NULL)
 			return GNOME_VFS_ERROR_INTERNAL;
 
-		fd = open (name, O_WRONLY | O_CREAT | O_EXCL, 0700);
-		if (fd != -1) {
+		result = gnome_vfs_create
+			(&handle, name,
+			 GNOME_VFS_OPEN_WRITE | GNOME_VFS_OPEN_READ,
+			 TRUE, 0600);
+
+		if (result == GNOME_VFS_OK) {
 			*name_return = name;
-			*fd_return = fd;
+			*handle_return = handle;
 			return GNOME_VFS_OK;
+		}
+
+		if (result != GNOME_VFS_ERROR_FILEEXISTS) {
+			*name_return = NULL;
+			*handle_return = NULL;
+			return result;
 		}
 	}
 }
