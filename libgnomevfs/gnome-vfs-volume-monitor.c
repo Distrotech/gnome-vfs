@@ -420,8 +420,8 @@ _gnome_vfs_volume_monitor_disconnect_all (GnomeVFSVolumeMonitor *volume_monitor)
 }
 
 void
-_gnome_vfs_volume_monitor_emit_pre_unmount (GnomeVFSVolumeMonitor *volume_monitor,
-					    GnomeVFSVolume        *volume)
+gnome_vfs_volume_monitor_emit_pre_unmount (GnomeVFSVolumeMonitor *volume_monitor,
+					   GnomeVFSVolume        *volume)
 {
 	g_signal_emit (volume_monitor, volume_monitor_signals[VOLUME_PRE_UNMOUNT], 0, volume);
 }

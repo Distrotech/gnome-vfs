@@ -99,20 +99,20 @@ void _gnome_vfs_volume_monitor_disconnected     (GnomeVFSVolumeMonitor *volume_m
 						 GnomeVFSDrive         *drive);
 void _gnome_vfs_volume_monitor_disconnect_all   (GnomeVFSVolumeMonitor *volume_monitor);
 void _gnome_vfs_volume_monitor_unmount_all      (GnomeVFSVolumeMonitor *volume_monitor);
-void _gnome_vfs_volume_monitor_emit_pre_unmount (GnomeVFSVolumeMonitor *volume_monitor,
-						 GnomeVFSVolume        *volume);
+void gnome_vfs_volume_monitor_emit_pre_unmount (GnomeVFSVolumeMonitor *volume_monitor,
+						GnomeVFSVolume        *volume);
 
 GnomeVFSVolumeMonitor *_gnome_vfs_get_volume_monitor_internal (gboolean create);
 void _gnome_vfs_volume_monitor_shutdown (void);
 
 int _gnome_vfs_device_type_get_sort_group (GnomeVFSDeviceType type);
 
-void            _gnome_vfs_volume_to_corba   (GnomeVFSVolume         *volume,
-					      GNOME_VFS_Volume       *corba_volume);
+void            gnome_vfs_volume_to_corba   (GnomeVFSVolume         *volume,
+					     GNOME_VFS_Volume       *corba_volume);
 GnomeVFSVolume *_gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
 					      GnomeVFSVolumeMonitor  *volume_monitor);
-void            _gnome_vfs_drive_to_corba    (GnomeVFSDrive          *drive,
-					      GNOME_VFS_Drive        *corba_drive);
+void            gnome_vfs_drive_to_corba    (GnomeVFSDrive          *drive,
+					     GNOME_VFS_Drive        *corba_drive);
 GnomeVFSDrive * _gnome_vfs_drive_from_corba  (const GNOME_VFS_Drive  *corba_drive,
 					      GnomeVFSVolumeMonitor  *volume_monitor);
 

@@ -807,6 +807,7 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 
 	/* ncpfs does not know the amount of available and free space */
 	if (statfs_buffer.f_bavail == 0 && statfs_buffer.f_bfree == 0) {
+#if defined(__linux__)
 		/* statvfs does not contain an f_type field, we try again
 		 * with statfs.
 		 */
@@ -819,7 +820,11 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 		}
 		
 		/* linux/ncp_fs.h: NCP_SUPER_MAGIC == 0x564c */
-		if (statfs_buffer2.f_type == 0x564c) {
+		if (statfs_buffer2.f_type == 0x564c)
+#elif defined(__sun)
+		if (strcmp(statfs_buffer.f_basetype, "ncpfs") == 0)
+#endif
+		{
 			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		}
 	}

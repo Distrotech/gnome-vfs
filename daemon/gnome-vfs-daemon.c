@@ -186,7 +186,7 @@ volume_mounted (GnomeVFSVolumeMonitor *volume_monitor,
 
 	corba_volume = GNOME_VFS_Volume__alloc ();
 
-	_gnome_vfs_volume_to_corba (volume, corba_volume);
+	gnome_vfs_volume_to_corba (volume, corba_volume);
 	
 	CORBA_exception_init (&ev);
 	GNOME_VFS_Client_VolumeMounted (client,
@@ -244,7 +244,7 @@ drive_connected (GnomeVFSVolumeMonitor *volume_monitor,
 
 	corba_drive = GNOME_VFS_Drive__alloc ();
 
-	_gnome_vfs_drive_to_corba (drive, corba_drive);
+	gnome_vfs_drive_to_corba (drive, corba_drive);
 	
 	CORBA_exception_init (&ev);
 	GNOME_VFS_Client_DriveConnected (client,
@@ -340,7 +340,7 @@ get_volumes (PortableServer_Servant _servant,
 	list->_maximum = len;
 
 	for (i = 0, l = volumes; l != NULL; l = l->next, i++) {
-		_gnome_vfs_volume_to_corba (l->data, &list->_buffer[i]);
+		gnome_vfs_volume_to_corba (l->data, &list->_buffer[i]);
 		gnome_vfs_volume_unref (l->data);
 	}
 	g_list_free (volumes);
@@ -369,7 +369,7 @@ get_drives (PortableServer_Servant _servant,
 	list->_maximum = len;
 
 	for (i = 0, l = drives; l != NULL; l = l->next, i++) {
-		_gnome_vfs_drive_to_corba (l->data, &list->_buffer[i]);
+		gnome_vfs_drive_to_corba (l->data, &list->_buffer[i]);
 		gnome_vfs_drive_unref (l->data);
 	}
 	g_list_free (drives);
@@ -390,8 +390,8 @@ emit_pre_unmount_volume (PortableServer_Servant _servant,
 
 	volume = gnome_vfs_volume_monitor_get_volume_by_id (monitor, id);
 	if (volume != NULL) {
-		_gnome_vfs_volume_monitor_emit_pre_unmount (monitor,
-							    volume);
+		gnome_vfs_volume_monitor_emit_pre_unmount (monitor,
+							   volume);
 		gnome_vfs_volume_unref (volume);
 	}
 }

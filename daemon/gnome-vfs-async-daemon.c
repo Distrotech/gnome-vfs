@@ -58,7 +58,7 @@ gnome_vfs_async_daemon_get_context (const GNOME_VFS_ClientCall client_call,
 	G_UNLOCK (client_call_context);
 
 	gnome_vfs_daemon_add_context (client, context);
-	_gnome_vfs_daemon_set_current_daemon_client_call (client_call);
+	gnome_vfs_daemon_set_current_daemon_client_call (client_call);
 
 	return context;
 }
@@ -69,7 +69,7 @@ gnome_vfs_async_daemon_drop_context (const GNOME_VFS_ClientCall client_call,
 				     GnomeVFSContext *context)
 {
 	if (context != NULL) {
-		_gnome_vfs_daemon_set_current_daemon_client_call (NULL);
+		gnome_vfs_daemon_set_current_daemon_client_call (NULL);
 		gnome_vfs_daemon_remove_context (client, context);
 		G_LOCK (client_call_context);
 		if (g_vfs_async_daemon != NULL) {
@@ -280,7 +280,7 @@ gnome_vfs_async_daemon_get_file_info (PortableServer_Servant _servant,
 
 	if (res == GNOME_VFS_OK) {
 		*corba_info = GNOME_VFS_FileInfo__alloc ();
-		_gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
+		gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
 	}
 	
 	gnome_vfs_async_daemon_drop_context (client_call, client, context);
@@ -574,7 +574,7 @@ gnome_vfs_async_daemon_set_file_info (PortableServer_Servant _servant,
 	context = gnome_vfs_async_daemon_get_context (client_call, client);
 	file_info = gnome_vfs_file_info_new ();
 	
-	_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
+	gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 	res = gnome_vfs_set_file_info_cancellable (uri, file_info, mask,
 						   context);
 

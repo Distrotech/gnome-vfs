@@ -109,8 +109,8 @@ gnome_vfs_client_volume_pre_unmount (PortableServer_Servant _servant,
 
 	volume = gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor, id);
 	if (volume != NULL) {
-		_gnome_vfs_volume_monitor_emit_pre_unmount (volume_monitor,
-							    volume);
+		gnome_vfs_volume_monitor_emit_pre_unmount (volume_monitor,
+							   volume);
 		gnome_vfs_volume_unref (volume);
 	}
 }

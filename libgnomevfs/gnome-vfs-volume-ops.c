@@ -338,8 +338,8 @@ emit_pre_unmount (GnomeVFSVolume *volume)
 	volume_monitor = gnome_vfs_get_volume_monitor ();
 
 	if (gnome_vfs_get_is_daemon ()) {
-		_gnome_vfs_volume_monitor_emit_pre_unmount (volume_monitor,
-							    volume);
+		gnome_vfs_volume_monitor_emit_pre_unmount (volume_monitor,
+							   volume);
 	} else {
 		client = _gnome_vfs_get_client ();
 		daemon = _gnome_vfs_client_get_daemon (client);

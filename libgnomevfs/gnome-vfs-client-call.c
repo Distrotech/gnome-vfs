@@ -26,7 +26,7 @@ _gnome_vfs_daemon_get_current_daemon_client_call (void)
 }
 
 void
-_gnome_vfs_daemon_set_current_daemon_client_call (GNOME_VFS_ClientCall client_call)
+gnome_vfs_daemon_set_current_daemon_client_call (GNOME_VFS_ClientCall client_call)
 {
 	g_static_private_set (&daemon_client_call_private, client_call, NULL);
 }

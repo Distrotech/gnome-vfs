@@ -319,8 +319,8 @@ decode_corba_string_or_null (CORBA_char *str, gboolean empty_is_null)
 }
 
 void
-_gnome_vfs_drive_to_corba (GnomeVFSDrive *drive,
-			   GNOME_VFS_Drive *corba_drive)
+gnome_vfs_drive_to_corba (GnomeVFSDrive *drive,
+			  GNOME_VFS_Drive *corba_drive)
 {
 	GnomeVFSVolume *volume;
 

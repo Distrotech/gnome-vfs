@@ -46,8 +46,8 @@ daemon_dir_handle_free (DaemonDirHandle *handle)
 }
 
 void
-_gnome_vfs_daemon_convert_from_corba_file_info (const GNOME_VFS_FileInfo *corba_info,
-						GnomeVFSFileInfo *file_info)
+gnome_vfs_daemon_convert_from_corba_file_info (const GNOME_VFS_FileInfo *corba_info,
+					       GnomeVFSFileInfo *file_info)
 {
 	g_free (file_info->name);
 	
@@ -81,8 +81,8 @@ _gnome_vfs_daemon_convert_from_corba_file_info (const GNOME_VFS_FileInfo *corba_
 }
 
 void
-_gnome_vfs_daemon_convert_to_corba_file_info (const GnomeVFSFileInfo *file_info,
-					      GNOME_VFS_FileInfo *corba_info)
+gnome_vfs_daemon_convert_to_corba_file_info (const GnomeVFSFileInfo *file_info,
+					     GNOME_VFS_FileInfo *corba_info)
 {
 	corba_info->name = CORBA_string_dup (file_info->name);
 
@@ -613,7 +613,7 @@ do_read_directory (GnomeVFSMethod *method,
 	g_assert (dir_handle->current_pos < dir_handle->current_list->_length);
 	
 	corba_info = &dir_handle->current_list->_buffer[dir_handle->current_pos++];
-	_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
+	gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 	if (dir_handle->current_pos == dir_handle->current_list->_length) {
 		CORBA_free (dir_handle->current_list);
 		dir_handle->current_list = NULL;
@@ -670,7 +670,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	}
 
 	if (res == GNOME_VFS_OK) {
-		_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
+		gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 		CORBA_free (corba_info);
 	}
 	
@@ -714,7 +714,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	}
 
 	if (res == GNOME_VFS_OK) {
-		_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
+		gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 		CORBA_free (corba_info);
 	}
 	
@@ -1034,7 +1034,7 @@ do_set_file_info (GnomeVFSMethod *method,
 	uri_str = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
 	corba_info = GNOME_VFS_FileInfo__alloc ();
-	_gnome_vfs_daemon_convert_to_corba_file_info (info, corba_info);
+	gnome_vfs_daemon_convert_to_corba_file_info (info, corba_info);
 	
 	client_call = _gnome_vfs_client_call_get (context);
 

@@ -1,3 +1,51 @@
+2003-11-25  Padraig O'Briain  <padraig.obriain@sun.com>
+
+	* daemon/gnome-vfs-async-daemon.c: Remove underscore from start of
+	gnome_vfs_daemon_set_current_daemon_client_call and
+	gnome_vfs_daemon_convert_to_corba_file_info
+
+	* daemon/gnome-vfs-daemon-dir-handle.c: Remove underscore from start of
+	gnome_vfs_daemon_convert_to_corba_file_info and
+	gnome_vfs_daemon_convert_from_corba_file_info
+
+	* daemon/gnome-vfs-daemon-handle.c: Remove underscore from start of
+	gnome_vfs_daemon_convert_to_corba_file_info
+
+	* daemon/gnome-vfs-daemon.c: Remove underscore from start of
+	gnome_vfs_daemon_volume_to_corba, gnome_vfs_drive_to_corba,
+	gnome_vfs_volume_monitor_emit_pre_unmount
+
+	* libgnomevfs/gnome-vfs-client-call.[ch]: Remove underscore from start 
+	of gnome_vfs_daemon_set_current_daemon_client_call
+
+	* libgnomevfs/gnome-vfs-client.c: Remove underscore from start of
+	gnome_vfs_volume_monitor_emit_pre_unmount
+
+	* libgnomevfs/gnome-vfs-daemon-method.[ch]: Remove underscore from 
+	start of gnome_vfs_daemon_convert_to_corba_file_info and
+	gnome_vfs_daemon_convert_from_corba_file_info
+
+	* libgnomevfs/gnome-vfs-drive.c: Remove underscore from start of
+	gnome_vfs_drive_to_corba
+
+	* libgnomeui/gnome-vfs-volume-monitor-private.h: Remove underscore 
+	from start of gnome_vfs_volume_monitor_emit_pre_unmount,
+	gnome_vfs_volume_to_corba and gnome_vfs_drive_to_corba
+
+	* libgnomevfs/gnome-vfs-volume-monitor.c: Remove underscore from start 
+	of gnome_vfs_volume_monitor_emit_pre_unmount
+
+	* libgnomevfs/gnome-vfs-volume-ops.c: Remove underscore from start of
+	gnome_vfs_volume_monitor_emit_pre_unmount
+
+	* libgnomevfs/gnome-vfs-volume.c: Remove underscore from start of
+	gnome_vfs_volume_to_corba
+
+	Fixes bug #127212.
+	
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_get_volume_free_space):
+	Add Solaris specific code. Fixes bug #127193.
+
 === gnome-vfs 2.5.2 ===
 
 2003-11-24  Alexander Larsson  <alexl@redhat.com>

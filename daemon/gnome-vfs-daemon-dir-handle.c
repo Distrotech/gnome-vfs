@@ -63,7 +63,7 @@ gnome_vfs_daemon_dir_handle_read (PortableServer_Servant _servant,
 	res = 0;
 	while (list->_length < READDIR_CHUNK_SIZE &&
 	       (res = gnome_vfs_directory_read_next (handle->real_handle, file_info)) == GNOME_VFS_OK) {
-		_gnome_vfs_daemon_convert_to_corba_file_info (file_info, &list->_buffer[list->_length]);
+		gnome_vfs_daemon_convert_to_corba_file_info (file_info, &list->_buffer[list->_length]);
 		list->_length++;
 		gnome_vfs_file_info_clear (file_info);
 	}

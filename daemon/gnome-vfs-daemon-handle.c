@@ -214,7 +214,7 @@ gnome_vfs_daemon_handle_get_file_info (PortableServer_Servant _servant,
 	
 	if (res == GNOME_VFS_OK) {
 		*corba_info = GNOME_VFS_FileInfo__alloc ();
-		_gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
+		gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
 	}
 	
 	gnome_vfs_async_daemon_drop_context (client_call, client, context);
