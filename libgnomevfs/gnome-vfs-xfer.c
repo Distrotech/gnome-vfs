@@ -409,6 +409,8 @@ remove_file (GnomeVFSURI *uri,
 		if (result != GNOME_VFS_OK)
 			retry = handle_error (&result, progress,
 					      error_mode, skip);
+		else
+			progress->progress_info->file_index++;
 
 		if (call_progress_with_uris_often (progress, uri, NULL, 
 						   GNOME_VFS_XFER_PHASE_DELETESOURCE) 
@@ -507,6 +509,8 @@ remove_directory (GnomeVFSURI *uri,
 			if (result != GNOME_VFS_OK)
 				retry = handle_error (&result, progress,
 						      error_mode, skip);
+			else
+				progress->progress_info->file_index++;
 
 			if (call_progress_with_uris_often (progress, uri, NULL, 
 							   GNOME_VFS_XFER_PHASE_DELETESOURCE) 
@@ -1468,6 +1472,7 @@ gnome_vfs_xfer_empty_trash (GList *trash_dir_uris,
 			break;
 	}
 	if (result == GNOME_VFS_OK) {
+		call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
 		for (p = trash_dir_uris;  p != NULL; p = p->next) {
 			result = empty_directory (p->data, progress, 
 				GNOME_VFS_XFER_REMOVESOURCE | GNOME_VFS_XFER_RECURSIVE, 
@@ -1542,6 +1547,9 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 							        xfer_options, &error_mode, &overwrite_mode,
 							        progress);
 			}
+			/* reset the preflight numbers */
+			progress->progress_info->file_index = 0;
+			progress->progress_info->total_bytes_copied = 0;
 
 			if (result == GNOME_VFS_OK) {
 
@@ -1653,7 +1661,7 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 		 * this overloading is used just to avoid having to add 
 		 * a new call to the backend API
 		 */
-		GList *p;
+		const GList *p;
 		GList *uri_list;
 		g_assert (source_name_list != NULL);
 

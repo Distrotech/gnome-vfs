@@ -1,3 +1,17 @@
+2000-05-03  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (remove_file), (remove_directory),
+	(gnome_vfs_xfer_empty_trash), (gnome_vfs_xfer_uri_internal):
+	Make emptying Trash update the progress_info structure properly
+	to allow the progress dialog to display the right numbers.
+
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_uri_internal):
+	Call progress with GNOME_VFS_XFER_PHASE_READYTOGO when emptying
+	the Trash properly.
+	
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_xfer_private):
+	Fix broken const.
+
 2000-05-03  Dave Camp  <campd@oit.edu>
 
 	* modules/gconf-method.c (do_open): 
