@@ -25,10 +25,15 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_ALLOCA_H
+#include <alloca.h>
+#endif
+
 #include <errno.h>
 #include <string.h>
 #include <stdio.h>
 #include <dirent.h>
+#include <ctype.h>
 
 #include <glib.h>
 
@@ -42,8 +47,9 @@ struct _Configuration {
 typedef struct _Configuration Configuration;
 
 struct _ModulePathElement {
-	gchar *method_name;
-	gchar *path;
+	char *method_name;
+	char *path;
+	char *args;
 };
 typedef struct _ModulePathElement ModulePathElement;
 
@@ -52,14 +58,16 @@ G_LOCK_DEFINE_STATIC (configuration);
 
 
 static ModulePathElement *
-module_path_element_new (const gchar *method_name,
-			 const gchar *path)
+module_path_element_new (const char *method_name,
+			 const char *path,
+			 const char *args)
 {
 	ModulePathElement *new;
 
 	new = g_new (ModulePathElement, 1);
 	new->method_name = g_strdup (method_name);
 	new->path = g_strdup (path);
+	new->args = g_strdup(args);
 
 	return new;
 }
@@ -157,22 +165,6 @@ remove_comment (gchar *buf)
 		*p = '\0';
 }
 
-/* This is necessary as `g_strstrip()' only removes spaces.  */
-static void
-remove_trailing_tabs (gchar *buf)
-{
-	gchar *p;
-
-	if (*buf == '\0')
-		return;
-
-	p = buf + strlen (buf) - 1;
-	while (*p == '\t') {
-		*p = '\0';
-		p--;
-	}
-}
-
 static gboolean
 parse_line (Configuration *configuration,
 	    gchar *line_buffer,
@@ -184,7 +176,8 @@ parse_line (Configuration *configuration,
 	gboolean retval;
 	gchar *p;
 	gchar *method_start;
-	gchar *module_name;
+	char *module_name;
+	char *args = NULL;
 	GList *method_list;
 	GList *lp;
 
@@ -231,6 +224,9 @@ parse_line (Configuration *configuration,
 		p++;
 	}
 
+	while (*p && isspace(*p))
+		p++;
+
 	if (*p == '\0') {
 		if (method_list != NULL) {
 			g_warning (_("%s:%d contains no module name."),
@@ -243,21 +239,23 @@ parse_line (Configuration *configuration,
 		goto cleanup;
 	}
 
-	while (*p == ' ' || *p == '\t')
-		p++;
-
 	module_name = p;
+	while(*p && !isspace(*p)) p++;
 
-	/* This is necessary as the `g_strstrip()' we called a few lines above
-           only removes spaces.  */
-	remove_trailing_tabs (module_name);
+	if(*p) {
+		*p = '\0';
+		p++;
+		while(*p && isspace(*p)) p++;
+		if(*p)
+			args = p;
+	}
 
 	for (lp = method_list; lp != NULL; lp = lp->next) {
 		ModulePathElement *element;
 		gchar *method_name;
 
 		method_name = lp->data;
-		element = module_path_element_new (method_name, module_name);
+		element = module_path_element_new (method_name, module_name, args);
 		g_hash_table_insert (configuration->method_to_module_path,
 				     method_name, element);
 	}
@@ -321,7 +319,7 @@ static Configuration *
 configuration_load (void)
 {
 	Configuration *new;
-	const gchar *file_names[MAX_CFG_FILES];
+	gchar *file_names[MAX_CFG_FILES];
 	int i = 0, dirnum;
 	DIR *dirh;
 	char *dirname;
@@ -418,7 +416,7 @@ gnome_vfs_configuration_uninit (void)
 }
 
 const gchar *
-gnome_vfs_configuration_get_module_path (const gchar *method_name)
+gnome_vfs_configuration_get_module_path (const gchar *method_name, const char ** args)
 {
 	ModulePathElement *element;
 
@@ -437,6 +435,9 @@ gnome_vfs_configuration_get_module_path (const gchar *method_name)
 
 	if (element == NULL)
 		return NULL;
-	else
+	else {
+		if(args)
+			*args = element->args;
 		return element->path;
+	}
 }

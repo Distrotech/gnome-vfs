@@ -601,7 +601,7 @@ gnome_vfs_uri_is_local (const GnomeVFSURI *uri)
 {
 	g_return_val_if_fail (uri != NULL, FALSE);
 
-	return uri->method->is_local (uri);
+	return uri->method->is_local (uri->method, uri);
 }
 
 /* FIXME Maybe we have to make more definite decisions on what URLs have to

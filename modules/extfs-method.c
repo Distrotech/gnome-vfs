@@ -282,7 +282,8 @@ extfs_directory_lookup (GnomeVFSURI *uri)
 
 
 static GnomeVFSResult
-do_open (GnomeVFSMethodHandle **method_handle,
+do_open (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
 	 GnomeVFSOpenMode mode,
 	 GnomeVFSContext *context)
@@ -388,7 +389,8 @@ do_open (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-do_create (GnomeVFSMethodHandle **method_handle,
+do_create (GnomeVFSMethod *method,
+	   GnomeVFSMethodHandle **method_handle,
 	   GnomeVFSURI *uri,
 	   GnomeVFSOpenMode mode,
 	   gboolean exclusive,
@@ -399,7 +401,8 @@ do_create (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-do_close (GnomeVFSMethodHandle *method_handle,
+do_close (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSContext *context)
 {
 	ExtfsHandle *extfs_handle;
@@ -418,7 +421,8 @@ do_close (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_read (GnomeVFSMethodHandle *method_handle,
+do_read (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read,
@@ -430,7 +434,8 @@ do_read (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_write (GnomeVFSMethodHandle *method_handle,
+do_write (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
 	  gconstpointer buffer,
 	  GnomeVFSFileSize num_bytes,
 	  GnomeVFSFileSize *bytes_written,
@@ -440,7 +445,8 @@ do_write (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_seek (GnomeVFSMethodHandle *method_handle,
+do_seek (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
 	 GnomeVFSFileOffset offset,
 	 GnomeVFSContext *context)
@@ -451,14 +457,16 @@ do_seek (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_tell (GnomeVFSMethodHandle *method_handle,
+do_tell (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSFileOffset *offset_return)
 {
 	return gnome_vfs_tell (VFS_HANDLE (method_handle), offset_return);
 }
 
 static GnomeVFSResult
-do_truncate (GnomeVFSMethodHandle *method_handle,
+do_truncate (GnomeVFSMethod *method,
+	     GnomeVFSMethodHandle *method_handle,
 	     GnomeVFSFileSize where,
 	     GnomeVFSContext *context)
 {
@@ -537,7 +545,8 @@ read_directory_list (FILE *p,
 }
 
 static GnomeVFSResult
-do_open_directory (GnomeVFSMethodHandle **method_handle,
+do_open_directory (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri,
 		   GnomeVFSFileInfoOptions info_options,
 		   const GList *meta_keys,
@@ -615,7 +624,8 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-do_close_directory (GnomeVFSMethodHandle *method_handle,
+do_close_directory (GnomeVFSMethod *method,
+		    GnomeVFSMethodHandle *method_handle,
 		    GnomeVFSContext *context)
 {
 	ExtfsDirectoryHandle *handle;
@@ -693,7 +703,8 @@ find_next (ExtfsDirectoryHandle *handle)
 }
 
 static GnomeVFSResult
-do_read_directory (GnomeVFSMethodHandle *method_handle,
+do_read_directory (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle *method_handle,
 		   GnomeVFSFileInfo *file_info,
 		   GnomeVFSContext *context)
 {
@@ -712,7 +723,8 @@ do_read_directory (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_get_file_info (GnomeVFSURI *uri,
+do_get_file_info (GnomeVFSMethod *method,
+		  GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
 		  const GList *meta_keys,
@@ -722,7 +734,8 @@ do_get_file_info (GnomeVFSURI *uri,
 }
 
 static GnomeVFSResult
-do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
+do_get_file_info_from_handle (GnomeVFSMethod *method,
+			      GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
 			      GnomeVFSFileInfoOptions options,
 			      const GList *meta_keys,
@@ -732,13 +745,15 @@ do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 }
 
 static gboolean
-do_is_local (const GnomeVFSURI *uri)
+do_is_local (GnomeVFSMethod *method,
+	     const GnomeVFSURI *uri)
 {
 	return FALSE;
 }
 
 static GnomeVFSResult
-do_make_directory (GnomeVFSURI *uri,
+do_make_directory (GnomeVFSMethod *method,
+		   GnomeVFSURI *uri,
 		   guint perm,
 		   GnomeVFSContext *context)
 {
@@ -746,14 +761,16 @@ do_make_directory (GnomeVFSURI *uri,
 }
 
 static GnomeVFSResult
-do_remove_directory (GnomeVFSURI *uri,
+do_remove_directory (GnomeVFSMethod *method,
+		     GnomeVFSURI *uri,
 		     GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
 
 static GnomeVFSResult
-do_move (GnomeVFSURI *old_uri,
+do_move (GnomeVFSMethod *method,
+	 GnomeVFSURI *old_uri,
 	 GnomeVFSURI *new_uri,
 	 gboolean force_replace,
 	 GnomeVFSContext *context)
@@ -763,14 +780,16 @@ do_move (GnomeVFSURI *old_uri,
 
 
 static GnomeVFSResult
-do_unlink (GnomeVFSURI *uri,
+do_unlink (GnomeVFSMethod *method,
+	   GnomeVFSURI *uri,
 	   GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
 
 static GnomeVFSResult
-do_check_same_fs (GnomeVFSURI *a,
+do_check_same_fs (GnomeVFSMethod *method,
+		  GnomeVFSURI *a,
 		  GnomeVFSURI *b,
 		  gboolean *same_fs_return,
 		  GnomeVFSContext *context)
@@ -802,7 +821,7 @@ static GnomeVFSMethod method = {
 };
 
 GnomeVFSMethod *
-vfs_module_init (void)
+vfs_module_init (const char *method_name, const char *args)
 {
 	handle_list = NULL;
 	uri_to_directory_hash = g_hash_table_new (gnome_vfs_uri_hash,

@@ -68,34 +68,40 @@ typedef struct _GZipMethodHandle GZipMethodHandle;
 #define Z_BUFSIZE 16384
 
 
-static GnomeVFSResult	do_open		(GnomeVFSMethodHandle **method_handle,
+static GnomeVFSResult	do_open		(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
 					 GnomeVFSContext *context);
 
-static GnomeVFSResult	do_create	(GnomeVFSMethodHandle **method_handle,
+static GnomeVFSResult	do_create	(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
 					 gboolean exclusive,
 					 guint perm,
 					 GnomeVFSContext *context);
 
-static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle,
+static GnomeVFSResult	do_close	(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSContext *context);
 
-static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
+static GnomeVFSResult	do_read		(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_read,
 					 GnomeVFSContext *context);
 
-static GnomeVFSResult	do_write	(GnomeVFSMethodHandle *method_handle,
+static GnomeVFSResult	do_write	(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_written,
 					 GnomeVFSContext *context);
 
-static gboolean		do_is_local	(const GnomeVFSURI *uri);
+static gboolean		do_is_local	(GnomeVFSMethod *method,
+					 const GnomeVFSURI *uri);
 
 static GnomeVFSMethod method = {
 	do_open,
@@ -453,7 +459,8 @@ flush_write (GZipMethodHandle *gzip_handle)
 /* TODO: 
    - Check that there is no subpath.  */
 static GnomeVFSResult
-do_open (GnomeVFSMethodHandle **method_handle,
+do_open (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
 	 GnomeVFSOpenMode open_mode,
 	 GnomeVFSContext *context)
@@ -522,7 +529,8 @@ do_open (GnomeVFSMethodHandle **method_handle,
 /* Create.  */
 
 static GnomeVFSResult
-do_create (GnomeVFSMethodHandle **method_handle,
+do_create (GnomeVFSMethod *method,
+	   GnomeVFSMethodHandle **method_handle,
 	   GnomeVFSURI *uri,
 	   GnomeVFSOpenMode mode,
 	   gboolean exclusive,
@@ -539,7 +547,8 @@ do_create (GnomeVFSMethodHandle **method_handle,
 /* Close.  */
 
 static GnomeVFSResult
-do_close (GnomeVFSMethodHandle *method_handle,
+do_close (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSContext *context)
 {
 	GZipMethodHandle *gzip_handle;
@@ -598,7 +607,8 @@ fill_buffer (GZipMethodHandle *gzip_handle,
 /* TODO:
    - Concatenated GZIP file handling.  */
 static GnomeVFSResult
-do_read (GnomeVFSMethodHandle *method_handle,
+do_read (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read,
@@ -677,7 +687,8 @@ do_read (GnomeVFSMethodHandle *method_handle,
 /* Write.  */
 
 static GnomeVFSResult
-do_write (GnomeVFSMethodHandle *method_handle,
+do_write (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
 	  gconstpointer buffer,
 	  GnomeVFSFileSize num_bytes,
 	  GnomeVFSFileSize *bytes_written,
@@ -725,7 +736,8 @@ do_write (GnomeVFSMethodHandle *method_handle,
 
 
 static gboolean
-do_is_local (const GnomeVFSURI *uri)
+do_is_local (GnomeVFSMethod *method,
+	     const GnomeVFSURI *uri)
 {
 	g_return_val_if_fail (uri != NULL, FALSE);
 
@@ -736,7 +748,7 @@ do_is_local (const GnomeVFSURI *uri)
 /* Init.  */
 
 GnomeVFSMethod *
-vfs_module_init (void)
+vfs_module_init (const char *method_name, const char *args)
 {
 	return &method;
 }

@@ -107,7 +107,7 @@ open_from_uri (GnomeVFSDirectoryHandle **handle,
 
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
-	result = uri->method->open_directory (&method_handle, uri,
+	result = uri->method->open_directory (uri->method, &method_handle, uri,
 					      options, meta_list, filter,
 					      context);
 	if (result != GNOME_VFS_OK) {
@@ -221,7 +221,8 @@ gnome_vfs_directory_read_next (GnomeVFSDirectoryHandle *handle,
 	CHECK_IF_SUPPORTED (handle->uri->method, read_directory);
 
 	gnome_vfs_file_info_clear (file_info);
-	return handle->uri->method->read_directory (handle->method_handle,
+	return handle->uri->method->read_directory (handle->uri->method,
+						    handle->method_handle,
 						    file_info, NULL);
 }
 
@@ -240,7 +241,8 @@ gnome_vfs_directory_close (GnomeVFSDirectoryHandle *handle)
 
 	CHECK_IF_SUPPORTED (handle->uri->method, close_directory);
 
-	result = handle->uri->method->close_directory (handle->method_handle,
+	result = handle->uri->method->close_directory (handle->uri->method,
+						       handle->method_handle,
 						       NULL);
 
 	gnome_vfs_directory_handle_destroy (handle);

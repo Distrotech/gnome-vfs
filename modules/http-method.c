@@ -614,7 +614,8 @@ http_handle_close (HttpFileHandle *handle,
 
 
 static GnomeVFSResult
-do_open (GnomeVFSMethodHandle **method_handle,
+do_open (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
 	 GnomeVFSOpenMode mode,
 	 GnomeVFSContext *context)
@@ -636,7 +637,8 @@ do_open (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-do_close (GnomeVFSMethodHandle *method_handle,
+do_close (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSContext *context)
 {
 	HttpFileHandle *handle;
@@ -648,7 +650,8 @@ do_close (GnomeVFSMethodHandle *method_handle,
 }
 	
 static GnomeVFSResult
-do_read (GnomeVFSMethodHandle *method_handle,
+do_read (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read,
@@ -734,7 +737,8 @@ get_file_info_from_http_handle (HttpFileHandle *handle,
 }
 
 static GnomeVFSResult
-do_get_file_info (GnomeVFSURI *uri,
+do_get_file_info (GnomeVFSMethod *method,
+		  GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
 		  const GList *meta_keys,
@@ -755,7 +759,8 @@ do_get_file_info (GnomeVFSURI *uri,
 }
 
 static GnomeVFSResult
-do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
+do_get_file_info_from_handle (GnomeVFSMethod *method,
+			      GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
 			      GnomeVFSFileInfoOptions options,
 			      const GList *meta_keys,
@@ -768,7 +773,8 @@ do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 }
 
 static gboolean
-do_is_local (const GnomeVFSURI *uri)
+do_is_local (GnomeVFSMethod *method,
+	     const GnomeVFSURI *uri)
 {
 	return FALSE;
 }
@@ -797,7 +803,7 @@ static GnomeVFSMethod method = {
 };
 
 GnomeVFSMethod *
-vfs_module_init (void)
+vfs_module_init (const char *method_name, const char *args)
 {
 	return &method;
 }

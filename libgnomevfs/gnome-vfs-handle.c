@@ -126,7 +126,7 @@ gnome_vfs_handle_do_close (GnomeVFSHandle *handle,
 {
 	GnomeVFSResult result;
 
-	INVOKE (result, handle, close, (handle->method_handle, context));
+	INVOKE (result, handle, close, (handle->uri->method, handle->method_handle, context));
 
 	/* Even if close has failed, we shut down the handle.  FIXME?  */
 	gnome_vfs_handle_destroy (handle);
@@ -141,7 +141,7 @@ gnome_vfs_handle_do_read (GnomeVFSHandle *handle,
 			  GnomeVFSFileSize *bytes_read,
 			  GnomeVFSContext *context)
 {
-	INVOKE_AND_RETURN (handle, read, (handle->method_handle,
+	INVOKE_AND_RETURN (handle, read, (handle->uri->method, handle->method_handle,
 					  buffer, num_bytes, bytes_read,
 					  context));
 }
@@ -153,7 +153,7 @@ gnome_vfs_handle_do_write (GnomeVFSHandle *handle,
 			   GnomeVFSFileSize *bytes_written,
 			   GnomeVFSContext *context)
 {
-	INVOKE_AND_RETURN (handle, write, (handle->method_handle,
+	INVOKE_AND_RETURN (handle, write, (handle->uri->method, handle->method_handle,
 					   buffer, num_bytes, bytes_written,
 					   context));
 }
@@ -165,7 +165,7 @@ gnome_vfs_handle_do_seek (GnomeVFSHandle *handle,
 			  GnomeVFSFileSize offset,
 			  GnomeVFSContext *context)
 {
-	INVOKE_AND_RETURN (handle, seek, (handle->method_handle,
+	INVOKE_AND_RETURN (handle, seek, (handle->uri->method, handle->method_handle,
 					  whence, offset, context));
 }
 
@@ -173,7 +173,7 @@ GnomeVFSResult
 gnome_vfs_handle_do_tell (GnomeVFSHandle *handle,
 			  GnomeVFSFileSize *offset_return)
 {
-	INVOKE_AND_RETURN (handle, tell, (handle->method_handle,
+	INVOKE_AND_RETURN (handle, tell, (handle->uri->method, handle->method_handle,
 					  offset_return));
 }
 
@@ -186,6 +186,6 @@ gnome_vfs_handle_do_get_file_info (GnomeVFSHandle *handle,
 				   GnomeVFSContext *context)
 {
 	INVOKE_AND_RETURN (handle, get_file_info_from_handle,
-			   (handle->method_handle, info, options, meta_keys,
+			   (handle->uri->method, handle->method_handle, info, options, meta_keys,
 			    context));
 }

@@ -29,7 +29,8 @@ modules_LTLIBRARIES =				\
 	libbzip2.la				\
 	libgzip.la				\
 	libftp.la				\
-	libvfs-pipe.la
+	libvfs-pipe.la				\
+	libvfs-translate.la
 
 modulesconfdir=$(sysconfdir)/vfs/modules
 modulesconf_DATA =				\
@@ -112,4 +113,9 @@ libvfs_pipe_la_SOURCES =			\
 	pipe-method.h
 libvfs_pipe_la_LDFLAGS = $(module_flags)
 libvfs_pipe_la_LIBADD  = $(GLIB_LIBS)
+
+libvfs_translate_la_SOURCES =			\
+	translate-method.c
+libvfs_translate_la_LDFLAGS = $(module_flags)
+libvfs_translate_la_LIBADD  = $(GLIB_LIBS)
 

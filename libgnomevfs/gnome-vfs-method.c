@@ -37,8 +37,10 @@
 
 
 struct _MethodElement {
-	gchar *name;
+	char *name;
+	const char *args;
 	GnomeVFSMethod *method;
+	int nusers;
 };
 typedef struct _MethodElement MethodElement;
 
@@ -153,12 +155,12 @@ gnome_vfs_method_init (void)
 }
 
 static GnomeVFSMethod *
-load_module (const gchar *module_name)
+load_module (const gchar *module_name, const char *method_name, const char *args)
 {
 	GnomeVFSMethod *method;
 	GModule        *module;
-	GnomeVFSMethod * (*init_function) (void) = NULL;
-	void           * (*shutdown_function) (GnomeVFSMethod *) = NULL;
+	GnomeVFSMethodInitFunc init_function = NULL;
+	GnomeVFSMethodShutdownFunc shutdown_function = NULL;
 
 	/* FIXME */
 	g_message ("Loading module `%s'", module_name);
@@ -181,7 +183,7 @@ load_module (const gchar *module_name)
 	    || shutdown_function == NULL)
 		g_warning ("module '%s' has no shutdown fn", module_name);
 
-	method = init_function ();
+	method = init_function (method_name, args);
 
 	if (method == NULL) {
 		g_warning ("module '%s' returned a NULL handle", module_name);
@@ -218,7 +220,7 @@ load_module (const gchar *module_name)
 }
 
 static GnomeVFSMethod *
-load_module_in_path_list (const gchar *base_name)
+load_module_in_path_list (const gchar *base_name, const char *method_name, const char *args)
 {
 	GList *p;
 
@@ -230,7 +232,7 @@ load_module_in_path_list (const gchar *base_name)
 		path = p->data;
 		name = g_strconcat (path, "/", base_name, NULL);
 
-		method = load_module (name);
+		method = load_module (name, method_name, args);
 
 		g_free (name);
 
@@ -246,9 +248,10 @@ gnome_vfs_method_get (const gchar *name)
 {
 	GnomeVFSMethod *method;
 	MethodElement *method_element;
-	const gchar *module_name;
+	const char *module_name;
 	pid_t saved_uid;
 	gid_t saved_gid;
+	const char *args;
 
 	g_return_val_if_fail (name != NULL, NULL);
 
@@ -259,7 +262,7 @@ gnome_vfs_method_get (const gchar *name)
 	if (method_element != NULL)
 		return method_element->method;
 
-	module_name = gnome_vfs_configuration_get_module_path (name);
+	module_name = gnome_vfs_configuration_get_module_path (name, &args);
 	if (module_name == NULL)
 		return NULL;
 
@@ -272,9 +275,9 @@ gnome_vfs_method_get (const gchar *name)
 	setegid (getgid ());
 
 	if (g_path_is_absolute (module_name))
-		method = load_module (module_name);
+		method = load_module (module_name, name, args);
 	else
-		method = load_module_in_path_list (module_name);
+		method = load_module_in_path_list (module_name, name, args);
 
 	seteuid (saved_uid);
 	setegid (saved_gid);

@@ -35,35 +35,43 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
-static GnomeVFSResult	do_open		(GnomeVFSMethodHandle **method_handle,
+static GnomeVFSResult	do_open		(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
 					 GnomeVFSContext *context);
-static GnomeVFSResult	do_create 	(GnomeVFSMethodHandle **method_handle,
+static GnomeVFSResult	do_create 	(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
 					 gboolean exclusive,
 					 guint perm,
 					 GnomeVFSContext *context);
-static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle,
+static GnomeVFSResult	do_close	(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSContext *context);
-static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
+static GnomeVFSResult	do_read		(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_read,
 					 GnomeVFSContext *context);
-static GnomeVFSResult	do_write	(GnomeVFSMethodHandle *method_handle,
+static GnomeVFSResult	do_write	(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
 					 GnomeVFSFileSize num_bytes,
 					 GnomeVFSFileSize *bytes_written,
 					 GnomeVFSContext *context);
-static GnomeVFSResult   do_seek		(GnomeVFSMethodHandle *method_handle,
+static GnomeVFSResult   do_seek		(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
 					 GnomeVFSFileOffset offset,
 					 GnomeVFSContext *context);
-static GnomeVFSResult	do_tell		(GnomeVFSMethodHandle *method_handle,
+static GnomeVFSResult	do_tell		(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileOffset *offset_return);
-static GnomeVFSResult	do_truncate 	(GnomeVFSMethodHandle *method_handle,
+static GnomeVFSResult	do_truncate 	(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileSize where,
 					 GnomeVFSContext *context);
 
@@ -117,7 +125,7 @@ read_file (SeekableMethodHandle *mh)
 	g_return_val_if_fail (mh != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	do {
-		INVOKE_CHILD (result, mh, read, (mh->child_handle, buffer, BLK_SIZE, &blk_read,
+		INVOKE_CHILD (result, mh, read, (mh->child_method, mh->child_handle, buffer, BLK_SIZE, &blk_read,
 						 NULL));
 		if (result != GNOME_VFS_OK)
 			return result;
@@ -148,7 +156,7 @@ write_file (SeekableMethodHandle *mh)
 					 &blk_read);
 		if (result != GNOME_VFS_OK)
 			return result;
-		INVOKE_CHILD (result, mh, write, (mh->child_handle, buffer,
+		INVOKE_CHILD (result, mh, write, (mh->child_method, mh->child_handle, buffer,
 						  blk_read, &blk_write, NULL));
 		if (result != GNOME_VFS_OK)
 			return result;
@@ -233,7 +241,8 @@ gnome_vfs_seek_emulate (GnomeVFSURI *uri, GnomeVFSMethodHandle *child_handle,
 }
 
 static GnomeVFSResult
-do_open (GnomeVFSMethodHandle **method_handle,
+do_open (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
 	 GnomeVFSOpenMode mode,
 	 GnomeVFSContext *context)
@@ -243,7 +252,8 @@ do_open (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-do_create (GnomeVFSMethodHandle **method_handle,
+do_create (GnomeVFSMethod *method,
+	   GnomeVFSMethodHandle **method_handle,
 	   GnomeVFSURI *uri,
 	   GnomeVFSOpenMode mode,
 	   gboolean exclusive,
@@ -255,7 +265,8 @@ do_create (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-do_close (GnomeVFSMethodHandle *method_handle,
+do_close (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
@@ -275,7 +286,7 @@ do_close (GnomeVFSMethodHandle *method_handle,
 		mh->tmp_uri  = NULL;
 	}
 
-	INVOKE_CHILD (result, mh, close, (mh->child_handle, NULL));
+	INVOKE_CHILD (result, mh, close, (mh->child_method, mh->child_handle, NULL));
 
 	/* Cover your back. */
 	memset (mh->wrapper_method, 0xae, sizeof (GnomeVFSMethod));
@@ -289,11 +300,12 @@ do_close (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_read (GnomeVFSMethodHandle *method_handle,
+do_read (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read,
-	  GnomeVFSContext *context)
+	 GnomeVFSContext *context)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
@@ -302,7 +314,8 @@ do_read (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_write (GnomeVFSMethodHandle *method_handle,
+do_write (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
 	  gconstpointer buffer,
 	  GnomeVFSFileSize num_bytes,
 	  GnomeVFSFileSize *bytes_written,
@@ -315,7 +328,8 @@ do_write (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_seek (GnomeVFSMethodHandle *method_handle,
+do_seek (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
 	 GnomeVFSFileOffset offset,
 	 GnomeVFSContext *context)
@@ -327,7 +341,8 @@ do_seek (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_tell (GnomeVFSMethodHandle *method_handle,
+do_tell (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSFileOffset *offset_return)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
@@ -337,7 +352,8 @@ do_tell (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_truncate (GnomeVFSMethodHandle *method_handle,
+do_truncate (GnomeVFSMethod *method,
+	     GnomeVFSMethodHandle *method_handle,
 	     GnomeVFSFileSize where,
 	     GnomeVFSContext *context)
 {

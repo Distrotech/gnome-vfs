@@ -45,13 +45,13 @@ gnome_vfs_open_uri_cancellable (GnomeVFSHandle **handle,
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (uri->method != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	result = uri->method->open (&method_handle, uri, open_mode,
+	result = uri->method->open (uri->method, &method_handle, uri, open_mode,
 				    context);
 
 	/* FIXME */
 	if ((open_mode & GNOME_VFS_OPEN_RANDOM)
 	    && result == GNOME_VFS_ERROR_NOTSUPPORTED)
-		result = uri->method->open (&method_handle, uri,
+		result = uri->method->open (uri->method, &method_handle, uri,
 					    open_mode & ~GNOME_VFS_OPEN_RANDOM,
 					    context);
 
@@ -77,7 +77,7 @@ gnome_vfs_create_uri_cancellable (GnomeVFSHandle **handle,
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	result = uri->method->create (&method_handle, uri, open_mode,
+	result = uri->method->create (uri->method, &method_handle, uri, open_mode,
 				      exclusive, perm, context);
 	if (result != GNOME_VFS_OK)
 		return result;
@@ -145,7 +145,7 @@ gnome_vfs_get_file_info_uri_cancellable (GnomeVFSURI *uri,
 
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
-	result = uri->method->get_file_info (uri, info, options, meta_list,
+	result = uri->method->get_file_info (uri->method, uri, info, options, meta_list,
 					     context);
 
 	gnome_vfs_free_string_list (meta_list);
@@ -188,7 +188,7 @@ gnome_vfs_make_directory_for_uri_cancellable (GnomeVFSURI *uri,
 	if (uri->method->make_directory == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	result = uri->method->make_directory (uri, perm, context);
+	result = uri->method->make_directory (uri->method, uri, perm, context);
 	return result;
 }
 
@@ -203,7 +203,7 @@ gnome_vfs_remove_directory_from_uri_cancellable (GnomeVFSURI *uri,
 	if (uri->method->remove_directory == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	result = uri->method->remove_directory (uri, context);
+	result = uri->method->remove_directory (uri->method, uri, context);
 	return result;
 }
 
@@ -216,7 +216,7 @@ gnome_vfs_unlink_from_uri_cancellable (GnomeVFSURI *uri,
 	if (uri->method->unlink == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	return uri->method->unlink (uri, context);
+	return uri->method->unlink (uri->method, uri, context);
 }
 
 static gboolean
@@ -246,7 +246,7 @@ gnome_vfs_move_uri_cancellable (GnomeVFSURI *old,
 	if (old->method->move == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	return old->method->move (old, new, force_replace, context);
+	return old->method->move (old->method, old, new, force_replace, context);
 }
 
 GnomeVFSResult
@@ -269,7 +269,7 @@ gnome_vfs_check_same_fs_uris_cancellable (GnomeVFSURI *a,
 		return GNOME_VFS_OK;
 	}
 
-	return a->method->check_same_fs (a, b, same_fs_return, context);
+	return a->method->check_same_fs (a->method, a, b, same_fs_return, context);
 }
 
 GnomeVFSResult
@@ -281,5 +281,5 @@ gnome_vfs_set_file_info_cancellable (GnomeVFSURI *a,
 	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (info != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	return a->method->set_file_info (a, info, mask, context);
+	return a->method->set_file_info (a->method, a, info, mask, context);
 }

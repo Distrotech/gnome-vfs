@@ -285,7 +285,7 @@ gnome_vfs_get_file_info (const gchar *text_uri,
 	}
 
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
-	result = uri->method->get_file_info (uri, info, options, meta_list,
+	result = uri->method->get_file_info (uri->method, uri, info, options, meta_list,
 					     NULL);
 
 	gnome_vfs_free_string_list (meta_list);

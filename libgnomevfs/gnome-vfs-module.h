@@ -30,7 +30,7 @@
 #define GNOME_VFS_MODULE_INIT     "vfs_module_init"
 #define GNOME_VFS_MODULE_SHUTDOWN "vfs_module_shutdown"
 
-extern GnomeVFSMethod *vfs_module_init     (void);
-extern void            vfs_module_shutdown (GnomeVFSMethod *);
+extern GnomeVFSMethod *vfs_module_init     (const char *method_name, const char *args);
+extern void            vfs_module_shutdown (GnomeVFSMethod *method);
 
 #endif /* _GNOME_VFS_MODULE_H */

@@ -1,3 +1,15 @@
+2000-02-02  Elliot Lee  <sopwith@redhat.com>
+
+	* libgnomevfs/gnome-vfs-method.c: Pass method_name and config options to the module.
+	* libgnomevfs/gnome-vfs-private-types.h: Pass GnomeVFSMethod
+	pointer as first arg to all method implementation routines.
+	* libgnomevfs/*.c, modules/*.c: Reflect above changes.
+	* libgnomevfs/gnome-vfs-configuration.[ch]: Parse and return
+	module arguments from config file. Fix miscellaneous bugs.
+	* modules/translate-method.c, modules/Makefile.am: Implement a
+	'URI translation' module that just translates URIs according to configuration options, then passes them
+	on to the real module.
+
 2000-02-01  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs-corba/gnome-vfs-slave-notify.c:

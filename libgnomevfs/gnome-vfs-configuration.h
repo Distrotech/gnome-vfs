@@ -29,6 +29,6 @@
 void         gnome_vfs_configuration_add_directory   (const char *dir);
 gboolean     gnome_vfs_configuration_init            (void);
 void         gnome_vfs_configuration_uninit          (void);
-const gchar *gnome_vfs_configuration_get_module_path (const gchar *method_name);
+const gchar *gnome_vfs_configuration_get_module_path (const gchar *method_name, const char ** args);
 
 #endif /* _GNOME_VFS_CONFIGURATION_H */

@@ -38,7 +38,8 @@ file_handle_destroy (FileHandle *handle)
 }
 
 static GnomeVFSResult
-do_open (GnomeVFSMethodHandle **method_handle,
+do_open (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
 	 GnomeVFSOpenMode mode,
 	 GnomeVFSContext *context)
@@ -65,8 +66,9 @@ do_open (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-do_close (GnomeVFSMethodHandle *method_handle,
-	 GnomeVFSContext *context)
+do_close (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
+	  GnomeVFSContext *context)
 {
 	FileHandle *file_handle;
 
@@ -81,7 +83,8 @@ do_close (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult
-do_read (GnomeVFSMethodHandle *method_handle,
+do_read (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read,
@@ -105,6 +108,7 @@ do_read (GnomeVFSMethodHandle *method_handle,
 	}
 }
 
+#if 0
 static void
 set_mime_type (GnomeVFSFileInfo *info,
 	       const gchar *full_name,
@@ -139,9 +143,11 @@ set_mime_type (GnomeVFSFileInfo *info,
 
 	info->mime_type = g_strdup (mime_type);
 }
+#endif
 
 static GnomeVFSResult
-do_get_file_info (GnomeVFSURI *uri,
+do_get_file_info (GnomeVFSMethod *method,
+		  GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
 		  const GList *meta_keys,
@@ -156,7 +162,8 @@ do_get_file_info (GnomeVFSURI *uri,
 }
 
 static GnomeVFSResult
-do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
+do_get_file_info_from_handle (GnomeVFSMethod *method,
+			      GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
 			      GnomeVFSFileInfoOptions options,
 			      const GList *meta_keys,
@@ -171,7 +178,8 @@ do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 }
 
 static gboolean
-is_local(const GnomeVFSURI *uri)
+is_local(GnomeVFSMethod *method,
+	 const GnomeVFSURI *uri)
 {
   return TRUE;
 }
@@ -200,7 +208,7 @@ static GnomeVFSMethod method = {
 };
 
 GnomeVFSMethod *
-vfs_module_init (void)
+vfs_module_init (const char *method_name, const char *args)
 {
 	return &method;
 }
