@@ -10,22 +10,23 @@
 # kostas:66 messages, 07Jan2003,updated translation for Gnome2.1x
 # kostas:80 messages, 03Sep2003,updated translation for Gnome2.4x
 # kostas: messages, 120 messages 02Nov2003,updated translation for Gnome2.6
+# kostas:203 messages 16Dec2003
 # Spiros Papadimitriou <spapadim+@cs.cmu.edu>, 2000.
 # Simos Xenitellis <simos@teiath.gr>, 2000-2001.
-# Kostas Papadimas <pkst@gnome.org>, 2003
+# Kostas Papadimas <pkst@gnome.org>,2002,2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"POT-Creation-Date: 2003-12-08 10:44+0100\n"
-"PO-Revision-Date: 2003-11-03 00:00+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-16 11:51+0200\n"
+"PO-Revision-Date: 2003-12-16 14:10+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
-"X-Generator: KBabel 1.0\n"
+"X-Generator: KBabel 1.0.2\n"
 
 #: daemon/gnome-vfs-daemon.c:553
 msgid "Could not initialize Bonobo"
@@ -35,9 +36,9 @@ msgstr "Αδύνατη η αρχικοποίηση του Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Αδυαμία αρχικοποίησης gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:178
+#: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "Τόμος ISO 9660"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -71,142 +72,138 @@ msgstr "Το αρχείο ρυθμίσεων `%s' δε βρέθηκε: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "Τόμος AFFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "Τόμος Δικτύου AFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Τόμος αυτόματου εντοπισμού"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "Οδηγός CD-ROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
-#, fuzzy
 msgid "CD Digital Audio"
-msgstr "Ψηφιακός Ήχος Dolby"
+msgstr "Ψηφιακός Ήχος CD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Τόμος Συσκευής Υλικού"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Τόμος Linux Ext2"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Τόμος Linux Ext3"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "Τόμος MSDOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr ""
+msgstr "Τόμος MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr ""
+msgstr "Τόμος CDROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Τόμος CDROM HSFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr ""
+msgstr "Τόμος JFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
-#, fuzzy
 msgid "Windows NT Volume"
-msgstr "Εικονίδιο Windows"
+msgstr "Τόμος Windows NT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr ""
+msgstr "Τόμος Συστήματος"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
-#, fuzzy
 msgid "Memory Volume"
-msgstr "αποτύπωση μνήμης"
+msgstr "Τόμος  μνήμης"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr ""
+msgstr "Τόμος Minix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "Τόμος Δικτύου NFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr ""
+msgstr "Τόμος Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "Τόμος Linux ReiserFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Κοινόχρηστος τόμος Windows"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "Τόμος SuperMount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr ""
+msgstr "Τόμος DVD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Τόμος Solaris/BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Τόμος Solaris UDFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "Τόμος Solaris PCFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "Τόμος Enhanced DOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "Τόμος VFAT Windows"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr ""
+msgstr "Τόμος Xenix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "Τόμος Linux XFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "Τόμος XIAFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
-#, fuzzy
 msgid "Unknown"
-msgstr "Άγνωστο σφάλμα"
+msgstr "Άγνωστος"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
@@ -471,7 +468,7 @@ msgid "Unknown error"
 msgstr "Άγνωστο σφάλμα"
 
 #: libgnomevfs/gnome-vfs-utils.c:84
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u byte"
@@ -500,91 +497,92 @@ msgstr " (μή έγκυρο Unicode)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
 msgid "Floppy"
-msgstr ""
+msgstr "Δισκέτα"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
-#, fuzzy
 msgid "Zip Drive"
-msgstr "αρχείο zip"
+msgstr "Οδηγός zip"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
 msgid "Memory Stick"
-msgstr ""
+msgstr "Stick Μνήμης"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
 msgid "Camera"
-msgstr ""
+msgstr "Φωτογραφική μηχανή"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
 msgid "Root Volume"
-msgstr ""
+msgstr "Τόμος Root"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
 msgid "Audio CD"
-msgstr ""
+msgstr "Audio CD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Άγνωστο σφάλμα"
+msgstr "Άγνωστος τόμος"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
 msgid "Network server"
-msgstr ""
+msgstr "Εξυπηρετητής δικτύου"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανόν να μην υπάρχει δισκέτα στον οδηγό."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "Αδυναμία προσάρτησης του τόμου. Πιθανόν να μην υπάρχει μέσο στην συσκευή."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανώς η δισκέτα να είναι σε μορφή που δεν μπορεί "
+"να προσαρτηθεί."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Αδυναμία προσάρτησης του τόμου. Πιθανώς ο τόμος να είναι σε μορφή που δεν μπορεί "
+"να προσαρτηθεί."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Αδυναμία προσάρτησης του επιλεγμένου οδηγού δισκέτας"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Αδυναμία προσάρτησης του επιλεγμένου τόμου."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Αδυναμία αποπροσάρτησης του επιλεγμένου τόμου."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:220
 #: libgnomevfs/gnome-vfs-volume-ops.c:252
 msgid "Failed to start command"
-msgstr ""
+msgstr "Αποτυχία έναρξης εντολής"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:245
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Αδυναμία αποβολής μέσου"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Αδυναμία αποπροσάρτησης συνδεδεμένου εξυπηρετητή"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -638,16 +636,15 @@ msgstr "Παράθυρα"
 
 #: modules/computer-method.c:521
 msgid "Network"
-msgstr ""
+msgstr "Δίκτυο"
 
 #: modules/computer-method.c:539
 msgid "Home"
 msgstr "Αρχή"
 
 #: modules/computer-method.c:557
-#, fuzzy
 msgid "Filesystem"
-msgstr "Αρχεία"
+msgstr "Σύστημα αρχείων"
 
 #: modules/file-method.c:382
 #, c-format
@@ -720,126 +717,119 @@ msgstr "Η παράμετρος exec για χρήση στην εξ ορισμ�
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "How to handle callto URLs"
-msgstr ""
+msgstr "Τρόπος χειρισμού callto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "How to handle ghelp URLs"
-msgstr ""
+msgstr "Τρόπος χειρισμού ghelp URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "How to handle h323 URLs"
-msgstr ""
+msgstr "Τρόπος χειρισμού  h323 URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "How to handle http URLs"
-msgstr ""
+msgstr "Τρόπος χειρισμού http URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "How to handle https URLs"
-msgstr ""
+msgstr "Τρόπος χειρισμού https URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "How to handle info URLs"
-msgstr "Δεν υπάρχει χειριστής για σχήμα URL"
+msgstr "Τρόπος χειρισμού info URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "How to handle mailto URLs"
-msgstr ""
+msgstr "Τρόπος χειρισμού mailto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "How to handle man URLs"
-msgstr ""
+msgstr "Τρόπος χειρισμού man URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "How to handle trash URLs"
-msgstr "Δεν υπάρχει χειριστής για σχήμα URL"
+msgstr "Τρόπος χειρισμού trash URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Εκτέλεση προγράμματος σε τερματικό"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Set to true to have a program specified in command handle callto URLs"
-msgstr ""
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για τον χειρισμό callto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Set to true to have a program specified in command handle h323 URLs"
-msgstr ""
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για τον χειρισμό h323 URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Set to true to have a program specified in command handle http URLs"
-msgstr ""
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για τον χειρισμό http URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "Set to true to have a program specified in command handle https URLs"
-msgstr ""
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για τον χειρισμό https URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid "Set to true to have a program specified in command handle mailto URLs"
-msgstr ""
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για τον χειρισμό mailto URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in programs/ghelp handle ghelp URLs"
-msgstr ""
+msgid "Set to true to have a program specified in programs/ghelp handle ghelp URLs"
+msgstr "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο Προγράμματα/ghelp για τον χειρισμό ghelp URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in programs/info handle info URLs"
-msgstr ""
+msgid "Set to true to have a program specified in programs/info handle info URLs"
+msgstr "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο προγράμματα/info για τον χειρισμό info URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "Set to true to have a program specified in programs/man handle man URLs"
-msgstr ""
+msgstr "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο προγράμματα/man για τον χειρισμό man URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in trash/command handle trash URLs"
-msgstr ""
+msgid "Set to true to have a program specified in trash/command handle trash URLs"
+msgstr "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο απορρίματα/εντολή για τον χειρισμό trash URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "True if the program to handle this URL should be run in a terminal"
-msgstr ""
+msgstr "True αν το πρόγραμμα για το χειρισμό του URL θα πρέπει να εκτελείται σε τερματικό"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "URL handler for callto uris"
-msgstr ""
+msgstr "Χειριστής URL για callto uris"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid "URL handler for ghelp pages"
-msgstr "Δεν υπάρχει χειριστής για σχήμα URL"
+msgstr "Χειριστής URL για σελίδες ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "URL handler for h323 uris"
-msgstr ""
+msgstr "Χειριστής URL για h323 uris"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "URL handler for http uris"
-msgstr ""
+msgstr "Χειριστής URL για http uris"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "URL handler for https uris"
-msgstr ""
+msgstr "Χειριστής URL για https uris"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "URL handler for info pages"
-msgstr ""
+msgstr "Χειριστής URL για σελίδες info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "URL handler for mailto uris"
-msgstr ""
+msgstr "Χειριστής URL για mailto uris"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "URL handler for man pages"
-msgstr ""
+msgstr "Χειριστής URL για σελίδες man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid "URL handler for trash pages"
-msgstr "Δεν υπάρχει χειριστής για σχήμα URL"
+msgstr "Χειριστής URL για σελίδες trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate connections to the proxy server"
@@ -851,8 +841,7 @@ msgstr "Αυτόματη ρύθμιση URL ρύθμισης διαμεσολα�
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing http over the internet."
-msgstr ""
-"Ενεργοποιεί τις ρυθμίσεις διαμεσολαβητή κατά την πρόσβαση http στο διαδίκτυο"
+msgstr "Ενεργοποιεί τις ρυθμίσεις διαμεσολαβητή κατά την πρόσβαση http στο διαδίκτυο"
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -926,8 +915,7 @@ msgstr "Το όνομα συστήματος μέσω του οποίου γίν
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy secure http through."
-msgstr ""
-"Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση ασφαλούς http. "
+msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση ασφαλούς http. "
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy socks through."
@@ -2087,3 +2075,4 @@ msgstr "όνομα χρήστη http"
 
 #~ msgid "Mime Type"
 #~ msgstr "Είδος Mime"
+
