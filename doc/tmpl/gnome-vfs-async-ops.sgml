@@ -114,15 +114,11 @@ POSIX-style file operations that run outside your main loop
 @callback_data: 
 
 
-<!-- ##### STRUCT GnomeVFSFindDirectoryResult ##### -->
+<!-- ##### TYPEDEF GnomeVFSFindDirectoryResult ##### -->
 <para>
 
 </para>
 
-@uri: 
-@result: 
-@reserved1: 
-@reserved2: 
 
 <!-- ##### FUNCTION gnome_vfs_async_set_job_limit ##### -->
 <para>

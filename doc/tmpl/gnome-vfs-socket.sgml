@@ -49,15 +49,11 @@ gnome-vfs-socket
 @cancellation: 
 
 
-<!-- ##### STRUCT GnomeVFSSocketImpl ##### -->
+<!-- ##### TYPEDEF GnomeVFSSocketImpl ##### -->
 <para>
 
 </para>
 
-@read: 
-@write: 
-@close: 
-@set_timeout: 
 
 <!-- ##### FUNCTION gnome_vfs_socket_new ##### -->
 <para>

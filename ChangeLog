@@ -1,3 +1,19 @@
+Mon Jul 26 15:28:24 2004  Jonathan Blandford  <jrb@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	(_gnome_vfs_mime_info_mark_user_mime_dir_dirty),
+	(_gnome_vfs_mime_info_mark_gnome_mime_dir_dirty),
+	(gnome_vfs_mime_set_registered_type_key),
+	(gnome_vfs_get_registered_mime_types),
+	(gnome_vfs_mime_registered_mime_type_delete),
+	(gnome_vfs_mime_registered_mime_type_list_free),
+	(gnome_vfs_mime_get_extensions_pretty_string),
+	(gnome_vfs_mime_get_extensions_string),
+	(gnome_vfs_mime_get_key_list), (gnome_vfs_mime_keys_list_free),
+	(gnome_vfs_mime_reset), (gnome_vfs_mime_set_extensions_list):
+	* libgnomevfs/gnome-vfs-mime-info.h: Put back symbols
+	inadvertantly removed.
+
 2004-07-25  Anders Carlsson  <andersca@gnome.org>
 
 	* libgnomevfs/gnome-vfs-hal-mounts.h:

@@ -50,15 +50,7 @@ GnomeVFSResult	 gnome_vfs_mime_set_registered_type_key 	(const char *mime_type,
 	/* forces a reload of the config files */
 void       	 gnome_vfs_mime_info_reload   	  	 	(void);
 
-#if 0
-	
-	/* functions to freeze/thaw the internal hash tables to 
-	   avoid writing them back to disk everytime you modify 
-	   them through the _set_ functions, or accidentally
-	   reloading them from disk during an edit.
-	 */
-
-
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
 
 	/* functions which access to the .keys files */
 GnomeVFSResult   gnome_vfs_mime_set_value                       (const char *mime_type, 
@@ -76,7 +68,7 @@ GnomeVFSResult   gnome_vfs_mime_set_extensions_list             (const char *mim
 								 const char *extensions_list);
 void             gnome_vfs_mime_registered_mime_type_delete     (const char *mime_type);
 void             gnome_vfs_mime_reset                           (void);
-#endif
+#endif /* GNOME_VFS_DISABLE_DEPRECATED */
 
 G_END_DECLS
 

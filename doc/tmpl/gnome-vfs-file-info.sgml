@@ -107,14 +107,11 @@ stores information about files, GnomeVFS equivalent of stat
 @GNOME_VFS_SET_FILE_INFO_OWNER: 
 @GNOME_VFS_SET_FILE_INFO_TIME: 
 
-<!-- ##### STRUCT GnomeVFSGetFileInfoResult ##### -->
+<!-- ##### TYPEDEF GnomeVFSGetFileInfoResult ##### -->
 <para>
 
 </para>
 
-@uri: 
-@result: 
-@file_info: 
 
 <!-- ##### TYPEDEF GnomeVFSInodeNumber ##### -->
 <para>
@@ -122,35 +119,11 @@ stores information about files, GnomeVFS equivalent of stat
 </para>
 
 
-<!-- ##### STRUCT GnomeVFSFileInfo ##### -->
+<!-- ##### TYPEDEF GnomeVFSFileInfo ##### -->
 <para>
 
 </para>
 
-@name: 
-@valid_fields: 
-@type: 
-@permissions: 
-@flags: 
-@device: 
-@inode: 
-@link_count: 
-@uid: 
-@gid: 
-@size: 
-@block_count: 
-@io_block_size: 
-@atime: 
-@mtime: 
-@ctime: 
-@symlink_name: 
-@mime_type: 
-@refcount: 
-@reserved1: 
-@reserved2: 
-@reserved3: 
-@reserved4: 
-@reserved5: 
 
 <!-- ##### MACRO GNOME_VFS_FILE_INFO_SYMLINK ##### -->
 <para>

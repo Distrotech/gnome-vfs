@@ -1,3 +1,4 @@
+
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 
 /* gnome-vfs-mime-info.c - GNOME mime-information implementation.
@@ -33,6 +34,7 @@
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-private-utils.h"
+#include <libgnomevfs/gnome-vfs-i18n.h>
 
 #include <libxml/xmlreader.h>
 #include <dirent.h>
@@ -625,14 +627,14 @@ gnome_vfs_mime_extensions_list_free (GList *list)
 void
 _gnome_vfs_mime_info_mark_user_mime_dir_dirty (void)
 {
-	/* FIXME: noop */
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
 }
 
 
 void
 _gnome_vfs_mime_info_mark_gnome_mime_dir_dirty (void)
 {
-	/* FIXME: noop */
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
 }
 
 GnomeVFSResult
@@ -640,8 +642,74 @@ gnome_vfs_mime_set_registered_type_key (const char *mime_type,
 					const char *key,
 					const char *value)
 {
-	/* FIXME: noop */
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
- 
+GList *
+gnome_vfs_get_registered_mime_types (void)
+{
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
+	return NULL;
+}
+
+
+void
+gnome_vfs_mime_registered_mime_type_delete (const char *mime_type)
+{
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
+}
+
+void
+gnome_vfs_mime_registered_mime_type_list_free (GList *list)
+{
+	if (list == NULL) {
+		return;
+	}
+
+	g_list_foreach (list, (GFunc) g_free, NULL);
+	g_list_free (list);
+}
+
+char *
+gnome_vfs_mime_get_extensions_pretty_string (const char *mime_type)
+{
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
+	return NULL;
+}
+
+char *
+gnome_vfs_mime_get_extensions_string (const char *mime_type)
+{
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
+	return NULL;
+}
+
+GList *
+gnome_vfs_mime_get_key_list (const char *mime_type)
+{
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
+	return NULL;
+}
+
+void
+gnome_vfs_mime_keys_list_free (GList *mime_type_list)
+{
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
+	g_list_free (mime_type_list);
+}
+
+
+void
+gnome_vfs_mime_reset (void)
+{
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
+}
+
+GnomeVFSResult
+gnome_vfs_mime_set_extensions_list (const char *mime_type,
+				    const char *extensions_list)
+{
+	g_warning (_("Deprecated function.  User modifications to the MIME database are no longer supported."));
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+}

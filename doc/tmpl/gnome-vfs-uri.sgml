@@ -15,19 +15,11 @@ Functions for manipulating URIs
 
 </para>
 
-<!-- ##### STRUCT GnomeVFSToplevelURI ##### -->
+<!-- ##### TYPEDEF GnomeVFSToplevelURI ##### -->
 <para>
 
 </para>
 
-@uri: 
-@host_name: 
-@host_port: 
-@user_name: 
-@password: 
-@urn: 
-@reserved1: 
-@reserved2: 
 
 <!-- ##### ENUM GnomeVFSURIHideOptions ##### -->
 <para>
