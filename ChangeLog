@@ -1,3 +1,8 @@
+2000-08-07  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.c: Do not escape `?', `&', or `=' in
+	paths, to avoid messing up http queries.
+
 2000-08-08  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/http-method.c: (process_propfind_propstat),
