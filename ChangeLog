@@ -1,3 +1,8 @@
+2003-03-14  Dave Camp  <dave@ximian.com>
+
+	* libgnomevfs/gnome-vfs-job.c (_gnome_vfs_job_destroy_notify_result): 
+	Remove the unnecessary g_warning here.
+
 2003-03-14  Joël Brich <joel.brich@laposte.net>
 
 	* configure.in: Added "eo" to ALL_LINGUAS.

@@ -419,12 +419,7 @@ _gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 		break;
 
 	case GNOME_VFS_OP_MODULE_CALLBACK:
-		/* TODO: This seems to happen when you get multiple auth dialogs in at least the
-		 * smb backend. I don't know why, if its right, or what to do here if it is right.
-		 * But if we warn like this at least we won't die in the assert_not_reached, and it
-		 * seems to work. This needs more looking into.
-		 */
-		g_warning ("_gnome_vfs_job_destroy_notify_result(): GNOME_VFS_OP_MODULE_CALLBACK notify_result destroyed. Is this supposed to happen?\n"); 
+		/* the MODULE_CALLBACK result is allocated on the stack */
 		break;
 	
 	default:
