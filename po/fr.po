@@ -9,10 +9,10 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.5.5\n"
+"Project-Id-Version: gnome-vfs 2.5.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-01-17 11:39+0100\n"
+"POT-Creation-Date: 2004-02-13 11:27+0100\n"
+"PO-Revision-Date: 2004-02-13 11:22+0100\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,29 @@ msgstr "Impossible d'initialiser Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Impossible d'initialiser gnome-vfs"
 
+#: gtk/gtkfilesystemgnomevfs.c:1457
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "L'enregistrement du signet a échoué (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "Impossible d'obtenir les informations du fichier « %s » : %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "L'ouverture du fichier « %s » a échoué : %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr ""
+"L'ouverture de l'image « %s » a échoué : la raison est inconnue, "
+"probablement un fichier d'image corrompu"
+
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
 msgstr "Volume ISO 9660"
@@ -40,7 +63,7 @@ msgstr "%s:%d contient des caractères NUL."
 #: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d ne contient pas de nom de méthode."
+msgstr "%s:%d ne contient aucun nom de méthodes."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
 #, c-format
@@ -55,7 +78,7 @@ msgstr "%s:%d a des options inconnues %s."
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d ne contient pas de nom de module."
+msgstr "%s:%d ne contient pas de nom de modules."
 
 #: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
@@ -443,7 +466,7 @@ msgstr "Aucune action par défaut associée"
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr "Aucun gestionnaire pour ce type d'URL"
+msgstr "Aucun gestionnaire pour ce type d'URLs"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
@@ -525,7 +548,6 @@ msgstr "Volume inconnu"
 msgid "Network server"
 msgstr "Serveur réseau"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
@@ -533,7 +555,6 @@ msgstr ""
 "Impossible de monter le lecteur de disquettes. Il n'y a probablement pas de "
 "disquette dans le lecteur"
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
@@ -631,15 +652,15 @@ msgstr "Outils"
 msgid "Windows"
 msgstr "Fenêtres"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "Réseau"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "Dossier personnel"
 
-#: modules/computer-method.c:557
+#: modules/computer-method.c:561
 msgid "Filesystem"
 msgstr "Système de fichiers"
 
@@ -647,6 +668,10 @@ msgstr "Système de fichiers"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d inconnue"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Réseau Windows"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -719,11 +744,11 @@ msgstr "Gestionnaire d'URLs H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr "Gestionnaire d'URL HTTP"
+msgstr "Gestionnaire d'URLs HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr "Gestionnaire d'URL HTTPS"
+msgstr "Gestionnaire d'URLs HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "Handle H323 URLs"
@@ -834,27 +859,27 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr "Gestionnaire d'URL callto"
+msgstr "Gestionnaire d'URLs callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr "Gestionnaire d'URL ghelp"
+msgstr "Gestionnaire d'URLs ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr "Gestionnaire d'URL info"
+msgstr "Gestionnaire d'URLs info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "mailto URL handler"
-msgstr "Gestionnaire d'URL mailto"
+msgstr "Gestionnaire d'URLs mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr "Gestionnaire d'URL man"
+msgstr "Gestionnaire d'URLs man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr "Gestionnaire d'URL trash"
+msgstr "Gestionnaire d'URLs trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1016,10 +1041,6 @@ msgstr ""
 "Nom d'utilisateur à fournir comme authentification lors de l'utilisation du "
 "proxy HTTP."
 
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "Réseau Windows"
-
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
 msgstr "Groupe de travail SMB"
@@ -1027,14 +1048,6 @@ msgstr "Groupe de travail SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Le groupe de travail Windows auquel appartient l'utilisateur"
-
-#, fuzzy
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "Aucun gestionnaire pour ce type d'URL"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "Aucun gestionnaire pour ce type d'URL"
 
 #~ msgid "1 byte"
 #~ msgstr "1 octet"
