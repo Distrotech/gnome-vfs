@@ -106,7 +106,16 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 	file_info->permissions
 		= statptr->st_mode & (S_IRUSR | S_IWUSR | S_IXUSR
 				      | S_IRGRP | S_IWGRP | S_IXGRP
-				      | S_IROTH | S_IWOTH | S_IXOTH);
+				      | S_IROTH | S_IWOTH | S_IXOTH
+				      | S_ISUID | S_ISGID);
+
+#ifdef S_ISVTX
+	GNOME_VFS_FILE_INFO_SET_STICKY (file_info,
+					(statptr->st_mode & S_ISVTX) ? TRUE
+					                             : FALSE);
+#else
+	GNOME_VFS_FILE_INFO_SET_STICKY (file_info, FALSE);
+#endif
 
 	file_info->device = statptr->st_dev;
 	file_info->inode = statptr->st_ino;
@@ -123,21 +132,6 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 	file_info->atime = statptr->st_atime;
 	file_info->ctime = statptr->st_ctime;
 	file_info->mtime = statptr->st_mtime;
-
-	GNOME_VFS_FILE_INFO_SET_SUID (file_info,
-				      (statptr->st_mode & S_ISUID) ? TRUE
-				                                   : FALSE);
-	GNOME_VFS_FILE_INFO_SET_SGID (file_info,
-				      (statptr->st_mode & S_ISGID) ? TRUE
-				                                   : FALSE);
-
-#ifdef S_ISVTX
-	GNOME_VFS_FILE_INFO_SET_STICKY (file_info,
-					(statptr->st_mode & S_ISVTX) ? TRUE
-					                             : FALSE);
-#else
-	GNOME_VFS_FILE_INFO_SET_STICKY (file_info, FALSE);
-#endif
 
 	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE |
 	  GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS | GNOME_VFS_FILE_INFO_FIELDS_FLAGS |

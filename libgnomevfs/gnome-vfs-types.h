@@ -104,6 +104,9 @@ typedef enum GnomeVFSFileType GnomeVFSFileType;
 /* File permissions.  These are the same as the Unix ones, but we wrap them
    into a nicer VFS-like enum.  */
 enum GnomeVFSFilePermissions {
+	GNOME_VFS_PERM_SUID = S_ISUID,
+	GNOME_VFS_PERM_SGID = S_ISGID,	
+	GNOME_VFS_PERM_STICKY = 01000,	/* S_ISVTX not defined on all systems */
 	GNOME_VFS_PERM_USER_READ = S_IRUSR,
 	GNOME_VFS_PERM_USER_WRITE = S_IWUSR,
 	GNOME_VFS_PERM_USER_EXEC = S_IXUSR,
@@ -215,12 +218,6 @@ enum GnomeVFSFileFlags {
 	GNOME_VFS_FILE_FLAGS_SYMLINK = 1 << 0,
 	/* Whether the file is on a local file system.  */
 	GNOME_VFS_FILE_FLAGS_LOCAL = 1 << 1,
-	/* Whether the file has the SUID bit set.  */
-	GNOME_VFS_FILE_FLAGS_SUID = 1 << 2,
-	/* Whether the file has the SGID bit set.  */
-	GNOME_VFS_FILE_FLAGS_SGID = 1 << 3,
-	/* Whether the file has the sticky bit set.  */
-	GNOME_VFS_FILE_FLAGS_STICKY = 1 << 4
 };
 typedef enum GnomeVFSFileFlags GnomeVFSFileFlags;
 

@@ -33,15 +33,6 @@
 #define GNOME_VFS_FILE_INFO_LOCAL(info)			\
 	((info)->flags & GNOME_VFS_FILE_FLAGS_LOCAL)
 
-#define GNOME_VFS_FILE_INFO_SUID(info)			\
-	((info)->flags & GNOME_VFS_FILE_FLAGS_SUID)
-
-#define GNOME_VFS_FILE_INFO_SGID(info)			\
-	((info)->flags & GNOME_VFS_FILE_FLAGS_SGID)
-
-#define GNOME_VFS_FILE_INFO_STICKY(info)		\
-	((info)->flags & GNOME_VFS_FILE_FLAGS_STICKY)
-
 
 #define GNOME_VFS_FILE_INFO_SET_SYMLINK(info, value)			\
 	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_SYMLINK)	\
@@ -51,17 +42,29 @@
 	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_LOCAL)		\
 	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_LOCAL))
 
+
+
+#define GNOME_VFS_FILE_INFO_SUID(info)			\
+	((info)->permissions & GNOME_VFS_PERM_SUID)
+
+#define GNOME_VFS_FILE_INFO_SGID(info)			\
+	((info)->permissions & GNOME_VFS_PERM_SGID)
+
+#define GNOME_VFS_FILE_INFO_STICKY(info)		\
+	((info)->permissions & GNOME_VFS_PERM_STICKY)
+
+
 #define GNOME_VFS_FILE_INFO_SET_SUID(info, value)		\
-	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_SUID)	\
-	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_SUID))
+	(value ? ((info)->permissions |= GNOME_VFS_PERM_SUID)	\
+	       : ((info)->permissions &= ~GNOME_VFS_PERM_SUID))
 
 #define GNOME_VFS_FILE_INFO_SET_SGID(info, value)		\
-	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_SGID)	\
-	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_SGID))
+	(value ? ((info)->permissions |= GNOME_VFS_PERM_SGID)	\
+	       : ((info)->permissions &= ~GNOME_VFS_PERM_SGID))
 
 #define GNOME_VFS_FILE_INFO_SET_STICKY(info, value)			\
-	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_STICKY)		\
-	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_STICKY))
+	(value ? ((info)->permissions |= GNOME_VFS_PERM_STICKY)		\
+	       : ((info)->permissions &= ~GNOME_VFS_PERM_STICKY))
 
 
 
