@@ -26,6 +26,7 @@
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <libgnomevfs/gnome-vfs-mime-magic.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
+#include <libgnomevfs/gnome-vfs-mime-info.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 
@@ -66,16 +67,20 @@ main (int argc, char **argv)
 	gboolean magic_only;
 	gboolean suffix_only;
 	gboolean dump_table;
+	gboolean speed_test;
 	const char *result;
 	const char *table_path;
 	char *uri_string;
 	char *curdir;
 	char *path;
 	struct stat tmp;
+	GTimer *timer;
+	int i;
 
 	table_path = NULL;
 	magic_only = FALSE;
 	dump_table = FALSE;
+	speed_test = FALSE;
 	suffix_only = FALSE;
 	
 	if (!gnome_vfs_init ()) {
@@ -98,6 +103,8 @@ main (int argc, char **argv)
 			suffix_only = TRUE;
 		} else if (strcmp (*argv, "--dumpTable") == 0) {
 			dump_table = TRUE;
+		} else if (strcmp (*argv, "--speedTest") == 0) {
+			speed_test = TRUE;
 		} else if (strcmp (*argv, "--loadTable") == 0) {
 			++argv;
 			if (!*argv) {
@@ -121,6 +128,16 @@ main (int argc, char **argv)
 
 	if (dump_table) {
 		gnome_vfs_mime_dump_magic_table ();
+	}
+
+	if (speed_test) {
+		timer = g_timer_new ();
+		g_timer_start (timer);
+		for (i = 0; i < 100; i++) {
+			gnome_vfs_mime_info_reload ();
+		}
+		fprintf (stderr, "Mime reload took %g(ms)\n",
+			 g_timer_elapsed (timer, NULL) * 10.0);
 	}
 
 	for (; *argv != NULL; argv++) {
