@@ -1,3 +1,10 @@
+2000-05-19  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_new): Commented out
+	Rebecca's memory leak fix for now; it looks correct to me but it
+	must be triggering some other bug because it makes Nautilus do
+	strange things for me and others.
+
 2000-05-18  Rebecca Schulman <rebecka@eazel.com>
 	* libgnomevfs/gnome-vfs-uri.c
 	Fixed a memory leak in gnome_vfs_uri_new.  (method_string

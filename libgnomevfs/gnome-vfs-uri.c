@@ -296,13 +296,15 @@ gnome_vfs_uri_new (const gchar *text_uri)
 		gnome_vfs_context_unref (context);
 		if (new_uri_string != NULL) {
 			toplevel->urn = g_strdup (text_uri);
+			/* FIXME: freeing here causes all sorts of havoc, not sure why. */
+			/* g_free (method_string); */
 			p = get_method_string (new_uri_string, &method_string);
 		}
 	}
 	
 	method = gnome_vfs_method_get (method_string);
 	g_free (method_string);
-				
+
 	if (method == NULL) {
 		gnome_vfs_uri_unref (uri);
 		g_free (new_uri_string);
