@@ -1,0 +1,12 @@
+The following functions must be implemented by every module:
+
+( this may be seen by searching gnome-vfs-ops.c, gnome-vfs-uri.c
+  for method-> ).
+
+	open,
+	create,
+	get_file_info,
+	is_local.
+
+( Checks for the required functions will probably eventualy be located in
+  gnome_vfs_method.c:gnome_vfs_method_get, as sanity checks )

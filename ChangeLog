@@ -1,5 +1,9 @@
 1999-08-25  Michael Meeks  <michael@imaginator.com>
 
+	* doc/writing-modules.txt: Started.
+
+1999-08-25  Michael Meeks  <michael@imaginator.com>
+
 	* http-method.[ch]: First pass at implementing.
 	
 	* modules/file-method.c: Add NULL RenameFunc to methods, and
