@@ -1,3 +1,21 @@
+2000-06-26  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c: (gnome_vfs_mime_magic_parse):
+	Fix patterns with mask to apply the mask on the patterns -- this makes
+	it allows the masked out bits to be anything.
+
+	* test/test-mime.c: (main):
+	Remove a bogus setting of the suffix_only flag.
+	
+	* data/mime/gnome-vfs-mime-magic:
+	Fixed the mime type for compress files.
+	Remove ambiguous magic rule for application/x-font-tex-tfm that was
+	misfiring on .Xauthority files.
+	Change photoshop rules to use the rule with a mask.
+
+	* data/mime/gnome-vfs.keys:
+	Change application/x-patch to text/x-patch
+
 Mon Jun 26 16:04:48 2000  George Lebl <jirka@5z.com>
 
 	* configure.in:  Test the sizes of int, long, and long long to figure

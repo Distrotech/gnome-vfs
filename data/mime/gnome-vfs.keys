@@ -194,9 +194,6 @@ application/x-object-file
 	description=object code
 	icon-filename=gnome-objectfile.png
 
-application/x-patch
-	description=source code patch
-
 application/x-perl
 	description=Perl script
 
@@ -677,6 +674,9 @@ text/x-java
 
 text/x-makefile
 	description=makefile
+
+text/x-patch
+	description=source code patch
 
 text/x-perl
 	description=Perl script

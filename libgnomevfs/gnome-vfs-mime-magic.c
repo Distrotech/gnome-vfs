@@ -261,6 +261,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 	int bsize = 0;
 	char parsed_line [256];
 	const char *scanner;
+	int index;
 
 	infile_name = filename;
 
@@ -397,6 +398,13 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 				continue;
 			}
 			newent.use_mask = TRUE;
+			
+			for (index = 0; index < newent.pattern_length; index++) {
+				/* Apply the mask to the pattern itself so we don't have to
+				 * do it each time we compare it with the tested bytes.
+				 */
+				newent.pattern[index] &= newent.mask[index];
+			}
 		} else {
 			newent.use_mask = FALSE;
 		}

@@ -67,7 +67,6 @@ main (int argc, char **argv)
 		} else if (strcmp (*argv, "--dumpTable") == 0) {
 			dump_table = TRUE;
 		} else if (strcmp (*argv, "--loadTable") == 0) {
-			suffix_only = TRUE;
 			++argv;
 			if (!*argv) {
 				fprintf (stderr, "Table path expected.\n");
