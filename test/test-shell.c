@@ -119,9 +119,14 @@ do_ls (void)
 				postchar = prechar;
 		}
 		printf ("%c%s%c", prechar, info->name, postchar);
+
 		if (strlen (info->name) < 40) {
-			int i;
-			for (i = 0; i < 40 - strlen (info->name); i++)
+			int i, pad;
+
+			pad = 40 - strlen (info->name) -
+				(prechar?1:0) - (postchar?1:0);
+
+			for (i = 0; i < pad; i++)
 				printf (" ");
 		}
 		if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SIZE) {
@@ -138,11 +143,11 @@ static void
 list_commands ()
 {
 	printf ("command can be one or all of:\n");
-	printf (" * ls:                   list files\n");
-	printf (" * cd:                   enter storage\n");
-	printf (" * cat     <stream name>:   dump text file to console\n");
-	printf (" * dump    <stream name>:   dump binary file to console\n");
-	printf (" * quit,exit,bye:        exit\n");
+	printf (" * ls:                     list files\n");
+	printf (" * cd:                     enter storage\n");
+	printf (" * cat,type <stream name>: dump text file to console\n");
+	printf (" * dump     <stream name>: dump binary file to console\n");
+	printf (" * quit,exit,bye:          exit\n");
 }
 
 #if 0
@@ -249,7 +254,7 @@ do_cd (void)
 	p = arg_data [arg_cur++];
 
 	if (!p) {
-		printf ("Takes a directory argument\n");
+		fprintf (stderr, "Takes a directory argument\n");
 		return;
 	}
 
@@ -260,16 +265,17 @@ do_cd (void)
 
 		tmp = g_strsplit (cur_dir, "/", -1);
 		lp  = 0;
-		if (!tmp[lp])
+		if (!tmp [lp])
 			return;
 
-		while (tmp[lp+1]) {
-			g_string_sprintfa (newp, "%s/", tmp[lp]);
+		while (tmp [lp + 1]) {
+			g_string_sprintfa (newp, "%s/", tmp [lp]);
 			lp++;
 		}
 		g_free (cur_dir);
 		cur_dir = newp->str;
 		g_string_free (newp, FALSE);
+	} else if (!g_strcasecmp (p, ".")) {
 	} else {
 		char *newpath;
 
@@ -289,19 +295,21 @@ do_cd (void)
 		if (validate_path (newpath)) {
 			g_free (cur_dir);
 			cur_dir = newpath;
-		}
+		} else
+			fprintf (stderr, "Invalid path %s", newpath);
 	}
 }
 
 static char *
 get_fname (void)
 {
-	char *fname, *f;
+	char *fname, *reg_name, *f;
 
 	if (!arg_data [arg_cur])
 		return NULL;
 	
-	fname = arg_data [arg_cur++];
+	reg_name = arg_data [arg_cur++];
+	fname = get_regexp_name (reg_name, cur_dir, FALSE);
 
 	if (cur_dir)
 		f = g_strconcat (cur_dir, fname, NULL);
@@ -335,7 +343,13 @@ do_cat (void)
 		if (bytes_read == 0)
 			break;
 		
-		data [1024] = '\0';
+		if (bytes_read >  0 &&
+		    bytes_read <= 1024)
+			data [bytes_read] = '\0';
+		else {
+			data [1024] = '\0';
+			g_warning ("Wierd error from vfs_read");
+		}
 		fprintf (stdout, "%s", data);
 	}
 
@@ -404,9 +418,59 @@ do_cp (void)
 }
 
 static void
+ms_ole_dump (guint8 const *ptr, guint32 len, guint32 offset)
+{
+	guint32 lp,lp2;
+	guint32 off;
+
+	for (lp = 0;lp<(len+15)/16;lp++) {
+		printf ("%8x | ", lp*16 + offset);
+		for (lp2=0;lp2<16;lp2++) {
+			off = lp2 + (lp<<4);
+			off<len?printf("%2x ", ptr[off]):printf("XX ");
+		}
+		printf ("| ");
+		for (lp2=0;lp2<16;lp2++) {
+			off = lp2 + (lp<<4);
+			printf ("%c", off<len?(ptr[off]>'!'&&ptr[off]<127?ptr[off]:'.'):'*');
+		}
+		printf ("\n");
+	}
+}
+
+static void
 do_dump (void)
 {
-	g_warning ("Implement dump");
+	char *from;
+	GnomeVFSHandle *from_handle;
+	GnomeVFSResult  result;
+	guint32         offset;
+
+	from = get_fname ();
+
+	result = gnome_vfs_open (&from_handle, from, GNOME_VFS_OPEN_READ);
+	if (show_if_error (result, "open ", from))
+		return;
+
+	for (offset = 0; 1; ) {
+		GnomeVFSFileSize bytes_read;
+		guint8           data [1024];
+		
+		result = gnome_vfs_read (from_handle, data, 1024, &bytes_read);
+		if (show_if_error (result, "read ", from))
+			return;
+
+		if (bytes_read == 0)
+			break;
+
+		ms_ole_dump (data, bytes_read, offset);
+		
+		offset += bytes_read;
+	}
+
+	result = gnome_vfs_close (from_handle);
+	if (show_if_error (result, "close ", from))
+		return;
 }
 
 int
@@ -444,7 +508,7 @@ main (int argc, char **argv)
 		char *ptr;
 
 		if (interact) {
-			fprintf (stdout,"> ");
+			fprintf (stdout,"%s > ", cur_dir);
 			fflush (stdout);
 			fgets (buffer, 1023, stdin);
 		}

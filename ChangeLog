@@ -1,5 +1,10 @@
 2000-06-22  Michael Meeks  <michael@helixcode.com>
 
+	* test/test-shell.c (get_fname): use regexps.
+	(ms_ole_dump, do_dump): implement.
+
+2000-06-22  Michael Meeks  <michael@helixcode.com>
+
 	* test/Makefile.am: Add test-shell setup
 
 	* test/test-shell.c: Small lightweight gnome-vfs shell for testing.
