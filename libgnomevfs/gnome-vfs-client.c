@@ -229,6 +229,7 @@ _gnome_vfs_get_client_poa (void)
 GnomeVFSClient *
 _gnome_vfs_get_client (void)
 {
+	PortableServer_POA idle_poa;
 	/* DAEMON-TODO: Policies and "allow" isn't actually implemented in ORBit2 yet */
 	
 	G_LOCK (the_client);
@@ -243,8 +244,12 @@ _gnome_vfs_get_client (void)
 		client_policy = ORBit_policy_new (ORBIT_TYPE_POLICY_EX,
 						  "allow", client_poa,
 						  NULL);
-		
-		the_client = g_object_new (GNOME_TYPE_VFS_CLIENT, NULL);
+
+		/* All Client callback happens in idle */
+		idle_poa = bonobo_poa_get_threaded (ORBIT_THREAD_HINT_ALL_AT_IDLE);
+		the_client = g_object_new (GNOME_TYPE_VFS_CLIENT,
+					   "poa", idle_poa);
+		CORBA_Object_release ((CORBA_Object) idle_poa, NULL);
 	}
 	G_UNLOCK (the_client);
 	
