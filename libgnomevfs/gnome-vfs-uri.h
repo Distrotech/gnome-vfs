@@ -62,6 +62,7 @@ gboolean	     gnome_vfs_uri_is_parent	 (const GnomeVFSURI *parent,
 						  const GnomeVFSURI *item,
 						  gboolean recursive);
 				  
+const gchar 	    *gnome_vfs_uri_get_path           (const GnomeVFSURI *uri);
 const gchar 	    *gnome_vfs_uri_get_basename       (const GnomeVFSURI *uri);
 gchar 		    *gnome_vfs_uri_extract_dirname    (const GnomeVFSURI *uri);
 gchar		    *gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri);

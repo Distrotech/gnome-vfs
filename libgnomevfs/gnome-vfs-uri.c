@@ -1098,6 +1098,26 @@ gnome_vfs_uri_is_parent (const GnomeVFSURI *possible_parent,
 
 
 /**
+ * gnome_vfs_uri_get_path:
+ * @uri: A GnomeVFSURI
+ * 
+ * Retrieve full path name for @uri.
+ * 
+ * Return value: A pointer to the full path name in @uri.  Notice that the
+ * pointer points to the name store in @uri, so the name returned must not
+ * be modified nor freed.
+ **/
+const gchar *
+gnome_vfs_uri_get_path (const GnomeVFSURI *uri)
+{
+	/* FIXME bugzilla.eazel.com 1472 */
+	/* this is based on the assumtion that uri->text won't contain the
+	 * query string.
+	 */
+	return uri->text;
+}
+
+/**
  * gnome_vfs_uri_get_basename:
  * @uri: A GnomeVFSURI
  * 
@@ -1110,6 +1130,7 @@ gnome_vfs_uri_is_parent (const GnomeVFSURI *possible_parent,
 const gchar *
 gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
 {
+	/* FIXME bugzilla.eazel.com 1472: query parts of URIs aren't handled */
 	gchar *p;
 
 	g_return_val_if_fail (uri != NULL, NULL);
