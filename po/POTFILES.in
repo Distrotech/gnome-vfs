@@ -6,7 +6,6 @@ libgnomevfs/gnome-vfs-parse-ls.c
 libgnomevfs/gnome-vfs-result.c
 libgnomevfs/gnome-vfs-utils.c
 libgnomevfs-pthread/gnome-vfs-job.c
-modules/efs-method.c
 modules/file-method.c
 modules/ftp-method.c
 modules/http-method.c
