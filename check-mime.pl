@@ -76,6 +76,17 @@ while (<KEYS>)
 	  }
 	$described{$type} = 1;
       }
+    elsif (/^\s*icon_filename\s*=\s*i-regular/)
+      {
+        if ($type eq "")
+          {
+            print "- i-regular specified explicitly at line $.\n";
+          }
+        else
+          {
+            print "- i-regular specified for $type at line $.\n";
+          }
+      }
     elsif (/^\s*$/)
       {
 	$previous_type = $type if $type;

@@ -1,3 +1,7 @@
+2001-01-22  Darin Adler  <darin@eazel.com>
+
+	* check-mime.pl: Added check for i-regular.
+
 2001-01-22  John Sullivan  <sullivan@eazel.com>
 
 	Fixed bug 5845 (web bookmarks change to generic document
