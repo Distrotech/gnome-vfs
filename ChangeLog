@@ -1,3 +1,19 @@
+2000-01-27  John Sullivan  <sullivan@eazel.com>
+
+	Moved, renamed, and made public GnomeVFSFileInfo-comparing routines.
+
+	* libgnomevfs/gnome-vfs-file-info.c:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	(gnome_vfs_file_info_compare_for_sort),
+	(gnome_vfs_file_info_compare_for_sort_reversed):
+	New functions, moved & renamed from static functions in
+	gnome-vfs-directory-list.c. Changed third parameter from
+	constgpointer to const GnomeVFSDirectorySortRule * for clarity.
+
+	* libgnomevfs/gnome-vfs-directory-list.c:
+	(compare_for_sort), (compare_for_sort_reversed): Removed.
+	(gnome_vfs_directory_list_sort): Updated to reflect name change.
+
 2000-01-18  Ettore Perazzoli  <ettore@helixcode.com>
 
 	* libgnomevfs/gnome-vfs-directory.c (directory_visit_internal):

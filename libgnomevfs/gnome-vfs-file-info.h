@@ -90,6 +90,16 @@ const gchar	*gnome_vfs_file_info_get_mime_type
 void		 gnome_vfs_file_info_copy 	(GnomeVFSFileInfo *dest,
 						 const GnomeVFSFileInfo *src);
 
+gint		 gnome_vfs_file_info_compare_for_sort
+						(const GnomeVFSFileInfo *a,
+						 const GnomeVFSFileInfo *b,
+						 const GnomeVFSDirectoryFilterType *sort_rules);
+
+gint		 gnome_vfs_file_info_compare_for_sort_reversed
+						(const GnomeVFSFileInfo *a,
+						 const GnomeVFSFileInfo *b,
+						 const GnomeVFSDirectoryFilterType *sort_rules);
+
 /* FIXME this should go AWAY!  */
 #define gnome_vfs_file_info_destroy gnome_vfs_file_info_unref
 

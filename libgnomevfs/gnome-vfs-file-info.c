@@ -386,3 +386,85 @@ gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 		}
 	}
 }
+
+
+gint
+gnome_vfs_file_info_compare_for_sort (const GnomeVFSFileInfo *a,
+				      const GnomeVFSFileInfo *b,
+				      const GnomeVFSDirectorySortRule *sort_rules)
+{
+	guint i;
+	gint retval;
+
+	for (i = 0; sort_rules[i] != GNOME_VFS_DIRECTORY_SORT_NONE; i++) {
+		switch (sort_rules[i]) {
+		case GNOME_VFS_DIRECTORY_SORT_DIRECTORYFIRST:
+			if (a->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+				if (b->type != GNOME_VFS_FILE_TYPE_DIRECTORY)
+					return -1;
+			} else if (b->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+				return +1;
+			}
+			break;
+		case GNOME_VFS_DIRECTORY_SORT_BYNAME:
+			retval = strcmp (a->name, b->name);
+			if (retval != 0)
+				return retval;
+			break;
+		case GNOME_VFS_DIRECTORY_SORT_BYNAME_IGNORECASE:
+			retval = g_strcasecmp (a->name, b->name);
+			if (retval != 0)
+				return retval;
+			break;
+		case GNOME_VFS_DIRECTORY_SORT_BYSIZE:
+			if (a->size != b->size)
+				return (a->size < b->size) ? -1 : +1;
+			break;
+		case GNOME_VFS_DIRECTORY_SORT_BYBLOCKCOUNT:
+			if (a->block_count != b->block_count)
+				return ((a->block_count < b->block_count)
+					? -1 : +1);
+			break;
+		case GNOME_VFS_DIRECTORY_SORT_BYATIME:
+			if (a->atime != b->atime)
+				return (a->atime < b->atime) ? -1 : +1;
+			break;
+		case GNOME_VFS_DIRECTORY_SORT_BYMTIME:
+			if (a->mtime != b->mtime)
+				return (a->mtime < b->mtime) ? -1 : +1;
+			break;
+		case GNOME_VFS_DIRECTORY_SORT_BYCTIME:
+			if (a->ctime != b->ctime)
+				return (a->ctime < b->ctime) ? -1 : +1;
+			break;
+		case GNOME_VFS_DIRECTORY_SORT_BYMIMETYPE:
+			/* Directories (e.g.) don't have mime types, so
+			 * we have to check the NULL case.
+			 */
+			if (a->mime_type != b->mime_type)
+			{
+				if (a->mime_type == NULL)
+					return -1;
+				if (b->mime_type == NULL)
+					return +1;
+				retval = g_strcasecmp (a->mime_type, b->mime_type);
+				if (retval != 0)
+					return retval;
+			}
+			break;
+		default:
+			g_warning (_("Unknown sort rule %d"), sort_rules[i]);
+		}
+	}
+
+	return 0;
+}
+
+gint
+gnome_vfs_file_info_compare_for_sort_reversed (const GnomeVFSFileInfo *a,
+					       const GnomeVFSFileInfo *b,
+					       const GnomeVFSDirectorySortRule *sort_rules)
+{
+	return 0 - gnome_vfs_file_info_compare_for_sort (a, b, sort_rules);
+}
+
