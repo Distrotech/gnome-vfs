@@ -1,3 +1,9 @@
+2003-08-19  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/file-method.c (fam_do_iter_unlocked):
+	Don't do anything if fam_connection is NULL.
+	Should fix bug #120211
+
 2003-08-13  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-utils.c:

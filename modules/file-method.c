@@ -2117,7 +2117,7 @@ do_set_file_info (GnomeVFSMethod *method,
 static gboolean
 fam_do_iter_unlocked (void)
 {
-	while (FAMPending(fam_connection)) {
+	while (fam_connection != NULL && FAMPending(fam_connection)) {
 		FAMEvent ev;
 		FileMonitorHandle *handle;
 		gboolean cancelled;
