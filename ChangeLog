@@ -1,3 +1,10 @@
+2000-10-03  Mike Fleming  <mfleming@eazel.com>
+
+	* data/mime/gnome-vfs.keys:
+	bugzilla.eazel.com 2854
+	Icon view is now the default Nautilus view for viewing DAV-enabled
+	HTTP directories
+
 2000-10-03  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* configure.in:
