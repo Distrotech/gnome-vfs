@@ -1,12 +1,12 @@
 # gnome-vfs ko.po
-# Copyright (C) 2000 Free Software Foundation, Inc.
+# Copyright (C) 2000,2002 Free Software Foundation, Inc.
 # Young-Ho Cha <ganadist@dacome.co.kr>, 2000.
-#
+# Changwoo Ryu <cwryu@debian.org>, 2002.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs-1\n"
 "POT-Creation-Date: 2002-02-11 13:53-0800\n"
-"PO-Revision-Date: 2001-04-25 04:38+0900\n"
+"PO-Revision-Date: 2002-03-09 01:14+0900\n"
 "Last-Translator: Young-Ho, Cha <ganadist@chollian.net>\n"
 "Language-Team: korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -263,9 +263,8 @@ msgstr "쓰이지 않는 서비스의 자료 요청"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
-#, fuzzy
 msgid "Protocol error"
-msgstr "오류 없음"
+msgstr "프로토콜 오류"
 
 #: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
@@ -304,29 +303,30 @@ msgstr "알수없는 GnomeVFSSeekPosition %d"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "%s에서 올바른 설정 파일을 찾을 수 없습니다\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "다른 위치를 지정하려면 %s 환경 변수를 사용하십시오.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "표준 모니커 팩토리"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "파일 모니커 익스텐더"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
+#, fuzzy
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "일반 그놈 VFS 모니커"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 #, fuzzy
 msgid "generic file moniker"
-msgstr "일반 오류"
+msgstr "일반 파일 모니커"
 
 #~ msgid "3D Studio image"
 #~ msgstr "3D Studio 이미지"
@@ -374,10 +374,6 @@ msgstr "일반 오류"
 #~ msgstr "C쉘 스크립트"
 
 #~ msgid "C source code"
-#~ msgstr "C 소스코드"
-
-#, fuzzy
-#~ msgid "C source code header"
 #~ msgstr "C 소스코드"
 
 #~ msgid "C++ source code"
