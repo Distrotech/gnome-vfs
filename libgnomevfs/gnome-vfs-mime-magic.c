@@ -807,7 +807,8 @@ _gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 			return TRUE;
 		}
 #endif /* defined(HAVE_WCTYPE_H) && defined (HAVE_MBRTOWC) */
-	} 
+	}
+	return FALSE;
 }
 
 static int bitrates[2][15] = {

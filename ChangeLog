@@ -1,3 +1,13 @@
+2003-06-04  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump version
+	
+	* libgnomevfs/gnome-vfs-mime-magic.c
+	(_gnome_vfs_sniff_buffer_looks_like_text):
+	Make sure to fallback to returning FALSE.
+
 2003-05-26  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

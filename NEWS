@@ -1,3 +1,11 @@
+gnome-vfs 2.3.3:
+	* Bugs fixed:
+	       + Fix potential crashes for uris with %2F in them
+	       + solaris libnsl/libsocket build fixes
+	       + Fix fam threadsafe issue
+	       + Handle fam connection going away better
+	       + Fixed doc building
+
 gnome-vfs 2.3.2
         * Features:
 	       + ipv6 uris supported
