@@ -1111,6 +1111,7 @@ gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application)
 	if (application != NULL) {
 		g_free (application->name);
 		g_free (application->command);
+		g_free (application->id);
 		g_free (application);
 	}
 }
@@ -1119,9 +1120,16 @@ gnome_vfs_mime_application_free (GnomeVFSMimeApplication *application)
 void
 gnome_vfs_mime_action_free (GnomeVFSMimeAction *action) 
 {
-	/* FIXME bugzilla.eazel.com 1157: Work to do here?
-	 * Do we own the component or application pointer?
-	 */
+	switch (action->action_type) {
+	case GNOME_VFS_MIME_ACTION_TYPE_APPLICATION:
+		gnome_vfs_mime_application_free (action->action.application);
+	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
+		CORBA_free (action->action.component);
+	default:
+		g_assert_not_reached ();
+	}
+
+	g_free (action);
 }
 
 void
@@ -1277,7 +1285,6 @@ OAF_ServerInfo__copy (OAF_ServerInfo *orig)
 	retval->username= CORBA_string_dup (orig->username);
 	retval->hostname= CORBA_string_dup (orig->hostname);
 	retval->domain= CORBA_string_dup (orig->domain);
-	retval->attrs = orig->attrs;
 
 	retval->attrs._maximum = orig->attrs._maximum;
 	retval->attrs._length = orig->attrs._length;
@@ -1292,6 +1299,7 @@ OAF_ServerInfo__copy (OAF_ServerInfo *orig)
 		
 		}
 	}
+	retval->attrs._release = FALSE;
 
 	return retval;
 }
@@ -1371,18 +1379,18 @@ get_user_level (void)
 
 	user_level = gconf_get_string (engine, "/apps/nautilus/user_level", NULL);
 
-	/* FIXME bugzilla.eazel.com 1152: Nautilus just asserts this.
-	 * But it doesn't seem reasonable to assert something that's the result
-	 * of reading from a file.
-	 */
 	if (user_level == NULL) {
 		user_level = g_strdup ("novice");
 	}
 
-	/* FIXME bugzilla.eazel.com 1151: 
-	 * Is it OK to just return a string without checking if
-	 * it's one of the 3 expected values?
-	 */
+	/* If value is invalid, assume "novice". */
+	if (strcmp (user_level, "novice") != 0 &&
+	    strcmp (user_level, "intermediate") != 0 &&
+	    strcmp (user_level, "hacker") != 0) {
+		g_free (user_level);
+		user_level = g_strdup ("novice");
+	}
+
 	return user_level;
 }
 
