@@ -386,12 +386,12 @@ msgstr "Ne morem inicializirati GNOME::VFS:Slave::Notify"
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Ne morem resetirati GNOME::VFS::Slave %s -- izjema %s"
+msgstr "Ne morem ponastaviti GNOME::VFS::Slave %s -- izjema %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Ne morem resetirati GNOME::VFS::Slave (IOR neznan) -- izjema %s"
+msgstr "Ne morem ponastaviti GNOME::VFS::Slave (IOR neznan) -- izjema %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
