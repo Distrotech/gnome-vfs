@@ -1,6 +1,6 @@
 /* newftp-method.c - VFS modules for FTP
 
-   Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2000 Ian McKellar
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -28,8 +28,8 @@
 
 /* TODO 
  * Make koobera.math.uic.edu work
+ * Make NetPresenz work (eg: uniserver.uwa.edu.au)
  * FtpUri / FtpConnectionUri refcounting or something.
- * Check for connection timeouts, etc...
  * Create Bugzilla entry relating to cacheing
  * Fix do_get_file_info_from_handle
  */
@@ -202,6 +202,7 @@ static GnomeVFSResult read_response_line(FtpConnection *conn, gchar **line) {
 		//ftp_debug(conn,g_strdup_printf("read `%s'", buf));
 		conn->response_buffer = g_string_append(conn->response_buffer, buf);
 		if(result != GNOME_VFS_OK) {
+			g_warning("Error `%s' during read\n", gnome_vfs_result_to_string(result));
 			g_free(buf);
 			return result;
 		}
@@ -491,12 +492,13 @@ gint ftp_connection_uri_equal(gconstpointer c, gconstpointer d) {
 				 conn1->port == conn2->port;
 }
 
+#if 0
+/* some debugging routines */
 static gchar *ftp_connection_uri_to_string(FtpConnectionUri *furi) {
 	return g_strdup_printf("ftp://%s@%s:%s:%d", furi->user, furi->pass, 
 			furi->host, furi->port);
 }
 
-#if 0
 static gchar *ftp_uri_to_string(FtpUri *furi) {
 	gchar *cu = ftp_connection_uri_to_string(&furi->connection_uri),
 		*u = g_strdup_printf("%s%s", cu, furi->path);
@@ -505,10 +507,11 @@ static gchar *ftp_uri_to_string(FtpUri *furi) {
 }
 #endif
 
-static FtpConnection *ftp_connection_aquire(FtpUri *furi) {
+static GnomeVFSResult ftp_connection_aquire(FtpUri *furi, FtpConnection **connection) {
 	FtpConnectionUri *uri = &(furi->connection_uri);
 	GList *possible_connections;
 	FtpConnection *conn = NULL;
+	GnomeVFSResult result = GNOME_VFS_OK;
 
 	G_LOCK(spare_connections);
 
@@ -526,25 +529,22 @@ static FtpConnection *ftp_connection_aquire(FtpUri *furi) {
 		ftp_debug(conn, strdup("found a connection"));
 		possible_connections = g_list_remove(possible_connections, conn);
 		g_hash_table_insert(spare_connections, uri, possible_connections);
-	} else {
-		GnomeVFSResult result = ftp_connection_create(&conn, uri);
 
+		/* make sure connection hasn't timed out */
+		result = do_basic_command(conn, "PWD");
 		if(result != GNOME_VFS_OK) {
-			gchar *suri = ftp_connection_uri_to_string(uri);
-			g_warning("ftp_connection_create(\"%s\") = \"%s\"", suri,
-					gnome_vfs_result_to_string(result));
-			g_free(suri);
+			result = ftp_connection_create(&conn, uri);
 		}
-		ftp_debug(conn, strdup("created a connection"));
-	}
 
-	/* make sure connection hasn't timed out */
+	} else {
+		result = ftp_connection_create(&conn, uri);
+	}
 
 	G_UNLOCK(spare_connections);
 
-	ftp_debug(conn, g_strdup_printf("aquired [len = %d]", g_list_length(possible_connections)));
+	*connection = conn;
 
-	return conn;
+	return result;
 }
 
 
@@ -610,8 +610,11 @@ static GnomeVFSResult do_open	   (GnomeVFSMethod *method,
 
 	FtpUri *furi = ftp_uri_create(uri);
 	GnomeVFSResult result;
-	FtpConnection *conn = ftp_connection_aquire(furi);
+	FtpConnection *conn;
 	gchar *command;
+
+	result = ftp_connection_aquire(furi, &conn);
+	if(result != GNOME_VFS_OK) return result;
 
 	if(mode == GNOME_VFS_OPEN_READ) {
 		command = g_strdup_printf("RETR %s", furi->path);
@@ -730,12 +733,18 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys,
 					 GnomeVFSContext *context) {
-	FtpConnection *conn = ftp_connection_aquire(furi);
+	FtpConnection *conn;
 	/* FIXME - take away LS syntax */
 	gchar *command = g_strdup_printf("LIST -ld %s", furi->path);
 	GnomeVFSResult result;
 	GnomeVFSFileSize num_bytes = 1024, bytes_read;
 	gchar buffer[num_bytes+1];
+
+	result = ftp_connection_aquire(furi, &conn);
+	if(result != GNOME_VFS_OK) {
+		g_free(command);
+		return result;
+	}
 
 	//g_print("do_get_file_info()\n");
 
@@ -814,12 +823,19 @@ static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 					 GnomeVFSContext *context) {
 	/* FIXME implement filters */
 	FtpUri *furi = ftp_uri_create(uri);
-	FtpConnection *conn = ftp_connection_aquire(furi);
+	FtpConnection *conn;
 	gchar *command = g_strdup_printf("LIST %s", furi->path);
 	GnomeVFSResult result;
 	GnomeVFSFileSize num_bytes = 1024, bytes_read;
 	gchar buffer[num_bytes+1];
 	GString *dirlist = g_string_new("");
+
+	result = ftp_connection_aquire(furi, &conn);
+	if(result != GNOME_VFS_OK) {
+		g_free(command);
+		g_string_free(dirlist, TRUE);
+		return result;
+	}
 
 	//g_print("do_open_directory()\n");
 
@@ -932,9 +948,17 @@ do_make_directory (GnomeVFSMethod *method,
 {
 	/* FIXME care about perms */
 	FtpUri *furi = ftp_uri_create(uri);
-	FtpConnection *conn = ftp_connection_aquire(furi);
+	FtpConnection *conn;
 	gchar *command = g_strdup_printf("MKD %s", furi->path);
-	GnomeVFSResult result = do_basic_command(conn, command);
+	GnomeVFSResult result;
+
+	result = ftp_connection_aquire(furi, &conn);
+	if(result != GNOME_VFS_OK) {
+		g_free(command);
+		return result;
+	}
+
+	result = do_basic_command(conn, command);
 
 	g_free(command);
 	ftp_connection_release(conn);
@@ -949,9 +973,17 @@ do_remove_directory (GnomeVFSMethod *method,
 		     GnomeVFSContext *context)
 {
 	FtpUri *furi = ftp_uri_create(uri);
-	FtpConnection *conn = ftp_connection_aquire(furi);
+	FtpConnection *conn;
 	gchar *command = g_strdup_printf("RMD %s", furi->path);
-	GnomeVFSResult result = do_basic_command(conn, command);
+	GnomeVFSResult result;
+
+	result = ftp_connection_aquire(furi, &conn);
+	if(result != GNOME_VFS_OK) {
+		g_free(command);
+		return result;
+	}
+
+	result = do_basic_command(conn, command);
 
 	g_free(command);
 	ftp_connection_release(conn);
@@ -970,9 +1002,16 @@ do_move (GnomeVFSMethod *method,
 	FtpUri *furi1 = ftp_uri_create(old_uri);
 	FtpUri *furi2 = ftp_uri_create(new_uri);
 	if(ftp_connection_uri_equal(&furi1->connection_uri, &furi2->connection_uri)) {
-		FtpConnection *conn = ftp_connection_aquire(furi1);
+		FtpConnection *conn;
 		gchar *command = g_strdup_printf("RNFR %s", furi1->path);
-		GnomeVFSResult result = do_basic_command(conn, command);
+		GnomeVFSResult result;
+
+		result = ftp_connection_aquire(furi1, &conn);
+		if(result != GNOME_VFS_OK) {
+			g_free(command);
+			return result;
+		}
+		result = do_basic_command(conn, command);
 		
 		if(result == GNOME_VFS_OK) {
 			g_free(command);
@@ -995,10 +1034,17 @@ do_unlink (GnomeVFSMethod *method,
 	   GnomeVFSContext *context)
 {
 	FtpUri *furi = ftp_uri_create(uri);
-	FtpConnection *conn = ftp_connection_aquire(furi);
+	FtpConnection *conn;
 	gchar *command = g_strdup_printf("DELE %s", furi->path);
-	GnomeVFSResult result = do_basic_command(conn, command);
+	GnomeVFSResult result;
 
+	result = ftp_connection_aquire(furi, &conn);
+	if(result != GNOME_VFS_OK) {
+		g_free(command);
+		return result;
+	}
+
+	result = do_basic_command(conn, command);
 	g_free(command);
 	ftp_connection_release(conn);
 
