@@ -5,13 +5,943 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-02-22 08:35+0200\n"
+"POT-Creation-Date: 2001-02-22 12:43+0200\n"
 "PO-Revision-Date: 1999-12-28 13:44+0200\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=koi8-u\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: data/mime/gnome-vfs.keys.in.h:1
+msgid "3D Studio image"
+msgstr "зображення 3D Studio"
+
+#: data/mime/gnome-vfs.keys.in.h:2
+msgid "AIFC audio"
+msgstr "ауд╕о AIFC"
+
+#: data/mime/gnome-vfs.keys.in.h:3
+msgid "AIFF audio"
+msgstr "ауд╕о AIFF"
+
+#: data/mime/gnome-vfs.keys.in.h:4
+msgid "ANIM animation"
+msgstr "ан╕мац╕я ANIM"
+
+#: data/mime/gnome-vfs.keys.in.h:5
+msgid "AVI video"
+msgstr "в╕део AVI"
+
+#: data/mime/gnome-vfs.keys.in.h:6
+msgid "AbiWord document"
+msgstr "документ AbiWord"
+
+#: data/mime/gnome-vfs.keys.in.h:7
+msgid "Adobe FrameMaker font"
+msgstr "шрифт Adobe FrameMaker"
+
+#: data/mime/gnome-vfs.keys.in.h:8
+msgid "Adobe font metrics"
+msgstr "метрики шрифта Adobe"
+
+#: data/mime/gnome-vfs.keys.in.h:9
+msgid "Andrew Toolkit inset"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:10
+msgid "ApplixWare Graphics image"
+msgstr "зображення ApplixWare Graphics"
+
+#: data/mime/gnome-vfs.keys.in.h:11
+msgid "Applixware Words document"
+msgstr "документ Applixware Words"
+
+#: data/mime/gnome-vfs.keys.in.h:12
+msgid "Applixware spreadsheet"
+msgstr "таблиця Applixware"
+
+#: data/mime/gnome-vfs.keys.in.h:13
+msgid "AutoCAD image"
+msgstr "зображення AutoCAD"
+
+#: data/mime/gnome-vfs.keys.in.h:14
+msgid "BCPIO document"
+msgstr "документ BCPIO"
+
+#: data/mime/gnome-vfs.keys.in.h:15
+msgid "BDF font"
+msgstr "шрифт BDF"
+
+#: data/mime/gnome-vfs.keys.in.h:16
+msgid "C shell script"
+msgstr "скрипт C Shell"
+
+#: data/mime/gnome-vfs.keys.in.h:17
+msgid "C source code"
+msgstr "вих╕дний код C"
+
+#: data/mime/gnome-vfs.keys.in.h:18
+msgid "C++ source code"
+msgstr "вих╕дний код C++"
+
+#: data/mime/gnome-vfs.keys.in.h:19
+msgid "CGI program"
+msgstr "програма CGI"
+
+#: data/mime/gnome-vfs.keys.in.h:20
+msgid "CGM image"
+msgstr "зображення CGM"
+
+#: data/mime/gnome-vfs.keys.in.h:21
+msgid "CMU raster image"
+msgstr "растрове зображення CMU"
+
+#: data/mime/gnome-vfs.keys.in.h:22
+msgid "CPIO archive"
+msgstr "арх╕в CPIO"
+
+#: data/mime/gnome-vfs.keys.in.h:23
+msgid "CPIO archive (gzip-compressed)"
+msgstr "арх╕в CPIO (стиснутий gzip)"
+
+#: data/mime/gnome-vfs.keys.in.h:24
+msgid "DCL script"
+msgstr "скрипт DCL"
+
+#: data/mime/gnome-vfs.keys.in.h:25
+msgid "DOS font"
+msgstr "шрифт DOS"
+
+#: data/mime/gnome-vfs.keys.in.h:26
+msgid "DOS/Windows program"
+msgstr "програма DOS/Windows"
+
+#: data/mime/gnome-vfs.keys.in.h:27
+msgid "DSSSL document"
+msgstr "документ DSSSL"
+
+#: data/mime/gnome-vfs.keys.in.h:28
+msgid "DXF vector graphic"
+msgstr "векторна граф╕ка DXF"
+
+#: data/mime/gnome-vfs.keys.in.h:29
+msgid "Debian package"
+msgstr "пакет Debian"
+
+#: data/mime/gnome-vfs.keys.in.h:30
+msgid "Dia diagram"
+msgstr "д╕аграма Dia"
+
+#: data/mime/gnome-vfs.keys.in.h:31
+msgid "Emacs Lisp source code"
+msgstr "вих╕дний код Emacs Lisp"
+
+#: data/mime/gnome-vfs.keys.in.h:32
+msgid "Enlightenment theme"
+msgstr "тема Enlightenment"
+
+#: data/mime/gnome-vfs.keys.in.h:33
+msgid "FLC animation"
+msgstr "ан╕мац╕я FLC"
+
+#: data/mime/gnome-vfs.keys.in.h:34
+msgid "FLI animation"
+msgstr "ан╕мац╕я FLI"
+
+#: data/mime/gnome-vfs.keys.in.h:35
+msgid "FastTracker II audio"
+msgstr "ауд╕о FastTracker II"
+
+#: data/mime/gnome-vfs.keys.in.h:36
+msgid "Fortran source code"
+msgstr "вих╕дний код Fortran"
+
+#: data/mime/gnome-vfs.keys.in.h:37
+msgid "FrameMaker interchange document"
+msgstr "обм╕нний документ FrameMaker"
+
+#: data/mime/gnome-vfs.keys.in.h:38
+msgid "G3 fax image"
+msgstr "факсове зображення G3"
+
+#: data/mime/gnome-vfs.keys.in.h:39
+msgid "GIF image"
+msgstr "зображення GIF"
+
+#: data/mime/gnome-vfs.keys.in.h:40
+msgid "GIMP document"
+msgstr "документ GIMP"
+
+#: data/mime/gnome-vfs.keys.in.h:41
+msgid "GMC link"
+msgstr "посилання GMC"
+
+#: data/mime/gnome-vfs.keys.in.h:42
+#, fuzzy
+msgid "GNOME application details"
+msgstr "Виправити список програм"
+
+#: data/mime/gnome-vfs.keys.in.h:43
+msgid "GNU mail message"
+msgstr "поштове пов╕домлення GNU"
+
+#: data/mime/gnome-vfs.keys.in.h:44
+msgid "GTK configuration"
+msgstr "конф╕╜урац╕я GTK"
+
+#: data/mime/gnome-vfs.keys.in.h:45
+msgid "Gnumeric spreadsheet"
+msgstr "таблиця Gnumeric"
+
+#: data/mime/gnome-vfs.keys.in.h:46
+msgid "HDF document"
+msgstr "документ HDF"
+
+#: data/mime/gnome-vfs.keys.in.h:47
+msgid "HTML page"
+msgstr "стор╕нка HTML"
+
+#: data/mime/gnome-vfs.keys.in.h:48
+msgid "IDL document"
+msgstr "документ IDL"
+
+#: data/mime/gnome-vfs.keys.in.h:49
+msgid "IEF image"
+msgstr "зображення IEF"
+
+#: data/mime/gnome-vfs.keys.in.h:50
+msgid "IFF image"
+msgstr "зображення IFF"
+
+#: data/mime/gnome-vfs.keys.in.h:51
+msgid "ILBM image"
+msgstr "зображення ILBM"
+
+#: data/mime/gnome-vfs.keys.in.h:52
+msgid "ISI video"
+msgstr "в╕део ISI"
+
+#: data/mime/gnome-vfs.keys.in.h:53
+msgid "Impulse Tracker audio"
+msgstr "ауд╕о Impulse Tracker"
+
+#: data/mime/gnome-vfs.keys.in.h:54
+msgid "JPEG image"
+msgstr "зображення JPEG"
+
+#: data/mime/gnome-vfs.keys.in.h:55
+msgid "Java byte code"
+msgstr "байт-код Java"
+
+#: data/mime/gnome-vfs.keys.in.h:56
+msgid "Java source code"
+msgstr "вих╕дний код Java"
+
+#: data/mime/gnome-vfs.keys.in.h:57
+#, fuzzy
+msgid "KDE application details"
+msgstr "Виправити список програм"
+
+#: data/mime/gnome-vfs.keys.in.h:58
+msgid "Korn shell script"
+msgstr "скрипт Korn Shell"
+
+#: data/mime/gnome-vfs.keys.in.h:59
+msgid "LHA archive"
+msgstr "арх╕в LHA"
+
+#: data/mime/gnome-vfs.keys.in.h:60
+msgid "LHARC archive"
+msgstr "арх╕в LHARC"
+
+#: data/mime/gnome-vfs.keys.in.h:61
+msgid "LIBGRX font"
+msgstr "шрифт LIBGRX"
+
+#: data/mime/gnome-vfs.keys.in.h:62
+msgid "LightWave object"
+msgstr "об'╓кт LightWave"
+
+#: data/mime/gnome-vfs.keys.in.h:63
+msgid "LightWave scene"
+msgstr "сцена LightWave"
+
+#: data/mime/gnome-vfs.keys.in.h:64
+msgid "Linux PSF console font"
+msgstr "консольний шрифт Linux PSF"
+
+#: data/mime/gnome-vfs.keys.in.h:65
+msgid "M3 audio URL"
+msgstr "ауд╕о URL M3"
+
+#: data/mime/gnome-vfs.keys.in.h:66
+msgid "MIDI audio"
+msgstr "ауд╕о MIDI"
+
+#: data/mime/gnome-vfs.keys.in.h:67
+msgid "MOD audio"
+msgstr "ауд╕о MOD"
+
+#: data/mime/gnome-vfs.keys.in.h:68
+msgid "MP3 audio"
+msgstr "ауд╕о MP3"
+
+#: data/mime/gnome-vfs.keys.in.h:69
+msgid "MP3 audio playlist"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:70
+msgid "MPEG video"
+msgstr "в╕део MPEG"
+
+#: data/mime/gnome-vfs.keys.in.h:71
+msgid "MS video"
+msgstr "в╕део MS"
+
+#: data/mime/gnome-vfs.keys.in.h:72
+msgid "Macintosh AppleDouble-encoded file"
+msgstr "файл закодований Macintosh AppleDouble"
+
+#: data/mime/gnome-vfs.keys.in.h:73
+msgid "Macintosh BinHex-encoded file"
+msgstr "файл закодований Macintosh BinHex"
+
+#: data/mime/gnome-vfs.keys.in.h:74
+msgid "Macintosh StuffIt archive"
+msgstr "арх╕в Macintosh StuffIt"
+
+#: data/mime/gnome-vfs.keys.in.h:75
+msgid "MathML document"
+msgstr "документ MathML"
+
+#: data/mime/gnome-vfs.keys.in.h:76
+msgid "Microsoft Excel document"
+msgstr "документ Microsoft Excel"
+
+#: data/mime/gnome-vfs.keys.in.h:77
+msgid "Microsoft PowerPoint document"
+msgstr "документ Microsoft PowerPoint"
+
+#: data/mime/gnome-vfs.keys.in.h:78
+msgid "Microsoft Word document"
+msgstr "документ Microsoft Word"
+
+#: data/mime/gnome-vfs.keys.in.h:79
+msgid "Microsoft video"
+msgstr "в╕део Microsoft"
+
+#: data/mime/gnome-vfs.keys.in.h:80
+msgid "Nautilus link"
+msgstr "посилання Nautilus"
+
+#: data/mime/gnome-vfs.keys.in.h:81
+msgid "ODA document"
+msgstr "документ ODA"
+
+#: data/mime/gnome-vfs.keys.in.h:82
+msgid "PBM image"
+msgstr "зображення PBM"
+
+#: data/mime/gnome-vfs.keys.in.h:83
+msgid "PCF font"
+msgstr "шрифт PCF"
+
+#: data/mime/gnome-vfs.keys.in.h:84
+msgid "PDF document"
+msgstr "документ PDF"
+
+#: data/mime/gnome-vfs.keys.in.h:85
+msgid "PEF program"
+msgstr "програма PEF"
+
+#: data/mime/gnome-vfs.keys.in.h:86
+msgid "PGM image"
+msgstr "зображення PGM"
+
+#: data/mime/gnome-vfs.keys.in.h:87
+msgid "PGN chess game"
+msgstr "шахова гра PGN"
+
+#: data/mime/gnome-vfs.keys.in.h:88
+msgid "PGP keys"
+msgstr "ключ╕ PGP"
+
+#: data/mime/gnome-vfs.keys.in.h:89
+msgid "PGP message"
+msgstr "пов╕домлення PGP"
+
+#: data/mime/gnome-vfs.keys.in.h:90
+msgid "PGP signature"
+msgstr "п╕дпис PGP"
+
+#: data/mime/gnome-vfs.keys.in.h:91
+msgid "PGP-encrypted file"
+msgstr "файл закодований PGP"
+
+#: data/mime/gnome-vfs.keys.in.h:92
+msgid "PHP script"
+msgstr "скрипт PHP"
+
+#: data/mime/gnome-vfs.keys.in.h:93
+msgid "PN RealAudio document"
+msgstr "документ PN RealAudio"
+
+#: data/mime/gnome-vfs.keys.in.h:94
+msgid "PNG image"
+msgstr "зображення PNG"
+
+#: data/mime/gnome-vfs.keys.in.h:95
+msgid "PNM image"
+msgstr "зображення PNM"
+
+#: data/mime/gnome-vfs.keys.in.h:96
+msgid "PPM image"
+msgstr "зображення PPM"
+
+#: data/mime/gnome-vfs.keys.in.h:97
+msgid "Palm OS database"
+msgstr "база даних Palm OS"
+
+#: data/mime/gnome-vfs.keys.in.h:98
+msgid "Perl script"
+msgstr "скрипт Perl"
+
+#: data/mime/gnome-vfs.keys.in.h:99
+msgid "Photoshop document"
+msgstr "документ Photoshop"
+
+#: data/mime/gnome-vfs.keys.in.h:100
+msgid "PostScript Type 1 font"
+msgstr "шрифт PostScript Type 1"
+
+#: data/mime/gnome-vfs.keys.in.h:101
+msgid "PostScript document"
+msgstr "документ PostScript"
+
+#: data/mime/gnome-vfs.keys.in.h:102
+msgid "Python source code"
+msgstr "вих╕дний код Python"
+
+#: data/mime/gnome-vfs.keys.in.h:103
+msgid "QuickTime movie"
+msgstr "ф╕льм QuickTime"
+
+#: data/mime/gnome-vfs.keys.in.h:104
+msgid "RAR archive"
+msgstr "арх╕в RAR"
+
+#: data/mime/gnome-vfs.keys.in.h:105
+msgid "README document"
+msgstr "документ README"
+
+#: data/mime/gnome-vfs.keys.in.h:106
+msgid "RGB image"
+msgstr "зображення RGB"
+
+#: data/mime/gnome-vfs.keys.in.h:107
+msgid "RIFF audio"
+msgstr "ауд╕о RIFF"
+
+#: data/mime/gnome-vfs.keys.in.h:108
+msgid "RPM package"
+msgstr "пакет RPM"
+
+#: data/mime/gnome-vfs.keys.in.h:109
+msgid "RealAudio/Video document"
+msgstr "документ RealAudio/Video"
+
+#: data/mime/gnome-vfs.keys.in.h:110
+msgid "RealVideo video"
+msgstr "в╕део RealVideo"
+
+#: data/mime/gnome-vfs.keys.in.h:111
+msgid "S/MIME file"
+msgstr "файл S/MIME"
+
+#: data/mime/gnome-vfs.keys.in.h:112
+msgid "S/MIME signature"
+msgstr "п╕дпис S/MIME"
+
+#: data/mime/gnome-vfs.keys.in.h:113
+msgid "SGI video"
+msgstr "в╕део SGI"
+
+#: data/mime/gnome-vfs.keys.in.h:114
+msgid "SGML document"
+msgstr "документ SGML"
+
+#: data/mime/gnome-vfs.keys.in.h:115
+msgid "SMIL script"
+msgstr "скрипт SMIL"
+
+#: data/mime/gnome-vfs.keys.in.h:116
+msgid "SQL code"
+msgstr "код SQL"
+
+#: data/mime/gnome-vfs.keys.in.h:117
+msgid "SV4 CPIO archive"
+msgstr "арх╕в SV4 CPIO"
+
+#: data/mime/gnome-vfs.keys.in.h:118
+msgid "SV4 CPIP archive (with CRC)"
+msgstr "арх╕в SV4 CPIP (з CRC)"
+
+#: data/mime/gnome-vfs.keys.in.h:119
+msgid "SVG art"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:120
+msgid "Scheme source code"
+msgstr "вих╕дний код Scheme"
+
+#: data/mime/gnome-vfs.keys.in.h:121
+msgid "Scream Tracker 3 audio"
+msgstr "ауд╕о Scream Tracker 3"
+
+#: data/mime/gnome-vfs.keys.in.h:122
+msgid "Scream Tracker audio"
+msgstr "ауд╕о Scream Tracker"
+
+#: data/mime/gnome-vfs.keys.in.h:123
+msgid "Scream Tracker instrument"
+msgstr "╕нструмент Scream Tracker"
+
+#: data/mime/gnome-vfs.keys.in.h:124
+msgid "Setext document"
+msgstr "документ Setext"
+
+#: data/mime/gnome-vfs.keys.in.h:125
+msgid "Speech document"
+msgstr "документ Speech"
+
+#: data/mime/gnome-vfs.keys.in.h:126
+msgid "Speedo font"
+msgstr "шрифт Speedo"
+
+#: data/mime/gnome-vfs.keys.in.h:127
+msgid "Stampede package"
+msgstr "пакет Stampede"
+
+#: data/mime/gnome-vfs.keys.in.h:128
+msgid "StarOffice Writer document"
+msgstr "документ StarOffice Writer"
+
+#: data/mime/gnome-vfs.keys.in.h:129
+msgid "StarOffice presentation"
+msgstr "презентац╕я StarOffice"
+
+#: data/mime/gnome-vfs.keys.in.h:130
+msgid "StarOffice spreadsheet"
+msgstr "таблиця StarOffice"
+
+#: data/mime/gnome-vfs.keys.in.h:131
+msgid "Sun ╣-law audio"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:132
+msgid "SunOS News font"
+msgstr "шрифт SunOS News"
+
+#: data/mime/gnome-vfs.keys.in.h:133
+msgid "TIFF image"
+msgstr "зображення TIFF"
+
+#: data/mime/gnome-vfs.keys.in.h:134
+msgid "TarGA image"
+msgstr "зображення TarGA"
+
+#: data/mime/gnome-vfs.keys.in.h:135
+msgid "Tcl script"
+msgstr "скрипт Tcl"
+
+#: data/mime/gnome-vfs.keys.in.h:136
+msgid "TeX document"
+msgstr "документ TeX"
+
+#: data/mime/gnome-vfs.keys.in.h:137
+msgid "TeX dvi document"
+msgstr "документ dvi TeX"
+
+#: data/mime/gnome-vfs.keys.in.h:138
+msgid "TeX font"
+msgstr "шрифт TeX"
+
+#: data/mime/gnome-vfs.keys.in.h:139
+msgid "TeX font metrics"
+msgstr "метрики шрифта TeX"
+
+#: data/mime/gnome-vfs.keys.in.h:140
+msgid "TeXInfo document"
+msgstr "документ TeXInfo"
+
+#: data/mime/gnome-vfs.keys.in.h:141
+msgid "ToutDoux document"
+msgstr "документ ToutDoux"
+
+#: data/mime/gnome-vfs.keys.in.h:142
+msgid "TrueType font"
+msgstr "шрифт TrueType"
+
+#: data/mime/gnome-vfs.keys.in.h:143
+msgid "USENET news message"
+msgstr "пов╕домлення новин USENET"
+
+#: data/mime/gnome-vfs.keys.in.h:144
+msgid "Unidata netCDF document"
+msgstr "документ Unidata netCDF"
+
+#: data/mime/gnome-vfs.keys.in.h:145
+msgid "V font"
+msgstr "шрифт V"
+
+#: data/mime/gnome-vfs.keys.in.h:146
+msgid "VOC audio"
+msgstr "ауд╕о VOC"
+
+#: data/mime/gnome-vfs.keys.in.h:147
+msgid "VRML document"
+msgstr "документ VRML"
+
+#: data/mime/gnome-vfs.keys.in.h:148
+msgid "Vivo video"
+msgstr "в╕део Vivo"
+
+#: data/mime/gnome-vfs.keys.in.h:149
+msgid "WAIS source code"
+msgstr "вих╕дний код WAIS"
+
+#: data/mime/gnome-vfs.keys.in.h:150
+msgid "Wavelet video"
+msgstr "в╕део Wavelet"
+
+#: data/mime/gnome-vfs.keys.in.h:151
+msgid "Windows bitmap image"
+msgstr "растрове зображення Windows"
+
+#: data/mime/gnome-vfs.keys.in.h:152
+msgid "Windows icon image"
+msgstr "зображення п╕ктограми Windows"
+
+#: data/mime/gnome-vfs.keys.in.h:153
+msgid "WordPerfect document"
+msgstr "документ WordPerfect"
+
+#: data/mime/gnome-vfs.keys.in.h:154
+msgid "X bitmap image"
+msgstr "растрове зображення X Window"
+
+#: data/mime/gnome-vfs.keys.in.h:155
+msgid "X window image"
+msgstr "зображення X Window"
+
+#: data/mime/gnome-vfs.keys.in.h:156
+msgid "XML document"
+msgstr "документ XML"
+
+#: data/mime/gnome-vfs.keys.in.h:157
+msgid "XPM image"
+msgstr "зображення XPM"
+
+#: data/mime/gnome-vfs.keys.in.h:158
+msgid "active server page"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:159
+msgid "address card"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:160
+msgid "ar archive"
+msgstr "Арх╕в ar"
+
+#: data/mime/gnome-vfs.keys.in.h:161
+msgid "arj archive"
+msgstr "Арх╕в arj"
+
+#: data/mime/gnome-vfs.keys.in.h:162
+msgid "authors list"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:163
+msgid "backup file"
+msgstr "резервний файл"
+
+#: data/mime/gnome-vfs.keys.in.h:164
+msgid "basic audio"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:165
+msgid "bibliography record"
+msgstr "б╕бл╕ограф╕чний запис"
+
+#: data/mime/gnome-vfs.keys.in.h:166
+msgid "binary program"
+msgstr "дв╕йкова програма"
+
+#: data/mime/gnome-vfs.keys.in.h:167
+msgid "block device"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:168
+msgid "bzip-compressed file"
+msgstr "файл стиснений bzip"
+
+#: data/mime/gnome-vfs.keys.in.h:169
+msgid "calendar file"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:170
+msgid "calendar or event document"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:171
+msgid "character device"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:172
+msgid "comma-separated text document"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:173
+msgid "compound document"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:174
+msgid "compress-compressed file"
+msgstr "файл стиснений compress"
+
+#: data/mime/gnome-vfs.keys.in.h:175
+msgid "compressed GIMP document"
+msgstr "стиснений документ GIMP"
+
+#: data/mime/gnome-vfs.keys.in.h:176
+msgid "directory information file"
+msgstr "╕нформац╕йний файл каталогу"
+
+#: data/mime/gnome-vfs.keys.in.h:177
+msgid "document type definition"
+msgstr "визначення типу документу"
+
+#: data/mime/gnome-vfs.keys.in.h:178
+msgid "email headers"
+msgstr "заголовки електронно╖ пошти"
+
+#: data/mime/gnome-vfs.keys.in.h:179
+msgid "email message"
+msgstr "пов╕домлення електронно╖ пошти"
+
+#: data/mime/gnome-vfs.keys.in.h:180
+msgid "encrypted message"
+msgstr "зашифроване пов╕домлення"
+
+#: data/mime/gnome-vfs.keys.in.h:181
+msgid "enriched text document"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:182
+msgid "folder"
+msgstr "тека"
+
+#: data/mime/gnome-vfs.keys.in.h:183
+msgid "gtar archive"
+msgstr "арх╕в gtar"
+
+#: data/mime/gnome-vfs.keys.in.h:184
+msgid "gzip-compressed file"
+msgstr "файл стиснутий gzip"
+
+#: data/mime/gnome-vfs.keys.in.h:185
+msgid "help page"
+msgstr "стор╕нка дов╕дки"
+
+#: data/mime/gnome-vfs.keys.in.h:186
+msgid "mail delivery report"
+msgstr "зв╕т в╕двантаження пошти"
+
+#: data/mime/gnome-vfs.keys.in.h:187
+msgid "mail disposition report"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:188
+msgid "mail system report"
+msgstr "зв╕т поштово╖ системи"
+
+#: data/mime/gnome-vfs.keys.in.h:189
+msgid "makefile"
+msgstr "файл make"
+
+#: data/mime/gnome-vfs.keys.in.h:190
+msgid "manual page"
+msgstr "стор╕нка пос╕бника"
+
+#: data/mime/gnome-vfs.keys.in.h:191
+msgid "manual page (compressed)"
+msgstr "стор╕нка пос╕бника (стиснута)"
+
+#: data/mime/gnome-vfs.keys.in.h:192
+msgid "memory dump"
+msgstr "в╕дбиток пам'ят╕"
+
+#: data/mime/gnome-vfs.keys.in.h:193
+msgid "message digest"
+msgstr "зб╕рка пов╕домлень"
+
+#: data/mime/gnome-vfs.keys.in.h:194
+msgid "message in several formats"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:195
+msgid "multi-part message"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:196
+msgid "named pipe"
+msgstr "найменований канал"
+
+#: data/mime/gnome-vfs.keys.in.h:197
+msgid "object code"
+msgstr "об'╓ктний код"
+
+#: data/mime/gnome-vfs.keys.in.h:198
+msgid "ogg audio"
+msgstr "ауд╕о ogg"
+
+#: data/mime/gnome-vfs.keys.in.h:199
+msgid "partial email message"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:200
+msgid "plain text document"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:201
+msgid "profiler results"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:202
+msgid "reference to remote file"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:203
+msgid "rejected patch file"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:204
+msgid "rich text document"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:205
+msgid "search results"
+msgstr "результати пошуку"
+
+#: data/mime/gnome-vfs.keys.in.h:206
+msgid "shared library"
+msgstr "сп╕льна б╕бл╕отека"
+
+#: data/mime/gnome-vfs.keys.in.h:207
+msgid "shell archive"
+msgstr "арх╕в оболонки"
+
+#: data/mime/gnome-vfs.keys.in.h:208
+msgid "shell script"
+msgstr "скрипт оболонки"
+
+#: data/mime/gnome-vfs.keys.in.h:209
+msgid "signed message"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:210
+msgid "socket"
+msgstr "сокет"
+
+#: data/mime/gnome-vfs.keys.in.h:211
+msgid "software author credits"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:212
+msgid "software installation instructions"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:213
+msgid "software license terms"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:214
+msgid "source code patch"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:215
+msgid "style sheet"
+msgstr "таблиця стилю"
+
+#: data/mime/gnome-vfs.keys.in.h:216
+msgid "symbolic link"
+msgstr "символьне посилання"
+
+#: data/mime/gnome-vfs.keys.in.h:217
+msgid "tab-separated text document"
+msgstr ""
+
+#: data/mime/gnome-vfs.keys.in.h:218
+msgid "tar archive"
+msgstr "арх╕в tar"
+
+#: data/mime/gnome-vfs.keys.in.h:219
+msgid "tar archive (bzip2-compressed)"
+msgstr "арх╕в tar (стиснутий bzip2)"
+
+#: data/mime/gnome-vfs.keys.in.h:220
+msgid "tar archive (gzip-compressed)"
+msgstr "арх╕в tar (стиснутий gzip)"
+
+#: data/mime/gnome-vfs.keys.in.h:221
+msgid "theme"
+msgstr "тема"
+
+#: data/mime/gnome-vfs.keys.in.h:222
+msgid "troff document"
+msgstr "документ troff"
+
+#: data/mime/gnome-vfs.keys.in.h:223
+msgid "troff me input document"
+msgstr "вх╕дний документ troff me"
+
+#: data/mime/gnome-vfs.keys.in.h:224
+msgid "troff mm input document"
+msgstr "вх╕дний документ troff mm"
+
+#: data/mime/gnome-vfs.keys.in.h:225
+msgid "troff ms input document"
+msgstr "вх╕дний документ troff ms"
+
+#: data/mime/gnome-vfs.keys.in.h:226
+msgid "unknown type"
+msgstr "нев╕домий тип"
+
+#: data/mime/gnome-vfs.keys.in.h:227
+msgid "ustar archive"
+msgstr "арх╕в ustar"
+
+#: data/mime/gnome-vfs.keys.in.h:228
+msgid "wave audio"
+msgstr "ауд╕о wave"
+
+#: data/mime/gnome-vfs.keys.in.h:229
+msgid "web folder"
+msgstr "веб-тека"
+
+#: data/mime/gnome-vfs.keys.in.h:230
+msgid "xfig vector graphic"
+msgstr "векторна граф╕ка xfig"
+
+#: data/mime/gnome-vfs.keys.in.h:231
+msgid "zip archive"
+msgstr "арх╕в zip"
+
+#: data/mime/gnome-vfs.keys.in.h:232
+msgid "zoo archive"
+msgstr "арх╕в zoo"
 
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
@@ -422,40 +1352,40 @@ msgstr "Нев╕домий ╕дентиф╕катор завдання %u"
 msgid "Operation stopped"
 msgstr "Операц╕ю зупинено"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:373
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:385
 msgid "Edit Applications List"
 msgstr "Виправити список програм"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:393
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:405
 #, c-format
 msgid "Select applications to appear in menu for MIME type \"%s\""
 msgstr "Вибер╕ть програми, що мають з'являтись у меню для типу MIME \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:417
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:429
 msgid "Add Application..."
 msgstr "Додати програму..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:424
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:436
 msgid "Edit Application..."
 msgstr "Виправити програму..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:430
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:442
 msgid "Delete Application"
 msgstr "Стерти програму"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:463
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:476
 msgid "Edit Components List"
 msgstr "Виправити список компонент╕в"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:483
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:496
 #, c-format
 msgid "Select views to appear in menu for MIME type \"%s\""
 msgstr ""
 "Вибрати програми перегляду, що мають з'являтись в меню для типу MIME \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:703
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:716
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
@@ -463,39 +1393,39 @@ msgstr ""
 "Введений тип MIME м╕стить велик╕ л╕тери. Л╕тери у верхньому ре╜╕стр╕ буду "
 "зам╕нено на символи в нижньому ре╜╕стр╕."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:706
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
 msgid "Add New MIME Type"
 msgstr "Додати новий тип MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:752
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:765
 msgid "Add MIME Type"
 msgstr "Додати тип MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:756
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
 msgid "New MIME type (e.g. image/x-thumper):"
 msgstr "Новий тип MIME (наприклад, image/x-thumper):"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:763
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:776
 msgid "Description (e.g. Thumper image):"
 msgstr "Опис (наприклад, Фальшиве зображення):"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:924
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:937
 msgid "File Extensions "
 msgstr "Розширення файл╕в "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:944
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:957
 msgid "Add..."
 msgstr "Додати..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:949
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:962
 msgid "    Remove    "
 msgstr "    Видалити    "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1018
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1031
 msgid "Add New Extension"
 msgstr "Додати нове розширення"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1022
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1035
 msgid ""
 "Type in the extensions for this mime-type (without dot).\n"
 "You can enter several extensions seperated by a space,\n"
@@ -505,48 +1435,48 @@ msgstr ""
 "Ви можете ввести дек╕лька розширень розд╕лених комами,\n"
 "наприклад: html, htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1029
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1042
 msgid "Extension:"
 msgstr "Розширення:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1160
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1176
 msgid "New Application"
 msgstr "Нова програма"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1169
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1269
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1285
 msgid "Application Name:"
 msgstr "Назва програми:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1177
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1278
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1193
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1294
 msgid "Application Command:"
 msgstr "Команда програми:"
 
 #. Open Behavior frame
 #. FIXME bugzilla.eazel.com 6066: Need to add expected uri schemes
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1186
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1202
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1303
 msgid "Open Behavior"
 msgstr "Повед╕нка в╕дкривання"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1192
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1208
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1309
 msgid "Can open multiple files"
 msgstr "Може в╕дкривати багато файл╕в"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1195
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1211
 msgid "Expects URIs as arguments"
 msgstr "Оч╕куються URI в якост╕ ар╜умент╕в"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1260
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1276
 msgid "Edit Application"
 msgstr "Виправити програму"
 
 #. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1298
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1314
 msgid "Can open from URI"
 msgstr "Може в╕дкривати з URI"
 
