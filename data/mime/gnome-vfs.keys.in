@@ -1006,6 +1006,7 @@ text/x-setext
 	_description=Setext document
 
 text/x-sh
+	can_be_executable=TRUE
 	_description=shell script
 	icon_filename=i-regular
 
