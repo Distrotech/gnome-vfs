@@ -669,7 +669,7 @@ msgstr "Velikost"
 
 #: test/gnome-file-selection/gnome-file-selection.c:808
 msgid "Date"
-msgstr "Zbri¹i"
+msgstr "Datum"
 
 #: test/gnome-file-selection/gnome-file-selection.c:837
 msgid "Enter name:"
