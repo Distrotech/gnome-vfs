@@ -1,3 +1,24 @@
+2000-10-18  Mike Fleming  <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
+	Return GNOME_VFS_ERROR_NOT_SUPPORTED instead of ERROR_GENERIC when
+	this call is attempted on a non-local filesystem.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_uri_internal):
+	Ignore errors from gnome_vfs_get_volume_free_space, which doesn't
+	work on non-local filesystems
+	
+	* modules/http-method.c: (http_status_to_vfs_result),
+	(make_propfind_request), (do_make_directory),
+	(do_remove_directory):
+
+	Enhance HTTP error to GNOME VFS error mapping
+	Make MKCOL return correct code when directory already exists
+	(was preventing Nautilus Duplicate from working)
+
+	This should fix bugzilla.eazel.com 3735
+
+
 2000-10-18  John Sullivan  <sullivan@eazel.com>
 
 	* modules/http-method.c: (do_read):

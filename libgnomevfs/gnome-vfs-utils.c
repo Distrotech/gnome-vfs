@@ -486,7 +486,7 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 
 	/* We can't check non local systems */
 	if (!gnome_vfs_uri_is_local (vfs_uri)) {
-		return GNOME_VFS_ERROR_GENERIC;
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
 	path = gnome_vfs_uri_get_path (vfs_uri);
@@ -494,7 +494,7 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 	
         /* We only handle the file: scheme for now */
 	if (!str_has_prefix (scheme, "file") || !str_has_prefix (path, "/")) {
-		return GNOME_VFS_ERROR_GENERIC;
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
 #if HAVE_STATVFS

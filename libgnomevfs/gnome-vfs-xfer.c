@@ -1937,6 +1937,9 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 				}
 			}
 			
+			/* Errors from gnome_vfs_get_volume_free_space should be ignored */
+			result = GNOME_VFS_OK;
+			
 			if ((xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) == 0) {
 				result = handle_name_conflicts (&source_uri_list, &target_uri_list,
 							        xfer_options, &error_mode, &overwrite_mode,

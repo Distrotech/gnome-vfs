@@ -680,6 +680,7 @@ cache_invalidate_uri_parent (GnomeVFSURI *uri)
 #define HTTP_STATUS_REQENTITY_TOO_LARGE 413
 #define HTTP_STATUS_REQURI_TOO_LARGE	414
 #define HTTP_STATUS_UNSUPPORTED_MEDIA	415
+#define HTTP_STATUS_LOCKED		423
 
 /* Server errors 5xx.  */
 #define HTTP_STATUS_INTERNAL		500
@@ -688,6 +689,7 @@ cache_invalidate_uri_parent (GnomeVFSURI *uri)
 #define HTTP_STATUS_UNAVAILABLE		503
 #define HTTP_STATUS_GATEWAY_TIMEOUT	504
 #define HTTP_STATUS_UNSUPPORTED_VERSION 505
+#define HTTP_STATUS_INSUFFICIENT_STORAGE 507
 
 /*
  * Static Variables
@@ -848,17 +850,37 @@ http_status_to_vfs_result (guint status)
 		return GNOME_VFS_OK;
 
 	/* FIXME bugzilla.eazel.com 1163 */
+	/* mfleming--I've improved the situation slightly, but more
+	 * test cases need to be written to ensure that HTTP (esp DAV) does compatibile
+	 * things with the normal file method
+	 */
+
 	switch (status) {
 	case HTTP_STATUS_UNAUTHORIZED:
 	case HTTP_STATUS_PROXY_AUTH_REQUIRED:
+	case HTTP_STATUS_FORBIDDEN:
+		/* Note that FORBIDDEN can also be returned on a MOVE in a case which
+		 * should be VFS_ERROR_BAD_PARAMETERS
+		 */
 		return GNOME_VFS_ERROR_ACCESS_DENIED;
 	case HTTP_STATUS_NOT_FOUND:
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	case HTTP_STATUS_METHOD_NOT_ALLOWED:
+		/* Note that METHOD_NOT_ALLOWED is also returned in a PROPFIND in a case which
+		 * should be FILE_EXISTS.  This is handled in do_make_directory
+		 */
 	case HTTP_STATUS_BAD_REQUEST:
 	case HTTP_STATUS_NOT_IMPLEMENTED:
 	case HTTP_STATUS_UNSUPPORTED_VERSION:
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	case HTTP_STATUS_CONFLICT:
+		/* _CONFLICT's usually happen when collection paths don't exist */
+		return GNOME_VFS_ERROR_NOT_FOUND;
+	case HTTP_STATUS_LOCKED:
+		/* Maybe we need a separate GNOME_VFS_ERROR_LOCKED? */
+		return GNOME_VFS_ERROR_DIRECTORY_BUSY;
+	case HTTP_STATUS_INSUFFICIENT_STORAGE:
+		return GNOME_VFS_ERROR_NO_SPACE;
 	default:
 		return GNOME_VFS_ERROR_GENERIC;
 	}
@@ -1920,6 +1942,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 		xmlFreeParserCtxt(parserContext);
 		g_free(buffer);
 		g_free(extraheaders);
+		*handle_return = NULL;
 		return result;
 	}
 
@@ -1990,6 +2013,14 @@ make_propfind_request (HttpFileHandle **handle_return,
 	}
 
 #ifndef DAV_NO_CACHE
+
+	/*
+	 * RFC 2518
+	 * Section 8.1, final line
+	 * "The results of this method [PROPFIND] SHOULD NOT be cached"
+	 * Well, at least its not "MUST NOT"
+	 */
+
 	if (depth == 0) {
 		cache_add_uri (uri, handle->file_info);
 	} else {
@@ -2261,13 +2292,27 @@ static GnomeVFSResult do_make_directory(GnomeVFSMethod * method,
 
 	DEBUG_HTTP (("+Make_Directory"));
 
-#ifndef DAV_NO_CACHE
-	cache_invalidate_uri_parent (uri);
-#endif /* DAV_NO_CACHE */
+	/*
+	 * MKCOL returns a 405 if you try to MKCOL on something that
+	 * already exists.  Of course, we don't know whether that means that 
+	 * the server doesn't support DAV or the collection already exists.
+	 * So we do a PROPFIND first to find out
+	 */
+	result = make_propfind_request(&handle, uri, 0, context);
 
-	result =  make_request (&handle, uri, "MKCOL", NULL, NULL, context);
+	if ( GNOME_VFS_OK == result) {
+		result = GNOME_VFS_ERROR_FILE_EXISTS;
+	} else if ( GNOME_VFS_ERROR_NOT_FOUND == result) {
+		http_handle_close (handle, context);
+		handle = NULL;
+#ifndef DAV_NO_CACHE
+		cache_invalidate_uri_parent (uri);
+#endif /* DAV_NO_CACHE */
+		result =  make_request (&handle, uri, "MKCOL", NULL, NULL, context);
+	}
 
 	http_handle_close (handle, context);
+	handle = NULL;
 
 	DEBUG_HTTP (("-Make_Directory"));
 
@@ -2286,6 +2331,9 @@ static GnomeVFSResult do_remove_directory(GnomeVFSMethod * method,
 	cache_invalidate_uri_parent (uri);
 #endif /* DAV_NO_CACHE */
 
+	/* FIXME this should return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY if the
+	 * directory is not empty
+	 */
 	result = make_request (&handle, uri, "DELETE", NULL, NULL,
                         context);
 	http_handle_close (handle, context);
