@@ -1,3 +1,11 @@
+2000-09-08  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 2789, Need to cancel non-file drags in icon
+	entry field.
+	
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	(drag_data_get):
+
 2000-09-07  Dan Winship  <danw@helixcode.com>
 
 	* data/mime/gnome-vfs.keys: lowercasify the handful of
