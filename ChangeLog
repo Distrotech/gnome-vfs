@@ -1,8 +1,13 @@
 2001-01-22  Darin Adler  <darin@eazel.com>
 
+	* check-mime.pl: Added lots of white space checks.
+
+2001-01-22  Darin Adler  <darin@eazel.com>
+
 	* check-mime.pl: Added check for i-regular.
 
 2001-01-22  Rebecca Schulman  <rebecka@eazel.com>
+
 	Fixed bugzilla.eazel.com bug 5498 about
 	symbolic links across file systems caused 
 	copies instead of drags in nautilus.

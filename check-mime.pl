@@ -52,7 +52,39 @@ my %described;
 open KEYS, "data/mime/gnome-vfs.keys.in" or die;
 while (<KEYS>)
   {
+    chomp;
+    if (/^\s+$/)
+      {
+        print "- blank line with spaces on line $.\n";
+      }
+    else
+      {
+        if (/^ /)
+          {
+            print "- leading spaces used instead of a tab on line $.\n";
+          }
+        if (/\s$/)
+          {
+            print "- trailing whitespace on line $.\n";
+          }
+        if (/\t /)
+          {
+            print "- space after tab on line $.\n";
+          }
+        if (/  /)
+          {
+            print "- multiple spaces on line $.\n";
+          }
+      }
     next if /^\s*\#/;
+    if (/\s=/)
+      {
+        print "- space before = on line $.\n";
+      }
+    if (/=\s/)
+      {
+        print "- space after = on line $.\n";
+      }
     if (/^(\S.*)/)
       {
 	$previous_type = $type if $type;
@@ -63,7 +95,7 @@ while (<KEYS>)
 	  }
 	if (lc $type le lc $previous_type)
 	  {
-	    print "- $type is after $previous_type in gnome-vfs.keys.in\n";
+	    print "- $type is after $previous_type\n";
 	  }
 	$seen{$type} = 1;
 	$in_keys{$type} = 1;
@@ -102,6 +134,26 @@ my %in_magic;
 open MAGIC, "data/mime/gnome-vfs-mime-magic" or die;
 while (<MAGIC>)
   {
+    chomp;
+    if (/^\s+$/)
+      {
+        print "- blank line with spaces on line $.\n";
+      }
+    else
+      {
+        if (/^ /)
+          {
+            print "- leading spaces used instead of a tab on line $.\n";
+          }
+        if (/\s$/)
+          {
+            print "- trailing whitespace on line $.\n";
+          }
+        if (/\t /)
+          {
+            print "- space after tab on line $.\n";
+          }
+      }
     next if /^\s*\#/;
     next if /^\s*$/;
     if (/^[0-9:]+\s+[a-z]+\s+([^\\\s]|\\.)+\s+(&\s*\S+\s+)?(\S+)\s*$/)
@@ -141,6 +193,30 @@ my %in_mime;
 open MIME, "data/mime/gnome-vfs.mime" or die;
 while (<MIME>)
   {
+    chomp;
+    if (/^\s+$/)
+      {
+        print "- blank line with spaces on line $.\n";
+      }
+    else
+      {
+        if (/^ /)
+          {
+            print "- leading spaces used instead of a tab on line $.\n";
+          }
+        if (/\s$/)
+          {
+            print "- trailing whitespace on line $.\n";
+          }
+        if (/\t /)
+          {
+            print "- space after tab on line $.\n";
+          }
+        if (/  /)
+          {
+            print "- multiple spaces on line $.\n";
+          }
+      }
     next if /^\s*\#/;
     if (/^(\S.*)/)
       {
@@ -187,6 +263,38 @@ $in_applications{"text/*"} = 1;
 open MIME, "data/mime/gnome-vfs.applications" or die;
 while (<MIME>)
   {
+    chomp;
+    if (/^\s+$/)
+      {
+        print "- blank line with spaces on line $.\n";
+      }
+    else
+      {
+        if (/^ /)
+          {
+            print "- leading spaces used instead of a tab on line $.\n";
+          }
+        if (/\s$/)
+          {
+            print "- trailing whitespace on line $.\n";
+          }
+        if (/\t /)
+          {
+            print "- space after tab on line $.\n";
+          }
+        if (/  /)
+          {
+            print "- multiple spaces on line $.\n";
+          }
+      }
+    if (/\s=/)
+      {
+        print "- space before = on line $.\n";
+      }
+    if (/=\s/)
+      {
+        print "- space after = on line $.\n";
+      }
     if (/^\s+mime_types=(.*)/)
       {
         foreach my $type (split ",", $1)
