@@ -1,3 +1,9 @@
+2003-07-02  Leena Gunda  <leena.gunda@wipro.com>
+
+	* modules/cdemenu-desktop-method.c
+	(open_and_find_pointer_to_menu): Show the last custom menu
+	defined for the CDE menu items. Bugzilla bug #116101
+
 2003-06-28  Christophe Fergeau,,,  <set EMAIL_ADDRESS environment variable>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

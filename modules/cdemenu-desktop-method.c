@@ -96,6 +96,7 @@ open_and_find_pointer_to_menu(gchar *name)
 	GSList *filename;
 	gchar line[LINESIZE];
 	FILE *filesave = NULL, *file = NULL;
+	glong position = 0;
 	gboolean found = FALSE;
 	gchar *tmp=NULL;
 	
@@ -108,12 +109,13 @@ open_and_find_pointer_to_menu(gchar *name)
 					tmp = g_strstrip(tmp);
 					if (strcmp(tmp,name) == 0) {
 						found = TRUE;
-						break;
+						position = ftell (file);
 					}
 				}
 			}
 		}
 		if (found) {
+			fseek (file, position, SEEK_SET);
 			if (filesave !=NULL) fclose(filesave);
 			filesave = file;
 			if (!strcmp(name, "DtRootMenu")) break;
