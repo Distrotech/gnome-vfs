@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-10 18:28+0200\n"
-"PO-Revision-Date: 2004-07-10 18:34+0200\n"
+"POT-Creation-Date: 2004-07-19 04:08+0200\n"
+"PO-Revision-Date: 2004-07-19 16:17+0200\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Could not initialize Bonobo"
 msgstr "E pamundur nisja e Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:602
+#: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "E pamundur nisja e gnome vfs"
 
@@ -193,111 +193,111 @@ msgstr "Volum XIAFS"
 msgid "Unknown"
 msgstr "Nuk njihet"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:610
+#: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
 msgstr "Disk CD"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+#: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
 msgstr "Disk bosh CD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:615
+#: libgnomevfs/gnome-vfs-hal-mounts.c:606
 msgid "CD-R Disc"
 msgstr "Disk CD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+#: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
 msgstr "Disk bosh CD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:620
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
 msgid "CD-RW Disc"
 msgstr "Disk CD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:622
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
 msgid "DVD-ROM Disc"
 msgstr "Disk DVD-ROM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:625
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
 msgstr "Disk bosh DVD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:627
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
 msgstr "Disk DVD-R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:630
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
 msgstr "Disk bosh DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:632
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
 msgstr "Disk DVD-RAM"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:635
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
 msgstr "Disk bosh DVD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:637
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
 msgstr "Disk DVD-RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
 msgstr "Disk bosh DVD+RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:642
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
 msgstr "Disk DVD+RW"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:645
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
 msgstr "Disk bosh DVD+R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:647
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
 msgstr "Disk DVD+R"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:649
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
 msgstr "Disk optik"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:655
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Audio Disc"
 msgstr "Disk Audio"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:659
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
 msgstr "Njësi kompakte Flash"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:661
+#: libgnomevfs/gnome-vfs-hal-mounts.c:652
 msgid "Memory Stick Media"
 msgstr "Njësi Memory Stick"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:663
+#: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
 msgstr "Njësi Smart Media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
 msgstr "Njësi SD/MMC"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+#: libgnomevfs/gnome-vfs-hal-mounts.c:658
 msgid "Floppy Disk"
 msgstr "Disk floppy"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:674
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
 msgstr "Disk Mac OS"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:676
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
 msgstr "Disk Mac OS X"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:690
+#: libgnomevfs/gnome-vfs-hal-mounts.c:681
 msgid "Windows Disk"
 msgstr "Disk Windows"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:696
+#: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
 msgstr "Disk Linux"
 
@@ -459,7 +459,7 @@ msgstr "Operacioni nuk lejohet"
 msgid "Is a directory"
 msgstr "Është një directory"
 
-#. GNOME_VFS_ERROR_NO_MEMMORY
+#. GNOME_VFS_ERROR_NO_MEMORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
 msgstr "Memorje e pamjaftueshme"
@@ -564,7 +564,12 @@ msgstr "Gabim gjatë lëshimit të komandës"
 msgid "Timeout reached"
 msgstr "U tejkalua koha e pritjes"
 
-#: libgnomevfs/gnome-vfs-result.c:180
+#. GNOME_VFS_ERROR_NAMESERVER
+#: libgnomevfs/gnome-vfs-result.c:85
+msgid "Nameserver error"
+msgstr "Gabim i emrit të server-it"
+
+#: libgnomevfs/gnome-vfs-result.c:200
 msgid "Unknown error"
 msgstr "Gabim i panjohur"
 
@@ -591,68 +596,68 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:364
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode i pavlefshëm)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:492
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:520
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
 msgid "Floppy"
 msgstr "Disketë floppy"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:493
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:523
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:494
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:526
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
 msgid "Zip Drive"
 msgstr "Drive Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:495
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
 msgid "Memory Stick"
 msgstr "Memory Stick"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
 msgid "Camera"
 msgstr "Kamer"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:713
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
 msgstr "Volum root"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:794
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
 msgid "Audio CD"
 msgstr "CD Audio"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:825
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
 msgid "Unknown volume"
 msgstr "Volum i panjohur"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1005
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
 msgid "Network server"
 msgstr "Server rrjeti"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:113
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "I pamundur montimi i dispozitivit disketë. Mesa duket mungon disketa në "
 "dispozitiv."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:117
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "I pamundur montimi i volumit. Mesa duket nuk ka asnjë lloj suporti në "
 "dispozitiv."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:123
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -660,7 +665,7 @@ msgstr ""
 "I pamundur montimi i disketës. Ka mundësi të jetë i një formati që nuk mund "
 "të montohet."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:126
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -668,28 +673,28 @@ msgstr ""
 "I pamundur montimi i volumit të zgjedhur. Ka mundësi të jetë i një formati "
 "që nuk mund të montohet."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:131
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
 msgstr "I pamundur montimi i dispozitivit disketë të zgjedhur."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
 msgstr "I pamundur montimi i volumit të zgjedhur."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:145
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
 msgstr "I pamundur zmontimi i volumit të zgjedhur."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:301
+#: libgnomevfs/gnome-vfs-volume-ops.c:256
+#: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
 msgstr "Nisja e komandës dështoi"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:291
+#: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
 msgstr "Nxjerrja e suportit është e pamundur"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:480
+#: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "E pamundur shkëputja e server-it të lidhur"
 
@@ -743,15 +748,15 @@ msgstr "Instrumente"
 msgid "Windows"
 msgstr "Dritaret"
 
-#: modules/computer-method.c:542
+#: modules/computer-method.c:545
 msgid "Network"
 msgstr "Rrjeti"
 
-#: modules/computer-method.c:560
+#: modules/computer-method.c:563
 msgid "Home"
 msgstr "Shtëpia"
 
-#: modules/computer-method.c:578
+#: modules/computer-method.c:581
 msgid "Filesystem"
 msgstr "File i sistemit"
 
