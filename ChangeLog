@@ -1,3 +1,9 @@
+2001-03-23  Darin Adler  <darin@eazel.com>
+
+	* test/test-uri.c: (main): Added some tests to demonstrate
+	behavior when a URI starting with "." or ".." is passed to
+	gnome_vfs_uri_new.
+
 2001-03-22  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Darin Adler <darin@eazel.com>

@@ -543,7 +543,7 @@ main (int argc, char **argv)
 	test_uri_to_string ("/a/b/c/../..", "file:///a", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("/a/../b/..", "file:///", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("/a/../b/../c", "file:///c", GNOME_VFS_URI_HIDE_NONE);
-
+	test_uri_to_string ("/a/../b/../c", "file:///c", GNOME_VFS_URI_HIDE_NONE);
 
 	test_make_canonical ("file:///%3F", "file:///%3F");
 	test_make_canonical ("file:///%78", "file:///x");
@@ -624,6 +624,15 @@ main (int argc, char **argv)
 	 * a redundant "/" in it into a completely different one.
 	 */
 	test_uri_to_string ("//foo", "file://foo", GNOME_VFS_URI_HIDE_NONE);
+
+	/* FIXME bugzilla.eazel.com 7774: Are any of these right?
+	 * Perhaps they should all return NULL?
+	 */
+	test_uri_to_string (".", "file:", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("./a", "file:a", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("../a", "file:../a", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("../a", "file:../a", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("../../a", "file:a", GNOME_VFS_URI_HIDE_NONE);
 
 	/* FIXME bugzilla.eazel.com 2801: Do we want GnomeVFSURI to
          * just refuse to deal with URIs that we don't have a module
