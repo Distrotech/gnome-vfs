@@ -1188,15 +1188,23 @@ propfind_context_init (PropfindContext *pfctx)
 static void
 propfind_context_clear (PropfindContext *pfctx)
 {
-	if (pfctx->target != NULL)
-		gnome_vfs_file_info_unref (pfctx->target);
+	GList *l;
 	
+	if (pfctx->target != NULL) {
+		gnome_vfs_file_info_unref (pfctx->target);
+		pfctx->target = NULL;
+	}
+		
 	if (pfctx->children) {
-		g_list_free (pfctx->children);
+		l = gnome_vfs_file_info_list_unref (pfctx->children);
+		g_list_free (l);
+		pfctx->children = NULL;
 	}
 	
-	if (pfctx->etag)
+	if (pfctx->etag) {
 		g_free (pfctx->etag);
+		pfctx->etag = NULL;
+	}
 }
 
 
@@ -1228,6 +1236,7 @@ propfind_result (void *userdata, const char *href, const ne_prop_result_set *set
 	info->name = g_path_get_basename (unesc_path);
 	NE_FREE (unesc_path);
 	
+	DEBUG_HTTP_2 ("Comparing: \n\t[%s] \n\t[%s]", ctx->path, uri.path);
 	if (ne_path_compare (ctx->path, uri.path) == 0) {
 		DEBUG_HTTP_3 ("target");
 		ctx->target = info;
@@ -1843,10 +1852,13 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 	   allow us HEAD. */
 	if (res == NE_OK && ne_get_status (req)->code == 207) {
 		
-		if (result == GNOME_VFS_OK) {
-			gnome_vfs_file_info_copy (info, pfctx.target);
+
+		if (pfctx.target != NULL) {
+			gnome_vfs_file_info_copy (info, pfctx.target);	
+		} else {
+			result = GNOME_VFS_ERROR_NOT_FOUND;
 		}
-			
+		
 		propfind_context_clear (&pfctx);
 		return result;
 	}
@@ -1940,6 +1952,10 @@ http_list_directory (HttpContext *context, PropfindContext *pfctx)
 	result 	= resolve_result (res, req);
 	
 	ne_propfind_destroy (pfh);
+
+	if (result == GNOME_VFS_OK && pfctx->target == NULL) {
+		return GNOME_VFS_ERROR_NOT_FOUND;
+	}
 	
 	return result;
 }

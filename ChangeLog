@@ -1,5 +1,15 @@
 2005-01-30  Christian Kellner  <gicmo@gnome.org>
 
+	* modules/http-neon-method.c: Check if a given propfind context's
+	target member is NULL before copying it or dereferencing it. This
+	should fix bug #161406. Also unref the remaining GnomeVFSFileInfos
+	int the context's children memeber.
+	
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_escape_set):
+	Add missing documentation.
+
+2005-01-30  Christian Kellner  <gicmo@gnome.org>
+
 	* imported/neon/*: Import of neon upstream version 0.24.7.
 	I also moved the some ChangeLog entries from imported/neon/ to
 	this file.

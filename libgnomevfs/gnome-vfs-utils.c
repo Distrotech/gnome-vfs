@@ -310,6 +310,15 @@ gnome_vfs_escape_slashes (const gchar *string)
 	return gnome_vfs_escape_string_internal (string, UNSAFE_SLASHES);
 }
 
+/**
+ * gnome_vfs_escape_set:
+ * @string: string to be escaped
+ * @match_set: a string containing all characters to be escaped in @string. 
+ *  
+ * Escapes all characters in @string which are listed in @match_set.  
+ * 
+ * Return value: a newly allocated and escaped string.
+ **/
 char *
 gnome_vfs_escape_set (const char *string,
 	              const char *match_set)
