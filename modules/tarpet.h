@@ -32,26 +32,26 @@ struct TARPET_POSIX {
   char extend[155];
 };
 
-#define TARPET_TYPE_REGULAR   '\0'
-#define TARPET_TYPE_REGULAR2  '0'
-#define TARPET_TYPE_LINK      '1'
-#define TARPET_TYPE_SYMLINK   '2'
-#define TARPET_TYPE_CHARDEV   '3'
-#define TARPET_TYPE_BLOCKDEV  '4'
-#define TARPET_TYPE_DIRECTORY '5'
-#define TARPET_TYPE_BLOCKDEV  '6'
-#define TARPET_TYPE_FIFO      '7'
+#define TARPET_TYPE_REGULAR    '\0'
+#define TARPET_TYPE_REGULAR2   '0'
+#define TARPET_TYPE_LINK       '1'
+#define TARPET_TYPE_SYMLINK    '2'
+#define TARPET_TYPE_CHARDEV    '3'
+#define TARPET_TYPE_BLOCKDEV   '4'
+#define TARPET_TYPE_DIRECTORY  '5'
+#define TARPET_TYPE_FIFO       '6'
+#define TARPET_TYPE_CONTIGUOUS '7'
 
-#define TARPET_TYPE_DUMPDIR   'D'
-#define TARPET_TYPE_LONGLINKN 'K'
-#define TARPET_TYPE_LONGFILEN 'L'
-#define TARPET_TYPE_MULTIVOL  'M'
-#define TARPET_TYPE_LONGNAME  'N'
-#define TARPET_TYPE_SPARSE    'S'
-#define TARPET_TYPE_VOLUME    'V'
+#define TARPET_TYPE_DUMPDIR    'D'
+#define TARPET_TYPE_LONGLINKN  'K'
+#define TARPET_TYPE_LONGFILEN  'L'
+#define TARPET_TYPE_MULTIVOL   'M'
+#define TARPET_TYPE_LONGNAME   'N'
+#define TARPET_TYPE_SPARSE     'S'
+#define TARPET_TYPE_VOLUME     'V'
 
-#define TARPET_GNU_MAGIC      "ustar"
-#define TARPET_GNU_MAGIC_OLD  "ustar  "
+#define TARPET_GNU_MAGIC       "ustar"
+#define TARPET_GNU_MAGIC_OLD   "ustar  "
 
 #define TARPET_GNU_VERSION "00"
 
