@@ -1,3 +1,8 @@
+2000-04-25  Ettore Perazzoli  <ettore@helixcode.com>
+
+	* libgnomevfs-corba/Makefile.am: Use `OAF_CFLAGS' too to make sure
+	we get the right `CFLAGS'.
+
 2000-04-20  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c:
