@@ -1,3 +1,8 @@
+2003-01-26  Christophe Fergeau  <teuf@gnome.org>
+
+	* NEWS
+	* configure.in: Version 2.4.2
+
 2004-01-23  Alexander Larsson  <alexl@redhat.com>
         (backport from HEAD committed by Christophe Fergeau)
 	

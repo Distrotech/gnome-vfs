@@ -1,3 +1,15 @@
+gnome-vfs 2.4.2
+
+	* Bugs fixed
+		+ Guess mime type by looking at the extension when a zip file
+		  is found
+		+ ncpfs file systems should work again (radu)
+		+ stop complaining about empty PROPFIND responses (Jan Kratochvil)
+		+ Several memory leaks
+
+	* Translations
+		+ lt (Tomas Kuliavas) 
+
 gnome-vfs-2.4.1
 	
 	* Bugs fixed
