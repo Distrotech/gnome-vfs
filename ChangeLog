@@ -1,3 +1,12 @@
+2003-08-12  Leena Gunda  <leena.gunda@wipro.com>
+
+	* modules/cdemenu-desktop-method.c (get_title):
+	Added this to get the menu names without quotes.
+	* modules/cdemenu-desktop-method.c (do_open):
+	* modules/cdemenu-desktop-method.c (do_read_directory):
+	Make sure that for unquoted menu item names, the pointers are
+	not NULL. Bugzilla bug# 119425 
+
 === gnome-vfs 2.3.7 ===
 
 2003-08-11  Alexander Larsson  <alexl@redhat.com>

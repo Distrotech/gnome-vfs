@@ -261,6 +261,22 @@ get_icon_for_action(char *action)
 	return fullpath;
 }
 
+static gchar *
+get_title (gchar *line)
+{
+	gchar *tmp;
+	tmp = strchr (line, '\"');
+	if (!tmp)
+		tmp = g_strstrip (line);
+	else {
+		gchar *tmp2;
+		tmp ++;
+		tmp2 = strchr (tmp, '\"');
+		if(tmp2) *tmp2 = '\0';
+	}
+	return (g_strdup (tmp));
+}
+
 static GnomeVFSResult
 do_open (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle **method_handle,
@@ -300,16 +316,7 @@ do_open (GnomeVFSMethod *method,
 					title = g_strdup_printf ("\"%s\"",unescaped);
 				else title = find_title_for_menu (unescaped);
 
-				tmp = strchr(title,'\"'); 
-                                if(!tmp) {
-                                        title = g_strstrip (title);
-                                        tmp = title;
-                                }
-                                else {
-                                        tmp ++;
-                                        tmp2 = strchr(tmp,'\"');
-                                        if(tmp2) *tmp2='\0';
-                                }
+				tmp = get_title (title); 
 
 				utf8_name = g_locale_to_utf8 (tmp, -1,
 							      NULL, NULL,
@@ -334,6 +341,7 @@ do_open (GnomeVFSMethod *method,
 
 				g_free (utf8_name);
 				g_free (title);
+				g_free (tmp);
 	} else {
 		while (fgets(line,LINESIZE,file) != NULL){
 			if (line[0] == '#') continue;
@@ -516,12 +524,15 @@ do_read_directory (GnomeVFSMethod *method,
  					continue;
 			}
 			else if (strstr(line,"f.action") || strstr(line,"f.exec")) {
-					tmp = strchr(line,'\"'); tmp ++;
-					tmp2 = strchr(tmp,'\"'); if(tmp2) *tmp2='\0';
+					tmp2 = strstr (line, "f.");
+					*tmp2 = '\0';
+
+					tmp = get_title (line);
 					escaped_str = gnome_vfs_escape_string (tmp);
 					file_info->name = g_strdup_printf("%s.desktop",escaped_str);
 					file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 					g_free (escaped_str);
+					g_free (tmp);
 					break;
 			}
 			/*
