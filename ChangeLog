@@ -1,3 +1,9 @@
+2000-02-15  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs/gnome-vfs-configuration.c:
+	(gnome_vfs_configuration_get_module_path): Just clarified an
+	error message.
+
 2000-02-09  Elliot Lee  <sopwith@redhat.com>
 
 	* libgnomevfs/gnome-vfs-messages.c, libgnomevfs/gnome-vfs-method.c,
