@@ -8,6 +8,23 @@
 	* configure.in: bin GTK_REQUIRED, upd. BONOBO_REQUIRED
 	and ORBIT_REQUIRED, bonobo-activation-required. #80244
 
+-------------------2.0.1------------------------	
+2002-06-18  Seth Nickell  <snickell@stanford.edu>
+
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	* libgnomevfs/gnome-vfs-uri.h:
+	* libgnomevfs/gnome-vfs-xfer.h:
+
+	Pad every struct by at least two "void *"s to avoid
+	future breaks in ABI compatibility.
+
+	When we already know we're going to have to add
+	fields to a struct, and can forsee needing extra,
+	pad by a little more (notable GnomeVFSFileInfo).
+	
 2002-06-17  Damon Chaplin  <damon@ximian.com>
 
 	* libgnomevfs/gnome-vfs-monitor.c (gnome_vfs_monitor_do_add): if

@@ -158,6 +158,15 @@ typedef struct {
 	char *mime_type;
 
 	guint refcount;
+
+	/* Reserved for future expansions to GnomeVFSFileInfo without having
+	   to break ABI compatibility */
+	void *reserved1;
+	void *reserved2;
+	void *reserved3;
+	void *reserved4;
+	void *reserved5;
+
 } GnomeVFSFileInfo;
 
 typedef enum {

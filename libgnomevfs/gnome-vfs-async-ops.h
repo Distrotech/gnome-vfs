@@ -98,6 +98,10 @@ typedef gint    (* GnomeVFSAsyncXferProgressCallback)
 typedef struct {
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
+
+	/* Reserved to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
 } GnomeVFSFindDirectoryResult;
 
 typedef void    (* GnomeVFSAsyncFindDirectoryCallback)

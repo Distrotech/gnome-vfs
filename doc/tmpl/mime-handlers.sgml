@@ -39,12 +39,6 @@ functions for getting and manipulating the actions to be performed on mime types
 </para>
 
 
-<!-- ##### TYPEDEF GnomeVFSMimeAction ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### FUNCTION gnome_vfs_mime_application_copy ##### -->
 <para>
 

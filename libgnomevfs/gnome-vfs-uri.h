@@ -49,6 +49,10 @@ typedef struct GnomeVFSURI {
 
 	/* Pointer to the parent element, or NULL for toplevel elements.  */
 	struct GnomeVFSURI *parent;
+
+	/* Reserved to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
 } GnomeVFSURI;
 
 /* This is the toplevel URI element.  A toplevel method implementations should
@@ -68,6 +72,11 @@ typedef struct {
 
 	/* The parent URN, if it exists */
 	gchar *urn;
+
+	/* Reserved to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
+
 } GnomeVFSToplevelURI;
 
 

@@ -429,6 +429,18 @@ shellpattern-filter
 
 >>>>>>> 1.19
 
+<!-- ##### TYPEDEF GnomeVFSMimeAction ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF GnomeVFSModuleCallbackAuthenticationIn ##### -->
+<para>
+
+</para>
+
+
 <!-- ##### STRUCT GnomeVFSProcess ##### -->
 <para>
 
