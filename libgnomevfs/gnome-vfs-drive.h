@@ -25,7 +25,7 @@
 #define GNOME_VFS_DRIVE_H
 
 #include <glib-object.h>
-#include "gnome-vfs-volume.h"
+#include <libgnomevfs/gnome-vfs-volume.h>
 
 G_BEGIN_DECLS
 

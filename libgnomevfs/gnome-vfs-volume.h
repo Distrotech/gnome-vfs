@@ -38,7 +38,7 @@ typedef void (*GnomeVFSVolumeOpCallback) (gboolean succeeded,
 					  char *detailed_error,
 					  gpointer data);
 
-#include "gnome-vfs-drive.h"
+#include <libgnomevfs/gnome-vfs-drive.h>
 
 G_BEGIN_DECLS
 

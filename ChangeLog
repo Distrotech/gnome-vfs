@@ -1,3 +1,10 @@
+2004-02-27  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-drive.h:
+	* libgnomevfs/gnome-vfs-volume-monitor.h:
+	* libgnomevfs/gnome-vfs-volume.h:
+	Fix includes.
+
 2004-02-26  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/gnome-vfs-daemon-dir-handle.c:
