@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-02-28 13:48+0200\n"
+"POT-Creation-Date: 2002-03-27 08:49-0800\n"
 "PO-Revision-Date: 2002-02-28 12:27+0200\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -31,8 +31,7 @@ msgstr "%s:%d не містить назви модулю."
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr ""
-"Не знайдено конфігураційного файлу \"%s\": %s"
+msgstr "Не знайдено конфігураційного файлу \"%s\": %s"
 
 #: libgnomevfs/gnome-vfs-job.c:714
 #, c-format
@@ -60,8 +59,7 @@ msgstr "Неможливо проаналізувати: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr ""
-"Інші помилки аналізу буде проігноровано."
+msgstr "Інші помилки аналізу буде проігноровано."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
@@ -301,16 +299,30 @@ msgstr "%.1f Гб"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Невідомий GnomeVFSSeekPosition %d"
 
+#. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
-"Не знайдено правильно файлу параметрів у "
-"%s\n"
+msgstr "Не знайдено правильно файлу параметрів у %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
+msgstr "Використайте змінну середовища %s для вказання іншого розміщення.\n"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
+msgid "Standard Moniker factory"
 msgstr ""
-"Використайте змінну середовища %s для "
-"вказання іншого розміщення.\n"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
+msgid "file MonikerExtender"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
+msgid "generic Gnome VFS moniker"
+msgstr ""
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
+#, fuzzy
+msgid "generic file moniker"
+msgstr "Загальна помилка"

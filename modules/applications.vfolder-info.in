@@ -143,18 +143,19 @@
 	<And>
 	  <Keyword>Settings</Keyword>
 	  <Not>
-	    <Or>
+          <Or>
 	      <Keyword>AdvancedSettings</Keyword>
 	      <Keyword>Sawfish</Keyword>
 	      <Keyword>System</Keyword>
+	    <Keyword>Accessibility</Keyword>
 	    </Or>
 	  </Not>
 	</And>
       </Query>
-
+      
       <Exclude>cddb-slave.desktop</Exclude>
       <Exclude>gnomecc.desktop</Exclude>
-
+      
       <Folder>
 	<Name>Advanced</Name>
 	<Desktop>Advanced.directory</Desktop>
@@ -164,7 +165,7 @@
 	    <Keyword>AdvancedSettings</Keyword>
 	  </And>
 	</Query>
-        <Exclude>cddb-slave.desktop</Exclude>
+	<Exclude>cddb-slave.desktop</Exclude>
 	<DontShowIfEmpty/>
 	<Folder>
 	  <Name>Sawfish</Name>
@@ -179,6 +180,17 @@
 	</Folder>
       </Folder>
       <Folder>
+	<Name>Accessibility</Name>
+	<Desktop>Accessibility.directory</Desktop>
+	<Query>
+	  <And>
+	    <Keyword>Settings</Keyword>
+	    <Keyword>Accessibility</Keyword>
+	  </And>
+	</Query>
+      </Folder>
+      
+      <Folder>
 	<Name>System</Name>
 	<Desktop>System.directory</Desktop>
 	<Query>
@@ -190,7 +202,7 @@
 	<DontShowIfEmpty/>
       </Folder>
     </Folder>
-    
+
     <!-- System Tools-->
     <Folder>
       <Name>System</Name>

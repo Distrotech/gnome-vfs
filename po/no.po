@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.0.0\n"
-"POT-Creation-Date: 2002-03-03 09:34+0100\n"
+"POT-Creation-Date: 2002-03-27 08:49-0800\n"
 "PO-Revision-Date: 2002-01-29 00:05+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -310,22 +310,18 @@ msgstr "Fant ikke gyldig fil med innstillinger i %s\n"
 msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Bruk miljøvariabelen %s for å spesifisere en annen lokasjon.\n"
 
-#: monikers/GNOME_VFS_Moniker_std.server.in.h:1
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
 msgstr "Standard Moniker-fabrikk"
 
-#: monikers/GNOME_VFS_Moniker_std.server.in.h:2
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
 msgstr "file MonikerExtender"
 
-#: monikers/GNOME_VFS_Moniker_std.server.in.h:3
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
 msgstr "vanlig GNOME VFS moniker"
 
-#: monikers/GNOME_VFS_Moniker_std.server.in.h:4
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "vanlig fil-moniker"

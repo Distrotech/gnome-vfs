@@ -1,3 +1,41 @@
+2002-03-27  Seth Nickell  <set EMAIL_ADDRESS environment variable>
+
+	reviewed by: <delete if not using a buddy>
+
+	* az.po:
+	* ca.po:
+	* da.po:
+	* de.po:
+	* el.po:
+	* es.po:
+	* et.po:
+	* fi.po:
+	* fr.po:
+	* ga.po:
+	* gl.po:
+	* hu.po:
+	* it.po:
+	* ja.po:
+	* ko.po:
+	* lt.po:
+	* ms.po:
+	* nl.po:
+	* nn.po:
+	* no.po:
+	* pl.po:
+	* pt.po:
+	* pt_BR.po:
+	* ro.po:
+	* ru.po:
+	* sk.po:
+	* sl.po:
+	* sv.po:
+	* tr.po:
+	* uk.po:
+	* wa.po:
+	* zh_CN.po:
+	* zh_TW.po:
+
 2002-03-15  Valek Filippov  <frob@df.ru>
 
 	* ru.po: updated russian translation.

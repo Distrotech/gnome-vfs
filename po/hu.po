@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS HEAD\n"
-"POT-Creation-Date: 2002-02-11 13:53-0800\n"
+"POT-Creation-Date: 2002-03-27 08:49-0800\n"
 "PO-Revision-Date: 2001-03-05 18:20+00:00\n"
 "Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"

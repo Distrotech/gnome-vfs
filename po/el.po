@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.2\n"
-"POT-Creation-Date: 2002-02-11 13:53-0800\n"
+"POT-Creation-Date: 2002-03-27 08:49-0800\n"
 "PO-Revision-Date: 2001-03-01 23:39:19+0900\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"

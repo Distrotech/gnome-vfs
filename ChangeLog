@@ -1,5 +1,11 @@
 2002-03-27  Seth Nickell  <snickell@stanford.edu>
 
+	* configure.in:
+
+	Bump version number to 1.9.11
+
+2002-03-27  Seth Nickell  <snickell@stanford.edu>
+
 	* modules/applications.vfolder-info.in:
 
 	Add accesibility category to applications: too.
