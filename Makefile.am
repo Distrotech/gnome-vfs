@@ -4,16 +4,10 @@ else
 SUBDIRS_OAF=
 endif
 
-if HAVE_GCONF
-SUBDIRS_GCONF=mime-type-capplet
-else
-SUBDIRS_GCONF=
-endif
-
 if PLATFORM_GNOME_2
 SUBDIRS_GNOME=
 else
-SUBDIRS_GNOME=test $(SUBDIRS_GCONF)
+SUBDIRS_GNOME=test mime-type-capplet
 endif
 
 SUBDIRS =					\

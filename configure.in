@@ -302,24 +302,11 @@ XML_CFLAGS=`$XML_CONFIG --cflags`
 AC_SUBST(XML_LIBS)
 AC_SUBST(XML_CFLAGS)
 
-
-dnl 
-dnl gconf-method.c
+dnl
+dnl gconf
 dnl
 
-dnl This is truly useless.  If we don't have gconf, the aclocal will
-dnl have failed long before we get here.
 AM_PATH_GCONF(0.9.0,,,gconf gconf-gtk)
-
-if test "x$gconf_enabled" = xyes; then 
-	AC_PATH_PROG(GCONF_CONFIG, gconf-config, no)
-	AC_DEFINE(HAVE_GCONF)
-else
-    GCONF_CONFIG=no
-fi
-
-AM_CONDITIONAL(HAVE_GCONF, test -n "$GCONF_LIBS") 
-
 AC_SUBST(GCONF_LIBS)
 AC_SUBST(GCONF_CFLAGS)
 AC_SUBST(GTK_LIBS)

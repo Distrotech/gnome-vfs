@@ -96,7 +96,6 @@ libftp_la_SOURCES = 				\
 
 ### `gconf' method
 
-if HAVE_GCONF
 gconfmoduledir = $(modulesdir)
 gconfmodule_LTLIBRARIES = libgconf.la
 
@@ -104,7 +103,6 @@ libgconf_la_SOURCES =                           \
 	gconf-method.c                          \
         gconf-method.h
 libgconf_la_LIBADD = $(GCONF_LIBS) $(GTK_LIBS)
-endif
 
 libgconf_la_LDFLAGS = $(module_flags)
 

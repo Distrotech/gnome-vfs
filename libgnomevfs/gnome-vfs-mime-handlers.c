@@ -26,33 +26,40 @@
 
 #include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-application-registry.h"
-#ifdef HAVE_GCONF
 #include <gconf/gconf.h>
-#endif
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include "gnome-vfs-result.h"
 
-static char *get_user_level (void);
-static char *extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix);
-static char *mime_type_get_supertype (const char *mime_type);
-static char **strsplit_handle_null (const char *str, const char *delim, int max);
-static char *join_str_list (const char *separator, GList *list);
-static GList *OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
-static GList *comma_separated_str_to_str_list (const char *str);
-static GList *str_list_difference (GList *a, GList *b);
-static char *str_list_to_comma_separated_str (GList *list);
-static GList *gnome_vfs_strsplit_to_list (const char *str, const char *delim, int max);
-static char *gnome_vfs_strjoin_from_list (const char *separator, GList *list);
-static void g_list_free_deep (GList *list);
-static GList *prune_ids_for_nonexistent_applications (GList *list);
-static GnomeVFSResult gnome_vfs_mime_edit_user_file (const char *mime_type, const char *key, const char *value);
+static char *         get_user_level                          (void);
+static char *         extract_prefix_add_suffix               (const char         *string,
+							       const char         *separator,
+							       const char         *suffix);
+static char *         mime_type_get_supertype                 (const char         *mime_type);
+static char **        strsplit_handle_null                    (const char         *str,
+							       const char         *delim,
+							       int                 max);
+static char *         join_str_list                           (const char         *separator,
+							       GList              *list);
+static GList *        OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
+static GList *        comma_separated_str_to_str_list         (const char         *str);
+static GList *        str_list_difference                     (GList              *a,
+							       GList              *b);
+static char *         str_list_to_comma_separated_str         (GList              *list);
+static GList *        gnome_vfs_strsplit_to_list              (const char         *str,
+							       const char         *delim,
+							       int                 max);
+static char *         gnome_vfs_strjoin_from_list             (const char         *separator,
+							       GList              *list);
+static void           g_list_free_deep                        (GList              *list);
+static GList *        prune_ids_for_nonexistent_applications  (GList              *list);
+static GnomeVFSResult gnome_vfs_mime_edit_user_file           (const char         *mime_type,
+							       const char         *key,
+							       const char         *value);
 
-
-
-
+static GConfEngine *gconf_engine = NULL;
 
 static GnomeVFSMimeActionType
 gnome_vfs_mime_get_default_action_type_without_fallback (const char *mime_type)
@@ -1717,6 +1724,12 @@ OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list)
 	return retval;
 }
 
+static void
+unref_gconf_engine (void)
+{
+	gconf_engine_unref (gconf_engine);
+}
+
 /* Returns the Nautilus user level, a string.
  * This does beg the question: Why does gnome-vfs have the Nautilus
  * user level coded into it? Eventually we might want to call this the
@@ -1727,23 +1740,20 @@ static char *
 get_user_level (void)
 {
 	char *user_level = NULL;
-#ifdef HAVE_GCONF
-	static GConfEngine *engine = NULL;
 
 	/* Create the gconf engine once. */
-	if (engine == NULL) {
+	if (gconf_engine == NULL) {
 		/* This sequence is needed in case no one has initialized GConf. */
 		if (!gconf_is_initialized ()) {
 			char *fake_argv[] = { "gnome-vfs", NULL };
 			gconf_init (1, fake_argv, NULL);
 		}
 
-		engine = gconf_engine_new ();
-		/* FIXME bugzilla.eazel.com 1150: This engine never gets freed. */
+		gconf_engine = gconf_engine_get_default ();
+		g_atexit (unref_gconf_engine);
 	}
 
-	user_level = gconf_get_string (engine, "/apps/nautilus/user_level", NULL);
-#endif
+	user_level = gconf_engine_get_string (gconf_engine, "/apps/nautilus/user_level", NULL);
 
 	if (user_level == NULL) {
 		user_level = g_strdup ("novice");

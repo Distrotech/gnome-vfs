@@ -1,3 +1,16 @@
+2000-10-11  Darin Adler  <darin@eazel.com>
+
+	Fixed broken remnants of support for building without GConf.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (unref_gconf_engine),
+	(get_user_level): Fixed code to work with new GConf. It was still
+	using the pre-0.9 GConf API, but it was inside HAVE_GCONF
+	conditionals which were always false.
+	* Makefile.am: Removed HAVE_GCONF conditionals..
+	* configure.in: Removed broken code to set up HAVE_GCONF and
+	GCONF_CONFIG.
+	* modules/Makefile.am: Removed HAVE_GCONF conditionals.
+
 2000-10-10  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c: (propfind_href_to_vfs_uri),
