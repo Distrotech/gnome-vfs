@@ -1,5 +1,15 @@
 2004-08-27  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime-private.h:
+	Add private (for now) function
+	gnome_vfs_mime_get_default_application_for_scheme.
+
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_url_show_with_env):
+	Consider uri scheme when picking default app.
+
+2004-08-27  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/http-neon-method.c (http_options):
 	Correctly follow redirects.	
 

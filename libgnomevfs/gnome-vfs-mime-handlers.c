@@ -29,6 +29,7 @@
 #include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-mime-info-cache.h"
 #include "gnome-vfs-mime.h"
+#include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-utils.h"
@@ -154,6 +155,73 @@ gnome_vfs_mime_get_default_action (const char *mime_type)
 
 	return action;
 }
+
+static gboolean
+mime_application_supports_uri_scheme (GnomeVFSMimeApplication *application,
+				      const char *uri_scheme)
+{
+	/* The default supported uri scheme is "file" */
+	if (application->supported_uri_schemes == NULL
+	    && g_ascii_strcasecmp ((const char *) uri_scheme, "file") == 0) {
+		return TRUE;
+	}
+	return g_list_find_custom (application->supported_uri_schemes,
+				   uri_scheme,
+				   (GCompareFunc)g_ascii_strcasecmp) != NULL;
+}
+
+
+/* This should be public, but we're in an API freeze */
+GnomeVFSMimeApplication *
+gnome_vfs_mime_get_default_application_for_scheme (const char *mime_type,
+						   const char *uri_scheme)
+{
+	char *default_application_id;
+	GnomeVFSMimeApplication *default_application;
+
+	default_application = NULL;
+
+	/* First, try the default for the mime type */
+	default_application_id = gnome_vfs_mime_get_default_desktop_entry (mime_type);
+
+	if (default_application_id != NULL
+	    && default_application_id[0] != '\0') {
+		default_application =
+			gnome_vfs_mime_application_new_from_id (default_application_id);
+		g_free (default_application_id);
+	}
+
+	if (default_application != NULL &&
+	    !mime_application_supports_uri_scheme (default_application, uri_scheme)) {
+		gnome_vfs_mime_application_free (default_application);
+		default_application = NULL;
+	}
+	
+	if (default_application == NULL) {
+		GList *all_applications, *l;
+			
+		/* Failing that, try something from the complete list */
+		all_applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
+
+		for (l = all_applications; l != NULL; l = l->next) {
+			default_application = 
+				gnome_vfs_mime_application_new_from_id ((char *) l->data);
+			
+			if (default_application != NULL &&
+			    !mime_application_supports_uri_scheme (default_application, uri_scheme)) {
+				gnome_vfs_mime_application_free (default_application);
+				default_application = NULL;
+			}
+			if (default_application != NULL)
+				break;
+		}
+		g_list_foreach (all_applications, (GFunc) g_free, NULL);
+		g_list_free (all_applications);
+	}
+
+	return default_application;
+}
+
 
 /**
  * gnome_vfs_mime_get_default_application:
