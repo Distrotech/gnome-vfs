@@ -1,3 +1,15 @@
+2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* NEWS, configure.in: Updated for 1.9.3.
+
+2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* libgnomevfs/Makefile.am: Fix module header install location.  
+
+	* Makefile.am, configure.in: install gnome-vfs-module-2.0.pc (I
+	think Darin made the same changes, but I forgot to commit, too
+	tired to untangle it now)
+
 2001-11-02  Darin Adler  <darin@bentspoon.com>
 
 	* configure.in: We need to generate gnome-vfs-module-2.0.pc, if

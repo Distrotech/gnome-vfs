@@ -30,7 +30,7 @@ libgnomevfs_2_la_LIBADD =				\
 
 libgnomevfsincludedir = $(includedir)/gnome-vfs-2.0/libgnomevfs
 
-libgnomevfsmoduleincludedir = $(includedir)/gnome-vfs-module-2.0/
+libgnomevfsmoduleincludedir = $(includedir)/gnome-vfs-module-2.0/libgnomevfs
 
 libgnomevfsmoduleinclude_HEADERS =		\
 	gnome-vfs-cancellation.h		\
