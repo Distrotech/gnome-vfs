@@ -1,3 +1,8 @@
+2001-08-25  Darin Adler  <darin@bentspoon.com>
+
+	* libgnomevfs/Makefile.am: No such thing as $(builddir), so it
+	makes no sense to pass -I$(builddir).
+
 2001-08-25  Jim Garrison  <garrison@users.sourceforge.net>
 
 	* doc/tmpl/async-ops.sgml: documented most commonly used

@@ -6,7 +6,6 @@ INCLUDES =					\
 	-DGNOME_VFS_PREFIX=\"$(prefix)\"	\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
-	-I$(builddir)				\
 	$(LIBGNOMEVFS_CFLAGS)			\
         $(OPENSSL_CFLAGS)                       \
 	$(VFS_CFLAGS)				\
