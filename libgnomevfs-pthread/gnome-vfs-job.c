@@ -625,7 +625,6 @@ dispatch_job_callback (GIOChannel *source,
 	return TRUE;
 }
 
-
 GnomeVFSJob *
 gnome_vfs_job_new (void)
 {

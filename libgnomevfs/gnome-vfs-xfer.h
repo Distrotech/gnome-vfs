@@ -24,24 +24,31 @@
 #define _GNOME_VFS_COMPLEX_OPS_H
 
 
-GnomeVFSResult	gnome_vfs_xfer_uri_list	(const GList *source_uri_list,
+GnomeVFSResult	gnome_vfs_xfer_uri_list (const GList *source_uri_list,
 		    			 const GList *target_uri_list,
-					 GnomeVFSXferOptions xfer_options,
-					 GnomeVFSXferErrorMode error_mode,
-					 GnomeVFSXferOverwriteMode
+				         GnomeVFSXferOptions xfer_options,
+				         GnomeVFSXferErrorMode error_mode,
+				         GnomeVFSXferOverwriteMode
 					 	overwrite_mode,
-					 GnomeVFSXferProgressCallback
+				         GnomeVFSXferProgressCallback
 					 	progress_callback,
-					 gpointer data);
+				         gpointer data);
 
-GnomeVFSResult	gnome_vfs_xfer_uri	(const GnomeVFSURI *source_uri,
-		    			 const GnomeVFSURI *target_uri,
-					 GnomeVFSXferOptions xfer_options,
-					 GnomeVFSXferErrorMode error_mode,
-					 GnomeVFSXferOverwriteMode
+GnomeVFSResult	gnome_vfs_xfer_uri      (const GnomeVFSURI *source_uri,
+				         const GnomeVFSURI *target_uri,
+				         GnomeVFSXferOptions xfer_options,
+				         GnomeVFSXferErrorMode error_mode,
+				         GnomeVFSXferOverwriteMode
 					 	overwrite_mode,
-					 GnomeVFSXferProgressCallback
+				         GnomeVFSXferProgressCallback
 					 	progress_callback,
-					 gpointer data);
+				         gpointer data);
+
+GnomeVFSResult gnome_vfs_xfer_delete_list    (const GList *source_uri_list,
+				         GnomeVFSXferErrorMode error_mode,
+				         GnomeVFSXferOptions xfer_options,
+				         GnomeVFSXferProgressCallback
+					 	progress_callback,
+				         gpointer data);
 
 #endif /* _GNOME_VFS_COMPLEX_OPS_H */

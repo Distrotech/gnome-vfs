@@ -1624,6 +1624,7 @@ gnome_vfs_xfer_delete_items (const GList *source_uri_list,
 			     GnomeVFSXferOptions xfer_options,
 			     GnomeVFSProgressCallbackState *progress)
 {
+
 	GnomeVFSResult result;
 		
 	call_progress (progress, GNOME_VFS_XFER_PHASE_INITIAL);
@@ -1961,6 +1962,9 @@ gnome_vfs_xfer_uri_list (const GList *source_uri_list,
 
 	g_return_val_if_fail (source_uri_list != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (target_uri_list != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);	
+	g_return_val_if_fail (progress_callback == NULL 
+		&& error_mode != GNOME_VFS_XFER_ERROR_MODE_QUERY,
+		GNOME_VFS_ERROR_BAD_PARAMETERS);	
 		
 	init_progress (&progress_state, &progress_info);
 	progress_state.sync_callback = progress_callback;
@@ -1982,14 +1986,45 @@ gnome_vfs_xfer_uri (const GnomeVFSURI *source_uri,
 	GList *source_uri_list, *target_uri_list;
 	GnomeVFSResult result;
 
+	g_return_val_if_fail (source_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (source_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);	
+	g_return_val_if_fail (progress_callback == NULL 
+		&& error_mode != GNOME_VFS_XFER_ERROR_MODE_QUERY,
+		GNOME_VFS_ERROR_BAD_PARAMETERS);	
+
 	source_uri_list = g_list_append (NULL, (void *)source_uri);
 	target_uri_list = g_list_append (NULL, (void *)target_uri);
 
 	result = gnome_vfs_xfer_uri_list (source_uri_list, target_uri_list,
 		xfer_options, error_mode, overwrite_mode, progress_callback, data);
+
 	g_list_free (source_uri_list);
 	g_list_free (target_uri_list);
 
 	return result;
+}
+
+GnomeVFSResult 
+gnome_vfs_xfer_delete_list (const GList *uri_list, 
+                            GnomeVFSXferErrorMode error_mode,
+                            GnomeVFSXferOptions xfer_options,
+		            GnomeVFSXferProgressCallback
+				   progress_callback,
+                            gpointer data)
+{
+	GnomeVFSProgressCallbackState progress_state;
+	GnomeVFSXferProgressInfo progress_info;
+
+	g_return_val_if_fail (uri_list != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (progress_callback == NULL 
+		&& error_mode != GNOME_VFS_XFER_ERROR_MODE_QUERY,
+		GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	init_progress (&progress_state, &progress_info);
+	progress_state.sync_callback = progress_callback;
+	progress_state.user_data = data;
+
+	return gnome_vfs_xfer_delete_items (uri_list, error_mode, xfer_options,
+		&progress_state);
 }
 

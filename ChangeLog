@@ -1,3 +1,14 @@
+2000-09-28  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_delete_items),
+	(gnome_vfs_xfer_uri_list), (gnome_vfs_xfer_uri),
+	(gnome_vfs_xfer_delete_list):
+	* libgnomevfs/gnome-vfs-xfer.h:
+	Add a gnome_vfs_xfer_delete_list call to match the feature
+	that already exists in gnome_vfs_xfer_async. Andy needed this code
+	for theme deleting.
+
 2000-09-28  Mike Fleming  <mfleming@eazel.com>
 
 	* libgnomevfs/gnome-vfs-iobuf.c: (gnome_vfs_iobuf_read):
