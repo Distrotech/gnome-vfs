@@ -1,7 +1,8 @@
-bin_PROGRAMS=test-authentication vfs-daemon
+bin_PROGRAMS=vfs-daemon test-authentication
 
 INCLUDES=$(MONIKERS_CFLAGS)
 LIBS=$(MONIKERS_LIBS) -lgnomevfs-2
+#LIBS=$(MONIKERS_LIBS) -lgnomevfs-2 $(top_builddir)/mime/libmime.la
 
 test_authentication_SOURCES = \
 	gnome-vfs-client.c \

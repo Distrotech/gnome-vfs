@@ -260,8 +260,10 @@ filesystem_type_uncached (path, relpath, statp)
   struct mntent *mnt;
 
   mfp = setmntent (table, "r");
-  if (mfp == NULL)
+  if (mfp == NULL) {
     fstype_internal_error (1, errno, "%s", table);
+    goto no_mtab;
+  }
 
   /* Find the entry with the same device number as STATP, and return
      that entry's fstype. */
@@ -311,6 +313,7 @@ filesystem_type_uncached (path, relpath, statp)
 
   if (endmntent (mfp) == 0)
     fstype_internal_error (0, errno, "%s", table);
+ no_mtab:
 #endif
 
 #ifdef FSTYPE_GETMNT		/* Ultrix.  */

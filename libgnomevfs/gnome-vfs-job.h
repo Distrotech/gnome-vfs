@@ -37,7 +37,6 @@
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-module-callback.h>
 #include <libgnomevfs/gnome-vfs-module-callback-private.h>
-#include <semaphore.h>
 
 typedef struct GnomeVFSJob GnomeVFSJob;
 
@@ -51,9 +50,12 @@ extern GStaticMutex debug_mutex;
 
 #define JOB_DEBUG_PRINT(x)			\
 G_STMT_START{					\
+	struct timeval _tt;			\
+	gettimeofday(&_tt, NULL);		\
+	printf ("%ld:%6.ld ", _tt.tv_sec, _tt.tv_usec); \
 	g_static_mutex_lock (&debug_mutex);	\
-	fputs (__FUNCTION__ ":", stdout);	\
-	printf ("%d ", __LINE__);		\
+	fputs (__FUNCTION__, stdout);		\
+	printf (": %d ", __LINE__);		\
 	printf x;				\
 	fputc ('\n', stdout);			\
 	fflush (stdout);			\
@@ -63,15 +65,25 @@ G_STMT_START{					\
 #endif
 
 #if GNOME_VFS_JOB_DEBUG
+#include <sys/time.h>
+
+extern char *job_debug_types[];
 
 #define JOB_DEBUG(x) JOB_DEBUG_PRINT(x)
 #define JOB_DEBUG_ONLY(x) x
+#define JOB_DEBUG_TYPE(x) (job_debug_types[(x)])
 
 #else
 #define JOB_DEBUG(x)
 #define JOB_DEBUG_ONLY(x)
+#define JOB_DEBUG_TYPE(x)
 
 #endif
+
+/* GNOME_VFS_OP_MODULE_CALLBACK: is not a real OpType; 
+ * its intended to mark GnomeVFSAsyncModuleCallback's in the 
+ * job_callback queue
+ */
 
 enum GnomeVFSOpType {
 	GNOME_VFS_OP_OPEN,
@@ -88,10 +100,8 @@ enum GnomeVFSOpType {
 	GNOME_VFS_OP_XFER,
 	GNOME_VFS_OP_GET_FILE_INFO,
 	GNOME_VFS_OP_SET_FILE_INFO,
-	/* This is not a real OpType; its intended to mark
-	 * GnomeVFSAsyncModuleCallback's in the job_callback queue
-	 */
-	GNOME_VFS_OP_MODULE_CALLBACK
+	GNOME_VFS_OP_MODULE_CALLBACK,
+	GNOME_VFS_OP_FILE_CONTROL
 };
 
 typedef enum GnomeVFSOpType GnomeVFSOpType;
@@ -272,6 +282,20 @@ typedef struct {
 	gpointer                       response_data;
 } GnomeVFSModuleCallbackOpResult;
 
+typedef struct {
+	char *operation;
+	gpointer operation_data;
+	GDestroyNotify operation_data_destroy_func;
+} GnomeVFSFileControlOp;
+
+typedef struct {
+	GnomeVFSAsyncFileControlCallback callback;
+	gpointer callback_data;
+	GnomeVFSResult result;
+	gpointer operation_data;
+	GDestroyNotify operation_data_destroy_func;
+} GnomeVFSFileControlOpResult;
+
 typedef union {
 	GnomeVFSOpenOp open;
 	GnomeVFSOpenAsChannelOp open_as_channel;
@@ -286,6 +310,7 @@ typedef union {
 	GnomeVFSGetFileInfoOp get_file_info;
 	GnomeVFSSetFileInfoOp set_file_info;
 	GnomeVFSFindDirectoryOp find_directory;
+	GnomeVFSFileControlOp file_control;
 } GnomeVFSSpecificOp;
 
 typedef struct {
@@ -318,6 +343,7 @@ typedef union {
 	GnomeVFSLoadDirectoryOpResult load_directory;
 	GnomeVFSXferOpResult xfer;
 	GnomeVFSModuleCallbackOpResult callback;
+	GnomeVFSFileControlOpResult file_control;
 } GnomeVFSSpecificNotifyResult;
 
 typedef struct {
@@ -371,20 +397,20 @@ struct GnomeVFSJob {
 	int priority;
 };
 
-GnomeVFSJob 	*gnome_vfs_job_new      	  (GnomeVFSOpType  	 type,
+GnomeVFSJob 	*_gnome_vfs_job_new      	  (GnomeVFSOpType  	 type,
 						   int			 priority,
 				      		   GFunc           	 callback,
 				      		   gpointer        	 callback_data);
-void         	 gnome_vfs_job_destroy  	  (GnomeVFSJob     	*job);
-void         	 gnome_vfs_job_set	  	  (GnomeVFSJob     	*job,
+void         	 _gnome_vfs_job_destroy  	  (GnomeVFSJob     	*job);
+void         	 _gnome_vfs_job_set	  	  (GnomeVFSJob     	*job,
 				      		   GnomeVFSOpType  	 type,
 				      		   GFunc           	 callback,
 				      		   gpointer        	 callback_data);
-void         	 gnome_vfs_job_go       	  (GnomeVFSJob     	*job);
-void     	 gnome_vfs_job_execute  	  (GnomeVFSJob     	*job);
-void         	 gnome_vfs_job_module_cancel   	  (GnomeVFSJob	 	*job);
+void         	 _gnome_vfs_job_go       	  (GnomeVFSJob     	*job);
+void     	 _gnome_vfs_job_execute  	  (GnomeVFSJob     	*job);
+void         	 _gnome_vfs_job_module_cancel   	  (GnomeVFSJob	 	*job);
 int          	 gnome_vfs_job_get_count 	  (void);
 
-gboolean	 gnome_vfs_job_complete		  (GnomeVFSJob 		*job);
+gboolean	 _gnome_vfs_job_complete		  (GnomeVFSJob 		*job);
 
 #endif /* GNOME_VFS_JOB_PTHREAD_H */

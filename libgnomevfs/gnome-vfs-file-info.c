@@ -190,14 +190,15 @@ gnome_vfs_file_info_copy (GnomeVFSFileInfo *dest,
 }
 
 /**
- * gnome_vfs_file_info_dup
+ * gnome_vfs_file_info_dup:
  * @orig: Pointer to a file information structure to duplicate
  * 
- * Returns a new file information struct that duplicates the information in @orig.
+ * Duplicates @orig and returns it.
+ * 
+ * Returns: a new file information struct that duplicates the information in @orig.
  **/
-
 GnomeVFSFileInfo *
-gnome_vfs_file_info_dup 	(const GnomeVFSFileInfo *orig)
+gnome_vfs_file_info_dup (const GnomeVFSFileInfo *orig)
 {
 	GnomeVFSFileInfo * ret;
 
@@ -219,7 +220,7 @@ gnome_vfs_file_info_dup 	(const GnomeVFSFileInfo *orig)
  * Compare the two file info structs, return TRUE if they match.
  *
  * Returns: TRUE if the two GnomeVFSFileInfos match, otherwise return FALSE.
- */
+ **/
 gboolean
 gnome_vfs_file_info_matches (const GnomeVFSFileInfo *a,
 			     const GnomeVFSFileInfo *b)

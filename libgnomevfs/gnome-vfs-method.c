@@ -278,7 +278,7 @@ gnome_vfs_add_module_to_hash_table (const gchar *name)
 	if (module_element != NULL)
 		goto add_module_out;
 
-	module_name = gnome_vfs_configuration_get_module_path (name, &args);
+	module_name = _gnome_vfs_configuration_get_module_path (name, &args);
 	if (module_name == NULL)
 		goto add_module_out;
 
@@ -287,16 +287,32 @@ gnome_vfs_add_module_to_hash_table (const gchar *name)
 
 	saved_uid = geteuid ();
 	saved_gid = getegid ();
+#if defined(HAVE_SETEUID)
 	seteuid (getuid ());
+#elif defined(HAVE_SETRESUID)
+	setresuid (-1, getuid (), -1);
+#endif
+#if defined(HAVE_SETEGID)
 	setegid (getgid ());
+#elif defined(HAVE_SETRESGID)
+	setresgid (-1, getgid (), -1);
+#endif
 
 	if (g_path_is_absolute (module_name))
 		load_module (module_name, name, args, &method, &transform);
 	else
 		load_module_in_path_list (module_name, name, args, &method, &transform);
 
+#if defined(HAVE_SETEUID)
 	seteuid (saved_uid);
+#elif defined(HAVE_SETRESUID)
+	setresuid (-1, saved_uid, -1);
+#endif
+#if defined(HAVE_SETEGID)
 	setegid (saved_gid);
+#elif defined(HAVE_SETRESGID)
+	setresgid (-1, saved_gid, -1);
+#endif
 
 	if (method == NULL && transform == NULL)
 		goto add_module_out;

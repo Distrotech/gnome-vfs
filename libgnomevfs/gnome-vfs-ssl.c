@@ -3,6 +3,7 @@
 /* gnome-vfs-ssl.h
  *
  * Copyright (C) 2001 Ian McKellar
+ * Copyright (C) 2002 Andrew McDonald
  *
  * The Gnome Library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public License as
@@ -23,12 +24,16 @@
  * Authors: Ian McKellar <yakk@yakk.net>
  *   My knowledge of SSL programming is due to reading Jeffrey Stedfast's
  *   excellent SSL implementation in Evolution.
+ *
+ *          Andrew McDonald <andrew@mcdonald.org.uk>
+ *   Basic SSL/TLS support using the LGPL'ed GNUTLS Library
  */
 
 #include <config.h>
 #include "gnome-vfs-ssl.h"
 
 #include "gnome-vfs-ssl-private.h"
+#include "gnome-vfs-private-utils.h"
 #include <glib/gmem.h>
 #include <string.h>
 
@@ -36,6 +41,10 @@
 #include <openssl/ssl.h>
 #include <openssl/x509.h>
 #include <openssl/err.h>
+#elif defined HAVE_GNUTLS
+#include <gnutls/gnutls.h>
+#endif
+#if defined(HAVE_OPENSSL) || defined(HAVE_GNUTLS)
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -51,12 +60,14 @@ typedef struct {
 #ifdef HAVE_OPENSSL
 	int sockfd;
 	SSL *ssl;
-#else
-#ifdef HAVE_NSS
+#elif defined HAVE_GNUTLS
+	int sockfd;
+	GNUTLS_STATE tlsstate;
+	GNUTLS_CERTIFICATE_CLIENT_CREDENTIALS xcred;
+#elif defined HAVE_NSS
 	PRFileDesc *sockfd;
 #else
 	char	dummy;
-#endif
 #endif
 } GnomeVFSSSLPrivate;
 
@@ -65,9 +76,11 @@ struct GnomeVFSSSL {
 };
 
 void 
-gnome_vfs_ssl_init () {
+_gnome_vfs_ssl_init () {
 #ifdef HAVE_OPENSSL
 	SSL_library_init ();
+#elif defined HAVE_GNUTLS
+	gnutls_global_init();
 #endif
 }
 
@@ -82,7 +95,7 @@ gnome_vfs_ssl_init () {
 gboolean
 gnome_vfs_ssl_enabled ()
 {
-#ifdef HAVE_OPENSSL
+#if defined HAVE_OPENSSL || defined HAVE_GNUTLS
 	return TRUE;
 #else
 	return FALSE;
@@ -107,29 +120,89 @@ gnome_vfs_ssl_create (GnomeVFSSSL **handle_return,
 		      unsigned int port)
 {
 /* FIXME: add *some* kind of cert verification! */
-#ifdef HAVE_OPENSSL
+#if defined(HAVE_OPENSSL) || defined(HAVE_GNUTLS)
 	int fd;
 	int ret;
+#ifdef ENABLE_IPV6	
+	struct addrinfo hints, *result, *res;
+#endif
 	struct hostent *h;
 	struct sockaddr_in sin;
 
-        sin.sin_port = htons (port);
-	h = gethostbyname (host);
+#ifdef ENABLE_IPV6
+	if (_gnome_vfs_have_ipv6 ()) {
+		fd = 0;
+		ret = 0;
+		result = NULL;
 
-	if (h == NULL) {
-		/* host lookup failed */
-		return gnome_vfs_result_from_h_errno ();
+		memset (&hints, 0, sizeof (hints));
+		hints.ai_socktype = SOCK_STREAM;
+
+		if (getaddrinfo (host, NULL, &hints, &result) != 0) {
+			/* host lookup failed */
+			return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+		}
+
+		for (res = result; res; res = res->ai_next) {
+
+			if (res->ai_family != AF_INET && res->ai_family != AF_INET6) {
+				continue;
+			}
+
+			fd = socket (res->ai_family, SOCK_STREAM, 0);
+			if (fd < 0) {
+				continue;
+			}
+
+			if (res->ai_family == AF_INET) {
+				((struct sockaddr_in *)res->ai_addr)->sin_port = htons (port);
+			}
+
+			if (res->ai_family == AF_INET6) {
+				((struct sockaddr_in6 *)res->ai_addr)->sin6_port = htons (port);
+			}
+
+			ret = connect (fd, res->ai_addr, res->ai_addrlen);
+			if (ret != -1) {
+				break;
+			}
+			
+			close (fd);
+		}
+
+		freeaddrinfo (result);
+		if (!res) {
+			if (fd < 0 || ret < 0) {
+				/*Error in socket creation.*/
+				return gnome_vfs_result_from_errno ();
+			} else {
+				/*Error: No IPv4 or IPv6 address.*/
+				return GNOME_VFS_ERROR_HOST_NOT_FOUND;
+			}
+		}
+	}
+	else
+#endif
+	{
+		sin.sin_port = htons (port);
+		h = gethostbyname (host);
+
+		if (h == NULL) {
+			/* host lookup failed */
+			return gnome_vfs_result_from_h_errno ();
+		}
+
+		sin.sin_family = h->h_addrtype;
+		memcpy (&sin.sin_addr, h->h_addr, sizeof (sin.sin_addr));
+
+		fd = socket (h->h_addrtype, SOCK_STREAM, 0);
+		if (fd < 0) {
+			return gnome_vfs_result_from_errno ();
+		}
+
+		ret = connect (fd, (struct sockaddr *)&sin, sizeof (sin));
 	}
 
-        sin.sin_family = h->h_addrtype;
-        memcpy (&sin.sin_addr, h->h_addr, sizeof (sin.sin_addr));
-
-        fd = socket (h->h_addrtype, SOCK_STREAM, 0);
-	if (fd < 0) {
-		return gnome_vfs_result_from_errno ();
-	}
-
-	ret = connect (fd, (struct sockaddr *)&sin, sizeof (sin));
 	if (ret == -1) {
 		/* connect failed */
 		return gnome_vfs_result_from_errno ();
@@ -140,6 +213,20 @@ gnome_vfs_ssl_create (GnomeVFSSSL **handle_return,
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif
 }
+
+#ifdef HAVE_GNUTLS
+static const int protocol_priority[] = {GNUTLS_TLS1, GNUTLS_SSL3, 0};
+static const int cipher_priority[] = 
+	{GNUTLS_CIPHER_RIJNDAEL_128_CBC, GNUTLS_CIPHER_3DES_CBC,
+	 GNUTLS_CIPHER_RIJNDAEL_256_CBC, GNUTLS_CIPHER_TWOFISH_128_CBC,
+	 GNUTLS_CIPHER_ARCFOUR, 0};
+static const int comp_priority[] =
+	{GNUTLS_COMP_ZLIB, GNUTLS_COMP_NULL, 0};
+static const int kx_priority[] =
+	{GNUTLS_KX_DHE_RSA, GNUTLS_KX_RSA, GNUTLS_KX_DHE_DSS, 0};
+static const int mac_priority[] =
+	{GNUTLS_MAC_SHA, GNUTLS_MAC_MD5, 0};
+#endif
 
 /**
  * gnome_vfs_ssl_create_from_fd:
@@ -197,7 +284,52 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 
 	return GNOME_VFS_OK;
 
+#elif defined HAVE_GNUTLS
+	GnomeVFSSSL *ssl;
+	int err;
 
+	ssl = g_new0 (GnomeVFSSSL, 1);
+	ssl->private = g_new0 (GnomeVFSSSLPrivate, 1);
+	ssl->private->sockfd = fd;
+
+	err = gnutls_certificate_allocate_sc (&ssl->private->xcred);
+	if (err < 0) {
+		g_free (ssl->private);
+		g_free (ssl);
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
+
+	gnutls_init (&ssl->private->tlsstate, GNUTLS_CLIENT);
+
+	/* set socket */
+	gnutls_transport_set_ptr (ssl->private->tlsstate, fd);
+
+	gnutls_protocol_set_priority (ssl->private->tlsstate, protocol_priority);
+	gnutls_cipher_set_priority (ssl->private->tlsstate, cipher_priority);
+	gnutls_compression_set_priority (ssl->private->tlsstate, comp_priority);
+	gnutls_kx_set_priority (ssl->private->tlsstate, kx_priority);
+	gnutls_mac_set_priority (ssl->private->tlsstate, mac_priority);
+
+	gnutls_cred_set (ssl->private->tlsstate, GNUTLS_CRD_CERTIFICATE,
+			 ssl->private->xcred);
+
+	err = gnutls_handshake (ssl->private->tlsstate);
+
+	while (err == GNUTLS_E_AGAIN || err == GNUTLS_E_INTERRUPTED) {
+		err = gnutls_handshake (ssl->private->tlsstate);
+	}
+
+	if (err < 0) {
+		gnutls_certificate_free_sc (ssl->private->xcred);
+		gnutls_deinit (ssl->private->tlsstate);
+		g_free (ssl->private);
+		g_free (ssl);
+		return GNOME_VFS_ERROR_IO;
+	}
+
+	*handle_return = ssl;
+
+	return GNOME_VFS_OK;
 #else
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif
@@ -228,6 +360,19 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 	}
 
 	*bytes_read = SSL_read (ssl->private->ssl, buffer, bytes);
+
+	if (*bytes_read <= 0) {
+		*bytes_read = 0;
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+	return GNOME_VFS_OK;
+#elif defined HAVE_GNUTLS
+	if (bytes == 0) {
+		*bytes_read = 0;
+		return GNOME_VFS_OK;
+	}
+
+	*bytes_read = gnutls_record_recv (ssl->private->tlsstate, buffer, bytes);
 
 	if (*bytes_read <= 0) {
 		*bytes_read = 0;
@@ -270,6 +415,19 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 		return GNOME_VFS_ERROR_GENERIC;
 	}
 	return GNOME_VFS_OK;
+#elif defined HAVE_GNUTLS
+	if (bytes == 0) {
+		*bytes_written = 0;
+		return GNOME_VFS_OK;
+	}
+
+	*bytes_written = gnutls_record_send (ssl->private->tlsstate, buffer, bytes);
+
+	if (*bytes_written <= 0) {
+		*bytes_written = 0;
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+	return GNOME_VFS_OK;
 #else
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif
@@ -288,6 +446,11 @@ gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl)
 	SSL_shutdown (ssl->private->ssl);
 	SSL_CTX_free (ssl->private->ssl->ctx);
 	SSL_free (ssl->private->ssl);
+	close (ssl->private->sockfd);
+#elif defined HAVE_GNUTLS
+	gnutls_bye (ssl->private->tlsstate, GNUTLS_SHUT_RDWR);
+	gnutls_certificate_free_sc (ssl->private->xcred);
+	gnutls_deinit (ssl->private->tlsstate);
 	close (ssl->private->sockfd);
 #else
 #endif

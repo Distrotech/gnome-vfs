@@ -97,7 +97,7 @@ GET_PATH_MAX (void)
 #define OPEN open
 #endif
 
-#ifdef HAVE_LSEEK64
+#if defined(HAVE_LSEEK64) && defined(HAVE_OFF64_T)
 #define LSEEK lseek64
 #define OFF_T off64_t
 #else
@@ -582,6 +582,7 @@ read_link (const gchar *full_name)
 
                 read_size = readlink (full_name, buffer, size);
 		if (read_size < 0) {
+			g_free (buffer);
 			return NULL;
 		}
                 if (read_size < size) {
@@ -591,6 +592,28 @@ read_link (const gchar *full_name)
                 size *= 2;
 		buffer = g_realloc (buffer, size);
 	}
+}
+
+static void
+get_access_info (GnomeVFSFileInfo *file_info,
+              const gchar *full_name)
+{
+     /* FIXME: should check errno after calling access because we don't
+      * want to set valid_fields if something bad happened during one
+      * of the access calls
+      */
+     if (access (full_name, R_OK) == 0) {
+             file_info->permissions |= GNOME_VFS_PERM_ACCESS_READABLE;
+     }
+
+     if (access (full_name, W_OK) == 0) {
+             file_info->permissions |= GNOME_VFS_PERM_ACCESS_WRITABLE;
+     }
+
+     if (access (full_name, X_OK) == 0) {
+             file_info->permissions |= GNOME_VFS_PERM_ACCESS_EXECUTABLE;
+     }
+     file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_ACCESS;
 }
 
 static GnomeVFSResult
@@ -605,6 +628,8 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	gboolean recursive;
 	char *link_file_path;
 	char *symlink_name;
+	char *symlink_dir;
+	char *newpath;
 	
 	followed_symlink = FALSE;
 	
@@ -661,6 +686,14 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 			if (symlink_name == NULL) {
 				g_free (link_file_path);
 				return gnome_vfs_result_from_errno ();
+			}
+			if (symlink_name[0] != '/') {
+				symlink_dir = g_path_get_dirname (link_file_path);
+				newpath = g_build_filename (symlink_dir,
+							    symlink_name, NULL);
+				g_free (symlink_dir);
+				g_free (symlink_name);
+				symlink_name = newpath;
 			}
 			
 			if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0
@@ -749,6 +782,10 @@ do_close_directory (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
+#ifndef HAVE_READDIR_R
+G_LOCK_DEFINE_STATIC (readdir);
+#endif
+
 static GnomeVFSResult
 do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle,
@@ -763,6 +800,7 @@ do_read_directory (GnomeVFSMethod *method,
 	handle = (DirectoryHandle *) method_handle;
 	
 	errno = 0;
+#ifdef HAVE_READDIR_R	
 	if (readdir_r (handle->dir, handle->current_entry, &result) != 0) {
 		/* Work around a Solaris bug.
 		 * readdir64_r returns -1 instead of 0 at EOF.
@@ -772,6 +810,21 @@ do_read_directory (GnomeVFSMethod *method,
 		}
 		return gnome_vfs_result_from_errno ();
 	}
+#else
+	G_LOCK (readdir);
+	errno = 0;
+	result = readdir (handle->dir);
+
+	if (result == NULL && errno != 0) {
+		GnomeVFSResult ret = gnome_vfs_result_from_errno ();
+		G_UNLOCK (readdir);
+		return ret;
+	}
+	if (result != NULL) {
+		memcpy (handle->current_entry, result, sizeof (struct dirent));
+	}
+	G_UNLOCK (readdir);
+#endif
 	
 	if (result == NULL) {
 		return GNOME_VFS_ERROR_EOF;
@@ -821,6 +874,10 @@ do_get_file_info (GnomeVFSMethod *method,
 	if (result != GNOME_VFS_OK) {
 		g_free (full_name);
 		return result;
+	}
+
+	if (options & GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS) {
+		get_access_info (file_info, full_name);
 	}
 
 	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
@@ -900,7 +957,9 @@ do_is_local (GnomeVFSMethod *method,
 		struct stat statbuf;
 		if (stat (path, &statbuf) == 0) {
 			char *type = filesystem_type (path, path, &statbuf);
-			gboolean is_local = strcmp (type, "nfs") && strcmp (type, "afs");
+			gboolean is_local = ((strcmp (type, "nfs") != 0) && 
+					     (strcmp (type, "afs") != 0) &&
+					     (strcmp (type, "ncpfs") != 0));
 			local = GINT_TO_POINTER (is_local ? 1 : -1);
 			g_hash_table_insert (fstype_hash, path, local);
 		}
@@ -1068,18 +1127,38 @@ find_trash_in_one_hierarchy_level (const char *current_directory, dev_t near_dev
 
 	item_buffer = g_malloc (sizeof (struct dirent) + GET_PATH_MAX() + 1);
 	for (;;) {
+#ifdef HAVE_READDIR_R
 		if (readdir_r (directory, item_buffer, &item) != 0 || item == NULL) {
 			break;
 		}
-
-		if (gnome_vfs_context_check_cancellation (context))
+#else
+		G_LOCK (readdir);
+		item = readdir (directory);
+		if (item == NULL) {
+			G_UNLOCK (readdir);
 			break;
+		}
+#endif
+
+		if (gnome_vfs_context_check_cancellation (context)) {
+#ifndef HAVE_READDIR_R
+			G_UNLOCK (readdir);
+#endif
+			break;
+		}
 
 		if (strcmp (item->d_name, ".") == 0
-			|| strcmp (item->d_name, "..") == 0)
+			|| strcmp (item->d_name, "..") == 0) {
+#ifndef HAVE_READDIR_R
+			G_UNLOCK (readdir);
+#endif
 			continue;
+		}
 
 		item_path = append_to_path (current_directory, item->d_name);
+#ifndef HAVE_READDIR_R
+		G_UNLOCK (readdir);
+#endif
 		if (lstat (item_path, &stat_buffer) == 0 
 			&& S_ISDIR (stat_buffer.st_mode)
 			&& near_device_id == stat_buffer.st_dev) {
@@ -2036,12 +2115,8 @@ do_set_file_info (GnomeVFSMethod *method,
 
 #ifdef HAVE_FAM
 static gboolean
-fam_callback (GIOChannel *source,
-	      GIOCondition condition,
-	      gpointer data)
+fam_do_iter_unlocked (void)
 {
-	G_LOCK (fam_connection);
-
 	while (FAMPending(fam_connection)) {
 		FAMEvent ev;
 		FileMonitorHandle *handle;
@@ -2052,7 +2127,6 @@ fam_callback (GIOChannel *source,
 			FAMClose(fam_connection);
 			g_free(fam_connection);
 			fam_connection = FALSE;
-			G_UNLOCK (fam_connection);
 			return FALSE;
 		}
 
@@ -2105,6 +2179,7 @@ fam_callback (GIOChannel *source,
 			} else
 				info_uri = gnome_vfs_uri_append_file_name (handle->uri, ev.filename);
 
+			/* This queues an idle, so there are no reentrancy issues */
 			gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *)handle,
 						    info_uri, 
 						    event_type);
@@ -2112,9 +2187,22 @@ fam_callback (GIOChannel *source,
 		}
 	}
 
+	return TRUE;
+}
+
+static gboolean
+fam_callback (GIOChannel *source,
+	      GIOCondition condition,
+	      gpointer data)
+{
+	gboolean res;
+	G_LOCK (fam_connection);
+
+	res = fam_do_iter_unlocked ();
+
 	G_UNLOCK (fam_connection);
 
-	return TRUE;
+	return res;
 }
 
 
@@ -2130,7 +2218,9 @@ monitor_setup (void)
 	if (fam_connection == NULL) {
 		fam_connection = g_malloc0(sizeof(FAMConnection));
 		if (FAMOpen2(fam_connection, "test-monitor") != 0) {
+#ifdef DEBUG_FAM
 			g_print ("FAMOpen failed, FAMErrno=%d\n", FAMErrno);
+#endif
 			g_free(fam_connection);
 			fam_connection = NULL;
 			G_UNLOCK (fam_connection);
@@ -2168,6 +2258,10 @@ do_monitor_add (GnomeVFSMethod *method,
 	handle->cancelled = FALSE;
 	gnome_vfs_uri_ref (uri);
 	filename = get_path_from_uri (uri);
+
+	/* We need to queue up incoming messages to avoid blocking on write
+	   if there are many monitors being added */
+	fam_do_iter_unlocked ();
 	
 	if (monitor_type == GNOME_VFS_MONITOR_FILE) {
 		G_LOCK (fam_connection);
@@ -2207,6 +2301,11 @@ do_monitor_cancel (GnomeVFSMethod *method,
 
 	handle->cancelled = TRUE;
 	G_LOCK (fam_connection);
+
+	/* We need to queue up incoming messages to avoid blocking on write
+	   if there are many monitors being canceled */
+	fam_do_iter_unlocked ();
+	
 	FAMCancelMonitor (fam_connection, &handle->request);
 	G_UNLOCK (fam_connection);
 
@@ -2214,6 +2313,20 @@ do_monitor_cancel (GnomeVFSMethod *method,
 #else
 	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 #endif
+}
+
+static GnomeVFSResult
+do_file_control (GnomeVFSMethod *method,
+		 GnomeVFSMethodHandle *method_handle,
+		 const char *operation,
+		 gpointer operation_data,
+		 GnomeVFSContext *context)
+{
+	if (strcmp (operation, "file:test") == 0) {
+		*(char **)operation_data = g_strdup ("test ok");
+		return GNOME_VFS_OK;
+	}
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSMethod method = {
@@ -2242,7 +2355,8 @@ static GnomeVFSMethod method = {
 	do_find_directory,
 	do_create_symbolic_link,
 	do_monitor_add,
-	do_monitor_cancel
+	do_monitor_cancel,
+	do_file_control
 };
 
 GnomeVFSMethod *

@@ -2,6 +2,14 @@
 
 module GNOME {
 	module VFS {
+		exception NotFound {};
+		struct AuthInfo {
+			string username;
+			string password;
+		};
+
+		typedef sequence<AuthInfo>  AuthInfoList;
+
 		interface Client : Bonobo::Unknown {
 			void doSomething (in string aStr);
 		};
@@ -11,8 +19,10 @@ module GNOME {
 			void   setPassword (in string uri, 
 					    in string user, 
 					    in string passwd);
-			string getPassword (in string uri,
-					    in string user);
+			AuthInfoList getPassword (in string uri,
+						  in string user);
+
+			AuthInfoList getAllPasswords (in string uri);
 
 			/* Lifecycle slaved to 'client' lifecycle */
 			void registerClient   (in Client client);

@@ -3,6 +3,7 @@ NULL =
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
+	-I/opt/gnome22/include/libbonobo-2.0	\
 	$(LIBGNOMEVFS_CFLAGS)			\
 	$(VFS_CFLAGS)				\
 	-D_FILE_OFFSET_BITS=64			\
@@ -15,22 +16,22 @@ INCLUDES =					\
 	-DDATADIR=\"$(datadir)\"		\
 	-DLIBDIR=\"$(libdir)\"			\
 	-DPREFIX=\"$(prefix)\"			\
+	-DGNOMEVFS_LOCALEDIR=\"$(prefix)/@DATADIRNAME@/locale\" \
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
 	-DG_LOG_DOMAIN=\"libgnomevfs\"		\
 	$(NULL)
 
-%.c %.h: %.gob
-	$(top_srcdir)/gob/src/gob2 $<
-
-GOB_SRCLIST = 					\
-	gnome-vfs-metadata.c			\
-	gnome-vfs-metadata.h			\
-	gnome-vfs-metadata-private.h		\
-	$(NULL)
-
-GOB_FILES =					\
-	gnome-vfs-metadata.gob			\
-	$(NULL)
+# %.c %.h: %.gob
+#	$(top_srcdir)/gob/src/gob2 $<
+#
+# GOB_SRCLIST = 					\
+#	gnome-vfs-metadata.c			\
+#	gnome-vfs-metadata.h			\
+#	gnome-vfs-metadata-private.h		\
+#	$(NULL)
+# GOB_FILES =					\
+#	gnome-vfs-metadata.gob			\
+#	$(NULL)
 
 lib_LTLIBRARIES = libgnomevfs-2.la
 
@@ -38,21 +39,28 @@ libgnomevfs_2_la_LIBADD =			\
 	$(LIBGNOMEVFS_LIBS)			\
 	$(NULL)
 
+libgnomevfs_2_la_LDFLAGS =			\
+	-version-info $(LIBGNOMEVFS_CURRENT):$(LIBGNOMEVFS_REVISION):$(LIBGNOMEVFS_AGE) \
+	-export-symbols-regex "^[^_].*" \
+	-no-undefined \
+	$(NULL)
+
 libgnomevfsincludedir = $(includedir)/gnome-vfs-2.0/libgnomevfs
 
 libgnomevfsmoduleincludedir = $(includedir)/gnome-vfs-module-2.0/libgnomevfs
 
+# mime-sniff-buffers and cancellabe-ops are used by modules
 noinst_HEADERS =				\
 	gnome-vfs-async-job-map.h		\
 	gnome-vfs-backend.h			\
 	gnome-vfs-cancellable-ops.h		\
+	gnome-vfs-client.h			\
 	gnome-vfs-configuration.h		\
 	gnome-vfs-handle-private.h		\
 	gnome-vfs-i18n.h			\
 	gnome-vfs-job-queue.h			\
 	gnome-vfs-job-slave.h			\
 	gnome-vfs-job.h				\
-	gnome-vfs-metadata-private.h		\
 	gnome-vfs-mime-magic.h			\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer.h		\
@@ -64,9 +72,11 @@ noinst_HEADERS =				\
 	gnome-vfs-process.h			\
 	gnome-vfs-ssl-private.h			\
 	gnome-vfs-thread-pool.h			\
+	GNOME_VFS_Daemon.h			\
 	$(NULL)
 
 libgnomevfsmoduleinclude_HEADERS =		\
+	gnome-vfs-authentication.h 		\
 	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-inet-connection.h		\
 	gnome-vfs-method.h			\
@@ -95,7 +105,6 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-handle.h			\
 	gnome-vfs-init.h			\
 	gnome-vfs-job-limit.h			\
-	gnome-vfs-metadata.h			\
 	gnome-vfs-mime-utils.h			\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-monitor.h		\
@@ -112,16 +121,17 @@ libgnomevfsinclude_HEADERS =			\
 	$(NULL)
 
 libgnomevfs_2_la_SOURCES =			\
-	$(GOB_SRCLIST)				\
-	$(GOB_FILES)				\
 	gnome-vfs-application-registry.c	\
+	gnome-vfs-authentication.c		\
 	gnome-vfs-async-job-map.c		\
 	gnome-vfs-async-ops.c			\
 	gnome-vfs-cancellable-ops.c	 	\
 	gnome-vfs-cancellation.c		\
+	gnome-vfs-client.c			\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
 	gnome-vfs-directory.c			\
+	gnome-vfs-open-fd.c			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-find-directory.c		\
 	gnome-vfs-handle.c			\
@@ -158,17 +168,22 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	gnome-vfs-xfer.c			\
+	GNOME_VFS_Daemon-common.c		\
+	GNOME_VFS_Daemon-skels.c		\
+	GNOME_VFS_Daemon-stubs.c		\
 	$(NULL)
+
+#	$(GOB_SRCLIST)				\
+#	$(GOB_FILES)				\
+# BUILT_SOURCES = $(GOB_SRCLIST)
+# CLEANFILES = $(BUILT_SOURCES)
 
 # Platform specific includes
 libgnomevfsplatformincludedir = $(libdir)/gnome-vfs-2.0/include
 libgnomevfsplatforminclude_HEADERS =		\
 	gnome-vfs-file-size.h
 
-BUILT_SOURCES = $(GOB_SRCLIST)
 
-CLEANFILES = $(BUILT_SOURCES)
-
-TESTS = check-headers.pl
-EXTRA_DIST = check-headers.pl getdelim.c
+# TESTS = check-headers.pl
+EXTRA_DIST = check-headers.pl 
 

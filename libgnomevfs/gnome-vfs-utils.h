@@ -31,8 +31,15 @@
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-result.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
+#include <libgnomevfs/gnome-vfs-handle.h>
 
 G_BEGIN_DECLS
+
+typedef enum {
+	GNOME_VFS_MAKE_URI_DIR_NONE = 0,
+	GNOME_VFS_MAKE_URI_DIR_HOMEDIR = 1 << 0,
+	GNOME_VFS_MAKE_URI_DIR_CURRENT = 1 << 1
+} GnomeVFSMakeURIDirs;
 
 /* Makes a human-readable string. */
 char *gnome_vfs_format_file_size_for_display (GnomeVFSFileSize  size);
@@ -113,6 +120,10 @@ GnomeVFSResult	gnome_vfs_get_volume_free_space	(const GnomeVFSURI 	*vfs_uri,
 
 char *gnome_vfs_icon_path_from_filename       (const char *filename);
 
+/* Convert a file descriptor to a handle */
+GnomeVFSResult	gnome_vfs_open_fd	(GnomeVFSHandle	**handle,
+					 int filedes);
+
 /* TRUE if the current thread is the thread with the main glib event loop */
 gboolean	gnome_vfs_is_primary_thread (void);
 
@@ -137,14 +148,26 @@ GnomeVFSResult  gnome_vfs_read_entire_file (const char *uri,
 					    int *file_size,
 					    char **file_contents);
 
-char * gnome_vfs_format_uri_for_display (const char *uri);
-char * gnome_vfs_make_uri_from_input (const char *uri);
-char * gnome_vfs_make_uri_canonical_strip_fragment (const char *uri);
-gboolean gnome_vfs_uris_match (const char *uri_1, const char *uri_2);
-char * gnome_vfs_get_uri_scheme (const char *uri);
-char * gnome_vfs_make_uri_from_shell_arg (const char *uri);
+char *   gnome_vfs_format_uri_for_display            (const char          *uri);
+char *   gnome_vfs_make_uri_from_input               (const char          *uri);
+char *   gnome_vfs_make_uri_from_input_with_dirs     (const char          *uri,
+						      GnomeVFSMakeURIDirs  dirs);
+char *   gnome_vfs_make_uri_canonical_strip_fragment (const char          *uri);
+gboolean gnome_vfs_uris_match                        (const char          *uri_1,
+						      const char          *uri_2);
+char *   gnome_vfs_get_uri_scheme                    (const char          *uri);
+char *   gnome_vfs_make_uri_from_shell_arg           (const char          *uri);
+
+
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
 char * gnome_vfs_make_uri_full_from_relative (const char *base_uri,
 					      const char *relative_uri);
+#endif /* GNOME_VFS_DISABLE_DEPRECATED */
+
+GnomeVFSResult gnome_vfs_url_show                        (const char   *url);
+GnomeVFSResult gnome_vfs_url_show_with_env               (const char   *url, 
+                                                          char        **envp);
+
 
 G_END_DECLS
 

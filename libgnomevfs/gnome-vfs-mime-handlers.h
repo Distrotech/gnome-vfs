@@ -59,6 +59,13 @@ typedef struct {
 
 } GnomeVFSMimeApplication;
 
+/**
+ * GnomeVFSMimeAction:
+ *
+ * This data structure describes an action that can be done 
+ * on a file.
+ **/
+
 typedef struct {
 	GnomeVFSMimeActionType action_type;
 	union {
@@ -69,7 +76,6 @@ typedef struct {
 
 	/* Padded to avoid future breaks in ABI compatibility */
 	void *reserved1;
-
 } GnomeVFSMimeAction;
 
 GnomeVFSMimeApplication *gnome_vfs_mime_application_copy                   (GnomeVFSMimeApplication *application);
@@ -143,6 +149,19 @@ GList *                  gnome_vfs_mime_remove_component_from_list         (GLis
 									    gboolean                *did_remove);
 GList *                  gnome_vfs_mime_id_list_from_component_list        (GList                   *components);
 GList *                  gnome_vfs_mime_id_list_from_application_list      (GList                   *applications);
+
+
+/* For launching mime actions & application */
+GnomeVFSResult           gnome_vfs_mime_action_launch                      (GnomeVFSMimeAction      *action,
+									    GList                   *uris);
+GnomeVFSResult           gnome_vfs_mime_action_launch_with_env             (GnomeVFSMimeAction      *action,
+									    GList                   *uris,
+									    char                   **envp);
+GnomeVFSResult           gnome_vfs_mime_application_launch                 (GnomeVFSMimeApplication *app,
+									    GList                   *uris);
+GnomeVFSResult           gnome_vfs_mime_application_launch_with_env	   (GnomeVFSMimeApplication *app,
+									    GList                   *uris,
+									    char                   **envp);
 
 G_END_DECLS
 

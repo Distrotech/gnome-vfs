@@ -210,10 +210,11 @@ typedef void	(* GnomeVFSAsyncSetFileInfoCallback)
 /**
  * GnomeVFSAsyncDirectoryLoadCallback:
  * @handle: handle of the operation generating the callback
- * @result: %GNOME_VFS_OK if the operation was sucessful, %GNOME_VFS_ERROR_EOF if
- * the last file in the directory has been read, otherwise a #GnomeVFSResult error code
- * @list: a #GList of #GnomeVFSFileInfo structs representing information about
- * the files just loaded
+ * @result: %GNOME_VFS_OK if the operation was sucessful, 
+ * %GNOME_VFS_ERROR_EOF if the last file in the directory 
+ * has been read, otherwise a #GnomeVFSResult error code
+ * @list: a #GList of #GnomeVFSFileInfo structs representing 
+ * information about the files just loaded
  * @entries_read: number of entries read from @handle for this instance of
  * the callback.
  * @callback_data: user data defined when the callback was established
@@ -271,6 +272,10 @@ typedef void    (* GnomeVFSAsyncFindDirectoryCallback)
 						 GList *results /* GnomeVFSFindDirectoryResult */,
 						 gpointer data);
 
+typedef void	(* GnomeVFSAsyncFileControlCallback)	(GnomeVFSAsyncHandle *handle,
+							 GnomeVFSResult result,
+							 gpointer operation_data,
+							 gpointer callback_data);
 
 void           gnome_vfs_async_cancel                 (GnomeVFSAsyncHandle                   *handle);
 
@@ -407,6 +412,13 @@ void           gnome_vfs_async_find_directory         (GnomeVFSAsyncHandle      
 						       int				      priority,
 						       GnomeVFSAsyncFindDirectoryCallback     callback,
 						       gpointer                               user_data);
+
+void           gnome_vfs_async_file_control           (GnomeVFSAsyncHandle                   *handle,
+						       const char                            *operation,
+						       gpointer                               operation_data,
+						       GDestroyNotify                         operation_data_destroy_func,
+						       GnomeVFSAsyncFileControlCallback       callback,
+						       gpointer                               callback_data);
 
 G_END_DECLS
 

@@ -1,4 +1,1160 @@
+Synced the daemon branch with gnome-vfs head
+
+2003-05-20  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* modules/ftp-method.c
+	* modules/http-method.c
+	* modules/ssh-method.c: fixed potential crash with uris containing
+	  %2F, fixed a few small leaks
+
+==== gnome-vfs 2.3.2 ====
+
+2003-05-19  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.3.2.
+
+2003-05-17  Bastien Nocera  <hadess@hadess.net>
+
+	* Makefile.am: add the programs subdir so the programs are built by
+	default
+
+2003-05-16 Radu Greab  <radu@netsoft.ro>
+           Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-utils.c(gnome_vfs_get_volume_free_space): 
+	fixed a leak when the function was called with an non-file:// uri
+	* modules/file-method.c(do_is_local): ncpfs file systems aren't local
+	(fixes #97789) 
+
+2003-05-16  Bastien Nocera  <hadess@hadess.net>
+
+	* programs/gnomevfs-ls.c: (show_data), (main): remove use of SHOW_ICON
+
+2003-05-16  Bastien Nocera  <hadess@hadess.net>
+
+	reviewed by: Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* programs/.cvsignore:
+	* programs/Makefile.am:
+	* programs/gnomevfs-cat.c:
+	* programs/gnomevfs-copy.c:
+	* programs/gnomevfs-info.c:
+	* programs/gnomevfs-ls.c:
+	* programs/gnomevfs-mkdir.c: added some programs to test out
+	gnome-vfs methods, use the gnomevfs- prefix for them, add some
+	more information from get_info in -ls and -info
+
+2003-05-14  Pasupathi Duraisamy <pasupathi.duraisamy@wipro.com>
+
+	* configure.in: check "getdelim" in AC_CHECK_FUNCS
+
+	* libgnomevfs/Makefile.am (EXTRA_DIST): remove getdelim.c
+
+	* modules/extfs-method.c: Wrap getdelim definition inside
+	#ifndef HAVE_GETDELIM
+
+	(patch reviewed by alexl@redhat.com)
+
+2003-05-14  Malcolm Tredinnick <malcolm@commsecure.com.au>
+
+	* modules/http-method.c: Bring comment about gconf keys into
+	line with reality.
+
+2003-05-13  Shailesh Mittal  <shailesh.mittal@wipro.com>
+
+	(applied by Ian McKellar <yakk@yakk.net>)
+
+	Changes are made by keeping nautilus in focus.
+
+	* libgnomevfs/gnome-vfs-uri.c:
+	Macro for URI_DELIMITER_IPV6_SET is added and a value 
+	is added to array of structures uri_strspn_sets[].
+
+	(split_toplevel_uri): Changed to parse IPv6 address 
+	(given in square brackets) like [fe80::203:baff:fe0b:a63d].
+
+	(gnome_vfs_uri_to_string): Modified to enclose an IPv6
+	address within '[' and ']', while converting uri to string. 
+
+2003-05-12  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-job.c: update misc. calls
+	to spew more pleasant debug.
+
+	* libgnomevfs/gnome-vfs-job.h: add gettimeofday call
+	to JOB_DEBUG_PRINT, add job_debug_types array and
+	JOB_DEBUG_TYPE macro to pretty-print the job type.
+
+2003-05-09  Telsa Gwynne  <hobbit@aloss.ukuu.org.uk>
+                                                                                
+        * configure.in: Added cy to ALL_LINGUAS
+
+2003-05-08  SamÃºel JÃ³n Gunnarsson  <sammi@techattack.nu>
+
+	* configure.in: Added "is" into ALL_LINGUAS
+
+2003-05-06  Danilo Å egan  <dsegan@gmx.net>
+
+	* configure.in: Added "sr" and "sr@Latn" to ALL_LINGUAS.
+
+2003-05-05  Bastien Nocera  <hadess@hadess.net>
+
+	* libgnomevfs/gnome-vfs-mime.c:
+	(_gnome_vfs_get_mime_type_internal): "audio/mpeg" is the right
+	mimetype for MP3 files, not "audio/x-mp3" (Closes: #100523)
+
+2003-05-05  Xan Lopez  <xan@masilla.org>
+
+	* modules/cdda-cddb.c: (CDDBConnect):
+
+	Init sock variable to -1, fixes warning compilation.
+
+==== gnome-vfs 2.3.1 ====
+
+2003-05-05  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/Makefile.am: 
+	* configure.in:
+	Go to libgnome/gtk+ style library versioning.
+
+2003-05-05  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS:
+	Update
+
+	* configure.in:
+	Bump version
+
+2003-05-03  Arvind Samptur  <arvind.samptur@wipro.com>
+	* modules/cdemenu-desktop-method.c:
+	(create_cde_icon_name_cache): While running the dttypes
+	command to create a icon cache for the cde menu, we need
+	to reap the child process. wait() currently on a solaris box
+	fails with an EINTR. So loop till you succeed. Fixes #111628
+
+2003-04-25  Alexander Larsson  <alexl@redhat.com>
+
+	Based on patch by Frank Worsley <fworsley@shaw.ca>
+	
+	* libgnomevfs/gnome-vfs-utils.[ch]:
+	(gnome_vfs_icon_path_from_filename):
+	Use g_file_test instead of hack_file_exists.
+	
+	(gnome_vfs_make_uri_from_input_with_dirs):
+	Add new function.
+
+2003-04-24  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/Makefile.am (libgnomevfs_2_la_LIBADD): 
+	Remove LTLIBOBJS for the moment. It was breaking the build.
+	
+2003-04-24  Alexander Larsson  <alexl@redhat.com>
+
+	Patch from Frank Worsley <fworsley@shaw.ca>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_new_from_id),
+	(gnome_vfs_mime_action_launch),
+	(gnome_vfs_mime_action_launch_with_env),
+	(gnome_vfs_mime_application_launch),
+	(gnome_vfs_mime_application_launch_with_env), (expand_parameters):
+	new functions for launching mime actions and applications
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	updated for new functions
+	
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	(_gnome_vfs_use_handler_for_scheme),
+	(_gnome_vfs_url_show_using_handler_with_env):
+	private functions for launching url handlers defined in gconf
+	
+	(gnome_vfs_prepend_terminal_to_vector):
+	the default terminal is needed by gnome-vfs so we make a copy of this
+	from libgnome
+	
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	update for new functions
+	
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-result.h:
+	new error codes for the new functions
+	
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_url_show), (gnome_vfs_url_show_with_env):
+	convenience functions for launching a url in string form using
+	the default application or component
+	
+	* libgnomevfs/gnome-vfs-utils.h:
+	updated for new functions
+
+	* schemas/desktop_default_applications.schemas:
+	new schema that defines the default terminal application
+
+	* schemas/Makefile.am:
+	updated for new schema
+
+2003-04-24  Masahiro Sakai  <sakai@tom.sfc.keio.ac.jp>
+
+	* configure.in: fix IPV6 test. check inet_pton() and off64_t.
+
+	* configure.in: call AC_LIBTOOL_WIN32_DLL. This is necessary for
+	building DLL on some win32 platform.
+	
+	* modules/cdemenu-module.conf
+	* modules/default-modules.conf: remove "lib" prefix from module names
+	since it is added automatically by g_module_build_path(), and it
+	breaks on Cygwin. (Cygwin uses "cyg" as library prefix.)
+	
+	* libgnomevfs/Makefile.am
+	* modules/Makefile.am
+	* modules/vfolder/Makefile.am: add -no-undefined to each library's
+	LDFLAGS, and write each library's depencency libraries explicitly
+	in its LIBADD. These are necessary for building DLL on some win32
+	platform.
+
+	* libgnomevfs/Makefile.am (libgnomevfs_2_la_LIBADD): add $(LTLIBOBJS)
+	to link getdelim.lo.
+
+	* libgnomevfs/getdelim.c: add prototype and fix to work on Cygwin.
+
+	* modules/file-method.c:
+	don't use lseek64() when off64_t is not available.
+	(do_read_directory): call G_UNLOCK(readdir) when readdir() is failed.
+	(find_trash_in_one_hierarchy_level): fix to work without readdir_r().
+
+	* modules/vfolder/Makefile.am (module_flags): add -module
+
+	* modules/vfolder/vfolder-common.c (entry_reload_if_needed): comment
+	out vfolder_monitor_emit() call since this function is not defined.
+
+	* modules/http-method.c: if inet_pton() is not available, define
+	the function using inet_aton().
+	[FIXME: should be done using AC_REPLACE_FUNCS].
+
+2003-04-24  Michael Meeks  <michael@ximian.com>
+
+	* TODO: waffle unproductively - this file is really stale.
+
+2003-04-23  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (gnome_vfs_mime_type_is_known):
+	Nothing is known if the mime type has been deleted.
+	Fixes bug #109479
+
+2003-04-23  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c (gnome_vfs_mime_remove_extension):
+	Handle the case when the last extension is removed.
+
+	* modules/file-method.c (get_stat_info):
+	Correct handling of symlinks.
+	Fixes bug #111397. Based on patch in bug by jon.
+
+2003-04-18  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-private-utils.h: removed misleading comment
+	* modules/cdemenu-module.conf
+	* modules/default-modules.conf: removed .so extension to module names
+	  since this is added automatically by gmodule, and it breaks on
+	  some unices (eg HPUX). Fixes #110986
+
+2003-4-17  HideToshi Tajima  <hidetoshi.tajima@sun.com>
+
+	* modules/cdemenu-desktop-method.c (get_icon_for_menu): 
+ 	Fixes bug #103306. Translators, please translate these messages
+	exactly the same in CDE's sys.dtwmrc file of the locale.
+
+2003-04-17  Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
+
+	* modules/http-method.c: Changed private symbol inet_aton
+	  to inet_pton.
+
+2003-04-15  Christophe Fergeau  <teuf@users.sourceforge.net>
+	
+	* configure.in: 
+	* libgnomevfs/gnome-vfs-mime-magic.c: don't try to use wctype.h
+	 and mbrtowc on platforms which don't have it (bug #110226)
+
+2003-04-11  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* modules/http-method.[ch]: cleaned up some eazel related stuff
+	  parses an HTTP error code in the body of an answer to a PROPFIND
+	  request (fixes access to WebDAV servers using Resin). 
+	  Fixes bug #110532
+
+2003-04-11  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* test/test-uri.c: added regression test for
+	  gnome_vfs_uri_make_full_from_relative
+
+2003-04-11  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-i18n.c (read_aliases): make it work
+	* libgnomevfs/gnome-vfs-utils.c: removed bogus 
+	  #ifndef GNOME_VFS_DISABLE_DEPRECATED
+
+2003-04-11  Hidetoshi Tajima  <hidetoshi.tajima@sun.com>
+
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): call bindtextdomain
+	inside #ifdef ENABLE_NLS. Fixes bug #110213.
+
+2003-04-11  Michael Meeks  <michael@ximian.com>
+
+	* test/test-shell.c (authentication_callback, main):
+	hook up some really dumb authentication bits.
+
+2003-04-11  Alexander Larsson  <alexl@redhat.com>
+
+	* test/test-async.c (file_control_callback):
+	Don't double free operation_data.
+
+2003-04-09  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-module-callback.h: add
+	G_BEGIN/END_DECLS for my C++
+
+2003-04-05  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-uri.c
+	* libgnomevfs/gnome-vfs-utils.c
+	* libgnomevfs/gnome-vfs-utils.h: removed duplicated code, deprecated
+	gnome_vfs_make_uri_full_from_relative, use 
+	gnome_vfs_uri_make_full_from_relative instead
+
+2003-04-04  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* modules/fstype.c: don't try to call getmntent with a NULL parameter
+	if mtab is non-existent. Fixes bug #106950
+
+2003-04-03  Kaushal Kumar  <kaushal.kumar@wipro.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (gnome_vfs_mime_set_extensions_list):
+	Set the deleted key to "" if it exists before resetting ext key.
+	Fixes bug #109795.
+
+2003-04-02  Shailesh Mittal  <shailesh.mittal@wipro.com>
+
+	* configure.in :
+	Added option for enabling IPv6 support, and only enabling
+	IPv6 support if AF_INET6 and function getaddrinfo are
+	defined there.
+
+	* libgnomevfs/gnome-vfs-inet-connection.c :
+	Added a field addr6 of #sockaddr_in6 type in structure
+	GnomeVFSInetConnection, for holding IPv6 address.
+	One more field socklen is added to the definition of
+	structure GnomeVFSInetConnection to hold the length of
+	socket for identification of address family.
+	(gnome_vfs_inet_connection_create):
+	Modified to have support for IPv6 addresses too.
+	Included <gnome-vfs-private-utils.h> for prototype of the
+	function _gnome_vfs_have_ipv6 ().
+
+	* libgnomevfs/gnome-vfs-private-utils.c :
+	(_gnome_vfs_have_ipv6):
+	Function added to check for run-time IPv6 support.
+
+	* libgnomevfs/gnome-vfs-private-utils.h :
+	Added prototype for function _gnome_vfs_have_ipv6 ().
+
+	* libgnomevfs/gnome-vfs-ssl.c (gnome_vfs_ssl_create) :
+	Modified to have support for IPv6 addresses as well.
+	Included <libgnomevfs/gnome-vfs-private-utils.h> for prototype of the
+	function _gnome_vfs_have_ipv6 ().
+
+	* modules/cdda-cddb.c :
+	Included "config.h" for having definition of macro ENABLE_IPV6.
+	(CDDBConnect) :
+	Modified to support IPv6 addresses in addition to IPv4.
+	(have_ipv6) :
+	Function added to check for run-time IPv6 support.
+
+	* modules/http-method.c :
+	Included header <netdb.h> for prototype of getaddrinfo().
+	(have_ipv6) :
+	Function added to check for run-time IPv6 support.
+	(proxy_should_for_hostname) :
+	It is modified to work with IPv6 and IPv4-Mapped IPv6 addresses
+	in addition to IPv4 addresses.
+	
+==== gnome-vfs 2.2.4 ====
+
+2003-03-31  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.2.4.
+
+2003-03-31  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-configuration.c (_gnome_vfs_configuration_init):
+	Look for user modules in ~/.gnome2/vfs/modules instead of ~/.gnome/vfs/modules.
+
+2003-03-27  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* modules/ftp-method.c: make sure the current directory is / when
+	using an uri without directory
+
+2003-03-26  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "yi" to ALL_LINGUAS.
+
+2003-03-25  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_get_volume_free_space):
+	statvfs works for nfs!
+
+2003-03-25  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-monitor.c:
+	Don't queue changes to canceled monitors.
+	Fix sign bug that caused events to be missed.
+	Fix theoretical race with setting up the idle handler.
+
+2003-03-23  Murray Cumming  <murrayc@usa.net>
+
+	* doc/about.sgml: Simple Sample Progam: Allocated memory for the 
+	read buffer. Initializing this to 0 would show the error. I don't
+	know how this ran without crashing before.
+	
+2003-03-24  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-job.c (_gnome_vfs_job_destroy_notify_result):
+	Don't free OP_XFER notify result. Its stack-allocated. (#100654)
+
+2003-03-20  Guntupalli Karunakar  <karunakar@freedomink.org>
+
+	* configure.in: Added "ml" in ALL_LINGUAS
+
+2003-03-18  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (copy_symlink):
+	Check for errors when copying symlinks.
+
+2003-03-14  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-monitor.c (gnome_vfs_monitor_callback):
+	Throttle the change event rate so that applications don't
+	use 100% cpu when monitoring a directory someone is downloading
+	to.
+
+2003-03-14  Dave Camp  <dave@ximian.com>
+
+	* libgnomevfs/gnome-vfs-job.c (_gnome_vfs_job_destroy_notify_result): 
+	Remove the unnecessary g_warning here.
+
+2003-03-14  JoÃ«l Brich <joel.brich@laposte.net>
+
+	* configure.in: Added "eo" to ALL_LINGUAS.
+
+2003-03-14  Michael Meeks  <michael@server.home>
+
+	* test/test-shell.c (do_ssl): impl.
+	(main, list_commands): upd.
+
+2003-03-14  Alexander Larsson  <alexl@redhat.com>
+
+	* Makefile.am:
+	Remove hardcoded ACLOCAL_AMFLAGS.
+	Please do not make changes to modules without
+	permission from the maintainer.
+
+==== gnome-vfs 2.2.3 ====
+	
+2003-03-10  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.2.3
+
+2003-03-05  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Try pkg-config for detecting openssl.
+	Add --disable-openssl to not use openssl
+	Add --enable-gnutls to enable gnutls.
+
+2003-02-25  Taneem Ahmed  <taneem@eyetap.org>
+
+	* configure.in: Added "bn" to ALL_LINGUAS.
+
+2003-02-24  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-job.c (_gnome_vfs_job_destroy_notify_result): 
+	Turn crash into g_warning for smb: module callback bug. This needs
+	looking into. I'm not sure what is happening here.
+	
+2003-02-24  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/file-method.c (do_read_directory):
+	Actually make the non-readdir_r case work.
+
+2003-02-24  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-monitor.c (destroy_monitor_handle):
+	Warn if the handle was not in the hash table.
+	(gnome_vfs_monitor_callback):
+	Loop to get the hashtable. This fixes a possible race where
+	there is a callback before the add_monitor code has added the
+	monitor to the hashtable. (#106758)
+
+2003-02-21  Alexander Larsson  <alexl@redhat.com>
+
+	* monikers/Makefile.am:
+	Assign CLEANFILES with normal assignment
+
+	* libgnomevfs/Makefile.am:
+	Remove commented out lines that were confusing automake.
+	
+2003-02-20  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-job.h:
+	Remove include of semaphore.h. Not needed.
+
+2003-02-19  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	Fix vorbis sniff change.
+	(_gnome_vfs_sniff_buffer_looks_like_text):
+	Non utf8 text sniffing.
+
+	* schemas/Makefile.am (install-data-local):
+	Don't install schemas if --disable-schemas-install was passed
+
+	* test/test-shell.c:
+	Add support for get_info_from_handle.
+
+	* modules/http-method.c (do_get_file_info_from_handle):
+	For get_info_from_handle we use the cached file info to
+	avoid re-connecting.
+
+2003-02-18  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in: 
+	* modules/file-method.c (do_read_directory):
+	Check for readdir_r and use locks + readdir if it doesn't exist.
+
+2003-02-18  Alexander Larsson  <alexl@redhat.com>
+	* libgnomevfs/gnome-vfs-mime-magic.c (_gnome_vfs_sniff_buffer_looks_like_mp3):
+	Don't interpret vorbis files with ID3 tags as mp3.
+
+2003-02-18  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Define HAVE_SYS_PARAM_H. Patch from jmmv@hispabsd.org.
+
+2003-02-18  Roozbeh Pournader  <roozbeh@sharif.edu>
+
+	* configure.in: Added "fa" to ALL_LINGUAS.
+
+2003-02-17  Bastien Nocera  <hadess@hadess.net>
+
+	* modules/ssh-method.c: (do_read_directory): implement setting the
+	type of the file when we have a symlink (Closes: #92630)
+
+2003-02-17  Bastien Nocera  <hadess@hadess.net>
+
+	* modules/ssh-method.c: (do_read_directory): implement mime-type
+	checking for symlinks, still doesn't work for directories
+
+2003-02-17  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* modules/file-method.c: (read_link): fix memleak when readlink
+	fails.
+	* test/.cvsignore : quiet CVS, quiet.
+
+2003-02-13  Bastien Nocera  <hadess@hadess.net>
+
+	* modules/ssh-method.c: (do_move), (do_unlink), (do_check_same_fs):
+	implement do_move and revive do_check_same_fs
+
+2003-02-13  Bastien Nocera  <hadess@hadess.net>
+
+	* modules/ssh-method.c: (ssh_connect), (do_open_directory): don't crash
+	when accessing ssh://, nicer error message when we get a connection
+	refused
+
+2003-02-13  Bastien Nocera  <hadess@hadess.net>
+
+	reviewed by: Alexander Larsson  <alexl@redhat.com>
+
+	* modules/ssh-method.c: (ssh_connect), (ssh_destroy),
+	(ssh_check_for_done), (do_read), (do_read_directory):
+	add more robust error checking, check for EOF and EOD when we're done
+	reading rather than on close
+
+==== gnome-vfs 2.2.2 ====
+	
+2003-02-12  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in: 
+	Bump to 2.2.2
+	
+2003-02-12  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_monitor_add):
+	Free uri if no monitor_add implementation. Plugs leak.
+
+	* libgnomevfs/gnome-vfs-monitor.c (_gnome_vfs_monitor_do_cancel):
+	Correctly destroy the handle of result == OK. Plugs leak.
+
+2003-02-12  Bastien Nocera  <hadess@hadess.net>
+
+	reviewed by: Alexander Larsson  <alexl@redhat.com>
+
+	* modules/Makefile.am:
+	* modules/ssh-method.c: (ssh_connect), (ssh_read_error),
+	(ssh_wait_and_destroy), (do_open), (do_close), (do_read),
+	(do_make_directory), (do_remove_directory), (do_unlink),
+	(do_check_same_fs), (do_set_file_info): give a login failed error when
+	no key is setup to access the machine, a server not available when the
+	machine doesn't have its keys in the known_hosts, use port information
+	from the URI, redirect ssh:/// to ssh://localhost/, wait 30 secs for ssh        to finish before killing it (fixes the data loss problem when copying
+	files to a remote location), check for cancellation when ssh takes
+	to much time to finish, implement do_check_same_fs (disabled until
+	move is implemented)
+
+2003-02-10  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* modules/file-method.c: disabled the annoying "FAMOpen failed..."
+	warning
+
+==== gnome-vfs 2.2.1 ====
+	
+2003-02-10  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.2.1
+
+	* modules/file-method.c:
+	Queue up fam events before adding/removing monitors to avoid
+	deadlocking. Fixes gnome-theme-manager hang.
+
+2003-02-09  Christophe Fergeau <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-configuration.c: fixed a memory leak
+
+2003-02-08  Kang Jeong-Hee <Keizi@mail.co.kr>
+
+	* Makefile.am: Added ACLOCAL_AMFLAGS. bug #102296
+
+2003-02-06  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "id" to ALL_LINGUAS.
+
+2003-01-22  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* configure.in: Added Amharic (am), Bosnian (bs),
+	Macedonian (mk) to ALL_LINGUAS
+
+2003-01-22  Christian Rose  <menthos@menthos.com>
+
+	* configure.in: Added "mn" to ALL_LINGUAS.
+
+==== gnome-vfs 2.2.0 ====
+	
+2003-01-20  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.2.0
+
+2003-01-17  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-ssl.c (gnome_vfs_ssl_create_from_fd):
+	Fix warning.
+
+2003-01-16  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Comment out the gnutls check since its not tested.
+	
+2003-01-16  Alexander Larsson  <alexl@redhat.com>
+
+	* acinclude.m4:
+	* acconfig.h:
+	* configure.in:
+	* libgnomevfs/gnome-vfs-ssl.c:
+	gnutls support if openssl is not availible.
+	Patch from Andrew McDonald (debian).
+	I haven't tested this. 
+
+2003-01-14  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-job.c:
+	Fix race and bugs. Patches from Josh Parsons (jp30@st-and.ac.uk).
+	Fixes #103420 and #103236.
+	
+==== gnome-vfs 2.1.91 ====
+	
+2003-01-13  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.1.91
+
+2003-01-07  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/gzip-method.c (write_gzip_header):
+	Set creation time. Based on patch by davh@davh.dk. (#41172)
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_extract_dirname):
+	Don't crash on NULL uri->text. Patch by Dennis Haney. (#79730)
+
+	* libgnomevfs/gnome-vfs-socket-buffer.c (gnome_vfs_socket_buffer_peekc):
+	Return correct char instead of first in buffer.
+	
+	Patch from ksato@users.sourceforge.net (#102202)
+
+==== gnome-vfs 2.1.6 ====
+	
+2003-01-06  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump version to 2.1.6.
+
+2002-12-19  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_format_file_size_for_display):
+	Fix erronous change in string.
+
+2002-12-19  Michael Meeks  <michael@ximian.com>
+
+	* big sed job to '_' prefix 'internal' methods, it
+	turns out that the modules use loads of these
+	methods, based on Tim Janik's patch (thanks Tim)
+
+2002-12-18  Diego Gonzalez   <diego@pemas.net>
+
+	* libgnomevfs/gnome-vfs-job.h:
+	spelling fix
+	* libgnomevfs/gnome-vfs-handle.h:
+	add the description of GnomeVFSHandle
+
+2002-12-18  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Fix up mistakes from previous change.
+
+2002-12-18  Diego Gonzalez   <diego@pemas.net>
+
+	* configure.in: accidentaly changed the version in the last merge
+
+2002-12-18  Diego Gonzalez  <diego@pemas.net>
+
+	* configure.in: check for gtk-doc version 0.10
+
+	* libgnomevfs/gnome-vfs-async-ops.[c-h]
+	* libgnomevfs/gnome-vfs-directory.h
+	* libgnomevfs/gnome-vfs-file-info.[c-h]
+	* libgnomevfs/gnome-vfs-handle.h
+	* libgnomevfs/gnome-vfs-init.c
+	* libgnomevfs/gnome-vfs-mime.[c-h]
+	* libgnomevfs/gnome-vfs-mime-info.h
+	* libgnomevfs/gnome-vfs-job.h
+	* libgnomevfs/gnome-vfs-mime-handlers.h
+	* libgnomevfs/gnome-vfs-open-fd.c
+	* libgnomevfs/gnome-vfs-ops.c
+	* libgnomevfs/gnome-vfs-monitor.h
+	* libgnomevfs/gnome-vfs-result.h
+	* libgnomevfs/gnome-vfs-utils.c
+	* libgnomevfs/gnome-vfs-xfer.[c-h]
+	add API docs
+
+	* doc/writing-modules.sgml:
+	* doc/gnome-vfs-sections.txt
+	* doc/gnome-vfs-docs.sgml
+	* doc/about.sgml
+	* doc/tmpl/gnome-vfs-async-ops.sgml
+	* doc/tmpl/gnome-vfs-directory.sgml
+	* doc/tmpl/gnome-vfs-file-info.sgml
+	* doc/tmpl/gnome-vfs-init.sgml
+	* doc/tmpl/gnome-vfs-metadata.sgml
+	* doc/tmpl/gnome-vfs-ops.sgml
+	* doc/tmpl/gnome-vfs-result.sgml
+	* doc/tmpl/gnome-vfs-uri.sgml
+	* doc/tmpl/gnome-vfs-utils.sgml
+	* doc/tmpl/gnome-vfs-xfer.sgml
+	* doc/Makefile.am
+	fix documentation, reorganize it and migrate the generation to use
+	xml and lixslt
+
+	* doc/tmpl/gnome-vfs-directory-basic-ops.sgml
+	* doc/tmpl/gnome-vfs-directory-find-ops.sgml
+	* doc/tmpl/gnome-vfs-directory-list-ops.sgml
+	* doc/tmpl/gnome-vfs-file-rw-ops.sgml
+	* doc/tmpl/gnome-vfs-file-trunc-ops.sgml
+	* doc/tmpl/gnome-vfs-file-basic-ops.sgml
+	* doc/tmpl/gnome-vfs-file-advanced-ops.sgml
+	* doc/tmpl/gnome-vfs-file-info-ops.sgml
+	new files
+
+2002-12-18  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime.h: 
+	* libgnomevfs/gnome-vfs-init.h:
+	Deprecate gnome_vfs_mime_shutdown, gnome_vfs_loadinit,
+	gnome_vfs_preinit and gnome_vfs_postinit.
+
+2002-12-18  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* modules/Makefile.am:
+	* modules/extfs-method.c:
+	* modules/extfs/Makefile.am:
+	use $(libdir) instead of $(prefix)/lib (needed for AMD x86-64)
+
+2002-12-18  Alexander Larsson  <alexl@redhat.com>
+	
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c:
+	(_gnome_vfs_uri_resolve_all_symlinks_uri),
+	(_gnome_vfs_uri_resolve_all_symlinks),
+	(_gnome_vfs_uri_is_in_subdir):
+	New functions. Not exported since we're in a freeze, but might
+	be nice to export later.
+	
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(move_source_is_in_target),
+	(handle_name_conflicts):
+	Handle the case when moving a file over a directory it is contained in.
+	(Bug #99346)
+	
+	* test/Makefile.am:
+	* test/test-resolv.c: (main):
+	* test/test-subdir.c: (main):
+	Some test code.
+
+2002-12-17  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in: 
+	* modules/vfolder/Makefile.am (libvfolder_desktop_la_LIBADD):
+	Add gthread-2.0 to TEST_LIBS and add it to LIBADD.
+	Patch from owen taylor.
+
+==== gnome-vfs 2.1.5 ====
+	
+2002-12-16  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.1.5
+
+2002-12-12  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-result.[ch]:
+	Add GNOME_VFS_ERROR_NO_MASTER_BROWSER error.
+
+==== gnome-vfs 2.1.4 ====
+	
+2002-12-09  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Bump version to 2.1.4.	
+
+	* NEWS:
+	Update
+
+2002-12-06  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (ensure_user_directory_exist):
+	Check dir is not NULL before trying to close it.
+
+2002-12-05  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c: (ensure_user_directory_exist),
+	(write_back_mime_user_file), (write_back_keys_user_file):
+	Ensure directory stream is never leaked.
+
+2002-12-05  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* libgnomevfs/gnome-vfs-mime-monitor.c:
+	(gnome_vfs_mime_monitor_init):
+	Ensure user mime dir exists before monitoring it 
+
+2002-12-05  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/default-modules.conf: 
+	* modules/console-method.c: 
+	* modules/Makefile.am:
+	Remove console method.
+
+	* libgnomevfs/Makefile.am: 
+	* libgnomevfs/gnome-vfs-open-fd.c: 
+	* libgnomevfs/gnome-vfs-utils.h:
+	Implement gnome_vfs_open_fd().
+	Patch from Giovanni Corriga <valkadesh@libero.it>
+
+2002-11-27  Jody Goldberg <jody@gnome.org>
+
+	* configure.in : post release version bump
+
+2002-11-27  Jody Goldberg <jody@gnome.org>
+
+	* Release 2.1.3.1
+
+2002-11-27  Jody Goldberg <jody@gnome.org>
+
+	* configure.in : bump to 2.1.3.1 for release
+
+2002-11-12  Michael Meeks  <michael@server.home>
+
+	* modules/extfs-method.c (do_get_file_info): check
+	result before using the handle.
+
+2002-11-12  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-method.h:
+	Added file_control to ops
+	
+	* libgnomevfs/gnome-vfs-async-ops.[ch]:
+	Added gnome_vfs_async_file_control
+	
+	* libgnomevfs/gnome-vfs-cancellable-ops.[ch]:
+	Added gnome_vfs_file_control_cancellable
+	
+	* libgnomevfs/gnome-vfs-ops.[ch]:
+	Added gnome_vfs_file_control
+	
+	* libgnomevfs/gnome-vfs-handle-private.h:
+	* libgnomevfs/gnome-vfs-handle.c:
+	* libgnomevfs/gnome-vfs-job.[ch]:
+	Implement file_control
+
+2002-11-08 Giovanni Corriga <valkadesh@rocketmail.com>
+
+	* modules/Makefile.am
+	* modules/default-modules.conf
+	* modules/console-method.c: added console method (which adds
+	console:///stdin, console:///stdout, console:///stderr uris)
+
+2002-11-08  Christophe Fergeau <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-file-info.h: documented 
+	  GNOME_VFS_FILE_INFO_FIELDS_ACCESS and 
+	  GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS
+	* modules/ssh-method.c: only get mime type and access info if they
+	  were asked
+
+2002-11-06  Christophe Fergeau <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.h: rework looks_like_text to
+	use glib functions, remove looks_like_gzip (moved in gnome-mime-data)
+	* libgnomevfs/gnome-vfs-mime.c: removed looks_like_gzip call, replaced
+	by a strcmp on the mime type returned by the sniff function
+
+2002-11-05  Michael Meeks  <michael@ximian.com>
+
+	* test/Makefile.am: disable test-metadata
+
+	* libgnomevfs/gnome-vfs.h: remove
+	gnome-vfs-metadata.h.
+
+	* libgnomevfs/gnome-vfs-metadata-private.h,
+	* libgnomevfs/gnome-vfs-metadata.h,
+	* libgnomevfs/gnome-vfs-metadata.c: add
+	generated files to CVS, so they can be
+	canonicalized later if neccessary.
+
+	* libgnomevfs/Makefile.am: disable gob
+	builds, and remove generated files from
+	install - immature / unfinished API.
+
+	* configure.in: disable building gob.
+
+2002-11-04 Frederic Vannere <homere@krow.org>
+
+	* modules/ftp-method.c: add support for Microsoft and Netware FTP 
+	  servers
+
+2002-11-04  bugzilla-gnome@thewrittenword.com
+	
+	* configure.in:
+	* libgnomevfs/gnome-vfs-method.c: check whether to use seteuid/setegid
+	  or setresuid/setregid (fixes #96078)
+
+2002-11-04  Jens Elkner <elkner@linofee.org>
+
+	* configure.in: fixes --with-openssl-includes
+
+2002-11-04  Josh Lucas  <josh@stonecottage.com>
+
+	* test/test-shell.c: display more info, fixes #42800 
+	
+2002-11-03  Dmitry G. Mastrukov  <dmitry@taurussoft.org>
+
+	* configure.in: Added Belarusian to ALL_LINGUAS
+
+2002-11-02  Michael Meeks  <michael@ximian.com>
+
+	* Version 2.1.3
+
+	* libgnomevfs/Makefile.am: disable
+	check-headers.pl, we have some path issues here.
+
+	* modules/vfolder/Makefile.am: disable this, doesn't
+	pass either (grr.)
+
+2002-10-31  Bastien Nocera  <hadess@hadess.net>
+
+	* modules/vfolder/network.vfolder-info.in: make writing to network:
+	work again
+
+2002-10-30  Bastien Nocera  <hadess@hadess.net>
+
+	* modules/default-modules.conf:
+	* modules/vfolder/Makefile.am:
+	* modules/vfolder/network.vfolder-info.in: added network: scheme
+
+2002-10-29  Jody Goldberg <jody@gnome.org>
+
+	Patch from Christophe Fergeau <teuf@users.sourceforge.net>
+	* libgnomevfs/gnome-vfs-file-info.h :  Add explicit flags to request
+	  permissioning.
+	* modules/file-method.c (get_access_info) : new.
+	* modules/ssh-method.c (get_access_info) : new.
+	* test/test-info.c (print_file_info) :  test for the new flag.
+
+2002-10-29  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-module-callback.c
+	(copy_one_callback): bin so we can build -Wall
+	cleanly again.
+
+2002-10-29  Colin Walters <walters@debian.org>
+
+	* test/test-xfer.c: add params so we can regression
+	  test the various options nicely.
+
+	* libgnomevfs/gnome-vfs-xfer.h (GnomeVFSXferOptions):
+	  add GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE.
+
+	* libgnomevfs/gnome-vfs-xfer.c (copy_directory): add
+	  recursive symlink following copy support.
+
+2002-10-25  Alex Graveley  <alex@ximian.com>
+
+	Drop support for the broken .vfolder-info-default concept.
+
+	* modules/vfolder/Makefile.am (EXTRA_DIST): Remove
+	applications.vfolder-info-default.in and
+	preferences.vfolder-info-default.in
+	(vfolder_DATA): Remove applications.vfolder-info-default and
+	preferences.vfolder-info-default.
+
+	* modules/vfolder/applications-all-users.vfolder-info.in: Link to
+	preferences:/// instead of preferences-all-users:///.  If admins
+	want to edit preferences-all-users:, they should go there
+	directly.
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_find_filenames):
+	Don't look for .vfolder-info-default, and don't copy it to the
+	user's vfolder directory.
+	(copy_user_default_file): Remove.
+	(vfolder_info_init): Set the default writedir to
+	~/.gnome2/vfolders/scheme, in case a .vfolder-info files doesn't
+	exist to tell us where to write changes.
+
+2002-10-25  Alex Graveley  <alex@ximian.com>
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new_private): Use
+	gnome_vfs_context_peek_current() instead of
+	gnome_vfs_context_new() which was triggering an abort if resolving
+	a transform URI from a worker thread because you cannot create
+	contexts in anything other than the primary thread (for some
+	reason).
+
+2002-10-25  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (folder_add_include): Don't add
+	the include to a hashtable, since a) we don't use it and b) it was
+	causing memory corruption on folder free.  Fixes #95965.
+	(folder_remove_include): Drop hashtable removing code.
+
+2002-10-24 Brian Cameron <brian.cameron@sun.com>
+
+	* libgnomevfs/gnome-vfs-module-callback.c: Performance fix.
+	No longer copy the default callback functions to stack_info
+	in the function gnome_vfs_module_callback_get_stack_info.
+	Note that the function gnome_vfs_module_callback_invoke is
+	the only function to access the callback hashes, and it
+	already will get the callback from the default if it is not
+	in the private thread memory.
+
+2002-10-21 Stephen Browne <stephen.browne@sun.com>
+
+	* modules/cdemenu-desktop-method.c: Find correct titles 
+	and use last defintion instead of first found of a menu
+	that is defined multiple times.
+
+2002-10-12  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/vfolder/applications.vfolder-info-default.in:
+
+	Disable favorites folder... Everything is favorites now.
+	
+2002-10-04  Mark McLoughlin  <mark@skynet.ie>
+
+	* modules/vfolder/vfolder-common.h: turn on VFOLDER_DEBUG
+	for debugging spew and VFOLDER_DEBUG_WITHOUT_MONITORING
+	for testing non-FAM monitoring code.
+
+	* modules/vfolder/vfolder-common.c:
+	* modules/vfolder/vfolder-info.c: only spew debugging info
+	if VFOLDER_DEBUG.
+
+	* modules/vfolder/vfolder-util.c: (monitor_callback_internal):
+	Use non-FAM monitoring code if VFOLDER_DEBUG_WITHOUT_MONITORING
+	is defined.
+
+2002-10-07  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/vfolder/applications-all-users.vfolder-info.in:
+
+	Don't hardcode displaying evolution and galeon into the
+	top-level menu.
+	
+2002-10-01  Yanko Kaneti <yaneti@declera.com>
+
+	* schemas/system_http_proxy.schemas: reorder some elements so that it 
+	validates.
+
+2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
+	
+	* modules/ssh-method.c: 
+        Quote filenames using g_shell_quote before passing them to ssh
+
+2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
+	
+	* modules/ssh-method.c: 
+        Make do_read return GNOME_VFS_ERROR_EOF when it read 0 byte
+        Force C locale in ssh_connect before running ssh (the ls parsing 
+        function expects ls output to be in this locale)
+        When the uri contains no username, use the name of the current user
+        (otherwise ssh://localhost won't work).
+        Fix a possible buffer overflow in do_read_directory
+
+2002-09-30  Christophe Fergeau  <teuf@users.sourceforge.net>
+	
+	* modules/ftp-method.c: 
+ 	Moved ftp authentification to a separate function (ftp_login)
+ 	Correctly return GNOME_VFS_ERROR_EOF when do_read didn't read anything
+
+2002-09-27  Arvind Samptur <arvind.samptur@wipro.com>
+	
+	* modules/Makefile.am : look for cde menus only if cde is present.
+	* cdemenu-module.conf : added the new file.
+	* default-modules.conf : remove cdemenu from defaults.
+	Fixes #86736. Patch from Stephen Browne.
+
 2002-09-20  Arvind Samptur <arvind.samptur@wipro.com>
+	
 	* modules/cde-desktop-method.c: Removing Comment field
 	from the desktop files. Fixes #88484
 	Redoing this since gnome-vfs-rewrite and gnome-2-0 branch
@@ -29,15 +1185,16 @@
 
 2002-09-19  Christophe Fergeau  <teuf@users.sourceforge.net>
 
-        * libgnomevfs/gnome-vfs-application-registry.c
-        * libgnomevfs/gnome-vfs-application-registry.h
-        * libgnomevfs/gnome-vfs-configuration.c
-        * libgnomevfs/gnome-vfs-configuration.h: added support for
+	* libgnomevfs/gnome-vfs-application-registry.c
+	* libgnomevfs/gnome-vfs-application-registry.h
+	* libgnomevfs/gnome-vfs-configuration.c
+	* libgnomevfs/gnome-vfs-configuration.h: added support for
         uses_gnomevfs in .application file so that apps can indicate they 
 	can open all uris supported by gnomevfs
-        * doc/mime-data-specification.txt: updated doc accordingly
+	* doc/mime-data-specification.txt: updated doc accordingly
 
 2002-09-13  Ghee Teo <ghee.teo@sun.com>
+
 	* Fixes #92132 in modules/http-method.c which leaks file descriptor
 	  on a bad page, error 405.
 
@@ -821,6 +1978,7 @@
 === end merge changes from gnome-vfs-2-0-vfolder-rewrite branch ===
 
 2002-08-16  Arvind Samptur <arvind.samptur@wipro.com>
+
 	*  modules/cde-desktop-method.c: Removing Comment field
 	from the desktop files. Fixes #88484
 	Re-doing this patch as Hidetoshi's patch to fix
@@ -2395,7 +3553,7 @@ Tue Feb 19 17:11:41 2002  George Lebl <jirka@5z.com>
 	keep a pointer to the old key which eventually got freed.
 	Seems to fix a startup segfault in the panel.
 
-2002-02-14  Tõivo Leedjärv  <leedjarv@interest.ee>
+2002-02-14  TÃµivo LeedjÃ¤rv  <leedjarv@interest.ee>
 
 	* configure.in: Added et to ALL_LINGUAS.
 
@@ -4407,7 +5565,7 @@ Thu Aug 23 11:12:36 2001  George Lebl <jirka@5z.com>
 
 	* port to bonobo-activation.
 
-2001-08-01  Jonas Borgström  <jonas@codefactory.se>
+2001-08-01  Jonas BorgstrÃ¶m  <jonas@codefactory.se>
 
 	* libgnomevfs/gnome-vfs-ssl.c (gnome_vfs_ssl_create): 
 	Split the HAVE_OPENSSL #ifdef into two. So
@@ -5024,7 +6182,7 @@ Thu Aug 23 11:12:36 2001  George Lebl <jirka@5z.com>
 
 	* modules/ftp-method.c (vfs_module_init): Don't initialize GConf if we don't have it.
 
-2001-06-11  Carlos Perelló Marín <carlos@gnome-db.org>
+2001-06-11  Carlos PerellÃ³ MarÃ­n <carlos@gnome-db.org>
 
 	* modules/cdda-method.c: Fixed to compile with Gtk 2.0
 
@@ -6580,7 +7738,7 @@ Fri Apr 27 13:32:32 2001  Jonathan Blandford  <jrb@webwynk.net>
 
 2001-02-22  Seth Nickell  <seth@eazel.com>
 
-	reviewed by: Pavel Císler <pavel@eazel.com>
+	reviewed by: Pavel CÃ­sler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-application-registry.c:
 	(strip_trailing_whitespace):
@@ -8747,7 +9905,7 @@ gno2000-12-22  Pavel Cisler  <pavel@eazel.com>
 	* modules/ftp-method.c:
 	Fix all the warnings that crept in while -Werror was off.
 
-2000-12-20 Lutz Müller <urc8@rz.uni-karlsruhe.de>
+2000-12-20 Lutz MÃ¼ller <urc8@rz.uni-karlsruhe.de>
 	
         * libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_set_host_name),
 	(gnome_vfs_uri_set_user_name), (gnome_vfs_uri_set_password):
@@ -17690,7 +18848,7 @@ Fri Jun 16 12:11:32 2000  George Lebl <jirka@5z.com>
 	Avoid calling gnome_vfs_uri_unref on NULL uri, to avoid
 	g_return_if_fail.
 	
-2000-01-02  Tomasz K³oczko  <kloczek@pld.org.pl>
+2000-01-02  Tomasz KÂ³oczko  <kloczek@pld.org.pl>
         * configure.in, po/pl.po: added Polish translation
         (based on GNOME PL translation resources).
 
@@ -17711,7 +18869,7 @@ Fri Jun 16 12:11:32 2000  George Lebl <jirka@5z.com>
 
 	* configure.in: (ALL_LINGUAS) Added Galician (gl).
 
-1999-12-28  Martin Norbäck <d95mback@dtek.chalmers.se>
+1999-12-28  Martin NorbÃ¤ck <d95mback@dtek.chalmers.se>
 
 	* configure.in: Added sv to ALL_LINGUAS.
 	

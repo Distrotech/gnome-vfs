@@ -731,12 +731,12 @@ gnome_vfs_mime_info_clear (void)
 }
 
 /**
- * gnome_vfs_mime_info_shutdown:
+ * _gnome_vfs_mime_info_shutdown:
  * 
  * Remove the MIME database from memory.
  **/
 void
-gnome_vfs_mime_info_shutdown (void)
+_gnome_vfs_mime_info_shutdown (void)
 {
 	gnome_vfs_mime_info_clear ();
 
@@ -782,7 +782,7 @@ gnome_vfs_mime_info_reload (void)
 	user_mime_dir.force_reload = FALSE;
 
 	/* 3. Tell anyone who cares */
-	gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
+	_gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
 }
 
 
@@ -1008,6 +1008,10 @@ gnome_vfs_mime_type_is_known (const char *mime_type)
 
 	reload_if_needed ();
 
+	if (is_mime_type_deleted (mime_type)) {
+		return FALSE;
+	}
+	
 	if (g_hash_table_lookup (specific_types, mime_type)) {
 		return TRUE;
 	}
@@ -1142,6 +1146,10 @@ GnomeVFSResult
 gnome_vfs_mime_set_extensions_list (const char *mime_type,
 				    const char *extensions_list)
 {
+	if (is_mime_type_deleted (mime_type)) {
+		gnome_vfs_mime_set_registered_type_key (mime_type, DELETED_KEY, "");
+	}
+
 	return gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions_list);
 }
 
@@ -1515,10 +1523,11 @@ gnome_vfs_mime_get_registered_mime_type_key (const char *mime_type, const char *
 }
 
 
-static DIR *
+static gboolean
 ensure_user_directory_exist (void)
 {
 	DIR *dir;
+	gboolean retval;
 
 	if (stat (user_mime_dir.dirname, &user_mime_dir.s) != -1)
 		user_mime_dir.valid = TRUE;
@@ -1533,7 +1542,7 @@ ensure_user_directory_exist (void)
 		result = mkdir (user_mime_dir.dirname, S_IRWXU );
 		if (result != 0) {
 			user_mime_dir.valid = FALSE;
-			return NULL;
+			return FALSE;
 		}
 		dir = opendir (user_mime_dir.dirname);
 		if (dir == NULL) {
@@ -1541,7 +1550,10 @@ ensure_user_directory_exist (void)
 		}
 	}
 
-	return dir;
+	retval = (dir != NULL);
+	if (retval) 
+		closedir (dir);
+	return retval;
 }
 
 
@@ -1567,12 +1579,10 @@ write_back_mime_user_file_callback (char		*mime_type,
 static GnomeVFSResult
 write_back_mime_user_file (void)
 {
-	DIR *dir;
 	FILE *file;
 	char *filename;
 
-	dir = ensure_user_directory_exist ();
-	if (dir == NULL) {
+	if (!ensure_user_directory_exist ()) {
 		return gnome_vfs_result_from_errno ();
 	}
 
@@ -1623,12 +1633,10 @@ write_back_keys_user_file_callback (char	     *mime_type,
 static GnomeVFSResult
 write_back_keys_user_file (void)
 {
-	DIR *dir;
 	FILE *file;
 	char *filename;
 
-	dir = ensure_user_directory_exist ();
-	if (dir == NULL) {
+	if (!ensure_user_directory_exist ()) {
 		return gnome_vfs_result_from_errno ();
 	}
 

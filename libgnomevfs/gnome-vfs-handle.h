@@ -31,10 +31,26 @@
 G_BEGIN_DECLS
 
 typedef gpointer GnomeVFSMethodHandle;
+/**
+ * GnomeVFSHandle:
+ *
+ * Handle to a file, a handle is obtained using gnome_vfs_open and gnome_vfs_create
+ * family of functions on the file. A handle represents a file stream, gnome_vfs_close,
+ * gnome_vfs_write, gnome_vfs_read and all the other operations take a GnomeVFSHandle
+ * that identifies the file where the operation is going to be performed.
+ **/
 typedef struct GnomeVFSHandle GnomeVFSHandle;
 
-/* Open mode.  If you don't set `GNOME_VFS_OPEN_RANDOM', you have to access the
-   file sequentially.  */
+/**
+ * GnomeVFSOpenMode:
+ * @GNOME_VFS_OPEN_NONE:
+ * @GNOME_VFS_OPEN_READ:
+ * @GNOME_VFS_OPEN_WRITE:
+ * @GNOME_VFS_OPEN_RANDOM:
+ *
+ * Mode in which files are opened. If GNOME_VFS_OPEN_RANDOM is not used, the
+ * file will be have to be accessed sequentially.
+ **/
 typedef enum {
         GNOME_VFS_OPEN_NONE = 0,
         GNOME_VFS_OPEN_READ = 1 << 0,
@@ -42,7 +58,14 @@ typedef enum {
         GNOME_VFS_OPEN_RANDOM = 1 << 2
 } GnomeVFSOpenMode;
 
-/* This is used to specify the start position for seek operations.  */
+/**
+ * GnomeVFSSeekPosition:
+ * @GNOME_VFS_SEEK_START: Start of the file.
+ * @GNOME_VFS_SEEK_CURRENT: Current position.
+ * @GNOME_VFS_SEEK_END: End of the file.
+ *
+ * This is used to specify the start position for seek operations.
+ **/
 typedef enum {
         GNOME_VFS_SEEK_START,
         GNOME_VFS_SEEK_CURRENT,

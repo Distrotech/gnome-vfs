@@ -10,9 +10,9 @@ gnome_vfs_pthread_init (gboolean init_deps)
 		g_thread_init(NULL);
 	}
 	
-	gnome_vfs_async_job_map_init ();
-	gnome_vfs_thread_pool_init ();
-	gnome_vfs_job_queue_init ();
+	_gnome_vfs_async_job_map_init ();
+	_gnome_vfs_thread_pool_init ();
+	_gnome_vfs_job_queue_init ();
 	return TRUE;
 }
 

@@ -134,36 +134,76 @@ set_password (PortableServer_Servant servant,
 	g_hash_table_insert (keychain, uri_to_insert, entries);
 }
 
-static CORBA_string
+
+static GNOME_VFS_AuthInfoList*
+get_all_passwords (PortableServer_Servant _servant,
+		   const CORBA_char *uri,
+		   CORBA_Environment * ev)
+{
+	GNOME_VFS_AuthInfoList *auth_info;
+	GList *entries;
+	gchar *parsed_uri;
+	gchar *password;
+	struct KeyChainEntry *entry;
+	
+
+	parsed_uri = get_suitable_uri (uri);
+	entries = g_hash_table_lookup (keychain, parsed_uri);
+	g_free (parsed_uri);
+
+	auth_info = GNOME_VFS_AuthInfoList__alloc ();
+	auth_info->_length = 0;
+	auth_info->_maximum = g_list_length (entries);		
+	auth_info->_buffer = 
+		GNOME_VFS_AuthInfoList_allocbuf(auth_info->_maximum);
+	
+	for (entries; entries != NULL; entries = entries->next) {
+		entry = (struct KeyChainEntry *)entries->data;
+		auth_info->_buffer[auth_info->_length].username = 
+			CORBA_string_dup (entry->username);
+		auth_info->_buffer[auth_info->_length].password = 
+			CORBA_string_dup (entry->password);
+		auth_info->_length++;
+	}
+
+	return auth_info;
+}
+
+
+static GNOME_VFS_AuthInfoList*
 get_password (PortableServer_Servant _servant,
 	      const CORBA_char *uri,
 	      const CORBA_char *user,
 	      CORBA_Environment * ev)
 {
+	GNOME_VFS_AuthInfoList *auth_info;
 	GList *entries;
 	gchar *parsed_uri;
 	gchar *password;
-
+	struct KeyChainEntry *entry;
+	
 	parsed_uri = get_suitable_uri (uri);
 	entries = g_hash_table_lookup (keychain, parsed_uri);
 	g_free (parsed_uri);
-	if (user != NULL) {
-		struct KeyChainEntry *entry;
 
-		entry = find_key_in_chain (entries, user);
-		if (entry != NULL) {
-			return CORBA_string_dup (entry->password);
-		} 
-	} else {
-		struct KeyChainEntry *entry;
-		
-		entry = (struct KeyChainEntry *)entries->data;
-		/* FIXME: username should also be returned... */
-		return CORBA_string_dup (entry->password);
+	auth_info = GNOME_VFS_AuthInfoList__alloc ();
+	auth_info->_length = 0;
+	auth_info->_maximum = 0;
+	auth_info->_buffer = NULL;
+	
+	entry = find_key_in_chain (entries, user);
+	
+	if (entry != NULL) {
+		auth_info->_maximum++;
+		auth_info->_buffer = 
+			GNOME_VFS_AuthInfoList_allocbuf(1);
+		auth_info->_buffer[0].username = 
+			CORBA_string_dup (user);
+		auth_info->_buffer[0].password = 
+			CORBA_string_dup (entry->password);
+		auth_info->_length++;
 	}
-
-	/* FIXME: return NULL */
-	return CORBA_string_dup ("");
+	return auth_info;
 }
 
 static void
@@ -233,6 +273,7 @@ gnome_vfs_daemon_class_init (GnomeVfsDaemonClass *klass)
 	object_class->finalize = gnome_vfs_daemon_finalize;
 	
 	epv->getPassword  = get_password;
+	epv->getAllPasswords  = get_all_passwords;
 	epv->setPassword  = set_password;
 	epv->registerClient   = register_client;
 	epv->deRegisterClient = de_register_client;

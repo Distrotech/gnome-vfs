@@ -49,7 +49,7 @@ read_aliases (char *file)
 {
   FILE *fp;
   char buf[256];
-
+  
   if (!alias_table)
     alias_table = g_hash_table_new (g_str_hash, g_str_equal);
   fp = fopen (file,"r");
@@ -57,27 +57,41 @@ read_aliases (char *file)
     return;
   while (fgets (buf, 256, fp))
     {
-      char *p, *q, *r;
+      char *p, *q;
 
       g_strstrip (buf);
+
+      /* Line is a comment */
       if ((buf[0] == '#') || (buf[0] == '\0'))
-        continue;
-      for (p = buf, q = NULL; *p; p++)
-	if ((*p == '\t') || (*p == ' ')) {
-	  *p = '\0'; q = p;
+	continue;
+
+      /* Reads first column */
+      for (p = buf, q = NULL; *p; p++) {
+	if ((*p == '\t') || (*p == ' ') || (*p == ':')) {
+	  *p = '\0';
+	  q = p+1;
+	  while ((*q == '\t') || (*q == ' ')) {
+	    q++;
+	  }
 	  break;
 	}
-      if (!q)
+      }
+      /* The line only had one column */
+      if (!q || *q == '\0')
 	continue;
-      for (p = q, r = NULL; *p; p++)
+      
+      /* Read second column */
+      for (p = q; *p; p++) {
 	if ((*p == '\t') || (*p == ' ')) {
-	  *p = '\0'; r = p;
+	  *p = '\0';
 	  break;
 	}
-      if(!r)
-	continue;
-      if (!g_hash_table_lookup (alias_table, buf))
-	g_hash_table_insert (alias_table, g_strdup (buf), g_strdup (r));
+      }
+
+      /* Add to alias table if necessary */
+      if (!g_hash_table_lookup (alias_table, buf)) {
+	g_hash_table_insert (alias_table, g_strdup (buf), g_strdup (q));
+      }
     }
   fclose (fp);
 }

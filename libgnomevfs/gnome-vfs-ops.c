@@ -246,7 +246,7 @@ gnome_vfs_tell (GnomeVFSHandle *handle,
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return gnome_vfs_handle_do_tell (handle, offset_return);
+	return _gnome_vfs_handle_do_tell (handle, offset_return);
 }
 
 /**
@@ -758,10 +758,11 @@ gnome_vfs_monitor_add (GnomeVFSMonitorHandle **handle,
 	}
 
 	if (!VFS_METHOD_HAS_FUNC(uri->method, monitor_add)) {
+		gnome_vfs_uri_unref (uri);
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
-	result = gnome_vfs_monitor_do_add (uri->method, handle, uri,
+	result = _gnome_vfs_monitor_do_add (uri->method, handle, uri,
 						monitor_type, callback, 
 						user_data);
 
@@ -783,6 +784,28 @@ gnome_vfs_monitor_cancel (GnomeVFSMonitorHandle *handle)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
-	return gnome_vfs_monitor_do_cancel (handle);
+	return _gnome_vfs_monitor_do_cancel (handle);
+}
+
+/**
+ * gnome_vfs_file_control:
+ * @handle: handle of the file to affect
+ * @operation: The operation to execute
+ * @operation_data: The data needed to execute the operation
+ *
+ * Execute a backend dependent operation specified by the string @operation.
+ * This is typically used for specialized vfs backends that need additional
+ * operations that gnome-vfs doesn't have. Compare it to the unix call ioctl().
+ * The format of @operation_data depends on the operation. Operation that are
+ * backend specific are normally namespaced by their module name.
+ *
+ * Return value: an integer representing the success of the operation
+ **/
+GnomeVFSResult
+gnome_vfs_file_control (GnomeVFSHandle *handle,
+			const char *operation,
+			gpointer operation_data)
+{
+	return gnome_vfs_file_control_cancellable (handle, operation, operation_data, NULL);
 }
 

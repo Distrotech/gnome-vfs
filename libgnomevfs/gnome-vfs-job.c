@@ -48,6 +48,17 @@ GStaticPrivate job_private = G_STATIC_PRIVATE_INIT;
 
 #if GNOME_VFS_JOB_DEBUG
 
+char *job_debug_types[] = {
+	"open", "open as channel",
+	"create", "create symbolic link",
+	"create as channel", "close",
+	"read", "write", "read write done",
+	"load directory", "find directory",
+	"xfer", "get file info", "set file info",
+	"module callback", "file control",
+	"**error**"
+};
+
 /* FIXME bugzilla.eazel.com 1130
  * - this is should use the correct static mutex initialization macro.
  * However glibconfig.h is broken and the supplied macro gives a warning.
@@ -60,7 +71,7 @@ GStaticMutex debug_mutex = G_STATIC_MUTEX_INIT;
 static int job_count = 0;
 
 static void     gnome_vfs_op_destroy                (GnomeVFSOp           *op);
-static void     gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result);
+static void     _gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result);
 static gboolean dispatch_job_callback               (gpointer              data);
 static gboolean dispatch_sync_job_callback          (gpointer              data);
 
@@ -113,7 +124,7 @@ clr_fl (int fd, int flags)
  * can do more operations on it later.
  */
 gboolean
-gnome_vfs_job_complete (GnomeVFSJob *job)
+_gnome_vfs_job_complete (GnomeVFSJob *job)
 {
 	g_assert (job->op != NULL);
 	
@@ -131,6 +142,7 @@ gnome_vfs_job_complete (GnomeVFSJob *job)
 		g_assert_not_reached();
 		return FALSE;
 	case GNOME_VFS_OP_READ_WRITE_DONE:
+	case GNOME_VFS_OP_FILE_CONTROL:
 		return FALSE;
 	
 	default:
@@ -144,16 +156,18 @@ gnome_vfs_job_complete (GnomeVFSJob *job)
 static void
 job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
-	if (gnome_vfs_async_job_add_callback (job, notify_result)) {
-		JOB_DEBUG (("job %u, callback %u", GPOINTER_TO_UINT (notify_result->job_handle),
-			notify_result->callback_id));
+	if (_gnome_vfs_async_job_add_callback (job, notify_result)) {
+		JOB_DEBUG (("job %u, callback %u type '%s'",
+			    GPOINTER_TO_UINT (notify_result->job_handle),
+			    notify_result->callback_id,
+			    JOB_DEBUG_TYPE (job->op->type)));
 	
 		g_idle_add (dispatch_job_callback, notify_result);
 	} else {
-		JOB_DEBUG (("Barfing on oneway cancel %u (%d)",
+		JOB_DEBUG (("Barfing on oneway cancel %u (%d) type '%s'",
 			    GPOINTER_TO_UINT (notify_result->job_handle),
-			    job->op->type));
-		gnome_vfs_job_destroy_notify_result (notify_result);
+			    job->op->type, JOB_DEBUG_TYPE (job->op->type)));
+		_gnome_vfs_job_destroy_notify_result (notify_result);
 	}
 }
 
@@ -162,11 +176,11 @@ job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 static void
 job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
-	if (!gnome_vfs_async_job_add_callback (job, notify_result)) {
+	if (!_gnome_vfs_async_job_add_callback (job, notify_result)) {
 		JOB_DEBUG (("Barfing on sync cancel %u (%d)",
 			    GPOINTER_TO_UINT (notify_result->job_handle),
 			    job->op->type));
-		gnome_vfs_job_destroy_notify_result (notify_result);
+		_gnome_vfs_job_destroy_notify_result (notify_result);
 		return;
 	}
 
@@ -314,6 +328,15 @@ dispatch_module_callback (GnomeVFSNotifyResult *notify_result)
 }
 
 static void
+dispatch_file_control_callback (GnomeVFSNotifyResult *notify_result)
+{
+	notify_result->specifics.file_control.callback (notify_result->job_handle,
+							notify_result->specifics.file_control.result,
+							notify_result->specifics.file_control.operation_data,
+							notify_result->specifics.file_control.callback_data);
+}
+
+static void
 empty_close_callback (GnomeVFSAsyncHandle *handle,
 		      GnomeVFSResult result,
 		      gpointer callback_data)
@@ -324,9 +347,9 @@ static void
 handle_cancelled_open (GnomeVFSJob *job)
 {
 	/* schedule a silent close to make sure the handle does not leak */
-	gnome_vfs_job_set (job, GNOME_VFS_OP_CLOSE, 
+	_gnome_vfs_job_set (job, GNOME_VFS_OP_CLOSE, 
 			   (GFunc) empty_close_callback, NULL);
-	gnome_vfs_job_go (job);
+	_gnome_vfs_job_go (job);
 }
 
 static void
@@ -363,7 +386,7 @@ free_find_directory_notify_result (GnomeVFSFindDirectoryOpResult *notify_result)
 }
 
 static void
-gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
+_gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 {
 	JOB_DEBUG (("%u", notify_result->callback_id));
 
@@ -376,7 +399,14 @@ gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 	case GNOME_VFS_OP_OPEN:
 	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
 	case GNOME_VFS_OP_READ:
-	case GNOME_VFS_OP_XFER:
+		g_free (notify_result);
+		break;
+		
+	case GNOME_VFS_OP_FILE_CONTROL:
+		if (notify_result->specifics.file_control.operation_data_destroy_func) {
+			notify_result->specifics.file_control.operation_data_destroy_func (
+					    notify_result->specifics.file_control.operation_data);
+		}
 		g_free (notify_result);
 		break;
 		
@@ -400,6 +430,14 @@ gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 		g_free (notify_result);
 		break;
 
+	case GNOME_VFS_OP_XFER:
+		/* the XFER result is allocated on the stack */
+		break;
+		
+	case GNOME_VFS_OP_MODULE_CALLBACK:
+		/* the MODULE_CALLBACK result is allocated on the stack */
+		break;
+	
 	default:
 		g_assert_not_reached ();
 		break;
@@ -417,17 +455,23 @@ dispatch_sync_job_callback (gpointer data)
 
 	notify_result = (GnomeVFSNotifyResult *) data;
 
-	gnome_vfs_async_job_callback_valid (notify_result->callback_id, &valid, &cancelled);
+	_gnome_vfs_async_job_callback_valid (notify_result->callback_id, &valid, &cancelled);
 
 	/* Even though the notify result is owned by the async thread and persists
 	 * all through the notification, we still keep it in the job map to
 	 * make cancellation easier.
 	 */
-	gnome_vfs_async_job_remove_callback (notify_result->callback_id);
+	_gnome_vfs_async_job_remove_callback (notify_result->callback_id);
 
 	g_assert (valid);
 
 	switch (notify_result->type) {
+	case GNOME_VFS_OP_CREATE_AS_CHANNEL:
+		dispatch_create_as_channel_callback (notify_result);
+		break;
+	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
+		dispatch_open_as_channel_callback (notify_result);
+		break;		
 	case GNOME_VFS_OP_XFER:
 		dispatch_xfer_callback (notify_result, cancelled);
 		break;
@@ -439,10 +483,10 @@ dispatch_sync_job_callback (gpointer data)
 		break;
 	}
 	
-	gnome_vfs_async_job_map_lock ();
-	job = gnome_vfs_async_job_map_get_job (notify_result->job_handle);
+	_gnome_vfs_async_job_map_lock ();
+	job = _gnome_vfs_async_job_map_get_job (notify_result->job_handle);
 	g_mutex_lock (job->job_lock);
-	gnome_vfs_async_job_map_unlock ();
+	_gnome_vfs_async_job_map_unlock ();
 	
 	g_assert (job != NULL);
 	
@@ -467,16 +511,17 @@ dispatch_job_callback (gpointer data)
 	
 	notify_result = (GnomeVFSNotifyResult *) data;
 
-	JOB_DEBUG (("%u", GPOINTER_TO_UINT (notify_result->job_handle)));	
+	JOB_DEBUG (("%u type '%s'", GPOINTER_TO_UINT (notify_result->job_handle),
+		    JOB_DEBUG_TYPE (notify_result->type)));
 	
-	gnome_vfs_async_job_callback_valid (notify_result->callback_id, &valid, &cancelled);
-	gnome_vfs_async_job_remove_callback (notify_result->callback_id);
+	_gnome_vfs_async_job_callback_valid (notify_result->callback_id, &valid, &cancelled);
+	_gnome_vfs_async_job_remove_callback (notify_result->callback_id);
 
 	if (!valid) {
 		/* this can happen when gnome vfs is shutting down */
 		JOB_DEBUG (("shutting down: callback %u no longer valid",
 			    notify_result->callback_id));
-		gnome_vfs_job_destroy_notify_result (notify_result);
+		_gnome_vfs_job_destroy_notify_result (notify_result);
 		return FALSE;
 	}
 	
@@ -486,9 +531,9 @@ dispatch_job_callback (gpointer data)
 			    GPOINTER_TO_UINT (notify_result->job_handle),
 			    notify_result->callback_id));
 
-		gnome_vfs_async_job_map_lock ();
+		_gnome_vfs_async_job_map_lock ();
 
-		job = gnome_vfs_async_job_map_get_job (notify_result->job_handle);
+		job = _gnome_vfs_async_job_map_get_job (notify_result->job_handle);
 		
 		if (job != NULL) {
 			g_mutex_lock (job->job_lock);
@@ -508,14 +553,14 @@ dispatch_job_callback (gpointer data)
 				} /* else drop through */
 			default:
 				/* Remove job from the job map. */
-				gnome_vfs_async_job_map_remove_job (job);
+				_gnome_vfs_async_job_map_remove_job (job);
 				g_mutex_unlock (job->job_lock);
 				break;
 			}
 		}
 	
-		gnome_vfs_async_job_map_unlock ();
-		gnome_vfs_job_destroy_notify_result (notify_result);
+		_gnome_vfs_async_job_map_unlock ();
+		_gnome_vfs_job_destroy_notify_result (notify_result);
 		return FALSE;
 	}
 	
@@ -559,19 +604,22 @@ dispatch_job_callback (gpointer data)
 	case GNOME_VFS_OP_WRITE:
 		dispatch_write_callback (notify_result);
 		break;
+	case GNOME_VFS_OP_FILE_CONTROL:
+		dispatch_file_control_callback (notify_result);
+		break;
 	default:
 		g_assert_not_reached ();
 		break;
 	}
 
 	JOB_DEBUG (("dispatch callback - done %u", GPOINTER_TO_UINT (notify_result->job_handle)));
-	gnome_vfs_job_destroy_notify_result (notify_result);
+	_gnome_vfs_job_destroy_notify_result (notify_result);
 
 	return FALSE;
 }
 
 void
-gnome_vfs_job_set (GnomeVFSJob *job,
+_gnome_vfs_job_set (GnomeVFSJob *job,
 		   GnomeVFSOpType type,
 		   GFunc callback,
 		   gpointer callback_data)
@@ -583,7 +631,7 @@ gnome_vfs_job_set (GnomeVFSJob *job,
 	op->callback = callback;
 	op->callback_data = callback_data;
 	op->context = gnome_vfs_context_new ();
-	op->stack_info = gnome_vfs_module_callback_get_stack_info ();
+	op->stack_info = _gnome_vfs_module_callback_get_stack_info ();
 
 	g_assert (gnome_vfs_context_get_cancellation (op->context) != NULL);
 
@@ -602,7 +650,7 @@ gnome_vfs_job_set (GnomeVFSJob *job,
 }
 
 GnomeVFSJob *
-gnome_vfs_job_new (GnomeVFSOpType type, int priority, GFunc callback, gpointer callback_data)
+_gnome_vfs_job_new (GnomeVFSOpType type, int priority, GFunc callback, gpointer callback_data)
 {
 	GnomeVFSJob *new_job;
 	
@@ -615,8 +663,8 @@ gnome_vfs_job_new (GnomeVFSOpType type, int priority, GFunc callback, gpointer c
 	/* Add the new job into the job hash table. This also assigns
 	 * the job a unique id
 	 */
-	gnome_vfs_async_job_map_add_job (new_job);
-	gnome_vfs_job_set (new_job, type, callback, callback_data);
+	_gnome_vfs_async_job_map_add_job (new_job);
+	_gnome_vfs_job_set (new_job, type, callback, callback_data);
 
 	job_count++;
 
@@ -624,7 +672,7 @@ gnome_vfs_job_new (GnomeVFSOpType type, int priority, GFunc callback, gpointer c
 }
 
 void
-gnome_vfs_job_destroy (GnomeVFSJob *job)
+_gnome_vfs_job_destroy (GnomeVFSJob *job)
 {
 	JOB_DEBUG (("destroying job %u", GPOINTER_TO_UINT (job->job_handle)));
 
@@ -703,6 +751,9 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 	case GNOME_VFS_OP_CLOSE:
 	case GNOME_VFS_OP_READ_WRITE_DONE:
 		break;
+	case GNOME_VFS_OP_FILE_CONTROL:
+		g_free (op->specifics.file_control.operation);
+		break;
 	default:
 		g_warning (_("Unknown op type %u"), op->type);
 	}
@@ -710,21 +761,22 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 	g_assert (gnome_vfs_context_get_cancellation (op->context) != NULL);
 	
 	gnome_vfs_context_free (op->context);
-	gnome_vfs_module_callback_free_stack_info (op->stack_info);
+	_gnome_vfs_module_callback_free_stack_info (op->stack_info);
 	
 	g_free (op);
 }
 
 void
-gnome_vfs_job_go (GnomeVFSJob *job)
+_gnome_vfs_job_go (GnomeVFSJob *job)
 {
-	JOB_DEBUG (("new job %u, op %d, unlocking job lock",
-		GPOINTER_TO_UINT (job->job_handle), job->op->type));
+	JOB_DEBUG (("new job %u, op %d, type '%s' unlocking job lock",
+		    GPOINTER_TO_UINT (job->job_handle), job->op->type,
+		    JOB_DEBUG_TYPE (job->op->type)));
 
 	/* Fire up the async job thread. */
-	if (!gnome_vfs_job_schedule (job)) {
+	if (!_gnome_vfs_job_schedule (job)) {
 		g_warning ("Cannot schedule this job.");
-		gnome_vfs_job_destroy (job);
+		_gnome_vfs_job_destroy (job);
 		return;
 	}
 }
@@ -754,7 +806,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 
 	while (1) {
 		GnomeVFSResult result;
-		GIOError io_result;
+		GIOStatus io_result;
 		GnomeVFSFileSize bytes_read;
 		
 	restart_toplevel_loop:
@@ -770,7 +822,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 
 		if (result == GNOME_VFS_ERROR_INTERRUPTED) {
 			continue;
-		} else if (result != GNOME_VFS_OK) {
+		} else if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF) {
 			goto end;
 		}
 	
@@ -790,7 +842,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 			gsize bytes_written;
 			
 			/* channel_out is nonblocking; if we get
-			   EAGAIN (G_IO_ERROR_AGAIN) then we tried to
+			   EAGAIN (G_IO_STATUS_AGAIN) then we tried to
 			   write but the pipe was full. In this case, we
 			   want to enlarge our buffer and go back to
 			   reading for one iteration, so we can keep
@@ -803,11 +855,13 @@ serve_channel_read (GnomeVFSHandle *handle,
 				 filled_bytes_in_buffer - written_bytes_in_buffer,
 				 &bytes_written, NULL);
 			
+			written_bytes_in_buffer += bytes_written;
+
 			if (gnome_vfs_context_check_cancellation(context)) {
 				goto end;
 			}
 			
-			if (io_result == G_IO_ERROR_AGAIN) {
+			if (io_result == G_IO_STATUS_AGAIN) {
 				/* if bytes_read == 0 then we reached
 				   EOF so there's no point reading
 				   again. So turn off nonblocking and
@@ -843,11 +897,9 @@ serve_channel_read (GnomeVFSHandle *handle,
 
 				} /* end of else (bytes_read != 0) */
 				
-			} else if (io_result != G_IO_ERROR_NONE || bytes_written == 0) {
+			} else if (io_result != G_IO_STATUS_NORMAL || bytes_written == 0) {
 				goto end;
 			}
-
-			written_bytes_in_buffer += bytes_written;
 		}
 
 		g_assert(written_bytes_in_buffer == filled_bytes_in_buffer);
@@ -877,7 +929,7 @@ serve_channel_write (GnomeVFSHandle *handle,
 
 	while (1) {
 		GnomeVFSResult result;
-		GIOError io_result;
+		GIOStatus io_result;
 		gsize bytes_read;
 		gsize bytes_to_write;
 		GnomeVFSFileSize bytes_written;
@@ -885,10 +937,10 @@ serve_channel_write (GnomeVFSHandle *handle,
 
 		io_result = g_io_channel_read_chars (channel_in, buffer, buffer_size,
 						     &bytes_read, NULL);
-		if (io_result == G_IO_ERROR_AGAIN || io_result == G_IO_ERROR_UNKNOWN)
-			/* we will get G_IO_ERROR_UNKNOWN if a signal occurrs */
+
+		if (io_result == G_IO_STATUS_AGAIN)
 			continue;
-		if (io_result != G_IO_ERROR_NONE || bytes_read == 0)
+		if (io_result != G_IO_STATUS_NORMAL || bytes_read == 0)
 			goto end;
 
 		p = buffer;
@@ -1021,7 +1073,7 @@ execute_open_as_channel (GnomeVFSJob *job)
 
 	notify_result->specifics.open_as_channel.result = GNOME_VFS_OK;
 
-	job_oneway_notify (job, notify_result);
+	job_notify (job, notify_result);
 
 	if (open_mode & GNOME_VFS_OPEN_READ) {
 		serve_channel_read (handle, channel_in, channel_out,
@@ -1152,7 +1204,7 @@ execute_create_as_channel (GnomeVFSJob *job)
 
 	notify_result->specifics.create_as_channel.channel = channel_out;
 
-	job_oneway_notify (job, notify_result);
+	job_notify (job, notify_result);
 
 	serve_channel_write (handle, channel_in, channel_out, job->op->context);
 }
@@ -1497,7 +1549,7 @@ execute_xfer (GnomeVFSJob *job)
 
 	xfer_op = &job->op->specifics.xfer;
 
-	result = gnome_vfs_xfer_private (xfer_op->source_uri_list,
+	result = _gnome_vfs_xfer_private (xfer_op->source_uri_list,
 					 xfer_op->target_uri_list,
 					 xfer_op->xfer_options,
 					 xfer_op->error_mode,
@@ -1536,15 +1588,42 @@ execute_xfer (GnomeVFSJob *job)
 	}
 }
 
+static void
+execute_file_control (GnomeVFSJob *job)
+{
+	GnomeVFSFileControlOp *file_control_op;
+	GnomeVFSNotifyResult *notify_result;
+	
+	file_control_op = &job->op->specifics.file_control;
+
+	notify_result = g_new0 (GnomeVFSNotifyResult, 1);
+	notify_result->job_handle = job->job_handle;
+	notify_result->type = job->op->type;
+	notify_result->specifics.file_control.callback = (GnomeVFSAsyncFileControlCallback) job->op->callback;
+	notify_result->specifics.file_control.callback_data = job->op->callback_data;
+	notify_result->specifics.file_control.operation_data = file_control_op->operation_data;
+	notify_result->specifics.file_control.operation_data_destroy_func = file_control_op->operation_data_destroy_func;
+	
+	notify_result->specifics.file_control.result = gnome_vfs_file_control_cancellable (job->handle,
+											   file_control_op->operation,
+											   file_control_op->operation_data,
+											   job->op->context);
+
+	job->op->type = GNOME_VFS_OP_FILE_CONTROL;
+
+	job_oneway_notify (job, notify_result);
+}
+
+
 /*
- * gnome_vfs_job_execute:
+ * _gnome_vfs_job_execute:
  * @job: the job to execute
  * 
  *   This function is called by the slave thread to execute
  * the job - all work performed by a thread starts here.
  */
 void
-gnome_vfs_job_execute (GnomeVFSJob *job)
+_gnome_vfs_job_execute (GnomeVFSJob *job)
 {
 	guint id;
 
@@ -1555,7 +1634,8 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 	if (!job->cancelled) {
 		set_current_job (job);
 
-		JOB_DEBUG (("executing %u %d", id, job->op->type));
+		JOB_DEBUG (("executing %u %d type %s", id, job->op->type,
+			    JOB_DEBUG_TYPE (job->op->type)));
 
 		switch (job->op->type) {
 		case GNOME_VFS_OP_OPEN:
@@ -1597,6 +1677,9 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 		case GNOME_VFS_OP_SET_FILE_INFO:
 			execute_set_file_info (job);
 			break;
+		case GNOME_VFS_OP_FILE_CONTROL:
+			execute_file_control (job);
+			break;
 		default:
 			g_warning (_("Unknown job kind %u"), job->op->type);
 			break;
@@ -1618,7 +1701,7 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 }
 
 void
-gnome_vfs_job_module_cancel (GnomeVFSJob *job)
+_gnome_vfs_job_module_cancel (GnomeVFSJob *job)
 {
 	GnomeVFSCancellation *cancellation;
 
@@ -1648,8 +1731,8 @@ set_current_job (GnomeVFSJob *job)
 
 	g_static_private_set (&job_private, job, NULL);
 
-	gnome_vfs_module_callback_use_stack_info (job->op->stack_info);
-	gnome_vfs_module_callback_set_in_async_thread (TRUE);
+	_gnome_vfs_module_callback_use_stack_info (job->op->stack_info);
+	_gnome_vfs_module_callback_set_in_async_thread (TRUE);
 }
 
 static void
@@ -1657,11 +1740,11 @@ clear_current_job (void)
 {
 	g_static_private_set (&job_private, NULL, NULL);
 
-	gnome_vfs_module_callback_clear_stacks ();
+	_gnome_vfs_module_callback_clear_stacks ();
 }
 
 void
-gnome_vfs_get_current_context (GnomeVFSContext **context)
+_gnome_vfs_get_current_context (GnomeVFSContext **context)
 {
 	GnomeVFSJob *job;
 	
@@ -1677,7 +1760,7 @@ gnome_vfs_get_current_context (GnomeVFSContext **context)
 }
 
 void
-gnome_vfs_dispatch_module_callback (GnomeVFSAsyncModuleCallback callback,
+_gnome_vfs_dispatch_module_callback (GnomeVFSAsyncModuleCallback callback,
 				    gconstpointer in, gsize in_size,
 				    gpointer out, gsize out_size,
 				    gpointer user_data,

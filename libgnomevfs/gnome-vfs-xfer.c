@@ -40,6 +40,7 @@
 #include "gnome-vfs-directory.h"
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-utils.h"
+#include "gnome-vfs-private-utils.h"
 #include <glib/gstrfuncs.h>
 #include <glib/gmessages.h>
 #include <string.h>
@@ -794,6 +795,34 @@ directory_add_items_and_size (GnomeVFSURI *dir_uri,
 
 }
 
+/* Checks to see if any part of the source pathname of a move
+ * is inside the target. If it is we can't remove the target
+ * and then move the source to it since we would then remove
+ * the source before we moved it.
+ */
+static gboolean
+move_source_is_in_target (GnomeVFSURI *source, GnomeVFSURI *target)
+{
+	GnomeVFSURI *parent, *tmp;
+	gboolean res;
+
+	parent = gnome_vfs_uri_ref (source);
+
+	res = FALSE;
+	while (parent != NULL) {
+		if (_gnome_vfs_uri_is_in_subdir (parent, target)) {
+			res = TRUE;
+			break;
+		}
+		tmp = gnome_vfs_uri_get_parent (parent);
+		gnome_vfs_uri_unref (parent);
+		parent = tmp;
+	}
+	gnome_vfs_uri_unref (parent);
+	
+	return res;
+}
+
 /* Compares the list of files about to be created by a transfer with
  * any possible existing files with conflicting names in the target directory.
  * Handles conflicts, optionaly removing the conflicting file/directory
@@ -868,8 +897,13 @@ handle_name_conflicts (GList **source_uri_list,
 				gnome_vfs_get_file_info_uri (uri, info, GNOME_VFS_FILE_INFO_DEFAULT);
 				progress_set_source_target_uris (progress, uri, NULL);
 				if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-					remove_directory (uri, TRUE, progress, 
-						xfer_options, error_mode, &skip);
+					if (move_source_is_in_target (source_uri, uri)) {
+						/* Would like a better error here */
+						result = GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
+					} else {					
+						remove_directory (uri, TRUE, progress, 
+								  xfer_options, error_mode, &skip);
+					}
 				} else {
 					remove_file (uri, progress,
 						xfer_options, error_mode, &skip);
@@ -1159,16 +1193,32 @@ static GnomeVFSResult
 copy_symlink (GnomeVFSURI *source_uri,
 	      GnomeVFSURI *target_uri,
 	      const char *link_name,
-	      GnomeVFSProgressCallbackState *progress)
+	      GnomeVFSXferErrorMode *error_mode,
+	      GnomeVFSProgressCallbackState *progress,
+	      gboolean *skip)
 {
 	GnomeVFSResult result;
-	
-	result = gnome_vfs_create_symbolic_link (target_uri, link_name);
-	
-	if (result == GNOME_VFS_OK && call_progress_with_uris_often (progress, source_uri,
-		target_uri, GNOME_VFS_XFER_PHASE_OPENTARGET) == 0) {
-		result = GNOME_VFS_ERROR_INTERRUPTED;
+	gboolean retry;
+
+	*skip = FALSE;
+	do {
+		retry = FALSE;
+		
+		result = gnome_vfs_create_symbolic_link (target_uri, link_name);
+
+		if (result != GNOME_VFS_OK) {
+			retry = handle_error (&result, progress, error_mode, skip);
+		} else if (result == GNOME_VFS_OK &&
+			   call_progress_with_uris_often (progress, source_uri,
+							  target_uri, GNOME_VFS_XFER_PHASE_OPENTARGET) == 0) {
+			result = GNOME_VFS_ERROR_INTERRUPTED;
+		}
+	} while (retry);
+
+	if (*skip) {
+		return GNOME_VFS_OK;
 	}
+	
 	return result;
 }
 
@@ -1326,8 +1376,10 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 		progress->progress_info->total_bytes_copied += DEFAULT_SIZE_OVERHEAD;
 		progress->progress_info->top_level_item = FALSE;
 
-		/* We do not deal with symlink loops here. 
-		 * That's OK because we don't follow symlinks.
+		/* We do not deal with symlink loops here.  That's OK
+		 * because we don't follow symlinks, unless the user
+		 * explicitly requests this with
+		 * GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE.
 		 */
 		do {
 			GnomeVFSURI *source_uri;
@@ -1361,8 +1413,19 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 								 xfer_options, error_mode, overwrite_mode, 
 								 progress, skip);
 				} else if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
-					result = copy_symlink (source_uri, dest_uri, info->symlink_name,
-							       progress);
+					if (xfer_options & GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE) {
+						GnomeVFSFileInfo *symlink_target_info = gnome_vfs_file_info_new ();
+						result = gnome_vfs_get_file_info_uri (source_uri, symlink_target_info,
+										      GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
+						if (result == GNOME_VFS_OK) 
+							result = copy_file (symlink_target_info, source_uri, dest_uri, 
+									    xfer_options, error_mode, overwrite_mode, 
+									    progress, skip);
+						gnome_vfs_file_info_unref (symlink_target_info);
+					} else {
+						result = copy_symlink (source_uri, dest_uri, info->symlink_name,
+								       error_mode, progress, skip);
+					}
 				}
 				/* just ignore all the other special file system objects here */
 			}
@@ -1485,7 +1548,7 @@ copy_items (const GList *source_uri_list,
 								 progress, &skip);
                                 } else if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
 					result = copy_symlink (source_uri, target_uri, info->symlink_name,
-							       progress);
+							       error_mode, progress, &skip);
                                 }
 				/* just ignore all the other special file system objects here */
 
@@ -2169,7 +2232,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 }
 
 GnomeVFSResult
-gnome_vfs_xfer_private (const GList *source_uri_list,
+_gnome_vfs_xfer_private (const GList *source_uri_list,
 			const GList *target_uri_list,
 			GnomeVFSXferOptions xfer_options,
 			GnomeVFSXferErrorMode error_mode,

@@ -62,8 +62,7 @@
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <unistd.h>
-
-#define EAZEL_XML_NS "http://services.eazel.com/namespaces"
+#include <netdb.h>
 
 #ifdef DEBUG_HTTP_ENABLE
 void
@@ -85,16 +84,10 @@ http_debug_printf (char *fmt, ...)
 	g_free (out);
 	va_end (args);
 }
-
-#define DEBUG_HTTP(x) my_debug_printf x
-
-/* #define ANALYZE_HTTP(x) my_debug_printf (x) */
-#define ANALYZE_HTTP(x) 
-
 #endif /* DEBUG_HTTP_ENABLE */
 
 /* What do we qualify ourselves as?  */
-/* FIXME bugzilla.eazel.com 1160: "gnome-vfs/1.0.0" may not be good. */
+/* FIXME bugzilla.gnome.org 41160: "gnome-vfs/1.0.0" may not be good. */
 #define USER_AGENT_STRING 	"gnome-vfs/" VERSION
 
 /* Custom User-Agent environment variable */
@@ -226,6 +219,22 @@ static gboolean check_authn_retry_request 	 (HttpFileHandle * http_handle,
 			   			  enum AuthnHeaderType authn_which,
 			   			  const char *prev_authn_header);
 
+#ifdef ENABLE_IPV6
+/*Check whether the node is IPv6 enabled.*/
+static gboolean
+have_ipv6 (void)
+{
+	int s;
+
+	s = socket (AF_INET6, SOCK_STREAM, 0);
+	if (s != -1) {
+		close (s);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+#endif
 
 static GnomeVFSFileInfo *
 defaults_file_info_new (void)
@@ -361,7 +370,7 @@ http_status_to_vfs_result (guint status)
 	if (HTTP_20X (status))
 		return GNOME_VFS_OK;
 
-	/* FIXME bugzilla.eazel.com 1163 */
+	/* FIXME bugzilla.gnome.org 41163 */
 	/* mfleming--I've improved the situation slightly, but more
 	 * test cases need to be written to ensure that HTTP (esp DAV) does compatibile
 	 * things with the normal file method
@@ -697,33 +706,32 @@ create_handle (GnomeVFSURI *uri,
  * Here's how the gconf gnome-vfs HTTP proxy variables
  * are intended to be used
  *
- * /system/gnome-vfs/use-http-proxy	
+ * /system/http_proxy/use_http_proxy	
  * 	Type: boolean
  *	If set to TRUE, the client should use an HTTP proxy to connect to all
- *	servers that are not "localhost".  The proxy is specified in other
- *	gconf variables below
+ *	servers. The proxy is specified in other gconf variables below.
  *
- * /system/gnome-vfs/http-proxy-host
+ * /system/http_proxy/host
  *	Type: string
- *	The hostname of the HTTP proxy this client should use.  If use-http-proxy
- *	is TRUE, this should be set.  If it is not set, the application should
- *	behave as if use-http-proxy is was set to FALSE.
+ *	The hostname of the HTTP proxy this client should use.  If
+ *	use-http-proxy is TRUE, this should be set.  If it is not set, the
+ *	application should behave as if use-http-proxy is was set to FALSE.
  *
- * /system/gnome-vfs/http-proxy-port
+ * /system/http_proxy/port
  *	Type: int
  *	The port number on the HTTP proxy host that the client should connect to
- *	If use-http-proxy and http-proxy-host are set but this is not set, 
- *	the application should use a default port value of 8080
+ *	If use_http_proxy and host are set but this is not set, the application
+ *	should use a default port value of 8080
  *
- * /system/gnome-vfs/http-proxy-authorization-user
+ * /system/http_proxy/authentication-user
  *	Type: string
  *	Username to pass to an authenticating HTTP proxy.
  *
- * /system/gnome-vfs/http-proxy-authorization-password
+ * /system/http_proxy/authentication_password
  *	Type: string
  *	Password to pass to an authenticating HTTP proxy.
  *  
- * /system/gnome-vfs/use-http-proxy-authorization
+ * /system/http_proxy/use-authentication
  *	Type: boolean
  * 	TRUE if the client should pass http-proxy-authorization-user and
  *	http-proxy-authorization-password an HTTP proxy
@@ -849,9 +857,26 @@ host_port_from_string (const char *http_proxy,
 	return TRUE;
 }
 
+/* FIXME: should be done using AC_REPLACE_FUNCS */
+#ifndef HAVE_INET_PTON
+static int
+inet_pton(int af, const char *hostname, void *pton)
+{
+	struct in_addr in;
+	if (!inet_aton(hostname, &in))
+	    return 0;
+	memcpy(pton, &in, sizeof(in));
+	return 1;
+}
+#endif
+
 static gboolean
 proxy_should_for_hostname (const char *hostname)
 {
+#ifdef ENABLE_IPV6
+	struct addrinfo hints, *res, *result;
+	struct in6_addr in6;
+#endif
 	struct in_addr in, in_loop, in_mask;
 	gboolean ret;
 
@@ -860,13 +885,65 @@ proxy_should_for_hostname (const char *hostname)
 	/* Don't force "localhost" or 127.x.x.x through the proxy */
 	/* This is a special case that we'd like to generalize into a gconf config */
 
-	inet_aton("127.0.0.0", &in_loop); 
-	inet_aton("255.0.0.0", &in_mask); 
+	inet_pton(AF_INET, "127.0.0.0", &in_loop); 
+	inet_pton(AF_INET, "255.0.0.0", &in_mask); 
 
-	if (hostname != NULL 
-		&& (g_ascii_strcasecmp (hostname, "localhost") == 0 || (inet_aton (hostname, &in) != 0
-			&& ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
-		ret = FALSE;
+	memset (&in, 0, sizeof (in));
+
+#ifdef ENABLE_IPV6
+	if (have_ipv6 ()) {
+		result = NULL;
+
+		memset (&in6, 0, sizeof (in6));
+
+		memset (&hints, 0, sizeof (hints));
+		hints.ai_socktype = SOCK_STREAM;
+
+		if (getaddrinfo (hostname, NULL, &hints, &result) == 0) {
+			
+			for (res = result; res; res = res->ai_next) {
+
+				if (res->ai_family == AF_INET6 || res->ai_family == AF_INET) {
+					break;
+				}
+			}
+
+			if (res) {
+				if (res->ai_family == AF_INET6) {
+					memcpy (&in6, &((struct sockaddr_in6 *)res->ai_addr)->sin6_addr, sizeof (struct in6_addr));
+					if (IN6_IS_ADDR_V4MAPPED (&in6)) {
+						/*Converting IPv4-mapped IPv6 address to IPv4 address.*/
+						memcpy (&in, &in6.s6_addr[12], 4);
+					}
+				}
+			
+				if (res->ai_family == AF_INET) { 
+					memcpy (&in, &((struct sockaddr_in *)res->ai_addr)->sin_addr, sizeof (struct in_addr));
+				}
+			}
+
+			/*to test for the ipv4 addresses on a ipv6 enabled machine*/
+			if (hostname != NULL
+			    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (res
+			    && ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
+				ret = FALSE;
+			} else {
+				if (hostname != NULL
+				    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (res
+				    && (IN6_IS_ADDR_LOOPBACK (&in6) || IN6_IS_ADDR_LINKLOCAL (&in6))))) {
+					ret = FALSE;
+				}
+			}
+		}
+	}
+	else
+#endif
+	{
+		if (hostname != NULL 
+		    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (inet_pton (AF_INET, hostname, &in) > 0
+		    && ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
+			ret = FALSE;
+		}
 	}
 
 	return ret;
@@ -1380,7 +1457,6 @@ make_request (HttpFileHandle **handle_return,
 			socket_buffer = NULL;
 			break;
 		}
-
 		if ((*handle_return)->server_status == HTTP_STATUS_UNAUTHORIZED) {
 			if (! check_authn_retry_request (*handle_return, AuthnHeader_WWW, authn_header_request)) {
 				break;
@@ -1525,7 +1601,7 @@ do_create (GnomeVFSMethod *method,
 	if (result != GNOME_VFS_OK) {
 		/* the PUT failed */
 		
-		/* FIXME bugzilla.eazel.com 5131
+		/* FIXME bugzilla.gnome.org 45131
 		 * If you PUT a file with an invalid name to Xythos, it 
 		 * returns a 403 Forbidden, which is different from the behaviour
 		 * in MKCOL or MOVE.  Unfortunately, it is not possible to discern whether 
@@ -1543,7 +1619,7 @@ do_create (GnomeVFSMethod *method,
 	/* clean up */
 	g_byte_array_free (bytes, TRUE);
 	
-	/* FIXME bugzilla.eazel.com 1159: do we need to do something more intelligent here? */
+	/* FIXME bugzilla.gnome.org 41159: do we need to do something more intelligent here? */
 	result = do_open (method, method_handle, uri, GNOME_VFS_OPEN_WRITE, context);
 
 	DEBUG_HTTP (("-Create (%d) handle:0x%08x", result, (unsigned int)handle));
@@ -1718,12 +1794,7 @@ process_propfind_propstat (xmlNodePtr node,
 							GNOME_VFS_FILE_INFO_FIELDS_MTIME 
 							| GNOME_VFS_FILE_INFO_FIELDS_CTIME;
 					}
-				} else if (strcmp ((char *)l->name, "nautilus-treat-as-directory") == 0
-					   && l->ns != NULL && l->ns->href != NULL
-					   && strcmp (l->ns->href, EAZEL_XML_NS) == 0
-					   && g_ascii_strcasecmp (node_content_xml, "TRUE") == 0) {
-					treat_as_directory = TRUE;
-				}
+				} 
 				/* Unfortunately, we don't have a mapping for "creationdate" */
 
 				xmlFree (node_content_xml);
@@ -1770,31 +1841,6 @@ process_propfind_propstat (xmlNodePtr node,
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 	}
-}
-
-/* The problem here: Eazel Vault returns "https:" URI's which GnomeVFS doesn't recognize
- * So, if it's an https: uri scheme, just change it to "http" and we'll all be happy
- */
-static GnomeVFSURI *
-propfind_href_to_vfs_uri (const char *propfind_href_uri)
-{
-#ifdef THIS_IS_EVIL_AND_NOBODY_NEEDS_IT_ANY_MORE
-	size_t https_len = strlen ("https:");
-	GnomeVFSURI *ret;
-
-	if (strncmp (propfind_href_uri, "https:", https_len) == 0) {
-		char *new_uri;
-		new_uri = g_strconcat ("http:", https_len + propfind_href_uri, NULL);
-		ret = gnome_vfs_uri_new (new_uri);
-		g_free (new_uri);
-	} else {
-		ret = gnome_vfs_uri_new (propfind_href_uri);
-	}
-	
-	return ret;
-#else
-	return gnome_vfs_uri_new (propfind_href_uri);
-#endif
 }
 
 /* a strcmp that doesn't barf on NULLs */
@@ -1848,12 +1894,7 @@ unescape_unreserved_chars (const char *in_string)
 			*write_char++ = *read_char;
 		}
 	}
-	*write_char++ = '\0';
-	
-	if (strlen (in_string) != strlen (ret)) {
-		DEBUG_HTTP (("unescape_unreserved from '%s' to '%s'"));
-	}
-	
+	*write_char++ = '\0';       	
 	
 	return ret;
 }
@@ -1876,19 +1917,21 @@ find_child_node_named (xmlNodePtr node,
 	return NULL;
 }
 
-static guint
-get_propstat_status (xmlNodePtr propstat_node, 
-		     guint *p_status_code)
+/* Look for a <status> tag in the children of node, and returns
+ * the corresponding (HTTP) error code
+ */
+static gboolean
+get_status_node (xmlNodePtr node, guint *status_code)
 {
 	xmlNodePtr status_node;
 	char *status_string;
 	gboolean ret;
 
-	status_node = find_child_node_named (propstat_node, "status");
+	status_node = find_child_node_named (node, "status");
 
 	if (status_node != NULL) {
 		status_string =	xmlNodeGetContent (status_node);
-		ret = parse_status (status_string, p_status_code);
+		ret = parse_status (status_string, status_code);
 		xmlFree (status_string);
 	} else {
 		ret = FALSE;
@@ -1916,23 +1959,31 @@ process_propfind_response(xmlNodePtr n,
 			
 			if (nodecontent != NULL && *nodecontent != '\0' && rv == GNOME_VFS_OK) {
 				gint len;
-				GnomeVFSURI *uri = propfind_href_to_vfs_uri (nodecontent);
+				GnomeVFSURI *uri = gnome_vfs_uri_new (nodecontent);
 				
 				if (uri != NULL) {
 					if ((0 == null_handling_strcmp (base_uri->text, uri->text)) ||
 					    (0 == null_handling_strcmp (second_base->text, uri->text))) {
 						file_info->name = NULL; /* this file is the . directory */
 					} else {
-						/* extract_short_name returns unescaped */
+						if (file_info->name != NULL) {
+							/* Don't leak if a (potentially malicious)
+							 * server returns several href in its answer
+							 */
+							g_free (file_info->name);
+						}
 						file_info->name = gnome_vfs_uri_extract_short_name (uri);
-						gnome_vfs_uri_unref (uri);
-						
-						len = strlen (file_info->name) -1;
-						if (file_info->name[len] == '/') {
-							/* trim trailing `/` - it confuses stuff */
-							file_info->name[len] = '\0';
+						if (file_info->name != NULL) {
+							len = strlen (file_info->name) -1;
+							if (file_info->name[len] == '/') {
+								/* trim trailing `/` - it confuses stuff */
+								file_info->name[len] = '\0';
+							}
+						} else {
+							g_warning ("Invalid filename in PROPFIND '%s'; silently skipping", nodecontent);
 						}
 					}
+					gnome_vfs_uri_unref (uri);
 				} else {
 					g_warning ("Can't make URI from href in PROPFIND '%s'; silently skipping", nodecontent);
 				}
@@ -1942,7 +1993,7 @@ process_propfind_response(xmlNodePtr n,
 
 			xmlFree (nodecontent);
 		} else if (strcmp ((char *)n->name, "propstat") == 0) {
-			if (get_propstat_status (n, &status_code) && status_code == 200) {
+			if (get_status_node (n, &status_code) && status_code == 200) {
 				process_propfind_propstat (n->xmlChildrenNode, file_info);
 			}
 		}
@@ -1973,15 +2024,13 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	GByteArray *request = g_byte_array_new();
 	char *request_str = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
-		"<D:propfind xmlns:D=\"DAV:\" xmlns:ns1000=\"" EAZEL_XML_NS "\">"
+		"<D:propfind xmlns:D=\"DAV:\" >"
 		"<D:prop>"
                 "<D:creationdate/>"
                 "<D:getcontentlength/>"
                 "<D:getcontenttype/>"
                 "<D:getlastmodified/>"
                 "<D:resourcetype/>"
-                "<ns1000:nautilus-treat-as-directory/>"
-		/*"<D:allprop/>"*/
 		"</D:prop>"
 		"</D:propfind>";
 
@@ -1999,7 +2048,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 	result = make_request (handle_return, uri, "PROPFIND", request, 
 			       extraheaders, context);
 	
-	/* FIXME bugzilla.eazel.com 3834: It looks like some http
+	/* FIXME bugzilla.gnome.org 43834: It looks like some http
 	 * servers (eg, www.yahoo.com) treat PROPFIND as a GET and
 	 * return a 200 OK. Others may return access denied errors or
 	 * redirects or any other legal response. This case probably
@@ -2018,7 +2067,6 @@ make_propfind_request (HttpFileHandle **handle_return,
 			if (result != GNOME_VFS_OK ) {
 				break;
 			}
-			
 			xmlParseChunk (parserContext, buffer, bytes_read, 0);
 			buffer[bytes_read]=0;
 		} while (bytes_read > 0);
@@ -2041,19 +2089,29 @@ make_propfind_request (HttpFileHandle **handle_return,
 	}
 	
 	cur = doc->xmlRootNode;
-	
 	if (strcmp ((char *)cur->name, "multistatus") != 0) {
 		DEBUG_HTTP (("Couldn't find <multistatus>.\n"));
 		result = GNOME_VFS_ERROR_GENERIC;
 		goto cleanup;
 	}
-
 	cur = cur->xmlChildrenNode;
 	
 	found_root_node_props = FALSE;
 	while (cur != NULL) {
 		if (strcmp ((char *)cur->name, "response") == 0) {
-			GnomeVFSFileInfo *file_info =
+			GnomeVFSFileInfo *file_info;
+			guint status;
+			
+			/* Some webdav servers (eg resin) put the HTTP status
+			 * code for PROPFIND request in the xml answer instead
+			 * of directly sending a 404 
+			 */
+			if (get_status_node (cur, &status) && !HTTP_20X(status)) {
+				result = http_status_to_vfs_result (status);
+				goto cleanup;
+			}
+			
+			file_info = 
 				process_propfind_response (cur->xmlChildrenNode, uri);
 			
 			if (file_info->name != NULL) { 
@@ -2148,6 +2206,7 @@ do_open_directory(GnomeVFSMethod *method,
 
 	if (file_info_cached) {
 		handle = http_file_handle_new (NULL, uri);
+		gnome_vfs_file_info_unref (handle->file_info);
 		handle->file_info = file_info_cached;
 		handle->files = child_file_info_cached_list;
 		result = GNOME_VFS_OK;
@@ -2317,7 +2376,7 @@ do_get_file_info (GnomeVFSMethod *method,
 			}
 			
 			if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
-				/* FIXME bugzilla.eazel.com 3835: mfleming: Is this code really appropriate?
+				/* FIXME bugzilla.gnome.org 43835: mfleming: Is this code really appropriate?
 				 * In any case, it doesn't seem to be appropriate for a DAV-enabled
 				 * server, since they don't seem to send 301's when you PROPFIND collections
 				 * without a trailing '/'.
@@ -2346,16 +2405,17 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      GnomeVFSFileInfoOptions options,
 			      GnomeVFSContext *context)
 {
-	GnomeVFSResult result;
+	HttpFileHandle *handle;
 	
 	DEBUG_HTTP (("+Get_File_Info_From_Handle"));
 	
-	result = do_get_file_info (method, ((HttpFileHandle *)method_handle)->uri, 
-				   file_info, options, context);
-
+	handle = (HttpFileHandle *) method_handle;
+	
+	gnome_vfs_file_info_copy (file_info, handle->file_info);
+	
 	DEBUG_HTTP (("-Get_File_Info_From_Handle"));
 	
-	return result;
+	return GNOME_VFS_OK;
 }
 
 static gboolean
@@ -2543,7 +2603,7 @@ do_set_file_info (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 	
-	/* FIXME bugzilla.eazel.com 645: Make sure this returns an
+	/* FIXME bugzillagnome.org 40645: Make sure this returns an
 	 * error for incoming names with "/" characters in them,
 	 * instead of moving the file.
 	 */

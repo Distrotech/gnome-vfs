@@ -245,7 +245,7 @@ gnome_vfs_socket_buffer_peekc (GnomeVFSSocketBuffer *socket_buffer,
 	}
 
 	if (result == GNOME_VFS_OK) {
-		*character = *input_buffer->data;
+		*character = *(input_buffer->data + input_buffer->offset);
 	}
 
 	return result;

@@ -1,3 +1,147 @@
+gnome-vfs 2.3.2
+        * Features:
+	       + ipv6 uris supported
+	       + add some command line applications for gnome-vfs
+
+	* Bugs fixed:
+	       + mp3 mimetype is audio/mpeg, not audio/x-mp3
+	       + build issues fixed
+	       + fix ncpfs filesystem
+	
+gnome-vfs 2.3.1
+        * Features:
+	       + New API gnome_vfs_url_show() and related calls
+	       + New function gnome_vfs_make_uri_from_input_with_dirs
+	       + Cygwin port
+	       + IPV6 support
+	       
+	* Bugs fixed:
+	       + Some mime fixes
+	       + Correctly handle symlinks to symlinks
+	       + hpux fixes
+	       + CDE menu translation fixes
+	       + Webdav PROPFIND details
+	       + Fixed locale aliases handling
+	       + call bindtextlocale to get translation working
+	       + Fixes to mtab handling
+
+gnome-vfs 2.2.4
+
+	* Bugs fixed:
+	       + Remove spew in destroy_notify (Dave Camp)
+	       + Throttle FAM change even rate to avoid applications
+	         using 100% cpu when a file is written
+	       + Don't silently fail whole operation when symlink copy
+	         fails
+	       + Fix for crash when canceling in bug-buddy
+	       + Fix bug in sample program (Murray Cumming)
+	       + Fix gnome_vfs_get_volume_free_space to work on NFS mounts
+	       + Fix start directory on some ftp servers (Christophe Fergeau)
+	       + Look for user-installed modules in ~/.gnome2/vfs/modules
+	         instead of ~/.gnome/vfs/modules
+	* Featurelets
+	       + Some translation updates.
+
+gnome-vfs 2.2.3
+
+	* Bugs fixed:
+	       + Fix Strange smb: crash with module callbacks
+	       + Fix for systems without readdir_r
+	       + Fix race in monitor code
+	       + Handle ogg files with id3 data in mp3 sniffer
+	       + Use cached data data for get_info_from_handle in the
+	         http method
+	       + Various ssh-method fixes (Bastien Nocera)
+	       + Fix memleak (Frederic Crozat)
+	* Featurelets
+	       + Try pkg-config to detect openssl if installed
+	       + add --enable-gnutls switch to allow you to enable the
+	         new gnutls code
+		 
+	
+gnome-vfs 2.2.2
+
+	* Bugs fixed:
+	       + fixed memleak in monitors
+	       + fixed some ssh method problems
+	       + fixed some vfs moniker bugs
+
+gnome-vfs 2.2.1
+
+	* Bugs fixed:
+	       + Fixed deadlock wrt fam while adding many monitors
+	       + fixed memleak
+
+gnome-vfs 2.2.0
+
+	* Bugs fixed:
+	       + races and bugs in the GIOChannel support (Josh Parsons)
+	* Featurelets
+	       + Added (disabled for now) gnutls ssl lib (Andrew McDonald)
+	         This will be enabled later when its been tested more.
+
+gnome-vfs 2.1.91
+
+	* Bugs fixed:
+	       + gzip header creation time
+	       + gnome_vfs_uri_extract_dirname crash
+	       + gnome_vfs_socket_buffer_peekc corrected
+
+gnome-vfs 2.1.6
+
+	* Bugs fixed:
+	       + fixed -lpthreads build failure (Owen Taylor)
+	       + Handle directory moves overwriting themselves (Alex Larsson)
+	       + Correct libdir handling (Frederic Crozat)
+	* Featurelets
+	       + Deprecated gnome_vfs_mime_shutdown, gnome_vfs_loadinit,
+	         gnome_vfs_preinit and gnome_vfs_postinit. (Alex Larsson)
+	       + Lots of docs updates (Diego Gonzalez)
+	       + _ prefix internal functions. (Tim Janik)
+
+gnome-vfs 2.1.5
+
+	* Featurelets
+		+ Added GNOME_VFS_ERROR_NO_MASTER_BROWSER to GnomeVFSResult
+
+gnome-vfs 2.1.4
+
+	* Featurelets
+		+ gnome_vfs_open_fd() replaced console: method (Giovanni Corriga)
+	* Bugs fixed:
+	        + Avoid polling when user mime dir doesn't exist (Frederic Crozat)
+		+ Fix memleak in mime data directory handling (Frederic Crozat)
+
+gnome-vfs 2.1.2,3
+
+	* Featurelets
+		+ vfolder re-write (Alex Graveley)
+		+ add access check API (Christophe Fergeau)
+		+ funky network: scheme (Bastien Nocera)
+		+ symlink following cp -R (Colin Walters)
+		+ async performance improvements (Brian Cameron)
+		+ favorites updates (Seth Nickell)
+		+ eel vfs utils merged (James Willcox)
+		+ 'uses_gnomevfs' in .application (Christophe Fergeau)
+		+ update docs (Ian McKellar)
+	* Bugs fixed
+		+ URI canonicalization (Frederic Crozat)
+		+ config source fix (Ian McKellar)
+		+ vfolder misc, lots. (Alex, Damon Chaplin)
+		+ turn off vfolder debug (Mark McLouglin)
+		+ CDE integration fixes (Stephen Browne,
+	 	  Arvind Samptur, HideToshi Tajima)
+		+ remove hard-coding (Seth)
+		+ ssh quoting fixes (Christophe)
+		+ several ERROR_EOF fixes (Christophe)
+		+ buffer overflow fix (Christophe)
+		+ http fd leak (Ghee Teo)
+		+ OP_XFER leak fix (Jody Goldberg)
+		+ fix trash locking, and IO (Michael Meeks)
+		+ g_memory management fix (Dave Camp)
+		+ newer findutils fixes (Federico Mena)
+		+ build fixes (Michael, Yanko Kaneti, Jacob Berkman)
+
 gnome-vfs 2.0.2
 
 	* Bugs fixed

@@ -15,6 +15,7 @@
 #undef ENABLE_PROFILER
 #undef HAVE_OPENSSL
 #undef HAVE_FAM
+#undef HAVE_OFF64_T
 #undef GETTEXT_PACKAGE
 
 /* Define if you have the Andrew File System.  */
@@ -38,3 +39,5 @@
 /* Define to use Ultrix getmnt to get filesystem type.  */
 #undef FSTYPE_GETMNT
 
+#undef HAVE_GNUTLS
+#undef ENABLE_IPV6

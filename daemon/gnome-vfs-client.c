@@ -10,13 +10,6 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	BonoboObject,
 	BONOBO_TYPE_OBJECT);
 
-static void
-impl_GNOME_VFS_Client_doSomething (PortableServer_Servant servant,
-				   const CORBA_char      *aStr,
-				   CORBA_Environment     *ev)
-{
-	g_warning ("Client do something '%s'", aStr);
-}
 
 static void
 gnome_vfs_client_finalize (GObject *object)
@@ -36,8 +29,6 @@ gnome_vfs_client_class_init (GnomeVfsClientClass *klass)
 	POA_GNOME_VFS_Client__epv *epv = &klass->epv;
 
 	object_class->finalize = gnome_vfs_client_finalize;
-
-	epv->doSomething = impl_GNOME_VFS_Client_doSomething;
 }
 
 void

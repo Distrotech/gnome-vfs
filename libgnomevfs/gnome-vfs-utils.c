@@ -35,8 +35,10 @@
 #include "gnome-vfs-i18n.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-ops.h"
+#include "gnome-vfs-mime-handlers.h"
 #include <glib/gstrfuncs.h>
 #include <glib/gutils.h>
+#include <gconf/gconf-client.h>
 #include <pwd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -58,32 +60,44 @@
 #define MEGABYTE_FACTOR (1024.0 * 1024.0)
 #define GIGABYTE_FACTOR (1024.0 * 1024.0 * 1024.0)
 
-
 #define READ_CHUNK_SIZE 8192
 
+#define MAX_SYMLINKS_FOLLOWED 32
+
+
+/**
+ * gnome_vfs_format_file_size_for_display:
+ * @size:
+ * 
+ * Formats the file size passed in @bytes in a way that is easy for
+ * the user to read. Gives the size in bytes, kilobytes, megabytes or
+ * gigabytes, choosing whatever is appropriate.
+ * 
+ * Returns: a newly allocated string with the size ready to be shown.
+ **/
 
 gchar*
-gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
+gnome_vfs_format_file_size_for_display (GnomeVFSFileSize size)
 {
-	if (bytes < (GnomeVFSFileSize) KILOBYTE_FACTOR) {
-		if (bytes == 1)
+	if (size < (GnomeVFSFileSize) KILOBYTE_FACTOR) {
+		if (size == 1)
 			return g_strdup (_("1 byte"));
 		else
 			return g_strdup_printf (_("%u bytes"),
-						       (guint) bytes);
+						       (guint) size);
 	} else {
 		gdouble displayed_size;
 
-		if (bytes < (GnomeVFSFileSize) MEGABYTE_FACTOR) {
-			displayed_size = (gdouble) bytes / KILOBYTE_FACTOR;
+		if (size < (GnomeVFSFileSize) MEGABYTE_FACTOR) {
+			displayed_size = (gdouble) size / KILOBYTE_FACTOR;
 			return g_strdup_printf (_("%.1f K"),
 						       displayed_size);
-		} else if (bytes < (GnomeVFSFileSize) GIGABYTE_FACTOR) {
-			displayed_size = (gdouble) bytes / MEGABYTE_FACTOR;
+		} else if (size < (GnomeVFSFileSize) GIGABYTE_FACTOR) {
+			displayed_size = (gdouble) size / MEGABYTE_FACTOR;
 			return g_strdup_printf (_("%.1f MB"),
 						       displayed_size);
 		} else {
-			displayed_size = (gdouble) bytes / GIGABYTE_FACTOR;
+			displayed_size = (gdouble) size / GIGABYTE_FACTOR;
 			return g_strdup_printf (_("%.1f GB"),
 						       displayed_size);
 		}
@@ -637,13 +651,12 @@ gnome_vfs_make_uri_canonical_old (const char *original_uri_text)
 	return result;
 }
 
-
 /**
- * gnome_vfs_make_canonical_pathname:
+ * gnome_vfs_make_path_name_canonical:
  * @path: a file path, relative or absolute
  * 
- * Calls gnome_vfs_canonicalize_pathname, allocating storage for the result and
- * providing for a cleaner memory management.
+ * Calls _gnome_vfs_canonicalize_pathname, allocating storage for the 
+ * result and providing for a cleaner memory management.
  * 
  * Return value: a canonical version of @path
  **/
@@ -654,7 +667,7 @@ gnome_vfs_make_path_name_canonical (const gchar *path)
 	char *result;
 
 	path_clone = g_strdup (path);
-	result = gnome_vfs_canonicalize_pathname (path_clone);
+	result = _gnome_vfs_canonicalize_pathname (path_clone);
 	if (result != path_clone) {
 		g_free (path_clone);
 		return g_strdup (result);
@@ -699,7 +712,7 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
 {
 	const char *path_part;
 
-	if (!gnome_vfs_istr_has_prefix (uri, "file:/")) {
+	if (!_gnome_vfs_istr_has_prefix (uri, "file:/")) {
 		return NULL;
 	}
 	
@@ -708,9 +721,9 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
 		return NULL;
 	}
 	
-	if (gnome_vfs_istr_has_prefix (path_part, "///")) {
+	if (_gnome_vfs_istr_has_prefix (path_part, "///")) {
 		path_part += 2;
-	} else if (gnome_vfs_istr_has_prefix (path_part, "//")) {
+	} else if (_gnome_vfs_istr_has_prefix (path_part, "//")) {
 		return NULL;
 	}
 
@@ -743,20 +756,25 @@ gnome_vfs_get_uri_from_local_path (const char *local_full_path)
 	return result;
 }
 
-/* gnome_vfs_get_volume_free_space
+/**
+ * gnome_vfs_get_volume_free_space:
+ * @vfs_uri:
+ * @size:
  * 
- * Return total amount of free space on a volume.
- * This only works for local file systems with
- * the file: scheme.
+ * Stores in @size the amount of free space on a volume.
+ * This only works for local file systems with the file: scheme.
+ *
+ * Returns: GNOME_VFS_OK on success, otherwise an error code
  */
 GnomeVFSResult
-gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *size)
+gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, 
+				 GnomeVFSFileSize  *size)
 {	
 	GnomeVFSFileSize free_blocks, block_size;
        	int statfs_result;
 	const char *path, *scheme;
 	char *unescaped_path;
-	GnomeVFSResult ret;
+
 #if HAVE_STATVFS
 	struct statvfs statfs_buffer;
 #else
@@ -765,65 +783,39 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 
  	*size = 0;
 
-	/* We can't check non local systems */
-	if (!gnome_vfs_uri_is_local (vfs_uri)) {
+	path = gnome_vfs_uri_get_path (vfs_uri);
+	if (path == NULL) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
-	path = gnome_vfs_uri_get_path (vfs_uri);
-
-	unescaped_path = gnome_vfs_unescape_string (path, G_DIR_SEPARATOR_S);
-	
 	scheme = gnome_vfs_uri_get_scheme (vfs_uri);
 	
         /* We only handle the file scheme for now */
-	if (g_ascii_strcasecmp (scheme, "file") != 0 || !gnome_vfs_istr_has_prefix (path, "/")) {
+	if (g_ascii_strcasecmp (scheme, "file") != 0 || !_gnome_vfs_istr_has_prefix (path, "/")) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
+	unescaped_path = gnome_vfs_unescape_string (path, G_DIR_SEPARATOR_S);
+	
 #if HAVE_STATVFS
 	statfs_result = statvfs (unescaped_path, &statfs_buffer);
 #else
 	statfs_result = statfs (unescaped_path, &statfs_buffer);   
 #endif  
 
-	if (statfs_result == 0) {
-		ret = GNOME_VFS_OK;
-	} else {
-		ret = gnome_vfs_result_from_errno ();
+	g_free (unescaped_path);
+
+	if (statfs_result != 0) {
+		return gnome_vfs_result_from_errno ();
 	}
 	
-	g_return_val_if_fail (statfs_result == 0, FALSE);
 	block_size = statfs_buffer.f_bsize; 
 	free_blocks = statfs_buffer.f_bavail;
 
 	*size = block_size * free_blocks;
-
-	g_free (unescaped_path);
 	
-	return ret;
+	return GNOME_VFS_OK;
 }
-
-/**
- * hack_file_exists
- * @filename: pathname to test for existance.
- *
- * Returns true if filename exists
- */
-/* FIXME: Why is this here? Why not use g_file_exists in libgnome/gnome-util.h?
- * (I tried to simply replace but there were strange include dependencies, maybe
- * that's why this function exists.)
- */
-static int
-hack_file_exists (const char *filename)
-{
-	struct stat s;
-
-	g_return_val_if_fail (filename != NULL,FALSE);
-    
-	return stat (filename, &s) == 0;
-}
-
 
 char *
 gnome_vfs_icon_path_from_filename (const char *relative_filename)
@@ -833,7 +825,7 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 	char **paths, **temp_paths;
 
 	if (g_path_is_absolute (relative_filename) &&
-	    hack_file_exists (relative_filename))
+	    g_file_test (relative_filename, G_FILE_TEST_EXISTS))
 		return g_strdup (relative_filename);
 
 	gnome_var = g_getenv ("GNOME_PATH");
@@ -846,7 +838,7 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 
 	for (temp_paths = paths; *temp_paths != NULL; temp_paths++) {
 		full_filename = g_strconcat (*temp_paths, "/share/pixmaps/", relative_filename, NULL);
-		if (hack_file_exists (full_filename)) {
+		if (g_file_test (full_filename, G_FILE_TEST_EXISTS)) {
 			g_strfreev (paths);
 			return full_filename;
 		}
@@ -857,7 +849,6 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 	g_strfreev (paths);
 	return NULL;
 }
-
 
 static char *
 strdup_to (const char *string, const char *end)
@@ -890,7 +881,6 @@ is_executable_file (const char *path)
 
 	return TRUE;
 }
-
 
 static gboolean
 executable_in_path (const char *executable_name)
@@ -939,8 +929,15 @@ get_executable_name_from_command_string (const char *command_string)
 	return g_strstrip (strdup_to (command_string, strchr (command_string, ' ')));
 }
 
-/* Returns TRUE if commmand_string starts with the full path for an executable
- * file, or starts with a command for an executable in $PATH.
+/**
+ * gnome_vfs_is_executable_command_string:
+ * @command_string:
+ * 
+ * Checks if @command_string starts with the full path of an executable file
+ * or an executable in $PATH.
+ *
+ * Returns: TRUE if command_string started with and executable file, 
+ * FALSE otherwise.
  */
 gboolean
 gnome_vfs_is_executable_command_string (const char *command_string)
@@ -984,16 +981,17 @@ gnome_vfs_is_executable_command_string (const char *command_string)
 /**
  * gnome_vfs_read_entire_file:
  * @uri: URI of the file to read
- * @file_size: after reading the file, contains the size of the 
- * file read
- * @file_contents: contains the file_size bytes, the contents 
- * of the file at uri.
+ * @file_size: after reading the file, contains the size of the file read
+ * @file_contents: contains the file_size bytes, the contents of the file at @uri.
  * 
  * Reads an entire file into memory for convenience. Beware accidentally
  * loading large files into memory with this function.
  *
  * Return value: An integer representing the result of the operation
+ *
+ * Since: 2.2
  */
+
 GnomeVFSResult
 gnome_vfs_read_entire_file (const char *uri,
 			    int *file_size,
@@ -1132,7 +1130,7 @@ gnome_vfs_format_uri_for_display_internal (const char *uri, gboolean filenames_a
  *
  * Filter, modify, unescape and change URIs to make them appropriate
  * to display to users. The conversion is done such that the roundtrip
- * to UTf8 is reversible.
+ * to UTF-8 is reversible.
  * 
  * Rules:
  * 	file: URI's without fragments should appear as local paths
@@ -1141,8 +1139,11 @@ gnome_vfs_format_uri_for_display_internal (const char *uri, gboolean filenames_a
  *
  * @uri: a URI
  *
- * returns a g_malloc'd UTF8 string
+ * Returns: a newly allocated UTF-8 string
+ *
+ * Since: 2.2
  **/
+
 char *
 gnome_vfs_format_uri_for_display (const char *uri) 
 {
@@ -1301,22 +1302,19 @@ gnome_vfs_make_uri_from_input_internal (const char *text,
 	
 }
 
-
-
 /**
  * gnome_vfs_make_uri_from_input:
- *
- * Takes a user input path/URI and makes a valid URI
- * out of it
- *
  * @location: a possibly mangled "uri", in UTF8
  *
- * returns a newly allocated uri.
+ * Takes a user input path/URI and makes a valid URI out of it.
  *
  * This function is the reverse of gnome_vfs_format_uri_for_display
  * but it also handles the fact that the user could have typed
  * arbitrary UTF8 in the entry showing the string.
  *
+ * Returns: a newly allocated uri.
+ *
+ * Since: 2.2
  **/
 char *
 gnome_vfs_make_uri_from_input (const char *location)
@@ -1327,6 +1325,82 @@ gnome_vfs_make_uri_from_input (const char *location)
 
 	return gnome_vfs_make_uri_from_input_internal (location, broken_filenames, TRUE);
 }
+
+/**
+ * gnome_vfs_make_uri_from_input_with_dirs:
+ * @in: a relative or absolute path
+ *
+ * Determines a fully qualified URL from a relative or absolute input path.
+ * Basically calls gnome_vfs_make_uri_from_input except it specifically
+ * tries to support paths relative to the specified directories (can be homedir
+ * and/or current directory).
+ *
+ * Return value: the fully qualified URL
+ *
+ * Since: 2.4
+ */
+char *
+gnome_vfs_make_uri_from_input_with_dirs (const char *in,
+					 GnomeVFSMakeURIDirs dirs)
+{
+	char *uri, *path, *dir;
+
+	switch (in[0]) {
+	case '\0':
+		uri = g_strdup ("");
+		break;
+		
+	case '~':
+	case '/':
+		uri = gnome_vfs_make_uri_from_input (in);
+		break;
+		
+	default:
+		/* this might be a relative path, check if it exists relative
+		 * to current dir and home dir.
+		 */
+		uri = NULL;
+		if (dirs & GNOME_VFS_MAKE_URI_DIR_CURRENT) {
+			dir = g_get_current_dir ();
+			path = g_build_filename (dir, in, NULL);
+			g_free (dir);
+			
+			if (g_file_test (path, G_FILE_TEST_EXISTS)) {
+				uri = gnome_vfs_make_uri_from_input (path);
+			}
+			g_free (path);
+		}
+
+		if (uri == NULL &&
+		    dirs & GNOME_VFS_MAKE_URI_DIR_HOMEDIR) {
+			path = g_build_filename (g_get_home_dir (), in, NULL);
+		
+			if (g_file_test (path, G_FILE_TEST_EXISTS)) {
+				uri = gnome_vfs_make_uri_from_input (path);
+			}
+			g_free (path);
+		}
+
+		if (uri == NULL) {
+			uri = gnome_vfs_make_uri_from_input (in);
+		}
+	}
+	
+	return uri;
+}
+
+
+/**
+ * gnome_vfs_make_uri_canonical_strip_fragment:
+ * @uri:
+ *
+ * If the @uri passed contains a fragment (anything after a '#') strips if,
+ * then makes the URI canonical.
+ *
+ * Returns: a newly allocated string containing a canonical URI.
+ *
+ * Since: 2.2
+ **/
 
 char *
 gnome_vfs_make_uri_canonical_strip_fragment (const char *uri)
@@ -1344,7 +1418,6 @@ gnome_vfs_make_uri_canonical_strip_fragment (const char *uri)
 	g_free (without_fragment);
 	return canonical;
 }
-
 
 static gboolean
 uris_match (const char *uri_1, const char *uri_2, gboolean ignore_fragments)
@@ -1367,6 +1440,18 @@ uris_match (const char *uri_1, const char *uri_2, gboolean ignore_fragments)
 	
 	return result;
 }
+
+/**
+ * gnome_vfs_uris_match:
+ * @uri_1: stringified URI to compare with @uri_2.
+ * @uri_2: stringified URI to compare with @uri_1.
+ * 
+ * Compare two URIs.
+ *
+ * Return value: TRUE if they are the same, FALSE otherwise.
+ *
+ * Since: 2.2
+ **/
 
 gboolean
 gnome_vfs_uris_match (const char *uri_1, const char *uri_2)
@@ -1407,7 +1492,7 @@ gnome_vfs_uri_is_local_scheme (const char *uri)
 
 	is_local_scheme = FALSE;
 	for (temp_scheme = *local_schemes, i = 0; temp_scheme != NULL; i++, temp_scheme = local_schemes[i]) {
-		is_local_scheme = gnome_vfs_istr_has_prefix (uri, temp_scheme);
+		is_local_scheme = _gnome_vfs_istr_has_prefix (uri, temp_scheme);
 		if (is_local_scheme) {
 			break;
 		}
@@ -1482,7 +1567,18 @@ gnome_vfs_handle_trailing_slashes (const char *uri)
 	return uri_copy;
 }
 
-
+/**
+ * gnome_vfs_make_uri_canonical:
+ * @uri: and absolute or relative URI, it might have scheme.
+ *
+ * Standarizes the format of the uri being passed, so that it can be used
+ * later in other functions that expect a canonical URI.
+ *
+ * Returns: a newly allocated string that contains the canonical 
+ * representation of @uri.
+ *
+ * Since: 2.2
+ **/
 
 char *
 gnome_vfs_make_uri_canonical (const char *uri)
@@ -1569,6 +1665,17 @@ gnome_vfs_make_uri_canonical (const char *uri)
 	return canonical_uri;
 }
 
+/**
+ * gnome_vfs_get_uri_scheme:
+ * @uri: a stringified URI
+ *
+ * Retrieve the scheme used in @uri 
+ *
+ * Return value: A string containing the scheme
+ *
+ * Since: 2.2
+ **/
+
 char *
 gnome_vfs_get_uri_scheme (const char *uri)
 {
@@ -1603,7 +1710,7 @@ file_uri_from_local_relative_path (const char *location)
 
 	location_escaped = gnome_vfs_escape_path_string (location);
 
-	uri = gnome_vfs_make_uri_full_from_relative (base_uri_slash, location_escaped);
+	uri = gnome_vfs_uri_make_full_from_relative (base_uri_slash, location_escaped);
 
 	g_free (location_escaped);
 	g_free (base_uri_slash);
@@ -1615,6 +1722,7 @@ file_uri_from_local_relative_path (const char *location)
 
 /**
  * gnome_vfs_make_uri_from_shell_arg:
+ * @location: a possibly mangled "uri"
  *
  * Similar to gnome_vfs_make_uri_from_input, except that:
  * 
@@ -1622,11 +1730,11 @@ file_uri_from_local_relative_path (const char *location)
  * 2) doesn't bother stripping leading/trailing white space
  * 3) doesn't bother with ~ expansion--that's done by the shell
  *
- * @location: a possibly mangled "uri"
+ * Returns: a newly allocated uri
  *
- * returns a newly allocated uri
- *
+ * Since: 2.2
  **/
+
 char *
 gnome_vfs_make_uri_from_shell_arg (const char *location)
 {
@@ -1652,242 +1760,273 @@ gnome_vfs_make_uri_from_shell_arg (const char *location)
 	return uri;
 }
 
-static gboolean
-is_uri_partial (const char *uri)
-{
-	const char *current;
-
-	/* RFC 2396 section 3.1 */
-	for (current = uri ; 
-		*current
-		&& 	((*current >= 'a' && *current <= 'z')
-			 || (*current >= 'A' && *current <= 'Z')
-			 || (*current >= '0' && *current <= '9')
-			 || ('-' == *current)
-			 || ('+' == *current)
-			 || ('.' == *current)) ;
-	     current++);
-
-	return  !(':' == *current);
-}
-
-/*
- * FIXME this is not the simplest or most time-efficent way
- * to do this.  Probably a far more clear way of doing this processing
- * is to split the path into segments, rather than doing the processing
- * in place.
- */
-static void
-remove_internal_relative_components (char *uri_current)
-{
-	char *segment_prev, *segment_cur;
-	size_t len_prev, len_cur;
-
-	len_prev = len_cur = 0;
-	segment_prev = NULL;
-
-	g_return_if_fail (uri_current != NULL);
-
-	segment_cur = uri_current;
-
-	while (*segment_cur) {
-		len_cur = strcspn (segment_cur, "/");
-
-		if (len_cur == 1 && segment_cur[0] == '.') {
-			/* Remove "." 's */
-			if (segment_cur[1] == '\0') {
-				segment_cur[0] = '\0';
-				break;
-			} else {
-				memmove (segment_cur, segment_cur + 2, strlen (segment_cur + 2) + 1);
-				continue;
-			}
-		} else if (len_cur == 2 && segment_cur[0] == '.' && segment_cur[1] == '.' ) {
-			/* Remove ".."'s (and the component to the left of it) that aren't at the
-			 * beginning or to the right of other ..'s
-			 */
-			if (segment_prev) {
-				if (! (len_prev == 2
-				       && segment_prev[0] == '.'
-				       && segment_prev[1] == '.')) {
-				       	if (segment_cur[2] == '\0') {
-						segment_prev[0] = '\0';
-						break;
-				       	} else {
-						memmove (segment_prev, segment_cur + 3, strlen (segment_cur + 3) + 1);
-
-						segment_cur = segment_prev;
-						len_cur = len_prev;
-
-						/* now we find the previous segment_prev */
-						if (segment_prev == uri_current) {
-							segment_prev = NULL;
-						} else if (segment_prev - uri_current >= 2) {
-							segment_prev -= 2;
-							for ( ; segment_prev > uri_current && segment_prev[0] != '/' 
-							      ; segment_prev-- );
-							if (segment_prev[0] == '/') {
-								segment_prev++;
-							}
-						}
-						continue;
-					}
-				}
-			}
-		}
-
-		/*Forward to next segment */
-
-		if (segment_cur [len_cur] == '\0') {
-			break;
-		}
-		 
-		segment_prev = segment_cur;
-		len_prev = len_cur;
-		segment_cur += len_cur + 1;	
-	}	
-}
-
-
-
 /**
  * gnome_vfs_make_uri_full_from_relative:
  * 
  * Returns a full URI given a full base URI, and a secondary URI which may
  * be relative.
  *
+ * This function is deprecated, please use 
+ * gnome_vfs_uri_make_full_from_relative from gnome-vfs-uri.h
+ *
  * Return value: the URI (NULL for some bad errors).
  *
- * FIXME: This code has been copied from gnome_vfs-mozilla-content-view
- * because gnome_vfs-mozilla-content-view cannot link with libgnome_vfs-extensions
- * due to lame license issues.  Really, this belongs in gnome-vfs, but was added
- * after the Gnome 1.4 gnome-vfs API freeze
+ * Since: 2.2
  **/
 
 char *
 gnome_vfs_make_uri_full_from_relative (const char *base_uri, const char *relative_uri)
 {
-	char *result = NULL;
+	return gnome_vfs_uri_make_full_from_relative (base_uri, relative_uri);
+}
 
-	/* See section 5.2 in RFC 2396 */
+GnomeVFSResult
+_gnome_vfs_uri_resolve_all_symlinks_uri (GnomeVFSURI *uri,
+					 GnomeVFSURI **result_uri)
+{
+	GnomeVFSURI *new_uri, *resolved_uri;
+	GnomeVFSFileInfo *info;
+	GnomeVFSResult res;
+	char *p;
+	int n_followed_symlinks;
 
-	if (base_uri == NULL && relative_uri == NULL) {
-		result = NULL;
-	} else if (base_uri == NULL) {
-		result = g_strdup (relative_uri);
-	} else if (relative_uri == NULL) {
-		result = g_strdup (base_uri);
-	} else if (!is_uri_partial (relative_uri)) {
-		result = g_strdup (relative_uri);
-	} else {
-		char *mutable_base_uri;
-		char *mutable_uri;
+	/* Ref the original uri so we don't lose it */
+	uri = gnome_vfs_uri_ref (uri);
 
-		char *uri_current;
-		size_t base_uri_length;
-		char *separator;
+	*result_uri = NULL;
 
-		mutable_base_uri = g_strdup (base_uri);
-		uri_current = mutable_uri = g_strdup (relative_uri);
+	info = gnome_vfs_file_info_new ();
 
-		/* Chew off Fragment and Query from the base_url */
+	p = uri->text;
+	n_followed_symlinks = 0;
+	while (*p != 0) {
+		while (*p == GNOME_VFS_URI_PATH_CHR)
+			p++;
+		while (*p != 0 && *p != GNOME_VFS_URI_PATH_CHR)
+			p++;
 
-		separator = strrchr (mutable_base_uri, '#'); 
-
-		if (separator) {
-			*separator = '\0';
+		new_uri = gnome_vfs_uri_dup (uri);
+		g_free (new_uri->text);
+		new_uri->text = g_strndup (uri->text, p - uri->text);
+		
+		gnome_vfs_file_info_clear (info);
+		res = gnome_vfs_get_file_info_uri (new_uri, info, GNOME_VFS_FILE_INFO_DEFAULT);
+		if (res != GNOME_VFS_OK) {
+			gnome_vfs_uri_unref (new_uri);
+			goto out;
 		}
-
-		separator = strrchr (mutable_base_uri, '?');
-
-		if (separator) {
-			*separator = '\0';
-		}
-
-		if ('/' == uri_current[0] && '/' == uri_current [1]) {
-			/* Relative URI's beginning with the authority
-			 * component inherit only the scheme from their parents
-			 */
-
-			separator = strchr (mutable_base_uri, ':');
-
-			if (separator) {
-				separator[1] = '\0';
-			}			  
-		} else if ('/' == uri_current[0]) {
-			/* Relative URI's beginning with '/' absolute-path based
-			 * at the root of the base uri
-			 */
-
-			separator = strchr (mutable_base_uri, ':');
-
-			/* g_assert (separator), really */
-			if (separator) {
-				/* If we start with //, skip past the authority section */
-				if ('/' == separator[1] && '/' == separator[2]) {
-					separator = strchr (separator + 3, '/');
-					if (separator) {
-						separator[0] = '\0';
-					}
-				} else {
-				/* If there's no //, just assume the scheme is the root */
-					separator[1] = '\0';
-				}
+		if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK &&
+		    info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME) {
+			n_followed_symlinks++;
+			if (n_followed_symlinks > MAX_SYMLINKS_FOLLOWED) {
+				res = GNOME_VFS_ERROR_TOO_MANY_LINKS;
+				gnome_vfs_uri_unref (new_uri);
+				goto out;
 			}
-		} else if ('#' != uri_current[0]) {
-			/* Handle the ".." convention for relative uri's */
-
-			/* If there's a trailing '/' on base_url, treat base_url
-			 * as a directory path.
-			 * Otherwise, treat it as a file path, and chop off the filename
-			 */
-
-			base_uri_length = strlen (mutable_base_uri);
-			if ('/' == mutable_base_uri[base_uri_length-1]) {
-				/* Trim off '/' for the operation below */
-				mutable_base_uri[base_uri_length-1] = 0;
+			resolved_uri = gnome_vfs_uri_resolve_relative (new_uri,
+								       info->symlink_name);
+			if (*p != 0) {
+				gnome_vfs_uri_unref (uri);
+				uri = gnome_vfs_uri_append_path (resolved_uri, p);
+				gnome_vfs_uri_unref (resolved_uri);
 			} else {
-				separator = strrchr (mutable_base_uri, '/');
-				if (separator) {
-					*separator = '\0';
-				}
+				gnome_vfs_uri_unref (uri);
+				uri = resolved_uri;
 			}
 
-			remove_internal_relative_components (uri_current);
+			p = uri->text;
+		} 
+		gnome_vfs_uri_unref (new_uri);
+	}
 
-			/* handle the "../"'s at the beginning of the relative URI */
-			while (0 == strncmp ("../", uri_current, 3)) {
-				uri_current += 3;
-				separator = strrchr (mutable_base_uri, '/');
-				if (separator) {
-					*separator = '\0';
-				} else {
-					/* <shrug> */
-					break;
-				}
-			}
+	res = GNOME_VFS_OK;
+	*result_uri = gnome_vfs_uri_dup (uri);
+ out:
+	gnome_vfs_file_info_unref (info);
+	gnome_vfs_uri_unref (uri);
+	return res;
+}
 
-			/* handle a ".." at the end */
-			if (uri_current[0] == '.' && uri_current[1] == '.' 
-			    && uri_current[2] == '\0') {
+GnomeVFSResult
+_gnome_vfs_uri_resolve_all_symlinks (const char *text_uri,
+				     char **resolved_text_uri)
+{
+	GnomeVFSURI *uri, *resolved_uri;
+	GnomeVFSResult res;
 
-			    	uri_current += 2;
-				separator = strrchr (mutable_base_uri, '/');
-				if (separator) {
-					*separator = '\0';
-				}
-			}
+	*resolved_text_uri = NULL;
 
-			/* Re-append the '/' */
-			mutable_base_uri [strlen(mutable_base_uri)+1] = '\0';
-			mutable_base_uri [strlen(mutable_base_uri)] = '/';
-		}
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL || uri->text == NULL) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
 
-		result = g_strconcat (mutable_base_uri, uri_current, NULL);
-		g_free (mutable_base_uri); 
-		g_free (mutable_uri); 
+	res = _gnome_vfs_uri_resolve_all_symlinks_uri (uri, &resolved_uri);
+
+	if (res == GNOME_VFS_OK) {
+		*resolved_text_uri = gnome_vfs_uri_to_string (resolved_uri, GNOME_VFS_URI_HIDE_NONE);
+		gnome_vfs_uri_unref (resolved_uri);
+	}
+	return res;
+}
+
+gboolean 
+_gnome_vfs_uri_is_in_subdir (GnomeVFSURI *uri, GnomeVFSURI *dir)
+{
+	GnomeVFSFileInfo *dirinfo, *info;
+	GnomeVFSURI *resolved_dir, *parent, *tmp;
+	GnomeVFSResult res;
+	gboolean is_in_dir;
+
+	resolved_dir = NULL;
+	parent = NULL;
+
+	is_in_dir = FALSE;
+	
+	dirinfo = gnome_vfs_file_info_new ();
+	info = gnome_vfs_file_info_new ();
+
+	res = gnome_vfs_get_file_info_uri (dir, dirinfo, GNOME_VFS_FILE_INFO_DEFAULT);
+	if (res != GNOME_VFS_OK || dirinfo->type != GNOME_VFS_FILE_TYPE_DIRECTORY) {
+		goto out;
+	}
+
+	res = _gnome_vfs_uri_resolve_all_symlinks_uri (dir, &resolved_dir);
+	if (res != GNOME_VFS_OK) {
+		goto out;
 	}
 	
-	return result;
+	res = _gnome_vfs_uri_resolve_all_symlinks_uri (uri, &tmp);
+	if (res != GNOME_VFS_OK) {
+		goto out;
+	}
+	
+	parent = gnome_vfs_uri_get_parent (tmp);
+	gnome_vfs_uri_unref (tmp);
+
+	while (parent != NULL) {
+		res = gnome_vfs_get_file_info_uri (parent, info, GNOME_VFS_FILE_INFO_DEFAULT);
+		if (res != GNOME_VFS_OK) {
+			break;
+		}
+
+		if (dirinfo->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_DEVICE &&
+		    dirinfo->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_INODE &&
+		    info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_DEVICE &&
+		    info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_INODE) {
+			if (dirinfo->device == info->device &&
+			    dirinfo->inode == info->inode) {
+				is_in_dir = TRUE;
+				break;
+			}
+		} else {
+			if (gnome_vfs_uri_equal (dir, parent)) {
+				is_in_dir = TRUE;
+				break;
+			}
+		}
+		
+		tmp = gnome_vfs_uri_get_parent (parent);
+		gnome_vfs_uri_unref (parent);
+		parent = tmp;
+	}
+
+ out:
+	if (resolved_dir != NULL) {
+		gnome_vfs_uri_unref (resolved_dir);
+	}
+	if (parent != NULL) {
+		gnome_vfs_uri_unref (parent);
+	}
+	gnome_vfs_file_info_unref (info);
+	return is_in_dir;
 }
+
+/**
+ * gnome_vfs_url_show:
+ * 
+ * Launches the default application or component associated with the given url.
+ *
+ * Return value: GNOME_VFS_OK if the default action was launched,
+ * GNOME_VFS_ERROR_BAD_PARAMETERS for an invalid or non-existant url,
+ * GNOME_VFS_ERROR_NOT_SUPPORTED if no default action is associated with the URL.
+ * Also error codes from gnome_vfs_mime_action_launch and
+ * gnome_vfs_url_show_using_handler for other errors.
+ *
+ * Since: 2.4
+ */
+GnomeVFSResult
+gnome_vfs_url_show (const char *url)
+{
+	return gnome_vfs_url_show_with_env (url, NULL);
+}
+
+/**
+ * gnome_vfs_url_show_with_env:
+ * 
+ * Like gnome_vfs_url_show except that the default action will be launched
+ * with the given environment.
+ *
+ * Return value: GNOME_VFS_OK if the default action was launched.
+ *
+ * Since: 2.4
+ */
+GnomeVFSResult
+gnome_vfs_url_show_with_env (const char  *url,
+                             char       **envp)
+{
+	GnomeVFSMimeApplication *app;
+	GnomeVFSMimeAction *action;
+	GnomeVFSResult result;
+	GList params;
+	char *type;
+	char *scheme;
+
+	g_return_val_if_fail (url != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	scheme = gnome_vfs_get_uri_scheme (url);
+	if (scheme == NULL) {
+		return GNOME_VFS_ERROR_BAD_PARAMETERS;
+	}
+	
+	/* check if this scheme requires special handling */
+	if (_gnome_vfs_use_handler_for_scheme (scheme)) {
+		result = _gnome_vfs_url_show_using_handler_with_env (url, envp);
+		g_free (scheme);
+		return result;
+	}
+	
+	g_free (scheme);
+
+	type = gnome_vfs_get_mime_type (url);
+
+	if (type == NULL) {
+		return GNOME_VFS_ERROR_BAD_PARAMETERS;
+	}
+
+	params.data = (char *) url;
+	params.prev = NULL;
+	params.next = NULL;
+	
+	app = gnome_vfs_mime_get_default_application (type);
+	
+	if (app != NULL) {
+		result = gnome_vfs_mime_application_launch_with_env (app, &params, envp);
+		gnome_vfs_mime_application_free (app);
+		g_free (type);
+		return result;
+	}
+	
+	action = gnome_vfs_mime_get_default_action (type);
+	
+	if (action != NULL) {
+		result = gnome_vfs_mime_action_launch_with_env (action, &params, envp);
+		gnome_vfs_mime_action_free (action);
+		g_free (type);
+		return result;
+	}
+	
+	g_free (type);
+	return GNOME_VFS_ERROR_NO_DEFAULT;	
+}	  
 

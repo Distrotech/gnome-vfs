@@ -1,17 +1,16 @@
 SUBDIRS_GNOME=monikers doc schemas
 
 SUBDIRS =					\
-	gob					\
 	libgnomevfs				\
-	daemon					\
 	modules					\
 	schemas					\
 	devel-docs				\
 	doc					\
+	programs				\
 	test					\
 	monikers				\
-	po
-
+	po					\
+	daemon					
 
 EXTRA_DIST =					\
 	HACKING					\

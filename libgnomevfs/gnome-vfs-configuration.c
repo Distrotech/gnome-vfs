@@ -115,9 +115,7 @@ vfs_dir_source_free (VfsDirSource *vfs_source)
 
 
 static void
-hash_free_module_path (gpointer key,
-		       gpointer value,
-		       gpointer user_data)
+hash_free_module_path (gpointer value)
 {
 	ModulePathElement *module_path;
 
@@ -131,8 +129,6 @@ configuration_destroy (Configuration *configuration)
 {
 	g_return_if_fail (configuration != NULL);
 
-	g_hash_table_foreach (configuration->method_to_module_path,
-			      hash_free_module_path, NULL);
 	g_hash_table_destroy (configuration->method_to_module_path);
 	g_list_foreach (configuration->directories, (GFunc) vfs_dir_source_free, NULL);
 	g_list_free (configuration->directories);
@@ -355,7 +351,7 @@ configuration_load (void)
 	int i = 0;
 	DIR *dirh;
 
-	configuration->method_to_module_path = g_hash_table_new (g_str_hash, g_str_equal);
+	configuration->method_to_module_path = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, hash_free_module_path);
 
 	/* Go through the list of configuration directories and build up a list of config files */
 	for (list = configuration->directories; list && i < MAX_CFG_FILES; list = list->next) {
@@ -399,11 +395,11 @@ add_directory_internal (const char *dir)
 }
 
 void
-gnome_vfs_configuration_add_directory (const char *dir)
+_gnome_vfs_configuration_add_directory (const char *dir)
 {
 	G_LOCK (configuration);
 	if (configuration == NULL) {
-		g_warning ("gnome_vfs_configuration_init must be called prior to adding a directory.");
+		g_warning ("_gnome_vfs_configuration_init must be called prior to adding a directory.");
 		G_UNLOCK (configuration);
 		return;
 	}
@@ -442,7 +438,7 @@ install_path_list (const gchar *environment_path)
 
 
 gboolean
-gnome_vfs_configuration_init (void)
+_gnome_vfs_configuration_init (void)
 {
 	char *home_config;
 	char *environment_path;
@@ -467,7 +463,7 @@ gnome_vfs_configuration_init (void)
 		home_config = g_strdup_printf ("%s%c%s",
 					       home_dir,
 					       G_DIR_SEPARATOR,
-					       ".gnome/vfs/modules");
+					       ".gnome2/vfs/modules");
 		add_directory_internal (home_config);
 		g_free (home_config);
 	}
@@ -484,7 +480,7 @@ gnome_vfs_configuration_init (void)
 }
 
 void
-gnome_vfs_configuration_uninit (void)
+_gnome_vfs_configuration_uninit (void)
 {
 	G_LOCK (configuration);
 	if (configuration == NULL) {
@@ -526,14 +522,12 @@ maybe_reload (void)
 
 	configuration->last_checked = time (NULL);
 
-	g_hash_table_foreach (configuration->method_to_module_path,
-			      hash_free_module_path, NULL);
 	g_hash_table_destroy (configuration->method_to_module_path);
 	configuration_load ();
 }
 
 const gchar *
-gnome_vfs_configuration_get_module_path (const gchar *method_name, const char ** args)
+_gnome_vfs_configuration_get_module_path (const gchar *method_name, const char ** args)
 {
 	ModulePathElement *element;
 
@@ -547,7 +541,7 @@ gnome_vfs_configuration_get_module_path (const gchar *method_name, const char **
 			(configuration->method_to_module_path, method_name);
 	} else {
 		/* This should never happen.  */
-		g_warning ("Internal error: the configuration system was not initialized. Did you call gnome_vfs_configuration_init?");
+		g_warning ("Internal error: the configuration system was not initialized. Did you call _gnome_vfs_configuration_init?");
 		element = NULL;
 	}
 
@@ -568,7 +562,7 @@ add_method_to_list(const gchar *key, gpointer value, GList **methods_list)
 }
 
 GList *
-gnome_vfs_configuration_get_methods_list (void)
+_gnome_vfs_configuration_get_methods_list (void)
 {
 	GList *methods_list = NULL;
 
