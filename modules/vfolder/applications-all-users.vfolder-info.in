@@ -172,7 +172,7 @@
     <!-- Settings -->
     <Folder>
       <Name>Preferences</Name>
-      <Parent>preferences-all-users:///</Parent>
+      <ParentLink>preferences-all-users:///</ParentLink>
     </Folder>
 
     <!-- System Tools-->

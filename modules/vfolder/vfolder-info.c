@@ -534,6 +534,10 @@ struct {
 	{ "Audio",        "AudioVideo" },
 	{ "Calendar",     "Office" },
 	{ "Finance",      "Office" },
+
+	/* KDE Menus */
+	{ "WordProcessing", "Office" },
+	{ "Toys",           "Utility" },
 };
 
 static GQuark
