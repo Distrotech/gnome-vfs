@@ -116,6 +116,15 @@ print_file_info (const GnomeVFSFileInfo *info)
 	if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_INODE)
 		printf ("Inode #           : %ld\n", (gulong) info->inode);
 
+     if(info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_ACCESS) {
+             printf ("Readable          : %s\n", 
+                     (info->permissions&GNOME_VFS_PERM_ACCESS_READABLE?"YES":"NO"));
+             printf ("Writable          : %s\n", 
+                     (info->permissions&GNOME_VFS_PERM_ACCESS_WRITABLE?"YES":"NO"));
+             printf ("Executable        : %s\n", 
+                     (info->permissions&GNOME_VFS_PERM_ACCESS_EXECUTABLE?"YES":"NO"));
+     }
+     
 
 #undef FLAG_STRING
 }
@@ -152,6 +161,7 @@ main (int argc,
 		result = gnome_vfs_get_file_info (uri, 
 						  info,
 						  (GNOME_VFS_FILE_INFO_GET_MIME_TYPE
+						   | GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS
 						   | GNOME_VFS_FILE_INFO_FOLLOW_LINKS));
 		if (result != GNOME_VFS_OK) {
 			fprintf (stderr, "%s: %s: %s\n",

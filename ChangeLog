@@ -1,3 +1,12 @@
+2002-10-29  Jody Goldberg <jody@gnome.org>
+
+	Patch from Christophe Fergeau <teuf@users.sourceforge.net>
+	* libgnomevfs/gnome-vfs-file-info.h :  Add explicit flags to request
+	  permissioning.
+	* modules/file-method.c (get_access_info) : new.
+	* modules/ssh-method.c (get_access_info) : new.
+	* test/test-info.c (print_file_info) :  test for the new flag.
+
 2002-10-29  Michael Meeks  <michael@ximian.com>
 
 	* libgnomevfs/gnome-vfs-module-callback.c

@@ -1,4 +1,11 @@
+gnome-vfs 2.1.2
+---------------
+
+	* Featurelets
+		+ Break access checks into distinct flag (Christophe Fergeau)
+
 gnome-vfs 2.0.2
+---------------
 
 	* Bugs fixed
 		+ gcc 3.1 build (Frederic Crozat)

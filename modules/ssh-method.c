@@ -447,6 +447,63 @@ do_close_directory (GnomeVFSMethod *method,
 	return ssh_destroy ((SshHandle *)method_handle);
 }
 
+static void
+get_access_info (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info)
+{
+     gint i;
+     gchar *name;
+     gchar *quoted_name;
+     struct param {
+             char c;
+             GnomeVFSFilePermissions perm;
+     };
+     struct param params[2] = {{'r', GNOME_VFS_PERM_ACCESS_READABLE},
+                               {'w', GNOME_VFS_PERM_ACCESS_WRITABLE}};
+
+     
+     name = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
+
+
+     if ( *name == '\0' ) {
+             quoted_name = g_shell_quote ("/");
+     } else {
+             quoted_name = g_shell_quote (name);
+     }
+     g_free (name);
+
+     for (i = 0; i<2; i++) {
+             gchar c;
+             gchar *cmd;
+             SshHandle *handle;
+             GnomeVFSFileSize bytes_read;
+             GnomeVFSResult result;
+
+             cmd = g_strdup_printf ("test -%c %s && echo $?", 
+                                    params[i].c, quoted_name);
+             result = ssh_connect (&handle, uri, cmd);
+             g_free (cmd);
+             
+             if (result != GNOME_VFS_OK) {
+                     g_free(quoted_name);
+                     return;
+             }               
+             
+             result = ssh_read (handle, &c, 1, &bytes_read);
+             if ((bytes_read > 0) && (c == '0')) {
+                     file_info->permissions |= params[i].perm;
+             } else {
+                     file_info->permissions &= ~params[i].perm;
+             }
+                     
+             ssh_destroy (handle);
+     }
+
+     file_info->permissions &= ~GNOME_VFS_PERM_ACCESS_EXECUTABLE;
+     file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_ACCESS;
+
+     g_free(quoted_name);
+}
+
 static GnomeVFSResult 
 do_read_directory (GnomeVFSMethod *method,
 		   GnomeVFSMethodHandle *method_handle,
@@ -521,6 +578,9 @@ do_read_directory (GnomeVFSMethod *method,
 			~GNOME_VFS_FILE_INFO_FIELDS_BLOCK_COUNT;
 		file_info->valid_fields &= 
 			~GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
+
+		get_access_info (((SshHandle*)method_handle)->uri, 
+				 file_info);
 
 		/* Break out.
 		   We are in a loop so we get the first 'ls' line;

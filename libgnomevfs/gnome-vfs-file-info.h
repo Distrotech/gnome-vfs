@@ -116,7 +116,9 @@ typedef enum {
 	GNOME_VFS_FILE_INFO_FIELDS_MTIME = 1 << 10,
 	GNOME_VFS_FILE_INFO_FIELDS_CTIME = 1 << 11,
 	GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME = 1 << 12,
-	GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE = 1 << 13
+	GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE = 1 << 13,
+	GNOME_VFS_FILE_INFO_FIELDS_ACCESS = 1 << 14
+
 } GnomeVFSFileInfoFields;
 
 /* File permissions.  These are the same as the Unix ones, but we wrap them
@@ -144,7 +146,10 @@ typedef enum {
 	GNOME_VFS_PERM_OTHER_READ = S_IROTH,
 	GNOME_VFS_PERM_OTHER_WRITE = S_IWOTH,
 	GNOME_VFS_PERM_OTHER_EXEC = S_IXOTH,
-	GNOME_VFS_PERM_OTHER_ALL = S_IROTH | S_IWOTH | S_IXOTH
+	GNOME_VFS_PERM_OTHER_ALL = S_IROTH | S_IWOTH | S_IXOTH,
+	GNOME_VFS_PERM_ACCESS_READABLE   = 1 << 16,
+	GNOME_VFS_PERM_ACCESS_WRITABLE   = 1 << 17,
+	GNOME_VFS_PERM_ACCESS_EXECUTABLE = 1 << 18
 } GnomeVFSFilePermissions;
 
 
@@ -152,7 +157,7 @@ typedef struct {
 	/* Base name of the file (no path).  */
 	char *name;
 
-	/* Fields which are actually valid in this strcture. */
+	/* Fields which are actually valid in this structure. */
 	GnomeVFSFileInfoFields valid_fields;
 
 	/* File type (i.e. regular, directory, block device...).  */
@@ -228,7 +233,8 @@ typedef enum {
 	GNOME_VFS_FILE_INFO_GET_MIME_TYPE = 1 << 0,
 	GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE = 1 << 1,
 	GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE = 1 << 2,
-	GNOME_VFS_FILE_INFO_FOLLOW_LINKS = 1 << 3
+	GNOME_VFS_FILE_INFO_FOLLOW_LINKS = 1 << 3,
+	GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS = 1 << 4
 } GnomeVFSFileInfoOptions;
 
 /**
