@@ -1,9 +1,4 @@
-2001-02-28  Mauricio Araya <mauricio@eazel.com>
-
-	* es.po: Updated Spanish translation.
-
-
-2001-02-05  Mauricio Araya P. <mauricio@eazel.com>
+2001-02-28  Mauricio Araya P.  <mauricio@eazel.com>
 
 	* es.po: Updated Spanish translation.
 
@@ -45,6 +40,10 @@
 	* fr.po: Updated French translation.
 	* update.pl: Removed this script and replaced by...
 	* update.sh: Added this xml-i18n compatible script.
+
+2001-02-05  Mauricio Araya P. <mauricio@eazel.com>
+
+	* es.po: Updated Spanish translation.
 
 2001-02-04  Fatih Demir	<kabalak@gmx.net>
 
