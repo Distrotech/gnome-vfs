@@ -1,5 +1,10 @@
 1999-10-21  Ettore Perazzoli  <ettore@gnu.org>
 
+	* libgnomevfs/gnome-vfs-iobuf.c (refill_input_buffer): New helper
+	function.
+	(gnome_vfs_iobuf_read): Changed to use it.
+	(gnome_vfs_iobuf_peekc): New function.
+
 	* libgnomevfs/gnome-vfs-private-types.h: New opaque
 	`GnomeVFSIOBuf' typedef for the struct defined in
 	`gnome-vfs-iobuf.c'.

@@ -31,6 +31,8 @@ GnomeVFSResult   gnome_vfs_iobuf_read    (GnomeVFSIOBuf *iobuf,
 					  gpointer buffer,
 					  GnomeVFSFileSize bytes,
 					  GnomeVFSFileSize *bytes_read);
+GnomeVFSResult	 gnome_vfs_iobuf_peekc   (GnomeVFSIOBuf *iobuf,
+					  gchar *c);
 GnomeVFSResult   gnome_vfs_iobuf_write   (GnomeVFSIOBuf *iobuf,
 					  gconstpointer buffer,
 					  GnomeVFSFileSize bytes,

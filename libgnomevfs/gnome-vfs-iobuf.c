@@ -35,7 +35,8 @@
 
 struct _Buffer {
 	gchar data[BUFFER_SIZE];
-	GnomeVFSFileSize byte_count;
+	guint offset;
+	guint byte_count;
 	GnomeVFSResult last_error;
 };
 typedef struct _Buffer Buffer;
@@ -52,6 +53,7 @@ static void
 buffer_init (Buffer *buffer)
 {
 	buffer->byte_count = 0;
+	buffer->offset = 0;
 	buffer->last_error = GNOME_VFS_OK;
 }
 
@@ -76,6 +78,28 @@ void
 gnome_vfs_iobuf_destroy (GnomeVFSIOBuf *iobuf)
 {
 	g_free (iobuf);
+}
+
+static gboolean
+refill_input_buffer (GnomeVFSIOBuf *iobuf)
+{
+	Buffer *input_buffer;
+	gint r;
+
+	input_buffer = &iobuf->input_buffer;
+	if (input_buffer->last_error != GNOME_VFS_OK
+	    || input_buffer->byte_count > 0)
+		return FALSE;
+
+	input_buffer->offset = 0;
+
+	r = read (iobuf->fd, &input_buffer->data, BUFFER_SIZE);
+	if (r == -1)
+		input_buffer->last_error = gnome_vfs_result_from_errno ();
+	else
+		input_buffer->byte_count = r;
+
+	return TRUE;
 }
 
 GnomeVFSResult
@@ -103,31 +127,50 @@ gnome_vfs_iobuf_read (GnomeVFSIOBuf *iobuf,
 			GnomeVFSFileSize n;
 
 			n = MIN (bytes, input_buffer->byte_count);
-			memcpy (p, input_buffer->data, n);
+			memcpy (p, input_buffer->data + input_buffer->offset,
+				n);
 			input_buffer->byte_count -= n;
+			input_buffer->offset += n;
 			read_count += n;
 			p += n;
-		} else if (input_buffer->last_error != GNOME_VFS_OK) {
+		} else if (! refill_input_buffer (iobuf)) {
 			/* The buffer is empty but we had an error last time we
                            filled it, so we report the error.  */
 			result = input_buffer->last_error;
 			input_buffer->last_error = GNOME_VFS_OK;
 			break;
-		} else {
-			gint r;
-
-			/* Empty buffer with no error: fill it again.  */
-
-			r = read (iobuf->fd, &input_buffer->data, BUFFER_SIZE);
-			if (r == -1)
-				input_buffer->last_error
-					= gnome_vfs_result_from_errno ();
-			else
-				input_buffer->byte_count = r;
 		}
 	}
 
 	*bytes_read = read_count;
+
+	return result;
+}
+
+GnomeVFSResult
+gnome_vfs_iobuf_peekc (GnomeVFSIOBuf *iobuf,
+		       gchar *c)
+{
+	GnomeVFSResult result;
+	Buffer *input_buffer;
+
+	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (c != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	input_buffer = &iobuf->input_buffer;
+	result = GNOME_VFS_OK;
+
+	if (input_buffer->byte_count == 0) {
+		if (! refill_input_buffer (iobuf)) {
+			/* The buffer is empty but we had an error last time we
+			   filled it, so we report the error.  */
+			result = input_buffer->last_error;
+			input_buffer->last_error = GNOME_VFS_OK;
+		}
+	}
+
+	if (result == GNOME_VFS_OK)
+		*c = *input_buffer->data;
 
 	return result;
 }
