@@ -559,7 +559,7 @@ file_seek_binder (gpointer context, GnomeVFSSeekPosition whence,
 {
 	FILE *file = (FILE *)context;
 	int result;
-	result = fseek (file, whence, offset);
+	result = fseek (file, offset, whence);
 	if (result < 0) {
 		return gnome_vfs_result_from_errno ();
 	}

@@ -103,7 +103,7 @@
 0	string		.ra\375					audio/x-real-audio
 0	string		RIFF					audio/x-riff
 8	string		WAVE					audio/x-wav
-8	string		WAV\ 					audio/x-wav
++8	string		WAV\ 					audio/x-wav
 0	string		SIT! 					application/x-stuffit
 0	string		\312\376\272\276			application/x-java-byte-code
 0	string		Joy!					application/x-pef-executable
@@ -141,11 +141,3 @@
 0	string		\367\312				application/x-font-tex
 2	string		\000\022				application/x-font-tex-tfm
 0	string		\x36\x04				application/x-font-linux-psf
-2080	string		Microsoft\ Word\ 6.0\ Document		application/msword
-2080	string		Documento\ Microsoft\ Word\ 6		application/msword
-2112	string		MSWordDoc				application/msword
-2080	string		Microsoft\ Excel\ 5.0\ Worksheet	application/vnd.ms-excel
-2114	string		Biff5					application/vnd.ms-excel
-
-
-

@@ -376,7 +376,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 
 		if (newent.type == T_STR) {
 			scanner = read_string_val (scanner, newent.pattern, 
-				sizeof (newent.pattern), &newent.pattern_length);
+						   sizeof (newent.pattern), &newent.pattern_length);
 		} else {
 			newent.pattern_length = bsize;
 			if (!read_num_val (&scanner, bsize, (int *)&newent.pattern)) {
@@ -447,11 +447,11 @@ endian_swap (guchar *result, const guchar *data, size_t length)
 }
 
 #if G_BYTE_ORDER == G_LITTLE_ENDIAN
- #define FIRST_ENDIAN_DEPENDENT_TYPE T_BESHORT
- #define LAST_ENDIAN_DEPENDENT_TYPE T_BEDATE
+#define FIRST_ENDIAN_DEPENDENT_TYPE T_BESHORT
+#define LAST_ENDIAN_DEPENDENT_TYPE T_BEDATE
 #else	
- #define FIRST_ENDIAN_DEPENDENT_TYPE T_LESHORT
- #define LAST_ENDIAN_DEPENDENT_TYPE T_LEDATE
+#define FIRST_ENDIAN_DEPENDENT_TYPE T_LESHORT
+#define LAST_ENDIAN_DEPENDENT_TYPE T_LEDATE
 #endif
 
 static gboolean
@@ -499,7 +499,7 @@ try_one_pattern_on_buffer (const char *sniffed_stream, GnomeMagicEntry *magic_en
 	}
 	
 	for (count = magic_entry->pattern_length, pattern = magic_entry->pattern;
-		count > 0; count--) {
+	     count > 0; count--) {
 		if (*pattern++ != *sniffed_stream++) {
 			return FALSE;
 		}
@@ -514,22 +514,29 @@ enum {
 
 static gboolean
 gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer, 
-	GnomeMagicEntry *magic_entry)
+				      GnomeMagicEntry *magic_entry)
 {
 	int offset;
 
+	if (sniff_buffer->read_whole_file &&
+	    sniff_buffer->buffer_length < magic_entry->range_start + magic_entry->pattern_length) {
+		/* There's no place this pattern could actually match */
+		return FALSE;
+	}
 	for (offset = magic_entry->range_start; offset <= magic_entry->range_end; offset++) {
-		if (sniff_buffer->buffer_length < offset + magic_entry->pattern_length) {
-			/* the above is done only as an optimization --
-			 * gnome_vfs_mime_sniff_buffer_get already implements the laziness.
-			 * This gets called a million times though and every bit performance
-			 * is valuable. This way we avoid making the call.
-			 */
+		/* this check is done only as an optimization
+		 * gnome_vfs_mime_sniff_buffer_get already implements the laziness.
+		 * This gets called a million times though and every bit performance
+		 * is valuable. This way we avoid making the call.
+		 */
+		if (sniff_buffer->buffer_length < offset + magic_entry->pattern_length &&
+		    !sniff_buffer->read_whole_file) {
 			if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
-				offset + magic_entry->pattern_length + SNIFF_BUFFER_CHUNK) != GNOME_VFS_OK) {
+							     offset + magic_entry->pattern_length) != GNOME_VFS_OK) {
 				return FALSE;
 			}
 		}
+		
 		if (try_one_pattern_on_buffer (sniff_buffer->buffer + offset, magic_entry)) {
 			return TRUE;
 		}
@@ -574,10 +581,10 @@ gnome_vfs_mime_get_magic_table (void)
 			if (file >= 0) {
 				if (fstat (file, &sbuf) == 0) {
 					mmap_result = (GnomeMagicEntry *) mmap(NULL, 
-						sbuf.st_size, 
-						PROT_READ, 
-						MAP_SHARED, 
-						file, 0);
+									       sbuf.st_size, 
+									       PROT_READ, 
+									       MAP_SHARED, 
+									       file, 0);
 					if (mmap_result != MAP_FAILED) {
 						mime_magic_table_size = sbuf.st_size;
 						mime_magic_table_is_mapped = TRUE;
@@ -798,14 +805,14 @@ gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 			} else if ((ch & 0x30) == 0x20) {
 				/* check if this is a 3-byte UTF-8 letter */
 				if ((sniff_buffer->buffer[++index] & 0xc0) != 0x80
-					|| (sniff_buffer->buffer[++index] & 0xc0) != 0x80) {
+				    || (sniff_buffer->buffer[++index] & 0xc0) != 0x80) {
 					return FALSE;
 				}
 			} else if ((ch & 0x38) == 0x30) {
 				/* check if this is a 4-byte UTF-8 letter */
 				if ((sniff_buffer->buffer[++index] & 0xc0) != 0x80
-					|| (sniff_buffer->buffer[++index] & 0xc0) != 0x80
-					|| (sniff_buffer->buffer[++index] & 0xc0) != 0x80) {
+				    || (sniff_buffer->buffer[++index] & 0xc0) != 0x80
+				    || (sniff_buffer->buffer[++index] & 0xc0) != 0x80) {
 					return FALSE;
 				}
 			}

@@ -135,6 +135,11 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 		return GNOME_VFS_ERROR_EOF;
 	}
 
+	if (buffer->read_whole_file) {
+	  /* If we've read the whole file, don't read any more */
+	  return GNOME_VFS_OK;
+	}
+
 	if (size < GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK) {
 		/* don't bother to read less than this */
 		size = GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK;
@@ -144,7 +149,7 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 		/* don't bother to add less than this */
 		size = buffer->buffer_length + GNOME_VFS_SNIFF_BUFFER_MIN_CHUNK;
 	}
-	
+
 	/* make room in buffer for new data */
 	buffer->buffer = g_realloc (buffer->buffer, size);
 
@@ -152,19 +157,23 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 	result = (buffer->seek) (buffer->context, 
 				 GNOME_VFS_SEEK_START,
 				 buffer->buffer_length);
+
+	if (result == GNOME_VFS_ERROR_EOF) {
+ 	        buffer->read_whole_file = TRUE;
+		return result;
+	}
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}
-
 	/* read in more data */
 	result = (buffer->read) (buffer->context, 
 				 buffer->buffer + buffer->buffer_length,
 				 size - buffer->buffer_length,
 				 &bytes_read);
+	buffer->buffer_length += bytes_read;
 
-	if (result == GNOME_VFS_OK || result == GNOME_VFS_ERROR_EOF) {
-		buffer->buffer_length += bytes_read;
-		result = GNOME_VFS_OK;
+	if (bytes_read < size - buffer->buffer_length) {
+	        buffer->read_whole_file = TRUE;
 	}
 
 	return result;

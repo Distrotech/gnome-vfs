@@ -1,3 +1,36 @@
+2000-10-24  Rebecca Schulman  <rebecka@eazel.com>
+	Fixed a bug in the gnome vfs mime magic that we weren't
+	actually seeking and reading the right chunks of files.
+	Fixing this exposed a large performance problem related to
+	mime types with magic numbers far into the file, so with
+	Pavel's agreement, I remooved the microsoft mime types that
+	are a 2x performance issue for the mime code.  apparently,
+	we never noticed they were working in the first place, but this
+	really isn't an appropriate thing to do in the future.
+	Also fixed a bug that the mime stuff was trying to reread after
+	the end of the file again and again, but I don't think this
+	helped performance as much as we first hoped.
+
+	* data/mime/gnome-vfs-mime-magic:
+	removed the microsoft mime types
+	* libgnomevfs/gnome-vfs-mime-magic.c: (gnome_vfs_mime_magic_parse),
+	redid this to detect the end of file case, 
+	(try_one_pattern_on_buffer),
+	(gnome_vfs_mime_try_one_magic_pattern),
+	(gnome_vfs_mime_get_magic_table),
+	(gnome_vfs_sniff_buffer_looks_like_text):
+	fixed indenting
+	
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer-private.h:
+	added the "read_whole_file" entry to the sniff buffer struct
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
+	(gnome_vfs_mime_sniff_buffer_get):
+	don't read if we've already read the whole file
+	* libgnomevfs/gnome-vfs-mime.c: (file_seek_binder):
+	Fix mistake where we'd swapped two arguments of 
+	fseek.  Amazingly, it worked anyways, that way. :)
+	
+
 2000-10-24  John Sullivan  <sullivan@eazel.com>
 
 	* modules/ftp-method.c: (do_read_directory):

@@ -32,6 +32,7 @@
 struct GnomeVFSMimeSniffBuffer {
 	guchar *buffer;
 	ssize_t buffer_length;
+        gboolean read_whole_file;
 	gboolean owning;
 
 	GnomeVFSSniffBufferSeekCall seek;
