@@ -29,7 +29,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include <hal/libhal.h>
+#include <libhal.h>
 #include <dbus/dbus-glib.h>
 
 #include "gnome-vfs-volume-monitor-daemon.h"

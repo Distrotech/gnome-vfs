@@ -1,3 +1,9 @@
+2004-07-25  Anders Carlsson  <andersca@gnome.org>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.h:
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.h:
+	include <libhal.h>, not <hal/libhal.h>
+	
 2004-07-25  Christian Kellner  <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-address.[ch]: Register GnomeVFSAddress in the

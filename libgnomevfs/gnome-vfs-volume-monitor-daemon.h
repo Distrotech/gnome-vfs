@@ -30,7 +30,7 @@
 #include "gnome-vfs-volume-monitor.h"
 
 #ifdef USE_HAL
-#include <hal/libhal.h>
+#include <libhal.h>
 #endif /* USE_HAL */
 
 G_BEGIN_DECLS
