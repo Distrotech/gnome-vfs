@@ -1,5 +1,11 @@
 2004-07-08  Christian Kellner <gicmo@gnome-de.org>
 
+	* libgnomevfs/gnome-vfs-file-info.[ch]:
+	register GnomeVFSFileInfo in the glib GType system. Fixes #84530.
+	The patch is based on the bug report of Miroslav Bajtos.
+
+2004-07-08  Christian Kellner <gicmo@gnome-de.org>
+
 	* libgnomevfs/gnome-vfs-dns-sd.h: Fixed small typos.
 
 2004-07-07  Christian Kellner <gicmo@gnome-de.org>

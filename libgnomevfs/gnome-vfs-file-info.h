@@ -184,6 +184,8 @@ typedef enum {
 } GnomeVFSFilePermissions;
 
 
+#define GNOME_VFS_TYPE_FILE_INFO  (gnome_vfs_file_info_get_type ())
+
 /**
  * GnomeVFSFileInfo:
  * 
@@ -405,6 +407,8 @@ typedef struct {
 	       : ((info)->permissions &= ~GNOME_VFS_PERM_STICKY))
 
 
+
+GType             gnome_vfs_file_info_get_type      (void);
 
 GnomeVFSFileInfo *gnome_vfs_file_info_new           (void);
 void              gnome_vfs_file_info_unref         (GnomeVFSFileInfo       *info);

@@ -35,6 +35,20 @@
 /* FIXME: This mutex is probably not needed and might be causing performance issues */
 static GStaticMutex file_info_ref_lock = G_STATIC_MUTEX_INIT;
 
+/* Register GnomeVFSFileInfo in the type system */
+GType 
+gnome_vfs_file_info_get_type (void) {
+	static GType fi_type = 0;
+
+	if (fi_type == 0) {
+		fi_type = g_boxed_type_register_static ( "GnomeVFSFileInfo",
+				(GBoxedCopyFunc) gnome_vfs_file_info_dup,
+				(GBoxedFreeFunc) gnome_vfs_file_info_unref);
+	}
+
+	return fi_type;
+}
+
 
 /**
  * gnome_vfs_file_info_new
