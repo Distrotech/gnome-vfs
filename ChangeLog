@@ -1,5 +1,13 @@
 2000-07-28  Gene Z. Ragan  <gzr@eazel.com>
 
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet), (pixmap_file), (gtk_widget_make_bold),
+	(gtk_widget_set_font), (gtk_style_set_font), (gdk_font_get_bold):
+	New function to set the font of a widget to bold.  These were
+	borrowed from libnautilus-extensions.
+	
+2000-07-28  Gene Z. Ragan  <gzr@eazel.com>
+
 	* data/mime/gnome-vfs-mime-magic:
 	* data/mime/gnome-vfs.keys:
 	Added magic and mime type for GMC links.
