@@ -1,3 +1,21 @@
+2000-09-27  Mike Fleming  <mfleming@eazel.com>
+
+	get_file_info now makes a PROPFIND before a HEAD request, and does not
+	make HEAD requests if the PROPFIND succeeds.  This cuts down the number
+	of HTTP requests made when working against a DAV server.
+	Did some additional cleanup while I was at it.
+
+	* modules/http-method.c: (defaults_file_info_new),
+	(http_file_handle_new), (http_file_handle_destroy),
+	(set_content_length), (set_content_type), (set_last_modified),
+	(set_access_time), (create_handle), (make_request),
+	(http_handle_close), (do_open), (do_create), (do_close),
+	(do_write), (do_read), (process_propfind_response),
+	(make_propfind_request), (do_open_directory), (do_close_directory),
+	(do_read_directory), (do_get_file_info),
+	(do_get_file_info_from_handle), (do_is_local), (do_make_directory),
+	(do_remove_directory), (do_move), (do_unlink):
+
 2000-09-27  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c: (execute_xfer):
