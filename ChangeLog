@@ -1,6 +1,20 @@
 2000-06-02  Gene Z. Ragan  <gzr@eazel.com>
 
-	More work in progress.  Still incomplete.
+	More work in progress on the capplet.  Still incomplete.
+
+	* mime-type-capplet/edit-window.c: 
+	(initialize_main_win),
+	(populate_application_menu):
+	The Application window now displays the shortlist and selected
+	the default application if it is present in the short list.
+
+	(add_application):
+	All of the mchinery is hooked up, but the API does not seem to 
+	be registering the new choice.
+	
+2000-06-02  Gene Z. Ragan  <gzr@eazel.com>
+
+	More work in progress on the capplet.  Still incomplete.
 	
 	* mime-type-capplet/edit-window.c: (initialize_main_win_vals),
 	(show_edit_window), (populate_application_menu),
