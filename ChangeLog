@@ -1,3 +1,9 @@
+2002-09-09  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-job.c (gnome_vfs_job_destroy_notify_result) :
+	  Add an entry to OP_XFER.
+
+=======
 2002-09-04  Ian McKellar  <yakk@yakk.net>
 
         * libgnomevfs/gnome-vfs-configuration.c:
