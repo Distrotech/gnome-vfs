@@ -761,6 +761,10 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 	char *full_filename;
 	char **paths, **temp_paths;
 
+	if (g_path_is_absolute (relative_filename) &&
+	    hack_file_exists (relative_filename))
+		return g_strdup (relative_filename);
+
 	gnome_var = g_getenv ("GNOME_PATH");
 
 	if (gnome_var == NULL) {

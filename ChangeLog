@@ -18,6 +18,11 @@
 
 2002-04-21  Jody Goldberg <jody@gnome.org>
 
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_icon_path_from_filename) :
+	  See if this is an absolute path.
+
+2002-04-21  Jody Goldberg <jody@gnome.org>
+
 	* libgnomevfs/gnome-vfs-application-registry.c
 	(gnome_vfs_application_registry_get_applications) : add a hook for the
 	  file-type capplet such that passing NULL as the mime type returns
