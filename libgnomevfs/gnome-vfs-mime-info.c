@@ -46,9 +46,36 @@
 #include "gnomesupport.h"
 #endif
 
+
 #if !defined getc_unlocked && !defined HAVE_GETC_UNLOCKED
 # define getc_unlocked(fp) getc (fp)
 #endif
+
+
+
+/* The only goal of this function is to make sure no comment line is ever returned
+   to the 2 parsers below.
+   It is evil because I could not figure out what was wrong with those parsers.
+   They should ignore all comments but they do not ignore them. They insert them 
+   in the hash table. This function makes sure this never ever happens.
+   -- Mathieu - who takes all responsbility for this complete evilness.
+*/
+static char 
+hack_getc (FILE *stream) 
+{
+	static char previous_char = '\n';
+	char current_char;
+
+	current_char = getc_unlocked (stream);
+
+	if (current_char == '#' && 
+	    previous_char == '\n') {
+		while (getc_unlocked (stream) != '\n') {}
+		return hack_getc (stream);
+	} else {
+		return current_char;
+	}
+}
 
 typedef struct {
 	char       *mime_type;
@@ -305,7 +332,7 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 	line = g_string_sized_new (120);
 	state = STATE_NONE;
 	
-	while ((c = getc_unlocked (mime_file)) != EOF){
+	while ((c = hack_getc (mime_file)) != EOF){
 		column++;
 		if (c == '\r')
 			continue;
@@ -384,7 +411,7 @@ load_mime_type_info_from (const char *filename, GHashTable *hash_table)
 
 		case STATE_ON_KEY:
 			if (c == '\\'){
-				c = getc (mime_file);
+				c = hack_getc (mime_file);
 				if (c == EOF)
 					break;
 			}
@@ -477,7 +504,7 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 	line = g_string_sized_new (120);
 	state = STATE_NONE;
 	
-	while ((c = getc_unlocked (mime_file)) != EOF){
+	while ((c = hack_getc (mime_file)) != EOF){
 		column++;
 		if (c == '\r')
 			continue;
@@ -556,13 +583,13 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 
 		case STATE_ON_KEY:
 			if (c == '\\'){
-				c = getc (mime_file);
+				c = hack_getc (mime_file);
 				if (c == EOF)
 					break;
 			}			
 			if (c == '=') {
-				key = g_strdup (line->str);				
-				g_string_assign (line, "");				
+				key = g_strdup (line->str);
+				g_string_assign (line, "");
 				state = STATE_ON_VALUE;
 				break;
 			}
@@ -573,7 +600,7 @@ load_mime_list_info_from (const char *filename, GHashTable *hash_table)
 
 				/* Skip space after colon.  There should be one
 				 * there.  That is how the file is defined. */
-				c = getc_unlocked (mime_file);
+				c = hack_getc (mime_file);
 				if (c != ' ') {
 					/* Revert seek */
 					ungetc (c, mime_file);
@@ -1188,7 +1215,7 @@ gnome_vfs_mime_set_extensions_list (const char *mime_type,
 GList *
 gnome_vfs_mime_get_extensions_list (const char *mime_type)
 {
-	GList *list, *temp_list;
+	GList *list;
 	const char *extensions_system, *extensions_user;
 	char *extensions;
 	gchar **elements;
@@ -1222,14 +1249,11 @@ gnome_vfs_mime_get_extensions_list (const char *mime_type)
 	}
 
 
-	/* add the 2 strings and make sure you do not have more than 
-	   one occurance of  each extension */
 	extensions = NULL;
-	if (extensions_system != NULL) {
-		extensions = g_strconcat (extensions_system, " ", extensions_user, NULL);
-	} else if (extensions_system != NULL 
-		   && extensions_user != NULL){
+	if (extensions_user != NULL) {
 		extensions = g_strdup (extensions_user);
+	} else if (extensions_system != NULL) {
+		extensions = g_strdup (extensions_system);
 	}
 
 	/* build a GList from the string */
@@ -1251,16 +1275,6 @@ gnome_vfs_mime_get_extensions_list (const char *mime_type)
 	}
 
 	g_free (extensions);
-
-	/* make sure it has only one occurence of each extension */
-	for (temp_list = list; temp_list != NULL; temp_list = temp_list->next) {
-		GList *duplicate;
-		duplicate = (GList *)g_list_find_custom (temp_list->next, temp_list->data, str_cmp_callback);
-		if (duplicate) {
-			g_free (duplicate->data);
-			g_list_remove_link (temp_list->next, duplicate);
-		}
-	}
 
 	return list;
 }
@@ -1424,7 +1438,7 @@ get_key_name (gpointer key, gpointer value, gpointer user_data)
 	}
 
 	duplicate = NULL;
-	duplicate = g_list_find ((*list), context->mime_type);
+	duplicate = g_list_find_custom ((*list), context->mime_type, (GCompareFunc)strcmp);
 	if (duplicate == NULL) {
 		(*list) = g_list_insert_sorted ((*list), g_strdup(context->mime_type), mime_list_sort);		
 	}

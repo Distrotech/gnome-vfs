@@ -1,3 +1,30 @@
+2000-11-20  Mathieu Lacage  <mathieu@eazel.com>
+
+	reviewed by: <mjs@eazel.com>
+
+	Fix bug 4812. Also, make the capplet work by fixing
+	random bugs here and there. It was the first time I could test 
+	it for true so, of course, got a bunch of small-border-effect bugs.
+	* libgnomevfs/gnome-vfs-mime-info.c: 
+	(hack_getc): the most evil function I ever wrote.
+	It recursively gets rid of the comment lines before
+	the parsers ever get them. (iunstead of fixing thew parsers....)
+	(load_mime_type_info_from): make it use nerw hack_gets function
+	instead of getc_unlocked.
+	(load_mime_list_info_from): idem.
+	(gnome_vfs_mime_get_extensions_list): avoid returning the extensions
+	of the system settings if the user has set the user extensions.
+	(get_key_name): make it remove duplicates for true.
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_mime_window): fix bug 4812
+	by replacing "char *text[3]" by "char *text[4]".
+	(nautilus_mime_type_capplet_show_change_extension_window):
+	spaces.
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(update_extensions_list): fix border-effect bugs. (ie: when you
+	have no extension for a mime type for example...)
+	(add_mime_clicked): idem.
+
 2000-11-20  Mike Fleming  <mfleming@eazel.com>
 
 	reviewed by: pavel@eazel.com
