@@ -1,3 +1,8 @@
+2004-08-09  Ryan Lortie  <desrt@desrt.ca>
+
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_get_volume_free_space):
+	Fixed small memory leak. Fixes bug #149333.
+
 2004-08-08  Christian Kellner  <gicmo@gnome-de.org>
 
 	* modules/http-neon-method.c (do_get_file_info):
