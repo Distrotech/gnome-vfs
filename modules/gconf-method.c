@@ -26,8 +26,9 @@
 #include <config.h>
 #endif
 
-#include <gnome.h>
+#include <gtk/gtk.h>
 #include <gconf/gconf.h>
+#include <gconf/gconf-client.h>
 
 #include "gnome-vfs-module.h"
 
@@ -95,7 +96,7 @@ static GnomeVFSMethod method = {
 	NULL
 };
 
-static GConf *conf;
+static GConfClient *client = NULL;
 
 /* This is to make sure the path starts with `/', so that at least we
    get a predictable behavior when the leading `/' is not present.  */
@@ -158,28 +159,28 @@ set_mime_type_value (GnomeVFSFileInfo *info,
         gchar *mime_type;
         
         switch (value->type) {
-        case G_CONF_VALUE_INVALID :
+        case GCONF_VALUE_INVALID :
                 mime_type = "X-GConf/invalid";
                 break;
-        case G_CONF_VALUE_STRING :
+        case GCONF_VALUE_STRING :
                 mime_type = "X-GConf/string";
                 break;
-        case G_CONF_VALUE_INT :
+        case GCONF_VALUE_INT :
                 mime_type = "X-GConf/int";
                 break;
-        case G_CONF_VALUE_FLOAT :
+        case GCONF_VALUE_FLOAT :
                 mime_type = "X-GConf/float";
                 break;
-        case G_CONF_VALUE_BOOL :
+        case GCONF_VALUE_BOOL :
                 mime_type = "X-GConf/bool";
                 break;
-        case G_CONF_VALUE_SCHEMA :
+        case GCONF_VALUE_SCHEMA :
                 mime_type = "X-GConf/schema";
                 break;
-        case G_CONF_VALUE_LIST :
+        case GCONF_VALUE_LIST :
                 mime_type = "X-GConf/list";
                 break;
-        case G_CONF_VALUE_PAIR :
+        case GCONF_VALUE_PAIR :
                 mime_type = "X-GConf/pair";
                 break;
         default :
@@ -215,25 +216,25 @@ get_value_size (const GConfValue *value, GnomeVFSFileSize *size)
 	*size = 0;
 	
 	switch (value->type) {
-        case G_CONF_VALUE_INVALID :
+        case GCONF_VALUE_INVALID :
                 *size = 0;
                 break;
-        case G_CONF_VALUE_STRING :
+        case GCONF_VALUE_STRING :
                 if (value->d.string_data != NULL) 
 			*size = strlen (value->d.string_data);
 		else 
 			*size = 0;
                 break;
-        case G_CONF_VALUE_INT :
+        case GCONF_VALUE_INT :
                 *size = sizeof (gint);
                 break;
-        case G_CONF_VALUE_FLOAT :
+        case GCONF_VALUE_FLOAT :
                 *size = sizeof (gdouble);
                 break;
-        case G_CONF_VALUE_BOOL :
+        case GCONF_VALUE_BOOL :
                 *size = sizeof (gboolean);
                 break;
-        case G_CONF_VALUE_SCHEMA :
+        case GCONF_VALUE_SCHEMA :
                 schema = value->d.schema_data;
 		*size = 0;
 		if (schema->short_desc != NULL)
@@ -252,7 +253,7 @@ get_value_size (const GConfValue *value, GnomeVFSFileSize *size)
 		}
 		
 		break;
-	case G_CONF_VALUE_LIST :
+	case GCONF_VALUE_LIST :
                 *size = 0;
 		/* FIXME: This could be optimized, and may be a problem with
                  * huge lists. */
@@ -267,7 +268,7 @@ get_value_size (const GConfValue *value, GnomeVFSFileSize *size)
 			values = g_slist_next (values);
 		}	
                 break;
-        case G_CONF_VALUE_PAIR :
+        case GCONF_VALUE_PAIR :
                 result = get_value_size (value->d.pair_data.car, 
 					 &subvalue_size);
 		if (result != GNOME_VFS_OK) 
@@ -402,8 +403,8 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 
         MAKE_ABSOLUTE (dirname, uri->text);
         
-        subdirs = g_conf_all_dirs (conf, dirname);
-        pairs = g_conf_all_entries (conf, dirname);
+        subdirs = gconf_client_all_dirs (client, dirname);
+        pairs = gconf_client_all_entries (client, dirname);
         
         *method_handle = 
 		(GnomeVFSMethodHandle*)directory_handle_new (uri,
@@ -558,7 +559,7 @@ do_get_file_info (GnomeVFSURI *uri,
         
         MAKE_ABSOLUTE (key, uri->text);
         
-        value = g_conf_get (conf, key);
+        value = gconf_client_get (client, key);
         return file_info_value (file_info, options, value, key);
 }
 
@@ -583,20 +584,31 @@ vfs_module_init (void)
 {
         char *argv[] = {"dummy"};
         int argc = 1;
-
-	if (!g_conf_is_initialized ()) {
-		g_conf_init_orb (&argc, argv);
-		g_conf_init ();
-	}
 	
-        conf = g_conf_new ();
-        
+	if (!gconf_is_initialized ()) {
+		/* auto-initializes OAF if necessary */
+		gconf_init (argc, argv);
+	}
+
+	/* These just return and do nothing if GTK
+	   is already initialized. */
+	gtk_type_init();
+	gtk_signal_init();
+	
+	client = gconf_client_new();
+
+	gtk_object_ref(GTK_OBJECT(client));
+	gtk_object_sink(GTK_OBJECT(client));
+	
         return &method;
 }
 
 void
 vfs_module_shutdown (GnomeVFSMethod *method)
 {
+	gtk_object_destroy(GTK_OBJECT(client));
+	gtk_object_unref(GTK_OBJECT(client));
+	client = NULL;
 }
 
 

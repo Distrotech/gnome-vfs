@@ -1,3 +1,16 @@
+1999-12-09  Havoc Pennington  <hp@redhat.com>
+
+	* modules/gconf-method.c (vfs_module_init): Some updates, the
+	GConf stuff is updated but it still doesn't match the latest 
+	virtual table that modules are expected to have.
+
+	* modules/Makefile.am (libgconf_la_LIBADD): add GTK_LIBS
+	(INCLUDES): add GCONF_CFLAGS
+
+	* configure.in (VFS_LIBS): use the located $GCONF_CONFIG instead
+	of just "gconf-config", look for GTK to use the GConfClient
+	GtkObject.
+
 1999-12-08  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* modules/extfs/Makefile.am

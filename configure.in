@@ -77,15 +77,30 @@ if test x$GCONF_CONFIG = xno; then
     AC_MSG_WARN([*** \`gconf' method will not be built ***])
     GCONF_LIBS=
     GCONF_CFLAGS=
+    GTK_LIBS=
+    GTK_CFLAGS=
 else
-    GCONF_LIBS=`gconf-config --libs`
-    GCONF_CFLAGS=`gconf-config --cflags`
+    dnl gconf-config is broken, it should have a GTK module option
+    AC_PATH_PROG(GTK_CONFIG, gtk-config, no)
+    if test x$GTK_CONFIG = xno; then
+       AC_MSG_WARN([*** gconf method will not be built, no GTK found ***])
+    else  
+       GTK_LIBS=`$GTK_CONFIG --libs`
+       GTK_CFLAGS=`$GTK_CONFIG --cflags`
+       if test -n "$GTK_LIBS"; then
+          GCONF_LIBS=`$GCONF_CONFIG --libs`
+          GCONF_CFLAGS=`$GCONF_CONFIG --cflags`
+          GCONF_LIBS="$GCONF_LIBS -lgconf-gtk"
+       fi
+    fi
 fi
 
 AM_CONDITIONAL(HAVE_GCONF, test -n "$GCONF_LIBS") 
 
 AC_SUBST(GCONF_LIBS)
 AC_SUBST(GCONF_CFLAGS)
+AC_SUBST(GTK_LIBS)
+AC_SUBST(GTK_CFLAGS)
 
 dnl
 dnl ftp-method.c

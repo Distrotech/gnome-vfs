@@ -4,7 +4,8 @@ INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs		\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
-	$(GNOME_INCLUDEDIR)
+	$(GNOME_INCLUDEDIR)			\
+	$(GCONF_CFLAGS)
 
 CPPFLAGS =					\
 	-D_GNU_SOURCE				\
@@ -90,7 +91,7 @@ gconfmodule_LTLIBRARIES = libgconf.la
 libgconf_la_SOURCES =                           \
 	gconf-method.c                          \
         gconf-method.h
-libgconf_la_LIBADD = $(GCONF_LIBS)
+libgconf_la_LIBADD = $(GCONF_LIBS) $(GTK_LIBS)
 endif
 
 libgconf_la_LDFLAGS = $(module_flags)
