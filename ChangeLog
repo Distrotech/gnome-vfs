@@ -1,3 +1,12 @@
+2005-02-09  Alexander Larsson  <alexl@redhat.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_action_type):
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	(get_default_desktop_entry):
+
 2005-02-08  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "xh" to ALL_LINGUAS.

@@ -735,7 +735,8 @@ get_default_desktop_entry (const char *mime_type)
 {
 	gchar *desktop_entry;
 	char **desktop_entries;
-	GList *dir_list;
+	GList *dir_list, *l;
+	GList *folder_handlers;
 	GnomeVFSMimeInfoCacheDir *dir;
 	int i;
 
@@ -745,6 +746,30 @@ get_default_desktop_entry (const char *mime_type)
 		return g_strdup (desktop_entry);
 	}
 
+	if (g_str_has_prefix (mime_type, "x-directory/")) {
+		/* We special case folder handler defaults so that
+		 * we always can get a working handler for them
+		 * even though we don't control the defaults.list,
+		 * or the list of availible directory handlers.
+		 */
+
+		for (dir_list = mime_info_cache->dirs; dir_list != NULL; dir_list = dir_list->next) {
+			dir = dir_list->data;
+		
+			folder_handlers = g_hash_table_lookup (dir->mime_info_cache_map, "x-directory/gnome-default-handler");
+			for (l = folder_handlers; l != NULL; l = l->next) {
+				desktop_entry = l->data;
+			
+				if (desktop_entry != NULL &&
+				    gnome_vfs_mime_info_desktop_entry_is_valid (desktop_entry)) {
+					g_hash_table_insert (mime_info_cache->global_defaults_cache,
+							     g_strdup (mime_type), g_strdup (desktop_entry));
+					return g_strdup (desktop_entry);
+				}
+			}
+		}
+	}
+	
 	desktop_entry = NULL;
 	for (dir_list = mime_info_cache->dirs; dir_list != NULL; dir_list = dir_list->next) {
 		dir = dir_list->data;
