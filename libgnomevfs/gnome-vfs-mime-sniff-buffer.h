@@ -63,7 +63,7 @@ GnomeVFSResult		 gnome_vfs_mime_sniff_buffer_get
 const char  		*gnome_vfs_get_mime_type_for_buffer
 					 (GnomeVFSMimeSniffBuffer	*buffer);
 
-gboolean		 gnome_vfs_get_sniff_buffer_looks_like_text
+gboolean		 gnome_vfs_sniff_buffer_looks_like_text
 					 (GnomeVFSMimeSniffBuffer	*buffer);
 
 #endif

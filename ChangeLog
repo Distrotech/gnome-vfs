@@ -1,5 +1,18 @@
 2000-05-24  Pavel Cisler  <pavel@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_sniff_buffer_looks_like_text):
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.h:
+	* libgnomevfs/gnome-vfs-mime.c: (gnome_vfs_get_mime_type):
+	Implement a simple version of the call. Rename to a better
+	name.
+	
+	* libgnomevfs/gnome-vfs-mime.c:
+	(gnome_vfs_get_mime_type_from_file_data):
+	Add detecting text files.
+
+2000-05-24  Pavel Cisler  <pavel@eazel.com>
+
 	* data/mime/gnome-vfs-mime-magic:
 	Add a magic rule for rpm files.
 	

@@ -519,7 +519,7 @@ gnome_vfs_get_mime_type (GnomeVFSURI *uri)
 	result = gnome_vfs_get_mime_type_for_buffer (buffer);
 
 	if (result == NULL) {
-		if (gnome_vfs_get_sniff_buffer_looks_like_text (buffer)) {
+		if (gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
 			/* Text file -- treat extensions as a more accurate source
 			 * of type information.
 			 */
@@ -596,6 +596,10 @@ gnome_vfs_get_mime_type_from_file_data (GnomeVFSURI *uri)
 
 	/* check the type from the file data */
 	result = gnome_vfs_get_mime_type_for_buffer (buffer);
+
+	if (result == NULL && gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
+		result = "text/plain";
+	}
 
 	if (result == NULL) {
 		/* no type detected, return a generic file type */

@@ -558,8 +558,30 @@ gnome_vfs_mime_type_from_magic (const gchar *filename)
 	return (magic_table[i].type == T_END) ? NULL : magic_table[i].mimetype;
 }
 
+enum {
+	GNOME_VFS_TEXT_SNIFF_LENGTH = 256
+};
+
 gboolean
-gnome_vfs_get_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *buffer)
+gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
+	int index;
+	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
+		GNOME_VFS_TEXT_SNIFF_LENGTH) != GNOME_VFS_OK) {
+		return FALSE;
+	}
+
+	for (index = 0; index < sniff_buffer->buffer_length; index++) {
+		/* Do a simple detection of printable text.
+		 * 
+		 * FIXME:
+		 * Add UTF-8 support here.
+		 */ 
+		if (!isprint (sniff_buffer->buffer[index])
+			&& !isspace(sniff_buffer->buffer[index])) {
+			return FALSE;
+		}
+	}
+	
 	return TRUE;
 }
