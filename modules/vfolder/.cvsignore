@@ -1,0 +1,9 @@
+.deps
+.libs
+Makefile
+Makefile.in
+*.lo
+*.la
+*.vfolder-info
+*.vfolder-info-default
+test-vfolder

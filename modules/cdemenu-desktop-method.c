@@ -110,7 +110,9 @@ expand_env_vars(char *s)
 				/* It's not always the case $LC_CTYPE or $LANG is set */
 				tmp3 = (char*)setlocale(LC_CTYPE, NULL);
 			g_free(*token);
-			*token = g_strdup(tmp3);
+			/* don't do g_strdup (s?s1:s2) as that doesn't work with
+			   certain gcc 2.96 versions */
+			*token = tmp3 ? g_strdup(tmp3) : g_strdup("");
 		}
 	}
 	expanded = g_strjoinv("/", tokens);
@@ -259,9 +261,11 @@ do_open (GnomeVFSMethod *method,
 					  * specifier, but that's OK, it will
 					  * work */
 					 "Name=%s\n"
+					 "Comment=%s\n"
 					 "Icon=%s\n"
 					 "Type=Directory\n",
 					 utf8_name, 
+					 utf8_name,
 					 get_icon_for_menu(tmp));
 				/* Title is found, dont look for secondary title*/
 
@@ -301,11 +305,12 @@ do_open (GnomeVFSMethod *method,
 						  * specifier, but that's
 						  * OK, it will work */
 						 "Name=%s\n"
+						 "Comment=%s\n"
 						 "Exec=%s\n"
 						 "Icon=%s\n"
 						 "Terminal=0\n"
 						 "Type=Application\n",
-						 utf8_name,
+						 utf8_name, utf8_name,
 						 exec, icon);
 					g_free (utf8_name);
 					g_free(icon);
@@ -336,11 +341,12 @@ do_open (GnomeVFSMethod *method,
 						  * specifier, but that's
 						  * OK, it will work */
 						 "Name=%s\n"
+						 "Comment=%s\n"
 						 "Exec=%s\n"
 						 "Icon=\n"
 						 "Terminal=0\n"
 						 "Type=Application\n",
-						 utf8_name, tmp);
+						 utf8_name, utf8_name, tmp);
 					g_free (utf8_name);
 				}
 			}

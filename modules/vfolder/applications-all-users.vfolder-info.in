@@ -1,35 +1,52 @@
 <VFolderInfo>
-  <!-- Merge dirs optional -->
-  <MergeDir>/etc/X11/applnk/</MergeDir>
-  <MergeDir>@datadir@/gnome/apps/</MergeDir>
+  <!-- Write changes here, instead of to the original files -->
+  <WriteDir>@vfolderdir@/applications-all-users/</WriteDir>
 
-  <!-- Merges in the main GNOME menus if you build into a non-default prefix -->
+  <!-- Load the GNOME2 applications from our prefix -->
+  <ItemDir>@datadir@/applications/</ItemDir>
+
+  <!-- Add main GNOME2 entries if you build into a non-default prefix -->
+  <ItemDir>/usr/share/applications/</ItemDir>
+
+  <!-- Default .directory location -->
+  <DesktopDir>@datadir@/gnome/vfolders/</DesktopDir>
+
+  <!-- Add Ximian Menu Entries, uncomment for menu nirvana -->
+  <MergeDir>/usr/share/gnome/ximian/Programs/</MergeDir>
+
+  <!-- Merge in the GNOME1 menus if you build into a non-default prefix -->
+  <MergeDir>@datadir@/gnome/apps/</MergeDir>
   <MergeDir>/usr/share/gnome/apps/</MergeDir>
 
-  <!-- Control Center Merge Directories -->
-  <MergeDir>@datadir@/control-center-2.0/capplets/</MergeDir>
-  <MergeDir>@datadir@/gnome/capplets/</MergeDir>
-
-  <DesktopDir>@datadir@/gnome/vfolders/</DesktopDir>
+  <!-- Merge dirs optional -->
+  <MergeDir>/etc/X11/applnk/</MergeDir>
 
   <!-- Root folder -->
   <Folder>
     <Name>Applications</Name>
     <Desktop>Applications.directory</Desktop>
+
     <Exclude>gnome-search-tool.desktop</Exclude>
+    <Exclude>Gmc.desktop</Exclude>
+    <Exclude>nautilus-help.desktop</Exclude>
+    <Exclude>gnome-help.desktop</Exclude>
+
+    <Include>evolution.desktop</Include>
+    <Include>galeon.desktop</Include>
 
     <Query>
       <And>
         <Keyword>Core</Keyword>
-	<Not>
+	<!-- FIXME: Seth, why would this be wanted? -->
+	<!--<Not>
 	  <Keyword>Merged</Keyword>
-        </Not>
+        </Not>-->
       </And>
     </Query>
 
     <!-- Accesories -->
     <Folder>
-      <Name>Accesories</Name>
+      <Name>Accessories</Name>
       <Desktop>Accessories.directory</Desktop>
       <Query>
 	<And>
@@ -43,7 +60,7 @@
       <DontShowIfEmpty/>
     </Folder>
 
-    <!-- Applications -->
+    <!-- Other, catch-all unmatched folder -->
     <Folder>
       <Name>Other</Name>
       <Desktop>Applications.directory</Desktop>
@@ -156,78 +173,7 @@
     <!-- Settings -->
     <Folder>
       <Name>Preferences</Name>
-      <Desktop>Settings.directory</Desktop>
-      <Query>
-	<And>
-	  <Keyword>Settings</Keyword>
-	  <Not>
-	    <Or>
-	      <Keyword>AdvancedSettings</Keyword>
-	      <Keyword>Sawfish</Keyword>
-	      <Keyword>X-GNOME-Sawfish</Keyword>
-	      <Keyword>System</Keyword>
-	      <Keyword>Accessibility</Keyword>
-	      <Keyword>Merged</Keyword>
-	    </Or>
-	  </Not>
-	</And>
-      </Query>
-      
-      <Exclude>gnomecc.desktop</Exclude>
-      
-      <Folder>
-	<Name>Advanced</Name>
-	<Desktop>Advanced.directory</Desktop>
-	<Query>
-	  <And>
-	    <Keyword>Settings</Keyword>
-	    <Keyword>AdvancedSettings</Keyword>
-	    <Not>
-	      <Or>
-	        <Keyword>Sawfish</Keyword>
-	        <Keyword>X-GNOME-Sawfish</Keyword>
-	      </Or>
-	    </Not>
-	  </And>
-	</Query>
-	<DontShowIfEmpty/>
-	<Folder>
-	  <Name>Sawfish</Name>
-	  <Desktop>Sawfish.directory</Desktop>
-	  <Query>
-	    <And>
-	      <Or>
-	        <Keyword>Sawfish</Keyword>
-	        <Keyword>X-GNOME-Sawfish</Keyword>
-	      </Or>
-	      <Keyword>Settings</Keyword>
-	    </And>
-	  </Query>
-	  <DontShowIfEmpty/>
-	</Folder>
-      </Folder>
-      <Folder>
-	<Name>Accessibility</Name>
-	<Desktop>Accessibility.directory</Desktop>
-	<Query>
-	  <And>
-	    <Keyword>Settings</Keyword>
-	    <Keyword>Accessibility</Keyword>
-	  </And>
-	</Query>
-	<DontShowIfEmpty/>
-      </Folder>
-      <Folder>
-	<Name>System</Name>
-	<Desktop>System.directory</Desktop>
-	<Query>
-	  <And>
-	    <Keyword>System</Keyword>
-	    <Keyword>Settings</Keyword>
-	  </And>
-	</Query>
-	<DontShowIfEmpty/>
-      </Folder>
+      <ParentLink>preferences-all-users:///</ParentLink>
     </Folder>
 
     <!-- System Tools-->
@@ -235,13 +181,13 @@
       <Name>System</Name>
       <Desktop>System.directory</Desktop>
       <Query>
-	<And>
-	  <Keyword>Application</Keyword>
-	  <Not>
-	    <Keyword>Settings</Keyword>
-	  </Not>
-	  <Keyword>System</Keyword>
-	</And>
+        <And>
+          <Keyword>Application</Keyword>
+          <Not>
+            <Keyword>Settings</Keyword>
+          </Not>
+          <Keyword>System</Keyword>
+        </And>
       </Query>
       <DontShowIfEmpty/>
     </Folder>

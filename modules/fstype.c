@@ -210,13 +210,13 @@ in_afs (path)
 /* Nonzero if the current filesystem's type is known.  */
 static int fstype_known = 0;
 
-char const *filesystem_type (char *path, char *relpath, struct stat *statp);
+char *filesystem_type (char *path, char *relpath, struct stat *statp);
 /* Return a static string naming the type of filesystem that the file PATH,
    described by STATP, is on.
    RELPATH is the file name relative to the current directory.
    Return "unknown" if its filesystem type is unknown.  */
 
-char const *
+char *
 filesystem_type (path, relpath, statp)
      char *path;
      char *relpath;

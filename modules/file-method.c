@@ -190,8 +190,8 @@ do_open (GnomeVFSMethod *method,
 	}
 
 	if (! (mode & GNOME_VFS_OPEN_RANDOM) && (mode & GNOME_VFS_OPEN_WRITE))
-		mode |= O_TRUNC;
-
+		unix_mode |= O_TRUNC;
+	
 	file_name = get_path_from_uri (uri);
 	if (file_name == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
@@ -667,7 +667,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 			                /* if we had an earlier ELOOP, don't get in an infinite loop here */
 			        || recursive
 					/* we don't care to follow links */
-				|| lstat (file_info->symlink_name, statptr) != 0
+				|| lstat (symlink_name, statptr) != 0
 					/* we can't make out where this points to */
 				|| !S_ISLNK (statptr->st_mode)) {
 					/* the next level is not a link */
@@ -1667,12 +1667,14 @@ do_find_directory (GnomeVFSMethod *method,
 
 	switch (kind) {
 	case GNOME_VFS_DIRECTORY_KIND_TRASH:
+		/* Use 0700 (S_IRWXU) for the permissions,
+		 * regardless of the requested permissions, so other
+		 * users can't view the trash files.
+		 */
+		permissions = S_IRWXU;	
 		if (near_item_stat.st_dev != home_volume_stat.st_dev) {
 			/* This volume does not contain our home, we have to find/create the Trash
 			 * elsewhere on the volume. Use a heuristic to find a good place.
-			 * And use 0700 (S_IRWXU) for the permissions,
-			 * regardless of the requested permissions, so other
-			 * users can't view the trash files.
 			 */
 			FindByDeviceIDParameters tmp;
 			tmp.device_id = near_item_stat.st_dev;
@@ -1682,7 +1684,7 @@ do_find_directory (GnomeVFSMethod *method,
 
 			target_directory_path = find_trash_directory (full_name_near,  
 				near_item_stat.st_dev, create_if_needed, find_if_needed,
-				S_IRWXU, context);
+				permissions, context);
 
 			if (gnome_vfs_context_check_cancellation (context)) {
 				return GNOME_VFS_ERROR_CANCELLED;
