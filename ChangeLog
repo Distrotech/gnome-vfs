@@ -1,3 +1,9 @@
+2002-05-24  Alex Graveley  <alex@ximian.com>
+
+	* modules/applications.vfolder-info.in: Remove explicit
+	cddb-capplet exclusion, so it will shot up in the Advanced
+	settings menu.  Fixes bug #74767.
+
 2002-05-24  Jody Goldberg <jody@gnome.org>
 
         http://bugzilla.gnome.org/show_bug.cgi?id=80776

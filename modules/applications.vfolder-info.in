@@ -172,7 +172,6 @@
 	</And>
       </Query>
       
-      <Exclude>cddb-slave.desktop</Exclude>
       <Exclude>gnomecc.desktop</Exclude>
       
       <Folder>
@@ -184,7 +183,6 @@
 	    <Keyword>AdvancedSettings</Keyword>
 	  </And>
 	</Query>
-	<Exclude>cddb-slave.desktop</Exclude>
 	<DontShowIfEmpty/>
 	<Folder>
 	  <Name>Sawfish</Name>
