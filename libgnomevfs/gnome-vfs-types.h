@@ -199,7 +199,7 @@ typedef enum GnomeVFSURIHideOptions GnomeVFSURIHideOptions;
 
 
 /* File information, a la stat(2).  */
-/* FIXME: Private stuff.  */
+/* FIXME bugzilla.eazel.com 1202: Some of GnomeVFSFileInfo could be private.  */
 
 struct GnomeVFSFileMetadata {
 	gchar *key;
@@ -310,7 +310,7 @@ struct GnomeVFSFileInfo {
 typedef struct GnomeVFSFileInfo GnomeVFSFileInfo;
 
 enum GnomeVFSFileInfoOptions {
-	GNOME_VFS_FILE_INFO_DEFAULT = 0, /* FIXME name sucks */
+	GNOME_VFS_FILE_INFO_DEFAULT = 0, /* FIXME bugzilla.eazel.com 1203: name sucks */
 	GNOME_VFS_FILE_INFO_GETMIMETYPE = 1 << 0,
 	GNOME_VFS_FILE_INFO_FASTMIMETYPE = 1 << 1,
 	GNOME_VFS_FILE_INFO_FOLLOWLINKS = 1 << 2
@@ -407,7 +407,7 @@ typedef gboolean (* GnomeVFSDirectoryVisitFunc)	 (const gchar *rel_path,
 
 
 /* Xfer options.  
- * FIXME:
+ * FIXME bugzilla.eazel.com 1205:
  * Split these up into xfer options and xfer actions
  */
 enum GnomeVFSXferOptions {
@@ -537,10 +537,10 @@ struct GnomeVFSXferProgressInfo {
 	/* Current phase in the transferring process.  */
 	GnomeVFSXferPhase phase;
 
-	/* Source URI.  FIXME name?  */
+	/* Source URI. FIXME bugzilla.eazel.com 1206: change name? */
 	gchar *source_name;
 
-	/* Destination URI.  FIXME name?  */
+	/* Destination URI. FIXME bugzilla.eazel.com 1206: change name? */
 	gchar *target_name;
 
 	/* Index of file being copied. */

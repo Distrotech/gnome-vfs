@@ -25,7 +25,8 @@
 #include <config.h>
 #endif
 
-/* This enables the `FNM_CASEFOLD' #define on GNU libc.  FIXME?  */
+/* This enables the `FNM_CASEFOLD' #define on GNU libc. */
+/* FIXME bugzilla.eazel.com 1195: OK to use a GNU extension? */
 #define _POSIX_SOURCE
 #include <fnmatch.h>
 
@@ -48,16 +49,13 @@ gnome_vfs_shellpattern_filter_new (const gchar *pattern,
 	new = g_new (GnomeVFSShellpatternFilter, 1);
 
 	new->fnmatch_flags = 0;
-	/* FIXME this is a GNU extension.  */
+	/* FIXME bugzilla.eazel.com 1195: OK to use a GNU extension? */
 	if (options & GNOME_VFS_DIRECTORY_FILTER_IGNORECASE)
 		new->fnmatch_flags |= FNM_CASEFOLD;
 
-	/* FIXME: What about `\' quoting and other fnmatch options?  */
+	/* FIXME bugzilla.eazel.com 1196: What about `\' quoting and other fnmatch options?  */
 
-	if (pattern != NULL)
-		new->pattern = g_strdup (pattern);
-	else
-		new->pattern = NULL;
+	new->pattern = g_strdup (pattern);
 	
 	return new;
 }

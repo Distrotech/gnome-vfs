@@ -676,8 +676,6 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 	callback = (GnomeVFSAsyncDirectoryLoadCallback) slave->callback;
 	(* callback) ((GnomeVFSAsyncHandle *) slave, result,
 		      list, files->_length, slave->callback_data);
-
-	/* FIXME kill process? */
 }
 
 static gchar *

@@ -23,8 +23,6 @@
    `split_toplevel_uri()' derived from Midnight Commander code by Norbert
    Warmuth, Miguel de Icaza, Janne Kukonlehto, Dugan Porter, Jakub Jelinek.  */
 
-/* TODO: %xx syntax for providing any character in the URI.  */
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -197,7 +195,6 @@ get_method_string (const gchar *substring, gchar **method_string)
 {
 	const gchar *p;
 	
-	/* FIXME: Correct to look for alpha only?  */
 	for (p = substring; isalnum (*p) || *p == '+' || *p == '-' || *p == '.'; p++)
 		;
 
@@ -224,8 +221,6 @@ parse_uri_substring (const gchar *substring)
 	if (substring == NULL || *substring == '\000')
 		return NULL;
 
-
-	/* FIXME: Correct to look for alpha only?  */
 	p = get_method_string (substring, &method_string);
 
 	method = gnome_vfs_method_get (method_string);
@@ -487,7 +482,7 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 	g_return_val_if_fail (uri != NULL, NULL);
 	g_return_val_if_fail (path != NULL, NULL);
 
-	/* FIXME this is just a reminder.  */
+	/* FIXME bugzilla.eazel.com 1209: this is just a reminder.  */
 	if (strchr (path, '#') != NULL)
 		g_warning ("gnome_vfs_uri_append_path() is broken with names containing `#'.");
 
@@ -561,9 +556,6 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 	const GnomeVFSToplevelURI *toplevel;
 	guint size, len;
 	gchar *s, *p;
-
-	/* FIXME/TODO: Special characters such as `#' in the URI components
-           should be replaced.  */
 
 	g_return_val_if_fail (uri != NULL, NULL);
 
@@ -690,9 +682,6 @@ gnome_vfs_uri_is_local (const GnomeVFSURI *uri)
 
 	return uri->method->is_local (uri->method, uri);
 }
-
-/* FIXME Maybe we have to make more definite decisions on what URLs have to
-   look like here.  */
 
 /**
  * gnome_vfs_uri_has_parent:

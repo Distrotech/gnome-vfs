@@ -42,7 +42,7 @@ gchar *gnome_vfs_file_size_to_string (GnomeVFSFileSize               bytes);
 
 /* Converts unsafe characters to % sequences.
  * Parameter defines what unsafe means.
- * FIXME: Divide into four separate calls for clarity.
+ * FIXME bugzilla.eazel.com 1210: Divide into four separate calls for clarity.
  */
 gchar *gnome_vfs_escape_string       (const gchar                   *string,
 				      GnomeVFSURIUnsafeCharacterSet  encoding);

@@ -77,7 +77,6 @@ static gchar *status_strings[] = {
 };
 
 
-/* FIXME: To be completed.  */
 GnomeVFSResult
 gnome_vfs_result_from_errno (void)
 {
@@ -106,6 +105,7 @@ gnome_vfs_result_from_errno (void)
 	case EPERM:	return GNOME_VFS_ERROR_NOTPERMITTED;
 	case EROFS:	return GNOME_VFS_ERROR_READONLYFS;
 	case EXDEV:	return GNOME_VFS_ERROR_NOTSAMEFS;
+		/* FIXME bugzilla.eazel.com 1191: To be completed.  */
 	default:	return GNOME_VFS_ERROR_GENERIC;
 	}
 }
@@ -117,8 +117,8 @@ gnome_vfs_result_from_h_errno (void)
 	switch (h_errno) {
 	case HOST_NOT_FOUND:	return GNOME_VFS_ERROR_HOSTNOTFOUND;
 	case NO_ADDRESS:	return GNOME_VFS_ERROR_HOSTHASNOADDRESS;
-	case TRY_AGAIN:		/* FIXME? */
-	case NO_RECOVERY:	/* FIXME? */
+	case TRY_AGAIN:		/* FIXME bugzilla.eazel.com 1190 */
+	case NO_RECOVERY:	/* FIXME bugzilla.eazel.com 1190 */
 	default:
 		return GNOME_VFS_ERROR_GENERIC;
 	}

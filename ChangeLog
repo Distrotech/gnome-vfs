@@ -1,3 +1,30 @@
+2000-06-05  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs-corba/gnome-vfs-async-ops.c:
+	* libgnomevfs-corba/gnome-vfs-corba.c: (gnome_vfs_corba_init):
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c:
+	(impl_Notify_load_directory):
+	* libgnomevfs-corba/gnome-vfs-slave-process.c:
+	(gnome_vfs_slave_process_reset), (gnome_vfs_slave_process_destroy):
+	* libgnomevfs/gnome-vfs-directory-list.c:
+	* libgnomevfs/gnome-vfs-handle.c: (gnome_vfs_handle_do_close):
+	* libgnomevfs/gnome-vfs-parse-ls.c:
+	* libgnomevfs/gnome-vfs-private-ops.c:
+	(gnome_vfs_open_uri_cancellable):
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	* libgnomevfs/gnome-vfs-result.c: (gnome_vfs_result_from_errno),
+	(gnome_vfs_result_from_h_errno):
+	* libgnomevfs/gnome-vfs-seekable.c: (do_open), (do_create),
+	(do_truncate_handle):
+	* libgnomevfs/gnome-vfs-shellpattern-filter.c:
+	(gnome_vfs_shellpattern_filter_new):
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-uri.c: (get_method_string),
+	(parse_uri_substring), (gnome_vfs_uri_append_path),
+	(gnome_vfs_uri_to_string), (gnome_vfs_uri_is_local):
+	* libgnomevfs/gnome-vfs-utils.h:
+	Added more bug numbers to FIXMEs.
+
 2000-06-05  John Sullivan  <sullivan@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

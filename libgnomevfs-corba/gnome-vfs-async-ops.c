@@ -21,8 +21,6 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-/* FIXME: `operation_in_progress' should be set immediately.  */
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif

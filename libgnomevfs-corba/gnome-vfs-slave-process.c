@@ -99,7 +99,7 @@ gnome_vfs_slave_process_reset (GnomeVFSSlaveProcess *slave,
 	g_return_if_fail (slave != NULL);
 	g_return_if_fail (callback != NULL);
 
-	/*  free_op_info (slave); FIXME */
+	/*  free_op_info (slave); ? */
 
 	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_RESET;
 	slave->callback = callback;
@@ -135,7 +135,7 @@ gnome_vfs_slave_process_destroy (GnomeVFSSlaveProcess *slave)
 {
 	g_return_if_fail (slave != NULL);
 
-	/*  free_op_info (slave); FIXME */
+	/*  free_op_info (slave); */
 
 	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_NONE;
 

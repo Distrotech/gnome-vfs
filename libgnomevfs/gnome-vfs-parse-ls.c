@@ -102,7 +102,7 @@ static gint findgid (gchar *gname)
 }
 
 
-/* FIXME: This is ugly.  */
+/* FIXME bugzilla.eazel.com 1188: This is ugly.  */
 #define MAXCOLS 30
 
 static gint

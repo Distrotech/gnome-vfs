@@ -247,7 +247,7 @@ do_open (GnomeVFSMethod *method,
 	 GnomeVFSOpenMode mode,
 	 GnomeVFSContext *context)
 {
-	g_warning ("FIXME: Unhandled re-open");
+	g_warning ("FIXME bugzilla.eazel.com 1192: Unhandled re-open");
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
 
@@ -260,7 +260,7 @@ do_create (GnomeVFSMethod *method,
 	   guint perm,
 	   GnomeVFSContext *context)
 {
-	g_warning ("FIXME: Unhandled re-create");
+	g_warning ("FIXME bugzilla.eazel.com 1192: Unhandled re-create");
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
 
@@ -360,7 +360,7 @@ do_truncate_handle (GnomeVFSMethod *method,
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
 
-	g_warning ("FIXME: truncate needs implementing");
+	g_warning ("FIXME bugzilla.eazel.com 1194: truncate needs implementing");
 	mh->dirty = TRUE;
 
 	return GNOME_VFS_ERROR_NOTSUPPORTED;

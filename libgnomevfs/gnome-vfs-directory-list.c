@@ -25,10 +25,6 @@
 #include <config.h>
 #endif
 
-/* Get the definition of `FNM_CASEFOLD'.  FIXME */
-/* XXX Why do we need to know what the value of the FNM_CASEFOLD macro is? */
-#define _POSIX_SOURCE
-
 #include <unistd.h>
 #include <fnmatch.h>
 #include <regex.h>

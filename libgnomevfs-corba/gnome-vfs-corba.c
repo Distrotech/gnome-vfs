@@ -78,7 +78,7 @@ gnome_vfs_corba_init (gboolean deps_init)
 
 	gnome_vfs_orb = gnome_vfs_get_orb ();
 	if (!gnome_vfs_orb) {
-		/* FIXME?  */
+		/* FIXME bugzilla.eazel.com 1211 */
 		g_warning ("GNOME CORBA support was not initialized.");
 		return FALSE;
 	}

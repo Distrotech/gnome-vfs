@@ -214,9 +214,6 @@ shut_down_file_descriptors (void)
 		close (i);
 }
 
-/* FIXME I am not sure the following stuff should be here.  This is a bit
-   messy.  */
-
 pid_t
 gnome_vfs_forkexec (const gchar *file_name,
 		    const gchar * const argv[],
