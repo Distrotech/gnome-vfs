@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.6\n"
 "Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
-"POT-Creation-Date: 2003-12-03 01:52+0000\n"
-"PO-Revision-Date: 2003-12-03 02:15+0100\n"
+"POT-Creation-Date: 2003-12-07 19:29+0000\n"
+"PO-Revision-Date: 2003-12-07 19:35+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -533,15 +533,16 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
-"Incapaz de montar o volume. Provavelmente não existe nenhum media no dispositivo."
+"Incapaz de montar o volume. Provavelmente não existe nenhum media no "
+"dispositivo."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Incapaz de montar o dispositivo de disquette. Provavelmente a disquette encontra-se "
-"num formato que não pode ser montado."
+"Incapaz de montar o dispositivo de disquette. Provavelmente a disquette "
+"encontra-se num formato que não pode ser montado."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
@@ -691,21 +692,150 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"A aplicação a utilizar para visualizar ficheiros que requerem um componente para "
-"que possam ser visualizadas. O parâmetro %s será substituido pelo URI do ficheiro, "
-"o parâmetro %c será substituido pelo IID do componente."
+"A aplicação a utilizar para visualizar ficheiros que requerem um componente "
+"para que possam ser visualizadas. O parâmetro %s será substituido pelo URI "
+"do ficheiro, o parâmetro %c será substituido pelo IID do componente."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"A aplicação de consola a utilizar por omissão para aplicações que "
-"necessitem de uma consola."
+"A aplicação de consola a utilizar por omissão para aplicações que necessitem "
+"de uma consola."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "O argumento de execução a utilizar para a aplicação de consola por omissão."
+msgstr ""
+"O argumento de execução a utilizar para a aplicação de consola por omissão."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:1
+msgid "How to handle callto URLs"
+msgstr "Como manipulador URLs callto"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
+msgid "How to handle ghelp URLs"
+msgstr "Como manipulador URLs ghelp"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
+msgid "How to handle h323 URLs"
+msgstr "Como manipulador URLs h323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
+msgid "How to handle http URLs"
+msgstr "Como manipulador URLs http"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid "How to handle https URLs"
+msgstr "Como manipulador URLs https"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid "How to handle info URLs"
+msgstr "Como manipulador URLs info"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "How to handle mailto URLs"
+msgstr "Como manipulador URLs mailto"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+msgid "How to handle man URLs"
+msgstr "Como manipulador URLs man"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+msgid "How to handle trash URLs"
+msgstr "Como manipulador URLs de lixo"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "Run program in terminal"
+msgstr "Executar aplicação na consola"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "Set to true to have a program specified in command handle callto URLs"
+msgstr ""
+"Definir como verdadeiro para que aplicação especificada no comando manipule URLs callto"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid "Set to true to have a program specified in command handle h323 URLs"
+msgstr ""
+"Definir como verdadeiro para que aplicação especificada no comando manipule URLs h323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+msgid "Set to true to have a program specified in command handle http URLs"
+msgstr ""
+"Definir como verdadeiro para que aplicação especificada no comando manipule URLs http"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+msgid "Set to true to have a program specified in command handle https URLs"
+msgstr ""
+"Definir como verdadeiro para que aplicação especificada no comando manipule URLs https"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid "Set to true to have a program specified in command handle mailto URLs"
+msgstr ""
+"Definir como verdadeiro para que aplicação especificada no comando manipule URLs mailto"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid ""
+"Set to true to have a program specified in programs/ghelp handle ghelp URLs"
+msgstr ""
+"Definir como verdadeiro para que aplicação especificada em aplicações/ghelp manipule URLs ghelp"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid ""
+"Set to true to have a program specified in programs/info handle info URLs"
+msgstr ""
+"Definir como verdadeiro para que aplicação especificada em aplicações/info manipule URLs info"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+msgid "Set to true to have a program specified in programs/man handle man URLs"
+msgstr ""
+"Definir como verdadeiro para que aplicação especificada em aplicações/man manipule URLs man"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+msgid ""
+"Set to true to have a program specified in trash/command handle trash URLs"
+msgstr ""
+"Definir como verdadeiro para que aplicação especificada em lixo/comando manipule URLs de lixo"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+msgid "True if the program to handle this URL should be run in a terminal"
+msgstr "Verdadeiro se a aplicação para manipular este URL deverá ser executada numa consola"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+msgid "URL handler for callto uris"
+msgstr "Manipulador de URL para uris callto"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+msgid "URL handler for ghelp pages"
+msgstr "Manipulador de URL para páginas ghelp"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+msgid "URL handler for h323 uris"
+msgstr "Manipulador de URL para uris h323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+msgid "URL handler for http uris"
+msgstr "Manipulador de URL para uris http"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+msgid "URL handler for https uris"
+msgstr "Manipulador de URL para uris https"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+msgid "URL handler for info pages"
+msgstr "Manipulador de URL para páginas info"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+msgid "URL handler for mailto uris"
+msgstr "Manipulador de URL para uris mailto"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+msgid "URL handler for man pages"
+msgstr "Manipulador de URL para páginas man"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+msgid "URL handler for trash pages"
+msgstr "Manipulador de URL para páginas de lixo"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate connections to the proxy server"
@@ -746,8 +876,8 @@ msgid ""
 "and /system/http_proxy/authentication_password."
 msgstr ""
 "Se verdadeiro, ligações ao servidor proxy requerem autenticação. O conjunto "
-"utilizador/senha são definidos por /system/http_proxy/authentication_user "
-"e /system/http_proxy/authentication_password."
+"utilizador/senha são definidos por /system/http_proxy/authentication_user e /"
+"system/http_proxy/authentication_password."
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid "Password to pass as authentication when doing http proxying"
@@ -770,8 +900,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\""
 msgstr ""
-"Seleccione o modo de configuração de proxy. Valores suportados são \"none\" "
-"(nenhum), \"manual\", \"auto\""
+"Seleccione o modo de configuração de proxy. Valores suportados são \"none"
+"\" (nenhum), \"manual\", \"auto\""
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "Socks proxy host name"
@@ -836,11 +966,11 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Esta chave contém uma lista de máquinas às quais a ligação deverá ser directa, "
-"e não através da proxy (caso esteja activa). Os valores podem ser nomes de "
-"máquinas, domínios (utilizando um caracter genérico tal como *.exemplo.pt), "
-"endereços IP (tanto IPv4 como IPv6) e endereços de rede com uma máscara de "
-"rede (algo como 192.168.0.0/24)."
+"Esta chave contém uma lista de máquinas às quais a ligação deverá ser "
+"directa, e não através da proxy (caso esteja activa). Os valores podem ser "
+"nomes de máquinas, domínios (utilizando um caracter genérico tal como *."
+"exemplo.pt), endereços IP (tanto IPv4 como IPv6) e endereços de rede com uma "
+"máscara de rede (algo como 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid "URL that provides proxy configuration values"
