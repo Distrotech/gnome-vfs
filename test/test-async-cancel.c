@@ -401,6 +401,34 @@ test_open_cancel (void)
 }
 
 static void
+file_open_fail_callback (GnomeVFSAsyncHandle *handle,
+			 GnomeVFSResult result,
+			 gpointer callback_data)
+{
+	TEST_ASSERT (handle == test_handle, ("open callback, bad handle"));
+	TEST_ASSERT (result == GNOME_VFS_ERROR_NOTFOUND, ("open callback, bad result"));
+	TEST_ASSERT (callback_data == test_callback_data, ("open callback, bad callback data"));
+
+	file_open_flag = TRUE;
+}
+
+static void
+test_open_fail (void)
+{
+	file_open_flag = FALSE;
+	gnome_vfs_async_open (&test_handle,
+			      "file:///etc/mugwump-xxx",
+			      GNOME_VFS_OPEN_READ,
+			      file_open_fail_callback,
+			      test_callback_data);
+	TEST_ASSERT (wait_for_boolean (&file_open_flag), ("open fail 1: callback was not called"));
+	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open fail 1: thread never went away"));
+	TEST_ASSERT (get_used_file_descriptor_count () == 0,
+		     ("open fail 1: %d file descriptors leaked", get_used_file_descriptor_count ()));
+	free_at_start = get_free_file_descriptor_count ();
+}
+
+static void
 yield (int count)
 {
 	for (; count >= 0; count--) {
@@ -463,6 +491,8 @@ main (int argc, char **argv)
 	test_get_file_info ();
 	test_open_cancel ();
 	test_open_cancel ();
+	test_open_fail ();
+	test_open_fail ();
 	test_open_read_cancel_close ();
 	test_open_read_cancel_close ();
 

@@ -127,6 +127,8 @@ func_lookup(const char *func_name)
 	if (!g_module_symbol (gmod, name, &function))
 		function = NULL;
 
+	g_free (name);
+
 	return (GnomeVFSAsyncFunction) function;
 }
 
