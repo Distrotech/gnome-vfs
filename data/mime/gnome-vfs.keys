@@ -71,6 +71,12 @@ application/rtf
 
 application/vnd.ms-excel
 	description=Microsoft Excel document
+	default_action_type=application
+	default_application_id=gnumeric
+	short_list_application_ids_for_novice_user_level=gnumeric
+	short_list_application_ids_for_intermediate_user_level=gnumeric
+	short_list_application_ids_for_hacker_user_level=gnumeric
+	system_all_application_ids=gnumeric
 
 application/x-applix-spreadsheet
 	description=Applix spreadsheet

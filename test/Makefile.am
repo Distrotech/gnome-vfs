@@ -181,4 +181,5 @@ EXTRA_DIST =					\
 	test-sync.c				\
 	test-sync-write.c			\
 	test-xfer.c				\
-	vfs-run.in
+	vfs-run.in				\
+	auto-test

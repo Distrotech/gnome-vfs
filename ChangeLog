@@ -1,3 +1,14 @@
+2000-08-11  Pavel Cisler  <pavel@eazel.com>
+
+	* HACKING:
+	* NEWS:
+	* configure.in:
+	* data/mime/gnome-vfs.keys:
+	* test/Makefile.am:
+	Prepare for release.
+	Merge over mime entries for gnumeric.
+	Fix makefile breakage in devel-docs and test.
+
 2000-08-10  J Shane Culpepper  <pepper@eazel.com>
 
 	* data/mime/gnome-vfs.keys:  Rolling fix for Bug # 2104 into branch

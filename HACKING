@@ -3,7 +3,7 @@ ChangeLog entires for review before committing, and get approval from
 Pavel or Ettore. Please send to the list and not to anyone directly so
 everyone has the opportunity to comment. 
 
-Please do not check in changes with an approval.
+Please do not check in changes without an approval.
 
 Please do not check in changes without a ChangeLog entry. 
 
