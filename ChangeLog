@@ -1,3 +1,20 @@
+2001-06-15  Martin Baulig  <baulig@suse.de>
+
+	If we ever need to revert this (for instance, when GConf is fixed for GNOME 2),
+	the patch is at http://cip.uni-trier.de/baulig/misc/gnome-vfs.optional-gconf.patch.
+
+	* configure.in: Made the GConf dependency optional. At least temporarily,
+	we need to make GConf optional in the GNOME 2.0 core libraries as it blocks
+	testing on a GNOME 1.x desktop.
+	(HAVE_GCONF): New automake conditional.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c (get_user_level): Always return "novice"
+	if we don't HAVE_GCONF.
+
+	* modules/Makefile.am: Only compile the gconf and http modules if we HAVE_GCONF.
+
+	* modules/ftp-method.c (vfs_module_init): Don't initialize GConf if we don't have it.
+
 2001-06-11  Carlos Perelló Marín <carlos@gnome-db.org>
 
 	* modules/cdda-method.c: Fixed to compile with Gtk 2.0

@@ -47,7 +47,9 @@
 #include <arpa/inet.h>
 
 #include <gtk/gtk.h>
+#ifdef HAVE_GCONF
 #include <gconf/gconf-client.h>
+#endif
 
 #include "gnome-vfs-context.h"
 #include "gnome-vfs-types.h"
@@ -1416,6 +1418,7 @@ GnomeVFSMethod *
 vfs_module_init (const char *method_name, 
 		 const char *args)
 {
+#ifdef HAVE_GCONF
 	char *argv[] = {"vfs-ftp-method"};
 	int argc = 1;
 
@@ -1428,6 +1431,7 @@ vfs_module_init (const char *method_name,
 		/* auto-initializes OAF if necessary */
 		gconf_init (argc, argv, NULL);
 	}
+#endif
 	
 	return &method;
 }
