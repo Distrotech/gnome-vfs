@@ -23,7 +23,7 @@
 
 #include <config.h>
 
-#include <glib-object.h>
+#include <glib/gmain.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <stdio.h>
@@ -100,14 +100,12 @@ main (int argc, char **argv)
 	}
 
 	puts ("Initializing gnome-vfs...");
-	g_type_init ();
 	gnome_vfs_init ();
 
 	puts ("Creating async context...");
 
 	printf ("Starting open for `%s'...\n", argv[1]);
 	gnome_vfs_async_open (&handle, argv[1], GNOME_VFS_OPEN_READ,
-			      0,
 			      open_callback, "open_callback");
 
 	puts ("Main loop running.");
