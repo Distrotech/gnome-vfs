@@ -132,15 +132,6 @@ libbzip2_la_LIBADD = -lbz2
 libftp_la_SOURCES = ftp-method.c
 libftp_la_LDFLAGS = $(module_flags)
 
-### `gconf' method
-
-gconfmoduledir = $(modulesdir)
-gconfmodule_LTLIBRARIES = libgconf.la
-
-libgconf_la_SOURCES = gconf-method.c
-libgconf_la_LIBADD = $(MODULES_GCONF_LIBS)
-libgconf_la_LDFLAGS = $(module_flags)
-
 ### `nfs' method
 
 #libnfs_la_SOURCES = 				\

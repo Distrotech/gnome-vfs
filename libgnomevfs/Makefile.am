@@ -80,8 +80,9 @@ libgnomevfsinclude_HEADERS =			\
 
 libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-application-registry.c	\
+	gnome-vfs-async-job-map.c		\
 	gnome-vfs-async-ops.c			\
-	gnome-vfs-cancellable-ops.c	 	\
+	gnome-vfs-cancellable-ops.c		\
 	gnome-vfs-cancellation.c		\
 	gnome-vfs-configuration.c		\
 	gnome-vfs-context.c			\
@@ -94,6 +95,9 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-inet-connection.c		\
 	gnome-vfs-init.c			\
 	gnome-vfs-iobuf.c			\
+	gnome-vfs-job-queue.c			\
+	gnome-vfs-job-slave.c			\
+	gnome-vfs-job.c				\
 	gnome-vfs-method.c			\
 	gnome-vfs-mime-handlers.c		\
 	gnome-vfs-mime-info.c			\
@@ -112,24 +116,29 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-private-utils.c		\
 	gnome-vfs-private.c			\
 	gnome-vfs-process.c			\
+	gnome-vfs-pthread.c			\
 	gnome-vfs-result.c			\
 	gnome-vfs-socket-buffer.c		\
 	gnome-vfs-socket.c			\
 	gnome-vfs-ssl.c				\
+	gnome-vfs-thread-pool.c			\
 	gnome-vfs-transform.c			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	gnome-vfs-xfer.c			\
+	gnome-vfs-async-job-map.h		\
 	gnome-vfs-backend.h			\
 	gnome-vfs-i18n.h			\
+	gnome-vfs-job-queue.h			\
+	gnome-vfs-job-slave.h			\
+	gnome-vfs-job.h				\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer-private.h	\
 	gnome-vfs-module-callback-private.h	\
 	gnome-vfs-process.h			\
+	gnome-vfs-pthread.h			\
+	gnome-vfs-thread-pool.h			\
 	$(NULL)
-
-libgnomevfs_2_la_LDFLAGS = $(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la
-$(lib_LTLIBRARIES): $(top_builddir)/libgnomevfs-pthread/libgnomevfs-pthread.la
 
 # Platform specific includes
 libgnomevfsplatformincludedir = $(libdir)/gnome-vfs-2.0/include

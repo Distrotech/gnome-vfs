@@ -1,3 +1,33 @@
+2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* Makefile.am:
+	* configure.in:
+	* doc/tmpl/gnome-vfs-unused.sgml:
+	* libgnomevfs-pthread/Makefile.am:
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.c:
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.h:
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	* libgnomevfs-pthread/gnome-vfs-job-queue.c:
+	* libgnomevfs-pthread/gnome-vfs-job-queue.h:
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	* libgnomevfs-pthread/gnome-vfs-job-slave.h:
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs-pthread/gnome-vfs-pthread.c:
+	* libgnomevfs-pthread/gnome-vfs-pthread.h:
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.c:
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.h:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-async-ops.c: 
+	* libgnomevfs/gnome-vfs-init.c:
+	* test/test-async-cancel.c:
+	* test/test-queue.c: Move contents of libgnomevfs-pthread into
+	libgnome-vfs.
+
+	* modules/Makefile.am, modules/default-modules.conf,
+	modules/gconf-method.c, modules/gconf-method.h: Remove gconf
+	method.
+
 2001-11-01  Seth Nickell  <snickell@stanford.edu>
 
 	* data/mime/WHERE_IS_THE_MIME_REGISTRY?:
@@ -27,6 +57,7 @@
 	Apparently gtk-doc had some changes it wanted
 	to make, don't look at me ;-)
 	
+>>>>>>> 1.1145
 2001-10-30  Laszlo Peter  <laca@ireland.sun.com>
 	* libgnomevfs/gnome-vfs.h: remove duplicated include line
 

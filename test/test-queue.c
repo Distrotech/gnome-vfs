@@ -28,7 +28,7 @@
       #undef QUEUE_DEBUG
    to 
       #define QUEUE_DEBUG 1
-   in libgnomevfs-pthread/gnome-vfs-job-queue.c and rebuild gnome-vfs.
+   in libgnomevfs/gnome-vfs-job-queue.c and rebuild gnome-vfs.
 */
 
 #include <config.h>
@@ -38,7 +38,7 @@
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-job-limit.h>
 #include <libgnomevfs/gnome-vfs-init.h>
-#include <libgnomevfs-pthread/gnome-vfs-job.h>
+#include <libgnomevfs/gnome-vfs-job.h>
 #include <fcntl.h>
 #include <signal.h>
 #include <stdio.h>

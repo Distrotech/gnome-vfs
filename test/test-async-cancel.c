@@ -31,7 +31,7 @@
 #include <glib/gstrfuncs.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-init.h>
-#include <libgnomevfs-pthread/gnome-vfs-job.h>
+#include <libgnomevfs/gnome-vfs-job.h>
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>

@@ -34,8 +34,8 @@
 #include "gnome-vfs-utils.h"
 #include <bonobo-activation/bonobo-activation.h>
 #include <glib/gmessages.h>
-#include <libgnomevfs-pthread/gnome-vfs-pthread.h>
-#include <libgnomevfs-pthread/gnome-vfs-job-slave.h>
+#include <libgnomevfs/gnome-vfs-pthread.h>
+#include <libgnomevfs/gnome-vfs-job-slave.h>
 
 static gboolean vfs_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (vfs_already_initialized);

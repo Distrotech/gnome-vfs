@@ -210,15 +210,6 @@ dnl
 GNOME_VFS_DIR=`(cd $srcdir; pwd)`
 AC_SUBST(GNOME_VFS_DIR)
 
-dnl Pthread backend.
-VFSPTHREAD_LIBDIR='-L${libdir}'
-VFSPTHREAD_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'
-VFSPTHREAD_INCLUDEDIR="$VFSPTHREAD_INCLUDEDIR $VFS_GNOME_CFLAGS"
-VFSPTHREAD_LIBS="-lgnomevfs -lgnomevfs-pthread $VFS_GNOME_LIBS $VFS_GLIB_LIBS"
-AC_SUBST(VFSPTHREAD_LIBDIR)
-AC_SUBST(VFSPTHREAD_INCLUDEDIR)
-AC_SUBST(VFSPTHREAD_LIBS)
-
 VFS_LIBS="-lgnomevfs $VFS_GLIB_LIBS"
 VFS_LIBDIR='-L${libdir}'
 VFS_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'" $VFS_GLIB_CFLAGS"
@@ -459,7 +450,6 @@ AC_OUTPUT([
 Makefile
 gnome-vfs.spec
 libgnomevfs/gnome-vfs-file-size.h
-libgnomevfs-pthread/Makefile
 libgnomevfs/Makefile
 modules/Makefile
 modules/extfs/Makefile
