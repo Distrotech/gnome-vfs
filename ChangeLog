@@ -1,3 +1,11 @@
+2002-03-14  Seth Nickell  <snickell@stanford.edu>
+
+	* HACKING:
+	* configure.in:
+
+	Build sherrif commits, bump version number to deal with
+	tarball that built wrong.
+
 2002-03-11  James Henstridge  <james@daa.com.au>
 
 	* configure.in: shell doesn't need semicolons to terminate
