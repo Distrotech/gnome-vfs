@@ -1,3 +1,9 @@
+gnome-vfs 2.9.93
+
+    * Bugs fixed:
+	+ smb-method: fix browsing of (non-domain) workgroups and
+                      browsing of Windows machines not on a domain
+
 gnome-vfs 2.9.92
 
     * Bugs fixed:
