@@ -33,7 +33,7 @@
 
 
 gchar*
-gnome_vfs_file_size_to_string   (GnomeVFSFileSize bytes)
+gnome_vfs_file_size_to_string (GnomeVFSFileSize bytes)
 {
 	if (bytes < (GnomeVFSFileSize) 1e3) {
 		if (bytes == 1)
@@ -111,13 +111,13 @@ gchar *hex = "0123456789ABCDEF";
  * allowed in URLs unencoded -- so DON'T use the table below for
  * parsing!
  *
- * Unlike gnome_vfs_ht_escape(), this routine returns a g_malloced string.
+ * Unlike gnome_vfs_escape(), this routine returns a g_malloced string.
  *
  */
 
 gchar *
 gnome_vfs_escape_string (const gchar *str, 
-			 GnomeVFSHTURIEncoding mask)
+			 GnomeVFSURIEncoding mask)
 {
     const gchar * p;
     gchar * q;
@@ -152,7 +152,7 @@ gnome_vfs_escape_string (const gchar *str,
 
 
 static gchar 
-gnome_vfs_ht_ascii_hex_to_char (gchar c)
+gnome_vfs_ascii_hex_to_char (gchar c)
 {
     return  c >= '0' && c <= '9' ?  c - '0'
 	    : c >= 'A' && c <= 'F'? c - 'A' + 10
@@ -184,16 +184,16 @@ gnome_vfs_unescape_string (gchar * str)
 			p++;
 			
 			if (*p)
-				*q = gnome_vfs_ht_ascii_hex_to_char(*p++) * 16;
+				*q = gnome_vfs_ascii_hex_to_char(*p++) * 16;
 #if 1
 			/* Suggestion from Markku Savela */
 			if (*p)
-				*q = FROMASCII(*q + gnome_vfs_ht_ascii_hex_to_char(*p)), ++p;
+				*q = FROMASCII(*q + gnome_vfs_ascii_hex_to_char(*p)), ++p;
 			
 			q++;
 #else
 			if (*p)
-				*q = FROMASCII(*q + gnome_vfs_ht_ascii_hex_to_char(*p));
+				*q = FROMASCII(*q + gnome_vfs_ascii_hex_to_char(*p));
 			
 			p++, q++;
 #endif

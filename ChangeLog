@@ -1,3 +1,93 @@
+2000-05-08  Darin Adler  <darin@eazel.com>
+
+	Another cut at fixing the pthread back end for GNOME VFS.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_cancel),
+	(pthread_gnome_vfs_async_open_uri), (pthread_gnome_vfs_async_open),
+	(pthread_gnome_vfs_async_open_uri_as_channel),
+	(pthread_gnome_vfs_async_open_as_channel),
+	(pthread_gnome_vfs_async_create_uri),
+	(pthread_gnome_vfs_async_create),
+	(pthread_gnome_vfs_async_create_as_channel),
+	(pthread_gnome_vfs_async_close), (pthread_gnome_vfs_async_read),
+	(pthread_gnome_vfs_async_write),
+	(pthread_gnome_vfs_async_get_file_info),
+	(pthread_gnome_vfs_async_load_directory),
+	(pthread_gnome_vfs_async_load_directory_uri),
+	(pthread_gnome_vfs_async_xfer),
+	(pthread_gnome_vfs_async_add_status_callback),
+	(pthread_gnome_vfs_async_remove_status_callback):
+	Changed to use the separate op structure so we can support starting
+	a new operation before we have notified about the last one.
+	
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
+	Re-enabled destroying the GnomeVFSJob objects, although the actual
+	destroying takes place on the main thread after a subsequent notify.
+	(gnome_vfs_job_slave_new), (gnome_vfs_job_slave_destroy),
+	(pthread_gnome_vfs_debug_get_thread_count):
+	Added thread count interface for testing and debugging.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs-pthread/gnome-vfs-job.c: (job_oneway_notify),
+	(job_notify), (dispatch_open_callback), (dispatch_create_callback),
+	(dispatch_open_as_channel_callback),
+	(dispatch_create_as_channel_callback), (dispatch_close_callback),
+	(dispatch_read_callback), (dispatch_write_callback),
+	(dispatch_load_directory_callback),
+	(dispatch_get_file_info_callback), (dispatch_xfer_callback),
+	(close_callback), (handle_cancelled_open), (dispatch_job_callback),
+	(gnome_vfs_job_new), (gnome_vfs_job_destroy),
+	(gnome_vfs_job_finish_destroy), (gnome_vfs_op_destroy),
+	(gnome_vfs_job_release_current_op),
+	(gnome_vfs_job_release_notify_op), (gnome_vfs_job_prepare),
+	(serve_channel_read), (execute_open), (execute_open_as_channel),
+	(execute_create), (execute_create_as_channel), (execute_close),
+	(execute_read), (execute_write),
+	(execute_load_directory_not_sorted),
+	(execute_load_directory_sorted), (execute_get_file_info),
+	(execute_load_directory), (xfer_callback), (execute_xfer),
+	(gnome_vfs_job_execute), (gnome_vfs_job_cancel):
+	Changed to use the separate op structure so we can support starting
+	a new operation before we have notified about the last one. Also added
+	code to handle the case of an open that's cancelled after the file is
+	opened, but before the callback has been called.
+	
+	* libgnomevfs/gnome-vfs-backend.c:
+	(gnome_vfs_debug_get_thread_count): Added thread count interface for
+	testing and debugging.
+	
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_file_size_to_string),
+	(gnome_vfs_escape_string), (gnome_vfs_ascii_hex_to_char),
+	(gnome_vfs_unescape_string): Remove the "_ht" and HT from the names.
+	
+	* test/.cvsignore:
+	* test/Makefile.am:
+	* test/test-async-cancel.c: (get_free_file_descriptor_count),
+	(get_used_file_descriptor_count), (wait_for_boolean),
+	(wait_until_vfs_threads_gone),
+	(wait_until_vfs_threads_gone_no_main),
+	(wait_until_file_descriptors_gone), (test_failed),
+	(get_file_info_callback), (first_get_file_info),
+	(test_get_file_info), (file_open_callback), (file_close_callback),
+	(file_read_callback), (test_open_read_cancel_close),
+	(test_open_cancel), (main):
+	Added a new test, test-async-cancel. This one is run as part of make
+	check and it checks for all the problems I was trying to fix.
+
+	* configure.in: Turned on -Werror for all directories. Also turned
+	on extra warnings like in Nautilus.
+	* libgnomevfs/gnome-vfs-parse-ls.c: (finduid), (findgid):
+	Fixed warnings.
+	* test/gnome-file-selection/gnome-file-selection.c: Fixed a warning.
+	
+	* libgnomevfs-corba/Makefile.am:
+	* libgnomevfs-pthread/Makefile.am:
+	* libgnomevfs/Makefile.am:
+	* modules/Makefile.am:
+	Took out now-unnecessary $(WERROR) lines.
+	
 2000-05-08  Ettore Perazzoli  <ettore@helixcode.com>
 
 	* libgnomevfs-corba/Makefile.am: Don't use `GNOME_CFLAGS'.

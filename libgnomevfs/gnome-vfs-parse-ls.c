@@ -69,7 +69,6 @@ static gint my_gid = -993;
 static gint finduid (gchar *uname)
 {
 	struct passwd *pw;
-	extern struct passwd *getpwnam ();
 	
 	if (uname[0] != saveuname[0]/* Quick test w/o proc call */
 	    || 0 != strncmp (uname, saveuname, TUNMLEN)) {
@@ -87,7 +86,6 @@ static gint finduid (gchar *uname)
 static gint findgid (gchar *gname)
 {
 	struct group *gr;
-	extern struct group *getgrnam ();
 	
 	if (gname[0] != savegname[0]/* Quick test w/o proc call */
 	    || 0 != strncmp (gname, savegname, TUNMLEN)) {

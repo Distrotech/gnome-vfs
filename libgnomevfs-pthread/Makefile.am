@@ -10,8 +10,7 @@ CPPFLAGS =					\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-DPREFIX=\"$(prefix)\"			\
-	-DG_LOG_DOMAIN=\"GnomeVFS-pthread\"	\
-	$(WERROR)
+	-DG_LOG_DOMAIN=\"GnomeVFS-pthread\"
 
 noinst_HEADERS = 				\
 	gnome-vfs-job-slave.h			\

@@ -4,10 +4,10 @@ INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
-	$(GNOME_INCLUDEDIR)			\
-	$(WERROR)
+	$(GNOME_INCLUDEDIR)
 
 noinst_PROGRAMS =				\
+	test-async-cancel                       \
 	test-async-directory_corba		\
 	test-async-directory_pthread		\
 	test-async_corba			\
@@ -21,6 +21,8 @@ noinst_PROGRAMS =				\
 	test-sync				\
 	test-sync-write				\
 	test-xfer
+
+TESTS = test-async-cancel
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
@@ -111,6 +113,10 @@ test_sync_write_SOURCES = test-sync-write.c
 test_sync_write_LDADD = $(libraries)
 test_sync_write_LDFLAGS =
 
+test_async_cancel_SOURCES = test-async-cancel.c
+test_async_cancel_LDADD = $(libraries)
+test_async_cancel_LDFLAGS = 
+
 EXTRA_DIST =					\
 	test-async-directory.c			\
 	test-async.c				\
@@ -119,6 +125,6 @@ EXTRA_DIST =					\
 	test-directory.c			\
 	test-seek.c				\
 	test-sync.c				\
-	test-sync-write.c				\
+	test-sync-write.c			\
 	test-xfer.c				\
 	vfs-run.in

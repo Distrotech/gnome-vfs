@@ -790,3 +790,18 @@ gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle *handle,
 
 	real_gnome_vfs_async_remove_status_callback (handle, callback_id);
 }
+
+/* For testing only. */
+extern int gnome_vfs_debug_get_thread_count (void);
+int
+gnome_vfs_debug_get_thread_count (void)
+{
+	GnomeVFSAsyncFunction function;
+
+	function = func_lookup ("gnome_vfs_debug_get_thread_count");
+	if (function == NULL) {
+		return -1;
+	}
+
+	return (* function) ();
+}

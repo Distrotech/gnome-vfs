@@ -24,25 +24,22 @@
    	    John Sullivan <sullivan@eazel.com> 
 */
 
-#ifndef _GNOME_VFS_UTILS_H
-#define _GNOME_VFS_UTILS_H
+#ifndef GNOME_VFS_UTILS_H
+#define GNOME_VFS_UTILS_H
 
 #include <glib.h>
 #include "gnome-vfs-types.h"
 
-gchar*          gnome_vfs_file_size_to_string   (GnomeVFSFileSize bytes);
+typedef enum {
+	GNOME_VFS_URI_ENCODING_XALPHAS  = 0x1,  /* Escape all unsafe characters   */
+	GNOME_VFS_URI_ENCODING_XPALPHAS = 0x2,  /* As URL_XALPHAS but allows '+'  */
+	GNOME_VFS_URI_ENCODING_PATH     = 0x4,  /* As URL_XALPHAS but allows '/'  */
+	GNOME_VFS_URI_ENCODING_DOSFILE  = 0x8   /* As URL_URLPATH but allows  ':' */
+} GnomeVFSURIEncoding;
 
+gchar *gnome_vfs_file_size_to_string (GnomeVFSFileSize     bytes);
+gchar *gnome_vfs_escape_string       (const gchar         *string,
+				      GnomeVFSURIEncoding  encoding);
+gchar *gnome_vfs_unescape_string     (gchar               *string);
 
-typedef enum GnomeVFSURIEncoding {
- GNOME_VFS_URI_ENCODING_XALPHAS  = 0x1,  /* Escape all unsafe characters   */
- GNOME_VFS_URI_ENCODING_XPALPHAS = 0x2,  /* As URL_XALPHAS but allows '+'  */
- GNOME_VFS_URI_ENCODING_PATH     = 0x4,  /* As URL_XALPHAS but allows '/'  */
- GNOME_VFS_URI_ENCODING_DOSFILE  = 0x8   /* As URL_URLPATH but allows  ':' */
-} GnomeVFSHTURIEncoding;
-
-gchar  *gnome_vfs_escape_string        (const gchar *str, 
-					GnomeVFSHTURIEncoding encoding);
-gchar  *gnome_vfs_unescape_string      (gchar       *str);
-
-
-#endif /* _GNOME_VFS_UTILS_H */
+#endif /* GNOME_VFS_UTILS_H */

@@ -4,6 +4,7 @@
 .libs
 Makefile
 Makefile.in
+test-async-cancel
 test-async-directory_corba
 test-async-directory_pthread
 test-async_corba

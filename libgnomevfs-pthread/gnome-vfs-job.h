@@ -1,4 +1,5 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+
 /* gnome-vfs-job.h - Jobs for asynchronous operation of the GNOME
    Virtual File System (version for POSIX threads).
 
@@ -19,7 +20,8 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org> */
+   Author: Ettore Perazzoli <ettore@gnu.org>
+*/
 
 #ifndef GNOME_VFS_JOB_PTHREAD_H
 #define GNOME_VFS_JOB_PTHREAD_H
@@ -28,21 +30,21 @@ typedef struct GnomeVFSJob GnomeVFSJob;
 
 #include "gnome-vfs-job-slave.h"
 
-enum GnomeVFSJobType {
-	GNOME_VFS_JOB_OPEN,
-	GNOME_VFS_JOB_OPEN_AS_CHANNEL,
-	GNOME_VFS_JOB_CREATE,
-	GNOME_VFS_JOB_CREATE_AS_CHANNEL,
-	GNOME_VFS_JOB_CLOSE,
-	GNOME_VFS_JOB_READ,
-	GNOME_VFS_JOB_WRITE,
-	GNOME_VFS_JOB_LOAD_DIRECTORY,
-	GNOME_VFS_JOB_XFER,
-	GNOME_VFS_JOB_GET_FILE_INFO,
+enum GnomeVFSOpType {
+	GNOME_VFS_OP_OPEN,
+	GNOME_VFS_OP_OPEN_AS_CHANNEL,
+	GNOME_VFS_OP_CREATE,
+	GNOME_VFS_OP_CREATE_AS_CHANNEL,
+	GNOME_VFS_OP_CLOSE,
+	GNOME_VFS_OP_READ,
+	GNOME_VFS_OP_WRITE,
+	GNOME_VFS_OP_LOAD_DIRECTORY,
+	GNOME_VFS_OP_XFER,
+	GNOME_VFS_OP_GET_FILE_INFO,
 };
-typedef enum GnomeVFSJobType GnomeVFSJobType;
+typedef enum GnomeVFSOpType GnomeVFSOpType;
 
-struct GnomeVFSOpenJob {
+struct GnomeVFSOpenOp {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -52,9 +54,9 @@ struct GnomeVFSOpenJob {
 		GnomeVFSResult result;
 	} notify;
 };
-typedef struct GnomeVFSOpenJob GnomeVFSOpenJob;
+typedef struct GnomeVFSOpenOp GnomeVFSOpenOp;
 
-struct GnomeVFSOpenAsChannelJob {
+struct GnomeVFSOpenAsChannelOp {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -66,9 +68,9 @@ struct GnomeVFSOpenAsChannelJob {
 		GIOChannel *channel;
 	} notify;
 };
-typedef struct GnomeVFSOpenAsChannelJob GnomeVFSOpenAsChannelJob;
+typedef struct GnomeVFSOpenAsChannelOp GnomeVFSOpenAsChannelOp;
 
-struct GnomeVFSCreateJob {
+struct GnomeVFSCreateOp {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -80,9 +82,9 @@ struct GnomeVFSCreateJob {
 		GnomeVFSResult result;
 	} notify;
 };
-typedef struct GnomeVFSCreateJob GnomeVFSCreateJob;
+typedef struct GnomeVFSCreateOp GnomeVFSCreateOp;
 
-struct GnomeVFSCreateAsChannelJob {
+struct GnomeVFSCreateAsChannelOp {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSOpenMode open_mode;
@@ -95,9 +97,9 @@ struct GnomeVFSCreateAsChannelJob {
 		GIOChannel *channel;
 	} notify;
 };
-typedef struct GnomeVFSCreateAsChannelJob GnomeVFSCreateAsChannelJob;
+typedef struct GnomeVFSCreateAsChannelOp GnomeVFSCreateAsChannelOp;
 
-struct GnomeVFSCloseJob {
+struct GnomeVFSCloseOp {
 	struct {
 	} request;
 
@@ -105,9 +107,9 @@ struct GnomeVFSCloseJob {
 		GnomeVFSResult result;
 	} notify;
 };
-typedef struct GnomeVFSCloseJob GnomeVFSCloseJob;
+typedef struct GnomeVFSCloseOp GnomeVFSCloseOp;
 
-struct GnomeVFSReadJob {
+struct GnomeVFSReadOp {
 	struct {
 		GnomeVFSFileSize num_bytes;
 		gpointer buffer;
@@ -118,9 +120,9 @@ struct GnomeVFSReadJob {
 		GnomeVFSFileSize bytes_read;
 	} notify;
 };
-typedef struct GnomeVFSReadJob GnomeVFSReadJob;
+typedef struct GnomeVFSReadOp GnomeVFSReadOp;
 
-struct GnomeVFSWriteJob {
+struct GnomeVFSWriteOp {
 	struct {
 		GnomeVFSFileSize num_bytes;
 		gconstpointer buffer;
@@ -131,7 +133,7 @@ struct GnomeVFSWriteJob {
 		GnomeVFSFileSize bytes_written;
 	} notify;
 };
-typedef struct GnomeVFSWriteJob GnomeVFSWriteJob;
+typedef struct GnomeVFSWriteOp GnomeVFSWriteOp;
 
 typedef struct {
 	struct {
@@ -143,13 +145,13 @@ typedef struct {
 	struct {
 		GList *result_list; /* GnomeVFSGetFileInfoResult* */
 	} notify;
-} GnomeVFSGetFileInfoJob;
+} GnomeVFSGetFileInfoOp;
 
 
 
 /* "Complex operations.  */
 
-struct GnomeVFSLoadDirectoryJob {
+struct GnomeVFSLoadDirectoryOp {
 	struct {
 		GnomeVFSURI *uri;
 		GnomeVFSFileInfoOptions options;
@@ -168,9 +170,9 @@ struct GnomeVFSLoadDirectoryJob {
 		guint entries_read;
 	} notify;
 };
-typedef struct GnomeVFSLoadDirectoryJob GnomeVFSLoadDirectoryJob;
+typedef struct GnomeVFSLoadDirectoryOp GnomeVFSLoadDirectoryOp;
 
-struct GnomeVFSXferJob {
+struct GnomeVFSXferOp {
 	struct {
 		gchar *source_directory_uri;
 		GList *source_name_list;
@@ -191,10 +193,38 @@ struct GnomeVFSXferJob {
 		gint value;
 	} notify_answer;
 };
-typedef struct GnomeVFSXferJob GnomeVFSXferJob;
+typedef struct GnomeVFSXferOp GnomeVFSXferOp;
+
+typedef union {
+	GnomeVFSOpenOp open;
+	GnomeVFSOpenAsChannelOp open_as_channel;
+	GnomeVFSCreateOp create;
+	GnomeVFSCreateAsChannelOp create_as_channel;
+	GnomeVFSCloseOp close;
+	GnomeVFSReadOp read;
+	GnomeVFSWriteOp write;
+	GnomeVFSLoadDirectoryOp load_directory;
+	GnomeVFSXferOp xfer;
+	GnomeVFSGetFileInfoOp get_file_info;
+} GnomeVFSSpecificOp;
+
+typedef struct {
+	/* ID of the job (e.g. open, create, close...). */
+	GnomeVFSOpType type;
+
+	/* The callback for when the op is completed. */
+	GFunc callback;
+	gpointer callback_data;
+
+	/* Details of the op. */
+	GnomeVFSSpecificOp specifics;
+
+	/* The context for cancelling the operation. */
+	GnomeVFSContext *context;
+} GnomeVFSOp;
 
 
-/* FIXME: Move private stuff.  */
+/* FIXME: Move private stuff out of the header.  */
 struct GnomeVFSJob {
 	/* The slave thread that executes jobs (see module
            `gnome-vfs-job-slave.c'). */
@@ -237,45 +267,25 @@ struct GnomeVFSJob {
            into the channel.  */
 	GMutex *wakeup_channel_lock;
 
-	/* ID of the job (e.g. open, create, close...).  */
-	GnomeVFSJobType type;
-
 	/* Whether this job wants the notification acknowledged.  */
 	gboolean want_notify_ack;
 
-	/* Whether this job is done.  */
-	gboolean done;
-
-	/* Pointer to the callback for this job.  */
-	gpointer callback;
-
-	/* Extra parameter to pass to the callback for this job.  */
-	gpointer callback_data;
-
-	/* Context.  */
-	GnomeVFSContext *context;
-
-	/* Job-specific information.  */
-	union {
-		GnomeVFSOpenJob open;
-		GnomeVFSOpenAsChannelJob open_as_channel;
-		GnomeVFSCreateJob create;
-		GnomeVFSCreateAsChannelJob create_as_channel;
-		GnomeVFSCloseJob close;
-		GnomeVFSReadJob read;
-		GnomeVFSWriteJob write;
-		GnomeVFSLoadDirectoryJob load_directory;
-		GnomeVFSXferJob xfer;
-		GnomeVFSGetFileInfoJob get_file_info;
-	} info;
+	/* Operations that are being done and those that are completed and
+	 * ready for notification to take place.
+	 */
+	GnomeVFSOp *current_op;
+	GnomeVFSOp *notify_op;
 };
 
 
-GnomeVFSJob	*gnome_vfs_job_new	(void);
-gboolean	 gnome_vfs_job_destroy	(GnomeVFSJob *job);
-void		 gnome_vfs_job_prepare	(GnomeVFSJob *job);
-void		 gnome_vfs_job_go	(GnomeVFSJob *job);
-gboolean	 gnome_vfs_job_execute	(GnomeVFSJob *job);
-GnomeVFSResult	 gnome_vfs_job_cancel	(GnomeVFSJob *job);
+GnomeVFSJob *  gnome_vfs_job_new     (void);
+void           gnome_vfs_job_destroy (GnomeVFSJob    *job);
+void           gnome_vfs_job_prepare (GnomeVFSJob    *job,
+				      GnomeVFSOpType  type,
+				      GFunc           callback,
+				      gpointer        callback_data);
+void           gnome_vfs_job_go      (GnomeVFSJob    *job);
+gboolean       gnome_vfs_job_execute (GnomeVFSJob    *job);
+GnomeVFSResult gnome_vfs_job_cancel  (GnomeVFSJob    *job);
 
 #endif /* GNOME_VFS_JOB_PTHREAD_H */

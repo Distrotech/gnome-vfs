@@ -27,8 +27,6 @@
 #include "gnome-file-selection.h"
 #include "gnome-file-selection-history.h"
 
-#include "listing-iconic.xpm"
-
 
 /* GnomeIconList parameters.  */
 #define ICON_LIST_SPACING          64

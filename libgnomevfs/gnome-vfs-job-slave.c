@@ -30,6 +30,14 @@
 
 #include "gnome-vfs-job-slave.h"
 
+/* Export this for the back end loader in ligbnomevfs. */
+/* FIXME: It's ugly to have pthread prefix in this file.
+ * Move to the async-ops file maybe?
+ */
+int pthread_gnome_vfs_debug_get_thread_count (void);
+
+static int gnome_vfs_debug_thread_count = 0;
+
 
 static void *
 thread_routine (void *data)
@@ -47,9 +55,9 @@ thread_routine (void *data)
 		;
 
 	/* FIXME: Is more cleanup needed here?  */
-	/* FIXME: bugzilla.eazel.com 829: Had to turn off the destroy call
-	   gnome_vfs_job_destroy (slave->job);
-	*/
+	gnome_vfs_job_destroy (slave->job);
+
+	gnome_vfs_debug_thread_count--;
 
 	return NULL;
 }
@@ -76,6 +84,8 @@ gnome_vfs_job_slave_new (GnomeVFSJob *job)
 		return NULL;
 	}
 
+	gnome_vfs_debug_thread_count++;
+
 	return new;
 }
 
@@ -96,4 +106,10 @@ gnome_vfs_job_slave_destroy (GnomeVFSJobSlave *slave)
 	gnome_vfs_job_slave_cancel (slave);
 
 	g_free (slave);
+}
+
+int
+pthread_gnome_vfs_debug_get_thread_count (void)
+{
+	return gnome_vfs_debug_thread_count;
 }
