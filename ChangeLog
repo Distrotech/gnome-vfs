@@ -1,3 +1,20 @@
+2002-05-01  Jody Goldberg <jody@gnome.org>
+
+	* test/test-info.c (main) : add a test for is_local.
+
+	* modules/Makefile.am : add fstype.c from gnu/findutils
+
+	* modules/file-method.c (do_is_local) : implement.
+
+	* configure.in : Add afs option and check for some utilities required
+	  for the fstype code from gnu/findutils.
+
+2002-04-26  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-application-registry.c (application_add_key) :
+	  Store supported_uri_schemes as a key in addition to the internal
+	  representation.
+
 Wed May 01 16:49:01 2002  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: reverted fix for #75150 and

@@ -448,7 +448,39 @@ dnl NOTE: We need to use a separate automake conditional for this
 dnl       to make this work with the tarballs.
 AM_CONDITIONAL(ENABLE_GTK_DOC, $ENABLE_GTK_DOC)
 
+dnl borrowed from gnu findutils
+dnl and relicensed as LGPL by the FSF
 
+AC_ARG_WITH(afs,
+[  --with-afs              support -fstype afs],
+[  AC_DEFINE(AFS)
+  CPPFLAGS="$CPPFLAGS -I/usr/afsws/include"
+  LIBS="$LIBS -L/usr/afsws/lib -L/usr/afsws/lib/afs -lsys -lrx -llwp"])
+
+AC_MSG_CHECKING(how to get filesystem type)
+fstype=no
+# The order of these tests is important.
+AC_TRY_CPP([#include <sys/statvfs.h>
+#include <sys/fstyp.h>], AC_DEFINE(FSTYPE_STATVFS) fstype=SVR4)
+if test $fstype = no; then
+AC_TRY_CPP([#include <sys/statfs.h>
+#include <sys/fstyp.h>], AC_DEFINE(FSTYPE_USG_STATFS) fstype=SVR3)
+fi
+if test $fstype = no; then
+AC_TRY_CPP([#include <sys/statfs.h>
+#include <sys/vmount.h>], AC_DEFINE(FSTYPE_AIX_STATFS) fstype=AIX)
+fi
+if test $fstype = no; then  
+AC_TRY_CPP([#include <mntent.h>], AC_DEFINE(FSTYPE_MNTENT) fstype=4.3BSD)
+fi
+if test $fstype = no; then  
+AC_EGREP_HEADER(f_type;, sys/mount.h, AC_DEFINE(FSTYPE_STATFS) fstype=4.4BSD/OSF1)
+fi
+if test $fstype = no; then  
+AC_TRY_CPP([#include <sys/mount.h>
+#include <sys/fs_types.h>], AC_DEFINE(FSTYPE_GETMNT) fstype=Ultrix)
+fi
+AC_MSG_RESULT($fstype)
 
 dnl Final touch
 

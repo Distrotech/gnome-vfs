@@ -610,7 +610,7 @@ application_add_key (Application *application, const char *key,
 			next_value = strtok (NULL, ", \t");
 		}
 		g_free(value_copy);
-		return;		   
+		/* fall through so that we can store the values as keys too */
 	}
 	else if (strcmp (key, "expects_uris") == 0) {
 		if (strcmp (value, "non-file") == 0) {

@@ -106,7 +106,7 @@ GET_PATH_MAX (void)
 #endif
 
 static gchar *
-get_path_from_uri (GnomeVFSURI *uri)
+get_path_from_uri (GnomeVFSURI const *uri)
 {
 	gchar *path;
 
@@ -126,7 +126,7 @@ get_path_from_uri (GnomeVFSURI *uri)
 }
 
 static gchar *
-get_base_from_uri (GnomeVFSURI *uri)
+get_base_from_uri (GnomeVFSURI const *uri)
 {
 	gchar *escaped_base, *base;
 
@@ -872,15 +872,43 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
+GHashTable *fstype_hash = NULL;
+G_LOCK_DEFINE_STATIC (fstype_hash);
+extern char const *filesystem_type (char *path, char *relpath, struct stat *statp);
 
 static gboolean
 do_is_local (GnomeVFSMethod *method,
 	     const GnomeVFSURI *uri)
 {
+	gchar *path;
+	gpointer local = NULL;
+
 	g_return_val_if_fail (uri != NULL, FALSE);
 
-	/* We are always a native filesystem.  */
-	return TRUE;
+	path = get_path_from_uri (uri);
+	if (path == NULL)
+		return TRUE; /* GNOME_VFS_ERROR_INVALID_URI */
+
+	G_LOCK (fstype_hash);
+	if (fstype_hash == NULL)
+		fstype_hash = g_hash_table_new_full (
+			g_str_hash, g_str_equal, g_free, NULL);
+	else
+		local = g_hash_table_lookup (fstype_hash, path);
+
+	if (local == NULL) {
+		struct stat statbuf;
+		if (stat (path, &statbuf) == 0) {
+			char const *type = filesystem_type (path, path, &statbuf);
+			gboolean is_local = strcmp (type, "nfs") && strcmp (type, "afs");
+			local = GINT_TO_POINTER (is_local ? 1 : -1);
+			g_hash_table_insert (fstype_hash, path, local);
+		}
+	} else
+		g_free (path);
+
+	G_UNLOCK (fstype_hash);
+	return GPOINTER_TO_INT (local) > 0;
 }
 
 

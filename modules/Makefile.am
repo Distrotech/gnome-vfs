@@ -93,7 +93,7 @@ libextfs_la_LDFLAGS = $(module_flags)
 
 ###  `file' method
 
-libfile_la_SOURCES = file-method.c
+libfile_la_SOURCES = file-method.c fstype.c
 libfile_la_LDFLAGS = $(module_flags)
 libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS)
 

@@ -125,6 +125,7 @@ main (int argc,
       char **argv)
 {
 	GnomeVFSFileInfo *info;
+	GnomeVFSURI *vfs_uri;
 	GnomeVFSResult result;
 	gchar *uri;
 	int i=1;
@@ -161,6 +162,11 @@ main (int argc,
 		print_file_info (info);
 
 		gnome_vfs_file_info_unref (info);
+
+		vfs_uri = gnome_vfs_uri_new (uri);
+		printf (gnome_vfs_uri_is_local (vfs_uri)
+			? "File is local\n" : "File is not local\n");
+		gnome_vfs_uri_unref (vfs_uri);
 
 		i++;
 	}
