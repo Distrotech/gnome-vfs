@@ -1,3 +1,7 @@
+2002-05-23  Christophe Merlet  <christophe@merlet.net>
+
+	* fr.po: Updated French translation.
+
 2002-05-22  Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>
 
 	* sk.po: Updated Slovak translation.
@@ -26,7 +30,7 @@
 
 	* ChangeLog:
 
-2002-01-29  Christophe Merlet  <redfox@eikonex.org>
+2002-01-29  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 
@@ -62,7 +66,7 @@
 
 	* nn.po: Updated Norwegian (nynorsk) translation.
 
-2001-10-25  Christophe Merlet  <redfox@eikonex.org>
+2001-10-25  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 
@@ -71,7 +75,7 @@
 	* pl.po: Updated Polish translation by
 	GNOME PL Team <translators@gnome.pl>.
 
-2001-10-13  Christophe Merlet  <redfox@eikonex.org>
+2001-10-13  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 
@@ -150,7 +154,7 @@
 
 	* no.po: Updated Norwegian translation.
 	
-2001-06-22  Christophe Merlet  <redfox@eikonex.org>
+2001-06-22  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 
@@ -277,7 +281,7 @@
 
 	* el.po: Update of Greek translation.
 
-2001-03-01  Christophe Merlet  <redfox@eikonex.org>
+2001-03-01  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 
@@ -350,7 +354,7 @@
 
 	* hu.po: Update by Greg <greg@gnome.hu>
 
-2001-02-26  Christophe Merlet  <redfox@eikonex.org>
+2001-02-26  Christophe Merlet  <christophe@merlet.net>
 
 	* update.sh: Removed (Don't work with xml-i18n-tools >= 0.8.1)
 	* fr.po: Updated French translation.
@@ -371,7 +375,7 @@
 
 	* no.po: Updated Norwegian (bokmel) translation.
 	
-2001-02-23  Christophe Merlet  <redfox@eikonex.org>
+2001-02-23  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 
@@ -403,7 +407,7 @@
 
 	* de.po: Updated for beta and Nautilus release.
 
-2001-02-20  Christophe Merlet  <redfox@eikonex.org>
+2001-02-20  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 
@@ -451,7 +455,7 @@
 
         * hu.po: Update and fixes by Emese <emese@gnome.hu>
 
-2001-02-13  Christophe Merlet  <redfox@eikonex.org>
+2001-02-13  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 
@@ -485,7 +489,7 @@
 
 	* fi.po: Updated Finnish translation.
 
-2001-02-13  Christophe Merlet  <redfox@eikonex.org>
+2001-02-13  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 
@@ -502,7 +506,7 @@
 	* tr.po: Committed updated Turkish translation
 		by Sinan Imamoglu.
 
-2001-02-05  Christophe Merlet  <redfox@eikonex.org>
+2001-02-05  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 	* update.pl: Removed this script and replaced by...
@@ -598,7 +602,7 @@
 
 	* sk.po: Updated Slovak translation.
 
-2001-01-10  Christophe Merlet  <redfox@eikonex.org>
+2001-01-10  Christophe Merlet  <christophe@merlet.net>
 
 	* fr.po: Updated French translation.
 
