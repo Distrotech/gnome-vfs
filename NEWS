@@ -1,5 +1,16 @@
-gnome-vfs 2.8.3
+gnome-vfs 2.8.4
+    * Bugs fixed:
+	+ Never return NULL on gnome_vfs_uri_extract_short_name calls
+	+ sftp-method: always check for the gnome_vfs_unescape_string
+	  return value
+	+ sftp-method: honor the force_replace flag on moves
+	+ gzip-method: correctly return GNOME_VFS_ERROR_EOF
+	+ Plug some memory leaks
+	+ Fix bogus warnings with later gcc versions
+	+ Various translation updates
 
+gnome-vfs 2.8.3
+  
     * Bugs fixed:
 	+ Fix ftp upload corruptor
 	+ Handle several changes in mtab/fstab in the same second
