@@ -1,3 +1,13 @@
+2004-07-21  Dave Camp  <dave@novell.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	(gnome_vfs_mime_info_cache_dir_init),
+	(gnome_vfs_mime_info_cache_dir_init_defaults_list),
+	(gnome_vfs_mime_info_cache_dir_new),
+	(gnome_vfs_mime_info_cache_dir_free),
+	(gnome_vfs_mime_info_cache_update_dir_lists): Fix up
+	the monitor creation/destruction.
+
 2004-07-20  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime.[ch]: 

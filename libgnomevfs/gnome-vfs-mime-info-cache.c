@@ -39,7 +39,8 @@ typedef struct {
 	char *path;
 	GHashTable *mime_info_cache_map;
 	GHashTable *defaults_list_map;
-	GnomeVFSMonitorHandle  *monitor_handle;
+	GnomeVFSMonitorHandle  *cache_monitor_handle;
+	GnomeVFSMonitorHandle  *defaults_monitor_handle;
 
 	time_t mime_info_cache_timestamp;
 	time_t defaults_list_timestamp;
@@ -117,7 +118,7 @@ gnome_vfs_mime_info_cache_dir_init (GnomeVFSMimeInfoCacheDir *dir)
 	entries = NULL;
 
 	if (dir->mime_info_cache_map != NULL &&
-	    dir->monitor_handle == NULL &&
+	    dir->cache_monitor_handle == NULL &&
   	    !gnome_vfs_mime_info_cache_dir_out_of_date (dir, "mimeinfo.cache",
 		                                        &dir->mime_info_cache_timestamp))
 		return;
@@ -212,7 +213,7 @@ gnome_vfs_mime_info_cache_dir_init_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 	entries = NULL;
 
 	if (dir->defaults_list_map != NULL &&
-	    dir->monitor_handle == NULL &&
+	    dir->defaults_monitor_handle == NULL &&
   	    !gnome_vfs_mime_info_cache_dir_out_of_date (dir, "defaults.list",
 		                                        &dir->defaults_list_timestamp))
 		return;
@@ -336,7 +337,7 @@ gnome_vfs_mime_info_cache_dir_new (const char *path)
 
 	filename = g_build_filename (dir->path, "mimeinfo.cache", NULL);
 
-	gnome_vfs_monitor_add (&dir->monitor_handle,
+	gnome_vfs_monitor_add (&dir->cache_monitor_handle,
 			       filename,
 			       GNOME_VFS_MONITOR_FILE,
 			       (GnomeVFSMonitorCallback) 
@@ -346,7 +347,7 @@ gnome_vfs_mime_info_cache_dir_new (const char *path)
 
 	filename = g_build_filename (dir->path, "defaults.list", NULL);
 
-	gnome_vfs_monitor_add (&dir->monitor_handle,
+	gnome_vfs_monitor_add (&dir->defaults_monitor_handle,
 			       filename,
 			       GNOME_VFS_MONITOR_FILE,
 			       (GnomeVFSMonitorCallback) 
@@ -371,6 +372,16 @@ gnome_vfs_mime_info_cache_dir_free (GnomeVFSMimeInfoCacheDir *dir)
 	if (dir->defaults_list_map != NULL) {
 		g_hash_table_destroy (dir->defaults_list_map);
 		dir->defaults_list_map = NULL;
+	}
+
+	if (dir->defaults_monitor_handle) {
+		gnome_vfs_monitor_cancel (dir->defaults_monitor_handle);
+		dir->defaults_monitor_handle = NULL;
+	}
+
+	if (dir->cache_monitor_handle){
+		gnome_vfs_monitor_cancel (dir->cache_monitor_handle);
+		dir->cache_monitor_handle = NULL;
 	}
 
 	g_free (dir);
@@ -592,8 +603,11 @@ gnome_vfs_mime_info_cache_update_dir_lists (void)
 
 		dir = (GnomeVFSMimeInfoCacheDir *) tmp->data;
 
-		if (dir->monitor_handle == NULL) { 
+		if (dir->cache_monitor_handle == NULL) { 
 			gnome_vfs_mime_info_cache_dir_init (dir);
+		}
+		
+		if (dir->defaults_monitor_handle == NULL) {
 			gnome_vfs_mime_info_cache_dir_init_defaults_list (dir);
 		}
 
@@ -605,7 +619,7 @@ gnome_vfs_mime_info_cache_update_dir_lists (void)
 		GnomeVFSMimeInfoCacheDir *dir;
 
 		dir = (GnomeVFSMimeInfoCacheDir *) tmp->data;
-		if (dir->monitor_handle == NULL) { 
+		if (dir->defaults_monitor_handle == NULL) { 
 			gnome_vfs_mime_info_cache_dir_init_defaults_list (dir);
 		}
 
