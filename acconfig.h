@@ -40,4 +40,5 @@
 #undef FSTYPE_GETMNT
 
 #undef HAVE_GNUTLS
+#undef GNUTLS_COMPAT
 #undef ENABLE_IPV6

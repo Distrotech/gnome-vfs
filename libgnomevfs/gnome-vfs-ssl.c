@@ -56,14 +56,21 @@
 #include <sys/socket.h>
 #endif
 
+#if defined GNUTLS_COMPAT
+#define gnutls_certificate_credentials GNUTLS_CERTIFICATE_CREDENTIALS
+#define gnutls_session GNUTLS_STATE
+#define gnutls_certificate_free_credentials gnutls_certificate_free_sc
+#define gnutls_certificate_allocate_credentials gnutls_certificate_allocate_sc
+#endif
+
 typedef struct {
 #ifdef HAVE_OPENSSL
 	int sockfd;
 	SSL *ssl;
 #elif defined HAVE_GNUTLS
 	int sockfd;
-	GNUTLS_STATE tlsstate;
-	GNUTLS_CERTIFICATE_CLIENT_CREDENTIALS xcred;
+	gnutls_session tlsstate;
+	gnutls_certificate_client_credentials xcred;
 #elif defined HAVE_NSS
 	PRFileDesc *sockfd;
 #else
@@ -218,8 +225,7 @@ gnome_vfs_ssl_create (GnomeVFSSSL **handle_return,
 static const int protocol_priority[] = {GNUTLS_TLS1, GNUTLS_SSL3, 0};
 static const int cipher_priority[] = 
 	{GNUTLS_CIPHER_RIJNDAEL_128_CBC, GNUTLS_CIPHER_3DES_CBC,
-	 GNUTLS_CIPHER_RIJNDAEL_256_CBC, GNUTLS_CIPHER_TWOFISH_128_CBC,
-	 GNUTLS_CIPHER_ARCFOUR, 0};
+	 GNUTLS_CIPHER_RIJNDAEL_256_CBC, GNUTLS_CIPHER_ARCFOUR, 0};
 static const int comp_priority[] =
 	{GNUTLS_COMP_ZLIB, GNUTLS_COMP_NULL, 0};
 static const int kx_priority[] =
@@ -292,7 +298,7 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 	ssl->private = g_new0 (GnomeVFSSSLPrivate, 1);
 	ssl->private->sockfd = fd;
 
-	err = gnutls_certificate_allocate_sc (&ssl->private->xcred);
+	err = gnutls_certificate_allocate_credentials (&ssl->private->xcred);
 	if (err < 0) {
 		g_free (ssl->private);
 		g_free (ssl);
@@ -321,7 +327,7 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 	}
 
 	if (err < 0) {
-		gnutls_certificate_free_sc (ssl->private->xcred);
+		gnutls_certificate_free_credentials (ssl->private->xcred);
 		gnutls_deinit (ssl->private->tlsstate);
 		g_free (ssl->private);
 		g_free (ssl);
@@ -450,7 +456,7 @@ gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl)
 	close (ssl->private->sockfd);
 #elif defined HAVE_GNUTLS
 	gnutls_bye (ssl->private->tlsstate, GNUTLS_SHUT_RDWR);
-	gnutls_certificate_free_sc (ssl->private->xcred);
+	gnutls_certificate_free_credentials (ssl->private->xcred);
 	gnutls_deinit (ssl->private->tlsstate);
 	close (ssl->private->sockfd);
 #else

@@ -1,3 +1,13 @@
+2004-04-16  Alexander Larsson  <alexl@redhat.com>
+
+	Patch from Ondrej Sury
+	
+	* acconfig.h:
+	* configure.in:
+	* libgnomevfs/gnome-vfs-ssl.c: (gnome_vfs_ssl_create_from_fd),
+	(gnome_vfs_ssl_destroy):
+	Work with gnutls 1.0 and older versions.
+	
 2004-04-15 Joe Marcus Clarke <marcus@FreeBSD.org>
 
 	* configure.in:
