@@ -1,3 +1,14 @@
+2004-11-25  Marco Pesenti Gritti  <marco@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(expand_application_parameters),
+	(gnome_vfs_mime_application_new_from_desktop_id):
+
+	Do not go in an infinite cycle if we are unable to
+	do substitutions.
+	If the exec field doesnt specifi any macros default
+	to %f.
+
 2004-11-24  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-cancellation.c:

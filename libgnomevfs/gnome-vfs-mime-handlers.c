@@ -1423,6 +1423,7 @@ expand_application_parameters (const char     *exec,
 			       int            *argc,
 			       char         ***argv)		   
 {
+	GList *uri_list = *uris;
 	const char *p = exec;
 	GString *expanded_exec = g_string_new (NULL);
 
@@ -1437,6 +1438,11 @@ expand_application_parameters (const char     *exec,
 		}
 
 		p++;
+	}
+
+	/* No substitutions */
+	if (uri_list == *uris) {
+		return GNOME_VFS_ERROR_PARSE;
 	}
 
 	if (!g_shell_parse_argv (expanded_exec->str, argc, argv, NULL)) {
@@ -1746,6 +1752,15 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 						 "Exec", &err);
 	if (err) goto exit;
 
+	/* If there is no macro default to %f. This is also what KDE does */
+	if (!strchr (app->priv->exec, '%')) {
+		char *exec;
+
+		exec = g_strconcat (app->priv->exec, " %f", NULL);
+		g_free (app->priv->exec);
+		app->priv->exec = exec;
+	}
+
 	app->requires_terminal = g_key_file_get_boolean
 			(key_file, DESKTOP_ENTRY_GROUP, "Terminal", &err);
 	if (err) {
@@ -1770,7 +1785,7 @@ gnome_vfs_mime_application_new_from_desktop_id (const char *id)
 	
 	app->priv->startup_wm_class = g_key_file_get_string
 			(key_file, DESKTOP_ENTRY_GROUP, "StartupWMClass", NULL);
-						       
+
 	app->priv->supports_uris = strstr (app->priv->exec, "%u") ||
 				   strstr (app->priv->exec, "%U");
 
