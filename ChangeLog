@@ -1,5 +1,10 @@
 2002-07-18  Damon Chaplin  <damon@ximian.com>
 
+	* modules/vfolder/vfolder-common.c (entry_quick_read_keys): oops.
+	didn't need to add '\0' to a GString. That was silly.
+
+2002-07-18  Damon Chaplin  <damon@ximian.com>
+
 	* modules/vfolder/vfolder-common.c (entry_quick_read_keys): init
 	*result1 & *result2 to NULL, in case there is an error reading the
 	.desktop file. (Some of my X11 .desktop files are not readable by me,

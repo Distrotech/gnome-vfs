@@ -328,8 +328,6 @@ entry_quick_read_keys (Entry  *entry,
 		return;
 	}
 
-	g_string_append_c (fullbuf, '\0');
-
 	entry_key_val_from_string (fullbuf->str, key1, result1);
 
 	if (key2)
