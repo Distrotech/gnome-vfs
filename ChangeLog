@@ -1,3 +1,7 @@
+Mon Oct 22 19:10:57 2001  George Lebl <jirka@5z.com>
+
+	* modules/test-method.c: add includes for sys/time and sys/types
+
 Sun Oct 21 16:14:33 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: implement saving of the vfolder
