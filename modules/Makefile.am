@@ -39,7 +39,8 @@ modules_LTLIBRARIES =				\
 	libgzip.la				\
 	libftp.la				\
 	libvfs-pipe.la				\
-	libvfs-translate.la
+	libvfs-translate.la			\
+	libnfs.la
 
 modulesconfdir=$(sysconfdir)/vfs/modules
 modulesconf_DATA =				\
@@ -106,6 +107,16 @@ libgconf_la_LIBADD = $(GCONF_LIBS) $(GTK_LIBS)
 
 libgconf_la_LDFLAGS = $(module_flags)
 
+### `nfs' method
+libnfs_la_SOURCES = 				\
+	nfs-method.c				\
+	nfs-method.h				\
+	nfs-method_mount_xdr.c				\
+	nfs-method_nfs_prot_xdr.c				\
+	nfs-method_mount.h					\
+	nfs-method_nfs_prot.h
+
+libnfs_la_LDFLAGS = $(module_flags)
 
 ### `http' method
 

@@ -29,6 +29,10 @@ VFS engine contributors:
 "pipe" and "translate" methods:
 	Elliot Lee <sopwith@redhat.com>
 
+"nfs" method:
+	Grahame Bowland <gbowland@gbowland.com>
+	Ian McKellar <yakk@yakk.net.au>
+
 MIME API and the MIME capplet:
 	John Sullivan <sullivan@eazel.com>
 	Pavel Cisler <pavel@eazel.com>

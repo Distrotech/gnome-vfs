@@ -1,3 +1,19 @@
+
+2000-10-24  Grahame Bowland  <gbowland@gbowland.com>
+
+	* AUTHORS:
+	* modules/Makefile.am:
+	* modules/default-modules.conf:
+	* modules/nfs-method.c: 
+	* modules/nfs-method.h:
+	* modules/nfs-method_mount.h:
+	* modules/nfs-method_mount_xdr.c:
+	* modules/nfs-method_nfs_prot.h:
+	* modules/nfs-method_nfs_prot_xdr.c:
+	Added initial NFS support to gnome-vfs. Read-only support reasonably stable;
+	write support is not. Symlinks are one notable problem that will be fixed in
+	the near future.
+
 2000-10-23  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/http-method.c:
