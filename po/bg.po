@@ -5,9 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-12-16 13:29+0100\n"
-"PO-Revision-Date: 2002-06-05 09:36GMT\n"
-"Last-Translator: Borislav Aleksandrov <B.Aleksandrov@cnsys.bg>\n"
+"POT-Creation-Date: 2003-01-03 18:19+0200\n"
+"PO-Revision-Date: 2002-12-22 21:57+0200\n"
+"Last-Translator: Alexander Shopov <al_shopov@yahoo.com>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -269,41 +269,40 @@ msgstr "Грешка в протокол"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "Не мога да обработя: %s"
+msgstr "Не мога да открия основния браузър"
 
 #: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
 msgstr "Неизвестна грешка"
 
-#: libgnomevfs/gnome-vfs-utils.c:70
+#: libgnomevfs/gnome-vfs-utils.c:83
 msgid "1 byte"
 msgstr "1 байт"
 
-#: libgnomevfs/gnome-vfs-utils.c:72
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u bytes"
 msgstr "%u байта"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f К"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:96
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f МБ"
 
-#: libgnomevfs/gnome-vfs-utils.c:87
+#: libgnomevfs/gnome-vfs-utils.c:100
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f ГБ"
 
-#: libgnomevfs/gnome-vfs-utils.c:1087
+#: libgnomevfs/gnome-vfs-utils.c:1109
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr "(грешен уникод)"
 
 #: modules/file-method.c:382
 #, c-format
