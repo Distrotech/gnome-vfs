@@ -39,7 +39,7 @@
 #include <linux/cdrom.h>
 #endif
 
-#ifdef __FreeBSD__
+#ifdef HAVE_SYS_CDIO_H
 #include <sys/cdio.h>
 #endif
 

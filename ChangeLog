@@ -1,3 +1,9 @@
+2003-11-13  Niall Power  <niall.power@sun.com>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c:
+	* libgnomevfs/gnome-vfs-cdrom.c:
+	Solaris fixes
+	
 2003-11-12  Alexander Larsson  <alexl@redhat.com>
 
 	* daemon/gnome-vfs-daemon.c: (gnome_vfs_daemon_factory):

@@ -24,6 +24,7 @@
 #include <config.h>
 
 #include <sys/types.h>
+#include <stdio.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <sys/time.h>
@@ -36,6 +37,9 @@
 
 #define MOUNT_POLL_INTERVAL 3000
 
+#ifdef HAVE_SYS_MNTTAB_H
+#define MNTOPT_RO	"ro"
+#endif
 
 #ifdef HAVE_MNTENT_H
 #include <mntent.h>
@@ -267,15 +271,15 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 		return TRUE;
 	}
 
-	while ((! getmntent (file, &mntent)) != NULL) {
+	while (! getmntent (file, &mntent)) {
 		mount_entry = g_new0 (GnomeVFSUnixMount, 1);
 
-		mount_entry->mount_path = g_strdup (mntent.mnt_dir);
-		mount_entry->device_path = g_strdup (mntent.mnt_fsname);
-		mount_entry->filesystem_type = g_strdup (mntent.mnt_type);
+		mount_entry->mount_path = g_strdup (mntent.mnt_mountp);
+		mount_entry->device_path = g_strdup (mntent.mnt_special);
+		mount_entry->filesystem_type = g_strdup (mntent.mnt_fstype);
 
 #if defined (HAVE_HASMNTOPT)
-		if (hasmntopt (mntent, MNTOPT_RO) != NULL) {
+		if (hasmntopt (&mntent, MNTOPT_RO) != NULL) {
 			mount_entry->is_read_only = TRUE;
 		}
 #endif
@@ -512,21 +516,11 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 
 #elif defined (HAVE_SYS_MNTTAB_H)
 
-static char *
-get_fstab_file (void)
-{
-#ifdef _PATH_MNTTAB
-	return _PATH_MNTTAB;
-#else	
-	return "/etc/fstab";
-#endif
-}
-
 gboolean
 _gnome_vfs_get_unix_mount_table (GList **return_list)
 {
 	static time_t last_mtime = 0;
-	struct mntent *mntent;
+	struct mnttab mntent;
 	FILE *file;
 	char *read_file;
 	char *stat_file;
@@ -554,33 +548,33 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 		return TRUE;
 	}
 
-	while ((mntent = getmntent (file)) != NULL) {
-		if ((strcmp (mntent->mnt_dir, "ignore") == 0) ||
-		    (strcmp (mntent->mnt_dir, "swap") == 0)) {
+	while (! getmntent (file, &mntent)) {
+		if ((strcmp (mntent.mnt_mountp, "ignore") == 0) ||
+		    (strcmp (mntent.mnt_mountp, "swap") == 0)) {
 			continue;
 		}
 		
 		mount_entry = g_new0 (GnomeVFSUnixMountPoint, 1);
 
-		mount_entry->mount_path = g_strdup (mntent->mnt_dir);
-		mount_entry->device_path = g_strdup (mntent->mnt_fsname);
-		mount_entry->filesystem_type = g_strdup (mntent->mnt_type);
+		mount_entry->mount_path = g_strdup (mntent.mnt_mountp);
+		mount_entry->device_path = g_strdup (mntent.mnt_special);
+		mount_entry->filesystem_type = g_strdup (mntent.mnt_fstype);
 
 
 #ifdef HAVE_HASMNTOPT
-		if (hasmntopt (mntent, MNTOPT_RO) != NULL) {
+		if (hasmntopt (&mntent, MNTOPT_RO) != NULL) {
 			mount_entry->is_read_only = TRUE;
 		}
-		if (hasmntopt (mntent, "loop") != NULL) {
+		if (hasmntopt (&mntent, "lofs") != NULL) {
 			mount_entry->is_loopback = TRUE;
 		}
 #endif
 
-		if ((mntent->mnt_type != NULL && strcmp ("supermount", mntent->mnt_type) == 0)
+		if ((mntent.mnt_fstype != NULL)
 #ifdef HAVE_HASMNTOPT
-		    || hasmntopt (mntent, "user") != NULL
-		    || hasmntopt (mntent, "users") != NULL
-		    || hasmntopt (mntent, "owner") != NULL
+		    || hasmntopt (&mntent, "user") != NULL
+		    || hasmntopt (&mntent, "users") != NULL
+		    || hasmntopt (&mntent, "owner") != NULL
 #endif
 		    ) {
 			mount_entry->is_user_mountable = TRUE;
