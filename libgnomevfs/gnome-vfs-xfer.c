@@ -244,15 +244,18 @@ call_progress_often (GnomeVFSProgressCallbackState *progress, GnomeVFSXferPhase 
 
 	progress->progress_info->phase = phase;
 
-	if (progress->sync_callback != NULL)
+	if (progress->sync_callback != NULL) {
 		result = (* progress->sync_callback) (progress->progress_info, progress->user_data);
+	}
 
-	if (now < progress->next_update_callback_time)
+	if (now < progress->next_update_callback_time) {
 		return result;
+	}
 
 	progress->next_update_callback_time = now + progress->update_callback_period;
-	if (progress->update_callback != NULL)
+	if (progress->update_callback != NULL) {
 		result = (* progress->update_callback) (progress->progress_info, progress->async_job_data);
+	}
 
 	return result;
 }
@@ -907,13 +910,15 @@ copy_file_data (GnomeVFSHandle *target_handle,
 {
 	GnomeVFSResult result;
 	gpointer buffer;
-	
+
 	*skip = FALSE;
 
-	buffer = alloca (block_size);
+	buffer = g_malloc (block_size);
 
-	if (call_progress_often (progress, GNOME_VFS_XFER_PHASE_COPYING) == 0)
+	if (call_progress_often (progress, GNOME_VFS_XFER_PHASE_COPYING) == 0) {
+		g_free(buffer);
 		return GNOME_VFS_ERROR_INTERRUPTED;
+	}
 
 	do {
 		GnomeVFSFileSize bytes_read;
@@ -936,8 +941,9 @@ copy_file_data (GnomeVFSHandle *target_handle,
 						      error_mode, skip);
 		} while (retry && bytes_read > 0);
 
-		if (result != GNOME_VFS_OK || bytes_read == 0 || *skip)
+		if (result != GNOME_VFS_OK || bytes_read == 0 || *skip) {
 			break;
+		}
 
 		bytes_to_write = bytes_read;
 
@@ -961,8 +967,10 @@ copy_file_data (GnomeVFSHandle *target_handle,
 		progress->progress_info->total_bytes_copied += bytes_read;
 
 
-		if (call_progress_often (progress, GNOME_VFS_XFER_PHASE_COPYING) == 0)
+		if (call_progress_often (progress, GNOME_VFS_XFER_PHASE_COPYING) == 0) {
+			g_free(buffer);
 			return GNOME_VFS_ERROR_INTERRUPTED;
+		}
 
 
 		if (*skip) {
@@ -971,6 +979,7 @@ copy_file_data (GnomeVFSHandle *target_handle,
 
 	} while (result == GNOME_VFS_OK);
 
+	g_free(buffer);
 
 	if (result == GNOME_VFS_ERROR_EOF)
 		return GNOME_VFS_OK;
@@ -1101,7 +1110,9 @@ copy_file (GnomeVFSFileInfo *info,
 
 		result = copy_file_data (target_handle, source_handle,
 					progress, xfer_options, error_mode,
-					info->io_block_size, skip);
+					/* use an arbitrary default block size of 4096 if one isn't available for this fs */
+					info->valid_fields&GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE?info->io_block_size:4096,
+					 skip);
 	}
 
 	progress->progress_info->file_index++;

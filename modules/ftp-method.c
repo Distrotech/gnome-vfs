@@ -699,6 +699,10 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info) {
 
 		gnome_vfs_stat_to_file_info(file_info, &s);
 
+		/* we don't know the io_block size */
+		file_info->valid_fields -= GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
+		file_info->io_block_size = 0;
+
 		file_info->name = g_strdup(g_basename(filename));
 
 		if(*(file_info->name) == '\0') {
@@ -775,9 +779,11 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 	if (bytes_read>0) {
 
 		buffer[bytes_read] = '\0';
+		file_info->valid_fields = 0; /* make sure valid_fields is 0 */
 
-		if (ls_to_file_info(buffer, file_info)) 
+		if (ls_to_file_info(buffer, file_info)) {
 			return GNOME_VFS_OK;
+		}
 
 	}
 	

@@ -93,8 +93,20 @@ xfer_progress_callback (GnomeVFSXferProgressInfo *info,
 	case GNOME_VFS_XFER_PROGRESS_STATUS_OK:
 		printf ("Status: OK\n");
 		switch (info->phase) {
+		case GNOME_VFS_XFER_PHASE_INITIAL:
+			printf ("Initial phase\n");
+			return TRUE;
+		case GNOME_VFS_XFER_PHASE_COLLECTING:
+			printf ("Collecting file list\n");
+			return TRUE;
 		case GNOME_VFS_XFER_PHASE_READYTOGO:
 			printf ("Ready to go!\n");
+			return TRUE;
+		case GNOME_VFS_XFER_PHASE_OPENSOURCE:
+			printf ("Opening source\n");
+			return TRUE;
+		case GNOME_VFS_XFER_PHASE_OPENTARGET:
+			printf ("Opening target\n");
 			return TRUE;
 		case GNOME_VFS_XFER_PHASE_COPYING:
 			printf ("Transferring `%s' to `%s' (file %ld/%ld, byte %ld/%ld in file, "
@@ -108,6 +120,12 @@ xfer_progress_callback (GnomeVFSXferProgressInfo *info,
 				info->total_bytes_copied,
 				info->bytes_total);
 			return TRUE;
+		case GNOME_VFS_XFER_PHASE_CLOSESOURCE:
+			printf ("Closing source\n");
+			return TRUE;
+		case GNOME_VFS_XFER_PHASE_CLOSETARGET:
+			printf ("Closing target\n");
+			return TRUE;
 		case GNOME_VFS_XFER_PHASE_FILECOMPLETED:
 			printf ("Done with `%s' -> `%s', going next\n",
 				info->source_name, info->target_name);
@@ -117,7 +135,7 @@ xfer_progress_callback (GnomeVFSXferProgressInfo *info,
 			return TRUE;
 		default:
 			printf ("Unexpected phase %d\n", info->phase);
-			return FALSE;
+			return TRUE; /* keep going anyway */
 		}
 	case GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE:
 		break;

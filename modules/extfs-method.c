@@ -105,7 +105,7 @@ typedef struct _ExtfsDirectoryHandle ExtfsDirectoryHandle;
 
 
 #define ERROR_IF_NOT_LOCAL(uri)					\
-	if (strcmp ((uri)->parent->method_string, "file") != 0)	\
+	if ((!uri) || (!uri->parent) || (!(uri)->parent->method_string) || strcmp ((uri)->parent->method_string, "file") != 0)	\
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
 static GnomeVFSResult

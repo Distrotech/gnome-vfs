@@ -1,3 +1,20 @@
+2000-07-03  Ian McKellar  <yakk@yakk.net.au>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (call_progress_often),
+	(copy_file_data), (copy_file):
+	Fixes to supply a default IO block size of 4096 for xfers when none
+	is supplied by the module.
+
+	* modules/extfs-method.c:
+	Segfault fix.
+
+	* modules/ftp-method.c: (ls_to_file_info),
+	(internal_get_file_info):
+	Fix get_file_info response to not contain a default IO block size.
+
+	* test/test-xfer.c: (xfer_progress_callback):
+	Update test-xfer to understand a couple more xfer phases.
+
 2000-07-02  Ian McKellar  <yakk@yakk.net.au>
 
 	* libgnomevfs/gnome-vfs-uri.h:
