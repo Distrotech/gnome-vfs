@@ -242,43 +242,41 @@ do_open (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 	g_message ("cdda do_open: %s", gnome_vfs_uri_get_path (uri));
 
 	if (mode == GNOME_VFS_OPEN_READ) {
-		//	Make sure file is present
+		// Make sure file is present
 		if (is_file_is_on_disc (global_context, uri)) {
 			result = GNOME_VFS_OK;			
 			read_handle = read_handle_new (uri);
 			
 			// Set up cdparanoia
 			if (!read_handle->inited) {
-				disc_info data;
 				int track;
 				int paranoia_mode;
-				long offset;
+				long offset, sec, off;
 
 				track = get_track_index_from_uri (global_context, uri);
 				if (track == -1) {
 					return GNOME_VFS_ERROR_GENERIC;
 				}
-
-				g_message ("Track %d", track);
 				
-				CDStat (global_context->drive->ioctl_fd, &data, TRUE);
-				
-				read_handle->first_sector = 0;
-				read_handle->last_sector = (data.track[track+1].track_start - 1) - data.track[track].track_start;
-
- 				if(!cdda_track_audiop(global_context->drive, track)) {
+ 				if (!cdda_track_audiop (global_context->drive, track)) {
     					g_message ("Error. Selected track is not an audio track.");
     					return GNOME_VFS_ERROR_GENERIC;
   				}
+
+				/* Calculate sector span and offset */
+				sec = cdda_track_firstsector (global_context->drive, track);
+				off = cdda_track_lastsector (global_context->drive, track) - sec + 1;
 								
+				read_handle->first_sector = 0;
+				read_handle->last_sector = off - 1;
+												
 				offset = cdda_track_firstsector (global_context->drive, track);
 				read_handle->first_sector += offset;
 				read_handle->last_sector += offset;
 
-				g_message ("sector span: %d to %d", (int)read_handle->first_sector, (int)read_handle->last_sector);
-
 				read_handle->paranoia = paranoia_init (global_context->drive);
-				paranoia_mode = PARANOIA_MODE_FULL^PARANOIA_MODE_NEVERSKIP;
+				//paranoia_mode = PARANOIA_MODE_FULL^PARANOIA_MODE_NEVERSKIP;
+				paranoia_mode = PARANOIA_MODE_DISABLE;
   				paranoia_modeset (read_handle->paranoia, paranoia_mode);
 				cdda_verbose_set (global_context->drive, CDDA_MESSAGE_PRINTIT,CDDA_MESSAGE_FORGETIT);
 
@@ -356,6 +354,7 @@ do_read (GnomeVFSMethod *method,
 		readbuf = paranoia_read (read_handle->paranoia, paranoia_callback);
 	} else {
 		return GNOME_VFS_ERROR_EOF;
+		
 	}
 
 	if (readbuf == NULL) {
@@ -712,8 +711,8 @@ get_data_size (cdrom_drive *drive, int track)
 		long sec = cdda_track_firstsector (drive, track);
 		long off = cdda_track_lastsector (drive, track) - sec + 1;
 
-      	minutes = off / (60 * 75);
-      	seconds = (off / 75) % 60;
+      		minutes = off / (60 * 75);
+      		seconds = (off / 75) % 60;
 
 		total_seconds = (minutes * 60) + seconds;
 		size = ((total_seconds * 44) * 2 * 2) * 1024;
