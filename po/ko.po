@@ -4,13 +4,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs-1\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
-"PO-Revision-Date: 2003-05-01 23:42+0900\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-10 20:44+0900\n"
+"PO-Revision-Date: 2003-08-10 20:45+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
@@ -294,31 +296,28 @@ msgstr "명령을 실행하는 데 애러가 발생했습니다"
 msgid "Unknown error"
 msgstr "알 수 없는 애러가 발생했습니다"
 
-#: libgnomevfs/gnome-vfs-utils.c:84
-msgid "1 byte"
-msgstr "1 바이트"
-
-#: libgnomevfs/gnome-vfs-utils.c:86
+#: libgnomevfs/gnome-vfs-utils.c:83
 #, c-format
-msgid "%u bytes"
-msgstr "%u 바이트"
+msgid "%u byte"
+msgid_plural "%u bytes"
+msgstr[0] "%u 바이트"
 
-#: libgnomevfs/gnome-vfs-utils.c:93
+#: libgnomevfs/gnome-vfs-utils.c:89
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:97
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:101
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1085
+#: libgnomevfs/gnome-vfs-utils.c:1081
 msgid " (invalid Unicode)"
 msgstr " (잘못된 유니코드)"
 
@@ -339,52 +338,52 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "다른 위치를 지정하려면 %s 환경 변수를 사용하십시오.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
 msgstr "응용프로그램"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr "카드"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr "파일"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr "폴더"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr "도움말"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr "호스트"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr "링크"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr "메일"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr "도구"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "창"
 
@@ -403,3 +402,6 @@ msgstr "일반 그놈 VFS 모니커"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "일반 파일 모니커"
+
+#~ msgid "1 byte"
+#~ msgstr "1 바이트"
