@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-vfs\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
 "PO-Revision-Date: 2003-06-05 10:01+0100\n"
 "Last-Translator: Mathieu van Woerkom <mathieu@brabants.org>\n"
 "Language-Team: Limburgish\n"
@@ -340,53 +340,53 @@ msgstr ""
 "Gebroek de %s omgaevingsvarrejabele veur ein angere lokasie op te gaeve.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
 msgstr "Programme"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr "Kaarte"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr "Besjtenj"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr "Mappe"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr "Hulp"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr "Computers"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr "Verwiezinge"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr "E-mail"
 
 #  Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr "Getuug"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "Vinsters"
 

@@ -11,14 +11,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.mk\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-06-13 20:33+0200\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
 "PO-Revision-Date: 2003-06-15 21:47+0000\n"
 "Last-Translator: Vladislav Bidikov <bidikovi@mail.com.mk>\n"
 "Language-Team: Macedonian <lug@lists.linux.net.mk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 "X-Generator: KBabel 1.0.1\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
@@ -345,55 +345,56 @@ msgstr "Неможе да се пронајде датотека со подес
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Користете ја променливата за околина %s за да одреди друга локација. \n"
+msgstr ""
+"Користете ја променливата за околина %s за да одреди друга локација. \n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
 msgstr "Апликации"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr "Карти"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr "Датотеки"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr "Папки"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr "Помош"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr "Хостови"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr "Врски"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr "Пошта"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr "Алатки"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "Прозорци"
 
@@ -412,4 +413,3 @@ msgstr "општ Gnome VFS moniker"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "општ датотечен moniker"
-

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-06-18 19:44+0400\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
 "PO-Revision-Date: 2003-06-18 19:53+0400\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -401,53 +401,53 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Используйте переменную окружения \"%s\" для указания другого места.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
 msgstr "Приложения"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr "Карточки"
 
 # libgnomevfs/gnome-vfs-result.c:57
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr "Файлы"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr "Папки"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr "Справка"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr "Узлы"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr "Ссылки"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr "Почта"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr "Инструмены"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "Окна"
 

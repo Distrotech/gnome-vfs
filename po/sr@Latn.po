@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.4\n"
-"POT-Creation-Date: 2003-08-14 00:55+0200\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
 "PO-Revision-Date: 2003-08-14 00:54+0200\n"
 "Last-Translator: Dušan Živojnov <calvin@verat.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2003-06-04 08:59+0200\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
 "PO-Revision-Date: 2000-08-27 14:00+0000\n"
 "Last-Translator: Alastair McKinstry <mckinstry@computer.org>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -341,52 +341,52 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr ""
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr ""
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr ""
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr ""
 

@@ -1,3 +1,9 @@
+2003-09-08  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Version 2.4.0
+
 === gnome-vfs 2.3.90 ===
 
 2003-09-02  Alexander Larsson  <alexl@redhat.com>

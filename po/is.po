@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2003-06-21 12:10+0200\n"
+"POT-Creation-Date: 2003-08-25 13:18+0200\n"
 "PO-Revision-Date: 2003-06-21 12:15--100\n"
 "Last-Translator: Samuel Jon Gunnarsson <sammi@techattack.nu>\n"
 "Language-Team: Icelandic <gnome@techattack.nu>\n"
@@ -39,8 +39,7 @@ msgstr "Stillingarskráin `%s' fannst ekki: %s"
 msgid "Unknown op type %u"
 msgstr "Óþekkt op gerð %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1048
-#: libgnomevfs/gnome-vfs-job.c:1193
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ekki tókst að stofna pípu fyrir opna GIOChannel: %s"
@@ -342,53 +341,53 @@ msgid "Use the %s environment variable to specify a different location.\n"
 msgstr "Notaðu umhverfisbreytuna %s til að tilgreina aðra staðsetningu.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:163
+#: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
 msgstr "Forrit"
 
 #  Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:166
+#: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
 msgstr "Spjöld"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:169
+#: modules/cdemenu-desktop-method.c:181
 msgid "Files"
 msgstr "Skrár"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:172
+#: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
 msgstr "Möppur"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:175
+#: modules/cdemenu-desktop-method.c:187
 msgid "Help"
 msgstr "Hjálp"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:178
+#: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
 msgstr "Vélar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:181
+#: modules/cdemenu-desktop-method.c:193
 msgid "Links"
 msgstr "Tenglar"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:184
+#: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
 msgstr "Póstur"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:187
+#: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
 msgstr "Verkfæri"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
-#: modules/cdemenu-desktop-method.c:190
+#: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr "Gluggar"
 
