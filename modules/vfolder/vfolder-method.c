@@ -222,7 +222,7 @@ do_create (GnomeVFSMethod *method,
 		return GNOME_VFS_ERROR_READ_ONLY;
 	}
 
-	folder_add_include (parent, entry_get_filename (entry));
+	folder_add_include (parent, entry_get_displayname (entry));
 	folder_add_entry (parent, entry);
 
 	vfolder_info_emit_change (info, 
@@ -1009,7 +1009,7 @@ do_unlink (GnomeVFSMethod *method,
 	}
 
 	entry_ref (entry);
-	folder_add_exclude (parent, entry_get_filename (entry));
+	folder_add_exclude (parent, entry_get_displayname (entry));
 	folder_remove_entry (parent, entry);
 	entry_unref (entry);
 

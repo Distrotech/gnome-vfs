@@ -244,5 +244,6 @@ vfolder_monitor_cancel (VFolderMonitor *monitor)
 		G_UNLOCK (stat_monitors);
 	}
 
+	g_free (monitor->uri);
 	g_free (monitor);
 }

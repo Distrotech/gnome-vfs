@@ -35,6 +35,7 @@ typedef struct {
 
 	GnomeVFSURI    *uri;
 
+	gboolean        dirty;
 	gboolean        user_private;
 	gboolean        has_implicit_keywords;
 	GSList         *keywords;       /* GQuark */
@@ -218,6 +219,7 @@ gboolean  query_try_match (Query  *query,
 typedef struct {
 	gchar          *uri;
 	VFolderMonitor *monitor;
+	gboolean        is_mergedir;
 } ItemDir;
 
 typedef struct {
@@ -243,11 +245,8 @@ struct _VFolderInfo {
 	VFolderMonitor *write_dir_monitor;
 
 	/* Consider item dirs and mergedirs writeable?? */
-
+	/* Monitoring on mergedirs?? */
 	GSList   *item_dirs; 		/* CONTAINS: ItemDir */
-
-	/* old style dirs to merge in -- monitoring?? */
-	GSList   *merge_dirs; 		/* CONTAINS: ItemDir */
 
 	/* if entries are valid, else
 	 * they need to be (re)read */
@@ -266,7 +265,7 @@ struct _VFolderInfo {
 
 	gboolean dirty;
 
-	int inhibit_write;
+	gboolean inhibit_write;
 
 	GSList *requested_monitors; 	/* CONTAINS: MonitorHandle */
 

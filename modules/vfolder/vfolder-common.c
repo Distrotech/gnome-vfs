@@ -32,8 +32,12 @@ entry_new (VFolderInfo *info,
 	entry->filename = g_strdup (filename);
 	entry->displayname = g_strdup (displayname);
 	entry->user_private = user_private;
+	entry->dirty = TRUE;
 
-	/* Lame-O special case .directory handling */
+	/* 
+	 * Lame-O special case .directory handling, as we don't want them
+	 * showing up for all-applications:///.
+	 */
 	if (strcmp (displayname, ".directory") != 0)
 		vfolder_info_add_entry (info, entry);
 
@@ -143,12 +147,15 @@ entry_is_user_private (Entry *entry)
 	return entry->user_private;
 }
 
-void
-entry_set_dirty (Entry *entry)
+static void
+entry_reload_if_needed (Entry *entry)
 {
 	gboolean changed = FALSE;
 	gchar *keywords, *only_show_in;
 	int i;
+
+	if (!entry->dirty)
+		return;
 
 	entry_quick_read_keys (entry, 
 			       "Categories",
@@ -158,7 +165,7 @@ entry_set_dirty (Entry *entry)
 
 	if (keywords) {
 		char **parsed = g_strsplit (keywords, ";", -1);
-		GSList *keylist = entry_get_keywords (entry);
+		GSList *keylist = entry->keywords;
 
 		for (i = 0; parsed[i] != NULL; i++) {
 			GQuark quark;
@@ -169,13 +176,14 @@ entry_set_dirty (Entry *entry)
 				continue;
 
 			quark = g_quark_from_string (word);
-			if (!g_slist_find (keylist, GINT_TO_POINTER (quark))) {
-				D (g_print ("ADDING KEYWORD: %s\n", word));
-				entry_add_implicit_keyword (
-					entry, 
-					g_quark_from_string (word));
-				changed = TRUE;
-			}
+			if (g_slist_find (keylist, GINT_TO_POINTER (quark)))
+				continue;
+
+			D (g_print ("ADDING KEYWORD: %s\n", word));
+
+			g_slist_prepend (entry->keywords, 
+					 GINT_TO_POINTER (quark));
+			changed = TRUE;
 		}
 		g_strfreev (parsed);
 	}
@@ -196,6 +204,14 @@ entry_set_dirty (Entry *entry)
 
 	g_free (only_show_in);
 	g_free (keywords);
+
+	entry->dirty = FALSE;
+}
+
+void
+entry_set_dirty (Entry *entry)
+{
+	entry->dirty = TRUE;
 }
 
 void          
@@ -239,6 +255,7 @@ entry_get_real_uri (Entry *entry)
 GSList *
 entry_get_keywords (Entry *entry)
 {
+	entry_reload_if_needed (entry);
 	return entry->keywords;
 }
 
@@ -248,6 +265,28 @@ entry_add_implicit_keyword (Entry *entry, GQuark keyword)
 	entry->has_implicit_keywords = TRUE;
 	entry->keywords = g_slist_prepend (entry->keywords, 
 					   GINT_TO_POINTER (keyword));
+
+	entry_set_dirty (entry);
+}
+
+static void
+entry_key_val_from_string (gchar *src, gchar *key, gchar **result)
+{
+	gchar *start;
+	gint keylen = strlen (key), end;
+
+	*result = NULL;
+
+	start = strstr (src, key);
+	if (start && 
+	    (start == src || (*(start-1) == '\r') || (*(start-1) == '\n')) &&
+	    ((*(start+keylen) == ' ') || (*(start+keylen) == '='))) {
+		start += keylen;
+		start += strspn (start, "= ");
+		end = strcspn (start, "\r\n");
+		if (end > 0)
+			*result = g_strndup (start, end);
+	}
 }
 
 void 
@@ -259,79 +298,40 @@ entry_quick_read_keys (Entry  *entry,
 {
 	GnomeVFSHandle *handle;
 	GnomeVFSFileSize readlen;
-	char buf[1025];
-	int keylen1, keylen2;
-
-	*result1 = NULL;
-	if (result2)
-		*result2 = NULL;
+	GString *fullbuf;
+	char buf[2048];
 
 	if (gnome_vfs_open (&handle, 
 			    entry->filename, 
 			    GNOME_VFS_OPEN_READ) != GNOME_VFS_OK)
 		return;
 
-	keylen1 = strlen (key1);
-	if (key2 != NULL)
-		keylen2 = strlen (key2);
-	else
-		keylen2 = -1;
-
-	/* This is slightly wrong, it should only look
-	 * at the correct section */
+	fullbuf = g_string_new (NULL);
 	while (gnome_vfs_read (handle, 
 			       buf, 
-			       sizeof (buf) - 1, 
+			       sizeof (buf), 
 			       &readlen) == GNOME_VFS_OK) {
-		char *p;
-		int len;
-		int keylen;
-		char **result = NULL;
-
-		buf [readlen] = '\0';
-
-		/* check if it's one of the keys */
-		if (strncmp (buf, key1, keylen1) == 0) {
-			result = result1;
-			keylen = keylen1;
-		} else if (keylen2 >= 0 && strncmp (buf, key2, keylen2) == 0) {
-			result = result2;
-			keylen = keylen2;
-		} else {
-			continue;
-		}
-
-		p = &buf[keylen];
-
-		/* still not our key */
-		if (!(*p == '=' || *p == ' ')) {
-			continue;
-		}
-		do
-			p++;
-		while (*p == ' ' || *p == '=');
-
-		/* get rid of trailing \n */
-		len = strlen (p);
-		if (p[len-1] == '\n' ||
-		    p[len-1] == '\r')
-			p[len-1] = '\0';
-
-		*result = g_strdup (p);
-
-		if (*result1 == NULL ||
-		    (result2 != NULL && *result2 == NULL))
-			break;
+		g_string_append_len (fullbuf, buf, readlen);
 	}
 
 	gnome_vfs_close (handle);
+
+	if (!fullbuf->len)
+		return;
+
+	entry_key_val_from_string (fullbuf->str, key1, result1);
+
+	if (key2)
+		entry_key_val_from_string (fullbuf->str, key2, result2);
+
+	g_string_free (fullbuf, TRUE);
 }
 
 void
 entry_dump (Entry *entry, int indent)
 {
 	gchar *space = g_strnfill (indent, ' ');
-	GSList *keywords = entry_get_keywords (entry), *iter;
+	GSList *keywords = entry->keywords, *iter;
 
 	g_print ("%s%s\n%s  Filename: %s\n%s  Keywords: ",
 		 space,
@@ -566,7 +566,7 @@ read_info_entry_pool (Folder *folder)
 		int include;
 
 		include = check_include_exclude (folder, 
-						 entry_get_filename (entry));
+						 entry_get_displayname (entry));
 		if (include == -1)
 			continue;
 
@@ -1092,6 +1092,11 @@ query_try_match (Query  *query,
 		{
 			gchar *extend_uri;
 			
+			/*
+			 * Check that entry's path starts with that of the
+			 * folder's extend_uri, so that we know that it matches
+			 * the parent query. 
+			 */
 			extend_uri = folder_get_extend_uri (folder);
 			if (extend_uri &&
 			    strncmp (entry_get_filename (efile), 

@@ -1,3 +1,47 @@
+2002-07-12  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (read_vfolder_from_file): Load
+	mergedirs and itemdirs to the same list, so we retain load order.
+	(itemdir_new): Add is_mergedir arg.
+
+2002-07-12  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_unlink): Exclude based on
+	displayname, not filename.
+	(do_create): Include based on displayname, not filename.
+
+	* modules/vfolder/vfolder-common.c (read_info_entry_pool): Check
+	include/exclude against entry's displayname, note full filename.
+
+2002-07-12  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_destroy): Call
+	vfolder_info_reset.
+	(vfolder_info_reset): Implement. Free everything except scheme,
+	requested_monitors, and rw_lock.
+	(filename_monitor_cb): Call vfolder_info_reset() then
+	vfolder_info_read_info() to reload everything from scratch.
+	(write_dir_monitor_cb): Ditto.
+
+	* modules/vfolder/vfolder-common.c (entry_quick_read_keys): Fix to
+	not expect fgets() type strings.
+	(entry_set_dirty): Set a dirty flag, instead of always reloading.
+	(entry_set_filename): Set entry dirty.
+	(entry_add_implicit_keyword): Set entry dirty.
+	(entry_get_keywords): Call entry_reload_if_needed(), in case the
+	entry is dirty.
+
+2002-07-11  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_init): Free
+	base_scheme.
+
+	* modules/vfolder/vfolder-util.c (vfolder_monitor_cancel): Free
+	monitor->uri.
+
+	* modules/vfolder/applcations.vfolder-info: Spell Accessories
+	correctly.
+
 2002-07-10  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-method.c (dir_handle_new): Fix typo,

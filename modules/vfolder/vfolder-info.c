@@ -368,14 +368,16 @@ itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
 		    GnomeVFSMonitorEventType  event_type,
 		    gpointer                  user_data)
 {
+	// FIXME
 }
 
 static ItemDir *
-itemdir_new (VFolderInfo *info, gchar *uri)
+itemdir_new (VFolderInfo *info, gchar *uri, gboolean is_mergedir)
 {
 	ItemDir *ret;
 	ret = g_new0 (ItemDir, 1);
 	ret->uri = g_strdup (uri);
+	ret->is_mergedir = is_mergedir;
 	ret->monitor = vfolder_monitor_directory_new (uri, 
 						      itemdir_monitor_cb,
 						      info);
@@ -445,9 +447,23 @@ read_vfolder_from_file (VFolderInfo     *info,
 			xmlChar *dir = xmlNodeGetContent (node);
 
 			if (dir != NULL) {
-				ItemDir *id = itemdir_new (info, dir);
-				info->merge_dirs = 
-					g_slist_append (info->merge_dirs, id);
+				ItemDir *id = itemdir_new (info, dir, TRUE);
+
+				/* 
+				 * free the default itemdirs created in
+				 * vfolder_info_init().  
+				 */
+				if (!got_a_vfolder_dir) {
+					g_slist_foreach (info->item_dirs,
+							 (GFunc) itemdir_free, 
+							 NULL);
+					g_slist_free (info->item_dirs);
+					info->item_dirs = NULL;
+				}
+
+				got_a_vfolder_dir = TRUE;
+				info->item_dirs = 
+					g_slist_append (info->item_dirs, id);
 				xmlFree (dir);
 			}
 		} 
@@ -455,12 +471,11 @@ read_vfolder_from_file (VFolderInfo     *info,
 			xmlChar *dir = xmlNodeGetContent (node);
 
 			if (dir != NULL) {
-				ItemDir *id = itemdir_new (info, dir);
+				ItemDir *id = itemdir_new (info, dir, FALSE);
 
 				/* 
-				 * If we have an ItemDir element, free 
-				 * the default itemdirs created in 
-				 * vfolder_info_init.  
+				 * free the default itemdirs created in
+				 * vfolder_info_init().  
 				 */
 				if (!got_a_vfolder_dir) {
 					g_slist_foreach (info->item_dirs,
@@ -598,20 +613,21 @@ create_entries_from_mergedir (VFolderInfo     *info,
 						      FALSE,
 						      pass_keyword);
 
-			g_free (file_uri);
-			continue;			
+			goto NEXT_ENTRY;
 		}
 
-		if (!check_extension (file_info->name, ".desktop")) {
-			g_free (file_uri);
-			continue;
+		if (!check_extension (file_info->name, ".desktop")) 
+			goto NEXT_ENTRY;
+
+		if (vfolder_info_lookup_entry (info, file_info->name)) {
+			D (g_print ("EXCLUDING DUPLICATE ENTRY: %s\n", 
+				    file_uri));
+			goto NEXT_ENTRY;
 		}
 
 		new_entry = entry_new (info, file_uri, file_info->name, TRUE);
-		g_free (file_uri);
-
 		if (!new_entry)
-			continue;
+			goto NEXT_ENTRY;
 
 		/* 
 		 * Mergedirs have the 'Merged' and 'Appliction' keywords added.
@@ -625,7 +641,8 @@ create_entries_from_mergedir (VFolderInfo     *info,
 		if (inherit_keyword)
 			entry_add_implicit_keyword (new_entry, inherit_keyword);
 
-		entry_set_dirty (new_entry);
+	NEXT_ENTRY:
+		g_free (file_uri);
 	}
 
 	gnome_vfs_file_info_unref (file_info);
@@ -651,7 +668,6 @@ create_entries_from_itemdir (VFolderInfo     *info,
 
 	while (TRUE) {
 		gchar *file_uri;
-		Entry *new_entry;
 
 		result = gnome_vfs_directory_read_next (handle, file_info);
 		if (result != GNOME_VFS_OK)
@@ -666,27 +682,27 @@ create_entries_from_itemdir (VFolderInfo     *info,
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			create_entries_from_itemdir (info, file_uri);
-			g_free (file_uri);
-			continue;			
+			goto NEXT_ENTRY;
 		}
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			create_entries_from_itemdir (info, file_uri);
-
-			g_free (file_uri);
-			continue;			
+			goto NEXT_ENTRY;
 		}
 
-		if (!check_extension (file_info->name, ".desktop")) {
-			g_free (file_uri);
-			continue;
+		if (!check_extension (file_info->name, ".desktop"))
+			goto NEXT_ENTRY;
+
+		if (vfolder_info_lookup_entry (info, file_info->name)) {
+			D (g_print ("EXCLUDING DUPLICATE ENTRY: %s\n", 
+				    file_uri));
+			goto NEXT_ENTRY;
 		}
 
-		new_entry = entry_new (info, file_uri, file_info->name, TRUE);
+		entry_new (info, file_uri, file_info->name, TRUE);
+
+	NEXT_ENTRY:
 		g_free (file_uri);
-
-		if (new_entry)
-			entry_set_dirty (new_entry);
 	}
 
 	gnome_vfs_file_info_unref (file_info);
@@ -715,21 +731,19 @@ vfolder_info_read_info (VFolderInfo     *info,
 	if (ret) {
 		GSList *iter;
 
-		for (iter = info->item_dirs; iter; iter = iter->next) {
-			ItemDir *id = iter->data;
-			create_entries_from_itemdir (info, id->uri);
-		}
-
-		for (iter = info->merge_dirs; iter; iter = iter->next) {
-			ItemDir *id = iter->data;
-			create_entries_from_mergedir (info, 
-						      id->uri, 
-						      TRUE,
-						      0);
-		}
-
 		if (info->write_dir)
 			create_entries_from_itemdir (info, info->write_dir);
+
+		for (iter = info->item_dirs; iter; iter = iter->next) {
+			ItemDir *id = iter->data;
+			if (id->is_mergedir)
+				create_entries_from_mergedir (info, 
+							      id->uri, 
+							      TRUE,
+							      0);
+			else
+				create_entries_from_itemdir (info, id->uri);
+		}
 	}
 
 	/* Allow set_dirty to write config file again */
@@ -944,21 +958,19 @@ xml_tree_from_vfolder (VFolderInfo *info)
 				 "VFolderInfo" /* name */,
 				 NULL /* content */);
 	doc->xmlRootNode = topnode;
-
-	for (li = info->merge_dirs; li != NULL; li = li->next) {
-		ItemDir *merge_dir = li->data;
-		xmlNewChild (topnode /* parent */,
-			     NULL /* ns */,
-			     "MergeDir" /* name */,
-			     merge_dir->uri /* content */);
-	}
 	
 	for (li = info->item_dirs; li != NULL; li = li->next) {
 		ItemDir *item_dir = li->data;
-		xmlNewChild (topnode /* parent */,
-			     NULL /* ns */,
-			     "ItemDir" /* name */,
-			     item_dir->uri /* content */);
+		if (item_dir->is_mergedir)
+			xmlNewChild (topnode /* parent */,
+				     NULL /* ns */,
+				     "MergeDir" /* name */,
+				     item_dir->uri /* content */);
+		else
+			xmlNewChild (topnode /* parent */,
+				     NULL /* ns */,
+				     "ItemDir" /* name */,
+				     item_dir->uri /* content */);
 	}
 
 	if (info->write_dir != NULL) {
@@ -988,14 +1000,14 @@ vfolder_info_write_user (VFolderInfo *info)
 {
 	xmlDoc *doc;
 
-	if (info->inhibit_write > 0)
+	if (info->inhibit_write)
 		return;
 
-	if (info->filename == NULL)
+	if (!info->filename)
 		return;
 
 	doc = xml_tree_from_vfolder (info);
-	if (doc == NULL)
+	if (!doc)
 		return;
 
 	/* FIXME: errors, anyone? */
@@ -1020,12 +1032,66 @@ vfolder_info_write_user (VFolderInfo *info)
 }
 
 static void
+vfolder_info_reset (VFolderInfo *info)
+{
+	GSList *iter;
+	
+	if (info->filename_monitor) {
+		vfolder_monitor_cancel (info->filename_monitor);
+		info->filename_monitor = NULL;
+	}
+
+	if (info->desktop_dir_monitor) {
+		vfolder_monitor_cancel (info->desktop_dir_monitor);
+		info->desktop_dir_monitor = NULL;
+	}
+
+	if (info->write_dir_monitor) {
+		vfolder_monitor_cancel (info->write_dir_monitor);
+		info->write_dir_monitor = NULL;
+	}
+
+	for (iter = info->item_dirs; iter; iter = iter->next) {
+		ItemDir *dir = iter->data;
+		itemdir_free (dir);
+	}
+	g_slist_free (info->item_dirs);
+	info->item_dirs = NULL;
+
+	g_free (info->filename);
+	g_free (info->desktop_dir);
+	g_free (info->write_dir);
+
+	info->filename = NULL;
+	info->desktop_dir = NULL;
+	info->write_dir = NULL;
+
+	g_slist_foreach (info->entries, (GFunc) entry_unref, NULL);
+	g_slist_free (info->entries);
+	info->entries = NULL;
+
+	if (info->entries_ht) {
+		g_hash_table_destroy (info->entries_ht);
+		info->entries_ht = NULL;
+	}
+
+	folder_unref (info->root);
+	info->root = NULL;
+}
+
+static void
 filename_monitor_cb (GnomeVFSMonitorHandle *handle,
 		     const gchar *monitor_uri,
 		     const gchar *info_uri,
 		     GnomeVFSMonitorEventType event_type,
 		     gpointer user_data)
 {
+	VFolderInfo *info =  user_data;
+
+	// FIXME
+
+	vfolder_info_reset (info);
+	vfolder_info_read_info (info, NULL, NULL);
 }
 
 static void
@@ -1035,6 +1101,12 @@ write_dir_monitor_cb (GnomeVFSMonitorHandle *handle,
 		      GnomeVFSMonitorEventType event_type,
 		      gpointer user_data)
 {
+	VFolderInfo *info =  user_data;
+
+	// FIXME
+
+	vfolder_info_reset (info);
+	vfolder_info_read_info (info, NULL, NULL);
 }
 
 
@@ -1061,24 +1133,27 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 		base_scheme = 
 			g_strndup (scheme, 
 				   strlen (scheme) - strlen ("-all-users"));
-		
 		info->filename = g_strconcat (SYSCONFDIR,
 					      "/gnome-vfs-2.0/vfolders/",
 					      base_scheme, 
 					      ".vfolder-info",
 					      NULL);
+		g_free (base_scheme);
 
 		info->desktop_dir = g_strdup (DATADIR "/gnome/vfolders/");
 		info->write_dir = g_strdup (DATADIR "/applications/");
 
 		/* Init the default desktop paths */
-		id = itemdir_new (info, "file:///usr/share/applications/");
+		id = itemdir_new (info, 
+				  "file:///usr/share/applications/", 
+				  FALSE);
 		list = g_slist_prepend (list, id);
 
 		if (strcmp ("/usr/share/applications/", 
 			    DATADIR "/applications/") != 0) {
 			id = itemdir_new (info, 
-					  "file://" DATADIR "/applications/");
+					  "file://" DATADIR "/applications/",
+					  FALSE);
 			list = g_slist_prepend (list, id);
 		}
 
@@ -1090,12 +1165,14 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 
 			for (i = 0; ppath[i] != NULL; i++) {
 				dir = g_strconcat ("file://", ppath[i], NULL);
-				id = itemdir_new (info, dir);
-				list = g_slist_prepend (list, id);
+				id = itemdir_new (info, dir, FALSE);
 				g_free (dir);
+
+				list = g_slist_prepend (list, id);
 			}
 			g_strfreev (ppath);
 		}
+
 		info->item_dirs = g_slist_reverse (list);
 	} else {
 		gchar *all_user_scheme;
@@ -1152,44 +1229,14 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 static void
 vfolder_info_destroy (VFolderInfo *info)
 {
-	GSList *iter;
-
 	if (info == NULL)
 		return;
 
+	vfolder_info_reset (info);
+
 	g_static_rw_lock_free (&info->rw_lock);
-	
-	if (info->filename_monitor)
-		vfolder_monitor_cancel (info->filename_monitor);
-
-	if (info->desktop_dir_monitor)
-		vfolder_monitor_cancel (info->desktop_dir_monitor);
-
-	if (info->write_dir_monitor)
-		vfolder_monitor_cancel (info->write_dir_monitor);
-
-	for (iter = info->item_dirs; iter; iter = iter->next) {
-		ItemDir *dir = iter->data;
-		itemdir_free (dir);
-	}
-
-	for (iter = info->merge_dirs; iter; iter = iter->next) {
-		ItemDir *dir = iter->data;
-		itemdir_free (dir);
-	}
 
 	g_free (info->scheme);
-	g_free (info->filename);
-	g_free (info->desktop_dir);
-	g_free (info->write_dir);
-
-	g_slist_foreach (info->entries, (GFunc) entry_unref, NULL);
-	g_slist_free (info->entries);
-
-	if (info->entries_ht)
-		g_hash_table_destroy (info->entries_ht);
-
-	folder_unref (info->root);
 
 	while (info->requested_monitors) {
 		GnomeVFSMethodHandle *monitor = info->requested_monitors->data;
