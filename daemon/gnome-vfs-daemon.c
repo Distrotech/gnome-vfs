@@ -19,17 +19,6 @@ struct KeyChainEntry {
 /* Structure containing all know passwords */
 static GHashTable *keychain = NULL;
 
-static GMutex *keychain_lock;       
-
-#ifdef DEBUG_KEYCHAIN_LOCKS
-#define LOCK_KEYCHAIN()   {g_mutex_lock (keychain_lock); g_print ("LOCK %s\n", G_GNUC_PRETTY_FUNCTION);}
-#define UNLOCK_KEYCHAIN() {g_print ("UNLOCK %s\n", G_GNUC_PRETTY_FUNCTION); g_mutex_unlock (keychain_lock);}
-#else
-#define LOCK_KEYCHAIN()   g_mutex_lock (keychain_lock)
-#define UNLOCK_KEYCHAIN() g_mutex_unlock (keychain_lock)
-#endif
-
-
 BONOBO_CLASS_BOILERPLATE_FULL(
 	GnomeVfsDaemon,
 	gnome_vfs_daemon,
@@ -248,9 +237,7 @@ gnome_vfs_daemon_class_init (GnomeVfsDaemonClass *klass)
 	epv->registerClient   = register_client;
 	epv->deRegisterClient = de_register_client;
 	
-	g_thread_init (NULL);
 	gnome_vfs_init ();
-	keychain_lock = g_mutex_new ();
 	keychain = g_hash_table_new (g_str_hash, g_str_equal);
 }
 
