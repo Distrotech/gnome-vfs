@@ -1,7 +1,7 @@
 <oaf_info>
 
-<oaf_server iid="OAFIID:GNOME_Moniker_std_Factory"
-	type="shlib" location="@MONIKER_LIBDIR@/libmoniker_gnome_std.so">
+<oaf_server iid="OAFIID:GNOME_VFS_Moniker_std_Factory"
+	type="shlib" location="@MONIKER_LIBDIR@/libmoniker_vfs_gnome_std.so">
 	<oaf_attribute name="repo_ids" type="stringv">
 		<item value="IDL:Bonobo/GenericFactory:1.0"/>
 	</oaf_attribute>
@@ -9,8 +9,8 @@
 	<oaf_attribute name="name" type="string" _value="Standard Moniker factory"/>
 </oaf_server>
 
-<oaf_server iid="OAFIID:GNOME_MonikerExtender_file" type="factory"
-	location="OAFIID:GNOME_Moniker_std_Factory">
+<oaf_server iid="OAFIID:GNOME_VFS_MonikerExtender_file" type="factory"
+	location="OAFIID:GNOME_VFS_Moniker_std_Factory">
 	<oaf_attribute name="repo_ids" type="stringv">
 		<item value="IDL:Bonobo/MonikerExtender:1.0"/>
 		<item value="IDL:Bonobo/Unknown:1.0"/>
@@ -21,8 +21,8 @@
 	<oaf_attribute name="name" type="string" _value="file MonikerExtender"/>
 </oaf_server>
 
-<oaf_server iid="OAFIID:GNOME_Moniker_File" type="factory"
-	location="OAFIID:GNOME_Moniker_std_Factory">
+<oaf_server iid="OAFIID:GNOME_VFS_Moniker_File" type="factory"
+	location="OAFIID:GNOME_VFS_Moniker_std_Factory">
 	<oaf_attribute name="repo_ids" type="stringv">
 		<item value="IDL:Bonobo/Moniker:1.0"/>
 		<item value="IDL:Bonobo/Unknown:1.0"/>
@@ -33,8 +33,8 @@
 	</oaf_attribute>
 </oaf_server>
 
-<oaf_server iid="OAFIID:GNOME_Moniker_VFS" type="factory"
-	location="OAFIID:GNOME_Moniker_std_Factory">
+<oaf_server iid="OAFIID:GNOME_VFS_Moniker_VFS" type="factory"
+	location="OAFIID:GNOME_VFS_Moniker_std_Factory">
 	<oaf_attribute name="repo_ids" type="stringv">
 		<item value="IDL:Bonobo/Moniker:1.0"/>
 		<item value="IDL:Bonobo/Unknown:1.0"/>

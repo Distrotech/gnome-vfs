@@ -1,3 +1,7 @@
+2001-07-29  Michael Meeks  <michael@ximian.com>
+
+	* Makefile.am: re-write.
+
 2001-07-27  Michael Meeks  <michael@ximian.com>
 
 	* Move into gnome-vfs.

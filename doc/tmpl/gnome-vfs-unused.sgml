@@ -1,8 +1,10 @@
-<!-- ##### SECTION ./tmpl/constants.sgml:Title ##### -->
-Constants
-
-
 <!-- ##### SECTION ./tmpl/constants.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/constants.sgml:See_Also ##### -->
 <para>
 
 </para>
@@ -12,9 +14,36 @@ Constants
 
 
 
-<!-- ##### SECTION ./tmpl/constants.sgml:See_Also ##### -->
+<!-- ##### SECTION ./tmpl/constants.sgml:Title ##### -->
+Constants
+
+
+<!-- ##### USER_FUNCTION GnomeVFSListCompareFunc ##### -->
 <para>
 
 </para>
 
+<<<<<<< gnome-vfs-unused.sgml
+
+@a: 
+@b: 
+@data: 
+@Returns: 
+
+<!-- ##### FUNCTION gnome_vfs_list_sort ##### -->
+=======
+
+
+<!-- ##### FUNCTION gnome_vfs_ssl_new ##### -->
+<para>
+=======
+
+
+<!-- ##### FUNCTION gnome_vfs_ssl_new_from_uri ##### -->
+<para>
+
+</para>
+
+@uri: 
+@Returns: 
 

@@ -1,5 +1,5 @@
 if PLATFORM_GNOME_2
-SUBDIRS_GNOME=doc
+SUBDIRS_GNOME=monikers doc
 else
 SUBDIRS_GNOME=doc test
 endif

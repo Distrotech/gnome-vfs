@@ -1,3 +1,9 @@
+2001-07-29  Michael Meeks  <michael@ximian.com>
+
+	* Makefile.am (SUBDIRS_GNOME): add monikers.
+
+	* configure.in: add monikers/
+
 2001-07-27  Darin Adler  <darin@bentspoon.com>
 
 	Get things compiling again.

@@ -11,17 +11,17 @@ bonobo_std_moniker_factory (BonoboGenericFactory *this,
 {
 	g_return_val_if_fail (object_id != NULL, NULL);
 
-	if (!strcmp (object_id, "OAFIID:GNOME_Moniker_File"))
+	if (!strcmp (object_id, "OAFIID:GNOME_VFS_Moniker_File"))
 
 		return BONOBO_OBJECT (bonobo_moniker_simple_new (
 			"file:", bonobo_moniker_file_resolve));
 
-	else if (!strcmp (object_id, "OAFIID:GNOME_Moniker_VFS"))
+	else if (!strcmp (object_id, "OAFIID:GNOME_VFS_Moniker_VFS"))
 
 		return BONOBO_OBJECT (bonobo_moniker_simple_new (
 			"vfs:", bonobo_moniker_vfs_resolve));
 
-	else if (!strcmp (object_id, "OAFIID:GNOME_MonikerExtender_file"))
+	else if (!strcmp (object_id, "OAFIID:GNOME_VFS_MonikerExtender_file"))
 		
 		return BONOBO_OBJECT (bonobo_moniker_extender_new (
 			bonobo_file_extender_resolve, NULL));
@@ -33,7 +33,7 @@ bonobo_std_moniker_factory (BonoboGenericFactory *this,
 }
 
 
-BONOBO_OAF_SHLIB_FACTORY_MULTI ("OAFIID:GNOME_Moniker_std_Factory",
+BONOBO_OAF_SHLIB_FACTORY_MULTI ("OAFIID:GNOME_VFS_Moniker_std_Factory",
 				"bonobo standard moniker",
 				bonobo_std_moniker_factory,
 				NULL);
