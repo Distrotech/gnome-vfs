@@ -626,8 +626,10 @@ corba_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 			    GnomeVFSXferOptions xfer_options,
 			    GnomeVFSXferErrorMode error_mode,
 			    GnomeVFSXferOverwriteMode overwrite_mode,
-			    GnomeVFSAsyncXferProgressCallback progress_callback,
-			    gpointer data);
+			    GnomeVFSAsyncXferProgressCallback progress_update_callback,
+			    gpointer update_callback_data,
+			    GnomeVFSXferProgressCallback progress_sync_callback,
+			    gpointer sync_callback_data);
 GnomeVFSResult
 corba_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 			    const gchar *source_dir,
@@ -637,9 +639,16 @@ corba_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 			    GnomeVFSXferOptions xfer_options,
 			    GnomeVFSXferErrorMode error_mode,
 			    GnomeVFSXferOverwriteMode overwrite_mode,
-			    GnomeVFSAsyncXferProgressCallback progress_callback,
-			    gpointer data)
+			    GnomeVFSAsyncXferProgressCallback progress_update_callback,
+			    gpointer update_callback_data,
+			    GnomeVFSXferProgressCallback progress_sync_callback,
+			    gpointer sync_callback_data)
 {
+	/* FIXME:
+	 * 
+	 * Update to pass progress_sync_callback properly.
+	 * 
+	 */
 	GNOME_VFS_Slave_FileNameList corba_source_list;
 	GNOME_VFS_Slave_FileNameList corba_target_list;
 	GnomeVFSXferProgressInfo *progress_info;
@@ -652,7 +661,7 @@ corba_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	g_return_val_if_fail (source_dir != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (source_name_list != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (target_dir != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (progress_callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (progress_update_callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	slave = gnome_vfs_slave_process_new ();
 	if (slave == NULL)
@@ -681,8 +690,8 @@ corba_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	}
 
 	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_XFER;
-	slave->callback = progress_callback;
-	slave->callback_data = data;
+	slave->callback = progress_update_callback;
+	slave->callback_data = update_callback_data;
 
 	op_info = &slave->op_info.xfer;
 	op_info->xfer_options = xfer_options;

@@ -171,8 +171,12 @@ GnomeVFSResult	gnome_vfs_async_xfer		(GnomeVFSAsyncHandle **handle_return,
 						 GnomeVFSXferOverwriteMode
 						 	overwrite_mode,
 						 GnomeVFSAsyncXferProgressCallback
-						 	progress_callback,
-						 gpointer callback_data);
+						 	progress_update_callback,
+						 gpointer update_callback_data,
+						 GnomeVFSXferProgressCallback
+						 	progress_sync_callback,
+						 gpointer sync_callback_data);
+
 
 guint           gnome_vfs_async_add_status_callback
                                                 (GnomeVFSAsyncHandle *handle,

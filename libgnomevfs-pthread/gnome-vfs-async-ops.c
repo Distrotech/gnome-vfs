@@ -683,8 +683,11 @@ pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 			      GnomeVFSXferOptions xfer_options,
 			      GnomeVFSXferErrorMode error_mode,
 			      GnomeVFSXferOverwriteMode overwrite_mode,
-			      GnomeVFSAsyncXferProgressCallback progress_callback,
-			      gpointer callback_data);
+			      GnomeVFSAsyncXferProgressCallback progress_update_callback,
+			      gpointer update_callback_data,
+			      GnomeVFSXferProgressCallback progress_sync_callback,
+			      gpointer sync_callback_data);
+
 GnomeVFSResult
 pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 			      const gchar *source_directory_uri,
@@ -694,8 +697,10 @@ pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 			      GnomeVFSXferOptions xfer_options,
 			      GnomeVFSXferErrorMode error_mode,
 			      GnomeVFSXferOverwriteMode overwrite_mode,
-			      GnomeVFSAsyncXferProgressCallback progress_callback,
-			      gpointer callback_data)
+			      GnomeVFSAsyncXferProgressCallback progress_update_callback,
+			      gpointer update_callback_data,
+			      GnomeVFSXferProgressCallback progress_sync_callback,
+			      gpointer sync_callback_data)
 {
 	GnomeVFSJob *job;
 	GnomeVFSXferJob *xfer_job;
@@ -704,7 +709,7 @@ pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	g_return_val_if_fail (source_directory_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (source_name_list != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (target_directory_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (progress_callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (progress_update_callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	job = gnome_vfs_job_new ();
 	if (job == NULL)
@@ -713,8 +718,8 @@ pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	gnome_vfs_job_prepare (job);
 
 	job->type = GNOME_VFS_JOB_XFER;
-	job->callback = progress_callback;
-	job->callback_data = callback_data;
+	job->callback = progress_update_callback;
+	job->callback_data = update_callback_data;
 
 	xfer_job = &job->info.xfer;
 	xfer_job->request.source_directory_uri = g_strdup (source_directory_uri);
@@ -724,6 +729,8 @@ pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	xfer_job->request.xfer_options = xfer_options;
 	xfer_job->request.error_mode = error_mode;
 	xfer_job->request.overwrite_mode = overwrite_mode;
+	xfer_job->request.progress_sync_callback = progress_sync_callback;
+	xfer_job->request.sync_callback_data = sync_callback_data;
 
 	gnome_vfs_job_go (job);
 

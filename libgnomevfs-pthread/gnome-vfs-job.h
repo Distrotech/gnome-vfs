@@ -179,6 +179,8 @@ struct _GnomeVFSXferJob {
 		GnomeVFSXferOptions xfer_options;
 		GnomeVFSXferErrorMode error_mode;
 		GnomeVFSXferOverwriteMode overwrite_mode;
+		GnomeVFSXferProgressCallback progress_sync_callback;
+		gpointer sync_callback_data;
 	} request;
 
 	struct {

@@ -369,7 +369,7 @@ impl_Notify_xfer_file_start (PortableServer_Servant servant,
 	g_free (progress_info->source_name);
 	g_free (progress_info->target_name);
 
-	progress_info->phase = GNOME_VFS_XFER_PHASE_XFERRING;
+	progress_info->phase = GNOME_VFS_XFER_PHASE_COPYING;
 	progress_info->file_index++;
 	progress_info->source_name = g_strdup (source_uri);
 	progress_info->target_name = g_strdup (target_uri);
@@ -402,7 +402,7 @@ impl_Notify_xfer_file_progress (PortableServer_Servant servant,
 	progress_info = &op_info->progress_info;
 	callback = (GnomeVFSAsyncXferProgressCallback) slave->callback;
 
-	progress_info->phase = GNOME_VFS_XFER_PHASE_XFERRING;
+	progress_info->phase = GNOME_VFS_XFER_PHASE_COPYING;
 	progress_info->bytes_copied = bytes_copied;
 	progress_info->total_bytes_copied = total_bytes_copied;
 

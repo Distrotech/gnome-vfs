@@ -1,3 +1,60 @@
+2000-04-17  Pavel Cisler  <pavel@eazel.com>
+
+	Made it possible for the gnome-vfs async copy engine to have
+	two kinds of progress callbacks - one that gets called every 
+	hundred milliseconds or when user response is required and one
+	that gets called for every single copy operation primitive.
+	The latter is not called in the context of the master process
+	and is much lighterweight to invoke. Nautilus will be using
+	this callback mechanism to queue up notification records during
+	a copy.
+
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	* libgnomevfs-corba/gnome-vfs-async-ops.c:
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	(gnome_vfs_xfer_async), (corba_gnome_vfs_async_xfer),
+	(pthread_gnome_vfs_async_xfer):
+	Add optional sync callback and parameters. Pass the new 
+	parameters around.
+
+	* libgnomevfs/gnome-vfs-private-ops.h:
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(gnome_vfs_xfer_private):
+	Add new private common copy engine entry point.
+
+	* libgnomevfs/gnome-vfs-private-types.h:
+	* libgnomevfs/gnome-vfs-xfer.c:
+	Add new GnomeVFSProgressCallbackState that contains the
+	two callback, their user data, the timing logic for calling the
+	update callback often.
+	(handle_error), (remove_file), (remove_directory), (copy_file_data),
+	(xfer_open_source), (xfer_create_target), (gnome_vfs_xfer_uri_internal),
+	(gnome_vfs_xfer_uri), (gnome_vfs_xfer), (gnome_vfs_xfer_private)
+	Rework xfer calls to pass around the new GnomeVFSProgressCallbackState
+	structure.
+	
+	* libgnomevfs/gnome-vfs-private-types.h:
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(call_progress), (progress_set_source_target_uris), 
+	(progress_set_source_target_names), (init_progress),
+	(call_progress_uri), (call_progress_often),
+	(call_progress_with_uris_often):
+	Reworked progress calls to use GnomeVFSProgressCallbackState.
+
+	* libgnomevfs/gnome-vfs-types.h
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c:
+	* libgnomevfs-corba/gnome-vfs-slave.c:
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	* test/test-xfer.c:
+	Add new enum values so that progress callbacks can
+	detect whether a copy, move or remove operations is being performed.
+	Got rid of the GNOME_VFS_XFER_PHASE_XFERRING enum value.
+
+	* gnome-vfs/libgnomevfs/gnome-vfs-xfer.h
+	Got rid of an obsolete comment.
+
 2000-04-13  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-async-ops.h:

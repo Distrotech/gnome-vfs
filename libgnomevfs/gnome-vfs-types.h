@@ -486,10 +486,12 @@ enum _GnomeVFSXferPhase {
 	GNOME_VFS_XFER_PHASE_READYTOGO,
 	/* Opening source file for reading */
 	GNOME_VFS_XFER_PHASE_OPENSOURCE,
-	/* Creating target file */
+	/* Creating target file for copy */
 	GNOME_VFS_XFER_PHASE_OPENTARGET,
-	/* Ready to transfer (more) data from source to target (*) */
-	GNOME_VFS_XFER_PHASE_XFERRING,
+	/* Copying data from source to target (*) */
+	GNOME_VFS_XFER_PHASE_COPYING,
+	/* Moving file from source to target (*) */
+	GNOME_VFS_XFER_PHASE_MOVING,
 	/* Reading data from source file */
 	GNOME_VFS_XFER_PHASE_READSOURCE,
 	/* Writing data to target file */
@@ -548,12 +550,14 @@ struct _GnomeVFSXferProgressInfo {
 	/* Total amount of data copied from the beginning.  */
 	GnomeVFSFileSize total_bytes_copied;
 	
-	 /* Target unique name used when duplicating, etc. to avoid collisions */ 
-	 gchar *duplicate_name;
+	/* Target unique name used when duplicating, etc. to avoid collisions */ 
+	gchar *duplicate_name;
 
 	/* Count used in the unique name e.g. (copy 2), etc. */
 	int duplicate_count;
+
 };
+
 typedef struct _GnomeVFSXferProgressInfo GnomeVFSXferProgressInfo;
 
 /* This is the prototype for functions called during a transfer operation to

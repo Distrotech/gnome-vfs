@@ -24,6 +24,7 @@
 #ifndef _GNOME_VFS_PRIVATE_TYPES_H
 #define _GNOME_VFS_PRIVATE_TYPES_H
 
+#include <glib.h>
 
 /* Opaque types.  */
 
@@ -219,6 +220,36 @@ typedef GnomeVFSResult (* GnomeVFSTransformFunc) (GnomeVFSTransform *transform,
 struct _GnomeVFSTransform {
 	GnomeVFSTransformFunc transform;
 };
+
+typedef struct GnomeVFSProgressCallbackState {
+
+	/* xfer state */
+	GnomeVFSXferProgressInfo *progress_info;	
+
+	/* Callback called for every xfer operation. For async calls called 
+	   in async xfer context. */
+	GnomeVFSXferProgressCallback sync_callback;
+
+	/* Callback called periodically every few hundred miliseconds
+	   and whenever user interaction is needed. For async calls
+	   called in the context of the async call caller. */
+	GnomeVFSXferProgressCallback update_callback;
+
+	/* User data passed to sync_callback. */
+	gpointer user_data;
+
+	/* Async job state passed to the update callback. */
+	gpointer async_job_data;
+
+	/* When will update_callback be called next. */
+	gint64 next_update_callback_time;
+
+	/* When will update_callback be called next. */
+	gint64 next_text_update_callback_time;
+
+	/* Period at which the update_callback will be called. */
+	gint64 update_callback_period;
+} GnomeVFSProgressCallbackState;
 
 
 typedef struct _GnomeVFSShellpatternFilter GnomeVFSShellpatternFilter;

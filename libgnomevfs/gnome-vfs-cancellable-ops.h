@@ -115,4 +115,17 @@ GnomeVFSResult gnome_vfs_set_file_info_cancellable
 					  GnomeVFSSetFileInfoMask mask,
 					  GnomeVFSContext *context);
 
+GnomeVFSResult gnome_vfs_xfer_private 
+					(const gchar *source_dir,
+					 const GList *source_name_list,
+					 const gchar *target_dir,
+					 const GList *target_name_list,
+					 GnomeVFSXferOptions xfer_options,
+					 GnomeVFSXferErrorMode error_mode,
+					 GnomeVFSXferOverwriteMode overwrite_mode,
+					 GnomeVFSXferProgressCallback progress_callback,
+					 gpointer data,
+					 GnomeVFSXferProgressCallback sync_progress_callback,
+					 gpointer sync_progress_data);
+
 #endif /* _GNOME_VFS_PRIVATE_OPS_H */

@@ -29,6 +29,8 @@
 #include "config.h"
 #endif
 #include "gnome-vfs-backend.h"
+#include "gnome-vfs-types.h"
+#include "gnome-vfs-private-types.h"
 
 #include "gnome-vfs.h"
 #include <gmodule.h>
@@ -693,8 +695,10 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 		      GnomeVFSXferOptions xfer_options,
 		      GnomeVFSXferErrorMode error_mode,
 		      GnomeVFSXferOverwriteMode overwrite_mode,
-		      GnomeVFSAsyncXferProgressCallback callback,
-		      gpointer callback_data)
+		      GnomeVFSAsyncXferProgressCallback progress_update_callback,
+		      gpointer update_callback_data,
+		      GnomeVFSXferProgressCallback progress_sync_callback,
+		      gpointer sync_callback_data)
 {
 	static GnomeVFSResult
 		(*real_gnome_vfs_async_xfer) (GnomeVFSAsyncHandle **handle_return,
@@ -705,15 +709,18 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 					      GnomeVFSXferOptions xfer_options,
 					      GnomeVFSXferErrorMode error_mode,
 					      GnomeVFSXferOverwriteMode overwrite_mode,
-					      GnomeVFSAsyncXferProgressCallback callback,
-					      gpointer callback_data) = NULL;
+					      GnomeVFSAsyncXferProgressCallback progress_update_callback,
+					      gpointer update_callback_data,
+					      GnomeVFSXferProgressCallback progress_sync_callback,
+					      gpointer sync_callback_data) = NULL;
 
 	CALL_BACKEND_RETURN (gnome_vfs_async_xfer,
 			     (handle_return,
 			      source_dir, source_name_list,
 			      target_dir, target_name_list,
 			      xfer_options, error_mode, overwrite_mode,
-			      callback, callback_data));
+			      progress_update_callback, update_callback_data,
+			      progress_sync_callback, sync_callback_data));
 }
 
 GnomeVFSResult

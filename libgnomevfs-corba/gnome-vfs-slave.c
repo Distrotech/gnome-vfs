@@ -1152,7 +1152,7 @@ xfer_progress_ok (const GnomeVFSXferProgressInfo *info,
 							    info->bytes_total,
 							    ev);
 		break;
-	case GNOME_VFS_XFER_PHASE_XFERRING:
+	case GNOME_VFS_XFER_PHASE_COPYING:
 		if (info->bytes_copied == 0)
 			retval = GNOME_VFS_Slave_Notify_xfer_file_start
 				(notify_objref,
@@ -1172,6 +1172,7 @@ xfer_progress_ok (const GnomeVFSXferProgressInfo *info,
 		GNOME_VFS_Slave_Notify_xfer_done (notify_objref, ev);
 		retval = TRUE;
 		break;
+	case GNOME_VFS_XFER_PHASE_MOVING:
 	case GNOME_VFS_XFER_PHASE_OPENSOURCE:
 	case GNOME_VFS_XFER_PHASE_OPENTARGET:
 	case GNOME_VFS_XFER_PHASE_READSOURCE:

@@ -1179,15 +1179,17 @@ execute_xfer (GnomeVFSJob *job)
 
 	xfer_job = &job->info.xfer;
 
-	result = gnome_vfs_xfer (xfer_job->request.source_directory_uri,
-				 xfer_job->request.source_name_list,
-				 xfer_job->request.target_directory_uri,
-				 xfer_job->request.target_name_list,
-				 xfer_job->request.xfer_options,
-				 xfer_job->request.error_mode,
-				 xfer_job->request.overwrite_mode,
-				 xfer_callback,
-				 job);
+	result = gnome_vfs_xfer_private (xfer_job->request.source_directory_uri,
+					 xfer_job->request.source_name_list,
+					 xfer_job->request.target_directory_uri,
+					 xfer_job->request.target_name_list,
+					 xfer_job->request.xfer_options,
+					 xfer_job->request.error_mode,
+					 xfer_job->request.overwrite_mode,
+					 xfer_callback,
+					 job,
+					 xfer_job->request.progress_sync_callback,
+					 xfer_job->request.sync_callback_data);
 
 	/* If the xfer functions returns an error now, something really bad
            must have happened.  */
