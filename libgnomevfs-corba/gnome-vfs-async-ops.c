@@ -356,6 +356,8 @@ gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 						callback_data);
 
 	g_free(str_uri);
+
+	return retval;
 }
 
 GnomeVFSResult
@@ -412,7 +414,7 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	/* Prepare the CORBA parameters.  */
 
 	my_meta_keys._length = my_meta_keys._maximum = num_meta_keys;
-	my_meta_keys._buffer = meta_keys;
+	my_meta_keys._buffer = (char **)meta_keys;
 	CORBA_sequence_set_release (&my_meta_keys, FALSE);
 
 	my_filter.type = filter_type;
@@ -420,10 +422,10 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	if (filter_pattern == NULL)
 		my_filter.pattern = "";
 	else
-		my_filter.pattern = filter_pattern;
+		my_filter.pattern = (char *)filter_pattern;
 
 	my_sort_rules._length = my_sort_rules._maximum = num_sort_rules;
-	my_sort_rules._buffer = sort_rules;
+	my_sort_rules._buffer = (GNOME_VFS_Slave_DirectorySortRule *)sort_rules;
 	CORBA_sequence_set_release (&my_sort_rules, FALSE);
 
 	/* Here we go...  */
@@ -450,7 +452,7 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	return GNOME_VFS_OK;
 }
 
-
+#if 0
 static GNOME_VFS_Slave_FileNameList *
 g_list_to_file_name_list (const GList *list)
 {
@@ -475,6 +477,7 @@ g_list_to_file_name_list (const GList *list)
 
 	return new;
 }
+#endif
 
 GnomeVFSResult
 gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
@@ -494,7 +497,7 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSAsyncXferOpInfo *op_info;
 	GnomeVFSSlaveProcess *slave;
 	int i;
-	GSList *cur;
+	const GList *cur;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (source_dir != NULL, GNOME_VFS_ERROR_BADPARAMS);
@@ -506,12 +509,12 @@ gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	if (slave == NULL)
 		return GNOME_VFS_ERROR_INTERNAL;
 
-	corba_source_list._length = g_list_length(source_name_list);
+	corba_source_list._length = g_list_length((GList *)source_name_list);
 	corba_source_list._buffer = alloca(corba_source_list._length * sizeof(char *));
 	for(i = 0, cur = source_name_list; i < corba_source_list._length; i++, cur = cur->next) {
 		corba_source_list._buffer[i] = cur->data;
 	}
-	corba_target_list._length = g_list_length(target_name_list);
+	corba_target_list._length = g_list_length((GList *)target_name_list);
 	corba_target_list._buffer = alloca(corba_target_list._length * sizeof(char *));
 	for(i = 0, cur = target_name_list; i < corba_target_list._length; i++, cur = cur->next) {
 		corba_target_list._buffer[i] = cur->data;

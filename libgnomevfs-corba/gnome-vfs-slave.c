@@ -496,7 +496,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 		if (result != GNOME_VFS_OK) {
 			/* FIXME */
 			g_warning (_("Error reading: %s"),
-				   gnome_vfs_result_from_errno ());
+				   gnome_vfs_result_to_string (gnome_vfs_result_from_errno ()));
 			return;
 		}
 
@@ -594,7 +594,8 @@ setup_and_serve_channel (GnomeVFSHandle *handle,
 	socket_fd = -1;
 
 	if (mktemp (socket_name) == NULL) {
-		g_warning (_("Cannot create temporary file name `%s'"));
+		g_warning (_("Cannot create temporary file name `%s'"),
+			   gnome_vfs_result_to_string(gnome_vfs_result_from_errno()));
 		result = GNOME_VFS_ERROR_INTERNAL;
 		goto error;
 	}
@@ -802,7 +803,7 @@ allocate_info_list (gulong size, gulong max_metadata)
 static void
 copy_metadata (GNOME_VFS_Slave_FileInfo *dest,
 	       GnomeVFSFileInfo *src,
-	       gchar **meta_key_array)
+	       const char **meta_key_array)
 {
 	guint i;
 
@@ -837,7 +838,7 @@ copy_metadata (GNOME_VFS_Slave_FileInfo *dest,
 static void
 copy_file_info (GNOME_VFS_Slave_FileInfo *dest,
 		GnomeVFSFileInfo *src,
-		gchar **meta_key_array)
+		const char **meta_key_array)
 {
 	memcpy (dest->data._buffer, src, dest->data._length);
 
@@ -852,7 +853,7 @@ copy_file_info (GNOME_VFS_Slave_FileInfo *dest,
 static void
 load_directory_not_sorted (const gchar *uri,
 			   GnomeVFSFileInfoOptions options,
-			   gchar **meta_key_array,
+			   const char **meta_key_array,
 			   GnomeVFSDirectoryFilter *filter,
 			   GNOME_VFS_Slave_FileInfoList *list_buffer,
 			   CORBA_Environment *ev)
@@ -916,7 +917,7 @@ load_directory_not_sorted (const gchar *uri,
 static void
 load_directory_sorted (const gchar *uri,
 		       GnomeVFSFileInfoOptions options,
-		       gchar **meta_key_array,
+		       const char **meta_key_array,
 		       GnomeVFSDirectoryFilter *filter,
 		       const GnomeVFSDirectorySortRule *rules,
 		       gboolean reverse_order,
@@ -1003,7 +1004,7 @@ impl_Request_load_directory (PortableServer_Servant servant,
 	GnomeVFSDirectoryFilter *my_filter;
 	GnomeVFSDirectorySortRule *my_sort_rules;
 	GNOME_VFS_Slave_FileInfoList *list_buffer;
-	gchar **meta_key_array;
+	char **meta_key_array;
 	guint num_meta_keys;
 	guint i;
 
@@ -1019,6 +1020,7 @@ impl_Request_load_directory (PortableServer_Servant servant,
 			meta_key_array[i] = meta_keys->_buffer[i];
 	}
 
+
 	my_filter = gnome_vfs_directory_filter_new (filter->type,
 						    filter->options,
 						    filter->pattern);
@@ -1027,14 +1029,14 @@ impl_Request_load_directory (PortableServer_Servant servant,
 					  num_meta_keys);
 
 	if (sort_rules->_length == 0) {
-		load_directory_not_sorted (uri, info_options, meta_key_array,
+		load_directory_not_sorted (uri, info_options, (const char **)meta_key_array,
 					   my_filter, list_buffer, ev);
 	} else {
 		my_sort_rules = alloca (sizeof (gchar *) * sort_rules->_length);
 		for (i = 0; i < sort_rules->_length; i++)
 			my_sort_rules[i] = sort_rules->_buffer[i];
 
-		load_directory_sorted (uri, info_options, meta_key_array,
+		load_directory_sorted (uri, info_options, (const char **)meta_key_array,
 				       my_filter, my_sort_rules, reverse_order,
 				       list_buffer, ev);
 	}

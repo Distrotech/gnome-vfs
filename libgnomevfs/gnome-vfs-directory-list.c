@@ -653,7 +653,7 @@ GnomeVFSResult
 gnome_vfs_directory_list_load (GnomeVFSDirectoryList **list,
 			       const gchar *text_uri,
 			       GnomeVFSFileInfoOptions options,
-			       const gchar *meta_keys[],
+			       const char *meta_keys[],
 			       const GnomeVFSDirectoryFilter *filter)
 {
 	GnomeVFSDirectoryHandle *handle;

@@ -1,3 +1,7 @@
+1999-12-15  Elliot Lee  <sopwith@redhat.com>
+
+	* libgnomevfs*/*.c: Fix warnings.
+
 1999-12-15  Darin Adler  <darin@eazel.com>
 
         * libgnomevfs/gnome-vfs-method.c: (load_module):
@@ -11,6 +15,7 @@
           to ignore g_warnings.
 
 1999-12-15 Elliot Lee <sopwith@redhat.com>
+	* libgnomevfs/gnome-vfs-ops.c: Sanity check for an invalid URI.
 	* libgnomevfs/gnome-vfs-ops.[ch]: Use char instead of gchar.
 	* libgnomevfs-corba/gnome-vfs-slave-process.c: Use g_message instead
 	  of the incorrect g_warning.

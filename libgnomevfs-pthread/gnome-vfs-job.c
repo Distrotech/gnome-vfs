@@ -29,6 +29,10 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_ALLOCA_H
+#include <alloca.h>
+#endif
+
 #include <unistd.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -950,7 +954,7 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 		(&handle,
 		 load_directory_job->request.uri,
 		 load_directory_job->request.options,
-		 load_directory_job->request.meta_keys,
+		 (const char **)load_directory_job->request.meta_keys,
 		 filter);
 
 	if (result != GNOME_VFS_OK) {
@@ -1024,7 +1028,7 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 		(&directory_list,
 		 load_directory_job->request.uri,
 		 load_directory_job->request.options,
-		 load_directory_job->request.meta_keys,
+		 (const char **)load_directory_job->request.meta_keys,
 		 filter);
 
 	if (result != GNOME_VFS_OK) {

@@ -28,6 +28,7 @@
 #endif
 
 #include <stdio.h>
+#include <string.h>
 
 #include <glib.h>
 
