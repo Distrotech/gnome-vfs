@@ -1,36 +1,6 @@
-2001-02-28  Gene Z. Ragan  <gzr@eazel.com>
+2001-02-28  Darin Adler  <darin@eazel.com>
 
-	reviewed by: Pavel Cisler <pavel@eazel.com>
-	
-	Fixed bug 5570, bmp file sometimes appears as an mp3 file
-	
-	* data/mime/gnome-vfs-mime-magic:
-	* data/mime/gnome-vfs.mime:
-	Add image/bmp rule. There was already information
-	about this mime type in .keys
-
-2001-02-28  Gene Z. Ragan  <gzr@eazel.com>
-
-	reviewed by: Pavel Cisler <pavel@eazel.com>
-	
-	Fixed bug 7148, Flash files identified as mp3
-	
-	* data/mime/gnome-vfs-mime-magic:
-	* data/mime/gnome-vfs.keys.in:
-	* data/mime/gnome-vfs.mime:
-	Add application/x-shockwave-flash information.
-	
-2001-02-28  Rebecca Schulman  <rebecka@eazel.com>
-
-	reviewed by: Aaron Brick <aaron@eazel.com>
-
-	Fix bugzilla.eazel.com bug 7093
-
-	* data/mime/gnome-vfs.applications:
-	* data/mime/gnome-vfs.keys.in:
-	Remove gnorpm from the list of applications,
-	since it doesn't actually open rpm files when
-	they are passed as arguments.
+	Moved the ChangeLog entries into data/mime/ChangeLog.
 
 2001-02-27  Pavel Cisler  <pavel@eazel.com>
 
@@ -41,19 +11,6 @@
 	a cross-file system symlink would return Trash corresponding
 	to the link target not the link itself, causing an error when
 	trying to delete the link.
-
-2001-02-27  John Sullivan  <sullivan@eazel.com>
-
-	reviewed by: Darin Adler <darin@eazel.com>
-
-	Fixed bug 7095 (wrong icon used for HTML files in
-	bookmarks & icon views)
-
-	* data/mime/gnome-vfs.keys.in: Removed icon for
-	text/html. Nautilus has its own logic for dealing with
-	html files that gets broken by a hard-wired icon here.
-	Maybe we should change the logic in Nautilus someday,
-	but this is the safe right-before-release change.
 
 2001-02-27  Josh Barrow  <josh@eazel.com>
 

@@ -185,10 +185,6 @@ application/x-chess-pgn
 # this one is deprecated
 application/x-class-file
 	_description=Java byte code
-	default_action_type=application
-	short_list_application_ids_for_novice_user_level=java
-	short_list_application_ids_for_intermediate_user_level=java
-	short_list_application_ids_for_advanced_user_level=java
 
 # we are aware of the crappiness of this description
 application/x-compress
@@ -340,10 +336,6 @@ application/x-hdf
 # also application/x-class-file
 application/x-java-byte-code
 	_description=Java byte code
-	default_action_type=application
-	short_list_application_ids_for_novice_user_level=java
-	short_list_application_ids_for_intermediate_user_level=java
-	short_list_application_ids_for_advanced_user_level=java
 
 application/x-jbuilder-project
 	_description=JBuilder Project
@@ -499,7 +491,6 @@ application/x-shockwave-flash
 
 application/x-slp
 	_description=Stampede package
-	icon_filename=gnome-pack-slp.png
 
 application/x-smil
 	_description=SMIL script
@@ -1175,10 +1166,6 @@ text/x-install
 text/x-java
 	_description=Java source code
 	icon_filename=gnome-application-x-java-source.png
-	default_action_type=application
-	short_list_application_ids_for_novice_user_level=javac
-	short_list_application_ids_for_intermediate_user_level=javac
-	short_list_application_ids_for_advanced_user_level=javac
 
 text/x-ksh
 	can_be_executable=TRUE
