@@ -28,13 +28,13 @@ G_BEGIN_DECLS
 
 typedef struct GnomeVFSResolveHandle_ GnomeVFSResolveHandle;
 
-GnomeVFSResult gnome_vfs_resolve      (const char              *hostname,
-							    GnomeVFSResolveHandle  **handle);
-gboolean       gnome_vfs_next_address (GnomeVFSResolveHandle   *handle,
-							    GnomeVFSAddress        **address);
+GnomeVFSResult gnome_vfs_resolve              (const char              *hostname,
+									  GnomeVFSResolveHandle  **handle);
+gboolean       gnome_vfs_resolve_next_address (GnomeVFSResolveHandle   *handle,
+									  GnomeVFSAddress        **address);
 void           gnome_vfs_resolve_reset_to_beginning
-                                      (GnomeVFSResolveHandle   *handle);
-void           gnome_vfs_resolve_free (GnomeVFSResolveHandle   *handle);
+                                              (GnomeVFSResolveHandle   *handle);
+void           gnome_vfs_resolve_free         (GnomeVFSResolveHandle   *handle);
 
 G_END_DECLS
 

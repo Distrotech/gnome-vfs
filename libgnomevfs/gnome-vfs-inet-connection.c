@@ -87,7 +87,7 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 
 	sock = -1;
 	
-	while (gnome_vfs_next_address (rh, &address)) {
+	while (gnome_vfs_resolve_next_address (rh, &address)) {
 		sock = socket (gnome_vfs_address_get_family_type (address),
 			       SOCK_STREAM, 0);
 

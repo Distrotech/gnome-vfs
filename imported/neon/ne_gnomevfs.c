@@ -140,7 +140,7 @@ ne_addr_first (ne_sock_addr *addr)
 		gnome_vfs_resolve_reset_to_beginning (addr->handle);
 	}
 
-	if (! gnome_vfs_next_address (addr->handle, &address)) {
+	if (! gnome_vfs_resolve_next_address (addr->handle, &address)) {
 		return NULL;
 	}
 
@@ -155,7 +155,7 @@ ne_addr_next (ne_sock_addr *addr)
 {
 	GnomeVFSAddress *address;
 
-	if (! gnome_vfs_next_address (addr->handle, &address)) {
+	if (! gnome_vfs_resolve_next_address (addr->handle, &address)) {
 		return NULL;
 	}
 

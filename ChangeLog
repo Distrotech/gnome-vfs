@@ -1,3 +1,12 @@
+2004-07-27  Christian Kellner  <gicmo@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-resolve.h: 
+	* libgnomevfs/gnome-vfs-resolve.c (gnome_vfs_resolve_next_address): 
+	* libgnomevfs/gnome-vfs-ssl.c (gnome_vfs_ssl_create): 
+	* libgnomevfs/gnome-vfs-inet-connection.c (gnome_vfs_inet_connection_create):
+	* imported/neon/ne_gnomevfs.c:
+	Renamed gnome-vfs-next-address to gnome-vfs-resolve-next-address.
+
 === gnome-vfs 2.7.5 ===
 
 Mon Jul 26 16:09:44 2004  Jonathan Blandford  <jrb@gnome.org>

@@ -292,7 +292,7 @@ gnome_vfs_resolve (const char              *hostname,
  * gnome_vfs_resovle_reset_to_beginning:
  * @handle: A #GnomeVFSResolveHandle.
  *
- * Reset @handle so that a following call to gnome_vfs_next_address
+ * Reset @handle so that a following call to gnome_vfs_resolve_next_address
  * will return the first resolved address.
  *
  *
@@ -307,7 +307,7 @@ gnome_vfs_resolve_reset_to_beginning (GnomeVFSResolveHandle *handle)
 }
 
 /**
- * gnome_vfs_next_address:
+ * gnome_vfs_resolve_next_address:
  * @handle: A #GnomeVFSResolveHandle.
  * @address: A pointer to a pointer to a #GnomeVFSAddress.
  * 
@@ -320,8 +320,8 @@ gnome_vfs_resolve_reset_to_beginning (GnomeVFSResolveHandle *handle)
  * Since: 2.8
  **/
 gboolean
-gnome_vfs_next_address (GnomeVFSResolveHandle  *handle,
-				    GnomeVFSAddress       **address)
+gnome_vfs_resolve_next_address (GnomeVFSResolveHandle  *handle,
+						  GnomeVFSAddress       **address)
 {
 	   g_return_val_if_fail (address != NULL, FALSE);
 	   g_return_val_if_fail (handle != NULL, FALSE);
