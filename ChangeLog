@@ -1,3 +1,41 @@
+2002-07-29  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (vfolder_escape_home): Impl,
+	if the filename starts with '~', escape with home directory.
+
+	* modules/vfolder/vfolder-method.c Support is_link folders
+	thoughtout.  Probably buggy.
+	(do_create_symbolic_link): Impl, support creating "symbolic links"
+	to directories using the <ParentLink> element.
+
+	* modules/vfolder/vfolder-info.c (folder_read): Support ParentLink
+	elements, which means all changes to a directory are forwarded to
+	the parent, and not a private copy in the WriteDir.
+	(itemdir_new): Use vfolder_escape_home().
+	(read_vfolder_from_file): Ditto.
+	(add_xml_tree_from_folder): Store parent as <ParentLink> if
+	is_link is set.
+	(vfolder_info_reset): Reset the flags.
+	(copy_user_default_file): Impl. Copies the
+	scheme.vfolder-info-default to scheme.vfolder-info in the user's
+	.vfolder-info dir.
+	(vfolder_info_init): Split filename choosing out to
+	vfolder_info_find_filenames.
+
+	* modules/vfolder/vfolder-common.h: Use one bit allocation for
+	flags.  Rename inhibit_write to loading in VFolderInfo.  Add
+	is_link to Folder.  Turn off debugging.
+
+	* modules/vfolder/vfolder-common.c (read_extended_entries): Call
+	read_one_extended_entry() for each file.
+	(read_info_entry_pool): Call read_one_info_entry_pool() for each
+	entry in the entry pool.
+
+	* modules/vfolder/Makefile.am (EXTRA_DIST): Installed vfolder-info
+	files are now applications-all-users.vfolder-info,
+	preferences-all-users.vfolder-info, and
+	applications.vfolder-info-default.
+
 2002-07-26  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/test-vfolder.c (main): Use putenv() as setenv()

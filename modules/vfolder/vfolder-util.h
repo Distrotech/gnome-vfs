@@ -74,6 +74,7 @@ gchar   *vfolder_timestamp_file_name   (gchar      *file);
 gchar   *vfolder_untimestamp_file_name (gchar      *file);
 gboolean vfolder_check_extension       (const char *name, 
 					const char *ext_check);
+gchar   *vfolder_escape_home           (gchar      *file);
 
 gchar   *vfolder_build_uri             (const char *first_element,
 					...);

@@ -81,7 +81,7 @@ monitor_callback_internal (GnomeVFSMonitorHandle *handle,
 {
 	VFolderMonitor *monitor = (VFolderMonitor *) handle;
 
-	g_print ("monitor_callback_internal!!!!\n");
+	g_print ("monitor_callback_internal: %s\n", monitor_uri);
 
 	if (monitor->frozen)
 		return;
@@ -368,6 +368,15 @@ vfolder_check_extension (const char *name, const char *ext_check)
 		return TRUE;
 	else
 		return FALSE;
+}
+
+gchar *
+vfolder_escape_home (gchar *file)
+{
+	if (file[0] == '~')
+		return g_strconcat (g_get_home_dir (), &file[1], NULL);
+	else
+		return g_strdup (file);
 }
 
 /* Ripped from gfileutils.c:g_build_pathv() */

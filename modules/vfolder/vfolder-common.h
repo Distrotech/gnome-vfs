@@ -11,7 +11,7 @@
 
 G_BEGIN_DECLS
 
-#if 1
+#if 0
 #define D(x) x
 #else
 #define D(x) do {} while (0)
@@ -91,10 +91,6 @@ struct _Folder {
 	gchar             *extend_uri;
 	VFolderMonitor    *entend_monitor;
 
-	gboolean           has_user_private_subfolders;
-	gboolean           hidden;
-	gboolean           user_private;
-
 	Folder            *parent;
 
 	char              *desktop_file;     /* the .directory file */
@@ -109,18 +105,22 @@ struct _Folder {
 	GSList            *subfolders;
 	GHashTable        *subfolders_ht;
 
-	/* Some flags */
-	gboolean           read_only;
-	gboolean           dont_show_if_empty;
-	gboolean           only_unallocated; /* include only unallocated */
-
-	/* lazily done, will run query only when it needs to */
-	gboolean           dirty;
-	gboolean           loading;
-	gboolean           sorted;
-
 	GSList            *entries;
 	GHashTable        *entries_ht;
+
+	/* Some flags */
+	guint              read_only : 1;
+	guint              dont_show_if_empty : 1;
+	guint              only_unallocated : 1; /* include only unallocated */
+	guint              is_link : 1;
+
+	guint              has_user_private_subfolders : 1;
+	guint              user_private : 1;
+
+	/* lazily done, will run query only when it needs to */
+	guint              dirty : 1;
+	guint              loading : 1;
+	guint              sorted : 1;
 };
 
 typedef struct {
@@ -141,7 +141,6 @@ void          folder_ref               (Folder *folder);
 void          folder_unref             (Folder *folder);
 
 gboolean      folder_make_user_private (Folder *folder);
-gboolean      folder_is_user_private   (Folder *folder);
 
 void          folder_set_dirty         (Folder *folder);
 
@@ -224,9 +223,9 @@ typedef struct {
 } MonitorHandle;
 
 struct _VFolderInfo {
-	GStaticRWLock rw_lock;
+	GStaticRWLock   rw_lock;
 
-	char     *scheme;
+	char           *scheme;
 
 	char           *filename;
 	VFolderMonitor *filename_monitor;
@@ -241,31 +240,24 @@ struct _VFolderInfo {
 
 	/* Consider item dirs and mergedirs writeable?? */
 	/* Monitoring on mergedirs?? */
-	GSList   *item_dirs; 		/* CONTAINS: ItemDir */
+	GSList         *item_dirs; 	    /* CONTAINS: ItemDir */
 
-	/* if entries are valid, else
-	 * they need to be (re)read */
-	gboolean  entries_valid;
-
-	GSList   *entries; 		/* CONTAINS: Entry */
-
-	/* entry hash by basename */
-	GHashTable *entries_ht; 	/* KEY: Entry->name, VALUE: Entry */
+	GSList         *entries; 	    /* CONTAINS: Entry */
+	GHashTable     *entries_ht; 	    /* KEY: Entry->name, VALUE: Entry */
 
 	/* The root folder */
-	Folder *root;
+	Folder         *root;
 
 	/* some flags */
-	gboolean read_only;
+	guint           read_only : 1;
+	guint           dirty : 1;
+	guint           loading : 1;
+	guint           has_unallocated_folder : 1;
 
-	gboolean dirty;
-
-	gboolean inhibit_write;
-
-	GSList *requested_monitors; 	/* CONTAINS: MonitorHandle */
+	GSList         *requested_monitors; /* CONTAINS: MonitorHandle */
 
 	/* ctime for folders */
-	time_t modification_time;
+	time_t          modification_time;
 };
 
 #define VFOLDER_INFO_READ_LOCK(vi) \

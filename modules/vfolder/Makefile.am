@@ -22,8 +22,9 @@ INCLUDES =					\
 	$(NULL)
 
 EXTRA_DIST =					\
-	applications.vfolder-info.in		\
-	preferences.vfolder-info.in		\
+	applications.vfolder-info-default.in	\
+	applications-all-users.vfolder-info.in	\
+	preferences-all-users.vfolder-info.in	\
 	test-vfolder.vfolder-info.in		\
 	test-vfolder-parent.vfolder-info.in	\
 	test-vfolder-modules.conf
@@ -50,30 +51,21 @@ libvfolder_desktop_la_LIBADD = $(top_builddir)/libgnomevfs/libgnomevfs-2.la
 ###  Default .vfolder-info files
 
 vfolderdir=$(sysconfdir)/gnome-vfs-2.0/vfolders
-vfolder_DATA = 				\
-	applications.vfolder-info 	\
-	preferences.vfolder-info
+vfolder_DATA = 					\
+	applications.vfolder-info-default	\
+	applications-all-users.vfolder-info 	\
+	preferences-all-users.vfolder-info
 
-# Evil, but I can't figure out how I would make autoconf do
-# it right
-applications.vfolder-info: applications.vfolder-info.in
+%.vfolder-info: %.vfolder-info.in 
 	sed -e "s,\@datadir\@,$(datadir)," \
 	    -e "s,\@sysconfdir\@,$(sysconfdir)," \
 	    -e "s,\@prefix\@,$(prefix)," \
 	    < $< > $@
 
-preferences.vfolder-info: preferences.vfolder-info.in
+%.vfolder-info-default: %.vfolder-info-default.in
 	sed -e "s,\@datadir\@,$(datadir)," \
 	    -e "s,\@sysconfdir\@,$(sysconfdir)," \
 	    -e "s,\@prefix\@,$(prefix)," \
-	    < $< > $@
-
-test-vfolder.vfolder-info: test-vfolder.vfolder-info.in
-	sed -e "s,\@top_builddir\@,$(top_builddir)," \
-	    < $< > $@
-
-test-vfolder-parent.vfolder-info: test-vfolder-parent.vfolder-info.in
-	sed -e "s,\@top_builddir\@,$(top_builddir)," \
 	    < $< > $@
 
 ###  test-vfolder regression test

@@ -93,6 +93,10 @@ entry_make_user_private (Entry *entry, Folder *folder)
 	if (entry->user_private)
 		return TRUE;
 
+	/* Don't write privately if folder is link */
+	if (folder->is_link)
+		return TRUE;
+
 	/* Need a writedir, otherwise just modify the original */
 	if (!entry->info->write_dir)
 		return TRUE;
@@ -193,7 +197,11 @@ entry_reload_if_needed (Entry *entry)
 			if (g_slist_find (keylist, GINT_TO_POINTER (quark)))
 				continue;
 
-			D (g_print ("ADDING KEYWORD: %s\n", word));
+			/*
+			D (g_print ("ADDING KEYWORD: %s, %s\n", 
+				    entry_get_displayname (entry),
+				    word));
+			*/
 
 			entry->keywords = 
 				g_slist_prepend (entry->keywords, 
@@ -464,6 +472,50 @@ folder_unref (Folder *folder)
 	}
 }
 
+#if 0
+static void 
+folder_monitor_cb (GnomeVFSMonitorHandle    *handle,
+		   const gchar              *monitor_uri,
+		   const gchar              *info_uri,
+		   GnomeVFSMonitorEventType  event_type,
+		   gpointer                  user_data)
+{
+	Folder *folder = user_data;
+	GSList *iter;
+	gboolean is_parent;
+
+	is_parent = strcmp (monitor_uri, folder_get_extend_uri (folder)) == 0;
+	
+	if (!strcmp (monitor_uri, info_uri)) {
+		/* Operating on the whole directory */
+	}
+	else {
+		/* Operating on a child */
+		for (iter = folder->entries; iter; iter = iter->next) {
+			Entry *entry = iter->data;
+
+			if (!strcmp (entry_get_filename (entry), info_uri)) {
+				switch (event_type) {
+				case GNOME_VFS_MONITOR_EVENT_CHANGED:
+					entry_set_dirty (entry);
+					break;
+				case GNOME_VFS_MONITOR_EVENT_DELETED:
+					folder_remove_entry (folder, entry);
+					break;
+				case GNOME_VFS_MONITOR_EVENT_CREATED:
+					if (is_parent) {
+						
+					}
+					//folder_remove_entry (
+				default:
+					break;
+				}
+			}
+		}
+	}
+}
+#endif
+
 gboolean
 folder_make_user_private (Folder *folder)
 {	
@@ -490,12 +542,6 @@ folder_make_user_private (Folder *folder)
 	return TRUE;
 }
 
-gboolean 
-folder_is_user_private (Folder *folder)
-{
-	return folder->user_private;
-}
-
 static gboolean 
 read_includes (Folder *folder)
 {
@@ -503,7 +549,7 @@ read_includes (Folder *folder)
 	GnomeVFSURI *writedir_uri = NULL;
 	gboolean changed = FALSE;
 	FolderChild child;
-		
+
 	/* FIXME: abstraction breaking */
 	if (folder->info->write_dir)
 		writedir_uri = gnome_vfs_uri_new (folder->info->write_dir);
@@ -591,76 +637,125 @@ is_excluded (Folder *folder, gchar *filename, gchar *displayname)
 }
 
 static gboolean
+read_one_extended_entry (Folder           *folder, 
+			 gchar            *file_uri, 
+			 GnomeVFSFileInfo *file_info)
+{
+	Query *query = folder_get_query (folder);
+
+	if (is_excluded (folder, file_uri, file_info->name))
+		return FALSE;
+
+	if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+		Folder *sub;
+
+		sub = folder_new (folder->info, file_info->name);
+		folder_set_extend_uri (sub, file_uri);
+		sub->is_link = folder->is_link;
+
+		folder_add_subfolder (folder, sub);
+
+		return TRUE;
+	} else {
+		Entry *entry;
+
+		entry = entry_new (folder->info, 
+				   file_uri,
+				   file_info->name, 
+				   FALSE);
+
+		/* Include unless specifically excluded by query */
+		if (!query || query_try_match (query, folder, entry)) {
+			D (g_print ("ADDING EXTENDED ENTRY: "
+				    "%s, %s, #%d!\n",
+				    folder_get_name (folder),
+				    entry_get_displayname (entry),
+				    g_slist_length ((GSList*)
+				            folder_list_entries (folder))));
+
+			folder_add_entry (folder, entry);
+			return TRUE;
+		} else {
+			entry_unref (entry);
+			return FALSE;
+		}
+	}
+}
+
+static gboolean
 read_extended_entries (Folder *folder)
 {
 	GnomeVFSResult result;
-	Query *query;
-	GList *flist, *iter;
-	gboolean changed = FALSE;
+	GnomeVFSDirectoryHandle *handle;
+	GnomeVFSFileInfo *file_info;
 	gchar *extend_uri;
-
-	query = folder_get_query (folder);
+	gboolean changed = FALSE;
 
 	extend_uri = folder_get_extend_uri (folder);
-	result = gnome_vfs_directory_list_load (&flist,
-						extend_uri,
-						GNOME_VFS_FILE_INFO_DEFAULT);
+
+	result = gnome_vfs_directory_open (&handle,
+					   extend_uri,
+					   GNOME_VFS_FILE_INFO_DEFAULT);
 	if (result != GNOME_VFS_OK)
 		return FALSE;
 
-	for (iter = flist; iter; iter = iter->next) {
-		GnomeVFSFileInfo *file_info = iter->data;
+	file_info = gnome_vfs_file_info_new ();
+
+	while (TRUE) {
 		gchar *file_uri;
+
+		result = gnome_vfs_directory_read_next (handle, file_info);
+		if (result != GNOME_VFS_OK)
+			break;
+
+		if (!strcmp (file_info->name, ".") ||
+		    !strcmp (file_info->name, ".."))
+			continue;
 
 		file_uri = vfolder_build_uri (extend_uri, 
 					      file_info->name, 
 					      NULL);
 
-		if (is_excluded (folder, file_uri, file_info->name)) {
-			g_free (file_uri);
-			continue;
-		}
-
-		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-			Folder *sub;
-
-			sub = folder_new (folder->info, file_info->name);
-			folder_set_extend_uri (sub, file_uri);
-
-			folder_add_subfolder (folder, sub);
-
-			changed = TRUE;
-		}
-		else {
-			Entry *entry;
-
-			entry = entry_new (folder->info, 
-					   file_uri,
-					   file_info->name, 
-					   FALSE);
-
-			/* Include unless specifically excluded by query */
-			if (!query || query_try_match (query, folder, entry)) {
-				D (g_print ("ADDING EXTENDED ENTRY: "
-					    "%s, %s, #%d!\n",
-					    folder_get_name (folder),
-					    entry_get_displayname (entry),
-					    g_slist_length ((GSList*)
-						folder_list_entries (folder))));
-
-				folder_add_entry (folder, entry);
-				changed = TRUE;
-			}
-			else 
-				entry_unref (entry);
-		}
+		changed |= read_one_extended_entry (folder, 
+						    file_uri, 
+						    file_info);
 
 		g_free (file_uri);
 	}
 
-	gnome_vfs_file_info_list_free (flist);
+	gnome_vfs_file_info_unref (file_info);
 
 	return changed;
+}
+
+static gboolean
+read_one_info_entry_pool (Folder *folder, Entry *entry)
+{
+	Query *query = folder_get_query (folder);
+
+	if (is_excluded (folder, 
+			 entry_get_filename (entry), 
+			 entry_get_displayname (entry))) {
+		/* 
+		 * Being excluded counts as a ref because we don't want
+		 * them showing up in the Others menu.
+		 */
+		entry_alloc (entry);
+		return FALSE;
+	}
+
+	/* Only include if matches a mandatory query. */
+	if (query && query_try_match (query, folder, entry)) {
+		D (g_print ("ADDING POOL ENTRY: %s, %s, #%d!!!!\n",
+			    folder_get_name (folder),
+			    entry_get_displayname (entry),
+			    g_slist_length (
+				    (GSList*) folder_list_entries (folder))));
+
+		folder_add_entry (folder, entry);
+		return TRUE;
+	} else
+		return FALSE;
 }
 
 static gboolean
@@ -679,28 +774,7 @@ read_info_entry_pool (Folder *folder)
 	for (iter = all_entries; iter; iter = iter->next) {
 		Entry *entry = iter->data;
 
-		if (is_excluded (folder, 
-				 entry_get_filename (entry), 
-				 entry_get_displayname (entry))) {
-			/* 
-			 * Being excluded counts as a ref because we don't want
-			 * them showing up in the Others menu.
-			 */
-			entry_alloc (entry);
-			continue;
-		}
-
-		/* Only include if matches a mandatory query. */
-		if (query && query_try_match (query, folder, entry)) {
-			D (g_print ("ADDING POOL ENTRY: %s, %s, #%d!!!!\n",
-				    folder_get_name (folder),
-				    entry_get_displayname (entry),
-				    g_slist_length ((GSList*)
-					    folder_list_entries (folder))));
-
-			folder_add_entry (folder, entry);
-			changed = TRUE;
-		} 
+		changed |= read_one_info_entry_pool (folder, entry);
 	}
 
 	return changed;
@@ -739,7 +813,7 @@ folder_reload_if_needed (Folder *folder)
 
 	folder->loading = TRUE;
 
-	if (folder->excludes || folder->includes_ht)
+	if (folder->includes)
 		changed |= read_includes (folder);
 
 	if (folder_get_extend_uri (folder)) 
@@ -1107,8 +1181,7 @@ folder_is_hidden (Folder *folder)
 {
 	const GSList *iter, *ents;
 
-	if (folder->hidden || 
-	    folder->dont_show_if_empty == FALSE)
+	if (folder->dont_show_if_empty == FALSE)
 		return FALSE;
 
 	if (folder->only_unallocated) {

@@ -255,6 +255,16 @@ folder_read (VFolderInfo *info, gboolean user_private, xmlNode *fnode)
 
 			if (parent) {
 				folder_set_extend_uri (folder, parent);
+				folder->is_link = FALSE;
+				xmlFree (parent);
+			}
+		} 
+		else if (g_ascii_strcasecmp (node->name, "ParentLink") == 0) {
+			xmlChar *parent = xmlNodeGetContent (node);
+
+			if (parent) {
+				folder_set_extend_uri (folder, parent);
+				folder->is_link = TRUE;
 				xmlFree (parent);
 			}
 		} 
@@ -290,10 +300,6 @@ folder_read (VFolderInfo *info, gboolean user_private, xmlNode *fnode)
 			if (query)
 				folder_set_query (folder, query);
 		} 
-		else if (g_ascii_strcasecmp (node->name, 
-					     "OnlyUnallocated") == 0) {
-			folder->only_unallocated = TRUE;
-		} 
 		else if (g_ascii_strcasecmp (node->name, "Folder") == 0) {
 			Folder *new_folder = folder_read (info, 
 							  user_private,
@@ -301,6 +307,11 @@ folder_read (VFolderInfo *info, gboolean user_private, xmlNode *fnode)
 
 			if (new_folder != NULL)
 				folder_add_subfolder (folder, new_folder);
+		} 
+		else if (g_ascii_strcasecmp (node->name, 
+					     "OnlyUnallocated") == 0) {
+			folder->only_unallocated = TRUE;
+			info->has_unallocated_folder = TRUE;
 		} 
 		else if (g_ascii_strcasecmp (node->name, "ReadOnly") == 0) {
 			folder->read_only = TRUE;
@@ -371,7 +382,7 @@ itemdir_new (VFolderInfo *info, gchar *uri, gboolean is_mergedir)
 	ItemDir *ret;
 
 	ret = g_new0 (ItemDir, 1);
-	ret->uri = g_strdup (uri);
+	ret->uri = vfolder_escape_home (uri);
 	ret->is_mergedir = is_mergedir;
 	ret->monitor = vfolder_monitor_dir_new (uri, 
 						itemdir_monitor_cb,
@@ -465,7 +476,8 @@ read_vfolder_from_file (VFolderInfo     *info,
 
 			if (dir != NULL) {
 				g_free (info->write_dir);
-				info->write_dir = dir;
+				info->write_dir = vfolder_escape_home (dir);
+				xmlFree (dir);
 			}
 		} 
 		else if (g_ascii_strcasecmp (node->name, "DesktopDir") == 0) {
@@ -473,7 +485,7 @@ read_vfolder_from_file (VFolderInfo     *info,
 
 			if (dir != NULL) {
 				g_free (info->desktop_dir);
-				info->desktop_dir = g_strdup (dir);
+				info->desktop_dir = vfolder_escape_home (dir);
 				xmlFree (dir);
 			}
 		} 
@@ -701,7 +713,7 @@ vfolder_info_read_info (VFolderInfo     *info,
 		return FALSE;
 
 	/* Don't let set_dirty write out the file */
-	info->inhibit_write = TRUE;
+	info->loading = TRUE;
 
 	ret = read_vfolder_from_file (info, 
 				      info->filename, 
@@ -733,7 +745,7 @@ vfolder_info_read_info (VFolderInfo     *info,
 	}
 
 	/* Allow set_dirty to write config file again */
-	info->inhibit_write = FALSE;
+	info->loading = FALSE;
 
 	return ret;
 }		     
@@ -834,10 +846,10 @@ add_xml_tree_from_folder (xmlNode *parent, Folder *folder)
 		     folder_get_name (folder) /* content */);
 
 	extend_uri = folder_get_extend_uri (folder);
-	if (extend_uri != NULL) {
+	if (extend_uri) {
 		xmlNewChild (folder_node /* parent */,
 			     NULL /* ns */,
-			     "Parent" /* name */,
+			     folder->is_link ? "ParentLink" : "Parent",
 			     extend_uri /* content */);
 	}
 
@@ -956,7 +968,7 @@ vfolder_info_write_user (VFolderInfo *info)
 	xmlDoc *doc;
 	GnomeVFSResult result;
 
-	if (info->inhibit_write || !info->dirty)
+	if (info->loading || !info->dirty)
 		return;
 
 	if (!info->filename)
@@ -1037,6 +1049,12 @@ vfolder_info_reset (VFolderInfo *info)
 
 	folder_unref (info->root);
 	info->root = NULL;
+
+	/* Clear flags */
+	info->read_only =
+		info->dirty = 
+		info->loading =
+		info->has_unallocated_folder = FALSE;
 }
 
 static void
@@ -1112,76 +1130,138 @@ g_str_case_hash (gconstpointer key)
 /* 
  * VFolderInfo Implementation
  */
+static gboolean
+copy_user_default_file (VFolderInfo *info)
+{
+	gchar *default_file_name; 
+	GnomeVFSResult result;
+	GnomeVFSFileInfo *file_info;
+	GnomeVFSURI *default_file_uri, *user_file_uri;
+
+	default_file_name = g_strconcat (SYSCONFDIR,
+					 "/gnome-vfs-2.0/vfolders/",
+					 info->scheme, ".vfolder-info-default",
+					 NULL);
+
+	file_info = gnome_vfs_file_info_new ();
+	result = gnome_vfs_get_file_info (default_file_name,
+					  file_info,
+					  GNOME_VFS_FILE_INFO_DEFAULT);
+	gnome_vfs_file_info_unref (file_info);
+
+	if (result != GNOME_VFS_OK) {
+		g_free (default_file_name);
+		return FALSE;
+	}
+
+	default_file_uri = gnome_vfs_uri_new (default_file_name);
+	user_file_uri = gnome_vfs_uri_new (info->filename);
+
+	/* Copy the default file */
+	result = gnome_vfs_xfer_uri (default_file_uri /* source_uri */,
+				     user_file_uri    /* target_uri */,
+				     GNOME_VFS_XFER_USE_UNIQUE_NAMES, 
+				     GNOME_VFS_XFER_ERROR_MODE_ABORT, 
+				     GNOME_VFS_XFER_OVERWRITE_MODE_ABORT,
+				     NULL, 
+				     NULL);
+
+	g_free (default_file_name);
+	gnome_vfs_uri_unref (default_file_uri);
+	gnome_vfs_uri_unref (user_file_uri);
+
+	return result == GNOME_VFS_OK;
+}
+
+static void
+vfolder_info_find_filenames (VFolderInfo *info)
+{
+	gchar *scheme = info->scheme;
+
+	/* 
+	 * FIXME: load from gconf 
+	 */
+
+	if (strstr (scheme, "-all-users")) {
+		GSList *list = NULL;
+		int i;
+		const char *path;
+		char *dir, **ppath;
+		ItemDir *id;
+
+		info->filename = g_strconcat (SYSCONFDIR,
+					      "/gnome-vfs-2.0/vfolders/",
+					      scheme, ".vfolder-info",
+					      NULL);
+
+		path = g_getenv ("GNOME2_PATH");
+		if (!path)
+			return;
+
+		ppath = g_strsplit (path, ":", -1);
+		for (i = 0; ppath[i] != NULL; i++) {
+			dir = g_build_filename (ppath[i], 
+						"/share/applications/",
+						NULL);
+			id = itemdir_new (info, dir, FALSE);
+			g_free (dir);
+			
+			list = g_slist_prepend (list, id);
+		}
+		g_strfreev (ppath);
+
+		info->item_dirs = g_slist_reverse (list);
+	} 
+	else {
+		GnomeVFSFileInfo *file_info;
+		GnomeVFSResult result;
+
+		/* output .vfolder-info filename */
+		info->filename = g_strconcat (g_get_home_dir (),
+					      "/" DOT_GNOME "/vfolders/",
+					      scheme, ".vfolder-info",
+					      NULL);
+
+		/* default write directory */
+		info->write_dir = g_build_filename (g_get_home_dir (),
+						    "/" DOT_GNOME "/vfolders/",
+						    scheme,
+						    NULL);
+
+		/* Check user's .vfolder-info exists */
+		file_info = gnome_vfs_file_info_new ();
+		result = gnome_vfs_get_file_info (info->filename,
+						  file_info,
+						  GNOME_VFS_FILE_INFO_DEFAULT);
+		gnome_vfs_file_info_unref (file_info);
+
+		if (result != GNOME_VFS_OK) {
+			/* Copy the default file */
+			copy_user_default_file (info);
+		}
+	}
+}
+
 static void
 vfolder_info_init (VFolderInfo *info, const char *scheme)
 {
-	const char *path;
-	GSList *list = NULL;
-	ItemDir *id;
+	gchar *all_user_scheme;
 
 	g_static_rw_lock_init (&info->rw_lock);
 
 	info->scheme = g_strdup (scheme);
 	info->root = folder_new (info, "Root");
+	
+	/* 
+	 * Set the extend uri for the root folder to the -all-users version of
+	 * the scheme, in case the user doesn't have a private .vfolder-info
+	 * file, and there's no default.  
+	 */
+	all_user_scheme = g_strconcat (scheme, "-all-users:///", NULL);
+	folder_set_extend_uri (info->root, all_user_scheme);
+	g_free (all_user_scheme);
 
-	// FIXME: load from gconf
-
-	if (strstr (scheme, "-all-users")) {
-		char *base_scheme;
-
-		base_scheme = 
-			g_strndup (scheme, 
-				   strlen (scheme) - strlen ("-all-users"));
-		info->filename = g_strconcat (SYSCONFDIR,
-					      "/gnome-vfs-2.0/vfolders/",
-					      base_scheme, 
-					      ".vfolder-info",
-					      NULL);
-		g_free (base_scheme);
-
-		path = g_getenv ("GNOME2_PATH");
-		if (path) {
-			int i;
-			char *dir;
-			char **ppath = g_strsplit (path, ":", -1);
-
-			for (i = 0; ppath[i] != NULL; i++) {
-				dir = g_build_filename (ppath[i], 
-							"/share/applications/",
-							NULL);
-				id = itemdir_new (info, dir, FALSE);
-				g_free (dir);
-
-				list = g_slist_prepend (list, id);
-			}
-			g_strfreev (ppath);
-		}
-
-		info->item_dirs = g_slist_reverse (list);
-	} else {
-		gchar *all_user_scheme;
-
-		/* 
-		 * Set the extend uri for the root folder to the -all-users
-		 * version of the scheme, in case the user doesn't have a
-		 * private .vfolder-info file yet. 
-		 */
-		all_user_scheme = g_strconcat (scheme, "-all-users:///", NULL);
-		folder_set_extend_uri (info->root, all_user_scheme);
-		g_free (all_user_scheme);
-
-		info->filename = g_strconcat (g_get_home_dir (),
-					      "/" DOT_GNOME "/vfolders/",
-					      scheme, 
-					      ".vfolder-info",
-					      NULL);
-
-		/* default write directory */
-		info->write_dir = g_strconcat (g_get_home_dir (),
-					       "/" DOT_GNOME "/vfolders/",
-					       scheme,
-					       NULL);
-	}
+	vfolder_info_find_filenames (info);
 
 	if (g_getenv ("GNOME_VFS_VFOLDER_INFODIR")) {
 		gchar *filename = g_strconcat (scheme, ".vfolder-info", NULL);
@@ -1222,13 +1302,6 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 						 info);
 
 	info->entries_ht = g_hash_table_new (g_str_case_hash, g_str_case_equal);
-
-	/* 
-	 * Load all entries in the itemdir and mergedir directories.  Load all
-	 * dirs in the config file. Set the directory dirty, and let
-	 * folder_set_dirty load all its derived entries, and pull them from the
-	 * global pool.  
-	 */
 
 	info->modification_time = time (NULL);
 }
@@ -1301,15 +1374,27 @@ vfolder_info_locate (const gchar *scheme)
 		} else
 			g_hash_table_insert (infos, info->scheme, info);
 
-		G_UNLOCK (vfolder_lock);
-		
-		VFOLDER_INFO_READ_LOCK (info);
+		if (info->has_unallocated_folder) {
+			/* 
+			 * Ensure we've traversed all the folders (which causes
+			 * entry allocation) if there is at least one
+			 * unallocated folder.
+			 */
+			VFOLDER_INFO_READ_LOCK (info);
 
-		info->inhibit_write = TRUE;
-		load_folders (info->root);
-		info->inhibit_write = FALSE;
+			/* 
+			 * Need to let go the vfolder_lock in case folders need
+			 * to read other vfolders.
+			 */
+			G_UNLOCK (vfolder_lock);
 
-		VFOLDER_INFO_READ_UNLOCK (info);
+			info->loading = TRUE;
+			load_folders (info->root);
+			info->loading = FALSE;
+			
+			VFOLDER_INFO_READ_UNLOCK (info);
+		} else 
+			G_UNLOCK (vfolder_lock);
 	} else
 		G_UNLOCK (vfolder_lock);
 
@@ -1438,6 +1523,9 @@ vfolder_info_emit_change (VFolderInfo              *info,
 	GSList *iter;
 	GnomeVFSURI *uri;
 	gchar *uristr;
+
+	if (info->loading) 
+		return;
 
 	uristr = g_strconcat (info->scheme, "://", path, NULL);
 	uri = gnome_vfs_uri_new (uristr);
