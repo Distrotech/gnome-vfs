@@ -6,7 +6,7 @@
 	(gnome_vfs_mime_set_registered_type_key): Adding back some noops 
 	temporarily.
 
-2004-07-16  Ray Strode  <rstrode@redhat.com
+2004-07-16  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-info-cache.[ch]: initial working 
 	version of gnome_vfs_mime_get_all_desktop_entries (still needs
