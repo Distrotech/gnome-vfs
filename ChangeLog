@@ -1,3 +1,9 @@
+2004-07-11  Sebastien Bacher  <seb128@debian.org>
+
+	* libgnomevfs/gnome-vfs-uri.c: (make_full_uri_from_relative):
+	Patch from Josselin Mouette <joss@debian.org> to fix a crash, 
+	on 64bit arches, due to a bad cast.
+	
 2004-07-09  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/ftp-method.c:

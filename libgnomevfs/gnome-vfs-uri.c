@@ -796,7 +796,7 @@ make_full_uri_from_relative (const char *base_uri, const char *uri)
 			separator = strrchr (mutable_base_uri, '/');
 			if (separator) {
 				/* Make sure we don't eat a domain part */
-				gchar *tmp = (gchar*)((int)separator - 1);
+				char *tmp = separator - 1;
 				if ((separator != mutable_base_uri) && (*tmp != '/')) {
 					*separator = '\0';
 				}
