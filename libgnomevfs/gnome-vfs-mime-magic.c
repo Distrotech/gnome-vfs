@@ -23,7 +23,6 @@
 #include "gnome-vfs-mime-sniff-buffer-private.h"
 #include "gnome-vfs-mime.h"
 
-#include <libgnome/libgnome.h>
 #include <ctype.h>
 #include <unistd.h>
 #include <fcntl.h>
