@@ -1757,7 +1757,7 @@ vfolder_info_find_filenames (VFolderInfo *info)
 	 * paths specified in $GNOME2_PATH, for people installing in strange
 	 * places.
 	 */
-	if (strcmp (scheme, "applications-all-users")) {
+	if (!strcmp (scheme, "applications-all-users")) {
 		int i;
 		const char *path;
 		char *dir, **ppath;
