@@ -28,12 +28,8 @@
 
 /* Opaque types.  */
 
-typedef struct GnomeVFSContext GnomeVFSContext;
-typedef struct GnomeVFSCancellation GnomeVFSCancellation;
 typedef struct GnomeVFSIOBuf GnomeVFSIOBuf;
 typedef struct GnomeVFSInetConnection GnomeVFSInetConnection;
-typedef struct GnomeVFSMessageCallbacks GnomeVFSMessageCallbacks;
-typedef gpointer GnomeVFSMethodHandle;
 
 
 /* VFS methods.  */
