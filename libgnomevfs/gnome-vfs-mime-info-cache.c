@@ -769,6 +769,9 @@ gnome_vfs_mime_get_all_desktop_entries (const char *mime_type)
 
 	G_UNLOCK (mime_info_cache);
 
+	g_list_foreach (mime_types, (GFunc)g_free, NULL);
+	g_list_free (mime_types);
+
 	desktop_entries = g_list_reverse (desktop_entries);
 
 	return desktop_entries;
