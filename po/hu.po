@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
-"POT-Creation-Date: 2001-01-25 17:46+0100\n"
+"POT-Creation-Date: 2001-01-31 15:07+0100\n"
 "PO-Revision-Date: 2001-01-25 17:56+01:00\n"
 "Last-Translator: Szabolcs Ban <shooby@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
@@ -32,11 +32,6 @@ msgstr "%s:%d nem tartalmaz modulnevet."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "'%s' konfigurációs fájlt nem találtam: %s"
-
-#: libgnomevfs/gnome-vfs-file-info.c:342
-#, c-format
-msgid "Unknown sort rule %d"
-msgstr "Ismeretlen rendezési mód: %d"
 
 #: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
@@ -249,7 +244,7 @@ msgstr "A szolgáltatás nem elérhetõ"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "Request obsoletes service's data"
-msgstr ""
+msgstr "A kérés elavulttá teszi a szolgáltatás adatait"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
@@ -327,38 +322,38 @@ msgstr "Nem tudok '%s'-en figyelni: %s"
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Nem tudok kapcsolatokat fogadni '%s'-n: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
+#: libgnomevfs-corba/gnome-vfs-slave.c:1189
 msgid "Cannot initialize CORBA."
 msgstr "Nem tudom a CORBA-t beindítani."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
+#: libgnomevfs-corba/gnome-vfs-slave.c:1196
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Nem tudom a RootPOA-nak a kezdeti referenciáját megkapni."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1292
+#: libgnomevfs-corba/gnome-vfs-slave.c:1203
 msgid "Cannot activate POA manager."
 msgstr "Nem tudom a POA kezelõt aktiválni."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1317
+#: libgnomevfs-corba/gnome-vfs-slave.c:1228
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Használat: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1328
+#: libgnomevfs-corba/gnome-vfs-slave.c:1239
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Nem tudom megnyitni a %d fájlleírót."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1351
+#: libgnomevfs-corba/gnome-vfs-slave.c:1262
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Nincs értesítõ felület a '%s'-hez"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1361
+#: libgnomevfs-corba/gnome-vfs-slave.c:1272
 msgid "Cannot setup Request object."
 msgstr "Nem tudom beállítani a Request objektumot."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1368
+#: libgnomevfs-corba/gnome-vfs-slave.c:1279
 msgid "Cannot extract IOR."
 msgstr "Nem tudom kivenni az IOR-t."
 
@@ -384,7 +379,7 @@ msgstr "Nem tudom kilõni a GNOME::VFS::Slave::Notify-t -- hiba: %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "Nem tudok a '%s' socket-ra kapcsolódni: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:750
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Nem tudom a GNOME::VFS::Slave::Notify-t elindítani"
 
@@ -410,23 +405,23 @@ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr ""
 "Nem tudom a GNOME::VFS::Slave-et leállítani (ismeretlen IOR) -- hiba: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:690
-#, fuzzy, c-format
+#: libgnomevfs-pthread/gnome-vfs-job.c:687
+#, c-format
 msgid "Unknown op type %u"
-msgstr "Ismeretlen folyamat azonosító: %d"
+msgstr "Ismeretlen op típus: %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:976
-#: libgnomevfs-pthread/gnome-vfs-job.c:1121
+#: libgnomevfs-pthread/gnome-vfs-job.c:973
+#: libgnomevfs-pthread/gnome-vfs-job.c:1118
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nem tudok pipe-ot létrehozni a GIOChannel megnyitásához: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1728
+#: libgnomevfs-pthread/gnome-vfs-job.c:1578
 #, c-format
 msgid "Unknown job ID %u"
 msgstr "Ismeretlen munkaazonosító: %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1749
+#: libgnomevfs-pthread/gnome-vfs-job.c:1599
 msgid "Operation stopped"
 msgstr "A mûvelet leállítva"
 
@@ -466,7 +461,7 @@ msgstr "A \"%s\" Mime típushoz válassz menüben megjelenõ megjelenítõ programot"
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
-msgstr ""
+msgstr "A megadott MIME-típus nagybetûket is tartalmazott. A nagybetûk kisbetûkre lettek cserélve."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
 msgid "Add New MIME Type"
@@ -524,44 +519,49 @@ msgstr ""
 msgid "Extension:"
 msgstr "Kiterjesztés:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1150
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1153
 msgid "New Application"
 msgstr "Új alkalmazás"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1159
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1263
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1162
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1269
 msgid "Application Name:"
 msgstr "Alkalmazás neve:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1167
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1272
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1170
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1278
 msgid "Application Command:"
 msgstr "Alkalmazás parancs:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1175
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1281
+#. FIXME bugzilla.eazel.com 6066: Need to add expected uri schemes
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1179
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
 msgid "Open Behavior"
 msgstr "Megnyitási viselkedés"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1181
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
 msgid "Can open multiple files"
 msgstr "Több fájlt megnyithat"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1184
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1291
-msgid "Can open from URI"
-msgstr "Megnyithat URI-t"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1188
+msgid "Expects URIs as arguments"
+msgstr "A várt arumantum URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1254
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1260
 msgid "Edit Application"
 msgstr "Alkalmazás szerkesztése"
 
+#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1298
+msgid "Can open from URI"
+msgstr "Megnyithat URI-t"
+
 #: mime-type-capplet/nautilus-mime-type-capplet.c:541
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1532
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1580
 msgid "Mime Type"
 msgstr "MIME típus"
 
@@ -617,6 +617,10 @@ msgid ""
 "Mime configuration.\n"
 "Revert to System Settings ?\n"
 msgstr ""
+"A rendszerbeállítások visszaállítása\n"
+"minden személyes MIME-beállítást töröl.\n"
+"Biztos, hogy vissza akarod állítani \n"
+"a rendszerbeállításokat?\n"
 
 #. Add default action to fourth column
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1133
@@ -632,27 +636,27 @@ msgstr "semmi"
 msgid "View as %s"
 msgstr "Megjelenítés, mint %s"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1531
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1579
 msgid "Description"
 msgstr "Leírás"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1533
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1581
 msgid "Extension"
 msgstr "Kifejezés"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1534
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1582
 msgid "Default Action"
 msgstr "Alapértelmezett mûvelet"
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:255
 msgid "Can't find an hbox, using a normal file selection"
-msgstr ""
+msgstr "hbox nem található, szokványos fájlkiválasztó használata."
 
 #: mime-type-capplet/nautilus-mime-type-icon-entry.c:261
 msgid "Preview"
 msgstr "Elõnézet"
 
-#: modules/efs-method.c:493 modules/file-method.c:367
+#: modules/efs-method.c:493 modules/file-method.c:366
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ismeretlen GnomeVFSSeekPosition %d"
@@ -677,70 +681,72 @@ msgstr "%s a %s-bõl olvasva"
 msgid "%s read"
 msgstr "%s olvasva"
 
-#: test/gnome-file-selection/gnome-file-selection.c:671
+#: test/gnome-file-selection/gnome-file-selection.c:667
 msgid "Back"
 msgstr "Vissza"
 
-#: test/gnome-file-selection/gnome-file-selection.c:672
+#: test/gnome-file-selection/gnome-file-selection.c:668
 msgid "Go to the previously visited directory"
 msgstr "Visszaugrás az elõzõleg használt könyvtárba"
 
-#: test/gnome-file-selection/gnome-file-selection.c:680
+#: test/gnome-file-selection/gnome-file-selection.c:676
 msgid "Up"
 msgstr "Fel"
 
-#: test/gnome-file-selection/gnome-file-selection.c:681
+#: test/gnome-file-selection/gnome-file-selection.c:677
 msgid "Go to the parent directory"
 msgstr "Ugrás a szülõkönyvtárba"
 
-#: test/gnome-file-selection/gnome-file-selection.c:689
+#: test/gnome-file-selection/gnome-file-selection.c:685
 msgid "Forward"
 msgstr "Elõre"
 
-#: test/gnome-file-selection/gnome-file-selection.c:690
+#: test/gnome-file-selection/gnome-file-selection.c:686
 msgid "Go to the next visited directory"
 msgstr "Ugrás az ez után használt könyvtárba"
 
-#: test/gnome-file-selection/gnome-file-selection.c:699
+#: test/gnome-file-selection/gnome-file-selection.c:695
 msgid "Rescan"
 msgstr "Újraolvasás"
 
-#: test/gnome-file-selection/gnome-file-selection.c:700
+#: test/gnome-file-selection/gnome-file-selection.c:696
 msgid "Rescan the current directory"
 msgstr "Az aktuális könyvtár újraolvasása"
 
-#: test/gnome-file-selection/gnome-file-selection.c:709
+#: test/gnome-file-selection/gnome-file-selection.c:705
 msgid "Home"
-msgstr ""
+msgstr "Saját könyvtár"
 
-#: test/gnome-file-selection/gnome-file-selection.c:710
-#, fuzzy
+#: test/gnome-file-selection/gnome-file-selection.c:706
 msgid "Go to the home directory"
-msgstr "Nem könyvtár"
+msgstr "Ugrás a saját könyvtárba"
 
-#: test/gnome-file-selection/gnome-file-selection.c:806
+#: test/gnome-file-selection/gnome-file-selection.c:802
 msgid "Name"
 msgstr "Név"
 
-#: test/gnome-file-selection/gnome-file-selection.c:807
+#: test/gnome-file-selection/gnome-file-selection.c:803
 msgid "Size"
 msgstr "Méret"
 
-#: test/gnome-file-selection/gnome-file-selection.c:808
+#: test/gnome-file-selection/gnome-file-selection.c:804
 msgid "Date"
 msgstr "Dátum"
 
-#: test/gnome-file-selection/gnome-file-selection.c:837
+#: test/gnome-file-selection/gnome-file-selection.c:833
 msgid "Enter name:"
 msgstr "Név megadása:"
 
-#: test/gnome-file-selection/gnome-file-selection.c:860
+#: test/gnome-file-selection/gnome-file-selection.c:856
 msgid "Show:"
 msgstr "Megjelenítés:"
 
-#: test/gnome-file-selection/gnome-file-selection.c:887
+#: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Rejtett fájlok megjelenítése"
+
+#~ msgid "Unknown sort rule %d"
+#~ msgstr "Ismeretlen rendezési mód: %d"
 
 #~ msgid "Error writing to the wakeup GnomeVFSJob channel."
 #~ msgstr "Nem sikerült a GnomeVFSJob wakeup csatornájába írni."
