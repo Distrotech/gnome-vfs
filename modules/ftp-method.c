@@ -101,12 +101,8 @@ remove_entry (gpointer key, gpointer value, gpointer user_data)
 }
 
 static void
-ftpfs_connection_unref (ftpfs_connection_t *conn)
+ftpfs_connection_destroy (ftpfs_connection_t *conn)
 {
-	conn->ref_count--;
-
-	if (conn->ref_count != 0)
-		return;
 	
 	g_free (conn->hostname);
 	g_free (conn->username);
@@ -117,7 +113,19 @@ ftpfs_connection_unref (ftpfs_connection_t *conn)
 	g_hash_table_foreach_remove (conn->dcache, remove_entry, NULL);
 	g_hash_table_destroy (conn->dcache);
 
+	g_hash_table_remove (connections_hash, conn);
 	g_free (conn);
+}
+
+static void
+ftpfs_connection_unref (ftpfs_connection_t *conn)
+{
+	conn->ref_count--;
+
+	if (conn->ref_count != 0)
+		return;
+
+	ftpfs_connection_destroy (conn);
 }
 
 static void
