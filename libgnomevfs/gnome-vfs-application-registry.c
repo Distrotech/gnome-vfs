@@ -1401,8 +1401,8 @@ gnome_vfs_application_registry_set_value (const char *app_id,
 	user_file_dirty = TRUE;
 }
 
-/*
- * gnome_vfs_application_registry_set_bool_value
+/**
+ * gnome_vfs_application_registry_set_bool_value:
  * @app_id:  registry id of the application
  * @key: target key
  * @value: value you want to set the target key to
@@ -1412,7 +1412,6 @@ gnome_vfs_application_registry_set_value (const char *app_id,
  * gnome_vfs_application_registry_sync to save your changes.
  *
  */
-
 void
 gnome_vfs_application_registry_set_bool_value (const char *app_id,
 					       const char *key,

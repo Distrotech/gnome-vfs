@@ -70,7 +70,6 @@ noinst_HEADERS =				\
 libgnomevfsmoduleinclude_HEADERS =		\
 	gnome-vfs-cancellable-ops.h		\
 	gnome-vfs-inet-connection.h		\
-	gnome-vfs-iobuf.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-mime.h			\
 	gnome-vfs-mime-info.h			\
@@ -129,7 +128,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-i18n.c			\
 	gnome-vfs-inet-connection.c		\
 	gnome-vfs-init.c			\
-	gnome-vfs-iobuf.c			\
 	gnome-vfs-job-queue.c			\
 	gnome-vfs-job-slave.c			\
 	gnome-vfs-job.c				\

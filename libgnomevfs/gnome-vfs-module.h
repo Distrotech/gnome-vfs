@@ -32,6 +32,8 @@ G_BEGIN_DECLS
 /**
  * vfs_module_init:
  * @method_name: name of the method that invoked this module (e.g. "http", "ftp", "file").
+ * @args: not used by most modules, but potential arguments for creating the module (could
+ * be a file to point at, for example)
  *
  * Standard extern call implemented by each filesystem module. This is called
  * to initialize the module and setup any basic structures / connections the
@@ -46,6 +48,8 @@ extern GnomeVFSMethod    *vfs_module_init	(const char *method_name, const char *
 /**
  * vfs_module_transform:
  * @method_name: name of the method that invoked this module (e.g. "http", "ftp", "file").
+ * @args: not used by most modules, but potential arguments for creating the module (could
+ * be a file to point at, for example)
  *
  * Shift an already instanced module to a new method name. This call is not implemented
  * by most modules and is optional.

@@ -71,6 +71,14 @@ gnome_vfs_ssl_init () {
 #endif
 }
 
+/**
+ * gnome_vfs_ssl_enabled:
+ *
+ * Checks whether GnomeVFS was compiled with SSL support.
+ *
+ * Return value: %TRUE if GnomeVFS was compiled with SSL support,
+ * otherwise %FALSE.
+ **/
 gboolean
 gnome_vfs_ssl_enabled ()
 {
@@ -81,12 +89,24 @@ gnome_vfs_ssl_enabled ()
 #endif
 }
 
-/* FIXME: add *some* kind of cert verification! */
+/**
+ * gnome_vfs_ssl_create:
+ * @handle_return: pointer to a GnmoeVFSSSL struct, which will
+ * contain an allocated GnomeVFSSSL object on return.
+ * @host: string indicating the host to establish an SSL connection with
+ * @port: the port number to connect to
+ *
+ * Creates an SSL socket connection at @handle_return to @host using
+ * port @port.
+ *
+ * Return value: GnomeVFSResult indicating the success of the operation
+ **/
 GnomeVFSResult
 gnome_vfs_ssl_create (GnomeVFSSSL **handle_return, 
 		      const char *host, 
 		      unsigned int port)
 {
+/* FIXME: add *some* kind of cert verification! */
 #ifdef HAVE_OPENSSL
 	int fd;
 	int ret;
@@ -121,6 +141,16 @@ gnome_vfs_ssl_create (GnomeVFSSSL **handle_return,
 #endif
 }
 
+/**
+ * gnome_vfs_ssl_create_from_fd:
+ * @handle_return: pointer to a GnmoeVFSSSL struct, which will
+ * contain an allocated GnomeVFSSSL object on return.
+ * @fd: file descriptior to try and establish an SSL connection over
+ *
+ * Try to establish an SSL connection over the file descriptor @fd.
+ *
+ * Return value: a GnomeVFSResult indicating the success of the operation
+ **/
 GnomeVFSResult
 gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return, 
 		              gint fd)
@@ -173,6 +203,18 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 #endif
 }
 
+/**
+ * gnome_vfs_ssl_read:
+ * @ssl: SSL socket to read data from
+ * @buffer: allocated buffer of at least @bytes bytes to be read into
+ * @bytes: number of bytes to read from @ssl into @buffer
+ * @bytes_read: pointer to a GnomeVFSFileSize, will contain
+ * the number of bytes actually read from the socket on return.
+ *
+ * Read @bytes bytes of data from the SSL socket @ssl into @buffer.
+ *
+ * Return value: GnomeVFSResult indicating the success of the operation
+ **/
 GnomeVFSResult 
 gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 		    gpointer buffer,
@@ -197,6 +239,18 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 #endif
 }
 
+/**
+ * gnome_vfs_ssl_write:
+ * @ssl: SSL socket to write data to
+ * @buffer: data to write to the socket
+ * @bytes: number of bytes from @buffer to write to @ssl
+ * @bytes_written: pointer to a GnomeVFSFileSize, will contain
+ * the number of bytes actually written to the socket on return.
+ *
+ * Write @bytes bytes of data from @buffer to @ssl.
+ *
+ * Return value: GnomeVFSResult indicating the success of the operation
+ **/
 GnomeVFSResult 
 gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 		     gconstpointer buffer,
@@ -221,6 +275,12 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 #endif
 }
 
+/**
+ * gnome_vfs_ssl_destroy:
+ * @ssl: SSL socket to be closed and destroyed
+ *
+ * Free resources used by @ssl and close the connection.
+ */
 void
 gnome_vfs_ssl_destroy (GnomeVFSSSL *ssl) 
 {
@@ -241,6 +301,14 @@ static GnomeVFSSocketImpl ssl_socket_impl = {
 	(GnomeVFSSocketCloseFunc)gnome_vfs_ssl_destroy
 };
 
+/**
+ * gnome_vfs_ssl_to_socket:
+ * @ssl: SSL socket to convert into a standard socket
+ *
+ * Wrapper an SSL socket inside a standard GnomeVFSSocket.
+ *
+ * Return value: a newly allocated GnomeVFSSocket corresponding to @ssl.
+ **/
 GnomeVFSSocket *
 gnome_vfs_ssl_to_socket (GnomeVFSSSL *ssl)
 {

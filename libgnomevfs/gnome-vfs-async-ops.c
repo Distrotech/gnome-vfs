@@ -79,6 +79,22 @@ async_open (GnomeVFSURI *uri,
 	return result;
 }
 
+/**
+ * gnome_vfs_async_open_uri:
+ * @handle_return: A pointer to a pointer to a GnomeVFSHandle object
+ * @uri: URI to open
+ * @open_mode: Open mode
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Open @uri according to mode @open_mode.  On return, @handle_return will
+ * contain a pointer to the operation. Once the file has been successfully opened,
+ * @callback will be called with the GnomeVFSResult.
+ * 
+ **/
 void
 gnome_vfs_async_open_uri (GnomeVFSAsyncHandle **handle_return,
 			  GnomeVFSURI *uri,
@@ -97,6 +113,22 @@ gnome_vfs_async_open_uri (GnomeVFSAsyncHandle **handle_return,
 				     callback, callback_data);
 }
 
+/**
+ * gnome_vfs_async_open:
+ * @handle_return: A pointer to a pointer to a GnomeVFSHandle object
+ * @text_uri: string of the URI to open
+ * @open_mode: Open mode
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Open @text_uri according to mode @open_mode.  On return, @handle_return will
+ * contain a pointer to the operation. Once the file has been successfully opened,
+ * @callback will be called with the GnomeVFSResult.
+ * 
+ **/
 void
 gnome_vfs_async_open (GnomeVFSAsyncHandle **handle_return,
 		      const gchar *text_uri,
@@ -217,6 +249,27 @@ async_create (GnomeVFSURI *uri,
 	return result;
 }
 
+/**
+ * gnome_vfs_async_create_uri:
+ * @handle_return: A pointer to a pointer to a GnomeVFSHandle object
+ * @uri: the URI to create a file at
+ * @open_mode: mode to leave the file opened in after creation (or %GNOME_VFS_OPEN_MODE_NONE
+ * to leave the file closed after creation)
+ * @exclusive: Whether the file should be created in "exclusive" mode:
+ * i.e. if this flag is nonzero, operation will fail if a file with the
+ * same name already exists.
+ * @perm: Bitmap representing the permissions for the newly created file
+ * (Unix style).
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Create a file at @uri according to mode @open_mode, with permissions @perm (in
+ * the standard UNIX packed bit permissions format). When the create has been completed
+ * @callback will be called with the result code and @callback_data.
+ **/
 void
 gnome_vfs_async_create_uri (GnomeVFSAsyncHandle **handle_return,
 			    GnomeVFSURI *uri,
@@ -237,6 +290,27 @@ gnome_vfs_async_create_uri (GnomeVFSAsyncHandle **handle_return,
 				       priority, callback, callback_data);
 }
 
+/**
+ * gnome_vfs_async_create:
+ * @handle_return: A pointer to a pointer to a GnomeVFSHandle object
+ * @text_uri: String representing the URI to create
+ * @open_mode: mode to leave the file opened in after creation (or %GNOME_VFS_OPEN_MODE_NONE
+ * to leave the file closed after creation)
+ * @exclusive: Whether the file should be created in "exclusive" mode:
+ * i.e. if this flag is nonzero, operation will fail if a file with the
+ * same name already exists.
+ * @perm: Bitmap representing the permissions for the newly created file
+ * (Unix style).
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Create a file at @uri according to mode @open_mode, with permissions @perm (in
+ * the standard UNIX packed bit permissions format). When the create has been completed
+ * @callback will be called with the result code and @callback_data.
+ **/
 void
 gnome_vfs_async_create (GnomeVFSAsyncHandle **handle_return,
 			const gchar *text_uri,
@@ -296,6 +370,16 @@ gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 	gnome_vfs_job_go (job);
 }
 
+/**
+ * gnome_vfs_async_close:
+ * @handle: async handle to close
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ *
+ * Close a handle opened with gnome_vfs_async_open(). When the close
+ * has completed, @callback will be called with @callback_data and
+ * the result of the operation.
+ **/
 void
 gnome_vfs_async_close (GnomeVFSAsyncHandle *handle,
 		       GnomeVFSAsyncCloseCallback callback,
@@ -335,6 +419,18 @@ gnome_vfs_async_close (GnomeVFSAsyncHandle *handle,
 	}
 }
 
+/**
+ * gnome_vfs_async_read:
+ * @handle: handle for the file to be read
+ * @buffer: allocated block of memory to read into
+ * @bytes: number of bytes to read
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Read @bytes bytes from the file pointed to be @handle into @buffer.
+ * When the operation is complete, @callback will be called with the
+ * result of the operation and @callback_data.
+ **/
 void
 gnome_vfs_async_read (GnomeVFSAsyncHandle *handle,
 		      gpointer buffer,
@@ -368,6 +464,18 @@ gnome_vfs_async_read (GnomeVFSAsyncHandle *handle,
 	gnome_vfs_async_job_map_unlock ();
 }
 
+/**
+ * gnome_vfs_async_write:
+ * @handle: handle for the file to be written
+ * @buffer: block of memory containing data to be written
+ * @bytes: number of bytes to write
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Write @bytes bytes from @buffer into the file pointed to be @handle.
+ * When the operation is complete, @callback will be called with the
+ * result of the operation and @callback_data.
+ **/
 void
 gnome_vfs_async_write (GnomeVFSAsyncHandle *handle,
 		       gconstpointer buffer,
@@ -401,6 +509,22 @@ gnome_vfs_async_write (GnomeVFSAsyncHandle *handle,
 	gnome_vfs_async_job_map_unlock ();
 }
 
+/**
+ * gnome_vfs_async_create_symbolic_link:
+ * @handle_return: when the function returns will point to a handle for
+ * the async operation.
+ * @uri: location to create the link at
+ * @uri_reference: location to point @uri to (can be a URI fragment, i.e. relative)
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Create a symbolic link at @uri pointing to @uri_reference. When the operation
+ * has complete @callback will be called with the result of the operation and
+ * @callback_data.
+ **/
 void
 gnome_vfs_async_create_symbolic_link (GnomeVFSAsyncHandle **handle_return,
 				      GnomeVFSURI *uri,
@@ -428,9 +552,25 @@ gnome_vfs_async_create_symbolic_link (GnomeVFSAsyncHandle **handle_return,
 	gnome_vfs_job_go (job);
 }
 
+/**
+ * gnome_vfs_async_get_file_info:
+ * @handle_return: when the function returns will point to a handle for
+ * the async operation.
+ * @uri_list: a GList of GnomeVFSURIs to fetch information about
+ * @options: packed boolean type providing control over various details
+ * of the get_file_info operation.
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Fetch information about the files indicated in @uris and return the
+ * information progressively to @callback.
+ **/
 void
 gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
-			       GList *uris,
+			       GList *uri_list,
 			       GnomeVFSFileInfoOptions options,
 			       int priority,
 			       GnomeVFSAsyncGetFileInfoCallback callback,
@@ -448,7 +588,7 @@ gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 
 	get_info_op = &job->op->specifics.get_file_info;
 
-	get_info_op->uris = gnome_vfs_uri_list_copy (uris);
+	get_info_op->uris = gnome_vfs_uri_list_copy (uri_list);
 	get_info_op->options = options;
 
 
@@ -456,6 +596,24 @@ gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 	gnome_vfs_job_go (job);
 }
 
+/**
+ * gnome_vfs_async_set_file_info:
+ * @handle_return: when the function returns will point to a handle for
+ * the async operation.
+ * @uri: the URI to set the file info of
+ * @info: the struct containing new information about the file
+ * @mask: control which fields of @info are changed about the file at @uri
+ * @options: packed boolean type providing control over various details
+ * of the set_file_info operation.
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Set "file info" details about the file at @uri, such as permissions, name,
+ * owner, and modification time.
+ **/
 void
 gnome_vfs_async_set_file_info (GnomeVFSAsyncHandle **handle_return,
 			       GnomeVFSURI *uri,
@@ -490,9 +648,40 @@ gnome_vfs_async_set_file_info (GnomeVFSAsyncHandle **handle_return,
 	gnome_vfs_job_go (job);
 }
 
+/**
+ * gnome_vfs_async_find_directory:
+ * @handle_return: when the function returns will point to a handle for
+ * @near_uri_list: a GList of GnomeVFSURIs, find a special directory on the same 
+ * volume as @uris
+ * @kind: kind of special directory
+ * @create_if_needed: If directory we are looking for does not exist, try to create it
+ * @find_if_needed: If we don't know where the directory is yet, look for it.
+ * @permissions: If creating, use these permissions
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @user_data: data to pass @callback * 
+ * Used to return special directories such as Trash and Desktop from different
+ * file systems.
+ * 
+ * There is quite a complicated logic behind finding/creating a Trash directory
+ * and you need to be aware of some implications:
+ * Finding the Trash the first time when using the file method may be pretty 
+ * expensive. A cache file is used to store the location of that Trash file
+ * for next time.
+ * If @ceate_if_needed is specified without @find_if_needed, you may end up
+ * creating a Trash file when there already is one. Your app should start out
+ * by doing a gnome_vfs_find_directory with the @find_if_needed to avoid this
+ * and then use the @create_if_needed flag to create Trash lazily when it is
+ * needed for throwing away an item on a given disk.
+ * 
+ * When the operation has completed, @callback will be called with the result
+ * of the operation and @user_data.
+ **/
 void
 gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
-				GList *uris,
+				GList *near_uri_list,
 				GnomeVFSFindDirectoryKind kind,
 				gboolean create_if_needed,
 				gboolean find_if_needed,
@@ -513,7 +702,7 @@ gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
 
 	get_info_op = &job->op->specifics.find_directory;
 
-	get_info_op->uris = gnome_vfs_uri_list_copy (uris);
+	get_info_op->uris = gnome_vfs_uri_list_copy (near_uri_list);
 	get_info_op->kind = kind;
 	get_info_op->create_if_needed = create_if_needed;
 	get_info_op->find_if_needed = find_if_needed;
@@ -549,6 +738,26 @@ async_load_directory (GnomeVFSURI *uri,
 	return result;
 }
 
+
+
+/**
+ * gnome_vfs_async_load_directory:
+ * @handle_return: when the function returns will point to a handle for
+ * the async operation.
+ * @text_uri: string representing the URI of the directory to be loaded
+ * @options: packed boolean type providing control over various details
+ * of the get_file_info operation.
+ * @items_per_notification: number of files to process in a row before calling @callback
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Read the contents of the directory at @text_uri, passing back GnomeVFSFileInfo 
+ * structs about each file in the directory to @callback. @items_per_notification
+ * files will be processed between each call to @callback.
+ **/
 void
 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 				const gchar *text_uri,
@@ -576,6 +785,24 @@ gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	}
 }
 
+/**
+ * gnome_vfs_async_load_directory_uri:
+ * @handle_return: when the function returns will point to a handle for
+ * the async operation.
+ * @uri: string representing the URI of the directory to be loaded
+ * @options: packed boolean type providing control over various details
+ * of the get_file_info operation.
+ * @items_per_notification: number of files to process in a row before calling @callback
+ * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
+ * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
+ * in allocating threads from the thread pool.
+ * @callback: function to be called when the operation is complete
+ * @callback_data: data to pass @callback
+ * 
+ * Read the contents of the directory at @uri, passing back GnomeVFSFileInfo structs
+ * about each file in the directory to @callback. @items_per_notification
+ * files will be processed between each call to @callback.
+ **/
 void
 gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 				    GnomeVFSURI *uri,

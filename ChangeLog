@@ -1,5 +1,52 @@
 2002-06-16  Seth Nickell  <snickell@stanford.edu>
 
+	* doc/gnome-vfs-sections.txt:
+	* doc/tmpl/gnome-vfs-directory.sgml:
+	* doc/tmpl/gnome-vfs-inet-connection.sgml:
+	* doc/tmpl/gnome-vfs-iobuf.sgml:
+	* doc/tmpl/gnome-vfs-socket-buffer.sgml:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	* libgnomevfs/gnome-vfs-async-ops.c:
+	(gnome_vfs_async_get_file_info), (gnome_vfs_async_find_directory):
+	* libgnomevfs/gnome-vfs-directory.c:
+	(gnome_vfs_directory_visit_files):
+	* libgnomevfs/gnome-vfs-directory.h:
+	* libgnomevfs/gnome-vfs-inet-connection.c:
+	(gnome_vfs_inet_connection_to_socket),
+	(gnome_vfs_inet_connection_to_socket_buffer):
+	* libgnomevfs/gnome-vfs-inet-connection.h:
+	* libgnomevfs/gnome-vfs-job-queue.c:
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-module.h:
+	* libgnomevfs/gnome-vfs-ops.c:
+	* libgnomevfs/gnome-vfs-socket-buffer.c:
+	(gnome_vfs_socket_buffer_destroy), (gnome_vfs_socket_buffer_peekc):
+	* libgnomevfs/gnome-vfs-socket-buffer.h:
+	* libgnomevfs/gnome-vfs-socket.c:
+	* libgnomevfs/gnome-vfs-ssl.c: (gnome_vfs_ssl_create):
+	* libgnomevfs/gnome-vfs-uri.c:
+	* libgnomevfs/gnome-vfs-utils.c:
+
+	Bunch more documentation :-)
+
+	* libgnomevfs/gnome-vfs-iobuf.c:
+	* libgnomevfs/gnome-vfs-iobuf.h:
+
+	Remove from GnomeVFS as they have the same functions as GnomeVFSSocketBuffer.
+	
+	* modules/ftp-method.c: (read_response_line), (do_control_write),
+	(do_transfer_command), (end_transfer), (ftp_connection_create),
+	(ftp_connection_destroy), (do_read), (do_write),
+	(internal_get_file_info), (do_open_directory):
+	* modules/nntp-method.c: (read_response_line), (do_control_write),
+	(nntp_connection_create), (nntp_connection_destroy):
+	* modules/nntp-method.h:
+
+	Convert from iobuf to socket_buffer.
+
+2002-06-16  Seth Nickell  <snickell@stanford.edu>
+
 	* libgnomevfs/gnome-vfs-metadata.gob:
 	* libgnomevfs/gnome-vfs-monitor.h:
 	* libgnomevfs/gnome-vfs-ops.c:

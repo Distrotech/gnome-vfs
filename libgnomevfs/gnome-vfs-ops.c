@@ -34,7 +34,7 @@
  * @text_uri: String representing the URI to open
  * @open_mode: Open mode
  * 
- * Open @text_uri according to mode @open_mode.  On return, @*handle will then
+ * Open @text_uri according to mode @open_mode.  On return, @handle will then
  * contain a pointer to a handle for the open file.
  * 
  * Return value: An integer representing the result of the operation
@@ -67,7 +67,7 @@ gnome_vfs_open (GnomeVFSHandle **handle,
  * @uri: URI to open
  * @open_mode: Open mode
  * 
- * Open @uri according to mode @open_mode.  On return, @*handle will then
+ * Open @uri according to mode @open_mode.  On return, @handle will then
  * contain a pointer to a handle for the open file.
  * 
  * Return value: An integer representing the result of the operation
@@ -84,14 +84,15 @@ gnome_vfs_open_uri (GnomeVFSHandle **handle,
  * gnome_vfs_create:
  * @handle: A pointer to a pointer to a GnomeVFSHandle object
  * @text_uri: String representing the URI to create
- * @open_mode: Open mode
+ * @open_mode: mode to leave the file opened in after creation (or %GNOME_VFS_OPEN_MODE_NONE
+ * to leave the file closed after creation)
  * @exclusive: Whether the file should be created in "exclusive" mode:
  * i.e. if this flag is nonzero, operation will fail if a file with the
  * same name already exists.
  * @perm: Bitmap representing the permissions for the newly created file
  * (Unix style).
  * 
- * Create @uri according to mode @open_mode.  On return, @*handle will then
+ * Create @uri according to mode @open_mode.  On return, @handle will then
  * contain a pointer to a handle for the open file.
  * 
  * Return value: An integer representing the result of the operation
@@ -131,7 +132,7 @@ gnome_vfs_create (GnomeVFSHandle **handle,
  * @perm: Bitmap representing the permissions for the newly created file
  * (Unix style).
  * 
- * Create @uri according to mode @open_mode.  On return, @*handle will then
+ * Create @uri according to mode @open_mode.  On return, @handle will then
  * contain a pointer to a handle for the open file.
  * 
  * Return value: An integer representing the result of the operation
@@ -171,7 +172,7 @@ gnome_vfs_close (GnomeVFSHandle *handle)
  * 
  * Read @bytes from @handle.  As with Unix system calls, the number of
  * bytes read can effectively be less than @bytes on return and will be
- * stored in @*bytes_read.
+ * stored in @bytes_read.
  * 
  * Return value: An integer representing the result of the operation
  **/
@@ -195,7 +196,7 @@ gnome_vfs_read (GnomeVFSHandle *handle,
  * 
  * Write @bytes into the file opened through @handle.  As with Unix system
  * calls, the number of bytes written can effectively be less than @bytes on
- * return and will be stored in @*bytes_written.
+ * return and will be stored in @bytes_written.
  * 
  * Return value: An integer representing the result of the operation
  **/
@@ -257,7 +258,7 @@ gnome_vfs_tell (GnomeVFSHandle *handle,
  * to retrieve for the file
  * 
  * Retrieve information about @text_uri.  The information will be stored in
- * @*info.
+ * @info.
  * 
  * Return value: An integer representing the result of the operation
  **/

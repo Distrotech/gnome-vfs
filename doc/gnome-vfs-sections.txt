@@ -229,16 +229,6 @@ gnome_vfs_uri_make_full_from_relative
 </SECTION>
 
 <SECTION>
-<FILE>gnome-vfs-iobuf</FILE>
-gnome_vfs_iobuf_new
-gnome_vfs_iobuf_destroy
-gnome_vfs_iobuf_read
-gnome_vfs_iobuf_peekc
-gnome_vfs_iobuf_write
-gnome_vfs_iobuf_flush
-</SECTION>
-
-<SECTION>
 <FILE>gnome-vfs-standard-callbacks</FILE>
 GNOME_VFS_MODULE_CALLBACK_AUTHENTICATION
 GNOME_VFS_MODULE_CALLBACK_HTTP_PROXY_AUTHENTICATION
@@ -260,8 +250,8 @@ GnomeVFSModuleCallbackStatusMessageOut
 gnome_vfs_inet_connection_create
 gnome_vfs_inet_connection_destroy
 gnome_vfs_inet_connection_free
-gnome_vfs_inet_connection_get_iobuf
 gnome_vfs_inet_connection_to_socket
+gnome_vfs_inet_connection_to_socket_buffer
 gnome_vfs_inet_connection_get_fd
 </SECTION>
 

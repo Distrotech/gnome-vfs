@@ -327,6 +327,13 @@ gnome_vfs_job_schedule (GnomeVFSJob *job)
 	return TRUE;
 }
 
+/**
+ * gnome_vfs_async_set_job_limit:
+ * @limit: maximuum number of allowable threads
+ *
+ * Restrict the number of worker threads used by Async operations
+ * to @limit.
+ **/
 void
 gnome_vfs_async_set_job_limit (int limit)
 {
@@ -342,6 +349,14 @@ gnome_vfs_async_set_job_limit (int limit)
 	pthread_mutex_unlock (&job_queue_lock);
 }
 
+/**
+ * gnome_vfs_async_get_job_limit:
+ * 
+ * Get the current maximuum allowable number of
+ * worker threads for Asynch operations.
+ *
+ * Return value: current maximuum number of threads
+ **/
 int
 gnome_vfs_async_get_job_limit (void)
 {

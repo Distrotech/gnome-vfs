@@ -113,10 +113,12 @@ reading the contents of directories
 @text_uri: 
 @file_list: 
 @info_options: 
-@Param4: 
+@visit_options: 
 @callback: 
 @data: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@Param4: 
 
 
 <!-- ##### FUNCTION gnome_vfs_directory_visit_files_at_uri ##### -->

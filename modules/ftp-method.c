@@ -44,7 +44,7 @@
 #include <arpa/inet.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-inet-connection.h>
-#include <libgnomevfs/gnome-vfs-iobuf.h>
+#include <libgnomevfs/gnome-vfs-socket-buffer.h>
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
@@ -69,14 +69,14 @@
 typedef struct {
 	GnomeVFSMethodHandle method_handle;
 	GnomeVFSInetConnection *inet_connection;
-	GnomeVFSIOBuf *iobuf;
+	GnomeVFSSocketBuffer *socket_buf;
 	GnomeVFSURI *uri;
 	gchar *cwd;
 	GString *response_buffer;
 	gchar *response_message;
 	gint response_code;
 	GnomeVFSInetConnection *data_connection;
-	GnomeVFSIOBuf *data_iobuf;
+	GnomeVFSSocketBuffer *data_socketbuf;
 	enum {
 		FTP_NOTHING,
 		FTP_READ,
@@ -214,8 +214,8 @@ static GnomeVFSResult read_response_line(FtpConnection *conn, gchar **line) {
 		/* we don't have a full line. Lets read some... */
 		/*ftp_debug (conn,g_strdup_printf ("response `%s' is incomplete", conn->response_buffer->str));*/
 		bytes_read = 0;
-		result = gnome_vfs_iobuf_read (conn->iobuf, buf,
-					       bytes, &bytes_read);
+		result = gnome_vfs_socket_buffer_read (conn->socket_buf, buf,
+						       bytes, &bytes_read);
 		buf[bytes_read] = '\0';
 		/*ftp_debug (conn,g_strdup_printf ("read `%s'", buf));*/
 		conn->response_buffer = g_string_append (conn->response_buffer,
@@ -298,12 +298,12 @@ static GnomeVFSResult do_control_write (FtpConnection *conn,
 {
         gchar *actual_command = g_strdup_printf ("%s\r\n", command);
 	GnomeVFSFileSize bytes = strlen (actual_command), bytes_written;
-	GnomeVFSResult result = gnome_vfs_iobuf_write (conn->iobuf,
-						       actual_command, bytes, &bytes_written);
+	GnomeVFSResult result = gnome_vfs_socket_buffer_write (conn->socket_buf,
+							       actual_command, bytes, &bytes_written);
 #if 0
 	ftp_debug (conn, g_strdup_printf ("sent \"%s\\r\\n\"", command));
 #endif
-	gnome_vfs_iobuf_flush (conn->iobuf);
+	gnome_vfs_socket_buffer_flush (conn->socket_buf);
 
 	if(result != GNOME_VFS_OK) {
 		g_free (actual_command);
@@ -389,6 +389,7 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 	char *host = NULL;
 	gint port;
 	GnomeVFSResult result;
+	GnomeVFSSocket *socket;
 
 	/* Image mode (binary to the uninitiated) */
 	do_basic_command (conn, "TYPE I");
@@ -428,9 +429,10 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 		return result;
 	}
 
-	conn->data_iobuf = gnome_vfs_inet_connection_get_iobuf (conn->data_connection);
+	socket = gnome_vfs_inet_connection_to_socket (conn->data_connection);
+	conn->data_socketbuf = gnome_vfs_socket_buffer_new (socket);
 
-	if (conn->iobuf == NULL) {
+	if (conn->socket_buf == NULL) {
 		gnome_vfs_inet_connection_destroy (conn->data_connection, NULL);
 		return GNOME_VFS_ERROR_GENERIC;
 	}
@@ -438,7 +440,7 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 	result = do_control_write (conn, command);
 
 	if (result != GNOME_VFS_OK) {
-		gnome_vfs_iobuf_destroy (conn->data_iobuf);
+		gnome_vfs_socket_buffer_destroy (conn->data_socketbuf, FALSE);
 		gnome_vfs_inet_connection_destroy (conn->data_connection, NULL);
 		return result;
 	}
@@ -446,7 +448,7 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 	result = get_response (conn);
 
 	if (result != GNOME_VFS_OK) {
-		gnome_vfs_iobuf_destroy (conn->data_iobuf);
+		gnome_vfs_socket_buffer_destroy (conn->data_socketbuf, FALSE);
 		gnome_vfs_inet_connection_destroy (conn->data_connection, NULL);
 		return result;
 	}
@@ -487,10 +489,10 @@ end_transfer (FtpConnection *conn)
 
 	/*ftp_debug (conn, g_strdup ("end_transfer()"));*/
 
-	if(conn->data_iobuf) {
-		gnome_vfs_iobuf_flush (conn->data_iobuf);
-		gnome_vfs_iobuf_destroy (conn->data_iobuf);
-		conn->data_iobuf = NULL;
+	if(conn->data_socketbuf) {
+		gnome_vfs_socket_buffer_flush (conn->data_socketbuf);
+		gnome_vfs_socket_buffer_destroy (conn->data_socketbuf, FALSE);
+		conn->data_socketbuf = NULL;
 	}
 
 	if (conn->data_connection) {
@@ -549,10 +551,10 @@ ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContex
 		return result;
 	}
 
-	conn->iobuf = gnome_vfs_inet_connection_get_iobuf (conn->inet_connection);
+	conn->socket_buf = gnome_vfs_inet_connection_to_socket_buffer (conn->inet_connection);
 
-	if (conn->iobuf == NULL) {
-		g_warning ("gnome_vfs_inet_connection_get_iobuf () failed");
+	if (conn->socket_buf == NULL) {
+		g_warning ("Getting socket buffer failed");
 		gnome_vfs_inet_connection_destroy (conn->inet_connection, NULL);
 		gnome_vfs_uri_unref (conn->uri);
 		g_string_free (conn->response_buffer, TRUE);
@@ -587,7 +589,7 @@ ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContex
 		/* login failed */
 		g_warning ("FTP server said: \"%d %s\"\n", conn->response_code,
 			   conn->response_message);
-		gnome_vfs_iobuf_destroy (conn->iobuf);
+		gnome_vfs_socket_buffer_destroy (conn->socket_buf, FALSE);
 		gnome_vfs_inet_connection_destroy (conn->inet_connection, NULL);
 		gnome_vfs_uri_unref (conn->uri);
 		g_string_free (conn->response_buffer, TRUE);
@@ -622,8 +624,8 @@ ftp_connection_destroy (FtpConnection *conn)
 	if (conn->inet_connection) 
 	        gnome_vfs_inet_connection_destroy (conn->inet_connection, NULL);
 
-	if (conn->iobuf) 
-	        gnome_vfs_iobuf_destroy (conn->iobuf);
+	if (conn->socket_buf) 
+	        gnome_vfs_socket_buffer_destroy (conn->socket_buf, FALSE);
 
 	gnome_vfs_uri_unref (conn->uri);
 	g_free (conn->cwd);
@@ -636,8 +638,8 @@ ftp_connection_destroy (FtpConnection *conn)
 	if (conn->data_connection) 
 		gnome_vfs_inet_connection_destroy(conn->data_connection, NULL);
 
-	if (conn->data_iobuf) 
-	        gnome_vfs_iobuf_destroy (conn->data_iobuf);
+	if (conn->data_socketbuf) 
+	        gnome_vfs_socket_buffer_destroy (conn->data_socketbuf, FALSE);
 
 	g_free (conn->dirlist);
 	g_free (conn->dirlistptr);
@@ -870,7 +872,7 @@ do_read (GnomeVFSMethod *method,
 	g_print ("do_read (%p)\n", method_handle);
 #endif
 
-	return gnome_vfs_iobuf_read (conn->data_iobuf, buffer, num_bytes, bytes_read);
+	return gnome_vfs_socket_buffer_read (conn->data_socketbuf, buffer, num_bytes, bytes_read);
 }
 
 static GnomeVFSResult 
@@ -891,8 +893,9 @@ do_write (GnomeVFSMethod *method,
 	if (conn->operation != FTP_WRITE) 
 		return GNOME_VFS_ERROR_NOT_PERMITTED;
 	
-	result = gnome_vfs_iobuf_write (conn->data_iobuf, buffer, num_bytes, 
-				      bytes_written);
+	result = gnome_vfs_socket_buffer_write (conn->data_socketbuf, buffer, 
+						num_bytes, 
+						bytes_written);
 	return result;
 }
 
@@ -986,11 +989,11 @@ internal_get_file_info (GnomeVFSMethod *method,
 		do_path_transfer_command (conn, "LIST -ldL", uri, context);
 	}
 
-	result = gnome_vfs_iobuf_read (conn->data_iobuf, buffer, 
-				       num_bytes, &bytes_read);
+	result = gnome_vfs_socket_buffer_read (conn->data_socketbuf, buffer, 
+					       num_bytes, &bytes_read);
 
 	if (result != GNOME_VFS_OK) {
-		/*ftp_debug (conn, g_strdup ("gnome_vfs_iobuf_read failed"));*/
+		/*ftp_debug (conn, g_strdup ("gnome_vfs_socket_buffer_read failed"));*/
 		ftp_connection_release (conn);
 		return result;
 	}
@@ -1146,7 +1149,7 @@ do_open_directory (GnomeVFSMethod *method,
 	}
 
 	while (result == GNOME_VFS_OK) {
-		result = gnome_vfs_iobuf_read (conn->data_iobuf, buffer, 
+		result = gnome_vfs_socket_buffer_read (conn->data_socketbuf, buffer, 
 					       num_bytes, &bytes_read);
 		if (result == GNOME_VFS_OK && bytes_read > 0) {
 			buffer[bytes_read] = '\0';

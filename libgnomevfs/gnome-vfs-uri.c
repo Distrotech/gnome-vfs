@@ -801,7 +801,7 @@ make_full_uri_from_relative (const char *base_uri, const char *uri)
 /**
  * gnome_vfs_uri_resolve_relative
  * @base: The base URI.
- * @text_uri: A string representing a possibly relative URI reference
+ * @relative_reference: A string representing a possibly relative URI reference
  * 
  * Create a new URI from @relative_reference, relative to @base.
  *
@@ -1898,6 +1898,8 @@ is_uri_partial (const char *uri)
 
 /**
  * gnome_vfs_uri_make_full_from_relative:
+ * @base_uri: a string representing the base URI
+ * @relative_uri: a URI fragment/reference to be appended to @base_uri
  * 
  * Returns a full URI given a full base URI, and a secondary URI which may
  * be relative.

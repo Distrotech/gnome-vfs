@@ -76,8 +76,7 @@ GnomeVFSResult	gnome_vfs_directory_visit_files
 					(const gchar *text_uri,
 					 GList *file_list,
 					 GnomeVFSFileInfoOptions info_options,
-					 GnomeVFSDirectoryVisitOptions
-					 	visit_options,
+					 GnomeVFSDirectoryVisitOptions visit_options,
 					 GnomeVFSDirectoryVisitFunc callback,
 					 gpointer data);
 

@@ -1041,7 +1041,7 @@ assemble_list (gpointer key, gpointer value, gpointer user_data)
  * gnome_vfs_mime_get_key_list:
  * @mime_type: the mime type to lookup.
  *
- * Returns a GList that contains private strings with all of the keys
+ * Return value: a GList that contains private strings with all of the keys
  * associated with the @mime_type.
  */
 GList *
@@ -1117,7 +1117,7 @@ str_cmp_callback  (gconstpointer a,
  * Sets the extensions for a given mime type. Overrides
  * the previously set extensions.
  *
- * Returns: GNOME_VFS_OK if the operation succeeded, otherwise an error code.
+ * Return value: GNOME_VFS_OK if the operation succeeded, otherwise an error code.
  */
 GnomeVFSResult
 gnome_vfs_mime_set_extensions_list (const char *mime_type,
@@ -1131,7 +1131,7 @@ gnome_vfs_mime_set_extensions_list (const char *mime_type,
  * gnome_vfs_mime_get_extensions_list:
  * @mime_type: the mime type
  *
- * Returns a list of extensions for this mime-type
+ * Return value: a list of extensions for this mime-type
  */
 GList *
 gnome_vfs_mime_get_extensions_list (const char *mime_type)
@@ -1202,7 +1202,7 @@ gnome_vfs_mime_get_extensions_list (const char *mime_type)
 
 
 /**
- * gnome_vfs_mime_extensions_string:
+ * gnome_vfs_mime_get_extensions_string:
  * @mime_type: the mime type
  *
  * Returns a string containing extensions for this mime-type
@@ -1296,12 +1296,12 @@ gnome_vfs_mime_get_extensions_pretty_string (const char *mime_type)
 
 
 /**
- * gnome_vfs_mime_extension_list_free:
+ * gnome_vfs_mime_extensions_list_free:
  * @list: the extensions list
  *
  * Call this function on the list returned by gnome_vfs_mime_extensions
  * to free the list and all of its elements.
- */
+ **/
 void
 gnome_vfs_mime_extensions_list_free (GList *list)
 {

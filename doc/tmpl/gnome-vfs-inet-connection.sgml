@@ -44,15 +44,6 @@ gnome-vfs-inet-connection
 @cancellation: 
 
 
-<!-- ##### FUNCTION gnome_vfs_inet_connection_get_iobuf ##### -->
-<para>
-
-</para>
-
-@connection: 
-@Returns: 
-
-
 <!-- ##### FUNCTION gnome_vfs_inet_connection_to_socket ##### -->
 <para>
 
