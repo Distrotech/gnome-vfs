@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-22 13:53+0100\n"
+"POT-Creation-Date: 2004-04-19 12:38+0200\n"
 "PO-Revision-Date: 2003-02-12 10:19+0530\n"
 "Last-Translator: Sayamindu Dasgupta <unmadindu@Softhome.net>\n"
 "Language-Team: Bengali (bn) <gnome-translation@bengalinux.org>\n"
@@ -215,12 +215,12 @@ msgstr "অজানা ধরনের কাজ %u"
 msgid "Operation stopped"
 msgstr "কাজ বন্ধ"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:659
+#: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
 msgstr "%s-কে পড়ে কিছু বোঝা গেল না"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:661
+#: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
 msgstr "এরপরের পড়ে বোঝার ভুলগুলোকে আমল দেবো না"
 
@@ -480,7 +480,7 @@ msgstr "%.1f এম-বি"
 msgid "%.1f GB"
 msgstr "%.1f জি-বি"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
+#: libgnomevfs/gnome-vfs-utils.c:1114
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr "বেঠিক ইউনিকোড"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tamil Gnome VFS 2.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-22 13:53+0100\n"
+"POT-Creation-Date: 2004-04-19 12:38+0200\n"
 "PO-Revision-Date: 2003-09-10 19:27+0600\n"
 "Last-Translator: Dinesh Nadarajah <n_dinesh@yahoo.com>\n"
 "Language-Team: Tamil <tamilinix@yahoogroups.com>\n"
@@ -214,12 +214,12 @@ msgstr "தெரியாத %u பணி வகை"
 msgid "Operation stopped"
 msgstr "செயல் நிறுத்தப்பட்டுள்ளது"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:659
+#: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
 msgstr "அலகிடமுடியவில்லை: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:661
+#: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
 msgstr ""
 
@@ -479,7 +479,7 @@ msgstr "%.1f மெ.பை"
 msgid "%.1f GB"
 msgstr "%.1f கிகா.பை"
 
-#: libgnomevfs/gnome-vfs-utils.c:1107
+#: libgnomevfs/gnome-vfs-utils.c:1114
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
 msgstr " (தவராண யுனிகோட்)"
