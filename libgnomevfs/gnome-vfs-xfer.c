@@ -427,8 +427,7 @@ create_xfer_file_list (GnomeVFSURI *source_dir_uri,
 		Source *new_source;
 
 		source_name = p->data;
-		uri = gnome_vfs_uri_append_text (source_dir_uri, "/",
-						 source_name, NULL);
+		uri = gnome_vfs_uri_append_path (source_dir_uri, source_name);
 
 		new_source = g_new (Source, 1);
 		new_source->name = g_strdup (source_name);
@@ -483,8 +482,7 @@ create_xfer_file_list (GnomeVFSURI *source_dir_uri,
 		recursion_info.file_list_end_ptr = &file_list_end;
 		recursion_info.result = GNOME_VFS_OK;
 
-		uri = gnome_vfs_uri_append_text (source_dir_uri, "/",
-						 source->name, NULL);
+		uri = gnome_vfs_uri_append_path (source_dir_uri, source->name);
 		result = gnome_vfs_directory_visit_uri
 			(uri, info_options, NULL, NULL, visit_options,
 			 xfer_file_list_recursion_callback, &recursion_info);
@@ -680,18 +678,16 @@ gnome_vfs_xfer_uri (GnomeVFSURI *source_dir_uri,
 
 		source = p->data;
 
-		source_uri = gnome_vfs_uri_append_text (source_dir_uri, "/",
-							source->name, NULL);
+		source_uri = gnome_vfs_uri_append_path (source_dir_uri,
+							source->name);
 
 		if (target_name_list != NULL) {
-			target_uri = gnome_vfs_uri_append_text
+			target_uri = gnome_vfs_uri_append_path
 				(target_dir_uri, target_name_list->data);
 			target_name_list = target_name_list->next;
 		} else {
-			target_uri = gnome_vfs_uri_append_text (target_dir_uri,
-								"/",
-								source->name,
-								NULL);
+			target_uri = gnome_vfs_uri_append_path (target_dir_uri,
+								source->name);
 		}
 
 		progress_info.phase = GNOME_VFS_XFER_PHASE_XFERRING;

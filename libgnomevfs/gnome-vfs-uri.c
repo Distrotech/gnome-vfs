@@ -163,7 +163,14 @@ set_uri_element (GnomeVFSURI *uri,
 						&toplevel->host_port,
 						&toplevel->password);
 	} else {
-		uri->text = g_strndup (text, len);
+		if (text[0] != '/') {
+			uri->text = g_malloc (len + 2);
+			uri->text[0] = '/';
+			memcpy (uri->text + 1, text, len);
+			uri->text[len + 1] = 0;
+		} else {
+			uri->text = g_strndup (text, len);
+		}
 	}
 
 	gnome_vfs_canonicalize_pathname (uri->text);
@@ -331,14 +338,31 @@ gnome_vfs_uri_dup (const GnomeVFSURI *uri)
 	const GnomeVFSURI *p;
 	GnomeVFSURI *new, *child;
 
-	g_return_val_if_fail (uri != NULL, NULL);
+	if (uri == NULL)
+		return NULL;
 
 	new = NULL;
 	child = NULL;
 	for (p = uri; p != NULL; p = p->parent) {
 		GnomeVFSURI *new_element;
 
-		new_element = g_new (GnomeVFSURI, 1);
+		if (p->parent == NULL) {
+			GnomeVFSToplevelURI *toplevel;
+			GnomeVFSToplevelURI *new_toplevel;
+
+			toplevel = (GnomeVFSToplevelURI *) p;
+			new_toplevel = g_new (GnomeVFSToplevelURI, 1);
+
+			new_toplevel->host_name = g_strdup (toplevel->host_name);
+			new_toplevel->host_port = toplevel->host_port;
+			new_toplevel->user_name = g_strdup (toplevel->user_name);
+			new_toplevel->password = g_strdup (toplevel->password);
+
+			new_element = (GnomeVFSURI *) new_toplevel;
+		} else {
+			new_element = g_new (GnomeVFSURI, 1);
+		}
+
 		new_element->ref_count = 1;
 		new_element->text = g_strdup (p->text);
 		new_element->method_string = g_strdup (p->method_string);
@@ -357,50 +381,42 @@ gnome_vfs_uri_dup (const GnomeVFSURI *uri)
 }
 
 
+/* FIXME this must be implemented in a much smarter way.  The most important
+   issue is that a `#' in `path' will break things rather badly.  */
+
 GnomeVFSURI *
-gnome_vfs_uri_append_text (const GnomeVFSURI *uri,
-			   ...)
+gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
+			   const gchar *path)
 {
+	gchar *uri_string;
 	GnomeVFSURI *new;
-	gchar *new_text;
-	gchar *s, *p;
-	va_list args;
-	guint current_len, len;
+	gchar *new_string;
+	guint len;
 
 	g_return_val_if_fail (uri != NULL, NULL);
+	g_return_val_if_fail (path != NULL, NULL);
 
-	len = 0;
-	va_start (args, uri);
-	s = va_arg (args, gchar *);
-	while (s != NULL) {
-		len += strlen (s);
-		s = va_arg (args, gchar *);
-	}
-	va_end (args);
+	/* FIXME this is just a reminder.  */
+	if (strchr (path, '#') != NULL)
+		g_warning ("gnome_vfs_uri_append_path() is broken with names containing `#'.");
 
-	current_len = strlen (uri->text);
-	new_text = g_malloc (current_len + len + 1);
-	memcpy (new_text, uri->text, current_len);
-	p = new_text + current_len;
+	uri_string = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+	len = strlen (uri_string);
+	if (len == 0)
+		return gnome_vfs_uri_new ("");
 
-	va_start (args, uri);
-	s = va_arg (args, gchar*);
-	while (s != NULL) {
-		guint l;
+	len--;
+	while (uri_string[len] == '/' && len > 0)
+		len--;
+	uri_string[len + 1] = '\0';
 
-		l = strlen (s);
-		memcpy (p, s, l);
-		p += l;
-		s = va_arg (args, gchar *);
-	}
-	va_end (args);
+	while (*path == '/')
+		path++;
 
-	*p = 0;
+	new_string = g_strconcat (uri_string, "/", path, NULL);
+	new = gnome_vfs_uri_new (new_string);
+	g_free (new_string);
 
-	new = gnome_vfs_uri_dup (uri);
-	g_free (new->text);	/* FIXME, this is a waste of time */
-	new->text = new_text;
-	
 	return new;
 }
 
@@ -486,7 +502,7 @@ gnome_vfs_uri_to_string (const GnomeVFSURI *uri,
 			memcpy (p, u->text, len);
 		}
 
-		if (u->parent == NULL) {
+		if (u->parent == NULL && toplevel_info != NULL) {
 			len = strlen (toplevel_info);
 			p -= len;
 			memcpy (p, toplevel_info, len);
@@ -517,6 +533,74 @@ gnome_vfs_uri_is_local (const GnomeVFSURI *uri)
 	g_return_val_if_fail (uri != NULL, FALSE);
 
 	return uri->method->is_local (uri);
+}
+
+/* FIXME Maybe we have to make more definite decisions on what URLs have to
+   look like here.  */
+
+gboolean
+gnome_vfs_uri_has_parent (const GnomeVFSURI *uri)
+{
+	gchar *p;
+
+	g_return_val_if_fail (uri != NULL, FALSE);
+
+	if (uri->parent != NULL)
+		return TRUE;
+
+	if (uri->text == NULL)
+		return FALSE;
+
+	if (strcmp (uri->text, "/") == 0)
+		return FALSE;
+
+	return TRUE;
+}
+
+GnomeVFSURI *
+gnome_vfs_uri_get_parent   (const GnomeVFSURI *uri)
+{
+	g_return_val_if_fail (uri != NULL, NULL);
+
+	if (uri->text != NULL && uri->text[0] != 0) {
+		gchar *p;
+		guint len;
+
+		len = strlen (uri->text);
+		p = uri->text + len - 1;
+
+		/* Skip trailing slash.  */
+		if (*p == '/' && p != uri->text)
+			p--;
+
+		/* Search backwards for next slash.  URIs are normalized, so
+                   the next slash we find cannot be a trailing one.  */
+		while (p != uri->text && *p != '/')
+			p--;
+
+		if (p[1] != '\0') {
+			GnomeVFSURI *new;
+
+			/* The following is not extremely efficient, but quite
+			   safe in case we change the internals.  */
+
+			new = gnome_vfs_uri_dup (uri);
+			g_free (new->text);
+
+			if (p == uri->text) {
+				new->text = g_strdup ("/");
+			} else {
+				new->text = g_malloc (p - uri->text + 2);
+				memcpy (new->text, uri->text, p - uri->text);
+				new->text[p - uri->text] = '/';
+				new->text[p - uri->text + 1] = '\0';
+			}
+
+			return new;
+		}
+	}
+
+	return gnome_vfs_uri_dup (uri->parent);
 }
 
 

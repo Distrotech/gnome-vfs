@@ -1,3 +1,56 @@
+1999-09-16  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c
+	(execute_load_directory_sorted): If the directory is empty, notify
+	one single EOF.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_has_parent): New function.
+	(gnome_vfs_uri_get_parent): New function.
+	(set_uri_element): Make sure there is a slash at the beginning of
+	the string.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_to_string): Do not
+	try to copy `toplevel_info' if it is NULL.
+	(gnome_vfs_uri_dup): If `uri' is NULL, do not spit out a warning.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c
+	(dispatch_load_directory_callback): Do not unref the URI here
+	unless we are reporting an error!
+	(execute_open): Return FALSE if the operation failed, so that the
+	thread is killed.
+	(execute_create): Likewise.
+	(execute_open_as_channel): Return FALSE on any error, and after closing
+	the file.
+	(execute_create_as_channel): Likewise.
+
+	* libgnomevfs/gnome-vfs-directory.c (directory_visit_internal): Use new
+	`gnome_vfs_uri_append_path()' instead of old
+	`gnome_vfs_uri_append_text()'.
+	(gnome_vfs_directory_visit_files_at_uri): Likewise.
+	(CHECK_IF_SUPPORTED): Removed bogus `vfs' parameter.  All
+	occurrences updated.
+
+	* libgnomevfs/gnome-vfs-xfer.c (create_xfer_file_list): Use new
+	`gnome_vfs_uri_append_path()' instead of old
+	`gnome_vfs_uri_append_text()'.
+	(gnome_vfs_xfer_uri): Likewise.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_dup): Handle the
+	toplevel URI element correctly.
+	(gnome_vfs_uri_append_text): Removed.
+	(gnome_vfs_uri_append_path): New function.
+
+1999-09-15  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* test/Makefile.am (EXTRA_DIST): Add all the `.c' files.
+
+	* libgnomevfs-corba/Makefile.am (gnome_vfs_slave_SOURCES): List
+	built sources on top.
+	(libgnomevfs_corba_la_SOURCES): Likewise.
+
+	* libgnomevfs/Makefile.am (noinst_HEADERS): Add
+	`gnome-vfs-module.h'.
+
 1999-09-14  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c (dispatch_open_callback):

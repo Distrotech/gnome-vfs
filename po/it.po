@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 1999-08-24 16:41+0200\n"
+"POT-Creation-Date: 1999-09-15 03:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,116 +15,161 @@ msgstr ""
 "Content-Transfer-Encoding: ENCODING\n"
 
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:35
+#: libgnomevfs/gnome-vfs-result.c:39
 msgid "No error"
 msgstr ""
 
 #. GNOME_VFS_ERROR_NOTFOUND
-#: libgnomevfs/gnome-vfs-result.c:36
+#: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
 msgstr ""
 
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:37
+#: libgnomevfs/gnome-vfs-result.c:41
 msgid "Generic error"
 msgstr ""
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:38
+#: libgnomevfs/gnome-vfs-result.c:42
 msgid "Internal error"
 msgstr ""
 
 #. GNOME_VFS_ERROR_BADPARAMS
-#: libgnomevfs/gnome-vfs-result.c:39
+#: libgnomevfs/gnome-vfs-result.c:43
 msgid "Invalid parameters"
 msgstr ""
 
 #. GNOME_VFS_ERROR_NOTSUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:40
+#: libgnomevfs/gnome-vfs-result.c:44
 msgid "Unsupported operation"
 msgstr ""
 
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:41
+#: libgnomevfs/gnome-vfs-result.c:45
 msgid "I/O error"
 msgstr ""
 
 #. GNOME_VFS_ERROR_CORRUPTEDDATA
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
 msgstr ""
 
 #. GNOME_VFS_ERROR_WRONGFORMAT
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
 msgstr ""
 
 #. GNOME_VFS_ERROR_BADFILE
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
 msgstr ""
 
 #. GNOME_VFS_ERROR_TOOBIG
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
 msgstr ""
 
 #. GNOME_VFS_ERROR_NOSPACE
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:50
 msgid "No space left on device"
 msgstr ""
 
 #. GNOME_VFS_ERROR_READONLY
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
 msgstr ""
 
 #. GNOME_VFS_ERROR_INVALIDURI
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
 msgstr ""
 
 #. GNOME_VFS_ERROR_NOTOPEN
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
 msgstr ""
 
 #. GNOME_VFS_ERROR_INVALIDOPENMODE
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
 msgstr ""
 
 #. GNOME_VFS_ERROR_ACCESSDENIED
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:55
 msgid "Access denied"
 msgstr ""
 
 #. GNOME_VFS_ERROR_TOOMANYOPENFILES
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
 msgstr ""
 
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "End of file"
 msgstr ""
 
 #. GNOME_VFS_ERROR_NOTADIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "Not a directory"
 msgstr ""
 
 #. GNOME_VFS_ERROR_INPROGRESS
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
 msgstr ""
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "Operation interrupted"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-result.c:99
+#. GNOME_VFS_ERROR_FILEEXISTS
+#: libgnomevfs/gnome-vfs-result.c:61
+msgid "File exists"
+msgstr ""
+
+#. GNOME_VFS_ERROR_LOOP
+#: libgnomevfs/gnome-vfs-result.c:62
+msgid "Looping links encountered"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NOTPERMITTED
+#: libgnomevfs/gnome-vfs-result.c:63
+msgid "Operation not permitted"
+msgstr ""
+
+#. GNOME_VFS_ERROR_ISDIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:64
+msgid "Is a directory"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NOMEM
+#: libgnomevfs/gnome-vfs-result.c:65
+msgid "Not enough memory"
+msgstr ""
+
+#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:66
+msgid "Host not found"
+msgstr ""
+
+#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#: libgnomevfs/gnome-vfs-result.c:67
+msgid "Host name not valid"
+msgstr ""
+
+#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#: libgnomevfs/gnome-vfs-result.c:68
+msgid "Host has no address"
+msgstr ""
+
+#. GNOME_VFS_ERROR_LOGINFAILED
+#: libgnomevfs/gnome-vfs-result.c:69
+msgid "Login failed"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-result.c:135
 msgid "Unknown error"
 msgstr ""
 
@@ -132,85 +177,100 @@ msgstr ""
 msgid "GNOME VFS already initialized."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:328
+#: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1007
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#, c-format
+msgid "Error reading: %s"
+msgstr ""
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#, c-format
+msgid "Error writing: %s"
+msgstr ""
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#, c-format
+msgid "Cannot write: %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:607
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:618
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:625
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:647
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1291
 msgid "Cannot initialize CORBA."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1014
+#: libgnomevfs-corba/gnome-vfs-slave.c:1298
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1021
+#: libgnomevfs-corba/gnome-vfs-slave.c:1305
 msgid "Cannot activate POA manager."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1045
+#: libgnomevfs-corba/gnome-vfs-slave.c:1329
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1056
+#: libgnomevfs-corba/gnome-vfs-slave.c:1340
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1079
+#: libgnomevfs-corba/gnome-vfs-slave.c:1363
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1089
+#: libgnomevfs-corba/gnome-vfs-slave.c:1373
 msgid "Cannot setup Request object."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1096
+#: libgnomevfs-corba/gnome-vfs-slave.c:1380
 msgid "Cannot extract IOR."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-async-ops.c:276
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+#: libgnomevfs-pthread/gnome-vfs-job.c:84
+msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-async-ops.c:764
-msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr ""
-
-#: libgnomevfs-corba/gnome-vfs-async-ops.c:854
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
-
-#: libgnomevfs-corba/gnome-vfs-async-ops.c:857
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
-
-#: libgnomevfs-corba/gnome-vfs-async-ops.c:869
-msgid "Destroying context."
-msgstr ""
-
-#: libgnomevfs-corba/gnome-vfs-async-ops.c:890
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr ""
-
-#: libgnomevfs-corba/gnome-vfs-async-ops.c:893
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
-
-#: libgnomevfs-pthread/gnome-vfs-job.c:57
-#, c-format
-msgid "Error writing to the wakeup GnomeVFSJob channel: %s"
-msgstr ""
-
-#: libgnomevfs-pthread/gnome-vfs-job.c:264
-#: libgnomevfs-pthread/gnome-vfs-job.c:728
+#: libgnomevfs-pthread/gnome-vfs-job.c:375
+#: libgnomevfs-pthread/gnome-vfs-job.c:1032
 #, c-format
 msgid "Unknown job ID %d"
+msgstr ""
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:623
+#: libgnomevfs-pthread/gnome-vfs-job.c:699
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr ""

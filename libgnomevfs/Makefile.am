@@ -33,6 +33,7 @@ noinst_HEADERS =				\
 	gnome-vfs-handle.h			\
 	gnome-vfs-list-sort.h			\
 	gnome-vfs-method.h			\
+	gnome-vfs-module.h			\
 	gnome-vfs-private-types.h		\
 	gnome-vfs-private.h			\
 	gnome-vfs-process.h			\

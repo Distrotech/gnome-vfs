@@ -306,7 +306,8 @@ dispatch_load_directory_callback (GnomeVFSJob *job)
 		      load_directory_job->notify.entries_read,
 		      job->callback_data);
 
-	gnome_vfs_uri_unref (load_directory_job->request.uri);
+	if (load_directory_job->notify.result != GNOME_VFS_OK)
+		gnome_vfs_uri_unref (load_directory_job->request.uri);
 }
 
 static void
@@ -585,6 +586,7 @@ execute_open (GnomeVFSJob *job)
 	GnomeVFSResult result;
 	GnomeVFSHandle *handle;
 	GnomeVFSOpenJob *open_job;
+	gboolean notify_retval;
 
 	open_job = &job->info.open;
 
@@ -594,7 +596,12 @@ execute_open (GnomeVFSJob *job)
 	job->handle = handle;
 	open_job->notify.result = result;
 
-	return job_oneway_notify_and_close (job);
+	notify_retval = job_oneway_notify_and_close (job);
+
+	if (result == GNOME_VFS_OK)
+		return notify_retval;
+	else
+		return FALSE;
 }
 
 static gboolean
@@ -616,7 +623,8 @@ execute_open_as_channel (GnomeVFSJob *job)
 	if (result != GNOME_VFS_OK) {
 		open_as_channel_job->notify.channel = NULL;
 		open_as_channel_job->notify.result = result;
-		return job_oneway_notify_and_close (job);
+		job_oneway_notify_and_close (job);
+		return FALSE;
 	}
 
 	if (pipe (pipefd) < 0) {
@@ -624,7 +632,8 @@ execute_open_as_channel (GnomeVFSJob *job)
 			   g_strerror (errno));
 		open_as_channel_job->notify.channel = NULL;
 		open_as_channel_job->notify.result = GNOME_VFS_ERROR_INTERNAL;
-		return job_oneway_notify_and_close (job);
+		job_oneway_notify_and_close (job);
+		return FALSE;
 	}
 
 	channel_in = g_io_channel_unix_new (pipefd[0]);
@@ -650,7 +659,7 @@ execute_open_as_channel (GnomeVFSJob *job)
 
 	job_close (job);
 
-	return TRUE;
+	return FALSE;
 }
 
 static gboolean
@@ -659,6 +668,7 @@ execute_create (GnomeVFSJob *job)
 	GnomeVFSResult result;
 	GnomeVFSHandle *handle;
 	GnomeVFSCreateJob *create_job;
+	gboolean notify_retval;
 
 	create_job = &job->info.create;
 
@@ -671,7 +681,12 @@ execute_create (GnomeVFSJob *job)
 	job->handle = handle;
 	create_job->notify.result = result;
 
-	return job_oneway_notify_and_close (job);
+	notify_retval = job_oneway_notify_and_close (job);
+
+	if (result == GNOME_VFS_OK)
+		return notify_retval;
+	else
+		return FALSE;
 }
 
 static gboolean
@@ -692,7 +707,8 @@ execute_create_as_channel (GnomeVFSJob *job)
 	if (result != GNOME_VFS_OK) {
 		create_as_channel_job->notify.channel = NULL;
 		create_as_channel_job->notify.result = result;
-		return job_oneway_notify_and_close (job);
+		job_oneway_notify_and_close (job);
+		return FALSE;
 	}
 
 	if (pipe (pipefd) < 0) {
@@ -700,7 +716,8 @@ execute_create_as_channel (GnomeVFSJob *job)
 			   g_strerror (errno));
 		create_as_channel_job->notify.channel = NULL;
 		create_as_channel_job->notify.result = GNOME_VFS_ERROR_INTERNAL;
-		return job_oneway_notify_and_close (job);
+		job_oneway_notify_and_close (job);
+		return FALSE;
 	}
 
 	channel_in = g_io_channel_unix_new (pipefd[0]);
@@ -716,7 +733,7 @@ execute_create_as_channel (GnomeVFSJob *job)
 
 	job_close (job);
 
-	return TRUE;
+	return FALSE;
 }
 
 static gboolean
@@ -875,8 +892,15 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 
 	count = 0;
 	p = gnome_vfs_directory_list_get_first_position (directory_list);
-	previous_p = p;
 
+	if (p == NULL) {
+		load_directory_job->notify.result = GNOME_VFS_ERROR_EOF;
+		load_directory_job->notify.entries_read = 0;
+		job_notify (job);
+		return FALSE;
+	}
+
+	previous_p = p;
 	while (p != NULL) {
 		count++;
 		p = gnome_vfs_directory_list_position_next (p);

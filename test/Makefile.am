@@ -101,4 +101,11 @@ test_sync_LDADD = $(libraries)
 test_sync_LDFLAGS =
 
 EXTRA_DIST =					\
-	test-async.c 
+	test-async-directory.c			\
+	test-async.c				\
+	test-channel.c				\
+	test-copy.c				\
+	test-directory-visit.c			\
+	test-directory.c			\
+	test-seek.c				\
+	test-sync.c

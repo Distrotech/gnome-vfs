@@ -46,7 +46,7 @@ struct _GnomeVFSDirectoryHandle {
 	const GnomeVFSDirectoryFilter *filter;
 };
 
-#define CHECK_IF_SUPPORTED(vfs, vfs_method, what)	\
+#define CHECK_IF_SUPPORTED(vfs_method, what)		\
 G_STMT_START{						\
 	if (vfs_method->what == NULL)			\
 		return GNOME_VFS_ERROR_NOTSUPPORTED;	\
@@ -176,7 +176,7 @@ GnomeVFSResult
 gnome_vfs_directory_read_next (GnomeVFSDirectoryHandle *handle,
 			       GnomeVFSFileInfo *file_info)
 {
-	CHECK_IF_SUPPORTED (handle->vfs, handle->uri->method, read_directory);
+	CHECK_IF_SUPPORTED (handle->uri->method, read_directory);
 
 	gnome_vfs_file_info_clear (file_info);
 	return handle->uri->method->read_directory (handle->method_handle,
@@ -188,7 +188,7 @@ gnome_vfs_directory_close (GnomeVFSDirectoryHandle *handle)
 {
 	GnomeVFSResult result;
 
-	CHECK_IF_SUPPORTED (handle->vfs, handle->uri->method, close_directory);
+	CHECK_IF_SUPPORTED (handle->uri->method, close_directory);
 
 	result = handle->uri->method->close_directory (handle->method_handle);
 
@@ -413,9 +413,8 @@ directory_visit_internal (GnomeVFSURI *uri,
 				new_prefix = g_strconcat (prefix, info->name,
 							  "/", NULL);
 
-			new_uri = gnome_vfs_uri_append_text (uri, "/",
-							     info->name,
-							     NULL);
+			new_uri = gnome_vfs_uri_append_path (uri, info->name);
+
 
 			if (info->is_local)
 				ancestor_references = prepend_reference
@@ -531,7 +530,7 @@ gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 		gboolean recurse;
 		gboolean stop;
 
-		file_uri = gnome_vfs_uri_append_text (uri, file_list);
+		file_uri = gnome_vfs_uri_append_path (uri, p->data);
 		gnome_vfs_get_file_info_from_uri (file_uri, info, info_options,
 						  meta_keys);
 
