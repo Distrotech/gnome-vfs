@@ -973,7 +973,6 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 				gint len;
 				GnomeVFSURI *uri = gnome_vfs_uri_new(nodecontent);
 
-				g_print("[YAK] comparing `%s' to `%s'\n", gnome_vfs_uri_to_string(base_uri,0), gnome_vfs_uri_to_string(uri,0));
 				if(gnome_vfs_uri_equal(base_uri, uri) || !strcmp(base_uri->text, uri->text)) {
 					file_info->name = NULL; /* no name */
 				} else {
@@ -1150,8 +1149,20 @@ do_open_directory(GnomeVFSMethod *method,
 	GnomeVFSContext *context) 
 {
 	/* TODO move to using the gnome_vfs_file_info_list family of functions */
+	GnomeVFSResult result;
 
-	return make_propfind_request((HttpFileHandle **)method_handle, uri, 1, context);
+	result = make_propfind_request((HttpFileHandle **)method_handle, uri, 1, context);
+	if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
+		if(uri->text && *uri->text &&
+				uri->text[strlen(uri->text)-1] != '/') {
+			GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path(uri, "/");
+			result = do_open_directory(method, method_handle, tmpuri, options, filter, context);
+			gnome_vfs_uri_unref(tmpuri);
+
+		}
+	}
+
+	return result;
 }
 
 static GnomeVFSResult
@@ -1270,8 +1281,18 @@ do_get_file_info (GnomeVFSMethod *method,
 
 	result = make_request (&handle, uri, "HEAD", NULL, NULL, 
 		       	context);
-	if (result != GNOME_VFS_OK)
+	if (result != GNOME_VFS_OK) {
+		if (result == GNOME_VFS_ERROR_NOT_FOUND) { /* 404 not found */
+			if(uri->text && *uri->text &&
+					uri->text[strlen(uri->text)-1] != '/') {
+				GnomeVFSURI *tmpuri = gnome_vfs_uri_append_path(uri, "/");
+				result = do_get_file_info(method, tmpuri, file_info, options, context);
+				gnome_vfs_uri_unref(tmpuri);
+
+			}
+		}
 		return result;
+	}
 
 	presult = get_file_info_from_http_handle (handle, file_info, options);
 

@@ -1,3 +1,11 @@
+2000-08-05  Ian McKellar  <yakk@yakk.net.au>
+
+	* modules/http-method.c: (process_propfind_response),
+	(do_open_directory), (do_get_file_info):
+	Make open_directory and do_get_file_info try http://foo/bar/ if 
+	http://foo/bar fails with a file not found error. See:
+	http://bugzilla.eazel.com/show_bug.cgi?id=1904
+
 2000-08-04  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime.c: (add_to_key):
