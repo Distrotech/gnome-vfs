@@ -1,3 +1,18 @@
+2000-09-08  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 2839, setting icons for mime type is not remembered
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c: (main),
+	(init_mime_capplet), (nautilus_mime_type_capplet_update_info),
+	(populate_mime_list),
+	(nautilus_mime_type_capplet_get_selected_item_mime_type):
+	Removed icon setting code callback from Change Icon button.
+	
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	(icon_selected_cb), (cancel_pressed), (gil_icon_selected_cb),
+	(nautilus_mime_type_show_icon_selection):
+	Added gnome-vfs icon setting code to OK button callback.
+
 2000-09-08  Maciej Stachowiak  <mjs@eazel.com>
 
 	* data/mime/Makefile.am: Don't attempt to build binary version of
