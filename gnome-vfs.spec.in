@@ -95,7 +95,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gnome-vfs-2.0/modules/*.so
 %{_libdir}/bonobo/monikers/*.so
 %{_libdir}/bonobo/servers/*.server
-%{_mandir}/man5/*.5*
 %{_prefix}/share/gtk-doc/html/gnome-vfs/*.html
 %{_prefix}/share/locale/*/LC_MESSAGES/*.mo
 
