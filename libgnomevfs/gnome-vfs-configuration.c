@@ -560,3 +560,28 @@ gnome_vfs_configuration_get_module_path (const gchar *method_name, const char **
 		*args = element->args;
 	return element->path;
 }
+
+static void
+add_method_to_list(const gchar *key, gpointer value, GList **methods_list)
+{
+	*methods_list = g_list_append(*methods_list, g_strdup(key));
+}
+
+GList *
+gnome_vfs_configuration_get_methods_list (void)
+{
+	GList *methods_list = NULL;
+
+	G_LOCK (configuration);
+	if (configuration != NULL) {
+		maybe_reload ();
+		g_hash_table_foreach(configuration->method_to_module_path, 
+				     (GHFunc)add_method_to_list, &methods_list);
+	} else {
+		/* This should never happen.  */
+		methods_list = NULL;
+	}
+
+	G_UNLOCK (configuration);
+	return methods_list;
+}
