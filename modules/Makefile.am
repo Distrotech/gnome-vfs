@@ -1,5 +1,5 @@
 NULL =
-SUBDIRS = extfs
+SUBDIRS = extfs vfolder
 
 INCLUDES =					\
 	-I$(top_srcdir)				\
@@ -22,8 +22,6 @@ INCLUDES =					\
 	$(NULL)
 
 EXTRA_DIST =					\
-	applications.vfolder-info.in		\
-	preferences.vfolder-info.in		\
 	default-modules.conf			\
 	cdda-module.conf			\
 	ssl-modules.conf
@@ -47,8 +45,6 @@ modulesdir = $(libdir)/gnome-vfs-2.0/modules
 
 modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
-	libdesktop.la				\
-	libvfolder-desktop.la			\
 	libextfs.la				\
 	libfile.la				\
 	libnntp.la				\
@@ -105,42 +101,11 @@ libnntp_la_SOURCES = nntp-method.c nntp-method.h
 libnntp_la_LDFLAGS = $(module_flags)
 libnntp_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
 
-###  `desktop' method
-
-libdesktop_la_SOURCES = desktop-method.c
-libdesktop_la_LDFLAGS = $(module_flags)
-libdesktop_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
-
-###  `vfolder-desktop' method
-
-libvfolder_desktop_la_SOURCES = vfolder-desktop-method.c
-libvfolder_desktop_la_LDFLAGS = $(module_flags)
-libvfolder_desktop_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
-
 ###  `cdemenu-desktop' method
- 
+
 libcdemenu_desktop_la_SOURCES = cdemenu-desktop-method.c
 libcdemenu_desktop_la_LDFLAGS = $(module_flags)
 libcdemenu_desktop_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
-
-vfolderdir=$(sysconfdir)/gnome-vfs-2.0/vfolders
-vfolder_DATA = 				\
-	applications.vfolder-info 	\
-	preferences.vfolder-info
-
-# Evil, but I can't figure out how I would make autoconf do
-# it right
-applications.vfolder-info: applications.vfolder-info.in
-	sed -e "s,\@datadir\@,$(datadir)," \
-	    -e "s,\@sysconfdir\@,$(sysconfdir)," \
-	    -e "s,\@prefix\@,$(prefix)," \
-	    < $< > $@
-
-preferences.vfolder-info: preferences.vfolder-info.in
-	sed -e "s,\@datadir\@,$(datadir)," \
-	    -e "s,\@sysconfdir\@,$(sysconfdir)," \
-	    -e "s,\@prefix\@,$(prefix)," \
-	    < $< > $@
 
 ###  `ssh' method
 

@@ -529,6 +529,7 @@ modules/extfs/lha
 modules/extfs/rar
 modules/extfs/zip
 modules/extfs/zoo
+modules/vfolder/Makefile
 monikers/Makefile
 schemas/Makefile
 devel-docs/Makefile

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
-"POT-Creation-Date: 2002-08-18 06:17-0500\n"
+"POT-Creation-Date: 2002-08-23 17:20-0400\n"
 "PO-Revision-Date: 2002-05-11 23:25+0300\n"
 "Last-Translator: Sayed Jaffer Al-Mosawi <mosawi@arabeyes.org>\n"
 "Language-Team: Arabic <contact@arabeyes.org>\n"

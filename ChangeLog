@@ -1,3 +1,96 @@
+=== merge in changes from gnome-vfs-2-0-vfolder-rewrite branch ===
+
+2002-08-23  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_move): Remove fake CHANGED
+	event for .directory files since it is really a bug in nautilus
+	renames (see bug #89616).
+
+2002-08-23  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_emit_change): Call
+	gnome_vfs_escape_path_string() on the path arg.  This fixes some
+	strange behavior in nautilus when editing .desktop files with
+	emacs, since emacs' temporary #files were being parsed as URI
+	fragment identifiers.
+
+	* modules/vfolder/vfolder-util.h (VFOLDER_URI_PARSE): Add debug
+	printf with function name being called.  This allows us to trace
+	the vfs method calls.
+
+2002-08-23  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (folder_extend_monitor_cb):
+	Fix segfault where we accidentally used child.entry instead of
+	entry.  Remove local entry var, and use child.entry throughout.
+	Fixes bug #91271.
+
+2002-08-19  Alex Graveley  <alex@ximian.com>
+	
+	* modules/vfolder/vfolder-method.c (set_desktop_file_key):
+	Impl. Append a key/value pair to the end of the buffer, after
+	removing any prior occurances of the same keyname.
+	(set_desktop_file_locale_key): Impl.  Localize the keyname with
+	the current locale gotten from gnome_vfs_i18n_get_language_list(),
+	and call set_desktop_file_key().
+	(set_dot_directory_locale_name): Impl.  Handles renaming
+	.directory files by making them user-private if necessary, reading
+	in the file contents, replacing the localized Name key, and
+	writing it back out again.  Also generates a CHANGED event for the
+	.directory file.
+	(do_move): Call set_dot_directory_locale_name() to change the
+	folder name as described in the .directory file, as well as
+	renaming the "physical" directory name.
+	(do_create_symbolic_link): Fix deadlock by unlocking the vfolder
+	before calling get_file_info() and locking it again afterwards ,
+	in case the target URI is on the same filesystem (which may always
+	be the case).
+
+	* modules/vfolder/vfolder-common.c (entry_make_user_private): Make
+	a .directory file user-private by calling
+	folder_set_desktop_file(), instead of modifying includes/excludes.
+	(create_dot_directory_entry): Make <desktop> files user_private
+	again, so we don't make a new user-private copy for each edit.
+	Ths has the side effect that changes to applications-all-users:
+	directory names will be reflected in the original .directory files.
+
+	* modules/vfolder/vfolder-info.c (filename_monitor_handle): Reset
+	info->filename_reload_tag to 0 as a precaution.
+
+2002-08-16  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_remove_directory_unlocked):
+	Use vfolder_build_uri instead of creating a parent uri only to
+	concat the filename to.
+	(do_move): Call folder_set_name() after folder_make_user_private()
+	just in case.
+
+	* modules/vfolder/vfolder-info.c
+	(integrate_writedir_entry_changed): Call entry_set_dirty() on the
+	changed entry.
+	(writedir_monitor_cb): Handle files with a .directory extension.
+
+	* modules/vfolder/vfolder-common.c (folder_extend_monitor_cb):
+	Handle extended subfolder deletion, and don't iterate child
+	entries for changed/delete just lookup based on filename and
+	compare URIs.
+	(create_dot_directory_entry): Don't consider <Desktop> files
+	user_private.
+	(folder_reload_if_needed): Reset the entries and the
+	non-user-private subfolders here.
+	(folder_new): Set dirty to true for new folders.
+	(folder_remove_subfolder): Don't blindly unref the child folder,
+	instead unref the folder we know is our child.  Set the removed
+	child's parent to NULL.
+	(folder_add_subfolder): Call folder_remove_subfolder() before
+	adding, but ref first of all.
+
+2002-08-16  Arvind Samptur <arvind.samptur@wipro.com>
+	* modules/cde-desktop-method.c: Removing Comment field
+	from the desktop files. Fixes #88484
+	Re-doing this patch as Hidetoshi's patch to fix 
+	menus to correctly translate to utf-8 had knocked it off.
+
 2002-08-15  Michael Meeks  <michael@ximian.com>
 
 	* modules/file-method.c
@@ -5,6 +98,144 @@
 	on the size of the buffer and how much to read into it.
 	(find_trash_directory): hold a lock on the trash cache
 	while operating on it. #10438
+
+2002-08-15  Alex Graveley  <alex@ximian.com>
+
+	Merge all changes from gnome-2-0 branch back to
+	gnome-2-0-vfolder-rewrite.
+	
+2002-08-14  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (vfolder_untimestamp_file_name):
+	Only remove one set of timestamp, in case we are copying the same
+	file around multiple times.
+
+	* modules/vfolder/vfolder-common.c (create_dot_directory_entry):
+	Only add entry to folder if it does not contain one with the same
+	name and a higher weight.
+	(read_one_extended_entry): Ditto.
+	(read_one_extended_entry): Ditto.
+	(read_one_include): Ditto.
+
+	* modules/vfolder/vfolder-method.c (do_remove_directory_unlocked):
+	Remove check for hiddeness, as a recursive delete on a folder with
+	<DontShowIfEmpty/> will not allow the actual folder to be deleted
+	once all its contents are removed.
+	(do_unlink_unlocked): Only check result of file delete if parent
+	is a linked directory, since if it fails we can still just remove
+	it from the .vfolder-info.
+	(do_read_directory): Skip to next entry if getting the real file's
+	info fails.
+
+	* modules/vfolder/vfolder-common.c (read_one_include): Untimestamp
+	included files that originate in the writedir.
+	(folder_remove_entry): Only unref the existing entry, instead of
+	assuming the one we are removing is the same.
+	(folder_add_entry): Ref before calling folder_remove_entry, in
+	case we hold the only ref.
+
+	* modules/vfolder/preferences-all-users.vfolder-info.in: Set the
+	WriteDir to @vfolderdir@/preferences-all-users.
+
+	* modules/vfolder/applications-all-users.vfolder-info.in: Set the
+	WriteDir to @vfolderdir@/applications-all-users.
+
+	* modules/vfolder/Makefile.am (VFOLDER_INFO_CREATE): Translate
+	@vfolderdir@ in .vfolder-info.in files as
+	$(sysconfdir)/gnome-vfs-2.0/vfolders.
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_find_filenames):
+	Check for system-global file first, then user-local, then try
+	copying the system-default file.  This allows administrator
+	override of editing.  Remove default WriteDir.
+	(create_itemdir_entry): Don't create ItemDir/MergeDir entries as
+	user-private, because we probably don't really want them
+	deleted/edited.
+	(read_vfolder_from_file): Don't bother creating ItemDir struct to
+	monitor writedirs, since I don't think we actually care about the
+	results.
+
+2002-08-12  Alex Graveley  <alex@ximian.com>
+
+	* modules/Makefile.am (modules_LTLIBRARIES): Remove libdesktop.so.
+
+	* modules/default-modules.conf: Use libvfolder-desktop.so instead
+	of libdesktop.so.
+
+	* modules/desktop-method.c: Delete in favor of vfolder-based impl.
+
+	* modules/vfolder/Makefile.am (vfolder_DATA): Install
+	favorites.vfolder-info, start-here.vfolder-info,
+	server-settings.vfolder-info, and system-settings.vfolder-info.
+
+	* modules/vfolder/favorites.vfolder-info.in:
+	* modules/vfolder/start-here.vfolder-info.in:
+	* modules/vfolder/server-settings.vfolder-info.in:
+	* modules/vfolder/system-settings.vfolder-info.in: New vfolder info
+	files to support the vfs methods currently handled by
+	desktop-method.c
+
+2002-08-12  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (find_replacement_for_delete):
+	For correctness, only call set_mergedir_entry_keywords() if
+	id_next is a MergeDir.
+	(itemdir_monitor_handle): Ditto.
+	(itemdir_monitor_cb): Don't handle events other than CHANGED for
+	the WriteDir, since if we care about them the .vfolder-info should
+	be updated and reread, instead of us trying to guess where they
+	go.
+	(vfolder_info_find_filenames): Load user-private, else try copying
+	system-default to user-private, else try using system-global
+	.vfolder-info directly, else fall back to empty user-private
+	.vfolder-info.  Fixes bug #90202.
+
+2002-08-09  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_remove_directory_unlocked):
+	Always unconditionally <Exclude> the deleted folder name, in case
+	the folder is overrriding a system one.
+	(do_unlink_unlocked): Always exclude the deleted entry's
+	displayname, for the same reasons.
+
+2002-08-09  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (set_mergedir_entry_keywords):
+	Abstract the MergeDir keyword adding to here.
+	(create_mergedir_entry): Call set_mergedir_entry_keywords().
+	(find_replacement_for_delete): Take an entry which this
+	mmanipulates directly.  Make sure to load up MergeDir keywords for
+	the replaced file on the existing entry.  Set the entry weight to
+	that of the ItemDir where we are finding our replacement.
+	(itemdir_monitor_handle): Set weight and load MergeDir keywords
+	when the CREATED entry has a higher weight than an existing one
+	with the same name.
+	(check_monitors_foreach): Don't emit events for <OnlyUnallocated>
+	folders, since we can't be sure all the entries have been
+	allocated yet.
+
+	* modules/vfolder/vfolder-common.c (entry_make_user_private): Set
+	the weigth to 1000 so no other entries will override us.
+	(entry_set_weight): Impl.
+
+2002-08-09  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (fill_file_info_for_directory):
+	Copy code for filling a GnomeVFSFileInfo with a directory's
+	properties to here from get_file_info_internal().
+	(get_file_info_internal): Make child a pointer to a FolderChild,
+	not pass-by-value.
+	(do_get_file_info_from_handle): Use get_file_info_internal(), and
+	be sure to read lock the info.
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_read_info): Don't
+	forget to add the moniitor for the root directory, as
+	directory_visit doesn't call create_entry_directory_visit_cb() for
+	the starting directory.
+	(itemdir_monitor_cb): If the file matches the monitored uri,
+	ignore since we only care about events from our children.  Don't
+	set the Vfolder to loading, since we want events to actually be
+	sent.  Check the child filename in question is not hidden.  
 
 2002-08-08  jacob berkman  <jacob@ximian.com>
 
@@ -15,6 +246,76 @@
 	broken logic to make cde menu work when $LANG is not set
 
 	(fixes bug #87684)
+
+2002-08-08  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_create): Don't Forgot to
+	write unlock when returning from a failed parent directory
+	creation.
+	(dir_handle_new): Don't hold a read lock here, otherwise directory
+	deletion deadlocks as nautilus traverses the files and deletes
+	them one by one.
+	(dir_handle_new_all): Ditto.
+	(dir_handle_free): Don't read unlock, to match above.
+	(get_file_info_internal): Abstract the GnomeVFSFileInfo filling to
+	here to share code between do_read_directory() and
+	do_get_file_info().
+	(do_read_directory): Acquire read lock while reading the next
+	entry.
+	(do_make_directory): Add check to block against trying to create
+	the root folder, which always exists.  Don't forget to write
+	unlock if make_directory fails for a link folder's actual
+	destination.
+	(do_remove_directory_unlocked): Don't write unlock here, since
+	this is an _unlocked function :-)
+	(do_unlink_unlocked): Only add exclude for displayname if file is
+	not user-private.
+	(do_create_symbolic_link): Use GNOME_VFS_FILE_INFO_FOLLOW_LINKS
+	when stat'ing our target link, as we need to be able to tell if
+	the destination is really a directory.
+
+	* modules/vfolder/vfolder-info.c (filename_monitor_handle): Move
+	code from filename_monitor_cb, so we can be called from the
+	filename event timeout handler.
+	(filename_monitor_cb): For delete events set a 2 second delay
+	before processing .vfolder-info files, for create a .5 second
+	delay and process change events instantly. 
+
+	* modules/vfolder/vfolder-common.c (entry_make_user_private):
+	Clean up include/exclude handling.  Exclude current displayname,
+	remove include for current filename, and add include for new
+	filename.
+	(read_one_include): Simplify include loading, don't try to futz
+	with untimestamping filenames, handle include with just a
+	filename and not a full uri.
+
+	* modules/vfolder/applications-all-users.vfolder-info.in: Don't
+	include sep.desktop.
+
+2002-08-08  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_unlink_unlocked): Call
+	folder_remove_include() if the entry is user-private, so we don't
+	leave old <Include> tags around.
+
+	* modules/vfolder/vfolder-info.c (itemdir_free): g_slist_free()
+	monitor list.
+	(vfolder_info_write_user): Check filename monitor exists before
+	trying to freeze/thaw it.  This should fix bug #90160.
+	(integrate_entry): Skip <OnlyUnallocated> folders.  Emit a monitor
+	event based on the outcome here.
+	(itemdir_monitor_handle): Update info->modification_time.  Fix
+	botched relative path handling on create events.
+	(itemdir_monitor_cb): Fix typo causing double write lock instead
+	of an unlock. Doh :)
+	(copy_user_default_file): Call
+	vfolder_make_directory_and_parents() before trying to copy the
+	default .vfolder-info file.
+
+	* modules/vfolder/vfolder-common.c (folder_emit_changed): Make
+	non-static.
+
+	Add some monitor-related debugging g_prints.
 
 2002-08-07  Dave Camp  <dave@ximian.com>
 
@@ -43,6 +344,114 @@ Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 	REALLY ignore CDE specific actions that make no sense in GNOME
 	Patch by Stephen Browne. Fixes 88483
 
+2002-08-06  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (vfolder_monitor_freeze): Use
+	gnome_vfs_monitor_cancel instead of setting a freeze flag, because
+	the events can arrive after the flag has been reset, causing
+	unneccessary .vfolder-info reads.
+	(vfolder_monitor_thaw): Use gnome_vfs_monitor_add() to add the
+	monitor back.
+
+	* modules/vfolder/vfolder-method.c (do_create): Create entry with
+	highest weight (1000).
+	(dir_handle_new): Read lock info on DirHandle creation.  Use new
+	folder_list_children().
+	(dir_handle_free): Read unlock info.
+	(do_move): Only delete directory if source and destination folders
+	are different.
+	(do_create_symbolic_link): Impl.  Support creation of symbolic
+	links to direcctories by creating a new directory with a
+	<ParentLink> tag.
+	(do_monitor_add): Use a read lock instead of write lock because we
+	don't want to write out changes after creating a new monitor.
+	(do_monitor_cancel): Ditto.
+
+	* modules/vfolder/vfolder-info.c (folder_read): Escape <Parent>
+	directories beginning with '~'.  Unref the child folder after
+	adding it as a subfolder.
+	(read_vfolder_from_file): Ditto, but for ItemDir, MergeDir,
+	WriteDir, and DesktopDir.
+	(itemdir_new): Take weight and untimestamp_files parameters.  The
+	first is the weight which will be assigned to entries created from
+	this folder, the second is for WriteDirs, so filenames are
+	displayed without the timestamp.  Add ourselves to the info's
+	item_dirs list.
+	(itemdir_free): Free the list of monitors on subdirs of this
+	ItemDir.
+	(create_itemdir_entry): Refactor entry creation for <ItemDir>
+	dirs.  Add a monitor to the ItemDir struct if the child is a dir,
+	so that we are informed of changes in subfolders.
+	(create_mergedir_entry): Use create_itemdir_entry() to create the
+	entries for <MergeDir> dirs, and add keywords by splitting up the
+	relative path and matching against the known list of dir names.
+	(create_entry_directory_visit_cb): directory_visit callback which
+	creates entries based on the type of ItemDir.
+	(vfolder_info_read_info): After reading .vfolder-info, foreach
+	ItemDir call gnome_vfs_directory_visit() so we can create all the
+	entries.
+	(vfolder_info_write_user): Write XML to temporary file then use
+	gnome_vfs_move to move to the config filename, in order to
+	minimize listeners getting libxml parse errors from empty
+	.vfolder-info files.
+	(find_replacement_for_delete): Impl. Look for a like-named
+	replacement for a file which has been deleted.
+	(integrate_entry): Impl. Conditionally traverse and replace all
+	entries with the same name and a lower weight, after rechecking
+	that the new entry matches the folder's query.
+	(itemdir_monitor_handle): Impl. Handling monitor events on
+	ItemDirs by either updating or replacing existing entires, then
+	integrate with all folders using integrate_entry().
+	(vfolder_info_find_filenames): Complexify the .vfolder-info
+	filename finding code by first checking the standard user
+	location, and then if it doesn't exist copying a system default
+	file to the standard location.  This allows for overrides and
+	additions of things in the -all-users.vfolder-info file, such as
+	preferences:// and favorites:///.
+
+	(filename_monitor_cb): Correctly handle .vfolder-info filename
+	events by looking at the requested monitors, and if they monitor a
+	directory, constructing a list of that directory's children. Then
+	free all the folder/entry resources and reread the .vfolder-info
+	configuration file.  Then trave trhough the list we created and
+	check if the folders and their children still exist (if not,
+	then send a DELETED event to the monitor), and then send CREATED
+	events for any new children. 
+
+	* modules/vfolder/vfolder-common.h: Clean out specific monitors
+	from VFolderInfo, as they are all handled as ItemDirs now.
+
+	* modules/vfolder/vfolder-common.c (entry_new): Accept a weight,
+	which can be used to tell if a given Entry is more important than
+	another based on load order.
+	(entry_reload_if_needed): Copy implicit keywords lists when
+	reloading so we don't lose the MergeDir keywords.
+	(entry_get_weight): Return weight.
+	(entry_add_implicit_keyword): Add Quark to implicit_keywords as
+	well as keywords.
+	(folder_new): Take user_private as a parameter.
+	(folder_extend_monitor_cb): Handle monitor events from our
+	extend_uri correctly by refreshing, deleting, or creating child
+	entries.
+	(create_dot_directory_entry): Move code to create a ".directory"
+	entry here from vfolder-info.c
+	(read_includes): Create entries with highest weight (1000).
+	(read_one_extended_entry): Pass 900 as weight for created entries.
+	Create folders as non-user-private.
+	(folder_reload_if_needed): Start monitoring the extend_uri here,
+	to cut down on unneeded events
+	(folder_emit_changed): Take a child argument, which emits the
+	given event with the uri of the named folder child.
+	(folder_set_extend_uri): Cancel the extend_monitor here.
+	(folder_set_desktop_file): Don't set the folder dirty.
+	(folder_list_children): Impl.  Copies all the folder children's
+	names into a list, moved from vfolder-method.c.
+	(folder_get_subfolder): Don't ref the returned folder.
+	(folder_remove_subfolder): Don't modify includes/excludes here,
+	but let the caller do it.  Don't set the parent folder to dirty.
+	(folder_add_subfolder): Don't emit monitor changes here, let our
+	caller do it.
+
 2002-08-05  Federico Mena Quintero  <federico@ximian.com>
 
 	Should fix #48539.
@@ -53,11 +462,117 @@ Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 	(filesystem_type): Free the string we got when we must cache a new
 	value.
 
+2002-07-29  Arvind Samptur <arvind.samptur@wipro.com>
+	* modules/cde-desktop-method.c: Removing Comment field
+	from the desktop files. Fixes #88484
+
+	* modules/cde-desktop-method.c (do_read_directory): 
+	REALLY ignore CDE specific actions that make no sense in GNOME
+	Patch by Stephen Browne. Fixes 88483
+
+2002-07-29  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c: Add WordProcessing->Office and
+	Toys->Utility keyword mapping.  These are two top-level KDE menus.
+
+	* modules/vfolder/applications-all-users.vfolder-info.in: Use
+	<ParentLink/> for Preferences, so changes get written out to
+	preferences-all-users:///.
+
+2002-07-29  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (vfolder_escape_home): Impl,
+	if the filename starts with '~', escape with home directory.
+
+	* modules/vfolder/vfolder-method.c Support is_link folders
+	thoughtout.  Probably buggy.
+	(do_create_symbolic_link): Impl, support creating "symbolic links"
+	to directories using the <ParentLink> element.
+
+	* modules/vfolder/vfolder-info.c (folder_read): Support ParentLink
+	elements, which means all changes to a directory are forwarded to
+	the parent, and not a private copy in the WriteDir.
+	(itemdir_new): Use vfolder_escape_home().
+	(read_vfolder_from_file): Ditto.
+	(add_xml_tree_from_folder): Store parent as <ParentLink> if
+	is_link is set.
+	(vfolder_info_reset): Reset the flags.
+	(copy_user_default_file): Impl. Copies the
+	scheme.vfolder-info-default to scheme.vfolder-info in the user's
+	.vfolder-info dir.
+	(vfolder_info_init): Split filename choosing out to
+	vfolder_info_find_filenames.
+
+	* modules/vfolder/vfolder-common.h: Use one bit allocation for
+	flags.  Rename inhibit_write to loading in VFolderInfo.  Add
+	is_link to Folder.  Turn off debugging.
+
+	* modules/vfolder/vfolder-common.c (read_extended_entries): Call
+	read_one_extended_entry() for each file.
+	(read_info_entry_pool): Call read_one_info_entry_pool() for each
+	entry in the entry pool.
+
+	* modules/vfolder/Makefile.am (EXTRA_DIST): Installed vfolder-info
+	files are now applications-all-users.vfolder-info,
+	preferences-all-users.vfolder-info, and
+	applications.vfolder-info-default.
+
 2002-07-26  Ian McKellar  <yakk@yakk.net>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (copy_file):
 	Fixed up gnome-vfs-xfer problem pointed out by Josh Parsons. My fix
-	is slightly different than his proposed fix but the spirits the same.
+	is slightly different than his proposed fix but the spirits the
+	same.
+
+2002-07-26  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/test-vfolder.c (main): Use putenv() as setenv()
+	is not portable to Solaris.
+
+2002-07-26  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (monitor_timeout_cb): Fix
+	reentrency by copying the stat_monitors list, and checking each
+	VFolderMonitor is still in the list while iterating.
+
+	* modules/vfolder/vfolder-method.c (do_open): Handle all-scheme by
+	loading the FolderChild manually.
+	(dir_handle_new_all): ret->list is a list of entry names, not
+	Entry pointers.
+	(do_read_directory): Handle all-scheme.
+	(do_get_file_info): Ditto.  Also, handle a NULL parent folder for
+	all-scheme.
+	(do_remove_directory_unlocked): New, unlocked version of
+	do_remove_directory.
+	(do_remove_directory): Wrap do_remove_directory_unlocked() with a
+	lock.
+	(do_unlink_unlocked): New, unlocked version of do_unlink.
+	(do_unlink): Wrap do_unlink_unlocked() with a lock.
+	(do_move): Fix some logic bugs, use _unlocked versions of unlink
+	and remove_directory, only make the moved file user-private if the
+	displayname has changed.
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_write_user): Freeze
+	and thaw the filename_monitor while writing out the .vfolder-info,
+	so we don't trigger our own reloads.
+	(vfolder_info_set_dirty): just set info->dirty to true, instead of
+	writing the .vfolder-info out every time.
+
+	* modules/vfolder/vfolder-common.h (VFOLDER_INFO_WRITE_UNLOCK):
+	Call vfolder_info_write_user() before unlocking, so we batch
+	.vfoldeer-info file writes.
+
+	* modules/vfolder/vfolder-common.c (entry_reload_if_needed): Add
+	basic support for a "Deprecates" keyword, to allow differently
+	named .desktop files to replace one-another.
+	(read_includes): Read and load the explicit includes here, so we
+	can support including arbitrary URLs, not just extended/pool
+	entries.
+	(is_excluded): New, check the displayname and filename for
+	includability.
+	(folder_reload_if_needed): Call read_includes.
+	(folder_add_include): remove_exclude here.
+	(folder_add_exclude): remove_include here.
 
 2002-07-25  Dave Camp  <dave@ximian.com>
 
@@ -78,6 +593,12 @@ Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 	* configure.in: added test for libpopt
 
 	* test/Makefile.am: link libpopt to the test programs.
+
+2002-07-25  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/test-vfolder.c (main): NULL term
+	g_build_filename().  Use putenv() which is more portable than
+	setenv().
 
 2002-07-24  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
@@ -111,6 +632,28 @@ Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 	* libgnomevfs/gnome-vfs-job.c
 	(job_notify): prune semaphore mess.
 	(gnome_vfs_job_set): lock/unlock.
+
+2002-07-24  jacob berkman  <jacob@ximian.com>
+
+	* modules/vfolder/Makefile.am (libvfolder_desktop_la_LIBADD):
+	point to $(top_builddir) and not a relative path
+
+2002-07-24  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (dir_handle_new): Match with
+	folder query for OnlyUnallocated folders when listing contents.
+	(do_make_directory): Handle existing but hidden folder by removing
+	DontShowIfEmpty.
+
+	* modules/vfolder/vfolder-common.c (folder_is_hidden): Match with
+	folder query for OnlyUnallocated folders, which clears out the
+	Other menu somewhat.
+
+	* modules/vfolder/vfolder-info.c (get_folder_for_path_list_n):
+	return NULL if parent folder is hidden.
+
+	* modules/vfolder/test-vfolder.c (test_vfolder_ops): Fix some bad
+	args to gnome-vfs, implement test #6 and #7.
 
 2002-07-23  Michael Meeks  <michael@ximian.com>
 
@@ -155,17 +698,117 @@ Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 	(test_get_file_info): don't leak URIs in lists.
 	(main): if memprof is running, don't quit just loop.
 
+2002-07-23  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (vfolder_build_uri): Rip off of
+	g_build_filename, but which handles the first element being a
+	uri scheme://.
+
+	* modules/vfolder/vfolder-method.c: Use vfolder_build_uri().
+
+	* modules/vfolder/vfolder-info.c: Use vfolder_build_uri().
+
+	* modules/vfolder/vfolder-common.c: Use vfolder_build_uri().
+
 2002-07-22  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* configure.in:
 	don't set OPENSSL_CFLAGS if it is "/usr/include",
 	otherwise gcc >= 3.1 issues a warning.
 
+2002-07-22  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (read_extended_entries): Use
+	g_build_filename().
+
+2002-07-22  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_create): Uniquely timestamp
+	filename if there is a writedir, otherwise use the folder's
+	extended URI, otherwise give up.  Ensure destination directory
+	before creating.
+	(do_get_file_info): Set permissions to read-only for ReadOnly
+	folders.
+
+	* modules/vfolder/vfolder-info.c: Add some keywords so ximian
+	menus get organized nicely.
+	(create_entries_from_itemdir): Allow stripping of timestamp at
+	beginning of file if we are reading from the WriteDir.
+	(vfolder_info_read_info): Pass TRUE for user_private so folders
+	are persisted correctly.
+	(vfolder_info_read_info): Strip timestamps from filenames for
+	WriteDir and not from ItemDir.
+	(vfolder_info_write_user): Make directory and parents before
+	saving file.
+	(vfolder_info_init): Allow overwriting of WriteDir and directory
+	containing .vfolder-info files from environment variables.
+
+	* modules/vfolder/vfolder-common.c (entry_make_user_private):
+	Ensure write directory is created before xferring file.  Uniqueify
+	filename, to avoid naming conflicts.  Fail if there is no
+	filename.  Exclude the old displayname, and include the new
+	timestamped one.  Take the parent folder as an arg so we can
+	manage the Includes/Excludes.
+	(entry_set_filename): Free entry->uri on change.
+	(read_extended_entries): Check include/exclude against full uri
+	and filename.
+
+	* modules/vfolder/test-vfolder.c: New, loads and performs
+	operations on the test-vfolder:/// uri.  Still needs a few more
+	tests implemented to be complete.
+
+	* modules/vfolder/test-vfolder.vfolder-info.in: New, .vfolder-info
+	file used by test-vfolder.
+
+	* modules/vfolder/test-vfolder-parent.vfolder-info.in: New,
+	.vfolder-info file used by test-vfolder.
+
+	* modules/vfolder/test-vfolder-modules.conf: Created, vfs module
+	description used by test-vfolder.
+
+	* modules/vfolder/applications.vfolder-info.in: Merge in ximian
+	menus, as they add some sanity.  On the root folder, Exclude gmc,
+	nautilus-help, and gnome-help, Include evolution & galeon.  Remove
+	silly rule on root folder causing root entries from GNOME1 to not
+	be shown.  Remove silly rule about hiding "System" entries from
+	the Accessories menu.
+
+	* modules/vfolder/TODO: Update.
+
+	* modules/vfolder/Makefile.am (test_vfolder_SOURCES): Build
+	test-vfolder, and generate test-vfolder-parent.vfolder-info &
+	test-vfolder.vfolder-info.
+
 2002-07-19  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* modules/ssh-method.c: (ssh_connect):
 	Fix bug 88539 (leaking ssh processes) by using 
 	g_spawn_async_with_pipes
+
+2002-07-18  Damon Chaplin  <damon@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (folder_emit_changed): for the
+	root folder pass "/" as the uri rather than NULL.
+
+2002-07-18  Damon Chaplin  <damon@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (entry_quick_read_keys): oops.
+	didn't need to add '\0' to a GString. That was silly.
+
+2002-07-18  Damon Chaplin  <damon@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (entry_quick_read_keys): init
+	*result1 & *result2 to NULL, in case there is an error reading the
+	.desktop file. (Some of my X11 .desktop files are not readable by me,
+	so that caused a problem here.)
+	Also append '\0' to the GString, so we can use it like a normal string.
+	These 2 fixes seem to fix the corruption problems I was having.
+
+2002-07-18  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (folder_get_child): Don't call
+	vfolder_info_lookup_entry here for only_unallocated folders, let
+	folder_get_entry() do it.
 
 2002-07-17  Michael Meeks  <michael@ximian.com>
 
@@ -176,6 +819,50 @@ Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 	* test/test-async-cancel.c
 	(MAX_THREAD_WAIT): bump the thread wait for my poor
 	old machine.
+
+2002-07-17  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_locate): Wrap
+	load_folders in an inhibit_write, so the vfolder info file doesn't
+	get written out as we create new extended folders.
+
+2002-07-17  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (read_vfolder_from_file): Don't
+	free default itemdirs/mergedirs since they are now pulled from
+	GNOME2_PATH.
+
+	* modules/vfolder/vfolder-common.c (read_extended_entries): Put
+	the '/' in the right place between dirname and filename.
+	(read_extended_entries): Remove extraneous entry_set_filename().
+
+2002-07-17  Damon Chaplin  <damon@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (entry_reload_if_needed): store
+	the value returned from g_slist_prepend(). Fixes bug #88132.
+
+2002-07-17  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_create): If there is a
+	write dir, then the parent folder's URI, otherwise read-only.
+
+	* modules/vfolder/vfolder-common.c (entry_quick_read_keys): Free
+	fullbuf even if empty.
+	(entry_make_user_private): Use g_build_filename, not
+	g_build_path.  Return success if there is no WriteDir.
+	(folder_unref): Dealloc entries as well as unref.  Dealloc any
+	entries which we Excluded.
+	(read_info_entry_pool): Alloc excluded files.
+
+	* modules/vfolder/applications.vfolder-info.in: Add some defaults,
+	so we don't rely on mandatory defaults from vfolder_info_init().
+	Spell "Accessories" correctly.  Remove the duplication of the
+	preferences-all-users:/// vfolder layout, and just make it the
+	<Parent> of the Preferences folder.
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_init): Remove the
+	default itemdir/writedir/desktopdir; just listen to the config
+	file.  Use GNOME2_PATH as a bunch of prefixes for itemdirs.
 
 2002-06-28  Jody Goldberg <jody@gnome.org>
 
@@ -215,6 +902,11 @@ Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 	(gnome_vfs_pthread_init): upd.
 	(gnome_vfs_init): here.
 	(gnome_vfs_postinit): ensure we do it here too & re-order.
+
+2002-07-16  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/ABOUT: Add file describing the vfolder
+	architecture somewhat.
 
 2002-07-15  Michael Meeks  <michael@ximian.com>
 
@@ -283,6 +975,39 @@ Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 	(do_find_directory): modified the code so as to create the
 	.Trash directory with permissions 0700 only.
 	Fixes bug #46475.
+
+2002-07-12  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (read_vfolder_from_file): Load
+	mergedirs and itemdirs to the same list, so we retain load order.
+	(itemdir_new): Add is_mergedir arg.
+
+2002-07-12  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (do_unlink): Exclude based on
+	displayname, not filename.
+	(do_create): Include based on displayname, not filename.
+
+	* modules/vfolder/vfolder-common.c (read_info_entry_pool): Check
+	include/exclude against entry's displayname, note full filename.
+
+2002-07-12  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_destroy): Call
+	vfolder_info_reset.
+	(vfolder_info_reset): Implement. Free everything except scheme,
+	requested_monitors, and rw_lock.
+	(filename_monitor_cb): Call vfolder_info_reset() then
+	vfolder_info_read_info() to reload everything from scratch.
+	(write_dir_monitor_cb): Ditto.
+
+	* modules/vfolder/vfolder-common.c (entry_quick_read_keys): Fix to
+	not expect fgets() type strings.
+	(entry_set_dirty): Set a dirty flag, instead of always reloading.
+	(entry_set_filename): Set entry dirty.
+	(entry_add_implicit_keyword): Set entry dirty.
+	(entry_get_keywords): Call entry_reload_if_needed(), in case the
+	entry is dirty.
 	
 2002-07-11  Michael Meeks  <michael@ximian.com>
 
@@ -299,6 +1024,36 @@ Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 	* modules/file-method.c (get_stat_info, do_open):
 	Correctly set O_TRUNC in do_open.
 	Fix uninitialized memory read bug with symlinks in get_stat_info.	
+
+2002-07-11  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_init): Free
+	base_scheme.
+
+	* modules/vfolder/vfolder-util.c (vfolder_monitor_cancel): Free
+	monitor->uri.
+
+	* modules/vfolder/applcations.vfolder-info: Spell Accessories
+	correctly.
+
+2002-07-10  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-method.c (dir_handle_new): Fix typo,
+	handle unallocated folders, sorting, and the entry display name
+	being different from the source file's.
+
+	* modules/vfolder/vfolder-common.c: Redo lots of things
+	here. Notably fixes folder and entry dirtying, and dir loading
+	fixups.
+
+	* modules/vfolder/vfolder-info.c: Implement missing featues:
+	like correct .directory file handling and, implicit mergedir
+	keywords, and client monitors.
+
+	* modules/default-modules.conf (all-applications): Add
+	applications-all-users: and preferences-all-users: methods to
+	allow access to system-global vfolders, to allow administrator
+	changes and folder extension.
 
 2002-07-05  Stephen Browne  <stephen.browne@sun.com>
 
