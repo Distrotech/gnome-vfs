@@ -1,3 +1,9 @@
+2001-01-22  Aaron Brick  <aaron@eazel.com>
+
+	* removed references to obsolete application/x-abiword
+	* added description for text/x-troff-mm
+	* added underscore to a couple of plain "description=" lines
+
 2001-01-22  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.keys.in: Rolled in one more change.
