@@ -1,16 +1,16 @@
 # Czech translation of gnome-vfs
 # Copyright (C) 2002 Free Software Foundation
-# Copyright (C) 2004 Miloslav Trmac <mitr@volny.cz>
+# Copyright (C) 2004, 2005 Miloslav Trmac <mitr@volny.cz>
 # This file is distributed under the same license as the gnome-vfs package.
 # Michal Bukovjan <bukm@centrum.cz>, 2002.
-# Miloslav Trmac <mitr@volny.cz>, 2003, 2004.
+# Miloslav Trmac <mitr@volny.cz>, 2003, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 15:10+0100\n"
-"PO-Revision-Date: 2004-10-19 15:14+0200\n"
+"POT-Creation-Date: 2005-01-31 05:46+0100\n"
+"PO-Revision-Date: 2005-01-31 10:54+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -535,7 +535,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1122
+#: libgnomevfs/gnome-vfs-utils.c:1131
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (neplatný Unicode)"
@@ -1103,12 +1103,9 @@ msgstr "Jméno uživatele HTTP proxy"
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"Je-li true, vyžadují připojení k proxy serveru autentizaci. Kombinace jméno "
-"uživatele/heslo je definována v \"/system/http_proxy/authentication_user\" a "
-"\"/system/http_proxy/authentication_password\"."
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr "Je-li true, vyžadují připojení k proxy serveru autentizaci. Kombinace jméno uživatele/heslo je definována v \"/system/http_proxy/authentication_user\" a \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1226,187 +1223,3 @@ msgstr "Pracovní skupina SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Pracovní skupina Windows, jejímž je uživatel členem"
-
-#~ msgid "CD-ROM Disc"
-#~ msgstr "Disk CD-ROM"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Prázdný disk CD-R"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "Disk CD-R"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Prázdný disk CD-RW"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "Disk CD-RW"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "Disk DVD-ROM"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Prázdný disk DVD-R"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "Disk DVD-R"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Prázdný disk DVD-RAM"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "Disk DVD-RAM"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Prázdný disk DVD-RW"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "Disk DVD-RW"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Prázdný disk DVD+RW"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "Disk DVD+RW"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Prázdný disk DVD+R"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "Disk DVD+R"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Optický disk"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Zvukový disk"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Médium Compact Flash"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "Médium Memory Stick"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "Médium Smart Media"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "Médium SD/MMC"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Disketa"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Disk Mac OS"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Disk Mac OS X"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Disk Windows"
-
-#~ msgid "Linux Disk"
-#~ msgstr "Disk Linuxu"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "Soubor nelze otevřít: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Nemohu otevřít soubor '%s': %s"
-
-#~ msgid "File is empty"
-#~ msgstr "Soubor je prázdný"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Nemohu číst ze souboru '%s': %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "položky desktop obsahují řádek '%s', což není položka, skupina ani "
-#~ "poznámka"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "soubor položek desktop nezačíná platnou počáteční skupinou"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "položky desktop obsahují řádek '%s', který není v UTF-8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "položky desktop obsahují neznámé kódování '%s'"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "položky desktop nemají skupinu '%s'"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "položky desktop nemají klíč '%s'"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr ""
-#~ "položky desktop obsahují klíč '%s', který má hodnotu, kterou nelze "
-#~ "interpretovat."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "položky desktop neobsahují přeloženou hodnotu pro klíč '%s' s locale '%s'."
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "položky desktop obsahují neplatnou escape posloupnost '%s'"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "položky desktop obsahují znak escape na konci řádku"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "Hodnotu '%s' nelze interpretovat jako číslo."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "Hodnotu '%s' nelze interpretovat jako booleovskou hodnotu."
-
-# Yes, I have checked. Solaris 8
-#~ msgid "Applications"
-#~ msgstr "Applications"
-
-#~ msgid "Cards"
-#~ msgstr "Cards"
-
-#~ msgid "Files"
-#~ msgstr "Files"
-
-#~ msgid "Folders"
-#~ msgstr "Folders"
-
-#~ msgid "Help"
-#~ msgstr "Help"
-
-#~ msgid "Hosts"
-#~ msgstr "Hosts"
-
-#~ msgid "Links"
-#~ msgstr "Links"
-
-#~ msgid "Mail"
-#~ msgstr "Mail"
-
-#~ msgid "Tools"
-#~ msgstr "Tools"
-
-#~ msgid "Windows"
-#~ msgstr "Windows"
-
-#~ msgid "desktop entry does not start with legal start group"
-#~ msgstr "položka desktop nezačíná platnou počáteční skupinou"
-
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "Ukládání záložek selhalo (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "Nemohu získat informace o souboru '%s': %s"
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "Nemohu načíst obrázek '%s': důvod není znám, pravděpodobně poškozený "
-#~ "soubor s obrázkem"
