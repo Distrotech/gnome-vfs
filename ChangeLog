@@ -1,3 +1,8 @@
+2004-10-18  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (handle_attribute):
+	Remobe some debug spew.
+
 2004-10-15  Ryan Lortie  <desrt@desrt.ca>
 
 	* libgnomevfs/gnome-vfs-uri.c:

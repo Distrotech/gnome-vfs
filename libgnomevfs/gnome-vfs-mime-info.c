@@ -328,7 +328,6 @@ handle_attribute (xmlTextReaderPtr  reader,
 		text = g_strdup (xml_text);
 		xmlFree (xml_text);
 	}
-	g_print ("looking for %s: got %s\n", attribute, text);
 	return text;
 }
 
