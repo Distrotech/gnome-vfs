@@ -82,6 +82,7 @@ static GnomeVFSMethod method = {
         do_get_file_info,
         do_is_local,
         NULL,
+	NULL,
         NULL
 };
 

@@ -1,3 +1,8 @@
+1999-09-01  Dave Camp  <campd@oit.edu>
+
+	* modules/gconf-method.c: Explicitly set the `remove_directory'
+	method to NULL.
+
 1999-09-01  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* modules/http-method.c: Explicitly set the `remove_directory'
