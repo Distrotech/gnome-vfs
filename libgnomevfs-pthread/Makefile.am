@@ -4,6 +4,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
+	-I$(top_builddir)/libgnomevfs		\
 	$(GNOME_INCLUDEDIR)
 
 CPPFLAGS =					\

@@ -1,3 +1,12 @@
+2000-07-03  Ettore Perazzoli  <ettore@helixcode.com>
+
+	* libgnomevfs-pthread/Makefile.am (INCLUDES): Add
+	`-I$(top_builddir)/libgnomevfs' so that it works with builddir !=
+	srcdir.
+	* libgnomevfs-corba/Makefile.am (INCLUDES): Likewise.
+	* libgnomevfs/Makefile.am (INCLUDES): Likewise.
+	* modules/Makefile.am (INCLUDES): Likewise.
+
 2000-07-03  Pavel Cisler  <pavel@eazel.com>
 
 	* HACKING:

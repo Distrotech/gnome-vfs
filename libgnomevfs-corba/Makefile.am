@@ -7,6 +7,7 @@ INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
+	-I$(top_builddir)/libgnomevfs		\
 	-I$(top_builddir)/libgnomevfs-corba	\
 	$(GNOME_INCLUDEDIR)			\
 	$(OBJECT_DIRECTORY_CFLAGS)

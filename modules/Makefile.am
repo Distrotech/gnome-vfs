@@ -2,6 +2,7 @@ SUBDIRS = extfs
 
 INCLUDES =					\
 	-I$(top_srcdir)/libgnomevfs		\
+	-I$(top_builddir)/libgnomevfs		\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
 	$(GNOME_INCLUDEDIR)			\

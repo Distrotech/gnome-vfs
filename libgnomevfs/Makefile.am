@@ -3,7 +3,8 @@ NULL =
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
-	$(OAF_CFLAGS)					\
+	-I$(top_builddir)/libgnomevfs		\
+	$(OAF_CFLAGS)				\
 	$(GNOME_INCLUDEDIR)
 
 CPPFLAGS =					\
