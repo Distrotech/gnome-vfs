@@ -1,5 +1,10 @@
 2004-03-04  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Actually define HAVE_OPENSSL when used.
+
+2004-03-04  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/xdgmimeint.h: 
 	* libgnomevfs/xdgmimeint.c:
 	Fix some declarations.
