@@ -47,6 +47,7 @@ typedef struct GnomeVFSHandle GnomeVFSHandle;
  * @GNOME_VFS_OPEN_READ:
  * @GNOME_VFS_OPEN_WRITE:
  * @GNOME_VFS_OPEN_RANDOM:
+ * @GNOME_VFS_OPEN_TRUNCATE:
  *
  * Mode in which files are opened. If GNOME_VFS_OPEN_RANDOM is not used, the
  * file will be have to be accessed sequentially.
@@ -55,7 +56,8 @@ typedef enum {
         GNOME_VFS_OPEN_NONE = 0,
         GNOME_VFS_OPEN_READ = 1 << 0,
         GNOME_VFS_OPEN_WRITE = 1 << 1,
-        GNOME_VFS_OPEN_RANDOM = 1 << 2
+        GNOME_VFS_OPEN_RANDOM = 1 << 2,
+	GNOME_VFS_OPEN_TRUNCATE = 1 << 3
 } GnomeVFSOpenMode;
 
 /**

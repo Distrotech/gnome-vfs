@@ -1,3 +1,9 @@
+2005-01-10 Paolo Borelli <pborelli@katamail.com> 
+
+	* libgnomevfs/gnome-vfs-handle.h: add GNOME_VFS_OPEN_TRUNCATE
+	* modules/file-method.c: (do_open): add support for _TRUNCATE flag
+	* modules/sftp-method.c: (do_open): add support for _TRUNCATE flag
+
 2005-01-10  Christophe Fergeau  <teuf@gnome.org>
 
 	* doc/tmpl/gnome-vfs-xfer.sgml: copied doc for

@@ -1797,7 +1797,8 @@ do_open (GnomeVFSMethod        *method,
 	sftp_mode = 0;
 	if (mode & GNOME_VFS_OPEN_READ) sftp_mode |= SSH2_FXF_READ;
 	if (mode & GNOME_VFS_OPEN_WRITE) sftp_mode |= SSH2_FXF_WRITE;
-	if ((mode & GNOME_VFS_OPEN_WRITE) && !(mode & GNOME_VFS_OPEN_RANDOM))
+	if ((mode & GNOME_VFS_OPEN_TRUNCATE)) ||
+	    (mode & GNOME_VFS_OPEN_WRITE) && !(mode & GNOME_VFS_OPEN_RANDOM))
 		sftp_mode |= SSH2_FXF_TRUNC;
 
 	buffer_write_gint32 (&msg, sftp_mode);
