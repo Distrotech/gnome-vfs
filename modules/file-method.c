@@ -1131,6 +1131,7 @@ find_trash_in_hierarchy (const char *start_dir, dev_t near_device_id, GnomeVFSCo
 }
 
 static GList *cached_trash_directories;
+G_LOCK_DEFINE_STATIC (cached_trash_directories);
 
 /* Element used to store chached Trash entries in the local, in-memory Trash item cache. */
 typedef struct {
@@ -1177,8 +1178,9 @@ try_creating_trash_in (const char *path, guint permissions)
 }
 
 static char *
-find_disk_top_directory (const char *item_on_disk, dev_t near_device_id,
-	GnomeVFSContext *context)
+find_disk_top_directory (const char *item_on_disk,
+			 dev_t near_device_id,
+			 GnomeVFSContext *context)
 {
 	char *disk_top_directory;
 	struct stat stat_buffer;
@@ -1309,7 +1311,6 @@ update_one_cached_trash_entry (gpointer element, gpointer cast_to_context)
 	}
 }
 
-
 static void
 add_local_cached_trash_entry (dev_t near_device_id, const char *trash_path, const char *mount_point)
 {
@@ -1363,7 +1364,7 @@ read_saved_cached_trash_entries (void)
 {
 	char *cache_file_path;
 	FILE *cache_file;
-	char buffer[2 * PATH_MAX + 1];
+	char buffer[2048];
 	char escaped_mount_point[PATH_MAX], escaped_trash_path[PATH_MAX];
 	char *mount_point, *trash_path;
 	struct stat stat_buffer;
@@ -1381,7 +1382,7 @@ read_saved_cached_trash_entries (void)
 
 	if (cache_file != NULL) {
 		for (;;) {
-			if (fgets(buffer, 2048, cache_file) == NULL) {
+			if (fgets (buffer, sizeof (buffer), cache_file) == NULL) {
 				break;
 			}
 
@@ -1552,13 +1553,18 @@ find_or_create_trash_near (const char *full_name_near, dev_t near_device_id,
 
 /* Find or create a trash directory on the same disk as @full_name_near. Check
  * the local and file cache for matching Trash entries first.
+ *
+ *     This is the only entry point for the trash cache code,
+ * we holds the lock while operating on it only here.
  */
 static char *
 find_trash_directory (const char *full_name_near, dev_t near_device_id, 
-	gboolean create_if_needed, gboolean find_if_needed,
-	guint permissions, GnomeVFSContext *context)
+		      gboolean create_if_needed, gboolean find_if_needed,
+		      guint permissions, GnomeVFSContext *context)
 {
 	char *result;
+
+	G_LOCK (cached_trash_directories);
 
 	/* look in the saved trash locations first */
 	result = find_cached_trash_entry_for_device (near_device_id, find_if_needed);
@@ -1597,6 +1603,8 @@ find_trash_directory (const char *full_name_near, dev_t near_device_id,
 		g_free (result);
 		result = NULL;
 	}
+
+	G_UNLOCK (cached_trash_directories);
 	
 	return result;
 }
