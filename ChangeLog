@@ -1,5 +1,12 @@
 2004-07-31  Christophe Fergeau  <teuf@gnome.org>
 
+	* modules/ftp-method.c: (do_transfer_command):
+	* modules/http-neon-method.c: (http_transfer_start_read): use
+	  GNOME_VFS_OFFSET_FORMAT_STR to print a GnomeVFSFileOffset (fixes
+	  #148913)
+
+2004-07-31  Christophe Fergeau  <teuf@gnome.org>
+
 	* acinclude.m4
 	* configure.in: renamed NEON_BUNDLED to VFS_NEON_BUNDLED not to clash
 	  with macro names installed by libneon-dev. Fixes #148903

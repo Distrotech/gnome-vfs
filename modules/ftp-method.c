@@ -689,8 +689,7 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 	conn->data_socketbuf = gnome_vfs_socket_buffer_new (socket);
 	if (conn->offset) {
 		gchar *tmpstring;
-
-		tmpstring = g_strdup_printf ("REST %Lu", conn->offset);
+		tmpstring = g_strdup_printf ("REST %"GNOME_VFS_OFFSET_FORMAT_STR, conn->offset);
 		result = do_basic_command (conn, tmpstring, cancellation);
 		g_free (tmpstring);
 

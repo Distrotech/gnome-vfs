@@ -2105,8 +2105,7 @@ get_start:
 		
 		handle->can_range = TRUE;
 		
-		/*FIXME: don't use lld hardcoded here */
-		ne_print_request_header (req, "Range", "bytes=%lld-", handle->offset);
+		ne_print_request_header (req, "Range", "bytes=%"GNOME_VFS_OFFSET_FORMAT_STR"-", handle->offset);
 		
 		ne_add_response_header_handler (req, "Content-Range",
 						(ne_header_handler) set_content_range,
