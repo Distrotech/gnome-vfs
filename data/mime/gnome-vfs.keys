@@ -828,16 +828,16 @@ audio/x-mpegurl
 	short_list_application_ids_for_hacker_user_level=xmms
 
 # also application/x-ogg
-audio/x-ogg
-	description=OGG Audio
-	[da]description=OGG-lyd
-	[fr]description=Audio OGG
-	icon-filename=i-music
-	default_action_type=application
-	default_application_id=ogg123
-	short_list_application_ids_for_novice_user_level=ogg123,xmms
-	short_list_application_ids_for_intermediate_user_level=ogg123,xmms
-	short_list_application_ids_for_hacker_user_level=ogg123,xmms
+# audio/x-ogg
+#	description=OGG Audio
+#	[da]description=OGG-lyd
+#	[fr]description=Audio OGG
+#	icon-filename=i-music
+#	default_action_type=application
+#	default_application_id=ogg123
+#	short_list_application_ids_for_novice_user_level=ogg123,xmms
+#	short_list_application_ids_for_intermediate_user_level=ogg123,xmms
+#	short_list_application_ids_for_hacker_user_level=ogg123,xmms
 
 audio/x-pn-realaudio
 	description=PN RealAudio document

@@ -168,6 +168,9 @@ application/x-netcdf
 application/x-object-file
 	ext: o
 
+application/x-ogg
+        ext: ogg
+
 application/x-php
         ext: php php3 php4
 
@@ -253,9 +256,6 @@ audio/x-mp3
 
 audio/x-mpegurl
         ext: m3u
-
-audio/x-ogg
-	ext: ogg
 
 audio/x-pn-realaudio
 	ext: rm ra ram

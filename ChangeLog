@@ -1,3 +1,11 @@
+2000-11-11  Ali Abdin  <aliabdin@aucegypt.edu>
+
+        * data/mime/gnome-vfs-mime-magic:
+        * data/mime/gnome-vfs.keys:
+        * data/mime/gnome-vfs.applications:
+        * data/mime/gnome-vfs.mime:
+        Change audio/x-ogg to application/x-ogg
+
 2000-11-09  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.spec.in: Turn on "make check" for RPM builds. This is

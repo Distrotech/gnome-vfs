@@ -104,7 +104,9 @@
 0	string		RIFF					audio/x-riff
 8	string		WAVE					audio/x-wav
 8	string		WAV\ 					audio/x-wav
-0	string		OggS					audio/x-ogg
+# The below is set to 'application/x-ogg' at the request of Ogg Vorbis
+# developers
+0	string		OggS					application/x-ogg
 0	string		SIT! 					application/x-stuffit
 0	string		\312\376\272\276			application/x-java-byte-code
 0	string		Joy!					application/x-pef-executable
