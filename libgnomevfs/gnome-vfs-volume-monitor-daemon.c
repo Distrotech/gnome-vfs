@@ -552,6 +552,7 @@ update_fstab_drives (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 			drive = create_drive_from_mount_point (volume_monitor, mount);
 			if (drive != NULL) {
 				_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
+				gnome_vfs_drive_unref (drive);
 			}
 		}
 		
@@ -800,6 +801,7 @@ update_mtab_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 		
 			vol = create_vol_from_mount (volume_monitor, mount);
 			_gnome_vfs_volume_monitor_mounted (volume_monitor, vol);
+			gnome_vfs_volume_unref (vol);
 		}
 		
 		g_list_free (added);
@@ -966,6 +968,7 @@ update_connected_servers (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 		
 		volume = create_volume_from_connected_server (volume_monitor, server);
 		_gnome_vfs_volume_monitor_mounted (volume_monitor, volume);
+		gnome_vfs_volume_unref (volume);
 	}
 	
 	g_list_free (added);

@@ -25,9 +25,11 @@
 
 #include <string.h>
 
+#include "gnome-vfs-private.h"
 #include "gnome-vfs-volume-monitor.h"
 #include "gnome-vfs-volume-monitor-private.h"
 #include "gnome-vfs-volume-monitor-daemon.h"
+#include "gnome-vfs-volume-monitor-client.h"
 
 static void gnome_vfs_volume_monitor_class_init (GnomeVFSVolumeMonitorClass *klass);
 static void gnome_vfs_volume_monitor_init       (GnomeVFSVolumeMonitor      *volume_monitor);
@@ -194,12 +196,14 @@ gnome_vfs_get_volume_monitor (void)
 {
 	static GnomeVFSVolumeMonitor *the_volume_monitor = NULL;
 
-	g_print ("gnome_vfs_get_volume_monitor()\n");
-	
 	G_LOCK (the_volume_monitor);
 	
 	if (the_volume_monitor == NULL) {
-		the_volume_monitor = g_object_new (GNOME_VFS_TYPE_VOLUME_MONITOR_DAEMON, NULL);
+		if (gnome_vfs_get_is_daemon ()) {
+			the_volume_monitor = g_object_new (GNOME_VFS_TYPE_VOLUME_MONITOR_DAEMON, NULL);
+		} else {
+			the_volume_monitor = g_object_new (GNOME_VFS_TYPE_VOLUME_MONITOR_CLIENT, NULL);
+		}
 	}
 	
 	G_UNLOCK (the_volume_monitor);
@@ -280,26 +284,34 @@ _gnome_vfs_volume_monitor_get_volume_by_id (GnomeVFSVolumeMonitor *volume_monito
 	GList *l;
 	GnomeVFSVolume *vol;
 
-	/* Doesn't need locks, only called internally on main thread and doesn't write */
+	g_mutex_lock (volume_monitor->priv->mutex);
 	
 	for (l = volume_monitor->priv->mtab_volumes; l != NULL; l = l->next) {
 		vol = l->data;
 		if (vol->priv->id == id) {
+			gnome_vfs_volume_ref (vol);
+			g_mutex_unlock (volume_monitor->priv->mutex);
 			return vol;
 		}
 	}
 	for (l = volume_monitor->priv->server_volumes; l != NULL; l = l->next) {
 		vol = l->data;
 		if (vol->priv->id == id) {
+			gnome_vfs_volume_ref (vol);
+			g_mutex_unlock (volume_monitor->priv->mutex);
 			return vol;
 		}
 	}
 	for (l = volume_monitor->priv->vfs_volumes; l != NULL; l = l->next) {
 		vol = l->data;
 		if (vol->priv->id == id) {
+			gnome_vfs_volume_ref (vol);
+			g_mutex_unlock (volume_monitor->priv->mutex);
 			return vol;
 		}
 	}
+	
+	g_mutex_unlock (volume_monitor->priv->mutex);
 
 	return NULL;
 }
@@ -311,21 +323,27 @@ _gnome_vfs_volume_monitor_get_drive_by_id  (GnomeVFSVolumeMonitor *volume_monito
 	GList *l;
 	GnomeVFSDrive *drive;
 
-	/* Doesn't need locks, only called internally on main thread and doesn't write */
-	
+	g_mutex_lock (volume_monitor->priv->mutex);
+
 	for (l = volume_monitor->priv->fstab_drives; l != NULL; l = l->next) {
 		drive = l->data;
 		if (drive->priv->id == id) {
+			gnome_vfs_drive_ref (drive);
+			g_mutex_unlock (volume_monitor->priv->mutex);
 			return drive;
 		}
 	}
 	for (l = volume_monitor->priv->vfs_drives; l != NULL; l = l->next) {
 		drive = l->data;
 		if (drive->priv->id == id) {
+			gnome_vfs_drive_ref (drive);
+			g_mutex_unlock (volume_monitor->priv->mutex);
 			return drive;
 		}
 	}
 
+	g_mutex_unlock (volume_monitor->priv->mutex);
+	
 	return NULL;
 }
 
@@ -363,14 +381,13 @@ _gnome_vfs_volume_monitor_unmounted (GnomeVFSVolumeMonitor *volume_monitor,
 	volume->priv->is_mounted = 0;
 	g_mutex_unlock (volume_monitor->priv->mutex);
 
-
+	g_signal_emit (volume_monitor, volume_monitor_signals[VOLUME_UNMOUNTED], 0, volume);
+	
 	drive = volume->priv->drive;
 	if (drive != NULL) {
 		_gnome_vfs_volume_unset_drive (volume, drive);
 		_gnome_vfs_drive_unset_volume (drive, volume);
 	}
-	
-	g_signal_emit (volume_monitor, volume_monitor_signals[VOLUME_UNMOUNTED], 0, volume);
 	
 	gnome_vfs_volume_unref (volume);
 }

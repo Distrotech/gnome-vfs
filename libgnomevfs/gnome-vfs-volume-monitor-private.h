@@ -24,8 +24,9 @@
 #ifndef GNOME_VFS_VOLUME_MONITOR_PRIVATE_H
 #define GNOME_VFS_VOLUME_MONITOR_PRIVATE_H
 
-#include "gnome-vfs-volume-monitor.h"
 #include <glib/gthread.h>
+#include "gnome-vfs-volume-monitor.h"
+#include "GNOME_VFS_Daemon.h"
 
 #define CONNECTED_SERVERS_DIR "/desktop/gnome/connected_servers"
 
@@ -97,6 +98,14 @@ void _gnome_vfs_volume_monitor_connected    (GnomeVFSVolumeMonitor *volume_monit
 void _gnome_vfs_volume_monitor_disconnected (GnomeVFSVolumeMonitor *volume_monitor,
 					     GnomeVFSDrive         *drive);
 
+void            _gnome_vfs_volume_to_corba   (GnomeVFSVolume         *volume,
+					      GNOME_VFS_Volume       *corba_volume);
+GnomeVFSVolume *_gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
+					      GnomeVFSVolumeMonitor  *volume_monitor);
+void            _gnome_vfs_drive_to_corba    (GnomeVFSDrive          *drive,
+					      GNOME_VFS_Drive        *corba_drive);
+GnomeVFSDrive * _gnome_vfs_drive_from_corba  (const GNOME_VFS_Drive  *corba_drive,
+					      GnomeVFSVolumeMonitor  *volume_monitor);
 
 GnomeVFSVolume *_gnome_vfs_volume_monitor_find_mtab_volume_by_activation_uri (GnomeVFSVolumeMonitor *volume_monitor,
 									      const char            *activation_uri);

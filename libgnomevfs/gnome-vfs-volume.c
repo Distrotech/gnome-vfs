@@ -245,3 +245,88 @@ gnome_vfs_volume_handles_trash (GnomeVFSVolume *volume)
 	}
 	return FALSE;
 }
+
+static CORBA_char *
+corba_string_or_null_dup (char *str)
+{
+	if (str != NULL) {
+		return CORBA_string_dup (str);
+	} else {
+		return CORBA_string_dup ("");
+	}
+}
+
+/* empty string interpreted as NULL */
+static char *
+decode_corba_string_or_null (CORBA_char *str, gboolean empty_is_null)
+{
+	if (empty_is_null && *str == 0) {
+		return NULL;
+	} else {
+		return g_strdup (str);
+	}
+}
+
+void
+_gnome_vfs_volume_to_corba (GnomeVFSVolume *volume,
+			    GNOME_VFS_Volume *corba_volume)
+{
+	GnomeVFSDrive *drive;
+
+	corba_volume->id = volume->priv->id;
+	corba_volume->volume_type = volume->priv->volume_type;
+	corba_volume->device_type = volume->priv->device_type;
+	drive = gnome_vfs_volume_get_drive (volume);
+	if (drive != NULL) {
+		corba_volume->drive = drive->priv->id;
+		gnome_vfs_drive_unref (drive);
+	} else {
+		corba_volume->drive = 0;
+	}
+	corba_volume->device_path = corba_string_or_null_dup (volume->priv->device_path);
+	corba_volume->unix_device = volume->priv->unix_device;
+	corba_volume->activation_uri = corba_string_or_null_dup (volume->priv->activation_uri);
+	corba_volume->filesystem_type = corba_string_or_null_dup (volume->priv->filesystem_type);
+	corba_volume->display_name = corba_string_or_null_dup (volume->priv->display_name);
+	corba_volume->icon = corba_string_or_null_dup (volume->priv->icon);
+	
+	corba_volume->is_user_visible = volume->priv->is_user_visible;
+	corba_volume->is_read_only = volume->priv->is_read_only;
+	corba_volume->is_mounted = volume->priv->is_mounted;
+}
+
+GnomeVFSVolume *
+_gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
+			      GnomeVFSVolumeMonitor *volume_monitor)
+{
+	GnomeVFSVolume *volume;
+
+	volume = g_object_new (GNOME_VFS_TYPE_VOLUME, NULL);
+	
+	volume->priv->id = corba_volume->id;
+	volume->priv->volume_type = corba_volume->volume_type;
+	volume->priv->device_type = corba_volume->device_type;
+
+	if (corba_volume->drive != 0) {
+		volume->priv->drive = _gnome_vfs_volume_monitor_get_drive_by_id (volume_monitor,
+										 corba_volume->drive);
+		if (volume->priv->drive != NULL) {
+			_gnome_vfs_drive_set_mounted_volume (volume->priv->drive, volume);
+			/* The drive reference is weak */
+			gnome_vfs_drive_unref (volume->priv->drive);
+		}
+	}
+								  
+	volume->priv->device_path = decode_corba_string_or_null (corba_volume->device_path, TRUE);
+	volume->priv->unix_device = corba_volume->unix_device;
+	volume->priv->activation_uri = decode_corba_string_or_null (corba_volume->activation_uri, TRUE);
+	volume->priv->filesystem_type = decode_corba_string_or_null (corba_volume->filesystem_type, TRUE);
+	volume->priv->display_name = decode_corba_string_or_null (corba_volume->display_name, TRUE);
+	volume->priv->icon = decode_corba_string_or_null (corba_volume->icon, TRUE);
+	
+	volume->priv->is_user_visible = corba_volume->is_user_visible;
+	volume->priv->is_read_only = corba_volume->is_read_only;
+	volume->priv->is_mounted = corba_volume->is_mounted;
+
+	return volume;
+}

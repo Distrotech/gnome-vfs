@@ -278,3 +278,77 @@ gnome_vfs_drive_mount (GnomeVFSDrive *drive,
 	return FALSE;
 }
 
+static CORBA_char *
+corba_string_or_null_dup (char *str)
+{
+	if (str != NULL) {
+		return CORBA_string_dup (str);
+	} else {
+		return CORBA_string_dup ("");
+	}
+}
+
+/* empty string interpreted as NULL */
+static char *
+decode_corba_string_or_null (CORBA_char *str, gboolean empty_is_null)
+{
+	if (empty_is_null && *str == 0) {
+		return NULL;
+	} else {
+		return g_strdup (str);
+	}
+}
+
+void
+_gnome_vfs_drive_to_corba (GnomeVFSDrive *drive,
+			   GNOME_VFS_Drive *corba_drive)
+{
+	GnomeVFSVolume *volume;
+
+	corba_drive->id = drive->priv->id;
+	corba_drive->device_type = drive->priv->device_type;
+	volume = gnome_vfs_drive_get_mounted_volume (drive);
+	if (volume != NULL) {
+		corba_drive->volume = volume->priv->id;
+		gnome_vfs_volume_unref (volume);
+	} else {
+		corba_drive->volume = 0;
+	}
+	corba_drive->device_path = corba_string_or_null_dup (drive->priv->device_path);
+	corba_drive->activation_uri = corba_string_or_null_dup (drive->priv->activation_uri);
+	corba_drive->display_name = corba_string_or_null_dup (drive->priv->display_name);
+	corba_drive->icon = corba_string_or_null_dup (drive->priv->icon);
+	
+	corba_drive->is_user_visible = drive->priv->is_user_visible;
+	corba_drive->is_connected = drive->priv->is_connected;
+}
+
+GnomeVFSDrive *
+_gnome_vfs_drive_from_corba (const GNOME_VFS_Drive *corba_drive,
+			     GnomeVFSVolumeMonitor *volume_monitor)
+{
+	GnomeVFSDrive *drive;
+
+	drive = g_object_new (GNOME_VFS_TYPE_DRIVE, NULL);
+	
+	drive->priv->id = corba_drive->id;
+	drive->priv->device_type = corba_drive->device_type;
+
+	if (corba_drive->volume != 0) {
+		drive->priv->volume = _gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor,
+										  corba_drive->volume);
+		if (drive->priv->volume != NULL) {
+			_gnome_vfs_volume_set_drive (drive->priv->volume, drive);
+		}
+	}
+								  
+	drive->priv->device_path = decode_corba_string_or_null (corba_drive->device_path, TRUE);
+	drive->priv->activation_uri = decode_corba_string_or_null (corba_drive->activation_uri, TRUE);
+	drive->priv->display_name = decode_corba_string_or_null (corba_drive->display_name, TRUE);
+	drive->priv->icon = decode_corba_string_or_null (corba_drive->icon, TRUE);
+	
+	drive->priv->is_user_visible = corba_drive->is_user_visible;
+	drive->priv->is_connected = corba_drive->is_connected;
+
+	return drive;
+}

@@ -3,6 +3,7 @@
 #include <libbonobo.h>
 #include "gnome-vfs-client.h"
 #include "gnome-vfs-cancellation-private.h"
+#include "gnome-vfs-volume-monitor-private.h"
 
 BONOBO_CLASS_BOILERPLATE_FULL(
 	GnomeVFSClient,
@@ -66,12 +67,79 @@ gnome_vfs_client_monitor_callback (PortableServer_Servant _servant,
 }
 
 static void
+gnome_vfs_client_volume_mounted (PortableServer_Servant _servant,
+				 const GNOME_VFS_Volume * corba_volume,
+				 CORBA_Environment * ev)
+{
+	GnomeVFSVolume *volume;
+	GnomeVFSVolumeMonitor *volume_monitor;
+
+	volume_monitor = gnome_vfs_get_volume_monitor ();
+
+	volume = _gnome_vfs_volume_from_corba (corba_volume, volume_monitor);
+	_gnome_vfs_volume_monitor_mounted (volume_monitor, volume);
+	gnome_vfs_volume_unref (volume);
+}
+
+static void
+gnome_vfs_client_volume_unmounted (PortableServer_Servant _servant,
+				   const CORBA_long id, CORBA_Environment * ev)
+{
+	GnomeVFSVolume *volume;
+	GnomeVFSVolumeMonitor *volume_monitor;
+
+	volume_monitor = gnome_vfs_get_volume_monitor ();
+
+	volume = _gnome_vfs_volume_monitor_get_volume_by_id (volume_monitor, id);
+	if (volume != NULL) {
+		_gnome_vfs_volume_monitor_unmounted (volume_monitor, volume);
+		gnome_vfs_volume_unref (volume);
+	}
+}
+
+static void
+gnome_vfs_client_drive_connected (PortableServer_Servant _servant,
+				  const GNOME_VFS_Drive * corba_drive,
+				  CORBA_Environment * ev)
+{
+	GnomeVFSDrive *drive;
+	GnomeVFSVolumeMonitor *volume_monitor;
+
+	volume_monitor = gnome_vfs_get_volume_monitor ();
+
+	drive = _gnome_vfs_drive_from_corba (corba_drive, volume_monitor);
+	_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
+	gnome_vfs_drive_unref (drive);
+}
+
+static void
+gnome_vfs_client_drive_disconnected (PortableServer_Servant _servant,
+				     const CORBA_long id,
+				     CORBA_Environment * ev)
+{
+	GnomeVFSDrive *drive;
+	GnomeVFSVolumeMonitor *volume_monitor;
+
+	volume_monitor = gnome_vfs_get_volume_monitor ();
+
+	drive = _gnome_vfs_volume_monitor_get_drive_by_id (volume_monitor, id);
+	if (drive != NULL) {
+		_gnome_vfs_volume_monitor_disconnected (volume_monitor, drive);
+		gnome_vfs_drive_unref (drive);
+	}
+}
+
+static void
 gnome_vfs_client_class_init (GnomeVFSClientClass *klass)
 {
 	GObjectClass *object_class = (GObjectClass *) klass;
 	POA_GNOME_VFS_Client__epv *epv = &klass->epv; 
 
 	epv->MonitorCallback = gnome_vfs_client_monitor_callback;
+	epv->VolumeMounted = gnome_vfs_client_volume_mounted;
+	epv->VolumeUnmounted = gnome_vfs_client_volume_unmounted;
+	epv->DriveConnected = gnome_vfs_client_drive_connected;
+	epv->DriveDisconnected = gnome_vfs_client_drive_disconnected;
 	
 	object_class->finalize = gnome_vfs_client_finalize;
 }

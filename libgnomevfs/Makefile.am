@@ -79,6 +79,7 @@ noinst_HEADERS =				\
 	gnome-vfs-ssl-private.h			\
 	gnome-vfs-thread-pool.h			\
 	gnome-vfs-unix-mounts.h 		\
+	gnome-vfs-volume-monitor-client.h	\
 	gnome-vfs-volume-monitor-daemon.h	\
 	gnome-vfs-volume-monitor-private.h 	\
 	$(NULL)
@@ -190,6 +191,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-unix-mounts.c			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
+	gnome-vfs-volume-monitor-client.c	\
 	gnome-vfs-volume-monitor-daemon.c	\
 	gnome-vfs-volume-monitor.c		\
 	gnome-vfs-volume.c			\
