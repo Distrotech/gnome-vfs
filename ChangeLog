@@ -1,5 +1,11 @@
 2004-07-19  Ray Strode  <rstrode@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime-info.c: 
+	(gnome_vfs_mime_get_default_desktop_entry):
+	strdup the result before returning it.
+
+2004-07-19  Ray Strode  <rstrode@redhat.com>
+
 	* test/test-mime-info-cache.c: 
 	Make program multi-threaded.
 

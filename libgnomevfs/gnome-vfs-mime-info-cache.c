@@ -728,7 +728,7 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 	G_UNLOCK (mime_info_cache);
 
 	if (desktop_entry != NULL)
-		return desktop_entry;
+		return g_strdup (desktop_entry);
 
 	G_LOCK (mime_info_cache);
 	dir_list = mime_info_cache->dirs;
@@ -748,5 +748,5 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 	}
 	G_UNLOCK (mime_info_cache);
 
-	return desktop_entry;
+	return g_strdup (desktop_entry);
 }
