@@ -1,3 +1,9 @@
+2004-07-31  Christophe Fergeau  <teuf@gnome.org>
+
+	* acinclude.m4
+	* configure.in: renamed NEON_BUNDLED to VFS_NEON_BUNDLED not to clash
+	  with macro names installed by libneon-dev. Fixes #148903
+
 2004-07-29  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):

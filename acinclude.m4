@@ -189,7 +189,7 @@ dnl macros for the neon bundeled build
 # Copyright (C) 1998-2004 Joe Orton <joe@manyfish.co.uk>  
 # Modifications by Christian Kellner <gicmo@gnome-de.org>
 
-AC_DEFUN([NEON_BUNDLED],[
+AC_DEFUN([VFS_NEON_BUNDLED],[
 
 neon_bundled_srcdir=$1
 neon_bundled_builddir=$1

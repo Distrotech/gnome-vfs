@@ -490,7 +490,7 @@ dnl ******************************
 AC_ARG_ENABLE(http_neon, [  --disable-http-neon       build without the new neon http module
 										    but use the old one])
 if test "x$enable_http_neon" != "xno"; then
-     NEON_BUNDLED(imported/neon)
+     VFS_NEON_BUNDLED(imported/neon)
      AM_CONDITIONAL(USE_HTTP_NEON, true)
 else
 	AM_CONDITIONAL(USE_HTTP_NEON, false)   
