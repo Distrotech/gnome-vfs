@@ -1099,7 +1099,6 @@ libgnomevfs/Makefile
 imported/Makefile
 imported/neon/Makefile
 modules/Makefile
-modules/vfolder/Makefile
 daemon/Makefile
 monikers/Makefile
 schemas/Makefile

@@ -1,3 +1,18 @@
+2004-11-16  Mark McLoughlin  <mark@skynet.ie>
+
+	Remove the vfolder and cdemenu methods - the panel and
+	control-center now use libgnome-menu for accessing
+	the menus.
+
+	* configure.in: don't build modules/vfolder/Makefile
+	
+	* modules/Makefile.am: remove cdemenu and vfolder methods.
+	
+	* modules/cdemenu-desktop-method.c,
+	  modules/cdemenu-module.conf: remove.
+	
+	* modules/vfolder/*: remove.
+
 2004-11-04  Vincent Noel  <vnoel@cox.net>
 
 	* modules/gzip-method.c (do_read): Return GNOME_VFS_ERROR_EOF when

@@ -1,5 +1,4 @@
 NULL =
-SUBDIRS = vfolder
 
 INCLUDES =					\
 	-I$(top_srcdir)				\
@@ -33,7 +32,6 @@ EXTRA_DIST =					\
 	default-modules.conf			\
 	smb-module.conf				\
 	cdda-module.conf			\
-	cdemenu-module.conf			\
 	ssl-modules.conf
 
 ###  Module setup
@@ -48,13 +46,6 @@ if HAVE_SAMBA
 SMB_LTLIBS = libsmb.la
 else
 SMB_LTLIBS = 
-endif
-
-
-if BUILD_CDEMENU_MODULE
-CDEMENU_LTLIBS = libcdemenu-desktop.la
-else
-CDEMENU_LTLIBS =
 endif
 
 module_flags = -export_dynamic -avoid-version -module -no-undefined
@@ -74,7 +65,6 @@ modules_LTLIBRARIES =				\
 	libftp.la				\
 	libvfs-pipe.la				\
 	libvfs-translate.la			\
-	$(CDEMENU_LTLIBS)                       \
 	$(SMB_LTLIBS)	                        \
 	libsftp.la				\
 	libtar.la				\
@@ -93,10 +83,7 @@ endif
 if HAVE_SSL
 SSL_CONF = ssl-modules.conf
 endif
-if BUILD_CDEMENU_MODULE
-CDE_CONF = cdemenu-module.conf
-endif
-modulesconf_DATA = default-modules.conf $(CDDA_CONF) $(SMB_CONF) $(SSL_CONF) $(CDE_CONF)
+modulesconf_DATA = default-modules.conf $(CDDA_CONF) $(SMB_CONF) $(SSL_CONF)
 
 ###  `cdda' method
 
@@ -138,12 +125,6 @@ libnetwork_la_LIBADD = $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 libnntp_la_SOURCES = nntp-method.c nntp-method.h
 libnntp_la_LDFLAGS = $(module_flags)
 libnntp_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
-
-###  `cdemenu-desktop' method
-
-libcdemenu_desktop_la_SOURCES = cdemenu-desktop-method.c
-libcdemenu_desktop_la_LDFLAGS = $(module_flags)
-libcdemenu_desktop_la_LIBADD = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ### `smb' method
 
