@@ -78,7 +78,66 @@ module GNOME {
 			boolean no_username;
 			string password;
 		};
+
+		struct ModuleCallbackFullAuthenticationIn {
+			long flags;
+			string uri;
+			string protocol;
+			string server;
+			string object;
+			long port;
+			string authtype;
+			string username;
+			string domain;
+			string default_user;     
+			string default_domain;
+		};
+
+		struct ModuleCallbackFullAuthenticationOut {
+			boolean abort_auth;
+			string username;
+			string domain;
+			string password;
+
+			boolean save_password;
+			string keyring;
+		};
+
+		struct ModuleCallbackFillAuthenticationIn {
+			string uri;
+			string protocol;
+			string server;
+			string object;
+			long port;
+			string authtype;
+			string username;
+			string domain;
+		};
+
+		struct ModuleCallbackFillAuthenticationOut {
+			boolean valid;
+			string username;
+			string domain;
+			string password;
+		};
 		
+		struct ModuleCallbackSaveAuthenticationIn {
+			string keyring;
+			string uri;
+			string protocol;
+			string server;
+			string object;
+			long port;
+			string authtype;
+			string username;
+			string domain;
+			string password;
+		};
+
+		struct ModuleCallbackSaveAuthenticationOut {
+			long empty;
+		};
+
 		/* Reference to a file/directory monitor object in
 		   the server. When this monitor triggers the
 		   Client::MonitoCallback callback will be called.

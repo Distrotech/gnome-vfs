@@ -1,3 +1,9 @@
+2003-12-10  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	Marshallers for the new auth callbacks.
+
 2003-12-10  Carlos Romero  <kidcrash@bellsouth.net>
 
 	* libgnomevfs/gnome-vfs-client.c: properly NULL terminate the list
