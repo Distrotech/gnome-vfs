@@ -32,16 +32,15 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
-
 struct GnomeVFSDirectoryList {
 	GList *entries;		/* GnomeVFSFileInfo */
 	GList *current_entry;
 	GList *last_entry;
 
 	guint num_entries;
+	int ref_count;
 };
 
-
 static void
 remove_entry (GnomeVFSDirectoryList *list,
 	      GList *p)
@@ -62,7 +61,6 @@ remove_entry (GnomeVFSDirectoryList *list,
 	g_list_free (p);
 }
 
-
 /**
  * gnome_vfs_directory_list_new:
  * 
@@ -73,16 +71,13 @@ remove_entry (GnomeVFSDirectoryList *list,
 GnomeVFSDirectoryList *
 gnome_vfs_directory_list_new (void)
 {
-	GnomeVFSDirectoryList *new;
+	GnomeVFSDirectoryList *new_list;
 
-	new = g_new (GnomeVFSDirectoryList, 1);
+	new_list = g_new0 (GnomeVFSDirectoryList, 1);
 
-	new->entries = NULL;
-	new->current_entry = NULL;
-	new->last_entry = NULL;
-	new->num_entries = 0;
-
-	return new;
+	new_list->ref_count = 1;
+	
+	return new_list;
 }
 
 /**
@@ -94,20 +89,9 @@ gnome_vfs_directory_list_new (void)
 void
 gnome_vfs_directory_list_destroy (GnomeVFSDirectoryList *list)
 {
-	GList *p;
-
 	g_return_if_fail (list != NULL);
 
-	if (list->entries != NULL) {
-		for (p = list->entries; p != NULL; p = p->next) {
-			GnomeVFSFileInfo *info;
-
-			info = p->data;
-			gnome_vfs_file_info_unref (info);
-		}
-		g_list_free (list->entries);
-	}
-
+	gnome_vfs_file_info_list_free (list->entries);
 	g_free (list);
 }
 
@@ -159,7 +143,6 @@ gnome_vfs_directory_list_append (GnomeVFSDirectoryList *list,
 	list->num_entries++;
 }
 
-
 /**
  * gnome_vfs_directory_list_first:
  * @list: A directory list
@@ -290,7 +273,6 @@ gnome_vfs_directory_list_nth (GnomeVFSDirectoryList *list, guint n)
 	return list->current_entry->data;
 }
 
-
 /**
  * gnome_vfs_directory_list_filter:
  * @list: A directory list
@@ -324,7 +306,6 @@ gnome_vfs_directory_list_filter	(GnomeVFSDirectoryList *list,
 	}
 }
 
-
 /**
  * gnome_vfs_directory_list_sort:
  * @list: A directory list
@@ -378,7 +359,6 @@ gnome_vfs_directory_list_sort_custom (GnomeVFSDirectoryList *list,
 			     data);
 }
 
-
 /**
  * gnome_vfs_directory_list_get:
  * @list: A directory list
@@ -405,7 +385,6 @@ gnome_vfs_directory_list_get (GnomeVFSDirectoryList *list,
 	return info;
 }
 
-
 /**
  * gnome_vfs_directory_list_get_num_entries:
  * @list: A directory list
@@ -528,8 +507,6 @@ gnome_vfs_directory_list_position_prev (GnomeVFSDirectoryListPosition position)
 	return list->prev;
 }
 
-
-
 static GnomeVFSResult
 load_from_handle (GnomeVFSDirectoryList **list,
 		  GnomeVFSDirectoryHandle *handle)

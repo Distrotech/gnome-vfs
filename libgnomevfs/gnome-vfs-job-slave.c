@@ -26,6 +26,7 @@
 #endif
 
 #include "gnome-vfs-job-slave.h"
+#include "gnome-vfs-async-job-map.h"
 
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-thread-pool.h"
@@ -43,16 +44,44 @@ thread_routine (void *data)
 {
 	GnomeVFSJob *job;
 	GnomeVFSAsyncHandle *job_handle;
+	gboolean complete;
 
-	job = (GnomeVFSJob *) data;
- 
-	while (gnome_vfs_job_execute (job))
-		;
+	job_handle = (GnomeVFSAsyncHandle *) data;
 
-	job_handle = job->job_handle;
-	gnome_vfs_job_destroy (job);
-	gnome_vfs_async_job_expired (job_handle);
+	/* job map must always be locked before the job acces_lock if both locks are needed */
+	gnome_vfs_async_job_map_lock ();
+	
+	job = gnome_vfs_async_job_map_get_job (job_handle);
+	
+	if (job == NULL) {
+		JOB_DEBUG (("job already dead, bail %u", GPOINTER_TO_UINT (job_handle)));
+		gnome_vfs_async_job_map_unlock ();
+		return NULL;
+	}
+	
+	JOB_DEBUG (("locking access_lock %u", GPOINTER_TO_UINT (job->job_handle)));
+	g_mutex_lock (job->access_lock);
+	gnome_vfs_async_job_map_unlock ();
 
+	gnome_vfs_job_execute (job);
+	complete = gnome_vfs_job_complete (job);
+	
+	JOB_DEBUG (("Unlocking access lock %u", GPOINTER_TO_UINT (job->job_handle)));
+	g_mutex_unlock (job->access_lock);
+
+	if (complete) {
+		JOB_DEBUG (("job %u done, removing from map and destroying",
+			GPOINTER_TO_UINT (job_handle)));
+		gnome_vfs_async_job_map_lock ();
+		if (gnome_vfs_async_job_completed (job_handle)) {
+			/* job was still valid, it is our to destroy */
+			gnome_vfs_job_destroy (job);
+		} else {
+			JOB_DEBUG (("job destroyed by other thread %u", GPOINTER_TO_UINT (job_handle)));
+		}
+		gnome_vfs_async_job_map_unlock ();
+	}
+	
 	return NULL;
 }
 
@@ -76,11 +105,12 @@ gnome_vfs_job_create_slave (GnomeVFSJob *job)
 		return FALSE;
 	}
 	
-	if (gnome_vfs_thread_create (&thread, thread_routine, job) != 0) {
+	if (gnome_vfs_thread_create (&thread, thread_routine, job->job_handle) != 0) {
 		g_warning ("Impossible to allocate a new GnomeVFSJob thread.");
 		
 		/* thread did not start up, remove the job from the hash table */
-		gnome_vfs_async_job_expired (job->job_handle);
+		gnome_vfs_async_job_completed (job->job_handle);
+		gnome_vfs_job_destroy (job);
 		return FALSE;
 	}
 

@@ -1,3 +1,111 @@
+2001-01-16  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: <delete if not using a buddy>
+	
+	Fix 5399: Callbacks need a better way to find out if they are still needed.
+	Fix 5401: Decouple async jobs and callbacks.
+	Fix 5402: DGnomeVFSAsyncJob cleanup needs to be simplified.
+	Fix 5677: File copy operation crashes Nautilus.
+	Fix 1129: Storage leak while cancelling an async operation.
+
+	* libgnomevfs-pthread/Makefile.am:
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.c:
+	(gnome_vfs_async_job_map_get_job),
+	(gnome_vfs_async_job_map_add_job),
+	(gnome_vfs_async_job_map_remove_job),
+	(gnome_vfs_async_job_map_destroy), (gnome_vfs_async_job_completed),
+	(gnome_vfs_async_job_map_shutdown), (gnome_vfs_async_job_map_lock),
+	(gnome_vfs_async_job_map_unlock),
+	(gnome_vfs_async_job_map_assert_locked),
+	(gnome_vfs_async_job_callback_valid),
+	(gnome_vfs_async_job_add_callback),
+	(gnome_vfs_async_job_remove_callback), (callback_map_cancel_one),
+	(gnome_vfs_async_job_cancel_callbacks),
+	(async_job_callback_map_destroy):
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.h:
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	Move gnome_vfs_async_job_map calls to their new file.
+	Add a async job callback map.
+	Switch to using a static recursive mutext for locking the job map.
+	Add support for cancelling callbacks.
+	
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_cancel): Handle cancelling of
+	both the job and it's callbacks. 
+	(async_open),
+	(async_open_as_channel), (async_create),
+	(pthread_gnome_vfs_async_create_as_channel),
+	(pthread_gnome_vfs_async_close), (pthread_gnome_vfs_async_read),
+	(pthread_gnome_vfs_async_write),
+	(pthread_gnome_vfs_async_create_symbolic_link),
+	(pthread_gnome_vfs_async_get_file_info),
+	(pthread_gnome_vfs_async_set_file_info),
+	(pthread_gnome_vfs_async_find_directory), (copy_sort_rules),
+	(async_load_directory), (pthread_gnome_vfs_async_xfer),
+	(pthread_gnome_vfs_async_add_status_callback),
+	(pthread_gnome_vfs_async_remove_status_callback):
+	gnome_vfs_job_new now gets called with parameters for the op.
+	Cache the job handle before starting the job to avoid accessing
+	the job structure after it has been unlocked and possibly deleted.
+	Get rid of gnome_vfs_async_job_expired, use gnome_vfs_async_job_completed
+	instead.
+	
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine),
+	(gnome_vfs_job_create_slave):
+	Redo the way jobs are destroyed after they complete. Pass the
+	job handle instead of the job structure itself to the thread_routine
+	and check for the job being invalid by the time the thread_routine
+	runs.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_complete),
+	(job_oneway_notify), (job_notify), (dispatch_open_callback),
+	(dispatch_create_callback), (dispatch_open_as_channel_callback),
+	(dispatch_create_as_channel_callback), (dispatch_close_callback),
+	(dispatch_read_callback), (dispatch_write_callback),
+	(dispatch_load_directory_callback),
+	(dispatch_get_file_info_callback),
+	(dispatch_find_directory_callback),
+	(dispatch_set_file_info_callback), (dispatch_xfer_callback),
+	(empty_close_callback), (handle_cancelled_open),
+	(free_get_file_info_notify_result),
+	(free_find_directory_notify_result),
+	(gnome_vfs_job_destroy_notify_result),
+	(dispatch_sync_job_callback), (dispatch_job_callback),
+	(gnome_vfs_job_set), (gnome_vfs_job_new), (gnome_vfs_job_destroy),
+	(gnome_vfs_op_destroy), (gnome_vfs_job_go), (serve_channel_read),
+	(execute_open), (execute_open_as_channel), (execute_create),
+	(execute_create_symbolic_link), (execute_create_as_channel),
+	(execute_close), (execute_read), (execute_write),
+	(execute_load_directory_not_sorted),
+	(execute_load_directory_sorted), (execute_get_file_info),
+	(execute_set_file_info), (execute_find_directory),
+	(execute_load_directory), (xfer_callback), (execute_xfer),
+	(gnome_vfs_job_execute), (gnome_vfs_job_cancel):
+	Remove most of the synchronization between the async thread and the
+	callbacks, now that the two share no state.
+	Add a mechanism to figure out if a job is to expire after completing the
+	current op or not.
+	Switch to using g_idle_add for scheduling calbacks instead of g_io_channel.
+	Get rid of tons of casts in the notify callback routines.
+	dispatch_job_callback now deals with notify_results that belong to operations
+	that have been canceled while the notification was being dispatched.
+	Handle job cancellation in execute_xfer.
+
+	* test/test-async-cancel.c: (make_asserts_break),
+	(directory_load_callback), (test_open_read_close),
+	(test_open_close), (my_yield), (test_load_directory_cancel),
+	(main):
+	Add more tests.
+
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.c:
+	(gnome_vfs_thread_pool_wait_for_work):
+	Augument profiler results a bit.
+	
+	* libgnomevfs/gnome-vfs-directory-list.c:
+	Some small tweaks.
+
 2001-01-15  Michael K. Fleming  <mfleming@eazel.com>
 
 	reviewed by: <pavel@eazel.com>

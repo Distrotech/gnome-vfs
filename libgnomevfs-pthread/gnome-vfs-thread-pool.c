@@ -119,6 +119,14 @@ make_thread_available (GnomeVFSThreadState *state)
 	return !delete_thread;
 }
 
+static void
+gnome_vfs_thread_pool_wait_for_work (GnomeVFSThreadState *state)
+{
+	DEBUG_PRINT (("thread %x waiting for work \n", (guint)state->thread_id));
+	pthread_cond_wait (&state->waiting_for_work_lock_condition,
+		&state->waiting_for_work_lock);
+}
+
 static void *
 thread_entry (void *cast_to_state)
 {
@@ -131,9 +139,7 @@ thread_entry (void *cast_to_state)
 		pthread_mutex_lock (&state->waiting_for_work_lock);
 		if (state->entry_point == NULL) {
 			/* Don't have any work yet, wait till we get some. */
-			DEBUG_PRINT (("thread %x waiting for work \n", (guint)state->thread_id));
-			pthread_cond_wait (&state->waiting_for_work_lock_condition,
-				&state->waiting_for_work_lock);
+			gnome_vfs_thread_pool_wait_for_work (state);
 		} else
 			DEBUG_PRINT (("thread %x ready to work right away \n",
 				(guint)state->thread_id));
@@ -234,6 +240,3 @@ gnome_vfs_thread_pool_shutdown (void)
 		pthread_mutex_unlock (&thread_state->waiting_for_work_lock);
 	}
 }
-
-
-

@@ -39,7 +39,7 @@ typedef struct GnomeVFSJob GnomeVFSJob;
 
 extern GStaticMutex debug_mutex;
 
-#define JOB_DEBUG(x)				\
+#define JOB_DEBUG_PRINT(x)			\
 G_STMT_START{					\
 	g_static_mutex_lock (&debug_mutex);	\
 	printf ("%d ", __LINE__);		\
@@ -50,6 +50,11 @@ G_STMT_START{					\
 	g_static_mutex_unlock (&debug_mutex);	\
 }G_STMT_END
 
+#endif
+
+#if GNOME_VFS_JOB_DEBUG
+
+#define JOB_DEBUG(x) JOB_DEBUG_PRINT(x)
 #define JOB_DEBUG_ONLY(x) x
 
 #else
@@ -73,6 +78,7 @@ enum GnomeVFSOpType {
 	GNOME_VFS_OP_GET_FILE_INFO,
 	GNOME_VFS_OP_SET_FILE_INFO
 };
+
 typedef enum GnomeVFSOpType GnomeVFSOpType;
 
 typedef struct {
@@ -81,7 +87,6 @@ typedef struct {
 } GnomeVFSOpenOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncOpenCallback callback;
 	void *callback_data;
 	GnomeVFSResult result;
@@ -94,7 +99,6 @@ typedef struct {
 } GnomeVFSOpenAsChannelOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncOpenAsChannelCallback callback;
 	void *callback_data;
 	GnomeVFSResult result;
@@ -109,7 +113,6 @@ typedef struct {
 } GnomeVFSCreateOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncCreateCallback callback;
 	void *callback_data;
 	GnomeVFSResult result;
@@ -128,7 +131,6 @@ typedef struct {
 } GnomeVFSCreateAsChannelOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncCreateAsChannelCallback callback;
 	void *callback_data;
 	GnomeVFSResult result;
@@ -139,7 +141,6 @@ typedef struct {
 } GnomeVFSCloseOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncCloseCallback callback;
 	void *callback_data;
 	GnomeVFSResult result;
@@ -151,7 +152,6 @@ typedef struct {
 } GnomeVFSReadOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncReadCallback callback;
 	void *callback_data;
 	GnomeVFSFileSize num_bytes;
@@ -166,7 +166,6 @@ typedef struct {
 } GnomeVFSWriteOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncWriteCallback callback;
 	void *callback_data;
 	GnomeVFSFileSize num_bytes;
@@ -181,7 +180,6 @@ typedef struct {
 } GnomeVFSGetFileInfoOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncGetFileInfoCallback callback;
 	void *callback_data;
 	GList *result_list; /* GnomeVFSGetFileInfoResult* */
@@ -195,7 +193,6 @@ typedef struct {
 } GnomeVFSSetFileInfoOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncSetFileInfoCallback callback;
 	void *callback_data;
 	GnomeVFSResult set_file_info_result;
@@ -212,7 +209,6 @@ typedef struct {
 } GnomeVFSFindDirectoryOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncFindDirectoryCallback callback;
 	void *callback_data;
 	GList *result_list; /* GnomeVFSFindDirectoryResult */
@@ -230,11 +226,15 @@ typedef struct {
 } GnomeVFSLoadDirectoryOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
+	GnomeVFSDirectoryList *list;
+	int ref_count;
+} GnomeVFSSharedDirectoryList;
+
+typedef struct {
 	GnomeVFSAsyncDirectoryLoadCallback callback;
 	void *callback_data;
 	GnomeVFSResult result;
-	GnomeVFSDirectoryList *list;
+	GnomeVFSSharedDirectoryList *list;
 	guint entries_read;
 } GnomeVFSLoadDirectoryOpResult;
 
@@ -249,7 +249,6 @@ typedef struct {
 } GnomeVFSXferOp;
 
 typedef struct {
-	GnomeVFSAsyncHandle *job_handle;
 	GnomeVFSAsyncXferProgressCallback callback;
 	void *callback_data;
 	GnomeVFSXferProgressInfo *progress_info;
@@ -287,20 +286,52 @@ typedef struct {
 	GnomeVFSContext *context;
 } GnomeVFSOp;
 
+typedef union {
+	GnomeVFSOpenOpResult open;
+	GnomeVFSOpenAsChannelOpResult open_as_channel;
+	GnomeVFSCreateOpResult create;
+	GnomeVFSCreateAsChannelOpResult create_as_channel;
+	GnomeVFSCloseOpResult close;
+	GnomeVFSReadOpResult read;
+	GnomeVFSWriteOpResult write;
+	GnomeVFSGetFileInfoOpResult get_file_info;
+	GnomeVFSSetFileInfoOpResult set_file_info;
+	GnomeVFSFindDirectoryOpResult find_directory;
+	GnomeVFSLoadDirectoryOpResult load_directory;
+	GnomeVFSXferOpResult xfer;
+} GnomeVFSSpecificNotifyResult;
+
+typedef struct {
+	GnomeVFSAsyncHandle *job_handle;
+
+	guint callback_id;
+
+	/* By the time the callback got reached the job might have been cancelled.
+	 * We find out by checking this flag.
+	 */
+	gboolean cancelled;
+	
+	/* ID of the job (e.g. open, create, close...). */
+	GnomeVFSOpType type;
+
+	GnomeVFSSpecificNotifyResult specifics;
+} GnomeVFSNotifyResult;
+
 /* FIXME bugzilla.eazel.com 1135: Move private stuff out of the header.  */
 struct GnomeVFSJob {
 	/* Handle being used for file access.  */
 	GnomeVFSHandle *handle;
 
+	/* By the time the entry routine for the job got reached the job might have been cancelled.
+	 * We find out by checking this flag.
+	 */
+	gboolean cancelled;
+
+	/* Read or create returned with an error - helps flagging that we do not expect a cancel */
+	gboolean failed;
+	
 	/* Global lock for accessing data.  */
 	GMutex *access_lock;
-
-	/* Condition that is raised when a new job has been prepared.  As
-           `GnomeVFSJob' can hold one job at a given time, the way to set up a
-           new job is as follows: (a) lock `access_lock' (b) write job
-           information into the struct (c) signal `execution_condition' (d)
-           unlock `access_lock'.  */
-	GCond *execution_condition;
 
 	/* This condition is signalled when the master thread gets a
            notification and wants to acknowledge it.  */
@@ -315,43 +346,29 @@ struct GnomeVFSJob {
 	   execution.  */
 	gboolean is_empty;
 
-	/* I/O channels used to wake up the master thread.  When the slave
-           thread wants to notify the master thread that an operation has been
-           done, it writes a character into `wakeup_channel_in' and the master
-           thread detects this in the GLIB main loop by using a watch.  */
-	GIOChannel *wakeup_channel_in;
-	GIOChannel *wakeup_channel_out;
-
-	/* Channel mutex to prevent more than one notification to be queued
-           into the channel.  */
-	GMutex *wakeup_channel_lock;
-
-	/* Whether this job wants the notification acknowledged.  */
-	gboolean want_notify_ack;
-
 	/* Operations that are being done and those that are completed and
 	 * ready for notification to take place.
 	 */
-	GnomeVFSOp *current_op;
-	GnomeVFSOp *notify_op;
+	GnomeVFSOp *op;
 	
 	/* Unique identifier of this job (a uint, really) */
 	GnomeVFSAsyncHandle *job_handle;
 };
 
-GnomeVFSJob 	*gnome_vfs_job_new       (void);
-void         	 gnome_vfs_job_destroy   (GnomeVFSJob    *job);
-void         	 gnome_vfs_job_prepare   (GnomeVFSJob    *job,
-				      	  GnomeVFSOpType  type,
-				      	  GFunc           callback,
-				      	  gpointer        callback_data);
-void         	 gnome_vfs_job_go        (GnomeVFSJob    *job);
-gboolean     	 gnome_vfs_job_execute   (GnomeVFSJob    *job);
-void         	 gnome_vfs_job_cancel    (GnomeVFSJob    *job);
-int          	 gnome_vfs_job_get_count (void);
+GnomeVFSJob 	*gnome_vfs_job_new      	  (GnomeVFSOpType  	 type,
+				      		   GFunc           	 callback,
+				      		   gpointer        	 callback_data);
+void         	 gnome_vfs_job_destroy  	  (GnomeVFSJob     	*job);
+void         	 gnome_vfs_job_set	  	  (GnomeVFSJob     	*job,
+				      		   GnomeVFSOpType  	 type,
+				      		   GFunc           	 callback,
+				      		   gpointer        	 callback_data);
+void         	 gnome_vfs_job_go       	  (GnomeVFSJob     	*job);
+void     	 gnome_vfs_job_execute  	  (GnomeVFSJob     	*job);
+void         	 gnome_vfs_job_cancel   	  (GnomeVFSJob	 	*job);
+int          	 gnome_vfs_job_get_count 	  (void);
 
-void	     	 gnome_vfs_async_job_map_shutdown 	(void);
-void	     	 gnome_vfs_async_job_expired 		(GnomeVFSAsyncHandle	*handle);
-void 		 gnome_vfs_async_job_map_add_job	(GnomeVFSJob		*job);
+gboolean	 gnome_vfs_job_complete		  (GnomeVFSJob 		*job);
+
 
 #endif /* GNOME_VFS_JOB_PTHREAD_H */
