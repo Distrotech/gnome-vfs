@@ -37,6 +37,7 @@
           </Not>
         </And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
 
     <!-- Development Tools -->
@@ -48,6 +49,7 @@
 	  <Keyword>Development</Keyword>
         </And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
 
     <!-- Games -->
@@ -59,6 +61,7 @@
 	  <Keyword>Game</Keyword>
         </And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
 
     <!-- Graphics -->
@@ -70,6 +73,7 @@
 	  <Keyword>Graphics</Keyword>
         </And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
 
     <!-- Internet -->
@@ -81,6 +85,7 @@
 	  <Keyword>Network</Keyword>
         </And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
 
     <!-- Multimedia -->
@@ -92,6 +97,7 @@
 	  <Keyword>AudioVideo</Keyword>
         </And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
 
     <!-- Office -->
@@ -109,6 +115,7 @@
 	  </Or>
 	</And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
 
     <!-- Settings -->
@@ -131,6 +138,7 @@
 	  <Keyword>System</Keyword>
         </And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
 
     <!-- Utilities -->
@@ -142,6 +150,7 @@
 	  <Keyword>Utility</Keyword>
         </And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
   </Folder>
 </VFolderInfo>

@@ -1,3 +1,17 @@
+2001-11-27  Seth Nickell  <snickell@stanford.edu>
+
+	* George Lebl
+
+	Give him a hug.
+
+	* modules/programs.vfolder-info.in:
+
+	Use <DontShowIfEmpty/> on standard folders
+	except for Settings. If there's nothing in
+	Settings, its an actual problem, and we
+	shouldn't just have the folder disappear.
+	
+
 Tue Nov 27 16:55:34 2001  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: implement ReadOnly and
