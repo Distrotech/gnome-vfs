@@ -34,6 +34,7 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-private-utils.h"
 
 #include <ctype.h>
 #include <stdlib.h>
@@ -342,6 +343,31 @@ gnome_vfs_unescape_string_for_display (const gchar *escaped)
 	*out = '\0';
 	g_assert (out - result <= strlen (escaped));
 	return result;
+}
+
+/**
+ * gnome_vfs_make_canonical_pathname:
+ * @path: a file path, relative or absolute
+ * 
+ * Calls gnome_vfs_canonicalize_pathname, allocating storage for the result and
+ * providing for a cleaner memory management.
+ * 
+ * Return value: a canonical version of @path
+ **/
+gchar *
+gnome_vfs_make_canonical_pathname (const gchar *path)
+{
+	char *path_clone;
+	char *result;
+
+	path_clone = g_strdup (path);
+	result = gnome_vfs_canonicalize_pathname (path_clone);
+	if (result != path_clone) {
+		g_free (path_clone);
+		return g_strdup (result);
+	}
+
+	return path_clone;
 }
 
 void

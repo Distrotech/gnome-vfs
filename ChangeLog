@@ -1,3 +1,12 @@
+2000-10-30  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_unescape_string_for_display),
+	(gnome_vfs_make_canonical_pathname):
+	* libgnomevfs/gnome-vfs-utils.h:
+	Add a public "make canonical path" call for callers that do their
+	own uri disection.
+
 2000-10-29  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_to_string):

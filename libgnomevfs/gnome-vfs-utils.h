@@ -66,6 +66,9 @@ gchar *gnome_vfs_escape_slashes               (const gchar      *string);
 gchar *gnome_vfs_unescape_string              (const gchar      *string,
 					       const gchar      *illegal_characters);
 
+/* returns a copy of path, converted to a canonical form */
+gchar *gnome_vfs_make_canonical_pathname      (const gchar      *path);
+
 /* Prepare an escaped string for display. Unlike gnome_vfs_unescape_string,
  * this doesn't return NULL if an illegal sequences appears in the string,
  * instead doing its best to provide a useful result.
