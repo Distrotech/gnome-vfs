@@ -1,3 +1,9 @@
+2000-11-15  Mathieu Lacage  <mathieu@eazel.com>
+
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet), make it look like what Arlo wanted.
+	(revert_mime_clicked): new callback to reset user settings.
+
 2000-11-15  Pavel Cisler  <pavel@eazel.com>
 
 	* test/test-uri.c: (main):
