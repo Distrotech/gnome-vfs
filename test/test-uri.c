@@ -541,7 +541,7 @@ main (int argc, char **argv)
 	/* FIXME bugzilla.eazel.com 4102: illegal? */
 	test_uri_to_string ("file:foo", "file:foo", GNOME_VFS_URI_HIDE_NONE);
 	/* correct */
-	test_uri_to_string ("help:foo", "help:foo", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("pipe:foo", "pipe:foo", GNOME_VFS_URI_HIDE_NONE);
 
 	/* FIXME bugzilla.eazel.com 3830: This turns a good path with
 	 * a redundant "/" in it into a completely different one.

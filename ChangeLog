@@ -1,3 +1,8 @@
+2000-11-15  Pavel Cisler  <pavel@eazel.com>
+
+	* test/test-uri.c: (main):
+	Tweak a test to verify that bug 3401 is fixed. No reviewer, sorry.
+
 2000-11-15  Mathieu Lacage  <mathieu@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c: 
