@@ -45,6 +45,7 @@
 #include "gnome-vfs-types.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-mime-handlers.h"
+#include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-application-registry.h"
 #include "gnome-vfs-private.h"
@@ -74,15 +75,14 @@ struct _Application {
 /* Describes the directories we scan for information */
 typedef struct {
 	char *dirname;
-	struct stat s;
 	unsigned int valid : 1;
 	unsigned int system_dir : 1;
 } ApplicationRegistryDir;
 
 /* These ones are used to automatically reload mime info on demand */
+static FileDateTracker *registry_date_tracker;
 static ApplicationRegistryDir gnome_registry_dir;
 static ApplicationRegistryDir user_registry_dir;
-static time_t last_checked;
 
 /* To initialize the module automatically */
 static gboolean gnome_vfs_application_registry_initialized = FALSE;
@@ -467,13 +467,15 @@ remove_mime_type_for_application (Application *application, const char *mime_typ
 		return;
 	}
 
+	remove_application_from_mime_type_table (application, mime_type);
+
+	/* Free data last, in case caller passed in mime_type string
+	 * that was stored in this table.
+	 */
 	application->mime_types =
 		g_list_remove_link (application->mime_types, entry);
 	g_free (entry->data);
-	entry->data = NULL;
-	g_list_free_1 (entry);
-	
-	remove_application_from_mime_type_table (application, mime_type);
+	g_list_free_1 (entry);	
 }
 
 
@@ -831,6 +833,8 @@ load_application_info_from (const char *filename, gboolean user_owned)
 	previous_key_lang_level = -1;
 
 	fclose (fp);
+
+	gnome_vfs_file_date_tracker_start_tracking_file (registry_date_tracker, filename);
 }
 
 static void
@@ -840,8 +844,9 @@ application_info_load (ApplicationRegistryDir *source)
 	struct dirent *dent;
 	const int extlen = sizeof (".applications") - 1;
 	char *filename;
+	struct stat s;
 
-	if (stat (source->dirname, &source->s) != -1)
+	if (stat (source->dirname, &s) != -1)
 		source->valid = TRUE;
 	else
 		source->valid = FALSE;
@@ -882,6 +887,8 @@ application_info_load (ApplicationRegistryDir *source)
 		g_free (filename);
 	}
 	closedir (dir);
+
+	gnome_vfs_file_date_tracker_start_tracking_file (registry_date_tracker, source->dirname);
 }
 
 static void
@@ -896,6 +903,8 @@ gnome_vfs_application_registry_init (void)
 {
 	if (gnome_vfs_application_registry_initialized)
 		return;
+
+	registry_date_tracker = gnome_vfs_file_date_tracker_new ();
 
 	/*
 	 * The hash tables that store the mime keys.
@@ -928,36 +937,19 @@ gnome_vfs_application_registry_init (void)
 	 */
 	load_application_info ();
 
-	last_checked = time (NULL);
-
 	gnome_vfs_application_registry_initialized = TRUE;
 }
 
 static void
 maybe_reload (void)
 {
-	time_t now = time (NULL);
-	gboolean need_reload = FALSE;
-	struct stat s;
-
 	gnome_vfs_application_registry_init ();
-	
-	if (last_checked + 5 >= now)
+
+	if (!gnome_vfs_file_date_tracker_date_has_changed (registry_date_tracker)) {
 		return;
-
-	if (stat (gnome_registry_dir.dirname, &s) != -1)
-		if (s.st_mtime != gnome_registry_dir.s.st_mtime)
-			need_reload = TRUE;
-
-	if (stat (user_registry_dir.dirname, &s) != -1)
-		if (s.st_mtime != user_registry_dir.s.st_mtime)
-			need_reload = TRUE;
-
-	last_checked = now;
-	
-	if (need_reload) {
-	        gnome_vfs_application_registry_reload ();
 	}
+	
+        gnome_vfs_application_registry_reload ();
 }
 
 static gboolean
@@ -998,6 +990,8 @@ gnome_vfs_application_registry_shutdown (void)
 		g_hash_table_destroy (specific_mime_types);
 		specific_mime_types = NULL;
 	}
+
+	gnome_vfs_file_date_tracker_free (registry_date_tracker);
 
 	g_free(gnome_registry_dir.dirname);
 	gnome_registry_dir.dirname = NULL;

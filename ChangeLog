@@ -1,3 +1,67 @@
+2001-02-20  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Darin Adler <darin@eazel.com>
+
+	Finished bug 5777 (Nautilus doesn't pick up MIME database
+	changes right away). It still requires a Refresh or a visit
+	to another directory, but it no longer requires a relaunch.
+
+	Fixed bug 4798 (Nautilus doesn't update icons right away). This
+	was a special case of bug 5777, but worth verifying separately so
+	not marked duplicate.
+
+	To fix these two bugs, I made a new set of calls that let a client
+	check whether the mod date of any file from a set has changed
+	"recently". There was code to do this (copy & pasted in two places)
+	but it didn't correctly handle changes in existing files, only
+	new files added/removed.
+
+	* libgnomevfs/Makefile.am: Moved gnome-vfs-process.h and
+	gnome-vfs-mime-sniff-buffer-private.h to noinst_HEADERS
+	where they belonged (unrelated to bug fixes).
+
+	* libgnomevfs/gnome-vfs-mime-private.h: Added prototypes for
+	new FileDateTracker operations.
+
+	* libgnomevfs/gnome-vfs-mime.c: 
+	(file_date_record_update_mtime), (file_date_record_new),
+	(file_date_record_free): New functions, keep track of a single
+	file and its last recorded mod date.
+	(gnome_vfs_file_date_tracker_new): New function, returns a
+	new FileDateTracker struct.
+	(release_key_and_value): New function, used when freeing 
+	FileDateTracker.
+	(gnome_vfs_file_date_tracker_free): New function.
+	(gnome_vfs_file_date_tracker_start_tracking_file): New function,
+	remembers a file (if not already known) and records its current
+	mod date.
+	(check_and_update_one): New hashtable iterator, checks whether
+	a file's mod date has changed since last recorded.
+	(gnome_vfs_tracked_date_has_changed): New function, checks whether
+	any tracked file's date has changed since last recorded.
+
+	(mime_fill_from_file): start tracking the mod date of the file we 
+	just loaded.
+	(mime_load): start tracking the mod date of the directory we just 
+	iterated through.
+	(maybe_reload): replace old date-checking code with call to
+	gnome_vfs_tracked_date_has_changed.
+	(mime_init): create global hash table for mime data date tracker.
+	(gnome_vfs_mime_shutdown): free global hash table.
+	
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	(remove_mime_type_for_application): Fixed crashing bug (part of
+	bug 5777) by reordering code to avoid accessing freed string.
+	(load_application_info_from): start tracking the mod date of the
+	file we just loaded.
+	(application_info_load): start tracking the mod date of the
+	directory we just iterated through.
+	(maybe_reload): replace old date-checking code with call to
+	gnome_vfs_tracked_date_has_changed
+	(gnome_vfs_application_registry_init): create global hash table for
+	registry date tracker.
+	(gnome_vfs_application_registry_shutdown): free global hash table.
+
 2001-02-20  Robin * Slomkowski  <rslomkow@rslomkow.org>
 
 	* gnome-vfs.spec.in: changed nautilus-mime-type-capplet

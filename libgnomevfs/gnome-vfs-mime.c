@@ -49,6 +49,8 @@ static gboolean module_inited = FALSE;
 static GHashTable *mime_extensions [2] = { NULL, NULL };
 static GList      *mime_regexs     [2] = { NULL, NULL };
 
+#define DEFAULT_DATE_TRACKER_INTERVAL	5	/* in milliseconds */
+
 typedef struct {
 	char *mime_type;
 	regex_t regex;
@@ -56,10 +58,22 @@ typedef struct {
 
 typedef struct {
 	char *dirname;
-	struct stat s;
 	unsigned int valid : 1;
 	unsigned int system_dir : 1;
 } mime_dir_source_t;
+
+typedef struct
+{
+	char *file_path;
+	time_t mtime;
+} FileDateRecord;
+
+struct FileDateTracker
+{
+	time_t		last_checked;
+	guint		check_interval;
+	GHashTable	*records;
+};
 
 /* chached localhostname */
 static char localhostname[1024];
@@ -67,7 +81,7 @@ static gboolean got_localhostname = FALSE;
 
 /* These ones are used to automatically reload mime-types on demand */
 static mime_dir_source_t gnome_mime_dir, user_mime_dir;
-static time_t last_checked;
+static FileDateTracker *mime_data_date_tracker;
 
 #ifdef G_THREADS_ENABLED
 
@@ -213,6 +227,8 @@ mime_fill_from_file (const char *filename)
 	g_free (current_key);
 
 	fclose (f);
+
+	gnome_vfs_file_date_tracker_start_tracking_file (mime_data_date_tracker, filename);
 }
 
 static void
@@ -222,11 +238,12 @@ mime_load (mime_dir_source_t *source)
 	struct dirent *dent;
 	const int extlen = sizeof (".mime") - 1;
 	char *filename;
+	struct stat s;
 
 	g_return_if_fail (source != NULL);
 	g_return_if_fail (source->dirname != NULL);
 
-	if (stat (source->dirname, &source->s) != -1)
+	if (stat (source->dirname, &s) != -1)
 		source->valid = TRUE;
 	else
 		source->valid = FALSE;
@@ -277,6 +294,8 @@ mime_load (mime_dir_source_t *source)
 		mime_fill_from_file (filename);
 		g_free (filename);
 	}
+
+	gnome_vfs_file_date_tracker_start_tracking_file (mime_data_date_tracker, source->dirname);
 }
 
 static gboolean
@@ -315,31 +334,14 @@ mime_extensions_empty (void)
 static void
 maybe_reload (void)
 {
-	time_t now = time (NULL);
-	gboolean need_reload = FALSE;
-	struct stat s;
-
-	if (last_checked + 5 >= now)
+	if (!gnome_vfs_file_date_tracker_date_has_changed (mime_data_date_tracker)) {
 		return;
-
-	if (stat (gnome_mime_dir.dirname, &s) != -1)
-		if (s.st_mtime != gnome_mime_dir.s.st_mtime)
-			need_reload = TRUE;
-
-	if (stat (user_mime_dir.dirname, &s) != -1)
-		if (s.st_mtime != user_mime_dir.s.st_mtime)
-			need_reload = TRUE;
-
-	last_checked = now;
-
-	if (!need_reload)
-		return;
+	}
 
 	mime_extensions_empty ();
 
 	mime_load (&gnome_mime_dir);
 	mime_load (&user_mime_dir);
-	last_checked = time (NULL);
 }
 
 static void
@@ -347,6 +349,8 @@ mime_init (void)
 {
 	mime_extensions [0] = g_hash_table_new (g_str_hash, g_str_equal);
 	mime_extensions [1] = g_hash_table_new (g_str_hash, g_str_equal);
+
+	mime_data_date_tracker = gnome_vfs_file_date_tracker_new ();
 	
 	gnome_mime_dir.dirname = g_strconcat (GNOME_VFS_DATADIR, "/mime-info", NULL);
 	gnome_mime_dir.system_dir = TRUE;
@@ -356,7 +360,6 @@ mime_init (void)
 
 	mime_load (&gnome_mime_dir);
 	mime_load (&user_mime_dir);
-	last_checked = time (NULL);
 
 	module_inited = TRUE;
 }
@@ -374,6 +377,8 @@ gnome_vfs_mime_shutdown (void)
 	
 	g_hash_table_destroy (mime_extensions[0]);
 	g_hash_table_destroy (mime_extensions[1]);
+
+	gnome_vfs_file_date_tracker_free (mime_data_date_tracker);
 	
 	g_free (gnome_mime_dir.dirname);
 	g_free (user_mime_dir.dirname);
@@ -997,4 +1002,129 @@ gnome_uri_list_free_strings (GList *list)
 {
 	g_list_foreach (list, (GFunc) g_free, NULL);
 	g_list_free (list);
+}
+
+static void
+file_date_record_update_mtime (FileDateRecord *record)
+{
+	struct stat s;
+
+	if (stat (record->file_path, &s) != -1) {
+		record->mtime = s.st_mtime;
+	}	
+}
+
+static FileDateRecord *
+file_date_record_new (const char *file_path) {
+	FileDateRecord *record;
+
+	record = g_new0 (FileDateRecord, 1);
+	record->file_path = g_strdup (file_path);
+
+	file_date_record_update_mtime (record);
+
+	return record;
+}
+
+static void
+file_date_record_free (FileDateRecord *record)
+{
+	g_free (record->file_path);
+	g_free (record);
+}
+
+FileDateTracker *
+gnome_vfs_file_date_tracker_new (void)
+{
+	FileDateTracker *tracker;
+
+	tracker = g_new0 (FileDateTracker, 1);
+	tracker->check_interval = DEFAULT_DATE_TRACKER_INTERVAL;
+	tracker->records = g_hash_table_new (g_str_hash, g_str_equal);
+
+	return tracker;
+}
+
+static gboolean
+release_key_and_value (gpointer key, gpointer value, gpointer user_data)
+{
+	g_free (key);
+	file_date_record_free (value);
+
+	return TRUE;
+}
+
+void
+gnome_vfs_file_date_tracker_free (FileDateTracker *tracker)
+{
+	g_hash_table_foreach_remove (tracker->records, release_key_and_value, NULL);
+	g_hash_table_destroy (tracker->records);
+	g_free (tracker);
+}
+
+/*
+ * Record the current mod date for a specified file, so that we can check
+ * later whether it has changed.
+ */
+void
+gnome_vfs_file_date_tracker_start_tracking_file (FileDateTracker *tracker, 
+				                 const char *local_file_path)
+{
+	FileDateRecord *record;
+
+	record = g_hash_table_lookup (tracker->records, local_file_path);
+	if (record != NULL) {
+		file_date_record_update_mtime (record);
+	} else {
+		g_hash_table_insert (tracker->records, 
+				     g_strdup (local_file_path), 
+				     file_date_record_new (local_file_path));
+	}
+}
+
+static void 
+check_and_update_one (gpointer key, gpointer value, gpointer user_data)
+{
+	FileDateRecord *record;
+	gboolean *return_has_changed;
+	struct stat s;
+
+	g_assert (key != NULL);
+	g_assert (value != NULL);
+	g_assert (user_data != NULL);
+
+	record = (FileDateRecord *)value;
+	return_has_changed = (gboolean *)user_data;
+
+	if (stat (record->file_path, &s) != -1) {
+		if (s.st_mtime != record->mtime) {
+			record->mtime = s.st_mtime;
+			*return_has_changed = TRUE;
+		}
+	}
+}
+
+gboolean
+gnome_vfs_file_date_tracker_date_has_changed (FileDateTracker *tracker)
+{
+	time_t now;
+	gboolean any_date_changed;
+
+	now = time (NULL);
+
+	/* Note that this might overflow once in a blue moon, but the
+	 * only side-effect of that would be a slightly-early check
+	 * for changes.
+	 */
+	if (tracker->last_checked + tracker->check_interval >= now) {
+		return FALSE;
+	}
+
+	any_date_changed = FALSE;
+
+	g_hash_table_foreach (tracker->records, check_and_update_one, &any_date_changed);
+
+	tracker->last_checked = now;
+
+	return any_date_changed;
 }
