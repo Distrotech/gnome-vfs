@@ -1,18 +1,19 @@
-# GNOME vfs translation for Brazilian Portuguese.
-# Copyright (C) 1999-2001,2003 Free Software Foundation, Inc.
+# Brazilian Portuguese translation of gnome-vfs.
+# Copyright (C) 2004 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-vfs package.
 # Alexandre Hautequest <hquest@fesppr.br>, 1999.
 # Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>, 2000-2001.
-# David Barzilay <barzilay@redhat.com>, 2003
-# Everson Santos Araujo <nobios@por.com.br>, 2004
-#
+# David Barzilay <barzilay@redhat.com>, 2003.
+# Everson Santos Araujo <nobios@por.com.br>, 2004.
+# Raphael Higino <raphaelh@uai.com.br>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.4.0\n"
+"Project-Id-Version: gnome-vfs 2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-06-17 15:40-0400\n"
-"Last-Translator: Everson Santos Araujo <nobios@por.com.br>\n"
+"POT-Creation-Date: 2004-07-14 15:54-0400\n"
+"PO-Revision-Date: 2004-07-13 23:08-0300\n"
+"Last-Translator: Raphael Higino <raphaelh@uai.com.br>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 msgid "Could not initialize Bonobo"
 msgstr "Não foi possível iniciar o Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:602
+#: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Não foi possível iniciar gnome vfs"
 
@@ -59,7 +60,7 @@ msgstr "%s:%d não possui nome de módulo."
 #: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Arquivo de configuração `%s' não foi encontrado: %s"
+msgstr "O arquivo de configuração '%s' não foi encontrado: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -80,11 +81,11 @@ msgstr "Unidade de CD-ROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr "CD de audio"
+msgstr "CD de áudio"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr "Volume de Dispositivo de Hardware"
+msgstr "Volume de dispositivo de hardware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
@@ -99,7 +100,7 @@ msgstr "Volume Linux Ext3"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
-msgstr "Volume MSDOS"
+msgstr "Volume MS-DOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
@@ -108,11 +109,11 @@ msgstr "Volume MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
-msgstr "Volume CDROM"
+msgstr "Volume CD-ROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
-msgstr "Volume CDROM Hsfs"
+msgstr "Volume CD-ROM Hsfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
@@ -196,6 +197,114 @@ msgstr "Volume XIAFS"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "Desconhecido"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:601
+msgid "CD Disc"
+msgstr "Disco CD"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:604
+msgid "Blank CD-R Disc"
+msgstr "Disco CD-R virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:606
+msgid "CD-R Disc"
+msgstr "Disco CD-R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:609
+msgid "Blank CD-RW Disc"
+msgstr "Disco CD-RW virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
+msgid "CD-RW Disc"
+msgstr "Disco CD-RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+msgid "DVD-ROM Disc"
+msgstr "Disco DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
+msgid "Blank DVD-R Disc"
+msgstr "Disco DVD-R virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+msgid "DVD-R Disc"
+msgstr "Disco DVD-R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
+msgid "Blank DVD-RAM Disc"
+msgstr "Disco DVD-RAM virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
+msgid "DVD-RAM Disc"
+msgstr "Disco DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
+msgid "Blank DVD-RW Disc"
+msgstr "Disco DVD-RW virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
+msgid "DVD-RW Disc"
+msgstr "Disco DVD-RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
+msgid "Blank DVD+RW Disc"
+msgstr "Disco DVD+RW virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
+msgid "DVD+RW Disc"
+msgstr "Disco DVD+RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
+msgid "Blank DVD+R Disc"
+msgstr "Disco DVD+R virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
+msgid "DVD+R Disc"
+msgstr "Disco DVD+R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+msgid "Optical Disc"
+msgstr "Disco óptico"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
+msgid "Audio Disc"
+msgstr "CD de áudio"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
+msgid "Compact Flash Media"
+msgstr "Mídia Compact Flash"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:652
+msgid "Memory Stick Media"
+msgstr "Mídia cartão de memória"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:654
+msgid "Smart Media Media"
+msgstr "Mídia Smart Media"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
+msgid "SD/MMC Media"
+msgstr "Mídia SD/MMC"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:658
+msgid "Floppy Disk"
+msgstr "Disquete"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+msgid "Mac OS disk"
+msgstr "Disco Mac OS"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+msgid "Mac OS X disk"
+msgstr "Disco Mac OS X"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:681
+msgid "Windows Disk"
+msgstr "Disco Windows"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:687
+msgid "Linux Disk"
+msgstr "Disco Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -438,7 +547,7 @@ msgstr "Não foi possível localizar o servidor de domínio"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "No default action associated"
-msgstr "Nenhuma ação default associada"
+msgstr "Nenhuma ação padrão associada"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
@@ -455,7 +564,12 @@ msgstr "Erro ao analisar a linha de comando"
 msgid "Error launching command"
 msgstr "Erro ao iniciar o comando"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+msgid "Timeout reached"
+msgstr "Tempo limite atingido"
+
+#: libgnomevfs/gnome-vfs-result.c:180
 msgid "Unknown error"
 msgstr "Erro desconhecido"
 
@@ -482,55 +596,55 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
 msgid "Floppy"
 msgstr "Disquete"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
 msgid "Zip Drive"
 msgstr "Zip Drive"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
 msgid "Memory Stick"
 msgstr "Cartão de memória"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
 msgid "Camera"
 msgstr "Câmera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
 msgstr "Volume Root"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
 msgid "Audio CD"
-msgstr "CD de audio"
+msgstr "CD de áudio"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
 msgid "Unknown volume"
 msgstr "Volume desconhecido"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
 msgid "Network server"
 msgstr "Servidor de rede"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:113
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -538,49 +652,49 @@ msgstr ""
 "no drive."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:117
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
-"Não foi possível montar volume. Provavelmente não há mídia no dispositivo."
+"Não foi possível montar o volume. Provavelmente não há mídia no dispositivo."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:123
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
 "Não foi possível montar o drive de disquete. Provavelmente o disquete está "
-"formatado em um sistema que não se pode montar."
+"formatado em um sistema que não pode ser montado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:126
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
 "Não foi possível montar o volume selecionado. Provavelmente o volume está "
-"formatado em um sistema que não se pode montar."
+"formatado em um sistema que não pode ser montado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:131
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
 msgstr "Não foi possível montar o drive de disquete selecionado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
 msgstr "Não foi possível montar o volume selecionado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:145
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
 msgstr "Não foi possível desmontar o volume selecionado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:301
+#: libgnomevfs/gnome-vfs-volume-ops.c:256
+#: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
 msgstr "Falha ao iniciar o comando"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:291
+#: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
-msgstr "Não foi possível ejetar mídia"
+msgstr "Não foi possível ejetar a mídia"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:480
+#: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Não foi possível desmontar do servidor"
 
@@ -646,7 +760,7 @@ msgstr "Início"
 msgid "Filesystem"
 msgstr "Sistema de arquivo"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition desconhecido %d"
@@ -658,7 +772,7 @@ msgstr "Rede Windows"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "A identidade do computador remoto (%s) é desconhecida."
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -668,14 +782,19 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Isso acontece quando você se conecta em um computador pela primeira vez.\n"
+"\n"
+"A identidade enviada pelo computador remoto é %s. Se você quer ter certeza "
+"absolutamente de que é seguro continuar, entre em contato com o "
+"administrador do sistema."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Conectar mesmo assim"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "Cancelar conexão"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -764,9 +883,8 @@ msgid "Handle HTTPS URLs"
 msgstr "Manipular URLs HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle aim URLs"
-msgstr "Manipular URLs man"
+msgstr "Manipular URLs aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
@@ -790,7 +908,7 @@ msgstr "Manipular URLs man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Handle trash URLs"
-msgstr "Manipular URLs lixeira"
+msgstr "Manipular URLs trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "Run program in terminal"
@@ -800,80 +918,79 @@ msgstr "Executar programa em um terminal"
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
-"Marque verdadeiro para que o programa especificado no \"comando\" trate URLs "
+"Marque verdadeiro para que o programa especificado em \"command\" trate URLs "
 "H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
-"Marque verdadeiro para que o programa especificado no \"comando\" trate URLs "
+"Marque verdadeiro para que o programa especificado em \"command\" trate URLs "
 "HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
-"Marque verdadeiro para que o programa especificado no \"comando\" trate URLs "
+"Marque verdadeiro para que o programa especificado em \"command\" trate URLs "
 "HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle aim URLs."
 msgstr ""
-"Marque verdadeiro para que o programa especificado no \"comando\" trate URLs "
-"man."
+"Marque verdadeiro para que o programa especificado em \"command\" trate URLs "
+"aim."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
-"Marque verdadeiro para que o programa especificado no \"comando\" trate URLs "
+"Marque verdadeiro para que o programa especificado em \"command\" trate URLs "
 "callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
-"Marque verdadeiro para que o programa especificado no \"comando\" trate URLs "
+"Marque verdadeiro para que o programa especificado em \"comando\" trate URLs "
 "ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
-"Marque verdadeiro para que o programa especificado no \"comando\" trate URLs "
+"Marque verdadeiro para que o programa especificado em \"comando\" trate URLs "
 "info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
-"Marque verdadeiro para que o programa especificado no \"comando\" trate URLs "
+"Marque verdadeiro para que o programa especificado em \"command\" trate URLs "
 "mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
-"Marque verdadeiro para que o programa especificado no \"comando\" trate URLs "
+"Marque verdadeiro para que o programa especificado em \"command\" trate URLs "
 "man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
-"Marque verdadeiro para que o programa especificado no \"comando\" trate URLs "
-"lixeira."
+"Marque verdadeiro para que o programa especificado em \"command\" trate URLs "
+"trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
-"Verdadeiro se o programa para manipular essa URL deve rodar em um terminal."
+"Verdadeiro se o programa para manipular essa URL deve executar em um "
+"terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid "aim URL handler"
-msgstr "Manipulador de URL man"
+msgstr "Manipulador de URL aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
@@ -897,25 +1014,27 @@ msgstr "Manipulador de URL man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid "trash URL handler"
-msgstr "Manipulador de URL lixeira"
+msgstr "Manipulador de URL trash"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"Lista separada por vírgular de domínios dns-sd que devem ser visíveis na "
+"localização de rede."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Domínios extras para procurar por serviços dns-sd"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Como exibir o serviço DNS-SD local"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr ""
+msgstr "Valore possíveis são \"merged\", \"separate\" e \"disabled\""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -927,7 +1046,7 @@ msgstr "URL de configuração automática de proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "Ativar configurações de proxy ao acessar HTTP na Internet."
+msgstr "Ativa configurações de proxy ao acessar HTTP na Internet."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -959,8 +1078,8 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Verdadeiro se as conexões ao servidor de proxy requerem autenticação. "
-"Acombinação usuário/senha é definida por \"/system/http_proxy/"
+"Verdadeiro se as conexões ao servidor proxy requerem autenticação. A "
+"combinação usuário/senha é definida por \"/system/http_proxy/"
 "authentication_user\" e \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
@@ -969,7 +1088,7 @@ msgstr "Servidores sem-proxy"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Senha para ser enviada na autenticação ao se realizar proxy de HTTP."
+msgstr "Senha para ser enviada na autenticação ao realizar proxy de HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -996,7 +1115,7 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Selecione os modos de configuração do proxy. Valores aceitos são \"none\", "
+"Selecione o modo de configuração do proxy. Valores aceitos são \"none\", "
 "\"manual\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
@@ -1054,15 +1173,15 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Esse campo contém a lista de máquinas que são conectadas diretamente, ao "
-"invés de via proxy (se estiver ativo). Os valores podem ser nomes de "
-"máquina ,domínios (usando-se um coringa inicial como *.foo.com), endereços "
-"IP (tanto  IPv4 quanto IPv6) e endereços com máscar de rede (algo como "
+"Esse campo contém a lista de máquinas que são conectadas diretamente, em vez "
+"de via proxy (se estiver ativo). Os valores podem ser nomes de máquina, "
+"domínios (usando um coringa inicial como *.foo.com.br), endereços IP (tanto "
+"IPv4 quanto IPv6) e endereços com uma máscara de rede (algo como "
 "192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "URL que provê os valores de configuração do proxy."
+msgstr "URL que fornece os valores de configuração do proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
@@ -1071,8 +1190,7 @@ msgstr "Usar proxy HTTP"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
-"Nome de usuário para ser enviado na autenticação ao se realizar proxy de "
-"HTTP."
+"Nome de usuário para ser enviado na autenticação ao realizar proxy de HTTP."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
