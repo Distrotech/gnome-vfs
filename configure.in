@@ -348,14 +348,14 @@ dnl RedHat 6.2 seems to need to but Debian Woody doesn't
 		AC_DEFINE(HAVE_OPENSSL)
 		msg_openssl="yes"
                 if test x$with_openssl_libs != x/usr/lib; then
-                        OPENSSL_LDFLAGS="-L$with_openssl_libs -lssl -lcrypto"
+                        OPENSSL_LIBS="-L$with_openssl_libs -lssl -lcrypto"
                 else
-                	OPENSSL_LDFLAGS="-lssl -lcrypto"
+                	OPENSSL_LIBS="-lssl -lcrypto"
                 fi
 		AM_CONDITIONAL(HAVE_SSL, true)
 	else
 		OPENSSL_CFLAGS=""
-		OPENSSL_LDFLAGS=""
+		OPENSSL_LIBS=""
 		AM_CONDITIONAL(HAVE_SSL, false)
 	fi
 else
