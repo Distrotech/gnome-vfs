@@ -63,40 +63,46 @@ static void gnome_vfs_job_release_current_op (GnomeVFSJob *job);
 static void gnome_vfs_job_release_notify_op  (GnomeVFSJob *job);
 static void gnome_vfs_job_finish_destroy     (GnomeVFSJob *job);
 
+static int job_count = 0;
+
 static void
-set_fl(int fd, int flags)
+set_fl (int fd, int flags)
 {
 	int val;
 
-	if ( (val = fcntl(fd, F_GETFL, 0)) < 0 ) {
-		g_warning("fcntl() F_GETFL failed: %s", strerror(errno));
+	val = fcntl (fd, F_GETFL, 0);
+	if (val < 0) {
+		g_warning ("fcntl() F_GETFL failed: %s", strerror (errno));
 		return;
 	}
 
 	val |= flags;
 	
-	if ( (val = fcntl(fd, F_SETFL, val)) < 0 ) {
-		g_warning("fcntl() F_SETFL failed: %s", strerror(errno));
+	val = fcntl (fd, F_SETFL, val);
+	if (val < 0) {
+		g_warning ("fcntl() F_SETFL failed: %s", strerror (errno));
 		return;
-	}		
+	}
 }
 
 static void
-clr_fl(int fd, int flags)
+clr_fl (int fd, int flags)
 {
 	int val;
 
-	if ( (val = fcntl(fd, F_GETFL, 0)) < 0 ) {
-		g_warning("fcntl() F_GETFL failed: %s", strerror(errno));
+	val = fcntl (fd, F_GETFL, 0);
+	if (val < 0) {
+		g_warning ("fcntl() F_GETFL failed: %s", strerror (errno));
 		return;
 	}
 
 	val &= ~flags;
 	
-	if ( (val = fcntl(fd, F_SETFL, val)) < 0 ) {
-		g_warning("fcntl() F_SETFL failed: %s", strerror(errno));
+	val = fcntl (fd, F_SETFL, val);
+	if (val < 0) {
+		g_warning ("fcntl() F_SETFL failed: %s", strerror (errno));
 		return;
-	}		
+	}
 }
 
 
@@ -646,12 +652,15 @@ gnome_vfs_job_new (void)
 	
 	if (!gnome_vfs_job_create_slave (new_job)) {
 		g_warning ("Cannot create job slave.");
+		/* FIXME: A lot of leaked objects here. */
 		g_free (new_job);
 		return NULL;
 	}
 	
 	JOB_DEBUG (("new job %p", new_job));
-	
+
+	job_count++;
+
 	return new_job;
 }
 
@@ -690,6 +699,14 @@ gnome_vfs_job_finish_destroy (GnomeVFSJob *job)
 	JOB_DEBUG (("job %p terminated cleanly", job));
 
 	g_free (job);
+
+	job_count--;
+}
+
+int
+gnome_vfs_job_get_count (void)
+{
+	return job_count;
 }
 
 static void
@@ -868,9 +885,9 @@ serve_channel_read (GnomeVFSHandle *handle,
 				if (bytes_read == 0) {
 					int fd;
 
-					fd = g_io_channel_unix_get_fd(channel_out);
+					fd = g_io_channel_unix_get_fd (channel_out);
 					
-					clr_fl(fd, O_NONBLOCK);
+					clr_fl (fd, O_NONBLOCK);
 				} else {
 					if (written_bytes_in_buffer > 0) {
 						/* Need to shift the unwritten bytes
@@ -1031,9 +1048,10 @@ execute_open_as_channel (GnomeVFSJob *job)
 	}
 
 	/* Set up the pipe for nonblocking writes, so if the main
-           thread is blocking for some reason the slave can keep
-           reading data. */
-	set_fl(pipefd[1], O_NONBLOCK);
+	 * thread is blocking for some reason the slave can keep
+	 * reading data.
+	 */
+	set_fl (pipefd[1], O_NONBLOCK);
 	
 	channel_in = g_io_channel_unix_new (pipefd[0]);
 	channel_out = g_io_channel_unix_new (pipefd[1]);

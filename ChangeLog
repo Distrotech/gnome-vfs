@@ -1,3 +1,30 @@
+2000-09-26  Darin Adler  <darin@eazel.com>
+
+	Fixed some quit time deallocation stuff to be better for leak
+	checking purposes.
+	
+	* libgnomevfs-pthread/gnome-vfs-job-slave.h:
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
+	(gnome_vfs_job_create_slave), (gnome_vfs_thread_backend_shutdown):
+	Got rid of the thread count and the related mutex, since we use a
+	job count instead.  Since the job count is manipulated only on the
+	main thread, we don't need volatiles or mutexes.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_new):
+	Increment the job count.
+	(gnome_vfs_job_finish_destroy): Decrement the job count.
+	(gnome_vfs_job_get_count): Return the job count.
+	
+	* libgnomevfs/gnome-vfs-backend.h:
+	* libgnomevfs/gnome-vfs-backend.c:
+	(gnome_vfs_backend_get_job_count): Add a way to get the job count
+	from the back end to replace the old way of getting a thread count
+	from the back end.
+	* test/test-async-cancel.c: (wait_until_vfs_threads_gone),
+	(wait_until_vfs_threads_gone_no_main), (main): Use the job count
+	instead of the thread count.
+
 2000-09-25  John Sullivan  <sullivan@eazel.com>
 
 	* modules/http-method.c: (make_request):

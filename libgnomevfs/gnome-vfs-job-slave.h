@@ -32,6 +32,5 @@ gboolean gnome_vfs_job_create_slave        (GnomeVFSJob *job);
  * give pending slave threads a chance to finish cleanly.
  */
 void     gnome_vfs_thread_backend_shutdown (void);
-int      gnome_vfs_debug_get_thread_count  (void);
 
 #endif /* GNOME_VFS_JOB_SLAVE_H */

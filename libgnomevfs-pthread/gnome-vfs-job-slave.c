@@ -33,12 +33,6 @@
 #include <pthread.h>
 #include <unistd.h>
 
-/* FIXME bugzilla.eazel.com 1130:
- * - would use a GStaticMutex here but the initializer macro is broken.
- * Just use a dynamically allocated one for now.
- */
-static GMutex *gnome_vfs_thread_count_mutex = NULL;
-static volatile int gnome_vfs_slave_thread_count = 0;
 static volatile gboolean gnome_vfs_quitting = FALSE;
 static volatile gboolean gnome_vfs_done_quitting = FALSE;
 
@@ -54,47 +48,22 @@ thread_routine (void *data)
 
 	gnome_vfs_job_destroy (job);
 	
-	g_mutex_lock (gnome_vfs_thread_count_mutex);
-	/* the thread is done, take it out of the count */
-	gnome_vfs_slave_thread_count--;
-	g_mutex_unlock (gnome_vfs_thread_count_mutex);
-
 	return NULL;
 }
 
 gboolean
 gnome_vfs_job_create_slave (GnomeVFSJob *job)
 {
-	gboolean abort_early;
 	pthread_attr_t thread_attr;
 	pthread_t thread;
 	
 	g_return_val_if_fail (job != NULL, FALSE);
 
-
-	if (gnome_vfs_thread_count_mutex == NULL) {
-		/* FIXME bugzilla.eazel.com 1130:
-		 * - would use a GStaticMutex but the initializer macro 
-		 * is broken. There is no real danger here as the 
-		 * gnome_vfs_thread_count_mutex only gets created by the master 
-		 * thread but it would still be cleaner to use a static one.
-		 */
-		gnome_vfs_thread_count_mutex = g_mutex_new ();
-	}
-
 	if (gnome_vfs_quitting) {
 		g_warning ("Someone still starting up GnomeVFS async calls after quit.");
 	}
 
-	g_mutex_lock (gnome_vfs_thread_count_mutex);
-	abort_early = gnome_vfs_done_quitting;
-	if (!abort_early) {
-		/* count the new thread */
-		gnome_vfs_slave_thread_count++;
-	}
-	g_mutex_unlock (gnome_vfs_thread_count_mutex);
-	
-	if (abort_early) {
+	if (gnome_vfs_done_quitting) {
 		/* The application is quitting, we have already returned from
 		 * gnome_vfs_wait_for_slave_threads, we can't start any more threads
 		 * because they would potentially block indefinitely and prevent the
@@ -111,11 +80,6 @@ gnome_vfs_job_create_slave (GnomeVFSJob *job)
 			    thread_routine, job) != 0) {
 		g_warning ("Impossible to allocate a new GnomeVFSJob thread.");
 		
-		g_mutex_lock (gnome_vfs_thread_count_mutex);
-		/* we didn't really get a new thread so take it off the count */
-		gnome_vfs_slave_thread_count--;
-		g_mutex_unlock (gnome_vfs_thread_count_mutex);
-		
 		return FALSE;
 	}
 	
@@ -126,7 +90,6 @@ void
 gnome_vfs_thread_backend_shutdown (void)
 {
 	gboolean done;
-	int debug_outstanding_count;
 	int count;
 	
 	done = FALSE;
@@ -135,23 +98,16 @@ gnome_vfs_thread_backend_shutdown (void)
 
 	JOB_DEBUG (("###### shutting down"));
 
-	if (gnome_vfs_thread_count_mutex == NULL) {
-		/* must have never used a single async call */
-		return;
-	}
-		
-	for (count = 0;; count++) {
-		/* Check if it is OK to quit - no pending slave threads
-		 * are still trying to quit.
+	for (count = 0; ; count++) {
+		/* Check if it is OK to quit. Originally we used a
+		 * count of slave threads, but now we use a count of
+		 * outstanding jobs instead to make sure that the job
+		 * is cleanly destroyed.
 		 */
-		g_mutex_lock (gnome_vfs_thread_count_mutex);
-		g_assert (!gnome_vfs_done_quitting);
-		if (gnome_vfs_slave_thread_count == 0) {
+		if (gnome_vfs_job_get_count () == 0) {
 			done = TRUE;
 			gnome_vfs_done_quitting = TRUE;
 		}
-		debug_outstanding_count = gnome_vfs_slave_thread_count;
-		g_mutex_unlock (gnome_vfs_thread_count_mutex);
 
 		if (done) {
 			return;
@@ -165,28 +121,6 @@ gnome_vfs_thread_backend_shutdown (void)
 #else
 		gtk_main_iteration_do (FALSE);
 #endif
-		usleep (20000);		
+		usleep (20000);
 	}
-}
-
-#include "stdio.h"
-int
-gnome_vfs_debug_get_thread_count (void)
-{
-	int result;
-
-	if (gnome_vfs_thread_count_mutex == NULL) {
-		/* must have never used a single async call */
-		return 0;
-	}
-		
-	g_mutex_lock (gnome_vfs_thread_count_mutex);
-	if (gnome_vfs_done_quitting) {
-		result = 0;
-	} else {
-		result = gnome_vfs_slave_thread_count;
-	}
-	g_mutex_unlock (gnome_vfs_thread_count_mutex);
-
-	return result;		
 }

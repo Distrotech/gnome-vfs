@@ -339,14 +339,15 @@ struct GnomeVFSJob {
 	GnomeVFSOp *notify_op;
 };
 
-GnomeVFSJob *  gnome_vfs_job_new     (void);
-void           gnome_vfs_job_destroy (GnomeVFSJob    *job);
-void           gnome_vfs_job_prepare (GnomeVFSJob    *job,
-				      GnomeVFSOpType  type,
-				      GFunc           callback,
-				      gpointer        callback_data);
-void           gnome_vfs_job_go      (GnomeVFSJob    *job);
-gboolean       gnome_vfs_job_execute (GnomeVFSJob    *job);
-GnomeVFSResult gnome_vfs_job_cancel  (GnomeVFSJob    *job);
+GnomeVFSJob *  gnome_vfs_job_new       (void);
+void           gnome_vfs_job_destroy   (GnomeVFSJob    *job);
+void           gnome_vfs_job_prepare   (GnomeVFSJob    *job,
+					GnomeVFSOpType  type,
+					GFunc           callback,
+					gpointer        callback_data);
+void           gnome_vfs_job_go        (GnomeVFSJob    *job);
+gboolean       gnome_vfs_job_execute   (GnomeVFSJob    *job);
+GnomeVFSResult gnome_vfs_job_cancel    (GnomeVFSJob    *job);
+int            gnome_vfs_job_get_count (void);
 
 #endif /* GNOME_VFS_JOB_PTHREAD_H */

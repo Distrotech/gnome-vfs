@@ -33,11 +33,10 @@
 #include <unistd.h>
 
 #include "gnome-vfs.h"
+#include "gnome-vfs-backend.h"
 
 #define TEST_ASSERT(expression, message) \
 	G_STMT_START { if (!(expression)) test_failed message; } G_STMT_END
-
-extern int gnome_vfs_debug_get_thread_count (void);
 
 static GnomeVFSAsyncHandle *test_handle;
 static gpointer test_callback_data;
@@ -122,14 +121,14 @@ wait_until_vfs_threads_gone (void)
 {
 	int i;
 
-	if (gnome_vfs_debug_get_thread_count () == 0) {
+	if (gnome_vfs_backend_get_job_count () == 0) {
 		return TRUE;
 	}
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
 		usleep (1);
 		gtk_main_iteration_do (FALSE);
-		if (gnome_vfs_debug_get_thread_count () == 0) {
+		if (gnome_vfs_backend_get_job_count () == 0) {
 			return TRUE;
 		}
 	}
@@ -141,13 +140,13 @@ wait_until_vfs_threads_gone_no_main (void)
 {
 	int i;
 
-	if (gnome_vfs_debug_get_thread_count () == 0) {
+	if (gnome_vfs_backend_get_job_count () == 0) {
 		return TRUE;
 	}
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
 		usleep (1);
-		if (gnome_vfs_debug_get_thread_count () == 0) {
+		if (gnome_vfs_backend_get_job_count () == 0) {
 			return TRUE;
 		}
 	}
@@ -475,7 +474,7 @@ main (int argc, char **argv)
 
 	/* Do the basic tests of our own tools. */
 	TEST_ASSERT (get_used_file_descriptor_count () == 0, ("file descriptor count"));
-	TEST_ASSERT (gnome_vfs_debug_get_thread_count () == 0, ("VFS thread count"));
+	TEST_ASSERT (gnome_vfs_backend_get_job_count () == 0, ("VFS thread count"));
 
 	/* Spend those first few file descriptors. */
 	first_get_file_info ();

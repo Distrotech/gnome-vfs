@@ -100,8 +100,6 @@ gnome_vfs_backend_init (gboolean deps_init)
 	return TRUE;
 }
 
-extern void gnome_vfs_thread_backend_shutdown (void);
-
 void
 gnome_vfs_backend_shutdown (void)
 {
@@ -965,23 +963,19 @@ gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle *handle,
 	real_gnome_vfs_async_remove_status_callback (handle, callback_id);
 }
 
-/* For testing only. */
-extern int gnome_vfs_debug_get_thread_count (void);
-
 int
-gnome_vfs_debug_get_thread_count (void)
+gnome_vfs_backend_get_job_count (void)
 {
+	/* find and call the backend function */
 
-	/* find and call the backend shutdown function */
-	int (* gnome_vfs_debug_get_thread_count) (void);
+	int (* get_count) (void);
 	
-	g_assert (gmod);
-	if (g_module_symbol (gmod, "gnome_vfs_debug_get_thread_count", 
-		(gpointer)&gnome_vfs_debug_get_thread_count)) {
-		g_assert (gnome_vfs_debug_get_thread_count);
-		return (* gnome_vfs_debug_get_thread_count) ();
+	g_assert (gmod != NULL);
+	if (g_module_symbol (gmod,
+			     "gnome_vfs_job_get_count",
+			     (gpointer) &get_count)) {
+		return (* get_count) ();
 	}
 
 	return -1;
 }
-
