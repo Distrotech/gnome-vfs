@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.0.0\n"
-"POT-Creation-Date: 2001-02-26 21:59-0800\n"
+"POT-Creation-Date: 2001-02-27 16:25+0100\n"
 "PO-Revision-Date: 2001-02-27 00:13+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -1413,39 +1413,39 @@ msgstr "Ukjent type jobb %u"
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:386
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
 msgid "Edit Applications List"
 msgstr "Rediger applikasjonslisten"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:408
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
 #, c-format
 msgid "Select applications to appear in menu for MIME type \"%s\""
 msgstr "Velg applikasjoner som skal være i menyen for MIME-type \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:432
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:433
 msgid "Add Application..."
 msgstr "Legg til applikasjon..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:439
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:440
 msgid "Edit Application..."
 msgstr "Rediger applikasjon..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:445
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
 msgid "Delete Application"
 msgstr "Slett applikasjon"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:479
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:480
 msgid "Edit Components List"
 msgstr "Redgier komponentliste"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:499
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:500
 #, c-format
 msgid "Select views to appear in menu for MIME type \"%s\""
 msgstr "Velg visninger som skal være i menyen for MIME-type \"%s\""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:720
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
@@ -1453,39 +1453,39 @@ msgstr ""
 "MIME-typen som ble skrevet inn inneholdt store bokstaver. De store "
 "bokstavene ble omgjort til små bokstaver for deg."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:722
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:723
 msgid "Add New MIME Type"
 msgstr "Legg til ny MIME-type"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:768
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
 msgid "Add MIME Type"
 msgstr "Legg til ny MIME-type"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:772
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:773
 msgid "New MIME type (e.g. image/x-thumper):"
 msgstr "Ny MIME-type (f.eks. image/x-thumper):"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:780
 msgid "Description (e.g. Thumper image):"
 msgstr "Beskrivelse (f.eks. Thumper bilde):"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:940
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:947
 msgid "File Extensions "
 msgstr "Filtyper "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:960
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:967
 msgid "Add..."
 msgstr "Legg til..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:965
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:972
 msgid "    Remove    "
 msgstr "    Fjern     "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1034
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1041
 msgid "Add New Extension"
 msgstr "Legg til ny filtype"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1038
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
 msgid ""
 "Type in the extensions for this mime-type (without dot).\n"
 "You can enter several extensions seperated by a space,\n"
@@ -1495,19 +1495,19 @@ msgstr ""
 "Du kan skrive inn flere filtyper separert med mellomrom,\n"
 "for eksempel: .html, .htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
 msgid "Extension:"
 msgstr "Filtype:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1182
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
 msgid "You must enter a name."
 msgstr "Du må skrive inn et navn."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
 msgid "You must enter a command."
 msgstr "Du må skrive inn en kommando."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1195
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
 #, c-format
 msgid ""
 "\"%s\" does not exist or is not executable.\n"
@@ -1518,7 +1518,7 @@ msgstr ""
 "Sjekk stavingen og forsikre deg om at du har\n"
 "riktige rettigheter til å kjøre denne filen."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1201
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
 #, c-format
 msgid ""
 "The command \"%s\" cannot be found.\n"
@@ -1527,43 +1527,43 @@ msgstr ""
 "Kommandoen \"%s\" kan ikke finnes.\n"
 "Du må bruke en kommando som vil virke fra kommandolinjen."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
 msgid "Bad Application Name"
 msgstr "Navn på ugyldig applikasjon"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1214
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
 msgid "Bad Application Command"
 msgstr "Ugyldig applikasjonskommando"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1246
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
 msgid "Add Application"
 msgstr "Legg til applikasjon"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1247
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
 msgid "Edit Application"
 msgstr "Redigér applikasjon"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1271
 msgid "Application Name:"
 msgstr "Applikasjonsnavn:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1270
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1282
 msgid "Application Command:"
 msgstr "Applikasjonskommando:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1281
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
 msgid "Open Behavior"
 msgstr "Oppførsel ved åpning"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1299
 msgid "Can open multiple files"
 msgstr "Kan åpne flere filer"
 
 #. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1295
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
 msgid "Can open from URI"
 msgstr "Kan åpne fra URI"
 
@@ -1751,11 +1751,9 @@ msgid "Show dotfiles"
 msgstr "Vis dotfiler"
 
 #: mime-type-capplet/file-types-capplet.desktop.in.h:1
-#: mime-type-capplet/files-types-capplet.desktop.in.h:1
 msgid "File Types and Programs"
 msgstr "Filtyper og programmer"
 
 #: mime-type-capplet/file-types-capplet.desktop.in.h:2
-#: mime-type-capplet/files-types-capplet.desktop.in.h:2
 msgid "Specify which programs are used to open or view each file type"
 msgstr "Koblinger mellom filtyper og programmer"
