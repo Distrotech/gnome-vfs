@@ -39,14 +39,17 @@
 static void
 job_ack_notify (GnomeVFSJob *job)
 {
-	g_mutex_lock (job->notify_ack_lock);
-	g_cond_signal (job->notify_ack_condition);
-	g_mutex_unlock (job->notify_ack_lock);
+	if (job->want_notify_ack) {
+		g_mutex_lock (job->notify_ack_lock);
+		g_cond_signal (job->notify_ack_condition);
+		g_mutex_unlock (job->notify_ack_lock);
+	}
+
+	g_mutex_unlock (job->wakeup_channel_lock);
 }
 
-/* By calling this function, a job can notify the master thread.  */
 static gboolean
-job_oneway_notify (GnomeVFSJob *job)
+wakeup (GnomeVFSJob *job)
 {
 	gboolean retval;
 	guint bytes_written;
@@ -54,8 +57,7 @@ job_oneway_notify (GnomeVFSJob *job)
 	/* Wake up the main thread.  */
 	g_io_channel_write (job->wakeup_channel_out, "a", 1, &bytes_written);
 	if (bytes_written != 1) {
-		g_warning (_("Error writing to the wakeup GnomeVFSJob channel: %s"),
-			   g_strerror (errno));
+		g_warning (_("Error writing to the wakeup GnomeVFSJob channel."));
 		retval = FALSE;
 	} else {
 		retval = TRUE;
@@ -64,12 +66,24 @@ job_oneway_notify (GnomeVFSJob *job)
 	return retval;
 }
 
-/* This notifies the master threads and waits until it acknowledges the
+/* This notifies the master thread asynchronously, without waiting for an
+   acknowledgment.  */
+static gboolean
+job_oneway_notify (GnomeVFSJob *job)
+{
+	g_mutex_lock (job->wakeup_channel_lock);
+
+	return wakeup (job);
+}
+
+/* This notifies the master threads, waiting until it acknowledges the
    notification.  */
 static gboolean
 job_notify (GnomeVFSJob *job)
 {
 	gboolean retval;
+
+	g_mutex_lock (job->wakeup_channel_lock);
 
 	/* Lock notification, so that the master cannot send the signal until
            we are ready to receive it.  */
@@ -77,10 +91,12 @@ job_notify (GnomeVFSJob *job)
 
 	/* Send the notification.  This will wake up the master thread, which
            will in turn signal the notify condition.  */
-	retval = job_oneway_notify (job);
+	retval = wakeup (job);
 
 	/* Wait for the notify condition.  */
+	job->want_notify_ack = TRUE;
 	g_cond_wait (job->notify_ack_condition, job->notify_ack_lock);
+	job->want_notify_ack = FALSE;
 
 	/* Acknowledgment got: unlock the mutex.  */
 	g_mutex_unlock (job->notify_ack_lock);
@@ -283,7 +299,6 @@ dispatch_job_callback (GIOChannel *source,
 
 	job = (GnomeVFSJob *) data;
 
-	/* Acknowledgment.  */
 	g_io_channel_read (job->wakeup_channel_in, &c, 1, &bytes_read);
 
 	retval = TRUE;
@@ -356,6 +371,7 @@ gnome_vfs_job_new (GnomeVFSAsyncContext *context)
 
 	new->wakeup_channel_in = g_io_channel_unix_new (pipefd[0]);
 	new->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
+	new->wakeup_channel_lock = g_mutex_new ();
 
 	g_io_add_watch_full (new->wakeup_channel_in, G_PRIORITY_LOW, G_IO_IN,
 			     dispatch_job_callback, new, NULL);
@@ -398,6 +414,8 @@ gnome_vfs_job_destroy (GnomeVFSJob *job)
 	g_io_channel_unref (job->wakeup_channel_in);
 	close (g_io_channel_unix_get_fd (job->wakeup_channel_out));
 	g_io_channel_unref (job->wakeup_channel_out);
+
+	g_mutex_free (job->wakeup_channel_lock);
 
 	g_free (job);
 

@@ -216,12 +216,19 @@ struct _GnomeVFSJob {
 	GIOChannel *wakeup_channel_in;
 	GIOChannel *wakeup_channel_out;
 
+	/* Channel mutex to prevent more than one notification to be queued
+           into the channel.  */
+	GMutex *wakeup_channel_lock;
+
 	/* The slave thread that executes jobs (see module
            `gnome-vfs-job-slave.c'). */
 	GnomeVFSJobSlave *slave;
 
 	/* ID of the job (e.g. open, create, close...).  */
 	GnomeVFSJobType type;
+
+	/* Whether this job wants the notification acknowledged.  */
+	gboolean want_notify_ack;
 
 	/* Pointer to the callback for this job.  */
 	gpointer callback;

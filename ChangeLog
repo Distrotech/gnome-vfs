@@ -1,3 +1,26 @@
+1999-09-06  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (gnome_vfs_job_new):
+	Initialize `wakeup_channel_lock'.
+	(gnome_vfs_job_destroy): Free it.
+	(wakeup): New helper function.
+	(job_oneway_notify): Use it.  Lock the channel mutex before doing
+	the notification.
+	(job_notify): Likewise.
+	(job_ack_notify): Unlock the channel mutex.
+
+	* libgnomevfs-pthread/gnome-vfs-job.h: New member
+	`wakeup_channel_lock' in `GnomeVFSJob'.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (job_notify): Set
+	`want_notify_ack' to TRUE before waiting for the acknowledgment
+	condition.
+	(job_ack_notify): Signal the acknowledgment condition only if
+	`want_notify_ack' is TRUE.
+
+	* libgnomevfs-pthread/gnome-vfs-job.h: New member
+	`want_notify_ack' in `GnomeVFSJob'.
+
 1999-09-06  Michael Meeks  <michael@imaginator.com>
 
 	* libgnomevfs/gnome-vfs-private.h: Add include gnome-vfs-seekable.h
