@@ -1,3 +1,11 @@
+2003-02-12  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_monitor_add):
+	Free uri if no monitor_add implementation. Plugs leak.
+
+	* libgnomevfs/gnome-vfs-monitor.c (_gnome_vfs_monitor_do_cancel):
+	Correctly destroy the handle of result == OK. Plugs leak.
+
 2003-02-12  Bastien Nocera  <hadess@hadess.net>
 
 	reviewed by: Alexander Larsson  <alexl@redhat.com>

@@ -103,9 +103,7 @@ _gnome_vfs_monitor_do_add (GnomeVFSMethod *method,
 
 static void
 destroy_monitor_handle (GnomeVFSMonitorHandle *handle) {
-	G_LOCK (handle_hash);
 	g_hash_table_remove (handle_hash, handle->method_handle);
-	G_UNLOCK (handle_hash);
 
 	gnome_vfs_uri_unref (handle->uri);
 	g_free (handle);
@@ -125,13 +123,15 @@ _gnome_vfs_monitor_do_cancel (GnomeVFSMonitorHandle *handle)
 	result = handle->uri->method->monitor_cancel (handle->uri->method,
 			handle->method_handle);
 
-	if (result != GNOME_VFS_OK) {
+	if (result == GNOME_VFS_OK) {
 		/* mark this monitor as cancelled */
 		handle->cancelled = TRUE;
 
 		/* destroy the handle if there are no outstanding callbacks */
 		if (handle->pending_callbacks == NULL) {
+			G_LOCK (handle_hash);
 			destroy_monitor_handle (handle);
+			G_UNLOCK (handle_hash);
 		}
 	}
 
