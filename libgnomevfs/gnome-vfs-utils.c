@@ -30,6 +30,7 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
+#include <string.h>
 
 
 gchar*
@@ -63,40 +64,6 @@ gnome_vfs_file_size_to_string (GnomeVFSFileSize bytes)
 /*  Below modified from libwww HTEscape.c */
 
 #define HEX_ESCAPE '%'
-#define ACCEPTABLE(a) ( a>=32 && a<128 && ((gnome_vfs_is_acceptable[a-32]) & mask))
-
-/* Macros for converting characters. */
-
-#ifndef TOASCII
- #define TOASCII(c) (c)
- #define FROMASCII(c) (c)
-#endif
-
-
-/*
- *  Not BOTH static AND const at the same time in gcc :-(, Henrik 18/03-94
- *  code gen error in gcc when making random access to static const table(!!)
- */
-
-/*
- * Bit 0  xalpha  -- see HTFile.h
- * Bit 1  xpalpha  -- as xalpha but with plus.
- * Bit 2 ... path  -- as xpalpha but with /
- */
-
-guchar gnome_vfs_is_acceptable[96] =
-{/* 0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9 0xA 0xB 0xC 0xD 0xE 0xF */
-    0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0xF,0xE,0x0,0xF,0xF,0xC, /* 2x !"#$%&'()*+,-./   */
-    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0x8,0x0,0x0,0x0,0x0,0x0, /* 3x 0123456789:;<=>?   */
-    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF, /* 4x @ABCDEFGHIJKLMNO   */
-    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0x0,0x0,0x0,0x0,0xF, /* 5X PQRSTUVWXYZ[\]^_   */
-    0x0,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF, /* 6x `abcdefghijklmno   */
-    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0x0,0x0,0x0,0x0,0x0  /* 7X pqrstuvwxyz{\}~DEL */
-};
-
-gchar *hex = "0123456789ABCDEF";
-
-/* ------------------------------------------------------------------------- */
 
 /*  Escape undesirable characters using %
  *  -------------------------------------
@@ -106,57 +73,73 @@ gchar *hex = "0123456789ABCDEF";
  * It returns a string which has these characters
  * represented by a '%' character followed by two hex digits.
  *
- * In the tradition of being conservative in what you do and liberal
- * in what you accept, we encode some characters which in fact are
- * allowed in URLs unencoded -- so DON'T use the table below for
- * parsing!
- *
- * Unlike gnome_vfs_escape(), this routine returns a g_malloced string.
- *
+ * Unlike gnome_vfs_unescape(), this routine returns a g_malloced string.
  */
 
+static const guchar acceptable[96] =
+{ /* X0  X1  X2  X3  X4  X5  X6  X7  X8  X9  XA  XB  XC  XD  XE  XF */
+    0x0,0xF,0x0,0x0,0x0,0x0,0x0,0xF,0xF,0xF,0xF,0xE,0x0,0xF,0xF,0xC, /* 2X  !"#$%&'()*+,-./   */
+    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0x8,0x0,0x0,0x0,0x0,0x0, /* 3X 0123456789:;<=>?   */
+    0x0,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF, /* 4X @ABCDEFGHIJKLMNO   */
+    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0x0,0x0,0x0,0x0,0xF, /* 5X PQRSTUVWXYZ[\]^_   */
+    0x0,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF, /* 6X `abcdefghijklmno   */
+    0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0xF,0x0,0x0,0x0,0xF,0x0  /* 7X pqrstuvwxyz{\}~DEL */
+};
+
+static const gchar hex[16] = "0123456789ABCDEF";
+
 gchar *
-gnome_vfs_escape_string (const gchar *str, 
-			 GnomeVFSURIEncoding mask)
+gnome_vfs_escape_string (const gchar *string, 
+			 GnomeVFSURIUnsafeCharacterSet mask)
 {
-    const gchar * p;
-    gchar * q;
-    gchar * result;
-    gint unacceptable = 0;
+#define ACCEPTABLE(a) ((a)>=32 && (a)<128 && (acceptable[(a)-32] & mask))
 
-    if (!str)
-     return NULL;
+	const gchar *p;
+	gchar *q;
+	gchar *result;
+	guchar c;
+	gint unacceptable;
 
-    for (p=str; *p; p++)
-	    if (!ACCEPTABLE ((unsigned char) TOASCII (*p)))
-		    unacceptable++;
-
-    if ((result = (char  *) g_malloc (p-str + unacceptable+ unacceptable +1)) == NULL)
-	    g_assert (result == NULL);
-
-    for (q=result, p=str; *p; p++){
-	    unsigned char a = TOASCII (*p);
-
-	    if (!ACCEPTABLE (a)) {
-		    *q++ = HEX_ESCAPE; /* Means hex commming */
-		    *q++ = hex[a >> 4];
-		    *q++ = hex[a & 15];
-	    }
-	    else *q++ = *p;
-    }
-
-    *q++ = 0;   /* Terminate */
-    
-    return result;
+	g_return_val_if_fail (string != NULL, NULL);
+	g_return_val_if_fail (mask == GNOME_VFS_URI_UNSAFE_ALL
+			      || mask == GNOME_VFS_URI_UNSAFE_ALLOW_PLUS
+			      || mask == GNOME_VFS_URI_UNSAFE_PATH
+			      || mask == GNOME_VFS_URI_UNSAFE_DOS_PATH, NULL);
+	
+	unacceptable = 0;
+	for (p = string; *p != '\0'; p++) {
+		c = *p;
+		if (!ACCEPTABLE (c)) {
+			unacceptable++;
+		}
+	}
+	
+	result = g_malloc (p - string + unacceptable * 2 + 1);
+	
+	for (q = result, p = string; *p != '\0'; p++){
+		c = *p;
+		
+		if (!ACCEPTABLE (c)) {
+			*q++ = HEX_ESCAPE; /* means hex coming */
+			*q++ = hex[c >> 4];
+			*q++ = hex[c & 15];
+		} else {
+			*q++ = c;
+		}
+	}
+	
+	*q = '\0';
+	
+	return result;
 }
 
-
-static gchar 
-gnome_vfs_ascii_hex_to_char (gchar c)
+static int
+hex_to_int (gchar c)
 {
-    return  c >= '0' && c <= '9' ?  c - '0'
-	    : c >= 'A' && c <= 'F'? c - 'A' + 10
-	    : c - 'a' + 10; /* accept small letters just in case */
+	return  c >= '0' && c <= '9' ? c - '0'
+		: c >= 'A' && c <= 'F' ? c - 'A' + 10
+		: c >= 'a' && c <= 'f' ? c - 'a' + 10
+		: -1;
 }
 
 /*  Decode %xx escaped characters
@@ -164,45 +147,56 @@ gnome_vfs_ascii_hex_to_char (gchar c)
 **
 ** This function takes a pointer to a string in which some
 ** characters may have been encoded in %xy form, where xy is
-** the acsii hex code for character 16x+y.
-** The string is converted in place, as it will never grow.
+** the ASCII hex code for character 16x+y.
 */
 
 gchar *
-gnome_vfs_unescape_string (gchar * str)
+gnome_vfs_unescape_string (const gchar *escaped, const gchar *illegal_characters)
 {
-	gchar * p = str;
-	gchar * q = str;
+	const gchar *in;
+	gchar *out, *result;
+	gint i;
+	gchar c;
 	
-	if (!str) {           /* Just for safety ;-) */
-		g_warning ("gnome_vfs_unescape_string (): Called with NULL argument'.");
-		return NULL;
-	}
-	
-	while(*p) {
-		if (*p == HEX_ESCAPE) {
-			p++;
-			
-			if (*p)
-				*q = gnome_vfs_ascii_hex_to_char(*p++) * 16;
-#if 1
-			/* Suggestion from Markku Savela */
-			if (*p)
-				*q = FROMASCII(*q + gnome_vfs_ascii_hex_to_char(*p)), ++p;
-			
-			q++;
-#else
-			if (*p)
-				*q = FROMASCII(*q + gnome_vfs_ascii_hex_to_char(*p));
-			
-			p++, q++;
-#endif
-		} else {
-			*q++ = *p++;
-		}
-	}
-	
-	*q++ = 0;
-	return str;
-}
+	g_return_val_if_fail (escaped != NULL, NULL);
 
+	result = g_malloc (strlen (escaped) + 1);
+	
+	out = result;
+	for (in = escaped; *in != '\0'; ) {
+		c = *in++;
+
+		if (c == HEX_ESCAPE) {
+			/* Get the first hex digit. */
+			i = hex_to_int (*in++);
+			if (i < 0) {
+				goto error;
+			}
+			c = i << 4;
+
+			/* Get the second hex digit. */
+			i = hex_to_int (*in++);
+			if (i < 0) {
+				goto error;
+			}
+			c |= i;
+
+			/* Check for an illegal character. */
+			if (c == '\0'
+			    || (illegal_characters != NULL
+				&& strchr (illegal_characters, c) != NULL)) {
+				goto error;
+			}
+		}
+
+		*out++ = c;
+	}
+	
+	*out = '\0';
+	
+	return result;
+	
+ error:
+	g_free (result);
+	return NULL;
+}

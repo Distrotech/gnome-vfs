@@ -31,15 +31,28 @@
 #include "gnome-vfs-types.h"
 
 typedef enum {
-	GNOME_VFS_URI_ENCODING_XALPHAS  = 0x1,  /* Escape all unsafe characters   */
-	GNOME_VFS_URI_ENCODING_XPALPHAS = 0x2,  /* As URL_XALPHAS but allows '+'  */
-	GNOME_VFS_URI_ENCODING_PATH     = 0x4,  /* As URL_XALPHAS but allows '/'  */
-	GNOME_VFS_URI_ENCODING_DOSFILE  = 0x8   /* As URL_URLPATH but allows  ':' */
-} GnomeVFSURIEncoding;
+	GNOME_VFS_URI_UNSAFE_ALL        = 0x1,  /* Escape all unsafe characters   */
+	GNOME_VFS_URI_UNSAFE_ALLOW_PLUS = 0x2,  /* Allows '+'  */
+	GNOME_VFS_URI_UNSAFE_PATH       = 0x4,  /* Allows '+' and '/'  */
+	GNOME_VFS_URI_UNSAFE_DOS_PATH   = 0x8   /* Allows '+', '/', ':' */
+} GnomeVFSURIUnsafeCharacterSet;
 
-gchar *gnome_vfs_file_size_to_string (GnomeVFSFileSize     bytes);
-gchar *gnome_vfs_escape_string       (const gchar         *string,
-				      GnomeVFSURIEncoding  encoding);
-gchar *gnome_vfs_unescape_string     (gchar               *string);
+/* Attempts to make a human-readable string. */
+gchar *gnome_vfs_file_size_to_string (GnomeVFSFileSize               bytes);
+
+/* Converts unsafe characters to % sequences.
+ * Parameter defines what unsafe means.
+ * FIXME: Divide into four separate calls for clarity.
+ */
+gchar *gnome_vfs_escape_string       (const gchar                   *string,
+				      GnomeVFSURIUnsafeCharacterSet  encoding);
+
+/* Returns NULL if any of the illegal character appear in escaped form.
+ * If the illegal characters are in there unescaped, that's OK.
+ * Typically you pass "/" for illegal characters when converting to a Unix path.
+ * ASCII 0 is always illegal due to the limitations of NUL-terminated strings.
+ */
+gchar *gnome_vfs_unescape_string     (const gchar                   *string,
+				      const gchar                   *illegal_characters);
 
 #endif /* GNOME_VFS_UTILS_H */

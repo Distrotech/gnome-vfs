@@ -1,3 +1,33 @@
+2000-06-01  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_escape_string),
+	(hex_to_int), (gnome_vfs_unescape_string): Fixed escape string to
+	handle characters in a way that matches the URI RFC instead of
+	being "conservative" and escaping everything. Also fixed to escape
+	some characters it wasn't escaping and did code cleanup. Changed
+	the API to gnome_vfs_unescape_string and made it handle cases where
+	there are bad escape sequences or bad characters by returning NULL.
+	
+	* modules/file-method.c: (get_path_from_uri), (get_base_from_uri),
+	(do_open), (do_create), (do_close), (do_read), (do_write),
+	(do_truncate), (directory_handle_new), (do_open_directory),
+	(do_get_file_info), (do_get_file_info_from_handle),
+	(do_make_directory), (do_remove_directory), (do_find_directory),
+	(rename_helper), (do_move), (do_unlink), (do_check_same_fs),
+	(do_set_file_info): Handled URI escaping in every call. This
+	involved unescaping URIs and handling the cases where there are
+	bad characters.
+	
+	* test/test-escape.c: (test_escape), (test_unescape), (main):
+	Added code to test both the escape and unescape functions. It's a
+	lot easier to get it right if it's tested :-) This test gets run
+	as part of make check.
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_append_file_name),
+	(gnome_vfs_uri_extract_short_name): Update for the new name of the
+	parameter to gnome_vfs_escape_string.
+	
 2000-06-01  John Sullivan  <sullivan@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:

@@ -47,19 +47,6 @@
 #include "file-method.h"
 
 
-/* This is to make sure the path starts with `/', so that at least we
-   get a predictable behavior when the leading `/' is not present.  */
-#define MAKE_ABSOLUTE(dest, src)			\
-G_STMT_START{						\
-	if ((src)[0] != '/') {				\
-		(dest) = alloca (strlen (src) + 2);	\
-		(dest)[0] = '/';			\
-		strcpy ((dest), (src));			\
-	} else {					\
-		(dest) = (src);				\
-	}						\
-}G_STMT_END
-
 #ifdef PATH_MAX
 #define	GET_PATH_MAX()	PATH_MAX
 #else
@@ -98,12 +85,42 @@ GET_PATH_MAX (void)
 #define OFF_T off_t
 #endif
 
+static gchar *
+get_path_from_uri (GnomeVFSURI *uri)
+{
+	gchar *path, *longer_path;
+
+	path = gnome_vfs_unescape_string (uri->text, "/");
+	if (path == NULL)
+		return NULL;
+
+	/* This is to make sure the path starts with a "/", so that at
+	 * least we get a predictable behavior when the
+	 * leading "/" is not present.
+	 */
+	if (path[0] == '/')
+		return path;
+	longer_path = g_strconcat ("/", path, NULL);
+	g_free (path);
+	return longer_path;
+}
+
+static gchar *
+get_base_from_uri (GnomeVFSURI *uri)
+{
+	gchar *escaped_base, *base;
+
+	escaped_base = gnome_vfs_uri_extract_short_path_name (uri);
+	base = gnome_vfs_unescape_string (escaped_base, "/");
+	g_free (escaped_base);
+	return base;
+}
+
 
-struct _FileHandle {
+typedef struct {
 	GnomeVFSURI *uri;
 	gint fd;
-};
-typedef struct _FileHandle FileHandle;
+} FileHandle;
 
 static FileHandle *
 file_handle_new (GnomeVFSURI *uri,
@@ -157,13 +174,17 @@ do_open (GnomeVFSMethod *method,
 	if (! (mode & GNOME_VFS_OPEN_RANDOM) && (mode & GNOME_VFS_OPEN_WRITE))
 		mode |= O_TRUNC;
 
-	MAKE_ABSOLUTE (file_name, uri->text);
+	file_name = get_path_from_uri (uri);
+	if (file_name == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
 
 	do
 		fd = OPEN (file_name, unix_mode);
 	while (fd == -1
 	       && errno == EINTR
-	       && ! gnome_vfs_context_check_cancellation(context));
+	       && ! gnome_vfs_context_check_cancellation (context));
+
+	g_free (file_name);
 
 	if (fd == -1)
 		return gnome_vfs_result_from_errno ();
@@ -213,13 +234,17 @@ do_create (GnomeVFSMethod *method,
 	if (exclusive)
 		unix_mode |= O_EXCL;
 
-	MAKE_ABSOLUTE (file_name, uri->text);
+	file_name = get_path_from_uri (uri);
+	if (file_name == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
 
 	do
 		fd = OPEN (file_name, unix_mode, perm);
 	while (fd == -1
 	       && errno == EINTR
 	       && ! gnome_vfs_context_check_cancellation (context));
+
+	g_free (file_name);
 
 	if (fd == -1)
 		return gnome_vfs_result_from_errno ();
@@ -247,7 +272,7 @@ do_close (GnomeVFSMethod *method,
 		close_retval = close (file_handle->fd);
 	while (close_retval != 0
 	       && errno == EINTR
-	       && ! gnome_vfs_context_check_cancellation(context));
+	       && ! gnome_vfs_context_check_cancellation (context));
 
 	/* FIXME: Should do this even after a failure?  */
 	file_handle_destroy (file_handle);
@@ -277,7 +302,7 @@ do_read (GnomeVFSMethod *method,
 		read_val = read (file_handle->fd, buffer, num_bytes);
 	while (read_val == -1
 	       && errno == EINTR
-	       && ! gnome_vfs_context_check_cancellation(context));
+	       && ! gnome_vfs_context_check_cancellation (context));
 
 	if (read_val == -1) {
 		*bytes_read = 0;
@@ -307,7 +332,7 @@ do_write (GnomeVFSMethod *method,
 		write_val = write (file_handle->fd, buffer, num_bytes);
 	while (write_val == -1
 	       && errno == EINTR
-	       && ! gnome_vfs_context_check_cancellation(context));
+	       && ! gnome_vfs_context_check_cancellation (context));
 
 	if (write_val == -1) {
 		*bytes_written = 0;
@@ -414,9 +439,17 @@ do_truncate (GnomeVFSMethod *method,
 	     GnomeVFSFileSize where,
 	     GnomeVFSContext *context)
 {
-	if (truncate (uri->text, where) == 0) {
+	gchar *path;
+
+	path = get_path_from_uri (uri);
+	if (path == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
+	if (truncate (path, where) == 0) {
+		g_free (path);
 		return GNOME_VFS_OK;
 	} else {
+		g_free (path);
 		switch (errno) {
 		case EBADF:
 		case EROFS:
@@ -465,7 +498,8 @@ directory_handle_new (GnomeVFSURI *uri,
 	/* Reserve extra space for readdir_r, see man page */
 	new->current_entry = g_malloc (sizeof (struct dirent) + GET_PATH_MAX() + 1);
 
-	MAKE_ABSOLUTE (full_name, uri->text);
+	full_name = get_path_from_uri (uri);
+	g_assert (full_name != NULL); /* already done by caller */
 	full_name_len = strlen (full_name);
 
 	new->name_buffer = g_malloc (full_name_len + GET_PATH_MAX () + 2);
@@ -475,6 +509,8 @@ directory_handle_new (GnomeVFSURI *uri,
 		new->name_buffer[full_name_len++] = '/';
 
 	new->name_ptr = new->name_buffer + full_name_len;
+
+	g_free (full_name);
 
 	new->options = options;
 	new->meta_keys = meta_keys;
@@ -624,9 +660,12 @@ do_open_directory (GnomeVFSMethod *method,
 	gchar *directory_name;
 	DIR *dir;
 
-	MAKE_ABSOLUTE (directory_name, uri->text);
+	directory_name = get_path_from_uri (uri);
+	if (directory_name == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
 
 	dir = opendir (directory_name);
+	g_free (directory_name);
 	if (dir == NULL)
 		return gnome_vfs_result_from_errno ();
 
@@ -784,20 +823,27 @@ do_get_file_info (GnomeVFSMethod *method,
 	gchar *full_name;
 	struct stat statbuf;
 
-	MAKE_ABSOLUTE (full_name, uri->text);
+	full_name = get_path_from_uri (uri);
+	if (full_name == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
-	file_info->name = gnome_vfs_uri_extract_short_name (uri);
+	file_info->name = get_base_from_uri (uri);
+	g_assert (file_info->name != NULL);
 
 	result = get_stat_info (file_info, full_name, options, &statbuf);
-	if (result != GNOME_VFS_OK)
+	if (result != GNOME_VFS_OK) {
+		g_free (full_name);
 		return result;
+	}
 
 	if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
 		set_mime_type (file_info, full_name, options, &statbuf);
 
 	gnome_vfs_set_meta_for_list (file_info, full_name, meta_keys);
+
+	g_free (full_name);
 
 	return GNOME_VFS_OK;
 }
@@ -817,21 +863,28 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 
 	file_handle = (FileHandle *) method_handle;
 
-	MAKE_ABSOLUTE (full_name, file_handle->uri->text);
+	full_name = get_path_from_uri (file_handle->uri);
+	if (full_name == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
-	file_info->name = gnome_vfs_uri_extract_short_name (file_handle->uri);
+	file_info->name = get_base_from_uri (file_handle->uri);
+	g_assert (file_info->name != NULL);
 
 	result = get_stat_info_from_handle (file_info, file_handle,
 					    options, &statbuf);
-	if (result != GNOME_VFS_OK)
+	if (result != GNOME_VFS_OK) {
+		g_free (full_name);
 		return result;
+	}
 
 	if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
 		set_mime_type (file_info, full_name, options, &statbuf);
 
 	gnome_vfs_set_meta_for_list (file_info, full_name, meta_keys);
+
+	g_free (full_name);
 
 	return GNOME_VFS_OK;
 }
@@ -857,8 +910,13 @@ do_make_directory (GnomeVFSMethod *method,
 	gint retval;
 	gchar *full_name;
 
-	MAKE_ABSOLUTE (full_name, uri->text);
+	full_name = get_path_from_uri (uri);
+	if (full_name == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
 	retval = mkdir (full_name, perm);
+
+	g_free (full_name);
 
 	if (retval == 0)
 		return GNOME_VFS_OK;
@@ -874,8 +932,13 @@ do_remove_directory (GnomeVFSMethod *method,
 	gchar *full_name;
 	gint retval;
 
-	MAKE_ABSOLUTE (full_name, uri->text);
+	full_name = get_path_from_uri (uri);
+	if (full_name == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
 	retval = rmdir (full_name);
+
+	g_free (full_name);
 
 	if (retval == 0)
 		return GNOME_VFS_OK;
@@ -901,26 +964,31 @@ do_find_directory (GnomeVFSMethod *method,
 
 	target_directory = NULL;
 	*result_uri = NULL;
-	full_name_near = NULL;
 
-	MAKE_ABSOLUTE (full_name_near, near_uri->text);
+	full_name_near = get_path_from_uri (near_uri);
+	if (full_name_near == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
 	home_directory = g_get_home_dir();
 
-	if (gnome_vfs_context_check_cancellation(context))
+	if (gnome_vfs_context_check_cancellation (context)) {
+		g_free (full_name_near);
 		return GNOME_VFS_ERROR_CANCELLED;
+	}
 
 	retval = stat (full_name_near, &near_item_stat);
+	g_free (full_name_near);
 	if (retval != 0)
 		return gnome_vfs_result_from_errno ();
 
-	if (gnome_vfs_context_check_cancellation(context))
+	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
 	retval = stat (home_directory, &home_volume_stat);
 	if (retval != 0)
 		return gnome_vfs_result_from_errno ();
 
-	if (gnome_vfs_context_check_cancellation(context))
+	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
 	if (near_item_stat.st_dev != home_volume_stat.st_dev)
@@ -980,7 +1048,7 @@ rename_helper (const gchar *old_full_name,
 		old_exists = FALSE;
 	}
 
-	if (gnome_vfs_context_check_cancellation(context))
+	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
 	retval = rename (old_full_name, new_full_name);
@@ -997,7 +1065,7 @@ rename_helper (const gchar *old_full_name,
 		   explicitly asked to replace the destination name, so if the
 		   new name points to a directory, we remove it manually.  */
 		if (S_ISDIR (statbuf.st_mode)) {
-			if (gnome_vfs_context_check_cancellation(context))
+			if (gnome_vfs_context_check_cancellation (context))
 				return GNOME_VFS_ERROR_CANCELLED;
 			retval = rmdir (new_full_name);
 			if (retval != 0) {
@@ -1006,7 +1074,7 @@ rename_helper (const gchar *old_full_name,
 				return GNOME_VFS_ERROR_DIRECTORYNOTEMPTY;
 			}
 
-			if (gnome_vfs_context_check_cancellation(context))
+			if (gnome_vfs_context_check_cancellation (context))
 				return GNOME_VFS_ERROR_CANCELLED;
 
 			retval = rename (old_full_name, new_full_name);
@@ -1028,12 +1096,24 @@ do_move (GnomeVFSMethod *method,
 {
 	gchar *old_full_name;
 	gchar *new_full_name;
+	GnomeVFSResult result;
 
-	MAKE_ABSOLUTE (new_full_name, new_uri->text);
-	MAKE_ABSOLUTE (old_full_name, old_uri->text);
+	old_full_name = get_path_from_uri (old_uri);
+	if (old_full_name == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+	new_full_name = get_path_from_uri (new_uri);
+	if (new_full_name == NULL) {
+		g_free (old_full_name);
+		return GNOME_VFS_ERROR_INVALIDURI;
+	}
 
-	return rename_helper (old_full_name, new_full_name, force_replace,
-			      context);
+	result = rename_helper (old_full_name, new_full_name,
+				force_replace, context);
+
+	g_free (old_full_name);
+	g_free (new_full_name);
+
+	return result;
 }
 
 static GnomeVFSResult
@@ -1044,8 +1124,14 @@ do_unlink (GnomeVFSMethod *method,
 	gchar *full_name;
 	gint retval;
 
-	MAKE_ABSOLUTE (full_name, uri->text);
+	full_name = get_path_from_uri (uri);
+	if (full_name == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
 	retval = unlink (full_name);
+
+	g_free (full_name);
+
 	if (retval == 0)
 		return GNOME_VFS_OK;
 	else
@@ -1063,17 +1149,19 @@ do_check_same_fs (GnomeVFSMethod *method,
 	struct stat sa, sb;
 	gint retval;
 
-	MAKE_ABSOLUTE (full_name_a, a->text);
-	MAKE_ABSOLUTE (full_name_b, b->text);
-
+	full_name_a = get_path_from_uri (a);
 	retval = stat (full_name_a, &sa);
+	g_free (full_name_a);
+
 	if (retval != 0)
 		return gnome_vfs_result_from_errno ();
 
-	if (gnome_vfs_context_check_cancellation(context))
+	if (gnome_vfs_context_check_cancellation (context))
 		return GNOME_VFS_ERROR_CANCELLED;
 
+	full_name_b = get_path_from_uri (b);
 	retval = stat (full_name_b, &sb);
+	g_free (full_name_b);
 
 	if (retval != 0)
 		return gnome_vfs_result_from_errno ();
@@ -1092,45 +1180,61 @@ do_set_file_info (GnomeVFSMethod *method,
 {
 	gchar *full_name;
 
-	MAKE_ABSOLUTE (full_name, uri->text);
+	full_name = get_path_from_uri (uri);
+	if (full_name == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
 
 	if (mask & GNOME_VFS_SET_FILE_INFO_NAME) {
 		GnomeVFSResult result;
-		gchar *dir;
-		gchar *new, *old;
+		gchar *dir, *encoded_dir;
+		gchar *new;
 
-		old = full_name;
+		encoded_dir = gnome_vfs_uri_extract_dirname (uri);
+		dir = gnome_vfs_unescape_string (encoded_dir, "/");
+		g_free (encoded_dir);
+		g_assert (dir != NULL);
 
-		dir = gnome_vfs_uri_extract_dirname (uri);
 		new = g_concat_dir_and_file (dir, info->name);
 
-		result = rename_helper (old, new, FALSE, context);
+		result = rename_helper (full_name, new, FALSE, context);
 
 		g_free (dir);
 		g_free (new);
 
-		if (result != GNOME_VFS_OK)
+		if (result != GNOME_VFS_OK) {
+			g_free (full_name);
 			return result;
+		}
 	}
 
-	if (gnome_vfs_context_check_cancellation(context))
+	if (gnome_vfs_context_check_cancellation (context)) {
+		g_free (full_name);
 		return GNOME_VFS_ERROR_CANCELLED;
+	}
 
 	if (mask & GNOME_VFS_SET_FILE_INFO_PERMISSIONS) {
-		if (chmod (full_name, info->permissions) != 0)
+		if (chmod (full_name, info->permissions) != 0) {
+			g_free (full_name);
 			return gnome_vfs_result_from_errno ();
+		}
 	}
 
-	if (gnome_vfs_context_check_cancellation(context))
+	if (gnome_vfs_context_check_cancellation (context)) {
+		g_free (full_name);
 		return GNOME_VFS_ERROR_CANCELLED;
+	}
 
 	if (mask & GNOME_VFS_SET_FILE_INFO_OWNER) {
-		if (chown (full_name, info->uid, info->gid) != 0)
+		if (chown (full_name, info->uid, info->gid) != 0) {
+			g_free (full_name);
 			return gnome_vfs_result_from_errno ();
+		}
 	}
 
-	if (gnome_vfs_context_check_cancellation(context))
+	if (gnome_vfs_context_check_cancellation (context)) {
+		g_free (full_name);
 		return GNOME_VFS_ERROR_CANCELLED;
+	}
 
 	if (mask & GNOME_VFS_SET_FILE_INFO_TIME) {
 		struct utimbuf utimbuf;
@@ -1138,9 +1242,13 @@ do_set_file_info (GnomeVFSMethod *method,
 		utimbuf.actime = info->atime;
 		utimbuf.modtime = info->mtime;
 
-		if (utime (full_name, &utimbuf) != 0)
+		if (utime (full_name, &utimbuf) != 0) {
+			g_free (full_name);
 			return gnome_vfs_result_from_errno ();
+		}
 	}
+
+	g_free (full_name);
 
 	return GNOME_VFS_OK;
 }

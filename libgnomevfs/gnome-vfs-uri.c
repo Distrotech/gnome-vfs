@@ -533,7 +533,8 @@ gnome_vfs_uri_append_file_name (const GnomeVFSURI *uri,
 	gchar *escaped_string;
 	GnomeVFSURI *new_uri;
 	
-	escaped_string = gnome_vfs_escape_string (file_name, GNOME_VFS_URI_ENCODING_XALPHAS);
+	escaped_string = gnome_vfs_escape_string
+		(file_name, GNOME_VFS_URI_UNSAFE_ALL);
 	new_uri = gnome_vfs_uri_append_path (uri, escaped_string);
 	g_free (escaped_string);
 	return new_uri;
@@ -1172,7 +1173,8 @@ gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri)
 	short_path_name = gnome_vfs_uri_extract_short_path_name (uri);
 
 	host_name = NULL;
-	if (strcmp (short_path_name, GNOME_VFS_URI_PATH_STR) == 0) {
+	if (short_path_name != NULL
+	    && strcmp (short_path_name, GNOME_VFS_URI_PATH_STR) == 0) {
 		host_name = gnome_vfs_uri_get_host_name (uri);
 	}
 
