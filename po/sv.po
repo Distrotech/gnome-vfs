@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-01-22 17:18+0100\n"
+"POT-Creation-Date: 2001-01-23 20:05+0100\n"
 "PO-Revision-Date: 2001-01-22 17:22+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -29,288 +29,288 @@ msgid "AIFF audio"
 msgstr "AIFF-ljud"
 
 #: data/mime/gnome-vfs.keys.in.h:4
+msgid "ANIM animation"
+msgstr "ANIM-animation"
+
+#: data/mime/gnome-vfs.keys.in.h:5
+msgid "AVI video"
+msgstr "AVI-video"
+
+#: data/mime/gnome-vfs.keys.in.h:6
 msgid "AbiWord document"
 msgstr "AbiWord-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:5
+#: data/mime/gnome-vfs.keys.in.h:7
+msgid "Adobe FrameMaker font"
+msgstr "Adobe FrameMaker-typsnitt"
+
+#: data/mime/gnome-vfs.keys.in.h:8
 msgid "Adobe font metrics"
 msgstr "Adobe-typsnittsmetrik"
 
-#: data/mime/gnome-vfs.keys.in.h:6
+#: data/mime/gnome-vfs.keys.in.h:9
 msgid "Andrew Toolkit inset"
 msgstr "Andrew-verktygssamling insatt"
 
-#: data/mime/gnome-vfs.keys.in.h:7
-msgid "Applix Word document"
-msgstr "Applix Word-dokument"
-
-#: data/mime/gnome-vfs.keys.in.h:8
-msgid "Applix image"
-msgstr "Applix-bild"
-
-#: data/mime/gnome-vfs.keys.in.h:9
-msgid "Applix spreadsheet"
-msgstr "Applix-kalkylblad"
-
 #: data/mime/gnome-vfs.keys.in.h:10
-msgid "Audio-Video Interleave"
-msgstr "Audio/Video-fil (AVI-fil)"
+msgid "ApplixWare Graphics image"
+msgstr "ApplixWare Graphics-bild"
 
 #: data/mime/gnome-vfs.keys.in.h:11
+msgid "Applixware Words document"
+msgstr "ApplixWare Words-dokument"
+
+#: data/mime/gnome-vfs.keys.in.h:12
+msgid "Applixware spreadsheet"
+msgstr "ApplixWare-kalkylblad"
+
+#: data/mime/gnome-vfs.keys.in.h:13
 msgid "AutoCAD image"
 msgstr "AutoCAD-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:12
+#: data/mime/gnome-vfs.keys.in.h:14
 msgid "BCPIO document"
 msgstr "BCPIO-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:13
+#: data/mime/gnome-vfs.keys.in.h:15
 msgid "BDF font"
 msgstr "BDF-typsnitt"
 
-#: data/mime/gnome-vfs.keys.in.h:14
+#: data/mime/gnome-vfs.keys.in.h:16
+msgid "C shell script"
+msgstr "skalskript (csh)"
+
+#: data/mime/gnome-vfs.keys.in.h:17
 msgid "C source code"
 msgstr "C-källkod"
 
-#: data/mime/gnome-vfs.keys.in.h:15
+#: data/mime/gnome-vfs.keys.in.h:18
 msgid "C++ source code"
 msgstr "C++-källkod"
 
-#: data/mime/gnome-vfs.keys.in.h:16
-msgid "C-Shell script"
-msgstr "C-skalskript"
-
-#: data/mime/gnome-vfs.keys.in.h:17
+#: data/mime/gnome-vfs.keys.in.h:19
 msgid "CGI program"
 msgstr "CGI-program"
 
-#: data/mime/gnome-vfs.keys.in.h:18
+#: data/mime/gnome-vfs.keys.in.h:20
 msgid "CGM image"
 msgstr "CGM-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:19
+#: data/mime/gnome-vfs.keys.in.h:21
 msgid "CMU raster image"
 msgstr "CMU-rasterbild"
 
-#: data/mime/gnome-vfs.keys.in.h:20
+#: data/mime/gnome-vfs.keys.in.h:22
+msgid "CPIO archive"
+msgstr "CPIO-arkiv"
+
+#: data/mime/gnome-vfs.keys.in.h:23
+msgid "CPIO archive (gzip-compressed)"
+msgstr "CPIO arkiv (gzip-komprimerat)"
+
+#: data/mime/gnome-vfs.keys.in.h:24
 msgid "DCL script"
 msgstr "DCL-skript"
 
-#: data/mime/gnome-vfs.keys.in.h:21
+#: data/mime/gnome-vfs.keys.in.h:25
 msgid "DOS font"
 msgstr "DOS-typsnitt"
 
-#: data/mime/gnome-vfs.keys.in.h:22
+#: data/mime/gnome-vfs.keys.in.h:26
 msgid "DOS/Windows program"
 msgstr "DOS/Windows-program"
 
-#: data/mime/gnome-vfs.keys.in.h:23
+#: data/mime/gnome-vfs.keys.in.h:27
 msgid "DSSSL document"
 msgstr "DSSSL-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:24
+#: data/mime/gnome-vfs.keys.in.h:28
 msgid "DXF vector graphic"
 msgstr "DXF-vektorgrafik"
 
-#: data/mime/gnome-vfs.keys.in.h:25
+#: data/mime/gnome-vfs.keys.in.h:29
 msgid "Debian package"
 msgstr "Debianpaket"
 
-#: data/mime/gnome-vfs.keys.in.h:26
+#: data/mime/gnome-vfs.keys.in.h:30
 msgid "Dia diagram"
 msgstr "Dia-diagram"
 
-#: data/mime/gnome-vfs.keys.in.h:27
+#: data/mime/gnome-vfs.keys.in.h:31
 msgid "Emacs Lisp source code"
 msgstr "Emacs Lisp-källkod"
 
-#: data/mime/gnome-vfs.keys.in.h:28
+#: data/mime/gnome-vfs.keys.in.h:32
 msgid "Enlightenment theme"
 msgstr "Enlightenment-tema"
 
-#: data/mime/gnome-vfs.keys.in.h:29
-msgid "FLC video animation"
-msgstr "FLC-videoanimation"
+#: data/mime/gnome-vfs.keys.in.h:33
+msgid "FLC animation"
+msgstr "FLC-animation"
 
-#: data/mime/gnome-vfs.keys.in.h:30
-msgid "FLI video animation"
-msgstr "FLI-videoanimation"
+#: data/mime/gnome-vfs.keys.in.h:34
+msgid "FLI animation"
+msgstr "FLI-animation"
 
-#: data/mime/gnome-vfs.keys.in.h:31
+#: data/mime/gnome-vfs.keys.in.h:35
 msgid "FastTracker II audio"
 msgstr "FastTracker II-ljud"
 
-#: data/mime/gnome-vfs.keys.in.h:32
+#: data/mime/gnome-vfs.keys.in.h:36
 msgid "Fortran source code"
 msgstr "Fortran-källkod"
 
-#: data/mime/gnome-vfs.keys.in.h:33
-msgid "FrameMaker font"
-msgstr "FrameMaker-typsnitt"
-
-#: data/mime/gnome-vfs.keys.in.h:34
+#: data/mime/gnome-vfs.keys.in.h:37
 msgid "FrameMaker interchange document"
 msgstr "FrameMaker-utbytesdokument"
 
-#: data/mime/gnome-vfs.keys.in.h:35
+#: data/mime/gnome-vfs.keys.in.h:38
 msgid "G3 fax image"
 msgstr "G3-faxbild"
 
-#: data/mime/gnome-vfs.keys.in.h:36
+#: data/mime/gnome-vfs.keys.in.h:39
 msgid "GIF image"
 msgstr "GIF-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:37
-msgid "GIMP image"
-msgstr "GIMP-bild"
+#: data/mime/gnome-vfs.keys.in.h:40
+msgid "GIMP document"
+msgstr "GIMP-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:38
+#: data/mime/gnome-vfs.keys.in.h:41
 msgid "GMC link"
 msgstr "GMC-länk"
 
-#: data/mime/gnome-vfs.keys.in.h:39
-msgid "GNOME application information"
+#: data/mime/gnome-vfs.keys.in.h:42
+msgid "GNOME application details"
 msgstr "GNOME-programinformation"
 
-#: data/mime/gnome-vfs.keys.in.h:40
-msgid "GNU license"
-msgstr "GNU-licens"
-
-#: data/mime/gnome-vfs.keys.in.h:41
+#: data/mime/gnome-vfs.keys.in.h:43
 msgid "GNU mail message"
 msgstr "GNU-epostmeddelande"
 
-#: data/mime/gnome-vfs.keys.in.h:42
+#: data/mime/gnome-vfs.keys.in.h:44
 msgid "GTK configuration"
 msgstr "GTK-konfiguration"
 
-#: data/mime/gnome-vfs.keys.in.h:43
+#: data/mime/gnome-vfs.keys.in.h:45
 msgid "Gnumeric spreadsheet"
 msgstr "Gnumeric-kalkylblad"
 
-#: data/mime/gnome-vfs.keys.in.h:44
+#: data/mime/gnome-vfs.keys.in.h:46
 msgid "HDF document"
 msgstr "HDF-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:45
-msgid "HTML document"
-msgstr "HTML-dokument"
-
-#: data/mime/gnome-vfs.keys.in.h:46
-msgid "Help page"
-msgstr "Hjälpsida"
-
 #: data/mime/gnome-vfs.keys.in.h:47
+msgid "HTML page"
+msgstr "HTML-sida"
+
+#: data/mime/gnome-vfs.keys.in.h:48
 msgid "IDL document"
 msgstr "IDL-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:48
+#: data/mime/gnome-vfs.keys.in.h:49
 msgid "IEF image"
 msgstr "IEF-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:49
+#: data/mime/gnome-vfs.keys.in.h:50
 msgid "IFF image"
 msgstr "IFF-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:50
+#: data/mime/gnome-vfs.keys.in.h:51
 msgid "ILBM image"
 msgstr "ILBM-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:51
+#: data/mime/gnome-vfs.keys.in.h:52
 msgid "ISI video"
 msgstr "ISI-video"
 
-#: data/mime/gnome-vfs.keys.in.h:52
+#: data/mime/gnome-vfs.keys.in.h:53
 msgid "Impulse Tracker audio"
 msgstr "Impulse Tracker-ljud"
 
-#: data/mime/gnome-vfs.keys.in.h:53
+#: data/mime/gnome-vfs.keys.in.h:54
 msgid "JPEG image"
 msgstr "JPEG-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:54
+#: data/mime/gnome-vfs.keys.in.h:55
 msgid "Java byte code"
 msgstr "Java-bytekod"
 
-#: data/mime/gnome-vfs.keys.in.h:55
+#: data/mime/gnome-vfs.keys.in.h:56
 msgid "Java source code"
 msgstr "Java-källkod"
 
-#: data/mime/gnome-vfs.keys.in.h:56
-msgid "KDE application information"
+#: data/mime/gnome-vfs.keys.in.h:57
+msgid "KDE application details"
 msgstr "KDE-programinformation"
 
-#: data/mime/gnome-vfs.keys.in.h:57
+#: data/mime/gnome-vfs.keys.in.h:58
 msgid "Korn shell script"
 msgstr "Korn-skalskript"
 
-#: data/mime/gnome-vfs.keys.in.h:58
+#: data/mime/gnome-vfs.keys.in.h:59
 msgid "LHA archive"
 msgstr "LHA-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:59
+#: data/mime/gnome-vfs.keys.in.h:60
 msgid "LHARC archive"
 msgstr "LHARC-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:60
+#: data/mime/gnome-vfs.keys.in.h:61
 msgid "LIBGRX font"
 msgstr "LIBGRX-typsnitt"
 
-#: data/mime/gnome-vfs.keys.in.h:61
+#: data/mime/gnome-vfs.keys.in.h:62
 msgid "LightWave object"
 msgstr "LightWave-objekt"
 
-#: data/mime/gnome-vfs.keys.in.h:62
+#: data/mime/gnome-vfs.keys.in.h:63
 msgid "LightWave scene"
 msgstr "LightWave-scen"
 
-#: data/mime/gnome-vfs.keys.in.h:63
-msgid "Linux psf console font"
-msgstr "Linux psf-konsolltypsnitt"
-
 #: data/mime/gnome-vfs.keys.in.h:64
+msgid "Linux PSF console font"
+msgstr "Linux PSF-konsolltypsnitt"
+
+#: data/mime/gnome-vfs.keys.in.h:65
+msgid "M3 audio URL"
+msgstr "MP3-ljud-URL"
+
+#: data/mime/gnome-vfs.keys.in.h:66
 msgid "MIDI audio"
 msgstr "MIDI-ljud"
 
-#: data/mime/gnome-vfs.keys.in.h:65
+#: data/mime/gnome-vfs.keys.in.h:67
 msgid "MOD audio"
 msgstr "MOD-ljud"
 
-#: data/mime/gnome-vfs.keys.in.h:66
+#: data/mime/gnome-vfs.keys.in.h:68
 msgid "MP3 audio"
 msgstr "MP3-ljud"
 
-#: data/mime/gnome-vfs.keys.in.h:67
+#: data/mime/gnome-vfs.keys.in.h:69
 msgid "MP3 audio playlist"
 msgstr "MP3-ljudspellista"
 
-#: data/mime/gnome-vfs.keys.in.h:68
-msgid "MPEG URL"
-msgstr "MPEG-URL"
-
-#: data/mime/gnome-vfs.keys.in.h:69
-msgid "MPEG movie"
-msgstr "MPEG-film"
-
 #: data/mime/gnome-vfs.keys.in.h:70
+msgid "MPEG video"
+msgstr "MPEG-video"
+
+#: data/mime/gnome-vfs.keys.in.h:71
 msgid "MS video"
 msgstr "MS-video"
 
-#: data/mime/gnome-vfs.keys.in.h:71
-msgid "Macintosh AppleDouble-encoded document"
-msgstr "dokument kodat med Macintosh AppleDouble"
-
 #: data/mime/gnome-vfs.keys.in.h:72
-msgid "Macintosh BinHex archive"
-msgstr "Macintosh BinHex-arkiv"
+msgid "Macintosh AppleDouble-encoded file"
+msgstr "Macintosh AppleDouble-kodad fil"
 
 #: data/mime/gnome-vfs.keys.in.h:73
-msgid "Macintosh StuffIt archive "
-msgstr "Macintosh StuffIt-arkiv "
+msgid "Macintosh BinHex-encoded file"
+msgstr "Macintosh BinHex-kodad fil"
 
 #: data/mime/gnome-vfs.keys.in.h:74
-msgid "Makefile"
-msgstr "Makefil"
+msgid "Macintosh StuffIt archive"
+msgstr "Macintosh StuffIt-arkiv "
 
 #: data/mime/gnome-vfs.keys.in.h:75
 msgid "MathML document"
@@ -329,40 +329,40 @@ msgid "Microsoft Word document"
 msgstr "Microsoft Word-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:79
+msgid "Microsoft video"
+msgstr "Microsoft-video"
+
+#: data/mime/gnome-vfs.keys.in.h:80
 msgid "Nautilus link"
 msgstr "Nautiluslänk"
 
-#: data/mime/gnome-vfs.keys.in.h:80
+#: data/mime/gnome-vfs.keys.in.h:81
 msgid "ODA document"
 msgstr "ODA-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:81
+#: data/mime/gnome-vfs.keys.in.h:82
 msgid "PBM image"
 msgstr "PBM-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:82
+#: data/mime/gnome-vfs.keys.in.h:83
 msgid "PCF font"
 msgstr "PCF-typsnitt"
 
-#: data/mime/gnome-vfs.keys.in.h:83
+#: data/mime/gnome-vfs.keys.in.h:84
 msgid "PDF document"
 msgstr "PDF-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:84
-msgid "PEF document"
-msgstr "PEF-dokument"
-
 #: data/mime/gnome-vfs.keys.in.h:85
+msgid "PEF program"
+msgstr "PEF-program"
+
+#: data/mime/gnome-vfs.keys.in.h:86
 msgid "PGM image"
 msgstr "PGM-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:86
+#: data/mime/gnome-vfs.keys.in.h:87
 msgid "PGN chess game"
 msgstr "PGN-schackparti"
-
-#: data/mime/gnome-vfs.keys.in.h:87
-msgid "PGP encrypted data"
-msgstr "PGP-krypterad data"
 
 #: data/mime/gnome-vfs.keys.in.h:88
 msgid "PGP keys"
@@ -377,19 +377,19 @@ msgid "PGP signature"
 msgstr "PGP-signatur"
 
 #: data/mime/gnome-vfs.keys.in.h:91
+msgid "PGP-encrypted file"
+msgstr "PGP-krypterad fil"
+
+#: data/mime/gnome-vfs.keys.in.h:92
 msgid "PHP script"
 msgstr "PHP-skript"
 
-#: data/mime/gnome-vfs.keys.in.h:92
+#: data/mime/gnome-vfs.keys.in.h:93
 msgid "PN RealAudio document"
 msgstr "PN RealAudio-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:93
-msgid "PNG image"
-msgstr "PNG-bild"
-
 #: data/mime/gnome-vfs.keys.in.h:94
-msgid "PNG image\t"
+msgid "PNG image"
 msgstr "PNG-bild"
 
 #: data/mime/gnome-vfs.keys.in.h:95
@@ -421,8 +421,8 @@ msgid "PostScript document"
 msgstr "PostScript-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:102
-msgid "Python script"
-msgstr "Pythonskript"
+msgid "Python source code"
+msgstr "Python-källkod"
 
 #: data/mime/gnome-vfs.keys.in.h:103
 msgid "QuickTime movie"
@@ -433,8 +433,8 @@ msgid "RAR archive"
 msgstr "RAR-arkiv"
 
 #: data/mime/gnome-vfs.keys.in.h:105
-msgid "README file"
-msgstr "README-fil"
+msgid "README document"
+msgstr "README-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:106
 msgid "RGB image"
@@ -449,24 +449,24 @@ msgid "RPM package"
 msgstr "RPM-paket"
 
 #: data/mime/gnome-vfs.keys.in.h:109
-msgid "RealAudio document"
-msgstr "RealAudio-dokument"
+msgid "RealAudio/Video document"
+msgstr "RealAudio/Video-dokument"
 
 #: data/mime/gnome-vfs.keys.in.h:110
-msgid "RealVideo document"
-msgstr "RealVideo-dokument"
+msgid "RealVideo video"
+msgstr "RealVideo-video"
 
 #: data/mime/gnome-vfs.keys.in.h:111
-msgid "S/MIME data"
-msgstr "S/MIME-data"
+msgid "S/MIME file"
+msgstr "S/MIME-fil"
 
 #: data/mime/gnome-vfs.keys.in.h:112
 msgid "S/MIME signature"
 msgstr "S/MIME-signatur"
 
 #: data/mime/gnome-vfs.keys.in.h:113
-msgid "SGI movie"
-msgstr "SGI-film"
+msgid "SGI video"
+msgstr "SGI-video"
 
 #: data/mime/gnome-vfs.keys.in.h:114
 msgid "SGML document"
@@ -477,16 +477,16 @@ msgid "SMIL script"
 msgstr "SMIL-skript"
 
 #: data/mime/gnome-vfs.keys.in.h:116
-msgid "SQL source code"
-msgstr "SQL-källkod"
+msgid "SQL code"
+msgstr "SQL-kod"
 
 #: data/mime/gnome-vfs.keys.in.h:117
-msgid "SV4Cpio document "
-msgstr "SV4CPIO-dokument"
+msgid "SV4 CPIO archive"
+msgstr "SV4 CPIO-arkiv"
 
 #: data/mime/gnome-vfs.keys.in.h:118
-msgid "SV4Crc document "
-msgstr "SV4Crc-dokument"
+msgid "SV4 CPIP archive (with CRC)"
+msgstr "SV4 CPIO-arkiv (med CRC)"
 
 #: data/mime/gnome-vfs.keys.in.h:119
 msgid "SVG art"
@@ -521,414 +521,422 @@ msgid "Speedo font"
 msgstr "Speedo-typsnitt"
 
 #: data/mime/gnome-vfs.keys.in.h:127
+msgid "StarOffice Writer document"
+msgstr "StarOffice Writer-dokument"
+
+#: data/mime/gnome-vfs.keys.in.h:128
 msgid "StarOffice presentation"
 msgstr "StarOffice-presentation"
 
-#: data/mime/gnome-vfs.keys.in.h:128
+#: data/mime/gnome-vfs.keys.in.h:129
 msgid "StarOffice spreadsheet"
 msgstr "StarOffice-kalkylblad"
 
-#: data/mime/gnome-vfs.keys.in.h:129
-msgid "StarOffice word processing document"
-msgstr "StarOffice-ordbehandlingsdokument"
-
 #: data/mime/gnome-vfs.keys.in.h:130
+msgid "Sun µ-law audio"
+msgstr "Sun µ-law-ljud"
+
+#: data/mime/gnome-vfs.keys.in.h:131
 msgid "SunOS News font"
 msgstr "SunOS News-typsnitt"
 
-#: data/mime/gnome-vfs.keys.in.h:131
+#: data/mime/gnome-vfs.keys.in.h:132
 msgid "TIFF image"
 msgstr "TIFF-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:132
+#: data/mime/gnome-vfs.keys.in.h:133
 msgid "TarGA image"
 msgstr "TarGA-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:133
+#: data/mime/gnome-vfs.keys.in.h:134
 msgid "Tcl script"
 msgstr "Tcl-skript"
 
-#: data/mime/gnome-vfs.keys.in.h:134
+#: data/mime/gnome-vfs.keys.in.h:135
 msgid "TeX document"
 msgstr "TeX-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:135
+#: data/mime/gnome-vfs.keys.in.h:136
 msgid "TeX dvi document"
 msgstr "TeX dvi-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:136
+#: data/mime/gnome-vfs.keys.in.h:137
 msgid "TeX font"
 msgstr "TeX-typsnitt"
 
-#: data/mime/gnome-vfs.keys.in.h:137
+#: data/mime/gnome-vfs.keys.in.h:138
 msgid "TeX font metrics"
 msgstr "TeX-typsnittsmetrik"
 
-#: data/mime/gnome-vfs.keys.in.h:138
+#: data/mime/gnome-vfs.keys.in.h:139
 msgid "TeXInfo document"
 msgstr "TeXInfo-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:139
+#: data/mime/gnome-vfs.keys.in.h:140
 msgid "ToutDoux document"
 msgstr "ToutDoux-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:140
-msgid "Troff ME-macros document"
-msgstr "Troff ME-makrodokument"
-
 #: data/mime/gnome-vfs.keys.in.h:141
-msgid "Troff MS-macros document"
-msgstr "Troff MS-makrodokument"
-
-#: data/mime/gnome-vfs.keys.in.h:142
 msgid "Troff document"
 msgstr "Troff-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:143
+#: data/mime/gnome-vfs.keys.in.h:142
 msgid "TrueType font"
 msgstr "TrueType-typsnitt"
 
-#: data/mime/gnome-vfs.keys.in.h:144
+#: data/mime/gnome-vfs.keys.in.h:143
 msgid "USENET news message"
 msgstr "diskussionsgruppsmeddelande"
 
-#: data/mime/gnome-vfs.keys.in.h:145
-msgid "UStar archive"
-msgstr "UStar-arkiv"
-
-#: data/mime/gnome-vfs.keys.in.h:146
+#: data/mime/gnome-vfs.keys.in.h:144
 msgid "Unidata netCDF document"
 msgstr "Unidata netCDF-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:147
+#: data/mime/gnome-vfs.keys.in.h:145
 msgid "V font"
 msgstr "V-typsnitt"
 
-#: data/mime/gnome-vfs.keys.in.h:148
+#: data/mime/gnome-vfs.keys.in.h:146
 msgid "VOC audio"
 msgstr "VOC-ljud"
 
-#: data/mime/gnome-vfs.keys.in.h:149
-msgid "VRML data"
-msgstr "VRML-data"
+#: data/mime/gnome-vfs.keys.in.h:147
+msgid "VRML document"
+msgstr "VRML-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:150
+#: data/mime/gnome-vfs.keys.in.h:148
 msgid "Vivo video"
 msgstr "Vivo-video"
 
-#: data/mime/gnome-vfs.keys.in.h:151
+#: data/mime/gnome-vfs.keys.in.h:149
 msgid "WAIS source code"
 msgstr "WAIS-källkod"
 
-#: data/mime/gnome-vfs.keys.in.h:152
-msgid "Wave audio"
-msgstr "Wave-ljud"
-
-#: data/mime/gnome-vfs.keys.in.h:153
+#: data/mime/gnome-vfs.keys.in.h:150
 msgid "Wavelet video"
 msgstr "Wavelet-video"
 
-#: data/mime/gnome-vfs.keys.in.h:154
+#: data/mime/gnome-vfs.keys.in.h:151
 msgid "Windows bitmap image"
 msgstr "Windows-bitmappbild"
 
-#: data/mime/gnome-vfs.keys.in.h:155
+#: data/mime/gnome-vfs.keys.in.h:152
 msgid "Windows icon image"
 msgstr "Windows-ikonbild"
 
-#: data/mime/gnome-vfs.keys.in.h:156
+#: data/mime/gnome-vfs.keys.in.h:153
 msgid "WordPerfect document"
 msgstr "WordPerfect-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:157
+#: data/mime/gnome-vfs.keys.in.h:154
 msgid "X bitmap image"
 msgstr "X-bitmappbild"
 
-#: data/mime/gnome-vfs.keys.in.h:158
+#: data/mime/gnome-vfs.keys.in.h:155
 msgid "X window image"
 msgstr "X-fönsterbild"
 
-#: data/mime/gnome-vfs.keys.in.h:159
+#: data/mime/gnome-vfs.keys.in.h:156
 msgid "XML document"
 msgstr "XML-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:160
-msgid "XPM image\t"
+#: data/mime/gnome-vfs.keys.in.h:157
+msgid "XPM image"
 msgstr "XPM-bild"
 
-#: data/mime/gnome-vfs.keys.in.h:161
+#: data/mime/gnome-vfs.keys.in.h:158
 msgid "active server page"
 msgstr "Active Server Page"
 
-#: data/mime/gnome-vfs.keys.in.h:162
+#: data/mime/gnome-vfs.keys.in.h:159
 msgid "address card"
 msgstr "adresskort"
 
-#: data/mime/gnome-vfs.keys.in.h:163
-msgid "animation"
-msgstr "animation"
+#: data/mime/gnome-vfs.keys.in.h:160
+msgid "ar archive"
+msgstr "ar-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:164
-msgid "archive"
-msgstr "arkiv"
-
-#: data/mime/gnome-vfs.keys.in.h:165
+#: data/mime/gnome-vfs.keys.in.h:161
 msgid "arj archive"
 msgstr "ARJ-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:166
-msgid "audio"
-msgstr "ljud"
-
-#: data/mime/gnome-vfs.keys.in.h:167
-msgid "author credits"
-msgstr "författarlista"
-
-#: data/mime/gnome-vfs.keys.in.h:168
+#: data/mime/gnome-vfs.keys.in.h:162
 msgid "authors list"
 msgstr "författarlista"
 
-#: data/mime/gnome-vfs.keys.in.h:169
-msgid "backup document"
-msgstr "säkerhetskopia"
+#: data/mime/gnome-vfs.keys.in.h:163
+msgid "backup file"
+msgstr "backupfil"
 
-#: data/mime/gnome-vfs.keys.in.h:170
+#: data/mime/gnome-vfs.keys.in.h:164
 msgid "basic audio"
 msgstr "grundläggande ljud"
 
-#: data/mime/gnome-vfs.keys.in.h:171
+#: data/mime/gnome-vfs.keys.in.h:165
 msgid "bibliography record"
 msgstr "bibliografipost"
 
-#: data/mime/gnome-vfs.keys.in.h:172
+#: data/mime/gnome-vfs.keys.in.h:166
 msgid "binary program"
 msgstr "binärprogram"
 
-#: data/mime/gnome-vfs.keys.in.h:173
+#: data/mime/gnome-vfs.keys.in.h:167
 msgid "block device"
 msgstr "blockenhet"
 
-#: data/mime/gnome-vfs.keys.in.h:174
-msgid "bzip archive"
-msgstr "bzip-arkiv"
+#: data/mime/gnome-vfs.keys.in.h:168
+msgid "bzip-compressed file"
+msgstr "bzip-komprimerat arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:175
-msgid "calendar information"
-msgstr "kalenderinformation"
+#: data/mime/gnome-vfs.keys.in.h:169
+msgid "calendar file"
+msgstr "kalenderfil"
 
-#: data/mime/gnome-vfs.keys.in.h:176
-msgid "calendar or event information"
-msgstr "kalender eller evenemangsinformation"
+#: data/mime/gnome-vfs.keys.in.h:170
+msgid "calendar or event document"
+msgstr "kalender- eller händelsedokument"
 
-#: data/mime/gnome-vfs.keys.in.h:177
+#: data/mime/gnome-vfs.keys.in.h:171
 msgid "character device"
 msgstr "teckenenhet"
 
-#: data/mime/gnome-vfs.keys.in.h:178
-msgid "class code"
-msgstr "klasskod"
-
-#: data/mime/gnome-vfs.keys.in.h:179
-msgid "comma-separated text"
+#: data/mime/gnome-vfs.keys.in.h:172
+msgid "comma-separated text document"
 msgstr "kommaseparerad text"
 
-#: data/mime/gnome-vfs.keys.in.h:180
+#: data/mime/gnome-vfs.keys.in.h:173
 msgid "compound document"
 msgstr "sammansatt dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:181
-msgid "compressed CPIO archive"
-msgstr "komprimerat CPIO-arkiv"
+#: data/mime/gnome-vfs.keys.in.h:174
+msgid "compress-compressed file"
+msgstr "compress-komprimerad fil"
 
-#: data/mime/gnome-vfs.keys.in.h:182
-msgid "compressed GIMP image archive"
-msgstr "komprimerat GIMP-bildarkiv"
+#: data/mime/gnome-vfs.keys.in.h:175
+msgid "compressed GIMP document"
+msgstr "komprimerat GIMP-dokument"
 
-#: data/mime/gnome-vfs.keys.in.h:183
-msgid "compressed archive"
-msgstr "komprimerat arkiv"
+#: data/mime/gnome-vfs.keys.in.h:176
+msgid "directory information file"
+msgstr "kataloginformationsfil"
 
-#: data/mime/gnome-vfs.keys.in.h:184
-msgid "compressed bzip archive"
-msgstr "komprimerat bzip-arkiv"
-
-#: data/mime/gnome-vfs.keys.in.h:185
-msgid "directory information"
-msgstr "kataloginformation"
-
-#: data/mime/gnome-vfs.keys.in.h:186
+#: data/mime/gnome-vfs.keys.in.h:177
 msgid "document type definition"
 msgstr "dokumenttypdefinition"
 
-#: data/mime/gnome-vfs.keys.in.h:187
+#: data/mime/gnome-vfs.keys.in.h:178
 msgid "email headers"
 msgstr "e-posthuvuden"
 
-#: data/mime/gnome-vfs.keys.in.h:188
+#: data/mime/gnome-vfs.keys.in.h:179
 msgid "email message"
 msgstr "e-postmeddelande"
 
-#: data/mime/gnome-vfs.keys.in.h:189
+#: data/mime/gnome-vfs.keys.in.h:180
 msgid "encrypted message"
 msgstr "krypterat meddelande"
 
-#: data/mime/gnome-vfs.keys.in.h:190
-msgid "enriched text"
-msgstr "enriched text"
+#: data/mime/gnome-vfs.keys.in.h:181
+msgid "enriched text document"
+msgstr "berikat textdokument"
 
-#: data/mime/gnome-vfs.keys.in.h:191
+#: data/mime/gnome-vfs.keys.in.h:182
 msgid "folder"
 msgstr "mapp"
 
-#: data/mime/gnome-vfs.keys.in.h:192
+#: data/mime/gnome-vfs.keys.in.h:183
 msgid "gtar archive"
 msgstr "gtar-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:193
-msgid "gzip archive"
-msgstr "gzip-arkiv"
+#: data/mime/gnome-vfs.keys.in.h:184
+msgid "gzip-compressed file"
+msgstr "gzip-komprimerad fil"
 
-#: data/mime/gnome-vfs.keys.in.h:194
-msgid "installation instructions"
-msgstr "installationsinstruktioner"
+#: data/mime/gnome-vfs.keys.in.h:185
+msgid "help page"
+msgstr "hjälpsida"
 
-#: data/mime/gnome-vfs.keys.in.h:195
-msgid "link"
-msgstr "länk"
-
-#: data/mime/gnome-vfs.keys.in.h:196
+#: data/mime/gnome-vfs.keys.in.h:186
 msgid "mail delivery report"
 msgstr "e-postleveransrapport"
 
-#: data/mime/gnome-vfs.keys.in.h:197
+#: data/mime/gnome-vfs.keys.in.h:187
 msgid "mail disposition report"
 msgstr "e-postdisposisjonsrapport"
 
-#: data/mime/gnome-vfs.keys.in.h:198
+#: data/mime/gnome-vfs.keys.in.h:188
 msgid "mail system report"
 msgstr "e-postsystemrapport"
 
-#: data/mime/gnome-vfs.keys.in.h:199
+#: data/mime/gnome-vfs.keys.in.h:189
+msgid "makefile"
+msgstr "makefil"
+
+#: data/mime/gnome-vfs.keys.in.h:190
 msgid "manual page"
 msgstr "manualsida"
 
-#: data/mime/gnome-vfs.keys.in.h:200
-msgid "manual page archive"
-msgstr "manualsidearkiv"
+#: data/mime/gnome-vfs.keys.in.h:191
+msgid "manual page (compressed)"
+msgstr "manualsida (komprimerad)"
 
-#: data/mime/gnome-vfs.keys.in.h:201
+#: data/mime/gnome-vfs.keys.in.h:192
 msgid "memory dump"
 msgstr "minnesdump"
 
-#: data/mime/gnome-vfs.keys.in.h:202
+#: data/mime/gnome-vfs.keys.in.h:193
 msgid "message digest"
 msgstr "meddelandesamling"
 
-#: data/mime/gnome-vfs.keys.in.h:203
+#: data/mime/gnome-vfs.keys.in.h:194
 msgid "message in several formats"
 msgstr "meddelande i flera format"
 
-#: data/mime/gnome-vfs.keys.in.h:204
+#: data/mime/gnome-vfs.keys.in.h:195
 msgid "multi-part message"
 msgstr "meddelande i flera delar"
 
-#: data/mime/gnome-vfs.keys.in.h:205
+#: data/mime/gnome-vfs.keys.in.h:196
 msgid "named pipe"
 msgstr "namngivet rör"
 
-#: data/mime/gnome-vfs.keys.in.h:206
+#: data/mime/gnome-vfs.keys.in.h:197
 msgid "object code"
 msgstr "objektkod"
 
-#: data/mime/gnome-vfs.keys.in.h:207
-msgid "ogg file"
-msgstr "ogg-fil"
+#: data/mime/gnome-vfs.keys.in.h:198
+msgid "ogg audio"
+msgstr "ogg-ljud"
 
-#: data/mime/gnome-vfs.keys.in.h:208
+#: data/mime/gnome-vfs.keys.in.h:199
 msgid "partial email message"
 msgstr "del av e-postmeddelande"
 
-#: data/mime/gnome-vfs.keys.in.h:209
-msgid "plain text"
-msgstr "vanlig text"
+#: data/mime/gnome-vfs.keys.in.h:200
+msgid "plain text document"
+msgstr "textdokument"
 
-#: data/mime/gnome-vfs.keys.in.h:210
-msgid "pointer to remote data"
-msgstr "pekare till fjärrdata"
-
-#: data/mime/gnome-vfs.keys.in.h:211
+#: data/mime/gnome-vfs.keys.in.h:201
 msgid "profiler results"
 msgstr "profilerarresultat"
 
-#: data/mime/gnome-vfs.keys.in.h:212
+#: data/mime/gnome-vfs.keys.in.h:202
+msgid "reference to remote file"
+msgstr "referens till en icke-lokal fil"
+
+#: data/mime/gnome-vfs.keys.in.h:203
 msgid "rejected patch file"
 msgstr "avvisad patchfil"
 
-#: data/mime/gnome-vfs.keys.in.h:213
-msgid "rich text"
-msgstr "rik text"
+#: data/mime/gnome-vfs.keys.in.h:204
+msgid "rich text document"
+msgstr "rikt textdokument"
 
-#: data/mime/gnome-vfs.keys.in.h:214
+#: data/mime/gnome-vfs.keys.in.h:205
 msgid "search results"
 msgstr "sökresultat"
 
-#: data/mime/gnome-vfs.keys.in.h:215
+#: data/mime/gnome-vfs.keys.in.h:206
 msgid "shared library"
 msgstr "delat bibliotek"
 
-#: data/mime/gnome-vfs.keys.in.h:216
+#: data/mime/gnome-vfs.keys.in.h:207
 msgid "shell archive"
 msgstr "skalarkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:217
+#: data/mime/gnome-vfs.keys.in.h:208
 msgid "shell script"
 msgstr "skalskript"
 
-#: data/mime/gnome-vfs.keys.in.h:218
+#: data/mime/gnome-vfs.keys.in.h:209
 msgid "signed message"
 msgstr "signerat meddelande"
 
-#: data/mime/gnome-vfs.keys.in.h:219
+#: data/mime/gnome-vfs.keys.in.h:210
 msgid "socket"
 msgstr "uttag"
 
-#: data/mime/gnome-vfs.keys.in.h:220
+#: data/mime/gnome-vfs.keys.in.h:211
+msgid "software author credits"
+msgstr "författarlista"
+
+#: data/mime/gnome-vfs.keys.in.h:212
+msgid "software installation instructions"
+msgstr "installationsinstruktioner"
+
+#: data/mime/gnome-vfs.keys.in.h:213
+msgid "software license terms"
+msgstr "licensavtal"
+
+#: data/mime/gnome-vfs.keys.in.h:214
 msgid "source code patch"
 msgstr "källkodspatch"
 
-#: data/mime/gnome-vfs.keys.in.h:221
+#: data/mime/gnome-vfs.keys.in.h:215
 msgid "style sheet"
 msgstr "stilmall"
 
-#: data/mime/gnome-vfs.keys.in.h:222
-msgid "tab-separated text"
-msgstr "tabbseparerad text"
+#: data/mime/gnome-vfs.keys.in.h:216
+msgid "symbolic link"
+msgstr "symbolisk länk"
 
-#: data/mime/gnome-vfs.keys.in.h:223
+#: data/mime/gnome-vfs.keys.in.h:217
+msgid "tab-separated text document"
+msgstr "tabbseparerat textdokument"
+
+#: data/mime/gnome-vfs.keys.in.h:218
 msgid "tar archive"
 msgstr "tar-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:224
+#: data/mime/gnome-vfs.keys.in.h:219
+msgid "tar archive (bzip2-compressed)"
+msgstr "tar-arkiv (bzip2-komprimerat)"
+
+#: data/mime/gnome-vfs.keys.in.h:220
+msgid "tar archive (gzip-compressed)"
+msgstr "tar-arkiv (gzip-komprimerat)"
+
+#: data/mime/gnome-vfs.keys.in.h:221
 msgid "theme"
 msgstr "tema"
 
+#: data/mime/gnome-vfs.keys.in.h:222
+msgid "troff me input document"
+msgstr "troff me-dokument"
+
+#: data/mime/gnome-vfs.keys.in.h:223
+msgid "troff mm input document"
+msgstr "troff mm-dokument"
+
+#: data/mime/gnome-vfs.keys.in.h:224
+msgid "troff ms input document"
+msgstr "troff ms-dokument"
+
 #: data/mime/gnome-vfs.keys.in.h:225
-msgid "unknown data"
-msgstr "data av okänd typ"
+msgid "unknown type"
+msgstr "okänd typ"
 
 #: data/mime/gnome-vfs.keys.in.h:226
+msgid "ustar archive"
+msgstr "ustar-arkiv"
+
+#: data/mime/gnome-vfs.keys.in.h:227
+msgid "wave audio"
+msgstr "wave-ljud"
+
+#: data/mime/gnome-vfs.keys.in.h:228
 msgid "web folder"
 msgstr "webbmapp"
 
-#: data/mime/gnome-vfs.keys.in.h:227
-msgid "xfig image"
-msgstr "xfig-bild"
+#: data/mime/gnome-vfs.keys.in.h:229
+msgid "xfig vector graphic"
+msgstr "xfig-vektorgrafik"
 
-#: data/mime/gnome-vfs.keys.in.h:228
+#: data/mime/gnome-vfs.keys.in.h:230
 msgid "zip archive"
 msgstr "zip-arkiv"
 
-#: data/mime/gnome-vfs.keys.in.h:229
+#: data/mime/gnome-vfs.keys.in.h:231
 msgid "zoo archive"
 msgstr "zoo-arkiv"
 
@@ -1664,6 +1672,105 @@ msgstr "Visa:"
 #: test/gnome-file-selection/gnome-file-selection.c:887
 msgid "Show dotfiles"
 msgstr "Visa punktfiler"
+
+#~ msgid "Audio-Video Interleave"
+#~ msgstr "Audio/Video-fil (AVI-fil)"
+
+#~ msgid "C-Shell script"
+#~ msgstr "C-skalskript"
+
+#~ msgid "FLC video animation"
+#~ msgstr "FLC-videoanimation"
+
+#~ msgid "FLI video animation"
+#~ msgstr "FLI-videoanimation"
+
+#~ msgid "GIMP image"
+#~ msgstr "GIMP-bild"
+
+#~ msgid "GNU license"
+#~ msgstr "GNU-licens"
+
+#~ msgid "HTML document"
+#~ msgstr "HTML-dokument"
+
+#~ msgid "MPEG URL"
+#~ msgstr "MPEG-URL"
+
+#~ msgid "PEF document"
+#~ msgstr "PEF-dokument"
+
+#~ msgid "PNG image\t"
+#~ msgstr "PNG-bild"
+
+#~ msgid "Python script"
+#~ msgstr "Pythonskript"
+
+#~ msgid "README file"
+#~ msgstr "README-fil"
+
+#~ msgid "S/MIME data"
+#~ msgstr "S/MIME-data"
+
+#~ msgid "SGI movie"
+#~ msgstr "SGI-film"
+
+#~ msgid "SV4Cpio document "
+#~ msgstr "SV4CPIO-dokument"
+
+#~ msgid "SV4Crc document "
+#~ msgstr "SV4Crc-dokument"
+
+#~ msgid "Troff ME-macros document"
+#~ msgstr "Troff ME-makrodokument"
+
+#~ msgid "Troff MS-macros document"
+#~ msgstr "Troff MS-makrodokument"
+
+#~ msgid "UStar archive"
+#~ msgstr "UStar-arkiv"
+
+#~ msgid "VRML data"
+#~ msgstr "VRML-data"
+
+#~ msgid "backup document"
+#~ msgstr "säkerhetskopia"
+
+#~ msgid "bzip archive"
+#~ msgstr "bzip-arkiv"
+
+#~ msgid "class code"
+#~ msgstr "klasskod"
+
+#~ msgid "compressed GIMP image archive"
+#~ msgstr "komprimerat GIMP-bildarkiv"
+
+#~ msgid "compressed bzip archive"
+#~ msgstr "komprimerat bzip-arkiv"
+
+#~ msgid "enriched text"
+#~ msgstr "enriched text"
+
+#~ msgid "gzip archive"
+#~ msgstr "gzip-arkiv"
+
+#~ msgid "link"
+#~ msgstr "länk"
+
+#~ msgid "ogg file"
+#~ msgstr "ogg-fil"
+
+#~ msgid "plain text"
+#~ msgstr "vanlig text"
+
+#~ msgid "pointer to remote data"
+#~ msgstr "pekare till fjärrdata"
+
+#~ msgid "rich text"
+#~ msgstr "rik text"
+
+#~ msgid "xfig image"
+#~ msgstr "xfig-bild"
 
 #~ msgid "Error writing to the wakeup GnomeVFSJob channel."
 #~ msgstr "Fel vid skrivning till GnomeVFSJob-kanalen."
