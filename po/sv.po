@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "POT-Creation-Date: 2000-09-12 02:51+0200\n"
-"PO-Revision-Date: 2000-09-12 02:52+0200\n"
+"PO-Revision-Date: 2000-09-13 02:17+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Ogiltiga parametrar"
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Unsupported operation"
-msgstr "Ej stödd operation"
+msgstr "Operationen stöds inte"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:45
@@ -376,7 +376,7 @@ msgstr "Kan inte döda GNOME::VFS:Slave::Notify -- undantag %s"
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
 #, c-format
 msgid "Cannot connect socket `%s': %s"
-msgstr "Kan inte ansluta socket: \"%s\": %s"
+msgstr "Kan inte ansluta uttag (socket): \"%s\": %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:750
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
@@ -385,12 +385,12 @@ msgstr "Kan inte initiera GNOME::VFS:Slave:Notify"
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan inte nollställa GNOME::VFS::Slave %s -- undantag %s"
+msgstr "Kan inte återställa GNOME::VFS::Slave %s -- undantag %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan inte nollställa GNOME::VFS::Slave (IOR okänt) -- undantag %s"
+msgstr "Kan inte återställa GNOME::VFS::Slave (IOR okänt) -- undantag %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
@@ -599,7 +599,7 @@ msgstr "Okänd GnomeVFSSeekPosition %d"
 #: modules/http-method.c:525
 #, c-format
 msgid "Invalid header `%s'"
-msgstr "Ogiltig header \"%s\""
+msgstr "Ogiltigt huvud \"%s\""
 
 #: modules/http-method.c:542
 #, c-format
