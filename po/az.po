@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.1.0\n"
-"POT-Creation-Date: 2001-02-19 14:55+0100\n"
-"PO-Revision-Date: 2000-02-26 22:59+0200\n"
+"POT-Creation-Date: 2001-03-15 15:39+0100\n"
+"PO-Revision-Date: 2000-03-12 22:59+0200\n"
 "Last-Translator: Vasif Ismailoglu MD <azerb_linux@hotmail.com>\n"
 "Language-Team:Azerbaijani Turkish \n"
 "MIME-Version: 1.0\n"
@@ -134,809 +134,1011 @@ msgid "Dia diagram"
 msgstr "Dia diaqramı"
 
 #: data/mime/gnome-vfs.keys.in.h:31
+msgid "Dolby Digital audio"
+msgstr "Dolby Digital Audio"
+
+#: data/mime/gnome-vfs.keys.in.h:32
 msgid "Emacs Lisp source code"
 msgstr "Emacs Lisp qaynaq kodu"
 
-#: data/mime/gnome-vfs.keys.in.h:32
+#: data/mime/gnome-vfs.keys.in.h:33
 msgid "Enlightenment theme"
 msgstr "Enlightment örtüsü"
 
-#: data/mime/gnome-vfs.keys.in.h:33
+#: data/mime/gnome-vfs.keys.in.h:34
 msgid "FLC animation"
 msgstr "FLC animasiyası"
 
-#: data/mime/gnome-vfs.keys.in.h:34
+#: data/mime/gnome-vfs.keys.in.h:35
 msgid "FLI animation"
 msgstr "FLI animasiyası"
 
-#: data/mime/gnome-vfs.keys.in.h:35
+#: data/mime/gnome-vfs.keys.in.h:36
 msgid "FastTracker II audio"
 msgstr "FastTracker II audio"
 
-#: data/mime/gnome-vfs.keys.in.h:36
+#: data/mime/gnome-vfs.keys.in.h:37
 msgid "Fortran source code"
 msgstr "Fortran qaynaq kodu"
 
-#: data/mime/gnome-vfs.keys.in.h:37
+#: data/mime/gnome-vfs.keys.in.h:38
 msgid "FrameMaker interchange document"
 msgstr "FrameMaker mübadilə sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:38
+#: data/mime/gnome-vfs.keys.in.h:39
 msgid "G3 fax image"
 msgstr "G3 faks rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:39
+#: data/mime/gnome-vfs.keys.in.h:40
 msgid "GIF image"
 msgstr "GIF rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:40
+#: data/mime/gnome-vfs.keys.in.h:41
 msgid "GIMP document"
 msgstr "GIMP sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:41
-msgid "GMC link"
-msgstr "GMC baǧı"
-
 #: data/mime/gnome-vfs.keys.in.h:42
+msgid "GMC link"
+msgstr "GMC bağı"
+
+#: data/mime/gnome-vfs.keys.in.h:43
 msgid "GNOME application details"
 msgstr "GNOME proqramları detalları"
 
-#: data/mime/gnome-vfs.keys.in.h:43
+#: data/mime/gnome-vfs.keys.in.h:44
+msgid "GNU Oleo Spreadsheet"
+msgstr "GNU Oleo Hesab Cədvəli"
+
+#: data/mime/gnome-vfs.keys.in.h:45
 msgid "GNU mail message"
 msgstr "GNU elektronik məktub ismarıcı"
 
-#: data/mime/gnome-vfs.keys.in.h:44
+#: data/mime/gnome-vfs.keys.in.h:46
 msgid "GTK configuration"
-msgstr "GTK qurǧuları"
+msgstr "GTK qurğuları"
 
-#: data/mime/gnome-vfs.keys.in.h:45
+#: data/mime/gnome-vfs.keys.in.h:47
+msgid "Glade project"
+msgstr "Gleyd lahiyəsi"
+
+#: data/mime/gnome-vfs.keys.in.h:48
+msgid "GnuCash Workbook"
+msgstr "GnuKeş İş Kitabı"
+
+#: data/mime/gnome-vfs.keys.in.h:49
 msgid "Gnumeric spreadsheet"
 msgstr "Gnomeric hesab cədvəli"
 
-#: data/mime/gnome-vfs.keys.in.h:46
+#: data/mime/gnome-vfs.keys.in.h:50
 msgid "HDF document"
 msgstr "HDF sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:47
+#: data/mime/gnome-vfs.keys.in.h:51
 msgid "HTML page"
 msgstr "HTMl səhifəsi"
 
-#: data/mime/gnome-vfs.keys.in.h:48
+#: data/mime/gnome-vfs.keys.in.h:52
 msgid "IDL document"
 msgstr "IDL sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:49
+#: data/mime/gnome-vfs.keys.in.h:53
 msgid "IEF image"
 msgstr "IEF rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:50
+#: data/mime/gnome-vfs.keys.in.h:54
 msgid "IFF image"
 msgstr "IFF rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:51
+#: data/mime/gnome-vfs.keys.in.h:55
 msgid "ILBM image"
 msgstr "ILBM rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:52
+#: data/mime/gnome-vfs.keys.in.h:56
 msgid "ISI video"
 msgstr "ISI video"
 
-#: data/mime/gnome-vfs.keys.in.h:53
+#: data/mime/gnome-vfs.keys.in.h:57
 msgid "Impulse Tracker audio"
 msgstr "Impulse Tracker audio"
 
-#: data/mime/gnome-vfs.keys.in.h:54
+#: data/mime/gnome-vfs.keys.in.h:58
+msgid "JBuilder Project"
+msgstr "JBilder Lahiyəsi"
+
+#: data/mime/gnome-vfs.keys.in.h:59
 msgid "JPEG image"
 msgstr "JPEG rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:55
+#: data/mime/gnome-vfs.keys.in.h:60
 msgid "Java byte code"
 msgstr "Java bayt kodu"
 
-#: data/mime/gnome-vfs.keys.in.h:56
+#: data/mime/gnome-vfs.keys.in.h:61
 msgid "Java source code"
 msgstr "Java qaynaq kodu"
 
-#: data/mime/gnome-vfs.keys.in.h:57
+#: data/mime/gnome-vfs.keys.in.h:62
 msgid "KDE application details"
 msgstr "KDE proqramları detalları"
 
-#: data/mime/gnome-vfs.keys.in.h:58
+#: data/mime/gnome-vfs.keys.in.h:63
+msgid "KIllustrator document"
+msgstr "Killustrator sənədi"
+
+#: data/mime/gnome-vfs.keys.in.h:64
+msgid "KPresenter presentation"
+msgstr "KPresenter nümayişi"
+
+#: data/mime/gnome-vfs.keys.in.h:65
+msgid "KSpread spreadsheet"
+msgstr "KSpread hesab cədvəlləri"
+
+#: data/mime/gnome-vfs.keys.in.h:66
+msgid "KWord document"
+msgstr "KWord sənədi"
+
+#: data/mime/gnome-vfs.keys.in.h:67
 msgid "Korn shell script"
 msgstr "Korn qabıq skripti"
 
-#: data/mime/gnome-vfs.keys.in.h:59
+#: data/mime/gnome-vfs.keys.in.h:68
 msgid "LHA archive"
 msgstr "LHA arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:60
+#: data/mime/gnome-vfs.keys.in.h:69
 msgid "LHARC archive"
 msgstr "LHARC arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:61
+#: data/mime/gnome-vfs.keys.in.h:70
 msgid "LIBGRX font"
 msgstr "LIBGRX yazı növü"
 
-#: data/mime/gnome-vfs.keys.in.h:62
+#: data/mime/gnome-vfs.keys.in.h:71
 msgid "LightWave object"
 msgstr "LightWave cismi"
 
-#: data/mime/gnome-vfs.keys.in.h:63
+#: data/mime/gnome-vfs.keys.in.h:72
 msgid "LightWave scene"
 msgstr "LightWave səhnəsi"
 
-#: data/mime/gnome-vfs.keys.in.h:64
+#: data/mime/gnome-vfs.keys.in.h:73
 msgid "Linux PSF console font"
 msgstr "Linux RSF konsol yazı növləri"
 
-#: data/mime/gnome-vfs.keys.in.h:65
+#: data/mime/gnome-vfs.keys.in.h:74
+msgid "Lotus 1-2-3 spreadsheet"
+msgstr "Lotus 1-2-3 hesab cədvəli"
+
+#: data/mime/gnome-vfs.keys.in.h:75
 msgid "M3 audio URL"
 msgstr "M3 audio URL"
 
-#: data/mime/gnome-vfs.keys.in.h:66
+#: data/mime/gnome-vfs.keys.in.h:76
 msgid "MIDI audio"
 msgstr "MIDI audio"
 
-#: data/mime/gnome-vfs.keys.in.h:67
+#: data/mime/gnome-vfs.keys.in.h:77
 msgid "MOD audio"
 msgstr "MOD audio"
 
-#: data/mime/gnome-vfs.keys.in.h:68
+#: data/mime/gnome-vfs.keys.in.h:78
 msgid "MP3 audio"
 msgstr "MP3 audio"
 
-#: data/mime/gnome-vfs.keys.in.h:69
+#: data/mime/gnome-vfs.keys.in.h:79
 msgid "MP3 audio playlist"
-msgstr "MP3 audio çalǧı siyahısı"
+msgstr "MP3 audio çalğı siyahısı"
 
-#: data/mime/gnome-vfs.keys.in.h:70
+#: data/mime/gnome-vfs.keys.in.h:80
 msgid "MPEG video"
 msgstr "MPEG video"
 
-#: data/mime/gnome-vfs.keys.in.h:71
+#: data/mime/gnome-vfs.keys.in.h:81
+msgid "MS ASF video"
+msgstr "MS ASF video"
+
+#: data/mime/gnome-vfs.keys.in.h:82
 msgid "MS video"
 msgstr "MS video"
 
-#: data/mime/gnome-vfs.keys.in.h:72
+#: data/mime/gnome-vfs.keys.in.h:83
 msgid "Macintosh AppleDouble-encoded file"
 msgstr "Macintosh AppleDouble-encoded faylı"
 
-#: data/mime/gnome-vfs.keys.in.h:73
+#: data/mime/gnome-vfs.keys.in.h:84
 msgid "Macintosh BinHex-encoded file"
 msgstr "Macintosh BinHx-encoded faylı"
 
-#: data/mime/gnome-vfs.keys.in.h:74
+#: data/mime/gnome-vfs.keys.in.h:85
 msgid "Macintosh StuffIt archive"
 msgstr "Macintosh Stufflt arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:75
+#: data/mime/gnome-vfs.keys.in.h:86
+msgid "Macromedia Flash file"
+msgstr "Macromedia Flash faylı"
+
+#: data/mime/gnome-vfs.keys.in.h:87
 msgid "MathML document"
 msgstr "MathML sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:76
-msgid "Microsoft Excel document"
-msgstr "Microsoft Excel sənədi"
+#: data/mime/gnome-vfs.keys.in.h:88
+msgid "Microsoft Excel spreadsheet"
+msgstr "Microsoft Excel hesab cədvəli"
 
-#: data/mime/gnome-vfs.keys.in.h:77
+#: data/mime/gnome-vfs.keys.in.h:89
 msgid "Microsoft PowerPoint document"
 msgstr "Micrpspft PowerPoint sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:78
+#: data/mime/gnome-vfs.keys.in.h:90
 msgid "Microsoft Word document"
 msgstr "Microsoft Word sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:79
+#: data/mime/gnome-vfs.keys.in.h:91
 msgid "Microsoft video"
 msgstr "Microsoft video"
 
-#: data/mime/gnome-vfs.keys.in.h:80
+#: data/mime/gnome-vfs.keys.in.h:92
 msgid "Nautilus link"
-msgstr "Nautilus baǧı"
+msgstr "Nautilus bağı"
 
-#: data/mime/gnome-vfs.keys.in.h:81
+#: data/mime/gnome-vfs.keys.in.h:93
 msgid "ODA document"
 msgstr "ODA sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:82
+#: data/mime/gnome-vfs.keys.in.h:94
 msgid "PBM image"
 msgstr "PBM rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:83
+#: data/mime/gnome-vfs.keys.in.h:95
 msgid "PCF font"
 msgstr "PCF yazı növü"
 
-#: data/mime/gnome-vfs.keys.in.h:84
+#: data/mime/gnome-vfs.keys.in.h:96
 msgid "PDF document"
 msgstr "PDF sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:85
+#: data/mime/gnome-vfs.keys.in.h:97
 msgid "PEF program"
 msgstr "PEF proqramı"
 
-#: data/mime/gnome-vfs.keys.in.h:86
+#: data/mime/gnome-vfs.keys.in.h:98
 msgid "PGM image"
 msgstr "PGM rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:87
+#: data/mime/gnome-vfs.keys.in.h:99
 msgid "PGN chess game"
 msgstr "PGN şahmat oyunu"
 
-#: data/mime/gnome-vfs.keys.in.h:88
+#: data/mime/gnome-vfs.keys.in.h:100
 msgid "PGP keys"
 msgstr "PGP açarları"
 
-#: data/mime/gnome-vfs.keys.in.h:89
+#: data/mime/gnome-vfs.keys.in.h:101
 msgid "PGP message"
 msgstr "PGP ismarıcı"
 
-#: data/mime/gnome-vfs.keys.in.h:90
+#: data/mime/gnome-vfs.keys.in.h:102
 msgid "PGP signature"
 msgstr "PGP imzası"
 
-#: data/mime/gnome-vfs.keys.in.h:91
+#: data/mime/gnome-vfs.keys.in.h:103
 msgid "PGP-encrypted file"
 msgstr "PGP ile kodlanmış fayl"
 
-#: data/mime/gnome-vfs.keys.in.h:92
+#: data/mime/gnome-vfs.keys.in.h:104
 msgid "PHP script"
 msgstr "PHP skripti"
 
-#: data/mime/gnome-vfs.keys.in.h:93
+#: data/mime/gnome-vfs.keys.in.h:105
 msgid "PN RealAudio document"
 msgstr "PN RealAudio sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:94
+#: data/mime/gnome-vfs.keys.in.h:106
 msgid "PNG image"
 msgstr "PNG rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:95
+#: data/mime/gnome-vfs.keys.in.h:107
 msgid "PNM image"
 msgstr "PNM rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:96
+#: data/mime/gnome-vfs.keys.in.h:108
 msgid "PPM image"
 msgstr "PPM rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:97
+#: data/mime/gnome-vfs.keys.in.h:109
 msgid "Palm OS database"
 msgstr "Palm OS databeyzi"
 
-#: data/mime/gnome-vfs.keys.in.h:98
+#: data/mime/gnome-vfs.keys.in.h:110
 msgid "Perl script"
 msgstr "Perl skripti"
 
-#: data/mime/gnome-vfs.keys.in.h:99
+#: data/mime/gnome-vfs.keys.in.h:111
 msgid "Photoshop document"
 msgstr "Photoshop sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:100
+#: data/mime/gnome-vfs.keys.in.h:112
 msgid "PostScript Type 1 font"
 msgstr "PostScript Type 1 yazı növü"
 
-#: data/mime/gnome-vfs.keys.in.h:101
+#: data/mime/gnome-vfs.keys.in.h:113
 msgid "PostScript document"
 msgstr "PostScript sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:102
+#: data/mime/gnome-vfs.keys.in.h:114
 msgid "Python source code"
 msgstr "Phyton qaynaq kodu"
 
-#: data/mime/gnome-vfs.keys.in.h:103
+#: data/mime/gnome-vfs.keys.in.h:115
 msgid "QuickTime movie"
 msgstr "QuickTime filmi"
 
-#: data/mime/gnome-vfs.keys.in.h:104
+#: data/mime/gnome-vfs.keys.in.h:116
+msgid "Quicken document"
+msgstr "Quicken sənədi"
+
+#: data/mime/gnome-vfs.keys.in.h:117
+msgid "Quicken for Windows document"
+msgstr "Windows üçün Quicken sənədi"
+
+#: data/mime/gnome-vfs.keys.in.h:118
 msgid "RAR archive"
 msgstr "RAR arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:105
+#: data/mime/gnome-vfs.keys.in.h:119
 msgid "README document"
 msgstr "README sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:106
+#: data/mime/gnome-vfs.keys.in.h:120
 msgid "RGB image"
 msgstr "RGB rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:107
+#: data/mime/gnome-vfs.keys.in.h:121
 msgid "RIFF audio"
 msgstr "RIFF audio"
 
-#: data/mime/gnome-vfs.keys.in.h:108
+#: data/mime/gnome-vfs.keys.in.h:122
 msgid "RPM package"
 msgstr "paketi"
 
-#: data/mime/gnome-vfs.keys.in.h:109
+#: data/mime/gnome-vfs.keys.in.h:123
 msgid "RealAudio/Video document"
 msgstr "RealAudio/Video sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:110
+#: data/mime/gnome-vfs.keys.in.h:124
 msgid "RealVideo video"
 msgstr "RealVideo video"
 
-#: data/mime/gnome-vfs.keys.in.h:111
+#: data/mime/gnome-vfs.keys.in.h:125
 msgid "S/MIME file"
 msgstr "S/MIME faylı"
 
-#: data/mime/gnome-vfs.keys.in.h:112
+#: data/mime/gnome-vfs.keys.in.h:126
 msgid "S/MIME signature"
 msgstr "S/MIME imzası"
 
-#: data/mime/gnome-vfs.keys.in.h:113
+#: data/mime/gnome-vfs.keys.in.h:127
 msgid "SGI video"
 msgstr "SGI video"
 
-#: data/mime/gnome-vfs.keys.in.h:114
+#: data/mime/gnome-vfs.keys.in.h:128
 msgid "SGML document"
 msgstr "SGML sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:115
+#: data/mime/gnome-vfs.keys.in.h:129
 msgid "SMIL script"
 msgstr "SMIL skripti"
 
-#: data/mime/gnome-vfs.keys.in.h:116
+#: data/mime/gnome-vfs.keys.in.h:130
 msgid "SQL code"
 msgstr "SQL kodu"
 
-#: data/mime/gnome-vfs.keys.in.h:117
+#: data/mime/gnome-vfs.keys.in.h:131
 msgid "SV4 CPIO archive"
 msgstr "SV4 CPIO arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:118
+#: data/mime/gnome-vfs.keys.in.h:132
 msgid "SV4 CPIP archive (with CRC)"
 msgstr "SV4 CPIP arxivi (CRC ilə bərabər)"
 
-#: data/mime/gnome-vfs.keys.in.h:119
+#: data/mime/gnome-vfs.keys.in.h:133
 msgid "SVG art"
 msgstr "SVG art"
 
-#: data/mime/gnome-vfs.keys.in.h:120
+#: data/mime/gnome-vfs.keys.in.h:134
 msgid "Scheme source code"
 msgstr "Scheme qaynaq kodu"
 
-#: data/mime/gnome-vfs.keys.in.h:121
+#: data/mime/gnome-vfs.keys.in.h:135
 msgid "Scream Tracker 3 audio"
 msgstr "Scream Tracker 3 audio"
 
-#: data/mime/gnome-vfs.keys.in.h:122
+#: data/mime/gnome-vfs.keys.in.h:136
 msgid "Scream Tracker audio"
 msgstr "Scream Tracker audio"
 
-#: data/mime/gnome-vfs.keys.in.h:123
+#: data/mime/gnome-vfs.keys.in.h:137
 msgid "Scream Tracker instrument"
 msgstr "Scream Tracker aləti"
 
-#: data/mime/gnome-vfs.keys.in.h:124
+#: data/mime/gnome-vfs.keys.in.h:138
 msgid "Setext document"
 msgstr "Setext sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:125
+#: data/mime/gnome-vfs.keys.in.h:139
 msgid "Speech document"
 msgstr "Speech sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:126
+#: data/mime/gnome-vfs.keys.in.h:140
 msgid "Speedo font"
 msgstr "Speedo yazı növü"
 
-#: data/mime/gnome-vfs.keys.in.h:127
+#: data/mime/gnome-vfs.keys.in.h:141
+msgid "Spreadsheet Interchange document"
+msgstr "Spreadsheet Interchange sənədi"
+
+#: data/mime/gnome-vfs.keys.in.h:142
+msgid "Stampede package"
+msgstr "Stampede paketi"
+
+#: data/mime/gnome-vfs.keys.in.h:143
 msgid "StarOffice Writer document"
 msgstr "StarOffice Writer sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:128
+#: data/mime/gnome-vfs.keys.in.h:144
 msgid "StarOffice presentation"
 msgstr "StarOffice nümayişi"
 
-#: data/mime/gnome-vfs.keys.in.h:129
+#: data/mime/gnome-vfs.keys.in.h:145
 msgid "StarOffice spreadsheet"
 msgstr "StarOffice hesab cədvəli"
 
 # The sources use a hardcoded latin1 char for mu :-(
-#: data/mime/gnome-vfs.keys.in.h:130
+#: data/mime/gnome-vfs.keys.in.h:146
+#, fuzzy
 msgid "Sun �-law audio"
 msgstr "Sun µ-law audio"
 
-#: data/mime/gnome-vfs.keys.in.h:131
+#: data/mime/gnome-vfs.keys.in.h:147
 msgid "SunOS News font"
 msgstr "SunOS News yazı növü"
 
-#: data/mime/gnome-vfs.keys.in.h:132
+#: data/mime/gnome-vfs.keys.in.h:148
 msgid "TIFF image"
 msgstr "TIFF rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:133
+#: data/mime/gnome-vfs.keys.in.h:149
 msgid "TarGA image"
 msgstr "TarGA rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:134
+#: data/mime/gnome-vfs.keys.in.h:150
 msgid "Tcl script"
 msgstr "Tcl skripti"
 
-#: data/mime/gnome-vfs.keys.in.h:135
+#: data/mime/gnome-vfs.keys.in.h:151
 msgid "TeX document"
 msgstr "TeX sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:136
+#: data/mime/gnome-vfs.keys.in.h:152
 msgid "TeX dvi document"
 msgstr "TeX dvi sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:137
+#: data/mime/gnome-vfs.keys.in.h:153
 msgid "TeX font"
 msgstr "TeX yazı növü"
 
-#: data/mime/gnome-vfs.keys.in.h:138
+#: data/mime/gnome-vfs.keys.in.h:154
 msgid "TeX font metrics"
 msgstr "TeX yazı növü metrikləri"
 
-#: data/mime/gnome-vfs.keys.in.h:139
+#: data/mime/gnome-vfs.keys.in.h:155
 msgid "TeXInfo document"
 msgstr "Texnfo sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:140
+#: data/mime/gnome-vfs.keys.in.h:156
 msgid "ToutDoux document"
 msgstr "ToutDoux sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:141
-msgid "Troff document"
-msgstr "Troff sənədi"
-
-#: data/mime/gnome-vfs.keys.in.h:142
+#: data/mime/gnome-vfs.keys.in.h:157
 msgid "TrueType font"
 msgstr "TrueType yazı növü"
 
-#: data/mime/gnome-vfs.keys.in.h:143
+#: data/mime/gnome-vfs.keys.in.h:158
 msgid "USENET news message"
 msgstr "USENET xəbər ismarıcı"
 
-#: data/mime/gnome-vfs.keys.in.h:144
+#: data/mime/gnome-vfs.keys.in.h:159
 msgid "Unidata netCDF document"
 msgstr "Unidata netCDF sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:145
+#: data/mime/gnome-vfs.keys.in.h:160
 msgid "V font"
 msgstr "V yazı növü"
 
-#: data/mime/gnome-vfs.keys.in.h:146
+#: data/mime/gnome-vfs.keys.in.h:161
 msgid "VOC audio"
 msgstr "VOC audio"
 
-#: data/mime/gnome-vfs.keys.in.h:147
+#: data/mime/gnome-vfs.keys.in.h:162
 msgid "VRML document"
 msgstr "VRML sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:148
+#: data/mime/gnome-vfs.keys.in.h:163
 msgid "Vivo video"
 msgstr "Vivo video"
 
-#: data/mime/gnome-vfs.keys.in.h:149
+#: data/mime/gnome-vfs.keys.in.h:164
 msgid "WAIS source code"
 msgstr "WAIS qaynaq kodu"
 
-#: data/mime/gnome-vfs.keys.in.h:150
+#: data/mime/gnome-vfs.keys.in.h:165
 msgid "Wavelet video"
 msgstr "Wavelet video"
 
-#: data/mime/gnome-vfs.keys.in.h:151
+#: data/mime/gnome-vfs.keys.in.h:166
 msgid "Windows bitmap image"
 msgstr "Windows bitmap rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:152
+#: data/mime/gnome-vfs.keys.in.h:167
 msgid "Windows icon image"
 msgstr "Windows timsal rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:153
+#: data/mime/gnome-vfs.keys.in.h:168
+msgid "Windows metafile graphics"
+msgstr "Windows metafayl qrafikası"
+
+#: data/mime/gnome-vfs.keys.in.h:169
 msgid "WordPerfect document"
 msgstr "WorldPerfect sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:154
+#: data/mime/gnome-vfs.keys.in.h:170
 msgid "X bitmap image"
 msgstr "X bitmap rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:155
+#: data/mime/gnome-vfs.keys.in.h:171
 msgid "X window image"
 msgstr "X window rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:156
+#: data/mime/gnome-vfs.keys.in.h:172
 msgid "XML document"
 msgstr "XML sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:157
+#: data/mime/gnome-vfs.keys.in.h:173
 msgid "XPM image"
 msgstr "XPM rəsmi"
 
-#: data/mime/gnome-vfs.keys.in.h:158
+#: data/mime/gnome-vfs.keys.in.h:174
+msgid "Xbase database"
+msgstr "Xbase databeyzi"
+
+#: data/mime/gnome-vfs.keys.in.h:175
 msgid "active server page"
 msgstr "fəal verici səhifələri"
 
-#: data/mime/gnome-vfs.keys.in.h:159
+#: data/mime/gnome-vfs.keys.in.h:176
 msgid "address card"
 msgstr "ünvan kartı"
 
-#: data/mime/gnome-vfs.keys.in.h:160
+#: data/mime/gnome-vfs.keys.in.h:177
 msgid "ar archive"
 msgstr "ar arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:161
+#: data/mime/gnome-vfs.keys.in.h:178
 msgid "arj archive"
 msgstr "arj arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:162
+#: data/mime/gnome-vfs.keys.in.h:179
 msgid "authors list"
 msgstr "müəlliflər siyahısı"
 
-#: data/mime/gnome-vfs.keys.in.h:163
+#: data/mime/gnome-vfs.keys.in.h:180
 msgid "backup file"
 msgstr "ehtiyat nüsxəsi faylı"
 
-#: data/mime/gnome-vfs.keys.in.h:164
+#: data/mime/gnome-vfs.keys.in.h:181
 msgid "basic audio"
 msgstr "əsas audio"
 
-#: data/mime/gnome-vfs.keys.in.h:165
+#: data/mime/gnome-vfs.keys.in.h:182
 msgid "bibliography record"
 msgstr "biblioqrafik qeyd"
 
-#: data/mime/gnome-vfs.keys.in.h:166
+#: data/mime/gnome-vfs.keys.in.h:183
 msgid "binary program"
 msgstr "binar proqramı"
 
-#: data/mime/gnome-vfs.keys.in.h:167
+#: data/mime/gnome-vfs.keys.in.h:184
 msgid "block device"
-msgstr "blok avadanlıǧı"
+msgstr "blok avadanlığı"
 
-#: data/mime/gnome-vfs.keys.in.h:168
+#: data/mime/gnome-vfs.keys.in.h:185
 msgid "bzip-compressed file"
 msgstr "bzip-sıxışdırılmış fayl"
 
-#: data/mime/gnome-vfs.keys.in.h:169
+#: data/mime/gnome-vfs.keys.in.h:186
 msgid "calendar file"
 msgstr "təqvim faylı"
 
-#: data/mime/gnome-vfs.keys.in.h:170
+#: data/mime/gnome-vfs.keys.in.h:187
 msgid "calendar or event document"
 msgstr "təqvim və ya hadisə sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:171
+#: data/mime/gnome-vfs.keys.in.h:188
 msgid "character device"
-msgstr "hərf avadanlıǧı"
+msgstr "hərf avadanlığı"
 
-#: data/mime/gnome-vfs.keys.in.h:172
+#: data/mime/gnome-vfs.keys.in.h:189
 msgid "comma-separated text document"
 msgstr "vergüllə ayrılmış mətn sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:173
+#: data/mime/gnome-vfs.keys.in.h:190
 msgid "compound document"
 msgstr "kipləşdirilmiş sənəd"
 
-#: data/mime/gnome-vfs.keys.in.h:174
+#: data/mime/gnome-vfs.keys.in.h:191
 msgid "compress-compressed file"
 msgstr "sıxışdır-sıxışdırılmış fayl"
 
-#: data/mime/gnome-vfs.keys.in.h:175
+#: data/mime/gnome-vfs.keys.in.h:192
 msgid "compressed GIMP document"
 msgstr "sıxışdırılmış GIMP sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:176
+#: data/mime/gnome-vfs.keys.in.h:193
 msgid "directory information file"
 msgstr "qovluq haqqında mə'lumat faylı"
 
-#: data/mime/gnome-vfs.keys.in.h:177
+#: data/mime/gnome-vfs.keys.in.h:194
 msgid "document type definition"
 msgstr "sənəd növü izahı"
 
-#: data/mime/gnome-vfs.keys.in.h:178
+#: data/mime/gnome-vfs.keys.in.h:195
 msgid "email headers"
 msgstr "ePoçt başlıqları"
 
-#: data/mime/gnome-vfs.keys.in.h:179
+#: data/mime/gnome-vfs.keys.in.h:196
 msgid "email message"
 msgstr "ePoçt ismarıcları"
 
-#: data/mime/gnome-vfs.keys.in.h:180
+#: data/mime/gnome-vfs.keys.in.h:197
 msgid "encrypted message"
 msgstr "kodlanmış ismarıcı"
 
-#: data/mime/gnome-vfs.keys.in.h:181
+#: data/mime/gnome-vfs.keys.in.h:198
 msgid "enriched text document"
 msgstr "zənginləşdirilmiş mətn sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:182
+#: data/mime/gnome-vfs.keys.in.h:199
 msgid "folder"
 msgstr "qovluq"
 
-#: data/mime/gnome-vfs.keys.in.h:183
+#: data/mime/gnome-vfs.keys.in.h:200
 msgid "gtar archive"
 msgstr "gtar arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:184
+#: data/mime/gnome-vfs.keys.in.h:201
 msgid "gzip-compressed file"
 msgstr "gzip-sıxışdırılmış fayl"
 
-#: data/mime/gnome-vfs.keys.in.h:185
+#: data/mime/gnome-vfs.keys.in.h:202
 msgid "help page"
 msgstr "kömək səhifəsi"
 
-#: data/mime/gnome-vfs.keys.in.h:186
+#: data/mime/gnome-vfs.keys.in.h:203
 msgid "mail delivery report"
 msgstr "məktub göndərmə raportu"
 
-#: data/mime/gnome-vfs.keys.in.h:187
+#: data/mime/gnome-vfs.keys.in.h:204
 msgid "mail disposition report"
 msgstr "məktub dispozisiya raportu"
 
-#: data/mime/gnome-vfs.keys.in.h:188
+#: data/mime/gnome-vfs.keys.in.h:205
 msgid "mail system report"
 msgstr "məktub sistem raportu"
 
-#: data/mime/gnome-vfs.keys.in.h:189
+#: data/mime/gnome-vfs.keys.in.h:206
 msgid "makefile"
 msgstr "makefile"
 
-#: data/mime/gnome-vfs.keys.in.h:190
+#: data/mime/gnome-vfs.keys.in.h:207
 msgid "manual page"
 msgstr "bələdçi səhifəsi"
 
-#: data/mime/gnome-vfs.keys.in.h:191
+#: data/mime/gnome-vfs.keys.in.h:208
 msgid "manual page (compressed)"
 msgstr "bələdçi səhifəsi (sıxışdırılmış)"
 
-#: data/mime/gnome-vfs.keys.in.h:192
+#: data/mime/gnome-vfs.keys.in.h:209
 msgid "memory dump"
 msgstr "yaddaş raportu"
 
-#: data/mime/gnome-vfs.keys.in.h:193
+#: data/mime/gnome-vfs.keys.in.h:210
 msgid "message digest"
 msgstr "ismarıc gündəliyi"
 
-#: data/mime/gnome-vfs.keys.in.h:194
+#: data/mime/gnome-vfs.keys.in.h:211
 msgid "message in several formats"
 msgstr "müxtəlif şəkillərdə ismarıc"
 
-#: data/mime/gnome-vfs.keys.in.h:195
+#: data/mime/gnome-vfs.keys.in.h:212
 msgid "multi-part message"
 msgstr "çoxlu hissəli ismarıc"
 
-#: data/mime/gnome-vfs.keys.in.h:196
+#: data/mime/gnome-vfs.keys.in.h:213
 msgid "named pipe"
 msgstr "adlandırılmış boru"
 
-#: data/mime/gnome-vfs.keys.in.h:197
+#: data/mime/gnome-vfs.keys.in.h:214
 msgid "object code"
 msgstr "cism kodu"
 
-#: data/mime/gnome-vfs.keys.in.h:198
+#: data/mime/gnome-vfs.keys.in.h:215
 msgid "ogg audio"
 msgstr "ogg audio"
 
-#: data/mime/gnome-vfs.keys.in.h:199
+#: data/mime/gnome-vfs.keys.in.h:216
 msgid "partial email message"
 msgstr "qismi ePoçt ismarıcı"
 
-#: data/mime/gnome-vfs.keys.in.h:200
+#: data/mime/gnome-vfs.keys.in.h:217
 msgid "plain text document"
 msgstr "düz mətn sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:201
+#: data/mime/gnome-vfs.keys.in.h:218
 msgid "profiler results"
 msgstr "profayler nəticəsi"
 
-#: data/mime/gnome-vfs.keys.in.h:202
+#: data/mime/gnome-vfs.keys.in.h:219
 msgid "reference to remote file"
 msgstr "uzaq fayla referens"
 
-#: data/mime/gnome-vfs.keys.in.h:203
+#: data/mime/gnome-vfs.keys.in.h:220
 msgid "rejected patch file"
 msgstr "rədd edilmiş yamaq faylı"
 
-#: data/mime/gnome-vfs.keys.in.h:204
+#: data/mime/gnome-vfs.keys.in.h:221
 msgid "rich text document"
 msgstr "zənginləşdirilmiş mətn sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:205
+#: data/mime/gnome-vfs.keys.in.h:222
 msgid "search results"
 msgstr "axtarış nəticəsi"
 
-#: data/mime/gnome-vfs.keys.in.h:206
+#: data/mime/gnome-vfs.keys.in.h:223
 msgid "shared library"
 msgstr "paylaşdırılmış kitabxana"
 
-#: data/mime/gnome-vfs.keys.in.h:207
+#: data/mime/gnome-vfs.keys.in.h:224
 msgid "shell archive"
 msgstr "qabıq arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:208
+#: data/mime/gnome-vfs.keys.in.h:225
 msgid "shell script"
 msgstr "qabıq skripti"
 
-#: data/mime/gnome-vfs.keys.in.h:209
+#: data/mime/gnome-vfs.keys.in.h:226
 msgid "signed message"
 msgstr "imzalanmış ismarıc"
 
-#: data/mime/gnome-vfs.keys.in.h:210
+#: data/mime/gnome-vfs.keys.in.h:227
 msgid "socket"
 msgstr "soket"
 
-#: data/mime/gnome-vfs.keys.in.h:211
+#: data/mime/gnome-vfs.keys.in.h:228
 msgid "software author credits"
 msgstr "proqram müəllifləri haqqında"
 
-#: data/mime/gnome-vfs.keys.in.h:212
+#: data/mime/gnome-vfs.keys.in.h:229
 msgid "software installation instructions"
 msgstr "proqram qurulma tövsiyyələri"
 
-#: data/mime/gnome-vfs.keys.in.h:213
+#: data/mime/gnome-vfs.keys.in.h:230
 msgid "software license terms"
 msgstr "proqram lisenziya terminləri"
 
-#: data/mime/gnome-vfs.keys.in.h:214
+#: data/mime/gnome-vfs.keys.in.h:231
 msgid "source code patch"
-msgstr "qaynaq kodu yamaǧı"
+msgstr "qaynaq kodu yamağı"
 
-#: data/mime/gnome-vfs.keys.in.h:215
+#: data/mime/gnome-vfs.keys.in.h:232
 msgid "style sheet"
 msgstr "tərz səhifəsi"
 
-#: data/mime/gnome-vfs.keys.in.h:216
+#: data/mime/gnome-vfs.keys.in.h:233
 msgid "symbolic link"
-msgstr "yumşaq baǧ"
+msgstr "yumşaq bağ"
 
-#: data/mime/gnome-vfs.keys.in.h:217
+#: data/mime/gnome-vfs.keys.in.h:234
 msgid "tab-separated text document"
 msgstr "tab ilə ayrılmış mətn sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:218
+#: data/mime/gnome-vfs.keys.in.h:235
 msgid "tar archive"
 msgstr "tar arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:219
+#: data/mime/gnome-vfs.keys.in.h:236
 msgid "tar archive (bzip2-compressed)"
 msgstr "tar arxivi (bzip2 ilə sıxışdırılmış)"
 
-#: data/mime/gnome-vfs.keys.in.h:220
+#: data/mime/gnome-vfs.keys.in.h:237
 msgid "tar archive (gzip-compressed)"
 msgstr "tar arxivi (gzip ilə sıxışdırılmış)"
 
-#: data/mime/gnome-vfs.keys.in.h:221
+#: data/mime/gnome-vfs.keys.in.h:238
 msgid "theme"
 msgstr "örtü"
 
-#: data/mime/gnome-vfs.keys.in.h:222
+#: data/mime/gnome-vfs.keys.in.h:239
+msgid "troff document"
+msgstr "troff sənədi"
+
+#: data/mime/gnome-vfs.keys.in.h:240
 msgid "troff me input document"
 msgstr "troff me giriş sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:223
+#: data/mime/gnome-vfs.keys.in.h:241
 msgid "troff mm input document"
 msgstr "troff mm giriş sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:224
+#: data/mime/gnome-vfs.keys.in.h:242
 msgid "troff ms input document"
 msgstr "troff ms giriş sənədi"
 
-#: data/mime/gnome-vfs.keys.in.h:225
+#: data/mime/gnome-vfs.keys.in.h:243
 msgid "unknown type"
 msgstr "namə'lum növ"
 
-#: data/mime/gnome-vfs.keys.in.h:226
+#: data/mime/gnome-vfs.keys.in.h:244
 msgid "ustar archive"
 msgstr "ustar arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:227
+#: data/mime/gnome-vfs.keys.in.h:245
 msgid "wave audio"
 msgstr "wave audio"
 
-#: data/mime/gnome-vfs.keys.in.h:228
+#: data/mime/gnome-vfs.keys.in.h:246
 msgid "web folder"
-msgstr "web qovluǧu"
+msgstr "web qovluğu"
 
-#: data/mime/gnome-vfs.keys.in.h:229
+#: data/mime/gnome-vfs.keys.in.h:247
 msgid "xfig vector graphic"
 msgstr "sfig vektor qrafikaları"
 
-#: data/mime/gnome-vfs.keys.in.h:230
+#: data/mime/gnome-vfs.keys.in.h:248
 msgid "zip archive"
 msgstr "zip arxivi"
 
-#: data/mime/gnome-vfs.keys.in.h:231
+#: data/mime/gnome-vfs.keys.in.h:249
 msgid "zoo archive"
 msgstr "zoo arxivi"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:336
+msgid "Dying."
+msgstr "Ölürəm ..."
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#, c-format
+msgid "Error reading: %s"
+msgstr "%s yi oxurkən xəta meydana gəldi "
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#, c-format
+msgid "Error writing: %s"
+msgstr "%s yi yaza bilmədim "
+
+#. FIXME bugzilla.eazel.com 1226:
+#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#, c-format
+msgid "Cannot write: %s"
+msgstr "%s yi yaza bilmədim "
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:601
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr "Müvəqqəti `%s' faylını yarada bilmədim"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
+#: libgnomevfs-corba/gnome-vfs-slave.c:615
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr "%s : Socketi yarada bilmədim"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:633
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr "%s : `%s'yi bağlaya bilmədim "
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:640
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr "%s : `%s'yi dinləyə bilmədim "
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:663
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr "%s : `%s'yə bağlantıları qəbul edə bilmirəm"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1195
+msgid "Cannot initialize CORBA."
+msgstr "CORBA'yı işə sala bilmədim ."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1202
+msgid "Cannot resolve initial reference to RootPOA."
+msgstr "RootPOA üçün ana qaynaqları həll edə bilmədim ."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1209
+msgid "Cannot activate POA manager."
+msgstr "POA idarəcisini fəallaşdıra bilmirəm ."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1234
+#, c-format
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "İstifadə qaydası : %s <ior> [ <ior_fd> ] \n"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1245
+#, c-format
+msgid "Cannot open file descriptor %d."
+msgstr "Fayl izahatçısını ( %d ) aça blmədim ."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1268
+#, c-format
+msgid "Notify interface for `%s' not found."
+msgstr "`%s' üçün xəbərçiyi \"yolu\" tapıla bilmədi ."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1278
+msgid "Cannot setup Request object."
+msgstr "İstək cismini qura bilmədim ."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1285
+msgid "Cannot extract IOR."
+msgstr "IORu ayıra bilmədim "
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
+#, c-format
+msgid "Got weird string from the slave process: `%s'"
+msgstr "Kölə əməliyyatdan axmaq bir mətn aldım : `%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
+#, c-format
+msgid "Cannot get object for `%s'"
+msgstr "`%s' üçün bir cism ala bilmədim"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+msgstr "GNOME::VFS::Slave::Notifyi öldürə bilmirəm -- xəta %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
+#, c-format
+msgid "Cannot connect socket `%s': %s"
+msgstr "%s : \"socket\"'inə bağlana bilmədim : %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
+msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+msgstr "GNOME::VFS::Slave::Notifı başlada bilmirəm"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+msgstr "GNOME::VFS::Slave %s yi təzədən başlada bilmədim -- xəta %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr ""
+"GNOME::VFS::Slave ( IOR bilinmir ) i təzədən başlada bilmədim --  xəta "
+"%s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+msgstr "GNOME::VFS::Slave %syi öldürə bilmədim -- xəta %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "GNOME::VFS::Slave ( IOR bilinmir ) i öldürə bilmədim -- xəta %s"
 
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
@@ -956,18 +1158,18 @@ msgstr "%s : %d modul adını daxil etmir ."
 #: libgnomevfs/gnome-vfs-configuration.c:286
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Quraşdırma dosyesi `%s' tapıla bilmədi : %s"
+msgstr "Quraşdırma faylı `%s' tapıla bilmədi : %s"
 
 #: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
 msgstr "Gnome VFS çoxdan başladıldı ."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:656
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
 #, c-format
 msgid "Could not parse: %s"
 msgstr "%syi daraya bilmədim "
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:658
+#: libgnomevfs/gnome-vfs-parse-ls.c:656
 msgid "More parsing errors will be ignored."
 msgstr "İndidən sonra ortaya çıxacaq xətalar diqqətə alınmayacaq."
 
@@ -979,7 +1181,7 @@ msgstr "Xəta yoxdur"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
-msgstr "Dosye tapıla bilmədi"
+msgstr "Fayl tapıla bilmədi"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -1019,12 +1221,12 @@ msgstr "Hazırkı şəkilləndirmə hökmsüzdür"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
-msgstr "Xəsərli dosye idarəsi"
+msgstr "Xəsərli fayl idarəsi"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
-msgstr "Dosye çox böyükdür"
+msgstr "Fayl çox böyükdür"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:50
@@ -1034,7 +1236,7 @@ msgstr "İstifadə ediləcək yer yoxdur (disk,dolu disk ..)"
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
-msgstr "Sırf oxunan dosye idarə sistemi"
+msgstr "Sırf oxunan fayl idarə sistemi"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:52
@@ -1044,7 +1246,7 @@ msgstr "Hökmsüz URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
-msgstr "Dosye açıq deyildir (?)"
+msgstr "Fayl açıq deyildir (?)"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -1059,12 +1261,12 @@ msgstr "İcazə yoxdur"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
-msgstr "Çox çox açıq dosye vardır"
+msgstr "Çox çox açıq fayl vardır"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "End of file"
-msgstr "Dosye sonu"
+msgstr "Fayl sonu"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
@@ -1084,7 +1286,7 @@ msgstr "Əməliyyat dayandırıldı"
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "File exists"
-msgstr "Dosye onsuz da vardır"
+msgstr "Fayl onsuz da vardır"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -1149,12 +1351,12 @@ msgstr "Çox bağ var"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
-msgstr "Sırf oxunan dosye idarə sistemi"
+msgstr "Sırf oxunan fayl idarə sistemi"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
-msgstr "Eyni dosye idarə sistemində deyildir"
+msgstr "Eyni fayl idarə sistemində deyildir"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:76
@@ -1175,435 +1377,71 @@ msgstr "Dəqiq verici datasını istə"
 msgid "Unknown error"
 msgstr "Namə'lum xəta"
 
-#: libgnomevfs/gnome-vfs-utils.c:67
+#: libgnomevfs/gnome-vfs-utils.c:68
 msgid "1 byte"
 msgstr "1 bayt"
 
-#: libgnomevfs/gnome-vfs-utils.c:69
+#: libgnomevfs/gnome-vfs-utils.c:70
 #, c-format
 msgid "%u bytes"
 msgstr "%u bayt"
 
-#: libgnomevfs/gnome-vfs-utils.c:76
+#: libgnomevfs/gnome-vfs-utils.c:77
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:80
+#: libgnomevfs/gnome-vfs-utils.c:81
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:84
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
-msgid "Dying."
-msgstr "Ölürəm ..."
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
-#, c-format
-msgid "Error reading: %s"
-msgstr "%s yi oxurkən xəta meydana gəldi "
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
-#, c-format
-msgid "Error writing: %s"
-msgstr "%s yi yaza bilmədim "
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
-#, c-format
-msgid "Cannot write: %s"
-msgstr "%s yi yaza bilmədim "
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:600
-#, c-format
-msgid "Cannot create temporary file name `%s'"
-msgstr "Müvəqqəti `%s' dosyesini yarada bilmədim"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:614
-#, c-format
-msgid "Cannot create socket: %s"
-msgstr "%s : Socketi yarada bilmədim"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:632
-#, c-format
-msgid "Cannot bind `%s': %s"
-msgstr "%s : `%s'yi bağlaya bilmədim "
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:639
-#, c-format
-msgid "Cannot listen on `%s': %s"
-msgstr "%s : `%s'yi dinləyə bilmədim "
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:661
-#, c-format
-msgid "Cannot accept connections on `%s': %s"
-msgstr "%s : `%s'yə bağlantıları qəbul edə bilmirəm"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1189
-msgid "Cannot initialize CORBA."
-msgstr "CORBA'yı işə sala bilmədim ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1196
-msgid "Cannot resolve initial reference to RootPOA."
-msgstr "RootPOA üçün ana qaynaqları həll edə bilmədim ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1203
-msgid "Cannot activate POA manager."
-msgstr "POA idarəcisini fəallaşdıra bilmirəm ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1228
-#, c-format
-msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "İstifadə qaydası : %s <ior> [ <ior_fd> ] \n"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1239
-#, c-format
-msgid "Cannot open file descriptor %d."
-msgstr "Dosye izahatçısını ( %d ) aça blmədim ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1262
-#, c-format
-msgid "Notify interface for `%s' not found."
-msgstr "`%s' üçün xəbərçiyi \"yolu\" tapıla bilmədi ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1272
-msgid "Cannot setup Request object."
-msgstr "İstək cismini qura bilmədim ."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1279
-msgid "Cannot extract IOR."
-msgstr "IORu ayıra bilmədim "
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
-#, c-format
-msgid "Got weird string from the slave process: `%s'"
-msgstr "Kölə əməliyyatdan axmaq bir mətn aldım : `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, c-format
-msgid "Cannot get object for `%s'"
-msgstr "`%s' üçün bir cism ala bilmədim"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "GNOME::VFS::Slave::Notifyi öldürə bilmirəm -- xəta %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, c-format
-msgid "Cannot connect socket `%s': %s"
-msgstr "%s : \"socket\"'inə bağlana bilmədim : %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
-msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "GNOME::VFS::Slave::Notifı başlada bilmirəm"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "GNOME::VFS::Slave %s yi təzədən başlada bilmədim -- xəta %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr ""
-"GNOME::VFS::Slave ( IOR bilinmir ) i təzədən başlada bilmədim --  xəta "
-"%s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "GNOME::VFS::Slave %syi öldürə bilmədim -- xəta %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "GNOME::VFS::Slave ( IOR bilinmir ) i öldürə bilmədim -- xəta %s"
-
-#: libgnomevfs-pthread/gnome-vfs-job.c:688
+#: libgnomevfs-pthread/gnome-vfs-job.c:690
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Namə'lum gedişat nömrəsi %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:974
-#: libgnomevfs-pthread/gnome-vfs-job.c:1119
+#: libgnomevfs-pthread/gnome-vfs-job.c:978
+#: libgnomevfs-pthread/gnome-vfs-job.c:1123
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "%s: GIOChannel açmaq üçün bir boru yarada bilmədim "
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1576
+#: libgnomevfs-pthread/gnome-vfs-job.c:1578
 #, c-format
-msgid "Unknown job ID %u"
-msgstr "Namə'lum vəzifə IDsi %u"
+msgid "Unknown job kind %u"
+msgstr "Namə'lum vəzifə növü %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1597
+#: libgnomevfs-pthread/gnome-vfs-job.c:1609
 msgid "Operation stopped"
 msgstr "Əməliyyat dayandırıldı"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:340
-msgid "Edit Applications List"
-msgstr "Proqram siyahısını Düzəlt"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:360
-#, c-format
-msgid "Select applications to appear in menu for mime type \"%s\""
-msgstr "\"%s\" MIME növü üçün menyuda mövcud olacaq proqramları seç"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:384
-msgid "Add Application..."
-msgstr "Proqram əlavə et ..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:391
-msgid "Edit Application..."
-msgstr "Proqramı Düzəlt..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:397
-msgid "Delete Application"
-msgstr "Proqramı Sil ..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:430
-msgid "Edit Components List"
-msgstr "Parçalar Siyahısını Düzəlt"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:450
-#, c-format
-msgid "Select views to appear in menu for mime type \"%s\""
-msgstr ""
-"\"%s\" MIME növü üçün menyuda mövcud olacaq görünüşləri seç"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:681
-msgid ""
-"The MIME type entered contained upper case characters. Upper case characters "
-"were changed to lower case for you."
-msgstr ""
-"Girilmiş MIME növü böyük hərf daxil edir. Bunlar kiçik hərflərə "
-"dəyişdiriləcəkdir."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
-msgid "Add New MIME Type"
-msgstr "Təzə MIME Növü Əlavə Et"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:708
-msgid "Add Mime Type"
-msgstr "MIME növü əlavə et"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
-msgid ""
-"Add a new Mime Type\n"
-"For example:  image/tiff; text/x-scheme"
-msgstr ""
-"Təzə bir MIMe tnövünü əlavə et \n"
-"Məsələn:      image/tiff; text/x-scheme"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:717
-msgid "Mime Type:"
-msgstr "MIME növü :"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:729
-msgid "Type in a description for this mime-type."
-msgstr "Bu MIME növü üçün bir izahat ver ."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:735
-msgid "Description:"
-msgstr "İzahat :"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:885
-msgid "File Extensions "
-msgstr "Fayl Uzantısı"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:905
-msgid "Add..."
-msgstr "Əlavə Et..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:910
-msgid "    Remove    "
-msgstr "   Sil   "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:981
-msgid "Add New Extension"
-msgstr "Təzə bir uzantı əlavə et"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:985
-msgid ""
-"Type in the extensions for this mime-type.\n"
-"For example:  .html, .htm"
-msgstr ""
-"Bu MIME növü üçün hökmlü olan uzantılar .\n"
-"Məsələn     :  .html .htm"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:990
-msgid "Extension:"
-msgstr "Uzantı :"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1153
-msgid "New Application"
-msgstr "Təzə proqram"
-
-#. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1162
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1269
-msgid "Application Name:"
-msgstr "Proqram adı :"
-
-#. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1170
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1278
-msgid "Application Command:"
-msgstr "Proqram Əmri :"
-
-#. Open Behavior frame
-#. FIXME bugzilla.eazel.com 6066: Need to add expected uri schemes
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1179
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
-msgid "Open Behavior"
-msgstr "Açma Davranışı"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
-msgid "Can open multiple files"
-msgstr "Bir çox dosyeyi eyni anda aça bilmirəm"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1188
-msgid "Expects URIs as arguments"
-msgstr "URIləri arqument olaraq gözləyər"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1260
-msgid "Edit Application"
-msgstr "Proqramı Düzəlt"
-
-#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1298
-msgid "Can open from URI"
-msgstr "URI'dən aça blmədim"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:619
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1680
-msgid "Mime Type"
-msgstr "MIME növü"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:626
-msgid "Change Icon"
-msgstr "Timsalı dəyişdir"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:633
-msgid "Change File Extensions"
-msgstr "Fayl Uzantısını Dəyişdir"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:641
-msgid "Default Action:"
-msgstr "ƏSas Gediş:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:653
-msgid "Use Viewer"
-msgstr "Göstərici İstifadə Et"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:659
-msgid "Open With Application"
-msgstr "Proqramla aç"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:671
-msgid "Edit List"
-msgstr "Siyahıyı Düzəlt"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:696
-msgid "Add new Mime type..."
-msgstr "Təzə bir MIME növü əlavə et ..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:702
-msgid "Delete this Mime type..."
-msgstr "Bu MIME növünü sil ..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:713
-msgid "Revert to System Defaults"
-msgstr "Sistemin Əsas Qurǧularına Çevir"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:794
-msgid "No Description"
-msgstr "İzahatsız"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:924
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1068
-msgid "None"
-msgstr "Yoxdur"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1164
-msgid ""
-"Reverting to system settings\n"
-"will lose all your personal \n"
-"Mime configuration.\n"
-"Revert to System Settings ?\n"
-msgstr ""
-"Sistemin əsas qurǧularına dəyişiklik\n"
-"sizin şəxsi MIME qurǧularının itirilməsinə\n"
-"səbəb olacaqdır.\n"
-"Sistem Qurǧularına Keçim mi?\n"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1233
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1421
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1545
-msgid "none"
-msgstr "yoxdur"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1270
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1451
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1581
-#, c-format
-msgid "View as %s"
-msgstr "%s olaraq göstər"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1679
-msgid "Description"
-msgstr "İzahat"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1681
-msgid "Extension"
-msgstr "Uzantı"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1682
-msgid "Default Action"
-msgstr "Əsas Gediş"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:255
-msgid "Can't find an hbox, using a normal file selection"
-msgstr ""
-"hbox qutusunu tapa bilmədim, normal dosye seçim dialoqunu istifadə edirəm"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:261
-msgid "Preview"
-msgstr "Nümayiş"
-
-#: modules/efs-method.c:493 modules/file-method.c:365
+#: modules/efs-method.c:493 modules/file-method.c:371
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Namə'lum GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1176
+#: modules/http-method.c:1179
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s alınacaqdır"
 
-#: modules/http-method.c:1581
+#: modules/http-method.c:1584
 #, c-format
 msgid "Closing connection to %s"
 msgstr "`%s'yə olan bağlantıyı kəs ."
 
-#: modules/http-method.c:1825
+#: modules/http-method.c:1850
 #, c-format
 msgid "%s of %s read"
 msgstr "%s / %s oxundu"
 
-#: modules/http-method.c:1828
+#: modules/http-method.c:1853
 #, c-format
 msgid "%s read"
 msgstr "%s oxundu"
@@ -1670,7 +1508,173 @@ msgstr "Göstər:"
 
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
-msgstr "Nöqtə ilə başlayan gizli dosyeləri göstər"
+msgstr "Nöqtə ilə başlayan gizli faylları göstər"
+
+#~ msgid "Edit Applications List"
+#~ msgstr "Proqram siyahısını Düzəlt"
+
+#~ msgid "Select applications to appear in menu for mime type \"%s\""
+#~ msgstr "\"%s\" MIME növü üçün menyuda mövcud olacaq proqramları seç"
+
+#~ msgid "Add Application..."
+#~ msgstr "Proqram əlavə et ..."
+
+#~ msgid "Edit Application..."
+#~ msgstr "Proqramı Düzəlt..."
+
+#~ msgid "Delete Application"
+#~ msgstr "Proqramı Sil ..."
+
+#~ msgid "Edit Components List"
+#~ msgstr "Parçalar Siyahısını Düzəlt"
+
+#~ msgid "Select views to appear in menu for mime type \"%s\""
+#~ msgstr ""
+#~ "\"%s\" MIME növü üçün menyuda mövcud olacaq görünüşləri seç"
+
+#~ msgid ""
+#~ "The MIME type entered contained upper case characters. Upper case characters "
+#~ "were changed to lower case for you."
+#~ msgstr ""
+#~ "Girilmiş MIME növü böyük hərf daxil edir. Bunlar kiçik hərflərə "
+#~ "dəyişdiriləcəkdir."
+
+#~ msgid "Add New MIME Type"
+#~ msgstr "Təzə MIME Növü Əlavə Et"
+
+#~ msgid "Add Mime Type"
+#~ msgstr "MIME növü əlavə et"
+
+#~ msgid ""
+#~ "Add a new Mime Type\n"
+#~ "For example:  image/tiff; text/x-scheme"
+#~ msgstr ""
+#~ "Təzə bir MIMe tnövünü əlavə et \n"
+#~ "Məsələn:      image/tiff; text/x-scheme"
+
+#~ msgid "Mime Type:"
+#~ msgstr "MIME növü :"
+
+#~ msgid "Type in a description for this mime-type."
+#~ msgstr "Bu MIME növü üçün bir izahat ver ."
+
+#~ msgid "Description:"
+#~ msgstr "İzahat :"
+
+#~ msgid "File Extensions "
+#~ msgstr "Fayl Uzantısı"
+
+#~ msgid "Add..."
+#~ msgstr "Əlavə Et..."
+
+#~ msgid "    Remove    "
+#~ msgstr "   Sil   "
+
+#~ msgid "Add New Extension"
+#~ msgstr "Təzə bir uzantı əlavə et"
+
+#~ msgid ""
+#~ "Type in the extensions for this mime-type.\n"
+#~ "For example:  .html, .htm"
+#~ msgstr ""
+#~ "Bu MIME növü üçün hökmlü olan uzantılar .\n"
+#~ "Məsələn     :  .html .htm"
+
+#~ msgid "Extension:"
+#~ msgstr "Uzantı :"
+
+#~ msgid "New Application"
+#~ msgstr "Təzə proqram"
+
+#~ msgid "Application Name:"
+#~ msgstr "Proqram adı :"
+
+#~ msgid "Application Command:"
+#~ msgstr "Proqram Əmri :"
+
+#~ msgid "Open Behavior"
+#~ msgstr "Açma Davranışı"
+
+#~ msgid "Can open multiple files"
+#~ msgstr "Bir çox faylı eyni anda aça bilmirəm"
+
+#~ msgid "Expects URIs as arguments"
+#~ msgstr "URIləri arqument olaraq gözləyər"
+
+#~ msgid "Edit Application"
+#~ msgstr "Proqramı Düzəlt"
+
+#~ msgid "Can open from URI"
+#~ msgstr "URI'dən aça blmədim"
+
+#~ msgid "Mime Type"
+#~ msgstr "MIME növü"
+
+#~ msgid "Change Icon"
+#~ msgstr "Timsalı dəyişdir"
+
+#~ msgid "Change File Extensions"
+#~ msgstr "Fayl Uzantısını Dəyişdir"
+
+#~ msgid "Default Action:"
+#~ msgstr "ƏSas Gediş:"
+
+#~ msgid "Use Viewer"
+#~ msgstr "Göstərici İstifadə Et"
+
+#~ msgid "Open With Application"
+#~ msgstr "Proqramla aç"
+
+#~ msgid "Edit List"
+#~ msgstr "Siyahıyı Düzəlt"
+
+#~ msgid "Add new Mime type..."
+#~ msgstr "Təzə bir MIME növü əlavə et ..."
+
+#~ msgid "Delete this Mime type..."
+#~ msgstr "Bu MIME növünü sil ..."
+
+#~ msgid "Revert to System Defaults"
+#~ msgstr "Sistemin Əsas Qurğularına Çevir"
+
+#~ msgid "No Description"
+#~ msgstr "İzahatsız"
+
+#~ msgid "None"
+#~ msgstr "Yoxdur"
+
+#~ msgid ""
+#~ "Reverting to system settings\n"
+#~ "will lose all your personal \n"
+#~ "Mime configuration.\n"
+#~ "Revert to System Settings ?\n"
+#~ msgstr ""
+#~ "Sistemin əsas qurğularına dəyişiklik\n"
+#~ "sizin şəxsi MIME qurğularının itirilməsinə\n"
+#~ "səbəb olacaqdır.\n"
+#~ "Sistem Qurğularına Keçim mi?\n"
+
+#~ msgid "none"
+#~ msgstr "yoxdur"
+
+#~ msgid "View as %s"
+#~ msgstr "%s olaraq göstər"
+
+#~ msgid "Description"
+#~ msgstr "İzahat"
+
+#~ msgid "Extension"
+#~ msgstr "Uzantı"
+
+#~ msgid "Default Action"
+#~ msgstr "Əsas Gediş"
+
+#~ msgid "Can't find an hbox, using a normal file selection"
+#~ msgstr ""
+#~ "hbox qutusunu tapa bilmədim, normal fayl seçim dialoqunu istifadə edirəm"
+
+#~ msgid "Preview"
+#~ msgstr "Nümayiş"
 
 #~ msgid "Unknown sort rule %d"
 #~ msgstr "Namə'lum süzmə qaydası %d"
