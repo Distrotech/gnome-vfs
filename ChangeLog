@@ -1,3 +1,19 @@
+2000-12-08  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Gene Z. Ragan  <gzr@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime.c: (gnome_vfs_mime_type_from_name),
+	(gnome_vfs_get_mime_type), (gnome_vfs_get_file_mime_type),
+	(gnome_vfs_get_mime_type_from_uri),
+	(gnome_vfs_get_mime_type_from_file_data):
+	* libgnomevfs/gnome-vfs-mime.h:
+	* modules/ftp-method.c: (ls_to_file_info):
+	* modules/gconf-method.c: (set_mime_type_value):
+	* modules/pipe-method.c: (mime_from_uri):
+	* modules/translate-method.c: (tr_apply_default_mime_type):
+	Replace all cases of "application/octet-stream" with a new symbolic
+	name, GNOME_VFS_MIME_TYPE_UNKNOWN.
+
 2000-12-08  Gene Z. Ragan  <gzr@eazel.com>
 
 	* modules/ftp-method.c: (do_read_directory):

@@ -1001,7 +1001,7 @@ ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info,
 		}
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
-			mime_type = gnome_vfs_mime_type_from_name_or_default (file_info->name, "application/octet-stream");
+			mime_type = gnome_vfs_mime_type_from_name_or_default (file_info->name, GNOME_VFS_MIME_TYPE_UNKNOWN);
 			/*ftp_debug (conn, g_strdup_printf ("mimetype = %s", mime_type));*/
 		} else {
 			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
