@@ -1,5 +1,17 @@
 2001-02-15  John Sullivan  <sullivan@eazel.com>
 
+	reviewed by: No one explicitly, but Darin said this change was
+	worth doing.
+
+	Addressed part of bug 6666 (Nautilus crashes when you type "nfs://"
+	in the location bar)
+
+	* libgnomevfs/gnome-vfs-file-info.c: (gnome_vfs_file_info_matches):
+	Added g_return_val_if_fails so it won't crash when fed a NULL
+	file_info, or a file_info with a NULL name.
+
+2001-02-15  John Sullivan  <sullivan@eazel.com>
+
 	reviewed by: Gene Ragan <gzr@eazel.com>
 
 	Fixed some problems and cleaned up some code
