@@ -193,8 +193,8 @@ do_open (GnomeVFSMethod *method,
 			return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
 
-	if ((mode & GNOME_VFS_OPEN_TRUNCATE)) ||
-	    !(mode & GNOME_VFS_OPEN_RANDOM) && (mode & GNOME_VFS_OPEN_WRITE))
+	if ((mode & GNOME_VFS_OPEN_TRUNCATE) ||
+	    (!(mode & GNOME_VFS_OPEN_RANDOM) && (mode & GNOME_VFS_OPEN_WRITE)))
 		unix_mode |= O_TRUNC;
 
 	file_name = get_path_from_uri (uri);

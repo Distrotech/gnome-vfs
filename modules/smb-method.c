@@ -1164,7 +1164,8 @@ do_open (GnomeVFSMethod *method,
 			return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
 
-	if (! (mode & GNOME_VFS_OPEN_RANDOM) && (mode & GNOME_VFS_OPEN_WRITE))
+	if ((mode & GNOME_VFS_OPEN_TRUNCATE) ||
+	    (!(mode & GNOME_VFS_OPEN_RANDOM) && (mode & GNOME_VFS_OPEN_WRITE)))
 		unix_mode |= O_TRUNC;
 	
 	path = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_USER_NAME | GNOME_VFS_URI_HIDE_PASSWORD);
