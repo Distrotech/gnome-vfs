@@ -148,7 +148,7 @@ load_module (const gchar *module_name)
 	void           * (*shutdown_function) (GnomeVFSMethod *) = NULL;
 
 	/* FIXME */
-	g_warning ("Loading module `%s'", module_name);
+	g_message ("Loading module `%s'", module_name);
 
 	module = g_module_open (module_name, G_MODULE_BIND_LAZY);
 	if (module == NULL) {
