@@ -1,3 +1,10 @@
+2005-04-01  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	(gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid):
+	Merge patch that closes a few leaks from stable. Closes
+	bug #172231.
+
 2005-03-30  Steve Murphy  <murf@e-tools.com>
 
         * configure.in: Added "rw" to ALL_LINGUAS.
