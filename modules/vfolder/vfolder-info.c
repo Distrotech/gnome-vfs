@@ -43,6 +43,19 @@
 
 #define DOT_GNOME ".gnome2"
 
+typedef enum {
+	ITEM_DIR = 1,
+	MERGE_DIR
+} ItemDirType;
+
+typedef struct {
+	VFolderInfo    *info;
+	gint            weight;
+	gchar          *uri;
+	GSList         *monitors;
+	ItemDirType     type;
+} ItemDir;
+
 /* .vfolder-info format example:
  * <VFolderInfo>
  *   <!-- Merge dirs optional -->
@@ -83,6 +96,290 @@
  *   </Folder>
  * </VFolderInfo>
  */
+
+
+/* 
+ * XML VFolder description writing
+ */
+static void
+add_xml_tree_from_query (xmlNode *parent, Query *query)
+{
+	xmlNode *real_parent;
+
+	if (query->not)
+		real_parent = xmlNewChild (parent /* parent */,
+					   NULL /* ns */,
+					   "Not" /* name */,
+					   NULL /* content */);
+	else
+		real_parent = parent;
+
+	if (query->type == QUERY_KEYWORD) {
+		const char *string = g_quark_to_string (query->val.keyword);
+
+		xmlNewChild (real_parent /* parent */,
+			     NULL /* ns */,
+			     "Keyword" /* name */,
+			     string /* content */);
+	} else if (query->type == QUERY_FILENAME) {
+		xmlNewChild (real_parent /* parent */,
+			     NULL /* ns */,
+			     "Filename" /* name */,
+			     query->val.filename /* content */);
+	} else if (query->type == QUERY_PARENT) {
+		xmlNewChild (real_parent   /* parent */,
+			     NULL          /* ns */,
+			     "ParentQuery" /* name */,
+			     NULL          /* content */);
+	} else if (query->type == QUERY_OR ||
+		   query->type == QUERY_AND) {
+		xmlNode *node;
+		const char *name;
+		GSList *li;
+
+		if (query->type == QUERY_OR)
+			name = "Or";
+		else /* QUERY_AND */
+			name = "And";
+
+		node = xmlNewChild (real_parent /* parent */,
+				    NULL /* ns */,
+				    name /* name */,
+				    NULL /* content */);
+
+		for (li = query->val.queries; li != NULL; li = li->next) {
+			Query *subquery = li->data;
+			add_xml_tree_from_query (node, subquery);
+		}
+	} else {
+		g_assert_not_reached ();
+	}
+}
+
+static void
+add_excludes_to_xml (gpointer key, gpointer value, gpointer user_data)
+{
+	const char *filename = key;
+	xmlNode *folder_node = user_data;
+
+	xmlNewChild (folder_node /* parent */,
+		     NULL /* ns */,
+		     "Exclude" /* name */,
+		     filename /* content */);
+}
+
+static void
+add_xml_tree_from_folder (xmlNode *parent, Folder *folder)
+{
+	const GSList *li;
+	xmlNode *folder_node;
+	const gchar *extend_uri;
+
+	/* 
+	 * return if this folder hasn't been modified by the user, 
+	 * and contains no modified subfolders.
+	 */
+	if (!folder->user_private && !folder->has_user_private_subfolders)
+		return;
+
+	folder_node = xmlNewChild (parent /* parent */,
+				   NULL /* ns */,
+				   "Folder" /* name */,
+				   NULL /* content */);
+
+	xmlNewChild (folder_node /* parent */,
+		     NULL /* ns */,
+		     "Name" /* name */,
+		     folder_get_name (folder) /* content */);
+
+	extend_uri = folder_get_extend_uri (folder);
+	if (extend_uri) {
+		xmlNewChild (folder_node /* parent */,
+			     NULL /* ns */,
+			     folder->is_link ? "ParentLink" : "Parent",
+			     extend_uri /* content */);
+	}
+
+	if (folder->user_private) {
+		const gchar *desktop_file;
+
+		if (folder->read_only)
+			xmlNewChild (folder_node /* parent */,
+				     NULL /* ns */,
+				     "ReadOnly" /* name */,
+				     NULL /* content */);
+		if (folder->dont_show_if_empty)
+			xmlNewChild (folder_node /* parent */,
+				     NULL /* ns */,
+				     "DontShowIfEmpty" /* name */,
+				     NULL /* content */);
+		if (folder->only_unallocated)
+			xmlNewChild (folder_node /* parent */,
+				     NULL /* ns */,
+				     "OnlyUnallocated" /* name */,
+				     NULL /* content */);
+
+		if (folder->desktop_file != NULL) {
+			desktop_file = folder_get_desktop_file (folder);
+			if (desktop_file)
+				xmlNewChild (folder_node /* parent */,
+					     NULL /* ns */,
+					     "Desktop" /* name */,
+					     desktop_file);
+		}
+
+		for (li = folder->includes; li != NULL; li = li->next) {
+			const char *include = li->data;
+			xmlNewChild (folder_node /* parent */,
+				     NULL /* ns */,
+				     "Include" /* name */,
+				     include /* content */);
+		}
+
+		if (folder->excludes) {
+			g_hash_table_foreach (folder->excludes,
+					      add_excludes_to_xml,
+					      folder_node);
+		}
+
+		if (folder->query) {
+			xmlNode *query_node;
+			query_node = xmlNewChild (folder_node /* parent */,
+						  NULL /* ns */,
+						  "Query" /* name */,
+						  NULL /* content */);
+			add_xml_tree_from_query (query_node, 
+						 folder_get_query (folder));
+		}
+	}
+
+	for (li = folder_list_subfolders (folder); li != NULL; li = li->next) {
+		Folder *subfolder = li->data;
+		add_xml_tree_from_folder (folder_node, subfolder);
+	}
+}
+
+static xmlDoc *
+xml_tree_from_vfolder (VFolderInfo *info)
+{
+	xmlDoc *doc;
+	xmlNode *topnode;
+	GSList *li;
+
+	doc = xmlNewDoc ("1.0");
+
+	topnode = xmlNewDocNode (doc /* doc */,
+				 NULL /* ns */,
+				 "VFolderInfo" /* name */,
+				 NULL /* content */);
+	doc->xmlRootNode = topnode;
+
+	if (info->write_dir != NULL) {
+		xmlNewChild (topnode /* parent */,
+			     NULL /* ns */,
+			     "WriteDir" /* name */,
+			     info->write_dir /* content */);
+	}
+
+	/* Deprecated */
+	if (info->desktop_dir != NULL) {
+		xmlNewChild (topnode /* parent */,
+			     NULL /* ns */,
+			     "DesktopDir" /* name */,
+			     info->desktop_dir /* content */);
+	}
+	
+	for (li = info->item_dirs; li != NULL; li = li->next) {
+		ItemDir *item_dir = li->data;
+
+		switch (item_dir->type) {
+		case MERGE_DIR:
+			xmlNewChild (topnode /* parent */,
+				     NULL /* ns */,
+				     "MergeDir" /* name */,
+				     item_dir->uri /* content */);
+			break;
+		case ITEM_DIR:
+			xmlNewChild (topnode /* parent */,
+				     NULL /* ns */,
+				     "ItemDir" /* name */,
+				     item_dir->uri /* content */);
+			break;
+		}
+	}
+
+	if (info->root != NULL)
+		add_xml_tree_from_folder (topnode, info->root);
+
+	return doc;
+}
+
+/* FIXME: what to do about errors */
+void
+vfolder_info_write_user (VFolderInfo *info)
+{
+	xmlDoc *doc;
+	GnomeVFSResult result;
+	gchar *tmpfile;
+	struct timeval tv;
+
+	if (info->loading || !info->dirty)
+		return;
+
+	if (!info->filename)
+		return;
+
+	info->loading = TRUE;
+
+	/* FIXME: errors, anyone? */
+	result = vfolder_make_directory_and_parents (info->filename, 
+						     TRUE, 
+						     0700);
+	if (result != GNOME_VFS_OK) {
+		g_warning ("Unable to create parent directory for "
+			   "vfolder-info file: %s",
+			   info->filename);
+		return;
+	}
+
+	doc = xml_tree_from_vfolder (info);
+	if (!doc)
+		return;
+
+	gettimeofday (&tv, NULL);
+	tmpfile = g_strdup_printf ("%s.tmp-%d", 
+				   info->filename,
+				   (int) (tv.tv_sec ^ tv.tv_usec));
+
+	/* Write to temporary file */
+	xmlSaveFormatFile (tmpfile, doc, TRUE /* format */);
+
+	/* Avoid being notified of move, since we're performing it */
+	if (info->filename_monitor)
+		vfolder_monitor_freeze (info->filename_monitor);
+
+	/* Move temp file over to real filename */
+	result = gnome_vfs_move (tmpfile, 
+				 info->filename, 
+				 TRUE /*force_replace*/);
+	if (result != GNOME_VFS_OK) {
+		g_warning ("Error writing vfolder configuration "
+			   "file \"%s\": %s.",
+			   info->filename,
+			   gnome_vfs_result_to_string (result));
+	}
+
+	/* Start listening to changes again */
+	if (info->filename_monitor)
+		vfolder_monitor_thaw (info->filename_monitor);
+
+	xmlFreeDoc(doc);
+	g_free (tmpfile);
+
+	info->modification_time = time (NULL);
+	info->dirty = FALSE;
+	info->loading = FALSE;
+}
 
 
 /* 
@@ -343,37 +640,33 @@ static void itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
 				GnomeVFSMonitorEventType  event_type,
 				gpointer                  user_data);
 
-typedef struct {
-	VFolderInfo    *info;
-	gint            weight;
-	gchar          *uri;
-	GSList         *monitors;
-	gboolean        is_mergedir;
-	gboolean        untimestamp_files;
-} ItemDir;
+static void writedir_monitor_cb (GnomeVFSMonitorHandle    *handle,
+				 const gchar              *monitor_uri,
+				 const gchar              *info_uri,
+				 GnomeVFSMonitorEventType  event_type,
+				 gpointer                  user_data);
+
+static void desktopdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
+				   const gchar              *monitor_uri,
+				   const gchar              *info_uri,
+				   GnomeVFSMonitorEventType  event_type,
+				   gpointer                  user_data);
 
 static ItemDir *
 itemdir_new (VFolderInfo *info, 
 	     const gchar *uri, 
-	     gboolean     is_mergedir,
-	     gboolean     untimestamp_files,
+	     ItemDirType  type,
 	     gint         weight)
 {
 	ItemDir *ret;
 
 	ret = g_new0 (ItemDir, 1);
-	ret->info              = info;
-	ret->weight            = weight;
-	ret->uri               = vfolder_escape_home (uri);
-	ret->is_mergedir       = is_mergedir;
-	ret->untimestamp_files = untimestamp_files;
+	ret->info   = info;
+	ret->weight = weight;
+	ret->uri    = vfolder_escape_home (uri);
+	ret->type   = type;
 
-	if (untimestamp_files)
-		/* WriteDirs go to the head of the class */
-		info->item_dirs = g_slist_prepend (info->item_dirs, ret);
-	else 
-		/* Otherwise, order does matter */
-		info->item_dirs = g_slist_append (info->item_dirs, ret);
+	info->item_dirs = g_slist_append (info->item_dirs, ret);
 
 	return ret;
 }
@@ -448,7 +741,7 @@ read_vfolder_from_file (VFolderInfo     *info,
 			xmlChar *dir = xmlNodeGetContent (node);
 
 			if (dir != NULL) {
-				itemdir_new (info, dir, TRUE, FALSE, weight--);
+				itemdir_new (info, dir, MERGE_DIR, weight--);
 				xmlFree (dir);
 			}
 		} 
@@ -456,7 +749,7 @@ read_vfolder_from_file (VFolderInfo     *info,
 			xmlChar *dir = xmlNodeGetContent (node);
 
 			if (dir != NULL) {
-				itemdir_new (info, dir, FALSE, FALSE, weight--);
+				itemdir_new (info, dir, ITEM_DIR, weight--);
 				xmlFree (dir);
 			}
 		} 
@@ -465,10 +758,7 @@ read_vfolder_from_file (VFolderInfo     *info,
 
 			if (dir != NULL) {
 				g_free (info->write_dir);
-
 				info->write_dir = vfolder_escape_home (dir);
-				itemdir_new (info, dir, FALSE, TRUE, 1000);
-
 				xmlFree (dir);
 			}
 		} 
@@ -503,6 +793,10 @@ read_vfolder_from_file (VFolderInfo     *info,
 	return TRUE;
 }
 
+
+/*
+ * MergeDir/ItemDir entry pool reading 
+ */
 struct {
 	const gchar *dirname;
 	const gchar *keyword;
@@ -556,48 +850,23 @@ create_itemdir_entry (ItemDir          *id,
 	Entry *new_entry = NULL;
 	gchar *file_uri;
 	
-	if (file_info->type != GNOME_VFS_FILE_TYPE_DIRECTORY) {
-		if (!vfolder_check_extension (file_info->name, ".desktop")) 
-			return NULL;
+	if (!vfolder_check_extension (file_info->name, ".desktop")) 
+		return NULL;
 
-		if (vfolder_info_lookup_entry (id->info, file_info->name)) {
-			D (g_print ("EXCLUDING DUPLICATE ENTRY: %s\n", 
-				    file_info->name));
-			return NULL;
-		}
+	if (vfolder_info_lookup_entry (id->info, file_info->name)) {
+		D (g_print ("EXCLUDING DUPLICATE ENTRY: %s\n", 
+			    file_info->name));
+		return NULL;
 	}
 
 	file_uri = vfolder_build_uri (id->uri, rel_path, NULL);
 
-	if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-		VFolderMonitor *dir_monitor;
-
-		/* Add monitor for subdirectory of this MergeDir/ItemDir */
-		dir_monitor = vfolder_monitor_dir_new (file_uri, 
-						       itemdir_monitor_cb, 
-						       id);
-		if (dir_monitor)
-			id->monitors = 
-				g_slist_prepend (id->monitors, dir_monitor);
-	} else {
-		gchar *displayname;
-
-		if (id->untimestamp_files)
-			displayname = 
-				vfolder_untimestamp_file_name (file_info->name);
-		else
-			displayname = file_info->name;	
-
-		/* Ref belongs to the VFolderInfo */
-		new_entry = entry_new (id->info, 
-				       file_uri, 
-				       displayname, 
-				       TRUE       /*user_private*/,
-				       id->weight /*weight*/);
-
-		if (id->untimestamp_files)
-			g_free (displayname);
-	}
+	/* Ref belongs to the VFolderInfo */
+	new_entry = entry_new (id->info, 
+			       file_uri        /*filename*/, 
+			       file_info->name /*displayname*/, 
+			       FALSE           /*user_private*/,
+			       id->weight      /*weight*/);
 
 	g_free (file_uri);
 
@@ -661,6 +930,40 @@ create_mergedir_entry (ItemDir          *id,
 	return new_entry;
 }
 
+static Entry *
+create_entry_or_add_dir_monitor (ItemDir          *id,
+				 const gchar      *rel_path,
+				 GnomeVFSFileInfo *file_info)
+{
+	VFolderMonitor *dir_monitor;
+	Entry *ret = NULL;
+	gchar *file_uri;	
+
+	if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+		/* Add monitor for subdirectory of this MergeDir/ItemDir */
+		file_uri = vfolder_build_uri (id->uri, rel_path, NULL);
+		dir_monitor = vfolder_monitor_dir_new (file_uri, 
+						       itemdir_monitor_cb, 
+						       id);
+		if (dir_monitor)
+			id->monitors = g_slist_prepend (id->monitors, 
+							dir_monitor);
+		g_free (file_uri);
+	} 
+	else {
+		switch (id->type) {
+		case MERGE_DIR:
+			ret = create_mergedir_entry (id, rel_path, file_info);
+			break;
+		case ITEM_DIR:
+			ret = create_itemdir_entry (id, rel_path, file_info);
+			break;
+		}
+	}
+
+	return ret;
+}
+
 static gboolean
 create_entry_directory_visit_cb (const gchar      *rel_path,
 				 GnomeVFSFileInfo *file_info,
@@ -670,10 +973,7 @@ create_entry_directory_visit_cb (const gchar      *rel_path,
 {
 	ItemDir *id = user_data;
 
-	if (id->is_mergedir)
-		create_mergedir_entry (id, rel_path, file_info);
-	else
-		create_itemdir_entry (id, rel_path, file_info);
+	create_entry_or_add_dir_monitor (id, rel_path, file_info);
 
 	*recurse = !recursing_will_loop;
 	return TRUE;
@@ -699,10 +999,19 @@ vfolder_info_read_info (VFolderInfo     *info,
 				      result, 
 				      context);
 	if (ret) {
-		/* 
-		 * Load WriteDir entries first, followed by ItemDir/MergeDirs 
-		 * in order of appearance.
-		 */
+		if (info->write_dir)
+			info->write_dir_monitor = 
+				vfolder_monitor_dir_new (info->write_dir,
+							 writedir_monitor_cb,
+							 info);
+
+		if (info->desktop_dir)
+			info->desktop_dir_monitor = 
+				vfolder_monitor_dir_new (info->desktop_dir,
+							 desktopdir_monitor_cb,
+							 info);
+
+		/* Load ItemDir/MergeDirs in order of appearance. */
 		for (iter = info->item_dirs; iter; iter = iter->next) {
 			ItemDir *id = iter->data;
 			VFolderMonitor *dir_monitor;
@@ -731,286 +1040,6 @@ vfolder_info_read_info (VFolderInfo     *info,
 	return ret;
 }		     
 
-
-/* 
- * XML VFolder description reading
- */
-static void
-add_xml_tree_from_query (xmlNode *parent, Query *query)
-{
-	xmlNode *real_parent;
-
-	if (query->not)
-		real_parent = xmlNewChild (parent /* parent */,
-					   NULL /* ns */,
-					   "Not" /* name */,
-					   NULL /* content */);
-	else
-		real_parent = parent;
-
-	if (query->type == QUERY_KEYWORD) {
-		const char *string = g_quark_to_string (query->val.keyword);
-
-		xmlNewChild (real_parent /* parent */,
-			     NULL /* ns */,
-			     "Keyword" /* name */,
-			     string /* content */);
-	} else if (query->type == QUERY_FILENAME) {
-		xmlNewChild (real_parent /* parent */,
-			     NULL /* ns */,
-			     "Filename" /* name */,
-			     query->val.filename /* content */);
-	} else if (query->type == QUERY_PARENT) {
-		xmlNewChild (real_parent   /* parent */,
-			     NULL          /* ns */,
-			     "ParentQuery" /* name */,
-			     NULL          /* content */);
-	} else if (query->type == QUERY_OR ||
-		   query->type == QUERY_AND) {
-		xmlNode *node;
-		const char *name;
-		GSList *li;
-
-		if (query->type == QUERY_OR)
-			name = "Or";
-		else /* QUERY_AND */
-			name = "And";
-
-		node = xmlNewChild (real_parent /* parent */,
-				    NULL /* ns */,
-				    name /* name */,
-				    NULL /* content */);
-
-		for (li = query->val.queries; li != NULL; li = li->next) {
-			Query *subquery = li->data;
-			add_xml_tree_from_query (node, subquery);
-		}
-	} else {
-		g_assert_not_reached ();
-	}
-}
-
-static void
-add_excludes_to_xml (gpointer key, gpointer value, gpointer user_data)
-{
-	const char *filename = key;
-	xmlNode *folder_node = user_data;
-
-	xmlNewChild (folder_node /* parent */,
-		     NULL /* ns */,
-		     "Exclude" /* name */,
-		     filename /* content */);
-}
-
-static void
-add_xml_tree_from_folder (xmlNode *parent, Folder *folder)
-{
-	const GSList *li;
-	xmlNode *folder_node;
-	const gchar *extend_uri;
-
-	/* 
-	 * return if this folder hasn't been modified by the user, 
-	 * and contains no modified subfolders.
-	 */
-	if (!folder->user_private && !folder->has_user_private_subfolders)
-		return;
-
-	folder_node = xmlNewChild (parent /* parent */,
-				   NULL /* ns */,
-				   "Folder" /* name */,
-				   NULL /* content */);
-
-	xmlNewChild (folder_node /* parent */,
-		     NULL /* ns */,
-		     "Name" /* name */,
-		     folder_get_name (folder) /* content */);
-
-	extend_uri = folder_get_extend_uri (folder);
-	if (extend_uri) {
-		xmlNewChild (folder_node /* parent */,
-			     NULL /* ns */,
-			     folder->is_link ? "ParentLink" : "Parent",
-			     extend_uri /* content */);
-	}
-
-	if (folder->user_private) {
-		const gchar *desktop_file;
-
-		if (folder->read_only)
-			xmlNewChild (folder_node /* parent */,
-				     NULL /* ns */,
-				     "ReadOnly" /* name */,
-				     NULL /* content */);
-		if (folder->dont_show_if_empty)
-			xmlNewChild (folder_node /* parent */,
-				     NULL /* ns */,
-				     "DontShowIfEmpty" /* name */,
-				     NULL /* content */);
-		if (folder->only_unallocated)
-			xmlNewChild (folder_node /* parent */,
-				     NULL /* ns */,
-				     "OnlyUnallocated" /* name */,
-				     NULL /* content */);
-
-		if (folder->desktop_file != NULL) {
-			desktop_file = folder_get_desktop_file (folder);
-			if (desktop_file)
-				xmlNewChild (folder_node /* parent */,
-					     NULL /* ns */,
-					     "Desktop" /* name */,
-					     desktop_file);
-		}
-
-		for (li = folder->includes; li != NULL; li = li->next) {
-			const char *include = li->data;
-			xmlNewChild (folder_node /* parent */,
-				     NULL /* ns */,
-				     "Include" /* name */,
-				     include /* content */);
-		}
-
-		if (folder->excludes) {
-			g_hash_table_foreach (folder->excludes,
-					      add_excludes_to_xml,
-					      folder_node);
-		}
-
-		if (folder->query) {
-			xmlNode *query_node;
-			query_node = xmlNewChild (folder_node /* parent */,
-						  NULL /* ns */,
-						  "Query" /* name */,
-						  NULL /* content */);
-			add_xml_tree_from_query (query_node, 
-						 folder_get_query (folder));
-		}
-	}
-
-	for (li = folder_list_subfolders (folder); li != NULL; li = li->next) {
-		Folder *subfolder = li->data;
-		add_xml_tree_from_folder (folder_node, subfolder);
-	}
-}
-
-static xmlDoc *
-xml_tree_from_vfolder (VFolderInfo *info)
-{
-	xmlDoc *doc;
-	xmlNode *topnode;
-	GSList *li;
-
-	doc = xmlNewDoc ("1.0");
-
-	topnode = xmlNewDocNode (doc /* doc */,
-				 NULL /* ns */,
-				 "VFolderInfo" /* name */,
-				 NULL /* content */);
-	doc->xmlRootNode = topnode;
-	
-	for (li = info->item_dirs; li != NULL; li = li->next) {
-		ItemDir *item_dir = li->data;
-
-		if (item_dir->is_mergedir)
-			xmlNewChild (topnode /* parent */,
-				     NULL /* ns */,
-				     "MergeDir" /* name */,
-				     item_dir->uri /* content */);
-		else if (!item_dir->untimestamp_files)
-			xmlNewChild (topnode /* parent */,
-				     NULL /* ns */,
-				     "ItemDir" /* name */,
-				     item_dir->uri /* content */);
-	}
-
-	if (info->write_dir != NULL) {
-		xmlNewChild (topnode /* parent */,
-			     NULL /* ns */,
-			     "WriteDir" /* name */,
-			     info->write_dir /* content */);
-	}
-
-	/* Deprecated */
-	if (info->desktop_dir != NULL) {
-		xmlNewChild (topnode /* parent */,
-			     NULL /* ns */,
-			     "DesktopDir" /* name */,
-			     info->desktop_dir /* content */);
-	}
-
-	if (info->root != NULL)
-		add_xml_tree_from_folder (topnode, info->root);
-
-	return doc;
-}
-
-/* FIXME: what to do about errors */
-void
-vfolder_info_write_user (VFolderInfo *info)
-{
-	xmlDoc *doc;
-	GnomeVFSResult result;
-	gchar *tmpfile;
-	struct timeval tv;
-
-	if (info->loading || !info->dirty)
-		return;
-
-	if (!info->filename)
-		return;
-
-	info->loading = TRUE;
-
-	/* FIXME: errors, anyone? */
-	result = vfolder_make_directory_and_parents (info->filename, 
-						     TRUE, 
-						     0700);
-	if (result != GNOME_VFS_OK) {
-		g_warning ("Unable to create parent directory for "
-			   "vfolder-info file: %s",
-			   info->filename);
-		return;
-	}
-
-	doc = xml_tree_from_vfolder (info);
-	if (!doc)
-		return;
-
-	gettimeofday (&tv, NULL);
-	tmpfile = g_strdup_printf ("%s.tmp-%d", 
-				   info->filename,
-				   (int) (tv.tv_sec ^ tv.tv_usec));
-
-	/* Write to temporary file */
-	xmlSaveFormatFile (tmpfile, doc, TRUE /* format */);
-
-	/* Avoid being notified of move, since we're performing it */
-	if (info->filename_monitor)
-		vfolder_monitor_freeze (info->filename_monitor);
-
-	/* Move temp file over to real filename */
-	result = gnome_vfs_move (tmpfile, 
-				 info->filename, 
-				 TRUE /*force_replace*/);
-	if (result != GNOME_VFS_OK) {
-		g_warning ("Error writing vfolder configuration "
-			   "file \"%s\": %s.",
-			   info->filename,
-			   gnome_vfs_result_to_string (result));
-	}
-
-	/* Start listening to changes again */
-	if (info->filename_monitor)
-		vfolder_monitor_thaw (info->filename_monitor);
-
-	xmlFreeDoc(doc);
-	g_free (tmpfile);
-
-	info->modification_time = time (NULL);
-	info->dirty = FALSE;
-	info->loading = FALSE;
-}
-
 static void
 vfolder_info_reset (VFolderInfo *info)
 {
@@ -1021,6 +1050,11 @@ vfolder_info_reset (VFolderInfo *info)
 	if (info->filename_monitor) {
 		vfolder_monitor_cancel (info->filename_monitor);
 		info->filename_monitor = NULL;
+	}
+
+	if (info->write_dir_monitor) {
+		vfolder_monitor_cancel (info->write_dir_monitor);
+		info->write_dir_monitor = NULL;
 	}
 
 	for (iter = info->item_dirs; iter; iter = iter->next) {
@@ -1055,6 +1089,131 @@ vfolder_info_reset (VFolderInfo *info)
 		info->dirty = 
 		info->loading =
 		info->has_unallocated_folder = FALSE;
+}
+
+
+/* 
+ * VFolder ItemDir/MergeDir/WriteDir/DesktopDir directory monitoring
+ */
+static void
+integrate_entry (Folder *folder, Entry *entry, gboolean do_add)
+{
+	const GSList *subs;
+	Entry *existing;
+	Query *query;
+	gboolean matches = FALSE;
+
+	for (subs = folder_list_subfolders (folder); subs; subs = subs->next) {
+		Folder *asub = subs->data;
+		integrate_entry (asub, entry, do_add);
+	}
+
+	if (folder->only_unallocated)
+		return;
+
+	query = folder_get_query (folder);
+	if (query)
+		matches = query_try_match (query, folder, entry);
+
+	existing = folder_get_entry (folder, entry_get_displayname (entry));
+	if (existing) {
+		/* 
+		 * Do nothing if the existing entry has a higher weight than the
+		 * one we wish to add.
+		 */
+		if (entry_get_weight (existing) > entry_get_weight (entry))
+			return;
+		
+		folder_remove_entry (folder, existing);
+
+		if (do_add && matches) {
+			folder_add_entry (folder, entry);
+
+			folder_emit_changed (folder, 
+					     entry_get_displayname (entry),
+					     GNOME_VFS_MONITOR_EVENT_CHANGED);
+		} else 
+			folder_emit_changed (folder, 
+					     entry_get_displayname (entry),
+					     GNOME_VFS_MONITOR_EVENT_DELETED);
+	} 
+	else if (do_add && matches) {
+		folder_add_entry (folder, entry);
+
+		folder_emit_changed (folder, 
+				     entry_get_displayname (entry),
+				     GNOME_VFS_MONITOR_EVENT_CREATED);
+	}
+}
+
+static void
+integrate_itemdir_entry_createupdate (ItemDir                  *id,
+				      GnomeVFSURI              *full_uri,
+				      const gchar              *full_uristr,
+				      const gchar              *displayname,
+				      GnomeVFSMonitorEventType  event_type)
+{
+	Entry *entry;
+	GnomeVFSURI *real_uri;
+	const gchar *rel_path;
+
+	rel_path  = strstr (full_uristr, id->uri);
+	rel_path += strlen (id->uri);
+
+	/* Look for an existing entry with the same displayname */
+	entry = vfolder_info_lookup_entry (id->info, displayname);
+	if (entry) {
+		real_uri = entry_get_real_uri (entry);
+
+		if (gnome_vfs_uri_equal (full_uri, real_uri)) {
+			/* Refresh */
+			entry_set_dirty (entry);
+		} 
+		else if (entry_get_weight (entry) < id->weight) {
+			/* 
+			 * Existing entry is less important than the new
+			 * one, so replace.
+			 */
+			entry_set_filename (entry, full_uristr);
+			entry_set_weight (entry, id->weight);
+			
+			if (id->type == MERGE_DIR) {
+				/* Add keywords from relative path */
+				set_mergedir_entry_keywords (entry, rel_path);
+			}
+		}
+
+		gnome_vfs_uri_unref (real_uri);
+	} 
+	else if (event_type == GNOME_VFS_MONITOR_EVENT_CREATED) {
+		GnomeVFSFileInfo *file_info;
+		GnomeVFSResult result;
+
+		file_info = gnome_vfs_file_info_new ();
+
+		result = 
+			gnome_vfs_get_file_info_uri (
+				full_uri,
+				file_info,
+				GNOME_VFS_FILE_INFO_DEFAULT);
+
+		if (result == GNOME_VFS_OK)
+			entry = create_entry_or_add_dir_monitor (id,
+								 rel_path,
+								 file_info);
+		
+		gnome_vfs_file_info_unref (file_info);
+	}
+
+	if (entry) {
+		entry_ref (entry);
+		integrate_entry (id->info->root, 
+				 entry, 
+				 TRUE /* do_add */);
+		entry_unref (entry);
+
+		id->info->modification_time = time (NULL);
+	}
 }
 
 static gboolean
@@ -1096,7 +1255,7 @@ find_replacement_for_delete (ItemDir *id, Entry *entry)
 			entry_set_filename (entry, uristr);
 			entry_set_weight (entry, id_next->weight);
 
-			if (id_next->is_mergedir) {
+			if (id_next->type == MERGE_DIR) {
 				rel_path  = strstr (uristr, id_next->uri);
 				rel_path += strlen (id_next->uri);
 
@@ -1113,165 +1272,33 @@ find_replacement_for_delete (ItemDir *id, Entry *entry)
 }
 
 static void
-integrate_entry (Folder *folder, Entry *entry, gboolean do_add)
-{
-	const GSList *subs;
-	Entry *existing;
-	Query *query;
-	gboolean matches = FALSE;
-
-	for (subs = folder_list_subfolders (folder); subs; subs = subs->next) {
-		Folder *asub = subs->data;
-		integrate_entry (asub, entry, do_add);
-	}
-
-	if (folder->only_unallocated)
-		return;
-
-	query = folder_get_query (folder);
-	if (do_add && query)
-		matches = query_try_match (query, folder, entry);
-
-	existing = folder_get_entry (folder, entry_get_displayname (entry));
-	if (existing) {
-		/* 
-		 * Do nothing if the existing entry has a higher weight than the
-		 * one we wish to add.
-		 */
-		if (entry_get_weight (existing) > entry_get_weight (entry))
-			return;
-		
-		folder_remove_entry (folder, existing);
-
-		if (matches) {
-			folder_add_entry (folder, entry);
-
-			folder_emit_changed (folder, 
-					     entry_get_displayname (entry),
-					     GNOME_VFS_MONITOR_EVENT_CHANGED);
-		} else 
-			folder_emit_changed (folder, 
-					     entry_get_displayname (entry),
-					     GNOME_VFS_MONITOR_EVENT_DELETED);
-	} 
-	else if (matches) {
-		folder_add_entry (folder, entry);
-
-		folder_emit_changed (folder, 
-				     entry_get_displayname (entry),
-				     GNOME_VFS_MONITOR_EVENT_CREATED);
-	}
-}
-
-static void
-itemdir_monitor_handle (ItemDir                  *id,
-			GnomeVFSURI              *full_uri,
-			const gchar              *full_uristr,
-			const gchar              *displayname,
-			GnomeVFSMonitorEventType  event_type)
+integrate_itemdir_entry_delete (ItemDir                  *id,
+				GnomeVFSURI              *full_uri,
+				const gchar              *displayname)
 {
 	Entry *entry;
 	GnomeVFSURI *real_uri;
-	gboolean replaced;
-	const gchar *rel_path;
+	gboolean replaced, equal;
 
-	switch (event_type) {
-	case GNOME_VFS_MONITOR_EVENT_CREATED:
-	case GNOME_VFS_MONITOR_EVENT_CHANGED:
-		rel_path  = strstr (full_uristr, id->uri);
-		rel_path += strlen (id->uri);
+	entry = vfolder_info_lookup_entry (id->info, displayname);
+	if (!entry)
+		return;
 
-		/* Look for an existing entry with the same displayname */
-		entry = vfolder_info_lookup_entry (id->info, displayname);
-		if (entry) {
-			real_uri = entry_get_real_uri (entry);
+	real_uri = entry_get_real_uri (entry);
+	equal = gnome_vfs_uri_equal (full_uri, real_uri);
+	gnome_vfs_uri_unref (real_uri);
 
-			if (gnome_vfs_uri_equal (full_uri, real_uri)) {
-				/* Refresh */
-				entry_set_dirty (entry);
-			} 
-			else if (entry_get_weight (entry) < id->weight) {
-				/* 
-				 * Existing entry is less important than the new
-				 * one, so replace.
-				 */
-				entry_set_filename (entry, full_uristr);
-				entry_set_weight (entry, id->weight);
+	/* Only care if its the currently visible entry being deleted */
+	if (!equal)
+		return;
 
-				if (id->is_mergedir) {
-					/* Add keywords from relative path */
-					set_mergedir_entry_keywords (entry, 
-								     rel_path);
-				}
-			}
+	replaced = find_replacement_for_delete (id, entry);
 
-			gnome_vfs_uri_unref (real_uri);
-		} 
-		else if (event_type == GNOME_VFS_MONITOR_EVENT_CREATED) {
-			GnomeVFSFileInfo *file_info;
-			GnomeVFSResult result;
+	entry_ref (entry);
+	integrate_entry (id->info->root, entry, replaced /* do_add */);
+	entry_unref (entry);
 
-			file_info = gnome_vfs_file_info_new ();
-
-			result = 
-				gnome_vfs_get_file_info_uri (
-					full_uri,
-					file_info,
-					GNOME_VFS_FILE_INFO_DEFAULT);
-			if (result != GNOME_VFS_OK) {
-				gnome_vfs_file_info_unref (file_info);
-				break;
-			}
-
-			if (id->is_mergedir)
-				entry = create_mergedir_entry (id,
-							       rel_path,
-							       file_info);
-			else
-				entry = create_itemdir_entry (id,
-							      rel_path,
-							      file_info);
-
-			gnome_vfs_file_info_unref (file_info);
-		}
-
-		if (entry) {
-			entry_ref (entry);
-			integrate_entry (id->info->root, 
-					 entry, 
-					 TRUE /* do_add */);
-			entry_unref (entry);
-
-			id->info->modification_time = time (NULL);
-		}
-
-		break;
-	case GNOME_VFS_MONITOR_EVENT_DELETED:
-		entry = vfolder_info_lookup_entry (id->info, displayname);
-		if (!entry)
-			break;
-
-		/* Only care if its the currently visible entry being deleted */
-		real_uri = entry_get_real_uri (entry);
-		if (!gnome_vfs_uri_equal (full_uri, real_uri)) {
-			gnome_vfs_uri_unref (real_uri);
-			break;
-		}
-		gnome_vfs_uri_unref (real_uri);
-
-		replaced = find_replacement_for_delete (id, entry);
-
-		entry_ref (entry);
-		integrate_entry (id->info->root, 
-				 entry, 
-				 replaced /* do_add */);
-		entry_unref (entry);
-
-		id->info->modification_time = time (NULL);
-		break;
-	default:
-		break;
-	}	
+	id->info->modification_time = time (NULL);
 }
 
 static void
@@ -1282,7 +1309,7 @@ itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
 		    gpointer                  user_data)
 {
 	ItemDir *id = user_data;
-	gchar *filename, *filename_ts;
+	gchar *filename;
 	GnomeVFSURI *uri;
 
 	g_print ("*** Itemdir '%s' monitor %s%s%s called! ***\n", 
@@ -1292,44 +1319,141 @@ itemdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
 		 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":"");
 
 	/* Operating on the whole directory, ignore */
-	if (!strcmp (monitor_uri, info_uri))
+	if (!strcmp (monitor_uri, info_uri) ||
+	    !vfolder_check_extension (info_uri, ".desktop"))
 		return;
 
-	VFOLDER_INFO_WRITE_LOCK (id->info);
-
-	/* Get untimestamped filename */
 	uri = gnome_vfs_uri_new (info_uri);
 	filename = gnome_vfs_uri_extract_short_name (uri);
 
-	if (id->untimestamp_files) {
-		/* 
-		 * We only care about changed events, otherwise the 
-		 * filename_monitor should keep us up-to-date.
-		 */
-		if (event_type != GNOME_VFS_MONITOR_EVENT_CHANGED) {
-			VFOLDER_INFO_WRITE_UNLOCK (id->info);
-			return;
-		}
-
-		filename_ts = filename;
-		filename = vfolder_untimestamp_file_name (filename);
-		g_free (filename_ts);
+	switch (event_type) {
+	case GNOME_VFS_MONITOR_EVENT_CREATED:
+	case GNOME_VFS_MONITOR_EVENT_CHANGED:
+		VFOLDER_INFO_WRITE_LOCK (id->info);
+		integrate_itemdir_entry_createupdate (id,
+						      uri,
+						      info_uri,
+						      filename,
+						      event_type);
+		VFOLDER_INFO_WRITE_UNLOCK (id->info);
+		break;
+	case GNOME_VFS_MONITOR_EVENT_DELETED:
+		VFOLDER_INFO_WRITE_LOCK (id->info);
+		integrate_itemdir_entry_delete (id, uri, filename);
+		VFOLDER_INFO_WRITE_UNLOCK (id->info);
+		break;
+	default:
+		break;
 	}
-
-	if (filename && filename [0] != '.') {
-		itemdir_monitor_handle (id,
-					uri,
-					info_uri,
-					filename,
-					event_type);
-	}
-
-	VFOLDER_INFO_WRITE_UNLOCK (id->info);
 
 	gnome_vfs_uri_unref (uri);
 	g_free (filename);
 }
 
+static void
+integrate_writedir_entry_changed (Folder      *folder, 
+				  gchar       *displayname,
+				  GnomeVFSURI *changed_uri)
+{
+	Entry *entry;
+	GnomeVFSURI *real_uri;
+	const GSList *subs;
+
+	entry = folder_get_entry (folder, displayname);
+	if (entry) {
+		real_uri = entry_get_real_uri (entry);
+
+		if (gnome_vfs_uri_equal (real_uri, changed_uri))
+			folder_emit_changed (folder, 
+					     displayname,
+					     GNOME_VFS_MONITOR_EVENT_CHANGED);
+
+		gnome_vfs_uri_unref (real_uri);
+	}
+
+	for (subs = folder_list_subfolders (folder); subs; subs = subs->next) {
+		Folder *asub = subs->data;
+		integrate_writedir_entry_changed (asub, 
+						  displayname, 
+						  changed_uri);
+	}
+}
+
+static void 
+writedir_monitor_cb (GnomeVFSMonitorHandle    *handle,
+		     const gchar              *monitor_uri,
+		     const gchar              *info_uri,
+		     GnomeVFSMonitorEventType  event_type,
+		     gpointer                  user_data)
+{
+	VFolderInfo *info = user_data;
+	GnomeVFSURI *uri;
+	gchar *filename, *filename_ts;
+
+	/* Operating on the whole directory, ignore */
+	if (!strcmp (monitor_uri, info_uri) ||
+	    !vfolder_check_extension (info_uri, ".desktop"))
+		return;
+
+	switch (event_type) {
+	case GNOME_VFS_MONITOR_EVENT_CHANGED:
+		uri = gnome_vfs_uri_new (info_uri);
+		filename_ts = gnome_vfs_uri_extract_short_name (uri);
+		filename = vfolder_untimestamp_file_name (filename_ts);
+
+		VFOLDER_INFO_WRITE_LOCK (info);
+		integrate_writedir_entry_changed (info->root, filename, uri);
+		VFOLDER_INFO_WRITE_UNLOCK (info);
+
+		gnome_vfs_uri_unref (uri);
+		g_free (filename_ts);
+		g_free (filename);
+		break;
+	case GNOME_VFS_MONITOR_EVENT_DELETED:
+	case GNOME_VFS_MONITOR_EVENT_CREATED:
+	default:
+		break;
+	}
+}
+
+static void 
+desktopdir_monitor_cb (GnomeVFSMonitorHandle    *handle,
+		       const gchar              *monitor_uri,
+		       const gchar              *info_uri,
+		       GnomeVFSMonitorEventType  event_type,
+		       gpointer                  user_data)
+{
+	VFolderInfo *info = user_data;
+	GnomeVFSURI *uri;
+
+	/* Operating on the whole directory, ignore */
+	if (!strcmp (monitor_uri, info_uri) ||
+	    !vfolder_check_extension (info_uri, ".directory"))
+		return;
+
+	switch (event_type) {
+	case GNOME_VFS_MONITOR_EVENT_CHANGED:
+		uri = gnome_vfs_uri_new (info_uri);
+
+		VFOLDER_INFO_WRITE_LOCK (info);
+		integrate_writedir_entry_changed (info->root, 
+						  ".directory", 
+						  uri);
+		VFOLDER_INFO_WRITE_UNLOCK (info);
+
+		gnome_vfs_uri_unref (uri);
+		break;
+	case GNOME_VFS_MONITOR_EVENT_DELETED:
+	case GNOME_VFS_MONITOR_EVENT_CREATED:
+	default:
+		break;
+	}
+}
+
+
+/* 
+ * .vfolder-info monitoring
+ */
 static void
 check_monitors_foreach (gpointer key, gpointer val, gpointer user_data)
 {
@@ -1368,6 +1492,7 @@ check_monitors_foreach (gpointer key, gpointer val, gpointer user_data)
 		for (iter = children; iter; iter = iter->next) {
 			gchar *child_name = iter->data;
 
+			/* Look for a child with the same name */
 			found = g_slist_find_custom (new_children,
 						     child_name,
 						     (GCompareFunc) strcmp);
@@ -1393,6 +1518,7 @@ check_monitors_foreach (gpointer key, gpointer val, gpointer user_data)
 			g_free (child_name);
 		}
 
+		/* Whatever is left is new, send created events */
 		for (iter = new_children; iter; iter = iter->next) {
 			gchar *child_name = iter->data;
 
@@ -1448,10 +1574,9 @@ filename_monitor_handle (gpointer user_data)
 	for (iter = info->requested_monitors; iter; iter = iter->next) {
 		MonitorHandle *mhandle = iter->data;
 		GSList *monitored_paths = NULL;
+		Folder *folder;
 
 		if (mhandle->type == GNOME_VFS_MONITOR_DIRECTORY) {
-			Folder *folder;
-
 			folder = 
 				vfolder_info_get_folder (
 					info, 
@@ -1523,30 +1648,6 @@ filename_monitor_cb (GnomeVFSMonitorHandle *handle,
 	}
 }
 
-static gboolean
-g_str_case_equal (gconstpointer v1,
-		  gconstpointer v2)
-{
-	const gchar *string1 = v1;
-	const gchar *string2 = v2;
-  
-	return g_ascii_strcasecmp (string1, string2) == 0;
-}
-
-/* 31 bit hash function */
-static guint
-g_str_case_hash (gconstpointer key)
-{
-	const char *p = key;
-	guint h = g_ascii_toupper (*p);
-	
-	if (h)
-		for (p += 1; *p != '\0'; p++)
-			h = (h << 5) - h + g_ascii_toupper (*p);
-
-	return h;
-}
-
 
 /* 
  * VFolderInfo Implementation
@@ -1613,63 +1714,49 @@ vfolder_info_find_filenames (VFolderInfo *info)
 {
 	gchar *scheme = info->scheme;
 	GnomeVFSURI *file_uri;
-	gboolean ok;
+	gboolean exists;
 
 	/* 
 	 * FIXME: load from gconf 
 	 */
 
-	/* set default write directory */
-	info->write_dir = g_build_filename (g_get_home_dir (),
-					    "/" DOT_GNOME "/vfolders/",
-					    scheme,
-					    NULL);
-
 	/* 
-	 * 1st: Try user-private ~/.gnome2/vfolders/scheme.vfolder-info 
+	 * 1st: Try mandatory system-global file located at 
+	 *      /etc/gnome-vfs-2.0/vfolders/scheme.vfolder-info.
 	 */
-	info->filename = g_strconcat (g_get_home_dir (),
-				      "/" DOT_GNOME "/vfolders/",
+	info->filename = g_strconcat (SYSCONFDIR,
+				      "/gnome-vfs-2.0/vfolders/",
 				      scheme, ".vfolder-info",
 				      NULL);
 	file_uri = gnome_vfs_uri_new (info->filename);
 
-	ok = gnome_vfs_uri_exists (file_uri);
-	if (!ok) {
-		/* 
-		 * 2nd: Try copying system defaults file at
-		 *      /etc/gnome-vfs-2.0/vfolders/scheme.vfolder-info-default
-		 *      to user-private location.
-		 */
-		ok = copy_user_default_file (info, file_uri);
-		if (!ok) {
-			gchar *system_file;
-
-			/* 
-			 * 3rd: Try system-global file located at 
-			 *      /etc/gnome-vfs-2.0/vfolders/scheme.vfolder-info,
-			 *      and fallback to user-private file if it doesn't
-			 *      exist.
-			 */
-			system_file = 
-				g_strconcat (SYSCONFDIR,
-					     "/gnome-vfs-2.0/vfolders/",
-					     scheme, ".vfolder-info",
-					     NULL);
-
-			gnome_vfs_uri_unref (file_uri);
-			file_uri = gnome_vfs_uri_new (system_file);
-
-			ok = gnome_vfs_uri_exists (file_uri);
-			if (ok) {
-				g_free (info->filename);
-				info->filename = system_file;
-			} else
-				g_free (system_file);
-		}
-	}
-
+	exists = gnome_vfs_uri_exists (file_uri);
 	gnome_vfs_uri_unref (file_uri);
+
+	if (!exists) {
+		/* 
+		 * 2nd: Try user-private ~/.gnome2/vfolders/scheme.vfolder-info 
+		 */
+		g_free (info->filename);
+		info->filename = g_strconcat (g_get_home_dir (),
+					      "/" DOT_GNOME "/vfolders/",
+					      scheme, ".vfolder-info",
+					      NULL);
+		file_uri = gnome_vfs_uri_new (info->filename);
+
+		exists = gnome_vfs_uri_exists (file_uri);
+		if (!exists) {
+			/* 
+			 * 3rd: Try copying system-default file at
+			 *      /etc/gnome-vfs-2.0/vfolders/
+			 *                           scheme.vfolder-info-default
+			 *      to user-private location. 
+			 */
+			exists = copy_user_default_file (info, file_uri);
+		}
+
+		gnome_vfs_uri_unref (file_uri);
+	}
 
 	/* 
 	 * Special case for applications-all-users where we want to add any
@@ -1693,8 +1780,7 @@ vfolder_info_find_filenames (VFolderInfo *info)
 							NULL);
 				id = itemdir_new (info, 
 						  dir, 
-						  FALSE, 
-						  FALSE, 
+						  ITEM_DIR,
 						  weight--);
 				g_free (dir);
 			}
@@ -1703,7 +1789,31 @@ vfolder_info_find_filenames (VFolderInfo *info)
 		}
 	}
 
-	return ok;
+	return exists;
+}
+
+static gboolean
+g_str_case_equal (gconstpointer v1,
+		  gconstpointer v2)
+{
+	const gchar *string1 = v1;
+	const gchar *string2 = v2;
+  
+	return g_ascii_strcasecmp (string1, string2) == 0;
+}
+
+/* 31 bit hash function */
+static guint
+g_str_case_hash (gconstpointer key)
+{
+	const char *p = key;
+	guint h = g_ascii_toupper (*p);
+	
+	if (h)
+		for (p += 1; *p != '\0'; p++)
+			h = (h << 5) - h + g_ascii_toupper (*p);
+
+	return h;
 }
 
 static void
@@ -1993,12 +2103,12 @@ vfolder_info_emit_change (VFolderInfo              *info,
 		    (handle->type == GNOME_VFS_MONITOR_DIRECTORY &&
 		     gnome_vfs_uri_is_parent (handle->uri, uri, FALSE))) {
 			g_print ("EMITTING CHANGE: %s://%s for %s, %s%s%s\n",
-				    info->scheme, 
-				    path,
-				    handle->uri->text,
-				    event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED" : "",
-				    event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED" : "",
-				    event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED" : "");
+				 info->scheme, 
+				 path,
+				 handle->uri->text,
+				 event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED" : "",
+				 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED" : "",
+				 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED" : "");
 
 			gnome_vfs_monitor_callback (
 				(GnomeVFSMethodHandle *) handle,
@@ -2027,7 +2137,7 @@ vfolder_info_add_monitor (VFolderInfo           *info,
 						    monitor);
 
 	g_print ("EXTERNALLY WATCHING: %s\n", 
-		    gnome_vfs_uri_to_string (uri, 0));
+		 gnome_vfs_uri_to_string (uri, 0));
 	
 	*handle = (GnomeVFSMethodHandle *) monitor;
 }

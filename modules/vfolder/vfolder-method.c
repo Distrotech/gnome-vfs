@@ -37,12 +37,6 @@
 #include "vfolder-common.h"
 #include "vfolder-util.h"
 
-#define UNSUPPORTED_INFO_FIELDS (GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS | \
-				 GNOME_VFS_FILE_INFO_FIELDS_DEVICE | \
-				 GNOME_VFS_FILE_INFO_FIELDS_INODE | \
-				 GNOME_VFS_FILE_INFO_FIELDS_LINK_COUNT | \
-				 GNOME_VFS_FILE_INFO_FIELDS_ATIME)
-
 
 typedef struct {
 	VFolderInfo    *info;
@@ -680,6 +674,12 @@ fill_file_info_for_directory (GnomeVFSFileInfo        *file_info,
 #endif
 }
 
+#define UNSUPPORTED_INFO_FIELDS (GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS | \
+				 GNOME_VFS_FILE_INFO_FIELDS_DEVICE | \
+				 GNOME_VFS_FILE_INFO_FIELDS_INODE | \
+				 GNOME_VFS_FILE_INFO_FIELDS_LINK_COUNT | \
+				 GNOME_VFS_FILE_INFO_FIELDS_ATIME)
+
 static GnomeVFSResult
 get_file_info_internal (VFolderInfo             *info,
 			FolderChild             *child,
@@ -787,6 +787,8 @@ do_read_directory (GnomeVFSMethod *method,
 					  dh->options,
 					  file_info,
 					  context);
+	if (result != GNOME_VFS_OK)
+		goto READ_NEXT_ENTRY;
 
 	VFOLDER_INFO_READ_UNLOCK (dh->info);
 
@@ -871,11 +873,11 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	child.type = DESKTOP_FILE;
 	child.entry = handle->entry;
 
-	result =  get_file_info_internal (handle->info,
-					  &child, 
-					  options, 
-					  file_info, 
-					  context);
+	result = get_file_info_internal (handle->info,
+					 &child, 
+					 options, 
+					 file_info, 
+					 context);
 
 	VFOLDER_INFO_READ_UNLOCK (handle->info);
 
@@ -1005,7 +1007,7 @@ do_remove_directory_unlocked (VFolderInfo *info,
 		return GNOME_VFS_ERROR_NOT_FOUND;
 
 	folder = folder_get_subfolder (parent, vuri->file);
-	if (!folder || folder_is_hidden (folder))
+	if (!folder)
 		return GNOME_VFS_ERROR_NOT_FOUND;
 
 	if (folder_list_subfolders (folder) || folder_list_entries (folder))
@@ -1020,7 +1022,7 @@ do_remove_directory_unlocked (VFolderInfo *info,
 		real_uri = gnome_vfs_uri_new (folder_get_extend_uri (folder));
 		new_uri = gnome_vfs_uri_append_file_name (real_uri, vuri->file);
 		gnome_vfs_uri_unref (real_uri);
-			
+
 		/* Remove from the parent as well as in our .vfolder-info */
 		result = 
 			gnome_vfs_remove_directory_from_uri_cancellable (
@@ -1081,12 +1083,13 @@ do_unlink_unlocked (VFolderInfo *info,
 	if (!parent)
 		return GNOME_VFS_ERROR_NOT_FOUND;
 
-	if (folder_get_subfolder (parent, vuri->file))
-		return GNOME_VFS_ERROR_IS_DIRECTORY;
-
 	entry = folder_get_entry (parent, vuri->file);
-	if (!entry)
-		return GNOME_VFS_ERROR_NOT_FOUND;
+	if (!entry) {
+		if (folder_get_subfolder (parent, vuri->file))
+			return GNOME_VFS_ERROR_IS_DIRECTORY;
+		else
+			return GNOME_VFS_ERROR_NOT_FOUND;
+	}
 
 	if (parent->is_link || entry_is_user_private (entry)) {
 		GnomeVFSURI *uri;
@@ -1097,7 +1100,11 @@ do_unlink_unlocked (VFolderInfo *info,
 		result = gnome_vfs_unlink_from_uri_cancellable (uri, context);
 		gnome_vfs_uri_unref (uri);
 
-		if (result != GNOME_VFS_OK)
+		/* 
+		 * We only care about the result if its a linked directory.
+		 * Otherwise we can just modify the .vfolder-info.
+		 */
+		if (parent->is_link && result != GNOME_VFS_OK)
 			return result;
 	}
 

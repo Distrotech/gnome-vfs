@@ -84,6 +84,10 @@ entry_unref (Entry *entry)
 	entry->refcnt--;
 
 	if (entry->refcnt == 0) {
+		g_print ("-- KILLING ENTRY: (%p) %s---\n",
+			 entry,
+			 entry->displayname);
+
 		vfolder_info_remove_entry (entry->info, entry);
 
 		g_free (entry->filename);
@@ -112,7 +116,7 @@ entry_is_allocated (Entry *entry)
 	return entry->allocs > 0;
 }
 
-gboolean 
+gboolean
 entry_make_user_private (Entry *entry, Folder *folder)
 {
 	GnomeVFSURI *src_uri, *dest_uri;
@@ -173,7 +177,6 @@ entry_make_user_private (Entry *entry, Folder *folder)
 
 		entry_set_filename (entry, filename);
 		entry_set_weight (entry, 1000);
-
 		entry->user_private = TRUE;
 	}
 
@@ -670,8 +673,13 @@ folder_is_user_private (Folder *folder)
 static gboolean
 create_dot_directory_entry (Folder *folder)
 {
-	Entry *entry = NULL;
+	Entry *entry = NULL, *existing;
 	const gchar *dot_directory = folder_get_desktop_file (folder);
+
+	/* Only replace if existing isn't user-private */
+	existing = folder_get_entry (folder, ".directory");
+	if (existing && entry_get_weight (existing) == 1000)
+		return FALSE;
 
 	if (strchr (dot_directory, '/')) {
 		/* Assume full path or URI */
@@ -715,20 +723,17 @@ create_dot_directory_entry (Folder *folder)
 static gboolean
 read_one_include (Folder *folder, const gchar *file_uri)
 {
-	Entry *entry;
+	Entry *entry = NULL, *existing;
 	GnomeVFSURI *uri;
-	gchar *basename;
+	gchar *basename, *basename_ts;
 
 	if (!strchr (file_uri, '/')) {
-		if (folder_get_entry (folder, file_uri))
-			return FALSE;
-
 		entry = vfolder_info_lookup_entry (folder->info, file_uri);
-		if (!entry)
-			return FALSE;
-
-		folder_add_entry (folder, entry);
-		return TRUE;
+		if (entry && entry != folder_get_entry (folder, file_uri)) {
+			folder_add_entry (folder, entry);
+			return TRUE;
+		}
+		return FALSE;
 	}
 	else {
 		uri = gnome_vfs_uri_new (file_uri);
@@ -736,7 +741,18 @@ read_one_include (Folder *folder, const gchar *file_uri)
 			return FALSE;
 
 		basename = gnome_vfs_uri_extract_short_name (uri);
-		if (!basename || folder_get_entry (folder, basename)) {
+
+		/* If including something from the WriteDir, untimestamp it. */
+		if (folder->info->write_dir &&
+		    strstr (file_uri, folder->info->write_dir)) {
+			basename_ts = basename;
+			basename = vfolder_untimestamp_file_name (basename_ts);
+			g_free (basename_ts);
+		}
+
+		/* Only replace if existing is not user-private */
+		existing = folder_get_entry (folder, basename);
+		if (existing && entry_get_weight (existing) == 1000) {
 			gnome_vfs_uri_unref (uri);
 			g_free (basename);
 			return FALSE;
@@ -747,12 +763,12 @@ read_one_include (Folder *folder, const gchar *file_uri)
 				   basename, 
 				   TRUE,
 				   1000 /*weight*/);
-
 		folder_add_entry (folder, entry);
 
 		entry_unref (entry);
 		gnome_vfs_uri_unref (uri);
 		g_free (basename);
+
 		return TRUE;
 	}
 }
@@ -793,14 +809,15 @@ read_one_extended_entry (Folder           *folder,
 			 GnomeVFSFileInfo *file_info)
 {
 	Query *query = folder_get_query (folder);
-	FolderChild child;
 
-	if (folder_get_child (folder, file_info->name, &child) ||
-	    is_excluded (folder, file_uri, file_info->name))
+	if (is_excluded (folder, file_uri, file_info->name))
 		return FALSE;
 
 	if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 		Folder *sub;
+
+		if (folder_get_subfolder (folder, file_info->name))
+			return FALSE;
 
 		sub = folder_new (folder->info, file_info->name, FALSE);
 
@@ -812,8 +829,13 @@ read_one_extended_entry (Folder           *folder,
 
 		return TRUE;
 	} else {
-		Entry *entry;
+		Entry *entry, *existing;
 		gboolean retval = FALSE;
+
+		/* Only replace if entry is more important than existing */
+		existing = folder_get_entry (folder, file_info->name);
+		if (existing && entry_get_weight (existing) >= 900)
+			return FALSE;
 
 		entry = entry_new (folder->info, 
 				   file_uri,
@@ -890,10 +912,9 @@ static gboolean
 read_one_info_entry_pool (Folder *folder, Entry *entry)
 {
 	Query *query = folder_get_query (folder);
-	FolderChild child;
+	Entry *existing;
 
-	if (folder_get_child (folder, entry_get_displayname (entry), &child) ||
-	    is_excluded (folder, 
+	if (is_excluded (folder, 
 			 entry_get_filename (entry), 
 			 entry_get_displayname (entry))) {
 		/* 
@@ -903,6 +924,11 @@ read_one_info_entry_pool (Folder *folder, Entry *entry)
 		entry_alloc (entry);
 		return FALSE;
 	}
+
+	/* Only replace if entry is more important than existing */
+	existing = folder_get_entry (folder, entry_get_displayname (entry));
+	if (existing && entry_get_weight (existing) >= entry_get_weight (entry))
+		return FALSE;
 
 	/* Only include if matches a mandatory query. */
 	if (query && query_try_match (query, folder, entry)) {
@@ -979,13 +1005,13 @@ folder_reload_if_needed (Folder *folder)
 	if (!folder->dirty || folder->loading)
 		return;
 
+	g_print ("----- RELOADING FOLDER: %s -----\n",
+		 folder->name);
+
 	folder->loading = TRUE;
 	folder->info->loading = TRUE;
 
-	/* 
-	 * FIXME: This leaves the folder empty even after loading all the
-	 *        sources. */
-	/* folder_reset_entries (folder); */
+	folder_reset_entries (folder);
 
 	if (folder_get_desktop_file (folder))
 		changed |= create_dot_directory_entry (folder);
@@ -1096,8 +1122,6 @@ folder_set_desktop_file (Folder *folder, const gchar *filename)
 	g_free (folder->desktop_file);
 	folder->desktop_file = g_strdup (filename);
 
-	/* Is this needed? Just cache the sort */
-	/* folder_set_dirty (folder); */
 	vfolder_info_set_dirty (folder->info);
 }
 
@@ -1277,17 +1301,19 @@ void
 folder_remove_entry (Folder *folder, Entry *entry)
 {
 	const gchar *name;
+	Entry *existing;
 
 	if (!folder->entries_ht)
 		return;
 
 	name = entry_get_displayname (entry);
-	if (g_hash_table_lookup (folder->entries_ht, name)) {
+	existing = g_hash_table_lookup (folder->entries_ht, name);
+	if (existing) {
 		g_hash_table_remove (folder->entries_ht, name);
-		folder->entries = g_slist_remove (folder->entries, entry);
+		folder->entries = g_slist_remove (folder->entries, existing);
 
-		entry_dealloc (entry);
-		entry_unref (entry);
+		entry_dealloc (existing);
+		entry_unref (existing);
 	}
 }
 
@@ -1298,6 +1324,9 @@ folder_remove_entry (Folder *folder, Entry *entry)
 void 
 folder_add_entry (Folder *folder, Entry *entry)
 {
+	entry_alloc (entry);
+	entry_ref (entry);
+
 	folder_remove_entry (folder, entry);
 
 	if (!folder->entries_ht) 
@@ -1307,9 +1336,6 @@ folder_add_entry (Folder *folder, Entry *entry)
 			     (gchar *) entry_get_displayname (entry),
 			     entry);
 	folder->entries = g_slist_append (folder->entries, entry);
-
-	entry_alloc (entry);
-	entry_ref (entry);
 }
 
 void
@@ -1329,7 +1355,6 @@ folder_add_include (Folder *folder, const gchar *include)
 	folder->includes = g_slist_prepend (folder->includes, str);
 	g_hash_table_insert (folder->includes_ht, str, folder->includes);
 
-	folder_set_dirty (folder);
 	vfolder_info_set_dirty (folder->info);
 }
 
@@ -1352,7 +1377,6 @@ folder_remove_include (Folder *folder, const gchar *file)
 		g_hash_table_remove (folder->includes_ht, li);
 	}
 
-	folder_set_dirty (folder);
 	vfolder_info_set_dirty (folder->info);
 }
 
@@ -1373,7 +1397,6 @@ folder_add_exclude (Folder *parent, const gchar *exclude)
 	s = g_strdup (exclude);
 	g_hash_table_replace (parent->excludes, s, s);
 
-	folder_set_dirty (parent);
 	vfolder_info_set_dirty (parent->info);
 }
 
@@ -1385,7 +1408,6 @@ folder_remove_exclude (Folder *folder, const gchar *file)
 
 	g_hash_table_remove (folder->excludes, file);
 
-	folder_set_dirty (folder);
 	vfolder_info_set_dirty (folder->info);
 }
 

@@ -1,12 +1,13 @@
 <VFolderInfo>
-  <ItemDir>@datadir@/control-center-2.0/capplets</ItemDir>
+  <!-- Write changes here, instead of to the original files -->
+  <WriteDir>@vfolderdir@/preferences-all-users/</WriteDir>
+
+  <!-- Capplet location for our prefix -->
+  <ItemDir>@datadir@/control-center-2.0/capplets/</ItemDir>
 
   <!-- Merge dirs optional -->
   <MergeDir>@datadir@/gnome/apps/Settings</MergeDir>
   <MergeDir>@datadir@/gnome/capplets</MergeDir>
-
-  <!-- In case you installed in a non-standard prefix -->
-  <!--<MergeDir>/usr/share/gnome/apps/Settings</MergeDir>-->
 
   <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
 
@@ -54,6 +55,7 @@
 	</Or>
       </Query>
       <DontShowIfEmpty/>
+
       <Folder>
 	<Name>Sawfish</Name>
 	<Desktop>Sawfish.directory</Desktop>
@@ -69,6 +71,7 @@
 	<DontShowIfEmpty/>
       </Folder>
     </Folder>
+
     <Folder>
       <Name>Accessibility</Name>
       <Desktop>Accessibility.directory</Desktop>
@@ -80,6 +83,7 @@
       </Query>
       <DontShowIfEmpty/>
     </Folder>
+
     <Folder>
       <Name>System</Name>
       <Desktop>System.directory</Desktop>

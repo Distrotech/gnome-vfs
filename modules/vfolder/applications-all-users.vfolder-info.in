@@ -1,7 +1,9 @@
 <VFolderInfo>
-  <!-- Load the GNOME2 applications from our prefix -->
   <!-- Write changes here, instead of to the original files -->
-  <WriteDir>@datadir@/applications/</WriteDir>
+  <WriteDir>@vfolderdir@/applications-all-users/</WriteDir>
+
+  <!-- Load the GNOME2 applications from our prefix -->
+  <ItemDir>@datadir@/applications/</ItemDir>
 
   <!-- Add main GNOME2 entries if you build into a non-default prefix -->
   <ItemDir>/usr/share/applications/</ItemDir>

@@ -276,9 +276,11 @@ struct _VFolderInfo {
 
 	/* dir where user changes to items are stored */
 	char           *write_dir; 
+	VFolderMonitor *write_dir_monitor;
 
 	/* deprecated */
 	char           *desktop_dir; /* directory with .directorys */
+	VFolderMonitor *desktop_dir_monitor;
 
 	/* Consider item dirs and mergedirs writeable?? */
 	/* Monitoring on mergedirs?? */

@@ -398,8 +398,9 @@ vfolder_untimestamp_file_name (const gchar *file)
 {
 	int n = 0;
 
-	while (file [n] && (g_ascii_isdigit (file [n]) || file [n] == '-'))
+	while (file [n] && g_ascii_isdigit (file [n]))
 		++n;
+	n = (file [n] == '-') ? n + 1 : 0;
 
 	return g_strdup (file [n] ? &file [n] : NULL);
 }

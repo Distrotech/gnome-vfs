@@ -29,6 +29,7 @@ EXTRA_DIST =					\
 	start-here.vfolder-info.in		\
 	server-settings.vfolder-info.in		\
 	system-settings.vfolder-info.in		\
+	\
 	test-vfolder.vfolder-info.in		\
 	test-vfolder-parent.vfolder-info.in	\
 	test-vfolder-modules.conf
@@ -54,7 +55,7 @@ libvfolder_desktop_la_LIBADD = $(top_builddir)/libgnomevfs/libgnomevfs-2.la
 
 ###  Default .vfolder-info files
 
-vfolderdir=$(sysconfdir)/gnome-vfs-2.0/vfolders
+vfolderdir = $(sysconfdir)/gnome-vfs-2.0/vfolders
 vfolder_DATA = 					\
 	applications.vfolder-info-default	\
 	applications-all-users.vfolder-info 	\
@@ -64,17 +65,18 @@ vfolder_DATA = 					\
 	server-settings.vfolder-info		\
 	system-settings.vfolder-info
 
-%.vfolder-info: %.vfolder-info.in 
-	sed -e "s,\@datadir\@,$(datadir)," \
+VFOLDER_INFO_CREATE = 				 \
+	sed -e "s,\@datadir\@,$(datadir),"       \
 	    -e "s,\@sysconfdir\@,$(sysconfdir)," \
-	    -e "s,\@prefix\@,$(prefix)," \
+	    -e "s,\@prefix\@,$(prefix),"         \
+	    -e "s,\@vfolderdir\@,$(vfolderdir)," \
 	    < $< > $@
 
+%.vfolder-info: %.vfolder-info.in 
+	$(VFOLDER_INFO_CREATE)
+
 %.vfolder-info-default: %.vfolder-info-default.in
-	sed -e "s,\@datadir\@,$(datadir)," \
-	    -e "s,\@sysconfdir\@,$(sysconfdir)," \
-	    -e "s,\@prefix\@,$(prefix)," \
-	    < $< > $@
+	$(VFOLDER_INFO_CREATE)
 
 ###  test-vfolder regression test
 

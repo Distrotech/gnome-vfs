@@ -1,3 +1,54 @@
+2002-08-14  Alex Graveley  <alex@ximian.com>
+
+	* modules/vfolder/vfolder-util.c (vfolder_untimestamp_file_name):
+	Only remove one set of timestamp, in case we are copying the same
+	file around multiple times.
+
+	* modules/vfolder/vfolder-common.c (create_dot_directory_entry):
+	Only add entry to folder if it does not contain one with the same
+	name and a higher weight.
+	(read_one_extended_entry): Ditto.
+	(read_one_extended_entry): Ditto.
+	(read_one_include): Ditto.
+
+	* modules/vfolder/vfolder-method.c (do_remove_directory_unlocked):
+	Remove check for hiddeness, as a recursive delete on a folder with
+	<DontShowIfEmpty/> will not allow the actual folder to be deleted
+	once all its contents are removed.
+	(do_unlink_unlocked): Only check result of file delete if parent
+	is a linked directory, since if it fails we can still just remove
+	it from the .vfolder-info.
+	(do_read_directory): Skip to next entry if getting the real file's
+	info fails.
+
+	* modules/vfolder/vfolder-common.c (read_one_include): Untimestamp
+	included files that originate in the writedir.
+	(folder_remove_entry): Only unref the existing entry, instead of
+	assuming the one we are removing is the same.
+	(folder_add_entry): Ref before calling folder_remove_entry, in
+	case we hold the only ref.
+
+	* modules/vfolder/preferences-all-users.vfolder-info.in: Set the
+	WriteDir to @vfolderdir@/preferences-all-users.
+
+	* modules/vfolder/applications-all-users.vfolder-info.in: Set the
+	WriteDir to @vfolderdir@/applications-all-users.
+
+	* modules/vfolder/Makefile.am (VFOLDER_INFO_CREATE): Translate
+	@vfolderdir@ in .vfolder-info.in files as
+	$(sysconfdir)/gnome-vfs-2.0/vfolders.
+
+	* modules/vfolder/vfolder-info.c (vfolder_info_find_filenames):
+	Check for system-global file first, then user-local, then try
+	copying the system-default file.  This allows administrator
+	override of editing.  Remove default WriteDir.
+	(create_itemdir_entry): Don't create ItemDir/MergeDir entries as
+	user-private, because we probably don't really want them
+	deleted/edited.
+	(read_vfolder_from_file): Don't bother creating ItemDir struct to
+	monitor writedirs, since I don't think we actually care about the
+	results.
+
 2002-08-12  Alex Graveley  <alex@ximian.com>
 
 	* modules/Makefile.am (modules_LTLIBRARIES): Remove libdesktop.so.
