@@ -4,8 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.2.0\n"
-"POT-Creation-Date: 2001-08-02 15:30-0700\n"
+"Project-Id-Version: gnome-vfs 1.1\n"
+"POT-Creation-Date: 2001-09-09 19:05+0200\n"
 "PO-Revision-Date: 2001-02-26 19:15+0100\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
@@ -14,9 +14,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/mime/gnome-vfs.keys.in.h:1
-#, fuzzy
 msgid "3D Studio image"
-msgstr "Imådje X Windows"
+msgstr "Imådje 3D Studio"
 
 #: data/mime/gnome-vfs.keys.in.h:2
 msgid "AIFC audio"
@@ -56,12 +55,12 @@ msgstr "Imådje ApplixWare Graphics"
 
 #: data/mime/gnome-vfs.keys.in.h:11
 msgid "Applixware Words document"
-msgstr "Documint Applixware Words"
+msgstr "Documint ApplixWare Words"
 
 #: data/mime/gnome-vfs.keys.in.h:12
 #, fuzzy
 msgid "Applixware spreadsheet"
-msgstr "Documint Applixware Words"
+msgstr "Documint ApplixWare Words"
 
 #: data/mime/gnome-vfs.keys.in.h:13
 msgid "AutoCAD image"
@@ -81,11 +80,11 @@ msgstr "Script C shell"
 
 #: data/mime/gnome-vfs.keys.in.h:17
 msgid "C source code"
-msgstr "Côde soûrdant è langaedje C"
+msgstr "Côde soûrdant e lingaedje C"
 
 #: data/mime/gnome-vfs.keys.in.h:18
 msgid "C++ source code"
-msgstr "Côde soûrdant è langaedje C++"
+msgstr "Côde soûrdant e lingaedje C++"
 
 #: data/mime/gnome-vfs.keys.in.h:19
 msgid "CGI program"
@@ -102,11 +101,11 @@ msgstr "Imådje CGM"
 
 #: data/mime/gnome-vfs.keys.in.h:22
 msgid "CPIO archive"
-msgstr "Artchive CPIO"
+msgstr "Årtchive CPIO"
 
 #: data/mime/gnome-vfs.keys.in.h:23
 msgid "CPIO archive (gzip-compressed)"
-msgstr "Artchive CPIO (gzip-sipotcheye)"
+msgstr "Årtchive CPIO (gzip-sipotcheye)"
 
 #: data/mime/gnome-vfs.keys.in.h:24
 msgid "DCL script"
@@ -142,11 +141,11 @@ msgstr "Son dolby digital"
 
 #: data/mime/gnome-vfs.keys.in.h:32
 msgid "Emacs Lisp source code"
-msgstr "Côde soûrdant è langaedje lisp d' emacs"
+msgstr "Côde soûrdant e lingaedje lisp d' emacs"
 
 #: data/mime/gnome-vfs.keys.in.h:33
 msgid "Enlightenment theme"
-msgstr "Tinme po enlightenment"
+msgstr "Tinme po Enlightenment"
 
 #: data/mime/gnome-vfs.keys.in.h:34
 msgid "FLC animation"
@@ -162,7 +161,7 @@ msgstr "Son FastTracker II"
 
 #: data/mime/gnome-vfs.keys.in.h:37
 msgid "Fortran source code"
-msgstr "Côde soûrdant è langaedje Fortran"
+msgstr "Côde soûrdant e lingaedje Fortran"
 
 #: data/mime/gnome-vfs.keys.in.h:38
 #, fuzzy
@@ -255,11 +254,11 @@ msgstr "Imådje JPEG"
 
 #: data/mime/gnome-vfs.keys.in.h:60
 msgid "Java byte code"
-msgstr "Fitchî Java è byte code"
+msgstr "Fitchî Java e byte code"
 
 #: data/mime/gnome-vfs.keys.in.h:61
 msgid "Java source code"
-msgstr "Côde soûrdant è langaedje Java"
+msgstr "Côde soûrdant e lingaedje Java"
 
 #: data/mime/gnome-vfs.keys.in.h:62
 msgid "KDE application details"
@@ -287,11 +286,11 @@ msgstr "Script Korn shell"
 
 #: data/mime/gnome-vfs.keys.in.h:68
 msgid "LHA archive"
-msgstr "Artchive LHA"
+msgstr "Årtchive LHA"
 
 #: data/mime/gnome-vfs.keys.in.h:69
 msgid "LHARC archive"
-msgstr "Artchive LHARC"
+msgstr "Årtchive LHARC"
 
 #: data/mime/gnome-vfs.keys.in.h:70
 msgid "LIBGRX font"
@@ -316,7 +315,7 @@ msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:75
 msgid "M3 audio URL"
-msgstr "Hårdéye di son M3"
+msgstr "Hårdêye di son M3"
 
 #: data/mime/gnome-vfs.keys.in.h:76
 msgid "MIDI audio"
@@ -332,7 +331,7 @@ msgstr "Son MP3"
 
 #: data/mime/gnome-vfs.keys.in.h:79
 msgid "MP3 audio playlist"
-msgstr "Djîvéye a djower MP3"
+msgstr "Djîvêye a djower MP3"
 
 #: data/mime/gnome-vfs.keys.in.h:80
 msgid "MPEG video"
@@ -411,9 +410,8 @@ msgid "PGM image"
 msgstr "Imådje PGM"
 
 #: data/mime/gnome-vfs.keys.in.h:99
-#, fuzzy
 msgid "PGN chess game"
-msgstr "Messaedje PGP"
+msgstr "Djeu d' echeks PGN"
 
 #: data/mime/gnome-vfs.keys.in.h:100
 msgid "PGP keys"
@@ -453,7 +451,7 @@ msgstr "Imådje PPM"
 
 #: data/mime/gnome-vfs.keys.in.h:109
 msgid "Palm OS database"
-msgstr "Båze di donéyes Palm OS"
+msgstr "Båze di dnêyes Palm OS"
 
 #: data/mime/gnome-vfs.keys.in.h:110
 msgid "Perl script"
@@ -465,7 +463,7 @@ msgstr "Documint Photoshop"
 
 #: data/mime/gnome-vfs.keys.in.h:112
 msgid "PostScript Type 1 font"
-msgstr "Fonte Postscript Type 1"
+msgstr "Fonte PostScript Type 1"
 
 #: data/mime/gnome-vfs.keys.in.h:113
 msgid "PostScript document"
@@ -473,7 +471,7 @@ msgstr "Documint PostScript"
 
 #: data/mime/gnome-vfs.keys.in.h:114
 msgid "Python source code"
-msgstr "Côde soûrdant è langaedje Python"
+msgstr "Côde soûrdant e lingaedje Python"
 
 #: data/mime/gnome-vfs.keys.in.h:115
 msgid "QuickTime movie"
@@ -489,7 +487,7 @@ msgstr "Documint Quicken po Windows"
 
 #: data/mime/gnome-vfs.keys.in.h:118
 msgid "RAR archive"
-msgstr "Artchive RAR"
+msgstr "Årtchive RAR"
 
 #: data/mime/gnome-vfs.keys.in.h:119
 msgid "README document"
@@ -541,11 +539,11 @@ msgstr "Côde SQL"
 
 #: data/mime/gnome-vfs.keys.in.h:131
 msgid "SV4 CPIO archive"
-msgstr "Artchive CPIO SV4"
+msgstr "Årtchive CPIO SV4"
 
 #: data/mime/gnome-vfs.keys.in.h:132
 msgid "SV4 CPIP archive (with CRC)"
-msgstr "Artchive CPIO SV4 (avou CRC)"
+msgstr "Årtchive CPIO SV4 (avou CRC)"
 
 #: data/mime/gnome-vfs.keys.in.h:133
 msgid "SVG art"
@@ -553,7 +551,7 @@ msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:134
 msgid "Scheme source code"
-msgstr "Côde soûrdant è langaedje scheme"
+msgstr "Côde soûrdant e lingaedje scheme"
 
 #: data/mime/gnome-vfs.keys.in.h:135
 msgid "Scream Tracker 3 audio"
@@ -594,7 +592,7 @@ msgstr "Documint StarOffice Writer"
 
 #: data/mime/gnome-vfs.keys.in.h:144
 msgid "StarOffice presentation"
-msgstr "Prezentåcion StarOffice"
+msgstr "Prezintåcion StarOffice"
 
 #: data/mime/gnome-vfs.keys.in.h:145
 #, fuzzy
@@ -650,9 +648,8 @@ msgid "TrueType font"
 msgstr "Fonte TrueType"
 
 #: data/mime/gnome-vfs.keys.in.h:158
-#, fuzzy
 msgid "USENET news message"
-msgstr "Messadje siné"
+msgstr "Messaedje USENET"
 
 #: data/mime/gnome-vfs.keys.in.h:159
 msgid "Unidata netCDF document"
@@ -716,7 +713,7 @@ msgstr "Imådje XPM"
 
 #: data/mime/gnome-vfs.keys.in.h:174
 msgid "Xbase database"
-msgstr "Båze di donéyes Xbase"
+msgstr "Båze di dnêyes Xbase"
 
 #: data/mime/gnome-vfs.keys.in.h:175
 msgid "active server page"
@@ -728,19 +725,19 @@ msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:177
 msgid "ar archive"
-msgstr "Artchive ar"
+msgstr "Årtchive ar"
 
 #: data/mime/gnome-vfs.keys.in.h:178
 msgid "arj archive"
-msgstr "Artchive ARJ"
+msgstr "Årtchive ARJ"
 
 #: data/mime/gnome-vfs.keys.in.h:179
 msgid "authors list"
-msgstr "Djîvéye des oteus"
+msgstr "Djîvêye des oteurs"
 
 #: data/mime/gnome-vfs.keys.in.h:180
 msgid "backup file"
-msgstr "Fitchî copéye di såvrité"
+msgstr "Fitchî copeye di såvrité"
 
 #: data/mime/gnome-vfs.keys.in.h:181
 #, fuzzy
@@ -779,7 +776,7 @@ msgstr "Éndjin caractere"
 #: data/mime/gnome-vfs.keys.in.h:189
 #, fuzzy
 msgid "comma-separated text document"
-msgstr "Documint è peur tecse"
+msgstr "Documint e peur tecse"
 
 #: data/mime/gnome-vfs.keys.in.h:190
 msgid "compound document"
@@ -808,12 +805,11 @@ msgstr "Tiestîres d' on emile"
 
 #: data/mime/gnome-vfs.keys.in.h:196
 msgid "email message"
-msgstr "Messadje d' on emile"
+msgstr "Messaedje d' on emile"
 
 #: data/mime/gnome-vfs.keys.in.h:197
-#, fuzzy
 msgid "encrypted message"
-msgstr "Messadje siné"
+msgstr "Messaedje siné"
 
 #: data/mime/gnome-vfs.keys.in.h:198
 #, fuzzy
@@ -826,7 +822,7 @@ msgstr "Ridant"
 
 #: data/mime/gnome-vfs.keys.in.h:200
 msgid "gtar archive"
-msgstr "Artchive gtar"
+msgstr "Årtchive gtar"
 
 #: data/mime/gnome-vfs.keys.in.h:201
 msgid "gzip-compressed file"
@@ -875,11 +871,11 @@ msgstr ""
 #: data/mime/gnome-vfs.keys.in.h:212
 #, fuzzy
 msgid "multi-part message"
-msgstr "Messadje d' on emile"
+msgstr "Messaedje d' on emile"
 
 #: data/mime/gnome-vfs.keys.in.h:213
 msgid "named pipe"
-msgstr "loméye bûze"
+msgstr "lomêye bûze"
 
 #: data/mime/gnome-vfs.keys.in.h:214
 msgid "object code"
@@ -892,11 +888,11 @@ msgstr "Son ogg"
 #: data/mime/gnome-vfs.keys.in.h:216
 #, fuzzy
 msgid "partial email message"
-msgstr "Messadje d' on emile"
+msgstr "Messaedje d' on emile"
 
 #: data/mime/gnome-vfs.keys.in.h:217
 msgid "plain text document"
-msgstr "Documint è peur tecse"
+msgstr "Documint e peur tecse"
 
 #: data/mime/gnome-vfs.keys.in.h:218
 msgid "profiler results"
@@ -913,7 +909,7 @@ msgstr ""
 #: data/mime/gnome-vfs.keys.in.h:221
 #, fuzzy
 msgid "rich text document"
-msgstr "Documint è peur tecse"
+msgstr "Documint e peur tecse"
 
 #: data/mime/gnome-vfs.keys.in.h:222
 msgid "search results"
@@ -926,7 +922,7 @@ msgstr "Pårteye lîvreye"
 #: data/mime/gnome-vfs.keys.in.h:224
 #, fuzzy
 msgid "shell archive"
-msgstr "Artchive ar"
+msgstr "Årtchive ar"
 
 #: data/mime/gnome-vfs.keys.in.h:225
 msgid "shell script"
@@ -934,7 +930,7 @@ msgstr "Script shell"
 
 #: data/mime/gnome-vfs.keys.in.h:226
 msgid "signed message"
-msgstr "Messadje siné"
+msgstr "Messaedje siné"
 
 #: data/mime/gnome-vfs.keys.in.h:227
 msgid "socket"
@@ -955,7 +951,7 @@ msgstr ""
 #: data/mime/gnome-vfs.keys.in.h:231
 #, fuzzy
 msgid "source code patch"
-msgstr "Côde soûrdant è langaedje C"
+msgstr "Côde soûrdant e lingaedje C"
 
 #: data/mime/gnome-vfs.keys.in.h:232
 msgid "style sheet"
@@ -968,19 +964,19 @@ msgstr "Loyén simbolike"
 #: data/mime/gnome-vfs.keys.in.h:234
 #, fuzzy
 msgid "tab-separated text document"
-msgstr "Documint è peur tecse"
+msgstr "Documint e peur tecse"
 
 #: data/mime/gnome-vfs.keys.in.h:235
 msgid "tar archive"
-msgstr "Artchive tar"
+msgstr "Årtchive tar"
 
 #: data/mime/gnome-vfs.keys.in.h:236
 msgid "tar archive (bzip2-compressed)"
-msgstr "Artchive tar (bzip2-sipotcheye)"
+msgstr "Årtchive tar (bzip2-sipotcheye)"
 
 #: data/mime/gnome-vfs.keys.in.h:237
 msgid "tar archive (gzip-compressed)"
-msgstr "Artchive tar (gzip-sipotcheye)"
+msgstr "Årtchive tar (gzip-sipotcheye)"
 
 #: data/mime/gnome-vfs.keys.in.h:238
 msgid "theme"
@@ -1011,7 +1007,7 @@ msgstr "Sôrte nén cnoxhowe"
 
 #: data/mime/gnome-vfs.keys.in.h:244
 msgid "ustar archive"
-msgstr "Artchive ustar"
+msgstr "Årtchive ustar"
 
 #: data/mime/gnome-vfs.keys.in.h:245
 msgid "wave audio"
@@ -1027,282 +1023,278 @@ msgstr "Grafike vectoriel xfig"
 
 #: data/mime/gnome-vfs.keys.in.h:248
 msgid "zip archive"
-msgstr "Artchive ZIP (sipotcheye)"
+msgstr "Årtchive ZIP (sipotcheye)"
 
 #: data/mime/gnome-vfs.keys.in.h:249
 msgid "zoo archive"
-msgstr "Artchive ZOO (sipotcheye)"
+msgstr "Årtchive ZOO (sipotcheye)"
 
-#: libgnomevfs/gnome-vfs-configuration.c:216
+#: libgnomevfs/gnome-vfs-configuration.c:222
 #, c-format
 msgid "%s:%d contains NUL characters."
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-configuration.c:233
+#: libgnomevfs/gnome-vfs-configuration.c:239
 #, c-format
 msgid "%s:%d contains no method name."
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-configuration.c:262
+#: libgnomevfs/gnome-vfs-configuration.c:268
 #, c-format
 msgid "%s:%d contains no module name."
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-configuration.c:315
+#: libgnomevfs/gnome-vfs-configuration.c:321
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-init.c:76
-msgid "GNOME VFS already initialized."
-msgstr ""
-
-#: libgnomevfs/gnome-vfs-parse-ls.c:650
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
 msgstr ""
 
 #. GNOME_VFS_OK
-#: libgnomevfs/gnome-vfs-result.c:38
+#: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
 msgstr "Nole aroke"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:39
+#: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
 msgstr "fitchî nén trové"
 
 #. GNOME_VFS_ERROR_GENERIC
-#: libgnomevfs/gnome-vfs-result.c:40
+#: libgnomevfs/gnome-vfs-result.c:37
 #, fuzzy
 msgid "Generic error"
 msgstr "Divintrinne aroke"
 
 #. GNOME_VFS_ERROR_INTERNAL
-#: libgnomevfs/gnome-vfs-result.c:41
+#: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
 msgstr "Divintrinne aroke"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
-#: libgnomevfs/gnome-vfs-result.c:42
+#: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
 msgstr ""
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
-#: libgnomevfs/gnome-vfs-result.c:43
+#: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
 msgstr ""
 
 #. GNOME_VFS_ERROR_IO
-#: libgnomevfs/gnome-vfs-result.c:44
+#: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
 msgstr "Aroke d' I/R"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
-#: libgnomevfs/gnome-vfs-result.c:45
+#: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
 msgstr ""
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
-#: libgnomevfs/gnome-vfs-result.c:46
+#: libgnomevfs/gnome-vfs-result.c:43
 #, fuzzy
 msgid "Format not valid"
 msgstr "Li no do lodjeu n' est nén valåbe"
 
 #. GNOME_VFS_ERROR_BAD_FILE
-#: libgnomevfs/gnome-vfs-result.c:47
+#: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
 msgstr ""
 
 #. GNOME_VFS_ERROR_TOO_BIG
-#: libgnomevfs/gnome-vfs-result.c:48
+#: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
 msgstr "Fitchî pår trop lådje"
 
 #. GNOME_VFS_ERROR_NO_SPACE
-#: libgnomevfs/gnome-vfs-result.c:49
+#: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
 msgstr "I gn a pupont d' plaece so l' éndjin"
 
 #. GNOME_VFS_ERROR_READ_ONLY
-#: libgnomevfs/gnome-vfs-result.c:50
+#: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
 msgstr "Sistinme di fitchîs k' on pout seulmint lere"
 
 #. GNOME_VFS_ERROR_INVALID_URI
-#: libgnomevfs/gnome-vfs-result.c:51
+#: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
-msgstr "Hårdéye nén valåbe"
+msgstr "Hårdêye nén valåbe"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
-#: libgnomevfs/gnome-vfs-result.c:52
+#: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
 msgstr "Fitchî nén drovî"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
-#: libgnomevfs/gnome-vfs-result.c:53
+#: libgnomevfs/gnome-vfs-result.c:50
 #, fuzzy
 msgid "Open mode not valid"
 msgstr "Li no do lodjeu n' est nén valåbe"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
-#: libgnomevfs/gnome-vfs-result.c:54
+#: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
 msgstr ""
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
-#: libgnomevfs/gnome-vfs-result.c:55
+#: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
 msgstr "I gn a pår trop di fitchîs di drovîs"
 
 #. GNOME_VFS_ERROR_EOF
-#: libgnomevfs/gnome-vfs-result.c:56
+#: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
 msgstr "Fén do fitchî"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:57
+#: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
 msgstr "Nén on ridant"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
-#: libgnomevfs/gnome-vfs-result.c:58
+#: libgnomevfs/gnome-vfs-result.c:55
 #, fuzzy
 msgid "Operation in progress"
-msgstr "Operåcion djokéye"
+msgstr "Operåcion djokêye"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
-#: libgnomevfs/gnome-vfs-result.c:59
+#: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
-msgstr "Operåcion djokéye"
+msgstr "Operåcion djokêye"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
-#: libgnomevfs/gnome-vfs-result.c:60
+#: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
 msgstr "Li fitchî egzisteye ddja"
 
 #. GNOME_VFS_ERROR_LOOP
-#: libgnomevfs/gnome-vfs-result.c:61
+#: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
 msgstr "Betchfessîs loyéns di trovés"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
-#: libgnomevfs/gnome-vfs-result.c:62
+#: libgnomevfs/gnome-vfs-result.c:59
 #, fuzzy
 msgid "Operation not permitted"
-msgstr "Operåcion djokéye"
+msgstr "Operåcion djokêye"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
-#: libgnomevfs/gnome-vfs-result.c:63
+#: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
 msgstr "C' est on ridant"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
-#: libgnomevfs/gnome-vfs-result.c:64
+#: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "I gn a pont del mewere assez"
+msgstr "I gn a pont del memwere assez"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
-#: libgnomevfs/gnome-vfs-result.c:65
+#: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
 msgstr "Lodjeu nén trové"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
-#: libgnomevfs/gnome-vfs-result.c:66
+#: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
 msgstr "Li no do lodjeu n' est nén valåbe"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
-#: libgnomevfs/gnome-vfs-result.c:67
+#: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
 msgstr "Li lodjeu n' a nole adresse"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
-#: libgnomevfs/gnome-vfs-result.c:68
+#: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
 msgstr ""
 
 #. GNOME_VFS_ERROR_CANCELLED
-#: libgnomevfs/gnome-vfs-result.c:69
+#: libgnomevfs/gnome-vfs-result.c:66
 #, fuzzy
 msgid "Operation cancelled"
-msgstr "Operåcion djokéye"
+msgstr "Operåcion djokêye"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
-#: libgnomevfs/gnome-vfs-result.c:70
+#: libgnomevfs/gnome-vfs-result.c:67
 #, fuzzy
 msgid "Directory busy"
 msgstr "Ridant nén vûde"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
-#: libgnomevfs/gnome-vfs-result.c:71
+#: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
 msgstr "Ridant nén vûde"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
-#: libgnomevfs/gnome-vfs-result.c:72
+#: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
 msgstr "I gn a pår trop d' loyéns"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:73
+#: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
 msgstr "sistinme di fitchîs k' on pout seulmint lere"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
-#: libgnomevfs/gnome-vfs-result.c:74
+#: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
 msgstr "Nén sol minme sistinme di fitchîs"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
-#: libgnomevfs/gnome-vfs-result.c:75
+#: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
 msgstr "Li no est pår trop long"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
-#: libgnomevfs/gnome-vfs-result.c:76
+#: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
 msgstr ""
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
-#: libgnomevfs/gnome-vfs-result.c:77
+#: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
 msgstr ""
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
-#: libgnomevfs/gnome-vfs-result.c:78
+#: libgnomevfs/gnome-vfs-result.c:75
 #, fuzzy
 msgid "Protocol error"
 msgstr "Nole aroke"
 
-#: libgnomevfs/gnome-vfs-result.c:141
+#: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
 msgstr "Aroke nén cnoxhowe"
 
-#: libgnomevfs/gnome-vfs-utils.c:66
+#: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
 msgstr "1 octet"
 
-#: libgnomevfs/gnome-vfs-utils.c:68
+#: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
 msgstr "%u octets"
 
-#: libgnomevfs/gnome-vfs-utils.c:75
+#: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f Ko"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:78
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mo"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:82
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Go"
@@ -1312,22 +1304,22 @@ msgstr "%.1f Go"
 msgid "Unknown op type %u"
 msgstr "Sôre op %u nén cnoxhou"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1000
-#: libgnomevfs-pthread/gnome-vfs-job.c:1145
+#: libgnomevfs-pthread/gnome-vfs-job.c:1003
+#: libgnomevfs-pthread/gnome-vfs-job.c:1148
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr ""
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1603
+#: libgnomevfs-pthread/gnome-vfs-job.c:1594
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Sôre di bouye %u nén cnoxhowe"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1639
+#: libgnomevfs-pthread/gnome-vfs-job.c:1630
 msgid "Operation stopped"
-msgstr "Operåcion djokéye"
+msgstr "Operåcion djokêye"
 
-#: modules/file-method.c:380
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d nén cnoxhou"
