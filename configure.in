@@ -89,8 +89,8 @@ AC_ARG_ENABLE(gconf,
               [  --enable-gconf          Enable GConf access backend],
               gconf_enabled="yes")
 AC_ARG_ENABLE(libefs,
-              [  --disable-libefs=       Disable libefs access backend],
-              libefs_disabled="no")
+              [  --disable-libefs={yes|no}       Disable libefs access backend],
+              libefs_disabled="yes")
 AC_ARG_WITH(default-backend,
 	      [  --with-default-backend=(corba|pthread)		    ],
 	      default_backend="$withval")
