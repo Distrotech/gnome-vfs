@@ -117,10 +117,10 @@ progress_set_source_target_uris (GnomeVFSProgressCallbackState *progress,
 {
 	g_free (progress->progress_info->source_name);
 	progress->progress_info->source_name = source_uri ? gnome_vfs_uri_to_string (source_uri,
-						       GNOME_VFS_URI_HIDE_PASSWORD) : NULL;
+						       GNOME_VFS_URI_HIDE_NONE) : NULL;
 	g_free (progress->progress_info->target_name);
 	progress->progress_info->target_name = dest_uri ? gnome_vfs_uri_to_string (dest_uri,
-						       GNOME_VFS_URI_HIDE_PASSWORD) : NULL;
+						       GNOME_VFS_URI_HIDE_NONE) : NULL;
 
 }
 

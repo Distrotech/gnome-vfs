@@ -1,5 +1,15 @@
 2000-10-28  Pavel Cisler <pavel@eazel.com>
 
+	* libgnomevfs/gnome-vfs-xfer.c: (progress_set_source_target_uris):
+	Fix 4059 - Duplicated fiels don't appear in WebDAV until refres.
+	This happened on any uris that required a name/password pair.
+	It was a stupid bug where the notification callbacks were passed
+	the name without a password. This was because the uri was used in
+	the progress dialog display. It's no longer displayed in a raw form
+	so fixing this is a simple matter of passing back the entire uri.
+
+2000-10-28  Pavel Cisler <pavel@eazel.com>
+
 	* modules/http-method.c: (sig_gconf_value_changed),
 	(http_proxy_for_host_port), (process_propfind_propstat),
 	(propfind_href_to_vfs_uri), (null_handling_strcmp),
