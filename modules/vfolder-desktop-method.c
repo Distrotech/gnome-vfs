@@ -1565,7 +1565,7 @@ vfolder_info_read_items_merge (VFolderInfo *info, const char *merge_dir, const c
 		extra_keyword = g_quark_from_static_string ("Settings");
 	else if (g_ascii_strcasecmp (subdir, "System") == 0)
 		extra_keyword = g_quark_from_static_string ("System");
-	else if (g_ascii_strcasecmp (subdir, "Utility") == 0)
+	else if (g_ascii_strcasecmp (subdir, "Utilities") == 0)
 		extra_keyword = g_quark_from_static_string ("Utility");
 
 	while ((de = readdir (dir)) != NULL) {

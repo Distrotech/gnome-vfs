@@ -1,5 +1,13 @@
 2001-11-27  Seth Nickell  <snickell@stanford.edu>
 
+	* modules/vfolder-desktop-method.c:
+	(vfolder_info_read_items_merge):
+
+	Change "Utility" to "Utilities" looking for
+	vfolders based on current location.
+
+2001-11-27  Seth Nickell  <snickell@stanford.edu>
+
 	* George Lebl
 
 	Give him a hug.
