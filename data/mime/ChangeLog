@@ -1,3 +1,10 @@
+2001-06-14  Aaron Brick  <aaron@lithic.org>
+
+	* gnome-vfs.keys.in:
+
+	reverted application of the patch below, which was apparently
+	ill-advised. more mysteries remain.
+
 2001-06-13  Aaron Brick  <aaron@lithic.org>
 
 	* gnome-vfs.keys.in:
