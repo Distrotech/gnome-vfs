@@ -1,3 +1,16 @@
+2001-02-22  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: John Sullivan <sullivan@eazel.com>
+
+	Fixed bug 6568, Closing capplet right away warns
+	about uncommitted changes
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet):
+	Use new winterface that I added to control-center
+	that informs the control center that changes are immediate.
+	The control center now behaves properly.
+
 2001-02-21  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Darin Adler <darin@eazel.com>
