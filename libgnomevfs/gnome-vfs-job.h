@@ -52,8 +52,8 @@ extern GStaticMutex debug_mutex;
 #define JOB_DEBUG_PRINT(x)			\
 G_STMT_START{					\
 	g_static_mutex_lock (&debug_mutex);	\
+	fputs (__FUNCTION__ ":", stdout);	\
 	printf ("%d ", __LINE__);		\
-	fputs (__FUNCTION__ ": ", stdout);	\
 	printf x;				\
 	fputc ('\n', stdout);			\
 	fflush (stdout);			\

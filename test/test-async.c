@@ -28,6 +28,8 @@
 #include <libgnomevfs/gnome-vfs-init.h>
 #include <stdio.h>
 
+#define QUEUE_LENGTH 4000
+
 static GMainLoop *main_loop;
 
 /* Callbacks.  */
@@ -36,7 +38,7 @@ close_callback (GnomeVFSAsyncHandle *handle,
 		GnomeVFSResult result,
 		gpointer callback_data)
 {
-	printf ("Close: %s.\n", gnome_vfs_result_to_string (result));
+	fprintf (stderr, "Close: %s.\n", gnome_vfs_result_to_string (result));
 	g_main_loop_quit (main_loop);
 }
 
@@ -49,19 +51,20 @@ read_callback (GnomeVFSAsyncHandle *handle,
                gpointer callback_data)
 {
 	if (result != GNOME_VFS_OK) {
-		printf ("Read failed: %s", gnome_vfs_result_to_string (result));
+		fprintf (stderr, "Read failed: %s\n",
+			 gnome_vfs_result_to_string (result));
 	} else {
 		printf ("%"GNOME_VFS_SIZE_FORMAT_STR"/"
 			"%"GNOME_VFS_SIZE_FORMAT_STR" "
 			"byte(s) read, callback data `%s'\n",
-			bytes_read, bytes_requested, (gchar *) callback_data);
+			bytes_read, bytes_requested,
+			(gchar *) callback_data);
 		*((gchar *) buffer + bytes_read) = 0;
-		puts (buffer);
+		fprintf (stderr, "%s", (char *) buffer);
 	}
 
-	printf ("Now closing the file.\n");
+	fprintf (stderr, "Now closing the file.\n");
 	gnome_vfs_async_close (handle, close_callback, "close");
-	g_main_loop_quit (main_loop);
 }
 
 static void
@@ -70,15 +73,15 @@ open_callback  (GnomeVFSAsyncHandle *handle,
                 gpointer callback_data)
 {
 	if (result != GNOME_VFS_OK) {
-		printf ("Open failed: %s.\n",
-			gnome_vfs_result_to_string (result));
+		fprintf (stderr, "Open failed: %s.\n",
+			 gnome_vfs_result_to_string (result));
 		g_main_loop_quit (main_loop);
 	} else {
 		gchar *buffer;
 		const gulong buffer_size = 1024;
 
-		printf ("File opened correctly, data `%s'.\n",
-			(gchar *) callback_data);
+		fprintf (stderr, "File opened correctly, data `%s'.\n",
+			 (gchar *) callback_data);
 
 		buffer = g_malloc (buffer_size);
 		gnome_vfs_async_read (handle,
@@ -89,37 +92,70 @@ open_callback  (GnomeVFSAsyncHandle *handle,
 	}
 }
 
+static void
+dummy_close_callback (GnomeVFSAsyncHandle *handle,
+		      GnomeVFSResult result,
+		      gpointer callback_data)
+{
+}
+
+static void
+async_queue_callback  (GnomeVFSAsyncHandle *handle,
+		       GnomeVFSResult result,
+		       gpointer callback_data)
+{
+	int *completed = callback_data;
+
+	(*completed)++;
+
+	if (result == GNOME_VFS_OK)
+		gnome_vfs_async_close (handle, dummy_close_callback, NULL);
+}
+
 int
 main (int argc, char **argv)
 {
+	int completed, i;
 	GnomeVFSAsyncHandle *handle;
 
 	if (argc < 2) {
-		fprintf (stderr, "Usage: %s <uri>\n", argv[0]);
+		fprintf (stderr, "Usage: %s <uri of text file>\n", argv[0]);
 		return 1;
 	}
 
-	puts ("Initializing gnome-vfs...");
+	fprintf (stderr, "Initializing gnome-vfs...\n");
 	gnome_vfs_init ();
 
-	puts ("Creating async context...");
+	fprintf (stderr, "Creating async context...\n");
 
-	printf ("Starting open for `%s'...\n", argv[1]);
+	fprintf (stderr, "Starting open for `%s'...\n", argv[1]);
 	gnome_vfs_async_open (&handle, argv[1], GNOME_VFS_OPEN_READ,
-			      0,
+			      GNOME_VFS_PRIORITY_MIN,
 			      open_callback, "open_callback");
 
-	puts ("Main loop running.");
+	fprintf (stderr, "Main loop running.\n");
 	main_loop = g_main_loop_new (NULL, TRUE);
 	g_main_loop_run (main_loop);
+
+	fprintf (stderr, "Main loop finished.\n");
+
+	fprintf (stderr, "Test async queue efficiency ...");
+
+	for (completed = i = 0; i < QUEUE_LENGTH; i++) {
+		gnome_vfs_async_open (&handle, argv [1], GNOME_VFS_OPEN_READ, 0,
+				      async_queue_callback, &completed);
+	}
+
+	while (completed < QUEUE_LENGTH)
+		g_main_context_iteration (NULL, TRUE);
+
+	fprintf (stderr, "Passed\n");
+
 	g_main_loop_unref (main_loop);
 
-	puts ("Main loop finished.");
+	fprintf (stderr, "All done\n");
 
-	puts ("All done");
-
-	while (1)
-		;
+	gnome_vfs_shutdown ();
 
 	return 0;
 }

@@ -96,21 +96,22 @@ gnome_vfs_init (void)
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 #endif    
 
-		if (bonobo_activation_orb_get() == NULL) {
+		retval = gnome_vfs_pthread_init (TRUE);
+
+		if (retval && bonobo_activation_orb_get() == NULL) {
 			bonobo_activation_init (0, bogus_argv);
 		}
 
 		gnome_vfs_ssl_init ();
 
-		retval = gnome_vfs_method_init ();
+		if (retval) {
+			retval = gnome_vfs_method_init ();
+		}
 		if (retval) {
 			retval = gnome_vfs_process_init ();
 		}
 		if (retval) {
 			retval = gnome_vfs_configuration_init ();
-		}
-		if (retval) {
-			retval = gnome_vfs_pthread_init (TRUE);
 		}
 		if (retval) {
 			signal (SIGPIPE, SIG_IGN);
