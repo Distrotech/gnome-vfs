@@ -7,36 +7,6 @@
 	
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
-	* acinclude.m4: New file.
-	(AM_GNOME_SIZE_T, AM_GNOME_OFF_T): Better checks for `size_t' and
-	`off_t' which also work when they're typedef'ed in <sys/types.h>.
-
-2000-08-31  Martin Baulig  <baulig@suse.de>
-
-	* Makefile.am: Disable the mime-type-capplet for the moment and
-	only build the test subdirectory for the GNOME 1.2 platform.
-
-2000-08-31  Martin Baulig  <baulig@suse.de>
-
-	We can't use gnome-config for the GNOME 2 platform since gnome-vfs
-	doesn't depend on gnome-libs on it; this gnome-vfs-config script
-	works for both platforms, however using gnome-config may be saner
-	for the GNOME 1.2 one.
-
-	* gnome-vfs-config.in: New file. Template for gnome-vfs-config.
-	* Makefile.am: Create a gnome-vfs-config script.
-
-2000-08-31  Martin Baulig  <baulig@suse.de>
-
-	* libgnomevfs-pthread/gnome-vfs-job-slave.c
-	(gnome_vfs_thread_backend_shutdown): Use g_main_iteration() for
-	the GNOME 2 platform.
-
-2000-08-31  Martin Baulig  <baulig@suse.de>
-
-	* configure.in: Only check for GNOME if we're on the GNOME 1.2
-	platform.
-
 	* configure.in: Don't modify CFLAGS but set VFS_CLFAGS instead.
 	Otherwise CFLAGS gets longer every time config.status is run.
 	* */Makefile.am (INCLUDES): Add $(VFS_CFLAGS).
@@ -47,25 +17,58 @@
 
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
-	* libgnomevfs/gnome-vfs-private-utils.c
-	(gnome_vfs_i18n_get_language_list): New function. This calls
-	gnome_i18n_get_language list for the GNOME 1.2.x platform and
-	g_i18n_get_language_list for the GNOME 2.x platform and copies
-	the returned list.
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c
+	(gnome_vfs_thread_backend_shutdown): Use g_main_iteration() instead
+	of gtk_main_iteration_do() if `GNOME_PLATFORM_VERSION >= 1095000'
+	(as preprocessor conditional).
 
-	* libgnomevfs/gnome-vfs-mime-info.c (gnome_vfs_mime_init): Call
-	gnome_vfs_i18n_get_language_list and don't #include the GNOME
-	header files.
-	* libgnomevfs/gnome-vfs-application-registry.c: Likewise.
+	* libgnomevfs/gnome-vfs-private-utils.c
+	(gnome_vfs_i18n_get_language_list): New function.  This calls
+	gnome_i18n_get_language_list() if `GNOME_PLATFORM_VERSION < 1095000'
+	and g_i18n_get_language_list() otherwise.
+
+	* libgnomevfs/gnome-vfs-mime-info.c: Remove the <libgnome/*.h>
+	includes which were previously required for gnome_i18n_get_language_list.
+	(gnome_vfs_mime_init): Use gnome_vfs_i18n_get_language_list() instead
+	of gnome_i18n_get_language_list().
+
+	* libgnomevfs/gnome-vfs-application-registry.c: Remove the
+	includes which were previously required for gnome_i18n_get_language_list.
+	(gnome_vfs_application_registry_init): Use
+	gnome_vfs_i18n_get_language_list() instead of
+	gnome_i18n_get_language_list().
 
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
-	* acconfig.h (GNOME_PLATFORM_VERSION): Added.  This is hardcoded
-	to be 1002000 in configure.in for the GNOME 1.2.x platform.
+	* configure.in: Only check for GNOME if we're on the GNOME 1.2
+	platform.
+
+	* gnome-vfs-config.in: New file. Template for gnome-vfs-config.
+	We can't use gnome-config for the GNOME 2 platform since gnome-vfs
+	doesn't depend on gnome-libs on it; this gnome-vfs-config script
+	works for both platforms, however using gnome-config may be saner
+	for the GNOME 1.2 one.
+	* Makefile.am: Create a gnome-vfs-config script.
+
+2000-08-31  Martin Baulig  <baulig@suse.de>
+
+	* acconfig.h (GNOME_PLATFORM_VERSION): #define this in config.h
+	to be a number constant which is currently 1002000 for the GNOME 1.2.x
+	platform.  When compiling for the GNOME 2 platform, we patch
+	configure.in to set this to 1095000.
 
 	* configure.in (PLATFORM_GNOME_2): New automake conditional; true
-	if GNOME_PLATFORM_VERSION >= 1095000 (you need to patch configure.in
+	if `GNOME_PLATFORM_VERSION >= 1095000' (you need to patch configure.in
 	to make this happen, ie. when compiling for gnome-libs HEAD).
+
+	* acinclude.m4: New file.
+	(AM_GNOME_SIZE_T, AM_GNOME_OFF_T): New autoconf macros which provide
+	better checks for `size_t' and `off_t'; they also work when they're
+	typedef'ed in <sys/types.h> and not #defined.
+	* configure.in: Use AM_GNOME_SIZE_T and AM_GNOME_OFF_T.
+
+	* Makefile.am: Disable the mime-type-capplet and test subdirectories
+	if we're compiling for the GNOME 2 platform.
 
 2000-08-31  Mathieu Lacage  <mathieu@eazel.com>
 
