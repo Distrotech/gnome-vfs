@@ -1,3 +1,11 @@
+2000-11-01  Gene Z. Ragan  <gzr@eazel.com>
+
+	* modules/http-method.c: (process_propfind_propstat),
+	(process_propfind_response), (make_propfind_request):
+	Add hack variable to detect if x-directory/webdav has been returned for 
+	a root directory URL.  If this is the case, return a value that causes
+	HEAD to be called.
+	
 2000-11-01  Mathieu Lacage  <mathieu@eazel.com>
 
 	* configure.in: tweak efs configure.

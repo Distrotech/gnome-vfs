@@ -1731,12 +1731,13 @@ do_read (GnomeVFSMethod *method,
 }
 
 /* Directory handling - WebDAV servers only */
-
-static void
-process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
+static gboolean
+process_propfind_propstat (xmlNodePtr node, GnomeVFSFileInfo *file_info)
 {
 	xmlNodePtr l;
-
+	int index = 0;
+	gboolean retval = FALSE;
+	
 	while (node != NULL) {
 		if (strcmp((char *)node->name, "prop") != 0) {
 			/* node name != "prop" - prop is all we care about */
@@ -1782,6 +1783,7 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 					g_free(file_info->mime_type);
 					file_info->mime_type = g_strdup("x-directory/webdav");
 					file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+					retval = TRUE;
 				}
 			}
 			/* FIXME bugzilla.eazel.com 2795: 
@@ -1790,6 +1792,7 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 			 * getlastmodified
 			 */
 			l = l->next;
+			index++;
 		}
 		node = node->next;
 	}
@@ -1804,6 +1807,8 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 	}
+
+	return retval;
 }
 
 /* The problem here: Eazel Vault returns "https:" URI's which GnomeVFS doesn't recognize
@@ -1873,11 +1878,12 @@ match_unescaped_uri_text (const GnomeVFSURI *uri1, const GnomeVFSURI *uri2)
 }
 
 static GnomeVFSFileInfo *
-process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
+process_propfind_response (xmlNodePtr n, GnomeVFSURI *base_uri, gboolean *root_check_hack)
 {
 	GnomeVFSFileInfo *file_info = defaults_file_info_new();
 	GnomeVFSURI *second_base = gnome_vfs_uri_append_path(base_uri, "/");
-
+	int index;
+	
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
 	while (n != NULL) {
@@ -1914,8 +1920,9 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 			xmlFree (nodecontent_escaped);
 			g_free (nodecontent);
 		} else if (strcmp ((char *)n->name, "propstat") == 0) {
-			process_propfind_propstat (n->childs, file_info);
+			*root_check_hack = process_propfind_propstat (n->childs, file_info);
 		}
+		index++;
 		n = n->next;
 	}
 
@@ -2022,10 +2029,21 @@ make_propfind_request (HttpFileHandle **handle_return,
 	found_root_node_props = FALSE;
 	while (cur != NULL) {
 		if (strcmp((char *)cur->name, "response") == 0) {
-			GnomeVFSFileInfo *file_info =
-				process_propfind_response(cur->childs, uri);
+			GnomeVFSFileInfo *file_info;
+			gboolean root_check_hack;
 
-			if (file_info->name != NULL) { 
+			/* This variable is used to detect if x-directory/webdav has been returned 
+			 * for the root directory.  If this is TRUE, bail and use a fallback
+			 */
+			root_check_hack = FALSE;
+			
+			file_info = process_propfind_response (cur->childs, uri, &root_check_hack);
+
+			if (root_check_hack) {
+				found_root_node_props = FALSE;
+				result = GNOME_VFS_ERROR_CORRUPTED_DATA;
+				goto cleanup;
+			} else if (file_info->name != NULL) { 
 				(*handle_return)->files = g_list_append ((*handle_return)->files, file_info);
 			} else {
 				/* This response refers to the root node */
@@ -2037,7 +2055,6 @@ make_propfind_request (HttpFileHandle **handle_return,
 				(*handle_return)->file_info = file_info;
 				found_root_node_props = TRUE;
 			}
-			
 		} else {
 			DEBUG_HTTP(("expecting <response> got <%s>\n", cur->name));
 		}
