@@ -76,7 +76,7 @@ show_result (GnomeVFSResult result, const gchar *what)
 }
 
 static gint
-xfer_progress_callback (const GnomeVFSXferProgressInfo *info,
+xfer_progress_callback (GnomeVFSXferProgressInfo *info,
 			gpointer data)
 {
 	switch (info->status) {
@@ -119,6 +119,8 @@ xfer_progress_callback (const GnomeVFSXferProgressInfo *info,
 			printf ("Unexpected phase %d\n", info->phase);
 			return FALSE;
 		}
+	case GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE:
+		break;
 	}
 
 	printf ("Boh!\n");

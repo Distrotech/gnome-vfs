@@ -145,16 +145,6 @@ free_progress (GnomeVFSXferProgressInfo *progress_info)
 }
 
 static void
-progress_set_source_target_names (GnomeVFSProgressCallbackState *progress, 
-	      char *source_uri, char *dest_uri)
-{
-	g_free (progress->progress_info->source_name);
-	progress->progress_info->source_name = g_strdup (source_uri);
-	g_free (progress->progress_info->target_name);
-	progress->progress_info->target_name = g_strdup (dest_uri);
-}
-
-static void
 progress_set_source_target_uris (GnomeVFSProgressCallbackState *progress, 
 	      const GnomeVFSURI *source_uri, const GnomeVFSURI *dest_uri)
 {
@@ -177,7 +167,7 @@ call_progress (GnomeVFSProgressCallbackState *progress, GnomeVFSXferPhase phase)
 	result = 0;
 	progress_set_source_target_uris (progress, NULL, NULL);
 
-	progress->next_update_callback_time = system_time () + progress->update_callback_period;;
+	progress->next_update_callback_time = system_time () + progress->update_callback_period;
 	
 	progress->progress_info->phase = phase;
 
@@ -185,7 +175,30 @@ call_progress (GnomeVFSProgressCallbackState *progress, GnomeVFSXferPhase phase)
 		result = (* progress->sync_callback) (progress->progress_info, progress->user_data);
 
 	if (progress->update_callback != NULL)
-		result = (* progress->update_callback) (progress->progress_info, progress->async_job_data);
+		result = (* progress->update_callback) (progress->progress_info, 
+		progress->async_job_data);
+
+	return result;	
+}
+
+static int
+call_progress_with_current_names (GnomeVFSProgressCallbackState *progress, GnomeVFSXferPhase phase)
+{
+	int result;
+
+	result = 0;
+
+	progress->next_update_callback_time = system_time () + progress->update_callback_period;
+	progress->next_update_callback_time = progress->next_text_update_callback_time;
+	
+	progress->progress_info->phase = phase;
+
+	if (progress->sync_callback != NULL)
+		result = (* progress->sync_callback) (progress->progress_info, progress->user_data);
+
+	if (progress->update_callback != NULL)
+		result = (* progress->update_callback) (progress->progress_info, 
+		progress->async_job_data);
 
 	return result;	
 }
@@ -200,7 +213,7 @@ call_progress_uri (GnomeVFSProgressCallbackState *progress,
 	result = 0;
 	progress_set_source_target_uris (progress, source_uri, dest_uri);
 
-	progress->next_text_update_callback_time = system_time () + progress->update_callback_period;;
+	progress->next_text_update_callback_time = system_time () + progress->update_callback_period;
 	progress->next_update_callback_time = progress->next_text_update_callback_time;
 	
 	progress->progress_info->phase = phase;
@@ -287,7 +300,7 @@ handle_error (GnomeVFSResult *result,
 	case GNOME_VFS_XFER_ERROR_MODE_QUERY:
 		progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR;
 		progress->progress_info->vfs_status = *result;
-		action = call_progress (progress, progress->progress_info->phase);
+		action = call_progress_with_current_names (progress, progress->progress_info->phase);
 		progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 
 		switch (action) {
@@ -337,7 +350,7 @@ handle_overwrite (GnomeVFSResult *result,
 	case GNOME_VFS_XFER_OVERWRITE_MODE_QUERY:
 		progress->progress_info->vfs_status = *result;
 		progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OVERWRITE;
-		action = call_progress (progress, progress->progress_info->phase);
+		action = call_progress_with_current_names (progress, progress->progress_info->phase);
 		progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 
 		switch (action) {
@@ -583,6 +596,11 @@ count_items_and_size (const GnomeVFSURI *dir_uri,
 		      GnomeVFSProgressCallbackState *progress,
 		      gboolean move)
 {
+	/*
+	 * FIXME:
+	 * Deal with errors here, respond to skip by pulling items from the name list
+	 */
+
 	GnomeVFSFileInfoOptions info_options;
 	GnomeVFSDirectoryVisitOptions visit_options;
 	CountEachFileSizeParams each_params;
@@ -626,10 +644,43 @@ handle_name_conflicts (const GnomeVFSURI *source_dir_uri,
 	GnomeVFSResult result;
 	GList *source_item;
 	GList *target_item;
+
+	int conflict_count; /* values are 0, 1, many */
 	
 	result = GNOME_VFS_OK;
+
+	conflict_count = 0;
+
+	/* Go through the list of names, find out if there is 0, 1 or more conflicts. */
+	for (target_item = *target_name_list, source_item = *source_name_list; 
+	     target_item != NULL;
+	     target_item = target_item->next, source_item = source_item->next) {
+		GnomeVFSURI *uri;
+		GnomeVFSFileInfo info;
+
+		/* get the URI and VFSFileInfo for each */
+		uri = gnome_vfs_uri_append_path (target_dir_uri, target_item->data);
+		gnome_vfs_file_info_init (&info);
+		result = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+		
+		if (result == GNOME_VFS_OK) {
+			conflict_count++;
+			if (conflict_count > 1)
+				break;
+		}
+	}
+
+	if (conflict_count == 0)
+		/* No conflicts, we are done. */
+		return GNOME_VFS_OK;
+
+	/* Pass in the conflict count so that we can decide to present the Replace All
+	 * for multiple conflicts.
+	 */
+	progress->progress_info->duplicate_count = conflict_count;
+
 	
-	/* go through the list of names */
+	/* Go through the list of names again, present overwrite alerts for each. */
 	for (target_item = *target_name_list, source_item = *source_name_list; 
 	     target_item != NULL;) {
 		GnomeVFSURI *uri;
@@ -654,7 +705,6 @@ handle_name_conflicts (const GnomeVFSURI *source_dir_uri,
 			/* no error getting info -- file exists, ask what to do */
 			replace = handle_overwrite (&result, progress, error_mode,
 						  overwrite_mode, &replace, &skip);
-			
 			/* FIXME:
 			 * move items to Trash here
 			 */
@@ -1477,6 +1527,19 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 
 	gnome_vfs_uri_unref (source_dir_uri);
 	gnome_vfs_uri_unref (target_dir_uri);
+
+	/* FIXME:
+	 * 
+	 * The async job setup will try to call the callback function with the callback data
+	 * even though they are usually dead at this point because the callback detected
+	 * that we are giving up and cleaned up after itself.
+	 * 
+	 * Should fix this in the async job call setup.
+	 * 
+	 * For now just pretend everything worked well.
+	 * 
+	 */
+	result = GNOME_VFS_OK;
 
 	return result;
 }

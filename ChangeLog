@@ -1,5 +1,33 @@
 2000-04-18  Pavel Cisler  <pavel@eazel.com>
 
+	Fixed two bugs Darin ran into.
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(call_progress_with_current_names), (handle_error),
+	(handle_overwrite):
+	Made error/overwrite dialogs properly show the file that was being copied
+	while an error ocurred.
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(handle_name_conflicts):
+	Add a way for the progress callback to find out if a single or multiple
+	items ended up conflicting. That way the progress callback can determine
+	if to add a Replace All option or not.
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(gnome_vfs_xfer_private):
+	Added a workaround for a bug that happens when the caller of the
+	routine tries to handle a returned error by calling the progress 
+	callback -- the problem is that that at that point the progress
+	could have already cleaned up after itself knwong that the copy
+	operation is over and could have deleted it's user data.
+	
+	* libgnomevfs/gnome-vfs-xfer.c:
+	* test/test-xfer.c:
+	Fixed warnings.
+
+2000-04-18  Pavel Cisler  <pavel@eazel.com>
+
 	* libgnomevfs/gnome-vfs-xfer.c:
 	(handle_error):
 	Made the error return value get set to GNOME_VFS_OK after
