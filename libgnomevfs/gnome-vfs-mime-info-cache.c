@@ -730,8 +730,8 @@ gnome_vfs_mime_get_all_desktop_entries (const char *mime_type)
 	return desktop_entries;
 }
 
-gchar *
-gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
+static gchar *
+get_default_desktop_entry (const char *mime_type)
 {
 	gchar *desktop_entry;
 	char **desktop_entries;
@@ -739,14 +739,9 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 	GnomeVFSMimeInfoCacheDir *dir;
 	int i;
 
-	_gnome_vfs_mime_info_cache_init ();
-
-	G_LOCK (mime_info_cache);
-
 	desktop_entry = g_hash_table_lookup (mime_info_cache->global_defaults_cache,
 					     mime_type);
 	if (desktop_entry) {
-		G_UNLOCK (mime_info_cache);
 		return g_strdup (desktop_entry);
 	}
 
@@ -761,13 +756,38 @@ gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
 			    gnome_vfs_mime_info_desktop_entry_is_valid (desktop_entry)) {
 				g_hash_table_insert (mime_info_cache->global_defaults_cache,
 						     g_strdup (mime_type), g_strdup (desktop_entry));
-				G_UNLOCK (mime_info_cache);
 				return g_strdup (desktop_entry);
 			}
 		}
 	}
-	G_UNLOCK (mime_info_cache);
 
 	return NULL;
+}
+
+gchar *
+gnome_vfs_mime_get_default_desktop_entry (const char *mime_type)
+{
+	char *desktop_entry = NULL;
+	GList *mime_types, *m_list;
+
+	_gnome_vfs_mime_info_cache_init ();
+
+	G_LOCK (mime_info_cache);
+
+	mime_types = get_all_parent_types (mime_type);
+
+	for (m_list = mime_types; m_list != NULL; m_list = m_list->next) {
+		desktop_entry = get_default_desktop_entry (m_list->data);
+		if (desktop_entry) {
+			break;
+		}		
+	}
+
+	G_UNLOCK (mime_info_cache);
+
+	g_list_foreach (mime_types, (GFunc)g_free, NULL);
+	g_list_free (mime_types);
+
+	return desktop_entry;
 }
 

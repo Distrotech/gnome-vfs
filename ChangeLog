@@ -1,3 +1,11 @@
+2004-12-11  Marco Pesenti Gritti  <marco@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c:
+	(get_default_desktop_entry),
+	(gnome_vfs_mime_get_default_desktop_entry):
+
+	Check also parents mime types. Fix #159825
+
 2004-12-06  David Zeuthen  <davidz@redhat.com>
 
 	* libgnomevfs/gnome-vfs-volume-ops.c (gnome_vfs_volume_unmount): Honor
