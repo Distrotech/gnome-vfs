@@ -1,3 +1,18 @@
+2001-11-02  Seth Nickell  <snickell@stanford.edu>
+
+	* Makefile.am:
+
+	Build gnome-vfs-module-2.0.pc
+	
+	* libgnomevfs/Makefile.am:
+
+	Start splitting header files between private, public and module
+	includes.
+	
+	* gnome-vfs-module-2.0.pc.in:
+
+	Add a new .pc file for modules.
+	
 2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* doc/Makefile.am: Ignore new private headers in libgnomevfs

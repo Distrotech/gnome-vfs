@@ -17,6 +17,7 @@ EXTRA_DIST =					\
 	autogen.sh				\
 	gnome-vfs.spec				\
 	gnome-vfs-2.0.pc.in			\
+	gnome-vfs-module-2.0.pc.in		\
 	intltool-extract.in			\
 	intltool-merge.in			\
 	intltool-update.in
