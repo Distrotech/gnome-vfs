@@ -516,6 +516,9 @@ main (int argc, char **argv)
 	test_make_canonical ("eazel-services:///&", "eazel-services:///&");
 	test_make_canonical ("eazel-services:///x", "eazel-services:///x");
 
+	test_make_canonical ("eazel-install://anonymous@/product_name=gnucash", "eazel-install://anonymous@/product_name%3Dgnucash");
+	test_make_canonical ("eazel-install://:password@/product_name=gnucash", "eazel-install://:password@/product_name%3Dgnucash");
+
 	test_make_canonical ("http://www.eazel.com/query?email=email@eazel.com", "http://www.eazel.com/query?email=email@eazel.com");
 
 	/* test proper case-sensitivity handling */

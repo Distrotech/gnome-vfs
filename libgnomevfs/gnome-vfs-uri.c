@@ -49,7 +49,7 @@
 
    This function implements the following regexp: (whitespace for clarity)
 
-   ( ( ([^:@/]*) (:[^@/]*)? @ )? ([^/:]+) (:([0-9]*)?) )?  (/.*)?
+   ( ( ([^:@/]*) (:[^@/]*)? @ )? ([^/:]*) (:([0-9]*)?) )?  (/.*)?
    ( ( ( user  ) (  pw  )?   )?   (host)    (port)?   )? (path <return value>)?
 
   It returns NULL if neither <host> nor <path> could be matched.
@@ -260,10 +260,6 @@ split_toplevel_uri (const gchar *path, guint path_len,
 
 		if (uri_strlen_to (cur_tok_start, cur) > 0) {
 			*host_return = uri_strdup_to (cur_tok_start, cur);
-		} else if (*user_return != NULL || *password_return != NULL ) {
-			/* If we got a user / password but no host, that's an error */
-			success = FALSE;
-			goto done;	
 		}
 
 		cur_tok_start = cur;

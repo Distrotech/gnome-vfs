@@ -1,3 +1,15 @@
+2001-03-01  Mike Fleming  <mfleming@eazel.com>
+
+	reviewed by: <pavel@eazel.com>
+
+	Bug 7192: split_toplevel_uri now allows URI's with a username
+	but no hostname in the authority field.  In the future, we should
+	figure out how to avoid having split_toplevel_uri involved with
+	made-up URI schemes like eazel-install:
+
+	* libgnomevfs/gnome-vfs-uri.c: (split_toplevel_uri):
+	* test/test-uri.c: (main):
+
 2001-03-01  Gene Z. Ragan  <gzr@eazel.com>
 
 	reviewed by: Pavel Cisler  <pavel@eazel.com>
