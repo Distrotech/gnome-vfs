@@ -3,6 +3,7 @@ NULL =
 INCLUDES =					\
 	-DGNOME_VFS_CONFDIR=\"$(sysconfdir)\"	\
 	-DGNOME_VFS_DATADIR=\"$(datadir)\"	\
+	-DGNOME_VFS_PREFIX=\"$(prefix)\"	\
 	-I$(top_srcdir)				\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)			\

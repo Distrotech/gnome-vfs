@@ -864,6 +864,10 @@ gnome_vfs_mime_info_shutdown (void)
 void
 gnome_vfs_mime_info_reload (void)
 {
+	if (!gnome_vfs_mime_inited) {
+		gnome_vfs_mime_init ();
+	}
+
 	/* 1. Clean */
 	gnome_vfs_mime_info_clear ();
 	

@@ -99,4 +99,6 @@ void   gnome_vfs_list_deep_free               (GList            *list);
 GnomeVFSResult	gnome_vfs_get_volume_free_space	(const GnomeVFSURI 	*vfs_uri, 
 						 GnomeVFSFileSize 	*size);
 
+char *gnome_vfs_icon_path_from_filename       (const char *filename);
+
 #endif /* GNOME_VFS_UTILS_H */

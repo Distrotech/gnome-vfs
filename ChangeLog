@@ -1,3 +1,38 @@
+2000-11-17  Mathieu Lacage  <mathieu@eazel.com>
+
+	reviewed by: Sullivan
+
+	fix Bug 4768. Reported 3 bugs about separate issues: 4796, 4797, 4798.
+	* data/mime/gnome-vfs.keys: change icon filenames to relative paths.
+	* libgnomevfs/Makefile.am: add GNOME_VFS_PREFIX
+	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_info_reload):
+	add initialition code if the mime stuff is not initalized when doing 
+	a reload. This avoids a segfault.
+	* libgnomevfs/gnome-vfs-utils.c: (hack_file_exists): new function 
+	copied from gnome-libs: prviously named g_file_exists.
+	(gnome_vfs_icon_path_from_filename): new API function. It looks
+	in GNOME_PATH to find the icons and defaults to the gnome-vfs prefix
+	one. It accepts only relative paths and returns an absolute path.
+	* libgnomevfs/gnome-vfs-utils.h: add prototype.
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(really_change_icon), changes the icon used by a mime type.
+	(gil_icon_selected_cb): changes the icon when you double-click.
+	(change_icon_clicked_cb_real): changes the icon when you click on ok.
+	(change_icon_clicked): connect to the clicked and select_icon signals
+	to know when the user has made up his mind about hte new icon.
+	(nautilus_mime_type_capplet_update_info), spaces.
+	(add_mime_clicked): spaces.
+	(nautilus_mime_type_capplet_update_mime_list_icon): spaces.
+	(capplet_get_icon_pixbuf): spaces.
+	(populate_mime_list): spaces.
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	(icon_selected_cb): spaces.
+	(nautilus_mime_type_show_icon_selection): spaces.
+	(nautilus_mime_type_icon_entry_get_relative_filename): new function.
+	returns a relative filename instead of an abosulte one.
+	* mime-type-capplet/nautilus-mime-type-icon-entry.h: add relative 
+	function prototype
+
 2000-11-17  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 2966, Fix cancellation support in FTP

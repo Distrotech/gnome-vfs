@@ -723,6 +723,50 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
 	return GNOME_VFS_OK;
 }
 
+/**
+ * hack_file_exists
+ * @filename: pathname to test for existance.
+ *
+ * Returns true if filename exists
+ */
+static int
+hack_file_exists (const char *filename)
+{
+	struct stat s;
 
+	g_return_val_if_fail (filename != NULL,FALSE);
+    
+	return stat (filename, &s) == 0;
+}
+
+
+char *
+gnome_vfs_icon_path_from_filename (const char *relative_filename)
+{
+	char *gnome_var, *full_filename;
+	char **paths, **temp_paths;
+
+	gnome_var = g_getenv ("GNOME_PATH");
+
+	if (gnome_var == NULL) {
+		gnome_var = g_strdup (GNOME_VFS_PREFIX);
+	}
+
+	paths = g_strsplit (gnome_var, ":", 0); 
+	g_free (gnome_var);
+
+	for (temp_paths = paths; *temp_paths != NULL; temp_paths++) {
+		full_filename = g_strconcat (*temp_paths, "/share/pixmaps/", relative_filename, NULL);
+		if (hack_file_exists (full_filename)) {
+			g_strfreev (paths);
+			return full_filename;
+		}
+		g_free (full_filename);
+		full_filename = NULL;
+	}
+
+	g_strfreev (paths);
+	return NULL;
+}
 
 

@@ -185,7 +185,7 @@ application/x-applix-spreadsheet
 	[fr]description=Feuille de calcul Applix
 	[no]description=Applix regneark
 	[sv]description=Applix-kalkylblad
-	icon-filename=i-spreadsheet
+	icon-filename=nautilus/i-spreadsheet
 	default_action_type=application
 	default_application_id=applix
 	short_list_application_ids_for_novice_user_level=applix
@@ -245,7 +245,7 @@ application/x-bzip-compressed-tar
 	[fr]description=Archive bzip
 	[no]description=bzip-arkiv
 	[sv]description=bzip-arkiv
-	icon-filename=gnome-compressed.png
+	icon-filename=nautilus/gnome-compressed.png
 	vfs-method=bzip2
 
 application/x-cgi
@@ -282,7 +282,7 @@ application/x-compressed-tar
 	[da]description=tar-arkiv
 	[no]description=tar-arkiv
 	[sv]description=tar-arkiv
-	icon-filename=gnome-package.png
+	icon-filename=nautilus/gnome-package.png
 
 application/x-core-file
 	description=memory dump
@@ -290,7 +290,7 @@ application/x-core-file
 	[fr]description=Sortie mémoire
 	[no]description=Minnedump
 	[sv]description=minnesdump
-	icon-filename=i-core.png
+	icon-filename=nautilus/i-core.png
 
 application/x-cpio
 	description=CPIO document
@@ -304,7 +304,7 @@ application/x-cpio-compressed
 	[fr]description=Archive CPIO
 	[no]description=CPIO-arkiv
 	[sv]description=CPIO-arkiv
-	icon-filename=gnome-compressed.png
+	icon-filename=nautilus/gnome-compressed.png
 
 # also text/x-csh
 application/x-csh
@@ -320,7 +320,7 @@ application/x-deb
 	[fr]description=Paquetage Debian
 	[no]description=Debian pakke
 	[sv]description=Debianpaket
-	icon-filename=gnome-pack-deb.png
+	icon-filename=nautilus/gnome-pack-deb.png
 
 application/x-dia-diagram
 	description=Dia diagram
@@ -472,7 +472,7 @@ application/x-gnumeric
 	short_list_application_ids_for_novice_user_level=gnumeric
 	short_list_application_ids_for_intermediate_user_level=gnumeric
 	short_list_application_ids_for_hacker_user_level=gnumeric
-	icon-filename=i-spreadsheet
+	icon-filename=nautilus/i-spreadsheet
 
 application/x-gtar
 	description=gtar archive
@@ -480,7 +480,7 @@ application/x-gtar
 	[fr]description=Archive gtar
 	[no]description=gtar-arkiv
 	[sv]description=gtar-arkiv
-	icon-filename=gnome-package.png
+	icon-filename=nautilus/gnome-package.png
 
 application/x-gzip
 	description=gzip archive
@@ -488,7 +488,7 @@ application/x-gzip
 	[fr]description=Archive gzip
 	[no]description=gzip-arkiv
 	[sv]description=gzip-arkiv
-	icon-filename=gnome-compressed.png
+	icon-filename=nautilus/gnome-compressed.png
 	vfs-method=gzip
 
 application/x-hdf
@@ -559,7 +559,7 @@ application/x-object-file
 	[fr]description=Code objet
 	[no]description=objektkode
 	[sv]description=objektkod
-	icon-filename=gnome-objectfile.png
+	icon-filename=nautilus/gnome-objectfile.png
 
 # also audio/x-ogg
 application/x-ogg
@@ -629,7 +629,7 @@ application/x-rpm
 	[fr]description=Paquetage RPM
 	[no]description=RPM-pakke
 	[sv]description=RPM-paket
-	icon-filename=gnome-pack-rpm.png
+	icon-filename=nautilus/gnome-pack-rpm.png
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
@@ -649,7 +649,7 @@ application/x-shared-library
 	[fr]description=Bibliothèque partagée
 	[no]description=delt bibliotek
 	[sv]description=delat bibliotek
-	icon-filename=gnome-library.png
+	icon-filename=nautilus/gnome-library.png
 
 application/x-shared-library-la
 	description=shared library
@@ -657,7 +657,7 @@ application/x-shared-library-la
 	[fr]description=Bibliothèque partagée
 	[no]description=delt bibliotek
 	[sv]description=delat bibliotek
-	icon-filename=gnome-library.png
+	icon-filename=nautilus/gnome-library.png
 
 application/x-smil
 	description=SMIL script
@@ -683,7 +683,7 @@ application/x-staroffice-spreadsheet
 	[fr]description=Feuille de calcul StarOffice
 	[no]description=StarOffice-regneark
 	[sv]description=StarOffice-kalkylblad
-	icon-filename=i-spreadsheet
+	icon-filename=nautilus/i-spreadsheet
 	default_action_type=application
 	default_application_id=staroffice
 	short_list_application_ids_for_novice_user_level=staroffice
@@ -729,7 +729,7 @@ application/x-tar
 	[fr]description=Archive tar
 	[no]description=tar-arkiv
 	[sv]description=tar-arkiv
-	icon-filename=gnome-package.png
+	icon-filename=nautilus/gnome-package.png
 	vfs-method=tar
 
 application/x-theme
@@ -752,7 +752,7 @@ application/x-troff-man-compressed
 	[fr]description=Archive page de manuel
 	[no]description=manualsidearkiv
 	[sv]description=manualsidearkiv
-	icon-filename=gnome-manpage.png
+	icon-filename=nautilus/gnome-manpage.png
 
 application/x-unix-archive
 	description=archive
@@ -803,7 +803,7 @@ audio/basic
 	[fr]description=Audio basic
 	[no]description=grunnleggende lyd
 	[sv]description=grundläggande ljud
-	icon-filename=gnome-audio.png
+	icon-filename=nautilus/gnome-audio.png
 
 audio/x-aifc
 	description=AIFC audio
@@ -818,7 +818,7 @@ audio/x-aiff
 	[fr]description=Audio AIFF
 	[no]description=AIFF-lyd
 	[sv]description=AIFF-ljud
-	icon-filename=gnome-audio-x-aiff.png
+	icon-filename=nautilus/gnome-audio-x-aiff.png
 
 audio/x-it
 	description=Impulse Tracker audio
@@ -833,7 +833,7 @@ audio/x-midi
 	[fr]description=Audio Midi
 	[no]description=MIDI-lyd
 	[sv]description=MIDI-ljud
-	icon-filename=gnome-audio-midi.png
+	icon-filename=nautilus/gnome-audio-midi.png
 
 audio/x-mod
 	description=MOD audio
@@ -841,7 +841,7 @@ audio/x-mod
 	[fr]description=Audio MOD
 	[no]description=MOD-lyd
 	[sv]description=MOD-ljud
-	icon-filename=gnome-audio-x-mod.png
+	icon-filename=nautilus/gnome-audio-x-mod.png
 	default_action_type=application
 	default_application_id=soundtracker
 	short_list_application_ids_for_novice_user_level=soundtracker
@@ -855,7 +855,7 @@ audio/x-mp3
 	[fr]description=Audio MP3
 	[no]description=MP3-lyd
 	[sv]description=MP3-ljud
-	icon-filename=i-music
+	icon-filename=nautilus/i-music
 	default_action_type=application
 	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms,mpg123
@@ -876,7 +876,7 @@ audio/x-mpeg
         [fr]description=Audio MP3
         [no]description=MP3-lyd
         [sv]description=MP3-ljud
-        icon-filename=i-music 
+        icon-filename=nautilus/i-music 
 	default_action_type=application
 	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms,mpg123
@@ -899,7 +899,7 @@ audio/x-mpegurl
 #	[da]description=OGG-lyd
 #	[fr]description=Audio OGG
 #	[no]description=OGG-lyd
-#	icon-filename=i-music
+#	icon-filename=nautilus/i-music
 #	default_action_type=application
 #	default_application_id=ogg123
 #	short_list_application_ids_for_novice_user_level=ogg123,xmms
@@ -912,7 +912,7 @@ audio/x-pn-realaudio
 	[fr]description=Document RealAudio PN
 	[no]description=PN RealAudio-dokument
 	[sv]description=PN RealAudio-dokument
-	icon-filename=gnome-audio-x-pn-realaudio.png
+	icon-filename=nautilus/gnome-audio-x-pn-realaudio.png
         default_action_type=application
         default_application_id=realplayer
         short_list_application_ids_for_novice_user_level=realplayer
@@ -925,7 +925,7 @@ audio/x-real-audio
 	[fr]description=Document RealAudio
 	[no]description=RealAudio-dokument
 	[sv]description=RealAudio-dokument
-	icon-filename=gnome-audio-x-pn-realaudio.png
+	icon-filename=nautilus/gnome-audio-x-pn-realaudio.png
         default_action_type=application
         default_application_id=realplayer
         short_list_application_ids_for_novice_user_level=realplayer
@@ -938,7 +938,7 @@ audio/x-riff
 	[fr]description=Audio RIFF
 	[no]description=RIFF-lyd
 	[sv]description=RIFF-ljud
-	icon-filename=i-music
+	icon-filename=nautilus/i-music
         default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
@@ -965,7 +965,7 @@ audio/x-ulaw
 	[fr]description=Audio
 	[no]description=lyd
 	[sv]description=ljud
-	icon-filename=gnome-audio-ulaw.png
+	icon-filename=nautilus/gnome-audio-ulaw.png
 
 audio/x-voc
 	description=VOC audio
@@ -980,7 +980,7 @@ audio/x-wav
 	[fr]description=Audio Wave
 	[no]description=Wave-lyd
 	[sv]description=Wave-ljud
-	icon-filename=gnome-audio-x-wav.png
+	icon-filename=nautilus/gnome-audio-x-wav.png
         default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
@@ -1017,7 +1017,7 @@ image/bmp
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=gnome-image-bmp.png
+	icon-filename=nautilus/gnome-image-bmp.png
 
 image/cgm
 	description=CGM image
@@ -1048,7 +1048,7 @@ image/gif
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=gnome-image-gif.png
+	icon-filename=nautilus/gnome-image-gif.png
 
 image/ief
 	description=IEF image
@@ -1056,7 +1056,7 @@ image/ief
 	[fr]description=Image IEF
 	[no]description=IEF-bilde
 	[sv]description=IEF-bild
-	icon-filename=gnome-image-ief.png
+	icon-filename=nautilus/gnome-image-ief.png
 
 image/jpeg
 	description=JPEG image
@@ -1072,7 +1072,7 @@ image/jpeg
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=gnome-image-jpeg.png
+	icon-filename=nautilus/gnome-image-jpeg.png
 
 # also image/x-png
 image/png
@@ -1090,7 +1090,7 @@ image/png
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=gnome-image-png.png
+	icon-filename=nautilus/gnome-image-png.png
 
 image/svg
 	description=SVG art
@@ -1114,7 +1114,7 @@ image/tiff
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=gnome-image-tiff.png
+	icon-filename=nautilus/gnome-image-tiff.png
 
 image/vnd.dwg
 	description=AutoCAD image
@@ -1165,7 +1165,7 @@ image/x-bmp
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=gnome-image-bmp.png
+	icon-filename=nautilus/gnome-image-bmp.png
 
 image/x-cmu-raster
 	description=CMU raster image
@@ -1232,7 +1232,7 @@ image/x-png
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=gnome-image-png.png
+	icon-filename=nautilus/gnome-image-png.png
 
 image/x-portable-anymap
 	description=PNM image
@@ -1265,7 +1265,7 @@ image/x-portable-bitmap
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=gnome-image-pbm.png
+	icon-filename=nautilus/gnome-image-pbm.png
 	
 image/x-portable-graymap
 	description=PGM image
@@ -1297,7 +1297,7 @@ image/x-portable-pixmap
 	short_list_application_ids_for_novice_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_intermediate_user_level=electric_eyes,eog,gimp
 	short_list_application_ids_for_hacker_user_level=electric_eyes,eog,gimp
-	icon-filename=gnome-image-ppm.png
+	icon-filename=nautilus/gnome-image-ppm.png
 
 image/x-psd
 	description=Photoshop document
@@ -1309,7 +1309,7 @@ image/x-psd
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
-	icon-filename=gnome-image-psd.png
+	icon-filename=nautilus/gnome-image-psd.png
 
 image/x-rgb
 	description=RGB image
@@ -1317,7 +1317,7 @@ image/x-rgb
 	[fr]description=Image RGB
 	[no]description=RGB-bilde
 	[sv]description=RGB-bild
-	icon-filename=gnome-image-rgb.png
+	icon-filename=nautilus/gnome-image-rgb.png
 	
 image/x-tga
 	description=TarGA image
@@ -1325,7 +1325,7 @@ image/x-tga
 	[fr]description=Image TarGA
 	[no]description=TarGA-bilde
 	[sv]description=TarGA-bild
-	icon-filename=gnome-image-tga.png
+	icon-filename=nautilus/gnome-image-tga.png
 
 image/x-xbitmap
 	description=X bitmap image
@@ -1338,7 +1338,7 @@ image/x-xbitmap
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
-	icon-filename=gnome-image-xbm.png
+	icon-filename=nautilus/gnome-image-xbm.png
 
 image/x-xcf
 	description=GIMP image
@@ -1351,7 +1351,7 @@ image/x-xcf
 	short_list_application_ids_for_novice_user_level=gimp
 	short_list_application_ids_for_intermediate_user_level=gimp
 	short_list_application_ids_for_hacker_user_level=gimp
-	icon-filename=gnome-image-xcf.png
+	icon-filename=nautilus/gnome-image-xcf.png
 
 image/x-xfig
 	description=xfig image
@@ -1359,7 +1359,7 @@ image/x-xfig
 	[fr]description=Image xfig
 	[no]description=xfig-bilde
 	[sv]description=xfig-bild
-	icon-filename=gnome-image-x-xfig.png
+	icon-filename=nautilus/gnome-image-x-xfig.png
 
 image/x-xpixmap
 	description=XPM image	
@@ -1382,7 +1382,7 @@ image/x-xwindowdump
 	[da]description=X-vinduebillede
 	[no]description=X-Windows skjermbilde
 	[sv]description=X-fönsterbild
-	icon-filename=gnome-image-xwd.png
+	icon-filename=nautilus/gnome-image-xwd.png
 
 message/delivery-status
 	description=mail delivery report
@@ -1863,7 +1863,7 @@ text/x-troff-man
 	[fr]description=Page de manuel
 	[no]description=manualside
 	[sv]description=manualsida
-	icon-filename=gnome-manpage.png
+	icon-filename=nautilus/gnome-manpage.png
 
 text/x-troff-me
 	description=Troff ME-macros document
