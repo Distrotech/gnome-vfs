@@ -66,7 +66,8 @@
 #define MUTEX_UNLOCK(a)
 #endif
 
-#define logfile stdout		/* FIXME tmp */
+/* #define logfile stdout	*/	/* FIXME tmp */
+#define logfile NULL
 
 /* Seconds until directory contents are considered invalid */
 int   ftpfs_directory_timeout = 600;
@@ -523,6 +524,7 @@ ftpfs_connection_new (const gchar *hostname,
 	conn->username = g_strdup (username);
 	conn->password = g_strdup (password);
 	conn->port = (port == 0 ? DEFAULT_PORT : port);
+	conn->use_passive_connection = TRUE;
 
 	conn->is_binary = TYPE_UNKNOWN;
 	conn->sock = -1;
@@ -569,10 +571,13 @@ ftpfs_uri_new (GnomeVFSURI *uri,
 	GnomeVFSToplevelURI *toplevel;
 	ftpfs_connection_t *conn;
 	ftpfs_uri_t *ftpfs_uri;
+	int len;
 	
 	ftpfs_uri = g_new (ftpfs_uri_t, 1);
 	ftpfs_uri->path = g_strdup (uri->text);
-
+	len = strlen(ftpfs_uri->path);
+	if(ftpfs_uri->path[len - 1] == '/') /* Strip trailing /'s */
+	  ftpfs_uri->path[len - 1] = '\0';
 	toplevel = (GnomeVFSToplevelURI *) uri;
 	
 	conn = lookup_conn (toplevel->host_name,
@@ -1529,7 +1534,7 @@ retrieve_dir (ftpfs_connection_t *conn, char *remote_path, gboolean resolve_syml
 	while ((got_intr = get_line (sock, buffer, sizeof (buffer), '\n')) != EINTR){
 		int eof = got_intr == 0;
 
-		if (logfile){
+		if (logfile) {
 			fputs (buffer, logfile);
 			fputs ("\n", logfile);
 			fflush (logfile);
@@ -2347,6 +2352,8 @@ fill_file_info (const char *filename,
 		
 		if (mime_type == NULL)
 			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
+
+		file_info->mime_type = g_strdup(mime_type);
 	}
 	gnome_vfs_set_meta_for_list (file_info, file_info->name, meta_keys);
 }
@@ -2362,18 +2369,22 @@ ftpfs_get_file_info (GnomeVFSURI *uri,
 	ftpfs_uri_t *ftpfs_uri;
 	ftpfs_dir_t *dir;
 	GList *l;
-	char *dirname, *filename;
+	char *dirname, *filename, *real_filename = NULL;
 
 	ftpfs_uri = ftpfs_uri_new (uri, &ret);
 	if (!ftpfs_uri)
 		return GNOME_VFS_ERROR_INVALIDURI;
 
-	dirname = g_dirname (ftpfs_uri->path);
+	dirname = (*ftpfs_uri->path)?g_dirname(ftpfs_uri->path):NULL;
 	filename = g_basename (ftpfs_uri->path);
-	if (*dirname == 0){
+	if (!dirname || !*dirname){
 		g_free (dirname);
 		dirname = g_strdup ("/");
+		g_free(filename);
+		filename = g_strdup(".");
+		real_filename = "/";
 	}
+	g_message("dirname is |%s|, filename is |%s|", dirname, filename);
 	
 	dir = retrieve_dir (ftpfs_uri->conn, dirname, TRUE);
 	g_free (dirname);
@@ -2391,6 +2402,8 @@ ftpfs_get_file_info (GnomeVFSURI *uri,
 		if (strcmp (fe->name, filename))
 			continue;
 
+		g_message("found file %s", fe->name);
+
 		if (S_ISLNK (fe->s.st_mode)) {
 			if (fe->l_stat == NULL){
 				ftpfs_uri_destroy (ftpfs_uri);
@@ -2403,7 +2416,7 @@ ftpfs_get_file_info (GnomeVFSURI *uri,
 			}
 		}
 
-		fill_file_info (filename, fe, file_info, options, meta_keys);
+		fill_file_info (real_filename?real_filename:filename, fe, file_info, options, meta_keys);
 		ftpfs_uri_destroy (ftpfs_uri);
 
 		return GNOME_VFS_OK;

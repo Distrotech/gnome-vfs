@@ -1,5 +1,7 @@
 1999-12-21  Elliot Lee  <sopwith@redhat.com>
 
+	* modules/ftp-method.c: Fix get_file_info so MIME type gets filled in.
+
 	* modules/http-method.c: Don't pass the full URL, since this violates the HTTP spec.
 	* libgnomevfs/gnome-vfs-uri.c: Properly implement handling of all the hide_options.
 
