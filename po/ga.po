@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2002-12-16 13:29+0100\n"
+"POT-Creation-Date: 2003-01-06 10:28+0100\n"
 "PO-Revision-Date: 2000-08-27 14:00+0000\n"
 "Last-Translator: Alastair McKinstry <mckinstry@computer.org>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -276,31 +276,31 @@ msgstr ""
 msgid "Unknown error"
 msgstr "Earraidh gan aithne"
 
-#: libgnomevfs/gnome-vfs-utils.c:70
+#: libgnomevfs/gnome-vfs-utils.c:83
 msgid "1 byte"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-utils.c:72
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u bytes"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:92
 #, fuzzy, c-format
 msgid "%.1f K"
 msgstr "%.1fK"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:96
 #, fuzzy, c-format
 msgid "%.1f MB"
 msgstr "%.1fM"
 
-#: libgnomevfs/gnome-vfs-utils.c:87
+#: libgnomevfs/gnome-vfs-utils.c:100
 #, fuzzy, c-format
 msgid "%.1f GB"
 msgstr "%.1fG"
 
-#: libgnomevfs/gnome-vfs-utils.c:1087
+#: libgnomevfs/gnome-vfs-utils.c:1109
 msgid " (invalid Unicode)"
 msgstr ""
 

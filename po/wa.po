@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2002-12-16 13:29+0100\n"
+"POT-Creation-Date: 2003-01-06 10:28+0100\n"
 "PO-Revision-Date: 2002-04-30 13:20MET\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
@@ -277,31 +277,31 @@ msgstr "Dji n' sai analijhî: %s"
 msgid "Unknown error"
 msgstr "Aroke nén cnoxhowe"
 
-#: libgnomevfs/gnome-vfs-utils.c:70
+#: libgnomevfs/gnome-vfs-utils.c:83
 msgid "1 byte"
 msgstr "1 octet"
 
-#: libgnomevfs/gnome-vfs-utils.c:72
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u bytes"
 msgstr "%u octets"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f Ko"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:96
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mo"
 
-#: libgnomevfs/gnome-vfs-utils.c:87
+#: libgnomevfs/gnome-vfs-utils.c:100
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Go"
 
-#: libgnomevfs/gnome-vfs-utils.c:1087
+#: libgnomevfs/gnome-vfs-utils.c:1109
 msgid " (invalid Unicode)"
 msgstr ""
 

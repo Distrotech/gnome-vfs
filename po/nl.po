@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome-vfs\n"
-"POT-Creation-Date: 2002-12-16 13:29+0100\n"
+"POT-Creation-Date: 2003-01-06 10:28+0100\n"
 "PO-Revision-Date: 2002-05-28 20:49+02:00\n"
 "Last-Translator: Mendel Mobach <mendel@mobach.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -276,31 +276,31 @@ msgstr "Kan niet verwerken: %s"
 msgid "Unknown error"
 msgstr "Onbekende fout"
 
-#: libgnomevfs/gnome-vfs-utils.c:70
+#: libgnomevfs/gnome-vfs-utils.c:83
 msgid "1 byte"
 msgstr "1 byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:72
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u bytes"
 msgstr "%u bytes"
 
-#: libgnomevfs/gnome-vfs-utils.c:79
+#: libgnomevfs/gnome-vfs-utils.c:92
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
+#: libgnomevfs/gnome-vfs-utils.c:96
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Mb"
 
-#: libgnomevfs/gnome-vfs-utils.c:87
+#: libgnomevfs/gnome-vfs-utils.c:100
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Gb"
 
-#: libgnomevfs/gnome-vfs-utils.c:1087
+#: libgnomevfs/gnome-vfs-utils.c:1109
 msgid " (invalid Unicode)"
 msgstr ""
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-12-20 05:55+0100\n"
+"POT-Creation-Date: 2003-01-06 10:28+0100\n"
 "PO-Revision-Date: 2002-12-20 19:07+0200\n"
 "Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <ll10nt@inbox.lv>\n"
@@ -38,8 +38,7 @@ msgstr "Konfigurācijas fails `%s' netika atrasts: %s"
 msgid "Unknown op type %u"
 msgstr "Nezināms op tips %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1020
-#: libgnomevfs/gnome-vfs-job.c:1165
+#: libgnomevfs/gnome-vfs-job.c:1020 libgnomevfs/gnome-vfs-job.c:1165
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nevar izveidot kanālu lai atvērtu GIOChannel: %s"
@@ -312,21 +311,13 @@ msgstr "Nezināma GnomeVFSSeekPosition %d"
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
-msgid ""
-"Didn't find a valid settings file at %s\n"
-""
-msgstr ""
-"Nevarēju atrast pareizu uzstādijumu failu %s\n"
-""
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "Nevarēju atrast pareizu uzstādijumu failu %s\n"
 
 #: modules/test-method.c:592
 #, c-format
-msgid ""
-"Use the %s environment variable to specify a different location.\n"
-""
-msgstr ""
-"Lieto %s vides mainīgo lai norādītu citu atrašanās vietu.\n"
-""
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr "Lieto %s vides mainīgo lai norādītu citu atrašanās vietu.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -343,4 +334,3 @@ msgstr "parasts Gnome VFS moniker"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "parasts faila moniker"
-
