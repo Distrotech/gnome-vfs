@@ -17,7 +17,7 @@ INCLUDES =					\
 	-DPREFIX=\"$(prefix)\"
 
 EXTRA_DIST =					\
-	programs.vfolder-info.in		\
+	applications.vfolder-info.in		\
 	default-modules.conf			\
 	cdda-module.conf			\
 	ssl-modules.conf
@@ -94,11 +94,11 @@ libvfolder_desktop_la_SOURCES = vfolder-desktop-method.c
 libvfolder_desktop_la_LDFLAGS = $(module_flags)
 
 vfolderdir=$(sysconfdir)/gnome-vfs-2.0/vfolders
-vfolder_DATA = programs.vfolder-info
+vfolder_DATA = applications.vfolder-info
 
 # Evil, but I can't figure out how I would make autoconf do
 # it right
-programs.vfolder-info: programs.vfolder-info.in
+applications.vfolder-info: applications.vfolder-info.in
 	sed -e "s,\@datadir\@,$(datadir)," \
 	    -e "s,\@sysconfdir\@,$(sysconfdir)," \
 	    -e "s,\@prefix\@,$(prefix)," \

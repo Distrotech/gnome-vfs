@@ -2,6 +2,7 @@
   <!-- Merge dirs optional -->
   <MergeDir>/etc/X11/applnk/</MergeDir>
   <MergeDir>@datadir@/gnome/apps/</MergeDir>
+  <MergeDir>@datadir@/control-center/capplets</MergeDir>
 
   <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
 

@@ -1,3 +1,13 @@
+2001-12-14  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/Makefile.am:
+	* modules/applications.vfolder-info.in:
+	* modules/default-modules.conf:
+	* modules/programs.vfolder-info.in:
+
+	Change from "programs:/" to "applications:/"
+	
+
 2001-12-05  ERDI Gergo  <cactus@cactus.rulez.org>
 
 	* libgnomevfs/gnome-vfs-context.h: balance G_END_DECLS with
