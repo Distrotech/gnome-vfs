@@ -26,8 +26,6 @@
 
 #include <orb/orbit.h>
 
-#include <gnome.h>
-#include <popt.h>
 #include <liboaf/liboaf.h>
 
 #include "gnome-vfs.h"
@@ -71,9 +69,6 @@ gnome_vfs_corba_init (gboolean deps_init)
 		char *argv[] = {"fake", NULL};
 		int argc = 1;
 
-		gnome_init_with_popt_table("fake-an-app", VERSION,
-					   argc, argv,
-					   oaf_popt_options, 0, NULL); 
 		oaf_init (argc, argv);
 	}
 

@@ -27,12 +27,14 @@
 #include <config.h>
 #endif
 
-#include <gnome.h>
+#include <string.h>
+
 #include "gnome-vfs.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-shared.h"
 #include "efs-method.h"
+
 
 typedef struct _GnomeVFSFileSystem GnomeVFSFileSystem;
 
