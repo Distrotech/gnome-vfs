@@ -1,3 +1,7 @@
+2003-11-14  Christophe Fergeau  <teuf@gnome.org>
+
+	* configure.in: removed GNOME_PLATFORM_GNOME_2 since it's deprecated
+
 2003-11-13  Niall Power  <niall.power@sun.com>
 
 	* libgnomevfs/gnome-vfs-unix-mounts.c:
