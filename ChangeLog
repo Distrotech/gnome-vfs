@@ -1,3 +1,13 @@
+2002-05-03  David Emory Watson  <dwatson@cs.ucr.edu>
+
+	* libgnomevfs/gnome-vfs-uri.c:
+	(gnome_vfs_uri_extract_dirname): Should return URI_PATH_STR whenever
+	there is only one URI_PATH_CHR in the uri (and it occurs at the
+	begining), not just when the string equals URI_PATH_CHR.
+	* test/test-uri.c:
+	(test_uri_extract_dirname): New.
+	(main): Update.
+
 2002-05-03  jacob berkman  <jacob@ximian.com>
 
 	* doc/Makefile.am $(TARGET_DIR): don't conflict with the gnome-vfs

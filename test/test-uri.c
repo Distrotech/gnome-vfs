@@ -206,6 +206,29 @@ test_uri_has_fragment_id (const char *input,
 }
 
 static void
+test_uri_extract_dirname (const char *input,
+			  const char *expected_output)
+{
+	GnomeVFSURI *uri;
+	char *output;
+
+	uri = gnome_vfs_uri_new (input);
+	if (uri == NULL) {
+		output = g_strdup ("NULL");
+	} else {
+		output = gnome_vfs_uri_extract_dirname (uri);
+	}
+
+	if (strcmp (output, expected_output) != 0) {
+		test_failed ("test_uri_extract_dirname (%s) resulted in %s instead of %s",
+			     input, output, expected_output);
+	}
+
+	g_free (output);
+	gnome_vfs_uri_unref (uri);
+}
+
+static void
 test_uri_parent (const char *input,
 		 const char *expected_output)
 {
@@ -584,6 +607,11 @@ main (int argc, char **argv)
 	test_uri_to_string ("/tmp/#junk#", "file:///tmp/#junk#", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_has_fragment_id ("/tmp/#junk", "junk");
 	test_uri_has_fragment_id ("/tmp/#junk#", "junk#");
+
+	/* Test gnome_vfs_uri_extract_dirname (). */
+	test_uri_extract_dirname ("/", "/");
+	test_uri_extract_dirname ("/usr", "/");
+	test_uri_extract_dirname ("/usr/bin", "/usr");
 
 	/* test a escaping->unescaping round trip for funny characters */
 	test_file_path_to_uri_string ("/tmp/#backup_file#", "file:///tmp/#backup_file#", GNOME_VFS_URI_HIDE_NONE);
