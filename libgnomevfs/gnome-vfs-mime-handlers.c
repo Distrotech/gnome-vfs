@@ -156,14 +156,44 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 const char *
 gnome_vfs_mime_get_icon (const char *mime_type)
 {
-	return gnome_vfs_mime_get_value (mime_type, "icon-filename");
+	return gnome_vfs_mime_get_value (mime_type, "icon_filename");
 }
 
 GnomeVFSResult
 gnome_vfs_mime_set_icon (const char *mime_type, const char *filename)
 {
 	return gnome_vfs_mime_edit_user_file
-		(mime_type, "icon-filename", filename);
+		(mime_type, "icon_filename", filename);
+}
+
+/* Check whether files of this MIME type might conceivably be executable.
+ * Default for known types if FALSE. Default for unknown types is TRUE.
+ */
+gboolean
+gnome_vfs_mime_can_be_executable (const char *mime_type)
+{
+	const char *result_as_string;
+	gboolean result;
+	
+	result_as_string = gnome_vfs_mime_get_value (mime_type, "can_be_executable");
+	if (result_as_string != NULL) {
+		result = strcmp (result_as_string, "TRUE") == 0;
+	} else {
+		/* If type is not known, we treat it as potentially executable.
+		 * If type is known, we use default value of not executable.
+		 */
+		result = !gnome_vfs_mime_type_is_known (mime_type);
+	}
+
+	return result;
+}
+
+/* Set whether files of this MIME type might conceivably be executable. */
+GnomeVFSResult
+gnome_vfs_mime_set_can_be_executable (const char *mime_type, gboolean new_value)
+{
+	return gnome_vfs_mime_edit_user_file
+		(mime_type, "can_be_executable", new_value ? "TRUE" : "FALSE");
 }
 
 

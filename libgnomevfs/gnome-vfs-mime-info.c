@@ -1090,6 +1090,48 @@ gnome_vfs_mime_get_value (const char *mime_type, const char *key)
 	return get_value_real (mime_type, key, specific_types_user, specific_types);
 }
 
+/**
+ * gnome_vfs_mime_type_is_known:
+ * @mime_type: a mime type.
+ *
+ * This function returns TRUE if @mime_type is in the MIME database at all.
+ */
+gboolean
+gnome_vfs_mime_type_is_known (const char *mime_type)
+{
+	GnomeMimeContext *context;
+	
+	if (mime_type == NULL) {
+		return FALSE;
+	}
+
+	g_return_val_if_fail (!does_string_contains_caps (mime_type), 
+			      FALSE);
+
+	if (!gnome_vfs_mime_inited)
+		gnome_vfs_mime_init ();
+
+	reload_if_needed ();
+
+	if (g_hash_table_lookup (specific_types, mime_type)) {
+		return TRUE;
+	}
+	
+	if (g_hash_table_lookup (specific_types_user, mime_type)) {
+		return TRUE;
+	}
+	
+	if (g_hash_table_lookup (registered_types, mime_type)) {
+		return TRUE;
+	}
+	
+	if (g_hash_table_lookup (registered_types_user, mime_type)) {
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
 
 /**
  * gnome_vfs_mime_keys_list_free:
@@ -1559,7 +1601,6 @@ gnome_vfs_mime_set_registered_type_key (const char *mime_type, const char *key, 
 static const char *
 gnome_vfs_mime_get_registered_mime_type_key (const char *mime_type, const char *key)
 {
-
 	if (!gnome_vfs_mime_inited)
 		gnome_vfs_mime_init ();
 

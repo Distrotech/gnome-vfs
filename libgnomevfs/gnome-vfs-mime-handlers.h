@@ -72,6 +72,9 @@ const char  		*gnome_vfs_mime_get_icon 			   (const char 		    *mime_type);
 GnomeVFSResult  	 gnome_vfs_mime_set_icon 			   (const char 		    *mime_type,
 									    const char		    *filename);
 const char 	        *gnome_vfs_mime_get_description   		   (const char              *mime_type);
+gboolean 	         gnome_vfs_mime_can_be_executable   		   (const char              *mime_type);
+GnomeVFSResult	 	 gnome_vfs_mime_set_can_be_executable   	   (const char              *mime_type,
+									    gboolean		     new_value);
 
 /* Stored as delta to current user level - API function computes delta and stores in prefs */
 GnomeVFSResult           gnome_vfs_mime_set_short_list_applications        (const char              *mime_type,

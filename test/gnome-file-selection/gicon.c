@@ -242,7 +242,7 @@ get_icon_from_metadata (const gchar *filename)
 
 	/* Try the non-inlined icon */
 
-	if (gnome_metadata_get (filename, "icon-filename", &size, &buf) == 0) {
+	if (gnome_metadata_get (filename, "icon_filename", &size, &buf) == 0) {
 		iset = get_icon_set (buf);
 		g_free (buf);
 
@@ -381,7 +381,7 @@ gicon_get_icon_for_file_2 (const gchar *full_name,
 	if (mime_type) {
 		const char *icon_name;
 
-		icon_name = gnome_vfs_mime_get_value (mime_type, "icon-filename");
+		icon_name = gnome_vfs_mime_get_value (mime_type, "icon_filename");
 		if (icon_name) {
 			iset = get_icon_set (icon_name);
 			if (iset)

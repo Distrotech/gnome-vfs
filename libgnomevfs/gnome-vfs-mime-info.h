@@ -41,6 +41,7 @@ void             gnome_vfs_mime_thaw                            (void);
 void       	 gnome_vfs_mime_info_reload   	  	 	(void);
 
 
+gboolean	 gnome_vfs_mime_type_is_known			(const char *mime_type);
 
 	/* functions which access to the .keys files */
 const char 	*gnome_vfs_mime_get_value        		(const char *mime_type,

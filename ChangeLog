@@ -1,3 +1,56 @@
+2000-12-18  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Rebecca Schulman  <rebecka@eazel.com>
+
+	Fixed gnome-vfs half of bug 2109 (Images (and any other
+	files) with "execute" bit set will try to be executed
+	instead of viewed when activated). The change here is
+	support for querying whether it makes sense to execute
+	a file of a given MIME type. I'll check in the Nautilus 
+	code that calls this shortly.
+
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	(gnome_vfs_mime_type_is_known): New function, returns
+	TRUE if a given MIME type has an entry in any of the
+	hashtables.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_can_be_executable): New function, returns
+	whether or not a file of a given MIME type could sensibly
+	be executable. Default is TRUE for unknown types (so we
+	don't prevent new types from executing), but FALSE for
+	known types (since the vast majority of MIME types cannot
+	be directly executed).
+	(gnome_vfs_mime_set_can_be_executable): New function,
+	setter for this new feature.
+
+	* data/mime/gnome-vfs-mime-magic: Changed 
+	"application/x-executable-file"	to "application/x-executable-binary" 
+	since there are other types of executable files.
+
+	* data/mime/gnome-vfs.keys: Made can-be-executable TRUE for
+	the following MIME types:
+
+	application/octet-stream
+	application/x-csh
+	application/x-executable-binary
+	application/x-perl
+	text/plain
+	text/x-csh
+	text/x-ksh
+	text/x-perl
+
+	Also changed "icon-filename" to "icon_filename" and "vfs-method" to
+	"vfs_method" so we consistently use underscores in MIME data keys.
+	Also improved the instructions at the top of the file a little.
+
+	* test/gnome-file-selection/gicon.c: (get_icon_from_metadata),
+	(gicon_get_icon_for_file_2),
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (gnome_vfs_mime_get_icon),
+	(gnome_vfs_mime_set_icon): Updated for underscore name change.
+	
 2000-12-18  Darin Adler  <darin@eazel.com>
 
 	* modules/bzip2-method.c: (do_open), (do_get_file_info): Applied

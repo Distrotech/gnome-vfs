@@ -28,7 +28,7 @@
 #
 
 0	string		%PDF-					application/pdf
-0	string		\177ELF					application/x-executable-file
+0	string		\177ELF					application/x-executable-binary
 0	string		PK\003\004				application/zip
 0	string		\004%!					application/postscript
 0	string		\000\000\001\272			video/mpeg
