@@ -1,3 +1,9 @@
+2004-06-21  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-dns-sd.c:
+	* libgnomevfs/gnome-vfs-dns-sd.h:
+	FreeBSD fixes from Joe Marcus Clarke.
+
 2004-06-18  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

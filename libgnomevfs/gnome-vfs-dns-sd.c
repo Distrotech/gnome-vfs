@@ -24,6 +24,9 @@
 #include <config.h>
 
 #include <sys/time.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <arpa/nameser.h>
 #include <resolv.h>
 #include <string.h>
 #include "gnome-vfs-dns-sd.h"

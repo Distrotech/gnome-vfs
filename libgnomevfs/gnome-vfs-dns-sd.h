@@ -24,6 +24,7 @@
 #ifndef GNOME_VFS_DNS_SD_H
 #define GNOME_VFS_DSN_SD_H
 
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <glib.h>
 #include <libgnomevfs/gnome-vfs-result.h>
