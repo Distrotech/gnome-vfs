@@ -1,10 +1,15 @@
 2001-11-02  Darin Adler  <darin@bentspoon.com>
 
+	* configure.in: We need to generate gnome-vfs-module-2.0.pc, if
+	we're going to install it. Sorry for the 3 check-ins in a row.
+
+2001-11-02  Darin Adler  <darin@bentspoon.com>
+
 	* Makefile.am: Oops. ".pc" not ".pc.in".
 
 2001-11-02  Darin Adler  <darin@bentspoon.com>
 
-	* Makefile.am: Build gnome-vfs-module-2.0.pc.
+	* Makefile.am: Install gnome-vfs-module-2.0.pc.
 	* libgnomevfs/gnome-vfs.h: One file was out of alphabetical order.
 
 2001-11-02  Maciej Stachowiak  <mjs@noisehavoc.org>

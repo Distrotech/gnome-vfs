@@ -470,6 +470,7 @@ test/Makefile
 test/vfs-run
 doc/Makefile
 gnome-vfs-2.0.pc
+gnome-vfs-module-2.0.pc
 ])
 
 chmod u+x test/vfs-run
