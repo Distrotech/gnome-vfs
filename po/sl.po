@@ -1755,7 +1755,7 @@ msgstr "Ka¾i nastavitevene datoteke"
 #~ msgstr "ftpfs: CWD (sprememba delovnega direktorija) ni uspela."
 
 #~ msgid "ftpfs: couldn't resolve symlink"
-#~ msgstr "ftpfs: ne morem razre¹iti simbolne povezave"
+#~ msgstr "ftpfs: ne morem razvozlati simbolne povezave"
 
 #~ msgid "Resolving symlink..."
 #~ msgstr "Razvozljujem simbolno povezavo..."
