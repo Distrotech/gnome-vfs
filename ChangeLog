@@ -1,5 +1,10 @@
 2000-09-01  Ian McKellar  <yakk@yakk.net.au>
 
+	* test/.cvsignore:
+	Added new binaries to .cvsignore.
+
+2000-09-01  Ian McKellar  <yakk@yakk.net.au>
+
 	* libgnomevfs/gnome-vfs-context.c:
 	(gnome_vfs_context_emit_message):
 	The fallback error message that is sent if context==NULL is now sent

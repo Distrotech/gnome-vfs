@@ -28,5 +28,7 @@ test-sync-create
 test-sync-write
 test-uri
 test-xfer
+test-dirop
+test-unlink
 vfs-run
 test-mime-info
