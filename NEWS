@@ -36,4 +36,4 @@ Portability fixes:
 that don't use .so as the extension for shared libraries (Jacob)
 * Add recorsive mutex wrappers for use on systems that don't provide
 recursive mutexes natively (Dan)
-* Misc portability fixes (Laszlo)
+* Misc portability fixes (Laca, Frank Belew)

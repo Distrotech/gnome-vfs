@@ -1,5 +1,16 @@
 2001-09-10  Maciej Stachowiak  <mjs@noisehavoc.org>
 
+	* NEWS: updated again
+
+	Merge from HEAD:
+
+	2001-09-10  Frank Belew  <frb@ximian.com>
+
+	* configure.in: add check for librt for semaphore functions
+	(fixes undefined references on solaris)
+
+2001-09-10  Maciej Stachowiak  <mjs@noisehavoc.org>
+
 	* NEWS: Updated for upcoming 1.0.2 release.
 
 	* libgnomevfs/gnome-vfs-uri.h, libgnomevfs/gnome-vfs-uri.c
