@@ -4,28 +4,27 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs-1\n"
-"POT-Creation-Date: 2003-12-28 11:03+0100\n"
-"PO-Revision-Date: 2003-08-22 22:48+0900\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-09 00:20+0900\n"
+"PO-Revision-Date: 2004-01-09 02:01+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: daemon/gnome-vfs-daemon.c:553
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "주요 브라우저를 찾을 수가 없습니다"
+msgstr "보노보를 초기화할 수 없습니다"
 
 #: daemon/gnome-vfs-daemon.c:559
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "그놈 VFS를 초기화할 수 없습니다"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "ISO 9660 볼륨"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -38,14 +37,14 @@ msgid "%s:%d contains no method name."
 msgstr "%s:%d에 메서드 이름이 없습니다."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d에 메서드 이름이 없습니다."
+msgstr "%s:%d에 옵션 끝 표시가 없습니다."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d에 알 수 없는 옵션 %s이(가) 있습니다."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -59,144 +58,143 @@ msgstr "설정 파일 `%s'이(가) 없습니다: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "AFFS 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "AFS 네트워크 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "자동 감지된 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "CD-ROM 드라이브"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "CD 디지털 음악"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "하드웨어 장치 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Ext2 리눅스 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Ext3 리눅스 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "MS도스 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr ""
+msgstr "MacOS 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr ""
+msgstr "CDROM 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Hsfs CDROM 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr ""
+msgstr "JFS 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
-msgstr ""
+msgstr "Windows NT 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr ""
+msgstr "시스템 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr ""
+msgstr "메모리 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr ""
+msgstr "Minix 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "NFS 네트워크 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr ""
+msgstr "네트웨어 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "ReiserFS 리눅스 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Windows 공유 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "SuperMount 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr ""
+msgstr "DVD 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Solaris/BSD 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Udfs Solaris 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "Pcfs Solaris 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "확장 도스 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "Windows VFAT 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr ""
+msgstr "Xenix 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "XFS 리눅스 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "XIAFS 볼륨"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
-#, fuzzy
 msgid "Unknown"
-msgstr "알 수 없는 애러가 발생했습니다"
+msgstr "알 수 없음"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
 msgid "Unknown op type %u"
-msgstr "알 수 없는 op 형식 %u"
+msgstr "알 수 없는 파일작업 형식 %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
@@ -456,15 +454,15 @@ msgid "Unknown error"
 msgstr "알 수 없는 애러가 발생했습니다"
 
 #: libgnomevfs/gnome-vfs-utils.c:84
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] "%u 바이트"
+msgstr[0] "%u바이트"
 
 #: libgnomevfs/gnome-vfs-utils.c:90
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f K"
+msgstr "%.1f KB"
 
 #: libgnomevfs/gnome-vfs-utils.c:94
 #, c-format
@@ -484,90 +482,89 @@ msgstr " (잘못된 유니코드)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
 msgid "Floppy"
-msgstr ""
+msgstr "플로피"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
 msgid "Zip Drive"
-msgstr ""
+msgstr "Zip 드라이브"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
 msgid "Memory Stick"
-msgstr ""
+msgstr "메모리 스틱"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
 msgid "Camera"
-msgstr ""
+msgstr "카메라"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
 msgid "Root Volume"
-msgstr ""
+msgstr "루트 볼륨"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
 msgid "Audio CD"
-msgstr ""
+msgstr "음악 CD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
-#, fuzzy
 msgid "Unknown volume"
-msgstr "알 수 없는 애러가 발생했습니다"
+msgstr "알 수 없는 볼륨"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
 msgid "Network server"
-msgstr ""
+msgstr "네트워크 서버"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
+msgstr "플로피 드라이브를 마운트할 수 없습니다. 드라이브에 플로피가 없을 것입니다."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "해당 볼륨을 마운트할 수 없습니다. 해당 장치에 미디어가 없을 것입니다."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr ""
+msgstr "플로피 드라이브를 마운트할 수 없습니다. 플로피가 마운트할 수 없는 형식일 것입니다."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr ""
+msgstr "선택한 볼륨을 마운트할 수 없습니다. 해당 볼륨이 마운트할 수 없는 형식일 것입니다."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "선택한 플로피 드라이브를 마운트할 수 없습니다."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "선택한 볼륨을 마운트할 수 없습니다."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "선택한 볼륨을 마운트 해제할 수 없습니다."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:220
 #: libgnomevfs/gnome-vfs-volume-ops.c:252
 msgid "Failed to start command"
-msgstr ""
+msgstr "명령어를 시작하는 데 실패했습니다"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:245
 msgid "Unable to eject media"
-msgstr ""
+msgstr "미디어를 꺼낼 수 없습니다"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:421
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "연결한 서버에서 마운트를 해제할 수 없습니다"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -621,18 +618,17 @@ msgstr "창"
 
 #: modules/computer-method.c:521
 msgid "Network"
-msgstr ""
+msgstr "네트워크"
 
 #: modules/computer-method.c:539
 msgid "Home"
-msgstr ""
+msgstr "홈"
 
 #: modules/computer-method.c:557
-#, fuzzy
 msgid "Filesystem"
-msgstr "파일"
+msgstr "파일시스템"
 
-#: modules/file-method.c:382
+#: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "알 수 없는 GnomeVFSSeekPosition %d"
@@ -666,15 +662,15 @@ msgstr "일반 파일 모니커"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "기본 컴포넌트 보기 프로그램"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "기본 터미널 프로그램"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "기본 터미널을 실행할 때 줄 인자"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -682,267 +678,258 @@ msgid ""
 "The application to use for viewing files that require a component to view "
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
-msgstr ""
+msgstr "볼려면 컴포넌트가 필요한 파일을 볼 때 사용할 프로그램. 인자 %s는 파일의 URI이고, 인자 %c는 컴포넌트 IID입니다."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
+msgstr "터미널이 필요한 프로그램에 사용할 기본 터미널 프로그램."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "기본 터미널 프로그램을 실행할 때 사용할 인자."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "H323 URL 핸들러"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "HTTP URL 핸들러"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "HTTPS URL 핸들러"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "Handle H323 URLs"
-msgstr "URL 스킴에 대해 처리기가 지정되어 있지 않습니다"
+msgstr "H323 URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "Handle HTTP URLs"
-msgstr "URL 스킴에 대해 처리기가 지정되어 있지 않습니다"
+msgstr "HTTP URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "HTTPS URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle callto URLs"
-msgstr "URL 스킴에 대해 처리기가 지정되어 있지 않습니다"
+msgstr "callto URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "Handle ghelp URLs"
-msgstr "URL 스킴에 대해 처리기가 지정되어 있지 않습니다"
+msgstr "ghelp URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
-msgstr "URL 스킴에 대해 처리기가 지정되어 있지 않습니다"
+msgstr "info URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "Handle mailto URLs"
-msgstr "URL 스킴에 대해 처리기가 지정되어 있지 않습니다"
+msgstr "mailto URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "Handle man URLs"
-msgstr "URL 스킴에 대해 처리기가 지정되어 있지 않습니다"
+msgstr "man URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "Handle trash URLs"
-msgstr "URL 스킴에 대해 처리기가 지정되어 있지 않습니다"
+msgstr "trash URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "터미널에서 프로그램을 실행합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
+msgstr "참이면 \"command\"에 H323 URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
+msgstr "참이면 \"command\"에 HTTP URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
+msgstr "참이면 \"command\"에 HTTPS URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
+msgstr "참이면 \"command\"에 callto URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
+msgstr "참이면 \"command\"에 ghelp URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
+msgstr "참이면 \"command\"에 info URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
+msgstr "참이면 \"command\"에 mailto URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr ""
+msgstr "참이면 \"command\"에 man URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr ""
+msgstr "참이면 \"command\"에 trash URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
+msgstr "참이면, 이 URL을 처리하는 프로그램을 터미널에서 실행해야 하는 경우입니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "callto URL 핸들러"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "ghelp URL 핸들러"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "info URL 핸들러"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "잘못된 파일 핸들"
+msgstr "mailto URL 핸들러"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "man URL 핸들러"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "trash URL 핸들러"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "프록시 서버 연결에 인증"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "자동 프록시 설정 URL"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "인터넷을 HTTP로 접근할 때 프록시를 사용합니다."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "FTP 프록시 호스트 이름"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "FTP 프록시 포트"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "HTTP 프록시 호스트 이름"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "HTTP 프록시 암호"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "HTTP 프록시 포트"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "HTTP 프록시 사용자 이름"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
+msgstr "참이면, 프록시 서버에 연결하는 데 인증이 필요합니다. 사용자 이름고 열쇠글은 \"/system/http_proxy/authentication_user\" 및 \"/system/http_proxy/authentication_password\"에서 지정합니다."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "프록시 쓰지 않을 호스트"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "HTTP 프록시를 쓸 때 인증하면서 넘기는 열쇠글."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "프록시 설정 모드"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "SOCKS 프록시 호스트 이름"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "SOCKS 프록시 포트"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "보안 HTTP 프록시 호스트 이름"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "보안 HTTP 프록시 포트"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
+msgstr "프록시 설정 모드를 선택합니다. 지원하는 값은 \"none\", \"manual\", \"auto\"입니다."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "FTP 프록시로 쓸 기계의 이름."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "HTTP 프록시로 쓸 기계의 이름."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "보안 HTTP 프록시로 쓸 기계의 이름."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "SOCKS 프록시로 쓸 기계의 이름."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr ""
+msgstr "프록시에 사용할 포트 (\"/system/http_proxy/host\"에서 지정한 기계에서)"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr ""
+msgstr "프록시에 사용할 포트 (\"/system/proxy/ftp_host\"에서 지정한 기계에서)"
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr ""
+msgstr "프록시에 사용할 포트 (\"/system/proxy/secure_host\"에서 지정한 기계에서)"
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr ""
+msgstr "프록시에 사용할 포트 (\"/system/proxy/socks_host\"에서 지정한 기계에서)"
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -950,27 +937,16 @@ msgid ""
 "than via the proxy (if it is active). The values can be hostnames, domains "
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
+msgstr "이 키에는 (프록시가 사용 가능할 경우에도) 프록시를 통하지 않고 직접 연결할 호스트의 목록이 들어갑니다. 각 값들은 호스트 이름, 도메인 이름(*.foo.com과 같은 와일드 카드 사용), IP 호스트 주소(IPv4와 IPv6 모두 가능), 네트마스크를 사용한 네트워크 주소(192.168.0.0/24와 같이)를 쓸 수 있습니다."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "프록시 설정 값을 제공해 주는 URL."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "HTTP 프록시 사용"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
-
-#, fuzzy
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "URL 스킴에 대해 처리기가 지정되어 있지 않습니다"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "URL 스킴에 대해 처리기가 지정되어 있지 않습니다"
-
-#~ msgid "1 byte"
-#~ msgstr "1 바이트"
+msgstr "HTTP 프록시를 쓸 때 인증하면서 넘기는 사용자 이름."
