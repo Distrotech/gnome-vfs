@@ -622,16 +622,16 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	method = gnome_vfs_method_get (method_string);
 	/* The toplevel URI element is special, as it also contains host/user
            information.  */
-	uri->method        = method;
-	uri->ref_count     = 1;
+	uri->method = method;
+	uri->ref_count = 1;
 	uri->method_string = method_string;
-	uri->text          = NULL;
+	uri->text = NULL;
 	if (method == NULL) {
 		gnome_vfs_uri_unref (uri);
 		g_free (new_uri_string);
 		return NULL;
 	}
-	
+
 	p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
 	if (p1 == NULL) {
 		set_uri_element (uri, p, strlen (p));
@@ -641,7 +641,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 
 	set_uri_element (uri, p, p1 - p);
 
-	if (! strchr (p1, ':')) {
+	if (strchr (p1, ':') == NULL) {
 		g_free (new_uri_string);
 		return uri;
 	}
@@ -652,8 +652,8 @@ gnome_vfs_uri_new (const gchar *text_uri)
 
 	if (new_uri)
 		return new_uri;
-	else
-		return uri;
+
+	return uri;
 }
 
 
