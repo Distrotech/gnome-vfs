@@ -1,5 +1,7 @@
 2000-02-24  Ettore Perazzoli  <ettore@helixcode.com>
 
+	* test/test-directory.c (print_list): Deal with a NULL MIME type.
+
 	Patch from Marcus Nilsson <marcusn@docs.uu.se>:
 	* modules/file-method.c (struct _DirectoryHandle): Made
 	`current_entry' a pointer to a `struct dirent *' instead of just a

@@ -104,12 +104,19 @@ print_list (GnomeVFSDirectoryList *list)
 	}
 
 	while (info != NULL) {
+		const gchar *mime_type;
+
+		mime_type = gnome_vfs_file_info_get_mime_type (info);
+		if (mime_type == NULL)
+			mime_type = "(Unknown)";
+
 		printf ("  File `%s'%s (%s, %s), size %ld, mode %04o\n",
 			info->name,
 			GNOME_VFS_FILE_INFO_SYMLINK (info) ? " [link]" : "",
 			type_to_string (info->type),
-			gnome_vfs_file_info_get_mime_type (info),
-			(glong) info->size, info->permissions);
+			mime_type,
+			(glong) info->size,
+			info->permissions);
 
 		info = gnome_vfs_directory_list_next (list);
 	}
