@@ -82,7 +82,7 @@ GnomeVFSResult  gnome_vfs_socket_set_timeout
 					 (GnomeVFSSocket *socket,
 					  GTimeVal *timeout,
 					  GnomeVFSCancellation *cancellation);
-
+void            gnome_vfs_socket_free   (GnomeVFSSocket *socket);
 G_END_DECLS
 
 #endif /* GNOME_VFS_SOCKET_H */

@@ -30,6 +30,7 @@
 #include "gnome-vfs-socket.h"
 
 #include <glib/gmem.h>
+#include <glib/gmessages.h>
 
 struct GnomeVFSSocket {
 	GnomeVFSSocketImpl *impl;
@@ -155,4 +156,22 @@ gnome_vfs_socket_set_timeout (GnomeVFSSocket *socket,
 	return socket->impl->set_timeout (socket->connection,
 					  timeout,
 					  cancellation);
+}
+
+
+/**
+ * gnome_vfs_socket_free:
+ * @socket: The #GnomeVFSSocket you want to free. 
+ * 
+ * Frees the memory allocated for @socket, but does
+ * not call any #GnomeVFSSocketImpl function.
+ *
+ * Since: 2.8
+ **/
+void
+gnome_vfs_socket_free (GnomeVFSSocket *socket)
+{
+	g_return_if_fail (socket != NULL);
+	
+	g_free (socket);
 }

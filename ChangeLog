@@ -1,3 +1,15 @@
+2004-07-16  Christian Kellner  <gicmo@gnome-de.org>
+
+	* libgnomevfs/gnome-vfs-socket.c (gnome_vfs_socket_free):
+	Implemented new function for freeing the socket object.
+
+	* libgnomevfs/gnome-vfs-inet-connection.c
+	(gnome_vfs_inet_connection_create_from_address):
+	(gnome_vfs_inet_connection_free)
+	Implemented.
+	(gnome_vfs_inet_connection_destroy):
+	Use gnome_vfs_inet_connection_free.
+
 2004-07-15  Christian Kellner  <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-result.h: 
