@@ -106,7 +106,7 @@ wake_up (GIOChannel *source,
 {
 	GnomeVFSProcess *process;
 	GIOError result;
-	guint bytes_read;
+	gsize bytes_read;
 	gint status;
 
 	do {

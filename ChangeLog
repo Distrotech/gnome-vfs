@@ -1,3 +1,10 @@
+Thu Aug 23 11:12:36 2001  George Lebl <jirka@5z.com>
+
+	* libgnomevfs/gnome-vfs-process.c (wake_up), 
+	  libgnomevfs-pthread/gnome-vfs-job.c (serve_channel_read)
+	  (serve_channel_write):  64bitness issues fixed.  GIOChannel
+	  functions have size done in 'gsize' (64bit) and not 'guint' (32bit)
+
 2001-08-21  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* OUTSTANDING_API_ISSUES: Removed teh filtering item, added one

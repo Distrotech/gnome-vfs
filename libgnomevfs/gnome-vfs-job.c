@@ -790,7 +790,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 		}
 
 		while (written_bytes_in_buffer < filled_bytes_in_buffer) {
-			guint bytes_written;
+			gsize bytes_written;
 			
 			/* channel_out is nonblocking; if we get
 			   EAGAIN (G_IO_ERROR_AGAIN) then we tried to
@@ -881,8 +881,8 @@ serve_channel_write (GnomeVFSHandle *handle,
 	while (1) {
 		GnomeVFSResult result;
 		GIOError io_result;
-		guint bytes_read;
-		guint bytes_to_write;
+		gsize bytes_read;
+		gsize bytes_to_write;
 		GnomeVFSFileSize bytes_written;
 		gchar *p;
 
