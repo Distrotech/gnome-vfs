@@ -165,6 +165,10 @@ ftp_response_to_vfs_result (gint response)
 	case 426: 
 	  return GNOME_VFS_ERROR_CANCELLED;
 	case 425:
+		/*FIXME this looks like a bad mapping.  
+		 * 425 is "could not open data connection" which
+		 * probably doesn't have anything to do with file permissions
+		 */ 
 	  return GNOME_VFS_ERROR_ACCESS_DENIED;
 	case 530:
 	case 331:
@@ -173,6 +177,7 @@ ftp_response_to_vfs_result (gint response)
 	  return GNOME_VFS_ERROR_LOGIN_FAILED;
 	case 450:
 	case 550:
+		/* NOTE: wu-ftpd returns 550 for MKD permission denied */
 	case 451:
 	case 551:
 	  return GNOME_VFS_ERROR_NOT_FOUND;
@@ -1300,8 +1305,18 @@ static GnomeVFSResult
 do_make_directory (GnomeVFSMethod *method, GnomeVFSURI *uri, guint perm, GnomeVFSContext *context)
 {
 	/* FIXME bugzilla.eazel.com 1136: We ignore the perm parameter here. */
+	/* due to a bad error code mapping above, we translate the error code here */
 
-	return do_path_command_completely ("MKD", uri, context);
+	GnomeVFSResult result;
+
+	result = do_path_command_completely ("MKD", uri, context);
+
+	if (result == GNOME_VFS_ERROR_NOT_FOUND) {
+		/* This was probably caused by a 550, so the real error code should be... */
+		return GNOME_VFS_ERROR_ACCESS_DENIED;
+	} else {
+		return result;
+	}	
 }
 
 

@@ -1,3 +1,13 @@
+2000-12-06  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/ftp-method.c: (ftp_response_to_vfs_result),
+	(do_make_directory):
+
+	Added FIXME.
+
+	Translated error returned from do_make_directory to compensate
+	for bad error mapping deeper in the module.
+
 2000-12-06  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: <delete if not using a buddy>
