@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-07-03 23:10+0200\n"
+"POT-Creation-Date: 2004-07-09 23:55+0200\n"
+"PO-Revision-Date: 2004-07-09 23:55+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -195,6 +195,118 @@ msgstr "XIAFS-volym"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "Okänd"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:610
+msgid "CD Disc"
+msgstr "Cd-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+msgid "Blank CD-R Disc"
+msgstr "Tom cd-r-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:615
+msgid "CD-R Disc"
+msgstr "Cd-r-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+msgid "Blank CD-RW Disc"
+msgstr "Tom cd-rw-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:620
+msgid "CD-RW Disc"
+msgstr "Cd-rw-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:622
+msgid "DVD-ROM Disc"
+msgstr "Dvd-romskiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:625
+msgid "Blank DVD-R Disc"
+msgstr "Tom dvd-r-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:627
+msgid "DVD-R Disc"
+msgstr "Dvd-r-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:630
+msgid "Blank DVD-RAM Disc"
+msgstr "Tom dvd-ramskiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:632
+msgid "DVD-RAM Disc"
+msgstr "Dvd-ramskiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:635
+msgid "Blank DVD-RW Disc"
+msgstr "Tom dvd-rw-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:637
+msgid "DVD-RW Disc"
+msgstr "Dvd-rw-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+msgid "Blank DVD+RW Disc"
+msgstr "Tom dvd+rw-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:642
+msgid "DVD+RW Disc"
+msgstr "Dvd+rw-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:645
+msgid "Blank DVD+R Disc"
+msgstr "Tom dvd+r-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:647
+msgid "DVD+R Disc"
+msgstr "Dvd+r-skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:649
+msgid "Optical Disc"
+msgstr "Optisk skiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:655
+msgid "Audio Disc"
+msgstr "Ljudskiva"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:659
+msgid "Compact Flash Media"
+msgstr "Compact Flash-media"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:661
+msgid "Memory Stick Media"
+msgstr "Minnespinnemedia"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:663
+msgid "Smart Media Media"
+msgstr "Smart Media-media"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+msgid "SD/MMC Media"
+msgstr "SD/MMC-media"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+msgid "Floppy Disk"
+msgstr "Diskett"
+
+# Detta handlar om filsystemstypen som finns på skivan/mediumet
+#: libgnomevfs/gnome-vfs-hal-mounts.c:674
+msgid "Mac OS disk"
+msgstr "Mac OS-disk"
+
+# Detta handlar om filsystemstypen som finns på skivan/mediumet
+#: libgnomevfs/gnome-vfs-hal-mounts.c:676
+msgid "Mac OS X disk"
+msgstr "Mac OS X-disk"
+
+# Detta handlar om filsystemstypen som finns på skivan/mediumet
+#: libgnomevfs/gnome-vfs-hal-mounts.c:690
+msgid "Windows Disk"
+msgstr "Windows-disk"
+
+# Detta handlar om filsystemstypen som finns på skivan/mediumet
+#: libgnomevfs/gnome-vfs-hal-mounts.c:696
+msgid "Linux Disk"
+msgstr "Linux-disk"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -454,7 +566,12 @@ msgstr "Fel vid tolkning av kommandorad"
 msgid "Error launching command"
 msgstr "Fel vid start av kommando"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+msgid "Timeout reached"
+msgstr "Timeout nåddes"
+
+#: libgnomevfs/gnome-vfs-result.c:180
 msgid "Unknown error"
 msgstr "Okänt fel"
 
@@ -481,50 +598,50 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:364
 msgid " (invalid Unicode)"
 msgstr " (ogiltig Unicode)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:492
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:520
 msgid "Floppy"
 msgstr "Diskett"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:493
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:523
 msgid "CD-ROM"
 msgstr "Cd-rom"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:494
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:526
 msgid "Zip Drive"
 msgstr "Zipenhet"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:495
 msgid "Memory Stick"
 msgstr "Minnespinne"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
 msgid "Camera"
 msgstr "Kamera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
 msgid "DVD"
 msgstr "Dvd"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:713
 msgid "Root Volume"
 msgstr "Rotvolym"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:794
 msgid "Audio CD"
 msgstr "Ljud-cd"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:825
 msgid "Unknown volume"
 msgstr "Okänd volym"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1005
 msgid "Network server"
 msgstr "Nätverksserver"
 
@@ -645,7 +762,7 @@ msgstr "Hem"
 msgid "Filesystem"
 msgstr "Filsystem"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Okänd GnomeVFSSeekPosition %d"
