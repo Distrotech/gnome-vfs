@@ -1,3 +1,12 @@
+2001-02-03  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	* modules/http-method.c: (cache_check_directory),
+	(vfs_module_init), (vfs_module_shutdown):
+	Use an explicit mutex initializer instead of a static initializer to make
+	things more portable.
+
 2001-02-03  Rolf Grossmann <grossman@securitas.net>
 
 	reviewed by: Pavel Cisler  <pavel@eazel.com>

@@ -111,15 +111,7 @@ static int nothing;
 #define US_CACHE_DIRECTORY (1000 * 500)
 
 /* Mutex for cache data structures */
-/* The GLib mutex abstraction doesn't allow recursive mutexs */
-
-/* For Solaris and other systems that don't have this define */
-#ifndef PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP
-#define  PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP  \
-             {0, 0, 0, PTHREAD_MUTEX_RECURSIVE, {0, 0}}
-#endif
-
-static pthread_mutex_t cache_rlock = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
+static pthread_mutex_t cache_rlock;
 
 /* Hash maps char * URI ---> FileInfoCacheEntry */
 GHashTable * gl_file_info_cache = NULL;
@@ -359,7 +351,7 @@ cache_check_directory (const gchar * uri_string, GList **p_child_file_info_list)
 {
 	FileInfoCacheEntry *entry;
 	utime_t utime_expire;
-GnomeVFSFileInfo *ret;
+	GnomeVFSFileInfo *ret;
 	GList *child_file_info_list = NULL;
 	gboolean cache_incomplete;
 
@@ -2747,6 +2739,7 @@ vfs_module_init (const char *method_name, const char *args)
 	int argc = 1;
 	GError *gconf_error = NULL;
 	GConfValue *proxy_value;
+	pthread_mutexattr_t attr;
 
 	LIBXML_TEST_VERSION
 
@@ -2777,6 +2770,14 @@ vfs_module_init (const char *method_name, const char *args)
         }
 #endif
 
+	/* Initialize cache_rlock to be a recursive mutex. (Not using the static
+	 * recursive mutex initializer macro here because it is not too portable.
+	 */
+	pthread_mutexattr_init (&attr);
+	pthread_mutexattr_settype (&attr, PTHREAD_MUTEX_RECURSIVE);
+	pthread_mutex_init (&cache_rlock, &attr);
+	pthread_mutexattr_destroy (&attr);
+	
 	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_NONE, &gconf_error);
 
 	if (gconf_error) {
@@ -2821,6 +2822,9 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 		g_mutex_free (gl_mutex);
 	}
 #endif
+
+	pthread_mutex_destroy (&cache_rlock);
+
 	gl_client = NULL;
 }
 
