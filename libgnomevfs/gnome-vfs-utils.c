@@ -35,8 +35,10 @@
 #include "gnome-vfs-i18n.h"
 #include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-ops.h"
+#include "gnome-vfs-mime-handlers.h"
 #include <glib/gstrfuncs.h>
 #include <glib/gutils.h>
+#include <gconf/gconf-client.h>
 #include <pwd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,7 +59,6 @@
 #define KILOBYTE_FACTOR 1024.0
 #define MEGABYTE_FACTOR (1024.0 * 1024.0)
 #define GIGABYTE_FACTOR (1024.0 * 1024.0 * 1024.0)
-
 
 #define READ_CHUNK_SIZE 8192
 
@@ -1900,4 +1901,91 @@ _gnome_vfs_uri_is_in_subdir (GnomeVFSURI *uri, GnomeVFSURI *dir)
 	return is_in_dir;
 }
 
-			  
+/**
+ * gnome_vfs_url_show:
+ * 
+ * Launches the default application or component associated with the given url.
+ *
+ * Return value: GNOME_VFS_OK if the default action was launched,
+ * GNOME_VFS_ERROR_BAD_PARAMETERS for an invalid or non-existant url,
+ * GNOME_VFS_ERROR_NOT_SUPPORTED if no default action is associated with the URL.
+ * Also error codes from gnome_vfs_mime_action_launch and
+ * gnome_vfs_url_show_using_handler for other errors.
+ *
+ * Since: 2.4
+ */
+GnomeVFSResult
+gnome_vfs_url_show (const char *url)
+{
+	return gnome_vfs_url_show_with_env (url, NULL);
+}
+
+/**
+ * gnome_vfs_url_show_with_env:
+ * 
+ * Like gnome_vfs_url_show except that the default action will be launched
+ * with the given environment.
+ *
+ * Return value: GNOME_VFS_OK if the default action was launched.
+ *
+ * Since: 2.4
+ */
+GnomeVFSResult
+gnome_vfs_url_show_with_env (const char  *url,
+                             char       **envp)
+{
+	GnomeVFSMimeApplication *app;
+	GnomeVFSMimeAction *action;
+	GnomeVFSResult result;
+	GList params;
+	char *type;
+	char *scheme;
+
+	g_return_val_if_fail (url != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	scheme = gnome_vfs_get_uri_scheme (url);
+	if (scheme == NULL) {
+		return GNOME_VFS_ERROR_BAD_PARAMETERS;
+	}
+	
+	/* check if this scheme requires special handling */
+	if (_gnome_vfs_use_handler_for_scheme (scheme)) {
+		result = _gnome_vfs_url_show_using_handler_with_env (url, envp);
+		g_free (scheme);
+		return result;
+	}
+	
+	g_free (scheme);
+
+	type = gnome_vfs_get_mime_type (url);
+
+	if (type == NULL) {
+		return GNOME_VFS_ERROR_BAD_PARAMETERS;
+	}
+
+	params.data = (char *) url;
+	params.prev = NULL;
+	params.next = NULL;
+	
+	app = gnome_vfs_mime_get_default_application (type);
+	
+	if (app != NULL) {
+		result = gnome_vfs_mime_application_launch_with_env (app, &params, envp);
+		gnome_vfs_mime_application_free (app);
+		g_free (type);
+		return result;
+	}
+	
+	action = gnome_vfs_mime_get_default_action (type);
+	
+	if (action != NULL) {
+		result = gnome_vfs_mime_action_launch_with_env (action, &params, envp);
+		gnome_vfs_mime_action_free (action);
+		g_free (type);
+		return result;
+	}
+	
+	g_free (type);
+	return GNOME_VFS_ERROR_NO_DEFAULT;	
+}	  
+

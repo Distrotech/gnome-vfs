@@ -1,6 +1,7 @@
 schemadir   = $(GCONF_SCHEMA_FILE_DIR)
 schema_DATA = \
-	system_http_proxy.schemas
+	system_http_proxy.schemas \
+	desktop_default_applications.schemas
 
 # don't do this if we are building in eg. rpm
 if GCONF_SCHEMAS_INSTALL

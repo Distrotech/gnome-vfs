@@ -81,6 +81,13 @@ GnomeVFSResult  _gnome_vfs_uri_resolve_all_symlinks (const char *text_uri,
 gboolean  _gnome_vfs_uri_is_in_subdir (GnomeVFSURI *uri, GnomeVFSURI *dir);
 
 
+GnomeVFSResult _gnome_vfs_url_show_using_handler_with_env (const char   *url,
+                                                           char        **envp);
+gboolean       _gnome_vfs_use_handler_for_scheme          (const char   *scheme);
+
+gboolean       _gnome_vfs_prepend_terminal_to_vector      (int          *argc,
+							   char       ***argv);
+
 G_END_DECLS
 
 #endif /* _GNOME_VFS_PRIVATE_UTILS_H */

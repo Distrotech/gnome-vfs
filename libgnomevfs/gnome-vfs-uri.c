@@ -432,7 +432,9 @@ parse_uri_substring (const gchar *substring, GnomeVFSURI *parent)
  * gnome_vfs_uri_new:
  * @text_uri: A string representing a URI.
  * 
- * Create a new URI from @text_uri.
+ * Create a new URI from @text_uri. Unsupported and unsafe methods
+ * are not allowed and will result in %null% being returned. URL
+ * transforms are allowed.
  * 
  * Return value: The new URI.
  **/

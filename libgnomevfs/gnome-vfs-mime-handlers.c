@@ -28,26 +28,36 @@
 #include "gnome-vfs-mime-info.h"
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-result.h"
+#include "gnome-vfs-private-utils.h"
 #include "gnome-vfs-utils.h"
 #include <bonobo-activation/bonobo-activation-activate.h>
 #include <gconf/gconf-client.h>
 #include <stdio.h>
 #include <string.h>
 
-static GList *        Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList *info_list);
-static GList *        copy_str_list                           (GList *string_list);
-static GList *        comma_separated_str_to_str_list         (const char         *str);
-static GList *        str_list_difference                     (GList              *a,
-							       GList              *b);
-static char *         str_list_to_comma_separated_str         (GList              *list);
-static void           g_list_free_deep                        (GList              *list);
-static GList *        prune_ids_for_nonexistent_applications  (GList              *list);
-static GnomeVFSResult gnome_vfs_mime_edit_user_file           (const char         *mime_type,
-							       const char         *key,
-							       const char         *value);
-static gboolean       application_known_to_be_nonexistent     (const char         *application_id);
-static const char    *gnome_vfs_mime_maybe_get_user_level_value (const char         *mime_type,
-								 const char         *key);
+#define GCONF_DEFAULT_VIEWER_EXEC_PATH   "/desktop/gnome/applications/component_viewer/exec"
+
+
+static GnomeVFSResult expand_parameters                          (gpointer                  action,
+								  GnomeVFSMimeActionType    type,
+								  GList                    *uris,
+								  int                      *argc,
+								  char                   ***argv);
+static GList *        Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList    *info_list);
+static GList *        copy_str_list                              (GList                    *string_list);
+static GList *        comma_separated_str_to_str_list            (const char               *str);
+static GList *        str_list_difference                        (GList                    *a,
+								  GList                    *b);
+static char *         str_list_to_comma_separated_str            (GList                    *list);
+static void           g_list_free_deep                           (GList                    *list);
+static GList *        prune_ids_for_nonexistent_applications     (GList                    *list);
+static GnomeVFSResult gnome_vfs_mime_edit_user_file              (const char               *mime_type,
+								  const char               *key,
+								  const char               *value);
+static gboolean       application_known_to_be_nonexistent        (const char               *application_id);
+static const char    *gnome_vfs_mime_maybe_get_user_level_value  (const char               *mime_type,
+								  const char               *key);
+
 
 /**
  * gnome_vfs_mime_get_description:
@@ -1765,6 +1775,409 @@ GnomeVFSMimeApplication *
 gnome_vfs_mime_application_new_from_id (const char *id)
 {
 	return gnome_vfs_application_registry_get_mime_application (id);
+}
+
+/**
+ * gnome_vfs_mime_action_launch:
+ * @action: the GnomeVFSMimeAction to launch
+ * @uris: parameters for the GnomeVFSMimeAction
+ *
+ * Launches the given mime action with the given parameters. If 
+ * the action is an application the command line parameters will
+ * be expanded as required by the application. The application
+ * will also be launched in a terminal if that is required. If the
+ * application only supports one argument per instance then multile
+ * instances of the application will be launched.
+ *
+ * If the default action is a component it will be launched with
+ * the component viewer application defined using the gconf value:
+ * /desktop/gnome/application/component_viewer/exec. The parameters
+ * %s and %c in the command line will be replaced with the list of
+ * parameters and the default component IID respectively.
+ *
+ * Return value: GNOME_VFS_OK if the action was launched,
+ * GNOME_VFS_ERROR_BAD_PARAMETERS for an invalid action.
+ * GNOME_VFS_ERROR_NOT_SUPPORTED if the uri protocol is
+ * not supported by the action.
+ * GNOME_VFS_ERROR_PARSE if the action command can not be parsed.
+ * GNOME_VFS_ERROR_LAUNCH if the action command can not be launched.
+ * GNOME_VFS_ERROR_INTERNAL for other internal and GConf errors.
+ *
+ * Since: 2.4
+ */
+GnomeVFSResult
+gnome_vfs_mime_action_launch (GnomeVFSMimeAction *action,
+			      GList              *uris)
+{
+	return gnome_vfs_mime_action_launch_with_env (action, uris, NULL);
+}
+
+/**
+ * gnome_vfs_mime_action_launch_with_env:
+ *
+ * Same as gnome_vfs_mime_action_launch except that the
+ * application or component viewer will be launched with
+ * the given environment.
+ *
+ * Return value: same as gnome_vfs_mime_action_launch
+ *
+ * Since: 2.4
+ */
+GnomeVFSResult
+gnome_vfs_mime_action_launch_with_env (GnomeVFSMimeAction *action,
+				       GList              *uris,
+				       char              **envp)
+{
+	GnomeVFSResult result;
+	char **argv;
+	int argc;
+
+	g_return_val_if_fail (action != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (uris != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+
+	switch (action->action_type) {
+	case GNOME_VFS_MIME_ACTION_TYPE_APPLICATION:
+	
+		return gnome_vfs_mime_application_launch_with_env
+			 		(action->action.application,
+			 		 uris, envp);
+					 
+	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
+	
+		result = expand_parameters (action->action.component, action->action_type,
+					    uris, &argc, &argv);
+					    
+		if (result != GNOME_VFS_OK) {
+			return result;
+		}
+		
+		if (!g_spawn_async (NULL /* working directory */,
+	                            argv,
+        	                    envp,
+                	            G_SPAWN_SEARCH_PATH /* flags */,
+                        	    NULL /* child_setup */,
+				    NULL /* data */,
+	                            NULL /* child_pid */,
+        	                    NULL /* error */)) {
+			g_strfreev (argv);
+			return GNOME_VFS_ERROR_LAUNCH;
+		}
+		g_strfreev (argv);
+		
+		return GNOME_VFS_OK;		
+	
+	default:
+		g_assert_not_reached ();
+	}
+	
+	return GNOME_VFS_ERROR_BAD_PARAMETERS;
+}
+
+/**
+ * gnome_vfs_mime_application_launch:
+ * @app: the GnomeVFSMimeApplication to launch
+ * @uris: parameters for the GnomeVFSMimeApplication
+ *
+ * Launches the given mime application with the given parameters.
+ * Command line parameters will be expanded as required by the
+ * application. The application will also be launched in a terminal
+ * if that is required. If the application only supports one argument 
+ * per instance then multiple instances of the application will be 
+ * launched.
+ *
+ * Return value: 
+ * GNOME_VFS_OK if the application was launched.
+ * GNOME_VFS_ERROR_NOT_SUPPORTED if the uri protocol is not
+ * supported by the application.
+ * GNOME_VFS_ERROR_PARSE if the application command can not
+ * be parsed.
+ * GNOME_VFS_ERROR_LAUNCH if the application command can not
+ * be launched.
+ * GNOME_VFS_ERROR_INTERNAL for other internal and GConf errors.
+ *
+ * Since: 2.4
+ */
+GnomeVFSResult
+gnome_vfs_mime_application_launch (GnomeVFSMimeApplication *app,
+                                   GList                   *uris)
+{
+	return gnome_vfs_mime_application_launch_with_env (app, uris, NULL);
+}
+
+/**
+ * gnome_vfs_mime_application_launch_with_env:
+ *
+ * Same as gnome_vfs_mime_application_launch except that
+ * the application will be launched with the given environment.
+ *
+ * Return value: same as gnome_vfs_mime_application_launch
+ *
+ * Since: 2.4
+ */
+GnomeVFSResult 
+gnome_vfs_mime_application_launch_with_env (GnomeVFSMimeApplication *app,
+                                            GList                   *uris,
+                                            char                   **envp)
+{
+	GnomeVFSResult result;
+	GList *u;
+	char *scheme;
+	char **argv;
+	int argc;
+	
+	g_return_val_if_fail (app != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (uris != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	
+	/* check that all uri schemes are supported */
+	if (app->supported_uri_schemes != NULL) {
+		for (u = uris; u != NULL; u = u->next) {
+
+			scheme = gnome_vfs_get_uri_scheme (u->data);
+		
+			if (!g_list_find_custom (app->supported_uri_schemes,
+						 scheme, (GCompareFunc) strcmp)) {
+				g_free (scheme);
+				return GNOME_VFS_ERROR_NOT_SUPPORTED;
+			}
+			
+			g_free (scheme);
+		}
+	}
+
+	while (uris != NULL) {
+		
+		result = expand_parameters (app, GNOME_VFS_MIME_ACTION_TYPE_APPLICATION,
+				            uris, &argc, &argv);
+		
+		if (result != GNOME_VFS_OK) {
+			return result;
+		}
+
+		if (app->requires_terminal) {
+			if (!_gnome_vfs_prepend_terminal_to_vector (&argc, &argv)) {
+				g_strfreev (argv);
+				return GNOME_VFS_ERROR_INTERNAL;
+			}
+		}
+		
+		if (!g_spawn_async (NULL /* working directory */,
+				    argv,
+				    envp,
+				    G_SPAWN_SEARCH_PATH /* flags */,
+				    NULL /* child_setup */,
+				    NULL /* data */,
+				    NULL /* child_pid */,
+				    NULL /* error */)) {
+			g_strfreev (argv);
+			return GNOME_VFS_ERROR_LAUNCH;
+		}
+		
+		g_strfreev (argv);
+		uris = uris->next;
+		
+		if (app->can_open_multiple_files) {
+			break;
+		}
+	}
+	
+	return GNOME_VFS_OK;		
+}
+
+static GnomeVFSResult
+expand_parameters (gpointer                 action,
+		   GnomeVFSMimeActionType   type,
+                   GList                   *uris,
+		   int                     *argc,
+		   char                  ***argv)		   
+{
+	GnomeVFSMimeApplication *app = NULL;
+	Bonobo_ServerInfo *server = NULL;
+	GConfClient *client;
+	char *path;
+	char *command = NULL;
+	char **c_argv, **r_argv;
+	int c_argc, r_argc;
+	int i, c;
+	gboolean added_arg;
+
+	/* figure out what command to parse */	
+	switch (type) {
+	case GNOME_VFS_MIME_ACTION_TYPE_APPLICATION:
+		app = (GnomeVFSMimeApplication *) action;
+		command = app->command;
+		break;
+		
+	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
+		if (!gconf_is_initialized ()) {
+			if (!gconf_init (0, NULL, NULL)) {
+				return GNOME_VFS_ERROR_INTERNAL;
+			}
+		}
+	
+		client = gconf_client_get_default ();
+		g_return_val_if_fail (client != NULL, GNOME_VFS_ERROR_INTERNAL);
+	
+		command = gconf_client_get_string (client, GCONF_DEFAULT_VIEWER_EXEC_PATH, NULL);
+		g_object_unref (client);
+		
+		if (command != NULL) {
+			g_warning ("No default component viewer set\n");
+			return GNOME_VFS_ERROR_INTERNAL;
+		}
+		
+		server = (Bonobo_ServerInfo *) action;
+		
+		break;
+
+	default:
+		g_assert_not_reached ();
+	}
+
+	if (!g_shell_parse_argv (command,
+				 &c_argc,
+				 &c_argv,
+				 NULL)) {
+		return GNOME_VFS_ERROR_PARSE;
+	}
+	
+	/* figure out how many parameters we actually have */
+	if (app != NULL && app->can_open_multiple_files) {
+		r_argc = g_list_length (uris) + c_argc;
+		
+		if (strstr (command, "%s") != NULL) {
+			r_argc--;
+		}
+		
+	} else {
+		r_argc = c_argc;
+		
+		if (strstr (command, "%s") == NULL) {
+			r_argc++;
+		}
+	}
+	
+	r_argv = g_new0 (char *, r_argc + 1);
+
+	added_arg = FALSE;
+	i = 0;
+	for (c = 0; c < c_argc; c++) {
+		/* replace %s with the uri parameters */
+		if (strcmp (c_argv[c], "%s") == 0) {
+			g_free (c_argv[c]);
+			
+			while (uris != NULL) {
+			
+				if (app != NULL) {
+					switch (app->expects_uris) {
+					case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS:
+						r_argv[i] = g_strdup (uris->data);
+						break;
+	
+					case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS:
+						r_argv[i] = gnome_vfs_get_local_path_from_uri (uris->data);
+						if (r_argv[i] == NULL) {
+							g_strfreev (c_argv);
+							g_strfreev (r_argv);
+							return GNOME_VFS_ERROR_NOT_SUPPORTED;
+						}
+						break;
+			
+					case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES:
+						/* this really means use URIs for non local files */
+						path = gnome_vfs_get_local_path_from_uri (uris->data);
+			
+						if (path != NULL) {
+							r_argv[i] = path;
+						} else {
+							r_argv[i] = g_strdup (uris->data);
+						}				
+			
+						break;
+				
+					default:
+						g_assert_not_reached ();
+					}	
+				} else {
+					r_argv[i] = g_strdup (uris->data);
+				}
+
+				if (app != NULL && !app->can_open_multiple_files) {
+					break;
+				}
+				
+				i++;
+				uris = uris->next;
+			}
+			added_arg = TRUE;
+			
+		/* replace %c with the component iid */
+		} else if (server != NULL && strcmp (c_argv[c], "%c") == 0) {
+			g_free (c_argv[c]);
+			r_argv[i] = g_strdup (server->iid);
+			added_arg = TRUE;
+			
+		/* otherwise take arg from command */
+		} else {
+			r_argv[i] = c_argv[c];
+		}
+		
+		if (i == c) i++;
+	}
+	
+	/* if there is no %s or %c, append the parameters to the end */
+	if (!added_arg) {
+			
+		while (uris != NULL) {
+		
+			if (app != NULL) {
+				switch (app->expects_uris) {
+				case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS:
+					r_argv[i] = g_strdup (uris->data);
+					break;
+
+				case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS:
+					r_argv[i] = gnome_vfs_get_local_path_from_uri (uris->data);
+					if (r_argv[i] == NULL) {
+						g_strfreev (c_argv);
+						g_strfreev (r_argv);
+						return GNOME_VFS_ERROR_NOT_SUPPORTED;
+					}
+					break;
+		
+				case GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES:
+					/* this really means use URIs for non local files */
+					path = gnome_vfs_get_local_path_from_uri (uris->data);
+		
+					if (path != NULL) {
+						r_argv[i] = path;
+					} else {
+						r_argv[i] = g_strdup (uris->data);
+					}				
+		
+					break;
+			
+				default:
+					g_assert_not_reached ();
+				}
+			} else {
+				r_argv[i] = g_strdup (uris->data);
+			}
+
+			if (app != NULL && !app->can_open_multiple_files) {
+				break;
+			}
+
+			i++;			
+			uris = uris->next;
+		}
+	}		
+	
+	*argv = r_argv;
+	*argc = r_argc;
+
+	g_free (c_argv);
+
+	return GNOME_VFS_OK;
 }
 
 static gboolean

@@ -73,7 +73,11 @@ static char *status_strings[] = {
 	/* GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE */     N_("Service not available"),
 	/* GNOME_VFS_ERROR_SERVICE_OBSOLETE */          N_("Request obsoletes service's data"),
 	/* GNOME_VFS_ERROR_PROTOCOL_ERROR */		N_("Protocol error"),
-	/* GNOME_VFS_ERROR_NO_MASTER_BROWSER */		N_("Could not find master browser")
+	/* GNOME_VFS_ERROR_NO_MASTER_BROWSER */		N_("Could not find master browser"),
+	/* GNOME_VFS_ERROR_NO_DEFAULT */		N_("No default action associated"),
+	/* GNOME_VFS_ERROR_NO_HANDLER */		N_("No handler for URL scheme"),
+	/* GNOME_VFS_ERROR_PARSE */			N_("Error parsing command line"),
+	/* GNOME_VFS_ERROR_LAUNCH */			N_("Error launching command")
 };
 
 

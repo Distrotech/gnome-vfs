@@ -154,6 +154,10 @@ char * gnome_vfs_make_uri_full_from_relative (const char *base_uri,
 					      const char *relative_uri);
 #endif /* GNOME_VFS_DISABLE_DEPRECATED */
 
+GnomeVFSResult gnome_vfs_url_show                        (const char   *url);
+GnomeVFSResult gnome_vfs_url_show_with_env               (const char   *url, 
+                                                          char        **envp);
+
 G_END_DECLS
 
 #endif /* GNOME_VFS_UTILS_H */

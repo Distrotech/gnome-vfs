@@ -1,3 +1,53 @@
+2003-04-24  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/Makefile.am (libgnomevfs_2_la_LIBADD): 
+	Remove LTLIBOBJS for the moment. It was breaking the build.
+	
+2003-04-24  Alexander Larsson  <alexl@redhat.com>
+
+	Patch from Frank Worsley <fworsley@shaw.ca>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_application_new_from_id),
+	(gnome_vfs_mime_action_launch),
+	(gnome_vfs_mime_action_launch_with_env),
+	(gnome_vfs_mime_application_launch),
+	(gnome_vfs_mime_application_launch_with_env), (expand_parameters):
+	new functions for launching mime actions and applications
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	updated for new functions
+	
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	(_gnome_vfs_use_handler_for_scheme),
+	(_gnome_vfs_url_show_using_handler_with_env):
+	private functions for launching url handlers defined in gconf
+	
+	(gnome_vfs_prepend_terminal_to_vector):
+	the default terminal is needed by gnome-vfs so we make a copy of this
+	from libgnome
+	
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	update for new functions
+	
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-result.h:
+	new error codes for the new functions
+	
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_url_show), (gnome_vfs_url_show_with_env):
+	convenience functions for launching a url in string form using
+	the default application or component
+	
+	* libgnomevfs/gnome-vfs-utils.h:
+	updated for new functions
+
+	* schemas/desktop_default_applications.schemas:
+	new schema that defines the default terminal application
+
+	* schemas/Makefile.am:
+	updated for new schema
+
 2003-04-24  Masahiro Sakai  <sakai@tom.sfc.keio.ac.jp>
 
 	* configure.in: fix IPV6 test. check inet_pton() and off64_t.
