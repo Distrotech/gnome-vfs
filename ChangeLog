@@ -1,6 +1,13 @@
 2004-06-18  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
+	Post release version bump
+	
+==== gnome-vfs 2.7.2 ====
+	
+2004-06-18  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
 	Need -lresolve for unicast dns-sd
 
 	* doc/gnome-vfs-2.0-sections.txt:
