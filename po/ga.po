@@ -1,0 +1,554 @@
+# Irish language translations for gnome-vfs
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# Alastair McKinstry, <mckinstry@computer.org> 2000.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-vfs 0.1\n"
+"POT-Creation-Date: 2000-03-10 23:09+0000\n"
+"PO-Revision-Date: 2000-08-27 14:00+0000\n"
+"Last-Translator: Alastair McKinstry <mckinstry@computer.org>\n"
+"Language-Team: Irish <ga@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO_8859-1\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: libgnomevfs/gnome-vfs-configuration.c:187
+#, c-format
+msgid "%s:%d contains NUL characters."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-configuration.c:204
+#, c-format
+msgid "%s:%d contains no method name."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-configuration.c:233
+#, c-format
+msgid "%s:%d contains no module name."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-configuration.c:285
+#, c-format
+msgid "Configuration file `%s' was not found: %s"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-init.c:55
+msgid "GNOME VFS already initialized."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#, c-format
+msgid "Could not parse: %s"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
+msgid "More parsing errors will be ignored."
+msgstr ""
+
+#. GNOME_VFS_OK
+#: libgnomevfs/gnome-vfs-result.c:39
+msgid "No error"
+msgstr "Gan earraidh"
+
+#. GNOME_VFS_ERROR_NOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:40
+msgid "File not found"
+msgstr ""
+
+#. GNOME_VFS_ERROR_GENERIC
+#: libgnomevfs/gnome-vfs-result.c:41
+msgid "Generic error"
+msgstr ""
+
+#. GNOME_VFS_ERROR_INTERNAL
+#: libgnomevfs/gnome-vfs-result.c:42
+msgid "Internal error"
+msgstr "Earraidh intíre"
+
+#. GNOME_VFS_ERROR_BADPARAMS
+#: libgnomevfs/gnome-vfs-result.c:43
+msgid "Invalid parameters"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NOTSUPPORTED
+#: libgnomevfs/gnome-vfs-result.c:44
+msgid "Unsupported operation"
+msgstr ""
+
+#. GNOME_VFS_ERROR_IO
+#: libgnomevfs/gnome-vfs-result.c:45
+msgid "I/O error"
+msgstr "Earraidh I/A"
+
+#. GNOME_VFS_ERROR_CORRUPTEDDATA
+#: libgnomevfs/gnome-vfs-result.c:46
+msgid "Data corrupted"
+msgstr ""
+
+#. GNOME_VFS_ERROR_WRONGFORMAT
+#: libgnomevfs/gnome-vfs-result.c:47
+msgid "Format not valid"
+msgstr "Formóid neamh-dhleathach"
+
+#. GNOME_VFS_ERROR_BADFILE
+#: libgnomevfs/gnome-vfs-result.c:48
+msgid "Bad file handle"
+msgstr ""
+
+#. GNOME_VFS_ERROR_TOOBIG
+#: libgnomevfs/gnome-vfs-result.c:49
+msgid "File too big"
+msgstr "Comhad ró-mhór"
+
+#. GNOME_VFS_ERROR_NOSPACE
+#: libgnomevfs/gnome-vfs-result.c:50
+msgid "No space left on device"
+msgstr ""
+
+#. GNOME_VFS_ERROR_READONLY
+#: libgnomevfs/gnome-vfs-result.c:51
+msgid "Read-only file system"
+msgstr "Corás chomad leámh-amhain"
+
+#. GNOME_VFS_ERROR_INVALIDURI
+#: libgnomevfs/gnome-vfs-result.c:52
+msgid "Invalid URI"
+msgstr "IRI neamh"
+
+#. GNOME_VFS_ERROR_NOTOPEN
+#: libgnomevfs/gnome-vfs-result.c:53
+msgid "File not open"
+msgstr ""
+
+#. GNOME_VFS_ERROR_INVALIDOPENMODE
+#: libgnomevfs/gnome-vfs-result.c:54
+msgid "Open mode not valid"
+msgstr ""
+
+#. GNOME_VFS_ERROR_ACCESSDENIED
+#: libgnomevfs/gnome-vfs-result.c:55
+msgid "Access denied"
+msgstr ""
+
+#. GNOME_VFS_ERROR_TOOMANYOPENFILES
+#: libgnomevfs/gnome-vfs-result.c:56
+msgid "Too many open files"
+msgstr ""
+
+#. GNOME_VFS_ERROR_EOF
+#: libgnomevfs/gnome-vfs-result.c:57
+msgid "End of file"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NOTADIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:58
+msgid "Not a directory"
+msgstr "Níl aon filltéan ann"
+
+#. GNOME_VFS_ERROR_INPROGRESS
+#: libgnomevfs/gnome-vfs-result.c:59
+msgid "Operation in progress"
+msgstr ""
+
+#. GNOME_VFS_ERROR_INTERRUPTED
+#: libgnomevfs/gnome-vfs-result.c:60
+msgid "Operation interrupted"
+msgstr ""
+
+#. GNOME_VFS_ERROR_FILEEXISTS
+#: libgnomevfs/gnome-vfs-result.c:61
+msgid "File exists"
+msgstr ""
+
+#. GNOME_VFS_ERROR_LOOP
+#: libgnomevfs/gnome-vfs-result.c:62
+msgid "Looping links encountered"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NOTPERMITTED
+#: libgnomevfs/gnome-vfs-result.c:63
+msgid "Operation not permitted"
+msgstr ""
+
+#. GNOME_VFS_ERROR_ISDIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:64
+msgid "Is a directory"
+msgstr "Is fillteán ann"
+
+#. GNOME_VFS_ERROR_NOMEM
+#: libgnomevfs/gnome-vfs-result.c:65
+msgid "Not enough memory"
+msgstr "Cuimhne úsáidte"
+
+#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:66
+msgid "Host not found"
+msgstr ""
+
+#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#: libgnomevfs/gnome-vfs-result.c:67
+msgid "Host name not valid"
+msgstr ""
+
+#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#: libgnomevfs/gnome-vfs-result.c:68
+msgid "Host has no address"
+msgstr ""
+
+#. GNOME_VFS_ERROR_LOGINFAILED
+#: libgnomevfs/gnome-vfs-result.c:69
+msgid "Login failed"
+msgstr "Teip ar logann"
+
+#. GNOME_VFS_ERROR_CANCELLED
+#: libgnomevfs/gnome-vfs-result.c:70
+msgid "Operation cancelled"
+msgstr ""
+
+#. GNOME_VFS_ERROR_DIRECTORYBUSY
+#: libgnomevfs/gnome-vfs-result.c:71
+msgid "Directory busy"
+msgstr ""
+
+#. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
+#: libgnomevfs/gnome-vfs-result.c:72
+msgid "Directory not empty"
+msgstr "Níl an fillteán folamh"
+
+#. GNOME_VFS_ERROR_TOOMANYLINKS
+#: libgnomevfs/gnome-vfs-result.c:73
+msgid "Too many links"
+msgstr ""
+
+#. GNOME_VFS_ERROR_READONLYFS
+#: libgnomevfs/gnome-vfs-result.c:74
+msgid "Read only file system"
+msgstr "Corás chomad leámh-amhain"
+
+#. GNOME_VFS_ERROR_NOTSAMEFS
+#: libgnomevfs/gnome-vfs-result.c:75
+msgid "Not on the same file system"
+msgstr ""
+
+#. GNOME_VFS_ERROR_NAMETOOLONG
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Name too long"
+msgstr "Ainm ró-fhada"
+
+#: libgnomevfs/gnome-vfs-result.c:133
+msgid "Unknown error"
+msgstr "Earraidh gan aithne"
+
+#: libgnomevfs/gnome-vfs-utils.c:40
+msgid "1 byte"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-utils.c:42
+#, c-format
+msgid "%u bytes"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-utils.c:49
+#, c-format
+msgid "%.1fK"
+msgstr "%.1fK"
+
+#: libgnomevfs/gnome-vfs-utils.c:53
+#, c-format
+msgid "%.1fM"
+msgstr "%.1fM"
+
+#: libgnomevfs/gnome-vfs-utils.c:57
+#, c-format
+msgid "%.1fG"
+msgstr "%.1fG"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:336
+msgid "Dying."
+msgstr ""
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#, c-format
+msgid "Error reading: %s"
+msgstr "Earraidh ag leámh: %s"
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#, c-format
+msgid "Error writing: %s"
+msgstr "Earraidh ag scríobh: %s"
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#, c-format
+msgid "Cannot write: %s"
+msgstr "Teip ag scríobh: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:193
+#: libgnomevfs-corba/gnome-vfs-slave.c:614
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:632
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:639
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:661
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1379
+msgid "Cannot initialize CORBA."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1386
+msgid "Cannot resolve initial reference to RootPOA."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1393
+msgid "Cannot activate POA manager."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1418
+#, c-format
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "Úsáid: %s <ior>< [ior_fd]\n"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1429
+#, c-format
+msgid "Cannot open file descriptor %d."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1452
+#, c-format
+msgid "Notify interface for `%s' not found."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1462
+msgid "Cannot setup Request object."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1469
+msgid "Cannot extract IOR."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
+#, c-format
+msgid "Got weird string from the slave process: `%s'"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
+#, c-format
+msgid "Cannot get object for `%s'"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:126
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
+#, c-format
+msgid "Cannot connect socket `%s': %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
+msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr ""
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:129
+msgid "Error writing to the wakeup GnomeVFSJob channel."
+msgstr ""
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:434
+#: libgnomevfs-pthread/gnome-vfs-job.c:1247
+#, c-format
+msgid "Unknown job ID %d"
+msgstr "Job ID gan aithne: %d"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:784
+#: libgnomevfs-pthread/gnome-vfs-job.c:879
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr ""
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:1265
+msgid "Operation stopped"
+msgstr ""
+
+#: modules/file-method.c:332
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "GnomeVFSSeekPosition %d gan aithne"
+
+#: modules/ftp-method.c:353
+msgid "ftpfs: Invalid host name."
+msgstr ""
+
+#: modules/ftp-method.c:376
+msgid "ftpfs: Invalid host address."
+msgstr ""
+
+#: modules/ftp-method.c:396
+#, c-format
+msgid "ftpfs: making connection to %s"
+msgstr ""
+
+#: modules/ftp-method.c:402
+msgid "ftpfs: connection interrupted by user"
+msgstr ""
+
+#: modules/ftp-method.c:404
+#, c-format
+msgid "ftpfs: connection to server failed: %s"
+msgstr ""
+
+#: modules/ftp-method.c:480
+#, c-format
+msgid "Waiting to retry... %d (Control-C to cancel)"
+msgstr ""
+
+#: modules/ftp-method.c:751
+msgid " FTP: Password required for "
+msgstr ""
+
+#: modules/ftp-method.c:790
+msgid "ftpfs: sending login name"
+msgstr ""
+
+#: modules/ftp-method.c:796
+msgid "ftpfs: sending user password"
+msgstr ""
+
+#: modules/ftp-method.c:802
+msgid "ftpfs: logged in"
+msgstr ""
+
+#: modules/ftp-method.c:814
+#, c-format
+msgid "ftpfs: Login incorrect for user %s "
+msgstr ""
+
+#: modules/ftp-method.c:827
+msgid "ftpfs: aborting transfer."
+msgstr ""
+
+#: modules/ftp-method.c:829
+#, c-format
+msgid "ftpfs: abort error: %s"
+msgstr "ftpfs: earraidh `abort: %s"
+
+#: modules/ftp-method.c:834
+msgid "ftpfs: abort failed"
+msgstr "ftpfs: teip ar `abort'"
+
+#: modules/ftp-method.c:911
+msgid "ftpfs: could not setup passive mode"
+msgstr ""
+
+#: modules/ftp-method.c:1088
+#, c-format
+msgid "ftpfs: storing file %d (%d)"
+msgstr "ftpfs: ag sábháil comhad %d (%d)"
+
+#: modules/ftp-method.c:1305 modules/ftp-method.c:1507
+msgid "ftpfs: CWD failed."
+msgstr "ftpfs: Teip ar CWD."
+
+#: modules/ftp-method.c:1315 modules/ftp-method.c:1322
+msgid "ftpfs: couldn't resolve symlink"
+msgstr ""
+
+#: modules/ftp-method.c:1374
+msgid "Resolving symlink..."
+msgstr ""
+
+#: modules/ftp-method.c:1498
+#, c-format
+msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
+msgstr ""
+
+#: modules/ftp-method.c:1502
+#, c-format
+msgid "ftpfs: Reading FTP directory %s..."
+msgstr ""
+
+#: modules/ftp-method.c:1568
+msgid "ftpfs: reading FTP directory interrupt by user"
+msgstr ""
+
+#: modules/ftp-method.c:1592
+msgid "ftpfs: got listing"
+msgstr ""
+
+#: modules/ftp-method.c:1644
+msgid "ftpfs: failed; nowhere to fallback to"
+msgstr ""
+
+#: modules/ftp-method.c:2037
+msgid "Starting linear transfer..."
+msgstr ""
+
+#: modules/ftp-method.c:2107
+msgid "Preparing reget..."
+msgstr ""
+
+#: modules/http-method.c:494
+#, c-format
+msgid "Invalid header `%s'"
+msgstr ""
+
+#: modules/http-method.c:511
+#, c-format
+msgid "%s to retrieve"
+msgstr ""
+
+#: modules/http-method.c:644
+#, c-format
+msgid "Closing connection to %s"
+msgstr ""
+
+#: modules/http-method.c:784
+#, c-format
+msgid "%s of %s read"
+msgstr ""
+
+#: modules/http-method.c:787
+#, c-format
+msgid "%s read"
+msgstr ""
