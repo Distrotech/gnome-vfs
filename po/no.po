@@ -1,4 +1,4 @@
-# Norwegian translation of gnome-vfs (bokmål dialect).
+# Norwegian translation of gnome-vfs (bokmÃ¥l dialect).
 # Copyright (C) 1999-2001 Free Software Foundation, Inc.
 # Kjartan Maraas <kmaraas@gnome.org>, 1999-2001.
 #
@@ -10,7 +10,7 @@ msgstr ""
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
@@ -41,7 +41,7 @@ msgstr "Ukjent op-type %u"
 #: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan ikke opprette rør for åpen GIOChannel: %s"
+msgstr "Kan ikke opprette rÃ¸r for Ã¥pen GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1596
 #, c-format
@@ -74,7 +74,7 @@ msgstr "Fil ikke funnet"
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
-msgstr "Ordinær feil"
+msgstr "OrdinÃ¦r feil"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -89,7 +89,7 @@ msgstr "Ugyldige parametere"
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Ikke støttet operasjon"
+msgstr "Ikke stÃ¸ttet operasjon"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -109,7 +109,7 @@ msgstr "Ugyldig format"
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "Ugyldig filhåndtak"
+msgstr "Ugyldig filhÃ¥ndtak"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
@@ -119,7 +119,7 @@ msgstr "Filen er for stor"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Ikke mer plass på enheten"
+msgstr "Ikke mer plass pÃ¥ enheten"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
@@ -134,12 +134,12 @@ msgstr "Ugyldig URI"
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Filen er ikke åpen"
+msgstr "Filen er ikke Ã¥pen"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Ugyldig åpningsmodus"
+msgstr "Ugyldig Ã¥pningsmodus"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
@@ -149,12 +149,12 @@ msgstr "Ingen tilgang"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "For mange åpne filer"
+msgstr "For mange Ã¥pne filer"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "Slutt på filen"
+msgstr "Slutt pÃ¥ filen"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -179,7 +179,7 @@ msgstr "Filen eksisterer"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Lenker i løkke funnet"
+msgstr "Lenker i lÃ¸kke funnet"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
@@ -244,7 +244,7 @@ msgstr "Skrivebeskyttet filsystem"
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Ikke på samme filsystem"
+msgstr "Ikke pÃ¥ samme filsystem"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
@@ -259,7 +259,7 @@ msgstr "Tjeneste ikke tilgjengelig"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Forespørsel ugyldiggjør tjenestens data"
+msgstr "ForespÃ¸rsel ugyldiggjÃ¸r tjenestens data"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
@@ -308,7 +308,7 @@ msgstr "Fant ikke gyldig fil med innstillinger i %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Bruk miljøvariabelen %s for å spesifisere en annen lokasjon.\n"
+msgstr "Bruk miljÃ¸variabelen %s for Ã¥ spesifisere en annen lokasjon.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
