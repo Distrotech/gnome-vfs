@@ -191,7 +191,7 @@ cache_shutdown (void)
 	pthread_mutex_lock (&cache_rlock);
 
 	for (	node = g_list_first (gl_file_info_cache_list) ; 
-		NULL != node ; 
+		node != NULL; 
 		node = node_next
 	) {
 		node_next = g_list_next (node);
@@ -221,7 +221,7 @@ cache_entry_new (void)
 
 	ret->my_list_node = gl_file_info_cache_list;
 
-	if (NULL == gl_file_info_cache_list_last) {
+	if (gl_file_info_cache_list_last == NULL) {
 		gl_file_info_cache_list_last = ret->my_list_node;
 	}
 
@@ -384,7 +384,7 @@ cache_check_directory (const gchar * uri_string, GList **p_child_file_info_list)
 		ret = NULL;
 	}
 
-	if (ret && NULL != p_child_file_info_list) {
+	if (ret && p_child_file_info_list != NULL) {
 		GList * filename_node;
 
 		cache_incomplete = FALSE;
@@ -401,7 +401,7 @@ cache_check_directory (const gchar * uri_string, GList **p_child_file_info_list)
 			child_entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, child_filename);
 
 			/* Other HTTP requests on children can cause them to expire before the parent directory */
-			if (NULL == child_entry ) {
+			if (child_entry == NULL) {
 				cache_incomplete = TRUE;
 				break;
 			}
@@ -502,7 +502,7 @@ cache_add_uri_and_children (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, GList
 
 		parent_entry->filenames = NULL;
 
-		for (node = file_info_list ; NULL != node ; node = g_list_next (node)) {
+		for (node = file_info_list ; node != NULL ; node = g_list_next (node)) {
 			GnomeVFSFileInfo *child_info;
 			gchar * child_name_escaped;
 
@@ -662,6 +662,10 @@ cache_invalidate_uri_parent (GnomeVFSURI *uri)
 #define ITEM_GCONF_USE_HTTP_PROXY "use-http-proxy"
 #define KEY_GCONF_USE_HTTP_PROXY (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_USE_HTTP_PROXY)
 
+#define KEY_GCONF_HTTP_AUTH_USER (PATH_GCONF_GNOME_VFS "/" "http-proxy-authorization-user")
+#define KEY_GCONF_HTTP_AUTH_PW (PATH_GCONF_GNOME_VFS "/" "http-proxy-authorization-password")
+#define KEY_GCONF_HTTP_USE_AUTH (PATH_GCONF_GNOME_VFS "/" "use-http-proxy-authorization")
+
 
 /* Some status code validation macros.  */
 #define HTTP_20X(x)        (((x) >= 200) && ((x) < 300))
@@ -723,6 +727,7 @@ cache_invalidate_uri_parent (GnomeVFSURI *uri)
 static GConfClient * gl_client = NULL;
 static GMutex *gl_mutex = NULL;
 static gchar *gl_http_proxy = NULL;
+static gchar *gl_http_proxy_auth = NULL;
 
 struct _HttpFileHandle {
 	GnomeVFSInetConnection *connection;
@@ -1252,6 +1257,41 @@ static gchar *base64( const gchar *text ) {
     return buffer;
 }
 
+/*
+ * Here's how the gconf gnome-vfs HTTP proxy variables
+ * are intended to be used
+ *
+ * /system/gnome-vfs/use-http-proxy	
+ * 	Type: boolean
+ *	If set to TRUE, the client should use an HTTP proxy to connect to all
+ *	servers that are not "localhost".  The proxy is specified in other
+ *	gconf variables below
+ *
+ * /system/gnome-vfs/http-proxy-host
+ *	Type: string
+ *	The hostname of the HTTP proxy this client should use.  If use-http-proxy
+ *	is TRUE, this should be set.  If it is not set, the application should
+ *	behave as if use-http-proxy is was set to FALSE.
+ *
+ * /system/gnome-vfs/http-proxy-port
+ *	Type: int
+ *	The port number on the HTTP proxy host that the client should connect to
+ *	If use-http-proxy and http-proxy-host are set but this is not set, 
+ *	the application should use a default port value of 8080
+ *
+ * /system/gnome-vfs/http-proxy-authorization-user
+ *	Type: string
+ *	Username to pass to an authenticating HTTP proxy.
+ *
+ * /system/gnome-vfs/http-proxy-authorization-password
+ *	Type: string
+ *	Password to pass to an authenticating HTTP proxy.
+ *  
+ * /system/gnome-vfs/use-http-proxy-authorization
+ *	Type: boolean
+ * 	TRUE if the client should pass http-proxy-authorization-user and
+ *	http-proxy-authorization-password an HTTP proxy
+ */
 
 /**
  * sig_gconf_value_changed 
@@ -1260,14 +1300,14 @@ static gchar *base64( const gchar *text ) {
 static void
 sig_gconf_value_changed (GConfClient* client, const gchar* key, GConfValue* value)
 {
-	gboolean use_proxy_value;
-	char *proxy_host;
-	int proxy_port;
-
 	if (strcmp (key, KEY_GCONF_USE_HTTP_PROXY) == 0
 	    || strcmp (key, KEY_GCONF_HTTP_PROXY_HOST) == 0
 	    || strcmp (key, KEY_GCONF_HTTP_PROXY_PORT) == 0
 	) {
+		gboolean use_proxy_value;
+		char *proxy_host;
+		int proxy_port;
+
 		g_mutex_lock (gl_mutex);
 
 		/* Check and see if we are using the proxy */
@@ -1291,6 +1331,42 @@ sig_gconf_value_changed (GConfClient* client, const gchar* key, GConfValue* valu
 
 		g_free (proxy_host);
 		proxy_host = NULL;
+
+		g_mutex_unlock (gl_mutex);
+	} else if (strcmp (key, KEY_GCONF_HTTP_AUTH_USER) == 0
+	    || strcmp (key, KEY_GCONF_HTTP_AUTH_PW) == 0
+	    || strcmp (key, KEY_GCONF_HTTP_USE_AUTH) == 0
+	) {
+		gboolean use_proxy_auth;
+		char *auth_user;
+		char *auth_pw;
+		char *credentials;
+
+		g_mutex_lock (gl_mutex);
+
+		use_proxy_auth = gconf_client_get_bool (gl_client, KEY_GCONF_HTTP_USE_AUTH, NULL);
+		auth_user = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_AUTH_USER, NULL);
+		auth_pw = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_AUTH_PW, NULL);
+
+		g_free (gl_http_proxy_auth);
+		gl_http_proxy_auth = NULL;
+
+		if (use_proxy_auth) {
+			credentials = g_strdup_printf ("%s:%s", 
+					auth_user == NULL ? "" : auth_user, 
+					auth_pw == NULL ? "" : auth_pw);
+
+			gl_http_proxy_auth = base64 (credentials);
+
+			DEBUG_HTTP (("New HTTP proxy auth user: '%s'", auth_user));
+
+			g_free (credentials);
+		} else {
+			DEBUG_HTTP (("HTTP proxy auth unset"));
+		}
+
+		g_free (auth_user);
+		g_free (auth_pw);
 
 		g_mutex_unlock (gl_mutex);
 	}
@@ -1339,7 +1415,8 @@ http_proxy_for_host_port (
 	const gchar *host,
 	guint host_port,
 	gchar **p_proxy_host,		/* Callee must free */
-	guint *p_proxy_port)
+	guint *p_proxy_port,
+	gchar **p_authn_header)		/* Callee must free */
 {
 	gboolean ret = FALSE;
 	struct in_addr in, in_loop, in_mask;
@@ -1362,6 +1439,10 @@ http_proxy_for_host_port (
 		p_proxy_host = NULL;
 		p_proxy_port = NULL;
 		ret = FALSE;
+	}
+
+	if (ret && gl_http_proxy_auth != NULL && p_authn_header != NULL) {
+		*p_authn_header = g_strdup_printf ("Proxy-Authorization: Basic %s\r\n", gl_http_proxy_auth);
 	}
 
 	g_mutex_unlock (gl_mutex);
@@ -1389,11 +1470,15 @@ make_request (HttpFileHandle **handle_return,
 	guint host_port;
 	gboolean proxy_connect = FALSE;
 	gchar *proxy_host = NULL;
+	char *proxy_auth_header = NULL;
 	guint proxy_port;
 	const gchar *path;
 
 	ANALYZE_HTTP ("==> +make_request");
 
+	proxy_connect = FALSE;
+	proxy_host= NULL;
+	proxy_auth_header = NULL;
 	connection = NULL;
 	iobuf = NULL;
 	
@@ -1409,7 +1494,8 @@ make_request (HttpFileHandle **handle_return,
 
 	if (toplevel_uri->host_name == NULL) {
 		result = GNOME_VFS_ERROR_INVALID_URI;
-	} else if ( http_proxy_for_host_port (toplevel_uri->host_name, host_port, &proxy_host, &proxy_port)) {
+	} else if ( http_proxy_for_host_port (toplevel_uri->host_name, host_port, 
+						&proxy_host, &proxy_port, &proxy_auth_header)) {
 		proxy_connect = TRUE;
 
 		result = gnome_vfs_inet_connection_create (&connection,
@@ -1481,9 +1567,16 @@ make_request (HttpFileHandle **handle_return,
 		gchar *raw = g_strdup_printf("%s:%s", toplevel_uri->user_name,
 				toplevel_uri->password?toplevel_uri->password:"");
 		gchar *enc = base64(raw);
-		g_string_sprintfa(request, "Authorization: Basic %s\n", enc);
+		g_string_sprintfa(request, "Authorization: Basic %s\r\n", enc);
 		g_free(enc);
 		g_free(raw);
+	}
+
+	/* Proxy Authentication */
+	if (proxy_auth_header != NULL) {
+		g_string_append (request, proxy_auth_header);
+		g_free (proxy_auth_header);
+		proxy_auth_header = NULL;
 	}
 
 	/* `Accept:' header.  */
@@ -2889,6 +2982,18 @@ vfs_module_init (const char *method_name, const char *args)
 		sig_gconf_value_changed (gl_client, KEY_GCONF_USE_HTTP_PROXY, proxy_value);
 		gconf_value_free (proxy_value);
 	}
+
+	proxy_value = gconf_client_get (gl_client, KEY_GCONF_HTTP_USE_AUTH, &gconf_error);
+
+	if (gconf_error != NULL) {
+		DEBUG_HTTP (("GConf error during client_get '%s'", gconf_error->message));
+		g_error_free (gconf_error);
+		gconf_error = NULL;
+	} else if (proxy_value != NULL) {
+		sig_gconf_value_changed (gl_client, KEY_GCONF_HTTP_USE_AUTH, proxy_value);
+		gconf_value_free (proxy_value);
+	}
+
 
 #ifndef DAV_NO_CACHE
 	cache_init ();

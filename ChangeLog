@@ -1,3 +1,22 @@
+2001-03-30  Michael K. Fleming  <mfleming@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	Portion of bug 4832: Add support for HTTP proxies that require
+	authentication.
+
+	Note that if an HTTP proxy is set, but the proxy credentials are
+	configured incorrectly, the application will get a
+	GNOME_VFS_ERROR_ACCESS_DENIED, which isn't very descriptive
+
+	Also expunged some of my bad coding habits
+	(constant-on-left-side-of-compare)
+
+	* modules/http-method.c: (cache_shutdown), (cache_entry_new),
+	(cache_check_directory), (cache_add_uri_and_children),
+	(sig_gconf_value_changed), (http_proxy_for_host_port),
+	(make_request), (vfs_module_init):
+
 2001-03-29  Darin Adler  <darin@eazel.com>
 
 	reviewed by: Pavel Cisler <pavel@eazel.com>
