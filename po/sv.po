@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-09 23:55+0200\n"
-"PO-Revision-Date: 2004-07-09 23:55+0200\n"
+"POT-Creation-Date: 2004-07-18 22:06+0200\n"
+"PO-Revision-Date: 2004-07-18 22:06+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Could not initialize Bonobo"
 msgstr "Kunde inte initiera Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:602
+#: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Kunde inte initiera gnome-vfs"
 
@@ -196,115 +196,115 @@ msgstr "XIAFS-volym"
 msgid "Unknown"
 msgstr "Okänd"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:610
+#: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
 msgstr "Cd-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+#: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
 msgstr "Tom cd-r-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:615
+#: libgnomevfs/gnome-vfs-hal-mounts.c:606
 msgid "CD-R Disc"
 msgstr "Cd-r-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+#: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
 msgstr "Tom cd-rw-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:620
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
 msgid "CD-RW Disc"
 msgstr "Cd-rw-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:622
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
 msgid "DVD-ROM Disc"
 msgstr "Dvd-romskiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:625
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
 msgstr "Tom dvd-r-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:627
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
 msgstr "Dvd-r-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:630
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
 msgstr "Tom dvd-ramskiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:632
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
 msgstr "Dvd-ramskiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:635
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
 msgstr "Tom dvd-rw-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:637
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
 msgstr "Dvd-rw-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
 msgstr "Tom dvd+rw-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:642
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
 msgstr "Dvd+rw-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:645
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
 msgstr "Tom dvd+r-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:647
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
 msgstr "Dvd+r-skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:649
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
 msgstr "Optisk skiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:655
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Audio Disc"
 msgstr "Ljudskiva"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:659
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
 msgstr "Compact Flash-media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:661
+#: libgnomevfs/gnome-vfs-hal-mounts.c:652
 msgid "Memory Stick Media"
 msgstr "Minnespinnemedia"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:663
+#: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
 msgstr "Smart Media-media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
 msgstr "SD/MMC-media"
 
-#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+#: libgnomevfs/gnome-vfs-hal-mounts.c:658
 msgid "Floppy Disk"
 msgstr "Diskett"
 
 # Detta handlar om filsystemstypen som finns på skivan/mediumet
-#: libgnomevfs/gnome-vfs-hal-mounts.c:674
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
 msgstr "Mac OS-disk"
 
 # Detta handlar om filsystemstypen som finns på skivan/mediumet
-#: libgnomevfs/gnome-vfs-hal-mounts.c:676
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
 msgstr "Mac OS X-disk"
 
 # Detta handlar om filsystemstypen som finns på skivan/mediumet
-#: libgnomevfs/gnome-vfs-hal-mounts.c:690
+#: libgnomevfs/gnome-vfs-hal-mounts.c:681
 msgid "Windows Disk"
 msgstr "Windows-disk"
 
 # Detta handlar om filsystemstypen som finns på skivan/mediumet
-#: libgnomevfs/gnome-vfs-hal-mounts.c:696
+#: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
 msgstr "Linux-disk"
 
@@ -466,7 +466,7 @@ msgstr "Operationen är inte tillåten"
 msgid "Is a directory"
 msgstr "Är en katalog"
 
-#. GNOME_VFS_ERROR_NO_MEMMORY
+#. GNOME_VFS_ERROR_NO_MEMORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
 msgstr "Inte tillräckligt med minne"
@@ -571,7 +571,12 @@ msgstr "Fel vid start av kommando"
 msgid "Timeout reached"
 msgstr "Timeout nåddes"
 
-#: libgnomevfs/gnome-vfs-result.c:180
+#. GNOME_VFS_ERROR_NAMESERVER
+#: libgnomevfs/gnome-vfs-result.c:85
+msgid "Nameserver error"
+msgstr "Namnserverfel"
+
+#: libgnomevfs/gnome-vfs-result.c:200
 msgid "Unknown error"
 msgstr "Okänt fel"
 
@@ -598,55 +603,55 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:364
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (ogiltig Unicode)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:492
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:520
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
 msgid "Floppy"
 msgstr "Diskett"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:493
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:523
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
 msgid "CD-ROM"
 msgstr "Cd-rom"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:494
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:526
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
 msgid "Zip Drive"
 msgstr "Zipenhet"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:495
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
 msgid "Memory Stick"
 msgstr "Minnespinne"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
 msgid "Camera"
 msgstr "Kamera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
 msgstr "Dvd"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:713
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
 msgstr "Rotvolym"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:794
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
 msgid "Audio CD"
 msgstr "Ljud-cd"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:825
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
 msgid "Unknown volume"
 msgstr "Okänd volym"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1005
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
 msgid "Network server"
 msgstr "Nätverksserver"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:113
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -654,11 +659,11 @@ msgstr ""
 "enheten."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:117
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Kan inte montera volymen. Det finns troligtvis inget medium i enheten."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:123
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -666,7 +671,7 @@ msgstr ""
 "Kan inte montera diskettenheten. Disketten är troligtvis i ett format som "
 "inte kan monteras."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:126
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -674,28 +679,28 @@ msgstr ""
 "Kan inte montera den valda volymen. Volymen är troligtvis i ett format som "
 "inte kan monteras."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:131
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
 msgstr "Kan inte montera den valda diskettenheten."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
 msgstr "Kan inte montera den valda volymen."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:145
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
 msgstr "Kan inte avmontera den valda volymen."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:301
+#: libgnomevfs/gnome-vfs-volume-ops.c:256
+#: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
 msgstr "Misslyckades med att starta kommando"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:291
+#: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
 msgstr "Kan inte mata ut medium"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:480
+#: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Kan inte avmontera ansluten server"
 
@@ -750,15 +755,15 @@ msgstr "Verktyg"
 msgid "Windows"
 msgstr "Fönster"
 
-#: modules/computer-method.c:542
+#: modules/computer-method.c:545
 msgid "Network"
 msgstr "Nätverk"
 
-#: modules/computer-method.c:560
+#: modules/computer-method.c:563
 msgid "Home"
 msgstr "Hem"
 
-#: modules/computer-method.c:578
+#: modules/computer-method.c:581
 msgid "Filesystem"
 msgstr "Filsystem"
 
@@ -1199,9 +1204,6 @@ msgstr "SMB-arbetsgrupp"
 msgid "The window workgroup the user is part of"
 msgstr "Fönsterarbetsgruppen som användaren är del av"
 
-#~ msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-#~ msgstr "Möjliga värden är \"merged\", \"separate\" och \"disabled\"."
-
 #, fuzzy
 #~ msgid "Could not write to file: %s"
 #~ msgstr "Kunde inte tolka: %s"
@@ -1219,8 +1221,20 @@ msgstr "Fönsterarbetsgruppen som användaren är del av"
 #~ msgstr "Ogiltiga parametrar"
 
 #, fuzzy
+#~ msgid "SSL negotiation failed: %s"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
 #~ msgid "Could not parse redirect location."
 #~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "%s: connection was closed by proxy server."
+#~ msgstr "Kunde inte hitta huvudbläddrare"
+
+#, fuzzy
+#~ msgid "Error reading request body."
+#~ msgstr "Kunde inte hitta huvudbläddrare"
 
 #, fuzzy
 #~ msgid "Could not determine file length: %s"
@@ -1236,6 +1250,10 @@ msgstr "Fönsterarbetsgruppen som användaren är del av"
 
 #, fuzzy
 #~ msgid "Could not read response body"
+#~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not read chunk delimiter"
 #~ msgstr "Kunde inte tolka: %s"
 
 #, fuzzy
@@ -1259,8 +1277,16 @@ msgstr "Fönsterarbetsgruppen som användaren är del av"
 #~ msgstr "Kunde inte hitta huvudbläddrare"
 
 #, fuzzy
+#~ msgid "Error reading response headers"
+#~ msgstr "Kunde inte hitta huvudbläddrare"
+
+#, fuzzy
 #~ msgid "Could not resolve hostname `%s': %s"
 #~ msgstr "Kunde inte tolka: %s"
+
+#, fuzzy
+#~ msgid "Could not create SSL connection through proxy server"
+#~ msgstr "Kunde inte hitta huvudbläddrare"
 
 #, fuzzy
 #~ msgid "Could not create socket"
@@ -1277,6 +1303,13 @@ msgstr "Fönsterarbetsgruppen som användaren är del av"
 #, fuzzy
 #~ msgid "Line too long"
 #~ msgstr "Namnet är för långt"
+
+#, fuzzy
+#~ msgid "Could not create SSL structure"
+#~ msgstr "Kunde inte tolka: %s"
+
+#~ msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
+#~ msgstr "Möjliga värden är \"merged\", \"separate\" och \"disabled\"."
 
 #~ msgid "Bookmark saving failed (%s)"
 #~ msgstr "Sparande av bokmärke misslyckades (%s)"
@@ -1403,9 +1436,6 @@ msgstr "Fönsterarbetsgruppen som användaren är del av"
 
 #~ msgid "parse error"
 #~ msgstr "tolkningsfel"
-
-#~ msgid "Parse error"
-#~ msgstr "Tolkningsfel"
 
 #~ msgid "0 bytes"
 #~ msgstr "0 byte"
