@@ -1,3 +1,8 @@
+2004-08-03  William Jon McCann  <mccann@jhu.edu>
+ 
+ 	* modules/sftp-method.c (sftp_connect): write responses to
+ 	tty, fixes #147444.
+
 2004-08-09  Ray Strode  <rstrode@redhat.com>
 
 	* libgnomevfs/eggdesktopentries.c (egg_find_file_in_data_dirs):

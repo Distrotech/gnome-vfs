@@ -1276,15 +1276,15 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 			    g_str_has_suffix (buffer, "Password: ") ||
 			    g_str_has_prefix (buffer, "Enter passphrase for key")) {
 				if (!done_auth && invoke_fill_auth (uri, buffer, &password) && password != NULL) {
-					g_io_channel_write_chars (prompt_channel, password, -1, &len, NULL);
-					g_io_channel_write_chars (prompt_channel, "\n", 1, &len, NULL);
-					g_io_channel_flush (prompt_channel, NULL);
+					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
+					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
+					g_io_channel_flush (tty_channel, NULL);
 				} else if (invoke_full_auth (uri, done_auth, buffer, &password, &keyring, 
 							     &user, &object, &authtype, &save_password) && password != NULL) {
 					full_auth = TRUE;
-					g_io_channel_write_chars (prompt_channel, password, -1, &len, NULL);
-					g_io_channel_write_chars (prompt_channel, "\n", 1, &len, NULL);
-					g_io_channel_flush (prompt_channel, NULL);
+					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
+					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
+					g_io_channel_flush (tty_channel, NULL);
 				} else {
 					res = GNOME_VFS_ERROR_ACCESS_DENIED;
 					goto bail;
@@ -1356,19 +1356,19 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 				
 				if (invoked) {
 					if (out_args.answer == 0) {
-						g_io_channel_write_chars (prompt_channel, "yes\n", -1, &len, NULL);
+						g_io_channel_write_chars (tty_channel, "yes\n", -1, &len, NULL);
 					} else {
-						g_io_channel_write_chars (prompt_channel, "no\n", -1, &len, NULL);
+						g_io_channel_write_chars (tty_channel, "no\n", -1, &len, NULL);
 						g_free (in_args.primary_message);
 						g_free (in_args.secondary_message);
 						res = GNOME_VFS_ERROR_ACCESS_DENIED;
 						goto bail;
 					}
-					g_io_channel_flush (prompt_channel, NULL);
+					g_io_channel_flush (tty_channel, NULL);
 					buffer[0]='\0';
 				} else {
-					g_io_channel_write_chars (prompt_channel, "no\n", -1, &len, NULL);
-					g_io_channel_flush (prompt_channel, NULL);
+					g_io_channel_write_chars (tty_channel, "no\n", -1, &len, NULL);
+					g_io_channel_flush (tty_channel, NULL);
 					buffer[0]='\0';
 					g_free (in_args.primary_message);
 					g_free (in_args.secondary_message);
