@@ -21,7 +21,6 @@ dnl never make it into the spec file!
 dnl
 dnl ==========================================================================
 
-CONTROL_CENTER_REQUIRED=1.2.3
 GLIB_REQUIRED=1.2.4
 GCONF_REQUIRED=0.9
 OAF_REQUIRED=0.3.0
@@ -186,8 +185,6 @@ AM_PATH_GTK(1.2.0,,
 *** Gtk+ 1.2.0 or better is required. The latest version of Gtk+
 *** is always available from ftp://ftp.gtk.org/.]),
     gmodule gthread)
-
-EAZEL_VERSION_INSIST(control-center, gnomecc --version | awk '{print $3}', >=, CONTROL_CENTER_REQUIRED)
 
 cflags_set=yes
 GNOME_COMPILE_WARNINGS
@@ -356,16 +353,6 @@ AC_SUBST(VFS_LIBDIR)
 AC_SUBST(VFS_INCLUDEDIR)
 AC_SUBST(VFS_LIBS)
 
-dnl
-dnl Flags needed to build the mime-type capplet
-dnl
-CAPPLET_LIBDIR='-L${libdir}'
-CAPPLET_INCLUDEDIR='-I${includedir} -I${libdir}/vfs/include'
-CAPPLET_INCLUDEDIR="$CAPPLET_INCLUDEDIR $VFS_CAPPLET_CFLAGS"
-CAPPLET_LIBS="$VFS_CAPPLET_LIBS"
-AC_SUBST(CAPPLET_LIBDIR)
-AC_SUBST(CAPPLET_INCLUDEDIR)
-AC_SUBST(CAPPLET_LIBS)
 
 dnl
 dnl gnome-xml libraries - for WebDAV support in modules/http-method.c
@@ -504,8 +491,6 @@ modules/extfs/lha
 modules/extfs/rar
 modules/extfs/zip
 modules/extfs/zoo
-mime-type-capplet/Makefile
-mime-type-capplet/libuuid/Makefile
 man/Makefile
 man/gnome-vfs-mime.5
 devel-docs/Makefile

@@ -1,3 +1,22 @@
+2001-03-07  Maciej Stachowiak  <mjs@eazel.com>
+
+	reviewed by: Darin Adler  <darin@eazel.com>
+	             Gene Z. Ragan  <gzr@eazel.com>
+
+	Part of the fix for bugzilla.eazel.com bug 588 (Remove old "MIME
+	types" capplet from control center) - merged from HEAD
+
+	* Makefile.am: Remove mime-type-capplet subdir.
+
+	* configure.in: Don't create mime-type-capplet Makefiles or check
+	for control-center.
+
+	* gnome-vfs.spec.in: remove control-center dependency.
+
+	* mime-type-capplet/*: removed.
+
+	* po/POTFILES.in: Remove mime-type-capplet files
+
 2001-03-06  Darin Adler  <darin@eazel.com>
 
 	* configure.in: Bump version to 0.9 (upcoming release will be
@@ -13826,6 +13845,46 @@ Fri Jun 16 12:11:32 2000  George Lebl <jirka@5z.com>
 	(select_icon_callback): use this list, add lots of preconditions.
 
 1999-08-26  Michael Meeks  <michael@imaginator.com>
+
+	* libgnomevfs/gnome-vfs-types.h: Add GnomeVFSFileSize, and
+	GnomeVFSFileOffset ( unsigned, signed ). and push through the
+	whole API - How will CORBA deal with this ?
+
+1999-08-25  Michael Meeks  <michael@imaginator.com>
+
+	* doc/writing-modules.txt: Started.
+
+1999-08-25  Michael Meeks  <michael@imaginator.com>
+
+	* http-method.[ch]: First pass at implementing.
+	
+	* modules/file-method.c: Add NULL RenameFunc to methods, and
+	remove const from do_make_directory's GnomeVFSURI.
+
+	* modules/Makefile.am: Add libhttp.la, commented out.
+
+1999-08-25  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/file-method.c: Preconditions return `GNOME_VFS_INTERNAL'
+	instead of `GNOME_VFS_BAD_POINTER'.
+
+	* libgnomevfs/gnome-vfs-types.h: Removed value
+	`GNOME_VFS_BAD_POINTER' from the `GnomeVFSResult' enum.
+
+1999-08-25  Michael Meeks  <michael@imaginator.com>
+
+	* modules/file-method.c: Update all preconditions to return BAD_POINTER
+	as their GnomeVFSResult instead of FALSE.
+
+	* libgnomevfs/gnome-vfs-types.h: Added GNOME_VFS_ERROR_BAD_POINTER.
+
+	* modules/gzip-method.h: Rename conditional include
+	from _FILE_H to _GZIP_H
+
+1999-08-25  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* configure.in: Add gnomeui libs to `VFSCORBA_LIBS'.
+>
 
 	* libgnomevfs/gnome-vfs-types.h: Add GnomeVFSFileSize, and
 	GnomeVFSFileOffset ( unsigned, signed ). and push through the
