@@ -352,7 +352,7 @@ do_path_command (FtpConnection *conn,
 	path = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
 
 	if (path == NULL || path[0] == '\0') {
-		actual_command = g_strconcat (command, " .", NULL);
+		actual_command = g_strconcat (command, " /", NULL);
 	} else {
 		actual_command = g_strconcat (command, " ", path, NULL);
 	}

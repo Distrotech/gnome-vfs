@@ -1,3 +1,8 @@
+2003-03-27  Christophe Fergeau  <teuf@users.sourceforge.net>
+
+	* modules/ftp-method.c: make sure the current directory is / when
+	using an uri without directory
+
 2003-03-26  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "yi" to ALL_LINGUAS.
