@@ -284,3 +284,28 @@ basic POSIX-style file operations
 @Returns: 
 
 
+<!-- ##### TYPEDEF GnomeVFSMethodHandle ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GnomeVFSOpenMode ##### -->
+<para>
+
+</para>
+
+@GNOME_VFS_OPEN_NONE: 
+@GNOME_VFS_OPEN_READ: 
+@GNOME_VFS_OPEN_WRITE: 
+@GNOME_VFS_OPEN_RANDOM: 
+
+<!-- ##### ENUM GnomeVFSSeekPosition ##### -->
+<para>
+
+</para>
+
+@GNOME_VFS_SEEK_START: 
+@GNOME_VFS_SEEK_CURRENT: 
+@GNOME_VFS_SEEK_END: 
+

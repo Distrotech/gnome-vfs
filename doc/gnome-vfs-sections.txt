@@ -115,6 +115,8 @@ GnomeVFSAsyncCloseCallback
 GnomeVFSAsyncReadCallback
 GnomeVFSAsyncWriteCallback
 GnomeVFSFindDirectoryResult
+gnome_vfs_async_set_job_limit
+gnome_vfs_async_get_job_limit
 gnome_vfs_async_cancel
 gnome_vfs_async_open
 gnome_vfs_async_open_uri
@@ -377,12 +379,6 @@ gnome_vfs_result_to_string
 gnome_vfs_result_from_errno_code
 gnome_vfs_result_from_errno
 gnome_vfs_result_from_h_errno
-</SECTION>
-
-<SECTION>
-<FILE>gnome-vfs-job-limit</FILE>
-gnome_vfs_async_set_job_limit
-gnome_vfs_async_get_job_limit
 </SECTION>
 
 <SECTION>

@@ -2,6 +2,18 @@
 
 	* doc/gnome-vfs-docs.sgml:
 	* doc/gnome-vfs-sections.txt:
+	* doc/tmpl/gnome-vfs-async-ops.sgml:
+	* doc/tmpl/gnome-vfs-job-limit.sgml:
+	* doc/tmpl/gnome-vfs-mime-monitor.sgml:
+	* doc/tmpl/gnome-vfs-ops.sgml:
+
+	Merge some needless categories into ops and
+	async-ops.
+	
+2002-06-16  Seth Nickell  <snickell@stanford.edu>
+
+	* doc/gnome-vfs-docs.sgml:
+	* doc/gnome-vfs-sections.txt:
 
 	Re-organize documentation, move stuff more fluidly
 	between sections rather than relying so heavily on

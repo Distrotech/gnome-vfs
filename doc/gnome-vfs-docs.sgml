@@ -23,14 +23,12 @@
 <!ENTITY gnome-vfs-method SYSTEM "sgml/gnome-vfs-method.sgml">
 <!ENTITY gnome-vfs-directory SYSTEM "sgml/gnome-vfs-directory.sgml">
 <!ENTITY gnome-vfs-result SYSTEM "sgml/gnome-vfs-result.sgml">
-<!ENTITY gnome-vfs-job-limit SYSTEM "sgml/gnome-vfs-job-limit.sgml">
 <!ENTITY gnome-vfs-mime-database SYSTEM "sgml/gnome-vfs-mime-database.sgml">
 <!ENTITY gnome-vfs-find-directory SYSTEM "sgml/gnome-vfs-find-directory.sgml">
 <!ENTITY gnome-vfs-module SYSTEM "sgml/gnome-vfs-module.sgml">
 <!ENTITY gnome-vfs-module-shared SYSTEM "sgml/gnome-vfs-module-shared.sgml">
 <!ENTITY gnome-vfs-module-callback-module-api SYSTEM "sgml/gnome-vfs-module-callback-module-api.sgml">
 <!ENTITY gnome-vfs-init SYSTEM "sgml/gnome-vfs-init.sgml">
-<!ENTITY gnome-vfs-handle SYSTEM "sgml/gnome-vfs-handle.sgml">
 <!ENTITY gnome-vfs-mime SYSTEM "sgml/gnome-vfs-mime.sgml">
 <!ENTITY gnome-vfs-cancellation SYSTEM "sgml/gnome-vfs-cancellation.sgml">
 <!ENTITY gnome-vfs-xfer SYSTEM "sgml/gnome-vfs-xfer.sgml">
@@ -110,7 +108,6 @@
     &gnome-vfs-file-info;
     &gnome-vfs-file-size;
     &gnome-vfs-result;
-    &gnome-vfs-handle;
     &gnome-vfs-uri;
   </chapter>
 
@@ -128,6 +125,7 @@
     &installing-mime-data;
     &gnome-vfs-application-registry;
     &gnome-vfs-mime-database;
+    &gnome-vfs-GnomeVFSMIMEMonitor;
   </chapter>
 
   <chapter id="modules">
@@ -141,27 +139,25 @@
     </para>
     &writing-modules;
     &gnome-vfs-mime;
+    &gnome-vfs-method;
     &gnome-vfs-module;
     &gnome-vfs-module-shared;
     &gnome-vfs-module-callback-module-api;
     &gnome-vfs-iobuf;
+    &gnome-vfs-ssl;
+    &gnome-vfs-context;
+    &gnome-vfs-socket;
+    &gnome-vfs-socket-buffer;
+    &gnome-vfs-transform;
+    &gnome-vfs-parse-ls;
   </chapter>
 
   <chapter>
     <title>Other Stuff</title>
 
-    &gnome-vfs-GnomeVFSMIMEMonitor;
     &gnome-vfs-utils;
-    &gnome-vfs-transform;
-    &gnome-vfs-ssl;
     &gnome-vfs-standard-callbacks;
     &gnome-vfs-inet-connection;
-    &gnome-vfs-socket;
-    &gnome-vfs-parse-ls;
     &gnome-vfs-module-callback;
-    &gnome-vfs-context;
-    &gnome-vfs-method;
-    &gnome-vfs-job-limit;
-    &gnome-vfs-socket-buffer;
   </chapter>
 </book>

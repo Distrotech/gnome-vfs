@@ -104,6 +104,22 @@ POSIX-style file operations that run outside your main loop
 </para>
 
 
+<!-- ##### FUNCTION gnome_vfs_async_set_job_limit ##### -->
+<para>
+
+</para>
+
+@limit: 
+
+
+<!-- ##### FUNCTION gnome_vfs_async_get_job_limit ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
 <!-- ##### FUNCTION gnome_vfs_async_cancel ##### -->
 <para>
 

@@ -1,8 +1,10 @@
 <!-- ##### SECTION Title ##### -->
-GnomeVFSMIMEMonitor
+
+MIME Database Monitor
 
 <!-- ##### SECTION Short_Description ##### -->
 
+monitor the MIME database for changes (primarily for file browsers)
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
