@@ -1,3 +1,14 @@
+2000-12-11  Darin Adler  <darin@eazel.com>
+
+	reviewed by: John Sullivan <sullivan@eazel.com>
+
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-gen-mimedb.c:
+	Removed the source and build rules for the obsolete
+	gen-mime-db tool. We have parsed the MIME text files on
+	when the library first needs the DB instead of saving
+	a preparsed memory image for some time now.
+
 2000-12-08  Pavel Cisler  <pavel@eazel.com>
 
 	* modules/ftp-method.c: (do_read_directory):
