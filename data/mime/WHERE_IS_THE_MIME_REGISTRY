@@ -1,0 +1,4 @@
+It has been migrated into a seperate module so GnomeVFS2 and GnomeVFS1
+can share the same data.
+
+see the module "gnome-mime-data"

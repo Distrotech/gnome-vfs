@@ -9,7 +9,6 @@ SUBDIRS =					\
 	libgnomevfs-pthread			\
 	idl					\
 	modules					\
-	data					\
 	man					\
 	devel-docs				\
 	$(SUBDIRS_GNOME)			\

@@ -1,3 +1,31 @@
+2001-11-09  Seth Nickell  <snickell@stanford.edu>
+
+	* configure.in:
+
+	Depend on gnome-mime-data.
+	
+	* Makefile.am:
+
+	Don't build data.
+	
+	* data/Makefile.am:
+	* data/mime/ChangeLog:
+	* data/mime/Makefile.am:
+	* data/mime/WHERE_IS_THE_MIME_REGISTRY:
+	* data/mime/gnome-vfs-mime-magic:
+	* data/mime/gnome-vfs.applications:
+	* data/mime/gnome-vfs.keys.in:
+	* data/mime/gnome-vfs.mime:
+
+	Remove the MIME database from GnomeVFS. The actual
+	data is now stored in the module 'gnome-mime-data'.
+	This allows the information to be shared between
+	GnomeVFS1 and GnomeVFS2.
+	
+	* doc/tmpl/gnome-vfs-unused.sgml:
+
+	Some strange documentation change.
+	
 2001-10-30  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* modules/Makefile.am, modules/default-modules.conf,
