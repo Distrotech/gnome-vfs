@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0\n"
 "POT-Creation-Date: 2003-11-06 18:10+0100\n"
-"PO-Revision-Date: 2003-11-07 18:43+CET\n"
+"PO-Revision-Date: 2003-11-10 16:52+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "Ne mogu stvoriti vezu za GIOKanal: %s"
 #: libgnomevfs/gnome-vfs-job.c:1727
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Nepoznata vrsta pzadatka %u"
+msgstr "Nepoznata vrsta zadatka %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1760
 msgid "Operation stopped"
@@ -336,7 +336,7 @@ msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
-msgstr " (naispravni Unicode)"
+msgstr " (neispravni Unicode)"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -426,11 +426,11 @@ msgstr "Uobičajeni program za pregled komponenti"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "Uobičajen treminalni program"
+msgstr "Uobičajen terminalni program"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Izzvršni argument za uobičajeni terminal"
+msgstr "Izvršni argument za uobičajeni terminal"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -440,8 +440,8 @@ msgid ""
 "will be replaced by the component IID."
 msgstr ""
 "Program koji se koristi za pregled datoteka, te koji zahtjeva komponentu za "
-"pregledavanje istih. Parametar %s će biti zamjenje s URI datoteke, a parametar "
-"%c će biti zamjenjen s IID komponente."
+"pregledavanje istih. Parametar %s će biti zamijenjen s URI datoteke, a parametar "
+"%c će biti zamijenjen s IID komponente."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
@@ -457,7 +457,7 @@ msgstr "Izvršni argument koji se koristi za uobičajeni terminalni program."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate connections to the proxy server"
-msgstr "Provjerite vjerodostojnost veze prema proxy proslužitelju"
+msgstr "Provjerite vjerodostojnost veze prema proxy poslužitelju"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
@@ -539,7 +539,7 @@ msgstr "Naziv računala s HTTP proxy-em."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy secure http through."
-msgstr "Naziv rčunala sa sigurnim HTTP proxy-em."
+msgstr "Naziv računala sa sigurnim HTTP proxy-em."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy socks through."
@@ -561,7 +561,7 @@ msgstr "Port na računalu je određen u datoteci /system/proxy/ftp_host"
 msgid ""
 "The port on the machine defined by /system/proxy/secure_host that you proxy "
 "through"
-msgstr "Port na računalu jde određen u datoteci /system/proxy/secure_host"
+msgstr "Port na računalu je određen u datoteci /system/proxy/secure_host"
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
@@ -578,7 +578,7 @@ msgid ""
 msgstr ""
 "Ovaj ključ sadrži popis računala koji su direktno povezani, radije nego pomoću "
 "proxy-a (ako je uopće uključen). Vrijednosti mogu biti nazivi računala, domene "
-"(koristeći početne tamjenske znakove kao *.foo.com), IP adrese računala (obje "
+"(koristeći početne zamjenske znakove kao *.foo.com), IP adrese računala (obje "
 "IPv4 i IPv6) i mrežne adrese s mrežnim maskama (npr. 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:26
