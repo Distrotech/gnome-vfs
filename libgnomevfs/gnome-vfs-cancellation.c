@@ -114,7 +114,8 @@ gnome_vfs_cancellation_cancel (GnomeVFSCancellation *cancellation)
 gboolean
 gnome_vfs_cancellation_check (GnomeVFSCancellation *cancellation)
 {
-	g_return_val_if_fail (cancellation != NULL, FALSE);
+	if (cancellation == NULL)
+		return FALSE;
 
 	return cancellation->cancelled;
 }
@@ -133,7 +134,8 @@ gnome_vfs_cancellation_ack (GnomeVFSCancellation *cancellation)
 {
 	gchar c;
 
-	g_return_if_fail (cancellation != NULL);
+	if (cancellation == NULL)
+		return;
 
 	read (cancellation->pipe_in, &c, 1);
 	cancellation->cancelled = FALSE;

@@ -1,5 +1,11 @@
 2000-02-21  Ettore Perazzoli  <ettore@helixcode.com>
 
+	* libgnomevfs/gnome-vfs-cancellation.c
+	(gnome_vfs_cancellation_check): If the cancellation is NULL, just
+	return FALSE.
+	(gnome_vfs_cancellation_ack): If the cancellation is NULL, just
+	return.
+
 	* test/test-xfer.c (xfer_progress_callback): Use
 	`GNOME_VFS_SIZE_FORMAT_STR' to match the types.
 
