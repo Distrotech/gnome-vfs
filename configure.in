@@ -622,6 +622,16 @@ Enable profiler         : NO"
 echo
 ;;
 esac
+case "$platform_gnome_2" in
+Xyes)
+echo "
+GNOME platform          : 2.0"
+;;
+*)
+echo "
+GNOME platform          : 1.x"
+;;
+esac
 
 dnl <= CFLAGS and LDFLAGS =>
 echo "
