@@ -1,3 +1,8 @@
+2004-07-12  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/ftp-method.c (ftp_connection_destroy):
+	Add more HAVE_GSSAPI ifdefs
+
 2004-07-11  Sebastien Bacher  <seb128@debian.org>
 
 	* libgnomevfs/gnome-vfs-uri.c: (make_full_uri_from_relative):

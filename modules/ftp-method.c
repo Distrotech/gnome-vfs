@@ -1381,6 +1381,7 @@ ftp_connection_destroy (FtpConnection *conn,
 	if (conn->data_socketbuf) 
 	        gnome_vfs_socket_buffer_destroy (conn->data_socketbuf, TRUE, cancellation);
 
+#ifdef HAVE_GSSAPI
 	if (conn->gcontext != NULL) {
 		gss_qop_t maj_stat, min_stat;
 		gss_buffer_desc output_tok;
@@ -1394,6 +1395,7 @@ ftp_connection_destroy (FtpConnection *conn,
 		}
 		conn->gcontext = NULL;
 	}
+#endif
 	
 	g_free (conn);
 	total_connections--;
