@@ -39,7 +39,7 @@ void                _gnome_vfs_client_call_delay_finish      (GnomeVFSClientCall
 void                _gnome_vfs_client_call_delay_finish_done (GnomeVFSClientCall *client_call);
 
 GNOME_VFS_ClientCall _gnome_vfs_daemon_get_current_daemon_client_call (void);
-void                 _gnome_vfs_daemon_set_current_daemon_client_call (GNOME_VFS_ClientCall client_call);
+void                 gnome_vfs_daemon_set_current_daemon_client_call (GNOME_VFS_ClientCall client_call);
 
 G_END_DECLS
 

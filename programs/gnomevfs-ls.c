@@ -101,7 +101,7 @@ list (void)
 
 	gnome_vfs_file_info_unref (info);
 
-	if (result != GNOME_VFS_OK) {
+	if ((result != GNOME_VFS_OK) && (result != GNOME_VFS_ERROR_EOF)) {
 		g_print ("Error: %s\n", gnome_vfs_result_to_string (result));
 		return;
 	}
@@ -115,7 +115,11 @@ main (int argc, char *argv[])
 	if (argc > 1) {
 		directory = argv[1];
 	} else {
-		directory = g_get_current_dir ();
+		char *tmp;
+
+		tmp = g_get_current_dir ();
+		directory = gnome_vfs_escape_path_string (tmp);
+		g_free (tmp);
 	}
 
 	list ();

@@ -23,23 +23,23 @@ BONOBO_CLASS_BOILERPLATE_FULL(
  *  the context object that has been looked up */
 G_LOCK_DEFINE_STATIC (client_call_context);
 
-static GnomeVFSAsyncDaemon *async_daemon = NULL;
+static GnomeVFSAsyncDaemon *g_vfs_async_daemon = NULL;
 
 static void
 gnome_vfs_async_daemon_finalize (GObject *object)
 {
 	/* All client calls should have finished before we kill this object */
-	g_assert (g_hash_table_size (async_daemon->client_call_context) == 0);
-	g_hash_table_destroy (async_daemon->client_call_context);
+	g_assert (g_hash_table_size (g_vfs_async_daemon->client_call_context) == 0);
+	g_hash_table_destroy (g_vfs_async_daemon->client_call_context);
 	BONOBO_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
-	async_daemon = NULL;
+	g_vfs_async_daemon = NULL;
 }
 
 static void
 gnome_vfs_async_daemon_instance_init (GnomeVFSAsyncDaemon *daemon)
 {
 	daemon->client_call_context = g_hash_table_new (NULL, NULL);
-	async_daemon = daemon;
+	g_vfs_async_daemon = daemon;
 }
 
 GnomeVFSContext *
@@ -48,17 +48,17 @@ gnome_vfs_async_daemon_get_context (const GNOME_VFS_ClientCall client_call,
 {
 	GnomeVFSContext *context;
 
-	if (async_daemon == NULL) {
+	if (g_vfs_async_daemon == NULL) {
 		return NULL;
 	}
 	
 	context = gnome_vfs_context_new ();
 	G_LOCK (client_call_context);
-	g_hash_table_insert (async_daemon->client_call_context, client_call, context);
+	g_hash_table_insert (g_vfs_async_daemon->client_call_context, client_call, context);
 	G_UNLOCK (client_call_context);
 
 	gnome_vfs_daemon_add_context (client, context);
-	_gnome_vfs_daemon_set_current_daemon_client_call (client_call);
+	gnome_vfs_daemon_set_current_daemon_client_call (client_call);
 
 	return context;
 }
@@ -69,11 +69,11 @@ gnome_vfs_async_daemon_drop_context (const GNOME_VFS_ClientCall client_call,
 				     GnomeVFSContext *context)
 {
 	if (context != NULL) {
-		_gnome_vfs_daemon_set_current_daemon_client_call (NULL);
+		gnome_vfs_daemon_set_current_daemon_client_call (NULL);
 		gnome_vfs_daemon_remove_context (client, context);
 		G_LOCK (client_call_context);
-		if (async_daemon != NULL) {
-			g_hash_table_remove (async_daemon->client_call_context, client_call);
+		if (g_vfs_async_daemon != NULL) {
+			g_hash_table_remove (g_vfs_async_daemon->client_call_context, client_call);
 		}
 		gnome_vfs_context_free (context);
 		G_UNLOCK (client_call_context);
@@ -176,7 +176,7 @@ cancel_client_call_callback (gpointer data)
 	client_call = data;
 
 	G_LOCK (client_call_context);
-	context = g_hash_table_lookup (async_daemon->client_call_context, client_call);
+	context = g_hash_table_lookup (g_vfs_async_daemon->client_call_context, client_call);
 	if (context != NULL) {
 		cancellation = gnome_vfs_context_get_cancellation (context);
 		if (cancellation) {
@@ -265,23 +265,23 @@ gnome_vfs_async_daemon_get_file_info (PortableServer_Servant _servant,
 	GnomeVFSContext *context;
 	GnomeVFSFileInfo *file_info;
 
-	*corba_info = NULL;
+	*corba_info = GNOME_VFS_FileInfo__alloc ();
+	
+	file_info = gnome_vfs_file_info_new ();
 
 	uri = gnome_vfs_uri_new (uri_str);
 	if (uri == NULL) {
+		gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
+		gnome_vfs_file_info_unref (file_info);
 		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 
 	context = gnome_vfs_async_daemon_get_context (client_call, client);
-	file_info = gnome_vfs_file_info_new ();
 	
 	res = gnome_vfs_get_file_info_uri_cancellable (uri, file_info,
 						   options, context);
 
-	if (res == GNOME_VFS_OK) {
-		*corba_info = GNOME_VFS_FileInfo__alloc ();
-		_gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
-	}
+	gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
 	
 	gnome_vfs_async_daemon_drop_context (client_call, client, context);
 
@@ -574,7 +574,7 @@ gnome_vfs_async_daemon_set_file_info (PortableServer_Servant _servant,
 	context = gnome_vfs_async_daemon_get_context (client_call, client);
 	file_info = gnome_vfs_file_info_new ();
 	
-	_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
+	gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 	res = gnome_vfs_set_file_info_cancellable (uri, file_info, mask,
 						   context);
 

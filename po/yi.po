@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2003-10-20 15:52+0200\n"
+"POT-Creation-Date: 2003-12-08 10:44+0100\n"
 "PO-Revision-Date: 2003-03-19\n"
 "Last-Translator: Raphael Finkel <raphael@cs.uky.edu>\n"
 "Language-Team: Yiddish <raphael@cs.uky.edu>\n"
@@ -13,13 +13,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: daemon/gnome-vfs-daemon.c:320
+#: daemon/gnome-vfs-daemon.c:553
 #, fuzzy
 msgid "Could not initialize Bonobo"
 msgstr "ניט געקענט געפֿינינען הױפּט־בלעטערער"
 
-#: daemon/gnome-vfs-daemon.c:326
+#: daemon/gnome-vfs-daemon.c:559
 msgid "Could not initialize gnome vfs"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-cdrom.c:178
+msgid "ISO 9660 Volume"
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
@@ -51,6 +55,142 @@ msgstr "%s:%d איז ניט כּולל קײן מאָדול־נאָמען"
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "צופּאַס־טעקע %s איז ניט בנימצה: %s"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:37
+msgid "AFFS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:38
+msgid "AFS Network Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:39
+msgid "Auto-detected Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:40
+#: libgnomevfs/gnome-vfs-filesystem-type.c:42
+msgid "CD-ROM Drive"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:41
+msgid "CD Digital Audio"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:43
+msgid "Hardware Device Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:44
+msgid "Ext2 Linux Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:45
+msgid "Ext3 Linux Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:46
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:57
+msgid "MSDOS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:47
+#: libgnomevfs/gnome-vfs-filesystem-type.c:48
+msgid "MacOS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:49
+msgid "CDROM Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+msgid "Hsfs CDROM Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+msgid "JFS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:52
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+msgid "Windows NT Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:62
+msgid "System Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
+msgid "Memory Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+msgid "Minix Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+msgid "NFS Network Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+msgid "Netware Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+msgid "ReiserFS Linux Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:64
+msgid "Windows Shared Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+msgid "SuperMount Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+msgid "DVD Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+msgid "Solaris/BSD Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+msgid "Udfs Solaris Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+msgid "Pcfs Solaris Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:70
+msgid "Enhanced DOS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+msgid "Windows VFAT Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+msgid "Xenix Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+msgid "XFS Linux Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+msgid "XIAFS Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:102
+#, fuzzy
+msgid "Unknown"
+msgstr "אומבאַקאַנטע טעות"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
@@ -315,32 +455,119 @@ msgid "Unknown error"
 msgstr "אומבאַקאַנטע טעות"
 
 #: libgnomevfs/gnome-vfs-utils.c:84
-msgid "1 byte"
-msgstr "1 אַכטעלע"
+#, fuzzy, c-format
+msgid "%u byte"
+msgid_plural "%u bytes"
+msgstr[0] "%u אַכטעלעך"
+msgstr[1] "%u אַכטעלעך"
 
-#: libgnomevfs/gnome-vfs-utils.c:86
-#, c-format
-msgid "%u bytes"
-msgstr "%u אַכטעלעך"
-
-#: libgnomevfs/gnome-vfs-utils.c:93
+#: libgnomevfs/gnome-vfs-utils.c:90
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f קילאָ"
 
-#: libgnomevfs/gnome-vfs-utils.c:97
+#: libgnomevfs/gnome-vfs-utils.c:94
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f מעגאַ־אַכטעלעך"
 
-#: libgnomevfs/gnome-vfs-utils.c:101
+#: libgnomevfs/gnome-vfs-utils.c:98
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f גיגאַ־אַכטעלעך"
 
-#: libgnomevfs/gnome-vfs-utils.c:1085
+#: libgnomevfs/gnome-vfs-utils.c:1105
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr " (אומלעקסיקער אוניקאָד)"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:427
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:454
+msgid "Floppy"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:428
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:457
+msgid "CD-ROM"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:429
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:460
+msgid "Zip Drive"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:430
+msgid "Memory Stick"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:431
+msgid "Camera"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:647
+msgid "Root Volume"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:728
+msgid "Audio CD"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:759
+#, fuzzy
+msgid "Unknown volume"
+msgstr "אומבאַקאַנטע טעות"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:939
+msgid "Network server"
+msgstr ""
+
+#. Handle floppy case
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr ""
+
+#. All others
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
+msgid "Unable to mount the volume. There is probably no media in the device."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
+msgid ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
+msgid ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
+msgid "Unable to mount the selected floppy drive."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
+msgid "Unable to mount the selected volume."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
+msgid "Unable to unmount the selected volume."
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:220
+#: libgnomevfs/gnome-vfs-volume-ops.c:252
+msgid "Failed to start command"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:245
+msgid "Unable to eject media"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-volume-ops.c:421
+msgid "Unable to unmount connected server"
+msgstr ""
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -392,6 +619,19 @@ msgstr ""
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
 msgstr ""
+
+#: modules/computer-method.c:521
+msgid "Network"
+msgstr ""
+
+#: modules/computer-method.c:539
+msgid "Home"
+msgstr ""
+
+#: modules/computer-method.c:557
+#, fuzzy
+msgid "Filesystem"
+msgstr "טעקע עקזיסטירט"
 
 #: modules/file-method.c:382
 #, c-format
@@ -453,6 +693,125 @@ msgstr ""
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:1
+msgid "How to handle callto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:2
+msgid "How to handle ghelp URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:3
+msgid "How to handle h323 URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:4
+msgid "How to handle http URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid "How to handle https URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid "How to handle info URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "How to handle mailto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+msgid "How to handle man URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+msgid "How to handle trash URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid "Run program in terminal"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid "Set to true to have a program specified in command handle callto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid "Set to true to have a program specified in command handle h323 URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+msgid "Set to true to have a program specified in command handle http URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+msgid "Set to true to have a program specified in command handle https URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid "Set to true to have a program specified in command handle mailto URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid ""
+"Set to true to have a program specified in programs/ghelp handle ghelp URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid ""
+"Set to true to have a program specified in programs/info handle info URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+msgid "Set to true to have a program specified in programs/man handle man URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+msgid ""
+"Set to true to have a program specified in trash/command handle trash URLs"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+msgid "True if the program to handle this URL should be run in a terminal"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+msgid "URL handler for callto uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+msgid "URL handler for ghelp pages"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+msgid "URL handler for h323 uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+msgid "URL handler for http uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+msgid "URL handler for https uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+msgid "URL handler for info pages"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+msgid "URL handler for mailto uris"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+msgid "URL handler for man pages"
+msgstr ""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+msgid "URL handler for trash pages"
 msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:1
@@ -591,3 +950,6 @@ msgstr ""
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "http proxy username"
 msgstr ""
+
+#~ msgid "1 byte"
+#~ msgstr "1 אַכטעלע"

@@ -46,11 +46,14 @@ gnome-vfs-socket
 @connection: 
 
 
-<!-- ##### TYPEDEF GnomeVFSSocketImpl ##### -->
+<!-- ##### STRUCT GnomeVFSSocketImpl ##### -->
 <para>
 
 </para>
 
+@read: 
+@write: 
+@close: 
 
 <!-- ##### FUNCTION gnome_vfs_socket_new ##### -->
 <para>

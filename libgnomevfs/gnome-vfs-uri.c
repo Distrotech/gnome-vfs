@@ -2040,3 +2040,27 @@ gnome_vfs_uri_list_parse (const gchar* uri_list)
 
 	return g_list_reverse (result);
 }
+
+/* enumerations from "gnome-vfs-uri.h"
+ * This is normally automatically-generated, but glib-mkenums could not
+ * guess the correct get_type() function name for this enum.
+ */
+GType
+gnome_vfs_uri_hide_options_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GFlagsValue values[] = {
+      { GNOME_VFS_URI_HIDE_NONE, "GNOME_VFS_URI_HIDE_NONE", "none" },
+      { GNOME_VFS_URI_HIDE_USER_NAME, "GNOME_VFS_URI_HIDE_USER_NAME", "user-name" },
+      { GNOME_VFS_URI_HIDE_PASSWORD, "GNOME_VFS_URI_HIDE_PASSWORD", "password" },
+      { GNOME_VFS_URI_HIDE_HOST_NAME, "GNOME_VFS_URI_HIDE_HOST_NAME", "host-name" },
+      { GNOME_VFS_URI_HIDE_HOST_PORT, "GNOME_VFS_URI_HIDE_HOST_PORT", "host-port" },
+      { GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD, "GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD", "toplevel-method" },
+      { GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER, "GNOME_VFS_URI_HIDE_FRAGMENT_IDENTIFIER", "fragment-identifier" },
+      { 0, NULL, NULL }
+    };
+    etype = g_flags_register_static ("GnomeVFSURIHideOptions", values);
+  }
+  return etype;
+}

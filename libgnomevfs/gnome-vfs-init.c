@@ -37,6 +37,7 @@
 #include "gnome-vfs-async-job-map.h"
 #include "gnome-vfs-thread-pool.h"
 #include "gnome-vfs-job-queue.h"
+#include "gnome-vfs-volume-monitor-private.h"
 
 #include <errno.h>
 #include <bonobo-activation/bonobo-activation.h>
@@ -180,6 +181,7 @@ gnome_vfs_shutdown (void)
 {
 	_gnome_vfs_thread_backend_shutdown ();
 	gnome_vfs_mime_shutdown ();
+	_gnome_vfs_volume_monitor_shutdown ();
 	_gnome_vfs_client_shutdown ();
 	bonobo_debug_shutdown ();
 }

@@ -35,6 +35,7 @@ noinst_PROGRAMS =				\
 	test-sync-write				\
 	test-unlink				\
 	test-uri				\
+	test-volumes				\
 	test-xfer				\
 	test-callback				\
 	test-module-selftest			\
@@ -127,6 +128,9 @@ test_escape_LDADD = $(libraries)
 
 test_uri_SOURCES = test-uri.c
 test_uri_LDADD = $(libraries)
+
+test_volumes_SOURCES = test-volumes.c
+test_volumes_LDADD = $(libraries)
 
 test_unlink_SOURCES = test-unlink.c
 test_unlink_LDADD = $(libraries)

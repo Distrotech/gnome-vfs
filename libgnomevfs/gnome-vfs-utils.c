@@ -42,6 +42,7 @@
 #include <pwd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/param.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -80,11 +81,7 @@ gchar*
 gnome_vfs_format_file_size_for_display (GnomeVFSFileSize size)
 {
 	if (size < (GnomeVFSFileSize) KILOBYTE_FACTOR) {
-		if (size == 1)
-			return g_strdup (_("1 byte"));
-		else
-			return g_strdup_printf (_("%u bytes"),
-						       (guint) size);
+		return g_strdup_printf (ngettext("%u byte", "%u bytes",(guint) size), (guint) size);
 	} else {
 		gdouble displayed_size;
 
@@ -762,7 +759,7 @@ gnome_vfs_get_uri_from_local_path (const char *local_full_path)
  * @size:
  * 
  * Stores in @size the amount of free space on a volume.
- * This only works for local file systems with the file: scheme.
+ * This only works for URIs with the file: scheme.
  *
  * Returns: GNOME_VFS_OK on success, otherwise an error code
  */
@@ -803,12 +800,35 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 	statfs_result = statfs (unescaped_path, &statfs_buffer);   
 #endif  
 
-	g_free (unescaped_path);
-
 	if (statfs_result != 0) {
+		g_free (unescaped_path);
 		return gnome_vfs_result_from_errno ();
 	}
-	
+
+	/* ncpfs does not know the amount of available and free space */
+	if (statfs_buffer.f_bavail == 0 && statfs_buffer.f_bfree == 0) {
+#if defined(__linux__)
+		/* statvfs does not contain an f_type field, we try again
+		 * with statfs.
+		 */
+		struct statfs statfs_buffer2;
+		statfs_result = statfs (unescaped_path, &statfs_buffer2);
+		g_free (unescaped_path);
+
+		if (statfs_result != 0) {
+			return gnome_vfs_result_from_errno ();
+		}
+		
+		/* linux/ncp_fs.h: NCP_SUPER_MAGIC == 0x564c */
+		if (statfs_buffer2.f_type == 0x564c)
+#elif defined(__sun)
+		if (strcmp(statfs_buffer.f_basetype, "ncpfs") == 0)
+#endif
+		{
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;
+		}
+	}
+
 	block_size = statfs_buffer.f_bsize; 
 	free_blocks = statfs_buffer.f_bavail;
 

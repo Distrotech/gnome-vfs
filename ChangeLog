@@ -2,6 +2,358 @@ Fri Oct 31 21:16:17 2003  Jonathan Blandford  <jrb@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime.c: Rewrote to use xdg-mime code.
 
+2003-12-15  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-module-shared.c (gnome_vfs_stat_to_file_info):
+	Never make io_block_size less than 4k if set. That makes no sense.
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_file):
+	Default to 8k buffer
+	
+	* modules/ftp-method.c: (unix_ls_to_file_info):
+	* modules/ssh-method.c: (do_read_directory):
+	Larger block sizes for remote methods.
+
+2003-12-15  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (move_source_is_in_target):
+	Don't unref NULL.
+
+	* libgnomevfs/gnome-vfs-daemon-method.c (do_get_file_info):
+	Never return NULL corba strings or structures
+
+	* daemon/gnome-vfs-async-daemon.c (gnome_vfs_async_daemon_get_file_info):
+	Handle failures better.
+
+2003-12-10  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	Remove debug spew.
+	
+2003-12-10  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	Marshallers for the new auth callbacks.
+
+2003-12-10  Carlos Romero  <kidcrash@bellsouth.net>
+
+	* libgnomevfs/gnome-vfs-client.c: properly NULL terminate the list
+	  of properties passed to g_object_new (fixes #128931)
+
+2003-12-09  Alexander Larsson  <alexl@redhat.com>
+
+	* test/test-shell.c (authentication_callback):
+	Fix warnings
+
+	* libgnomevfs/gnome-vfs-cdrom.c (_gnome_vfs_get_iso9660_volume_name):
+	Clear iso buffer before reading.
+	Based on patch from Joe Marcus Clarke	
+
+=== gnome-vfs 2.5.3 ===
+
+2003-12-08  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	2.5.3
+
+2003-12-05  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/http-method.c:
+	Implement the new authentication fallbacks for http.
+
+2003-12-05  Mark McLoughlin  <mark@skynet.ie>
+
+	* schemas/desktop_gnome_url_handlers.schemas.in:
+	Use gnomemeeting -c to handle callto: and h323:
+
+2003-12-05  Mark McLoughlin  <mark@skynet.ie>
+
+	* schemas/desktop_gnome_url_handlers.schemas.in: Add
+	a h323: handler using gnomemeeting too.
+
+2003-12-05  Mark McLoughlin  <mark@skynet.ie>
+
+	* schemas/desktop_gnome_url_handlers.schemas.in:
+	Add evolution and gnomemeeting as mailto: and callto:
+	handlers.
+
+2003-12-05  Mark McLoughlin  <mark@skynet.ie>
+
+	* schemas/Makefile.am: add desktop_gnome_url_handlers.schemas.
+
+2003-12-04  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs.h:
+	Include gnome-vfs-standard-callbacks.h
+
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	Add new standard auth callbacks
+
+2003-12-01  Malcolm Tredinnick <malcolm@commsecure.com.au>
+
+	* libgnomevfs/Makefile.am: Install gnome-vfs-enum-types.h
+
+2003-11-29  Murray Cumming  <murrayc@usa.net>
+   
+   	* libgnomevfs/Makefile.am: Use glib-mkenums to generate
+   	the get_type() functions for the gnome-vfs enums. The build file
+   	stuff is based on the same stuff in pango.
+ 	* libgnomevfs/gnome-vfs-uri.[h|cc]: Hand-code a get_type() function
+ 	for GnomeVFSURIHideOptions because glib-mkenums can not guess the
+ 	correct get_type() function name.
+
+2003-11-28  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c (get_fstab_file) : fix the
+	build.
+
+2003-11-28  Niall Power  <niall.power@sun.com>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c: use VFSTAB macro defn
+	to determine fstab path, if defined.
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c: add "hsfs"
+	as a recognized filesystem type for CD-ROM devices. Added 
+	autofs detection for Solaris.
+	* libgnomevfs/gnome-vfs-volume-ops.c: eject media by using
+	device path as the default operand instead of the mount point
+
+2003-11-25  Padraig O'Briain  <padraig.obriain@sun.com>
+
+	* daemon/gnome-vfs-async-daemon.c: Remove underscore from start of
+	gnome_vfs_daemon_set_current_daemon_client_call and
+	gnome_vfs_daemon_convert_to_corba_file_info
+
+	* daemon/gnome-vfs-daemon-dir-handle.c: Remove underscore from start of
+	gnome_vfs_daemon_convert_to_corba_file_info and
+	gnome_vfs_daemon_convert_from_corba_file_info
+
+	* daemon/gnome-vfs-daemon-handle.c: Remove underscore from start of
+	gnome_vfs_daemon_convert_to_corba_file_info
+
+	* daemon/gnome-vfs-daemon.c: Remove underscore from start of
+	gnome_vfs_daemon_volume_to_corba, gnome_vfs_drive_to_corba,
+	gnome_vfs_volume_monitor_emit_pre_unmount
+
+	* libgnomevfs/gnome-vfs-client-call.[ch]: Remove underscore from start 
+	of gnome_vfs_daemon_set_current_daemon_client_call
+
+	* libgnomevfs/gnome-vfs-client.c: Remove underscore from start of
+	gnome_vfs_volume_monitor_emit_pre_unmount
+
+	* libgnomevfs/gnome-vfs-daemon-method.[ch]: Remove underscore from 
+	start of gnome_vfs_daemon_convert_to_corba_file_info and
+	gnome_vfs_daemon_convert_from_corba_file_info
+
+	* libgnomevfs/gnome-vfs-drive.c: Remove underscore from start of
+	gnome_vfs_drive_to_corba
+
+	* libgnomeui/gnome-vfs-volume-monitor-private.h: Remove underscore 
+	from start of gnome_vfs_volume_monitor_emit_pre_unmount,
+	gnome_vfs_volume_to_corba and gnome_vfs_drive_to_corba
+
+	* libgnomevfs/gnome-vfs-volume-monitor.c: Remove underscore from start 
+	of gnome_vfs_volume_monitor_emit_pre_unmount
+
+	* libgnomevfs/gnome-vfs-volume-ops.c: Remove underscore from start of
+	gnome_vfs_volume_monitor_emit_pre_unmount
+
+	* libgnomevfs/gnome-vfs-volume.c: Remove underscore from start of
+	gnome_vfs_volume_to_corba
+
+	Fixes bug #127212.
+	
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_get_volume_free_space):
+	Add Solaris specific code. Fixes bug #127193.
+
+=== gnome-vfs 2.5.2 ===
+
+2003-11-24  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS: 
+	* configure.in:
+	Bump to 2.5.2
+
+2003-11-21  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c (_gnome_vfs_unix_mount_get_unix_device):
+	Avoid creating zombie (#127391)
+
+2003-11-20  Bastien Nocera  <hadess@hadess.net>
+
+	* programs/gnomevfs-ls.c: (main): escape the current path to be
+	used for listing when no arguments have been passed
+
+2003-11-15  Christophe Fergeau  <teuf@gnome.org>
+
+	* modules/http-method.c: fixed some leaks
+
+2003-11-15  Jan Kratochvil  <web-bugzilla.gnome.org@jankratochvil.net>
+
+	* modules/http-method.c: forgot to set to NULL a closed connection,
+	  fixes #126568 and #125243
+
+2003-11-15  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-utils.c
+	* configure.in: uses ngettext, added check for it in configure.in
+	(gnome-vfs-utils.c was committed with the previous commit, not this 
+	one)
+
+2003-11-15  Christophe Fergeau  <teuf@gnome.org>
+
+	* */.cvsignore: updates
+
+2003-11-15  Christophe Fergeau  <teuf@gnome.org>
+
+	* docs/*
+	* configure.in: added version number to the API docs start page
+	  (fixes #126027)
+	* libgnomevfs/gnome-vfs-utils.c: make copying/moving files to ncpfs
+  	  file systems work again (fixes #97789), patch by radu@netsoft.ro
+	* modules/http-method.c: don't print warning on empty PROPFIND
+	  responses (fixes #125469, patch by Jan Kratochvil)
+	* programs/gnomevfs-ls.c: don't print an error about EOF since EOF on
+	  a directory listing only indicates that we finished reading the
+	  directory
+
+2003-11-14  Christophe Fergeau  <teuf@gnome.org>
+
+	* configure.in: removed GNOME_PLATFORM_GNOME_2 since it's deprecated
+
+2003-11-13  Niall Power  <niall.power@sun.com>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c:
+	* libgnomevfs/gnome-vfs-cdrom.c:
+	Solaris fixes
+	
+2003-11-12  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/gnome-vfs-daemon.c: (gnome_vfs_daemon_factory):
+	* libgnomevfs/gnome-vfs-unix-mounts.c:
+	(_gnome_vfs_get_current_unix_mounts):
+	* libgnomevfs/gnome-vfs-utils.c:
+	* modules/cdda-method.c:
+	* modules/ssh-method.c:
+	FreeBSD fixes from Joe Marcus Clarke
+
+2003-11-12  Christophe Fergeau  <teuf@gnome.org>
+
+	* modules/http-method.c: ignore non significant white spaces in webdav
+	messages. Fixes #118773. It may break some webdav servers, please file
+	bugs or email me if you encounter some webdav breakage.
+
+2003-11-11  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-volume.c (gnome_vfs_volume_handles_trash):
+	Don't handle trash on read-only volumes.
+
+2003-11-11  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c (create_vol_from_mount):
+	Make sure volumes for user_visible drives are user_visible.
+
+=== gnome-vfs 2.5.1 ===
+
+2003-11-10  Alexander Larsson  <alexl@redhat.com>
+
+	* test/test-volumes.c:
+	Fix up build
+	
+2003-11-10  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in: 
+	* NEWS:
+	2.5.1
+
+2003-11-06  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-drive.[ch]:
+	Add new function gnome_vfs_drive_is_mounted
+	
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	* libgnomevfs/gnome-vfs-volume.h:
+	Fix up server unmount
+	slight api change for volume ops
+	new function gnome_vfs_connect_to_server
+	
+	* modules/computer-method.c: (fill_root):
+	No home in computer
+
+2003-11-05  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Check for more headers/funcs
+	
+	* daemon/gnome-vfs-daemon.c:
+	Renames to fix collision with system headers
+	Implement proxying of volume monitoring
+	
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	Added interfaces to proxy volumes
+	
+	* libgnomevfs/Makefile.am:
+	Add new files
+	
+	* libgnomevfs/gnome-vfs-iso9660.h:
+	* libgnomevfs/gnome-vfs-cdrom.[ch]:
+	CDROM utilities
+	
+	* libgnomevfs/gnome-vfs-client.c:
+	Volume proxy code
+	
+	* libgnomevfs/gnome-vfs-filesystem-type.[ch]:
+	Filesystem info
+	
+	* libgnomevfs/gnome-vfs-drive.[ch]:
+	New GnomeVFSDrive API
+	
+	* libgnomevfs/gnome-vfs-init.c:
+	Shut down volume monitor on shutdown
+	
+	* libgnomevfs/gnome-vfs-unix-mounts.[ch]:
+	Code to read mtabs/fstabs.
+	
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h:
+	private volume monitor details
+	
+	* libgnomevfs/gnome-vfs-volume-monitor-client.[ch]:
+	Client implementation of volume monitoring
+	
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.[ch]:
+	vfs daemon implementation of volume monitoring
+	
+	* libgnomevfs/gnome-vfs-volume-monitor.[ch]:
+	Common volume monitoring code.
+	
+	* libgnomevfs/gnome-vfs-volume-ops.c:
+	Mount/Unmount/Eject code
+	
+	* libgnomevfs/gnome-vfs-volume.[ch]:
+	New GnomeVFSVolume API
+	
+	* modules/Makefile.am:
+	* modules/computer-method.c:
+	* modules/default-modules.conf:
+	New computer:/// method
+	
+	* test/Makefile.am:
+	* test/test-volumes.c:
+	Test code for volume monitoring.
+
+2003-10-31  Stanislav Brabec  <sbrabec@suse.cz>
+
+	* modules/vfolder/vfolder-info.c: Fixed special case for
+	 applications-all-users with paths specified in $GNOME2_PATH (bug
+	 #108665).
+
+2003-10-27  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/gnome-vfs-async-daemon.c:
+	FreeBSD has a public async_daemon symbol. Avoid collision.
+	Patch from Joe Marcus Clarke <marcus@FreeBSD.org>
+
 === gnome-vfs 2.5.0.1 ===
 
 2003-10-23  Alexander Larsson  <alexl@redhat.com>

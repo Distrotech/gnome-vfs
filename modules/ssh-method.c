@@ -34,6 +34,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <signal.h>
 #include <unistd.h>
 #include <signal.h>
 #include <sys/signal.h>
@@ -711,6 +712,10 @@ do_read_directory (GnomeVFSMethod *method,
 			get_access_info (handle->uri, file_info);
 		}
 
+		/* Use a larger block size for remote access */
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
+		file_info->io_block_size = 32*1024;
+		
 		/* Break out.
 		   We are in a loop so we get the first 'ls' line;
 		   often it starts with 'total 2213' etc.

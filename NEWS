@@ -1,3 +1,28 @@
+gnome-vfs 2.5.3
+	* Features
+		+ New authentication callbacks, allowing
+		  more control and gnome-keyring integration
+		+ New callback support for http backend
+		+ moved url handler schemas here
+		+ real gtypes for gnome-vfs enumerations (Murray Cumming)
+		
+	* Bugs fixed:
+		+ Solaris fixes of the volume handling (Niall Powed, Padraig O'Brian)
+		
+gnome-vfs 2.5.2
+	* Features
+		+ use ngettext
+	* Bugs fixed:
+	        + no more vfs-daemon zombies
+		+ fixed gnomevfs-ls escape bug
+		+ fixed some leaks
+		+ fixed some http issues
+		
+gnome-vfs 2.5.1
+	* Features
+		+ volume monitor
+		+ computer location
+
 gnome-vfs 2.5.0
 
 	* Features 

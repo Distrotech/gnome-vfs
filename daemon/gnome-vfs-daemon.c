@@ -1,4 +1,5 @@
 #include <config.h>
+#include <libbonobo.h>
 #include <bonobo/bonobo-main.h>
 #include <bonobo/bonobo-generic-factory.h>
 #include <libgnomevfs/gnome-vfs.h>
@@ -6,12 +7,14 @@
 #include "gnome-vfs-daemon.h"
 #include "gnome-vfs-async-daemon.h"
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-volume-monitor.h"
+#include "gnome-vfs-volume-monitor-private.h"
 
 #define QUIT_TIMEOUT (3*1000)
 
 /* Global daemon */
-static GnomeVFSDaemon *daemon = NULL;
-static GnomeVFSAsyncDaemon *async_daemon = NULL;
+static GnomeVFSDaemon *the_daemon = NULL;
+static GnomeVFSAsyncDaemon *the_async_daemon = NULL;
 
 typedef struct {
 	GNOME_VFS_Client client;
@@ -29,14 +32,16 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	BONOBO_TYPE_OBJECT);
 
 
-/* Protects daemon->clients and their contents */
+static void disconnect_client_from_volume_monitor (const GNOME_VFS_Client client);
+
+/* Protects the_daemon->clients and their contents */
 G_LOCK_DEFINE_STATIC (client_list);
 
 
 static gboolean
 quit_timeout (gpointer data)
 {
-	if (daemon->clients == NULL) {
+	if (the_daemon->clients == NULL) {
 		g_print ("All clients dead, quitting ...\n");
 		bonobo_main_quit ();
 	}
@@ -105,7 +110,7 @@ lookup_client (GNOME_VFS_Client client)
 	ClientInfo *client_info;
 	GList *l;
 	
-	for (l = daemon->clients; l != NULL; l = l->next) {
+	for (l = the_daemon->clients; l != NULL; l = l->next) {
 		client_info = l->data;
 		if (client_info->client == client)
 			return client_info;
@@ -121,18 +126,20 @@ remove_client (gpointer *cnx,
 {
 	ClientInfo *client_info;
 	
+	disconnect_client_from_volume_monitor (client);
+	
 	ORBit_small_unlisten_for_broken (client,
 					 G_CALLBACK (remove_client));
 	
 	G_LOCK (client_list);
 	client_info = lookup_client (client);
 	if (client_info != NULL) {
-		daemon->clients = g_list_remove (daemon->clients, client_info);
+		the_daemon->clients = g_list_remove (the_daemon->clients, client_info);
 		free_client_info (client_info);
 	}
 	G_UNLOCK (client_list);
 
-	if (daemon->clients == NULL) 
+	if (the_daemon->clients == NULL) 
 		g_timeout_add (QUIT_TIMEOUT, quit_timeout, NULL);
 }
 
@@ -164,9 +171,229 @@ register_client (PortableServer_Servant servant,
 	client_info = new_client_info (client);
 	
 	G_LOCK (client_list);
-	daemon->clients = g_list_prepend (daemon->clients,
+	the_daemon->clients = g_list_prepend (the_daemon->clients,
 					  client_info);
 	G_UNLOCK (client_list);
+}
+
+static void
+volume_mounted (GnomeVFSVolumeMonitor *volume_monitor,
+		GnomeVFSVolume	       *volume,
+		GNOME_VFS_Client        client)
+{
+	CORBA_Environment ev;
+	GNOME_VFS_Volume *corba_volume;
+
+	corba_volume = GNOME_VFS_Volume__alloc ();
+
+	gnome_vfs_volume_to_corba (volume, corba_volume);
+	
+	CORBA_exception_init (&ev);
+	GNOME_VFS_Client_VolumeMounted (client,
+					corba_volume,
+					&ev);
+
+	if (BONOBO_EX (&ev)) {
+		CORBA_exception_free (&ev);
+	}
+	CORBA_free (corba_volume);
+}
+
+static void
+volume_pre_unmount (GnomeVFSVolumeMonitor *volume_monitor,
+		    GnomeVFSVolume        *volume,
+		    GNOME_VFS_Client       client)
+{
+	CORBA_Environment ev;
+
+	CORBA_exception_init (&ev);
+	GNOME_VFS_Client_VolumePreUnmount (client,
+					   volume->priv->id,
+					   &ev);
+
+	if (BONOBO_EX (&ev)) {
+		CORBA_exception_free (&ev);
+	}
+}
+
+
+static void
+volume_unmounted (GnomeVFSVolumeMonitor *volume_monitor,
+		  GnomeVFSVolume        *volume,
+		  GNOME_VFS_Client       client)
+{
+	CORBA_Environment ev;
+
+	CORBA_exception_init (&ev);
+	GNOME_VFS_Client_VolumeUnmounted (client,
+					  volume->priv->id,
+					  &ev);
+
+	if (BONOBO_EX (&ev)) {
+		CORBA_exception_free (&ev);
+	}
+}
+
+static void
+drive_connected (GnomeVFSVolumeMonitor *volume_monitor,
+		 GnomeVFSDrive	       *drive,
+		GNOME_VFS_Client        client)
+{
+	CORBA_Environment ev;
+	GNOME_VFS_Drive *corba_drive;
+
+	corba_drive = GNOME_VFS_Drive__alloc ();
+
+	gnome_vfs_drive_to_corba (drive, corba_drive);
+	
+	CORBA_exception_init (&ev);
+	GNOME_VFS_Client_DriveConnected (client,
+					 corba_drive,
+					 &ev);
+
+	if (BONOBO_EX (&ev)) {
+		CORBA_exception_free (&ev);
+	}
+	CORBA_free (corba_drive);
+}
+
+static void
+drive_disconnected (GnomeVFSVolumeMonitor *volume_monitor,
+		    GnomeVFSDrive	  *drive,
+		    GNOME_VFS_Client       client)
+{
+	CORBA_Environment ev;
+
+	CORBA_exception_init (&ev);
+	GNOME_VFS_Client_DriveDisconnected (client,
+					    drive->priv->id,
+					    &ev);
+
+	if (BONOBO_EX (&ev)) {
+		CORBA_exception_free (&ev);
+	}
+}
+
+static void
+register_volume_monitor (PortableServer_Servant _servant,
+			 const GNOME_VFS_Client client,
+			 CORBA_Environment * ev)
+{
+	GnomeVFSVolumeMonitor *monitor;
+
+	monitor = gnome_vfs_get_volume_monitor ();
+
+	g_signal_connect (monitor, "volume_mounted",
+			  G_CALLBACK (volume_mounted), client);
+	g_signal_connect (monitor, "volume_pre_unmount",
+			  G_CALLBACK (volume_pre_unmount), client);
+	g_signal_connect (monitor, "volume_unmounted",
+			  G_CALLBACK (volume_unmounted), client);
+	g_signal_connect (monitor, "drive_connected",
+			  G_CALLBACK (drive_connected), client);
+	g_signal_connect (monitor, "drive_disconnected",
+			  G_CALLBACK (drive_disconnected), client);
+	
+	
+}
+
+static void
+disconnect_client_from_volume_monitor (const GNOME_VFS_Client client)
+{
+	GnomeVFSVolumeMonitor *monitor;
+
+	monitor = gnome_vfs_get_volume_monitor ();
+
+	g_signal_handlers_disconnect_by_func (monitor, G_CALLBACK (volume_mounted), client);
+	g_signal_handlers_disconnect_by_func (monitor, G_CALLBACK (volume_pre_unmount), client);
+	g_signal_handlers_disconnect_by_func (monitor, G_CALLBACK (volume_unmounted), client);
+	g_signal_handlers_disconnect_by_func (monitor, G_CALLBACK (drive_connected), client);
+	g_signal_handlers_disconnect_by_func (monitor, G_CALLBACK (drive_disconnected), client);
+}
+
+static void
+deregister_volume_monitor (PortableServer_Servant _servant,
+			   const GNOME_VFS_Client client,
+			   CORBA_Environment * ev)
+{
+	disconnect_client_from_volume_monitor (client);
+}
+
+static GNOME_VFS_VolumeList *
+get_volumes (PortableServer_Servant _servant,
+	     const GNOME_VFS_Client client,
+	     CORBA_Environment * ev)
+{
+	GList *volumes, *l;
+	GnomeVFSVolumeMonitor *monitor;
+	GNOME_VFS_VolumeList *list;
+	int len, i;
+	
+	monitor = gnome_vfs_get_volume_monitor ();
+
+	volumes = gnome_vfs_volume_monitor_get_mounted_volumes (monitor);
+
+	len = g_list_length (volumes);
+	list = CORBA_sequence_GNOME_VFS_Volume__alloc ();
+	list->_buffer = CORBA_sequence_GNOME_VFS_Volume_allocbuf (len);
+	list->_length = len;
+	list->_maximum = len;
+
+	for (i = 0, l = volumes; l != NULL; l = l->next, i++) {
+		gnome_vfs_volume_to_corba (l->data, &list->_buffer[i]);
+		gnome_vfs_volume_unref (l->data);
+	}
+	g_list_free (volumes);
+
+	return list;
+}
+
+static GNOME_VFS_DriveList *
+get_drives (PortableServer_Servant _servant,
+	    const GNOME_VFS_Client client,
+	    CORBA_Environment * ev)
+{
+	GList *drives, *l;
+	GnomeVFSVolumeMonitor *monitor;
+	GNOME_VFS_DriveList *list;
+	int len, i;
+	
+	monitor = gnome_vfs_get_volume_monitor ();
+
+	drives = gnome_vfs_volume_monitor_get_connected_drives (monitor);
+
+	len = g_list_length (drives);
+	list = CORBA_sequence_GNOME_VFS_Drive__alloc ();
+	list->_buffer = CORBA_sequence_GNOME_VFS_Drive_allocbuf (len);
+	list->_length = len;
+	list->_maximum = len;
+
+	for (i = 0, l = drives; l != NULL; l = l->next, i++) {
+		gnome_vfs_drive_to_corba (l->data, &list->_buffer[i]);
+		gnome_vfs_drive_unref (l->data);
+	}
+	g_list_free (drives);
+
+	return list;
+}
+
+static void
+emit_pre_unmount_volume (PortableServer_Servant _servant,
+			 const GNOME_VFS_Client client,
+			 const CORBA_long id,
+			 CORBA_Environment * ev)
+{
+	GnomeVFSVolumeMonitor *monitor;
+	GnomeVFSVolume *volume;
+	
+	monitor = gnome_vfs_get_volume_monitor ();
+
+	volume = gnome_vfs_volume_monitor_get_volume_by_id (monitor, id);
+	if (volume != NULL) {
+		gnome_vfs_volume_monitor_emit_pre_unmount (monitor,
+							   volume);
+		gnome_vfs_volume_unref (volume);
+	}
 }
 
 void
@@ -271,9 +498,9 @@ gnome_vfs_daemon_finalize (GObject *object)
 }
 
 static void
-gnome_vfs_daemon_instance_init (GnomeVFSDaemon *daemon)
+gnome_vfs_daemon_instance_init (GnomeVFSDaemon *daemon_obj)
 {
-	bonobo_object_set_immortal (BONOBO_OBJECT (daemon), TRUE);
+	bonobo_object_set_immortal (BONOBO_OBJECT (daemon_obj), TRUE);
 }
 
 static void
@@ -287,6 +514,12 @@ gnome_vfs_daemon_class_init (GnomeVFSDaemonClass *klass)
 	epv->registerClient   = register_client;
 	epv->deRegisterClient = de_register_client;
 
+	epv->registerVolumeMonitor = register_volume_monitor;
+	epv->deRegisterVolumeMonitor = deregister_volume_monitor;
+	epv->getVolumes = get_volumes;
+	epv->getDrives = get_drives;
+	epv->emitPreUnmountVolume = emit_pre_unmount_volume;
+	
 	gnome_vfs_init ();
 }
 
@@ -297,18 +530,18 @@ gnome_vfs_daemon_factory (BonoboGenericFactory *factory,
 {
         PortableServer_POA poa;
 	
-	if (!daemon) {
-		daemon = g_object_new (GNOME_TYPE_VFS_DAEMON, NULL);
+	if (!the_daemon) {
+		the_daemon = g_object_new (GNOME_TYPE_VFS_DAEMON, NULL);
 
 		poa = bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_REQUEST);
-		async_daemon = g_object_new (GNOME_TYPE_VFS_ASYNC_DAEMON,
+		the_async_daemon = g_object_new (GNOME_TYPE_VFS_ASYNC_DAEMON,
 					     "poa", poa,
 					     NULL);
 		CORBA_Object_release ((CORBA_Object)poa, NULL);
-		bonobo_object_add_interface (BONOBO_OBJECT (daemon),
-					     BONOBO_OBJECT (async_daemon));
+		bonobo_object_add_interface (BONOBO_OBJECT (the_daemon),
+					     BONOBO_OBJECT (the_async_daemon));
 	}
-	return BONOBO_OBJECT (daemon);
+	return BONOBO_OBJECT (the_daemon);
 }
 
 int
@@ -336,9 +569,9 @@ main (int argc, char *argv [])
 		
 		bonobo_object_unref (BONOBO_OBJECT (factory));
 
-		if (daemon) {
-			bonobo_object_set_immortal (BONOBO_OBJECT (daemon), FALSE);
-			bonobo_object_unref (BONOBO_OBJECT (daemon));
+		if (the_daemon) {
+			bonobo_object_set_immortal (BONOBO_OBJECT (the_daemon), FALSE);
+			bonobo_object_unref (BONOBO_OBJECT (the_daemon));
 		}
 
 		gnome_vfs_shutdown();

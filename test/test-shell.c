@@ -978,8 +978,8 @@ get_input_string (const char *prompt)
 }
 
 static void
-authentication_callback (gconstpointer in, size_t in_size,
-			 gpointer out, size_t out_size,
+authentication_callback (gconstpointer in, gsize in_size,
+			 gpointer out, gsize out_size,
 			 gpointer user_data)
 {
  	GnomeVFSModuleCallbackAuthenticationIn *in_real;

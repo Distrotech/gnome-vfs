@@ -45,13 +45,33 @@ daemon_dir_handle_free (DaemonDirHandle *handle)
 	g_free (handle);
 }
 
+static CORBA_char *
+corba_string_or_null_dup (char *str)
+{
+	if (str != NULL) {
+		return CORBA_string_dup (str);
+	} else {
+		return CORBA_string_dup ("");
+	}
+}
+
+static char *
+decode_corba_string_or_null (CORBA_char *str, gboolean empty_is_null)
+{
+	if (empty_is_null && *str == 0) {
+		return NULL;
+	} else {
+		return g_strdup (str);
+	}
+}
+
 void
-_gnome_vfs_daemon_convert_from_corba_file_info (const GNOME_VFS_FileInfo *corba_info,
-						GnomeVFSFileInfo *file_info)
+gnome_vfs_daemon_convert_from_corba_file_info (const GNOME_VFS_FileInfo *corba_info,
+					       GnomeVFSFileInfo *file_info)
 {
 	g_free (file_info->name);
 	
-	file_info->name = g_strdup (corba_info->name);
+	file_info->name = decode_corba_string_or_null (corba_info->name, TRUE);
 
 	file_info->valid_fields = (GnomeVFSFileInfoFields) corba_info->valid_fields;
 	file_info->type = (GnomeVFSFileType) corba_info->type;
@@ -81,10 +101,10 @@ _gnome_vfs_daemon_convert_from_corba_file_info (const GNOME_VFS_FileInfo *corba_
 }
 
 void
-_gnome_vfs_daemon_convert_to_corba_file_info (const GnomeVFSFileInfo *file_info,
-					      GNOME_VFS_FileInfo *corba_info)
+gnome_vfs_daemon_convert_to_corba_file_info (const GnomeVFSFileInfo *file_info,
+					     GNOME_VFS_FileInfo *corba_info)
 {
-	corba_info->name = CORBA_string_dup (file_info->name);
+	corba_info->name = corba_string_or_null_dup (file_info->name);
 
 	corba_info->valid_fields = file_info->valid_fields;
 	corba_info->type = file_info->type;
@@ -103,16 +123,16 @@ _gnome_vfs_daemon_convert_to_corba_file_info (const GnomeVFSFileInfo *file_info,
 	corba_info->ctime = file_info->ctime;
 
 	if (file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME) {
-		corba_info->symlink_name = CORBA_string_dup (file_info->symlink_name);
+		corba_info->symlink_name = corba_string_or_null_dup (file_info->symlink_name);
 	} else {
-		corba_info->symlink_name = CORBA_string_dup ("");
+		corba_info->symlink_name = corba_string_or_null_dup ("");
 	}
 		
 	corba_info->mime_type = NULL;
 	if (file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) {
-		corba_info->mime_type = CORBA_string_dup (file_info->mime_type);
+		corba_info->mime_type = corba_string_or_null_dup (file_info->mime_type);
 	} else {
-		corba_info->mime_type = CORBA_string_dup ("");
+		corba_info->mime_type = corba_string_or_null_dup ("");
 	}
 }
 
@@ -613,7 +633,7 @@ do_read_directory (GnomeVFSMethod *method,
 	g_assert (dir_handle->current_pos < dir_handle->current_list->_length);
 	
 	corba_info = &dir_handle->current_list->_buffer[dir_handle->current_pos++];
-	_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
+	gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 	if (dir_handle->current_pos == dir_handle->current_list->_length) {
 		CORBA_free (dir_handle->current_list);
 		dir_handle->current_list = NULL;
@@ -670,9 +690,9 @@ do_get_file_info (GnomeVFSMethod *method,
 	}
 
 	if (res == GNOME_VFS_OK) {
-		_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
-		CORBA_free (corba_info);
+		gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 	}
+	CORBA_free (corba_info);
 	
 	CORBA_Object_release (daemon, NULL);
 					  
@@ -714,9 +734,9 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	}
 
 	if (res == GNOME_VFS_OK) {
-		_gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
-		CORBA_free (corba_info);
+		gnome_vfs_daemon_convert_from_corba_file_info (corba_info, file_info);
 	}
+	CORBA_free (corba_info);
 	
 	return res;
 }
@@ -1034,7 +1054,7 @@ do_set_file_info (GnomeVFSMethod *method,
 	uri_str = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
 
 	corba_info = GNOME_VFS_FileInfo__alloc ();
-	_gnome_vfs_daemon_convert_to_corba_file_info (info, corba_info);
+	gnome_vfs_daemon_convert_to_corba_file_info (info, corba_info);
 	
 	client_call = _gnome_vfs_client_call_get (context);
 
@@ -1160,8 +1180,8 @@ do_find_directory (GnomeVFSMethod *method,
 
 	if (res == GNOME_VFS_OK) {
 		*result_uri = gnome_vfs_uri_new (result_uri_str);
-		CORBA_free (result_uri_str);
 	}
+	CORBA_free (result_uri_str);
 	
 	return res;
 }

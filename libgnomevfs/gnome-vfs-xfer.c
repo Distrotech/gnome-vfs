@@ -820,7 +820,9 @@ move_source_is_in_target (GnomeVFSURI *source, GnomeVFSURI *target)
 		gnome_vfs_uri_unref (parent);
 		parent = tmp;
 	}
-	gnome_vfs_uri_unref (parent);
+	if (parent != NULL) {
+		gnome_vfs_uri_unref (parent);
+	}
 	
 	return res;
 }
@@ -1270,13 +1272,13 @@ copy_file (GnomeVFSFileInfo *info,
 		GNOME_VFS_XFER_PHASE_OPENTARGET) != GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
 
 		result = copy_file_data (target_handle, source_handle,
-					progress, xfer_options, error_mode,
-					/* use an arbitrary default block size of 4096 
-					 * if one isn't available for this file system 
-					 */
-					(info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE && info->io_block_size > 0)
-						? info->io_block_size : 4096,
-					skip);
+					 progress, xfer_options, error_mode,
+					 /* use an arbitrary default block size of 8192
+					  * if one isn't available for this file system 
+					  */
+					 (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE && info->io_block_size > 0)
+					 ? info->io_block_size : 8192,
+					 skip);
 	}
 
 	if (result == GNOME_VFS_OK 
