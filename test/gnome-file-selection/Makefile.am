@@ -11,6 +11,7 @@ noinst_PROGRAMS =				\
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
+	-I$(top_srcdir)/libgnomevfs		\
 	$(GNOME_INCLUDEDIR)			\
 	-I$(top_srcdir)				\
 	-DICONDIR=\"$(datadir)/pixmaps/mc\"

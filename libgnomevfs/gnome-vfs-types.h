@@ -41,7 +41,7 @@
  * which is the string representation to be used in printf style expressions.
  * This is without the %, so for example for long it would be "ld"
  */
-#include <libgnomevfs/gnome-vfs-file-size.h>
+#include <gnome-vfs-file-size.h>
 
 
 /* Basic enumerations.  */

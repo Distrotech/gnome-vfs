@@ -1,3 +1,15 @@
+2000-06-27  Michael Meeks  <michael@helixcode.com>
+
+	* vfsConf.sh.in: touch to force script re-build.
+
+	* test/gnome-file-selection/Makefile.am (INCLUDES): add
+	-I$(top_srcdir)/libgnomevfs
+
+	* libgnomevfs/Makefile.am (libgnomevfsplatofrmincludedir): make path
+	slightly less gratuitous.
+
+	* libgnomevfs/gnome-vfs-types.h: rename include to gnome-vfs-file-size.h
+
 2000-06-26  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c: (gnome_vfs_mime_magic_parse):

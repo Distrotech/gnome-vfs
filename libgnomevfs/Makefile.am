@@ -124,7 +124,7 @@ noinst_HEADERS =				\
 	gnome-vfs-mime-private.h
 
 # Platform specific includes
-libgnomevfsplatofrmincludedir = $(libdir)/vfs/include/libgnomevfs
+libgnomevfsplatofrmincludedir = $(libdir)/vfs/include
 libgnomevfsplatofrminclude_HEADERS =			\
 	gnome-vfs-file-size.h
 
