@@ -376,6 +376,7 @@ gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 	case GNOME_VFS_OP_OPEN:
 	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
 	case GNOME_VFS_OP_READ:
+	case GNOME_VFS_OP_XFER:
 		g_free (notify_result);
 		break;
 		
