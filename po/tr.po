@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.3\n"
-"POT-Creation-Date: 2001-11-07 14:12-0500\n"
+"POT-Creation-Date: 2001-11-02 16:15-0800\n"
 "PO-Revision-Date: 2001-11-08 15:01+0200\n"
 "Last-Translator: Sinan Imamoglu <sinan_imam@yahoo.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -336,8 +336,7 @@ msgstr "Bilinmeyen op türü %u"
 
 # libgnomevfs-pthread/gnome-vfs-job.c:1000
 # libgnomevfs-pthread/gnome-vfs-job.c:1145
-#: libgnomevfs/gnome-vfs-job.c:1005
-#: libgnomevfs/gnome-vfs-job.c:1150
+#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Açýk GIOChannel %s için boru yaratýlamýyor"
@@ -358,4 +357,3 @@ msgstr "Ýþlem durduruldu"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Bilinmeyen GnomeVFSSeekPosition %d"
-
