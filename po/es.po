@@ -848,7 +848,7 @@ msgstr "página de manual (comprimida)"
 
 #: data/mime/gnome-vfs.keys.in.h:209
 msgid "memory dump"
-msgstr "vaciado de memoria"
+msgstr "volcado de memoria"
 
 #: data/mime/gnome-vfs.keys.in.h:210
 msgid "message digest"
