@@ -1,3 +1,9 @@
+2000-05-26  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys: Added one more description.
+	This had been sitting around on my disk for awhile but
+	I forgot.
+
 2000-05-26  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.h: Header for upcoming mime

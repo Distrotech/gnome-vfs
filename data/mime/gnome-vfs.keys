@@ -158,6 +158,10 @@ application/x-shared-library
 	description=shared library
 	icon-filename=gnome-library.png
 
+application/x-shared-library-la
+	description=shared library
+	icon-filename=gnome-library.png
+
 application/x-stuffit
 	description=Macintosh StuffIt archive 
 
