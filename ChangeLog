@@ -1,3 +1,8 @@
+2002-05-16  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-application-registry.c (application_sync) :
+	add some safety.  Just in case.
+
 2002-05-16  Michael Meeks  <michael@ximian.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c

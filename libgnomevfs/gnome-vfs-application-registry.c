@@ -537,6 +537,7 @@ application_sync (Application *application, FILE *fp)
 	GList *li;
 
 	g_return_if_fail (application != NULL);
+	g_return_if_fail (application->app_id != NULL);
 	g_return_if_fail (fp != NULL);
 
 	fprintf (fp, "%s\n", application->app_id);
