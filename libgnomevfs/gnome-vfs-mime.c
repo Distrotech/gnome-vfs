@@ -354,7 +354,7 @@ mime_init (void)
 
 	mime_data_date_tracker = gnome_vfs_file_date_tracker_new ();
 	
-	gnome_mime_dir.dirname = g_strconcat (GNOME_VFS_DATADIR, "/mime-info", NULL);
+	gnome_mime_dir.dirname = g_strdup (DATADIR "/mime-info");
 	gnome_mime_dir.system_dir = TRUE;
 
 	user_mime_dir.dirname = g_strconcat (g_get_home_dir (), "/.gnome/mime-info", NULL);

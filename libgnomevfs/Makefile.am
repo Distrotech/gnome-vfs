@@ -1,18 +1,20 @@
 NULL = 
 
 INCLUDES =					\
-	-DGNOME_VFS_CONFDIR=\"$(sysconfdir)\"	\
-	-DGNOME_VFS_DATADIR=\"$(datadir)\"	\
-	-DGNOME_VFS_PREFIX=\"$(prefix)\"	\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	$(LIBGNOMEVFS_CFLAGS)			\
 	$(VFS_CFLAGS)				\
+	-D_FILE_OFFSET_BITS=64			\
+	-D_BSD_SOURCE				\
 	-D_GNU_SOURCE				\
-	-D_REENTRANT				\
+	-D_LARGEFILE64_SOURCE                   \
 	-D_POSIX_PTHREAD_SEMANTICS		\
+	-D_REENTRANT				\
 	-DG_DISABLE_DEPRECATED			\
+	-DDATADIR=\"$(datadir)\"		\
 	-DLIBDIR=\"$(libdir)\"			\
+	-DPREFIX=\"$(prefix)\"			\
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
 	-DG_LOG_DOMAIN=\"libgnomevfs\"		\
 	$(NULL)
@@ -22,7 +24,7 @@ lib_LTLIBRARIES = libgnomevfs-2.la
 EXTRA_DIST =					\
 	getdelim.c
 
-libgnomevfs_2_la_LIBADD =				\
+libgnomevfs_2_la_LIBADD =			\
 	$(LIBGNOMEVFS_LIBS)			\
 	$(NULL)
 
@@ -152,7 +154,7 @@ libgnomevfs_2_la_SOURCES =			\
 
 # Platform specific includes
 libgnomevfsplatformincludedir = $(libdir)/gnome-vfs-2.0/include
-libgnomevfsplatforminclude_HEADERS =			\
+libgnomevfsplatforminclude_HEADERS =		\
 	gnome-vfs-file-size.h
 
 TESTS = check-headers.pl

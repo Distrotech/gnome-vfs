@@ -13,12 +13,9 @@
  *    Pavel Cisler <pavel@eazel.com>
  */
 
+#include <config.h>
 #include "gnome-vfs-mime-magic.h"
 
-/* needed for S_ISSOCK with 'gcc -ansi -pedantic' on GNU/Linux */
-#ifndef _BSD_SOURCE
-#  define _BSD_SOURCE 1
-#endif
 #include <sys/types.h>
 
 #include "gnome-vfs-mime-sniff-buffer-private.h"
@@ -557,14 +554,11 @@ static GnomeMagicEntry *mime_magic_table = NULL;
 static GnomeMagicEntry *
 gnome_vfs_mime_get_magic_table (void)
 {
-	char *filename;
-
 	G_LOCK (mime_magic_table_mutex);
 
 	if (mime_magic_table == NULL) {
-		filename = g_strconcat (GNOME_VFS_CONFDIR, "/gnome-vfs-mime-magic", NULL);
-		mime_magic_table = gnome_vfs_mime_magic_parse (filename, NULL);
-		g_free (filename);
+		mime_magic_table = gnome_vfs_mime_magic_parse
+			(SYSCONFDIR "/gnome-vfs-mime-magic" , NULL);
 	}
 
 	G_UNLOCK (mime_magic_table_mutex);

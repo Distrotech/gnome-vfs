@@ -1,3 +1,40 @@
+2002-02-09  Darin Adler  <darin@bentspoon.com>
+
+	Fix some 64-bit problems by setting flags properly.
+
+	* libgnomevfs/Makefile.am:
+	* modules/Makefile.am:
+	GNOME_VFS_CONFDIR -> SYSCONFDIR
+	GNOME_VFS_DATADIR -> DATADIR
+	GNOME_VFS_PREFIX -> PREFIX
+	Define _FILE_OFFSET_BITS=64; needed to get large file
+	sizes from stat.
+	Define _BSD_SOURCE; previous defined in some source files,
+	but it does no harm to define it consistently.
+	Define _LARGEFILE64_SOURCE; previously defined in some
+	source files, but affects the stat structure, so needs to
+	be consistent across more files.
+
+	* libgnomevfs/gnome-vfs-application-registry.c:
+	(gnome_vfs_application_registry_init): GNOME_VFS_DATADIR -> DATADIR
+	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_init):
+	GNOME_VFS_DATADIR -> DATADIR
+	* libgnomevfs/gnome-vfs-mime-magic.c: Remove the _BSD_SOURCE define
+	now that it's handled on the command line.
+	(gnome_vfs_mime_get_magic_table): GNOME_VFS_CONFDIR -> SYSCONFDIR
+	* libgnomevfs/gnome-vfs-mime.c: (mime_init): GNOME_VFS_DATADIR ->
+	DATADIR
+	* libgnomevfs/gnome-vfs-module-shared.c: Remove the _BSD_SOURCE and
+	_LARGEFILE64_SOURCE defines, not that they are handled on the
+	command line.
+	* libgnomevfs/gnome-vfs-module-shared.h: Add a check so that we fail
+	to compile if there are incompatibilities in the definition of the
+	stat structure.
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_icon_path_from_filename): GNOME_VFS_PREFIX -> PREFIX
+	* modules/file-method.c: Remove the _LARGEFILE64_SOURCE define, now
+	that it's handled on the command line.
+
 2002-02-05  Havoc Pennington  <hp@redhat.com>
 
 	* configure.in (HAVE_OPENSSL): don't AC_SUBST OPENSSL_CFLAGS

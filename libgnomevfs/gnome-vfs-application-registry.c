@@ -955,7 +955,7 @@ gnome_vfs_application_registry_init (void)
 	 * Setup the descriptors for the information loading
 	 */
 
-	gnome_registry_dir.dirname = g_strconcat (GNOME_VFS_DATADIR, "/application-registry", NULL);
+	gnome_registry_dir.dirname = g_strdup (DATADIR "/application-registry");
 	gnome_registry_dir.system_dir = TRUE;
 	
 	user_registry_dir.dirname = g_strconcat (g_get_home_dir(), "/.gnome/application-info", NULL);

@@ -26,8 +26,6 @@
 
 #include <config.h>
 
-#define _LARGEFILE64_SOURCE
-
 #include <libgnomevfs/gnome-vfs-cancellation.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-i18n.h>
@@ -56,10 +54,6 @@
 #include <fam.h>
 #include <glib/giochannel.h>
 #endif
-
-
-
-/*#include "file-method.h"*/
 
 #ifdef HAVE_FAM
 FAMConnection *fam_connection = NULL;

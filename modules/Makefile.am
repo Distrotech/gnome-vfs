@@ -8,13 +8,18 @@ INCLUDES =					\
 	$(MODULES_FILE_CFLAGS) 			\
 	$(LIBEFS_CFLAGS)			\
 	$(VFS_CFLAGS)				\
+	-D_FILE_OFFSET_BITS=64			\
+	-D_BSD_SOURCE				\
 	-D_GNU_SOURCE				\
-	-D_REENTRANT				\
+	-D_LARGEFILE64_SOURCE			\
 	-D_POSIX_PTHREAD_SEMANTICS		\
+	-D_REENTRANT				\
 	-DG_DISABLE_DEPRECATED			\
 	-DDATADIR=\"$(datadir)\"		\
+	-DPREFIX=\"$(prefix)\"			\
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
-	-DPREFIX=\"$(prefix)\"
+	-DG_LOG_DOMAIN=\"gnome-vfs-modules\"	\
+	$(NULL)
 
 EXTRA_DIST =					\
 	applications.vfolder-info.in		\

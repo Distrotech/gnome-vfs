@@ -797,7 +797,7 @@ gnome_vfs_mime_init (void)
 	 * Setup the descriptors for the information loading
 	 */
 
-	gnome_mime_dir.dirname = g_strconcat (GNOME_VFS_DATADIR, "/mime-info", NULL);
+	gnome_mime_dir.dirname = g_strdup (DATADIR "/mime-info");
 	gnome_mime_dir.system_dir = TRUE;
 	
 	user_mime_dir.dirname  = g_strconcat (g_get_home_dir(), "/.gnome/mime-info", NULL);

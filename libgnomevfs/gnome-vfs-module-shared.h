@@ -25,24 +25,29 @@
 #ifndef GNOME_VFS_MODULE_SHARED_H
 #define GNOME_VFS_MODULE_SHARED_H
 
+/* This check is for Linux, but should be harmless on other platforms. */
+#if !defined (_LARGEFILE64_SOURCE) || _FILE_OFFSET_BITS+0 != 64
+#error configuration macros set inconsistently, gnome_vfs_stat_to_file_info will malfunction
+#endif
+
 #include <libgnomevfs/gnome-vfs-file-info.h>
 
 G_BEGIN_DECLS
 
-const gchar *   gnome_vfs_mime_type_from_mode 	(mode_t mode);
+const gchar *   gnome_vfs_mime_type_from_mode 	(mode_t             mode);
 
-void            gnome_vfs_stat_to_file_info	(GnomeVFSFileInfo *file_info,
+void            gnome_vfs_stat_to_file_info	(GnomeVFSFileInfo  *file_info,
 					    	 const struct stat *statptr);
 
-GnomeVFSResult  gnome_vfs_set_meta          	(GnomeVFSFileInfo *info,
-					    	 const gchar *file_name,
-					    	 const gchar *meta_key);
+GnomeVFSResult  gnome_vfs_set_meta          	(GnomeVFSFileInfo  *info,
+					    	 const char        *file_name,
+					    	 const char        *meta_key);
 
-GnomeVFSResult  gnome_vfs_set_meta_for_list 	(GnomeVFSFileInfo *info,
-					    	 const gchar *file_name,
-					    	 const GList *meta_keys);
+GnomeVFSResult  gnome_vfs_set_meta_for_list 	(GnomeVFSFileInfo  *info,
+					    	 const char        *file_name,
+					    	 const GList       *meta_keys);
 	
-const char     *gnome_vfs_get_special_mime_type (GnomeVFSURI *uri);
+const char     *gnome_vfs_get_special_mime_type (GnomeVFSURI       *uri);
 
 G_END_DECLS
 

@@ -764,7 +764,7 @@ gnome_vfs_icon_path_from_filename (const char *relative_filename)
 	gnome_var = g_getenv ("GNOME_PATH");
 
 	if (gnome_var == NULL) {
-		gnome_var = GNOME_VFS_PREFIX;
+		gnome_var = PREFIX;
 	}
 
 	paths = g_strsplit (gnome_var, ":", 0); 
