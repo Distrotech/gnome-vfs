@@ -29,7 +29,6 @@
 #ifdef HAVE_GCONF
 #include <gconf/gconf.h>
 #endif
-#include <gtk/gtksignal.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>

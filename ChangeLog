@@ -1,3 +1,11 @@
+Wed Aug 30 22:51:47 2000  George Lebl <jirka@5z.com>
+
+	* libgnomevfs/gnome-vfs-handle.c,
+	  libgnomevfs/gnome-vfs-mime-handlers.c, libgnomevfs/gnome-vfs-mime.c:
+	  Remove the <gtk/*.h> includes as they are not used and they mess
+	  with compilation with gnome-libs2  (this change is completely
+	  neutral otherwise)
+
 2000-08-30  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-utils.h:

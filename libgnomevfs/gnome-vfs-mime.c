@@ -41,7 +41,6 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <regex.h>
-#include <gtk/gtk.h>
 #include <string.h>
 #include <ctype.h>
 
