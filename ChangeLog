@@ -1,3 +1,9 @@
+2002-07-27  Ian McKellar  <yakk@yakk.net>
+
+	* libgnomevfs/gnome-vfs-cancellable-ops.c:
+	(gnome_vfs_read_cancellable), (gnome_vfs_write_cancellable):
+	Check for NULL bytes_(read|written), pass in dummy pointer.
+
 2002-07-26  Ian McKellar  <yakk@yakk.net>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (copy_file):
