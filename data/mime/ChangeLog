@@ -1,3 +1,17 @@
+2001-06-13  Aaron Brick  <aaron@lithic.org>
+
+	* gnome-vfs.keys.in:
+	
+	applied patch from Timothy Alan Chandler <fusion@heavywater.net>
+	which corrects icon path and filenames. many were missing extension
+	".png", and many needed to be preceded with the directory
+	"nautilus/". NB: we suspect a kludge is in place which made this
+	work before; it should be eliminated, afaict.
+
+2001-06-13  Aaron Brick  <aaron@lithic.org>
+
+	* changed my contact address for missing types.
+
 2001-06-06  Seth Nickell  <snickell@stanford.edu>
 
 	* gnome-vfs.applications:
