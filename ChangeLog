@@ -1,3 +1,50 @@
+2001-02-26  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+	
+	Fixed bug 7039, User-entered application that matches
+	built-in application can't be deleted
+	
+	Fixed bug 7040, User-entered application that matches built-in
+	application doesn't go away when "all user changes" reverted
+		
+	Fixed bug 7064, New mime types added by user using the capplet
+	do not appear when capplet is launched again.
+	
+	* mime-type-capplet/Makefile.am:
+	Add libuuid to build.
+	
+	* mime-type-capplet/libuuid/Makefile.am:
+	* mime-type-capplet/libuuid/clear.c: (uuid_clear):
+	* mime-type-capplet/libuuid/compare.c: (uuid_compare):
+	* mime-type-capplet/libuuid/copy.c: (uuid_copy):
+	* mime-type-capplet/libuuid/gen_uuid.c: (get_random_bytes),
+	(get_node_id), (get_clock), (uuid_generate_time),
+	(uuid_generate_random), (uuid_generate):
+	* mime-type-capplet/libuuid/gen_uuid_nt.c: (Nt5), (uuid_generate):
+	* mime-type-capplet/libuuid/isnull.c: (uuid_is_null):
+	* mime-type-capplet/libuuid/pack.c: (uuid_pack):
+	* mime-type-capplet/libuuid/parse.c: (uuid_parse):
+	* mime-type-capplet/libuuid/tst_uuid.c: (main):
+	* mime-type-capplet/libuuid/unpack.c: (uuid_unpack):
+	* mime-type-capplet/libuuid/unparse.c: (uuid_unparse):
+	* mime-type-capplet/libuuid/uuid.h:
+	* mime-type-capplet/libuuid/uuidP.h:
+	* mime-type-capplet/libuuid/uuid_time.c: (uuid_time), (uuid_type),
+	(uuid_variant), (variant_string), (main):
+	Add libuuid to capplet and link statically. This is sort of sad. It would
+	be nice if gnome had a uuid library, but at this time it does not.
+		
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_mime_window):
+	Call proper API to ensure that new mime type is added to the database.
+		
+	(add_or_update_application), (add_item_to_application_list),
+	(run_edit_or_new_application_dialog):
+	Create and assign a uuid to user defined application so that we never
+	conflict with system defined types that use the application name
+	as the application id.
+	
 2001-02-26  Darin Adler  <darin@eazel.com>
 
 	reviewed by: Ramiro Estrugo <ramiro@eazel.com>
