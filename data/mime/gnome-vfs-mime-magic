@@ -412,7 +412,7 @@
 0	string		PI		PC pointer image data
 0	string		CI		PC color icon data
 0	string		CP		PC color pointer image data
-0	string		/*\ XPM\ */	X pixmap image text
+0	string		/*\ XPM\ */	image/x-xpm
 0	leshort		0xcc52		RLE image data,
 0	string		Imagefile\ version-	iff image data
 0	belong		0x59a66a95	image/x-sun-raster
