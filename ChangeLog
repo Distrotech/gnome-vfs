@@ -1,3 +1,13 @@
+2003-11-12  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/gnome-vfs-daemon.c: (gnome_vfs_daemon_factory):
+	* libgnomevfs/gnome-vfs-unix-mounts.c:
+	(_gnome_vfs_get_current_unix_mounts):
+	* libgnomevfs/gnome-vfs-utils.c:
+	* modules/cdda-method.c:
+	* modules/ssh-method.c:
+	FreeBSD fixes from Joe Marcus Clarke
+
 2003-11-12  Christophe Fergeau  <teuf@gnome.org>
 
 	* modules/http-method.c: ignore non significant white spaces in webdav

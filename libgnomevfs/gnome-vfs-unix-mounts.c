@@ -398,16 +398,6 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 		    	mount_entry->is_read_only = TRUE;
 		}
 
-#ifdef HAVE_SYS_SYSCTL_H
-		if (usermnt != 0) {
-			if (stat (fstab->fs_file, &sb) == 0) {
-				if (sb.st_uid != 0) {
-					mount_entry->is_user_mountable = TRUE;
-				}
-			}
-		}
-#endif
-
 		*return_list = g_list_prepend (*return_list, mount_entry);
 	}
 

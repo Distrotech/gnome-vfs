@@ -14,7 +14,7 @@
 
 /* Global daemon */
 static GnomeVFSDaemon *the_daemon = NULL;
-static GnomeVFSAsyncDaemon *async_daemon = NULL;
+static GnomeVFSAsyncDaemon *the_async_daemon = NULL;
 
 typedef struct {
 	GNOME_VFS_Client client;
@@ -534,12 +534,12 @@ gnome_vfs_daemon_factory (BonoboGenericFactory *factory,
 		the_daemon = g_object_new (GNOME_TYPE_VFS_DAEMON, NULL);
 
 		poa = bonobo_poa_get_threaded (ORBIT_THREAD_HINT_PER_REQUEST);
-		async_daemon = g_object_new (GNOME_TYPE_VFS_ASYNC_DAEMON,
+		the_async_daemon = g_object_new (GNOME_TYPE_VFS_ASYNC_DAEMON,
 					     "poa", poa,
 					     NULL);
 		CORBA_Object_release ((CORBA_Object)poa, NULL);
 		bonobo_object_add_interface (BONOBO_OBJECT (the_daemon),
-					     BONOBO_OBJECT (async_daemon));
+					     BONOBO_OBJECT (the_async_daemon));
 	}
 	return BONOBO_OBJECT (the_daemon);
 }
