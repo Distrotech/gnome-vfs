@@ -1,3 +1,7 @@
+2001-01-29  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* configure.in: upped version to 0.5.0
+
 2001-01-27  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* Makefile.am: added xml-i18n files to EXTRA_DISTS
