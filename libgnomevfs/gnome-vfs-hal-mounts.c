@@ -21,9 +21,9 @@
    Author: David Zeuthen <david@fubar.dk>
 */
 
-#ifdef USE_HAL
-
 #include <config.h>
+
+#ifdef USE_HAL
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -876,7 +876,7 @@ _hal_add_drive_no_partitions (
 		drive->priv->icon = g_strdup (icon);
 		drive->priv->display_name = _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, name);
 		drive->priv->is_user_visible = computer_visible;
-		drive->priv->volume = NULL;
+		drive->priv->volumes = NULL;
 		drive->priv->hal_udi = g_strdup (udi);
 		
 		_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
@@ -1051,7 +1051,7 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 		drive->priv->icon = g_strdup (icon);
 		drive->priv->display_name = _gnome_vfs_volume_monitor_uniquify_drive_name (volume_monitor, name);
 		drive->priv->is_user_visible = computer_visible;
-		drive->priv->volume = NULL;
+		drive->priv->volumes = NULL;
 
 		drive->priv->hal_udi = g_strdup (
 #ifdef HAL_ONLY_SHOW_MOUNTED_VOLUMES
@@ -1119,7 +1119,7 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 			vol->priv->hal_udi = g_strdup (udi);
 			
 			vol->priv->drive = drive;
-			_gnome_vfs_drive_set_mounted_volume (drive, vol);
+			_gnome_vfs_drive_add_mounted_volume (drive, vol);
 			
 			_gnome_vfs_volume_monitor_mounted (volume_monitor, vol);			gnome_vfs_volume_unref (vol);
 

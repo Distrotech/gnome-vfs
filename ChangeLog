@@ -1,7 +1,13 @@
+2004-07-22  Christophe Fergeau  <teuf@gnome.org>
+
+	* daemon/Makefile.am
+	* libgnomevfs/gnome-vfs-hal-mounts.c: fix compilation when HAL support
+	  is enabled. Fixes bug #148181
+
 2004-07-22  Christophe Fergeau <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-utils.c: lower case the uri scheme before
-	  looking for a handler for it.
+	  looking for a handler for it. Fixes #139346
 	* doc/tmpl/gnome-vfs-result.sgml: sync with gnome-vfs-result.h changes
 
 2004-07-22  Ray Strode  <rstrode@redhat.com>
