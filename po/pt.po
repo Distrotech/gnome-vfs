@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.6\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-02-01 16:30+0000\n"
+"Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
+"POT-Creation-Date: 2004-02-18 22:51+0000\n"
+"PO-Revision-Date: 2004-02-18 22:55+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,34 @@ msgstr "Incapaz de inicializar Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Incapaz de inicializar gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:180
+#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Sistema de ficheiros"
+
+#: gtk/gtkfilesystemgnomevfs.c:1458
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Falha ao gravar marcadores (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "Incapaz de obter informação para o ficheiro '%s': %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Falha ao abrir o ficheiro '%s': %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr ""
+"Falha ao ler a imagem '%s': motivo desconhecido, provavelmente um ficheiro "
+"de imagem corrompido"
+
+#: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
 msgstr "Unidade ISO 9660"
 
@@ -84,112 +111,113 @@ msgid "Hardware Device Volume"
 msgstr "Unidade de Dispositivo de Hardware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
+#: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
 msgstr "Unidade Linux Ext2"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
 msgstr "Unidade Linux Ext3"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:46
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
 msgstr "Unidade MSDOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
 msgstr "Unidade MacOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
 msgstr "Unidade CDROM"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
 msgstr "Unidade CDROM Hsfs"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
 msgstr "Unidade JFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:52
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
 msgstr "Unidade Windows NT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
 msgstr "Unidade de Sistema"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
 msgstr "Unidade em Memória"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
 msgstr "Unidade Minix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
 msgstr "Unidade de Rede NFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
 msgstr "Unidade Netware"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
 msgstr "Unidade Linux ReiserFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
 msgstr "Unidade Partilhado Windows"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
 msgstr "Unidade SuperMount"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
 msgstr "Unidade DVD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
 msgstr "Unidade Solaris/BSD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
 msgstr "Unidade Solaris Udfs"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
 msgstr "Unidade Solaris Pcfs"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
 msgstr "Unidade DOS Melhorado"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows VFAT Volume"
 msgstr "Unidade Windows VFAT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Xenix Volume"
 msgstr "Unidade Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XFS Linux Volume"
 msgstr "Unidade Linux XFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XIAFS Volume"
 msgstr "Unidade XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:102
+#: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -627,22 +655,22 @@ msgstr "Ferramentas"
 msgid "Windows"
 msgstr "Janelas"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "Rede"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "Pasta Pessoal"
-
-#: modules/computer-method.c:557
-msgid "Filesystem"
-msgstr "Sistema de ficheiros"
 
 #: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d desconhecida"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Rede Windows"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -1007,10 +1035,6 @@ msgstr "Utilizar proxy HTTP"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Utilizador a indicar como autenticação ao efectuar proxy de HTTP."
-
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "Rede Windows"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
