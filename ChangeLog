@@ -1,3 +1,15 @@
+1999-09-07  Michael Meeks  <michael@imaginator.com>
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_open_from_uri): Added new
+	improved re-open for non-random capable file methods.
+
+	* doc/writing-modules.txt: Updated.
+
+	* libgnomevfs/gnome-vfs-seekable.c: Actualy does something now.
+
+	* modules/file-method.c (do_create): Fixed unix_mode on created file
+	to allow reading from a created file.
+
 1999-09-06  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c (gnome_vfs_job_new):

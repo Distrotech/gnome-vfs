@@ -27,6 +27,8 @@
 
 #include <stdio.h>
 
+#include <glib.h>
+
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 
@@ -61,45 +63,81 @@ typedef struct  {
 	GnomeVFSMethod       *child_method;
 
 	/* Housekeeping info */
-	FILE                 *fd;
-	GnomeVFSFileSize      length;
+	GnomeVFSHandle       *tmp_file;
 	GnomeVFSOpenMode      open_mode;
-	gboolean              pre_read;
+
+	/* Each SeekableMethodHandle has a unique wrapper method */
+	GnomeVFSMethod       *wrapper_method;
 } SeekableMethodHandle;
 
 #define CHECK_IF_SUPPORTED(method, what)		\
 G_STMT_START{						\
-	if (method->child_method->what == NULL)		\
+	if (method->what == NULL)			\
 		return GNOME_VFS_ERROR_NOTSUPPORTED;	\
 }G_STMT_END
 
-#define INVOKE(result, method, what, params)		\
+#define INVOKE_CHILD(result, method, what, params)	\
 G_STMT_START{						\
-	CHECK_IF_SUPPORTED (method, what);		\
+	CHECK_IF_SUPPORTED (method->child_method, what);\
 	(result) = method->child_method->what params;	\
 }G_STMT_END
 
-#define CHECK_INIT(handle)		\
-G_STMT_START{				\
-	if (!handle->pre_read) {       	\
-		init_seek (handle);	\
-		handle->pre_read = TRUE;\
-	}				\
+#define CHECK_INIT(handle)			\
+G_STMT_START{					\
+	if (!handle->tmp_file) {		\
+		GnomeVFSResult result;		\
+		result = init_seek (handle);	\
+		if (result != GNOME_VFS_OK)	\
+			return result;		\
+	}					\
 }G_STMT_END
 
 static GnomeVFSResult
 init_seek (SeekableMethodHandle *mh)
 {
-	GnomeVFSFileSize blk_read;
 	GnomeVFSResult   result;
-	guint8           buffer[4096];
+	char            *stem;
+	char            *txt_uri;
+	
+	/* Create a temporary file name */
+	if (!(stem = tmpnam (NULL)))
+		return GNOME_VFS_ERROR_NOSPACE;
 
-	mh->length       = 0;
-	do {
-		INVOKE (result, mh, read, (mh->child_handle, buffer, 4096, &blk_read));
-		mh->length+= blk_read;
-	} while ((blk_read == 4096) &&
-		 (result == GNOME_VFS_OK));
+	txt_uri = g_strdup_printf ("file:%s", stem);
+
+	g_warning ("Opening temp seekable file '%s'\n", txt_uri);
+	
+	/* Open the file */
+	result = gnome_vfs_create (&mh->tmp_file, txt_uri, 
+				   GNOME_VFS_OPEN_READ|GNOME_VFS_OPEN_WRITE|
+				   GNOME_VFS_OPEN_RANDOM,
+				   TRUE, S_IWUSR|S_IRUSR);
+
+	g_free (txt_uri);
+
+	if (result != GNOME_VFS_OK)
+		return result;
+
+	/* Fill the file */
+	if (mh->open_mode & GNOME_VFS_OPEN_READ) {
+#define BLK_SIZE 4096
+		guint8           buffer[BLK_SIZE];
+		GnomeVFSFileSize blk_read, blk_write;
+		
+		do {
+			INVOKE_CHILD (result, mh, read, (mh->child_handle, buffer, BLK_SIZE, &blk_read));
+			if (result != GNOME_VFS_OK)
+				return result;
+			result = gnome_vfs_write (mh->tmp_file, buffer, blk_read, &blk_write);
+			if (result != GNOME_VFS_OK)
+				return result;
+			if (blk_write != blk_read)
+				return GNOME_VFS_ERROR_NOSPACE;
+
+		} while (blk_read == BLK_SIZE);
+#undef  BLK_SIZE
+		result = gnome_vfs_seek (mh->tmp_file, GNOME_VFS_SEEK_START, 0);
+	}
 
 	return result;
 }
@@ -132,13 +170,13 @@ gnome_vfs_seek_emulate (GnomeVFSURI *uri, GnomeVFSMethodHandle *child_handle,
 	m->tell     = do_tell;
 	m->truncate = do_truncate;
 
-	mh->child_handle = child_handle;
-	mh->child_method = uri->method;
-	mh->open_mode    = open_mode;
-	mh->fd           = tmpfile ();
-	mh->pre_read     = FALSE;
-	mh->length       = 0;
-	uri->method      = m;
+	mh->child_handle   = child_handle;
+	mh->child_method   = uri->method;
+	mh->open_mode      = open_mode;
+	mh->tmp_file       = NULL;
+	mh->wrapper_method = m;
+
+	uri->method        = m;
 
 	return (GnomeVFSMethodHandle *)mh;
 }
@@ -169,11 +207,25 @@ do_close (GnomeVFSMethodHandle *method_handle)
 	GnomeVFSResult result;
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 
-	/* FIXME: Chain the old method back into the URI / Handle !? */
-	if (mh->fd)
-		fclose (mh->fd);
-	mh->fd = NULL;
-	INVOKE (result, mh, close, (mh->child_handle));
+	if (mh->open_mode & GNOME_VFS_OPEN_WRITE) {
+		g_warning ("Writeback unimplemented");
+	}
+
+	result = gnome_vfs_close (mh->tmp_file);
+
+	g_warning ("FIXME: The temp file must be removed");
+
+	mh->tmp_file = NULL;
+
+	INVOKE_CHILD (result, mh, close, (mh->child_handle));
+
+	/* Cover your back. */
+	memset (mh->wrapper_method, 0xae, sizeof (GnomeVFSMethod));
+
+	g_free (mh->wrapper_method);
+	mh->wrapper_method = NULL;
+
+	g_free (mh);
 
 	return result;
 }
@@ -184,25 +236,10 @@ do_read (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read)
 {
-/*	GnomeVFSResult result;
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
-	gint read_val;
-
 	CHECK_INIT (mh);
 
-	do
-		read_val = read (file_handle->fd, buffer, num_bytes);
-	while (read_val == -1 && errno == EINTR);
-
-	if (read_val == -1) {
-		*bytes_read = 0;
-		return gnome_vfs_result_from_errno ();
-	} else {
-		*bytes_read = read_val;
-		return GNOME_VFS_OK;
-	}
-*/
-	return GNOME_VFS_OK;
+	return gnome_vfs_read (mh->tmp_file, buffer, num_bytes, bytes_read);
 }
 
 static GnomeVFSResult
@@ -211,16 +248,10 @@ do_write (GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSFileSize num_bytes,
 	  GnomeVFSFileSize *bytes_written)
 {
-/*	GnomeVFSResult result;
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
 
-	INVOKE (result, mh, write, (mh->child_handle, buffer, num_bytes, bytes_written));
-
-	mh->offset += *bytes_written;
-
-	return result;*/
-	return GNOME_VFS_OK;
+	return gnome_vfs_write (mh->tmp_file, buffer, num_bytes, bytes_written);
 }
 
 static GnomeVFSResult
@@ -228,94 +259,30 @@ do_seek (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
 	 GnomeVFSFileOffset offset)
 {
-/*	GnomeVFSResult result;
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
-	GnomeVFSFileSize new_offset;
 	CHECK_INIT (mh);
-	
-	switch (whence) {
-	case GNOME_VFS_SEEK_START:
-		new_offset = offset;
-		break;
-	case GNOME_VFS_SEEK_CURRENT:
-		if (offset < 0 &&
-		    offset > -mh->offset)
-			new_offset = 0;
-		else
-			new_offset = mh->offset + offset;
-		break;
-	case GNOME_VFS_SEEK_END:
-*//* FIXME: do a stat. *//*
-		g_warning ("No access to the length: seekable:end unimplemented");
-		return GNOME_VFS_ERROR_NOTSUPPORTED;
-	default:
-		return GNOME_VFS_ERROR_BAD_PARAMS;
-	}
 
-	if (new_offset >= mh->fd_size) {
-		GnomeVFSFileSize extra;
-		GnomeVFSFileSize bytes_read;
-		guint8 *buffer;
-		
-		extra = new_offset - mh->fd_size;
-		if (!fseek (mh->fd, SEEK_SET, mh->fd_size))
-			return gnome_vfs_result_from_errno ();
-
-		buffer = g_new (guint8, extra);
-		if (!buffer)
-			return GNOME_VFS_ERROR_TOOBIG;
-
-			 *//* FIXME: need to block the read for pathalogical cases *//*
-		INVOKE (result, mh, read, (mh->child_handle, buffer, extra, &bytes_read));
-
-		if (result != GNOME_VFS_OK) {
-			g_free (buffer);
-			return result;
-			} else if (bytes_read != extra) { *//* FIXME: should we just retry ? *//*
-			g_free (buffer);
-			return GNOME_VFS_ERROR_IO;
-		}
-
-		if (fwrite (buffer, 1, extra, mh->fd) != extra) {
-			g_free (buffer);
-			return GNOME_VFS_ERROR_NOSPACE;
-		}
-		g_free (buffer);
-	}
-
-	if (!fseek (mh->fd, SEEK_SET, new_offset))
-		return gnome_vfs_result_from_errno ();
-
-	mh->offset = offset;
-											       */
-	return GNOME_VFS_OK;
+	return gnome_vfs_seek (mh->tmp_file, whence, offset);
 }
 
 static GnomeVFSResult
 do_tell (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSFileOffset *offset_return)
 {
-/*	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
+	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
 
-	g_return_val_if_fail (offset_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-
-	*offset_return = mh->offset;
-	*/
-	return GNOME_VFS_OK;
+	return gnome_vfs_tell (mh->tmp_file, offset_return);
 }
 
 static GnomeVFSResult
 do_truncate (GnomeVFSMethodHandle *method_handle,
 	     glong where)
 {
-/*	GnomeVFSResult result;
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
 
-	INVOKE (result, mh, truncate, (mh->child_handle, where));
+	g_warning ("FIXME: truncate needs implementing");
 
-	return result;*/
-	return GNOME_VFS_OK;
+	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
-

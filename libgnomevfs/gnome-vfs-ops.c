@@ -65,6 +65,12 @@ gnome_vfs_open_from_uri (GnomeVFSHandle **handle,
 	g_return_val_if_fail (uri->method != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	result = uri->method->open (&method_handle, uri, open_mode);
+
+	if ((open_mode & GNOME_VFS_OPEN_RANDOM) &&
+	    (result == GNOME_VFS_ERROR_NOTSUPPORTED))
+		result = uri->method->open (&method_handle, uri,
+					    open_mode&~GNOME_VFS_OPEN_RANDOM);
+
 	if (result != GNOME_VFS_OK)
 		return result;
 

@@ -271,7 +271,16 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
-	unix_mode = O_CREAT | O_TRUNC | O_WRONLY;
+	unix_mode = O_CREAT | O_TRUNC;
+	
+	if (!(mode & GNOME_VFS_OPEN_WRITE))
+		return GNOME_VFS_ERROR_INVALIDOPENMODE;
+
+	if (mode & GNOME_VFS_OPEN_READ)
+		unix_mode |= O_RDWR;
+	else
+		unix_mode |= O_WRONLY;
+
 	if (exclusive)
 		unix_mode |= O_EXCL;
 
