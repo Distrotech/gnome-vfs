@@ -357,6 +357,7 @@ get_volumes (PortableServer_Servant _servant,
 	len = g_list_length (volumes);
 	list = CORBA_sequence_GNOME_VFS_Volume__alloc ();
 	list->_buffer = CORBA_sequence_GNOME_VFS_Volume_allocbuf (len);
+	list->_release = CORBA_TRUE;
 	list->_length = len;
 	list->_maximum = len;
 
@@ -386,6 +387,7 @@ get_drives (PortableServer_Servant _servant,
 	len = g_list_length (drives);
 	list = CORBA_sequence_GNOME_VFS_Drive__alloc ();
 	list->_buffer = CORBA_sequence_GNOME_VFS_Drive_allocbuf (len);
+	list->_release = CORBA_TRUE;
 	list->_length = len;
 	list->_maximum = len;
 

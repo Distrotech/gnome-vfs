@@ -74,6 +74,7 @@ gnome_vfs_daemon_dir_handle_read (PortableServer_Servant _servant,
 	
 	list = CORBA_sequence_GNOME_VFS_FileInfo__alloc ();
 	list->_buffer = CORBA_sequence_GNOME_VFS_FileInfo_allocbuf (READDIR_CHUNK_SIZE);
+	list->_release = CORBA_TRUE;
 	list->_length = 0;
 	list->_maximum = READDIR_CHUNK_SIZE;
         CORBA_sequence_set_release (list, CORBA_TRUE);

@@ -1,3 +1,13 @@
+2004-02-26  Alexander Larsson  <alexl@redhat.com>
+
+	* daemon/gnome-vfs-daemon-dir-handle.c:
+	(gnome_vfs_daemon_dir_handle_read):
+	* daemon/gnome-vfs-daemon-handle.c: (gnome_vfs_daemon_handle_read):
+	* daemon/gnome-vfs-daemon.c: (get_volumes), (get_drives):
+
+	Fix some corba leaks. (#135034)
+	Found by nshmyrev@yandex.ru (Nickolay V. Shmyrev)
+	
 2004-02-25  Danilo Šegan  <dsegan@gmx.net>
 
 	* configure.in: Added sr@ije to ALL_LINGUAS.

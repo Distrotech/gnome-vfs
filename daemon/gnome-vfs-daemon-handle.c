@@ -74,6 +74,7 @@ gnome_vfs_daemon_handle_read (PortableServer_Servant _servant,
 	*_buf = buf;
 	
 	buf->_buffer = CORBA_sequence_CORBA_octet_allocbuf (num_bytes);
+	buf->_release = CORBA_TRUE;
 	buf->_length = 0;
 	buf->_maximum = num_bytes;
 	
