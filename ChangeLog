@@ -1,3 +1,7 @@
+2003-10-12  Christophe Fergeau  <teuf@gnome.org>
+
+	* configure.in: fix problem with automake >= 1.6 (fixes #124725)
+
 === gnome-vfs 2.4.1 ===
 
 2003-10-12  Christophe Fergeau  <teuf@gnome.org>
