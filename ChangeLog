@@ -1,3 +1,17 @@
+2001-02-08  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 6329, Typing gconf: and pressing ENTER in the
+	navigation bar crashes Nautilus.
+	
+	* modules/gconf-method.c:
+	(make_absolute):
+	Replace dangerous macro with a function that error checks.
+	
+	(get_value_size),
+	(set_stat_info_value), (do_open_directory), (do_read_directory),
+	(do_get_file_info), (vfs_module_shutdown):
+	Do error checking.
+
 2001-02-08  Robey Pointer  <robey@eazel.com>
 
 	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
