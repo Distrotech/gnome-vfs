@@ -682,6 +682,9 @@ text/x-install
 text/x-java
 	description=Java source code
 
+text/x-ksh
+	description=Korn shell script
+
 text/x-makefile
 	description=makefile
 

@@ -1,5 +1,9 @@
 2000-08-23  Darin Adler  <darin@eazel.com>
 
+	* data/mime/gnome-vfs.keys:
+
+2000-08-23  Darin Adler  <darin@eazel.com>
+
 	* libgnomevfs/gnome-vfs-handle.c: (gnome_vfs_handle_do_close):
 	* modules/bzip2-method.c: (do_close):
 	* modules/gzip-method.c: (do_close):
