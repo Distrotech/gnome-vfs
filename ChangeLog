@@ -1,5 +1,12 @@
 2000-09-20  Gene Z. Ragan  <gzr@eazel.com>
 
+	Found a case where a URI was used unitialized.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: 
+	(gnome_vfs_xfer_uri_internal):
+	
+2000-09-20  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed a bug where transferring symbolic links from an ftp
 	site would crash nautilus.  Links are now properly identified.
 	

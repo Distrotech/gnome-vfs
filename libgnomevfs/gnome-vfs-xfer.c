@@ -1786,6 +1786,11 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 		}
 	}
 
+	if (target_dir_uri != NULL) {
+		gnome_vfs_uri_unref (target_dir_uri);
+		target_dir_uri = NULL;
+	}
+	
 	if (result == GNOME_VFS_OK) {
 
 		call_progress (progress, GNOME_VFS_XFER_PHASE_INITIAL);
@@ -1796,8 +1801,14 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 
 			/* Calculate free space on destination. If an error is returned, we have a non-local
 			 * file system, so we just forge ahead and hope for the best 
-			 */
+			 */			 
+			target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_uri_list->data);
 			result = gnome_vfs_get_volume_free_space (target_dir_uri, &free_bytes);
+			if (target_dir_uri != NULL) {
+				gnome_vfs_uri_unref (target_dir_uri);
+				target_dir_uri = NULL;
+			}
+
 			if (result == GNOME_VFS_OK) {
 				if (progress->progress_info->bytes_total > free_bytes) {
 					return GNOME_VFS_ERROR_NO_SPACE;
@@ -1847,10 +1858,6 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 				}
 			}
 		}
-	}
-
-	if (target_dir_uri != NULL) {
-		gnome_vfs_uri_unref (target_dir_uri);
 	}
 
 	/* Done, at last.  At this point, there is no chance to interrupt the
