@@ -1,3 +1,11 @@
+2000-05-02  Dave Camp  <campd@oit.edu>
+
+	* libgnomevfs/gnome-vfs-ops.h (gnome_vfs_move_uri):
+	* libgnomevfs/gnome-vfs-ops.h (gnome_vfs_move):
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_move_uri): 
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_move): Renamed parameters,
+	as the 'new' parameter was causing problems with C++ compilers.
+	
 2000-05-02  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.mime: Alphabetized the mime types,

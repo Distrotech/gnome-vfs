@@ -495,50 +495,51 @@ gnome_vfs_unlink (const gchar *text_uri)
 
 /**
  * gnome_vfs_move_uri:
- * @old: Source URI
- * @new: Destination URI
+ * @old_uri: Source URI
+ * @new_uri: Destination URI
  * 
- * Move a file from URI @old to @new.  This will only work if @old and @new are
- * on the same file system.  Otherwise, you it is necessary to use the more
- * general %gnome_vfs_xfer_uri() function.
+ * Move a file from URI @old_uri to @new_uri.  This will only work if @old_uri 
+ * and @new_uri are on the same file system.  Otherwise, it is necessary 
+ * to use the more general %gnome_vfs_xfer_uri() function.
  * 
  * Return value: An integer representing the result of the operation.
  **/
 GnomeVFSResult
-gnome_vfs_move_uri (GnomeVFSURI *old,
-		    GnomeVFSURI *new,
+gnome_vfs_move_uri (GnomeVFSURI *old_uri,
+		    GnomeVFSURI *new_uri,
 		    gboolean force_replace)
 {
-	return gnome_vfs_move_uri_cancellable (old, new, force_replace, NULL);
+	return gnome_vfs_move_uri_cancellable (old_uri, new_uri, 
+					       force_replace, NULL);
 }
 
 /**
  * gnome_vfs_move:
- * @old: Source URI
- * @new: Destination URI
+ * @old_text_uri: Source URI
+ * @new_text_uri: Destination URI
  * 
- * Move a file from URI @old to @new.  This will only work if @old and @new are
- * on the same file system.  Otherwise, you it is necessary to use the more
- * general %gnome_vfs_xfer_uri() function.
+ * Move a file from URI @old_text_uri to @new_text_uri.  This will only work 
+ * if @old_text_uri and @new_text_uri are on the same file system.  Otherwise,
+ * it is necessary to use the more general %gnome_vfs_xfer_uri() function.
  * 
  * Return value: An integer representing the result of the operation.
  **/
 GnomeVFSResult
-gnome_vfs_move (const gchar *old,
-		const gchar *new,
+gnome_vfs_move (const gchar *old_text_uri,
+		const gchar *new_text_uri,
 		gboolean force_replace)
 {
 	GnomeVFSURI *old_uri, *new_uri;
 	GnomeVFSResult retval;
 
-	g_return_val_if_fail (old != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (new != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (old_text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (new_text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	old_uri = gnome_vfs_uri_new (old);
+	old_uri = gnome_vfs_uri_new (old_text_uri);
 	if (old_uri == NULL)
 		return GNOME_VFS_ERROR_INVALIDURI;
 
-	new_uri = gnome_vfs_uri_new (new);
+	new_uri = gnome_vfs_uri_new (new_text_uri);
 	if (new_uri == NULL) {
 		gnome_vfs_uri_unref (old_uri);
 		return GNOME_VFS_ERROR_INVALIDURI;

@@ -102,11 +102,11 @@ GnomeVFSResult	 gnome_vfs_remove_directory	(const gchar *text_uri);
 GnomeVFSResult   gnome_vfs_unlink_from_uri      (GnomeVFSURI *uri);
 GnomeVFSResult   gnome_vfs_unlink               (const gchar *text_uri);
 
-GnomeVFSResult   gnome_vfs_move_uri		(GnomeVFSURI *old,
-						 GnomeVFSURI *new,
+GnomeVFSResult   gnome_vfs_move_uri		(GnomeVFSURI *old_uri,
+						 GnomeVFSURI *new_uri,
 						 gboolean force_replace);
-GnomeVFSResult   gnome_vfs_move 		(const gchar *old,
-						 const gchar *new,
+GnomeVFSResult   gnome_vfs_move 		(const gchar *old_text_uri,
+						 const gchar *new_text_uri,
 						 gboolean force_replace);
 
 GnomeVFSResult	 gnome_vfs_check_same_fs_uris	(GnomeVFSURI *a,
