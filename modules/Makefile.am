@@ -30,8 +30,6 @@ libgzip_la_LIBADD = -lz
 libftp_la_SOURCES = 				\
 	ftp-method.c				\
 	ftp-method.h				\
-	util-url.c				\
-	util-url.h				\
 	parse.c					\
 	parse.h
 
