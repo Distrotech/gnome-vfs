@@ -40,7 +40,6 @@ static GMutex *gnome_vfs_thread_count_mutex = NULL;
 static volatile int gnome_vfs_slave_thread_count = 0;
 static volatile gboolean gnome_vfs_quitting = FALSE;
 
-
 static void *
 thread_routine (void *data)
 {
@@ -50,7 +49,8 @@ thread_routine (void *data)
 	slave = (GnomeVFSJobSlave *) data;
 
 	/* Let the main thread know we are alive.  */
-	g_io_channel_write (slave->job->wakeup_channel_out, "a",
+	JOB_DEBUG (("thread routine sending wakeup %p", slave->job));
+	g_io_channel_write (slave->job->wakeup_channel_out, "A",
 			    1, &bytes_written);
  
 	while (gnome_vfs_job_execute (slave->job))

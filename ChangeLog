@@ -1,3 +1,19 @@
+2000-05-19  Pavel Cisler  <pave@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: 
+	(dispatch_job_callback): Handle a bug where g_io_channel_read
+	would sometimes return with an error and without any characters
+	read, failing to synchronize with the slave thread. I need to 
+	figure out why this is happening (probably a race condition in
+	the g_io_channel setup code) for now added code that forces the
+	read to be repeated. 
+	Fixes a problem Ettore and Andy were running into.
+
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	Clean up debugging code a ton.
+	
 2000-05-19  Darin Adler  <darin@eazel.com>
 
 	* modules/file-method.c: (set_mime_type): Fixed to get the fast

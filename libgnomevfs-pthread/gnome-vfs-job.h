@@ -30,6 +30,28 @@ typedef struct GnomeVFSJob GnomeVFSJob;
 
 #include "gnome-vfs-job-slave.h"
 
+#define GNOME_VFS_JOB_DEBUG 0
+
+#if GNOME_VFS_JOB_DEBUG
+
+#include <stdio.h>
+
+extern GStaticMutex debug_mutex;
+
+#define JOB_DEBUG(x)				\
+G_STMT_START{					\
+	g_static_mutex_lock (&debug_mutex);	\
+	printf ("%d ", __LINE__);		\
+	fputs (__FUNCTION__ ": ", stdout);	\
+	printf x;				\
+	fputc ('\n', stdout);			\
+	fflush (stdout);			\
+	g_static_mutex_unlock (&debug_mutex);	\
+}G_STMT_END
+#else
+#define JOB_DEBUG(x)
+#endif
+
 enum GnomeVFSOpType {
 	GNOME_VFS_OP_OPEN,
 	GNOME_VFS_OP_OPEN_AS_CHANNEL,

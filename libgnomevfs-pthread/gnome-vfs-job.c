@@ -44,9 +44,7 @@ System (version for POSIX threads).
 
 #include "gnome-vfs-job.h"
 
-#if 0
-
-#include <stdio.h>
+#if GNOME_VFS_JOB_DEBUG
 
 /* FIXME - this is should use the correct static mutex initialization macro.
  * However glibconfig.h is broken and the supplied macro gives a warning.
@@ -54,19 +52,6 @@ System (version for POSIX threads).
  * even though it is not portable.
  */
 GStaticMutex debug_mutex = { NULL, { { } } };
-
-#define JOB_DEBUG(x)				\
-G_STMT_START{					\
-	g_static_mutex_lock (&debug_mutex);	\
-	printf ("%d ", __LINE__);		\
-	fputs (__FUNCTION__ ": ", stdout);	\
-	printf x;				\
-	fputc ('\n', stdout);			\
-	fflush (stdout);			\
-	g_static_mutex_unlock (&debug_mutex);	\
-}G_STMT_END
-#else
-#define JOB_DEBUG(x)
 #endif
 
 static void gnome_vfs_job_release_current_op (GnomeVFSJob *job);
@@ -74,7 +59,6 @@ static void gnome_vfs_job_release_notify_op  (GnomeVFSJob *job);
 static void gnome_vfs_job_finish_destroy     (GnomeVFSJob *job);
 
 
-/* Stevens functions */
 static void
 set_fl(int fd, int flags)
 {
@@ -117,21 +101,25 @@ clr_fl(int fd, int flags)
 static void
 job_ack_notify (GnomeVFSJob *job)
 {
-	JOB_DEBUG (("Checking if ack is needed. %px", job));
+	JOB_DEBUG (("Checking if ack is needed. %p", job));
 	if (job->want_notify_ack) {
-		JOB_DEBUG (("Ack needed: lock notify ack. %px", job));
+		JOB_DEBUG (("Ack needed: lock notify ack. %p", job));
 		g_mutex_lock (job->notify_ack_lock);
-		JOB_DEBUG (("Ack needed: signaling condition. %px", job));
+		JOB_DEBUG (("Ack needed: signaling condition. %p", job));
 		g_cond_signal (job->notify_ack_condition);
-		JOB_DEBUG (("Ack needed: unlocking notify ack. %px", job));
+		JOB_DEBUG (("Ack needed: unlocking notify ack. %p", job));
 		g_mutex_unlock (job->notify_ack_lock);
 	}
 
-	JOB_DEBUG (("unlocking wakeup channel. %px", job));
+	JOB_DEBUG (("unlocking wakeup channel. %p", job));
 
 	g_assert (job->notify_op == NULL);
 	g_mutex_unlock (job->wakeup_channel_lock);
 }
+
+#if GNOME_VFS_JOB_DEBUG
+static char debug_wake_channel_out = 'a';
+#endif
 
 static gboolean
 wakeup (GnomeVFSJob *job)
@@ -139,12 +127,24 @@ wakeup (GnomeVFSJob *job)
 	gboolean retval;
 	guint bytes_written;
 
-	JOB_DEBUG (("Wake up! %px", job));
+	JOB_DEBUG (("Wake up! %p", job));
 
 	/* Wake up the main thread.  */
-	g_io_channel_write (job->wakeup_channel_out, "a", 1, &bytes_written);
+
+#if GNOME_VFS_JOB_DEBUG
+	debug_wake_channel_out++;
+	if (debug_wake_channel_out > 'z')
+		debug_wake_channel_out = 'a';
+
+	g_io_channel_write (job->wakeup_channel_out, &debug_wake_channel_out, 
+		1, &bytes_written);
+#else
+	g_io_channel_write (job->wakeup_channel_out, "a", 
+		1, &bytes_written);
+#endif
+	JOB_DEBUG (("sent wakeup %c %p", debug_wake_channel_out, job));
 	if (bytes_written != 1) {
-		JOB_DEBUG (("problems sending a wakeup! %px", job));
+		JOB_DEBUG (("problems sending a wakeup! %p", job));
 		g_warning (_("Error writing to the wakeup GnomeVFSJob channel."));
 		retval = FALSE;
 	} else {
@@ -159,7 +159,7 @@ wakeup (GnomeVFSJob *job)
 static gboolean
 job_oneway_notify (GnomeVFSJob *job)
 {
-	JOB_DEBUG (("lock channel %px", job));
+	JOB_DEBUG (("lock channel %p", job));
 	g_mutex_lock (job->wakeup_channel_lock);
 
 	/* Record which op we want notified. */
@@ -179,14 +179,14 @@ job_notify (GnomeVFSJob *job)
 {
 	gboolean retval;
 
-	JOB_DEBUG (("Locking wakeup channel %px", job));
+	JOB_DEBUG (("Locking wakeup channel %p", job));
 	g_mutex_lock (job->wakeup_channel_lock);
 
 	/* Record which op we want notified. */
 	g_assert (job->notify_op == NULL);
 	job->notify_op = job->current_op;
 
-	JOB_DEBUG (("Locking notification lock %px", job));
+	JOB_DEBUG (("Locking notification lock %p", job));
 	/* Lock notification, so that the master cannot send the signal until
            we are ready to receive it.  */
 	g_mutex_lock (job->notify_ack_lock);
@@ -197,15 +197,15 @@ job_notify (GnomeVFSJob *job)
            will in turn signal the notify condition.  */
 	retval = wakeup (job);
 
-	JOB_DEBUG (("Wait notify condition %px", job));
+	JOB_DEBUG (("Wait notify condition %p", job));
 	/* Wait for the notify condition.  */
 	g_cond_wait (job->notify_ack_condition, job->notify_ack_lock);
 
-	JOB_DEBUG (("Unlock notify ack lock %px", job));
+	JOB_DEBUG (("Unlock notify ack lock %p", job));
 	/* Acknowledgment got: unlock the mutex.  */
 	g_mutex_unlock (job->notify_ack_lock);
 
-	JOB_DEBUG (("Done %px", job));
+	JOB_DEBUG (("Done %p", job));
 	return retval;
 }
 
@@ -214,7 +214,7 @@ static void
 job_close (GnomeVFSJob *job)
 {
 	job->is_empty = TRUE;
-	JOB_DEBUG (("Unlocking access lock %px", job));
+	JOB_DEBUG (("Unlocking access lock %p", job));
 	g_mutex_unlock (job->access_lock);
 }
 
@@ -443,14 +443,15 @@ dispatch_job_callback (GIOChannel *source,
 
 	job = (GnomeVFSJob *) data;
 
-	JOB_DEBUG (("waiting for channel wakeup %px", job));
+	JOB_DEBUG (("waiting for channel wakeup %p", job));
 	g_io_channel_read (job->wakeup_channel_in, &c, 1, &bytes_read);
+	JOB_DEBUG (("got channel wakeup %p %c %d", job, c, bytes_read));
 
 	op = job->notify_op;
 
 	/* The last notify is the one that tells us to go away. */
 	if (op == NULL) {
-		JOB_DEBUG (("no op left %px", job));
+		JOB_DEBUG (("no op left %p", job));
 		g_assert (job->current_op == NULL);
 		g_assert (!job->want_notify_ack);
 		job_ack_notify (job);
@@ -458,7 +459,7 @@ dispatch_job_callback (GIOChannel *source,
 		return FALSE;
 	}
 	
-	JOB_DEBUG (("dispatching %px", job));
+	JOB_DEBUG (("dispatching %p", job));
 	/* Do the callback, but not if this operation has been cancelled. */
 	if (gnome_vfs_context_check_cancellation (op->context)) {
 		switch (op->type) {
@@ -523,7 +524,7 @@ dispatch_job_callback (GIOChannel *source,
 		}
 	}
 
-	JOB_DEBUG (("dispactch callback - done %px", job));
+	JOB_DEBUG (("dispatch callback - done %p", job));
 	gnome_vfs_job_release_notify_op (job);
 	job_ack_notify (job);
 	return TRUE;
@@ -538,6 +539,7 @@ gnome_vfs_job_new (void)
 	gint pipefd[2];
 	gchar c;
 	guint bytes_read;
+	GIOError error;
 
 	if (pipe (pipefd) != 0) {
 		g_warning ("Cannot create pipe for the new GnomeVFSJob: %s",
@@ -570,12 +572,25 @@ gnome_vfs_job_new (void)
 
 	new_job->slave = slave;
 
-	JOB_DEBUG (("new job %px", new_job));
+	JOB_DEBUG (("new job %p", new_job));
 
-	/* Wait for the thread to come up.  */
-	g_io_channel_read (new_job->wakeup_channel_in, &c, 1, &bytes_read);
-
-	JOB_DEBUG (("new job ready to rip %px", new_job));
+	/* Wait for the thread to come up. 
+	 *
+	 * Keep reading until we get the synch character from the slave thread --
+	 * in some weird cases (bug in g_io_channel ??)the read will return with 
+	 * nothing the first time but will succeed if we retry.
+	 * 
+	 * FIXME:
+	 * would be nice to find out why this can happen
+	 * 
+	 */
+	for (;;) {
+		error = g_io_channel_read (new_job->wakeup_channel_in, &c, 1, &bytes_read);
+		JOB_DEBUG (("new job ready to rip %p, %c, %d, %d", 
+			new_job, c, bytes_read, error));
+		if (bytes_read > 0)
+			break;
+	}
 
 	return new_job;
 }
@@ -583,20 +598,20 @@ gnome_vfs_job_new (void)
 void
 gnome_vfs_job_destroy (GnomeVFSJob *job)
 {
-	JOB_DEBUG (("job %px", job));
+	JOB_DEBUG (("job %p", job));
 
 	gnome_vfs_job_release_current_op (job);
 
 	job_oneway_notify (job);
 
-	JOB_DEBUG (("done %px", job));
+	JOB_DEBUG (("done %p", job));
 	/* We'll finish destroying on the main thread. */
 }
 
 static void
 gnome_vfs_job_finish_destroy (GnomeVFSJob *job)
 {
-	JOB_DEBUG (("job %px", job));
+	JOB_DEBUG (("job %p", job));
 	g_assert (job->is_empty);
 
 	g_mutex_free (job->access_lock);
@@ -1364,14 +1379,14 @@ execute_xfer (GnomeVFSJob *job)
 gboolean
 gnome_vfs_job_execute (GnomeVFSJob *job)
 {
-	JOB_DEBUG (("locking access_lock %px", job));
+	JOB_DEBUG (("locking access_lock %p", job));
 	g_mutex_lock (job->access_lock);
 	if (job->is_empty) {
-		JOB_DEBUG (("waiting for execution condition %px", job));
+		JOB_DEBUG (("waiting for execution condition %p", job));
 		g_cond_wait (job->execution_condition, job->access_lock);
 	}
 
-	JOB_DEBUG (("executing %px", job));
+	JOB_DEBUG (("executing %p", job));
 
 	switch (job->current_op->type) {
 	case GNOME_VFS_OP_OPEN:
@@ -1407,7 +1422,7 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 	GnomeVFSOp *op;
 	GnomeVFSCancellation *cancellation;
 
-	JOB_DEBUG (("async cancel %px", job));
+	JOB_DEBUG (("async cancel %p", job));
 
 	g_return_val_if_fail (job != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
@@ -1427,7 +1442,7 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 	/* Since we are cancelling, we won't have anyone respond to notifications;
 	 * set the expectations right.
 	 */
-	JOB_DEBUG (("done cancelling %px", job));
+	JOB_DEBUG (("done cancelling %p", job));
 	
 	return GNOME_VFS_OK;
 }
