@@ -401,6 +401,14 @@ emit_pre_unmount (GnomeVFSVolume *volume)
 			}
 			CORBA_Object_release (daemon, NULL);
 		}
+		/* Do a synchronous pre_unmount for this client too, avoiding
+		 * races at least in this process
+		 */
+		gnome_vfs_volume_monitor_emit_pre_unmount (volume_monitor,
+							   volume);
+		/* sleep for a while to get other apps to release their
+		 * hold on the device */
+		g_usleep (0.5*G_USEC_PER_SEC);
 	}
 }
 

@@ -1,5 +1,11 @@
 2004-03-05  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-volume-ops.c (emit_pre_unmount):
+	Do a synchronous pre_unmount in this process and delay to
+	allow other processes to release their hold on the device.
+
+2004-03-05  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/default-modules.conf (sftp):
 	Don't include "lib" and ".so" in library reference.
 	Noticed by Michael Wilson <Michael.Wilson@bull.net>
