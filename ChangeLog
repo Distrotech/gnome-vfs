@@ -1,6 +1,22 @@
+2000-08-24  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(dispatch_find_directory_callback): Fixed NULL-unref problem.
+	
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c: (istr_has_prefix),
+	(gnome_vfs_get_local_path_from_uri),
+	(gnome_vfs_get_uri_from_local_path): Added the local path
+	functions that are so widely used in Nautilus so they can be
+	used in medusa too, for example.
+	
+	* modules/file-method.c: (find_trash_directory): Fixed storage
+	leak, added FIXME about poor error handling.
+
 2000-08-24  Maciej Stachowiak  <mjs@eazel.com>
 
-	* modules/Makefile.am: disable efs module.
+	* modules/Makefile.am: Disable efs module since it doesn't
+	compile any more with the latest changes to libefs.
 
 2000-08-23  Darin Adler  <darin@eazel.com>
 

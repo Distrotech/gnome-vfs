@@ -49,7 +49,7 @@ gchar *gnome_vfs_escape_path_string           (const gchar      *path);
  * section (everything up to the first "/"), and after that, it behaves
  * like gnome_vfs_escape_path_string.
  */
-gchar *gnome_vfs_escape_host_and_path_string  (const gchar	*path);
+gchar *gnome_vfs_escape_host_and_path_string  (const gchar      *path);
 
 /* Returns NULL if any of the illegal character appear in escaped
  * form. If the illegal characters are in there unescaped, that's OK.
@@ -66,8 +66,15 @@ gchar *gnome_vfs_unescape_string              (const gchar      *string,
  */
 gchar *gnome_vfs_unescape_string_for_display  (const gchar      *escaped);
 
-/* Free the list, freeing each item data with a g_free */
-void   gnome_vfs_list_deep_free 	     (GList 		*list);
+/* Turn a "file://" URI in string form into a local path. Returns NULL
+ * if it's not a URI that can be converted.
+ */
+gchar *gnome_vfs_get_local_path_from_uri      (const gchar      *uri);
 
+/* Turn a path into a "file://" URI. */
+gchar *gnome_vfs_get_uri_from_local_path      (const gchar      *local_full_path);
+
+/* Free the list, freeing each item data with a g_free */
+void   gnome_vfs_list_deep_free               (GList            *list);
 
 #endif /* GNOME_VFS_UTILS_H */

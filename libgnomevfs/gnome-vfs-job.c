@@ -420,22 +420,25 @@ static void
 dispatch_find_directory_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 {
 	GnomeVFSAsyncFindDirectoryCallback callback;
+	GList *result_list, *p;
 	GnomeVFSFindDirectoryResult *result_item;
-	GList *p;
 
 	callback = (GnomeVFSAsyncFindDirectoryCallback) op->callback;
+	result_list = op->specifics.find_directory.notify.result_list;
 
 	(* callback) ((GnomeVFSAsyncHandle *) job,
-		      op->specifics.find_directory.notify.result_list,
+		      result_list,
 		      op->callback_data);
 
-	for (p = op->specifics.find_directory.notify.result_list; p != NULL; p = p->next) {
+	for (p = result_list; p != NULL; p = p->next) {
 		result_item = p->data;
 
-		gnome_vfs_uri_unref (result_item->uri);
+		if (result_item->uri != NULL) {
+			gnome_vfs_uri_unref (result_item->uri);
+		}
 		g_free (result_item);
 	}
-	g_list_free (op->specifics.find_directory.notify.result_list);
+	g_list_free (result_list);
 }
 
 static void
@@ -1427,13 +1430,14 @@ execute_find_directory (GnomeVFSJob *job)
 	for (p = op->request.uris; p != NULL; p = p->next) {
 		result_item = g_new (GnomeVFSGetFileInfoResult, 1);
 
-		result_item->result = gnome_vfs_find_directory_cancellable ((GnomeVFSURI *)p->data,
-									op->request.kind,
-									&result_item->uri,
-									op->request.create_if_needed,
-									op->request.find_if_needed,
-									op->request.permissions,
-									job->current_op->context);
+		result_item->result = gnome_vfs_find_directory_cancellable
+			((GnomeVFSURI *)p->data,
+			 op->request.kind,
+			 &result_item->uri,
+			 op->request.create_if_needed,
+			 op->request.find_if_needed,
+			 op->request.permissions,
+			 job->current_op->context);
 		op->notify.result_list = g_list_prepend (op->notify.result_list, result_item);
 	}
 

@@ -31,6 +31,7 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 #include <string.h>
+#include <ctype.h>
 
 
 gchar*
@@ -334,3 +335,89 @@ gnome_vfs_list_deep_free (GList *list)
 	g_list_free (list);
 }
 
+/* Stolen from Nautilus. This belongs in glib. */
+static gboolean
+istr_has_prefix (const char *haystack, const char *needle)
+{
+	const char *h, *n;
+	char hc, nc;
+
+	/* Eat one character at a time. */
+	h = haystack == NULL ? "" : haystack;
+	n = needle == NULL ? "" : needle;
+	do {
+		if (*n == '\0') {
+			return TRUE;
+		}
+		if (*h == '\0') {
+			return FALSE;
+		}
+		hc = *h++;
+		nc = *n++;
+		if (isupper (hc)) {
+			hc = tolower (hc);
+		}
+		if (isupper (nc)) {
+			nc = tolower (nc);
+		}
+	} while (hc == nc);
+	return FALSE;
+}
+
+/**
+ * gnome_vfs_get_local_path_from_uri:
+ * 
+ * Return a local path for a file:// URI.
+ *
+ * Return value: the local path or NULL on error.
+ **/
+char *
+gnome_vfs_get_local_path_from_uri (const char *uri)
+{
+	char *result, *unescaped_uri;
+
+	if (uri == NULL) {
+		return NULL;
+	}
+
+	unescaped_uri = gnome_vfs_unescape_string (uri, "/");
+	if (unescaped_uri == NULL) {
+		return NULL;
+	}
+
+	if (istr_has_prefix (unescaped_uri, "file://")) {
+		result = g_strdup (unescaped_uri + 7);
+	} else if (unescaped_uri[0] == '/') {
+		result = g_strdup (unescaped_uri);
+	} else {
+		result = NULL;
+	}
+
+	g_free (unescaped_uri);
+
+	return result;
+}
+
+/**
+ * gnome_vfs_get_uri_from_local_path:
+ * 
+ * Return a file:// URI for a local path.
+ *
+ * Return value: the URI (NULL for some bad errors).
+ **/
+char *
+gnome_vfs_get_uri_from_local_path (const char *local_path)
+{
+	char *escaped_path, *result;
+	
+	if (local_path == NULL) {
+		return NULL;
+	}
+
+	g_return_val_if_fail (local_path[0] == '/', NULL);
+
+	escaped_path = gnome_vfs_escape_path_string (local_path);
+	result = g_strconcat ("file://", escaped_path, NULL);
+	g_free (escaped_path);
+	return result;
+}
