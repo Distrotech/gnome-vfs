@@ -1,3 +1,13 @@
+2000-12-05  Rebecca Schulman  <rebecka@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c: (gnome_vfs_mime_magic_parse):
+	Remove this change: what we fixed this morning avoided the huge leak, but 
+        did not fix the real problem.  This change isn't compatible with the real
+	fix (see Darin's change below), and in fact it was amazing that it worked
+	at all.
+
 2000-12-04  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c:

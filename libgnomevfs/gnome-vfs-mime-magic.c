@@ -431,7 +431,7 @@ gnome_vfs_mime_magic_parse (const gchar *filename, gint *nents)
 		*nents = array->len;
 	}
 
-	g_array_free (array, TRUE);
+	g_array_free (array, FALSE);
 
 	return retval;
 }
