@@ -127,17 +127,6 @@ libftp_la_SOURCES = 				\
 	ftp-method.c				\
 	ftp-method.h
 
-### `gconf' method
-
-gconfmoduledir = $(modulesdir)
-gconfmodule_LTLIBRARIES = libgconf.la
-
-libgconf_la_SOURCES =                           \
-	gconf-method.c                          \
-        gconf-method.h
-libgconf_la_LIBADD = $(GCONF_LIBS) $(GLIB_LIBS)
-libgconf_la_LDFLAGS = $(module_flags)
-
 ### `nfs' method
 
 libnfs_la_SRCLIST = 				\

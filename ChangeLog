@@ -1,3 +1,9 @@
+2001-10-30  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* modules/Makefile.am, modules/default-modules.conf,
+	modules/gconf-method.c, modules/gconf-method.h: Remove gconf
+	method.
+
 2001-10-25  Darin Adler  <darin@bentspoon.com>
 
 	* configure.in: Don't generate Makefiles in the intl and macros
