@@ -142,6 +142,10 @@ struct _Folder {
 
 	GSList *subfolders;
 
+	/* Some flags */
+	gboolean read_only;
+	gboolean dont_show_if_empty;
+
 	/* lazily done, will run query only when it
 	 * needs to */
 	gboolean up_to_date;
@@ -172,6 +176,9 @@ struct _VFolderInfo
 
 	/* The root folder */
 	Folder *root;
+
+	/* some flags */
+	gboolean read_only;
 
 	gboolean dirty;
 
@@ -922,8 +929,8 @@ folder_read (xmlNode *fnode)
 		} else if (g_ascii_strcasecmp (node->name, "Include") == 0) {
 			xmlChar *file = xmlNodeGetContent (node);
 			if (file != NULL) {
-				folder->includes = g_slist_prepend (folder->includes,
-								    g_strdup (file));
+				folder->includes = g_slist_prepend
+					(folder->includes, g_strdup (file));
 				xmlFree (file);
 			}
 		} else if (g_ascii_strcasecmp (node->name, "Exclude") == 0) {
@@ -956,6 +963,11 @@ folder_read (xmlNode *fnode)
 							new_folder);
 				new_folder->parent = folder;
 			}
+		} else if (g_ascii_strcasecmp (node->name, "ReadOnly") == 0) {
+			folder->read_only = TRUE;
+		} else if (g_ascii_strcasecmp (node->name,
+					       "DontShowIfEmpty") == 0) {
+			folder->dont_show_if_empty = TRUE;
 		}
 	}
 
@@ -1097,6 +1109,8 @@ vfolder_info_read_info (VFolderInfo *info)
 					entry_unref ((Entry *)info->root);
 				info->root = folder;
 			}
+		} else if (g_ascii_strcasecmp (node->name, "ReadOnly") == 0) {
+			info->read_only = TRUE;
 		}
 	}
 
@@ -2106,12 +2120,16 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 {
 	gboolean is_directory_file;
 	GnomeVFSURI *ret_uri;
+	Folder *folder = NULL;
 	Entry *entry;
 
 	entry = get_entry (desktop_uri,
-			   the_folder,
+			   &folder,
 			   &is_directory_file,
 			   result);
+
+	if (the_folder != NULL)
+		*the_folder = folder;
 
 	if (the_entry != NULL)
 		*the_entry = entry;
@@ -2123,12 +2141,20 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 		return NULL;
 	} else if (is_directory_file &&
 		   entry->type == ENTRY_FOLDER) {
-		Folder *folder = (Folder *)entry;
 		char *desktop_file;
 		VFolderInfo *info;
 
+		folder = (Folder *)entry;
+
 		if (the_folder != NULL)
 			*the_folder = folder;
+
+		/* we'll be doing something write like */
+		if (folder->read_only &&
+		    privatize) {
+			*result = GNOME_VFS_ERROR_READ_ONLY;
+			return NULL;
+		}
 
 		info = vfolder_info_from_uri (desktop_uri, result);
 		if (info == NULL)
@@ -2171,6 +2197,14 @@ desktop_uri_to_file_uri (GnomeVFSURI *desktop_uri,
 		info = vfolder_info_from_uri (desktop_uri, result);
 		if (info == NULL)
 			return NULL;
+
+		/* we'll be doing something write like */
+		if (folder != NULL &&
+		    folder->read_only &&
+		    privatize) {
+			*result = GNOME_VFS_ERROR_READ_ONLY;
+			return NULL;
+		}
 
 		if (privatize &&
 		    ! make_file_private (info, efile)) {
@@ -2332,6 +2366,11 @@ do_open (GnomeVFSMethod *method,
 	if (info == NULL)
 		return result;
 
+	if (info->read_only &&
+	    mode & GNOME_VFS_OPEN_WRITE) {
+		return GNOME_VFS_ERROR_READ_ONLY;
+	}
+
 	if ( ! open_check (method, uri, method_handle, mode, &result))
 		return result;
 
@@ -2435,7 +2474,8 @@ do_create (GnomeVFSMethod *method,
 	info = get_vfolder_info (scheme);
 	g_assert (info != NULL);
 
-	if (info->user_filename == NULL)
+	if (info->user_filename == NULL ||
+	    info->read_only)
 		return GNOME_VFS_ERROR_READ_ONLY;
 
 	parent = resolve_folder (info, path,
@@ -2443,6 +2483,9 @@ do_create (GnomeVFSMethod *method,
 				 &result);
 	if (parent == NULL)
 		return result;
+
+	if (parent->read_only)
+		return GNOME_VFS_ERROR_READ_ONLY;
 
 	if (strcmp (basename, ".directory") == 0) {
 		char *fname;
@@ -2781,6 +2824,9 @@ do_truncate (GnomeVFSMethod *method,
 	if (info == NULL)
 		return result;
 
+	if (info->read_only)
+		return GNOME_VFS_ERROR_READ_ONLY;
+
 	file_uri = desktop_uri_to_file_uri (uri,
 					    &entry,
 					    NULL /* the_is_directory_file */,
@@ -2814,6 +2860,7 @@ do_truncate (GnomeVFSMethod *method,
 
 typedef struct _DirHandle DirHandle;
 struct _DirHandle {
+	VFolderInfo *info;
 	Folder *folder;
 
 	GnomeVFSFileInfoOptions options;
@@ -2851,6 +2898,7 @@ do_open_directory (GnomeVFSMethod *method,
 	if (ALL_SCHEME_P (scheme)) {
 		/* FIXME: if directory not / then return not found */
 		dh = g_new0 (DirHandle, 1);
+		dh->info = info;
 		dh->options = options;
 		dh->folder = NULL;
 		dh->list = g_slist_copy (info->entries);
@@ -2870,6 +2918,7 @@ do_open_directory (GnomeVFSMethod *method,
 	ensure_folder_sort (info, folder);
 
 	dh = g_new0 (DirHandle, 1);
+	dh->info = info;
 	dh->options = options;
 	dh->folder = (Folder *)entry_ref ((Entry *)folder);
 	dh->list = g_slist_copy (folder->entries);
@@ -2903,9 +2952,12 @@ do_close_directory (GnomeVFSMethod *method,
 	dh->list = NULL;
 
 	dh->current = NULL;
+
 	if (dh->folder != NULL)
 		entry_unref ((Entry *)dh->folder);
 	dh->folder = NULL;
+
+	dh->info = NULL;
 
 	g_free (dh);
 
@@ -2923,6 +2975,8 @@ do_read_directory (GnomeVFSMethod *method,
 	GnomeVFSFileInfoOptions options;
 
 	dh = (DirHandle*) method_handle;
+
+read_directory_again:
 
 	if (dh->current == NULL) {
 		return GNOME_VFS_ERROR_EOF;
@@ -2974,6 +3028,21 @@ do_read_directory (GnomeVFSMethod *method,
 		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 	} else /* ENTRY_FOLDER */ {
+		Folder *folder = (Folder *)entry;
+
+		/* Skip empty folders if they have
+		 * the flag set */
+		if (folder->dont_show_if_empty) {
+			/* Make sure we have the entries */
+			ensure_folder (dh->info, folder);
+
+			if (folder->entries == NULL) {
+				/* start this function over on the
+				 * next item */
+				goto read_directory_again;
+			}
+		}
+
 		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
 		file_info->name = g_strdup (entry->name);
@@ -3116,7 +3185,8 @@ do_make_directory (GnomeVFSMethod *method,
 	info = get_vfolder_info (scheme);
 	g_assert (info != NULL);
 
-	if (info->user_filename == NULL)
+	if (info->user_filename == NULL ||
+	    info->read_only)
 		return GNOME_VFS_ERROR_READ_ONLY;
 
 	parent = resolve_folder (info, path,
@@ -3124,6 +3194,9 @@ do_make_directory (GnomeVFSMethod *method,
 				 &result);
 	if (parent == NULL)
 		return result;
+
+	if (parent->read_only)
+		return GNOME_VFS_ERROR_READ_ONLY;
 
 	basename = get_basename (uri);
 
@@ -3168,23 +3241,20 @@ do_remove_directory (GnomeVFSMethod *method,
 	info = get_vfolder_info (scheme);
 	g_assert (info != NULL);
 
-	if (info->user_filename == NULL)
+	if (info->user_filename == NULL ||
+	    info->read_only)
 		return GNOME_VFS_ERROR_READ_ONLY;
-
-	path = gnome_vfs_uri_get_path (uri);
-	scheme = gnome_vfs_uri_get_scheme (uri);
-	if (path == NULL ||
-	    scheme == NULL)
-		return GNOME_VFS_ERROR_INVALID_URI;
-
-	info = get_vfolder_info (scheme);
-	g_assert (info != NULL);
 
 	folder = resolve_folder (info, path,
 				 FALSE /* ignore_basename */,
 				 &result);
 	if (folder == NULL)
 		return result;
+
+	if (folder->read_only ||
+	    (folder->parent != NULL &&
+	     folder->parent->read_only))
+		return GNOME_VFS_ERROR_READ_ONLY;
 
 	/* don't make removing directories easy */
 	if (folder->desktop_file != NULL) {
@@ -3426,6 +3496,9 @@ do_move (GnomeVFSMethod *method,
 	if (info == NULL)
 		return result;
 
+	if (info->read_only)
+		return GNOME_VFS_ERROR_READ_ONLY;
+
 	old_entry = get_entry (old_uri,
 			       &old_folder,
 			       &old_is_directory_file,
@@ -3434,6 +3507,9 @@ do_move (GnomeVFSMethod *method,
 	if (old_entry == NULL)
 		return result;
 
+	if (old_folder != NULL && old_folder->read_only)
+		return GNOME_VFS_ERROR_READ_ONLY;
+
 	new_entry = get_entry (new_uri,
 			       &new_folder,
 			       &new_is_directory_file,
@@ -3441,6 +3517,9 @@ do_move (GnomeVFSMethod *method,
 
 	if (new_entry == NULL && new_folder == NULL)
 		return result;
+
+	if (new_folder != NULL && new_folder->read_only)
+		return GNOME_VFS_ERROR_READ_ONLY;
 
 	if (new_is_directory_file != old_is_directory_file) {
 		/* this will do another set of lookups
@@ -3565,7 +3644,8 @@ do_unlink (GnomeVFSMethod *method,
 	if (scheme == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
 
-	if (ALL_SCHEME_P (scheme))
+	if (ALL_SCHEME_P (scheme) ||
+	    info->read_only)
 		return GNOME_VFS_ERROR_READ_ONLY;
 
 	basename = get_basename (uri);
@@ -3576,6 +3656,10 @@ do_unlink (GnomeVFSMethod *method,
 			   &the_folder,
 			   &is_directory_file,
 			   &result);
+
+	if (the_folder != NULL &&
+	    the_folder->read_only)
+		return GNOME_VFS_ERROR_READ_ONLY;
 
 	if (entry->type == ENTRY_FOLDER &&
 	    is_directory_file) {
@@ -3653,6 +3737,8 @@ do_set_file_info (GnomeVFSMethod *method,
 
 	if (ALL_SCHEME_P (scheme))
 		return GNOME_VFS_ERROR_READ_ONLY;
+
+	/* FIXME: check read_onlyness of info and folder! */
 
 	/* FIXME: can one set mime-type? if so circumvent it */
 
