@@ -1,3 +1,11 @@
+2000-06-01  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/application-registry-hack.keys:
+	added entry for eog.
+	* data/mime/gnome-vfs.keys:
+	added a couple of text applications to the complete list
+	for text/html, so we can test full-list-longer-than-short-list.
+
 2000-06-01  Darin Adler  <darin@eazel.com>
 
 	* data/mime/gnome-vfs.keys: Checked in a full version. I

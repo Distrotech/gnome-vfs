@@ -587,7 +587,7 @@ text/html
 	short_list_component_iids_for_hacker_user_level=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
 	default_application_id=netscape
 	short_list_application_ids=netscape,lynx
-	system_all_application_ids=netscape,lynx
+	system_all_application_ids=netscape,lynx,emacs,nedit
 
 
 text/plain

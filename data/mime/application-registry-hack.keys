@@ -30,3 +30,9 @@ x-application-registry-hack/gimp
 	name=The GIMP
 	can_open_multiple_files=true
 	can_open_uris=true
+
+x-application-registry-hack/eog
+	command=eog
+	name=Eye of Gnome
+	can_open_multiple_files=true
+	can_open_uris=true
