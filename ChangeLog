@@ -1,5 +1,10 @@
 2003-08-13  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-utils.c:
+	revert the ngettext usage.
+	
+2003-08-13  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/http-method.c: Fix the build for Solaris, FreeBSD (and
 	probably anything else that is "not Linux"). Fixes bug #119706.
 	based on patch by Malcolm Tredinnick
