@@ -77,6 +77,9 @@ print_meta_list (const GnomeVFSFileInfo *info)
 static void
 print_file_info (const GnomeVFSFileInfo *info)
 {
+#define FLAG_STRING(info, which)				\
+	(GNOME_VFS_FILE_INFO_##which (info) ? "YES" : "NO")
+
 	printf ("Name              : %s\n", info->name);
 	printf ("Type              : %s\n", type_to_string (info->type));
 	if (info->symlink_name != NULL)
@@ -87,10 +90,10 @@ print_file_info (const GnomeVFSFileInfo *info)
 	printf ("Blocks            : %" GNOME_VFS_SIZE_FORMAT_STR "\n",
 		info->block_count);
 	printf ("I/O block size    : %d\n", info->io_block_size);
-	printf ("Local             : %s\n", info->is_local ? "YES" : "NO");
-	printf ("SUID              : %s\n", info->is_suid ? "YES" : "NO");
-	printf ("SGID              : %s\n", info->is_sgid ? "YES" : "NO");
-	printf ("Sticky            : %s\n", info->has_sticky_bit ? "YES" : "NO");
+	printf ("Local             : %s\n", FLAG_STRING (info, LOCAL));
+	printf ("SUID              : %s\n", FLAG_STRING (info, SUID));
+	printf ("SGID              : %s\n", FLAG_STRING (info, SGID));
+	printf ("Sticky            : %s\n", FLAG_STRING (info, STICKY));
 	printf ("Permissions       : %04o\n", info->permissions);
 	printf ("Link count        : %d\n", info->link_count);
 	printf ("UID               : %d\n", info->uid);
@@ -102,6 +105,8 @@ print_file_info (const GnomeVFSFileInfo *info)
 	printf ("Inode #           : %ld\n", (gulong) info->inode);
 
 	print_meta_list (info);
+
+#undef FLAG_STRING
 }
 
 
@@ -128,7 +133,8 @@ main (int argc,
 
 	gnome_vfs_file_info_init (&info);
 	result = gnome_vfs_get_file_info (uri, &info,
-					  GNOME_VFS_FILE_INFO_GETMIMETYPE,
+					  (GNOME_VFS_FILE_INFO_GETMIMETYPE
+					   | GNOME_VFS_FILE_INFO_FOLLOWLINKS),
 					  NULL);
 	if (result != GNOME_VFS_OK) {
 		fprintf (stderr, "%s: %s: %s\n",

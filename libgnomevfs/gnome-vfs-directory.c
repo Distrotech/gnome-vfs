@@ -403,7 +403,7 @@ directory_visit_internal (GnomeVFSURI *uri,
 			new_uri = gnome_vfs_uri_append_path (uri, info->name);
 
 
-			if (info->is_local)
+			if (GNOME_VFS_FILE_INFO_LOCAL (info))
 				ancestor_references = prepend_reference
 					(ancestor_references, info);
 
@@ -416,7 +416,7 @@ directory_visit_internal (GnomeVFSURI *uri,
 							   visit_options,
 							   callback, data);
 
-			if (info->is_local)
+			if (GNOME_VFS_FILE_INFO_LOCAL (info))
 				ancestor_references = remove_first_reference
 					(ancestor_references);
 

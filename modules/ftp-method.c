@@ -89,7 +89,7 @@ static GnomeVFSResult  get_file_entry  (ftpfs_uri_t *uri, int flags,
 					ftpfs_direntry_t **retval);
 static char           *ftpfs_get_current_directory (ftpfs_connection_t *conn);
 
-void
+static void
 print_vfs_message (char *msg, ...)
 {
 	char *str;
@@ -1400,7 +1400,7 @@ insert_dots (ftpfs_dir_t *dir, ftpfs_connection_t *conn)
 		fe = ftpfs_direntry_new ();
 		if (fe == NULL)
 			return;
-		if (vfs_parse_ls_lga (buffer[i], &fe->s, &fe->name, &fe->linkname)) {
+		if (gnome_vfs_parse_ls_lga (buffer[i], &fe->s, &fe->name, &fe->linkname)) {
 			fe->freshly_created = 0;
 			fe->ref_count = 1;
 			fe->local_filename = fe->remote_filename = NULL;
@@ -1540,7 +1540,7 @@ retrieve_dir (ftpfs_connection_t *conn, char *remote_path, gboolean resolve_syml
 		
 		fe = ftpfs_direntry_new ();
 
-		if (vfs_parse_ls_lga (buffer, &fe->s, &fe->name, &fe->linkname)) {
+		if (gnome_vfs_parse_ls_lga (buffer, &fe->s, &fe->name, &fe->linkname)) {
 			if (strcmp (fe->name, ".") == 0)
 				dot_found = 1;
 			fe->ref_count = 1;
@@ -2221,13 +2221,14 @@ _ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 	 */
 	s = dentry->s;
 	if (dentry->l_stat){
-		info->is_symlink = TRUE;
+		GNOME_VFS_FILE_INFO_SET_SYMLINK (info, TRUE);
 		info->symlink_name = g_strdup (dentry->linkname);
 		
 		if (dent->options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
 			s = dentry->s;
 	} 
 	gnome_vfs_stat_to_file_info (info, &s);
+	GNOME_VFS_FILE_INFO_SET_LOCAL (info, FALSE);
 
 	/*
 	 *
@@ -2320,10 +2321,11 @@ fill_file_info (const char *filename,
 	 */
 	s = dentry->s;
 	if (dentry->l_stat){
-		file_info->is_symlink = TRUE;
+		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
 		file_info->symlink_name = g_strdup (dentry->linkname);
 	} 
 	gnome_vfs_stat_to_file_info (file_info, &s);
+	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, FALSE);
 	
 	file_info->name = g_strdup (filename);
 	

@@ -1,5 +1,63 @@
 1999-10-23  Ettore Perazzoli  <ettore@gnu.org>
 
+	* modules/ftp-method.c (_ftpfs_read_directory): Set the "local"
+	flag in the info to `FALSE'.
+	(fill_file_info): Likewise.
+
+	* modules/file-method.c (get_stat_info): Set the "local" flag to
+	`TRUE'.
+	(get_stat_info_from_handle): Likewise.
+
+	* modules/extfs-method.c (read_directory_list): Set the "local"
+	flag in the info object to FALSE.
+
+	* modules/module-shared.c (gnome_vfs_stat_to_file_info): Do not
+	set the "local" flag anymore.
+
+	* modules/ftp-method.c (print_vfs_message): Made static.
+	(insert_dots): Use `gnome_vfs_parse_ls_lga()' instead of
+	`vfs_parse_ls_lga()', which does not exist anymore.
+	(retrieve_dir): Likewise.
+
+	* libgnomevfs/gnome-vfs-directory.c (directory_visit_internal):
+	Updated to match the `GnomeVFSFileInfo' changes.
+	* modules/module-shared.c (gnome_vfs_stat_to_file_info): Likewise.
+	* modules/file-method.c (get_stat_info): Likewise.
+	* modules/http-method.c (get_file_info_from_http_handle): Likewise.
+	* modules/ftp-method.c (fill_file_info): Likewise.
+	(_ftpfs_read_directory): Likewise.
+	* test/gnome-file-selection/gnome-file-selection.c
+	(populate_callback): Likewise.
+	* test/test-directory.c (print_list): Likewise.
+	* test/test-directory-visit.c (directory_visit_callback): Likewise.
+	* test/test-info.c (print_file_info): Likewise.
+
+	* libgnomevfs/gnome-vfs-file-info.h (GNOME_VFS_FILE_INFO_SYMLINK):
+	New macro.
+	(GNOME_VFS_FILE_INFO_LOCAL): New macro.
+	(GNOME_VFS_FILE_INFO_SUID): New macro.
+	(GNOME_VFS_FILE_INFO_SGID): New macro.
+	(GNOME_VFS_FILE_INFO_STICKY): New macro.
+	(GNOME_VFS_FILE_INFO_SET_SYMLINK): New macro.
+	(GNOME_VFS_FILE_INFO_SET_LOCAL): New macro.
+	(GNOME_VFS_FILE_INFO_SET_SUID): New macro.
+	(GNOME_VFS_FILE_INFO_SET_SGID): New macro.
+	(GNOME_VFS_FILE_INFO_SET_STICKY): New macro.
+
+	* libgnomevfs/gnome-vfs-types.h: New enum
+	`GnomeVFSFileFlags'.
+	(struct _GnomeVFSFileInfo): Replaced the various gboolean 1-bit flags
+	with a single `GnomeVFSFileFlags' member called `flags'.
+
+	* test/test-info.c (main): Follow links.
+
+	* modules/file-method.c (read_link): Zero-terminate the returned
+	string.
+
+	* modules/module-shared.c (gnome_vfs_stat_to_file_info):
+	Unconditionally set the type to `GNOME_VFS_FILE_TYPE_UNKNOWN' if
+	all else fails, even if `file_info' refers to a symlink.
+
 	* modules/ftp-method.c: #include <gnome.h>, "gnome-vfs.h" and
 	"gnome-vfs-private.h".
 

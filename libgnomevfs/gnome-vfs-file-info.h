@@ -27,6 +27,44 @@
 #include "gnome-vfs.h"
 
 
+#define GNOME_VFS_FILE_INFO_SYMLINK(info)		\
+	((info)->flags & GNOME_VFS_FILE_FLAGS_SYMLINK)
+
+#define GNOME_VFS_FILE_INFO_LOCAL(info)			\
+	((info)->flags & GNOME_VFS_FILE_FLAGS_LOCAL)
+
+#define GNOME_VFS_FILE_INFO_SUID(info)			\
+	((info)->flags & GNOME_VFS_FILE_FLAGS_SUID)
+
+#define GNOME_VFS_FILE_INFO_SGID(info)			\
+	((info)->flags & GNOME_VFS_FILE_FLAGS_SGID)
+
+#define GNOME_VFS_FILE_INFO_STICKY(info)		\
+	((info)->flags & GNOME_VFS_FILE_FLAGS_STICKY)
+
+
+#define GNOME_VFS_FILE_INFO_SET_SYMLINK(info, value)			\
+	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_SYMLINK)	\
+	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_SYMLINK))
+
+#define GNOME_VFS_FILE_INFO_SET_LOCAL(info, value)			\
+	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_LOCAL)		\
+	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_LOCAL))
+
+#define GNOME_VFS_FILE_INFO_SET_SUID(info, value)		\
+	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_SUID)	\
+	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_SUID))
+
+#define GNOME_VFS_FILE_INFO_SET_SGID(info, value)		\
+	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_SGID)	\
+	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_SGID))
+
+#define GNOME_VFS_FILE_INFO_SET_STICKY(info, value)			\
+	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_STICKY)		\
+	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_STICKY))
+
+
+
 GnomeVFSFileInfo *
 		 gnome_vfs_file_info_new 	(void);
 void		 gnome_vfs_file_info_init	(GnomeVFSFileInfo *info);

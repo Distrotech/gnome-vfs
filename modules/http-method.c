@@ -651,7 +651,6 @@ get_file_info_from_http_handle (HttpFileHandle *handle,
 		file_info->name = g_strdup ("");
 	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 	file_info->permissions = 0444;
-	file_info->is_local = FALSE;
 	file_info->link_count = 0;
 	file_info->uid = getuid ();
 	file_info->gid = getgid ();
@@ -664,10 +663,11 @@ get_file_info_from_http_handle (HttpFileHandle *handle,
 	file_info->symlink_name = NULL;
 	file_info->mime_type = g_strdup (handle->mime_type);
 	file_info->metadata_list = NULL;
-	file_info->is_local = FALSE;
-	file_info->is_suid = FALSE;
-	file_info->is_sgid = FALSE;
-	file_info->has_sticky_bit = FALSE;
+
+	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, FALSE);
+	GNOME_VFS_FILE_INFO_SET_SUID (file_info, FALSE);
+	GNOME_VFS_FILE_INFO_SET_SGID (file_info, FALSE);
+	GNOME_VFS_FILE_INFO_SET_STICKY (file_info, FALSE);
 
 	return GNOME_VFS_OK;
 }

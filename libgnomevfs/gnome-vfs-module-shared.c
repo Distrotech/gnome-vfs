@@ -58,13 +58,13 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 		file_info->type = GNOME_VFS_FILE_TYPE_SOCKET;
 	else if (S_ISREG (statptr->st_mode))
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-	else if (! file_info->is_symlink)
+	else
 		file_info->type = GNOME_VFS_FILE_TYPE_UNKNOWN;
 
 	file_info->permissions
 		= statptr->st_mode & (S_IRUSR | S_IWUSR | S_IXUSR
-				     | S_IRGRP | S_IWGRP | S_IXGRP
-				     | S_IROTH | S_IWOTH | S_IXOTH);
+				      | S_IRGRP | S_IWGRP | S_IXGRP
+				      | S_IROTH | S_IWOTH | S_IXOTH);
 
 	file_info->device = statptr->st_dev;
 	file_info->inode = statptr->st_ino;
@@ -82,15 +82,19 @@ gnome_vfs_stat_to_file_info (GnomeVFSFileInfo *file_info,
 	file_info->ctime = statptr->st_ctime;
 	file_info->mtime = statptr->st_mtime;
 
-	file_info->is_local = TRUE;
-	file_info->is_suid = (statptr->st_mode & S_ISUID) ? TRUE : FALSE;
-	file_info->is_sgid = (statptr->st_mode & S_ISGID) ? TRUE : FALSE;
+	GNOME_VFS_FILE_INFO_SET_SUID (file_info,
+				      (statptr->st_mode & S_ISUID) ? TRUE
+				                                   : FALSE);
+	GNOME_VFS_FILE_INFO_SET_SGID (file_info,
+				      (statptr->st_mode & S_ISGID) ? TRUE
+				                                   : FALSE);
 
 #ifdef S_ISVTX
-	file_info->has_sticky_bit
-		= (statptr->st_mode & S_ISVTX) ? TRUE : FALSE;
+	GNOME_VFS_FILE_INFO_SET_STICKY (file_info,
+					(statptr->st_mode & S_ISVTX) ? TRUE
+					                             : FALSE);
 #else
-	file_info->has_sticky_bit = FALSE;
+	GNOME_VFS_FILE_INFO_SET_STICKY (file_info, FALSE);
 #endif
 }
 

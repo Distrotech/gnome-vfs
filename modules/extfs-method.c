@@ -510,6 +510,7 @@ read_directory_list (FILE *p,
 		info = gnome_vfs_file_info_new ();
 		gnome_vfs_stat_to_file_info (info, &statbuf);
 
+		GNOME_VFS_FILE_INFO_SET_LOCAL (info, FALSE);
 		info->name = g_strdup (g_basename (name));
 		info->symlink_name = symlink_name;
 

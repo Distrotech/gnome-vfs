@@ -165,7 +165,7 @@ populate_callback (GnomeVFSAsyncHandle *handle,
 		info = gnome_vfs_directory_list_current (list);
 		while (info != NULL) {
 			if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY
-			    && ! info->is_symlink) {
+			    && ! GNOME_VFS_FILE_INFO_SYMLINK (info)) {
 				add_directory_to_clist (fs->directory_clist,
 							info->name);
 			} else {

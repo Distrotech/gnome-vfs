@@ -196,7 +196,6 @@ typedef enum _GnomeVFSURIHideOptions GnomeVFSURIHideOptions;
 
 
 /* File information, a la stat(2).  */
-
 /* FIXME: Private stuff.  */
 
 struct _GnomeVFSFileMetadata {
@@ -205,6 +204,22 @@ struct _GnomeVFSFileMetadata {
 	guint value_size;
 };
 typedef struct _GnomeVFSFileMetadata GnomeVFSFileMetadata;
+
+/* File flags.  */
+enum _GnomeVFSFileFlags {
+	GNOME_VFS_FILE_FLAGS_NONE = 0,
+	/* Whether the file is a symlink.  */
+	GNOME_VFS_FILE_FLAGS_SYMLINK = 1 << 0,
+	/* Whether the file is on a local file system.  */
+	GNOME_VFS_FILE_FLAGS_LOCAL = 1 << 1,
+	/* Whether the file has the SUID bit set.  */
+	GNOME_VFS_FILE_FLAGS_SUID = 1 << 2,
+	/* Whether the file has the SGID bit set.  */
+	GNOME_VFS_FILE_FLAGS_SGID = 1 << 3,
+	/* Whether the file has the sticky bit set.  */
+	GNOME_VFS_FILE_FLAGS_STICKY = 1 << 4
+};
+typedef enum _GnomeVFSFileFlags GnomeVFSFileFlags;
 
 struct _GnomeVFSFileInfo {
 	/* Base name of the file (no path).  */
@@ -215,6 +230,9 @@ struct _GnomeVFSFileInfo {
 
 	/* File permissions.  */
 	GnomeVFSFilePermissions permissions;
+
+	/* Flags for this file.  */
+	GnomeVFSFileFlags flags;
 
 	/* This is only valid if `is_local' is TRUE (see below).  */
 	dev_t device;
@@ -241,11 +259,8 @@ struct _GnomeVFSFileInfo {
 	time_t mtime;
 	time_t ctime;
 
-	/* TRUE if this is a symlink.  */
-	gboolean is_symlink : 1;
-
-	/* If `is_symlink' is TRUE, this also specifies the file the link
-           points to.  */
+	/* If the file is a symlink (see `flags'), this specifies the file the
+           link points to.  */
 	gchar *symlink_name;
 
 	/* MIME type.  Although this is dynamically allocated, please DON'T
@@ -258,18 +273,6 @@ struct _GnomeVFSFileInfo {
            the metadata for the file, but rather only the data that has been
            requested in the call that returned this information.  */
 	GList *metadata_list;
-
-	/* Whether this is on a local (native) file system.  */
-	gboolean is_local : 1;
-
-	/* Whether this file is SUID.  */
-	gboolean is_suid : 1;
-
-	/* Whether this file is SGID.  */
-	gboolean is_sgid : 1;
-
-	/* Whether this file has the sticky bit set.  */
-	gboolean has_sticky_bit : 1;
 };
 typedef struct _GnomeVFSFileInfo GnomeVFSFileInfo;
 

@@ -618,8 +618,10 @@ read_link (const gchar *full_name)
 		guint read_size;
 
                 read_size = readlink (full_name, buffer, size);
-                if (read_size < size)
+                if (read_size < size) {
+			buffer[read_size] = 0;
 			return buffer;
+		}
                 size *= 2;
 		buffer = g_realloc (buffer, size);
 	}
@@ -639,8 +641,10 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	if (lstat (full_name, statptr) != 0)
 		return gnome_vfs_result_from_errno ();
 
-	if (S_ISLNK (statptr->st_mode)) {
-		file_info->is_symlink = TRUE;
+	if (!S_ISLNK (statptr->st_mode)) {
+		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, FALSE);
+	} else {
+		GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
 		file_info->symlink_name = read_link (full_name);
 
 		if (options & GNOME_VFS_FILE_INFO_FOLLOWLINKS) {
@@ -651,6 +655,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	}
 
 	gnome_vfs_stat_to_file_info (file_info, statptr);
+	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
 
 	return GNOME_VFS_OK;
 }
@@ -670,6 +675,7 @@ get_stat_info_from_handle (GnomeVFSFileInfo *file_info,
 		return gnome_vfs_result_from_errno ();
 
 	gnome_vfs_stat_to_file_info (file_info, statptr);
+	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
 
 	return GNOME_VFS_OK;
 }
