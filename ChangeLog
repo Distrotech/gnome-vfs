@@ -1,5 +1,10 @@
 2003-01-16  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Comment out the gnutls check since its not tested.
+	
+2003-01-16  Alexander Larsson  <alexl@redhat.com>
+
 	* acinclude.m4:
 	* acconfig.h:
 	* configure.in:
