@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2000-08-01 02:00+0200\n"
-"PO-Revision-Date: 2000-11-11 19:03+01:00\n"
+"PO-Revision-Date: 2000-11-18 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -248,7 +248,12 @@ msgstr "Navnet er for langt"
 msgid "Service not available"
 msgstr "Tjeneste ikke tilgængelig"
 
-#: libgnomevfs/gnome-vfs-result.c:140
+#. GNOME_VFS_ERROR_SERVICE_OBSOLETE
+#: libgnomevfs/gnome-vfs-result.c:78
+msgid "Request obsoletes service's data"
+msgstr "Forespørgsel overflødiggør tjenestens data"
+
+#: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
 msgstr "Ukendt fejl"
 
@@ -459,7 +464,7 @@ msgstr "Vælg visninger som skal være i menuen for MIME-type \"%s\""
 msgid "Add Mime Type"
 msgstr "Tilføj MIME-type"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:621
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:622
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
@@ -467,23 +472,23 @@ msgstr ""
 "Tilføj en ny MIME-type\n"
 "For eksempel:  image/tiff; text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:626
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:627
 msgid "Mime Type:"
 msgstr "MIME-type:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:638
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:639
 msgid "Type in a description for this mime-type."
 msgstr "Indtast en beskrivelse for denne MIME-type."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:645
 msgid "Description:"
 msgstr "Beskrivelse:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:683
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:687
 msgid "Add New Extension"
 msgstr "Tilføj ny filtype"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:688
 msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
@@ -491,122 +496,129 @@ msgstr ""
 "Indtast filtypen for denne MIME-type.\n"
 "For eksempel: .html, .htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:689
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:693
 msgid "Extension:"
 msgstr "Filtype:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:848
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:852
 msgid "New Application"
 msgstr "Ny applikation"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:857
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:961
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:861
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:965
 msgid "Application Name:"
 msgstr "Applikationsnavn:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:865
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:970
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:869
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:974
 msgid "Application Command:"
 msgstr "Applikationskommando:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:873
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:979
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:877
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:983
 msgid "Open Behavior"
 msgstr "Opførsel ved åbning"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:879
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:985
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:883
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:989
 msgid "Can open multiple files"
 msgstr "Kan åbne flere filer"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:882
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:989
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:886
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:993
 msgid "Can open from URI"
 msgstr "Kan åbne fra URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:952
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:956
 msgid "Edit Application"
 msgstr "Redigér applikation"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:349
-msgid "Change Icon"
-msgstr "Ændr ikon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:361
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1216
+#: mime-type-capplet/nautilus-mime-type-capplet.c:528
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1501
 msgid "Mime Type"
 msgstr "MIME-type"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:382
-msgid "Add new Mime type..."
-msgstr "Tilføj ny MIME-type..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:535
+msgid "Change Icon"
+msgstr "Ændr ikon"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:389
-msgid "Delete this Mime type..."
-msgstr "Slet denne Mime-type..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:542
+msgid "Change File Extensions"
+msgstr "Ændr fil-endelser"
 
-#. Set up top right area.
-#: mime-type-capplet/nautilus-mime-type-capplet.c:394
+#: mime-type-capplet/nautilus-mime-type-capplet.c:550
 msgid "Default Action:"
 msgstr "Standard handling:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:404
+#: mime-type-capplet/nautilus-mime-type-capplet.c:562
 msgid "Use Viewer"
 msgstr "Brug visningsprogram"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:410
+#: mime-type-capplet/nautilus-mime-type-capplet.c:568
 msgid "Open With Application"
 msgstr "Åbn med applikation"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:422
+#: mime-type-capplet/nautilus-mime-type-capplet.c:580
 msgid "Edit List"
 msgstr "Redigér liste"
 
-#. Set up bottom right area.
-#: mime-type-capplet/nautilus-mime-type-capplet.c:428
-msgid "Extensions:"
-msgstr "fil-endelser:"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:599
+msgid "Add new Mime type..."
+msgstr "Tilføj ny MIME-type..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:451
-msgid "Add"
-msgstr "Tilføj"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:605
+msgid "Delete this Mime type..."
+msgstr "Slet denne Mime-type..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:454
-msgid "Remove"
-msgstr "Fjern"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:616
+msgid "Revert to System Defaults"
+msgstr "Gå tilbage til system-standard"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:518
+#: mime-type-capplet/nautilus-mime-type-capplet.c:674
 msgid "No Description"
 msgstr "Ingen beskrivelse"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:640
-#: mime-type-capplet/nautilus-mime-type-capplet.c:784
-#: mime-type-capplet/nautilus-mime-type-capplet.c:919
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1108
+#: mime-type-capplet/nautilus-mime-type-capplet.c:803
+#: mime-type-capplet/nautilus-mime-type-capplet.c:948
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1113
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1294
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1416
 msgid "None"
 msgstr "Ingen"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1215
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1044
+msgid ""
+"Reverting to system settings\n"
+"will lose all your personal \n"
+"Mime configuration.\n"
+"Revert to System Settings ?\n"
+msgstr ""
+"Tilbagegang til system-opsætninger\n"
+"vil fjerne alt i din personlige \n"
+"Mime-opsætning.\n"
+"Skal vi gå tilbage til system-opsætninger?\n"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1500
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1217
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1502
 msgid "Extension"
 msgstr "Filtype"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1218
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1503
 msgid "Action"
 msgstr "Handling"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:267
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:272
 msgid "Can't find an hbox, using a normal file selection"
 msgstr "Kan ikke finde en hbox, ved brug af normalt filvalg"
 
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:273
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:278
 msgid "Preview"
 msgstr "Smugkig"
 
@@ -615,22 +627,22 @@ msgstr "Smugkig"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1149
+#: modules/http-method.c:1172
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:1514
+#: modules/http-method.c:1571
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:1726
+#: modules/http-method.c:1802
 #, c-format
 msgid "%s of %s read"
 msgstr "%s af %s læst"
 
-#: modules/http-method.c:1729
+#: modules/http-method.c:1805
 #, c-format
 msgid "%s read"
 msgstr "%s læst"
@@ -698,6 +710,15 @@ msgstr "Vis:"
 #: test/gnome-file-selection/gnome-file-selection.c:887
 msgid "Show dotfiles"
 msgstr "Vis dotfiler"
+
+#~ msgid "Extensions:"
+#~ msgstr "fil-endelser:"
+
+#~ msgid "Add"
+#~ msgstr "Tilføj"
+
+#~ msgid "Remove"
+#~ msgstr "Fjern"
 
 #~ msgid "Invalid header `%s'"
 #~ msgstr "Ugyldig header '%s'"
