@@ -1,5 +1,10 @@
 2000-05-16  Gene Z. Ragan  <gzr@eazel.com>
 
+	* libgnomevfs/gnome-vfs-uti/main.c:
+	Reverted due to accidental check-in during last commit.
+
+2000-05-16  Gene Z. Ragan  <gzr@eazel.com>
+
 	* test/gnome-file-selection/main.c: #include
 	"libgnomevfs/gnome-vfs.h", not "gnome-vfs.h".
 
