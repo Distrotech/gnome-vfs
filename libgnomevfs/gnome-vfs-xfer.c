@@ -68,14 +68,15 @@ enum {
  * it gets called. We'll only call it every now and then to not loose a
  * lot of performance
  */
-#define UPDATE_PERIOD 100LL * 1000LL
+#define UPDATE_PERIOD ((gint64) (100 * 1000))
 
 static gint64
-system_time()
+system_time (void)
 {
-	struct timeval tmp;
-	gettimeofday (&tmp, NULL);
-	return (gint64)tmp.tv_usec + ((gint64)tmp.tv_sec) * 1000000LL;
+	struct timeval time_of_day;
+
+	gettimeofday (&time_of_day, NULL);
+	return (gint64) time_of_day.tv_usec + ((gint64) time_of_day.tv_sec) * 1000000;
 }
 
 static void
@@ -87,8 +88,6 @@ init_progress (GnomeVFSProgressCallbackState *progress_state,
 	progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 	progress_info->vfs_status = GNOME_VFS_OK;
 	progress_info->phase = GNOME_VFS_XFER_PHASE_INITIAL;
-	progress_info->source_name = NULL;
-	progress_info->target_name = NULL;
 	progress_info->file_index = 1;
 	progress_info->files_total = 0;
 	progress_info->bytes_total = 0;
@@ -102,8 +101,8 @@ init_progress (GnomeVFSProgressCallbackState *progress_state,
 	progress_state->sync_callback = NULL;
 	progress_state->update_callback = NULL;
 	progress_state->async_job_data = NULL;
-	progress_state->next_update_callback_time = 0LL;
-	progress_state->next_text_update_callback_time = 0LL;
+	progress_state->next_update_callback_time = 0;
+	progress_state->next_text_update_callback_time = 0;
 	progress_state->update_callback_period = UPDATE_PERIOD;
 }
 
@@ -431,7 +430,7 @@ empty_directory (GnomeVFSURI *uri,
 			continue;
 		}
 
-		item_uri = gnome_vfs_uri_append_file_name (uri, info.name);
+		item_uri = gnome_vfs_uri_append_path (uri, info.name);
 		
 		if (info.type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			result = remove_directory (item_uri, TRUE, 
@@ -1234,14 +1233,15 @@ copy_items (const GList *source_uri_list,
 						      GNOME_VFS_FILE_INFO_DEFAULT);
 
 		progress->progress_info->duplicate_name =
-			gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
+			gnome_vfs_uri_extract_short_path_name
+			((GnomeVFSURI *)target_item->data);
 
 		if (result == GNOME_VFS_OK) {
 			/* optionally keep trying until we hit a unique target name */
 			for (count = 1; ; count++) {
 				GnomeVFSXferOverwriteMode overwrite_mode_abort;
 
-				target_uri = gnome_vfs_uri_append_file_name
+				target_uri = gnome_vfs_uri_append_path
 					(target_dir_uri, 
 					 progress->progress_info->duplicate_name);
 
@@ -1289,7 +1289,8 @@ copy_items (const GList *source_uri_list,
 				 */
 				g_free (progress->progress_info->duplicate_name);
 				progress->progress_info->duplicate_name = 
-					gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
+					gnome_vfs_uri_extract_short_path_name
+					((GnomeVFSURI *)target_item->data);
 				progress->progress_info->duplicate_count = count;
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE;
 				progress->progress_info->vfs_status = result;
@@ -1356,14 +1357,15 @@ move_items (const GList *source_uri_list,
 		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_item->data);
 
 		progress->progress_info->duplicate_name =  
-			gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
+			gnome_vfs_uri_extract_short_path_name
+			((GnomeVFSURI *)target_item->data);
 
 		retry = FALSE;
 		skip = FALSE;
 		conflict_count = 1;
 
 		do {
-			target_uri = gnome_vfs_uri_append_file_name
+			target_uri = gnome_vfs_uri_append_path
 				(target_dir_uri, 
 				 progress->progress_info->duplicate_name);
 
@@ -1385,7 +1387,8 @@ move_items (const GList *source_uri_list,
 				/* deal with a name conflict -- ask the progress_callback for a better name */
 				g_free (progress->progress_info->duplicate_name);
 				progress->progress_info->duplicate_name =
-					gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
+					gnome_vfs_uri_extract_short_path_name
+					((GnomeVFSURI *)target_item->data);
 				progress->progress_info->duplicate_count = conflict_count;
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE;
 				progress->progress_info->vfs_status = result;
@@ -1456,14 +1459,15 @@ link_items (const GList *source_uri_list,
 
 		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_item->data);
 		progress->progress_info->duplicate_name =
-			gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
+			gnome_vfs_uri_extract_short_path_name
+			((GnomeVFSURI *)target_item->data);
 
 		retry = FALSE;
 		skip = FALSE;
 		conflict_count = 1;
 
 		do {
-			target_uri = gnome_vfs_uri_append_file_name
+			target_uri = gnome_vfs_uri_append_path
 				(target_dir_uri,
 				 progress->progress_info->duplicate_name);
 
@@ -1480,7 +1484,8 @@ link_items (const GList *source_uri_list,
 				/* deal with a name conflict -- ask the progress_callback for a better name */
 				g_free (progress->progress_info->duplicate_name);
 				progress->progress_info->duplicate_name =
-					gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
+					gnome_vfs_uri_extract_short_path_name
+					((GnomeVFSURI *)target_item->data);
 				progress->progress_info->duplicate_count = conflict_count;
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE;
 				progress->progress_info->vfs_status = result;
@@ -1668,7 +1673,7 @@ gnome_vfs_new_directory_with_unique_name (const GnomeVFSURI *target_dir_uri,
 
 	for (conflict_count = 1; ; conflict_count++) {
 
-		target_uri = gnome_vfs_uri_append_file_name
+		target_uri = gnome_vfs_uri_append_path
 			(target_dir_uri, 
 			 progress->progress_info->duplicate_name);
 		result = create_directory (target_uri, 

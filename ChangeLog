@@ -1,3 +1,20 @@
+2000-09-29  Darin Adler  <darin@eazel.com>
+
+	* gnome-vfs.spec.in: Make RPM builds do "make check" and also make
+	them compile with warnings on. This make the Tinderbox more
+	strict. Also use "make -k" so we get more errors at once on the
+	Tinderbox. Errors are still errors, we just see more of them.
+	
+	* libgnomevfs/gnome-vfs-xfer.c: (system_time), (init_progress):
+	Fix code to not use LL explicitly since that's not as portable as
+	gint64 is.
+	(init_progress): Got rid of code initializing the same fields to
+	NULL twice.
+	(empty_directory), (copy_items), (move_items), (link_items),
+	(gnome_vfs_new_directory_with_unique_name): Change code to use
+	file names in URI encoded form throughout. No unescaping in here.
+	This was all done by changing which GnomeVFSURI calls we use.
+
 2000-09-28  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* configure.in:

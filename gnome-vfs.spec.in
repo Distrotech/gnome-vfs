@@ -45,25 +45,17 @@ GNOME VFS development descirptionn here
 MYARCH_FLAGS="--host=alpha-redhat-linux"
 %endif
 # Needed for snapshot releases.
-
 MYCFLAGS="$RPM_OPT_FLAGS"
-
 if [ ! -f configure ]; then
-  CFLAGS="$MYCFLAGS" ./autogen.sh $MYARCH_FLAGS --prefix=%prefix --localstatedir=/var/lib --sysconfdir=%{sysconfdir}
+	CFLAGS="$MYCFLAGS" ./autogen.sh $MYARCH_FLAGS --enable-more-warnings --prefix=%prefix --localstatedir=/var/lib --sysconfdir=%{sysconfdir}
 else
-  CFLAGS="$MYCFLAGS" ./configure $MYARCH_FLAGS --prefix=%prefix --localstatedir=/var/lib --sysconfdir=%{sysconfdir}
+	CFLAGS="$MYCFLAGS" ./configure $MYARCH_FLAGS --enable-more-warnings --prefix=%prefix --localstatedir=/var/lib --sysconfdir=%{sysconfdir}
 fi
-
-if [ "$SMP" != "" ]; then
-  make -j$SMP "MAKE=make -j$SMP"
-else
-  make
-fi
+make -k check
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-make sysconfdir=$RPM_BUILD_ROOT%{sysconfdir} prefix=$RPM_BUILD_ROOT%{prefix} install
+make -k sysconfdir=$RPM_BUILD_ROOT%{sysconfdir} prefix=$RPM_BUILD_ROOT%{prefix} install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
