@@ -53,10 +53,8 @@ struct _GnomeFileSelectionPrivate {
 	guint combo_selection_changed_id;
 
 	/* This contains the file list for the icon list, which (unluckily!)
-	   does not let us query the icon texts.  */
-	gchar **file_name_list;
-	guint file_name_list_size;
-	guint file_name_list_count;
+	   does not let us query the icon texts. List of char *'s */
+	GList *file_list;
 
 	GnomeVFSAsyncContext *vfs_async_context;
 
@@ -156,7 +154,8 @@ populate_callback (GnomeVFSAsyncContext *context,
 				add_file_to_icon_list (info,
 						       fs->file_icon_list);
 			}
-
+			fs->priv->file_list = g_list_append (fs->priv->file_list,
+							     g_strdup (info->name));
 			info = gnome_vfs_directory_list_next (list);
 		}
 	}
@@ -167,6 +166,7 @@ populate_callback (GnomeVFSAsyncContext *context,
 		gnome_icon_list_thaw (GNOME_ICON_LIST (fs->file_icon_list));
 		fs->priv->populating_in_progress = FALSE;
 	}
+	
 }
 
 static void
@@ -479,11 +479,17 @@ select_icon_callback (GtkWidget *widget,
 		     GnomeFileSelection *fs)
 {
 	GtkEntry *entry;
+	GList    *l;
 
-	g_return_if_fail (index < fs->priv->file_name_list_count);
+	g_return_if_fail (fs != NULL);
+	g_return_if_fail (fs->priv != NULL);
+	g_return_if_fail (!fs->priv->populating_in_progress);
+	g_return_if_fail (index < g_list_length (fs->priv->file_list));
 
+	l = g_list_nth (fs->priv->file_list, index);
+	g_return_if_fail (l != NULL);
 	entry = GTK_ENTRY (fs->selection_entry);
-	gtk_entry_set_text (entry, fs->priv->file_name_list[index]);
+	gtk_entry_set_text (entry, l->data);
 	gtk_entry_set_position (entry, -1);
 	gtk_entry_select_region (entry, 0, -1);
 }
@@ -891,10 +897,17 @@ static void
 destroy (GtkObject *object)
 {
 	GnomeFileSelection *fs;
+	GList *l;
 
 	fs = GNOME_FILE_SELECTION (object);
 
 	g_free (fs->directory);
+
+	while (fs->priv->populating_in_progress) ;
+	while ((l = fs->priv->file_list)) {
+		g_free (l->data);
+		fs->priv->file_list = g_list_remove (fs->priv->file_list, l);
+	}
 
 	gnome_vfs_async_context_destroy (fs->priv->vfs_async_context);
 
@@ -940,11 +953,7 @@ init (GnomeFileSelection *fs)
 	fs->priv = g_new (GnomeFileSelectionPrivate, 1);
 	fs->priv->history = gnome_file_selection_history_new (HISTORY_SIZE);
 
-	fs->priv->file_name_list_size = 256;
-	fs->priv->file_name_list = g_new (gchar *,
-					   fs->priv->file_name_list_size);
-	fs->priv->file_name_list_count = 0;
-
+	fs->priv->file_list = NULL;
 	fs->filter_list = NULL;
 	fs->current_filter = NULL;
 

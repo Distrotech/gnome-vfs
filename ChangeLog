@@ -1,5 +1,12 @@
 1999-08-26  Michael Meeks  <michael@imaginator.com>
 
+	* test/gnome-file-selection/gnome-file-selection.c (destroy): 
+	Destroy file_list.
+	(GnomeFileSelectionPrivate): Changed file_list to GList.
+	(select_icon_callback): use this list, add lots of preconditions.
+
+1999-08-26  Michael Meeks  <michael@imaginator.com>
+
 	* libgnomevfs/gnome-vfs-types.h: Add GnomeVFSFileSize, and
 	GnomeVFSFileOffset ( unsigned, signed ). and push through the
 	whole API - How will CORBA deal with this ?
