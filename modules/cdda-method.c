@@ -116,6 +116,7 @@ cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
 	use_proxy = gconf_client_get_bool (gconf_client, USE_PROXY_KEY, NULL);
 	if (use_proxy) {
 		proxy_host = gconf_client_get_string (gconf_client, PROXY_HOST_KEY, NULL);
+
 		proxy_server.port = gconf_client_get_int (gconf_client, PROXY_PORT_KEY, NULL);
 
 		if (proxy_host != NULL) {	
@@ -123,7 +124,11 @@ cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
 			g_free (proxy_host);
 		} else {
 			use_proxy = FALSE;
-		}					
+		}
+
+		if (proxy_server.port == 0) {
+			proxy_server.port = 8080;
+		}
 	}
 
 	strcpy (cddb_server.name, "freedb.freedb.org");

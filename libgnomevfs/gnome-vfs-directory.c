@@ -29,6 +29,9 @@
 #include "gnome-vfs-private.h"
 
 
+
+#define VFS_MAXIMUM_SYMBOLIC_LINK_DEPTH 256
+
 struct GnomeVFSDirectoryHandle {
 	/* URI of the directory being accessed through the handle.  */
 	GnomeVFSURI *uri;
@@ -302,10 +305,15 @@ remove_first_reference (GList *reference_list)
 
 static gboolean
 lookup_ancestor (GList *ancestors,
+		 gboolean inode_and_device_are_valid,
 		 ino_t inode,
 		 dev_t device)
 {
 	GList *p;
+
+	if (!inode_and_device_are_valid) {
+		return g_list_length (ancestors) >= VFS_MAXIMUM_SYMBOLIC_LINK_DEPTH;
+	}
 
 	for (p = ancestors; p != NULL; p = p->next) {
 		DirectoryReference *reference;
@@ -390,6 +398,8 @@ directory_visit_internal (GnomeVFSURI *uri,
 		    && (visit_options & GNOME_VFS_DIRECTORY_VISIT_LOOPCHECK))
 			recursing_will_loop
 				= lookup_ancestor (ancestor_references,
+						   (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_DEVICE) &&
+						   (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_INODE),
 						   info->inode, info->device);
 		else
 			recursing_will_loop = FALSE;

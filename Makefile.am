@@ -20,7 +20,8 @@ SUBDIRS =					\
 	man					\
 	devel-docs				\
 	$(SUBDIRS_GNOME)			\
-	po
+	po					\
+	macros
 
 
 EXTRA_DIST =					\

@@ -31,6 +31,8 @@
 #include "gnome-vfs-job.h"
 #include "gnome-vfs-async-job-map.h"
 
+#include <unistd.h>
+
 void           pthread_gnome_vfs_async_cancel                 (GnomeVFSAsyncHandle                 *handle);
 void           pthread_gnome_vfs_async_open_uri               (GnomeVFSAsyncHandle                **handle_return,
 							       GnomeVFSURI                         *uri,
@@ -159,22 +161,13 @@ pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 	if (job == NULL) {
 		JOB_DEBUG (("job %u - job no longer exists", GPOINTER_TO_UINT (handle)));
 		/* have to cancel the callbacks because they still can be pending */
-		gnome_vfs_async_job_cancel_callbacks (handle);
+		gnome_vfs_async_job_cancel_job_and_callbacks (handle, NULL);
 	} else {
-		/* Cancel the job in progress. OK to do outside of job->access_lock. */
-		gnome_vfs_job_cancel (job);
-
-		JOB_DEBUG (("locking access lock %u", (int) job->job_handle));
-		sem_wait (&job->access_lock);
-	
-		/* The lock here is to make sure that either the job doesn't
-		 * get to execute anything or that any callbacks it schedules get cancelled
+		/* Cancel the job in progress. OK to do outside of job->access_lock,
+		 * job lifetime is protected by gnome_vfs_async_job_map_lock.
 		 */
-		gnome_vfs_async_job_cancel_callbacks (handle);
-				
-		job->cancelled = TRUE;
-		JOB_DEBUG (("unlocking access lock %u", (int) job->job_handle));
-		sem_post (&job->access_lock);
+		gnome_vfs_job_module_cancel (job);
+		gnome_vfs_async_job_cancel_job_and_callbacks (handle, job);
 	}
 
 	gnome_vfs_async_job_map_unlock ();
@@ -407,18 +400,33 @@ pthread_gnome_vfs_async_close (GnomeVFSAsyncHandle *handle,
 	g_return_if_fail (handle != NULL);
 	g_return_if_fail (callback != NULL);
 
-	gnome_vfs_async_job_map_lock ();
-	job = gnome_vfs_async_job_map_get_job (handle);
-	if (job == NULL) {
-		g_warning ("trying to read a non-existing handle");
-		gnome_vfs_async_job_map_unlock ();
-		return;
-	}
+	for (;;) {
+		gnome_vfs_async_job_map_lock ();
+		job = gnome_vfs_async_job_map_get_job (handle);
+		if (job == NULL) {
+			g_warning ("trying to read a non-existing handle");
+			gnome_vfs_async_job_map_unlock ();
+			return;
+		}
 
-	gnome_vfs_job_set (job, GNOME_VFS_OP_CLOSE,
-			   (GFunc) callback, callback_data);
-	gnome_vfs_job_go (job);
-	gnome_vfs_async_job_map_unlock ();
+		if (job->op->type != GNOME_VFS_OP_READ
+			&& job->op->type != GNOME_VFS_OP_WRITE) {
+			gnome_vfs_job_set (job, GNOME_VFS_OP_CLOSE,
+					   (GFunc) callback, callback_data);
+			gnome_vfs_job_go (job);
+			gnome_vfs_async_job_map_unlock ();
+			return;
+		}
+		/* Still reading, wait a bit, cancel should be pending.
+		 * This mostly handles a race condition that can happen
+		 * on a dual CPU machine where a cancel stops a read before
+		 * the read thread picks up and a close then gets scheduled
+		 * on a new thread. Without this the job op type would be
+		 * close for both threads and two closes would get executed
+		 */
+		gnome_vfs_async_job_map_unlock ();
+		usleep (100);
+	}
 }
 
 void

@@ -220,6 +220,11 @@ gboolean
 gnome_vfs_file_info_matches (const GnomeVFSFileInfo *a,
 			     const GnomeVFSFileInfo *b)
 {
+	g_return_val_if_fail (a != NULL, FALSE);
+	g_return_val_if_fail (b != NULL, FALSE);
+	g_return_val_if_fail (a->name != NULL, FALSE);
+	g_return_val_if_fail (b->name != NULL, FALSE);
+
 	if (a->type != b->type
 	    || a->size != b->size
 	    || a->block_count != b->block_count

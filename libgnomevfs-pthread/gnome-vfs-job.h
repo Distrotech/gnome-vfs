@@ -74,6 +74,7 @@ enum GnomeVFSOpType {
 	GNOME_VFS_OP_CLOSE,
 	GNOME_VFS_OP_READ,
 	GNOME_VFS_OP_WRITE,
+	GNOME_VFS_OP_READ_WRITE_DONE,
 	GNOME_VFS_OP_LOAD_DIRECTORY,
 	GNOME_VFS_OP_FIND_DIRECTORY,
 	GNOME_VFS_OP_XFER,
@@ -354,7 +355,7 @@ void         	 gnome_vfs_job_set	  	  (GnomeVFSJob     	*job,
 				      		   gpointer        	 callback_data);
 void         	 gnome_vfs_job_go       	  (GnomeVFSJob     	*job);
 void     	 gnome_vfs_job_execute  	  (GnomeVFSJob     	*job);
-void         	 gnome_vfs_job_cancel   	  (GnomeVFSJob	 	*job);
+void         	 gnome_vfs_job_module_cancel   	  (GnomeVFSJob	 	*job);
 int          	 gnome_vfs_job_get_count 	  (void);
 
 gboolean	 gnome_vfs_job_complete		  (GnomeVFSJob 		*job);

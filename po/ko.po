@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.0\n"
-"POT-Creation-Date: 2001-02-08 20:37-0500\n"
-"PO-Revision-Date: 2001-02-09 01:40+0900\n"
-"Last-Translator: Sung-Hyun Nam <namsh@kldp.org>\n"
+"Project-Id-Version: gnome-vfs-1\n"
+"POT-Creation-Date: 2001-02-20 22:07+0900\n"
+"PO-Revision-Date: 2001-02-20 22:10+0900\n"
+"Last-Translator: Young-Ho, Cha <ganadist@chollian.net>\n"
 "Language-Team: korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=euc-kr\n"
@@ -47,7 +47,7 @@ msgstr "Adobe 글꼴 메트릭스"
 
 #: data/mime/gnome-vfs.keys.in.h:9
 msgid "Andrew Toolkit inset"
-msgstr "Andrew Toolkit inset"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:10
 msgid "ApplixWare Graphics image"
@@ -487,7 +487,7 @@ msgstr "(CRC를 가지는)SV4 CPIP 파일"
 
 #: data/mime/gnome-vfs.keys.in.h:119
 msgid "SVG art"
-msgstr "SVG 아트"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:120
 msgid "Scheme source code"
@@ -518,64 +518,64 @@ msgid "Speedo font"
 msgstr "Speedo 글꼴"
 
 #: data/mime/gnome-vfs.keys.in.h:127
+msgid "Stampede package"
+msgstr "Stampede 꾸러미"
+
+#: data/mime/gnome-vfs.keys.in.h:128
 msgid "StarOffice Writer document"
 msgstr "스타오피스 Writer 문서"
 
-#: data/mime/gnome-vfs.keys.in.h:128
+#: data/mime/gnome-vfs.keys.in.h:129
 msgid "StarOffice presentation"
 msgstr "스타오피스 프리젠테이션"
 
-#: data/mime/gnome-vfs.keys.in.h:129
+#: data/mime/gnome-vfs.keys.in.h:130
 msgid "StarOffice spreadsheet"
 msgstr "스타오피스 스프레드시트"
 
-#: data/mime/gnome-vfs.keys.in.h:130
+#: data/mime/gnome-vfs.keys.in.h:131
 msgid "Sun �-law audio"
 msgstr "Sun -law 오디오"
 
-#: data/mime/gnome-vfs.keys.in.h:131
+#: data/mime/gnome-vfs.keys.in.h:132
 msgid "SunOS News font"
 msgstr "SunOS News 글꼴"
 
-#: data/mime/gnome-vfs.keys.in.h:132
+#: data/mime/gnome-vfs.keys.in.h:133
 msgid "TIFF image"
 msgstr "TIFF 이미지"
 
-#: data/mime/gnome-vfs.keys.in.h:133
+#: data/mime/gnome-vfs.keys.in.h:134
 msgid "TarGA image"
 msgstr "TarGA 이미지"
 
-#: data/mime/gnome-vfs.keys.in.h:134
+#: data/mime/gnome-vfs.keys.in.h:135
 msgid "Tcl script"
 msgstr "Tcl 스크립트"
 
-#: data/mime/gnome-vfs.keys.in.h:135
+#: data/mime/gnome-vfs.keys.in.h:136
 msgid "TeX document"
 msgstr "TeX 문서"
 
-#: data/mime/gnome-vfs.keys.in.h:136
+#: data/mime/gnome-vfs.keys.in.h:137
 msgid "TeX dvi document"
 msgstr "TeX dvi 문서"
 
-#: data/mime/gnome-vfs.keys.in.h:137
+#: data/mime/gnome-vfs.keys.in.h:138
 msgid "TeX font"
 msgstr "TeX 글꼴"
 
-#: data/mime/gnome-vfs.keys.in.h:138
+#: data/mime/gnome-vfs.keys.in.h:139
 msgid "TeX font metrics"
 msgstr "Tex 글꼴 메트릭스"
 
-#: data/mime/gnome-vfs.keys.in.h:139
+#: data/mime/gnome-vfs.keys.in.h:140
 msgid "TeXInfo document"
 msgstr "TeXInfo 문서"
 
-#: data/mime/gnome-vfs.keys.in.h:140
+#: data/mime/gnome-vfs.keys.in.h:141
 msgid "ToutDoux document"
 msgstr "ToutDoux 문서"
-
-#: data/mime/gnome-vfs.keys.in.h:141
-msgid "Troff document"
-msgstr "Troff 문서"
 
 #: data/mime/gnome-vfs.keys.in.h:142
 msgid "TrueType font"
@@ -735,7 +735,7 @@ msgstr "암호화된 메세지"
 
 #: data/mime/gnome-vfs.keys.in.h:181
 msgid "enriched text document"
-msgstr "enriched 텍스트 문서"
+msgstr "enriched text 문서"
 
 #: data/mime/gnome-vfs.keys.in.h:182
 msgid "folder"
@@ -815,11 +815,11 @@ msgstr "보통 text 문서"
 
 #: data/mime/gnome-vfs.keys.in.h:201
 msgid "profiler results"
-msgstr "profiler 결과"
+msgstr ""
 
 #: data/mime/gnome-vfs.keys.in.h:202
 msgid "reference to remote file"
-msgstr ""
+msgstr "원격 파일 참조"
 
 #: data/mime/gnome-vfs.keys.in.h:203
 msgid "rejected patch file"
@@ -898,42 +898,46 @@ msgid "theme"
 msgstr "테마"
 
 #: data/mime/gnome-vfs.keys.in.h:222
+msgid "troff document"
+msgstr "troff 문서"
+
+#: data/mime/gnome-vfs.keys.in.h:223
 msgid "troff me input document"
 msgstr "Troff me input 문서"
 
-#: data/mime/gnome-vfs.keys.in.h:223
+#: data/mime/gnome-vfs.keys.in.h:224
 msgid "troff mm input document"
 msgstr "Troff mm input  문서"
 
-#: data/mime/gnome-vfs.keys.in.h:224
-msgid "troff ms input document"
-msgstr "troff ms 입력 문서"
-
 #: data/mime/gnome-vfs.keys.in.h:225
+msgid "troff ms input document"
+msgstr "troff ms input 문서"
+
+#: data/mime/gnome-vfs.keys.in.h:226
 msgid "unknown type"
 msgstr "알수없는 형식"
 
-#: data/mime/gnome-vfs.keys.in.h:226
+#: data/mime/gnome-vfs.keys.in.h:227
 msgid "ustar archive"
 msgstr "ustar 저장파일"
 
-#: data/mime/gnome-vfs.keys.in.h:227
+#: data/mime/gnome-vfs.keys.in.h:228
 msgid "wave audio"
 msgstr "wave 오디오"
 
-#: data/mime/gnome-vfs.keys.in.h:228
+#: data/mime/gnome-vfs.keys.in.h:229
 msgid "web folder"
 msgstr "웹 폴더"
 
-#: data/mime/gnome-vfs.keys.in.h:229
+#: data/mime/gnome-vfs.keys.in.h:230
 msgid "xfig vector graphic"
 msgstr "xfig 벡터 그래픽"
 
-#: data/mime/gnome-vfs.keys.in.h:230
+#: data/mime/gnome-vfs.keys.in.h:231
 msgid "zip archive"
 msgstr "zip 압축파일"
 
-#: data/mime/gnome-vfs.keys.in.h:231
+#: data/mime/gnome-vfs.keys.in.h:232
 msgid "zoo archive"
 msgstr "zoo 압축파일"
 
@@ -961,12 +965,12 @@ msgstr "설정 파일 `%s' 가 없습니다: %s"
 msgid "GNOME VFS already initialized."
 msgstr "그놈 VFS는 이미 초기화 되었습니다."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:656
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
 #, c-format
 msgid "Could not parse: %s"
 msgstr "분석 할수 없음: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:658
+#: libgnomevfs/gnome-vfs-parse-ls.c:656
 msgid "More parsing errors will be ignored."
 msgstr "다음부터 분석 오류는 무시됩니다."
 
@@ -1186,17 +1190,17 @@ msgstr "%u 바이트"
 #: libgnomevfs/gnome-vfs-utils.c:76
 #, c-format
 msgid "%.1f K"
-msgstr "%.1f K"
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-utils.c:80
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f MB"
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f GB"
+msgstr ""
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
@@ -1345,226 +1349,222 @@ msgstr "알수없는 작업 ID %u"
 msgid "Operation stopped"
 msgstr "작동 중지"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:340
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:373
 msgid "Edit Applications List"
 msgstr "프로그램 목록 편집"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:360
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:393
 #, c-format
-msgid "Select applications to appear in menu for mime type \"%s\""
-msgstr "mime형식 \"%s\"에 대한 메뉴에서 나타날 프로그램 선택"
+msgid "Select applications to appear in menu for MIME type \"%s\""
+msgstr "MIME형식 \"%s\"에 대한 메뉴에서 나타날 프로그램 선택"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:384
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:417
 msgid "Add Application..."
 msgstr "프로그램 추가..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:391
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:424
 msgid "Edit Application..."
 msgstr "프로그램 편집..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:397
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:430
 msgid "Delete Application"
 msgstr "프로그램 제거"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:430
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:463
 msgid "Edit Components List"
 msgstr "컴포넌트 목록 편집"
 
 #. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:450
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:483
 #, c-format
-msgid "Select views to appear in menu for mime type \"%s\""
-msgstr "mime형식 \"%s\"에 대한 메뉴에서 나타날 보기프로그램 선택"
+msgid "Select views to appear in menu for MIME type \"%s\""
+msgstr "MIME형식 \"%s\"에 대한 메뉴에서 나타날 보기프로그램 선택"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:681
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:703
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
 msgstr "MIME형식에 대문자가 포함되었습니다. 대문자는 소문자로 바뀌어 집니다."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:706
 msgid "Add New MIME Type"
 msgstr "새 Mime형식 추가"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:708
-msgid "Add Mime Type"
-msgstr "Mime형식 추가"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:754
+msgid "Add MIME Type"
+msgstr "새 MIME형식 추가"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:757
 msgid ""
-"Add a new Mime Type\n"
+"Add a new MIME Type\n"
 "For example:  image/tiff; text/x-scheme"
 msgstr ""
-"새 Mime형식을 추가하십시오\n"
+"새 MIME형식을 추가하십시오\n"
 "예: image/tiff; text/x-scheme"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:717
-msgid "Mime Type:"
-msgstr "Mime 형식:"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:763
+msgid "MIME Type:"
+msgstr "MIME 형식:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:729
-msgid "Type in a description for this mime-type."
-msgstr "이 mime형식의 설명을 적으세요"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:775
+msgid "Type a description for this MIME type."
+msgstr "이 MIME형식의 설명을 적으세요"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:735
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:781
 msgid "Description:"
 msgstr "설명"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:885
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:940
 msgid "File Extensions "
 msgstr "파일 확장자"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:905
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:960
 msgid "Add..."
 msgstr "추가..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:910
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:965
 msgid "    Remove    "
 msgstr "    제거     "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:981
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1034
 msgid "Add New Extension"
 msgstr "새 확장자 추가"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:985
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1038
 msgid ""
-"Type in the extensions for this mime-type.\n"
-"For example:  .html, .htm"
+"Type in the extensions for this mime-type (without dot).\n"
+"You can enter several extensions seperated by a space,\n"
+"for example: html htm"
 msgstr ""
-"이 mime형식의 확장자를 입력하십시오.\n"
-"예: .html, .htm"
+"이 mime형식의 확장자(점을 제외한)를 입력하십시오.\n"
+"빈칸으로 나누어서 여러개의 확장자를 입력할수 있습니다,\n"
+"예: html htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:990
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
 msgid "Extension:"
 msgstr "확장자:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1153
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1176
 msgid "New Application"
 msgstr "새 프로그램"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1162
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1269
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1285
 msgid "Application Name:"
 msgstr "프로그램 이름:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1170
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1278
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1193
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1294
 msgid "Application Command:"
 msgstr "프로그램 명령:"
 
 #. Open Behavior frame
 #. FIXME bugzilla.eazel.com 6066: Need to add expected uri schemes
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1179
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1202
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1303
 msgid "Open Behavior"
 msgstr "열기 행동"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1208
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1309
 msgid "Can open multiple files"
 msgstr "여러 파일을 열수 있음"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1188
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1211
 msgid "Expects URIs as arguments"
-msgstr "URI 인자가 필요합니다"
+msgstr ""
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1260
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1276
 msgid "Edit Application"
 msgstr "응용프로그램 편집"
 
 #. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1298
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1314
 msgid "Can open from URI"
 msgstr "URI에서 열수 있음"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:619
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1680
-msgid "Mime Type"
-msgstr "Mime 형식"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:722
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1787
+msgid "MIME Type"
+msgstr "MIME 형식"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:626
+#: mime-type-capplet/nautilus-mime-type-capplet.c:729
 msgid "Change Icon"
 msgstr "아이콘 바꿈"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:633
+#: mime-type-capplet/nautilus-mime-type-capplet.c:736
 msgid "Change File Extensions"
 msgstr "파일 확장자 바꿈"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:641
+#: mime-type-capplet/nautilus-mime-type-capplet.c:744
 msgid "Default Action:"
 msgstr "기본 행동:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:653
+#: mime-type-capplet/nautilus-mime-type-capplet.c:756
 msgid "Use Viewer"
 msgstr "보기 프로그램 사용"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:659
+#: mime-type-capplet/nautilus-mime-type-capplet.c:762
 msgid "Open With Application"
 msgstr "응용프로그램으로 열기"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:671
+#: mime-type-capplet/nautilus-mime-type-capplet.c:774
 msgid "Edit List"
 msgstr "편집 목록"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:696
-msgid "Add new Mime type..."
-msgstr "새 Mime형식 추가..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:799
+msgid "Add new MIME type..."
+msgstr "새 MIME형식 추가..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:702
-msgid "Delete this Mime type..."
-msgstr "이 Mime형식을 지움..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:805
+msgid "Delete this MIME type..."
+msgstr "이 MIME형식을 지움..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:713
+#: mime-type-capplet/nautilus-mime-type-capplet.c:816
 msgid "Revert to System Defaults"
 msgstr "시스템 기본치로 되돌림"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:794
-msgid "No Description"
-msgstr "설명 없음"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:924
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1068
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1022
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1166
 msgid "None"
 msgstr "없음"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1164
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1271
 msgid ""
-"Reverting to system settings\n"
-"will lose all your personal \n"
-"Mime configuration.\n"
-"Revert to System Settings ?\n"
+"Reverting to system settings will lose any changes\n"
+"you have ever made to File Types and Programs.\n"
+"Revert anyway?"
 msgstr ""
-"시스템 설정으로 되돌리면\n"
-"사용자의 개인 Mime설정을\n"
-"모두 잃어버리게 됩니다.\n"
-"시스템 설정으로 되돌리겠습니까?\n"
+"시스템 설정으로 되돌리면 사용자가 설정한 파일형식과\n"
+"프로그램을 모두 잃어버리게 됩니다.\n"
+"시스템 설정으로 되돌리겠습니까?"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1233
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1421
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1545
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1340
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1534
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1647
 msgid "none"
 msgstr "없음"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1270
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1451
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1581
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1377
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1553
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1683
 #, c-format
 msgid "View as %s"
 msgstr "%s로 보기"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1679
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1786
 msgid "Description"
 msgstr "설명"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1681
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1788
 msgid "Extension"
 msgstr "확장자"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1682
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1789
 msgid "Default Action"
 msgstr "기본 행동"
 
@@ -1581,22 +1581,22 @@ msgstr "미리 보기"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "알수없는 GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1176
+#: modules/http-method.c:1177
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s 받음"
 
-#: modules/http-method.c:1581
+#: modules/http-method.c:1582
 #, c-format
 msgid "Closing connection to %s"
 msgstr "%s의 연결 끊음"
 
-#: modules/http-method.c:1825
+#: modules/http-method.c:1848
 #, c-format
 msgid "%s of %s read"
 msgstr "%2$s 중 %1$s 읽음"
 
-#: modules/http-method.c:1828
+#: modules/http-method.c:1851
 #, c-format
 msgid "%s read"
 msgstr "%s 읽음"
@@ -1664,6 +1664,15 @@ msgstr "보기:"
 #: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "숨김파일 보기"
+
+#~ msgid "Add Mime Type"
+#~ msgstr "Mime형식 추가"
+
+#~ msgid "Mime Type"
+#~ msgstr "Mime 형식"
+
+#~ msgid "No Description"
+#~ msgstr "설명 없음"
 
 #~ msgid "Unknown sort rule %d"
 #~ msgstr "알수없는 정렬 규칙 %d"
