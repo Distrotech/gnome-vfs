@@ -90,7 +90,7 @@ static GHashTable *generic_types;
 static GHashTable *registered_types;
 
 /* Prototypes */
-static void write_mime_data (GHashTable *hash);
+static void write_registered_mime_data (void);
 
 
 static GnomeMimeContext *
@@ -541,21 +541,40 @@ load_mime_list_info_from (char *filename)
 				if (c == EOF)
 					break;
 			}			
-			if (c == '=' || c == ':'){				
+			if (c == '=') {
 				key = g_strdup (line->str);				
 				g_string_assign (line, "");				
 				state = STATE_ON_VALUE;
 				break;
 			}
+
+			if (c == ':') {
+				key = g_strdup (line->str);				
+				g_string_assign (line, "");
+
+				/* Skip space after colon.  There should be one
+				 * there.  That is how the file is defined. */
+				c = getc_unlocked (mime_file);
+				if (c != ' ') {
+					/* Revert seek */
+					ungetc (c, mime_file);
+				} else {
+					column++;
+				}
+				
+				state = STATE_ON_VALUE;
+				break;
+			}
+
 			g_string_append_c (line, c);
 			break;
 
-		case STATE_ON_VALUE:			
+		case STATE_ON_VALUE:
 			g_string_append_c (line, c);
 			break;
 			
 		case STATE_LANG:
-			if (c == ']'){
+			if (c == ']') {
 				state = STATE_ON_KEY;      
 				if (line->str [0]){
 					g_free(lang);
@@ -1021,7 +1040,9 @@ gnome_vfs_mime_get_extensions (const char *mime_type)
 			index = 0;
 			
 			while (elements[index] != NULL) {
-				list = g_list_append (list, g_strdup (elements[index]));
+				if (strcmp (elements[index], "") != 0) {
+					list = g_list_append (list, g_strdup (elements[index]));
+				}
 				index++;
 			}			
 			g_strfreev (elements);
@@ -1111,28 +1132,11 @@ gnome_vfs_mime_needsterminal (const char *mime_type, gchar *key)
 	return gnome_vfs_mime_flag (mime_type, key, "needsterminal");
 }
 
-#if 0
-int
-main ()
+static gint
+mime_list_sort (gconstpointer a, gconstpointer b)
 {
-	GList *keys;
-
-	g_warning ("El lookup de image/* fall!\n");
-		
-	keys = gnome_vfs_mime_get_keys ("image/gif");
-	printf ("Dumping keys for image/gif\n");
-	for (; keys; keys = keys->next){
-		char *value;
-		
-		value = gnome_vfs_mime_type_get_value ("image/gif", keys->data);
-		printf ("Key=%s, value=%s\n", (char *) keys->data, value);
-	}
-	
-	return 0;
+	return (strcmp (a, b));
 }
-#endif
-
-
 
 /*
  *  get_key_name
@@ -1159,8 +1163,8 @@ get_key_name (gpointer key, gpointer value, gpointer user_data)
 	if (key == NULL || strlen (name) == 0) {
 		return;
 	}
-	
-	(*list) = g_list_append ((*list), g_strdup(context->mime_type));
+		
+	(*list) = g_list_insert_sorted ((*list), g_strdup(context->mime_type), mime_list_sort);
 }
 
 /*
@@ -1196,7 +1200,7 @@ gnome_vfs_get_registered_mime_types (void)
 void
 gnome_vfs_mime_commit_registered_types (void)
 {
-	write_mime_data (registered_types);
+	write_registered_mime_data ();
 }
 
 /**
@@ -1233,28 +1237,32 @@ gnome_vfs_mime_set_registered_type_key (const char *mime_type, gpointer key, gpo
 	}
 }
 
-#if 0
 static void
-write_mime_data_foreach (gpointer hash, gpointer value, gpointer data)
+write_mime_data_foreach (gpointer key, gpointer value, gpointer data)
 {
-	GnomeMimeContext *context;
-	GHashTable *table;
+	FILE *file;
+	char *key_string;
+	char *key_data;
 
-	context = value;
-	table = hash;
+	key_string = key;
+	key_data = value;
+	file = data;
 
-	fwrite (context->mime_type, 1, strlen (context->mime_type), (FILE *) data);
-	fwrite ("\n", 1, 1, (FILE *) data);
+	fwrite ("\n\t", 1, 2, file);
+	fwrite (key_string, 1, strlen (key_string), file);
+	fwrite (": ", 1, 2, file);
+	fwrite (key_data, 1, strlen (key_data), file);
+	fwrite ("\n", 1, 1, file);
 }
-#endif
 
 static void
-write_mime_data (GHashTable *hash)
+write_registered_mime_data (void)
 {
-#if 0
 	DIR *dir;
 	FILE *file;
 	char *filename;
+	GList *list, *element;
+	GnomeMimeContext *context;
 	
 	if (stat (gnome_mime_dir.dirname, &gnome_mime_dir.s) != -1)
 		gnome_mime_dir.valid = TRUE;
@@ -1268,6 +1276,11 @@ write_mime_data (GHashTable *hash)
 	}
 	
 	if (gnome_mime_dir.system_dir){
+		list = gnome_vfs_get_registered_mime_types ();
+		if (list == NULL) {
+			return;
+		}
+		
 		filename = g_concat_dir_and_file (gnome_mime_dir.dirname, "gnome-vfs.mime");
 
         	remove (filename);
@@ -1276,12 +1289,22 @@ write_mime_data (GHashTable *hash)
 			return;
 		}
 
-		g_hash_table_foreach (hash, write_mime_data_foreach, file);
+		/* Get data in list */
+		for (element = list; element != NULL; element = element->next) {
+			context = g_hash_table_lookup (registered_types, element->data);
+			if (context != NULL) {
+				fwrite (context->mime_type, 1, strlen (context->mime_type), file);				
+				g_hash_table_foreach (context->keys, write_mime_data_foreach, file);
+				fwrite ("\n", 1, 1, file);
+			}		
+		}
+
+		/* Cleanup file */
 		fclose (file);
-		
 		g_free (filename);
+
+		gnome_vfs_mime_registered_mime_type_list_free (list);
 	}
-#endif
 }
 
 

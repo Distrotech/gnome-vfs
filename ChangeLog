@@ -1,3 +1,35 @@
+2000-06-20  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug #1055
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	(gnome_vfs_mime_add_extension):
+	Renamed function to be more in accordance with other function
+	in file. 
+
+	(gnome_vfs_mime_remove_extension):
+	New function to remove mapped extension from mime type.
+	
+	* libgnomevfs/gnome-vfs-mime-info.c: (load_mime_list_info_from),
+	(gnome_vfs_mime_get_extensions), (mime_list_sort), (get_key_name),
+	(gnome_vfs_mime_commit_registered_types),
+	(write_mime_data_foreach), (write_registered_mime_data):
+	A couple of things done here.  One was work on the tokenizer
+	so that it handled a variety of cases when reading in
+	key data form .mime files.  Another was work on saving and
+	deleting mapped extensions from the .mime file.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_extension_window):
+	Work on saving and deleting mapped extensions from the .mime file.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(populate_extension_list),
+	(nautilus_mime_type_capplet_add_extension),
+	(remove_extension_clicked):
+	Work on saving and deleting mapped extensions from the .mime file.
+	
 2000-06-20  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.keys: Finished renaming of some types

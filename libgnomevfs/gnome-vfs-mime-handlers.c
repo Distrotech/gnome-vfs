@@ -1216,8 +1216,7 @@ gnome_vfs_mime_remove_component_from_short_list (const char *mime_type,
  */
  
 void
-gnome_vfs_mime_add_extension_to_mime_type (const char *mime_type,
-					   const char *extension)
+gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
 {
 	GList *list, *element;
 	gchar *extensions, *old_extensions;
@@ -1245,7 +1244,7 @@ gnome_vfs_mime_add_extension_to_mime_type (const char *mime_type,
 			extensions = g_strdup_printf ("%s %s", old_extensions, (char *)element->data);
 			g_free (old_extensions);
 		} else {
-			extensions = g_strdup_printf ("%s ", (char *)element->data);
+			extensions = g_strdup_printf ("%s", (char *)element->data);
 		}
 	}
 	
@@ -1254,6 +1253,65 @@ gnome_vfs_mime_add_extension_to_mime_type (const char *mime_type,
 		extensions = g_strdup_printf ("%s %s", old_extensions, extension);
 		g_free (old_extensions);
 
+		/* Add extensions to hash table */
+		gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions);
+
+		/* Flush table into file */
+		gnome_vfs_mime_commit_registered_types ();
+	}
+	
+	gnome_vfs_mime_extension_list_free (list);
+}						   
+
+void
+gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
+{
+	GList *list, *element;
+	gchar *extensions, *old_extensions;
+	gboolean in_list;
+	
+	extensions = NULL;
+	old_extensions = NULL;
+	in_list = FALSE;
+	
+	list = gnome_vfs_mime_get_extensions (mime_type);	
+	if (list == NULL) {
+		return;
+	}
+
+	/* See if extension is in list */
+	for (element = list; element != NULL; element = element->next) {
+		if (strcmp (extension, (char *)element->data) == 0) {					
+			/* Remove extension from list */			
+			in_list = TRUE;
+			list = g_list_remove (list, element->data);
+			g_free (element->data);
+			element = NULL;
+		}
+
+		if (in_list) {
+			break;
+		}
+	}
+
+	/* Exit if we found no match */
+	if (!in_list) {
+		gnome_vfs_mime_extension_list_free (list);
+		return;
+	}
+	
+	/* Create new extension list */
+	for (element = list; element != NULL; element = element->next) {		
+		if (extensions != NULL) {
+			old_extensions = extensions;
+			extensions = g_strdup_printf ("%s %s", old_extensions, (char *)element->data);
+			g_free (old_extensions);
+		} else {
+			extensions = g_strdup_printf ("%s", (char *)element->data);
+		}		
+	}
+	
+	if (extensions != NULL) {
 		/* Add extensions to hash table */
 		gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions);
 
