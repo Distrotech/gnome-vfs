@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.0\n"
-"POT-Creation-Date: 2002-11-12 05:07+0100\n"
+"POT-Creation-Date: 2002-11-13 12:11-0500\n"
 "PO-Revision-Date: 2002-11-12 20:34+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: albanian < gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -309,7 +309,9 @@ msgstr "Nuk u gjet një file i vlefshëm konfigurimi në %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Përdor të ndryshueshmen e ambientit %s për të specifikuar një pozicion tjetër.\n"
+msgstr ""
+"Përdor të ndryshueshmen e ambientit %s për të specifikuar një pozicion "
+"tjetër.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -326,4 +328,3 @@ msgstr "Moniker Gnome VFS i përgjithshëm"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "moniker i përgjithshëm për file"
-

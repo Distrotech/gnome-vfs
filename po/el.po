@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.0.2\n"
-"POT-Creation-Date: 2002-08-23 17:20-0400\n"
+"POT-Creation-Date: 2002-11-13 12:11-0500\n"
 "PO-Revision-Date: 2002-08-19 12:48+0100\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -42,22 +42,22 @@ msgstr "Το %s:%d δεν περιέχει όνομα αρθρώματος."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Το αρχείο ρυθμίσεων `%s' δε βρέθηκε: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:706
+#: libgnomevfs/gnome-vfs-job.c:707
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Άγνωστος κωδικός op %u"
 
-#: libgnomevfs/gnome-vfs-job.c:995 libgnomevfs/gnome-vfs-job.c:1140
+#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ανεπιτυχής δημιουργία διασωλήνωσης για το ανοιχτό GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1600
+#: libgnomevfs/gnome-vfs-job.c:1601
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Άγνωστη είδος εργασίας %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1633
+#: libgnomevfs/gnome-vfs-job.c:1634
 msgid "Operation stopped"
 msgstr "Η λειτουργία διακόπηκε"
 

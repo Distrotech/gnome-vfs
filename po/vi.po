@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
-"POT-Creation-Date: 2002-08-23 17:20-0400\n"
+"POT-Creation-Date: 2002-11-13 12:11-0500\n"
 "PO-Revision-Date: 2002-05-03 17:37-0400\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
@@ -33,22 +33,22 @@ msgstr "%s:%d không chứa tên module."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Không tìm thấy tập tin cấu hình `%s': %s"
 
-#: libgnomevfs/gnome-vfs-job.c:706
+#: libgnomevfs/gnome-vfs-job.c:707
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Kiểu thao tác lạ %u"
 
-#: libgnomevfs/gnome-vfs-job.c:995 libgnomevfs/gnome-vfs-job.c:1140
+#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Không thể tạo ống dẫn cho GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1600
+#: libgnomevfs/gnome-vfs-job.c:1601
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Kiểu công việc lạ %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1633
+#: libgnomevfs/gnome-vfs-job.c:1634
 msgid "Operation stopped"
 msgstr "Thao tác đã dừng"
 

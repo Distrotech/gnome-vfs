@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-07-24 04:20-0400\n"
+"POT-Creation-Date: 2002-11-13 12:11-0500\n"
 "PO-Revision-Date: 2002-10-28 19:39+0200\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -38,25 +38,25 @@ msgid "Configuration file `%s' was not found: %s"
 msgstr "Канфігурацыйны файл `%s' адсутнічае: %s"
 
 # libgnomevfs/gnome-vfs-job.c:714
-#: libgnomevfs/gnome-vfs-job.c:706
+#: libgnomevfs/gnome-vfs-job.c:707
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Нывядомы тып апэрацыі %u"
 
 # libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#: libgnomevfs/gnome-vfs-job.c:995 libgnomevfs/gnome-vfs-job.c:1140
+#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Немагчыма стварыць канал для адчыненага GIOChannel: %s"
 
 # libgnomevfs/gnome-vfs-job.c:1596
-#: libgnomevfs/gnome-vfs-job.c:1600
+#: libgnomevfs/gnome-vfs-job.c:1601
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Невядомы від заданьня %u"
 
 # libgnomevfs/gnome-vfs-job.c:1632
-#: libgnomevfs/gnome-vfs-job.c:1633
+#: libgnomevfs/gnome-vfs-job.c:1634
 msgid "Operation stopped"
 msgstr "Дзеяньне спынена"
 
@@ -389,4 +389,3 @@ msgstr "агульная мянушка Gnome VFS"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "агульная мянушка файлу"
-

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-08-23 17:20-0400\n"
+"POT-Creation-Date: 2002-11-13 12:11-0500\n"
 "PO-Revision-Date: 2002-07-13 14:33GMT+0200\n"
 "Last-Translator: Peteris Krisjanis <pecisk@inbox.lv>\n"
 "Language-Team: Latvian <ll10nt@inbox.lv>\n"
@@ -34,22 +34,22 @@ msgstr "%s:%d nesatur moduļa nosaukumu."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigurācijas fails `%s' netika atrasts: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:706
+#: libgnomevfs/gnome-vfs-job.c:707
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Nezināms op tips %u"
 
-#: libgnomevfs/gnome-vfs-job.c:995 libgnomevfs/gnome-vfs-job.c:1140
+#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nevar izveidot kanālu lai atvērtu GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1600
+#: libgnomevfs/gnome-vfs-job.c:1601
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Nezināms darba tips %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1633
+#: libgnomevfs/gnome-vfs-job.c:1634
 msgid "Operation stopped"
 msgstr "Operācija apturēta"
 

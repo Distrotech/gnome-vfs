@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.0\n"
-"POT-Creation-Date: 2002-09-22 03:26+0200\n"
+"POT-Creation-Date: 2002-11-13 12:11-0500\n"
 "PO-Revision-Date: 2002-09-22 03:28+0200\n"
 "Last-Translator: Christopher R. Gabriel <cgabriel@pluto.linux.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -308,7 +308,8 @@ msgstr "Non è stato trovato un file di impostazioni valido in %s\n"
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Usa la variabile di ambiente %s per specificare una posizione diversa.\n"
+msgstr ""
+"Usa la variabile di ambiente %s per specificare una posizione diversa.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -325,4 +326,3 @@ msgstr "Moniker GNOME VFS generico"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "moniker generico per i file"
-

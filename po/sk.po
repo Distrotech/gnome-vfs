@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.6.2.0\n"
-"POT-Creation-Date: 2002-08-23 17:20-0400\n"
+"POT-Creation-Date: 2002-11-13 12:11-0500\n"
 "PO-Revision-Date: 2002-01-30 16:36CET\n"
 "Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -34,22 +34,22 @@ msgstr "%s:%d neobsahuje meno modulu."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfiguračný súbor '%s' nebol nájdený: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:706
+#: libgnomevfs/gnome-vfs-job.c:707
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Neznámy typ operácie %u"
 
-#: libgnomevfs/gnome-vfs-job.c:995 libgnomevfs/gnome-vfs-job.c:1140
+#: libgnomevfs/gnome-vfs-job.c:996 libgnomevfs/gnome-vfs-job.c:1141
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Nemôžem vytvoriť rúru pre otvorenie GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1600
+#: libgnomevfs/gnome-vfs-job.c:1601
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Neznáme typ úlohy %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1633
+#: libgnomevfs/gnome-vfs-job.c:1634
 msgid "Operation stopped"
 msgstr "Operácia zastavená"
 
