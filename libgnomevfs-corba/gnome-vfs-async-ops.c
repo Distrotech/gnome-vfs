@@ -688,7 +688,6 @@ corba_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	const GList *cur;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (source_name_list != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (progress_update_callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	slave = gnome_vfs_slave_process_new ();

@@ -1491,6 +1491,70 @@ gnome_vfs_xfer_empty_trash (GList *trash_dir_uris,
 }
 
 static GnomeVFSResult
+gnome_vfs_new_folder (const char *target_dir,
+		      const char *name,
+		      GnomeVFSXferErrorMode error_mode,
+		      GnomeVFSXferOverwriteMode overwrite_mode,
+		      GnomeVFSProgressCallbackState *progress)
+{
+	GnomeVFSResult result;
+	GnomeVFSURI *target_uri;
+	GnomeVFSDirectoryHandle *dest_directory_handle;
+	gboolean dummy;
+	int progress_result;
+	int conflict_count;
+	
+	dest_directory_handle = NULL;
+	progress->progress_info->duplicate_name = g_strdup (name);
+
+	for (conflict_count = 1; ; conflict_count++) {
+
+		target_uri = gnome_vfs_uri_new (target_dir);
+		target_uri = gnome_vfs_uri_append_path (target_uri, 
+			progress->progress_info->duplicate_name);
+		result = create_directory (target_uri, 
+					   &dest_directory_handle,
+					   GNOME_VFS_XFER_USE_UNIQUE_NAMES,
+					   &error_mode,
+					   &overwrite_mode,
+					   progress,
+					   &dummy);
+
+		if (result != GNOME_VFS_ERROR_FILEEXISTS) {
+			break;
+		}
+
+		/* deal with a name conflict -- ask the progress_callback for a better name */
+		g_free (progress->progress_info->duplicate_name);
+		progress->progress_info->duplicate_name = g_strdup (name);
+		progress->progress_info->duplicate_count = conflict_count;
+		progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE;
+		progress->progress_info->vfs_status = result;
+		progress_result = call_progress_uri (progress, NULL, target_uri, 
+				       GNOME_VFS_XFER_PHASE_COPYING);
+		progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
+
+		if (progress_result == GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
+			break;
+		}
+		gnome_vfs_uri_unref (target_uri);
+		result = GNOME_VFS_OK;
+	}
+
+	call_progress_uri (progress, NULL, target_uri, 
+		GNOME_VFS_XFER_PHASE_OPENTARGET);
+
+	if (dest_directory_handle != NULL) {
+		gnome_vfs_directory_close (dest_directory_handle);
+	}
+
+	gnome_vfs_uri_unref (target_uri);
+	g_free (progress->progress_info->duplicate_name);
+
+	return result;
+}
+
+static GnomeVFSResult
 gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 			    const GList *source_names,
 			    GnomeVFSURI *target_dir_uri,
@@ -1687,6 +1751,17 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 			gnome_vfs_uri_unref (p->data);
 		}
 		g_list_free (uri_list);
+	} else if (source_dir == NULL && source_name_list == NULL) {
+		/* Assume a new directory create operation
+		 * FIXME:
+		 * We should have proper calls for Empty Trash,
+		 * this overloading is used just to avoid having to add 
+		 * a new call to the backend API
+		 */
+
+		gnome_vfs_new_folder (target_dir, target_name_list->data,
+		      error_mode, overwrite_mode, &progress_state);
+
 	} else {
 		source_dir_uri = gnome_vfs_uri_new (source_dir);
 		if (source_dir_uri == NULL)

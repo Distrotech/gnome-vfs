@@ -659,7 +659,6 @@ pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSXferOp *xfer_op;
 
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (source_name_list != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (progress_update_callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	job = gnome_vfs_job_new ();
