@@ -63,7 +63,7 @@ static GnomeVFSMimeInfoCacheDir *gnome_vfs_mime_info_cache_dir_new (const char *
 static void gnome_vfs_mime_info_cache_dir_free (GnomeVFSMimeInfoCacheDir *dir);
 static char **gnome_vfs_mime_info_cache_get_search_path (void);
 static char **gnome_vfs_mime_info_cache_get_defaults_search_path (void);
-;
+
 static gboolean gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *dir,
 								      const char *desktop_entry);
 static void gnome_vfs_mime_info_cache_dir_add_desktop_entries (GnomeVFSMimeInfoCacheDir *dir,
@@ -403,7 +403,7 @@ gnome_vfs_mime_info_cache_get_search_path (void)
 	char **args = NULL;
 	char **data_dirs;
 	char *user_data_dir;
-	int i, length;
+	int i, length, j;
 
 	data_dirs = egg_get_secondary_data_dirs ();
 
@@ -411,17 +411,16 @@ gnome_vfs_mime_info_cache_get_search_path (void)
 
 	args = g_new (char *, length + 2);
 
+	j = 0;
 	user_data_dir = egg_get_user_data_dir ();
-	args[length] = g_build_filename (user_data_dir, "applications", NULL);
+	args[j++] = g_build_filename (user_data_dir, "applications", NULL);
 	g_free (user_data_dir);
-	
-	i = length - 1;
-	while (i >= 0) {
-		args[length - i - 1] = g_build_filename (data_dirs[i],
-							 "applications", NULL);
-		i--;
+
+	for (i = 0; i < length; i++) {
+		args[j++] = g_build_filename (data_dirs[i],
+					      "applications", NULL);
 	}
-	args[length + 1] = NULL;
+	args[j++] = NULL;
 
 	g_strfreev (data_dirs);
 
@@ -441,13 +440,11 @@ gnome_vfs_mime_info_cache_get_defaults_search_path (void)
 
 	args = g_new (char *, length + 1);
 
-	i = length - 1;
-	while (i >= 0) {
-		args[length - i - 1] = g_build_filename (config_dirs[i],
-							 "mime", NULL);
-		i--;
+	for (i = 0; i < length; i++)  {
+		args[i] = g_build_filename (config_dirs[i],
+					    "mime", NULL);
 	}
-	args[length] = NULL;
+	args[i] = NULL;
 
 	g_strfreev (config_dirs);
 

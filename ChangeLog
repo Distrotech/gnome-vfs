@@ -1,3 +1,9 @@
+2004-09-20  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c (gnome_vfs_mime_info_cache_get_search_path) 
+	(gnome_vfs_mime_info_cache_get_defaults_search_path):
+	Don't reorder search paths.
+
 2004-09-16  JP Rosevear  <jpr@novell.com>
 
 	* modules/ftp-method.c (ftp_kerberos_login): use
