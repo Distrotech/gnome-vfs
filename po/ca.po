@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.3.0\n"
-"POT-Creation-Date: 2003-08-25 13:18+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-30 02:51+0100\n"
 "PO-Revision-Date: 2003-05-10 13:46+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -60,7 +61,7 @@ msgstr "No s'ha pogut analitzar: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Els següent errors d'anàlisi seran ignorats"
+msgstr "Els següents errors d'anàlisi seran ignorats"
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
