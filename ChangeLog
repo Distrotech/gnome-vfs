@@ -1,3 +1,10 @@
+1999-09-08  Michael Meeks  <michael@nuclecu.unam.mx>
+
+	* libgnomevfs/gnome-vfs-seekable.c (init_seek): Split out file read
+	(read_file): to here & added (write_file): to put back the cache.
+	(do_close): write file back. (init_seek): Add dirty bit.
+	NB. dirt bit could cause problems with 0 length created files.
+
 1999-09-07  Michael Meeks  <michael@imaginator.com>
 
 	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_open_from_uri): Added new
