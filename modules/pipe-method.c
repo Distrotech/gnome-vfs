@@ -55,8 +55,7 @@ mime_from_uri (const gchar *uri)
 	const char *mime;
 	char *result;
 	
-	mime = strstr (uri, ";mime-type=");
-
+	mime = uri == NULL ? NULL : strstr (uri, ";mime-type=");
 	if (mime != NULL) {
 		result = str_without_suffix (mime + 11);
 		if (result[0] == '\0') {

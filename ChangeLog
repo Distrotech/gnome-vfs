@@ -1,3 +1,9 @@
+2000-07-25  Darin Adler  <darin@eazel.com>
+
+	* modules/pipe-method.c: (mime_from_uri):
+	Handle the case where the URI is NULL (can happen with some bad
+	URIs that can't be unescaped).
+
 2000-07-25  John Sullivan  <sullivan@eazel.com>
 
 	Made async set_file_info pass back newly-retrieved
@@ -27,15 +33,15 @@
 	Changed GnomeVFSAsyncCloseCallback to just a #define;
 	added new GnomeVFSAsyncSetFileInfoCallback
 
-2000-07-25  Pavel Cisler <pavel@eazel.com>
+2000-07-25  Pavel Cisler  <pavel@eazel.com>
 
 	* modules/file-method.c: (do_find_directory), (do_check_same_fs):
 	Use lstat instead of stat to correctly treat symbolic links.
 
-2000-07-24  Fatih Demir	<kabalak@gmx.net> # which EMAIL_ADDRESS ?
+2000-07-24  Fatih Demir  <kabalak@gmx.net>
 
 	* mime-type-capplet/nautilus-mime-type.desktop: Added the
-		Turkish desktop entries.
+	Turkish desktop entries.
 
 2000-07-21  Mathieu Lacage  <set EMAIL_ADDRESS environment variable>
 
