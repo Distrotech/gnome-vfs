@@ -1,0 +1,564 @@
+# gnome-vfs Hungarian translations
+# Copyright (C) 2000 Free Software Foundation, Inc.
+# Szabolcs BAN <shooby@gnome.hu>, 2000.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-vfs VERSION\n"
+"POT-Creation-Date: 2000-05-19 17:06+0200\n"
+"PO-Revision-Date: 2000-05-23 21:05+0100\n"
+"Last-Translator: Szabolcs BAN <shooby@gnome.hu>\n"
+"Language-Team: Hungarian <hu@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-2\n"
+"Content-Transfer-Encoding: 8bits\n"
+
+#: libgnomevfs/gnome-vfs-configuration.c:187
+#, c-format
+msgid "%s:%d contains NUL characters."
+msgstr "%s:%d NUL karaktereket tartalmaz."
+
+#: libgnomevfs/gnome-vfs-configuration.c:204
+#, c-format
+msgid "%s:%d contains no method name."
+msgstr "%s:%d nem tartalmaz metódus nevet."
+
+#: libgnomevfs/gnome-vfs-configuration.c:233
+#, c-format
+msgid "%s:%d contains no module name."
+msgstr "%s:%d nem tartalmaz modulnevet."
+
+#: libgnomevfs/gnome-vfs-configuration.c:285
+#, c-format
+msgid "Configuration file `%s' was not found: %s"
+msgstr "'%s' konfigurációs fájlt nem találtam: %s"
+
+#: libgnomevfs/gnome-vfs-file-info.c:483
+#, c-format
+msgid "Unknown sort rule %d"
+msgstr "Ismeretlen rendezési mód: %d"
+
+#: libgnomevfs/gnome-vfs-init.c:55
+msgid "GNOME VFS already initialized."
+msgstr "A GNOME VFS már el van indítva."
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:650
+#, c-format
+msgid "Could not parse: %s"
+msgstr "Nem tudom értelmezni: %s"
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
+msgid "More parsing errors will be ignored."
+msgstr "A többi értelmezési hiba felett elnézek."
+
+#. GNOME_VFS_OK
+#: libgnomevfs/gnome-vfs-result.c:39
+msgid "No error"
+msgstr "Nincs hiba"
+
+#. GNOME_VFS_ERROR_NOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:40
+msgid "File not found"
+msgstr "Nem taléltam a fájlt"
+
+#. GNOME_VFS_ERROR_GENERIC
+#: libgnomevfs/gnome-vfs-result.c:41
+msgid "Generic error"
+msgstr "Alap hiba"
+
+#. GNOME_VFS_ERROR_INTERNAL
+#: libgnomevfs/gnome-vfs-result.c:42
+msgid "Internal error"
+msgstr "Belsõ hiba"
+
+#. GNOME_VFS_ERROR_BADPARAMS
+#: libgnomevfs/gnome-vfs-result.c:43
+msgid "Invalid parameters"
+msgstr "Rossz paraméterek"
+
+#. GNOME_VFS_ERROR_NOTSUPPORTED
+#: libgnomevfs/gnome-vfs-result.c:44
+msgid "Unsupported operation"
+msgstr "Nem támogatott mûvelet"
+
+#. GNOME_VFS_ERROR_IO
+#: libgnomevfs/gnome-vfs-result.c:45
+msgid "I/O error"
+msgstr "I/O hiba"
+
+#. GNOME_VFS_ERROR_CORRUPTEDDATA
+#: libgnomevfs/gnome-vfs-result.c:46
+msgid "Data corrupted"
+msgstr "Adat sérült"
+
+#. GNOME_VFS_ERROR_WRONGFORMAT
+#: libgnomevfs/gnome-vfs-result.c:47
+msgid "Format not valid"
+msgstr "Nem jó formátum"
+
+#. GNOME_VFS_ERROR_BADFILE
+#: libgnomevfs/gnome-vfs-result.c:48
+msgid "Bad file handle"
+msgstr "Rossz féjl handle"
+
+#. GNOME_VFS_ERROR_TOOBIG
+#: libgnomevfs/gnome-vfs-result.c:49
+msgid "File too big"
+msgstr "A fájl túl nagy"
+
+#. GNOME_VFS_ERROR_NOSPACE
+#: libgnomevfs/gnome-vfs-result.c:50
+msgid "No space left on device"
+msgstr "Nincs hely az eszközön"
+
+#. GNOME_VFS_ERROR_READONLY
+#: libgnomevfs/gnome-vfs-result.c:51
+msgid "Read-only file system"
+msgstr "Csak olvasható fájlrendszer"
+
+#. GNOME_VFS_ERROR_INVALIDURI
+#: libgnomevfs/gnome-vfs-result.c:52
+msgid "Invalid URI"
+msgstr "Rossz URI"
+
+#. GNOME_VFS_ERROR_NOTOPEN
+#: libgnomevfs/gnome-vfs-result.c:53
+msgid "File not open"
+msgstr "Nincs nyitva a fájl"
+
+#. GNOME_VFS_ERROR_INVALIDOPENMODE
+#: libgnomevfs/gnome-vfs-result.c:54
+msgid "Open mode not valid"
+msgstr "A nyitás módja nem helyes"
+
+#. GNOME_VFS_ERROR_ACCESSDENIED
+#: libgnomevfs/gnome-vfs-result.c:55
+msgid "Access denied"
+msgstr "Hozzáférés letiltva"
+
+#. GNOME_VFS_ERROR_TOOMANYOPENFILES
+#: libgnomevfs/gnome-vfs-result.c:56
+msgid "Too many open files"
+msgstr "Túl sok nyitott fájl"
+
+#. GNOME_VFS_ERROR_EOF
+#: libgnomevfs/gnome-vfs-result.c:57
+msgid "End of file"
+msgstr "Fájl vége"
+
+#. GNOME_VFS_ERROR_NOTADIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:58
+msgid "Not a directory"
+msgstr "Nem könyvtár"
+
+#. GNOME_VFS_ERROR_INPROGRESS
+#: libgnomevfs/gnome-vfs-result.c:59
+msgid "Operation in progress"
+msgstr "A mûvelet folyamatban"
+
+#. GNOME_VFS_ERROR_INTERRUPTED
+#: libgnomevfs/gnome-vfs-result.c:60
+msgid "Operation interrupted"
+msgstr "A mûvelet megszakadt"
+
+#. GNOME_VFS_ERROR_FILEEXISTS
+#: libgnomevfs/gnome-vfs-result.c:61
+msgid "File exists"
+msgstr "A fájl létezik"
+
+#. GNOME_VFS_ERROR_LOOP
+#: libgnomevfs/gnome-vfs-result.c:62
+msgid "Looping links encountered"
+msgstr "Ciklikus linket találtam"
+
+#. GNOME_VFS_ERROR_NOTPERMITTED
+#: libgnomevfs/gnome-vfs-result.c:63
+msgid "Operation not permitted"
+msgstr "A mûvelet nem engedett"
+
+#. GNOME_VFS_ERROR_ISDIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:64
+msgid "Is a directory"
+msgstr "Könyvtár"
+
+#. GNOME_VFS_ERROR_NOMEM
+#: libgnomevfs/gnome-vfs-result.c:65
+msgid "Not enough memory"
+msgstr "Nincs elég memória"
+
+#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#: libgnomevfs/gnome-vfs-result.c:66
+msgid "Host not found"
+msgstr "Nem találtam a gépet"
+
+#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#: libgnomevfs/gnome-vfs-result.c:67
+msgid "Host name not valid"
+msgstr "A gépnév nem valós"
+
+#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#: libgnomevfs/gnome-vfs-result.c:68
+msgid "Host has no address"
+msgstr "A gépnek nincs címe"
+
+#. GNOME_VFS_ERROR_LOGINFAILED
+#: libgnomevfs/gnome-vfs-result.c:69
+msgid "Login failed"
+msgstr "A belépés nem sikerült"
+
+#. GNOME_VFS_ERROR_CANCELLED
+#: libgnomevfs/gnome-vfs-result.c:70
+msgid "Operation cancelled"
+msgstr "A mûvelet leállítva"
+
+#. GNOME_VFS_ERROR_DIRECTORYBUSY
+#: libgnomevfs/gnome-vfs-result.c:71
+msgid "Directory busy"
+msgstr "A könyvtár foglalt"
+
+#. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
+#: libgnomevfs/gnome-vfs-result.c:72
+msgid "Directory not empty"
+msgstr "A könyvtár nem üres"
+
+#. GNOME_VFS_ERROR_TOOMANYLINKS
+#: libgnomevfs/gnome-vfs-result.c:73
+msgid "Too many links"
+msgstr "Túl sok link"
+
+#. GNOME_VFS_ERROR_READONLYFS
+#: libgnomevfs/gnome-vfs-result.c:74
+msgid "Read only file system"
+msgstr "Csak olvasható fájlrendszer"
+
+#. GNOME_VFS_ERROR_NOTSAMEFS
+#: libgnomevfs/gnome-vfs-result.c:75
+msgid "Not on the same file system"
+msgstr "Nem ugyan azon a fájlrendszeren van"
+
+#. GNOME_VFS_ERROR_NAMETOOLONG
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Name too long"
+msgstr "A név túl hosszú"
+
+#: libgnomevfs/gnome-vfs-result.c:133
+msgid "Unknown error"
+msgstr "Nem ismert hiba"
+
+#: libgnomevfs/gnome-vfs-utils.c:40
+msgid "1 byte"
+msgstr "1 bájt"
+
+#: libgnomevfs/gnome-vfs-utils.c:42
+#, c-format
+msgid "%u bytes"
+msgstr "%u bájt"
+
+#: libgnomevfs/gnome-vfs-utils.c:49
+#, c-format
+msgid "%.1fK"
+msgstr "%.1fK"
+
+#: libgnomevfs/gnome-vfs-utils.c:53
+#, c-format
+msgid "%.1fM"
+msgstr "%.1fM"
+
+#: libgnomevfs/gnome-vfs-utils.c:57
+#, c-format
+msgid "%.1fG"
+msgstr "%.1fG"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:340
+msgid "Dying."
+msgstr "Meghalok."
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:505
+#, c-format
+msgid "Error reading: %s"
+msgstr "Olvasási hiba: %s"
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:527
+#, c-format
+msgid "Error writing: %s"
+msgstr "Írási hiba: %s"
+
+#. FIXME
+#: libgnomevfs-corba/gnome-vfs-slave.c:576
+#, c-format
+msgid "Cannot write: %s"
+msgstr "Nem tudom írni: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:604
+#, c-format
+msgid "Cannot create temporary file name `%s'"
+msgstr "Nem tudok ideiglenes fájlt lértrehozni '%s' néven"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
+#: libgnomevfs-corba/gnome-vfs-slave.c:618
+#, c-format
+msgid "Cannot create socket: %s"
+msgstr "Nem tudok socket-et csinálni: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:636
+#, c-format
+msgid "Cannot bind `%s': %s"
+msgstr "Nem tudom bind-olni '%s'-t: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:643
+#, c-format
+msgid "Cannot listen on `%s': %s"
+msgstr "Nem tudok '%s'-en figyelni: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:665
+#, c-format
+msgid "Cannot accept connections on `%s': %s"
+msgstr "Nem tudok kapcsolatokat fogadni '%s'-n: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1402
+msgid "Cannot initialize CORBA."
+msgstr "Nem tudom a CORBA-t beindítani."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1409
+msgid "Cannot resolve initial reference to RootPOA."
+msgstr "Nem tudom a RootPOA-nak a kezdeti referenciáját megkapni."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1416
+msgid "Cannot activate POA manager."
+msgstr "Nem tudom a POA kezelõt aktiválni."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1441
+#, c-format
+msgid "Usage: %s <ior> [<ior_fd>]\n"
+msgstr "Használat: %s <ior> [<ior_fd>]\n"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1452
+#, c-format
+msgid "Cannot open file descriptor %d."
+msgstr "Nem tudom megnyitni a %d fájlleírót."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1475
+#, c-format
+msgid "Notify interface for `%s' not found."
+msgstr "Nincs értesítõ felület a '%s'-hez"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1485
+msgid "Cannot setup Request object."
+msgstr "Nem tudom beállítani a Request objektumot."
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:1492
+msgid "Cannot extract IOR."
+msgstr "Nem tudom kivenni az IOR-t."
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
+#, c-format
+msgid "Got weird string from the slave process: `%s'"
+msgstr "Szokatlan szöveget kaptam az alárendelt processztõl: '%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
+#, c-format
+msgid "Cannot get object for `%s'"
+msgstr "Nem kapok objektumot a '%s'-nek"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+msgstr "Nem tudom kilõni a GNOME::VFS::Slave::Notify-t -- hiba: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:203
+#, c-format
+msgid "Cannot connect socket `%s': %s"
+msgstr "Nem tudok a '%s' socket-ra kapcsolódni: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:802
+msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+msgstr "Nem tudom a GNOME::VFS::Slave::Notify-t elindítani"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:119
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+msgstr "Nem tudom a '%s' GNOME::VFS::Slave-et rezetelni -- hiba: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:122
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "Nem tudom rezetelni a GNOME::VFS::Slave-et (ismeretlen IOR) -- hiba: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:153
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+msgstr "Nem tudom a '%s' GNOME::VFS::Slave-et leállítani -- hiba: %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:156
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "Nem tudom a GNOME::VFS::Slave-et leállítani (ismeretlen IOR) -- hiba: %s"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:148
+msgid "Error writing to the wakeup GnomeVFSJob channel."
+msgstr "Nem sikerült a GnomeVFSJob wakeup csatornájába írni."
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:522
+#: libgnomevfs-pthread/gnome-vfs-job.c:1398
+#, c-format
+msgid "Unknown job ID %d"
+msgstr "Ismeretlen folyamat azonosító: %d"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:912
+#: libgnomevfs-pthread/gnome-vfs-job.c:1007
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "Nem tudok pipe-ot létrehozni a GIOChannel megnyitásához: %s"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:1425
+msgid "Operation stopped"
+msgstr "A mûvelet leállítva"
+
+#: modules/file-method.c:334
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "Ismeretlen GnomeVFSSeekPosition %d"
+
+#: modules/ftp-method.c:357
+msgid "ftpfs: Invalid host name."
+msgstr "ftpfs: Rossz szervernév."
+
+#: modules/ftp-method.c:380
+msgid "ftpfs: Invalid host address."
+msgstr "ftpfs: Rossz szervercím."
+
+#: modules/ftp-method.c:400
+#, c-format
+msgid "ftpfs: making connection to %s"
+msgstr "ftpfs: csatlakozás %s-hez"
+
+#: modules/ftp-method.c:406
+msgid "ftpfs: connection interrupted by user"
+msgstr "ftpfs: a kapcsolatot megszakítottad"
+
+#: modules/ftp-method.c:408
+#, c-format
+msgid "ftpfs: connection to server failed: %s"
+msgstr "ftpfs: a kapcsolódás nem sikerült: %s"
+
+#: modules/ftp-method.c:484
+#, c-format
+msgid "Waiting to retry... %d (Control-C to cancel)"
+msgstr "Várakozás újrapróbáláshoz... %d (Megállítás: Control-C)"
+
+#: modules/ftp-method.c:755
+msgid " FTP: Password required for "
+msgstr " FTP: Jelszó szükséges:"
+
+#: modules/ftp-method.c:794
+msgid "ftpfs: sending login name"
+msgstr "ftpfs: bejelentkezési név küldése"
+
+#: modules/ftp-method.c:800
+msgid "ftpfs: sending user password"
+msgstr "ftpfs: jelszó küldése"
+
+#: modules/ftp-method.c:806
+msgid "ftpfs: logged in"
+msgstr "ftpfs: bejelentkezve"
+
+#: modules/ftp-method.c:818
+#, c-format
+msgid "ftpfs: Login incorrect for user %s "
+msgstr "ftpfs: Sikertelen belépés %s felhasználóval"
+
+#: modules/ftp-method.c:831
+msgid "ftpfs: aborting transfer."
+msgstr "ftpfs: átvitel megszakítása."
+
+#: modules/ftp-method.c:833
+#, c-format
+msgid "ftpfs: abort error: %s"
+msgstr "ftpfs: megszakítási hiba: %s"
+
+#: modules/ftp-method.c:838
+msgid "ftpfs: abort failed"
+msgstr "ftpfs: megszakítás nem sikerült"
+
+#: modules/ftp-method.c:915
+msgid "ftpfs: could not setup passive mode"
+msgstr "ftpfs: nem tudok passzív módot beállítani"
+
+#: modules/ftp-method.c:1092
+#, c-format
+msgid "ftpfs: storing file %d (%d)"
+msgstr "ftpfs: fájl feltöltése %d (%d)"
+
+#: modules/ftp-method.c:1313 modules/ftp-method.c:1515
+msgid "ftpfs: CWD failed."
+msgstr "ftpfs: CWD nem sikerült."
+
+#: modules/ftp-method.c:1323 modules/ftp-method.c:1330
+msgid "ftpfs: couldn't resolve symlink"
+msgstr "ftpfs: nem tudom a szimbolikus linket feloldani."
+
+#: modules/ftp-method.c:1382
+msgid "Resolving symlink..."
+msgstr "Szimbolikus link feloldása..."
+
+#: modules/ftp-method.c:1506
+#, c-format
+msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
+msgstr "ftpfs: %s FTP könyvtár olvasása... (ne használj UNIX ls parancsot)"
+
+#: modules/ftp-method.c:1510
+#, c-format
+msgid "ftpfs: Reading FTP directory %s..."
+msgstr "ftpfs: %s FTP könyvtár olvasása..."
+
+#: modules/ftp-method.c:1576
+msgid "ftpfs: reading FTP directory interrupt by user"
+msgstr "ftpfs: FTP könyvtár olvasását megszakítottad"
+
+#: modules/ftp-method.c:1600
+msgid "ftpfs: got listing"
+msgstr "ftpfs: listázva"
+
+#: modules/ftp-method.c:1652
+msgid "ftpfs: failed; nowhere to fallback to"
+msgstr "ftpfs: nem sikerült, nincs hova visszahullani"
+
+#: modules/ftp-method.c:2045
+msgid "Starting linear transfer..."
+msgstr "Lineáris átvitel kezdése..."
+
+#: modules/ftp-method.c:2115
+msgid "Preparing reget..."
+msgstr "Újraletöltésre felkészülés..."
+
+#: modules/http-method.c:502
+#, c-format
+msgid "Invalid header `%s'"
+msgstr "Rossz fejléc: '%s'"
+
+#: modules/http-method.c:519
+#, c-format
+msgid "%s to retrieve"
+msgstr "%s a letöltéshez"
+
+#: modules/http-method.c:655
+#, c-format
+msgid "Closing connection to %s"
+msgstr "Kapcsolat zárása %s-hez"
+
+#: modules/http-method.c:809
+#, c-format
+msgid "%s of %s read"
+msgstr "%s a %s-bõl olvasva"
+
+#: modules/http-method.c:812
+#, c-format
+msgid "%s read"
+msgstr "%s olvasva"
+
+#. Multi-Status
+#: modules/http-method.c:974
+msgid "HTTP server returned an invalid PROPFIND response"
+msgstr "A HTTP szerver rossz PROPFIND válasszal tért vissza"
