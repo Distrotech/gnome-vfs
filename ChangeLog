@@ -1,3 +1,19 @@
+2001-02-24  Gene Z. Ragan  <gzr@eazel.com>
+
+	reviewed by: John Harper <jsh@eazel.com>
+
+	Fixed bug 6904, Full paths can't be used when adding
+	applications in capplet (and failure is silent)
+	
+	I fixed the full paths issue. The failure is silent issue
+	is reflected in a soon to be closed bug.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(application_known_to_be_nonexistent):
+	Check and see if the command string store in the
+	mime database is actually a full path to an
+	executable.
+
 2001-02-23  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Mike Fleming <mfleming@eazel.com>

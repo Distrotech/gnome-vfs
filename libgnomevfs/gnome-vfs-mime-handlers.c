@@ -1615,7 +1615,12 @@ application_known_to_be_nonexistent (const char *application_id)
 	if (command == NULL) {
 		return TRUE;
 	}
-
+	
+	/* Check and see if a full path is being stored as the command. */
+	if (is_executable_file (command)) {
+		return FALSE;
+	}
+		
 	executable_name = get_executable_name_from_command_string (command);
 	g_strstrip (executable_name);
 	found = executable_in_path (executable_name);
