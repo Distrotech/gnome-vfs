@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-02-21 16:53-0500\n"
+"POT-Creation-Date: 2000-11-03 11:18+0200\n"
 "PO-Revision-Date: 1999-12-28 13:44+0200\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -28,21 +28,26 @@ msgstr "%s:%d не м╕стить назви методу."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d не м╕стить назви модулю."
 
-#: libgnomevfs/gnome-vfs-configuration.c:285
+#: libgnomevfs/gnome-vfs-configuration.c:286
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Не знайдено конф╕гурац╕йного файлу \"%s\": %s"
 
-#: libgnomevfs/gnome-vfs-init.c:55
+#: libgnomevfs/gnome-vfs-file-info.c:342
+#, c-format
+msgid "Unknown sort rule %d"
+msgstr "Нев╕доме правило сортування %d"
+
+#: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS вже ╕н╕ц╕ал╕зовано"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:656
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Неможливо проанал╕зувати: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:654
+#: libgnomevfs/gnome-vfs-parse-ls.c:658
 msgid "More parsing errors will be ignored."
 msgstr "╤нш╕ помилки анал╕зу буде про╕гноровано."
 
@@ -51,7 +56,7 @@ msgstr "╤нш╕ помилки анал╕зу буде про╕гноровано."
 msgid "No error"
 msgstr "Без помилок"
 
-#. GNOME_VFS_ERROR_NOTFOUND
+#. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "File not found"
 msgstr "Файл не знайдено"
@@ -66,12 +71,12 @@ msgstr "Загальна помилка"
 msgid "Internal error"
 msgstr "Внутр╕шня помилка"
 
-#. GNOME_VFS_ERROR_BADPARAMS
+#. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Invalid parameters"
 msgstr "Нев╕рн╕ параметри"
 
-#. GNOME_VFS_ERROR_NOTSUPPORTED
+#. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Unsupported operation"
 msgstr "Операц╕я не п╕дтриму╓ться"
@@ -81,57 +86,57 @@ msgstr "Операц╕я не п╕дтриму╓ться"
 msgid "I/O error"
 msgstr "Помилка В/В"
 
-#. GNOME_VFS_ERROR_CORRUPTEDDATA
+#. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
 msgstr "Дан╕ з╕псовано"
 
-#. GNOME_VFS_ERROR_WRONGFORMAT
+#. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
 msgstr "Формат нев╕рний"
 
-#. GNOME_VFS_ERROR_BADFILE
+#. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Bad file handle"
 msgstr "Поганий номер файлу"
 
-#. GNOME_VFS_ERROR_TOOBIG
+#. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
 msgstr "Файл надто великий"
 
-#. GNOME_VFS_ERROR_NOSPACE
+#. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "No space left on device"
 msgstr "Не лишилося в╕льно м╕сця на пристро╖"
 
-#. GNOME_VFS_ERROR_READONLY
+#. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
 msgstr "Файлова система лише для зчитування"
 
-#. GNOME_VFS_ERROR_INVALIDURI
+#. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
 msgstr "Нев╕рний URI"
 
-#. GNOME_VFS_ERROR_NOTOPEN
+#. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
 msgstr "Файл не в╕дкрито"
 
-#. GNOME_VFS_ERROR_INVALIDOPENMODE
+#. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
 msgstr "Нев╕рний режим в╕дкриття"
 
-#. GNOME_VFS_ERROR_ACCESSDENIED
+#. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Access denied"
 msgstr "Доступ заборонено"
 
-#. GNOME_VFS_ERROR_TOOMANYOPENFILES
+#. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Too many open files"
 msgstr "Надто багато в╕дкритих файл╕в"
@@ -141,12 +146,12 @@ msgstr "Надто багато в╕дкритих файл╕в"
 msgid "End of file"
 msgstr "К╕нець файлу"
 
-#. GNOME_VFS_ERROR_NOTADIRECTORY
+#. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Not a directory"
 msgstr "Не каталог"
 
-#. GNOME_VFS_ERROR_INPROGRESS
+#. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
 msgstr "Операц╕я викону╓ться"
@@ -156,7 +161,7 @@ msgstr "Операц╕я викону╓ться"
 msgid "Operation interrupted"
 msgstr "Операц╕ю перервано"
 
-#. GNOME_VFS_ERROR_FILEEXISTS
+#. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "File exists"
 msgstr "Файл ╕сну╓"
@@ -166,37 +171,37 @@ msgstr "Файл ╕сну╓"
 msgid "Looping links encountered"
 msgstr "Знайдено цикл╕чне посилання"
 
-#. GNOME_VFS_ERROR_NOTPERMITTED
+#. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation not permitted"
 msgstr "Операц╕ю не дозволено"
 
-#. GNOME_VFS_ERROR_ISDIRECTORY
+#. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Is a directory"
 msgstr "Це каталог"
 
-#. GNOME_VFS_ERROR_NOMEM
+#. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Not enough memory"
 msgstr "Недостатньо пам'ят╕"
 
-#. GNOME_VFS_ERROR_HOSTNOTFOUND
+#. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host not found"
 msgstr "Хосту не знайдено"
 
-#. GNOME_VFS_ERROR_INVALIDHOSTNAME
+#. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host name not valid"
 msgstr "Нев╕рна назва хосту"
 
-#. GNOME_VFS_ERROR_HOSTHASNOADDRESS
+#. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
 msgstr "Хост не ма╓ адреси"
 
-#. GNOME_VFS_ERROR_LOGINFAILED
+#. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Login failed"
 msgstr "Ре╓страц╕я не вдалась"
@@ -206,60 +211,65 @@ msgstr "Ре╓страц╕я не вдалась"
 msgid "Operation cancelled"
 msgstr "Операц╕ю в╕дм╕нено"
 
-#. GNOME_VFS_ERROR_DIRECTORYBUSY
+#. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory busy"
 msgstr "Каталог зайнято"
 
-#. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
+#. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Directory not empty"
 msgstr "Каталог не порожн╕й"
 
-#. GNOME_VFS_ERROR_TOOMANYLINKS
+#. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Too many links"
 msgstr "Надто багато посилань"
 
-#. GNOME_VFS_ERROR_READONLYFS
+#. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Read only file system"
 msgstr "Файлова система лише для зчитування"
 
-#. GNOME_VFS_ERROR_NOTSAMEFS
+#. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Not on the same file system"
 msgstr "Не на т╕й сам╕й файлов╕й систем╕"
 
-#. GNOME_VFS_ERROR_NAMETOOLONG
+#. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Name too long"
 msgstr "Назва надто довга"
 
-#: libgnomevfs/gnome-vfs-result.c:133
+#. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
+#: libgnomevfs/gnome-vfs-result.c:77
+msgid "Service not available"
+msgstr "Серв╕с не доступний"
+
+#: libgnomevfs/gnome-vfs-result.c:140
 msgid "Unknown error"
 msgstr "Нев╕дома помилка"
 
-#: libgnomevfs/gnome-vfs-utils.c:40
+#: libgnomevfs/gnome-vfs-utils.c:58
 msgid "1 byte"
 msgstr "1 байт"
 
-#: libgnomevfs/gnome-vfs-utils.c:42
+#: libgnomevfs/gnome-vfs-utils.c:60
 #, c-format
 msgid "%u bytes"
 msgstr "%u байт╕в"
 
-#: libgnomevfs/gnome-vfs-utils.c:49
+#: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%.1fK"
 msgstr "%.1fK"
 
-#: libgnomevfs/gnome-vfs-utils.c:53
+#: libgnomevfs/gnome-vfs-utils.c:71
 #, c-format
 msgid "%.1fM"
 msgstr "%.1fM"
 
-#: libgnomevfs/gnome-vfs-utils.c:57
+#: libgnomevfs/gnome-vfs-utils.c:75
 #, c-format
 msgid "%.1fG"
 msgstr "%.1fG"
@@ -268,19 +278,19 @@ msgstr "%.1fG"
 msgid "Dying."
 msgstr "Знищення."
 
-#. FIXME
+#. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:501
 #, c-format
 msgid "Error reading: %s"
 msgstr "Помилка зситування: %s"
 
-#. FIXME
+#. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:523
 #, c-format
 msgid "Error writing: %s"
 msgstr "Помилка запису: %s"
 
-#. FIXME
+#. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:572
 #, c-format
 msgid "Cannot write: %s"
@@ -291,7 +301,7 @@ msgstr "Неможливо записати: %s"
 msgid "Cannot create temporary file name `%s'"
 msgstr "Неможливо створити тимчасовий файл \"%s\""
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:193
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
 #: libgnomevfs-corba/gnome-vfs-slave.c:614
 #, c-format
 msgid "Cannot create socket: %s"
@@ -312,38 +322,38 @@ msgstr "Неможливе прослуховування на \"%s\": %s"
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Неможливо прийняти з'╓днання на \"%s\": %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1379
+#: libgnomevfs-corba/gnome-vfs-slave.c:1278
 msgid "Cannot initialize CORBA."
 msgstr "Неможливо ╕н╕ц╕ал╕зувати CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1386
+#: libgnomevfs-corba/gnome-vfs-slave.c:1285
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Неможливо визначити початкове посилання на RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1393
+#: libgnomevfs-corba/gnome-vfs-slave.c:1292
 msgid "Cannot activate POA manager."
 msgstr "Неможливо актив╕зувати менеджер POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1418
+#: libgnomevfs-corba/gnome-vfs-slave.c:1317
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Використання: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1429
+#: libgnomevfs-corba/gnome-vfs-slave.c:1328
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Неможливо в╕дкрити файловий дескриптор %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1452
+#: libgnomevfs-corba/gnome-vfs-slave.c:1351
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Незнайдено ╕нтерфейсу спов╕щення для \"%s\"."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1462
+#: libgnomevfs-corba/gnome-vfs-slave.c:1361
 msgid "Cannot setup Request object."
 msgstr "Неможливо встановити об'╓кт запиту."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1469
+#: libgnomevfs-corba/gnome-vfs-slave.c:1368
 msgid "Cannot extract IOR."
 msgstr "Неможливо отримати IOR."
 
@@ -357,7 +367,7 @@ msgstr "Отримано дивний рядок в╕д п╕дпорядкованого процесу: \"%s\""
 msgid "Cannot get object for `%s'"
 msgstr "Неможливо отримати об'╓кт для \"%s\""
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:126
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
 msgstr "Неможливо знищити GNOME::VFS::Slave::Notify -- виключення %s"
@@ -367,7 +377,7 @@ msgstr "Неможливо знищити GNOME::VFS::Slave::Notify -- виключення %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "Неможливо з'╓днати сокет \"%s\": %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:750
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Неможливо ╕н╕ц╕ал╕зувати GNOME::VFS:Slave::Notify"
 
@@ -379,7 +389,8 @@ msgstr "Неможливо скинути значення GNOME::VFS::Slave %s -- виключення %s"
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Неможливо скинути значення GNOME::VFS::Slave (нев╕домий IOR) -- виключення %s"
+msgstr ""
+"Неможливо скинути значення GNOME::VFS::Slave (нев╕домий IOR) -- виключення %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
@@ -391,164 +402,281 @@ msgstr "Не вдалося знищити GNOME::VFS::Slave %s -- виключення %s"
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "Не вдалося знищити GNOME::VFS::Slave (нев╕домий IOR) -- виключення %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:129
+#: libgnomevfs-pthread/gnome-vfs-job.c:157
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Помидка запису у в╕дновлений канал GnomeVFSJob."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1247
+#: libgnomevfs-pthread/gnome-vfs-job.c:762
+#: libgnomevfs-pthread/gnome-vfs-job.c:1672
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Нев╕домий ╕дентиф╕катор завдання %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:784
-#: libgnomevfs-pthread/gnome-vfs-job.c:879
+#: libgnomevfs-pthread/gnome-vfs-job.c:1061
+#: libgnomevfs-pthread/gnome-vfs-job.c:1189
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Неможливо створити канал для GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1265
+#: libgnomevfs-pthread/gnome-vfs-job.c:1705
 msgid "Operation stopped"
 msgstr "Операц╕ю зупинено"
 
-#: modules/file-method.c:332
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:306
+msgid "Edit Applications List"
+msgstr "Виправити список програм"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:326
+#, c-format
+msgid "Select applications to appear in menu for mime type \"%s\""
+msgstr "Вибрати програми, що мають з'являтись у меню для типу MIME \"%s\""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:349
+msgid "Add Application..."
+msgstr "Додати програму..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:353
+msgid "Edit Application..."
+msgstr "Виправити програму..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:357
+msgid "Delete Application"
+msgstr "Стерти програму"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:382
+msgid "Edit Components List"
+msgstr "Виправити список компонент╕в"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:402
+#, c-format
+msgid "Select views to appear in menu for mime type \"%s\""
+msgstr "Вибрати програми перегляду в меню для типу MIME \"%s\""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:579
+msgid "Add Mime Type"
+msgstr "Додати тип MIME"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:580
+msgid ""
+"Add a new Mime Type\n"
+"For example:  image/tiff; text/x-scheme"
+msgstr ""
+"Додати новий тип MIME\n"
+"Наприклад:  image/tiff; text/x-scheme"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:585
+msgid "Mime Type:"
+msgstr "Тип MIME:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:598
+msgid "Type in a description for this mime-type."
+msgstr "Введ╕ть опис цього типу MIME."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:604
+msgid "Description:"
+msgstr "Опис:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:643
+msgid "Add New Extension"
+msgstr "Додати нове розширення"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:644
+msgid ""
+"Type in the extensions for this mime-type.\n"
+"For example:  .html, .htm"
+msgstr ""
+"Введ╕ть розширення для цього типу MIME.\n"
+"Наприклад:  .html, .htm"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:649
+msgid "Extension:"
+msgstr "Розширення:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:722
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:790
+msgid "New Application"
+msgstr "Нова програма"
+
+#. Application Name label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:731
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:799
+msgid "Application Name:"
+msgstr "Назва програми:"
+
+#. Application Command label and entry
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:739
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:807
+msgid "Application Command:"
+msgstr "Команда програми:"
+
+#. Open Behavior frame
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:747
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:815
+msgid "Open Behavior"
+msgstr "Повед╕нка в╕дкривання"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:753
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:821
+msgid "Can open multiple files"
+msgstr "Може в╕дкривати багато файл╕в"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:756
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:824
+msgid "Can open from URI"
+msgstr "Може в╕дкривати з URI"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:349
+msgid "Change Icon"
+msgstr "Зм╕нити п╕ктограму"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:361
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1216
+msgid "Mime Type"
+msgstr "Тип MIME"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:382
+msgid "Add new Mime type..."
+msgstr "Додати новий тип MIME..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:389
+msgid "Delete this Mime type..."
+msgstr "Стерти цей тип MIME..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:404
+msgid "Use Viewer"
+msgstr "Використовувати програму перегляду"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:410
+msgid "Open With Application"
+msgstr "В╕дкрити програмою"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:422
+msgid "Edit List"
+msgstr "Виправити список"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:451
+msgid "Add"
+msgstr "Додати"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:454
+msgid "Remove"
+msgstr "Видалити"
+
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:640
+#: mime-type-capplet/nautilus-mime-type-capplet.c:784
+#: mime-type-capplet/nautilus-mime-type-capplet.c:919
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1108
+msgid "None"
+msgstr "Нема╓"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1215
+msgid "Description"
+msgstr "Опис"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1217
+msgid "Extension"
+msgstr "Розширення"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1218
+msgid "Action"
+msgstr "Д╕я"
+
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:267
+msgid "Can't find an hbox, using a normal file selection"
+msgstr "Неможливо знайти hbox, використову╓ться звичайний вибор файлу"
+
+#: mime-type-capplet/nautilus-mime-type-icon-entry.c:273
+msgid "Preview"
+msgstr "Перегляд"
+
+#: modules/efs-method.c:493 modules/file-method.c:367
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Нев╕домий GnomeVFSSeekPosition %d"
 
-#: modules/ftp-method.c:353
-msgid "ftpfs: Invalid host name."
-msgstr "ftpfs: Нев╕рна назва хосту."
-
-#: modules/ftp-method.c:376
-msgid "ftpfs: Invalid host address."
-msgstr "ftpfs: Нев╕рна адреса хосту."
-
-#: modules/ftp-method.c:396
-#, c-format
-msgid "ftpfs: making connection to %s"
-msgstr "ftpfs: створення з'╓днання з %s"
-
-#: modules/ftp-method.c:402
-msgid "ftpfs: connection interrupted by user"
-msgstr "ftpfs: операц╕ю перервано користувачем"
-
-#: modules/ftp-method.c:404
-#, c-format
-msgid "ftpfs: connection to server failed: %s"
-msgstr "ftpfs: з'╓днання ╕з сервером не вдалось: %s"
-
-#: modules/ftp-method.c:480
-#, c-format
-msgid "Waiting to retry... %d (Control-C to cancel)"
-msgstr "Оч╕кування на в╕дпов╕дь... %d (Control-C для в╕дм╕ни)"
-
-#: modules/ftp-method.c:751
-msgid " FTP: Password required for "
-msgstr " FTP: Необх╕дний пароль для "
-
-#: modules/ftp-method.c:790
-msgid "ftpfs: sending login name"
-msgstr "ftpfs: в╕дсилання назви користувача"
-
-#: modules/ftp-method.c:796
-msgid "ftpfs: sending user password"
-msgstr "ftpfs: в╕дсилання паролю користувача"
-
-#: modules/ftp-method.c:802
-msgid "ftpfs: logged in"
-msgstr "ftpfs: заре╓стровано"
-
-#: modules/ftp-method.c:814
-#, c-format
-msgid "ftpfs: Login incorrect for user %s "
-msgstr "ftpfs: Нев╕рна ре╓страц╕я для користувача %s "
-
-#: modules/ftp-method.c:827
-msgid "ftpfs: aborting transfer."
-msgstr "ftpfs: переривання передач╕."
-
-#: modules/ftp-method.c:829
-#, c-format
-msgid "ftpfs: abort error: %s"
-msgstr "ftpfs: помилка переривання: %s"
-
-#: modules/ftp-method.c:834
-msgid "ftpfs: abort failed"
-msgstr "ftpfs: переривання не вдалось"
-
-#: modules/ftp-method.c:911
-msgid "ftpfs: could not setup passive mode"
-msgstr "ftpfs: неможливо встановити пасивний режим"
-
-#: modules/ftp-method.c:1088
-#, c-format
-msgid "ftpfs: storing file %d (%d)"
-msgstr "ftpfs: розм╕щення файлу %d (%d)"
-
-#: modules/ftp-method.c:1305 modules/ftp-method.c:1507
-msgid "ftpfs: CWD failed."
-msgstr "ftpfs: не вдалося зм╕нити каталог."
-
-#: modules/ftp-method.c:1315 modules/ftp-method.c:1322
-msgid "ftpfs: couldn't resolve symlink"
-msgstr "ftpfs: не вдалося визначити ц╕льовий файл для символьного посилання"
-
-#: modules/ftp-method.c:1374
-msgid "Resolving symlink..."
-msgstr "Анал╕зування символ╕чного посилання..."
-
-#: modules/ftp-method.c:1498
-#, c-format
-msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
-msgstr "ftpfs: Зчитування каталогу FTP %s... (без використання параметр╕в ls)"
-
-#: modules/ftp-method.c:1502
-#, c-format
-msgid "ftpfs: Reading FTP directory %s..."
-msgstr "ftpfs: Зчитування каталогу FTP %s..."
-
-#: modules/ftp-method.c:1568
-msgid "ftpfs: reading FTP directory interrupt by user"
-msgstr "ftpfs: зчитування каталогу FTP перервано користувачем"
-
-#: modules/ftp-method.c:1592
-msgid "ftpfs: got listing"
-msgstr "ftpfs: отримано список"
-
-#: modules/ftp-method.c:1644
-msgid "ftpfs: failed; nowhere to fallback to"
-msgstr "ftpfs: невдача; нема╓ куди повернутися"
-
-#: modules/ftp-method.c:2037
-msgid "Starting linear transfer..."
-msgstr "Початок л╕н╕йно╖ передач╕..."
-
-#: modules/ftp-method.c:2107
-msgid "Preparing reget..."
-msgstr "П╕дготування reget..."
-
-#: modules/http-method.c:471
-#, c-format
-msgid "Invalid header `%s'"
-msgstr "Нев╕рний заголовок \"%s\""
-
-#: modules/http-method.c:488
+#: modules/http-method.c:1142
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s для в╕дновлення"
 
-#: modules/http-method.c:601
+#: modules/http-method.c:1502
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Закриття з'╓днання з %s"
 
-#: modules/http-method.c:686
+#: modules/http-method.c:1714
 #, c-format
 msgid "%s of %s read"
 msgstr "%s з %s зчитано"
 
-#: modules/http-method.c:689
+#: modules/http-method.c:1717
 #, c-format
 msgid "%s read"
 msgstr "%s зчитано"
+
+#: test/gnome-file-selection/gnome-file-selection.c:671
+msgid "Back"
+msgstr "Назад"
+
+#: test/gnome-file-selection/gnome-file-selection.c:672
+msgid "Go to the previously visited directory"
+msgstr "Перейти в попередн╕й каталог"
+
+#: test/gnome-file-selection/gnome-file-selection.c:680
+msgid "Up"
+msgstr "Вгору"
+
+#: test/gnome-file-selection/gnome-file-selection.c:681
+msgid "Go to the parent directory"
+msgstr "Перейти в батьк╕вський каталог"
+
+#: test/gnome-file-selection/gnome-file-selection.c:689
+msgid "Forward"
+msgstr "Вперед"
+
+#: test/gnome-file-selection/gnome-file-selection.c:690
+msgid "Go to the next visited directory"
+msgstr "Перейти в наступний каталог"
+
+#: test/gnome-file-selection/gnome-file-selection.c:699
+msgid "Rescan"
+msgstr "Перечитати"
+
+#: test/gnome-file-selection/gnome-file-selection.c:700
+msgid "Rescan the current directory"
+msgstr "Перечитати поточкий каталог"
+
+#: test/gnome-file-selection/gnome-file-selection.c:709
+msgid "Home"
+msgstr "Дом╕вка"
+
+#: test/gnome-file-selection/gnome-file-selection.c:710
+msgid "Go to the home directory"
+msgstr "Перейти в домашн╕й каталог"
+
+#: test/gnome-file-selection/gnome-file-selection.c:806
+msgid "Name"
+msgstr "Назва"
+
+#: test/gnome-file-selection/gnome-file-selection.c:807
+msgid "Size"
+msgstr "Розм╕р"
+
+#: test/gnome-file-selection/gnome-file-selection.c:808
+msgid "Date"
+msgstr "Дата"
+
+#: test/gnome-file-selection/gnome-file-selection.c:837
+msgid "Enter name:"
+msgstr "Введ╕ть назву:"
+
+#: test/gnome-file-selection/gnome-file-selection.c:860
+msgid "Show:"
+msgstr "Показати:"
+
+#: test/gnome-file-selection/gnome-file-selection.c:887
+msgid "Show dotfiles"
+msgstr "Показати крапков╕ файли"
