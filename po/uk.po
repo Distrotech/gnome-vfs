@@ -1,36 +1,38 @@
 # Ukrainian translation of gnome-vfs.
 # Copyright (C) 1999 Free Software Foundation, Inc.
 # Yuri Syrota <rasta@renome.rovno.ua>, 1999.
+# Maxim Dziumanenko <mvd@mylinux.com.ua>, 2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-01-30 12:13+0100\n"
-"PO-Revision-Date: 2003-01-27 04:26--500\n"
-"Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
+"PO-Revision-Date: 2004-02-09 19:16+0200\n"
+"Last-Translator: Maxim Dziumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: daemon/gnome-vfs-daemon.c:588
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "Не вдалось знайти головний переглядач"
+msgstr "Не вдається ініціалізувати Bonobo"
 
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "Не вдається ініціалізувати gnome vfs"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "Том ISO 9660"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d містить символи NUL."
+msgstr "%s:%d містить NUL символи."
 
 #: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
@@ -38,14 +40,14 @@ msgid "%s:%d contains no method name."
 msgstr "%s:%d не містить назви методу."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d не містить назви методу."
+msgstr "%s:%d не містить маркера закінчення параметрів."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d містить невідомий параметр %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -55,143 +57,142 @@ msgstr "%s:%d не містить назви модулю."
 #: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Не знайдено конфігураційного файлу \"%s\": %s"
+msgstr "Конфігураційний файл \"%s\" не знайдено: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "Том AFFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "Мережний том AFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Автоматично визначений том"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "Пристрій CD-ROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "Цифровий аудіо компакт-диск"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Том апаратного ресурсу"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Том Linux формату Ext2"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Том Linux формату Ext3"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "Том MSDOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr ""
+msgstr "Том MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr ""
+msgstr "Том компакт-диска"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Том Hsfs компакт-диска"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr ""
+msgstr "Том JFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
-msgstr ""
+msgstr "Том Windows NT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr ""
+msgstr "Системний том"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr ""
+msgstr "Том у пам'яті"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr ""
+msgstr "Том Minix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "Мережний том NFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr ""
+msgstr "Том Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "Том ReiserFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Спільний том Windows"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "Том SuperMount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr ""
+msgstr "Том DVD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Том Solaris/BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "Том Udfs Solaris"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "Том Pcfs Solaris"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "Розширений том DOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "Том Windows VFAT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr ""
+msgstr "Том Xenix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "Том XFS Linux"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "Том XIAFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
-#, fuzzy
 msgid "Unknown"
-msgstr "Невідома помилка"
+msgstr "Невідомий"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
@@ -215,7 +216,7 @@ msgstr "Операцію зупинено"
 #: libgnomevfs/gnome-vfs-parse-ls.c:659
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Не вдалось проаналізувати: %s"
+msgstr "Не вдається проаналізувати: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
@@ -244,7 +245,7 @@ msgstr "Внутрішня помилка"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Invalid parameters"
-msgstr "Невірні параметри"
+msgstr "Неправильні параметри"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:43
@@ -254,22 +255,22 @@ msgstr "Операція не підтримується"
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "I/O error"
-msgstr "Помилка В/В"
+msgstr "Помилка вводу/виводу"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "Data corrupted"
-msgstr "Дані зіпсовано"
+msgstr "Дані пошкоджені"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Format not valid"
-msgstr "Формат невірний"
+msgstr "Неприпустимий формат"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Bad file handle"
-msgstr "Поганий номер файлу"
+msgstr "Неправильний дескриптор файлу"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -279,7 +280,7 @@ msgstr "Файл надто великий"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "No space left on device"
-msgstr "Не лишилося вільно місця на пристрої"
+msgstr "Відсутній вільний простір на пристрої"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:50
@@ -289,7 +290,7 @@ msgstr "Файлова система лише для зчитування"
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid URI"
-msgstr "Невірний URI"
+msgstr "Неправильний URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:52
@@ -299,7 +300,7 @@ msgstr "Файл не відкрито"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
-msgstr "Невірний режим відкриття"
+msgstr "Неправильний режим відкриття"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -314,12 +315,12 @@ msgstr "Надто багато відкритих файлів"
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "End of file"
-msgstr "Кінець файлу"
+msgstr "Знайдено кінець файлу"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "Not a directory"
-msgstr "Не каталог"
+msgstr "Не є каталогом"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:58
@@ -339,7 +340,7 @@ msgstr "Файл існує"
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
-msgstr "Знайдено циклічне посилання"
+msgstr "Знайдено циклічні посилання"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:62
@@ -349,7 +350,7 @@ msgstr "Операцію не дозволено"
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Is a directory"
-msgstr "Це каталог"
+msgstr "Є каталогом"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:64
@@ -359,22 +360,22 @@ msgstr "Недостатньо пам'яті"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Host not found"
-msgstr "Хосту не знайдено"
+msgstr "Вузол не знайдено"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
-msgstr "Невірна назва хосту"
+msgstr "Неправильна назва вузла"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host has no address"
-msgstr "Хост не має адреси"
+msgstr "Відсутня адреса у вузла"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Login failed"
-msgstr "Реєстрація не вдалась"
+msgstr "Вхід у сеанс не вдався"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:69
@@ -409,17 +410,17 @@ msgstr "Не на тій самій файловій системі"
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Name too long"
-msgstr "Назва надто довга"
+msgstr "Надто довге ім'я"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Service not available"
-msgstr "Сервіс не доступний"
+msgstr "Служба не доступна"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "Request obsoletes service's data"
-msgstr "Запит застирілих сервісних даних"
+msgstr "Були запитані застарілі дані служби"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:78
@@ -429,41 +430,42 @@ msgstr "Помилка протоколу"
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Could not find master browser"
-msgstr "Не вдалось знайти головний переглядач"
+msgstr "Не вдається знайти головний переглядач"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "No default action associated"
-msgstr ""
+msgstr "Відсутня типова пов'язана дія"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "Відсутній обробний для схеми URL"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Помилка при аналізі командного рядка"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:83
 msgid "Error launching command"
-msgstr ""
+msgstr "Помилка при виконанні команди"
 
 #: libgnomevfs/gnome-vfs-result.c:179
 msgid "Unknown error"
 msgstr "Невідома помилка"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] "%u байтів"
-msgstr[1] "%u байтів"
+msgstr[0] "%u байт"
+msgstr[1] "%u байти"
+msgstr[2] "%u байтів"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
 msgstr "%.1f Кб"
 
@@ -480,175 +482,177 @@ msgstr "%.1f Гб"
 #: libgnomevfs/gnome-vfs-utils.c:1106
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
-msgstr "(неправильний знак Юнікоду)"
+msgstr "(неправильний Юнікод)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
-msgstr ""
+msgstr "Дискета"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
 msgid "CD-ROM"
-msgstr ""
+msgstr "Компакт-диск"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
 msgid "Zip Drive"
-msgstr ""
+msgstr "ZIP-пристрій"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
 msgid "Memory Stick"
-msgstr ""
+msgstr "Модуль зовнішньої пам'яті"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
 msgid "Camera"
-msgstr ""
+msgstr "Камера"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
-msgstr ""
+msgstr "Кореневий том"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
-msgstr ""
+msgstr "Аудіо компакт-диск"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Невідома помилка"
+msgstr "Невідомий том"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
-msgstr ""
+msgstr "Мережний сервер"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
+"Не вдається підключити дискету. Можливо, у дисководі відсутня дискета."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "Не вдається підключити том. Можливо, відсутній носій у пристрої."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Не вдається підключити дискету. Можливо, дискета має формат, що вона не може бути "
+"підключена."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Не вдається підключити вибраний том. Можливо, том має формат, що він не може бути "
+"підключений."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Не вдається підключити вибрану дискету."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Не вдається підключити вибраний том."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Не вдається відключити вибраний том."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
 #: libgnomevfs/gnome-vfs-volume-ops.c:285
 msgid "Failed to start command"
-msgstr ""
+msgstr "Не вдається запустити команду"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:278
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Не вдається витягнути носій"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:454
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Не вдається відключитись від файлової системи сервера"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
-msgstr ""
+msgstr "Додатки"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
-msgstr ""
+msgstr "Картки"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
-#, fuzzy
 msgid "Files"
-msgstr "Файл існує"
+msgstr "Файли"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
-msgstr ""
+msgstr "Теки"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Help"
-msgstr ""
+msgstr "Довідка"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
-msgstr ""
+msgstr "Вузли"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:193
 msgid "Links"
-msgstr ""
+msgstr "Посилання"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
-msgstr ""
+msgstr "Пошта"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr ""
+msgstr "Інструменти"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr ""
+msgstr "Вікна"
 
 #: modules/computer-method.c:521
 msgid "Network"
-msgstr ""
+msgstr "Мережа"
 
 #: modules/computer-method.c:539
 msgid "Home"
-msgstr ""
+msgstr "Початок"
 
 #: modules/computer-method.c:557
-#, fuzzy
 msgid "Filesystem"
-msgstr "Файл існує"
+msgstr "Файлова система"
 
 #: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Невідомий GnomeVFSSeekPosition %d"
+msgstr "Невідоме значення GnomeVFSSeekPosition %d"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Не знайдено правильно файлу параметрів у %s\n"
+msgstr "Не знайдено правильний файл параметрів у %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Використайте змінну середовища %s для вказання іншого розміщення.\n"
+msgstr "Використовуйте змінну середовища %s для вказування іншого розміщення.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -668,15 +672,15 @@ msgstr "загальний файловий монікер"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Типова програма перегляду компонентів"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Типова програма терміналу"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Аргументи виконання для типового терміналу"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -685,177 +689,198 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"Програма, що використовується для перегляду файлів, для перегляду яких потрібен компонент. "
+"Параметр %s буде замінений адресою (URI) файлу, параметр %c - ідентифікатором (IID) компоненту."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
+"Типова програма терміналу, що використовується з програмами, якім потрібен термінал."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "Аргументи виконання, що використовуються типовою програмою терміналу."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "Обробник посилань (URL) типу H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "Обробник посилань (URL) типу HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "Обробник посилань (URL) типу HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "Handle H323 URLs"
-msgstr ""
+msgstr "Обробляти посилання (URL) типу H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "Handle HTTP URLs"
-msgstr ""
+msgstr "Обробляти посилання (URL) типу HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "Обробляти посилання (URL) типу HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "Handle callto URLs"
-msgstr ""
+msgstr "Обробляти посилання (URL) типу callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle ghelp URLs"
-msgstr ""
+msgstr "Обробляти посилання (URL) типу ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "Handle info URLs"
-msgstr ""
+msgstr "Обробляти посилання (URL) типу info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Handle mailto URLs"
-msgstr ""
+msgstr "Обробляти посилання (URL) типу mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Handle man URLs"
-msgstr ""
+msgstr "Обробляти посилання (URL) типу man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Handle trash URLs"
-msgstr ""
+msgstr "Обробляти посилання (URL) типу trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Запускати програму у терміналі"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"Якщо ввімкнено, тоді вказана у ключі \"command\" програма буде обробляти "
+"посилання (URL) типу H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
+"Якщо ввімкнено, тоді вказана у ключі \"command\" програма буде обробляти "
+"посилання (URL) типу HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
+"Якщо ввімкнено, тоді вказана у ключі \"command\" програма буде обробляти "
+"посилання (URL) типу HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"Якщо ввімкнено, тоді вказана у ключі \"command\" програма буде обробляти "
+"посилання (URL) типу callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
+"Якщо ввімкнено, тоді вказана у ключі \"command\" програма буде обробляти "
+"посилання (URL) типу ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
+"Якщо ввімкнено, тоді вказана у ключі \"command\" програма буде обробляти "
+"посилання (URL) типу info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
+"Якщо ввімкнено, тоді вказана у ключі \"command\" програма буде обробляти "
+"посилання (URL) типу mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
+"Якщо ввімкнено, тоді вказана у ключі \"command\" програма буде обробляти "
+"посилання (URL) типу man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
+"Якщо ввімкнено, тоді вказана у ключі \"command\" програма буде обробляти "
+"посилання (URL) типу trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
+"Якщо ввімкнено, тоді програма, вказана для обробки посилань (URL) запускатиметься у терміналі."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "Обробник посилань (URL) типу callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "Обробник посилань (URL) типу ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "Обробник посилань (URL) типу info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "Поганий номер файлу"
+msgstr "Обробник посилань (URL) типу mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "Обробник посилань (URL) типу man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "Обробник посилань (URL) типу trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "З'єднання з проксі-сервером вимагають автентифікації"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "Посилання (URL) на автоматичне налаштовування проксі-служби"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "Вмикає настройки проксі-служби для протоколу HTTP через Інтернет."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "Ім'я вузла проксі-сервера протоколу FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "Порт проксі-сервера протоколу FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "Ім'я вузла проксі-сервера протоколу HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "Пароль для проксі-сервера протоколу HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "Порт проксі-сервера протоколу HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "Ім'я користувача проксі-сервера протоколу HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -863,80 +888,89 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
+"Якщо ввімкнено, з'єднання з проксі-сервером вимагатимуть аутентифікації. Пара "
+"параметрів ім'я/пароль визначається ключами \"/system/http_proxy/authentication_user"
+"\" та \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Вузли поза проксі-службою"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Пароль для автентифікації проксі-службою протоколу HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Режим налаштовування проксі-служби"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "Вузол проксі-служби протоколу SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "Порт проксі-служби протоколу SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "Ім'я вузла проксі-сервера захищеного протоколу HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "Порт проксі-сервера захищеного протоколу HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
+"Виберіть режим налаштовування проксі-служби. Можливі значення \"none\", (немає) \"manual"
+"\", (вручну) \"auto\" (автоматично)."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "Ім'я вузла проксі-сервера протоколу FTP."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "Ім'я вузла проксі-сервера протоколу HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "Ім'я вузла проксі-сервера захищеного протоколу HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "Ім'я вузла проксі-сервера протоколу SOCKS."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
+"Порт на вузлі проксі-сервера, що визначений ключем \"/system/http_proxy/host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
+"Порт на вузлі проксі-сервера, що визначений ключем \"/system/proxy/ftp_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"Порт на вузлі проксі-сервера, що визначений ключем \"/system/proxy/secure_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
+"Порт на вузлі проксі-сервера, що визначений ключем \"/system/proxy/socks_host\"."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -945,30 +979,31 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Цей ключ містить перелік вузлів, з'єднання з якими встановлюється безпосередньо, "
+"обминаючи проксі-службу (якщо вона активна). Значення можуть бути іменами вузлів, "
+"доменами (з використанням шаблонів подібних до *.foo.com), IP адресами вузлів (як "
+"IPv4, так і IPv6) та адресами мереж з використанням маски (щось схоже не, 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "Посилання (URL), що забезпечує значення для автоматичного налаштовування проксі-служби."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "Використовувати HTTP проксі"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Ім'я користувача, що використовується при автентифікацій проксі-службою протоколу HTTP."
 
 #: modules/network-method.c:257
 msgid "Windows Network"
-msgstr ""
+msgstr "Мережа Windows"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "Робоча група протоколу SMB"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
-
-#~ msgid "1 byte"
-#~ msgstr "1 байт"
+msgstr "Робоча група Windows, до якої належить користувач"
