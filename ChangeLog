@@ -1,5 +1,9 @@
 2005-1-08  Paolo Borelli  <pborelli@katamail.com>
 
+	* programs/gnomevfs-mv.c: added.
+
+2005-1-08  Paolo Borelli  <pborelli@katamail.com>
+
 	* modules/sftp-method.c (do_move): honour the force_replace flag.
 
 2004-12-21  Alexander Larsson  <alexl@redhat.com>
