@@ -82,6 +82,15 @@ gnome_vfs_socket_write (GnomeVFSSocket *socket,
 			GnomeVFSFileSize *bytes_written,
 			GnomeVFSCancellation *cancellation)
 {
+	if (gnome_vfs_cancellation_check (cancellation)) {
+
+		if (bytes_written != NULL) {
+			*bytes_written = 0;
+		}
+		
+		return GNOME_VFS_ERROR_CANCELLED;
+	}
+	
 	return socket->impl->write (socket->connection,
 				    buffer, bytes, bytes_written,
 				    cancellation);
@@ -125,6 +134,15 @@ gnome_vfs_socket_read  (GnomeVFSSocket *socket,
 			GnomeVFSFileSize *bytes_read,
 			GnomeVFSCancellation *cancellation)
 {
+	if (gnome_vfs_cancellation_check (cancellation)) {
+
+		if (bytes_read != NULL) {
+			*bytes_read = 0;
+		}
+		
+		return GNOME_VFS_ERROR_CANCELLED;
+	}
+	
 	return socket->impl->read (socket->connection,
 				   buffer, bytes, bytes_read,
 				   cancellation);
