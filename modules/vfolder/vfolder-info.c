@@ -4,8 +4,6 @@
 #endif
 
 #include <string.h>
-#include <time.h>
-#include <unistd.h>
 
 #include <glib.h>
 #include <libgnomevfs/gnome-vfs.h>
@@ -378,9 +376,9 @@ itemdir_new (VFolderInfo *info, gchar *uri, gboolean is_mergedir)
 	ret = g_new0 (ItemDir, 1);
 	ret->uri = g_strdup (uri);
 	ret->is_mergedir = is_mergedir;
-	ret->monitor = vfolder_monitor_directory_new (uri, 
-						      itemdir_monitor_cb,
-						      info);
+	ret->monitor = vfolder_monitor_dir_new (uri, 
+						itemdir_monitor_cb,
+						info);
 	return ret;
 }
 
@@ -507,7 +505,9 @@ struct {
 	const gchar *dirname;
 	const gchar *keyword;
 } mergedir_keywords[] = {
-	 /*Parent Dir */ /*Keyword*/
+	 /*Parent Dir*/  /*Keyword to add*/
+
+	/* Gnome Menus */
 	{ "Development",  "Development" },
 	{ "Editors",      "TextEditor" },
 	{ "Games",        "Game" },
@@ -517,7 +517,13 @@ struct {
 	{ "Office",       "Office" },
 	{ "Settings",     "Settings" },
 	{ "System",       "System" },
-	{ "Utilities",    "Utility" }
+	{ "Utilities",    "Utility" },
+
+	/* Ximian Menus */
+	{ "Addressbook",  "Office" },
+	{ "Audio",        "AudioVideo" },
+	{ "Calendar",     "Office" },
+	{ "Finance",      "Office" },
 };
 
 static GQuark
@@ -589,7 +595,7 @@ create_entries_from_mergedir (VFolderInfo     *info,
 			goto NEXT_ENTRY;
 		}
 
-		if (!check_extension (file_info->name, ".desktop")) 
+		if (!vfolder_check_extension (file_info->name, ".desktop")) 
 			goto NEXT_ENTRY;
 
 		if (vfolder_info_lookup_entry (info, file_info->name)) {
@@ -625,7 +631,8 @@ create_entries_from_mergedir (VFolderInfo     *info,
 
 static gboolean
 create_entries_from_itemdir (VFolderInfo     *info,
-			     gchar           *uri)
+			     gchar           *uri,
+			     gboolean         strip_timestamp)
 {
 	GnomeVFSDirectoryHandle *handle;
 	GnomeVFSFileInfo *file_info;
@@ -654,16 +661,20 @@ create_entries_from_itemdir (VFolderInfo     *info,
 		file_uri = g_build_filename (uri, file_info->name, NULL);
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-			create_entries_from_itemdir (info, file_uri);
+			create_entries_from_itemdir (info, 
+						     file_uri, 
+						     strip_timestamp);
 			goto NEXT_ENTRY;
 		}
 
 		if (file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
-			create_entries_from_itemdir (info, file_uri);
+			create_entries_from_itemdir (info, 
+						     file_uri, 
+						     strip_timestamp);
 			goto NEXT_ENTRY;
 		}
 
-		if (!check_extension (file_info->name, ".desktop"))
+		if (!vfolder_check_extension (file_info->name, ".desktop"))
 			goto NEXT_ENTRY;
 
 		if (vfolder_info_lookup_entry (info, file_info->name)) {
@@ -672,7 +683,14 @@ create_entries_from_itemdir (VFolderInfo     *info,
 			goto NEXT_ENTRY;
 		}
 
-		entry_new (info, file_uri, file_info->name, TRUE);
+		if (strip_timestamp) {
+			gchar *root;
+
+			root = vfolder_untimestamp_file_name (file_info->name);
+			entry_new (info, file_uri, root, TRUE);
+			g_free (root);
+		} else
+			entry_new (info, file_uri, file_info->name, TRUE);
 
 	NEXT_ENTRY:
 		g_free (file_uri);
@@ -698,7 +716,7 @@ vfolder_info_read_info (VFolderInfo     *info,
 
 	ret = read_vfolder_from_file (info, 
 				      info->filename, 
-				      FALSE,
+				      TRUE,
 				      result, 
 				      context);
 	if (ret) {
@@ -706,7 +724,9 @@ vfolder_info_read_info (VFolderInfo     *info,
 
 		/* Load WriteDir entries first */
 		if (info->write_dir)
-			create_entries_from_itemdir (info, info->write_dir);
+			create_entries_from_itemdir (info, 
+						     info->write_dir,
+						     TRUE);
 
 		/* Followed by ItemDir/MergeDirs in order of appearance */
 		for (iter = info->item_dirs; iter; iter = iter->next) {
@@ -717,7 +737,9 @@ vfolder_info_read_info (VFolderInfo     *info,
 							      TRUE,
 							      0);
 			else
-				create_entries_from_itemdir (info, id->uri);
+				create_entries_from_itemdir (info, 
+							     id->uri,
+							     FALSE);
 		}
 	}
 
@@ -797,37 +819,6 @@ add_excludes_to_xml (gpointer key, gpointer value, gpointer user_data)
 		     "Exclude" /* name */,
 		     filename /* content */);
 }
-
-#if 0
-static gchar *
-folder_get_extend_uri (Folder *source)
-{
-	gchar *ret;
-	Folder *iter;
-	GString *extend_path
-
-	if (source->parent == NULL)
-		return  g_strdup ("/");
-
-	extend_path = g_string_new (NULL);
-
-	for (iter = source; iter && iter->parent; iter = iter->parent) {
-		if (folder_get_extend_uri (iter)) {
-			g_string_prepend (extend_path, 
-					  folder_get_extend_uri (iter));
-			break;
-		} else {
-			g_string_prepend (extend_path, folder_get_name (iter));
-			g_string_prepend_c (extend_path, '/');
-		}
-	}
-
-	ret = extend_path->str;
-	g_string_free (extend_path, FALSE);
-
-	return ret;
-}
-#endif
 
 static void
 add_xml_tree_from_folder (xmlNode *parent, Folder *folder)
@@ -974,6 +965,7 @@ static void
 vfolder_info_write_user (VFolderInfo *info)
 {
 	xmlDoc *doc;
+	GnomeVFSResult result;
 
 	if (info->inhibit_write)
 		return;
@@ -986,13 +978,17 @@ vfolder_info_write_user (VFolderInfo *info)
 		return;
 
 	/* FIXME: errors, anyone? */
-#if 0
-	ensure_dir (info->filename,
-		    TRUE /* ignore_basename */);
-#endif
+	result = vfolder_make_directory_and_parents (info->filename, 
+						     TRUE, 
+						     0700);
+	if (result != GNOME_VFS_OK) {
+		g_warning ("Unable to create parent directory for "
+			   "vfolder-info file: %s",
+			   info->filename);
+		return;
+	}
 
 	xmlSaveFormatFile (info->filename, doc, TRUE /* format */);
-
 	xmlFreeDoc(doc);
 
 	info->dirty = FALSE;
@@ -1078,6 +1074,30 @@ write_dir_monitor_cb (GnomeVFSMonitorHandle *handle,
 	vfolder_info_read_info (info, NULL, NULL);
 }
 
+static gboolean
+g_str_case_equal (gconstpointer v1,
+		  gconstpointer v2)
+{
+	const gchar *string1 = v1;
+	const gchar *string2 = v2;
+  
+	return g_ascii_strcasecmp (string1, string2) == 0;
+}
+
+/* 31 bit hash function */
+static guint
+g_str_case_hash (gconstpointer key)
+{
+	const char *p = key;
+	guint h = *p;
+	
+	if (h)
+		for (p += 1; *p != '\0'; p++)
+			h = (h << 5) - h + g_ascii_toupper (*p);
+
+	return h;
+}
+
 
 /* 
  * VFolderInfo Implementation
@@ -1153,23 +1173,46 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 					       NULL);
 	}
 
+	if (g_getenv ("GNOME_VFS_VFOLDER_INFODIR")) {
+		gchar *filename = g_strconcat (scheme, ".vfolder-info", NULL);
+
+		g_free (info->filename);
+		info->filename = 
+			g_build_filename (
+				g_getenv ("GNOME_VFS_VFOLDER_INFODIR"),
+				filename,
+				NULL);
+		g_free (filename);
+	}
+
+	if (g_getenv ("GNOME_VFS_VFOLDER_WRITEDIR")) {
+		g_free (info->write_dir);
+		info->write_dir = 
+			g_build_filename (
+				g_getenv ("GNOME_VFS_VFOLDER_WRITEDIR"),
+				scheme,
+				NULL);
+	}
+
 	info->filename_monitor = 
 		vfolder_monitor_file_new (info->filename,
 					  filename_monitor_cb,
 					  info);
+
 	if (info->write_dir)
 		info->write_dir_monitor = 
-			vfolder_monitor_directory_new (info->write_dir,
-						       write_dir_monitor_cb,
-						       info);
+			vfolder_monitor_dir_new (info->write_dir,
+						 write_dir_monitor_cb,
+						 info);
 
 	if (info->desktop_dir) 
 		info->desktop_dir_monitor = 
-			vfolder_monitor_directory_new (info->desktop_dir,
-						       write_dir_monitor_cb,
-						       info);
+			vfolder_monitor_dir_new (info->desktop_dir,
+						 write_dir_monitor_cb,
+						 info);
 
-	info->entries_ht = g_hash_table_new (g_str_hash, g_str_equal);
+	info->entries_ht = g_hash_table_new (g_str_case_hash, g_str_case_equal);
+	//info->entries_ht = g_hash_table_new (g_str_hash, g_str_equal);
 
 	/* 
 	 * Load all entries in the itemdir and mergedir directories.  Load all

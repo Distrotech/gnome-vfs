@@ -4,6 +4,8 @@
 #endif
 
 #include <string.h>
+#include <sys/time.h>
+#include <unistd.h>
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 
@@ -68,18 +70,6 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 	vuri->uri = uri;
 
 	return TRUE;
-}
-
-gboolean
-check_extension (const char *name, const char *ext_check)
-{
-	const char *ext;
-
-	ext = strrchr (name, '.');
-	if (ext && !strcmp (ext, ext_check))
-		return TRUE;
-	else
-		return FALSE;
 }
 
 static void
@@ -195,9 +185,9 @@ monitor_start_internal (GnomeVFSMonitorType      type,
 }
 
 VFolderMonitor *
-vfolder_monitor_directory_new (gchar                   *uri,
-			       GnomeVFSMonitorCallback  callback,
-			       gpointer                 user_data)
+vfolder_monitor_dir_new (gchar                   *uri,
+			 GnomeVFSMonitorCallback  callback,
+			 gpointer                 user_data)
 {
 	return monitor_start_internal (GNOME_VFS_MONITOR_DIRECTORY, 
 				       uri, 
@@ -246,4 +236,110 @@ vfolder_monitor_cancel (VFolderMonitor *monitor)
 
 	g_free (monitor->uri);
 	g_free (monitor);
+}
+
+/* 
+ * Stolen from eel_make_directory_and_parents from libeel
+ */
+static GnomeVFSResult
+make_directory_and_parents_from_uri (GnomeVFSURI *uri, guint permissions)
+{
+	GnomeVFSResult result;
+	GnomeVFSURI *parent_uri;
+
+	/* 
+	 * Make the directory, and return right away unless there's
+	 * a possible problem with the parent.
+	 */
+	result = gnome_vfs_make_directory_for_uri (uri, permissions);
+	if (result != GNOME_VFS_ERROR_NOT_FOUND)
+		return result;
+
+	/* If we can't get a parent, we are done. */
+	parent_uri = gnome_vfs_uri_get_parent (uri);
+	if (!parent_uri)
+		return result;
+
+	/* 
+	 * If we can get a parent, use a recursive call to create
+	 * the parent and its parents.
+	 */
+	result = make_directory_and_parents_from_uri (parent_uri, permissions);
+	gnome_vfs_uri_unref (parent_uri);
+	if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_FILE_EXISTS)
+		return result;
+
+	/* 
+	 * A second try at making the directory after the parents
+	 * have all been created.
+	 */
+	result = gnome_vfs_make_directory_for_uri (uri, permissions);
+	return result;
+}
+
+GnomeVFSResult
+vfolder_make_directory_and_parents (gchar    *uri, 
+				    gboolean  skip_filename,
+				    guint     permissions)
+{
+	GnomeVFSURI *file_uri, *parent_uri;
+	GnomeVFSResult result;
+
+	file_uri = gnome_vfs_uri_new (uri);
+
+	if (skip_filename) {
+		parent_uri = gnome_vfs_uri_get_parent (file_uri);
+		gnome_vfs_uri_unref (file_uri);
+		file_uri = parent_uri;
+	}
+
+	result = make_directory_and_parents_from_uri (file_uri, permissions);
+	gnome_vfs_uri_unref (file_uri);
+
+	return result == GNOME_VFS_ERROR_FILE_EXISTS ? GNOME_VFS_OK : result;
+}
+
+
+gchar *
+vfolder_timestamp_file_name (gchar *file)
+{
+	struct timeval tv;
+	gchar *ret;
+
+	gettimeofday (&tv, NULL);
+
+	ret = g_strdup_printf ("%d-%s", 
+			       (int) (tv.tv_sec ^ tv.tv_usec), 
+			       file);
+
+	D (g_print ("ADDING TIMESTAMP FROM %s TO %s\n", file, ret));
+	
+	return ret;
+}
+
+gchar *
+vfolder_untimestamp_file_name (gchar *file)
+{
+	int cnt;
+	gchar *dash = file;
+
+	cnt = strspn (file, "0123456789-");
+	if (cnt)
+		dash = file + cnt;
+
+	D (g_print ("STRIPPING TIMESTAMP FROM %s TO %s\n", file, dash));
+
+	return g_strdup (dash);
+}
+
+gboolean
+vfolder_check_extension (const char *name, const char *ext_check)
+{
+	const char *ext;
+
+	ext = strrchr (name, '.');
+	if (ext && !strcmp (ext, ext_check))
+		return TRUE;
+	else
+		return FALSE;
 }

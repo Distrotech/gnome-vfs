@@ -1,7 +1,5 @@
 <VFolderInfo>
   <!-- Load the GNOME2 applications from our prefix -->
-  <ItemDir>@datadir@/applications/</ItemDir>
-
   <!-- Write changes here, instead of to the original files -->
   <WriteDir>@datadir@/applications/</WriteDir>
 
@@ -11,25 +9,37 @@
   <!-- Default .directory location -->
   <DesktopDir>@datadir@/gnome/vfolders/</DesktopDir>
 
+  <!-- Add Ximian Menu Entries, uncomment for menu nirvana -->
+  <MergeDir>/usr/share/gnome/ximian/Programs/</MergeDir>
+
+  <!-- Merge in the GNOME1 menus if you build into a non-default prefix -->
+  <MergeDir>@datadir@/gnome/apps/</MergeDir>
+  <MergeDir>/usr/share/gnome/apps/</MergeDir>
+
   <!-- Merge dirs optional -->
   <MergeDir>/etc/X11/applnk/</MergeDir>
-  <MergeDir>@datadir@/gnome/apps/</MergeDir>
-
-  <!-- Merge in the main GNOME menus if you build into a non-default prefix -->
-  <MergeDir>/usr/share/gnome/apps/</MergeDir>
 
   <!-- Root folder -->
   <Folder>
     <Name>Applications</Name>
     <Desktop>Applications.directory</Desktop>
+
     <Exclude>gnome-search-tool.desktop</Exclude>
+    <Exclude>Gmc.desktop</Exclude>
+    <Exclude>nautilus-help.desktop</Exclude>
+    <Exclude>gnome-help.desktop</Exclude>
+
+    <Include>evolution.desktop</Include>
+    <Include>galeon.desktop</Include>
+    <Include>sep.desktop</Include>
 
     <Query>
       <And>
         <Keyword>Core</Keyword>
-	<Not>
+	<!-- FIXME: Seth, why would this be wanted? -->
+	<!--<Not>
 	  <Keyword>Merged</Keyword>
-        </Not>
+        </Not>-->
       </And>
     </Query>
 
@@ -41,9 +51,10 @@
 	<And>
 	  <Keyword>Application</Keyword>
 	  <Keyword>Utility</Keyword>
-	  <Not>
+	  <!-- FIXME: Seth, where else should System apps go? -->
+	  <!--<Not>
 	    <Keyword>System</Keyword>
-	  </Not>
+	  </Not>-->
 	</And>
       </Query>
       <DontShowIfEmpty/>

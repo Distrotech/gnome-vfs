@@ -36,14 +36,6 @@ gboolean vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri);
 	vfolder_uri_parse_internal ((_uri), (_vuri));                       \
 }
 
-gboolean check_extension (const char *name, const char *ext_check);
-
-typedef struct {
-	time_t    ctime;
-	time_t    last_stat;
-	gboolean  trigger_next; /* if true, next check will fail */
-	char     *name;      /* will allocate enough to fit name */
-} StatLoc;
 
 typedef struct {
 	GnomeVFSMonitorType     type;
@@ -58,17 +50,26 @@ typedef struct {
 	gpointer                user_data;
 } VFolderMonitor;
 
-VFolderMonitor *vfolder_monitor_directory_new (gchar                   *uri,
-					       GnomeVFSMonitorCallback  callback,
-					       gpointer                 user_data);
+VFolderMonitor *vfolder_monitor_dir_new  (gchar                   *uri,
+					  GnomeVFSMonitorCallback  callback,
+					  gpointer                 user_data);
 VFolderMonitor *vfolder_monitor_file_new (gchar                   *uri,
 					  GnomeVFSMonitorCallback  callback,
 					  gpointer                 user_data);
+void            vfolder_monitor_freeze   (VFolderMonitor          *monitor);
+void            vfolder_monitor_thaw     (VFolderMonitor          *monitor);
+void            vfolder_monitor_cancel   (VFolderMonitor          *monitor);
 
-void vfolder_monitor_freeze (VFolderMonitor *monitor);
-void vfolder_monitor_thaw (VFolderMonitor *monitor);
 
-void vfolder_monitor_cancel (VFolderMonitor *monitor);
+GnomeVFSResult vfolder_make_directory_and_parents (gchar    *uri, 
+						   gboolean  skip_filename,
+						   guint     permissions);
+
+
+gchar   *vfolder_timestamp_file_name   (gchar      *file);
+gchar   *vfolder_untimestamp_file_name (gchar      *file);
+gboolean vfolder_check_extension       (const char *name, 
+					const char *ext_check);
 
 G_END_DECLS
 

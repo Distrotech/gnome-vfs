@@ -7,22 +7,22 @@ X keywords aren't being pulled from itemdir files.  bug in
 
 X all pool files are read on startup.  should load when get_keywords is called.
 
-filename uniqueness mess... need use a unique name when writing user-private
-files, but need to present the non-unique name to apps.  use a special vfolder
-postfix filename probably.
+X filename uniqueness mess... need use a unique name when writing user-private
+  files, but need to present the non-unique name to apps.  use a special vfolder
+  postfix filename probably.
 
 all-applications doesn't work.  probably need to implement this using either 1)
 a recursive gnome_vfs_directory_visit over applications:/// or 2) use the pool
 files from .vfolder-info, and add an all-applications-all-users (ick) method or
 3) see if we can flatten the panel's internal list of applications.
 
-ensure ~/.gnome2/vfolders exists before writing config file
+X ensure ~/.gnome2/vfolders exists before writing config file
 
-ensure ~/.gnome2/vfolders/<scheme>/ dir exists before writing user-private
-changes
+X ensure ~/.gnome2/vfolders/<scheme>/ dir exists before writing user-private
+  changes
 
-<OnlyUnallocated> dir files list duplicates of regularly listed entries, because
-the alloc count is not correct for folders that are not yet loaded.
+X <OnlyUnallocated> dir files list duplicates of regularly listed entries,
+  because the alloc count is not correct for folders that are not yet loaded.
 
 Directory VFolderMonitors relying on stat() (and not FAM) will not pick up new
 files.

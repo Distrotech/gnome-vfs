@@ -18,11 +18,15 @@ INCLUDES =					\
 	-DPREFIX=\"$(prefix)\"			\
 	-DSYSCONFDIR=\"$(sysconfdir)\"		\
 	-DG_LOG_DOMAIN=\"gnome-vfs-modules\"	\
+	$(TESTS_INCLUDES)			\
 	$(NULL)
 
 EXTRA_DIST =					\
 	applications.vfolder-info.in		\
-	preferences.vfolder-info.in
+	preferences.vfolder-info.in		\
+	test-vfolder.vfolder-info.in		\
+	test-vfolder-parent.vfolder-info.in	\
+	test-vfolder-modules.conf
 
 ###  Module setup
 
@@ -63,3 +67,28 @@ preferences.vfolder-info: preferences.vfolder-info.in
 	    -e "s,\@sysconfdir\@,$(sysconfdir)," \
 	    -e "s,\@prefix\@,$(prefix)," \
 	    < $< > $@
+
+test-vfolder.vfolder-info: test-vfolder.vfolder-info.in
+	sed -e "s,\@top_builddir\@,$(top_builddir)," \
+	    < $< > $@
+
+test-vfolder-parent.vfolder-info: test-vfolder-parent.vfolder-info.in
+	sed -e "s,\@top_builddir\@,$(top_builddir)," \
+	    < $< > $@
+
+###  test-vfolder regression test
+
+noinst_PROGRAMS = test-vfolder
+noinst_DATA = test-vfolder-parent.vfolder-info test-vfolder.vfolder-info
+
+module_path = \
+	$(top_builddir)/modules/vfolder/.libs:$(top_builddir)/modules/.libs
+
+TESTS_INCLUDES = 							  \
+	-DGNOME_VFS_MODULE_PATH=\"$(module_path)\" 			  \
+	-DGNOME_VFS_MODULE_CONFIG_PATH=\"$(top_srcdir)/modules/vfolder\"
+
+TESTS = test-vfolder
+
+test_vfolder_SOURCES = test-vfolder.c
+test_vfolder_LDADD = $(top_builddir)/libgnomevfs/libgnomevfs-2.la

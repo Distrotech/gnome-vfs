@@ -5,6 +5,9 @@
   <MergeDir>@datadir@/gnome/apps/Settings</MergeDir>
   <MergeDir>@datadir@/gnome/capplets</MergeDir>
 
+  <!-- In case you installed in a non-standard prefix -->
+  <!--<MergeDir>/usr/share/gnome/apps/Settings</MergeDir>-->
+
   <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
 
   <!-- Settings -->

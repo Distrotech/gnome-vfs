@@ -6,3 +6,6 @@ Makefile.in
 *.la
 applications.vfolder-info
 preferences.vfolder-info
+test-vfolder.vfolder-info
+test-vfolder-parent.vfolder-info
+test-vfolder

@@ -83,27 +83,8 @@ entry_is_allocated (Entry *entry)
 	return entry->allocs > 0;
 }
 
-static gchar *
-uniqueify_file_name (gchar *file)
-{
-	struct timeval tv;
-	gchar *ext;
-	int len = strlen (file);
-
-	gettimeofday (&tv, NULL);
-
-	ext = strstr (file, ".desktop");
-	if (ext) 
-		len -= strlen (".desktop");
-	
-	return g_strdup_printf ("%*s-%d.desktop", 
-				len, 
-				file, 
-				(int) (tv.tv_sec ^ tv.tv_usec));
-}
-
 gboolean 
-entry_make_user_private (Entry *entry)
+entry_make_user_private (Entry *entry, Folder *folder)
 {
 	GnomeVFSURI *src_uri, *dest_uri;
 	GnomeVFSResult result;
@@ -111,15 +92,31 @@ entry_make_user_private (Entry *entry)
 
 	if (entry->user_private)
 		return TRUE;
+
+	/* Need a writedir, otherwise just modify the original */
 	if (!entry->info->write_dir)
 		return TRUE;
 
-	src_uri = entry_get_real_uri (entry);
+	/* Need a filename to progress further */
+	if (!entry_get_filename (entry))
+		return FALSE;
 
-	uniqname = uniqueify_file_name (entry_get_displayname (entry));
+	/* Make sure the destination directory exists */
+	result = vfolder_make_directory_and_parents (entry->info->write_dir, 
+						     FALSE, 
+						     0700);
+	if (result != GNOME_VFS_OK)
+		return FALSE;
+
+	/* 
+	 * Add a timestamp to the filename since we don't want conflicts between
+	 * files in different logical folders with the same filename.
+	 */
+	uniqname = vfolder_timestamp_file_name (entry_get_displayname (entry));
 	filename = g_build_filename (entry->info->write_dir, uniqname, NULL);
 	g_free (uniqname);
 
+	src_uri = entry_get_real_uri (entry);
 	dest_uri = gnome_vfs_uri_new (filename);
 
 	result = gnome_vfs_xfer_uri (src_uri, 
@@ -134,8 +131,23 @@ entry_make_user_private (Entry *entry)
 	gnome_vfs_uri_unref (dest_uri);
 
 	if (result == GNOME_VFS_OK) {
+		gchar *extend_uri, *old_filename;
+
+		extend_uri = folder_get_extend_uri (folder);
+		old_filename = entry_get_filename (entry);
+
+		if (extend_uri &&
+		    old_filename &&
+		    strncmp (old_filename, extend_uri, strlen (extend_uri)))
+			folder_add_exclude (folder, old_filename);
+		else
+			folder_add_exclude (folder, 
+					    entry_get_displayname (entry));
+
 		entry_set_filename (entry, filename);
-		entry->user_private = TRUE;		
+		folder_add_include (folder, filename);
+
+		entry->user_private = TRUE;
 	}
 
 	g_free (filename);
@@ -223,6 +235,11 @@ entry_set_filename (Entry *entry, gchar *name)
 	g_free (entry->filename);
 	entry->filename = g_strdup (name);
 
+	if (entry->uri) {
+		gnome_vfs_uri_unref (entry->uri);
+		entry->uri = NULL;
+	}
+
 	entry_set_dirty (entry);
 }
 
@@ -248,6 +265,9 @@ entry_get_displayname (Entry *entry)
 GnomeVFSURI *
 entry_get_real_uri (Entry *entry)
 {
+	if (!entry->filename)
+		return NULL; 
+
 	if (!entry->uri)
 		entry->uri = gnome_vfs_uri_new (entry->filename);
 
@@ -548,8 +568,11 @@ read_extended_entries (Folder *folder)
 		else {
 			Entry *entry;
 
+			/* FIXME: What should include/exclude contain? */
 			/* Include/Exclude of files are full uris */
-			if (check_include_exclude (folder, file_uri) == -1) {
+			if (check_include_exclude (folder, file_uri) == -1 ||
+			    check_include_exclude (folder, 
+						   file_info->name) == -1) {
 				g_free (file_uri);
 				continue;
 			}

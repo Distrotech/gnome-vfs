@@ -19,6 +19,7 @@ G_BEGIN_DECLS
 
 typedef struct _VFolderInfo VFolderInfo;
 typedef struct _Query Query;
+typedef struct _Folder Folder;
 
 /* 
  * Entry API
@@ -53,7 +54,7 @@ void          entry_alloc                (Entry *entry);
 void          entry_dealloc              (Entry *entry);
 gboolean      entry_is_allocated         (Entry *entry);
 
-gboolean      entry_make_user_private    (Entry *entry);
+gboolean      entry_make_user_private    (Entry *entry, Folder *folder);
 gboolean      entry_is_user_private      (Entry *entry);
 
 void          entry_set_dirty            (Entry *entry);
@@ -81,7 +82,6 @@ void          entry_dump                 (Entry *entry, int indent);
 /* 
  * Folder API
  */
-typedef struct _Folder Folder;
 struct _Folder {
 	gint               refcnt;
 
