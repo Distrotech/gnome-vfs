@@ -768,18 +768,28 @@ initial_authentication (SmbAuthContext *actx)
                 found_user = TRUE;
 
         if (found_user || preset_user) {
-        	/* Lookup the password in our internal cache */
+        	/* Lookup the server in our internal cache */
         	server_lookup.server_name = (char*)actx->for_server;
         	server_lookup.share_name = (char*)actx->for_share;
         	server_lookup.username = (char*)actx->use_user;
         	server_lookup.domain = (char*)actx->use_domain;
         		
         	server = g_hash_table_lookup (server_cache, &server_lookup);
-        	if (server != NULL) {
-        		/* Server is in cache already, no need to get password */
+        	if (server == NULL) {
+                 
+                        /* If a blank user, try 'guest' */
+                        if (!actx->use_user) {
+                                server_lookup.username = "guest";
+                                server_lookup.domain = NULL;
+                                server = g_hash_table_lookup (server_cache, &server_lookup);
+                        }
+                }
+                
+                /* Server is in cache already, no need to get password */
+                if (server != NULL) {
         		g_free (actx->use_password);
         		actx->use_password = g_strdup ("");
-        		DEBUG_SMB(("[auth] Using login info for '%s@%s' from our internal cache\n", actx->use_user, actx->use_domain));
+        		DEBUG_SMB(("[auth] Using connection for '%s@%s' from our server cache\n", actx->use_user, actx->use_domain));
                         found_user = TRUE;
         	}
         }
@@ -1201,13 +1211,20 @@ auth_callback (const char *server_name, const char *share_name,
 	if (actx->passes == 1)
 		initial_authentication (actx);
 	
-	/* If we have a valid user and password then go for it */
+	/* If we have a valid user then go for it */
 	if (actx->use_user) {
 		strncpy (username_out, actx->use_user, unmaxlen);
                 strncpy (password_out, actx->use_password ? actx->use_password : "", pwmaxlen);
                 strncpy (domain_out, actx->use_domain ? actx->use_domain : "", domainmaxlen);
                 DEBUG_SMB(("[auth] Using credentials: %s:%s@%s\n", username_out, password_out, domain_out));
-                        
+
+        /* On first login try a guest login */
+        } else if (actx->passes == 1) {
+                strncpy (username_out, "guest", unmaxlen);
+                strncpy (password_out, "", pwmaxlen);
+                strncpy (domain_out, "", domainmaxlen);
+                DEBUG_SMB(("[auth] No credentials, trying 'guest' user login\n"));
+
 	/* We have no credentials ... */			
 	} else {
 		strncpy (username_out, "", unmaxlen);
