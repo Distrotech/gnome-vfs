@@ -396,7 +396,7 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 	res = GNOME_VFS_ERROR_IO;
 	err = gnutls_handshake (ssl->private->tlsstate);
 
-	if (ret == GNUTLS_E_INTERRUPTED || ret = GNUTLS_E_AGAIN) {
+	if (err == GNUTLS_E_INTERRUPTED || err == GNUTLS_E_AGAIN) {
 
 		res = handle_ssl_read_write (ssl->private->sockfd,
 					     gnutls_record_get_direction (ssl->private->tlsstate),
@@ -488,8 +488,8 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 		return GNOME_VFS_OK;
 	}
 
- retry:
 	res = GNOME_VFS_OK;
+retry:
 	ret = gnutls_record_recv (ssl->private->tlsstate, buffer, bytes);
 
 	if (ret == 0) {
@@ -498,7 +498,7 @@ gnome_vfs_ssl_read (GnomeVFSSSL *ssl,
 
 		res = GNOME_VFS_ERROR_IO;
 
-		if (ret == GNUTLS_E_INTERRUPTED || ret = GNUTLS_E_AGAIN) {
+		if (ret == GNUTLS_E_INTERRUPTED || ret == GNUTLS_E_AGAIN) {
 			res = handle_ssl_read_write (ssl->private->sockfd,
 						     gnutls_record_get_direction (ssl->private->tlsstate),
 						     ssl->private->timeout,
@@ -581,8 +581,8 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 		return GNOME_VFS_OK;
 	}
 
- retry:
 	res = GNOME_VFS_OK;
+retry:
 	ret = gnutls_record_send (ssl->private->tlsstate, buffer, bytes);
 
 	if (ret == 0) {
@@ -591,7 +591,7 @@ gnome_vfs_ssl_write (GnomeVFSSSL *ssl,
 
 		res = GNOME_VFS_ERROR_IO;
 
-		if (ret == GNUTLS_E_INTERRUPTED || ret = GNUTLS_E_AGAIN) {
+		if (ret == GNUTLS_E_INTERRUPTED || ret == GNUTLS_E_AGAIN) {
 			res = handle_ssl_read_write (ssl->private->sockfd,
 						     gnutls_record_get_direction (ssl->private->tlsstate),
 						     ssl->private->timeout,
