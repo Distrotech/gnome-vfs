@@ -1,3 +1,45 @@
+1999-09-01  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* test/test-async-directory.c (directory_load_callback): Added
+	cast for printf.
+
+	* modules/file-method.c:  Removed `init()' prototype.
+	* modules/gzip-method.c: Likewise.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (serve_channel_read): Use
+	`GnomeVFSFileSize' appropriately.
+	(serve_channel_write): Likewise.
+
+	* test/test-async-directory.c (print_list): Fix format string to
+	handle long longs.
+	* test/test-async.c (read_callback): Likewise.
+	* test/test-copy.c (xfer_progress_callback): Likewise.
+	* test/test-directory.c (print_list): Likewise.
+	* test/test-directory-visit.c (directory_visit_callback): Likewise.
+
+	* modules/file-method.c: #define `_LARGEFILE64_SOURCE' before
+	including anything.  #define `OPEN' to `open64' if available, to
+	`open' otherwise.  #define `LSEEK' to `lseek64' if available, to
+	`lseek' otherwise.  Likewise, #define `OFF_T' to either `off_t' or
+	`off64_t', accordingly.
+	(do_open): Use the `OPEN' macro instead of `open()'.
+	(do_create): Likewise.
+	(do_seek): Use the `LSEEK' macro instead of `lseek()'.
+	(do_tell): Likewise.
+	(do_tell): Use the `OFF_T' instead of `off_t'.
+
+	* libgnomevfs/gnome-vfs-types.h: Define `GnomeVFSFileSize' as
+	`guint64' and `GnomeVFSFileOffset' to `gint64' if we have gint64
+	support
+
+	* configure.in: Check for `open64' and `lseek64'.
+
+	* libgnomevfs/gnome-vfs-types.h: Added comment with instructions
+	for modifying the GnomeVFSResult properly.
+
+	* libgnomevfs/gnome-vfs-result.c: Added status strings for
+	`GNOME_VFS_ERROR_INTERRUPTED' and `GNOME_VFS_ERROR_FILEEXISTS'.
+
 1999-08-31  Michael Meeks  <michael@imaginator.com>
 
 	* modules/file-method.c: Rename module init and add shutdown & include.

@@ -107,7 +107,7 @@ gnome_vfs_directory_filter_new (GnomeVFSDirectoryFilterType type,
 		break;
 	case GNOME_VFS_DIRECTORY_FILTER_SHELLPATTERN:
 		new->data = gnome_vfs_shellpattern_filter_new (pattern,
-							  options);
+							       options);
 		break;
 	default:
 		break;

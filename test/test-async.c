@@ -60,7 +60,7 @@ read_callback (GnomeVFSAsyncContext *context,
 			gnome_vfs_result_to_string (result));
 		gtk_main_quit ();
 	} else {
-		printf ("%ld/%ld byte(s) read, callback data `%s'\n",
+		printf ("%Ld/%Ld byte(s) read, callback data `%s'\n",
 			bytes_read, bytes_requested, (gchar *) callback_data);
 		*((gchar *) buffer + bytes_read) = 0;
 		puts (buffer);

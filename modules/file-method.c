@@ -27,6 +27,8 @@
 #include <config.h>
 #endif
 
+#define _LARGEFILE64_SOURCE
+
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -40,9 +42,6 @@
 #include "gnome-vfs-module.h"
 
 #include "file-method.h"
-
-
-GnomeVFSMethod *init (void);
 
 
 static GnomeVFSResult	do_open		(GnomeVFSMethodHandle **method_handle,
@@ -151,6 +150,20 @@ GET_PATH_MAX (void)
 }
 #endif
 
+#ifdef HAVE_OPEN64
+#define OPEN open64
+#else
+#define OPEN open
+#endif
+
+#ifdef HAVE_LSEEK64
+#define LSEEK lseek64
+#define OFF_T off64_t
+#else
+#define LSEEK lseek
+#define OFF_T off_t
+#endif
+
 
 struct _FileHandle
 {
@@ -212,7 +225,7 @@ do_open (GnomeVFSMethodHandle **method_handle,
 	MAKE_ABSOLUTE (file_name, uri->text);
 
 	do
-		fd = open (file_name, unix_mode);
+		fd = OPEN (file_name, unix_mode);
 	while (fd == -1 && errno == EINTR);
 
 	if (fd == -1)
@@ -246,7 +259,7 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	MAKE_ABSOLUTE (file_name, uri->text);
 
 	do
-		fd = open (uri->text, unix_mode, perm);
+		fd = OPEN (uri->text, unix_mode, perm);
 	while (fd == -1 && errno == EINTR);
 
 	if (fd == -1)
@@ -361,7 +374,7 @@ do_seek (GnomeVFSMethodHandle *method_handle,
 	file_handle = (FileHandle *) method_handle;
 	lseek_whence = seek_position_to_unix (whence);
 
-	if (lseek (file_handle->fd, lseek_whence, offset) == -1) {
+	if (LSEEK (file_handle->fd, lseek_whence, offset) == -1) {
 		if (errno == ESPIPE)
 			return GNOME_VFS_ERROR_NOTSUPPORTED;
 		else
@@ -377,11 +390,11 @@ do_tell (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSFileOffset *offset_return)
 {
 	FileHandle *file_handle;
-	off_t offset;
+	OFF_T offset;
 
 	file_handle = (FileHandle *) method_handle;
 
-	offset = lseek (file_handle->fd, SEEK_CUR, 0);
+	offset = LSEEK (file_handle->fd, SEEK_CUR, 0);
 	if (offset == -1) {
 		if (errno == ESPIPE)
 			return GNOME_VFS_ERROR_NOTSUPPORTED;

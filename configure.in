@@ -25,7 +25,7 @@ ALL_LINGUAS="it fr"
 AM_GNOME_GETTEXT
 
 AC_FUNC_ALLOCA
-AC_CHECK_FUNCS(getdtablesize)
+AC_CHECK_FUNCS(getdtablesize open64 lseek64)
 
 AC_CHECK_HEADERS(sys/resource.h)
 

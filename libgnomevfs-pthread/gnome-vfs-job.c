@@ -438,8 +438,8 @@ serve_channel_read (GnomeVFSHandle *handle,
 	while (1) {
 		GnomeVFSResult result;
 		GIOError io_result;
-		gulong bytes_read;
-		gulong bytes_to_write;
+		GnomeVFSFileSize bytes_read;
+		GnomeVFSFileSize bytes_to_write;
 		guint bytes_written;
 		gchar *p;
 
@@ -484,7 +484,7 @@ serve_channel_write (GnomeVFSHandle *handle,
 		GIOError io_result;
 		guint bytes_read;
 		guint bytes_to_write;
-		gulong bytes_written;
+		GnomeVFSFileSize bytes_written;
 		gchar *p;
 
 		io_result = g_io_channel_read (channel_in, buffer, buffer_size,

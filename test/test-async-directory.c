@@ -66,7 +66,7 @@ print_list (GnomeVFSDirectoryList *list)
 
 	info = gnome_vfs_directory_list_current (list);
 	while (info != NULL) {
-		printf ("  File `%s'%s (%s, %s), size %ld, mode %04o\n",
+		printf ("  File `%s'%s (%s, %s), size %Ld, mode %04o\n",
 			info->name,
 			info->is_symlink ? " [link]" : "",
 			type_to_string (info->type),
@@ -86,7 +86,7 @@ directory_load_callback (GnomeVFSAsyncContext *context,
 {
 	printf ("Directory load callback: %s, %d entries, callback_data `%s'\n",
 		gnome_vfs_result_to_string (result), entries_read,
-		callback_data);
+		(gchar *) callback_data);
 
 	if (list != NULL)
 		print_list (list);

@@ -105,8 +105,6 @@ static GnomeVFSMethod method = {
 	NULL			/* make_directory */
 };
 
-GnomeVFSMethod *init (void);
-
 #define RETURN_IF_FAIL(action)			\
 G_STMT_START{					\
 	GnomeVFSResult __tmp_result;		\

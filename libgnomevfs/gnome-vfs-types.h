@@ -31,6 +31,9 @@
 
 /* Basic enumerations.  */
 
+/* IMPORTANT NOTICE: If you add error types here, please also add the
+   corresponsing descriptions in `gnome-vfs-result.c'.  Moreover, *always* add
+   new values at the end of the list, and *never* remove values.  */
 enum _GnomeVFSResult {
 	GNOME_VFS_OK,
 	GNOME_VFS_ERROR_NOTFOUND,
@@ -63,6 +66,8 @@ enum _GnomeVFSResult {
 };
 typedef enum _GnomeVFSResult GnomeVFSResult;
 
+/* Open mode.  If you don't set `GNOME_VFS_OPEN_RANDOM', you have to access the
+   file sequentially.  */
 enum _GnomeVFSOpenMode {
 	GNOME_VFS_OPEN_NONE = 0,
 	GNOME_VFS_OPEN_READ = 1 << 0,
@@ -71,6 +76,7 @@ enum _GnomeVFSOpenMode {
 };
 typedef enum _GnomeVFSOpenMode GnomeVFSOpenMode;
 
+/* The file type.  */
 enum _GnomeVFSFileType {
 	GNOME_VFS_FILE_TYPE_UNKNOWN,
 	GNOME_VFS_FILE_TYPE_REGULAR,
@@ -83,6 +89,8 @@ enum _GnomeVFSFileType {
 };
 typedef enum _GnomeVFSFileType GnomeVFSFileType;
 
+/* File permissions.  These are the same as the Unix ones, but we wrap them
+   into a nicer VFS-like enum.  */
 enum _GnomeVFSFilePermissions {
 	GNOME_VFS_PERM_USER_READ = S_IRUSR,
 	GNOME_VFS_PERM_USER_WRITE = S_IWUSR,
@@ -99,6 +107,7 @@ enum _GnomeVFSFilePermissions {
 };
 typedef enum _GnomeVFSFilePermissions GnomeVFSFilePermissions;
 
+/* This is used to specify the start position for seek operations.  */
 enum _GnomeVFSSeekPosition {
 	GNOME_VFS_SEEK_START,
 	GNOME_VFS_SEEK_CURRENT,
@@ -109,8 +118,13 @@ typedef enum _GnomeVFSSeekPosition GnomeVFSSeekPosition;
 
 /* Basic types.  */
 
-typedef gulong                GnomeVFSFileSize;
-typedef glong                 GnomeVFSFileOffset;
+#ifdef G_HAVE_GINT64
+typedef guint64 GnomeVFSFileSize;
+typedef gint64 GnomeVFSFileOffset;
+#else
+typedef gulong GnomeVFSFileSize;
+typedef glong GnomeVFSFileOffset;
+#endif
 
 /* A file handle.  */
 typedef struct _GnomeVFSHandle GnomeVFSHandle;
