@@ -29,6 +29,7 @@
 
 #include "gnome-vfs-mime-private.h"
 #include "gnome-vfs-mime-sniff-buffer-private.h"
+#include "gnome-vfs-mime-utils.h"
 #include "gnome-vfs-module-shared.h"
 #include "gnome-vfs-ops.h"
 #include "gnome-vfs-result.h"

@@ -24,39 +24,33 @@
 #ifndef GNOME_VFS_MIME_H
 #define GNOME_VFS_MIME_H
 
-#include <dirent.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
-#include <libgnomevfs/gnome-vfs-mime-utils.h>
-#include <sys/types.h>
-#include <regex.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 
 G_BEGIN_DECLS
 
+struct stat;
+
 void 	     gnome_vfs_mime_shutdown 				(void);
 
-/* do not free any of the returned gchar* values */
-const char  *gnome_vfs_mime_type_from_name			(const gchar* filename);
-const char  *gnome_vfs_mime_type_from_name_or_default	        (const gchar *filename,
-								 const gchar *defaultv);
+const char  *gnome_vfs_mime_type_from_name			(const char        *filename);
+const char  *gnome_vfs_mime_type_from_name_or_default	        (const char        *filename,
+								 const char        *defaultv);
 
-const char  *gnome_vfs_get_mime_type_common			(GnomeVFSURI *uri);
+const char  *gnome_vfs_get_mime_type_common			(GnomeVFSURI       *uri);
 /* FIXME: This function should be named more clearly, maybe
    to show that it gets the mime type only using the uri information. */
-const char  *gnome_vfs_get_mime_type_from_uri			(GnomeVFSURI *uri);
+const char  *gnome_vfs_get_mime_type_from_uri			(GnomeVFSURI       *uri);
  
-/* FIXME: This function should be deprecated after Gnome 1.4.  */
-const char  *gnome_vfs_get_mime_type_from_file_data		(GnomeVFSURI *uri);
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
+const char  *gnome_vfs_get_mime_type_from_file_data		(GnomeVFSURI       *uri);
+#endif
 
-const char  *gnome_vfs_get_file_mime_type 			(const char *path, 
+const char  *gnome_vfs_get_file_mime_type 			(const char        *path, 
 								 const struct stat *optional_stat_info,
-								 gboolean suffix_only);
+								 gboolean           suffix_only);
 
-gboolean    gnome_vfs_mime_type_is_supertype			(const char *mime_type);
-char	    *gnome_vfs_get_supertype_from_mime_type		(const char *mime_type);							 
+gboolean    gnome_vfs_mime_type_is_supertype			(const char        *mime_type);
+char	    *gnome_vfs_get_supertype_from_mime_type		(const char        *mime_type);							 
 
 G_END_DECLS
 

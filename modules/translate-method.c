@@ -30,6 +30,7 @@
 #include <glib/gthread.h>
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-private-utils.h>
 #include <signal.h>

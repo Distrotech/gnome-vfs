@@ -47,6 +47,7 @@
 #include <libgnomevfs/gnome-vfs-iobuf.h>
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
+#include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 #include <libgnomevfs/gnome-vfs-module.h>
 #include <libgnomevfs/gnome-vfs-parse-ls.h>

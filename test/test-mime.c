@@ -24,12 +24,15 @@
 #include <config.h>
 
 #include <libgnomevfs/gnome-vfs-init.h>
-#include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-magic.h>
+#include <libgnomevfs/gnome-vfs-mime-utils.h>
+#include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 
 #include <stdio.h>
 #include <string.h>
+
+#include <sys/stat.h>
 
 int
 main (int argc, char **argv)
