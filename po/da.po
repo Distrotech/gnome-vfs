@@ -1,9 +1,9 @@
 # Danish translation of gnome-vfs.
-# Copyright (C) 1999, 2000, 01, 02, 03 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 01, 02, 03, 04 Free Software Foundation, Inc.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1999.
 # Birger Langkjer <birger.langkjer@image.dk>, 2000.
 # Keld Simonsen <keld@dkuug.dk>, 2000-2001.
-# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
 #
 # Konventioner:
 #
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2003-12-27 19:57+0100\n"
+"POT-Creation-Date: 2004-02-18 00:15+0100\n"
+"PO-Revision-Date: 2004-02-18 00:15+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,34 @@ msgstr "Kunne ikke klargøre Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "Kunne ikke klargøre Gnome-VFS"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:180
+#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Filsystem"
+
+#: gtk/gtkfilesystemgnomevfs.c:1458
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Bogmærkegemning mislykkedes (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "Kunne ikke skaffe oplysninger om fil '%s': %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Kunne ikke åbne fil '%s': %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr ""
+"Kunne ikke indlæse billede '%s': begrundelse ikke kendt, formodentlig en "
+"ødelagt billedfil"
+
+#: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660-arkiv"
 
@@ -632,22 +659,22 @@ msgstr "Værktøjer"
 msgid "Windows"
 msgstr "Vinduer"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "Netværk"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "Hjem"
-
-#: modules/computer-method.c:557
-msgid "Filesystem"
-msgstr "Filsystem"
 
 #: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Windows-netværk"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -1008,15 +1035,10 @@ msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
 "Brugernavn der skal videregives til brugerverifikation til HTTP-mellemvært."
 
-#: modules/network-method.c:257
-#, fuzzy
-msgid "Windows Network"
-msgstr "Netværk"
-
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB-arbejdsgruppe"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "Den Windows-arbejdsgruppe som brugeren er en del af"
