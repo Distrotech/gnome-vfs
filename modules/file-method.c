@@ -91,7 +91,8 @@ get_path_from_uri (GnomeVFSURI *uri)
 {
 	gchar *path, *longer_path;
 
-	path = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
+	path = gnome_vfs_unescape_string (uri->text, 
+		G_DIR_SEPARATOR_S);
 	if (path == NULL)
 		return NULL;
 

@@ -1,3 +1,14 @@
+2000-09-13  Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_items), (move_items),
+	(link_items):
+	Fix a problem where file names would get escaped twice in the
+	copy engine and caused files to get moved/copied with an
+	escaped path.
+
+	* modules/file-method.c: (get_path_from_uri):
+	Tweak some white space.
+
 2000-09-12  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c:

@@ -1233,8 +1233,8 @@ copy_items (const GList *source_uri_list,
 		result = gnome_vfs_get_file_info_uri (source_uri, &info, 
 						      GNOME_VFS_FILE_INFO_DEFAULT);
 
-		progress->progress_info->duplicate_name = g_strdup (
-			gnome_vfs_uri_get_basename ((GnomeVFSURI *)target_item->data));
+		progress->progress_info->duplicate_name =
+			gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
 
 		if (result == GNOME_VFS_OK) {
 			/* optionally keep trying until we hit a unique target name */
@@ -1287,8 +1287,8 @@ copy_items (const GList *source_uri_list,
 				 * a new unique name such as 'foo (copy)' or 'bar (copy 2)'
 				 */
 				g_free (progress->progress_info->duplicate_name);
-				progress->progress_info->duplicate_name = g_strdup (
-					gnome_vfs_uri_get_basename ((GnomeVFSURI *)target_item->data));
+				progress->progress_info->duplicate_name = 
+					gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
 				progress->progress_info->duplicate_count = count;
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE;
 				progress->progress_info->vfs_status = result;
@@ -1354,8 +1354,8 @@ move_items (const GList *source_uri_list,
 		source_uri = (GnomeVFSURI *)source_item->data;
 		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_item->data);
 
-		progress->progress_info->duplicate_name = g_strdup (
-			gnome_vfs_uri_get_basename ((GnomeVFSURI *)target_item->data));
+		progress->progress_info->duplicate_name =  
+			gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
 
 		retry = FALSE;
 		skip = FALSE;
@@ -1383,8 +1383,8 @@ move_items (const GList *source_uri_list,
 			if (result == GNOME_VFS_ERROR_FILE_EXISTS) {
 				/* deal with a name conflict -- ask the progress_callback for a better name */
 				g_free (progress->progress_info->duplicate_name);
-				progress->progress_info->duplicate_name = g_strdup (
-					gnome_vfs_uri_get_basename ((GnomeVFSURI *)target_item->data));
+				progress->progress_info->duplicate_name =
+					gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
 				progress->progress_info->duplicate_count = conflict_count;
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE;
 				progress->progress_info->vfs_status = result;
@@ -1454,8 +1454,8 @@ link_items (const GList *source_uri_list,
 		source_reference = gnome_vfs_uri_to_string (source_uri, GNOME_VFS_URI_HIDE_NONE);
 
 		target_dir_uri = gnome_vfs_uri_get_parent ((GnomeVFSURI *)target_item->data);
-		progress->progress_info->duplicate_name = g_strdup (
-			gnome_vfs_uri_get_basename ((GnomeVFSURI *)target_item->data));
+		progress->progress_info->duplicate_name =
+			gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
 
 		retry = FALSE;
 		skip = FALSE;
@@ -1475,12 +1475,11 @@ link_items (const GList *source_uri_list,
 			 * handle_name_conflicts took care of conflicting files
 			 */
 			result = gnome_vfs_create_symbolic_link (target_uri, source_reference); 
-
 			if (result == GNOME_VFS_ERROR_FILE_EXISTS) {
 				/* deal with a name conflict -- ask the progress_callback for a better name */
 				g_free (progress->progress_info->duplicate_name);
-				progress->progress_info->duplicate_name = g_strdup (
-					gnome_vfs_uri_get_basename ((GnomeVFSURI *)target_item->data));
+				progress->progress_info->duplicate_name =
+					gnome_vfs_uri_extract_short_name ((GnomeVFSURI *)target_item->data);
 				progress->progress_info->duplicate_count = conflict_count;
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE;
 				progress->progress_info->vfs_status = result;
