@@ -69,6 +69,7 @@ gnome_vfs_mime_sniff_buffer_new_generic (GnomeVFSSniffBufferSeekCall seek_callba
 	
 	result = g_new0 (GnomeVFSMimeSniffBuffer, 1);
 
+	result->owning = TRUE;
 	result->seek = seek_callback;
 	result->read = read_callback;
 	result->context = context;

@@ -200,6 +200,7 @@ gnome_vfs_directory_filter_destroy (GnomeVFSDirectoryFilter *filter)
 	}
 
 	g_free (filter->pattern);
+	g_free (filter);
 }
 
 /**

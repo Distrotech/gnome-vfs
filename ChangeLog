@@ -1,3 +1,21 @@
+2000-06-29  Pavel Cisler  <pavel@eazel.com>
+
+	Fix a bunch of leaks.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(execute_load_directory_not_sorted):
+	Unref allocated GnomeVFSFileInfo when read fails properly.
+	Delete the list of file info structs when we are done with them properly.
+
+	* libgnomevfs/gnome-vfs-directory-filter.c:
+	(gnome_vfs_directory_filter_destroy):
+	Free filter object properly.
+	
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
+	(gnome_vfs_mime_sniff_buffer_new_generic):
+	Set up buffer ownership for generic sniffers properly so the buffer
+	gets freed when it should.
+
 2000-06-27  Pavel Cisler  <pavel@eazel.com>
 
 	* data/mime/gnome-vfs-mime-magic:

@@ -1164,6 +1164,8 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 		if (result == GNOME_VFS_OK) {
 			gnome_vfs_directory_list_append (directory_list, info);
 			count++;
+		} else {
+			gnome_vfs_file_info_unref (info);
 		}
 
 		if (count == load_directory_op->request.items_per_notification
@@ -1196,6 +1198,7 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 		}
 	}
 
+	gnome_vfs_directory_list_destroy (directory_list);
 	gnome_vfs_directory_close (handle);
 
 	job_close (job);
