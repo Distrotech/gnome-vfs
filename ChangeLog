@@ -1,3 +1,11 @@
+2000-11-08  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed an error where access count was not reset
+	during a close_directory call.
+	
+	* modules/cdda-method.c: (do_open), (do_get_file_info),
+	(do_open_directory), (do_close_directory), (do_read_directory):
+
 2000-11-08  John Sullivan  <sullivan@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c: (execute_find_directory):

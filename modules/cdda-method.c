@@ -235,11 +235,42 @@ do_open (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 {
 	GnomeVFSResult result;
 	ReadHandle *read_handle;
+	GnomeVFSFileInfoOptions options;
+	const char *base_name;
+	char *dirname, *schemedir, *sep;
+	GnomeVFSURI *dir_uri;
 	
 	result = GNOME_VFS_ERROR_GENERIC;
 	*method_handle = NULL;
 
 	g_message ("cdda do_open: %s", gnome_vfs_uri_get_path (uri));
+
+	// Load in context for disc if we not yet done so.
+	if (global_context == NULL) {
+		base_name = gnome_vfs_uri_get_basename (uri);
+		if (base_name == NULL) {
+			return result;
+		}
+
+		dirname = gnome_vfs_uri_extract_dirname (uri);			
+		schemedir = g_strdup_printf ("cdda://%s", dirname);
+		
+		// Remove trailing '/' if there is one 
+		sep = strrchr (schemedir, '/');
+		if (sep != NULL) {
+			schemedir [strlen (schemedir) - 1] = '\0';
+		}
+		
+		dir_uri = gnome_vfs_uri_new (schemedir);
+		options = 0;
+		result = do_open_directory (method, method_handle, dir_uri, options, NULL, NULL);
+		gnome_vfs_uri_unref (dir_uri);
+
+		if (result != GNOME_VFS_OK) {
+			g_message ("cdda do_open: Unable to load context");
+			return result;
+		}
+	}
 
 	if (mode == GNOME_VFS_OPEN_READ) {
 		// Make sure file is present
@@ -578,6 +609,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		if (global_context != NULL) {
 			if (strcmp (drive->cdda_device_name, global_context->drive->cdda_device_name) == 0) {
 				use_cache = TRUE;
+				cdda_close (drive);
 				gnome_vfs_file_info_copy (file_info, global_context->file_info);
 			} else {
 				// We have a new drive.
@@ -666,7 +698,8 @@ do_open_directory (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 					global_context = cdda_context_new (drive, uri);
 					cdda_set_file_info_for_root (global_context, uri);
 				} else {
-					g_message ("Using cache");
+					//g_message ("Using cache");
+					cdda_close (drive);
 				}
 		} else {
 			// Allocate new context
@@ -675,10 +708,11 @@ do_open_directory (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle,
 		}
 	} else {
 		// This is a file. Blast cache.
-		g_message ("Use base: %s", escaped_name);
+		//g_message ("Use base: %s", escaped_name);
 		cdda_context_free (global_context);
 		global_context = NULL;
 		*method_handle = NULL;
+		cdda_close (drive);
 		g_free (escaped_name);
 		return GNOME_VFS_ERROR_GENERIC;
 	}
@@ -695,7 +729,16 @@ do_close_directory (GnomeVFSMethod *method,
 		    GnomeVFSMethodHandle *method_handle,
 		    GnomeVFSContext *context) 
 {
+	CDDAContext *cdda_context = (CDDAContext *)method_handle;
+
 	g_message ("cdda do_close_directory");
+
+	if (cdda_context == NULL) {
+		g_message ("cdda do_close_directory: NULL cdda context");	
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+	
+	cdda_context->access_count = 0;
 		
 	return GNOME_VFS_OK;
 }
@@ -770,14 +813,15 @@ do_read_directory (GnomeVFSMethod *method,
 
 	CDDAContext *cdda_context = (CDDAContext *) method_handle;
 
-	//g_message ("do_read_directory");
+	//g_message ("cdda do_read_directory");
 	
 	if (cdda_context == NULL) {
 		g_warning ("do_read_directory: NULL context");
 		return GNOME_VFS_ERROR_GENERIC;
 	}
 
-	if (cdda_context ->access_count >= cdda_context->drive->tracks) {
+	if (cdda_context->access_count >= cdda_context->drive->tracks) {
+		//g_message ("do_read_directory: over access count");
 		return GNOME_VFS_ERROR_EOF;
 	}
 
