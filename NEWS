@@ -1,3 +1,26 @@
+gnome-vfs 2.7.4
+
+	* Bugs fixed:
+	       + Make move/copy merge directories instead of overwriting
+	         them when doing an xfer.
+	       + register GnomeVFSFileInfo in the glib GType system
+	       + 64 bit fixes from Josselin Mouette
+	       + misc doc fixes
+	       + misc bug fixes in backends, including:
+	         - fix crasher in tar:/// method
+	         - crasher in sftp method
+	         - smb fixes
+	* Features
+	       + Use HAL for volumes, if enabled.
+	       + Implement kerberos/gssapi support for the ftp and smb methods.
+	       + Introduce davs for ssl dav.
+	       + Move daemon-only code over to a helper library for the daemon.
+	       + Implemented a simple resolver API.
+	       + entirely new http backend that uses neon
+	       + implement new MIME spec.  This involves a total rewrite
+	         of the MIME backend, and involves desktop file parsers
+	         being installed.
+
 gnome-vfs 2.7.3
 
 	* Bugs fixed:
