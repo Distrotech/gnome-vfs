@@ -681,7 +681,7 @@ do_transfer_command (FtpConnection *conn, gchar *command, GnomeVFSContext *conte
 	
 	my_ip_len = sizeof (my_ip);
 	if (getsockname( gnome_vfs_inet_connection_get_fd (data_connection),
-			 &my_ip, &my_ip_len) == 0) {
+			 (struct sockaddr*)&my_ip, &my_ip_len) == 0) {
 		conn->my_ip = my_ip.sin_addr.s_addr;
 	}
 
