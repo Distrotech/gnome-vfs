@@ -972,7 +972,7 @@ get_keys_foreach(gpointer key, gpointer value, gpointer user_data)
 	GList **listp = user_data;
 
 	/* make sure we only insert unique keys */
-	if ( (*listp) && strcmp ((*listp)->data, key) == 0)
+	if ( (*listp) && strcmp ((const char *) (*listp)->data, (const char *) key) == 0)
 		return;
 
 	(*listp) = g_list_insert_sorted ((*listp), key,
@@ -1202,7 +1202,7 @@ gnome_vfs_application_registry_get_applications (const char *mime_type)
 		/* Note that this list is sorted so to kill duplicates
 		 * in app_list we only need to check the first entry */
 		if (retval == NULL ||
-		    strcmp (retval->data, application->app_id) != 0)
+		    strcmp ((const char *) retval->data, application->app_id) != 0)
 			retval = g_list_prepend (retval, application->app_id);
 	}
 

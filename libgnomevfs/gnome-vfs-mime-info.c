@@ -1451,7 +1451,7 @@ gnome_vfs_mime_extensions_list_free (GList *list)
 static gint
 mime_list_sort (gconstpointer a, gconstpointer b)
 {
-	return (strcmp (a, b));
+  return (strcmp ((const char *) a, (const char *) b));
 }
 
 /**

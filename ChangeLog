@@ -1,3 +1,13 @@
+2001-01-16  Seth Nickell  <seth@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-application-registry.c: (get_keys_foreach),
+	(gnome_vfs_application_registry_get_applications):
+	* libgnomevfs/gnome-vfs-mime-info.c: (mime_list_sort):
+	
+	Add casts to strcmp's performed on gpointers so they will
+	not generate warnings.
 2001-01-16  Pavel Cisler  <pavel@eazel.com>
 
 	reviewed by: Darin Adler <darin@eazel.com>
