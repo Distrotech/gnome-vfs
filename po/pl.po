@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-14 20:23+0200\n"
+"POT-Creation-Date: 2004-08-15 23:56+0200\n"
 "PO-Revision-Date: 2003-06-27 00:15--100\n"
 "Last-Translator: Gnome PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
@@ -292,8 +292,8 @@ msgid "Unknown"
 msgstr "Nieznany"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
-msgid "CD Disc"
-msgstr "Płyta CD"
+msgid "CD-ROM Disc"
+msgstr "Płyta CD-ROM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
@@ -401,7 +401,7 @@ msgstr "Dysk Linuxa"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
-msgid "Unknown op type %u"
+msgid "Unknown operation type %u"
 msgstr "Nieznany typ operacji %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
@@ -1409,6 +1409,9 @@ msgstr "Grupa robocza SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Grupa robocza windows której członkiem jest użytkownik"
+
+#~ msgid "CD Disc"
+#~ msgstr "Płyta CD"
 
 #~ msgid "The command used to handle HTTP URLs, if enabled."
 #~ msgstr ""
