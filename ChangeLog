@@ -1,3 +1,9 @@
+2001-02-22  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/default-modules.conf:
+
+	Removed nfs from default-modules.conf (see bug 6666)
+
 2001-02-22  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Gene Ragan <gzr@eazel.com>
