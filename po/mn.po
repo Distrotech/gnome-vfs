@@ -10,16 +10,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mn\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 19:29-0400\n"
-"PO-Revision-Date: 2004-02-17 21:12+0100\n"
-"Last-Translator: Sanlig Badral <badral@openmn.org>\n"
+"POT-Creation-Date: 2004-08-08 11:47+0200\n"
+"PO-Revision-Date: 2004-08-08 16:15+0100\n"
+"Last-Translator: Sanlig Badral <badral@users.sf.net>\n"
 "Language-Team: Mongolian <openmn-gnome@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.3\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -30,9 +27,9 @@ msgid "Could not initialize gnome vfs"
 msgstr "гноме vfs -г инициацлаж чадахгүй байна."
 
 #: libgnomevfs/eggdesktopentries.c:226
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "Задлан ялгал боломжгүй: %s"
+msgstr "Файл нээгдэх боломжгүй: %s"
 
 #: libgnomevfs/eggdesktopentries.c:325
 #, c-format
@@ -40,77 +37,76 @@ msgid "Failed to open file '%s': %s"
 msgstr "'%s' файлыг нээж чадсангүй: %s"
 
 #: libgnomevfs/eggdesktopentries.c:338
-#, fuzzy
 msgid "File is empty"
-msgstr "Файл оршин байна"
+msgstr "Файл хоосон байна"
 
 #: libgnomevfs/eggdesktopentries.c:360
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr "'%s' файлыг нээж чадсангүй: %s"
+msgstr "'%s' файлаас уншиж чадсангүй: %s"
 
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
+msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr "Тавцангийн элементүүд бичлэг, бүлэг, тайлбар ч байхгүй '%s' мөр агуулж байна"
 
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "Тавцангийн элементүүдийн файл энгийн бүлгээр эхлэхгүй"
 
 #: libgnomevfs/eggdesktopentries.c:708
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "Тавцангийн элементүүд ЮТФ-8 биш '%s' мөр агуулж байна"
 
 #: libgnomevfs/eggdesktopentries.c:731
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "Тавцангийн элементүүд танигдахгүй '%s' кодчилол агуулж байна"
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
+#: libgnomevfs/eggdesktopentries.c:920
+#: libgnomevfs/eggdesktopentries.c:1032
 #: libgnomevfs/eggdesktopentries.c:1217
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "Тавцангийн элементүүдэд '%s' бүлэг алга"
 
 #: libgnomevfs/eggdesktopentries.c:1044
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "Тавцангийн элементүүдэд '%s' түлхүүр алга"
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1100
+#: libgnomevfs/eggdesktopentries.c:1272
+#: libgnomevfs/eggdesktopentries.c:1414
+#: libgnomevfs/eggdesktopentries.c:1539
 #, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
+msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr "Тавцангийн элементүүд хөрвөх боломжгүй утгатай '%s' түлхүүр агуулж байна."
 
 #: libgnomevfs/eggdesktopentries.c:1297
 #, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
+msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr "Тавцангийн элементүүд '%s' түлхүүрийн хувьд орчуулагдаагүй утгатай түлхүүр '%s' локал дээр агуулж байна."
 
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "Тавцангийн элементүүд хүчингүй '%s' буцах дараалал агуулж байна"
 
 #: libgnomevfs/eggdesktopentries.c:2235
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "Тавцангийн элементүүд мөрийн төгсгөлдөө escape тэмдэгт агуулж байна"
 
 #: libgnomevfs/eggdesktopentries.c:2260
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "'%s' утга тоогоор хөрвөх боломжгүй."
 
 #: libgnomevfs/eggdesktopentries.c:2287
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "'%s' утга бүүл утгаар хөрвөх боломжгүй."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -259,9 +255,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris өгөгдөл хадгалагч"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "AFFS өгөгдөл хадгалагч"
+msgstr "Sun SAM-QFS өгөгдөл хадгалагч"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -289,125 +284,119 @@ msgstr "Тодорхойгүй"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
-msgstr ""
+msgstr "CD Диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "Хоосон CD-R диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:606
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "КД-РОМ хөтлөгч"
+msgstr "CD-R диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "Хоосон CD-RW диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "КД-РОМ хөтлөгч"
+msgstr "CD-RW диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:613
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "КД-РОМ хөтлөгч"
+msgstr "DVD-ROM диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "Хоосон DVD-R диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "DVD-R Диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "Хоосон DVD-RAM диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "DVD-RAM Диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "Хоосон DVD-RW диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "DVD-RW Диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "Хоосон DVD+RW диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "DVD+RW Диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "Хоосон DVD+R Диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "DVD+R Диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
-msgstr ""
+msgstr "Оптик Диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
-#, fuzzy
 msgid "Audio Disc"
-msgstr "Дууны КД"
+msgstr "Дууны диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Компакт Флаш зөөвөрлөгч"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:652
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Мемори стек"
+msgstr "Мемори стек зөөвөрлөгч"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Смарт Медиа зөөвөрлөгч"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "SD/MMC зөөвөрлөгч"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:658
-#, fuzzy
 msgid "Floppy Disk"
 msgstr "Уян диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Mac OS диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Mac OS X диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:681
-#, fuzzy
 msgid "Windows Disk"
-msgstr "Цонхнууд"
+msgstr "Виндовс диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
-msgstr ""
+msgstr "Линукс диск"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Тодорхойгүй үйлдийн төрөл %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
+#: libgnomevfs/gnome-vfs-job.c:1024
+#: libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel нээх шугам үүсгэгдэхгүй байна: %s"
@@ -438,10 +427,19 @@ msgstr "Үйлдэл зослоо"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:921
 #: libgnomevfs/gnome-vfs-mime-handlers.c:939
 #: libgnomevfs/gnome-vfs-mime-handlers.c:957
-msgid ""
-"Deprecated function.  User modifications to the MIME database are no longer "
-"supported."
-msgstr ""
+#: libgnomevfs/gnome-vfs-mime-info.c:630
+#: libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645
+#: libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660
+#: libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684
+#: libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698
+#: libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
+msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
+msgstr "Буруу функц.  Хэрэглэгч өөрчилөлтөө MIME өгөгдлийн бааз руу бичдэг байснаа больсон."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -682,38 +680,32 @@ msgstr "Тушаалын мөр шинжилж байхад алдаа"
 msgid "Error launching command"
 msgstr "Тушаал ажиллуулахад алдаа"
 
-#. GNOME_VFS_ERROR_TIMEOUT
-#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
+#  GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+#: libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "Хугацаа хэтэрлээ"
 
-#. GNOME_VFS_ERROR_NAMESERVER
+#  GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "Ерөнхий алдаа"
+msgstr "Нэрний серверийн алдаа"
 
-#. GNOME_VFS_ERROR_LOCKED
+#  GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "Нөөц түгжигдсэн"
 
-#. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
+#  GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Функцийн дуудалт буруу"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
 msgstr "Тодорхойгүй алдаа"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, c-format
-msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "%u байт"
-msgstr[1] "%u байт"
-
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
 msgid "%.1f KB"
@@ -729,7 +721,7 @@ msgstr "%.1f МБ"
 msgid "%.1f GB"
 msgstr "%.1f ГБ"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1115
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (хүчингүй юникод)"
@@ -759,7 +751,7 @@ msgstr "Камер"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
@@ -779,31 +771,21 @@ msgstr "Сүлжээний сервер"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Уян диск хөтлөгчийг залгах боломжгүй. Хөтлөгчид магад диск алга."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
-"Өгөгдөл хадгалагчийг залгах боломжгүй. Төхөөрөмжид өгөгдөл хадгалагч алга."
+msgstr "Өгөгдөл хадгалагчийг залгах боломжгүй. Төхөөрөмжид өгөгдөл хадгалагч алга."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:122
-msgid ""
-"Unable to mount the floppy drive. The floppy is probably in a format that "
-"cannot be mounted."
-msgstr ""
-"Уян диск хөтлөгчийг залгах боломжгүй. Уян диск магад залгагдах нөхцөлгүй "
-"хэлбэрт байна."
+msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
+msgstr "Уян диск хөтлөгчийг залгах боломжгүй. Уян диск магад залгагдах нөхцөлгүй хэлбэрт байна."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:125
-msgid ""
-"Unable to mount the selected volume. The volume is probably in a format that "
-"cannot be mounted."
-msgstr ""
-"Сонгосон өгөгдөл хадгалагчийг залгах боломжгүй. Магад өгөгдөл хадгалагч "
-"залгагдах нөхцөлгүй хэлбэрт байна."
+msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
+msgstr "Сонгосон өгөгдөл хадгалагчийг залгах боломжгүй. Магад өгөгдөл хадгалагч залгагдах нөхцөлгүй хэлбэрт байна."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
@@ -901,27 +883,29 @@ msgstr "Тодорхойгүй GNOMEVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Виндовс Сүлжээ"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "Алсын компьютерын (%s) таних тэмдэг мэдэгдсэнгүй."
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely "
-"sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Та анх удаа компьютер луу нэвтрэхэд энэ гарна.\n"
+"\n"
+"Алсын компьютераас илгээсэн тэмдэг %s байна. Хэрэв та бүрэн итгэлтэй байвал системийн удирдагчдаа мэдэгдээд цааш үргэлжлүүлэхэд ямар ч аюулгүй."
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Яаж ийгээд нэвтэр"
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
-msgstr ""
+msgstr "Нэвтрэхээ болье"
 
 # CHECK
 #. FIXME: we probably shouldn't use printf to output the message
@@ -965,295 +949,221 @@ msgstr "Стандарт терминалын хувьд аргументыг г
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid ""
-"The application to use for viewing files that require a component to view "
-"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
-"will be replaced by the component IID."
-msgstr ""
-"Харуулах бүрэлдэхүүн шаардлагатай файлууд харуулахад хэрэглэгдэх програм. %s "
-"параметр файлын хаягаар, %d параметр бүрэлдэхүүний-IID -р орлуулагдана."
+msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
+msgstr "Харуулах бүрэлдэхүүн шаардлагатай файлууд харуулахад хэрэглэгдэх програм. %s параметр файлын хаягаар, %c параметр бүрэлдэхүүний-IID -р орлуулагдана."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
-msgid ""
-"The default terminal application to use for applications that require a "
-"terminal."
-msgstr ""
-"Терминал шаарддаг хэрэглээний програмуудад хэрэглэгдэх стандарт терминал "
-"програм."
+msgid "The default terminal application to use for applications that require a terminal."
+msgstr "Терминал шаарддаг хэрэглээний програмуудад хэрэглэгдэх стандарт терминал програм."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
 msgstr "Стандарт терминалын хувьд гүйцэтгэх аргумент."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
 msgstr "Програмыг терминалд ажиллуулах"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "Тушаал хэрэв нээлттэй бол \"aim\" URL авч үзэхэд хэрэглэгдэнэ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "Тушаал хэрэв нээлттэй бол \"callto\" URL авч үзэхэд хэрэглэгдэнэ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "Тушаал хэрэв нээлттэй бол \"ghelp\" URL авч үзэхэд хэрэглэгдэнэ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "Тушаал хэрэв нээлттэй бол \"info\" URL авч үзэхэд хэрэглэгдэнэ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "Тушаал хэрэв нээлттэй бол \"mailto\" URL авч үзэхэд хэрэглэгдэнэ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "Тушаал хэрэв нээлттэй бол \"man\" URL авч үзэхэд хэрэглэгдэнэ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "Тушаал хэрэв нээлттэй бол \"trash\" URL авч үзэхэд хэрэглэгдэнэ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle H323 URLs, if enabled."
-msgstr ""
+msgstr "Тушаал хэрэв нээлттэй бол H323 URL авч үзэхэд хэрэглэгдэнэ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle HTTP URLs, if enabled."
-msgstr ""
+msgstr "Тушаал хэрэв нээлттэй бол HTTP URL авч үзэхэд хэрэглэгдэнэ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr ""
+msgstr "Тушаал хэрэв нээлттэй бол HTTPS URL авч үзэхэд хэрэглэгдэнэ."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "man URLs тодорхойлогч"
+msgstr "\"aim\" URLs тодорхойлогч"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "callto URLs-н тодорхойлогч"
+msgstr "\"callto\" URLs-н тодорхойлогч"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "ghelp URLs тодорхойлогч"
+msgstr "\"ghelp\" URLs тодорхойлогч"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr " info URLs тодорхойлогч"
+msgstr "\"info\" URLs тодорхойлогч"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "mailto URLs-н тодорхойлогч"
+msgstr "\"mailto\" URLs-н тодорхойлогч"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "man URLs тодорхойлогч"
+msgstr "\"man\" URLs тодорхойлогч"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "trash URLs тодорхойлогч"
+msgstr "\"trash\" URLs тодорхойлогч"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for H323 URLs"
-msgstr "H323 URLs -н тодорхойлогч"
+msgstr "H323 URLs-н тодорхойлогч"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for HTTP URLs"
 msgstr " HTTP URLs-н тодорхойлогч"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for HTTPS URLs"
 msgstr "HTTPS URLs-н тодорхойлогч"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 #, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle \"aim\" "
-"URLs."
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд man URLs-н тодорхойлогчийг »command« -д өгнө."
+msgid "True if the command specified in the \"command\" key should handle \"aim\" URLs."
+msgstr "Энэ түлхүүр үнэн бол, програмд man URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 #, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle \"callto"
-"\" URLs."
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд  callto URLs-н тодорхойлогчийг »command« -д "
-"өгнө."
+msgid "True if the command specified in the \"command\" key should handle \"callto\" URLs."
+msgstr "Энэ түлхүүр үнэн бол, програмд  callto URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 #, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle \"ghelp\" "
-"URLs."
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд ghelp URLs-н тодорхойлогчийг »command« -д "
-"өгнө."
+msgid "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
+msgstr "Энэ түлхүүр үнэн бол, програмд ghelp URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 #, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle \"info\" "
-"URLs."
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд info URLs-н тодорхойлогчийг »command« -д өгнө."
+msgid "True if the command specified in the \"command\" key should handle \"info\" URLs."
+msgstr "Энэ түлхүүр үнэн бол, програмд info URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 #, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд mailto URLs-н тодорхойлогчийг »command« -д "
-"өгнө."
+msgid "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
+msgstr "Энэ түлхүүр үнэн бол, програмд mailto URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 #, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle \"man\" "
-"URLs."
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд man URLs-н тодорхойлогчийг »command« -д өгнө."
+msgid "True if the command specified in the \"command\" key should handle \"man\" URLs."
+msgstr "Энэ түлхүүр үнэн бол, програмд man URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 #, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
-"URLs."
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд trash URLs-н тодорхойлогчийг »command« -д "
-"өгнө."
+msgid "True if the command specified in the \"command\" key should handle \"trash\" URLs."
+msgstr "Энэ түлхүүр үнэн бол, програмд trash URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 #, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд H323-URLs -н тодорхойлогчийг »command« -д "
-"өгнө."
+msgid "True if the command specified in the \"command\" key should handle H323 URLs."
+msgstr "Энэ түлхүүр үнэн бол, програмд H323-URLs -н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 #, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд HTTP URLs-н тодорхойлогчийг »command« -д өгнө."
+msgid "True if the command specified in the \"command\" key should handle HTTP URLs."
+msgstr "Энэ түлхүүр үнэн бол, програмд HTTP URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 #, fuzzy
-msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
-"URLs."
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд HTTPS URLs-н тодорхойлогчийг »command« -д "
-"өгнө."
+msgid "True if the command specified in the \"command\" key should handle HTTPS URLs."
+msgstr "Энэ түлхүүр үнэн бол, програмд HTTPS URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 #, fuzzy
-msgid ""
-"True if the command used to handle this type of URL should be run in a "
-"terminal."
+msgid "True if the command used to handle this type of URL should be run in a terminal."
 msgstr "Энэ түлхүүр үнэн бол, энэ URL терминалд ажиллана."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 #, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд man URLs-н тодорхойлогчийг »command« -д өгнө."
+msgstr "Энэ түлхүүр үнэн бол, програмд man URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
 #, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд  callto URLs-н тодорхойлогчийг »command« -д "
-"өгнө."
+msgstr "Энэ түлхүүр үнэн бол, програмд  callto URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
 #, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд ghelp URLs-н тодорхойлогчийг »command« -д "
-"өгнө."
+msgstr "Энэ түлхүүр үнэн бол, програмд ghelp URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 #, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд info URLs-н тодорхойлогчийг »command« -д өгнө."
+msgstr "Энэ түлхүүр үнэн бол, програмд info URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
 #, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд mailto URLs-н тодорхойлогчийг »command« -д "
-"өгнө."
+msgstr "Энэ түлхүүр үнэн бол, програмд mailto URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
 #, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд man URLs-н тодорхойлогчийг »command« -д өгнө."
+msgstr "Энэ түлхүүр үнэн бол, програмд man URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 #, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд trash URLs-н тодорхойлогчийг »command« -д "
-"өгнө."
+msgstr "Энэ түлхүүр үнэн бол, програмд trash URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 #, fuzzy
 msgid "Whether the specified command should handle H323 URLs"
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд H323-URLs -н тодорхойлогчийг »command« -д "
-"өгнө."
+msgstr "Энэ түлхүүр үнэн бол, програмд H323-URLs -н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 #, fuzzy
 msgid "Whether the specified command should handle HTTP URLs"
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд HTTP URLs-н тодорхойлогчийг »command« -д өгнө."
+msgstr "Энэ түлхүүр үнэн бол, програмд HTTP URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 #, fuzzy
 msgid "Whether the specified command should handle HTTPS URLs"
-msgstr ""
-"Энэ түлхүүр үнэн бол, програмд HTTPS URLs-н тодорхойлогчийг »command« -д "
-"өгнө."
+msgstr "Энэ түлхүүр үнэн бол, програмд HTTPS URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/system_dns_sd.schemas.in.h:1
-msgid ""
-"Comma separated list of dns-sd domains that should be visible in the network "
-"location."
-msgstr ""
+msgid "Comma separated list of dns-sd domains that should be visible in the network location."
+msgstr "Сүлжээний барлал үзүүлэгч dns-sd домайны таслалаар тусгаарлагдсан жагсаалт."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Дараахад dns-sd сервис тусгай домайнууд хайх"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Яаж локал DNS-SD сервисийг харуулах вэ"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "Боломжит утгууд \"merged\", \"separate\" ба \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1292,14 +1202,8 @@ msgid "HTTP proxy username"
 msgstr "HTTP итгэмжилэгчийн хэрэглэгчийн нэр"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-msgid ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"Хэрэв үнэн бол итгэлжилэгч сервер лүү холбогдоход батламж хэрэглэнэ. "
-"Хэрэглэгчийн нэр/нууц үгэнд \"/system/http_proxy/authentication_user\" ба \"/"
-"system/http_proxy/authentication_password\" утгууд хэрэглэгдэнэ."
+msgid "If true, then connections to the proxy server require authentication. The username/password combo defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr "Хэрэв үнэн бол итгэлжилэгч сервер лүү холбогдоход батламж хэрэглэнэ. Хэрэглэгчийн нэр/нууц үгэнд \"/system/http_proxy/authentication_user\" ба \"/system/http_proxy/authentication_password\" утгууд хэрэглэгдэнэ."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1330,12 +1234,8 @@ msgid "Secure HTTP proxy port"
 msgstr "Хамгаалалттай HTTP итгэмжилэгчийн порт"
 
 #: schemas/system_http_proxy.schemas.in.h:18
-msgid ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\"."
-msgstr ""
-"Хамгаалалттай итгэмжилэгчийн тохируулах горим. Боломжит утгууд \"none\", "
-"\"manual\", \"auto\"."
+msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
+msgstr "Хамгаалалттай итгэмжилэгчийн тохируулах горим. Боломжит утгууд \"none\", \"manual\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1354,41 +1254,24 @@ msgid "The machine name to proxy socks through."
 msgstr "Итгэмжилэгч socks-н машины нэр"
 
 #: schemas/system_http_proxy.schemas.in.h:23
-msgid ""
-"The port on the machine defined by \"/system/http_proxy/host\" that you "
-"proxy through."
+msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
 msgstr "Итгэмжилэгч порт \"/system/http_proxy/host\" гэж тодорхойлогдсон хост"
 
 #: schemas/system_http_proxy.schemas.in.h:24
-msgid ""
-"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
-"through."
+msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
 msgstr "Итгэмжилэгч порт  \"/system/proxy/ftp_host\" гэж тодорхойлогдсон хост"
 
 #: schemas/system_http_proxy.schemas.in.h:25
-msgid ""
-"The port on the machine defined by \"/system/proxy/secure_host\" that you "
-"proxy through."
-msgstr ""
-"Итгэмжилэгч порт \"/system/proxy/secure_host\" гэж тодорхойлогдсон хост"
+msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
+msgstr "Итгэмжилэгч порт \"/system/proxy/secure_host\" гэж тодорхойлогдсон хост"
 
 #: schemas/system_http_proxy.schemas.in.h:26
-msgid ""
-"The port on the machine defined by \"/system/proxy/socks_host\" that you "
-"proxy through."
+msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
 msgstr "Итгэмжилэгч порт \"/system/proxy/socks_host\" гэж тодорхойлогдсон хост"
 
 #: schemas/system_http_proxy.schemas.in.h:27
-msgid ""
-"This key contains a list of hosts which are connected to directly, rather "
-"than via the proxy (if it is active). The values can be hostnames, domains "
-"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
-"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
-"Энэ түлхүүр итгэмжилэгчээр биш (идэвхитэй үед) шууд холболт хийгдэх ёстой "
-"хостуудын жагсаалтыг агуулна. Утгууд нь Хостын нэр, Домайн (Wildcard, ж.нь *."
-"foo.mn), Хостын IP-хаяг (түүнчилэн IPv4 ба IPv6) болон сүлжээний масктай "
-"сүлжээний хаягууд (192.168.0.0/24 хэлбэртэй) байна."
+msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr "Энэ түлхүүр итгэмжилэгчээр биш (идэвхитэй үед) шууд холболт хийгдэх ёстой хостуудын жагсаалтыг агуулна. Утгууд нь Хостын нэр, Домайн (Wildcard, ж.нь *.foo.mn), Хостын IP-хаяг (түүнчилэн IPv4 ба IPv6) болон сүлжээний масктай сүлжээний хаягууд (192.168.0.0/24 хэлбэртэй) байна."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1410,45 +1293,3 @@ msgstr "SMB ажлын хэсэг"
 msgid "The window workgroup the user is part of"
 msgstr "Цонхны ажлын хэсгийн хэрэглэгч бол:"
 
-#~ msgid "H323 URL handler"
-#~ msgstr "H323 URL тодорхойлогч"
-
-#~ msgid "HTTP URL handler"
-#~ msgstr "HTTP URL тодорхойлогч"
-
-#~ msgid "HTTPS URL handler"
-#~ msgstr "HTTPS URL тодорхойлогч"
-
-#, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "man URL тодорхойлогч"
-
-#~ msgid "callto URL handler"
-#~ msgstr "callto URL тодорхойлогч"
-
-#~ msgid "ghelp URL handler"
-#~ msgstr "ghelp URL тодорхойлогч"
-
-#~ msgid "info URL handler"
-#~ msgstr "info URL тодорхойлогч"
-
-#~ msgid "mailto URL handler"
-#~ msgstr "mailto URL тодорхойлогч"
-
-#~ msgid "man URL handler"
-#~ msgstr "man URL тодорхойлогч"
-
-#~ msgid "trash URL handler"
-#~ msgstr "trash URL тодорхойлогч"
-
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "Хавчуурга хадгалагдсангүй (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "'%s' файлын хувьд мэдээллийг нь авч чадсангүй: %s"
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "'%s' зургийг ачаалах боломжгүй: Шалтгаан үл мэдэгдэх, магад зургийн файл "
-#~ "эвдэрсэн байх"
