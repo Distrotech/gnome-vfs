@@ -234,7 +234,7 @@ get_device_type_from_device_and_mount (const char *device_path, const char *moun
 		} 
 	} else if (g_str_has_prefix (device_path, "/vol/")) {
 			name = mount_path + strlen ("/");
-		
+
 			if (g_str_has_prefix (name, "cdrom")) {
 				return GNOME_VFS_DEVICE_TYPE_CDROM;
 			} else if (g_str_has_prefix (name, "floppy")) {
@@ -496,7 +496,8 @@ create_drive_from_mount_point (GnomeVFSVolumeMonitor *volume_monitor,
 
 	drive->priv->device_type = get_device_type_from_device_and_mount (mount->device_path, mount->mount_path);
 	if ((strcmp (mount->filesystem_type, "iso9660") == 0) ||
-	    (strcmp (mount->filesystem_type, "cd9660") == 0)) {
+	    (strcmp (mount->filesystem_type, "cd9660") == 0) ||
+	    (strcmp (mount->filesystem_type, "hsfs") == 0)) {
 		if (drive->priv->device_type == GNOME_VFS_DEVICE_TYPE_UNKNOWN) {
 			drive->priv->device_type = GNOME_VFS_DEVICE_TYPE_CDROM;
 		}
@@ -694,6 +695,8 @@ create_vol_from_mount (GnomeVFSVolumeMonitor *volume_monitor, GnomeVFSUnixMount 
 		} else {
 			vol->priv->device_type = GNOME_VFS_DEVICE_TYPE_NFS;
 		}
+	} else if (strcmp (mount->filesystem_type, "autofs") == 0) {
+		vol->priv->device_type = GNOME_VFS_DEVICE_TYPE_AUTOFS;
 	} else if ((strcmp (mount->filesystem_type, "hfs") == 0)  ||
 		   (strcmp (mount->filesystem_type, "hfsplus") == 0)) {
 		if (vol->priv->device_type == GNOME_VFS_DEVICE_TYPE_UNKNOWN) {

@@ -229,7 +229,7 @@ mount_unmount_thread (void *arg)
 			NULL,
 			NULL
 		};
-		argv[1] = info->mount_point?info->mount_point:info->device_path;
+		argv[1] = info->device_path?info->device_path:info->mount_point;
 
 		if (g_spawn_sync (NULL,
 				  argv,

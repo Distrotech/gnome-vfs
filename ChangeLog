@@ -1,3 +1,13 @@
+2003-11-28  Niall Power  <niall.power@sun.com>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c: use VFSTAB macro defn
+	to determine fstab path, if defined.
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.c: add "hsfs"
+	as a recognized filesystem type for CD-ROM devices. Added 
+	autofs detection for Solaris.
+	* libgnomevfs/gnome-vfs-volume-ops.c: eject media by using
+	device path as the default operand instead of the mount point
+
 2003-11-25  Padraig O'Briain  <padraig.obriain@sun.com>
 
 	* daemon/gnome-vfs-async-daemon.c: Remove underscore from start of

@@ -446,8 +446,11 @@ get_fstab_file (void)
 {
 #ifdef _PATH_MNTTAB
 	return _PATH_MNTTAB;
-#else	
+#elif defined VFSTAB
+	return VFSTAB;
+#else
 	return "/etc/fstab";
+#endif
 #endif
 }
 
