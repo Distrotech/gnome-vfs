@@ -13,15 +13,6 @@
 	* modules/ftp-method.c:
 	Fix all the warnings that crept in while -Werror was off.
 
-2000-12-21  Pavel Cisler  <pavel@eazel.com>
-
-	reviewed by: <delete if not using a buddy>
-
-	* HACKING:
-	* libgnomevfs-pthread/Makefile.am:
-	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
-	(gnome_vfs_job_create_slave), (gnome_vfs_thread_backend_shutdown):
-
 2000-12-20 Lutz Müller <urc8@rz.uni-karlsruhe.de>
 	
         * libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_set_host_name),
