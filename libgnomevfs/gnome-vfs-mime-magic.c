@@ -525,16 +525,24 @@ gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer,
 		/* There's no place this pattern could actually match */
 		return FALSE;
 	}
+
 	for (offset = magic_entry->range_start; offset <= magic_entry->range_end; offset++) {
 		/* this check is done only as an optimization
 		 * gnome_vfs_mime_sniff_buffer_get already implements the laziness.
 		 * This gets called a million times though and every bit performance
 		 * is valuable. This way we avoid making the call.
 		 */
-		if (sniff_buffer->buffer_length < offset + magic_entry->pattern_length &&
-		    !sniff_buffer->read_whole_file) {
-			if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
-							     offset + magic_entry->pattern_length) != GNOME_VFS_OK) {
+
+		if (sniff_buffer->buffer_length < offset + magic_entry->pattern_length) {
+
+			if (!sniff_buffer->read_whole_file) {
+				if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
+								     offset + magic_entry->pattern_length) != GNOME_VFS_OK) {
+					return FALSE;
+				}
+			}
+			else {
+				/* We have the entire file and the pattern won't fit. Return FALSE */
 				return FALSE;
 			}
 		}

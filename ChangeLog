@@ -1,3 +1,10 @@
+2002-05-17  Anders Carlsson  <andersca@gnu.org>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_try_one_magic_pattern):
+	Don't try to check the buffer if it's not long enough. 
+	Fixes #82027, reported by Jacob Berkman.
+	
 2002-05-16  Jody Goldberg <jody@gnome.org>
 
 	* libgnomevfs/gnome-vfs-application-registry.c (application_sync) :
