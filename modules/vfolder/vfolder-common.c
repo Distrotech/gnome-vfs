@@ -84,9 +84,9 @@ entry_unref (Entry *entry)
 	entry->refcnt--;
 
 	if (entry->refcnt == 0) {
-		g_print ("-- KILLING ENTRY: (%p) %s---\n",
-			 entry,
-			 entry->displayname);
+		D (g_print ("-- KILLING ENTRY: (%p) %s---\n",
+			    entry,
+			    entry->displayname));
 
 		vfolder_info_remove_entry (entry->info, entry);
 
@@ -423,19 +423,19 @@ entry_dump (Entry *entry, int indent)
 	gchar *space = g_strnfill (indent, ' ');
 	GSList *keywords = entry->keywords, *iter;
 
-	g_print ("%s%s\n%s  Filename: %s\n%s  Keywords: ",
-		 space,
-		 entry_get_displayname (entry),
-		 space,
-		 entry_get_filename (entry),
-		 space);
+	D (g_print ("%s%s\n%s  Filename: %s\n%s  Keywords: ",
+		    space,
+		    entry_get_displayname (entry),
+		    space,
+		    entry_get_filename (entry),
+		    space));
 
 	for (iter = keywords; iter; iter = iter->next) {
-		GQuark quark = GPOINTER_TO_INT (iter->data);
-		g_print (g_quark_to_string (quark));
+		G_GNUC_UNUSED GQuark quark = GPOINTER_TO_INT (iter->data);
+		D (g_print (g_quark_to_string (quark)));
 	}
 
-	g_print ("\n");
+	D (g_print ("\n"));
 
 	g_free (space);
 }
@@ -564,12 +564,12 @@ folder_extend_monitor_cb (GnomeVFSMonitorHandle    *handle,
 	if (!strcmp (monitor_uri, info_uri))
 		return;
 
-	g_print ("*** Exdended folder %s ('%s') monitor %s%s%s called! ***\n",
-		 folder->name,
-		 info_uri,
-		 event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED":"",
-		 event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED":"",
-		 event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":"");
+	D (g_print ("*** Exdended folder %s ('%s') monitor %s%s%s called! ***\n",
+		    folder->name,
+		    info_uri,
+		    event_type == GNOME_VFS_MONITOR_EVENT_CREATED ? "CREATED":"",
+		    event_type == GNOME_VFS_MONITOR_EVENT_DELETED ? "DELETED":"",
+		    event_type == GNOME_VFS_MONITOR_EVENT_CHANGED ? "CHANGED":""));
 
 	uri = gnome_vfs_uri_new (info_uri);
 	filename = gnome_vfs_uri_extract_short_name (uri);
@@ -1040,8 +1040,8 @@ folder_reload_if_needed (Folder *folder)
 	if (!folder->dirty || folder->loading)
 		return;
 
-	g_print ("----- RELOADING FOLDER: %s -----\n",
-		 folder->name);
+	D (g_print ("----- RELOADING FOLDER: %s -----\n",
+		    folder->name));
 
 	folder->loading = TRUE;
 	folder->info->loading = TRUE;
@@ -1507,10 +1507,10 @@ folder_dump_tree (Folder *folder, int indent)
 	const GSList *iter;
 	gchar *space = g_strnfill (indent, ' ');
 
-	g_print ("%s(%p): %s\n",
-		 space,
-		 folder,
-		 folder ? folder_get_name (folder) : NULL);
+	D (g_print ("%s(%p): %s\n",
+		    space,
+		    folder,
+		    folder ? folder_get_name (folder) : NULL));
 
 	g_free (space);
 
