@@ -176,25 +176,19 @@ typedef struct
 
 typedef ssize_t (*read_write_fn) (int, void *, size_t);
 
-#ifndef TEMP_FAILURE_RETRY
-#define TEMP_FAILURE_RETRY(expression)				\
-	(__extension__						\
-	 ({ long int __result;					\
-	  	do __result = (long int) (expression);		\
-		while (__result == -1L && errno == EINTR);	\
-		__result; }))
-#endif
-
 static gsize
 atomic_io (read_write_fn f, gint fd, gpointer buffer_in, gsize size) 
 {
 	gsize pos = 0, res;
 	guchar *buffer;
+        long int __result;
 
 	buffer = buffer_in;
 
 	while (pos < size) {
-		res = TEMP_FAILURE_RETRY (f (fd, buffer, size - pos));
+	  	do __result = (long int) (f (fd, buffer, size - pos));
+		while (__result == -1L && errno == EINTR);
+		res = __result;
 
 		if (res < 0)
 			return -1;

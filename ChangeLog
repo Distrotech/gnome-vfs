@@ -1,3 +1,8 @@
+2004-05-15  Damien Carbery  <damien.carbery@sun.com>
+
+	* modules/sftp-method.c: remove TEMP_FAILURE_RETRY macro since it's 
+	  used only once and breaks compilation on Solaris.
+
 2004-05-15  ynakai@redhat.com
 
 	* doc/about.sgml: use 0777 permissions instead of 0x777 in sample code
