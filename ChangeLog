@@ -1,3 +1,18 @@
+2001-11-06  Maciej Stachowiak  <mjs@noisehavoc.org>
+	
+	* libgnomevfs/Makefile.am: Make gnome-vfs-mime.h a module header
+	again.
+	
+	* libgnomevfs/gnome-vfs-mime-utils.h: New public header.
+	* libgnomevfs/gnome-vfs-mime-handlers.h: Include
+	gnome-vfs-mime-utils.h
+
+	* libgnomevfs/gnome-vfs-mime.h, libgnomevfs/gnome-vfs-mime.c:
+	Rename gnome_vfs_get_mime_type to
+	gnome_vfs_get_mime_type_common. Add new gnome_vfs_get_mime_type
+	function which takes a string URI and uses gnome_vfs_get_file_info
+	under the covers.
+
 2001-11-05  Seth Nickell  <snickell@stanford.edu>
 
 	* doc/tmpl/gnome-vfs-unused.sgml:

@@ -54,8 +54,10 @@ detecting the mime type of a URI
 
 </para>
 
-@uri: 
+@text_uri: 
 @Returns: 
+<!-- # Unused Parameters # -->
+@uri: 
 
 
 <!-- ##### FUNCTION gnome_vfs_get_mime_type_from_uri ##### -->

@@ -25,7 +25,10 @@
 #ifndef GNOME_VFS_MIME_HANDLERS_H
 #define GNOME_VFS_MIME_HANDLERS_H
 
+#include <dirent.h>
+#include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-result.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 #include <bonobo-activation/bonobo-activation.h>
 
 G_BEGIN_DECLS

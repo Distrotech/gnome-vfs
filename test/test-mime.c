@@ -94,11 +94,11 @@ main (int argc, char **argv)
 	}
 
 	for (; *argv != NULL; argv++) {
+	        uri_string = *argv;
 		uri = gnome_vfs_uri_new (*argv);
 		if (uri == NULL) {
 		  uri_string = gnome_vfs_get_uri_from_local_path (*argv);
 		  uri = gnome_vfs_uri_new (uri_string);
-		  g_free (uri_string);
 		}
 
 		if (uri == NULL) {
@@ -111,11 +111,12 @@ main (int argc, char **argv)
 		} else if (suffix_only) {
 			result = gnome_vfs_get_mime_type_from_uri (uri);
 		} else {
-			result = gnome_vfs_get_mime_type (uri);
+			result = gnome_vfs_get_mime_type (uri_string);
 		}
 	
 		printf ("looks like %s is %s\n", *argv, result);
 		gnome_vfs_uri_unref (uri);
+		g_free (uri_string);
 	}
 	
 	return 0;

@@ -563,7 +563,7 @@ gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *f
 }
 
 /**
- * gnome_vfs_get_mime_type:
+ * gnome_vfs_get_mime_type_common:
  * @uri: a real file or a non-existent uri.
  *
  * Tries to guess the mime type of the file represented by @uir.
@@ -578,7 +578,7 @@ gnome_vfs_get_mime_type_internal (GnomeVFSMimeSniffBuffer *buffer, const char *f
  * 
  */
 const char *
-gnome_vfs_get_mime_type (GnomeVFSURI *uri)
+gnome_vfs_get_mime_type_common (GnomeVFSURI *uri)
 {
 	const char *result;
 	char *base_name;
@@ -960,4 +960,39 @@ gnome_vfs_file_date_tracker_date_has_changed (FileDateTracker *tracker)
 	tracker->last_checked = now;
 
 	return any_date_changed;
+}
+
+
+
+
+/**
+ * gnome_vfs_get_mime_type:
+ * @text_uri: URI of the file for which to get the mime type
+ * 
+ * Determine the mime type of @text_uri. The mime type is determined
+ * in the same way as by gnome_vfs_get_file_info(). This is meant as
+ * a convenience function for times when you only want the mime type.
+ * 
+ * Return value: The mime type, or NULL if there is an error reading 
+ * the file.
+ **/
+char *
+gnome_vfs_get_mime_type (const char *text_uri)
+{
+	GnomeVFSFileInfo *info;
+	char *mime_type;
+	GnomeVFSResult result;
+
+	info = gnome_vfs_file_info_new ();
+	result = gnome_vfs_get_file_info (text_uri, info,
+					  GNOME_VFS_FILE_INFO_GET_MIME_TYPE |
+					  GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
+	if (info->mime_type == NULL || result != GNOME_VFS_OK) {
+		mime_type = NULL;
+	} else {
+		mime_type = g_strdup (info->mime_type);
+	}
+	gnome_vfs_file_info_unref (info);
+
+	return mime_type;
 }
