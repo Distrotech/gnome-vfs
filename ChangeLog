@@ -1,3 +1,8 @@
+2003-03-24  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-job.c (_gnome_vfs_job_destroy_notify_result):
+	Don't free OP_XFER notify result. Its stack-allocated. (#100654)
+
 2003-03-20  Guntupalli Karunakar  <karunakar@freedomink.org>
 
 	* configure.in: Added "ml" in ALL_LINGUAS

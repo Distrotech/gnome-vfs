@@ -386,7 +386,6 @@ _gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 	case GNOME_VFS_OP_OPEN:
 	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
 	case GNOME_VFS_OP_READ:
-	case GNOME_VFS_OP_XFER:
 		g_free (notify_result);
 		break;
 		
@@ -418,6 +417,10 @@ _gnome_vfs_job_destroy_notify_result (GnomeVFSNotifyResult *notify_result)
 		g_free (notify_result);
 		break;
 
+	case GNOME_VFS_OP_XFER:
+		/* the XFER result is allocated on the stack */
+		break;
+		
 	case GNOME_VFS_OP_MODULE_CALLBACK:
 		/* the MODULE_CALLBACK result is allocated on the stack */
 		break;
