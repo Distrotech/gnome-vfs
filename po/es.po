@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-02-28 13:53-0800\n"
+"POT-Creation-Date: 2001-02-28 18:48-0800\n"
 "PO-Revision-Date: 2001-02-28 11:30+0200\n"
 "Last-Translator: Mauricio Araya Polo <mauricio@eazel.com>\n"
 "Language-Team: spanish <es@li.org>\n"
@@ -47,7 +47,6 @@ msgid "Adobe font metrics"
 msgstr "medidas para fuentes de Adobe"
 
 #: data/mime/gnome-vfs.keys.in.h:9
-#, fuzzy
 msgid "Andrew Toolkit inset"
 msgstr "inserción para Andrew Toolkit"
 
@@ -232,7 +231,6 @@ msgid "JPEG image"
 msgstr "imagen JPEG"
 
 #: data/mime/gnome-vfs.keys.in.h:55
-#, fuzzy
 msgid "Java byte code"
 msgstr "código binario JAVA"
 
@@ -649,7 +647,6 @@ msgid "XPM image"
 msgstr "imagen XPM"
 
 #: data/mime/gnome-vfs.keys.in.h:159
-#, fuzzy
 msgid "active server page"
 msgstr "página de servidor activo"
 
