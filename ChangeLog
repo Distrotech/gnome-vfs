@@ -1,3 +1,7 @@
+2001-05-03  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* configure.in: upped version to 1.0.1
+
 2001-05-03  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* Makefile.am:
