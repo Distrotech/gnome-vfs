@@ -17,17 +17,19 @@
 application/andrew-inset
 	description=Andrew Toolkit inset
 	[fi]description=Andrew Toolkit -osio
+	[fr]description=Insert Andrew Toolkit
 	[no]description=Andrew verktøysett insett
 	[da]description=Andrew værktøjssæt indsæt
 	[sv]description=Andrew-verktygssamling insatt
 	
 application/mac-binhex40
 	description=Macintosh BinHex-encoded file
-	
+	[fr]description=Fichier Macintosh encodé BinHex
+
 # This is used by automated tests ("make check")
 application/mime-type-test
 	open=mime-type-test
-	description=mon test a moi
+	description=mon test à moi
 	test=est-ce un test?
 	compose=eh?ah.
 	copiousoutput=
@@ -61,6 +63,7 @@ application/msword
 application/octet-stream
 	can_be_executable=TRUE
 	description=unknown type
+	[fr]description=type inconnu
 
 application/oda
 	description=ODA document
@@ -97,6 +100,7 @@ application/pgp
 
 application/pgp-encrypted
 	description=PGP-encrypted file
+	[fr]description=Fichier crypté PGP
 
 application/pgp-keys
 	description=PGP keys
@@ -113,9 +117,10 @@ application/pgp-signature
 	[fr]description=Signature PGP
 	[no]description=PGP-signatur
 	[sv]description=PGP-signatur
-	
+
 application/pkcs7-mime
 	description=S/MIME file
+	[fr]description=Fichier S/MIME
 
 application/pkcs7-signature
 	description=S/MIME signature
@@ -140,6 +145,7 @@ application/postscript
 
 application/rtf
 	description=rich text document
+	[fr]description=Document RTF
 	default_action_type=application
 	default_application_id=abiword
 	short_list_application_ids_for_novice_user_level=staroffice,abiword,applix
@@ -158,7 +164,7 @@ application/vnd.ms-excel
 	short_list_application_ids_for_novice_user_level=staroffice,applix,gnumeric
 	short_list_application_ids_for_intermediate_user_level=staroffice,applix,gnumeric
 	short_list_application_ids_for_hacker_user_level=staroffice,applix,gnumeric
-	
+
 # also text/abiword
 application/x-abiword
 	description=AbiWord document
@@ -217,6 +223,7 @@ application/x-asp
 
 application/x-backup
 	description=backup file
+	[fr]description=Fichier de sauvegarde
 
 application/x-bcpio
 	description=BCPIO document
@@ -228,10 +235,12 @@ application/x-bcpio
 
 application/x-bzip
 	description=bzip-compressed file
+	[fr]description=Fichier compressé bzip
 	vfs_method=bzip2
 
 application/x-bzip-compressed-tar
 	description=tar archive (bzip2-compressed)
+	[fr]description=Archive tar (compressé bzip2)
 	icon_filename=gnome-compressed.png
 	vfs_method=bzip2
 
@@ -264,9 +273,11 @@ application/x-class-file
 # we are aware of the crappiness of this description
 application/x-compress
 	description=compress-compressed file
+	[fr]description=Fichier compressé compress
 
 application/x-compressed-tar
 	description=tar archive (gzip-compressed)
+	[fr]description=Archive tar (compressé gzip)
 	icon_filename=gnome-package.png
 
 application/x-core-file
@@ -280,21 +291,24 @@ application/x-core-file
 
 application/x-cpio
 	description=CPIO archive
+	[fr]description=Archive CPIO
 
 application/x-cpio-compressed
 	description=CPIO archive (gzip-compressed)
+	[fr]description=Archive CPIO (compressé gzip)
 	icon_filename=gnome-compressed.png
 
 # also text/x-csh
 application/x-csh
 	can_be_executable=TRUE
 	description=C Shell script
+	[fr]description=Script C Shell
 
 application/x-deb
 	description=Debian package
 	[da]description=Debian pakke
 	[fi]description=Debianin paketti
-	[fr]description=Paquetage Debian
+	[fr]description=Paquet Debian
 	[no]description=Debian pakke
 	[sv]description=Debianpaket
 	icon_filename=gnome-pack-deb.png
@@ -319,7 +333,7 @@ application/x-e-theme
 	description=Enlightenment theme
 	[da]description=Enlightenment-tema
 	[fi]description=Enlightenmentin teema
-	[fr]description=Theme Enlightenment
+	[fr]description=Thème Enlightenment
 	[no]description=Enlightenment tema
 	[sv]description=Enlightenment-tema
 
@@ -358,6 +372,7 @@ application/x-font-dos
 
 application/x-font-framemaker
 	description=Adobe FrameMaker font
+	[fr]description=Police Adobe FrameMaker
 
 application/x-font-libgrx
 	description=LIBGRX font
@@ -448,6 +463,7 @@ application/x-gmc-link
 
 application/x-gnome-app-info
 	description=GNOME application details
+	[fr]description=Détails application GNOME
 
 application/x-gnumeric
 	description=Gnumeric spreadsheet
@@ -474,6 +490,7 @@ application/x-gtar
 
 application/x-gzip
 	description=gzip-compressed file
+	[fr]description=Fichier compressé gzip
 	icon_filename=gnome-compressed.png
 	vfs_method=gzip
 
@@ -495,6 +512,7 @@ application/x-java-byte-code
 
 application/x-kde-app-info
 	description=KDE application details
+	[fr]description=Détails application KDE
 
 application/x-lha
 	description=LHARC archive
@@ -556,6 +574,7 @@ application/x-object-file
 # also audio/x-ogg
 application/x-ogg
 	description=ogg audio
+	[fr]description=Audio ogg
 	default_action_type=application
 	default_application_id=ogg123
 	short_list_application_ids_for_novice_user_level=ogg123,xmms
@@ -572,6 +591,7 @@ application/x-palm-database
 
 application/x-pef-executable
 	description=PEF program
+	[fr]description=Programme PEF
 
 # also text/x-perl
 application/x-perl
@@ -619,7 +639,7 @@ application/x-rpm
 	description=RPM package
 	[da]description=RPM-pakke
 	[fi]description=RPM-paketti
-	[fr]description=Paquetage RPM
+	[fr]description=Paquet RPM
 	[no]description=RPM-pakke
 	[sv]description=RPM-paket
 	icon_filename=gnome-pack-rpm.png
@@ -667,6 +687,7 @@ application/x-staroffice-presentation
 	description=StarOffice presentation
 	[da]description=StarOffice-præsentation
 	[fi]description=StarOffice-esitys
+	[fr]description=Présentation StarOffice
 	[no]description=StarOffice-presentasjon
 	[sv]description=StarOffice-presentation
 	default_action_type=application
@@ -691,6 +712,7 @@ application/x-staroffice-spreadsheet
 
 application/x-staroffice-words
 	description=StarOffice Writer document
+	[fr]description=Document StarOffice Writer
 	default_action_type=application
 	default_application_id=staroffice
 	short_list_application_ids_for_novice_user_level=staroffice
@@ -701,15 +723,17 @@ application/x-stuffit
 	description=Macintosh StuffIt! archive
 	[da]description=Macintosh StuffIt!-arkiv
 	[fi]description=Machintoshin StuffIt!-paketti
-	[fr]description=Archive StuffIt! Macintosh
+	[fr]description=Archive Macintosh StuffIt!
 	[no]description=Macintosh StuffIt!-arkiv
 	[sv]description=Macintosh StuffIt!-arkiv
 
 application/x-sv4cpio
 	description=SV4 CPIO archive
+	[fr]description=Archive SV4 CPIO
 
 application/x-sv4crc
 	description=SV4 CPIO archive with CRC
+	[fr]description=Archive SV4 CPIO avec CRC
 
 application/x-tar
 	description=tar archive
@@ -739,10 +763,12 @@ application/x-toutdoux
 
 application/x-troff-man-compressed
 	description=manual page (compressed)
+	[fr]description=Page de manuel (compressé)
 	icon_filename=gnome-manpage.png
 
 application/x-unix-archive
 	description=ar archive
+	[fr]description=Archive ar
 
 application/x-ustar
 	description=ustar archive
@@ -823,7 +849,7 @@ audio/x-midi
 	description=MIDI audio
 	[da]description=MIDI-musik
 	[fi]description=MIDI-ääni
-	[fr]description=Audio Midi
+	[fr]description=Audio MIDI
 	[no]description=MIDI-lyd
 	[sv]description=MIDI-ljud
 	icon_filename=gnome-audio-midi.png
@@ -861,7 +887,7 @@ audio/x-mp3-playlist
 	description=MP3 audio playlist
 	[da]description=MP3-spilleliste
 	[fi]description=MP3-soittolista
-	[fr]description=Audio liste de lecture MP3
+	[fr]description=Liste de lecture Audio MP3
 	[no]description=MP3-lydavspillingsliste
 	[sv]description=MP3-ljudspellista
 
@@ -882,7 +908,8 @@ audio/x-mpeg
 
 audio/x-mpegurl
         description=MP3 audio URL
-        default_action_type=application
+        [fr]description=URL Audio MP3
+	default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
 	short_list_application_ids_for_intermediate_user_level=xmms
@@ -904,6 +931,7 @@ audio/x-pn-realaudio
 
 audio/x-real-audio
 	description=RealAudio/Video document
+	[fr]description=Document RealAudio/Video
 	icon_filename=gnome-audio-x-pn-realaudio.png
         default_action_type=application
         default_application_id=realplayer
@@ -943,6 +971,7 @@ audio/x-stm
 
 audio/x-ulaw
 	description=Sun µ-law audio
+	[fr]description=Audio Sun µ-law
 	icon_filename=gnome-audio-ulaw.png
 
 audio/x-voc
@@ -955,6 +984,7 @@ audio/x-voc
 
 audio/x-wav
 	description=wave audio
+	[fr]description=Audio wave
 	icon_filename=gnome-audio-x-wav.png
         default_action_type=application
         default_application_id=xmms
@@ -974,7 +1004,7 @@ audio/x-xm
 	description=FastTracker II audio
 	[da]description=FastTracker II-lyd
 	[fi]description=FastTracker II -ääni
-	[fr]description=Audio FastTracker
+	[fr]description=Audio FastTracker II
 	[no]description=FastTracker II-lyd
 	[sv]description=FastTracker II-ljud
 
@@ -983,7 +1013,7 @@ image/bmp
 	description=Windows bitmap image
 	[da]description=Windows-bitkortbillede
 	[fi]description=Windows-bittikarttakuva
-	[fr]description=Image bitmap Windows
+	[fr]description=Image Windows bitmap
 	[no]description=Windows-bitmapbilde
 	[sv]description=Windows-bitmappbild
 	default_action_type=component
@@ -1128,6 +1158,7 @@ image/x-3ds
 
 image/x-applix-graphic
 	description=ApplixWare Graphics image
+	[fr]description=Image ApplixWare Graphics
 	default_action_type=application
 	default_application_id=applix
 	short_list_application_ids_for_novice_user_level=applix
@@ -1139,7 +1170,7 @@ image/x-bmp
 	description=Windows bitmap image
 	[da]description=Windows-bitkortbillede	
 	[fi]description=Windows-bittikarttakuva
-	[fr]description=Image bitmap Windows
+	[fr]description=Image Windows bitmap
 	[no]description=Windows-bitmapbilde
 	[sv]description=Windows-bitmappbild
 	default_action_type=component
@@ -1163,12 +1194,13 @@ image/x-cmu-raster
 
 image/x-compressed-xcf
 	description=compressed GIMP document
+	[fr]description=Document GIMP compressé
 
 image/x-ico
 	description=Windows icon image
 	[da]description=Windows-ikonbillede
 	[fi]description=Windows-kuvake
-	[fr]description=Image icone Windows
+	[fr]description=Image Windows icone
 	[no]description=Windows-ikonbilde
 	[sv]description=Windows-ikonbild
 
@@ -1296,6 +1328,7 @@ image/x-psd
 	description=Photoshop document
 	[da]description=PhotoShop-dokument
 	[fi]description=Photoshop-asiakirja
+	[fr]description=Document Photoshop
 	[no]description=Photoshop-dokument
 	[sv]description=Photoshopdokument
 	default_action_type=application
@@ -1309,7 +1342,7 @@ image/x-rgb
 	description=RGB image
 	[da]description=RGB-billede
 	[fi]description=RGB-kuva
-	[fr]description=Image RGB
+	[fr]description=Image RVB
 	[no]description=RGB-bilde
 	[sv]description=RGB-bild
 	icon_filename=gnome-image-rgb.png
@@ -1339,6 +1372,7 @@ image/x-xbitmap
 
 image/x-xcf
 	description=GIMP document
+	[fr]description=Document GIMP
 	default_action_type=application
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp
@@ -1348,6 +1382,7 @@ image/x-xcf
 
 image/x-xfig
 	description=xfig vector graphic
+	[fr]description=Graphique vectoriel xfig
 	default_action_type=application
 	default_application_id=xfig
 	short_list_application_ids_for_novice_user_level=xfig
@@ -1376,7 +1411,8 @@ image/x-xwindowdump
 	description=X window image
 	[da]description=X-vinduebillede
 	[fi]description=X-ikkunakuva
-	[no]description=X-Windows skjermbilde
+	[fr]description=Image X Window
+	[no]description=X-Window skjermbilde
 	[sv]description=X-fönsterbild
 	icon_filename=gnome-image-xwd.png
 
@@ -1398,6 +1434,7 @@ message/disposition-notification
 
 message/external-body
 	description=reference to remote file
+	[fr]description=Référence à un fichier distant
 
 message/news
 	description=USENET news message
@@ -1433,6 +1470,7 @@ message/x-gnu-rmail
 
 model/vrml
 	description=VRML document
+	[fr]description=Document VRML
 
 multipart/alternative
 	description=message in several formats
@@ -1444,6 +1482,7 @@ multipart/alternative
 
 multipart/appledouble
 	description=Macintosh AppleDouble-encoded file
+	[fr]description=Fichier Macintosh encodé AppleDouble
 
 multipart/digest
 	description=message digest
@@ -1457,7 +1496,7 @@ multipart/encrypted
 	description=encrypted message
 	[da]description=krypteret meddelelse
 	[fi]description=kryptattu viesti
-	[fr]description=Message encrypté
+	[fr]description=Message crypté
 	[no]description=kryptert melding
 	[sv]description=krypterat meddelande
 
@@ -1530,7 +1569,7 @@ text/calendar
 	description=calendar file
 	[da]description=kalenderinformation
 	[fi]description=kalenteritiedot
-	[fr]description=Information de calendrier
+	[fr]description=Fichier calendrier
 	[no]description=kalenderinformasjon
 	[sv]description=kalenderinformation
 
@@ -1546,7 +1585,7 @@ text/directory
 	description=directory information file
 	[da]description=kataloginformation
 	[fi]description=hakemistotiedot
-	[fr]description=Information de répertoire
+	[fr]description=Fichier d'information de répertoire
 	[no]description=kataloginformasjon
 	[sv]description=kataloginformation
 
@@ -1554,12 +1593,13 @@ text/enriched
 	description=enriched text document
 	[da]description=beriget tekst
 	[fi]description=enriched-teksti
-	[fr]description=Text enrichi
+	[fr]description=Document texte enrichi
 	[no]description=rik tekst
 	[sv]description=enriched text
 
 text/html
 	description=HTML page
+	[fr]description=Document HTML
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
@@ -1575,6 +1615,7 @@ text/htmlh
 	description=help page
 	[da]description=Hjælpeside
 	[fi]description=Ohjesivu
+	[fr]description=Page d'aide
 	[no]description=Hjelpside
 	[sv]description=Hjälpsida
 	default_action_type=component
@@ -1593,7 +1634,7 @@ text/plain
 	description=plain text document
 	[da]description=ren tekst
 	[fi]description=pelkkä teksti
-	[fr]description=Texte plein
+	[fr]description=Document texte plein
 	[no]description=vanlig tekst
 	[sv]description=vanlig text
 	default_action_type=component
@@ -1619,7 +1660,7 @@ text/richtext
 	description=rich text document
 	[da]description=rigtekst
 	[fi]description=rich-teksti
-	[fr]description=Texte riche
+	[fr]description=Document texte riche
 	[no]description=rik tekst
 	[sv]description=rik text
 
@@ -1633,6 +1674,7 @@ text/sgml
 
 text/tab-separated-values
 	description=tab-separated text document
+	[fr]description=Document texte séparé par des tabulations
 
 # Note that text/tex should be text/x-tex, but a user reported
 # a complaint about text/tex in Nautilus, so some non-gnome-vfs
@@ -1672,19 +1714,23 @@ text/x-c++
 
 text/x-comma-separated-values
 	description=comma-separated text document
+	[fr]description=Document texte séparé par des virgules
 
 text/x-copying
 	description=software license terms
+	[fr]description=Termes de la licence du logiciel
 	icon_filename=i-regular
 
 text/x-credits
 	description=software author credits
+	[fr]description=Crédits des auteurs du logiciel
 	icon_filename=i-regular
 
 # also application/x-csh
 text/x-csh
 	can_be_executable=TRUE
 	description=C Shell script
+	[fr]description=Script C Shell
 
 text/x-dcl
 	description=DCL script
@@ -1744,6 +1790,7 @@ text/x-idl
 
 text/x-install
 	description=software installation instructions
+	[fr]description=Instructions d'intallation du logiciel
 
 text/x-java
 	description=Java source code
@@ -1765,6 +1812,7 @@ text/x-ksh
 
 text/x-makefile
 	description=makefile
+	[fr]description=Makefile
 
 text/x-patch
 	description=source code patch
@@ -1788,11 +1836,13 @@ text/x-perl
 
 text/x-python
 	description=Python source code
+	[fr]description=Code source Python
 	icon_filename=i-regular
 
 # translate and capitalize "README" as appropriate
 text/x-readme
 	description=README document
+	[fr]description=Document LISEZMOI
 	icon_filename=i-regular
 
 text/x-scheme
@@ -1830,6 +1880,7 @@ text/x-speech
 # not "source code", because it isn't a programming language
 text/x-sql
 	description=SQL code
+	[fr]description=Code SQL
 
 text/x-tcl
 	description=Tcl script
@@ -1860,7 +1911,7 @@ text/x-troff
 	description=Troff document
 	[da]description=Troff-dokument
 	[fi]description=Troff-asiakirja
-	[fr]description=Document Trof
+	[fr]description=Document Troff
 	[no]description=Troff-dokument
 	[sv]description=Troff-dokument
 
@@ -1876,15 +1927,19 @@ text/x-troff-man
 # the acronym is not capitalized, per common usage
 text/x-troff-me
 	description=troff me input document
+	[fr]description=Document d'entrée troff me
 
 text/x-troff-mm
 	description=troff mm input document
+	[fr]description=Document d'entrée troff mm
 
 text/x-troff-ms
 	description=troff ms input document
+	[fr]description=Document d'entrée troff ms
 
 text/x-vcalendar
 	description=calendar or event document
+	[fr]description=Document calendrier ou événement
 
 text/x-vcard
 	description=address card
@@ -1922,6 +1977,7 @@ video/isivideo
 
 video/mpeg
 	description=MPEG video
+	[fr]description=Vidéo MPEG
 	default_action_type=application
 	default_application_id=mtvp
 	short_list_application_ids_for_novice_user_level=mtvp,mtv,mpeg_play
@@ -1971,6 +2027,7 @@ video/wavelet
 
 video/x-anim
 	description=ANIM animation
+	[fr]description=Animation ANIM
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1979,6 +2036,7 @@ video/x-anim
 
 video/x-avi
 	description=AVI video
+	[fr]description=Vidéo AVI
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1989,6 +2047,7 @@ video/x-flc
 	description=FLC animation
 	[da]description=FLC-animation
 	[fi]description=FLC-animaatio
+	[fr]description=Animation FLC
 	[no]description=FLC-animasjon
 	default_action_type=application
 	default_application_id=xanim
@@ -2000,6 +2059,7 @@ video/x-fli
 	description=FLI animation
 	[da]description=FLI-animation
 	[fi]description=FLI-animaatio
+	[fr]description=Animation FLI
 	[no]description=FLI-animasjon
 	default_action_type=application
 	default_application_id=xanim
@@ -2010,6 +2070,7 @@ video/x-fli
 video/x-msvideo
 	description=Microsoft video
 	[da]description=Microsoft Video
+	[fr]description=Vidéo Microsoft
 	[no]description=Microsoft Video
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -2019,7 +2080,8 @@ video/x-msvideo
 # there is no extension or magic detection for this type
 video/x-real-video
 	description=RealVideo video
-        default_action_type=application
+	[fr]description=Vidéo RealVideo
+	default_action_type=application
         default_application_id=realplayer
         short_list_application_ids_for_novice_user_level=realplayer
         short_list_application_ids_for_intermediate_user_level=realplayer
@@ -2027,6 +2089,7 @@ video/x-real-video
 
 video/x-sgi-movie
 	description=SGI video
+	[fr]description=Vidéo SGI
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -2037,7 +2100,7 @@ x-directory/normal
 	description=folder
 	[da]description=mappe
 	[fi]description=hakemisto
-	[fr]description=Répertoire
+	[fr]description=Dossier
 	[no]description=mappe
 	[sv]description=mapp
 	default_action_type=component
@@ -2093,7 +2156,7 @@ x-special/fifo
 	description=named pipe
 	[da]description=navngivet rør
 	[fi]description=nimetty putki
-	[fr]description=Conduit nommé
+	[fr]description=Tube nommé
 	[no]description=navngitt rør
 	[sv]description=namngivet rör
 
@@ -2107,4 +2170,5 @@ x-special/socket
 
 x-special/symlink
 	description=symbolic link
+	[fr]description=Lien symbolique
 
