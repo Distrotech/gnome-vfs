@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-07-05 15:56+0000\n"
-"PO-Revision-Date: 2000-07-05 15:59+00:00\n"
+"POT-Creation-Date: 2000-07-26 18:12+0000\n"
+"PO-Revision-Date: 2000-07-26 18:15+00:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "%s:%d не содержит названия модуля."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Конфигурационный файл `%s' не найден: %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:479
+#: libgnomevfs/gnome-vfs-file-info.c:269
 #, c-format
 msgid "Unknown sort rule %d"
 msgstr "Неизвестное правило сортировки %d"
@@ -270,7 +270,7 @@ msgstr "%.1fG"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:338
 msgid "Dying."
-msgstr ""
+msgstr "Умирание."
 
 #. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:503
@@ -316,38 +316,38 @@ msgstr "Невозможно слушать на '%s': %s"
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Невозможно принять соединение на '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1397
+#: libgnomevfs-corba/gnome-vfs-slave.c:1281
 msgid "Cannot initialize CORBA."
 msgstr "Невозможно инициализировать CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1404
+#: libgnomevfs-corba/gnome-vfs-slave.c:1288
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Невозможно разрешить первоначальную ссылку на RootPOA"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1411
+#: libgnomevfs-corba/gnome-vfs-slave.c:1295
 msgid "Cannot activate POA manager."
 msgstr "Невозможно активировать диспетчер POA"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1436
+#: libgnomevfs-corba/gnome-vfs-slave.c:1320
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Используйте: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1447
+#: libgnomevfs-corba/gnome-vfs-slave.c:1331
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Невозможно открыть файловый дескриптор %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1470
+#: libgnomevfs-corba/gnome-vfs-slave.c:1354
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Извещающий интерфейс для \"%s\" не найден."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1480
+#: libgnomevfs-corba/gnome-vfs-slave.c:1364
 msgid "Cannot setup Request object."
 msgstr "Невозможно установить объект запроса."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1487
+#: libgnomevfs-corba/gnome-vfs-slave.c:1371
 msgid "Cannot extract IOR."
 msgstr "Невозможно извлечь IOR."
 
@@ -371,7 +371,7 @@ msgstr "Невозможно уничтожить GNOME::VFS::Slave::Notify -- исключение %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "Невозможно подключиться к сокету `%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:801
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:750
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Невозможно инициализировать GNOME::VFS:Slave::Notify"
 
@@ -401,19 +401,19 @@ msgstr ""
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Ошибка записи в wakeup GnomeVFSJob channel."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:552
-#: libgnomevfs-pthread/gnome-vfs-job.c:1487
+#: libgnomevfs-pthread/gnome-vfs-job.c:579
+#: libgnomevfs-pthread/gnome-vfs-job.c:1537
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Неизвестный идентификатор задания %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:956
-#: libgnomevfs-pthread/gnome-vfs-job.c:1077
+#: libgnomevfs-pthread/gnome-vfs-job.c:983
+#: libgnomevfs-pthread/gnome-vfs-job.c:1104
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Невозможно создать канал для открытого GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1520
+#: libgnomevfs-pthread/gnome-vfs-job.c:1570
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
@@ -522,57 +522,59 @@ msgstr "Можно открыть много файлов"
 msgid "Can open from URI"
 msgstr "Можно открыть из URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:358
+#: mime-type-capplet/nautilus-mime-type-capplet.c:361
 msgid "Change Icon"
 msgstr "Изменить пиктограмму"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:370
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1006
+#: mime-type-capplet/nautilus-mime-type-capplet.c:374
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1078
 msgid "Mime Type"
 msgstr "Mime-тип"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:383
+#: mime-type-capplet/nautilus-mime-type-capplet.c:396
 msgid "Add new Mime type..."
 msgstr "Добавить новый mime-тип..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:390
+#: mime-type-capplet/nautilus-mime-type-capplet.c:403
 msgid "Delete this Mime type..."
 msgstr "Удалить этот mime-тип..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:404
+#: mime-type-capplet/nautilus-mime-type-capplet.c:418
 msgid "Use Viewer"
 msgstr "Использовать программу просмотра"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:410
+#: mime-type-capplet/nautilus-mime-type-capplet.c:424
 msgid "Open With Application"
 msgstr "Открыть в приложении"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:422
+#: mime-type-capplet/nautilus-mime-type-capplet.c:436
 msgid "Edit List"
 msgstr "Правка списка:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:450
+#: mime-type-capplet/nautilus-mime-type-capplet.c:465
 msgid "Add"
 msgstr "Добавить"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:453
+#: mime-type-capplet/nautilus-mime-type-capplet.c:468
 msgid "Remove"
 msgstr "Удалить"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:628
-#: mime-type-capplet/nautilus-mime-type-capplet.c:770
+#. Add default action to fourth column
+#: mime-type-capplet/nautilus-mime-type-capplet.c:646
+#: mime-type-capplet/nautilus-mime-type-capplet.c:788
+#: mime-type-capplet/nautilus-mime-type-capplet.c:993
 msgid "None"
 msgstr "Нет"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1005
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1077
 msgid "Description"
 msgstr "Описание"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1007
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1079
 msgid "Extension"
 msgstr "Расширение"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1008
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1080
 msgid "Action"
 msgstr "Действие"
 
@@ -581,32 +583,32 @@ msgstr "Действие"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестная GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:512
+#: modules/http-method.c:520
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Неправильный заголовок '%s'"
 
-#: modules/http-method.c:529
+#: modules/http-method.c:537
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s для восстановления"
 
-#: modules/http-method.c:664
+#: modules/http-method.c:734
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Закрытие соединения с %s"
 
-#: modules/http-method.c:807
+#: modules/http-method.c:878
 #, c-format
 msgid "%s of %s read"
 msgstr "%s из %s прочитано"
 
-#: modules/http-method.c:810
+#: modules/http-method.c:881
 #, c-format
 msgid "%s read"
 msgstr "%s прочитано"
 
 #. Multi-Status
-#: modules/http-method.c:989
+#: modules/http-method.c:1060
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "HTTP-сервер вернул неправильный ответ PROPFIND"
