@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.sq\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-01-31 17:51+0100\n"
+"POT-Creation-Date: 2004-02-12 14:41+0100\n"
+"PO-Revision-Date: 2004-02-12 12:46+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,28 @@ msgstr "E pamundur nisja e Bonobo"
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
 msgstr "E pamundur nisja e gnome vfs"
+
+#: gtk/gtkfilesystemgnomevfs.c:1457
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Ruajtja e libërshënuesit dështoi (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "E pamundur marrja e informacioneve për file '%s': %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "E pamundur hapja e file '%s': %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr ""
+"Hapja e figurës '%s' dështoi: shkaku nuk njihet, ndoshta file është i dëmtuar"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
@@ -579,7 +601,7 @@ msgstr "I pamundur zmontimi i server-it të lidhur"
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
-msgstr "Aplikativë"
+msgstr "Programe"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
@@ -626,15 +648,15 @@ msgstr "Instrumente"
 msgid "Windows"
 msgstr "Dritaret"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "Rrjeti"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "Shtëpia"
 
-#: modules/computer-method.c:557
+#: modules/computer-method.c:561
 msgid "Filesystem"
 msgstr "File sistemi"
 
@@ -642,6 +664,10 @@ msgstr "File sistemi"
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d e panjohur"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Rrjet Windows"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -674,11 +700,11 @@ msgstr "moniker i përgjithshëm për file"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Aplikativi i prezgjedhur për shikimin e komponuesit"
+msgstr "Programi i prezgjedhur për shikimin e komponuesit"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "Aplikativi terminal i prezgjedhur"
+msgstr "Programi terminal i prezgjedhur"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
@@ -691,7 +717,7 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Aplikativi që duhet përdorur për të shikuar files që kanë nevojë për një "
+"Programi që duhet përdorur për të shikuar files që kanë nevojë për një "
 "komponent që të shikohen. Parametri %s do të zevendësohet nga URl e file, "
 "parametri %c do të zevendësohet nga IID e komponentit."
 
@@ -700,8 +726,8 @@ msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"Aplikativi terminal i prezgjedhur që duhet përdorur për aplikativët që "
-"kërkojnë një terminal."
+"Programi terminal i prezgjedhur që duhet përdorur për programet që kërkojnë "
+"një terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -1007,10 +1033,6 @@ msgstr "Përdor proxy HTTP"
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
 "Emri i përdoruesit që duhet dhënë për autentifikim kur përdoret proxy HTTP."
-
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "Rrjet Windows"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
