@@ -1,3 +1,8 @@
+2002-06-13  Glynn Foster  <glynn.foster@sun.com>
+
+	* docs/vfolder-info-spec.dtd: Remove some confusing whitespace so
+	you can see where the comments are directed.
+
 2002-06-17  Damon Chaplin  <damon@ximian.com>
 
 	* libgnomevfs/gnome-vfs-monitor.c (gnome_vfs_monitor_do_add): if
