@@ -181,6 +181,8 @@ application_lookup_or_create (const char *app_id, gboolean user_owned)
 
 	g_return_val_if_fail(app_id != NULL, NULL);
 
+	gnome_vfs_application_registry_init ();
+
 	application = g_hash_table_lookup (global_applications, app_id);
 	if (application != NULL) {
 		if ( ! user_owned) {

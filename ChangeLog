@@ -1,3 +1,10 @@
+2002-05-24  Jody Goldberg <jody@gnome.org>
+
+        http://bugzilla.gnome.org/show_bug.cgi?id=80776
+	* libgnomevfs/gnome-vfs-application-registry.c
+	(application_lookup_or_create) : make sure to load the app db before
+	  trying to store something.
+
 2002-05-24  Seth Nickell  <snickell@stanford.edu>
 
 	* configure.in:
