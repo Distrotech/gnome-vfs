@@ -1,5 +1,11 @@
 2001-10-07  Maciej Stachowiak  <mjs@noisehavoc.org>
 
+	* configure.in: Fixed bug 41957 (gnome-vfs config does not reject
+	libxml 2) by copying the check for libxml 1.x from the nautiluse
+	configure script. This change should not be merged to HEAD.
+
+2001-10-07  Maciej Stachowiak  <mjs@noisehavoc.org>
+
 	* modules/nfs-method.c: (rpc_init_tcp): Fix bug 55805 (mistake in
 	gnome-vfs/modules/nfs-method.c), patch from Martin Pool
 	<mbp@samba.org>.
