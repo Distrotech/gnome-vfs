@@ -197,6 +197,9 @@ gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 	if (stat (filename, &buf) < 0)
 		goto error;
 
+	if (dir->mime_info_cache_timestamp > 0) 
+		mime_info_cache->should_ping_mime_monitor = TRUE;
+
 	dir->mime_info_cache_timestamp = buf.st_mtime;
 
 	entries =
@@ -241,8 +244,6 @@ gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 	g_strfreev (mime_types);
 	egg_desktop_entries_free (entries);
 
-	mime_info_cache->should_ping_mime_monitor = TRUE;
-	
 	return;
 error:
 	if (filename)
@@ -286,6 +287,9 @@ gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 
 	if (stat (filename, &buf) < 0)
 		goto error;
+
+	if (dir->defaults_list_timestamp > 0) 
+		mime_info_cache->should_ping_mime_monitor = TRUE;
 
 	dir->defaults_list_timestamp = buf.st_mtime;
 
@@ -353,8 +357,6 @@ gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 
 	g_strfreev (mime_types);
 	egg_desktop_entries_free (entries);
-
-	mime_info_cache->should_ping_mime_monitor = TRUE;
 
 	return;
 error:
@@ -637,6 +639,8 @@ gnome_vfs_mime_info_cache_load (void)
 		_gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
 		mime_info_cache->should_ping_mime_monitor = FALSE;
 	}
+
+	
 	G_UNLOCK (mime_info_cache);
 }
 
