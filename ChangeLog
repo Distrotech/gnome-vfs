@@ -1,3 +1,10 @@
+2000-09-28  Mike Fleming  <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-iobuf.c: (gnome_vfs_iobuf_read):
+
+	gnome_vfs_iobuf_read was returning GNOME_VFS_OK if a read was attempted
+	at the end of file.  It now correctly returhns GNOME_VFS_ERROR_EOF.
+
 2000-09-29  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/ftp-method.c: (ls_to_file_info), (do_read_directory):
