@@ -1,5 +1,13 @@
 2002-05-06  Seth Nickell  <snickell@stanford.edu>
 
+	* modules/vfolder-desktop-method.c:
+	(vfolder_info_read_items_merge), (vfolder_info_read_items):
+
+	Handle knowledge of settings directory recursively so it covers
+	things like Settings/Sawfish too.
+
+2002-05-06  Seth Nickell  <snickell@stanford.edu>
+
 	* modules/applications.vfolder-info.in:
 
 	Merge in .desktop files installed into /usr PREFIX.

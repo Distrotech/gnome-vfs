@@ -2330,6 +2330,7 @@ static gboolean
 vfolder_info_read_items_merge (VFolderInfo *info,
 			       const char *merge_dir,
 			       const char *subdir,
+			       gboolean in_settings_dir,
 			       GnomeVFSResult *result,
 			       GnomeVFSContext *context)
 {
@@ -2343,7 +2344,12 @@ vfolder_info_read_items_merge (VFolderInfo *info,
 	if (dir == NULL)
 		return TRUE;
 
-	is_application = TRUE;
+	if (!in_settings_dir) {
+		is_application = TRUE;
+	} else {
+		is_application = FALSE;
+	}
+
 	Application = g_quark_from_static_string ("Application");
 	
 	/* FIXME: this should be a hash or something */
@@ -2394,6 +2400,7 @@ vfolder_info_read_items_merge (VFolderInfo *info,
 			if ( ! vfolder_info_read_items_merge (info,
 							      fullname,
 							      de->d_name,
+							      !is_application,
 							      result,
 							      context)) {
 				g_free (fullname);
@@ -2447,7 +2454,7 @@ vfolder_info_read_items (VFolderInfo *info,
 	for (li = info->merge_dirs; li != NULL; li = li->next) {
 		const char *merge_dir = li->data;
 
-		if ( ! vfolder_info_read_items_merge (info, merge_dir, NULL,
+		if ( ! vfolder_info_read_items_merge (info, merge_dir, NULL, FALSE,
 						      result, context))
 			return FALSE;
 	}
