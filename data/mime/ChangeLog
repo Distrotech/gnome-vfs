@@ -1,3 +1,10 @@
+2000-12-28  Aaron Brick  <aaron@eazel.com>
+
+	* renamed several MIME types to reflect their compressed nature.
+	* removed the now-outdated translations of those types.
+
+	* added file extension detection for "compressed" (.Z) files.
+
 2000-12-26  Aaron Brick  <aaron@eazel.com>
 
 	* xmms can support .wav files.

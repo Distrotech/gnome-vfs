@@ -92,6 +92,9 @@ application/x-chess-pgn
 application/x-class-file
 	ext: class
 
+application/x-compress
+	ext: Z
+
 application/x-compressed-tar
 	regex,2: tar\.gz$
 	ext: tgz

@@ -262,12 +262,7 @@ application/x-bzip
 	vfs_method=bzip2
 
 application/x-bzip-compressed-tar
-	description=bzip archive
-	[da]description=bzip-arkiv
-	[fi]description=bzip-paketti
-	[fr]description=Archive bzip
-	[no]description=bzip-arkiv
-	[sv]description=bzip-arkiv
+	description=compressed bzip archive
 	icon_filename=gnome-compressed.png
 	vfs_method=bzip2
 
@@ -296,20 +291,10 @@ application/x-class-file
 	[sv]description=klasskod
 
 application/x-compress
-	description=archive
-	[da]description=Arkiv
-	[fi]description=paketti
-	[fr]description=Archive
-	[no]description=Arkiv
-	[sv]description=arkiv
+	description=compressed archive
 
 application/x-compressed-tar
-	description=tar archive
-	[fi]description=tar-paketti
-	[fr]description=Archive tar
-	[da]description=tar-arkiv
-	[no]description=tar-arkiv
-	[sv]description=tar-arkiv
+	description=compressed tar archive
 	icon_filename=gnome-package.png
 
 application/x-core-file
@@ -330,11 +315,7 @@ application/x-cpio
 	[sv]description=CPIO-dokument
 
 application/x-cpio-compressed
-	description=CPIO archive
-	[fi]description=CPIO-paketti
-	[fr]description=Archive CPIO
-	[no]description=CPIO-arkiv
-	[sv]description=CPIO-arkiv
+	description=compressed CPIO archive
 	icon_filename=gnome-compressed.png
 
 # also text/x-csh
@@ -1308,12 +1289,7 @@ image/x-cmu-raster
 	[sv]description=CMU-rasterbild
 
 image/x-compressed-xcf
-	description=GIMP image archive
-	[da]description=Gimp-billedarkiv
-	[fi]description=GIMP-kuvapaketti
-	[fr]description=Image archive GIMP
-	[no]description=GIMP-bildearkiv
-	[sv]description=GIMP-bildarkiv
+	description=compressed GIMP image archive
 
 image/x-ico
 	description=Windows icon image
