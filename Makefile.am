@@ -4,11 +4,7 @@ else
 SUBDIRS_OAF=
 endif
 
-if HAVE_GCONF
-SUBDIRS_GCONF=mime-type-capplet
-else
 SUBDIRS_GCONF=
-endif
 
 SUBDIRS =					\
 	libgnomevfs				\
@@ -20,7 +16,6 @@ SUBDIRS =					\
 	man					\
 	devel-docs				\
 	$(SUBDIRS_GCONF)			\
-	test					\
 	po
 
 
@@ -31,7 +26,10 @@ EXTRA_DIST =					\
 	gnome-vfs.spec				\
 	vfsConf.sh.in				\
 	vfscorbaConf.sh.in			\
-	vfspthreadConf.sh.in
+	vfspthreadConf.sh.in			\
+	gnome-vfs-config.in
+
+bin_SCRIPTS = $(top_builddir)/gnome-vfs-config
 
 confexecdir=$(libdir)
 confexec_DATA =					\
@@ -69,3 +67,15 @@ vfspthreadConf.sh: vfspthreadConf.sh.in Makefile
 	    -e 's?\@VFSPTHREAD_LIBS\@?$(VFSPTHREAD_LIBS)?g' \
 	      < $(srcdir)/vfspthreadConf.sh.in > vfspthreadConf.tmp \
 	  && mv vfspthreadConf.tmp vfspthreadConf.sh
+
+gnome-vfs-config: gnome-vfs-config.in Makefile
+	sed -e 's?\@LIBDIR\@?$(libdir)?g' \
+	    -e 's?\@VFS_LIBDIR\@?$(VFS_LIBDIR)?g' \
+	    -e 's?\@VFS_INCLUDEDIR\@?$(VFS_INCLUDEDIR)?g' \
+	    -e 's?\@VERSION\@?$(VERSION)?g' \
+	    -e 's?\@VFS_LIBS\@?$(VFS_LIBS)?g' \
+	      < $(srcdir)/gnome-vfs-config.in > gnome-vfs-config.tmp \
+	  && mv gnome-vfs-config.tmp gnome-vfs-config && \
+		chmod 755 gnome-vfs-config
+
+

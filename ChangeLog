@@ -1,5 +1,15 @@
 2000-08-31  Martin Baulig  <baulig@suse.de>
 
+	We can't use gnome-config for the GNOME 2 platform since gnome-vfs
+	doesn't depend on gnome-libs on it; this gnome-vfs-config script
+	works for both platforms, however using gnome-config may be saner
+	for the GNOME 1.2 one.
+
+	* gnome-vfs-config.in: New file. Template for gnome-vfs-config.
+	* Makefile.am: Create a gnome-vfs-config script.
+
+2000-08-31  Martin Baulig  <baulig@suse.de>
+
 	* libgnomevfs-pthread/gnome-vfs-job-slave.c
 	(gnome_vfs_thread_backend_shutdown): Use g_main_iteration() for
 	the GNOME 2 platform.

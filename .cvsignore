@@ -27,3 +27,4 @@ stamp-h.in
 vfsConf.sh
 vfscorbaConf.sh
 vfspthreadConf.sh
+gnome-vfs-config
