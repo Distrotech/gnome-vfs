@@ -1,3 +1,10 @@
+2000-09-29  J Shane Culpepper  <set EMAIL_ADDRESS environment variable>
+
+	* libgnomevfs/gnome-vfs-directory-filter.c:
+
+	Adding <string.h> include so that above file builds right on
+	newer compilers.
+
 2000-09-29  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.spec.in: Turn off "make check" since it doesn't work

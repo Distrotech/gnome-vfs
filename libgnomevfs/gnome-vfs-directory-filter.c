@@ -27,6 +27,7 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
+#include <string.h>
 
 
 struct GnomeVFSDirectoryFilter {
