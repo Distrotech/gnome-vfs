@@ -1,14 +1,14 @@
 # gnome-vfs's Portuguese Translation.
-# Copyright (C) 2001, 2003 gnome-vfs
+# Copyright © 2001, 2004 gnome-vfs
 # Distributed under the same licence as the gnome-vfs package
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.6\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-30 12:13+0100\n"
-"PO-Revision-Date: 2003-12-25 04:25+0000\n"
+"Report-Msgid-Bugs-To: Duarte Loreto <happyguy_pt@hotmail.com>\n"
+"POT-Creation-Date: 2004-02-01 16:26+0000\n"
+"PO-Revision-Date: 2004-02-01 16:30+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Incapaz de inicializar gnome vfs"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
-msgstr "Volume ISO 9660"
+msgstr "Unidade ISO 9660"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -60,15 +60,15 @@ msgstr "Não foi encontrado ficheiro de configuração `%s': %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr "Volume AFFS"
+msgstr "Unidade AFFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr "Volume de Rede AFS"
+msgstr "Unidade de Rede AFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr "Volume Detectado Automaticamente"
+msgstr "Unidade Detectada Automaticamente"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
@@ -81,113 +81,113 @@ msgstr "CD Audio Digital"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr "Volume de Dispositivo de Hardware"
+msgstr "Unidade de Dispositivo de Hardware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 msgid "Ext2 Linux Volume"
-msgstr "Volume Linux Ext2"
+msgstr "Unidade Linux Ext2"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext3 Linux Volume"
-msgstr "Volume Linux Ext3"
+msgstr "Unidade Linux Ext3"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 msgid "MSDOS Volume"
-msgstr "Volume MSDOS"
+msgstr "Unidade MSDOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 msgid "MacOS Volume"
-msgstr "Volume MacOS"
+msgstr "Unidade MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "CDROM Volume"
-msgstr "Volume CDROM"
+msgstr "Unidade CDROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "Hsfs CDROM Volume"
-msgstr "Volume CDROM Hsfs"
+msgstr "Unidade CDROM Hsfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "JFS Volume"
-msgstr "Volume JFS"
+msgstr "Unidade JFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
-msgstr "Volume Windows NT"
+msgstr "Unidade Windows NT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 msgid "System Volume"
-msgstr "Volume de Sistema"
+msgstr "Unidade de Sistema"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 msgid "Memory Volume"
-msgstr "Volume em Memória"
+msgstr "Unidade em Memória"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Minix Volume"
-msgstr "Volume Minix"
+msgstr "Unidade Minix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "NFS Network Volume"
-msgstr "Volume de Rede NFS"
+msgstr "Unidade de Rede NFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr "Volume Netware"
+msgstr "Unidade Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr "Volume Linux ReiserFS"
+msgstr "Unidade Linux ReiserFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr "Volume Partilhado Windows"
+msgstr "Unidade Partilhado Windows"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
-msgstr "Volume SuperMount"
+msgstr "Unidade SuperMount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "DVD Volume"
-msgstr "Volume DVD"
+msgstr "Unidade DVD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "Solaris/BSD Volume"
-msgstr "Volume Solaris/BSD"
+msgstr "Unidade Solaris/BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Udfs Solaris Volume"
-msgstr "Volume Solaris Udfs"
+msgstr "Unidade Solaris Udfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Pcfs Solaris Volume"
-msgstr "Volume Solaris Pcfs"
+msgstr "Unidade Solaris Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Enhanced DOS Volume"
-msgstr "Volume DOS Melhorado"
+msgstr "Unidade DOS Melhorado"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Windows VFAT Volume"
-msgstr "Volume Windows VFAT"
+msgstr "Unidade Windows VFAT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Xenix Volume"
-msgstr "Volume Xenix"
+msgstr "Unidade Xenix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "XFS Linux Volume"
-msgstr "Volume Linux XFS"
+msgstr "Unidade Linux XFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XIAFS Volume"
-msgstr "Volume XIAFS"
+msgstr "Unidade XIAFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:102
 msgid "Unknown"
@@ -507,7 +507,7 @@ msgstr "Câmara"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
-msgstr "Volume Raíz"
+msgstr "Unidade Raíz"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
@@ -515,7 +515,7 @@ msgstr "CD Audio"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
 msgid "Unknown volume"
-msgstr "Volume desconhecido"
+msgstr "Unidade desconhecida"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
@@ -533,7 +533,7 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
-"Incapaz de montar o volume. Provavelmente não existe nenhum media no "
+"Incapaz de montar a unidade. Provavelmente não existe nenhum media no "
 "dispositivo."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
@@ -549,7 +549,7 @@ msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Incapaz de montar o volume seleccionado. Provavelmente o volume encontra-se "
+"Incapaz de montar a unidade seleccionada. Provavelmente a unidade encontra-se "
 "num formato que não pode ser montado."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
@@ -558,11 +558,11 @@ msgstr "Incapaz de montar o dispositivo de disquette seleccionado."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr "Incapaz de montar o volume seleccionado."
+msgstr "Incapaz de montar a unidade seleccionada."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr "Incapaz de desmontar o volume seleccionado."
+msgstr "Incapaz de desmontar a unidade seleccionada."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
 #: libgnomevfs/gnome-vfs-volume-ops.c:285
@@ -1009,17 +1009,16 @@ msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Utilizador a indicar como autenticação ao efectuar proxy de HTTP."
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Rede"
+msgstr "Rede Windows"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "Grupo de trabalho SMB"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "O grupo de trabalho windows a que o utilizador pertence"
 
 #~ msgid "How to handle http URLs"
 #~ msgstr "Como manipulador URLs http"
