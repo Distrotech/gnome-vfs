@@ -62,6 +62,10 @@ struct _GnomeVFSVolumePrivate {
 
 	/* Only for connected servers */
 	char *gconf_id;
+
+#ifdef USE_HAL
+	char *hal_udi;
+#endif /* USE_HAL */
 };
 
 
@@ -79,6 +83,10 @@ struct _GnomeVFSDrivePrivate {
 	
 	gboolean is_user_visible;
 	gboolean is_connected;
+
+#ifdef USE_HAL
+	char *hal_udi;
+#endif /* USE_HAL */
 };
 
 void _gnome_vfs_volume_set_drive                (GnomeVFSVolume        *volume,
@@ -123,6 +131,14 @@ GnomeVFSDrive * _gnome_vfs_volume_monitor_find_fstab_drive_by_activation_uri (Gn
 									      const char            *activation_uri);
 GnomeVFSVolume *_gnome_vfs_volume_monitor_find_connected_server_by_gconf_id  (GnomeVFSVolumeMonitor *volume_monitor,
 									      const char            *id);
+
+#ifdef USE_HAL
+GnomeVFSVolume *_gnome_vfs_volume_monitor_find_volume_by_hal_udi (GnomeVFSVolumeMonitor *volume_monitor,
+								  const char *hal_udi);
+GnomeVFSDrive *_gnome_vfs_volume_monitor_find_drive_by_hal_udi (GnomeVFSVolumeMonitor *volume_monitor,
+								const char           *hal_udi);
+
+#endif /* USE_HAL */
 
 
 char *_gnome_vfs_volume_monitor_uniquify_volume_name (GnomeVFSVolumeMonitor *volume_monitor,

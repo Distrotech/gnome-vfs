@@ -1,3 +1,17 @@
+2004-07-09  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-hal-mounts.[ch]:
+	* libgnomevfs/gnome-vfs-drive.c:
+	* libgnomevfs/gnome-vfs-volume.c:
+	* libgnomevfs/gnome-vfs-volume-monitor-daemon.[ch]:
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h:
+	* libgnomevfs/gnome-vfs-volume-monitor.c:
+	Use HAL for volumes if enabled.
+
+	Patch from David Zeuthen and others.
+
 2004-07-08  Christian Kellner <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-file-info.[ch]:

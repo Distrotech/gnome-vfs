@@ -171,6 +171,9 @@ gnome_vfs_drive_finalize (GObject *object)
 	g_free (priv->activation_uri);
 	g_free (priv->display_name);
 	g_free (priv->icon);
+#ifdef USE_HAL
+	g_free (priv->hal_udi);
+#endif
 	g_free (priv);
 	drive->priv = NULL;
 	

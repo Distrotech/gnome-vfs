@@ -29,6 +29,10 @@
 #include <gconf/gconf-client.h>
 #include "gnome-vfs-volume-monitor.h"
 
+#ifdef USE_HAL
+#include <hal/libhal.h>
+#endif /* USE_HAL */
+
 G_BEGIN_DECLS
 
 #define GNOME_VFS_TYPE_VOLUME_MONITOR_DAEMON        (gnome_vfs_volume_monitor_daemon_get_type ())
@@ -43,6 +47,9 @@ typedef struct _GnomeVFSVolumeMonitorDaemonClass GnomeVFSVolumeMonitorDaemonClas
 struct _GnomeVFSVolumeMonitorDaemon {
 	GnomeVFSVolumeMonitor parent;
 
+#ifdef USE_HAL
+	LibHalContext *hal_ctx;
+#endif /* USE_HAL */
 	GList *last_fstab;
 	GList *last_mtab;
 	GList *last_connected_servers;

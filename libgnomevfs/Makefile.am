@@ -137,6 +137,7 @@ noinst_HEADERS =				\
 	gnome-vfs-daemon-method.h		\
 	gnome-vfs-filesystem-type.h		\
 	gnome-vfs-handle-private.h		\
+	gnome-vfs-hal-mounts.h			\
 	gnome-vfs-i18n.h			\
 	gnome-vfs-iso9660.h			\
 	gnome-vfs-job-queue.h			\
@@ -240,6 +241,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-filesystem-type.c		\
 	gnome-vfs-find-directory.c		\
 	gnome-vfs-handle.c			\
+	gnome-vfs-hal-mounts.c			\
 	gnome-vfs-i18n.c			\
 	gnome-vfs-inet-connection.c		\
 	gnome-vfs-init.c			\

@@ -34,12 +34,17 @@
 #include "gnome-vfs-cdrom.h"
 #include "gnome-vfs-filesystem-type.h"
 
+#ifdef USE_HAL
+#include "gnome-vfs-hal-mounts.h"
+#endif /* USE_HAL */
+
 static void gnome_vfs_volume_monitor_daemon_class_init (GnomeVFSVolumeMonitorDaemonClass *klass);
 static void gnome_vfs_volume_monitor_daemon_init       (GnomeVFSVolumeMonitorDaemon      *volume_monitor_daemon);
 static void gnome_vfs_volume_monitor_daemon_finalize   (GObject                          *object);
 
 static void update_fstab_drives (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);
 static void update_mtab_volumes (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);
+
 static void update_connected_servers (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon);
 
 typedef struct {
@@ -50,6 +55,14 @@ typedef struct {
 } GnomeVFSConnectedServer;
 
 static GnomeVFSVolumeMonitorClass *parent_class = NULL;
+
+/* In the event we can't connect to the HAL daemon this boolean is TRUE
+ * and we fall back to the usual fstab/mtab monitoring. 
+ *
+ * This is also useful for maintaing the non-HAL code on a system with
+ * HAL installed.
+ */
+static gboolean dont_use_hald = TRUE;
 
 /* Locking strategy:
  *
@@ -140,10 +153,22 @@ connected_servers_changed (GConfClient* client,
 static void
 gnome_vfs_volume_monitor_daemon_init (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 {
-	_gnome_vfs_monitor_unix_mounts (fstab_changed,
-					volume_monitor_daemon,
-					mtab_changed,
-					volume_monitor_daemon);
+#ifdef USE_HAL
+	if (_gnome_vfs_monitor_hal_mounts_init (volume_monitor_daemon)) {
+		/* It worked, do use HAL */
+		dont_use_hald = FALSE;
+	} else {
+		/* Couldn't connect to HAL daemon, don't use HAL */
+		dont_use_hald = TRUE;
+	}
+#endif /* USE_HAL */
+
+	if (dont_use_hald) {
+		_gnome_vfs_monitor_unix_mounts (fstab_changed,
+						volume_monitor_daemon,
+						mtab_changed,
+						volume_monitor_daemon);
+	}
 
 	volume_monitor_daemon->gconf_client = gconf_client_get_default ();
 	gconf_client_add_dir (volume_monitor_daemon->gconf_client,
@@ -160,16 +185,31 @@ gnome_vfs_volume_monitor_daemon_init (GnomeVFSVolumeMonitorDaemon *volume_monito
 					 NULL);
 								       
 	
-	update_fstab_drives (volume_monitor_daemon);
-	update_mtab_volumes (volume_monitor_daemon);
+	if (dont_use_hald) {
+		update_fstab_drives (volume_monitor_daemon);
+		update_mtab_volumes (volume_monitor_daemon);
+	}
+#ifdef USE_HAL
+	else {
+		_gnome_vfs_monitor_hal_get_volume_list (volume_monitor_daemon);
+	}
+#endif /* USE_HAL */
+
 	update_connected_servers (volume_monitor_daemon);
 }
 
 void
 gnome_vfs_volume_monitor_daemon_force_probe (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon)
 {
-	update_fstab_drives (volume_monitor_daemon);
-	update_mtab_volumes (volume_monitor_daemon);
+	if (dont_use_hald) {
+		update_fstab_drives (volume_monitor_daemon);
+		update_mtab_volumes (volume_monitor_daemon);
+	}
+#ifdef USE_HAL
+	else {
+		_gnome_vfs_monitor_hal_get_volume_list (volume_monitor_daemon);
+	}
+#endif /* USE_HAL */
 	update_connected_servers (volume_monitor_daemon);
 }
 
@@ -182,15 +222,22 @@ gnome_vfs_volume_monitor_daemon_finalize (GObject *object)
 
 	volume_monitor_daemon = GNOME_VFS_VOLUME_MONITOR_DAEMON (object);
 		
-	_gnome_vfs_stop_monitoring_unix_mounts ();
+	if (dont_use_hald) {
+		_gnome_vfs_stop_monitoring_unix_mounts ();
 
-	g_list_foreach (volume_monitor_daemon->last_mtab,
-			(GFunc)_gnome_vfs_unix_mount_free, NULL);
-	g_list_free (volume_monitor_daemon->last_mtab);
+		g_list_foreach (volume_monitor_daemon->last_mtab,
+				(GFunc)_gnome_vfs_unix_mount_free, NULL);
+		g_list_free (volume_monitor_daemon->last_mtab);
 	
-	g_list_foreach (volume_monitor_daemon->last_fstab,
-			(GFunc)_gnome_vfs_unix_mount_point_free, NULL);
-	g_list_free (volume_monitor_daemon->last_fstab);	
+		g_list_foreach (volume_monitor_daemon->last_fstab,
+				(GFunc)_gnome_vfs_unix_mount_point_free, NULL);
+		g_list_free (volume_monitor_daemon->last_fstab);	
+	}
+#ifdef USE_HAL
+	else {
+		_gnome_vfs_monitor_hal_mounts_shutdown (volume_monitor_daemon);
+	}
+#endif /* USE_HAL */
 
 	gconf_client_notify_remove (volume_monitor_daemon->gconf_client,
 				    volume_monitor_daemon->connected_id);
@@ -385,6 +432,7 @@ get_icon_from_type (GnomeVFSDeviceType type)
 
 	return g_strdup (icon_name);
 }
+
 
 static void
 diff_sorted_lists (GList *list1, GList *list2, GCompareFunc compare,

@@ -253,6 +253,56 @@ _gnome_vfs_volume_monitor_shutdown (void)
 }
 
 
+
+#ifdef USE_HAL
+GnomeVFSVolume *
+_gnome_vfs_volume_monitor_find_volume_by_hal_udi (GnomeVFSVolumeMonitor *volume_monitor,
+						  const char *hal_udi)
+{
+	GList *l;
+	GnomeVFSVolume *vol, *ret;
+
+	/* Doesn't need locks, only called internally on main thread and doesn't write */
+	
+	ret = NULL;
+	for (l = volume_monitor->priv->mtab_volumes; l != NULL; l = l->next) {
+		vol = l->data;
+		if (vol->priv != NULL && vol->priv->hal_udi != NULL && 
+		    vol->priv->activation_uri != NULL && /* Hmm */
+		    strcmp (vol->priv->hal_udi, hal_udi) == 0) {
+			ret = vol;
+			break;
+		}
+	}
+	
+	return ret;
+}
+
+GnomeVFSDrive *
+_gnome_vfs_volume_monitor_find_drive_by_hal_udi (GnomeVFSVolumeMonitor *volume_monitor,
+						 const char           *hal_udi)
+{
+	GList *l;
+	GnomeVFSDrive *drive, *ret;
+
+	/* Doesn't need locks, only called internally on main thread and doesn't write */
+	
+	ret = NULL;
+	for (l = volume_monitor->priv->fstab_drives; l != NULL; l = l->next) {
+		drive = l->data;
+		if (drive->priv != NULL && drive->priv->hal_udi != NULL &&
+		    drive->priv->activation_uri != NULL && /* Hmm */
+		    strcmp (drive->priv->hal_udi, hal_udi) == 0) {
+			ret = drive;
+			break;
+		}
+	}
+
+	return ret;
+}
+#endif /* USE_HAL */
+
+
 GnomeVFSVolume *
 _gnome_vfs_volume_monitor_find_mtab_volume_by_activation_uri (GnomeVFSVolumeMonitor *volume_monitor,
 							      const char *activation_uri)

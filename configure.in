@@ -632,8 +632,31 @@ PKG_CHECK_MODULES(HOWL, howl >= 0.9.5,
 AC_SUBST(HOWL_CFLAGS)
 AC_SUBST(HOWL_LIBS)
 
-PKG_CHECK_MODULES(LIBGNOMEVFS, glib-2.0 >= $GLIB_REQUIRED gmodule-2.0 >= $GLIB_REQUIRED gthread-2.0 >= $GLIB_REQUIRED gconf-2.0 >= $GCONF_REQUIRED bonobo-activation-2.0 >= $BONOBO_ACTIVATION_REQUIRED libbonobo-2.0 >= $BONOBO_REQUIRED ORBit-2.0 >= $ORBIT_REQUIRED libxml-2.0 >= $XML_REQUIRED gnome-mime-data-2.0)
-LIBGNOMEVFS_CFLAGS="$LIBGNOMEVFS_CFLAGS $OPENSSL_CFLAGS $LIBGNUTLS_CFLAGS $HOWL_CFLAGS"
+dnl ****************************
+dnl HAL stuff
+dnl ****************************
+
+AC_ARG_ENABLE(hal,
+AC_HELP_STRING([--enable-hal],[use hal, if available]),
+[case "${enableval}" in
+yes) ENABLE_HAL=yes ;;
+no)  ENABLE_HAL=no ;;
+*) AC_MSG_ERROR(bad value ${enableval} for --enable-hal) ;;
+esac],
+[ENABLE_HAL=no]) dnl Default value
+
+if test "x$ENABLE_HAL" = "xyes"; then
+	PKG_CHECK_MODULES(HAL, hal >= 0.2.92,
+		[ USE_HAL="hal >= 0.2.92, dbus-1 >= 0.21, dbus-glib-1 >= 0.21"; HAL_CFLAGS="-DUSE_HAL"],
+		[ USE_HAL=""; HAL_CFLAGS="-UUSE_HAL" ])
+else
+	HAL_CFLAGS="-UUSE_HAL"
+	USE_HAL=""
+fi
+AC_SUBST(HAL_CFLAGS)
+
+PKG_CHECK_MODULES(LIBGNOMEVFS, glib-2.0 >= $GLIB_REQUIRED gmodule-2.0 >= $GLIB_REQUIRED gthread-2.0 >= $GLIB_REQUIRED gconf-2.0 >= $GCONF_REQUIRED bonobo-activation-2.0 >= $BONOBO_ACTIVATION_REQUIRED libbonobo-2.0 >= $BONOBO_REQUIRED ORBit-2.0 >= $ORBIT_REQUIRED libxml-2.0 >= $XML_REQUIRED gnome-mime-data-2.0 $USE_HAL)
+LIBGNOMEVFS_CFLAGS="$LIBGNOMEVFS_CFLAGS $OPENSSL_CFLAGS $LIBGNUTLS_CFLAGS $HOWL_CFLAGS $HAL_CFLAGS"
 LIBGNOMEVFS_LIBS="$LIBGNOMEVFS_LIBS $OPENSSL_LIBS $LIBGNUTLS_LIBS $HOWL_LIBS"
 AC_SUBST(LIBGNOMEVFS_CFLAGS)
 AC_SUBST(LIBGNOMEVFS_LIBS)

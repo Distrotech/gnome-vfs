@@ -136,6 +136,9 @@ gnome_vfs_volume_finalize (GObject *object)
 	g_free (priv->display_name);
 	g_free (priv->icon);
 	g_free (priv->gconf_id);
+#ifdef USE_HAL
+	g_free (priv->hal_udi);
+#endif
 	g_free (priv);
 	volume->priv = NULL;
 	
