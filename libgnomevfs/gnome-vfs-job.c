@@ -446,6 +446,12 @@ dispatch_sync_job_callback (gpointer data)
 	g_assert (valid);
 
 	switch (notify_result->type) {
+	case GNOME_VFS_OP_CREATE_AS_CHANNEL:
+		dispatch_create_as_channel_callback (notify_result);
+		break;
+	case GNOME_VFS_OP_OPEN_AS_CHANNEL:
+		dispatch_open_as_channel_callback (notify_result);
+		break;		
 	case GNOME_VFS_OP_XFER:
 		dispatch_xfer_callback (notify_result, cancelled);
 		break;
@@ -778,7 +784,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 
 	while (1) {
 		GnomeVFSResult result;
-		GIOError io_result;
+		GIOStatus io_result;
 		GnomeVFSFileSize bytes_read;
 		
 	restart_toplevel_loop:
@@ -794,7 +800,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 
 		if (result == GNOME_VFS_ERROR_INTERRUPTED) {
 			continue;
-		} else if (result != GNOME_VFS_OK) {
+		} else if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_EOF) {
 			goto end;
 		}
 	
@@ -814,7 +820,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 			gsize bytes_written;
 			
 			/* channel_out is nonblocking; if we get
-			   EAGAIN (G_IO_ERROR_AGAIN) then we tried to
+			   EAGAIN (G_IO_STATUS_AGAIN) then we tried to
 			   write but the pipe was full. In this case, we
 			   want to enlarge our buffer and go back to
 			   reading for one iteration, so we can keep
@@ -827,11 +833,13 @@ serve_channel_read (GnomeVFSHandle *handle,
 				 filled_bytes_in_buffer - written_bytes_in_buffer,
 				 &bytes_written, NULL);
 			
+			written_bytes_in_buffer += bytes_written;
+
 			if (gnome_vfs_context_check_cancellation(context)) {
 				goto end;
 			}
 			
-			if (io_result == G_IO_ERROR_AGAIN) {
+			if (io_result == G_IO_STATUS_AGAIN) {
 				/* if bytes_read == 0 then we reached
 				   EOF so there's no point reading
 				   again. So turn off nonblocking and
@@ -867,11 +875,9 @@ serve_channel_read (GnomeVFSHandle *handle,
 
 				} /* end of else (bytes_read != 0) */
 				
-			} else if (io_result != G_IO_ERROR_NONE || bytes_written == 0) {
+			} else if (io_result != G_IO_STATUS_NORMAL || bytes_written == 0) {
 				goto end;
 			}
-
-			written_bytes_in_buffer += bytes_written;
 		}
 
 		g_assert(written_bytes_in_buffer == filled_bytes_in_buffer);
@@ -901,7 +907,7 @@ serve_channel_write (GnomeVFSHandle *handle,
 
 	while (1) {
 		GnomeVFSResult result;
-		GIOError io_result;
+		GIOStatus io_result;
 		gsize bytes_read;
 		gsize bytes_to_write;
 		GnomeVFSFileSize bytes_written;
@@ -909,10 +915,10 @@ serve_channel_write (GnomeVFSHandle *handle,
 
 		io_result = g_io_channel_read_chars (channel_in, buffer, buffer_size,
 						     &bytes_read, NULL);
-		if (io_result == G_IO_ERROR_AGAIN || io_result == G_IO_ERROR_UNKNOWN)
-			/* we will get G_IO_ERROR_UNKNOWN if a signal occurrs */
+
+		if (io_result == G_IO_STATUS_AGAIN)
 			continue;
-		if (io_result != G_IO_ERROR_NONE || bytes_read == 0)
+		if (io_result != G_IO_STATUS_NORMAL || bytes_read == 0)
 			goto end;
 
 		p = buffer;
@@ -1045,7 +1051,7 @@ execute_open_as_channel (GnomeVFSJob *job)
 
 	notify_result->specifics.open_as_channel.result = GNOME_VFS_OK;
 
-	job_oneway_notify (job, notify_result);
+	job_notify (job, notify_result);
 
 	if (open_mode & GNOME_VFS_OPEN_READ) {
 		serve_channel_read (handle, channel_in, channel_out,
@@ -1176,7 +1182,7 @@ execute_create_as_channel (GnomeVFSJob *job)
 
 	notify_result->specifics.create_as_channel.channel = channel_out;
 
-	job_oneway_notify (job, notify_result);
+	job_notify (job, notify_result);
 
 	serve_channel_write (handle, channel_in, channel_out, job->op->context);
 }
