@@ -28,22 +28,33 @@ EXTRA_DIST =					\
 module_flags = -export_dynamic -avoid-version
 modulesdir = $(libdir)/vfs/modules
 
-modules_LTLIBRARIES =				\
+modules_LTLIBRARIES =		\
 	libextfs.la				\
 	libfile.la				\
-	libvfs-test.la				\
+	libvfs-test.la			\
 	libhttp.la				\
 	libbzip2.la				\
 	libgzip.la				\
 	libftp.la				\
-	libvfs-pipe.la				\
-	libvfs-translate.la			\
+	libvfs-pipe.la			\
+	libvfs-translate.la		\
 	libnfs.la
 
 modulesconfdir=$(sysconfdir)/vfs/modules
 modulesconf_DATA =				\
 	default-modules.conf
 
+
+###  `cdda' method
+
+#libcdda_la_SOURCES = 				\
+#	cdda-method.c 					\
+#	cdda-method.h					\
+#	cdda-cddb.c 					\
+#	cdda-cddb.h
+
+#libcdda_la_LDFLAGS = $(module_flags)
+#libcdda_la_LIBADD = -L/gnome/lib -lcdda_paranoia -lcdda_interface
 
 ###  `extfs' method
 

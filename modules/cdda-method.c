@@ -1,0 +1,925 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: 8; c-basic-offset: 8 -*- */
+
+/* cdda-method.c
+
+   Copyright (C) 2000, Eazel Inc.
+
+   The Gnome Library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Library General Public License as
+   published by the Free Software Foundation; either version 2 of the
+   License, or (at your option) any later version.
+
+   The Gnome Library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Library General Public License for more details.
+
+   You should have received a copy of the GNU Library General Public
+   License along with the Gnome Library; see the file COPYING.LIB.  If not,
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
+
+   Author: Gene Z. Ragan <gzr@eazel.com> 
+*/
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <ctype.h>
+#include <errno.h>
+#include <gtk/gtk.h>
+#include <pwd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+
+#define size16 short
+#define size32 int
+
+#include <cdda_interface.h>
+#include <cdda_paranoia.h>
+
+#include "gnome-vfs-module.h"
+#include "gnome-vfs-module-shared.h"
+#include "gnome-vfs-mime.h"
+
+#include "cdda-cddb.h"
+#include "cdda-method.h"
+
+CDDAContext *global_context = NULL;
+ProxyServer proxy_server={"192.168.0.1", 4480};
+CDDBServer dbserver = {"freedb.freedb.org", "~cddb/cddb.cgi", 80, 1, &proxy_server};
+CDDBServer dbserver2 = {"","~cddb/cddb.cgi", 80, 1, &proxy_server};
+
+
+static GnomeVFSResult do_open	         	(GnomeVFSMethod              	*method,
+					  						 GnomeVFSMethodHandle         	**method_handle,
+					  						 GnomeVFSURI                   	*uri,
+					  						 GnomeVFSOpenMode               mode,
+					  						 GnomeVFSContext               	*context);
+static gboolean       do_is_local        	(GnomeVFSMethod                	*method,
+					  						 const GnomeVFSURI             	*uri);
+static GnomeVFSResult do_open_directory  	(GnomeVFSMethod                	*method,
+					  						 GnomeVFSMethodHandle         	**method_handle,
+					  						 GnomeVFSURI                   	*uri,
+					  						 GnomeVFSFileInfoOptions        options,
+					  						 const GnomeVFSDirectoryFilter 	*filter,
+					  						 GnomeVFSContext               	*context);
+static GnomeVFSResult do_close_directory 	(GnomeVFSMethod                	*method,
+					  						 GnomeVFSMethodHandle          	*method_handle,
+					  						 GnomeVFSContext               	*context);
+static GnomeVFSResult do_read_directory  	(GnomeVFSMethod                	*method,
+		                          			 GnomeVFSMethodHandle          	*method_handle,
+		                          			 GnomeVFSFileInfo              	*file_info,
+		                          			 GnomeVFSContext               	*context);
+static int		get_data_size 				(cdrom_drive 					*drive, 
+											 int 							track);
+static gboolean	is_file_is_on_disc 			(CDDAContext 					*context, 
+											 const GnomeVFSURI 				*uri);
+static void 	write_wav_header 			(int 							fd, 
+											 long 							bytes);
+
+static CDDAContext *
+cdda_context_new (cdrom_drive *drive, GnomeVFSURI *uri)
+{
+	CDDAContext *context;
+		
+	context = g_new0 (CDDAContext, 1);
+	context->drive = drive;
+	context->file_info = gnome_vfs_file_info_new ();
+	context->uri = gnome_vfs_uri_ref (uri);
+	context->access_count = 0;
+	context->cddb_discid = CDDBDiscid (drive);
+
+	// Look up CDDB info
+	context->use_cddb = CDDBLookupDisc (&dbserver, drive, &context->disc_data);
+
+	return context;
+}
+
+static void
+cdda_context_free (CDDAContext *context)
+{
+	if (context == NULL) {
+		return;
+	}
+
+	cdda_close (context->drive);
+	gnome_vfs_file_info_unref (context->file_info);
+	gnome_vfs_uri_unref (context->uri);
+	
+	g_free (context);
+	context = NULL;
+}
+
+static void
+cdda_set_file_info_for_root (CDDAContext *context, GnomeVFSURI *uri)
+{
+	g_assert (context);
+
+	// We don't know the io_block size
+	context->file_info->io_block_size = 0;
+	context->file_info->valid_fields -= GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;		
+	context->file_info->name = gnome_vfs_uri_extract_short_name (uri);
+	//context->file_info->name = g_strdup (context->disc_data.data_title);		
+	context->file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+	context->file_info->mime_type = g_strdup ("x-directory/normal");
+	context->file_info->atime = time (NULL);
+	context->file_info->ctime = time (NULL);
+	context->file_info->mtime = time (NULL);
+	context->file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE |
+										GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE |
+										GNOME_VFS_FILE_INFO_FIELDS_ATIME | 
+										GNOME_VFS_FILE_INFO_FIELDS_MTIME |
+										GNOME_VFS_FILE_INFO_FIELDS_CTIME;
+};
+
+static ReadHandle *
+read_handle_new (GnomeVFSURI *uri)
+{
+	ReadHandle *result;
+	result = g_new (ReadHandle, 1);
+
+	result->uri = gnome_vfs_uri_ref (uri);
+	result->inited = FALSE;
+	result->wrote_header = FALSE;
+	result->paranoia = NULL;
+	result->cursor = 0;
+	result->first_sector = 0;
+	result->last_sector = 0;
+	
+	return result;
+}
+
+static void
+read_handle_destroy (ReadHandle *handle)
+{
+	gnome_vfs_uri_unref (handle->uri);
+
+	if (handle->paranoia == NULL) {
+		paranoia_free (handle->paranoia);
+	}
+	
+	g_free (handle);
+}
+
+
+gboolean 
+do_is_local (GnomeVFSMethod *method, 
+	     const GnomeVFSURI *uri)
+{
+	return FALSE;
+}
+
+
+static GnomeVFSResult 
+do_open (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle **method_handle,
+	 GnomeVFSURI *uri,
+	 GnomeVFSOpenMode mode,
+	 GnomeVFSContext *context) 
+{
+	GnomeVFSResult result;
+	ReadHandle *read_handle;
+	
+	result = GNOME_VFS_ERROR_GENERIC;
+	*method_handle = NULL;
+
+	g_message ("cdda do_open: %s", gnome_vfs_uri_get_path (uri));
+
+	if (mode == GNOME_VFS_OPEN_READ) {
+		//	Make sure file is present
+		if (is_file_is_on_disc (global_context, uri)) {
+			//char buffer[250];
+			
+			result = GNOME_VFS_OK;			
+			read_handle = read_handle_new (uri);
+			
+			// Set up cdparanoia
+			if (!read_handle->inited) {
+				disc_info data;
+				int track = 1;
+				int paranoia_mode;
+				long offset;
+				
+				CDStat (global_context->drive->ioctl_fd, &data, TRUE);
+				
+				read_handle->first_sector = 0;
+				read_handle->last_sector = (data.track[track+1].track_start - 1) - data.track[track].track_start;
+
+ 				if(!cdda_track_audiop(global_context->drive, track)) {
+    				g_message ("Selected track is not an audio track. Aborting.\n\n");
+    				return GNOME_VFS_ERROR_GENERIC;
+  				}
+
+				offset = cdda_track_firstsector (global_context->drive, track);
+				read_handle->first_sector += offset;
+				read_handle->last_sector += offset;
+
+				read_handle->paranoia = paranoia_init (global_context->drive);
+				paranoia_mode = PARANOIA_MODE_FULL^PARANOIA_MODE_NEVERSKIP;
+  				paranoia_modeset (read_handle->paranoia, paranoia_mode);
+				cdda_verbose_set (global_context->drive, CDDA_MESSAGE_PRINTIT,CDDA_MESSAGE_FORGETIT);
+
+				paranoia_seek (read_handle->paranoia, read_handle->cursor = read_handle->first_sector, SEEK_SET);
+			}
+
+			*method_handle = (GnomeVFSMethodHandle *) read_handle;
+		}
+	} else if (mode == GNOME_VFS_OPEN_WRITE) {
+		result = GNOME_VFS_ERROR_READ_ONLY;		
+	} else {
+		result = GNOME_VFS_ERROR_INVALID_OPEN_MODE;
+	}
+
+	return result;
+}
+
+static GnomeVFSResult
+do_create (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle, GnomeVFSURI *uri,
+		   GnomeVFSOpenMode mode, gboolean exclusive, guint perm, GnomeVFSContext *context) 
+{
+	g_print ("cdda do_create: %s\n", gnome_vfs_uri_get_path (uri));
+	//return do_open (method, method_handle, uri, mode, context);
+	return GNOME_VFS_ERROR_GENERIC;
+}
+
+static GnomeVFSResult 
+do_close (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
+	  GnomeVFSContext *context) 
+{
+	ReadHandle *read_handle;
+	
+	g_message ("cdda do_close");
+
+	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
+
+	read_handle = (ReadHandle *) method_handle;
+	read_handle_destroy (read_handle);
+	
+	return GNOME_VFS_OK;
+}
+
+
+/* We have to pass in a callback to paranoia_read, even though we don't use it */
+static void 
+paranoia_callback (long inpos, int function) {
+}
+
+static GnomeVFSResult 
+do_read (GnomeVFSMethod *method, 
+	 GnomeVFSMethodHandle *method_handle, 
+	 gpointer buffer,
+	 GnomeVFSFileSize num_bytes, 
+	 GnomeVFSFileSize *bytes_read, 
+	 GnomeVFSContext *context) 
+{
+	ReadHandle *read_handle;
+	gint16 *readbuf;
+	//char *error, message;	
+	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
+
+	read_handle = (ReadHandle *) method_handle;
+	if (read_handle == NULL) {
+		return GNOME_VFS_ERROR_INTERNAL;
+	}
+
+	readbuf = NULL;
+
+	if (!read_handle->wrote_header) {
+		if (0) {
+			//write_wav_header (out, (batch_last - batch_first + 1) * CD_FRAMESIZE_RAW);
+			write_wav_header (1, 1 * CD_FRAMESIZE_RAW);
+		}
+		read_handle->wrote_header = TRUE;
+	}
+		
+	if (read_handle->cursor <= read_handle->last_sector) {
+		readbuf = paranoia_read (read_handle->paranoia, paranoia_callback);
+    	//error = cdda_errors (global_context->drive);
+    	//message = cdda_messages (global_context->drive);
+	} else {
+		return GNOME_VFS_ERROR_EOF;
+	}
+
+	if (readbuf == NULL) {
+		*bytes_read = 0;
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+
+	read_handle->cursor++;	
+	*bytes_read = CD_FRAMESIZE_RAW;
+	       
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult 
+do_write (GnomeVFSMethod *method, 
+	  GnomeVFSMethodHandle *method_handle, 
+	  gconstpointer buffer, 
+	  GnomeVFSFileSize num_bytes, 
+	  GnomeVFSFileSize *bytes_written,
+	  GnomeVFSContext *context) 
+{
+	g_message ("cdda do_write");
+	return GNOME_VFS_ERROR_READ_ONLY;
+}
+
+
+#if 0
+static void 
+display_toc (cdrom_drive *d)
+{
+	long audiolen = 0;
+  	int i;
+
+  	printf ("\nTable of contents (audio tracks only):\n"
+	 "track        length               begin        copy pre ch\n"
+	 "===========================================================\n");
+  
+	for (i = 1; i <= d->tracks; i++) {	
+		if (cdda_track_audiop (d, i)) {
+      		char buffer[256];
+
+      		long sec = cdda_track_firstsector (d, i);
+      		long off = cdda_track_lastsector (d, i) - sec + 1;
+      
+      		sprintf(buffer,
+	      		"%3d.  %7ld [%02d:%02d.%02d]  %7ld [%02d:%02d.%02d]  %s %s %s",
+	      		i,
+	      		off,(int)(off/(60*75)),(int)((off/75)%60),(int)(off%75),
+	      		sec,(int)(sec/(60*75)),(int)((sec/75)%60),(int)(sec%75),
+	      		cdda_track_copyp (d,i)?"  OK":"  no",
+	      		cdda_track_preemp (d,i)?" yes":"  no",
+	      		cdda_track_channels (d,i)==2?" 2":" 4");
+      			printf ("%s\n", buffer);
+      			audiolen+=off;
+		}
+	}
+	
+	{
+		char buffer[256];
+		sprintf (buffer, "TOTAL %7ld [%02d:%02d.%02d]    (audio only)",
+	    		 audiolen, (int)(audiolen / (60 * 75)),(int)((audiolen / 75) % 60),
+	    		 (int)(audiolen % 75));
+      	printf ("%s\n", buffer);
+  	}
+
+  	printf ("\n");
+}
+#endif
+
+static cdrom_drive *
+open_cdda_device (GnomeVFSURI *uri)
+{
+	const char *device_name;
+	cdrom_drive *drive;
+	
+	device_name = gnome_vfs_uri_get_path (uri);
+
+	drive = cdda_identify (device_name, FALSE, NULL);
+	if (drive == NULL) {
+		return NULL;
+	} 
+
+	/* Turn off verbosity */
+	cdda_verbose_set (drive, CDDA_MESSAGE_PRINTIT, CDDA_MESSAGE_FORGETIT);
+
+	/* Open drive */
+	switch (cdda_open (drive)) {
+  		case -2:
+  		case -3:
+  		case -4:
+  		case -5:
+    		g_message ("Unable to open disc.  Is there an audio CD in the drive?");
+    		return NULL;
+
+  		case -6:
+    		g_message ("CDDA method could not find a way to read audio from this drive.");
+    		return NULL;
+    			
+  		case 0:
+    		break;
+
+  		default:
+    		g_message ("Unable to open disc.");
+    		return NULL;
+	}
+
+	return drive;
+}
+
+static gboolean
+is_file_is_on_disc (CDDAContext *context, const GnomeVFSURI *uri)
+{
+	int index;
+	const char *base_name;
+	
+	if (context == NULL) {
+		return FALSE;
+	}
+
+	base_name = gnome_vfs_uri_get_basename (uri);
+	if (base_name == NULL) {
+		return FALSE;
+	}
+
+	for (index = 0; index < context->drive->tracks; index++) {
+		if (strcmp (base_name, context->disc_data.data_track[index].track_name) == 0) {
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+static GnomeVFSResult
+get_file_info_for_basename (CDDAContext *context, const char *base_name)
+{
+	int index;
+
+	g_assert (context);
+	
+	if (!context->use_cddb) {
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+	
+	// Check and see if filename is in cddb data list
+	for (index = 0; index < context->drive->tracks; index++) {
+		if (strcmp (base_name, context->disc_data.data_track[index].track_name) == 0) {
+			// Populate file info struture
+			context->file_info->io_block_size = CD_FRAMESIZE_RAW;			
+			context->file_info->name = g_strdup (base_name);
+			context->file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+			context->file_info->mime_type = g_strdup ("audio/x-wav");
+			context->file_info->atime = time (NULL);
+			context->file_info->ctime = time (NULL);
+			context->file_info->mtime = time (NULL);
+			context->file_info->size = get_data_size (context->drive, index + 1);
+			context->file_info->valid_fields  = GNOME_VFS_FILE_INFO_FIELDS_TYPE |
+												GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE |
+												GNOME_VFS_FILE_INFO_FIELDS_SIZE |
+												GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE |
+												GNOME_VFS_FILE_INFO_FIELDS_ATIME | 
+												GNOME_VFS_FILE_INFO_FIELDS_MTIME |
+												GNOME_VFS_FILE_INFO_FIELDS_CTIME;
+
+			return GNOME_VFS_OK;
+		}
+	}	
+	return GNOME_VFS_ERROR_GENERIC;
+}
+
+static GnomeVFSResult
+do_get_file_info (GnomeVFSMethod *method,
+		  GnomeVFSURI *uri,
+		  GnomeVFSFileInfo *file_info,
+		  GnomeVFSFileInfoOptions options,
+		  GnomeVFSContext *context) 
+{		
+	cdrom_drive *drive;
+	const char *base_name;
+	gboolean use_base, use_cache;
+	GnomeVFSResult result;
+
+	g_message ("do_get_file_info: %s", gnome_vfs_uri_get_path (uri));
+	
+	use_base = FALSE;
+	use_cache = FALSE;
+
+	result = GNOME_VFS_OK;
+	
+	// Get basename
+	base_name = gnome_vfs_uri_get_basename (uri);
+	
+	// Extract path and attempt to open
+	drive = open_cdda_device (uri);
+	if (drive == NULL) {
+			// OK. We failed to open. Let's try the parent...
+			gchar *dirname, *schemedir, *sep;
+			GnomeVFSURI *dir_uri;
+			
+			dirname = gnome_vfs_uri_extract_dirname (uri);			
+			schemedir = g_strdup_printf ("cdda://%s", dirname);
+			
+			// Remove trailing '/' if there is one 
+			sep = strrchr (schemedir, '/');
+			if (sep != NULL) {
+				schemedir [strlen (schemedir) - 1] = '\0';
+			}
+			
+			dir_uri = gnome_vfs_uri_new (schemedir);
+			drive = open_cdda_device (dir_uri);
+
+			g_free (dirname);
+			g_free (schemedir);
+			gnome_vfs_uri_unref (dir_uri);
+
+			if (drive == NULL) {
+				return GNOME_VFS_ERROR_GENERIC;
+			}
+
+			use_base = TRUE;
+	}
+
+	//	Check and see if we already have opened and stashed this drive
+	if (!use_base) {
+		if (global_context != NULL) {
+			if (strcmp (drive->cdda_device_name, global_context->drive->cdda_device_name) == 0) {
+				use_cache = TRUE;
+				gnome_vfs_file_info_copy (file_info, global_context->file_info);
+			} else {
+				// We have a new drive.
+				cdda_context_free (global_context);
+				global_context = cdda_context_new (drive, uri);
+				cdda_set_file_info_for_root (global_context, uri);
+				gnome_vfs_file_info_copy (file_info, global_context->file_info);
+			}			
+		} else {
+			// Create a new context
+			global_context = cdda_context_new (drive, uri);
+			cdda_set_file_info_for_root (global_context, uri);
+			gnome_vfs_file_info_copy (file_info, global_context->file_info);
+		}
+	} else {
+		cdda_context_free (global_context);
+		global_context = cdda_context_new (drive, uri);
+		result = get_file_info_for_basename (global_context, base_name);
+		if (result == GNOME_VFS_OK) {
+			gnome_vfs_file_info_copy (file_info, global_context->file_info);
+		} else {
+			cdda_context_free (global_context);
+			global_context = NULL;
+		}
+	}
+
+	return result;
+}
+
+static GnomeVFSResult 
+do_open_directory (GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle **method_handle,
+					 GnomeVFSURI *uri,
+					 GnomeVFSFileInfoOptions options,
+					 const GnomeVFSDirectoryFilter *filter,
+					 GnomeVFSContext *context)
+{
+	cdrom_drive *drive;
+	gboolean use_base, use_cache;
+	const char *base_name;
+
+	g_print ("do_open_directory () in uri: %s\n", gnome_vfs_uri_get_path (uri));
+
+	use_base = FALSE;
+	use_cache = FALSE;
+	
+	// Get basename
+	base_name = gnome_vfs_uri_get_basename (uri);
+
+	// Make sure we can open URI
+	drive = open_cdda_device (uri);
+	if (drive == NULL) {								
+			// OK. We failed to open. Let's try the parent...
+			gchar *dirname, *schemedir, *sep;
+			GnomeVFSURI *dir_uri;
+
+			dirname = gnome_vfs_uri_extract_dirname (uri);			
+			schemedir = g_strdup_printf ("cdda://%s", dirname);
+			
+			// Remove trailing '/' if there is one 
+			sep = strrchr (schemedir, '/');
+			if (sep != NULL) {
+				schemedir [strlen (schemedir) - 1] = '\0';
+			}
+			
+			dir_uri = gnome_vfs_uri_new (schemedir);
+			drive = open_cdda_device (dir_uri);
+
+			g_free (dirname);
+			g_free (schemedir);
+			gnome_vfs_uri_unref (dir_uri);
+
+			if (drive == NULL) {
+				return GNOME_VFS_ERROR_GENERIC;
+			}
+			use_base = TRUE;
+	}
+
+	if (!use_base) {
+		// Check for cache
+		if (global_context != NULL) {
+				if (strcmp (drive->cdda_device_name, global_context->drive->cdda_device_name) != 0) {
+					//	Clear old cache
+					cdda_context_free (global_context);
+					global_context = cdda_context_new (drive, uri);
+					cdda_set_file_info_for_root (global_context, uri);
+				} else {
+					g_message ("Using cache");
+				}
+		} else {
+			// Allocate new context
+			global_context = cdda_context_new (drive, uri);
+			cdda_set_file_info_for_root (global_context, uri);
+		}
+	} else {
+		// This is a file. Blast cache.
+		g_message ("Use base: %s", base_name);
+		cdda_context_free (global_context);
+		global_context = NULL;
+		*method_handle = NULL;
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+	
+	*method_handle = (GnomeVFSMethodHandle *) global_context;
+	
+	return GNOME_VFS_OK;
+}
+
+
+static GnomeVFSResult
+do_close_directory (GnomeVFSMethod *method,
+		    GnomeVFSMethodHandle *method_handle,
+		    GnomeVFSContext *context) 
+{
+	g_message ("cdda do_close_directory");
+		
+	return GNOME_VFS_OK;
+}
+
+static int
+get_data_size (cdrom_drive *drive, int track)
+{
+	int minutes, seconds, total_seconds, size;
+
+	size = 0;
+	
+	if (cdda_track_audiop (drive, track)) {
+		long sec = cdda_track_firstsector (drive, track);
+		long off = cdda_track_lastsector (drive, track) - sec + 1;
+
+      	minutes = off / (60 * 75);
+      	seconds = (off / 75) % 60;
+
+		total_seconds = (minutes * 60) + seconds;
+		size = ((total_seconds * 44) * 2 * 2) * 1024;
+	}
+
+	g_message ("get_data_size: %d", size);
+	
+	return size;
+}
+
+#if 0
+static int
+get_data_size_from_uri (GnomeVFSURI *uri, CDDAContext *context)
+{
+	int minutes, seconds, total_seconds, size, index;
+	const char *base_name;
+	
+	size = -1;
+	
+	if (context == NULL) {
+		return size;
+	}
+
+	base_name = gnome_vfs_uri_get_basename (uri);
+	if (base_name == NULL) {
+		return size;
+	}
+	
+	// Check and see if filename is in cddb data list
+	for (index = 0; index < context->drive->tracks; index++) {
+		if (strcmp (base_name, context->disc_data.data_track[index].track_name) == 0) {	
+			if (cdda_track_audiop (context->drive, index+1)) {
+				long sec = cdda_track_firstsector (context->drive, index+1);
+				long off = cdda_track_lastsector (context->drive, index+1) - sec + 1;
+
+		      	minutes = off / (60 * 75);
+		      	seconds = (off / 75) % 60;
+
+				total_seconds = (minutes * 60) + seconds;
+				size = ((total_seconds * 44) * 2 * 2) * 1024;
+			}
+			return size;
+		}		
+	}
+	return size;
+}
+#endif
+ 
+static GnomeVFSResult
+do_read_directory (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle *method_handle,
+		   GnomeVFSFileInfo *file_info,
+		   GnomeVFSContext *context)
+{
+
+	CDDAContext *cdda_context = (CDDAContext *) method_handle;
+
+	//g_message ("do_read_directory");
+	
+	if (cdda_context == NULL) {
+		g_warning ("do_read_directory: NULL context");
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+
+	if (cdda_context ->access_count >= cdda_context->drive->tracks) {
+		return GNOME_VFS_ERROR_EOF;
+	}
+
+	cdda_context->access_count++;
+
+	/* Populate file info */
+	file_info->io_block_size = CD_FRAMESIZE_RAW;
+	file_info->size = get_data_size (cdda_context->drive, cdda_context->access_count);		
+	file_info->atime = time (NULL);
+	file_info->ctime = time (NULL);
+	file_info->mtime = time (NULL);
+	if (cdda_context->use_cddb) {
+		file_info->name = g_strdup (cdda_context->disc_data.data_track[cdda_context->access_count-1].track_name);
+	} else {
+		file_info->name = g_strdup_printf ("Untitled %d", cdda_context->access_count);
+	}
+	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+	file_info->mime_type = g_strdup ("audio/x-wav");
+	file_info->valid_fields = 	GNOME_VFS_FILE_INFO_FIELDS_TYPE |
+								GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE | 
+								GNOME_VFS_FILE_INFO_FIELDS_SIZE |
+								GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE |
+								GNOME_VFS_FILE_INFO_FIELDS_ATIME | 
+								GNOME_VFS_FILE_INFO_FIELDS_MTIME |
+	  							GNOME_VFS_FILE_INFO_FIELDS_CTIME;
+
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
+do_check_same_fs (GnomeVFSMethod *method,
+      GnomeVFSURI *a,
+      GnomeVFSURI *b,
+      gboolean *same_fs_return,
+      GnomeVFSContext *context)
+{
+	g_message ("cdda do_check_same_fs");
+	
+	/*
+	const char *name_1, *name_2;
+	char *dir1, *dir2;
+		
+	g_message ("cdda do_check_same_fs");
+
+	name_1 = gnome_vfs_uri_get_path (a);
+	name_2 = gnome_vfs_uri_get_path (b);
+	
+	*same_fs_return = TRUE;
+
+	g_message ("%s", name_1);
+	g_message ("%s", name_2);
+
+	dir1 = gnome_vfs_uri_extract_dirname (a);
+	dir2 = gnome_vfs_uri_extract_dirname (b);
+	g_message ("%s", dir1);
+	g_message ("%s", dir2);
+
+	g_free (dir1);
+	g_free (dir2);
+	*/
+	
+	*same_fs_return = TRUE;
+
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
+do_make_directory (GnomeVFSMethod *method,
+		   GnomeVFSURI *uri,
+		   guint perm,
+		   GnomeVFSContext *context)
+{
+	g_message ("cdda do_make_directory");
+	return GNOME_VFS_ERROR_GENERIC;
+}
+
+
+static GnomeVFSResult
+do_remove_directory (GnomeVFSMethod *method,
+		     GnomeVFSURI *uri,
+		     GnomeVFSContext *context)
+{
+	g_message ("cdda do_remove_directory");
+	return GNOME_VFS_ERROR_GENERIC;
+}
+
+
+static GnomeVFSResult
+do_move (GnomeVFSMethod *method,
+	 GnomeVFSURI *old_uri,
+	 GnomeVFSURI *new_uri,
+	 gboolean force_replace,
+	 GnomeVFSContext *context)
+{
+	g_message ("cdda do_move");
+	return GNOME_VFS_ERROR_GENERIC;
+}
+
+static GnomeVFSResult
+do_unlink (GnomeVFSMethod *method,
+	   GnomeVFSURI *uri,
+	   GnomeVFSContext *context)
+{
+	g_message ("cdda do_unlink");
+	return GNOME_VFS_ERROR_READ_ONLY;
+}
+
+static GnomeVFSMethod method = {
+	do_open,
+	do_create, /* do_create */
+	do_close,
+	do_read, /* do_read */
+	do_write, /* do_write */
+	NULL, /* seek */
+	NULL, /* tell */
+	NULL, /* truncate */
+	do_open_directory,
+	do_close_directory,
+	do_read_directory,
+	do_get_file_info,
+	NULL,
+	do_is_local,
+	do_make_directory, /* make directory */
+	do_remove_directory, /* remove directory */
+	do_move, /* rename */
+	do_unlink, /* unlink */
+	do_check_same_fs,
+	NULL, /* do_set_file_info */
+	NULL, /* do_truncate */
+	NULL, /* do_find_directory */
+	NULL /* do_create_symbolic_link */
+};
+
+GnomeVFSMethod *
+vfs_module_init (const char *method_name, 
+		 const char *args)
+{
+	return &method;
+}
+
+void
+vfs_module_shutdown (GnomeVFSMethod *method)
+{
+}
+
+static void 
+PutNum (long num,int f,int endianness,int bytes)
+{
+	int i;
+	unsigned char c;
+
+	if (!endianness) {
+		i=0;
+	} else {
+		i = bytes - 1;
+	}
+		
+	while (bytes--){
+		c = (num>>(i<<3))&0xff;
+		if (write (f, &c, 1) == -1) {
+			perror ("Could not write to output.");
+			exit (1);
+		}
+
+		if (endianness) {
+			i--;
+		} else {
+			i++;
+		}
+	}
+}
+
+static void 
+write_wav_header (int f, long bytes)
+{
+  /* quick and dirty */
+  write (f,"RIFF",4);               /*  0-3 */
+  PutNum (bytes+44-8,f,0,4);        /*  4-7 */
+  write (f,"WAVEfmt ",8);           /*  8-15 */
+  PutNum (16,f,0,4);                /* 16-19 */
+  PutNum (1,f,0,2);                 /* 20-21 */
+  PutNum (2,f,0,2);                 /* 22-23 */
+  PutNum (44100,f,0,4);             /* 24-27 */
+  PutNum (44100*2*2,f,0,4);         /* 28-31 */
+  PutNum (4,f,0,2);                 /* 32-33 */
+  PutNum (16,f,0,2);                /* 34-35 */
+  write (f,"data",4);               /* 36-39 */
+  PutNum (bytes,f,0,4);             /* 40-43 */
+}

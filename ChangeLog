@@ -1,3 +1,39 @@
+2000-10-30  Gene Z. Ragan  <gzr@eazel.com>
+
+	Added cdda module files to CVS.  They are not currently built by
+	default. The module is not yet complete.  If you want to build it
+	and see it break, you need to have libcdparanoia installed. You can
+	download this at www.xiph.org. I have not yet done the debugging
+	work to try and build against different install locations of the
+	lib.  I would reccomend not hacking on this until I clean up
+	the rough edges.
+	
+	* modules/Makefile.am:
+	Added comented out entries for cdda module
+
+	* modules/default-modules.conf:
+	Added comented out entry for cdda module
+	
+	* modules/cdda-cddb.c: 
+	* modules/cdda-cddb.h:
+	(CDDBSum), (CDDBDiscid), (CDDBGenre),
+	(CDDBGenreValue):
+	
+	* modules/cdda-cdrom-extensions.h:
+	* modules/cdda-method.c: 
+	* modules/cdda-method.h:
+	(cdda_context_new), (cdda_context_free),
+	(cdda_set_file_info_for_root), (read_handle_new),
+	(read_handle_destroy), (do_is_local), (do_open), (do_create),
+	(do_close), (paranoia_callback), (do_read), (do_write),
+	(display_toc), (open_cdda_device), (is_file_is_on_disc),
+	(get_file_info_for_basename), (do_get_file_info),
+	(do_open_directory), (do_close_directory), (get_data_size),
+	(get_data_size_from_uri), (do_read_directory), (do_check_same_fs),
+	(do_make_directory), (do_remove_directory), (do_move), (do_unlink),
+	(vfs_module_init), (vfs_module_shutdown), (PutNum),
+	(write_wav_header):
+	
 2000-10-29  Dan Winship  <danw@helixcode.com>
 
 	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c
