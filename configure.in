@@ -299,17 +299,22 @@ AC_SUBST(GTK_CFLAGS)
 dnl
 dnl efs-method.c
 dnl
-if test "x$libefs_disabled" = xyes; then 
-    LIBEFS_CONFIG=no
-else
-    AC_PATH_PROG(LIBEFS_CONFIG, libefs-config, no)
-fi
 
-if test "x$LIBEFS_CONFIG" != xno; then
-	LIBEFS_LIBS=`$LIBEFS_CONFIG --libs`
-	LIBEFS_CFLAGS=`$LIBEFS_CONFIG --cflags`
-fi
-AM_CONDITIONAL(HAVE_LIBEFS, test -n "$LIBEFS_LIBS") 
+dnl if test "x$libefs_disabled" = xyes; then 
+dnl     LIBEFS_CONFIG=no
+dnl else
+dnl     AC_PATH_PROG(LIBEFS_CONFIG, libefs-config, no)
+dnl fi
+dnl 
+dnl if test "x$LIBEFS_CONFIG" != xno; then
+dnl 	LIBEFS_LIBS=`$LIBEFS_CONFIG --libs`
+dnl 	LIBEFS_CFLAGS=`$LIBEFS_CONFIG --cflags`
+dnl fi
+dnl 
+dnl AM_CONDITIONAL(HAVE_LIBEFS, test -n "$LIBEFS_LIBS") 
+
+AM_CONDITIONAL(HAVE_LIBEFS, no)
+ 
 AC_SUBST(LIBEFS_LIBS)
 AC_SUBST(LIBEFS_CFLAGS)
 

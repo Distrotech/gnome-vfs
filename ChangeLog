@@ -1,3 +1,9 @@
+2000-09-01  Maciej Stachowiak  <mjs@eazel.com>
+
+	* po/Makefile.in.in: removed since gettextize auto-generates it.
+
+	* configure.in: Turn off libefs more thoroughly.
+
 2000-08-31  Robey Pointer  <robey@eazel.com>
 
 	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_initialized):
