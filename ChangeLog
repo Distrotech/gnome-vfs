@@ -1,5 +1,10 @@
 2004-06-01  Alexander Larsson  <alexl@redhat.com>
 
+	* configure.in:
+	Post-release bump
+
+==== gnome-vfs 2.7.1 ====
+	
 	* NEWS:
 	Update for 2.7.1
 
