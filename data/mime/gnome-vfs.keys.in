@@ -303,42 +303,17 @@ application/x-perl
 application/x-php
 	_description=PHP script
 
-	[fi]description=PHP-skripti
-	[fr]description=Script PHP
-	[no]description=PHP-skript
-	[sv]description=PHP-skript
-
 application/x-profile
 	_description=profiler results
-
-	[fi]description=profiloinnin tulokset
-	[fr]description=Résultats du profileur
-	[no]description=profileingsresultat
-	[sv]description=profilerarresultat
 
 application/x-rar
 	_description=RAR archive
 
-	[fi]description=RAR-paketti
-	[fr]description=Archive RAR
-	[no]description=RAR-arkiv
-	[sv]description=RAR-arkiv
-
 application/x-reject
 	_description=rejected patch file
 
-	[fi]description=hylätty patch-tiedosto
-	[fr]description=Fichier patch rejeté
-	[no]description=avvist patchfil
-	[sv]description=avvisad patchfil
-
 application/x-rpm
 	_description=RPM package
-
-	[fi]description=RPM-paketti
-	[fr]description=Paquetage RPM
-	[no]description=RPM-pakke
-	[sv]description=RPM-paket
 	icon_filename=gnome-pack-rpm.png
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
@@ -349,43 +324,19 @@ application/x-rpm
 application/x-shar
 	_description=shell archive
 
-	[fi]description=shell-paketti
-	[fr]description=Archive shell
-	[no]description=skallarkiv
-	[sv]description=skalarkiv
-
 application/x-shared-library
 	_description=shared library
-
-	[fi]description=jaettu kirjasto
-	[fr]description=Bibliothèque partagée
-	[no]description=delt bibliotek
-	[sv]description=delat bibliotek
 	icon_filename=gnome-library.png
 
 application/x-shared-library-la
 	_description=shared library
-
-	[fi]description=jaettu kirjasto
-	[fr]description=Bibliothèque partagée
-	[no]description=delt bibliotek
-	[sv]description=delat bibliotek
 	icon_filename=gnome-library.png
 
 application/x-smil
 	_description=SMIL script
 
-	[fi]description=SMIL-skripti
-	[fr]description=Script SMIL
-	[no]description=SMIL-skript
-	[sv]description=SMIL-skript
-
 application/x-staroffice-presentation
 	_description=StarOffice presentation
-
-	[fi]description=StarOffice-esitys
-	[no]description=StarOffice-presentasjon
-	[sv]description=StarOffice-presentation
 	default_action_type=application
 	default_application_id=staroffice
 	short_list_application_ids_for_novice_user_level=staroffice
@@ -394,11 +345,6 @@ application/x-staroffice-presentation
 
 application/x-staroffice-spreadsheet
 	_description=StarOffice spreadsheet
-
-	[fi]description=StarOffice-taulukko
-	[fr]description=Feuille de calcul StarOffice
-	[no]description=StarOffice-regneark
-	[sv]description=StarOffice-kalkylblad
 	icon_filename=i-spreadsheet
 	default_action_type=application
 	default_application_id=staroffice
@@ -408,11 +354,6 @@ application/x-staroffice-spreadsheet
 
 application/x-staroffice-words
 	_description=StarOffice word processing document
-
-	[fi]description=StarOffice-tekstiasiakirja
-	[fr]description=Document traitement de texte StarOffice
-	[no]description=StarOffice-tekstbehandlingsdokument
-	[sv]description=StarOffice-ordbehandlingsdokument
 	default_action_type=application
 	default_application_id=staroffice
 	short_list_application_ids_for_novice_user_level=staroffice
@@ -422,161 +363,67 @@ application/x-staroffice-words
 application/x-stuffit
 	_description=Macintosh StuffIt! archive 
 
-	[fi]description=Machintoshin StuffIt!-paketti
-	[fr]description=Archive StuffIt! Macintosh
-	[no]description=Macintosh StuffIt!-arkiv
-	[sv]description=Macintosh StuffIt!-arkiv
-
 application/x-sv4cpio
 	_description=SV4Cpio document 
-
-	[fi]description=SV4Cpio-asiakirja
-	[fr]description=Document SV4Cpio
-	[no]description=SV4CPIO-dokument
-	[sv]description=SV4CPIO-dokument
 
 application/x-sv4crc
 	_description=SV4Crc document 
 
-	[fi]description=SV4Crc-asiakirja
-	[fr]description=Document SV4Crc
-	[no]description=SV4Crc-dokument
-	[sv]description=SV4Crc-dokument
-
 application/x-tar
 	_description=tar archive
-
-	[fi]description=tar-paketti
-	[fr]description=Archive tar
-	[no]description=tar-arkiv
-	[sv]description=tar-arkiv
 	icon_filename=gnome-package.png
 	vfs_method=tar
 
 application/x-theme
 	_description=theme
 
-	[fi]description=teema
-	[fr]description=Thème
-	[no]description=tema
-	[sv]description=tema
-
 application/x-toutdoux
 	_description=ToutDoux document
 
-	[fi]description=ToutDoux-asiakirja
-	[fr]description=Document ToutDoux
-	[no]description=ToutDoux-dokument
-	[sv]description=ToutDoux-dokument
-
 application/x-troff-man-compressed
 	_description=manual page archive
-
-	[fi]description=pakattu manuaalisivu
-	[fr]description=Archive page de manuel
-	[no]description=manualsidearkiv
-	[sv]description=manualsidearkiv
 	icon_filename=gnome-manpage.png
 
 application/x-unix-archive
 	_description=archive
 
-	[fi]description=paketti
-	[fr]description=Archive
-	[no]description=arkiv
-	[sv]description=arkiv
-
 application/x-ustar
 	_description=UStar archive
-
-	[fi]description=UStar-paketti
-	[fr]description=Archive UStar
-	[no]description=UStar-arkiv
-	[sv]description=UStar-arkiv
 
 application/x-wais-source
 	_description=WAIS source code
 
-	[fi]description=WAIS-lähdekoodi
-	[fr]description=Code source WAIS
-	[no]description=WAIS-kildekode
-	[sv]description=WAIS-källkod
-
 application/x-wordperfect
 	_description=WordPerfect document
-
-	[fi]description=WordPerfect-asiakirja
-	[fr]description=Document WordPerfect
-	[no]description=WordPerfect-dokument
-	[sv]description=WordPerfect-dokument
 
 application/x-zoo
 	_description=zoo archive
 
-	[fi]description=zoo-paketti
-	[fr]description=Archive zoo
-	[no]description=zoo-arkiv
-	[sv]description=zoo-arkiv
-
 application/zip
 	_description=zip archive
-
-	[fi]description=zip-paketti
-	[fr]description=Archive zip
-	[no]description=zip-arkiv
-	[sv]description=zip-arkiv
 	vfs_method=zip
 
 audio/basic
 	_description=basic audio
-
-	[fi]description=tavallinen ääni
-	[fr]description=Audio basic
-	[no]description=grunnleggende lyd
-	[sv]description=grundläggande ljud
 	icon_filename=gnome-audio.png
 
 audio/x-aifc
 	_description=AIFC audio
 
-	[fi]description=AIFC-ääni
-	[fr]description=Audio AIFC
-	[no]description=AIFC-lyd
-	[sv]description=AIFC-ljud
-
 audio/x-aiff
 	_description=AIFF audio
 
-	[fi]description=AIFF-ääni
-	[fr]description=Audio AIFF
-	[no]description=AIFF-lyd
-	[sv]description=AIFF-ljud
 	icon_filename=gnome-audio-x-aiff.png
 
 audio/x-it
 	_description=Impulse Tracker audio
 
-	[fi]description=Impulse Tracker -ääni
-	[fr]description=Audio Impulse Tracker
-	[no]description=Impulse Tracker-lyd
-	[sv]description=Impulse Tracker-ljud
-
 audio/x-midi
 	_description=MIDI audio
-
-	[fi]description=MIDI-ääni
-	[fr]description=Audio Midi
-	[no]description=MIDI-lyd
-	[sv]description=MIDI-ljud
 	icon_filename=gnome-audio-midi.png
 
 audio/x-mod
 	_description=MOD audio
-
-	[fi]description=MOD-ääni
-	[fr]description=Audio MOD
-	[no]description=MOD-lyd
-	[sv]description=MOD-ljud
 	icon_filename=gnome-audio-x-mod.png
 	default_action_type=application
 	default_application_id=soundtracker
@@ -587,11 +434,6 @@ audio/x-mod
 # also audio/x-mpeg
 audio/x-mp3
 	_description=MP3 audio
-
-	[fi]description=MP3-ääni
-	[fr]description=Audio MP3
-	[no]description=MP3-lyd
-	[sv]description=MP3-ljud
 	icon_filename=i-music
 	default_action_type=application
 	default_application_id=xmms
@@ -602,19 +444,10 @@ audio/x-mp3
 audio/x-mp3-playlist
 	_description=MP3 audio playlist
 
-	[fi]description=MP3-soittolista
-	[fr]description=Audio liste de lecture MP3
-	[no]description=MP3-lydavspillingsliste
-	[sv]description=MP3-ljudspellista
 
 # also audio/x-mp3
 audio/x-mpeg
         _description=MP3 audio
-
-        [fi]description=MP3-ääni
-        [fr]description=Audio MP3
-        [no]description=MP3-lyd
-        [sv]description=MP3-ljud
         icon_filename=i-music 
 	default_action_type=application
 	default_application_id=xmms
@@ -625,8 +458,6 @@ audio/x-mpeg
 audio/x-mpegurl
         _description=MPEG URL
 
-        [fi]description=MPEG-URL
-	[no]description=MPEG URL
         default_action_type=application
         default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
@@ -636,9 +467,6 @@ audio/x-mpegurl
 # also application/x-ogg
 # audio/x-ogg
 #	_description=OGG Audio
-
-#	[fr]description=Audio OGG
-#	[no]description=OGG-lyd
 #	icon_filename=i-music
 #	default_action_type=application
 #	default_application_id=ogg123
@@ -648,11 +476,6 @@ audio/x-mpegurl
 
 audio/x-pn-realaudio
 	_description=PN RealAudio document
-
-	[fi]description=PN RealAudio -asiakirja
-	[fr]description=Document RealAudio PN
-	[no]description=PN RealAudio-dokument
-	[sv]description=PN RealAudio-dokument
 	icon_filename=gnome-audio-x-pn-realaudio.png
         default_action_type=application
         default_application_id=realplayer
@@ -662,11 +485,6 @@ audio/x-pn-realaudio
 
 audio/x-real-audio
 	_description=RealAudio document
-
-	[fi]description=RealAudio-asiakirja
-	[fr]description=Document RealAudio
-	[no]description=RealAudio-dokument
-	[sv]description=RealAudio-dokument
 	icon_filename=gnome-audio-x-pn-realaudio.png
         default_action_type=application
         default_application_id=realplayer
@@ -676,11 +494,6 @@ audio/x-real-audio
 
 audio/x-riff
 	_description=RIFF audio
-
-	[fi]description=RIFF-ääni
-	[fr]description=Audio RIFF
-	[no]description=RIFF-lyd
-	[sv]description=RIFF-ljud
 	icon_filename=i-music
         default_action_type=application
         default_application_id=xmms
@@ -691,43 +504,20 @@ audio/x-riff
 audio/x-s3m
 	_description=Scream Tracker 3 audio
 
-	[fi]description=Scream Tracker 3 -ääni
-	[fr]description=Audio Scream Tracker 3
-	[no]description=Scream Tracker 3-lyd
-	[sv]description=Scream Tracker 3-ljud
 
 audio/x-stm
 	_description=Scream Tracker audio
 
-	[fi]description=Scream Tracker -ääni
-	[fr]description=Audio Stream Tracker
-	[no]description=Scream Tracker-lyd
-	[sv]description=Scream Tracker-ljud
-
 audio/x-ulaw
 	_description=audio
-
-	[fi]description=ääni
-	[fr]description=Audio
-	[no]description=lyd
-	[sv]description=ljud
 	icon_filename=gnome-audio-ulaw.png
 
 audio/x-voc
 	_description=VOC audio
 
-	[fi]description=VOC-ääni
-	[fr]description=Audio VOC
-	[no]description=VOC-lyd
-	[sv]description=VOC-ljud
 
 audio/x-wav
 	_description=Wave audio
-
-	[fi]description=aaltoääni
-	[fr]description=Audio Wave
-	[no]description=Wave-lyd
-	[sv]description=Wave-ljud
 	icon_filename=gnome-audio-x-wav.png
         default_action_type=application
         default_application_id=xmms
@@ -738,27 +528,13 @@ audio/x-wav
 audio/x-xi
 	_description=Scream Tracker instrument
 
-	[fi]description=Scream Tracker -soitin
-	[fr]description=Instrument Scream Tracker
-	[no]description=Scream Tracker-instrument
-	[sv]description=Scream Tracker-instrument
-
 audio/x-xm
 	_description=FastTracker II audio
 
-	[fi]description=FastTracker II -ääni
-	[fr]description=Audio FastTracker
-	[no]description=FastTracker II-lyd
-	[sv]description=FastTracker II-ljud
 
 # also image/x-bmp
 image/bmp
 	_description=Windows bitmap image
-
-	[fi]description=Windows-bittikarttakuva
-	[fr]description=Image bitmap Windows
-	[no]description=Windows-bitmapbilde
-	[sv]description=Windows-bitmappbild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -773,26 +549,12 @@ image/bmp
 image/cgm
 	_description=CGM image
 
-	[fi]description=CGM-kuva
-	[fr]description=Image CGM
-	[no]description=CGM-bilde
-	[sv]description=CGM-bild
-
 image/g3fax
 	_description=G3 fax image
 
-	[fi]description=G3 fax-kuva
-	[fr]description=Image fax G3
-	[no]description=G3-faksbilde
-	[sv]description=G3-faxbild
 
 image/gif
 	_description=GIF image
-
-	[fi]description=GIF-kuva
-	[fr]description=Image GIF
-	[no]description=GIF-bilde
-	[sv]description=GIF-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -806,19 +568,10 @@ image/gif
 
 image/ief
 	_description=IEF image
-
-	[fi]description=IEF-kuva
-	[fr]description=Image IEF
-	[no]description=IEF-bilde
-	[sv]description=IEF-bild
 	icon_filename=gnome-image-ief.png
 
 image/jpeg
 	_description=JPEG image
-
-	[fi]description=JPEG-kuva
-	[fr]description=Image JPEG
-	[no]description=JPEG-bilde
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -833,11 +586,6 @@ image/jpeg
 # also image/x-png
 image/png
 	_description=PNG image
-
-	[fi]description=PNG-kuva
-	[fr]description=Image PNG
-	[no]description=PNG-bilde
-	[sv]description=PNG-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -852,18 +600,8 @@ image/png
 image/svg
 	_description=SVG art
 
-	[fi]description=SVG-kuva
-	[fr]description=Art SVG
-	[no]description=SVG-kunst
-	[sv]description=SVG-konst
-
 image/tiff
 	_description=TIFF image
-
-	[fi]description=TIFF-kuva
-	[fr]description=Image TIFF
-	[no]description=TIFF-bilde
-	[sv]description=TIFF-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -878,34 +616,14 @@ image/tiff
 image/vnd.dwg
 	_description=AutoCAD image
 
-	[fi]description=AutoCAD-kuva
-	[fr]description=Image AutoCAD
-	[no]description=AutoCAD-bilde
-	[sv]description=AutoCAD-bild
-
 image/vnd.dxf
 	_description=DXF vector graphic
-
-	[fi]description=DXF-vektorigrafiikka
-	[fr]description=Graphique vectoriel DXF
-	[no]description=DXF-vektorgrafikk
-	[sv]description=DXF-vektorgrafik
 
 image/x-3ds
 	_description=3D Studio image
 
-	[fi]description=3D Studio -kuva
-	[fr]description=Image 3D Studio
-	[no]description=3D Studio-bilde
-	[sv]description=3D Studio-bild
-
 image/x-applix-graphic
 	_description=Applix image
-
-	[fi]description=Applix-kuva
-	[fr]description=Image Applix
-	[no]description=Applix-bilde
-	[sv]description=Applix-bild
 	default_action_type=application
 	default_application_id=applix
 	short_list_application_ids_for_novice_user_level=applix
@@ -915,11 +633,6 @@ image/x-applix-graphic
 # also image/bmp
 image/x-bmp
 	_description=Windows bitmap image
-
-	[fi]description=Windows-bittikarttakuva
-	[fr]description=Image bitmap Windows
-	[no]description=Windows-bitmapbilde
-	[sv]description=Windows-bitmappbild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -934,62 +647,27 @@ image/x-bmp
 image/x-cmu-raster
 	_description=CMU raster image
 
-	[fi]description=CMU-rasterikuva
-	[fr]description=Image raster CMU
-	[no]description=CMU-rasterbilde
-	[sv]description=CMU-rasterbild
-
 image/x-compressed-xcf
 	_description=compressed GIMP image archive
 
 image/x-ico
 	_description=Windows icon image
 
-	[fi]description=Windows-kuvake
-	[fr]description=Image icone Windows
-	[no]description=Windows-ikonbilde
-	[sv]description=Windows-ikonbild
-
 image/x-iff
 	_description=IFF image
-
-	[fi]description=IFF-kuva
-	[fr]description=Image IFF
-	[no]description=IFF-bilde
-	[sv]description=IFF-bild
 
 image/x-ilbm
 	_description=ILBM image
 
-	[fi]description=ILBM-kuva
-	[fr]description=Image ILBM
-	[no]description=ILBM-bilde
-	[sv]description=ILBM-bild
-
 image/x-lwo
 	_description=LightWave object
-
-	[fi]description=LightWave-esine
-	[fr]description=Objet LightWave
-	[no]description=LightWave-objekt
-	[sv]description=LightWave-objekt
 
 image/x-lws
 	_description=LightWave scene
 
-	[fi]description=LightWave-näkymä
-	[fr]description=Scène LightWave
-	[no]description=LightWave-scene
-	[sv]description=LightWave-scen
-
 # also image/png
 image/x-png
 	_description=PNG image	
-
-	[fi]description=PNG-kuva
-	[fr]description=Image PNG
-	[no]description=PNG-bilde
-	[sv]description=PNG-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -1003,11 +681,6 @@ image/x-png
 
 image/x-portable-anymap
 	_description=PNM image
-
-	[fi]description=PNM-kuva
-	[fr]description=Image PNM
-	[no]description=PNM-bilde
-	[sv]description=PNM-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -1020,11 +693,6 @@ image/x-portable-anymap
 	
 image/x-portable-bitmap
 	_description=PBM image
-
-	[fi]description=PBM-kuva
-	[fr]description=Image PBM
-	[no]description=PBM-bilde
-	[sv]description=PBM-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -1038,10 +706,6 @@ image/x-portable-bitmap
 	
 image/x-portable-graymap
 	_description=PGM image
-	[fi]description=PGM-kuva
-	[fr]description=Image PGM
-	[no]description=PGM-bilde
-	[sv]description=PGM-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -1054,11 +718,6 @@ image/x-portable-graymap
 	
 image/x-portable-pixmap
 	_description=PPM image
-
-	[fi]description=PPM-kuva
-	[fr]description=Image PPM
-	[no]description=PPM-bilde
-	[sv]description=PPM-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -1072,10 +731,6 @@ image/x-portable-pixmap
 
 image/x-psd
 	_description=Photoshop document
-
-	[fi]description=Photoshop-asiakirja
-	[no]description=Photoshop-dokument
-	[sv]description=Photoshopdokument
 	default_action_type=application
 	default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp
@@ -1085,29 +740,14 @@ image/x-psd
 
 image/x-rgb
 	_description=RGB image
-
-	[fi]description=RGB-kuva
-	[fr]description=Image RGB
-	[no]description=RGB-bilde
-	[sv]description=RGB-bild
 	icon_filename=gnome-image-rgb.png
 	
 image/x-tga
 	_description=TarGA image
-
-	[fi]description=TarGA-kuva
-	[fr]description=Image TarGA
-	[no]description=TarGA-bilde
-	[sv]description=TarGA-bild
 	icon_filename=gnome-image-tga.png
 
 image/x-xbitmap
 	_description=X bitmap image
-
-	[fi]description=X-bittikarttakuva
-	[fr]description=Image X bitmap
-	[no]description=X-bitmapbilde
-	[sv]description=X-bitmappbild
 	default_action_type=application
 	default_application_id=eog
 	short_list_application_ids_for_novice_user_level=gimp
@@ -1117,11 +757,6 @@ image/x-xbitmap
 
 image/x-xcf
 	_description=GIMP image
-
-	[fi]description=GIMP-kuva
-	[fr]description=Image GIMP
-	[no]description=GIMP-bilde
-	[sv]description=GIMP-bild
 	default_action_type=application
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp
@@ -1131,20 +766,10 @@ image/x-xcf
 
 image/x-xfig
 	_description=xfig image
-
-	[fi]description=xfig-kuva
-	[fr]description=Image xfig
-	[no]description=xfig-bilde
-	[sv]description=xfig-bild
 	icon_filename=gnome-image-x-xfig.png
 
 image/x-xpixmap
 	_description=XPM image	
-
-	[fi]description=XPM-kuva
-	[fr]description=Image XPM
-	[no]description=XPM-bilde
-	[sv]description=XPM-bild
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -1157,139 +782,55 @@ image/x-xpixmap
 
 image/x-xwindowdump
 	_description=X window image
-
-	[fi]description=X-ikkunakuva
-	[no]description=X-Windows skjermbilde
-	[sv]description=X-fönsterbild
 	icon_filename=gnome-image-xwd.png
 
 message/delivery-status
 	_description=mail delivery report
 
-	[fi]description=postintoimitusraportti
-	[fr]description=Rapport de livraison de courrier
-	[no]description=e-postleveranserapport
-	[sv]description=e-postleveransrapport
-
 message/disposition-notification
 	_description=mail disposition report
-
-	[fi]description=postinsijoitusraportti
-	[fr]description=Rapport de mise à disposition de courrier
-	[no]description=e-postdispositionsrapport
-	[sv]description=e-postdisposisjonsrapport
 
 message/external-body
 	_description=pointer to remote data
 
-	[fi]description=osoitin etädataan
-	[fr]description=Pointeur vers des données distantes
-	[no]description=pekare till eksterne data
-	[sv]description=pekare till fjärrdata
-
 message/news
 	_description=USENET news message
-
-	[fi]description=USENET-uutisryhmäviesti
-	[fr]description=Message de nouvelle USENET
-	[no]description=USENET nyhetsmelding
-	[sv]description=diskussionsgruppsmeddelande
 
 message/partial
 	_description=partial email message
 
-	[fi]description=sähköpostiviestin osa
-	[fr]description=Message de courrier électronique partiel
-	[no]description=del av e-postmelding
-	[sv]description=del av e-postmeddelande
-
 message/rfc822
 	_description=email message
-
-	[fi]description=sähköpostiviesti
-	[fr]description=Message de courrier électronique
-	[no]description=e-postmelding
-	[sv]description=e-postmeddelande
 
 message/x-gnu-rmail
 	_description=GNU mail message
 
-	[fi]description=GNU-postiviesti
-	[fr]description=Message de courrier GNU
-	[no]description=GNU e-postmelding
-	[sv]description=GNU-epostmeddelande
-
 model/vrml
 	_description=VRML data
-
-	[fi]description=VRML-data
-	[fr]description=Donnée VRML
-	[no]description=VRML-data
-	[sv]description=VRML-data
 
 multipart/alternative
 	_description=message in several formats
 
-	[fi]description=eri muotoisia viestejä
-	[fr]description=Message dans différents formats
-	[no]description=melding i flere formater
-	[sv]description=meddelande i flera format
-
 multipart/appledouble
 	_description=Macintosh AppleDouble-encoded document
-
-	[fi]description=Macintosh AppleDouble-koodattu asiakirja
-	[fr]description=Document encodé AppleDouble Macintosh
-	[no]description=dokument kodet med Macintosh AppleDouble
-	[sv]description=dokument kodat med Macintosh AppleDouble
 
 multipart/digest
 	_description=message digest
 
-	[fi]description=viestitiivistelmä
-	[fr]description=Message digest
-	[no]description=medldingssamling
-	[sv]description=meddelandesamling
-
 multipart/encrypted
 	_description=encrypted message
-
-	[fi]description=kryptattu viesti
-	[fr]description=Message encrypté
-	[no]description=kryptert melding
-	[sv]description=krypterat meddelande
 
 multipart/mixed
 	_description=multi-part message
 
-	[fi]description=moniosainen viesti
-	[fr]description=Message multi-part
-	[no]description=melding i flere deler
-	[sv]description=meddelande i flera delar
-
 multipart/related
 	_description=compound document
-
-	[fi]description=yhdisteasiakirja
-	[fr]description=Message composé
-	[no]description=sammensatt dokument
-	[sv]description=sammansatt dokument
 
 multipart/report
 	_description=mail system report
 
-	[fi]description=postijärjestelmän raportti
-	[fr]description=Rapport de système de courrier
-	[no]description=e-postsystemrapport
-	[sv]description=e-postsystemrapport
-
 multipart/signed
 	_description=signed message
-
-	[fi]description=allekirjoitettu viesti
-	[fr]description=Message signé
-	[no]description=signert melding
-	[sv]description=signerat meddelande
 
 text/*
 	default_action_type=component
@@ -1305,11 +846,6 @@ text/*
 
 text/abiword
 	_description=AbiWord document
-
-	[fi]description=AbiWord-asiakirja
-	[fr]description=Document AbiWord
-	[no]description=AbiWord-dokument
-	[sv]description=AbiWord-dokument
 	default_action_type=application
 	default_application_id=abiword
 	short_list_application_ids_for_novice_user_level=staroffice,abiword
@@ -1318,18 +854,9 @@ text/abiword
 
 text/bib
 	_description=bibliography record
-	[fi]description=bibliografiamerkinnät
-	[fr]description=Enregistrement bibliographique
-	[no]description=bibliografipost
-	[sv]description=bibliografipost
 
 text/calendar
 	_description=calendar information
-
-	[fi]description=kalenteritiedot
-	[fr]description=Information de calendrier
-	[no]description=kalenderinformasjon
-	[sv]description=kalenderinformation
 
 text/css
 	_description=style sheet
@@ -1588,11 +1115,6 @@ video/x-flc
 
 video/x-fli
 	_description=FLI video animation
-
-	[fi]description=FLI-animaatio
-	[fr]description=Vidéo d'animation FLI
-	[no]description=FLI-animasjon
-	[sv]description=FLI-videoanimation
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1601,11 +1123,6 @@ video/x-fli
 
 video/x-msvideo
 	_description=MS video
-
-	[fi]description=MS-video
-	[fr]description=Vidéo MS
-	[no]description=Microsoft Video
-	[sv]description=MS-video
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
@@ -1613,10 +1130,6 @@ video/x-msvideo
 
 video/x-real-video
 	_description=RealVideo document
-
-	[fi]description=RealVideo-asiakirja
-	[fr]description=Document RealVideo
-	[no]description=RealVideo-dokument
         default_action_type=application
         default_application_id=realplayer
         short_list_application_ids_for_novice_user_level=realplayer
