@@ -1,4 +1,21 @@
 2001-02-05  Rebecca Schulman  <rebecka@eazel.com>
+	Fix problem that the mozilla view was the default for webdav
+	directories (should be icon view) and that the music view was
+	always first on the short list.  The problem was that the default
+	component for the supertype to the short list was first on the
+	short list, instead of being after all of the regular mime type's
+	short list components.  We now only use the supertype's default
+	if it is explicitly set by the user.
+
+	reviewed by: Mike Fleming <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_component):
+	Only use the supertype's default if it is explicitly added
+	by the user.  Otherwise add the supertype shortlist components
+	to the end of the short list.
+
+2001-02-05  Rebecca Schulman  <rebecka@eazel.com>
 
 	reviewed by: Maciej Stachowiak <mjs@eazel.com>
 

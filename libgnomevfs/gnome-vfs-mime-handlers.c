@@ -224,20 +224,10 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	/* Find a component that supports either the exact mime type,
            the supertype, or all mime types. */
 
-	/* First try the component specified in the mime database, if available. */
+	/* First try the component specified in the mime database, if available. 
+	   gnome_vfs_mime_get_value looks up the value for the mime type and the supertype.  */
 	default_component_iid = gnome_vfs_mime_get_value
 		(mime_type, "default_component_iid");
-	if (default_component_iid == NULL || default_component_iid[0] == '\0') {
-		/* Fall back to the supertype. */
-		/* Check if already a supertype */
-		if (strcmp (supertype, mime_type) != 0) {
-			default_component = gnome_vfs_mime_get_default_component (supertype);
-			if (default_component != NULL) {
-				default_component_iid = g_strdup (default_component->iid);
-				CORBA_free (default_component);
-			}
-		}
-	}
 
 	query = g_strconcat ("bonobo:supported_mime_types.has_one (['", mime_type, 
 			     "', '", supertype,
@@ -251,9 +241,10 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	}
 
 	short_list = gnome_vfs_mime_get_short_list_components (mime_type);
-
+	short_list = g_list_concat (short_list,
+				    gnome_vfs_mime_get_short_list_components (supertype));
 	if (short_list != NULL) {
-		sort[1] = g_strdup ("prefer_by_list_order (iid, ['");
+		sort[1] = g_strdup ("prefer_by_list_order(iid, ['");
 
 		for (p = short_list; p != NULL; p = p->next) {
  			prev = sort[1];
