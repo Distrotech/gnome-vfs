@@ -1,17 +1,51 @@
 # Danish translation of gnome-vfs
 # Copyright (C) 1999 Free Software Foundation, Inc.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1999.
+# Birger Langkjer <birger.langkjer@image.dk>, 2000.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 1999-09-22 21:07+0200\n"
-"PO-Revision-Date: 1999-09-23 01:12+02:00\n"
-"Last-Translator: Kenneth Christiansen <kenneth@ripen.dk>\n"
+"POT-Creation-Date: 2000-02-07 02:59+0100\n"
+"PO-Revision-Date: 2000-02-07 13:40+01:00\n"
+"Last-Translator: BL <birger.langkjer@image.dk>\n"
 "Language-Team: Dansk/Danish <sslug-locale@sslug.dk>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8-bit\n"
+
+#: libgnomevfs/gnome-vfs-configuration.c:186
+#, c-format
+msgid "%s:%d contains NUL characters."
+msgstr "%s:%d indeholder NUL-tegn."
+
+#: libgnomevfs/gnome-vfs-configuration.c:203
+#, c-format
+msgid "%s:%d contains no method name."
+msgstr "%s:%d indeholder intet metodenavn."
+
+#: libgnomevfs/gnome-vfs-configuration.c:232
+#, c-format
+msgid "%s:%d contains no module name."
+msgstr "%s:%d indeholder intet modulnavn."
+
+#: libgnomevfs/gnome-vfs-configuration.c:284
+#, c-format
+msgid "Configuration file `%s' was not found: %s"
+msgstr "Konfigurationsfilen '%s' fandtes ikke: %s"
+
+#: libgnomevfs/gnome-vfs-init.c:55
+msgid "GNOME VFS already initialized."
+msgstr "GNOME VFS er allerede initialiseret."
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#, c-format
+msgid "Could not parse: %s"
+msgstr "Kan ikke tolke: %s"
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
+msgid "More parsing errors will be ignored."
+msgstr "Yderligere tolkningsfejl bliver ignoreret."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -36,7 +70,7 @@ msgstr "Intern fejl"
 #. GNOME_VFS_ERROR_BADPARAMS
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Invalid parameters"
-msgstr "invalide parametere"
+msgstr "Ugyldige parametre"
 
 #. GNOME_VFS_ERROR_NOTSUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:44
@@ -51,12 +85,12 @@ msgstr "I/O fejl"
 #. GNOME_VFS_ERROR_CORRUPTEDDATA
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Data corrupted"
-msgstr "Data korrupteret"
+msgstr "Ødelagt data"
 
 #. GNOME_VFS_ERROR_WRONGFORMAT
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Format not valid"
-msgstr "Format ikke valid"
+msgstr "Ugyldigt format"
 
 #. GNOME_VFS_ERROR_BADFILE
 #: libgnomevfs/gnome-vfs-result.c:48
@@ -66,7 +100,7 @@ msgstr "Dårlig filhåndterer"
 #. GNOME_VFS_ERROR_TOOBIG
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File too big"
-msgstr "Fil for stor"
+msgstr "For stor fil"
 
 #. GNOME_VFS_ERROR_NOSPACE
 #: libgnomevfs/gnome-vfs-result.c:50
@@ -76,22 +110,22 @@ msgstr "Ikke mere plads på enhed"
 #. GNOME_VFS_ERROR_READONLY
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Read-only file system"
-msgstr "Læs-kun filsystem"
+msgstr "Skrivebeskyttet filsystem"
 
 #. GNOME_VFS_ERROR_INVALIDURI
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Invalid URI"
-msgstr "Invalid URI"
+msgstr "Ugyldig URI"
 
 #. GNOME_VFS_ERROR_NOTOPEN
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "File not open"
-msgstr "Fil ikke åbnet"
+msgstr "Uåbnet fil"
 
 #. GNOME_VFS_ERROR_INVALIDOPENMODE
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Open mode not valid"
-msgstr ""
+msgstr "Ugyldig åbningsmodus"
 
 #. GNOME_VFS_ERROR_ACCESSDENIED
 #: libgnomevfs/gnome-vfs-result.c:55
@@ -106,7 +140,7 @@ msgstr "For mange åbne filer"
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "End of file"
-msgstr ""
+msgstr "Slutning på fil"
 
 #. GNOME_VFS_ERROR_NOTADIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:58
@@ -116,12 +150,12 @@ msgstr "Ikke en mappe"
 #. GNOME_VFS_ERROR_INPROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
-msgstr ""
+msgstr "Operation pågår"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Operation interrupted"
-msgstr ""
+msgstr "Operation afbrudt"
 
 #. GNOME_VFS_ERROR_FILEEXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
@@ -136,7 +170,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_NOTPERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation not permitted"
-msgstr "Operation ikke tillad"
+msgstr "Operation ikke tilladt"
 
 #. GNOME_VFS_ERROR_ISDIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:64
@@ -168,108 +202,358 @@ msgstr "Vært har ingen adresse"
 msgid "Login failed"
 msgstr "Logind fejlede"
 
-#: libgnomevfs/gnome-vfs-result.c:135
+#. GNOME_VFS_ERROR_CANCELLED
+#: libgnomevfs/gnome-vfs-result.c:70
+msgid "Operation cancelled"
+msgstr "Operation annulleret"
+
+#. GNOME_VFS_ERROR_DIRECTORYBUSY
+#: libgnomevfs/gnome-vfs-result.c:71
+msgid "Directory busy"
+msgstr "Mappen har travlt"
+
+#. GNOME_VFS_ERROR_DIRECTORYNOTEMPTY
+#: libgnomevfs/gnome-vfs-result.c:72
+msgid "Directory not empty"
+msgstr "Mappen er ikke tom"
+
+#. GNOME_VFS_ERROR_TOOMANYLINKS
+#: libgnomevfs/gnome-vfs-result.c:73
+msgid "Too many links"
+msgstr "For mange lænker"
+
+#. GNOME_VFS_ERROR_READONLYFS
+#: libgnomevfs/gnome-vfs-result.c:74
+msgid "Read only file system"
+msgstr "Skrivebeskyttet filsystem"
+
+#. GNOME_VFS_ERROR_NOTSAMEFS
+#: libgnomevfs/gnome-vfs-result.c:75
+msgid "Not on the same file system"
+msgstr "Ikke på det samme filsystem"
+
+#. GNOME_VFS_ERROR_NAMETOOLONG
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Name too long"
+msgstr "Navnet er for langt"
+
+#: libgnomevfs/gnome-vfs-result.c:133
 msgid "Unknown error"
 msgstr "Ukendt fejl"
 
-#: libgnomevfs/gnome-vfs-init.c:48
-msgid "GNOME VFS already initialized."
-msgstr "GNOME VFS er allerede initialiseret"
+#: libgnomevfs/gnome-vfs-utils.c:40
+msgid "1 byte"
+msgstr "1 byte"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
+#: libgnomevfs/gnome-vfs-utils.c:42
+#, c-format
+msgid "%u bytes"
+msgstr "%u byte"
+
+#: libgnomevfs/gnome-vfs-utils.c:49
+#, c-format
+msgid "%.1fK"
+msgstr "%.1fK"
+
+#: libgnomevfs/gnome-vfs-utils.c:53
+#, c-format
+msgid "%.1fM"
+msgstr "%.1fM"
+
+#: libgnomevfs/gnome-vfs-utils.c:57
+#, c-format
+msgid "%.1fG"
+msgstr "%.1fG"
+
+#: libgnomevfs-corba/gnome-vfs-slave.c:333
 msgid "Dying."
-msgstr "Dør."
+msgstr "Døende."
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#: libgnomevfs-corba/gnome-vfs-slave.c:498
 #, c-format
 msgid "Error reading: %s"
-msgstr "Fejl under læsning af: %s"
+msgstr "Fejl ved læsning af: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#: libgnomevfs-corba/gnome-vfs-slave.c:520
 #, c-format
 msgid "Error writing: %s"
-msgstr "Fejl under skrivning til: %s"
+msgstr "Fejl ved skrivning til: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#: libgnomevfs-corba/gnome-vfs-slave.c:569
 #, c-format
 msgid "Cannot write: %s"
 msgstr "Kan ikke skrive: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#: libgnomevfs-corba/gnome-vfs-slave.c:597
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Kan ikke oprette midlertidigt filnavn '%s'"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:607
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:195
+#: libgnomevfs-corba/gnome-vfs-slave.c:611
 #, c-format
 msgid "Cannot create socket: %s"
-msgstr "Kan ikke oprette socket: %s"
+msgstr "Kan ikke oprette sokkel: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:618
+#: libgnomevfs-corba/gnome-vfs-slave.c:629
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "Kan ikke binde '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:625
+#: libgnomevfs-corba/gnome-vfs-slave.c:636
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "Kan ikke lytte på '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:647
+#: libgnomevfs-corba/gnome-vfs-slave.c:658
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Kan ikke modtage forbindelser på '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1291
+#: libgnomevfs-corba/gnome-vfs-slave.c:1376
 msgid "Cannot initialize CORBA."
 msgstr "Kan ikke initialisere CORBA"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1298
+#: libgnomevfs-corba/gnome-vfs-slave.c:1383
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1305
+#: libgnomevfs-corba/gnome-vfs-slave.c:1390
 msgid "Cannot activate POA manager."
-msgstr "Kan ikke aktivere POA håndtering"
+msgstr "Kan ikke aktivere POA-håndtering"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1329
+#: libgnomevfs-corba/gnome-vfs-slave.c:1414
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Brug: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1340
+#: libgnomevfs-corba/gnome-vfs-slave.c:1425
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Kan ikke åbne filbeskriver %d"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1363
+#: libgnomevfs-corba/gnome-vfs-slave.c:1448
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Meddelelsesgrænsesnit for '%s' ikke fundet."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1373
+#: libgnomevfs-corba/gnome-vfs-slave.c:1458
 msgid "Cannot setup Request object."
-msgstr "Kan ikke sætte forespørgselsobjekt op."
+msgstr "Kan ikke opsætte forespørgselsobjekt."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1380
+#: libgnomevfs-corba/gnome-vfs-slave.c:1465
 msgid "Cannot extract IOR."
 msgstr "Kan ikke få IOR."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:84
-msgid "Error writing to the wakeup GnomeVFSJob channel."
-msgstr "Fejl under skrivning til 'wakeup GnomeVFSJob' kanal."
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:176
+#, c-format
+msgid "Got weird string from the slave process: `%s'"
+msgstr "Modtog mærkelig streng fra slaveproces: '%s'"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:379
-#: libgnomevfs-pthread/gnome-vfs-job.c:1071
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:183
+#, c-format
+msgid "Cannot get object for `%s'"
+msgstr "Kan ikke få objekt for '%s'"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:128
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+msgstr "Kan ikke dræbe GNOME::VFS::Slave::Notify -- exception %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:206
+#, c-format
+msgid "Cannot connect socket `%s': %s"
+msgstr "Kan ikke forbinde sokkel: '%s': %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
+msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+msgstr "Kan ikke initialisere GNOME::VFS:Slave::Notify"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:121
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+msgstr "Kan ikke genstarte GNOME::VFS::Slave %s -- undtagelse %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:124
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "Kan ikke genstarte GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:137
+msgid "Destroying slave."
+msgstr "Ødelægger slave."
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:158
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+msgstr "Kan ikke dræbe GNOME::VFS::Slave %s -- undtagelse %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:161
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "Kan ikke dræbe GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:129
+msgid "Error writing to the wakeup GnomeVFSJob channel."
+msgstr "Fejl ved skrivning til 'wakeup GnomeVFSJob' kanalen."
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:434
+#: libgnomevfs-pthread/gnome-vfs-job.c:1247
 #, c-format
 msgid "Unknown job ID %d"
-msgstr "Ukendt job ID %d"
+msgstr "Ukendt job-ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:636
-#: libgnomevfs-pthread/gnome-vfs-job.c:720
+#: libgnomevfs-pthread/gnome-vfs-job.c:784
+#: libgnomevfs-pthread/gnome-vfs-job.c:879
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Kan ikke åbne pibe for åben GIOChannel: %s"
+msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
+
+#: libgnomevfs-pthread/gnome-vfs-job.c:1265
+msgid "Operation stopped"
+msgstr "Operation stoppet"
+
+#: modules/file-method.c:332
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "Ukendt GnomeVFSSeekPosition %d"
+
+#: modules/ftp-method.c:353
+msgid "ftpfs: Invalid host name."
+msgstr "ftpfs: Ugyldigt værtsnavn."
+
+#: modules/ftp-method.c:376
+msgid "ftpfs: Invalid host address."
+msgstr "ftpfs: Ugyldig værtsadresse."
+
+#: modules/ftp-method.c:396
+#, c-format
+msgid "ftpfs: making connection to %s"
+msgstr "ftpfs: laver forbindelse til %s"
+
+#: modules/ftp-method.c:402
+msgid "ftpfs: connection interrupted by user"
+msgstr "ftpfs: forbindelse afbrudt af bruger"
+
+#: modules/ftp-method.c:404
+#, c-format
+msgid "ftpfs: connection to server failed: %s"
+msgstr "ftpfs: forbindelse til server fejlede: %s"
+
+#: modules/ftp-method.c:480
+#, c-format
+msgid "Waiting to retry... %d (Control-C to cancel)"
+msgstr "Venter på at prøve igen... %d (Ctrl-C for at annullere)"
+
+#: modules/ftp-method.c:751
+msgid " FTP: Password required for "
+msgstr " FTP: Adgangskode påkrævet for "
+
+#: modules/ftp-method.c:790
+msgid "ftpfs: sending login name"
+msgstr "Ftpfs: sender logindnavn"
+
+#: modules/ftp-method.c:796
+msgid "ftpfs: sending user password"
+msgstr "ftpfs: sender brugeradgangskode"
+
+#: modules/ftp-method.c:802
+msgid "ftpfs: logged in"
+msgstr "ftpfs: logget ind"
+
+#: modules/ftp-method.c:814
+#, c-format
+msgid "ftpfs: Login incorrect for user %s "
+msgstr "ftpfs: Forkert logind for bruger %s "
+
+#: modules/ftp-method.c:827
+msgid "ftpfs: aborting transfer."
+msgstr "ftpfs: afbryder overførsel."
+
+#: modules/ftp-method.c:829
+#, c-format
+msgid "ftpfs: abort error: %s"
+msgstr "ftpfs: afbrydningsfejl: %s"
+
+#: modules/ftp-method.c:834
+msgid "ftpfs: abort failed"
+msgstr "ftpfs: afbryd fejlede"
+
+#: modules/ftp-method.c:911
+msgid "ftpfs: could not setup passive mode"
+msgstr "ftpfs: kunne ikke opsætte passiv modus"
+
+#: modules/ftp-method.c:1088
+#, c-format
+msgid "ftpfs: storing file %d (%d)"
+msgstr "ftpfs: gemmer filen %d (%d)"
+
+#: modules/ftp-method.c:1305 modules/ftp-method.c:1507
+msgid "ftpfs: CWD failed."
+msgstr "ftpfs: CWD fejlede."
+
+#: modules/ftp-method.c:1315 modules/ftp-method.c:1322
+msgid "ftpfs: couldn't resolve symlink"
+msgstr ""
+
+#: modules/ftp-method.c:1374
+msgid "Resolving symlink..."
+msgstr ""
+
+#: modules/ftp-method.c:1498
+#, c-format
+msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
+msgstr "ftpfs: Læser FTP-mappe %s... (brug ikke UNIX ls kommandoflag)"
+
+#: modules/ftp-method.c:1502
+#, c-format
+msgid "ftpfs: Reading FTP directory %s..."
+msgstr "ftpfs: Læser FTP-mappe %s..."
+
+#: modules/ftp-method.c:1568
+msgid "ftpfs: reading FTP directory interrupt by user"
+msgstr "ftpfs: læsning af FTP-mappe afbrudt af bruger"
+
+#: modules/ftp-method.c:1592
+msgid "ftpfs: got listing"
+msgstr "ftpfs: fik liste"
+
+#: modules/ftp-method.c:1644
+msgid "ftpfs: failed; nowhere to fallback to"
+msgstr "ftpfs: fejlede; ingen steder at falde tilbage til"
+
+#: modules/ftp-method.c:2037
+msgid "Starting linear transfer..."
+msgstr "Starter lineær overførsel..."
+
+#: modules/ftp-method.c:2107
+msgid "Preparing reget..."
+msgstr ""
+
+#: modules/http-method.c:474
+#, c-format
+msgid "Invalid header `%s'"
+msgstr "Ugyldig header '%s'"
+
+#: modules/http-method.c:491
+#, c-format
+msgid "%s to retrieve"
+msgstr "%s tilbage at hente"
+
+#: modules/http-method.c:604
+#, c-format
+msgid "Closing connection to %s"
+msgstr "Lukker forbindelse til %s"
+
+#: modules/http-method.c:689
+#, c-format
+msgid "%s of %s read"
+msgstr "%s af %s læst"
+
+#: modules/http-method.c:692
+#, c-format
+msgid "%s read"
+msgstr "%s læst"
