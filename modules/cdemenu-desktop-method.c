@@ -286,8 +286,17 @@ do_open (GnomeVFSMethod *method,
 				if (!strcmp (menuname, "DtRootMenu"))
 					title = g_strdup_printf ("\"%s\"",menuname);
 				else title = find_title_for_menu(menuname);
-				tmp = strchr(title,'\"'); tmp ++;
-				tmp2 = strchr(tmp,'\"'); if(tmp2) *tmp2='\0';
+
+				tmp = strchr(title,'\"'); 
+                                if(!tmp) {
+                                        title = g_strstrip (title);
+                                        tmp = title;
+                                }
+                                else {
+                                        tmp ++;
+                                        tmp2 = strchr(tmp,'\"');
+                                        if(tmp2) *tmp2='\0';
+                                }
 
 				utf8_name = g_locale_to_utf8 (tmp, -1,
 							      NULL, NULL,
