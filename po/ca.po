@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-30 15:33+0200\n"
-"PO-Revision-Date: 2004-03-31 15:20+0200\n"
+"POT-Creation-Date: 2004-09-07 19:59+0200\n"
+"PO-Revision-Date: 2004-09-07 20:37+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,87 +25,86 @@ msgid "Could not initialize gnome vfs"
 msgstr "No s'ha pogut inicialitzar gnome vfs"
 
 #: libgnomevfs/eggdesktopentries.c:229
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "No s'ha pogut analitzar: %s"
+msgstr "No s'ha pogut obrir el fitxer: %s"
 
 #: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
-msgstr ""
+msgstr "No s'ha pogut obrir el fitxer «%s»: %s"
 
 #: libgnomevfs/eggdesktopentries.c:341
-#, fuzzy
 msgid "File is empty"
-msgstr "Fitxer ja existent"
+msgstr "El fitxer és buit"
 
 #: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr ""
+msgstr "No s'ha pogut llegir des del fitxer «%s»: %s"
 
-#: libgnomevfs/eggdesktopentries.c:578
+#: libgnomevfs/eggdesktopentries.c:575
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
+msgstr "les entrades desktop contenen la línia «%s» que no és una entrada, grup o comentari"
 
-#: libgnomevfs/eggdesktopentries.c:654
+#: libgnomevfs/eggdesktopentries.c:648
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "el fitxer d'entrades desktop no comença amb un grup d'inici legal"
 
-#: libgnomevfs/eggdesktopentries.c:711
+#: libgnomevfs/eggdesktopentries.c:705
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "les entrades desktop contenen la línia «%s» que no és UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:734
+#: libgnomevfs/eggdesktopentries.c:728
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "les entrades desktop contenen la codificació desconeguda «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:924 libgnomevfs/eggdesktopentries.c:1036
-#: libgnomevfs/eggdesktopentries.c:1221
+#: libgnomevfs/eggdesktopentries.c:918 libgnomevfs/eggdesktopentries.c:1030
+#: libgnomevfs/eggdesktopentries.c:1215
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "les entrades desktop no tenen grup «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:1048
+#: libgnomevfs/eggdesktopentries.c:1042
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "les entrades desktop no tenen la clau «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
-#: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
+#: libgnomevfs/eggdesktopentries.c:1098 libgnomevfs/eggdesktopentries.c:1271
+#: libgnomevfs/eggdesktopentries.c:1413 libgnomevfs/eggdesktopentries.c:1538
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
+msgstr "les entrades desktop contenen la clau «%s» amb un valor que no es pot interpretar."
 
-#: libgnomevfs/eggdesktopentries.c:1302
+#: libgnomevfs/eggdesktopentries.c:1296
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
+msgstr "les entrades desktop no contenen cap valor traduir per a la clau «%s» per al locale «%s»."
 
-#: libgnomevfs/eggdesktopentries.c:2223
+#: libgnomevfs/eggdesktopentries.c:2229
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "les entrades desktop contenen la seqüència d'escapada «%s» invàlida"
 
-#: libgnomevfs/eggdesktopentries.c:2240
+#: libgnomevfs/eggdesktopentries.c:2246
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "les entrades desktop contenen caràcters d'escapada al final de la línia"
 
-#: libgnomevfs/eggdesktopentries.c:2265
+#: libgnomevfs/eggdesktopentries.c:2271
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "El valor «%s» no es pot interpretar com un nombre."
 
-#: libgnomevfs/eggdesktopentries.c:2292
+#: libgnomevfs/eggdesktopentries.c:2298
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "El valor «%s» no es pot interpretar com un booleà."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:210
 msgid "ISO 9660 Volume"
@@ -254,9 +253,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Volum Pcfs de Solaris"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "Volum AFFS"
+msgstr "Volum SAM-QFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -283,125 +281,117 @@ msgid "Unknown"
 msgstr "Desconegut"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "Unitat de CD-ROM"
+msgstr "Disc CD-ROM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "Disc CD-R en blanc"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "Unitat de CD-ROM"
+msgstr "Disc CD-R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:619
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "Disc CD-RW en blanc"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "Unitat de CD-ROM"
+msgstr "Disc CD-RW"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "Unitat de CD-ROM"
+msgstr "Disc DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "Disc DVD-R en blanc"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "Disc DVD-R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "Disc DVD-RAM en blanc"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "Disc DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "Disc DVD-RW en blanc"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "Disc DVD-RW"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:641
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "Disc DVD+RW en blanc"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:643
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "Disc DVD+RW"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "Disc DVD+R en blanc"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:648
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "Disc DVD+R"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Optical Disc"
-msgstr ""
+msgstr "Disc òptic"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
-#, fuzzy
 msgid "Audio Disc"
-msgstr "CD d'àudio"
+msgstr "Disc d'àudio"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:660
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Medi Compact Flash"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:662
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Memòria portàtil"
+msgstr "Medi de llàpis de memòria"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:664
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Medi Smart Media"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:666
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "Medi SD/MMC"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:668
-#, fuzzy
 msgid "Floppy Disk"
 msgstr "Disquet"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:675
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Disc de Mac OS"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:677
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Disc de Mac OS X"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:691
-#, fuzzy
 msgid "Windows Disk"
-msgstr "Finestres"
+msgstr "Disc de Windows"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:697
 msgid "Linux Disk"
-msgstr ""
+msgstr "Disc de Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "Tipus d'op %u desconegut"
+msgstr "Tipus d'operació %u desconeguda"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -420,20 +410,20 @@ msgstr "Operació aturada"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:83
 #: libgnomevfs/gnome-vfs-mime-handlers.c:305
 #: libgnomevfs/gnome-vfs-mime-handlers.c:356
-#: libgnomevfs/gnome-vfs-mime-handlers.c:626
-#: libgnomevfs/gnome-vfs-mime-handlers.c:645
-#: libgnomevfs/gnome-vfs-mime-handlers.c:663
-#: libgnomevfs/gnome-vfs-mime-handlers.c:682
-#: libgnomevfs/gnome-vfs-mime-handlers.c:701
-#: libgnomevfs/gnome-vfs-mime-handlers.c:842
-#: libgnomevfs/gnome-vfs-mime-handlers.c:864
-#: libgnomevfs/gnome-vfs-mime-handlers.c:883
-#: libgnomevfs/gnome-vfs-mime-handlers.c:902
-#: libgnomevfs/gnome-vfs-mime-handlers.c:955
-#: libgnomevfs/gnome-vfs-mime-handlers.c:972
-#: libgnomevfs/gnome-vfs-mime-handlers.c:989
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1007
-#: libgnomevfs/gnome-vfs-mime-handlers.c:1025
+#: libgnomevfs/gnome-vfs-mime-handlers.c:650
+#: libgnomevfs/gnome-vfs-mime-handlers.c:669
+#: libgnomevfs/gnome-vfs-mime-handlers.c:687
+#: libgnomevfs/gnome-vfs-mime-handlers.c:706
+#: libgnomevfs/gnome-vfs-mime-handlers.c:725
+#: libgnomevfs/gnome-vfs-mime-handlers.c:866
+#: libgnomevfs/gnome-vfs-mime-handlers.c:888
+#: libgnomevfs/gnome-vfs-mime-handlers.c:907
+#: libgnomevfs/gnome-vfs-mime-handlers.c:926
+#: libgnomevfs/gnome-vfs-mime-handlers.c:979
+#: libgnomevfs/gnome-vfs-mime-handlers.c:996
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1013
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1031
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1049
 #: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
 #: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
 #: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
@@ -443,7 +433,7 @@ msgstr "Operació aturada"
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
+msgstr "La funció està desaconsellada. Ja no es suporten les modificacions d'usuari a la base de dades MIME."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -687,24 +677,22 @@ msgstr "S'ha produït un error en executar l'ordre"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "S'ha esgotat el temps d'espera"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "Error genèric"
+msgstr "Error del servidor de noms"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
-#, fuzzy
 msgid "The resource is locked"
-msgstr "codi font Scheme"
+msgstr "El recurs és blocat"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "La crida a la funció està desaconsellada"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -733,50 +721,147 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1122
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:391
 msgid " (invalid Unicode)"
 msgstr " (Unicode invàlid)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:629
 msgid "Floppy"
 msgstr "Disquet"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:632
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
-msgid "Zip Drive"
-msgstr "Unitat Zip"
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+msgid "CD-R"
+msgstr "CD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+msgid "CD-ROM/DVD-ROM"
+msgstr "CD-ROM/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+msgid "CD-ROM/DVD-RAM"
+msgstr "CD-ROM/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+msgid "CD-ROM/DVD-R"
+msgstr "CD-ROM/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+msgid "CD-ROM/DVD-RW"
+msgstr "CD-ROM/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+msgid "CD-R/DVD-ROM"
+msgstr "CD-ROM/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+msgid "CD-R/DVD-RAM"
+msgstr "CD-R/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+msgid "CD-R/DVD-R"
+msgstr "CD-R/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+msgid "CD-R/DVD-RW"
+msgstr "CD-R/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+msgid "CD-RW/DVD-ROM"
+msgstr "CD-RW/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+msgid "CD-RW/DVD-RAM"
+msgstr "CD-RW/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
+msgid "CD-RW/DVD-R"
+msgstr "CD-RW/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+msgid "CD-RW/DVD-RW"
+msgstr "CD-RW/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+msgid "Disk"
+msgstr "Disc"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+msgid "USB Drive"
+msgstr "Unitat USB"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
+msgid "IEEE1394 Drive"
+msgstr "Unitat IEEE1394"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
+msgid "CF"
+msgstr "CF"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
+msgid "SD/MMC"
+msgstr "SD/MMC"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
 msgid "Memory Stick"
 msgstr "Memòria portàtil"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
+msgid "Smart Media"
+msgstr "Smart Media"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
+msgid "Zip Drive"
+msgstr "Unitat Zip"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:605
 msgid "Camera"
 msgstr "Càmera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:606
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:822
 msgid "Root Volume"
 msgstr "Volum arrel"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:903
 msgid "Audio CD"
 msgstr "CD d'àudio"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
 msgid "Unknown volume"
 msgstr "Volum desconegut"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1116
 msgid "Network server"
 msgstr "Servidor de xarxa"
 
@@ -909,7 +994,7 @@ msgstr "Xarxa de Windows"
 #: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "La identitat de l'ordinador remot (%s) és desconeguda."
 
 #: modules/sftp-method.c:1340
 #, c-format
@@ -919,15 +1004,17 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Això passa quan entreu en un ordinador per primera vegada.\n"
+"\n"
+"La identitat enviada per l'ordinador remot és %s. Si voleu estar completament segur de que és segur continuar, contacteu amb l'administrador del sistema."
 
 #: modules/sftp-method.c:1348
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Entra igualment"
 
 #: modules/sftp-method.c:1349
-#, fuzzy
 msgid "Cancel Login"
-msgstr "Canvia la icona"
+msgstr "Cancel·la l'entrada"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -995,201 +1082,150 @@ msgstr ""
 "L'argument d'execució a usar per a l'aplicació de terminal predeterminada."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "Executa el programa en un terminal"
+msgstr "Executa l'ordre en un terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "L'ordre utilitzada per a gestionar URL «aim», si estan habilitades."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "L'ordre utilitzada per a gestionar URL «callto», si estan habilitades."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "L'ordre utilitzada per a gestionar URL «ghelp», si estan habilitades."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr ""
-"Vertader si el programa per a gestionar aquest URL hauria d'executar-se en "
-"un terminal."
+msgstr "L'ordre utilitzada per a gestionar URL «h323», si estan habilitades."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr ""
-"Vertader si el programa per a gestionar aquest URL hauria d'executar-se en "
-"un terminal."
+msgstr "L'ordre utilitzada per a gestionar URL «http», si estan habilitades."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr ""
-"Vertader si el programa per a gestionar aquest URL hauria d'executar-se en "
-"un terminal."
+msgstr "L'ordre utilitzada per a gestionar URL «https», si estan habilitades."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "L'ordre utilitzada per a gestionar URL «info», si estan habilitades"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "L'ordre utilitzada per a gestionar URL «mailto», si estan habilitades."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "L'ordre utilitzada per a gestionar URL «man», si estan habilitades."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "L'ordre utilitzada per a gestionar URL «trash», si estan habilitades."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Gestiona les URL man"
+msgstr "El gestor per a les URL «aim»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Gestiona les URL HTTPS"
+msgstr "El gestor per a les URL «callto»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Gestiona les URL ghelp"
+msgstr "El gestor per a les URL «ghelp»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Gestiona les URL H323"
+msgstr "El gestor per a les URL «h323»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Gestiona les URL ghelp"
+msgstr "El gestor per a les URL «http»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Gestiona les URL ghelp"
+msgstr "El gestor per a les URL «https»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Gestiona les URL info"
+msgstr "El gestor per a les URL «info»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Gestiona les URL mailto"
+msgstr "El gestor per a les URL «mailto»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Gestiona les URL man"
+msgstr "El gestor per a les URL «man»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Gestiona les URL trash"
+msgstr "El gestor per a les URL «trash»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL man."
+msgstr "Vertader si el programa especificat en la clau «command» hauria de gestionar les URL «aim»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
 msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL callto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
 msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL info."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
 msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL mailto."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
 msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL man."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
 msgstr ""
-"Establiu a vertader per a que un programa especificat en «command» gestione "
-"les URL trash."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
@@ -1455,42 +1491,6 @@ msgstr "Grup de treball d'SMB"
 msgid "The window workgroup the user is part of"
 msgstr "El grup de treball de Windows del qual és part l'usuari"
 
-#, fuzzy
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "Gestiona les URL HTTP"
-
-#, fuzzy
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "Gestiona les URL HTTPS"
-
-#, fuzzy
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTP "
-#~ "URLs."
-#~ msgstr ""
-#~ "Establiu a vertader per a que un programa especificat en «command» "
-#~ "gestione les URL HTTP."
-
-#, fuzzy
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTPS "
-#~ "URLs."
-#~ msgstr ""
-#~ "Establiu a vertader per a que un programa especificat en «command» "
-#~ "gestione les URL HTTPS."
-
-#, fuzzy
-#~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr ""
-#~ "Establiu a vertader per a que un programa especificat en «command» "
-#~ "gestione les URL HTTP."
-
-#, fuzzy
-#~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr ""
-#~ "Establiu a vertader per a que un programa especificat en «command» "
-#~ "gestione les URL HTTPS."
-
 #~ msgid "H323 URL handler"
 #~ msgstr "Gestor d'URL H323"
 
@@ -1499,10 +1499,6 @@ msgstr "El grup de treball de Windows del qual és part l'usuari"
 
 #~ msgid "HTTPS URL handler"
 #~ msgstr "Gestor d'URL HTTPS"
-
-#, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "Gestor d'URL man"
 
 #~ msgid "callto URL handler"
 #~ msgstr "Gestor d'URL callto"
