@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.6\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-02-18 22:55+0000\n"
+"Project-Id-Version: 2.8\n"
+"Report-Msgid-Bugs-To: <happyguy_pt@hotmail.com>\n"
+"POT-Creation-Date: 2004-07-21 22:49+0100\n"
+"PO-Revision-Date: 2004-07-21 22:55+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Could not initialize Bonobo"
 msgstr "Incapaz de inicializar Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:602
+#: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Incapaz de inicializar gnome vfs"
 
@@ -171,28 +171,140 @@ msgid "Pcfs Solaris Volume"
 msgstr "Unidade Solaris Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
+msgid "Sun SAM-QFS Volume"
+msgstr "Unidade Sun SAM-QFS"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
 msgstr "Unidade DOS Melhorado"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
 msgstr "Unidade Windows VFAT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
 msgstr "Unidade Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XFS Linux Volume"
 msgstr "Unidade Linux XFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XIAFS Volume"
 msgstr "Unidade XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:103
+#: libgnomevfs/gnome-vfs-filesystem-type.c:104
 msgid "Unknown"
 msgstr "Desconhecido"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:601
+msgid "CD Disc"
+msgstr "Disco CD"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:604
+msgid "Blank CD-R Disc"
+msgstr "Disco CD-R Virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:606
+msgid "CD-R Disc"
+msgstr "Disco CD-R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:609
+msgid "Blank CD-RW Disc"
+msgstr "Disco CD-RW Virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
+msgid "CD-RW Disc"
+msgstr "Disco CD-RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+msgid "DVD-ROM Disc"
+msgstr "Disco CVD-ROM"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
+msgid "Blank DVD-R Disc"
+msgstr "Disco DVD-R Virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+msgid "DVD-R Disc"
+msgstr "Disco DVD-R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
+msgid "Blank DVD-RAM Disc"
+msgstr "Disco DVD-RAM Virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
+msgid "DVD-RAM Disc"
+msgstr "Disco DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
+msgid "Blank DVD-RW Disc"
+msgstr "Disco DVD-RW Virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
+msgid "DVD-RW Disc"
+msgstr "Disco DVD-RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
+msgid "Blank DVD+RW Disc"
+msgstr "Disco DVD+RW Virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
+msgid "DVD+RW Disc"
+msgstr "Disco DVD+RW"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
+msgid "Blank DVD+R Disc"
+msgstr "Disco DVD+R Virgem"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
+msgid "DVD+R Disc"
+msgstr "Disco DVD+R"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+msgid "Optical Disc"
+msgstr "Disco Óptico"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
+msgid "Audio Disc"
+msgstr "Disco Audio"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
+msgid "Compact Flash Media"
+msgstr "Média de Flash Compacta"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:652
+msgid "Memory Stick Media"
+msgstr "Média de Caneta de Memória"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:654
+msgid "Smart Media Media"
+msgstr "Média Smart Media"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
+msgid "SD/MMC Media"
+msgstr "Média SD/MMC"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:658
+msgid "Floppy Disk"
+msgstr "Disquette"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+msgid "Mac OS disk"
+msgstr "Disco Mac OS"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+msgid "Mac OS X disk"
+msgstr "Disco Mac OS X"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:681
+msgid "Windows Disk"
+msgstr "Disco Windows"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:687
+msgid "Linux Disk"
+msgstr "Disco Linux"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -352,7 +464,7 @@ msgstr "Operação não permitida"
 msgid "Is a directory"
 msgstr "É um directório"
 
-#. GNOME_VFS_ERROR_NO_MEMMORY
+#. GNOME_VFS_ERROR_NO_MEMORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
 msgstr "Memória insuficiente"
@@ -452,7 +564,17 @@ msgstr "Erro ao parsear linha de comando"
 msgid "Error launching command"
 msgstr "Erro ao executar comando"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+msgid "Timeout reached"
+msgstr "Tempo limite atingido"
+
+#. GNOME_VFS_ERROR_NAMESERVER
+#: libgnomevfs/gnome-vfs-result.c:85
+msgid "Nameserver error"
+msgstr "Erro de servidor de nomes"
+
+#: libgnomevfs/gnome-vfs-result.c:200
 msgid "Unknown error"
 msgstr "Erro desconhecido"
 
@@ -479,55 +601,55 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
 msgid "Floppy"
 msgstr "Disquette"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
 msgid "Zip Drive"
 msgstr "Dispositivo Zip"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
 msgid "Memory Stick"
 msgstr "Caneta de Memória"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
 msgid "Camera"
 msgstr "Câmara"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
 msgstr "Unidade Raíz"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
 msgid "Audio CD"
 msgstr "CD Audio"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
 msgid "Unknown volume"
 msgstr "Unidade desconhecida"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
 msgid "Network server"
 msgstr "Servidor de rede"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:113
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
@@ -535,13 +657,13 @@ msgstr ""
 "nenhuma disquette dentro do dispositivo."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:117
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
 "Incapaz de montar a unidade. Provavelmente não existe nenhum media no "
 "dispositivo."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:123
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -549,7 +671,7 @@ msgstr ""
 "Incapaz de montar o dispositivo de disquette. Provavelmente a disquette "
 "encontra-se num formato que não pode ser montado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:126
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -557,28 +679,28 @@ msgstr ""
 "Incapaz de montar a unidade seleccionada. Provavelmente a unidade encontra-"
 "se num formato que não pode ser montado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:131
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
 msgstr "Incapaz de montar o dispositivo de disquette seleccionado."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
 msgstr "Incapaz de montar a unidade seleccionada."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:145
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
 msgstr "Incapaz de desmontar a unidade seleccionada."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:301
+#: libgnomevfs/gnome-vfs-volume-ops.c:256
+#: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
 msgstr "Falha ao iniciar comando"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:291
+#: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
 msgstr "Incapaz de ejectar media"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:480
+#: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "Incapaz de desmontar servidor ligado"
 
@@ -632,19 +754,19 @@ msgstr "Ferramentas"
 msgid "Windows"
 msgstr "Janelas"
 
-#: modules/computer-method.c:542
+#: modules/computer-method.c:545
 msgid "Network"
 msgstr "Rede"
 
-#: modules/computer-method.c:560
+#: modules/computer-method.c:563
 msgid "Home"
 msgstr "Pasta Pessoal"
 
-#: modules/computer-method.c:578
+#: modules/computer-method.c:581
 msgid "Filesystem"
 msgstr "Sistema de ficheiros"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d desconhecida"
@@ -656,7 +778,7 @@ msgstr "Rede Windows"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "Desconhece-se a identidade do comuptador remoto (%s)."
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -666,14 +788,18 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Isto acontece quando inicia uma sessão num computador pela primeira vez.\n"
+"\n"
+"A identidade enviada pelo computador remoto é %s. Se deseja ter a certeza "
+"absoluta de que é seguro prosseguir, contacte o administrador de sistemas."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Ainda Assim Iniciar Sessão"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "Cancelar o Início de Sessão"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -765,9 +891,8 @@ msgid "Handle HTTPS URLs"
 msgstr "Manipulador de URLs HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle aim URLs"
-msgstr "Manipulador de URLs man"
+msgstr "Manipulador de URLs aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
@@ -819,11 +944,10 @@ msgstr ""
 "manipule URLs HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle aim URLs."
 msgstr ""
 "Definir como verdadeiro para que a aplicação especificada em \"command\" "
-"manipule URLs man."
+"manipule URLs aim."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
@@ -873,9 +997,8 @@ msgstr ""
 "consola."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid "aim URL handler"
-msgstr "Manipulador de URL man"
+msgstr "Manipulador de URL aim"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
@@ -906,18 +1029,20 @@ msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
 msgstr ""
+"Lista separada por vírgulas de domínios dns-sd que deveriam ser visíveis na "
+"localização de rede."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Domínios adicionais onde procurar serviços dns-sd"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Como apresentar o serviço DNS-SD local"
 
 #: schemas/system_dns_sd.schemas.in.h:4
-msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr ""
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
+msgstr "Valores possíveis são \"merged\", \"separate\" e \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
