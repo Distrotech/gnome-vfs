@@ -1,5 +1,11 @@
 2003-05-05  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/Makefile.am: 
+	* configure.in:
+	Go to libgnome/gtk+ style library versioning.
+
+2003-05-05  Alexander Larsson  <alexl@redhat.com>
+
 	* NEWS:
 	Update
 

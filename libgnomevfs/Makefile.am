@@ -37,8 +37,12 @@ lib_LTLIBRARIES = libgnomevfs-2.la
 libgnomevfs_2_la_LIBADD =			\
 	$(LIBGNOMEVFS_LIBS)			\
 	$(NULL)
+
 libgnomevfs_2_la_LDFLAGS =			\
-	-no-undefined
+	-version-info $(LIBGNOMEVFS_CURRENT):$(LIBGNOMEVFS_REVISION):$(LIBGNOMEVFS_AGE) \
+	-export-symbols-regex "^[^_].*" \
+	-no-undefined \
+	$(NULL)
 
 libgnomevfsincludedir = $(includedir)/gnome-vfs-2.0/libgnomevfs
 
