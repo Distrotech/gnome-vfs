@@ -29,6 +29,7 @@
 #include <gtk/gtksignal.h>
 #include <stdio.h>
 #include <libgnome/gnome-util.h>
+#include <sys/stat.h>
 
 static char *get_user_level (void);
 static gboolean str_to_bool (const char *str);
@@ -37,7 +38,6 @@ static char *join_str_list (const char *separator, GList *list);
 static char *extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix);
 static char *mime_type_get_supertype (const char *mime_type);
 static char **strsplit_handle_null (const char *str, const char *delim, int max);
-static OAF_ServerInfo *OAF_ServerInfo__copy (OAF_ServerInfo *orig);
 static GList *OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
 static GList *process_app_list (GList *id_list);
 static GList *comma_separated_str_to_str_list (const char *str);
@@ -46,6 +46,7 @@ static char *str_list_to_comma_separated_str (GList *list);
 static GList *gnome_vfs_strsplit_to_list (const char *str, const char *delim, int max);
 static char *gnome_vfs_strjoin_from_list (const char *separator, GList *list);
 static void g_list_free_deep (GList *list);
+static GList *prune_ids_for_nonexistent_applications (GList *list);
 
 
 GnomeVFSMimeActionType
@@ -133,6 +134,10 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 			return default_application;
 		}
 	}
+
+	/* FIXME: Instead of returning NULL we need to chose from
+	 * pruned system lists here.
+	 */
 
 	return gnome_vfs_mime_application_new_from_id (default_application_id);
 }
@@ -232,7 +237,7 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	default_component = NULL;
 	if (ev._major == CORBA_NO_EXCEPTION) {
 		if (info_list != NULL && info_list->_length > 0) {
-			default_component = OAF_ServerInfo__copy (&info_list->_buffer[0]);
+			default_component = OAF_ServerInfo_duplicate (&info_list->_buffer[0]);
 		}
 		CORBA_free (info_list);
 	}
@@ -364,6 +369,8 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	system_short_list = comma_separated_str_to_str_list (gnome_vfs_mime_get_value_for_user_level 
 							     (mime_type, 
 							      "short_list_application_ids"));
+	system_short_list = prune_ids_for_nonexistent_applications
+		(system_short_list);
 
 	/* get user short list delta (add list and remove list) */
 
@@ -383,6 +390,8 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 			(gnome_vfs_mime_get_value_for_user_level 
 			 (supertype, 
 			  "short_list_application_ids"));
+		supertype_short_list = prune_ids_for_nonexistent_applications
+			(supertype_short_list);
 
 		/* get supertype short list delta (add list and remove list) */
 
@@ -583,6 +592,8 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
  	system_all_application_ids = comma_separated_str_to_str_list 
 		(gnome_vfs_mime_get_value 
 		 (mime_type, "system_all_application_ids"));
+	system_all_application_ids = prune_ids_for_nonexistent_applications
+		(system_all_application_ids);
 
  	user_all_application_ids = comma_separated_str_to_str_list
 		(gnome_vfs_mime_get_value 
@@ -595,6 +606,8 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 			(gnome_vfs_mime_get_value
 			 (supertype, 
 			  "system_all_application_ids"));
+		supertype_all_application_ids = prune_ids_for_nonexistent_applications
+			(supertype_all_application_ids);
 
 		supertype_user_all_application_ids = comma_separated_str_to_str_list 
 			(gnome_vfs_mime_get_value
@@ -1449,7 +1462,8 @@ strsplit_handle_null (const char *str, const char *delim, int max)
 }
 
 GnomeVFSMimeApplication *
-gnome_vfs_mime_application_new_from_id (const char *id) {
+gnome_vfs_mime_application_new_from_id (const char *id)
+{
 	GnomeVFSMimeApplication *application;
 	const char *command;
 	const char *name;
@@ -1498,38 +1512,122 @@ gnome_vfs_mime_application_new_from_id (const char *id) {
 	return application;
 }
 
-
-static OAF_ServerInfo *
-OAF_ServerInfo__copy (OAF_ServerInfo *orig)
+static char *
+strdup_to (const char *string, const char *end)
 {
-	OAF_ServerInfo *retval;
-	int i;
+	if (end == NULL) {
+		return g_strdup (string);
+	}
+	return g_strndup (string, end - string);
+}
 
-	retval = OAF_ServerInfo__alloc ();
-	
-	retval->iid = CORBA_string_dup (orig->iid);
-	retval->server_type = CORBA_string_dup (orig->server_type);
-	retval->location_info = CORBA_string_dup (orig->location_info);
-	retval->username= CORBA_string_dup (orig->username);
-	retval->hostname= CORBA_string_dup (orig->hostname);
-	retval->domain= CORBA_string_dup (orig->domain);
+static gboolean
+is_executable_file (const char *path)
+{
+	struct stat stat_buffer;
 
-	retval->attrs._maximum = orig->attrs._maximum;
-	retval->attrs._length = orig->attrs._length;
-	
-	retval->attrs._buffer = CORBA_sequence_OAF_Attribute_allocbuf (retval->attrs._length);
-	memcpy (retval->attrs._buffer, orig->attrs._buffer, (sizeof (OAF_Attribute)) * retval->attrs._length);
-	
-	for (i = 0; i < retval->attrs._length; i++) {
-		retval->attrs._buffer[i].name = CORBA_string_dup (retval->attrs._buffer[i].name);
-		if (retval->attrs._buffer[i].v._d == OAF_A_STRING) {
-			retval->attrs._buffer[i].v._u.value_string = CORBA_string_dup (retval->attrs._buffer[i].v._u.value_string);
+	/* Check that it exists. */
+	if (stat (path, &stat_buffer) != 0) {
+		return FALSE;
+	}
+
+	/* Check that it is a file. */
+	if (!S_ISREG (stat_buffer.st_mode)) {
+		return FALSE;
+	}
+
+	/* Check that it's executable. */
+	if (access (path, X_OK) != 0) {
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+static gboolean
+executable_in_path (const char *executable_name)
+{
+	const char *path_list, *piece_start, *piece_end;
+	char *piece, *path;
+	gboolean is_good;
+
+	path_list = g_getenv ("PATH");
+
+	for (piece_start = path_list; ; piece_start = piece_end + 1) {
+		/* Find the next piece of PATH. */
+		piece_end = strchr (piece_start, ':');
+		piece = strdup_to (piece_start, piece_end);
+		g_strstrip (piece);
 		
+		if (piece[0] == '\0') {
+			is_good = FALSE;
+		} else {
+			/* Try out this path with the executable. */
+			path = g_strconcat (piece, "/", executable_name, NULL);
+			is_good = is_executable_file (path);
+			g_free (path);
+		}
+		
+		g_free (piece);
+		
+		if (is_good) {
+			return TRUE;
+		}
+
+		if (piece_end == NULL) {
+			return FALSE;
 		}
 	}
-	retval->attrs._release = FALSE;
+}
 
-	return retval;
+static char *
+get_executable_name_from_command_string (const char *command)
+{
+	/* FIXME: Do we need to handle quoting? */
+	return strdup_to (command, strchr (command, ' '));
+}
+
+static gboolean
+application_known_to_be_nonexistent (const char *application_id)
+{
+	char *id_hack_mime_type;
+	const char *command;
+	char *executable_name;
+	gboolean found;
+
+	id_hack_mime_type = g_strconcat ("x-application-registry-hack/",
+					 application_id,
+					 NULL);
+	command = gnome_vfs_mime_get_value (id_hack_mime_type,
+					    "command");
+	if (command == NULL) {
+		return TRUE;
+	}
+
+	executable_name = get_executable_name_from_command_string (command);
+	g_strstrip (executable_name);
+	found = executable_in_path (executable_name);
+	g_free (executable_name);
+
+	return !found;
+}
+
+static GList *
+prune_ids_for_nonexistent_applications (GList *list)
+{
+	GList *p, *next;
+
+	for (p = list; p != NULL; p = next) {
+		next = p->next;
+
+		if (application_known_to_be_nonexistent (p->data)) {
+			list = g_list_remove_link (list, p);
+			g_free (p->data);
+			g_list_free (p);
+		}
+	}
+
+	return list;
 }
 
 static GList *
@@ -1541,15 +1639,13 @@ OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list)
 	retval = NULL;
 	if (info_list != NULL && info_list->_length > 0) {
 		for (i = 0; i < info_list->_length; i++) {
-			retval = g_list_prepend (retval, OAF_ServerInfo__copy (&info_list->_buffer[i]));
+			retval = g_list_prepend (retval, OAF_ServerInfo_duplicate (&info_list->_buffer[i]));
 		}
 		retval = g_list_reverse (retval);
 	}
 
 	return retval;
 }
-
-
 
 static GList *
 process_app_list (GList *id_list) 
@@ -1573,7 +1669,7 @@ process_app_list (GList *id_list)
 
 	return applications;
 }
-	
+
 
 /* Returns the Nautilus user level, a string.
  * This does beg the question: Why does gnome-vfs have the Nautilus

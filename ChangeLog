@@ -1,3 +1,26 @@
+2000-06-16  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_application): Added a FIXME to note
+	that we need to enhance the "default-application" feature.
+	(gnome_vfs_mime_get_default_component): Use the new exported
+	liboaf.h OAF_ServerInfo_duplicate instead of our own, local,
+	flawed function.
+	(gnome_vfs_mime_get_short_list_applications),
+	(gnome_vfs_mime_get_all_applications),
+	Prune the list to only ones with applications that "exist"
+	by calling the new prune_ids_for_nonexistent_applications
+	function.
+	(strdup_to), (is_executable_file), (executable_in_path),
+	(get_executable_name_from_command_string),
+	(application_known_to_be_nonexistent),
+	(prune_ids_for_nonexistent_applications):
+	Write the functions needed for a clean implementation of
+	prune_ids_for_nonexistent_applications.
+	(OAF_ServerInfoList_to_ServerInfo_g_list): Use the new exported
+	liboaf.h OAF_ServerInfo_duplicate instead of our own, local,
+	flawed function.
+
 2000-06-16  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.keys,
