@@ -169,7 +169,7 @@ application/x-object-file
 	ext: o
 
 application/x-php
-        ext: php
+        ext: php php3 php4
 
 application/x-profile
         regex: gmon\.out$
@@ -251,6 +251,9 @@ audio/x-mod
 audio/x-mp3
 	ext: mp3
 
+audio/x-mpegurl
+	ext: m3u
+
 audio/x-pn-realaudio
 	ext: rm ra ram
 
@@ -287,7 +290,7 @@ image/ief
 	ext: ief
 
 image/jpeg
-	ext: jpe jpeg jpg JPG
+	ext: jpe jpeg jpg
 
 image/png
 	ext: png
@@ -415,7 +418,7 @@ text/x-c
 	ext: c h
 
 text/x-c++
-	ext: cc C cpp
+	ext: cc C cpp c++ hp H h++
 
 text/x-comma-separated-values
 	ext: csv
