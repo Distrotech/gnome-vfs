@@ -190,6 +190,7 @@ test_read_file_async (GnomeVFSURI *uri)
 	gnome_vfs_async_open_uri (&result,
 			      uri,
 			      GNOME_VFS_OPEN_READ,
+			      0,
 			      test_read_file_open_callback,
 			      NULL);
 
@@ -306,6 +307,7 @@ main (int argc, const char **argv)
 		 text_uri,
 		 (GNOME_VFS_FILE_INFO_GET_MIME_TYPE | GNOME_VFS_FILE_INFO_FOLLOW_LINKS),
 		 items_per_notification,
+		 0,
 		 directory_load_callback,
 		 &callback_data);
 

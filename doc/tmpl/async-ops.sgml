@@ -7,7 +7,45 @@ allows for non-blocking file operations
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+The number of concurrent asynchronous jobs is limited.
+When the limit is reached jobs are put into a queue.
+The priority parameter determines which job is taken
+from the queue first and when.
+</para>
+<para>
+Priority values range from -10 to 10, lower priority values
+mean higher priority.
+</para>
+<para>
+How to decide the priority of a job?
+</para>
+<para>
+Generally speaking jobs that can wait should be low priority,
+jobs that are urgent should be high priority.
+</para>
+<para>
+Another possible approach is that jobs that potentially
+take long to finish should be low priority, jobs that finish
+quickly should be high priority. 
+</para>
+<para>
+For example, if your application is doing something in the
+background (e.g. looking for a directory) it can wait: choose
+low priority like 10.
+If you need update the user interface with the contents of
+a directory it should happen quickly: use a -10 priority job.
+</para>
+<para>
+How to choose the priority value?
+</para>
+<para>
+The scheduling algorithm reserves threads for high priority
+jobs so that running low priority jobs can't block high
+priority ones.
+The priority value of a job determines the maximum number of
+running jobs so that the job can start. E.g. if a job has
+a priority of -7 then it can start if there are less then
+8 jobs running (using the default thread limit of 10).
 </para>
 
 <!-- ##### SECTION See_Also ##### -->
@@ -31,6 +69,7 @@ Opens a text-based URI according to @open_mode
 @handle_return: a reference to where the newly created handle pointer should be stored
 @text_uri: string representation of the URI
 @open_mode: open mode
+@priority: job priority
 @callback: a callback for when the URI is opened or an error occured
 @callback_data: data to be passed to the callback function
 
@@ -43,6 +82,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @handle_return: a reference to where the newly created handle pointer should be stored
 @uri: @GnomeVFSURI to open
 @open_mode: open mode
+@priority:  job priority
 @callback: a callback for when the URI is opened or an error occured
 @callback_data: data to be passed to the callback function
 
@@ -56,6 +96,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @text_uri: 
 @open_mode: 
 @advised_block_size: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 
@@ -69,6 +110,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @uri: 
 @open_mode: 
 @advised_block_size: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 
@@ -83,6 +125,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @open_mode: 
 @exclusive: 
 @perm: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 
@@ -97,6 +140,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @open_mode: 
 @exclusive: 
 @perm: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 
@@ -109,6 +153,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @handle_return: a reference to where the newly created handle pointer should be stored
 @uri: 
 @uri_reference: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 
@@ -123,6 +168,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @open_mode: 
 @exclusive: 
 @perm: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 
@@ -137,6 +183,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @open_mode: 
 @exclusive: 
 @perm: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 
@@ -183,6 +230,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @handle_return: a reference to where the newly created handle pointer should be stored
 @uri_list: 
 @options: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 
@@ -197,6 +245,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @info: 
 @mask: 
 @options: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 
@@ -210,6 +259,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @text_uri: 
 @options: 
 @items_per_notification: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 <!-- # Unused Parameters # -->
@@ -227,6 +277,7 @@ Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @Gn
 @uri: 
 @options: 
 @items_per_notification: 
+@priority:  job priority
 @callback: 
 @callback_data: data to be passed to the callback function
 <!-- # Unused Parameters # -->
@@ -246,6 +297,7 @@ Transfers file(s) from one location to another
 @xfer_options: 
 @error_mode: 
 @overwrite_mode: 
+@priority:  job priority
 @progress_update_callback: 
 @update_callback_data: data to be passed to the progress update callback function
 @progress_sync_callback: 
@@ -264,6 +316,7 @@ Transfers file(s) from one location to another
 @create_if_needed: 
 @find_if_needed: 
 @permissions: 
+@priority:  job priority
 @callback: 
 @user_data: data to be passed to the callback function
 

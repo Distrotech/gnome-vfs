@@ -1,6 +1,7 @@
 #include "gnome-vfs-pthread.h"
 #include "gnome-vfs-async-job-map.h"
 #include "gnome-vfs-thread-pool.h"
+#include "gnome-vfs-job-queue.h"
 
 gboolean
 gnome_vfs_pthread_init (gboolean init_deps)
@@ -11,6 +12,7 @@ gnome_vfs_pthread_init (gboolean init_deps)
 	
 	gnome_vfs_async_job_map_init ();
 	gnome_vfs_thread_pool_init ();
+	gnome_vfs_job_queue_init ();
 	return TRUE;
 }
 

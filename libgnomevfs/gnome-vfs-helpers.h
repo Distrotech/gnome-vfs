@@ -53,9 +53,11 @@ GnomeVFSResult     gnome_vfs_x_read_entire_file                  (const char    
 							  int                  *file_size,
 							  char                **file_contents);
 GnomeVFSXReadFileHandle *gnome_vfs_x_read_entire_file_async            (const char           *uri,
+							  int                         priority,
 							  GnomeVFSXReadFileCallback   callback,
 							  gpointer              callback_data);
 GnomeVFSXReadFileHandle *gnome_vfs_x_read_file_async                   (const char           *uri,
+							  int                         priority,
 							  GnomeVFSXReadFileCallback   callback,
 							  GnomeVFSXReadMoreCallback   read_more_callback,
 							  gpointer              callback_data);

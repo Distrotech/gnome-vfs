@@ -220,7 +220,7 @@ make_link_async (const char *uri, const char *target_reference, const char *targ
 	info->expected_result = expected_result;
 	info->target_reference = target_reference;
 
-	gnome_vfs_async_create_symbolic_link (&handle, gnome_vfs_uri_new(uri), target_reference, create_link_callback, info);
+	gnome_vfs_async_create_symbolic_link (&handle, gnome_vfs_uri_new(uri), target_reference, 0, create_link_callback, info);
 }
 
 static void

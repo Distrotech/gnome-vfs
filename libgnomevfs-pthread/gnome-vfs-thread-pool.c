@@ -23,8 +23,9 @@
 
 #include <config.h>
 #include "gnome-vfs-thread-pool.h"
-
+#include "gnome-vfs-job-queue.h"
 #include "gnome-vfs-pthread.h"
+#include <libgnomevfs/gnome-vfs-job-limit.h>
 #include <glib/glist.h>
 #include <glib/gmessages.h>
 
@@ -105,6 +106,7 @@ make_thread_available (GnomeVFSThreadState *state)
 {
 	/* thread is done with it's work, add it to the available pool */
 	gboolean delete_thread = TRUE;
+	int job_limit;
 
 	pthread_mutex_lock (&state->waiting_for_work_lock);
 	/* we are done with the last task, clear it out */
@@ -113,7 +115,8 @@ make_thread_available (GnomeVFSThreadState *state)
 
 	pthread_mutex_lock (&thread_list_lock);
 
-	if (thread_count < MAX_AVAILABLE_THREADS) {
+	job_limit = gnome_vfs_async_get_job_limit();
+	if (thread_count < MIN(MAX_AVAILABLE_THREADS, job_limit)) {
 		/* haven't hit the max thread limit yet, add the now available
 		 * thread to the pool
 		 */
@@ -121,7 +124,7 @@ make_thread_available (GnomeVFSThreadState *state)
 		thread_count++;
 		delete_thread = FALSE;
 		DEBUG_PRINT (("adding thread %x the pool, %d threads\n",
-			(guint)state->thread_id, thread_count));
+			      (guint)state->thread_id, thread_count));
 	}
 
 	pthread_mutex_unlock (&thread_list_lock);
@@ -175,13 +178,18 @@ thread_entry (void *cast_to_state)
 
 		/* Enter the actual thread entry point. */
 		(*state->entry_point) (state->entry_data);
-		
+
 		if (!make_thread_available (state)) {
 			/* Available thread pool is full of threads, just let this one
 			 * expire.
 			 */
 			break;
 		}
+
+		/* We're finished with this job so run the job queue scheduler 
+		 * to start a new job if the queue is not empty
+		 */
+		gnome_vfs_job_queue_run();
 	}
 
 	destroy_thread_state (state);
@@ -205,8 +213,6 @@ gnome_vfs_thread_create (pthread_t *thread, void *(* thread_routine) (void *),
 		thread_count--;
 		DEBUG_PRINT (("got thread %x from the pool, %d threads left\n",
 			(guint)available_thread->thread_id, thread_count));
-		
-
 	}
 	pthread_mutex_unlock (&thread_list_lock);
 	
@@ -259,3 +265,4 @@ gnome_vfs_thread_pool_shutdown (void)
 		pthread_mutex_unlock (&thread_state->waiting_for_work_lock);
 	}
 }
+

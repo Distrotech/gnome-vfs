@@ -26,6 +26,7 @@
 
 #include "gnome-vfs-async-job-map.h"
 #include "gnome-vfs-thread-pool.h"
+#include "gnome-vfs-job-queue.h"
 #include <glib/gmessages.h>
 #include <pthread.h>
 #include <unistd.h>
@@ -123,6 +124,8 @@ gnome_vfs_thread_backend_shutdown (void)
 	gnome_vfs_quitting = TRUE;
 
 	JOB_DEBUG (("###### shutting down"));
+
+	gnome_vfs_job_queue_shutdown();
 
 	for (count = 0; ; count++) {
 		/* Check if it is OK to quit. Originally we used a

@@ -1,3 +1,60 @@
+2001-10-15  Laszlo Peter <laca@ireland.sun.com>
+
+	Patch for 48545 - add prioritized versions of all async calls
+
+	* libgnomevfs/gnome-vfs-async-ops.h,
+	  libgnomevfs-pthread/gnome-vfs-async-ops.c,
+	  libgnomevfs/gnome-vfs-helpers.h,
+	  libgnomevfs/gnome-vfs-helpers.c:
+	  added a new argument to all async operations, the job priority,
+	  which comes just before the callback. Priority is an int, valid
+	  range is GNOME_VFS_MIN_PRIORITY (-10) to GNOME_VFS_MAX_PRIORITY
+	  (+10). Use GNOME_VFS_DEFAULT_PRIORITY (0) if you don't care.
+
+	* libgnomevfs-pthread/gnome-vfs-job-queue.h,
+	  libgnomevfs-pthread/gnome-vfs-job-queue.c: (new files)
+          Put async jobs in a queue if the number of concurrent jobs
+          exceeds a limit. Start jobs based on the priority.
+	  Public functions gnome_vfs_async_{get,set}_job_limit can be
+	  used to change the default job limit.
+
+	* libgnomevfs/gnome-vfs-job-limit.h: (new file) public prototypes
+	  of the functions to get/set the job limit.
+
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+          (gnome_vfs_thread_backend_shutdown): shut down the job queue
+
+	* libgnomevfs-pthread/gnome-vfs-job.h: added the priority to
+	  GnomeVFSJob.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_new):
+	  added the priority argument. (gnome_vfs_job_go): call the
+	  job scheduler instead of starting the job immediately.
+	  
+	* libgnomevfs-pthread/gnome-vfs-pthread.c: (gnome_vfs_pthread_init):
+	  initialize the job queue.
+
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.c (thread_entry):
+	  check the job queue when a job is finished.
+
+	* modules/test-method.c: (vfs_module_init): take the config file
+	  from GNOME_VFS_TEST_CONFIG_FILE env. variable if defined.
+	  (start_operation): use select() instead of usleep().
+
+	* test/test-async-cancel.c, test/test-async-directory.c,
+	  test/test-async.c, test/test-callback.c, test/test-channel.c,
+	  test/test-symlinks.c: added 0 priority to all async calls.
+
+	* test/test-queue.c: (new file): test program for the job queue.
+
+	* queue-test-config.xml: (new file): config file for the test
+	  method. Used by test-queue.
+
+	* doc/tmpl/async-ops.sgml: added docs on priority and scheduling.
+
+	* libgnomevfs/Makefile.am, libgnomevfs-pthread/Makefile.am,
+	  test/Makefile.am: added the new files.
+
 Sun Oct 14 23:25:41 2001  George Lebl <jirka@5z.com>
 
 	* modules/Makefile.am, modules/programs.vfolder-info.in,

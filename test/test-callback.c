@@ -171,6 +171,7 @@ main (int argc, char **argv)
 		&async_handle, 
 		authentication_uri,
 		GNOME_VFS_OPEN_READ,
+		0,
 		open_callback,
 		NULL);
 
@@ -281,6 +282,7 @@ main (int argc, char **argv)
 		&async_handle, 
 		authentication_uri,
 		GNOME_VFS_OPEN_READ,
+		0,
 		open_callback,
 		NULL);
 

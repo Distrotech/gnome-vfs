@@ -358,9 +358,13 @@ struct GnomeVFSJob {
 	
 	/* Unique identifier of this job (a uint, really) */
 	GnomeVFSAsyncHandle *job_handle;
+
+	/* The priority of this job */
+	int priority;
 };
 
 GnomeVFSJob 	*gnome_vfs_job_new      	  (GnomeVFSOpType  	 type,
+						   int			 priority,
 				      		   GFunc           	 callback,
 				      		   gpointer        	 callback_data);
 void         	 gnome_vfs_job_destroy  	  (GnomeVFSJob     	*job);

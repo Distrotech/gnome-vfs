@@ -21,5 +21,7 @@ libgnomevfs_pthread_la_SOURCES =		\
 	gnome-vfs-job-slave.h			\
 	gnome-vfs-pthread.c			\
 	gnome-vfs-pthread.h			\
+	gnome-vfs-job-queue.c			\
+	gnome-vfs-job-queue.h			\
 	gnome-vfs-thread-pool.c			\
 	gnome-vfs-thread-pool.h

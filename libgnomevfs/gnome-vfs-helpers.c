@@ -580,9 +580,10 @@ pthread_gnome_vfs_x_read_file_async_cancel (GnomeVFSXReadFileHandle *handle)
 /* Set up the read handle and start reading. */
 GnomeVFSXReadFileHandle *
 gnome_vfs_x_read_file_async (const char *uri,
-			  GnomeVFSXReadFileCallback callback,
-			  GnomeVFSXReadMoreCallback read_more_callback,
-			  gpointer callback_data)
+			     int priority,
+			     GnomeVFSXReadFileCallback callback,
+			     GnomeVFSXReadMoreCallback read_more_callback,
+			     gpointer callback_data)
 {
 #ifndef PTHREAD_ASYNC_READ
 	GnomeVFSXReadFileHandle *handle;
@@ -596,6 +597,7 @@ gnome_vfs_x_read_file_async (const char *uri,
 	gnome_vfs_async_open (&handle->handle,
 			      uri,
 			      GNOME_VFS_OPEN_READ,
+			      priority,
 			      read_file_open_callback,
 			      handle);
 	return handle;
@@ -608,10 +610,11 @@ gnome_vfs_x_read_file_async (const char *uri,
 /* Set up the read handle and start reading. */
 GnomeVFSXReadFileHandle *
 gnome_vfs_x_read_entire_file_async (const char *uri,
-				 GnomeVFSXReadFileCallback callback,
-				 gpointer callback_data)
+				    int priority,
+				    GnomeVFSXReadFileCallback callback,
+				    gpointer callback_data)
 {
-	return gnome_vfs_x_read_file_async (uri, callback, NULL, callback_data);
+	return gnome_vfs_x_read_file_async (uri, priority, callback, NULL, callback_data);
 }
 
 /* Stop the presses! */

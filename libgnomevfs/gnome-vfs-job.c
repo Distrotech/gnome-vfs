@@ -32,6 +32,7 @@ System (version for POSIX threads).
 
 #include "gnome-vfs-async-job-map.h"
 #include "gnome-vfs-job-slave.h"
+#include "gnome-vfs-job-queue.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <glib/gmessages.h>
@@ -607,7 +608,7 @@ gnome_vfs_job_set (GnomeVFSJob *job,
 }
 
 GnomeVFSJob *
-gnome_vfs_job_new (GnomeVFSOpType type, GFunc callback, gpointer callback_data)
+gnome_vfs_job_new (GnomeVFSOpType type, int priority, GFunc callback, gpointer callback_data)
 {
 	GnomeVFSJob *new_job;
 	
@@ -616,6 +617,7 @@ gnome_vfs_job_new (GnomeVFSOpType type, GFunc callback, gpointer callback_data)
 	sem_init (&new_job->access_lock, 0, 1);
 	new_job->notify_ack_condition = g_cond_new ();
 	new_job->notify_ack_lock = g_mutex_new ();
+	new_job->priority = priority;
 
 	/* Add the new job into the job hash table. This also assigns
 	 * the job a unique id
@@ -724,8 +726,8 @@ void
 gnome_vfs_job_go (GnomeVFSJob *job)
 {
 	/* Fire up the async job thread. */
-	if (!gnome_vfs_job_create_slave (job)) {
-		g_warning ("Cannot create job slave.");
+	if (!gnome_vfs_job_schedule (job)) {
+		g_warning ("Cannot schedule this job.");
 		gnome_vfs_job_destroy (job);
 		return;
 	}

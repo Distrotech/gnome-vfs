@@ -45,8 +45,11 @@
 #include <libxml/tree.h>
 #include <libxml/xmlmemory.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
+#define TEST_CONF_ENV_VARIABLE "GNOME_VFS_TEST_CONFIG_FILE"
 
 typedef struct {
 	char *operation_name;
@@ -172,9 +175,13 @@ start_operation (const char *name,
 		 GnomeVFSURI **saved_uri)
 {
 	const OperationSettings *settings;
+	struct timeval tv;
 
 	settings = get_operation_settings (name);
-	usleep (settings->delay * 1000);
+
+	tv.tv_sec = settings->delay / 1000;
+	tv.tv_usec = 1000 * (settings->delay % 1000);
+	select (0, NULL, NULL, NULL, &tv);
 	
 	if (uri != NULL) {
 		*saved_uri = *uri;
@@ -565,13 +572,23 @@ static GnomeVFSMethod method = {
 GnomeVFSMethod *
 vfs_module_init (const char *method_name, const char *args)
 {
+	char *conf_file;
+
 	LIBXML_TEST_VERSION
 	
-	if (load_settings (PREFIX "/etc/vfs/Test-conf.xml") == FALSE) {
+	conf_file = getenv (TEST_CONF_ENV_VARIABLE);
+
+	if (conf_file == NULL) {
+		conf_file = PREFIX "/etc/vfs/Test-conf.xml";
+	}
+
+	if (load_settings (conf_file) == FALSE) {
 
 	  // FIXME: we probably shouldn't use printf to output the message
 	  printf (_("Didn't find a valid settings file at %s\n"), 
-		  PREFIX "/etc/vfs/Test-conf.xml");
+		  conf_file);
+	  printf (_("Use the %s environment variable to specify a different location.\n"),
+		  TEST_CONF_ENV_VARIABLE);
 	  properly_initialized = FALSE;
 	} else {
 	  properly_initialized = TRUE;

@@ -108,6 +108,7 @@ main (int argc, char **argv)
 	gnome_vfs_async_open_as_channel (&handle, argv[1],
 					 GNOME_VFS_OPEN_READ,
 					 BUFFER_SIZE,
+					 0,
 					 open_callback,
 					 "open_callback");
 

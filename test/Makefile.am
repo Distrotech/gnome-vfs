@@ -36,6 +36,7 @@ noinst_PROGRAMS =				\
 	test-xfer				\
 	test-callback				\
 	test-module-selftest			\
+	test-queue				\
 	$(NULL)
 
 test_files=		\
@@ -50,8 +51,10 @@ auto_tests=
 endif
 
 # Set up the environment so the tests can find the modules
-TESTS_ENVIRONMENT = GNOME_VFS_MODULE_PATH=$(top_builddir)/modules/.libs GNOME_VFS_MODULE_CONFIG_PATH=$(top_srcdir)/modules
-TESTS = test-async-cancel test-escape test-uri $(auto_tests)
+TESTS_ENVIRONMENT = GNOME_VFS_MODULE_PATH=$(top_builddir)/modules/.libs \
+		GNOME_VFS_MODULE_CONFIG_PATH=$(top_srcdir)/modules \
+		GNOME_VFS_TEST_CONFIG_FILE=$(top_srcdir)/test/queue-test-config.xml
+TESTS = test-async-cancel test-escape test-uri test-queue $(auto_tests)
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs-2.la	\
@@ -138,6 +141,9 @@ test_callback_LDADD = $(libraries)
 
 test_module_selftest_SOURCES = test-module-selftest.c
 test_module_selftest_LDADD = $(libraries)
+
+test_queue_SOURCES = test-queue.c
+test_queue_LDADD = $(libraries)
 
 EXTRA_DIST =					\
 	$(test_files)				\

@@ -217,6 +217,7 @@ first_get_file_info (void)
 	gnome_vfs_async_get_file_info (&test_handle,
 				       uri_list,
 				       GNOME_VFS_FILE_INFO_DEFAULT,
+				       0,
 				       get_file_info_callback,
 				       test_callback_data);
 	g_list_free (uri_list);
@@ -242,6 +243,7 @@ test_get_file_info (void)
 	gnome_vfs_async_get_file_info (&test_handle,
 				       uri_list,
 				       GNOME_VFS_FILE_INFO_DEFAULT,
+				       0,
 				       get_file_info_callback,
 				       test_callback_data);
 	g_list_free (uri_list);
@@ -260,6 +262,7 @@ test_get_file_info (void)
 	gnome_vfs_async_get_file_info (&test_handle,
 				       uri_list,
 				       GNOME_VFS_FILE_INFO_DEFAULT,
+				       0,
 				       get_file_info_callback,
 				       test_callback_data);
 	g_list_free (uri_list);
@@ -368,6 +371,7 @@ test_open_read_close (void)
 	gnome_vfs_async_open (&test_handle,
 			      "file:///etc/passwd",
 			      GNOME_VFS_OPEN_READ,
+			      0,
 			      file_open_callback,
 			      test_callback_data);
 	TEST_ASSERT (wait_for_boolean (&file_open_flag), ("open: callback was not called"));
@@ -400,6 +404,7 @@ test_open_read_cancel_close (void)
 	gnome_vfs_async_open (&test_handle,
 			      "file:///etc/passwd",
 			      GNOME_VFS_OPEN_READ,
+			      0,
 			      file_open_callback,
 			      test_callback_data);
 	TEST_ASSERT (wait_for_boolean (&file_open_flag), ("open: callback was not called"));
@@ -433,6 +438,7 @@ test_open_close (void)
 	gnome_vfs_async_open (&test_handle,
 			      "file:///etc/passwd",
 			      GNOME_VFS_OPEN_READ,
+			      0,
 			      file_open_callback,
 			      test_callback_data);
 	TEST_ASSERT (wait_for_boolean (&file_open_flag), ("open: open callback was not called"));
@@ -458,6 +464,7 @@ test_open_cancel (void)
 	gnome_vfs_async_open (&test_handle,
 			      "file:///etc/passwd",
 			      GNOME_VFS_OPEN_READ,
+			      0,
 			      file_open_callback,
 			      test_callback_data);
 	gnome_vfs_async_cancel (test_handle);
@@ -472,6 +479,7 @@ test_open_cancel (void)
 	gnome_vfs_async_open (&test_handle,
 			      "file:///etc/passwd",
 			      GNOME_VFS_OPEN_READ,
+			      0,
 			      file_open_callback,
 			      test_callback_data);
 	wait_until_vfs_jobs_gone_no_main ();
@@ -502,6 +510,7 @@ test_open_fail (void)
 	gnome_vfs_async_open (&test_handle,
 			      "file:///etc/mugwump-xxx",
 			      GNOME_VFS_OPEN_READ,
+			      0,
 			      file_open_fail_callback,
 			      test_callback_data);
 	TEST_ASSERT (wait_for_boolean (&file_open_flag), ("open fail 1: callback was not called"));
@@ -533,6 +542,7 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
 					chunk_count,
+					0,
 					directory_load_callback,
 					&num_entries);
 	
@@ -549,6 +559,7 @@ test_load_directory_cancel (int delay_till_cancel, int chunk_count)
 		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
 					chunk_count,
+					0,
 					directory_load_callback,
 					&num_entries);
 	
@@ -573,6 +584,7 @@ test_load_directory_fail (void)
 		 			 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
 		 			 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS,
 					32,
+					0,
 					directory_load_failed_callback,
 					&num_entries);
 		
@@ -616,7 +628,7 @@ test_find_directory (int delay_till_cancel)
 	find_directory_flag = FALSE;
 	
 	gnome_vfs_async_find_directory (&handle, vfs_uri_as_list,
-		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777,
+		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777, 0,
 		test_find_directory_callback, &find_directory_flag);
 		
 	TEST_ASSERT (wait_for_boolean (&find_directory_flag), ("find directory cancel 1: callback was not called"));
@@ -624,7 +636,7 @@ test_find_directory (int delay_till_cancel)
 	find_directory_flag = FALSE;
 	
 	gnome_vfs_async_find_directory (&handle, vfs_uri_as_list,
-		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777,
+		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777, 0,
 		test_find_directory_callback, &find_directory_flag);
 	
 	usleep (delay_till_cancel * 100);
@@ -635,7 +647,7 @@ test_find_directory (int delay_till_cancel)
 
 	
 	gnome_vfs_async_find_directory (&handle, vfs_uri_as_list,
-		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777,
+		GNOME_VFS_DIRECTORY_KIND_TRASH, FALSE, TRUE, 0777, 0,
 		test_find_directory_callback, &find_directory_flag);
 	
 	my_yield (delay_till_cancel);

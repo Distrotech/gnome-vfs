@@ -46,6 +46,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-inet-connection.h		\
 	gnome-vfs-init.h			\
 	gnome-vfs-iobuf.h			\
+	gnome-vfs-job-limit.h			\
 	gnome-vfs-method.h			\
 	gnome-vfs-mime-handlers.h		\
 	gnome-vfs-mime-info.h			\
