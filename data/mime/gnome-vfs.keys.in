@@ -9,8 +9,8 @@ application/andrew-inset
 	_description=Andrew Toolkit inset
 	
 application/mac-binhex40
-	_description=Macintosh BinHex archive
-	
+	_description=Macintosh BinHex-encoded file
+
 # This is used by automated tests ("make check")
 application/mime-type-test
 	open=mime-type-test
@@ -37,7 +37,7 @@ application/msword
 
 application/octet-stream
 	can_be_executable=TRUE
-	_description=unknown data
+	_description=unknown type
 
 application/oda
 	_description=ODA document
@@ -58,16 +58,16 @@ application/pgp
 	_description=PGP message
 
 application/pgp-encrypted
-	_description=PGP encrypted data
+	_description=PGP-encrypted file
 
 application/pgp-keys
 	_description=PGP keys
 
 application/pgp-signature
 	_description=PGP signature
-	
+
 application/pkcs7-mime
-	_description=S/MIME data
+	_description=S/MIME file
 
 application/pkcs7-signature
 	_description=S/MIME signature
@@ -81,7 +81,7 @@ application/postscript
 	short_list_application_ids_for_hacker_user_level=ggv,gv,ghostview
 
 application/rtf
-	_description=rich text
+	_description=rich text document
 	default_action_type=application
 	default_application_id=abiword
 	short_list_application_ids_for_novice_user_level=staroffice,abiword,applix
@@ -95,9 +95,18 @@ application/vnd.ms-excel
 	short_list_application_ids_for_novice_user_level=staroffice,applix,gnumeric
 	short_list_application_ids_for_intermediate_user_level=staroffice,applix,gnumeric
 	short_list_application_ids_for_hacker_user_level=staroffice,applix,gnumeric
-	
+
+# also text/abiword
+application/x-abiword
+	_description=AbiWord document
+	default_action_type=application
+	default_application_id=abiword
+	short_list_application_ids_for_novice_user_level=staroffice,abiword
+	short_list_application_ids_for_intermediate_user_level=staroffice,abiword
+	short_list_application_ids_for_hacker_user_level=staroffice,abiword
+
 application/x-applix-spreadsheet
-	_description=Applix spreadsheet
+	_description=Applixware spreadsheet
 	icon_filename=i-spreadsheet
 	default_action_type=application
 	default_application_id=applix
@@ -106,7 +115,7 @@ application/x-applix-spreadsheet
 	short_list_application_ids_for_hacker_user_level=applix
 
 application/x-applix-word
-	_description=Applix Word document
+	_description=Applixware Words document
 	default_action_type=application
 	default_application_id=applix
 	short_list_application_ids_for_novice_user_level=applix
@@ -120,17 +129,17 @@ application/x-asp
 	_description=active server page
 
 application/x-backup
-	_description=backup document
+	_description=backup file
 
 application/x-bcpio
 	_description=BCPIO document
 
 application/x-bzip
-	_description=bzip archive
+	_description=bzip-compressed file
 	vfs_method=bzip2
 
 application/x-bzip-compressed-tar
-	_description=compressed bzip archive
+	_description=tar archive (bzip2-compressed)
 	icon_filename=gnome-compressed.png
 	vfs_method=bzip2
 
@@ -140,14 +149,17 @@ application/x-cgi
 application/x-chess-pgn
 	_description=PGN chess game
 
+# also application/x-java-byte-code
+# this one is deprecated
 application/x-class-file
-	_description=class code
+	_description=Java byte code
 
+# we are aware of the crappiness of this description
 application/x-compress
-	_description=compressed archive
+	_description=compress-compressed file
 
 application/x-compressed-tar
-	description=compressed tar archive
+	_description=tar archive (gzip-compressed)
 	icon_filename=gnome-package.png
 
 application/x-core-file
@@ -155,16 +167,16 @@ application/x-core-file
 	icon_filename=i-core.png
 
 application/x-cpio
-	description=CPIO document
+	_description=CPIO archive
 
 application/x-cpio-compressed
-	_description=compressed CPIO archive
+	_description=CPIO archive (gzip-compressed)
 	icon_filename=gnome-compressed.png
 
 # also text/x-csh
 application/x-csh
 	can_be_executable=TRUE
-	_description=C-Shell script
+	_description=C shell script
 
 application/x-deb
 	_description=Debian package
@@ -193,13 +205,13 @@ application/x-font-dos
 	_description=DOS font
 
 application/x-font-framemaker
-	_description=FrameMaker font
+	_description=Adobe FrameMaker font
 
 application/x-font-libgrx
 	_description=LIBGRX font
 
 application/x-font-linux-psf
-	_description=Linux psf console font
+	_description=Linux PSF console font
 
 application/x-font-pcf
 	_description=PCF font
@@ -229,7 +241,7 @@ application/x-gmc-link
 	_description=GMC link
 
 application/x-gnome-app-info
-	_description=GNOME application information
+	_description=GNOME application details
 
 application/x-gnumeric
 	_description=Gnumeric spreadsheet
@@ -245,18 +257,19 @@ application/x-gtar
 	icon_filename=gnome-package.png
 
 application/x-gzip
-	_description=gzip archive
+	_description=gzip-compressed file
 	icon_filename=gnome-compressed.png
 	vfs_method=gzip
 
 application/x-hdf
 	_description=HDF document
 
+# also application/x-class-file
 application/x-java-byte-code
 	_description=Java byte code
 
 application/x-kde-app-info
-	_description=KDE application information
+	_description=KDE application details
 
 application/x-lha
 	_description=LHARC archive
@@ -280,9 +293,8 @@ application/x-object-file
 	_description=object code
 	icon_filename=gnome-objectfile.png
 
-# also audio/x-ogg
 application/x-ogg
-	_description=ogg file
+	_description=ogg audio
 	default_action_type=application
 	default_application_id=ogg123
 	short_list_application_ids_for_novice_user_level=ogg123,xmms
@@ -293,7 +305,7 @@ application/x-palm-database
 	_description=Palm OS database
 
 application/x-pef-executable
-	_description=PEF document
+	_description=PEF program
 
 # also text/x-perl
 application/x-perl
@@ -353,7 +365,7 @@ application/x-staroffice-spreadsheet
 	short_list_application_ids_for_hacker_user_level=staroffice
 
 application/x-staroffice-words
-	_description=StarOffice word processing document
+	_description=StarOffice Writer document
 	default_action_type=application
 	default_application_id=staroffice
 	short_list_application_ids_for_novice_user_level=staroffice
@@ -364,10 +376,10 @@ application/x-stuffit
 	_description=Macintosh StuffIt archive 
 
 application/x-sv4cpio
-	_description=SV4Cpio document 
+	_description=SV4 CPIO archive
 
 application/x-sv4crc
-	_description=SV4Crc document 
+	_description=SV4 CPIP archive (with CRC)
 
 application/x-tar
 	_description=tar archive
@@ -381,14 +393,14 @@ application/x-toutdoux
 	_description=ToutDoux document
 
 application/x-troff-man-compressed
-	_description=manual page archive
+	_description=manual page (compressed)
 	icon_filename=gnome-manpage.png
 
 application/x-unix-archive
-	_description=archive
+	_description=ar archive
 
 application/x-ustar
-	_description=UStar archive
+	_description=ustar archive
 
 application/x-wais-source
 	_description=WAIS source code
@@ -445,8 +457,8 @@ audio/x-mp3-playlist
 
 # also audio/x-mp3
 audio/x-mpeg
-        _description=MP3 audio
-        icon_filename=i-music 
+	_description=MP3 audio
+	icon_filename=i-music 
 	default_action_type=application
 	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms,mpg123
@@ -454,46 +466,36 @@ audio/x-mpeg
 	short_list_application_ids_for_hacker_user_level=xmms,mpg123
 
 audio/x-mpegurl
-        _description=MPEG URL
-        default_action_type=application
-        default_application_id=xmms
+	_description=M3 audio URL
+	default_action_type=application
+	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
 	short_list_application_ids_for_intermediate_user_level=xmms
 	short_list_application_ids_for_hacker_user_level=xmms
 
-# also application/x-ogg
-# audio/x-ogg
-#	_description=OGG Audio
-#	icon_filename=i-music
-#	default_action_type=application
-#	default_application_id=ogg123
-#	short_list_application_ids_for_novice_user_level=ogg123,xmms
-#	short_list_application_ids_for_intermediate_user_level=ogg123,xmms
-#	short_list_application_ids_for_hacker_user_level=ogg123,xmms
-
 audio/x-pn-realaudio
 	_description=PN RealAudio document
 	icon_filename=gnome-audio-x-pn-realaudio.png
-        default_action_type=application
-        default_application_id=realplayer
-        short_list_application_ids_for_novice_user_level=realplayer
-        short_list_application_ids_for_intermediate_user_level=realplayer
-        short_list_application_ids_for_hacker_user_level=realplayer
+	default_action_type=application
+	default_application_id=realplayer
+	short_list_application_ids_for_novice_user_level=realplayer
+	short_list_application_ids_for_intermediate_user_level=realplayer
+	short_list_application_ids_for_hacker_user_level=realplayer
 
 audio/x-real-audio
-	_description=RealAudio document
+	_description=RealAudio/Video document
 	icon_filename=gnome-audio-x-pn-realaudio.png
-        default_action_type=application
-        default_application_id=realplayer
-        short_list_application_ids_for_novice_user_level=realplayer
-        short_list_application_ids_for_intermediate_user_level=realplayer
-        short_list_application_ids_for_hacker_user_level=realplayer
+	default_action_type=application
+	default_application_id=realplayer
+	short_list_application_ids_for_novice_user_level=realplayer
+	short_list_application_ids_for_intermediate_user_level=realplayer
+	short_list_application_ids_for_hacker_user_level=realplayer
 
 audio/x-riff
 	_description=RIFF audio
 	icon_filename=i-music
-        default_action_type=application
-        default_application_id=xmms
+	default_action_type=application
+	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
 	short_list_application_ids_for_intermediate_user_level=xmms
 	short_list_application_ids_for_hacker_user_level=xmms
@@ -505,17 +507,17 @@ audio/x-stm
 	_description=Scream Tracker audio
 
 audio/x-ulaw
-	_description=audio
+	_description=Sun µ-law audio
 	icon_filename=gnome-audio-ulaw.png
 
 audio/x-voc
 	_description=VOC audio
 
 audio/x-wav
-	_description=Wave audio
+	_description=wave audio
 	icon_filename=gnome-audio-x-wav.png
-        default_action_type=application
-        default_application_id=xmms
+	default_action_type=application
+	default_application_id=xmms
 	short_list_application_ids_for_novice_user_level=xmms
 	short_list_application_ids_for_intermediate_user_level=xmms
 	short_list_application_ids_for_hacker_user_level=xmms
@@ -616,7 +618,7 @@ image/x-3ds
 	_description=3D Studio image
 
 image/x-applix-graphic
-	_description=Applix image
+	_description=ApplixWare Graphics image
 	default_action_type=application
 	default_application_id=applix
 	short_list_application_ids_for_novice_user_level=applix
@@ -641,7 +643,7 @@ image/x-cmu-raster
 	_description=CMU raster image
 
 image/x-compressed-xcf
-	_description=compressed GIMP image archive
+	_description=compressed GIMP document
 
 image/x-ico
 	_description=Windows icon image
@@ -749,7 +751,7 @@ image/x-xbitmap
 	icon_filename=gnome-image-xbm.png
 
 image/x-xcf
-	_description=GIMP image
+	_description=GIMP document
 	default_action_type=application
 	default_application_id=gimp
 	short_list_application_ids_for_novice_user_level=gimp
@@ -758,11 +760,16 @@ image/x-xcf
 	icon_filename=gnome-image-xcf.png
 
 image/x-xfig
-	_description=xfig image
+	_description=xfig vector graphic
+	default_action_type=application
+	default_application_id=xfig
+	short_list_application_ids_for_novice_user_level=xfig
+	short_list_application_ids_for_intermediate_user_level=xfig
+	short_list_application_ids_for_hacker_user_level=xfig
 	icon_filename=gnome-image-x-xfig.png
 
 image/x-xpixmap
-	_description=XPM image	
+	_description=XPM image
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus-image-viewer:30686633-23d5-422b-83c6-4f1b06f8abcd
@@ -784,7 +791,7 @@ message/disposition-notification
 	_description=mail disposition report
 
 message/external-body
-	_description=pointer to remote data
+	_description=reference to remote file
 
 message/news
 	_description=USENET news message
@@ -799,13 +806,13 @@ message/x-gnu-rmail
 	_description=GNU mail message
 
 model/vrml
-	_description=VRML data
+	_description=VRML document
 
 multipart/alternative
 	_description=message in several formats
 
 multipart/appledouble
-	_description=Macintosh AppleDouble-encoded document
+	_description=Macintosh AppleDouble-encoded file
 
 multipart/digest
 	_description=message digest
@@ -836,6 +843,7 @@ text/*
 	short_list_application_ids_for_intermediate_user_level=xemacs,emacs,nedit,gedit,xfte
 	short_list_application_ids_for_hacker_user_level=xemacs,gvim,emacs,vi,nedit,gedit,xfte
 
+# also application/x-abiword
 text/abiword
 	_description=AbiWord document
 	default_action_type=application
@@ -848,19 +856,19 @@ text/bib
 	_description=bibliography record
 
 text/calendar
-	_description=calendar information
+	_description=calendar file
 
 text/css
 	_description=style sheet
 
 text/directory
-	_description=directory information
+	_description=directory information file
 
 text/enriched
-	_description=enriched text
+	_description=enriched text document
 
 text/html
-	_description=HTML document
+	_description=HTML page
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1,OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
@@ -872,7 +880,7 @@ text/html
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx,galeon
 
 text/htmlh
-	_description=Help page
+	_description=help page
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_mozilla_content_view:1ee70717-57bf-4079-aae5-922abdd576b1
 
@@ -881,7 +889,7 @@ text/mathml
 
 text/plain
 	can_be_executable=TRUE
-	_description=plain text
+	_description=plain text document
 	default_action_type=component
 	default_component_iid=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
 	short_list_component_iids_for_novice_user_level=OAFIID:nautilus_text_view:fa466311-17c1-435c-8231-c9fc434b6437
@@ -896,13 +904,13 @@ text/rfc822-headers
 	_description=email headers
 
 text/richtext
-	_description=rich text
+	_description=rich text document
 
 text/sgml
 	_description=SGML document
 
 text/tab-separated-values
-	_description=tab-separated text
+	_description=tab-separated text document
 
 # Note that text/tex should be text/x-tex, but a user reported
 # a complaint about text/tex in Nautilus, so some non-gnome-vfs
@@ -920,18 +928,18 @@ text/x-c++
 	_description=C++ source code
 
 text/x-comma-separated-values
-	_description=comma-separated text
+	_description=comma-separated text document
 
 text/x-copying
-	_description=GNU license
+	_description=software license terms
 
 text/x-credits
-	_description=author credits
+	_description=software author credits
 
 # also application/x-csh
 text/x-csh
 	can_be_executable=TRUE
-	_description=C-Shell script
+	_description=C shell script
 
 text/x-dcl
 	_description=DCL script
@@ -955,7 +963,7 @@ text/x-idl
 	_description=IDL document
 
 text/x-install
-	_description=installation instructions
+	_description=software installation instructions
 
 text/x-java
 	_description=Java source code
@@ -965,7 +973,7 @@ text/x-ksh
 	_description=Korn shell script
 
 text/x-makefile
-	_description=Makefile
+	_description=makefile
 
 text/x-patch
 	_description=source code patch
@@ -976,10 +984,11 @@ text/x-perl
 	_description=Perl script
 
 text/x-python
-	_description=Python script
+	_description=Python source code
 
+# translate and capitalize README as appropriate
 text/x-readme
-	_description=README file
+	_description=README document
 
 text/x-scheme
 	_description=Scheme source code
@@ -1014,14 +1023,18 @@ text/x-troff-man
 	_description=manual page
 	icon_filename=gnome-manpage.png
 
+# the acronym is not capitalized, per common usage
 text/x-troff-me
-	_description=Troff ME-macros document
+	_description=troff me input document
+
+text/x-troff-mm
+	_description=troff mm input document
 
 text/x-troff-ms
-	_description=Troff MS-macros document
+	_description=troff ms input document
 
 text/x-vcalendar
-	_description=calendar or event information
+	_description=calendar or event document
 
 text/x-vcard
 	_description=address card
@@ -1042,7 +1055,7 @@ video/isivideo
 	_description=ISI video
 
 video/mpeg
-	_description=MPEG movie
+	_description=MPEG video
 	default_action_type=application
 	default_application_id=mtvp
 	short_list_application_ids_for_novice_user_level=mtvp,mtv,mpeg_play
@@ -1071,7 +1084,7 @@ video/wavelet
 	_description=Wavelet video
 
 video/x-anim
-	_description=animation
+	_description=ANIM animation
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1079,7 +1092,7 @@ video/x-anim
 	short_list_application_ids_for_hacker_user_level=xanim
 
 video/x-avi
-	_description=Audio-Video Interleave
+	_description=AVI video
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1087,7 +1100,7 @@ video/x-avi
 	short_list_application_ids_for_hacker_user_level=xanim
 
 video/x-flc
-	_description=FLC video animation
+	_description=FLC animation
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1095,7 +1108,7 @@ video/x-flc
 	short_list_application_ids_for_hacker_user_level=xanim
 
 video/x-fli
-	_description=FLI video animation
+	_description=FLI animation
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1103,22 +1116,22 @@ video/x-fli
 	short_list_application_ids_for_hacker_user_level=xanim
 
 video/x-msvideo
-	_description=MS video
+	_description=Microsoft video
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
 	short_list_application_ids_for_intermediate_user_level=xanim
 	short_list_application_ids_for_hacker_user_level=xanim
 
 video/x-real-video
-	_description=RealVideo document
-        default_action_type=application
-        default_application_id=realplayer
-        short_list_application_ids_for_novice_user_level=realplayer
-        short_list_application_ids_for_intermediate_user_level=realplayer
-        short_list_application_ids_for_hacker_user_level=realplayer
+	_description=RealVideo video
+	default_action_type=application
+	default_application_id=realplayer
+	short_list_application_ids_for_novice_user_level=realplayer
+	short_list_application_ids_for_intermediate_user_level=realplayer
+	short_list_application_ids_for_hacker_user_level=realplayer
 
 video/x-sgi-movie
-	_description=SGI movie
+	_description=SGI video
 	default_action_type=application
 	default_application_id=xanim
 	short_list_application_ids_for_novice_user_level=xanim
@@ -1163,4 +1176,4 @@ x-special/socket
 	_description=socket
 
 x-special/symlink
-	_description=link
+	_description=symbolic link
