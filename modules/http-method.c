@@ -652,10 +652,14 @@ cache_invalidate_uri_parent (GnomeVFSURI *uri)
 
 /* GConf paths and keys */
 #define PATH_GCONF_GNOME_VFS "/system/gnome-vfs"
-#define ITEM_GCONF_HTTP_PROXY "http-proxy"
+#define ITEM_GCONF_HTTP_PROXY_PORT "http-proxy-port"
+#define ITEM_GCONF_HTTP_PROXY_HOST "http-proxy-host"
+#define KEY_GCONF_HTTP_PROXY_PORT (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_HTTP_PROXY_PORT)
+#define KEY_GCONF_HTTP_PROXY_HOST (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_HTTP_PROXY_HOST)
+
 #define ITEM_GCONF_USE_HTTP_PROXY "use-http-proxy"
-#define KEY_GCONF_HTTP_PROXY (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_HTTP_PROXY)
 #define KEY_GCONF_USE_HTTP_PROXY (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_USE_HTTP_PROXY)
+
 
 /* Some status code validation macros.  */
 #define HTTP_20X(x)        (((x) >= 200) && ((x) < 300))
@@ -1255,28 +1259,36 @@ static void
 sig_gconf_value_changed (GConfClient* client, const gchar* key, GConfValue* value)
 {
 	gboolean use_proxy_value;
-	char *proxy_value;
+	char *proxy_host;
+	int proxy_port;
 
-	if (strcmp (key, KEY_GCONF_USE_HTTP_PROXY) == 0 ||
-	    strcmp (key, KEY_GCONF_HTTP_PROXY) == 0) {
+	if (strcmp (key, KEY_GCONF_USE_HTTP_PROXY) == 0
+	    || strcmp (key, KEY_GCONF_HTTP_PROXY_HOST) == 0
+	    || strcmp (key, KEY_GCONF_HTTP_PROXY_PORT) == 0
+	) {
 		g_mutex_lock (gl_mutex);
 
 		/* Check and see if we are using the proxy */
 		use_proxy_value = gconf_client_get_bool (gl_client, KEY_GCONF_USE_HTTP_PROXY, NULL);
-		proxy_value = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_PROXY, NULL);
+		proxy_host = gconf_client_get_string (gl_client, KEY_GCONF_HTTP_PROXY_HOST, NULL);
+		proxy_port = gconf_client_get_int (gl_client, KEY_GCONF_HTTP_PROXY_PORT, NULL);
 
-		if (use_proxy_value && proxy_value !=NULL) {
-			g_free (gl_http_proxy);
-			gl_http_proxy = proxy_value;
-			proxy_value = NULL;
+		g_free (gl_http_proxy);
+		gl_http_proxy = NULL;
+
+		if (use_proxy_value && proxy_host !=NULL) {
+			if (0 != proxy_port && 0xffff >= (unsigned) proxy_port) {
+				gl_http_proxy = g_strdup_printf ("%s:%u", proxy_host, (unsigned)proxy_port);
+			} else {
+				gl_http_proxy = g_strdup_printf ("%s:%u", proxy_host, (unsigned)DEFAULT_HTTP_PROXY_PORT);
+			}
 			DEBUG_HTTP (("New HTTP proxy: '%s'", gl_http_proxy));
 		} else {
 			DEBUG_HTTP (("HTTP proxy unset"));
-			g_free (gl_http_proxy);
-			gl_http_proxy = NULL;
-			g_free (proxy_value);
-			proxy_value = NULL;
 		}
+
+		g_free (proxy_host);
+		proxy_host = NULL;
 
 		g_mutex_unlock (gl_mutex);
 	}
@@ -2774,13 +2786,14 @@ vfs_module_init (const char *method_name, const char *args)
 	gtk_signal_connect (GTK_OBJECT (gl_client), "value_changed", (GtkSignalFunc) sig_gconf_value_changed, NULL);
 
 	/* Load the http proxy setting */	
-	proxy_value = gconf_client_get (gl_client, KEY_GCONF_HTTP_PROXY, &gconf_error);
+	proxy_value = gconf_client_get (gl_client, KEY_GCONF_USE_HTTP_PROXY, &gconf_error);
 
 	if (gconf_error != NULL) {
 		DEBUG_HTTP (("GConf error during client_get '%s'", gconf_error->message));
 		g_error_free (gconf_error);
 	} else if (proxy_value != NULL) {
-		sig_gconf_value_changed (gl_client, KEY_GCONF_HTTP_PROXY, proxy_value);
+		sig_gconf_value_changed (gl_client, KEY_GCONF_USE_HTTP_PROXY, proxy_value);
+		gconf_value_free (proxy_value);
 	}
 
 #ifndef DAV_NO_CACHE

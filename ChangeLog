@@ -1,3 +1,12 @@
+2001-01-18  Mike Fleming  <mfleming@eazel.com>
+
+	reviewed by: Ramiro Estrugo  <ramiro@eazel.com>
+
+	* modules/http-method.c: (sig_gconf_value_changed),
+	(vfs_module_init):
+	Proxy preferences are now split into host and port rather than
+	using one string.
+
 2001-01-17  Pavel Cisler  <pavel@eazel.com>
 
 	* test/test-async-cancel.c: (test_load_directory_cancel),
