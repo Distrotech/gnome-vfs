@@ -61,7 +61,7 @@
 
 
 static ssize_t
-getdelim (char **lineptr, size_t n, int terminator, FILE *stream)
+getdelim (char **lineptr, size_t *n, int terminator, FILE *stream)
 {
 	char *line, *p;
 	size_t size, copy;

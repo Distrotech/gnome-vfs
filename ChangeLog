@@ -1,3 +1,7 @@
+2004-08-16  Christophe Fergeau  <teuf@gnome.org>
+
+	* modules/extfs-method.c: (getdelim): fix prototype
+
 2004-08-14  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-xfer.c: plug more leaks
