@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-30 12:13+0100\n"
-"PO-Revision-Date: 2004-01-12 20:51+0900\n"
+"POT-Creation-Date: 2004-01-31 10:29+0900\n"
+"PO-Revision-Date: 2004-01-31 10:27+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -521,7 +521,6 @@ msgstr "不明なボリューム"
 msgid "Network server"
 msgstr "ネットワーク・サーバ"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
@@ -529,7 +528,6 @@ msgstr ""
 "フロッピー・ドライブをマウントできません。おそらくフロッピーがドライブに挿入"
 "されていないようです。"
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
@@ -995,7 +993,6 @@ msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "HTTP プロキシを利用するときに認証として引き渡すユーザ名です。"
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
 msgstr "Windows ネットワーク"
 
