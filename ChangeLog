@@ -1,5 +1,16 @@
 2001-03-06  Darin Adler  <darin@eazel.com>
 
+	* configure.in: Bump version to 0.9 (upcoming release will be
+	1.0, but we don't want hourly builds to say 1.0).
+
+2001-03-06  Darin Adler  <darin@eazel.com>
+
+	This is the gnome-vfs-1-0 branch -- intended for development
+	of gnome-vfs 1.0 and variants like 1.0.1, but not later
+	versions (1.1, 1.2).
+
+2001-03-06  Darin Adler  <darin@eazel.com>
+
 	Merged all changes back here from the gnome-vfs-1 branch.
 
 === start of changes from gnome-vfs-1 branch ===
