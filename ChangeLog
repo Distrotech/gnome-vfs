@@ -1,3 +1,8 @@
+2003-07-18  Christophe Fergeau  <teuf@gnome.org>
+
+	* test/test-symlinks.c: removed unnecessary ;, fixes build on older
+	  gcc and bug #117818
+
 2003-07-18  Fredrik Jönsson  <fjo@nada.kth.se>
 
 	* modules/ssh-method.c: cast pid_t* to gint * (fixes compilation on 
