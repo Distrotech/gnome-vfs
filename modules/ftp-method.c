@@ -777,7 +777,8 @@ do_write (GnomeVFSMethod *method,
 
 
 static gboolean 
-ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info) {
+ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info) 
+{
 	struct stat s;
 	gchar *filename = NULL, *linkname = NULL;
 	const char *mime_type;

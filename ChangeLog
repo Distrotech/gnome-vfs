@@ -1,3 +1,10 @@
+2000-09-05  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c: Fixed spelling in a FIXME.
+	
+	* modules/ftp-method.c: (ls_to_file_info): Fixed another minor
+	formatting problem.
+
 2000-09-04  Mathieu Lacage  <mathieu@eazel.com>
 
 	Add bugs to bugzilla.eazel.com for FIXMEs...

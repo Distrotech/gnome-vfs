@@ -105,7 +105,7 @@ read_hex_byte (const char **pos)
 	return retval;
 }
 
-/* FIXME bguzilla.eazel.com 2760:
+/* FIXME bugzilla.eazel.com 2760:
  * should return error here
  */
 static const char *
