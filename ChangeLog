@@ -1,3 +1,7 @@
+2001-01-27  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* Makefile.am: added xml-i18n files to EXTRA_DISTS
+
 2001-01-26  Rebecca Schulman  <rebecka@eazel.com>
 	Add support for the "supported_uri_schemes"
 	attributes in the mime applications file,
