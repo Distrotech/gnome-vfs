@@ -18,12 +18,7 @@ VFS engine contributors:
 	Ettore Perazzoli <ettore@helixcode.com>
 
 "ftp" method:
-	Miguel de Icaza <miguel@gnu.org>, based on the GNU Midnight
-	Commander code by:
-		Norbert Warmuth
-		Ching Hui
-		Jakub Jelinek
-		Pavel Machek
+	Ian McKellar <yakk@yakk.net.au>
 
 "bzip" method:
 	Cody Russell <bratsche@dfw.net>

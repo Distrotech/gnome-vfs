@@ -47,6 +47,7 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
+#include "gnome-vfs-mime.h"
 
 #include "http-method.h"
 
@@ -958,7 +959,7 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 }
 
 static GnomeVFSFileInfo *
-process_propfind_response(xmlNodePtr n, gchar *uri_string)
+process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 {
 	GnomeVFSFileInfo *file_info = gnome_vfs_file_info_new();
 
@@ -968,10 +969,28 @@ process_propfind_response(xmlNodePtr n, gchar *uri_string)
 	while(n != NULL) {
 		if(!strcmp((char *)n->name, "href")) {
 			gchar *nodecontent = gnome_vfs_unescape_string(xmlNodeGetContent(n), "/");
-			gint len;
+			if(nodecontent && *nodecontent) {
+				gint len;
+				GnomeVFSURI *uri = gnome_vfs_uri_new(nodecontent);
+
+				g_print("[YAK] comparing `%s' to `%s'\n", gnome_vfs_uri_to_string(base_uri,0), gnome_vfs_uri_to_string(uri,0));
+				if(gnome_vfs_uri_equal(base_uri, uri) || !strcmp(base_uri->text, uri->text)) {
+					file_info->name = NULL; /* no name */
+				} else {
+					file_info->name = gnome_vfs_uri_extract_short_name(uri);
+					gnome_vfs_uri_unref(uri);
+
+					len = strlen(file_info->name)-1;
+					if(file_info->name[len] == '/') {
+						/* trim trailing `/` - it confuses stuff */
+						file_info->name[len] = '\0';
+					}
+				}
+			} else {
+				g_warning("got href without contents in PROPFIND response");
+			}
+
 #if 0
-			g_print("  found href=\"%s\"\n", nodecontent);
-#endif
 			if(!strncmp(uri_string, nodecontent, strlen(uri_string))) {
 				/* our DAV server is prepending the 
 				 * current path
@@ -985,11 +1004,7 @@ process_propfind_response(xmlNodePtr n, gchar *uri_string)
 				file_info->name = 
 					g_strdup(nodecontent);
 			}
-			len = strlen(file_info->name)-1;
-			if(file_info->name[len] == '/') {
-				/* trim trailing `/` - it confuses stuff */
-				file_info->name[len] = '\0';
-			}
+#endif
 			g_free(nodecontent);
 		} else if(!strcmp((char *)n->name, "propstat")) {
 			//g_print("  got <propstat>\n");
@@ -1103,7 +1118,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 		if(!strcmp((char *)cur->name, "response")) {
 			GnomeVFSFileInfo *file_info =
 				process_propfind_response(cur->childs, 
-					uri_string);
+					uri);
 			/* if the file has a filename or we're doing a PROPFIND on a single 
 			 * resource... */
 			if(file_info->name || depth==0) { 
@@ -1179,6 +1194,12 @@ do_read_directory (GnomeVFSMethod *method,
 			file_info->size = original_info->size;
 			*/
 			memcpy(file_info, original_info, sizeof(*file_info));
+			if(!file_info->mime_type) {
+				/* we didn't get a mime type - lets guess */
+				file_info->mime_type = g_strdup(gnome_vfs_mime_type_from_name_or_default (file_info->name, "text/plain"));
+				file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+
+			}
 			found_entry = TRUE;
 		}
 
