@@ -12,23 +12,21 @@
 # kostas: messages, 120 messages 02Nov2003,updated translation for Gnome2.6
 # kostas:203 messages 16Dec2003
 # kostas: 23Dec2003, one more update
+# Nikos: review 15Mar2004
 # Spiros Papadimitriou <spapadim+@cs.cmu.edu>, 2000.
 # Simos Xenitellis <simos@teiath.gr>, 2000-2001.
-# Kostas Papadimas <pkst@gnome.org>,2002,2003, 2004.
-#
+# Kostas Papadimas <pkst@gnome.org>, 2002, 2003, 2004.
+# Nikos Charonitakis <charosn@her.forthnet.gr>, 2004.
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-08 13:11+0100\n"
-"PO-Revision-Date: 2004-02-23 14:58+0200\n"
-"Last-Translator: Kostas Papadimas <pkst@gnome.org>\n"
+"POT-Creation-Date: 2004-03-15 15:29+0200\n"
+"PO-Revision-Date: 2004-03-15 15:46-0200\n"
+"Last-Translator: Nikos Charonitakis <charosn@her.fothnet.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.0.2\n"
 
 #: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
@@ -36,7 +34,7 @@ msgstr "Αδύνατη η αρχικοποίηση του Bonobo"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
-msgstr "Αδυαμία αρχικοποίησης gnome vfs"
+msgstr "Αδυναμία αρχικοποίησης gnome vfs"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -213,7 +211,8 @@ msgstr "Άγνωστος"
 msgid "Unknown op type %u"
 msgstr "Άγνωστος κωδικός op %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1064
+#: libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ανεπιτυχής δημιουργία διασωλήνωσης για το ανοιχτό GIOChannel: %s"
@@ -449,7 +448,7 @@ msgstr "Αδύνατη η εύρεση πρωτεύοντος φυλλομετρ
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "No default action associated"
-msgstr "Δεν έχει συσχετιστεί εξ ορισμού ενέργεια"
+msgstr "Δεν έχει συσχετιστεί προεπιλεγμένη ενέργεια"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
@@ -459,7 +458,7 @@ msgstr "Δεν υπάρχει χειριστής για σχήμα URL"
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
-msgstr "Σφ'αλμα ανάλυσης γραμμής εντολών"
+msgstr "Σφάλμα ανάλυσης γραμμής εντολών"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:83
@@ -471,12 +470,6 @@ msgid "Unknown error"
 msgstr "Άγνωστο σφάλμα"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, c-format
-msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "%u byte"
-msgstr[1] "%u bytes"
-
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
 msgid "%.1f KB"
@@ -495,7 +488,7 @@ msgstr "%.1f GΒ"
 #: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
-msgstr " (μή έγκυρο Unicode)"
+msgstr " (μη έγκυρο Unicode)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
@@ -538,37 +531,25 @@ msgstr "Εξυπηρετητής δικτύου"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανόν να μην υπάρχει δισκέτα "
-"στον οδηγό."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανόν να μην υπάρχει δισκέτα στον οδηγό."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
-"Αδυναμία προσάρτησης του τόμου. Πιθανόν να μην υπάρχει μέσο στην συσκευή."
+msgstr "Αδυναμία προσάρτησης του τόμου. Πιθανόν να μην υπάρχει μέσο στην συσκευή."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
-msgid ""
-"Unable to mount the floppy drive. The floppy is probably in a format that "
-"cannot be mounted."
-msgstr ""
-"Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανώς η δισκέτα να είναι σε "
-"μορφή που δεν μπορεί να προσαρτηθεί."
+msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
+msgstr "Αδυναμία προσάρτησης του οδηγού δισκέτας. Πιθανώς η δισκέτα να είναι σε μορφή που δεν μπορεί να προσαρτηθεί."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
-msgid ""
-"Unable to mount the selected volume. The volume is probably in a format that "
-"cannot be mounted."
-msgstr ""
-"Αδυναμία προσάρτησης του τόμου. Πιθανώς ο τόμος να είναι σε μορφή που δεν "
-"μπορεί να προσαρτηθεί."
+msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
+msgstr "Αδυναμία προσάρτησης του τόμου. Πιθανώς ο τόμος να είναι σε μορφή που δεν μπορεί να προσαρτηθεί."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr "Αδυναμία προσάρτησης του επιλεγμένου οδηγού δισκέτας"
+msgstr "Αδυναμία προσάρτησης του επιλεγμένου οδηγού δισκέτας."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
@@ -666,14 +647,12 @@ msgstr "Δίκτυο Windows"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Δεν βρέθηκε αρχείο έγκυρων ρυθμίσεων στο %s\n"
+msgstr "Δε βρέθηκε αρχείο έγκυρων ρυθμίσεων στο %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"Χρήση της μεταβλητής περιβάλλοντος %s  για τον καθορισμό μιας διαφορετικής "
-"τοποθεσίας.\n"
+msgstr "Χρήση της μεταβλητής περιβάλλοντος %s  για τον καθορισμό μιας διαφορετικής τοποθεσίας.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
@@ -693,38 +672,28 @@ msgstr "γενικό αρχείο moniker"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr "Εξ ορισμού συστατικό εφαρμογής προβολής"
+msgstr "Προεπιλεγμέον συστατικό εφαρμογής προβολής"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr "Εξ ορισμού εφαρμογή τερματικού"
+msgstr "Προεπιλεγμένη εφαρμογή τερματικού"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr "Παράμετρος Exec για εξ ορισμού τερματικό"
+msgstr "Παράμετρος Exec για προεπιλεγμένο τερματικό"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid ""
-"The application to use for viewing files that require a component to view "
-"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
-"will be replaced by the component IID."
-msgstr ""
-"Η εφαρμογή για την προβολή αρχείων που απαιτούν ένα συστατικό για την "
-"προβολή τους. Η παράμετρος %s θα αντικαταστηθεί από το  URIs αρχείου και η "
-"παράμετρος %c θα αντικατασταθεί από το IID συστατικού."
+msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
+msgstr "Η εφαρμογή για την προβολή αρχείων που απαιτούν ένα συστατικό για την προβολή τους. Η παράμετρος %s θα αντικαταστηθεί από το  URIs αρχείου και η παράμετρος %c θα αντικατασταθεί από το IID συστατικού."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
-msgid ""
-"The default terminal application to use for applications that require a "
-"terminal."
-msgstr ""
-"Η εξ ορισμού εφαρμογή τερματικού για χρήση σε εφαρμογές που απαιτούν ένα "
-"τερματικό."
+msgid "The default terminal application to use for applications that require a terminal."
+msgstr "Η προεπιλεγμένη εφαρμογή τερματικού για χρήση σε εφαρμογές που απαιτούν ένα τερματικό."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr "Η παράμετρος exec για χρήση στην εξ ορισμού εφαρμογή τερματικού. "
+msgstr "Η παράμετρος exec για χρήση στην προεπιλεγμένη εφαρμογή τερματικού."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
@@ -740,7 +709,7 @@ msgstr "Χειριστής HTTPS URL"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "Handle H323 URLs"
-msgstr "Χειρισμός  h323 URLs"
+msgstr "Χειρισμός  H323 URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "Handle HTTP URLs"
@@ -779,72 +748,44 @@ msgid "Run program in terminal"
 msgstr "Εκτέλεση προγράμματος σε τερματικό"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"τον χειρισμό h323 URLs"
+msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για το χειρισμό h323 URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"τον χειρισμό http URLs"
+msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για το χειρισμό http URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"τον χειρισμό http URLs"
+msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για το χειρισμό http URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"τον χειρισμό callto URLs"
+msgid "Set to true to have a program specified in \"command\" handle callto URLs."
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για το χειρισμό callto URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"τον χειρισμό http URLs"
+msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για το χειρισμό http URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"τον χειρισμό mailto URLs"
+msgid "Set to true to have a program specified in \"command\" handle info URLs."
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για το χειρισμό mailto URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"τον χειρισμό mailto URLs"
+msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για το χειρισμό mailto URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr ""
-"Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"τον χειρισμό mailto URLs"
+msgstr "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για το χειρισμό mailto URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr ""
-"Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για "
-"τον χειρισμό trash URLs"
+msgid "Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στην \"εντολή\" για το χειρισμό trash URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
-"True αν το πρόγραμμα για το χειρισμό του URL θα πρέπει να εκτελείται σε "
-"τερματικό."
+msgstr "True αν το πρόγραμμα για το χειρισμό του URL θα πρέπει να εκτελείται σε τερματικό."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -872,7 +813,7 @@ msgstr "Χειριστής trash URL"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr "Πιστοποίηση συνδέσεων στον εξυπηρετητή διαμεσολαβητή"
+msgstr "Πιστοποίηση συνδέσεων στον εξυπηρετητή διαμεσολάβησης"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
@@ -880,8 +821,7 @@ msgstr "Αυτόματη ρύθμιση URL ρύθμισης διαμεσολα�
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
-"Ενεργοποιεί τις ρυθμίσεις διαμεσολαβητή κατά την πρόσβαση http στο διαδίκτυο"
+msgstr "Ενεργοποιεί τις ρυθμίσεις διαμεσολαβητή κατά την πρόσβαση HTTP στο διαδίκτυο."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -908,15 +848,8 @@ msgid "HTTP proxy username"
 msgstr "Όνομα χρήστη διαμεσολαβητή HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-msgid ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"Αν true, τότε οι συνδέσεις τον εξυπηρετητή διαμεσολαβητή απαιτεί "
-"πιστοποίηση. Το όνομα χρήστη/κωδικός καθορίζονται από το  \"/system/"
-"http_proxy/authentication_user\" και το  \"/system/http_proxy/"
-"authentication_password\"."
+msgid "If true, then connections to the proxy server require authentication. The username/password combo defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr "Αν true, τότε οι συνδέσεις τον εξυπηρετητή διαμεσολαβητή απαιτεί πιστοποίηση. Το όνομα χρήστη/κωδικός καθορίζονται από το  \"/system/http_proxy/authentication_user\" και το  \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -924,7 +857,7 @@ msgstr "Συστήματα χωρίς διαμεσολαβητή"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "Κωδικός πρόσβασης για πιστοποίηση όταν γίνεται διαμεσολάβηση http"
+msgstr "Κωδικός πρόσβασης για πιστοποίηση όταν γίνεται διαμεσολάβηση HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
@@ -932,93 +865,63 @@ msgstr "Λειτουργία ρυθμίσεων διαμεσολαβητή"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr "Όνομα συστήματος διαμεσολαβητή Socks"
+msgstr "Όνομα συστήματος διαμεσολαβητή SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr "Θύρα διαμεσολαβητή Socks"
+msgstr "Θύρα διαμεσολαβητή SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr "Όνομα συστήματος ασφαλούς διαμεσολαβητή http "
+msgstr "Όνομα συστήματος ασφαλούς διαμεσολαβητή HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr "Θύρα ασφαλούς διαμεσολαβητή http "
+msgstr "Θύρα ασφαλούς διαμεσολαβητή HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:18
-msgid ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\"."
-msgstr ""
-"Επιλογή λειτουργίας ρύθμισης διαμεσολαβητή. Υποστηριζόμενες τιμές είναι "
-"\"καμμία\", \"χειροκίνητη\", \"αυτόματη\""
+msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
+msgstr "Επιλογή λειτουργίας ρύθμισης διαμεσολαβητή. Υποστηριζόμενες τιμές είναι \"καμμία\", \"χειροκίνητη\", \"αυτόματη\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση FTP"
+msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση FTP."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση FTP"
+msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
-"Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση ασφαλούς http. "
+msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση ασφαλούς HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση socks"
+msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση socks."
 
 #: schemas/system_http_proxy.schemas.in.h:23
-msgid ""
-"The port on the machine defined by \"/system/http_proxy/host\" that you "
-"proxy through."
-msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το  \"/system/http_proxy/host\" μέσω "
-"του οποίου γίνεται διαμεσολάβηση"
+msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
+msgstr "Η θύρα στο σύστημα που καθορίζεται από το  \"/system/http_proxy/host\" μέσω του οποίου γίνεται διαμεσολάβηση."
 
 #: schemas/system_http_proxy.schemas.in.h:24
-msgid ""
-"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
-"through."
-msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το \"/system/proxy/ftp_host\" μέσω "
-"του οποίου γίνεται διαμεσολάβηση"
+msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
+msgstr "Η θύρα στο σύστημα που καθορίζεται από το \"/system/proxy/ftp_host\" μέσω του οποίου γίνεται διαμεσολάβηση."
 
 #: schemas/system_http_proxy.schemas.in.h:25
-msgid ""
-"The port on the machine defined by \"/system/proxy/secure_host\" that you "
-"proxy through."
-msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το \"/system/proxy/secure_host\" μέσω "
-"του οποίου γίνεται διαμεσολάβηση."
+msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
+msgstr "Η θύρα στο σύστημα που καθορίζεται από το \"/system/proxy/secure_host\" μέσω του οποίου γίνεται διαμεσολάβηση."
 
 #: schemas/system_http_proxy.schemas.in.h:26
-msgid ""
-"The port on the machine defined by \"/system/proxy/socks_host\" that you "
-"proxy through."
-msgstr ""
-"Η θύρα στο σύστημα που καθορίζεται από το  \"/system/proxy/socks_host\" μέσω "
-"του οποίου γίνεται διαμεσολάβηση"
+msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
+msgstr "Η θύρα στο σύστημα που καθορίζεται από το  \"/system/proxy/socks_host\" μέσω του οποίου γίνεται διαμεσολάβηση."
 
 #: schemas/system_http_proxy.schemas.in.h:27
-msgid ""
-"This key contains a list of hosts which are connected to directly, rather "
-"than via the proxy (if it is active). The values can be hostnames, domains "
-"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
-"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
-"Αυτό το κλειδί περιέχει μια λίστα από συστήματα στα οποία γίνεται απευθείας "
-"σύνδεση, απρά μέσω του διαμεσολαβητή (αν είναι ενεργός). Οι τιμές μπορεί να "
-"είναι ονόματα συστήματος, τομείς (με την χρήση μιας αρχικής wildcard όπως *."
-"foo.com), διευθύνσεις IP (και IPv4 και IPv6) και διευθύνσεις δικτύου με  "
-"netmask (κάτι σαν 192.168.0.0/24)."
+msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr "Αυτό το κλειδί περιέχει μια λίστα από συστήματα στα οποία γίνεται απευθείας σύνδεση, απρά μέσω του διαμεσολαβητή (αν είναι ενεργός). Οι τιμές μπορεί να είναι ονόματα συστήματος, τομείς (με την χρήση μιας αρχικής wildcard όπως *.foo.com), διευθύνσεις IP (και IPv4 και IPv6) και διευθύνσεις δικτύου με  netmask (κάτι σαν 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr "Το URL που παρέχει τιμές ρύθμισης διαμεσολαβητή"
+msgstr "Το URL που παρέχει τιμές ρύθμισης διαμεσολαβητή."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
@@ -1026,7 +929,7 @@ msgstr "Χρήση διαμεσολαβητή HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Όνομα χρήστη για να περάσει ως πιστοποίηση κατά την διαμεσολάβηση http"
+msgstr "Όνομα χρήστη για να περάσει ως πιστοποίηση κατά την διαμεσολάβηση http."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1036,1176 +939,3 @@ msgstr "Ομάδα εργασίας SMB"
 msgid "The window workgroup the user is part of"
 msgstr "Η ομάδα εργασίας παραθύρου όπου ο χρήστης είναι μέρος"
 
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "Η αποθήκευση του σελιδοδείκτη απέτυχε (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "Αδυναμία λήψης πληροφοριών για αρχείο '%s': %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Αποτυχία ανοίγματος αρχείου '%s': %s"
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "Αποτυχία φόρτωσης εικόνας '%s': ο λόγος δεν είναι γνωστός, πιθανόν να "
-#~ "είναι κατεστραμμένο το αρχείο εικόνας"
-
-#~ msgid "How to handle http URLs"
-#~ msgstr "Τρόπος χειρισμού http URLs"
-
-#~ msgid "How to handle https URLs"
-#~ msgstr "Τρόπος χειρισμού https URLs"
-
-#~ msgid "Set to true to have a program specified in command handle https URLs"
-#~ msgstr ""
-#~ "Ορισμός σε true για να έχετε ένα πρόγραμμα καθορισμένο στην εντολή για "
-#~ "τον χειρισμό https URLs"
-
-#~ msgid ""
-#~ "Set to true to have a program specified in programs/ghelp handle ghelp "
-#~ "URLs"
-#~ msgstr ""
-#~ "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο Προγράμματα/"
-#~ "ghelp για τον χειρισμό ghelp URLs"
-
-#~ msgid ""
-#~ "Set to true to have a program specified in programs/info handle info URLs"
-#~ msgstr ""
-#~ "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο προγράμματα/"
-#~ "info για τον χειρισμό info URLs"
-
-#~ msgid ""
-#~ "Set to true to have a program specified in programs/man handle man URLs"
-#~ msgstr ""
-#~ "Ορισμός σε true για  να έχετε ένα πρόγραμμα καθορισμένο στο προγράμματα/"
-#~ "man για τον χειρισμό man URLs"
-
-#~ msgid "URL handler for callto uris"
-#~ msgstr "Χειριστής URL για callto uris"
-
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "Χειριστής URL για σελίδες ghelp"
-
-#~ msgid "URL handler for h323 uris"
-#~ msgstr "Χειριστής URL για h323 uris"
-
-#~ msgid "URL handler for http uris"
-#~ msgstr "Χειριστής URL για http uris"
-
-#~ msgid "URL handler for https uris"
-#~ msgstr "Χειριστής URL για https uris"
-
-#~ msgid "URL handler for info pages"
-#~ msgstr "Χειριστής URL για σελίδες info"
-
-#~ msgid "URL handler for mailto uris"
-#~ msgstr "Χειριστής URL για mailto uris"
-
-#~ msgid "URL handler for man pages"
-#~ msgstr "Χειριστής URL για σελίδες man"
-
-#~ msgid "URL handler for trash pages"
-#~ msgstr "Χειριστής URL για σελίδες trash"
-
-#~ msgid "Hosts are not contacted via the proxy"
-#~ msgstr "Τα συστήματα δεν είναι προσβάσιμα μέσω του διαμεσολαβητή"
-
-#~ msgid "The machine name to proxy http through."
-#~ msgstr "Το όνομα συστήματος μέσω του οποίου γίνεται διαμεσολάβηση http. "
-
-#~ msgid "Use proxy settings when accessing http"
-#~ msgstr "Χρήση ρυθμίσεων διαμεσολαβητή κατά την πρόσβαση http"
-
-#~ msgid "http proxy password"
-#~ msgstr "κωδικός διαμεσολαβητή http"
-
-#~ msgid "http proxy username"
-#~ msgstr "όνομα χρήστη http"
-
-#~ msgid "1 byte"
-#~ msgstr "1 byte"
-
-#~ msgid "3D Studio image"
-#~ msgstr "Εικόνα 3D Studio"
-
-#~ msgid "AIFC audio"
-#~ msgstr "Ήχος AIFC"
-
-#~ msgid "AIFF audio"
-#~ msgstr "Ήχος AIFF"
-
-#~ msgid "ANIM animation"
-#~ msgstr "Κινούμενο σχέδιο ANIM"
-
-#~ msgid "AVI video"
-#~ msgstr "Βίντεο AVI"
-
-#~ msgid "AbiWord document"
-#~ msgstr "Έγγραφο AbiWord"
-
-#~ msgid "Adobe FrameMaker font"
-#~ msgstr "Γραμματοσειρά Adobe FrameMaker"
-
-#~ msgid "Adobe font metrics"
-#~ msgstr "Μετρικά γραμματοσειράς Adobe"
-
-#~ msgid "Andrew Toolkit inset"
-#~ msgstr "Ένθεμα Andrew Toolkit"
-
-#~ msgid "ApplixWare Graphics image"
-#~ msgstr "Εικόνα ApplixWare Graphics"
-
-#~ msgid "Applixware Words document"
-#~ msgstr "Έγγραφο Applixware Words"
-
-#~ msgid "Applixware spreadsheet"
-#~ msgstr "Λογιστικό φύλλο Applixware"
-
-#~ msgid "AutoCAD image"
-#~ msgstr "Εικόνα AutoCAD"
-
-#~ msgid "BCPIO document"
-#~ msgstr "Έγγραφο BCPIO"
-
-#~ msgid "BDF font"
-#~ msgstr "Γραμματοσειρά BDF"
-
-#~ msgid "C shell script"
-#~ msgstr "Πρόγραμμα εντολών φλοιού C"
-
-#~ msgid "C source code"
-#~ msgstr "Πηγαίος κώδικας C"
-
-#, fuzzy
-#~ msgid "C source code header"
-#~ msgstr "Πηγαίος κώδικας C"
-
-#~ msgid "C++ source code"
-#~ msgstr "Πηγαίος κώδικας C++"
-
-#~ msgid "CGI program"
-#~ msgstr "Πρόγραμμα CGI"
-
-#~ msgid "CGM image"
-#~ msgstr "Εικόνα CGM"
-
-#~ msgid "CMU raster image"
-#~ msgstr "Εικόνα ράστερ CMU"
-
-#~ msgid "CPIO archive"
-#~ msgstr "Αρχείο CPIO"
-
-#~ msgid "CPIO archive (gzip-compressed)"
-#~ msgstr "Αρχείο CPIO (gzip-συμπιεσμένο)"
-
-#~ msgid "DCL script"
-#~ msgstr "Πρόγραμμα εντολών DCL"
-
-#~ msgid "DOS font"
-#~ msgstr "Γραμματοσειρά DOS"
-
-#~ msgid "DOS/Windows program"
-#~ msgstr "Πρόγραμμα DOS/Windows"
-
-#~ msgid "DSSSL document"
-#~ msgstr "Έγγραφο DSSSL"
-
-#~ msgid "DXF vector graphic"
-#~ msgstr "Διανυσματικό γραφικό DXF"
-
-#~ msgid "Debian package"
-#~ msgstr "Πακέτο Debian"
-
-#~ msgid "Dia diagram"
-#~ msgstr "Διάγραμμα Dia"
-
-#~ msgid "Emacs Lisp source code"
-#~ msgstr "Πηγαίος κώδικας Emacs Lisp"
-
-#~ msgid "Enlightenment theme"
-#~ msgstr "Θέμα Enlightenment"
-
-#~ msgid "FLC animation"
-#~ msgstr "Κινούμενο σχέδιο FLC"
-
-#~ msgid "FLI animation"
-#~ msgstr "Κινούμενο σχέδιο FLI"
-
-#~ msgid "FastTracker II audio"
-#~ msgstr "Ήχος FastTracker II"
-
-#~ msgid "Fortran source code"
-#~ msgstr "Πηγαίος κώδικας Fortran"
-
-#~ msgid "FrameMaker interchange document"
-#~ msgstr "Έγγραφο ανταλλαγής FrameMaker"
-
-#~ msgid "G3 fax image"
-#~ msgstr "Εικόνα φαξ G3"
-
-#~ msgid "GIF image"
-#~ msgstr "Εικόνα GIF"
-
-#~ msgid "GIMP document"
-#~ msgstr "Έγγραφο GIMP"
-
-#~ msgid "GMC link"
-#~ msgstr "Σύνδεσμος GMC"
-
-#~ msgid "GNOME application details"
-#~ msgstr "Λεπτομέρειες εφαρμογής GNOME"
-
-#~ msgid "GNU Oleo Spreadsheet"
-#~ msgstr "Λογιστικό φύλλο Oleo GNU"
-
-#~ msgid "GNU mail message"
-#~ msgstr "Μήνυμα αλληλογραφίας GNU"
-
-#~ msgid "Glade project"
-#~ msgstr "Έργο Glade"
-
-#~ msgid "GnuCash Workbook"
-#~ msgstr "Βιβλίο Εργασίας GnuCash"
-
-#~ msgid "Gnumeric spreadsheet"
-#~ msgstr "Λογιστικό φύλλο Gnumeric"
-
-#~ msgid "HDF document"
-#~ msgstr "Έγγραφο HDF"
-
-#~ msgid "HTML page"
-#~ msgstr "Σελίδα HTML"
-
-#~ msgid "IDL document"
-#~ msgstr "Έγγραφο IDL"
-
-#~ msgid "IEF image"
-#~ msgstr "Εικόνα IEF"
-
-#~ msgid "IFF image"
-#~ msgstr "Εικόνα IFF"
-
-#~ msgid "ILBM image"
-#~ msgstr "Εικόνα ILBM"
-
-#~ msgid "ISI video"
-#~ msgstr "Βίντεο ISI"
-
-#~ msgid "Impulse Tracker audio"
-#~ msgstr "Ήχος Impulse Tracker"
-
-#~ msgid "JBuilder Project"
-#~ msgstr "Έργο JBuilder"
-
-#~ msgid "JPEG image"
-#~ msgstr "Εικόνα JPEG"
-
-#~ msgid "Java byte code"
-#~ msgstr "Java byte code"
-
-#~ msgid "Java source code"
-#~ msgstr "Πηγαίος κώδικας Java"
-
-#~ msgid "KDE application details"
-#~ msgstr "Λεπτομέρειες εφαρμογής KDE"
-
-#~ msgid "KIllustrator document"
-#~ msgstr "Έγγραφο KIllustrator"
-
-#~ msgid "KPresenter presentation"
-#~ msgstr "Παρουσίαση KPresenter"
-
-#~ msgid "KSpread spreadsheet"
-#~ msgstr "Λογιστικό φύλλο KSpread"
-
-#~ msgid "KWord document"
-#~ msgstr "Έγγραφο KWord"
-
-#~ msgid "Korn shell script"
-#~ msgstr "Πρόγραμμα εντολών φλοιού Korn"
-
-#~ msgid "LHA archive"
-#~ msgstr "Αρχείο LHA"
-
-#~ msgid "LHARC archive"
-#~ msgstr "Αρχείο LHARC"
-
-#~ msgid "LIBGRX font"
-#~ msgstr "Γραμματοσειρά LIBGRX"
-
-#~ msgid "LightWave object"
-#~ msgstr "Αντικείμενο LightWave"
-
-#~ msgid "LightWave scene"
-#~ msgstr "Σκηνή LightWave"
-
-#~ msgid "Linux PSF console font"
-#~ msgstr "Γραμματοσειρά κονσόλας PSF Linux"
-
-#~ msgid "Lotus 1-2-3 spreadsheet"
-#~ msgstr "Λογιστικό φύλλο Lotus 1-2-3"
-
-#~ msgid "M3 audio URL"
-#~ msgstr "URL ήχου M3"
-
-#~ msgid "MIDI audio"
-#~ msgstr "Ήχος MIDI"
-
-#~ msgid "MOD audio"
-#~ msgstr "Ήχος MOD"
-
-#~ msgid "MP3 audio"
-#~ msgstr "Ήχος MP3"
-
-#~ msgid "MP3 audio playlist"
-#~ msgstr "Λίστα τραγουδιών MP3"
-
-#~ msgid "MPEG video"
-#~ msgstr "Βίντεο MPEG"
-
-#~ msgid "MS ASF video"
-#~ msgstr "Βίντεο MS ASF"
-
-#~ msgid "MS video"
-#~ msgstr "Βίντεο MS"
-
-#~ msgid "Macintosh AppleDouble-encoded file"
-#~ msgstr "Αρχείο Macintosh κωδικοποίησης AppleDouble"
-
-#~ msgid "Macintosh BinHex-encoded file"
-#~ msgstr "Αρχείο Macintosh κωδικοποίησης BinHex"
-
-#~ msgid "Macintosh StuffIt archive"
-#~ msgstr "Αρχείο Macintosh StuffIt"
-
-#~ msgid "Macromedia Flash file"
-#~ msgstr "Αρχείο Macromedia Flash"
-
-#~ msgid "MathML document"
-#~ msgstr "Έγγραφο MathML"
-
-#~ msgid "Microsoft Excel spreadsheet"
-#~ msgstr "Λογιστικό φύλλο Microsoft Excel"
-
-#~ msgid "Microsoft PowerPoint document"
-#~ msgstr "Έγγραφο Microsoft PowerPoint"
-
-#~ msgid "Microsoft Word document"
-#~ msgstr "Έγγραφο Microsoft Word"
-
-#~ msgid "Microsoft video"
-#~ msgstr "Βίντεο Microsoft"
-
-#~ msgid "Nautilus link"
-#~ msgstr "Σύνδεσμος Nautilus"
-
-#~ msgid "ODA document"
-#~ msgstr "Έγγραφο ODA"
-
-#~ msgid "PBM image"
-#~ msgstr "Εικόνα PBM"
-
-#~ msgid "PCF font"
-#~ msgstr "Γραμματοσειρά PCF"
-
-#~ msgid "PDF document"
-#~ msgstr "Έγγραφο PDF"
-
-#~ msgid "PEF program"
-#~ msgstr "Πρόγραμμα PEF"
-
-#~ msgid "PGM image"
-#~ msgstr "Εικόνα PGM"
-
-#~ msgid "PGN chess game"
-#~ msgstr "Παρτίδα σκακιού PGN"
-
-#~ msgid "PGP keys"
-#~ msgstr "Κλειδιά PGP"
-
-#~ msgid "PGP message"
-#~ msgstr "Μήνυμα PGP"
-
-#~ msgid "PGP signature"
-#~ msgstr "Υπογραφή PGP"
-
-#~ msgid "PGP-encrypted file"
-#~ msgstr "Αρχείο κρυπτογραφημένο PGP"
-
-#~ msgid "PHP script"
-#~ msgstr "Πρόγραμμα εντολών PHP"
-
-#~ msgid "PN RealAudio document"
-#~ msgstr "Έγγραφο PN RealAudio"
-
-#~ msgid "PNG image"
-#~ msgstr "Εικόνα PNG"
-
-#~ msgid "PNM image"
-#~ msgstr "Εικόνα PNM"
-
-#~ msgid "PPM image"
-#~ msgstr "Εικόνα PPM"
-
-#~ msgid "Palm OS database"
-#~ msgstr "Βάση δεδομένων Palm OS"
-
-#~ msgid "Perl script"
-#~ msgstr "Πρόγραμμα εντολών Perl"
-
-#~ msgid "Photoshop document"
-#~ msgstr "Έγγραφο Photoshop"
-
-#~ msgid "PostScript Type 1 font"
-#~ msgstr "Γραμματοσειρά Postscript Type 1"
-
-#~ msgid "PostScript document"
-#~ msgstr "Έγγραφο PostScript"
-
-#~ msgid "Python source code"
-#~ msgstr "Πηγαίος κώδικας Python"
-
-#~ msgid "QuickTime movie"
-#~ msgstr "Ταινία QuickTime"
-
-#~ msgid "Quicken document"
-#~ msgstr "Έγγραφο Quicken"
-
-#~ msgid "Quicken for Windows document"
-#~ msgstr "Έγγραφο Quicken για Windows"
-
-#~ msgid "RAR archive"
-#~ msgstr "Αρχείο RAR"
-
-#~ msgid "README document"
-#~ msgstr "Έγγραφο README"
-
-#~ msgid "RGB image"
-#~ msgstr "Εικόνα RGB"
-
-#~ msgid "RIFF audio"
-#~ msgstr "Ήχος RIFF"
-
-#~ msgid "RPM package"
-#~ msgstr "Πακέτο RPM"
-
-#~ msgid "RealAudio/Video document"
-#~ msgstr "Έγγραφο RealAudio/Βίντεο"
-
-#~ msgid "RealVideo video"
-#~ msgstr "Βίντεο RealVideo"
-
-#~ msgid "S/MIME file"
-#~ msgstr "Αρχείο S/MIME"
-
-#~ msgid "S/MIME signature"
-#~ msgstr "Υπογραφή S/MIME"
-
-#~ msgid "SGI video"
-#~ msgstr "Βίντεο SGI"
-
-#~ msgid "SGML document"
-#~ msgstr "Έγγραφο SGML"
-
-#~ msgid "SMIL script"
-#~ msgstr "Πρόγραμμα εντολών SMIL"
-
-#~ msgid "SQL code"
-#~ msgstr "Πηγαίος κώδικας SQL"
-
-#~ msgid "SV4 CPIO archive"
-#~ msgstr "Αρχείο SV4 CPIO"
-
-#~ msgid "SV4 CPIP archive (with CRC)"
-#~ msgstr "Αρχείο SV4 CPIP (με Κυκλικό Έλεγχο Αθροίσματος)"
-
-#~ msgid "SVG art"
-#~ msgstr "Τέχνημα SVG"
-
-#~ msgid "Scheme source code"
-#~ msgstr "Πηγαίος κώδικας Scheme"
-
-#~ msgid "Scream Tracker 3 audio"
-#~ msgstr "Ήχος Scream Tracker 3"
-
-#~ msgid "Scream Tracker audio"
-#~ msgstr "Ήχος Scream Tracker"
-
-#~ msgid "Scream Tracker instrument"
-#~ msgstr "Μουσικό όργανο Scream Tracker"
-
-#~ msgid "Setext document"
-#~ msgstr "Έγγραφο Setext"
-
-#~ msgid "Speech document"
-#~ msgstr "Έγγραφο ομιλίας"
-
-#~ msgid "Speedo font"
-#~ msgstr "Γραμματοσειρά Speedo"
-
-#~ msgid "Spreadsheet Interchange document"
-#~ msgstr "Έγγραφο Ανταλλαγής Λογιστικού Φύλλου"
-
-#~ msgid "Stampede package"
-#~ msgstr "Πακέτο Stampede"
-
-#~ msgid "StarOffice Writer document"
-#~ msgstr "Έγγραφο StarOffice Writer"
-
-#~ msgid "StarOffice presentation"
-#~ msgstr "Παρουσίαση StarOffice"
-
-#~ msgid "StarOffice spreadsheet"
-#~ msgstr "Λογιστικό φύλλο StarOffice"
-
-#~ msgid "Sun mu-law audio"
-#~ msgstr "Ήχος Sun ΅-law"
-
-#~ msgid "SunOS News font"
-#~ msgstr "Γραμματοσειρά SunOS News"
-
-#~ msgid "TIFF image"
-#~ msgstr "Εικόνα TIFF"
-
-#~ msgid "TarGA image"
-#~ msgstr "Εικόνα TarGA"
-
-#~ msgid "Tcl script"
-#~ msgstr "Πρόγραμμα εντολών Tcl"
-
-#~ msgid "TeX document"
-#~ msgstr "Έγγραφο TeX"
-
-#~ msgid "TeX dvi document"
-#~ msgstr "Έγγραφο TeX dvi"
-
-#~ msgid "TeX font"
-#~ msgstr "Γραμματοσειρά TeX"
-
-#~ msgid "TeX font metrics"
-#~ msgstr "Μετρικά γραμματοσειράς TeX"
-
-#~ msgid "TeXInfo document"
-#~ msgstr "Έγγραφο TeXInfo"
-
-#~ msgid "ToutDoux document"
-#~ msgstr "Έγγραφο ToutDoux"
-
-#~ msgid "TrueType font"
-#~ msgstr "Γραμματοσειρά TrueType"
-
-#~ msgid "USENET news message"
-#~ msgstr "Μήνυμα νέων USENET"
-
-#~ msgid "Unidata netCDF document"
-#~ msgstr "Έγγραφο Unidata netCDF"
-
-#~ msgid "V font"
-#~ msgstr "Γραμματοσειρά V"
-
-#~ msgid "VOC audio"
-#~ msgstr "Ήχος VOC"
-
-#~ msgid "VRML document"
-#~ msgstr "Έγγραφο VRML"
-
-#~ msgid "Vivo video"
-#~ msgstr "Βίντεο Vivo"
-
-#~ msgid "WAIS source code"
-#~ msgstr "Πηγαίος κώδικας WAIS"
-
-#~ msgid "Wavelet video"
-#~ msgstr "Βίντεο Wavelet"
-
-#~ msgid "Windows bitmap image"
-#~ msgstr "Εικόνα Windows bitmap"
-
-#~ msgid "Windows metafile graphics"
-#~ msgstr "Μετά-αρχείο γραφικών Windows"
-
-#~ msgid "WordPerfect document"
-#~ msgstr "Έγγραφο WordPerfect"
-
-#~ msgid "X bitmap image"
-#~ msgstr "Εικόνα X bitmap"
-
-#~ msgid "X window image"
-#~ msgstr "Εικόνα περιβάλλοντος X "
-
-#~ msgid "XML document"
-#~ msgstr "Έγγραφο XML"
-
-#~ msgid "XPM image"
-#~ msgstr "Εικόνα XPM"
-
-#~ msgid "Xbase database"
-#~ msgstr "Βάση δεδομένων Xbase"
-
-#~ msgid "active server page"
-#~ msgstr "ενεργή σελίδα εξυπηρετητή"
-
-#~ msgid "address card"
-#~ msgstr "κάρτα διεύθυνσης"
-
-#~ msgid "ar archive"
-#~ msgstr "αρχείο ar"
-
-#~ msgid "arj archive"
-#~ msgstr "αρχείο arj"
-
-#~ msgid "authors list"
-#~ msgstr "λίστα συγγραφέων"
-
-#~ msgid "backup file"
-#~ msgstr "αρχείο ασφαλείας"
-
-#~ msgid "basic audio"
-#~ msgstr "βασικός ήχος"
-
-#~ msgid "bibliography record"
-#~ msgstr "βιβλιογραφική εγγραφή"
-
-#~ msgid "binary program"
-#~ msgstr "δυαδικό πρόγραμμα"
-
-#~ msgid "block device"
-#~ msgstr "συσκευή μπλοκ"
-
-#~ msgid "bzip-compressed file"
-#~ msgstr "αρχείο συμπιεσμένο με bzip"
-
-#~ msgid "calendar file"
-#~ msgstr "αρχείο ημερολογίου"
-
-#~ msgid "calendar or event document"
-#~ msgstr "έγγραφο ημερολογίου ή γεγονότος"
-
-#~ msgid "character device"
-#~ msgstr "συσκευή χαρακτήρα"
-
-#~ msgid "comma-separated text document"
-#~ msgstr "έγγραφο κειμένου διαχώρισης με κόμμα"
-
-#~ msgid "compound document"
-#~ msgstr "σύνθετο έγγραφο"
-
-#~ msgid "compress-compressed file"
-#~ msgstr "αρχείο συμπιεσμένο με compress"
-
-#~ msgid "compressed GIMP document"
-#~ msgstr "συμπιεσμένο έγγραφο GIMP"
-
-#~ msgid "directory information file"
-#~ msgstr "αρχείο πληροφοριών καταλόγου"
-
-#~ msgid "document type definition"
-#~ msgstr "ορισμός τύπου εγγράφου"
-
-#~ msgid "email message"
-#~ msgstr "ηλεκτρονικό μήνυμα"
-
-#~ msgid "encrypted message"
-#~ msgstr "κρυπτογραφημένο μήνυμα"
-
-#~ msgid "enriched text document"
-#~ msgstr "έγγραφο εμπλουτισμένου κειμένου"
-
-#~ msgid "gtar archive"
-#~ msgstr "αρχείο gtar"
-
-#~ msgid "gzip-compressed file"
-#~ msgstr "αρχείο συμπιεσμένο με gzip"
-
-#~ msgid "help page"
-#~ msgstr "σελίδα βοηθείας"
-
-#~ msgid "mail delivery report"
-#~ msgstr "αναφορά παράδοσης αλληλογραφίας"
-
-#~ msgid "mail disposition report"
-#~ msgstr "αναφορά παράδοσης αλληλογραφίας"
-
-#~ msgid "mail system report"
-#~ msgstr "αναφορά συστήματος αλληλογραφίας"
-
-#~ msgid "makefile"
-#~ msgstr "makefile"
-
-#~ msgid "manual page"
-#~ msgstr "σελίδα τεκμηρίωσης"
-
-#~ msgid "manual page (compressed)"
-#~ msgstr "σελίδα τεκμηρίωσης (συμπιεσμένη)"
-
-#~ msgid "message digest"
-#~ msgstr "επιτομή μηνύματος"
-
-#~ msgid "message in several formats"
-#~ msgstr "μήνυμα πολλών μορφών"
-
-#~ msgid "multi-part message"
-#~ msgstr "μήνυμα πολλών τμημάτων"
-
-#~ msgid "named pipe"
-#~ msgstr "επώνυμη σωλήνωση"
-
-#~ msgid "object code"
-#~ msgstr "ενδιάμεσος κώδικας"
-
-#~ msgid "ogg audio"
-#~ msgstr "ήχος ogg"
-
-#~ msgid "partial email message"
-#~ msgstr "μερικό μήνυμα ηλεκ. αλληλογραφίας"
-
-#~ msgid "plain text document"
-#~ msgstr "έγγραφο απλού κειμένου"
-
-#~ msgid "profiler results"
-#~ msgstr "αποτελέσματα προφίλ"
-
-#~ msgid "reference to remote file"
-#~ msgstr "αναφορά σε απομακρυσμένο αρχείο"
-
-#~ msgid "rejected patch file"
-#~ msgstr "αρχείο απόρριψης επιρράμματος"
-
-#~ msgid "rich text document"
-#~ msgstr "έγγραφο εμπλουτισμένου κειμένου"
-
-#~ msgid "search results"
-#~ msgstr "αποτελέσματα αναζήτησης"
-
-#~ msgid "shared library"
-#~ msgstr "διαμοιραζόμενη βιβλιοθήκη"
-
-#~ msgid "shell archive"
-#~ msgstr "αρχείο φλοιού"
-
-#~ msgid "shell script"
-#~ msgstr "πρόγραμμα εντολών φλοιού"
-
-#~ msgid "signed message"
-#~ msgstr "υπογεγραμένο μήνυμα"
-
-#~ msgid "socket"
-#~ msgstr "υποδοχή"
-
-#~ msgid "software author credits"
-#~ msgstr "μνεία συγγραφέων λογισμικού"
-
-#~ msgid "software installation instructions"
-#~ msgstr "εντολές εγκατάστασης λογισμικού"
-
-#~ msgid "software license terms"
-#~ msgstr "συνθήκες άδειας λογισμικού"
-
-#~ msgid "source code patch"
-#~ msgstr "επίρραμμα πηγαίου κώδικα"
-
-#~ msgid "style sheet"
-#~ msgstr "επίστρωμα ύφους"
-
-#~ msgid "symbolic link"
-#~ msgstr "συμβολικός σύνδεσμος"
-
-#~ msgid "tab-separated text document"
-#~ msgstr "έγγραφο κειμένου διαχώρισης με στηλοθέτες"
-
-#~ msgid "tar archive"
-#~ msgstr "αρχείο tar"
-
-#~ msgid "tar archive (bzip2-compressed)"
-#~ msgstr "αρχείο tar (συμπίεσης bzip2)"
-
-#~ msgid "tar archive (gzip-compressed)"
-#~ msgstr "αρχείο tar (συμπίεσης gzip)"
-
-#~ msgid "theme"
-#~ msgstr "θέμα"
-
-#~ msgid "troff document"
-#~ msgstr "Έγγραφο troff"
-
-#~ msgid "troff me input document"
-#~ msgstr "έγγραφο εισόδου troff me"
-
-#~ msgid "troff mm input document"
-#~ msgstr "έγγραφο εισόδου troff mm"
-
-#~ msgid "troff ms input document"
-#~ msgstr "έγγραφο εισόδου troff ms"
-
-#~ msgid "unknown type"
-#~ msgstr "άγνωστος τύπος"
-
-#~ msgid "ustar archive"
-#~ msgstr "αρχείο ustar"
-
-#~ msgid "wave audio"
-#~ msgstr "ήχος κυμματομορφής"
-
-#~ msgid "web folder"
-#~ msgstr "φάκελος web"
-
-#~ msgid "xfig vector graphic"
-#~ msgstr "διανυσματικό γραφικό xfig"
-
-#~ msgid "zoo archive"
-#~ msgstr "αρχείο zoo"
-
-#~ msgid "GNOME VFS already initialized."
-#~ msgstr "Το Ιδεατό Σύστημα Αρχείων GNOME έχει ήδη αρχικοποιηθεί."
-
-#~ msgid "Dying."
-#~ msgstr "Τερματισμός."
-
-#~ msgid "Error reading: %s"
-#~ msgstr "Σφάλμα ανάγνωσης: %s"
-
-#~ msgid "Error writing: %s"
-#~ msgstr "Σφάλμα εγγραφής: %s"
-
-#~ msgid "Cannot write: %s"
-#~ msgstr "Εγγραφή αδύνατη: %s"
-
-#~ msgid "Cannot create temporary file name `%s'"
-#~ msgstr "Αδύνατη η δημιουργία προσωρινού αρχείου `%s'"
-
-#~ msgid "Cannot create socket: %s"
-#~ msgstr "Αδυναμία δημιουργίας υποδοχέα: %s"
-
-#~ msgid "Cannot bind `%s': %s"
-#~ msgstr "Αδυναμία δέσμευσης (bind) του `%s': %s"
-
-#~ msgid "Cannot listen on `%s': %s"
-#~ msgstr "Αδυναμία ακρόασης (listen) στο `%s': %s"
-
-#~ msgid "Cannot accept connections on `%s': %s"
-#~ msgstr "Λήψη συνδέσεων στο `%s' αδύνατη: %s"
-
-#~ msgid "Cannot resolve initial reference to RootPOA."
-#~ msgstr "Αδυναμία επίλυσης αρχικής αναφοράς στο RootPOA."
-
-#~ msgid "Cannot activate POA manager."
-#~ msgstr "Ενεργοποίηση διαχειριστή POA ανεπιτυχής."
-
-#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
-#~ msgstr "Χρήση: %s <ior> [<ior_fd>]\n"
-
-#~ msgid "Cannot open file descriptor %d."
-#~ msgstr "Αδυναμία ανοίγματος περιγραφέα αρχείου %d."
-
-#~ msgid "Notify interface for `%s' not found."
-#~ msgstr "Διεπιφάνεια ειδοποίησης για το `%s' δε βρέθηκε."
-
-#~ msgid "Cannot setup Request object."
-#~ msgstr "Δημιουργία αντικειμένου Request (αίτησης) ανεπιτυχής."
-
-#~ msgid "Cannot extract IOR."
-#~ msgstr "Εξαγωγή IOR αδύνατη."
-
-#~ msgid "Got weird string from the slave process: `%s'"
-#~ msgstr "Λήψη παράξενης ακολουθίας από την διεργασία υπηρέτη: `%s'"
-
-#~ msgid "Cannot get object for `%s'"
-#~ msgstr "Αδυναμία απόκτησης αντικειμένου για το `%s'"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-#~ msgstr "Τερματισμός του GNOME::VFS::Slave::Notify αδύνατη -- εξαίρεση %s"
-
-#~ msgid "Cannot connect socket `%s': %s"
-#~ msgstr "Αδυναμία σύνδεσης με τον υποδοχέα `%s': %s"
-
-#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-#~ msgstr "Αρχικοποίηση του GNOME::VFS:Slave::Notify ανεπιτυχής"
-
-#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Ανεπιτυχής επαναρχικοποίηση του GNOME::VFS::Slave %s -- εξαίρεση %s"
-
-#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr ""
-#~ "Ανεπιτυχής επαναρχικοποίηση του GNOME::VFS::Slave (άγνωστο IOR) -- "
-#~ "εξαίρεση %s"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-#~ msgstr "Ανεπιτυχής τερματισμός του GNOME::VFS::Slave %s -- εξαίρεση %s"
-
-#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-#~ msgstr ""
-#~ "Ανεπιτυχής τερματισμός του GNOME::VFS::Slave (άγνωστο IOR) -- εξαίρεση %s"
-
-#~ msgid "File Types and Programs"
-#~ msgstr "Είδη Αρχείων και Προγράμματα"
-
-#~ msgid "Specify which programs are used to open or view each file type"
-#~ msgstr ""
-#~ "Καθορισμός των προγραμμάτων που ανοίγουν ή εμφανίζουν κάθε είδος αρχείων"
-
-#~ msgid "MIME Type"
-#~ msgstr "Είδος MIME"
-
-#~ msgid "Change Icon"
-#~ msgstr "Αλλαγή Εικονιδίου"
-
-#~ msgid "Change File Extensions"
-#~ msgstr "Αλλαγή Επέκτασης Αρχείου"
-
-#~ msgid "Default Action:"
-#~ msgstr "Εξ' ορισμού Ενέργεια:"
-
-#~ msgid "Use Viewer"
-#~ msgstr "Χρήση Θέασης"
-
-#~ msgid "Open With Application"
-#~ msgstr "Άνοιγμα με Εφαρμογή"
-
-#~ msgid "Edit List"
-#~ msgstr "Επεξεργασία Λίστας"
-
-#~ msgid "Add New MIME Type..."
-#~ msgstr "Προσθήκη Νέου Είδους MIME..."
-
-#~ msgid "Delete This MIME Type"
-#~ msgstr "Διαγραφή Αυτού Του Είδους MIME"
-
-#~ msgid "Revert to System Defaults"
-#~ msgstr "Επαναφορά στα Εξ΄ Ορισμού Συστήματος"
-
-#~ msgid "None"
-#~ msgstr "Τίποτα"
-
-#~ msgid ""
-#~ "Reverting to system settings will lose any changes\n"
-#~ "you have ever made to File Types and Programs.\n"
-#~ "Revert anyway?"
-#~ msgstr ""
-#~ "Η επαναφορά στις ρυθμίσεις συστήματος θα διαγράψει\n"
-#~ "ΌΛΕΣ τις αλλαγές που έχετε κάνει στα Είδη Αρχείων\n"
-#~ "και Προγράμματα.\n"
-#~ "Επαναφορά στις Ρυθμίσεις Συστήματος;"
-
-#~ msgid "none"
-#~ msgstr "τίποτα"
-
-#~ msgid "View as %s"
-#~ msgstr "Εμφάνιση ως %s"
-
-#~ msgid "Description"
-#~ msgstr "Περιγραφή"
-
-#~ msgid "Extension"
-#~ msgstr "Επέκταση"
-
-#~ msgid "Default Action"
-#~ msgstr "Εξ' ορισμού ενέργεια"
-
-#~ msgid "Edit Applications List"
-#~ msgstr "Επεξεργασία Λίστας Εφαρμογών"
-
-#~ msgid "Select applications to appear in menu for MIME type \"%s\""
-#~ msgstr "Επιλογή εφαρμογών για εμφάνιση στο μενού για το είδος MIME \"%s\""
-
-#~ msgid "Add Application..."
-#~ msgstr "Προσθήκη Εφαρμογής..."
-
-#~ msgid "Edit Application..."
-#~ msgstr "Επεξεργασία Εφαρμογής..."
-
-#~ msgid "Edit Components List"
-#~ msgstr "Επεξεργασία Λίστα Συστατικών"
-
-#~ msgid "Select views to appear in menu for MIME type \"%s\""
-#~ msgstr "Επιλογή όψεων για εμφάνιση στο μενού για το είδος MIME \"%s\""
-
-#~ msgid ""
-#~ "The MIME type entered contained upper case characters. Upper case "
-#~ "characters were changed to lower case for you."
-#~ msgstr ""
-#~ "Το είδος MIME που εισάγατε περιέχει κεφαλαία γράμματα. Τα κεφαλαία "
-#~ "γράμματα αλλάχτηκαν αυτόματα σε πεζά."
-
-#~ msgid "Add New MIME Type"
-#~ msgstr "Προσθήκη Νέου Είδους Mime"
-
-#~ msgid "Add MIME Type"
-#~ msgstr "Προσθήκη Είδους MIME"
-
-#~ msgid "New MIME type (e.g. image/x-thumper):"
-#~ msgstr "Νέο είδος MIME (π.χ. image/x-thumper):"
-
-#~ msgid "Description (e.g. Thumper image):"
-#~ msgstr "Περιγραφή (π.χ. Εικόνα μορφής thumper):"
-
-#~ msgid "File Extensions "
-#~ msgstr "Επεκτάσεις Αρχείων"
-
-#~ msgid "Add..."
-#~ msgstr "Προσθήκη..."
-
-#~ msgid "    Remove    "
-#~ msgstr "    Διαγραφή"
-
-#~ msgid "Add New Extension"
-#~ msgstr "Προσθήκη Νέας Επέκτασης"
-
-#~ msgid ""
-#~ "Type in the extensions for this mime-type (without dot).\n"
-#~ "You can enter several extensions seperated by a space,\n"
-#~ "for example: html htm"
-#~ msgstr ""
-#~ "Εισάγετε τις επεκτάσεις για αυτό το είδος-mime (χωρίς τελεία).\n"
-#~ "Μπορείτε να εισάγετε πολλές επεκτάσεις διαχωρίζοντάς τες με διάστημα,\n"
-#~ "για παράδειγμα: html htm"
-
-#~ msgid "Extension:"
-#~ msgstr "Επέκταση:"
-
-#~ msgid "You must enter a name."
-#~ msgstr "Πρέπει να εισάγετε ένα όνομα."
-
-#~ msgid "You must enter a command."
-#~ msgstr "Πρέπει να εισάγετε μια εντολή."
-
-#~ msgid ""
-#~ "\"%s\" does not exist or is not executable.\n"
-#~ "Check your spelling and make sure you have\n"
-#~ "the right permissions to execute this file."
-#~ msgstr ""
-#~ "Το \"%s\" δεν υπάρχει ή δεν είναι εκτελέσιμο.\n"
-#~ "Ελέξτε την ορθογραφία σας και επιβεβαιώστε ότι\n"
-#~ "ότι έχετε δικαίωμα εκτέλεσης του αρχείου."
-
-#~ msgid ""
-#~ "The command \"%s\" cannot be found.\n"
-#~ "You must use a command that can work from any command line."
-#~ msgstr ""
-#~ "Η εντολή \"%s\" δε βρέθηκε.\n"
-#~ "Πρέπει να χρησιμοποιήσετε μια εντολή που να είναι προσβάσιμη από κάθε "
-#~ "γραμμή εντολών."
-
-#~ msgid "Bad Application Name"
-#~ msgstr "Κακό Όνομα Εφαρμογής"
-
-#~ msgid "Bad Application Command"
-#~ msgstr "Κακή Εντολή Εφαρμογής"
-
-#~ msgid "Edit Application"
-#~ msgstr "Επεξεργασία Εφαρμογής"
-
-#~ msgid "Application Name:"
-#~ msgstr "Όνομα Εφαρμογής:"
-
-#~ msgid "Application Command:"
-#~ msgstr "Εντολή Εφαρμογής:"
-
-#~ msgid "Open Behavior"
-#~ msgstr "Συμπεριφορά Ανοίγματος"
-
-#~ msgid "Can open multiple files"
-#~ msgstr "Μπορούν να ανοιχτούν πολλαπλά αρχεία"
-
-#~ msgid "Can open from URI"
-#~ msgstr "Μπορεί να ανοιχτεί από URI"
-
-#~ msgid "Can't find an hbox, using a normal file selection"
-#~ msgstr "Αδυναμία εύρεσης hbox, χρήση κανονικής επιλογής αρχείων"
-
-#~ msgid "Preview"
-#~ msgstr "Επισκόπηση"
-
-#~ msgid "Select an icon"
-#~ msgstr "Επιλέξτε εικονίδιο"
-
-#~ msgid "%s to retrieve"
-#~ msgstr "%s προς λήψη"
-
-#~ msgid "Closing connection to %s"
-#~ msgstr "Τερματισμός σύνδεσης με %s"
-
-#~ msgid "%s of %s read"
-#~ msgstr "%s από %s αναγνώστηκαν"
-
-#~ msgid "%s read"
-#~ msgstr "%s αναγνώστηκαν"
-
-#~ msgid "Back"
-#~ msgstr "Πίσω"
-
-#~ msgid "Go to the previously visited directory"
-#~ msgstr "Πήγαινε στον κατάλογο της προηγούμενης επίσκεψης"
-
-#~ msgid "Up"
-#~ msgstr "Πάνω"
-
-#~ msgid "Go to the parent directory"
-#~ msgstr "Πήγαινε στο γονικό κατάλογο"
-
-#~ msgid "Forward"
-#~ msgstr "Εμπρός"
-
-#~ msgid "Go to the next visited directory"
-#~ msgstr "Πήγαινε στο κατάλογο της επόμενης επίσκεψης"
-
-#~ msgid "Rescan"
-#~ msgstr "Επανασάρωση"
-
-#~ msgid "Rescan the current directory"
-#~ msgstr "Επανασάρωση του τρέχοντος καταλόγου"
-
-#~ msgid "Go to the home directory"
-#~ msgstr "Πήγαινε στον αρχικό κατάλογο χρήστη"
-
-#~ msgid "Name"
-#~ msgstr "Όνομα"
-
-#~ msgid "Size"
-#~ msgstr "Μέγεθος"
-
-#~ msgid "Date"
-#~ msgstr "Ημερομηνία"
-
-#~ msgid "Enter name:"
-#~ msgstr "Εισαγωγή ονόματος:"
-
-#~ msgid "Show:"
-#~ msgstr "Εμφάνιση:"
-
-#~ msgid "Show dotfiles"
-#~ msgstr "Εμφάνιση κρυφών αρχείων"
-
-#~ msgid "New Application"
-#~ msgstr "Νέα Εφαρμογή"
-
-#~ msgid "Expects URIs as arguments"
-#~ msgstr "Αναμένει URI ως ορίσματα"
-
-#~ msgid ""
-#~ "Add a new MIME Type\n"
-#~ "For example:  image/tiff; text/x-scheme"
-#~ msgstr ""
-#~ "Προσθήκη νέου Είδους MIME\n"
-#~ "Για παράδειγμα: image/tiff; text/x-scheme"
-
-#~ msgid "MIME Type:"
-#~ msgstr "Είδος MIME:"
-
-#~ msgid "Type a description for this MIME type."
-#~ msgstr "Εισάγετε μια περιγραφή για αυτό το είδος MIME."
-
-#~ msgid "Description:"
-#~ msgstr "Περιγραφή:"
-
-#~ msgid "Add new MIME type..."
-#~ msgstr "Προσθήκη νέου είδους MIME..."
-
-#~ msgid "No Description"
-#~ msgstr "Χωρίς Περιγραφή"
-
-#~ msgid "Add Mime Type"
-#~ msgstr "Προσθήκη Είδους Mime"
-
-#~ msgid "Mime Type"
-#~ msgstr "Είδος Mime"
