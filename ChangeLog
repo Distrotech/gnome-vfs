@@ -1,3 +1,9 @@
+2002-03-15  Ian McKellar  <yakk@yakk.net>
+
+	* NEWS:
+	* configure.in:
+	Bump version to 1.0.5, update NEWS to reflect this.
+
 2002-02-23  Andy Hertzfeld  <andy@differnet.com>
 
 	* modules/nntp-method.c: (do_basic_command), (get_auth_info),
