@@ -703,6 +703,7 @@ gnome_vfs_mime_edit_user_file_full (const char *mime_type, GList *keys, GList *v
 	char *user_mime_file;
 	FILE *f;
 	GList *p, *q;
+	const char *key, *value;
 
 	if (mime_type == NULL) {
 		return GNOME_VFS_OK;
@@ -721,7 +722,13 @@ gnome_vfs_mime_edit_user_file_full (const char *mime_type, GList *keys, GList *v
 	}
 	if (result == GNOME_VFS_OK) {
 		for (p = keys, q = values; p != NULL && q != NULL; p = p->next, q = q->next) {
-			if (fprintf (f, "\t%s=%s\n", (char *) p->data, (char *) q->data) <= 0) {
+			key = p->data;
+			value = q->data;
+			if (value == NULL) {
+				value = "";
+			}
+
+			if (fprintf (f, "\t%s=%s\n", key, value) <= 0) {
 				result = gnome_vfs_result_from_errno ();
 				break;
 			}
@@ -753,12 +760,8 @@ gnome_vfs_mime_edit_user_file_args (const char *mime_type, va_list args)
 			break;
 		}
 		value = va_arg (args, char *);
-		if (value == NULL) {
-			g_warning ("bad key/value pair");
-			break;
-		}
 		keys = g_list_prepend (keys, key);
-		values = g_list_prepend (keys, value);
+		values = g_list_prepend (values, value);
 	}
 
 	result = gnome_vfs_mime_edit_user_file_full (mime_type, keys, values);
@@ -786,8 +789,6 @@ static GnomeVFSResult
 gnome_vfs_mime_edit_user_file (const char *mime_type, const char *key, const char *value)
 {
 	g_return_val_if_fail (key != NULL, GNOME_VFS_OK);
-	g_return_val_if_fail (value != NULL, GNOME_VFS_OK);
-
 	return gnome_vfs_mime_edit_user_file_multiple (mime_type, key, value, NULL);
 }
 

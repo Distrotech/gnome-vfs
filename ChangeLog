@@ -1,3 +1,15 @@
+2000-06-23  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_edit_user_file_full): Added code to handle NULL
+	for value and write out an empty string. The old code wrote out
+	"(NULL)" because of the help of glibc, but then I had added checks
+	for NULL. Now we handle it intentionally.
+	(gnome_vfs_mime_edit_user_file_args): Got rid of check for NULL
+	that made it illegal. Fixed a bug that would trash memory where I
+	was doing the wrong list.
+	(gnome_vfs_mime_edit_user_file): Make NULL legal here too.
+
 2000-06-23  Michael Meeks  <michael@helixcode.com>
 
 	* test/test-shell.c (do_info): implement.
@@ -9,7 +21,7 @@
 
 	* modules/efs-method.c (do_read_directory): implement.
 	(directory_handle_new): setup new->efs.
-	Begin to loath efs.
+	Begin to loathe efs.
 
 	* doc/uri.txt: update.
 
@@ -28,7 +40,7 @@
 
 2000-06-22  Gene Z. Ragan  <gzr@eazel.com>
 
-	Fixed bug #581.  Ui for specifying whether applicaition
+	Fixed bug #581.  UI for specifying whether applicaition
 	can open multiple files at once.
 	
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
