@@ -1,3 +1,7 @@
+2003-03-20  Guntupalli Karunakar  <karunakar@freedomink.org>
+
+	* configure.in: Added "ml" in ALL_LINGUAS
+
 2003-03-18  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c (copy_symlink):
