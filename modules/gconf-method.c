@@ -470,7 +470,7 @@ do_write (GnomeVFSMethodHandle *method_handle,
 #endif
 
 
-static const char*
+static char*
 make_relative (const char* key)
 {
   const gchar* end;

@@ -1,5 +1,10 @@
 2001-07-16  Darin Adler  <darin@bentspoon.com>
 
+	* modules/gconf-method.c: Fix const bug in code that was not
+	being compiled because HAVE_GCONF was off.
+
+2001-07-16  Darin Adler  <darin@bentspoon.com>
+
 	* modules/Makefile.am: Had to remove HAVE_GCONF from here to
 	make things build again.
 
