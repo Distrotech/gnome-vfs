@@ -1613,7 +1613,8 @@ gnome_vfs_new_directory_with_unique_name (const char *target_dir,
 					   progress,
 					   &dummy);
 
-		if (result != GNOME_VFS_ERROR_FILE_EXISTS) {
+		if (result != GNOME_VFS_ERROR_FILE_EXISTS
+			&& result != GNOME_VFS_ERROR_NAME_TOO_LONG) {
 			break;
 		}
 

@@ -1,4 +1,12 @@
-2000-07-04  Pavel  <pavel@eazel.com>
+2000-07-04  Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(gnome_vfs_new_directory_with_unique_name):
+	Make it possible for the unique name handling callback to detect
+	a file system that supports only short names and supply an 
+	8.3 name.
+
+2000-07-04  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-types.h:
 	* libgnomevfs/gnome-vfs-utils.h:
