@@ -2,7 +2,9 @@
 	
 	* modules/smb-method.c (prompt_authentication): Allow user name 
 	and domain in prompt dialog even when no URI is in context.
-	
+	* modules/smb-method.c (perform_authentication, get_cached_server):
+	Don't reauthenticate for access errors on established connections.
+
 2005-02-16  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-async-ops.c:

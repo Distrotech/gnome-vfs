@@ -130,6 +130,9 @@ typedef struct _SmbAuthContext {
 	gchar *use_user;		/* Set by perform_authentication */
 	gchar *use_domain;		/* Set by perform_authentication */
 	gchar *use_password;		/* Set by perform_authentication */
+
+	gboolean cache_added;           /* Set when cache is added to during authentication */
+	gboolean cache_used;            /* Set when cache is used during authentication */
 	
 } SmbAuthContext;
 
@@ -137,9 +140,6 @@ static void init_authentication (SmbAuthContext *actx, GnomeVFSURI *uri);
 static int  perform_authentication (SmbAuthContext *actx);
 
 static SmbAuthContext *current_auth_context = NULL;
-
-/* Used to detect failed logins */
-static gboolean cache_access_failed = FALSE;
 
 static void auth_callback (const char *server_name, const char *share_name,
 		     	   char *domain, int domainmaxlen,
@@ -345,7 +345,7 @@ add_cached_server (SMBCCTX *context, SMBCSRV *new,
 {
 	SmbServerCacheEntry *entry = NULL;
 
-	DEBUG_SMB(("add_cached_server: server: %s, share: %s, domain: %s, user: %s\n",
+	DEBUG_SMB(("[auth] adding cached server: server: %s, share: %s, domain: %s, user: %s\n",
 		   server_name, share_name, domain, username));
 	
 	schedule_cache_reap ();
@@ -361,8 +361,7 @@ add_cached_server (SMBCCTX *context, SMBCSRV *new,
 	entry->last_time = time (NULL);
 
 	g_hash_table_insert (server_cache, entry, entry);
-
-	cache_access_failed = FALSE;
+	current_auth_context->cache_added = TRUE;
 	return 0;
 }
 
@@ -382,11 +381,12 @@ get_cached_server (SMBCCTX * context,
 	res = g_hash_table_lookup (server_cache, &entry);
 
 	if (res != NULL) {
-		cache_access_failed = FALSE;
+		DEBUG_SMB(("got cached server: server: %s, share: %s, domain: %s, user: %s\n",
+		   	  server_name, share_name, domain, username));
+		current_auth_context->cache_used = TRUE;
 		res->last_time = time (NULL);
 		return res->server;
 	}
-	cache_access_failed = TRUE;
 	return NULL;
 }
 
@@ -1073,7 +1073,6 @@ init_authentication (SmbAuthContext *actx, GnomeVFSURI *uri)
 	DEBUG_SMB(("[auth] Initializing Authentication\n"));
 	memset (actx, 0, sizeof(*actx));
 	actx->uri = uri;
-	cache_access_failed = FALSE;
 }
 
 static int
@@ -1104,8 +1103,6 @@ perform_authentication (SmbAuthContext *actx)
 		return -1;
 	}
 	
-	/* TODO: What about cache_access_failed? */
-	
 	actx->passes++;
 
 	/* First pass */
@@ -1132,7 +1129,14 @@ perform_authentication (SmbAuthContext *actx)
 			DEBUG_SMB(("[auth] Operation successful\n"));
 			save_authentication (actx);
 			ret = 0;
-	
+
+		/* If authentication failed, but we already have a connection ... */
+		} else if (actx->cache_used && !actx->cache_added) {
+
+			/* ... we just return the error */
+			DEBUG_SMB(("[auth] Not reauthenticating a cached connection.\n"));
+			ret = -1;
+
 		/* A failed authentication */
 		} else if (actx->auth_called) {
 			
@@ -1162,8 +1166,8 @@ perform_authentication (SmbAuthContext *actx)
 			if (cont)
 				ret = 1;
 			else {
+				/* Note that we leave actx->res set to whatever it was set to */
 				DEBUG_SMB(("[auth] Authentication cancelled by user.\n"));
-				actx->res = GNOME_VFS_ERROR_CANCELLED;
 				ret = -1;
 			}
 					
@@ -1815,7 +1819,6 @@ do_open_directory (GnomeVFSMethod *method,
 	/* Important: perform_authentication leaves and re-enters the lock! */
 	while (perform_authentication (&actx) > 0) {
 		dir = smb_context->opendir (smb_context, path);
-                DEBUG_SMB(("opendir errno: %d, dir: %X\n", errno, dir));
 		actx.res = (dir != NULL) ? GNOME_VFS_OK : gnome_vfs_result_from_errno ();
 	}
 
