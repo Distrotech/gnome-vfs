@@ -1,5 +1,9 @@
 2004-07-15  Christian Kellner  <gicmo@gnome-de.org>
 
+	* acconfig.h: obsoleted by the new AC_DEFINE statements. Removed.
+		
+2004-07-15  Christian Kellner  <gicmo@gnome-de.org>
+
 	* configure.in:
 	Cleaned up AC_DEFINE statements to avoid autoheader warnings and
 	seperated IPv6 and resolver checks. Added checks for gethostbyname_r
