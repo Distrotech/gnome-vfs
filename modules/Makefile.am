@@ -4,6 +4,7 @@ SUBDIRS = extfs vfolder
 INCLUDES =					\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
+	-I$(top_srcdir)/imported/neon		\
 	$(MODULES_XML_GCONF_CFLAGS)		\
 	$(MODULES_FILE_CFLAGS) 			\
 	$(HOWL_CFLAGS)				\
@@ -215,9 +216,8 @@ HTTP_OLD_LIBADD =				\
 
 ## The neon module
 HTTP_NEON_SOURCES = 			\
-	http-neon-method.c			\
-	http-neon-mehtod.h			\
-	http-proxy.h				\
+	http-neon-method.c		\
+	http-proxy.h			\
 	http-proxy.c
 
 HTTP_NEON_LIBADD =				\

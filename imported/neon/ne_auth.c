@@ -50,8 +50,10 @@
 #include <windows.h> /* for GetCurrentThreadId() etc */
 #endif
 
-#ifdef NEON_SSL
+#if (defined (NEON_SSL) && defined (HAVE_OPENSSL))
 #include <openssl/rand.h>
+#else
+#undef NEON_SSL
 #endif
 
 #include <time.h>

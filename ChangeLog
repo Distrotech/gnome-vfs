@@ -1,5 +1,16 @@
 2004-07-22  Dave Camp  <dave@novell.com>
 
+	* configure.in:
+	* libgnomevfs/gnome-vfs-result.c:
+	* libgnomevfs/gnome-vfs-result.h:
+	* modules/Makefile.am:
+	* modules/http-neon-method.c:
+	* modules/http-proxy.c:
+	* modules/http-proxy.h: neon http method from Christian 
+	Kellner <gicmo@gnome-de.org>.
+
+2004-07-22  Dave Camp  <dave@novell.com>
+
 	* libgnomevfs/gnome-vfs-result.c: Add missing comma
 
 2004-07-21  Dave Camp  <dave@novell.com>

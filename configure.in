@@ -497,7 +497,7 @@ else
 fi
 
 dnl REMOVE THE FOLLOWING LINE AFTER NEON CHECK-IN
-AM_CONDITIONAL(USE_HTTP_NEON, false)  
+dnl AM_CONDITIONAL(USE_HTTP_NEON, false)  
     
 dnl modules/cdemenu-desktop
 

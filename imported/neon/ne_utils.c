@@ -30,8 +30,10 @@
 #include <stdio.h>
 #include <ctype.h> /* isdigit() for ne_parse_statusline */
 
-#ifdef NEON_SSL
+#if (defined (NEON_SSL) && defined (HAVE_OPENSSL))
 #include <openssl/opensslv.h>
+#else
+#undef NEON_SSL
 #endif
 
 /* libxml2: pick up the version string. */

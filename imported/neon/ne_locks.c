@@ -413,7 +413,7 @@ static int parse_depth(const char *depth)
 {
     if (strcasecmp(depth, "infinity") == 0) {
 	return NE_DEPTH_INFINITE;
-    } else if (isdigit(depth[0])) {
+    } else if (isdigit((unsigned char) depth[0])) {
 	return atoi(depth);
     } else {
 	return -1;

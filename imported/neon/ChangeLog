@@ -1,3 +1,13 @@
+2004-07-22  Dave Camp  <dave@novell.com>
+
+	* ne_auth.c:
+	* ne_gnomevfs.c: (ne_gnomevfs_last_error), (ne_iaddr_make),
+	(ne_iaddr_cmp), (ne_sock_connect), (ne_sock_fullwrite),
+	(ne_service_lookup), (ne_sock_connect_ssl), (ne_negotiate_ssl):
+	* ne_locks.c: (parse_depth):
+	* ne_string.c: (ne_strclean):
+	* ne_utils.c:
+
 Sun May  2 21:14:14 2004  Joe Orton  <joe@manyfish.co.uk>
 
 	Fix buffer overflow in RFC1036 date parser, CVE CAN-2004-0389.

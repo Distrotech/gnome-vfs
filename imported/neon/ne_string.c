@@ -495,7 +495,7 @@ size_t ne_unbase64(const char *data, unsigned char **out)
 
 char *ne_strclean(char *str)
 {
-    char *pnt;
+    unsigned char *pnt;
     for (pnt = str; *pnt; pnt++)
         if (iscntrl(*pnt) || !isprint(*pnt)) *pnt = ' ';
     return str;

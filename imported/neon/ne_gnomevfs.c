@@ -29,6 +29,8 @@ Boston, MA 02111-1307, USA.
 #include "ne_request.h"
 #include "ne_gnomevfs.h"
 
+#include <errno.h>
+
 #include <libgnomevfs/gnome-vfs-cancellation.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-result.h>
@@ -70,7 +72,10 @@ ne_gnomevfs_last_error (ne_request *req)
 	
 	sess = ne_get_session (req);
 
-	return sess->socket->last_error;
+	if (sess && sess->socket)
+		return sess->socket->last_error;
+	
+	return GNOME_VFS_OK;
 }
 
 /* ************************************************************************** */
@@ -78,9 +83,13 @@ ne_gnomevfs_last_error (ne_request *req)
 				      switch (__result) {		              	      \
 				      case GNOME_VFS_OK: break; 			      \
 				      case GNOME_VFS_ERROR_TIMEOUT: return NE_SOCK_TIMEOUT;   \
-				      case GNOME_VFS_ERROR_EOF: break; 		      	      \
+				      case GNOME_VFS_ERROR_EOF: return NE_SOCK_CLOSED;        \
+				      case GNOME_VFS_ERROR_GENERIC:  		      	      \
+					      if (errno == EPIPE)			      \
+						      return NE_SOCK_CLOSED;		      \
+					      else if (errno == ECONNRESET)		      \
+						      return NE_SOCK_RESET;		      \
 				      default: return NE_SOCK_ERROR; }		              \
-
 
 /* ************************************************************************** */
 int
@@ -185,6 +194,7 @@ ne_inet_addr *
 ne_iaddr_make (ne_iaddr_type type, const unsigned char *raw)
 {
 	/* dummy because not used in neon */
+	return NULL;
 }
 
 
@@ -192,6 +202,7 @@ int
 ne_iaddr_cmp (const ne_inet_addr *i1, const ne_inet_addr *i2)
 {
 	/* dummy becaused not used in neon */
+	return 0;
 }
 
 
@@ -229,14 +240,18 @@ ne_sock_connect (ne_socket *sock, const ne_inet_addr *addr,
 	GnomeVFSAddress *address = (GnomeVFSAddress *) addr;
 	   
 	peek_cancellation (cancellation);
-	   
+	
 	sock->last_error = gnome_vfs_inet_connection_create_from_address (&(sock->connection),
 									  address,
 									  port,
 									  cancellation);
 	   
 	check_error (sock->last_error, sock);
-	   
+
+	if (sock->last_error == GNOME_VFS_ERROR_EOF)
+		return NE_SOCK_ERROR;
+	  
+	sock->socket = gnome_vfs_inet_connection_to_socket (sock->connection);	
 	sock->socket_buffer = gnome_vfs_inet_connection_to_socket_buffer (sock->connection);
 			 
 	return 0;
@@ -302,22 +317,15 @@ ne_sock_fullwrite (ne_socket *sock, const char *data, size_t count)
 	pos = (char *) data;
 	   
 	do {
-		result = gnome_vfs_socket_buffer_write (sock->socket_buffer,
-							pos,
-							count,
-							&bytes_written,
-							cancellation);
+		result = gnome_vfs_socket_write (sock->socket,
+						 pos,
+						 count,
+						 &bytes_written,
+						 cancellation);
 		count -= bytes_written;
 		pos += bytes_written;
-
-		/* g_print (".[%d]\n", count); */
 			 
 	} while (result == GNOME_VFS_OK && count > 0);
-
-	if (result == GNOME_VFS_OK) {
-		result = gnome_vfs_socket_buffer_flush (sock->socket_buffer,
-							cancellation);
-	}
 
 	check_error (result, sock);
 	   
@@ -459,7 +467,8 @@ ne_sock_read_timeout (ne_socket *sock, int timeout)
 int
 ne_service_lookup (const char *name)
 {
-	/* dummy (not used outside ne_socket.c) */	   
+	/* dummy (not used outside ne_socket.c) */
+	return 0;
 }
 
 
@@ -473,6 +482,7 @@ int
 ne_sock_connect_ssl (ne_socket *sock, ne_ssl_context *ctx)
 {
 	/* Enable SSL with an already-negotiated SSL socket. */
+	return 0;
 }
 
 /* SSL Stuff  */
@@ -492,12 +502,14 @@ int
 ne_negotiate_ssl (ne_request *req)
 {
 	GnomeVFSSSL *ssl;
-	GnomeVFSResult result;
 	GnomeVFSCancellation *cancellation;
 	ne_session *sess;
 	ne_socket  *sock;
 	int fd;
 
+	sess = ne_get_session (req);
+	sock = sess->socket;
+	
 	if (!gnome_vfs_ssl_enabled ()) {
 		sock->last_error = GNOME_VFS_ERROR_NOT_SUPPORTED;
 		return NE_SOCK_ERROR;
@@ -505,8 +517,6 @@ ne_negotiate_ssl (ne_request *req)
 	
 	peek_cancellation (cancellation);
 
-	sess = ne_get_session (req);
-	sock = sess->socket;
 	
 	fd = gnome_vfs_inet_connection_get_fd (sock->connection);
 
