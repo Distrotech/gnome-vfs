@@ -12,16 +12,16 @@ test_authentication_SOURCES = \
 test_authentication_LDADD = libauthentication.la
 
 libauthentication_la_SOURCES =         \
+	$(CORBA_SOURCE)		       \
 	gnome-vfs-client.c             \
 	gnome-vfs-client.h             \
 	gnome-vfs-authentication.c     \
-	gnome-vfs-authentication.h     \
-	$(CORBA_SOURCE)
+	gnome-vfs-authentication.h 
 
 vfs_daemon_SOURCES = \
+	$(CORBA_SOURCE)	   \
 	gnome-vfs-daemon.c \
-	gnome-vfs-daemon.h \
-	$(CORBA_SOURCE)
+	gnome-vfs-daemon.h
 
 $(vfs_daemon_OBJECTS): GNOME_VFS_Daemon.h
 $(test_authentication_OBJECTS): GNOME_VFS_Daemon.h
