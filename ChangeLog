@@ -1,3 +1,8 @@
+2000-07-05  Robin * Slomkowski <rslomkow@eazel.com>
+
+	* mime-type-capplet/Makefile.am: fixed libgdk_pixbuf
+	dependency.
+
 2000-07-05  Dan Winship  <danw@helixcode.com>
 
 	* modules/gconf-method.c: add #ifdef HAVE_ALLOCA_H
