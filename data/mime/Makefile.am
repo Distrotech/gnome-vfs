@@ -5,6 +5,7 @@ mimedir = $(datadir)/mime-info
 mime_DATA = \
 	gnome-vfs.mime \
 	gnome-vfs.keys \
+	application-registry-hack.keys \
 	$(NULL)
 
 sysconf_DATA = gnome-vfs-mime-magic

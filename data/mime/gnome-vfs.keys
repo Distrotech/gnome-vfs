@@ -328,8 +328,7 @@ image/x-xbitmap
 image/x-xcf
 	description=GIMP image
 	default_action_type=application
-	default_application_command=gimp
-	default_application_name=The GIMP
+	default_application_id=gimp
 
 image/x-xpixmap
 	description=X pixmap
@@ -406,21 +405,17 @@ text/enriched
 text/html
 	description=HTML document
 	default_action_type=component
-	default_application_command=netscape
-	default_application_name=Netscape
+	default_application_id=netscape
 	default_component_iid=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b
-	system_all_applications_commands=netscape,xterm -e lynx
-	system_all_applications_names=Netscape,Lynx
-	system_all_applications_can_open_multiple_files=true,false
-	system_all_applications_can_open_uris=true,true
-
-
+	system_all_application_ids=netscape,lynx
+	short_list_component_iids=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b,OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821,OAFIID:something-erroneous:foo
 
 text/plain
 	description=plain text
 	default_action_type=component
-	default_application_command=emacs
-	default_application_name=GNU Emacs
+	default_application_id=emacs
+	default_component_iid=OAFIID:bonobo_text-plain:26e1f6ba-90dd-4783-b304-6122c4b6c821
+	short_list_application_ids=emacs,nedit
 
 text/rfc822-headers
 	description=email headers

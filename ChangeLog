@@ -1,3 +1,33 @@
+2000-05-31  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/Makefile.am: Conditionally compile in oaf-based
+	stuff.
+
+	Complete bugzilla task #586 in a functional albeit somewhat
+	hackish way that is in need of much code cleanup and some
+	internals redesign.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c
+	(gnome_vfs_mime_get_short_list_applications,
+	gnome_vfs_mime_get_short_list_components): Implemented.
+	(gnome_vfs_mime_get_default_application,
+	gnome_vfs_mime_get_all_applications): Updated to expect mime
+	records to only point to app IDs, which point to app info in an
+	external registry.
+	(str_to_bool, join_str_list, strv_contains_str,
+	extract_prefix_add_suffix, mime_type_get_supertype,
+	strsplit_handle_null, gnome_vfs_mime_application_new_from_id,
+	OAF_ServerInfo__copy, OAF_ServerInfoList_to_ServerInfo_g_list,
+	process_app_list): New and modified helper functions.
+	* test/test-mime-handlers.c (main): Add tests for short_list
+	functions.
+	* data/mime/gnome-vfs.keys: More test data; fix for new data
+	representation.
+	* data/mime/application-registry-hack.keys: Total hack using bogus
+	mime types to create an application registry. Need a better
+	solution than this long-term.
+	* data/mime/Makefile.am: Install `application-registry-hack.keys'.
+	
 2000-05-30  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-types.h:
