@@ -1,5 +1,21 @@
 2001-02-14  Gene Z. Ragan  <gzr@eazel.com>
 
+	Fixed bug 6629, Default action icon disappears when switching
+	from application->viewer->application
+	
+	Fixed bug 6630, Default action icon not drawn when changing
+	the default application
+		
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet), (update_mime_list_action):
+	Call handy utility function to get custom or default
+	action icon based on mime tpye and type of action.
+	
+	(column_clicked):
+	Remove some debugging cruft.
+	
+2001-02-14  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug 6570, Initial tab order in "Add application"
 	dialog is broken.
 	
