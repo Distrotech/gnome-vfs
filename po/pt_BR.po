@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2003-01-20 20:46+0100\n"
-"PO-Revision-Date: 2002-06-11T04:03-0300\n"
+"POT-Creation-Date: 2003-01-25 01:36-0200\n"
+"PO-Revision-Date: 2003-01-25 01:47-0200\n"
 "Last-Translator: Gustavo Noronha Silva <kov@debian.org>\n"
 "Language-Team: Debian-BR <debian-l10n-portuguese@lists.debian.org>, "
 "Brazilian Portuguese <ldp-br@bazar.conectiva.com.br> \n"
@@ -270,9 +270,8 @@ msgstr "Erro de protocolo"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "Não é possível analisar: %s"
+msgstr "Não foi possível encontrar o servidor de domínio"
 
 #: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
@@ -304,7 +303,7 @@ msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1109
 msgid " (invalid Unicode)"
-msgstr ""
+msgstr " (Unicode inválido)"
 
 #: modules/file-method.c:382
 #, c-format
