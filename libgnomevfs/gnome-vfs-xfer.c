@@ -1666,7 +1666,7 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 		for (p = uri_list;  p != NULL; p = p->next) {
 			gnome_vfs_uri_unref (p->data);
 		}
-		g_free (uri_list);
+		g_list_free (uri_list);
 	} else {
 		source_dir_uri = gnome_vfs_uri_new (source_dir);
 		if (source_dir_uri == NULL)

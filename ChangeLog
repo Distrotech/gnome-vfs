@@ -1,5 +1,10 @@
 2000-04-26  Pavel Cisler  <pavel@eazel.com>
 
+	* libgnomevfs/gnome-vfs-xfer.c
+	Fix a crash caused by using the wrong call to free a uri_list.
+	
+2000-04-26  Pavel Cisler  <pavel@eazel.com>
+
 	Added gnome_vfs_find_directory to return well known directories.
 	For now only returns Trash.
 	* libgnomevfs/gnome-vfs-find-directory.c:
