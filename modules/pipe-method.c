@@ -125,43 +125,6 @@ do_read (GnomeVFSMethod *method,
 	}
 }
 
-#if 0
-static void
-set_mime_type (GnomeVFSFileInfo *info,
-	       const gchar *full_name,
-	       GnomeVFSFileInfoOptions options,
-	       struct stat *statbuf)
-{
-	const gchar *mime_type;
-
-	if (options & GNOME_VFS_FILE_INFO_FASTMIMETYPE) {
-		const gchar *mime_name;
-
-		if ((options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
-		    && info->type != GNOME_VFS_FILE_TYPE_BROKENSYMLINK
-		    && info->symlink_name != NULL)
-			mime_name = info->symlink_name;
-		else
-			mime_name = full_name;
-
-		mime_type = gnome_vfs_mime_type_or_default (mime_name, NULL);
-
-		if (mime_type == NULL)
-			mime_type = gnome_vfs_mime_type_from_mode (statbuf->st_mode);
-	} else {
-		/* FIXME: This will also stat the file for us...  Which is
-                   not good at all, as we already have the stat info when we
-                   get here, but there is no other way to do this with the
-                   current gnome-libs.  */
-		/* FIXME: We actually *always* follow symlinks here.  It
-                   needs fixing.  */
-		mime_type = gnome_vfs_mime_type_from_magic (full_name);
-	}
-
-	info->mime_type = g_strdup (mime_type);
-}
-#endif
-
 static GnomeVFSResult
 do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSURI *uri,

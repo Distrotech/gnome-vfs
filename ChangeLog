@@ -1,5 +1,14 @@
 2000-05-19  Darin Adler  <darin@eazel.com>
 
+	* modules/file-method.c: (set_mime_type): Fixed to get the fast
+	type if the slow type returns NULL.
+	
+	* modules/pipe-method.c: Got rid of commented out copy of
+	set_mime_type, since it will just get out of sync. with the real
+	copy.
+
+2000-05-19  Darin Adler  <darin@eazel.com>
+
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_new): There was
 	a bug in the change to free method_string. This should fix it.
 	
