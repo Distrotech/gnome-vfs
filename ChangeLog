@@ -1,3 +1,7 @@
+1999-09-25  Kjartan Maraas  <kmaraas@online.no>
+
+	* configure.in: Added da to ALL_LINGUAS.
+	
 1999-09-18  Cody Russell  <bratsche@dfw.net>
 	* modules/bzip2-method.[ch]: Added. Note that this method is not
 	currently finished, and so I've disabled building of it for now.
