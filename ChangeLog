@@ -1,4 +1,8 @@
-2004-08-14   Ryan Lortie  <desrt@desrt.ca>
+2004-08-14  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-xfer.c: plug more leaks
+
+2004-08-14  Ryan Lortie  <desrt@desrt.ca>
 
 	* libgnomevfs/gnome-vfs-xfer.c: fix small leaks
 
