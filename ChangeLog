@@ -1,3 +1,5 @@
+=== gnome-vfs 2.5.4.1 ===
+
 2003-12-28  Alexander Larsson  <alexl@redhat.com>
 
 	* Makefile.am (EXTRA_DIST):
