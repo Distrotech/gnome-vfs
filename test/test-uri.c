@@ -74,21 +74,19 @@ test_failed (const char *format, ...)
 }
 
 static void
-test_canonicalize (const char *input,
-		   const char *expected_output)
+test_make_canonical_path (const char *input,
+		          const char *expected_output)
 {
-	char *input_copy;
-	const char *output;
+	char *output;
 
-	input_copy = g_strdup (input);
-	output = gnome_vfs_canonicalize_pathname (input_copy);
+	output = gnome_vfs_make_path_name_canonical (input);
 
 	if (strcmp (output, expected_output) != 0) {
-		test_failed ("test_canonicalize (%s) resulted in %s instead of %s",
+		test_failed ("test_make_canonical_path (%s) resulted in %s instead of %s",
 			     input, output, expected_output);
 	}
 
-	g_free (input_copy);
+	g_free (output);
 }
 
 static void
@@ -110,6 +108,25 @@ test_uri_to_string (const char *input,
 	if (strcmp (output, expected_output) != 0) {
 		test_failed ("gnome_vfs_uri_to_string (%s, %d) resulted in %s instead of %s",
 			     input, hide_options, output, expected_output);
+	}
+
+	g_free (output);
+}
+
+static void
+test_make_canonical (const char *input,
+		     const char *expected_output)
+{
+	char *output;
+
+	output = gnome_vfs_make_uri_canonical (input);
+	if (output == NULL) {
+		output = g_strdup ("NULL");
+	}
+
+	if (strcmp (output, expected_output) != 0) {
+		test_failed ("test_make_canonical (%s) resulted in %s instead of %s",
+			     input, output, expected_output);
 	}
 
 	g_free (output);
@@ -310,47 +327,47 @@ main (int argc, char **argv)
 	g_thread_init (NULL);
 	gnome_vfs_init ();
 
-	/* Test the private canonicalization routine. */
-	test_canonicalize ("", "");
-	test_canonicalize ("/", "/");
-	test_canonicalize ("/.", "/");
-	test_canonicalize ("/./.", "/");
-	test_canonicalize ("/.//.", "/");
-	test_canonicalize ("/.///.", "/");
-	test_canonicalize ("a", "a");
-	test_canonicalize ("/a/b/..", "/a");
-	test_canonicalize ("a///", "a/");
-	test_canonicalize ("./a", "a");
-	test_canonicalize ("../a", "../a");
-	test_canonicalize ("..//a", "../a");
-	test_canonicalize ("a/.", "a");
-	test_canonicalize ("/a/.", "/a");
-	test_canonicalize ("/a/..", "/");
-	test_canonicalize ("a//.", "a");
-	test_canonicalize ("./a/.", "a");
-	test_canonicalize (".//a/.", "a");
-	test_canonicalize ("./a//.", "a");
-	test_canonicalize ("a/..", "");
-	test_canonicalize ("a//..", "");
-	test_canonicalize ("./a/..", "");
-	test_canonicalize (".//a/..", "");
-	test_canonicalize ("./a//..", "");
-	test_canonicalize (".//a//..", "");
-	test_canonicalize ("a/b/..", "a");
-	test_canonicalize ("./a/b/..", "a");
-	test_canonicalize ("/./a/b/..", "/a");
-	test_canonicalize ("/a/./b/..", "/a");
-	test_canonicalize ("/a/b/./..", "/a");
-	test_canonicalize ("/a/b/../.", "/a");
-	test_canonicalize ("a/b/../..", "");
-	test_canonicalize ("./a/b/../..", "");
-	test_canonicalize ("././a/b/../..", "");
-	test_canonicalize ("a/b/c/../..", "a");
-	test_canonicalize ("a/b/c/../../d", "a/d");
-	test_canonicalize ("a/b/../../d", "d");
-	test_canonicalize ("a/../../d", "../d");
-	test_canonicalize ("a/b/.././.././c", "c");
-	test_canonicalize ("a/.././.././b/c", "../b/c");
+	/* Test the "make canonical" call for pathnames. */
+	test_make_canonical_path ("", "");
+	test_make_canonical_path ("/", "/");
+	test_make_canonical_path ("/.", "/");
+	test_make_canonical_path ("/./.", "/");
+	test_make_canonical_path ("/.//.", "/");
+	test_make_canonical_path ("/.///.", "/");
+	test_make_canonical_path ("a", "a");
+	test_make_canonical_path ("/a/b/..", "/a");
+	test_make_canonical_path ("a///", "a/");
+	test_make_canonical_path ("./a", "a");
+	test_make_canonical_path ("../a", "../a");
+	test_make_canonical_path ("..//a", "../a");
+	test_make_canonical_path ("a/.", "a");
+	test_make_canonical_path ("/a/.", "/a");
+	test_make_canonical_path ("/a/..", "/");
+	test_make_canonical_path ("a//.", "a");
+	test_make_canonical_path ("./a/.", "a");
+	test_make_canonical_path (".//a/.", "a");
+	test_make_canonical_path ("./a//.", "a");
+	test_make_canonical_path ("a/..", "");
+	test_make_canonical_path ("a//..", "");
+	test_make_canonical_path ("./a/..", "");
+	test_make_canonical_path (".//a/..", "");
+	test_make_canonical_path ("./a//..", "");
+	test_make_canonical_path (".//a//..", "");
+	test_make_canonical_path ("a/b/..", "a");
+	test_make_canonical_path ("./a/b/..", "a");
+	test_make_canonical_path ("/./a/b/..", "/a");
+	test_make_canonical_path ("/a/./b/..", "/a");
+	test_make_canonical_path ("/a/b/./..", "/a");
+	test_make_canonical_path ("/a/b/../.", "/a");
+	test_make_canonical_path ("a/b/../..", "");
+	test_make_canonical_path ("./a/b/../..", "");
+	test_make_canonical_path ("././a/b/../..", "");
+	test_make_canonical_path ("a/b/c/../..", "a");
+	test_make_canonical_path ("a/b/c/../../d", "a/d");
+	test_make_canonical_path ("a/b/../../d", "d");
+	test_make_canonical_path ("a/../../d", "../d");
+	test_make_canonical_path ("a/b/.././.././c", "c");
+	test_make_canonical_path ("a/.././.././b/c", "../b/c");
 
 	test_uri_to_string ("", "NULL", GNOME_VFS_URI_HIDE_NONE);
 
@@ -437,6 +454,23 @@ main (int argc, char **argv)
 	test_uri_to_string ("/a/b/c/../..", "file:///a", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("/a/../b/..", "file:///", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("/a/../b/../c", "file:///c", GNOME_VFS_URI_HIDE_NONE);
+
+
+	test_make_canonical ("file:///%3F", "file:///%3F");
+	test_make_canonical ("file:///%78", "file:///x");
+	test_make_canonical ("file:///?", "file:///%3F");
+	test_make_canonical ("file:///&", "file:///%26");
+	test_make_canonical ("file:///x", "file:///x");
+	test_make_canonical ("glorb:///%3F", "glorb:///%3F");
+	test_make_canonical ("glorb:///%78", "glorb:///x");
+	test_make_canonical ("glorb:///?", "glorb:///%3F");
+	test_make_canonical ("glorb:///&", "glorb:///%26");
+	test_make_canonical ("glorb:///x", "glorb:///x");
+	test_make_canonical ("http:///%3F", "http:///%3F");
+	test_make_canonical ("http:///%78", "http:///x");
+	test_make_canonical ("http:///?", "http:///?");
+	test_make_canonical ("http:///&", "http:///&");
+	test_make_canonical ("http:///x", "http:///x");
 
 	/* Test chained uris */
 	test_uri_to_string ("/tmp/t.efs#http:///foobar/", "file:///tmp/t.efs#http:/foobar/", GNOME_VFS_URI_HIDE_NONE);

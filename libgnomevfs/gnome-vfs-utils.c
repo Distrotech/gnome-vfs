@@ -78,21 +78,6 @@ gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
 	}
 }
 
-/*  Below modified from libwww HTEscape.c */
-
-#define HEX_ESCAPE '%'
-
-/*  Escape undesirable characters using %
- *  -------------------------------------
- *
- * This function takes a pointer to a string in which
- * some characters may be unacceptable unescaped.
- * It returns a string which has these characters
- * represented by a '%' character followed by two hex digits.
- *
- * This routine returns a g_malloced string.
- */
-
 typedef enum {
 	UNSAFE_ALL        = 0x1,  /* Escape all unsafe characters   */
 	UNSAFE_ALLOW_PLUS = 0x2,  /* Allows '+'  */
@@ -109,8 +94,65 @@ static const guchar acceptable[96] =
     0x30,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F, /* 4X @ABCDEFGHIJKLMNO   */
     0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x20,0x20,0x20,0x20,0x3F, /* 5X PQRSTUVWXYZ[\]^_   */
     0x20,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F, /* 6X `abcdefghijklmno   */
-    0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x20,0x20,0x20,0x3F,0x20  /* 7X pqrstuvwxyz{\}~DEL */
+    0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x3F,0x20,0x20,0x20,0x3F,0x20  /* 7X pqrstuvwxyz{|}~DEL */
 };
+
+enum {
+	RESERVED = 1,
+	UNRESERVED,
+	DELIMITERS,
+	UNWISE,
+	CONTROL,
+	SPACE	
+};
+
+static const guchar uri_character_kind[128] =
+{
+    CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   , 
+    CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,
+    CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,
+    CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,CONTROL   ,
+    /* ' '        !          "          #          $          %          &          '      */
+    SPACE     ,UNRESERVED,DELIMITERS,DELIMITERS,RESERVED  ,DELIMITERS,RESERVED  ,UNRESERVED,
+    /*  (         )          *          +          ,          -          .          /      */
+    UNRESERVED,UNRESERVED,UNRESERVED,RESERVED  ,RESERVED  ,UNRESERVED,UNRESERVED,RESERVED  , 
+    /*  0         1          2          3          4          5          6          7      */
+    UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,
+    /*  8         9          :          ;          <          =          >          ?      */
+    UNRESERVED,UNRESERVED,RESERVED  ,RESERVED  ,DELIMITERS,RESERVED  ,DELIMITERS,RESERVED  ,
+    /*  @         A          B          C          D          E          F          G      */
+    RESERVED  ,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,
+    /*  H         I          J          K          L          M          N          O      */
+    UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,
+    /*  P         Q          R          S          T          U          V          W      */
+    UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,
+    /*  X         Y          Z          [          \          ]          ^          _      */
+    UNRESERVED,UNRESERVED,UNRESERVED,UNWISE    ,UNWISE    ,UNWISE    ,UNWISE    ,UNRESERVED,
+    /*  `         a          b          c          d          e          f          g      */
+    UNWISE    ,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,
+    /*  h         i          j          k          l          m          n          o      */
+    UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,
+    /*  p         q          r          s          t          u          v          w      */
+    UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,UNRESERVED,
+    /*  x         y          z         {           |          }          ~         DEL     */
+    UNRESERVED,UNRESERVED,UNRESERVED,UNWISE    ,UNWISE    ,UNWISE    ,UNRESERVED,CONTROL
+};
+
+
+/*  Below modified from libwww HTEscape.c */
+
+#define HEX_ESCAPE '%'
+
+/*  Escape undesirable characters using %
+ *  -------------------------------------
+ *
+ * This function takes a pointer to a string in which
+ * some characters may be unacceptable unescaped.
+ * It returns a string which has these characters
+ * represented by a '%' character followed by two hex digits.
+ *
+ * This routine returns a g_malloced string.
+ */
 
 static const gchar hex[16] = "0123456789ABCDEF";
 
@@ -202,6 +244,61 @@ gnome_vfs_escape_slashes (const gchar *string)
 	return gnome_vfs_escape_string_internal (string, UNSAFE_SLASHES);
 }
 
+char *
+gnome_vfs_escape_set (const char *string,
+	              const char *match_set)
+{
+	char *result;
+	const char *scanner;
+	char *result_scanner;
+	int escape_count;
+
+	escape_count = 0;
+
+	if (string == NULL) {
+		return NULL;
+	}
+
+	if (match_set == NULL) {
+		return g_strdup (string);
+	}
+	
+	for (scanner = string; *scanner != '\0'; scanner++) {
+		if (strchr(match_set, *scanner) != NULL) {
+			/* this character is in the set of characters 
+			 * we want escaped.
+			 */
+			escape_count++;
+		}
+	}
+	
+	if (escape_count == 0) {
+		return g_strdup (string);
+	}
+
+	/* allocate two extra characters for every character that
+	 * needs escaping and space for a trailing zero
+	 */
+	result = g_malloc (scanner - string + escape_count * 2 + 1);
+	for (scanner = string, result_scanner = result; *scanner != '\0'; scanner++) {
+		if (strchr(match_set, *scanner) != NULL) {
+			/* this character is in the set of characters 
+			 * we want escaped.
+			 */
+			*result_scanner++ = HEX_ESCAPE;
+			*result_scanner++ = hex[*scanner >> 4];
+			*result_scanner++ = hex[*scanner & 15];
+			
+		} else {
+			*result_scanner++ = *scanner;
+		}
+	}
+
+	*result_scanner = '\0';
+
+	return result;
+}
+
 static int
 hex_to_int (gchar c)
 {
@@ -209,6 +306,25 @@ hex_to_int (gchar c)
 		: c >= 'A' && c <= 'F' ? c - 'A' + 10
 		: c >= 'a' && c <= 'f' ? c - 'a' + 10
 		: -1;
+}
+
+static int
+unescape_character (const char *scanner)
+{
+	int first_digit;
+	int second_digit;
+
+	first_digit = hex_to_int (*scanner++);
+	if (first_digit < 0) {
+		return -1;
+	}
+
+	second_digit = hex_to_int (*scanner++);
+	if (second_digit < 0) {
+		return -1;
+	}
+
+	return (first_digit << 4) | second_digit;
 }
 
 /*  Decode %xx escaped characters
@@ -224,8 +340,7 @@ gnome_vfs_unescape_string (const gchar *escaped, const gchar *illegal_characters
 {
 	const gchar *in;
 	gchar *out, *result;
-	gint i;
-	gchar c;
+	gint character;
 	
 	if (escaped == NULL) {
 		return NULL;
@@ -234,42 +349,27 @@ gnome_vfs_unescape_string (const gchar *escaped, const gchar *illegal_characters
 	result = g_malloc (strlen (escaped) + 1);
 	
 	out = result;
-	for (in = escaped; *in != '\0'; ) {
-		c = *in++;
+	for (in = escaped; *in != '\0'; in++) {
+		character = *in;
+		if (*in == HEX_ESCAPE) {
+			character = unescape_character (in + 1);
 
-		if (c == HEX_ESCAPE) {
-			/* Get the first hex digit. */
-			i = hex_to_int (*in++);
-			if (i < 0) {
-				goto error;
-			}
-			c = i << 4;
-
-			/* Get the second hex digit. */
-			i = hex_to_int (*in++);
-			if (i < 0) {
-				goto error;
-			}
-			c |= i;
-
-			/* Check for an illegal character. */
-			if (c == '\0'
+			/* Check for an illegal character. We consider '\0' illegal here. */
+			if (character <= 0
 			    || (illegal_characters != NULL
-				&& strchr (illegal_characters, c) != NULL)) {
-				goto error;
+				&& strchr (illegal_characters, (char)character) != NULL)) {
+				g_free (result);
+				return NULL;
 			}
+			in += 2;
 		}
-
-		*out++ = c;
+		*out++ = (char)character;
 	}
 	
 	*out = '\0';
 	g_assert (out - result <= strlen (escaped));
 	return result;
 	
- error:
-	g_free (result);
-	return NULL;
 }
 
 /**
@@ -346,6 +446,91 @@ gnome_vfs_unescape_string_for_display (const gchar *escaped)
 }
 
 /**
+ * gnome_vfs_remove_optional_escapes:
+ * @uri: an escaped uri
+ * 
+ * Scans the uri and converts characters that do not have to be 
+ * escaped into an un-escaped form. The characters that get treated this
+ * way are defined as unreserved by the RFC.
+ * 
+ * Return value: an error value if the uri is found to be malformed.
+ **/
+GnomeVFSResult
+gnome_vfs_remove_optional_escapes (char *uri)
+{
+	guchar *scanner;
+	int character;
+	int length;
+
+	if (uri == NULL) {
+		return GNOME_VFS_OK;
+	}
+	
+	length = strlen (uri);
+
+	for (scanner = uri; *scanner != '\0'; scanner++, length--) {
+		if (*scanner == HEX_ESCAPE) {
+			character = unescape_character (scanner + 1);
+			if (character < 0) {
+				/* invalid hexadecimal character */
+				return GNOME_VFS_ERROR_INVALID_URI;
+			}
+
+			if (uri_character_kind [character] == UNRESERVED) {
+				/* This character does not need to be escaped, convert it
+				 * to a non-escaped form.
+				 */
+				*scanner = (guchar)character;
+				g_assert (length >= 3);
+
+				/* Shrink the string covering up the two extra digits of the
+				 * escaped character. Include the trailing '\0' in the copy
+				 * to keep the string terminated.
+				 */
+				memmove (scanner + 1, scanner + 3, length - 2);
+			} else {
+				/* This character must stay escaped, skip the entire
+				 * escaped sequence
+				 */
+				scanner += 2;
+			}
+			length -= 2;
+
+		} else if (*scanner > 127
+			|| uri_character_kind [*scanner] == DELIMITERS
+			|| uri_character_kind [*scanner] == UNWISE
+			|| uri_character_kind [*scanner] == CONTROL) {
+			/* It is illegal for this character to be in an un-escaped form
+			 * in the uri.
+			 */
+			return GNOME_VFS_ERROR_INVALID_URI;
+		}
+	}
+	return GNOME_VFS_OK;
+}
+
+char *
+gnome_vfs_make_uri_canonical (const char *original_uri_text)
+{
+	/* For now use a sub-optimal implementation involving a
+	 * conversion to GnomeVFSURI and back.
+	 */
+	GnomeVFSURI *uri;
+	char *result;
+
+	uri = gnome_vfs_uri_new_private (original_uri_text, TRUE);
+	if (uri == NULL) {
+		return NULL;;
+	} 
+
+	result = gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE);
+	gnome_vfs_uri_unref (uri);
+
+	return result;
+}
+
+
+/**
  * gnome_vfs_make_canonical_pathname:
  * @path: a file path, relative or absolute
  * 
@@ -355,7 +540,7 @@ gnome_vfs_unescape_string_for_display (const gchar *escaped)
  * Return value: a canonical version of @path
  **/
 gchar *
-gnome_vfs_make_canonical_pathname (const gchar *path)
+gnome_vfs_make_path_name_canonical (const gchar *path)
 {
 	char *path_clone;
 	char *result;

@@ -31,31 +31,36 @@
 #include "gnome-vfs-types.h"
 
 /* Makes a human-readable string. */
-gchar *gnome_vfs_format_file_size_for_display (GnomeVFSFileSize  size);
+char *gnome_vfs_format_file_size_for_display (GnomeVFSFileSize  size);
 
 /* Converts unsafe characters to % sequences so the string can be
  * used as a piece of a URI. Escapes all reserved URI characters.
  */
-gchar *gnome_vfs_escape_string                (const gchar      *string);
+char *gnome_vfs_escape_string                (const char      *string);
 
 /* Converts unsafe characters to % sequences so the path can be
  * used as a piece of a URI. Escapes all reserved URI characters
  * except for "/".
  */
-gchar *gnome_vfs_escape_path_string           (const gchar      *path);
+char *gnome_vfs_escape_path_string           (const char      *path);
 
 /* Converts unsafe characters to % sequences so the host/path segment
  * can be used as a piece of a URI.  Allows ":" and "@" in the host
  * section (everything up to the first "/"), and after that, it behaves
  * like gnome_vfs_escape_path_string.
  */
-gchar *gnome_vfs_escape_host_and_path_string  (const gchar      *path);
+char *gnome_vfs_escape_host_and_path_string  (const char      *path);
 
 /* Converts only slashes and % characters to % sequences. This is useful
  * for code that wants to use an arbitrary string as a file name. To use
  * it in a URI, you have to escape again, of course.
  */
-gchar *gnome_vfs_escape_slashes               (const gchar      *string);
+char *gnome_vfs_escape_slashes               (const char      *string);
+
+
+/* Escapes all the characters that match any of the @match_set */	              			 
+char *gnome_vfs_escape_set 		     (const char      *string,
+	              			      const char      *match_set);
 
 /* Returns NULL if any of the illegal character appear in escaped
  * form. If the illegal characters are in there unescaped, that's OK.
@@ -63,25 +68,28 @@ gchar *gnome_vfs_escape_slashes               (const gchar      *string);
  * Unix path, since pieces of Unix paths can't contain "/". ASCII 0
  * is always illegal due to the limitations of NULL-terminated strings.
  */
-gchar *gnome_vfs_unescape_string              (const gchar      *string,
-					       const gchar      *illegal_characters);
+char *gnome_vfs_unescape_string              (const char      *string,
+					      const char      *illegal_characters);
+
+/* returns a copy of uri, converted to a canonical form */
+char *gnome_vfs_make_uri_canonical	     (const char 	*uri);
 
 /* returns a copy of path, converted to a canonical form */
-gchar *gnome_vfs_make_canonical_pathname      (const gchar      *path);
+char *gnome_vfs_make_path_name_canonical     (const char      *path);
 
 /* Prepare an escaped string for display. Unlike gnome_vfs_unescape_string,
  * this doesn't return NULL if an illegal sequences appears in the string,
  * instead doing its best to provide a useful result.
  */
-gchar *gnome_vfs_unescape_string_for_display  (const gchar      *escaped);
+char *gnome_vfs_unescape_string_for_display  (const char      *escaped);
 
 /* Turn a "file://" URI in string form into a local path. Returns NULL
  * if it's not a URI that can be converted.
  */
-gchar *gnome_vfs_get_local_path_from_uri      (const gchar      *uri);
+char *gnome_vfs_get_local_path_from_uri      (const char      *uri);
 
 /* Turn a path into a "file://" URI. */
-gchar *gnome_vfs_get_uri_from_local_path      (const gchar      *local_full_path);
+char *gnome_vfs_get_uri_from_local_path      (const char      *local_full_path);
 
 /* Free the list, freeing each item data with a g_free */
 void   gnome_vfs_list_deep_free               (GList            *list);

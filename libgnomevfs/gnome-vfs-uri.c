@@ -293,6 +293,8 @@ set_uri_element (GnomeVFSURI *uri,
 		 const gchar *text,
 		 guint len)
 {
+	char *escaped_text;
+
 	if (text == NULL || len == 0) {
 		uri->text = NULL;
 		return;
@@ -311,6 +313,21 @@ set_uri_element (GnomeVFSURI *uri,
 		uri->text = g_strndup (text, len);
 	}
 
+	/* FIXME: this should be handled/supported by the specific method.
+	 * This is a quick and dirty hack to minimize the amount of changes
+	 * right before a milestone release. 
+	 * 
+	 * Do some method specific escaping. This for instance converts
+	 * '?' to %3F in every method except "http" where it has a special 
+	 * meaning.
+	 */
+	if (strcmp (uri->method_string, "http") != 0) {
+		escaped_text = gnome_vfs_escape_set (uri->text, ";?&=+$,");
+		g_free (uri->text);
+		uri->text = escaped_text;
+	}
+	
+	gnome_vfs_remove_optional_escapes (uri->text);
 	gnome_vfs_canonicalize_pathname (uri->text);
 }
 
@@ -400,6 +417,12 @@ parse_uri_substring (const gchar *substring, GnomeVFSURI *parent)
 GnomeVFSURI *
 gnome_vfs_uri_new (const gchar *text_uri)
 {
+	return gnome_vfs_uri_new_private (text_uri, FALSE);
+}
+
+GnomeVFSURI *
+gnome_vfs_uri_new_private (const gchar *text_uri, gboolean allow_unknown_methods)
+{
 	GnomeVFSMethod *method;
 	GnomeVFSTransform *trans;
 	GnomeVFSToplevelURI *toplevel;
@@ -446,7 +469,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	uri->method_string = method_string;
 	uri->text = NULL;
 	uri->fragment_id = NULL;
-	if (method == NULL) {
+	if (method == NULL && !allow_unknown_methods) {
 		g_free (new_uri_string);
 		gnome_vfs_uri_unref (uri);
 		return NULL;

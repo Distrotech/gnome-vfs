@@ -1,3 +1,43 @@
+2000-11-01  Pavel Cisler <pavel@eazel.com>
+
+	Work on handling '?' in URIs properly, helping Darin with a
+	broken URI query bug he is working on.
+
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	* libgnomevfs/gnome-vfs-uri.c: (set_uri_element),
+	(gnome_vfs_uri_new), (gnome_vfs_uri_new_private):
+	Add a private version of gnome_vfs_uri_new that can optionally
+	accept unknown uri schemes (methods).
+	Added a very simple and hacky scheme-dependent URI escaping code.
+	For now just made it escape reserved characters such as "?&=+", etc.
+	get escaped for every scheme but "http", in which they are used as
+	query separators, etc. Will need to redo this, having the individual
+	modules handle the specifics at some point. For now this should
+	help with our friendly website bugs.
+	Added a call to the new routine that removes escaping from characters
+	that don't need it. This will make uri matching, hashing, etc.
+	work better for URIs that we originally receive in different escaped
+	modes.
+	
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_escape_set),
+	(unescape_character), (gnome_vfs_unescape_string),
+	(gnome_vfs_remove_optional_escapes),
+	(gnome_vfs_make_uri_canonical),
+	(gnome_vfs_make_path_name_canonical):
+	Add new escaping call.
+	Share existing escaping code with other routines.
+	Simplify the existing gnome_vfs_unescape_string call a bit.
+	Add a call that can be used by the URI "make canonical" machinery
+	to un-escape characters that do not need to be escaped.
+	Add a new gnome_vfs_make_uri_canonical call.
+	remanmed gnome_vfs_make_canonical_pathname to 		
+	gnome_vfs_make_path_name_canonical.
+
+	* test/test-uri.c: (test_make_canonical_path),
+	(test_make_canonical), (main):
+	Add new tests for the features that I added.
+
 2000-11-01  Gene Z. Ragan  <gzr@eazel.com>
 
 	* modules/cdda-method.c: (do_check_same_fs):
@@ -83,7 +123,7 @@
 	(put_num), (write_wav_header):
 	More cleanup.
 
-2000-11-01  Ian McKellar,,,  <set EMAIL_ADDRESS environment variable>
+2000-11-01  Ian McKellar  <yakk@yakk.com>
 
 	* libgnomevfs/gnome-vfs-method.c: (load_module):
 	Provide more verbose information when a module fails to load.
