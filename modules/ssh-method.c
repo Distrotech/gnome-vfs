@@ -37,8 +37,10 @@
 #include <unistd.h>
 #include <signal.h>
 #include <sys/signal.h>
+#include <fcntl.h>
 
-#define LINE_LENGTH 4096 /* max line length we'll grok */
+#define LINE_LENGTH 4096	/* max line length we'll grok */
+#define SLEEP_TIME 300000	/* time we'll wait for the process to finish */
 
 typedef struct {
 	GnomeVFSMethodHandle method_handle;
@@ -54,6 +56,10 @@ typedef struct {
 	GnomeVFSFileInfoOptions info_opts;
 } SshHandle;
 
+static GnomeVFSResult ssh_read_error	(int error_fd,
+					 gpointer buffer,
+					 GnomeVFSFileSize num_bytes,
+					 GnomeVFSFileSize *bytes_read);
 static GnomeVFSResult do_open           (GnomeVFSMethod *method,
 				         GnomeVFSMethodHandle **method_handle,
 				         GnomeVFSURI *uri,
@@ -108,6 +114,13 @@ static GnomeVFSResult do_remove_directory(GnomeVFSMethod *method,
 static GnomeVFSResult do_unlink         (GnomeVFSMethod *method,
 					 GnomeVFSURI *uri,
 					 GnomeVFSContext *context);
+#if 0
+static GnomeVFSResult do_check_same_fs	(GnomeVFSMethod  *method,
+					 GnomeVFSURI     *a,
+					 GnomeVFSURI     *b,
+					 gboolean        *same_fs_return,
+					 GnomeVFSContext *context);
+#endif
 static GnomeVFSResult do_set_file_info  (GnomeVFSMethod *method,
 					 GnomeVFSURI *uri,
 					 const GnomeVFSFileInfo *info,
@@ -142,7 +155,7 @@ static GnomeVFSMethod method = {
         do_remove_directory, /* remove directory */
 	NULL, /* move */
 	do_unlink, /* unlink */
-	NULL, /* check_same_fs */
+	NULL, /* do_check_same_fs */
 	do_set_file_info, /* set_file_info */
 	NULL, /* truncate */
 	NULL, /* find_directory */
@@ -156,49 +169,81 @@ ssh_connect (SshHandle **handle_return,
 {
 	char ** argv;
 	SshHandle *handle;
-	char *command_line;
-	const gchar *username;
-	int argc;
+	char *command_line, *host_port;
+	const gchar *username, *hostname;
+	int argc, error_fd;
 	GError *gerror = NULL;
+	GnomeVFSFileSize bytes_read;
+	char buffer[LINE_LENGTH];
+
+	/* We do support ssh:/// as ssh://localhost/ */
+	hostname = gnome_vfs_uri_get_host_name (uri);
+	if (hostname == NULL) {
+		hostname = "localhost";
+	}
 
 	username = gnome_vfs_uri_get_user_name(uri);
 	if (username == NULL) {
 		username = g_get_user_name();
 	}
-	
+
+	host_port = g_strdup_printf("%d", gnome_vfs_uri_get_host_port(uri) ?
+			gnome_vfs_uri_get_host_port(uri) : 22);
+
 	command_line  = g_strconcat ("ssh -oBatchMode=yes -x -l ", 
 				     username,
-				     " ", gnome_vfs_uri_get_host_name (uri),
+				     " -p ", host_port,
+				     " ", hostname,
 				     " ", "\"LC_ALL=C;", command,"\"",
 				     NULL);
+	g_free (host_port);
 
 	g_shell_parse_argv (command_line, &argc, &argv, &gerror);
+
 	g_free (command_line);
 	if (gerror) {
 		g_warning (gerror->message);
 		return GNOME_VFS_ERROR_BAD_PARAMETERS;
 	}
 
-
-	/* fixme: handle other ports */
 	handle = g_new0 (SshHandle, 1);
 	handle->uri = uri;
 
 	g_spawn_async_with_pipes (NULL, argv, NULL, 
-				  G_SPAWN_SEARCH_PATH | G_SPAWN_STDERR_TO_DEV_NULL,
+				  G_SPAWN_SEARCH_PATH,
 				  NULL, NULL,
 				  &handle->pid, &handle->write_fd, &handle->read_fd,
-				  NULL, &gerror);
+				  &error_fd, &gerror);
 	g_strfreev (argv);
 
 	if (gerror) {
 		g_warning (gerror->message);
 		g_free (handle);
+		return GNOME_VFS_ERROR_GENERIC;
 	}
 
 	gnome_vfs_uri_ref (handle->uri);
 
 	*handle_return = handle;
+
+	/* You can add more error checking here */
+	memset (buffer, '\0', LINE_LENGTH);
+	ssh_read_error (error_fd, &buffer, LINE_LENGTH, &bytes_read);
+
+	if (bytes_read != 0) {
+		if (strncmp ("Permission denied", buffer,
+					strlen("Permission denied")) == 0) {
+			close (error_fd);
+			return GNOME_VFS_ERROR_LOGIN_FAILED;
+		}
+		if (strncmp ("Host key verification failed", buffer,
+					strlen("Host key verification failed")) == 0) {
+			close (error_fd);
+			return GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE;
+		}
+	}
+
+	close (error_fd);
 
 	return GNOME_VFS_OK;
 }
@@ -236,6 +281,26 @@ ssh_read (SshHandle *handle,
 }
 
 static GnomeVFSResult
+ssh_read_error (int error_fd,
+		gpointer buffer,
+		GnomeVFSFileSize num_bytes,
+		GnomeVFSFileSize *bytes_read)
+{
+	GnomeVFSFileSize my_read;
+
+	my_read = (GnomeVFSFileSize) read (error_fd, buffer,
+			(size_t) num_bytes);
+
+	if (my_read == -1) {
+		return gnome_vfs_result_from_errno ();
+	}
+
+	*bytes_read = my_read;
+
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
 ssh_write (SshHandle *handle,
 	   gconstpointer buffer,
 	   GnomeVFSFileSize num_bytes,
@@ -262,6 +327,23 @@ ssh_write (SshHandle *handle,
 
 	return GNOME_VFS_OK;
 }
+
+static GnomeVFSResult
+ssh_wait_and_destroy (SshHandle *handle, GnomeVFSContext *context)
+{
+	int i;
+
+	/* That's 30 seconds */
+	for (i = 0; i < 100 && kill (handle->pid, 0) != -1; i++) {
+		if (gnome_vfs_context_check_cancellation (context) == TRUE) {
+			break;
+		}
+		usleep (SLEEP_TIME);
+	}
+
+	return ssh_destroy (handle);
+}
+
 
 #if 0
 static GnomeVFSResult
@@ -301,7 +383,7 @@ do_open (GnomeVFSMethod *method,
 						  G_DIR_SEPARATOR_S);
 		quoted_name = g_shell_quote (name);
 		g_free (name);
-		
+
 		cmd = g_strdup_printf ("cat %s", quoted_name);
 		result = ssh_connect (&handle, uri, cmd);
 		g_free (cmd);
@@ -312,7 +394,7 @@ do_open (GnomeVFSMethod *method,
 	} else {
 		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
-	
+
 	handle->open_mode = mode;
 	handle->type = SSH_FILE;
 	*method_handle = (GnomeVFSMethodHandle *)handle;
@@ -320,7 +402,7 @@ do_open (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
-static GnomeVFSResult   
+static GnomeVFSResult
 do_create (GnomeVFSMethod *method,
 	   GnomeVFSMethodHandle **method_handle,
 	   GnomeVFSURI *uri,
@@ -366,7 +448,7 @@ do_close (GnomeVFSMethod *method,
 	  GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSContext *context)
 {
-	return ssh_destroy ((SshHandle *)method_handle);
+	return ssh_wait_and_destroy ((SshHandle *)method_handle, context);
 }
 
 static GnomeVFSResult
@@ -381,6 +463,10 @@ do_read (GnomeVFSMethod *method,
 
 	result =  ssh_read ((SshHandle *)method_handle, buffer, num_bytes,
 			bytes_read);
+	if (result != GNOME_VFS_OK) {
+		return result;
+	}
+
 	if (*bytes_read == 0) {	
 		result = GNOME_VFS_ERROR_EOF;
 	}
@@ -666,7 +752,7 @@ do_make_directory (GnomeVFSMethod *method,
 		return result;
 	}
 
-	ssh_destroy (handle);
+	ssh_wait_and_destroy (handle, context);
 
 	return result;
 }
@@ -697,7 +783,7 @@ do_remove_directory (GnomeVFSMethod *method,
 		return result;
 	}
 
-	ssh_destroy (handle);
+	ssh_wait_and_destroy (handle, context);
 
 	return result;
 }
@@ -705,7 +791,7 @@ do_remove_directory (GnomeVFSMethod *method,
 GnomeVFSResult
 do_unlink (GnomeVFSMethod *method,
 	   GnomeVFSURI *uri,
-	   GnomeVFSContext *contet)
+	   GnomeVFSContext *context)
 {
 	SshHandle *handle = NULL;
 	char *cmd = NULL;
@@ -728,10 +814,46 @@ do_unlink (GnomeVFSMethod *method,
 		return result;
 	}
 
-	ssh_destroy (handle);
+	ssh_wait_and_destroy (handle, context);
 
 	return result;
 }
+#if 0
+static GnomeVFSResult
+do_check_same_fs (GnomeVFSMethod  *method,
+		GnomeVFSURI     *a,
+		GnomeVFSURI     *b,
+		gboolean        *same_fs_return,
+		GnomeVFSContext *context)
+{
+	const gchar *a_host_name, *b_host_name;
+	const gchar *a_user_name, *b_user_name;
+
+	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_INTERNAL);
+	g_return_val_if_fail (b != NULL, GNOME_VFS_ERROR_INTERNAL);
+
+	a_host_name = gnome_vfs_uri_get_host_name (a);
+	b_host_name = gnome_vfs_uri_get_host_name (b);
+	a_user_name = gnome_vfs_uri_get_user_name (a);
+	b_user_name = gnome_vfs_uri_get_user_name (b);
+
+	g_return_val_if_fail (a_host_name != NULL, GNOME_VFS_ERROR_INVALID_URI);        g_return_val_if_fail (b_host_name != NULL, GNOME_VFS_ERROR_INVALID_URI);                                                                                
+	if (a_user_name == NULL) {
+		a_user_name = g_get_user_name ();
+	}
+	if (b_user_name == NULL) {
+		b_user_name = g_get_user_name ();
+	}
+
+	if (same_fs_return != NULL) {
+		*same_fs_return =
+			((!strcmp (a_host_name, b_host_name))
+			 && (!strcmp (a_user_name, b_user_name)));
+	}
+
+	return GNOME_VFS_OK;
+}
+#endif
 
 static GnomeVFSResult
 do_set_file_info (GnomeVFSMethod *method,
@@ -799,7 +921,7 @@ do_set_file_info (GnomeVFSMethod *method,
 				break;
 		}
 
-		ssh_destroy (handle);
+		ssh_wait_and_destroy (handle, context);
 	}
 
 	return result;
@@ -815,7 +937,7 @@ do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 }
 #endif
 
-gboolean 
+gboolean
 do_is_local (GnomeVFSMethod *method, const GnomeVFSURI *uri)
 {
         return FALSE;

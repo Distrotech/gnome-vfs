@@ -1,3 +1,19 @@
+2003-02-12  Bastien Nocera  <hadess@hadess.net>
+
+	reviewed by: Alexander Larsson  <alexl@redhat.com>
+
+	* modules/Makefile.am:
+	* modules/ssh-method.c: (ssh_connect), (ssh_read_error),
+	(ssh_wait_and_destroy), (do_open), (do_close), (do_read),
+	(do_make_directory), (do_remove_directory), (do_unlink),
+	(do_check_same_fs), (do_set_file_info): give a login failed error when
+	no key is setup to access the machine, a server not available when the
+	machine doesn't have its keys in the known_hosts, use port information
+	from the URI, redirect ssh:/// to ssh://localhost/, wait 30 secs for ssh        to finish before killing it (fixes the data loss problem when copying
+	files to a remote location), check for cancellation when ssh takes
+	to much time to finish, implement do_check_same_fs (disabled until
+	move is implemented)
+
 2003-02-10  Christophe Fergeau  <teuf@users.sourceforge.net>
 
 	* modules/file-method.c: disabled the annoying "FAMOpen failed..."
