@@ -105,6 +105,7 @@ char *             gnome_vfs_volume_get_activation_uri  (GnomeVFSVolume *volume)
 char *             gnome_vfs_volume_get_filesystem_type (GnomeVFSVolume *volume);
 char *             gnome_vfs_volume_get_display_name    (GnomeVFSVolume *volume);
 char *             gnome_vfs_volume_get_icon            (GnomeVFSVolume *volume);
+char *             gnome_vfs_volume_get_hal_udi         (GnomeVFSVolume *volume);
 gboolean           gnome_vfs_volume_is_user_visible     (GnomeVFSVolume *volume);
 gboolean           gnome_vfs_volume_is_read_only        (GnomeVFSVolume *volume);
 gboolean           gnome_vfs_volume_is_mounted          (GnomeVFSVolume *volume);

@@ -171,9 +171,7 @@ gnome_vfs_drive_finalize (GObject *object)
 	g_free (priv->activation_uri);
 	g_free (priv->display_name);
 	g_free (priv->icon);
-#ifdef USE_HAL
 	g_free (priv->hal_udi);
-#endif
 	g_free (priv);
 	drive->priv = NULL;
 	
@@ -251,6 +249,12 @@ char *
 gnome_vfs_drive_get_activation_uri (GnomeVFSDrive *drive)
 {
 	return g_strdup (drive->priv->activation_uri);
+}
+
+char *
+gnome_vfs_drive_get_hal_udi (GnomeVFSDrive *drive)
+{
+	return g_strdup (drive->priv->hal_udi);
 }
 
 char *
@@ -340,6 +344,7 @@ gnome_vfs_drive_to_corba (GnomeVFSDrive *drive,
 	corba_drive->activation_uri = corba_string_or_null_dup (drive->priv->activation_uri);
 	corba_drive->display_name = corba_string_or_null_dup (drive->priv->display_name);
 	corba_drive->icon = corba_string_or_null_dup (drive->priv->icon);
+	corba_drive->hal_udi = corba_string_or_null_dup (drive->priv->hal_udi);
 	
 	corba_drive->is_user_visible = drive->priv->is_user_visible;
 	corba_drive->is_connected = drive->priv->is_connected;
@@ -368,6 +373,7 @@ _gnome_vfs_drive_from_corba (const GNOME_VFS_Drive *corba_drive,
 	drive->priv->activation_uri = decode_corba_string_or_null (corba_drive->activation_uri, TRUE);
 	drive->priv->display_name = decode_corba_string_or_null (corba_drive->display_name, TRUE);
 	drive->priv->icon = decode_corba_string_or_null (corba_drive->icon, TRUE);
+	drive->priv->hal_udi = decode_corba_string_or_null (corba_drive->hal_udi, TRUE);
 	
 	drive->priv->is_user_visible = corba_drive->is_user_visible;
 	drive->priv->is_connected = corba_drive->is_connected;

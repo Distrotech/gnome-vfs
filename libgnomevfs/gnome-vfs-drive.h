@@ -68,6 +68,7 @@ char *             gnome_vfs_drive_get_device_path     (GnomeVFSDrive *drive);
 char *             gnome_vfs_drive_get_activation_uri  (GnomeVFSDrive *drive);
 char *             gnome_vfs_drive_get_display_name    (GnomeVFSDrive *drive);
 char *             gnome_vfs_drive_get_icon            (GnomeVFSDrive *drive);
+char *             gnome_vfs_drive_get_hal_udi         (GnomeVFSDrive *drive);
 gboolean           gnome_vfs_drive_is_user_visible     (GnomeVFSDrive *drive);
 gboolean           gnome_vfs_drive_is_connected        (GnomeVFSDrive *drive);
 gboolean           gnome_vfs_drive_is_mounted          (GnomeVFSDrive *drive);

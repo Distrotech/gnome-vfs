@@ -41,14 +41,9 @@
  *
  *  TODO/QUESTIONS/ISSUES
  *
- *  - Find a way to expose the HAL UDI of a drive and a volume such that
- *    e.g. Nautilus can extract more properties on the device
- *
  *  - Fix HAL so hal_initialize() fails when we cannot connect to the HAL
  *    daemon; When this works GNOME VFS falls back to mtab/fstab monitoring.
  *    Which is nice.
- *
- *  - Use MP3, Camera icons by looking at info.capabilities
  *
  *  - When a recordable disc (CD-R, CD-RW, DVD-R, DVD+RW etc.) is closed
  *    should we map down to the non-cdrecordable type? E.g. 
@@ -72,10 +67,6 @@
  *    usb-storage based of course)
  *
  *  - Do the same for MP3 players when GNOME VFS backends for these emerge.
- *
- *  - Someone please look at GNOME Bug 143888. Fixing this will allow
- *    a reasonable good desktop experience without automounting or
- *    autodetection
  *
  *  NOTE
  *
@@ -1064,11 +1055,11 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 
 		drive->priv->hal_udi = g_strdup (
 #ifdef HAL_ONLY_SHOW_MOUNTED_VOLUMES
-			udi);
+			udi
 #else
-			hal_drive->no_partitions ? hal_drive->udi : udi);
+			hal_drive->no_partitions ? hal_drive->udi : udi
 #endif
-		
+		);
 		_gnome_vfs_volume_monitor_connected (volume_monitor, drive);
 		gnome_vfs_drive_unref (drive);
 	} 
@@ -1091,6 +1082,7 @@ _hal_add_volume (GnomeVFSVolumeMonitorDaemon *volume_monitor_daemon,
 			device_type = _hal_get_vol_type (hal_vol, hal_drive, hal_ctx);
 
 			vol = g_object_new (GNOME_VFS_TYPE_VOLUME, NULL);
+			vol->priv->hal_udi = g_strdup (udi);
 			vol->priv->volume_type = GNOME_VFS_VOLUME_TYPE_MOUNTPOINT;
 			
 			if (is_blank_disc) {

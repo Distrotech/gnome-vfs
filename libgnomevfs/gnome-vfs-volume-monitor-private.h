@@ -60,12 +60,11 @@ struct _GnomeVFSVolumePrivate {
 	char *device_path;
 	dev_t unix_device;
 
+	/* Only for HAL devices: */
+	char *hal_udi;
+
 	/* Only for connected servers */
 	char *gconf_id;
-
-#ifdef USE_HAL
-	char *hal_udi;
-#endif /* USE_HAL */
 };
 
 
@@ -84,9 +83,8 @@ struct _GnomeVFSDrivePrivate {
 	gboolean is_user_visible;
 	gboolean is_connected;
 
-#ifdef USE_HAL
+	/* Only for HAL devices: */
 	char *hal_udi;
-#endif /* USE_HAL */
 };
 
 void _gnome_vfs_volume_set_drive                (GnomeVFSVolume        *volume,

@@ -48,6 +48,7 @@ module GNOME {
 			string device_path;
 			long unix_device;
 			string gconf_id;
+		        string hal_udi;
 		};
 		typedef sequence<Volume> VolumeList;
 
@@ -61,6 +62,7 @@ module GNOME {
 			string icon;
 			boolean is_user_visible;
 			boolean is_connected;
+		        string hal_udi;
 		};
 		
 		typedef sequence<Drive> DriveList;

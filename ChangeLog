@@ -1,3 +1,35 @@
+2004-07-13  David Zeuthen  <david@fubar.dk>
+
+	Export HAL UDI to applications using GNOME VFS. Largely based on
+	patch from Alexander Larsson.
+
+	* libgnomevfs/gnome-vfs-volume-monitor-private.h: hal_udi is now
+	always added to _GnomeVFSVolumePrivate and _GnomeVFSDrivePrivate
+	even if HAL is not used
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: Remove TODO about exporting UDI
+	(_hal_add_volume): Remember to set vol->priv->hal_udi
+
+	* libgnomevfs/gnome-vfs-volume.h: add gnome_vfs_volume_get_hal_udi()
+	prototype
+
+	* libgnomevfs/gnome-vfs-volume.c (gnome_vfs_volume_finalize): Always
+	free hal_udi as it is now available even when not using HAL
+	(gnome_vfs_volume_get_hal_udi): New function
+	(gnome_vfs_volume_to_corba, gnome_vfs_volume_from_corba): Handle 
+	hal_udi
+
+	* libgnomevfs/gnome-vfs-drive.h: add gnome_vfs_drive_get_hal_udi()
+	prototype
+
+	* libgnomevfs/gnome-vfs-drive.c (gnome_vfs_drive_finalize): Always
+	free hal_udi as it is now available even when not using HAL
+	(gnome_vfs_drive_get_hal_udi): New function
+	(gnome_vfs_drive_to_corba, gnome_vfs_drive_from_corba): Handle hal_udi
+
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	(GNOME::VFS::Volume, GNOME::VFS::Drive): Add hal_udi as a string
+
 2004-07-13  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c (copy_items):

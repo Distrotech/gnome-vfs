@@ -136,9 +136,7 @@ gnome_vfs_volume_finalize (GObject *object)
 	g_free (priv->display_name);
 	g_free (priv->icon);
 	g_free (priv->gconf_id);
-#ifdef USE_HAL
 	g_free (priv->hal_udi);
-#endif
 	g_free (priv);
 	volume->priv = NULL;
 	
@@ -206,6 +204,12 @@ char *
 gnome_vfs_volume_get_activation_uri (GnomeVFSVolume *volume)
 {
 	return g_strdup (volume->priv->activation_uri);
+}
+
+char *
+gnome_vfs_volume_get_hal_udi (GnomeVFSVolume *volume)
+{
+	return g_strdup (volume->priv->hal_udi);
 }
 
 char *
@@ -360,6 +364,7 @@ gnome_vfs_volume_to_corba (GnomeVFSVolume *volume,
 	corba_volume->display_name = corba_string_or_null_dup (volume->priv->display_name);
 	corba_volume->icon = corba_string_or_null_dup (volume->priv->icon);
 	corba_volume->gconf_id = corba_string_or_null_dup (volume->priv->gconf_id);
+	corba_volume->hal_udi = corba_string_or_null_dup (volume->priv->hal_udi);
 	
 	corba_volume->is_user_visible = volume->priv->is_user_visible;
 	corba_volume->is_read_only = volume->priv->is_read_only;
@@ -395,6 +400,7 @@ _gnome_vfs_volume_from_corba (const GNOME_VFS_Volume *corba_volume,
 	volume->priv->display_name = decode_corba_string_or_null (corba_volume->display_name, TRUE);
 	volume->priv->icon = decode_corba_string_or_null (corba_volume->icon, TRUE);
 	volume->priv->gconf_id = decode_corba_string_or_null (corba_volume->gconf_id, TRUE);
+	volume->priv->hal_udi = decode_corba_string_or_null (corba_volume->hal_udi, TRUE);
 	
 	volume->priv->is_user_visible = corba_volume->is_user_visible;
 	volume->priv->is_read_only = corba_volume->is_read_only;
