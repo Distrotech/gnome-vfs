@@ -1,3 +1,21 @@
+2000-05-17  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c:
+	* libgnomevfs/gnome-vfs-uri.h:
+	(gnome_vfs_uri_is_parent):
+	Added a new utility call.
+	
+	* libgnomevfs/gnome-vfs-uri.c:
+	(my_streq):
+	Fixed it up to treat NULL and "" the same and cleaning it up.
+	This fixes a bug in gnome_vfs_uri_equal making it fail on
+	URIs that should have been evaluated as equal.
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(move_items):
+	Fix a bug where in some cases the error callback would get called
+	without the names of the files it failed on.
+
 2000-05-17  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.keys:

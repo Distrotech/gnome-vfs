@@ -1392,6 +1392,7 @@ move_items (const GnomeVFSURI *source_dir_uri,
 
 			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
 			progress->progress_info->bytes_copied = 0;
+			progress_set_source_target_uris (progress, source_uri, target_uri);
 
 			/* no matter what the replace mode, just overwrite the destination
 			 * handle_name_conflicts took care of conflicting files

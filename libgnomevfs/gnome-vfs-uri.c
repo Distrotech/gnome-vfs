@@ -942,19 +942,16 @@ gnome_vfs_uri_set_password (GnomeVFSURI *uri,
 	toplevel->host_name = g_strdup (password);
 }
 
-
-static gint
+static gboolean
 my_streq (const gchar *a,
 	  const gchar *b)
 {
-	if (a == NULL) {
-		if (b == NULL)
-			return TRUE;
-		else
-			return FALSE;
-	} else if (b == NULL) {
-		return FALSE;
+	if (a == NULL || *a == '\0') {
+		return b == NULL || *b == '\0';
 	}
+
+	if (a == NULL || b == NULL)
+		return FALSE;
 
 	return strcmp (a, b) == 0;
 }
@@ -1017,6 +1014,60 @@ gnome_vfs_uri_equal (const GnomeVFSURI *a,
 		return FALSE;
 
 	return TRUE;
+}
+
+/**
+ * gnome_vfs_uri_is_parent:
+ * @possible_parent: A GnomeVFSURI.
+ * @possible_child: A GnomeVFSURI.
+ * @recursive: a flag to turn recursive check on.
+ * 
+ * Check if @possible_child is contained by @possible_parent.
+ * If @recursive is FALSE, just try the immediate parent directory, else
+ * search up through the hierarchy.
+ * 
+ * Return value: %TRUE if @possible_child is contained in  @possible_child.
+ **/
+gboolean
+gnome_vfs_uri_is_parent (const GnomeVFSURI *possible_parent,
+			 const GnomeVFSURI *possible_child,
+			 gboolean recursive)
+{
+	gboolean result;
+	GnomeVFSURI *item_parent_uri;
+	GnomeVFSURI *item;
+
+	if (!recursive) {
+		item_parent_uri = gnome_vfs_uri_get_parent (possible_child);
+
+		if (item_parent_uri == NULL) 
+			return FALSE;
+
+		result = gnome_vfs_uri_equal (item_parent_uri, possible_parent);	
+		gnome_vfs_uri_unref (item_parent_uri);
+
+		return result;
+	}
+	
+	item = gnome_vfs_uri_dup (possible_child);
+	for (;;) {
+		item_parent_uri = gnome_vfs_uri_get_parent (item);
+		gnome_vfs_uri_unref (item);
+		
+		if (item_parent_uri == NULL) 
+			return FALSE;
+
+		result = gnome_vfs_uri_equal (item_parent_uri, possible_parent);
+	
+		if (result) {
+			gnome_vfs_uri_unref (item_parent_uri);
+			break;
+		}
+
+		item = item_parent_uri;
+	}
+
+	return result;
 }
 
 
