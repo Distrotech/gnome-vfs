@@ -1,4 +1,13 @@
+1999-08-25  Michael Meeks  <michael@imaginator.com>
+
+	* modules/file-method.c: Update all preconditions to return BAD_POINTER
+	as their GnomeVFSResult instead of FALSE.
+
+	* libgnomevfs/gnome-vfs-types.h: Added GNOME_VFS_ERROR_BAD_POINTER.
+
+	* modules/gzip-method.h: Rename conditional include
+	from _FILE_H to _GZIP_H
+
 1999-08-25  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* configure.in: Add gnomeui libs to `VFSCORBA_LIBS'.
-

@@ -20,8 +20,8 @@
    Author: Ettore Perazzoli <ettore@comm2000.it>
 */
 
-#ifndef _FILE_H
-#define _FILE_H
+#ifndef _GZIP_H
+#define _GZIP_H
 
 #include "gnome-vfs-method.h"
 

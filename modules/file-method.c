@@ -264,7 +264,8 @@ do_close (GnomeVFSMethodHandle *method_handle)
 	FileHandle *file_handle;
 	gint close_retval;
 
-	g_return_val_if_fail (method_handle != NULL, FALSE);
+	g_return_val_if_fail (method_handle != NULL,
+			      GNOME_VFS_ERROR_BAD_POINTER);
 
 	file_handle = (FileHandle *) method_handle;
 
@@ -290,7 +291,8 @@ do_read (GnomeVFSMethodHandle *method_handle,
 	FileHandle *file_handle;
 	gint read_val;
 
-	g_return_val_if_fail (method_handle != NULL, FALSE);
+	g_return_val_if_fail (method_handle != NULL,
+			      GNOME_VFS_ERROR_BAD_POINTER);
 
 	file_handle = (FileHandle *) method_handle;
 
@@ -316,7 +318,8 @@ do_write (GnomeVFSMethodHandle *method_handle,
 	FileHandle *file_handle;
 	gint write_val;
 
-	g_return_val_if_fail (method_handle != NULL, FALSE);
+	g_return_val_if_fail (method_handle != NULL,
+			      GNOME_VFS_ERROR_BAD_POINTER);
 
 	file_handle = (FileHandle *) method_handle;
 
@@ -400,7 +403,8 @@ do_truncate (GnomeVFSMethodHandle *method_handle,
 {
 	FileHandle *file_handle;
 
-	g_return_val_if_fail (method_handle != NULL, FALSE);
+	g_return_val_if_fail (method_handle != NULL,
+			      GNOME_VFS_ERROR_BAD_POINTER);
 
 	file_handle = (FileHandle *) method_handle;
 
