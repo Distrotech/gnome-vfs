@@ -1,3 +1,11 @@
+2001-10-24  Seth Nickell  <snickell@stanford.edu>
+
+	* gnome-vfs.applications:
+	* gnome-vfs.keys.in:
+	* gnome-vfs.mime:
+
+	Add C headers as a seperate type (helps out gIDE).
+
 2001-10-02  Darin Adler  <darin@bentspoon.com>
 
 	* Makefile.am: Changed from xml-i18n-tools to intltool.

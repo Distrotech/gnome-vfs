@@ -484,10 +484,13 @@ text/x-authors
 	regex: AUTHORS
 
 text/x-c
-	ext: c h
+	ext: c
 
 text/x-c++
-	ext: cc C cpp c++ hp H h++
+	ext: cc C cpp c++
+
+text/x-c-header
+	ext: h H h++ hp
 
 text/x-comma-separated-values
 	ext: csv
