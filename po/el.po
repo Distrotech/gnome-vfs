@@ -6,12 +6,13 @@
 # Simos added 34. (15/07/2000)
 # simos: 384 messages, 14Feb2001, (sgpbea).
 # simos: 384 messages, 18Feb2001, two fuzzies.
+# simos: 405 messages, 27Feb2001, (rgmtsgpbea).
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 0.6.0\n"
-"POT-Creation-Date: 2001-02-27 13:59+0100\n"
-"PO-Revision-Date: 2001-02-22 23:44:44+0900\n"
+"Project-Id-Version: gnome-vfs 0.6.2\n"
+"POT-Creation-Date: 2001-02-27 16:12+0000\n"
+"PO-Revision-Date: 2001-02-27 16:24:49+0900\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +141,7 @@ msgstr "Διάγραμμα Dia"
 
 #: data/mime/gnome-vfs.keys.in.h:31
 msgid "Dolby Digital audio"
-msgstr ""
+msgstr "Ψηφιακός Ήχος Dolby"
 
 #: data/mime/gnome-vfs.keys.in.h:32
 msgid "Emacs Lisp source code"
@@ -191,9 +192,8 @@ msgid "GNOME application details"
 msgstr "Λεπτομέρειες εφαρμογής GNOME"
 
 #: data/mime/gnome-vfs.keys.in.h:44
-#, fuzzy
 msgid "GNU Oleo Spreadsheet"
-msgstr "Λογιστικό φύλλο Gnumeric"
+msgstr "Λογιστικό φύλλο Oleo GNU"
 
 #: data/mime/gnome-vfs.keys.in.h:45
 msgid "GNU mail message"
@@ -205,11 +205,11 @@ msgstr "Ρυθμίσεις GTK"
 
 #: data/mime/gnome-vfs.keys.in.h:47
 msgid "Glade project"
-msgstr ""
+msgstr "Έργο Glade"
 
 #: data/mime/gnome-vfs.keys.in.h:48
 msgid "GnuCash Workbook"
-msgstr ""
+msgstr "Βιβλίο Εργασίας GnuCash"
 
 #: data/mime/gnome-vfs.keys.in.h:49
 msgid "Gnumeric spreadsheet"
@@ -249,7 +249,7 @@ msgstr "Ήχος Impulse Tracker"
 
 #: data/mime/gnome-vfs.keys.in.h:58
 msgid "JBuilder Project"
-msgstr ""
+msgstr "Έργο JBuilder"
 
 #: data/mime/gnome-vfs.keys.in.h:59
 msgid "JPEG image"
@@ -268,24 +268,20 @@ msgid "KDE application details"
 msgstr "Λεπτομέρειες εφαρμογής KDE"
 
 #: data/mime/gnome-vfs.keys.in.h:63
-#, fuzzy
 msgid "KIllustrator document"
-msgstr "Έγγραφο troff"
+msgstr "Έγγραφο KIllustrator"
 
 #: data/mime/gnome-vfs.keys.in.h:64
-#, fuzzy
 msgid "KPresenter presentation"
-msgstr "Παρουσίαση StarOffice"
+msgstr "Παρουσίαση KPresenter"
 
 #: data/mime/gnome-vfs.keys.in.h:65
-#, fuzzy
 msgid "KSpread spreadsheet"
-msgstr "Λογιστικό φύλλο Applixware"
+msgstr "Λογιστικό φύλλο KSpread"
 
 #: data/mime/gnome-vfs.keys.in.h:66
-#, fuzzy
 msgid "KWord document"
-msgstr "Έγγραφο AbiWord"
+msgstr "Έγγραφο KWord"
 
 #: data/mime/gnome-vfs.keys.in.h:67
 msgid "Korn shell script"
@@ -316,9 +312,8 @@ msgid "Linux PSF console font"
 msgstr "Γραμματοσειρά κονσόλας PSF Linux"
 
 #: data/mime/gnome-vfs.keys.in.h:74
-#, fuzzy
 msgid "Lotus 1-2-3 spreadsheet"
-msgstr "Λογιστικό φύλλο Gnumeric"
+msgstr "Λογιστικό φύλλο Lotus 1-2-3"
 
 #: data/mime/gnome-vfs.keys.in.h:75
 msgid "M3 audio URL"
@@ -345,9 +340,8 @@ msgid "MPEG video"
 msgstr "Βίντεο MPEG"
 
 #: data/mime/gnome-vfs.keys.in.h:81
-#, fuzzy
 msgid "MS ASF video"
-msgstr "Βίντεο MS"
+msgstr "Βίντεο MS ASF"
 
 #: data/mime/gnome-vfs.keys.in.h:82
 msgid "MS video"
@@ -370,9 +364,8 @@ msgid "MathML document"
 msgstr "Έγγραφο MathML"
 
 #: data/mime/gnome-vfs.keys.in.h:87
-#, fuzzy
 msgid "Microsoft Excel spreadsheet"
-msgstr "Έγγραφο Microsoft Excel"
+msgstr "Λογιστικό φύλλο Microsoft Excel"
 
 #: data/mime/gnome-vfs.keys.in.h:88
 msgid "Microsoft PowerPoint document"
@@ -483,14 +476,12 @@ msgid "QuickTime movie"
 msgstr "Ταινία QuickTime"
 
 #: data/mime/gnome-vfs.keys.in.h:115
-#, fuzzy
 msgid "Quicken document"
-msgstr "Έγγραφο TeX"
+msgstr "Έγγραφο Quicken"
 
 #: data/mime/gnome-vfs.keys.in.h:116
-#, fuzzy
 msgid "Quicken for Windows document"
-msgstr "έγγραφο ημερολογίου ή γεγονότος"
+msgstr "Έγγραφο Quicken για Windows"
 
 #: data/mime/gnome-vfs.keys.in.h:117
 msgid "RAR archive"
@@ -585,9 +576,8 @@ msgid "Speedo font"
 msgstr "Γραμματοσειρά Speedo"
 
 #: data/mime/gnome-vfs.keys.in.h:140
-#, fuzzy
 msgid "Spreadsheet Interchange document"
-msgstr "Έγγραφο ανταλλαγής FrameMaker"
+msgstr "Έγγραφο Ανταλλαγής Λογιστικού Φύλλου"
 
 #: data/mime/gnome-vfs.keys.in.h:141
 msgid "Stampede package"
@@ -695,7 +685,7 @@ msgstr "Εικονίδιο Windows"
 
 #: data/mime/gnome-vfs.keys.in.h:167
 msgid "Windows metafile graphics"
-msgstr ""
+msgstr "Μετά-αρχείο γραφικών Windows"
 
 #: data/mime/gnome-vfs.keys.in.h:168
 msgid "WordPerfect document"
@@ -718,9 +708,8 @@ msgid "XPM image"
 msgstr "Εικόνα XPM"
 
 #: data/mime/gnome-vfs.keys.in.h:173
-#, fuzzy
 msgid "Xbase database"
-msgstr "Βάση δεδομένων Palm OS"
+msgstr "Βάση δεδομένων Xbase"
 
 #: data/mime/gnome-vfs.keys.in.h:174
 msgid "active server page"
@@ -1425,9 +1414,9 @@ msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ανεπιτυχής δημιουργία διασωλήνωσης για το ανοιχτό GIOChannel: %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1574
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown job kind %u"
-msgstr "¶γνωστη ταυτότητα εργασίας %u"
+msgstr "¶γνωστη είδος εργασίας %u"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:1605
 msgid "Operation stopped"
@@ -1521,11 +1510,11 @@ msgstr "Επέκταση:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
 msgid "You must enter a name."
-msgstr ""
+msgstr "Πρέπει να εισάγετε ένα όνομα."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
 msgid "You must enter a command."
-msgstr ""
+msgstr "Πρέπει να εισάγετε μια εντολή."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
 #, c-format
@@ -1534,6 +1523,9 @@ msgid ""
 "Check your spelling and make sure you have\n"
 "the right permissions to execute this file."
 msgstr ""
+"Το \"%s\" δεν υπάρχει ή δεν είναι εκτελέσιμο.\n"
+"Ελέξτε την ορθογραφία σας και επιβεβαιώστε ότι\n"
+"ότι έχετε δικαίωμα εκτέλεσης του αρχείου."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
 #, c-format
@@ -1541,21 +1533,21 @@ msgid ""
 "The command \"%s\" cannot be found.\n"
 "You must use a command that can work from any command line."
 msgstr ""
+"Η εντολή \"%s\" δε βρέθηκε.\n"
+"Πρέπει να χρησιμοποιήσετε μια εντολή που να είναι προσβάσιμη από κάθε "
+"γραμμή εντολών."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
-#, fuzzy
 msgid "Bad Application Name"
-msgstr "Όνομα Εφαρμογής:"
+msgstr "Κακό Όνομα Εφαρμογής"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
-#, fuzzy
 msgid "Bad Application Command"
-msgstr "Εντολή Εφαρμογής:"
+msgstr "Κακή Εντολή Εφαρμογής"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
-#, fuzzy
 msgid "Add Application"
-msgstr "Προσθήκη Εφαρμογής..."
+msgstr "Προσθήκη Εφαρμογής"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
 msgid "Edit Application"
@@ -1771,11 +1763,11 @@ msgstr "Εμφάνιση κρυφών αρχείων"
 
 #: mime-type-capplet/file-types-capplet.desktop.in.h:1
 msgid "File Types and Programs"
-msgstr ""
+msgstr "Είδη Αρχείων και Προγράμματα"
 
 #: mime-type-capplet/file-types-capplet.desktop.in.h:2
 msgid "Specify which programs are used to open or view each file type"
-msgstr ""
+msgstr "Καθορισμός των προγραμμάτων που ανοίγουν ή εμφανίζουν κάθε είδος αρχείων"
 
 #~ msgid "New Application"
 #~ msgstr "Νέα Εφαρμογή"
