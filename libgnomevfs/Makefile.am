@@ -188,6 +188,7 @@ libgnomevfsinclude_HEADERS =			\
 	gnome-vfs-cancellation.h		\
 	gnome-vfs-context.h			\
 	gnome-vfs-directory.h			\
+	gnome-vfs-dns-sd.h			\
 	gnome-vfs-drive.h			\
 	gnome-vfs-enum-types.h			\
 	gnome-vfs-file-info.h			\
@@ -233,6 +234,7 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-context.c			\
 	gnome-vfs-daemon-method.c		\
 	gnome-vfs-directory.c			\
+	gnome-vfs-dns-sd.c			\
 	gnome-vfs-drive.c			\
 	gnome-vfs-file-info.c			\
 	gnome-vfs-filesystem-type.c		\

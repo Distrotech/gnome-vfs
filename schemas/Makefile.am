@@ -2,6 +2,7 @@ schemadir   = $(GCONF_SCHEMA_FILE_DIR)
 schema_in_files = \
 	system_http_proxy.schemas.in \
 	system_smb.schemas.in \
+	system_dns_sd.schemas.in \
 	desktop_default_applications.schemas.in \
 	desktop_gnome_url_handlers.schemas.in
 

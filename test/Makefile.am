@@ -17,6 +17,7 @@ noinst_PROGRAMS =				\
 	test-directory				\
 	test-directory-visit			\
 	test-dirop				\
+	test-dns-sd				\
 	test-escape				\
 	test-find-directory			\
 	test-info				\
@@ -137,6 +138,9 @@ test_unlink_LDADD = $(libraries)
 
 test_dirop_SOURCES = test-dirop.c
 test_dirop_LDADD = $(libraries)
+
+test_dns_sd_SOURCES = test-dns-sd.c
+test_dns_sd_LDADD = $(libraries)
 
 test_find_directory_SOURCES = test-find-directory.c
 test_find_directory_LDADD = $(libraries)

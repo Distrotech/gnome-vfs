@@ -6,6 +6,7 @@ INCLUDES =					\
 	-I$(top_builddir)			\
 	$(MODULES_XML_GCONF_CFLAGS)		\
 	$(MODULES_FILE_CFLAGS) 			\
+	$(HOWL_CFLAGS)				\
 	$(LIBEFS_CFLAGS)			\
 	$(SAMBA_CFLAGS)				\
 	$(VFS_CFLAGS)				\
@@ -58,6 +59,7 @@ modulesdir = $(libdir)/gnome-vfs-2.0/modules
 modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
 	libcomputer.la				\
+	libdns-sd.la				\
 	libextfs.la				\
 	libfile.la				\
 	libnetwork.la				\
@@ -110,6 +112,12 @@ libcomputer_la_SOURCES = computer-method.c
 libcomputer_la_LDFLAGS = $(module_flags)
 libcomputer_la_LIBADD = $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
+###  `dns-sd' method
+
+libdns_sd_la_SOURCES = dns-sd-method.c
+libdns_sd_la_LDFLAGS = $(module_flags)
+libdns_sd_la_LIBADD = $(MODULES_LIBS) $(HOWL_LIBS) ../libgnomevfs/libgnomevfs-2.la
+
 ###  `extfs' method
 
 libextfs_la_SOURCES = extfs-method.c
@@ -122,7 +130,7 @@ libfile_la_SOURCES = file-method.c fstype.c
 libfile_la_LDFLAGS = $(module_flags)
 libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
-###  `computer' method
+###  `network' method
 
 libnetwork_la_SOURCES = network-method.c
 libnetwork_la_LDFLAGS = $(module_flags)

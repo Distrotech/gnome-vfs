@@ -1,3 +1,35 @@
+2004-06-18  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	Check for howl 0.9.5
+	
+	* libgnomevfs/Makefile.am:
+	Add gnome-vfs-dns-sd.[ch].
+	
+	* libgnomevfs/gnome-vfs-dns-sd.[ch]:
+	New files.
+	Implements unicast dns-sd natively and mDNS using howl.
+	
+	* modules/Makefile.am:
+	Add new files
+	
+	* modules/default-modules.conf:
+	Add dns-sd:
+	
+	* modules/dns-sd-method.c:
+	New method for dns-sd browsing.
+	
+	* modules/network-method.c:
+	Rewrite and add support for dns-sd.
+	
+	* schemas/Makefile.am:
+	* schemas/system_dns_sd.schemas.in:
+	Some gconf keys used by network://
+	
+	* test/Makefile.am:
+	* test/test-dns-sd.c:
+	Testing code for dns-sd
+
 2004-06-09  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-socket-buffer.c (gnome_vfs_socket_buffer_write):
