@@ -48,8 +48,6 @@ static GnomeVFSResult expand_parameters                          (gpointer      
 								  char                   ***argv);
 static GList *        Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList    *info_list);
 static GList *        copy_str_list                              (GList                    *string_list);
-static GList *        prune_ids_for_nonexistent_applications     (GList                    *list);
-static gboolean       application_known_to_be_nonexistent        (const char               *application_id);
 
 
 /**
@@ -460,9 +458,6 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 	g_return_val_if_fail (mime_type != NULL, NULL);
 
 	applications = gnome_vfs_mime_get_all_desktop_entries (mime_type);
-
-	/* Remove application ids representing nonexistent (not in path) applications */
-	applications = prune_ids_for_nonexistent_applications (applications);
 
 	/* Convert to GnomeVFSMimeApplication's (leaving out NULLs) */
 	for (node = applications; node != NULL; node = next) {
@@ -1559,42 +1554,6 @@ expand_parameters (gpointer                 action,
 	*argc = i;
 
 	return GNOME_VFS_OK;
-}
-
-static gboolean
-application_known_to_be_nonexistent (const char *application_id)
-{
-	const char *command;
-
-	g_return_val_if_fail (application_id != NULL, FALSE);
-
-	command = gnome_vfs_application_registry_peek_value
-		(application_id,
-		 GNOME_VFS_APPLICATION_REGISTRY_COMMAND);
-
-	if (command == NULL) {
-		return TRUE;
-	}
-
-	return !gnome_vfs_is_executable_command_string (command);
-}
-
-static GList *
-prune_ids_for_nonexistent_applications (GList *list)
-{
-	GList *p, *next;
-
-	for (p = list; p != NULL; p = next) {
-		next = p->next;
-
-		if (application_known_to_be_nonexistent (p->data)) {
-			list = g_list_remove_link (list, p);
-			g_free (p->data);
-			g_list_free_1 (p);
-		}
-	}
-
-	return list;
 }
 
 static GList *

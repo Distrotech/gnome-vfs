@@ -28,6 +28,7 @@
 #include <sys/time.h>
 #include <glib.h>
 #include "gnome-vfs-mime-info-cache.h"
+#include "gnome-vfs-mime-monitor.h"
 #include "eggdesktopentries.h"
 #include "eggdirfuncs.h"
 
@@ -44,12 +45,15 @@ typedef struct {
 typedef struct {
 	GList *dirs;               /* mimeinfo.cache and defaults.list */
 	GList *defaults_list_dirs; /* defaults.list only dirs */
+	gboolean should_ping_mime_monitor;
 } GnomeVFSMimeInfoCache;
+
+extern void _gnome_vfs_mime_monitor_emit_data_changed (GnomeVFSMIMEMonitor *monitor); 
 
 static void free_mime_info_cache_map_list (GList *list);
 static void gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir);
 static void gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir);
-static GnomeVFSMimeInfoCacheDir * gnome_vfs_mime_info_cache_dir_new (const char *path);
+static GnomeVFSMimeInfoCacheDir *gnome_vfs_mime_info_cache_dir_new (const char *path);
 static void gnome_vfs_mime_info_cache_dir_free (GnomeVFSMimeInfoCacheDir *dir);
 static char **gnome_vfs_mime_info_cache_get_search_path (void);
 static char **gnome_vfs_mime_info_cache_get_defaults_search_path (void);
@@ -60,7 +64,7 @@ static void gnome_vfs_mime_info_cache_dir_add_desktop_entries (GnomeVFSMimeInfoC
 							       const char *mime_type,
 							       char **new_desktop_file_ids);
 static void gnome_vfs_mime_info_cache_load (void);
-static GnomeVFSMimeInfoCache * gnome_vfs_mime_info_cache_new (void);
+static GnomeVFSMimeInfoCache *gnome_vfs_mime_info_cache_new (void);
 static void gnome_vfs_mime_info_cache_free (GnomeVFSMimeInfoCache *cache);
 
 static GnomeVFSMimeInfoCache *mime_info_cache = NULL;
@@ -179,6 +183,8 @@ gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 
 	if (!gnome_vfs_mime_info_cache_dir_out_of_date (dir))
 		return;
+
+	mime_info_cache->should_ping_mime_monitor = TRUE;
 	
 	if (dir->mime_info_cache_map != NULL) {
 		g_hash_table_destroy (dir->mime_info_cache_map);
@@ -268,6 +274,8 @@ gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 
 	if (!gnome_vfs_mime_info_cache_dir_defaults_list_out_of_date (dir))
 		return;
+
+	mime_info_cache->should_ping_mime_monitor = TRUE;
 
 	if (dir->defaults_list_map != NULL) {
 		g_hash_table_destroy (dir->defaults_list_map);
@@ -624,6 +632,11 @@ gnome_vfs_mime_info_cache_load (void)
 			tmp = tmp->next;
 		}
 	}
+
+	if (mime_info_cache->should_ping_mime_monitor) {
+		_gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
+		mime_info_cache->should_ping_mime_monitor = FALSE;
+	}
 	G_UNLOCK (mime_info_cache);
 }
 
@@ -653,7 +666,6 @@ gnome_vfs_mime_info_cache_free (GnomeVFSMimeInfoCache *cache)
 			NULL);
 	g_list_free (cache->defaults_list_dirs);
 }
-
 
 void
 gnome_vfs_mime_info_cache_flush (void)

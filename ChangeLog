@@ -1,5 +1,16 @@
 2004-07-19  Ray Strode  <rstrode@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c: 
+	(prune_ids_for_nonexistent_applications),
+	(application_known_to_be_nonexistent),
+	(gnome_vfs_mime_get_all_applications):
+	Get rid of unneeded pruning functions
+
+	* libgnomevfs/gnome-vfs-mime-info.c: 
+	ping mime monitor when caches are reread from disk.
+
+2004-07-19  Ray Strode  <rstrode@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-info.c: 
 	(gnome_vfs_mime_get_default_desktop_entry):
 	strdup the result before returning it.
