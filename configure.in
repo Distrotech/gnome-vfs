@@ -143,16 +143,6 @@ if test $have_socket = yes; then
     AC_STRUCT_LINGER
 fi
 
-dnl libole2 check
-AC_ARG_ENABLE(libole2,
-[  --enable-libole2        assume libole2 is available [default=no]],
-	[case "${enableval}" in
-	  yes) GNOME_INIT_LIBOLE2 ;;
-	  no)  ;;
-	  *)   AC_MSG_ERROR(bad value ${enableval} for --enable-libole2) ;;
-	esac])
-
-
 dnl Final touch
 
 AC_SUBST(CFLAGS)
