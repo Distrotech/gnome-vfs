@@ -270,6 +270,10 @@ _gnome_vfs_volume_monitor_shutdown (void)
 	G_LOCK (the_volume_monitor);
 	
 	if (the_volume_monitor != NULL) {
+		if (!gnome_vfs_get_is_daemon ()) {
+			_gnome_vfs_volume_monitor_client_shutdown (GNOME_VFS_VOLUME_MONITOR_CLIENT (the_volume_monitor));
+		}
+		
 		gnome_vfs_volume_monitor_unref (the_volume_monitor);
 		the_volume_monitor = NULL;
 	}
