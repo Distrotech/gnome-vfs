@@ -1375,9 +1375,9 @@ make_request (HttpFileHandle **handle_return,
 
 		/* Read the headers and create our internal HTTP file handle.  */
 		result = create_handle (uri, socket_buffer, context, handle_return);
-		socket_buffer = NULL;
 
 		if (result == GNOME_VFS_OK) {
+			socket_buffer = NULL;
 			break;
 		}
 
