@@ -1,3 +1,12 @@
+2002-07-18  Damon Chaplin  <damon@ximian.com>
+
+	* modules/vfolder/vfolder-common.c (entry_quick_read_keys): init
+	*result1 & *result2 to NULL, in case there is an error reading the
+	.desktop file. (Some of my X11 .desktop files are not readable by me,
+	so that caused a problem here.)
+	Also append '\0' to the GString, so we can use it like a normal string.
+	These 2 fixes seem to fix the corruption problems I was having.
+
 2002-07-18  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-common.c (folder_get_child): Don't call

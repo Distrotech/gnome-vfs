@@ -304,6 +304,10 @@ entry_quick_read_keys (Entry  *entry,
 	GString *fullbuf;
 	char buf[2048];
 
+	*result1 = NULL;
+	if (key2)
+	  *result2 = NULL;
+
 	if (gnome_vfs_open (&handle, 
 			    entry->filename, 
 			    GNOME_VFS_OPEN_READ) != GNOME_VFS_OK)
@@ -323,6 +327,8 @@ entry_quick_read_keys (Entry  *entry,
 		g_string_free (fullbuf, TRUE);
 		return;
 	}
+
+	g_string_append_c (fullbuf, '\0');
 
 	entry_key_val_from_string (fullbuf->str, key1, result1);
 
