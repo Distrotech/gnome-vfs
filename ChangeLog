@@ -1,3 +1,9 @@
+2000-08-08  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-parse-ls.c (gnome_vfs_parse_ls_lga): Avoid
+	a warning and potential bug on systems (such as FreeBSD) where the
+	st_nlink field of struct stat is unsigned.
+
 2000-08-08  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* mime-type-capplet/Makefile.am: added 

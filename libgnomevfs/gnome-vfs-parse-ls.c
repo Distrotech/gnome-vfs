@@ -477,6 +477,7 @@ gnome_vfs_parse_ls_lga (const gchar *p,
 	gint column_ptr [MAXCOLS]; /* Index from 0 to the starting positions of the columns */
 	gint idx, idx2, num_cols;
 	gint i;
+	gint nlink;
 	gchar *p_copy;
     
 	if (strncmp (p, "total", 5) == 0)
@@ -514,9 +515,11 @@ gnome_vfs_parse_ls_lga (const gchar *p,
 	p_copy = g_strdup (p);
 	num_cols = vfs_split_text (p_copy, columns, column_ptr);
 
-	s->st_nlink = atol (columns [0]);
-	if (s->st_nlink < 0)
+	nlink = atol (columns [0]);
+	if (nlink < 0)
 		goto error;
+
+	s->st_nlink = nlink;
 
 	if (!is_num (columns[1]))
 		s->st_uid = finduid (columns [1]);
