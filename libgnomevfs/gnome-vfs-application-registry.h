@@ -62,6 +62,13 @@ G_BEGIN_DECLS
  * needs to run from within a terminal (for example, mpg123)
  **/
 #define GNOME_VFS_APPLICATION_REGISTRY_REQUIRES_TERMINAL "requires_terminal"
+
+/** 
+ * 
+ * Application registry key for determining if an application
+ * is using gnome-vfs and thus can open any URI supported by
+ * gnome-vfs
+ */
 #define GNOME_VFS_APPLICATION_REGISTRY_USES_GNOMEVFS "uses_gnomevfs"
 
 /**
