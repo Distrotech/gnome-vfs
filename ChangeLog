@@ -1,3 +1,8 @@
+2000-09-21  John Sullivan  <sullivan@eazel.com>
+
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(mime_list_selected_row_callback): Removed an outdated FIXME.
+
 2000-09-20  Gene Z. Ragan  <gzr@eazel.com>
 
 	Found a case where a URI was used unitialized.
