@@ -29,10 +29,12 @@
 application/andrew-inset
 	description=Andrew Toolkit inset
 	[no]description=Andrew verktøysett insett
+	[da]description=Andrew værktøjssæt indsæt
 	[sv]description=Andrew-verktygssamling insatt
 	
 application/mac-binhex40
 	description=Macintosh BinHex archive
+        [da]description=Macintosh BinHex-arkiv
 	[fr]description=Archive BinHex Macintosh
 	[no]description=Macintosh BinHex-arkiv
 	[sv]description=Macintosh BinHex-arkiv
@@ -47,7 +49,8 @@ application/mime-type-test
 
 application/mspowerpoint
 	description=Microsoft PowerPoint document
-	[fr]description=Document Microsoft PowerPoint
+	[da]description=Microsoft PowerPoint-dokument
+ 	[fr]description=Document Microsoft PowerPoint
 	[no]description=Microsoft PowerPoint dokument
 	[sv]description=Microsoft PowerPoint-dokument
 	default_action_type=application
@@ -58,7 +61,8 @@ application/mspowerpoint
 
 application/msword
 	description=Microsoft Word document
-	[fr]description=Document Microsoft Word
+	[da]description=Microsoft Word-dokument
+ 	[fr]description=Document Microsoft Word
 	[no]description=Microsoft Word dokument
 	[sv]description=Microsoft Word-dokument
 	default_action_type=application
@@ -69,18 +73,21 @@ application/msword
 
 application/octet-stream
 	description=unknown data
+	[da]description=data af ukendt type
 	[fr]description=Donnée inconnue
 	[no]description=data av ukjent type
 	[sv]description=data av okänd typ
 
 application/oda
 	description=ODA document
+	[da]description=ODA-dokument
 	[fr]description=Document ODA
 	[no]description=ODA-dokument
 	[sv]description=ODA-dokument
 
 application/pdf
 	description=PDF document
+	[da]description=PDF-dokument
 	[fr]description=Document PDF
 	[no]description=PDF-dokument
 	[sv]description=PDF-dokument
@@ -96,42 +103,49 @@ application/pdf
 
 application/pgp
 	description=PGP message
+	[da]description=PGP-meddelelse
 	[fr]description=Message PGP
 	[no]description=PGP-melding
 	[sv]description=PGP-meddelande
 
 application/pgp-encrypted
 	description=PGP encrypted data
+	[da]description=Data krypteret med PGP
 	[fr]description=Donnée encryptée PGP
 	[no]description=Data kryptert med PGP
 	[sv]description=PGP-krypterad data
 
 application/pgp-keys
 	description=PGP keys
+	[da]description=PGP-nøgler 
 	[fr]description=Clés PGP
 	[no]description=PGP-nøkler
 	[sv]description=PGP-nycklar
 
 application/pgp-signature
 	description=PGP signature
+	[da]description=PGP-signatur
 	[fr]description=Signature PGP
 	[no]description=PGP-signatur
 	[sv]description=PGP-signatur
 	
 application/pkcs7-mime
 	description=S/MIME data
+	[da]description=S/MIME-data
 	[fr]description=Donnée S/MIME
 	[no]description=S/MIME-data
 	[sv]description=S/MIME-data
 
 application/pkcs7-signature
 	description=S/MIME signature
+	[da]description=S/MIME-signatur
 	[fr]description=Signature S/MIME
 	[no]description=S/MIME-signatur
 	[sv]description=S/MIME-signatur
 
 application/postscript
 	description=PostScript document
+	[da]description=PostScript-dokument
 	[fr]description=Document PostScript
 	[no]description=PostScript dokument
 	[sv]description=PostScript-dokument
@@ -139,6 +153,7 @@ application/postscript
 application/rtf
 	description=rich text
 	[fr]description=Texte enrichi
+	[da]description=Rig tekst
 	[no]description=Rik tekst
 	[sv]description=rik text
 	default_action_type=application
@@ -149,6 +164,7 @@ application/rtf
 	
 application/vnd.ms-excel
 	description=Microsoft Excel document
+	[da]description=Microsoft Excel-dokument
 	[fr]description=Document Microsoft Excel
 	[no]description=Microsoft Excel dokument
 	[sv]description=Microsoft Excel-dokument
@@ -160,6 +176,7 @@ application/vnd.ms-excel
 
 application/x-applix-spreadsheet
 	description=Applix spreadsheet
+	[da]description=Applix-regneark
 	[fr]description=Feuille de calcul Applix
 	[no]description=Applix regneark
 	[sv]description=Applix-kalkylblad
@@ -167,6 +184,7 @@ application/x-applix-spreadsheet
 
 application/x-applix-word
 	description=Applix Word document
+	[da]description=Applix Word-dokument
 	[fr]description=Document Applix Word
 	[no]description=Applix Word dokument
 	[sv]description=Applix Word-dokument
@@ -179,24 +197,28 @@ application/x-arj
 
 application/x-asp
 	description=active server page
+	[da]description=Active Server Page
 	[fr]description=Active Server Page
 	[no]description=Active Server Page
 	[sv]description=Active Server Page
 
 application/x-backup
 	description=backup document
+	[da]description=Sikkerhedskopi
 	[fr]description=Document de sauvegarde
 	[no]description=Sikkerhetskopi
 	[sv]description=säkerhetskopia
 
 application/x-bcpio
 	description=BCPIO document
+	[da]description=BCPIO-dokument
 	[fr]description=Document BCPIO
 	[no]description=BCPIO-dokument
 	[sv]description=BCPIO-dokument
 
 application/x-bzip
 	description=bzip archive
+	[da]description=bzip-arkiv
 	[fr]description=Archive bzip
 	[no]description=bzip-arkiv
 	[sv]description=bzip-arkiv
@@ -204,6 +226,7 @@ application/x-bzip
 
 application/x-bzip-compressed-tar
 	description=bzip archive
+	[da]description=bzip-arkiv
 	[fr]description=Archive bzip
 	[no]description=bzip-arkiv
 	[sv]description=bzip-arkiv
@@ -212,24 +235,28 @@ application/x-bzip-compressed-tar
 
 application/x-cgi
 	description=CGI program
+	[da]description=CGI-program
 	[fr]description=Programme CGI
 	[no]description=CGI-program
 	[sv]description=CGI-program
 
 application/x-chess-pgn
 	description=PGN chess game
+	[no]description=PGN skakspil
 	[fr]description=Partie d'échec PGN
 	[no]description=PGN sjakkspill
 	[sv]description=PGN-schackparti
 
 application/x-class-file
 	description=class code
+	[da]description=Klassekode
 	[fr]description=Code classe
 	[no]description=Klassekode
 	[sv]description=klasskod
 
 application/x-compress
 	description=archive
+	[da]description=Arkiv
 	[fr]description=Archive
 	[no]description=Arkiv
 	[sv]description=arkiv
@@ -237,12 +264,14 @@ application/x-compress
 application/x-compressed-tar
 	description=tar archive
 	[fr]description=Archive tar
+	[da]description=tar-arkiv
 	[no]description=tar-arkiv
 	[sv]description=tar-arkiv
 	icon-filename=gnome-package.png
 
 application/x-core-file
 	description=memory dump
+	[da]description=Hukommelsesstump
 	[fr]description=Sortie mémoire
 	[no]description=Minnedump
 	[sv]description=minnesdump
@@ -250,6 +279,7 @@ application/x-core-file
 
 application/x-cpio
 	description=CPIO document
+	[da]description=CPIO-dokument
 	[fr]description=Document CPIO
 	[no]description=CPIO-dokument
 	[sv]description=CPIO-dokument
@@ -264,12 +294,14 @@ application/x-cpio-compressed
 # also text/x-csh
 application/x-csh
 	description=C-Shell script
+	[da]description=C-skalsskript
 	[fr]description=Script C-Shell
 	[no]description=C-skall skript
 	[sv]description=C-skalsskript
 
 application/x-deb
 	description=Debian package
+	[da]description=Debian pakke
 	[fr]description=Paquetage Debian
 	[no]description=Debian pakke
 	[sv]description=Debianpaket
@@ -277,111 +309,132 @@ application/x-deb
 
 application/x-dia-diagram
 	description=Dia diagram
+	[da]description=Dia-diagram
 	[fr]description=Diagramme Dia
 	[no]description=Dia-diagram
 	[sv]description=Dia-diagram
 
 application/x-dvi
 	description=TeX dvi document
+	[da]description=TeX dvi-dokument
 	[fr]description=Document TeX dvi
 	[no]description=TeX dvi dokument
 	[sv]description=TeX dvi-dokument
 
 application/x-e-theme
 	description=Enlightenment theme
+	[da]description=Enlightenment-tema
 	[fr]description=Theme Enlightenment
 	[no]description=Enlightenment tema
 	[sv]description=Enlightenment-tema
 
 application/x-executable-file
 	description=binary program
+	[da]description=Binærprogram
 	[fr]description=Programme binaire
 	[no]description=Binærprogram
 	[sv]description=binärprogram
 
 application/x-font-afm
 	description=Adobe font metrics
+	[da]description=Adobe skrifttypefil
 	[fr]description=Métrique de fonte Adobe
 	[no]description=Adobe skrifttypefil
 	[sv]description=Adobe-typsnittsmetrik
 
 application/x-font-bdf
 	description=BDF font
+	[da]description=BDF-skrifttype
 	[fr]description=Police BDF
 	[sv]description=BDF-typsnitt
 
 application/x-font-dos
 	description=DOS font
+	[da]description=DOS-skrifttype
 	[fr]description=Police DOS
 	[sv]description=DOS-typsnitt
 
 application/x-font-framemaker
 	description=FrameMaker font
+	[da]description=FrameMaker-skrifttype
 	[fr]description=Police FrameMaker
 	[sv]description=FrameMaker-typsnitt
 
 application/x-font-libgrx
 	description=LIBGRX font
+	[da]description=LIBGRX-skrifttype
 	[fr]description=Police LIBGRX
 	[sv]description=LIBGRX-typsnitt
 
 application/x-font-linux-psf
 	description=Linux psf console font
+	[da]description=Linux PSF-konsolskrift
 	[fr]description=Police Linux console psf
 	[sv]description=Linux psf-konsolltypsnitt
 
 application/x-font-pcf
 	description=PCF font
+	[da]description=PCF-skrifttype
 	[fr]description=Police PCF
 	[sv]description=PCF-typsnitt
 
 application/x-font-speedo
 	description=Speedo font
+	[da]description=Speedo-skrifttype
 	[fr]description=Police Speedo
 	[sv]description=Speedo-typsnitt
 
 application/x-font-sunos-news
 	description=SunOS News font
+	[da]description=SunOS News-skrifttype
 	[fr]description=Police SunOS News
 	[sv]description=SunOS News-typsnitt
 
 application/x-font-tex
 	description=TeX font
+	[da]description=TeX-skrifttype
 	[fr]description=Police TeX
 	[sv]description=TeX-typsnitt
 
 application/x-font-tex-tfm
 	description=TeX font metrics
+	[sv]description=TeX-skriftmatricer
 	[fr]description=Métriques de fontes TeX
 	[sv]description=TeX-typsnittsmetrik
 
 application/x-font-ttf
 	description=TrueType font
+	[da]description=TrueType-skrifttype
 	[fr]description=Police TrueType
 	[sv]description=TrueType-typsnitt
 
 application/x-font-type1
 	description=PostScript Type 1 font
+	[da]description=PostScript Type 1-skrifttype
 	[fr]description=Police PostScript Type 1
 	[sv]description=PostScript Type 1-typsnitt
 
 application/x-font-vfont
 	description=V font
+	[da]description=V-skrifttype
 	[fr]description=Police V
 	[sv]description=V-typsnitt
 
 application/x-gmc-link
 	description=GMC link
+	[da]description=GMC-lænke
 	[fr]description=Lien GMC
 	[sv]description=GMC-länk
 
 application/x-gnome-app-info
 	description=GNOME application information
+	[da]description=Gnome-programinfo
 	[fr]description=Information d'application GNOME
 	[sv]description=GNOME-programinformation
 
 application/x-gnumeric
 	description=Gnumeric spreadsheet
+	[da]description=Gnumeric-regneark
 	[fr]description=Feuille de calcul Gnumeric
 	[sv]description=Gnumeric-kalkylblad
 	default_action_type=application
@@ -393,12 +446,14 @@ application/x-gnumeric
 
 application/x-gtar
 	description=gtar archive
+	[da]description=gtar-arkiv
 	[fr]description=Archive gtar
 	[sv]description=gtar-arkiv
 	icon-filename=gnome-package.png
 
 application/x-gzip
 	description=gzip archive
+	[da]description=gzip-arkiv
 	[fr]description=Archive gzip
 	[sv]description=gzip-arkiv
 	icon-filename=gnome-compressed.png
@@ -411,52 +466,62 @@ application/x-hdf
 
 application/x-java-byte-code
 	description=Java byte code
+	[da]description=Java-bytekode
 	[fr]description=Byte code Java
 	[sv]description=Java-bytekod
 
 application/x-kde-app-info
 	description=KDE application information
+	[da]description=KDE-programinfo
 	[fr]description=Information d'application KDE
 	[sv]description=KDE-programinformation
 
 application/x-lha
 	description=LHARC archive
+	[da]description=LHARC-arkiv
 	[fr]description=Archive LHARC
 	[sv]description=LHARC-arkiv
 
 application/x-lhz
 	description=LHA archive
+	[da]description=LHA-arkiv
 	[fr]description=Archive LHA
 	[sv]description=LHA-arkiv
 
 application/x-mif
 	description=FrameMaker interchange document
+	[da]description=FrameMaker-udbytningsdokument
 	[fr]description=Document d'échange FrameMaker
 	[sv]description=FrameMaker-utbytesdokument
 
 application/x-ms-dos-executable
 	description=DOS/Windows program
+	[da]description=DOS/Windows-program
 	[fr]description=Programme DOS/Windows
 	[sv]description=DOS/Windows-program
 
 application/x-nautilus-link
 	description=Nautilus link
+	[da]description=Nautilus-lænke
 	[fr]description=Lien Nautilus
 	[sv]description=Nautiluslänk
 
 application/x-netcdf
 	description=Unidata netCDF document
+	[da]description=Unidata netCDF-dokument
 	[fr]description=Document Unidata netCDF
 	[sv]description=Unidata netCDF-dokument
 
 application/x-object-file
 	description=object code
+	[da]description=objektkode
 	[fr]description=Code objet
 	[sv]description=objektkod
 	icon-filename=gnome-objectfile.png
 
 application/x-ogg
 	description=ogg file
+	[da]description=oog-lydfil
 	[fr]description=Audio ogg
 	default_action_type=application
 	default_application_id=ogg123
@@ -466,32 +531,38 @@ application/x-ogg
 
 application/x-palm-database
 	description=Palm OS database
+	[da]description=Palm OS-database
 	[fr]description=Base de données Palm OS
 	[sv]description=Palm OS-databas
 
 application/x-pef-executable
 	description=PEF document
+	[da]description=PEF-dokument
 	[fr]description=Document PEF
 	[sv]description=PEF-dokument
 
 # also text/x-perl
 application/x-perl
 	description=Perl script
+	[da]description=Perlskript
 	[fr]description=Script Perl
 	[sv]description=Perlskript
 
 application/x-php
 	description=PHP script
+	[da]description=PHP-skript
 	[fr]description=Script PHP
 	[sv]description=PHP-skript
 
 application/x-profile
 	description=profiler results
+	[da]description=profilererresultat
 	[fr]description=Résultats du profileur
 	[sv]description=profilerarresultat
 
 application/x-rar
 	description=RAR archive
+	[da]description=RAR-arkiv
 	[fr]description=Archive RAR
 	[sv]description=RAR-arkiv
 
@@ -502,6 +573,7 @@ application/x-reject
 
 application/x-rpm
 	description=RPM package
+	[da]description=RPM-pakke
 	[fr]description=Paquetage RPM
 	[sv]description=RPM-paket
 	icon-filename=gnome-pack-rpm.png
@@ -513,28 +585,33 @@ application/x-rpm
 
 application/x-shar
 	description=shell archive
+	[da]description=skalarkiv
 	[fr]description=Archive shell
 	[sv]description=skalarkiv
 
 application/x-shared-library
 	description=shared library
+	[da]description=delt bibliotek
 	[fr]description=Bibliothèque partagée
 	[sv]description=delat bibliotek
 	icon-filename=gnome-library.png
 
 application/x-shared-library-la
 	description=shared library
+	[da]description=delt bibliotek
 	[fr]description=Bibliothèque partagée
 	[sv]description=delat bibliotek
 	icon-filename=gnome-library.png
 
 application/x-smil
 	description=SMIL script
+	[da]description=SMIL-skript
 	[fr]description=Script SMIL
 	[sv]description=SMIL-skript
 
 application/x-staroffice-presentation
 	description=StarOffice presentation
+	[da]description=StarOffice-præsentation
 	[sv]description=StarOffice-presentation
 	default_action_type=application
 	default_application_id=staroffice
@@ -544,6 +621,7 @@ application/x-staroffice-presentation
 
 application/x-staroffice-spreadsheet
 	description=StarOffice spreadsheet
+	[da]description=StarOffice-regneark
 	[fr]description=Feuille de calcul StarOffice
 	[sv]description=StarOffice-kalkylblad
 	icon-filename=i-spreadsheet
@@ -555,6 +633,7 @@ application/x-staroffice-spreadsheet
 
 application/x-staroffice-words
 	description=StarOffice word processing document
+	[da]description=StarOffice-tekstbehandlingsdokument
 	[fr]description=Document traitement de texte StarOffice
 	[sv]description=StarOffice-ordbehandlingsdokument
 	default_action_type=application
@@ -565,21 +644,25 @@ application/x-staroffice-words
 
 application/x-stuffit
 	description=Macintosh StuffIt! archive 
+	[da]description=Macintosh StuffIt!-arkiv
 	[fr]description=Archive StuffIt! Macintosh
 	[sv]description=Macintosh StuffIt!-arkiv
 
 application/x-sv4cpio
 	description=SV4Cpio document 
+	[da]description=SV4CPIO-dokument
 	[fr]description=Document SV4Cpio
 	[sv]description=SV4CPIO-dokument
 
 application/x-sv4crc
 	description=SV4Crc document 
+	[da]description=SV4Crc-dokument
 	[fr]description=Document SV4Crc
 	[sv]description=SV4Crc-dokument
 
 application/x-tar
 	description=tar archive
+	[da]description=tar-arkiv
 	[fr]description=Archive tar
 	[sv]description=tar-arkiv
 	icon-filename=gnome-package.png
@@ -587,64 +670,76 @@ application/x-tar
 
 application/x-theme
 	description=theme
+	[da]description=tema
 	[fr]description=Thème
 	[sv]description=tema
 
 application/x-toutdoux
 	description=ToutDoux document
+	[da]description=ToutDoux-dokument
 	[fr]description=Document ToutDoux
 	[sv]description=ToutDoux-dokument
 
 application/x-troff-man-compressed
 	description=manual page archive
+	[da]description=arkiv med manualsider
 	[fr]description=Archive page de manuel
 	[sv]description=manualsidearkiv
 	icon-filename=gnome-manpage.png
 
 application/x-unix-archive
 	description=archive
+	[da]description=Arkiv
 	[fr]description=Archive
 	[sv]description=arkiv
 
 application/x-ustar
 	description=UStar archive
+	[da]description=UStar-arkiv
 	[fr]description=Archive UStar
 	[sv]description=UStar-arkiv
 
 application/x-wais-source
 	description=WAIS source code
+	[da]description=WAIS-kildekode
 	[fr]description=Code source WAIS
 	[sv]description=WAIS-källkod
 
 application/x-wordperfect
 	description=WordPerfect document
+	[da]description=WordPerfect-dokument
 	[fr]description=Document WordPerfect
 	[sv]description=WordPerfect-dokument
 
 application/x-zoo
 	description=zoo archive
+	[da]description=Zoo-arkiv
 	[fr]description=Archive zoo
 	[sv]description=zoo-arkiv
 
 application/zip
 	description=zip archive
+	[da]description=Zip-arkiv
 	[fr]description=Archive zip
 	[sv]description=zip-arkiv
 	vfs-method=zip
 
 audio/basic
 	description=basic audio
+	[da]description=Grundlæggende lyd
 	[fr]description=Audio basic
 	[sv]description=grundläggande ljud
 	icon-filename=gnome-audio.png
 
 audio/x-aifc
 	description=AIFC audio
+	[da]description=AIFC-lyd
 	[fr]description=Audio AIFC
 	[sv]description=AIFC-ljud
 
 audio/x-aiff
 	description=AIFF audio
+	[da]description=AIFC-lyd
 	[fr]description=Audio AIFF
 	[sv]description=AIFF-ljud
 	icon-filename=gnome-audio-x-aiff.png
