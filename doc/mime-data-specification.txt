@@ -3,7 +3,8 @@ MIME Data Specification for Gnome VFS
 
 Parts of this document are taken from an initial specification written
 by Kurt Granroth, posted to the gnome-kde list.  The rest of the
-document is by Rebecca Schulman <rebecka@eazel.com>
+document is by Rebecca Schulman <rebecka@eazel.com> with extensive
+contibutions from Darin Adler <darin@eazel.com>.
 
 Mime Type File Overview
 

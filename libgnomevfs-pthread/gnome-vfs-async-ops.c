@@ -234,10 +234,12 @@ async_job_map_get_job (const GnomeVFSAsyncHandle *handle)
 void
 gnome_vfs_async_job_map_shutdown (void)
 {
+	if (async_job_map == NULL) {
+		return;
+	}
+
 	pthread_mutex_lock (&async_job_map_lock);
 	
-	g_assert (async_job_map != NULL);
-
 	/* tell the async jobs it's quitting time */
 	async_job_map_shutting_down = TRUE;
 

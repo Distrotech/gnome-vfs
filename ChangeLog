@@ -1,4 +1,16 @@
-2001-01-03  Pavel Cisle <pavel@eazel.com>
+2001-01-05  Rebecca Schulman  <rebecka@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* doc/mime-data-specification.txt:
+	Add attribution to Darin Adler for his work on the 
+	document.
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(gnome_vfs_async_job_map_shutdown):
+	Remove a bogus assert that crashed when exiting
+	if no async calls had been made.
+
+2001-01-03  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
 
