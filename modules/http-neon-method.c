@@ -71,6 +71,7 @@
 #define DEFAULT_HTTP_PORT 	80
 #define DEFAULT_HTTPS_PORT 	443
 
+#define HTTP_DIR_MIME_TYPE      "x-directory/webdav"
 
 /* ************************************************************************** */
 /* module interfaces */
@@ -82,7 +83,7 @@ void               vfs_module_shutdown  (GnomeVFSMethod *method);
 /* ************************************************************************** */
 /* DEBUGING stuff */
 
-/* #define DEBUG_HTTP_ENABLE */
+/* #define DEBUG_HTTP_ENABLE 1 */
 #undef DEBUG_HTTP_ENABLE
 #ifdef DEBUG_HTTP_ENABLE
 
@@ -96,8 +97,8 @@ void http_debug_printf(const char *func, const char *fmt, ...) G_GNUC_PRINTF (2,
 
 
 #define DEBUG_HTTP_CONTEXT(c) http_debug_printf (__PRETTY_FUNCTION__,       \
-						  "[Context] Session :%p, path: %s", \
-						  c->session, c->path)
+						  "[Context] Session :%p, path: %s, dav_mode %d", \
+						  c->session, c->path, c->dav_mode)
 
 void
 http_debug_printf (const char *func, const char *fmt, ...)
@@ -288,16 +289,17 @@ typedef struct {
 	char      *scheme;
 	gboolean   ssl;
 	char      *alias;
+	gboolean   is_dav;
 	   
 } MethodSchemes;
 
 MethodSchemes supported_schemes[] = {
 
-	{"http",  FALSE, "http" },
-	{"dav",   FALSE, "http" },
-	{"https", TRUE,  "https"},
-	{"davs",  TRUE,  "https"},
-	{NULL,    FALSE         }	   
+	{"http",  FALSE, "http",  FALSE},
+	{"dav",   FALSE, "http",  TRUE},
+	{"https", TRUE,  "https", FALSE},
+	{"davs",  TRUE,  "https", TRUE},
+	{NULL,    FALSE,          FALSE}	   
 };
 
 static char *
@@ -319,6 +321,22 @@ resolve_alias (const char *scheme)
 	return iter->alias;
 }
 
+static gboolean
+scheme_is_dav (GnomeVFSURI *uri)
+{
+	const char *scheme;
+
+	scheme = gnome_vfs_uri_get_scheme (uri);
+	
+	if (scheme == NULL)
+		return FALSE;
+
+	if (! g_ascii_strcasecmp (scheme, "dav") ||
+	    ! g_ascii_strcasecmp (scheme, "davs"))
+		return TRUE;
+
+	return FALSE;
+}
 
 static guint
 http_session_uri_hash (gconstpointer v)
@@ -1113,7 +1131,7 @@ static const ne_propname file_info_props[] = {
 	{"DAV:", "resourcetype"},
 	{"DAV:", "getcontenttype"},
 	{"DAV:", "getcontentlength"},
-	{"DAV:", "getetag"},
+	/*      {"DAV:", "getetag"}, */
 	/*	{"http://apache.org/dav/props/", "executable"}, */
 	{NULL}
 };
@@ -1222,7 +1240,7 @@ propfind_result (void *userdata, const char *href, const ne_prop_result_set *set
 	info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 	
 	if (value != NULL && strstr (value, "collection")) {
-		info->mime_type = g_strdup ("x-directory/webdav");
+		info->mime_type = g_strdup (HTTP_DIR_MIME_TYPE);
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 		
@@ -1527,7 +1545,8 @@ typedef struct {
 	HttpMethods methods;
 	
 	ne_session *session;
-	
+
+	gboolean dav_mode;
 	gboolean redirected;
 	guint    redir_count;
 	
@@ -1688,7 +1707,7 @@ http_context_open (GnomeVFSURI *uri, HttpContext **context)
 	ctx = g_new0 (HttpContext, 1);
 	
 	http_context_set_uri (ctx, uri);
-
+	
 	if (ctx->scheme == NULL) {
 		http_context_free (ctx);
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
@@ -1702,8 +1721,10 @@ http_context_open (GnomeVFSURI *uri, HttpContext **context)
 		return result;
 	}
 
-	*context = ctx;
+	ctx->dav_mode = scheme_is_dav (uri);
 	
+	*context = ctx;
+
 	return GNOME_VFS_OK;
 }
 
@@ -1753,22 +1774,20 @@ http_follow_redirect (HttpContext *context)
 /* Http operations */
 
 static GnomeVFSResult
-http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info, char **etag)
+http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info)
 {
 	GnomeVFSResult result;
 	PropfindContext pfctx;
 	ne_propfind_handler *pfh;
-	char *_etag;
 	ne_request *req;
 	int res;
 
 	DEBUG_HTTP_CONTEXT (context);
 	
 	/* no dav server */
-	if (context->dav_class == NO_DAV) 
+	if (context->dav_mode == FALSE || context->dav_class == NO_DAV) 
 		goto head_start;
  	
-	_etag = NULL;
 	propfind_context_init (&pfctx);
 	
  propfind_start:	
@@ -1801,10 +1820,6 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info, char **etag)
 		
 		if (result == GNOME_VFS_OK) {
 			gnome_vfs_file_info_copy (info, pfctx.target);
-			
-			if (etag && pfctx.etag)
-				*etag = pfctx.etag;
-			pfctx.etag = NULL;
 		}
 			
 		propfind_context_clear (&pfctx);
@@ -1833,10 +1848,6 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info, char **etag)
 					(ne_header_handler) set_access_time,
 					info);
 
-	ne_add_response_header_handler (req, "ETag",
-					(ne_header_handler) set_etag,
-					&_etag);
-			
 		
 	res = ne_request_dispatch (req);
 
@@ -1862,15 +1873,8 @@ http_get_file_info (HttpContext *context, GnomeVFSFileInfo *info, char **etag)
 		
 		info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 		
-		if (etag && _etag) {
-			*etag = _etag;
-			_etag = NULL;
-		}
 	}
 
-	if (_etag)
-		g_free (_etag);
-	
 	return result;
 }
 
@@ -2124,7 +2128,7 @@ http_transfer_start_write (HttpFileHandle *handle)
 	
 	/* Check to see if we have any file information. If not fetch it!*/
 	if (handle->info->valid_fields == 0) {
-		result = http_get_file_info (hctx, handle->info, NULL);
+		result = http_get_file_info (hctx, handle->info);
 
 		if (result != GNOME_VFS_OK) {
 			return result;
@@ -2398,7 +2402,7 @@ do_create (GnomeVFSMethod	 *method,
 #endif
 	
 	if (exclusive == TRUE) {
-		result = http_get_file_info (hctx, handle->info, NULL);
+		result = http_get_file_info (hctx, handle->info);
 		
 		if (result != GNOME_VFS_ERROR_NOT_FOUND) {
 			http_file_handle_destroy (handle);
@@ -2721,6 +2725,10 @@ do_open_directory (GnomeVFSMethod 	    *method,
 	PropfindContext *pfctx;
 
 	DEBUG_HTTP_FUNC (1);
+
+	if (scheme_is_dav (uri) == FALSE) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
 	
 	result = http_context_open  (uri, &hctx);
 	
@@ -2824,7 +2832,7 @@ do_get_file_info (GnomeVFSMethod 		*method,
 	if (result != GNOME_VFS_OK)
 		return result;
 		
-	result = http_get_file_info (hctx, file_info, NULL);
+	result = http_get_file_info (hctx, file_info);
 	
 	http_context_free (hctx);
 	
@@ -2854,7 +2862,7 @@ do_get_file_info_from_handle (GnomeVFSMethod 		*method,
 		return GNOME_VFS_OK;
 	}
 	
-	result = http_get_file_info (handle->context, handle->info, NULL);
+	result = http_get_file_info (handle->context, handle->info);
 
 	if (result == GNOME_VFS_OK) {
 		gnome_vfs_file_info_copy (file_info, handle->info);
@@ -2887,7 +2895,11 @@ do_make_directory (GnomeVFSMethod  *method,
 	int 		  res;
 	
 	DEBUG_HTTP_FUNC (1);
-	
+
+	if (scheme_is_dav (uri) == FALSE) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+		
 	uri_parent = gnome_vfs_uri_get_parent (uri);
 	
 	result = http_context_open (uri_parent, &hctx);
@@ -2947,6 +2959,11 @@ do_remove_directory (GnomeVFSMethod  *method,
 	int  		res;
 	
 	DEBUG_HTTP_FUNC (1);
+
+	if (scheme_is_dav (uri) == FALSE) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+	
 	result = http_context_open  (uri, &hctx);
 	
 	if (result != GNOME_VFS_OK)
@@ -3011,6 +3028,10 @@ do_move (GnomeVFSMethod  *method,
 	
 	DEBUG_HTTP_FUNC (1);
 
+	if (scheme_is_dav (old_uri) == FALSE) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+	
 	if (! http_session_uri_equal (old_uri, new_uri)) {
 		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
 	}	
@@ -3068,7 +3089,7 @@ do_unlink (GnomeVFSMethod  *method,
 		return result;
 	
 	file_info = gnome_vfs_file_info_new ();
-	result = http_get_file_info (hctx, file_info, NULL);
+	result = http_get_file_info (hctx, file_info);
 	
 	if (result != GNOME_VFS_OK) {
 		goto out;

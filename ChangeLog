@@ -1,5 +1,11 @@
 2005-01-28  Christian Kellner  <gicmo@gnome.org>
 
+	* modules/http-neon-method.c: Differ between dav:// and http://.
+	So only do PORPFINDs and other dav specific methods when dav://
+	was specified in the URL. This will also fix bug #164019.
+
+2005-01-28  Christian Kellner  <gicmo@gnome.org>
+
 	* modules/http-neon-method.c: Beautify some code and always add
 	a trailing slash on do_open_directory ().
 
