@@ -1,3 +1,9 @@
+2003-06-13  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c (expand_parameters):
+	Fix memory handling. We were freeing already freed stuff in the
+	GNOME_VFS_ERROR_NOT_SUPPORTED case. 
+
 2003-06-11  Jon Svendsen  <jon-sven@frisurf.no>
 
 	* libgnomevfs/gnome-vfs-application-registry.h
