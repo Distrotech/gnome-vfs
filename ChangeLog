@@ -1,3 +1,7 @@
+Mon May 28 15:49:55 2001  Jonathan Blandford  <jrb@redhat.com>
+
+	* doc/gnome-vfs-docs.sgml: fix case problem.
+
 2001-05-27  Seth Nickell  <snickell@stanford.edu>
 
 	* devel-docs/gnome-vfs/tmpl/gnome-vfs-mime-info.sgml:
