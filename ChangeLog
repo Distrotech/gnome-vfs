@@ -1,3 +1,17 @@
+2001-02-20  Rebecca Schulman  <rebecka@eazel.com>
+	Fix build issues caused by making gnome-vfs-process.h
+	private
+
+	reviewed by: Darin Adler <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs.h:
+	Remove gnome-vfs-process.h, which is now private
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	Add gnome-vfs-process.h
+	* test/test-escape.c: Add a signal.h which
+	was needed after remove gnome-vfs-process.h
+	from gnome-vfs.h
+
 2001-02-20  Mike Fleming  <mfleming@eazel.com>
 
 	reviewed by: <ian@eazel.com>

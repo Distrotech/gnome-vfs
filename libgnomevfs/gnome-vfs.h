@@ -41,7 +41,6 @@ extern "C" {
 #include "gnome-vfs-init.h"
 #include "gnome-vfs-xfer.h"
 #include "gnome-vfs-ops.h"
-#include "gnome-vfs-process.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-uri.h"
 #include "gnome-vfs-utils.h"
