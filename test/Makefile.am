@@ -30,6 +30,7 @@ noinst_PROGRAMS =				\
 	test-symlinks				\
 	test-sync				\
 	test-sync-write				\
+	test-sync-create			\
 	test-xfer				\
 	test-shell				\
 	test-uri				\
@@ -158,6 +159,10 @@ test_sync_write_SOURCES = test-sync-write.c
 test_sync_write_LDADD = $(libraries)
 test_sync_write_LDFLAGS =
 
+test_sync_create_SOURCES = test-sync-create.c
+test_sync_create_LDADD = $(libraries)
+test_sync_create_LDFLAGS =
+
 test_async_cancel_SOURCES = test-async-cancel.c
 test_async_cancel_LDADD = $(libraries)
 test_async_cancel_LDFLAGS = 
@@ -186,5 +191,6 @@ EXTRA_DIST =					\
 	test-seek.c				\
 	test-sync.c				\
 	test-sync-write.c			\
+	test-sync-create.c			\
 	test-xfer.c				\
 	vfs-run.in

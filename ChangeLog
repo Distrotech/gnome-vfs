@@ -1,5 +1,16 @@
 2000-08-29  Ian McKellar  <yakk@yakk.net.au>
 
+	* modules/http-method.c: (make_request), (do_create):
+	The create method now attempts to create a zero-length file as part
+	of the opening process. This will allow errors to be detected. Create
+	creates a zero-length file with the standard unix semantics anyway.
+
+	* test/Makefile.am:
+	* test/test-sync-create.c: (show_result), (main):
+	Added a test-sync-create to allow testing of the create method.
+
+2000-08-29  Ian McKellar  <yakk@yakk.net.au>
+
 	* modules/http-method.c: (process_propfind_response):
 	Fixed bug 2525 - host and port are now ignored in href comparisons
 	in the WebDAV PROPFIND code.

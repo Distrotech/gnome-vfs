@@ -648,7 +648,7 @@ make_request (HttpFileHandle **handle_return,
 	g_string_append (request, uri_string);
 	g_free (uri_string);
 	/* Our code doesn't handle the chunked transfer-encoding that mod_dav 
-	 * uses for HTTP/1.1 requests. */
+	 * uses HTTP/1.1 request responses. */
 	g_string_append (request, " HTTP/1.0\r\n");
 
 	/* `Host:' header.  */
@@ -694,7 +694,7 @@ make_request (HttpFileHandle **handle_return,
 	if (result != GNOME_VFS_OK)
 		goto error;
 
-	if(data) {
+	if(data && data->data) {
 #if 0
 		g_print("sending data...\n");
 #endif
@@ -782,6 +782,24 @@ do_create (GnomeVFSMethod *method,
      guint perm,
      GnomeVFSContext *context)
 {
+	/* try to write a zero length file - this appears to be the 
+	 * only reliable way of testing if a put will succeed. 
+	 * Xythos can apparently tell us if we have write permission by
+	 * playing with LOCK, but mod_dav cannot. */
+	HttpFileHandle *handle;
+	GnomeVFSResult result;
+	GByteArray *bytes = g_byte_array_new();
+      	result = make_request (&handle, uri, "PUT", bytes, NULL, context);
+
+	if (result != GNOME_VFS_OK) {
+		/* the PUT failed */
+		return result;
+	}
+
+	/* clean up */
+	g_byte_array_free(bytes, TRUE);
+	http_handle_close(handle, context);
+
 	/* FIXME bugzilla.eazel.com 1159: do we need to do something more intelligent here? */
 	return do_open(method, method_handle, uri, GNOME_VFS_OPEN_WRITE, context);
 }
