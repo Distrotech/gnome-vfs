@@ -1,3 +1,16 @@
+2000-03-28 John Sullivan <sullivan@eazel.com>
+
+	* gnome-vfs-uri.h,
+	* gnome-vfs-uri.c:
+	(gnome_vfs_uri_extract_short_name): Made this function return the
+	host name (if any) when there's no path. Formerly it just returned
+	"/" in that case.
+	(gnome_vfs_uri_extract_short_path_name): New function, really a
+	renaming of the old gnome_vfs_uri_extract_short_name. There are those
+	who argue that this should be renamed extract_basename and the current
+	get_basename (which doesn't handle trailing path separators according
+	to XPG spec) should be abolished.
+
 2000-03-25 Yukihiro Nakai <nakai@gnome.gr.jp>
 	* configure.in: Added Japanese translation from Akira Tagoh.
 

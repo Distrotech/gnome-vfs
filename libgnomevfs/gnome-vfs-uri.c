@@ -1069,13 +1069,53 @@ gnome_vfs_uri_extract_dirname (const GnomeVFSURI *uri)
  * This matches the XPG definition of basename, but not g_basename. This is
  * often useful when you want the name of something that's pointed to by a
  * uri, and don't care whether the uri has a directory or file form.
- * If @uri points to the root, returns GNOME_VFS_URI_PATH_STR.
+ * If @uri points to the root of a domain, returns the host name. If there's
+ * no host name, returns GNOME_VFS_URI_PATH_STR.
+ * 
+ * See also: gnome_vfs_uri_extract_short_path_name.
  * 
  * Return value: A pointer to the newly allocated string representing the
  * short form of the name.
  **/
 gchar *
 gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri)
+{
+	gchar *short_path_name;
+	const gchar *host_name;
+
+	short_path_name = gnome_vfs_uri_extract_short_path_name (uri);
+
+	host_name = NULL;
+	if (strcmp (short_path_name, GNOME_VFS_URI_PATH_STR) == 0) {
+		host_name = gnome_vfs_uri_get_host_name (uri);
+	}
+
+	if (host_name == NULL) {
+		return short_path_name;
+	}
+
+	g_free (short_path_name);
+	return g_strdup (host_name);
+}
+
+/**
+ * gnome_vfs_uri_extract_short_path_name:
+ * @uri: A GnomeVFSURI
+ * 
+ * Retrieve base file name for @uri, ignoring any trailing path separators.
+ * This matches the XPG definition of basename, but not g_basename. This is
+ * often useful when you want the name of something that's pointed to by a
+ * uri, and don't care whether the uri has a directory or file form.
+ * If @uri points to the root (including the root of any domain),
+ * returns GNOME_VFS_URI_PATH_STR.
+ * 
+ * See also: gnome_vfs_uri_extract_short_name.
+ * 
+ * Return value: A pointer to the newly allocated string representing the
+ * short form of the name.
+ **/
+gchar *
+gnome_vfs_uri_extract_short_path_name (const GnomeVFSURI *uri)
 {
 	const gchar *p, *short_name_start, *short_name_end;
 

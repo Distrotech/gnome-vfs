@@ -58,6 +58,7 @@ gboolean	     gnome_vfs_uri_equal	 (const GnomeVFSURI *a,
 const gchar 	    *gnome_vfs_uri_get_basename       (const GnomeVFSURI *uri);
 gchar 		    *gnome_vfs_uri_extract_dirname    (const GnomeVFSURI *uri);
 gchar		    *gnome_vfs_uri_extract_short_name (const GnomeVFSURI *uri);
+gchar		    *gnome_vfs_uri_extract_short_path_name (const GnomeVFSURI *uri);
 
 gint		     gnome_vfs_uri_hequal 	 (gconstpointer a,
 						  gconstpointer b);
