@@ -1,5 +1,10 @@
 2004-09-06  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/smb-method.c: (do_read_directory):
+	Set the type field as valid.
+
+2004-09-06  Alexander Larsson  <alexl@redhat.com>
+
 	* modules/ftp-method.c: (do_get_file_info), (do_read_directory):
 	Support symlinks.
 

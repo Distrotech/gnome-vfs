@@ -1709,7 +1709,8 @@ do_read_directory (GnomeVFSMethod *method,
 	switch (entry->smbc_type) {
 	case SMBC_FILE_SHARE:
 		file_info->valid_fields = file_info->valid_fields
-			| GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+			| GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE
+			| GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
 		file_info->mime_type = g_strdup ("x-directory/smb-share");
 		break;
