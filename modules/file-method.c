@@ -91,22 +91,21 @@ GET_PATH_MAX (void)
 static gchar *
 get_path_from_uri (GnomeVFSURI *uri)
 {
-	gchar *path, *longer_path;
+	gchar *path;
 
 	path = gnome_vfs_unescape_string (uri->text, 
 		G_DIR_SEPARATOR_S);
-	if (path == NULL)
+		
+	if (path == NULL) {
 		return NULL;
+	}
 
-	/* This is to make sure the path starts with a "/", so that at
-	 * least we get a predictable behavior when the
-	 * leading "/" is not present.
-	 */
-	if (path[0] == G_DIR_SEPARATOR)
-		return path;
-	longer_path = g_strconcat (G_DIR_SEPARATOR_S, path, NULL);
-	g_free (path);
-	return longer_path;
+	if (path[0] != G_DIR_SEPARATOR) {
+		g_free (path);
+		return NULL;
+	}
+
+	return path;
 }
 
 static gchar *

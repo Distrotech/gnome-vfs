@@ -1,3 +1,21 @@
+2001-01-30  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	Fixed bug 5842 ("file://home" converted to "home")
+
+	Now "file://home" is left as "file://home". There's a
+	related bug where "file://home" isn't recognized as
+	an invalid URI, which I'll write up and fix separately.
+
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_get_local_path_from_uri):
+	Only strip "file://" if uri starts with "file:///"
+	
+	* modules/file-method.c: (get_path_from_uri):
+	Take out evil code that was prepending a "/" to file:
+	URIs that were missing the initial "/".
+
 2001-01-30  Darin Adler  <darin@eazel.com>
 
 	reviewed by: John Sullivan <sullivan@eazel.com>

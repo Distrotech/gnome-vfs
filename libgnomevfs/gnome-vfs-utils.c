@@ -643,7 +643,7 @@ istr_has_prefix (const char *haystack, const char *needle)
 /**
  * gnome_vfs_get_local_path_from_uri:
  * 
- * Return a local path for a file:// URI.
+ * Return a local path for a file:/// URI.
  *
  * Return value: the local path or NULL on error.
  **/
@@ -661,7 +661,7 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
 		return NULL;
 	}
 
-	if (istr_has_prefix (unescaped_uri, "file://")) {
+	if (istr_has_prefix (unescaped_uri, "file:///")) {
 		result = g_strdup (unescaped_uri + 7);
 	} else if (unescaped_uri[0] == '/') {
 		result = g_strdup (unescaped_uri);
@@ -677,7 +677,7 @@ gnome_vfs_get_local_path_from_uri (const char *uri)
 /**
  * gnome_vfs_get_uri_from_local_path:
  * 
- * Return a file:// URI for a local path.
+ * Return a file:/// URI for a local path.
  *
  * Return value: the URI (NULL for some bad errors).
  **/
