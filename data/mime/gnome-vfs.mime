@@ -112,6 +112,9 @@ application/x-e-theme
 application/x-gnome-app-info
 	ext: desktop
 
+application/x-gnumeric
+	ext: gnumeric
+
 application/x-gtar
 	ext: gtar
 
