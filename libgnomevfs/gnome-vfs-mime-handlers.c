@@ -1512,6 +1512,9 @@ extract_prefix_add_suffix (const char *string, const char *separator, const char
 static char *
 mime_type_get_supertype (const char *mime_type)
 {
+	if (mime_type == NULL) {
+		return NULL;
+	}
         return extract_prefix_add_suffix (mime_type, "/", "/*");
 }
 
@@ -1533,7 +1536,6 @@ gnome_vfs_mime_application_new_from_id (const char *id)
 	if (id == NULL) {
 		return NULL;
 	}
-
 
 	application = g_new0 (GnomeVFSMimeApplication, 1);
 

@@ -1,5 +1,11 @@
 2000-06-19  Darin Adler  <darin@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (mime_type_get_supertype):
+	Made another function tolerant of NULL since we use NULL to mean
+	unknown MIME type all the time.
+
+2000-06-19  Darin Adler  <darin@eazel.com>
+
 	* po/POTFILES.in: Removed mime-data.c to fix build.
 
 2000-06-19  Gene Z. Ragan  <gzr@eazel.com>
@@ -54,7 +60,6 @@
 	(delete_mime_clicked), (create_mime_list_and_scroller),
 	(get_selected_item_mime_type):
 	Clean up work on main capplet view.
-	
 
 2000-06-17  Gene Z. Ragan  <gzr@eazel.com>
 
