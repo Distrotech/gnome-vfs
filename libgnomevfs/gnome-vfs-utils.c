@@ -782,12 +782,10 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 
  	*size = 0;
 
-	/* We can't check non local systems */
-	if (!gnome_vfs_uri_is_local (vfs_uri)) {
+	path = gnome_vfs_uri_get_path (vfs_uri);
+	if (path == NULL) {
 		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
-
-	path = gnome_vfs_uri_get_path (vfs_uri);
 
 	unescaped_path = gnome_vfs_unescape_string (path, G_DIR_SEPARATOR_S);
 	

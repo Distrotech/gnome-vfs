@@ -1,5 +1,10 @@
 2003-03-25  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-utils.c (gnome_vfs_get_volume_free_space):
+	statvfs works for nfs!
+
+2003-03-25  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-monitor.c:
 	Don't queue changes to canceled monitors.
 	Fix sign bug that caused events to be missed.
