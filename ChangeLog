@@ -1,3 +1,13 @@
+2000-08-30  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-utils.c:
+	(gnome_vfs_escape_slashes): Moved this function in here from Nautilus.
+	Two advantages: 1) It can be used by other programs. 2) It can share
+	code with all the other escaping functions.
+
+	* test/.cvsignore: Ignore the test-sync-create file.
+
 2000-08-29  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/http-method.c: (make_request), (do_create):

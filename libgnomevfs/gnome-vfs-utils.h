@@ -51,6 +51,12 @@ gchar *gnome_vfs_escape_path_string           (const gchar      *path);
  */
 gchar *gnome_vfs_escape_host_and_path_string  (const gchar      *path);
 
+/* Converts only slashes and % characters to % sequences. This is useful
+ * for code that wants to use an arbitrary string as a file name. To use
+ * it in a URI, you have to escape again, of course.
+ */
+gchar *gnome_vfs_escape_slashes               (const gchar      *string);
+
 /* Returns NULL if any of the illegal character appear in escaped
  * form. If the illegal characters are in there unescaped, that's OK.
  * Typically you pass "/" for illegal characters when converting to a

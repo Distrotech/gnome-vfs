@@ -24,6 +24,7 @@ test-seek
 test-shell
 test-symlinks
 test-sync
+test-sync-create
 test-sync-write
 test-uri
 test-xfer
