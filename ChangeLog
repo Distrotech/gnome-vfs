@@ -1,5 +1,12 @@
 2002-05-22  Alex Graveley  <alex@ximian.com>
 
+	* modules/desktop-method.c (do_monitor_add): Implement monitoring,
+	by registering a monitor with the parent method, and changing the
+	destination uri for events to start with the proper prefix for
+	this method before sending on to the real destination.
+
+2002-05-22  Alex Graveley  <alex@ximian.com>
+
 	* configure.in (FAM_MISSING_WARNING): Print a warning if FAM is
 	not found.
 

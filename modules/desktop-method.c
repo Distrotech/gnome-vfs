@@ -46,6 +46,7 @@
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
+#include <libgnomevfs/gnome-vfs-monitor-private.h>
 
 /* FIXME Maybe when chaining to file:, we should call the gnome-vfs wrapper
  * functions, instead of the file: methods directly.
@@ -553,6 +554,100 @@ do_set_file_info (GnomeVFSMethod *method,
 	return result;	
 }
 
+typedef struct {
+	GnomeVFSMonitorHandle *handle;
+	GnomeVFSURI           *desktop_uri;
+} DesktopMonitorHandle;
+
+static void 
+monitor_notify_cb (GnomeVFSMonitorHandle    *handle,
+		   const gchar              *monitor_uri,
+		   const gchar              *info_uri,
+		   GnomeVFSMonitorEventType  event_type,
+		   gpointer                  user_data)
+{
+	DesktopMonitorHandle *monitor_handle;
+	GnomeVFSURI *desktop_info_uri;
+	const gchar *uri_diff;
+	gint monitor_uri_len;
+
+	monitor_handle = (DesktopMonitorHandle *) user_data;
+	desktop_info_uri = NULL;
+	monitor_uri_len = strlen (monitor_uri);
+
+	if (info_uri != NULL &&
+	    strncmp (info_uri, monitor_uri, monitor_uri_len) == 0) {
+		uri_diff = &info_uri [monitor_uri_len];
+
+		if (*uri_diff != '\0') {
+			desktop_info_uri = 
+				gnome_vfs_uri_append_string (
+					monitor_handle->desktop_uri,
+					uri_diff);
+		} else {
+			desktop_info_uri = monitor_handle->desktop_uri;
+			gnome_vfs_uri_ref (desktop_info_uri);
+		}
+	}
+
+	gnome_vfs_monitor_callback ((GnomeVFSMethodHandle *) monitor_handle,
+				    desktop_info_uri,
+				    event_type);
+
+	gnome_vfs_uri_unref (desktop_info_uri);
+}
+
+static GnomeVFSResult
+do_monitor_add (GnomeVFSMethod *method,
+		GnomeVFSMethodHandle **method_handle_return,
+		GnomeVFSURI *uri,
+		GnomeVFSMonitorType monitor_type)
+{
+	DesktopMonitorHandle *monitor_handle;
+	GnomeVFSURI *file_uri;
+	GnomeVFSResult result;
+
+	monitor_handle = g_new0 (DesktopMonitorHandle, 1);
+	monitor_handle->desktop_uri = uri;
+	gnome_vfs_uri_ref (uri);
+
+	file_uri = desktop_uri_to_file_uri (uri);
+	result = gnome_vfs_monitor_do_add (parent_method,
+					   &monitor_handle->handle,
+					   file_uri,
+					   monitor_type,
+					   monitor_notify_cb,
+					   monitor_handle);
+	gnome_vfs_uri_unref (file_uri);
+
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_uri_unref (monitor_handle->desktop_uri);
+		g_free (monitor_handle);
+	}
+
+	*method_handle_return = (GnomeVFSMethodHandle *) monitor_handle;
+
+	return result;	
+}
+
+static GnomeVFSResult
+do_monitor_cancel (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle *method_handle)
+{
+	DesktopMonitorHandle *monitor_handle;
+	GnomeVFSResult result;
+
+	monitor_handle = (DesktopMonitorHandle *) method_handle;
+
+	result = gnome_vfs_monitor_do_cancel (monitor_handle->handle);
+
+	gnome_vfs_uri_unref (monitor_handle->desktop_uri);
+	g_free (monitor_handle);
+
+	return result;
+}
+
+
 
 /* gnome-vfs bureaucracy */
 
@@ -580,7 +675,9 @@ static GnomeVFSMethod method = {
 	do_set_file_info,
 	do_truncate,
 	do_find_directory,
-	do_create_symbolic_link
+	do_create_symbolic_link,
+	do_monitor_add,
+	do_monitor_cancel
 };
 
 
