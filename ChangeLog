@@ -1,3 +1,7 @@
+2000-07-07  Robin * Slomkowski <rslomkow@eazel.com>
+
+	* gnome-vfs.spec.in: moved *.so* out of devel section
+
 2000-07-06  Gene Z. Ragan  <gzr@eazel.com>
 
 	* mime-type-capplet/nautilus-mime-type-capplet.c: (column_clicked),

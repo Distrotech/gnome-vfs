@@ -88,10 +88,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(-, root, root)
-%{prefix}/lib/lib*.so
 %{prefix}/lib/*.a
 %{prefix}/lib/*.sh
-%{prefix}/lib/vfs/modules/lib*.so
 %{prefix}/lib/vfs/modules/*.a
 %{prefix}/include/libgnomevfs/*
 
