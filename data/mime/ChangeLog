@@ -1,3 +1,7 @@
+2001-10-02  Darin Adler  <darin@bentspoon.com>
+
+	* Makefile.am: Changed from xml-i18n-tools to intltool.
+
 2001-09-21  Havoc Pennington  <hp@redhat.com>
 
 	* Makefile.am (sysconf_DATA): revert rename of
