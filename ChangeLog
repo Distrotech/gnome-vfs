@@ -1,3 +1,12 @@
+2003-05-12  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-job.c: update misc. calls
+	to spew more pleasant debug.
+
+	* libgnomevfs/gnome-vfs-job.h: add gettimeofday call
+	to JOB_DEBUG_PRINT, add job_debug_types array and
+	JOB_DEBUG_TYPE macro to pretty-print the job type.
+
 2003-05-09  Telsa Gwynne  <hobbit@aloss.ukuu.org.uk>
                                                                                 
         * configure.in: Added cy to ALL_LINGUAS

@@ -50,9 +50,12 @@ extern GStaticMutex debug_mutex;
 
 #define JOB_DEBUG_PRINT(x)			\
 G_STMT_START{					\
+	struct timeval _tt;			\
+	gettimeofday(&_tt, NULL);		\
+	printf ("%ld:%6.ld ", _tt.tv_sec, _tt.tv_usec); \
 	g_static_mutex_lock (&debug_mutex);	\
-	fputs (__FUNCTION__ ":", stdout);	\
-	printf ("%d ", __LINE__);		\
+	fputs (__FUNCTION__, stdout);		\
+	printf (": %d ", __LINE__);		\
 	printf x;				\
 	fputc ('\n', stdout);			\
 	fflush (stdout);			\
@@ -62,13 +65,18 @@ G_STMT_START{					\
 #endif
 
 #if GNOME_VFS_JOB_DEBUG
+#include <sys/time.h>
+
+extern char *job_debug_types[];
 
 #define JOB_DEBUG(x) JOB_DEBUG_PRINT(x)
 #define JOB_DEBUG_ONLY(x) x
+#define JOB_DEBUG_TYPE(x) (job_debug_types[(x)])
 
 #else
 #define JOB_DEBUG(x)
 #define JOB_DEBUG_ONLY(x)
+#define JOB_DEBUG_TYPE(x)
 
 #endif
 

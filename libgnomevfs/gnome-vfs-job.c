@@ -48,6 +48,17 @@ GStaticPrivate job_private = G_STATIC_PRIVATE_INIT;
 
 #if GNOME_VFS_JOB_DEBUG
 
+char *job_debug_types[] = {
+	"open", "open as channel",
+	"create", "create symbolic link",
+	"create as channel", "close",
+	"read", "write", "read write done",
+	"load directory", "find directory",
+	"xfer", "get file info", "set file info",
+	"module callback", "file control",
+	"**error**"
+};
+
 /* FIXME bugzilla.eazel.com 1130
  * - this is should use the correct static mutex initialization macro.
  * However glibconfig.h is broken and the supplied macro gives a warning.
@@ -146,14 +157,16 @@ static void
 job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
 	if (_gnome_vfs_async_job_add_callback (job, notify_result)) {
-		JOB_DEBUG (("job %u, callback %u", GPOINTER_TO_UINT (notify_result->job_handle),
-			notify_result->callback_id));
+		JOB_DEBUG (("job %u, callback %u type '%s'",
+			    GPOINTER_TO_UINT (notify_result->job_handle),
+			    notify_result->callback_id,
+			    JOB_DEBUG_TYPE (job->op->type)));
 	
 		g_idle_add (dispatch_job_callback, notify_result);
 	} else {
-		JOB_DEBUG (("Barfing on oneway cancel %u (%d)",
+		JOB_DEBUG (("Barfing on oneway cancel %u (%d) type '%s'",
 			    GPOINTER_TO_UINT (notify_result->job_handle),
-			    job->op->type));
+			    job->op->type, JOB_DEBUG_TYPE (job->op->type)));
 		_gnome_vfs_job_destroy_notify_result (notify_result);
 	}
 }
@@ -498,7 +511,8 @@ dispatch_job_callback (gpointer data)
 	
 	notify_result = (GnomeVFSNotifyResult *) data;
 
-	JOB_DEBUG (("%u", GPOINTER_TO_UINT (notify_result->job_handle)));	
+	JOB_DEBUG (("%u type '%s'", GPOINTER_TO_UINT (notify_result->job_handle),
+		    JOB_DEBUG_TYPE (notify_result->type)));
 	
 	_gnome_vfs_async_job_callback_valid (notify_result->callback_id, &valid, &cancelled);
 	_gnome_vfs_async_job_remove_callback (notify_result->callback_id);
@@ -755,8 +769,9 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 void
 _gnome_vfs_job_go (GnomeVFSJob *job)
 {
-	JOB_DEBUG (("new job %u, op %d, unlocking job lock",
-		GPOINTER_TO_UINT (job->job_handle), job->op->type));
+	JOB_DEBUG (("new job %u, op %d, type '%s' unlocking job lock",
+		    GPOINTER_TO_UINT (job->job_handle), job->op->type,
+		    JOB_DEBUG_TYPE (job->op->type)));
 
 	/* Fire up the async job thread. */
 	if (!_gnome_vfs_job_schedule (job)) {
@@ -1619,7 +1634,8 @@ _gnome_vfs_job_execute (GnomeVFSJob *job)
 	if (!job->cancelled) {
 		set_current_job (job);
 
-		JOB_DEBUG (("executing %u %d", id, job->op->type));
+		JOB_DEBUG (("executing %u %d type %s", id, job->op->type,
+			    JOB_DEBUG_TYPE (job->op->type)));
 
 		switch (job->op->type) {
 		case GNOME_VFS_OP_OPEN:
