@@ -6,6 +6,7 @@ SUBDIRS =					\
 	schemas					\
 	devel-docs				\
 	doc					\
+	programs				\
 	test					\
 	monikers				\
 	po
