@@ -1834,30 +1834,31 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 		/* properties of the file */
 		l = node->xmlChildrenNode;
 		while (l != NULL) {
-			gchar *nc = xmlNodeGetContent(l);
-			if (nc) {
+			gchar *node_content_xml = xmlNodeGetContent(l);
+			if (node_content_xml) {
 				if (strcmp((char *)l->name, "getcontenttype") == 0) {
 					file_info->valid_fields |= 
 						GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
 					if (!file_info->mime_type) {
-						file_info->mime_type = g_strdup(nc);
+						file_info->mime_type = g_strdup(node_content_xml);
 					}
-#if 0
-					g_print("found content-type: %s\n", nc);
-#endif
-
 				} else if (strcmp((char *)l->name, "getcontentlength") == 0){
 					file_info->valid_fields |= 
 						GNOME_VFS_FILE_INFO_FIELDS_SIZE;
-					file_info->size = atoi(nc);
-
-#if 0
-					g_print("found content-length: %s\n", nc);
-#endif
-
+					file_info->size = atoi(node_content_xml);
+				} else if (strcmp((char *)l->name, "getlastmodified") == 0) {
+					if (gnome_vfs_atotm (node_content_xml, &(file_info->mtime))) {
+						file_info->ctime = file_info->mtime;
+						file_info->valid_fields |= 
+							GNOME_VFS_FILE_INFO_FIELDS_MTIME 
+							| GNOME_VFS_FILE_INFO_FIELDS_CTIME;
+					}
 				}
-				xmlFree (nc);
+				/* Unfortunately, we don't have a mapping for "creationdate" */
+
+				xmlFree (node_content_xml);
+				node_content_xml = NULL;
 			}
 			if (strcmp((char *)l->name, "resourcetype") == 0) {
 				file_info->valid_fields |= 
@@ -1872,11 +1873,6 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 					file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 				}
 			}
-			/* FIXME bugzilla.eazel.com 2795: 
-			 * all date related properties:
-			 * creationdate
-			 * getlastmodified
-			 */
 			l = l->next;
 		}
 		node = node->next;
@@ -2707,7 +2703,7 @@ vfs_module_init (const char *method_name, const char *args)
 	char *argv[] = {"dummy"};
 	int argc = 1;
 	GError *gconf_error = NULL;
-	GConfValue *proxy_value, *use_proxy_value;
+	GConfValue *proxy_value;
 
 	LIBXML_TEST_VERSION
 

@@ -1,3 +1,11 @@
+2000-12-07  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c: (process_propfind_propstat),
+	(vfs_module_init):
+
+	bugzilla.eazel.com 4317, 2795 : Implemented ctime/mtime file
+	attributes for DAV 
+
 2000-12-06  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/ftp-method.c: (ftp_response_to_vfs_result),
