@@ -33,6 +33,9 @@
 #include <glib.h>
 #include <errno.h>
 #include <time.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
@@ -583,27 +586,21 @@ static gboolean
 try_init (void)
 {
 	char *path;
+	struct stat statbuf;
 
 	LOCK_SMB();
 
-	/* TODO: Why is this needed? */
-	/* Create an empty ~/.smb/smb.conf */
-	path = g_build_filename (G_DIR_SEPARATOR_S, g_get_home_dir (),
-			".smb", NULL);
-	if (g_file_test (path, G_FILE_TEST_IS_DIR) == FALSE) {
-		mkdir (path, 0700);
-	} else {
-		chmod (path, 0700);
-	}
-	g_free (path);
-
+	/* We used to create an empty ~/.smb/smb.conf to get
+	 * default settings, but this breaks a lot of smb.conf
+	 * configurations, so we remove this again. If you really
+	 * need an empty smb.conf, put a newline in it */
 	path = g_build_filename (G_DIR_SEPARATOR_S, g_get_home_dir (),
 			".smb", "smb.conf", NULL);
-	if (g_file_test (path, G_FILE_TEST_IS_REGULAR) == FALSE) {
-		int fd;
-		fd = creat (path, 0600);
-		if (fd > 0) {
-			close (fd);
+
+	if (stat (path, &statbuf) == 0) {
+		if (S_ISREG (statbuf.st_mode) &&
+		    statbuf.st_size == 0) {
+			unlink (path);
 		}
 	}
 	g_free (path);
@@ -621,6 +618,11 @@ try_init (void)
 			smbc_free_context (smb_context, FALSE);
 			smb_context = NULL;
 		}
+
+#if defined(HAVE_SAMBA_FLAGS) && defined(SMB_CTX_FLAG_USE_KERBEROS) && defined(SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS)
+		smb_context->flags |= SMB_CTX_FLAG_USE_KERBEROS | SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS;
+#endif
+		
 	}
 
 	server_cache = g_hash_table_new_full (server_hash,
@@ -1514,9 +1516,6 @@ static gboolean
 do_is_local (GnomeVFSMethod *method,
 	     const GnomeVFSURI *uri)
 {
-	DEBUG_SMB (("do_is_local(): %s\n", gnome_vfs_uri_to_string (uri,
-					GNOME_VFS_URI_HIDE_NONE)));
-
 	return FALSE;
 }
 

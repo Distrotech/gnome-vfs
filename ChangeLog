@@ -1,3 +1,14 @@
+2004-07-16  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* modules/smb-method.c:
+	Don't create ~/.smb/smb.conf, remove
+	old zero-byte versions.
+	Use kerberos if availible.
+
+	* programs/gnomevfs-ls.c: (main):
+	Call setlocale.
+
 2004-07-16  Christian Kellner  <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-socket.c (gnome_vfs_socket_free):

@@ -488,6 +488,12 @@ if test "x$enable_samba" != "xno"; then
 		else
 			SAMBA_CFLAGS=""
 		fi
+		
+		CPPFLAGS="$CPPFLAGS -I$with_samba_includes"
+		AC_CHECK_MEMBER(SMBCCTX.flags,
+				[AC_DEFINE(HAVE_SAMBA_FLAGS,, [Defined if flags availible in SMBCCTXT])],,
+				[#include <libsmbclient.h>])
+		CPPFLAGS="$CPPFLAGS_save"
 	else
 		SAMBA_CFLAGS=""
 	fi

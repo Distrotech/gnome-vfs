@@ -20,6 +20,7 @@
    Author: Bastien Nocera <hadess@hadess.net>
 */
 
+#include <locale.h>
 #include <libgnomevfs/gnome-vfs.h>
 
 char *directory;
@@ -110,6 +111,9 @@ list (void)
 int
 main (int argc, char *argv[])
 {
+  
+  	setlocale (LC_ALL, "");
+
 	gnome_vfs_init ();
 
 	if (argc > 1) {
