@@ -1,3 +1,15 @@
+1999-09-28  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/bzip2-method.c: Re-indented in GNOME style.
+
+	* configure.in: Added `--enable-gconf' option to explicitly enable
+	the GConf module backend; if not specified, GConf support is not
+	compiled even if GConf is available.  For now, the GConf API is
+	too much of a moving target to rely on it by default.
+
+	* modules/ftp-method.c (ftpfs_get_file_info): `#if 0'ed completely
+	to get it to compile.  Always return `GNOME_VFS_ERROR_NOTSUPPORTED'.
+
 1999-09-27  Miguel de Icaza  <miguel@gnu.org>
 
 	* modules/module-shared.c (gnome_vfs_set_meta_for_list,
@@ -9,6 +21,7 @@
 	is required.
 
 1999-09-27  Cody Russell  <bratsche@dfw.net>
+
 	* modules/bzip2-method.c: At Ettore's request, reformatted the
 	code to look more like the rest of the code. Function return
 	values are now on the preceeding line of the function name.

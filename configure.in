@@ -11,6 +11,10 @@ AC_ISC_POSIX
 AC_PROG_CC
 AM_PROG_LIBTOOL
 
+AC_ARG_ENABLE(gconf,
+              [  --enable-gconf          Enable GConf access backend],
+              gconf_enabled="yes")
+
 AM_PATH_GLIB(1.2.0,,
   AC_MSG_ERROR([
 *** GLIB 1.2.0 or better is required. The latest version of GLIB
@@ -60,14 +64,20 @@ AC_SUBST(VFS_LIBS)
 dnl 
 dnl gconf-method.c
 dnl
-AC_PATH_PROG(GCONF_CONFIG, gconf-config, no)
-if test x$GCONF_CONFIG = xno; then
-  AC_MSG_WARN([*** \`gconf' method will not be built ***])
-  GCONF_LIBS=
-  GCONF_CFLAGS=
+
+if test "x$gconf_enabled" = xyes; then 
+    AC_PATH_PROG(GCONF_CONFIG, gconf-config, no)
 else
-  GCONF_LIBS=`gconf-config --libs`
-  GCONF_CFLAGS=`gconf-config --cflags`
+    GCONF_CONFIG=no
+fi
+
+if test x$GCONF_CONFIG = xno; then
+    AC_MSG_WARN([*** \`gconf' method will not be built ***])
+    GCONF_LIBS=
+    GCONF_CFLAGS=
+else
+    GCONF_LIBS=`gconf-config --libs`
+    GCONF_CFLAGS=`gconf-config --cflags`
 fi
 
 AM_CONDITIONAL(HAVE_GCONF, test -n "$GCONF_LIBS") 

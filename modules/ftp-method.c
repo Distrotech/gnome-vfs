@@ -2208,6 +2208,7 @@ ftpfs_get_file_info (GnomeVFSURI *uri,
 		     GnomeVFSFileInfoOptions options,
 		     const GList *meta_keys)
 {
+#if 0
 	ftpfs_uri_t *ftpfs_uri;
 
 	ftpfs_uri = ftpfs_uri_new (uri, &ret);
@@ -2220,6 +2221,9 @@ ftpfs_get_file_info (GnomeVFSURI *uri,
 	 */
 	g_error ("Not finished");
 	return GNOME_VFS_ERROR_WRONGFORMAT;
+#else
+	return GNOME_VFS_ERROR_NOTSUPPORTED;
+#endif
 }
 
 
