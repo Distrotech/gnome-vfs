@@ -23,8 +23,8 @@ noinst_PROGRAMS =				\
 	test-info				\
 	test-mime				\
 	test-mime-handlers			\
+	test-mime-info-cache			\
 	test-mime-handlers-set			\
-	test-mime-info				\
 	test-monitor				\
 	test-performance			\
 	test-seek				\
@@ -97,6 +97,9 @@ test_mime_handlers_LDADD = $(libraries)
 test_mime_handlers_set_SOURCES = test-mime-handlers-set.c
 test_mime_handlers_set_LDADD = $(libraries)
 
+test_mime_info_cache_SOURCES = test-mime-info-cache.c
+test_mime_info_cache_LDADD = $(libraries)
+
 test_xfer_SOURCES = test-xfer.c
 test_xfer_LDADD = $(libraries)
 
@@ -144,9 +147,6 @@ test_dns_sd_LDADD = $(libraries)
 
 test_find_directory_SOURCES = test-find-directory.c
 test_find_directory_LDADD = $(libraries)
-
-test_mime_info_SOURCES = test-mime-info.c
-test_mime_info_LDADD = $(libraries)
 
 test_monitor_SOURCES = test-monitor.c
 test_monitor_LDADD = $(libraries)
