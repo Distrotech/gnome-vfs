@@ -453,6 +453,9 @@ text/abiword
 text/bib
 	ext: bib
 
+text/calendar
+	ext: ics
+
 text/css
 	ext: css
 
