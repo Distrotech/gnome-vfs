@@ -1,5 +1,12 @@
 2000-05-11  Pavel Cisler  <pavel@eazel.com>
 
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(gnome_vfs_xfer_uri_internal):
+	Fix bug 435: gnome_vfs_async_xfer does not report errors that
+	Darin was running into.
+
+2000-05-11  Pavel Cisler  <pavel@eazel.com>
+
 	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
 	Add debugging code to help me fix deadlocks caused by gnome vfs
 	not shutting down properly.
