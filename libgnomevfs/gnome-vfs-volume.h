@@ -43,10 +43,10 @@ typedef void (*GnomeVFSVolumeOpCallback) (gboolean succeeded,
 G_BEGIN_DECLS
 
 #define GNOME_VFS_TYPE_VOLUME        (gnome_vfs_volume_get_type ())
-#define GNOME_VFS_VOLUME(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), GNOME_TYPE_VFS_VOLUME, GnomeVFSVolume))
-#define GNOME_VFS_VOLUME_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), GNOME_TYPE_VFS_VOLUME, GnomeVFSVolumeClass))
-#define GNOME_IS_VFS_VOLUME(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), GNOME_TYPE_VFS_VOLUME))
-#define GNOME_IS_VFS_VOLUME_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), GNOME_TYPE_VFS_VOLUME))
+#define GNOME_VFS_VOLUME(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), GNOME_VFS_TYPE_VOLUME, GnomeVFSVolume))
+#define GNOME_VFS_VOLUME_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), GNOME_VFS_TYPE_VOLUME, GnomeVFSVolumeClass))
+#define GNOME_IS_VFS_VOLUME(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), GNOME_VFS_TYPE_VOLUME))
+#define GNOME_IS_VFS_VOLUME_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), GNOME_VFS_TYPE_VOLUME))
 
 typedef struct _GnomeVFSVolumePrivate GnomeVFSVolumePrivate;
 
