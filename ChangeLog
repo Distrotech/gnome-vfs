@@ -1,3 +1,16 @@
+2000-11-06  Darin Adler  <darin@eazel.com>
+
+	Fix bug 4490 (web sites with bad last modified dates (like
+	www.centerbeam.com) result in "not found").
+
+	* modules/http-method.c: (create_handle): Change code so that
+	headers that can't be parsed don't result in NOT_FOUND. They are
+	instead ignored.
+	
+	* test/test-shell.c: (list_commands), (main): Fix some small
+	problems in the test shell that I encountered while dealing with
+	the bug.
+
 2000-11-06  Maciej Stachowiak  <mjs@eazel.com>
 
 	* data/mime/gnome-vfs.applications: Commented out entries for vi

@@ -1123,10 +1123,14 @@ create_handle (HttpFileHandle **handle_return,
 		if (header_string->str[0] == '\0')
 			break;
 
-		if (! parse_header (*handle_return, header_string->str)) {
-			result = GNOME_VFS_ERROR_NOT_FOUND; /* FIXME bugzilla.eazel.com 1161 */
-			break;
-		}
+		/* We don't really care if we successfully parse the
+		 * header or not. It might be nice to tell someone we
+		 * found a header we can't parse, but it's not clear
+		 * who would be interested or how we tell them. In the
+		 * past we would return NOT_FOUND if any header could
+		 * not be parsed, but that seems wrong.
+		 */
+		parse_header (*handle_return, header_string->str);
 	}
 
 	if (result != GNOME_VFS_OK) {

@@ -200,7 +200,7 @@ do_ls (void)
 }
 
 static void
-list_commands ()
+list_commands (void)
 {
 	printf ("command can be one or all of:\n");
 	printf ("Main operations:\n");
@@ -922,7 +922,7 @@ main (int argc, char **argv)
 
 		arg_data = g_strsplit (g_strchomp (buffer), delim, -1);
 		arg_cur  = 0;
-		if (!arg_data && interactive) continue;
+		if ((!arg_data || !arg_data[0]) && interactive) continue;
 		if (!interactive)
 			printf ("Command : '%s'\n", arg_data [0]);
 		ptr = arg_data[arg_cur++];
