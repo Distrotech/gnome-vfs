@@ -55,7 +55,6 @@
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxml/xmlmemory.h>
-#include <pthread.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h> /* for atoi */
@@ -79,7 +78,9 @@ http_debug_printf (char *fmt, ...)
 
 	out = g_strdup_vprintf (fmt, args);
 
-	fprintf (stderr, "HTTP: [0x%08x] [0x%08x] %s\n", (unsigned int) http_util_get_utime (), (unsigned int) pthread_self(), out);
+	fprintf (stderr, "HTTP: [0x%08x] [%p] %s\n",
+		 (unsigned int) http_util_get_utime (),
+		 g_thread_self (), out);
 
 	g_free (out);
 	va_end (args);

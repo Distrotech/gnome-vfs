@@ -31,9 +31,6 @@
 #include "gnome-vfs-module-callback-private.h"
 #include "gnome-vfs-backend.h"
 
-#include <pthread.h>
-
-
 /* -- Private data structure declarations -- */
 
 typedef struct CallbackInfo {
@@ -61,18 +58,17 @@ struct GnomeVFSModuleCallbackStackInfo {
 
 /* -- Global variables -- */
 
-static pthread_mutex_t callback_table_lock = PTHREAD_MUTEX_INITIALIZER;
+static GStaticMutex callback_table_lock = G_STATIC_MUTEX_INIT;
 static GHashTable *default_callbacks = NULL;
 static GHashTable *default_async_callbacks = NULL;
 static GHashTable *stack_tables_to_free = NULL;
 
-static pthread_once_t stack_keys_once = PTHREAD_ONCE_INIT;
-static pthread_key_t callback_stacks_key;
-static pthread_key_t async_callback_stacks_key;
-static pthread_key_t in_async_thread_key;
+static GPrivate *callback_stacks_key;
+static GPrivate *async_callback_stacks_key;
+static GPrivate *in_async_thread_key;
 
-static pthread_mutex_t async_callback_mutex = PTHREAD_MUTEX_INITIALIZER;
-static pthread_cond_t async_callback_cond = PTHREAD_COND_INITIALIZER;
+static GCond *async_callback_cond;
+static GStaticMutex async_callback_lock = G_STATIC_MUTEX_INIT;
 
 /* -- Helper functions -- */
 
@@ -122,13 +118,13 @@ static void
 async_callback_response (gpointer data)
 {
 	CallbackResponseData *response_data;
-	
-	pthread_mutex_lock (&async_callback_mutex);
+
+	g_static_mutex_lock (&async_callback_lock);
 	response_data = data;
 	response_data->done = TRUE;
-	pthread_mutex_unlock (&async_callback_mutex);
+	g_cond_broadcast (async_callback_cond);
 
-	pthread_cond_broadcast (&async_callback_cond);
+	g_static_mutex_unlock (&async_callback_lock);
 }
 
 static void
@@ -141,7 +137,6 @@ async_callback_invoke (gconstpointer in,
 	AsyncCallbackInfo *async_callback;
 	CallbackResponseData response_data;
 	
-	response_data.done = FALSE;
 	async_callback = callback_data;
 	
 	/* Using a single mutex and condition variable could mean bad
@@ -149,19 +144,21 @@ async_callback_invoke (gconstpointer in,
 	 * this is unlikeley, so we avoid the overhead of creating
 	 * new mutexes and condition variables all the time.
 	 */
-	
-	pthread_mutex_lock (&async_callback_mutex);
+
+	g_static_mutex_lock (&async_callback_lock);
+	response_data.done = FALSE;
 	gnome_vfs_dispatch_module_callback (async_callback->callback,
 					    in, in_size,
 					    out, out_size,
 					    async_callback->callback_data, 
 					    async_callback_response,
 					    &response_data);
-	
 	while (!response_data.done) {
-		pthread_cond_wait (&async_callback_cond, &async_callback_mutex);
+		g_cond_wait (async_callback_cond,
+			     g_static_mutex_get_mutex (&async_callback_lock));
 	}
-	pthread_mutex_unlock (&async_callback_mutex);
+
+	g_static_mutex_unlock (&async_callback_lock);
 }
 
 static void
@@ -440,9 +437,9 @@ stack_table_destroy (gpointer specific)
 
 	stack_table = specific;
 
-	pthread_mutex_lock (&callback_table_lock);
+	g_static_mutex_lock (&callback_table_lock);
 	g_hash_table_remove (stack_tables_to_free, stack_table);
-	pthread_mutex_unlock (&callback_table_lock);
+	g_static_mutex_unlock (&callback_table_lock);
 
 	clear_stack_table (stack_table);
 	g_hash_table_destroy (stack_table);
@@ -467,30 +464,30 @@ stack_table_free_hr_func (gpointer key,
 static void
 free_stack_tables_to_free (void)
 {
-	pthread_mutex_lock (&callback_table_lock);
+	g_static_mutex_lock (&callback_table_lock);
 	g_hash_table_foreach_remove (stack_tables_to_free, stack_table_free_hr_func , NULL);
 	g_hash_table_destroy (stack_tables_to_free);
-	pthread_mutex_unlock (&callback_table_lock);
+	g_static_mutex_unlock (&callback_table_lock);
 }
 
-static void
-stack_keys_alloc (void)
+void
+gnome_vfs_module_callback_private_init (void)
 {
-	pthread_key_create (&callback_stacks_key, stack_table_destroy);
-	pthread_key_create (&async_callback_stacks_key, stack_table_destroy);
-	pthread_key_create (&in_async_thread_key, NULL);
+	callback_stacks_key = g_private_new (stack_table_destroy);
+	async_callback_stacks_key = g_private_new (stack_table_destroy);
+	in_async_thread_key = g_private_new (NULL);
 
-	pthread_mutex_lock (&callback_table_lock);
 	stack_tables_to_free = g_hash_table_new (g_direct_hash, g_direct_equal);
-	pthread_mutex_unlock (&callback_table_lock);
 
-	g_atexit (free_stack_tables_to_free);
+	async_callback_cond = g_cond_new ();
+
+	g_atexit (free_stack_tables_to_free);	
 }
 
 static void
 free_default_callbacks (void)
 {
-	pthread_mutex_lock (&callback_table_lock);
+	g_static_mutex_lock (&callback_table_lock);
 
 	clear_callback_table (default_callbacks);
 	g_hash_table_destroy (default_callbacks);
@@ -498,7 +495,7 @@ free_default_callbacks (void)
 	clear_callback_table (default_async_callbacks);
 	g_hash_table_destroy (default_async_callbacks);
 
-	pthread_mutex_unlock (&callback_table_lock);
+	g_static_mutex_unlock (&callback_table_lock);
 }
 
 /* This function should only be called with the mutex held. */
@@ -517,28 +514,25 @@ initialize_global_if_needed (void)
 static void
 initialize_per_thread_if_needed (void)
 {
-	/* Initialize keys for thread-specific data, once per program. */
-	pthread_once (&stack_keys_once, stack_keys_alloc);
-
 	/* Initialize per-thread data, if needed. */
-	if (pthread_getspecific (callback_stacks_key) == NULL) {
-		pthread_mutex_lock (&callback_table_lock);
-		pthread_setspecific (callback_stacks_key,
+	if (g_private_get (callback_stacks_key) == NULL) {
+		g_static_mutex_lock (&callback_table_lock);
+		g_private_set (callback_stacks_key,
 				     g_hash_table_new (g_str_hash, g_str_equal));
 		g_hash_table_insert (stack_tables_to_free,
-				     pthread_getspecific (callback_stacks_key),
+				     g_private_get (callback_stacks_key),
 				     GINT_TO_POINTER (1));
-		pthread_mutex_unlock (&callback_table_lock);
+		g_static_mutex_unlock (&callback_table_lock);
 	}
 
-	if (pthread_getspecific (async_callback_stacks_key) == NULL) {
-		pthread_mutex_lock (&callback_table_lock);
-		pthread_setspecific (async_callback_stacks_key,
+	if (g_private_get (async_callback_stacks_key) == NULL) {
+		g_static_mutex_lock (&callback_table_lock);
+		g_private_set (async_callback_stacks_key,
 				     g_hash_table_new (g_str_hash, g_str_equal));
 		g_hash_table_insert (stack_tables_to_free,
-				     pthread_getspecific (async_callback_stacks_key),
+				     g_private_get (async_callback_stacks_key),
 				     GINT_TO_POINTER (1));
-		pthread_mutex_unlock (&callback_table_lock);
+		g_static_mutex_unlock (&callback_table_lock);
 	}
 }
 
@@ -647,12 +641,12 @@ gnome_vfs_module_callback_set_default (const char *callback_name,
 
 	callback_info = callback_info_new (callback, callback_data, destroy_notify);
 
-	pthread_mutex_lock (&callback_table_lock);
+	g_static_mutex_lock (&callback_table_lock);
 
 	initialize_global_if_needed ();
 	insert_callback_into_table (default_callbacks, callback_name, callback_info);
 
-	pthread_mutex_unlock (&callback_table_lock);
+	g_static_mutex_unlock (&callback_table_lock);
 
 	callback_info_unref (callback_info);
 }
@@ -694,7 +688,7 @@ gnome_vfs_module_callback_push (const char *callback_name,
 	initialize_per_thread_if_needed ();
 
 	callback_info = callback_info_new (callback, callback_data, notify);
-	push_callback_into_stack_table (pthread_getspecific (callback_stacks_key),
+	push_callback_into_stack_table (g_private_get (callback_stacks_key),
 					callback_name,
 					callback_info);
 	callback_info_unref (callback_info);
@@ -718,7 +712,7 @@ void
 gnome_vfs_module_callback_pop (const char *callback_name)
 {
 	initialize_per_thread_if_needed ();
-	pop_stack_table (pthread_getspecific (callback_stacks_key), 
+	pop_stack_table (g_private_get (callback_stacks_key), 
 			 callback_name);
 }
 
@@ -762,12 +756,12 @@ gnome_vfs_async_module_callback_set_default (const char *callback_name,
 
 	callback_info = async_callback_info_new (callback, callback_data, notify);
 
-	pthread_mutex_lock (&callback_table_lock);
+	g_static_mutex_lock (&callback_table_lock);
 
 	initialize_global_if_needed ();
 	insert_callback_into_table (default_async_callbacks, callback_name, callback_info); 
 
-	pthread_mutex_unlock (&callback_table_lock);
+	g_static_mutex_unlock (&callback_table_lock);
 
 	callback_info_unref (callback_info);
 }
@@ -813,7 +807,7 @@ gnome_vfs_async_module_callback_push (const char *callback_name,
 
 	callback_info = async_callback_info_new (callback, callback_data, notify);
 	
-	push_callback_into_stack_table (pthread_getspecific (async_callback_stacks_key),
+	push_callback_into_stack_table (g_private_get (async_callback_stacks_key),
 					callback_name,
 					callback_info);
 
@@ -838,7 +832,7 @@ void
 gnome_vfs_async_module_callback_pop (const char *callback_name)
 {
 	initialize_per_thread_if_needed ();
-	pop_stack_table (pthread_getspecific (async_callback_stacks_key),
+	pop_stack_table (g_private_get (async_callback_stacks_key),
 			 callback_name);
 }
 
@@ -884,8 +878,8 @@ gnome_vfs_module_callback_invoke (const char    *callback_name,
 
 	initialize_per_thread_if_needed ();
 
-	if (pthread_getspecific (in_async_thread_key) != NULL) {
-		stack = g_hash_table_lookup (pthread_getspecific (async_callback_stacks_key),
+	if (g_private_get (in_async_thread_key) != NULL) {
+		stack = g_hash_table_lookup (g_private_get (async_callback_stacks_key),
 					     callback_name);
 
 		if (stack != NULL) {
@@ -893,18 +887,18 @@ gnome_vfs_module_callback_invoke (const char    *callback_name,
 			g_assert (callback != NULL);
 			callback_info_ref (callback);
 		} else {
-			pthread_mutex_lock (&callback_table_lock);
+			g_static_mutex_lock (&callback_table_lock);
 			initialize_global_if_needed ();
 			callback = g_hash_table_lookup (default_async_callbacks, callback_name);
 			if (callback != NULL) {
 				callback_info_ref (callback);
 			}
-			pthread_mutex_unlock (&callback_table_lock);
+			g_static_mutex_unlock (&callback_table_lock);
 		}
 	}
 
 	if (callback == NULL) {
-		stack = g_hash_table_lookup (pthread_getspecific (callback_stacks_key),
+		stack = g_hash_table_lookup (g_private_get (callback_stacks_key),
 					     callback_name);
 		
 		if (stack != NULL) {
@@ -912,13 +906,13 @@ gnome_vfs_module_callback_invoke (const char    *callback_name,
 			g_assert (callback != NULL);
 			callback_info_ref (callback);
 		} else {
-			pthread_mutex_lock (&callback_table_lock);
+			g_static_mutex_lock (&callback_table_lock);
 			initialize_global_if_needed ();
 			callback = g_hash_table_lookup (default_callbacks, callback_name);
 			if (callback != NULL) {
 				callback_info_ref (callback);
 			}
-			pthread_mutex_unlock (&callback_table_lock);
+			g_static_mutex_unlock (&callback_table_lock);
 		}
 	}
 
@@ -947,16 +941,16 @@ gnome_vfs_module_callback_get_stack_info (void)
 
 	stack_info = g_new (GnomeVFSModuleCallbackStackInfo, 1);
 
-	pthread_mutex_lock (&callback_table_lock);
+	g_static_mutex_lock (&callback_table_lock);
 	initialize_global_if_needed ();
 	stack_info->current_callbacks = duplicate_callback_table (default_callbacks);
 	stack_info->current_async_callbacks = duplicate_callback_table (default_async_callbacks);
-	pthread_mutex_unlock (&callback_table_lock);
+	g_static_mutex_unlock (&callback_table_lock);
 
 	initialize_per_thread_if_needed ();
-	copy_callback_stack_tops (pthread_getspecific (callback_stacks_key),
+	copy_callback_stack_tops (g_private_get (callback_stacks_key),
 				  stack_info->current_callbacks);
-	copy_callback_stack_tops (pthread_getspecific (async_callback_stacks_key),
+	copy_callback_stack_tops (g_private_get (async_callback_stacks_key),
 				  stack_info->current_async_callbacks);
 
 	return stack_info;
@@ -978,22 +972,22 @@ gnome_vfs_module_callback_use_stack_info (GnomeVFSModuleCallbackStackInfo *stack
 {
 	initialize_per_thread_if_needed ();
 	copy_callback_table_to_stack_table (stack_info->current_callbacks, 
-					    pthread_getspecific (callback_stacks_key));
+					    g_private_get (callback_stacks_key));
 	copy_callback_table_to_stack_table (stack_info->current_async_callbacks, 
-					    pthread_getspecific (async_callback_stacks_key));
+					    g_private_get (async_callback_stacks_key));
 }
 
 void
 gnome_vfs_module_callback_clear_stacks (void)
 {
 	initialize_per_thread_if_needed ();
-	clear_stack_table (pthread_getspecific (callback_stacks_key));
-	clear_stack_table (pthread_getspecific (async_callback_stacks_key));
+	clear_stack_table (g_private_get (callback_stacks_key));
+	clear_stack_table (g_private_get (async_callback_stacks_key));
 }
 
 void
 gnome_vfs_module_callback_set_in_async_thread (gboolean in_async_thread)
 {
 	initialize_per_thread_if_needed ();
-	pthread_setspecific (in_async_thread_key, GINT_TO_POINTER (in_async_thread));
+	g_private_set (in_async_thread_key, GINT_TO_POINTER (in_async_thread));
 }

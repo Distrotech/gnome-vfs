@@ -54,7 +54,7 @@ GStaticPrivate job_private = G_STATIC_PRIVATE_INIT;
  * Since this id debug only, just use what the macro should be here.
  * even though it is not portable.
  */
-GStaticMutex debug_mutex = { NULL, { { } } };
+GStaticMutex debug_mutex = G_STATIC_MUTEX_INIT;
 #endif
 
 static int job_count = 0;
@@ -1676,8 +1676,8 @@ gnome_vfs_get_current_context (GnomeVFSContext **context)
 
 void
 gnome_vfs_dispatch_module_callback (GnomeVFSAsyncModuleCallback callback,
-				    gconstpointer in, size_t in_size,
-				    gpointer out, size_t out_size,
+				    gconstpointer in, gsize in_size,
+				    gpointer out, gsize out_size,
 				    gpointer user_data,
 				    GnomeVFSModuleCallbackResponse response,
 				    gpointer response_data)

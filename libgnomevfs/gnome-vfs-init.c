@@ -32,11 +32,15 @@
 #include "gnome-vfs-method.h"
 #include "gnome-vfs-process.h"
 #include "gnome-vfs-utils.h"
+
+#include "gnome-vfs-async-job-map.h"
+#include "gnome-vfs-thread-pool.h"
+#include "gnome-vfs-job-queue.h"
+
 #include <errno.h>
 #include <bonobo-activation/bonobo-activation.h>
 #include <glib/gmessages.h>
 #include <glib/gfileutils.h>
-#include <libgnomevfs/gnome-vfs-pthread.h>
 #include <libgnomevfs/gnome-vfs-job-slave.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -69,6 +73,22 @@ ensure_dot_gnome_exists (void)
 	return retval;
 }
 
+static void
+gnome_vfs_pthread_init (void)
+{
+	if (!g_thread_supported ())
+		g_thread_init (NULL);
+
+	private_is_primary_thread = g_private_new (NULL);
+	g_private_set (private_is_primary_thread, GUINT_TO_POINTER (1));
+	
+	gnome_vfs_module_callback_private_init ();
+	
+	gnome_vfs_async_job_map_init ();
+	gnome_vfs_thread_pool_init ();
+	gnome_vfs_job_queue_init ();
+}
+
 gboolean 
 gnome_vfs_init (void)
 {
@@ -83,19 +103,17 @@ gnome_vfs_init (void)
 	if (!vfs_already_initialized) {
 #ifdef ENABLE_NLS
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-#endif    
+#endif   
+		gnome_vfs_pthread_init ();
 
-		retval = gnome_vfs_pthread_init (TRUE);
-
-		if (retval && bonobo_activation_orb_get() == NULL) {
+		if (bonobo_activation_orb_get() == NULL) {
 			bonobo_activation_init (0, bogus_argv);
 		}
 
 		gnome_vfs_ssl_init ();
 
-		if (retval) {
-			retval = gnome_vfs_method_init ();
-		}
+		retval = gnome_vfs_method_init ();
+
 		if (retval) {
 			retval = gnome_vfs_process_init ();
 		}
@@ -105,12 +123,6 @@ gnome_vfs_init (void)
 		if (retval) {
 			signal (SIGPIPE, SIG_IGN);
 		}
-
-		if (g_thread_supported()) {
-			private_is_primary_thread = g_private_new (NULL);
-			g_private_set (private_is_primary_thread, GUINT_TO_POINTER (1));
-		}
-		
 	} else {
 		retval = TRUE;	/* Who cares after all.  */
 	}
@@ -155,10 +167,12 @@ gnome_vfs_postinit (gpointer app, gpointer modinfo)
 {
 	G_LOCK (vfs_already_initialized);
 
+	gnome_vfs_pthread_init ();
+
 	gnome_vfs_method_init ();
 	gnome_vfs_process_init ();
 	gnome_vfs_configuration_init ();
-	gnome_vfs_pthread_init (FALSE);
+
 	signal (SIGPIPE, SIG_IGN);
 
 	vfs_already_initialized = TRUE;

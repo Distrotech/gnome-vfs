@@ -26,9 +26,8 @@
 
 #include <pthread.h>
 
-int gnome_vfs_thread_create (pthread_t *thread, void *(* thread_routine) (void *),
-	void *thread_arguments);
-/* pthread_create replacement */
+int  gnome_vfs_thread_create (void *(* thread_routine) (void *),
+			      void *thread_arguments);
 
 void gnome_vfs_thread_pool_init     (void);
 void gnome_vfs_thread_pool_shutdown (void);

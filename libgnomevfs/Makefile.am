@@ -124,7 +124,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-private.h			\
 	gnome-vfs-process.c			\
 	gnome-vfs-process.h			\
-	gnome-vfs-pthread.c			\
 	gnome-vfs-result.c			\
 	gnome-vfs-socket-buffer.c		\
 	gnome-vfs-socket.c			\
@@ -145,7 +144,6 @@ libgnomevfs_2_la_SOURCES =			\
 	gnome-vfs-mime-sniff-buffer-private.h	\
 	gnome-vfs-module-callback-private.h	\
 	gnome-vfs-process.h			\
-	gnome-vfs-pthread.h			\
 	gnome-vfs-thread-pool.h			\
 	$(NULL)
 

@@ -1,3 +1,44 @@
+2002-07-16  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-thread-pool.c
+	(thread_list_locks): don't use a recursive mutex.
+	debug print thread pointer not pthread id.
+
+	* libgnomevfs/gnome-vfs-method.c
+	(init_hash_table, init_path_list): don't take fine
+	grained locks here.
+	(gnome_vfs_method_init): take a lock here instead.
+	(gnome_vfs_add_module_to_hash_table): hold the lock
+	for longer, to avoid nasty races, change sig.
+	(gnome_vfs_method_get): upd / simplify / speedup.
+	(gnome_vfs_transform_get): ditto.
+
+	* libgnomevfs/gnome-vfs-module-callback.c
+	(stack_keys_alloc): kill in favour of
+	(gnome_vfs_module_callback_private_init): this.
+	(initialize_per_thread_if_needed): upd.
+	(async_callback_response): broadcast instead of
+	signalling, there might be multiple threads waiting.
+
+	* libgnomevfs/gnome-vfs-init.c
+	(gnome_vfs_pthread_init): upd.
+	(gnome_vfs_init): here.
+	(gnome_vfs_postinit): ensure we do it here too & re-order.
+
+2002-07-15  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-thread-pool.c
+	(gnome_vfs_thread_create): kill unused thread argument
+	(new_thread_state): port to g_thread.
+
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): use
+	g_thread_init not gnome_vfs_pthread stuff.
+	(gnome_vfs_postinit): ditto.
+
+	* libgnomevfs/Makefile.am: remove gnome-vfs-pthread.[ch]
+
+	* *.[ch]: switch pthread -> g_thread stuff, mostly a sed.
+
 2002-07-12  Michael Meeks  <michael@ximian.com>
 
 	* libgnomevfs/gnome-vfs-cancellation.c

@@ -28,7 +28,6 @@
 #include "gnome-vfs-thread-pool.h"
 #include "gnome-vfs-job-queue.h"
 #include <glib/gmessages.h>
-#include <pthread.h>
 #include <unistd.h>
 
 static volatile gboolean gnome_vfs_quitting = FALSE;
@@ -84,8 +83,6 @@ thread_routine (void *data)
 gboolean
 gnome_vfs_job_create_slave (GnomeVFSJob *job)
 {
-	pthread_t thread;
-	
 	g_return_val_if_fail (job != NULL, FALSE);
 
 	if (gnome_vfs_quitting) {
@@ -101,7 +98,7 @@ gnome_vfs_job_create_slave (GnomeVFSJob *job)
 		return FALSE;
 	}
 	
-	if (gnome_vfs_thread_create (&thread, thread_routine, job->job_handle) != 0) {
+	if (gnome_vfs_thread_create (thread_routine, job->job_handle) != 0) {
 		g_warning ("Impossible to allocate a new GnomeVFSJob thread.");
 		
 		/* thread did not start up, remove the job from the hash table */

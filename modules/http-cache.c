@@ -30,7 +30,6 @@
 #include <glib/gstrfuncs.h>
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
-#include <pthread.h>
 #include <string.h>
 
 /* Cache file info for 5 minutes */
@@ -39,7 +38,7 @@
 #define US_CACHE_DIRECTORY (1000 * 500)
 
 /* Mutex for cache data structures */
-static pthread_mutex_t cache_rlock;
+static GStaticRecMutex cache_rlock = G_STATIC_REC_MUTEX_INIT;
 
 /* Hash maps char * URI ---> FileInfoCacheEntry */
 static GHashTable * gl_file_info_cache = NULL;
@@ -69,16 +68,6 @@ static FileInfoCacheEntry *	http_cache_add (const gchar *uri_string, GnomeVFSFil
 void
 http_cache_init (void)
 {
-	pthread_mutexattr_t attr;
-
-	/* Initialize cache_rlock to be a recursive mutex. (Not using the static
-	 * recursive mutex initializer macro here because it is not too portable.
-	 */
-	pthread_mutexattr_init (&attr);
-	pthread_mutexattr_settype (&attr, PTHREAD_MUTEX_RECURSIVE);
-	pthread_mutex_init (&cache_rlock, &attr);
-	pthread_mutexattr_destroy (&attr);
-
 	gl_file_info_cache = g_hash_table_new (g_str_hash, g_str_equal);
 }
 
@@ -87,7 +76,7 @@ http_cache_shutdown (void)
 {
 	GList *node, *node_next;
 
-	pthread_mutex_lock (&cache_rlock);
+	g_static_rec_mutex_lock (&cache_rlock);
 
 	for (	node = g_list_first (gl_file_info_cache_list) ; 
 		node != NULL; 
@@ -101,9 +90,7 @@ http_cache_shutdown (void)
 	
 	g_hash_table_destroy (gl_file_info_cache);
 
-	pthread_mutex_unlock (&cache_rlock);
-
-	pthread_mutex_destroy (&cache_rlock);
+	g_static_rec_mutex_unlock (&cache_rlock);
 
 }
 
@@ -112,7 +99,7 @@ http_cache_entry_new (void)
 {
 	FileInfoCacheEntry *ret;
 
-	pthread_mutex_lock (&cache_rlock);
+	g_static_rec_mutex_lock (&cache_rlock);
 
 	ret = g_new0 (FileInfoCacheEntry, 1);
 	ret->create_time = http_util_get_utime();
@@ -127,7 +114,7 @@ http_cache_entry_new (void)
 		gl_file_info_cache_list_last = ret->my_list_node;
 	}
 
-	pthread_mutex_unlock (&cache_rlock);
+	g_static_rec_mutex_unlock (&cache_rlock);
 
 	return ret;
 }
@@ -141,7 +128,7 @@ http_cache_entry_free (FileInfoCacheEntry * entry)
 	if (entry) {
 		GList *node;
 		
-		pthread_mutex_lock (&cache_rlock);
+		g_static_rec_mutex_lock (&cache_rlock);
 
 		g_hash_table_remove (gl_file_info_cache, entry->uri_string);
 		g_free (entry->uri_string);	/* This is the same string as in the hash table */
@@ -162,7 +149,7 @@ http_cache_entry_free (FileInfoCacheEntry * entry)
 		
 		g_free (entry);
 
-		pthread_mutex_unlock (&cache_rlock);
+		g_static_rec_mutex_unlock (&cache_rlock);
 	}
 }
 
@@ -172,7 +159,7 @@ http_cache_trim (void)
 	GList *node, *node_previous;
 	utime_t utime_expire;
 
-	pthread_mutex_lock (&cache_rlock);
+	g_static_rec_mutex_lock (&cache_rlock);
 
 	utime_expire = http_util_get_utime() - US_CACHE_FILE_INFO;
 
@@ -187,7 +174,7 @@ http_cache_trim (void)
 		http_cache_entry_free ((FileInfoCacheEntry *)(node->data));
 	}
 
-	pthread_mutex_unlock (&cache_rlock);
+	g_static_rec_mutex_unlock (&cache_rlock);
 }
 
 /* Note: doesn't bother trimming entries, so the check can fast */
@@ -198,7 +185,7 @@ http_cache_check (const gchar * uri_string)
 	utime_t utime_expire;
 	GnomeVFSFileInfo *ret;
 
-	pthread_mutex_lock (&cache_rlock);
+	g_static_rec_mutex_lock (&cache_rlock);
 
 	utime_expire = http_util_get_utime() - US_CACHE_FILE_INFO;
 
@@ -217,7 +204,7 @@ http_cache_check (const gchar * uri_string)
 	} else {
 		ret = NULL;
 	}
-	pthread_mutex_unlock (&cache_rlock);
+	g_static_rec_mutex_unlock (&cache_rlock);
 	return ret;
 }
 
@@ -267,7 +254,7 @@ http_cache_check_directory (const gchar * uri_string, GList **p_child_file_info_
 	GList *child_file_info_list = NULL;
 	gboolean cache_incomplete;
 
-	pthread_mutex_lock (&cache_rlock);
+	g_static_rec_mutex_lock (&cache_rlock);
 
 	utime_expire = http_util_get_utime() - US_CACHE_DIRECTORY;
 
@@ -325,7 +312,7 @@ http_cache_check_directory (const gchar * uri_string, GList **p_child_file_info_
 		}
 	}
 
-	pthread_mutex_unlock (&cache_rlock);
+	g_static_rec_mutex_unlock (&cache_rlock);
 
 	return ret;
 }
@@ -351,7 +338,7 @@ http_cache_add_no_strdup (gchar * uri_string, GnomeVFSFileInfo * file_info, gboo
 	FileInfoCacheEntry *entry_existing;
 	FileInfoCacheEntry *entry;
 
-	pthread_mutex_lock (&cache_rlock);
+	g_static_rec_mutex_lock (&cache_rlock);
 
 	entry_existing = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
 
@@ -372,7 +359,7 @@ http_cache_add_no_strdup (gchar * uri_string, GnomeVFSFileInfo * file_info, gboo
 
 	g_hash_table_insert (gl_file_info_cache, entry->uri_string, entry);
 
-	pthread_mutex_unlock (&cache_rlock);
+	g_static_rec_mutex_unlock (&cache_rlock);
 
 	return entry;
 }
@@ -394,7 +381,7 @@ http_cache_add_uri_and_children (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, 
 
 	http_cache_trim();
 
-	pthread_mutex_lock (&cache_rlock);
+	g_static_rec_mutex_lock (&cache_rlock);
 
 	uri_string = http_cache_uri_to_string (uri);
 
@@ -426,7 +413,7 @@ http_cache_add_uri_and_children (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info, 
 		parent_entry->has_filenames = TRUE;
 	}
 
-	pthread_mutex_unlock (&cache_rlock);
+	g_static_rec_mutex_unlock (&cache_rlock);
 
 	g_free (uri_string);
 }
@@ -445,7 +432,7 @@ http_cache_invalidate (const gchar * uri_string)
 {
 	FileInfoCacheEntry *entry;
 
-	pthread_mutex_lock (&cache_rlock);
+	g_static_rec_mutex_lock (&cache_rlock);
 
 	entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
 
@@ -455,7 +442,7 @@ http_cache_invalidate (const gchar * uri_string)
 		http_cache_entry_free (entry);
 	}
 
-	pthread_mutex_unlock (&cache_rlock);
+	g_static_rec_mutex_unlock (&cache_rlock);
 }
 
 void
@@ -479,7 +466,7 @@ http_cache_invalidate_entry_and_children (const gchar * uri_string)
 {
 	FileInfoCacheEntry *entry;
 
-	pthread_mutex_lock (&cache_rlock);
+	g_static_rec_mutex_lock (&cache_rlock);
 
 	entry = (FileInfoCacheEntry *)g_hash_table_lookup (gl_file_info_cache, uri_string);
 
@@ -498,7 +485,7 @@ http_cache_invalidate_entry_and_children (const gchar * uri_string)
 		http_cache_entry_free (entry);
 	}
 
-	pthread_mutex_unlock (&cache_rlock);
+	g_static_rec_mutex_unlock (&cache_rlock);
 }
 
 /* Invalidates entry and everything cached immediately beneath it */
