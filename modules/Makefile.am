@@ -1,5 +1,5 @@
 NULL =
-SUBDIRS = extfs vfolder
+SUBDIRS = vfolder
 
 INCLUDES =					\
 	-I$(top_srcdir)				\
@@ -58,7 +58,6 @@ modulesdir = $(libdir)/gnome-vfs-2.0/modules
 modules_LTLIBRARIES =				\
 	$(CDDA_LTLIBS)				\
 	libcomputer.la				\
-	libextfs.la				\
 	libfile.la				\
 	libnetwork.la				\
 	libnntp.la				\
@@ -110,12 +109,6 @@ libcdda_la_LIBADD = -lcdda_paranoia -lcdda_interface ../libgnomevfs/libgnomevfs-
 libcomputer_la_SOURCES = computer-method.c
 libcomputer_la_LDFLAGS = $(module_flags)
 libcomputer_la_LIBADD = $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
-
-###  `extfs' method
-
-libextfs_la_SOURCES = extfs-method.c
-libextfs_la_LDFLAGS = $(module_flags)
-libextfs_la_LIBADD = $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `file' method
 

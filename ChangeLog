@@ -1,3 +1,11 @@
+2004-08-13  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
+	* modules/Makefile.am:
+	* modules/default-modules.conf:
+	Remove extfs module. It had security issues
+	and it doesn't work well anyway.
+
 2004-08-12  Christophe Fergeau  <teuf@gnome.org>
 
 	* configure.in: post release version bump
