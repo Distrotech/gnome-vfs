@@ -46,62 +46,77 @@
 
 static GnomeVFSResult	do_open		(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode);
+					 GnomeVFSOpenMode mode,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_create 	(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
 					 gboolean exclusive,
-					 guint perm);
-static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle);
+					 guint perm,
+					 GnomeVFSCancellation *cancellation);
+static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
 					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_read);
+					 GnomeVFSFileSize *bytes_read,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_write	(GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
 					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_written);
+					 GnomeVFSFileSize *bytes_written,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult   do_seek		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
-					 GnomeVFSFileOffset offset);
+					 GnomeVFSFileOffset offset,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_tell		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileOffset *offset_return);
 static GnomeVFSResult	do_truncate 	(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileSize where);
+					 GnomeVFSFileSize where,
+					 GnomeVFSCancellation *cancellation);
 
 static GnomeVFSResult	do_open_directory
 					(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys,
-					 const GnomeVFSDirectoryFilter *filter);
+					 const GnomeVFSDirectoryFilter *filter,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_close_directory
-					(GnomeVFSMethodHandle *method_handle);
+					(GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_read_directory
 					(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileInfo *file_info);
+					 GnomeVFSFileInfo *file_info,
+					 GnomeVFSCancellation *cancellation);
 
 static GnomeVFSResult	do_get_file_info
 					(GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys);
+					 const GList *meta_keys,
+					 GnomeVFSCancellation *cancellation);
 
 static GnomeVFSResult	do_get_file_info_from_handle
 					(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys);
+					 const GList *meta_keys,
+					 GnomeVFSCancellation *cancellation);
 
 static gboolean		do_is_local	(const GnomeVFSURI *uri);
 
 static GnomeVFSResult	do_make_directory
                                         (GnomeVFSURI *uri,
-					 guint perm);
+					 guint perm,
+					 GnomeVFSCancellation *cancellation);
 
 static GnomeVFSResult	do_remove_directory
-                                        (GnomeVFSURI *uri);
-static GnomeVFSResult   do_unlink       (GnomeVFSURI *uri);
+                                        (GnomeVFSURI *uri,
+					 GnomeVFSCancellation *cancellation);
+static GnomeVFSResult   do_unlink       (GnomeVFSURI *uri,
+					 GnomeVFSCancellation *cancellation);
 
 static GnomeVFSMethod method = {
 	do_open,
@@ -208,7 +223,8 @@ file_handle_destroy (FileHandle *handle)
 static GnomeVFSResult
 do_open (GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
-	 GnomeVFSOpenMode mode)
+	 GnomeVFSOpenMode mode,
+	 GnomeVFSCancellation *cancellation)
 {
 	FileHandle *file_handle;
 	gint fd;
@@ -260,10 +276,11 @@ do_open (GnomeVFSMethodHandle **method_handle,
 
 static GnomeVFSResult
 do_create (GnomeVFSMethodHandle **method_handle,
-	GnomeVFSURI *uri,
-	GnomeVFSOpenMode mode,
-	gboolean exclusive,
-	guint perm)
+	   GnomeVFSURI *uri,
+	   GnomeVFSOpenMode mode,
+	   gboolean exclusive,
+	   guint perm,
+	   GnomeVFSCancellation *cancellation)
 {
 	FileHandle *file_handle;
 	gint fd;
@@ -303,7 +320,8 @@ do_create (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-do_close (GnomeVFSMethodHandle *method_handle)
+do_close (GnomeVFSMethodHandle *method_handle,
+	 GnomeVFSCancellation *cancellation)
 {
 	FileHandle *file_handle;
 	gint close_retval;
@@ -329,7 +347,8 @@ static GnomeVFSResult
 do_read (GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
-	 GnomeVFSFileSize *bytes_read)
+	 GnomeVFSFileSize *bytes_read,
+	 GnomeVFSCancellation *cancellation)
 {
 	FileHandle *file_handle;
 	gint read_val;
@@ -355,7 +374,8 @@ static GnomeVFSResult
 do_write (GnomeVFSMethodHandle *method_handle,
 	  gconstpointer buffer,
 	  GnomeVFSFileSize num_bytes,
-	  GnomeVFSFileSize *bytes_written)
+	  GnomeVFSFileSize *bytes_written,
+	  GnomeVFSCancellation *cancellation)
 {
 	FileHandle *file_handle;
 	gint write_val;
@@ -397,7 +417,8 @@ seek_position_to_unix (GnomeVFSSeekPosition position)
 static GnomeVFSResult
 do_seek (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
-	 GnomeVFSFileOffset offset)
+	 GnomeVFSFileOffset offset,
+	 GnomeVFSCancellation *cancellation)
 {
 	FileHandle *file_handle;
 	gint lseek_whence;
@@ -439,7 +460,8 @@ do_tell (GnomeVFSMethodHandle *method_handle,
 
 static GnomeVFSResult
 do_truncate (GnomeVFSMethodHandle *method_handle,
-	     GnomeVFSFileSize where)
+	     GnomeVFSFileSize where,
+	     GnomeVFSCancellation *cancellation)
 {
 	FileHandle *file_handle;
 
@@ -635,7 +657,8 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 		   GnomeVFSURI *uri,
 		   GnomeVFSFileInfoOptions options,
 		   const GList *meta_keys,
-		   const GnomeVFSDirectoryFilter *filter)
+		   const GnomeVFSDirectoryFilter *filter,
+		   GnomeVFSCancellation *cancellation)
 {
 	gchar *directory_name;
 	DIR *dir;
@@ -656,7 +679,8 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-do_close_directory (GnomeVFSMethodHandle *method_handle)
+do_close_directory (GnomeVFSMethodHandle *method_handle,
+		    GnomeVFSCancellation *cancellation)
 {
 	DirectoryHandle *directory_handle;
 
@@ -672,7 +696,8 @@ do_close_directory (GnomeVFSMethodHandle *method_handle)
 inline static GnomeVFSResult
 read_directory (DirectoryHandle *handle,
 		GnomeVFSFileInfo *info,
-		gboolean *skip)
+		gboolean *skip,
+		GnomeVFSCancellation *cancellation)
 {
 	const GnomeVFSDirectoryFilter *filter;
 	GnomeVFSDirectoryFilterNeeds filter_needs;
@@ -768,14 +793,15 @@ read_directory (DirectoryHandle *handle,
 
 static GnomeVFSResult
 do_read_directory (GnomeVFSMethodHandle *method_handle,
-		   GnomeVFSFileInfo *file_info)
+		   GnomeVFSFileInfo *file_info,
+		   GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult result;
 	gboolean skip;
 
 	do {
 		result = read_directory ((DirectoryHandle *) method_handle,
-					 file_info, &skip);
+					 file_info, &skip, cancellation);
 		if (result != GNOME_VFS_OK)
 			break;
 		if (skip)
@@ -790,7 +816,8 @@ static GnomeVFSResult
 do_get_file_info (GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
-		  const GList *meta_keys)
+		  const GList *meta_keys,
+		  GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult result;
 	gchar *full_name;
@@ -816,7 +843,8 @@ static GnomeVFSResult
 do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfo *file_info,
 			      GnomeVFSFileInfoOptions options,
-			      const GList *meta_keys)
+			      const GList *meta_keys,
+			      GnomeVFSCancellation *cancellation)
 {
 	FileHandle *file_handle;
 	gchar *full_name;
@@ -854,7 +882,8 @@ do_is_local (const GnomeVFSURI *uri)
 
 static GnomeVFSResult
 do_make_directory (GnomeVFSURI *uri,
-		   guint perm)
+		   guint perm,
+		   GnomeVFSCancellation *cancellation)
 {
 	gint retval;
 
@@ -867,7 +896,8 @@ do_make_directory (GnomeVFSURI *uri,
 }
 
 static GnomeVFSResult
-do_remove_directory (GnomeVFSURI *uri)
+do_remove_directory (GnomeVFSURI *uri,
+		     GnomeVFSCancellation *cancellation)
 {
 	gint retval;
 
@@ -880,7 +910,8 @@ do_remove_directory (GnomeVFSURI *uri)
 }
 
 static GnomeVFSResult
-do_unlink (GnomeVFSURI *uri)
+do_unlink (GnomeVFSURI *uri,
+	   GnomeVFSCancellation *cancellation)
 {
 	gint retval;
 

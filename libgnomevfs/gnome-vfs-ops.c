@@ -19,7 +19,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it>
+   Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
 #ifdef HAVE_CONFIG_H
@@ -64,12 +64,13 @@ gnome_vfs_open_uri (GnomeVFSHandle **handle,
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (uri->method != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	result = uri->method->open (&method_handle, uri, open_mode);
+	result = uri->method->open (&method_handle, uri, open_mode, NULL);
 
-	if ((open_mode & GNOME_VFS_OPEN_RANDOM) &&
-	    (result == GNOME_VFS_ERROR_NOTSUPPORTED))
+	if ((open_mode & GNOME_VFS_OPEN_RANDOM)
+	    && result == GNOME_VFS_ERROR_NOTSUPPORTED)
 		result = uri->method->open (&method_handle, uri,
-					    open_mode&~GNOME_VFS_OPEN_RANDOM);
+					    open_mode & ~GNOME_VFS_OPEN_RANDOM,
+					    NULL);
 
 	if (result != GNOME_VFS_OK)
 		return result;
@@ -117,7 +118,7 @@ gnome_vfs_create_uri (GnomeVFSHandle **handle,
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	result = uri->method->create (&method_handle, uri, open_mode,
-				      exclusive, perm);
+				      exclusive, perm, NULL);
 	if (result != GNOME_VFS_OK)
 		return result;
 
@@ -131,7 +132,7 @@ gnome_vfs_close (GnomeVFSHandle *handle)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	return gnome_vfs_handle_do_close (handle);
+	return gnome_vfs_handle_do_close (handle, NULL);
 }
 
 GnomeVFSResult
@@ -142,7 +143,8 @@ gnome_vfs_read (GnomeVFSHandle *handle,
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	return gnome_vfs_handle_do_read (handle, buffer, bytes, bytes_written);
+	return gnome_vfs_handle_do_read (handle, buffer, bytes, bytes_written,
+					 NULL);
 }
 
 GnomeVFSResult
@@ -154,7 +156,7 @@ gnome_vfs_write (GnomeVFSHandle *handle,
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	return gnome_vfs_handle_do_write (handle, buffer, bytes,
-					  bytes_written);
+					  bytes_written, NULL);
 }
 
 GnomeVFSResult
@@ -164,7 +166,7 @@ gnome_vfs_seek (GnomeVFSHandle *handle,
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	return gnome_vfs_handle_do_seek (handle, whence, offset);
+	return gnome_vfs_handle_do_seek (handle, whence, offset, NULL);
 }
 
 GnomeVFSResult
@@ -190,7 +192,8 @@ gnome_vfs_get_file_info (const gchar *text_uri,
 	uri = gnome_vfs_uri_new (text_uri);
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
-	result = uri->method->get_file_info (uri, info, options, meta_list);
+	result = uri->method->get_file_info (uri, info, options, meta_list,
+					     NULL);
 
 	gnome_vfs_free_string_list (meta_list);
 	gnome_vfs_uri_unref (uri);
@@ -209,7 +212,8 @@ gnome_vfs_get_file_info_uri (GnomeVFSURI *uri,
 
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
-	result = uri->method->get_file_info (uri, info, options, meta_list);
+	result = uri->method->get_file_info (uri, info, options, meta_list,
+					     NULL);
 
 	gnome_vfs_free_string_list (meta_list);
 	return result;
@@ -230,7 +234,8 @@ gnome_vfs_get_file_info_from_handle (GnomeVFSHandle *handle,
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
 	result =  gnome_vfs_handle_do_get_file_info (handle, info,
-						     options, meta_list);
+						     options, meta_list,
+						     NULL);
 
 	gnome_vfs_free_string_list (meta_list);
 
@@ -249,7 +254,7 @@ gnome_vfs_make_directory_for_uri (GnomeVFSURI *uri,
 	if (uri->method->make_directory == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	result = uri->method->make_directory (uri, perm);
+	result = uri->method->make_directory (uri, perm, NULL);
 	return result;
 }
 
@@ -284,7 +289,7 @@ gnome_vfs_remove_directory_from_uri (GnomeVFSURI *uri)
 	if (uri->method->remove_directory == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	result = uri->method->remove_directory (uri);
+	result = uri->method->remove_directory (uri, NULL);
 	return result;
 }
 
@@ -316,7 +321,7 @@ gnome_vfs_unlink_from_uri (GnomeVFSURI *uri)
 	if (uri->method->unlink == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
-	return uri->method->unlink (uri);
+	return uri->method->unlink (uri, NULL);
 }
 
 GnomeVFSResult

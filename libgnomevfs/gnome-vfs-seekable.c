@@ -21,6 +21,8 @@
    Author: Michael Meeks <michael@imaginator.com>
 */
 
+/* TODO: Cancellation throughout!  */
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -34,28 +36,36 @@
 
 static GnomeVFSResult	do_open		(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode);
+					 GnomeVFSOpenMode mode,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_create 	(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
 					 gboolean exclusive,
-					 guint perm);
-static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle);
+					 guint perm,
+					 GnomeVFSCancellation *cancellation);
+static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
 					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_read);
+					 GnomeVFSFileSize *bytes_read,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_write	(GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
 					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_written);
+					 GnomeVFSFileSize *bytes_written,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult   do_seek		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
-					 GnomeVFSFileOffset offset);
+					 GnomeVFSFileOffset offset,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_tell		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileOffset *offset_return);
 static GnomeVFSResult	do_truncate 	(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileSize where);
+					 GnomeVFSFileSize where,
+					 GnomeVFSCancellation *cancellation);
+
 /* Our method_handle */
 typedef struct  {
 	/* Child chaining info */
@@ -106,7 +116,8 @@ read_file (SeekableMethodHandle *mh)
 	g_return_val_if_fail (mh != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	do {
-		INVOKE_CHILD (result, mh, read, (mh->child_handle, buffer, BLK_SIZE, &blk_read));
+		INVOKE_CHILD (result, mh, read, (mh->child_handle, buffer, BLK_SIZE, &blk_read,
+						 NULL));
 		if (result != GNOME_VFS_OK)
 			return result;
 		result = gnome_vfs_write (mh->tmp_file, buffer, blk_read, &blk_write);
@@ -132,10 +143,12 @@ write_file (SeekableMethodHandle *mh)
 	g_return_val_if_fail (mh != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	do {
-		result = gnome_vfs_read (mh->tmp_file, buffer, BLK_SIZE, &blk_read);
+		result = gnome_vfs_read (mh->tmp_file, buffer, BLK_SIZE,
+					 &blk_read);
 		if (result != GNOME_VFS_OK)
 			return result;
-		INVOKE_CHILD (result, mh, write, (mh->child_handle, buffer, blk_read, &blk_write));
+		INVOKE_CHILD (result, mh, write, (mh->child_handle, buffer,
+						  blk_read, &blk_write, NULL));
 		if (result != GNOME_VFS_OK)
 			return result;
 		if (blk_write != blk_read)
@@ -221,7 +234,8 @@ gnome_vfs_seek_emulate (GnomeVFSURI *uri, GnomeVFSMethodHandle *child_handle,
 static GnomeVFSResult
 do_open (GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
-	 GnomeVFSOpenMode mode)
+	 GnomeVFSOpenMode mode,
+	 GnomeVFSCancellation *cancellation)
 {
 	g_warning ("FIXME: Unhandled re-open");
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
@@ -232,14 +246,16 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	   GnomeVFSURI *uri,
 	   GnomeVFSOpenMode mode,
 	   gboolean exclusive,
-	   guint perm)
+	   guint perm,
+	   GnomeVFSCancellation *cancellation)
 {
 	g_warning ("FIXME: Unhandled re-create");
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
 
 static GnomeVFSResult
-do_close (GnomeVFSMethodHandle *method_handle)
+do_close (GnomeVFSMethodHandle *method_handle,
+	  GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult result;
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
@@ -258,7 +274,7 @@ do_close (GnomeVFSMethodHandle *method_handle)
 		mh->tmp_uri  = NULL;
 	}
 
-	INVOKE_CHILD (result, mh, close, (mh->child_handle));
+	INVOKE_CHILD (result, mh, close, (mh->child_handle, NULL));
 
 	/* Cover your back. */
 	memset (mh->wrapper_method, 0xae, sizeof (GnomeVFSMethod));
@@ -275,7 +291,8 @@ static GnomeVFSResult
 do_read (GnomeVFSMethodHandle *method_handle,
 	 gpointer buffer,
 	 GnomeVFSFileSize num_bytes,
-	 GnomeVFSFileSize *bytes_read)
+	 GnomeVFSFileSize *bytes_read,
+	  GnomeVFSCancellation *cancellation)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
@@ -287,7 +304,8 @@ static GnomeVFSResult
 do_write (GnomeVFSMethodHandle *method_handle,
 	  gconstpointer buffer,
 	  GnomeVFSFileSize num_bytes,
-	  GnomeVFSFileSize *bytes_written)
+	  GnomeVFSFileSize *bytes_written,
+	  GnomeVFSCancellation *cancellation)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
@@ -298,7 +316,8 @@ do_write (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 do_seek (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
-	 GnomeVFSFileOffset offset)
+	 GnomeVFSFileOffset offset,
+	 GnomeVFSCancellation *cancellation)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);
@@ -318,7 +337,8 @@ do_tell (GnomeVFSMethodHandle *method_handle,
 
 static GnomeVFSResult
 do_truncate (GnomeVFSMethodHandle *method_handle,
-	     GnomeVFSFileSize where)
+	     GnomeVFSFileSize where,
+	     GnomeVFSCancellation *cancellation)
 {
 	SeekableMethodHandle *mh = (SeekableMethodHandle *)method_handle;
 	CHECK_INIT (mh);

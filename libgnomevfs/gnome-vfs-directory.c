@@ -19,7 +19,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@gnu.org> */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -95,7 +95,8 @@ open_from_uri (GnomeVFSDirectoryHandle **handle,
 	       GnomeVFSURI *uri,
 	       GnomeVFSFileInfoOptions options,
 	       gchar *meta_keys[],
-	       const GnomeVFSDirectoryFilter *filter)
+	       const GnomeVFSDirectoryFilter *filter,
+	       GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSMethodHandle *method_handle;
 	GnomeVFSResult result;
@@ -107,7 +108,8 @@ open_from_uri (GnomeVFSDirectoryHandle **handle,
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
 	result = uri->method->open_directory (&method_handle, uri,
-					      options, meta_list, filter);
+					      options, meta_list, filter,
+					      cancellation);
 	if (result != GNOME_VFS_OK) {
 		gnome_vfs_free_string_list (meta_list);
 		return result;
@@ -127,7 +129,8 @@ open (GnomeVFSDirectoryHandle **handle,
       const gchar *text_uri,
       GnomeVFSFileInfoOptions options,
       gchar *meta_keys[],
-      const GnomeVFSDirectoryFilter *filter)
+      const GnomeVFSDirectoryFilter *filter,
+      GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
@@ -139,7 +142,8 @@ open (GnomeVFSDirectoryHandle **handle,
 	if (uri == NULL)
 		return GNOME_VFS_ERROR_INVALIDURI;
 
-	result = open_from_uri (handle, uri, options, meta_keys, filter);
+	result = open_from_uri (handle, uri, options, meta_keys, filter,
+				cancellation);
 
 	gnome_vfs_uri_unref (uri);
 
@@ -170,11 +174,11 @@ gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	return open (handle, text_uri, options, meta_keys, filter);
+	return open (handle, text_uri, options, meta_keys, filter, NULL);
 }
 
 /**
- * gnome_vfs_directory_open:
+ * gnome_vfs_directory_open_from_uri:
  * @handle: A pointer to a pointer to a GnomeVFSDirectoryHandle object
  * @uri: URI to open
  * @options: Options for reading file information
@@ -197,7 +201,7 @@ gnome_vfs_directory_open_from_uri (GnomeVFSDirectoryHandle **handle,
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	return open_from_uri (handle, uri, options, meta_keys, filter);
+	return open_from_uri (handle, uri, options, meta_keys, filter, NULL);
 }
 
 /**
@@ -218,7 +222,7 @@ gnome_vfs_directory_read_next (GnomeVFSDirectoryHandle *handle,
 
 	gnome_vfs_file_info_clear (file_info);
 	return handle->uri->method->read_directory (handle->method_handle,
-						    file_info);
+						    file_info, NULL);
 }
 
 /**
@@ -236,7 +240,8 @@ gnome_vfs_directory_close (GnomeVFSDirectoryHandle *handle)
 
 	CHECK_IF_SUPPORTED (handle->uri->method, close_directory);
 
-	result = handle->uri->method->close_directory (handle->method_handle);
+	result = handle->uri->method->close_directory (handle->method_handle,
+						       NULL);
 
 	gnome_vfs_directory_handle_destroy (handle);
 

@@ -18,7 +18,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it>
+   Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
 #ifdef HAVE_CONFIG_H
@@ -121,11 +121,12 @@ gnome_vfs_handle_get_open_mode (GnomeVFSHandle *handle)
 /* Actions.  */
 
 GnomeVFSResult
-gnome_vfs_handle_do_close (GnomeVFSHandle *handle)
+gnome_vfs_handle_do_close (GnomeVFSHandle *handle,
+			   GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult result;
 
-	INVOKE (result, handle, close, (handle->method_handle));
+	INVOKE (result, handle, close, (handle->method_handle, cancellation));
 
 	/* Even if close has failed, we shut down the handle.  FIXME?  */
 	gnome_vfs_handle_destroy (handle);
@@ -137,30 +138,35 @@ GnomeVFSResult
 gnome_vfs_handle_do_read (GnomeVFSHandle *handle,
 			  gpointer buffer,
 			  GnomeVFSFileSize num_bytes,
-			  GnomeVFSFileSize *bytes_read)
+			  GnomeVFSFileSize *bytes_read,
+			  GnomeVFSCancellation *cancellation)
 {
 	INVOKE_AND_RETURN (handle, read, (handle->method_handle,
-					  buffer, num_bytes, bytes_read));
+					  buffer, num_bytes, bytes_read,
+					  cancellation));
 }
 
 GnomeVFSResult
 gnome_vfs_handle_do_write (GnomeVFSHandle *handle,
 			   gconstpointer buffer,
 			   GnomeVFSFileSize num_bytes,
-			   GnomeVFSFileSize *bytes_written)
+			   GnomeVFSFileSize *bytes_written,
+			   GnomeVFSCancellation *cancellation)
 {
 	INVOKE_AND_RETURN (handle, write, (handle->method_handle,
-					   buffer, num_bytes, bytes_written));
+					   buffer, num_bytes, bytes_written,
+					   cancellation));
 }
 
 
 GnomeVFSResult
 gnome_vfs_handle_do_seek (GnomeVFSHandle *handle,
 			  GnomeVFSSeekPosition whence,
-			  GnomeVFSFileSize offset)
+			  GnomeVFSFileSize offset,
+			  GnomeVFSCancellation *cancellation)
 {
 	INVOKE_AND_RETURN (handle, seek, (handle->method_handle,
-					  whence, offset));
+					  whence, offset, cancellation));
 }
 
 GnomeVFSResult
@@ -176,8 +182,10 @@ GnomeVFSResult
 gnome_vfs_handle_do_get_file_info (GnomeVFSHandle *handle,
 				   GnomeVFSFileInfo *info,
 				   GnomeVFSFileInfoOptions options,
-				   const GList *meta_keys)
+				   const GList *meta_keys,
+				   GnomeVFSCancellation *cancellation)
 {
 	INVOKE_AND_RETURN (handle, get_file_info_from_handle,
-			   (handle->method_handle, info, options, meta_keys));
+			   (handle->method_handle, info, options, meta_keys,
+			    cancellation));
 }

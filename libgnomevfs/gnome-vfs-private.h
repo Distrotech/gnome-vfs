@@ -19,7 +19,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@gnu.org> */
 
 #ifndef _GNOME_VFS_PRIVATE_H
 #define _GNOME_VFS_PRIVATE_H
@@ -32,6 +32,7 @@ BEGIN_GNOME_DECLS
 
 #include "gnome-vfs-private-types.h"
 
+#include "gnome-vfs-cancellation.h"
 #include "gnome-vfs-configuration.h"
 #include "gnome-vfs-handle.h"
 #include "gnome-vfs-list-sort.h"

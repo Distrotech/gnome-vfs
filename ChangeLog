@@ -1,5 +1,92 @@
 1999-10-12  Ettore Perazzoli  <ettore@gnu.org>
 
+	* libgnomevfs/gnome-vfs-result.c: New error description for
+	`GNOME_VFS_ERROR_CANCELLED'.
+
+	* libgnomevfs/gnome-vfs-types.h: New error `GNOME_VFS_ERROR_CANCELLED'.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c (gnome_vfs_job_cancel): Use
+	the new `cancellation' member instead of `cancelled'.
+	(dispatch_job_callback): Likewise.
+	(gnome_vfs_job_new): Initialize `cancellation'.
+	(gnome_vfs_job_destroy): Destroy it.
+	(execute_open): Do not check `cancelled' anymore.
+	(execute_create): Likewise.
+	(execute_load_directory_not_sorted): Likewise.
+	(execute_load_directory_sorted): Likewise.
+	(xfer_callback): Likewise.
+
+	* libgnomevfs-pthread/gnome-vfs-job.h (struct _GnomeVFSJob):
+	Removed member `cancelled'.  Replaced by new member
+	`cancellation', of type `GnomeVFSCancellation'.
+
+	* modules/bzip2-method.c: Updated all the method implementation
+	functions to accept the `cancellation' parameter.  It is not
+	honoured yet though.
+	* modules/file-method.c: Likewise.
+	* modules/gzip-method.c: Likewise.
+	* modules/http-method.c: Likewise.
+
+	* libgnomevfs/gnome-vfs-seekable.c: Updated to accept the
+	`cancellation' parameter.  It does not honour it yet though.
+	(read_file): Pass `NULL' as the `cancellation' parameter for
+	`read'.
+	(write_file): Likewise for `write'.
+	(do_close): Likewise for `close'.
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_open_uri): Pass `NULL' as
+	the `cancellation' parameter to the `open' implementation.
+	(gnome_vfs_open_uri): Likewise.
+	(gnome_vfs_create_uri): Pass `NULL' as the `cancellation'
+	parameter to the `create' implementation.
+	(gnome_vfs_close): Pass `NULL' as the `cancellation' parameter to
+	`gnome_vfs_handle_do_close()'.
+	(gnome_vfs_read): Likewise with `gnome_vfs_handle_do_read()'.
+	(gnome_vfs_write): Likewise with `gnome_vfs_handle_do_write()'.
+	(gnome_vfs_seek): Likewise with `gnome_vfs_handle_do_seek()'.
+	(gnome_vfs_get_file_info): Likewise with the `get_file_info'
+	implementation.
+	(gnome_vfs_get_file_info_uri): Likewise.
+	(gnome_vfs_get_file_info_from_handle): Likewise with
+	`gnome_vfs_handle_do_get_file_info()'.
+	(gnome_vfs_make_directory_for_uri): Likewise with the
+	`make_directory' implementation.
+	(gnome_vfs_make_directory): Likewise.
+	(gnome_vfs_remove_directory_from_uri): Likewise with the
+	`remove_directory'implementation.
+	(gnome_vfs_unlink_from_uri): Likewise for `unlink'.
+
+	* libgnomevfs/gnome-vfs-handle.c (gnome_vfs_handle_do_close): New
+	parameter `cancellation'.
+	(gnome_vfs_handle_do_read): Likewise.
+	(gnome_vfs_handle_do_write): Likewise.
+	(gnome_vfs_handle_do_seek): Likewise.
+	(gnome_vfs_handle_do_get_file_info): Likewise.
+	* libgnomevfs/gnome-vfs-handle.h: Updated prototypes accordingly.
+
+	* libgnomevfs/gnome-vfs-directory.c (open): New parameter
+	`cancellation'.
+	(open_from_uri): Likewise.  Pass it to the `open_directory'
+	implementation.
+	(gnome_vfs_directory_open): Updated accordingly.
+	(gnome_vfs_directory_open_from_uri): Update accordingly.
+	(gnome_vfs_directory_read_next): Pass `NULL' as the `cancellation'
+	parameter in the call to the `read_directory' implementation.
+	(gnome_vfs_directory_close): Pass `NULL' as the `cancellation'
+	parameter in the call to the `close_directory' implementation.
+
+	* libgnomevfs/gnome-vfs-private-types.h: New opaque typedef
+	`GnomeVFSCancellation'.  Added new `cancellation' parameter to all
+	the method implementation typedefs.
+
+	* libgnomevfs/gnome-vfs-private.h: #include
+	"gnome-vfs-cancellation.h".
+
+	* libgnomevfs/gnome-vfs-cancellation.c: New file, implementing
+	cancellation for the VFS method implementations.
+
+	* libgnomevfs/gnome-vfs-cancellation.h: New file.
+
 	* modules/modules.conf: Added `ugzip' for compatibility with the
 	Midnight Commander's VFS.
 

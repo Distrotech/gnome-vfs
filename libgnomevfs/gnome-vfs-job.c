@@ -19,7 +19,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@gnu.org> */
 
 /* FIXME the slave threads do not die properly.  */
 /* FIXME check that all the data is freed properly //in the callback dispatching
@@ -335,7 +335,7 @@ dispatch_job_callback (GIOChannel *source,
 
 	g_io_channel_read (job->wakeup_channel_in, &c, 1, &bytes_read);
 
-	if (job->cancelled) {
+	if (gnome_vfs_cancellation_check (job->cancellation)) {
 		retval = FALSE;
 	} else {
 		retval = TRUE;
@@ -405,11 +405,12 @@ gnome_vfs_job_new (void)
 	new->notify_ack_lock = g_mutex_new ();
 
 	new->is_empty = TRUE;
-	new->cancelled = FALSE;
 
 	new->wakeup_channel_in = g_io_channel_unix_new (pipefd[0]);
 	new->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
 	new->wakeup_channel_lock = g_mutex_new ();
+
+	new->cancellation = gnome_vfs_cancellation_new ();
 
 	g_io_add_watch_full (new->wakeup_channel_in, G_PRIORITY_LOW, G_IO_IN,
 			     dispatch_job_callback, new, NULL);
@@ -461,6 +462,8 @@ gnome_vfs_job_destroy (GnomeVFSJob *job)
 	g_io_channel_unref (job->wakeup_channel_out);
 
 	g_mutex_free (job->wakeup_channel_lock);
+
+	gnome_vfs_cancellation_destroy (job->cancellation);
 
 	g_free (job);
 
@@ -606,7 +609,7 @@ execute_open (GnomeVFSJob *job)
 
 	notify_retval = job_oneway_notify_and_close (job);
 
-	if (! job->cancelled && result == GNOME_VFS_OK)
+	if (result == GNOME_VFS_OK)
 		return notify_retval;
 	else
 		return FALSE;
@@ -691,7 +694,7 @@ execute_create (GnomeVFSJob *job)
 
 	notify_retval = job_oneway_notify_and_close (job);
 
-	if (! job->cancelled && result == GNOME_VFS_OK)
+	if (result == GNOME_VFS_OK)
 		return notify_retval;
 	else
 		return FALSE;
@@ -823,9 +826,6 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 
 	count = 0;
 	while (1) {
-		if (job->cancelled)
-			break;
-
 		info = gnome_vfs_file_info_new ();
 		result = gnome_vfs_directory_read_next (handle, info);
 
@@ -887,7 +887,7 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 		 load_directory_job->request.meta_keys,
 		 filter);
 
-	if (job->cancelled || result != GNOME_VFS_OK) {
+	if (result != GNOME_VFS_OK) {
 		load_directory_job->notify.result = result;
 		load_directory_job->notify.list = NULL;
 		load_directory_job->notify.entries_read = 0;
@@ -915,8 +915,6 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 
 	previous_p = p;
 	while (p != NULL) {
-		if (job->cancelled)
-			break;
 		count++;
 		p = gnome_vfs_directory_list_position_next (p);
 		if (p == NULL
@@ -987,9 +985,6 @@ xfer_callback (const GnomeVFSXferProgressInfo *info,
 
 	job = (GnomeVFSJob *) data;
 	xfer_job = &job->info.xfer;
-
-	if (job->cancelled)
-		return FALSE;
 
 	/* Forward the callback to the master thread, which will fill in the
            `notify_answer' member appropriately.  */
@@ -1082,7 +1077,7 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 {
 	g_return_val_if_fail (job != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	job->cancelled = TRUE;
+	gnome_vfs_cancellation_cancel (job->cancellation);
 
 	return GNOME_VFS_OK;
 }

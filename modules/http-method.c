@@ -43,23 +43,30 @@ GnomeVFSMethod *init (void);
 
 static GnomeVFSResult	do_open		(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode);
-static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle);
+					 GnomeVFSOpenMode mode,
+					 GnomeVFSCancellation *cancellation);
+static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
 					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_read);
+					 GnomeVFSFileSize *bytes_read,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult   do_seek		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
-					 GnomeVFSFileOffset offset);
+					 GnomeVFSFileOffset offset,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_tell		(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition whence,
-					 GnomeVFSFileOffset *offset_return);
+					 GnomeVFSFileOffset *offset_return,
+					 GnomeVFSCancellation *cancellation);
 static GnomeVFSResult	do_get_file_info
 					(GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys);
+					 const GList *meta_keys,
+					 GnomeVFSCancellation *cancellation);
+
 static gboolean		do_is_local	(const GnomeVFSURI *uri);
 
 static GnomeVFSMethod method = {
@@ -141,7 +148,8 @@ file_handle_destroy (FileHandle *handle)
 static GnomeVFSResult
 do_open (GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
-	 GnomeVFSOpenMode mode)
+	 GnomeVFSOpenMode mode,
+	 GnomeVFSCancellation *cancellation)
 {
 	FileHandle    *new;
 	ghttp_request *fd = NULL;
@@ -166,7 +174,8 @@ do_open (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-do_close (GnomeVFSMethodHandle *method_handle)
+do_close (GnomeVFSMethodHandle *method_handle,
+	  GnomeVFSCancellation *cancellation)
 {
 	FileHandle *file_handle;
 
@@ -183,9 +192,10 @@ do_close (GnomeVFSMethodHandle *method_handle)
 
 static GnomeVFSResult
 do_read (GnomeVFSMethodHandle *method_handle,
-      gpointer buffer,
-      GnomeVFSFileSize num_bytes,
-      GnomeVFSFileSize *bytes_read)
+	 gpointer buffer,
+	 GnomeVFSFileSize num_bytes,
+	 GnomeVFSFileSize *bytes_read,
+	 GnomeVFSCancellation *cancellation)
 {
 	FileHandle   *file_handle;
 	const guint8 *data;
@@ -218,7 +228,8 @@ do_read (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 do_seek (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSSeekPosition whence,
-	 GnomeVFSFileOffset offset)
+	 GnomeVFSFileOffset offset,
+	 GnomeVFSCancellation *cancellation)
 {
 	FileHandle *file_handle;
 	GnomeVFSFileOffset       new_offset;
@@ -383,7 +394,8 @@ static GnomeVFSResult
 do_get_file_info (GnomeVFSURI *uri,
 		  GnomeVFSFileInfo *file_info,
 		  GnomeVFSFileInfoOptions options,
-		  const GList *meta_keys)
+		  const GList *meta_keys,
+		  GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult result;
 

@@ -1,3 +1,4 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /* gnome-vfs-job.h - Jobs for asynchronous operation of the GNOME
    Virtual File System (version for POSIX threads).
 
@@ -18,7 +19,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@gnu.org> */
 
 #ifndef _GNOME_VFS_JOB_PTHREAD_H
 #define _GNOME_VFS_JOB_PTHREAD_H
@@ -232,8 +233,8 @@ struct _GnomeVFSJob {
 	/* Extra parameter to pass to the callback for this job.  */
 	gpointer callback_data;
 
-	/* Whether this job has been requested to be cancelled.  */
-	gboolean cancelled;
+	/* Cancellation handler.  */
+	GnomeVFSCancellation *cancellation;
 
 	/* Job-specific information.  */
 	union {

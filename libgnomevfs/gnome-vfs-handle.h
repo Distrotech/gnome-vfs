@@ -33,24 +33,30 @@ void		gnome_vfs_handle_destroy	(GnomeVFSHandle *handle);
 GnomeVFSOpenMode
 		gnome_vfs_handle_get_open_mode	(GnomeVFSHandle *handle);
 
-GnomeVFSResult	gnome_vfs_handle_do_close	(GnomeVFSHandle *handle);
+GnomeVFSResult	gnome_vfs_handle_do_close	(GnomeVFSHandle *handle,
+						 GnomeVFSCancellation *cancellation);
 GnomeVFSResult	gnome_vfs_handle_do_read	(GnomeVFSHandle *handle,
 						 gpointer buffer,
 						 GnomeVFSFileSize num_bytes,
-						 GnomeVFSFileSize *bytes_read);
+						 GnomeVFSFileSize *bytes_read,
+						 GnomeVFSCancellation *cancellation);
 GnomeVFSResult	gnome_vfs_handle_do_write	(GnomeVFSHandle *handle,
 						 gconstpointer buffer,
 						 GnomeVFSFileSize num_bytes,
-						 GnomeVFSFileSize *bytes_written);
+						 GnomeVFSFileSize *bytes_written,
+						 GnomeVFSCancellation *cancellation);
 GnomeVFSResult	gnome_vfs_handle_do_close_directory
-						(GnomeVFSHandle *handle);
+						(GnomeVFSHandle *handle,
+						 GnomeVFSCancellation *cancellation);
 GnomeVFSResult	gnome_vfs_handle_do_read_directory
 						(GnomeVFSHandle *handle,
-						 GnomeVFSFileInfo *file_info);
+						 GnomeVFSFileInfo *file_info,
+						 GnomeVFSCancellation *cancellation);
 
 GnomeVFSResult	gnome_vfs_handle_do_seek	(GnomeVFSHandle *handle,
 						 GnomeVFSSeekPosition whence,
-						 GnomeVFSFileSize offset);
+						 GnomeVFSFileSize offset,
+						 GnomeVFSCancellation *cancellation);
 GnomeVFSResult	gnome_vfs_handle_do_tell	(GnomeVFSHandle *handle,
 						 GnomeVFSFileSize *offset_return);
 
@@ -58,6 +64,7 @@ GnomeVFSResult gnome_vfs_handle_do_get_file_info
 						(GnomeVFSHandle *handle,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSFileInfoOptions options,
-						 const GList *meta_keys);
+						 const GList *meta_keys,
+						 GnomeVFSCancellation *cancellation);
 
 #endif /* _GNOME_VFS_HANDLE_H */

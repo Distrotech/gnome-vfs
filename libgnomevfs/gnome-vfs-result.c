@@ -18,7 +18,7 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it>
+   Author: Ettore Perazzoli <ettore@gnu.org>
 */
 
 #ifdef HAVE_CONFIG_H
@@ -66,7 +66,8 @@ static gchar *status_strings[] = {
 	/* GNOME_VFS_ERROR_HOSTNOTFOUND */	N_("Host not found"),
 	/* GNOME_VFS_ERROR_INVALIDHOSTNAME */	N_("Host name not valid"),
 	/* GNOME_VFS_ERROR_HOSTHASNOADDRESS */  N_("Host has no address"),
-	/* GNOME_VFS_ERROR_LOGINFAILED */	N_("Login failed")
+	/* GNOME_VFS_ERROR_LOGINFAILED */	N_("Login failed"),
+	/* GNOME_VFS_ERROR_CANCELLED */		N_("Operation cancelled")
 };
 
 

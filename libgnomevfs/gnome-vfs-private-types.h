@@ -19,19 +19,21 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Author: Ettore Perazzoli <ettore@gnu.org> */
 
 #ifndef _GNOME_VFS_PRIVATE_TYPES_H
 #define _GNOME_VFS_PRIVATE_TYPES_H
 
 
+typedef struct _GnomeVFSCancellation GnomeVFSCancellation;
 typedef gpointer GnomeVFSMethodHandle;
 
 typedef GnomeVFSResult (* GnomeVFSMethodOpenFunc)
 					(GnomeVFSMethodHandle
 			       	 	**method_handle_return,
 					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode);
+					 GnomeVFSOpenMode mode,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodCreateFunc)
 					(GnomeVFSMethodHandle
@@ -39,27 +41,32 @@ typedef GnomeVFSResult (* GnomeVFSMethodCreateFunc)
 					 GnomeVFSURI *uri,
 					 GnomeVFSOpenMode mode,
 					 gboolean exclusive,
-					 guint perm);
+					 guint perm,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodCloseFunc)
-					(GnomeVFSMethodHandle *method_handle);
+					(GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodReadFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 gpointer buffer,
 					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_read_return);
+					 GnomeVFSFileSize *bytes_read_return,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodWriteFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 gconstpointer buffer,
 					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_written_return);
+					 GnomeVFSFileSize *bytes_written_return,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodSeekFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSSeekPosition  whence,
-					 GnomeVFSFileOffset    offset);
+					 GnomeVFSFileOffset    offset,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodTellFunc)
 					(GnomeVFSMethodHandle *method_handle,
@@ -67,50 +74,60 @@ typedef GnomeVFSResult (* GnomeVFSMethodTellFunc)
 
 typedef GnomeVFSResult (* GnomeVFSMethodTruncateFunc)
 					(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileSize where);
+					 GnomeVFSFileSize where,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodOpenDirectoryFunc)
 					(GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys,
-					 const GnomeVFSDirectoryFilter *filter);
+					 const GnomeVFSDirectoryFilter *filter,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodCloseDirectoryFunc)
-					(GnomeVFSMethodHandle *method_handle);
+					(GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodReadDirectoryFunc)
 					(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileInfo *file_info);
+					 GnomeVFSFileInfo *file_info,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFunc)
 					(GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys);
+					 const GList *meta_keys,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodGetFileInfoFromHandleFunc)
 					(GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys);
+					 const GList *meta_keys,
+					 GnomeVFSCancellation *cancellation);
 
 typedef gboolean       (* GnomeVFSMethodIsLocalFunc)
 					(const GnomeVFSURI *uri);
 
 typedef GnomeVFSResult (* GnomeVFSMethodRenameFunc)
 					(GnomeVFSURI *uri,
-					 const gchar *new_name);
+					 const gchar *new_name,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodMakeDirectoryFunc)
 					(GnomeVFSURI *uri,
-					 guint perm);
+					 guint perm,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodRemoveDirectoryFunc)
-					(GnomeVFSURI *uri);
+					(GnomeVFSURI *uri,
+					 GnomeVFSCancellation *cancellation);
 
 typedef GnomeVFSResult (* GnomeVFSMethodUnlinkFunc)
-                                        (GnomeVFSURI *uri);
+                                        (GnomeVFSURI *uri,
+					 GnomeVFSCancellation *cancellation);
 
 
 /* Structure defining an access method.	 This is also defined as an

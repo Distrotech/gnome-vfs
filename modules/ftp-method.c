@@ -1851,7 +1851,8 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 static GnomeVFSResult
 ftpfs_open (GnomeVFSMethodHandle **method_handle,
 	    GnomeVFSURI *uri,
-	    GnomeVFSOpenMode mode)
+	    GnomeVFSOpenMode mode,
+	    GnomeVFSCancellation *cancellation)
 {
 	ftpfs_file_handle_t *fh;
 	ftpfs_direntry_t *fe;
@@ -1914,7 +1915,8 @@ ftpfs_create (GnomeVFSMethodHandle **method_handle,
 	      GnomeVFSURI *uri,
 	      GnomeVFSOpenMode mode,
 	      gboolean exclusive,
-	      guint perm)
+	      guint perm,
+	      GnomeVFSCancellation *cancellation)
 {
 	ftpfs_file_handle_t *fh;
 	ftpfs_direntry_t *fe;
@@ -1976,7 +1978,8 @@ ftpfs_create (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-ftpfs_close (GnomeVFSMethodHandle *method_handle)
+ftpfs_close (GnomeVFSMethodHandle *method_handle,
+	     GnomeVFSCancellation *cancellation)
 {
 	ftpfs_file_handle_t *fp;
 	GnomeVFSResult result = GNOME_VFS_OK;
@@ -2006,7 +2009,8 @@ static GnomeVFSResult
 ftpfs_read (GnomeVFSMethodHandle *method_handle,
 	    gpointer buffer,
 	    GnomeVFSFileSize count,
-	    GnomeVFSFileSize *bytes_read)
+	    GnomeVFSFileSize *bytes_read,
+	    GnomeVFSCancellation *cancellation)
 {
 	ftpfs_file_handle_t *fp;
 	int n;
@@ -2042,7 +2046,8 @@ static GnomeVFSResult
 ftpfs_write (GnomeVFSMethodHandle *method_handle,
 	     gconstpointer buffer,
 	     GnomeVFSFileSize num_bytes,
-	     GnomeVFSFileSize *bytes_written)
+	     GnomeVFSFileSize *bytes_written,
+	     GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult result = GNOME_VFS_OK;
 	ftpfs_file_handle_t *fp;
@@ -2069,7 +2074,8 @@ ftpfs_write (GnomeVFSMethodHandle *method_handle,
 static GnomeVFSResult
 ftpfs_seek (GnomeVFSMethodHandle *method_handle,
 	    GnomeVFSSeekPosition whence,
-	    GnomeVFSFileOffset offset)
+	    GnomeVFSFileOffset offset,
+	    GnomeVFSCancellation *cancellation)
 {
 	ftpfs_file_handle_t *fp;
 
@@ -2108,7 +2114,8 @@ ftpfs_tell (GnomeVFSMethodHandle *method_handle,
 
 static GnomeVFSResult
 ftpfs_truncate (GnomeVFSMethodHandle *method_handle,
-		GnomeVFSFileSize where)
+		GnomeVFSFileSize where,
+		GnomeVFSCancellation *cancellation)
 {
 	g_error ("unimplemented routine reached (truncate)");
 	return GNOME_VFS_ERROR_WRONGFORMAT;
@@ -2119,7 +2126,8 @@ ftpfs_open_directory (GnomeVFSMethodHandle **method_handle,
 		      GnomeVFSURI *uri,
 		      GnomeVFSFileInfoOptions options,
 		      const GList *meta_keys,
-		      const GnomeVFSDirectoryFilter *filter)
+		      const GnomeVFSDirectoryFilter *filter,
+		      GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult ret;
 	ftpfs_dirent_t *dent;
@@ -2148,7 +2156,8 @@ ftpfs_open_directory (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult
-ftpfs_close_directory (GnomeVFSMethodHandle *method_handle)
+ftpfs_close_directory (GnomeVFSMethodHandle *method_handle,
+		       GnomeVFSCancellation *cancellation)
 {
 	ftpfs_dirent_t *dent = (ftpfs_dirent_t *) method_handle;
 
@@ -2275,7 +2284,8 @@ _ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 
 static GnomeVFSResult
 ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
-		      GnomeVFSFileInfo *file_info)
+		      GnomeVFSFileInfo *file_info,
+		      GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult result;
 	gboolean skip;
@@ -2339,7 +2349,8 @@ static GnomeVFSResult
 ftpfs_get_file_info (GnomeVFSURI *uri,
 		     GnomeVFSFileInfo *file_info,
 		     GnomeVFSFileInfoOptions options,
-		     const GList *meta_keys)
+		     const GList *meta_keys,
+		     GnomeVFSCancellation *cancellation)
 {
 	GnomeVFSResult ret;
 	ftpfs_uri_t *ftpfs_uri;
@@ -2398,7 +2409,8 @@ static GnomeVFSResult
 ftpfs_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 				 GnomeVFSFileInfo *file_info,
 				 GnomeVFSFileInfoOptions options,
-				 const GList *meta_keys)
+				 const GList *meta_keys,
+				 GnomeVFSCancellation *cancellation)
 {
 	ftpfs_file_handle_t *fh;
 
@@ -2420,13 +2432,16 @@ ftpfs_is_local (const GnomeVFSURI *uri)
 }
 
 static GnomeVFSResult
-ftpfs_make_directory (GnomeVFSURI *uri, guint perm)
+ftpfs_make_directory (GnomeVFSURI *uri,
+		      guint perm,
+		      GnomeVFSCancellation *cancellation)
 {
 	return send_ftp_command (uri, "MKD %s", OPT_FLUSH);
 }
 
 static GnomeVFSResult
-ftpfs_remove_directory (GnomeVFSURI *uri)
+ftpfs_remove_directory (GnomeVFSURI *uri,
+			GnomeVFSCancellation *cancellation)
 {
 	return send_ftp_command (uri, "RMD %s", OPT_FLUSH);
 
