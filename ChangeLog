@@ -1,3 +1,10 @@
+2000-07-18  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-private-utils.c
+	(gnome_vfs_string_list_from_string_array): Handle a zero-length
+	non-NULL array properly by turning a gratuitous do ... while loop
+	into a while loop.
+
 2000-07-17  Maciej Stachowiak  <mjs@eazel.com>
 
 	* modules/search-method.c, modules/search-method.h: Removed (moved

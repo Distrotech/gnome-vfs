@@ -61,10 +61,10 @@ gnome_vfs_string_list_from_string_array (const gchar * const array[])
 		;
 
 	list = NULL;
-	do {
+	while (i > 0) {
 		i--;
 		list = g_list_prepend (list, g_strdup (array[i]));
-	} while (i > 0);
+	}
 
 	return list;
 }
