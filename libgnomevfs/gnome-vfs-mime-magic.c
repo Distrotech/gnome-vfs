@@ -494,6 +494,10 @@ try_one_pattern_on_buffer (const char *sniffed_stream, GnomeMagicEntry *magic_en
 		}
 	}
 
+	if (*magic_entry->pattern != *sniffed_stream) {
+		return FALSE;
+	}
+	
 	for (count = magic_entry->pattern_length, pattern = magic_entry->pattern;
 		count > 0; count--) {
 		if (*pattern++ != *sniffed_stream++) {
@@ -503,6 +507,10 @@ try_one_pattern_on_buffer (const char *sniffed_stream, GnomeMagicEntry *magic_en
 	return TRUE;
 }
 
+enum {
+	SNIFF_BUFFER_CHUNK = 32
+};
+
 
 static gboolean
 gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer, 
@@ -511,9 +519,16 @@ gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer,
 	int offset;
 
 	for (offset = magic_entry->range_start; offset <= magic_entry->range_end; offset++) {
-		if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
-			offset + magic_entry->pattern_length) != GNOME_VFS_OK) {
-			return FALSE;
+		if (sniff_buffer->buffer_length < offset + magic_entry->pattern_length) {
+			/* the above is done only as an optimization --
+			 * gnome_vfs_mime_sniff_buffer_get already implements the laziness.
+			 * This gets called a million times though and every bit performance
+			 * is valuable. This way we avoid making the call.
+			 */
+			if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
+				offset + magic_entry->pattern_length + SNIFF_BUFFER_CHUNK) != GNOME_VFS_OK) {
+				return FALSE;
+			}
 		}
 		if (try_one_pattern_on_buffer (sniff_buffer->buffer + offset, magic_entry)) {
 			return TRUE;
