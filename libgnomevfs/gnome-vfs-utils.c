@@ -319,3 +319,18 @@ gnome_vfs_unescape_string_for_display (const gchar *escaped)
 	g_assert (out - result <= strlen (escaped));
 	return result;
 }
+
+void
+gnome_vfs_list_deep_free (GList *list)
+{
+	GList *p;
+
+	if (list == NULL)
+		return;
+
+	for (p = list; p != NULL; p = p->next) {
+		g_free (p->data);
+	}
+	g_list_free (list);
+}
+

@@ -32,5 +32,6 @@ GnomeVFSResult	gnome_vfs_find_directory (GnomeVFSURI 			*near_uri,
 					  GnomeVFSFindDirectoryKind 	kind,
 					  GnomeVFSURI 			**result,
 					  gboolean 			create_if_needed,
+		   			  gboolean			find_if_needed,
 					  guint 			permissions);
 #endif

@@ -750,6 +750,7 @@ tr_do_find_directory(GnomeVFSMethod * method,
 		     GnomeVFSFindDirectoryKind kind,
 		     GnomeVFSURI ** result_uri,
 		     gboolean create_if_needed,
+		     gboolean find_if_needed,
 		     guint permissions, GnomeVFSContext * context)
 {
 	TranslateMethod *tm = (TranslateMethod *) method;
@@ -762,7 +763,8 @@ tr_do_find_directory(GnomeVFSMethod * method,
 		retval =
 		    tm->real_method->find_directory(tm->real_method, real_uri,
 						    kind, result_uri,
-						    create_if_needed, permissions,
+						    create_if_needed, find_if_needed,
+						    permissions,
 						    context);
 
 		gnome_vfs_uri_unref(real_uri);

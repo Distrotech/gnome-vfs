@@ -66,5 +66,8 @@ gchar *gnome_vfs_unescape_string              (const gchar      *string,
  */
 gchar *gnome_vfs_unescape_string_for_display  (const gchar      *escaped);
 
+/* Free the list, freeing each item data with a g_free */
+void   gnome_vfs_list_deep_free 	     (GList 		*list);
+
 
 #endif /* GNOME_VFS_UTILS_H */

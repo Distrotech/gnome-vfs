@@ -48,8 +48,9 @@ gnome_vfs_find_directory (GnomeVFSURI 			*near_uri,
 			  GnomeVFSFindDirectoryKind 	kind,
 			  GnomeVFSURI 			**result,
 			  gboolean 			create_if_needed,
+			  gboolean			find_if_needed,
 			  guint 			permissions)
 {
 	return gnome_vfs_find_directory_cancellable (near_uri, kind, result,
-		create_if_needed, permissions, NULL);
+		create_if_needed, find_if_needed, permissions, NULL);
 }

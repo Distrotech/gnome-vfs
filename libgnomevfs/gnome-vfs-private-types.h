@@ -150,6 +150,7 @@ typedef GnomeVFSResult (* GnomeVFSMethodFindDirectoryFunc)
 					 GnomeVFSFindDirectoryKind kind,
 					 GnomeVFSURI **result_uri,
 					 gboolean create_if_needed,
+					 gboolean find_if_needed,
 					 guint perm,
 					 GnomeVFSContext *context);
 

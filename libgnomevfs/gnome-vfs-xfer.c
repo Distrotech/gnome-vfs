@@ -85,20 +85,6 @@ g_string_list_deep_copy (const GList *source)
 	return destination;
 }
 
-static void
-g_list_deep_free (GList *list)
-{
-	GList *p;
-
-	if (list == NULL)
-		return;
-
-	for (p = list; p != NULL; p = p->next) {
-		g_free (p->data);
-	}
-	g_list_free (list);
-}
-
 /* in asynch mode the progress callback does a context switch every time
  * it gets called. We'll only call it every now and then to not loose a
  * lot of performance
@@ -1890,8 +1876,8 @@ gnome_vfs_xfer_uri_internal (GnomeVFSURI *source_dir_uri,
 	call_progress (progress, GNOME_VFS_XFER_PHASE_COMPLETED);
 
 	free_progress (progress->progress_info);
-	g_list_deep_free (source_name_list);
-	g_list_deep_free (target_name_list);
+	gnome_vfs_list_deep_free (source_name_list);
+	gnome_vfs_list_deep_free (target_name_list);
 
 	return result;
 }

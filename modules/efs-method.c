@@ -894,6 +894,7 @@ do_find_directory (GnomeVFSMethod *method,
 		   GnomeVFSFindDirectoryKind kind,
 		   GnomeVFSURI **result_uri,
 		   gboolean create_if_needed,
+		   gboolean find_if_needed,
 		   guint permissions,
 		   GnomeVFSContext *context)
 {

@@ -246,6 +246,7 @@ gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
 				      GnomeVFSFindDirectoryKind kind,
 				      GnomeVFSURI **result_uri,
 				      gboolean create_if_needed,
+				      gboolean find_if_needed,
 				      guint permissions,
 				      GnomeVFSContext *context)
 {
@@ -271,7 +272,7 @@ gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
 	}
 
 	result = near_uri->method->find_directory (near_uri->method, near_uri, kind,
-		result_uri, create_if_needed, permissions, context);
+		result_uri, create_if_needed, find_if_needed, permissions, context);
 
 	gnome_vfs_uri_unref (near_uri);
 	return result;
