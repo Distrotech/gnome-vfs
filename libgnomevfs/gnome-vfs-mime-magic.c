@@ -17,7 +17,7 @@
 #include "gnome-vfs-mime-magic.h"
 
 
-#include "gnome-vfs-mime-sniff-buffer.h"
+#include "gnome-vfs-mime-sniff-buffer-private.h"
 #include "gnome-vfs-mime.h"
 
 #include <libgnome/libgnome.h>

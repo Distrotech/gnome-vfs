@@ -677,7 +677,6 @@ read_directory (DirectoryHandle *handle,
 	if (filter != NULL) {
 		filter_needs = gnome_vfs_directory_filter_get_needs (filter);
 	} else {
-		/* Shut up stupid compiler.  */
 		filter_needs = GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING;
 	}
 

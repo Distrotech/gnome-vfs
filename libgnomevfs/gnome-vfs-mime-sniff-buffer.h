@@ -32,12 +32,12 @@
 
 #include "gnome-vfs-types.h"
 
-typedef struct GnomeVFSMimeSniffBuffer {
-	guchar *buffer;
-	ssize_t buffer_length;
-	GnomeVFSHandle *handle;
-	gboolean owning;
-} GnomeVFSMimeSniffBuffer;
+typedef GnomeVFSResult (* GnomeVFSSniffBufferSeekCall)(gpointer context, 
+		GnomeVFSSeekPosition whence, GnomeVFSFileOffset offset);
+typedef GnomeVFSResult (* GnomeVFSSniffBufferReadCall)(gpointer context, 
+		gpointer buffer, GnomeVFSFileSize bytes, GnomeVFSFileSize *bytes_read);
+		
+typedef struct GnomeVFSMimeSniffBuffer GnomeVFSMimeSniffBuffer;
 
 GnomeVFSMimeSniffBuffer	*gnome_vfs_mime_sniff_buffer_new_from_handle 	
 					(GnomeVFSHandle 		*file);
@@ -47,6 +47,11 @@ GnomeVFSMimeSniffBuffer	*gnome_vfs_mime_sniff_buffer_new_from_memory
 GnomeVFSMimeSniffBuffer	*gnome_vfs_mime_sniff_buffer_new_from_existing_data 	
 					(const guchar 			*buffer, 
 					 ssize_t 			buffer_size);
+GnomeVFSMimeSniffBuffer	*gnome_vfs_mime_sniff_buffer_new_generic 	
+					(GnomeVFSSniffBufferSeekCall	seek_callback, 
+					 GnomeVFSSniffBufferReadCall	read_callback,
+					 gpointer			context);
+
 
 void			 gnome_vfs_mime_sniff_buffer_free 
 					(GnomeVFSMimeSniffBuffer	*buffer);

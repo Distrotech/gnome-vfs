@@ -13,5 +13,6 @@ GnomeVFSResult gnome_vfs_set_meta_for_list (GnomeVFSFileInfo *info,
 					    const gchar *file_name,
 					    const GList *meta_keys);
 	
+const char    *gnome_vfs_get_special_mime_type (GnomeVFSURI *uri);
 
 #endif

@@ -5,6 +5,7 @@
 0	string		\000\000\001\272	video/mpeg
 0	string		\000\000\001\263	video/mpeg
 0	string		\377\330\377		image/jpeg
+0	string		\xed\xab\xee\xdb	application/x-rpm
 0	string		Rar!			application/x-rar
 0	string		GIF8			image/gif
 4	string		moov			video/quicktime
@@ -62,5 +63,6 @@
 0       string		\037\213		application/x-gzip
 0	string		%!			application/x-postscript
 0	string		\037\235		application/compress
+0	string		\xed\xab\xee\xdb	application/x-rpm
 
 

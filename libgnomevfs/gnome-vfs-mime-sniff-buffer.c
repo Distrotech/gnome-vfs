@@ -24,8 +24,25 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include "gnome-vfs-mime-sniff-buffer.h"
+#include "gnome-vfs-mime-sniff-buffer-private.h"
 #include "gnome-vfs-ops.h"
+
+
+static GnomeVFSResult
+handle_seek_glue (gpointer context, GnomeVFSSeekPosition whence, 
+	GnomeVFSFileOffset offset)
+{
+	GnomeVFSHandle *handle = (GnomeVFSHandle *)context;
+	return gnome_vfs_seek (handle, whence, offset);
+}
+
+static GnomeVFSResult
+handle_read_glue (gpointer context, gpointer buffer, 
+	GnomeVFSFileSize bytes, GnomeVFSFileSize *bytes_read)
+{
+	GnomeVFSHandle *handle = (GnomeVFSHandle *)context;
+	return gnome_vfs_read (handle, buffer, bytes, bytes_read);
+}
 
 GnomeVFSMimeSniffBuffer *
 gnome_vfs_mime_sniff_buffer_new_from_handle (GnomeVFSHandle *file)
@@ -34,7 +51,25 @@ gnome_vfs_mime_sniff_buffer_new_from_handle (GnomeVFSHandle *file)
 
 	result = g_new0 (GnomeVFSMimeSniffBuffer, 1);
 	result->owning = TRUE;
-	result->handle = file;
+	result->context = file;
+	result->seek = handle_seek_glue;
+	result->read = handle_read_glue;
+
+	return result;
+}
+
+GnomeVFSMimeSniffBuffer	*
+gnome_vfs_mime_sniff_buffer_new_generic (GnomeVFSSniffBufferSeekCall seek_callback, 
+					 GnomeVFSSniffBufferReadCall read_callback,
+					 gpointer context)
+{
+	GnomeVFSMimeSniffBuffer	* result;
+	
+	result = g_new0 (GnomeVFSMimeSniffBuffer, 1);
+
+	result->seek = seek_callback;
+	result->read = read_callback;
+	result->context = context;
 
 	return result;
 }
@@ -107,7 +142,7 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 	buffer->buffer = g_realloc (buffer->buffer, size);
 
 	/* seek to the spot we last took off */
-	result = gnome_vfs_seek (buffer->handle, 
+	result = (buffer->seek) (buffer->context, 
 				 GNOME_VFS_SEEK_START,
 				 buffer->buffer_length);
 	if (result != GNOME_VFS_OK) {
@@ -115,7 +150,7 @@ gnome_vfs_mime_sniff_buffer_get (GnomeVFSMimeSniffBuffer *buffer,
 	}
 
 	/* read in more data */
-	result = gnome_vfs_read (buffer->handle, 
+	result = (buffer->read) (buffer->context, 
 				 buffer->buffer + buffer->buffer_length,
 				 size - buffer->buffer_length,
 				 &bytes_read);

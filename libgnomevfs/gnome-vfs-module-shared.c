@@ -22,6 +22,11 @@ gnome_vfs_mime_type_from_mode (mode_t mode)
 {
 	const gchar *mime_type;
 
+	/* FIXME:
+	 * The following returned values are not valid MIME types.
+	 * Should the returned types be "application/x-directory" 
+	 * or "x-special/directory"?
+	 */
 	if (S_ISREG (mode))
 		mime_type = NULL;
 	else if (S_ISDIR (mode))
@@ -40,6 +45,43 @@ gnome_vfs_mime_type_from_mode (mode_t mode)
 		mime_type = NULL;
 
 	return mime_type;
+}
+
+const char *
+gnome_vfs_get_special_mime_type (GnomeVFSURI *uri)
+{
+	GnomeVFSResult error;
+	GnomeVFSFileInfo info;
+
+	/* Get file info and examine the type field to see if file is 
+	 * one of the special kinds. 
+	 */
+	error = gnome_vfs_get_file_info_uri (uri, &info, GNOME_VFS_FILE_INFO_DEFAULT, NULL);
+	if (error != GNOME_VFS_OK) {
+		return NULL;
+	}
+
+	/* FIXME:
+	 * The following returned values are not valid MIME types.
+	 * Should the returned types be "application/x-directory" 
+	 * or "x-special/directory"?
+	 */
+	switch (info.type) {
+	case GNOME_VFS_FILE_TYPE_DIRECTORY:
+		return "special/directory";
+	case GNOME_VFS_FILE_TYPE_CHARDEVICE:
+		return "special/device-char";
+	case GNOME_VFS_FILE_TYPE_BLOCKDEVICE:
+		return "special/device-block";
+	case GNOME_VFS_FILE_TYPE_FIFO:
+		return "special/fifo";
+	case GNOME_VFS_FILE_TYPE_SOCKET:
+		return "special/socket";
+	default:
+		break;
+	}
+
+	return NULL;	
 }
 
 void

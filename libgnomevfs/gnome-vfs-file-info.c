@@ -402,13 +402,12 @@ gnome_vfs_file_info_matches (const GnomeVFSFileInfo *a,
 	    || a->atime != b->atime
 	    || a->mtime != b->mtime
 	    || a->ctime != b->ctime
-	    || a->mime_type != b->mime_type
-	    || strcmp (a->name, b->name) != 0)
+	    || strcmp (a->name, b->name) != 0) {
 		return FALSE;
+	}
 
-	if (a->mime_type == NULL) {
-		g_assert (b->mime_type == NULL);
-		return TRUE;
+	if (a->mime_type == NULL || b->mime_type == NULL) {
+		return a->mime_type == b->mime_type;
 	}
 
 	g_assert (a->mime_type != NULL && b->mime_type != NULL);
@@ -468,15 +467,12 @@ gnome_vfs_file_info_compare_for_sort (const GnomeVFSFileInfo *a,
 			/* Directories (e.g.) don't have mime types, so
 			 * we have to check the NULL case.
 			 */
-			if (a->mime_type != b->mime_type)
-			{
+			if (a->mime_type != b->mime_type) {
 				if (a->mime_type == NULL)
 					return -1;
 				if (b->mime_type == NULL)
 					return +1;
-				retval = g_strcasecmp (a->mime_type, b->mime_type);
-				if (retval != 0)
-					return retval;
+				return g_strcasecmp (a->mime_type, b->mime_type);
 			}
 			break;
 		default:
