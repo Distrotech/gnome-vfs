@@ -48,6 +48,22 @@
 
 #define DNS_REPLY_SIZE (64*1024)
 
+
+/* Some systems don't those namespaced constants defined, see 
+ * http://bugzilla.gnome.org/show_bug.cgi?id=162289
+ * I'm assuming that if 1 constant isn't defined, then all the others
+ * are missing too, please file a bug if that's not the case on your system
+ */
+#ifndef NS_MAXDNAME
+#define NS_MAXDNAME MAXDNAME
+#define NS_HFIXEDSZ HFIXEDSZ
+#define ns_c_in     C_IN
+#define ns_t_any    T_ANY
+#define ns_t_srv    T_SRV
+#define ns_t_txt    T_TXT
+#define ns_t_ptr    T_PTR
+#endif /* NS_MAXDNAME */
+
 /* Unicast DNS browsing: */
 
 typedef struct {
