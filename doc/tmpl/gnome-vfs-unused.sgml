@@ -1,3 +1,7 @@
+<!-- ##### SECTION ./tmpl/constants.sgml:Title ##### -->
+Constants
+
+
 <!-- ##### USER_FUNCTION GnomeVFSListCompareFunc ##### -->
 <para>
 
@@ -16,6 +20,12 @@
 @uri: 
 @Returns: 
 
+<!-- ##### SECTION ./tmpl/constants.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
 <!-- ##### FUNCTION gnome_vfs_ssl_new ##### -->
 <para>
 
@@ -24,6 +34,16 @@
 @host: 
 @port: 
 @Returns: 
+
+<!-- ##### SECTION ./tmpl/constants.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/constants.sgml:See_Also ##### -->
+<para>
+
+</para>
+
 
 <!-- ##### FUNCTION gnome_vfs_list_sort ##### -->
 <para>

@@ -1,3 +1,10 @@
+2001-06-06  Seth Nickell  <snickell@stanford.edu>
+
+	* doc/about.sgml:
+	* doc/tmpl/gnome-vfs-unused.sgml:
+
+	<sheepish look> ... thanks Havoc.
+	
 2001-06-03  Maciej Stachowiak  <mjs@eazel.com>
 
 	* libgnomevfs/gnome-vfs-socket-buffer.h,
