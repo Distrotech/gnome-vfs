@@ -1,3 +1,8 @@
+2004-01-14  Christian Neumair  <chris@gnome-de.org>
+
+	* modules/network-method.c:
+	Fixed tiny obvious typo.
+
 2004-01-14  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-mime-private.h:

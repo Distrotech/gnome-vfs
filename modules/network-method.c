@@ -254,7 +254,7 @@ update_smb_data (void)
 
 	if (smb_network == NULL) {
 		data = get_data_for_link ("smb://",
-					  _("Window Network"),
+					  _("Windows Network"),
 					  "gnome-fs-network");
 		smb_network = network_file_new ("windows network", data);
 		g_free (data);
