@@ -1,3 +1,10 @@
+2005-01-28  Vincent Untz  <vincent@vuntz.net>
+
+	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_extract_short_name): fix
+	to never return NULL. This happened with URIs that have encoded / in
+	the filename.
+	Fix bug #157723
+
 2005-01-16 Paolo Borelli <pborelli@katamail.com> 
 
 	* modules/sftp-method.c: always check gnome_vfs_unescape_string
