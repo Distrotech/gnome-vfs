@@ -68,7 +68,3 @@ gnome-vfs-config: gnome-vfs-config.in Makefile
 	      < $(srcdir)/gnome-vfs-config.in > gnome-vfs-config.tmp \
 	  && mv gnome-vfs-config.tmp gnome-vfs-config && \
 		chmod 755 gnome-vfs-config
-
-pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = gnome-vfs-2.0.pc
-
