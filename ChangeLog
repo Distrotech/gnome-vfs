@@ -1,3 +1,16 @@
+2000-09-16  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 3042, Adding new mime type doesn't work
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_mime_window):
+	Return the new mime type if one was created
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.h:
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(nautilus_mime_type_capplet_update_info), (add_mime_clicked):
+	Add info to main list.
+
 2000-09-15  Gene Z. Ragan  <gzr@eazel.com>
 
 	* data/mime/gnome-vfs.keys:
