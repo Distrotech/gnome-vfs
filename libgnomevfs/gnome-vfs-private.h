@@ -47,7 +47,7 @@ BEGIN_GNOME_DECLS
 #include "gnome-vfs-regexp-filter.h"
 #include "gnome-vfs-seekable.h"
 #include "gnome-vfs-shellpattern-filter.h"
-#include "gnome-vfs-utils.h"
+#include "gnome-vfs-private-utils.h"
 
 /* AIX requires this to be the first thing in the file.  */
 #ifndef __GNUC__

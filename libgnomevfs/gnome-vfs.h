@@ -43,6 +43,8 @@ BEGIN_GNOME_DECLS
 #include "gnome-vfs-async-ops.h" /* FIXME should be on top when we move the types from `gnome-vfs-complex-ops.h' to `gnome-vfs-types.h'.  */
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-uri.h"
+#include "gnome-vfs-utils.h"
+
 
 END_GNOME_DECLS
 

@@ -1,3 +1,26 @@
+2000-01-16  John Sullivan  <sullivan@eazel.com>
+
+	Split utils into public and private, and moved file-size-as-string
+	method into new public utils.
+
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	New files, containing most of what was in gnome-vfs-utils.h/c.
+
+	* libgnomevfs/gnome-vfs-utils.h:	
+	* libgnomevfs/gnome-vfs-utils.c:	
+	Moved everything from here to gnome-vfs-private-utils.h/c, except...
+	(gnome_vfs_size_as_string): Renamed to gnome_vfs_file_size_as_string,
+	changed parameter from ulong to GnomeVFSFileSize, replaced 
+	implementation with similar but slightly cleaner code written by Havoc
+	in nautilus/src/file-manager/fm-directory-view.c
+
+	* Makefile.am: Moved gnome-vfs-utils.h to public headers, added
+	gnome-vfs-private-utils.h/.c to the build.
+
+	* modules/http-method.c: (create_handle), (do_read): Updated all
+	callers of gnome_vfs_size_as_string to reflect new name.
+
 2000-01-16  Federico Mena Quintero  <federico@helixcode.com>
 
 	* libgnomevfs-pthread/Makefile.am: Do not put $(VFS_LIBS) in the

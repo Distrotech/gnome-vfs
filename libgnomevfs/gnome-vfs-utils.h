@@ -1,8 +1,9 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* gnome-vfs-utils.h - Private utility functions for the GNOME Virtual
+/* gnome-vfs-utils.h - Public utility functions for the GNOME Virtual
    File System.
 
    Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2000 Eazel, Inc.
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -19,34 +20,16 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@comm2000.it> */
+   Authors: Ettore Perazzoli <ettore@comm2000.it>
+   	    John Sullivan <sullivan@eazel.com> 
+*/
 
 #ifndef _GNOME_VFS_UTILS_H
 #define _GNOME_VFS_UTILS_H
 
-GList 		*gnome_vfs_string_list_from_string_array (const gchar *array[]);
-void	 	 gnome_vfs_free_string_list		 (GList *list);
-gchar   	*gnome_vfs_canonicalize_pathname         (gchar *path);
+#include <glib.h>
+#include "gnome-vfs-types.h"
 
-pid_t	 	 gnome_vfs_forkexec 	(const gchar *file_name,
-					 gchar *const argv[],
-					 GnomeVFSProcessOptions options,
-					 GnomeVFSProcessInitFunc init_func,
-					 gpointer data);
-GnomeVFSProcessRunResult
-	 	gnome_vfs_process_run_cancellable
-					(const gchar *file_name,
-					 gchar *const argv[],
-					 GnomeVFSProcessOptions options,
-					 GnomeVFSCancellation *cancellation,
-					 guint *exit_value);
-
-GnomeVFSResult	gnome_vfs_create_temp 	(const gchar *prefix,
-					 gchar **name_return,
-					 GnomeVFSHandle **handle_return);
-gboolean	gnome_vfs_atotm		(const gchar *time_string,
-					 time_t *value_return);
-
-gchar*          gnome_vfs_size_to_string   (guint bytes);
+gchar*          gnome_vfs_file_size_to_string   (GnomeVFSFileSize bytes);
 
 #endif /* _GNOME_VFS_UTILS_H */
