@@ -465,9 +465,9 @@ gnome_vfs_uri_dup (const GnomeVFSURI *uri)
 
 
 /**
- * gnome_vfs_uri_append_path:
+ * gnome_vfs_uri_append_append_path:
  * @uri: A GnomeVFSURI.
- * @path: A path component.
+ * @path: A piece of a URI (ie a fully escaped partial path)
  * 
  * Create a new URI obtained by appending @path to @uri.  This will take care
  * of adding an appropriate directory separator between the end of @uri and
@@ -475,8 +475,6 @@ gnome_vfs_uri_dup (const GnomeVFSURI *uri)
  * 
  * Return value: The new URI obtained by combining @uri and @path.
  **/
-/* FIXME this must be implemented in a much smarter way.  The most important
-   issue is that a `#' in `path' will break things rather badly.  */
 GnomeVFSURI *
 gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 			   const gchar *path)
@@ -516,6 +514,30 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 
 	return new;
 }
+
+/**
+ * gnome_vfs_uri_append_filename:
+ * @uri: A GnomeVFSURI.
+ * @path: any "regular" filename (can include #, /, etc)
+ * 
+ * Create a new URI obtained by appending @filename to @uri.  This will take care
+ * of adding an appropriate directory separator between the end of @uri and
+ * the start of @filename if necessary.
+ * 
+ * Return value: The new URI obtained by combining @uri and @path.
+ **/
+GnomeVFSURI *
+gnome_vfs_uri_append_filename (const GnomeVFSURI *uri,
+			   const gchar *filename)
+{
+	gchar *escaped_string;
+	GnomeVFSURI *new;
+	escaped_string = gnome_vfs_escape_string(filename, GNOME_VFS_URI_ENCODING_XALPHAS);
+	new = gnome_vfs_uri_append_path (uri, escaped_string);
+	g_free(escaped_string);
+	return new;
+}
+
 
 
 /**

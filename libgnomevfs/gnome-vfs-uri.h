@@ -27,8 +27,10 @@
 GnomeVFSURI 	     *gnome_vfs_uri_new          (const gchar *text_uri);
 GnomeVFSURI 	     *gnome_vfs_uri_ref          (GnomeVFSURI *uri);
 void        	      gnome_vfs_uri_unref        (GnomeVFSURI *uri);
-GnomeVFSURI 	     *gnome_vfs_uri_append_path  (const GnomeVFSURI *uri,
-						  const gchar *path);
+GnomeVFSURI          *gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
+						     const char *path);
+GnomeVFSURI          *gnome_vfs_uri_append_filename (const GnomeVFSURI *uri,
+						     const gchar *filename);
 gchar       	     *gnome_vfs_uri_to_string    (const GnomeVFSURI *uri,
 						  GnomeVFSURIHideOptions hide_options);
 GnomeVFSURI 	     *gnome_vfs_uri_dup          (const GnomeVFSURI *uri);
