@@ -1,3 +1,9 @@
+2002-06-13  Damon Chaplin  <damon@ximian.com>
+
+	* modules/file-method.c (do_find_directory): always use 0700 (S_IRWXU)
+	when creating trash directories outside of $HOME, so other users can't
+	see your files. Fixes bug #46475.
+
 2002-06-13  Glynn Foster  <glynn.foster@sun.com>
 
 	* docs/vfolder-info-spec.dtd: Initial version of the vfolder-info

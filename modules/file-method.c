@@ -1662,6 +1662,9 @@ do_find_directory (GnomeVFSMethod *method,
 		if (near_item_stat.st_dev != home_volume_stat.st_dev) {
 			/* This volume does not contain our home, we have to find/create the Trash
 			 * elsewhere on the volume. Use a heuristic to find a good place.
+			 * And use 0700 (S_IRWXU) for the permissions,
+			 * regardless of the requested permissions, so other
+			 * users can't view the trash files.
 			 */
 			FindByDeviceIDParameters tmp;
 			tmp.device_id = near_item_stat.st_dev;
@@ -1671,7 +1674,7 @@ do_find_directory (GnomeVFSMethod *method,
 
 			target_directory_path = find_trash_directory (full_name_near,  
 				near_item_stat.st_dev, create_if_needed, find_if_needed,
-				permissions, context);
+				S_IRWXU, context);
 
 			if (gnome_vfs_context_check_cancellation (context)) {
 				return GNOME_VFS_ERROR_CANCELLED;
