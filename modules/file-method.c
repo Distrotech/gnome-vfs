@@ -2259,22 +2259,21 @@ do_monitor_add (GnomeVFSMethod *method,
 	gnome_vfs_uri_ref (uri);
 	filename = get_path_from_uri (uri);
 
+	G_LOCK (fam_connection);
 	/* We need to queue up incoming messages to avoid blocking on write
 	   if there are many monitors being added */
 	fam_do_iter_unlocked ();
 	
 	if (monitor_type == GNOME_VFS_MONITOR_FILE) {
-		G_LOCK (fam_connection);
 		FAMMonitorFile (fam_connection, filename, 
 			&handle->request, handle);
-		G_UNLOCK (fam_connection);
 	} else {
-		G_LOCK (fam_connection);
 		FAMMonitorDirectory (fam_connection, filename, 
 			&handle->request, handle);
-		G_UNLOCK (fam_connection);
 	}
 
+	G_UNLOCK (fam_connection);
+	
 	*method_handle_return = (GnomeVFSMethodHandle *)handle;
 
 	g_free (filename);
