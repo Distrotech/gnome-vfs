@@ -84,7 +84,6 @@ fi
 %config %{sysconfdir}/vfs/modules/*.conf
 %dir %{prefix}/share/application-registry
 %{prefix}/bin/gnome-vfs-slave
-%{prefix}/bin/file-types-capplet
 %{prefix}/lib/*.0
 %{prefix}/lib/*.sh
 %{prefix}/lib/*.so
