@@ -13,7 +13,7 @@ BONOBO_CLASS_BOILERPLATE_FULL(
 	BonoboObject,
 	BONOBO_TYPE_OBJECT);
 
-static GStaticPrivate job_private = G_STATIC_PRIVATE_INIT;
+static GStaticPrivate client_call_private = G_STATIC_PRIVATE_INIT;
 
 static void
 gnome_vfs_client_call_finalize (GObject *object)
@@ -88,7 +88,7 @@ _gnome_vfs_client_call_get (GnomeVFSContext *context)
 	GnomeVFSCancellation *cancellation;
         PortableServer_POA poa;
 
-	client_call = g_static_private_get (&job_private);
+	client_call = g_static_private_get (&client_call_private);
 
 	if (client_call == NULL) {
 		/* DAEMON-TODO: Verify that this poa thread hint is
@@ -99,7 +99,7 @@ _gnome_vfs_client_call_get (GnomeVFSContext *context)
 					    "poa", poa,
 					    NULL);
 		CORBA_Object_release ((CORBA_Object)poa, NULL);
-		g_static_private_set (&job_private,
+		g_static_private_set (&client_call_private,
 				      client_call, (GDestroyNotify)bonobo_object_unref);
 	}
 
@@ -113,6 +113,20 @@ _gnome_vfs_client_call_get (GnomeVFSContext *context)
 	
 	return client_call;
 }
+
+
+void
+_gnome_vfs_client_call_destroy (void)
+{
+	GnomeVFSClientCall *client_call;
+	client_call = g_static_private_get (&client_call_private);
+
+	if (client_call != NULL) {
+		g_static_private_set (&client_call_private,
+				      NULL, NULL);
+	}	
+}
+
 
 void
 _gnome_vfs_client_call_finished (GnomeVFSClientCall *client_call,

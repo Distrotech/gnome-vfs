@@ -201,4 +201,20 @@ _gnome_vfs_get_client (void)
 void
 _gnome_vfs_client_shutdown (void)
 {
+	GnomeVFSClient *client;
+
+	/* Free the main thread client_call */
+	_gnome_vfs_client_call_destroy ();
+
+	client = NULL;
+	G_LOCK (the_client);
+	if (the_client != NULL) {
+		client = the_client;
+		the_client = NULL;
+	}
+	G_UNLOCK (the_client);
+	
+	if (client != NULL) {
+		bonobo_object_unref (client);
+	}
 }

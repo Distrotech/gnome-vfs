@@ -32,6 +32,7 @@ typedef struct {
 GType gnome_vfs_client_call_get_type (void) G_GNUC_CONST;
 
 GnomeVFSClientCall *_gnome_vfs_client_call_get               (GnomeVFSContext    *context);
+void                _gnome_vfs_client_call_destroy           (void);
 void                _gnome_vfs_client_call_finished          (GnomeVFSClientCall *client_call,
 							      GnomeVFSContext    *context);
 void                _gnome_vfs_client_call_delay_finish      (GnomeVFSClientCall *client_call);
