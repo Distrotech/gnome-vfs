@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-14 00:43+0900\n"
+"POT-Creation-Date: 2004-02-23 12:38+0100\n"
 "PO-Revision-Date: 2004-02-14 00:20+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -24,7 +24,11 @@ msgstr "Bonobo を初期化できませんでした"
 msgid "Could not initialize gnome vfs"
 msgstr "GNOME 仮想ファイルシステム (gnome-vfs) を初期化できませんでした"
 
-#: gtk/gtkfilesystemgnomevfs.c:1457
+#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "ファイルシステム"
+
+#: gtk/gtkfilesystemgnomevfs.c:1461
 #, c-format
 msgid "Bookmark saving failed (%s)"
 msgstr "ブックマークの保存に失敗 (%s)"
@@ -47,7 +51,7 @@ msgstr ""
 "画像 '%s' を読み込めませんでした: 理由は不明ですが、おそらく画像ファイルが壊"
 "れています"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:180
+#: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
 msgstr "ISO 9660 ボリューム"
 
@@ -107,112 +111,113 @@ msgid "Hardware Device Volume"
 msgstr "ハードウェア・デバイス・ボリューム"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
+#: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 Linux ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 Linux ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:46
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
 msgstr "MS-DOS ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
 msgstr "MacOS ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
 msgstr "CD-ROM ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
 msgstr "HSFS CD-ROM ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
 msgstr "JFS ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:52
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
 msgstr "Windows NT ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
 msgstr "システム・ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
 msgstr "メモリ・ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
 msgstr "Minix ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
 msgstr "NFS ネットワーク・ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
 msgstr "Netware ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS Linux ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
 msgstr "Windows 共有ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
 msgstr "SuperMount ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
 msgstr "DVD ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
 msgstr "UDFS Solaris ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
 msgstr "PCFS Solaris ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
 msgstr "拡張 DOS ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Xenix Volume"
 msgstr "Xenix ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XFS Linux Volume"
 msgstr "XFS Linux ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XIAFS Volume"
 msgstr "XIAFS ボリューム"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:102
+#: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "不明"
 
@@ -657,10 +662,6 @@ msgstr "ネットワーク"
 #: modules/computer-method.c:543
 msgid "Home"
 msgstr "ホーム"
-
-#: modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "ファイルシステム"
 
 #: modules/file-method.c:384
 #, c-format

@@ -11,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-01-31 04:01+0100\n"
+"POT-Creation-Date: 2004-02-23 12:38+0100\n"
 "PO-Revision-Date: 2004-02-04 13:25+0100\n"
 "Last-Translator: Arafat Medini <lumina@silverpen.de>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: daemon/gnome-vfs-daemon.c:588
 msgid "Could not initialize Bonobo"
@@ -27,7 +27,32 @@ msgstr "لم يمكن تشغيل بونوبو"
 msgid "Could not initialize gnome vfs"
 msgstr "لم يمكن تشغيل جنوم vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:180
+#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "نظام الملفات"
+
+#: gtk/gtkfilesystemgnomevfs.c:1461
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr ""
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr ""
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr ""
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr ""
+
+#: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
 msgstr "حجم ISO 9660"
 
@@ -87,112 +112,113 @@ msgid "Hardware Device Volume"
 msgstr "حجم جهاز آلي"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
+#: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
 msgstr "حجم لينكس Ext2"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
 msgstr "حجم لينكس Ext3"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:46
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
 msgstr "حجم MSDOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
 msgstr "حجم MacOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
 msgstr "حجم قرص مدمج"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
 msgstr "حجم قرص Hsfs المدمج"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
 msgstr "حجم JFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:52
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
 msgstr "حجم Windows NT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
 msgstr "حجم النظام"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
 msgstr "حجم الذاكرة"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
 msgstr "حجم مينكس"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
 msgstr "حجم NFS الشبكي"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
 msgstr "حجم Netware"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
 msgstr "حجم لينكس ReiserFS "
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
 msgstr "فضاء مشارك مع ونداوس"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
 msgstr "حجم SuperMount"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
 msgstr "حجم دي في دي"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
 msgstr "حجم Solaris/BSD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
 msgstr "حجم Udfs Solaris"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
 msgstr "حجم Pcfs Solaris"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
 msgstr "حجم Enhanced DOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows VFAT Volume"
 msgstr "حجم Windows VFAT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Xenix Volume"
 msgstr "حجم Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XFS Linux Volume"
 msgstr "حجم XFS Linux"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XIAFS Volume"
 msgstr "حجم XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:102
+#: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "مجهول"
 
@@ -459,9 +485,11 @@ msgid "Unknown error"
 msgstr "خطأ مجهول"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, c-format
+#, fuzzy, c-format
 msgid "%u byte"
-msgstr "%u·بايت"
+msgid_plural "%u bytes"
+msgstr[0] "%u·بايت"
+msgstr[1] "%u·بايت"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -561,15 +589,15 @@ msgid "Unable to unmount the selected volume."
 msgstr "لا يمكن إلغاء تجهيز الحجم المختار."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:285
+#: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
 msgstr "فشل تشغيل الأمر"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:278
+#: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
 msgstr "لا يمكن طرد الوسيط"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:454
+#: libgnomevfs/gnome-vfs-volume-ops.c:465
 msgid "Unable to unmount connected server"
 msgstr "لا يمكن إلغاء تجهيز النادل المتصل"
 
@@ -623,22 +651,22 @@ msgstr "أدوات"
 msgid "Windows"
 msgstr "نوافذ"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "الشبكة"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "الدليل المنزلي"
-
-#: modules/computer-method.c:557
-msgid "Filesystem"
-msgstr "نظام الملفات"
 
 #: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "جنوم VFSSeekPosition مجهول %d"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "شبكة ونداوس"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -755,55 +783,46 @@ msgstr "تشغيل البرنامج في شاشة طرفية"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-"إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين H323."
+msgstr "إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"إضبط·لـ·true·لتخصيص·برنامج·لأمر·معاينة·عناوين·HTTP."
+msgstr "إضبط·لـ·true·لتخصيص·برنامج·لأمر·معاينة·عناوين·HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"إضبط·لـ·true·لتخصيص·برنامج·لأمر·معاينة·عناوين·HTTPS."
+msgstr "إضبط·لـ·true·لتخصيص·برنامج·لأمر·معاينة·عناوين·HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
-"إضبط·لـ·true·لتخصيص·برنامج··لأمر·معاينة·عناوين·callto (النداء)."
+msgstr "إضبط·لـ·true·لتخصيص·برنامج··لأمر·معاينة·عناوين·callto (النداء)."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
-"إضبط·لـ·true·لتخصيص·برنامج·لأمر·معاينة·عناوين·ghelp."
+msgstr "إضبط·لـ·true·لتخصيص·برنامج·لأمر·معاينة·عناوين·ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
-"إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين info (المعلومات)."
+msgstr "إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين info (المعلومات)."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
-"إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين mailto (إرسال البريد)."
+msgstr "إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين mailto (إرسال البريد)."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr ""
-"إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين man (الدلائل)."
+msgstr "إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين man (الدلائل)."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr ""
-"إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين trash (سلة المهملات)."
+msgstr "إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين trash (سلة المهملات)."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
@@ -875,9 +894,9 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"اذا ضبط لـ true، فستطلب الاتصلات لنادل البروكسي التوثيق. مجموعة"
-"الـ username/password المعرف بـ \"/system/http_proxy/authentication_user"
-"\"·و·\"/system/http_proxy/authentication_password\"."
+"اذا ضبط لـ true، فستطلب الاتصلات لنادل البروكسي التوثيق. مجموعةالـ username/"
+"password المعرف بـ \"/system/http_proxy/authentication_user\"·و·\"/system/"
+"http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -947,8 +966,7 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذي"
-"تبروكسي عبره."
+"منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذيتبروكسي عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
@@ -964,10 +982,10 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"يحوي هذا المفتاح قائمة من المضيفين المتصلين مباشرة، عوضا عن"
-"المتصلين عبر بروكسي ما (هذا إذا كان نشطا). يمكن أن تكون القيم أسماء مضيفين أو"
-"ميدان (باستخدام وايلدكارد أولية مثل *.foo.com)، عناوين مضيفي الـ IP"
-"(IPv4 و IPv6) أو عناوين شبكة (مثل 192.168.0.0/24)."
+"يحوي هذا المفتاح قائمة من المضيفين المتصلين مباشرة، عوضا عنالمتصلين عبر "
+"بروكسي ما (هذا إذا كان نشطا). يمكن أن تكون القيم أسماء مضيفين أوميدان "
+"(باستخدام وايلدكارد أولية مثل *.foo.com)، عناوين مضيفي الـ IP(IPv4 و IPv6) "
+"أو عناوين شبكة (مثل 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -980,10 +998,6 @@ msgstr "استخدم بروكسي HTTP"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "اسم المستخدم الذي سيمرر عند القيام ببروكسية الـ HTTP."
-
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "شبكة ونداوس"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"

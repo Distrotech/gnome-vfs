@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.az\n"
-"POT-Creation-Date: 2004-02-22 15:06+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-23 12:38+0100\n"
 "PO-Revision-Date: 2004-02-22 19:52+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
 "Language-Team: Azerbaijani Turkish <gnome@azitt.com>\n"
@@ -22,12 +23,11 @@ msgstr "Bonobo başladıla bilmədi"
 msgid "Could not initialize gnome vfs"
 msgstr "Gnome vfs başladıla bilmədi"
 
-#: gtk/gtkfilesystemgnomevfs.c:815
-#: modules/computer-method.c:561
+#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
 msgid "Filesystem"
 msgstr "Fayl sistemi"
 
-#: gtk/gtkfilesystemgnomevfs.c:1458
+#: gtk/gtkfilesystemgnomevfs.c:1461
 #, c-format
 msgid "Bookmark saving failed (%s)"
 msgstr "Nişan qeydi bacarılmadı (%s)"
@@ -44,8 +44,10 @@ msgstr "'%s' faylı açıla bilmədi: %s"
 
 #: gtk/testfilechooser.c:228
 #, c-format
-msgid "Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr "'%s' rəsmi yüklənə bilmədi: səbəb bilinmir, deyəsən xətalı rəsm faylıdır"
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr ""
+"'%s' rəsmi yüklənə bilmədi: səbəb bilinmir, deyəsən xətalı rəsm faylıdır"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -222,8 +224,7 @@ msgstr "Namə'lum"
 msgid "Unknown op type %u"
 msgstr "Namə'lum op növü %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1064
-#: libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel açmaq üçün boru yaradıla bilmir: %s"
@@ -481,6 +482,12 @@ msgid "Unknown error"
 msgstr "Namə'lum xəta"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
+#, c-format
+msgid "%u byte"
+msgid_plural "%u bytes"
+msgstr[0] ""
+msgstr[1] ""
+
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
 msgid "%.1f KB"
@@ -542,7 +549,8 @@ msgstr "Şəbəkə vericisi"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Floppi sürücüsü bağlana bilmədi. Deyəsən sürücüdə disket yoxdur."
 
 #. All others
@@ -551,12 +559,20 @@ msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Sürücü bağlana bilmədi. Deyəsən sürücüdə mediya yoxdur."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
-msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
-msgstr "Floppi sürücüsü bağlana bilmədi. Deyəsən sürücüdəki disketin şəkilləndirməsi bağlamaq üçün uyğun deyil."
+msgid ""
+"Unable to mount the floppy drive. The floppy is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Floppi sürücüsü bağlana bilmədi. Deyəsən sürücüdəki disketin şəkilləndirməsi "
+"bağlamaq üçün uyğun deyil."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
-msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
-msgstr "Seçili sürücü bağlana bilmədi. Deyəsən sürücünün şəkilləndirməsi bağlamaq üçün uyğun deyil."
+msgid ""
+"Unable to mount the selected volume. The volume is probably in a format that "
+"cannot be mounted."
+msgstr ""
+"Seçili sürücü bağlana bilmədi. Deyəsən sürücünün şəkilləndirməsi bağlamaq "
+"üçün uyğun deyil."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -691,11 +707,19 @@ msgstr "Ön qurğulu terminal üçün icra ediləcək əmr"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
-msgstr "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
-msgid "The default terminal application to use for applications that require a terminal."
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
 msgstr "Terminala məcbur olan proqramlar üçün işlədiləcək ön qurğulu terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
@@ -755,40 +779,57 @@ msgid "Run program in terminal"
 msgstr "Proqramı terminalda işə sal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr "Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr "Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr "Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr "Set to true to have a program specified in \"command\" handle callto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr "Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr "Set to true to have a program specified in \"command\" handle info URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle info URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr "Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "Set to true to have a program specified in \"command\" handle man URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle man URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr "Set to true to have a program specified in \"command\" handle trash URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
@@ -855,8 +896,14 @@ msgid "HTTP proxy username"
 msgstr "HTTP vəkil istifadəçi adı"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-msgid "If true, then connections to the proxy server require authentication. The username/password combo defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr "If true, then connections to the proxy server require authentication. The username/password combo defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by \"/system/http_proxy/authentication_user"
+"\" and \"/system/http_proxy/authentication_password\"."
+msgstr ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by \"/system/http_proxy/authentication_user"
+"\" and \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -887,8 +934,11 @@ msgid "Secure HTTP proxy port"
 msgstr "E'tibarlı HTTP vəkil qovşaq qapısı"
 
 #: schemas/system_http_proxy.schemas.in.h:18
-msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
-msgstr "Vəkil quraşdırma modu. Dəstəklənən qiymətlər: \"none\", \"manual\", \"auto\"."
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\"."
+msgstr ""
+"Vəkil quraşdırma modu. Dəstəklənən qiymətlər: \"none\", \"manual\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -907,24 +957,48 @@ msgid "The machine name to proxy socks through."
 msgstr "Socks üçün vəkilin sistem adı."
 
 #: schemas/system_http_proxy.schemas.in.h:23
-msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
-msgstr "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
+msgid ""
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
+msgstr ""
+"The port on the machine defined by \"/system/http_proxy/host\" that you "
+"proxy through."
 
 #: schemas/system_http_proxy.schemas.in.h:24
-msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
-msgstr "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
+msgid ""
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
+msgstr ""
+"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
+"through."
 
 #: schemas/system_http_proxy.schemas.in.h:25
-msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
-msgstr "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
+msgid ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
+msgstr ""
+"The port on the machine defined by \"/system/proxy/secure_host\" that you "
+"proxy through."
 
 #: schemas/system_http_proxy.schemas.in.h:26
-msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
-msgstr "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
+msgid ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
+msgstr ""
+"The port on the machine defined by \"/system/proxy/socks_host\" that you "
+"proxy through."
 
 #: schemas/system_http_proxy.schemas.in.h:27
-msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -945,4 +1019,3 @@ msgstr "SMB iş qrupu"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "İstifadəçinin üzvü olduğu windows iş qrupu"
-

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-12 16:31+0100\n"
+"POT-Creation-Date: 2004-02-23 12:38+0100\n"
 "PO-Revision-Date: 2004-02-12 16:33+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -35,7 +35,11 @@ msgstr "No se pudo inicializar Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "No se pudo inicializar gnome vfs"
 
-#: gtk/gtkfilesystemgnomevfs.c:1457
+#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "Sistema de archivos"
+
+#: gtk/gtkfilesystemgnomevfs.c:1461
 #, c-format
 msgid "Bookmark saving failed (%s)"
 msgstr "Se ha producido un fallo al guardar el marcador (%s)"
@@ -54,9 +58,11 @@ msgstr "Fallo al abrir el archivo «%s»: %s"
 #, c-format
 msgid ""
 "Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr "Fallo al cargar la imagen «%s»: razón no conocida, probablemente un archivo de imagen corrupto"
+msgstr ""
+"Fallo al cargar la imagen «%s»: razón no conocida, probablemente un archivo "
+"de imagen corrupto"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:180
+#: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
 msgstr "Volumen ISO 9660"
 
@@ -116,112 +122,113 @@ msgid "Hardware Device Volume"
 msgstr "Volumen de dispositivo hardware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
+#: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
 msgstr "Volumen Linux Ext2"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
 msgstr "Volumen Linux Ext3"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:46
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
 msgstr "Volumen MSDOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
 msgstr "Volumen MacOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
 msgstr "Volumen CDROM"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
 msgstr "Volumen CDROM HSFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
 msgstr "Volumen JFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:52
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
 msgstr "Volumen Windows NT"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
 msgstr "Volumen de sistema"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
 msgstr "Volumen de memoria"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
 msgstr "Volumen Minix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
 msgstr "Volumen de red NFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
 msgstr "Volumen Netware"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
 msgstr "Volumen Linux ReiserFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
 msgstr "Volumen compartido de Windows"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
 msgstr "Volumen SuperMount"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
 msgstr "Volumen DVD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
 msgstr "Volumen Solaris/BSD"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
 msgstr "Volumen Solaris UDFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
 msgstr "Volumen Solaris PCFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
 msgstr "Volumen mejorado de DOS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows VFAT Volume"
 msgstr "Volumen VFAT de Windows"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Xenix Volume"
 msgstr "Volumen Xenix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XFS Linux Volume"
 msgstr "Volumen Linux XFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XIAFS Volume"
 msgstr "Volumen XIAFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:102
+#: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -666,10 +673,6 @@ msgstr "Red"
 #: modules/computer-method.c:543
 msgid "Home"
 msgstr "Directorio inicial"
-
-#: modules/computer-method.c:561
-msgid "Filesystem"
-msgstr "Sistema de archivos"
 
 #: modules/file-method.c:384
 #, c-format

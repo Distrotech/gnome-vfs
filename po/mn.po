@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-17 21:08+0100\n"
+"POT-Creation-Date: 2004-02-23 12:38+0100\n"
 "PO-Revision-Date: 2004-02-17 21:12+0100\n"
 "Last-Translator: Sanlig Badral <badral@openmn.org>\n"
 "Language-Team: Mongolian <openmn-gnome@lists.sf.net>\n"
@@ -33,7 +33,7 @@ msgstr "гноме vfs -г инициацлаж чадахгүй байна."
 msgid "Filesystem"
 msgstr "Файл систем"
 
-#: gtk/gtkfilesystemgnomevfs.c:1458
+#: gtk/gtkfilesystemgnomevfs.c:1461
 #, c-format
 msgid "Bookmark saving failed (%s)"
 msgstr "Хавчуурга хадгалагдсангүй (%s)"
@@ -50,10 +50,11 @@ msgstr "'%s' файлыг нээж чадсангүй: %s"
 
 #: gtk/testfilechooser.c:228
 #, c-format
-msgid "Failed to load image '%s': reason not known, probably a corrupt image file"
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
 msgstr ""
-"'%s' зургийг ачаалах боломжгүй: Шалтгаан үл мэдэгдэх, магад зургийн "
-"файл эвдэрсэн байх"
+"'%s' зургийг ачаалах боломжгүй: Шалтгаан үл мэдэгдэх, магад зургийн файл "
+"эвдэрсэн байх"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -115,112 +116,113 @@ msgid "Hardware Device Volume"
 msgstr "Техник хангамжийн өгөгдөл хадгалагч"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
+#: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
 msgstr "Ext2 линукс өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:45
+#: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
 msgstr "Ext3 өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:46
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
+#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
 msgstr "MSDOS өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
+#: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
 msgstr "MacOS өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:49
+#: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
 msgstr "КДРОМ өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:50
+#: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
 msgstr "Hsfs КДРОМ өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:51
+#: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
 msgstr "JFS өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:52
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
+#: libgnomevfs/gnome-vfs-filesystem-type.c:53
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
 msgstr "Виндовс НТ өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
+#: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
 msgstr "Системийн өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:54
+#: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
 msgstr "Санах ойн өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:55
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
 msgstr "Minix өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
 msgstr "NFS сүлжээ өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
 msgstr "Техникийн өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+#: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
 msgstr "ReiserFS линукс өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:64
+#: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
 msgstr "Виндовс хамтын өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:65
+#: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
 msgstr "SuperMount өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:66
+#: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
 msgstr "DVD өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:67
+#: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
 msgstr "Solaris/BSD өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:68
+#: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
 msgstr "Udfs Solaris өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:69
+#: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:70
+#: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
 msgstr "Өргөтгөсөн ДОС өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:71
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows VFAT Volume"
 msgstr "Виндовс VFAT өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Xenix Volume"
 msgstr "Xenix өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XFS Linux Volume"
 msgstr "XFS линукс өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XIAFS Volume"
 msgstr "XIAFS өгөгдөл хадгалагч"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:102
+#: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "Тодорхойгүй"
 
@@ -554,13 +556,15 @@ msgstr "Сүлжээний сервер"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid ""
+"Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "Уян диск хөтлөгчийг залгах боломжгүй. Хөтлөгчид магад диск алга."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Өгөгдөл хадгалагчийг залгах боломжгүй. Төхөөрөмжид өгөгдөл хадгалагч алга."
+msgstr ""
+"Өгөгдөл хадгалагчийг залгах боломжгүй. Төхөөрөмжид өгөгдөл хадгалагч алга."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
@@ -785,49 +789,60 @@ msgid "Run program in terminal"
 msgstr "Програмыг терминалд ажиллуулах"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 "Энэ түлхүүр үнэн бол, програмд H323-URLs -н тодорхойлогчийг »command« -д "
 "өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid "Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr "Энэ түлхүүр үнэн бол, програмд HTTP URLs-н тодорхойлогчийг »command« -д өгнө."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgstr ""
+"Энэ түлхүүр үнэн бол, програмд HTTP URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid "Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 "Энэ түлхүүр үнэн бол, програмд HTTPS URLs-н тодорхойлогчийг »command« -д "
 "өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid "Set to true to have a program specified in \"command\" handle callto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "Энэ түлхүүр үнэн бол, програмд  callto URLs-н тодорхойлогчийг »command« -д "
 "өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 "Энэ түлхүүр үнэн бол, програмд ghelp URLs-н тодорхойлогчийг »command« -д "
 "өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "Set to true to have a program specified in \"command\" handle info URLs."
-msgstr "Энэ түлхүүр үнэн бол, програмд info URLs-н тодорхойлогчийг »command« -д өгнө."
+msgid ""
+"Set to true to have a program specified in \"command\" handle info URLs."
+msgstr ""
+"Энэ түлхүүр үнэн бол, програмд info URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "Set to true to have a program specified in \"command\" handle mailto URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 "Энэ түлхүүр үнэн бол, програмд mailto URLs-н тодорхойлогчийг »command« -д "
 "өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr "Энэ түлхүүр үнэн бол, програмд man URLs-н тодорхойлогчийг »command« -д өгнө."
+msgstr ""
+"Энэ түлхүүр үнэн бол, програмд man URLs-н тодорхойлогчийг »command« -д өгнө."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid "Set to true to have a program specified in \"command\" handle trash URLs."
+msgid ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 "Энэ түлхүүр үнэн бол, програмд trash URLs-н тодорхойлогчийг »command« -д "
 "өгнө."
@@ -974,7 +989,8 @@ msgstr "Итгэмжилэгч порт  \"/system/proxy/ftp_host\" гэж то�
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "Итгэмжилэгч порт \"/system/proxy/secure_host\" гэж тодорхойлогдсон хост"
+msgstr ""
+"Итгэмжилэгч порт \"/system/proxy/secure_host\" гэж тодорхойлогдсон хост"
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
@@ -1013,4 +1029,3 @@ msgstr "SMB ажлын хэсэг"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "Цонхны ажлын хэсгийн хэрэглэгч бол:"
-

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-22 10:44+0100\n"
+"POT-Creation-Date: 2004-02-23 12:38+0100\n"
 "PO-Revision-Date: 2004-02-22 10:44+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -31,7 +31,7 @@ msgstr "GNOME-VFS konnte nicht initialisiert werden"
 msgid "Filesystem"
 msgstr "Dateisystem"
 
-#: gtk/gtkfilesystemgnomevfs.c:1458
+#: gtk/gtkfilesystemgnomevfs.c:1461
 #, c-format
 msgid "Bookmark saving failed (%s)"
 msgstr "Lesezeichen konnte nicht gespeichert werden (%s)"
@@ -50,7 +50,9 @@ msgstr "Die Datei »%s« konnte nicht geöffnet werden: %s"
 #, c-format
 msgid ""
 "Failed to load image '%s': reason not known, probably a corrupt image file"
-msgstr "Das Bild »%s« konnte nicht geladen werden: Grund unbekannt, vermutlich eine fehlerhafte Bilddatei"
+msgstr ""
+"Das Bild »%s« konnte nicht geladen werden: Grund unbekannt, vermutlich eine "
+"fehlerhafte Bilddatei"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
