@@ -1,20 +1,20 @@
-# gnome-vfs ja.po
-# Copyright (C) 2000-2003 Free Software Foundation, Inc.
+# gnome-vfs ja.po.
+# Copyright (C) 2000-2004 Free Software Foundation, Inc.
 # Akira TAGOH <at@ff.iij4u.or.jp>, 2000.
-# Takeshi AIHANA <aihana@gnome.gr.jp>, 2003.
+# Takeshi AIHANA <aihana@gnome.gr.jp>, 2003-2004.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2004-01-12 10:09+0100\n"
-"PO-Revision-Date: 2003-12-29 01:07+0900\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-12 20:54+0900\n"
+"PO-Revision-Date: 2004-01-12 20:51+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: daemon/gnome-vfs-daemon.c:573
 msgid "Could not initialize Bonobo"
@@ -31,27 +31,27 @@ msgstr "ISO 9660 ボリューム"
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d NUL 文字があります。"
+msgstr "%s:%d に NUL 文字があります。"
 
 #: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d メソッド名がありません。"
+msgstr "%s:%d にメソッド名がありません。"
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
 #, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d オプション・エンドマーカがありません。"
+msgstr "%s:%d にオプションのエンドマーカがありません。"
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr "%s:%d 不明なオプション %s があります。"
+msgstr "%s:%d に不明なオプション %s があります。"
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d モジュール名がありません。"
+msgstr "%s:%d にモジュール名がありません。"
 
 #: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
@@ -521,7 +521,6 @@ msgstr "不明なボリューム"
 msgid "Network server"
 msgstr "ネットワーク・サーバ"
 
-#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
@@ -529,7 +528,6 @@ msgstr ""
 "フロッピー・ドライブをマウントできません。おそらくフロッピーがドライブに挿入"
 "されていないようです。"
 
-#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
@@ -625,7 +623,7 @@ msgstr "ツール"
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr "ウィンドウ"
+msgstr "Windows"
 
 #: modules/computer-method.c:521
 msgid "Network"
@@ -995,14 +993,13 @@ msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "HTTP プロキシを利用するときに認証として引き渡すユーザ名です。"
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Window Network"
-msgstr "ネットワーク"
+msgstr "Windows ネットワーク"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB ワークグループ"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "ユーザが接続している Windows ワークグループです。"
