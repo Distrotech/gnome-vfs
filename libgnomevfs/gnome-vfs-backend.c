@@ -102,6 +102,23 @@ gnome_vfs_async_open (GnomeVFSAsyncHandle **handle_return,
 	GET_FUNC_PTR(gnome_vfs_async_open) (handle_return, text_uri, open_mode, callback, callback_data);
 }
 
+GnomeVFSResult	 
+gnome_vfs_async_open_uri (GnomeVFSAsyncHandle **handle_return,
+			  GnomeVFSURI *uri,
+			  GnomeVFSOpenMode open_mode,
+			  GnomeVFSAsyncOpenCallback callback,
+			  gpointer callback_data)
+{
+	static GnomeVFSResult	 
+		(*real_gnome_vfs_async_open_uri) (GnomeVFSAsyncHandle **handle_return,
+						  GnomeVFSURI *uri,
+						  GnomeVFSOpenMode open_mode,
+						  GnomeVFSAsyncOpenCallback callback,
+						  gpointer callback_data) = NULL;
+
+	GET_FUNC_PTR(gnome_vfs_async_open_uri) (handle_return, uri, open_mode, callback, callback_data);
+}
+
 GnomeVFSResult
 gnome_vfs_async_open_as_channel (GnomeVFSAsyncHandle **handle_return,
 				 const gchar *text_uri,
