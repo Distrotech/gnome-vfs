@@ -1,3 +1,21 @@
+2000-10-31  Gene Z. Ragan  <gzr@eazel.com>
+
+	Made copying work.  There is still an issue with more
+	data being copied than requested. Will research problem more.
+	
+	* modules/cdda-method.c: 
+	(get_track_index_from_uri):
+	Return index of uri in cdda table.
+
+	(write_wav_header):
+	Write wav format header data into a memory buffer.
+
+	(do_open), (do_read):
+	 Call new routines above.
+
+	* modules/Makefile.am:
+	Remove module from official build
+
 2000-10-30  Gene Z. Ragan  <gzr@eazel.com>
 
 	* modules/Makefile.am:

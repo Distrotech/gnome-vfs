@@ -46,7 +46,6 @@ modulesconf_DATA =				\
 
 
 ###  `cdda' method
-
 #libcdda_la_SOURCES = 				\
 #	cdda-method.c 				\
 #	cdda-method.h				\

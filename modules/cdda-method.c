@@ -85,7 +85,7 @@ static int		get_data_size 				(cdrom_drive 					*drive,
 											 int 							track);
 static gboolean	is_file_is_on_disc 			(CDDAContext 					*context, 
 											 const GnomeVFSURI 				*uri);
-static void 	write_wav_header 			(int 							fd, 
+static int 		write_wav_header 			(gpointer 						buffer, 
 											 long 							bytes);
 
 static CDDAContext *
@@ -172,6 +172,25 @@ read_handle_destroy (ReadHandle *handle)
 	g_free (handle);
 }
 
+static int
+get_track_index_from_uri (CDDAContext *context, GnomeVFSURI *uri) {
+	const char *base_name;
+	int index;
+	
+	base_name = gnome_vfs_uri_get_basename (uri);
+	if (base_name == NULL) {
+		return -1;
+	}
+
+	// Check and see if filename is in cddb data list
+	for (index = 0; index < context->drive->tracks; index++) {
+		if (strcmp (base_name, context->disc_data.data_track[index].track_name) == 0) {
+			return index + 1;
+		}
+	}
+	
+	return -1;
+}
 
 static GnomeVFSResult 
 do_open (GnomeVFSMethod *method,
@@ -197,9 +216,16 @@ do_open (GnomeVFSMethod *method,
 			// Set up cdparanoia
 			if (!read_handle->inited) {
 				disc_info data;
-				int track = 1;
+				int track;
 				int paranoia_mode;
 				long offset;
+
+				track = get_track_index_from_uri (global_context, uri);
+				if (track == -1) {
+					return GNOME_VFS_ERROR_GENERIC;
+				}
+
+				g_message ("Track %d", track);
 				
 				CDStat (global_context->drive->ioctl_fd, &data, TRUE);
 				
@@ -284,58 +310,13 @@ do_read (GnomeVFSMethod *method,
 
 	readbuf = NULL;
 
-	if (!read_handle->wrote_header) {
-		char *ptr;
-		long bytes;
-		int var;
-		
-		if (0) {
-			write_wav_header (1, (read_handle->last_sector - read_handle->first_sector + 1) 
-					  * CD_FRAMESIZE_RAW);
-		}
-		memset (buffer, 0, num_bytes);
-		
-		bytes = (read_handle->last_sector - read_handle->first_sector + 1) * CD_FRAMESIZE_RAW;
-		
-		ptr = buffer;
-		
-		memcpy (ptr, "RIFF", 4); ptr += 4;
-
-		var = bytes + 44 - 8;
-		memcpy (ptr, &var, 4); ptr += 4;
-		
-		memcpy (ptr, "WAVEfmt", 8); ptr += 8;
-
-		var = 16;
-		memcpy (ptr, &var, 4); ptr += 4;
-
-		var = 1;
-		memcpy (ptr, &var, 2); ptr += 2;
-		
-		var = 2;
-		memcpy (ptr, &var, 2); ptr += 2;
-
-		var = 44100;
-		memcpy (ptr, &var, 4); ptr += 4;
-
-		var = 44100 * 2 * 2;
-		memcpy (ptr, &var, 4); ptr += 4;
-
-		var = 4;
-		memcpy (ptr, &var, 2); ptr += 2;
-
-		var = 16;
-		memcpy (ptr, &var, 2); ptr += 2;
-		
-		memcpy (ptr, "data", 4); ptr += 4;
-		
-		memcpy (ptr, &bytes, 4); ptr += 4;
-		
-		*bytes_read = 42;
-		
+	if (!read_handle->wrote_header) {		
+		*bytes_read = write_wav_header (buffer, (read_handle->last_sector - read_handle->first_sector + 1) 
+										* CD_FRAMESIZE_RAW);
 		read_handle->wrote_header = TRUE;
 		return GNOME_VFS_OK;
-	}	
+	}
+
 		
 	if (read_handle->cursor <= read_handle->last_sector) {
 		readbuf = paranoia_read (read_handle->paranoia, paranoia_callback);
@@ -349,6 +330,8 @@ do_read (GnomeVFSMethod *method,
 	}
 
 	read_handle->cursor++;	
+
+	memcpy (buffer, readbuf, CD_FRAMESIZE_RAW);	
 	*bytes_read = CD_FRAMESIZE_RAW;
 	       
 	return GNOME_VFS_OK;
@@ -838,6 +821,7 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 {
 }
 
+#if 0
 static void 
 put_num (long num, int f, int endianness, int bytes)
 {
@@ -864,21 +848,49 @@ put_num (long num, int f, int endianness, int bytes)
 		}
 	}
 }
+#endif
 
-static void 
-write_wav_header (int f, long bytes)
+static int 
+write_wav_header (gpointer buffer, long bytes)
 {
-	/* quick and dirty */
-	write (f, "RIFF", 4);                	/*  0-3 */
-	put_num (bytes + 44 - 8, f, 0, 4);	/*  4-7 */
-	write (f,"WAVEfmt ", 8);            	/*  8-15 */
-	put_num (16, f, 0, 4);                	/* 16-19 */
-	put_num (1, f, 0, 2);                 	/* 20-21 */
-	put_num (2, f, 0, 2);                 	/* 22-23 */
-	put_num (44100, f, 0, 4);             	/* 24-27 */
-	put_num (44100 * 2 * 2, f, 0, 4);     	/* 28-31 */
-	put_num (4 , f, 0, 2);                 	/* 32-33 */
-	put_num (16, f, 0, 2);                	/* 34-35 */
-	write (f, "data", 4);                	/* 36-39 */
-	put_num (bytes, f, 0, 4);             	/* 40-43 */
+		char *ptr;
+		int var;
+
+		memset (buffer, 0, CD_FRAMESIZE_RAW);
+		
+		ptr = buffer;
+		
+		memcpy (ptr, "RIFF", 4); ptr += 4;
+
+		var = bytes + 44 - 8;
+		memcpy (ptr, &var, 4); ptr += 4;
+		
+		memcpy (ptr, "WAVEfmt ", 8); ptr += 8;
+
+		var = 16;
+		memcpy (ptr, &var, 4); ptr += 4;
+
+		var = 1;
+		memcpy (ptr, &var, 2); ptr += 2;
+		
+		var = 2;
+		memcpy (ptr, &var, 2); ptr += 2;
+
+		var = 44100;
+		memcpy (ptr, &var, 4); ptr += 4;
+
+		var = 44100 * 2 * 2;
+		memcpy (ptr, &var, 4); ptr += 4;
+
+		var = 4;
+		memcpy (ptr, &var, 2); ptr += 2;
+
+		var = 16;
+		memcpy (ptr, &var, 2); ptr += 2;
+		
+		memcpy (ptr, "data", 4); ptr += 4;
+		
+		memcpy (ptr, &bytes, 4); ptr += 4;
+
+		return 44;
 }
