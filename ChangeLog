@@ -1,3 +1,9 @@
+1999-08-30  Miguel de Icaza  <miguel@nuclecu.unam.mx>
+
+	* modules/ftp-method.c (IS_LINEAR): Define macro.
+	GNOME_VFS_OPEN_RANDOM means we need seek support, otherwise we are
+	a linear transfer.  Cool.
+
 1999-08-28  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs-corba/gnome-vfs-async-ops.c
