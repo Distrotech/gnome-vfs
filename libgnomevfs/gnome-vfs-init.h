@@ -26,10 +26,6 @@
 
 #include <glib/gtypes.h>
 
-#ifdef HAVE_POPT_H
-#include <popt.h>
-#endif
-
 G_BEGIN_DECLS
 
 gboolean gnome_vfs_init        (void);

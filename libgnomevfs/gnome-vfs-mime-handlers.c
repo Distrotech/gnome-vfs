@@ -29,6 +29,7 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-utils.h"
+#include <bonobo-activation/bonobo-activation-activate.h>
 #include <gconf/gconf-client.h>
 #include <stdio.h>
 #include <string.h>

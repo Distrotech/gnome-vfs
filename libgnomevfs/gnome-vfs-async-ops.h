@@ -25,7 +25,6 @@
 #ifndef GNOME_VFS_ASYNC_OPS_H
 #define GNOME_VFS_ASYNC_OPS_H
 
-#include <glib/gconvert.h> /* remove when giochannel.h is fixed */
 #include <glib/giochannel.h>
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>

@@ -1,5 +1,13 @@
 2002-01-17  Darin Adler  <darin@bentspoon.com>
 
+	* libgnomevfs/gnome-vfs-async-ops.h: Remove unneeded includes.
+	* libgnomevfs/gnome-vfs-init.h: Remove unneeded includes.
+	* libgnomevfs/gnome-vfs-mime-handlers.h: Remove unneeded includes.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c: Add includes.
+
+2002-01-17  Darin Adler  <darin@bentspoon.com>
+
 	* libgnomevfs/gnome-vfs-mime.h: Removed all sorts of extra
 	include statements that somehow got in here.
 
