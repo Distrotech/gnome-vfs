@@ -181,7 +181,7 @@ init_seek (SeekableMethodHandle *mh)
 		return GNOME_VFS_ERROR_NOSPACE;
 
 	mh->tmp_uri = g_strdup_printf ("file:%s", stem);
-	g_warning ("Opening temp seekable file '%s'\n", mh->tmp_uri);
+	g_warning ("Opening temp seekable file '%s'", mh->tmp_uri);
 	
 	/* Open the file */
 	result = gnome_vfs_create (&mh->tmp_file, mh->tmp_uri, 

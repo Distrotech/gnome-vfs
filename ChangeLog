@@ -1,4 +1,13 @@
+2000-04-05  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (fast_move): Fixed an infinite
+	loop. (It even had a comment that said it was an infinite loop.)
+
+	* libgnomevfs/gnome-vfs-seekable.c (init_seek): Got rid of \n
+	in a g_warning.
+
 2000-04-05  Ian McKellar <yakk@yakk.net>
+	
 	* modules/http-method.c
 	Added a create method, and fixed the write/close method so that
 	Nautilus can successfully store metafiles, and so writing to WebDAV
@@ -12,6 +21,7 @@
 	calling unref.
 	
 2000-04-04  Ian McKellar <yakk@yakk.net>
+	
 	* modules/http-method.c
 	Fixed WebDAV directory code to remove leading "/" from filenames.
 

@@ -859,11 +859,8 @@ fast_move (GnomeVFSURI *source_dir_uri,
 		}
 
 		if (skip) {
-			/* FIXME:
-			 * this looks like an infinite loop
-			 */
 			free_progress (&progress_info);
-			continue;
+			goto next;
 		}
 		if (result != GNOME_VFS_OK) {
 			/* FIXME:
@@ -881,6 +878,7 @@ fast_move (GnomeVFSURI *source_dir_uri,
 			return GNOME_VFS_ERROR_INTERRUPTED;
 		}
 
+	next:
 		sp = sp->next;
 		if (tp != NULL)
 			tp = tp->next;
