@@ -194,6 +194,9 @@ _gnome_vfs_get_iso9660_volume_name (int fd)
 {
 	struct iso_primary_descriptor iso_buffer;
 	int offset;
+	int i;
+	int vd_alt_offset;
+	gchar *joliet_label;
 
 	memset (&iso_buffer, 0, sizeof (struct iso_primary_descriptor));
 	
@@ -203,8 +206,31 @@ _gnome_vfs_get_iso9660_volume_name (int fd)
 	offset = 0;
 #endif
 
-	lseek (fd, (off_t) 2048*(offset+16), SEEK_SET);
-	read (fd, &iso_buffer, 2048);
+#define ISO_SECTOR_SIZE   2048
+#define ISO_ROOT_START   (ISO_SECTOR_SIZE * (offset + 16))
+#define ISO_VD_MAX        84
+
+	for (i = 0, vd_alt_offset = ISO_ROOT_START + ISO_SECTOR_SIZE;
+	     i < ISO_VD_MAX;
+	     i++, vd_alt_offset += ISO_SECTOR_SIZE)
+	{
+		lseek (fd, (off_t) vd_alt_offset, SEEK_SET);
+		read (fd, &iso_buffer, ISO_SECTOR_SIZE);
+		if ((unsigned char)iso_buffer.type[0] == ISO_VD_END)
+			break;
+		if (iso_buffer.type[0] != ISO_VD_SUPPLEMENTARY)
+			continue;
+		if (iso_buffer.volume_id[0] == 0)
+			continue;
+		joliet_label = g_convert (iso_buffer.volume_id, 32, "UTF-8",
+		                          "UTF-16BE", NULL, NULL, NULL);
+		if (!joliet_label)
+			continue;
+		return joliet_label;
+	}
+
+	lseek (fd, (off_t) ISO_ROOT_START, SEEK_SET);
+	read (fd, &iso_buffer, ISO_SECTOR_SIZE);
 
 	if (iso_buffer.volume_id[0] == 0) {
 		return g_strdup (_("ISO 9660 Volume"));

@@ -38,6 +38,7 @@ struct iso_volume_descriptor {
 
 /* volume descriptor types */
 #define ISO_VD_PRIMARY 1
+#define ISO_VD_SUPPLEMENTARY 2
 #define ISO_VD_END 255
 
 #define ISO_STANDARD_ID "CD001"

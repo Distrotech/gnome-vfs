@@ -1,5 +1,14 @@
 2005-01-11  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-cdrom.c:
+	(_gnome_vfs_get_iso9660_volume_name):
+	* libgnomevfs/gnome-vfs-iso9660.h:
+	Implement joliet label support.
+
+	Patch from  leon breedt <bitserf@gmail.com>
+
+2005-01-11  Alexander Larsson  <alexl@redhat.com>
+
 	* NEWS:
 	Update for release	
 
