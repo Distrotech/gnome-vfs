@@ -24,7 +24,7 @@
 #ifndef GNOME_VFS_PROCESS_H
 #define GNOME_VFS_PROCESS_H
 
-#include <glib.h>
+#include <glib/gtypes.h>
 #include <signal.h>		/* For the signal values.  */
 
 typedef enum {

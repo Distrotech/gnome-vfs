@@ -39,6 +39,8 @@
 
 #include <libgnomevfs/gnome-vfs-callbacks.h>
 
+G_BEGIN_DECLS
+
 typedef struct GnomeVFSAppContext GnomeVFSAppContext;
 
 /*
@@ -105,5 +107,6 @@ GnomeVFSCallback	gnome_vfs_app_context_get_callback	(const GnomeVFSAppContext* a
 								 /* OUT */ gpointer *user_data,
 								 /* OUT */ gboolean *p_dispatch_on_job_thread);
 
+G_END_DECLS
 
-#endif /* GNOME_VFS_APPLICATION_CONTEXT_H */
+#endif /* GNOME_VFS_APP_CONTEXT_H */

@@ -23,10 +23,12 @@
            Seth Nickell <snickell@stanford.edu>
 */
 
-#ifndef _GNOME_VFS_REGEXP_FILTER_H
-#define _GNOME_VFS_REGEXP_FILTER_H
+#ifndef GNOME_VFS_REGEXP_FILTER_H
+#define GNOME_VFS_REGEXP_FILTER_H
 
 #include <libgnomevfs/gnome-vfs-directory-filter.h>
+
+G_BEGIN_DECLS
 
 typedef struct GnomeVFSRegexpFilter GnomeVFSRegexpFilter;
 
@@ -38,4 +40,6 @@ void	gnome_vfs_regexp_filter_destroy		(GnomeVFSRegexpFilter *filter);
 gboolean gnome_vfs_regexp_filter_apply		(GnomeVFSRegexpFilter *filter,
 						 GnomeVFSFileInfo *info);
 
-#endif /* _GNOME_VFS_REGEXP_FILTER_H */
+G_END_DECLS
+
+#endif /* GNOME_VFS_REGEXP_FILTER_H */

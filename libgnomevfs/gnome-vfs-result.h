@@ -26,10 +26,12 @@
 #ifndef GNOME_VFS_RESULT_H
 #define GNOME_VFS_RESULT_H
 
-#include <glib.h>
+#include <glib/gmacros.h>
+
+G_BEGIN_DECLS
 
 /* IMPORTANT NOTICE: If you add error types here, please also add the
-   corresponsing descriptions in `gnome-vfs-result.c'.  Moreover, *always* add
+   corresponding descriptions in `gnome-vfs-result.c'.  Moreover, *always* add
    new values at the end of the list, and *never* remove values.  */
 typedef enum {
 	GNOME_VFS_OK,
@@ -76,9 +78,11 @@ typedef enum {
 	GNOME_VFS_NUM_ERRORS
 } GnomeVFSResult;
 
-const gchar	*gnome_vfs_result_to_string	  (GnomeVFSResult result);
+const char	*gnome_vfs_result_to_string	  (GnomeVFSResult result);
 GnomeVFSResult   gnome_vfs_result_from_errno_code (int errno_code);
 GnomeVFSResult	 gnome_vfs_result_from_errno	  (void);
 GnomeVFSResult   gnome_vfs_result_from_h_errno    (void);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_RESULT_H */

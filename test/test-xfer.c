@@ -25,16 +25,15 @@
 #include <config.h>
 #endif
 
-#include <stdio.h>
-
-#include <gnome.h>
-
 #include "gnome-vfs.h"
+#include <popt.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 static int recursive = 0;
 static int remove_source = 0;
 
-struct poptOption options[] = {
+const struct poptOption options[] = {
 	POPT_AUTOHELP
 	{
 		"recursive",
@@ -144,7 +143,7 @@ xfer_progress_callback (GnomeVFSXferProgressInfo *info,
 }
 
 int
-main (int argc, char **argv)
+main (int argc, const char **argv)
 {
 	const char **args;
 	poptContext popt_context;

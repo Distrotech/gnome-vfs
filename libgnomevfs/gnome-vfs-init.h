@@ -24,11 +24,13 @@
 #ifndef GNOME_VFS_INIT_H
 #define GNOME_VFS_INIT_H
 
-#include <glib.h>
+#include <glib/gtypes.h>
 
 #ifdef HAVE_POPT_H
 #include <popt.h>
 #endif
+
+G_BEGIN_DECLS
 
 gboolean gnome_vfs_init        (void);
 gboolean gnome_vfs_initialized (void);
@@ -45,5 +47,7 @@ void     gnome_vfs_postinit    (gpointer app,
 #ifdef POPT_AUTOHELP
 extern struct poptOption gnome_vfs_options[];
 #endif
+
+G_END_DECLS
 
 #endif

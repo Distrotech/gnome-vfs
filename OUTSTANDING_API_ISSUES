@@ -1,4 +1,3 @@
-
 * 8450 - [API] The new metadata API in gnome-vfs needs to be finished
 * 8451 - [API] gnome-vfs needs an API for filesystem monitoring
 * real icon support
@@ -12,10 +11,16 @@
 * make xfer API not suck
 * deprecate GnomeVFSURI in public APIs
 * Install public headers and module-only headers in different places,
-separate pkgconfig targets
+  separate pkgconfig targets
 * remove gnome-vfs-iobuf / gnome-vfs-socket-buffer duplication
 * remove directory filter / regexp filter stuff
-* Buffered I/O API
+* buffered I/O API
 * kill gnome-vfs-seekable
 * kill gnome-vfs-transform
 * GClosure-isze everything
+* kill back end API since we only have one back end now and it
+  doesn't need to be a module any more
+* things defined in gnome-vfs-helpers should not have an X in their
+  names, some should go into other headers, some back to Eel or
+  Nautilus
+* kill half-baked port of metadata

@@ -28,9 +28,7 @@
 
 #include <libgnomevfs/gnome-vfs-socket.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif /*__cplusplus*/
+G_BEGIN_DECLS
 
 typedef struct GnomeVFSSSL GnomeVFSSSL;
 
@@ -52,8 +50,6 @@ GnomeVFSResult  gnome_vfs_ssl_write          (GnomeVFSSSL *ssl,
 void            gnome_vfs_ssl_destroy        (GnomeVFSSSL *ssl);
 GnomeVFSSocket *gnome_vfs_ssl_to_socket      (GnomeVFSSSL *ssl);
 
-#ifdef __cplusplus
-}
-#endif /*__cplusplus*/
+G_END_DECLS
 
 #endif /* GNOME_VFS_SSL_H */

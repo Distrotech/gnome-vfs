@@ -30,8 +30,9 @@
 #ifndef GNOME_VFS_HELPERS_H
 #define GNOME_VFS_HELPERS_H
 
-#include <glib.h>
-#include <libgnomevfs/gnome-vfs-types.h>
+#include <libgnomevfs/gnome-vfs-file-size.h>
+#include <libgnomevfs/gnome-vfs-result.h>
+#include <libgnomevfs/gnome-vfs-uri.h>
 
 G_BEGIN_DECLS
 
@@ -92,4 +93,4 @@ gboolean           gnome_vfs_x_is_remote_uri                     (const char    
 
 G_END_DECLS
 
-#endif /* GNOME_VFS_X_EXTENSIONS_H */
+#endif /* GNOME_VFS_HELPERS_H */

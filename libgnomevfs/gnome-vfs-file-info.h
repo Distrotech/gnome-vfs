@@ -32,6 +32,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+G_BEGIN_DECLS
+
 /* File flags.  */
 typedef enum {
 	GNOME_VFS_FILE_FLAGS_NONE = 0,
@@ -239,5 +241,7 @@ GList           *gnome_vfs_file_info_list_ref   (GList *list);
 GList           *gnome_vfs_file_info_list_unref (GList *list);
 GList           *gnome_vfs_file_info_list_copy  (GList *list);
 void             gnome_vfs_file_info_list_free  (GList *list);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_FILE_INFO_H */

@@ -1,10 +1,11 @@
-#include <stdio.h>
-#include <signal.h>
-#include <gnome.h>
-#include <gnome-vfs.h>
-#include <gnome-vfs-standard-callbacks.h>
-#include <gnome-vfs-app-context.h>
 #include <gmodule.h>
+#include <libgnomevfs/gnome-vfs-app-context.h>
+#include <libgnomevfs/gnome-vfs-standard-callbacks.h>
+#include <libgnomevfs/gnome-vfs.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 static gboolean authn_callback_called = FALSE;
 
@@ -113,13 +114,8 @@ main (int argc, char **argv)
 	GModule *module;
 	guint i;
 
-        gnome_init ("test-callback", "0.1", argc, argv);
-
 	make_asserts_break ("GLib");
 	make_asserts_break ("GnomeVFS");
-
-       /* make the stupid "SaveYourself" warning not come up */
-        gnome_client_disconnect (gnome_master_client ());
 
 	if (argc == 2) {
 		authn_uri = argv[1];
@@ -192,14 +188,14 @@ main (int argc, char **argv)
 		NULL);
 
 	while (!open_callback_occurred) {
-		gtk_main_iteration_do (TRUE);
+		g_main_context_iteration (NULL, TRUE);
 	}
 
 	close_callback_occurred = FALSE;
 	gnome_vfs_async_close (async_handle, close_callback, NULL);
 
 	while (!close_callback_occurred) {
-		gtk_main_iteration_do (TRUE);
+		g_main_context_iteration (NULL, TRUE);
 	}
 
 	g_assert (authn_callback_called);
@@ -310,18 +306,18 @@ main (int argc, char **argv)
 	g_assert (!destroy_notify_occurred);
 
 	while (!open_callback_occurred) {
-		gtk_main_iteration_do (TRUE);
+		g_main_context_iteration (NULL, TRUE);
 	}
 
 	close_callback_occurred = FALSE;
 	gnome_vfs_async_close (async_handle, close_callback, NULL);
 
 	while (!close_callback_occurred) {
-		gtk_main_iteration_do (TRUE);
+		g_main_context_iteration (NULL, TRUE);
 	}
 
 	for (i = 0 ; i<100 ; i++) {
-		gtk_main_iteration_do (FALSE);
+		g_main_context_iteration (NULL, FALSE);
 		usleep (10);
 	}
 

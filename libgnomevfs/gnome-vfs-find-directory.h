@@ -31,6 +31,8 @@
 #include <libgnomevfs/gnome-vfs-result.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 
+G_BEGIN_DECLS
+
 typedef enum {
 	GNOME_VFS_DIRECTORY_KIND_DESKTOP = 1000,
 	GNOME_VFS_DIRECTORY_KIND_TRASH = 1001
@@ -42,5 +44,7 @@ GnomeVFSResult gnome_vfs_find_directory (GnomeVFSURI                *near_uri,
 					 gboolean                    create_if_needed,
 					 gboolean                    find_if_needed,
 					 guint                       permissions);
+
+G_END_DECLS
 
 #endif

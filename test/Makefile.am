@@ -6,7 +6,6 @@ INCLUDES =					\
 	-I$(top_builddir)/intl			\
 	-I$(top_srcdir)/libgnomevfs		\
 	$(BONOBO_ACTIVATION_CFLAGS)		\
-	$(VFS_GNOMEUI_CFLAGS)			\
 	$(VFS_CFLAGS)				\
 	-DMODULES_PATH=\"$(libdir)/vfs/modules\"
 
@@ -56,7 +55,6 @@ TESTS = test-async-cancel test-escape test-uri $(auto_tests)
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
-	$(VFS_GNOMEGNORBA_LIBS)				\
 	$(GCONF_LIBS)					\
 	$(LIBEFS_LIBS)
 

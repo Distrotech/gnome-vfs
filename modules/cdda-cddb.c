@@ -38,6 +38,9 @@
 #include <errno.h>
 #include <unistd.h>
 
+#include <glib/gmessages.h>
+#include <glib/gutils.h>
+
 #define size16 short
 #define size32 int
 #include <cdda_interface.h>
@@ -148,10 +151,11 @@ CDDBConnect (CDDBServer *server)
 		sname=server->name;
   
 #ifdef SOLARIS
-  if((sin.sin_addr.s_addr = inet_addr(sname)) == (unsigned long)-1) {
+  if((sin.sin_addr.s_addr = inet_addr(sname)) == (unsigned long)-1)
 #else
-  if((sin.sin_addr.s_addr = inet_addr(sname))==INADDR_NONE) {
+  if((sin.sin_addr.s_addr = inet_addr(sname))==INADDR_NONE)
 #endif
+  {
     if((host = gethostbyname(sname))==NULL) return -1;
 
     bcopy(host->h_addr,&sin.sin_addr,host->h_length);

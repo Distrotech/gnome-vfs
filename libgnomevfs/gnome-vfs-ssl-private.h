@@ -26,6 +26,12 @@
 #ifndef GNOME_VFS_SSL_PRIVATE_H
 #define GNOME_VFS_SSL_PRIVATE_H
 
+#include <glib/gmacros.h>
+
+G_BEGIN_DECLS
+
 void gnome_vfs_ssl_init (void);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_SSL_PRIVATE_H */

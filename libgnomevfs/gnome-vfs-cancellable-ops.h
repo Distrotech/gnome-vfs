@@ -29,6 +29,8 @@
 #include <libgnomevfs/gnome-vfs-handle.h>
 #include <libgnomevfs/gnome-vfs-xfer.h>
 
+G_BEGIN_DECLS
+
 GnomeVFSResult gnome_vfs_open_uri_cancellable
 					(GnomeVFSHandle **handle,
 					 GnomeVFSURI *uri,
@@ -150,5 +152,7 @@ GnomeVFSResult  gnome_vfs_directory_open_from_uri_cancellable
 					 GnomeVFSFileInfoOptions options,
 					 const GnomeVFSDirectoryFilter *filter,
 					 GnomeVFSContext *context);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_CANCELLABLE_OPS_H */

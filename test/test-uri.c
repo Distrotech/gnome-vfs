@@ -27,10 +27,11 @@
 
 #include <config.h>
 
+#include "gnome-vfs-private-utils.h"
+#include "gnome-vfs.h"
+#include <glib/gstrfuncs.h>
 #include <stdlib.h>
 #include <string.h>
-#include "gnome-vfs.h"
-#include "gnome-vfs-private-utils.h"
 
 #define TEST_ASSERT(expression, message) \
 	G_STMT_START { if (!(expression)) test_failed message; } G_STMT_END

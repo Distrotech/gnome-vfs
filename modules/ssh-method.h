@@ -20,8 +20,8 @@
 
    Author: Dave Camp <campd@oit.edu> */
 
-#ifndef _SSH_METHOD_H
-#define _SSH_METHOD_H
+#ifndef SSH_METHOD_H
+#define SSH_METHOD_H
 
 #include "gnome-vfs-method.h"
 

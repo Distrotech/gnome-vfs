@@ -29,6 +29,8 @@
 
 #include <libgnomevfs/gnome-vfs-handle.h>
 
+G_BEGIN_DECLS
+
 typedef GnomeVFSResult (* GnomeVFSSniffBufferSeekCall)(gpointer context, 
 		GnomeVFSSeekPosition whence, GnomeVFSFileOffset offset);
 typedef GnomeVFSResult (* GnomeVFSSniffBufferReadCall)(gpointer context, 
@@ -69,5 +71,7 @@ gboolean		 gnome_vfs_sniff_buffer_looks_like_mp3
 gboolean		 gnome_vfs_sniff_buffer_looks_like_gzip
 					 (GnomeVFSMimeSniffBuffer 	*sniff_buffer,
 					  const char 			*file_name);
+
+G_END_DECLS
 
 #endif

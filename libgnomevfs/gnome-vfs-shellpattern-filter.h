@@ -26,6 +26,8 @@
 
 #include <libgnomevfs/gnome-vfs-directory-filter.h>
 
+G_BEGIN_DECLS
+
 typedef struct GnomeVFSShellpatternFilter GnomeVFSShellpatternFilter;
 
 GnomeVFSShellpatternFilter *gnome_vfs_shellpattern_filter_new     (const gchar                    *pattern,
@@ -33,5 +35,7 @@ GnomeVFSShellpatternFilter *gnome_vfs_shellpattern_filter_new     (const gchar  
 void                        gnome_vfs_shellpattern_filter_destroy (GnomeVFSShellpatternFilter     *filter);
 gboolean                    gnome_vfs_shellpattern_filter_apply   (GnomeVFSShellpatternFilter     *filter,
 								   GnomeVFSFileInfo               *info);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_SHELLPATTERN_FILTER_H */

@@ -33,9 +33,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif /*__cplusplus*/
+G_BEGIN_DECLS
 
 #define GNOME_VFS_MIME_TYPE_UNKNOWN "application/octet-stream"
 
@@ -63,8 +61,6 @@ const char  *gnome_vfs_get_file_mime_type 			(const char *path,
 gboolean    gnome_vfs_mime_type_is_supertype			(const char *mime_type);
 char	    *gnome_vfs_get_supertype_from_mime_type		(const char *mime_type);							 
 
-#ifdef __cplusplus
-}
-#endif /*__cplusplus*/
+G_END_DECLS
 
 #endif

@@ -27,6 +27,8 @@
 
 #include <libgnomevfs/gnome-vfs-file-info.h>
 
+G_BEGIN_DECLS
+
 const gchar *   gnome_vfs_mime_type_from_mode 	(mode_t mode);
 
 void            gnome_vfs_stat_to_file_info	(GnomeVFSFileInfo *file_info,
@@ -41,5 +43,7 @@ GnomeVFSResult  gnome_vfs_set_meta_for_list 	(GnomeVFSFileInfo *info,
 					    	 const GList *meta_keys);
 	
 const char     *gnome_vfs_get_special_mime_type (GnomeVFSURI *uri);
+
+G_END_DECLS
 
 #endif

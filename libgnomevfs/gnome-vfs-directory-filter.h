@@ -26,6 +26,8 @@
 
 #include <libgnomevfs/gnome-vfs-file-info.h>
 
+G_BEGIN_DECLS
+
 typedef enum {
 	GNOME_VFS_DIRECTORY_FILTER_NONE,
 	GNOME_VFS_DIRECTORY_FILTER_SHELLPATTERN,
@@ -87,5 +89,7 @@ gboolean
 GnomeVFSDirectoryFilterNeeds
 	gnome_vfs_directory_filter_get_needs
 					(const GnomeVFSDirectoryFilter *filter);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_DIRECTORY_FILTER_H */

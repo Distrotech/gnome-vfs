@@ -35,6 +35,9 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-ops.h"
 
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+
 #ifdef HAVE_OLDER_BZIP2
 #define BZ2_bzDecompressInit  bzDecompressInit
 #define BZ2_bzCompressInit    bzCompressInit

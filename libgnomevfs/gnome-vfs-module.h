@@ -26,6 +26,8 @@
 
 #include <libgnomevfs/gnome-vfs-method.h>
 
+G_BEGIN_DECLS
+
 #define GNOME_VFS_MODULE_INIT      "vfs_module_init"
 #define GNOME_VFS_MODULE_TRANSFORM "vfs_module_transform"
 #define GNOME_VFS_MODULE_SHUTDOWN  "vfs_module_shutdown"
@@ -34,4 +36,6 @@ extern GnomeVFSMethod    *vfs_module_init	(const char *method_name, const char *
 extern GnomeVFSTransform *vfs_module_transform	(const char *method_name, const char *args);
 extern void               vfs_module_shutdown	(GnomeVFSMethod *method);
 
-#endif /* _GNOME_VFS_MODULE_H */
+G_END_DECLS
+
+#endif /* GNOME_VFS_MODULE_H */

@@ -29,7 +29,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
-#include <libgnorba/gnorba.h>
 #include <unistd.h>
 
 #include "gnome-vfs.h"
@@ -108,7 +107,7 @@ wait_for_boolean (gboolean *wait_for_it)
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
 		usleep (1);
-		gtk_main_iteration_do (FALSE);
+		g_main_context_iteration (NULL, FALSE);
 		if (*wait_for_it) {
 			return TRUE;
 		}
@@ -127,7 +126,7 @@ wait_until_vfs_threads_gone (void)
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
 		usleep (1);
-		gtk_main_iteration_do (FALSE);
+		g_main_context_iteration (NULL, FALSE);
 		if (gnome_vfs_backend_get_job_count () == 0) {
 			return TRUE;
 		}
@@ -164,7 +163,7 @@ wait_until_file_descriptors_gone (void)
 
 	for (i = 0; i < MAX_THREAD_WAIT; i++) {
 		usleep (1);
-		gtk_main_iteration_do (FALSE);
+		g_main_context_iteration (NULL, FALSE);
 		if (get_used_file_descriptor_count () == 0) {
 			return TRUE;
 		}
@@ -514,7 +513,7 @@ my_yield (int count)
 {
 	for (; count > 0; count--) {
 		usleep (100);
-		gtk_main_iteration_do (FALSE);
+		g_main_context_iteration (NULL, FALSE);
 	}
 }
 
@@ -658,16 +657,9 @@ test_find_directory (int delay_till_cancel)
 int
 main (int argc, char **argv)
 {
-	CORBA_Environment ev;
-
 	make_asserts_break("GnomeVFS");
-	/* Initialize the libraries we use. */
-	g_thread_init (NULL);
-	CORBA_exception_init (&ev);
-	gnome_CORBA_init ("test-async-cancel", "0.0", &argc, argv, 0, &ev);
 	gnome_vfs_init ();
 
-	
 	/* Initialize our own stuff. */
 	free_at_start = get_free_file_descriptor_count ();
 

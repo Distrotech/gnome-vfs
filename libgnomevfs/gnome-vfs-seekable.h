@@ -21,13 +21,17 @@
    Author: Michael Meeks <michael@imaginator.com>
 */
 
-#ifndef GNOME_SEEKABLE_H
-#define GNOME_SEEKABLE_H
+#ifndef GNOME_VFS_SEEKABLE_H
+#define GNOME_VFS_SEEKABLE_H
 
 #include <libgnomevfs/gnome-vfs-method.h>
+
+G_BEGIN_DECLS
 
 GnomeVFSMethodHandle *gnome_vfs_seek_emulate (GnomeVFSURI          *handle,
 					      GnomeVFSMethodHandle *child_handle,
 					      GnomeVFSOpenMode      open_mode);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_SEEKABLE_H */

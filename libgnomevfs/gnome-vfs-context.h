@@ -30,6 +30,8 @@ typedef struct GnomeVFSContext GnomeVFSContext;
 #include <libgnomevfs/gnome-vfs-app-context.h>
 #include <libgnomevfs/gnome-vfs-cancellation.h>
 
+G_BEGIN_DECLS
+
 GnomeVFSContext* gnome_vfs_context_new                   (void);
 void             gnome_vfs_context_ref                   (GnomeVFSContext *ctx);
 void             gnome_vfs_context_unref                 (GnomeVFSContext *ctx);
@@ -49,5 +51,7 @@ gboolean	       gnome_vfs_context_check_cancellation_current (void);
 
 const GnomeVFSAppContext *gnome_vfs_context_peek_app_context (const GnomeVFSContext *ctx);
 const GnomeVFSAppContext *gnome_vfs_context_peek_app_context_current (void);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_CONTEXT_H */

@@ -25,7 +25,6 @@
 #ifndef HTTP_AUTHN_H
 #define HTTP_AUTHN_H
 
-#include <glib.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 
 enum AuthnHeaderType {

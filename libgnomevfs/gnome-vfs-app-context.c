@@ -31,6 +31,10 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <glib/ghash.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gthread.h>
+
 static void	dispatch_destroy_notify 		(GDestroyNotify notify_func,
 			 				 gpointer user_data);
 

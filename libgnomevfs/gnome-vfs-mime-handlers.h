@@ -28,6 +28,8 @@
 #include <libgnomevfs/gnome-vfs-result.h>
 #include <bonobo-activation/bonobo-activation.h>
 
+G_BEGIN_DECLS
+
 typedef enum {
 	GNOME_VFS_MIME_ACTION_TYPE_NONE,
 	GNOME_VFS_MIME_ACTION_TYPE_APPLICATION,
@@ -130,5 +132,7 @@ GList *                  gnome_vfs_mime_remove_component_from_list         (GLis
 									    gboolean                *did_remove);
 GList *                  gnome_vfs_mime_id_list_from_component_list        (GList                   *components);
 GList *                  gnome_vfs_mime_id_list_from_application_list      (GList                   *applications);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_MIME_HANDLERS_H */

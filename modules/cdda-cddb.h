@@ -22,7 +22,7 @@
 #ifndef CDDA_CDDB_H
 #define CDDA_CDDB_H
 
-#include <gtk/gtk.h>
+#include <glib/gtypes.h>
 #include <stdio.h>
 #include <stdarg.h>
 

@@ -25,6 +25,7 @@
 #include <config.h>
 
 #include "gnome-vfs.h"
+#include <glib/gstrfuncs.h>
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>

@@ -26,6 +26,8 @@
 
 #include <libgnomevfs/gnome-vfs-directory-filter.h>
 
+G_BEGIN_DECLS
+
 typedef struct GnomeVFSDirectoryHandle GnomeVFSDirectoryHandle;
 
 
@@ -89,5 +91,7 @@ GnomeVFSResult gnome_vfs_directory_list_load
 				         const gchar *text_uri,
 				         GnomeVFSFileInfoOptions options,
 				         const GnomeVFSDirectoryFilter *filter);
+
+G_END_DECLS
 
 #endif

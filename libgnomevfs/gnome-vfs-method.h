@@ -32,6 +32,8 @@
 #include <libgnomevfs/gnome-vfs-find-directory.h>
 #include <libgnomevfs/gnome-vfs-transform.h>
 
+G_BEGIN_DECLS
+
 /* Open mode.  If you don't set `GNOME_VFS_OPEN_RANDOM', you have to access the
    file sequentially.  */
 typedef enum {
@@ -249,5 +251,7 @@ struct GnomeVFSMethod {
 gboolean	   gnome_vfs_method_init   (void);
 GnomeVFSMethod    *gnome_vfs_method_get    (const gchar *name);
 GnomeVFSTransform *gnome_vfs_transform_get (const gchar *name);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_METHOD_H */

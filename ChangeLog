@@ -1,3 +1,134 @@
+2001-08-02  Darin Adler  <darin@bentspoon.com>
+
+	* Makefile.am:
+	Added the test directory back in. Got rid of the cases for GNOME
+	1, removed vfsConf.sh and gnome-vfs-config. Remove intl directory.
+	
+	* OUTSTANDING_API_ISSUES: Added some new issues.
+	
+	* acconfig.h: Removed HAVE_GCONF.
+	* configure.in: Removed the EAZEL_VERSION macros since we use
+	pkgconfig now. Removed the GNOME platform autodetect. Removed all
+	the GNOME 1 cases. Use PKG_CHECK_MODULES instead of
+	GNOME_PKGCONFIG_CHEC_MODULES. Remove lots of unused CFLAGS and
+	LIBS defines. Remove intl directory. Removed HAVE_GCONF.
+	
+	* gnome-vfs-config.in: Removed.
+	* vfsConf.sh.in: Removed.
+	
+	* libgnomevfs/Makefile.am: Put non-installed headers into
+	SOURCES rather than noinst_HEADERS as recommended by automake
+	documentation.
+	
+	* libgnomevfs-pthread/gnome-vfs-pthread.h:
+	* libgnomevfs/eel-cut-n-paste.h:
+	* libgnomevfs/gnome-vfs-app-context.h:
+	* libgnomevfs/gnome-vfs-application-registry.h:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	* libgnomevfs/gnome-vfs-backend.h:
+	* libgnomevfs/gnome-vfs-callbacks.h:
+	* libgnomevfs/gnome-vfs-cancellable-ops.h:
+	* libgnomevfs/gnome-vfs-cancellation.h:
+	* libgnomevfs/gnome-vfs-configuration.h:
+	* libgnomevfs/gnome-vfs-context.h:
+	* libgnomevfs/gnome-vfs-directory-filter.h:
+	* libgnomevfs/gnome-vfs-directory.h:
+	* libgnomevfs/gnome-vfs-file-info.h:
+	* libgnomevfs/gnome-vfs-find-directory.h:
+	* libgnomevfs/gnome-vfs-handle.h:
+	* libgnomevfs/gnome-vfs-helpers.h:
+	* libgnomevfs/gnome-vfs-inet-connection.h:
+	* libgnomevfs/gnome-vfs-init.h:
+	* libgnomevfs/gnome-vfs-iobuf.h:
+	* libgnomevfs/gnome-vfs-method.h:
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	* libgnomevfs/gnome-vfs-mime-magic.h:
+	* libgnomevfs/gnome-vfs-mime-private.h:
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.h:
+	* libgnomevfs/gnome-vfs-mime.h:
+	* libgnomevfs/gnome-vfs-module-api.h:
+	* libgnomevfs/gnome-vfs-module-shared.h:
+	* libgnomevfs/gnome-vfs-module.h:
+	* libgnomevfs/gnome-vfs-ops.h:
+	* libgnomevfs/gnome-vfs-parse-ls.h:
+	* libgnomevfs/gnome-vfs-private-utils.h:
+	* libgnomevfs/gnome-vfs-private.h:
+	* libgnomevfs/gnome-vfs-process.h:
+	* libgnomevfs/gnome-vfs-regexp-filter.h:
+	* libgnomevfs/gnome-vfs-result.h:
+	* libgnomevfs/gnome-vfs-seekable.h:
+	* libgnomevfs/gnome-vfs-shellpattern-filter.h:
+	* libgnomevfs/gnome-vfs-socket-buffer.h:
+	* libgnomevfs/gnome-vfs-socket.h:
+	* libgnomevfs/gnome-vfs-ssl-private.h:
+	* libgnomevfs/gnome-vfs-ssl.h:
+	* libgnomevfs/gnome-vfs-standard-callbacks.h:
+	* libgnomevfs/gnome-vfs-transform.h:
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-uri.h:
+	* libgnomevfs/gnome-vfs-utils.h:
+	* libgnomevfs/gnome-vfs-xfer.h:
+	* libgnomevfs/stolen-glib-extensions.h:
+	Added G_BEGIN_DECLS and G_END_DECLS to all public headers.
+	Removed unnecessary includes.
+	
+	* libgnomevfs/gnome-vfs-app-context.c:
+	* libgnomevfs/gnome-vfs-helpers.c:
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	* libgnomevfs/gnome-vfs-private-utils.c:
+	* libgnomevfs/gnome-vfs-socket-buffer.c:
+	* libgnomevfs/gnome-vfs-socket.c:
+	* libgnomevfs/stolen-glib-extensions.c:
+	* modules/bzip2-method.c:
+	* modules/cdda-cddb.c:
+	* modules/gzip-method.c:
+	* modules/http-authn.c:
+	* modules/http-authn.h:
+	* modules/http-cache.c:
+	* modules/pipe-method.c:
+	* modules/ssh-method.c:
+	Added includes that are needed now that headers drag fewer of them
+	in.
+	
+	* modules/cdda-cddb.h:
+	* modules/cdda-method.h:
+	Got rid of include of gtk.h.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (unref_gconf_engine),
+	(get_user_level):
+	* modules/ftp-method.c: (vfs_module_init):
+	Removed HAVE_GCONF.
+	
+	* modules/file-method.c:
+	* modules/http-method.c:
+	* modules/test-method.c:
+	Removed GNOME_PLATFORM_VERSION.
+	
+	* test/Makefile.am:
+	Removed VFS_GNOMEUI_CFLAGS and VFS_GNOMEGNORBA_LIBS.
+	
+	* test/test-async-cancel.c: (wait_for_boolean),
+	(wait_until_vfs_threads_gone), (wait_until_file_descriptors_gone),
+	(my_yield), (main):
+	* test/test-async-directory.c: (directory_load_callback), (main):
+	* test/test-async.c: (close_callback), (read_callback),
+	(open_callback), (main):
+	* test/test-callback.c: (main):
+	* test/test-channel.c: (io_channel_callback), (main):
+	* test/test-directory-visit.c:
+	* test/test-directory.c: (main):
+	* test/test-escape.c:
+	* test/test-info.c:
+	* test/test-mime-handlers-set.c: (main):
+	* test/test-mime-handlers.c: (print_component), (main):
+	* test/test-mime-info.c:
+	* test/test-shell.c: (main):
+	* test/test-symlinks.c: (create_link_callback), (main):
+	* test/test-uri.c:
+	* test/test-xfer.c: (main):
+	Converted tests so they no longer require gtk+ or libgnomeui.
+
 2001-08-02  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* OUTSTANDING_API_ISSUES: Add a fe bug numbers.

@@ -30,9 +30,7 @@
 
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif /*__cplusplus*/
+G_BEGIN_DECLS
 	
 /* These are the standard string keys to get */
 #define GNOME_VFS_APPLICATION_REGISTRY_COMMAND "command"
@@ -111,8 +109,6 @@ GnomeVFSMimeApplication *
 void		gnome_vfs_application_registry_save_mime_application(const GnomeVFSMimeApplication *application);
 
 
-#ifdef __cplusplus
-}
-#endif /*__cplusplus*/
+G_END_DECLS
 
 #endif /* GNOME_VFS_APPLICATION_REGISTRY_H */

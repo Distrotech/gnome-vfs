@@ -28,17 +28,18 @@
 #include <config.h>
 #endif
 
+#include "gnome-vfs.h"
+#include <ctype.h>
+#include <errno.h>
+#include <glib/ghash.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gutils.h>
+#include <popt.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include <time.h>
-#include <errno.h>
 #include <unistd.h>
-
-#include <gnome.h>
-
-#include "gnome-vfs.h"
 
 #define TEST_DEBUG 0
 
@@ -870,7 +871,7 @@ const struct poptOption options [] = {
 };
 
 int
-main (int argc, char **argv)
+main (int argc, const char **argv)
 {
 	poptContext popt_context;
 	int exit = 0;
@@ -880,11 +881,8 @@ main (int argc, char **argv)
 
 	files = g_hash_table_new (g_str_hash, g_str_equal);
 
-	gnome_init_with_popt_table ("test-vfs", "0.0", argc, argv,
-				    options, 0, &popt_context);
-
-	/* make the stupid "SaveYourself" warning not come up */
-	gnome_client_disconnect (gnome_master_client ());
+	popt_context = poptGetContext ("test-vfs", argc, argv,
+				       options, 0);
 
 	if (interactive)
 		vfserr = stderr;

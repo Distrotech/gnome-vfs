@@ -112,7 +112,6 @@ main (int argc, char **argv)
 	const char *field;
 	const char *value;
 
-	oaf_init (argc, argv);
 	gnome_vfs_init ();
 
 	if (argc < 3) {

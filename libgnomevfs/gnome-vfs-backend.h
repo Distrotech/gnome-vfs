@@ -1,7 +1,9 @@
-#ifndef _GNOME_VFS_BACKEND_H_
-#define _GNOME_VFS_BACKEND_H_ 1
+#ifndef GNOME_VFS_BACKEND_H
+#define GNOME_VFS_BACKEND_H
 
-#include <glib.h>
+#include <glib/gtypes.h>
+
+G_BEGIN_DECLS
 
 void        gnome_vfs_backend_loadinit      		(gpointer app,
 					     		 gpointer modinfo);
@@ -11,5 +13,7 @@ void        gnome_vfs_backend_shutdown      		(void);
 
 /* debugging calls */
 int         gnome_vfs_backend_get_job_count		(void);
+
+G_END_DECLS
 
 #endif

@@ -24,8 +24,11 @@
 #ifndef GNOME_VFS_IOBUF_H
 #define GNOME_VFS_IOBUF_H
 
+#include <glib/gtypes.h>
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-result.h>
+
+G_BEGIN_DECLS
 
 typedef struct GnomeVFSIOBuf GnomeVFSIOBuf;
 
@@ -42,5 +45,7 @@ GnomeVFSResult   gnome_vfs_iobuf_write   (GnomeVFSIOBuf    *iobuf,
 					  GnomeVFSFileSize  bytes,
 					  GnomeVFSFileSize *bytes_written);
 GnomeVFSResult   gnome_vfs_iobuf_flush   (GnomeVFSIOBuf    *iobuf);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_IOBUF_H */

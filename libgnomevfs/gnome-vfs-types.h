@@ -25,6 +25,8 @@
 #ifndef GNOME_VFS_TYPES_H
 #define GNOME_VFS_TYPES_H
 
+#ifndef GNOME_VFS_DISABLE_DEPRECATED
+
 /* see gnome-vfs-file-size.h for GNOME_VFS_SIZE_IS_<type> */
 /* see gnome-vfs-file-size.h for GNOME_VFS_OFFSET_IS_<type> */
 /* see gnome-vfs-file-size.h for GNOME_VFS_SIZE_FORMAT_STR */
@@ -101,4 +103,6 @@
 #include <libgnomevfs/gnome-vfs-uri.h>
 #include <libgnomevfs/gnome-vfs-xfer.h>
 
-#endif /* _GNOME_VFS_TYPES_H */
+#endif /* GNOME_VFS_DISABLE_DEPRECATED */
+
+#endif /* GNOME_VFS_TYPES_H */

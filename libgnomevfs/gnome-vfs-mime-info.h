@@ -24,11 +24,10 @@
 #ifndef GNOME_VFS_MIME_INFO_H
 #define GNOME_VFS_MIME_INFO_H
 
+#include <glib/glist.h>
 #include <libgnomevfs/gnome-vfs-result.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif /*__cplusplus*/
+G_BEGIN_DECLS
 	
 	/* functions to freeze/thaw the internal hash tables to 
 	   avoid writing them back to disk everytime you modify 
@@ -67,9 +66,7 @@ void             gnome_vfs_mime_registered_mime_type_delete     (const char *mim
 void             gnome_vfs_mime_reset                           (void);
 
 
-#ifdef __cplusplus
-}
-#endif /*__cplusplus*/
+G_END_DECLS
 
 #endif /* GNOME_VFS_MIME_INFO_H */
 

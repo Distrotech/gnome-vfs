@@ -24,6 +24,8 @@
 #include <config.h>
 #endif
 
+#include "pipe-method.h"
+
 #include <stdio.h>
 #include <string.h>
 
@@ -36,7 +38,7 @@
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-module-shared.h"
 
-#include "pipe-method.h"
+#include <glib/gstrfuncs.h>
 
 struct _FileHandle {
 	GnomeVFSURI *uri;

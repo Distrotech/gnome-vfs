@@ -43,6 +43,9 @@
 #include <ctype.h>
 #include <string.h>
 
+#include <glib/gstrfuncs.h>
+#include <glib/gutils.h>
+
 #define READ_CHUNK_SIZE 8192
 
 struct GnomeVFSXReadFileHandle {

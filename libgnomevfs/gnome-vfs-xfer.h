@@ -26,6 +26,8 @@
 
 #include <libgnomevfs/gnome-vfs-file-info.h>
 
+G_BEGIN_DECLS
+
 /* Xfer options.  
  * FIXME bugzilla.eazel.com 1205:
  * Split these up into xfer options and xfer actions
@@ -261,5 +263,7 @@ GnomeVFSResult gnome_vfs_xfer_delete_list (const GList                  *source_
 					   GnomeVFSXferOptions           xfer_options,
 					   GnomeVFSXferProgressCallback  progress_callback,
 					   gpointer                      data);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_XFER_H */

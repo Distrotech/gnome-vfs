@@ -23,10 +23,12 @@
            Seth Nickell <snickell@stanford.edu>
 */
 
-#ifndef _GNOME_VFS_CANCELLATION_H
-#define _GNOME_VFS_CANCELLATION_H
+#ifndef GNOME_VFS_CANCELLATION_H
+#define GNOME_VFS_CANCELLATION_H
 
-#include <glib.h>
+#include <glib/gtypes.h>
+
+G_BEGIN_DECLS
 
 typedef struct GnomeVFSCancellation GnomeVFSCancellation;
 
@@ -39,4 +41,6 @@ gboolean gnome_vfs_cancellation_check   (GnomeVFSCancellation *cancellation);
 void     gnome_vfs_cancellation_ack	(GnomeVFSCancellation *cancellation);
 gint	 gnome_vfs_cancellation_get_fd  (GnomeVFSCancellation *cancellation);
 
-#endif /* _GNOME_VFS_CANCELLATION_H */
+G_END_DECLS
+
+#endif /* GNOME_VFS_CANCELLATION_H */

@@ -33,6 +33,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include <glib/garray.h>
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+#include <glib/gthread.h>
+#include <glib/gutils.h>
 
 static gboolean
 is_octal_digit (char ch)

@@ -25,11 +25,15 @@
 #ifndef GNOME_VFS_ASYNC_OPS_H
 #define GNOME_VFS_ASYNC_OPS_H
 
+#include <glib/gconvert.h> /* remove when giochannel.h is fixed */
+#include <glib/giochannel.h>
 #include <libgnomevfs/gnome-vfs-directory-filter.h>
 #include <libgnomevfs/gnome-vfs-file-info.h>
 #include <libgnomevfs/gnome-vfs-find-directory.h>
 #include <libgnomevfs/gnome-vfs-handle.h>
 #include <libgnomevfs/gnome-vfs-xfer.h>
+
+G_BEGIN_DECLS
 
 typedef struct GnomeVFSAsyncHandle GnomeVFSAsyncHandle;
 
@@ -226,5 +230,7 @@ void           gnome_vfs_async_find_directory         (GnomeVFSAsyncHandle      
 						       guint                                  permissions,
 						       GnomeVFSAsyncFindDirectoryCallback     callback,
 						       gpointer                               user_data);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_ASYNC_OPS_H */

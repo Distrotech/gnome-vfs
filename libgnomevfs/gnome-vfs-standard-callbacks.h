@@ -24,7 +24,9 @@
 #ifndef GNOME_VFS_STANDARD_CALLBACKS_H
 #define GNOME_VFS_STANDARD_CALLBACKS_H
 
-#include <glib.h>
+#include <glib/gtypes.h>
+
+G_BEGIN_DECLS
 
 /*
  * defined callback structures
@@ -102,5 +104,7 @@ typedef struct {
 typedef struct {
 	int dummy; /* empty structs not allowed */
 } GnomeVFSCallbackStatusMessageOut;
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_STANDARD_CALLBACKS_H */

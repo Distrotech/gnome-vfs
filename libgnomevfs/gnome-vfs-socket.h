@@ -29,8 +29,11 @@
 #ifndef GNOME_VFS_SOCKET_H
 #define GNOME_VFS_SOCKET_H
 
+#include <glib/gtypes.h>
 #include <libgnomevfs/gnome-vfs-file-size.h>
 #include <libgnomevfs/gnome-vfs-result.h>
+
+G_BEGIN_DECLS
 
 typedef struct GnomeVFSSocket GnomeVFSSocket;
 
@@ -64,4 +67,7 @@ GnomeVFSResult  gnome_vfs_socket_read    (GnomeVFSSocket     *socket,
 					  gpointer            buffer, 
 					  GnomeVFSFileSize    bytes, 
 					  GnomeVFSFileSize   *bytes_read);
+
+G_END_DECLS
+
 #endif /* GNOME_VFS_SOCKET_H */

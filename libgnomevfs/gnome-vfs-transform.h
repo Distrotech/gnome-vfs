@@ -28,6 +28,8 @@
 #include <libgnomevfs/gnome-vfs-result.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 
+G_BEGIN_DECLS
+
 typedef struct GnomeVFSTransform GnomeVFSTransform;
 
 typedef GnomeVFSTransform * (* GnomeVFSTransformInitFunc) (const char        *method_name,
@@ -41,5 +43,7 @@ typedef GnomeVFSResult (* GnomeVFSTransformFunc)          (GnomeVFSTransform *tr
 struct GnomeVFSTransform {
 	GnomeVFSTransformFunc transform;
 };
+
+G_END_DECLS
 
 #endif

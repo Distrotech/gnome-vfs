@@ -28,6 +28,8 @@
 #include <libgnomevfs/gnome-vfs-iobuf.h>
 #include <libgnomevfs/gnome-vfs-socket.h>
 
+G_BEGIN_DECLS
+
 typedef struct GnomeVFSInetConnection GnomeVFSInetConnection;
 
 GnomeVFSResult	 gnome_vfs_inet_connection_create
@@ -53,5 +55,7 @@ GnomeVFSSocket * gnome_vfs_inet_connection_to_socket
 					(GnomeVFSInetConnection *connection);
 
 int gnome_vfs_inet_connection_get_fd   (GnomeVFSInetConnection *connection);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_INET_CONNECTION_H */

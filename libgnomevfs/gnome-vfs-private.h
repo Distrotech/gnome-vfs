@@ -27,10 +27,6 @@
 #include <config.h>
 #include <glib.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif /*__cplusplus*/
-
 /* The i18n defines */
 #ifdef ENABLE_NLS
 #    include <libintl.h>
@@ -89,9 +85,5 @@ char *alloca ();
 #include <unistd.h> /* ssize_t */
 ssize_t getdelim (char **lineptr, size_t *n, int terminator, FILE *stream);
 #endif
-
-#ifdef __cplusplus
-}
-#endif /*__cplusplus*/
 
 #endif /* GNOME_VFS_PRIVATE_H */

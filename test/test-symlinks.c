@@ -23,15 +23,12 @@
 #include <config.h>
 #endif
 
-#include <stdio.h>
-#include <gnome.h>
-
-#include <orb/orbit.h>
-#include <libgnorba/gnorba.h>
-
 #include "gnome-vfs.h"
+#include <popt.h>
+#include <stdio.h>
+#include <string.h>
 
-#define WITH_PTHREAD
+static GMainLoop *main_loop;
 
 typedef struct {
 	GnomeVFSResult expected_result;
@@ -183,7 +180,7 @@ create_link_callback (GnomeVFSAsyncHandle *handle,
 	deal_with_result (result, expected_result, uri, target_uri, target_reference, TRUE);	
 
 	g_free (callback_data);
-	gtk_main_quit ();
+	g_main_loop_quit (main_loop);
 }
 
 
@@ -253,28 +250,14 @@ check_broken_links (const char *uri)
 
 
 int
-main (int argc, char **argv)
+main (int argc, const char **argv)
 {
 	GnomeVFSURI *directory, *file_to_delete;
 
 	poptContext popt_context;
-#ifdef WITH_CORBA
-	CORBA_Environment ev;
-#endif
 
-#ifdef WITH_PTHREAD
-	g_thread_init (NULL);
-#endif
-
-#ifdef WITH_CORBA
-	CORBA_exception_init (&ev);
-	gnome_CORBA_init_with_popt_table ("test-vfs", "0.0", &argc, argv,
-					  options, 0, &popt_context, 0, &ev);
-#else
-	gnome_init_with_popt_table ("test-vfs", "0.0", argc, argv,
-	  options, 0, &popt_context);
-#endif
-
+	popt_context = poptGetContext ("test-vfs", argc, argv,
+				       options, 0);
 
 	if (argc != 2) {
 		fprintf (stderr, "Usage: %s <directory>\n", argv[0]);
@@ -306,12 +289,9 @@ main (int argc, char **argv)
 
 	make_link_async ("file:///tmp/async_link", "file:///tmp/link", "file:///tmp/link", GNOME_VFS_OK);
 
-	gtk_main ();
-
-#ifdef WITH_CORBA
-	CORBA_exception_free (&ev);
-#endif
-
+	main_loop = g_main_loop_new (NULL, TRUE);
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
 
 	return 0;
 }

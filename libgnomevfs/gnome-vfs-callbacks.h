@@ -24,7 +24,9 @@
 #ifndef GNOME_VFS_CALLBACKS_H
 #define GNOME_VFS_CALLBACKS_H
 
-#include <glib.h>
+#include <glib/gtypes.h>
+
+G_BEGIN_DECLS
 
 /* Used to report user-friendly status messages you might want to display. */
 typedef void (* GnomeVFSStatusCallback) (const gchar  *message,
@@ -36,5 +38,7 @@ typedef void (* GnomeVFSCallback)       (gpointer      user_data,
 					 gsize         out_size);
 
 typedef struct GnomeVFSMessageCallbacks GnomeVFSMessageCallbacks;
+
+G_END_DECLS
 
 #endif

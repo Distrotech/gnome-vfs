@@ -43,15 +43,9 @@
 
 #include <stdlib.h> /* for atoi */
 
-#if GNOME_PLATFORM_VERSION < 1095000
-#include <gnome-xml/parser.h>
-#include <gnome-xml/tree.h>
-#include <gnome-xml/xmlmemory.h>
-#else
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <libxml/xmlmemory.h>
-#endif
 
 #include <sys/time.h>
 

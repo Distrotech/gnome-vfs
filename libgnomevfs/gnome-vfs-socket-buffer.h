@@ -26,10 +26,12 @@
  *          (reverse-engineered from code by Ian McKellar <yakk@yakk.net>)
  */
 
-#ifndef _GNOME_VFS_SOCKET_BUFFER_H
-#define _GNOME_VFS_SOCKET_BUFFER_H
+#ifndef GNOME_VFS_SOCKET_BUFFER_H
+#define GNOME_VFS_SOCKET_BUFFER_H
 
 #include "gnome-vfs-socket.h"
+
+G_BEGIN_DECLS
 
 typedef struct GnomeVFSSocketBuffer GnomeVFSSocketBuffer;
 
@@ -48,5 +50,7 @@ GnomeVFSResult        gnome_vfs_socket_buffer_write    (GnomeVFSSocketBuffer *so
 							GnomeVFSFileSize      bytes,
 							GnomeVFSFileSize     *bytes_written);
 GnomeVFSResult        gnome_vfs_socket_buffer_flush    (GnomeVFSSocketBuffer *buffer);
+
+G_END_DECLS
 
 #endif

@@ -26,9 +26,9 @@
 #include <config.h>
 #endif
 
-#include <gnome.h>
-
 #include "gnome-vfs.h"
+#include <stdio.h>
+#include <time.h>
 
 static const gchar *
 type_to_string (GnomeVFSFileType type)

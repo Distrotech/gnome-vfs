@@ -29,15 +29,11 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-result.h"
 #include "gnome-vfs-utils.h"
-#ifdef HAVE_GCONF
 #include <gconf/gconf.h>
-#endif
 #include <stdio.h>
 #include <string.h>
 
-#ifdef HAVE_GCONF
 static GConfEngine *gconf_engine = NULL;
-#endif
 
 static char *         get_user_level                          (void);
 static GList *        Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList *info_list);
@@ -1863,13 +1859,11 @@ Bonobo_ServerInfoList_to_ServerInfo_g_list (Bonobo_ServerInfoList *info_list)
 	return retval;
 }
 
-#ifdef HAVE_GCONF
 static void
 unref_gconf_engine (void)
 {
 	gconf_engine_unref (gconf_engine);
 }
-#endif /* HAVE_GCONF */
 
 /* Returns the Nautilus user level, a string.
  * This does beg the question: Why does gnome-vfs have the Nautilus
@@ -1882,7 +1876,6 @@ get_user_level (void)
 {
 	char *user_level = NULL;
 
-#ifdef HAVE_GCONF
 	/* Create the gconf engine once. */
 	if (gconf_engine == NULL) {
 		/* This sequence is needed in case no one has initialized GConf. */
@@ -1896,7 +1889,6 @@ get_user_level (void)
 	}
 
 	user_level = gconf_engine_get_string (gconf_engine, "/apps/nautilus/user_level", NULL);
-#endif
 
 	if (user_level == NULL) {
 		user_level = g_strdup ("novice");

@@ -32,6 +32,7 @@
 #include <string.h>
 #include <gnome-vfs.h>
 #include <gnome-vfs-method.h>
+#include <glib.h>
 
 #include <pthread.h>
 

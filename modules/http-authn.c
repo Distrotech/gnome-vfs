@@ -33,6 +33,7 @@
 #include <gnome-vfs.h>
 #include <gnome-vfs-method.h>
 #include <stdio.h>
+#include <glib.h>
 
 /* Authentication session information
  * Key: host:port/path

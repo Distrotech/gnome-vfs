@@ -28,11 +28,15 @@
 #ifndef GNOME_VFS_PARSE_LS_H
 #define GNOME_VFS_PARSE_LS_H
 
-#include <glib.h>
+#include <glib/gmacros.h>
+
+G_BEGIN_DECLS
 
 struct stat;
 
-gint gnome_vfs_parse_ls_lga (const gchar *p, struct stat *s,
-			     gchar **filename, gchar **linkname);
+int gnome_vfs_parse_ls_lga (const char *p, struct stat *s,
+			    char **filename, char **linkname);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_PARSE_LS_H */

@@ -30,6 +30,7 @@
 #include <libgnomevfs/gnome-vfs-handle.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
 
+G_BEGIN_DECLS
 
 GnomeVFSResult	 gnome_vfs_open			(GnomeVFSHandle **handle,
 						 const gchar *text_uri,
@@ -130,5 +131,7 @@ GnomeVFSResult   gnome_vfs_set_file_info_uri    (GnomeVFSURI *uri,
 GnomeVFSResult   gnome_vfs_set_file_info        (const gchar *text_uri,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSSetFileInfoMask mask);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_OPS_H */

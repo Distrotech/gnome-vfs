@@ -21,14 +21,18 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifndef _GNOME_VFS_CONFIGURATION_H
-#define _GNOME_VFS_CONFIGURATION_H
+#ifndef GNOME_VFS_CONFIGURATION_H
+#define GNOME_VFS_CONFIGURATION_H
 
-#include <glib.h>
+#include <glib/gtypes.h>
+
+G_BEGIN_DECLS
 
 void         gnome_vfs_configuration_add_directory   (const char *dir);
 gboolean     gnome_vfs_configuration_init            (void);
 void         gnome_vfs_configuration_uninit          (void);
 const gchar *gnome_vfs_configuration_get_module_path (const gchar *method_name, const char ** args);
 
-#endif /* _GNOME_VFS_CONFIGURATION_H */
+G_END_DECLS
+
+#endif /* GNOME_VFS_CONFIGURATION_H */

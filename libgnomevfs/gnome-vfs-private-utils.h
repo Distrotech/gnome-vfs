@@ -21,8 +21,8 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-#ifndef _GNOME_VFS_PRIVATE_UTILS_H
-#define _GNOME_VFS_PRIVATE_UTILS_H
+#ifndef GNOME_VFS_PRIVATE_UTILS_H
+#define GNOME_VFS_PRIVATE_UTILS_H
 
 /* You should not use calls in here outside GnomeVFS. The APIs in here may
  * break even when the GnomeVFS APIs are otherwise frozen.
@@ -32,6 +32,8 @@
 #include <libgnomevfs/gnome-vfs-handle.h>
 #include <libgnomevfs/gnome-vfs-process.h>
 #include <libgnomevfs/gnome-vfs-uri.h>
+
+G_BEGIN_DECLS
 
 gchar   	*gnome_vfs_canonicalize_pathname         (char *path);
 GnomeVFSResult   gnome_vfs_remove_optional_escapes 	 (char *escaped_uri);
@@ -69,5 +71,7 @@ gboolean	gnome_vfs_istr_has_prefix (const char *haystack,
 					   const char *needle);
 gboolean	gnome_vfs_istr_has_suffix (const char *haystack,
 					   const char *needle);
+
+G_END_DECLS
 
 #endif /* _GNOME_VFS_PRIVATE_UTILS_H */

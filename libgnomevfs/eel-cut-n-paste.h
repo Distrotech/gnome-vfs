@@ -30,8 +30,9 @@
 #ifndef EEL_CUT_N_PASTE_H
 #define EEL_CUT_N_PASTE_H
 
+#include <glib/glist.h>
 #include <libxml/tree.h>
-#include <glib.h>
+
 int stolen_strcasecmp (const char *string_a, const char *string_b);
 int stolen_strcmp_case_breaks_ties (const char *string_a, const char *string_b);
 int stolen_strcoll (const char *string_a, const char *string_b);

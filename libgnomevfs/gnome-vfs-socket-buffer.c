@@ -30,7 +30,8 @@
 #include "gnome-vfs-socket-buffer.h"
 
 #include <string.h>
-
+#include <glib/gmem.h>
+#include <glib/gmessages.h>
 
 
 #define BUFFER_SIZE 4096

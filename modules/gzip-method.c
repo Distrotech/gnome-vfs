@@ -38,7 +38,9 @@
 #include "gnome-vfs-mime.h"
 #include "gnome-vfs-ops.h"
 
-
+#include <glib/gmessages.h>
+#include <glib/gstrfuncs.h>
+
 struct _GZipMethodHandle {
 	GnomeVFSURI *uri;
 	GnomeVFSHandle *parent_handle;

@@ -21,23 +21,17 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
 
-#include <gnome.h>
-#include <libgnorba/gnorba.h>
-
 #include "gnome-vfs.h"
-
-#ifdef WITH_CORBA
-CORBA_Environment ev;
-#endif
+#include <stdio.h>
 
 #define BUFFER_SIZE 4096
 
-
+static GMainLoop *main_loop;
+
 static gboolean io_channel_callback (GIOChannel *source,
 				     GIOCondition condition,
 				     gpointer data)
@@ -64,7 +58,7 @@ static gboolean io_channel_callback (GIOChannel *source,
 		printf ("\n----- EOF -----\n");
 		fflush (stdout);
 		g_io_channel_close (source);
-		gtk_main_quit ();
+		g_main_loop_quit (main_loop);
 		return FALSE;
 	}
 
@@ -103,20 +97,6 @@ main (int argc, char **argv)
 		return 1;
 	}
 
-#ifdef WITH_PTHREAD
-	puts ("Initializing threads...");
-	g_thread_init (NULL);
-#endif
-
-#ifdef WITH_CORBA
-	CORBA_exception_init (&ev);
-	puts ("Initializing gnome-libs with CORBA...");
-	gnome_CORBA_init ("test-vfs", "0.0", &argc, argv, 0, &ev);
-#else
-	puts ("Initializing gnome-libs...");
-	gnome_init ("test-vfs", "0.0", argc, argv);
-#endif
-
 	puts ("Initializing gnome-vfs...");
 	gnome_vfs_init ();
 
@@ -128,13 +108,11 @@ main (int argc, char **argv)
 					 "open_callback");
 
 	puts ("GTK+ main loop running.");
-	gtk_main ();
+	main_loop = g_main_loop_new (NULL, TRUE);
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
 
 	puts ("GTK+ main loop finished.");
-
-#ifdef WITH_CORBA
-	CORBA_exception_free (&ev);
-#endif
 
 	puts ("All done");
 

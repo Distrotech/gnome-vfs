@@ -25,7 +25,6 @@
 #ifndef CDDA_METHOD_H
 #define CDDA_METHOD_H
 
-#include <gtk/gtk.h>
 #include <stdio.h>
 #include <stdarg.h>
 

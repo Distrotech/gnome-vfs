@@ -29,6 +29,8 @@
 #include <config.h>
 #include "gnome-vfs-socket.h"
 
+#include <glib/gmem.h>
+
 struct GnomeVFSSocket {
 	GnomeVFSSocketImpl *impl;
 	gpointer connection;

@@ -24,10 +24,9 @@
 #include <config.h>
 #endif
 
+#include "ssh-method.h"
+
 #include <string.h>
-#ifdef HAVE_ALLOCA_H
-#include <alloca.h>
-#endif
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -38,12 +37,11 @@
 #include "gnome-vfs-cancellation.h"
 #include "gnome-vfs-context.h"
 #include "gnome-vfs-module.h"
-#include "gnome-vfs-method.h"
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-module-shared.h"
 #include "gnome-vfs-parse-ls.h"
 
-#include "file-method.h"
+#include <glib/gstrfuncs.h>
 
 typedef struct {
 	GnomeVFSMethodHandle method_handle;

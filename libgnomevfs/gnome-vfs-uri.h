@@ -24,7 +24,9 @@
 #ifndef GNOME_VFS_URI_H
 #define GNOME_VFS_URI_H
 
-#include <glib.h>
+#include <glib/glist.h>
+
+G_BEGIN_DECLS
 
 /* This describes a URI element.  */
 typedef struct GnomeVFSURI {
@@ -151,5 +153,7 @@ void                 gnome_vfs_uri_list_free               (GList *list);
 
 char                *gnome_vfs_uri_make_full_from_relative (const char *base_uri,
 							    const char *relative_uri);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_URI_H */

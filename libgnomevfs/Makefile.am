@@ -111,7 +111,7 @@ libgnomevfsinclude_HEADERS =			\
 
 libgnomevfs_la_SOURCES =			\
 	eel-cut-n-paste.c			\
-	stolen-glib-extensions.c			\
+	stolen-glib-extensions.c		\
 	fnmatch.c				\
 	gnome-vfs-app-context.c			\
 	gnome-vfs-application-registry.c	\
@@ -158,16 +158,14 @@ libgnomevfs_la_SOURCES =			\
 	gnome-vfs-uri.c				\
 	gnome-vfs-utils.c			\
 	gnome-vfs-xfer.c			\
+	eel-cut-n-paste.h			\
 	fnmatch.h				\
+	gnome-vfs-backend-private.h		\
 	gnome-vfs-mime-private.h		\
 	gnome-vfs-mime-sniff-buffer-private.h	\
 	gnome-vfs-process.h			\
-	$(NULL)
-
-noinst_HEADERS =				\
-	gnome-vfs-backend-private.h		\
 	stolen-glib-extensions.h		\
-	eel-cut-n-paste.h
+	$(NULL)
 
 badly_written_code = \
 	gnome-vfs-metafile-backend.h		\
@@ -179,6 +177,6 @@ BUILT_SOURCES = 		\
 	$(NULL)
 
 # Platform specific includes
-libgnomevfsplatofrmincludedir = $(libdir)/vfs/include
-libgnomevfsplatofrminclude_HEADERS =			\
+libgnomevfsplatformincludedir = $(libdir)/vfs/include
+libgnomevfsplatforminclude_HEADERS =			\
 	gnome-vfs-file-size.h

@@ -25,14 +25,13 @@
 #include <config.h>
 #endif
 
+#include "gnome-vfs.h"
+#include <glib/gstrfuncs.h>
+#include <glib/gtimer.h>
+#include <popt.h>
 #include <stdio.h>
 
-#include <gnome.h>
-
-#include <orb/orbit.h>
-#include <libgnorba/gnorba.h>
-
-#include "gnome-vfs.h"
+static GMainLoop *main_loop;
 
 static int measure_speed = 0;
 static int sort = 0;
@@ -259,39 +258,24 @@ directory_load_callback (GnomeVFSAsyncHandle *handle,
 	gnome_vfs_uri_unref (parent_uri);
 	if (result != GNOME_VFS_OK) {
 		if (--async_task_counter == 0) {
-			gtk_main_quit ();
+			g_main_loop_quit (main_loop);
 		}
 	}
 }
 
 int
-main (int argc, char **argv)
+main (int argc, const char **argv)
 {
 	GnomeVFSAsyncHandle *handle;
 	poptContext popt_context;
 	const char **args;
 	gchar *text_uri;
 	GTimer *timer;
-#ifdef WITH_CORBA
-	CORBA_Environment ev;
-#endif
 	CallbackData callback_data;
 
-#ifdef WITH_PTHREAD
-	puts ("Initializing threads...");
-	g_thread_init (NULL);
-#endif
-
-#ifdef WITH_CORBA
-	CORBA_exception_init (&ev);
-	puts ("Initializing gnome-libs with CORBA...");
-	gnome_CORBA_init_with_popt_table ("test-vfs", "0.0", &argc, argv,
-					  options, 0, &popt_context, 0, &ev);
-#else
 	puts ("Initializing gnome-libs...");
-	gnome_init_with_popt_table ("test-vfs", "0.0", argc, argv,
-				    options, 0, &popt_context);
-#endif
+	popt_context = poptGetContext ("test-vfs", argc, argv,
+				       options, 0);
 
 	args = poptGetArgs (popt_context);
 	if (args == NULL || args[1] != NULL) {
@@ -328,9 +312,11 @@ main (int argc, char **argv)
 		 &callback_data);
 
 	if (!measure_speed)
-		puts ("GTK+ main loop running.");
+		puts ("main loop running.");
 
-	gtk_main ();
+	main_loop = g_main_loop_new (NULL, TRUE);
+	g_main_loop_run (main_loop);
+	g_main_loop_unref (main_loop);
 
 	if (measure_speed) {
 		gdouble elapsed_seconds;
@@ -344,10 +330,6 @@ main (int argc, char **argv)
 
 	if (!measure_speed)
 		puts ("GTK+ main loop finished."); fflush (stdout);
-
-#ifdef WITH_CORBA
-	CORBA_exception_free (&ev);
-#endif
 
 	puts ("All done");
 

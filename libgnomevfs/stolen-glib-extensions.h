@@ -27,8 +27,10 @@
 #ifndef STOLEN_GLIB_EXTENSIONS_H
 #define STOLEN_GLIB_EXTENSIONS_H
 
+#include <glib/ghash.h>
+#include <glib/glist.h>
+#include <glib/gstring.h>
 #include <time.h>
-#include <glib.h>
 
 /* A gboolean variant for bit fields. */
 typedef guint stolen_boolean_bit;

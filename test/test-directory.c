@@ -25,13 +25,13 @@
 #include <config.h>
 #endif
 
-#include <stdio.h>
-
-#include <gnome.h>
-
 #include "gnome-vfs.h"
+#include <glib/gstrfuncs.h>
+#include <glib/gtimer.h>
+#include <popt.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-
 static int measure_speed = 0;
 
 struct poptOption options[] = {
@@ -124,7 +124,7 @@ print_list (GList *list)
 }
 
 int
-main (int argc, char **argv)
+main (int argc, const char **argv)
 {
 	GList *list;
 	GnomeVFSResult result;

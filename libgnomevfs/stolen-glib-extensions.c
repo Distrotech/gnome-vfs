@@ -32,6 +32,7 @@
 #include <math.h>
 #include <sys/time.h>
 #include <sys/utsname.h>
+#include <glib.h>
 
 typedef struct {
 	GHashTable *hash_table;

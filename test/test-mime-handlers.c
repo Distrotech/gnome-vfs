@@ -25,9 +25,9 @@
 #include <config.h>
 #endif
 
-#include "gnome-vfs.h"
 #include "gnome-vfs-mime-handlers.h"
-
+#include "gnome-vfs.h"
+#include <bonobo-activation/bonobo-activation.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -92,7 +92,7 @@ print_application (GnomeVFSMimeApplication *application)
 }
 
 static void
-print_component (OAF_ServerInfo *component)
+print_component (Bonobo_ServerInfo *component)
 {
         if (component == NULL) {
 	        puts ("(none)");
@@ -154,7 +154,7 @@ main (int argc, char **argv)
 {
         const char *type;  
 	GnomeVFSMimeApplication *default_application;
-	OAF_ServerInfo *default_component;
+	Bonobo_ServerInfo *default_component;
 	GnomeVFSMimeAction *default_action;
 	const char *description;
 	GList *all_components;
@@ -162,7 +162,6 @@ main (int argc, char **argv)
 	GList *short_list_components;
 	GList *short_list_applications;
 
-	oaf_init (argc, argv);
 	gnome_vfs_init ();
 
 	if (argc != 2) {

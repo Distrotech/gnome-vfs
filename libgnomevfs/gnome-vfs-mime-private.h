@@ -25,9 +25,7 @@
 
 #include <libgnomevfs/gnome-vfs-mime-monitor.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif /*__cplusplus*/
+G_BEGIN_DECLS
 
 void gnome_vfs_mime_info_shutdown 	      (void);
 void gnome_vfs_mime_monitor_emit_data_changed (GnomeVFSMIMEMonitor *monitor);
@@ -40,8 +38,6 @@ void		 gnome_vfs_file_date_tracker_start_tracking_file	(FileDateTracker *tracker
 							 		 const char *local_file_path);
 gboolean	 gnome_vfs_file_date_tracker_date_has_changed 		(FileDateTracker *tracker);
 
-#ifdef __cplusplus
-}
-#endif /*__cplusplus*/
+G_END_DECLS
 
 #endif /* GNOME_VFS_MIME_PRIVATE_H */

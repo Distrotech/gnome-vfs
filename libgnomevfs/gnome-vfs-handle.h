@@ -26,6 +26,8 @@
 
 #include <libgnomevfs/gnome-vfs-method.h>
 
+G_BEGIN_DECLS
+
 typedef struct GnomeVFSHandle GnomeVFSHandle;
 
 GnomeVFSHandle * gnome_vfs_handle_new                (GnomeVFSURI             *uri,
@@ -63,5 +65,7 @@ GnomeVFSResult   gnome_vfs_handle_do_get_file_info   (GnomeVFSHandle          *h
 GnomeVFSResult   gnome_vfs_handle_do_truncate        (GnomeVFSHandle          *handle,
 						      GnomeVFSFileSize         length,
 						      GnomeVFSContext         *context);
+
+G_END_DECLS
 
 #endif /* GNOME_VFS_HANDLE_H */
