@@ -95,8 +95,11 @@ impl_Notify_reset (PortableServer_Servant servant,
 	slave = slave_from_servant (servant);
 	callback = slave->callback;
 
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_RESET)
-		g_warning ("Unexpected reset!?");
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_RESET) {
+		g_warning ("slave received reset notify, "
+			   "but reset operation is not in progress");
+		return;
+	}
 
 	free_handle_list (slave);
 
@@ -111,8 +114,6 @@ impl_Notify_dying (PortableServer_Servant servant,
 		   CORBA_Environment *ev)
 {
 	GnomeVFSSlaveProcess *slave;
-
-	g_message ("Our slave is dying.");
 
 	slave = slave_from_servant (servant);
 
@@ -133,8 +134,6 @@ impl_Notify_dying (PortableServer_Servant servant,
 	CORBA_exception_free (&slave->ev);
 
 	g_free (slave);
-
-	g_message ("Slave cleanup done");
 }
 
 static void
@@ -149,8 +148,11 @@ impl_Notify_open (PortableServer_Servant servant,
 	slave = slave_from_servant (servant);
 
 	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_OPEN
-	    && slave->operation_in_progress != GNOME_VFS_ASYNC_OP_CREATE)
+	    && slave->operation_in_progress != GNOME_VFS_ASYNC_OP_CREATE) {
+		g_warning ("slave received open notify, "
+			   "but open operation is not in progress");
 		return;
+	}
 
 	slave->file_handle_objref = CORBA_Object_duplicate (handle, ev);
 	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_NONE;
@@ -176,8 +178,11 @@ impl_Notify_open_as_channel (PortableServer_Servant servant,
 	slave = slave_from_servant (servant);
 
 	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_OPEN_AS_CHANNEL
-	    && slave->operation_in_progress != GNOME_VFS_ASYNC_OP_CREATE_AS_CHANNEL)
+	    && slave->operation_in_progress != GNOME_VFS_ASYNC_OP_CREATE_AS_CHANNEL) {
+		g_warning ("slave received open_as_channel notify, "
+			   "but open_as_channel operation is not in progress");
 		return;
+	}
 
 	new_channel = NULL;
 	vfs_result = (GnomeVFSResult) result;
@@ -225,8 +230,11 @@ impl_Notify_close (PortableServer_Servant servant,
 
 	slave = slave_from_servant (servant);
 
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_CLOSE)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_CLOSE) {
+		g_warning ("slave received close notify, "
+			   "but close operation is not in progress");
 		return;
+	}
 
 	CORBA_Object_release (slave->file_handle_objref, ev);
 	slave->file_handle_objref = CORBA_OBJECT_NIL;
@@ -251,8 +259,11 @@ impl_Notify_read (PortableServer_Servant servant,
 
 	slave = slave_from_servant (servant);
 
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_READ)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_READ) {
+		g_warning ("slave received read notify, "
+			   "but read operation is not in progress");
 		return;
+	}
 
 	memcpy (slave->op_info.file.buffer, data->_buffer, data->_length);
 
@@ -277,8 +288,11 @@ impl_Notify_write (PortableServer_Servant servant,
 	GnomeVFSAsyncReadCallback callback;
 
 	slave = slave_from_servant (servant);
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_WRITE)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_WRITE) {
+		g_warning ("slave received write notify, "
+			   "but write operation is not in progress");
 		return;
+	}
 
 	slave->operation_in_progress = GNOME_VFS_ASYNC_OP_NONE;
 
@@ -313,8 +327,11 @@ impl_Notify_xfer_start (PortableServer_Servant servant,
 	GnomeVFSAsyncXferProgressCallback callback;
 
 	slave = slave_from_servant (servant);
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER) {
+		g_warning ("slave received xfer_start notify, "
+			   "but xfer operation is not in progress");
 		return CORBA_FALSE;
+	}
 
 	op_info = &slave->op_info.xfer;
 	progress_info = &op_info->progress_info;
@@ -341,8 +358,11 @@ impl_Notify_xfer_file_start (PortableServer_Servant servant,
 	GnomeVFSAsyncXferProgressCallback callback;
 
 	slave = slave_from_servant (servant);
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER) {
+		g_warning ("slave received xfer_file_start notify, "
+			   "but xfer operation is not in progress");
 		return CORBA_FALSE;
+	}
 
 	op_info = &slave->op_info.xfer;
 	progress_info = &op_info->progress_info;
@@ -374,8 +394,11 @@ impl_Notify_xfer_file_progress (PortableServer_Servant servant,
 	GnomeVFSAsyncXferProgressCallback callback;
 
 	slave = slave_from_servant (servant);
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER) {
+		g_warning ("slave received xfer_file_progress notify, "
+			   "but xfer operation is not in progress");
 		return CORBA_FALSE;
+	}
 
 	op_info = &slave->op_info.xfer;
 	progress_info = &op_info->progress_info;
@@ -399,8 +422,11 @@ impl_Notify_xfer_file_done (PortableServer_Servant servant,
 	GnomeVFSAsyncXferProgressCallback callback;
 
 	slave = slave_from_servant (servant);
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER) {
+		g_warning ("slave received xref_file_done notify, "
+			   "but xfer operation is not in progress");
 		return CORBA_FALSE;
+	}
 
 	op_info = &slave->op_info.xfer;
 	progress_info = &op_info->progress_info;
@@ -422,8 +448,11 @@ impl_Notify_xfer_done (PortableServer_Servant servant,
 	GnomeVFSAsyncXferProgressCallback callback;
 
 	slave = slave_from_servant (servant);
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER) {
+		g_warning ("slave received xfer_done notify, "
+			   "but xfer operation is not in progress");
 		return;
+	}
 
 	op_info = &slave->op_info.xfer;
 	progress_info = &op_info->progress_info;
@@ -450,8 +479,11 @@ impl_Notify_xfer_error (PortableServer_Servant servant,
 	GnomeVFSAsyncXferProgressCallback callback;
 
 	slave = slave_from_servant (servant);
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER) {
+		g_warning ("slave received xfer_error notify, "
+			   "but xfer operation is not in progress");
 		return;
+	}
 
 	op_info = &slave->op_info.xfer;
 	progress_info = &op_info->progress_info;
@@ -482,8 +514,11 @@ impl_Notify_xfer_query_for_error (PortableServer_Servant servant,
 	GnomeVFSXferErrorAction action;
 
 	slave = slave_from_servant (servant);
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER) {
+		g_warning ("slave received xfer_query_for_error notify, "
+			   "but xfer operation is not in progress");
 		return GNOME_VFS_XFER_ERROR_ACTION_ABORT;
+	}
 
 	op_info = &slave->op_info.xfer;
 	progress_info = &op_info->progress_info;
@@ -511,8 +546,11 @@ impl_Notify_xfer_query_for_overwrite (PortableServer_Servant servant,
 	GnomeVFSXferOverwriteAction action;
 
 	slave = slave_from_servant (servant);
-	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER)
+	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_XFER) {
+		g_warning ("slave received xfer_query_for_overwrite notify, "
+			   "but xfer operation is not in progress");
 		return GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT;
+	}
 
 	op_info = &slave->op_info.xfer;
 	progress_info = &op_info->progress_info;
@@ -572,7 +610,8 @@ impl_Notify_load_directory (PortableServer_Servant servant,
 
 	slave = slave_from_servant (servant);
 	if (slave->operation_in_progress != GNOME_VFS_ASYNC_OP_LOAD_DIRECTORY) {
-		printf ("Return prematurely!\n");
+		g_warning ("slave received load_directory notify, "
+			   "but load_directory operation is not in progress");
 		return;
 	}
 

@@ -258,7 +258,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 			return NULL;
 		}
 
-		while (*p2 != 0 && *p2 != '/' && *p2 != GNOME_VFS_URI_MAGIC_CHR)
+		while (*p2 != 0 && *p2 != GNOME_VFS_URI_PATH_CHR && *p2 != GNOME_VFS_URI_MAGIC_CHR)
 			p2++;
 
 		ALLOCA_SUBSTRING (new_method_string, p1 + 1, p2 - p1 - 1);
@@ -443,14 +443,14 @@ gnome_vfs_uri_append_path (const GnomeVFSURI *uri,
 	}
 
 	len--;
-	while (uri_string[len] == '/' && len > 0)
+	while (uri_string[len] == GNOME_VFS_URI_PATH_CHR && len > 0)
 		len--;
 	uri_string[len + 1] = '\0';
 
-	while (*path == '/')
+	while (*path == GNOME_VFS_URI_PATH_CHR)
 		path++;
 
-	new_string = g_strconcat (uri_string, "/", path, NULL);
+	new_string = g_strconcat (uri_string, GNOME_VFS_URI_PATH_STR, path, NULL);
 	new = gnome_vfs_uri_new (new_string);
 
 	g_free (new_string);
@@ -626,7 +626,7 @@ gnome_vfs_uri_has_parent (const GnomeVFSURI *uri)
 	if (uri->text == NULL)
 		return FALSE;
 
-	if (strcmp (uri->text, "/") == 0)
+	if (strcmp (uri->text, GNOME_VFS_URI_PATH_STR) == 0)
 		return FALSE;
 
 	return TRUE;
@@ -653,12 +653,12 @@ gnome_vfs_uri_get_parent (const GnomeVFSURI *uri)
 		p = uri->text + len - 1;
 
 		/* Skip trailing slash.  */
-		if (*p == '/' && p != uri->text)
+		if (*p == GNOME_VFS_URI_PATH_CHR && p != uri->text)
 			p--;
 
 		/* Search backwards for next slash.  URIs are normalized, so
                    the next slash we find cannot be a trailing one.  */
-		while (p != uri->text && *p != '/')
+		while (p != uri->text && *p != GNOME_VFS_URI_PATH_CHR)
 			p--;
 
 		if (p[1] != '\0') {
@@ -671,11 +671,11 @@ gnome_vfs_uri_get_parent (const GnomeVFSURI *uri)
 			g_free (new->text);
 
 			if (p == uri->text) {
-				new->text = g_strdup ("/");
+				new->text = g_strdup (GNOME_VFS_URI_PATH_STR);
 			} else {
 				new->text = g_malloc (p - uri->text + 2);
 				memcpy (new->text, uri->text, p - uri->text);
-				new->text[p - uri->text] = '/';
+				new->text[p - uri->text] = GNOME_VFS_URI_PATH_CHR;
 				new->text[p - uri->text + 1] = '\0';
 			}
 
