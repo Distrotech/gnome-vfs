@@ -589,7 +589,6 @@ modules/extfs/zoo
 man/Makefile
 man/gnome-vfs-mime.5
 devel-docs/Makefile
-devel-docs/gnome-vfs/Makefile
 devel-docs/gnome-vfs-tutorial/Makefile
 po/Makefile.in
 test/Makefile
