@@ -1,0 +1,407 @@
+# Limburgish translation of gnome-vfs
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Gnome-vfs\n"
+"POT-Creation-Date: 2003-06-05 15:35+0200\n"
+"PO-Revision-Date: 2003-06-05 10:01+0100\n"
+"Last-Translator: Mathieu van Woerkom <mathieu@brabants.org>\n"
+"Language-Team: Limburgish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# hier wordt waarschijnlijk NULL bedoeld ipv NUL
+#: libgnomevfs/gnome-vfs-configuration.c:219
+#, c-format
+msgid "%s:%d contains NUL characters."
+msgstr "%s:%d haet NULL-teikes."
+
+#: libgnomevfs/gnome-vfs-configuration.c:236
+#, c-format
+msgid "%s:%d contains no method name."
+msgstr "%s:%d haet geine metoodnaam."
+
+#: libgnomevfs/gnome-vfs-configuration.c:265
+#, c-format
+msgid "%s:%d contains no module name."
+msgstr "%s:%d haet geine modulenaam."
+
+#: libgnomevfs/gnome-vfs-configuration.c:318
+#, c-format
+msgid "Configuration file `%s' was not found: %s"
+msgstr "Kóngfiggerasiebesjtandj '%s' woor neet gevónje: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:758
+#, c-format
+msgid "Unknown op type %u"
+msgstr "Ónbekènd oper-tiep %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1048 libgnomevfs/gnome-vfs-job.c:1193
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "Kèn gein piep aanmake veur GIOChannel: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:1684
+#, c-format
+msgid "Unknown job kind %u"
+msgstr "Ónbekènd taaktiep %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1717
+msgid "Operation stopped"
+msgstr "Operasie gesjtop"
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#, c-format
+msgid "Could not parse: %s"
+msgstr "Kós neet verwirke: %s"
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
+msgid "More parsing errors will be ignored."
+msgstr "Mie verwirkingsfaelers waere genegeerd."
+
+#. GNOME_VFS_OK
+#: libgnomevfs/gnome-vfs-result.c:35
+msgid "No error"
+msgstr "Geine faeler"
+
+#. GNOME_VFS_ERROR_NOT_FOUND
+#: libgnomevfs/gnome-vfs-result.c:36
+msgid "File not found"
+msgstr "Besjtandj neet gevónje"
+
+#. GNOME_VFS_ERROR_GENERIC
+#: libgnomevfs/gnome-vfs-result.c:37
+msgid "Generic error"
+msgstr "Algemeine faeler"
+
+#. GNOME_VFS_ERROR_INTERNAL
+#: libgnomevfs/gnome-vfs-result.c:38
+msgid "Internal error"
+msgstr "Interne faeler"
+
+#. GNOME_VFS_ERROR_BAD_PARAMETERS
+#: libgnomevfs/gnome-vfs-result.c:39
+msgid "Invalid parameters"
+msgstr "Óngeljige paramaeters"
+
+#. GNOME_VFS_ERROR_NOT_SUPPORTED
+#: libgnomevfs/gnome-vfs-result.c:40
+msgid "Unsupported operation"
+msgstr "Neet-gesjtiepde operasie"
+
+#. GNOME_VFS_ERROR_IO
+#: libgnomevfs/gnome-vfs-result.c:41
+msgid "I/O error"
+msgstr "I/O-faeler"
+
+#. GNOME_VFS_ERROR_CORRUPTED_DATA
+#: libgnomevfs/gnome-vfs-result.c:42
+msgid "Data corrupted"
+msgstr "Data versjangeleerd"
+
+#. GNOME_VFS_ERROR_WRONG_FORMAT
+#: libgnomevfs/gnome-vfs-result.c:43
+msgid "Format not valid"
+msgstr "Óngeljig formaat"
+
+#. GNOME_VFS_ERROR_BAD_FILE
+#: libgnomevfs/gnome-vfs-result.c:44
+msgid "Bad file handle"
+msgstr "Sjlechte besjtandj-handle"
+
+#. GNOME_VFS_ERROR_TOO_BIG
+#: libgnomevfs/gnome-vfs-result.c:45
+msgid "File too big"
+msgstr "Besjtandj te groet"
+
+#. GNOME_VFS_ERROR_NO_SPACE
+#: libgnomevfs/gnome-vfs-result.c:46
+msgid "No space left on device"
+msgstr "Gein ruumde vrie op 't apperaat"
+
+#. GNOME_VFS_ERROR_READ_ONLY
+#: libgnomevfs/gnome-vfs-result.c:47
+msgid "Read-only file system"
+msgstr "Allein-laeze besjtandjsysteem"
+
+#. GNOME_VFS_ERROR_INVALID_URI
+#: libgnomevfs/gnome-vfs-result.c:48
+msgid "Invalid URI"
+msgstr "Óngeljige URI"
+
+#. GNOME_VFS_ERROR_NOT_OPEN
+#: libgnomevfs/gnome-vfs-result.c:49
+msgid "File not open"
+msgstr "Besjtandj neet aope"
+
+#. GNOME_VFS_ERROR_INVALID_OPEN_MODE
+#: libgnomevfs/gnome-vfs-result.c:50
+msgid "Open mode not valid"
+msgstr "Óngeljige äöpeningsmodus"
+
+#. GNOME_VFS_ERROR_ACCESS_DENIED
+#: libgnomevfs/gnome-vfs-result.c:51
+msgid "Access denied"
+msgstr "Toegank verbaoje"
+
+#. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
+#: libgnomevfs/gnome-vfs-result.c:52
+msgid "Too many open files"
+msgstr "Teväöl aope besjtenj"
+
+#. GNOME_VFS_ERROR_EOF
+#: libgnomevfs/gnome-vfs-result.c:53
+msgid "End of file"
+msgstr "ènj van besjtandj"
+
+#. GNOME_VFS_ERROR_NOT_A_DIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:54
+msgid "Not a directory"
+msgstr "Gein map"
+
+#. GNOME_VFS_ERROR_IN_PROGRESS
+#: libgnomevfs/gnome-vfs-result.c:55
+msgid "Operation in progress"
+msgstr "Operasie is baezig"
+
+#. GNOME_VFS_ERROR_INTERRUPTED
+#: libgnomevfs/gnome-vfs-result.c:56
+msgid "Operation interrupted"
+msgstr "Operasie óngerbraoke"
+
+#. GNOME_VFS_ERROR_FILE_EXISTS
+#: libgnomevfs/gnome-vfs-result.c:57
+msgid "File exists"
+msgstr "Besjtandj besjteit al"
+
+#. GNOME_VFS_ERROR_LOOP
+#: libgnomevfs/gnome-vfs-result.c:58
+msgid "Looping links encountered"
+msgstr "Circulaere koppelinge gevónje"
+
+#. GNOME_VFS_ERROR_NOT_PERMITTED
+#: libgnomevfs/gnome-vfs-result.c:59
+msgid "Operation not permitted"
+msgstr "Operasie neet toegesjtange"
+
+#. GNOME_VFS_ERROR_IS_DIRECTORY
+#: libgnomevfs/gnome-vfs-result.c:60
+msgid "Is a directory"
+msgstr "Is ein map"
+
+#. GNOME_VFS_ERROR_NO_MEMMORY
+#: libgnomevfs/gnome-vfs-result.c:61
+msgid "Not enough memory"
+msgstr "Neet genóg ónthaud"
+
+#. GNOME_VFS_ERROR_HOST_NOT_FOUND
+#: libgnomevfs/gnome-vfs-result.c:62
+msgid "Host not found"
+msgstr "Mesjien neet gevónje"
+
+#. GNOME_VFS_ERROR_INVALID_HOST_NAME
+#: libgnomevfs/gnome-vfs-result.c:63
+msgid "Host name not valid"
+msgstr "Mesjiennaam is neet geljig"
+
+#. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
+#: libgnomevfs/gnome-vfs-result.c:64
+msgid "Host has no address"
+msgstr "Mesjien haet gein adres"
+
+#. GNOME_VFS_ERROR_LOGIN_FAILED
+#: libgnomevfs/gnome-vfs-result.c:65
+msgid "Login failed"
+msgstr "Inlogge neet gelök"
+
+#. GNOME_VFS_ERROR_CANCELLED
+#: libgnomevfs/gnome-vfs-result.c:66
+msgid "Operation cancelled"
+msgstr "Operasie aafgebraoke"
+
+#. GNOME_VFS_ERROR_DIRECTORY_BUSY
+#: libgnomevfs/gnome-vfs-result.c:67
+msgid "Directory busy"
+msgstr "Map is in gebroek"
+
+#. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
+#: libgnomevfs/gnome-vfs-result.c:68
+msgid "Directory not empty"
+msgstr "Map is neet laeg"
+
+#. GNOME_VFS_ERROR_TOO_MANY_LINKS
+#: libgnomevfs/gnome-vfs-result.c:69
+msgid "Too many links"
+msgstr "Teväöl koppelinge"
+
+#. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
+#: libgnomevfs/gnome-vfs-result.c:70
+msgid "Read only file system"
+msgstr "Allein-laeze besjtandjsysteem"
+
+#. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
+#: libgnomevfs/gnome-vfs-result.c:71
+msgid "Not on the same file system"
+msgstr "Neet op 'tzelfde besjtandjsysteem"
+
+#. GNOME_VFS_ERROR_NAME_TOO_LONG
+#: libgnomevfs/gnome-vfs-result.c:72
+msgid "Name too long"
+msgstr "Naam te lank"
+
+#. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
+#: libgnomevfs/gnome-vfs-result.c:73
+msgid "Service not available"
+msgstr "Deens is neet besjikbaar"
+
+#. GNOME_VFS_ERROR_SERVICE_OBSOLETE
+#: libgnomevfs/gnome-vfs-result.c:74
+msgid "Request obsoletes service's data"
+msgstr "Verzeuk maak gegaeves van de deens achterhaold"
+
+#. GNOME_VFS_ERROR_PROTOCOL_ERROR
+#: libgnomevfs/gnome-vfs-result.c:75
+msgid "Protocol error"
+msgstr "Protokolfaeler"
+
+#. GNOME_VFS_ERROR_NO_MASTER_BROWSER
+#: libgnomevfs/gnome-vfs-result.c:76
+msgid "Could not find master browser"
+msgstr "Kós de huid-browser neet vènje"
+
+#. GNOME_VFS_ERROR_NO_DEFAULT
+#: libgnomevfs/gnome-vfs-result.c:77
+msgid "No default action associated"
+msgstr "Gein sjtanderdaksie gedefinieerd"
+
+#. GNOME_VFS_ERROR_NO_HANDLER
+#: libgnomevfs/gnome-vfs-result.c:78
+msgid "No handler for URL scheme"
+msgstr "Gein aksie veur URL sjema"
+
+#. GNOME_VFS_ERROR_PARSE
+#: libgnomevfs/gnome-vfs-result.c:79
+msgid "Error parsing command line"
+msgstr "Faeler bie analysere opdrachregel"
+
+#. GNOME_VFS_ERROR_LAUNCH
+#: libgnomevfs/gnome-vfs-result.c:80
+msgid "Error launching command"
+msgstr "Faeler bie sjtarte opdrach"
+
+#: libgnomevfs/gnome-vfs-result.c:174
+msgid "Unknown error"
+msgstr "Ónbekènde faeler"
+
+#: libgnomevfs/gnome-vfs-utils.c:84
+msgid "1 byte"
+msgstr "1 byte"
+
+#: libgnomevfs/gnome-vfs-utils.c:86
+#, c-format
+msgid "%u bytes"
+msgstr "%u bytes"
+
+#: libgnomevfs/gnome-vfs-utils.c:93
+#, c-format
+msgid "%.1f K"
+msgstr "%.1f K"
+
+#: libgnomevfs/gnome-vfs-utils.c:97
+#, c-format
+msgid "%.1f MB"
+msgstr "%.1f Mb"
+
+#: libgnomevfs/gnome-vfs-utils.c:101
+#, c-format
+msgid "%.1f GB"
+msgstr "%.1f Gb"
+
+#: libgnomevfs/gnome-vfs-utils.c:1085
+msgid " (invalid Unicode)"
+msgstr " (óngeljige Unicode)"
+
+#: modules/file-method.c:382
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "Ónbekènde GnomeVFSSeekPosition %d"
+
+#. FIXME: we probably shouldn't use printf to output the message
+#: modules/test-method.c:590
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "Gein geljig insjtèllingebesjtandj gevónje in %s\n"
+
+#: modules/test-method.c:592
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr ""
+"Gebroek de %s omgaevingsvarrejabele veur ein angere lokasie op te gaeve.\n"
+
+#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:163
+msgid "Applications"
+msgstr "Programme"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:166
+msgid "Cards"
+msgstr "Kaarte"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:169
+msgid "Files"
+msgstr "Besjtenj"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:172
+msgid "Folders"
+msgstr "Mappe"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:175
+msgid "Help"
+msgstr "Hulp"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:178
+msgid "Hosts"
+msgstr "Computers"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:181
+msgid "Links"
+msgstr "Verwiezinge"
+
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:184
+msgid "Mail"
+msgstr "E-mail"
+
+#  Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:187
+msgid "Tools"
+msgstr "Getuug"
+
+#. Translate exactly the same in CDE's sys.dtwmrc file of the locale
+#: modules/cdemenu-desktop-method.c:190
+msgid "Windows"
+msgstr "Vinsters"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
+msgid "Standard Moniker factory"
+msgstr "Sjtanderd Monikerfebrik"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
+msgid "file MonikerExtender"
+msgstr "Besjtandj MonikerExtender"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
+msgid "generic Gnome VFS moniker"
+msgstr "Algemeine Gnome VFS moniker"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
+msgid "generic file moniker"
+msgstr "Algemeine besjtandjmoniker"
