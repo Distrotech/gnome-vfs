@@ -25,6 +25,7 @@
 #include "gnome-vfs-app-context.h"
 #include "gnome-vfs-backend-private.h"
 
+#include <string.h>
 #include <stdio.h>
 
 static void	dispatch_destroy_notify 		(GDestroyNotify notify_func,

@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 static void
 show_result (GnomeVFSResult result, const gchar *what, const gchar *text_uri)

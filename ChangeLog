@@ -1,3 +1,12 @@
+2001-05-15  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c,
+	libgnomevfs/gnome-vfs-app-context.c,
+	libgnomevfs/gnome-vfs-app-context.h, libgnomevfs/gnome-vfs-init.c,
+	libgnomevfs/gnome-vfs-module-api.h, modules/http-authn.h,
+	test/test-ssl.c: Add trailing newlines to files that didn't have
+	them, and include headers needed to compile on my system.
+
 2001-05-14  Michael K. Fleming  <mikef@praxis.etla.net>
 
 	reviewed by: Ian McKellar <yakk@yakk.net>
