@@ -24,6 +24,7 @@ INCLUDES =					\
 EXTRA_DIST =					\
 	default-modules.conf			\
 	cdda-module.conf			\
+	cdemenu-module.conf			\
 	ssl-modules.conf
 
 ###  Module setup
@@ -70,7 +71,10 @@ endif
 if HAVE_SSL
 SSL_CONF = ssl-modules.conf
 endif
-modulesconf_DATA = default-modules.conf $(CDDA_CONF) $(SSL_CONF)
+if BUILD_CDEMENU_MODULE
+CDE_CONF = cdemenu-module.conf
+endif
+modulesconf_DATA = default-modules.conf $(CDDA_CONF) $(SSL_CONF) $(CDE_CONF)
 
 ###  `cdda' method
 
