@@ -1,3 +1,10 @@
+2004-03-08  Christophe Fergeau  <teuf@gnome.org>
+
+	* configure.in: 
+	  Properly install ssl-modules.conf when using GNU TLS
+	* libgnomevfs/gnome-vfs-ssl.c: (gnome_vfs_ssl_create_from_fd): fix an
+	  implicit int to pointer conversion when using GNU TLS.
+
 2004-03-08  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/sftp-method.c (sftp_connect):

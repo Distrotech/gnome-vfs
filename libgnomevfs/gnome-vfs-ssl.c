@@ -1,4 +1,4 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+qq/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 
 /* gnome-vfs-ssl.h
  *
@@ -302,7 +302,8 @@ gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return,
 	gnutls_init (&ssl->private->tlsstate, GNUTLS_CLIENT);
 
 	/* set socket */
-	gnutls_transport_set_ptr (ssl->private->tlsstate, fd);
+	gnutls_transport_set_ptr (ssl->private->tlsstate, 
+				  GINT_TO_POINTER (fd));
 
 	gnutls_protocol_set_priority (ssl->private->tlsstate, protocol_priority);
 	gnutls_cipher_set_priority (ssl->private->tlsstate, cipher_priority);

@@ -540,7 +540,8 @@ if test "x$enable_gnutls" = "xyes"; then
   if test "x${OPENSSL_LIBS}" != "x"; then
     AC_MSG_ERROR([*** Can't use both openssl and gnutls at the same time. Please pick one only. ***])
   else
-    AM_PATH_LIBGNUTLS(0.5.1, AC_DEFINE(HAVE_GNUTLS),
+    AM_PATH_LIBGNUTLS(0.5.1, [AC_DEFINE(HAVE_GNUTLS)
+    			      AM_CONDITIONAL(HAVE_SSL, true)],
                       AC_MSG_ERROR([Unable to find GNUTLS]))
   fi
 fi
