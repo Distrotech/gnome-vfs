@@ -1,3 +1,9 @@
+2002-06-15  James Henstridge  <james@daa.com.au>
+
+	* modules/Makefile.am: link VFS modules back against libgnomevfs-2.la
+	so that they resolve the symbols correctly when gnome-vfs is used
+	from a language binding.  Fixes bug #85351
+
 2002-06-13  Alex Graveley  <alex@ximian.com>
 
 	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): Always ensure

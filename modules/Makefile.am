@@ -85,38 +85,43 @@ libcdda_la_SOURCES = \
 	cdda-cdrom-extensions.h
 
 libcdda_la_LDFLAGS = $(module_flags)
-libcdda_la_LIBADD = -L/gnome/lib -lcdda_paranoia -lcdda_interface
+libcdda_la_LIBADD = -lcdda_paranoia -lcdda_interface ../libgnomevfs/libgnomevfs-2.la
 
 ###  `extfs' method
 
 libextfs_la_SOURCES = extfs-method.c
 libextfs_la_LDFLAGS = $(module_flags)
+libextfs_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
 
 ###  `file' method
 
 libfile_la_SOURCES = file-method.c fstype.c
 libfile_la_LDFLAGS = $(module_flags)
-libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS)
+libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ###  `nntp' method
 
 libnntp_la_SOURCES = nntp-method.c nntp-method.h
 libnntp_la_LDFLAGS = $(module_flags)
+libnntp_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
 
 ###  `desktop' method
 
 libdesktop_la_SOURCES = desktop-method.c
 libdesktop_la_LDFLAGS = $(module_flags)
+libdesktop_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
 
 ###  `vfolder-desktop' method
 
 libvfolder_desktop_la_SOURCES = vfolder-desktop-method.c
 libvfolder_desktop_la_LDFLAGS = $(module_flags)
+libvfolder_desktop_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
 
 ###  `cdemenu-desktop' method
  
 libcdemenu_desktop_la_SOURCES = cdemenu-desktop-method.c
 libcdemenu_desktop_la_LDFLAGS = $(module_flags)
+libcdemenu_desktop_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
 
 vfolderdir=$(sysconfdir)/gnome-vfs-2.0/vfolders
 vfolder_DATA = 				\
@@ -141,29 +146,31 @@ preferences.vfolder-info: preferences.vfolder-info.in
 
 libssh_la_SOURCES = ssh-method.c
 libssh_la_LDFLAGS = $(module_flags)
+libssh_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
 
 ###  `test' method
 
 libvfs_test_la_SOURCES = test-method.c
 libvfs_test_la_LDFLAGS = $(module_flags)
-libvfs_test_la_LIBADD = $(MODULES_XML_LIBS)
+libvfs_test_la_LIBADD = $(MODULES_XML_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ### `gzip' method
 
 libgzip_la_SOURCES = gzip-method.c
 libgzip_la_LDFLAGS = $(module_flags)
-libgzip_la_LIBADD = -lz
+libgzip_la_LIBADD = -lz ../libgnomevfs/libgnomevfs-2.la
 
 ### `bzip2' method
 
 libbzip2_la_SOURCES = bzip2-method.c
 libbzip2_la_LDFLAGS = $(module_flags)
-libbzip2_la_LIBADD = $(BZ2_LIBS)
+libbzip2_la_LIBADD = $(BZ2_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 ### `ftp' method
 
 libftp_la_SOURCES = ftp-method.c
 libftp_la_LDFLAGS = $(module_flags)
+libftp_la_LIBADD = ../libgnomevfs/libgnomevfs-2.la
 
 ### `nfs' method
 
@@ -189,19 +196,19 @@ libhttp_la_SOURCES =				\
 	http-cache.h				\
 	$(NULL)
 libhttp_la_LDFLAGS = $(module_flags)
-libhttp_la_LIBADD  = $(MODULES_GCONF_LIBS)
+libhttp_la_LIBADD  = $(MODULES_GCONF_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 libvfs_pipe_la_SOURCES = pipe-method.c
 libvfs_pipe_la_LDFLAGS = $(module_flags)
-libvfs_pipe_la_LIBADD  = $(MODULES_LIBS)
+libvfs_pipe_la_LIBADD  = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 libvfs_translate_la_SOURCES = translate-method.c
 libvfs_translate_la_LDFLAGS = $(module_flags)
-libvfs_translate_la_LIBADD  = $(MODULES_LIBS)
+libvfs_translate_la_LIBADD  = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 libtar_la_SOURCES = tar-method.c tarpet.h 
 libtar_la_LDFLAGS = $(module_flags)
-libtar_la_LIBADD  = $(MODULES_LIBS)
+libtar_la_LIBADD  = $(MODULES_LIBS) ../libgnomevfs/libgnomevfs-2.la
 
 #if HAVE_LIBEFS
 #vefsmoduledir = $(modulesdir)
@@ -211,3 +218,4 @@ libtar_la_LIBADD  = $(MODULES_LIBS)
 #	efs-method.c
 #libvefs_la_LIBADD = $(LIBEFS_LIBS) $(MODULES_LIBS)
 #endif
+
