@@ -1,3 +1,8 @@
+gnome-vfs 2.1.5
+
+	* Featurelets
+		+ Added GNOME_VFS_ERROR_NO_MASTER_BROWSER to GnomeVFSResult
+
 gnome-vfs 2.1.4
 
 	* Featurelets
