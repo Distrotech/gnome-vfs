@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-06-24 14:01+0000\n"
-"PO-Revision-Date: 2000-06-24 14:04+00:00\n"
+"POT-Creation-Date: 2000-07-05 15:56+0000\n"
+"PO-Revision-Date: 2000-07-05 15:59+00:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,16 +37,16 @@ msgstr "Конфигурационный файл `%s' не найден: %s"
 msgid "Unknown sort rule %d"
 msgstr "Неизвестное правило сортировки %d"
 
-#: libgnomevfs/gnome-vfs-init.c:67
+#: libgnomevfs/gnome-vfs-init.c:71
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS уже инициализирована."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:653
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Не удалось провести синтакс.анализ: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:654
+#: libgnomevfs/gnome-vfs-parse-ls.c:655
 msgid "More parsing errors will be ignored."
 msgstr "Остальные ошибки синтакс.анализа будут проигнорированы."
 
@@ -341,7 +341,7 @@ msgstr "Невозможно открыть файловый дескриптор %d."
 #: libgnomevfs-corba/gnome-vfs-slave.c:1470
 #, c-format
 msgid "Notify interface for `%s' not found."
-msgstr ""
+msgstr "Извещающий интерфейс для \"%s\" не найден."
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:1480
 msgid "Cannot setup Request object."
@@ -399,21 +399,21 @@ msgstr ""
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:161
 msgid "Error writing to the wakeup GnomeVFSJob channel."
-msgstr ""
+msgstr "Ошибка записи в wakeup GnomeVFSJob channel."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:545
-#: libgnomevfs-pthread/gnome-vfs-job.c:1449
+#: libgnomevfs-pthread/gnome-vfs-job.c:552
+#: libgnomevfs-pthread/gnome-vfs-job.c:1487
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Неизвестный идентификатор задания %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:949
-#: libgnomevfs-pthread/gnome-vfs-job.c:1044
+#: libgnomevfs-pthread/gnome-vfs-job.c:956
+#: libgnomevfs-pthread/gnome-vfs-job.c:1077
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Невозможно создать канал для открытого GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1482
+#: libgnomevfs-pthread/gnome-vfs-job.c:1520
 msgid "Operation stopped"
 msgstr "Действие остановлено"
 
@@ -490,146 +490,123 @@ msgid "Extension:"
 msgstr "Расширение:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:702
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:770
 msgid "New Application"
 msgstr "Новое приложение"
 
 #. Application Name label and entry
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:788
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:779
 msgid "Application Name:"
 msgstr "Название приложения:"
 
-#. Application ID label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:796
-msgid "Application ID:"
-msgstr "Идентификатор приложения:"
-
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:719
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:787
 msgid "Application Command:"
 msgstr "Команда приложения:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:812
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:727
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:795
 msgid "Open Behavior"
 msgstr "Открыть свойства"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:741
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:818
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:733
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:801
 msgid "Can open multiple files"
 msgstr "Можно открыть много файлов"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:744
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:821
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:736
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:804
 msgid "Can open from URI"
 msgstr "Можно открыть из URI"
 
-#. Create label, menu and edit button for default applications
-#: mime-type-capplet/nautilus-mime-type-capplet.c:330
-msgid "Default Application:"
-msgstr "Исходное приложение:"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:358
+msgid "Change Icon"
+msgstr "Изменить пиктограмму"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:337
-#: mime-type-capplet/nautilus-mime-type-capplet.c:348
-msgid "Edit List"
-msgstr "Правка списка:"
-
-#. Create label, menu and edit button for default components
-#: mime-type-capplet/nautilus-mime-type-capplet.c:342
-msgid "Default Viewer:"
-msgstr "Просмотр по умолчанию:"
-
-#. Add icon box
-#: mime-type-capplet/nautilus-mime-type-capplet.c:353
-msgid "Select an icon..."
-msgstr "Выбор пиктограммы..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:373
-msgid "Add"
-msgstr "Добавить"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:377
-msgid "Remove"
-msgstr "Удалить"
-
-#. Default Action frame
-#: mime-type-capplet/nautilus-mime-type-capplet.c:391
-msgid "Default Action"
-msgstr "Действие по умолчанию"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:397
-msgid "No Default"
-msgstr "Нет умолчания"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:403
-msgid "Use Application"
-msgstr "Использовать приложение"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:409
-msgid "Use Viewer"
-msgstr "Использовать программу просмотра"
-
-#. Mime list Add and Delete buttons
-#: mime-type-capplet/nautilus-mime-type-capplet.c:415
-msgid "Add..."
-msgstr "Добавить..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:419
-msgid "Delete"
-msgstr "Удалить"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:562
-#: mime-type-capplet/nautilus-mime-type-capplet.c:704
-msgid "None"
-msgstr "Нет"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:933
+#: mime-type-capplet/nautilus-mime-type-capplet.c:370
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1006
 msgid "Mime Type"
 msgstr "Mime-тип"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:934
+#: mime-type-capplet/nautilus-mime-type-capplet.c:383
+msgid "Add new Mime type..."
+msgstr "Добавить новый mime-тип..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:390
+msgid "Delete this Mime type..."
+msgstr "Удалить этот mime-тип..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:404
+msgid "Use Viewer"
+msgstr "Использовать программу просмотра"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:410
+msgid "Open With Application"
+msgstr "Открыть в приложении"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:422
+msgid "Edit List"
+msgstr "Правка списка:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:450
+msgid "Add"
+msgstr "Добавить"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:453
+msgid "Remove"
+msgstr "Удалить"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:628
+#: mime-type-capplet/nautilus-mime-type-capplet.c:770
+msgid "None"
+msgstr "Нет"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1005
 msgid "Description"
 msgstr "Описание"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:935
-msgid "Application"
-msgstr "Приложение"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1007
+msgid "Extension"
+msgstr "Расширение"
 
-#: modules/file-method.c:358
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1008
+msgid "Action"
+msgstr "Действие"
+
+#: modules/file-method.c:357
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестная GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:503
+#: modules/http-method.c:512
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Неправильный заголовок '%s'"
 
-#: modules/http-method.c:520
+#: modules/http-method.c:529
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s для восстановления"
 
-#: modules/http-method.c:655
+#: modules/http-method.c:664
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Закрытие соединения с %s"
 
-#: modules/http-method.c:797
+#: modules/http-method.c:807
 #, c-format
 msgid "%s of %s read"
 msgstr "%s из %s прочитано"
 
-#: modules/http-method.c:800
+#: modules/http-method.c:810
 #, c-format
 msgid "%s read"
 msgstr "%s прочитано"
 
 #. Multi-Status
-#: modules/http-method.c:962
+#: modules/http-method.c:989
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "HTTP-сервер вернул неправильный ответ PROPFIND"
