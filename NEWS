@@ -1,3 +1,21 @@
+gnome-vfs 2.3.6
+
+	* Bugs fixed:
+		+ Fixes in CDE menu handling
+		+ Shrink default gnome-vfs stack size
+		+ Small API doc updates
+		+ Properly read .mime and .keys file not ending with \n
+		+ Compilation fixes when using gcc 3.3
+		+ Compilation fixes for Solaris
+		+ Leak fixes in URI and mime-type handling
+		+ When an unknown app is added to a mime-type short list, 
+		  also add it to this mime-type global list
+
+	* Featurelets:
+		+ Added an Accessibility submenu in the Applications menu
+		+ Improve parsing of URIs (wrongly) containing UTF-8 chars
+		+ Translation updates
+
 gnome-vfs 2.3.5:
 	* Features:
 		+ added a startup notification application registry key
