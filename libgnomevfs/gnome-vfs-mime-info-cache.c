@@ -628,6 +628,14 @@ gnome_vfs_mime_info_cache_update_dir_lists (void)
 	}
 }
 
+static gboolean
+emit_mime_changed (gpointer data)
+{
+	_gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
+	return FALSE;
+}
+
+
 static void
 gnome_vfs_mime_info_cache_init (void)
 {
@@ -646,7 +654,7 @@ gnome_vfs_mime_info_cache_init (void)
 	}
 
 	if (mime_info_cache->should_ping_mime_monitor) {
-		_gnome_vfs_mime_monitor_emit_data_changed (gnome_vfs_mime_monitor_get ());
+		g_idle_add (emit_mime_changed, NULL);
 		mime_info_cache->should_ping_mime_monitor = FALSE;
 	}
 	G_UNLOCK (mime_info_cache);

@@ -1,3 +1,8 @@
+2004-08-17  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c (gnome_vfs_mime_info_cache_init):
+	Emit mime data changed from idle.
+
 2004-08-16  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
