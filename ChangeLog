@@ -1,3 +1,9 @@
+2000-06-21  Rebecka Schulman  <set EMAIL_ADDRESS environment variable>
+
+	* test/test-async-directory.c: (type_to_string):
+	Fixed constant errors that were uncaught in previous
+	name changes
+
 2000-06-21  Darin Adler  <darin@eazel.com>
 
 	Improved the API of the utils (bug 1210).
