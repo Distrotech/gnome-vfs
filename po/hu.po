@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS HEAD\n"
 "POT-Creation-Date: 2003-07-08 12:18+0200\n"
-"PO-Revision-Date: 2003-07-10 09:59+0200\n"
+"PO-Revision-Date: 2003-07-14 00:29+0200\n"
 "Last-Translator: Andras Timar <timar@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -344,7 +344,7 @@ msgstr "Használd a %s környezeti változót egy másik hely megadására.\n"
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:165
 msgid "Applications"
-msgstr "Applications"
+msgstr "Alkalmazások"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:168
@@ -354,17 +354,17 @@ msgstr "Cards"
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:171
 msgid "Files"
-msgstr "Files"
+msgstr "Fájlok"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:174
 msgid "Folders"
-msgstr "Folders"
+msgstr "Mappák"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:177
 msgid "Help"
-msgstr "Help"
+msgstr "Súgó"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:180
@@ -384,12 +384,12 @@ msgstr "Mail"
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:189
 msgid "Tools"
-msgstr "Tools"
+msgstr "Eszközök"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:192
 msgid "Windows"
-msgstr "Windows"
+msgstr "Ablakok"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
