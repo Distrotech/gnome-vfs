@@ -1,3 +1,9 @@
+2003-09-16  Alexander Larsson  <alexl@redhat.com>
+
+	* schemas/system_http_proxy.schemas:
+	Add missing schemas.
+	Patch by Marco Pesenti Gritti.
+
 2003-09-15  Christophe Fergeau  <teuf@gnome.org>
  
          * modules/http-method.c: define INET_ADDRSTRLEN if it's not defined
