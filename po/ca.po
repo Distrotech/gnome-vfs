@@ -7,26 +7,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-03-08 13:11+0100\n"
-"PO-Revision-Date: 2003-05-10 13:46+0200\n"
+"POT-Creation-Date: 2004-03-10 14:04+0100\n"
+"PO-Revision-Date: 2004-03-10 14:40+0100\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
 
 #: daemon/gnome-vfs-daemon.c:590
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "No es pot inicialitzar CORBA."
+msgstr "No s'ha pogut inicialitzar Bonobo"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "No s'ha pogut inicialitzar gnome vfs"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "Volum ISO 9660"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -39,14 +39,14 @@ msgid "%s:%d contains no method name."
 msgstr "%s:%d no conté cap nom de mètode."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d no conté cap nom de mètode."
+msgstr "%s:%d no té un marcador final d'opcions."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d té opcions desconegudes %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -60,110 +60,107 @@ msgstr "El fitxer de configuració `%s' no ha estat trobat: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "Volum AFFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "Volum de xarxa AFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Volum autodetectat"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "Unitat de CD-ROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
-#, fuzzy
 msgid "CD Digital Audio"
-msgstr "àudio Dolby Digital"
+msgstr "Àudio digital de CD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Volum de dispositiu de maquinari"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "Volum d'Ext2 Linux"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "Volum d'Ext3 Linux"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "Volum d'MSDOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
-msgstr ""
+msgstr "Volum del MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
-msgstr ""
+msgstr "Volum de CD-ROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "Volum de CD-ROM Hsfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
-msgstr ""
+msgstr "Volum de JFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
-#, fuzzy
 msgid "Windows NT Volume"
-msgstr "imatge d'icona Windows"
+msgstr "Volum de Windows NT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
-msgstr ""
+msgstr "Volum del sistema"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
-#, fuzzy
 msgid "Memory Volume"
-msgstr "paperera de memòria"
+msgstr "Volum de memòria"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
-msgstr ""
+msgstr "Volum de Minix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "Volum de xarxa NFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
-msgstr ""
+msgstr "Volum de Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "Volum de ReiserFS Linux"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "Volum compartit de Windows"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "Volum de Supermount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
-msgstr ""
+msgstr "Volum de DVD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "Volum de Solaris/BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
@@ -194,9 +191,8 @@ msgid "XIAFS Volume"
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
-#, fuzzy
 msgid "Unknown"
-msgstr "Error desconegut"
+msgstr "Desconegut"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
@@ -224,7 +220,7 @@ msgstr "No s'ha pogut analitzar: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
-msgstr "Els següent errors d'anàlisi seran ignorats"
+msgstr "Els següents errors d'anàlisi seran ignorats"
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -461,26 +457,26 @@ msgid "Unknown error"
 msgstr "Error desconegut"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
-msgstr[0] "%u bytes"
-msgstr[1] "%u bytes"
+msgstr[0] "%u octet"
+msgstr[1] "%u octets"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f K"
+msgstr "%.1f kB"
 
 #: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
 msgid "%.1f MB"
-msgstr "%.1f MB"
+msgstr "%.1f mB"
 
 #: libgnomevfs/gnome-vfs-utils.c:99
 #, c-format
 msgid "%.1f GB"
-msgstr "%.1f GB"
+msgstr "%.1f gB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1107
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
@@ -490,43 +486,41 @@ msgstr " (Unicode invàlid)"
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
-msgstr ""
+msgstr "Disquet"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
-#, fuzzy
 msgid "Zip Drive"
-msgstr "arxiu zip"
+msgstr "Unitat Zip"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
 msgid "Memory Stick"
-msgstr ""
+msgstr "Memòria portàtil"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
 msgid "Camera"
-msgstr ""
+msgstr "Càmera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
-msgstr ""
+msgstr "Volum arrel"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
-msgstr ""
+msgstr "CD d'àudio"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Error desconegut"
+msgstr "Volum desconegut"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
-msgstr ""
+msgstr "Servidor de xarxa"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
@@ -635,9 +629,8 @@ msgid "Home"
 msgstr "Inici"
 
 #: modules/computer-method.c:561
-#, fuzzy
 msgid "Filesystem"
-msgstr "Fitxers"
+msgstr "Sistemes de fitxers"
 
 #: modules/file-method.c:385
 #, c-format
@@ -645,9 +638,8 @@ msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Desconeguda GnomeVFSSeekPosition %d"
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "Finestres"
+msgstr "Xarxa de Windows"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -679,18 +671,16 @@ msgid "generic file moniker"
 msgstr "Moniker de fitxer genèric"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
-#, fuzzy
 msgid "Default component viewer application"
-msgstr "Suprimeix una aplicació"
+msgstr "Aplicació de visualització de components predeterminada"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
-#, fuzzy
 msgid "Default terminal application"
-msgstr "Suprimeix una aplicació"
+msgstr "Aplicació de terminal predeterminada"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Argument d'execució per al terminal predeterminat"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -712,63 +702,55 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "Gestor d'URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "Gestor d'URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "Gestor d'URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
 msgid "Handle H323 URLs"
-msgstr "No hi ha cap gestor per l'esquema d'URL"
+msgstr "Gestiona les URL H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "Handle HTTP URLs"
-msgstr "No hi ha cap gestor per l'esquema d'URL"
+msgstr "Gestiona les URL HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "Gestiona les URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle callto URLs"
-msgstr "No hi ha cap gestor per l'esquema d'URL"
+msgstr "Gestiona les URL HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
 msgid "Handle ghelp URLs"
-msgstr "No hi ha cap gestor per l'esquema d'URL"
+msgstr "Gestiona les URL ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
-msgstr "No hi ha cap gestor per l'esquema d'URL"
+msgstr "Gestiona les URL info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
 msgid "Handle mailto URLs"
-msgstr "No hi ha cap gestor per l'esquema d'URL"
+msgstr "Gestiona les URL mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
 msgid "Handle man URLs"
-msgstr "No hi ha cap gestor per l'esquema d'URL"
+msgstr "Gestiona les URL man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "Handle trash URLs"
-msgstr "No hi ha cap gestor per l'esquema d'URL"
+msgstr "Gestiona les URL trash"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "Executa el programa en un terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
@@ -820,28 +802,27 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "Gestor d'URL callto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "Gestor d'URL ghelp"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "Gestor d'URL info"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "Capçaleres del correu electrònic"
+msgstr "Gestor d'URL mailto"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "Gestor d'URL man"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "Gestor d'URL trash"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -857,11 +838,11 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "Nom del servidor intermediari d'FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "Port del servidor intermediari d'FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
@@ -895,9 +876,8 @@ msgid "Password to pass as authentication when doing HTTP proxying."
 msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:13
-#, fuzzy
 msgid "Proxy configuration mode"
-msgstr "configuració GTK"
+msgstr "Mode de configuració del servidor intermediari"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
@@ -988,14 +968,6 @@ msgstr ""
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr ""
-
-#, fuzzy
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "No hi ha cap gestor per l'esquema d'URL"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "No hi ha cap gestor per l'esquema d'URL"
 
 #~ msgid "1 byte"
 #~ msgstr "1 byte"
@@ -1846,9 +1818,6 @@ msgstr ""
 
 #~ msgid "Go to the home directory"
 #~ msgstr "Vés al directori arrel"
-
-#~ msgid "Name"
-#~ msgstr "Nom"
 
 #~ msgid "Size"
 #~ msgstr "Mida"
