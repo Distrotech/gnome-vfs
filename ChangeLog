@@ -1,3 +1,8 @@
+2004-10-29  Ray Strode <rstrode@redhat.com>
+
+	* test/test-mime-info-cache.c: (foo):
+	return a value to silence gcc warning.
+
 2004-10-28  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
