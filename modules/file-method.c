@@ -761,7 +761,14 @@ do_read_directory (GnomeVFSMethod *method,
 
 	handle = (DirectoryHandle *) method_handle;
 	
+	errno = 0;
 	if (readdir_r (handle->dir, handle->current_entry, &result) != 0) {
+		/* Work around a Solaris bug.
+		 * readdir64_r returns -1 instead of 0 at EOF.
+		 */
+		if (errno == 0) {
+			return GNOME_VFS_ERROR_EOF;
+		}
 		return gnome_vfs_result_from_errno ();
 	}
 	

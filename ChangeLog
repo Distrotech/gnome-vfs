@@ -1,3 +1,8 @@
+2002-02-25  Laszlo Peter  <laca@ireland.sun.com>
+
+	* modules/file-method.c: (do_read_directory): work around a Solaris
+	bug where readdir64_r returns -1 instead of 0 at EOF.
+
 2002-02-25  Hasbullah Bin Pit <sebol@ikhlas.com>
 
 	* configure.in: REALLY Added ms (Malay) at ALL_LINGUAS.
