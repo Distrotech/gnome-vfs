@@ -1,3 +1,8 @@
+2001-08-27  Abel Cheung <maddog@linux.org.hk>
+
+	* zh_TW.po: New traditional Chinese translation merged
+	from HEAD branch.
+
 2001-06-13  Carlos Perelló Marín <carlos@gnome-db.org>
 
 	* es.po: /s/vaciado de memoria/volcado de memoria 
