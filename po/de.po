@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.x\n"
-"POT-Creation-Date: 2002-05-07 23:10-0700\n"
+"POT-Creation-Date: 2002-06-12 00:32-0700\n"
 "PO-Revision-Date: 2002-03-03 21:10+0100\n"
 "Last-Translator: Christian Meyer <chrisime@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"

@@ -1,3 +1,11 @@
+-------------------2.0.0------------------------
+2002-06-10  Seth Nickell  <snickell@stanford.edu>
+
+	* NEWS:
+	* configure.in:
+
+	Release the big 2.0.0.
+	
 Thu Jun 06 15:17:01 2002  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: some more monitors tinkering,

@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-05-07 23:10-0700\n"
+"POT-Creation-Date: 2002-06-12 00:32-0700\n"
 "PO-Revision-Date: 2002-02-23 19:39+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
