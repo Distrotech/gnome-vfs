@@ -988,7 +988,6 @@ ftp_kerberos_login (FtpConnection *conn,
 						 NULL, NULL);
 		g_free (decoded_token);
 		if (maj_stat != GSS_S_CONTINUE_NEEDED && maj_stat != GSS_S_COMPLETE) {
-			g_warning ("gss_init_sec_context failed");
 			gss_release_name (&min_stat, &target_name);
 			return GNOME_VFS_ERROR_GENERIC;
 		} 

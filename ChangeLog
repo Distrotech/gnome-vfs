@@ -1,5 +1,10 @@
 2004-07-09  Alexander Larsson  <alexl@redhat.com>
 
+	* modules/ftp-method.c:
+	Remove spew
+	
+2004-07-09  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	* modules/Makefile.am:
 	* modules/ftp-method.c:
