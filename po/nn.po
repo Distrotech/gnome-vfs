@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.0.3\n"
-"POT-Creation-Date: 2001-10-28 18:11+0100\n"
+"POT-Creation-Date: 2001-11-01 15:39+0100\n"
 "PO-Revision-Date: 2001-10-28 12:42+0200\n"
 "Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
 "Language-Team: Norwegian (Nynorsk)\n"
@@ -344,7 +344,7 @@ msgstr "MS ASF-video"
 
 #: data/mime/gnome-vfs.keys.in.h:83
 msgid "MS video"
-msgstr "MS video"
+msgstr "MS-video"
 
 #: data/mime/gnome-vfs.keys.in.h:84
 msgid "Macintosh AppleDouble-encoded file"
@@ -806,7 +806,7 @@ msgstr "e-post melding"
 msgid "encrypted message"
 msgstr "kryptert melding"
 
-#: data/omime/gnome-vfs.keys.in.h:199
+#: data/mime/gnome-vfs.keys.in.h:199
 msgid "enriched text document"
 msgstr "riktekst tekstdokument"
 
@@ -1036,7 +1036,7 @@ msgstr "Oppsettfil '%s' vart ikkje funnen: %s"
 
 #: libgnomevfs/gnome-vfs-init.c:79
 msgid "GNOME VFS already initialized."
-msgstr "GNOME VFS allereide initialisert."
+msgstr "GNOME VFS allereie initialisert."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:650
 #, c-format
