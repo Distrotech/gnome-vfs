@@ -1,5 +1,11 @@
 2001-11-26  Seth Nickell  <snickell@stanford.edu>
 
+	* NEWS:
+
+	Update news...
+
+2001-11-26  Seth Nickell  <snickell@stanford.edu>
+
 	* configure.in:
 
 	Bump version to 1.9.4, tag, release (rinse repeat).

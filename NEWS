@@ -1,4 +1,13 @@
 ===================================
+gnome-vfs 1.9.4
+---------------
+
+* Fix gobject includes (Miles)
+* Add script for checking header dependencies (Maciej)
+* Fix header dependencies (Maciej)
+* Split MIME functions between module and public (Maciej,Seth)
+
+===================================
 gnome-vfs 1.9.3
 ---------------
 
