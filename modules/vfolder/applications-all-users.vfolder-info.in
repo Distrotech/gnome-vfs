@@ -31,9 +31,6 @@
     <Exclude>nautilus-help.desktop</Exclude>
     <Exclude>gnome-help.desktop</Exclude>
 
-    <Include>evolution.desktop</Include>
-    <Include>galeon.desktop</Include>
-
     <Query>
       <And>
         <Keyword>Core</Keyword>

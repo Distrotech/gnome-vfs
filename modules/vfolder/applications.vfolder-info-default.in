@@ -5,12 +5,6 @@
     <Name>Root</Name>
     <Parent>applications-all-users:///</Parent>
 
-    <!-- Favorites -->
-    <Folder>
-      <Name>Favorites</Name>
-      <ParentLink>favorites:///</ParentLink>
-    </Folder>
-
     <!-- Settings -->
     <Folder>
       <Name>Preferences</Name>
