@@ -1,3 +1,18 @@
+2001-09-08  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	Fix make distcheck:
+
+	* libgnomevfs/gnome-vfs-configuration.c: (configuration_load),
+	(install_path_list), (gnome_vfs_configuration_init):
+
+	* test/Makefile.am: Set environment variables so that `make check'
+	can find the uninstalled modules and configuration.
+
+	* doc/Makefile.am: Fix doc build so they are only rebuilt when
+	something actually changes, not every single time. This also fixes
+	part of `make distcheck'. However, it seems to be a hint that a
+	scratch srcdir != builddir build out of cvs would not work. :-(
+
 2001-09-03  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	Simplification of the callback API, in the process fixing bugs
