@@ -1,3 +1,11 @@
+2000-09-22  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c: (http_file_handle_new),
+	(http_file_handle_destroy), (do_close):
+
+	Fixed lack-of-URI-refcounting problem and deleted a misplaced
+	iobuf_write call.  Markedly increases stability of DAV under vfs-translate.
+
 2000-09-21  Andy Hertzfeld  <andy@eazel.com>
 
 	* data/mime/gnome-vfs.keys:

@@ -193,6 +193,7 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 	result->iobuf = iobuf;
 	result->uri_string = gnome_vfs_uri_to_string (uri, 0); /* FIXME bugzilla.eazel.com 1164 */
 	result->uri = uri;
+	gnome_vfs_uri_ref(result->uri);
 
 	result->location = NULL;
 	result->mime_type = NULL;
@@ -211,6 +212,7 @@ static void
 http_file_handle_destroy (HttpFileHandle *handle)
 {
 	if (handle) {
+		gnome_vfs_uri_unref(handle->uri);
 		g_free (handle->uri_string);
 		g_free (handle->mime_type);
 		if (handle->to_be_written) {
@@ -984,14 +986,8 @@ do_close (GnomeVFSMethod *method,
 	if (handle->to_be_written != NULL) {
 		GnomeVFSURI *uri = handle->uri;
 		GByteArray *bytes = handle->to_be_written;
-		GnomeVFSFileSize bytes_written;
 
 		result = make_request(&handle, uri, "PUT", bytes, NULL, context);
-
-		if (result == GNOME_VFS_OK) {
-			result = gnome_vfs_iobuf_write (handle->iobuf, bytes->data,
-					bytes->len, &bytes_written);
-		}
 	}
 
 	http_handle_close (handle, context);
