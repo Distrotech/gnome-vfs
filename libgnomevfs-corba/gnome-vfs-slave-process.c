@@ -32,7 +32,6 @@
 #include <sys/socket.h>
 #include <unistd.h>
      
-#include <libgnorba/gnorba.h>
 #include <orb/orbit.h>
 
 #include "gnome-vfs.h"

@@ -27,7 +27,6 @@
 #include <config.h>
 #endif
 
-#include <libgnorba/gnorba.h>
 #include <orb/orbit.h>
 
 #include "gnome-vfs.h"

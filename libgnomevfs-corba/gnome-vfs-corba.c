@@ -25,7 +25,13 @@
 #endif
 
 #include <orb/orbit.h>
+
+#if USING_OAF
+#include <gnome.h>
+#include <liboaf/liboaf.h>
+#else
 #include <libgnorba/gnorba.h>
+#endif
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
@@ -41,6 +47,18 @@ PortableServer_POA gnome_vfs_poa;
 PortableServer_POAManager gnome_vfs_poa_manager;
 
 
+
+static CORBA_ORB
+gnome_vfs_get_orb ()
+{
+#if USING_OAF
+	return oaf_orb_get ();
+#else 
+	return gnome_CORBA_ORB ();
+#endif
+}
+
+
 gboolean
 gnome_vfs_corba_init (gboolean deps_init)
 {
@@ -56,17 +74,24 @@ gnome_vfs_corba_init (gboolean deps_init)
 	if (! gnome_vfs_method_init ())
 		return FALSE;
 
-	if(deps_init && !gnome_CORBA_ORB()) {
+	if(deps_init && !gnome_vfs_get_orb ()) {
 		char *argv[] = {"fake", NULL};
 		int argc = 1;
 		CORBA_Environment ev;
 
+#if USING_OAF
+		gnome_init_with_popt_table("fake-an-app", VERSION,
+					   argc, argv,
+					   oaf_popt_options, 0, NULL); 
+		oaf_init (argc, argv);
+#else
 		CORBA_exception_init(&ev);
 		gnome_CORBA_init("fake-an-app", VERSION, &argc, argv, GNORBA_INIT_SERVER_FUNC, &ev);
 		CORBA_exception_free(&ev);
+#endif
 	}
 
-	gnome_vfs_orb = gnome_CORBA_ORB ();
+	gnome_vfs_orb = gnome_vfs_get_orb ();
 	if (!gnome_vfs_orb) {
 		/* FIXME?  */
 		g_warning ("GNOME CORBA support was not initialized.");
@@ -106,3 +131,5 @@ gnome_vfs_corba_init (gboolean deps_init)
 
 	return TRUE;
 }
+
+

@@ -1,3 +1,11 @@
+
+if USING_OAF
+OBJECT_DIRECTORY_LIBS=$(OAF_LIBS) $(GNOME_LIBS)
+else
+OBJECT_DIRECTORY_LIBS=$(GNOMEGNORBA_LIBS)
+endif
+
+
 lib_LTLIBRARIES = libgnomevfs-corba.la
 
 INCLUDES =					\
@@ -40,17 +48,18 @@ libgnomevfs_corba_la_SOURCES =			\
 	gnome-vfs-slave-notify.c		\
 	gnome-vfs-slave-process.c
 
-libgnomevfs_corba_la_LDFLAGS=$(GNOME_LIBDIR) $(GNOMEGNORBA_LIBS)
+libgnomevfs_corba_la_LDFLAGS=$(GNOME_LIBDIR) $(OBJECT_DIRECTORY_LIBS)
 
 gnome_vfs_slave_SOURCES =			\
 	$(gnome_vfs_slave_built)		\
 	gnome-vfs-slave.c
+
 gnome_vfs_slave_LDADD =					\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
 	libgnomevfs-corba.la				\
 	$(GNOME_LIBDIR)					\
 	$(GNOMEUI_LIBS)					\
-	$(GNOMEGNORBA_LIBS)
+	$(OBJECT_DIRECTORY_LIBS)
 
 bin_PROGRAMS =					\
 	gnome-vfs-slave
