@@ -1,4 +1,3 @@
-# translation of gnome-vfs.HEAD.pt_BR.po to Portuguese
 # GNOME vfs translation for Brazilian Portuguese.
 # Copyright (C) 1999-2001,2003 Free Software Foundation, Inc.
 # Alexandre Hautequest <hquest@fesppr.br>, 1999.
@@ -7,16 +6,15 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.HEAD.pt_BR\n"
-"POT-Creation-Date: 2003-08-25 13:18+0200\n"
-"PO-Revision-Date: 2003-05-28 15:29+1000\n"
+"Project-Id-Version: gnome-vfs 2.4.0\n"
+"POT-Creation-Date: 2003-09-30 11:16-0400\n"
+"PO-Revision-Date: 2003-09-30 11:14-0400\n"
 "Last-Translator: David Barzilay <barzilay@redhat.com>\n"
-"Language-Team: Portuguese <pt@li.org>\n"
+"Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Brazilian Portuguese <ldp-br@bazar.conectiva.com.br> \n"
-"X-Generator: KBabel 1.0\n"
+"Report-Msgid-Bugs-To: \n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:219
 #, c-format
@@ -328,23 +326,6 @@ msgstr "%.1f GB"
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
 
-#: modules/file-method.c:382
-#, c-format
-msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "GnomeVFSSeekPosition desconhecido %d"
-
-#. FIXME: we probably shouldn't use printf to output the message
-#: modules/test-method.c:590
-#, c-format
-msgid "Didn't find a valid settings file at %s\n"
-msgstr "Não encontrei um arquivo de configurações válido em %s\n"
-
-#: modules/test-method.c:592
-#, c-format
-msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
-"Use a variável de ambiente %s para especificar localizações diferentes.\n"
-
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
@@ -395,6 +376,23 @@ msgstr "Ferramentas"
 msgid "Windows"
 msgstr "Janelas"
 
+#: modules/file-method.c:382
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "GnomeVFSSeekPosition desconhecido %d"
+
+#. FIXME: we probably shouldn't use printf to output the message
+#: modules/test-method.c:590
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "Não encontrei um arquivo de configurações válido em %s\n"
+
+#: modules/test-method.c:592
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr ""
+"Use a variável de ambiente %s para especificar uma localização diferente.\n"
+
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
 msgstr "Fábrica padrão de Monikers"
@@ -411,747 +409,169 @@ msgstr "moniker genérico do Gnome VFS"
 msgid "generic file moniker"
 msgstr "moniker genérico de arquivo"
 
-#~ msgid "3D Studio image"
-#~ msgstr "imagem do 3D Studio"
-
-#~ msgid "AIFC audio"
-#~ msgstr "áudio AIFC"
-
-#~ msgid "AIFF audio"
-#~ msgstr "áudio AIFF"
-
-#~ msgid "ANIM animation"
-#~ msgstr "animação ANIM"
-
-#~ msgid "AVI video"
-#~ msgstr "vídeo AVI"
-
-#~ msgid "AbiWord document"
-#~ msgstr "documento do AbiWord"
-
-#~ msgid "Adobe FrameMaker font"
-#~ msgstr "fonte do Adobe FrameMaker"
-
-#~ msgid "Adobe font metrics"
-#~ msgstr "métricas de fonte Adobe"
-
-#~ msgid "Andrew Toolkit inset"
-#~ msgstr "inset do Andrew Toolkit"
-
-#~ msgid "ApplixWare Graphics image"
-#~ msgstr "imagem do ApplixWare Graphics"
-
-#~ msgid "Applixware Words document"
-#~ msgstr "documento do Applixware Words"
-
-#~ msgid "Applixware spreadsheet"
-#~ msgstr "planilha do Applixware"
-
-#~ msgid "AutoCAD image"
-#~ msgstr "imagem do AutoCAD"
-
-#~ msgid "BCPIO document"
-#~ msgstr "documento BCPIO"
-
-#~ msgid "BDF font"
-#~ msgstr "fonte BDF"
-
-#~ msgid "C shell script"
-#~ msgstr "script de shell C"
-
-#~ msgid "C source code"
-#~ msgstr "código fonte C"
-
-#, fuzzy
-#~ msgid "C source code header"
-#~ msgstr "código fonte C"
-
-#~ msgid "C++ source code"
-#~ msgstr "código fonte C++"
-
-#~ msgid "CGI program"
-#~ msgstr "programa CGI"
-
-#~ msgid "CGM image"
-#~ msgstr "imagem CGM"
-
-#~ msgid "CMU raster image"
-#~ msgstr "imagem raster CMU"
-
-#~ msgid "CPIO archive"
-#~ msgstr "arquivo CPIO"
-
-#~ msgid "CPIO archive (gzip-compressed)"
-#~ msgstr "arquivo CPIO (comprimido com gzip)"
-
-#~ msgid "DCL script"
-#~ msgstr "script DCL"
-
-#~ msgid "DOS font"
-#~ msgstr "fonte de DOS"
-
-#~ msgid "DOS/Windows program"
-#~ msgstr "programa DOS/Windows"
-
-#~ msgid "DSSSL document"
-#~ msgstr "documento DSSSL"
-
-#~ msgid "DXF vector graphic"
-#~ msgstr "gráfico vetorial DXF"
-
-#~ msgid "Debian package"
-#~ msgstr "pacote Debian"
-
-#~ msgid "Dia diagram"
-#~ msgstr "diagrama do Dia"
-
-#~ msgid "Dolby Digital audio"
-#~ msgstr "áudio Dolby Digital"
-
-#~ msgid "Emacs Lisp source code"
-#~ msgstr "código fonte Emacs Lisp"
-
-#~ msgid "Enlightenment theme"
-#~ msgstr "tema do Enlightenment"
-
-#~ msgid "FLC animation"
-#~ msgstr "animação FLC"
-
-#~ msgid "FLI animation"
-#~ msgstr "animação FLI"
-
-#~ msgid "FastTracker II audio"
-#~ msgstr "áudio FastTracker II"
-
-#~ msgid "Fortran source code"
-#~ msgstr "código fonte Fortran"
-
-#~ msgid "FrameMaker interchange document"
-#~ msgstr "documento de intercâmbio do FrameMaker"
-
-#~ msgid "G3 fax image"
-#~ msgstr "imagem de fax G3"
-
-#~ msgid "GIF image"
-#~ msgstr "imagem GIF"
-
-#~ msgid "GIMP document"
-#~ msgstr "documento do GIMP"
-
-#~ msgid "GMC link"
-#~ msgstr "vínculo GMC"
-
-#~ msgid "GNOME application details"
-#~ msgstr "detalhes de aplicativo Gnome"
-
-#~ msgid "GNU Oleo Spreadsheet"
-#~ msgstr "planilha do GNU Oleo"
-
-#~ msgid "GNU mail message"
-#~ msgstr "mensagem de correio GNU"
-
-#~ msgid "GTK configuration"
-#~ msgstr "configuração do GTK"
-
-#~ msgid "Glade project"
-#~ msgstr "projeto do Glade"
-
-#~ msgid "GnuCash Workbook"
-#~ msgstr "livro de trabalho GnuCash"
-
-#~ msgid "Gnumeric spreadsheet"
-#~ msgstr "planilha do Gnumeric"
-
-#~ msgid "HDF document"
-#~ msgstr "documento HDF"
-
-#~ msgid "HTML page"
-#~ msgstr "página HTML"
-
-#~ msgid "IDL document"
-#~ msgstr "documento IDL"
-
-#~ msgid "IEF image"
-#~ msgstr "imagem IEF"
-
-#~ msgid "IFF image"
-#~ msgstr "imagem IFF"
-
-#~ msgid "ILBM image"
-#~ msgstr "imagem ILBM"
-
-#~ msgid "ISI video"
-#~ msgstr "vídeo ISI"
-
-#~ msgid "Impulse Tracker audio"
-#~ msgstr "áudio Impulse Tracker"
-
-#~ msgid "JBuilder Project"
-#~ msgstr "projeto do JBuilder"
-
-#~ msgid "JPEG image"
-#~ msgstr "imagem JPEG"
-
-#~ msgid "Java byte code"
-#~ msgstr "código compilado Java"
-
-#~ msgid "Java source code"
-#~ msgstr "código fonte Java"
-
-#~ msgid "KIllustrator document"
-#~ msgstr "documento do KIllustrator"
-
-#~ msgid "KPresenter presentation"
-#~ msgstr "apresentação do KPresenter"
-
-#~ msgid "KSpread spreadsheet"
-#~ msgstr "planilha do KSpread"
-
-#~ msgid "KWord document"
-#~ msgstr "documento do KWord"
-
-#~ msgid "Korn shell script"
-#~ msgstr "script de shell Korn"
-
-#~ msgid "LHA archive"
-#~ msgstr "arquivo LHA"
-
-#~ msgid "LHARC archive"
-#~ msgstr "arquivo LHARC"
-
-#~ msgid "LIBGRX font"
-#~ msgstr "fonte LIBGRX"
-
-#~ msgid "LightWave object"
-#~ msgstr "objeto LightWave"
-
-#~ msgid "LightWave scene"
-#~ msgstr "cena LightWave"
-
-#~ msgid "Linux PSF console font"
-#~ msgstr "fonte de console Linux PSF"
-
-#~ msgid "Lotus 1-2-3 spreadsheet"
-#~ msgstr "planilha do Lotus 1-2-3"
-
-#~ msgid "M3 audio URL"
-#~ msgstr "URL de áudio M3"
-
-#~ msgid "MIDI audio"
-#~ msgstr "áudio MIDI"
-
-#~ msgid "MOD audio"
-#~ msgstr "áudio MOD"
-
-#~ msgid "MP3 audio"
-#~ msgstr "áudio MP3"
-
-#~ msgid "MP3 audio playlist"
-#~ msgstr "lista de áudio MP3"
-
-#~ msgid "MPEG video"
-#~ msgstr "vídeo MPEG"
-
-#~ msgid "MS ASF video"
-#~ msgstr "vídeo MS ASF"
-
-#~ msgid "MS video"
-#~ msgstr "vídeo MS"
-
-#~ msgid "Macintosh AppleDouble-encoded file"
-#~ msgstr "arquivo Macintosh codificado com AppleDouble"
-
-#~ msgid "Macintosh BinHex-encoded file"
-#~ msgstr "arquivo Macintosh codificado com BinHex"
-
-#~ msgid "Macintosh StuffIt archive"
-#~ msgstr "arquivo Macintosh StuffIt"
-
-#~ msgid "Macromedia Flash file"
-#~ msgstr "arquivo Macromedia Flash"
-
-#~ msgid "MathML document"
-#~ msgstr "documento MathML"
-
-#~ msgid "Microsoft Excel spreadsheet"
-#~ msgstr "planilha do Microsoft Excel"
-
-#~ msgid "Microsoft PowerPoint document"
-#~ msgstr "documento do Microsoft PowerPoint"
-
-#~ msgid "Microsoft Word document"
-#~ msgstr "documento do Microsoft Word"
-
-#~ msgid "Microsoft video"
-#~ msgstr "vídeo Microsoft"
-
-#~ msgid "Nautilus link"
-#~ msgstr "vínculo do Nautilus"
-
-#~ msgid "ODA document"
-#~ msgstr "documento ODA"
-
-#~ msgid "PBM image"
-#~ msgstr "imagem PBM"
-
-#~ msgid "PCF font"
-#~ msgstr "fonte PCF"
-
-#~ msgid "PDF document"
-#~ msgstr "documento PDF"
-
-#~ msgid "PEF program"
-#~ msgstr "programa PEF"
-
-#~ msgid "PGM image"
-#~ msgstr "imagem PGM"
-
-#~ msgid "PGN chess game"
-#~ msgstr "jogo de xadrez PGN"
-
-#~ msgid "PGP keys"
-#~ msgstr "chaves PGP"
-
-#~ msgid "PGP message"
-#~ msgstr "mensagem PGP"
-
-#~ msgid "PGP signature"
-#~ msgstr "assinatura PGP"
-
-#~ msgid "PGP-encrypted file"
-#~ msgstr "arquivo cifrado com PGP"
-
-#~ msgid "PHP script"
-#~ msgstr "script PHP"
-
-#~ msgid "PN RealAudio document"
-#~ msgstr "documento RealAudio PN"
-
-#~ msgid "PNG image"
-#~ msgstr "imagem PNG"
-
-#~ msgid "PNM image"
-#~ msgstr "imagem PNM"
-
-#~ msgid "PPM image"
-#~ msgstr "imagem PPM"
-
-#~ msgid "Palm OS database"
-#~ msgstr "banco de dados Palm OS"
-
-#~ msgid "Perl script"
-#~ msgstr "script Perl"
-
-#~ msgid "Photoshop document"
-#~ msgstr "documento do Photoshop"
-
-#~ msgid "PostScript Type 1 font"
-#~ msgstr "fonte PostScript Type 1"
-
-#~ msgid "PostScript document"
-#~ msgstr "documento PostScript"
-
-#~ msgid "Python source code"
-#~ msgstr "código fonte Python"
-
-#~ msgid "QuickTime movie"
-#~ msgstr "filme QuickTime"
-
-#~ msgid "Quicken document"
-#~ msgstr "documento do Quicken"
-
-#~ msgid "Quicken for Windows document"
-#~ msgstr "documento do Quicken para Windows"
-
-#~ msgid "RAR archive"
-#~ msgstr "arquivo RAR"
-
-#~ msgid "README document"
-#~ msgstr "documento README"
-
-#~ msgid "RGB image"
-#~ msgstr "imagem RGB"
-
-#~ msgid "RIFF audio"
-#~ msgstr "áudio RIFF"
-
-#~ msgid "RPM package"
-#~ msgstr "pacote RPM"
-
-#~ msgid "RealAudio/Video document"
-#~ msgstr "documento RealAudio/Video"
-
-#~ msgid "RealVideo video"
-#~ msgstr "vídeo RealVideo"
-
-#~ msgid "S/MIME file"
-#~ msgstr "arquivo S/MIME"
-
-#~ msgid "S/MIME signature"
-#~ msgstr "assinatura S/MIME"
-
-#~ msgid "SGI video"
-#~ msgstr "vídeo SGI"
-
-#~ msgid "SGML document"
-#~ msgstr "documento SGML"
-
-#~ msgid "SMIL script"
-#~ msgstr "script SMIL"
-
-#~ msgid "SQL code"
-#~ msgstr "código SQL"
-
-#~ msgid "SV4 CPIO archive"
-#~ msgstr "arquivo SV4 CPIO"
-
-#~ msgid "SV4 CPIP archive (with CRC)"
-#~ msgstr "arquivo SV4 CPIP (com CRC)"
-
-#~ msgid "SVG art"
-#~ msgstr "arte SVG"
-
-#~ msgid "Scheme source code"
-#~ msgstr "código fonte Scheme"
-
-#~ msgid "Scream Tracker 3 audio"
-#~ msgstr "áudio Scream Tracker 3"
-
-#~ msgid "Scream Tracker audio"
-#~ msgstr "áudio Scream Tracker"
-
-#~ msgid "Scream Tracker instrument"
-#~ msgstr "instrumento Scream Tracker"
-
-#~ msgid "Setext document"
-#~ msgstr "documento Setext"
-
-#~ msgid "Speech document"
-#~ msgstr "documento Speech"
-
-#~ msgid "Speedo font"
-#~ msgstr "fonte Speedo"
-
-#~ msgid "Spreadsheet Interchange document"
-#~ msgstr "documento Spreadsheet Interchange"
-
-#~ msgid "Stampede package"
-#~ msgstr "pacote Stampede"
-
-#~ msgid "StarOffice Writer document"
-#~ msgstr "documento do StarOffice Writer"
-
-#~ msgid "StarOffice presentation"
-#~ msgstr "apresentação do StarOffice"
-
-#~ msgid "StarOffice spreadsheet"
-#~ msgstr "planilha do StarOffice"
-
-#~ msgid "Sun mu-law audio"
-#~ msgstr "áudio Sun µ-law"
-
-#~ msgid "SunOS News font"
-#~ msgstr "fonte SunOS News"
-
-#~ msgid "TIFF image"
-#~ msgstr "imagem TIFF"
-
-#~ msgid "TarGA image"
-#~ msgstr "imagem TarGA"
-
-#~ msgid "Tcl script"
-#~ msgstr "script Tcl"
-
-#~ msgid "TeX document"
-#~ msgstr "documento TeX"
-
-#~ msgid "TeX dvi document"
-#~ msgstr "documento TeX dvi"
-
-#~ msgid "TeX font"
-#~ msgstr "fonte TeX"
-
-#~ msgid "TeX font metrics"
-#~ msgstr "métrica de fonte TeX"
-
-#~ msgid "TeXInfo document"
-#~ msgstr "documento TeXInfo"
-
-#~ msgid "ToutDoux document"
-#~ msgstr "documento do ToutDoux"
-
-#~ msgid "TrueType font"
-#~ msgstr "fonte TrueType"
-
-#~ msgid "USENET news message"
-#~ msgstr "mensagem de notícia USENET"
-
-#~ msgid "Unidata netCDF document"
-#~ msgstr "documento Unidata netCDF"
-
-#~ msgid "V font"
-#~ msgstr "fonte V"
-
-#~ msgid "VOC audio"
-#~ msgstr "áudio VOC"
-
-#~ msgid "VRML document"
-#~ msgstr "documento VRML"
-
-#~ msgid "Vivo video"
-#~ msgstr "vídeo Vivo"
-
-#~ msgid "WAIS source code"
-#~ msgstr "código fonte WAIS"
-
-#~ msgid "Wavelet video"
-#~ msgstr "vídeo Wavelet"
-
-#~ msgid "Windows bitmap image"
-#~ msgstr "imagem bitmap do Windows"
-
-#~ msgid "Windows icon image"
-#~ msgstr "imagem de ícone do Windows"
-
-#~ msgid "Windows metafile graphics"
-#~ msgstr "gráfico metafile do Windows"
-
-#~ msgid "WordPerfect document"
-#~ msgstr "documento do WordPerfect"
-
-#~ msgid "X bitmap image"
-#~ msgstr "imagem bitmap do X"
-
-#~ msgid "X window image"
-#~ msgstr "imagem de janela do X"
-
-#~ msgid "XML document"
-#~ msgstr "documento XML"
-
-#~ msgid "XPM image"
-#~ msgstr "imagem XPM"
-
-#~ msgid "Xbase database"
-#~ msgstr "banco de dados Xbase"
-
-#~ msgid "active server page"
-#~ msgstr "active server page"
-
-#~ msgid "address card"
-#~ msgstr "cartão de endereço"
-
-#~ msgid "ar archive"
-#~ msgstr "arquivo ar"
-
-#~ msgid "arj archive"
-#~ msgstr "arquivo arj"
-
-#~ msgid "authors list"
-#~ msgstr "lista de autores"
-
-#~ msgid "backup file"
-#~ msgstr "arquivo de backup"
-
-#~ msgid "basic audio"
-#~ msgstr "áudio básico"
-
-#~ msgid "bibliography record"
-#~ msgstr "registro bibliográfico"
-
-#~ msgid "binary program"
-#~ msgstr "programa binário"
-
-#~ msgid "block device"
-#~ msgstr "dispositivo de bloco"
-
-#~ msgid "bzip-compressed file"
-#~ msgstr "arquivo comprimido com bzip"
-
-#~ msgid "calendar file"
-#~ msgstr "arquivo de agenda"
-
-#~ msgid "calendar or event document"
-#~ msgstr "documento de agenda ou evento"
-
-#~ msgid "character device"
-#~ msgstr "dispositivo de caracter"
-
-#~ msgid "comma-separated text document"
-#~ msgstr "documento texto separado por vírgulas"
-
-#~ msgid "compound document"
-#~ msgstr "documento composto"
-
-#~ msgid "compress-compressed file"
-#~ msgstr "arquivo comprimido com compress"
-
-#~ msgid "compressed GIMP document"
-#~ msgstr "documento do GIMP comprimido"
-
-#~ msgid "directory information file"
-#~ msgstr "arquivo de informação de diretório"
-
-#~ msgid "document type definition"
-#~ msgstr "definição de tipo de documento"
-
-#~ msgid "email headers"
-#~ msgstr "cabeçalhos de e-mail"
-
-#~ msgid "email message"
-#~ msgstr "mensagem de e-mail"
-
-#~ msgid "encrypted message"
-#~ msgstr "mensagem cifrada"
-
-#~ msgid "enriched text document"
-#~ msgstr "documento de texto enriquecido"
-
-#~ msgid "gtar archive"
-#~ msgstr "arquivo gtar"
-
-#~ msgid "gzip-compressed file"
-#~ msgstr "arquivo comprimido com gzip"
-
-#~ msgid "help page"
-#~ msgstr "página de ajuda"
-
-#~ msgid "mail delivery report"
-#~ msgstr "relatório de entrega de correio"
-
-#~ msgid "mail disposition report"
-#~ msgstr "relatório de disposição de correio"
-
-#~ msgid "mail system report"
-#~ msgstr "relatório do sistema de correio"
-
-#~ msgid "makefile"
-#~ msgstr "makefile"
-
-#~ msgid "manual page"
-#~ msgstr "página de manual"
-
-#~ msgid "manual page (compressed)"
-#~ msgstr "página de manual (comprimida)"
-
-#~ msgid "memory dump"
-#~ msgstr "descarga de memória"
-
-#~ msgid "message digest"
-#~ msgstr "resumo de mensagem"
-
-#~ msgid "message in several formats"
-#~ msgstr "mensagem em vários formatos"
-
-#~ msgid "multi-part message"
-#~ msgstr "mensagem multi-part"
-
-#~ msgid "named pipe"
-#~ msgstr "named pipe"
-
-#~ msgid "object code"
-#~ msgstr "código objeto"
-
-#~ msgid "ogg audio"
-#~ msgstr "áudio ogg"
-
-#~ msgid "partial email message"
-#~ msgstr "mensagem de e-mail parcial"
-
-#~ msgid "plain text document"
-#~ msgstr "documento texto simples"
-
-#~ msgid "profiler results"
-#~ msgstr "resultados de profiler"
-
-#~ msgid "reference to remote file"
-#~ msgstr "referência à um arquivo remoto"
-
-#~ msgid "rejected patch file"
-#~ msgstr "arquivo de patch rejeitado"
-
-#~ msgid "rich text document"
-#~ msgstr "documento de texto rico"
-
-#~ msgid "search results"
-#~ msgstr "resultados de busca"
-
-#~ msgid "shared library"
-#~ msgstr "biblioteca compartilhada"
-
-#~ msgid "shell archive"
-#~ msgstr "arquivo shell"
-
-#~ msgid "shell script"
-#~ msgstr "script shell"
-
-#~ msgid "signed message"
-#~ msgstr "mensagem assinada"
-
-#~ msgid "socket"
-#~ msgstr "socket"
-
-#~ msgid "software author credits"
-#~ msgstr "créditos de autor de software"
-
-#~ msgid "software installation instructions"
-#~ msgstr "instruções de instalação de software"
-
-#~ msgid "software license terms"
-#~ msgstr "termos da licença de software"
-
-#~ msgid "source code patch"
-#~ msgstr "patch de código fonte"
-
-#~ msgid "style sheet"
-#~ msgstr "style sheet"
-
-#~ msgid "symbolic link"
-#~ msgstr "vínculo simbólico"
-
-#~ msgid "tab-separated text document"
-#~ msgstr "documento texto separado por tabulações"
-
-#~ msgid "tar archive"
-#~ msgstr "arquivo tar"
-
-#~ msgid "tar archive (bzip2-compressed)"
-#~ msgstr "arquivo tar (comprimido com bzip2)"
-
-#~ msgid "tar archive (gzip-compressed)"
-#~ msgstr "arquivo tar (comprimido com gzip)"
-
-#~ msgid "theme"
-#~ msgstr "tema"
-
-#~ msgid "troff document"
-#~ msgstr "documento troff"
-
-#~ msgid "troff me input document"
-#~ msgstr "documento de entrada troff me"
-
-#~ msgid "troff mm input document"
-#~ msgstr "documento de entrada troff mm"
-
-#~ msgid "troff ms input document"
-#~ msgstr "documento de entrada troff ms"
-
-#~ msgid "unknown type"
-#~ msgstr "tipo desconhecido"
-
-#~ msgid "ustar archive"
-#~ msgstr "arquivo ustar"
-
-#~ msgid "wave audio"
-#~ msgstr "áudio wave"
-
-#~ msgid "web folder"
-#~ msgstr "pasta web"
-
-#~ msgid "xfig vector graphic"
-#~ msgstr "gráfico vetorial do Xfig"
-
-#~ msgid "zip archive"
-#~ msgstr "arquivo zip"
-
-#~ msgid "zoo archive"
-#~ msgstr "arquivo zoo"
+#: schemas/desktop_default_applications.schemas.in.h:1
+msgid "Default component viewer application"
+msgstr ""
+
+#: schemas/desktop_default_applications.schemas.in.h:2
+msgid "Default terminal application"
+msgstr ""
+
+#: schemas/desktop_default_applications.schemas.in.h:3
+msgid "Exec argument for default terminal"
+msgstr ""
+
+#: schemas/desktop_default_applications.schemas.in.h:5
+#, no-c-format
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr ""
+
+#: schemas/desktop_default_applications.schemas.in.h:6
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr ""
+
+#: schemas/desktop_default_applications.schemas.in.h:7
+msgid "The exec argument to use for the default terminal application."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:1
+msgid "Authenticate connections to the proxy server"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:2
+msgid "Automatic proxy configuration URL"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:3
+msgid "Enables the proxy settings when accessing http over the internet."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:4
+msgid "FTP proxy host name"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:5
+msgid "FTP proxy port"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:6
+msgid "HTTP proxy host name"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:7
+msgid "HTTP proxy port"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:8
+msgid "Hosts are not contacted via the proxy"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:9
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by /system/http_proxy/authentication_user "
+"and /system/http_proxy/authentication_password."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:10
+msgid "Password to pass as authentication when doing http proxying"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:11
+msgid "Proxy configuration mode"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:12
+msgid "Secure http proxy host name"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:13
+msgid "Secure http proxy port"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:14
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\""
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:15
+msgid "Socks proxy host name"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:16
+msgid "Socks proxy port"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:17
+msgid "The machine name to proxy FTP through."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:18
+msgid "The machine name to proxy http through."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:19
+msgid "The machine name to proxy secure http through."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:20
+msgid "The machine name to proxy socks through."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:21
+msgid ""
+"The port on the machine defined by /system/http_proxy/host that you proxy "
+"through"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:22
+msgid ""
+"The port on the machine defined by /system/proxy/ftp_host that you proxy "
+"through"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:23
+msgid ""
+"The port on the machine defined by /system/proxy/secure_host that you proxy "
+"through"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:24
+msgid ""
+"The port on the machine defined by /system/proxy/socks_host that you proxy "
+"through"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:25
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:26
+msgid "URL that provides proxy configuration values"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:27
+msgid "Use proxy settings when accessing http"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:28
+msgid "User name to pass as authentication when doing http proxying"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:29
+msgid "http proxy password"
+msgstr ""
+
+#: schemas/system_http_proxy.schemas.in.h:30
+msgid "http proxy username"
+msgstr ""

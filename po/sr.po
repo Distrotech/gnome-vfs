@@ -8,8 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.4\n"
-"POT-Creation-Date: 2003-08-25 13:18+0200\n"
-"PO-Revision-Date: 2003-08-14 00:54+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-10-04 01:34+0200\n"
+"PO-Revision-Date: 2003-10-04 01:44+0200\n"
 "Last-Translator: Dušan Živojnov <calvin@verat.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -329,22 +330,6 @@ msgstr "%.1f GB"
 msgid " (invalid Unicode)"
 msgstr " (неисправан Уникод)"
 
-#: modules/file-method.c:382
-#, c-format
-msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Непознато GnomeVFSSeekPosition %d"
-
-#. FIXME: we probably shouldn't use printf to output the message
-#: modules/test-method.c:590
-#, c-format
-msgid "Didn't find a valid settings file at %s\n"
-msgstr "Не могу пронаћи тачну датотеку са подешавањима у %s\n"
-
-#: modules/test-method.c:592
-#, c-format
-msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Користи %s променљиву да назначиш друго место.\n"
-
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
@@ -395,6 +380,22 @@ msgstr "Алати"
 msgid "Windows"
 msgstr "Прозори"
 
+#: modules/file-method.c:382
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "Непознато GnomeVFSSeekPosition %d"
+
+#. FIXME: we probably shouldn't use printf to output the message
+#: modules/test-method.c:590
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "Не могу пронаћи тачну датотеку са подешавањима у %s\n"
+
+#: modules/test-method.c:592
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr "Користи %s променљиву да назначиш друго место.\n"
+
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
 msgstr "Производња обичног Moniker-а"
@@ -410,3 +411,170 @@ msgstr "обичан Гном ВФС moniker"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "обичан moniker датотеке"
+
+#: schemas/desktop_default_applications.schemas.in.h:1
+msgid "Default component viewer application"
+msgstr "Подразумевани програм за преглед делова"
+
+#: schemas/desktop_default_applications.schemas.in.h:2
+msgid "Default terminal application"
+msgstr "Подразумевани терминалски програм"
+
+#: schemas/desktop_default_applications.schemas.in.h:3
+msgid "Exec argument for default terminal"
+msgstr "Аргумент извршавања за подразумевани терминал"
+
+#: schemas/desktop_default_applications.schemas.in.h:5
+#, no-c-format
+msgid ""
+"The application to use for viewing files that require a component to view "
+"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
+"will be replaced by the component IID."
+msgstr "Програм који се користи за прегледање датотека које захтевају компоненту за преглед. Параметар %s ће бити замењен адресом датотеке, а параметар %c ће бити замењен IID-ом компоненте."
+
+#: schemas/desktop_default_applications.schemas.in.h:6
+msgid ""
+"The default terminal application to use for applications that require a "
+"terminal."
+msgstr "Подразумевани терминалски програм који се користи за програме којима је неопходан терминал."
+
+#: schemas/desktop_default_applications.schemas.in.h:7
+msgid "The exec argument to use for the default terminal application."
+msgstr "Аргумент извршавања за подразумевани терминалски програм."
+
+#: schemas/system_http_proxy.schemas.in.h:1
+msgid "Authenticate connections to the proxy server"
+msgstr "Идентификација веза са посредничким сервером"
+
+#: schemas/system_http_proxy.schemas.in.h:2
+msgid "Automatic proxy configuration URL"
+msgstr "Адреса за самоподешавање посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:3
+msgid "Enables the proxy settings when accessing http over the internet."
+msgstr "Укључује подешавања посредника при приступу вебу преко Интернета."
+
+#: schemas/system_http_proxy.schemas.in.h:4
+msgid "FTP proxy host name"
+msgstr "Име FTP посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:5
+msgid "FTP proxy port"
+msgstr "Порт FTP посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:6
+msgid "HTTP proxy host name"
+msgstr "Име HTTP посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:7
+msgid "HTTP proxy port"
+msgstr "Порт HTTP посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:8
+msgid "Hosts are not contacted via the proxy"
+msgstr "Рачунарима се не приступа преко посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:9
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo defined by /system/http_proxy/authentication_user "
+"and /system/http_proxy/authentication_password."
+msgstr "Уколико је постављено, везе са посредничким сервером се идентификују. Пар корисник/лозинка се узима из /system/http_proxy/authentication_user и /system/http_proxy/authentication_password."
+
+#: schemas/system_http_proxy.schemas.in.h:10
+msgid "Password to pass as authentication when doing http proxying"
+msgstr "Лозинка која се користи за идентификацију код веб посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:11
+msgid "Proxy configuration mode"
+msgstr "Режим подешавања посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:12
+msgid "Secure http proxy host name"
+msgstr "Име безбедног HTTP посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:13
+msgid "Secure http proxy port"
+msgstr "Порт безбедног HTTP посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:14
+msgid ""
+"Select the proxy configuration mode. Supported values are \"none\", \"manual"
+"\", \"auto\""
+msgstr "Изаберите режим подешавања посредника. Допуштене вредности су „none“, „manual“ и „auto“"
+
+#: schemas/system_http_proxy.schemas.in.h:15
+msgid "Socks proxy host name"
+msgstr "Име SOCKS посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:16
+msgid "Socks proxy port"
+msgstr "Порт SOCKS посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:17
+msgid "The machine name to proxy FTP through."
+msgstr "Име рачунара FTP посредника."
+
+#: schemas/system_http_proxy.schemas.in.h:18
+msgid "The machine name to proxy http through."
+msgstr "Име рачунара HTTP посредника."
+
+#: schemas/system_http_proxy.schemas.in.h:19
+msgid "The machine name to proxy secure http through."
+msgstr "Име рачунара безбедног HTTP посредника."
+
+#: schemas/system_http_proxy.schemas.in.h:20
+msgid "The machine name to proxy socks through."
+msgstr "Име рачунара SOCKS посредника."
+
+#: schemas/system_http_proxy.schemas.in.h:21
+msgid ""
+"The port on the machine defined by /system/http_proxy/host that you proxy "
+"through"
+msgstr "Порт машине одређене помоћу /system/http_proxy/host која је посредник"
+
+#: schemas/system_http_proxy.schemas.in.h:22
+msgid ""
+"The port on the machine defined by /system/proxy/ftp_host that you proxy "
+"through"
+msgstr "Порт машине одређене помоћу /system/proxy/ftp_proxy која је посредник"
+
+#: schemas/system_http_proxy.schemas.in.h:23
+msgid ""
+"The port on the machine defined by /system/proxy/secure_host that you proxy "
+"through"
+msgstr "Порт машине одређене помоћу /system/proxy/secure_proxy која је посредник"
+
+#: schemas/system_http_proxy.schemas.in.h:24
+msgid ""
+"The port on the machine defined by /system/proxy/socks_host that you proxy "
+"through"
+msgstr "Порт машине одређене помоћу /system/proxy/socks_proxy која је посредник"
+
+#: schemas/system_http_proxy.schemas.in.h:25
+msgid ""
+"This key contains a list of hosts which are connected to directly, rather "
+"than via the proxy (if it is active). The values can be hostnames, domains "
+"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
+"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr "Овај кључ садржи списак рачунара који су непосредно повезани, уместо путем посредника (уколико је у дејству). Ове вредности могу бити имена рачунара, домени (помоћу почетних навода као што је *.нешто.ију), ИП адресе рачунара (било ИПв4 било ИПв6) и адресе мрежа уз мрежну маску (нешто као што је 192.168.0.0/24)."
+
+#: schemas/system_http_proxy.schemas.in.h:26
+msgid "URL that provides proxy configuration values"
+msgstr "Адреса која обезбеђује вредности за подешавање посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:27
+msgid "Use proxy settings when accessing http"
+msgstr "Користи подешавања посредника при приступу вебу"
+
+#: schemas/system_http_proxy.schemas.in.h:28
+msgid "User name to pass as authentication when doing http proxying"
+msgstr "Корисничко име које се шаље при идентификацији код веб посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:29
+msgid "http proxy password"
+msgstr "Лозинка HTTP посредника"
+
+#: schemas/system_http_proxy.schemas.in.h:30
+msgid "http proxy username"
+msgstr "Корисничко име HTTP посредника"
