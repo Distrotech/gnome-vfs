@@ -337,17 +337,24 @@ struct GnomeVFSJob {
 	 */
 	GnomeVFSOp *current_op;
 	GnomeVFSOp *notify_op;
+	
+	/* unique identifier of this job (a uint, really) */
+	GnomeVFSAsyncHandle *job_handle;
 };
 
-GnomeVFSJob *gnome_vfs_job_new       (void);
-void         gnome_vfs_job_destroy   (GnomeVFSJob    *job);
-void         gnome_vfs_job_prepare   (GnomeVFSJob    *job,
-				      GnomeVFSOpType  type,
-				      GFunc           callback,
-				      gpointer        callback_data);
-void         gnome_vfs_job_go        (GnomeVFSJob    *job);
-gboolean     gnome_vfs_job_execute   (GnomeVFSJob    *job);
-void         gnome_vfs_job_cancel    (GnomeVFSJob    *job);
-int          gnome_vfs_job_get_count (void);
+GnomeVFSJob 	*gnome_vfs_job_new       (void);
+void         	 gnome_vfs_job_destroy   (GnomeVFSJob    *job);
+void         	 gnome_vfs_job_prepare   (GnomeVFSJob    *job,
+				      	  GnomeVFSOpType  type,
+				      	  GFunc           callback,
+				      	  gpointer        callback_data);
+void         	 gnome_vfs_job_go        (GnomeVFSJob    *job);
+gboolean     	 gnome_vfs_job_execute   (GnomeVFSJob    *job);
+void         	 gnome_vfs_job_cancel    (GnomeVFSJob    *job);
+int          	 gnome_vfs_job_get_count (void);
+
+void	     	 gnome_vfs_async_job_map_shutdown 	(void);
+void	     	 gnome_vfs_async_job_expired 		(GnomeVFSAsyncHandle	*handle);
+void 		 gnome_vfs_async_job_map_add_job	(GnomeVFSJob		*job);
 
 #endif /* GNOME_VFS_JOB_PTHREAD_H */

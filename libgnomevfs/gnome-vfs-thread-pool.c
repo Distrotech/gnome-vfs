@@ -25,8 +25,12 @@
 #include "gnome-vfs-thread-pool.h"
 
 #undef DEBUG_PRINT
-/* #define DEBUG_PRINT(x) g_print (x) */
+
+#if 0
+#define DEBUG_PRINT(x) g_print x
+#else
 #define DEBUG_PRINT(x)
+#endif
 
 typedef struct {
 	pthread_t thread_id;

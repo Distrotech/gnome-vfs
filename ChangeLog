@@ -1,3 +1,56 @@
+2001-01-03  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Darin Adler  <darin@eazel.com>
+
+	Fix bug 5397 (use unique job IDs instead of GnomeVFSAsyncHandles)
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	* libgnomevfs-pthread/gnome-vfs-job.c: (dispatch_open_callback),
+	(dispatch_create_callback), (dispatch_open_as_channel_callback),
+	(dispatch_create_as_channel_callback), (dispatch_close_callback),
+	(dispatch_read_callback), (dispatch_write_callback),
+	(dispatch_load_directory_callback),
+	(dispatch_get_file_info_callback),
+	(dispatch_find_directory_callback),
+	(dispatch_set_file_info_callback), (dispatch_xfer_callback),
+	(gnome_vfs_job_new):
+	(gnome_vfs_async_job_map_add_job),
+	(gnome_vfs_async_job_map_destroy), (async_job_map_remove_job),
+	(gnome_vfs_async_job_expired), (async_job_map_get_job),
+	(gnome_vfs_async_job_map_shutdown),
+	(pthread_gnome_vfs_async_cancel), (async_open),
+	(async_open_as_channel), (async_create),
+	(pthread_gnome_vfs_async_create_as_channel),
+	(pthread_gnome_vfs_async_close), (pthread_gnome_vfs_async_read),
+	(pthread_gnome_vfs_async_write),
+	(pthread_gnome_vfs_async_create_symbolic_link),
+	(pthread_gnome_vfs_async_get_file_info),
+	(pthread_gnome_vfs_async_set_file_info),
+	(pthread_gnome_vfs_async_find_directory), (copy_sort_rules),
+	(async_load_directory), (pthread_gnome_vfs_async_load_directory),
+	(pthread_gnome_vfs_async_xfer),
+	(pthread_gnome_vfs_async_add_status_callback),
+	(pthread_gnome_vfs_async_remove_status_callback):
+	assign jobs unique id's. Use a map to map job ids to job structs.
+	
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine),
+	(gnome_vfs_job_create_slave):
+	Add new jobs to the job id map as they get created. Remove them
+	when a thread expires.
+	
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	(gnome_vfs_thread_backend_shutdown):
+	Get rid of the job id map when we quit.
+	
+	* libgnomevfs-pthread/gnome-vfs-thread-pool.c:
+	Make some debugging code better.
+	
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	(gnome_vfs_job_create_slave):
+	Remove some code that was ifdefd out now that new thread pool code
+	seems to be working fine.
+
 2001-01-02  John Sullivan  <sullivan@eazel.com>
 
 	reviewed by: Darin Adler  <darin@eazel.com>

@@ -29,6 +29,7 @@
 #include "gnome-vfs-private.h"
 
 #include "gnome-vfs-job.h"
+#include <pthread.h>
 
 void           pthread_gnome_vfs_async_cancel                 (GnomeVFSAsyncHandle                 *handle);
 void           pthread_gnome_vfs_async_open_uri               (GnomeVFSAsyncHandle                **handle_return,
@@ -150,22 +151,129 @@ guint          pthread_gnome_vfs_async_add_status_callback    (GnomeVFSAsyncHand
 void           pthread_gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle                 *handle,
 							       guint                                callback_id);
 
+
+static GHashTable *async_job_map;
+static guint async_job_map_next_id;
+pthread_mutex_t async_job_map_lock;
+volatile static gboolean async_job_map_shutting_down;
+
+
+void
+gnome_vfs_async_job_map_add_job (GnomeVFSJob *job)
+{
+	g_assert (!async_job_map_shutting_down);
+
+	/* Assign a unique id to each job. The GnomeVFSAsyncHandle pointers each
+	 * async op call deals with this will really be these unique IDs
+	 */
+	job->job_handle = GUINT_TO_POINTER (++async_job_map_next_id);
+
+	if (async_job_map == NULL) {
+		/* First job, allocate a new hash table. */
+		async_job_map = g_hash_table_new (NULL, NULL);
+		pthread_mutex_init (&async_job_map_lock, NULL);
+	}
+
+	pthread_mutex_lock (&async_job_map_lock);
+	g_hash_table_insert (async_job_map, job->job_handle, job);
+	pthread_mutex_unlock (&async_job_map_lock);
+}
+
+static void
+gnome_vfs_async_job_map_destroy (void)
+{
+	g_assert (async_job_map_shutting_down);
+	g_assert (async_job_map != NULL);
+	
+	g_hash_table_destroy (async_job_map);
+	async_job_map = NULL;
+	
+	pthread_mutex_unlock (&async_job_map_lock);
+	pthread_mutex_destroy (&async_job_map_lock);
+}
+
+static void
+async_job_map_remove_job (GnomeVFSAsyncHandle *handle)
+{
+	g_assert (async_job_map != NULL);
+
+	g_hash_table_remove (async_job_map, handle);
+}
+
+void 
+gnome_vfs_async_job_expired (GnomeVFSAsyncHandle *handle)
+{
+	/* Thread dying of natural causes, remove its id from the map */
+	pthread_mutex_lock (&async_job_map_lock);
+
+	g_assert (async_job_map != NULL);
+
+	async_job_map_remove_job (handle);
+
+	if (async_job_map_shutting_down && g_hash_table_size (async_job_map) == 0) {
+		/* We were the last active job, turn the lights off. */
+		gnome_vfs_async_job_map_destroy ();
+		/* The mutex is gone, return. */
+		return;
+	}
+
+	pthread_mutex_unlock (&async_job_map_lock);
+}
+
+
+static GnomeVFSJob *
+async_job_map_get_job (const GnomeVFSAsyncHandle *handle)
+{
+	GnomeVFSJob *result;
+	g_assert (async_job_map != NULL);
+	
+	result = g_hash_table_lookup (async_job_map, handle);
+	return result;
+}
+
+void
+gnome_vfs_async_job_map_shutdown (void)
+{
+	pthread_mutex_lock (&async_job_map_lock);
+	
+	g_assert (async_job_map != NULL);
+
+	/* tell the async jobs it's quitting time */
+	async_job_map_shutting_down = TRUE;
+
+	if (g_hash_table_size (async_job_map) == 0) {
+		/* No more outstanding jobs to finish, just delete the hash table directly. */
+		gnome_vfs_async_job_map_destroy ();
+		/* the mutex is gone, return */
+		return;
+	}
+
+	/* The last expiring job will delete the hash table. */
+	pthread_mutex_unlock (&async_job_map_lock);
+}
+
 void
 pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 {
 	GnomeVFSJob *job;
 
-	g_return_if_fail (handle != NULL);
+	pthread_mutex_lock (&async_job_map_lock);
+	job = async_job_map_get_job (handle);
 
-	job = (GnomeVFSJob *) handle;
+	if (job == NULL) {
+		g_warning("cancelling job %d - job no longer exists\n", GPOINTER_TO_UINT (handle));
+		pthread_mutex_unlock (&async_job_map_lock);
+		return;
+	}
+	
+	async_job_map_remove_job  (handle);
+	pthread_mutex_unlock (&async_job_map_lock);
 
 	/* FIXME bugzilla.eazel.com 1129: This does not free the
          * handle! Storage leak!
 	 */
 	gnome_vfs_job_cancel (job);
 }
-
-
 
 static GnomeVFSAsyncHandle *
 async_open (GnomeVFSURI *uri,
@@ -188,7 +296,7 @@ async_open (GnomeVFSURI *uri,
 
 	gnome_vfs_job_go (job);
 
-	return (GnomeVFSAsyncHandle *) job;
+	return job->job_handle;
 }
 
 void
@@ -249,7 +357,7 @@ async_open_as_channel (GnomeVFSURI *uri,
 
 	gnome_vfs_job_go (job);
 
-	return (GnomeVFSAsyncHandle *) job;
+	return job->job_handle;
 }
 
 void
@@ -314,7 +422,7 @@ async_create (GnomeVFSURI *uri,
 
 	gnome_vfs_job_go (job);
 
-	return (GnomeVFSAsyncHandle *) job;
+	return job->job_handle;
 }
 
 void
@@ -386,7 +494,7 @@ pthread_gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 
 	gnome_vfs_job_go (job);
 
-	*handle_return = (GnomeVFSAsyncHandle *) job;
+	*handle_return = job->job_handle;
 }
 
 void
@@ -399,7 +507,7 @@ pthread_gnome_vfs_async_close (GnomeVFSAsyncHandle *handle,
 	g_return_if_fail (handle != NULL);
 	g_return_if_fail (callback != NULL);
 
-	job = (GnomeVFSJob *) handle;
+	job = async_job_map_get_job (handle);
 
 	gnome_vfs_job_prepare (job, GNOME_VFS_OP_CLOSE,
 			       (GFunc) callback, callback_data);
@@ -420,7 +528,7 @@ pthread_gnome_vfs_async_read (GnomeVFSAsyncHandle *handle,
 	g_return_if_fail (buffer != NULL);
 	g_return_if_fail (callback != NULL);
 
-	job = (GnomeVFSJob *) handle;
+	job = async_job_map_get_job (handle);
 
 	gnome_vfs_job_prepare (job, GNOME_VFS_OP_READ,
 			       (GFunc) callback, callback_data);
@@ -446,7 +554,7 @@ pthread_gnome_vfs_async_write (GnomeVFSAsyncHandle *handle,
 	g_return_if_fail (buffer != NULL);
 	g_return_if_fail (callback != NULL);
 
-	job = (GnomeVFSJob *) handle;
+	job = async_job_map_get_job (handle);
 
 	gnome_vfs_job_prepare (job, GNOME_VFS_OP_WRITE,
 			       (GFunc) callback, callback_data);
@@ -483,7 +591,7 @@ pthread_gnome_vfs_async_create_symbolic_link (GnomeVFSAsyncHandle **handle_retur
 
 	gnome_vfs_job_go (job);
 
-	*handle_return = (GnomeVFSAsyncHandle *) job;
+	*handle_return = job->job_handle;
 }
 
 void
@@ -512,7 +620,7 @@ pthread_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 
 	gnome_vfs_job_go (job);
 
-	*handle_return = (GnomeVFSAsyncHandle *) job;
+	*handle_return = job->job_handle;
 }
 
 void
@@ -546,7 +654,7 @@ pthread_gnome_vfs_async_set_file_info (GnomeVFSAsyncHandle **handle_return,
 
 	gnome_vfs_job_go (job);
 
-	*handle_return = (GnomeVFSAsyncHandle *) job;
+	*handle_return = job->job_handle;
 }
 
 void
@@ -580,14 +688,13 @@ pthread_gnome_vfs_async_find_directory (GnomeVFSAsyncHandle **handle_return,
 	get_info_op->notify.result_list = NULL;
 
 	gnome_vfs_job_go (job);
-
-	*handle_return = (GnomeVFSAsyncHandle *) job;
+	*handle_return = job->job_handle;
 }
 
 static GnomeVFSDirectorySortRule *
 copy_sort_rules (GnomeVFSDirectorySortRule *rules)
 {
-	GnomeVFSDirectorySortRule *new;
+	GnomeVFSDirectorySortRule *result;
 	guint count, i;
 
 	if (rules == NULL)
@@ -596,13 +703,13 @@ copy_sort_rules (GnomeVFSDirectorySortRule *rules)
 	for (count = 0; rules[count] != GNOME_VFS_DIRECTORY_SORT_NONE; count++)
 		;
 
-	new = g_new (GnomeVFSDirectorySortRule, count + 1);
+	result = g_new (GnomeVFSDirectorySortRule, count + 1);
 
 	for (i = 0; i < count; i++)
-		new[i] = rules[i];
-	new[i] = GNOME_VFS_DIRECTORY_SORT_NONE;
+		result[i] = rules[i];
+	result[i] = GNOME_VFS_DIRECTORY_SORT_NONE;
 
-	return new;
+	return result;
 }
 
 static GnomeVFSAsyncHandle *
@@ -635,9 +742,10 @@ async_load_directory (GnomeVFSURI *uri,
 	load_directory_op->request.filter_pattern = g_strdup (filter_pattern);
 	load_directory_op->request.items_per_notification = items_per_notification;
 
+
 	gnome_vfs_job_go (job);
 
-	return (GnomeVFSAsyncHandle *) job;
+	return job->job_handle;
 }
 
 void
@@ -661,10 +769,10 @@ pthread_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 
 	uri = gnome_vfs_uri_new (text_uri);
 	*handle_return = async_load_directory (uri, options,
-					       sort_rules, reverse_order,
-					       filter_type, filter_options, filter_pattern,
-					       items_per_notification,
-					       callback, callback_data);
+				               sort_rules, reverse_order,
+				               filter_type, filter_options, filter_pattern,
+				               items_per_notification,
+				               callback, callback_data);
 	if (uri != NULL) {
 		gnome_vfs_uri_unref (uri);
 	}
@@ -729,7 +837,7 @@ pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 
 	gnome_vfs_job_go (job);
 
-	*handle_return = (GnomeVFSAsyncHandle *) job;
+	*handle_return = job->job_handle;
 
 	return GNOME_VFS_OK;
 }
@@ -744,7 +852,7 @@ pthread_gnome_vfs_async_add_status_callback (GnomeVFSAsyncHandle *handle,
 	g_return_val_if_fail (handle != NULL, 0);
 	g_return_val_if_fail (callback != NULL, 0);
 
-	job = (GnomeVFSJob *) handle;
+	job = async_job_map_get_job (handle);
 
 	g_return_val_if_fail (job->current_op != NULL, 0);
 	g_return_val_if_fail (job->current_op->context != NULL, 0);
@@ -763,7 +871,7 @@ pthread_gnome_vfs_async_remove_status_callback (GnomeVFSAsyncHandle *handle,
 	g_return_if_fail (handle != NULL);
 	g_return_if_fail (callback_id > 0);
 
-	job = (GnomeVFSJob *) handle;
+	job = async_job_map_get_job (handle);
 
 	g_return_if_fail (job->current_op != NULL);
 	g_return_if_fail (job->current_op->context != NULL);

@@ -266,7 +266,7 @@ dispatch_open_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	open_op = &op->specifics.open;
 
 	callback = (GnomeVFSAsyncOpenCallback) op->callback;
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      open_op->notify.result,
 		      op->callback_data);
 }
@@ -280,7 +280,7 @@ dispatch_create_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	create_op = &op->specifics.create;
 
 	callback = (GnomeVFSAsyncCreateCallback) op->callback;
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      create_op->notify.result,
 		      op->callback_data);
 }
@@ -294,7 +294,7 @@ dispatch_open_as_channel_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	open_as_channel_op = &op->specifics.open_as_channel;
 
 	callback = (GnomeVFSAsyncOpenAsChannelCallback) op->callback;
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      open_as_channel_op->notify.channel,
 		      open_as_channel_op->notify.result,
 		      op->callback_data);
@@ -309,7 +309,7 @@ dispatch_create_as_channel_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	create_as_channel_op = &op->specifics.create_as_channel;
 
 	callback = (GnomeVFSAsyncCreateAsChannelCallback) op->callback;
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      create_as_channel_op->notify.channel,
 		      create_as_channel_op->notify.result,
 		      op->callback_data);
@@ -324,7 +324,7 @@ dispatch_close_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	close_op = &op->specifics.close;
 
 	callback = (GnomeVFSAsyncCloseCallback) op->callback;
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      close_op->notify.result,
 		      op->callback_data);
 }
@@ -339,7 +339,7 @@ dispatch_read_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 
 	read_op = &op->specifics.read;
 
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      read_op->notify.result,
 		      read_op->request.buffer,
 		      read_op->request.num_bytes,
@@ -357,7 +357,7 @@ dispatch_write_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 
 	write_op = &op->specifics.write;
 
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      write_op->notify.result,
 		      write_op->request.buffer,
 		      write_op->request.num_bytes,
@@ -374,7 +374,7 @@ dispatch_load_directory_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	load_directory_op = &op->specifics.load_directory;
 
 	callback = (GnomeVFSAsyncDirectoryLoadCallback) op->callback;
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      load_directory_op->notify.result,
 		      load_directory_op->notify.list,
 		      load_directory_op->notify.entries_read,
@@ -390,7 +390,7 @@ dispatch_get_file_info_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	callback = (GnomeVFSAsyncGetFileInfoCallback) op->callback;
 	result_list = op->specifics.get_file_info.notify.result_list;
 
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      result_list,
 		      op->callback_data);
 }
@@ -424,7 +424,7 @@ dispatch_find_directory_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	callback = (GnomeVFSAsyncFindDirectoryCallback) op->callback;
 	result_list = op->specifics.find_directory.notify.result_list;
 
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      result_list,
 		      op->callback_data);
 }
@@ -462,7 +462,7 @@ dispatch_set_file_info_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 	
 	callback = (GnomeVFSAsyncSetFileInfoCallback) op->callback;
 	
-	(* callback) ((GnomeVFSAsyncHandle *) job,
+	(* callback) (job->job_handle,
 		      op->specifics.set_file_info.notify.set_file_info_result,
 		      new_info_is_valid 
 		      ? &op->specifics.set_file_info.notify.info 
@@ -481,7 +481,7 @@ dispatch_xfer_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 
 	xfer_op = &op->specifics.xfer;
 
-	callback_retval = (* callback) ((GnomeVFSAsyncHandle *) job,
+	callback_retval = (* callback) (job->job_handle,
 					xfer_op->notify.progress_info,
 					op->callback_data);
 
@@ -641,6 +641,11 @@ gnome_vfs_job_new (void)
 	new_job->wakeup_channel_in = g_io_channel_unix_new (pipefd[0]);
 	new_job->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
 	new_job->wakeup_channel_lock = g_mutex_new ();
+
+	/* Add the new job into the job hash table. This also assigns
+	 * the job a unique id
+	 */
+	gnome_vfs_async_job_map_add_job (new_job);
 	
 	g_io_add_watch_full (new_job->wakeup_channel_in, G_PRIORITY_HIGH, G_IO_IN,
 			     dispatch_job_callback, new_job, NULL);
@@ -1709,3 +1714,4 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 	 */
 	JOB_DEBUG (("done cancelling %p", job));
 }
+

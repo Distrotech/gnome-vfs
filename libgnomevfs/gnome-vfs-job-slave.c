@@ -37,6 +37,7 @@
 static volatile gboolean gnome_vfs_quitting = FALSE;
 static volatile gboolean gnome_vfs_done_quitting = FALSE;
 
+
 static void *
 thread_routine (void *data)
 {
@@ -47,21 +48,16 @@ thread_routine (void *data)
 	while (gnome_vfs_job_execute (job))
 		;
 
+	gnome_vfs_async_job_expired (job->job_handle);
 	gnome_vfs_job_destroy (job);
-	
+
 	return NULL;
 }
-
-#define USE_THREAD_POOL
 
 gboolean
 gnome_vfs_job_create_slave (GnomeVFSJob *job)
 {
 	pthread_t thread;
-
-#ifndef USE_THREAD_POOL
-	pthread_attr_t thread_attributes;
-#endif
 	
 	g_return_val_if_fail (job != NULL, FALSE);
 
@@ -78,22 +74,14 @@ gnome_vfs_job_create_slave (GnomeVFSJob *job)
 		return FALSE;
 	}
 	
-#ifndef USE_THREAD_POOL
-	pthread_attr_init (&thread_attributes);
-	pthread_attr_setdetachstate (&thread_attributes, PTHREAD_CREATE_DETACHED);
-
-	if (pthread_create (&thread, &thread_attributes, thread_routine, job) != 0) {
-		g_warning ("Impossible to allocate a new GnomeVFSJob thread.");
-		
-		return FALSE;
-	}
-#else
 	if (gnome_vfs_thread_create (&thread, thread_routine, job) != 0) {
 		g_warning ("Impossible to allocate a new GnomeVFSJob thread.");
 		
+		/* thread did not start up, remove the job from the hash table */
+		gnome_vfs_async_job_expired (job->job_handle);
 		return FALSE;
 	}
-#endif
+
 	return TRUE;
 }
 
@@ -135,7 +123,6 @@ gnome_vfs_thread_backend_shutdown (void)
 		usleep (20000);
 	}
 
-#ifdef USE_THREAD_POOL
 	gnome_vfs_thread_pool_shutdown ();
-#endif
+	gnome_vfs_async_job_map_shutdown ();
 }
