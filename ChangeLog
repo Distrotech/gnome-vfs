@@ -1,3 +1,8 @@
+2003-04-17  Balamurali Viswanathan <balamurali.viswanathan@wipro.com>
+
+	* modules/http-method.c: Changed private symbol inet_aton
+	  to inet_pton.
+
 2003-04-15  Christophe Fergeau  <teuf@users.sourceforge.net>
 	
 	* configure.in: 

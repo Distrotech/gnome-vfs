@@ -873,8 +873,8 @@ proxy_should_for_hostname (const char *hostname)
 	/* Don't force "localhost" or 127.x.x.x through the proxy */
 	/* This is a special case that we'd like to generalize into a gconf config */
 
-	inet_aton("127.0.0.0", &in_loop); 
-	inet_aton("255.0.0.0", &in_mask); 
+	inet_pton(AF_INET, "127.0.0.0", &in_loop); 
+	inet_pton(AF_INET, "255.0.0.0", &in_mask); 
 
 	memset (&in, 0, sizeof (in));
 
@@ -928,7 +928,7 @@ proxy_should_for_hostname (const char *hostname)
 #endif
 	{
 		if (hostname != NULL 
-		    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (inet_aton (hostname, &in) != 0
+		    && (g_ascii_strcasecmp (hostname, "localhost") == 0 || (inet_pton (AF_INET, hostname, &in) > 0
 		    && ((in.s_addr & in_mask.s_addr) == in_loop.s_addr)))) {
 			ret = FALSE;
 		}
