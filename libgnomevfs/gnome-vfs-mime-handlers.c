@@ -671,6 +671,7 @@ static OAF_ServerInfo *
 OAF_ServerInfo__copy (OAF_ServerInfo *orig)
 {
 	OAF_ServerInfo *retval;
+	int i;
 
 	retval = OAF_ServerInfo__alloc ();
 	
@@ -681,9 +682,20 @@ OAF_ServerInfo__copy (OAF_ServerInfo *orig)
 	retval->hostname= CORBA_string_dup (orig->hostname);
 	retval->domain= CORBA_string_dup (orig->domain);
 	retval->attrs = orig->attrs;
-	/* FIXME: this looks like a blatant kludge (but I cut & pasted
-           it from OAF) */
-	CORBA_sequence_set_release (&retval->attrs, CORBA_FALSE);
+
+	retval->attrs._maximum = orig->attrs._maximum;
+	retval->attrs._length = orig->attrs._length;
+	
+	retval->attrs._buffer = CORBA_sequence_OAF_Attribute_allocbuf (retval->attrs._length);
+	memcpy (retval->attrs._buffer, orig->attrs._buffer, (sizeof (OAF_Attribute)) * retval->attrs._length);
+	
+	for (i = 0; i < retval->attrs._length; i++) {
+		retval->attrs._buffer[i].name = CORBA_string_dup (retval->attrs._buffer[i].name);
+		if (retval->attrs._buffer[i].v._d == OAF_A_STRING) {
+			retval->attrs._buffer[i].v._u.value_string = CORBA_string_dup (retval->attrs._buffer[i].v._u.value_string);
+		
+		}
+	}
 
 	return retval;
 }

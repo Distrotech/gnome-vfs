@@ -1,3 +1,9 @@
+2000-06-01  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c (OAF_ServerInfo__copy):
+	Implement copying of the attribute list properly by jumping
+	through all the CORBA hoops.
+
 2000-06-01  Darin Adler  <darin@eazel.com>
 
 	A set of changes to make the short lists be based on the user
