@@ -1,3 +1,19 @@
+2004-07-16  Dave Camp  <dave@novell.com>
+
+	* configure.in: Require libxml 2.6.0
+	* libgnomevfs/gnome-vfs-mime-info.c: (mime_entry_free),
+	(add_data_dir), (gnome_vfs_mime_init), (reload_if_needed),
+	(gnome_vfs_mime_info_clear), (_gnome_vfs_mime_info_shutdown),
+	(gnome_vfs_mime_info_reload), (gnome_vfs_mime_freeze),
+	(gnome_vfs_mime_thaw), (language_level), (consume_element),
+	(handle_simple_string), (handle_mime_info), (load_mime_entry),
+	(get_mime_entry_path), (get_entry), (gnome_vfs_mime_set_value),
+	(gnome_vfs_mime_get_value), (gnome_vfs_mime_type_is_known),
+	(gnome_vfs_mime_get_extensions_list),
+	(gnome_vfs_mime_extensions_list_free):
+	* libgnomevfs/gnome-vfs-mime-info.h: Use shared-mime-info to
+	get mime type descriptions.  Doesn't notice changes yet.
+
 2004-07-16  Ray Strode  <rstrode@redhat.com
 	* libgnomevfs/egg*: update to latest version
 	* libgnomevfs/gnome-vfs-mime-info-cache.[ch]: new (broken) files
