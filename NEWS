@@ -1,3 +1,12 @@
+gnome-vfs 2.4.3
+
+	* Bugs fixed
+		+ Crasher in the file method which was causing panel crashes
+		  on startup on some systems.
+		+ Sun and Irix portability fixes 
+		+ Fixes in GNU TLS support
+		
+
 gnome-vfs 2.4.2
 
 	* Bugs fixed

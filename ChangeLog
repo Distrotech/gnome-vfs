@@ -1,3 +1,8 @@
+2004-03-09  Christophe Fergeau  <teuf@gnome.org>
+
+	* configure.in
+	* NEWS: Version 2.4.3
+
 2004-03-08  Christophe Fergeau  <teuf@gnome.org>
 
 	Based on a patch by The Written Word
