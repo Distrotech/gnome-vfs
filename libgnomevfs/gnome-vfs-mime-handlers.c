@@ -377,8 +377,6 @@ gnome_vfs_mime_get_default_component (const char *mime_type)
 	char *supertype;
 	char *query;
 	char *sort[5];
-	GList *p;
-	char *prev;
 
 	if (mime_type == NULL) {
 		return NULL;

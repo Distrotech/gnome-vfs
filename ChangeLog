@@ -1,5 +1,10 @@
 2004-09-04  Christophe Fergeau  <teuf@gnome.org>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c: remove unused variables to
+	  fix compilation
+
+2004-09-04  Christophe Fergeau  <teuf@gnome.org>
+
 	* libgnomevfs/gnome-vfs-mime-info-cache.c: make sure we don't free
 	  memory we'll reuse later when managing the mime_info_cache_map 
 	  hash table memory (fixes #150467)
