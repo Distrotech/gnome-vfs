@@ -1,3 +1,7 @@
+2000-08-24  Maciej Stachowiak  <mjs@eazel.com>
+
+	* modules/Makefile.am: disable efs module.
+
 2000-08-23  Darin Adler  <darin@eazel.com>
 
 	* check-mime.pl: Added a check of the .applications file.

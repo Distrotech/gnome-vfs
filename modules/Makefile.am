@@ -115,12 +115,12 @@ libvfs_translate_la_SOURCES =			\
 libvfs_translate_la_LDFLAGS = $(module_flags)
 libvfs_translate_la_LIBADD  = $(GLIB_LIBS)
 
-if HAVE_LIBEFS
-vefsmoduledir = $(modulesdir)
-vefsmodule_LTLIBRARIES = libvefs.la
-
-libvefs_la_SOURCES =	\
-	efs-method.c	\
-        efs-method.h
-libvefs_la_LIBADD = $(LIBEFS_LIBS) $(GTK_LIBS)
-endif
+#if HAVE_LIBEFS
+#vefsmoduledir = $(modulesdir)
+#vefsmodule_LTLIBRARIES = libvefs.la
+#
+#libvefs_la_SOURCES =	\
+#	efs-method.c	\
+#        efs-method.h
+#libvefs_la_LIBADD = $(LIBEFS_LIBS) $(GTK_LIBS)
+#endif
