@@ -1,3 +1,7 @@
+2004-08-12  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Added nb to ALL_LINGUAS.
+
 2004-08-12  Ryan Lortie  <desrt@desrt.ca>
 
 	* libgnomevfs/gnome-vfs-private-utils.c: (_gnome_vfs_have_ipv6):
