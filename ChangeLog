@@ -1,5 +1,10 @@
 2004-02-14  Julio M. Merino Vidal <jmmv@menta.net>
 
+	* configure.in: checks for sysctlbyname availability
+	* libgnomevfs/gnome-vfs-unix-mounts.c: fix compilation on NetBSD
+
+2004-02-14  Julio M. Merino Vidal <jmmv@menta.net>
+
 	* libgnomevfs/gnome-vfs-cdrom.c: fixed compilation on NetBSD
 
 2004-02-11  Alexander Larsson  <alexl@redhat.com>

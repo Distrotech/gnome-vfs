@@ -26,6 +26,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#ifndef HAVE_SYSCTLBYNAME
+#ifdef HAVE_SYS_PARAM_H
+#include <sys/param.h>
+#endif
+#ifdef HAVE_SYS_MOUNT_H
+#include <sys/mount.h>
+#endif
+#endif
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/time.h>
@@ -819,7 +827,17 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 	}
 
 #ifdef HAVE_SYS_SYSCTL_H
+#if defined(HAVE_SYSCTLBYNAME)
 	sysctlbyname ("vfs.usermount", &usermnt, &len, NULL, 0);
+#elif defined(CTL_VFS) && defined(VFS_USERMOUNT)
+	{
+		int mib[2];
+
+		mib[0] = CTL_VFS;
+		mib[1] = VFS_USERMOUNT;
+		sysctl (mib, 2, &usermnt, &len, NULL, 0);
+	}
+#endif
 #endif
 
 	while ((fstab = getfsent ()) != NULL) {
