@@ -1,3 +1,21 @@
+So2000-11-02  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 4319, Edit and Delete actions in Application
+	List do not function
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(populate_default_applications_list),
+	(initialize_edit_applications_dialog),
+	(nautilus_mime_type_capplet_show_new_mime_window),
+	(add_or_update_application), (add_item_to_application_list),
+	(show_new_application_window), (show_edit_application_window),
+	(delete_selected_application):
+	Bunches of code to handle adding, editing and deletion of 
+	application/mime type mapping.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(nautilus_mime_type_capplet_get_selected_item_mime_type):
+	
 2000-11-01  Aaron Brick <aaron@eazel.com>
 
 	* data/mime/gnome-vfs.[ak]*:
