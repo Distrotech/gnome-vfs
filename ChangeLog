@@ -1,3 +1,9 @@
+2004-07-13  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (copy_items):
+	Make sure to not lose skip if its ever set to true.
+	Fixes bug #145487
+
 2004-07-12  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/ftp-method.c (ftp_connection_destroy):

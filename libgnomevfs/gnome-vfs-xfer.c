@@ -1556,6 +1556,7 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 			GnomeVFSURI *source_uri;
 			GnomeVFSURI *dest_uri;
 			GnomeVFSFileInfo *info;
+			gboolean skip_child;
 
 			source_uri = NULL;
 			dest_uri = NULL;
@@ -1578,11 +1579,11 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 				if (info->type == GNOME_VFS_FILE_TYPE_REGULAR) {
 					result = copy_file (info, source_uri, dest_uri, 
 							    xfer_options, error_mode, overwrite_mode, 
-							    progress, skip);
+							    progress, &skip_child);
 				} else if (info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
 					result = copy_directory (info, source_uri, dest_uri, 
 								 xfer_options, error_mode, overwrite_mode, 
-								 progress, skip);
+								 progress, &skip_child);
 				} else if (info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
 					if (xfer_options & GNOME_VFS_XFER_FOLLOW_LINKS_RECURSIVE) {
 						GnomeVFSFileInfo *symlink_target_info = gnome_vfs_file_info_new ();
@@ -1591,13 +1592,18 @@ copy_directory (GnomeVFSFileInfo *source_file_info,
 						if (result == GNOME_VFS_OK) 
 							result = copy_file (symlink_target_info, source_uri, dest_uri, 
 									    xfer_options, error_mode, overwrite_mode, 
-									    progress, skip);
+									    progress, &skip_child);
 						gnome_vfs_file_info_unref (symlink_target_info);
 					} else {
 						result = copy_symlink (source_uri, dest_uri, info->symlink_name,
-								       error_mode, progress, skip);
+								       error_mode, progress, &skip_child);
 					}
 				}
+				/* We don't want to overwrite a previous skip with FALSE, so we only
+				 * set it if skip_child actually skiped.
+				 */
+				if (skip_child)
+					*skip = TRUE;
 				/* just ignore all the other special file system objects here */
 			}
 			
