@@ -2,6 +2,12 @@
 
 	* libgnomevfs/eggdesktopentries.c
 	(egg_desktop_entries_parse_entry):
+	Reword error message to not break string freeze.
+
+2004-10-18  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/eggdesktopentries.c
+	(egg_desktop_entries_parse_entry):
 	Error out if trying to add key-value pair to comment group
 	(Patch from Miloslav Trmac <mitr@redhat.com>)
 
