@@ -1,13 +1,19 @@
 Build sherrif commits welcome.
 
-Please send patches to gnome-vfs@ximian.com with detailed
-ChangeLog entires for review before committing, and get approval from
-Ian McKellar. Please send to the list and not to anyone directly so
-all Gnome VFS hackers have the opportunity to comment. 
+*DO NOT* check in changes without a ChangeLog entry. 
 
-Please do not check in changes without approval.
+*DO* get your code reviewed by an experienced GNOME hacker.
 
-Please do not check in changes without a ChangeLog entry. 
+If you are an experienced GNOME hacker and confident that your code is right,
+you don't need maintainer approval to commit to HEAD. You still need to get your patch
+reviewed by some other (competent) GNOME hacker. Please include a "Reviewed by:"
+citation in your ChangeLog entry.
+
+If you are unsure of your change, please feel free to send the patch to
+gnome-vfs@gnome.org and get our approval so we won't execute you when it breaks 
+things / does them wrong.
+
+Please get approval for commits to the gnome-2-0 branch.
 
 All ChangeLog entries go into the root ChangeLog except for entries for
 changes in the po and data/mime directories.
@@ -35,7 +41,7 @@ FIXME entries are periodically converted into bugzilla bugs.
 Do not use any other format to draw attention to problems, comments that do
 not contain "FIXME" are not going to be found by our problem tracking tools.
 
-GnomeVFS bugs and open tasks are tracked in ... (bugzilla.gnome.org? please stay tuned
+GnomeVFS bugs and open tasks are tracked in http://bugzilla.gnome.org
 as we transition away Eazel Bugzilla)
 
 For IRC help/feedback use irc.gnome.org/#nautilus.

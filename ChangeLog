@@ -1,5 +1,11 @@
 2002-06-15  Seth Nickell  <snickell@stanford.edu>
 
+	* HACKING:
+
+	Clarify checkin policies.
+
+2002-06-15  Seth Nickell  <snickell@stanford.edu>
+
         Semi-working metadata code, landed as requested by commodore Yakk.
 	
 	* Makefile.am:
