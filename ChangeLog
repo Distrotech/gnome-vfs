@@ -1,3 +1,16 @@
+2000-06-02  Gene Z. Ragan  <gzr@eazel.com>
+
+	More work in progress.  Still incomplete.
+	
+	* mime-type-capplet/edit-window.c: (initialize_main_win_vals),
+	(show_edit_window), (populate_application_menu),
+	(populate_component_menu), (application_menu_activate),
+	(add_application), (show_file_selector):
+	Work in progress.
+	
+	* mime-type-capplet/mime-data.c: (add_to_key):
+	Work in progress.
+
 2000-06-02  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.keys:
