@@ -6,27 +6,48 @@ Things to complete
 * GZIP write support might be broken.
 
 * FTP is *extremely* broken, and is nowhere near being MT-safe.  I
-  wonder if we shouldn't rewrite it from scratch borrowing code from
-  somewhere else (wget comes to mind and, even if it's GPL, I think
-  the FSF would not mind allowing us to distribute a modified version
-  of it as LGPL).
+wonder if we shouldn't rewrite it from scratch borrowing code from
+somewhere else (wget comes to mind and, even if it's GPL, I think the
+FSF would not mind allowing us to distribute a modified version of it
+as LGPL).
 
 * Complete HTTP support.
 
+* HTTP-related issue: we need to figure out a way to deal with HTTP
+redirections.  I.e. one should be able to know that a given `open()'
+operation has caused a redirection, and the name of the new URL.
+
 * Implement SMB support through Wayne's cool librarified Samba client
-  stuff.
+stuff (Wayne Roberts <wroberts@pwav.com>).
+
+* Add some kind of conversation function, so that e.g. we can know
+what step the op is performing.  (E.g for `open()': "connecting to
+ftp.some.site.net", "logging in", "getting dir listing", "retrieving
+file.tar", "extracting file.c".)
 
 * The xfer function does not honour all the flags appropriately: it
-  doesn't set the attributes and it cannot copy special files.
+doesn't set the attributes and it cannot copy special files.
 
 * Names containing the `#' character are likely to cause disasters.
-  We need to provide quoting everywhere.
+We need to provide quoting everywhere.
 
 * Make sure that only one module is initialized at a given time
-  (i.e. add a lock that must be obtained before calling the
-  `vfs_module_init()' function).
+(i.e. add a lock that must be obtained before calling the
+`vfs_module_init()' function).
 
-* Complete the cancellation code.
+* Complete cancellation code, to make sure every operation can be
+cancelled.  We need to be able to send signals to the helper
+threads/processes.
+
+* Add some support for reusing existing processes in the CORBA
+version.  E.g. if you open `ftp://ftp.some.place.net/pub/file-1.c'
+and then `ftp://ftp.some.place.net/pub/file-2.c', we should re-use
+the helper process that opened the first URL for opening the second
+one, so that it possibly re-uses the existing connection.  This
+requires keeping a hash table containing the host name and access
+method for every helper process, and avoid creating new ones when a
+matching one exists.  Of course, we also need to limit killing of
+helper processes so that we actually have a chance to reuse them.
 
 API issues
 ----------
@@ -44,20 +65,32 @@ starting from that URI, and can try to optimize things.  OR maybe we
 can just have a function to "lock" a certain URI.  This will make
 everything easier to implement.
 
-* The asynchronous directory reading stuff needs a timeout.
+* The asynchronous directory reading stuff needs a timeout.  I.e. you
+should be able to say "give me as many entries as possible in the
+following x seconds".  This can be done in the CORBA version by using
+an alarm (as the thing runs in a separate helper process, we don't
+have problems with signals); in the PThread version, we can instead do
+this on the master thread's side, by queueing the data as it comes
+from the helper thread and dispatching it through GTK timeouts (see
+gnome-fm for an example of this -- we probably don't care that there
+is a notification for every element, because this is relatively cheap
+with PThreads).
 
 * Make directory/xfer calls cancellable as well.
+
+* Check that all the important ops are implemented.
+
+* Add missing async wrappers for all the ops.
 
 Installation issues
 -------------------
 
 * Modules are currently installed under $prefix/lib/vfs/modules.
 
-* We probably need to install the private headers too.  Otherwise, it
-  is not possible to write new modules without the full gnome-vfs
-  source code.  Maybe we need to have more than two levels (i.e. more
-  than just "private" and "public" headers).
-
+* We need to install the private headers: otherwise, it is not
+possible to write new modules without the full gnome-vfs source code.
+Maybe we need to have more than two levels (i.e. more than just
+"private" and "public" headers).
 
 Implementation issues
 ---------------------
@@ -65,28 +98,25 @@ Implementation issues
 * find . -name '*.[ch]' -print | xargs grep FIXME
 
 * Every time you read or write asynchronously, the CORBA backend will
-  dynamically allocate the buffer.  This is lame: we should just
-  re-allocate the buffer only if the required is bigger than the one of
-  the previous call.
-
-* Destroying a job or an asynchronous handle should be done better in the
-  pthread version.
+dynamically allocate the buffer.  This is lame: we should just
+re-allocate the buffer only if the required is bigger than the one of
+the previous call.
 
 * Complete unfinished errno -> GnomeVFSError translation
-  (`gnome_vfs_error_from_errno()' in `gnome-vfs-error.c').
+(`gnome_vfs_error_from_errno()' in `gnome-vfs-error.c').
 
 * Portability checks and fixes.  I am sure I forgot lots of details.
 
 * We currently use GNOME MIME functions for file types instead of GNOME
-  metadata.  Should this be fixed so that we use the "type" metadata key
-  instead?
+metadata.  Should this be fixed so that we use the "type" metadata key
+instead?
 
 * MIME functions in GNOME are non-reentrant.  We need to wrap them
-  somehow, or the threaded version of the VFS will suffer major
-  breakage when figuring out MIME types.
+somehow, or the threaded version of the VFS will suffer major
+breakage when figuring out MIME types.
 
-* Metadata key lists are passed as arrays to the API calls, but are passed
-  as GLists to the backend modules.  This requires conversion, and might
-  be a performance issue.  Maybe we should just use arrays for the
-  modules as well.
+* Metadata key lists are passed as arrays to the API calls, but are
+passed as GLists to the backend modules.  This requires conversion,
+and might be a performance issue.  We should just use arrays for the
+modules as well.
 
