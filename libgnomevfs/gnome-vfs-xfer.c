@@ -1594,6 +1594,7 @@ gnome_vfs_xfer_delete_items (GnomeVFSURI *source_directory,
 	}
 
 	if (result == GNOME_VFS_OK) {
+		call_progress (progress, GNOME_VFS_XFER_PHASE_READYTOGO);
 		result = gnome_vfs_xfer_delete_items_common (source_directory, item_names,
 			error_mode, xfer_options, progress);
 	}

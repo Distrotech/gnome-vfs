@@ -1,3 +1,9 @@
+2000-07-17  Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_delete_items):
+	Added a missing READYTOGO progress that caused asserts to
+	get fired during a delete operation.
+
 2000-07-15  Ali Abdin  <aliabdin@aucegypt.edu>
 
 	* modules/pipe-methpd.c:
