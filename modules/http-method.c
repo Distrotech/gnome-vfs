@@ -64,6 +64,8 @@
 
 #include "http-method.h"
 
+#define EAZEL_XML_NS "http://services.eazel.com/namespaces"
+
 /* (this typedef is all the way up here so that  my_debug_printf can use it) */
 typedef gint64 utime_t;
 
@@ -1871,6 +1873,9 @@ static void
 process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 {
 	xmlNodePtr l;
+	gboolean treat_as_directory;
+
+	treat_as_directory = FALSE;
 
 	while (node != NULL) {
 		if (strcmp((char *)node->name, "prop") != 0) {
@@ -1901,6 +1906,11 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 							GNOME_VFS_FILE_INFO_FIELDS_MTIME 
 							| GNOME_VFS_FILE_INFO_FIELDS_CTIME;
 					}
+				} else if (strcmp((char *)l->name, "nautilus-treat-as-directory") == 0
+					   && l->ns != NULL && l->ns->href != NULL
+					   && strcmp (l->ns->href, EAZEL_XML_NS) == 0
+					   && strcasecmp (node_content_xml, "TRUE") == 0) {
+					treat_as_directory = TRUE;
 				}
 				/* Unfortunately, we don't have a mapping for "creationdate" */
 
@@ -1915,15 +1925,28 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 				if (l->xmlChildrenNode && l->xmlChildrenNode->name 
 					&& strcmp((char *)l->xmlChildrenNode->name, "collection") == 0) {
 					file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-					g_free(file_info->mime_type);
-					file_info->mime_type = g_strdup("x-directory/webdav");
-					file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 				}
 			}
 			l = l->next;
 		}
 		node = node->next;
 	}
+
+	/* If this is a DAV collection, do we tell nautilus to treat it
+	 * as a directory or as a web page?
+	 */
+	if (file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_TYPE
+	    && file_info->type == GNOME_VFS_FILE_TYPE_DIRECTORY) {
+		g_free(file_info->mime_type);
+		if (treat_as_directory) {
+			file_info->mime_type = g_strdup("x-directory/webdav-prefer-directory");
+			file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+		} else {
+			file_info->mime_type = g_strdup("x-directory/webdav");
+			file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+		}
+	}
+
 
 	if ((file_info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE) == 0) {
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
@@ -2037,11 +2060,48 @@ unescape_unreserved_chars (const char *in_string)
 
 #endif /* 0 */
 
+static xmlNodePtr
+find_child_node_named (xmlNodePtr node, const char *child_node_name)
+{
+	xmlNodePtr child;
+
+	child = node->xmlChildrenNode;
+
+	for (child = node->xmlChildrenNode; child != NULL ; child = child->next) {
+		if (0 == strcmp (child->name, child_node_name)) {
+			return child;
+		}
+	}
+
+	return NULL;
+}
+
+static guint
+get_propstat_status (xmlNodePtr propstat_node, guint *p_status_code)
+{
+	xmlNodePtr status_node;
+	char *status_string;
+	gboolean ret;
+
+	status_node = find_child_node_named (propstat_node, "status");
+
+	if (status_node != NULL) {
+		status_string =	xmlNodeGetContent (status_node);
+		ret = parse_status (status_string, p_status_code);
+		xmlFree (status_string);
+	} else {
+		ret = FALSE;
+	}
+			
+	return ret;
+}
+
 static GnomeVFSFileInfo *
 process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 {
 	GnomeVFSFileInfo *file_info = defaults_file_info_new();
 	GnomeVFSURI *second_base = gnome_vfs_uri_append_path(base_uri, "/");
+	guint status_code;
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
@@ -2080,7 +2140,9 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 
 			xmlFree (nodecontent);
 		} else if (strcmp ((char *)n->name, "propstat") == 0) {
-			process_propfind_propstat (n->xmlChildrenNode, file_info);
+			if (get_propstat_status (n, &status_code) && status_code == 200) {
+				process_propfind_propstat (n->xmlChildrenNode, file_info);
+			}
 		}
 		n = n->next;
 	}
@@ -2109,15 +2171,16 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	GByteArray *request = g_byte_array_new();
 	gchar *request_str = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
-		"<D:propfind xmlns:D=\"DAV:\">"
+		"<D:propfind xmlns:D=\"DAV:\" xmlns:ns1000=\"" EAZEL_XML_NS "\">"
 		"<D:prop>"
                 "<D:creationdate/>"
                 "<D:getcontentlength/>"
                 "<D:getcontenttype/>"
                 "<D:getlastmodified/>"
                 "<D:resourcetype/>"
-		"</D:prop>"
+                "<ns1000:nautilus-treat-as-directory/>"
 		/*"<D:allprop/>"*/
+		"</D:prop>"
 		"</D:propfind>";
 
 	ANALYZE_HTTP ("==> +make_propfind_request");
@@ -2423,17 +2486,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		 * Start off by making a PROPFIND request.  Fall back to a HEAD if it fails
 		 */
 
-		/* FIXME: This is a temporary hack to treat all root
-		 * URIs as not-WebDAV. See bug 4287 for why we did
-		 * this, but, hey, you reading this! Get rid of this
-		 * hack and fix the problem in a good way.
-		 */
-		if (!gnome_vfs_uri_has_parent (uri)) {
-			result = GNOME_VFS_ERROR_NOT_FOUND; /* Any error code will do. */
-			handle = NULL;
-		} else {
-			result = make_propfind_request (&handle, uri, 0, context);
-		}
+		result = make_propfind_request (&handle, uri, 0, context);
 
 		/* Note that theoretically we could not bother with this request if we get a 404 back,
 		 * but since some servers seem to return wierd things on PROPFIND (mostly 200 OK's...)

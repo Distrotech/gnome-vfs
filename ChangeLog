@@ -1,3 +1,22 @@
+2001-02-20  Mike Fleming  <mfleming@eazel.com>
+
+	reviewed by: <ian@eazel.com>
+
+	Bug 5325: Eazel Vault directories default to icon view, but other
+	DAV sites do not.
+
+	Added "x-directory/webdav-prefer-directory" mime type to allow this
+	to happen.
+
+	Also added checking of the multistatus "status" value for
+	propstat
+
+	* data/mime/gnome-vfs.applications:
+	* modules/http-method.c: (process_propfind_propstat),
+	(find_child_node_named), (get_propstat_status),
+	(process_propfind_response), (make_propfind_request),
+	(do_get_file_info):
+
 2001-02-20  Ian McKellar  <ian@eazel.com>
 
 	reviewed by: Pavel Cisler  <pavel@eazel.com>

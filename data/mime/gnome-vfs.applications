@@ -29,7 +29,7 @@ netscape
 	expects_uris=true
 	requires_terminal=false
 	supported_uri_schemes=file,http,ftp,telnet,gopher
-	mime_types=text/html,x-directory/webdav,image/gif,image/jpeg
+	mime_types=text/html,x-directory/webdav,x-directory/webdav-default-to-directory,image/gif,image/jpeg
 
 lynx
 	command=lynx
@@ -38,7 +38,7 @@ lynx
 	expects_uris=true
 	requires_terminal=true
 	supported_uri_schemes=file,http,ftp
-	mime_types=text/html,x-directory/webdav
+	mime_types=text/html,x-directory/webdav,x-directory/webdav-default-to-directory
 
 mozilla
 	command=mozilla
@@ -47,7 +47,7 @@ mozilla
 	expects_uris=true
 	requires_terminal=false
 	supported_uri_schemes=file,http,ftp,telnet,gopher
-	mime_types=text/html,x-directory/webdav,image/gif,image/jpeg,text/xml
+	mime_types=text/html,x-directory/webdav,x-directory/webdav-default-to-directory,image/gif,image/jpeg,text/xml
 
 galeon
 	command=galeon
@@ -56,7 +56,7 @@ galeon
 	expects_uris=true
 	requires_terminal=false
 	supported_uri_schemes=file,http,ftp
-	mime_types=text/html,x-directory/webdav,image/gif,image/jpeg
+	mime_types=text/html,x-directory/webdav,x-directory/webdav-default-to-directory,image/gif,image/jpeg
 
 gimp
 	command=gimp
