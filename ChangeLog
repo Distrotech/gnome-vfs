@@ -1,3 +1,10 @@
+2005-02-07  Christian Kellner  <gicmo@gnome.org>
+
+	* programs/gnomevfs-copy.c: Reworked to have cp semantics so that
+	if the destination is a directory don't overwrite the it but copy
+	the source into it.
+	This is the first part of the fix for #149666!
+
 2005-02-06  Crispin Flowerday  <gnome@flowerday.cx>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
