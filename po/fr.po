@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.8.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-10 15:05+0200\n"
+"POT-Creation-Date: 2004-10-11 15:35+0200\n"
 "PO-Revision-Date: 2004-10-10 14:59+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -879,6 +879,7 @@ msgstr "Volume inconnu"
 msgid "Network server"
 msgstr "Serveur réseau"
 
+#. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
@@ -886,6 +887,7 @@ msgstr ""
 "Impossible de monter le lecteur de disquettes. Il n'y a probablement pas de "
 "disquette dans le lecteur"
 
+#. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr ""
