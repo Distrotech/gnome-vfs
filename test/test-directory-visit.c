@@ -103,8 +103,8 @@ main (int argc, char **argv)
 
 	result = gnome_vfs_directory_visit
 		(argv[1],
-		 (GNOME_VFS_FILE_INFO_FOLLOWLINKS
-		  | GNOME_VFS_FILE_INFO_FASTMIMETYPE),
+		 (GNOME_VFS_FILE_INFO_FOLLOW_LINKS
+		  | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE),
 		 NULL,
 		 NULL,
 		 GNOME_VFS_DIRECTORY_VISIT_LOOPCHECK,

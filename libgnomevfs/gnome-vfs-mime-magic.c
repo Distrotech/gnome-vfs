@@ -491,34 +491,6 @@ try_one_pattern_on_buffer (const char *sniffed_stream, GnomeMagicEntry *magic_en
 
 
 static gboolean
-gnome_vfs_mime_magic_matches_p (FILE *file, GnomeMagicEntry *magic_entry)
-{
-	int offset;
-	int size_read;
-	char *buffer;
-
-
-	if (fseek (file, (long)magic_entry->range_start, SEEK_SET) < 0) {
-		return FALSE;
-	}
-
-	buffer = g_malloc(magic_entry->pattern_length + magic_entry->range_end
-		- magic_entry->range_start);
-
-	size_read = fread (buffer, magic_entry->pattern_length + magic_entry->range_end
-		- magic_entry->range_start, 1, file);
-
-	for (offset = 0; offset <= size_read - magic_entry->pattern_length; offset++) {
-		if (try_one_pattern_on_buffer (buffer + offset, magic_entry)) {
-			g_free (buffer);
-			return TRUE;
-		}
-	}
-	g_free (buffer);
-	return FALSE;
-}
-
-static gboolean
 gnome_vfs_mime_try_one_magic_pattern (GnomeVFSMimeSniffBuffer *sniff_buffer, 
 	GnomeMagicEntry *magic_entry)
 {
@@ -760,66 +732,6 @@ gnome_vfs_get_mime_type_for_buffer (GnomeVFSMimeSniffBuffer *buffer)
 	return NULL;
 }
 
-/**
- * gnome_vfs_mime_type_from_magic:
- * @filename: an existing file name for which we want to guess the mime-type
- *
- * This routine uses a magic database as described in magic(5) that maps
- * files into their mime-type (so our modified magic database contains mime-types
- * rather than textual descriptions of the files).
- *
- * Returns a pointer to an internal copy of the mime-type for @filename.
- * 
- * Deprecated, use gnome_vfs_get_mime_type_for_buffer instead.
- */
-const char *
-gnome_vfs_mime_type_from_magic (const gchar *filename)
-{
-	GnomeMagicEntry *magic_table;
-	FILE *fh;
-	int i;
-	struct stat sbuf;
-
-	/* we really don't want to start reading from devices */
-	if (stat(filename, &sbuf) != 0)
-		return NULL;
-	if (!S_ISREG(sbuf.st_mode)) {
-		if (S_ISDIR(sbuf.st_mode))
-			return "x-special/directory";
-		else if (S_ISCHR(sbuf.st_mode))
-			return "x-special/device-char";
-		else if (S_ISBLK(sbuf.st_mode))
-			return "x-special/device-block";
-		else if (S_ISFIFO(sbuf.st_mode))
-			return "x-special/fifo";
-		else if (S_ISSOCK(sbuf.st_mode))
-			return "x-special/socket";
-		else
-			return NULL;
-	}
-	
-	fh = fopen(filename, "r");
-	if (!fh) {
-		return NULL;
-	}
-
-	magic_table = gnome_vfs_mime_get_magic_table ();
-	if (!magic_table) {
-		fclose(fh);
-		return NULL;
-	}
-
-	for (i = 0; magic_table[i].type != T_END; i++) {
-		if (gnome_vfs_mime_magic_matches_p (fh, &magic_table[i])) {
-			break;
-		}
-	}
-
-	fclose(fh);
-
-	return (magic_table[i].type == T_END) ? NULL : magic_table[i].mimetype;
-}
-
 enum {
 	GNOME_VFS_TEXT_SNIFF_LENGTH = 256
 };
@@ -830,10 +742,7 @@ gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	int index;
 	guchar ch;
 	
-	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, 
-		GNOME_VFS_TEXT_SNIFF_LENGTH) != GNOME_VFS_OK) {
-		return FALSE;
-	}
+	gnome_vfs_mime_sniff_buffer_get (sniff_buffer, GNOME_VFS_TEXT_SNIFF_LENGTH);
 
 	for (index = 0; index < sniff_buffer->buffer_length - 3; index++) {
 		ch = sniff_buffer->buffer[index];

@@ -34,20 +34,18 @@ BEGIN_GNOME_DECLS
 void 	     gnome_vfs_mime_shutdown 				(void);
 
 /* do not free any of the returned gchar* values */
-const char  *gnome_vfs_mime_type				(const gchar* filename);
-const char  *gnome_vfs_mime_type_or_default			(const gchar *filename,
+const char  *gnome_vfs_mime_type_from_name			(const gchar* filename);
+const char  *gnome_vfs_mime_type_from_name_or_default	(const gchar *filename,
 								 const gchar *defaultv);
-const char  *gnome_vfs_mime_type_of_file			(const char *existing_filename);
-const char  *gnome_vfs_mime_type_or_default_of_file		(const char *existing_filename,
-								 const gchar *defaultv);
-const char  *gnome_vfs_mime_type_from_magic			(const gchar *filename);
 
 const char  *gnome_vfs_get_mime_type				(GnomeVFSURI *uri);
-const char  *gnome_vfs_get_mime_type_from_name			(GnomeVFSURI *uri);
+const char  *gnome_vfs_get_mime_type_from_uri			(GnomeVFSURI *uri);
 const char  *gnome_vfs_get_mime_type_from_file_data		(GnomeVFSURI *uri);
 const char  *gnome_vfs_get_mime_type_for_data			(gconstpointer data,
                                                                  int data_size);
-
+const char  *gnome_vfs_get_file_mime_type 			(const char *path, 
+								 const struct stat *optional_stat_info,
+								 gboolean suffix_only);
 /* functions for working with uri lists */
 GList       *gnome_uri_list_extract_filenames			(const gchar* uri_list);
 GList       *gnome_uri_list_extract_uris			(const gchar* uri_list);

@@ -377,7 +377,7 @@ gicon_get_icon_for_file_2 (const gchar *full_name,
 
 	/* 3. Try MIME-types */
 
-	mime_type = gnome_vfs_mime_type_or_default (full_name, NULL);
+	mime_type = gnome_vfs_mime_type_from_name (full_name);
 	if (mime_type) {
 		const char *icon_name;
 

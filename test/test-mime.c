@@ -98,7 +98,7 @@ main (int argc, char **argv)
 		if (magic_only) {
 			result = gnome_vfs_get_mime_type_from_file_data (uri);
 		} else if (suffix_only) {
-			result = gnome_vfs_get_mime_type_from_name (uri);
+			result = gnome_vfs_get_mime_type_from_uri (uri);
 		} else {
 			result = gnome_vfs_get_mime_type (uri);
 		}

@@ -51,7 +51,7 @@ static GHashTable *mime_extensions [2] = { NULL, NULL };
 static GList      *mime_regexs     [2] = { NULL, NULL };
 
 typedef struct {
-	char    *mime_type;
+	char *mime_type;
 	regex_t regex;
 } RegexMimePair;
 
@@ -379,7 +379,7 @@ gnome_vfs_mime_shutdown (void)
 }
 
 /**
- * gnome_vfs_mime_type_or_default:
+ * gnome_vfs_mime_type_from_name_or_default:
  * @filename: A filename (the file does not necesarily exist).
  * @defaultv: A default value to be returned if no match is found
  *
@@ -390,7 +390,7 @@ gnome_vfs_mime_shutdown (void)
  * determined, it will return @defaultv.
  */
 const char *
-gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
+gnome_vfs_mime_type_from_name_or_default (const gchar *filename, const gchar *defaultv)
 {
 	const gchar *ext;
 	gchar *upext;
@@ -461,7 +461,7 @@ gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
 }
 
 /**
- * gnome_vfs_mime_type:
+ * gnome_vfs_mime_type_from_name:
  * @filename: A filename (the file does not necessarily exist).
  *
  * Determined the mime type for @filename.
@@ -469,38 +469,13 @@ gnome_vfs_mime_type_or_default (const gchar *filename, const gchar *defaultv)
  * Returns the mime-type for this filename.
  */
 const char *
-gnome_vfs_mime_type (const gchar * filename)
+gnome_vfs_mime_type_from_name (const gchar * filename)
 {
-	return gnome_vfs_mime_type_or_default (filename, "text/plain");
-}
-
-/**
- * gnome_vfs_mime_type_or_default_of_file:
- * @existing_filename: A filename that points to an existing filename.
- * @defaultv: A default value to be returned if no match is found
- *
- * This routine tries to determine the mime-type of the filename
- * by trying to guess the content of the file.  If this fails, it will
- * return the mime-type based only on the filename.
- *
- * Returns the mime-type of the @existing_filename.  If no value could be
- * determined, it will return @defaultv.
- */
-const char *
-gnome_vfs_mime_type_or_default_of_file (const char *existing_filename,
-					const gchar *defaultv)
-{
-	char *mime_type;
-
-	mime_type = (char *)gnome_vfs_mime_type_from_magic (existing_filename);
-	if (mime_type)
-		return mime_type;
-
-	return gnome_vfs_mime_type_or_default (existing_filename, defaultv);
+	return gnome_vfs_mime_type_from_name_or_default (filename, "application/octet-stream");
 }
 
 static const char *
-gnome_vfs_get_mime_type_from_name_internal (GnomeVFSURI *uri)
+gnome_vfs_get_mime_type_from_uri_internal (GnomeVFSURI *uri)
 {
 	const char *base_name;
 
@@ -509,7 +484,7 @@ gnome_vfs_get_mime_type_from_name_internal (GnomeVFSURI *uri)
 	if (base_name == NULL)
 		return NULL;
 
-	return gnome_vfs_mime_type_or_default (base_name, NULL);
+	return gnome_vfs_mime_type_from_name_or_default (base_name, NULL);
 }
 
 /**
@@ -542,7 +517,7 @@ gnome_vfs_get_mime_type (GnomeVFSURI *uri)
 
 	if (error != GNOME_VFS_OK) {
 		/* file may not exist, return type based on name only */
-		return gnome_vfs_get_mime_type_from_name_internal (uri);
+		return gnome_vfs_get_mime_type_from_uri_internal (uri);
 	}
 	
 	buffer = gnome_vfs_mime_sniff_buffer_new_from_handle (handle);
@@ -555,14 +530,14 @@ gnome_vfs_get_mime_type (GnomeVFSURI *uri)
 			/* Text file -- treat extensions as a more accurate source
 			 * of type information.
 			 */
-			result = gnome_vfs_get_mime_type_from_name_internal (uri);
+			result = gnome_vfs_get_mime_type_from_uri_internal (uri);
 			if (result == NULL) {
 				/* Didn't find an extension match, assume plain text. */
 				result = "text/plain";
 			}
 		} else {
 			/* No type recognized -- fall back on extensions. */
-			result = gnome_vfs_get_mime_type_from_name_internal (uri);
+			result = gnome_vfs_get_mime_type_from_uri_internal (uri);
 		}
 	}
 
@@ -577,8 +552,117 @@ gnome_vfs_get_mime_type (GnomeVFSURI *uri)
 	return result;
 }
 
+static GnomeVFSResult
+file_seek_binder (gpointer context, GnomeVFSSeekPosition whence, 
+	GnomeVFSFileOffset offset)
+{
+	FILE *file = (FILE *)context;
+	int result;
+	result = fseek (file, whence, offset);
+	if (result < 0) {
+		return gnome_vfs_result_from_errno ();
+	}
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
+file_read_binder (gpointer context, gpointer buffer, 
+	GnomeVFSFileSize bytes, GnomeVFSFileSize *bytes_read)
+{
+	FILE *file = (FILE *)context;	
+	*bytes_read = fread (buffer, 1, bytes, file);
+	if (*bytes_read < 0) {
+		*bytes_read = 0;
+		return gnome_vfs_result_from_errno ();
+	}
+
+	return GNOME_VFS_OK;
+}
+
+
 /**
- * gnome_vfs_get_mime_type_from_name:
+ * gnome_vfs_get_file_mime_type:
+ * @path: a path of a file.
+ * @stat_info: optional stat buffer.
+ * @suffix_only: whether or not to do a magic-based lookup.
+ *
+ * Tries to guess the mime type of the file represented by @path.
+ * If @suffix_only is false, uses the mime-magic based lookup first.
+ * Handles passing @path of a non-existent file by falling back
+ * on returning a type based on the extension.
+ *
+ * Returns the mime-type for this path.
+ */
+const char *
+gnome_vfs_get_file_mime_type (const char *path, const struct stat *stat_info,
+	gboolean suffix_only)
+{
+	const char *result;
+	GnomeVFSMimeSniffBuffer *buffer;
+	struct stat tmp_stat_buffer;
+	FILE *file;
+
+	buffer = NULL;
+	result = NULL;
+
+	/* get the stat info if needed */
+	if (stat_info == NULL && stat (path, &tmp_stat_buffer) == 0) {
+		stat_info = &tmp_stat_buffer;
+	}
+
+	/* single out special file types */
+	if (stat_info && !S_ISREG(stat_info->st_mode)) {
+		if (S_ISDIR(stat_info->st_mode))
+			return "x-special/directory";
+		else if (S_ISCHR(stat_info->st_mode))
+			return "x-special/device-char";
+		else if (S_ISBLK(stat_info->st_mode))
+			return "x-special/device-block";
+		else if (S_ISFIFO(stat_info->st_mode))
+			return "x-special/fifo";
+		else if (S_ISSOCK(stat_info->st_mode))
+			return "x-special/socket";
+		else
+			/* unknown entry type, return generic file type */
+			return "application/octet-stream";
+	}
+
+	if (!suffix_only) {
+		file = fopen(path, "r");
+		if (file != NULL) {
+			buffer = gnome_vfs_mime_sniff_buffer_new_generic
+				(file_seek_binder, file_read_binder, file);
+
+			result = gnome_vfs_get_mime_type_for_buffer (buffer);
+			if (result == NULL && gnome_vfs_sniff_buffer_looks_like_text (buffer)) {
+				/* Text file -- treat extensions as a more accurate source
+				 * of type information.
+				 */
+				result = gnome_vfs_mime_type_from_name_or_default (path, NULL);
+				if (result == NULL) {
+					/* Didn't find an extension match, assume plain text. */
+					result = "text/plain";
+				}
+			}
+			fclose (file);
+		}
+	}
+
+	if (result == NULL) {
+		result = gnome_vfs_mime_type_from_name_or_default (path, NULL);	
+	}
+	if (result == NULL) {
+		result = "application/octet-stream";
+	}
+	if (buffer) {
+		gnome_vfs_mime_sniff_buffer_free (buffer);
+	}
+
+	return result;
+}
+
+/**
+ * gnome_vfs_get_mime_type_from_uri:
  * @uri: A file uri.
  *
  * Tries to guess the mime type of the file @uri by
@@ -588,11 +672,11 @@ gnome_vfs_get_mime_type (GnomeVFSURI *uri)
  * Returns the mime-type for this filename.
  */
 const char *
-gnome_vfs_get_mime_type_from_name (GnomeVFSURI *uri)
+gnome_vfs_get_mime_type_from_uri (GnomeVFSURI *uri)
 {
 	const char *result;
 
-	result = gnome_vfs_get_mime_type_from_name_internal (uri);
+	result = gnome_vfs_get_mime_type_from_uri_internal (uri);
 	if (result == NULL) {
 		/* no type, return generic file type */
 		result = "application/octet-stream";
@@ -667,22 +751,6 @@ gnome_vfs_get_mime_type_for_data (gconstpointer data, int data_size)
 	gnome_vfs_mime_sniff_buffer_free (buffer);
 
 	return result;
-}
-
-/**
- * gnome_vfs_mime_type_of_file:
- * @existing_filename: A filename pointing to an existing file.
- *
- * Determined the mime type for @existing_filename.  It will try
- * to figure this out by looking at the contents of the file; if this
- * fails it will use the filename to figure out a name.
- *
- * Returns the mime-type for this filename.
- */
-const char *
-gnome_vfs_mime_type_of_file (const char *existing_filename)
-{
-	return gnome_vfs_mime_type_or_default_of_file (existing_filename, "text/plain");
 }
 
 /**

@@ -131,6 +131,9 @@ application/x-dia-diagram
 application/x-dvi
 	description=TeX dvi document
 
+application/x-executable-file
+	description=Binary program
+
 application/x-e-theme
 	description=Enlightenment theme
 

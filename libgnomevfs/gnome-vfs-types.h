@@ -308,9 +308,10 @@ typedef struct GnomeVFSFileInfo GnomeVFSFileInfo;
 
 enum GnomeVFSFileInfoOptions {
 	GNOME_VFS_FILE_INFO_DEFAULT = 0, /* FIXME bugzilla.eazel.com 1203: name sucks */
-	GNOME_VFS_FILE_INFO_GETMIMETYPE = 1 << 0,
-	GNOME_VFS_FILE_INFO_FASTMIMETYPE = 1 << 1,
-	GNOME_VFS_FILE_INFO_FOLLOWLINKS = 1 << 2
+	GNOME_VFS_FILE_INFO_GET_MIME_TYPE = 1 << 0,
+	GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE = 1 << 1,
+	GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE = 1 << 2,
+	GNOME_VFS_FILE_INFO_FOLLOW_LINKS = 1 << 3
 };
 typedef enum GnomeVFSFileInfoOptions GnomeVFSFileInfoOptions;
 
@@ -323,7 +324,6 @@ enum GnomeVFSSetFileInfoMask {
 };
 typedef enum GnomeVFSSetFileInfoMask GnomeVFSSetFileInfoMask;
 
-
 /* Directory stuff.  */
 
 enum _GnomeVFSFindDirectoryKind {
@@ -410,7 +410,7 @@ typedef gboolean (* GnomeVFSDirectoryVisitFunc)	 (const gchar *rel_path,
 enum GnomeVFSXferOptions {
 	GNOME_VFS_XFER_DEFAULT = 0,
 	GNOME_VFS_XFER_UNUSED_1 = 1 << 0,
-	GNOME_VFS_XFER_FOLLOWLINKS = 1 << 1,
+	GNOME_VFS_XFER_FOLLOW_LINKS = 1 << 1,
 	GNOME_VFS_XFER_UNUSED_2 = 1 << 2,
 	GNOME_VFS_XFER_RECURSIVE = 1 << 3,
 	GNOME_VFS_XFER_SAMEFS = 1 << 4,

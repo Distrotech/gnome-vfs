@@ -654,8 +654,8 @@ count_items_and_size (const GnomeVFSURI *dir_uri,
 	each_params.progress = progress;
 	each_params.result = GNOME_VFS_OK;
 
-	if (xfer_options & GNOME_VFS_XFER_FOLLOWLINKS) {
-		info_options = GNOME_VFS_FILE_INFO_FOLLOWLINKS;
+	if (xfer_options & GNOME_VFS_XFER_FOLLOW_LINKS) {
+		info_options = GNOME_VFS_FILE_INFO_FOLLOW_LINKS;
 	} else {
 		info_options = GNOME_VFS_FILE_INFO_DEFAULT;
 	}
@@ -685,8 +685,8 @@ directory_add_items_and_size (GnomeVFSURI *dir_uri,
 	each_params.progress = progress;
 	each_params.result = GNOME_VFS_OK;
 
-	if (xfer_options & GNOME_VFS_XFER_FOLLOWLINKS) {
-		info_options = GNOME_VFS_FILE_INFO_FOLLOWLINKS;
+	if (xfer_options & GNOME_VFS_XFER_FOLLOW_LINKS) {
+		info_options = GNOME_VFS_FILE_INFO_FOLLOW_LINKS;
 	} else {
 		info_options = GNOME_VFS_FILE_INFO_DEFAULT;
 	}

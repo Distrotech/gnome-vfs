@@ -204,7 +204,7 @@ set_mime_type_value (GnomeVFSFileInfo *info,
                      const GConfValue *value,
                      GnomeVFSFileInfoOptions options)
 {
-        gchar *mime_type;
+        const gchar *mime_type;
         
         switch (value->type) {
         case GCONF_VALUE_INVALID :
@@ -232,7 +232,7 @@ set_mime_type_value (GnomeVFSFileInfo *info,
                 mime_type = "application/x-gconf-pair";
                 break;
         default :
-                mime_type = "unknown/unknown";
+                mime_type = "application/octet-stream";
                 break;
                 
         }
@@ -502,7 +502,7 @@ file_info_value (GnomeVFSFileInfo *info,
 	
 	if (result != GNOME_VFS_OK) return result;
         
-        if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
+        if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
                 result = set_mime_type_value (info, value, options);
 
         return result;
@@ -521,7 +521,7 @@ file_info_dir (GnomeVFSFileInfo *info,
 
 	if (result != GNOME_VFS_OK) return result;
 
-        if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
+        if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
                 result = set_mime_type_dir (info, dirname, options);
         
         return result;

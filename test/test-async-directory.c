@@ -212,9 +212,9 @@ main (int argc, char **argv)
 	gnome_vfs_async_load_directory
 		(&handle, /* handle */
 		 text_uri, /* text_uri */
-		 (GNOME_VFS_FILE_INFO_GETMIMETYPE
-		  | GNOME_VFS_FILE_INFO_FASTMIMETYPE
-		  | GNOME_VFS_FILE_INFO_FOLLOWLINKS), /* options */
+		 (GNOME_VFS_FILE_INFO_GET_MIME_TYPE
+		  | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
+		  | GNOME_VFS_FILE_INFO_FOLLOW_LINKS), /* options */
 		 NULL, /* meta_keys */
 		 sort ? sort_rules : NULL, /* sort_rules */
 		 FALSE, /* reverse_order */
@@ -248,6 +248,8 @@ main (int argc, char **argv)
 #endif
 
 	puts ("All done");
+
+	gnome_vfs_shutdown ();
 
 	while (1)
 		;

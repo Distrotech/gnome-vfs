@@ -210,9 +210,9 @@ start_populating (GnomeFileSelection *fs)
 
 	gnome_vfs_async_load_directory (&fs->priv->async_handle,
 					fs->directory,
-					(GNOME_VFS_FILE_INFO_GETMIMETYPE
-					 | GNOME_VFS_FILE_INFO_FASTMIMETYPE
-					 | GNOME_VFS_FILE_INFO_FOLLOWLINKS),
+					(GNOME_VFS_FILE_INFO_GET_MIME_TYPE
+					 | GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE
+					 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS),
 					NULL,
 					NULL,
 					FALSE,

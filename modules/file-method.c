@@ -21,8 +21,6 @@
 
    Author: Ettore Perazzoli <ettore@comm2000.it> */
 
-/* TODO metadata? */
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -46,7 +44,7 @@
 #include "gnome-vfs-module-shared.h"
 #include "file-method.h"
 
-
+
 #ifdef PATH_MAX
 #define	GET_PATH_MAX()	PATH_MAX
 #else
@@ -126,13 +124,13 @@ static FileHandle *
 file_handle_new (GnomeVFSURI *uri,
 		 gint fd)
 {
-	FileHandle *new;
-	new = g_new (FileHandle, 1);
+	FileHandle *result;
+	result = g_new (FileHandle, 1);
 
-	new->uri = gnome_vfs_uri_ref (uri);
-	new->fd = fd;
+	result->uri = gnome_vfs_uri_ref (uri);
+	result->fd = fd;
 
-	return new;
+	return result;
 }
 
 static void
@@ -277,10 +275,11 @@ do_close (GnomeVFSMethod *method,
 	/* FIXME bugzilla.eazel.com 1163: Should do this even after a failure?  */
 	file_handle_destroy (file_handle);
 
-	if (close_retval == 0)
-		return GNOME_VFS_OK;
-	else
+	if (close_retval != 0) {
 		return gnome_vfs_result_from_errno ();
+	}
+
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -343,7 +342,7 @@ do_write (GnomeVFSMethod *method,
 	}
 }
 
-
+
 static gint
 seek_position_to_unix (GnomeVFSSeekPosition position)
 {
@@ -462,7 +461,6 @@ do_truncate (GnomeVFSMethod *method,
 	}
 }
 
-
 struct _DirectoryHandle
 {
 	GnomeVFSURI *uri;
@@ -486,37 +484,37 @@ directory_handle_new (GnomeVFSURI *uri,
 		      const GList *meta_keys,
 		      const GnomeVFSDirectoryFilter *filter)
 {
-	DirectoryHandle *new;
+	DirectoryHandle *result;
 	gchar *full_name;
 	guint full_name_len;
 
-	new = g_new (DirectoryHandle, 1);
+	result = g_new (DirectoryHandle, 1);
 
-	new->uri = gnome_vfs_uri_ref (uri);
-	new->dir = dir;
+	result->uri = gnome_vfs_uri_ref (uri);
+	result->dir = dir;
 
 	/* Reserve extra space for readdir_r, see man page */
-	new->current_entry = g_malloc (sizeof (struct dirent) + GET_PATH_MAX() + 1);
+	result->current_entry = g_malloc (sizeof (struct dirent) + GET_PATH_MAX() + 1);
 
 	full_name = get_path_from_uri (uri);
 	g_assert (full_name != NULL); /* already done by caller */
 	full_name_len = strlen (full_name);
 
-	new->name_buffer = g_malloc (full_name_len + GET_PATH_MAX () + 2);
-	memcpy (new->name_buffer, full_name, full_name_len);
+	result->name_buffer = g_malloc (full_name_len + GET_PATH_MAX () + 2);
+	memcpy (result->name_buffer, full_name, full_name_len);
 	
 	if (full_name_len > 0 && full_name[full_name_len - 1] != '/')
-		new->name_buffer[full_name_len++] = '/';
+		result->name_buffer[full_name_len++] = '/';
 
-	new->name_ptr = new->name_buffer + full_name_len;
+	result->name_ptr = result->name_buffer + full_name_len;
 
 	g_free (full_name);
 
-	new->options = options;
-	new->meta_keys = meta_keys;
-	new->filter = filter;
+	result->options = options;
+	result->meta_keys = meta_keys;
+	result->filter = filter;
 
-	return new;
+	return result;
 }
 
 static void
@@ -528,52 +526,32 @@ directory_handle_destroy (DirectoryHandle *directory_handle)
 	g_free (directory_handle);
 }
 
-
 /* MIME detection code.  */
-
-/* Hm, this is a bit messy.  */
-
 static void
-set_mime_type (GnomeVFSFileInfo *info,
-	       const gchar *full_name,
+get_mime_type (GnomeVFSFileInfo *info,
+	       const char *full_name,
 	       GnomeVFSFileInfoOptions options,
-	       struct stat *statbuf)
+	       struct stat *stat_buffer)
 {
-	const gchar *mime_type, *mime_name;
+	const char *mime_type;
 
 	mime_type = NULL;
-	if ((options & GNOME_VFS_FILE_INFO_FASTMIMETYPE) == 0) {
-		/* FIXME bugzilla.eazel.com 1184: This will also stat
-		 * the file for us, which is not good at all, as we
-		 * already have the stat info when we get here. But
-		 * there was no other way to do this with the MIME
-		 * functions in gnome-libs; now there is a way.
+	if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0
+		&& (info->flags & GNOME_VFS_FILE_FLAGS_SYMLINK) != 0) {
+		/* we are a symlink and aren't asked to follow -
+		 * return the type for a symlink
 		 */
-		/* FIXME bugzilla.eazel.com 1183: We actually *always*
-		 * follow symlinks here. It needs fixing.
-		 */
-		mime_type = gnome_vfs_mime_type_from_magic (full_name);
+		mime_type = "x-special/symlink";
+	} else {
+		mime_type = gnome_vfs_get_file_mime_type (full_name,
+			stat_buffer, (options & GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE) != 0);
 	}
 
-	if (mime_type == NULL) {
-		if ((options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
-		    && info->type != GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK
-		    && info->symlink_name != NULL)
-			mime_name = info->symlink_name;
-		else
-			mime_name = full_name;
-
-		mime_type = gnome_vfs_mime_type_or_default (mime_name, NULL);
-
-		if (mime_type == NULL)
-			mime_type = gnome_vfs_mime_type_from_mode (statbuf->st_mode);
-	}
-
+	g_assert (mime_type);
 	info->mime_type = g_strdup (mime_type);
 	info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 }
 
-
 static gchar *
 read_link (const gchar *full_name)
 {
@@ -623,7 +601,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 		}
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
 
-		if (options & GNOME_VFS_FILE_INFO_FOLLOWLINKS) {
+		if (options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) {
 			if (stat (full_name, statptr) != 0)
 				file_info->type
 					= GNOME_VFS_FILE_TYPE_BROKEN_SYMBOLIC_LINK;
@@ -727,22 +705,24 @@ read_directory (DirectoryHandle *handle,
 		filter_needs = GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING;
 	}
 
-	if (readdir_r (handle->dir, handle->current_entry, &result) != 0)
+	if (readdir_r (handle->dir, handle->current_entry, &result) != 0) {
 		return gnome_vfs_result_from_errno ();
-
-	if (result == NULL)
+	}
+	
+	if (result == NULL) {
 		return GNOME_VFS_ERROR_EOF;
+	}
 
 	info->name = g_strdup (result->d_name);
 
 	if (filter != NULL
-	    && ! filter_called
-	    && ! (filter_needs
+	    && !filter_called
+	    && (filter_needs
 		  & (GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE
 		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_STAT
 		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE
-		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA))) {
-		if (! gnome_vfs_directory_filter_apply (filter, info)) {
+		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA)) == 0){
+		if (!gnome_vfs_directory_filter_apply (filter, info)) {
 			*skip = TRUE;
 			return GNOME_VFS_OK;
 		}
@@ -754,15 +734,14 @@ read_directory (DirectoryHandle *handle,
 	full_name = handle->name_buffer;
 
 	/* FIXME bugzilla.eazel.com 1223: Correct?  */
-	if (get_stat_info (info, full_name, handle->options, &statbuf)
-	    != GNOME_VFS_OK)
+	if (get_stat_info (info, full_name, handle->options, &statbuf) != GNOME_VFS_OK)
 		return GNOME_VFS_ERROR_INTERNAL;
 
 	if (filter != NULL
-	    && ! filter_called
-	    && ! (filter_needs
+	    && !filter_called
+	    && (filter_needs
 		  & (GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE
-		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA))) {
+		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA)) == 0) {
 		if (! gnome_vfs_directory_filter_apply (filter, info)) {
 			*skip = TRUE;
 			return GNOME_VFS_OK;
@@ -770,13 +749,14 @@ read_directory (DirectoryHandle *handle,
 		filter_called = TRUE;
 	}
 
-	if (handle->options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
-		set_mime_type (info, full_name, handle->options, &statbuf);
+	if (handle->options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
+		get_mime_type (info, full_name, handle->options, &statbuf);
+	}
 
 	if (filter != NULL
-	    && ! filter_called
-	    && ! (filter_needs & GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA)) {
-		if (! gnome_vfs_directory_filter_apply (filter, info)) {
+	    && !filter_called
+	    && (filter_needs & GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA) == 0) {
+		if (!gnome_vfs_directory_filter_apply (filter, info)) {
 			*skip = TRUE;
 			return GNOME_VFS_OK;
 		}
@@ -785,8 +765,8 @@ read_directory (DirectoryHandle *handle,
 
 	gnome_vfs_set_meta_for_list (info, full_name, handle->meta_keys);
 
-	if (filter != NULL && ! filter_called) {
-		if (! gnome_vfs_directory_filter_apply (filter, info)) {
+	if (filter != NULL && !filter_called) {
+		if (!gnome_vfs_directory_filter_apply (filter, info)) {
 			*skip = TRUE;
 			return GNOME_VFS_OK;
 		}
@@ -819,7 +799,7 @@ do_read_directory (GnomeVFSMethod *method,
 	return result;
 }
 
-
+
 static GnomeVFSResult
 do_get_file_info (GnomeVFSMethod *method,
 		  GnomeVFSURI *uri,
@@ -847,8 +827,9 @@ do_get_file_info (GnomeVFSMethod *method,
 		return result;
 	}
 
-	if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
-		set_mime_type (file_info, full_name, options, &statbuf);
+	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
+		get_mime_type (file_info, full_name, options, &statbuf);
+	}
 
 	gnome_vfs_set_meta_for_list (file_info, full_name, meta_keys);
 
@@ -888,8 +869,8 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 		return result;
 	}
 
-	if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
-		set_mime_type (file_info, full_name, options, &statbuf);
+	if (options & GNOME_VFS_FILE_INFO_GET_MIME_TYPE)
+		get_mime_type (file_info, full_name, options, &statbuf);
 
 	gnome_vfs_set_meta_for_list (file_info, full_name, meta_keys);
 
@@ -898,7 +879,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 	return GNOME_VFS_OK;
 }
 
-
+
 static gboolean
 do_is_local (GnomeVFSMethod *method,
 	     const GnomeVFSURI *uri)
@@ -909,7 +890,7 @@ do_is_local (GnomeVFSMethod *method,
 	return TRUE;
 }
 
-
+
 static GnomeVFSResult
 do_make_directory (GnomeVFSMethod *method,
 		   GnomeVFSURI *uri,
@@ -927,10 +908,11 @@ do_make_directory (GnomeVFSMethod *method,
 
 	g_free (full_name);
 
-	if (retval == 0)
-		return GNOME_VFS_OK;
-	else
+	if (retval != 0) {
 		return gnome_vfs_result_from_errno ();
+	}
+
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -949,10 +931,11 @@ do_remove_directory (GnomeVFSMethod *method,
 
 	g_free (full_name);
 
-	if (retval == 0)
-		return GNOME_VFS_OK;
-	else
+	if (retval != 0) {
 		return gnome_vfs_result_from_errno ();
+	}
+
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -1091,10 +1074,11 @@ rename_helper (const gchar *old_full_name,
 		}
 	}
 
-	if (retval == 0)
-		return GNOME_VFS_OK;
-	else
+	if (retval != 0) {
 		return gnome_vfs_result_from_errno ();
+	}
+
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -1111,6 +1095,7 @@ do_move (GnomeVFSMethod *method,
 	old_full_name = get_path_from_uri (old_uri);
 	if (old_full_name == NULL)
 		return GNOME_VFS_ERROR_INVALID_URI;
+
 	new_full_name = get_path_from_uri (new_uri);
 	if (new_full_name == NULL) {
 		g_free (old_full_name);
@@ -1135,17 +1120,19 @@ do_unlink (GnomeVFSMethod *method,
 	gint retval;
 
 	full_name = get_path_from_uri (uri);
-	if (full_name == NULL)
+	if (full_name == NULL) {
 		return GNOME_VFS_ERROR_INVALID_URI;
+	}
 
 	retval = unlink (full_name);
 
 	g_free (full_name);
 
-	if (retval == 0)
-		return GNOME_VFS_OK;
-	else
+	if (retval != 0) {
 		return gnome_vfs_result_from_errno ();
+	}
+
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
@@ -1251,19 +1238,19 @@ do_set_file_info (GnomeVFSMethod *method,
 	if (mask & GNOME_VFS_SET_FILE_INFO_NAME) {
 		GnomeVFSResult result;
 		gchar *dir, *encoded_dir;
-		gchar *new;
+		gchar *new_name;
 
 		encoded_dir = gnome_vfs_uri_extract_dirname (uri);
 		dir = gnome_vfs_unescape_string (encoded_dir, "/");
 		g_free (encoded_dir);
 		g_assert (dir != NULL);
 
-		new = g_concat_dir_and_file (dir, info->name);
+		new_name = g_concat_dir_and_file (dir, info->name);
 
-		result = rename_helper (full_name, new, FALSE, context);
+		result = rename_helper (full_name, new_name, FALSE, context);
 
 		g_free (dir);
-		g_free (new);
+		g_free (new_name);
 
 		if (result != GNOME_VFS_OK) {
 			g_free (full_name);

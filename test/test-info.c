@@ -138,8 +138,8 @@ main (int argc,
 
 		gnome_vfs_file_info_init (&info);
 		result = gnome_vfs_get_file_info (uri, &info,
-							(GNOME_VFS_FILE_INFO_GETMIMETYPE
-							 | GNOME_VFS_FILE_INFO_FOLLOWLINKS),
+							(GNOME_VFS_FILE_INFO_GET_MIME_TYPE
+							 | GNOME_VFS_FILE_INFO_FOLLOW_LINKS),
 							NULL);
 		if (result != GNOME_VFS_OK) {
 			fprintf (stderr, "%s: %s: %s\n",

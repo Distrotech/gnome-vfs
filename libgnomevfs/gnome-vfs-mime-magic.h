@@ -1,11 +1,6 @@
 #ifndef __GNOME_VFS_MIME_MAGIC_H__
 #define __GNOME_VFS_MIME_MAGIC_H__
 
-/*
- * If you are only interested in gnome_vfs_mime_type_from_magic, see
- * the gnome-vfs-mime.h header file.
- */
-
 #include <glib.h>
 #include <libgnome/gnome-defs.h>
 
