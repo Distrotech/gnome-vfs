@@ -1975,6 +1975,11 @@ gnome_vfs_destination_is_writable (const GnomeVFSURI *uri)
 		result = GNOME_VFS_OK;
 	}
 	
+	/* some methods only allow certain filenames (e.g. .desktop files) */
+	if (result == GNOME_VFS_ERROR_INVALID_URI) {
+		result = GNOME_VFS_OK;
+	}
+
 	gnome_vfs_uri_unref (test_uri);
 	return result;
 }

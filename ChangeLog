@@ -1,3 +1,10 @@
+2002-05-17  Alex Graveley  <alex@ximian.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c
+	(gnome_vfs_destination_is_writable): Handle
+	GNOME_VFS_ERROR_INVALID_URI when creating .vfs-write.tmp, and
+	assume writability.
+
 2002-05-17  Michael Meeks  <michael@ximian.com>
 
 	* test/test-mime.c (main): do a debug_shutdown.
