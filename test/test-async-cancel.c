@@ -406,7 +406,7 @@ file_open_fail_callback (GnomeVFSAsyncHandle *handle,
 			 gpointer callback_data)
 {
 	TEST_ASSERT (handle == test_handle, ("open callback, bad handle"));
-	TEST_ASSERT (result == GNOME_VFS_ERROR_NOTFOUND, ("open callback, bad result"));
+	TEST_ASSERT (result == GNOME_VFS_ERROR_NOT_FOUND, ("open callback, bad result"));
 	TEST_ASSERT (callback_data == test_callback_data, ("open callback, bad callback data"));
 
 	file_open_flag = TRUE;

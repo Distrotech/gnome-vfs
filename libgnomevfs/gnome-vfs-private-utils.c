@@ -337,7 +337,7 @@ gnome_vfs_create_temp (const gchar *prefix,
 			return GNOME_VFS_OK;
 		}
 
-		if (result != GNOME_VFS_ERROR_FILEEXISTS) {
+		if (result != GNOME_VFS_ERROR_FILE_EXISTS) {
 			*name_return = NULL;
 			*handle_return = NULL;
 			return result;

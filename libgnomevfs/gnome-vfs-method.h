@@ -26,7 +26,7 @@
 
 
 #define _GNOME_VFS_METHOD_PARAM_CHECK(expression)			\
-	g_return_val_if_fail ((expression), GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail ((expression), GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 
 gboolean	   gnome_vfs_method_init   (void);

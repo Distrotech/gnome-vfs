@@ -39,7 +39,7 @@
 #define RETURN_IF_SLAVE_BUSY(slave)					  \
 	g_return_val_if_fail						  \
 		(slave->operation_in_progress == GNOME_VFS_ASYNC_OP_NONE, \
-		 GNOME_VFS_ERROR_INPROGRESS)
+		 GNOME_VFS_ERROR_IN_PROGRESS)
 
 
 GnomeVFSResult	 
@@ -58,9 +58,9 @@ corba_gnome_vfs_async_open (GnomeVFSAsyncHandle **handle_return,
 {
 	GnomeVFSSlaveProcess *slave;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = gnome_vfs_slave_process_new ();
 	if (slave == NULL)
@@ -103,13 +103,13 @@ corba_gnome_vfs_async_open_as_channel (GnomeVFSAsyncHandle **handle_return,
 {
 	GnomeVFSSlaveProcess *slave;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail ((open_mode & (GNOME_VFS_OPEN_READ
 					    | GNOME_VFS_OPEN_WRITE))
 			      != (GNOME_VFS_OPEN_READ | GNOME_VFS_OPEN_WRITE),
-			      GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+			      GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = gnome_vfs_slave_process_new ();
 	if (slave == NULL)
@@ -156,11 +156,11 @@ corba_gnome_vfs_async_create (GnomeVFSAsyncHandle **handle_return,
 {
 	GnomeVFSSlaveProcess *slave;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail ((open_mode & GNOME_VFS_OPEN_WRITE), GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (! (open_mode & GNOME_VFS_OPEN_READ), GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail ((open_mode & GNOME_VFS_OPEN_WRITE), GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (! (open_mode & GNOME_VFS_OPEN_READ), GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = gnome_vfs_slave_process_new ();
 	if (slave == NULL)
@@ -207,13 +207,13 @@ corba_gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 {
 	GnomeVFSSlaveProcess *slave;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail ((open_mode & GNOME_VFS_OPEN_WRITE), GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail ((open_mode & GNOME_VFS_OPEN_WRITE), GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail ((open_mode & GNOME_VFS_OPEN_READ)
 			      && (open_mode & GNOME_VFS_OPEN_WRITE),
-			      GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+			      GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = gnome_vfs_slave_process_new ();
 	if (slave == NULL)
@@ -252,8 +252,8 @@ corba_gnome_vfs_async_close (GnomeVFSAsyncHandle *handle,
 {
 	GnomeVFSSlaveProcess *slave;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = (GnomeVFSSlaveProcess *) handle;
 
@@ -290,9 +290,9 @@ corba_gnome_vfs_async_read (GnomeVFSAsyncHandle *handle,
 {
 	GnomeVFSSlaveProcess *slave;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = (GnomeVFSSlaveProcess *) handle;
 
@@ -331,9 +331,9 @@ corba_gnome_vfs_async_write (GnomeVFSAsyncHandle *handle,
 	GnomeVFSSlaveProcess *slave;
 	GNOME_VFS_Buffer *corba_buffer;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = (GnomeVFSSlaveProcess *) handle;
 
@@ -419,8 +419,8 @@ corba_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 	int num_meta_keys;
 	GnomeVFSAsyncDirectoryOpInfo *op_info; /* piggyback */
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = gnome_vfs_slave_process_new();
 	if (slave == NULL)
@@ -503,9 +503,9 @@ corba_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 	guint i;
 	GnomeVFSAsyncDirectoryOpInfo *op_info;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = gnome_vfs_slave_process_new ();
 	if (slave == NULL)
@@ -658,8 +658,8 @@ corba_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	int i;
 	const GList *cur;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (progress_update_callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (progress_update_callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = gnome_vfs_slave_process_new ();
 	if (slave == NULL)
@@ -722,7 +722,7 @@ corba_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 {
 	GnomeVFSSlaveProcess *slave;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	slave = (GnomeVFSSlaveProcess *) handle;
 
@@ -735,7 +735,7 @@ corba_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 	
 	/* return GNOME_VFS_OK; */
 
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 guint

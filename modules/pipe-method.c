@@ -68,7 +68,7 @@ do_open (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
 	if (!(mode & GNOME_VFS_OPEN_READ))
-		return GNOME_VFS_ERROR_INVALIDOPENMODE;
+		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 
 	fh = popen(uri->text, "r");
 

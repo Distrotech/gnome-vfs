@@ -141,7 +141,7 @@ pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 {
 	GnomeVFSJob *job;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = (GnomeVFSJob *) handle;
 
@@ -162,9 +162,9 @@ pthread_gnome_vfs_async_open_uri (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSJob *job;
 	GnomeVFSOpenOp *open_op;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = gnome_vfs_job_new ();
 	if (job == NULL)
@@ -195,13 +195,13 @@ pthread_gnome_vfs_async_open (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSURI *uri;
 	GnomeVFSResult retval;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	retval = pthread_gnome_vfs_async_open_uri (handle_return, uri, open_mode,
 						   callback, callback_data);
@@ -221,9 +221,9 @@ pthread_gnome_vfs_async_open_uri_as_channel (GnomeVFSAsyncHandle **handle_return
 	GnomeVFSJob *job;
 	GnomeVFSOpenAsChannelOp *open_as_channel_op;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = gnome_vfs_job_new ();
 	if (job == NULL)
@@ -256,13 +256,13 @@ pthread_gnome_vfs_async_open_as_channel (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSResult retval;
 	GnomeVFSURI *uri;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	retval = pthread_gnome_vfs_async_open_uri_as_channel
 		(handle_return, uri, open_mode, advised_block_size, callback,
@@ -285,9 +285,9 @@ pthread_gnome_vfs_async_create_uri (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSJob *job;
 	GnomeVFSCreateOp *create_op;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = gnome_vfs_job_new ();
 	if (job == NULL)
@@ -321,13 +321,13 @@ pthread_gnome_vfs_async_create (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSURI *uri;
 	GnomeVFSResult retval;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	retval = pthread_gnome_vfs_async_create_uri (handle_return, uri, open_mode,
 						     exclusive, perm, callback,
@@ -351,13 +351,13 @@ pthread_gnome_vfs_async_create_as_channel (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSJob *job;
 	GnomeVFSCreateAsChannelOp *create_as_channel_op;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	job = gnome_vfs_job_new ();
 	if (job == NULL)
@@ -386,8 +386,8 @@ pthread_gnome_vfs_async_close (GnomeVFSAsyncHandle *handle,
 {
 	GnomeVFSJob *job;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = (GnomeVFSJob *) handle;
 
@@ -408,9 +408,9 @@ pthread_gnome_vfs_async_read (GnomeVFSAsyncHandle *handle,
 	GnomeVFSJob *job;
 	GnomeVFSReadOp *read_op;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = (GnomeVFSJob *) handle;
 
@@ -436,9 +436,9 @@ pthread_gnome_vfs_async_write (GnomeVFSAsyncHandle *handle,
 	GnomeVFSJob *job;
 	GnomeVFSWriteOp *write_op;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = (GnomeVFSJob *) handle;
 
@@ -486,8 +486,8 @@ pthread_gnome_vfs_async_get_file_info (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSJob *job;
 	GnomeVFSGetFileInfoOp *get_info_op;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = gnome_vfs_job_new ();
 	if (job == NULL)
@@ -548,13 +548,13 @@ pthread_gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,
 {
 	GnomeVFSURI *uri;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	gnome_vfs_async_load_directory_uri (handle_return, uri,
 					    options, meta_keys,
@@ -589,9 +589,9 @@ pthread_gnome_vfs_async_load_directory_uri (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSJob *job;
 	GnomeVFSLoadDirectoryOp *load_directory_op;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = gnome_vfs_job_new ();
 	if (job == NULL)
@@ -659,8 +659,8 @@ pthread_gnome_vfs_async_xfer (GnomeVFSAsyncHandle **handle_return,
 	GnomeVFSJob *job;
 	GnomeVFSXferOp *xfer_op;
 
-	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (progress_update_callback != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (progress_update_callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = gnome_vfs_job_new ();
 	if (job == NULL)

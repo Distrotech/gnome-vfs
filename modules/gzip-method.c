@@ -230,7 +230,7 @@ result_from_z_result (gint z_result)
 	case Z_STREAM_END: /* FIXME bugzilla.eazel.com 1173: Is this right? */
 		return GNOME_VFS_OK;
 	case Z_DATA_ERROR:
-		return GNOME_VFS_ERROR_CORRUPTEDDATA;
+		return GNOME_VFS_ERROR_CORRUPTED_DATA;
 	default:
 		return GNOME_VFS_ERROR_INTERNAL;
 	}
@@ -251,7 +251,7 @@ skip_string (GnomeVFSHandle *handle)
 		RETURN_IF_FAIL (result);
 
 		if (bytes_read != 1)
-			return GNOME_VFS_ERROR_WRONGFORMAT;
+			return GNOME_VFS_ERROR_WRONG_FORMAT;
 	} while (c != 0);
 
 	return GNOME_VFS_OK;
@@ -271,7 +271,7 @@ skip (GnomeVFSHandle *handle,
 	RETURN_IF_FAIL (result);
 
 	if (bytes_read != num_bytes)
-		return GNOME_VFS_ERROR_WRONGFORMAT;
+		return GNOME_VFS_ERROR_WRONG_FORMAT;
 
 	return TRUE;
 }
@@ -307,7 +307,7 @@ read_guint32 (GnomeVFSHandle *handle,
 	RETURN_IF_FAIL (result);
 
 	if (bytes_read != 4)
-		return GNOME_VFS_ERROR_WRONGFORMAT;
+		return GNOME_VFS_ERROR_WRONG_FORMAT;
 
 	*value_return = (buffer[0] | (buffer[1] << 8)
 			 | (buffer[2] << 16) | (buffer[3] << 24));
@@ -333,19 +333,19 @@ read_gzip_header (GnomeVFSHandle *handle,
 	RETURN_IF_FAIL (result);
 
 	if (bytes_read != GZIP_HEADER_SIZE)
-		return GNOME_VFS_ERROR_WRONGFORMAT;
+		return GNOME_VFS_ERROR_WRONG_FORMAT;
 
 	if (buffer[0] != GZIP_MAGIC_1 || buffer[1] != GZIP_MAGIC_2)
-		return GNOME_VFS_ERROR_WRONGFORMAT;
+		return GNOME_VFS_ERROR_WRONG_FORMAT;
 
 	mode = buffer[2];
 	if (mode != 8) /* Mode: deflate */
-		return GNOME_VFS_ERROR_WRONGFORMAT;
+		return GNOME_VFS_ERROR_WRONG_FORMAT;
 
 	flags = buffer[3];
 
 	if (flags & GZIP_FLAG_RESERVED)
-		return GNOME_VFS_ERROR_WRONGFORMAT;
+		return GNOME_VFS_ERROR_WRONG_FORMAT;
 
 	if (flags & GZIP_FLAG_EXTRA_FIELD) {
 		guchar tmp[2];
@@ -353,9 +353,9 @@ read_gzip_header (GnomeVFSHandle *handle,
 
 		if (gnome_vfs_read (handle, tmp, 2, &bytes_read)
 		    || bytes_read != 2)
-			return GNOME_VFS_ERROR_WRONGFORMAT;
+			return GNOME_VFS_ERROR_WRONG_FORMAT;
 		if (! skip (handle, tmp[0] | (tmp[0] << 8)))
-			return GNOME_VFS_ERROR_WRONGFORMAT;
+			return GNOME_VFS_ERROR_WRONG_FORMAT;
 	}
 
 	if (flags & GZIP_FLAG_ORIG_NAME)
@@ -478,12 +478,12 @@ do_open (GnomeVFSMethod *method,
 
 	/* We don't allow any paths in the GZIP file.  */
 	if (uri->text != NULL && uri->text[0] != 0)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	parent_uri = uri->parent;
 
 	if (open_mode & GNOME_VFS_OPEN_RANDOM)
-		return GNOME_VFS_ERROR_NOTSUPPORTED;
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
 	result = gnome_vfs_open_uri (&parent_handle, parent_uri, open_mode);
 	RETURN_IF_FAIL (result);
@@ -542,7 +542,7 @@ do_create (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
-	return GNOME_VFS_ERROR_NOTSUPPORTED; /* FIXME bugzilla.eazel.com 1170 */
+	return GNOME_VFS_ERROR_NOT_SUPPORTED; /* FIXME bugzilla.eazel.com 1170 */
 }
 
 

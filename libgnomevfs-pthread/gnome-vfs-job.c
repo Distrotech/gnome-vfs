@@ -1460,14 +1460,14 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 
 	JOB_DEBUG (("async cancel %p", job));
 
-	g_return_val_if_fail (job != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (job != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	op = job->current_op;
 	if (op == NULL) {
 		op = job->notify_op;
 	}
 
-	g_return_val_if_fail (op != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (op != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	cancellation = gnome_vfs_context_get_cancellation (op->context);
 	if (cancellation != NULL) {

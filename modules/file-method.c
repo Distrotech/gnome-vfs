@@ -168,7 +168,7 @@ do_open (GnomeVFSMethod *method,
 		if (mode & GNOME_VFS_OPEN_WRITE)
 			unix_mode = O_WRONLY;
 		else
-			return GNOME_VFS_ERROR_INVALIDOPENMODE;
+			return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
 
 	if (! (mode & GNOME_VFS_OPEN_RANDOM) && (mode & GNOME_VFS_OPEN_WRITE))
@@ -176,7 +176,7 @@ do_open (GnomeVFSMethod *method,
 
 	file_name = get_path_from_uri (uri);
 	if (file_name == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	do
 		fd = OPEN (file_name, unix_mode);
@@ -194,7 +194,7 @@ do_open (GnomeVFSMethod *method,
 
 	if (S_ISDIR (statbuf.st_mode)) {
 		close (fd);
-		return GNOME_VFS_ERROR_ISDIRECTORY;
+		return GNOME_VFS_ERROR_IS_DIRECTORY;
 	}
 
 	file_handle = file_handle_new (uri, fd);
@@ -224,7 +224,7 @@ do_create (GnomeVFSMethod *method,
 	unix_mode = O_CREAT | O_TRUNC;
 	
 	if (!(mode & GNOME_VFS_OPEN_WRITE))
-		return GNOME_VFS_ERROR_INVALIDOPENMODE;
+		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 
 	if (mode & GNOME_VFS_OPEN_READ)
 		unix_mode |= O_RDWR;
@@ -236,7 +236,7 @@ do_create (GnomeVFSMethod *method,
 
 	file_name = get_path_from_uri (uri);
 	if (file_name == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	do
 		fd = OPEN (file_name, unix_mode, perm);
@@ -375,7 +375,7 @@ do_seek (GnomeVFSMethod *method,
 
 	if (LSEEK (file_handle->fd, offset, lseek_whence) == -1) {
 		if (errno == ESPIPE)
-			return GNOME_VFS_ERROR_NOTSUPPORTED;
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		else
 			return gnome_vfs_result_from_errno ();
 	}
@@ -396,7 +396,7 @@ do_tell (GnomeVFSMethod *method,
 	offset = LSEEK (file_handle->fd, 0, SEEK_CUR);
 	if (offset == -1) {
 		if (errno == ESPIPE)
-			return GNOME_VFS_ERROR_NOTSUPPORTED;
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		else
 			return gnome_vfs_result_from_errno ();
 	}
@@ -424,9 +424,9 @@ do_truncate_handle (GnomeVFSMethod *method,
 		switch (errno) {
 		case EBADF:
 		case EROFS:
-			return GNOME_VFS_ERROR_READONLY;
+			return GNOME_VFS_ERROR_READ_ONLY;
 		case EINVAL:
-			return GNOME_VFS_ERROR_NOTSUPPORTED;
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		default:
 			return GNOME_VFS_ERROR_GENERIC;
 		}
@@ -443,7 +443,7 @@ do_truncate (GnomeVFSMethod *method,
 
 	path = get_path_from_uri (uri);
 	if (path == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	if (truncate (path, where) == 0) {
 		g_free (path);
@@ -453,9 +453,9 @@ do_truncate (GnomeVFSMethod *method,
 		switch (errno) {
 		case EBADF:
 		case EROFS:
-			return GNOME_VFS_ERROR_READONLY;
+			return GNOME_VFS_ERROR_READ_ONLY;
 		case EINVAL:
-			return GNOME_VFS_ERROR_NOTSUPPORTED;
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		default:
 			return GNOME_VFS_ERROR_GENERIC;
 		}
@@ -671,7 +671,7 @@ do_open_directory (GnomeVFSMethod *method,
 
 	directory_name = get_path_from_uri (uri);
 	if (directory_name == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	dir = opendir (directory_name);
 	g_free (directory_name);
@@ -834,7 +834,7 @@ do_get_file_info (GnomeVFSMethod *method,
 
 	full_name = get_path_from_uri (uri);
 	if (full_name == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
@@ -874,7 +874,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 
 	full_name = get_path_from_uri (file_handle->uri);
 	if (full_name == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 
@@ -921,7 +921,7 @@ do_make_directory (GnomeVFSMethod *method,
 
 	full_name = get_path_from_uri (uri);
 	if (full_name == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	retval = mkdir (full_name, perm);
 
@@ -943,7 +943,7 @@ do_remove_directory (GnomeVFSMethod *method,
 
 	full_name = get_path_from_uri (uri);
 	if (full_name == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	retval = rmdir (full_name);
 
@@ -976,7 +976,7 @@ do_find_directory (GnomeVFSMethod *method,
 
 	full_name_near = get_path_from_uri (near_uri);
 	if (full_name_near == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	home_directory = g_get_home_dir();
 
@@ -1002,7 +1002,7 @@ do_find_directory (GnomeVFSMethod *method,
 
 	if (near_item_stat.st_dev != home_volume_stat.st_dev)
 		/* FIXME bugzilla.eazel.com 1187 */
-		return GNOME_VFS_ERROR_NOTSUPPORTED;
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
 	switch (kind) {
 	case GNOME_VFS_DIRECTORY_KIND_TRASH:
@@ -1020,14 +1020,14 @@ do_find_directory (GnomeVFSMethod *method,
 	}
 
 	if (target_directory == NULL)
-		return GNOME_VFS_ERROR_NOTSUPPORTED;
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
 	if (create_if_needed && !g_file_exists (target_directory))
 		mkdir (target_directory, permissions);
 
 	if (!g_file_exists (target_directory)) {
 		g_free (target_directory);
-		return GNOME_VFS_ERROR_NOTFOUND;
+		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
 	*result_uri = gnome_vfs_uri_new (target_directory);
 	g_free (target_directory);
@@ -1050,7 +1050,7 @@ rename_helper (const gchar *old_full_name,
 		/* If we are not allowed to replace an existing file, return an
                    error.  */
 		if (! force_replace)
-			return GNOME_VFS_ERROR_FILEEXISTS;
+			return GNOME_VFS_ERROR_FILE_EXISTS;
 		old_exists = TRUE;
 	} else {
 		old_exists = FALSE;
@@ -1081,7 +1081,7 @@ rename_helper (const gchar *old_full_name,
 				/* FIXME bugzilla.eazel.com 1185:
 				 * Maybe we could be more accurate here?
 				 */
-				return GNOME_VFS_ERROR_DIRECTORYNOTEMPTY;
+				return GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY;
 			}
 
 			if (gnome_vfs_context_check_cancellation (context))
@@ -1110,11 +1110,11 @@ do_move (GnomeVFSMethod *method,
 
 	old_full_name = get_path_from_uri (old_uri);
 	if (old_full_name == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 	new_full_name = get_path_from_uri (new_uri);
 	if (new_full_name == NULL) {
 		g_free (old_full_name);
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 
 	result = rename_helper (old_full_name, new_full_name,
@@ -1136,7 +1136,7 @@ do_unlink (GnomeVFSMethod *method,
 
 	full_name = get_path_from_uri (uri);
 	if (full_name == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	retval = unlink (full_name);
 
@@ -1192,7 +1192,7 @@ do_set_file_info (GnomeVFSMethod *method,
 
 	full_name = get_path_from_uri (uri);
 	if (full_name == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	if (mask & GNOME_VFS_SET_FILE_INFO_NAME) {
 		GnomeVFSResult result;

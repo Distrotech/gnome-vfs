@@ -1,5 +1,110 @@
 2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
 
+	Fixed bug #1162.
+
+	Changed naming of gnome-vfs errors to seperate words with
+	underscore and replace abbreviations with full words.
+	
+	* libgnomevfs-corba/gnome-vfs-async-ops.c:
+	(corba_gnome_vfs_async_open),
+	(corba_gnome_vfs_async_open_as_channel),
+	(corba_gnome_vfs_async_create),
+	(corba_gnome_vfs_async_create_as_channel),
+	(corba_gnome_vfs_async_close), (corba_gnome_vfs_async_read),
+	(corba_gnome_vfs_async_write),
+	(corba_gnome_vfs_async_get_file_info),
+	(corba_gnome_vfs_async_load_directory),
+	(corba_gnome_vfs_async_xfer), (corba_gnome_vfs_async_cancel):
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_cancel),
+	(pthread_gnome_vfs_async_open_uri), (pthread_gnome_vfs_async_open),
+	(pthread_gnome_vfs_async_open_uri_as_channel),
+	(pthread_gnome_vfs_async_open_as_channel),
+	(pthread_gnome_vfs_async_create_uri),
+	(pthread_gnome_vfs_async_create),
+	(pthread_gnome_vfs_async_create_as_channel),
+	(pthread_gnome_vfs_async_close), (pthread_gnome_vfs_async_read),
+	(pthread_gnome_vfs_async_write),
+	(pthread_gnome_vfs_async_get_file_info),
+	(pthread_gnome_vfs_async_load_directory),
+	(pthread_gnome_vfs_async_load_directory_uri),
+	(pthread_gnome_vfs_async_xfer):
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_cancel):
+	* libgnomevfs/gnome-vfs-directory.c: (open),
+	(gnome_vfs_directory_open), (gnome_vfs_directory_open_from_uri),
+	(directory_visit_internal), (gnome_vfs_directory_visit_uri),
+	(gnome_vfs_directory_visit),
+	(gnome_vfs_directory_visit_files_at_uri):
+	* libgnomevfs/gnome-vfs-handle.c:
+	* libgnomevfs/gnome-vfs-inet-connection.c:
+	(gnome_vfs_inet_connection_create):
+	* libgnomevfs/gnome-vfs-iobuf.c: (gnome_vfs_iobuf_read),
+	(gnome_vfs_iobuf_peekc), (gnome_vfs_iobuf_write),
+	(gnome_vfs_iobuf_flush):
+	* libgnomevfs/gnome-vfs-method.h:
+	* libgnomevfs/gnome-vfs-ops.c: (gnome_vfs_open),
+	(gnome_vfs_create), (gnome_vfs_tell), (gnome_vfs_get_file_info),
+	(gnome_vfs_truncate), (gnome_vfs_make_directory),
+	(gnome_vfs_remove_directory), (gnome_vfs_unlink), (gnome_vfs_move),
+	(gnome_vfs_check_same_fs), (gnome_vfs_set_file_info):
+	* libgnomevfs/gnome-vfs-private-ops.c:
+	(gnome_vfs_open_uri_cancellable),
+	(gnome_vfs_create_uri_cancellable), (gnome_vfs_close_cancellable),
+	(gnome_vfs_read_cancellable), (gnome_vfs_write_cancellable),
+	(gnome_vfs_seek_cancellable),
+	(gnome_vfs_get_file_info_uri_cancellable),
+	(gnome_vfs_get_file_info_from_handle_cancellable),
+	(gnome_vfs_truncate_uri_cancellable),
+	(gnome_vfs_truncate_handle_cancellable),
+	(gnome_vfs_make_directory_for_uri_cancellable),
+	(gnome_vfs_find_directory_cancellable),
+	(gnome_vfs_remove_directory_from_uri_cancellable),
+	(gnome_vfs_unlink_from_uri_cancellable),
+	(gnome_vfs_move_uri_cancellable),
+	(gnome_vfs_check_same_fs_uris_cancellable),
+	(gnome_vfs_set_file_info_cancellable):
+	* libgnomevfs/gnome-vfs-private-utils.c: (gnome_vfs_create_temp):
+	* libgnomevfs/gnome-vfs-result.c: (gnome_vfs_result_from_errno),
+	(gnome_vfs_result_from_h_errno):
+	* libgnomevfs/gnome-vfs-seekable.c: (read_file), (write_file),
+	(init_seek), (do_open), (do_create), (do_truncate_handle):
+	* libgnomevfs/gnome-vfs-types.h:
+	* libgnomevfs/gnome-vfs-xfer.c: (handle_overwrite),
+	(create_directory), (xfer_create_target), (copy_items),
+	(move_items), (gnome_vfs_new_directory_with_unique_name),
+	(gnome_vfs_xfer_uri), (gnome_vfs_xfer_private):
+	* modules/bzip2-method.c: (result_from_bz_result), (do_open),
+	(do_create):
+	* modules/extfs-method.c: (do_open), (do_create), (do_write),
+	(do_truncate_handle), (do_truncate), (do_open_directory),
+	(do_get_file_info), (do_get_file_info_from_handle),
+	(do_make_directory), (do_find_directory), (do_remove_directory),
+	(do_move), (do_unlink), (do_check_same_fs):
+	* modules/file-method.c: (do_open), (do_create), (do_seek),
+	(do_tell), (do_truncate_handle), (do_truncate),
+	(do_open_directory), (do_get_file_info),
+	(do_get_file_info_from_handle), (do_make_directory),
+	(do_remove_directory), (do_find_directory), (rename_helper),
+	(do_move), (do_unlink), (do_set_file_info):
+	* modules/ftp-method.c: (ftpfs_open_socket),
+	(ftpfs_connection_connect), (login_server), (linear_start),
+	(send_ftp_command), (retrieve_file), (get_file_entry),
+	(ftpfs_open), (ftpfs_create), (ftpfs_open_directory),
+	(ftpfs_get_file_info):
+	* modules/gconf-method.c: (do_open), (do_create), (do_close),
+	(do_read), (do_write), (do_get_file_info_from_handle):
+	* modules/gzip-method.c: (result_from_z_result), (skip_string),
+	(skip), (read_guint32), (read_gzip_header), (do_open), (do_create):
+	* modules/http-method.c: (http_status_to_vfs_result),
+	(create_handle), (do_open), (make_propfind_request):
+	* modules/newftp-method.c: (ftp_response_to_vfs_result),
+	(do_transfer_command), (do_open), (do_read), (do_write),
+	(internal_get_file_info), (do_move):
+	* modules/pipe-method.c: (do_open):
+	* test/test-async-cancel.c: (file_open_fail_callback):
+
+2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
+
 	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
 	(initialize_edit_applications_dialog),
 	(nautilus_mime_type_capplet_show_new_extension_window),

@@ -259,9 +259,9 @@ http_status_to_vfs_result (guint status)
 	switch (status) {
 	case 401:
 	case 407:
-		return GNOME_VFS_ERROR_ACCESSDENIED;
+		return GNOME_VFS_ERROR_ACCESS_DENIED;
 	case 404:
-		return GNOME_VFS_ERROR_NOTFOUND;
+		return GNOME_VFS_ERROR_NOT_FOUND;
 	default:
 		return GNOME_VFS_ERROR_GENERIC;
 	}
@@ -478,7 +478,7 @@ create_handle (HttpFileHandle **handle_return,
 		goto error;
 
 	if (! parse_status (header_string->str, &server_status)) {
-		result = GNOME_VFS_ERROR_NOTFOUND; /* FIXME bugzilla.eazel.com 1161 */
+		result = GNOME_VFS_ERROR_NOT_FOUND; /* FIXME bugzilla.eazel.com 1161 */
 		goto error;
 	}
 
@@ -501,7 +501,7 @@ create_handle (HttpFileHandle **handle_return,
 
 		if (! parse_header (*handle_return, header_string->str)) {
 			g_warning (_("Invalid header `%s'"), header_string->str);
-			result = GNOME_VFS_ERROR_NOTFOUND; /* FIXME bugzilla.eazel.com 1161 */
+			result = GNOME_VFS_ERROR_NOT_FOUND; /* FIXME bugzilla.eazel.com 1161 */
 			break;
 		}
 	}
@@ -676,10 +676,10 @@ do_open (GnomeVFSMethod *method,
 	HttpFileHandle *handle;
 	GnomeVFSResult result = GNOME_VFS_OK;
 
-	g_return_val_if_fail (uri->parent == NULL, GNOME_VFS_ERROR_INVALIDURI);
+	g_return_val_if_fail (uri->parent == NULL, GNOME_VFS_ERROR_INVALID_URI);
 	g_return_val_if_fail (mode == GNOME_VFS_OPEN_READ || 
 						mode == GNOME_VFS_OPEN_WRITE,
-			      GNOME_VFS_ERROR_INVALIDOPENMODE);
+			      GNOME_VFS_ERROR_INVALID_OPEN_MODE);
 
 	if(mode == GNOME_VFS_OPEN_READ) {
 		result = make_request (&handle, uri, "GET", NULL, NULL,
@@ -973,7 +973,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	if(result == GNOME_VFS_OK && handle->server_status != 207) { /* Multi-Status */
 		g_warning(_("HTTP server returned an invalid PROPFIND response"));
-		result = GNOME_VFS_ERROR_NOTSUPPORTED;
+		result = GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
 	if (result == GNOME_VFS_OK) {
@@ -1001,7 +1001,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	doc = parserContext->myDoc;
 	if(!doc)
-		return GNOME_VFS_ERROR_CORRUPTEDDATA;
+		return GNOME_VFS_ERROR_CORRUPTED_DATA;
 
 	cur = doc->root;
 
@@ -1009,7 +1009,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 #if 0
 		g_print("Couldn't find <multistatus>.\n");
 #endif
-		return GNOME_VFS_ERROR_CORRUPTEDDATA;
+		return GNOME_VFS_ERROR_CORRUPTED_DATA;
 	}
 
 	cur = cur->childs;

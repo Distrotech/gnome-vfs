@@ -119,8 +119,8 @@ gnome_vfs_iobuf_read (GnomeVFSIOBuf *iobuf,
 	GnomeVFSResult result;
 	GnomeVFSFileSize n;
 
-	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	/* Quote from UNIX 98:
 	   "If nbyte is 0, read() will return 0 and have no other results."
@@ -167,8 +167,8 @@ gnome_vfs_iobuf_peekc (GnomeVFSIOBuf *iobuf,
 	GnomeVFSResult result;
 	Buffer *input_buffer;
 
-	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (c != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (c != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	input_buffer = &iobuf->input_buffer;
 	result = GNOME_VFS_OK;
@@ -222,9 +222,9 @@ gnome_vfs_iobuf_write (GnomeVFSIOBuf *iobuf,
 	GnomeVFSResult result;
 	const gchar *p;
 
-	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (bytes_written != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (buffer != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (bytes_written != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	output_buffer = &iobuf->output_buffer;
 
@@ -259,7 +259,7 @@ gnome_vfs_iobuf_write (GnomeVFSIOBuf *iobuf,
 GnomeVFSResult
 gnome_vfs_iobuf_flush (GnomeVFSIOBuf *iobuf)
 {
-	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (iobuf != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return flush (iobuf);
 }

@@ -106,7 +106,7 @@ typedef struct _ExtfsDirectoryHandle ExtfsDirectoryHandle;
 
 #define ERROR_IF_NOT_LOCAL(uri)					\
 	if (strcmp ((uri)->parent->method_string, "file") != 0)	\
-		return GNOME_VFS_ERROR_NOTSUPPORTED;
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
 static GnomeVFSResult
 extfs_handle_close (ExtfsHandle *handle)
@@ -304,10 +304,10 @@ do_open (GnomeVFSMethod *method,
 
 	/* TODO: Support write mode.  */
 	if (mode & GNOME_VFS_OPEN_WRITE)
-		return GNOME_VFS_ERROR_READONLYFS;
+		return GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM;
 
 	if (uri->text == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	if (uri->method_string == NULL)
 		return GNOME_VFS_ERROR_INTERNAL;
@@ -317,7 +317,7 @@ do_open (GnomeVFSMethod *method,
 		stored_name++;
 
 	if (*stored_name == '\0')
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	result = gnome_vfs_create_temp ("extfs", &temp_name, &temp_handle);
 	if (result != GNOME_VFS_OK)
@@ -355,7 +355,7 @@ do_open (GnomeVFSMethod *method,
 		} else {
 			/* This is not very accurate, but it should be
 			   enough.  */
-			result = GNOME_VFS_ERROR_NOTFOUND;
+			result = GNOME_VFS_ERROR_NOT_FOUND;
 			cleanup = TRUE;
 		}
 		break;
@@ -402,7 +402,7 @@ do_create (GnomeVFSMethod *method,
 	   guint perm,
 	   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_READONLYFS;
+	return GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM;
 }
 
 static GnomeVFSResult
@@ -446,7 +446,7 @@ do_write (GnomeVFSMethod *method,
 	  GnomeVFSFileSize *bytes_written,
 	  GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_READONLYFS;
+	return GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM;
 }
 
 static GnomeVFSResult
@@ -475,7 +475,7 @@ do_truncate_handle (GnomeVFSMethod *method,
 		    GnomeVFSFileSize where,
 		    GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -484,7 +484,7 @@ do_truncate (GnomeVFSMethod *method,
 	     GnomeVFSFileSize where,
 	     GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 
@@ -590,7 +590,7 @@ do_open_directory (GnomeVFSMethod *method,
 
 		/* Check that the file exists first.  */
 		if (stat (uri->parent->text, &statbuf) != 0)
-			return GNOME_VFS_ERROR_NOTFOUND;
+			return GNOME_VFS_ERROR_NOT_FOUND;
 
 		quoted_file_name = quote_file_name (uri->parent->text);
 		script_path = get_script_path (uri);
@@ -604,7 +604,7 @@ do_open_directory (GnomeVFSMethod *method,
 		g_free (quoted_file_name);
 
 		if (pipe == NULL)
-			return GNOME_VFS_ERROR_NOTSUPPORTED;
+			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
 		result = read_directory_list (pipe, &list, info_options,
 					      context);
@@ -759,7 +759,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		  const GList *meta_keys,
 		  GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -770,7 +770,7 @@ do_get_file_info_from_handle (GnomeVFSMethod *method,
 			      const GList *meta_keys,
 			      GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static gboolean
@@ -786,7 +786,7 @@ do_make_directory (GnomeVFSMethod *method,
 		   guint perm,
 		   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -798,7 +798,7 @@ do_find_directory (GnomeVFSMethod *method,
 		   guint permissions,
 		   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 
@@ -807,7 +807,7 @@ do_remove_directory (GnomeVFSMethod *method,
 		     GnomeVFSURI *uri,
 		     GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -817,7 +817,7 @@ do_move (GnomeVFSMethod *method,
 	 gboolean force_replace,
 	 GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 
@@ -826,7 +826,7 @@ do_unlink (GnomeVFSMethod *method,
 	   GnomeVFSURI *uri,
 	   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -836,7 +836,7 @@ do_check_same_fs (GnomeVFSMethod *method,
 		  gboolean *same_fs_return,
 		  GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 

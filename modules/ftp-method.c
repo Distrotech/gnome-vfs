@@ -350,7 +350,7 @@ ftpfs_open_socket (ftpfs_connection_t *conn)
 	
 	if (!host || !*host){
 		print_vfs_message (_("ftpfs: Invalid host name."));
-		return GNOME_VFS_ERROR_INVALIDHOSTNAME;
+		return GNOME_VFS_ERROR_INVALID_HOST_NAME;
 	}
 	
 	/* Hosts to connect to that start with a ! should use proxy */
@@ -484,7 +484,7 @@ ftpfs_connection_connect (ftpfs_connection_t *conn)
 	} while (retry_seconds);
 
 	if (conn->sock == -1)
-		return GNOME_VFS_ERROR_LOGINFAILED;
+		return GNOME_VFS_ERROR_LOGIN_FAILED;
 
 	conn->home = ftpfs_get_current_directory (conn);
 	if (!conn->home)
@@ -752,7 +752,7 @@ login_server (ftpfs_connection_t *conn)
 			op = "FIXME";
 			g_free (p);
 			if (op == NULL)
-				return GNOME_VFS_ERROR_LOGINFAILED;
+				return GNOME_VFS_ERROR_LOGIN_FAILED;
 			conn->password = g_strdup (op);
 		} else {
 			op = g_strdup (conn->password);
@@ -813,7 +813,7 @@ login_server (ftpfs_connection_t *conn)
 	print_vfs_message (_("ftpfs: Login incorrect for user %s "), conn->username);
  login_fail:
 	g_free (name);
-	return GNOME_VFS_ERROR_LOGINFAILED;
+	return GNOME_VFS_ERROR_LOGIN_FAILED;
 }
 
 static void
@@ -1109,7 +1109,7 @@ linear_start (ftpfs_direntry_t *fe, int offset)
 	fe->data_sock = open_data_connection (
 		fe->conn, "RETR", fe->remote_filename, TYPE_BINARY, offset);
 	if (fe->data_sock == -1)
-		return GNOME_VFS_ERROR_ACCESSDENIED;
+		return GNOME_VFS_ERROR_ACCESS_DENIED;
 	
 	fe->linear_state = LS_LINEAR_OPEN;
 	return GNOME_VFS_OK;
@@ -1177,14 +1177,14 @@ send_ftp_command (GnomeVFSURI *uri, char *cmd, int flags)
 	
 	ftpfs_uri = ftpfs_uri_new (uri, &ret);
 	if (!ftpfs_uri)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 	
 	r = command (ftpfs_uri->conn, TRUE, res, sizeof (res)-1, cmd, ftpfs_uri->path);
 	if (flags & OPT_IGNORE_ERROR)
 		r = COMPLETE;
 	if (r != COMPLETE){
 		ftpfs_uri_destroy (ftpfs_uri);
-		return GNOME_VFS_ERROR_ACCESSDENIED;
+		return GNOME_VFS_ERROR_ACCESS_DENIED;
 	}
 	return GNOME_VFS_OK;
 }
@@ -1663,13 +1663,13 @@ retrieve_file (ftpfs_direntry_t *fe)
 		return GNOME_VFS_OK;
 	
 	if (!(fe->local_filename = tempnam (NULL, "ftpfs")))
-		return GNOME_VFS_ERROR_NOMEM;
+		return GNOME_VFS_ERROR_NO_MEMORY;
 
 	fe->local_is_temp = 1;
 	
 	local_handle = open (fe->local_filename, O_RDWR | O_CREAT | O_TRUNC | O_EXCL, 0600);
 	if (local_handle == -1) 
-		return GNOME_VFS_ERROR_NOSPACE;
+		return GNOME_VFS_ERROR_NO_SPACE;
 
 	ret = linear_start (fe, 0);
 	if (ret != GNOME_VFS_OK)
@@ -1747,7 +1747,7 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 
 		if (S_ISLNK (fe->s.st_mode) && (flags & FTPFS_DO_RESOLVE_SYMLINK)) {
 			if (fe->l_stat == NULL)
-				return GNOME_VFS_ERROR_NOTFOUND;
+				return GNOME_VFS_ERROR_NOT_FOUND;
 
 			if (S_ISLNK (fe->l_stat->st_mode))
 				return GNOME_VFS_ERROR_LOOP;
@@ -1761,18 +1761,18 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 			: fe->s.st_mode;
 		
 		if (S_ISDIR (fmode))
-			return GNOME_VFS_ERROR_ISDIRECTORY;
+			return GNOME_VFS_ERROR_IS_DIRECTORY;
 		
 		if (!S_ISREG (fmode))
-			return GNOME_VFS_ERROR_ACCESSDENIED;
+			return GNOME_VFS_ERROR_ACCESS_DENIED;
 
 		if ((flags & FTPFS_DO_CREAT) && exclusive)
-			return GNOME_VFS_ERROR_FILEEXISTS;
+			return GNOME_VFS_ERROR_FILE_EXISTS;
 		
 		if (fe->remote_filename == NULL){
 			fe->remote_filename = g_strdup (filename);
 			if (fe->remote_filename == NULL)
-				return GNOME_VFS_ERROR_NOMEM;
+				return GNOME_VFS_ERROR_NO_MEMORY;
 		}
 		if (fe->local_filename == NULL || !fe->local_stat.st_mtime || 
 		    stat (fe->local_filename, &sb) < 0 || 
@@ -1785,7 +1785,7 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 			if (flags & FTPFS_DO_TRUNC) {
 				fe->local_filename = tempnam (NULL, "ftpfs");
 				if (fe->local_filename == NULL)
-					return GNOME_VFS_ERROR_NOMEM;
+					return GNOME_VFS_ERROR_NO_MEMORY;
 				handle = open (fe->local_filename,
 					       O_CREAT | O_TRUNC | O_RDWR | O_EXCL,
 					       0600);
@@ -1821,11 +1821,11 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 	 * Ok, the file does not exist, does the user want to create it?
 	 */
 	if (!((flags & FTPFS_DO_OPEN) && (flags & FTPFS_DO_CREAT)))
-		return GNOME_VFS_ERROR_NOTFOUND;
+		return GNOME_VFS_ERROR_NOT_FOUND;
 
 	fe = g_new (ftpfs_direntry_t, 1);
 	if (fe == NULL)
-		return GNOME_VFS_ERROR_NOMEM;
+		return GNOME_VFS_ERROR_NO_MEMORY;
 	
 	fe->freshly_created = 0;
 	fe->ref_count = 1;
@@ -1838,7 +1838,7 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 
 	if (!fe->name || !fe->remote_filename || !fe->local_filename){
 		ftpfs_direntry_unref (fe);
-		return GNOME_VFS_ERROR_NOMEM;
+		return GNOME_VFS_ERROR_NO_MEMORY;
 	}
 
 	handle = open (fe->local_filename,
@@ -1906,7 +1906,7 @@ ftpfs_open (GnomeVFSMethod *method,
 		fh->local_handle = open (fe->local_filename, flags);
 		if (fh->local_handle < 0){
 			g_free (fh);
-			return GNOME_VFS_ERROR_NOMEM;
+			return GNOME_VFS_ERROR_NO_MEMORY;
 		}
 	} else
 		fh->local_handle = -1;
@@ -1942,7 +1942,7 @@ ftpfs_create (GnomeVFSMethod *method,
 
 	ftpfs_uri = ftpfs_uri_new (uri, &ret);
 	if (!ftpfs_uri)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	/* FIXME: Perhaps we want to set linear *only* iff READ is specified (see write method) */
 	
@@ -1974,7 +1974,7 @@ ftpfs_create (GnomeVFSMethod *method,
 		fh->local_handle = open (fe->local_filename, flags, perm);
 		if (fh->local_handle < 0){
 			g_free (fh);
-			return GNOME_VFS_ERROR_NOMEM;
+			return GNOME_VFS_ERROR_NO_MEMORY;
 		}
 	} else
 		fh->local_handle = -1;
@@ -2145,12 +2145,12 @@ ftpfs_open_directory (GnomeVFSMethod *method,
 		
 	dent = g_new (ftpfs_dirent_t, 1);
 	if (!dent)
-		return GNOME_VFS_ERROR_NOMEM;
+		return GNOME_VFS_ERROR_NO_MEMORY;
 
 	dent->uri = ftpfs_uri_new (uri, &ret);
 	if (!dent->uri){
 		g_free (dent);
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 
 	dent->dir = retrieve_dir (dent->uri->conn, dent->uri->path, TRUE);
@@ -2391,7 +2391,7 @@ ftpfs_get_file_info (GnomeVFSMethod *method,
 
 	ftpfs_uri = ftpfs_uri_new (uri, &ret);
 	if (!ftpfs_uri)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	dirname = (*ftpfs_uri->path)?g_dirname(ftpfs_uri->path):NULL;
 	filename = g_basename (ftpfs_uri->path);
@@ -2408,7 +2408,7 @@ ftpfs_get_file_info (GnomeVFSMethod *method,
 
 	if (dir == NULL){
 		ftpfs_uri_destroy (ftpfs_uri);
-		return GNOME_VFS_ERROR_NOTFOUND;
+		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
 
 	for (l = dir->file_list; l; l = l->next){
@@ -2422,7 +2422,7 @@ ftpfs_get_file_info (GnomeVFSMethod *method,
 		if (S_ISLNK (fe->s.st_mode)) {
 			if (fe->l_stat == NULL){
 				ftpfs_uri_destroy (ftpfs_uri);
-				return GNOME_VFS_ERROR_NOTFOUND;
+				return GNOME_VFS_ERROR_NOT_FOUND;
 			}
 
 			if (S_ISLNK (fe->l_stat->st_mode)){
@@ -2436,7 +2436,7 @@ ftpfs_get_file_info (GnomeVFSMethod *method,
 
 		return GNOME_VFS_OK;
 	}
-	return GNOME_VFS_ERROR_NOTFOUND;
+	return GNOME_VFS_ERROR_NOT_FOUND;
 }
 
 static GnomeVFSResult

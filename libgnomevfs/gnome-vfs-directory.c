@@ -49,7 +49,7 @@ struct GnomeVFSDirectoryHandle {
 #define CHECK_IF_SUPPORTED(vfs_method, what)		\
 G_STMT_START{						\
 	if (vfs_method->what == NULL)			\
-		return GNOME_VFS_ERROR_NOTSUPPORTED;	\
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;	\
 }G_STMT_END
 
 
@@ -134,12 +134,12 @@ open (GnomeVFSDirectoryHandle **handle,
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	result = open_from_uri (handle, uri, options, meta_keys, filter,
 				context);
@@ -170,8 +170,8 @@ gnome_vfs_directory_open (GnomeVFSDirectoryHandle **handle,
 			  const gchar * const meta_keys[],
 			  const GnomeVFSDirectoryFilter *filter)
 {
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return open (handle, text_uri, options, meta_keys, filter, NULL);
 }
@@ -197,8 +197,8 @@ gnome_vfs_directory_open_from_uri (GnomeVFSDirectoryHandle **handle,
 				   const gchar * const meta_keys[],
 				   const GnomeVFSDirectoryFilter *filter)
 {
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return open_from_uri (handle, uri, options, meta_keys, filter, NULL);
 }
@@ -335,7 +335,7 @@ directory_visit_internal (GnomeVFSURI *uri,
 
 		if (info->type != GNOME_VFS_FILE_TYPE_DIRECTORY) {
 			gnome_vfs_file_info_unref (info);
-			return GNOME_VFS_ERROR_NOTADIRECTORY;
+			return GNOME_VFS_ERROR_NOT_A_DIRECTORY;
 		}
 
 		ancestor_references = prepend_reference (ancestor_references,
@@ -474,7 +474,7 @@ gnome_vfs_directory_visit_uri (GnomeVFSURI *uri,
 			       GnomeVFSDirectoryVisitFunc callback,
 			       gpointer data)
 {
-	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return directory_visit_internal (uri, NULL, NULL,
 					 info_options, meta_keys, filter,
@@ -510,7 +510,7 @@ gnome_vfs_directory_visit (const gchar *text_uri,
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
 
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 
@@ -538,8 +538,8 @@ gnome_vfs_directory_visit_files_at_uri (GnomeVFSURI *uri,
 	GnomeVFSResult result;
 	GList *p;
 
-	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (file_list != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (file_list != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	info = gnome_vfs_file_info_new ();
 	result = GNOME_VFS_OK;

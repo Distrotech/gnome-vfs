@@ -154,30 +154,30 @@ static GnomeVFSResult ftp_response_to_vfs_result(gint response) {
 		case 426: 
 			return GNOME_VFS_ERROR_CANCELLED;
 		case 425:
-			return GNOME_VFS_ERROR_ACCESSDENIED;
+			return GNOME_VFS_ERROR_ACCESS_DENIED;
 		case 530:
 		case 331:
 		case 332:
 		case 532:
-			return GNOME_VFS_ERROR_LOGINFAILED;
+			return GNOME_VFS_ERROR_LOGIN_FAILED;
 		case 450:
 		case 550:
 		case 451:
 		case 551:
-			return GNOME_VFS_ERROR_NOTFOUND;
+			return GNOME_VFS_ERROR_NOT_FOUND;
 		case 452:
 		case 552:
-			return GNOME_VFS_ERROR_NOSPACE;
+			return GNOME_VFS_ERROR_NO_SPACE;
 		case 553:
-			return GNOME_VFS_ERROR_BADFILE;
+			return GNOME_VFS_ERROR_BAD_FILE;
 	}
 
 	/* FIXME - is this the correct interpretation of this error? */
-	/*if(IS_100(response)) return GNOME_VFS_ERROR_INPROGRESS;*/
+	/*if(IS_100(response)) return GNOME_VFS_ERROR_IN_PROGRESS;*/
 	if(IS_100(response)) return GNOME_VFS_OK;
 	if(IS_200(response)) return GNOME_VFS_OK;
 	/* FIXME - is this the correct interpretation of this error? */
-	/*if(IS_300(response)) return GNOME_VFS_ERROR_INPROGRESS;*/
+	/*if(IS_300(response)) return GNOME_VFS_ERROR_IN_PROGRESS;*/
 	if(IS_300(response)) return GNOME_VFS_OK;
 	if(IS_400(response)) return GNOME_VFS_ERROR_GENERIC;
 	if(IS_500(response)) return GNOME_VFS_ERROR_INTERNAL;
@@ -325,7 +325,7 @@ static GnomeVFSResult do_transfer_command(FtpConnection *conn, gchar *command) {
 			(sscanf(ptr+1,"%d,%d,%d,%d,%d,%d", &a1, &a2, &a3, &a4, &p1, &p2) != 6)) {
 			//ftp_debug(conn,g_strdup_printf("PASV response parse error `%s'", ptr?ptr+1:response));
 			g_free(response);
-			return GNOME_VFS_ERROR_CORRUPTEDDATA; /* uhh - I guess */
+			return GNOME_VFS_ERROR_CORRUPTED_DATA; /* uhh - I guess */
 		}
 
 		host = g_strdup_printf("%d.%d.%d.%d", a1, a2, a3, a4);
@@ -626,7 +626,7 @@ static GnomeVFSResult do_open	   (GnomeVFSMethod *method,
 		g_warning("Unsupported open mode %d\n", mode);
 		ftp_connection_release(conn);
 		/* FIXME - free lots-o-stuff */
-		return GNOME_VFS_ERROR_INVALIDOPENMODE;
+		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 	}
 	result = do_transfer_command(conn, command);
 	g_free(command);
@@ -659,7 +659,7 @@ static GnomeVFSResult do_read	   (GnomeVFSMethod *method, GnomeVFSMethodHandle *
 	/*
 	if(conn->operation != FTP_READ) {
 		g_print("attempted to read when conn->operation = %d\n", conn->operation);
-		return GNOME_VFS_ERROR_NOTPERMITTED;
+		return GNOME_VFS_ERROR_NOT_PERMITTED;
 	}*/
 	//g_print("do_read(%p)\n", method_handle);
 	return gnome_vfs_iobuf_read(conn->data_iobuf, buffer, num_bytes, bytes_read);
@@ -671,7 +671,7 @@ static GnomeVFSResult do_write	  (GnomeVFSMethod *method, GnomeVFSMethodHandle *
 					 GnomeVFSFileSize *bytes_written, GnomeVFSContext *context) {
 	FtpConnection *conn = (FtpConnection *)method_handle;
 	//g_print("do_write()\n");
-	if(conn->operation != FTP_WRITE) return GNOME_VFS_ERROR_NOTPERMITTED;
+	if(conn->operation != FTP_WRITE) return GNOME_VFS_ERROR_NOT_PERMITTED;
 	return 
 		gnome_vfs_iobuf_write(conn->data_iobuf, buffer, num_bytes, bytes_written);
 }
@@ -778,7 +778,7 @@ static GnomeVFSResult internal_get_file_info  (GnomeVFSMethod *method,
 
 	}
 	
-	return GNOME_VFS_ERROR_NOTFOUND;
+	return GNOME_VFS_ERROR_NOT_FOUND;
 
 }
 
@@ -1027,7 +1027,7 @@ do_move (GnomeVFSMethod *method,
 
 		return result;
 	} else {
-		return GNOME_VFS_ERROR_NOTSAMEFS;
+		return GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM;
 	}
 }
 

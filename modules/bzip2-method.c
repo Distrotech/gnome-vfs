@@ -202,19 +202,19 @@ result_from_bz_result (gint bz_result)
 		return GNOME_VFS_OK;
 
 	case BZ_MEM_ERROR:
-		return GNOME_VFS_ERROR_NOMEM;
+		return GNOME_VFS_ERROR_NO_MEMORY;
 
 	case BZ_PARAM_ERROR:
-		return GNOME_VFS_ERROR_BADPARAMS;
+		return GNOME_VFS_ERROR_BAD_PARAMETERS;
 
 	case BZ_DATA_ERROR:
-		return GNOME_VFS_ERROR_CORRUPTEDDATA;
+		return GNOME_VFS_ERROR_CORRUPTED_DATA;
 
 	case BZ_UNEXPECTED_EOF:
 		return GNOME_VFS_ERROR_EOF;
 
 	case BZ_SEQUENCE_ERROR:
-		return GNOME_VFS_ERROR_NOTPERMITTED;
+		return GNOME_VFS_ERROR_NOT_PERMITTED;
 
 	default:
 		return GNOME_VFS_ERROR_INTERNAL;
@@ -282,16 +282,16 @@ do_open (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
 	if (open_mode & GNOME_VFS_OPEN_WRITE)
-		return GNOME_VFS_ERROR_INVALIDOPENMODE;
+		return GNOME_VFS_ERROR_INVALID_OPEN_MODE;
 
 	/* We don't allow any paths in the bzip2 file. */
 	if (uri->text != NULL && uri->text[0] != 0)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	parent_uri = uri->parent;
 
 	if (open_mode & GNOME_VFS_OPEN_RANDOM)
-		return GNOME_VFS_ERROR_NOTSUPPORTED;
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
 	result = gnome_vfs_open_uri (&parent_handle, parent_uri, open_mode);
 	RETURN_IF_FAIL (result);
@@ -329,7 +329,7 @@ do_create (GnomeVFSMethod *method,
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
 
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 /* Close */

@@ -405,7 +405,7 @@ do_open (GnomeVFSMethod *method,
 	 GnomeVFSOpenMode mode,
 	 GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	return GNOME_VFS_ERROR_WRONG_FORMAT;
 }
 
 #if 0
@@ -418,7 +418,7 @@ do_create (GnomeVFSMethod *method,
 	   guint perm,
 	   GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	return GNOME_VFS_ERROR_WRONG_FORMAT;
 }
 #endif
 
@@ -427,7 +427,7 @@ do_close (GnomeVFSMethod *method,
 	  GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSContext *context)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	return GNOME_VFS_ERROR_WRONG_FORMAT;
 }
 
 #if 0
@@ -437,7 +437,7 @@ do_read (GnomeVFSMethodHandle *method_handle,
 	 GnomeVFSFileSize num_bytes,
 	 GnomeVFSFileSize *bytes_read)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	return GNOME_VFS_ERROR_WRONG_FORMAT;
 }
 
 static GnomeVFSResult   
@@ -446,7 +446,7 @@ do_write (GnomeVFSMethodHandle *method_handle,
 	  GnomeVFSFileSize num_bytes,
 	  GnomeVFSFileSize *bytes_written)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	return GNOME_VFS_ERROR_WRONG_FORMAT;
 }
 #endif
 
@@ -653,7 +653,7 @@ do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 			      GnomeVFSFileInfoOptions options,
 			      const GList *meta_keys)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;	
+	return GNOME_VFS_ERROR_WRONG_FORMAT;	
 }
 #endif
 

@@ -342,7 +342,7 @@ handle_overwrite (GnomeVFSResult *result,
 	switch (*overwrite_mode) {
 	case GNOME_VFS_XFER_OVERWRITE_MODE_ABORT:
 		*replace = FALSE;
-		*result = GNOME_VFS_ERROR_FILEEXISTS;
+		*result = GNOME_VFS_ERROR_FILE_EXISTS;
 		*skip = FALSE;
 		return FALSE;
 	case GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE:
@@ -362,7 +362,7 @@ handle_overwrite (GnomeVFSResult *result,
 		switch (action) {
 		case GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT:
 			*replace = FALSE;
-			*result = GNOME_VFS_ERROR_FILEEXISTS;
+			*result = GNOME_VFS_ERROR_FILE_EXISTS;
 			*skip = FALSE;
 			return FALSE;
 		case GNOME_VFS_XFER_OVERWRITE_ACTION_REPLACE:
@@ -849,7 +849,7 @@ create_directory (GnomeVFSURI *dir_uri,
 
 		result = gnome_vfs_make_directory_for_uri (dir_uri, 0700);
 
-		if (result == GNOME_VFS_ERROR_FILEEXISTS) {
+		if (result == GNOME_VFS_ERROR_FILE_EXISTS) {
 			gboolean force_replace;
 
 			if ((xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) != 0) {
@@ -1029,7 +1029,7 @@ xfer_create_target (GnomeVFSHandle **target_handle,
 					       GNOME_VFS_OPEN_WRITE,
 					       exclusive, 0600);
 
-		if (result == GNOME_VFS_ERROR_FILEEXISTS) {
+		if (result == GNOME_VFS_ERROR_FILE_EXISTS) {
 			gboolean replace;
 
 			retry = handle_overwrite (&result,
@@ -1296,7 +1296,7 @@ copy_items (const GnomeVFSURI *source_dir_uri,
 					g_assert (!"unimplemented");
 				}
 
-				if (result != GNOME_VFS_ERROR_FILEEXISTS) {
+				if (result != GNOME_VFS_ERROR_FILE_EXISTS) {
 					/* whatever happened, it wasn't a name conflict */
 					break;
 				}
@@ -1401,7 +1401,7 @@ move_items (const GnomeVFSURI *source_dir_uri,
 						     : GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE);
 
 
-			if (result == GNOME_VFS_ERROR_FILEEXISTS) {
+			if (result == GNOME_VFS_ERROR_FILE_EXISTS) {
 				/* deal with a name conflict -- ask the progress_callback for a better name */
 				g_free (progress->progress_info->duplicate_name);
 				progress->progress_info->duplicate_name = g_strdup (dest_name_item->data);
@@ -1583,7 +1583,7 @@ gnome_vfs_new_directory_with_unique_name (const char *target_dir,
 					   progress,
 					   &dummy);
 
-		if (result != GNOME_VFS_ERROR_FILEEXISTS) {
+		if (result != GNOME_VFS_ERROR_FILE_EXISTS) {
 			break;
 		}
 
@@ -1740,9 +1740,9 @@ gnome_vfs_xfer_uri (GnomeVFSURI *source_dir_uri,
 	GnomeVFSXferProgressInfo progress_info;
 	GnomeVFSResult result;
 
-	g_return_val_if_fail (source_dir_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (source_names != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (target_dir_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);		
+	g_return_val_if_fail (source_dir_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (source_names != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (target_dir_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);		
 	
 	
 	init_progress (&progress_state, &progress_info);
@@ -1801,7 +1801,7 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 			GnomeVFSURI *uri;
 			uri = gnome_vfs_uri_new (p->data);
 			if (uri == NULL)
-				return GNOME_VFS_ERROR_INVALIDURI;
+				return GNOME_VFS_ERROR_INVALID_URI;
 			
 			uri_list = g_list_prepend (uri_list, uri);
 		}
@@ -1824,7 +1824,7 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 				
 		source_dir_uri = gnome_vfs_uri_new (source_dir);
 		if (source_dir_uri == NULL)
-			return GNOME_VFS_ERROR_INVALIDURI;
+			return GNOME_VFS_ERROR_INVALID_URI;
 		result = gnome_vfs_xfer_delete_items (source_dir_uri, source_name_list,
 		      error_mode, xfer_options, &progress_state);
 		gnome_vfs_uri_unref (source_dir_uri);
@@ -1832,10 +1832,10 @@ gnome_vfs_xfer_private (const gchar *source_dir,
 		/* Copy items operation */
 		source_dir_uri = gnome_vfs_uri_new (source_dir);
 		if (source_dir_uri == NULL)
-			return GNOME_VFS_ERROR_INVALIDURI;
+			return GNOME_VFS_ERROR_INVALID_URI;
 		target_dir_uri = gnome_vfs_uri_new (target_dir);
 		if (target_dir_uri == NULL)
-			return GNOME_VFS_ERROR_INVALIDURI;
+			return GNOME_VFS_ERROR_INVALID_URI;
 
 		result = gnome_vfs_xfer_uri_internal (source_dir_uri,
 					     source_name_list,

@@ -57,9 +57,9 @@ gnome_vfs_inet_connection_create (GnomeVFSInetConnection **connection_return,
 	struct sockaddr_in addr;
 	gint sock;
 
-	g_return_val_if_fail (connection_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (host_name != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (host_port != 0, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (connection_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (host_name != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (host_port != 0, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	sock = socket (PF_INET, SOCK_STREAM, 0);
 	if (sock < 0)

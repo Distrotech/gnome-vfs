@@ -94,7 +94,7 @@ typedef struct  {
 #define CHECK_IF_SUPPORTED(method, what)		\
 G_STMT_START{						\
 	if (method->what == NULL)			\
-		return GNOME_VFS_ERROR_NOTSUPPORTED;	\
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;	\
 }G_STMT_END
 
 #define INVOKE_CHILD(result, method, what, params)	\
@@ -122,7 +122,7 @@ read_file (SeekableMethodHandle *mh)
 	guint8           buffer[BLK_SIZE];
 	GnomeVFSFileSize blk_read, blk_write;
 		
-	g_return_val_if_fail (mh != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (mh != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	do {
 		INVOKE_CHILD (result, mh, read, (mh->child_method, mh->child_handle, buffer, BLK_SIZE, &blk_read,
@@ -133,7 +133,7 @@ read_file (SeekableMethodHandle *mh)
 		if (result != GNOME_VFS_OK)
 			return result;
 		if (blk_write != blk_read)
-			return GNOME_VFS_ERROR_NOSPACE;
+			return GNOME_VFS_ERROR_NO_SPACE;
 		
 	} while (blk_read == BLK_SIZE);
 
@@ -149,7 +149,7 @@ write_file (SeekableMethodHandle *mh)
 	guint8           buffer[BLK_SIZE];
 	GnomeVFSFileSize blk_read, blk_write;
 
-	g_return_val_if_fail (mh != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (mh != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	do {
 		result = gnome_vfs_read (mh->tmp_file, buffer, BLK_SIZE,
@@ -161,7 +161,7 @@ write_file (SeekableMethodHandle *mh)
 		if (result != GNOME_VFS_OK)
 			return result;
 		if (blk_write != blk_read)
-			return GNOME_VFS_ERROR_NOSPACE;
+			return GNOME_VFS_ERROR_NO_SPACE;
 		
 	} while (blk_read == BLK_SIZE);
 
@@ -178,7 +178,7 @@ init_seek (SeekableMethodHandle *mh)
 	
 	/* Create a temporary file name */
 	if (!(stem = tmpnam (NULL)))
-		return GNOME_VFS_ERROR_NOSPACE;
+		return GNOME_VFS_ERROR_NO_SPACE;
 
 	mh->tmp_uri = g_strdup_printf ("file:%s", stem);
 	g_warning ("Opening temp seekable file '%s'", mh->tmp_uri);
@@ -248,7 +248,7 @@ do_open (GnomeVFSMethod *method,
 	 GnomeVFSContext *context)
 {
 	g_warning ("FIXME bugzilla.eazel.com 1192: Unhandled re-open");
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -261,7 +261,7 @@ do_create (GnomeVFSMethod *method,
 	   GnomeVFSContext *context)
 {
 	g_warning ("FIXME bugzilla.eazel.com 1192: Unhandled re-create");
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 static GnomeVFSResult
@@ -363,5 +363,5 @@ do_truncate_handle (GnomeVFSMethod *method,
 	g_warning ("FIXME bugzilla.eazel.com 1194: truncate needs implementing");
 	mh->dirty = TRUE;
 
-	return GNOME_VFS_ERROR_NOTSUPPORTED;
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }

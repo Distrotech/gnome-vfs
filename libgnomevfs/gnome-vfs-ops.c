@@ -48,12 +48,12 @@ gnome_vfs_open (GnomeVFSHandle **handle,
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	result = gnome_vfs_open_uri (handle, uri, open_mode);
 
@@ -107,12 +107,12 @@ gnome_vfs_create (GnomeVFSHandle **handle,
 	GnomeVFSURI *uri;
 	GnomeVFSResult result;
 
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	result = gnome_vfs_create_uri (handle, uri, open_mode, exclusive, perm);
 
@@ -243,7 +243,7 @@ GnomeVFSResult
 gnome_vfs_tell (GnomeVFSHandle *handle,
 		GnomeVFSFileSize *offset_return)
 {
-	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	return gnome_vfs_handle_do_tell (handle, offset_return);
 }
@@ -275,7 +275,7 @@ gnome_vfs_get_file_info (const gchar *text_uri,
 	uri = gnome_vfs_uri_new (text_uri);
 
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_NOTSUPPORTED;
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 	
 	result = gnome_vfs_get_file_info_uri(uri, info, options, meta_keys);
 	gnome_vfs_uri_unref (uri);
@@ -342,7 +342,7 @@ gnome_vfs_truncate (const char *text_uri, GnomeVFSFileSize length)
 	uri = gnome_vfs_uri_new (text_uri);
 
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_NOTSUPPORTED;
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
 
 	result = gnome_vfs_truncate_uri(uri, length);
 	gnome_vfs_uri_unref (uri);
@@ -395,11 +395,11 @@ gnome_vfs_make_directory (const gchar *text_uri,
 	GnomeVFSResult result;
 	GnomeVFSURI *uri;
 
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	result = gnome_vfs_make_directory_for_uri (uri, perm);
 
@@ -437,11 +437,11 @@ gnome_vfs_remove_directory (const gchar *text_uri)
 	GnomeVFSResult result;
 	GnomeVFSURI *uri;
 
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	result = gnome_vfs_remove_directory_from_uri (uri);
 
@@ -479,11 +479,11 @@ gnome_vfs_unlink (const gchar *text_uri)
 	GnomeVFSResult result;
 	GnomeVFSURI *uri;
 
-	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	result = gnome_vfs_unlink_from_uri (uri);
 
@@ -532,17 +532,17 @@ gnome_vfs_move (const gchar *old_text_uri,
 	GnomeVFSURI *old_uri, *new_uri;
 	GnomeVFSResult retval;
 
-	g_return_val_if_fail (old_text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (new_text_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (old_text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (new_text_uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	old_uri = gnome_vfs_uri_new (old_text_uri);
 	if (old_uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	new_uri = gnome_vfs_uri_new (new_text_uri);
 	if (new_uri == NULL) {
 		gnome_vfs_uri_unref (old_uri);
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 
 	retval = gnome_vfs_move_uri (old_uri, new_uri, force_replace);
@@ -593,20 +593,20 @@ gnome_vfs_check_same_fs (const gchar *a,
 	GnomeVFSURI *a_uri, *b_uri;
 	GnomeVFSResult retval;
 
-	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (b != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (same_fs_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (b != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
+	g_return_val_if_fail (same_fs_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	*same_fs_return = FALSE;
 
 	a_uri = gnome_vfs_uri_new (a);
 	if (a_uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	b_uri = gnome_vfs_uri_new (b);
 	if (b_uri == NULL) {
 		gnome_vfs_uri_unref (a_uri);
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 
 	retval = gnome_vfs_check_same_fs_uris (a_uri, b_uri, same_fs_return);
@@ -657,7 +657,7 @@ gnome_vfs_set_file_info (const gchar *text_uri,
 
 	uri = gnome_vfs_uri_new (text_uri);
 	if (uri == NULL)
-		return GNOME_VFS_ERROR_INVALIDURI;
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	result = gnome_vfs_set_file_info_uri (uri, info, mask);
 

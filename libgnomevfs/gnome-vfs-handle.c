@@ -45,13 +45,13 @@ struct GnomeVFSHandle {
 #define CHECK_IF_OPEN(handle)			\
 G_STMT_START{					\
 	if (handle->uri == NULL)		\
-		return GNOME_VFS_ERROR_NOTOPEN;	\
+		return GNOME_VFS_ERROR_NOT_OPEN;	\
 }G_STMT_END
 
 #define CHECK_IF_SUPPORTED(handle, what)		\
 G_STMT_START{						\
 	if (handle->uri->method->what == NULL)		\
-		return GNOME_VFS_ERROR_NOTSUPPORTED;	\
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;	\
 }G_STMT_END
 
 #define INVOKE(result, handle, what, params)		\
