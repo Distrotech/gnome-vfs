@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2000-06-03 12:47+0900\n"
-"PO-Revision-Date: 2000-06-03 04:19:26+0900\n"
+"POT-Creation-Date: 2000-06-22 16:16+0900\n"
+"PO-Revision-Date: 2000-06-23 04:22:58+0900\n"
 "Last-Translator: Young-Ho Cha <ganadist@dacome.co.kr>\n"
 "Language-Team: korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "%s:%d 가 메서드 이름을 포함하지 않습니다."
 msgid "%s:%d contains no module name."
 msgstr "%s:%d 가 모듈이름을 포함하지 않습니다."
 
-#: libgnomevfs/gnome-vfs-configuration.c:285
+#: libgnomevfs/gnome-vfs-configuration.c:286
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "설정 파일 `%s' 가 없습니다: %s"
@@ -38,18 +38,18 @@ msgstr "설정 파일 `%s' 가 없습니다: %s"
 msgid "Unknown sort rule %d"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-init.c:66
+#: libgnomevfs/gnome-vfs-init.c:67
 msgid "GNOME VFS already initialized."
 msgstr "그놈 VFS는 이미 초기화 되었습니다."
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:650
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr ""
+msgstr "파싱을 할수 없슴: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr ""
+msgstr "다음부터 파싱 오류는 무시됩니다."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -154,12 +154,12 @@ msgstr "디렉토리가 아님"
 #. GNOME_VFS_ERROR_INPROGRESS
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation in progress"
-msgstr ""
+msgstr "작동이 진행중"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Operation interrupted"
-msgstr ""
+msgstr "작동이 중단됨"
 
 #. GNOME_VFS_ERROR_FILEEXISTS
 #: libgnomevfs/gnome-vfs-result.c:61
@@ -174,7 +174,7 @@ msgstr ""
 #. GNOME_VFS_ERROR_NOTPERMITTED
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Operation not permitted"
-msgstr ""
+msgstr "작동이 허가되지 않음"
 
 #. GNOME_VFS_ERROR_ISDIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:64
@@ -209,7 +209,7 @@ msgstr "로그인 실패"
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Operation cancelled"
-msgstr ""
+msgstr "작동 취소됨"
 
 #. GNOME_VFS_ERROR_DIRECTORYBUSY
 #: libgnomevfs/gnome-vfs-result.c:71
@@ -273,19 +273,19 @@ msgstr ""
 msgid "Dying."
 msgstr ""
 
-#. FIXME
+#. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:503
 #, c-format
 msgid "Error reading: %s"
 msgstr "읽기 오류: %s"
 
-#. FIXME
+#. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:525
 #, c-format
 msgid "Error writing: %s"
 msgstr "쓰기 오루: %s"
 
-#. FIXME
+#. FIXME bugzilla.eazel.com 1226:
 #: libgnomevfs-corba/gnome-vfs-slave.c:574
 #, c-format
 msgid "Cannot write: %s"
@@ -310,45 +310,45 @@ msgstr ""
 #: libgnomevfs-corba/gnome-vfs-slave.c:641
 #, c-format
 msgid "Cannot listen on `%s': %s"
-msgstr ""
+msgstr "`%s'를 들을수 없슴: %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:663
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
-msgstr ""
+msgstr "`%s' 의 연결을 받을수 없슴: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1396
+#: libgnomevfs-corba/gnome-vfs-slave.c:1397
 msgid "Cannot initialize CORBA."
 msgstr "CORBA를 초기화 시킬수 없슴"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1403
+#: libgnomevfs-corba/gnome-vfs-slave.c:1404
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1410
+#: libgnomevfs-corba/gnome-vfs-slave.c:1411
 msgid "Cannot activate POA manager."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1435
+#: libgnomevfs-corba/gnome-vfs-slave.c:1436
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "사용법: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1446
+#: libgnomevfs-corba/gnome-vfs-slave.c:1447
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "파일 기술자 %d를 열수 없슴."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1469
+#: libgnomevfs-corba/gnome-vfs-slave.c:1470
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1479
+#: libgnomevfs-corba/gnome-vfs-slave.c:1480
 msgid "Cannot setup Request object."
 msgstr "요청한 객체를 설정할수 없슴"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1486
+#: libgnomevfs-corba/gnome-vfs-slave.c:1487
 msgid "Cannot extract IOR."
 msgstr "IOR을 풀수 없슴"
 
@@ -360,7 +360,7 @@ msgstr ""
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
-msgstr ""
+msgstr "`%s'를 위한 객체를 얻을수 없슴"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
@@ -372,193 +372,358 @@ msgstr ""
 msgid "Cannot connect socket `%s': %s"
 msgstr "소켓 `%s'를 연결할수 없슴: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:803
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:801
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "GNOME:VFS:Slave:Notify 를 초기화 할수 없슴"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:119
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:122
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
 #, c-format
 msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:153
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
 msgstr "GNOME::VFS:Slave %s를 죽일수 없슴 -- 예외 %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:156
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "GNOME::VFS:Slave 를 죽일수 없슴 (알수없는 IOR) -- 예외 %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:160
+#: libgnomevfs-pthread/gnome-vfs-job.c:161
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr ""
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:544
-#: libgnomevfs-pthread/gnome-vfs-job.c:1448
+#: libgnomevfs-pthread/gnome-vfs-job.c:545
+#: libgnomevfs-pthread/gnome-vfs-job.c:1449
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "알수없는 작업 ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:948
-#: libgnomevfs-pthread/gnome-vfs-job.c:1043
+#: libgnomevfs-pthread/gnome-vfs-job.c:949
+#: libgnomevfs-pthread/gnome-vfs-job.c:1044
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel을 열기위한 파이프 생성 실패: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1481
+#: libgnomevfs-pthread/gnome-vfs-job.c:1482
 msgid "Operation stopped"
 msgstr "작동 중지"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:291
+msgid "Edit Applications List"
+msgstr "프로그램 목록 편집"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:311
+#, c-format
+msgid "Select applications to appear in menu for mime type \"%s\""
+msgstr "mime형식 \"%s\"에 대한 메뉴에서 나타날 프로그램 선택"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:331
+msgid "Add Application..."
+msgstr "프로그램 추가..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:335
+msgid "Delete Application"
+msgstr "프로그램 제거"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:360
+msgid "Edit Components List"
+msgstr "컴포넌트 목록 편집"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:380
+#, c-format
+msgid "Select views to appear in menu for mime type \"%s\""
+msgstr "mime형식 \"%s\"에 대한 메뉴에서 나타날 보기프로그램 선택"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:553
+msgid "Add Mime Type"
+msgstr "Mime형식 추가"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:554
+msgid ""
+"Add a new Mime Type\n"
+"For example:  image/tiff; text/x-scheme"
+msgstr ""
+"새 Mime형식을 추가하십시오\n"
+"예: image/tiff; text/x-scheme"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:559
+msgid "Mime Type:"
+msgstr "Mime 형식:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:572
+msgid "Type in a description for this mime-type."
+msgstr "이 mime형식의 설명을 적으세요"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:578
+msgid "Description:"
+msgstr "설명"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:606
+msgid "Add New Extension"
+msgstr "새 확장자 추가"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:607
+msgid ""
+"Type in the extensions for this mime-type.\n"
+"For example:  .html, .htm"
+msgstr ""
+"이 mime형식의 확장자를 입력하십시오.\n"
+"예: .html, .htm"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:612
+msgid "Extension:"
+msgstr "확장자:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:673
+msgid "Add New Application"
+msgstr "새 프로그램"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:675
+msgid "Application Name:"
+msgstr "프로그램 이름:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:683
+msgid "Application Command:"
+msgstr "프로그램 명령:"
+
+#. Create label, menu and edit button for default applications
+#: mime-type-capplet/nautilus-mime-type-capplet.c:339
+msgid "Default Application:"
+msgstr "기본 프로그램:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:347
+#: mime-type-capplet/nautilus-mime-type-capplet.c:358
+msgid "Edit List"
+msgstr "편집 목록"
+
+#. Create label, menu and edit button for default components
+#: mime-type-capplet/nautilus-mime-type-capplet.c:352
+msgid "Default Viewer:"
+msgstr "기본 보기 프로그램:"
+
+#. Add icon box
+#: mime-type-capplet/nautilus-mime-type-capplet.c:363
+msgid "Select an icon..."
+msgstr "아이콘 선택..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:383
+msgid "Add"
+msgstr "추가"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:387
+msgid "Remove"
+msgstr "제거"
+
+#. Default Action frame
+#: mime-type-capplet/nautilus-mime-type-capplet.c:401
+msgid "Default Action"
+msgstr "기본 행동"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:407
+msgid "Use None"
+msgstr "아무것도 사용않음"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:413
+msgid "Use Application"
+msgstr "프로그램 사용"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:419
+msgid "Use Viewer"
+msgstr "보기 프로그램 사용"
+
+#. Open Behavior frame
+#.
+#. behavior_frame = gtk_frame_new (_("Open Behavior"));
+#. gtk_box_pack_start (GTK_BOX (vbox4), behavior_frame, FALSE, FALSE, 0);
+#.
+#. frame_vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
+#. gtk_container_add (GTK_CONTAINER (behavior_frame), frame_vbox);
+#.
+#. check_box = gtk_check_button_new_with_label (_("Can open multiple files"));
+#. gtk_box_pack_start (GTK_BOX (frame_vbox), check_box, FALSE, FALSE, 0);
+#.
+#. check_box = gtk_check_button_new_with_label (_("Can open from URI"));
+#. gtk_box_pack_start (GTK_BOX (frame_vbox), check_box, FALSE, FALSE, 0);
+#.
+#. Mime list Add and Delete buttons
+#: mime-type-capplet/nautilus-mime-type-capplet.c:441
+msgid "Add..."
+msgstr "추가..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:445
+msgid "Delete"
+msgstr "지움"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:588
+#: mime-type-capplet/nautilus-mime-type-capplet.c:730
+msgid "None"
+msgstr "없음"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:959
+msgid "Mime Type"
+msgstr "Mime 형식"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:960
+msgid "Description"
+msgstr "설명"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:961
+msgid "Application"
+msgstr "프로그램"
 
 #: modules/file-method.c:358
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "알수없는 GnomeVFSSeekPosition %d"
 
-#: modules/ftp-method.c:357
+#: modules/ftp-method.c:352
 msgid "ftpfs: Invalid host name."
 msgstr "ftpfs: 잘못된 호스트 이름."
 
-#: modules/ftp-method.c:380
+#: modules/ftp-method.c:375
 msgid "ftpfs: Invalid host address."
 msgstr "ftpfs: 잘못된 호스트 주소."
 
-#: modules/ftp-method.c:400
+#: modules/ftp-method.c:395
 #, c-format
 msgid "ftpfs: making connection to %s"
 msgstr "ftpfs: %s로 접속 연결중"
 
-#: modules/ftp-method.c:406
+#: modules/ftp-method.c:401
 msgid "ftpfs: connection interrupted by user"
 msgstr "ftpfs: 사용자가 접속 중지"
 
-#: modules/ftp-method.c:408
+#: modules/ftp-method.c:403
 #, c-format
 msgid "ftpfs: connection to server failed: %s"
 msgstr "ftpfs: 서버로 연결 실패: %s"
 
-#: modules/ftp-method.c:484
+#: modules/ftp-method.c:479
 #, c-format
 msgid "Waiting to retry... %d (Control-C to cancel)"
 msgstr "재시도하기 위해 대기중... %d (취소하려면 Control-C)"
 
-#: modules/ftp-method.c:755
+#: modules/ftp-method.c:750
 msgid " FTP: Password required for "
 msgstr " FTP: 비밀번호가 필요합니다 "
 
-#: modules/ftp-method.c:794
+#: modules/ftp-method.c:789
 msgid "ftpfs: sending login name"
 msgstr "ftpfs: 로그인 이름 전송중"
 
-#: modules/ftp-method.c:800
+#: modules/ftp-method.c:795
 msgid "ftpfs: sending user password"
 msgstr "ftpfs: 사용자 비밀번호 전송중"
 
-#: modules/ftp-method.c:806
+#: modules/ftp-method.c:801
 msgid "ftpfs: logged in"
 msgstr "ftpfs: 로그인 중"
 
-#: modules/ftp-method.c:818
+#: modules/ftp-method.c:813
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
 msgstr "ftpfs: 사용자 %s의 로그인이 잘못되었슴"
 
-#: modules/ftp-method.c:831
+#: modules/ftp-method.c:826
 msgid "ftpfs: aborting transfer."
 msgstr "ftpfs: 전송 중지."
 
-#: modules/ftp-method.c:833
+#: modules/ftp-method.c:828
 #, c-format
 msgid "ftpfs: abort error: %s"
 msgstr "ftpfs: 중지 오류: %s"
 
-#: modules/ftp-method.c:838
+#: modules/ftp-method.c:833
 msgid "ftpfs: abort failed"
 msgstr "ftpfs: 중지 실패"
 
-#: modules/ftp-method.c:915
+#: modules/ftp-method.c:910
 msgid "ftpfs: could not setup passive mode"
 msgstr "ftpfs: 수동모드로 설정하지 못하였습니다"
 
-#: modules/ftp-method.c:1092
+#: modules/ftp-method.c:1087
 #, c-format
 msgid "ftpfs: storing file %d (%d)"
 msgstr "ftpfs: 파일 저장중 %d (%d)"
 
-#: modules/ftp-method.c:1313 modules/ftp-method.c:1515
+#: modules/ftp-method.c:1308 modules/ftp-method.c:1510
 msgid "ftpfs: CWD failed."
 msgstr "ftpfs: 현재 작업 디렉토리를 읽을수 없습니다."
 
-#: modules/ftp-method.c:1323 modules/ftp-method.c:1330
+#: modules/ftp-method.c:1318 modules/ftp-method.c:1325
 msgid "ftpfs: couldn't resolve symlink"
 msgstr "ftpfs: symlink 를 해석할수 없습니다"
 
-#: modules/ftp-method.c:1382
+#: modules/ftp-method.c:1377
 msgid "Resolving symlink..."
 msgstr "symlink 해석중..."
 
-#: modules/ftp-method.c:1506
+#: modules/ftp-method.c:1501
 #, c-format
 msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
 msgstr "ftpfs: FTP디렉토리 %s 읽는중... (유닉스 ls옵션 사용하지 않음)"
 
-#: modules/ftp-method.c:1510
+#: modules/ftp-method.c:1505
 #, c-format
 msgid "ftpfs: Reading FTP directory %s..."
 msgstr "ftpfs: FTP디렉토리 %s 읽는중..."
 
-#: modules/ftp-method.c:1576
+#: modules/ftp-method.c:1571
 msgid "ftpfs: reading FTP directory interrupt by user"
 msgstr "ftpfs: FTP디렉토리 읽는중 사용자가 중지"
 
-#: modules/ftp-method.c:1600
+#: modules/ftp-method.c:1595
 msgid "ftpfs: got listing"
 msgstr "ftpfs: 목록 받는중"
 
-#: modules/ftp-method.c:1652
+#: modules/ftp-method.c:1647
 msgid "ftpfs: failed; nowhere to fallback to"
 msgstr ""
 
-#: modules/ftp-method.c:2045
+#: modules/ftp-method.c:2040
 msgid "Starting linear transfer..."
 msgstr "전송 시작..."
 
-#: modules/ftp-method.c:2115
+#: modules/ftp-method.c:2110
 msgid "Preparing reget..."
 msgstr "다시 받기 준비..."
 
-#: modules/http-method.c:502
+#: modules/http-method.c:503
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "잘못된 헤더 `%s'"
 
-#: modules/http-method.c:519
+#: modules/http-method.c:520
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s 받음"
 
-#: modules/http-method.c:655
+#: modules/http-method.c:656
 #, c-format
 msgid "Closing connection to %s"
 msgstr "%s의 연결 끊음"
 
-#: modules/http-method.c:809
+#: modules/http-method.c:810
 #, c-format
 msgid "%s of %s read"
 msgstr "%2$s 중 %1$s 읽음"
 
-#: modules/http-method.c:812
+#: modules/http-method.c:813
 #, c-format
 msgid "%s read"
 msgstr "%s 읽음"
 
 #. Multi-Status
-#: modules/http-method.c:974
+#: modules/http-method.c:975
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr ""
