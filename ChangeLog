@@ -1,5 +1,16 @@
 2000-05-31  John Sullivan  <sullivan@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(get_mime_type_from_uri_hack),
+	(gnome_vfs_mime_get_short_list_applications_for_uri),
+	(gnome_vfs_mime_get_short_list_components_for_uri),
+	(gnome_vfs_mime_get_all_applications_for_uri),
+	(gnome_vfs_mime_get_all_components_for_uri): Added some
+	temporary hacks so the _for_uri calls "work" by calling
+	through to the mime-type-based ones.
+
+2000-05-31  John Sullivan  <sullivan@eazel.com>
+
 	Couldn't wait for Maciej for a few bits here.
 
 	* libgnomevfs/gnome-vfs-mime-handlers.h:

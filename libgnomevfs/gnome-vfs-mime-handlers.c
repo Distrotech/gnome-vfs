@@ -25,6 +25,8 @@
 #include <gnome-vfs-mime-info.h>
 #include <stdio.h>
 
+/* FIXME: This next include is only here to support temporary hacks */
+#include <gnome-vfs-file-info.h>
 
 
 static gboolean str_to_bool (const char *str);
@@ -413,28 +415,102 @@ gnome_vfs_mime_get_default_component_for_uri (const char *uri)
 	return NULL;
 }
 
+/* FIXME: temporary hack */
+static char *
+get_mime_type_from_uri_hack (const char *uri)
+{
+	/* FIXME: Temporary hack for testing */
+	GnomeVFSResult result;
+	GnomeVFSFileInfo *file_info;
+	char *mime_type;
+
+	file_info = gnome_vfs_file_info_new ();
+	result = gnome_vfs_get_file_info (uri, file_info,
+					  GNOME_VFS_FILE_INFO_GETMIMETYPE
+					  | GNOME_VFS_FILE_INFO_FASTMIMETYPE
+		  			  | GNOME_VFS_FILE_INFO_FOLLOWLINKS, NULL);
+	if (result != GNOME_VFS_OK) {
+		return NULL;
+	}
+
+	mime_type = g_strdup (file_info->mime_type);
+
+	gnome_vfs_file_info_unref (file_info);
+
+	return mime_type;
+}
+
 GList *
 gnome_vfs_mime_get_short_list_applications_for_uri (const char *uri)
 {
-	return NULL;
+	/* FIXME: Temporary hack for testing */
+	char *mime_type;
+	GList *result;
+
+	mime_type = get_mime_type_from_uri_hack (uri);
+	result = gnome_vfs_mime_get_short_list_applications (mime_type);
+	g_free (mime_type);
+
+	return result;
 }
 
 GList *
 gnome_vfs_mime_get_short_list_components_for_uri (const char *uri)
 {
-	return NULL;
+	/* FIXME: Temporary hack for testing */
+	char *mime_type;
+	GList *result;
+
+	mime_type = get_mime_type_from_uri_hack (uri);
+	result = gnome_vfs_mime_get_short_list_components (mime_type);
+	g_free (mime_type);
+
+	return result;
 }
 
 GList *
 gnome_vfs_mime_get_all_applications_for_uri (const char *uri)
 {
-	return NULL;
+	/* FIXME: Temporary hack for testing */
+	char *mime_type;
+	GList *result;
+
+	mime_type = get_mime_type_from_uri_hack (uri);
+	result = gnome_vfs_mime_get_all_applications (mime_type);
+
+	/* Hack within a hack: at the moment the short list is sometimes
+	 * populated even though the "full" list isn't.
+	 */
+	if (result == NULL) {
+		result = gnome_vfs_mime_get_short_list_applications (mime_type);
+	}
+	g_free (mime_type);
+
+	return result;
 }
 
 GList *
 gnome_vfs_mime_get_all_components_for_uri (const char *uri)
 {
-	return NULL;
+	/* FIXME: Temporary hack for testing */
+	char *mime_type;
+	GList *result;
+
+	mime_type = get_mime_type_from_uri_hack (uri);
+	result = gnome_vfs_mime_get_all_components (mime_type);
+
+	/* Hack within a hack: at the moment the short list is sometimes
+	 * populated even though the "full" list isn't.
+	 */
+	if (result == NULL) {
+		result = gnome_vfs_mime_get_short_list_components (mime_type);
+	}
+	
+	g_free (mime_type);
+
+	
+
+	return result;
 }
 
 void
