@@ -1353,7 +1353,7 @@ msgstr "Uredi seznam programov"
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:360
 #, c-format
 msgid "Select applications to appear in menu for mime type \"%s\""
-msgstr "Izberi programe, ki naj se ka¾ejo v menuju mime tipov \"%s\""
+msgstr "Izberi programe, ki naj se ka¾ejo v menuju tipov mime \"%s\""
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:384
 msgid "Add Application..."
@@ -1375,39 +1375,39 @@ msgstr "Uredi seznam komponent"
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:450
 #, c-format
 msgid "Select views to appear in menu for mime type \"%s\""
-msgstr "Izberi poglede, ki naj se ka¾ejo v menuju mime tipov \"%s\""
+msgstr "Izberi poglede, ki naj se ka¾ejo v menuju tipov mime \"%s\""
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:681
 msgid ""
 "The MIME type entered contained upper case characters. Upper case characters "
 "were changed to lower case for you."
 msgstr ""
-"Vpisan MIME tip je vseboval velike èrke. Samodejno so bile spremenjene v "
+"Vpisan tip MIME je vseboval velike èrke. Samodejno so bile spremenjene v "
 "male."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:684
 msgid "Add New MIME Type"
-msgstr "Dodaj nov Mime tip"
+msgstr "Dodaj nov tip MIME"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:708
 msgid "Add Mime Type"
-msgstr "Dodaj Mime tip"
+msgstr "Dodaj tip Mime"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
 msgid ""
 "Add a new Mime Type\n"
 "For example:  image/tiff; text/x-scheme"
 msgstr ""
-"Dodaj nov Mime tip\n"
+"Dodaj nov tip Mime\n"
 "Naprimer:  image/tiff; text/x-scheme"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:717
 msgid "Mime Type:"
-msgstr "Mime tip:"
+msgstr "Tip mime:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:729
 msgid "Type in a description for this mime-type."
-msgstr "Vnesite opis tega mime tipa."
+msgstr "Vnesite opis tega tipa mime."
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:735
 msgid "Description:"
@@ -1434,7 +1434,7 @@ msgid ""
 "Type in the extensions for this mime-type.\n"
 "For example:  .html, .htm"
 msgstr ""
-"Vnesite novo pripono za ta mime tip.\n"
+"Vnesite novo pripono za ta tip mime.\n"
 "Naprimer:  .html, .htm"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:990
@@ -1485,7 +1485,7 @@ msgstr "Lahko odpre iz URI-a"
 #: mime-type-capplet/nautilus-mime-type-capplet.c:619
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1680
 msgid "Mime Type"
-msgstr "Mime tip"
+msgstr "Tip Mime"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:626
 msgid "Change Icon"
@@ -1513,11 +1513,11 @@ msgstr "Uredi seznam"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:696
 msgid "Add new Mime type..."
-msgstr "Dodaj nov Mime tip..."
+msgstr "Dodaj nov tip Mime..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:702
 msgid "Delete this Mime type..."
-msgstr "Zbri¹i ta Mime tip..."
+msgstr "Zbri¹i ta tip Mime..."
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:713
 msgid "Revert to System Defaults"
