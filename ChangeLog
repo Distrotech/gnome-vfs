@@ -1,3 +1,9 @@
+2000-08-07  Ian McKellar  <yakk@yakk.net.au>
+
+	* modules/http-method.c: (process_propfind_propstat),
+	(do_get_file_info):
+	Fixed a bug that affected Xythos interoperability.
+
 2000-08-06  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/ftp-method.c: (do_get_file_info):
