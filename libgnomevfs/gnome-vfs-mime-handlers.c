@@ -201,13 +201,15 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	const char *short_list_id_list;
 	const char *short_list_id_user_additions;
 	const char *short_list_id_user_removals;
-	char **short_list_strv;
-	char **short_list_addition_strv;
-	char **short_list_removal_strv;
+	GList *system_short_list;
+	GList *short_list_addition_list;
+	GList *short_list_removal_list;
 	GList *id_list;
 	GList *preferred_applications;
+	GList *pruned_addition_list;
+	GList *system_short_list_copy;
+	GList *extended_short_list;
 	GList *p;
-	int i;
 	char *user_level, *id_list_key;
 	GnomeVFSMimeApplication *application;
 
@@ -234,24 +236,16 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 		 "short_list_application_user_removals");
 	
 	/* compute list modified by delta */
-	short_list_strv = strsplit_handle_null (short_list_id_list, ",", 0);
-	short_list_addition_strv = strsplit_handle_null (short_list_id_user_additions, ",", 0);
-	short_list_removal_strv = strsplit_handle_null (short_list_id_user_removals, ",", 0);
+	system_short_list = comma_separated_str_to_str_list (short_list_id_list);
+	short_list_addition_list = comma_separated_str_to_str_list (short_list_id_user_additions);
+	short_list_removal_list = comma_separated_str_to_str_list (short_list_id_user_removals);
 
-	id_list = NULL;
+	pruned_addition_list = str_list_difference (short_list_addition_list, system_short_list);
+	system_short_list_copy = g_list_copy (system_short_list);
+	extended_short_list = g_list_concat (system_short_list_copy, pruned_addition_list);
 
-	for (i = 0; short_list_strv[i] != NULL; i++) {
-		if (! strv_contains_str (short_list_removal_strv, short_list_strv[i])) {
-			id_list = g_list_prepend (id_list, short_list_strv[i]);
-		}
-	}
+	id_list = str_list_difference (extended_short_list, short_list_removal_list);
 
-	for (i = 0; short_list_addition_strv[i] != NULL; i++) {
-		if ((! strv_contains_str (short_list_removal_strv, short_list_addition_strv[i])) &&
-		    (! strv_contains_str (short_list_strv, short_list_addition_strv[i]))) {
-			id_list = g_list_prepend (id_list, short_list_addition_strv[i]);
-		}
-	}
 
 	preferred_applications = NULL;
 	for (p = id_list; p != NULL; p = p->next) {
@@ -261,12 +255,19 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 				(preferred_applications, application);
 		}
 	}
-	/* No need to reverse the list since the id_list was also backwards. */
+
+	preferred_applications = g_list_reverse (preferred_applications);
+
+	g_list_free_deep (system_short_list);
+	g_list_free_deep (short_list_addition_list);
+	g_list_free_deep (short_list_removal_list);
+
+	/* pruned_addition_list and system_short_list_copy are
+	 * concat()ed into this and don't need to be freed. 
+	 */
+	g_list_free (extended_short_list);
 
 	g_list_free (id_list);
-	g_strfreev (short_list_strv);
-	g_strfreev (short_list_addition_strv);
-	g_strfreev (short_list_removal_strv);
 
 	return preferred_applications;
 }
@@ -504,6 +505,7 @@ gnome_vfs_mime_set_default_action_type (const char *mime_type,
 	fclose (f);
 
 	g_free (user_mime_file);
+	gnome_vfs_mime_info_reload ();
 }
 
 void 
@@ -528,6 +530,7 @@ gnome_vfs_mime_set_default_application (const char *mime_type,
 	fclose (f);
 
 	g_free (user_mime_file);
+	gnome_vfs_mime_info_reload ();
 }
 
 void
@@ -552,6 +555,7 @@ gnome_vfs_mime_set_default_component (const char *mime_type,
 	fclose (f);
 
 	g_free (user_mime_file);
+	gnome_vfs_mime_info_reload ();
 }
 
 void
@@ -615,6 +619,7 @@ gnome_vfs_mime_set_short_list_applications (const char *mime_type,
 
 	g_free (addition_string);
 	g_free (removal_string);
+	gnome_vfs_mime_info_reload ();
 }
 
 
@@ -677,6 +682,7 @@ gnome_vfs_mime_set_short_list_components (const char *mime_type,
 	g_free (user_mime_file);
 	g_free (addition_string);
 	g_free (removal_string);
+	gnome_vfs_mime_info_reload ();
 }
 
 /* FIXME bugzilla.eazel.com 1148: 
@@ -999,6 +1005,7 @@ gnome_vfs_mime_extend_all_applications (const char *mime_type,
 
 	g_free (update_str);
 	g_free (user_mime_file);
+	gnome_vfs_mime_info_reload ();
 }
 
 
@@ -1039,6 +1046,7 @@ gnome_vfs_mime_remove_from_all_applications (const char *mime_type,
 
 	g_free (update_str);
 	g_free (user_mime_file);
+	gnome_vfs_mime_info_reload ();
 }
 
 void
@@ -1069,6 +1077,7 @@ gnome_vfs_mime_define_application (GnomeVFSMimeApplication *application)
 
 	g_free (user_mime_file);
 	g_free (hack_mime_type);
+	gnome_vfs_mime_info_reload ();
 }
 
 

@@ -512,9 +512,14 @@ maybe_reload (void)
 
 	last_checked = now;
 	
-	if (!need_reload)
-		return;
+	if (need_reload) {
+	        gnome_vfs_mime_info_reload ();
+	}
+}
 
+void
+gnome_vfs_mime_info_reload (void)
+{
 	/* 1. Clean */
 	g_hash_table_foreach_remove (specific_types, remove_keys, NULL);
 	g_hash_table_foreach_remove (generic_types, remove_keys, NULL);
@@ -522,6 +527,7 @@ maybe_reload (void)
 	/* 2. Reload */
 	load_mime_type_info ();
 }
+
 
 /**
  * gnome_vfs_mime_context_get_value:

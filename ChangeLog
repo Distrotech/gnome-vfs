@@ -1,3 +1,26 @@
+2000-06-06  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.h,
+	libgnomevfs/gnome-vfs-mime-info.c
+	(gnome_vfs_mime_info_reload): New call to force reloading of the
+	MIME database.
+	(maybe_reload): Use gnome_vfs_mime_info_reload if we decide to
+	reload.
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_short_list_applications),
+	(gnome_vfs_mime_set_default_action_type),
+	(gnome_vfs_mime_set_default_application),
+	(gnome_vfs_mime_set_default_component),
+	(gnome_vfs_mime_set_short_list_applications),
+	(gnome_vfs_mime_set_short_list_components),
+	(gnome_vfs_mime_extend_all_applications),
+	(gnome_vfs_mime_remove_from_all_applications),
+	(gnome_vfs_mime_define_application): call
+	gnome_vfs_mime_info_reload when done reloading.
+	(gnome_vfs_mime_set_short_list_applications): Rewritten for
+	correct memory management and improved clarity.
+	
 2000-06-06  John Sullivan  <sullivan@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
