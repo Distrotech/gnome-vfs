@@ -1,3 +1,8 @@
+2005-01-16 Paolo Borelli <pborelli@katamail.com> 
+
+	* modules/sftp-method.c: always check gnome_vfs_unescape_string
+	return value.
+
 2005-01-15  Nate Nielsen <nielsen@memberwebs.com>
 
 	* modules/smb-method.c (add_cached_server), (initial_authentication)

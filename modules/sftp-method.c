@@ -1784,6 +1784,8 @@ do_open (GnomeVFSMethod        *method,
 	if (res != GNOME_VFS_OK) return res;
 
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
+	if (path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	id = sftp_connection_get_id (conn);
 
@@ -1861,6 +1863,8 @@ do_create (GnomeVFSMethod        *method,
 	if (res != GNOME_VFS_OK) return res;
 
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
+	if (path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	id = sftp_connection_get_id (conn);
 
@@ -2332,6 +2336,8 @@ do_get_file_info (GnomeVFSMethod          *method,
 	if (res != GNOME_VFS_OK) return res;
 
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
+	if (path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	if (options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) {
 		res = get_real_path (conn, path, &real_path);
@@ -2440,6 +2446,8 @@ do_open_directory (GnomeVFSMethod          *method,
 	id = sftp_connection_get_id (conn);
 
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
+	if (path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	/* If the path is empty (i.e. root directory), then give it the root directory explicitly */
 	if (!strcmp (path, "")) {
@@ -2679,6 +2687,9 @@ do_make_directory (GnomeVFSMethod  *method,
 	id = sftp_connection_get_id (conn);
 
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
+	if (path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
 	memset (&info, 0, sizeof (GnomeVFSFileInfo));
 	iobuf_send_string_request_with_file_info (conn->out_fd, id, SSH2_FXP_MKDIR,
 						  path, strlen (path), &info,
@@ -2710,6 +2721,9 @@ do_remove_directory (GnomeVFSMethod  *method,
 	id = sftp_connection_get_id (conn);
 
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
+	if (path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
 	iobuf_send_string_request (conn->out_fd, id, SSH2_FXP_RMDIR, path, strlen (path));
 
 	g_free (path);
@@ -2743,7 +2757,12 @@ do_move (GnomeVFSMethod  *method,
 	buffer_init (&msg);
 
 	old_path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (old_uri), NULL);
+	if (old_path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
 	new_path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (new_uri), NULL);
+	if (new_path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	id = sftp_connection_get_id (conn);
 
@@ -2799,8 +2818,15 @@ do_rename (GnomeVFSMethod  *method,
 	buffer_init (&msg);
 
 	old_path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (old_uri), NULL);
+	if (old_path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
 	old_dirname = g_path_get_dirname (old_path);
+
 	new_path = g_build_filename (old_dirname, new_name, NULL);
+	if (new_path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
 	g_free (old_dirname);
 
 	id = sftp_connection_get_id (conn);
@@ -2839,6 +2865,9 @@ do_unlink (GnomeVFSMethod  *method,
 	id = sftp_connection_get_id (conn);
 
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
+	if (path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
+
 	iobuf_send_string_request (conn->out_fd, id, SSH2_FXP_REMOVE, path, strlen (path));
 
 	g_free (path);
@@ -2908,6 +2937,9 @@ do_set_file_info (GnomeVFSMethod          *method,
 		id = sftp_connection_get_id (conn);
 
 		path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
+		if (path == NULL)
+			return GNOME_VFS_ERROR_INVALID_URI;
+
 		iobuf_send_string_request_with_file_info (conn->out_fd, id, SSH2_FXP_SETSTAT,
 							  path, strlen (path), info, mask);
 
@@ -2951,6 +2983,8 @@ do_create_symlink (GnomeVFSMethod   *method,
 	buffer_init (&msg);
 
 	path = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri), NULL);
+	if (path == NULL)
+		return GNOME_VFS_ERROR_INVALID_URI;
 
 	id = sftp_connection_get_id (conn);
 
