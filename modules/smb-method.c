@@ -74,14 +74,11 @@ typedef struct {
 } SmbServerCacheEntry;
 
 typedef struct {
-	char *server_name; /* Server or workgroup */
-	char *share_name; /* NULL for just the server or a workgroup,
-			     NULL used as default for shares if there is no
-			     specific one for the share */
-	
 	char *username;
 	char *domain;
-} SmbDefaultUser;
+        char *password;
+        time_t stamp;
+} SmbCachedUser;
 
 static GMutex *smb_lock;
 
@@ -89,11 +86,13 @@ static SMBCCTX *smb_context = NULL;
 
 static GHashTable *server_cache = NULL;
 
+static GHashTable *user_cache = NULL;
+
 #define SMB_BLOCK_SIZE (32*1024)
 
-/* Reap unused server connections after 30 minutes */
-#define SERVER_CACHE_REAP_TIMEOUT (30*60)
-static guint server_cache_reap_timeout = 0;
+/* Reap unused server connections and user cache after 30 minutes */
+#define CACHE_REAP_TIMEOUT (30 * 60)
+static guint cache_reap_timeout = 0;
 
 /* The magic "default workgroup" hostname */
 #define DEFAULT_WORKGROUP_NAME "X-GNOME-DEFAULT-WORKGROUP"
@@ -104,8 +103,6 @@ static guint server_cache_reap_timeout = 0;
 
 static GHashTable *workgroups = NULL;
 static time_t workgroups_timestamp = 0;
-
-static GHashTable *default_user_hashtable = NULL;
 
 /* Authentication ----------------------------------------------------------- */
 
@@ -194,6 +191,15 @@ string_compare (const char *a, const char *b)
 	}
 }
 
+static gchar*
+string_realloc (gchar *dest, const gchar *src)
+{
+        if (string_compare (src, dest))
+                return dest;
+        g_free (dest);
+        return string_dup_nzero (src);
+}
+
 static gboolean
 server_equal (gconstpointer  v1,
 	      gconstpointer  v2)
@@ -246,46 +252,13 @@ server_free (SmbServerCacheEntry *entry)
 	g_free (entry);
 }
 
-static gboolean
-default_user_equal (gconstpointer  v1,
-		    gconstpointer  v2)
-{
-	const SmbDefaultUser *e1, *e2;
-
-	e1 = v1;
-	e2 = v2;
-	
-	return (string_compare (e1->server_name, e2->server_name) &&
-		string_compare (e1->share_name, e2->share_name));
-}
-
-static guint
-default_user_hash (gconstpointer  v)
-{
-	const SmbDefaultUser *e;
-	guint hash;
-
-	e = v;
-	hash = 0;
-	if (e->server_name) {
-		hash = g_str_hash (e->server_name);
-	}
-	if (e->share_name) {
-		hash = hash ^ g_str_hash (e->share_name);
-	}
-	return hash;
-}
-
 static void
-default_user_free (SmbDefaultUser *entry)
+user_free (SmbCachedUser *user)
 {
-	g_free (entry->server_name);
-	g_free (entry->share_name);
-	
-	g_free (entry->username);
-	g_free (entry->domain);
-
-	g_free (entry);
+        g_free (user->username);
+        g_free (user->domain);
+        g_free (user->password);
+        g_free (user);
 }
 
 static void
@@ -301,19 +274,34 @@ add_old_servers (gpointer key,
 
 	entry = key;
 	array = user_data;
-	if (now > entry->last_time + SERVER_CACHE_REAP_TIMEOUT ||
-	    now < entry->last_time) {
+	if (now > entry->last_time + CACHE_REAP_TIMEOUT || now < entry->last_time)
 		g_ptr_array_add (array, entry->server);
-	}
 }
 
+static gboolean
+reap_user (gpointer key, gpointer value, gpointer user_data)
+{
+        SmbCachedUser *user = (SmbCachedUser*)value;
+        time_t now =  time (NULL);
+
+        if (now > user->stamp + CACHE_REAP_TIMEOUT || now < user->stamp) 
+                return TRUE;
+        return FALSE;              
+}
 
 static gboolean
-server_cache_reap_cb (void)
+cache_reap_cb (void)
 {
-     	int size;
 	GPtrArray *servers;
+        gboolean ret;
+        int size;
 	int i;
+        
+        /* Don't deadlock here, this is callback and we're not completely
+         * sure when we'll be called */
+        if (!g_mutex_trylock (smb_lock))
+                return TRUE;
+        DEBUG_SMB(("LOCK %s\n", G_GNUC_PRETTY_FUNCTION));
 
 	size = g_hash_table_size (server_cache);
 	servers = g_ptr_array_sized_new (size);
@@ -327,21 +315,26 @@ server_cache_reap_cb (void)
 	}
 
 	g_ptr_array_free (servers, TRUE);
+     
+        /* Cleanup users */
+        g_hash_table_foreach_remove (user_cache, reap_user, NULL);
 
-	if (g_hash_table_size (server_cache) == 0) {
-		server_cache_reap_timeout = 0;
-		return FALSE;
-	} else {
-		return TRUE;
-	}
+        ret = !(g_hash_table_size (server_cache) == 0 && 
+                g_hash_table_size (user_cache) == 0);
+        if (!ret)
+                cache_reap_timeout = 0;
+
+        UNLOCK_SMB();
+
+        return ret;        
 }
 
 static void
-schedule_server_cache_reap (void)
+schedule_cache_reap (void)
 {
-	if (server_cache_reap_timeout == 0) {
-		server_cache_reap_timeout = g_timeout_add (SERVER_CACHE_REAP_TIMEOUT*1000,
-							   (GSourceFunc)server_cache_reap_cb, NULL);
+	if (cache_reap_timeout == 0) {
+		cache_reap_timeout = g_timeout_add (CACHE_REAP_TIMEOUT * 1000,
+						    (GSourceFunc)cache_reap_cb, NULL);
 	}
 }
 
@@ -351,12 +344,11 @@ add_cached_server (SMBCCTX *context, SMBCSRV *new,
 		   const char *domain, const char *username)
 {
 	SmbServerCacheEntry *entry = NULL;
-	SmbDefaultUser *default_user;
 
 	DEBUG_SMB(("add_cached_server: server: %s, share: %s, domain: %s, user: %s\n",
 		   server_name, share_name, domain, username));
 	
-	schedule_server_cache_reap ();
+	schedule_cache_reap ();
 	
 	entry = g_new0 (SmbServerCacheEntry, 1);
 	
@@ -371,16 +363,6 @@ add_cached_server (SMBCCTX *context, SMBCSRV *new,
 	g_hash_table_insert (server_cache, entry, entry);
 
 	cache_access_failed = FALSE;
-
-	if (current_auth_context) {
-        	default_user = g_new0 (SmbDefaultUser, 1);
-		default_user->server_name = string_dup_nzero (server_name);
-		default_user->share_name = string_dup_nzero (share_name);
-		default_user->username = string_dup_nzero (username);
-		default_user->domain = string_dup_nzero (domain);
-		g_hash_table_replace (default_user_hashtable, default_user, default_user);
-	}
-
 	return 0;
 }
 
@@ -414,20 +396,12 @@ remove_server  (gpointer key,
 		gpointer user_data)
 {
 	SmbServerCacheEntry *entry;
-	SmbDefaultUser default_user;
 	SMBCSRV *server;
 	
 	entry = key;
 	server = user_data;
 
 	if (entry->server == user_data) {
-		default_user.server_name = entry->server_name;
-		default_user.share_name = entry->share_name;
-		default_user.username = entry->username;
-		default_user.domain = entry->domain;
-		
-		g_hash_table_remove (default_user_hashtable, &default_user);
-		
 		entry->server = NULL;
 		return TRUE;
 	} 
@@ -654,17 +628,12 @@ try_init (void)
 #endif		
 	}
 
-	server_cache = g_hash_table_new_full (server_hash,
-					      server_equal,
-					      (GDestroyNotify)server_free,
-					      NULL);
-	workgroups = g_hash_table_new_full (g_str_hash,
-					    g_str_equal,
+	server_cache = g_hash_table_new_full (server_hash, server_equal,
+					      (GDestroyNotify)server_free, NULL);
+	workgroups = g_hash_table_new_full (g_str_hash, g_str_equal,
 					    g_free, NULL);
-	
-	default_user_hashtable = g_hash_table_new_full (default_user_hash,
-							default_user_equal,
-							(GDestroyNotify)default_user_free, NULL);
+	user_cache = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                            g_free, (GDestroyNotify)user_free);
 	
 	UNLOCK_SMB();
 
@@ -680,17 +649,72 @@ try_init (void)
 /* Authentication ----------------------------------------------------------- */
 
 static char*
-get_auth_display_uri (SmbAuthContext *actx)
+get_auth_display_uri (SmbAuthContext *actx, gboolean machine)
 {
-        if (actx->uri != NULL)
-		return gnome_vfs_uri_to_string (actx->uri, 0);
-    	else
-        	return g_strdup_printf ("smb://%s%s%s%s", 
-					actx->for_server ? actx->for_server : "", 
-					actx->for_server ? "/" : "",
-					actx->for_share ? actx->for_share : "",
-					actx->for_share ? "/" : "");
+        if (actx->uri != NULL && !machine)
+                return gnome_vfs_uri_to_string (actx->uri, 0);
+         else
+                return g_strdup_printf ("smb://%s%s%s%s", 
+                                        actx->for_server ? actx->for_server : "", 
+                                        actx->for_server ? "/" : "",
+                                        actx->for_share && !machine ? actx->for_share : "",
+                                        actx->for_share && !machine ? "/" : "");
 }
+
+static void
+update_user_cache (SmbAuthContext *actx, gboolean with_share)
+{
+        SmbCachedUser *user;
+        gchar *key;
+        
+        g_return_if_fail (actx->for_server != NULL);
+        
+        key = g_strdup_printf ("%s/%s", actx->for_server, with_share ? actx->for_share : "");
+        user = (SmbCachedUser*)g_hash_table_lookup (user_cache, key);
+        
+        DEBUG_SMB(("[auth] Saved in cache: %s = %s:%s@%s\n", key, actx->use_user, actx->use_domain, actx->use_password));
+        
+        if (!user) {
+                user = g_new0 (SmbCachedUser, 1);
+                g_hash_table_replace (user_cache, key, user);
+                schedule_cache_reap ();
+        } else {
+                g_free (key);
+        }
+
+        user->domain = string_realloc (user->domain, actx->use_domain);
+        user->username = string_realloc (user->username, actx->use_user);
+        user->password = string_realloc (user->password, actx->use_password);
+        user->stamp = time (NULL);
+}
+
+static gboolean
+lookup_user_cache (SmbAuthContext *actx, gboolean with_share, gboolean with_user)
+{
+        SmbCachedUser *user;
+        gchar *key;
+       
+        g_return_val_if_fail (actx->for_server != NULL, FALSE);
+       
+        key = g_strdup_printf ("%s/%s", actx->for_server, with_share ? actx->for_share : "");
+        user = (SmbCachedUser*)g_hash_table_lookup (user_cache, key);
+        g_free (key);
+       
+        /* If the caller specified we already have a user name double check that... */
+        if (with_user && (!string_compare (user->username, actx->use_user) ||
+                          !string_compare (user->domain, actx->use_domain)))
+                return FALSE;
+                        
+        if (user) {
+                actx->use_user = string_realloc (actx->use_user, user->username);
+                actx->use_domain = string_realloc (actx->use_domain, user->domain);
+                actx->use_password = string_realloc (actx->use_password, user->password);
+                DEBUG_SMB(("[auth] Looked up in cache: %s:%s@%s\n", actx->use_user, actx->use_domain, actx->use_password));
+                return TRUE;
+        }
+        
+        return FALSE;
+}      
 
 static gboolean
 initial_authentication (SmbAuthContext *actx)
@@ -700,8 +724,7 @@ initial_authentication (SmbAuthContext *actx)
 	GnomeVFSToplevelURI *toplevel_uri;
 	SmbServerCacheEntry server_lookup;
 	SmbServerCacheEntry *server;
-	SmbDefaultUser *default_user;
-	SmbDefaultUser lookup;
+        gboolean preset_user = FALSE;
 	char *tmp;
 
 	DEBUG_SMB(("[auth] Initial authentication lookups\n"));
@@ -727,44 +750,29 @@ initial_authentication (SmbAuthContext *actx)
 			actx->use_domain = NULL;
 			DEBUG_SMB(("[auth] User from URI: %s\n", actx->use_user));
 		}
+                preset_user = TRUE;
 	} 
-
-        /* Lookup a default user and domain */
-        if (actx->use_user == NULL) {
-		
-		/* lookup default user/domain */
-		lookup.server_name = actx->for_server;
-		lookup.share_name = actx->for_share;
-
-		default_user = g_hash_table_lookup (default_user_hashtable, &lookup);
-		if (default_user != NULL) {
-			g_free (actx->use_user);
-			actx->use_user = string_dup_nzero (default_user->username);
-			g_free (actx->use_domain);
-			actx->use_domain = string_dup_nzero (default_user->domain);
-			DEBUG_SMB(("[auth] Looked up default: %s@%s\n", actx->use_user, actx->use_domain));
-		}
-	}
 	
 	/* Lookup the password in our internal cache */
-	if (actx->use_user != NULL && actx->use_user[0] != 0) {
+	server_lookup.server_name = (char*)actx->for_server;
+	server_lookup.share_name = (char*)actx->for_share;
+	server_lookup.username = (char*)actx->use_user;
+	server_lookup.domain = (char*)actx->use_domain;
 		
-		server_lookup.server_name = (char*)actx->for_server;
-		server_lookup.share_name = (char*)actx->for_share;
-		server_lookup.username = (char*)actx->use_user;
-		server_lookup.domain = (char*)actx->use_domain;
-		
-		server = g_hash_table_lookup (server_cache, &server_lookup);
-		if (server != NULL) {
-			/* Server is in cache already, no need to get password */
-			g_free (actx->use_password);
-			actx->use_password = g_strdup ("");
-			DEBUG_SMB(("[auth] Using login info for '%s@%s' from our internal cache\n", actx->use_user, actx->use_domain));
-			return TRUE;
-		}
-	}	
+	server = g_hash_table_lookup (server_cache, &server_lookup);
+	if (server != NULL) {
+		/* Server is in cache already, no need to get password */
+		g_free (actx->use_password);
+		actx->use_password = g_strdup ("");
+		DEBUG_SMB(("[auth] Using login info for '%s@%s' from our internal cache\n", actx->use_user, actx->use_domain));
+		return TRUE;
+	}
 
-	/* TODO: Complete full cache authentication loading */
+        /* Lookup a default user and domain (both with and without share) */
+        if (lookup_user_cache (actx, TRUE, preset_user) ||
+            lookup_user_cache (actx, FALSE, preset_user))
+                return TRUE;    
+
 	return FALSE;
 }
 
@@ -781,7 +789,7 @@ prefill_authentication (SmbAuthContext *actx)
 	g_return_val_if_fail (actx->for_server != NULL, FALSE);	
 
 	memset (&in_args, 0, sizeof (in_args));
-	in_args.uri = get_auth_display_uri (actx);
+	in_args.uri = get_auth_display_uri (actx, FALSE);
 	in_args.protocol = "smb";
 	in_args.server = (char*)actx->for_server;
 	in_args.object = (char*)actx->for_share;
@@ -794,10 +802,38 @@ prefill_authentication (SmbAuthContext *actx)
 	DEBUG_SMB(("[auth] Trying to prefill credentials for: %s\n", in_args.uri));
 
 	invoked = gnome_vfs_module_callback_invoke
-		(GNOME_VFS_MODULE_CALLBACK_FILL_AUTHENTICATION,
-		 &in_args, sizeof (in_args),
-		 &out_args, sizeof (out_args));
+		              (GNOME_VFS_MODULE_CALLBACK_FILL_AUTHENTICATION,
+		              &in_args, sizeof (in_args),
+		              &out_args, sizeof (out_args));
 
+        g_free (in_args.uri);
+               
+        /* If that didn't work then try without the share name */
+        if (!invoked || !out_args.valid) {
+
+                g_free (out_args.username);
+                g_free (out_args.domain);
+                g_free (out_args.password);
+      
+                memset (&in_args, 0, sizeof (in_args));
+                in_args.uri = get_auth_display_uri (actx, TRUE);
+                in_args.protocol = "smb";
+                in_args.server = (char*)actx->for_server;
+                in_args.object = (char*)NULL;
+                in_args.username = (char*)actx->use_user;
+                in_args.domain = (char*)actx->use_domain;
+                in_args.port = actx->uri ? ((GnomeVFSToplevelURI*)actx->uri)->host_port : 0;
+
+                memset (&out_args, 0, sizeof (out_args));
+
+                DEBUG_SMB(("[auth] Trying to prefill server credentials for: %s\n", in_args.uri));
+
+                invoked = gnome_vfs_module_callback_invoke
+                                        (GNOME_VFS_MODULE_CALLBACK_FILL_AUTHENTICATION,
+                                        &in_args, sizeof (in_args),
+                                        &out_args, sizeof (out_args));                               
+        }
+        
 	if (invoked && out_args.valid) {
 		g_free (actx->use_user);
 		actx->use_user = string_dup_nzero (out_args.username);
@@ -808,7 +844,6 @@ prefill_authentication (SmbAuthContext *actx)
 		DEBUG_SMB(("[auth] Prefilled credentials: %s@%s:%s\n", actx->use_user, actx->use_domain, actx->use_password));
 	} 
 	
-	g_free (in_args.uri);
 	g_free (out_args.username);
 	g_free (out_args.domain);
 	g_free (out_args.password);
@@ -838,7 +873,7 @@ prompt_authentication (SmbAuthContext *actx)
 	  			 GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_NEED_DOMAIN;
 	}
 
-	in_args.uri = get_auth_display_uri (actx);
+	in_args.uri = get_auth_display_uri (actx, FALSE);
 	in_args.protocol = "smb";
 	in_args.server = (char*)actx->for_server;
 	in_args.object = (char*)actx->for_share;
@@ -876,7 +911,7 @@ prompt_authentication (SmbAuthContext *actx)
 	} 
 	
 	actx->state |= SMB_AUTH_STATE_PROMPTED;
-	
+
 	g_free (out_args.username);
 	g_free (out_args.domain);
 	g_free (out_args.password);
@@ -893,13 +928,23 @@ save_authentication (SmbAuthContext *actx)
 	GnomeVFSModuleCallbackSaveAuthenticationIn in_args;
 	GnomeVFSModuleCallbackSaveAuthenticationOut out_args;
 	gboolean invoked;
-	
+
+        /* Add to the user cache both with and without shares */
+        if (actx->for_server) {
+                update_user_cache (actx, TRUE);
+                update_user_cache (actx, FALSE);
+        }
+
+        if (!actx->save_auth)
+                return;
+      
+        /* Save with the domain name */
 	memset (&in_args, 0, sizeof (in_args));
-	in_args.uri = get_auth_display_uri (actx);
+	in_args.uri = get_auth_display_uri (actx, TRUE);
 	in_args.keyring = (char*)actx->keyring;
 	in_args.protocol = "smb";
 	in_args.server = (char*)actx->for_server;
-	in_args.object = (char*)actx->for_share;
+	in_args.object = NULL;
 	in_args.port = actx->uri ? ((GnomeVFSToplevelURI*)actx->uri)->host_port : 0;
 	in_args.authtype = NULL;
 	in_args.username = (char*)actx->use_user;
@@ -907,14 +952,38 @@ save_authentication (SmbAuthContext *actx)
 	in_args.password = (char*)actx->use_password;
 
 	memset (&out_args, 0, sizeof (out_args));
-	DEBUG_SMB(("[auth] Saving credentials: %s@%s:%s\n", actx->use_user, actx->use_domain, actx->use_password));
+	DEBUG_SMB(("[auth] Saving credentials: %s = %s@%s:%s\n", in_args.uri, actx->use_user, actx->use_domain, actx->use_password));
 	DEBUG_SMB(("[auth] Keyring: %s\n", actx->keyring));
 
 	invoked = gnome_vfs_module_callback_invoke
-		(GNOME_VFS_MODULE_CALLBACK_SAVE_AUTHENTICATION,
-		 &in_args, sizeof (in_args),
-		 &out_args, sizeof (out_args));
+                                (GNOME_VFS_MODULE_CALLBACK_SAVE_AUTHENTICATION,
+		                &in_args, sizeof (in_args),
+		                &out_args, sizeof (out_args));
+        
+        g_free (in_args.uri);
+              
+        /* Save without the domain name */
+        memset (&in_args, 0, sizeof (in_args));
+        in_args.uri = get_auth_display_uri (actx, FALSE);
+        in_args.keyring = (char*)actx->keyring;
+        in_args.protocol = "smb";
+        in_args.server = (char*)actx->for_server;
+        in_args.object = (char*)actx->for_share;
+        in_args.port = actx->uri ? ((GnomeVFSToplevelURI*)actx->uri)->host_port : 0;
+        in_args.authtype = NULL;
+        in_args.username = (char*)actx->use_user;
+        in_args.domain = (char*)actx->use_domain;
+        in_args.password = (char*)actx->use_password;
+        
+        memset (&out_args, 0, sizeof (out_args));
+        DEBUG_SMB(("[auth] Saving credentials: %s = %s@%s:%s\n", in_args.uri, actx->use_user, actx->use_domain, actx->use_password));
+        DEBUG_SMB(("[auth] Keyring: %s\n", actx->keyring));
 
+        invoked = gnome_vfs_module_callback_invoke
+                                (GNOME_VFS_MODULE_CALLBACK_SAVE_AUTHENTICATION,
+                                &in_args, sizeof (in_args),
+                                &out_args, sizeof (out_args));
+        
 	g_free (in_args.uri);
 }
 	
@@ -1040,8 +1109,7 @@ perform_authentication (SmbAuthContext *actx)
 		if (!auth_failed) {
 			
 			DEBUG_SMB(("[auth] Operation successful\n"));
-			if (actx->save_auth)
-				save_authentication (actx);
+			save_authentication (actx);
 			ret = 0;
 	
 		/* A failed authentication */
@@ -2464,7 +2532,7 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 
 	g_hash_table_destroy (server_cache);
 	g_hash_table_destroy (workgroups);
-	g_hash_table_destroy (default_user_hashtable);
+        g_hash_table_destroy (user_cache);
 	
 	g_mutex_free (smb_lock);
 

@@ -1,3 +1,9 @@
+2005-01-25  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/smb-method.c:
+	Cache passwords on a per-server level, not per-share.
+	Patch from Nate	Nielsen <nielsen@memberwebs.com>
+
 2005-01-24  Nate Nielsen <nielsen@memberwebs.com>
 
 	* modules/smb-method.c: (try_init) Use new flag for supressing automatic
