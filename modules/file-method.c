@@ -959,7 +959,10 @@ mkdir_recursive (const char *path, int permission_bits)
 	/* try creating a director for each level */
 	for (dir_separator_scanner = path; *dir_separator_scanner; dir_separator_scanner++) {
 		/* advance to the next directory level */
-		for (; *dir_separator_scanner; dir_separator_scanner++) {		
+		for (;;dir_separator_scanner++) {
+			if (!*dir_separator_scanner) {
+				return 0;
+			}	
 			if (*dir_separator_scanner == G_DIR_SEPARATOR) {
 				break;
 			}
@@ -971,8 +974,10 @@ mkdir_recursive (const char *path, int permission_bits)
 				/* we failed to create a directory and it wasn't there already;
 				 * bail
 				 */
-				 return -1;
+				g_free (current_path);
+				return -1;
 			}
+			g_free (current_path);
 		}
 	}
 	return 0;
@@ -1210,7 +1215,7 @@ find_disk_top_directory (const char *item_on_disk, dev_t near_device_id,
 	return disk_top_directory;
 }
 
-#define TRASH_ENTRY_CACHE_PARENT ".gnome/gnome_vfs"
+#define TRASH_ENTRY_CACHE_PARENT ".gnome/gnome-vfs"
 #define TRASH_ENTRY_CACHE_NAME ".trash_entry_cache"
 
 static void
@@ -1304,7 +1309,7 @@ read_saved_cached_trash_entries (void)
 		TRASH_ENTRY_CACHE_PARENT, G_DIR_SEPARATOR_S, TRASH_ENTRY_CACHE_NAME, NULL);
 	cache_file = fopen (cache_file_path, "r");
 	if (cache_file == NULL) {
-		g_warning ("failed to create trash item cache file");
+		/* no cached trash entries file yet. */
 		return;
 	}
 	

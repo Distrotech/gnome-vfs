@@ -1,5 +1,14 @@
 2000-10-20  Pavel Cisler  <pavel@eazel.com>
 
+	* modules/file-method.c: (mkdir_recursive):
+	Fix an "extra increment" bug and a memory leak.
+	Tweak the path for saving the trach entry cache file.
+	
+	* modules/file-method.c: (read_saved_cached_trash_entries):
+	Removed a confused g_warning for a case that is legal.
+	
+2000-10-20  Pavel Cisler  <pavel@eazel.com>
+
 	* libgnomevfs/gnome-vfs-uri.c: (gnome_vfs_uri_new):
 	Fix a memory trasher Mathieu found.
 
