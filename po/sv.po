@@ -1,15 +1,15 @@
 # Swedish messages for gnome-vfs.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000, 2001.
-# Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003.
+# Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004.
 #
 # $Id$
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2004-01-12 10:09+0100\n"
-"PO-Revision-Date: 2003-12-21 23:52+0100\n"
+"POT-Creation-Date: 2004-01-18 15:43+0100\n"
+"PO-Revision-Date: 2004-01-18 16:23+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -456,29 +456,29 @@ msgstr "Fel vid start av kommando"
 msgid "Unknown error"
 msgstr "Okänt fel"
 
-#: libgnomevfs/gnome-vfs-utils.c:84
+#: libgnomevfs/gnome-vfs-utils.c:85
 #, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u byte"
 msgstr[1] "%u byte"
 
-#: libgnomevfs/gnome-vfs-utils.c:90
+#: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
 msgid "%.1f KB"
 msgstr "%.1f kB"
 
-#: libgnomevfs/gnome-vfs-utils.c:94
+#: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:98
+#: libgnomevfs/gnome-vfs-utils.c:99
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1105
+#: libgnomevfs/gnome-vfs-utils.c:1106
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:300
 msgid " (invalid Unicode)"
 msgstr " (ogiltig Unicode)"
@@ -751,7 +751,7 @@ msgstr "Hantera man-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Handle trash URLs"
-msgstr "Hantera papperskorgs-URL:er"
+msgstr "Hantera trash-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
@@ -779,82 +779,74 @@ msgstr ""
 "hantera HTTPS-URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
-"Sätt detta till sant för att ett program som är angivet i kommando ska "
-"hantera callto-URL:er"
+"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
+"hantera callto-URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
-"Sätt detta till sant för att ett program som är angivet i kommando ska "
-"hantera http-URL:er"
+"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
+"hantera ghelp-URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
-"Sätt detta till sant för att ett program som är angivet i kommando ska "
-"hantera mailto-URL:er"
+"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
+"hantera info-URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
-"Sätt detta till sant för att ett program som är angivet i kommando ska "
-"hantera mailto-URL:er"
+"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
+"hantera mailto-URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
-"Sätt detta till sant för att ett program som är angivet i kommando ska "
-"hantera mailto-URL:er"
+"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
+"hantera man-URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
-"Sätt detta till sant för att ett program som är angivet i trash/command ska "
-"hantera h323-URL:er"
+"Sätt detta till sant för att ett program som är angivet i \"command\" ska "
+"hantera trash-URL:er."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
-"Sant om programmet för att hantera denna URL ska köras i ett terminalfönster"
+"Sant om programmet för att hantera denna URL ska köras i ett terminalfönster."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "Hanterare för callto-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "Hanterare för ghelp-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "Hanterare för info-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "Felaktigt filhandtag"
+msgstr "Hanterare för mailto-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "Hanterare för man-URL:er"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "Hanterare för trash-URL:er"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -893,113 +885,109 @@ msgid "HTTP proxy username"
 msgstr "Användarnamn för HTTP-proxyserver"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
 "Om detta är sant kräver anslutningarna till proxyservern autentisering. "
-"Användarnamn- och lösenordsparet definieras av /system/http_proxy/"
-"authentication_user och /system/http_proxy/authentication_password."
+"Användarnamn- och lösenordsparet definieras av \"/system/http_proxy/"
+"authentication_user\" och \"/system/http_proxy/authentication_password\"."
+
+msgid ""
+"If true, then connections to the proxy server require authentication. The "
+"username/password combo is defined by "
+"\"/system/http_proxy/authentication_user\" and "
+"\"/system/http_proxy/authentication_password\"."
+msgstr ""
+"Om detta är sant kräver anslutningarna till proxyservern autentisering. "
+"Användarnamn- och lösenordsparet definieras av \"/system/http_proxy/"
+"authentication_user\" och \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
-#, fuzzy
 msgid "Non-proxy hosts"
-msgstr "Värdnamn för socks-proxyserver"
+msgstr "Värdnamn för ickeproxyvärdar"
 
 #: schemas/system_http_proxy.schemas.in.h:12
-#, fuzzy
 msgid "Password to pass as authentication when doing HTTP proxying."
 msgstr ""
-"Lösenord att skicka som autentisering vid användning av http-proxyserver"
+"Lösenord att skicka som autentisering vid användning av HTTP-proxyserver."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
 msgstr "Proxykonfigurationsläge"
 
 #: schemas/system_http_proxy.schemas.in.h:14
-#, fuzzy
 msgid "SOCKS proxy host name"
-msgstr "Värdnamn för socks-proxyserver"
+msgstr "Värdnamn för SOCKS-proxyserver"
 
 #: schemas/system_http_proxy.schemas.in.h:15
-#, fuzzy
 msgid "SOCKS proxy port"
-msgstr "Port för socks-proxyserver"
+msgstr "Port för SOCKS-proxyserver"
 
 #: schemas/system_http_proxy.schemas.in.h:16
-#, fuzzy
 msgid "Secure HTTP proxy host name"
-msgstr "Värdnamn för säker http-proxyserver"
+msgstr "Värdnamn för säker HTTP-proxyserver"
 
 #: schemas/system_http_proxy.schemas.in.h:17
-#, fuzzy
 msgid "Secure HTTP proxy port"
-msgstr "Port för säker http-proxyserver"
+msgstr "Port för säker HTTP-proxyserver"
 
 #: schemas/system_http_proxy.schemas.in.h:18
-#, fuzzy
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
 "Välj proxykonfigurationsläget. Värden som stöds är \"none\", \"manual\", "
-"\"auto\""
+"\"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
 msgstr "Namnet på maskinen som ska agera proxyserver för FTP."
 
 #: schemas/system_http_proxy.schemas.in.h:20
-#, fuzzy
 msgid "The machine name to proxy HTTP through."
-msgstr "Namnet på maskinen som ska agera proxyserver för FTP."
+msgstr "Namnet på maskinen som ska agera proxyserver för HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:21
-#, fuzzy
 msgid "The machine name to proxy secure HTTP through."
-msgstr "Namnet på maskinen som ska agera proxyserver för http."
+msgstr "Namnet på maskinen som ska agera proxyserver för säker HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
 msgstr "Namnet på maskinen som ska agera proxyserver för socks."
 
 #: schemas/system_http_proxy.schemas.in.h:23
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
-"Porten på maskinen som definieras av /system/http_proxy/host som du använder "
-"som proxyserver"
+"Porten på maskinen som definieras av \"/system/http_proxy/host\" som du "
+"använder som proxyserver."
 
 #: schemas/system_http_proxy.schemas.in.h:24
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
-"Porten på maskinen som definieras av /system/proxy/ftp_host som du använder "
-"som proxyserver"
+"Porten på maskinen som definieras av \"/system/proxy/ftp_host\" som du "
+"använder som proxyserver."
 
 #: schemas/system_http_proxy.schemas.in.h:25
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
-"Porten på maskinen som definieras av /system/proxy/secure_host som du "
-"använder som proxyserver"
+"Porten på maskinen som definieras av \"/system/proxy/secure_host\" som du "
+"använder som proxyserver."
 
 #: schemas/system_http_proxy.schemas.in.h:26
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
-"Porten på maskinen som definieras av /system/proxy/socks_host som du "
-"använder som proxyserver"
+"Porten på maskinen som definieras av \"/system/proxy/socks_host\" som du "
+"använder som proxyserver."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -1015,33 +1003,29 @@ msgstr ""
 "(någonting liknande 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
-#, fuzzy
 msgid "URL that provides proxy configuration values."
-msgstr "URL som tillhandahåller proxykonfigurationsvärden"
+msgstr "URL som tillhandahåller proxykonfigurationsvärden."
 
 #: schemas/system_http_proxy.schemas.in.h:29
-#, fuzzy
 msgid "Use HTTP proxy"
-msgstr "Port för HTTP-proxyserver"
+msgstr "Använd HTTP-proxyserver"
 
 #: schemas/system_http_proxy.schemas.in.h:30
-#, fuzzy
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr ""
-"Användarnamn att skicka som autentisering vid användning av http-proxyserver"
+"Användarnamn att skicka som autentisering vid användning av HTTP-proxyserver."
 
 #: modules/network-method.c:257
-#, fuzzy
-msgid "Window Network"
-msgstr "Nätverk"
+msgid "Windows Network"
+msgstr "Windows-nätverk"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "SMB-arbetsgrupp"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "Fönsterarbetsgruppen som användaren är del av"
 
 #~ msgid "%.1f kB"
 #~ msgstr "%.1f kB"

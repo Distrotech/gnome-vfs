@@ -1,3 +1,9 @@
+2004-01-18  Christian Rose  <menthos@menthos.com>
+
+	* .cvsignore: Sorted and added one entry.
+	* POTFILES.skip: Removed a no longer existing entry.
+	* sv.po: Updated Swedish translation.
+
 2004-01-18  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
 
 	* es.po: Updated Spanish translation.
