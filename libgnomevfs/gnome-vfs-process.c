@@ -67,28 +67,35 @@ static struct sigaction old_sigchld_action;
 
 
 static void
+foreach_pid_func (gpointer key,
+		  gpointer value,
+		  gpointer data)
+{
+	GnomeVFSProcess *process;
+	pid_t pid;
+	gint status;
+	gboolean *found;
+
+	pid = GPOINTER_TO_INT (key);
+	process = (GnomeVFSProcess *) value;
+	found = (gboolean *) data;
+
+	if (waitpid (pid, &status, WNOHANG) == pid) {
+		write (wake_up_channel_out_fd, &process, sizeof (process));
+		write (wake_up_channel_out_fd, &status, sizeof (status));
+		*found = 1;
+	}
+}
+
+static void
 sigchld_handler (int signum)
 {
-	gint old_errno;
+	gboolean found;
 
-	old_errno = errno;
-	while (1) {
-		pid_t pid;
-		gint status;
+	g_hash_table_foreach (pid_to_process, foreach_pid_func, &found);
 
-		do {
-			errno = 0;
-			pid = waitpid (WAIT_ANY, &status, WNOHANG | WUNTRACED);
-		} while (pid <= 0 && errno == EINTR);
-
-		if (pid <= 0) {
-			errno = old_errno;
-			return;
-		}
-
-		write (wake_up_channel_out_fd, &pid, sizeof (pid));
-		write (wake_up_channel_out_fd, &status, sizeof (status));
-	}
+	if (! found && old_sigchld_action.sa_handler != NULL)
+		(* old_sigchld_action.sa_handler) (signum);
 }
 
 static gboolean
@@ -96,41 +103,41 @@ wake_up (GIOChannel *source,
 	 GIOCondition condition,
 	 gpointer data)
 {
-	guint bytes_read;
-	pid_t pid;
-	gint status;
 	GnomeVFSProcess *process;
+	GIOError result;
+	guint bytes_read;
+	gint status;
 
-	g_io_channel_read (source, (gchar *) &pid, sizeof (pid), &bytes_read);
-	if (bytes_read == 0) {
-		g_warning (__FILE__ ": something weird happened.  I got no PID.");
+	do {
+		result = g_io_channel_read (source, (gchar *) &process,
+					    sizeof (process), &bytes_read);
+	} while (result == G_IO_ERROR_AGAIN);
+	if (result != G_IO_ERROR_NONE) {
+		g_warning (__FILE__ ": Cannot read from the notification channel (error %d)",
+			   result);
 		return TRUE;
 	}
 
-	g_io_channel_read (source, (gchar *) &status, sizeof (status),
-			   &bytes_read);
-	if (bytes_read == 0) {
-		g_warning (__FILE__ ": something weird happened.  I got a PID, but no status.");
+	do {
+		result = g_io_channel_read (source, (gchar *) &status,
+					    sizeof (status), &bytes_read);
+	} while (result == G_IO_ERROR_AGAIN);
+	if (result != G_IO_ERROR_NONE) {
+		g_warning (__FILE__ ": Cannot read from the notification channel (error %d)",
+			   result);
 		return TRUE;
 	}
 
-	g_warning ("Process %d died, status %d.", pid, status);
+	g_warning ("Process %d died, status %d.", process->pid, status);
 
-	process = g_hash_table_lookup (pid_to_process,
-				       GINT_TO_POINTER (pid));
+	if (process->callback != NULL)
+		(* process->callback) (process, status,
+				       process->callback_data);
 
-	/* (Silently ignore processes for which we don't have a
-	   registration.)  */
-
-	if (process != NULL) {
-		process->callback (process,
-				   status,
-				   process->callback_data);
-		if (WIFSIGNALED (status)) {
-			g_hash_table_remove (pid_to_process,
-					     GINT_TO_POINTER (pid));
-			gnome_vfs_process_free (process);
-		}
+	if (WIFSIGNALED (status)) {
+		g_hash_table_remove (pid_to_process,
+				     GINT_TO_POINTER (process->pid));
+		gnome_vfs_process_free (process);
 	}
 
 	return TRUE;

@@ -1,3 +1,13 @@
+1999-09-02  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs/gnome-vfs-process.c: Improved SIGCHLD handling.
+	(sigchld_handler): Instead of waking the GLIB loop up once for
+	every dead child, wake it up only for registered children.
+	(foreach_pid_func): Helper function for `sigchld_handler'.  It
+	sends a pointer to the process struct and the exit status to the
+	wake up GIOChannel.
+	(wake_up): Handle the information as sent by `foreach_pid_func'.
+
 1999-09-01  Dave Camp  <campd@oit.edu>
 
 	* modules/gconf-method.c: Explicitly set the `remove_directory'
