@@ -1,3 +1,18 @@
+2000-09-21  Mike Fleming  <mfleming@eazel.com>
+
+	* gnome-vfs.spec.in:
+	* configure.in: Added dependency to gconf-gtk; Moved GConf dependency to 0.8.0
+
+	* modules/Makefile.am:
+	* modules/http-method.c: (sig_gconf_value_changed),
+	(host_port_from_string), (http_proxy_for_host_port),
+	(make_request), (make_propfind_request), (vfs_module_init),
+	(vfs_module_shutdown):
+
+	HTTP module now supports HTTP proxies.  HTTP proxy is gotten from GConf
+	key /system/gnome-vfs/http-proxy.  This makes the HTTP module dependent
+	on GConf. 	
+
 2000-09-21  John Sullivan  <sullivan@eazel.com>
 
 	* mime-type-capplet/nautilus-mime-type-capplet.c:

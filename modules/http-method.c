@@ -46,6 +46,9 @@
 #include <gnome-xml/tree.h>
 #include <gnome-xml/xmlmemory.h>
 
+#include <gtk/gtk.h>
+#include <gconf/gconf-client.h>
+
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-mime.h"
@@ -77,6 +80,13 @@ static int nothing;
 /* Standard HTTP port.  */
 #define DEFAULT_HTTP_PORT 	80
 
+/* Standard HTTP proxy port */
+#define DEFAULT_HTTP_PROXY_PORT 8080
+
+/* GConf paths and keys */
+#define PATH_GCONF_GNOME_VFS "/system/gnome-vfs"
+#define ITEM_GCONF_HTTP_PROXY "http-proxy"
+#define KEY_GCONF_HTTP_PROXY (PATH_GCONF_GNOME_VFS "/" ITEM_GCONF_HTTP_PROXY)
 
 
 /* Some status code validation macros.  */
@@ -128,6 +138,15 @@ static int nothing;
 #define HTTP_STATUS_UNAVAILABLE		503
 #define HTTP_STATUS_GATEWAY_TIMEOUT	504
 #define HTTP_STATUS_UNSUPPORTED_VERSION 505
+
+/*
+ * Static Variables
+ */
+
+/* Global variables used by the HTTP proxy config */ 
+static GConfClient * gl_client = NULL;
+static GMutex *gl_mutex = NULL;
+static gchar *gl_http_proxy = NULL;
 
 
 struct _HttpFileHandle {
@@ -604,6 +623,108 @@ static gchar *base64( const gchar *text ) {
     return buffer;
 }
 
+
+/**
+ * sig_gconf_value_changed 
+ * GTK signal function for when HTTP proxy GConf key has changed.
+ */
+static void
+sig_gconf_value_changed (
+	GConfClient* client,
+	const gchar* key,
+	GConfValue* value)
+{
+	g_mutex_lock (gl_mutex);
+	
+	if ( key && 0 == strcmp (KEY_GCONF_HTTP_PROXY, key)) {
+		if (value) {
+			if (GCONF_VALUE_STRING == value->type) {
+				gl_http_proxy = g_strdup (gconf_value_string (value));
+				DEBUG_HTTP (("New HTTP proxy: '%s'", gl_http_proxy));
+			} else {
+				DEBUG_HTTP (("Incorrect type for HTTP proxy setting"));
+			}
+		} else {
+			DEBUG_HTTP (("HTTP proxy unset"));
+			g_free (gl_http_proxy);
+			gl_http_proxy = NULL;
+		}
+	}
+
+	g_mutex_unlock (gl_mutex);
+}
+
+/**
+ * host_port_from_string
+ * splits a <host>:<port> formatted string into its separate components
+ */
+static gboolean
+host_port_from_string (
+	const gchar *http_proxy,
+	gchar **p_proxy_host, 
+	guint *p_proxy_port)
+{
+	gchar *port_part;
+	
+	port_part = strchr (http_proxy, ':');
+
+	if (port_part && '\0' != ++port_part && p_proxy_port) {
+		*p_proxy_port = (guint) strtoul (port_part, NULL, 10);
+	} else if (p_proxy_port) {
+		*p_proxy_port = DEFAULT_HTTP_PROXY_PORT;
+	}
+
+	if (p_proxy_host) {
+		if ( port_part != http_proxy ) {
+			*p_proxy_host = g_strndup (http_proxy, port_part - http_proxy - 1);
+		} else {
+			return FALSE;
+		}
+	}
+
+	return TRUE;
+}
+
+/**
+ * http_proxy_for_host_port
+ * Retrives an appropriate HTTP proxy for a given host and port.
+ * Currently, only a single HTTP proxy is implemented (there's no way for
+ * specifying non-proxy domain names's).  Returns FALSE if the connect should
+ * take place directly
+ */
+static gboolean
+http_proxy_for_host_port (
+	const gchar *host,
+	guint host_port,
+	gchar **p_proxy_host,		/* Callee must free */
+	guint *p_proxy_port)
+{
+	gboolean ret = FALSE;
+
+	g_mutex_lock (gl_mutex);
+
+	if (gl_http_proxy) {
+		if (host_port_from_string (gl_http_proxy, p_proxy_host, p_proxy_port)) {
+			ret = TRUE;
+		} else {
+			ret = FALSE;
+		};
+	} else {
+		if (p_proxy_host) {
+			p_proxy_host = NULL;
+		}
+		if (p_proxy_port) {
+			p_proxy_port = NULL;
+		}
+		ret = FALSE;
+	}
+
+	g_mutex_unlock (gl_mutex);
+
+	return ret;
+}
+
+
 static GnomeVFSResult
 make_request (HttpFileHandle **handle_return,
 	      GnomeVFSURI *uri,
@@ -621,6 +742,9 @@ make_request (HttpFileHandle **handle_return,
 	gchar *uri_string;
 	gchar *user_agent;
 	guint host_port;
+	gboolean proxy_connect = FALSE;
+	gchar *proxy_host = NULL;
+	guint proxy_port;
 
 	toplevel_uri = (GnomeVFSToplevelURI *) uri;
 
@@ -629,23 +753,46 @@ make_request (HttpFileHandle **handle_return,
 	else
 		host_port = toplevel_uri->host_port;
 
-	result = gnome_vfs_inet_connection_create (&connection,
-						   toplevel_uri->host_name,
-						   host_port,
-						   context ? gnome_vfs_context_get_cancellation(context) : NULL);
+	if ( http_proxy_for_host_port (toplevel_uri->host_name, host_port, &proxy_host, &proxy_port)) {
+		proxy_connect = TRUE;
+
+		DEBUG_HTTP (("Connecting to proxy '%s:%u'", proxy_host, (unsigned int) proxy_port));
+
+		result = gnome_vfs_inet_connection_create (&connection,
+							   proxy_host,
+							   proxy_port,
+							   context ? gnome_vfs_context_get_cancellation(context) : NULL);
+
+	} else {
+		proxy_connect = FALSE;
+
+		result = gnome_vfs_inet_connection_create (&connection,
+							   toplevel_uri->host_name,
+							   host_port,
+							   context ? gnome_vfs_context_get_cancellation(context) : NULL);
+	}
 
 	if (result != GNOME_VFS_OK)
 		return result;
 
 	iobuf = gnome_vfs_inet_connection_get_iobuf (connection);
 
-	uri_string = gnome_vfs_uri_to_string (uri,
-					      GNOME_VFS_URI_HIDE_USER_NAME
-					      |GNOME_VFS_URI_HIDE_PASSWORD
-					      |GNOME_VFS_URI_HIDE_HOST_NAME
-					      |GNOME_VFS_URI_HIDE_HOST_PORT
-					      |GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
+	if (proxy_connect) {
+		uri_string = gnome_vfs_uri_to_string (uri,
+						      GNOME_VFS_URI_HIDE_USER_NAME
+						      |GNOME_VFS_URI_HIDE_PASSWORD);
 
+		DEBUG_HTTP (("Fetch url is '%s'", uri_string));
+
+	} else {
+		uri_string = gnome_vfs_uri_to_string (uri,
+						      GNOME_VFS_URI_HIDE_USER_NAME
+						      |GNOME_VFS_URI_HIDE_PASSWORD
+						      |GNOME_VFS_URI_HIDE_HOST_NAME
+						      |GNOME_VFS_URI_HIDE_HOST_PORT
+						      |GNOME_VFS_URI_HIDE_TOPLEVEL_METHOD);
+	}
+	
 	/* Request line.  */
 	request = g_string_new (method);
 	g_string_append (request, " ");
@@ -722,6 +869,7 @@ make_request (HttpFileHandle **handle_return,
 	return result;
 
  error:
+	g_free (proxy_host);
 	gnome_vfs_iobuf_destroy (iobuf);
 	gnome_vfs_inet_connection_destroy (connection, NULL);
 	return result;
@@ -1089,8 +1237,13 @@ make_propfind_request (HttpFileHandle **handle_return,
 	result = make_request (&handle, uri, "PROPFIND", request, 
 			extraheaders, context);
 
+	/* FIXME -- it looks like some http servers (eg, www.yahoo.com) treat
+	 * PROPFIND as a GET and return a 200 OK.  Others may return access
+	 * denied errors or redirects or any other legal response.  This
+	 * case probably needs to be made more robust
+	 */
 	if(result == GNOME_VFS_OK && handle->server_status != 207) { /* Multi-Status */
-		g_message(_("HTTP server returned an invalid PROPFIND response"));
+		DEBUG_HTTP(("HTTP server returned an invalid PROPFIND response: %d", handle->server_status));
 		result = GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
 
@@ -1489,10 +1642,72 @@ static GnomeVFSMethod method = {
 GnomeVFSMethod *
 vfs_module_init (const char *method_name, const char *args)
 {
+        char *argv[] = {"dummy"};
+        int argc = 1;
+        GConfError *err_gconf = NULL;
+        GConfValue *val_gconf = NULL;
+
+	/* Ensure GConf is init'd.  If more modules start to rely on
+	 * GConf, then this should probably be moved into a more 
+	 * central location
+	 */
+
+	if (!gconf_is_initialized ()) {
+		/* auto-initializes OAF if necessary */
+		gconf_init (argc, argv, NULL);
+	}
+
+	/* ensure GTK is inited for gconf-client. */
+	gtk_type_init();
+	gtk_signal_init();
+
+	gl_client = gconf_client_get_default ();
+
+	gtk_object_ref(GTK_OBJECT(gl_client));
+	gtk_object_sink(GTK_OBJECT(gl_client));
+
+#ifdef G_THREADS_ENABLED
+        if (g_thread_supported ())
+                gl_mutex = g_mutex_new ();
+        else
+                gl_mutex = NULL;
+#endif
+
+
+	gconf_client_add_dir (gl_client, PATH_GCONF_GNOME_VFS, GCONF_CLIENT_PRELOAD_ONELEVEL, &err_gconf);
+
+	if (err_gconf) {
+		DEBUG_HTTP (("GConf error during client_add_dir '%s'", err_gconf->str));
+		gconf_error_destroy (err_gconf);
+	}
+
+	gtk_signal_connect (GTK_OBJECT(gl_client), "value_changed", (GtkSignalFunc) sig_gconf_value_changed, NULL);
+
+	/* Load the http proxy setting */
+
+	val_gconf = gconf_client_get (gl_client, KEY_GCONF_HTTP_PROXY, &err_gconf);
+
+	if (err_gconf) {
+		DEBUG_HTTP (("GConf error during client_get '%s'", err_gconf->str));
+		gconf_error_destroy (err_gconf);
+	} else if (val_gconf) {
+		sig_gconf_value_changed (gl_client, KEY_GCONF_HTTP_PROXY, val_gconf);
+	}
+
 	return &method;
 }
 
 void
 vfs_module_shutdown (GnomeVFSMethod *method)
 {
+	gtk_signal_disconnect_by_func (GTK_OBJECT(gl_client), (GtkSignalFunc) sig_gconf_value_changed, NULL);
+
+	gtk_object_destroy(GTK_OBJECT(gl_client));
+	gtk_object_unref(GTK_OBJECT(gl_client));
+
+#ifdef G_THREADS_ENABLED
+	if (g_thread_supported ()) 
+		g_mutex_free (gl_mutex);
+#endif
+	gl_client = NULL;
 }

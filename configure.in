@@ -286,7 +286,7 @@ dnl
 
 dnl This is truly useless.  If we don't have gconf, the aclocal will
 dnl have failed long before we get here.
-AM_PATH_GCONF(0.1.0,,,gconf)
+AM_PATH_GCONF(0.8.0,,,gconf gconf-gtk)
 
 if test "x$gconf_enabled" = xyes; then 
 	AC_PATH_PROG(GCONF_CONFIG, gconf-config, no)

@@ -16,7 +16,7 @@ Source: ftp://ftp.gnome.org/pub/GNOME/sources/%name/%name-%{ver}.tar.gz
 URL: http://www.gnome.org/
 BuildRoot: /var/tmp/%{name}-root
 Requires: glib >= 1.2.4
-Requires: GConf >= 0.5
+Requires: GConf >= 0.8
 Requires: oaf >= 0.3.0
 Docdir: %{prefix}/doc
 
