@@ -1,9 +1,9 @@
 # Danish translation of gnome-vfs.
-# Copyright (C) 1999, 2000, 01, 02 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 01, 02, 03 Free Software Foundation, Inc.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1999.
 # Birger Langkjer <birger.langkjer@image.dk>, 2000.
 # Keld Simonsen <keld@dkuug.dk>, 2000-2001.
-# Ole Laursen <olau@hardworking.dk>, 2001, 02.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
 #
 # Konventioner:
 #
@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
-"POT-Creation-Date: 2003-05-19 13:19+0200\n"
-"PO-Revision-Date: 2002-12-15 16:56+0100\n"
+"POT-Creation-Date: 2003-05-19 20:56+0200\n"
+"PO-Revision-Date: 2003-05-19 20:58+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -282,22 +282,22 @@ msgstr "Kunne ikke finde hovedbrowser"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "Ingen forvalgt handling associeret"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "Ingen håndtering til URL-skema"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Error parsing command line"
-msgstr ""
+msgstr "Fejl ved fortolkning af kommandolinje"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "Error launching command"
-msgstr ""
+msgstr "Fejl ved kørsel af kommando"
 
 #: libgnomevfs/gnome-vfs-result.c:174
 msgid "Unknown error"
@@ -349,56 +349,53 @@ msgstr "Brug miljøvariablen %s til at angive en anden placering.\n"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:163
-#, fuzzy
 msgid "Applications"
-msgstr "KDE-programinfo"
+msgstr "Programmer"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:166
 msgid "Cards"
-msgstr ""
+msgstr "Kort"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:169
-#, fuzzy
 msgid "Files"
-msgstr "Fil eksisterer"
+msgstr "Filer"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:172
-#, fuzzy
 msgid "Folders"
-msgstr "mappe"
+msgstr "Mapper"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Help"
-msgstr ""
+msgstr "Hjælp"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Hosts"
-msgstr ""
+msgstr "Værter"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
 msgid "Links"
-msgstr ""
+msgstr "Henvisninger"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Mail"
-msgstr ""
+msgstr "Post"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Tools"
-msgstr ""
+msgstr "Værktøjer"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Windows"
-msgstr ""
+msgstr "Vinduer"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
