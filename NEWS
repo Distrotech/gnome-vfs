@@ -1,3 +1,25 @@
+gnome-vfs 2.7.92
+
+	Note: The HAL support (which is disabled by default) has some
+	      known issues where it doesn't detecte volumes for all
+	       mounted filesystems. This is known to cause some
+	       problems with for instance trash handling. 
+
+	* Bugs fixed:
+	       + mime data change is emitted in an idle, fixing some hangs
+	       + fixes to mime desktop parser
+	       + update HAL code to work with dbus 0.22
+	       + Added a workaround for --bind mounts in mtab
+	       + Fix some issues in the detection of unix mounts
+	       + Fix windows domain name parsing from smb uris
+	       + Don't check cdrom disk status if there is no disk in
+	       + Fix hang with dav directories with redirects
+	       + Fix scheme handling for default app selection
+	       + Prefer extensions to sniffing for xml files
+	       + Add back GnuTLS support
+	       + Try to get rid of unused items in thrash cache
+	       + code cleanups
+	       
 gnome-vfs 2.7.91
 
 	* Bugs fixed:
