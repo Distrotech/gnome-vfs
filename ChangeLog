@@ -1,3 +1,10 @@
+2000-08-31  Gene Z. Ragan  <gzr@eazel.com>
+
+	* libgnomevfs/gnome-vfs-backend.c: (gnome_vfs_backend_loadinit),
+	(gnome_vfs_backend_shutdown), (func_lookup):
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init):
+	Checking on some Pavel code cleanup.
+	
 2000-08-31  John Sullivan  <sullivan@eazel.com>
 
 	Work towards bug 1037 (use "folder" rather than "directory"

@@ -35,21 +35,18 @@
 #endif
 
 
-
 static gboolean vfs_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (vfs_already_initialized);
 
-gboolean gnome_vfs_init (void)
+gboolean 
+gnome_vfs_init (void)
 {
 	gboolean retval;
-	char *bogus_argv[2];
-
-	bogus_argv[0] = "dummy";
-	bogus_argv[1] = NULL;
+	char *bogus_argv[2] = { "dummy", NULL };
 
 	G_LOCK (vfs_already_initialized);
 
-	if (! vfs_already_initialized) {
+	if (!vfs_already_initialized) {
 #ifdef USING_OAF
 		if (oaf_orb_get() == NULL) {
 			oaf_init (0, bogus_argv);
@@ -57,16 +54,19 @@ gboolean gnome_vfs_init (void)
 #endif
 
 		retval = gnome_vfs_method_init ();
-		if (retval)
+		if (retval) {
 			retval = gnome_vfs_process_init ();
-		if (retval)
+		}
+		if (retval) {
 			retval = gnome_vfs_configuration_init ();
+		}
 		if (retval) {
 			gnome_vfs_backend_loadinit(NULL, NULL);
 			retval = gnome_vfs_backend_init (TRUE);
 		}
-		if (retval)
+		if (retval) {
 			signal (SIGPIPE, SIG_IGN);
+		}
 	} else {
 		g_warning (_("GNOME VFS already initialized."));
 		retval = TRUE;	/* Who cares after all.  */

@@ -52,36 +52,39 @@ gnome_vfs_backend_name (void)
 void
 gnome_vfs_backend_loadinit (gpointer app, gpointer modinfo)
 {
-	char *backend;
+	const char *backend;
 	char backend_filename[256];
-	gboolean retval;
 
 	/* Decide which backend module to load, based on
 	   (a) environment variable
 	   (b) default
 	*/
-	if (gmod)
+	if (gmod != NULL) {
 		return;
+	}
 
-	backend = getenv("GNOME_VFS_BACKEND");
-	if (!backend)
+	backend = getenv ("GNOME_VFS_BACKEND");
+	if (backend == NULL) {
 		backend = GNOME_VFS_DEFAULT_BACKEND;
+	}
 
-	strcpy(backend_lower, backend);
-	g_strdown(backend_lower);
+	strcpy (backend_lower, backend);
+	g_strdown (backend_lower);
 
-	g_snprintf(backend_filename, sizeof(backend_filename), "libgnomevfs-%s.so.0", backend_lower);
+	g_snprintf (backend_filename, sizeof (backend_filename), 
+		"libgnomevfs-%s.so.0", backend_lower);
 
-	gmod = g_module_open(backend_filename, G_MODULE_BIND_LAZY);
-	if (!gmod)
-	{
+	gmod = g_module_open (backend_filename, G_MODULE_BIND_LAZY);
+	if (gmod == NULL) {
 		g_error("Could not open %s: %s", backend_filename, g_module_error());
 	}
-	g_snprintf(backend_filename, sizeof(backend_filename), "gnome_vfs_%s_init", backend_lower);
-	retval = g_module_symbol(gmod, backend_filename, (gpointer *)&gnome_vfs_backend_module_init);
-	if (!retval)
-	{
-		g_module_close(gmod); gmod = NULL;
+	g_snprintf (backend_filename, sizeof (backend_filename), 
+		"gnome_vfs_%s_init", backend_lower);
+
+	if (!g_module_symbol (gmod, backend_filename, 
+		(gpointer *)&gnome_vfs_backend_module_init)) {
+		g_module_close (gmod); 
+		gmod = NULL;
 		g_error("Could not locate module initialization function: %s", g_module_error());
 	}
 }
@@ -106,7 +109,7 @@ gnome_vfs_backend_shutdown (void)
 	void (* thread_backend_shutdown_call) (void);
 	
 	g_assert (gmod);
-	if (g_module_symbol (gmod, "gnome_vfs_thread_backend_shutdown", 
+	if (!g_module_symbol (gmod, "gnome_vfs_thread_backend_shutdown", 
 		(gpointer)&thread_backend_shutdown_call)) {
 		g_assert (thread_backend_shutdown_call);
 		(* thread_backend_shutdown_call) ();
@@ -124,8 +127,9 @@ func_lookup(const char *func_name)
 	name = g_strdup_printf ("%s_%s", backend_lower, func_name);
 
 	g_assert (gmod);
-	if (!g_module_symbol (gmod, name, &function))
+	if (!g_module_symbol (gmod, name, &function)) {
 		function = NULL;
+	}
 
 	g_free (name);
 
