@@ -181,12 +181,13 @@ mime_fill_from_file (const char *filename)
 
 	g_assert (filename != NULL);
 
+	gnome_vfs_file_date_tracker_start_tracking_file (mime_data_date_tracker, filename);
 	file = fopen (filename, "r");
 
 	if (file == NULL) {
 		return;
 	}
-	
+
 	current_key = NULL;
 	while (fgets (buf, sizeof (buf), file) != NULL) {
 		char *p;
@@ -231,8 +232,6 @@ mime_fill_from_file (const char *filename)
 	g_free (current_key);
 
 	fclose (file);
-
-	gnome_vfs_file_date_tracker_start_tracking_file (mime_data_date_tracker, filename);
 }
 
 static void
@@ -249,19 +248,15 @@ mime_load (mime_dir_source_t *source)
 
 	source->valid = (stat (source->dirname, &s) != -1);
 
-	dir = opendir (source->dirname);
-	if (dir == NULL) {
-		source->valid = FALSE;
-		return;
-	}
-
 	if (source->system_dir) {
 		filename = g_strconcat (source->dirname, "/gnome-vfs.mime", NULL);
 		mime_fill_from_file (filename);
 		g_free (filename);
 	}
 
-	while (TRUE) {
+	dir = opendir (source->dirname);
+
+	while (dir != NULL) {
 		int len;
 		
 		dent = readdir (dir);
@@ -299,7 +294,8 @@ mime_load (mime_dir_source_t *source)
 		mime_fill_from_file (filename);
 		g_free (filename);
 	}
-	closedir (dir);
+	if (dir != NULL)
+		closedir (dir);
 
 	if (!source->system_dir) {
 		filename = g_strconcat (source->dirname, "/user.mime", NULL);
@@ -864,10 +860,7 @@ static void
 file_date_record_update_mtime (FileDateRecord *record)
 {
 	struct stat s;
-
-	if (stat (record->file_path, &s) != -1) {
-		record->mtime = s.st_mtime;
-	}	
+	record->mtime = (stat (record->file_path, &s) != -1) ? s.st_mtime : 0;
 }
 
 static FileDateRecord *

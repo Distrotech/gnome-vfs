@@ -759,7 +759,7 @@ gnome_vfs_mime_info_reload (void)
 
 	/* 2. Reload */
 	load_mime_type_info ();
-
+	
 	/* 3. clear our force flags */
 	gnome_mime_dir.force_reload = FALSE;
 	user_mime_dir.force_reload = FALSE;
