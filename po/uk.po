@@ -5,13 +5,46 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 1999-12-28 13:44+0200\n"
+"POT-Creation-Date: 2000-02-09 12:13+0200\n"
 "PO-Revision-Date: 1999-12-28 13:44+0200\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=koi8-u\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: libgnomevfs/gnome-vfs-configuration.c:186
+#, c-format
+msgid "%s:%d contains NUL characters."
+msgstr "%s:%d м╕стить символи NUL."
+
+#: libgnomevfs/gnome-vfs-configuration.c:203
+#, c-format
+msgid "%s:%d contains no method name."
+msgstr "%s:%d не м╕стить назви методу."
+
+#: libgnomevfs/gnome-vfs-configuration.c:232
+#, c-format
+msgid "%s:%d contains no module name."
+msgstr "%s:%d не м╕стить назви модулю."
+
+#: libgnomevfs/gnome-vfs-configuration.c:284
+#, c-format
+msgid "Configuration file `%s' was not found: %s"
+msgstr "Не знайдено конф╕гурац╕йного файлу \"%s\": %s"
+
+#: libgnomevfs/gnome-vfs-init.c:55
+msgid "GNOME VFS already initialized."
+msgstr "GNOME VFS вже ╕н╕ц╕ал╕зовано"
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:652
+#, c-format
+msgid "Could not parse: %s"
+msgstr "Неможливо проанал╕зувати: %s"
+
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
+msgid "More parsing errors will be ignored."
+msgstr ""
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:39
@@ -161,7 +194,7 @@ msgstr "Нев╕рна назва хосту"
 #. GNOME_VFS_ERROR_HOSTHASNOADDRESS
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Host has no address"
-msgstr "Хост нема╓ адреси"
+msgstr "Хост не ма╓ адреси"
 
 #. GNOME_VFS_ERROR_LOGINFAILED
 #: libgnomevfs/gnome-vfs-result.c:69
@@ -207,9 +240,29 @@ msgstr "Назва надто довга"
 msgid "Unknown error"
 msgstr "Нев╕дома помилка"
 
-#: libgnomevfs/gnome-vfs-init.c:52
-msgid "GNOME VFS already initialized."
-msgstr "GNOME VFS вже ╕н╕ц╕ал╕зовано"
+#: libgnomevfs/gnome-vfs-utils.c:40
+msgid "1 byte"
+msgstr "1 байт"
+
+#: libgnomevfs/gnome-vfs-utils.c:42
+#, c-format
+msgid "%u bytes"
+msgstr "%u байт╕в"
+
+#: libgnomevfs/gnome-vfs-utils.c:49
+#, c-format
+msgid "%.1fK"
+msgstr "%.1fK"
+
+#: libgnomevfs/gnome-vfs-utils.c:53
+#, c-format
+msgid "%.1fM"
+msgstr "%.1fM"
+
+#: libgnomevfs/gnome-vfs-utils.c:57
+#, c-format
+msgid "%.1fG"
+msgstr "%.1fG"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:333
 msgid "Dying."
@@ -238,6 +291,7 @@ msgstr "Неможливо записати: %s"
 msgid "Cannot create temporary file name `%s'"
 msgstr "Неможливо створити тимчасовий файл \"%s\""
 
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:195
 #: libgnomevfs-corba/gnome-vfs-slave.c:611
 #, c-format
 msgid "Cannot create socket: %s"
@@ -258,57 +312,247 @@ msgstr "Неможливе прослуховування на \"%s\": %s"
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Неможливо прийняти з'╓днання на \"%s\": %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1303
+#: libgnomevfs-corba/gnome-vfs-slave.c:1376
 msgid "Cannot initialize CORBA."
 msgstr "Неможливо ╕н╕ц╕ал╕зувати CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1310
+#: libgnomevfs-corba/gnome-vfs-slave.c:1383
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1317
+#: libgnomevfs-corba/gnome-vfs-slave.c:1390
 msgid "Cannot activate POA manager."
 msgstr "Неможливо актив╕зувати менеджер POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1341
+#: libgnomevfs-corba/gnome-vfs-slave.c:1414
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Використання: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1352
+#: libgnomevfs-corba/gnome-vfs-slave.c:1425
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Неможливо в╕дкрити файловий дескриптор %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1375
+#: libgnomevfs-corba/gnome-vfs-slave.c:1448
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1385
+#: libgnomevfs-corba/gnome-vfs-slave.c:1458
 msgid "Cannot setup Request object."
 msgstr ""
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1392
+#: libgnomevfs-corba/gnome-vfs-slave.c:1465
 msgid "Cannot extract IOR."
 msgstr "Неможливо отримати IOR."
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:176
+#, c-format
+msgid "Got weird string from the slave process: `%s'"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-launch.c:183
+#, c-format
+msgid "Cannot get object for `%s'"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:128
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+msgstr "Неможливо знищити GNOME::VFS::Slave::Notify -- виключення %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:206
+#, c-format
+msgid "Cannot connect socket `%s': %s"
+msgstr "Неможливо з'╓днати сокет \"%s\": %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:785
+msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+msgstr "Неможливо ╕н╕ц╕ал╕зувати GNOME::VFS:Slave::Notify"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:121
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:124
+#, c-format
+msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:137
+msgid "Destroying slave."
+msgstr ""
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:158
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+msgstr "Не вдалося знищити GNOME::VFS::Slave %s -- виключення %s"
+
+#: libgnomevfs-corba/gnome-vfs-slave-process.c:161
+#, c-format
+msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+msgstr "Не вдалося знищити GNOME::VFS::Slave (нев╕домий IOR) -- виключення %s"
 
 #: libgnomevfs-pthread/gnome-vfs-job.c:129
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr ""
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:419
-#: libgnomevfs-pthread/gnome-vfs-job.c:1213
+#: libgnomevfs-pthread/gnome-vfs-job.c:434
+#: libgnomevfs-pthread/gnome-vfs-job.c:1247
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Нев╕домий ╕дентиф╕катор завдання %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:769
-#: libgnomevfs-pthread/gnome-vfs-job.c:864
+#: libgnomevfs-pthread/gnome-vfs-job.c:784
+#: libgnomevfs-pthread/gnome-vfs-job.c:879
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Неможливо створити канал для GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1231
+#: libgnomevfs-pthread/gnome-vfs-job.c:1265
 msgid "Operation stopped"
 msgstr "Операц╕ю зупинено"
+
+#: modules/file-method.c:332
+#, c-format
+msgid "Unknown GnomeVFSSeekPosition %d"
+msgstr "Нев╕домий GnomeVFSSeekPosition %d"
+
+#: modules/ftp-method.c:353
+msgid "ftpfs: Invalid host name."
+msgstr "ftpfs: Нев╕рна назва хосту."
+
+#: modules/ftp-method.c:376
+msgid "ftpfs: Invalid host address."
+msgstr "ftpfs: Нев╕рна адреса хосту."
+
+#: modules/ftp-method.c:396
+#, c-format
+msgid "ftpfs: making connection to %s"
+msgstr "ftpfs: створення з'╓днання з %s"
+
+#: modules/ftp-method.c:402
+msgid "ftpfs: connection interrupted by user"
+msgstr "ftpfs: операц╕ю перервано користувачем"
+
+#: modules/ftp-method.c:404
+#, c-format
+msgid "ftpfs: connection to server failed: %s"
+msgstr "ftpfs: з'╓днання ╕з сервером не вдалось: %s"
+
+#: modules/ftp-method.c:480
+#, c-format
+msgid "Waiting to retry... %d (Control-C to cancel)"
+msgstr "Оч╕кування на в╕дпов╕дь... %d (Control-C для в╕дм╕ни)"
+
+#: modules/ftp-method.c:751
+msgid " FTP: Password required for "
+msgstr " FTP: Необх╕дний пароль для "
+
+#: modules/ftp-method.c:790
+msgid "ftpfs: sending login name"
+msgstr "ftpfs: в╕дсилання назви користувача"
+
+#: modules/ftp-method.c:796
+msgid "ftpfs: sending user password"
+msgstr "ftpfs: в╕дсилання паролю користувача"
+
+#: modules/ftp-method.c:802
+msgid "ftpfs: logged in"
+msgstr "ftpfs: розпочато роботу"
+
+#: modules/ftp-method.c:814
+#, c-format
+msgid "ftpfs: Login incorrect for user %s "
+msgstr ""
+
+#: modules/ftp-method.c:827
+msgid "ftpfs: aborting transfer."
+msgstr "ftpfs: переривання передач╕."
+
+#: modules/ftp-method.c:829
+#, c-format
+msgid "ftpfs: abort error: %s"
+msgstr "ftpfs: помилка переривання: %s"
+
+#: modules/ftp-method.c:834
+msgid "ftpfs: abort failed"
+msgstr "ftpfs: переривання не вдалось"
+
+#: modules/ftp-method.c:911
+msgid "ftpfs: could not setup passive mode"
+msgstr "ftpfs: неможливо встановити пасивний режим"
+
+#: modules/ftp-method.c:1088
+#, c-format
+msgid "ftpfs: storing file %d (%d)"
+msgstr "ftpfs: розм╕щення файлу %d (%d)"
+
+#: modules/ftp-method.c:1305 modules/ftp-method.c:1507
+msgid "ftpfs: CWD failed."
+msgstr "ftpfs: не вдалося зм╕нити каталог."
+
+#: modules/ftp-method.c:1315 modules/ftp-method.c:1322
+msgid "ftpfs: couldn't resolve symlink"
+msgstr ""
+
+#: modules/ftp-method.c:1374
+msgid "Resolving symlink..."
+msgstr ""
+
+#: modules/ftp-method.c:1498
+#, c-format
+msgid "ftpfs: Reading FTP directory %s... (don't use UNIX ls options)"
+msgstr ""
+
+#: modules/ftp-method.c:1502
+#, c-format
+msgid "ftpfs: Reading FTP directory %s..."
+msgstr "ftpfs: Зчитування каталогу FTP %s..."
+
+#: modules/ftp-method.c:1568
+msgid "ftpfs: reading FTP directory interrupt by user"
+msgstr "ftpfs: зчитування каталогу FTP перервано користувачем"
+
+#: modules/ftp-method.c:1592
+msgid "ftpfs: got listing"
+msgstr ""
+
+#: modules/ftp-method.c:1644
+msgid "ftpfs: failed; nowhere to fallback to"
+msgstr ""
+
+#: modules/ftp-method.c:2037
+msgid "Starting linear transfer..."
+msgstr "Початок л╕н╕йно╖ передач╕..."
+
+#: modules/ftp-method.c:2107
+msgid "Preparing reget..."
+msgstr "П╕дготування reget..."
+
+#: modules/http-method.c:474
+#, c-format
+msgid "Invalid header `%s'"
+msgstr "Нев╕рний заголовок \"%s\""
+
+#: modules/http-method.c:491
+#, c-format
+msgid "%s to retrieve"
+msgstr "%s для в╕дновлення"
+
+#: modules/http-method.c:604
+#, c-format
+msgid "Closing connection to %s"
+msgstr "Закриття з'╓днання з %s"
+
+#: modules/http-method.c:689
+#, c-format
+msgid "%s of %s read"
+msgstr "%s з %s зчитано"
+
+#: modules/http-method.c:692
+#, c-format
+msgid "%s read"
+msgstr "%s зчитано"
