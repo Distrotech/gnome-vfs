@@ -1,3 +1,9 @@
+1999-09-05  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* modules/file-method.c (do_open): Fstat the file; if it's a
+	directory, return `GNOME_VFS_ERROR_ISDIRECTORY'.
+	(do_create): Likewise.
+
 1999-09-04  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* modules/file-method.c (stat_to_file_info): New helper function.

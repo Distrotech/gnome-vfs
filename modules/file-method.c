@@ -175,8 +175,7 @@ GET_PATH_MAX (void)
 #endif
 
 
-struct _FileHandle
-{
+struct _FileHandle {
 	GnomeVFSURI *uri;
 	gint fd;
 };
@@ -209,13 +208,17 @@ do_open (GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
 	 GnomeVFSOpenMode mode)
 {
-	FileHandle *new;
+	FileHandle *file_handle;
 	gint fd;
 	mode_t unix_mode;
 	gchar *file_name;
+	struct stat statbuf;
 
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
+
+	if (S_ISDIR (statbuf.st_mode))
+		return GNOME_VFS_ERROR_ISDIRECTORY;
 
 	if (mode & GNOME_VFS_OPEN_READ) {
 		if (mode & GNOME_VFS_OPEN_WRITE)
@@ -241,8 +244,17 @@ do_open (GnomeVFSMethodHandle **method_handle,
 	if (fd == -1)
 		return gnome_vfs_result_from_errno ();
 
-	new = file_handle_new (uri, fd);
-	*method_handle = (GnomeVFSMethodHandle *) new;
+	if (fstat (fd, &statbuf) != 0)
+		return gnome_vfs_result_from_errno ();
+
+	if (S_ISDIR (statbuf.st_mode)) {
+		close (fd);
+		return GNOME_VFS_ERROR_ISDIRECTORY;
+	}
+
+	file_handle = file_handle_new (uri, fd);
+	
+	*method_handle = (GnomeVFSMethodHandle *) file_handle;
 
 	return GNOME_VFS_OK;
 }
@@ -258,6 +270,7 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	gint fd;
 	mode_t unix_mode;
 	gchar *file_name;
+	struct stat statbuf;
 
 	_GNOME_VFS_METHOD_PARAM_CHECK (method_handle != NULL);
 	_GNOME_VFS_METHOD_PARAM_CHECK (uri != NULL);
@@ -275,7 +288,16 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	if (fd == -1)
 		return gnome_vfs_result_from_errno ();
 
+	if (fstat (fd, &statbuf) != 0)
+		return gnome_vfs_result_from_errno ();
+
+	if (S_ISDIR (statbuf.st_mode)) {
+		close (fd);
+		return GNOME_VFS_ERROR_ISDIRECTORY;
+	}
+
 	file_handle = file_handle_new (uri, fd);
+
 	*method_handle = (GnomeVFSMethodHandle *) file_handle;
 
 	return GNOME_VFS_OK;
