@@ -1,3 +1,11 @@
+2004-05-26  Fernando Herrera  <fherrera@onirica.com>
+
+	* modules/sftp-method.c: (invoke_fill_auth), (invoke_full_auth),
+	(invoke_save_auth), (sftp_connect): Get password from keyring if
+	possible. After a correct password is introduced and marked for 
+	"store in keyring" store it. Also handles the case of wrong password
+	in the keyring asking again for it.
+
 2004-05-25  Alexander Larsson  <alexl@redhat.com>
 
 	* modules/default-modules.conf (ssh): 

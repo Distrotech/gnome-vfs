@@ -845,24 +845,31 @@ iobuf_send_string_request_with_file_info (int                      fd,
 
 
 
-static gboolean
-invoke_full_auth (const GnomeVFSURI *uri,
-		  gboolean done_auth,
-		  const char *password_line,
-		  char **password_out)
+static char*
+get_user_from_uri_or_password_line (const GnomeVFSURI *uri,
+				    const char *password_line)
 {
-	GnomeVFSModuleCallbackFullAuthenticationIn in_args;
-	GnomeVFSModuleCallbackFullAuthenticationOut out_args;
-	gboolean invoked;
-	char *user, *chr, *ptr;
-	char *object;
-	gboolean passphrase;
+	char *chr, *user = NULL;
 
-	passphrase = g_str_has_prefix (password_line, "Enter passphrase for key");
+	if (!g_str_has_prefix (password_line, "Enter passphrase for key")) {
+		chr = strchr (password_line, '@');
 
-	user = NULL;
-	object = NULL;
-	if (passphrase) {
+		if (chr != NULL) {
+			user = g_strndup (password_line, chr - password_line);
+		}
+	}
+	if (user == NULL) {
+		user = g_strdup ((char *)gnome_vfs_uri_get_user_name (uri));
+	}
+	return user;
+}
+
+static char*
+get_object_from_password_line (const char *password_line)
+{
+	char *chr, *ptr, *object = NULL;
+
+	if (g_str_has_prefix (password_line, "Enter passphrase for key")) {
 		ptr = strchr (password_line, '\'');
 		if (ptr != NULL) {
 			ptr += 1;
@@ -873,13 +880,89 @@ invoke_full_auth (const GnomeVFSURI *uri,
 				object = g_strdup (ptr);
 			}
 		}
-	} else {
-		chr = strchr (password_line, '@');
-
-		if (chr != NULL) {
-			user = g_strndup (password_line, chr - password_line);
-		}
 	}
+	return object;
+}
+
+static char*
+get_server_from_uri_or_password_line (const GnomeVFSURI *uri,
+				      const char *password_line)
+{
+	if (!g_str_has_prefix (password_line, "Enter passphrase for key")) {
+		return g_strdup ( (char *)gnome_vfs_uri_get_host_name (uri));
+	}
+	return NULL;
+}
+
+static char*
+get_authtype_from_password_line (const char *password_line)
+{
+	if (g_str_has_prefix (password_line, "Enter passphrase for key")) {
+		return g_strdup ("publickey");
+	} 
+	return g_strdup ("password");
+}
+
+
+
+static gboolean
+invoke_fill_auth (const GnomeVFSURI *uri,
+		  const char *password_line,
+		  char **password_out)
+{
+	gboolean invoked;
+	GnomeVFSModuleCallbackFillAuthenticationIn in_args;
+	GnomeVFSModuleCallbackFillAuthenticationOut out_args;
+
+
+	memset (&in_args, 0, sizeof (in_args));
+	in_args.protocol = "sftp";
+	
+	in_args.uri = gnome_vfs_uri_to_string (uri, 0);
+	in_args.object = get_object_from_password_line (password_line);
+	in_args.authtype = get_authtype_from_password_line (password_line);
+	in_args.domain = NULL;
+	in_args.port = gnome_vfs_uri_get_host_port (uri);
+	in_args.server = get_server_from_uri_or_password_line (uri, password_line);
+	in_args.username = get_user_from_uri_or_password_line (uri, password_line);
+	memset (&out_args, 0, sizeof (out_args));
+
+	invoked = gnome_vfs_module_callback_invoke
+		  (GNOME_VFS_MODULE_CALLBACK_FILL_AUTHENTICATION,
+		  &in_args, sizeof (in_args),
+		  &out_args, sizeof (out_args));
+	if (invoked && out_args.valid) {
+		*password_out = g_strdup (out_args.password);
+		g_free (out_args.username);
+		g_free (out_args.domain);
+		g_free (out_args.password);
+	} else {
+		*password_out = NULL;
+	}
+
+	g_free (in_args.uri);
+	g_free (in_args.username);
+	g_free (in_args.object);
+	g_free (in_args.server);
+	g_free (in_args.authtype);
+
+	return invoked && out_args.valid;
+}
+
+static gboolean
+invoke_full_auth (const GnomeVFSURI *uri,
+		  gboolean done_auth,
+		  const char *password_line,
+		  char **password_out,
+		  char **keyring_out,
+		  char **user_out,
+		  char **object_out,
+		  char **authtype_out,
+		  gboolean *save_password_out)
+{
+	GnomeVFSModuleCallbackFullAuthenticationIn in_args;
+	GnomeVFSModuleCallbackFullAuthenticationOut out_args;
+	gboolean invoked;
 
 	memset (&in_args, 0, sizeof (in_args));
 	in_args.uri = gnome_vfs_uri_to_string (uri, 0);
@@ -887,22 +970,13 @@ invoke_full_auth (const GnomeVFSURI *uri,
 	if (done_auth) {
 		in_args.flags |= GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION_PREVIOUS_ATTEMPT_FAILED;
 	}
-	/* TODO: Support username too. A bit harder */
-
 	in_args.protocol = "sftp";
-	if (!passphrase) {
-		in_args.server = (char *)gnome_vfs_uri_get_host_name (uri);
-		if (user != NULL) {
-			in_args.username = user;
-		} else {
-			in_args.username = (char *)gnome_vfs_uri_get_user_name (uri);
-		}
-	}
-	in_args.object = object;
-	in_args.authtype = passphrase ? "publickey": "password";
-	
+	in_args.object = get_object_from_password_line (password_line);
+	in_args.authtype = get_authtype_from_password_line (password_line);
 	in_args.domain = NULL;
 	in_args.port = gnome_vfs_uri_get_host_port (uri);
+	in_args.server = get_server_from_uri_or_password_line (uri, password_line);
+	in_args.username = get_user_from_uri_or_password_line (uri, password_line);
 
 	memset (&out_args, 0, sizeof (out_args));
 
@@ -910,24 +984,61 @@ invoke_full_auth (const GnomeVFSURI *uri,
 		(GNOME_VFS_MODULE_CALLBACK_FULL_AUTHENTICATION,
 		 &in_args, sizeof (in_args),
 		 &out_args, sizeof (out_args));
-
 	if (invoked && !out_args.abort_auth) {
+		if (out_args.save_password) {
+			*keyring_out = g_strdup (out_args.keyring);
+			*user_out = get_user_from_uri_or_password_line (uri, password_line);
+			*object_out = get_object_from_password_line (password_line);
+			*authtype_out = get_authtype_from_password_line (password_line);
+		}
 		*password_out = g_strdup (out_args.password);
+		*save_password_out = out_args.save_password;
+		g_free (out_args.username);
+		g_free (out_args.domain);
+		g_free (out_args.password);
+		g_free (out_args.keyring);
 	} else {
 		*password_out = NULL;
 	}
-	g_free (out_args.username);
-	g_free (out_args.domain);
-	g_free (out_args.password);
-	g_free (out_args.keyring);
 
 	g_free (in_args.uri);
-	g_free (user);
-	g_free (object);
+	g_free (in_args.username);
+	g_free (in_args.object);
+	g_free (in_args.server);
+	g_free (in_args.authtype);
 
 	return invoked && !out_args.abort_auth;
 }
 
+static void
+invoke_save_auth (const GnomeVFSURI *uri,
+	   char *keyring,
+	   char *user,
+	   char *object,
+	   char *authtype,
+	   char *password)
+{
+	GnomeVFSModuleCallbackSaveAuthenticationIn save_in_args;
+	GnomeVFSModuleCallbackSaveAuthenticationOut save_out_args;
+
+	memset (&save_in_args, 0, sizeof (save_in_args));
+	save_in_args.uri = gnome_vfs_uri_to_string (uri, 0);
+	save_in_args.server = (char *)gnome_vfs_uri_get_host_name (uri);
+	save_in_args.port = gnome_vfs_uri_get_host_port (uri);
+	save_in_args.protocol = "sftp";
+	save_in_args.keyring = keyring;
+	save_in_args.username = user;
+	save_in_args.object = object;
+	save_in_args.authtype = authtype;
+	save_in_args.password = password;
+
+	memset (&save_out_args, 0, sizeof (save_out_args));
+	gnome_vfs_module_callback_invoke (GNOME_VFS_MODULE_CALLBACK_SAVE_AUTHENTICATION,
+					  &save_in_args, sizeof (save_in_args),
+					  &save_out_args, sizeof (save_out_args));
+	g_free (save_in_args.uri);
+}
+	
 
 /* Derived from OpenSSH, sftp.c:main */
 
@@ -942,9 +1053,16 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	const gchar    *user_name;
 	gint            port;
 	guint           last_arg, i;
+	gboolean        full_auth;
 	gboolean        done_auth;
+	gboolean	save_password;
 	Buffer          msg;
 	gchar           type;
+	char *password;
+	char *keyring;
+	char *user;
+	char *object;
+	char *authtype;
 
 	GError         *error = NULL;
 
@@ -1046,6 +1164,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 					g_io_channel_get_flags (tty_channel) | G_IO_FLAG_NONBLOCK, NULL);
 	}
 	done_auth = FALSE;
+	full_auth = FALSE;
 	while (tty_fd != -1) {
 		fd_set ifds;
 		struct timeval tv;
@@ -1053,7 +1172,6 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		GIOStatus io_status;
 		char buffer[1024];
 		gsize len;
-		char *password;
 		char *choices[3];
 		char *pos;
 		char *startpos;
@@ -1088,7 +1206,13 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 			if (g_str_has_suffix (buffer, "password: ") ||
 			    g_str_has_suffix (buffer, "Password: ") ||
 			    g_str_has_prefix (buffer, "Enter passphrase for key")) {
-				if (invoke_full_auth (uri, done_auth, buffer, &password) && password != NULL) {
+				if (!done_auth && invoke_fill_auth (uri, buffer, &password) && password != NULL) {
+					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
+					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
+					g_io_channel_flush (tty_channel, NULL);
+				} else if (invoke_full_auth (uri, done_auth, buffer, &password, &keyring, 
+							     &user, &object, &authtype, &save_password) && password != NULL) {
+					full_auth = TRUE;
 					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);
 					g_io_channel_write_chars (tty_channel, "\n", 1, &len, NULL);
 					g_io_channel_flush (tty_channel, NULL);
@@ -1194,6 +1318,9 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		res = GNOME_VFS_ERROR_PROTOCOL_ERROR;
 	} else {
 		/* Everything's A-OK. Set up the connection and go */
+		if (full_auth == TRUE && save_password == TRUE) {
+			invoke_save_auth (uri, keyring, user, object, authtype, password);
+		}
 
 		if (!g_thread_supported ()) g_thread_init (NULL);
 
@@ -1218,6 +1345,12 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 
  bail:
 	buffer_free (&msg);
+
+	g_free (password);
+	g_free (keyring);
+	g_free (user);
+	g_free (object);
+	g_free (authtype);
 
 	if (res != GNOME_VFS_OK) {
 		close (in_fd);
