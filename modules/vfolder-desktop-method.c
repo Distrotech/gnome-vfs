@@ -448,7 +448,10 @@ get_basename (GnomeVFSURI *uri)
 {
 	const char *path = gnome_vfs_uri_get_path (uri);
 
-	return g_path_get_basename (path);
+	if (path != NULL)
+		return g_path_get_basename (path);
+	else
+		return NULL;
 }
 
 static void
@@ -927,8 +930,7 @@ ensure_folder_sort (VFolderInfo *info, Folder *folder)
 
 		entry = entry_list->data;
 
-		entries = g_slist_remove_link (entries, entry_list);
-		g_slist_free_1 (entry_list);
+		entries = g_slist_delete_link (entries, entry_list);
 
 		folder->entries = g_slist_prepend (folder->entries,
 						   entry);
@@ -2168,18 +2170,18 @@ vfolder_info_insert_entry (VFolderInfo *info, EntryFile *efile)
 	entry_ref ((Entry *)efile);
 
 	entry_list = g_hash_table_lookup (info->entries_ht, efile->entry.name);
-	if (entry_list != NULL) {
-		Entry *entry = entry_list->data;
-		info->entries = g_slist_remove_link (info->entries, 
-						     entry_list);
-		g_slist_free_1 (entry_list);
-		entry_unref (entry);
-	}
 
 	info->entries = g_slist_prepend (info->entries, efile);
 	/* The hash table contains the GSList pointer */
 	g_hash_table_insert (info->entries_ht, efile->entry.name, 
 			     info->entries);
+
+	if (entry_list != NULL) {
+		Entry *entry = entry_list->data;
+		info->entries = g_slist_delete_link (info->entries, 
+						     entry_list);
+		entry_unref (entry);
+	}
 }
 
 static void
@@ -3168,6 +3170,7 @@ get_entry_unlocked (GnomeVFSURI *uri,
 		char *dirname = gnome_vfs_uri_extract_dirname (uri);
 		if (any_subdir (dirname)) {
 			g_free (dirname);
+			g_free (basename);
 			*result = GNOME_VFS_ERROR_NOT_FOUND;
 			return NULL;
 		}
@@ -3177,6 +3180,7 @@ get_entry_unlocked (GnomeVFSURI *uri,
 	}
 
 	if (gnome_vfs_context_check_cancellation (context)) {
+		g_free (basename);
 		*result = GNOME_VFS_ERROR_CANCELLED;
 		return NULL;
 	}
@@ -3371,9 +3375,8 @@ remove_file (Folder *folder, const char *basename)
 	if (folder->includes_ht != NULL) {
 		li = g_hash_table_lookup (folder->includes_ht, basename);
 		if (li != NULL) {
-			folder->includes = g_slist_remove_link
+			folder->includes = g_slist_delete_link
 				(folder->includes, li);
-			g_slist_free_1 (li);
 		}
 	}
 
@@ -3578,9 +3581,8 @@ remove_from_all_except (Folder *root,
 				Entry *entry = li->data;
 				if (strcmp (name, entry->name) == 0) {
 					root->entries = 
-						g_slist_remove_link
+						g_slist_delete_link
 						   (root->entries, li);
-					g_slist_free_1 (li);
 					break;
 				}
 			}
@@ -3607,7 +3609,7 @@ do_create (GnomeVFSMethod *method,
 	GnomeVFSMethodHandle *file_handle;
 	GnomeVFSURI *file_uri;
 	const char *scheme;
-	const char *basename;
+	char *basename;
 	const char *path;
 	VFolderInfo *info;
 	Folder *parent;
@@ -3624,29 +3626,40 @@ do_create (GnomeVFSMethod *method,
 	    path == NULL ||
 	    ( ! check_ext (basename, ".desktop") &&
 	      ! strcmp (basename, ".directory") == 0)) {
+		g_free (basename);
 		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 
 	/* all scheme is read only */
-	if (ALL_SCHEME_P (scheme))
+	if (ALL_SCHEME_P (scheme)) {
+		g_free (basename);
 		return GNOME_VFS_ERROR_READ_ONLY;
+	}
 
 	info = get_vfolder_info (scheme, &result, context);
-	if (info == NULL)
+	if (info == NULL) {
+		g_free (basename);
 		return result;
+	}
 
 	if (info->user_filename == NULL ||
-	    info->read_only)
+	    info->read_only) {
+		g_free (basename);
 		return GNOME_VFS_ERROR_READ_ONLY;
+	}
 
 	parent = resolve_folder (info, path,
 				 TRUE /* ignore_basename */,
 				 &result, context);
-	if (parent == NULL)
+	if (parent == NULL) {
+		g_free (basename);
 		return result;
+	}
 
-	if (parent->read_only)
+	if (parent->read_only) {
+		g_free (basename);
 		return GNOME_VFS_ERROR_READ_ONLY;
+	}
 
 	if (strcmp (basename, ".directory") == 0) {
 		char *fname;
@@ -3658,12 +3671,14 @@ do_create (GnomeVFSMethod *method,
 			desktop_file = get_directory_file_unlocked (info, parent);
 			if (desktop_file != NULL) {
 				g_free (desktop_file);
+				g_free (basename);
 				G_UNLOCK (vfolder_lock);
 				return GNOME_VFS_ERROR_FILE_EXISTS;
 			}
 		}
 
 		if ( ! make_dirfile_private (info, parent)) {
+			g_free (basename);
 			G_UNLOCK (vfolder_lock);
 			return GNOME_VFS_ERROR_GENERIC;
 		}
@@ -3676,6 +3691,7 @@ do_create (GnomeVFSMethod *method,
 		g_free (s);
 
 		if (file_uri == NULL) {
+			g_free (basename);
 			G_UNLOCK (vfolder_lock);
 			return GNOME_VFS_ERROR_GENERIC;
 		}
@@ -3712,17 +3728,22 @@ do_create (GnomeVFSMethod *method,
 	entry = find_entry (parent->entries, basename);
 
 	if (entry != NULL &&
-	    entry->type == ENTRY_FOLDER)
+	    entry->type == ENTRY_FOLDER) {
+		g_free (basename);
 		return GNOME_VFS_ERROR_IS_DIRECTORY;
+	}
 
 	efile = (EntryFile *)entry;
 
 	if (efile != NULL) {
-		if (exclusive)
+		if (exclusive) {
+			g_free (basename);
 			return GNOME_VFS_ERROR_FILE_EXISTS;
+		}
 
 		G_LOCK (vfolder_lock);
 		if ( ! make_file_private (info, efile)) {
+			g_free (basename);
 			G_UNLOCK (vfolder_lock);
 			return GNOME_VFS_ERROR_GENERIC;
 		}
@@ -3732,6 +3753,7 @@ do_create (GnomeVFSMethod *method,
 		g_free (s);
 
 		if (file_uri == NULL) {
+			g_free (basename);
 			G_UNLOCK (vfolder_lock);
 			return GNOME_VFS_ERROR_GENERIC;
 		}
@@ -3752,6 +3774,8 @@ do_create (GnomeVFSMethod *method,
 			     FALSE /* is_directory_file */,
 			     TRUE /* write */);
 
+		g_free (basename);
+
 		G_UNLOCK (vfolder_lock);
 
 		return result;
@@ -3762,6 +3786,7 @@ do_create (GnomeVFSMethod *method,
 	li = g_hash_table_lookup (info->entries_ht, basename);
 
 	if (exclusive && li != NULL) {
+		g_free (basename);
 		G_UNLOCK (vfolder_lock);
 		return GNOME_VFS_ERROR_FILE_EXISTS;
 	}
@@ -3776,6 +3801,7 @@ do_create (GnomeVFSMethod *method,
 
 	/* this will make a private name for this */
 	if ( ! make_file_private (info, efile)) {
+		g_free (basename);
 		G_UNLOCK (vfolder_lock);
 		return GNOME_VFS_ERROR_GENERIC;
 	}
@@ -3812,6 +3838,9 @@ do_create (GnomeVFSMethod *method,
 		     TRUE /* write */);
 
 	vfolder_info_write_user (info);
+
+	g_free (basename);
+
 	G_UNLOCK (vfolder_lock);
 
 	return result;
@@ -4884,10 +4913,11 @@ do_move (GnomeVFSMethod *method,
 			new_folder = (Folder *)new_entry;
 		} else {
 			/* well, let's see new_entry == NULL */
-			const char *basename = get_basename (new_uri);
+			char *basename = get_basename (new_uri);
 			/* a file and a totally different one */
 			if (basename != NULL &&
 			    strcmp (basename, old_entry->name) != 0) {
+				g_free (basename);
 				/* yay, a long move */
 				/* this will do another set of lookups
 				 * perhaps this can be done in a nicer way,
@@ -4896,6 +4926,7 @@ do_move (GnomeVFSMethod *method,
 				return long_move (method, old_uri, new_uri,
 						  force_replace, context);
 			}
+			g_free (basename);
 		}
 
 		/* same folder */
@@ -4942,7 +4973,7 @@ do_unlink (GnomeVFSMethod *method,
 	Folder *the_folder;
 	gboolean is_directory_file;
 	VFolderInfo *info;
-	const char *basename;
+	char *basename;
 	const char *scheme;
 	GSList *li;
 
@@ -4967,16 +4998,22 @@ do_unlink (GnomeVFSMethod *method,
 			   &the_folder,
 			   &is_directory_file,
 			   &result, context);
-	if (entry == NULL)
+	if (entry == NULL) {
+		g_free (basename);
 		return result;
+	}
 
 	if (the_folder != NULL &&
-	    the_folder->read_only)
+	    the_folder->read_only) {
+		g_free (basename);
 		return GNOME_VFS_ERROR_READ_ONLY;
+	}
 
 	if (entry->type == ENTRY_FOLDER &&
 	    is_directory_file) {
 		Folder *folder = (Folder *)entry;
+
+		g_free (basename);
 
 		if (folder->desktop_file == NULL)
 			return GNOME_VFS_ERROR_NOT_FOUND;
@@ -4992,8 +5029,10 @@ do_unlink (GnomeVFSMethod *method,
 
 		return GNOME_VFS_OK;
 	} else if (entry->type == ENTRY_FOLDER) {
+		g_free (basename);
 		return GNOME_VFS_ERROR_IS_DIRECTORY;
 	} else if (the_folder == NULL) {
+		g_free (basename);
 		return GNOME_VFS_ERROR_NOT_FOUND;
 	}
 
@@ -5031,6 +5070,8 @@ do_unlink (GnomeVFSMethod *method,
 	 * reference to it, unlink it. */
 
 	vfolder_info_write_user (info);
+
+	g_free (basename);
 
 	G_UNLOCK (vfolder_lock);
 

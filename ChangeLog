@@ -1,3 +1,8 @@
+Thu Jan 17 16:31:31 2002  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: Fix some memory leaks and
+	  fix memory corruption when duplicate filenames are found
+
 2002-01-17  Darin Adler  <darin@bentspoon.com>
 
 	* libgnomevfs/gnome-vfs-async-ops.h: Remove unneeded includes.
