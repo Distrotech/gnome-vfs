@@ -1,9 +1,14 @@
+2004-07-02  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-dns-sd.c:
+	include unistd.h, patch from Ray Simard
+
 2004-06-24  Alexander Larsson  <alexl@redhat.com>
 
 	Partially based on a patch from laszlo.kovacs@sun.com
 
 	* libgnomevfs/gnome-vfs-inet-connection.[ch]:
-	Add gnome_vfs_inet_connection_get_ip
+	Add gnome_vfs_inet_connection_get_ip.
 	
 	* libgnomevfs/gnome-vfs-standard-callbacks.h:
 	Add flags to ask for anon login.
