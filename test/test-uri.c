@@ -559,9 +559,13 @@ main (int argc, char **argv)
 	test_uri_to_string ("http:", "http:", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("file:/", "file:///", GNOME_VFS_URI_HIDE_NONE);
 
-	/* FIXME bugzilla.eazel.com 2803: Do we really want to add the
-         * "//" in this case?
+	/* FIXME bugzilla.eazel.com 6022: At least for http, we don't
+         * want to do canonicalizing after the ?. All these results
+         * are presumably wrong because of that.
 	 */
+	test_uri_to_string ("http://www.eazel.com?///xxx", "http://www.eazel.com?/xxx", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_parent ("http://www.eazel.com?///xxx", "http://www.eazel.com?/");
+	test_uri_parent ("http://www.eazel.com/dir?xxx/yyy", "http://www.eazel.com/dir?xxx");
 
 	test_uri_to_path ("pipe:gnome-db2html2%20'%2Fgnome%2Fshare%2Fgnome%2Fhelp"
 			  "%2Fnautilus%2FC%2Fnautilus.sgml'%3Bmime-type%3Dtext%2Fhtml", 
