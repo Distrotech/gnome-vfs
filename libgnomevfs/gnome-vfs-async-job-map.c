@@ -27,15 +27,17 @@
 #include <glib/ghash.h>
 #include <glib/gmessages.h>
 
-static GHashTable *async_job_map;
-static guint async_job_map_next_id;
+/* job map bits guarded by this lock */
 static GStaticRecMutex async_job_map_lock = G_STATIC_REC_MUTEX_INIT;
+static guint async_job_map_next_id;
 static gboolean async_job_map_locked;
-volatile static gboolean async_job_map_shutting_down;
+static gboolean async_job_map_shutting_down;
+static GHashTable *async_job_map;
 
+/* callback map bits guarded by this lock */
+static GStaticMutex async_job_callback_map_lock = G_STATIC_MUTEX_INIT;
 static GHashTable *async_job_callback_map;
 static guint async_job_callback_map_next_id;
-static GStaticMutex async_job_callback_map_lock = G_STATIC_MUTEX_INIT;
 
 void async_job_callback_map_destroy (void);
 
@@ -47,8 +49,8 @@ gnome_vfs_async_job_map_init (void)
 GnomeVFSJob *
 gnome_vfs_async_job_map_get_job (const GnomeVFSAsyncHandle *handle)
 {
-	g_assert (async_job_map != NULL);
 	gnome_vfs_async_job_map_assert_locked ();
+	g_assert (async_job_map != NULL);
 
 	return g_hash_table_lookup (async_job_map, handle);
 }
@@ -56,6 +58,8 @@ gnome_vfs_async_job_map_get_job (const GnomeVFSAsyncHandle *handle)
 void
 gnome_vfs_async_job_map_add_job (GnomeVFSJob *job)
 {
+	gnome_vfs_async_job_map_lock ();
+
 	g_assert (!async_job_map_shutting_down);
 
 	/* Assign a unique id to each job. The GnomeVFSAsyncHandle pointers each
@@ -63,24 +67,23 @@ gnome_vfs_async_job_map_add_job (GnomeVFSJob *job)
 	 */
 	job->job_handle = GUINT_TO_POINTER (++async_job_map_next_id);
 
-	gnome_vfs_async_job_map_lock ();
-
 	if (async_job_map == NULL) {
 		/* First job, allocate a new hash table. */
 		async_job_map = g_hash_table_new (NULL, NULL);
 	}
 
 	g_hash_table_insert (async_job_map, job->job_handle, job);
+
 	gnome_vfs_async_job_map_unlock ();
 }
 
 void
 gnome_vfs_async_job_map_remove_job (GnomeVFSJob *job)
 {
-	g_assert (async_job_map);
-
 	gnome_vfs_async_job_map_lock ();
 	
+	g_assert (async_job_map);
+
 	g_hash_table_remove (async_job_map, job->job_handle);
 	
 	gnome_vfs_async_job_map_unlock ();
@@ -90,9 +93,9 @@ gnome_vfs_async_job_map_remove_job (GnomeVFSJob *job)
 static void
 gnome_vfs_async_job_map_destroy (void)
 {
+	gnome_vfs_async_job_map_assert_locked ();
 	g_assert (async_job_map_shutting_down);
 	g_assert (async_job_map != NULL);
-	gnome_vfs_async_job_map_assert_locked ();
 	
 	g_hash_table_destroy (async_job_map);
 	async_job_map = NULL;
@@ -101,12 +104,12 @@ gnome_vfs_async_job_map_destroy (void)
 gboolean 
 gnome_vfs_async_job_completed (GnomeVFSAsyncHandle *handle)
 {
-
 	GnomeVFSJob *job;
+
+	gnome_vfs_async_job_map_lock ();
 
 	JOB_DEBUG (("%d", GPOINTER_TO_UINT (handle)));
 	/* Job done, remove it's id from the map */
-	gnome_vfs_async_job_map_lock ();
 
 	g_assert (async_job_map != NULL);
 
@@ -128,18 +131,19 @@ gnome_vfs_async_job_completed (GnomeVFSAsyncHandle *handle)
 void
 gnome_vfs_async_job_map_shutdown (void)
 {
-	if (async_job_map == NULL) {
-		return;
-	}
-
 	gnome_vfs_async_job_map_lock ();
 	
-	/* tell the async jobs it's quitting time */
-	async_job_map_shutting_down = TRUE;
+	if (async_job_map) {
 
-	if (g_hash_table_size (async_job_map) == 0) {
-		/* No more outstanding jobs to finish, just delete the hash table directly. */
-		gnome_vfs_async_job_map_destroy ();
+		/* tell the async jobs it's quitting time */
+		async_job_map_shutting_down = TRUE;
+
+		if (g_hash_table_size (async_job_map) == 0) {
+			/* No more outstanding jobs to finish, just delete
+			 * the hash table directly.
+			 */
+			gnome_vfs_async_job_map_destroy ();
+		}
 	}
 
 	/* The last expiring job will delete the hash table. */
@@ -169,18 +173,19 @@ gnome_vfs_async_job_map_assert_locked (void)
 }
 
 void 
-gnome_vfs_async_job_callback_valid (guint callback_id, gboolean *valid,
-	gboolean *cancelled)
+gnome_vfs_async_job_callback_valid (guint     callback_id,
+				    gboolean *valid,
+				    gboolean *cancelled)
 {
 	GnomeVFSNotifyResult *notify_result;
+	
+	g_static_mutex_lock (&async_job_callback_map_lock);
 	
 	if (async_job_callback_map == NULL) {
 		g_assert (async_job_map_shutting_down);
 		*valid = FALSE;
 		*cancelled = FALSE;
 	}
-
-	g_static_mutex_lock (&async_job_callback_map_lock);
 
 	notify_result = (GnomeVFSNotifyResult *) g_hash_table_lookup
 		(async_job_callback_map, GUINT_TO_POINTER (callback_id));
@@ -195,8 +200,11 @@ gboolean
 gnome_vfs_async_job_add_callback (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
 	gboolean cancelled;
-	g_assert (!async_job_map_shutting_down);
 
+	g_static_mutex_lock (&async_job_callback_map_lock);
+
+	g_assert (!async_job_map_shutting_down);
+	
 	/* Assign a unique id to each job callback. Use unique IDs instead of the
 	 * notify_results pointers to avoid aliasing problems.
 	 */
@@ -204,8 +212,6 @@ gnome_vfs_async_job_add_callback (GnomeVFSJob *job, GnomeVFSNotifyResult *notify
 
 	JOB_DEBUG (("adding callback %d ", notify_result->callback_id));
 
-	g_static_mutex_lock (&async_job_callback_map_lock);
-	
 	if (async_job_callback_map == NULL) {
 		/* First job, allocate a new hash table. */
 		async_job_callback_map = g_hash_table_new (NULL, NULL);
@@ -232,7 +238,9 @@ gnome_vfs_async_job_remove_callback (guint callback_id)
 
 	JOB_DEBUG (("removing callback %d ", callback_id));
 	g_static_mutex_lock (&async_job_callback_map_lock);
+
 	g_hash_table_remove (async_job_callback_map, GUINT_TO_POINTER (callback_id));
+
 	g_static_mutex_unlock (&async_job_callback_map_lock);
 }
 
