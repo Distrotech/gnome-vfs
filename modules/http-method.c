@@ -604,7 +604,9 @@ make_request (HttpFileHandle **handle_return,
 		goto error;
 
 	if(data) {
+#if 0
 		g_print("sending data...\n");
+#endif
 		result = gnome_vfs_iobuf_write (iobuf, data->data, data->len,
 						&bytes_written);
 	}
@@ -821,16 +823,20 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 					file_info->mime_type = 
 						g_strdup(xmlNodeGetContent(l));
 
+#if 0
 				g_print("found content-type: %s\n", 
 					xmlNodeGetContent(l));
+#endif
 
 			} else if(!strcmp((char *)l->name, "getcontentlength")){
 				file_info->valid_fields |= 
 					GNOME_VFS_FILE_INFO_FIELDS_SIZE;
 				file_info->size = atoi(xmlNodeGetContent(l));
 
+#if 0
 				g_print("found content-length: %s\n", 
 					xmlNodeGetContent(l));
+#endif
 
 			} else if(!strcmp((char *)l->name, "resourcetype")) {
 				file_info->valid_fields |= 
@@ -868,7 +874,9 @@ process_propfind_response(xmlNodePtr n, gchar *uri_string)
 	while(n != NULL) {
 		if(!strcmp((char *)n->name, "href")) {
 			gchar *nodecontent = xmlNodeGetContent(n);
+#if 0
 			g_print("  found href=\"%s\"\n", nodecontent);
+#endif
 			if(!strncmp(uri_string, nodecontent, 
 					strlen(uri_string))) {
 				/* our DAV server is prepending the 
@@ -959,11 +967,15 @@ make_propfind_request (HttpFileHandle **handle_return,
 	xmlParseChunk(parserContext, "", 0, 1);
 
 	doc = parserContext->myDoc;
+	if(!doc)
+		return GNOME_VFS_ERROR_CORRUPTEDDATA;
 
 	cur = doc->root;
 
 	if(strcmp((char *)cur->name, "multistatus")) {
+#if 0
 		g_print("Couldn't find <multistatus>.\n");
+#endif
 		return GNOME_VFS_ERROR_CORRUPTEDDATA;
 	}
 
@@ -971,7 +983,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 
 	while(cur != NULL) {
 		if(!strcmp((char *)cur->name, "response")) {
-			GnomeVFSFileInfo *file_info = 
+			GnomeVFSFileInfo *file_info =
 				process_propfind_response(cur->childs, 
 					uri_string);
 			/* if the file has a filename or we're doing a PROPFIND on a single 
@@ -980,7 +992,9 @@ make_propfind_request (HttpFileHandle **handle_return,
 				handle->files = g_list_append(handle->files, file_info);
 			}
 		} else {
+#if 0
 			g_print("expecting <response> got <%s>\n", cur->name);
+#endif
 		}
 		cur = cur->next;
 	}
@@ -1117,8 +1131,10 @@ do_get_file_info (GnomeVFSMethod *method,
 		if (file_info->name == NULL)
 			file_info->name = g_strdup ("");
 	} else {
+#if 0
 		g_print("PROPFIND didn't work...\n");
 		g_print("result = %s\n", gnome_vfs_result_to_string(result) );
+#endif
 		result = make_request (&handle, uri, "HEAD", NULL, NULL, 
 			       	context);
 		if (result != GNOME_VFS_OK)

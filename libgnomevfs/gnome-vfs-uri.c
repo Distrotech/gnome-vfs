@@ -116,30 +116,37 @@ split_toplevel_uri (const gchar *path, guint path_len,
 	}
 
 	/* Check if the host comes with a port spec, if so, chop it.  */
-	colon = memchr (rest, ':', dir - rest);
-	if (colon != NULL && colon != dir - 1) {
-		*host_return = g_strndup (rest, colon - rest);
+	if(dir) {
+		colon = memchr (rest, ':', dir - rest);
+		if (colon != NULL && colon != dir - 1) {
+			*host_return = g_strndup (rest, colon - rest);
 
-		if (sscanf (colon + 1, "%d", port_return) == 1) {
-			if (*port_return > 0xffff)
-				*port_return = 0;
-		} else {
-			while (1) {
-				colon++;
-				switch(*colon) {
-				case 'C':
-					*port_return = 1;
-					break;
-				case 'r':
-					*port_return = 2;
-					break;
-				case 0:
-					goto done;
+			if (sscanf (colon + 1, "%d", port_return) == 1) {
+				if (*port_return > 0xffff)
+					*port_return = 0;
+			} else {
+				while (1) {
+					colon++;
+					switch(*colon) {
+					case 'C':
+						*port_return = 1;
+						g_warning("Setting *port_return = 1");
+						break;
+					case 'r':
+						*port_return = 2;
+						g_warning("Setting *port_return = 2");
+						break;
+					case 0:
+						*port_return = 0;
+						goto done;
+					}
 				}
 			}
+		} else {
+			*host_return = g_strndup (rest, dir - rest);
 		}
 	} else {
-		*host_return = g_strndup (rest, dir - rest);
+		*host_return = g_strdup(path);
 	}
 
  done:

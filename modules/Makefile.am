@@ -120,8 +120,3 @@ libvfs_translate_la_SOURCES =			\
 	translate-method.c
 libvfs_translate_la_LDFLAGS = $(module_flags)
 libvfs_translate_la_LIBADD  = $(GLIB_LIBS)
-
-libvfs_help_la_SOURCES =			\
-	help-method.c
-libvfs_help_la_LDFLAGS = $(module_flags)
-libvfs_help_la_LIBADD  = $(GLIB_LIBS)
