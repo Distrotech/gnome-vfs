@@ -2111,7 +2111,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 
 		}
 		/* reset the preflight numbers */
-		progress->progress_info->file_index = 0;
+		progress->progress_info->file_index = 1;
 		progress->progress_info->total_bytes_copied = 0;
 
 		if (result != GNOME_VFS_OK) {

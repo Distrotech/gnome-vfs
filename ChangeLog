@@ -1,3 +1,9 @@
+2001-04-12  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_uri_internal):
+	Fix bug where it file indices start from 1 during the preflight
+	but from 0 during the actual copy.
+
 2001-03-30  Michael K. Fleming  <mfleming@eazel.com>
 
 	reviewed by: Pavel Cisler <pavel@eazel.com>
