@@ -95,6 +95,8 @@ typedef enum {
  * @GNOME_VFS_FILE_INFO_FIELDS_CTIME: Creating time field is valid
  * @GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME: Symlink name field is valid
  * @GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE: Mime type field is valid
+ * @GNOME_VFS_FILE_INFO_FIELDS_ACCESS: the access bits of the permissions
+ * bitfield are valid
  *
  * Flags indicating what fields in a GnomeVFSFileInfo struct are valid. 
  * Name is always assumed valid (how else would you have gotten a
@@ -222,6 +224,9 @@ typedef struct {
  * (sniffing, algorithmic detection, etc)
  * @GNOME_VFS_FILE_INFO_FOLLOW_LINKS: automatically follow symbolic links and retrieve the
  * properties of their target (recommended)
+ * @GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS: tries to get data similar to what
+ * would return access(2) on a local file system (ie is the file readable,
+ * writable and/or executable). Can be really slow on remote file systems
  *
  * Packed boolean bitfield representing options that can
  * be passed into a gnome_vfs_get_file_info() call (or other
@@ -229,7 +234,7 @@ typedef struct {
  * of get_file_info.
  **/
 typedef enum {
-	GNOME_VFS_FILE_INFO_DEFAULT = 0, /* FIXME bugzilla.eazel.com 1203: name sucks */
+	GNOME_VFS_FILE_INFO_DEFAULT = 0,
 	GNOME_VFS_FILE_INFO_GET_MIME_TYPE = 1 << 0,
 	GNOME_VFS_FILE_INFO_FORCE_FAST_MIME_TYPE = 1 << 1,
 	GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE = 1 << 2,

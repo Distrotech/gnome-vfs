@@ -1,3 +1,11 @@
+2002-11-08  Christophe Fergeau <teuf@users.sourceforge.net>
+
+	* libgnomevfs/gnome-vfs-file-info.h: documented 
+	  GNOME_VFS_FILE_INFO_FIELDS_ACCESS and 
+	  GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS
+	* modules/ssh-method.c: only get mime type and access info if they
+	  were asked
+
 2002-11-06  Christophe Fergeau <teuf@users.sourceforge.net>
 
 	* libgnomevfs/gnome-vfs-mime-magic.c

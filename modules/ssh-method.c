@@ -51,6 +51,7 @@ typedef struct {
 	int read_fd;
 	int write_fd;
 	pid_t pid;
+	GnomeVFSFileInfoOptions info_opts;
 } SshHandle;
 
 static GnomeVFSResult do_open           (GnomeVFSMethod *method,
@@ -431,7 +432,7 @@ do_open_directory (GnomeVFSMethod *method,
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}
-
+	handle->info_opts = options;
 	handle->open_mode = GNOME_VFS_OPEN_NONE;
 	handle->type = SSH_LIST;
 	*method_handle = (GnomeVFSMethodHandle *)handle;
@@ -460,7 +461,6 @@ get_access_info (GnomeVFSURI *uri, GnomeVFSFileInfo *file_info)
      struct param params[2] = {{'r', GNOME_VFS_PERM_ACCESS_READABLE},
                                {'w', GNOME_VFS_PERM_ACCESS_WRITABLE}};
 
-     
      name = gnome_vfs_unescape_string (uri->text, G_DIR_SEPARATOR_S);
 
 
@@ -570,17 +570,24 @@ do_read_directory (GnomeVFSMethod *method,
 
 		/* FIXME: support symlinks correctly */
 
-		file_info->mime_type = g_strdup 
-			(gnome_vfs_get_file_mime_type (filename, &st, FALSE));
+		if (((SshHandle*)method_handle)->info_opts
+		    & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
+			file_info->mime_type = g_strdup 
+				(gnome_vfs_get_file_mime_type (filename, &st, 
+							       FALSE));
+			file_info->valid_fields 
+				|= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
+		}
 
-		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		file_info->valid_fields &= 
 			~GNOME_VFS_FILE_INFO_FIELDS_BLOCK_COUNT;
 		file_info->valid_fields &= 
 			~GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
-
-		get_access_info (((SshHandle*)method_handle)->uri, 
-				 file_info);
+		if (((SshHandle*)method_handle)->info_opts 
+		    & GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS) {
+			get_access_info (((SshHandle*)method_handle)->uri, 
+					 file_info);
+		}
 
 		/* Break out.
 		   We are in a loop so we get the first 'ls' line;
@@ -622,7 +629,7 @@ do_get_file_info (GnomeVFSMethod *method,
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}
-
+	handle->info_opts = options;
 	handle->open_mode = GNOME_VFS_OPEN_NONE;
 	handle->type = SSH_LIST;
 
