@@ -798,7 +798,12 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 #if HAVE_STATVFS
 	statfs_result = statvfs (unescaped_path, &statfs_buffer);
 #else
+#if STATFS_ARGS == 2
 	statfs_result = statfs (unescaped_path, &statfs_buffer);   
+#elif STATFS_ARGS == 4
+	statfs_result = statfs (unescaped_path, &statfs_buffer,
+				sizeof (statfs_buffer), 0);
+#endif
 #endif  
 
 	if (statfs_result != 0) {
@@ -806,9 +811,14 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 		return gnome_vfs_result_from_errno ();
 	}
 
+
+/* CF: I assume ncpfs is linux specific, if you are on a non-linux platform
+ * where ncpfs is available, please file a bug about it on bugzilla.gnome.org
+ * (2004-03-08)
+ */
+#if defined(__linux__)
 	/* ncpfs does not know the amount of available and free space */
 	if (statfs_buffer.f_bavail == 0 && statfs_buffer.f_bfree == 0) {
-#if defined(__linux__)
 		/* statvfs does not contain an f_type field, we try again
 		 * with statfs.
 		 */
@@ -822,14 +832,11 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 		
 		/* linux/ncp_fs.h: NCP_SUPER_MAGIC == 0x564c */
 		if (statfs_buffer2.f_type == 0x564c)
-#elif defined(__sun)
-		g_free (unescaped_path);
-		if (strcmp(statfs_buffer.f_basetype, "ncpfs") == 0)
-#endif
 		{
 			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		}
 	}
+#endif
 
 	block_size = statfs_buffer.f_bsize; 
 	free_blocks = statfs_buffer.f_bavail;
