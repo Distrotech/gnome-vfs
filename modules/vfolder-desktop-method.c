@@ -102,11 +102,6 @@ struct _QueryFilename {
 	char *filename;
 };
 
-struct _QueryResult {
-	GHashTable *hash;
-	GSList *list;
-};
-
 enum {
 	ENTRY_FILE,
 	ENTRY_FOLDER
@@ -200,6 +195,49 @@ check_ext (const char *name, const char *ext_check)
 		return FALSE;
 	else
 		return TRUE;
+}
+
+static gboolean
+ensure_dir (const char *dirname, gboolean ignore_basename)
+{
+	char *parsed, *p;
+
+	if (dirname == NULL)
+		return FALSE;
+
+	if (ignore_basename)
+		parsed = g_path_get_dirname (dirname);
+	else
+		parsed = g_strdup (dirname);
+
+	if (g_file_test (parsed, G_FILE_TEST_IS_DIR)) {
+		g_free (parsed);
+		return TRUE;
+	}
+
+	p = strchr (parsed, '/');
+	if (p == parsed)
+		p = strchr (p+1, '/');
+
+	while (p != NULL) {
+		*p = '\0';
+		if (mkdir (parsed, 0700) != 0 &&
+		    errno != EEXIST) {
+			g_free (parsed);
+			return FALSE;
+		}
+		*p = '/';
+		p = strchr (p+1, '/');
+	}
+
+	if (mkdir (parsed, 0700) != 0 &&
+	    errno != EEXIST) {
+		g_free (parsed);
+		return FALSE;
+	}
+
+	g_free (parsed);
+	return TRUE;
 }
 
 static void
@@ -1050,11 +1088,188 @@ vfolder_info_read_info (VFolderInfo *info)
 	xmlFreeDoc(doc);
 }
 
+static void
+add_xml_tree_from_query (xmlNode *parent, Query *query)
+{
+	xmlNode *real_parent;
+
+	if (query->not)
+		real_parent = xmlNewChild (parent /* parent */,
+					   NULL /* ns */,
+					   "Not" /* name */,
+					   NULL /* content */);
+	else
+		real_parent = parent;
+
+	if (query->type == QUERY_KEYWORD) {
+		QueryKeyword *qkeyword = (QueryKeyword *)query;
+		const char *string = g_quark_to_string (qkeyword->keyword);
+
+		xmlNewChild (real_parent /* parent */,
+			     NULL /* ns */,
+			     "Keyword" /* name */,
+			     string /* content */);
+	} else if (query->type == QUERY_FILENAME) {
+		QueryFilename *qfilename = (QueryFilename *)query;
+
+		xmlNewChild (real_parent /* parent */,
+			     NULL /* ns */,
+			     "Filename" /* name */,
+			     qfilename->filename /* content */);
+	} else if (query->type == QUERY_OR ||
+		   query->type == QUERY_AND) {
+		xmlNode *node;
+		const char *name;
+		GSList *li;
+
+		if (query->type == QUERY_OR)
+			name = "Or";
+		else /* QUERY_AND */
+			name = "And";
+
+		node = xmlNewChild (real_parent /* parent */,
+				    NULL /* ns */,
+				    name /* name */,
+				    NULL /* content */);
+
+		for (li = query->queries; li != NULL; li = li->next) {
+			Query *subquery = li->data;
+			add_xml_tree_from_query (node, subquery);
+		}
+	} else {
+		g_assert_not_reached ();
+	}
+}
+
+static void
+add_excludes_to_xml (gpointer key, gpointer value, gpointer user_data)
+{
+	const char *filename = key;
+	xmlNode *folder_node = user_data;
+
+	xmlNewChild (folder_node /* parent */,
+		     NULL /* ns */,
+		     "Exclude" /* name */,
+		     filename /* content */);
+}
+
+static void
+add_xml_tree_from_folder (xmlNode *parent, Folder *folder)
+{
+	GSList *li;
+	xmlNode *folder_node;
+
+
+	folder_node = xmlNewChild (parent /* parent */,
+				   NULL /* ns */,
+				   "Folder" /* name */,
+				   NULL /* content */);
+
+	xmlNewChild (folder_node /* parent */,
+		     NULL /* ns */,
+		     "Name" /* name */,
+		     folder->entry.name /* content */);
+
+	if (folder->desktop_file != NULL) {
+		xmlNewChild (folder_node /* parent */,
+			     NULL /* ns */,
+			     "Desktop" /* name */,
+			     folder->desktop_file /* content */);
+	}
+
+	for (li = folder->subfolders; li != NULL; li = li->next) {
+		Folder *subfolder = li->data;
+		add_xml_tree_from_folder (folder_node, subfolder);
+	}
+
+	for (li = folder->includes; li != NULL; li = li->next) {
+		const char *include = li->data;
+		xmlNewChild (folder_node /* parent */,
+			     NULL /* ns */,
+			     "Include" /* name */,
+			     include /* content */);
+	}
+
+	if (folder->excludes) {
+		g_hash_table_foreach (folder->excludes,
+				      add_excludes_to_xml,
+				      folder_node);
+	}
+
+	if (folder->query != NULL) {
+		xmlNode *query_node;
+		query_node = xmlNewChild (folder_node /* parent */,
+					  NULL /* ns */,
+					  "Query" /* name */,
+					  NULL /* content */);
+
+		add_xml_tree_from_query (query_node, folder->query);
+	}
+}
+
 static xmlDoc *
 xml_tree_from_vfolder (VFolderInfo *info)
 {
-	/* FIXME: */
-	return NULL;
+	xmlDoc *doc;
+	xmlNode *topnode;
+	GSList *li;
+
+	doc = xmlNewDoc ("1.0");
+
+	topnode = xmlNewDocNode (doc /* doc */,
+				 NULL /* ns */,
+				 "VFolderInfo" /* name */,
+				 NULL /* content */);
+	doc->xmlRootNode = topnode;
+
+	for (li = info->merge_dirs; li != NULL; li = li->next) {
+		const char *merge_dir = li->data;
+		xmlNewChild (topnode /* parent */,
+			     NULL /* ns */,
+			     "MergeDir" /* name */,
+			     merge_dir /* content */);
+	}
+	
+	for (li = info->item_dirs; li != NULL; li = li->next) {
+		const char *item_dir = li->data;
+		xmlNewChild (topnode /* parent */,
+			     NULL /* ns */,
+			     "ItemDir" /* name */,
+			     item_dir /* content */);
+	}
+
+	if (info->user_item_dir != NULL) {
+		xmlNewChild (topnode /* parent */,
+			     NULL /* ns */,
+			     "UserItemDir" /* name */,
+			     info->user_item_dir /* content */);
+	}
+
+	if (info->desktop_dir != NULL) {
+		xmlNewChild (topnode /* parent */,
+			     NULL /* ns */,
+			     "DesktopDir" /* name */,
+			     info->desktop_dir /* content */);
+	}
+
+	if (info->user_desktop_dir != NULL) {
+		xmlNewChild (topnode /* parent */,
+			     NULL /* ns */,
+			     "UserDesktopDir" /* name */,
+			     info->user_desktop_dir /* content */);
+	}
+
+	if (info->user_desktop_dir != NULL) {
+		xmlNewChild (topnode /* parent */,
+			     NULL /* ns */,
+			     "UserDesktopDir" /* name */,
+			     info->user_desktop_dir /* content */);
+	}
+
+	if (info->root != NULL)
+		add_xml_tree_from_folder (topnode, info->root);
+
+	return doc;
 }
 
 /* FIXME: what to do about errors */
@@ -1063,12 +1278,18 @@ vfolder_info_write_user (VFolderInfo *info)
 {
 	xmlDoc *doc;
 
-	if (info->user_filename != NULL)
+	if (info->user_filename == NULL)
 		return;
 
 	doc = xml_tree_from_vfolder (info);
 	if (doc == NULL)
 		return;
+
+	g_print ("Save file: '%s'\n", info->user_filename);
+
+	/* FIXME: errors, anyone? */
+	ensure_dir (info->user_filename,
+		    TRUE /* ignore_basename */);
 
 	xmlSaveFile (info->user_filename, doc);
 
@@ -1406,6 +1627,10 @@ copy_file (const char *from, const char *to)
 	int fd;
 	int wfd;
 
+	if ( ! ensure_dir (to,
+			   TRUE /* ignore_basename */))
+		return FALSE;
+
 	wfd = open (to, O_CREAT | O_WRONLY | O_TRUNC, 0600);
 	if (wfd < 0) {
 		return FALSE;
@@ -1488,7 +1713,7 @@ make_new_dirfile (VFolderInfo *info, Folder *folder)
 		}
 
 		fullname = g_build_filename
-			(g_get_home_dir (), fname, NULL);
+			(info->user_desktop_dir, fname, NULL);
 		fd = open (fullname, O_CREAT | O_WRONLY | O_EXCL, 0600);
 		g_free (fullname);
 	} while (fd < 0);
@@ -1505,12 +1730,20 @@ make_dirfile_private (VFolderInfo *info, Folder *folder)
 	char *fname;
 	char *desktop_file;
 
+	if (info->user_desktop_dir == NULL)
+		return FALSE;
+
+	if ( ! ensure_dir (info->user_desktop_dir,
+			   FALSE /* ignore_basename */))
+		return FALSE;
+
+
 	if (folder->desktop_file == NULL) {
 		make_new_dirfile (info, folder);
 		return TRUE;
 	}
 
-	fname = g_build_filename (g_get_home_dir (),
+	fname = g_build_filename (info->user_desktop_dir,
 				  folder->desktop_file,
 				  NULL);
 
