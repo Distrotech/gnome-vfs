@@ -1,3 +1,12 @@
+2001-08-01  Jonas Borgström  <jonas@codefactory.se>
+
+	* libgnomevfs/gnome-vfs-ssl.c (gnome_vfs_ssl_create): 
+	Split the HAVE_OPENSSL #ifdef into two. So
+	the function gnome_vfs_ssl_create_from_fd will exist
+	(but only return GNOME_VFS_ERROR_NOT_SUPPORTED) even if
+	HAVE_OPENSSL isn't defined. Or else we will get
+	unresolved symbols in libhttp.so
+	
 2001-07-25  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	Fix bug 8296 (News Sidebar crashes when not connected to network),
