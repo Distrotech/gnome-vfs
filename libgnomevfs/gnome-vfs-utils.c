@@ -732,6 +732,10 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *s
  *
  * Returns true if filename exists
  */
+/* FIXME: Why is this here? Why not use g_file_exists in libgnome/gnome-util.h?
+ * (I tried to simply replace but there were strange include dependencies, maybe
+ * that's why this function exists.)
+ */
 static int
 hack_file_exists (const char *filename)
 {

@@ -1,3 +1,73 @@
+2001-02-22  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Gene Ragan <gzr@eazel.com>
+
+	Fixed bug 6524 (No default icons for MIME types)
+
+	Fixed bug 6525 (capplet will only let you pick icons
+	from a single directory)
+
+	Fixed bug 6596 ("We need a good explanation here"
+	isn't a good explanation)
+
+	I didn't fix all the fundamental brokenness about Nautilus
+	themes vs. the MIME database, but I fixed the most obvious
+	problems and added some FIXMEs to help clarify some of the
+	remaining issues. I also did a tiny fraction of the cleanup 
+	that could be done in this code. Users can now browse around
+	to choose icons from anywhere, and they will all work in
+	Nautilus (no change required in Nautilus).
+	
+	* mime-type-capplet/files-types-capplet.desktop:
+	Replaced placeholder description string with Vera's.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	Removed bogus but relatively harmless initial slashes
+	from two DEFAULT_REGULAR_ICON and DEFAULT_ACTION_ICON.
+	(really_change_icon): Handle full as well as relative
+	filenames; update displayed info here instead of relying
+	on the icon_entry widget doing it.
+	(icon_chosen_callback): Renamed from gil_icon_selected_cb;
+	hide the dialog here so we can eliminate the almost-identical
+	code in nautilus-mime-type-icon-entry.c that did that one
+	extra thing.
+	(change_icon_clicked_cb_real): use GNOME_OK instead of 0
+	(change_icon_clicked): Update for name change.
+	(is_full_path): Little bitty helper function that checks for
+	initial slash, mainly separated for clarity.
+	(capplet_get_icon_path): New function used to get a full icon
+	path from a file name, icon name, relative path, or 
+	possibly non-existent full path.
+	(nautilus_mime_type_capplet_update_info): Simplify logic,
+	use capplet_get_icon_path.
+	(add_mime_clicked), (update_mime_list_action),
+	(populate_mime_list):
+	Use capplet_get_icon_path; use generic
+	executable icon for app instead of repeating MIME-type icon.
+	(capplet_get_icon_pixbuf): Simplify logic; use capplet_get_icon_path;
+	Add FIXME about future code cleanup
+
+	* mime-type-capplet/nautilus-mime-type-icon-entry.h:
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	(nautilus_mime_type_icon_entry_get_full_filename): Renamed from
+	_get_filename for clarity
+	(entry_activated): Made behavior match comment (act like OK
+	button was hit)
+	(icon_selected_cb): Removed this function; this was redundant with
+	code in nautilus-mime-type-capplet.c.
+	(gil_icon_selected_cb): Removed this function; it was redundant
+	with a function in nautilus-mime-type-capplet.c except that this one
+	hid the dialog and that one didn't (now that one does).
+	(nautilus_mime_type_show_icon_selection): Remove commented-out
+	line that implemented the Browse button that let the user choose
+	from different directories; removed redundant signal handlers;
+	added FIXME.
+	(nautilus_mime_type_icon_entry_get_relative_filename): Simplify
+	logic; made it return NULL instead of "" and a g_warning when
+	it can't create a relative path from the full path.
+
+	* libgnomevfs/gnome-vfs-utils.c: Added FIXME
+
 2001-02-22  Gene Z. Ragan  <gzr@eazel.com>
 
 	reviewed by: John Sullivan <sullivan@eazel.com>
