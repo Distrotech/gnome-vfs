@@ -521,7 +521,7 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 	return TRUE;
 }
 
-#define VFOLDER_URI_PARSE(_uri, _vuri) ({                                   \
+#define VFOLDER_URI_PARSE(_uri, _vuri) {                                    \
 	gchar *path;                                                        \
 	path = gnome_vfs_unescape_string ((_uri)->text, G_DIR_SEPARATOR_S); \
 	if (path != NULL) {                                                 \
@@ -532,7 +532,7 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 		(_vuri)->path = NULL;                                       \
 	}                                                                   \
 	vfolder_uri_parse_internal ((_uri), (_vuri));                       \
-})
+}
 
 static void
 destroy_entry_file (EntryFile *efile)
@@ -3794,7 +3794,7 @@ do_create (GnomeVFSMethod *method,
 
 	G_LOCK (vfolder_lock);
 	
-	li = g_hash_table_lookup (info->entries_ht, basename);
+	li = g_hash_table_lookup (info->entries_ht, vuri.file);
 
 	if (exclusive && li != NULL) {
 		G_UNLOCK (vfolder_lock);

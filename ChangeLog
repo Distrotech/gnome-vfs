@@ -1,3 +1,9 @@
+2002-05-20  Laszlo Peter  <laca@sun.com>
+
+	* modules/vfolder-desktop-method.c: (VFOLDER_URI_PARSE): remove
+	  unnecessary ( )'s that break the build on Solaris.
+	  (do_create): basename is undefined, use vuri.file.
+
 Mon May 20 10:51:32 2002  George Lebl <jirka@5z.com>
 
 	* modules/vfolder-desktop-method.c: make note if we have had a slash
