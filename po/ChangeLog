@@ -1,3 +1,9 @@
+2004-02-12  Danilo Šegan  <dsegan@gmx.net>
+
+	* sr.po, sr@Latn.po: Reviewed and updated Serbian translation.
+
+	* POTFILES.in: Added gtk/* files.
+
 === gnome-vfs 2.5.7 ===
 
 2004-02-11  Arafat Medini  <lumina@silverpen.de>

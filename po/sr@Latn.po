@@ -1,16 +1,17 @@
 # Serbian translation of gnome-vfs
-# Courtesy of Prevod.org team (http://www.prevod.org/) -- 2003.
-# 
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004.
+#
 # This file is distributed under the same license as the gnome-vfs package.
-# 
+#
 # Maintainer: Dušan Živojnov <calvin@verat.net>
+# Reviewed on 2004-02-03 by: Danilo Šegan <dsegan@gmx.net>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 2.4\n"
+"Project-Id-Version: gnome-vfs 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-01-15 06:16+0100\n"
+"POT-Creation-Date: 2004-02-12 00:50+0100\n"
+"PO-Revision-Date: 2004-02-12 00:53+0100\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,9 +24,33 @@ msgstr ""
 msgid "Could not initialize Bonobo"
 msgstr "Ne mogu da pokrenem Bonobo"
 
+# Gnomov Virtuelni Sistem Datoteka — VSD? Ili Gnomovo „oponašanje sistema datoteka“ — OSD?
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
 msgstr "Ne mogu da pokrenem Gnomov VFS"
+
+#: gtk/gtkfilesystemgnomevfs.c:1457
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Neuspešno čuvanje obeleživača (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "Ne mogu da saznam podatke o datoteci „%s“: %s"
+
+# bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Neuspešno otvaranje datoteke „%s“: %s"
+
+# bug: as above [inconsistent wording]
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
+msgstr "Neuspešno učitavanje slike „%s“: razlog nepoznat, verovatno oštećena datoteka slike"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:180
 msgid "ISO 9660 Volume"
@@ -59,7 +84,7 @@ msgstr "%s:%d ne sadrži ime modula."
 #: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Datoteka sa podešavanjima `%s' nije pronađena: %s"
+msgstr "Datoteka sa podešavanjima „%s“ nije nađena: %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
@@ -121,7 +146,7 @@ msgstr "JFS disk"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "Windows NT Volume"
-msgstr "Windows NT disk"
+msgstr "Vindouz NT disk"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
@@ -143,15 +168,15 @@ msgstr "Mrežni NFS disk"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Netware Volume"
-msgstr "Netware disk"
+msgstr "Netver disk"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "ReiserFS Linux Volume"
-msgstr "Linuks ReiserFS disk"
+msgstr "Linuks RajzerFS disk"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr "Deljeni Windows disk"
+msgstr "Deljeni Vindouz disk"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
@@ -197,6 +222,7 @@ msgstr "XIAFS disk"
 msgid "Unknown"
 msgstr "Nepoznat"
 
+# bug: "op" should be "operation"
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
 msgid "Unknown op type %u"
@@ -205,7 +231,7 @@ msgstr "Nepoznat tip operacije %u"
 #: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Ne mogu napraviti vezu ka procesu za otvoreni GIOChannel: %s"
+msgstr "Ne mogu napraviti cevku za otvoreni GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1727
 #, c-format
@@ -223,7 +249,7 @@ msgstr "Ne mogu obraditi: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:661
 msgid "More parsing errors will be ignored."
-msgstr "Ostale greške u obradi će biti ignorisane."
+msgstr "Ostale greške u obradi će biti zanemarene."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
@@ -233,7 +259,7 @@ msgstr "Nema greške"
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "File not found"
-msgstr "Datoteka nije pronađena"
+msgstr "Datoteka nije nađena"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:40
@@ -248,7 +274,7 @@ msgstr "Unutrašnja greška"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Invalid parameters"
-msgstr "Netačni parametri"
+msgstr "Neispravni parametri"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:43
@@ -268,17 +294,18 @@ msgstr "Podaci oštećeni"
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Format not valid"
-msgstr "Format nije tačan"
+msgstr "Oblik nije ispravan"
 
+# bug: is file handle the same as file descriptor?
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Bad file handle"
-msgstr "Loše rukovanje datotekama"
+msgstr "Loša ručka datoteke"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "File too big"
-msgstr "Datoteka je previiše velika"
+msgstr "Datoteka je prevelika"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:49
@@ -288,12 +315,12 @@ msgstr "Nije ostalo slobodnog prostora na uređaju"
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Read-only file system"
-msgstr "Datotečni sistem samo za čitanje"
+msgstr "Sistem datoteka samo za čitanje"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid URI"
-msgstr "Netačan URI"
+msgstr "Neispravna adresa"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:52
@@ -303,12 +330,12 @@ msgstr "Datoteka nije otvorena"
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
-msgstr "Način otvaranja nije tačan"
+msgstr "Način otvaranja nije ispravan"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Access denied"
-msgstr "Pristip nije dozvoljen"
+msgstr "Pristip odbijen"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:55
@@ -363,12 +390,12 @@ msgstr "Nema dovoljno memorije"
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Host not found"
-msgstr "Domaćin nije pronađen"
+msgstr "Domaćin nije nađen"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
-msgstr "Ime domaćina nije tačno"
+msgstr "Ime domaćina nije ispravno"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:67
@@ -403,37 +430,37 @@ msgstr "Previše veza"
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Read only file system"
-msgstr "Datotečki sistem samo za čitanje"
+msgstr "Sistem datoteka samo za čitanje"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Not on the same file system"
-msgstr "Nije na istom datotečkom sistemu"
+msgstr "Nije na istom sistemu datoteka"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Name too long"
-msgstr "Ime je previše veliko"
+msgstr "Ime je predugačko"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:76
 msgid "Service not available"
-msgstr "Servis nije dostupan"
+msgstr "Usluga nije dostupna"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "Request obsoletes service's data"
-msgstr "Zahtev zastareva podatke servisa"
+msgstr "Zahtev zastareva podatke usluge"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "Protocol error"
-msgstr "Grečka u protokolu"
+msgstr "Greška u protokolu"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Could not find master browser"
-msgstr "Ne mogu pronaći glavni čitač"
+msgstr "Ne mogu pronaći glavni razgledač"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
@@ -502,6 +529,7 @@ msgstr "CD čitač"
 msgid "Zip Drive"
 msgstr "Zip disk"
 
+# Čarobni štapić? :)
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
 msgid "Memory Stick"
 msgstr "Memorijski štapić"
@@ -568,7 +596,7 @@ msgstr "Ne mogu da isključim izabrani disk."
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
 #: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
-msgstr "Nisam uspeo da pokrenem naredbu"
+msgstr "Neuspešno pokretanje naredbe"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
@@ -628,15 +656,15 @@ msgstr "Alati"
 msgid "Windows"
 msgstr "Prozori"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
 msgstr "Mreža"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
 msgstr "Lični"
 
-#: modules/computer-method.c:557
+#: modules/computer-method.c:561
 msgid "Filesystem"
 msgstr "Sistem datoteka"
 
@@ -645,20 +673,24 @@ msgstr "Sistem datoteka"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nepoznato GnomeVFSSeekPosition %d"
 
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Vindouz mreža"
+
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Ne mogu pronaći tačnu datoteku sa podešavanjima u %s\n"
+msgstr "Nisam našao ispravu datoteku sa podešavanjima u %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Koristi %s promenljivu da naznačiš drugo mesto.\n"
+msgstr "Koristite promenljivu okruženja %s da naznačite drugu putanju.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "Proizvodnja običnog Moniker-a"
+msgstr "Proizvodnja običnog nadimka"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
@@ -666,11 +698,11 @@ msgstr "datoteka MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr "običan Gnom VFS moniker"
+msgstr "običan Gnom VFS nadimak"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "običan moniker datoteke"
+msgstr "običan nadimak datoteke"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
@@ -991,10 +1023,6 @@ msgstr "Koristi veb posrednika"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Korisničko ime koje se šalje pri identifikaciji kod veb posrednika."
-
-#: modules/network-method.c:257
-msgid "Windows Network"
-msgstr "Vindouz mreža"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
