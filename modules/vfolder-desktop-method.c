@@ -476,7 +476,9 @@ vfolder_uri_parse_internal (GnomeVFSURI *uri, VFolderURI *vuri)
 	    strlen (vuri->path) > 0 &&
 	    any_subdir (vuri->path) == TRUE) {
 		vuri->file = strrchr (vuri->path, '/');
-		if (vuri->file != NULL)
+		if (vuri->file == NULL)
+			vuri->file = vuri->path;
+		else
 			vuri->file++;
 	} else {
 		vuri->path = "/";
@@ -1127,7 +1129,6 @@ vfolder_desktop_dir_monitor (GnomeVFSMonitorHandle *handle,
 			     gpointer user_data)
 {
 	/* FIXME: implement */
-	g_warning ("FIXME: implement");
 }
 
 static void
@@ -1138,7 +1139,6 @@ vfolder_user_desktop_dir_monitor (GnomeVFSMonitorHandle *handle,
 				  gpointer user_data)
 {
 	/* FIXME: implement */
-	g_warning ("FIXME: implement");
 }
 
 static void
@@ -3536,9 +3536,6 @@ do_open (GnomeVFSMethod *method,
 					    context);
 
 	if (file_uri == NULL) {
-		g_print ("NULL FILE URI TRANSP %s CAUSED %s\n",
-			 gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE),
-			 gnome_vfs_result_to_string (result));
 		G_UNLOCK (vfolder_lock);
 		return result;
 	}
@@ -4230,8 +4227,6 @@ read_directory_again:
 		/* Now we wipe those fields we don't support */
 		file_info->valid_fields &= ~(UNSUPPORTED_INFO_FIELDS);
 
-		g_print ("VFOLDER ENTRY: %s\n", entry->name);
-
 		gnome_vfs_uri_unref (uri);
 		g_free (furi);
 	} else if (entry->type == ENTRY_FILE) {
@@ -4246,8 +4241,6 @@ read_directory_again:
 		/* FIXME: Is this correct? isn't there an xdg mime type? */
 		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
-
-		g_print ("VFOLDER UNNAMED ENTRY: %s\n", entry->name);
 
 		/* FIXME: get some ctime/mtime */
 	} else /* ENTRY_FOLDER */ {
@@ -4270,8 +4263,6 @@ read_directory_again:
 		}
 
 		file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
-
-		g_print ("VFOLDER FOLDER: %s\n", entry->name);
 
 		file_info->name = g_strdup (entry->name);
 		GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
