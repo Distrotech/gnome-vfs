@@ -1,3 +1,7 @@
+2000-10-03  Christophe Merlet  <christophe@merlet.net>
+
+	* data/mime/gnome-vfs.keys: Added french strings.
+
 2000-10-02  Mike Fleming  <mfleming@eazel.com>
 
 	More file info caching stuff.  Now caches the contents of directories

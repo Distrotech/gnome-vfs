@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.3.1\n"
-"POT-Creation-Date: 2000-09-28 14:42+0200\n"
+"POT-Creation-Date: 2000-10-03 10:08+0200\n"
 "PO-Revision-Date: 2000-09-28 15:08+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <christophe@merlet.net>\n"
 "Language-Team: GNOME French Team <gnomefr@gnomefr.traduc.org>\n"
@@ -35,7 +35,7 @@ msgstr "%s:%d ne contient pas de nom de module."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Le fichier de configuration `%s' n'a pas été trouvé : %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:280
+#: libgnomevfs/gnome-vfs-file-info.c:342
 #, c-format
 msgid "Unknown sort rule %d"
 msgstr "Règle de tri %d inconnue"
@@ -407,19 +407,19 @@ msgstr "Ne peut tuer GNOME::VFS::Slave (IOR inconnu) -- exception %s"
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Erreur d'écriture dans le canal de réveil GnomeVFSJob."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:761
-#: libgnomevfs-pthread/gnome-vfs-job.c:1625
+#: libgnomevfs-pthread/gnome-vfs-job.c:760
+#: libgnomevfs-pthread/gnome-vfs-job.c:1624
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Job ID %d inconnu"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1054
-#: libgnomevfs-pthread/gnome-vfs-job.c:1174
+#: libgnomevfs-pthread/gnome-vfs-job.c:1053
+#: libgnomevfs-pthread/gnome-vfs-job.c:1173
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Ne peut créer un pipeline pour ouvrir GIOChannel : %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1658
+#: libgnomevfs-pthread/gnome-vfs-job.c:1657
 msgid "Operation stopped"
 msgstr "Opération stoppée"
 
@@ -602,22 +602,22 @@ msgstr "Aperçu"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition %d inconnue"
 
-#: modules/http-method.c:609
+#: modules/http-method.c:1115
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s a récupérer"
 
-#: modules/http-method.c:960
+#: modules/http-method.c:1466
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Fermeture de la connexion vers %s"
 
-#: modules/http-method.c:1140
+#: modules/http-method.c:1654
 #, c-format
 msgid "%s of %s read"
 msgstr "%s de %s lu"
 
-#: modules/http-method.c:1143
+#: modules/http-method.c:1657
 #, c-format
 msgid "%s read"
 msgstr "%s lu"
