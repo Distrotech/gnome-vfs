@@ -1,3 +1,9 @@
+2003-09-17  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-async-job-map.c (_gnome_vfs_async_job_map_get_job):
+	Don't assert async_job_map != NULL.
+	Patch from Martin Wehner <martin.wehner@epost.de>
+
 2003-09-16  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c (copy_file):
