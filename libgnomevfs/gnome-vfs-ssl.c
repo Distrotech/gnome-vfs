@@ -118,12 +118,16 @@ gnome_vfs_ssl_create (GnomeVFSSSL **handle_return,
 	}
 
 	return gnome_vfs_ssl_create_from_fd (handle_return, fd);
+#else
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+#endif
 }
 
 GnomeVFSResult
 gnome_vfs_ssl_create_from_fd (GnomeVFSSSL **handle_return, 
 		              gint fd)
 {
+#ifdef HAVE_OPENSSL
 	GnomeVFSSSL *ssl;
 	SSL_CTX *ssl_ctx = NULL;
 	int ret;
