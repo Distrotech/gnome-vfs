@@ -1,5 +1,5 @@
 # translation of gnome-vfs.HEAD.po to Dutch
-# Tino Meinen <a.t.meinen@chello.nl>, 2003.
+# Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004.
 # Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2003.
 # Deze vertalingen zijn te zien als je het programma: .... gebruikt.
 # Nog uit te zoeken...................................^^^^
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-18 13:07+0200\n"
-"PO-Revision-Date: 2004-02-19 23:12+0100\n"
+"POT-Creation-Date: 2004-07-03 16:33+0200\n"
+"PO-Revision-Date: 2004-07-04 01:32+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -747,114 +747,126 @@ msgid "Handle HTTPS URLs"
 msgstr "HTTPS URL's afhandelen"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "Handle aim URLs"
+msgstr "aim URL's afhandelen"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
 msgstr "callto URL's afhandelen"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "Handle ghelp URLs"
 msgstr "ghelp URL's afhandelen"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Handle info URLs"
 msgstr "info URL's afhandelen"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Handle mailto URLs"
 msgstr "mailto URL's afhandelen"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Handle man URLs"
 msgstr "man URL's afhandelen"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Handle trash URLs"
 msgstr "trash URL's afhandelen"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "Run program in terminal"
 msgstr "Programma in terminal starten"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
 "Indien waar handelt het programma gegeven in \"opdracht\" de H323 URL's af."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
 "Indien waar handelt het programma gegeven in \"opdracht\", de HTTP URL's af."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
 "Indien waar handelt het programma gegeven in \"opdracht\" de HTTP URL's af."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+msgid "Set to true to have a program specified in \"command\" handle aim URLs."
+msgstr "Indien waar handelt het programma gegeven in \"opdracht\" de aim URL's af."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
 "Indien waar handelt het programma gegeven in \"opdracht\" de callto URL's af."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
 "Indien waar handelt het programma gegeven in \"opdracht\" de ghelp URL's af."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
 "Indien waar handelt het programma gegeven in \"opdracht\" de info URL's af."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
 "Indien waar handelt het programma gegeven in \"opdracht\" de mailto URL's af."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
 "Indien waar handelt het programma gegeven in \"opdracht\" de man URL's af."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:22
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
 "Indien waar handelt het programma gegeven in \"opdracht\" de trash URL's af."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:23
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "True if the program to handle this URL should be run in a terminal."
 msgstr ""
 "Indien waar, moet het programma wat deze URL afhandelt in een terminal "
 "gestart worden."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:24
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+msgid "aim URL handler"
+msgstr "Actie voor aim URL"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
 msgstr "Actie voor callto URL"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:25
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "ghelp URL handler"
 msgstr "Actie voor ghelp URL"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:26
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "info URL handler"
 msgstr "Actie voor info URL"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:27
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid "mailto URL handler"
 msgstr "Actie voor mailto URL"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:28
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid "man URL handler"
 msgstr "Actie voor man URL"
 
 # actie voor prullenbak URL?
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:29
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid "trash URL handler"
 msgstr "Actie voor trash URL"
 
