@@ -1,3 +1,9 @@
+gnome-vfs 2.5.91
+	* Bugs fixed:
+	        + build fixes
+		+ enable ssl if using gnu tls
+		+ handle host key changed in sftp method
+
 gnome-vfs 2.5.90
 	* Bugs fixed:
 	        + fix some sftp bugs
