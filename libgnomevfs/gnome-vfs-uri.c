@@ -163,7 +163,7 @@ split_toplevel_uri (const gchar *path, guint path_len,
 	success = FALSE;
 
 	if (path == NULL || path_len == 0) {
-		return NULL;
+		return g_strdup ("/");
 	}
 	
 
@@ -358,7 +358,7 @@ set_uri_element (GnomeVFSURI *uri,
 	char *escaped_text;
 
 	if (text == NULL || len == 0) {
-		uri->text = g_strdup("/");;
+		uri->text = g_strdup ("/");
 		return;
 	}
 

@@ -1,3 +1,11 @@
+2004-10-15  Ryan Lortie  <desrt@desrt.ca>
+
+	* libgnomevfs/gnome-vfs-uri.c:
+	(split_toplevel_uri): Prevent uri->text from containing
+	a NULL pointer (as per bug #141051).
+	(set_uri_element): trivial style fix
+	
+
 2004-10-15  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-unix-mounts.c:
