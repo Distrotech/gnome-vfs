@@ -1133,10 +1133,11 @@ linear_read (ftpfs_direntry_t *fe, void *buf, int len, GnomeVFSFileSize *bytes_r
 	}
 	
 	if (!n) {
-		if ((get_reply (fe->conn->sock, NULL, 0) / 100 != COMPLETE))
-			error = GNOME_VFS_ERROR_IO;
 		close (fe->data_sock);
 		fe->data_sock = -1;
+
+		if ((get_reply (fe->conn->sock, NULL, 0) / 100 != COMPLETE))
+			error = GNOME_VFS_ERROR_IO;
 	}
 
 	if (n > 0)

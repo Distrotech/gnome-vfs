@@ -1,3 +1,8 @@
+1999-10-07  Miguel de Icaza  <miguel@gnu.org>
+
+	* modules/ftp-method.c (linear_read): Close first to comply to
+	RFC959.
+
 1999-10-04  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* modules/module-shared.c (gnome_vfs_set_meta_for_list): Use
