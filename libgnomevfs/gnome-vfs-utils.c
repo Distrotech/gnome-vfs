@@ -55,6 +55,9 @@
 #elif HAVE_SYS_MOUNT_H
 #include <sys/mount.h>
 #endif
+#if HAVE_SYS_STATFS_H
+#include <sys/statfs.h>
+#endif
 
 #define KILOBYTE_FACTOR 1024.0
 #define MEGABYTE_FACTOR (1024.0 * 1024.0)
@@ -800,7 +803,12 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 #if HAVE_STATVFS
 	statfs_result = statvfs (unescaped_path, &statfs_buffer);
 #else
+#if STATFS_ARGS == 2
 	statfs_result = statfs (unescaped_path, &statfs_buffer);   
+#elif STATFS_ARGS == 4
+	statfs_result = statfs (unescaped_path, &statfs_buffer,
+				sizeof (statfs_buffer), 0);
+#endif
 #endif  
 
 	if (statfs_result != 0) {
@@ -808,6 +816,11 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 		return gnome_vfs_result_from_errno ();
 	}
 
+/* CF: I assume ncpfs is linux specific, if you are on a non-linux platform
+ * where ncpfs is available, please file a bug about it on bugzilla.gnome.org
+ * (2004-03-08)
+ */
+#if defined(__linux__)
 	/* ncpfs does not know the amount of available and free space */
 	if (statfs_buffer.f_bavail == 0 && statfs_buffer.f_bfree == 0) {
 		/* statvfs does not return f_type on ncpfs, we try again
@@ -826,6 +839,7 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		}
 	}
+#endif
 
 	block_size = statfs_buffer.f_bsize; 
 	free_blocks = statfs_buffer.f_bavail;

@@ -1,5 +1,16 @@
 2004-03-08  Christophe Fergeau  <teuf@gnome.org>
 
+	Based on a patch by The Written Word
+	* configure.in: Detect whether statfs takes 2 or 4 args and if it's 
+	  available
+	  Remove 2 obsolete macro calls
+	* libgnomevfs/gnome-vfs-utils.c: (gnome_vfs_get_volume_free_space):
+          Call the 2-arg/4-arg form of statfs depending on the system we are
+          compiling for, only enable ncpfs specific code on linux.
+	  (fixes bug #136468)
+		    
+2004-03-08  Christophe Fergeau  <teuf@gnome.org>
+
 	* configure.in: properly install ssl-modules.conf when using GNU TLS
 	* libgnomevfs/gnome-vfs-ssl.c: (gnome_vfs_ssl_create_from_fd): fix
 	implicit cast from int to pointer
