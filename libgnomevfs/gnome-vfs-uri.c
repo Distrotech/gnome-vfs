@@ -384,7 +384,9 @@ set_uri_element (GnomeVFSURI *uri,
 	 * meaning.
 	 */
 	if ( ! (strcmp (uri->method_string, "http") == 0 
-	        || strcmp (uri->method_string, "eazel-services") == 0
+	        || strcmp (uri->method_string, "https") == 0
+		|| strcmp (uri->method_string, "dav") == 0
+		|| strcmp (uri->method_string, "davs") == 0
 	        || strcmp (uri->method_string, "ghelp") == 0
 	        || strcmp (uri->method_string, "gnome-help") == 0
 	        || strcmp (uri->method_string, "help") == 0

@@ -1,5 +1,12 @@
 2005-01-31  Christian Kellner  <gicmo@gnome.org>
 
+	* libgnomevfs/gnome-vfs-uri.c (set_uri_element): Treat https,
+	dav, and davs as http when doing additional escaping. This is
+	not the best way to fix the broken uri escaping at this palce
+	but it should be ok for now. (Removed old eazel-service method)
+
+2005-01-31  Christian Kellner  <gicmo@gnome.org>
+
 	* schemas/system_http_proxy.schemas.in: Correct bad grammar.
 	This fixes bug #150342.
 
