@@ -1,3 +1,8 @@
+2001-08-25  Jim Garrison  <garrison@users.sourceforge.net>
+
+	* doc/tmpl/async-ops.sgml: documented most commonly used
+	  async-ops
+
 Fri Aug 24 22:17:25 2001  George Lebl <jirka@5z.com>
 
 	* libgnomevfs/gnome-vfs-uri.[ch]: Add function

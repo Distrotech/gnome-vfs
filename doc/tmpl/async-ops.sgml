@@ -17,34 +17,34 @@ allows for non-blocking file operations
 
 <!-- ##### FUNCTION gnome_vfs_async_cancel ##### -->
 <para>
-
+Cancels an operation
 </para>
 
-@handle: 
+@handle: the handle to cancel
 
 
 <!-- ##### FUNCTION gnome_vfs_async_open ##### -->
 <para>
-
+Opens a text-based URI according to @open_mode
 </para>
 
-@handle_return: 
-@text_uri: 
-@open_mode: 
-@callback: 
-@callback_data: 
+@handle_return: a reference to where the newly created handle pointer should be stored
+@text_uri: string representation of the URI
+@open_mode: open mode
+@callback: a callback for when the URI is opened or an error occured
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_open_uri ##### -->
 <para>
-
+Opens a GnomeVFSURI according to @open_mode.  This function exposes a public @GnomeVFSURI object, which may be deprecated eventually.  Therefore, use of @gnome_vfs_async_open is encouraged instead of this function to minimize breakage.
 </para>
 
-@handle_return: 
-@uri: 
-@open_mode: 
-@callback: 
-@callback_data: 
+@handle_return: a reference to where the newly created handle pointer should be stored
+@uri: @GnomeVFSURI to open
+@open_mode: open mode
+@callback: a callback for when the URI is opened or an error occured
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_open_as_channel ##### -->
@@ -52,12 +52,12 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @text_uri: 
 @open_mode: 
 @advised_block_size: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_open_uri_as_channel ##### -->
@@ -65,12 +65,12 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @uri: 
 @open_mode: 
 @advised_block_size: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_create ##### -->
@@ -78,13 +78,13 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @text_uri: 
 @open_mode: 
 @exclusive: 
 @perm: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_create_uri ##### -->
@@ -92,13 +92,13 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @uri: 
 @open_mode: 
 @exclusive: 
 @perm: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_create_symbolic_link ##### -->
@@ -106,11 +106,11 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @uri: 
 @uri_reference: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_create_as_channel ##### -->
@@ -118,13 +118,13 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @text_uri: 
 @open_mode: 
 @exclusive: 
 @perm: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_create_uri_as_channel ##### -->
@@ -132,13 +132,13 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @uri: 
 @open_mode: 
 @exclusive: 
 @perm: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_close ##### -->
@@ -146,9 +146,9 @@ allows for non-blocking file operations
 
 </para>
 
-@handle: 
-@callback: 
-@callback_data: 
+@handle: GnomeVFSHandle to close
+@callback: a callback for when the @handle is closed or an error has occured
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_read ##### -->
@@ -160,7 +160,7 @@ allows for non-blocking file operations
 @buffer: 
 @bytes: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_write ##### -->
@@ -172,7 +172,7 @@ allows for non-blocking file operations
 @buffer: 
 @bytes: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_get_file_info ##### -->
@@ -180,11 +180,11 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @uri_list: 
 @options: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_set_file_info ##### -->
@@ -192,13 +192,13 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @uri: 
 @info: 
 @mask: 
 @options: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_load_directory ##### -->
@@ -206,7 +206,7 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @text_uri: 
 @options: 
 @filter_type: 
@@ -214,7 +214,7 @@ allows for non-blocking file operations
 @filter_pattern: 
 @items_per_notification: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_load_directory_uri ##### -->
@@ -222,7 +222,7 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @uri: 
 @options: 
 @filter_type: 
@@ -230,24 +230,24 @@ allows for non-blocking file operations
 @filter_pattern: 
 @items_per_notification: 
 @callback: 
-@callback_data: 
+@callback_data: data to be passed to the callback function
 
 
 <!-- ##### FUNCTION gnome_vfs_async_xfer ##### -->
 <para>
-
+Transfers file(s) from one location to another
 </para>
 
-@handle_return: 
-@source_uri_list: 
-@target_uri_list: 
+@handle_return: a reference to where the newly created handle pointer should be stored
+@source_uri_list: a @GList.  Each element should be a pointer to a GnomeVFSURI object
+@target_uri_list: a @GList.  Each element should be a pointer to a GnomeVFSURI object
 @xfer_options: 
 @error_mode: 
 @overwrite_mode: 
 @progress_update_callback: 
-@update_callback_data: 
+@update_callback_data: data to be passed to the progress update callback function
 @progress_sync_callback: 
-@sync_callback_data: 
+@sync_callback_data: data to be passed to the progress sync callback function
 @Returns: 
 
 
@@ -256,13 +256,11 @@ allows for non-blocking file operations
 
 </para>
 
-@handle_return: 
+@handle_return: a reference to where the newly created handle pointer should be stored
 @near_uri_list: 
 @kind: 
 @create_if_needed: 
 @find_if_needed: 
 @permissions: 
 @callback: 
-@user_data: 
-
-
+@user_data: data to be passed to the callback function
