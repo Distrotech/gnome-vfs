@@ -1,3 +1,7 @@
+2004-04-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* th.po: Fix spellings.
+
 2004-04-08  Guntupalli Karunakar  <karunakar@freedomink.org>
 
         * gu.po: Added Gujurati translation by
@@ -24,7 +28,7 @@
 
 	* sk.po: Updated Slovak translation.
 
-2004-03-22  Tomasz K?‚oczko <kloczek@pld.org.pl>
+2004-03-22  Tomasz K?Â‚oczko <kloczek@pld.org.pl>
 
 	* pt_BR.po: added missing "Plural-Forms:" field.
 
@@ -39,11 +43,11 @@
 
 	* pt_BR.po: minor translation update.
 
-2004-03-21  ?…smund Skj?¦veland  <aasmunds@fys.uio.no>
+2004-03-21  ?Â…smund Skj?¦veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation.
 
-2004-03-21  ?½ygimantas Beru?ka  <uid0@akl.lt>
+2004-03-21  ?½ygimantas Beru?Âka  <uid0@akl.lt>
 
 	* lt.po: Updated Lithuanian translation.
 
@@ -92,7 +96,7 @@
 2004-03-15  Mugurel Tudor  <mugurelu@go.ro>
 
 	* ro.po: Updated Romanian translation by
-	Mi?Ÿu Moldovan  <dumol@go.ro>
+	Mi?ÂŸu Moldovan  <dumol@go.ro>
 
 2004-03-15  Nikos Charonitakis  <frolix68@yahoo.gr>
 
@@ -131,7 +135,7 @@
 	* it.po: Updated Italian translation by
 	Luca Ferretti <elle.uca@infinito.it>.
 
-2004-03-08  Tomasz K?‚oczko <kloczek@pld.org.pl>
+2004-03-08  Tomasz K?Â‚oczko <kloczek@pld.org.pl>
 
 	* hr.po, ja.po: added missing Plural-Forms field in header
 	(neccessary for current gettext).
@@ -142,7 +146,7 @@
 
 	* zh_CN.po: Updated Simplified Chinese translation.
 
-2004-03-06  M?™tin ?mirov  <metin@karegen.com>
+2004-03-06  M?Â™tin ?Âmirov  <metin@karegen.com>
 
 	* az.po: Translation updated.
 
@@ -169,7 +173,7 @@
 2004-02-25  Danilo ? egan  <dsegan@gmx.net>
 
 	* sr@ije.po: Added Serbian Jekavian translation by
-	Bojan Suzi?‡ <bojans@teol.net>.
+	Bojan Suzi?Â‡ <bojans@teol.net>.
 
 2004-02-25  Danilo ? egan  <dsegan@gmx.net>
 
@@ -206,7 +210,7 @@
 
 	* nl.po: Translation updated by Tino Meinen.
 
-2004-02-22  M?™tin ?mirov  <metin@karegen.com>
+2004-02-22  M?Â™tin ?Âmirov  <metin@karegen.com>
 
 	* az.po: Updated Azerbaijani translation.
 
@@ -240,7 +244,7 @@
 	* it.po: Updated Italian translation by
 	Luca Ferretti <elle.uca@infinito.it>.
 
-2004-02-15  M?™tin ?mirov  <metin@karegen.com>
+2004-02-15  M?Â™tin ?Âmirov  <metin@karegen.com>
 
 	* az.po: Translation updated.
 
@@ -313,7 +317,7 @@
 
 	* fi.po: Updated Finnish translation.
 
-2004-02-05  M?™tin ?mirov  <metin@karegen.com>
+2004-02-05  M?Â™tin ?Âmirov  <metin@karegen.com>
 
 	* az.po: Translation updated.
 
@@ -361,7 +365,7 @@
 
 	* cs.po: Fixed Czech translation.
 
-2004-01-27  ?…smund Skj?¦veland  <aasmunds@fys.uio.no>
+2004-01-27  ?Â…smund Skj?¦veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation.
 
@@ -490,7 +494,7 @@
 	* fr.po: Updated French translation from
 	Baptiste Mille-Mathias <bmm80@ifrance.com>.
 
-2003-12-31  ?½ygimantas Beru?ka  <uid0@tuxfamily.org>
+2003-12-31  ?½ygimantas Beru?Âka  <uid0@tuxfamily.org>
 
 	* lt.po: Updated Lithuanian translation by Tomas Kuliavas.
 
@@ -522,12 +526,12 @@
 
 	* pt.po: Updated Portuguese translation.
 
-2003-12-23  ?…smund Skj?¦veland  <aasmunds@fys.uio.no>
+2003-12-23  ?Â…smund Skj?¦veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation:
 	         merged translations from GNOME 2.6 branch with 2.4 branch.
 
-2003-12-23  ?…smund Skj?¦veland  <aasmunds@fys.uio.no>
+2003-12-23  ?Â…smund Skj?¦veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation.
 
@@ -658,7 +662,7 @@
 
 	* cs.po: Updated Czech translation.
 
-2003-11-19  ?…smund Skj?¦veland  <aasmunds@fys.uio.no>
+2003-11-19  ?Â…smund Skj?¦veland  <aasmunds@fys.uio.no>
 
 	* nn.po: Updated Norwegian Nynorsk translation.
 
@@ -760,7 +764,7 @@
 2003-09-09  Mugurel Tudor  <mugurelu@go.ro>
 
 	* ro.po: Updated Romanian translation by
-		Mi?Ÿu Moldovan  <dumol@go.ro>
+		Mi?ÂŸu Moldovan  <dumol@go.ro>
 
 2003-09-09  Roozbeh Pournader  <roozbeh@sharif.edu>
 
