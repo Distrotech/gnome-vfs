@@ -1,3 +1,11 @@
+2000-10-30  Gene Z. Ragan  <gzr@eazel.com>
+
+	* modules/Makefile.am:
+	* modules/cdda-method.c: (do_open), (do_read), (get_data_size),
+	(do_check_same_fs), (do_is_local), (put_num), (write_wav_header):
+	* modules/default-modules.conf:
+	More work in progress on cdda module.
+
 2000-10-30  Darin Adler  <darin@eazel.com>
 
 	Fixed bug 4169 (Visiting "Services" several times causes future

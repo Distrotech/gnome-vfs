@@ -57,8 +57,8 @@
 
 CDDAContext *global_context = NULL;
 ProxyServer proxy_server={"192.168.0.1", 4480};
-CDDBServer dbserver = {"freedb.freedb.org", "~cddb/cddb.cgi", 80, 1, &proxy_server};
-CDDBServer dbserver2 = {"","~cddb/cddb.cgi", 80, 1, &proxy_server};
+CDDBServer dbserver = {"freedb.freedb.org", "~cddb/cddb.cgi", 80, 0, &proxy_server};
+CDDBServer dbserver2 = {"","~cddb/cddb.cgi", 80, 0, &proxy_server};
 
 
 static GnomeVFSResult do_open	         	(GnomeVFSMethod              	*method,
@@ -173,14 +173,6 @@ read_handle_destroy (ReadHandle *handle)
 }
 
 
-gboolean 
-do_is_local (GnomeVFSMethod *method, 
-	     const GnomeVFSURI *uri)
-{
-	return FALSE;
-}
-
-
 static GnomeVFSResult 
 do_open (GnomeVFSMethod *method,
 	 GnomeVFSMethodHandle **method_handle,
@@ -199,8 +191,6 @@ do_open (GnomeVFSMethod *method,
 	if (mode == GNOME_VFS_OPEN_READ) {
 		//	Make sure file is present
 		if (is_file_is_on_disc (global_context, uri)) {
-			//char buffer[250];
-			
 			result = GNOME_VFS_OK;			
 			read_handle = read_handle_new (uri);
 			
@@ -217,13 +207,15 @@ do_open (GnomeVFSMethod *method,
 				read_handle->last_sector = (data.track[track+1].track_start - 1) - data.track[track].track_start;
 
  				if(!cdda_track_audiop(global_context->drive, track)) {
-    				g_message ("Selected track is not an audio track. Aborting.\n\n");
-    				return GNOME_VFS_ERROR_GENERIC;
+    					g_message ("Error. Selected track is not an audio track.");
+    					return GNOME_VFS_ERROR_GENERIC;
   				}
-
+								
 				offset = cdda_track_firstsector (global_context->drive, track);
 				read_handle->first_sector += offset;
 				read_handle->last_sector += offset;
+
+				g_message ("sector span: %d to %d", (int)read_handle->first_sector, (int)read_handle->last_sector);
 
 				read_handle->paranoia = paranoia_init (global_context->drive);
 				paranoia_mode = PARANOIA_MODE_FULL^PARANOIA_MODE_NEVERSKIP;
@@ -231,6 +223,8 @@ do_open (GnomeVFSMethod *method,
 				cdda_verbose_set (global_context->drive, CDDA_MESSAGE_PRINTIT,CDDA_MESSAGE_FORGETIT);
 
 				paranoia_seek (read_handle->paranoia, read_handle->cursor = read_handle->first_sector, SEEK_SET);
+
+				read_handle->inited = TRUE;
 			}
 
 			*method_handle = (GnomeVFSMethodHandle *) read_handle;
@@ -242,15 +236,6 @@ do_open (GnomeVFSMethod *method,
 	}
 
 	return result;
-}
-
-static GnomeVFSResult
-do_create (GnomeVFSMethod *method, GnomeVFSMethodHandle **method_handle, GnomeVFSURI *uri,
-		   GnomeVFSOpenMode mode, gboolean exclusive, guint perm, GnomeVFSContext *context) 
-{
-	g_print ("cdda do_create: %s\n", gnome_vfs_uri_get_path (uri));
-	//return do_open (method, method_handle, uri, mode, context);
-	return GNOME_VFS_ERROR_GENERIC;
 }
 
 static GnomeVFSResult 
@@ -286,8 +271,11 @@ do_read (GnomeVFSMethod *method,
 {
 	ReadHandle *read_handle;
 	gint16 *readbuf;
-	//char *error, message;	
 	g_return_val_if_fail (method_handle != NULL, GNOME_VFS_ERROR_INTERNAL);
+
+	if (gnome_vfs_context_check_cancellation (context)) {
+		return GNOME_VFS_ERROR_CANCELLED;
+	}
 
 	read_handle = (ReadHandle *) method_handle;
 	if (read_handle == NULL) {
@@ -297,17 +285,60 @@ do_read (GnomeVFSMethod *method,
 	readbuf = NULL;
 
 	if (!read_handle->wrote_header) {
+		char *ptr;
+		long bytes;
+		int var;
+		
 		if (0) {
-			//write_wav_header (out, (batch_last - batch_first + 1) * CD_FRAMESIZE_RAW);
-			write_wav_header (1, 1 * CD_FRAMESIZE_RAW);
+			write_wav_header (1, (read_handle->last_sector - read_handle->first_sector + 1) 
+					  * CD_FRAMESIZE_RAW);
 		}
+		memset (buffer, 0, num_bytes);
+		
+		bytes = (read_handle->last_sector - read_handle->first_sector + 1) * CD_FRAMESIZE_RAW;
+		
+		ptr = buffer;
+		
+		memcpy (ptr, "RIFF", 4); ptr += 4;
+
+		var = bytes + 44 - 8;
+		memcpy (ptr, &var, 4); ptr += 4;
+		
+		memcpy (ptr, "WAVEfmt", 8); ptr += 8;
+
+		var = 16;
+		memcpy (ptr, &var, 4); ptr += 4;
+
+		var = 1;
+		memcpy (ptr, &var, 2); ptr += 2;
+		
+		var = 2;
+		memcpy (ptr, &var, 2); ptr += 2;
+
+		var = 44100;
+		memcpy (ptr, &var, 4); ptr += 4;
+
+		var = 44100 * 2 * 2;
+		memcpy (ptr, &var, 4); ptr += 4;
+
+		var = 4;
+		memcpy (ptr, &var, 2); ptr += 2;
+
+		var = 16;
+		memcpy (ptr, &var, 2); ptr += 2;
+		
+		memcpy (ptr, "data", 4); ptr += 4;
+		
+		memcpy (ptr, &bytes, 4); ptr += 4;
+		
+		*bytes_read = 42;
+		
 		read_handle->wrote_header = TRUE;
-	}
+		return GNOME_VFS_OK;
+	}	
 		
 	if (read_handle->cursor <= read_handle->last_sector) {
 		readbuf = paranoia_read (read_handle->paranoia, paranoia_callback);
-    	//error = cdda_errors (global_context->drive);
-    	//message = cdda_messages (global_context->drive);
 	} else {
 		return GNOME_VFS_ERROR_EOF;
 	}
@@ -322,19 +353,6 @@ do_read (GnomeVFSMethod *method,
 	       
 	return GNOME_VFS_OK;
 }
-
-static GnomeVFSResult 
-do_write (GnomeVFSMethod *method, 
-	  GnomeVFSMethodHandle *method_handle, 
-	  gconstpointer buffer, 
-	  GnomeVFSFileSize num_bytes, 
-	  GnomeVFSFileSize *bytes_written,
-	  GnomeVFSContext *context) 
-{
-	g_message ("cdda do_write");
-	return GNOME_VFS_ERROR_READ_ONLY;
-}
-
 
 #if 0
 static void 
@@ -674,7 +692,7 @@ get_data_size (cdrom_drive *drive, int track)
 		size = ((total_seconds * 44) * 2 * 2) * 1024;
 	}
 
-	g_message ("get_data_size: %d", size);
+	//g_message ("get_data_size: %d", size);
 	
 	return size;
 }
@@ -770,101 +788,42 @@ do_check_same_fs (GnomeVFSMethod *method,
       gboolean *same_fs_return,
       GnomeVFSContext *context)
 {
-	g_message ("cdda do_check_same_fs");
-	
-	/*
-	const char *name_1, *name_2;
-	char *dir1, *dir2;
-		
-	g_message ("cdda do_check_same_fs");
-
-	name_1 = gnome_vfs_uri_get_path (a);
-	name_2 = gnome_vfs_uri_get_path (b);
-	
-	*same_fs_return = TRUE;
-
-	g_message ("%s", name_1);
-	g_message ("%s", name_2);
-
-	dir1 = gnome_vfs_uri_extract_dirname (a);
-	dir2 = gnome_vfs_uri_extract_dirname (b);
-	g_message ("%s", dir1);
-	g_message ("%s", dir2);
-
-	g_free (dir1);
-	g_free (dir2);
-	*/
-	
-	*same_fs_return = TRUE;
+	*same_fs_return = FALSE;
 
 	return GNOME_VFS_OK;
 }
 
-static GnomeVFSResult
-do_make_directory (GnomeVFSMethod *method,
-		   GnomeVFSURI *uri,
-		   guint perm,
-		   GnomeVFSContext *context)
+static gboolean       
+do_is_local (GnomeVFSMethod *method, const GnomeVFSURI *uri)
 {
-	g_message ("cdda do_make_directory");
-	return GNOME_VFS_ERROR_GENERIC;
+	return FALSE;
 }
 
-
-static GnomeVFSResult
-do_remove_directory (GnomeVFSMethod *method,
-		     GnomeVFSURI *uri,
-		     GnomeVFSContext *context)
-{
-	g_message ("cdda do_remove_directory");
-	return GNOME_VFS_ERROR_GENERIC;
-}
-
-
-static GnomeVFSResult
-do_move (GnomeVFSMethod *method,
-	 GnomeVFSURI *old_uri,
-	 GnomeVFSURI *new_uri,
-	 gboolean force_replace,
-	 GnomeVFSContext *context)
-{
-	g_message ("cdda do_move");
-	return GNOME_VFS_ERROR_GENERIC;
-}
-
-static GnomeVFSResult
-do_unlink (GnomeVFSMethod *method,
-	   GnomeVFSURI *uri,
-	   GnomeVFSContext *context)
-{
-	g_message ("cdda do_unlink");
-	return GNOME_VFS_ERROR_READ_ONLY;
-}
 
 static GnomeVFSMethod method = {
 	do_open,
-	do_create, /* do_create */
+	NULL, 	/* do_create */
 	do_close,
 	do_read, /* do_read */
-	do_write, /* do_write */
-	NULL, /* seek */
-	NULL, /* tell */
-	NULL, /* truncate */
+	NULL, 	/* do_write */
+	NULL, 	/* seek */
+	NULL, 	/* tell */
+	NULL, 	/* truncate */
 	do_open_directory,
 	do_close_directory,
 	do_read_directory,
 	do_get_file_info,
 	NULL,
 	do_is_local,
-	do_make_directory, /* make directory */
-	do_remove_directory, /* remove directory */
-	do_move, /* rename */
-	do_unlink, /* unlink */
+	NULL, 	/* make directory */
+	NULL, 	/* remove directory */
+	NULL, 	/* rename */
+	NULL, 	/* unlink */
 	do_check_same_fs,
-	NULL, /* do_set_file_info */
-	NULL, /* do_truncate */
-	NULL, /* do_find_directory */
-	NULL /* do_create_symbolic_link */
+	NULL, 	/* do_set_file_info */
+	NULL, 	/* do_truncate */
+	NULL, 	/* do_find_directory */
+	NULL 	/* do_create_symbolic_link */
 };
 
 GnomeVFSMethod *
@@ -880,19 +839,19 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 }
 
 static void 
-PutNum (long num,int f,int endianness,int bytes)
+put_num (long num, int f, int endianness, int bytes)
 {
 	int i;
 	unsigned char c;
 
 	if (!endianness) {
-		i=0;
+		i = 0;
 	} else {
 		i = bytes - 1;
 	}
 		
 	while (bytes--){
-		c = (num>>(i<<3))&0xff;
+		c = (num >> (i << 3)) & 0xff;
 		if (write (f, &c, 1) == -1) {
 			perror ("Could not write to output.");
 			exit (1);
@@ -909,17 +868,17 @@ PutNum (long num,int f,int endianness,int bytes)
 static void 
 write_wav_header (int f, long bytes)
 {
-  /* quick and dirty */
-  write (f,"RIFF",4);               /*  0-3 */
-  PutNum (bytes+44-8,f,0,4);        /*  4-7 */
-  write (f,"WAVEfmt ",8);           /*  8-15 */
-  PutNum (16,f,0,4);                /* 16-19 */
-  PutNum (1,f,0,2);                 /* 20-21 */
-  PutNum (2,f,0,2);                 /* 22-23 */
-  PutNum (44100,f,0,4);             /* 24-27 */
-  PutNum (44100*2*2,f,0,4);         /* 28-31 */
-  PutNum (4,f,0,2);                 /* 32-33 */
-  PutNum (16,f,0,2);                /* 34-35 */
-  write (f,"data",4);               /* 36-39 */
-  PutNum (bytes,f,0,4);             /* 40-43 */
+	/* quick and dirty */
+	write (f, "RIFF", 4);                	/*  0-3 */
+	put_num (bytes + 44 - 8, f, 0, 4);	/*  4-7 */
+	write (f,"WAVEfmt ", 8);            	/*  8-15 */
+	put_num (16, f, 0, 4);                	/* 16-19 */
+	put_num (1, f, 0, 2);                 	/* 20-21 */
+	put_num (2, f, 0, 2);                 	/* 22-23 */
+	put_num (44100, f, 0, 4);             	/* 24-27 */
+	put_num (44100 * 2 * 2, f, 0, 4);     	/* 28-31 */
+	put_num (4 , f, 0, 2);                 	/* 32-33 */
+	put_num (16, f, 0, 2);                	/* 34-35 */
+	write (f, "data", 4);                	/* 36-39 */
+	put_num (bytes, f, 0, 4);             	/* 40-43 */
 }

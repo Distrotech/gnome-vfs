@@ -48,9 +48,9 @@ modulesconf_DATA =				\
 ###  `cdda' method
 
 #libcdda_la_SOURCES = 				\
-#	cdda-method.c 					\
-#	cdda-method.h					\
-#	cdda-cddb.c 					\
+#	cdda-method.c 				\
+#	cdda-method.h				\
+#	cdda-cddb.c 				\
 #	cdda-cddb.h
 
 #libcdda_la_LDFLAGS = $(module_flags)
