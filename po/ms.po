@@ -6,12 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
-"POT-Creation-Date: 2002-01-03 07:23-0500\n"
+"POT-Creation-Date: 2002-02-04 02:07+0800\n"
 "PO-Revision-Date: 2002-01-10 01:27+0800\n"
 "Last-Translator: Mohamad Afifi Omar (App) <mr_mohd_afifi@yahoo.com>\n"
 "Language-Team: Bahasa Melayu <gabai-penyumbang@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.8\n"
 
@@ -34,6 +34,25 @@ msgstr "%s:%d tidak mengandungi nama modul."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Fail konfigurasi `%s' tidak dijumpai: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:714
+#, c-format
+msgid "Unknown op type %u"
+msgstr "Jenis op tidak diketahui %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#, c-format
+msgid "Cannot create pipe for open GIOChannel: %s"
+msgstr "Tidak dapat mencipta paip untuk GIOChannel yang dibuka: %s"
+
+#: libgnomevfs/gnome-vfs-job.c:1596
+#, c-format
+msgid "Unknown job kind %u"
+msgstr "Jenis kerja tidak diketahui %u"
+
+#: libgnomevfs/gnome-vfs-job.c:1632
+msgid "Operation stopped"
+msgstr "Operasi dihentikan"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
@@ -71,7 +90,6 @@ msgstr "Parameter yang tidak sah"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
-#, fuzzy
 msgid "Unsupported operation"
 msgstr "Operasi yang tidak disokong"
 
@@ -278,27 +296,34 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-job.c:714
-#, c-format
-msgid "Unknown op type %u"
-msgstr "Jenis op tidak diketahui %u"
-
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
-#, c-format
-msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Tidak dapat mencipta paip untuk GIOChannel yang dibuka: %s"
-
-#: libgnomevfs/gnome-vfs-job.c:1596
-#, c-format
-msgid "Unknown job kind %u"
-msgstr "Jenis kerja tidak diketahui %u"
-
-#: libgnomevfs/gnome-vfs-job.c:1632
-msgid "Operation stopped"
-msgstr "Operasi dihentikan"
-
 #: modules/file-method.c:387
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition yang tidak diketahui %d"
 
+#. FIXME: we probably shouldn't use printf to output the message
+#: modules/test-method.c:590
+#, c-format
+msgid "Didn't find a valid settings file at %s\n"
+msgstr "Tak menjumpai fail tetapan yang sah pada %s\n"
+
+#: modules/test-method.c:592
+#, c-format
+msgid "Use the %s environment variable to specify a different location.\n"
+msgstr "Guna pembolehubah oersekitaran %s untuk menyatakan lokasi lain.\n"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
+msgid "Standard Moniker factory"
+msgstr "KIlang Moniker Piawai"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
+msgid "file MonikerExtender"
+msgstr "MonikerExtender fail"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
+msgid "generic Gnome VFS moniker"
+msgstr "Moniker Gnome VFS generik"
+
+#: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
+msgid "generic file moniker"
+msgstr "Moniker fail  generik"
