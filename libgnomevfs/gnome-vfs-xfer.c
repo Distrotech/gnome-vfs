@@ -1223,7 +1223,7 @@ copy_file (GnomeVFSFileInfo *info,
 					/* use an arbitrary default block size of 4096 
 					 * if one isn't available for this file system 
 					 */
-					(info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE)
+					(info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE && info->io_block_size > 0)
 						? info->io_block_size : 4096,
 					skip);
 	}
