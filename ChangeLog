@@ -1,3 +1,8 @@
+1999-08-27  Miguel de Icaza  <miguel@nuclecu.unam.mx>
+
+	* modules/util-url.c, modules/ftp-method.c: New files for the
+	implementation of the FTP backend.  
+
 1999-08-26  Miguel de Icaza  <miguel@nuclecu.unam.mx>
 
 	* test/gnome-file-selection/gnome-file-selection.c
