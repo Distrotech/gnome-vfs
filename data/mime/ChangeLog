@@ -1,3 +1,8 @@
+2001-01-24  Aaron Brick  <aaron@eazel.com>
+
+	* renamed "acrobat" "acroread" per the executable's name
+	* prioritized xpdf above gv/ggv because its PDF handling is superior
+
 2001-01-22  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs-mime-magic:
