@@ -1,3 +1,20 @@
+2001-01-22  John Sullivan  <sullivan@eazel.com>
+
+	Fixed bug 5845 (web bookmarks change to generic document
+	icon after visiting)
+
+	* gnome-vfs.keys.in:
+
+	Removed all the lines that specify "i-regular" for an
+	icon filename. "i-regular" is the default anyway, so 
+	specifying it will have no useful effect. In the case
+	of bug 5845, it had a bad effect (prevented the special
+	web icon from being used). Aaron had intended to make
+	this change a while back.
+
+	Note: this bug was marked PR3 so we might want to make this
+	simple change on the branched gnome-vfs, if there is one.
+
 2001-01-19  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.keys.in: Call it a StuffIt archive, not a
@@ -6,7 +23,7 @@
 
 2001-01-19  John Sullivan  <sullivan@eazel.com>
 
-	* data/mime/gnome-vfs.keys.in:
+	* gnome-vfs.keys.in:
 	Marked text/x-sh as can_be_executable. This was
 	an oversight from my earlier first pass at marking
 	the executable MIME types. It was driving poor Seth crazy.
