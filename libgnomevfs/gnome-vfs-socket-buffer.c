@@ -321,13 +321,14 @@ gnome_vfs_socket_buffer_write (GnomeVFSSocketBuffer *socket_buffer,
 			GnomeVFSFileSize n;
 
 			n = MIN (BUFFER_SIZE - output_buffer->byte_count,
-				 bytes);
+				 bytes - write_count);
 			memcpy (output_buffer->data + output_buffer->byte_count,
 				p, n);
 			p += n;
 			write_count += n;
 			output_buffer->byte_count += n;
-		} else {
+		}
+		if (output_buffer->byte_count >= BUFFER_SIZE) {
 			result = flush (socket_buffer, cancellation);
 			if (result != GNOME_VFS_OK) {
 				break;

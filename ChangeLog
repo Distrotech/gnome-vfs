@@ -1,3 +1,14 @@
+2004-06-09  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-socket-buffer.c (gnome_vfs_socket_buffer_write):
+	Slightly more efficient flushing strategy.
+
+2004-06-09  Narayana Pattipati  <narayana.pattipati@wipro.com>
+
+	* libgnomevfs/gnome-vfs-socket-buffer.c (gnome_vfs_socket_buffer_write):
+	Consider bytes left to be written instead of total bytes while
+	writing into the target in ftp:// method. Bugzilla bug#143320
+
 2004-06-08  Dave Camp  <dave@novell.com>
 
 	* modules/computer-method.c: (get_file), (build_file_name),
