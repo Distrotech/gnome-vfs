@@ -98,6 +98,13 @@ gnome_vfs_mime_get_default_action_type (const char *mime_type)
 {
 	const char *action_type_string;
 
+	/* TODO: gnome_vfs_mime_get_value below always returns NONE these days.
+	   We need to figure out what to really do here. For now, special case folders.
+	*/
+	if (g_str_has_prefix (mime_type, "x-directory/")) {
+		return GNOME_VFS_MIME_ACTION_TYPE_COMPONENT;
+	}
+	
 	action_type_string = gnome_vfs_mime_get_value (mime_type, "default_action_type");
 
 	if (action_type_string != NULL && g_ascii_strcasecmp (action_type_string, "application") == 0) {

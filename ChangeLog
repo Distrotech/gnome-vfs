@@ -1,3 +1,9 @@
+2004-10-05  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c (gnome_vfs_mime_get_default_action_type):
+	Temporary workaround to make show_url handle folders. This needs
+	rethinking.
+
 2004-09-27  Ray Strode  <rstrode@redhat.com>
 	* libgnomevfs/eggdesktopentries.c
 	(egg_desktop_entries_get_locale_encoding):
