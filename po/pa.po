@@ -10,15 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.pa\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-30 15:33+0200\n"
-"PO-Revision-Date: 2004-08-20 16:30+0530\n"
+"POT-Creation-Date: 2004-09-02 03:56+0200\n"
+"PO-Revision-Date: 2004-09-02 20:22+0530\n"
 "Last-Translator: Amanpreet Singh Alam <aalam@redhat.com>\n"
 "Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3.1\n"
-"Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
 "\n"
 "\n"
 
@@ -54,8 +54,7 @@ msgstr "ਫਾਇਲ਼ '%s' ਤੋਂ ਪੜਨ ਵਿੱਚ ਅਸਫਲ: %s"
 
 #: libgnomevfs/eggdesktopentries.c:578
 #, c-format
-msgid ""
-"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
 msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਤਰ '%s' ਹੈ ਜੋ ਕਿ ਇੱਕ ਇੰਦਰਾਜ਼, ਸਮੂਹ ਜਾਂ ਟਿੱਪਣੀ ਨਹੀਂ ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:654
@@ -86,16 +85,13 @@ msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਕੀ '%s' ਨਹੀਂ
 #: libgnomevfs/eggdesktopentries.c:1104 libgnomevfs/eggdesktopentries.c:1277
 #: libgnomevfs/eggdesktopentries.c:1419 libgnomevfs/eggdesktopentries.c:1544
 #, c-format
-msgid ""
-"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
 msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਮੂਹ '%s' ਹੈ, ਜਿਸ ਦਾ ਮੁੱਲ ਖੋਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
 
 #: libgnomevfs/eggdesktopentries.c:1302
 #, c-format
-msgid ""
-"desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
-"ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਇੱਕ ਕੀ '%s', ਜਿਸ ਦਾ ਇਲਾਕਾਈ '%s' ਹੈ, ਲਈ ਕੋਈ ਭਾਸ਼ਾ-ਅਨੁਵਾਦ ਨਹੀਂ ਹੈ|"
+msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਇੱਕ ਕੀ '%s', ਜਿਸ ਦਾ ਇਲਾਕਾਈ '%s' ਹੈ, ਲਈ ਕੋਈ ਭਾਸ਼ਾ-ਅਨੁਵਾਦ ਨਹੀਂ ਹੈ|"
 
 #: libgnomevfs/eggdesktopentries.c:2223
 #, c-format
@@ -792,60 +788,155 @@ msgid "%.1f GB"
 msgstr "%.1f ਜੀ-ਬੀ"
 
 #: libgnomevfs/gnome-vfs-utils.c:1122
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:391
 msgid " (invalid Unicode)"
 msgstr "(ਗਲਤ ਯੂਨੀਕੋਡ)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:573
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:629
 msgid "Floppy"
 msgstr "ਫਲਾਪੀ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:574
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:632
 msgid "CD-ROM"
 msgstr "ਸੀਡੀ-ਰੋਮ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
-msgid "Zip Drive"
-msgstr "ਜ਼ਿਪ ਡਰਾਇਵ"
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
+msgid "CD-R"
+msgstr "CD-R"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
+msgid "CD-RW"
+msgstr "CD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
+msgid "DVD-ROM"
+msgstr "DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
+msgid "DVD-RAM"
+msgstr "DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
+msgid "DVD-R"
+msgstr "DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
+msgid "DVD-RW"
+msgstr "DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
+msgid "CD-ROM/DVD-ROM"
+msgstr "CD-ROM/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
+msgid "CD-ROM/DVD-RAM"
+msgstr "CD-ROM/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
+msgid "CD-ROM/DVD-R"
+msgstr "CD-ROM/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
+msgid "CD-ROM/DVD-RW"
+msgstr "CD-ROM/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
+msgid "CD-R/DVD-ROM"
+msgstr "CD-R/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
+msgid "CD-R/DVD-RAM"
+msgstr "CD-R/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
+msgid "CD-R/DVD-R"
+msgstr "CD-R/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
+msgid "CD-R/DVD-RW"
+msgstr "CD-R/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
+msgid "CD-RW/DVD-ROM"
+msgstr "CD-RW/DVD-ROM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
+msgid "CD-RW/DVD-RAM"
+msgstr "CD-RW/DVD-RAM"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
+msgid "CD-RW/DVD-R"
+msgstr "CD-RW/DVD-R"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
+msgid "CD-RW/DVD-RW"
+msgstr "CD-RW/DVD-RW"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
+msgid "Disk"
+msgstr "ਡਿਸਕ"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
+msgid "USB Drive"
+msgstr "USB ਡਰਾਇਵ"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
+msgid "IEEE1394 Drive"
+msgstr "IEEE1394 ਡਰਾਇਵ"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
+msgid "CF"
+msgstr "CF"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
+msgid "SD/MMC"
+msgstr "SD/MMC"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
 msgid "Memory Stick"
 msgstr "ਮੈਮੋਰੀ ਸਟਿਕ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
+msgid "Smart Media"
+msgstr "ਸਮਾਟ ਮੀਡਿਆ"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
+msgid "Zip Drive"
+msgstr "ਜ਼ਿਪ ਡਰਾਇਵ"
+
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:605
 msgid "Camera"
 msgstr "ਕੈਮਰਾ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:606
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:822
 msgid "Root Volume"
 msgstr "ਰੂਟ(Root) ਵਾਲੀਅਮ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:903
 msgid "Audio CD"
 msgstr "ਆਡੀਉ ਸੀਡੀ"
 
 # libgnomevfs/gnome-vfs-result.c:137
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:831
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:936
 msgid "Unknown volume"
 msgstr "ਅਣਪਛਾਤਾ ਵਾਲੀਅਮ"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1011
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1116
 msgid "Network server"
 msgstr "ਨੈਟਵਰਕ ਸਰਵਰ"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:112
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ(ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਕੋਈ ਫਲਾਪੀ ਡਰਾਇਵ ਵਿੱਚ ਨਹੀ ਹੈ ।"
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ(ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਕੋਈ ਫਲਾਪੀ ਡਰਾਇਵ ਵਿੱਚ ਨਹੀ ਹੈ ।"
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:116
@@ -1146,8 +1237,7 @@ msgstr "\"trash\" URL ਲਈ ਹੈਂਡਲਰ"
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\"  ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\"  ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
@@ -1161,57 +1251,49 @@ msgstr ""
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"ghelp\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"ghelp\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, h323 ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, h323 ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"http\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"http\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"https\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"https\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"info\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"info\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1221,53 +1303,43 @@ msgstr "ਸਹੀ, ਜੇਕਰ ਕਾਰਜ ਜੋ ਕਿ ਇਸ ਯੂਆਰ�
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"callto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"callto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"ghelp\"ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"ghelp\"ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ ਕਮਾਂਡ ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"h323\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ ਕਮਾਂਡ ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"h323\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"http\"ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"http\"ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"https\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"https\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"info\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"info\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1445,3 +1517,4 @@ msgstr "SMB ਵਰਕਗਰੁੱਪ"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "ਵਿੰਡੋ ਵਰਕਗਰੁੱਪ ਉਪਭੋਗਤਾ(ਯੂਜਰ) ਹਿੱਸਾ ਹੈ"
+
