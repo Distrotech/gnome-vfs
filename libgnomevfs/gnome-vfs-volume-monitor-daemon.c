@@ -446,6 +446,7 @@ get_drive_name (GnomeVFSVolumeMonitor *volume_monitor,
 		{ "zip", N_("Zip Drive") },
 		{ "memstick", N_("Memory Stick") },
 		{ "camera", N_("Camera") },
+		{ "dvd", N_("DVD") },
 	};
 	
 	name = g_path_get_basename (mount->mount_path);
