@@ -1,3 +1,13 @@
+2001-05-28  Seth Nickell  <snickell@stanford.edu>
+	
+	* doc/gnome-vfs-docs.sgml:
+
+	Fix entities so all subcategories are generated, and in alphabetical order.
+	
+	* doc/tmpl/mime-handlers.sgml:
+
+	Add a better title (yah, whatever).
+
 Mon May 28 15:49:55 2001  Jonathan Blandford  <jrb@redhat.com>
 
 	* doc/gnome-vfs-docs.sgml: fix case problem.
