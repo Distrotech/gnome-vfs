@@ -8,6 +8,7 @@ INCLUDES =					\
 	-I$(top_builddir)/intl			\
 	-I$(top_builddir)/libgnomevfs		\
 	$(OAF_CFLAGS)				\
+	$(GCONF_CFLAGS) 			\
 	$(GNOME_INCLUDEDIR)			\
 	$(VFS_CFLAGS) $(WERROR)			\
 	$(NULL)

@@ -396,6 +396,28 @@ static GList *gnome_vfs_mime_do_short_list_processing (GList *short_list,
 }
 
 
+/* sort_application_list
+ *
+ * Sort list alphabetically
+ */
+ 
+static int
+sort_application_list (gconstpointer a, gconstpointer b)
+{
+	GnomeVFSMimeApplication *application1, *application2;
+
+	application1 = (GnomeVFSMimeApplication *) a;
+	application2 = (GnomeVFSMimeApplication *) b;
+
+	return g_strcasecmp (application1->name, application2->name);
+}
+
+/* gnome_vfs_mime_get_short_list_applications
+ *
+ * Return alphabetically sorted list of GnomeVFSMimeApplication
+ * data structures for the requested mime type.	
+ */
+ 
 GList *
 gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 {
@@ -490,6 +512,9 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	g_list_free_deep (supertype_removals);
 	g_list_free (id_list);
 
+	/* Sort list alphabetically by application name */
+	preferred_applications = g_list_sort (preferred_applications, sort_application_list);
+	
 	return preferred_applications;
 }
 
@@ -518,6 +543,23 @@ join_str_list (const char *separator, GList *list)
 	g_free (strv);
 
 	return retval;
+}
+
+
+/* sort_component_list
+ *
+ * Sort list alphabetically by component name
+ */
+ 
+static int
+sort_component_list (gconstpointer a, gconstpointer b)
+{
+	OAF_ServerInfo *component1, *component2;
+		
+	component1 = (OAF_ServerInfo *) a;
+	component2 = (OAF_ServerInfo *) b;
+
+	return g_strcasecmp (component1->iid, component2->iid);
 }
 
 GList *
@@ -638,6 +680,9 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 	g_list_free_deep (supertype_additions);
 	g_list_free_deep (supertype_removals);
 	g_list_free (iid_list);
+
+	/* Sort list alphabetically by component name */
+	preferred_components = g_list_sort (preferred_components, sort_component_list);
 
 	return preferred_components;
 }

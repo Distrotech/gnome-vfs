@@ -1,3 +1,12 @@
+2000-09-09  Gene Z. Ragan  <gzr@eazel.com>
+
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (sort_application_list),
+	(gnome_vfs_mime_get_short_list_applications),
+	(sort_component_list), (gnome_vfs_mime_get_short_list_components):
+	Sort application and component lists alphabetically 
+	before returning them.
+	
 2000-09-08  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_new):
