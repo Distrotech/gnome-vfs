@@ -1,3 +1,8 @@
+2000-11-03  Darin Adler  <darin@eazel.com>
+
+	* modules/http-method.c: (do_get_file_info): Improved comments
+	in here.
+
 2000-11-03  Maciej Stachowiak  <mjs@eazel.com>
 
 	Fix bugs 4445 and 2756.
@@ -101,7 +106,7 @@
 	isn't correctly reporting 507 (http protocol insufficient space)
 	yet.
 
-So2000-11-02  Gene Z. Ragan  <gzr@eazel.com>
+2000-11-02  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 4319, Edit and Delete actions in Application
 	List do not function

@@ -2275,11 +2275,11 @@ do_get_file_info (GnomeVFSMethod *method,
 		} else {
 			g_assert (handle == NULL); /* Make sure we're not leaking some old one */
 
-				/* Lame buggy servers (eg: www.mozilla.org, www.corel.com)) return
-				 * an HTTP error for a HEAD where a GET would succeed. In these cases
-				 * lets try to do a GET.
-				 */
-			
+			/* Lame buggy servers (eg: www.mozilla.org,
+			 * www.corel.com)) return an HTTP error for a
+			 * HEAD where a GET would succeed. In these
+			 * cases lets try to do a GET.
+			 */
 			if (result != GNOME_VFS_OK) {
 				g_assert (handle == NULL); /* Make sure we're not leaking some old one */
 				result = make_request (&handle, uri, "GET", NULL, NULL, context);
@@ -2287,7 +2287,18 @@ do_get_file_info (GnomeVFSMethod *method,
 					gnome_vfs_file_info_copy (file_info, handle->file_info);
 					http_handle_close (handle, context);
 				}
-				/* evil hack */
+
+				/* If we get a redirect, we should be
+				 * basing the MIME type on the type of
+				 * the page we'll be redirected
+				 * too. Maybe we even want to take the
+				 * "follow_links" setting into account.
+				 */
+				/* FIXME: For now we treat all
+				 * redirects as if they lead to a
+				 * text/html. That works pretty well,
+				 * but it's not correct.
+				 */
 				if (handle != NULL && HTTP_REDIRECTED (handle->server_status)) {
 					g_free (file_info->mime_type);
 					file_info->mime_type = g_strdup ("text/html");
