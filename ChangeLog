@@ -1,3 +1,9 @@
+1999-12-04  Ettore Perazzoli  <ettore@gnu.org>
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c
+	(gnome_vfs_async_cancel): Added comment about the need for freeing
+	the handle.
+
 1999-12-02  Havoc Pennington  <hp@pobox.com>
 
 	* libgnomevfs/gnome-vfs-messages.c: all my filter predicates were

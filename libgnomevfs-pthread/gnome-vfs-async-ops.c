@@ -39,6 +39,9 @@ gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	job = (GnomeVFSJob *) handle;
+
+	/* FIXME should free the handle.  */
+
 	return gnome_vfs_job_cancel (job);
 }
 
