@@ -1,4 +1,29 @@
 ===================================
+gnome-vfs 1.0.3
+---------------
+
+New features:
+
+* Add support for start-here:, preferences:, system-settings:,
+server-settings:, start-here:, and programs: URI schemes (Havoc)
+
+Bug fixes:
+
+* Automake 1.5 compatibility (Ali Akcaagac)
+* Buffer overflow fix (Jacob)
+* Require libxml 1.x [bug 41957] (Maciej)
+* NFS method fix [bug 55805] (Martin Pool)
+* Leak fixes (Anders)
+* New translations (Duarte Loreto)
+* Remove slow trash search (Havoc)
+* Build fixes (Darin)
+
+Portability fixes:
+
+* HP-UX fixes [bug 51966] (Jacob)
+
+
+===================================
 gnome-vfs 1.0.2
 ---------------
 

@@ -1,3 +1,15 @@
+2001-10-12  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* NEWS, configure.in: Updated for 1.0.3.
+
+	* modules/Makefile.am: Rename unused SOURCES variables to SRCLIST
+	for Automake 1.5 compatibility. Patch from Ali Akcaagac
+	<ali.akcaagac@stud.fh-wilhelmshaven.de>.
+
+	* libgnomevfs/gnome-vfs-backend.c (gnome_vfs_backend_loadinit):
+	Pass NULL instead of LIBDIR so LD_LIBRARY_PATH is searched and
+	thus make distcheck passes.
+
 2001-10-10  jacob berkman  <jacob@ximian.com>
 
 	* libgnomevfs/gnome-vfs-backend.c (gnome_vfs_backend_loadinit):

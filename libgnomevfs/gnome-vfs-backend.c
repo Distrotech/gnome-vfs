@@ -70,7 +70,7 @@ gnome_vfs_backend_loadinit (gpointer app, gpointer modinfo)
 	g_strdown (backend_lower);
 
 	short_name = g_strdup_printf ("gnomevfs-%s", backend);
-	backend_filename = g_module_build_path (LIBDIR, short_name);
+	backend_filename = g_module_build_path (NULL, short_name);
 
 	gmod = g_module_open (backend_filename, G_MODULE_BIND_LAZY);
 	if (gmod == NULL) {

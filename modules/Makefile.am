@@ -23,8 +23,8 @@ EXTRA_DIST =					\
 	default-modules.conf			\
 	cdda-module.conf			\
 	ssl-modules.conf			\
-	$(libnfs_la_SOURCES)			\
-	$(libssh_la_SOURCES)
+	$(libnfs_la_SRCLIST)			\
+	$(libssh_la_SRCLIST)
 
 ###  Module setup
 
@@ -98,7 +98,7 @@ libdesktop_la_LDFLAGS = $(module_flags)
 
 ###  `ssh' method
 
-libssh_la_SOURCES = 				\
+libssh_la_SRCLIST = 				\
 	ssh-method.c 				\
 	ssh-method.h
 #libssh_la_LDFLAGS = $(module_flags)
@@ -140,7 +140,7 @@ libgconf_la_LDFLAGS = $(module_flags)
 
 ### `nfs' method
 
-libnfs_la_SOURCES = 				\
+libnfs_la_SRCLIST = 				\
 	nfs-method.c				\
 	nfs-method.h				\
 	nfs-method_mount_xdr.c			\

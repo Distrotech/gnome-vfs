@@ -1,3 +1,10 @@
+2001-10-12  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	* az.po, ca.po, da.po, de.po, el.po, es.po, fi.po, fr.po, ga.po,
+	gl.po, hu.po, it.po, ja.po, ko.po, lt.po, nl.po, nn.po, no.po,
+	pl.po, pt.po, pt_BR.po, ro.po, ru.po, sk.po, sl.po, sv.po, tr.po,
+	uk.po, wa.po, zh_TW.po: Updated by `make distcheck'.
+
 2001-10-10  Carlos Perelló Marín <carlos@gnome-db.org>
 
 	* es.po: Updated.
