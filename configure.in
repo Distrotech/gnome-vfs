@@ -160,7 +160,7 @@ fi
 WERROR=
 if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 	echo "enable compile warnings = $set_more_warnings"
-	VFS_CFLAGS="-Wall -Wno-uninitialized \
+	VFS_CFLAGS="-Wall \
 	-Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes \
 	-Wnested-externs -Wpointer-arith"
 	WERROR="-Werror"

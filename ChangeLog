@@ -1,3 +1,10 @@
+2000-09-06  Pavel Cisler  <pavel@eazel.com>
+
+	* configure.in:
+	Get rid of -Wno-uninitialized. This way we will get uninitialized
+	variable warnings when we do a release build (with optimizations
+	-O1 or higher).
+
 2000-09-06  Darin Adler  <darin@eazel.com>
 
 	* test/test-uri.c: (main): Added tests for URIs with "#"
