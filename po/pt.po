@@ -1,12 +1,12 @@
 # gnome-vfs's Portuguese Translation.
 # Copyright (C) 2001 Free Software Foundation, Inc.
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2002-02-04 16:49-0800\n"
-"PO-Revision-Date: 2001-12-16 16:05+GMT\n"
+"POT-Creation-Date: 2002-02-08 00:50+0000\n"
+"PO-Revision-Date: 2002-02-08 00:50+GMT\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: None <none@none.org>\n"
 "MIME-Version: 1.0\n"
@@ -303,29 +303,28 @@ msgstr "GnomeVFSSeekPosition %d desconhecida"
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr ""
+msgstr "Ficheiro de configuração válido não encontrado em %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr ""
+msgstr "Utilize a variável de ambiente %s para especificar uma localização diferente.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr ""
+msgstr "Fábrica de Moniker Standard"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr ""
+msgstr "ficheiro MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr ""
+msgstr "moniker Gnome VFS genérico"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
-#, fuzzy
 msgid "generic file moniker"
-msgstr "Erro genérico"
+msgstr "ficheiro moniker genérico"
 
 #~ msgid "3D Studio image"
 #~ msgstr "Imagem 3D Studio"
