@@ -56,23 +56,6 @@ Generic thread-safe address resolution functions.
 </para>
 
 
-<!-- ##### FUNCTION gnome_vfs_address_dup ##### -->
-<para>
-
-</para>
-
-@address: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gnome_vfs_address_free ##### -->
-<para>
-
-</para>
-
-@address: 
-
-
 <!-- ##### FUNCTION gnome_vfs_address_get_family_type ##### -->
 <para>
 

@@ -14,3 +14,5 @@ GNOME_VFS_Daemon-common.c
 GNOME_VFS_Daemon-skels.c
 GNOME_VFS_Daemon-stubs.c
 GNOME_VFS_Daemon.h
+s-enum-types-h
+s-enum-types-c

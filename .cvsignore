@@ -16,8 +16,10 @@ config.log
 config.status
 config.sub
 configure
+depcomp
 gnome-vfs-config
 gnome-vfs.spec
+gtk-doc.make
 install-sh
 intl
 libtool

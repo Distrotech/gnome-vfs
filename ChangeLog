@@ -1,5 +1,26 @@
 2004-11-22  Marco Pesenti Gritti  <marco@gnome.org>
 
+	* .cvsignore:
+	* doc/tmpl/gnome-vfs-file-size.sgml:
+	* doc/tmpl/gnome-vfs-mime-database-deprecated.sgml:
+	* doc/tmpl/gnome-vfs-mime-database.sgml:
+	* doc/tmpl/gnome-vfs-resolve.sgml:
+	* imported/.cvsignore:
+	* imported/neon/.cvsignore:
+	* libgnomevfs/.cvsignore:
+	* test/.cvsignore:
+
+	Update
+
+	* libgnomevfs/eggdesktopentries.c:
+	* libgnomevfs/eggdesktopentries.h:
+	* libgnomevfs/eggdirfuncs.c:
+	* libgnomevfs/eggdirfuncs.h:
+
+	Remove, they are not used anymore.
+
+2004-11-22  Marco Pesenti Gritti  <marco@gnome.org>
+
 	* doc/Makefile.am:
 
 	Recognize deprecated apis

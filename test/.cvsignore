@@ -9,6 +9,7 @@ test-channel
 test-directory
 test-directory-visit
 test-dirop
+test-dns-sd
 test-escape
 test-find-directory
 test-info
@@ -33,5 +34,6 @@ test-volumes
 test-xfer
 test-callback
 test-module-selftest
+test-mime-info-cache
 vfs-run
 test-queue

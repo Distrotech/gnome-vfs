@@ -1,6 +1,7 @@
 *.lo
 .libs
 Makefile
+Makefile.in
 libneon.la
 libneon.a
 neon_config.h
