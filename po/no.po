@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.6.0.0\n"
-"POT-Creation-Date: 2001-03-01 02:06+0100\n"
+"POT-Creation-Date: 2001-04-26 10:51-0400\n"
 "PO-Revision-Date: 2001-03-01 02:06+01:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -1009,133 +1009,6 @@ msgstr "zip-arkiv"
 msgid "zoo archive"
 msgstr "zoo-arkiv"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
-msgid "Dying."
-msgstr "Dør."
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
-#, c-format
-msgid "Error reading: %s"
-msgstr "Feil under lesing: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
-#, c-format
-msgid "Error writing: %s"
-msgstr "Feil under skriving: %s"
-
-#. FIXME bugzilla.eazel.com 1226:
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
-#, c-format
-msgid "Cannot write: %s"
-msgstr "Kan ikke skrive: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:601
-#, c-format
-msgid "Cannot create temporary file name `%s'"
-msgstr "Kan ikke opprette midlertidig fil ved navn `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:615
-#, c-format
-msgid "Cannot create socket: %s"
-msgstr "Kan ikke opprette socket: %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:633
-#, c-format
-msgid "Cannot bind `%s': %s"
-msgstr "Kan ikke binde `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:640
-#, c-format
-msgid "Cannot listen on `%s': %s"
-msgstr "Kan ikke lytte på `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:663
-#, c-format
-msgid "Cannot accept connections on `%s': %s"
-msgstr "Kan ikke motta forbindelser på `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1195
-msgid "Cannot initialize CORBA."
-msgstr "Kan ikke initialisere CORBA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1202
-msgid "Cannot resolve initial reference to RootPOA."
-msgstr "Kan ikke oppløse initiell referanse til RootPOA."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1209
-msgid "Cannot activate POA manager."
-msgstr "Kan ikke aktivere POA-håndterer."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1234
-#, c-format
-msgid "Usage: %s <ior> [<ior_fd>]\n"
-msgstr "Bruk: %s <ior> [<ior_fd>]\n"
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1245
-#, c-format
-msgid "Cannot open file descriptor %d."
-msgstr "Kan ikke åpne file descriptor %d."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1268
-#, c-format
-msgid "Notify interface for `%s' not found."
-msgstr "Meldingsgrensesnitt for `%s' ikke funnet."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
-msgid "Cannot setup Request object."
-msgstr "Kan ikke sette opp Request objekt."
-
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
-msgid "Cannot extract IOR."
-msgstr "Kan ikke hente ut IOR."
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
-#, c-format
-msgid "Got weird string from the slave process: `%s'"
-msgstr "Mottok rar streng fra slaveprosess: `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, c-format
-msgid "Cannot get object for `%s'"
-msgstr "Kan ikke finne objekt for `%s'"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "Kan ikke drepe GNOME::VFS::Slave::Notify -- unntak %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, c-format
-msgid "Cannot connect socket `%s': %s"
-msgstr "Kan ikke koble til socket `%s': %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
-msgid "Cannot initialize GNOME::VFS:Slave::Notify"
-msgstr "Kan ikke initialisere GNOME::VFS::Slave::Notify"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:120
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan ikke nullstille GNOME::VFS::Slave %s -- unntak %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:123
-#, c-format
-msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan ikke nullstille GNOME::VFS::Slave (IOR ukjent) -- unntak %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:154
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
-msgstr "Kan ikke drepe GNOME::VFS::Slave %s -- unntak %s"
-
-#: libgnomevfs-corba/gnome-vfs-slave-process.c:157
-#, c-format
-msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
-msgstr "Kan ikke drepe GNOME::VFS::Slave (IOR ukjent) -- unntak %s"
-
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
 msgid "%s:%d contains NUL characters."
@@ -1397,367 +1270,358 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:688
+#: libgnomevfs-pthread/gnome-vfs-job.c:690
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Ukjent op-type %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:974
-#: libgnomevfs-pthread/gnome-vfs-job.c:1119
+#: libgnomevfs-pthread/gnome-vfs-job.c:978
+#: libgnomevfs-pthread/gnome-vfs-job.c:1123
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke opprette rør for åpen GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1574
+#: libgnomevfs-pthread/gnome-vfs-job.c:1578
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Ukjent type jobb %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1605
+#: libgnomevfs-pthread/gnome-vfs-job.c:1609
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
 
-#: mime-type-capplet/file-types-capplet.desktop.in.h:1
-msgid "File Types and Programs"
-msgstr "Filtyper og programmer"
-
-#: mime-type-capplet/file-types-capplet.desktop.in.h:2
-msgid "Specify which programs are used to open or view each file type"
-msgstr "Koblinger mellom filtyper og programmer"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:735
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1877
-msgid "MIME Type"
-msgstr "MIME-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:742
-msgid "Change Icon"
-msgstr "Endre ikon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:749
-msgid "Change File Extensions"
-msgstr "Endre filtyper"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:757
-msgid "Default Action:"
-msgstr "Standard handling:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:769
-msgid "Use Viewer"
-msgstr "Bruk visningsprogram"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:775
-msgid "Open With Application"
-msgstr "Åpne med applikasjon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:786
-msgid "Edit List"
-msgstr "Rediger liste"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:811
-msgid "Add New MIME Type..."
-msgstr "Legg til ny MIME-type..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:817
-msgid "Delete This MIME Type"
-msgstr "Slett denne MIME-typen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:828
-msgid "Revert to System Defaults"
-msgstr "Gå tilbake til standardverdier"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1069
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1213
-msgid "None"
-msgstr "Ingen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1318
-msgid ""
-"Reverting to system settings will lose any changes\n"
-"you have ever made to File Types and Programs.\n"
-"Revert anyway?"
-msgstr ""
-"Ved å gå tilbake til systeminnstillingene vil du miste\n"
-"alle endringer du har gjort for filtyper og programmer.\n"
-"Gå tilbake likevel?"
-
-#. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1387
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1587
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1713
-msgid "none"
-msgstr "ingen"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1428
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1614
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1757
-#, c-format
-msgid "View as %s"
-msgstr "Vis som %s"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1876
-msgid "Description"
-msgstr "Beskrivelse"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1878
-msgid "Extension"
-msgstr "Filtype"
-
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1879
-msgid "Default Action"
-msgstr "Standard handling"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:387
-msgid "Edit Applications List"
-msgstr "Rediger applikasjonslisten"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:409
-#, c-format
-msgid "Select applications to appear in menu for MIME type \"%s\""
-msgstr "Velg applikasjoner som skal være i menyen for MIME-type \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:433
-msgid "Add Application..."
-msgstr "Legg til applikasjon..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:440
-msgid "Edit Application..."
-msgstr "Rediger applikasjon..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:446
-msgid "Delete Application"
-msgstr "Slett applikasjon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:480
-msgid "Edit Components List"
-msgstr "Redgier komponentliste"
-
-#. Add label
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:500
-#, c-format
-msgid "Select views to appear in menu for MIME type \"%s\""
-msgstr "Velg visninger som skal være i menyen for MIME-type \"%s\""
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:720
-msgid ""
-"The MIME type entered contained upper case characters. Upper case characters "
-"were changed to lower case for you."
-msgstr ""
-"MIME-typen som ble skrevet inn inneholdt store bokstaver. De store "
-"bokstavene ble omgjort til små bokstaver for deg."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:723
-msgid "Add New MIME Type"
-msgstr "Legg til ny MIME-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:769
-msgid "Add MIME Type"
-msgstr "Legg til ny MIME-type"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:773
-msgid "New MIME type (e.g. image/x-thumper):"
-msgstr "Ny MIME-type (f.eks. image/x-thumper):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:780
-msgid "Description (e.g. Thumper image):"
-msgstr "Beskrivelse (f.eks. Thumper bilde):"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:947
-msgid "File Extensions "
-msgstr "Filtyper "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:967
-msgid "Add..."
-msgstr "Legg til..."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:972
-msgid "    Remove    "
-msgstr "    Fjern     "
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1041
-msgid "Add New Extension"
-msgstr "Legg til ny filtype"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1045
-msgid ""
-"Type in the extensions for this mime-type (without dot).\n"
-"You can enter several extensions seperated by a space,\n"
-"for example: html htm"
-msgstr ""
-"Skriv inn filtypen for denne MIME-typen (uten punktum).\n"
-"Du kan skrive inn flere filtyper separert med mellomrom,\n"
-"for eksempel: .html, .htm"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1052
-msgid "Extension:"
-msgstr "Filtype:"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1194
-msgid "You must enter a name."
-msgstr "Du må skrive inn et navn."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1197
-msgid "You must enter a command."
-msgstr "Du må skrive inn en kommando."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1207
-#, c-format
-msgid ""
-"\"%s\" does not exist or is not executable.\n"
-"Check your spelling and make sure you have\n"
-"the right permissions to execute this file."
-msgstr ""
-"\"%s\" eksisterer ikke eller er ikke kjørbar.\n"
-"Sjekk stavingen og forsikre deg om at du har\n"
-"riktige rettigheter til å kjøre denne filen."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1213
-#, c-format
-msgid ""
-"The command \"%s\" cannot be found.\n"
-"You must use a command that can work from any command line."
-msgstr ""
-"Kommandoen \"%s\" kan ikke finnes.\n"
-"Du må bruke en kommando som vil virke fra kommandolinjen."
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1225
-msgid "Bad Application Name"
-msgstr "Navn på ugyldig applikasjon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1226
-msgid "Bad Application Command"
-msgstr "Ugyldig applikasjonskommando"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1258
-msgid "Add Application"
-msgstr "Legg til applikasjon"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1259
-msgid "Edit Application"
-msgstr "Redigér applikasjon"
-
-#. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1271
-msgid "Application Name:"
-msgstr "Applikasjonsnavn:"
-
-#. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1282
-msgid "Application Command:"
-msgstr "Applikasjonskommando:"
-
-#. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
-msgid "Open Behavior"
-msgstr "Oppførsel ved åpning"
-
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1299
-msgid "Can open multiple files"
-msgstr "Kan åpne flere filer"
-
-#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1307
-msgid "Can open from URI"
-msgstr "Kan åpne fra URI"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:258
-msgid "Can't find an hbox, using a normal file selection"
-msgstr "Kan ikke finne en hboks, bruker normalt filvalg"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:264
-msgid "Preview"
-msgstr "Forhåndsvis"
-
-#: mime-type-capplet/nautilus-mime-type-icon-entry.c:381
-msgid "Select an icon"
-msgstr "Velg et ikon"
-
-#: modules/efs-method.c:493 modules/file-method.c:371
+#: modules/efs-method.c:493 modules/file-method.c:380
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukjent GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1179
+#: modules/http-method.c:1191
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s å hente"
 
-#: modules/http-method.c:1584
+#: modules/http-method.c:1684
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:1850
+#: modules/http-method.c:1950
 #, c-format
 msgid "%s of %s read"
 msgstr "%s av %s lest"
 
-#: modules/http-method.c:1853
+#: modules/http-method.c:1953
 #, c-format
 msgid "%s read"
 msgstr "%s lest"
 
-#: test/gnome-file-selection/gnome-file-selection.c:667
-msgid "Back"
-msgstr "Tilbake"
+#~ msgid "Dying."
+#~ msgstr "Dør."
 
-#: test/gnome-file-selection/gnome-file-selection.c:668
-msgid "Go to the previously visited directory"
-msgstr "Gå til forrige besøkte katalog"
+#~ msgid "Error reading: %s"
+#~ msgstr "Feil under lesing: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:676
-msgid "Up"
-msgstr "Opp"
+#~ msgid "Error writing: %s"
+#~ msgstr "Feil under skriving: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:677
-msgid "Go to the parent directory"
-msgstr "Gå til forelderkatalogen"
+#~ msgid "Cannot write: %s"
+#~ msgstr "Kan ikke skrive: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:685
-msgid "Forward"
-msgstr "Fremover"
+#~ msgid "Cannot create temporary file name `%s'"
+#~ msgstr "Kan ikke opprette midlertidig fil ved navn `%s'"
 
-#: test/gnome-file-selection/gnome-file-selection.c:686
-msgid "Go to the next visited directory"
-msgstr "Gå til neste besøkte katalog"
+#~ msgid "Cannot create socket: %s"
+#~ msgstr "Kan ikke opprette socket: %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:695
-msgid "Rescan"
-msgstr "Les på nytt"
+#~ msgid "Cannot bind `%s': %s"
+#~ msgstr "Kan ikke binde `%s': %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:696
-msgid "Rescan the current directory"
-msgstr "Les denne katalogen på nytt"
+#~ msgid "Cannot listen on `%s': %s"
+#~ msgstr "Kan ikke lytte på `%s': %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:705
-msgid "Home"
-msgstr "Hjem"
+#~ msgid "Cannot accept connections on `%s': %s"
+#~ msgstr "Kan ikke motta forbindelser på `%s': %s"
 
-#: test/gnome-file-selection/gnome-file-selection.c:706
-msgid "Go to the home directory"
-msgstr "Gå til hjemmekatalogen"
+#~ msgid "Cannot initialize CORBA."
+#~ msgstr "Kan ikke initialisere CORBA."
 
-#: test/gnome-file-selection/gnome-file-selection.c:802
-msgid "Name"
-msgstr "Navn"
+#~ msgid "Cannot resolve initial reference to RootPOA."
+#~ msgstr "Kan ikke oppløse initiell referanse til RootPOA."
 
-#: test/gnome-file-selection/gnome-file-selection.c:803
-msgid "Size"
-msgstr "Størrelse"
+#~ msgid "Cannot activate POA manager."
+#~ msgstr "Kan ikke aktivere POA-håndterer."
 
-#: test/gnome-file-selection/gnome-file-selection.c:804
-msgid "Date"
-msgstr "Dato"
+#~ msgid "Usage: %s <ior> [<ior_fd>]\n"
+#~ msgstr "Bruk: %s <ior> [<ior_fd>]\n"
 
-#: test/gnome-file-selection/gnome-file-selection.c:833
-msgid "Enter name:"
-msgstr "Skriv inn navn:"
+#~ msgid "Cannot open file descriptor %d."
+#~ msgstr "Kan ikke åpne file descriptor %d."
 
-#: test/gnome-file-selection/gnome-file-selection.c:856
-msgid "Show:"
-msgstr "Vis:"
+#~ msgid "Notify interface for `%s' not found."
+#~ msgstr "Meldingsgrensesnitt for `%s' ikke funnet."
 
-#: test/gnome-file-selection/gnome-file-selection.c:883
-msgid "Show dotfiles"
-msgstr "Vis dotfiler"
+#~ msgid "Cannot setup Request object."
+#~ msgstr "Kan ikke sette opp Request objekt."
+
+#~ msgid "Cannot extract IOR."
+#~ msgstr "Kan ikke hente ut IOR."
+
+#~ msgid "Got weird string from the slave process: `%s'"
+#~ msgstr "Mottok rar streng fra slaveprosess: `%s'"
+
+#~ msgid "Cannot get object for `%s'"
+#~ msgstr "Kan ikke finne objekt for `%s'"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
+#~ msgstr "Kan ikke drepe GNOME::VFS::Slave::Notify -- unntak %s"
+
+#~ msgid "Cannot connect socket `%s': %s"
+#~ msgstr "Kan ikke koble til socket `%s': %s"
+
+#~ msgid "Cannot initialize GNOME::VFS:Slave::Notify"
+#~ msgstr "Kan ikke initialisere GNOME::VFS::Slave::Notify"
+
+#~ msgid "Cannot reset GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "Kan ikke nullstille GNOME::VFS::Slave %s -- unntak %s"
+
+#~ msgid "Cannot reset GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr "Kan ikke nullstille GNOME::VFS::Slave (IOR ukjent) -- unntak %s"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave %s -- exception %s"
+#~ msgstr "Kan ikke drepe GNOME::VFS::Slave %s -- unntak %s"
+
+#~ msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
+#~ msgstr "Kan ikke drepe GNOME::VFS::Slave (IOR ukjent) -- unntak %s"
+
+#~ msgid "File Types and Programs"
+#~ msgstr "Filtyper og programmer"
+
+#~ msgid "Specify which programs are used to open or view each file type"
+#~ msgstr "Koblinger mellom filtyper og programmer"
+
+#~ msgid "MIME Type"
+#~ msgstr "MIME-type"
+
+#~ msgid "Change Icon"
+#~ msgstr "Endre ikon"
+
+#~ msgid "Change File Extensions"
+#~ msgstr "Endre filtyper"
+
+#~ msgid "Default Action:"
+#~ msgstr "Standard handling:"
+
+#~ msgid "Use Viewer"
+#~ msgstr "Bruk visningsprogram"
+
+#~ msgid "Open With Application"
+#~ msgstr "Åpne med applikasjon"
+
+#~ msgid "Edit List"
+#~ msgstr "Rediger liste"
+
+#~ msgid "Add New MIME Type..."
+#~ msgstr "Legg til ny MIME-type..."
+
+#~ msgid "Delete This MIME Type"
+#~ msgstr "Slett denne MIME-typen"
+
+#~ msgid "Revert to System Defaults"
+#~ msgstr "Gå tilbake til standardverdier"
+
+#~ msgid "None"
+#~ msgstr "Ingen"
+
+#~ msgid ""
+#~ "Reverting to system settings will lose any changes\n"
+#~ "you have ever made to File Types and Programs.\n"
+#~ "Revert anyway?"
+#~ msgstr ""
+#~ "Ved å gå tilbake til systeminnstillingene vil du miste\n"
+#~ "alle endringer du har gjort for filtyper og programmer.\n"
+#~ "Gå tilbake likevel?"
+
+#~ msgid "none"
+#~ msgstr "ingen"
+
+#~ msgid "View as %s"
+#~ msgstr "Vis som %s"
+
+#~ msgid "Description"
+#~ msgstr "Beskrivelse"
+
+#~ msgid "Extension"
+#~ msgstr "Filtype"
+
+#~ msgid "Default Action"
+#~ msgstr "Standard handling"
+
+#~ msgid "Edit Applications List"
+#~ msgstr "Rediger applikasjonslisten"
+
+#~ msgid "Select applications to appear in menu for MIME type \"%s\""
+#~ msgstr "Velg applikasjoner som skal være i menyen for MIME-type \"%s\""
+
+#~ msgid "Add Application..."
+#~ msgstr "Legg til applikasjon..."
+
+#~ msgid "Edit Application..."
+#~ msgstr "Rediger applikasjon..."
+
+#~ msgid "Delete Application"
+#~ msgstr "Slett applikasjon"
+
+#~ msgid "Edit Components List"
+#~ msgstr "Redgier komponentliste"
+
+#~ msgid "Select views to appear in menu for MIME type \"%s\""
+#~ msgstr "Velg visninger som skal være i menyen for MIME-type \"%s\""
+
+#~ msgid ""
+#~ "The MIME type entered contained upper case characters. Upper case characters "
+#~ "were changed to lower case for you."
+#~ msgstr ""
+#~ "MIME-typen som ble skrevet inn inneholdt store bokstaver. De store "
+#~ "bokstavene ble omgjort til små bokstaver for deg."
+
+#~ msgid "Add New MIME Type"
+#~ msgstr "Legg til ny MIME-type"
+
+#~ msgid "Add MIME Type"
+#~ msgstr "Legg til ny MIME-type"
+
+#~ msgid "New MIME type (e.g. image/x-thumper):"
+#~ msgstr "Ny MIME-type (f.eks. image/x-thumper):"
+
+#~ msgid "Description (e.g. Thumper image):"
+#~ msgstr "Beskrivelse (f.eks. Thumper bilde):"
+
+#~ msgid "File Extensions "
+#~ msgstr "Filtyper "
+
+#~ msgid "Add..."
+#~ msgstr "Legg til..."
+
+#~ msgid "    Remove    "
+#~ msgstr "    Fjern     "
+
+#~ msgid "Add New Extension"
+#~ msgstr "Legg til ny filtype"
+
+#~ msgid ""
+#~ "Type in the extensions for this mime-type (without dot).\n"
+#~ "You can enter several extensions seperated by a space,\n"
+#~ "for example: html htm"
+#~ msgstr ""
+#~ "Skriv inn filtypen for denne MIME-typen (uten punktum).\n"
+#~ "Du kan skrive inn flere filtyper separert med mellomrom,\n"
+#~ "for eksempel: .html, .htm"
+
+#~ msgid "Extension:"
+#~ msgstr "Filtype:"
+
+#~ msgid "You must enter a name."
+#~ msgstr "Du må skrive inn et navn."
+
+#~ msgid "You must enter a command."
+#~ msgstr "Du må skrive inn en kommando."
+
+#~ msgid ""
+#~ "\"%s\" does not exist or is not executable.\n"
+#~ "Check your spelling and make sure you have\n"
+#~ "the right permissions to execute this file."
+#~ msgstr ""
+#~ "\"%s\" eksisterer ikke eller er ikke kjørbar.\n"
+#~ "Sjekk stavingen og forsikre deg om at du har\n"
+#~ "riktige rettigheter til å kjøre denne filen."
+
+#~ msgid ""
+#~ "The command \"%s\" cannot be found.\n"
+#~ "You must use a command that can work from any command line."
+#~ msgstr ""
+#~ "Kommandoen \"%s\" kan ikke finnes.\n"
+#~ "Du må bruke en kommando som vil virke fra kommandolinjen."
+
+#~ msgid "Bad Application Name"
+#~ msgstr "Navn på ugyldig applikasjon"
+
+#~ msgid "Bad Application Command"
+#~ msgstr "Ugyldig applikasjonskommando"
+
+#~ msgid "Add Application"
+#~ msgstr "Legg til applikasjon"
+
+#~ msgid "Edit Application"
+#~ msgstr "Redigér applikasjon"
+
+#~ msgid "Application Name:"
+#~ msgstr "Applikasjonsnavn:"
+
+#~ msgid "Application Command:"
+#~ msgstr "Applikasjonskommando:"
+
+#~ msgid "Open Behavior"
+#~ msgstr "Oppførsel ved åpning"
+
+#~ msgid "Can open multiple files"
+#~ msgstr "Kan åpne flere filer"
+
+#~ msgid "Can open from URI"
+#~ msgstr "Kan åpne fra URI"
+
+#~ msgid "Can't find an hbox, using a normal file selection"
+#~ msgstr "Kan ikke finne en hboks, bruker normalt filvalg"
+
+#~ msgid "Preview"
+#~ msgstr "Forhåndsvis"
+
+#~ msgid "Select an icon"
+#~ msgstr "Velg et ikon"
+
+#~ msgid "Back"
+#~ msgstr "Tilbake"
+
+#~ msgid "Go to the previously visited directory"
+#~ msgstr "Gå til forrige besøkte katalog"
+
+#~ msgid "Up"
+#~ msgstr "Opp"
+
+#~ msgid "Go to the parent directory"
+#~ msgstr "Gå til forelderkatalogen"
+
+#~ msgid "Forward"
+#~ msgstr "Fremover"
+
+#~ msgid "Go to the next visited directory"
+#~ msgstr "Gå til neste besøkte katalog"
+
+#~ msgid "Rescan"
+#~ msgstr "Les på nytt"
+
+#~ msgid "Rescan the current directory"
+#~ msgstr "Les denne katalogen på nytt"
+
+#~ msgid "Home"
+#~ msgstr "Hjem"
+
+#~ msgid "Go to the home directory"
+#~ msgstr "Gå til hjemmekatalogen"
+
+#~ msgid "Name"
+#~ msgstr "Navn"
+
+#~ msgid "Size"
+#~ msgstr "Størrelse"
+
+#~ msgid "Date"
+#~ msgstr "Dato"
+
+#~ msgid "Enter name:"
+#~ msgstr "Skriv inn navn:"
+
+#~ msgid "Show:"
+#~ msgstr "Vis:"
+
+#~ msgid "Show dotfiles"
+#~ msgstr "Vis dotfiler"
