@@ -27,19 +27,11 @@ System (version for POSIX threads).
 
    */
 
-/* FIXME bugzilla.eazel.com 1132:
-   check that all the data is freed properly //in the callback dispatching
-   functions//.  */
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
 
 #include "gnome-vfs-job.h"
-
-#ifdef HAVE_ALLOCA_H
-#include <alloca.h>
-#endif
 
 #include <errno.h>
 #include <fcntl.h>
@@ -951,11 +943,10 @@ serve_channel_write (GnomeVFSHandle *handle,
 		     GIOChannel *channel_out,
 		     GnomeVFSContext *context)
 {
-	gpointer buffer;
+	gchar buffer[DEFAULT_BUFFER_SIZE];
 	guint buffer_size;
 
 	buffer_size = DEFAULT_BUFFER_SIZE;
-	buffer = alloca (buffer_size);
 
 	while (1) {
 		GnomeVFSResult result;
@@ -1436,6 +1427,7 @@ static gboolean
 execute_set_file_info (GnomeVFSJob *job)
 {
 	GnomeVFSSetFileInfoOp *op;
+	GnomeVFSURI *parent_uri, *uri_after;
 
 	op = &job->current_op->specifics.set_file_info;
 
@@ -1443,15 +1435,38 @@ execute_set_file_info (GnomeVFSJob *job)
 		(op->request.uri, &op->request.info, op->request.mask,
 		 job->current_op->context);
 
-	/* Always get new file info, even if setter failed. Init here and clear
-	 * in dispatch_set_file_info.
+	/* Get the new URI after the set_file_info. The name may have
+	 * changed.
+	 */
+	uri_after = NULL;
+	if (op->notify.set_file_info_result == GNOME_VFS_OK
+	    && (op->request.mask & GNOME_VFS_SET_FILE_INFO_NAME) != 0) {
+		parent_uri = gnome_vfs_uri_get_parent (op->request.uri);
+		if (parent_uri != NULL) {
+			uri_after = gnome_vfs_uri_append_file_name
+				(parent_uri, op->request.info.name);
+			gnome_vfs_uri_unref (parent_uri);
+		}
+	}
+	if (uri_after == NULL) {
+		uri_after = op->request.uri;
+		gnome_vfs_uri_ref (uri_after);
+	}
+
+	/* Always get new file info, even if setter failed. Init here
+	 * and clear in dispatch_set_file_info.
 	 */
 	gnome_vfs_file_info_init (&op->notify.info);
-	op->notify.get_file_info_result = gnome_vfs_get_file_info_uri_cancellable
-		(op->request.uri,
-		 &op->notify.info,
-		 op->request.options,
-		 job->current_op->context);
+	if (uri_after == NULL) {
+		op->notify.get_file_info_result = GNOME_VFS_ERROR_INVALID_URI;
+	} else {
+		op->notify.get_file_info_result = gnome_vfs_get_file_info_uri_cancellable
+			(uri_after,
+			 &op->notify.info,
+			 op->request.options,
+			 job->current_op->context);
+		gnome_vfs_uri_unref (uri_after);
+	}
 
 	job_oneway_notify_and_close (job);
 	return FALSE;

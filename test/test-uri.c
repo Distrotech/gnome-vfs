@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 
-/* test-async-cancel.c - Test program for the GNOME Virtual File System.
+/* test-mime.c - Test program for the GNOME Virtual File System.
 
    Copyright (C) 1999 Free Software Foundation
 
@@ -117,8 +117,8 @@ test_uri_to_string (const char *input,
 
 static void
 test_file_path_to_uri_string (const char *input,
-		    const char *expected_output,
-		    GnomeVFSURIHideOptions hide_options)
+			      const char *expected_output,
+			      GnomeVFSURIHideOptions hide_options)
 {
 	GnomeVFSURI *uri, *resulting_uri;
 	char *output;
@@ -353,6 +353,7 @@ main (int argc, char **argv)
 	test_uri_part ("http://www.eazel.com:80/", "www.eazel.com", gnome_vfs_uri_get_host_name);
 	test_uri_part ("http://www.eazel.com:80/", "NULL", gnome_vfs_uri_get_user_name);
 	test_uri_part ("http://www.eazel.com:80/", "NULL", gnome_vfs_uri_get_password);
+	test_uri_part ("http://www.eazel.com:80/", "/", gnome_vfs_uri_get_path);
 
 	test_uri_host_port ("http://www.eazel.com/", 0);
 	test_uri_host_port ("http://www.eazel.com:80/", 80);
@@ -362,7 +363,6 @@ main (int argc, char **argv)
 	test_uri_part ("http://www.eazel.com:80", "www.eazel.com", gnome_vfs_uri_get_host_name);
 	test_uri_part ("http://www.eazel.com:80", "NULL", gnome_vfs_uri_get_user_name);
 	test_uri_part ("http://www.eazel.com:80", "NULL", gnome_vfs_uri_get_password);
-
 	test_uri_part ("http://www.eazel.com:80", "/", gnome_vfs_uri_get_path);
 
 	test_uri_host_port ("http://www.eazel.com", 0);

@@ -30,10 +30,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef HAVE_ALLOCA_H
-#include <alloca.h>
-#endif
-
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 

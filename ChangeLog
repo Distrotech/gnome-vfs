@@ -1,3 +1,64 @@
+2000-10-27  Darin Adler  <darin@eazel.com>
+
+	Fixed bugs in set_file_info enough to make it suitable for use
+	renaming files in Nautilus.
+
+	Also fixed problems in the MIME data so Aaron has a clean starting
+	point to add things and check them with the check-mime.pl script.
+	
+	* data/mime/gnome-vfs-mime-magic: Fix an entry that had a stray
+	plus sign at the beginning of the line.
+	* data/mime/gnome-vfs.applications: Fixed misspelled MIME types (I
+	think Andy just introduced these).
+	* data/mime/gnome-vfs.keys: The type must be text/htmlh, even if
+	people think of it as text/htmlH, because we use all lower-case in
+	the MIME files and MIME types are not case sensitive.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_set_file_info): Allow FOLLOW_LINKS
+	option. There was no good reason to disallow it and we need it now
+	in Nautilus.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.c: (serve_channel_write): Get
+	rid of gratuitous use of alloca.
+	(execute_set_file_info): Use the correct URI to get info if the
+	set info call renamed the file. Before, it would try to use the
+	old URI even though the file had been renamed.
+	
+	* modules/ftp-method.c: (do_path_command): Add FIXME about bad
+	handling of paths with escape sequences.
+	(do_get_file_info_from_handle): Implemented this.
+	(do_move): Add FIXME about ignoring force_replace.
+	(do_set_file_info): Implement.
+	* modules/http-method.c: (do_move): Add FIXME about ignoring
+	force_replace.
+	(do_set_file_info): Implement.
+	
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(call_progress_with_current_names): Make the action default to
+	abort if you don't pass a callback instead of defaulting to
+	retry. This caused an infinite loop when failing to rename a
+	file. Also remove gratuitous include of alloca.h.
+
+	* modules/file-method.c: (do_set_file_info): Add FIXME about file
+	names with "/" in them.
+	
+	* modules/bzip2-method.c: Fix list of function pointers to include
+	set_file_info (was out of sync.).
+	* modules/gconf-method.c: Fix list of function pointers to include
+	set_file_info (was out of sync.).
+	* modules/gzip-method.c: Fix list of function pointers to include
+	set_file_info (was out of sync.).
+	* modules/pipe-method.c: Fix list of function pointers to include
+	set_file_info (was out of sync.).
+	
+	* libgnomevfs/gnome-vfs-uri.c: Remove gratuitous include of
+	alloca.h.
+	
+	* modules/ftp-method.h: Tweak.
+	* libgnomevfs/gnome-vfs-private.h: Whitespace.
+	* test/test-uri.c: Fixed a comment.
+
 2000-10-26  Andy Hertzfeld  <andy@eazel.com>
 
 	* data/mime/gnome-vfs.keys:

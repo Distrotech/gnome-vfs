@@ -548,7 +548,6 @@ pthread_gnome_vfs_async_set_file_info (GnomeVFSAsyncHandle **handle_return,
 	g_return_val_if_fail (handle_return != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (info != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
-	g_return_val_if_fail ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0, GNOME_VFS_ERROR_BAD_PARAMETERS);
 	g_return_val_if_fail (callback != NULL, GNOME_VFS_ERROR_BAD_PARAMETERS);
 
 	job = gnome_vfs_job_new ();

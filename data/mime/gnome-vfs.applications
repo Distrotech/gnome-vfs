@@ -68,4 +68,4 @@ staroffice
 	can_open_multiple_files=true
 	can_open_uris=false
 	requires_terminal=false
-	mime_types=application/x-soffice-presentation,application/x-soffice-spreadsheet,application/x-soffice-word,text/abiword,application/vnd.ms-excel,application/rtf,application/msword,application/mspowerpoint
+	mime_types=application/x-staroffice-presentation,application/x-staroffice-spreadsheet,application/x-staroffice-words,text/abiword,application/vnd.ms-excel,application/rtf,application/msword,application/mspowerpoint

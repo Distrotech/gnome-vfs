@@ -95,10 +95,10 @@ static gboolean       do_is_local       (GnomeVFSMethod *method,
 
 static GnomeVFSMethod method = {
         do_open,
-        NULL, /* do_create */
+        NULL, /* create */
         do_close,
-        NULL, /* do_read */
-        NULL, /* do_write */
+        NULL, /* read */
+        NULL, /* write */
         NULL, /* seek */
         NULL, /* tell */
         NULL, /* truncate */
@@ -106,12 +106,16 @@ static GnomeVFSMethod method = {
 	do_close_directory,
         do_read_directory,
         do_get_file_info,
-	NULL, /* do_get_file_info_from_handle */
+	NULL, /* get_file_info_from_handle */
         do_is_local,
-        NULL, /* rename */
 	NULL, /* make directory */
         NULL, /* remove directory */
-	NULL /* unlink */
+	NULL, /* unlink */
+	NULL, /* check_same_fs */
+	NULL, /* set_file_info */
+	NULL, /* truncate */
+	NULL, /* find_directory */
+	NULL /* create_symbolic_link */
 };
 
 static GConfClient *client = NULL;

@@ -104,19 +104,21 @@ static GnomeVFSMethod method = {
 	do_create,
 	do_close,
 	do_read,
-	do_write,		/* write           */
+	do_write,
 	NULL,		/* seek            */
 	NULL,		/* tell            */
 	NULL,		/* truncate_handle */
 	NULL,		/* open_directory  */
 	NULL,		/* close_directory */
 	NULL,		/* read_directory  */
-	do_get_file_info,	/* get_file_info   */
+	do_get_file_info,
 	NULL,		/* get_file_info_from_handle */
 	do_is_local,
 	NULL,		/* make_directory  */
 	NULL,		/* remove_directory */
-	NULL,			/* rename */
+	NULL,		/* move */
+	NULL,		/* unlink */
+	NULL,		/* set_file_info */
 	NULL, 		/* truncate */
 	NULL, 		/* find_directory */
 	NULL            /* create_symbolic_link */

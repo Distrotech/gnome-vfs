@@ -25,7 +25,7 @@
 
 #include "gnome-vfs-module.h"
 
-typedef struct _FtpConnection {
+typedef struct {
 	GnomeVFSMethodHandle method_handle;
 	GnomeVFSInetConnection *inet_connection;
 	GnomeVFSIOBuf *iobuf;

@@ -223,10 +223,10 @@ is_local(GnomeVFSMethod *method,
 }
 
 static GnomeVFSMethod method = {
-	do_open, /* open */
+	do_open,
 	NULL, /* create */
-	do_close, /* close */
-	do_read, /* read */
+	do_close,
+	do_read,
 	NULL, /* write */
 	NULL, /* seek */
 	NULL, /* tell */
@@ -234,9 +234,9 @@ static GnomeVFSMethod method = {
 	NULL, /* open_directory */
 	NULL, /* close_directory */
 	NULL, /* read_directory */
-	do_get_file_info, /* get_file_info */
-	do_get_file_info_from_handle, /* get_file_info_from_handle */
-	is_local, /* is_local */
+	do_get_file_info,
+	do_get_file_info_from_handle,
+	is_local,
 	NULL, /* make_directory */
 	NULL, /* remove_directory */
 	NULL, /* move */

@@ -2405,6 +2405,8 @@ do_move (GnomeVFSMethod *method,
 	 gboolean force_replace,
 	 GnomeVFSContext *context)
 {
+	/* FIXME: Ignores force_replace. */
+
 	/* MOVE /path1 HTTP/1.0
 	 * Destination: /path2 */
 	HttpFileHandle *handle;
@@ -2433,7 +2435,6 @@ do_move (GnomeVFSMethod *method,
 	DEBUG_HTTP (("-Move"));
 
 	return result;
-	//return GNOME_VFS_ERROR_NOT_SUPPORTED;
 }
 
 
@@ -2461,6 +2462,37 @@ static GnomeVFSResult do_check_same_fs (
 	return GNOME_VFS_OK;
 }
 
+static GnomeVFSResult
+do_set_file_info (GnomeVFSMethod *method,
+		  GnomeVFSURI *uri,
+		  const GnomeVFSFileInfo *info,
+		  GnomeVFSSetFileInfoMask mask,
+		  GnomeVFSContext *context)
+{
+	GnomeVFSURI *parent_uri, *new_uri;
+	GnomeVFSResult result;
+
+	/* FIXME: For now, we only support changing the name. */
+	if ((mask & ~(GNOME_VFS_SET_FILE_INFO_NAME)) != 0) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	/* FIXME bugzilla.eazel.com 645: Make sure this returns an
+	 * error for incoming names with "/" characters in them,
+	 * instead of moving the file.
+	 */
+
+	/* Share code with do_move. */
+	parent_uri = gnome_vfs_uri_get_parent (uri);
+	if (parent_uri == NULL) {
+		return GNOME_VFS_ERROR_NOT_FOUND;
+	}
+	new_uri = gnome_vfs_uri_append_file_name (parent_uri, info->name);
+	gnome_vfs_uri_unref (parent_uri);
+	result = do_move (method, uri, new_uri, FALSE, context);
+	gnome_vfs_uri_unref (new_uri);
+	return result;
+}
 
 
 static GnomeVFSMethod method = {
@@ -2469,9 +2501,9 @@ static GnomeVFSMethod method = {
 	do_close,
 	do_read,
 	do_write,
-	NULL,
-	NULL,
-	NULL,
+	NULL, /* seek */
+	NULL, /* tell */
+	NULL, /* truncate_handle */
 	do_open_directory,
 	do_close_directory,
 	do_read_directory,
@@ -2483,6 +2515,7 @@ static GnomeVFSMethod method = {
 	do_move,
 	do_unlink,
 	do_check_same_fs,
+	do_set_file_info,
 	NULL, /* truncate */
 	NULL, /* find_directory */
 	NULL  /* create_symbolic_link */

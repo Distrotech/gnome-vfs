@@ -35,10 +35,6 @@
 #include <config.h>
 #endif
 
-#ifdef HAVE_ALLOCA_H
-#include <alloca.h>
-#endif
-
 #include <sys/time.h>
 #include <string.h>
 
@@ -152,12 +148,12 @@ call_progress (GnomeVFSProgressCallbackState *progress, GnomeVFSXferPhase phase)
 	return result;	
 }
 
-static int
+static GnomeVFSXferErrorAction
 call_progress_with_current_names (GnomeVFSProgressCallbackState *progress, GnomeVFSXferPhase phase)
 {
 	int result;
 
-	result = 0;
+	result = GNOME_VFS_XFER_ERROR_ACTION_ABORT;
 
 	progress->next_update_callback_time = system_time () + progress->update_callback_period;
 	progress->next_update_callback_time = progress->next_text_update_callback_time;

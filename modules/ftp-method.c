@@ -89,7 +89,7 @@ static GnomeVFSResult do_read_directory  (GnomeVFSMethod                *method,
 
 guint                 ftp_connection_uri_hash  (gconstpointer c);
 gint                  ftp_connection_uri_equal (gconstpointer c, gconstpointer d);
-static GnomeVFSResult ftp_connection_aquire    (GnomeVFSURI *uri, FtpConnection **connection);
+static GnomeVFSResult ftp_connection_acquire   (GnomeVFSURI *uri, FtpConnection **connection);
 static void           ftp_connection_release   (FtpConnection *conn);
 
 
@@ -256,8 +256,10 @@ get_response (FtpConnection *conn)
 			if (conn->response_message) g_free (conn->response_message);
 			conn->response_message = g_strdup (line+4);
 
-			//ftp_debug (conn,g_strdup_printf ("got response %d (%s)", 
-			//				 conn->response_code, conn->response_message));
+#if 0
+			ftp_debug (conn,g_strdup_printf ("got response %d (%s)", 
+							 conn->response_code, conn->response_message));
+#endif
 
 			g_free (line);
 
@@ -281,7 +283,9 @@ static GnomeVFSResult do_control_write (FtpConnection *conn,
 	GnomeVFSFileSize bytes = strlen (actual_command), bytes_written;
 	GnomeVFSResult result = gnome_vfs_iobuf_write (conn->iobuf,
 						       actual_command, bytes, &bytes_written);
-	//ftp_debug (conn, g_strdup_printf ("sent \"%s\\r\\n\"", command));
+#if 0
+	ftp_debug (conn, g_strdup_printf ("sent \"%s\\r\\n\"", command));
+#endif
 	gnome_vfs_iobuf_flush (conn->iobuf);
 
 	if(result != GNOME_VFS_OK) {
@@ -320,6 +324,13 @@ do_path_command (FtpConnection *conn,
 	const char *path;
 	char *actual_command;
 	GnomeVFSResult result;
+
+	/* FIXME: This doesn't interpret escape sequences, which is a
+	 * major problem. The FTP protocol doesn't use escape
+	 * sequences, so we should do the right kind of unescaping
+	 * (like file-method.c does).
+	 */
+
 	/* as some point we may need to make this execute a CD and then
   	 * a command using the basename rather than the full path. I am yet
 	 * to come across such a system.
@@ -344,7 +355,7 @@ do_path_command_completely (gchar *command,
 	FtpConnection *conn;
 	GnomeVFSResult result;
 
-	result = ftp_connection_aquire (uri, &conn);
+	result = ftp_connection_acquire (uri, &conn);
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}
@@ -661,8 +672,8 @@ ftp_connection_uri_equal (gconstpointer c,
 }
 
 static GnomeVFSResult 
-ftp_connection_aquire (GnomeVFSURI *uri, 
-		       FtpConnection **connection) 
+ftp_connection_acquire (GnomeVFSURI *uri, 
+			FtpConnection **connection) 
 {
 	GList *possible_connections;
 	FtpConnection *conn = NULL;
@@ -680,7 +691,9 @@ ftp_connection_aquire (GnomeVFSURI *uri,
 	if (possible_connections) {
 		/* spare connection(s) found */
 		conn = (FtpConnection *) possible_connections->data;
-		//ftp_debug (conn, strdup ("found a connection"));
+#if 0
+		ftp_debug (conn, strdup ("found a connection"));
+#endif
 		possible_connections = g_list_remove (possible_connections, conn);
 
 		if(!g_hash_table_lookup (spare_connections, uri)) {
@@ -727,8 +740,10 @@ ftp_connection_release (FtpConnection *conn)
 
 	possible_connections = g_hash_table_lookup (spare_connections, 
 						    conn->uri);
-	//ftp_debug (conn, g_strdup_printf ("releasing [len = %d]", 
-	//				 g_list_length (possible_connections)));
+#if 0
+	ftp_debug (conn, g_strdup_printf ("releasing [len = %d]", 
+					  g_list_length (possible_connections)));
+#endif
 	possible_connections = g_list_append (possible_connections, conn);
 
 	if (g_hash_table_lookup (spare_connections, conn->uri)) {
@@ -761,7 +776,7 @@ do_open (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 	FtpConnection *conn;
 
-	result = ftp_connection_aquire (uri, &conn);
+	result = ftp_connection_acquire (uri, &conn);
 	if (result != GNOME_VFS_OK) 
 		return result;
 
@@ -819,12 +834,15 @@ do_read (GnomeVFSMethod *method,
 	 GnomeVFSContext *context) 
 {
 	FtpConnection *conn = (FtpConnection * )method_handle;
+
+#if 0
 	/*
 	if (conn->operation != FTP_READ) {
 		g_print ("attempted to read when conn->operation = %d\n", conn->operation);
 		return GNOME_VFS_ERROR_NOT_PERMITTED;
 	}*/
-	//g_print ("do_read (%p)\n", method_handle);
+	g_print ("do_read (%p)\n", method_handle);
+#endif
 
 	return gnome_vfs_iobuf_read (conn->data_iobuf, buffer, num_bytes, bytes_read);
 }
@@ -840,7 +858,9 @@ do_write (GnomeVFSMethod *method,
 	FtpConnection *conn = (FtpConnection *) method_handle;
 	GnomeVFSResult result;
 
-	//g_print ("do_write ()\n");
+#if 0
+	g_print ("do_write ()\n");
+#endif
 
 	if (conn->operation != FTP_WRITE) 
 		return GNOME_VFS_ERROR_NOT_PERMITTED;
@@ -918,12 +938,14 @@ internal_get_file_info (GnomeVFSMethod *method,
 	GnomeVFSFileSize num_bytes = 1024, bytes_read;
 	gchar buffer[num_bytes+1];
 
-	result = ftp_connection_aquire(uri, &conn);
+	result = ftp_connection_acquire(uri, &conn);
 	if (result != GNOME_VFS_OK) {
 		return result;
 	}
 
-	//g_print ("do_get_file_info()\n");
+#if 0
+	g_print ("do_get_file_info()\n");
+#endif
 
 	do_path_transfer_command (conn, "LIST -ld", uri);
 
@@ -978,7 +1000,7 @@ do_get_file_info (GnomeVFSMethod *method,
 		/* this is a request for info about the root directory */
 
 		/* is the host there? */
-		result = ftp_connection_aquire (uri, &conn);
+		result = ftp_connection_acquire (uri, &conn);
 		
 		if (result != GNOME_VFS_OK) {
 			/* doesn't look like it */
@@ -1030,12 +1052,25 @@ do_get_file_info (GnomeVFSMethod *method,
 	return GNOME_VFS_ERROR_NOT_FOUND;
 }
 
-static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
-					 GnomeVFSMethodHandle **method_handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSFileInfoOptions options,
-					 const GnomeVFSDirectoryFilter *filter,
-					 GnomeVFSContext *context)
+static GnomeVFSResult
+do_get_file_info_from_handle (GnomeVFSMethod *method,
+			      GnomeVFSMethodHandle *method_handle,
+			      GnomeVFSFileInfo *file_info,
+			      GnomeVFSFileInfoOptions options,
+			      GnomeVFSContext *context)
+{
+	return do_get_file_info (method,
+				 ((FtpConnection *)method_handle)->uri, 
+				 file_info, options, context);
+}
+
+static GnomeVFSResult
+do_open_directory (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle **method_handle,
+		   GnomeVFSURI *uri,
+		   GnomeVFSFileInfoOptions options,
+		   const GnomeVFSDirectoryFilter *filter,
+		   GnomeVFSContext *context)
 {
 	/* FIXME bugzilla.eazel.com 1137: implement filters */
 
@@ -1045,7 +1080,7 @@ static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 	gchar buffer[num_bytes+1];
 	GString *dirlist = g_string_new ("");
 
-	result = ftp_connection_aquire (uri, &conn);
+	result = ftp_connection_acquire (uri, &conn);
 	if (result != GNOME_VFS_OK) {
 		g_string_free (dirlist, TRUE);
 		return result;
@@ -1096,7 +1131,9 @@ do_close_directory (GnomeVFSMethod *method,
 {
 	FtpConnection *conn = (FtpConnection *) method_handle;
 
-	//g_print ("do_close_directory ()\n");
+#if 0
+	g_print ("do_close_directory ()\n");
+#endif
 
 	g_free (conn->dirlist);
 	conn->dirlist = NULL;
@@ -1129,7 +1166,9 @@ do_read_directory (GnomeVFSMethod *method,
 			 * requires for sensible display (otherwise symlinks all appear
 			 * broken)
 			 */
-		       	//g_print("[debug] expand symlink for: %s\n", file_info->name);
+#if 0
+		       	g_print("[debug] expand symlink for: %s\n", file_info->name);
+#endif
 		}
 
 
@@ -1194,11 +1233,13 @@ do_move (GnomeVFSMethod *method,
 	 gboolean force_replace,
 	 GnomeVFSContext *context)
 {
+	/* FIXME: Ignores force_replace. */
+
 	if (ftp_connection_uri_equal (old_uri, new_uri)) {
 		FtpConnection *conn;
 		GnomeVFSResult result;
 
-		result = ftp_connection_aquire (old_uri, &conn);
+		result = ftp_connection_acquire (old_uri, &conn);
 		if (result != GNOME_VFS_OK) {
 			return result;
 		}
@@ -1224,12 +1265,44 @@ do_unlink (GnomeVFSMethod *method,
 	return do_path_command_completely ("DELE", uri);
 }
 
+static GnomeVFSResult
+do_set_file_info (GnomeVFSMethod *method,
+		  GnomeVFSURI *uri,
+		  const GnomeVFSFileInfo *info,
+		  GnomeVFSSetFileInfoMask mask,
+		  GnomeVFSContext *context)
+{
+	GnomeVFSURI *parent_uri, *new_uri;
+	GnomeVFSResult result;
+
+	/* FIXME: For now, we only support changing the name. */
+	if ((mask & ~(GNOME_VFS_SET_FILE_INFO_NAME)) != 0) {
+		return GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
+
+	/* FIXME bugzilla.eazel.com 645: Make sure this returns an
+	 * error for incoming names with "/" characters in them,
+	 * instead of moving the file.
+	 */
+
+	/* Share code with do_move. */
+	parent_uri = gnome_vfs_uri_get_parent (uri);
+	if (parent_uri == NULL) {
+		return GNOME_VFS_ERROR_NOT_FOUND;
+	}
+	new_uri = gnome_vfs_uri_append_file_name (parent_uri, info->name);
+	gnome_vfs_uri_unref (parent_uri);
+	result = do_move (method, uri, new_uri, FALSE, context);
+	gnome_vfs_uri_unref (new_uri);
+	return result;
+}
+
 static GnomeVFSMethod method = {
 	do_open,
-	do_create, /* do_create */
+	do_create,
 	do_close,
-	do_read, /* do_read */
-	do_write, /* do_write */
+	do_read,
+	do_write,
 	NULL, /* seek */
 	NULL, /* tell */
 	NULL, /* truncate */
@@ -1237,17 +1310,17 @@ static GnomeVFSMethod method = {
 	do_close_directory,
 	do_read_directory,
 	do_get_file_info,
-	NULL,
+	do_get_file_info_from_handle,
 	do_is_local,
-	do_make_directory, /* make directory */
-	do_remove_directory, /* remove directory */
-	do_move, /* rename */
-	do_unlink, /* unlink */
+	do_make_directory,
+	do_remove_directory,
+	do_move,
+	do_unlink,
 	do_check_same_fs,
-	NULL, /* do_set_file_info */
-	NULL, /* do_truncate */
-	NULL, /* do_find_directory */
-	NULL /* do_create_symbolic_link */
+	do_set_file_info,
+	NULL, /* truncate */
+	NULL, /* find_directory */
+	NULL /* create_symbolic_link */
 };
 
 GnomeVFSMethod *

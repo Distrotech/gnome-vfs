@@ -100,5 +100,3 @@ ssize_t getdelim (char **lineptr, size_t *n, int terminator, FILE *stream);
 
 #endif /* GNOME_VFS_PRIVATE_H */
 
-
-

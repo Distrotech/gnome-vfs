@@ -1293,7 +1293,7 @@ text/html
 	short_list_application_ids_for_intermediate_user_level=mozilla,netscape,lynx
 	short_list_application_ids_for_hacker_user_level=mozilla,netscape,lynx
 
-text/htmlH
+text/htmlh
 	description=Help page
 	[sv]description=Hjälpsida
 	default_action_type=component
