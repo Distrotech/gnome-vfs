@@ -75,7 +75,7 @@ if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 	CFLAGS="$CFLAGS \
 	-Wall -Wno-uninitialized \
 	-Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes \
-	-Wnested-externs -Wpointer-arith"
+	-Wnested-externs -Wpointer-arith -Werror"
 
 	for option in -Wsign-promo -Wno-sign-compare; do
 		SAVE_CFLAGS="$CFLAGS"
@@ -92,9 +92,6 @@ if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 		unset SAVE_CFLAGS
 	done
 	unset option
-
-	# Don't set -Werror -- it is antisocial.  You break too many builds
-	# too often that way.  Set it for yourself, if you need it.  -- MW.
 fi
 
 using_oaf=no

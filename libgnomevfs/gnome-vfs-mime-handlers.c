@@ -39,11 +39,11 @@
 static char *get_user_level (void);
 static gboolean str_to_bool (const char *str);
 static const char *bool_to_str (gboolean bool);
-static char *join_str_list (const char *separator, GList *list);
 static char *extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix);
 static char *mime_type_get_supertype (const char *mime_type);
 static char **strsplit_handle_null (const char *str, const char *delim, int max);
 #ifdef USING_OAF
+static char *join_str_list (const char *separator, GList *list);
 static GList *OAF_ServerInfoList_to_ServerInfo_g_list (OAF_ServerInfoList *info_list);
 #endif
 static GList *process_app_list (GList *id_list);
@@ -458,6 +458,34 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	return preferred_applications;
 }
 
+
+#ifdef USING_OAF
+static char *
+join_str_list (const char *separator, GList *list)
+{
+	char **strv;
+	GList *p;
+	int i;
+	char *retval;
+
+	strv = g_new0 (char *, g_list_length (list) + 1);
+
+	/* Convert to a strv so we can use g_strjoinv.
+	 * Saves code but could be made faster if we want.
+	 */
+	strv = g_new (char *, g_list_length (list) + 1);
+	for (p = list, i = 0; p != NULL; p = p->next, i++) {
+		strv[i] = (char *) p->data;
+	}
+	strv[i] = NULL;
+
+	retval = g_strjoinv (separator, strv);
+
+	g_free (strv);
+
+	return retval;
+}
+#endif
 
 GList *
 gnome_vfs_mime_get_short_list_components (const char *mime_type)
@@ -1552,34 +1580,6 @@ bool_to_str (gboolean bool)
 {
 	return bool ? "true" : "false";
 }
-
-
-static char *
-join_str_list (const char *separator, GList *list)
-{
-	char **strv;
-	GList *p;
-	int i;
-	char *retval;
-
-	strv = g_new0 (char *, g_list_length (list) + 1);
-
-	/* Convert to a strv so we can use g_strjoinv.
-	 * Saves code but could be made faster if we want.
-	 */
-	strv = g_new (char *, g_list_length (list) + 1);
-	for (p = list, i = 0; p != NULL; p = p->next, i++) {
-		strv[i] = (char *) p->data;
-	}
-	strv[i] = NULL;
-
-	retval = g_strjoinv (separator, strv);
-
-	g_free (strv);
-
-	return retval;
-}
-
 
 static char *
 extract_prefix_add_suffix (const char *string, const char *separator, const char *suffix)

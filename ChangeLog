@@ -1,3 +1,12 @@
+2000-06-25  Pavel Cisler <pavel@eazel.com>
+
+	* configure.in:
+	Turn -Werror back on.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c: (join_str_list),
+	(bool_to_str):
+	Fix code that breaks if USING_OAF is undefined.
+
 2000-06-25  Morten Welinder  <terra@diku.dk>
 
 	* test/test-mime-handlers.c: conditionalise on USING_OAF and
