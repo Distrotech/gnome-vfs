@@ -16,6 +16,7 @@ EXTRA_DIST =					\
 	getdelim.c
 
 libgnomevfs_la_LIBADD =				\
+	$(GNOME_LIBDIR)				\
 	$(GLIB_LIBS)
 
 libgnomevfsincludedir = $(includedir)/libgnomevfs

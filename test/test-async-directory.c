@@ -115,7 +115,7 @@ print_list (GnomeVFSDirectoryList *list, guint num_entries)
 	for (i = 0; i < num_entries && info != NULL; i++) {
 		printf ("  File `%s'%s (%s, %s), size %Ld, mode %04o\n",
 			info->name,
-			info->is_symlink ? " [link]" : "",
+			(info->flags & GNOME_VFS_FILE_FLAGS_SYMLINK) ? " [link]" : "",
 			type_to_string (info->type),
 			gnome_vfs_file_info_get_mime_type (info),
 			info->size, info->permissions);

@@ -3,8 +3,8 @@ SUBDIRS = gnome-file-selection
 INCLUDES =					\
 	-I$(top_srcdir)/intl			\
 	-I$(top_builddir)/intl			\
-	$(GNOME_INCLUDEDIR)			\
-	-I$(top_srcdir)/libgnomevfs
+	-I$(top_srcdir)/libgnomevfs		\
+	$(GNOME_INCLUDEDIR)
 
 noinst_PROGRAMS =				\
 	test-async-directory_corba		\
