@@ -1,3 +1,8 @@
+2000-05-30  Maciej Stachowiak  <mjs@eazel.com>
+
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init): Fix oaf
+	initialization to use a better dummy argv.
+
 2000-05-30  Pavel Cisler  <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_new_folder),

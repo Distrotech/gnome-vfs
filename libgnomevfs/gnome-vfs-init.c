@@ -39,7 +39,10 @@ G_LOCK_DEFINE_STATIC (vfs_already_initialized);
 gboolean gnome_vfs_init (void)
 {
 	gboolean retval;
-	char **bogus_argv = {NULL};
+	char *bogus_argv[2];
+
+	bogus_argv[0] = "dummy";
+	bogus_argv[1] = NULL;
 
 	G_LOCK (vfs_already_initialized);
 
