@@ -1,5 +1,14 @@
 2004-09-03  Ray Strode  <rstrode@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_default_component): don't use
+	the short list when selecting a componenent to 
+	return.
+	(gnome_vfs_mime_get_short_list_components): Prioritize
+	exact matches higher than supertype matches.
+
+2004-09-03  Ray Strode  <rstrode@redhat.com>
+
 	Cleanup and leak fixes by Christophe Fergeau.
 
 	* libgnomevfs/eggdesktopentries.c:
