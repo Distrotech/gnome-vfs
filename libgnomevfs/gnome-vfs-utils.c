@@ -797,13 +797,15 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 	
 #if HAVE_STATVFS
 	statfs_result = statvfs (unescaped_path, &statfs_buffer);
+	block_size = statfs_buffer.f_frsize; 
 #else
 #if STATFS_ARGS == 2
-	statfs_result = statfs (unescaped_path, &statfs_buffer);   
+	statfs_result = statfs (unescaped_path, &statfs_buffer);
 #elif STATFS_ARGS == 4
 	statfs_result = statfs (unescaped_path, &statfs_buffer,
 				sizeof (statfs_buffer), 0);
 #endif
+	block_size = statfs_buffer.f_bsize; 
 #endif  
 
 	if (statfs_result != 0) {
@@ -842,7 +844,6 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 #else 	
 	g_free (unescaped_path);
 #endif
-	block_size = statfs_buffer.f_bsize; 
 	free_blocks = statfs_buffer.f_bavail;
 
 	*size = block_size * free_blocks;
