@@ -1,3 +1,7 @@
+2001-09-31  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.in: Added "pt" to ALL_LINGUAS.
+	
 2001-09-28  Darin Adler  <darin@bentspoon.com>
 
 	* configure.in: Oops. My mistake. I confused gnome-vfs versions
