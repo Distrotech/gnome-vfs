@@ -1,3 +1,9 @@
+2002-06-13  Alex Graveley  <alex@ximian.com>
+
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): Always ensure
+	~/.gnome exists before initializing.
+	(ensure_dot_gnome_exists): Create ~/.gnome if it does not exist.
+
 2002-06-13  Damon Chaplin  <damon@ximian.com>
 
 	* modules/file-method.c (do_find_directory): always use 0700 (S_IRWXU)

@@ -32,21 +32,51 @@
 #include "gnome-vfs-method.h"
 #include "gnome-vfs-process.h"
 #include "gnome-vfs-utils.h"
+#include <errno.h>
 #include <bonobo-activation/bonobo-activation.h>
 #include <glib/gmessages.h>
+#include <glib/gfileutils.h>
 #include <libgnomevfs/gnome-vfs-pthread.h>
 #include <libgnomevfs/gnome-vfs-job-slave.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 static gboolean vfs_already_initialized = FALSE;
 G_LOCK_DEFINE_STATIC (vfs_already_initialized);
 
 static GPrivate * private_is_primary_thread;
 
+static gboolean
+ensure_dot_gnome_exists (void)
+{
+	gboolean retval = TRUE;
+	gchar *dirname;
+
+	dirname = g_build_filename (g_get_home_dir (), ".gnome", NULL);
+
+	if (!g_file_test (dirname, G_FILE_TEST_EXISTS)) {
+		if (mkdir (dirname, S_IRWXU) != 0) {
+			g_warning ("Unable to create ~/.gnome directory: %s",
+				   g_strerror (errno));
+			retval = FALSE;
+		}
+	} else if (!g_file_test (dirname, G_FILE_TEST_IS_DIR)) {
+		g_warning ("Error: ~/.gnome must be a directory.");
+		retval = FALSE;
+	}
+
+	g_free (dirname);
+	return retval;
+}
+
 gboolean 
 gnome_vfs_init (void)
 {
 	gboolean retval;
 	char *bogus_argv[2] = { "dummy", NULL };
+
+	if (!ensure_dot_gnome_exists ())
+		return FALSE;
 
 	G_LOCK (vfs_already_initialized);
 
