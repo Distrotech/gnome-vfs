@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-01-16 21:55+0100\n"
-"PO-Revision-Date: 2004-01-16 21:55+0100\n"
+"PO-Revision-Date: 2004-01-26 15:15+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -929,7 +929,7 @@ msgstr "Maskinnavn for HTTP-proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr "Maskinnavn for HTTPS-proxy"
+msgstr "Maskinnavn for HTTPS-proxy."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
