@@ -1,5 +1,18 @@
 2000-06-13  Gene Z. Ragan  <gzr@eazel.com>
 
+	More work in progress and added a new file to the capplet build.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c: (main),
+	(init_mime_capplet), (edit_applications_clicked),
+	(edit_components_clicked), (edit_application_dialog_destroy),
+	(initialize_edit_application_dialog),
+	(show_edit_applications_dialog), (show_edit_components_dialog):
+
+	* mime-type-capplet/nautilus-mime-type-capplet.h:
+	New file
+	
+2000-06-13  Gene Z. Ragan  <gzr@eazel.com>
+
 	Work in progress on the File Types and Program capplet
 	
 	* mime-type-capplet/edit-window.c: (initialize_main_win):
