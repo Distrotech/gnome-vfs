@@ -292,9 +292,28 @@ get_device_type_from_device_and_mount (const char *device_path, const char *moun
 			}
 	} else {
 		basename = g_path_get_basename (mount_path);
+
 		if (g_str_has_prefix (basename, "cdrom") ||
 		    g_str_has_prefix (basename, "cdwriter") ||
-		    g_str_has_prefix (basename, "burn")) {
+		    g_str_has_prefix (basename, "burn") ||
+		    g_str_has_prefix (basename, "cdr") ||
+		    g_str_has_prefix (basename, "cdrw") ||
+		    g_str_has_prefix (basename, "dvdrom") ||
+		    g_str_has_prefix (basename, "dvdram") ||
+		    g_str_has_prefix (basename, "dvdr") ||
+		    g_str_has_prefix (basename, "dvdrw") ||
+		    g_str_has_prefix (basename, "cdrom_dvdrom") ||
+		    g_str_has_prefix (basename, "cdrom_dvdram") ||
+		    g_str_has_prefix (basename, "cdrom_dvdr") ||
+		    g_str_has_prefix (basename, "cdrom_dvdrw") ||
+		    g_str_has_prefix (basename, "cdr_dvdrom") ||
+		    g_str_has_prefix (basename, "cdr_dvdram") ||
+		    g_str_has_prefix (basename, "cdr_dvdr") ||
+		    g_str_has_prefix (basename, "cdr_dvdrw") ||
+		    g_str_has_prefix (basename, "cdrw_dvdrom") ||
+		    g_str_has_prefix (basename, "cdrw_dvdram") ||
+		    g_str_has_prefix (basename, "cdrw_dvdr") ||
+		    g_str_has_prefix (basename, "cdrw_dvdrw")) {
 			g_free (basename);
 			return GNOME_VFS_DEVICE_TYPE_CDROM;
 		} else if (g_str_has_prefix (basename, "floppy")) {
@@ -310,6 +329,10 @@ get_device_type_from_device_and_mount (const char *device_path, const char *moun
 			g_free (basename);
 			return GNOME_VFS_DEVICE_TYPE_CAMERA;
 		} else if (g_str_has_prefix (basename, "memstick") ||
+			   g_str_has_prefix (basename, "compact_flash") ||
+			   g_str_has_prefix (basename, "memory_stick") ||
+			   g_str_has_prefix (basename, "smart_media") ||
+			   g_str_has_prefix (basename, "sd_mmc") ||
 			   g_str_has_prefix (basename, "ram")) {
 			g_free (basename);
 			return GNOME_VFS_DEVICE_TYPE_MEMORY_STICK;
@@ -372,7 +395,7 @@ make_utf8 (const char *str)
 }
 
 static char *
-get_drive_icon_from_type (GnomeVFSDeviceType type)
+get_drive_icon_from_type (GnomeVFSDeviceType type, const char *mount_path)
 {
 	char *icon_name;
 
@@ -385,6 +408,22 @@ get_drive_icon_from_type (GnomeVFSDeviceType type)
 	case GNOME_VFS_DEVICE_TYPE_SMB:
 		icon_name = "gnome-fs-smb";
 		break;
+
+	case GNOME_VFS_DEVICE_TYPE_HARDDRIVE:
+		if (mount_path != NULL) {
+			char *basename;	
+			basename = g_path_get_basename (mount_path);
+			if (g_str_has_prefix (basename, 
+					      "usbdisk")) {
+				icon_name = "gnome-dev-removable-usb";
+			} else if (g_str_has_prefix (basename, 
+						     "ieee1394disk")) {
+				icon_name = "gnome-dev-removable-ieee1394";
+			}
+			g_free (basename);
+		}
+		break;
+
 	default:
 		break;
 	}
@@ -393,12 +432,31 @@ get_drive_icon_from_type (GnomeVFSDeviceType type)
 }
 
 static char *
-get_icon_from_type (GnomeVFSDeviceType type)
+get_icon_from_type (GnomeVFSDeviceType type, const char *mount_path)
 {
 	char *icon_name;
+	char *basename;	
+
+	if (mount_path != NULL) {
+		basename = g_path_get_basename (mount_path);
+	} else {
+		basename = NULL;
+	}
 
 	icon_name = "gnome-dev-harddisk";
 	switch (type) {
+	case GNOME_VFS_DEVICE_TYPE_HARDDRIVE:
+		if (basename != NULL) {
+			if (g_str_has_prefix (basename, 
+					      "usbdisk")) {
+				icon_name = "gnome-dev-harddisk-usb";
+			} else if (g_str_has_prefix (basename, 
+						     "ieee1394disk")) {
+				icon_name = "gnome-dev-harddisk-ieee1394";
+			}
+		}
+		break;
+
 	case GNOME_VFS_DEVICE_TYPE_AUDIO_CD:
 		icon_name = "gnome-dev-cdrom-audio";
 		break;
@@ -420,6 +478,21 @@ get_icon_from_type (GnomeVFSDeviceType type)
 
 	case GNOME_VFS_DEVICE_TYPE_MEMORY_STICK:
 		icon_name = "gnome-dev-memory";
+		if (basename != NULL) {
+			if (g_str_has_prefix (basename, 
+					      "compact_flash")) {
+				icon_name = "gnome-dev-media-cf";
+			} else if (g_str_has_prefix (basename, 
+						     "memory_stick")) {
+				icon_name = "gnome-dev-media-ms";
+			} else if (g_str_has_prefix (basename, 
+						     "smart_media")) {
+				icon_name = "gnome-dev-media-sm";
+			} else if (g_str_has_prefix (basename, 
+						     "sd_mmc")) {
+				icon_name = "gnome-dev-media-sdmmc";
+			}
+		}
 		break;
 	
 	case GNOME_VFS_DEVICE_TYPE_NFS:
@@ -432,6 +505,10 @@ get_icon_from_type (GnomeVFSDeviceType type)
 
 	default:
 		break;
+	}
+
+	if (basename != NULL) {
+		g_free (basename);
 	}
 
 	return g_strdup (icon_name);
@@ -495,6 +572,34 @@ get_drive_name (GnomeVFSVolumeMonitor *volume_monitor,
 	struct { char *machine; char *readable; } readable_table[] = {
 		{ "floppy", N_("Floppy") },
 		{ "cdrom", N_("CD-ROM") },
+
+		{ "cdr",    N_("CD-R") },
+		{ "cdrw",   N_("CD-RW") },
+		{ "dvdrom", N_("DVD-ROM") },
+		{ "dvdram", N_("DVD-RAM") },
+		{ "dvdr",   N_("DVD-R") },
+		{ "dvdrw",  N_("DVD-RW") },
+		{ "cdrom_dvdrom", N_("CD-ROM/DVD-ROM") },
+		{ "cdrom_dvdram", N_("CD-ROM/DVD-RAM") },
+		{ "cdrom_dvdr",   N_("CD-ROM/DVD-R") },
+		{ "cdrom_dvdrw",  N_("CD-ROM/DVD-RW") },
+		{ "cdr_dvdrom", N_("CD-R/DVD-ROM") },
+		{ "cdr_dvdram", N_("CD-R/DVD-RAM") },
+		{ "cdr_dvdr",   N_("CD-R/DVD-R") },
+		{ "cdr_dvdrw",  N_("CD-R/DVD-RW") },
+		{ "cdrw_dvdrom", N_("CD-RW/DVD-ROM") },
+		{ "cdrw_dvdram", N_("CD-RW/DVD-RAM") },
+		{ "cdrw_dvdr",   N_("CD-RW/DVD-R") },
+		{ "cdrw_dvdrw",  N_("CD-RW/DVD-RW") },
+
+		{ "idedisk", N_("Disk") },
+		{ "usbdisk", N_("USB Drive") },
+		{ "ieee1394disk", N_("IEEE1394 Drive") },
+		{ "compact_flash", N_("CF") },
+		{ "sd_mmc", N_("SD/MMC") },
+		{ "memory_stick", N_("Memory Stick") },
+		{ "smart_media", N_("Smart Media") },
+
 		{ "zip", N_("Zip Drive") },
 		{ "memstick", N_("Memory Stick") },
 		{ "camera", N_("Camera") },
@@ -591,7 +696,7 @@ create_drive_from_mount_point (GnomeVFSVolumeMonitor *volume_monitor,
 		}
 	}
 
-	drive->priv->icon = get_drive_icon_from_type (drive->priv->device_type);
+	drive->priv->icon = get_drive_icon_from_type (drive->priv->device_type, mount->mount_path);
 
 	drive->priv->display_name = get_drive_name (volume_monitor, drive, mount);
 	
@@ -836,7 +941,7 @@ create_vol_from_mount (GnomeVFSVolumeMonitor *volume_monitor, GnomeVFSUnixMount 
 	g_free (display_name);
 	g_free (utf8_name);
 	
-	vol->priv->icon = get_icon_from_type (vol->priv->device_type);
+	vol->priv->icon = get_icon_from_type (vol->priv->device_type, mount->mount_path);
 
 	vol->priv->is_user_visible = 0;
 	switch (vol->priv->device_type) {
