@@ -1,28 +1,22 @@
 # translation of gnome-vfs.HEAD.gu.po to Gujarati
 # translation of gu.po to Gujarati
-# Copyright (C) 2004 Free Software Foundation, Inc.
+# Copyright (C) 2004, 2005 Free Software Foundation, Inc.
 # MagNet <magnet@magnet-i.com>, 2004.
-# Ankit Patel <ankit@redhat.com>, 2004.
+# Ankit Patel <ankit@redhat.com>, 2004, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-10 12:25+0100\n"
-"PO-Revision-Date: 2004-10-26 19:34+0530\n"
+"POT-Creation-Date: 2005-02-22 07:34+0100\n"
+"PO-Revision-Date: 2005-02-24 14:20+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
-"Language-Team: Gujarati\n"
+"Language-Team: Gujarati <gu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "<magnet@magnet-i.com>\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"X-Generator: KBabel 1.3.1\n"
+"Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"X-Generator: KBabel 1.9.1\n"
 
 # libgnomevfs/gnome-vfs-parse-ls.c:652
 #: daemon/gnome-vfs-daemon.c:596
@@ -748,8 +742,7 @@ msgstr "નેટવર્ક સર્વર"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr "ફ્લોપી ડ્રાઇવને માઉન્ટ કરવામાં ભૂલ. કદાચિત ડ્રાઇવમાં કોઇ ફ્લોપી નથી."
 
 #. All others
@@ -819,12 +812,12 @@ msgstr "અજાણીતી જીનોમ VFSSeek સ્થિતિ %d"
 msgid "Windows Network"
 msgstr "વિન્ડો નેટવર્ક"
 
-#: modules/sftp-method.c:1338
+#: modules/sftp-method.c:1313
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr "દૂરસ્થ કમ્પ્યુટર (%s) ની ઓળખ અજ્ઞાત છે."
+msgstr "દૂરસ્થ કમ્પ્યૂટર (%s) ની ઓળખ અજ્ઞાત છે."
 
-#: modules/sftp-method.c:1339
+#: modules/sftp-method.c:1314
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -832,16 +825,16 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
-"આ ત્યારે જ બને જ્યારે તમે કમ્પ્યુટરમાં પહેલી વાર પ્રવેશો.\n"
+"આ ત્યારે જ બને જ્યારે તમે કમ્પ્યૂટરમાં પહેલી વાર પ્રવેશો.\n"
 "\n"
-"દૂરસ્થ કમ્પ્યુટર દ્વારા મોકલવામાં આવતી ઓળખ %s છે. જો તમે સંપૂર્ણપણે ચોક્કસ થવા માંગો તો ચાલુ "
+"દૂરસ્થ કમ્પ્યૂટર દ્વારા મોકલવામાં આવતી ઓળખ %s છે. જો તમે સંપૂર્ણપણે ચોક્કસ થવા માંગો તો ચાલુ "
 "રાખવા માટે એ સુરક્ષિત છે, સિસ્ટમ સંચાલકનો સંપર્ક કરો."
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1322
 msgid "Log In Anyway"
 msgstr "કોઈપણ રીતે પ્રવેશો"
 
-#: modules/sftp-method.c:1348
+#: modules/sftp-method.c:1323
 msgid "Cancel Login"
 msgstr "પ્રવેશ રદ કરો"
 
@@ -1155,15 +1148,11 @@ msgid "HTTP proxy username"
 msgstr "HTTP પ્રોક્સી વપરાશકર્તા"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"જો સાચુ, તો પ્રોક્સી સર્વર સાથે સંપર્ક ધરાવતા માટે સાચા છે કે નહિ તેની ખાતચરી કરવી જરુરી "
-"છે. વપરાશકર્તા/પાસવર્ડ કોમ્બો એ \"/સિસ્ટમ/http_પ્રોક્સી/authentication_વપારાશકર્તા\" "
-"અને \"/સિસ્ટમ/http_પ્રોક્સી/authentication_પાસવર્ડ\" ના દ્વારા વ્યાખ્યાયિત હતા."
+msgstr "જો સાચું હોય, તો પછી પ્રોક્સી સર્વર સાથેના જોડાણોને સત્તાધિકરણની જરૂર છે. વપરાશકર્તાનામ/પાસવર્ડ બંને \"/system/http_proxy/authentication_user\" અને \"/system/http_proxy/authentication_password\" દ્વારા વ્યાખ્યાયિત થાય છે."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1285,169 +1274,3 @@ msgstr "SMB કામ કરતુ જૂથ"
 msgid "The window workgroup the user is part of"
 msgstr "વિન્ડોનુ કામ કરતુ જૂથ કે વપરાશર્ક્તા જેનો ભાગ છે"
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "CD-ROM ડિસ્ક"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "ખાલી CD-R ડિસ્ક"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "CD-R ડિસ્ક"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "ખાલી CD-RW ડિસ્ક"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "CD-RW ડિસ્ક"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "CD-ROM ડિસ્ક"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "ખાલી DVD-R ડિસ્ક"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "DVD-R ડિસ્ક"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "ખાલી DVD-RAM ડિસ્ક"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "DVD-RAM ડિસ્ક"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "ખાલી DVD-RW ડિસ્ક"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "DVD-RW ડિસ્ક"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "ખાલી DVD+RW ડિસ્ક"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "DVD+RW ડિસ્ક"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "ખાલી DVD+R ડિસ્ક"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "DVD+R ડિસ્ક"
-
-#~ msgid "Optical Disc"
-#~ msgstr "ઓપ્ટિકલ ડિસ્ક"
-
-#~ msgid "Audio Disc"
-#~ msgstr "ઓડિયો ડિસ્ક"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "સંકુચિત ફ્લેશ મિડીયા"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "મૅમરી સ્ટીક મિડીયા"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "સ્માર્ટ મિડીયા મિડીયા"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "SD/MMC મિડીયા"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "ફ્લોપી ડિસ્ક"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Mac OS ડિસ્ક"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Mac OS X ડિસ્ક"
-
-#~ msgid "Windows Disk"
-#~ msgstr "વિન્ડો ડિસ્ક"
-
-#~ msgid "Linux Disk"
-#~ msgstr "લિનક્સ ડિસ્ક"
-
-# libgnomevfs/gnome-vfs-parse-ls.c:652
-#~ msgid "File could not be opened: %s"
-#~ msgstr "ફાઈલ ખોલી શકાઈ નહિં: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "ફાઈલ '%s' ખોલવામાં નિષ્ફળ: %s"
-
-# libgnomevfs/gnome-vfs-result.c:57
-#~ msgid "File is empty"
-#~ msgstr "ફાઈલ ખાલી છે"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "ફાઈલ '%s' માંથી વાંચવામાં નિષ્ફળ: %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr "ડેસ્કટોપ પ્રવેશ લીટી '%s' સમાવે છે કે પ્રવેશ, જૂથ, અથવા ટિપ્પળી નથી"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "ડેસ્કટોપ પ્રવેશ ફાઈલ યોગ્ય શરુઆત જૂથથી શરુ થતા નથી"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "ડેસ્કટોપ પ્રવેશ લીટી '%s' સમાવે છે કે જે UTF-8 નથી"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "ડેસ્કટોપ પ્રવેશો અજ્ઞાત સંગ્રહપદ્ધતિ '%s' ધરાવે છે"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "ડેસ્કટોપ પ્રવેશો પાસે કોઈ જૂથ '%s' નથી"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "ડેસ્કટોપ પ્રવેશો પાસે કોઈ કી '%s' નથી"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr "ડેસ્કટોપ પ્રવેશ કી '%s' ધરાવે છે કે જેની કિંમત સમજી શકાતી નથી."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "ડેસ્કટોપ પ્રવેશો કી '%s' માટે લોકેલ '%s' સાથે કોઈ ભાષાંતરિત કિંમતો ધરાવતું નથી."
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "ડેસ્કટોપ પ્રવેશો અયોગ્ય એસ્કેપ હાર '%s' ધરાવે છે"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "ડેસ્કટોપ પ્રવેશો લીટીના અંતે એસ્કેપ અક્ષરો ધરાવે છે"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "કિંમત '%s' નંબર તરીકે સમજી શકાતી નથી."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "કિંમત '%s' બુલિયન તરીકે સમજી શકાતી નથી."
-
-#~ msgid "Applications"
-#~ msgstr "કાર્યક્રમો"
-
-#~ msgid "Cards"
-#~ msgstr "પત્તા"
-
-# libgnomevfs/gnome-vfs-result.c:57
-#~ msgid "Files"
-#~ msgstr "ફાઇલો"
-
-#~ msgid "Folders"
-#~ msgstr "ફોલ્ડર"
-
-#~ msgid "Help"
-#~ msgstr "મદદ"
-
-#~ msgid "Hosts"
-#~ msgstr "યજમાનો"
-
-#~ msgid "Links"
-#~ msgstr "કડીઓ"
-
-#~ msgid "Mail"
-#~ msgstr "મેઇલ"
-
-#~ msgid "Tools"
-#~ msgstr "સાધનો"
-
-#~ msgid "Windows"
-#~ msgstr "વિન્ડો"
