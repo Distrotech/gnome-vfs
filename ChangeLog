@@ -1,5 +1,12 @@
 2002-05-17  Alex Graveley  <alex@ximian.com>
 
+	* modules/vfolder-desktop-method.c (VFOLDER_URI_PARSE): New
+	macro/internal function to populate on-stack VFolderURI with
+	unescaped copy of vfs uri.  Used throughout instead of
+	get_basename() and broken path handling.
+
+2002-05-17  Alex Graveley  <alex@ximian.com>
+
 	* libgnomevfs/gnome-vfs-xfer.c
 	(gnome_vfs_destination_is_writable): Handle
 	GNOME_VFS_ERROR_INVALID_URI when creating .vfs-write.tmp, and
