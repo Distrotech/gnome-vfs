@@ -126,11 +126,19 @@ void             gnome_vfs_async_get_file_info  (GnomeVFSAsyncHandle **handle_re
 						 GnomeVFSAsyncGetFileInfoCallback callback,
 						 gpointer callback_data);
 
+/* Setting the file info sometimes changes more info than the
+ * caller specified; for example, if the name changes the MIME type might
+ * change, and if the owner changes the SUID & SGID bits might change. 
+ * Therefore the callback returns the new file info for the caller's
+ * convenience. The GnomeVFSFileInfoOptions passed here are those used 
+ * for the returned file info; they are not used when setting.
+ */
 void             gnome_vfs_async_set_file_info  (GnomeVFSAsyncHandle **handle_return,
 						 GnomeVFSURI *uri,
 						 GnomeVFSFileInfo *info,
 						 GnomeVFSSetFileInfoMask mask,
-						 GnomeVFSAsyncCallback callback,
+						 GnomeVFSFileInfoOptions options,
+						 GnomeVFSAsyncSetFileInfoCallback callback,
 						 gpointer callback_data);
 
 void          	 gnome_vfs_async_load_directory (GnomeVFSAsyncHandle **handle_return,

@@ -595,9 +595,7 @@ typedef void	(* GnomeVFSAsyncOpenAsChannelCallback)
 
 typedef GnomeVFSAsyncOpenAsChannelCallback GnomeVFSAsyncCreateAsChannelCallback;
 
-typedef void	(* GnomeVFSAsyncCloseCallback)	(GnomeVFSAsyncHandle *handle,
-						 GnomeVFSResult result,
-						 gpointer callback_data);
+#define GnomeVFSAsyncCloseCallback	GnomeVFSAsyncCallback
 
 typedef void	(* GnomeVFSAsyncReadCallback)	(GnomeVFSAsyncHandle *handle,
 						 GnomeVFSResult result,
@@ -622,6 +620,12 @@ typedef struct {
 typedef void    (* GnomeVFSAsyncGetFileInfoCallback)
                                                 (GnomeVFSAsyncHandle *handle,
 						 GList *results, /* GnomeVFSGetFileInfoResult* items */
+						 gpointer callback_data);
+
+typedef void	(* GnomeVFSAsyncSetFileInfoCallback)	
+						(GnomeVFSAsyncHandle *handle,
+						 GnomeVFSResult result,
+						 GnomeVFSFileInfo *file_info,
 						 gpointer callback_data);
 
 typedef void	(* GnomeVFSAsyncDirectoryLoadCallback)

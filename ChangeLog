@@ -1,3 +1,32 @@
+2000-07-25  John Sullivan  <sullivan@eazel.com>
+
+	Made async set_file_info pass back newly-retrieved
+	file info, since setting some info changes other
+	info (e.g., setting owner can change permissions).
+
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_set_file_info): New options parameter
+	to use when getting file info, changed callback type.
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	Add get_file_info options field to request struct, and file_info &
+	get_file_info_result fields to notify struct.
+	* libgnomevfs-pthread/gnome-vfs-job.c:
+	(execute_set_file_info): Fetch file_info after setting.
+	(dispatch_set_file_info_callback): Pass to caller newly-fetched
+	file_info, or NULL if it couldn't be read.
+
+	* libgnomevfs/gnome-vfs-async-ops.h:
+	Change signature of gnome_vfs_async_set_file_info to take options
+	for get_file and to use a GnomeVFSAsyncSetFileInfoCallback
+	* libgnomevfs/gnome-vfs-backend.c:
+	(report_failure_set_file_info_callback),
+	(report_failure_set_file_info): New functions that handle the new
+	intricacies of set_file_info failures.
+	(gnome_vfs_async_set_file_info): Updated for parameter changes.
+	* libgnomevfs/gnome-vfs-types.h:
+	Changed GnomeVFSAsyncCloseCallback to just a #define;
+	added new GnomeVFSAsyncSetFileInfoCallback
+
 2000-07-25  Pavel Cisler <pavel@eazel.com>
 
 	* modules/file-method.c: (do_find_directory), (do_check_same_fs):

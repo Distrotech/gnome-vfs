@@ -192,10 +192,13 @@ typedef struct {
 		GnomeVFSURI *uri;
 		GnomeVFSFileInfo info;
 		GnomeVFSSetFileInfoMask mask;
+		GnomeVFSFileInfoOptions options;
 	} request;
 
 	struct {
-		GnomeVFSResult result;
+		GnomeVFSResult set_file_info_result;
+		GnomeVFSResult get_file_info_result;
+		GnomeVFSFileInfo info;
 	} notify;
 } GnomeVFSSetFileInfoOp;
 

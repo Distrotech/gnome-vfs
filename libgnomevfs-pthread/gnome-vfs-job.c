@@ -419,13 +419,24 @@ dispatch_get_file_info_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 static void
 dispatch_set_file_info_callback (GnomeVFSJob *job, GnomeVFSOp *op)
 {
-	GnomeVFSAsyncCallback callback;
+	GnomeVFSAsyncSetFileInfoCallback callback;
+	gboolean new_info_is_valid;
 
-	callback = (GnomeVFSAsyncCallback) op->callback;
+	new_info_is_valid = 
+		op->specifics.set_file_info.notify.set_file_info_result == GNOME_VFS_OK &&
+		op->specifics.set_file_info.notify.get_file_info_result == GNOME_VFS_OK;
+
+	callback = (GnomeVFSAsyncSetFileInfoCallback) op->callback;
 
 	(* callback) ((GnomeVFSAsyncHandle *) job,
-		      op->specifics.set_file_info.notify.result,
+		      op->specifics.set_file_info.notify.set_file_info_result,
+		      new_info_is_valid 
+		      	? &op->specifics.set_file_info.notify.info 
+		      	: NULL,
 		      op->callback_data);
+
+	/* Always clear new info, whether or not it's valid. */
+	gnome_vfs_file_info_clear (&op->specifics.set_file_info.notify.info);
 }
 
 static void
@@ -1360,12 +1371,22 @@ execute_set_file_info (GnomeVFSJob *job)
 
 	op = &job->current_op->specifics.set_file_info;
 
-	op->notify.result = gnome_vfs_set_file_info_cancellable
+	op->notify.set_file_info_result = gnome_vfs_set_file_info_cancellable
 		(op->request.uri, &op->request.info, op->request.mask,
 		 job->current_op->context);
 
-	/* FIXME: Leaks if the operation is cancelled. */
+	/* FIXME: potential leak if operation is cancelled before getting here. */
 	gnome_vfs_file_info_clear (&op->request.info);
+
+	/* Always get new file info, even if setter failed. Init here and clear
+	 * in dispatch_set_file_info.
+	 */
+	gnome_vfs_file_info_init (&op->notify.info);
+	op->notify.get_file_info_result = gnome_vfs_get_file_info_uri_cancellable
+		(op->request.uri,
+		 &op->notify.info,
+		 op->request.options,
+		 job->current_op->context);
 
 	job_oneway_notify_and_close (job);
 	return FALSE;

@@ -158,6 +158,7 @@ typedef struct {
 		GnomeVFSAsyncReadCallback read;
 		GnomeVFSAsyncWriteCallback write;
 		GnomeVFSAsyncGetFileInfoCallback get_file_info;
+		GnomeVFSAsyncSetFileInfoCallback set_file_info;
 		GnomeVFSAsyncDirectoryLoadCallback load_directory;
 	} callback;
 	gpointer callback_data;
@@ -642,12 +643,45 @@ gnome_vfs_async_get_file_info  (GnomeVFSAsyncHandle **handle_return,
 	report_failure_get_file_info (result, uris, callback, callback_data);
 }
 
+static gboolean
+report_failure_set_file_info_callback (gpointer callback_data)
+{
+	CallbackData *data;
+
+	data = callback_data;
+	(* data->callback.set_file_info) (NULL,
+				 data->result,
+				 NULL,
+				 data->callback_data);
+	g_free (data);
+
+	return FALSE;
+}
+
+static void
+report_failure_set_file_info (GnomeVFSResult result,
+		       	      GnomeVFSAsyncSetFileInfoCallback callback,
+		       	      gpointer callback_data)
+{
+	CallbackData *data;
+
+	if (result == GNOME_VFS_OK)
+		return;
+
+	data = g_new0 (CallbackData, 1);
+	data->callback.set_file_info = callback;
+	data->result = result;
+	data->callback_data = callback_data;
+	g_idle_add (report_failure_set_file_info_callback, data);
+}
+
 void
 gnome_vfs_async_set_file_info  (GnomeVFSAsyncHandle **handle_return,
 				GnomeVFSURI *uri,
 				GnomeVFSFileInfo *info,
 				GnomeVFSSetFileInfoMask mask,
-				GnomeVFSAsyncCallback callback,
+			        GnomeVFSFileInfoOptions options,
+				GnomeVFSAsyncSetFileInfoCallback callback,
 				gpointer callback_data)
 {
 	static GnomeVFSResult	 
@@ -655,15 +689,16 @@ gnome_vfs_async_set_file_info  (GnomeVFSAsyncHandle **handle_return,
 						       GnomeVFSURI *uri,
 						       GnomeVFSFileInfo *info,
 						       GnomeVFSSetFileInfoMask mask,
-						       GnomeVFSAsyncCallback callback,
+						       GnomeVFSFileInfoOptions options,
+						       GnomeVFSAsyncSetFileInfoCallback callback,
 						       gpointer callback_data);
 
 	GnomeVFSResult result;
 
 	CALL_BACKEND (gnome_vfs_async_set_file_info,
-		      (handle_return, uri, info, mask,
+		      (handle_return, uri, info, mask, options,
 		       callback, callback_data));
-	report_failure_simple (result, callback, callback_data);
+	report_failure_set_file_info (result, callback, callback_data);
 }
 
 static gboolean
