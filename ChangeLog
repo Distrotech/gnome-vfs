@@ -1,3 +1,7 @@
+2003-11-15  Christophe Fergeau  <teuf@gnome.org>
+
+	* modules/http-method.c: fixed some leaks
+
 2003-11-15  Jan Kratochvil  <web-bugzilla.gnome.org@jankratochvil.net>
 
 	* modules/http-method.c: forgot to set to NULL a closed connection,

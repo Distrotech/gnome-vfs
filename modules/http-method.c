@@ -903,6 +903,7 @@ parse_ignore_host (gpointer data, gpointer user_data)
 		/* It is a hostname. */
 		gl_ignore_hosts = g_slist_append (gl_ignore_hosts, hostname);
 		DEBUG_HTTP (("Host %s does not go through proxy.", hostname));
+		g_free (elt);
 	}
 }
 
@@ -1713,7 +1714,7 @@ do_create (GnomeVFSMethod *method,
 	 * playing with LOCK, but mod_dav cannot. */
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
-	GByteArray *bytes = g_byte_array_new();
+	GByteArray *bytes;
 	
 	ANALYZE_HTTP ("==> +do_create");
 	DEBUG_HTTP (("+Create URI: '%s'", gnome_vfs_uri_get_path (uri)));
@@ -1743,10 +1744,11 @@ do_create (GnomeVFSMethod *method,
 	}
 	
 	ANALYZE_HTTP ("==> Creating initial file");
-	
+	bytes  = g_byte_array_new();
       	result = make_request (&handle, uri, "PUT", bytes, NULL, context);
 	http_handle_close(handle, context);
-	
+	g_byte_array_free (bytes, TRUE);
+		
 	if (result != GNOME_VFS_OK) {
 		/* the PUT failed */
 		
@@ -1765,9 +1767,6 @@ do_create (GnomeVFSMethod *method,
 		return result;
 	}
 
-	/* clean up */
-	g_byte_array_free (bytes, TRUE);
-	
 	/* FIXME bugzilla.gnome.org 41159: do we need to do something more intelligent here? */
 	result = do_open (method, method_handle, uri, GNOME_VFS_OPEN_WRITE, context);
 
@@ -2335,6 +2334,7 @@ make_propfind_request (HttpFileHandle **handle_return,
 cleanup:
 	g_free(buffer);
 	g_free(extraheaders);
+	g_byte_array_free (request, TRUE);
 	xmlFreeParserCtxt(parserContext);
 	
 	if (result != GNOME_VFS_OK) {
@@ -2724,6 +2724,7 @@ do_move (GnomeVFSMethod *method,
 
 	result = make_request (&handle, old_uri, "MOVE", NULL, destheader, context);
 	http_handle_close (handle, context);
+	g_free (destheader);
 	handle = NULL;
 
 	if (result == GNOME_VFS_ERROR_NOT_FOUND) {
