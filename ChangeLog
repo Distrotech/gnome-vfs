@@ -1,3 +1,10 @@
+2002-01-28  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/applications.vfolder-info.in:
+	* modules/preferences.vfolder-info.in:
+
+	More exciting updates to the vfolders.
+
 2002-01-28  Darin Adler  <darin@bentspoon.com>
 
 	* gnome-vfs.spec.in: Remove man page.

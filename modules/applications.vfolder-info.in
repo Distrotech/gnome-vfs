@@ -119,18 +119,21 @@
 
     <!-- Settings -->
     <Folder>
-      <Name>Preferences</Name>
+      <Name>Desktop Preferences</Name>
       <Desktop>Settings.directory</Desktop>
       <Query>
 	<And>
 	  <Keyword>Settings</Keyword>
 	  <Not>
-	    <Keyword>AdvancedSettings</Keyword>
-	    <Keyword>System</Keyword>
+	    <Or>
+	      <Keyword>AdvancedSettings</Keyword>
+	      <Keyword>Sawfish</Keyword>
+	      <Keyword>System</Keyword>
+	    </Or>
 	  </Not>
 	</And>
       </Query>
-      
+
       <Folder>
 	<Name>Advanced</Name>
 	<Desktop>Advanced.directory</Desktop>
@@ -140,6 +143,7 @@
 	    <Keyword>AdvancedSettings</Keyword>
 	  </And>
 	</Query>
+	<DontShowIfEmpty/>
       </Folder>
       <Folder>
 	<Name>System</Name>
@@ -147,6 +151,17 @@
 	<Query>
 	  <And>
 	    <Keyword>System</Keyword>
+	    <Keyword>Settings</Keyword>
+	  </And>
+	</Query>
+	<DontShowIfEmpty/>
+      </Folder>
+      <Folder>
+	<Name>Sawfish</Name>
+	<Desktop>Sawfish.directory</Desktop>
+	<Query>
+	  <And>
+	    <Keyword>Sawfish</Keyword>
 	    <Keyword>Settings</Keyword>
 	  </And>
 	</Query>

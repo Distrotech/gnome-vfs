@@ -2,26 +2,24 @@
   <ItemDir>@datadir@/control-center-2/capplets</ItemDir>
   <!-- Merge dirs optional -->
   <MergeDir>@datadir@/gnome/apps/Settings</MergeDir>
-  <MergeDir>@datadir@/control-center-2/capplets/Advanced</MergeDir>
-  <MergeDir>@datadir@/control-center-2/capplets/System</MergeDir>
-
   <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
 
   <!-- Root folder -->
   <Folder>
-    <Name>Root</Name>
+    <Name>Desktop Preferences</Name>
     <Desktop>Settings.directory</Desktop>
     <Query>
       <And>
         <Keyword>Settings</Keyword>
         <Not>
-          <Keyword>AdvancedSettings</Keyword>
-          <Keyword>System</Keyword>
+          <Or>
+	    <Keyword>AdvancedSettings</Keyword>
+	    <Keyword>Sawfish</Keyword>
+	    <Keyword>System</Keyword>
+	  </Or>
         </Not>
       </And>
     </Query>
-
-    <!-- Other folders -->
 
     <Folder>
       <Name>Advanced</Name>
@@ -32,6 +30,7 @@
 	  <Keyword>AdvancedSettings</Keyword>
         </And>
       </Query>
+      <DontShowIfEmpty/>
     </Folder>
     <Folder>
       <Name>System</Name>
@@ -44,6 +43,17 @@
       </Query>
       <DontShowIfEmpty/>
     </Folder>
-
+    <Folder>
+      <Name>Sawfish</Name>
+      <Desktop>Sawfish.directory</Desktop>
+      <Query>
+        <And>
+	  <Keyword>Sawfish</Keyword>
+	  <Keyword>Settings</Keyword>
+        </And>
+      </Query>
+      <DontShowIfEmpty/>
+    </Folder>
   </Folder>
+
 </VFolderInfo>
