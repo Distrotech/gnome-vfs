@@ -1,4 +1,4 @@
-#include <stdio.h>              /* FIXME */
+#include <stdio.h>              /* FIXME bugzilla.eazel.com 1127: We should remove this debug code some day. */
 
 #include "gnome-file-selection-history.h"
 
@@ -20,7 +20,7 @@ get_offset (GnomeFileSelectionHistory *h)
   return offset;
 }
 
-/* FIXME */
+/* FIXME bugzilla.eazel.com 1127: We should remove this debug code some day. */
 static void
 print_history (GnomeFileSelectionHistory *h)
 {

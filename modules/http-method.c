@@ -51,7 +51,7 @@
 #include "http-method.h"
 
 
-#if 1				/* FIXME */
+#if 1				/* FIXME bugzilla.eazel.com 1138 */
 #include <stdio.h>
 #define DEBUG_HTTP(x)				\
 	do {					\

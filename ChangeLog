@@ -1,8 +1,32 @@
-2000-06-05  Rebecca Schulman <rebecka@eazel.com>
-        * modules/file-method.c
-	Fixed lack of error handling for readlink
-	call in read_link.
+2000-06-05  Darin Adler  <darin@eazel.com>
+
+	* modules/http-method.c:
+	* modules/newftp-method.c: (do_open_directory),
+	(do_make_directory):
+	* modules/pipe-method.c: (do_close):
+	* test/gnome-file-selection/gicon.c: (get_stock_icon),
+	(get_stock_overlay), (get_default_icon),
+	(gicon_get_icon_for_file_2):
+	* test/gnome-file-selection/gnome-file-selection-history.c:
+	* test/gnome-file-selection/gnome-file-selection.c:
+	(update_directory_combo_list), (setup_directory_combo_and_toolbar),
+	(destroy), (class_init), (init):
+	* test/test-info.c:
+	Added bug numbers to FIXMEs.
 	
+	* mime-type-capplet/edit-window.c: (destruction_handler),
+	(initialize_main_win), (launch_edit_window),
+	(populate_application_menu):
+	Got rid of the fixed-length mime_string field.
+	
+	* modules/file-method.c: (read_link), (get_stat_info):
+	Some minor tweaks on the code Rebecca just checked in.
+	There was a little problem with unsigned integers.
+
+2000-06-05  Rebecca Schulman <rebecka@eazel.com>
+
+	* modules/file-method.c
+	Fixed lack of error handling for readlink call in read_link.
 
 2000-06-05  Darin Adler  <darin@eazel.com>
 

@@ -159,7 +159,7 @@ get_stock_icon (char *name)
 	g_free (filename);
 
 	if (!iset)
-                /* FIXME: Do something useful here.  */
+                /* FIXME bugzilla.eazel.com 1133: Do something useful here.  */
 		/*  die_with_no_icons () */ ;
 
 	return iset;
@@ -176,7 +176,7 @@ get_stock_overlay (char *name)
 	im = gdk_imlib_load_image (filename);
 	g_free (filename);
 
-	if (!im)                /* FIXME: Do something useful here. */
+	if (!im)                /* FIXME bugzilla.eazel.com 1133: Do something useful here. */
                 /* die_with_no_icons () */ ;
 
 	return im;
@@ -332,7 +332,7 @@ get_default_icon (const gchar *file_name, const struct stat *stat_buf)
 	if (is_exe (stat_buf->st_mode))
 		return iset_executable;
 
-#if 0                           /* FIXME */
+#if 0                           /* FIXME bugzilla.eazel.com 1131 */
 	if (!strcmp (file_name, "core")
             || !strcmp (extension (file_name), "core"))
 		return iset_core;
@@ -414,8 +414,9 @@ gicon_get_icon_for_file_2 (const gchar *full_name,
 		return iset->plain;
 	}
 #else
-        /* FIXME: We have to provide the link_to_dir, stalled_link and
-           stuff.  */
+        /* FIXME bugzilla.eazel.com 1131: We have to provide the
+	 * link_to_dir, stalled_link and stuff.
+	 */
 	if (S_ISLNK (stat_buf->st_mode)) {
 		ensure_icon_image (iset, ICON_TYPE_SYMLINK);
 		return iset->symlink;

@@ -56,7 +56,7 @@ type_to_string (GnomeVFSFileType type)
 	}
 }
 
-/* FIXME this will not work nicely for binary metadata!  */
+/* FIXME bugzilla.eazel.com 1120: this will not work nicely for binary metadata!  */
 static void
 print_meta_list (const GnomeVFSFileInfo *info)
 {

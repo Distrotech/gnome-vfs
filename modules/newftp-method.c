@@ -820,8 +820,10 @@ static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys,
 					 const GnomeVFSDirectoryFilter *filter,
-					 GnomeVFSContext *context) {
-	/* FIXME implement filters */
+					 GnomeVFSContext *context)
+{
+	/* FIXME bugzilla.eazel.com 1137: implement filters */
+
 	FtpUri *furi = ftp_uri_create(uri);
 	FtpConnection *conn;
 	gchar *command = g_strdup_printf("LIST %s", furi->path);
@@ -946,7 +948,8 @@ do_make_directory (GnomeVFSMethod *method,
 		   guint perm,
 		   GnomeVFSContext *context)
 {
-	/* FIXME care about perms */
+	/* FIXME bugzilla.eazel.com 1136: We ignore the perm parameter here. */
+
 	FtpUri *furi = ftp_uri_create(uri);
 	FtpConnection *conn;
 	gchar *command = g_strdup_printf("MKD %s", furi->path);

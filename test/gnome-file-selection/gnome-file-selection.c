@@ -259,7 +259,6 @@ update_directory_combo_list (GnomeFileSelection *fs)
 	gtk_signal_handler_block (GTK_OBJECT (combo_list),
 				  fs->priv->combo_selection_changed_id);
 
-	/* FIXME: Wasted `strdup ()'.  */
 	popdown_list = g_list_prepend (popdown_list, g_strdup (G_DIR_SEPARATOR_S));
 
 	p1 = fs->directory + 1;
@@ -281,7 +280,6 @@ update_directory_combo_list (GnomeFileSelection *fs)
 		popdown_list = g_list_prepend (popdown_list, s);
 	}
 
-	/* FIXME: Wasted `strdup ()'.  */
 	if (strcmp (fs->directory, G_DIR_SEPARATOR_S) != 0)
 		popdown_list = g_list_prepend (popdown_list,
 					      g_strconcat (fs->directory,
@@ -646,8 +644,9 @@ setup_directory_combo_and_toolbar (GnomeFileSelection *fs)
 
 	fs->directory_combo = gtk_combo_new ();
 
-	/* FIXME: I cannot get editing to work nicely, so I just disable
-	   it for now.  */
+	/* FIXME bugzilla.eazel.com 1123: I cannot get editing to work
+	 * nicely, so I just disable it for now.
+	 */
 	gtk_editable_set_editable (GTK_EDITABLE
 				  (GTK_COMBO (fs->directory_combo)->entry),
 				  FALSE);
@@ -926,7 +925,8 @@ destroy (GtkObject *object)
 	while (fs->priv->populating_in_progress) ;
 	clean_file_list (fs->priv);
 
-	/* FIXME free the handle. */
+	if (fs->priv->async_handle != NULL)
+		gnome_vfs_async_cancel (fs->priv->async_handle);
 
 	g_free (fs->priv);
 
@@ -959,7 +959,7 @@ class_init (GnomeFileSelectionClass *class)
 
 	widget_class->map = map;
 
-	gicon_init ();		/* FIXME */
+	gicon_init ();		/* FIXME bugzilla.eazel.com 1121 */
 }
 
 static void
@@ -997,7 +997,7 @@ init (GnomeFileSelection *fs)
 		{
 			fs->paned = gtk_hpaned_new ();
 
-			/* FIXME: This does not appear to work!  */
+			/* FIXME bugzilla.eazel.com 1126: This does not appear to work!  */
 			gtk_paned_set_position (GTK_PANED (fs->paned), 100);
 
 			gtk_box_pack_start (GTK_BOX (dialog->vbox), fs->paned, TRUE, TRUE, 0);
@@ -1024,7 +1024,7 @@ init (GnomeFileSelection *fs)
 
 	/* Notice that this must be done *before* setting the list type,
 	   because the latter will cause the widget to be populated.
-	   FIXME: This could be done via `change_dir ()'.  */
+	   FIXME bugzilla.eazel.com 1125: This could be done via `change_dir ()'.  */
 	fs->directory = g_get_current_dir ();
 	gnome_file_selection_history_add (fs->priv->history, fs->directory);
 	update_directory_combo_entry (fs);
