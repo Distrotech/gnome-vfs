@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-01-29 10:57+0200\n"
+"POT-Creation-Date: 2001-02-15 10:12+0200\n"
 "PO-Revision-Date: 1999-12-28 13:44+0200\n"
 "Last-Translator: Yuri Syrota <rasta@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -33,21 +33,16 @@ msgstr "%s:%d не м╕стить назви модулю."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Не знайдено конф╕гурац╕йного файлу \"%s\": %s"
 
-#: libgnomevfs/gnome-vfs-file-info.c:342
-#, c-format
-msgid "Unknown sort rule %d"
-msgstr "Нев╕доме правило сортування %d"
-
 #: libgnomevfs/gnome-vfs-init.c:69
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS вже ╕н╕ц╕ал╕зовано"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:656
+#: libgnomevfs/gnome-vfs-parse-ls.c:654
 #, c-format
 msgid "Could not parse: %s"
 msgstr "Неможливо проанал╕зувати: %s"
 
-#: libgnomevfs/gnome-vfs-parse-ls.c:658
+#: libgnomevfs/gnome-vfs-parse-ls.c:656
 msgid "More parsing errors will be ignored."
 msgstr "╤нш╕ помилки анал╕зу буде про╕гноровано."
 
@@ -255,26 +250,26 @@ msgstr "Запит застир╕лих серв╕сних даних"
 msgid "Unknown error"
 msgstr "Нев╕дома помилка"
 
-#: libgnomevfs/gnome-vfs-utils.c:65
+#: libgnomevfs/gnome-vfs-utils.c:67
 msgid "1 byte"
 msgstr "1 байт"
 
-#: libgnomevfs/gnome-vfs-utils.c:67
+#: libgnomevfs/gnome-vfs-utils.c:69
 #, c-format
 msgid "%u bytes"
 msgstr "%u байт╕в"
 
-#: libgnomevfs/gnome-vfs-utils.c:74
+#: libgnomevfs/gnome-vfs-utils.c:76
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f Кб"
 
-#: libgnomevfs/gnome-vfs-utils.c:78
+#: libgnomevfs/gnome-vfs-utils.c:80
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f Мб"
 
-#: libgnomevfs/gnome-vfs-utils.c:82
+#: libgnomevfs/gnome-vfs-utils.c:84
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f Гб"
@@ -327,38 +322,38 @@ msgstr "Неможливе прослуховування на \"%s\": %s"
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Неможливо прийняти з'╓днання на \"%s\": %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1278
+#: libgnomevfs-corba/gnome-vfs-slave.c:1189
 msgid "Cannot initialize CORBA."
 msgstr "Неможливо ╕н╕ц╕ал╕зувати CORBA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1285
+#: libgnomevfs-corba/gnome-vfs-slave.c:1196
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Неможливо визначити початкове посилання на RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1292
+#: libgnomevfs-corba/gnome-vfs-slave.c:1203
 msgid "Cannot activate POA manager."
 msgstr "Неможливо актив╕зувати менеджер POA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1317
+#: libgnomevfs-corba/gnome-vfs-slave.c:1228
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Використання: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1328
+#: libgnomevfs-corba/gnome-vfs-slave.c:1239
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Неможливо в╕дкрити файловий дескриптор %d."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1351
+#: libgnomevfs-corba/gnome-vfs-slave.c:1262
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Незнайдено ╕нтерфейсу спов╕щення для \"%s\"."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1361
+#: libgnomevfs-corba/gnome-vfs-slave.c:1272
 msgid "Cannot setup Request object."
 msgstr "Неможливо встановити об'╓кт запиту."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1368
+#: libgnomevfs-corba/gnome-vfs-slave.c:1279
 msgid "Cannot extract IOR."
 msgstr "Неможливо отримати IOR."
 
@@ -382,7 +377,7 @@ msgstr "Неможливо знищити GNOME::VFS::Slave::Notify -- виключення %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "Неможливо з'╓днати сокет \"%s\": %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:750
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:738
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Неможливо ╕н╕ц╕ал╕зувати GNOME::VFS:Slave::Notify"
 
@@ -407,23 +402,23 @@ msgstr "Не вдалося знищити GNOME::VFS::Slave %s -- виключення %s"
 msgid "Cannot kill GNOME::VFS::Slave (IOR unknown) -- exception %s"
 msgstr "Не вдалося знищити GNOME::VFS::Slave (нев╕домий IOR) -- виключення %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:690
+#: libgnomevfs-pthread/gnome-vfs-job.c:688
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Нев╕домий тип операц╕╖ %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:976
-#: libgnomevfs-pthread/gnome-vfs-job.c:1121
+#: libgnomevfs-pthread/gnome-vfs-job.c:974
+#: libgnomevfs-pthread/gnome-vfs-job.c:1119
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Неможливо створити канал для GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1728
+#: libgnomevfs-pthread/gnome-vfs-job.c:1576
 #, c-format
 msgid "Unknown job ID %u"
 msgstr "Нев╕домий ╕дентиф╕катор завдання %u"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1749
+#: libgnomevfs-pthread/gnome-vfs-job.c:1597
 msgid "Operation stopped"
 msgstr "Операц╕ю зупинено"
 
@@ -434,8 +429,8 @@ msgstr "Виправити список програм"
 #. Add label
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:360
 #, c-format
-msgid "Select applications to appear in menu for mime type \"%s\""
-msgstr "Вибрати програми, що мають з'являтись у меню для типу MIME \"%s\""
+msgid "Select applications to appear in menu for MIME type \"%s\""
+msgstr "Вибер╕ть програми, що мають з'являтись у меню для типу MIME \"%s\""
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:384
 msgid "Add Application..."
@@ -456,8 +451,8 @@ msgstr "Виправити список компонент╕в"
 #. Add label
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:450
 #, c-format
-msgid "Select views to appear in menu for mime type \"%s\""
-msgstr "Вибрати програми перегляду в меню для типу MIME \"%s\""
+msgid "Select views to appear in menu for MIME type \"%s\""
+msgstr "Вибрати програми перегляду, що мають з'являтись в меню для типу MIME \"%s\""
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:681
 msgid ""
@@ -472,19 +467,19 @@ msgid "Add New MIME Type"
 msgstr "Додати новий тип MIME"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:708
-msgid "Add Mime Type"
+msgid "Add MIME Type"
 msgstr "Додати тип MIME"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:711
 msgid ""
-"Add a new Mime Type\n"
+"Add a new MIME Type\n"
 "For example:  image/tiff; text/x-scheme"
 msgstr ""
 "Додати новий тип MIME\n"
 "Наприклад:  image/tiff; text/x-scheme"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:717
-msgid "Mime Type:"
+msgid "MIME Type:"
 msgstr "Тип MIME:"
 
 #: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:729
@@ -495,159 +490,162 @@ msgstr "Введ╕ть опис цього типу MIME."
 msgid "Description:"
 msgstr "Опис:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:885
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:897
 msgid "File Extensions "
 msgstr "Розширення файл╕в "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:905
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:917
 msgid "Add..."
 msgstr "Додати..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:910
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:922
 msgid "    Remove    "
 msgstr "    Видалити    "
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:981
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:996
 msgid "Add New Extension"
 msgstr "Додати нове розширення"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:985
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1000
 msgid ""
-"Type in the extensions for this mime-type.\n"
-"For example:  .html, .htm"
+"Type in the extensions for this mime-type (without dot).\n"
+"You can enter several extensions seperated by a space,\n"
+"for example: html htm"
 msgstr ""
-"Введ╕ть розширення для цього типу MIME.\n"
-"Наприклад:  .html, .htm"
+"Введ╕ть розширення для цього типу MIME (без крапки).\n"
+"Ви можете ввести дек╕лька розширень розд╕лених комами,\n"
+"наприклад: html, htm"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:990
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1007
 msgid "Extension:"
 msgstr "Розширення:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1153
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1170
 msgid "New Application"
 msgstr "Нова програма"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1162
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1269
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1179
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1286
 msgid "Application Name:"
 msgstr "Назва програми:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1170
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1278
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1187
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1295
 msgid "Application Command:"
 msgstr "Команда програми:"
 
 #. Open Behavior frame
-#. FIXME: Need to add expected uri schemes
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1179
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
+#. FIXME bugzilla.eazel.com 6066: Need to add expected uri schemes
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1196
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1304
 msgid "Open Behavior"
 msgstr "Повед╕нка в╕дкривання"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1202
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1310
 msgid "Can open multiple files"
 msgstr "Може в╕дкривати багато файл╕в"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1188
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1205
 msgid "Expects URIs as arguments"
 msgstr "Оч╕куються URI в якост╕ ар╜умент╕в"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1260
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1277
 msgid "Edit Application"
 msgstr "Виправити програму"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1297
+#. FIXME bugzilla.eazel.com 6066: This needs to be three options now: "yes", "no", and "use uris for non-file locations"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1315
 msgid "Can open from URI"
 msgstr "Може в╕дкривати з URI"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:541
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1532
-msgid "Mime Type"
+#: mime-type-capplet/nautilus-mime-type-capplet.c:651
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1729
+msgid "MIME Type"
 msgstr "Тип MIME"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:548
+#: mime-type-capplet/nautilus-mime-type-capplet.c:658
 msgid "Change Icon"
 msgstr "Зм╕нити п╕ктограму"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:555
+#: mime-type-capplet/nautilus-mime-type-capplet.c:665
 msgid "Change File Extensions"
 msgstr "Зм╕нити розширення файл╕в"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:563
+#: mime-type-capplet/nautilus-mime-type-capplet.c:673
 msgid "Default Action:"
 msgstr "Типова д╕я:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:575
+#: mime-type-capplet/nautilus-mime-type-capplet.c:685
 msgid "Use Viewer"
 msgstr "Використовувати програму перегляду"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:581
+#: mime-type-capplet/nautilus-mime-type-capplet.c:691
 msgid "Open With Application"
 msgstr "В╕дкрити програмою"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:593
+#: mime-type-capplet/nautilus-mime-type-capplet.c:703
 msgid "Edit List"
 msgstr "Виправити список"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:618
-msgid "Add new Mime type..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:728
+msgid "Add new MIME type..."
 msgstr "Додати новий тип MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:624
-msgid "Delete this Mime type..."
+#: mime-type-capplet/nautilus-mime-type-capplet.c:734
+msgid "Delete this MIME type..."
 msgstr "Стерти цей тип MIME..."
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:635
+#: mime-type-capplet/nautilus-mime-type-capplet.c:745
 msgid "Revert to System Defaults"
 msgstr "Повернутись до типових налаштувань"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:693
+#: mime-type-capplet/nautilus-mime-type-capplet.c:828
 msgid "No Description"
 msgstr "Без опису"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:823
-#: mime-type-capplet/nautilus-mime-type-capplet.c:968
+#: mime-type-capplet/nautilus-mime-type-capplet.c:958
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1102
 msgid "None"
 msgstr "Нема╓"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1064
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1198
 msgid ""
 "Reverting to system settings\n"
 "will lose all your personal \n"
-"Mime configuration.\n"
-"Revert to System Settings ?\n"
+"MIME configuration.\n"
+"Revert anyway?"
 msgstr ""
-"Повернення до типових налаштувань  \n"
-"призведе до втрати вашо╖ особисто╖ \n"
+"Повернення до системних установок\n"
+"призведе до втрати вашо╖ особисто╖\n"
 "конф╕╜урац╕╖ MIME.\n"
-"Повернутись до типових налаштувань?\n"
+"Повернутись до систених установок?"
 
 #. Add default action to fourth column
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1133
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1321
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1445
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1268
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1464
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1588
 msgid "none"
 msgstr "нема╓"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1170
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1351
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1481
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1305
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1494
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1624
 #, c-format
 msgid "View as %s"
 msgstr "Показати як %s"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1531
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1728
 msgid "Description"
 msgstr "Опис"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1533
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1730
 msgid "Extension"
 msgstr "Розширення"
 
-#: mime-type-capplet/nautilus-mime-type-capplet.c:1534
+#: mime-type-capplet/nautilus-mime-type-capplet.c:1731
 msgid "Default Action"
 msgstr "Типова д╕я"
 
@@ -659,94 +657,103 @@ msgstr "Неможливо знайти hbox, використову╓ться звичайний вибор файлу"
 msgid "Preview"
 msgstr "Перегляд"
 
-#: modules/efs-method.c:493 modules/file-method.c:367
+#: modules/efs-method.c:493 modules/file-method.c:365
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Нев╕домий GnomeVFSSeekPosition %d"
 
-#: modules/http-method.c:1184
+#: modules/http-method.c:1177
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s для в╕дновлення"
 
-#: modules/http-method.c:1589
+#: modules/http-method.c:1582
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Закриття з'╓днання з %s"
 
-#: modules/http-method.c:1833
+#: modules/http-method.c:1848
 #, c-format
 msgid "%s of %s read"
 msgstr "%s з %s зчитано"
 
-#: modules/http-method.c:1836
+#: modules/http-method.c:1851
 #, c-format
 msgid "%s read"
 msgstr "%s зчитано"
 
-#: test/gnome-file-selection/gnome-file-selection.c:671
+#: test/gnome-file-selection/gnome-file-selection.c:667
 msgid "Back"
 msgstr "Назад"
 
-#: test/gnome-file-selection/gnome-file-selection.c:672
+#: test/gnome-file-selection/gnome-file-selection.c:668
 msgid "Go to the previously visited directory"
 msgstr "Перейти в попередн╕й каталог"
 
-#: test/gnome-file-selection/gnome-file-selection.c:680
+#: test/gnome-file-selection/gnome-file-selection.c:676
 msgid "Up"
 msgstr "Вгору"
 
-#: test/gnome-file-selection/gnome-file-selection.c:681
+#: test/gnome-file-selection/gnome-file-selection.c:677
 msgid "Go to the parent directory"
 msgstr "Перейти в батьк╕вський каталог"
 
-#: test/gnome-file-selection/gnome-file-selection.c:689
+#: test/gnome-file-selection/gnome-file-selection.c:685
 msgid "Forward"
 msgstr "Вперед"
 
-#: test/gnome-file-selection/gnome-file-selection.c:690
+#: test/gnome-file-selection/gnome-file-selection.c:686
 msgid "Go to the next visited directory"
 msgstr "Перейти в наступний каталог"
 
-#: test/gnome-file-selection/gnome-file-selection.c:699
+#: test/gnome-file-selection/gnome-file-selection.c:695
 msgid "Rescan"
 msgstr "Перечитати"
 
-#: test/gnome-file-selection/gnome-file-selection.c:700
+#: test/gnome-file-selection/gnome-file-selection.c:696
 msgid "Rescan the current directory"
 msgstr "Перечитати поточкий каталог"
 
-#: test/gnome-file-selection/gnome-file-selection.c:709
+#: test/gnome-file-selection/gnome-file-selection.c:705
 msgid "Home"
 msgstr "Дом╕вка"
 
-#: test/gnome-file-selection/gnome-file-selection.c:710
+#: test/gnome-file-selection/gnome-file-selection.c:706
 msgid "Go to the home directory"
 msgstr "Перейти в домашн╕й каталог"
 
-#: test/gnome-file-selection/gnome-file-selection.c:806
+#: test/gnome-file-selection/gnome-file-selection.c:802
 msgid "Name"
 msgstr "Назва"
 
-#: test/gnome-file-selection/gnome-file-selection.c:807
+#: test/gnome-file-selection/gnome-file-selection.c:803
 msgid "Size"
 msgstr "Розм╕р"
 
-#: test/gnome-file-selection/gnome-file-selection.c:808
+#: test/gnome-file-selection/gnome-file-selection.c:804
 msgid "Date"
 msgstr "Дата"
 
-#: test/gnome-file-selection/gnome-file-selection.c:837
+#: test/gnome-file-selection/gnome-file-selection.c:833
 msgid "Enter name:"
 msgstr "Введ╕ть назву:"
 
-#: test/gnome-file-selection/gnome-file-selection.c:860
+#: test/gnome-file-selection/gnome-file-selection.c:856
 msgid "Show:"
 msgstr "Показати:"
 
-#: test/gnome-file-selection/gnome-file-selection.c:887
+#: test/gnome-file-selection/gnome-file-selection.c:883
 msgid "Show dotfiles"
 msgstr "Показати крапков╕ файли"
+
+#~ msgid "Unknown sort rule %d"
+#~ msgstr "Нев╕доме правило сортування %d"
+
+#~ msgid "Add Mime Type"
+#~ msgstr "Додати тип MIME"
+
+#~ msgid "Mime Type"
+#~ msgstr "Тип MIME"
 
 #~ msgid "Error writing to the wakeup GnomeVFSJob channel."
 #~ msgstr "Помидка запису у в╕дновлений канал GnomeVFSJob."
