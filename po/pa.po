@@ -4,21 +4,22 @@
 # Copyright (C) 2004 THE gnome-vfs.'S COPYRIGHT HOLDER
 # Amanpreet Singh Alam <amanliunx@netscapet.net>, 2004.
 # Amanpreet Singh Alam <aalam@redhat.com>, 2004.
+# Amanpreet Singh Alam <amanpreetalam@yahoo.com>, 2005.
 #
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs.HEAD.pa\n"
+"Project-Id-Version: pa\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-10 12:25+0100\n"
-"PO-Revision-Date: 2004-09-02 20:22+0530\n"
-"Last-Translator: Amanpreet Singh Alam <aalam@redhat.com>\n"
+"POT-Creation-Date: 2005-03-03 22:19+0100\n"
+"PO-Revision-Date: 2005-03-04 06:44+0530\n"
+"Last-Translator: Amanpreet Singh Alam <amanpreetalam@yahoo.com>\n"
 "Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3.1\n"
-"Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "\n"
 "\n"
 "\n"
@@ -235,23 +236,23 @@ msgstr "ਅਣਪਛਾਤੀ ਕਾਰਜ ਕਿਸਮ %u"
 msgid "Operation stopped"
 msgstr "ਕਾਰਵਾਈ ਰੁਕੀ ਹੈ"
 
-#: libgnomevfs/gnome-vfs-mime-handlers.c:101
-#: libgnomevfs/gnome-vfs-mime-handlers.c:255
-#: libgnomevfs/gnome-vfs-mime-handlers.c:306
-#: libgnomevfs/gnome-vfs-mime-handlers.c:600
-#: libgnomevfs/gnome-vfs-mime-handlers.c:619
-#: libgnomevfs/gnome-vfs-mime-handlers.c:637
-#: libgnomevfs/gnome-vfs-mime-handlers.c:656
-#: libgnomevfs/gnome-vfs-mime-handlers.c:675
-#: libgnomevfs/gnome-vfs-mime-handlers.c:816
-#: libgnomevfs/gnome-vfs-mime-handlers.c:838
-#: libgnomevfs/gnome-vfs-mime-handlers.c:857
-#: libgnomevfs/gnome-vfs-mime-handlers.c:876
-#: libgnomevfs/gnome-vfs-mime-handlers.c:929
-#: libgnomevfs/gnome-vfs-mime-handlers.c:946
-#: libgnomevfs/gnome-vfs-mime-handlers.c:963
-#: libgnomevfs/gnome-vfs-mime-handlers.c:981
-#: libgnomevfs/gnome-vfs-mime-handlers.c:999
+#: libgnomevfs/gnome-vfs-mime-handlers.c:106
+#: libgnomevfs/gnome-vfs-mime-handlers.c:260
+#: libgnomevfs/gnome-vfs-mime-handlers.c:311
+#: libgnomevfs/gnome-vfs-mime-handlers.c:605
+#: libgnomevfs/gnome-vfs-mime-handlers.c:624
+#: libgnomevfs/gnome-vfs-mime-handlers.c:642
+#: libgnomevfs/gnome-vfs-mime-handlers.c:661
+#: libgnomevfs/gnome-vfs-mime-handlers.c:680
+#: libgnomevfs/gnome-vfs-mime-handlers.c:821
+#: libgnomevfs/gnome-vfs-mime-handlers.c:843
+#: libgnomevfs/gnome-vfs-mime-handlers.c:862
+#: libgnomevfs/gnome-vfs-mime-handlers.c:881
+#: libgnomevfs/gnome-vfs-mime-handlers.c:934
+#: libgnomevfs/gnome-vfs-mime-handlers.c:951
+#: libgnomevfs/gnome-vfs-mime-handlers.c:968
+#: libgnomevfs/gnome-vfs-mime-handlers.c:986
+#: libgnomevfs/gnome-vfs-mime-handlers.c:1004
 #: libgnomevfs/gnome-vfs-mime-info.c:643 libgnomevfs/gnome-vfs-mime-info.c:650
 #: libgnomevfs/gnome-vfs-mime-info.c:658 libgnomevfs/gnome-vfs-mime-info.c:665
 #: libgnomevfs/gnome-vfs-mime-info.c:673 libgnomevfs/gnome-vfs-mime-info.c:690
@@ -599,7 +600,7 @@ msgstr "%.1f ਐਮ-ਬੀ"
 msgid "%.1f GB"
 msgstr "%.1f ਜੀ-ਬੀ"
 
-#: libgnomevfs/gnome-vfs-utils.c:1131
+#: libgnomevfs/gnome-vfs-utils.c:1137
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr "(ਗਲਤ ਯੂਨੀਕੋਡ)"
@@ -747,10 +748,8 @@ msgstr "ਨੈਟਵਰਕ ਸਰਵਰ"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ(ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਕੋਈ ਫਲਾਪੀ ਡਰਾਇਵ ਵਿੱਚ ਨਹੀ ਹੈ ।"
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "ਫਲਾਪੀ ਡਰਾਇਵ ਨੂੰ ਚਲਾਉਣ(ਮਾਊਟ) ਵਿੱਚ ਅਸਫਲ ਹੈ। ਇਹ ਸੰਭਵ ਹੈ ਕਿ ਕੋਈ ਫਲਾਪੀ ਡਰਾਇਵ ਵਿੱਚ ਨਹੀ ਹੈ ।"
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
@@ -820,12 +819,12 @@ msgstr "ਅਣਪਛਾਤੀ ਗਨੋਮ VFSSeek ਥਾਂ %d"
 msgid "Windows Network"
 msgstr "ਵਿੰਡੋ ਨੈਟਵਰਕ"
 
-#: modules/sftp-method.c:1338
+#: modules/sftp-method.c:1313
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "ਰਿਮੋਟ ਕੰਪਿਊਟਰ(%s) ਦੀ ਪਛਾਣ ਅਣਜਾਣੀ ਹੈ"
 
-#: modules/sftp-method.c:1339
+#: modules/sftp-method.c:1314
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -838,11 +837,11 @@ msgstr ""
 "ਇਹ ਪਛਾਣ %s ਰਿਮੋਟ ਕੰਪਿਊਟਰ ਨੇ ਭੇਜੀ ਹੈ, ਜੇਕਰ ਤੁਸੀਂ ਇਹ ਯਕੀਨੀ ਬਂਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ ਕਿ ਇਹ ਸੁਰੱਖਿਅਤ "
 "ਹੈ ਤਾਂ ਆਪਣੇ ਸਿਸਟਮ ਪ੍ਰਬੰਧਕ ਨਾਲ ਸੰਪਰਕ ਕਰੋ"
 
-#: modules/sftp-method.c:1347
+#: modules/sftp-method.c:1322
 msgid "Log In Anyway"
 msgstr "ਕਿਸੇਤਰਾਂ ਵੀ ਲਾਗਆਨ ਕਰੋ"
 
-#: modules/sftp-method.c:1348
+#: modules/sftp-method.c:1323
 msgid "Cancel Login"
 msgstr "ਲਾਗਆਨ ਰੱਦ"
 
@@ -1000,8 +999,7 @@ msgstr "\"trash\" URL ਲਈ ਹੈਂਡਲਰ"
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\"  ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\"  ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
@@ -1015,57 +1013,49 @@ msgstr ""
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"ghelp\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"ghelp\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, h323 ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, h323 ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"http\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"http\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"https\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"https\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"info\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"info\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
@@ -1075,53 +1065,43 @@ msgstr "ਸਹੀ, ਜੇਕਰ ਕਾਰਜ ਜੋ ਕਿ ਇਸ ਯੂਆਰ�
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,\"aim\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"callto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"callto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"ghelp\"ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"ghelp\"ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ ਕਮਾਂਡ ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"h323\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ ਕਮਾਂਡ ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"h323\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ "
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"http\"ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"http\"ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"https\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"https\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"info\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ,  \"info\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"mailto\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"man\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
+msgstr "ਸਹੀ ਕਰ ਦਿਉ ਤਾਂ ਕਿ ਕਾਰਜ ਜੋ ਕਿ \"ਕਮਾਂਡ\" ਵਿੱਚ ਨਿਰਧਾਰਿਤ ਹੈ, \"trash\" ਯੂਆਰਐਲ਼ ਨੂੰ ਵਰਤ ਸਕੇ"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1178,15 +1158,14 @@ msgid "HTTP proxy username"
 msgstr "HTTP ਪਰਾਕਸੀ ਉਪਭੋਗਤਾ ਨਾਂ"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-#, fuzzy
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
 "username/password combo is defined by \"/system/http_proxy/"
 "authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"ਜੇਕਰ ਸਹੀ ਹੈ ਤਾਂ, ਪਰਾਕਸੀ ਸਰਵਰ ਤੇ ਕੁਨੈਕਸ਼ਨ ਸਮੇ ਪ੍ਰਮਾਣਿਕਤਾ ਲਈ ਦੀ ਲੋਡ਼ ਪਵੇਗੀ ।ਉਪਯੋਗੀ-ਨਾਂ/ਗੁਪਤ-"
+"ਜੇਕਰ ਸਹੀ ਹੈ ਤਾਂ, ਪਰਾਕਸੀ ਸਰਵਰ ਤੇ ਕੁਨੈਕਸ਼ਨ ਸਮੇ ਪ੍ਰਮਾਣਿਕਤਾ ਲਈ ਦੀ ਲੋਡ਼ ਪਵੇਗੀ। ਉਪਯੋਗੀ-ਨਾਂ/ਗੁਪਤ-"
 "ਕੋਡ ਡੱਬਾ \"/system/http_proxy/authentication_user\" ਅਤੇ \"/system/http_proxy/"
-"authentication_password\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤਾ ਹੈ ।"
+"authentication_password\" ਨੇ ਨਿਰਧਾਰਿਤ ਕੀਤਾ ਹੈ।"
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1301,169 +1280,3 @@ msgstr "SMB ਵਰਕਗਰੁੱਪ"
 msgid "The window workgroup the user is part of"
 msgstr "ਵਿੰਡੋ ਵਰਕਗਰੁੱਪ ਉਪਭੋਗਤਾ(ਯੂਜਰ) ਹਿੱਸਾ ਹੈ"
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "CD-ROM ਡਿਸਕ"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "ਖਾਲੀ CD-R ਡਿਸਕ"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "CD-R ਡਿਸਕ"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "ਖਾਲੀ CD-RW ਡਿਸਕ"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "ਸੀਡੀ-ਰੋਮ ਡਿਸਕ"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "DVD-ਰੋਮ ਡਿਸਕ"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "ਖਾਲੀ DVD-R ਡਿਸਕ"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "DVD-R ਡਿਸਕ"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "ਖਾਲੀ DVD-RAM ਡਿਸਕ"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "DVD-RAM ਡਿਸਕ"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "ਖਾਲੀ DVD-RW ਡਿਸਕ"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "DVD-RW ਡਿਸਕ"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "ਖਾਲੀ DVD+RW ਡਿਸਕ"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "DVD+RW ਡਿਸਕ"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "ਖਾਲੀ DVD+R ਡਿਸਕ"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "DVD+R ਡਿਸਕ"
-
-#~ msgid "Optical Disc"
-#~ msgstr "ਆਪਟੀਕਲ ਡਿਸਕ"
-
-#~ msgid "Audio Disc"
-#~ msgstr "ਆਡੀਉ ਡਿਸਕ"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "ਸੰਯੁਕਤ ਫਲੈਸ਼ ਮੀਡਿਆ"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "ਮੈਮੋਰੀ ਸਟਿਕ ਮਾਧਿਅਮ"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "ਸਮਾਟ ਮੀਡਿਆ ਮਾਧਿਅਮ "
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "SD/MMC ਮਾਧਿਅਮ"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "ਫਲਾਪੀ ਡਿਸਕ"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "ਮੈਕ OS ਡਿਸਕ"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "ਮੈਕ OS X ਡਿਸਕ"
-
-#~ msgid "Windows Disk"
-#~ msgstr "ਵਿੰਡੋ ਡਿਸਕ"
-
-#~ msgid "Linux Disk"
-#~ msgstr "ਲੀਨਕਸ ਡਿਸਕ"
-
-# libgnomevfs/gnome-vfs-parse-ls.c:652
-#~ msgid "File could not be opened: %s"
-#~ msgstr "ਫਾਇਲ਼ ਨੂੰ ਖੋਲਿਆਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "ਫਾਇਲ਼ '%s' ਖੋਲ਼ਣ ਵਿੱਚ ਅਸਫਲ: %s"
-
-# libgnomevfs/gnome-vfs-result.c:57
-#~ msgid "File is empty"
-#~ msgstr "ਫਾਇਲ ਖਾਲੀ ਹੈ"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "ਫਾਇਲ਼ '%s' ਤੋਂ ਪੜਨ ਵਿੱਚ ਅਸਫਲ: %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਤਰ '%s' ਹੈ ਜੋ ਕਿ ਇੱਕ ਇੰਦਰਾਜ਼, ਸਮੂਹ ਜਾਂ ਟਿੱਪਣੀ ਨਹੀਂ ਹੈ"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਫਾਇਲ਼ ਪ੍ਰਮਾਣਿਤ ਸ਼ੁਰੂ ਸਮੂਹ ਨਾਲ ਸ਼ੁਰੂ ਨਹੀਂ ਸਕਦੀ"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਤਰ '%s' ਹੈ ਜੋ ਕਿ ਂ UTF ਨਹੀਂ ਹੈ-8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਅਣਜਾਣੀ ਇਕੋਡਿੰਗ '%s' ਹੈ"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਮੂਹ '%s' ਨਹੀਂ ਹੈ"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਕੀ '%s' ਨਹੀਂ ਹੈ"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਮੂਹ '%s' ਹੈ, ਜਿਸ ਦਾ ਮੁੱਲ ਖੋਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਇੱਕ ਕੀ '%s', ਜਿਸ ਦਾ ਇਲਾਕਾਈ '%s' ਹੈ, ਲਈ ਕੋਈ ਭਾਸ਼ਾ-ਅਨੁਵਾਦ ਨਹੀਂ ਹੈ|"
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਕੋਈ ਤਰਤੀਬ  '%s' ਨਹੀਂ ਹੈ"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "ਵਿਹੜਾ ਇੰਦਰਾਜ਼ ਵਿੱਚ ਸਤਰ ਦੇ ਅੰਤ ਤੇ ਅਸਕੇਪ ਅੱਖਰ ਹੈ"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "ਮੁੱਲ '%s' ਅੰਕ ਦੇ ਤੌਰ ਤੇ ਵਰਤਿਆ  ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "ਮੁੱਲ '%s' ਬੁਲੀਅਨ ਦੇ ਤੌਰ ਤੇ ਵਰਤਿਆ  ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
-
-#~ msgid "Applications"
-#~ msgstr "ਕਾਰਜ"
-
-#~ msgid "Cards"
-#~ msgstr "ਕਾਰਡ"
-
-# libgnomevfs/gnome-vfs-result.c:57
-#~ msgid "Files"
-#~ msgstr "ਫਾਇਲਾਂ"
-
-#~ msgid "Folders"
-#~ msgstr "ਫੋਲਡਰ"
-
-#~ msgid "Help"
-#~ msgstr "ਸਹਾਇਤਾ"
-
-#~ msgid "Hosts"
-#~ msgstr "ਮੇਜ਼ਬਾਨ"
-
-#~ msgid "Links"
-#~ msgstr "ਸੰਬੰਧ"
-
-#~ msgid "Mail"
-#~ msgstr "ਪੱਤਰ"
-
-#~ msgid "Tools"
-#~ msgstr "ਸੰਦ"
-
-#~ msgid "Windows"
-#~ msgstr "ਵਿੰਡੋ"
