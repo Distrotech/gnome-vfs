@@ -25,8 +25,8 @@
       </locale>
     </schema>
     <schema>
-      <key>/schemas/desktop/gnome/url-handlers/trash/need-terminal</key>
-      <applyto>/desktop/gnome/url-handlers/trash/need-terminal</applyto>
+      <key>/schemas/desktop/gnome/url-handlers/trash/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/trash/needs_terminal</applyto>
       <owner>gnome</owner>
       <type>bool</type>
       <default>false</default>
@@ -59,8 +59,8 @@
      </locale>
    </schema>
    <schema>
-     <key>/schemas/desktop/gnome/url-handlers/ghelp/need-terminal</key>
-     <applyto>/desktop/gnome/url-handlers/ghelp/need-terminal</applyto>
+     <key>/schemas/desktop/gnome/url-handlers/ghelp/needs_terminal</key>
+     <applyto>/desktop/gnome/url-handlers/ghelp/needs_terminal</applyto>
      <owner>gnome</owner>
      <type>bool</type>
      <default>false</default>
@@ -93,8 +93,8 @@
      </locale>
    </schema>
    <schema>
-     <key>/schemas/desktop/gnome/url-handlers/info/need-terminal</key>
-     <applyto>/desktop/gnome/url-handlers/info/need-terminal</applyto>
+     <key>/schemas/desktop/gnome/url-handlers/info/needs_terminal</key>
+     <applyto>/desktop/gnome/url-handlers/info/needs_terminal</applyto>
      <owner>gnome</owner>
      <type>bool</type>
      <default>false</default>
@@ -127,8 +127,8 @@
      </locale>
    </schema>
    <schema>
-     <key>/schemas/desktop/gnome/url-handlers/man/need-terminal</key>
-     <applyto>/desktop/gnome/url-handlers/man/need-terminal</applyto>
+     <key>/schemas/desktop/gnome/url-handlers/man/needs_terminal</key>
+     <applyto>/desktop/gnome/url-handlers/man/needs_terminal</applyto>
      <owner>gnome</owner>
      <type>bool</type>
      <default>false</default>
@@ -161,8 +161,8 @@
      </locale>
    </schema>
    <schema>
-     <key>/schemas/desktop/gnome/url-handlers/http/need-terminal</key>
-     <applyto>/desktop/gnome/url-handlers/http/need-terminal</applyto>
+     <key>/schemas/desktop/gnome/url-handlers/http/needs_terminal</key>
+     <applyto>/desktop/gnome/url-handlers/http/needs_terminal</applyto>
      <owner>gnome</owner>
      <type>bool</type>
      <default>false</default>
@@ -195,8 +195,8 @@
      </locale>
    </schema>
    <schema>
-     <key>/schemas/desktop/gnome/url-handlers/https/need-terminal</key>
-     <applyto>/desktop/gnome/url-handlers/https/need-terminal</applyto>
+     <key>/schemas/desktop/gnome/url-handlers/https/needs_terminal</key>
+     <applyto>/desktop/gnome/url-handlers/https/needs_terminal</applyto>
      <owner>gnome</owner>
      <type>bool</type>
      <default>false</default>
@@ -229,8 +229,8 @@
      </locale>
    </schema>
    <schema>
-     <key>/schemas/desktop/gnome/url-handlers/mailto/need-terminal</key>
-     <applyto>/desktop/gnome/url-handlers/mailto/need-terminal</applyto>
+     <key>/schemas/desktop/gnome/url-handlers/mailto/needs_terminal</key>
+     <applyto>/desktop/gnome/url-handlers/mailto/needs_terminal</applyto>
      <owner>gnome</owner>
      <type>bool</type>
      <default>false</default>
@@ -263,8 +263,8 @@
      </locale>
    </schema>
    <schema>
-     <key>/schemas/desktop/gnome/url-handlers/callto/need-terminal</key>
-     <applyto>/desktop/gnome/url-handlers/callto/need-terminal</applyto>
+     <key>/schemas/desktop/gnome/url-handlers/callto/needs_terminal</key>
+     <applyto>/desktop/gnome/url-handlers/callto/needs_terminal</applyto>
      <owner>gnome</owner>
      <type>bool</type>
      <default>false</default>
@@ -297,8 +297,8 @@
      </locale>
    </schema>
    <schema>
-     <key>/schemas/desktop/gnome/url-handlers/h323/need-terminal</key>
-     <applyto>/desktop/gnome/url-handlers/h323/need-terminal</applyto>
+     <key>/schemas/desktop/gnome/url-handlers/h323/needs_terminal</key>
+     <applyto>/desktop/gnome/url-handlers/h323/needs_terminal</applyto>
      <owner>gnome</owner>
      <type>bool</type>
      <default>false</default>
