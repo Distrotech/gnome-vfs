@@ -1,5 +1,17 @@
 2002-09-16  Alex Graveley  <alex@ximian.com>
 
+	* modules/vfolder/Makefile.am (vfolder_DATA): Add
+	preferences.vfolder-info-default.
+
+	* modules/vfolder/preferences.vfolder-info-default.in: Create this
+	defaults file, which is simply a folder extending
+	preferences-all-users:.  This fixes the problem of not having a
+	writedir when the .vfolder-info file doesn't exist, causing
+	content changes to be written to the original system-global
+	file, which is read-only.
+
+2002-09-16  Alex Graveley  <alex@ximian.com>
+
 	* modules/vfolder/vfolder-util.c (notify_children_changed_since):
 	Impl, traverse directory children looking for ones which have
 	changed since the last directory change, and emit CHANGED events.
