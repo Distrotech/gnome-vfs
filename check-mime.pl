@@ -27,29 +27,29 @@
 
 # What we check:
 #     types are lower-case in all files
-#     types in gnome-vfs.keys are in alphabetical order
+#     types in gnome-vfs.keys.in are in alphabetical order
 #     types in gnome-vfs.mime are in alphabetical order
-#     types in gnome-vfs.mime have descriptions in gnome-vfs.keys
-#     types in gnome-vfs-mime-magic have descriptions in gnome-vfs.keys
-#     types in gnome-vfs.applications have descriptions in gnome-vfs.keys
+#     types in gnome-vfs.mime have descriptions in gnome-vfs.keys.in
+#     types in gnome-vfs-mime-magic have descriptions in gnome-vfs.keys.in
+#     types in gnome-vfs.applications have descriptions in gnome-vfs.keys.in
 
 # Other things to check later:
 #     OAFIIDs are consistent (same UUID part for same prefix)
-#     some way of detecting gnome-vfs.keys entries for nonexistent MIME types
+#     some way of detecting gnome-vfs.keys.in entries for nonexistent MIME types
 
 use diagnostics;
 use strict;
 
 my %seen;
 
-print STDERR "Reading gnome-vfs.keys.\n";
+print STDERR "Reading gnome-vfs.keys.in.\n";
 
 my $previous_type = "";
 my $type;
 my %in_keys;
 my %described;
 
-open KEYS, "data/mime/gnome-vfs.keys" or die;
+open KEYS, "data/mime/gnome-vfs.keys.in" or die;
 while (<KEYS>)
   {
     next if /^\s*\#/;
@@ -63,12 +63,12 @@ while (<KEYS>)
 	  }
 	if (lc $type le lc $previous_type)
 	  {
-	    print "- $type is after $previous_type in gnome-vfs.keys\n";
+	    print "- $type is after $previous_type in gnome-vfs.keys.in\n";
 	  }
 	$seen{$type} = 1;
 	$in_keys{$type} = 1;
       }
-    elsif (/^\s*description=/)
+    elsif (/^\s*_description=/)
       {
 	if ($type eq "")
 	  {
@@ -104,11 +104,11 @@ while (<MAGIC>)
 	  {
 	    if (!$in_keys{$type})
 	      {
-		print "- $type is in gnome-vfs-mime-magic, but not gnome-vfs.keys\n";
+		print "- $type is in gnome-vfs-mime-magic, but not gnome-vfs.keys.in\n";
 	      }
 	    else
 	      {
-		print "- $type is in gnome-vfs-mime-magic, but has no description in gnome-vfs.keys\n";
+		print "- $type is in gnome-vfs-mime-magic, but has no description in gnome-vfs.keys.in\n";
 	      }
 	  }
 	$seen{$type} = 1;
@@ -147,11 +147,11 @@ while (<MIME>)
 	  {
 	    if (!$in_keys{$type})
 	      {
-		print "- $type is in gnome-vfs.mime, but not gnome-vfs.keys\n";
+		print "- $type is in gnome-vfs.mime, but not gnome-vfs.keys.in\n";
 	      }
 	    else
 	      {
-		print "- $type is in gnome-vfs.mime, but has no description in gnome-vfs.keys\n";
+		print "- $type is in gnome-vfs.mime, but has no description in gnome-vfs.keys.in\n";
 	      }
 	  }
 	$seen{$type} = 1;
@@ -190,11 +190,11 @@ while (<MIME>)
               {
                 if (!$in_keys{$type})
                   {
-                    print "- $type is in gnome-vfs.applications, but not gnome-vfs.keys\n";
+                    print "- $type is in gnome-vfs.applications, but not gnome-vfs.keys.in\n";
                   }
                 else
                   {
-                    print "- $type is in gnome-vfs.applications, but has no description in gnome-vfs.keys\n";
+                    print "- $type is in gnome-vfs.applications, but has no description in gnome-vfs.keys.in\n";
                   }
               }
             $seen{$type} = 1;
