@@ -579,6 +579,7 @@ make_request (HttpFileHandle **handle_return,
 	request = g_string_new (method);
 	g_string_append (request, " ");
 	g_string_append (request, uri_string);
+	g_free (uri_string);
 	/* Our code doesn't handle the chunked transfer-encoding that mod_dav 
 	 * uses for HTTP/1.1 requests. */
 	g_string_append (request, " HTTP/1.0\r\n");
@@ -636,7 +637,6 @@ make_request (HttpFileHandle **handle_return,
  error:
 	gnome_vfs_iobuf_destroy (iobuf);
 	gnome_vfs_inet_connection_destroy (connection, NULL);
-	g_free (uri_string);
 	return result;
 }
 
@@ -946,8 +946,6 @@ make_propfind_request (HttpFileHandle **handle_return,
 	GByteArray *request = g_byte_array_new();
 	gchar *request_str = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
 		"<D:propfind xmlns:D=\"DAV:\"><D:allprop/></D:propfind>";
-
-
 	g_free(raw_uri);
 
 	request = g_byte_array_append(request, request_str, 

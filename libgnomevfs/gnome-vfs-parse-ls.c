@@ -371,6 +371,7 @@ vfs_parse_filedate (gint idx,
 	time_t now;
     
 	/* Let's setup default time values */
+	now = time (NULL);
 	tim = *localtime (&now);
 	current_mon = tim.tm_mon;
 	tim.tm_hour = 0;

@@ -303,7 +303,6 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	uri->method_string = method_string;
 	uri->text          = NULL;
 	if (method == NULL) {
-		g_free (method_string);
 		gnome_vfs_uri_unref (uri);
 		g_free (new_uri_string);
 		return NULL;
