@@ -8,15 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-13 09:57+0200\n"
-"PO-Revision-Date: 2004-07-27 16:56+0300\n"
+"POT-Creation-Date: 2004-09-18 11:52+0300\n"
+"PO-Revision-Date: 2004-09-18 12:06+0300\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
-"100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -285,9 +284,8 @@ msgid "Unknown"
 msgstr "Nežinomas"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-ROM Disc"
-msgstr "CD-R diskas"
+msgstr "CD-ROM diskas"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:614
 msgid "Blank CD-R Disc"
@@ -394,9 +392,9 @@ msgid "Linux Disk"
 msgstr "Linux diskas"
 
 #: libgnomevfs/gnome-vfs-job.c:734
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown operation type %u"
-msgstr "Nežinomas op tipas %u"
+msgstr "Nežinomas operacijos tipas %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
@@ -429,12 +427,12 @@ msgstr "Operacija sustabdyta"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1013
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1031
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1049
-#: libgnomevfs/gnome-vfs-mime-info.c:647 libgnomevfs/gnome-vfs-mime-info.c:654
-#: libgnomevfs/gnome-vfs-mime-info.c:662 libgnomevfs/gnome-vfs-mime-info.c:669
-#: libgnomevfs/gnome-vfs-mime-info.c:677 libgnomevfs/gnome-vfs-mime-info.c:694
-#: libgnomevfs/gnome-vfs-mime-info.c:701 libgnomevfs/gnome-vfs-mime-info.c:708
-#: libgnomevfs/gnome-vfs-mime-info.c:715 libgnomevfs/gnome-vfs-mime-info.c:723
-#: libgnomevfs/gnome-vfs-mime-info.c:730
+#: libgnomevfs/gnome-vfs-mime-info.c:649 libgnomevfs/gnome-vfs-mime-info.c:656
+#: libgnomevfs/gnome-vfs-mime-info.c:664 libgnomevfs/gnome-vfs-mime-info.c:671
+#: libgnomevfs/gnome-vfs-mime-info.c:679 libgnomevfs/gnome-vfs-mime-info.c:696
+#: libgnomevfs/gnome-vfs-mime-info.c:703 libgnomevfs/gnome-vfs-mime-info.c:710
+#: libgnomevfs/gnome-vfs-mime-info.c:717 libgnomevfs/gnome-vfs-mime-info.c:725
+#: libgnomevfs/gnome-vfs-mime-info.c:732
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
@@ -743,110 +741,96 @@ msgid "CD-ROM"
 msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:576
-#, fuzzy
 msgid "CD-R"
-msgstr "CD-ROM"
+msgstr "CD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:577
-#, fuzzy
 msgid "CD-RW"
-msgstr "CD-ROM"
+msgstr "CD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:578
-#, fuzzy
 msgid "DVD-ROM"
-msgstr "CD-ROM"
+msgstr "DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:579
-#, fuzzy
 msgid "DVD-RAM"
-msgstr "DVD-RAM diskas"
+msgstr "DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:580
-#, fuzzy
 msgid "DVD-R"
-msgstr "DVD"
+msgstr "DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:581
-#, fuzzy
 msgid "DVD-RW"
-msgstr "DVD-RW diskas"
+msgstr "DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:582
-#, fuzzy
 msgid "CD-ROM/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD-ROM/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:583
-#, fuzzy
 msgid "CD-ROM/DVD-RAM"
-msgstr "CD-ROM"
+msgstr "CD-ROM/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:584
-#, fuzzy
 msgid "CD-ROM/DVD-R"
-msgstr "CD-ROM"
+msgstr "CD-ROM/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:585
-#, fuzzy
 msgid "CD-ROM/DVD-RW"
-msgstr "CD-ROM"
+msgstr "CD-ROM/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:586
-#, fuzzy
 msgid "CD-R/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD-R/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:587
 msgid "CD-R/DVD-RAM"
-msgstr ""
+msgstr "CD-R/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:588
 msgid "CD-R/DVD-R"
-msgstr ""
+msgstr "CD-R/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:589
 msgid "CD-R/DVD-RW"
-msgstr ""
+msgstr "CD-R/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:590
-#, fuzzy
 msgid "CD-RW/DVD-ROM"
-msgstr "CD-ROM"
+msgstr "CD-RW/DVD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:591
 msgid "CD-RW/DVD-RAM"
-msgstr ""
+msgstr "CD-RW/DVD-RAM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:592
 msgid "CD-RW/DVD-R"
-msgstr ""
+msgstr "CD-RW/DVD-R"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:593
 msgid "CD-RW/DVD-RW"
-msgstr ""
+msgstr "CD-RW/DVD-RW"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:595
 msgid "Disk"
-msgstr ""
+msgstr "Diskas"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:596
-#, fuzzy
 msgid "USB Drive"
-msgstr "Zip diskas"
+msgstr "USB diskas"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:597
 msgid "IEEE1394 Drive"
-msgstr ""
+msgstr "IEEE1394 diskas"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:598
 msgid "CF"
-msgstr ""
+msgstr "CF"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:599
-#, fuzzy
 msgid "SD/MMC"
-msgstr "SD/MMC laikmena"
+msgstr "SD/MMC"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:600
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:604
@@ -854,9 +838,8 @@ msgid "Memory Stick"
 msgstr "Atmintukas"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:601
-#, fuzzy
 msgid "Smart Media"
-msgstr "„Smart Media“ atmintukas"
+msgstr "Smart Media"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:603
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:635
@@ -1115,19 +1098,16 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "Komanda naudojama apdoroti „ghelp“ URL, jeigu įjungta."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
 msgid "The command used to handle \"h323\" URLs, if enabled."
-msgstr "Komanda naudojama apdoroti H323 URL, jei įjungta."
+msgstr "Komanda naudojama apdoroti „h323“ URL, jei įjungta."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-#, fuzzy
 msgid "The command used to handle \"http\" URLs, if enabled."
-msgstr "Komanda naudojama apdoroti „ghelp“ URL, jeigu įjungta."
+msgstr "Komanda naudojama apdoroti „http“ URL, jeigu įjungta."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "The command used to handle \"https\" URLs, if enabled."
-msgstr "Komanda naudojama apdoroti „trash“ URL, jei įjungta."
+msgstr "Komanda naudojama apdoroti „https“ URL, jei įjungta."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
@@ -1147,46 +1127,43 @@ msgstr "Komanda naudojama apdoroti „trash“ URL, jei įjungta."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
-msgstr "Programa, kuriai perleisti „aim“ užklausas"
+msgstr "Programa, kuriai perduoti „aim“ užklausas"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "The handler for \"callto\" URLs"
-msgstr "Programa, kuriai perleisti „callto“ užklausas"
+msgstr "Programa, kuriai perduoti „callto“ užklausas"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Programa, kuriai perleisti „ghelp“ užklausas"
+msgstr "Programa, kuriai perduoti „ghelp“ užklausas"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"h323\" URLs"
-msgstr "Programa, kuriai perleisti H323 užklausas"
+msgstr "Programa, kuriai perduoti „h323“ užklausas"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"http\" URLs"
-msgstr "Programa, kuriai perleisti „ghelp“ užklausas"
+msgstr "Programa, kuriai perduoti „http“ užklausas"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"https\" URLs"
-msgstr "Programa, kuriai perleisti „ghelp“ užklausas"
+msgstr "Programa, kuriai perduoti „https“ užklausas"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
-msgstr "Programa, kuriai perleisti „info“ užklausas"
+msgstr "Programa, kuriai perduoti „info“ užklausas"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
-msgstr "Programa, kuriai perleisti „mailto“ užklausas"
+msgstr "Programa, kuriai perduoti „mailto“ užklausas"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
-msgstr "Programa, kuriai perleisti „man“ užklausas"
+msgstr "Programa, kuriai perduoti „man“ užklausas"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
-msgstr "Programa, kuriai perleisti „trash“ užklausas"
+msgstr "Programa, kuriai perduoti „trash“ užklausas"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
@@ -1213,31 +1190,28 @@ msgstr ""
 "apdorotų „ghelp“ adresus."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
 msgstr ""
-"Nustatykite teigiamai norėdami, kad programa, nurodyta „command“ rakte, "
-"apdorotų H323 adresus."
+"Nustatykite į teigiamą reikšmę jei norite, kad programa, nurodyta „command“ "
+"rakte, apdorotų „h323“ adresus."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"http\" "
 "URLs."
 msgstr ""
-"Nustatykite teigiamai norėdami, kad programa, nurodyta „command“ rakte, "
-"apdorotų „ghelp“ adresus."
+"Nustatykite į teigiamą reikšmę jei norite, kad programa, nurodyta „command“ "
+"rakte, apdorotų „http“ adresus."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
 msgstr ""
-"Nustatykite teigiamai norėdami, kad programa, nurodyta „command“ rakte, "
-"apdorotų „ghelp“ adresus."
+"Nustatykite į teigiamą reikšmę jei norite, kad programa, nurodyta „command“ "
+"rakte, apdorotų „https“ adresus."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
@@ -1292,19 +1266,16 @@ msgid "Whether the specified command should handle \"ghelp\" URLs"
 msgstr "Ar nurodyta programa turėtų apdoroti „ghelp“ adresus"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"h323\" URLs"
-msgstr "Ar nurodyta programa turėtų apdoroti H323 adresus"
+msgstr "Ar nurodyta programa turėtų apdoroti „h323“ adresus"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"http\" URLs"
-msgstr "Ar nurodyta programa turėtų apdoroti „ghelp“ adresus"
+msgstr "Ar nurodyta programa turėtų apdoroti „http“ adresus"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"https\" URLs"
-msgstr "Ar nurodyta programa turėtų apdoroti „trash“ adresus"
+msgstr "Ar nurodyta programa turėtų apdoroti „https“ adresus"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
 msgid "Whether the specified command should handle \"info\" URLs"
