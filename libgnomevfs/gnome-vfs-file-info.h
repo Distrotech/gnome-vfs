@@ -69,7 +69,6 @@ GnomeVFSFileInfo *
 		 gnome_vfs_file_info_new 	(void);
 void		 gnome_vfs_file_info_init	(GnomeVFSFileInfo *info);
 void		 gnome_vfs_file_info_clear	(GnomeVFSFileInfo *info);
-#define          gnome_vfs_file_info_destroy    gnome_vfs_file_info_unref
 void 		 gnome_vfs_file_info_unref   	(GnomeVFSFileInfo *info);
 void 		 gnome_vfs_file_info_ref     	(GnomeVFSFileInfo *info);
 gboolean 	 gnome_vfs_file_info_get_metadata
@@ -90,5 +89,8 @@ const gchar	*gnome_vfs_file_info_get_mime_type
 
 void		 gnome_vfs_file_info_copy 	(GnomeVFSFileInfo *dest,
 						 const GnomeVFSFileInfo *src);
+
+/* FIXME this should go AWAY!  */
+#define gnome_vfs_file_info_destroy gnome_vfs_file_info_unref
 
 #endif                          /* _GNOME_VFS_FILE_INFO_H */
