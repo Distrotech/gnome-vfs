@@ -175,6 +175,9 @@ gnome_vfs_mime_get_short_list_applications (const char *mime_type)
 	GList *p;
 	int i;
 	
+	if (mime_type == NULL) {
+		return NULL;
+	}
 
 	/* FIXME: should be using user level */
 
@@ -241,6 +244,10 @@ gnome_vfs_mime_get_short_list_components (const char *mime_type)
 	char *sort[2];
 	char *iids_delimited;
 	
+	if (mime_type == NULL) {
+		return NULL;
+	}
+
 	/* FIXME - determine user level */
 
 	/* get short list IIDs for that user level */
@@ -324,6 +331,10 @@ gnome_vfs_mime_get_all_applications (const char *mime_type)
 	GList *user_apps;
 	GList *retval;
 
+	if (mime_type == NULL) {
+		return NULL;
+	}
+
 	/* FIXME: no way for apps to modify at install time */
 
 	/* get app list */
@@ -355,6 +366,10 @@ gnome_vfs_mime_get_all_components (const char *mime_type)
 	char *supertype;
 	char *query;
 	char *sort[2];
+
+	if (mime_type == NULL) {
+		return NULL;
+	}
 
 	CORBA_exception_init (&ev);
 

@@ -1,6 +1,19 @@
 2000-05-31  John Sullivan  <sullivan@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_get_short_list_applications),
+	(gnome_vfs_mime_get_short_list_components),
+	(gnome_vfs_mime_get_all_applications),
+	(gnome_vfs_mime_get_all_components): Made these
+	routines bail out immediately when passed NULL
+	as the mime type. Maciej can flog me and change
+	them back if he wants. (This prevents lots of
+	spam when dealing with files that don't have
+	any MIME type.)
+
+2000-05-31  John Sullivan  <sullivan@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
 	(get_mime_type_from_uri_hack),
 	(gnome_vfs_mime_get_short_list_applications_for_uri),
 	(gnome_vfs_mime_get_short_list_components_for_uri),
