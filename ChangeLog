@@ -1,3 +1,8 @@
+2001-02-13  Ian McKellar  <ian@eazel.com>
+
+	* modules/http-method.c: (do_close):
+	Added mime-sniffing to PUT to resolve bug 4102.
+
 2001-02-12  Don Melton  <don@eazel.com>
 
 	reviewed by: Maciej Stachowiak  <mjs@eazel.com>

@@ -60,6 +60,7 @@
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
 #include "gnome-vfs-mime.h"
+#include "gnome-vfs-mime-sniff-buffer.h"
 
 #include "http-method.h"
 
@@ -1731,13 +1732,35 @@ do_close (GnomeVFSMethod *method,
 	if (old_handle->to_be_written != NULL) {
 		GnomeVFSURI *uri = old_handle->uri;
 		GByteArray *bytes = old_handle->to_be_written;
+		GnomeVFSMimeSniffBuffer *sniff_buffer;
+		gchar *extraheader = NULL;
+		const gchar *mime_type = NULL;
+
+		sniff_buffer = 
+			gnome_vfs_mime_sniff_buffer_new_from_existing_data (
+					bytes->data, bytes->len);
+
+		if (sniff_buffer != NULL) {
+			mime_type = 
+				gnome_vfs_get_mime_type_for_buffer (
+						sniff_buffer);
+			if (mime_type != NULL) {
+				extraheader = g_strdup_printf(
+						"Content-type: %s\r\n", 
+						mime_type);
+			}
+			gnome_vfs_mime_sniff_buffer_free (sniff_buffer);
+
+		}
 
 #ifndef DAV_NO_CACHE
 		cache_invalidate_uri (uri);
 #endif /* DAV_NO_CACHE */
 
 		ANALYZE_HTTP ("==> doing PUT");
-		result = make_request (&new_handle, uri, "PUT", bytes, NULL, context);
+		result = make_request (&new_handle, uri, "PUT", bytes, 
+				extraheader, context);
+		g_free (extraheader);
 		http_handle_close (new_handle, context);
 	} else {
 		result = GNOME_VFS_OK;
