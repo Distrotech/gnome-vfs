@@ -1,3 +1,18 @@
+2001-02-13  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 6577, New mime type isn't highlighted after creation.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:	
+	(find_row_for_mime_type):
+	Return index of row if mime type is found in list
+	or -1 if it is not.
+	
+	(init_mime_capplet):
+	Call find_row_for_mime_type()
+	
+	(nautilus_mime_type_capplet_update_info), (add_mime_clicked):
+	Sort, select and scroll to new mime type.
+
 2001-02-13  Ian McKellar  <ian@eazel.com>
 
 	* modules/http-method.c: (do_close):
