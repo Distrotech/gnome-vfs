@@ -10,14 +10,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
-"POT-Creation-Date: 2003-12-28 11:03+0100\n"
-"PO-Revision-Date: 2003-12-19 01:44+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-12-26 04:07+0100\n"
+"PO-Revision-Date: 2004-01-09 22:09+0100\n"
 "Last-Translator: Arafat Medini <lumina@silverpen.de>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
+"Content-Transfer-Encoding: 8bit"
 
 #: daemon/gnome-vfs-daemon.c:553
 msgid "Could not initialize Bonobo"
@@ -150,7 +150,7 @@ msgstr "حجم لينكس ReiserFS "
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "فضاء مشارك مع ونداوس"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "SuperMount Volume"
@@ -437,7 +437,7 @@ msgstr "تعذّر إيجاد المتصفح الرئيسي"
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "No default action associated"
-msgstr ""
+msgstr "لا عمل إفتراضي مربوط"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:78
@@ -459,16 +459,14 @@ msgid "Unknown error"
 msgstr "خطأ مجهول"
 
 #: libgnomevfs/gnome-vfs-utils.c:84
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "بايت %u"
-msgstr[1] "بايت %u"
+msgstr "بايت %u"
 
 #: libgnomevfs/gnome-vfs-utils.c:90
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f ك"
+msgstr "%.1f كيلوبايت"
 
 #: libgnomevfs/gnome-vfs-utils.c:94
 #, c-format
@@ -704,56 +702,55 @@ msgstr "عمال التنفيذ للاستعمال من طرف الشاشة ال
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "معالج عناوين H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "معالج عناوين HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "معالج العناوين للـ HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "Handle H323 URLs"
-msgstr ""
+msgstr "معالجة عناوين H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "Handle HTTP URLs"
-msgstr ""
+msgstr "معالجة عناوين HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "معالجة عناوين الـ HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "Handle callto URLs"
-msgstr ""
+msgstr "معالجة عنواين النداءات"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle ghelp URLs"
-msgstr ""
+msgstr "معالجة عناوين جهالب"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
 msgid "Handle info URLs"
-msgstr "لا معالج لسيمة العنوان (URL)"
+msgstr "معالجة عناوين المعلومات"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "Handle mailto URLs"
-msgstr ""
+msgstr "معالجة عناوين إرسال البريد"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "Handle man URLs"
-msgstr ""
+msgstr "معالجة عناوين الدلائل"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "Handle trash URLs"
-msgstr ""
+msgstr "معالجة عناوين سلة المهملات"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
 msgid "Run program in terminal"
-msgstr ""
+msgstr "تشغيل البرنامج في شاشة طرفية"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
 msgid ""
@@ -805,31 +802,29 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
-msgstr ""
+msgstr "معالج عناوين النداءات"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid "ghelp URL handler"
-msgstr ""
+msgstr "معالج عناوين جهالب"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid "info URL handler"
-msgstr ""
+msgstr "معالج عناوين المعلومات"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid "mailto URL handler"
-msgstr "معالجة سيئة للملفّ"
+msgstr "إرسال بريد لمعالج العنوان"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid "man URL handler"
-msgstr ""
+msgstr "معالج عنواين الدلائل"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
 msgid "trash URL handler"
-msgstr ""
+msgstr "معالج عناوين سلات المهملات"
 
 #: schemas/system_http_proxy.schemas.in.h:1
-#, fuzzy
 msgid "Authenticate proxy server connections"
 msgstr "توثق من الاتصلات لنادل البروكسي"
 
@@ -838,9 +833,8 @@ msgid "Automatic proxy configuration URL"
 msgstr "عنوان الإعداد الآلي للبروكسي"
 
 #: schemas/system_http_proxy.schemas.in.h:3
-#, fuzzy
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr "تفعيل تعيينات البروكسي عند النفاذ لالـ http عبر الانترنت."
+msgstr "تفعيل تعيينات البروكسي عند النفاذ لـ http عبر الانترنت."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
@@ -855,18 +849,16 @@ msgid "HTTP proxy host name"
 msgstr "اسم مضيف بروكسي الـ HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
-#, fuzzy
 msgid "HTTP proxy password"
-msgstr "منفذ بروكسي الـ HTTP"
+msgstr "كلمة سر بروكسي الـ HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
 msgstr "منفذ بروكسي الـ HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:9
-#, fuzzy
 msgid "HTTP proxy username"
-msgstr "اسم مضيف بروكسي الـ HTTP"
+msgstr "اسم مستخدم بروكسي الـ HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -880,87 +872,78 @@ msgid "Non-proxy hosts"
 msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:12
-#, fuzzy
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr "كلمة السر لالتمرير لالتوثق عند القيام ببروكسية الـ http"
+msgstr "كلمة السر التي  ستمرر للتوثق عند القيام ببروكسية الـ http."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
 msgstr "نمط إعداد البروكسي"
 
 #: schemas/system_http_proxy.schemas.in.h:14
-#, fuzzy
 msgid "SOCKS proxy host name"
-msgstr "اسم مضيف بروكسي الـ FTP"
+msgstr "اسم مضيف بروكسي SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:15
-#, fuzzy
 msgid "SOCKS proxy port"
-msgstr "منفذ بروكسي الـ FTP"
+msgstr "منفذ بروكسي SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:16
-#, fuzzy
 msgid "Secure HTTP proxy host name"
-msgstr "اسم مضيف http بروكسي آمن"
+msgstr "اسم مضيف بروكسي HTTP آمن"
 
 #: schemas/system_http_proxy.schemas.in.h:17
-#, fuzzy
 msgid "Secure HTTP proxy port"
-msgstr "منفذ http بروكسي آمن"
+msgstr "منفذ بروكسي HTTP آمن"
 
 #: schemas/system_http_proxy.schemas.in.h:18
-#, fuzzy
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"اختر نمط إعداد البروكسي. القيم المدعومة هي \"لا شيئ\"، \"يدوي\"،\"آلي\""
+"اختر نسق إعداد البروكسي. القيم المدعومة هي \"لا شيئ\" و \"يدوي\" و \"آلي\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
 msgstr "اسم الجهاز الذي سيقع بروكسية الـ FTP عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:20
-#, fuzzy
 msgid "The machine name to proxy HTTP through."
-msgstr "اسم الجهاز الذي سيقع بروكسية الـ FTP عبره."
+msgstr "اسم الجهاز الذي سيقع بروكسية الـ HTTP عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:21
-#, fuzzy
 msgid "The machine name to proxy secure HTTP through."
-msgstr "اسم الجهاز الذي سيقع عبره بروكسية آمنة للـ http."
+msgstr "اسم الجهاز الذي سيقع عبره بروكسية آمنة للـ HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "اسم الجهاز الذي سيقع بركسية socks·عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:23
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
-msgstr "منفذ الجهاز المعرف بـ /system/http_proxy/host و الذي تبروكسي عبره"
+msgstr ""
+"منفذ الجهاز المعرف بـ \"/system/http_proxy/host\" و الذي تبروكسي عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:24
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
-msgstr "منفذ الجهاز المعرف بـ /system/proxy/ftp_host و الذي تبروكسي عبره"
+msgstr ""
+"منفذ الجهاز المعرف بـ \"/system/proxy/ftp_host\" و الذي تبروكسي عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:25
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
-msgstr "/system/proxy/ftp_host"
+msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:26
-#, fuzzy
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
-msgstr "منفذ الجهاز المعرف بـ /system/proxy/socks_host و الذي تبروكسي عبره"
+msgstr ""
+"منفذ الجهاز المعرف بـ \"/system/proxy/socks_host\" و الذي تبروكسي عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -971,19 +954,16 @@ msgid ""
 msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:28
-#, fuzzy
 msgid "URL that provides proxy configuration values."
-msgstr "عنوان الإعداد الآلي للبروكسي"
+msgstr "العنوان المزود لقيم إعدادات البروكسي."
 
 #: schemas/system_http_proxy.schemas.in.h:29
-#, fuzzy
 msgid "Use HTTP proxy"
-msgstr "منفذ بروكسي الـ HTTP"
+msgstr "استخدم بروكسي HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
-#, fuzzy
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "اسم المستخدم لالتمرير عند القيام ببروكسية الـ http"
+msgstr "اسم المستخدم الذي سيمرر عند القيام ببروكسية الـ HTTP."
 
 #~ msgid "Hosts are not contacted via the proxy"
 #~ msgstr "المضيفين غير متصلين عبر البروكسي"
