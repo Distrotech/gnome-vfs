@@ -1,22 +1,21 @@
 # Lithuanian translation of gnome-vfs
-# Copyright (C) 2000-2004 Free Software Foundation, Inc.
-# Gediminas Paulauskas <menesis@delfi.lt>, 2000.
+# Copyright (C) 2000-2005 Free Software Foundation, Inc.
+# Gediminas Paulauskas <menesis@chatsubo.lt>, 2000-2003.
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003.
-# Žygimantas Beručka <uid0@akl.lt>, 2004.
+# Žygimantas Beručka <uid0@akl.lt>, 2004-2005.
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 15:10+0100\n"
-"PO-Revision-Date: 2004-09-18 12:06+0300\n"
+"POT-Creation-Date: 2005-01-31 12:22+0200\n"
+"PO-Revision-Date: 2005-01-31 12:25+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
-"100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -534,7 +533,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1122
+#: libgnomevfs/gnome-vfs-utils.c:1131
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (netinkamas Unikodas)"
@@ -1107,16 +1106,16 @@ msgstr "HTTP tarpinės stoties prievadas"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr "HTTP tarpinės stoties vartotojas"
+msgstr "HTTP tarpinės stoties naudotojas"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
 "If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
+"username/password combo is defined by \"/system/http_proxy/"
+"authentication_user\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
-"Jei teigiama, jungtims per tarpinę stotį yra būtinas autorizavimas. "
-"Vartotojo vardas ir slaptažodis yra saugomas „/system/http_proxy/"
+"Jei teigiama, jungtims į tarpinę stotį yra būtina autorizacija. "
+"Naudotojo vardas ir slaptažodis yra saugomi „/system/http_proxy/"
 "authentication_user“ ir „/system/http_proxy/authentication_password“ "
 "raktuose."
 
@@ -1130,7 +1129,7 @@ msgstr "Slaptažodis, naudojamas jungiantis per HTTP tarpinę stotį."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr "Tarpinės stoties nustatymų režimas"
+msgstr "Tarpinės stoties nustatymų veiksena"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
@@ -1153,8 +1152,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Pasirinkite tarpinės stoties nustatymų režimą. Galimos reikšmės yra \"joks"
-"\", \"rankinis\", \"auto\"."
+"Pasirinkite tarpinės stoties nustatymų veikseną. Galimos reikšmės yra „none"
+"“, „manual“, „auto“."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1224,7 +1223,7 @@ msgstr "Naudoti HTTP tarpinę stotį"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr "Vartotojo vardas naudojamas jungiantis per HTTP tarpinę stotį."
+msgstr "Naudotojo vardas naudojamas jungiantis per HTTP tarpinę stotį."
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
@@ -1232,206 +1231,4 @@ msgstr "SMB darbo grupė"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr "Windows darbo grupė, kuriai priklauso vartotojas"
-
-#~ msgid "CD-ROM Disc"
-#~ msgstr "CD-ROM diskas"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Tuščias CD-R diskas"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "CD-R diskas"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Tuščias CD-RW diskas"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "CD-RW diskas"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "DVD-ROM diskas"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Tuščias DVD-R diskas"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "DVD-R diskas"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Tuščias DVD-RAM diskas"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "DVD-RAM diskas"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Tuščias DVD-RW diskas"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "DVD-RW diskas"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Tuščias DVD+RW diskas"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "DVD+RW diskas"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Tuščias DVD+R diskas"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "DVD+R diskas"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Optinis diskas"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Audio diskas"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "„Compact Flash“ atmintukas"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "„Memory Stick“ atmintukas"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "„Smart Media“ atmintukas"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "SD/MMC laikmena"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Diskelis"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Mac OS diskas"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Mac OS X diskas"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Windows diskas"
-
-#~ msgid "Linux Disk"
-#~ msgstr "Linux diskas"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "Byla negalėjo būtų atidaryta: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Nepavyko atidaryti bylos „%s“: %s"
-
-#~ msgid "File is empty"
-#~ msgstr "Byla yra tuščia"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Nepavyko perskaityti bylos „%s“: %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "darbastalio įrašuose yra eilutė „%s“, kuri nėra nei įrašas, nei grupė, "
-#~ "nei komentaras"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "darbastalio įrašų byla prasideda neleistina pradžios grupe"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "darbastalio įrašuose yra eilutė „%s“, kuri yra ne UTF-8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "darbastalio įrašai yra nežinomos koduotės „%s“"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "darbastalio įrašuose nėra grupės „%s“"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "darbastalio įrašuose nėra rakto „%s“"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr ""
-#~ "darbastalio įrašuose yra raktas „%s“, turintis nesuprantamą reikšmę."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "darbastalio įrašuose nėra išverstos rakto „%s“ reikšmės lokalei „%s“."
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "darbastalio įrašuose yra negalima pabėgimo seka „%s“"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "darbastalio įrašų eilučių pabaigoje yra pabėgimo simbolis"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "Reikšmė „%s“ negali būti interpretuojama kaip skaičius."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "Reikšmė „%s“ negali būti interpretuojama kaip loginė."
-
-#~ msgid "Applications"
-#~ msgstr "Programos"
-
-#~ msgid "Cards"
-#~ msgstr "Kortelės"
-
-#~ msgid "Files"
-#~ msgstr "Bylos"
-
-#~ msgid "Folders"
-#~ msgstr "Aplankai"
-
-#~ msgid "Help"
-#~ msgstr "Pagalba"
-
-#~ msgid "Hosts"
-#~ msgstr "Kompiuteriai"
-
-#~ msgid "Links"
-#~ msgstr "Nuorodos"
-
-#~ msgid "Mail"
-#~ msgstr "Paštas"
-
-#~ msgid "Tools"
-#~ msgstr "Įrankiai"
-
-#~ msgid "Windows"
-#~ msgstr "Langai"
-
-#~ msgid "CD Disc"
-#~ msgstr "CD diskas"
-
-#~ msgid "The command used to handle HTTP URLs, if enabled."
-#~ msgstr "Komanda naudojama apdoroti „HTTP“ URL, jei įjungta."
-
-#~ msgid "The command used to handle HTTPS URLs, if enabled."
-#~ msgstr "Komanda naudojama apdoroti „HTTPS“ URL, jei įjungta."
-
-#~ msgid "The handler for HTTP URLs"
-#~ msgstr "Programa, kuriai perleisti HTTP užklausas"
-
-#~ msgid "The handler for HTTPS URLs"
-#~ msgstr "Programa, kuriai perleisti HTTPS užklausas"
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTP "
-#~ "URLs."
-#~ msgstr ""
-#~ "Nustatykite teigiamai norėdami, kad programa, nurodyta „command“ rakte, "
-#~ "apdorotų HTTP adresus."
-
-#~ msgid ""
-#~ "True if the command specified in the \"command\" key should handle HTTPS "
-#~ "URLs."
-#~ msgstr ""
-#~ "Nustatykite teigiamai norėdami, kad programa, nurodyta „command“ rakte, "
-#~ "apdorotų HTTPS adresus."
-
-#~ msgid "Whether the specified command should handle HTTP URLs"
-#~ msgstr "Ar nurodyta programa turėtų apdoroti HTTP adresus"
-
-#~ msgid "Whether the specified command should handle HTTPS URLs"
-#~ msgstr "Ar nurodyta programa turėtų apdoroti HTTPS adresus"
+msgstr "Windows darbo grupė, kuriai priklauso naudotojas"
