@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2001-01-23 20:05+0100\n"
+"POT-Creation-Date: 2001-01-29 19:56+0100\n"
 "PO-Revision-Date: 2001-01-22 17:22+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -1449,41 +1449,45 @@ msgstr ""
 msgid "Extension:"
 msgstr "Filändelse:"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1150
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1153
 msgid "New Application"
 msgstr "Nytt program"
 
 #. Application Name label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1159
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1263
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1162
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1269
 msgid "Application Name:"
 msgstr "Programnamn:"
 
 #. Application Command label and entry
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1167
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1272
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1170
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1278
 msgid "Application Command:"
 msgstr "Programkommando:"
 
 #. Open Behavior frame
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1175
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1281
+#. FIXME: Need to add expected uri schemes
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1179
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
 msgid "Open Behavior"
 msgstr "Öppningsbeteende"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1181
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1287
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1185
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1293
 msgid "Can open multiple files"
 msgstr "Kan öppna flera filer"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1184
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1291
-msgid "Can open from URI"
-msgstr "Kan öppna från URI"
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1188
+msgid "Expects URIs as arguments"
+msgstr "Förväntar sig URI:er som argument"
 
-#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1254
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1260
 msgid "Edit Application"
 msgstr "Redigera program"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:1297
+msgid "Can open from URI"
+msgstr "Kan öppna från URI"
 
 #: mime-type-capplet/nautilus-mime-type-capplet.c:541
 #: mime-type-capplet/nautilus-mime-type-capplet.c:1532
