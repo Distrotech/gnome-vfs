@@ -1,5 +1,17 @@
 2001-05-30  Seth Nickell  <snickell@stanford.edu>
 
+	* devel-docs/Makefile.am:
+	* devel-docs/gnome-vfs/Makefile.am:
+	* devel-docs/gnome-vfs/gnome-vfs-docs.sgml:
+	* devel-docs/gnome-vfs/gnome-vfs-sections.txt:
+	* devel-docs/gnome-vfs/tmpl/gnome-vfs-mime-info.sgml:
+	* devel-docs/gnome-vfs/tmpl/gnome-vfs-mime.sgml:
+
+	Nix the duplicate api docs since we've been actively working
+	on doc/ instead.
+	
+2001-05-30  Seth Nickell  <snickell@stanford.edu>
+
 	* doc/gnome-vfs-docs.sgml:
 
 	Start organizing higher level documentation structure
