@@ -91,6 +91,12 @@ module_get_sane_handle (gchar *module_name)
 		return NULL;
 	}
 
+	/* More advanced assumptions */
+	if (!method->tell && method->seek) {
+		g_warning ("module '%s' has seek and no tell", module_name);
+		return NULL;
+	}
+
 	return method;
 }
 

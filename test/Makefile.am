@@ -15,6 +15,7 @@ noinst_PROGRAMS =				\
 	test-copy				\
 	test-directory				\
 	test-directory-visit			\
+	test-seek				\
 	test-sync
 
 libraries =						\
@@ -69,6 +70,10 @@ test_channel_pthread_LDFLAGS =
 test_copy_SOURCES = test-copy.c
 test_copy_LDADD = $(libraries)
 test_copy_LDFLAGS = 
+
+test_seek_SOURCES = test-seek.c
+test_seek_LDADD = $(libraries)
+test_seek_LDFLAGS = 
 
 test_directory_SOURCES = test-directory.c
 test_directory_LDADD = $(libraries)

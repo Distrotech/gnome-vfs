@@ -1,3 +1,10 @@
+1999-09-05  Michael Meeks  <michael@imaginator.com>
+
+	* test/Makefile.am (noinst_PROGRAMS): Added test_seek.
+
+	* libgnomevfs/gnome-vfs-method.c (module_get_sane_handle):
+	Add check for 'seek' and no 'tell'.
+
 1999-09-05  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* modules/file-method.c (do_open): Fstat the file; if it's a
