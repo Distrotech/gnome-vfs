@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0.1\n"
-"POT-Creation-Date: 2000-06-15 04:55+0200\n"
-"PO-Revision-Date: 2000-04-26 15:32+02:00\n"
+"POT-Creation-Date: 2000-06-15 05:03+0200\n"
+"PO-Revision-Date: 2000-06-15 05:10+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -416,6 +416,239 @@ msgstr "Kan ikke opprette rør for åpen GIOChannel: %s"
 msgid "Operation stopped"
 msgstr "Stoppet operasjonen"
 
+#: mime-type-capplet/edit-window.c:191
+msgid "Mime Type: "
+msgstr "MIME-type:"
+
+#. Add icon box
+#: mime-type-capplet/edit-window.c:203
+#: mime-type-capplet/nautilus-mime-type-capplet.c:221
+msgid "Select an icon..."
+msgstr "Velg et ikon:"
+
+#: mime-type-capplet/edit-window.c:226
+#: mime-type-capplet/nautilus-mime-type-capplet.c:240
+msgid "Add"
+msgstr "Legg til"
+
+#: mime-type-capplet/edit-window.c:232
+#: mime-type-capplet/nautilus-mime-type-capplet.c:244
+msgid "Remove"
+msgstr "Fjern"
+
+#. Default application label and menu
+#: mime-type-capplet/edit-window.c:259
+msgid "Application:"
+msgstr "Applikasjon:"
+
+#. Default component label and menu
+#: mime-type-capplet/edit-window.c:266
+msgid "Component:"
+msgstr "Komponent:"
+
+#. we initialize everything
+#: mime-type-capplet/edit-window.c:301
+#, c-format
+msgid "Set actions for %s"
+msgstr "Sett handlinger for %s"
+
+#: mime-type-capplet/edit-window.c:484 mime-type-capplet/edit-window.c:557
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:109
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:155
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:293
+#: mime-type-capplet/nautilus-mime-type-capplet.c:364
+#: mime-type-capplet/nautilus-mime-type-capplet.c:433
+msgid "None"
+msgstr "Ingen"
+
+#: mime-type-capplet/edit-window.c:523
+msgid "Add an application..."
+msgstr "Legg til en applikasjon..."
+
+#: mime-type-capplet/edit-window.c:568
+msgid "Add a component..."
+msgstr "Legg til en komponent..."
+
+#: mime-type-capplet/edit-window.c:581
+msgid "Select an Application"
+msgstr "Velg en applikasjon"
+
+#: mime-type-capplet/mime-data.c:389
+msgid "Mime Type"
+msgstr "MIME-type"
+
+#: mime-type-capplet/mime-data.c:390
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: mime-type-capplet/mime-data.c:391
+msgid "Application"
+msgstr "Applikasjon"
+
+#: mime-type-capplet/mime-data.c:503
+msgid "You must enter a mime-type"
+msgstr "Du må skrive inn en MIME-type"
+
+#: mime-type-capplet/mime-data.c:506
+msgid "You must add a file-name extension"
+msgstr "Du må legge til en filtypeutvidelse"
+
+#: mime-type-capplet/mime-data.c:510
+msgid ""
+"Please put your mime-type in the format:\n"
+"CATEGORY/TYPE\n"
+"\n"
+"For Example:\n"
+"image/png"
+msgstr ""
+"Vennligst bruk følgende format for MIME-typen:\n"
+"KATEGORI/TYPE\n"
+"\n"
+"For eksempel:\n"
+"image/png"
+
+#: mime-type-capplet/mime-data.c:515
+msgid "This mime-type already exists"
+msgstr "Denne MIME-typen eksisterer allerede"
+
+#: mime-type-capplet/mime-data.c:589
+#, fuzzy
+msgid ""
+"We are unable to create the directory\n"
+"~/.gnome/mime-info\n"
+"\n"
+"We will not be able to save the state."
+msgstr ""
+"Kan ikke opprette katalogen\n"
+"\n"
+"Vil ikke kunne lagre tilstandsdata."
+
+#: mime-type-capplet/mime-data.c:595
+msgid ""
+"We are unable to access the directory\n"
+"~/.gnome/mime-info\n"
+"\n"
+"We will not be able to save the state."
+msgstr ""
+
+#: mime-type-capplet/mime-data.c:606
+msgid ""
+"Cannot create the file\n"
+"~/.gnome/mime-info/user.mime\n"
+"\n"
+"We will not be able to save the state"
+msgstr ""
+
+#: mime-type-capplet/mime-info.c:423
+msgid ""
+"We are unable to create the directory\n"
+"~/.gnome/mime-info.\n"
+"\n"
+"We will not be able to save the state."
+msgstr ""
+
+#: mime-type-capplet/mime-info.c:429
+msgid ""
+"We are unable to access the directory\n"
+"~/.gnome/mime-info.\n"
+"\n"
+"We will not be able to save the state."
+msgstr ""
+
+#: mime-type-capplet/mime-info.c:440
+msgid ""
+"Cannot create the file\n"
+"~/.gnome/mime-info/user.keys.\n"
+"\n"
+"We will not be able to save the state"
+msgstr ""
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:315
+msgid "Preferred Applications"
+msgstr "Foretrukne applikasjoner"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:316
+msgid "Default Applications"
+msgstr "Standard applikasjoner"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:319
+msgid "Edit Applications List"
+msgstr "Rediger applikasjonslisten"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:360
+msgid "Remove Application"
+msgstr "Fjern applikasjon"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:363
+msgid "Add To Preferred"
+msgstr "Legg til som foretrukken"
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:366
+msgid "Add New Application..."
+msgstr "Legg til ny applikasjon..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:392
+msgid "Edit Components List"
+msgstr "Redgier komponentliste"
+
+#. Add label
+#: mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:412
+#, c-format
+msgid "Select views to appear in menu for mime type \"%s\""
+msgstr ""
+
+#. Create label, menu and edit button for default applications
+#: mime-type-capplet/nautilus-mime-type-capplet.c:196
+msgid "Default Application:"
+msgstr "Standard applikasjon:"
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:204
+#: mime-type-capplet/nautilus-mime-type-capplet.c:216
+msgid "Edit List"
+msgstr "Rediger liste"
+
+#. Create label, menu and edit button for default components
+#: mime-type-capplet/nautilus-mime-type-capplet.c:209
+msgid "Default Component:"
+msgstr "Standard komponent:"
+
+#. Mime list Add and Delete buttons
+#: mime-type-capplet/nautilus-mime-type-capplet.c:249
+msgid "Add..."
+msgstr "Legg til..."
+
+#: mime-type-capplet/nautilus-mime-type-capplet.c:253
+msgid "Delete"
+msgstr "Slett"
+
+#: mime-type-capplet/new-mime-window.c:47
+msgid "Add Mime Type"
+msgstr "Legg til MIME-type"
+
+#: mime-type-capplet/new-mime-window.c:48
+msgid ""
+"Add a new Mime Type\n"
+"For example:  image/tiff; text/x-scheme"
+msgstr ""
+
+#: mime-type-capplet/new-mime-window.c:53
+msgid "Mime Type:"
+msgstr "MIME-type:"
+
+#: mime-type-capplet/new-mime-window.c:61
+msgid "Extensions"
+msgstr "Filtyper"
+
+#: mime-type-capplet/new-mime-window.c:65
+msgid ""
+"Type in the extensions for this mime-type.\n"
+"For example:  .html, .htm"
+msgstr ""
+
+#: mime-type-capplet/new-mime-window.c:72
+msgid "Extension:"
+msgstr "Filtype:"
+
 #: modules/file-method.c:358
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
@@ -436,7 +669,7 @@ msgstr "ftpfs: oppretter forbindelse til %s"
 
 #: modules/ftp-method.c:401
 msgid "ftpfs: connection interrupted by user"
-msgstr "ftpfs: tilkoblingen avbrutt av brukeren"
+msgstr "XBM-advarsel"
 
 #: modules/ftp-method.c:403
 #, c-format
