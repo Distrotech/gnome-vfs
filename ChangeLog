@@ -1,3 +1,12 @@
+Sun Dec 30 01:40:40 2001  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: Start working on monitoring.  For
+	  now it monitors the item directories for added directories plus
+	  there is a few more FIXMEs around.  There are still many open
+	  questions of how to do things without being a slow pig.  For
+	  example we need to update at least somewhat if there are is no fam
+	  around as well.
+
 2001-12-16  Duarte Loreto <happyguy_pt@hotmail.com>
 
         * configure.in: Added Portuguese locale to ALL_LINGUAS.

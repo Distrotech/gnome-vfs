@@ -38,6 +38,7 @@
 #include <dirent.h>
 #include <errno.h>
 #include <string.h>
+#include <time.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -64,11 +65,13 @@ typedef struct _Entry Entry;
 typedef struct _Folder Folder;
 typedef struct _EntryFile EntryFile;
 typedef struct _Keyword Keyword;
+typedef struct _FolderMonitor FolderMonitor;
+typedef struct _FileMonitor FileMonitor;
 
 /* FIXME Maybe when chaining to file:, we should call the gnome-vfs wrapper
  * functions, instead of the file: methods directly.
  */
-/* FIXME: support cancellations */
+/* FIXME: use locks, we are NOT currently thread safe */
 
 static GnomeVFSMethod *parent_method = NULL;
 
@@ -173,8 +176,11 @@ struct _VFolderInfo
 
 	char *filename;
 	char *user_filename;
+	time_t user_filename_last_write;
 	char *desktop_dir; /* directory with .directorys */
 	char *user_desktop_dir; /* directory with .directorys */
+	gboolean user_file_active; /* if using user_filename and
+				      not filename */
 
 	GSList *item_dirs;
 	char *user_item_dir; /* dir where user changes to
@@ -182,6 +188,10 @@ struct _VFolderInfo
 
 	/* old style dirs to merge in */
 	GSList *merge_dirs;
+
+	/* if entries are valid, else
+	 * they need to be (re)read */
+	gboolean entries_valid;
 
 	GSList *entries;
 
@@ -201,6 +211,35 @@ struct _VFolderInfo
 	gboolean dirty;
 
 	int inhibit_write;
+
+	/* change monitoring stuff */
+	gboolean is_monitoring;
+	GnomeVFSMonitorHandle *filename_monitor;
+	GnomeVFSMonitorHandle *user_filename_monitor;
+
+	/* FIXME: */GSList *file_monitors; /* FileMonitor */
+	/* FIXME: */GSList *folder_monitors; /* FolderMonitor */
+
+	GSList *item_dir_monitors; /* GnomeVFSMonitorHandle */
+};
+
+struct _FolderMonitor
+{
+	char *path;
+	Folder *folder;
+};
+
+struct _FileMonitor
+{
+	char *name;
+	char *path;
+	/* Only existing files have these two set,
+	 * a not yet existing file will be noticed by
+	 * watching the item dirs */
+	GnomeVFSMonitorHandle *handle;
+	GnomeVFSMonitorHandle *user_handle;
+	EntryFile *file;
+	Folder *folder;
 };
 
 #define ALL_SCHEME_P(scheme)	((scheme) != NULL && strncmp ((scheme), "all-", 4) == 0)
@@ -835,6 +874,225 @@ query_destroy (Query *query)
 }
 
 static void
+invalidate_folder (Folder *folder)
+{
+	GSList *li;
+
+	folder->up_to_date = FALSE;
+
+	for (li = folder->subfolders; li != NULL; li = li->next) {
+		Folder *subfolder = li->data;
+
+		invalidate_folder (subfolder);
+	}
+}
+
+static void
+vfolder_filename_monitor (GnomeVFSMonitorHandle *handle,
+			  const gchar *monitor_uri,
+			  const gchar *info_uri,
+			  GnomeVFSMonitorEventType event_type,
+			  gpointer user_data)
+{
+	VFolderInfo *info = user_data;
+
+	if ((event_type == GNOME_VFS_MONITOR_EVENT_CREATED ||
+	     event_type == GNOME_VFS_MONITOR_EVENT_CHANGED) &&
+	    ! info->user_file_active) {
+		/* FIXME: reread vfolder */;
+	} else if (event_type == GNOME_VFS_MONITOR_EVENT_DELETED &&
+		   ! info->user_file_active) {
+		/* FIXME: what to do here?  Init to empty I suppose.
+		 * I dunno, or just whack everything */;
+	}
+}
+
+static void
+vfolder_user_filename_monitor (GnomeVFSMonitorHandle *handle,
+			       const gchar *monitor_uri,
+			       const gchar *info_uri,
+			       GnomeVFSMonitorEventType event_type,
+			       gpointer user_data)
+{
+	VFolderInfo *info = user_data;
+
+	if ((event_type == GNOME_VFS_MONITOR_EVENT_CREATED ||
+	     event_type == GNOME_VFS_MONITOR_EVENT_CHANGED) &&
+	    info->user_file_active) {
+		struct stat s;
+		/* see if this was really our own change */
+		if (info->user_filename_last_write == time (NULL))
+			return;
+		/* anal retentive */
+		if (stat (info->user_filename, &s) == 0 &&
+		    info->user_filename_last_write == s.st_ctime)
+			return;
+
+		/* FIXME: reread vfolder */;
+	} else if ((event_type == GNOME_VFS_MONITOR_EVENT_CREATED ||
+		    event_type == GNOME_VFS_MONITOR_EVENT_CHANGED) &&
+		    ! info->user_file_active) {
+		/* FIXME: switch to user file and reread */;
+	} else if (event_type == GNOME_VFS_MONITOR_EVENT_DELETED &&
+		   info->user_file_active) {
+		/* FIXME: switch to system file and reread */;
+	}
+}
+
+static void
+item_dir_monitor (GnomeVFSMonitorHandle *handle,
+		  const gchar *monitor_uri,
+		  const gchar *info_uri,
+		  GnomeVFSMonitorEventType event_type,
+		  gpointer user_data)
+{
+	VFolderInfo *info = user_data;
+
+	if (event_type == GNOME_VFS_MONITOR_EVENT_CREATED ||
+	    event_type == GNOME_VFS_MONITOR_EVENT_CHANGED) {
+		/* first invalidate all folders */
+		invalidate_folder (info->root);
+		/* second invalidate all entries */
+		info->entries_valid = FALSE;
+	}
+}
+
+static gboolean
+setup_dir_monitor (VFolderInfo *info, const char *dir, gboolean subdirs,
+		   GnomeVFSResult *result,
+		   GnomeVFSContext *context)
+{
+	GnomeVFSMonitorHandle *handle;
+	DIR *dh;
+	struct dirent *de;
+	char *uri;
+
+	uri = gnome_vfs_get_uri_from_local_path (dir);
+
+	if (gnome_vfs_monitor_add (&handle,
+				   uri,
+				   GNOME_VFS_MONITOR_DIRECTORY,
+				   item_dir_monitor,
+				   info) != GNOME_VFS_OK) {
+		g_free (uri);
+		return TRUE;
+	}
+	g_free (uri);
+
+	if (gnome_vfs_context_check_cancellation (context)) {
+		*result = GNOME_VFS_ERROR_CANCELLED;
+		return FALSE;
+	}
+
+	info->item_dir_monitors =
+		g_slist_prepend (info->item_dir_monitors, handle);
+
+	if ( ! subdirs)
+		return TRUE;
+
+	dh = opendir (dir);
+	if (dh == NULL)
+		return TRUE;
+
+	while ((de = readdir (dh)) != NULL) {
+		char *full_path;
+
+		if (gnome_vfs_context_check_cancellation (context)) {
+			*result = GNOME_VFS_ERROR_CANCELLED;
+			closedir (dh);
+			return FALSE;
+		}
+
+		if (de->d_name[0] == '.')
+			continue;
+
+		full_path = g_build_filename (dir, de->d_name, NULL);
+		if (g_file_test (full_path, G_FILE_TEST_IS_DIR)) {
+			if ( ! setup_dir_monitor (info, full_path,
+						  TRUE /* subdirs */,
+						  result, context)) {
+				closedir (dh);
+				return FALSE;
+			}
+		}
+		g_free (full_path);
+	}
+
+	closedir (dh);
+
+	return TRUE;
+}
+
+static gboolean
+monitor_setup (VFolderInfo *info,
+	       GnomeVFSResult *result,
+	       GnomeVFSContext *context)
+{
+	char *uri;
+	GSList *li;
+
+	/* not yet monitoring */
+	info->is_monitoring = FALSE;
+
+	uri = gnome_vfs_get_uri_from_local_path
+		(info->filename);
+
+	if (gnome_vfs_monitor_add (&info->filename_monitor,
+				   uri,
+				   GNOME_VFS_MONITOR_FILE,
+				   vfolder_filename_monitor,
+				   info) != GNOME_VFS_OK) {
+		g_free (uri);
+		return TRUE;
+	}
+	g_free (uri);
+	if (info->user_filename != NULL) {
+		uri = gnome_vfs_get_uri_from_local_path
+			(info->user_filename);
+		if (gnome_vfs_monitor_add (&info->user_filename_monitor,
+					   uri,
+					   GNOME_VFS_MONITOR_FILE,
+					   vfolder_user_filename_monitor,
+					   info) != GNOME_VFS_OK) {
+			/* If we can't support both, we'd be really screwed */
+			gnome_vfs_monitor_cancel (info->filename_monitor);
+			info->filename_monitor = NULL;
+			g_free (uri);
+			return TRUE;
+		}
+		g_free (uri);
+	}
+
+	if (gnome_vfs_context_check_cancellation (context)) {
+		*result = GNOME_VFS_ERROR_CANCELLED;
+		return FALSE;
+	}
+
+	for (li = info->item_dirs; li != NULL; li = li->next) {
+		const char *dir = li->data;
+		if ( ! setup_dir_monitor (info, dir, FALSE /* subdirs */,
+					  result, context))
+			return FALSE;
+	}
+	if (info->user_item_dir != NULL) {
+		if ( ! setup_dir_monitor (info, info->user_item_dir, FALSE /* subdirs */,
+					  result, context))
+			return FALSE;
+	}
+	for (li = info->merge_dirs; li != NULL; li = li->next) {
+		const char *dir = li->data;
+		if ( ! setup_dir_monitor (info, dir, TRUE /* subdirs */,
+					  result, context))
+			return FALSE;
+	}
+
+	/* yay, we are monitoring */
+	info->is_monitoring = TRUE;
+
+	return TRUE;
+}
+
+static void
 vfolder_info_init (VFolderInfo *info, const char *scheme)
 {
 	const char *path;
@@ -890,6 +1148,21 @@ vfolder_info_destroy (VFolderInfo *info)
 {
 	if (info == NULL)
 		return;
+
+	if (info->filename_monitor != NULL) {
+		gnome_vfs_monitor_cancel (info->filename_monitor);
+		info->filename_monitor = NULL;
+	}
+
+	if (info->user_filename_monitor != NULL) {
+		gnome_vfs_monitor_cancel (info->user_filename_monitor);
+		info->user_filename_monitor = NULL;
+	}
+
+	g_slist_foreach (info->item_dir_monitors,
+			 (GFunc)gnome_vfs_monitor_cancel, NULL);
+	g_slist_free (info->item_dir_monitors);
+	info->item_dir_monitors = NULL;
 
 	g_free (info->scheme);
 	info->scheme = NULL;
@@ -1219,8 +1492,11 @@ vfolder_info_read_info (VFolderInfo *info,
 
 	doc = NULL;
 	if (info->user_filename != NULL &&
-	    access (info->user_filename, F_OK) == 0)
+	    access (info->user_filename, F_OK) == 0) {
 		doc = xmlParseFile (info->user_filename); 
+		if (doc != NULL)
+			info->user_file_active = TRUE;
+	}
 	if (doc == NULL &&
 	    access (info->filename, F_OK) == 0)
 		doc = xmlParseFile (info->filename); 
@@ -1523,9 +1799,13 @@ vfolder_info_write_user (VFolderInfo *info)
 		    TRUE /* ignore_basename */);
 
 	xmlSaveFormatFile (info->user_filename, doc, TRUE /* format */);
+	/* not as good as a stat, but cheaper ... hmmm what is
+	 * the likelyhood of this not being the same as ctime */
+	info->user_filename_last_write = time (NULL);
 
 	xmlFreeDoc(doc);
 
+	info->user_file_active = TRUE;
 	info->dirty = FALSE;
 }
 
@@ -1604,21 +1884,6 @@ readitem_entry (const char *filename,
 }
 
 static void
-invalidate_folder (Folder *folder)
-{
-	GSList *li;
-
-	folder->up_to_date = FALSE;
-
-	for (li = folder->subfolders; li != NULL; li = li->next) {
-		Folder *subfolder = li->data;
-
-		invalidate_folder (subfolder);
-	}
-}
-
-
-static void
 vfolder_info_insert_entry (VFolderInfo *info, EntryFile *efile)
 {
 	GSList *entry_list;
@@ -1632,6 +1897,7 @@ vfolder_info_insert_entry (VFolderInfo *info, EntryFile *efile)
 		entry_unref (entry);
 	}
 
+	entry_ref ((Entry *)efile);
 	info->entries = g_slist_prepend (info->entries, efile);
 	/* The hash table contains the GSList pointer */
 	g_hash_table_insert (info->entries_ht, efile->entry.name, 
@@ -1740,6 +2006,7 @@ vfolder_info_read_items_from (VFolderInfo *info,
 		efile->per_user = per_user;
 
 		vfolder_info_insert_entry (info, efile);
+		entry_unref ((Entry *)efile);
 	}
 
 	closedir (dir);
@@ -1843,6 +2110,7 @@ vfolder_info_read_items_merge (VFolderInfo *info,
 		}
 
 		vfolder_info_insert_entry (info, efile);
+		entry_unref ((Entry *)efile);
 	}
 
 	closedir (dir);
@@ -1901,6 +2169,23 @@ get_vfolder_info (const char *scheme,
 
 	if (infos != NULL &&
 	    (info = g_hash_table_lookup (infos, scheme)) != NULL) {
+		if ( ! info->entries_valid) {
+			g_slist_foreach (info->entries,
+					 (GFunc)entry_unref, NULL);
+			g_slist_free (info->entries);
+			info->entries = NULL;
+
+			g_hash_table_destroy (info->entries_ht);
+			info->entries_ht = g_hash_table_new (g_str_hash,
+							     g_str_equal);
+
+			if ( ! vfolder_info_read_items (info,
+							result, context)) {
+				info->entries_valid = FALSE;
+				return NULL;
+			}
+			info->entries_valid = TRUE;
+		}
 		return info;
 	}
 
@@ -1935,12 +2220,24 @@ get_vfolder_info (const char *scheme,
 		return NULL;
 	}
 
-	if ( ! vfolder_info_read_items (info, result, context)) {
+	if ( ! monitor_setup (info, result, context)) {
 		vfolder_info_destroy (info);
 		return NULL;
 	}
 
+	if (gnome_vfs_context_check_cancellation (context)) {
+		vfolder_info_destroy (info);
+		*result = GNOME_VFS_ERROR_CANCELLED;
+		return NULL;
+	}
+
 	g_hash_table_insert (infos, g_strdup (scheme), info);
+
+	if ( ! vfolder_info_read_items (info, result, context)) {
+		info->entries_valid = FALSE;
+		return NULL;
+	}
+	info->entries_valid = TRUE;
 
 	return info;
 }
@@ -2923,6 +3220,7 @@ do_create (GnomeVFSMethod *method,
 	if (li == NULL) {
 		efile = file_new (basename);
 		vfolder_info_insert_entry (info, efile);
+		entry_unref ((Entry *)efile);
 	}
 
 	/* this will make a private name for this */
@@ -4145,6 +4443,24 @@ do_set_file_info (GnomeVFSMethod *method,
 	}
 }
 
+static GnomeVFSResult
+do_monitor_add (GnomeVFSMethod *method,
+		GnomeVFSMethodHandle **method_handle_return,
+		GnomeVFSURI *uri,
+		GnomeVFSMonitorType monitor_type)
+{
+	/* FIXME: implement */
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+}
+
+static GnomeVFSResult
+do_monitor_cancel (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle *method_handle)
+{
+	/* FIXME: implement */
+	return GNOME_VFS_ERROR_NOT_SUPPORTED;
+}
+
 
 /* gnome-vfs bureaucracy */
 
@@ -4172,7 +4488,9 @@ static GnomeVFSMethod method = {
 	do_set_file_info,
 	do_truncate,
 	NULL /* find_directory */,
-	NULL /* create_symbolic_link */
+	NULL /* create_symbolic_link */,
+	do_monitor_add,
+	do_monitor_cancel
 };
 
 GnomeVFSMethod *
