@@ -76,7 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{prefix}/bin/*
-%{prefix}/lib/lib*.so.*
+%{prefix}/lib/lib*.so*
 %{prefix}/lib/vfs/extfs/*
 %{prefix}/lib/vfs/modules/lib*.so*
 %{prefix}/man/man5/*
