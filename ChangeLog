@@ -1,5 +1,13 @@
 2001-03-07  Maciej Stachowiak  <mjs@eazel.com>
 
+	reviewed by: Robin Slomkowski  <rslomkow@eazel.com>
+
+	* gnome-vfs-config.in: Tweak so output is 1.1, not gnome-vfs-1.1
+	to be consistent with other -config scripts and stop confusing
+	control-center's configure; fixes tinderbox.
+
+2001-03-07  Maciej Stachowiak  <mjs@eazel.com>
+
 	* gnome-vfs.spec.in: Add gnome-vfs-config to silence tinderbox.
 
 2001-03-07  Darin Adler  <darin@eazel.com>
