@@ -1,3 +1,11 @@
+2003-05-05  Alexander Larsson  <alexl@redhat.com>
+
+	* NEWS:
+	Update
+
+	* configure.in:
+	Bump version
+
 2003-05-03  Arvind Samptur  <arvind.samptur@wipro.com>
 	* modules/cdemenu-desktop-method.c:
 	(create_cde_icon_name_cache): While running the dttypes

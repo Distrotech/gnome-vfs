@@ -1,3 +1,20 @@
+gnome-vfs 2.3.1
+        * Features:
+	       + New API gnome_vfs_url_show() and related calls
+	       + New function gnome_vfs_make_uri_from_input_with_dirs
+	       + Cygwin port
+	       + IPV6 support
+	       
+	* Bugs fixed:
+	       + Some mime fixes
+	       + Correctly handle symlinks to symlinks
+	       + hpux fixes
+	       + CDE menu translation fixes
+	       + Webdav PROPFIND details
+	       + Fixed locale aliases handling
+	       + call bindtextlocale to get translation working
+	       + Fixes to mtab handling
+
 gnome-vfs 2.2.4
 
 	* Bugs fixed:
