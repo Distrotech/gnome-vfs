@@ -11,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2004-01-09 22:09+0100\n"
+"POT-Creation-Date: 2004-01-31 04:01+0100\n"
+"PO-Revision-Date: 2004-02-04 13:25+0100\n"
 "Last-Translator: Arafat Medini <lumina@silverpen.de>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: daemon/gnome-vfs-daemon.c:588
 msgid "Could not initialize Bonobo"
@@ -44,7 +44,7 @@ msgstr "%s:%d لا يحوي اسم الطريقة."
 #: libgnomevfs/gnome-vfs-configuration.c:284
 #, c-format
 msgid "%s:%d has no options endmarker."
-msgstr ""
+msgstr "%s:%d·ليس له علامة إنتهاء الخيارات"
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
@@ -459,11 +459,9 @@ msgid "Unknown error"
 msgstr "خطأ مجهول"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "بايت %u"
-msgstr[1] "بايت %u"
+msgstr "%u·بايت"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -563,15 +561,15 @@ msgid "Unable to unmount the selected volume."
 msgstr "لا يمكن إلغاء تجهيز الحجم المختار."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
-#: libgnomevfs/gnome-vfs-volume-ops.c:296
+#: libgnomevfs/gnome-vfs-volume-ops.c:285
 msgid "Failed to start command"
 msgstr "فشل تشغيل الأمر"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:289
+#: libgnomevfs/gnome-vfs-volume-ops.c:278
 msgid "Unable to eject media"
 msgstr "لا يمكن طرد الوسيط"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:465
+#: libgnomevfs/gnome-vfs-volume-ops.c:454
 msgid "Unable to unmount connected server"
 msgstr "لا يمكن إلغاء تجهيز النادل المتصل"
 
@@ -758,49 +756,58 @@ msgstr "تشغيل البرنامج في شاشة طرفية"
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين H323."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTP URLs."
 msgstr ""
+"إضبط·لـ·true·لتخصيص·برنامج·لأمر·معاينة·عناوين·HTTP."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
 "Set to true to have a program specified in \"command\" handle HTTPS URLs."
 msgstr ""
+"إضبط·لـ·true·لتخصيص·برنامج·لأمر·معاينة·عناوين·HTTPS."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"إضبط·لـ·true·لتخصيص·برنامج··لأمر·معاينة·عناوين·callto (النداء)."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid ""
 "Set to true to have a program specified in \"command\" handle ghelp URLs."
 msgstr ""
+"إضبط·لـ·true·لتخصيص·برنامج·لأمر·معاينة·عناوين·ghelp."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
 "Set to true to have a program specified in \"command\" handle info URLs."
 msgstr ""
+"إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين info (المعلومات)."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
 "Set to true to have a program specified in \"command\" handle mailto URLs."
 msgstr ""
+"إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين mailto (إرسال البريد)."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "Set to true to have a program specified in \"command\" handle man URLs."
 msgstr ""
+"إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين man (الدلائل)."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "Set to true to have a program specified in \"command\" handle trash URLs."
 msgstr ""
+"إضبط لـ true لتخصيص برنامج لأمر معاينة عناوين trash (سلة المهملات)."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
+msgstr "True إذا وجب تشغيل برنامج معالجة هذا العنوان في شاشة طرفية."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -868,10 +875,13 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
+"اذا ضبط لـ true، فستطلب الاتصلات لنادل البروكسي التوثيق. مجموعة"
+"الـ username/password المعرف بـ \"/system/http_proxy/authentication_user"
+"\"·و·\"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "مضيفين ليسو مضيفي بروكسي"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
@@ -937,6 +947,8 @@ msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"منفذ الحاسوب المعرف بـ \"/system/proxy/secure_host\" والذي"
+"تبروكسي عبره."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
@@ -952,6 +964,10 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"يحوي هذا المفتاح قائمة من المضيفين المتصلين مباشرة، عوضا عن"
+"المتصلين عبر بروكسي ما (هذا إذا كان نشطا). يمكن أن تكون القيم أسماء مضيفين أو"
+"ميدان (باستخدام وايلدكارد أولية مثل *.foo.com)، عناوين مضيفي الـ IP"
+"(IPv4 و IPv6) أو عناوين شبكة (مثل 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -966,17 +982,16 @@ msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "اسم المستخدم الذي سيمرر عند القيام ببروكسية الـ HTTP."
 
 #: modules/network-method.c:257
-#, fuzzy
 msgid "Windows Network"
-msgstr "الشبكة"
+msgstr "شبكة ونداوس"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "مجموعة عمل SMB (صمبا)"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "نافذة مجموعة العملالتي لا ينتمي إليها المستخدم"
 
 #~ msgid "Hosts are not contacted via the proxy"
 #~ msgstr "المضيفين غير متصلين عبر البروكسي"
