@@ -215,8 +215,10 @@ gboolean
 gnome_vfs_directory_filter_apply (const GnomeVFSDirectoryFilter *filter,
 				  GnomeVFSFileInfo *info)
 {
-	g_return_val_if_fail (filter != NULL, FALSE);
 	g_return_val_if_fail (info != NULL, FALSE);
+
+	if (filter == NULL)
+		return TRUE;
 
 	if (filter->func != NULL)
 		return filter->func (info, filter->data);
