@@ -2086,7 +2086,7 @@ unix_ls_to_file_info (gchar *ls, GnomeVFSFileInfo *file_info,
 		   would give the stat_to_file_info function this
 		   information.  Also, there may be more fields here that are not 
 		   valid that we haven't dealt with.  */
-		file_info->valid_fields |= ~(GNOME_VFS_FILE_INFO_FIELDS_DEVICE
+		file_info->valid_fields &= ~(GNOME_VFS_FILE_INFO_FIELDS_DEVICE
 					     | GNOME_VFS_FILE_INFO_FIELDS_INODE
 					     | GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE);
 

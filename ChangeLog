@@ -1,5 +1,11 @@
 2005-02-14  Christian Kellner  <gicmo@gnome.org>
 
+	* modules/ftp-method.c (unix_ls_to_file_info): Unset the invaild
+	fields instead of setting everthing except those fields. This
+	should also fix bug #167268.
+
+2005-02-14  Christian Kellner  <gicmo@gnome.org>
+
 	* libgnomevfs/gnome-vfs-socket.c: Make read and write calls aware
 	of cancellation. This should fix bug #151380.
 
