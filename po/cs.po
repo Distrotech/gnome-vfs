@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-02-12 15:39+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -567,7 +567,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Nemohu odpojit vybraný svazek."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Nemohu spustit příkaz"
 
@@ -575,7 +575,7 @@ msgstr "Nemohu spustit příkaz"
 msgid "Unable to eject media"
 msgstr "Nemohu vysunout médium"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Nemohu odpojit připojený server"
 
@@ -630,15 +630,15 @@ msgstr "Tools"
 msgid "Windows"
 msgstr "Windows"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Síť"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Doma"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "Systém souborů"
 
@@ -647,7 +647,7 @@ msgstr "Systém souborů"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Neznámé GnomeVFSSeekPosition %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Síť Windows"
 

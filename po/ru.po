@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-02-17 13:01+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -565,7 +565,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Невозможно отсоединить выбранный том."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Произошла ошибка при запуске команды"
 
@@ -573,7 +573,7 @@ msgstr "Произошла ошибка при запуске команды"
 msgid "Unable to eject media"
 msgstr "Невозможно извлечь носитель"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Невозможно отсоединить подключённый сервер"
 
@@ -627,15 +627,15 @@ msgstr "Инструмены"
 msgid "Windows"
 msgstr "Окна"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Сеть"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Начало"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "Файловая система"
 
@@ -644,7 +644,7 @@ msgstr "Файловая система"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Значение GnomeVFSSeekPosition %d неизвестно"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Сеть ОС Виндоуз (Windows)"
 

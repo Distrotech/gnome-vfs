@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-02-18 00:15+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -571,7 +571,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Kan ikke afmontere det valgte arkiv."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Det mislykkedes at starte kommando"
 
@@ -579,7 +579,7 @@ msgstr "Det mislykkedes at starte kommando"
 msgid "Unable to eject media"
 msgstr "Kan ikke skubbe medium ud"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Kan ikke afmontere tilsluttet server"
 
@@ -633,15 +633,15 @@ msgstr "Værktøjer"
 msgid "Windows"
 msgstr "Vinduer"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Netværk"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Hjem"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "Filsystem"
 
@@ -650,7 +650,7 @@ msgstr "Filsystem"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ukendt GnomeVFSSeekPosition %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Windows-netværk"
 

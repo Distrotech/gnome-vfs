@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-04-15 15:45+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
@@ -564,7 +564,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Ezin da hautatutako bolumena desmuntatu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Huts egin du komandoa abiatzean."
 
@@ -572,7 +572,7 @@ msgstr "Huts egin du komandoa abiatzean."
 msgid "Unable to eject media"
 msgstr "Ezin da euskarria egotzi."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Ezin da konektatutako zerbitzaria desmuntatu."
 
@@ -626,15 +626,15 @@ msgstr "Tresnak"
 msgid "Windows"
 msgstr "Leihoak"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Sarea"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Etxea"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "Fitxategi-sistema"
 
@@ -643,7 +643,7 @@ msgstr "Fitxategi-sistema"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "%d nomeVFSSeekPosition ezezaguna"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Windows sarea"
 

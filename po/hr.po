@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-03-13 13:07+CET\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
@@ -564,7 +564,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Ne mogu isključiti odabrani disk. "
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Nije uspjelo pokretanje naredbe"
 
@@ -572,7 +572,7 @@ msgstr "Nije uspjelo pokretanje naredbe"
 msgid "Unable to eject media"
 msgstr "Ne mogu izbaciti medij"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Ne mogu isključiti povezani poslužitelj"
 
@@ -626,15 +626,15 @@ msgstr "Alati"
 msgid "Windows"
 msgstr "Windows"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Mreža"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Početno"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "Datotečni sustav"
 
@@ -643,7 +643,7 @@ msgstr "Datotečni sustav"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nepoznati GnomeVFS pretraživanje položaja %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Prozori mreža"
 

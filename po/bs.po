@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2002-05-27 20:20GMT+1\n"
 "Last-Translator: Samir Marić <samir@lugbih.org>\n"
 "Language-Team: Bosnian <prijevodi@linux.org.ba>\n"
@@ -562,7 +562,7 @@ msgid "Unable to unmount the selected volume."
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr ""
 
@@ -570,7 +570,7 @@ msgstr ""
 msgid "Unable to eject media"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr ""
 
@@ -625,15 +625,15 @@ msgstr ""
 msgid "Windows"
 msgstr ""
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr ""
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr ""
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 #, fuzzy
 msgid "Filesystem"
 msgstr "Datoteka postoji"
@@ -643,7 +643,7 @@ msgstr "Datoteka postoji"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nepoznata GnomeVFSSeekPosition %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr ""
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-03-20 12:31+0100\n"
 "Last-Translator: Laszlo Dvornik <dvornikl@mailbox.hu>\n"
 "Language-Team: Hungarian <translation-team-hu@lists.sourceforge.net>\n"
@@ -568,7 +568,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Nem lehet leválasztani a kijelölt kötetet."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Parancs indítása sikertelen"
 
@@ -576,7 +576,7 @@ msgstr "Parancs indítása sikertelen"
 msgid "Unable to eject media"
 msgstr "Nem lehet kiadni az adathordozót"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Nem lehet leválasztani a csatlakoztatott kiszolgálót"
 
@@ -630,15 +630,15 @@ msgstr "Eszközök"
 msgid "Windows"
 msgstr "Ablakok"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Hálózat"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Kezdőlap"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "Fájlrendszer"
 
@@ -647,7 +647,7 @@ msgstr "Fájlrendszer"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Ismeretlen GnomeVFSSeekPosition %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Windows hálózat"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2003-02-12 10:19+0530\n"
 "Last-Translator: Sayamindu Dasgupta <unmadindu@Softhome.net>\n"
 "Language-Team: Bengali (bn) <gnome-translation@bengalinux.org>\n"
@@ -564,7 +564,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "নির্বাচিত ভলিউমকে আনমাউন্ট করা গেল না ।"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "কমান্ড চালু করা গেল না"
 
@@ -572,7 +572,7 @@ msgstr "কমান্ড চালু করা গেল না"
 msgid "Unable to eject media"
 msgstr "মিডিয়াকে বের করে দেওয়া গেল না"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "সার্ভারের সঙ্গে সংযোগ বিচ্ছিন্ন করা গেল না"
 
@@ -626,15 +626,15 @@ msgstr "যন্তপাতি"
 msgid "Windows"
 msgstr "উইন্ডোজ"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "নেটওয়ার্ক"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "ব্যক্তিগত ফোল্ডার (হোম)"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "ফাইলসিস্টেম"
 
@@ -643,7 +643,7 @@ msgstr "ফাইলসিস্টেম"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "অজানা GnomeVFSSeekPosition %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "উইন্ডোজ নেটওয়ার্ক"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs-2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-02-29 20:47+0530\n"
 "Last-Translator: Nirav, Ankit, Ankur, Atit, Bhavin, Kartik, Khushbu, Sweta. "
 "<magnet@magnet-i.com>\n"
@@ -621,7 +621,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "પસંદ કરેલ કદનુ માઉન્ટ દૂર કરવામાં ભૂલ."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "આદેશ શરુ કરવામાં નિષ્ફળ"
 
@@ -629,7 +629,7 @@ msgstr "આદેશ શરુ કરવામાં નિષ્ફળ"
 msgid "Unable to eject media"
 msgstr "મિડિયાને બહાર કાઢવામાં નિષ્ફળ"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "સંપર્ક કરેલ સર્વરનુ મઉન્ટ દૂર કરવામાં નિષ્ફળ"
 
@@ -684,16 +684,16 @@ msgstr "સાધનો"
 msgid "Windows"
 msgstr "વિન્ડો"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "નેટવર્ક"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "ઘર"
 
 # libgnomevfs/gnome-vfs-result.c:57
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "ફાઇલસિસ્ટમ"
 
@@ -703,7 +703,7 @@ msgstr "ફાઇલસિસ્ટમ"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "અજાણીતી જીનોમ VFSSeek સ્થિતિ %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "વિન્ડો નેટવર્ક"
 

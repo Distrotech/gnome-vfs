@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2003-06-27 00:15--100\n"
 "Last-Translator: Gnome PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
@@ -569,7 +569,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Nie można odmontować wybranego woluminu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Niepowodzenie przy uruchomieniu polecenia"
 
@@ -577,7 +577,7 @@ msgstr "Niepowodzenie przy uruchomieniu polecenia"
 msgid "Unable to eject media"
 msgstr "Nie można wysunąć nośnika"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Nie można odmontować podłączonego serwera"
 
@@ -631,15 +631,15 @@ msgstr "Narzędzia"
 msgid "Windows"
 msgstr "Okna"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Sieć"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Początek"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "System plików"
 
@@ -648,7 +648,7 @@ msgstr "System plików"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nieznana wartość %d GnomeVFSSeekPosition"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Sieć Windows"
 

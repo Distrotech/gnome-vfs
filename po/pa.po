@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-03-17 11:35+0530\n"
 "Last-Translator: Amanpreet Singh Alam <amanlinux@netscape.net>\n"
 "Language-Team: KBST Punjab <kbstpunjab@netscape.net>\n"
@@ -626,7 +626,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "ਚੁਣੇ ਵਾਲੀਅਮ ਨੰੂ ਅਨ-ਮਾੳੂਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ ਹੈ ੤"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "ਕਮ੾ਡ ਚਾਲੂ ਕਰਨ ਵਿੱਚ ਅਸਫਲ "
 
@@ -634,7 +634,7 @@ msgstr "ਕਮ੾ਡ ਚਾਲੂ ਕਰਨ ਵਿੱਚ ਅਸਫਲ "
 msgid "Unable to eject media"
 msgstr "ਮਾਧਿਅਮ ਕੱਢਣ ਵਿੱਚ ਅਸਫਲ "
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "ਜੁੜੇ ਸਰਵਰ ਨੰੂ ਅਨ-ਮਾੳੂਟ ਕਰਨ ਵਿੱਚ ਅਸਫਲ"
 
@@ -689,15 +689,15 @@ msgstr "ਸੰਦ"
 msgid "Windows"
 msgstr "ਵਿੰਡੋ"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "ਨੈਟਵਰਕ"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "ਘਰ"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "ਫਾੲਿਲ ਸਿਸਟਮ"
 
@@ -707,7 +707,7 @@ msgstr "ਫਾੲਿਲ ਸਿਸਟਮ"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "ਅਣਪਛਾਤੀ ਗਨੋਮ VFSSeek ਥਾਂ %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "ਵਿੰਡੋ ਨੈਟਵਰਕ"
 

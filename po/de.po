@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-02-22 10:44+0100\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -573,7 +573,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Der gewählte Datenträger konnte nicht ausgehängt werden."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Befehl konnte nicht ausgeführt werden"
 
@@ -582,7 +582,7 @@ msgid "Unable to eject media"
 msgstr "Medium konnte nicht ausgeworfen werden"
 
 # CHECK
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Verbundener Server konnte nicht ausgehängt werden"
 
@@ -636,15 +636,15 @@ msgstr "Werkzeuge"
 msgid "Windows"
 msgstr "Fenster"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Netzwerk"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Persönlicher Ordner"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "Dateisystem"
 
@@ -653,7 +653,7 @@ msgstr "Dateisystem"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GNOMEVFSSeekPosition %d unbekannt"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Windows-Netzwerk"
 

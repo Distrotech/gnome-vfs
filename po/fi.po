@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-02-07 18:16+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -564,7 +564,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Valitun taltion irrottaminen ei onnistu."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Komennon käynnistäminen epäonnistui"
 
@@ -572,7 +572,7 @@ msgstr "Komennon käynnistäminen epäonnistui"
 msgid "Unable to eject media"
 msgstr "Levyn poistaminen asemasta ei onnistu"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Yhdistetyn palvelimen irrottaminen ei onnistu"
 
@@ -626,15 +626,15 @@ msgstr "Työkalut"
 msgid "Windows"
 msgstr "Ikkunat"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Verkko"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Koti"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "Tiedostojärjestelmä"
 
@@ -643,7 +643,7 @@ msgstr "Tiedostojärjestelmä"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Tuntematon GnomeVFSSeekPosition %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Windows-verkko"
 

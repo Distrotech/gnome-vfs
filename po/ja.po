@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-02-14 00:20+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -567,7 +567,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "選択したボリュームをアンマウントできません。"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "コマンドの起動に失敗しました"
 
@@ -575,7 +575,7 @@ msgstr "コマンドの起動に失敗しました"
 msgid "Unable to eject media"
 msgstr "メディアを排出できません"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "接続済のサーバをアンマウントできません"
 
@@ -629,15 +629,15 @@ msgstr "ツール"
 msgid "Windows"
 msgstr "Windows"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "ネットワーク"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "ホーム"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "ファイルシステム"
 
@@ -646,7 +646,7 @@ msgstr "ファイルシステム"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "不明な GnomeVFSSeekPosition %d です"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Windows ネットワーク"
 

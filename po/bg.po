@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.6.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-02 02:48+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-06-02 12:40+0300\n"
 "Last-Translator: Updated by Peter \"Peshka\" Slavov <pslavov@i-space.org>>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: daemon/gnome-vfs-daemon.c:590
 msgid "Could not initialize Bonobo"
@@ -194,22 +194,22 @@ msgstr "XIAFS·Диск"
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: libgnomevfs/gnome-vfs-job.c:774
+#: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Неизвестен тип операция %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1064 libgnomevfs/gnome-vfs-job.c:1209
+#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Не мога да създам програмен канал за отваряне на GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1727
+#: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Неизвестен вид задание %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1760
+#: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "Операцията е спряна"
 
@@ -457,9 +457,11 @@ msgid "Unknown error"
 msgstr "Неизвестна грешка"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, c-format
+#, fuzzy, c-format
 msgid "%u byte"
-msgstr "%u байт"
+msgid_plural "%u bytes"
+msgstr[0] "%u байт"
+msgstr[1] "%u байт"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
 #, c-format
@@ -477,46 +479,46 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
 msgid " (invalid Unicode)"
 msgstr " (грешен уникод)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
 msgid "Floppy"
 msgstr "Дискета"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
 msgid "Zip Drive"
 msgstr "Zip·Устройство"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
 msgid "Memory Stick"
 msgstr "Memory·Stick"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
 msgid "Camera"
 msgstr "Фотоапарат"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
 msgid "Root Volume"
 msgstr "Root·Диск"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
 msgid "Audio CD"
 msgstr "Аудио·CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
 msgid "Unknown volume"
 msgstr "Неизвестно устройство"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
 msgid "Network server"
 msgstr "Мрежови сървър"
 
@@ -531,23 +533,24 @@ msgstr ""
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr "Не можеше да бъде монтирано устройството. Вероятно няма източник в него."
+msgstr ""
+"Не можеше да бъде монтирано устройството. Вероятно няма източник в него."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Не може да бъде монтирано флопито. Вероятно е във формат, който не "
-"може да бъде монтиран."
+"Не може да бъде монтирано флопито. Вероятно е във формат, който не може да "
+"бъде монтиран."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
-"Не може да се монтира избраното устройство. Вероятно е във формат, който "
-"не може да бъде монтиран."
+"Не може да се монтира избраното устройство. Вероятно е във формат, който не "
+"може да бъде монтиран."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -562,7 +565,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Не може де бъде демонтирано избраното устройство."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Неуспех при стартирането на командата"
 
@@ -570,7 +573,7 @@ msgstr "Неуспех при стартирането на командата"
 msgid "Unable to eject media"
 msgstr "Не може да бъде изкаран източника на медията"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Не може да бъде демонтиран свързания сървър"
 
@@ -624,15 +627,15 @@ msgstr "Инструменти"
 msgid "Windows"
 msgstr "Прозорци"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Мрежа"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Домашна"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "Файлова система"
 
@@ -641,7 +644,7 @@ msgstr "Файлова система"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Неизвестно GnomeVFSSeekPosition %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Windows·Мрежа"
 
@@ -693,16 +696,17 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
-"Програмата, която да се използва за преглед на файлове, които изискват "
-"даден компонент за прегледа им. Параметърът %s ще бъде заменен пътя до "
-"файла, параметъра %c ще бъде заменен за IID на компонента."
+"Програмата, която да се използва за преглед на файлове, които изискват даден "
+"компонент за прегледа им. Параметърът %s ще бъде заменен пътя до файла, "
+"параметъра %c ще бъде заменен за IID на компонента."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
-"Стандартната конзолна програма да се използва за програми, които изискват конзола."
+"Стандартната конзолна програма да се използва за програми, които изискват "
+"конзола."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -806,7 +810,9 @@ msgstr ""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid "True if the program to handle this URL should be run in a terminal."
-msgstr "Включено, ако програмата, която ще обработва това URL трябва да бъде пусната в конзола."
+msgstr ""
+"Включено, ако програмата, която ще обработва това URL трябва да бъде пусната "
+"в конзола."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid "callto URL handler"
@@ -908,8 +914,8 @@ msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
-"Изберете режим на настройка на прокси. Поддържани стойности са \"няма\", \"ръчен\", "
-"\"автоматичен\""
+"Изберете режим на настройка на прокси. Поддържани стойности са \"няма\", "
+"\"ръчен\", \"автоматичен\""
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -958,9 +964,10 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
-"Този ключ съдържа списък с хостове, които за свързани директно, вместо "
-"през прокси (ако е активно). Стойностите могат да са хостове, домейни(*.foo.com), "
-"IP адреси на хостове(и IPv4, и IPv6) и мрежови адреси с мрежова маска (192.168.0.0/24)."
+"Този ключ съдържа списък с хостове, които за свързани директно, вместо през "
+"прокси (ако е активно). Стойностите могат да са хостове, домейни(*.foo.com), "
+"IP адреси на хостове(и IPv4, и IPv6) и мрежови адреси с мрежова маска "
+"(192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."

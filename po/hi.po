@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2003-08-07 17:36+0530\n"
 "Last-Translator: G Karunakar <karunakar@freedomink.org>\n"
 "Language-Team: Hindi <indlinux-hindi-gnome@lists.sourceforge.net>\n"
@@ -625,7 +625,7 @@ msgid "Unable to unmount the selected volume."
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr ""
 
@@ -633,7 +633,7 @@ msgstr ""
 msgid "Unable to eject media"
 msgstr ""
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr ""
 
@@ -688,16 +688,16 @@ msgstr "औजार"
 msgid "Windows"
 msgstr "विंडोज"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr ""
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr ""
 
 # libgnomevfs/gnome-vfs-result.c:57
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 #, fuzzy
 msgid "Filesystem"
 msgstr "फाइलें"
@@ -708,7 +708,7 @@ msgstr "फाइलें"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "अज्ञात गनोम VFSSeek स्थिति %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 #, fuzzy
 msgid "Windows Network"
 msgstr "विंडोज"

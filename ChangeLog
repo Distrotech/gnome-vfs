@@ -1,6 +1,14 @@
 2004-06-18  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:
+	Need -lresolve for unicast dns-sd
+
+	* doc/gnome-vfs-2.0-sections.txt:
+	Update with some new stuff
+
+2004-06-18  Alexander Larsson  <alexl@redhat.com>
+
+	* configure.in:
 	Check for howl 0.9.5
 	
 	* libgnomevfs/Makefile.am:

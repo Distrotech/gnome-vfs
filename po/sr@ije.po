@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-02-25 14:34+0100\n"
 "Last-Translator: Bojan Suzic <bojans@teol.net>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
@@ -572,7 +572,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "Не могу да искључим изабрани диск."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "Неуспјешно покретање наредбе"
 
@@ -580,7 +580,7 @@ msgstr "Неуспјешно покретање наредбе"
 msgid "Unable to eject media"
 msgstr "Не могу да избацим медиј"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "Не могу да искључим везу са сервером"
 
@@ -634,15 +634,15 @@ msgstr "Алати"
 msgid "Windows"
 msgstr "Прозори"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "Мрежа"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "Лични"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "Систем датотека"
 
@@ -651,7 +651,7 @@ msgstr "Систем датотека"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Непознато GnomeVFSSeekPosition %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Виндоуз мрежа"
 

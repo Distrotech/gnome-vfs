@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-01 08:33+0200\n"
+"POT-Creation-Date: 2004-06-18 13:07+0200\n"
 "PO-Revision-Date: 2004-02-24 23:45+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -560,7 +560,7 @@ msgid "Unable to unmount the selected volume."
 msgstr "선택한 볼륨을 마운트 해제할 수 없습니다."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:298
+#: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
 msgstr "명령어를 시작하는 데 실패했습니다"
 
@@ -568,7 +568,7 @@ msgstr "명령어를 시작하는 데 실패했습니다"
 msgid "Unable to eject media"
 msgstr "미디어를 꺼낼 수 없습니다"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:477
+#: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
 msgstr "연결한 서버에서 마운트를 해제할 수 없습니다"
 
@@ -622,15 +622,15 @@ msgstr "도구"
 msgid "Windows"
 msgstr "창"
 
-#: modules/computer-method.c:525
+#: modules/computer-method.c:542
 msgid "Network"
 msgstr "네트워크"
 
-#: modules/computer-method.c:543
+#: modules/computer-method.c:560
 msgid "Home"
 msgstr "홈"
 
-#: modules/computer-method.c:561
+#: modules/computer-method.c:578
 msgid "Filesystem"
 msgstr "파일시스템"
 
@@ -639,7 +639,7 @@ msgstr "파일시스템"
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "알 수 없는 GnomeVFSSeekPosition %d"
 
-#: modules/network-method.c:257
+#: modules/network-method.c:1395
 msgid "Windows Network"
 msgstr "Windows 네트워크"
 
