@@ -1,3 +1,31 @@
+2000-10-20  Pavel Cisler <pavel@eazel.com>
+
+	Work on bug 2989, not done yet.
+	
+	* modules/file-method.c: (mkdir_recursive),
+	(match_trash_item_by_device_id), (find_disk_top_directory),
+	(save_trash_entry_cache), (add_local_cached_trash_entry),
+	(add_cached_trash_entry), (destroy_cached_trash_entry),
+	(read_saved_cached_trash_entries), (create_trash_near),
+	(cached_trash_entry_exists),
+	(find_locally_cached_trash_entry_for_device_id),
+	(find_cached_trash_entry_for_device), (find_trash_near),
+	(find_trash_directory), (do_find_directory):
+	Add a two level caching scheme for remembering trash folder locations.
+	This will help us only do the long search for a Trash directory do
+	the first time Nautilus ever runs or if a Trash directory gets moved
+	manually by the user to a different place.
+	In addition to caching the locations in a list in memory we now
+	also save them into a file in the user home settings directory.
+	Disks that have not had a Trash directory created on them are
+	marked as such and next time Nautilus is run, they are not searched
+	unless the user specifically requests a Trash directory to get created
+	(by throwing something from the respective directory to the Trash).
+	I still need to test/fix bugs in this.
+
+	* test/test-find-directory.c: (main):
+	Tweak test code to help debug the new code.
+	
 2000-10-19  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (empty_directory):

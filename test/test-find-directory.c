@@ -37,27 +37,42 @@ main (int argc, char **argv)
 	GnomeVFSURI *result;
 	GnomeVFSResult error;
 	char *path;
+	gboolean create;
 
-	
+	create = FALSE;
+
 	if (!gnome_vfs_init ()) {
 		fprintf (stderr, "Cannot initialize gnome-vfs.\n");
 		return 1;
 	}
 
 	if (argc == 1) {
-		fprintf (stderr, "Usage: %s near_uri \n", *argv);
+		fprintf (stderr, "Usage: %s [-create] near_uri \n", *argv);
 		return 1;
 	}
 
 
 	++argv;
 
+	if (strcmp (*argv, "-create") == 0) {
+		create = TRUE;
+		++argv;
+	}
+	
 	uri = gnome_vfs_uri_new (*argv);
-	error = gnome_vfs_find_directory (uri, GNOME_VFS_DIRECTORY_KIND_TRASH, &result, TRUE, TRUE, 0777);
+	error = gnome_vfs_find_directory (uri, GNOME_VFS_DIRECTORY_KIND_TRASH, &result, create, 
+		TRUE, 0777);
 	if (error == GNOME_VFS_OK) {
 		path = gnome_vfs_uri_to_string (result, GNOME_VFS_URI_HIDE_NONE);
 		g_print ("found trash at %s\n", path);
 		g_free (path);
+		error = gnome_vfs_find_directory (uri, GNOME_VFS_DIRECTORY_KIND_TRASH, 
+			&result, FALSE, FALSE, 0777);
+		if (error == GNOME_VFS_OK) {
+			path = gnome_vfs_uri_to_string (result, GNOME_VFS_URI_HIDE_NONE);
+			g_print ("found it again in a cached entry at %s\n", path);
+			g_free (path);
+		}
 	}
 	
 	return 0;
