@@ -8,22 +8,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.4\n"
-"POT-Creation-Date: 2003-12-28 11:03+0100\n"
-"PO-Revision-Date: 2003-12-20 05:46+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-12 01:57+0100\n"
+"PO-Revision-Date: 2004-01-12 01:58+0100\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: daemon/gnome-vfs-daemon.c:553
+#: daemon/gnome-vfs-daemon.c:573
 msgid "Could not initialize Bonobo"
 msgstr "Ne mogu da pokrenem Bonobo"
 
-#: daemon/gnome-vfs-daemon.c:559
+#: daemon/gnome-vfs-daemon.c:579
 msgid "Could not initialize gnome vfs"
 msgstr "Ne mogu da pokrenem Gnomov VFS"
 
@@ -640,7 +640,7 @@ msgstr "Lični"
 msgid "Filesystem"
 msgstr "Sistem datoteka"
 
-#: modules/file-method.c:382
+#: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Nepoznato GnomeVFSSeekPosition %d"
@@ -991,6 +991,19 @@ msgstr "Koristi veb posrednika"
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
 msgstr "Korisničko ime koje se šalje pri identifikaciji kod veb posrednika."
+
+# bug: s/Window/Windows/
+#: modules/network-method.c:257
+msgid "Window Network"
+msgstr "Vindouz mreža"
+
+#: schemas/system_smb.schemas.in.h:1
+msgid "SMB workgroup"
+msgstr "SMB radna grupa"
+
+#: schemas/system_smb.schemas.in.h:2
+msgid "The window workgroup the user is part of"
+msgstr "Vindouz radna grupa koje je korisnik član"
 
 #~ msgid "How to handle http URLs"
 #~ msgstr "Kako baratati http adresama"
