@@ -755,7 +755,6 @@ gnome_vfs_mime_init ()
 	gnome_mime_dir.dirname = g_strconcat (GNOME_VFS_DATADIR, "/mime-info", NULL);
 	gnome_mime_dir.system_dir = TRUE;
 	
-	/* FIXME bugzilla.eazel.com 796: Looks in gnome-libs prefix instead of gnome-vfs prefix. */
 	user_mime_dir.dirname  = gnome_util_home_file ("mime-info");
 	user_mime_dir.system_dir = FALSE;
 
