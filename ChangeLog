@@ -1,3 +1,11 @@
+2000-11-02  Mike Fleming  <mfleming@eazel.com>
+
+	* libgnomevfs/gnome-vfs-uri.c:
+	* modules/http-method.c: (http_status_to_vfs_result), (do_move):
+	bugzilla.eazel.com bug 4225, http-method now correctly obeys
+	force_replace (being FALSE) in do_move.  Users can't accidentally delete
+	files by naming them the same.
+
 2000-11-02  Andy Hertzfeld  <andy@eazel.com>
 
 	* data/mime/gnome-vfs.keys:

@@ -1156,6 +1156,10 @@ compare_elements (const GnomeVFSURI *a,
  * Compare @a and @b.
  * 
  * Return value: %TRUE if @a and @b are equal, %FALSE otherwise.
+ *
+ * FIXME: This comparison should take into account the possiblity
+ * that unreserved characters may be escaped.
+ * ...or perhaps gnome_vfs_uri_new should unescape unreserved characters?
  **/
 gboolean
 gnome_vfs_uri_equal (const GnomeVFSURI *a,

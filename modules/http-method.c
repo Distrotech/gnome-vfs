@@ -63,7 +63,7 @@
 
 #include "http-method.h"
 
-#if 0
+#if 1
 #include <stdio.h>
 #include <stdarg.h>
 #include <pthread.h>
@@ -856,6 +856,9 @@ http_status_to_vfs_result (guint status)
 	 */
 
 	switch (status) {
+	case HTTP_STATUS_PRECONDITION_FAILED:
+		/* This mapping is certainly true for MOVE with Overwrite: F, otherwise not so true */
+		return GNOME_VFS_ERROR_FILE_EXISTS;
 	case HTTP_STATUS_UNAUTHORIZED:
 	case HTTP_STATUS_PROXY_AUTH_REQUIRED:
 	case HTTP_STATUS_FORBIDDEN:
@@ -2429,10 +2432,13 @@ do_move (GnomeVFSMethod *method,
 	 gboolean force_replace,
 	 GnomeVFSContext *context)
 {
-	/* FIXME: Ignores force_replace. */
 
-	/* MOVE /path1 HTTP/1.0
-	 * Destination: /path2 */
+	/*
+	 * MOVE /path1 HTTP/1.0
+	 * Destination: /path2
+	 * Overwrite: (T|F)
+	 */
+
 	HttpFileHandle *handle;
 	GnomeVFSResult result;
 
@@ -2445,8 +2451,7 @@ do_move (GnomeVFSMethod *method,
 	}	
 
 	destpath = gnome_vfs_uri_to_string(new_uri, GNOME_VFS_URI_HIDE_USER_NAME|GNOME_VFS_URI_HIDE_PASSWORD);
-	destheader = g_strdup_printf("Destination: %s\r\n", destpath);
-
+	destheader = g_strdup_printf("Destination: %s\r\nOverwrite: %c\r\n", destpath, force_replace ? 'T' : 'F' );
 
 	result = make_request (&handle, old_uri, "MOVE", NULL, destheader, context);
 	http_handle_close (handle, context);
