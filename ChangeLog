@@ -1,4 +1,10 @@
-2003-07-11  Christophe Fergeau  <teuf@gnome.org>
+2003-07-17  Christophe Fergeau  <teuf@gnome.org>
+
+	* test/test-mime-handlers.c: free all allocated memory before exiting
+	to make valgrind happy (and to identify the leaks which are truly
+	coming from gnome-vfs ;)
+
+2003-07-17  Christophe Fergeau  <teuf@gnome.org>
 
 	* test/test-mime.c: fixed a crash when using an absolute path
 
@@ -50,7 +56,7 @@
 	(open_and_find_pointer_to_menu): Show the last custom menu
 	defined for the CDE menu items. Bugzilla bug #116101
 
-2003-06-28  Christophe Fergeau,,,  <set EMAIL_ADDRESS environment variable>
+2003-06-28  Christophe Fergeau <teuf@users.sourceforge.net>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c:
 	(gnome_vfs_mime_set_short_list_applications): when adding an app
