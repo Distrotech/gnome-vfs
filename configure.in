@@ -465,7 +465,7 @@ else
 fi
 
 AC_ARG_WITH(openssl-libs, [  --with-openssl-libs=PREFIX     	Location of OpenSSL libs.],
-	with_openssl_libs="$withval")
+	with_openssl_libs="$withval", with_openssl_libs="/usr/lib")
 msg_openssl="no"
 if test "x${with_openssl_libs}" != "xno" -a "x${have_openssl_includes}" != "xno"; then
 	LDFLAGS_save="$LDFLAGS"
