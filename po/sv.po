@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2002-12-16 13:29+0100\n"
-"PO-Revision-Date: 2002-11-01 17:26+0100\n"
+"POT-Creation-Date: 2002-12-17 02:12+0100\n"
+"PO-Revision-Date: 2002-12-17 02:13+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -271,9 +271,8 @@ msgstr "Protokollfel"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:76
-#, fuzzy
 msgid "Could not find master browser"
-msgstr "Kunde inte tolka: %s"
+msgstr "Kunde inte hitta huvudbläddrare"
 
 #: libgnomevfs/gnome-vfs-result.c:170
 msgid "Unknown error"
