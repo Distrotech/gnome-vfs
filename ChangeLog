@@ -1,3 +1,8 @@
+2002-08-15  Alex Graveley  <alex@ximian.com>
+
+	Merge all changes from gnome-2-0 branch back to
+	gnome-2-0-vfolder-rewrite.
+	
 2002-08-14  Alex Graveley  <alex@ximian.com>
 
 	* modules/vfolder/vfolder-util.c (vfolder_untimestamp_file_name):
@@ -668,6 +673,318 @@ Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
 	changes and folder extension.
 
 2002-07-05  Stephen Browne <stephen.browne@sun.com>
+	* modules/cdemenu-desktop-method.c
+	Patch from rohit.raveendran@wipro.com
+	modified the code so that the function create_cde_icon_name_cache
+	creates the file g-cdeiconnames with permissions 644 in .gnome 
+	directory in the users home directory.
+	Fixes #87267
+
+=======
+2002-08-15  Michael Meeks  <michael@ximian.com>
+
+	* modules/file-method.c
+	(read_saved_cached_trash_entries): code should agree
+	on the size of the buffer and how much to read into it.
+	(find_trash_directory): hold a lock on the trash cache
+	while operating on it. #10438
+
+2002-08-08  jacob berkman  <jacob@ximian.com>
+
+	* modules/Makefile.am (module_flags): add -module flag (fixes
+	building on OS X)
+
+	* modules/cdemenu-desktop-method.c (expand_env_vars): fix some
+	broken logic to make cde menu work when $LANG is not set
+
+	(fixes bug #87684)
+
+2002-08-07  Dave Camp  <dave@ximian.com>
+
+	* modules/fstype.c (filesystem_type): Use g_free to free 
+	the g_strduped string.
+
+Tue Aug  6 14:54:33 2002  HideToshi Tajima  <hidetoshi.tajima@sun.com>
+
+	* modules/cdemenu-desktop-method.c (expand_env_vars): get LC_CTYPE
+	from setlocale when no LC_CTYPE environment variable is set. Fixes #86462
+
+	* modules/cdemenu-desktop-method.c (get_icon_for_action): use
+	/usr/dt/appconfig/icons/C for fallback to avoid returning
+	"ICON=NONE" which makes gnome-panel crash in many locales.
+	* modules/cdemenu-desktop-method.c (do_open): Patch to fix the cde
+	menus to correctly translate to utf-8, originally by George Lebl
+	<jirka@5z.com> Fixes #84074
+
+	And merged two fixes below from the HEAD and
+	gnome-2-0-vfolder-rewrite branch
+
+	* modules/cde-desktop-method.c: Removing Comment field
+	from the desktop files. Fixes #88484
+
+	* modules/cde-desktop-method.c (do_read_directory): 
+	REALLY ignore CDE specific actions that make no sense in GNOME
+	Patch by Stephen Browne. Fixes 88483
+
+2002-08-05  Federico Mena Quintero  <federico@ximian.com>
+
+	Should fix #48539.
+
+	* modules/fstype.c (filesystem_type_uncached): Merged fix from GNU
+	findutils-4.1.7; return a copied string instead of a pointer to a
+	string on the stack...
+	(filesystem_type): Free the string we got when we must cache a new
+	value.
+
+2002-07-26  Ian McKellar  <yakk@yakk.net>
+
+	* libgnomevfs/gnome-vfs-xfer.c: (copy_file):
+	Fixed up gnome-vfs-xfer problem pointed out by Josh Parsons. My fix
+	is slightly different than his proposed fix but the spirits the same.
+
+2002-07-25  Dave Camp  <dave@ximian.com>
+
+	* libgnomevfs/gnome-vfs-inet-connection.c
+	(gnome_vfs_inet_connection_read): Return EOF if 0 bytes were read.
+
+2002-07-25  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-init.c
+	(gnome_vfs_pthread_init, gnome_vfs_init): init threads
+	if we have to before taking the vfs_already_initialized
+	lock - makes Valgrind happy; thanks to Julian Seward.
+
+2002-07-25  Laszlo Peter  <laca@sun.com>
+
+	reviewed by Michael Meeks
+
+	* configure.in: added test for libpopt
+
+	* test/Makefile.am: link libpopt to the test programs.
+
+2002-07-24  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* test/Makefile.am:
+	add auto-test to EXTRA_DIST (otherwise make check
+	fails with tarball)
+
+2002-07-24  Michael Meeks  <michael@ximian.com>
+
+	* Version 2.0.2
+
+	* libgnomevfs/gnome-vfs-job.c (gnome_vfs_job_go): dump
+	debug before scheduling the job, rather than when job
+	might be invalid.
+	(handle_cancelled_open): don't do daft things with
+	re-using the original job, and trying to signal
+	strangely to the caller.
+	(dispatch_job_callback): expand switch for
+	CREATE_SYMBOLIC_LINK test for a valid handle before
+	destroying it here, since it wasn't killed at the
+	exit of gnome-vfs-job-slave.c (thread_routine).
+	(execute_read, execute_write): set the op type to
+	READ_WRITE_DONE here before job might be invalid.
+	(gnome_vfs_job_execute): and not here, when it may
+	be duff / freed.
+
+	* libgnomevfs/gnome-vfs-async-ops.c
+	(gnome_vfs_async_xfer): set handle_return before
+	calling job_go [ which may invalidate job ]
+
+	* libgnomevfs/gnome-vfs-job.c
+	(job_notify): prune semaphore mess.
+	(gnome_vfs_job_set): lock/unlock.
+
+2002-07-23  Michael Meeks  <michael@ximian.com>
+
+	* test/test-async-cancel.c (file_open_callback): move
+	the async_read into the open_callback.
+
+	* libgnomevfs/gnome-vfs-job.c
+	(empty_close_callback): kill.
+
+	* libgnomevfs/gnome-vfs-job-queue.c
+	(job_queue_get_first): don't foreach a NULL job_queue.
+
+	* libgnomevfs/gnome-vfs-async-job-map.c
+	(async_job_callback_map_destroy): don't assert on the
+	idly built async_job_callback_map.
+
+	* libgnomevfs/gnome-vfs-job-slave.c (thread_routine):
+	always destroy the VFS job, if we are complete, instead
+	of checking for whether we have a callback still
+	registered in the job map, therein lies a race.
+
+	* libgnomevfs/gnome-vfs-job.c
+	(job_oneway_notify, job_notify): don't leak on cancel.
+	(gnome_vfs_job_destroy): blank the memory for good
+	measure.
+
+	* libgnomevfs/gnome-vfs-async-job-map.c
+	(gnome_vfs_async_job_map_unlock),
+	(gnome_vfs_async_job_map_lock): cope with the
+	recursive nature of this properly.
+
+	* libgnomevfs/gnome-vfs-job-queue.c
+	(gnome_vfs_job_queue_shutdown): try locking the
+	job_queue lock before destroying the entire tree, sob.
+	(gnome_vfs_job_queue_run): kill black magic with
+	volatile 'gnome_vfs_quitting' stuff, we don't need
+	that - just hold the job queue lock.
+
+	* test/test-async-cancel.c (wait_until_vfs_jobs_gone):
+	eliminate follow on error, so we can try and isolate
+	problems more accurately.
+	(test_get_file_info): don't leak URIs in lists.
+	(main): if memprof is running, don't quit just loop.
+
+2002-07-22  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* configure.in:
+	don't set OPENSSL_CFLAGS if it is "/usr/include",
+	otherwise gcc >= 3.1 issues a warning.
+
+2002-07-19  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* modules/ssh-method.c: (ssh_connect):
+	Fix bug 88539 (leaking ssh processes) by using 
+	g_spawn_async_with_pipes
+
+2002-07-17  Michael Meeks  <michael@ximian.com>
+
+	* test/auto-test: re-write.
+
+	* test/Makefile.am: connect auto-test, upd env.
+
+	* test/test-async-cancel.c
+	(MAX_THREAD_WAIT): bump the thread wait for my poor
+	old machine.
+
+2002-06-28  Jody Goldberg <jody@gnome.org>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (reload_if_needed) : no need to
+	  run stat if we have already decided to reload.
+
+2002-07-16  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-async-job-map.c:
+	re-arrange to ensure the locks protect the bits
+	they are supposed to. Kill the volatile things
+	assert on.
+
+2002-07-16  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-thread-pool.c
+	(thread_list_locks): don't use a recursive mutex.
+	debug print thread pointer not pthread id.
+
+	* libgnomevfs/gnome-vfs-method.c
+	(init_hash_table, init_path_list): don't take fine
+	grained locks here.
+	(gnome_vfs_method_init): take a lock here instead.
+	(gnome_vfs_add_module_to_hash_table): hold the lock
+	for longer, to avoid nasty races, change sig.
+	(gnome_vfs_method_get): upd / simplify / speedup.
+	(gnome_vfs_transform_get): ditto.
+
+	* libgnomevfs/gnome-vfs-module-callback.c
+	(stack_keys_alloc): kill in favour of
+	(gnome_vfs_module_callback_private_init): this.
+	(initialize_per_thread_if_needed): upd.
+	(async_callback_response): broadcast instead of
+	signalling, there might be multiple threads waiting.
+
+	* libgnomevfs/gnome-vfs-init.c
+	(gnome_vfs_pthread_init): upd.
+	(gnome_vfs_init): here.
+	(gnome_vfs_postinit): ensure we do it here too & re-order.
+
+2002-07-15  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-thread-pool.c
+	(gnome_vfs_thread_create): kill unused thread argument
+	(new_thread_state): port to g_thread.
+
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init): use
+	g_thread_init not gnome_vfs_pthread stuff.
+	(gnome_vfs_postinit): ditto.
+
+	* libgnomevfs/Makefile.am: remove gnome-vfs-pthread.[ch]
+
+	* *.[ch]: switch pthread -> g_thread stuff, mostly a sed.
+
+2002-07-12  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-cancellation.c
+	(gnome_vfs_cancellation_cancel), 
+	(gnome_vfs_cancellation_ack): only write if we have a pipe.
+	(gnome_vfs_cancellation_get_fd): idly create the pipes,
+	return -1 on error.
+	(gnome_vfs_cancellation_new): init the pipe fds to -1
+
+	* libgnomevfs/gnome-vfs-init.c (gnome_vfs_init):
+	move pthread_init up the order. If we don't do this
+	we create a default main context, without the
+	'wake_up_pipe' initialized, which means that anyone
+	doing a plain gnome-init has a '0' wake_up_pipe by
+	the time they need to write / read to it. This means
+	you see an 'A' on the console and have to hit enter
+	before getting any async callbacks.
+
+	* libgnomevfs/gnome-vfs-job.h (JOB_DEBUG_PRINT):
+	make more standard.
+
+	* test/test-async.c (async_queue_callback): impl.
+	(main): hammer the async queue to test efficiency.
+	re-hash lots of this.
+
+2002-07-15  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* test/test-uri.c: (main):
+	Fix test, due to canonization change
+
+2002-07-15  Frederic Crozat  <fcrozat@mandrakesoft.com>
+
+	* libgnomevfs/gnome-vfs-uri.c: (set_uri_element):
+	canonize NULL uri into "/". "start-here:" will now be
+	canonized into "start-here:///", fixing some monitoring
+	problem in nautilus
+
+2002-07-13  Peteris Krisjanis <pecisk@inbox.lv>
+
+	* configure.in - (ALL_LINGUAS) Added support for Latvian (lv) language.
+
+2002-07-12  Dave Camp <dave@ximian.com>
+
+	* libgnomevfs/gnome-vfs-find-directory.c: Updated the documentation
+	for gnome_vfs_find_directory() to mention the fact that the
+	permissions parameter is ignored for Trash directories.
+
+2002-07-12  Rohit R  <rohit.raveendran@wipro.com>
+            Laavanya K R  <laavanya.gopalan@wipro.com>
+	* modules/file-method.c
+	(do_find_directory): modified the code so as to create the
+	.Trash directory with permissions 0700 only.
+	Fixes bug #46475.
+	
+2002-07-11  Michael Meeks  <michael@ximian.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c
+	(load_type_info_from): use g_string_truncate
+	for a 20% speedup.
+	(APPEND_CHAR): inline more for another 20%.
+
+	* test/test-mime.c (main): add --speedTest
+	for mime info reloading.
+
+2002-07-11  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/file-method.c (get_stat_info, do_open):
+	Correctly set O_TRUNC in do_open.
+	Fix uninitialized memory read bug with symlinks in get_stat_info.	
+
+2002-07-05  Stephen Browne  <stephen.browne@sun.com>
+
 	* modules/cdemenu-desktop-method.c
 	Patch from rohit.raveendran@wipro.com
 	modified the code so that the function create_cde_icon_name_cache

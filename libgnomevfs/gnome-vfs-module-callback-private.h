@@ -28,6 +28,7 @@
 
 typedef struct GnomeVFSModuleCallbackStackInfo GnomeVFSModuleCallbackStackInfo;
 
+void                             gnome_vfs_module_callback_private_init        (void);
 GnomeVFSModuleCallbackStackInfo *gnome_vfs_module_callback_get_stack_info      (void);
 void                             gnome_vfs_module_callback_free_stack_info     (GnomeVFSModuleCallbackStackInfo *stack_info);
 void                             gnome_vfs_module_callback_use_stack_info      (GnomeVFSModuleCallbackStackInfo *stack_info);

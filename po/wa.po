@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.1\n"
-"POT-Creation-Date: 2002-06-20 12:09-0700\n"
+"POT-Creation-Date: 2002-07-24 04:20-0400\n"
 "PO-Revision-Date: 2002-04-30 13:20MET\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
@@ -34,22 +34,22 @@ msgstr "%s:%d ni contént nou no d' module."
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Li fitchî d' apontiaedje «%s» n' a nén stî trové: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:714
+#: libgnomevfs/gnome-vfs-job.c:706
 #, c-format
 msgid "Unknown op type %u"
 msgstr "Sôre op %u nén cnoxhou"
 
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#: libgnomevfs/gnome-vfs-job.c:995 libgnomevfs/gnome-vfs-job.c:1140
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Dji n' a savou fé ene buze po drovi l' canå GIOChannel: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1596
+#: libgnomevfs/gnome-vfs-job.c:1600
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "Sôre di bouye %u nén cnoxhowe"
 
-#: libgnomevfs/gnome-vfs-job.c:1632
+#: libgnomevfs/gnome-vfs-job.c:1633
 msgid "Operation stopped"
 msgstr "Operåcion djokêye"
 

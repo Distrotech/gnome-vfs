@@ -1,7 +1,7 @@
 AC_INIT(libgnomevfs/gnome-vfs.h)
 
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-vfs, 2.0.1)
+AM_INIT_AUTOMAKE(gnome-vfs, 2.0.2)
 
 AM_MAINTAINER_MODE
 
@@ -81,7 +81,7 @@ GETTEXT_PACKAGE=gnome-vfs-2.0
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 
-ALL_LINGUAS="az bg ca da de el es et eu fi fr ga gl hi hu it ja ko lt ms nl nn no pl pt pt_BR ro ru sk sl sv tr uk vi wa zh_CN zh_TW"
+ALL_LINGUAS="az bg ca da de el es et eu fi fr ga gl hi hu it ja ko lt lv ms nl nn no pl pt pt_BR ro ru sk sl sv tr uk vi wa zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
 AC_FUNC_ALLOCA
@@ -345,7 +345,11 @@ if test "x${with_openssl_includes}" != "xno"; then
 	
 	if test "x{$openssl_includes}" != "xno" -a "x{$openssl_includes}" != "x"; then
 		have_openssl_includes="yes"
-		OPENSSL_CFLAGS="-I$with_openssl_includes"
+		if "{$openssl_includes}" != "/usr/include" ; then
+			OPENSSL_CFLAGS="-I$with_openssl_includes"
+		else
+			OPENSSL_CFLAGS=""
+		fi
 	else
 		OPENSSL_CFLAGS=""
 	fi
@@ -490,6 +494,14 @@ AC_TRY_CPP([#include <sys/mount.h>
 #include <sys/fs_types.h>], AC_DEFINE(FSTYPE_GETMNT) fstype=Ultrix)
 fi
 AC_MSG_RESULT($fstype)
+
+dnl Check for libpopt
+
+AC_CHECK_LIB(popt, poptGetArg, POPT_LIBS=-lpopt,
+        [AC_CHECK_HEADER(popt.h, , AC_MSG_ERROR([[
+*** Couldn't find popt. Please download and install from
+*** ftp://ftp.rpm.org/pub/rpm/dist/rpm-4.0.x/ and try again.]]))])
+AC_SUBST(POPT_LIBS)
 
 dnl Final touch
 

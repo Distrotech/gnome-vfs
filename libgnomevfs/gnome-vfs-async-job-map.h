@@ -1,5 +1,9 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
-/* gnome-vfs-async-job-map.h 
+/* gnome-vfs-async-job-map.h:
+
+	The async job map, maps GnomeVFSAsyncHandles to GnomeVFSJobs. Many
+   async operations, keep the same 'GnomeVFSJob' over the course of several
+   operations. 
 
    Copyright (C) 2001 Eazel Inc.
 

@@ -110,7 +110,9 @@ expand_env_vars(char *s)
 				/* It's not always the case $LC_CTYPE or $LANG is set */
 				tmp3 = (char*)setlocale(LC_CTYPE, NULL);
 			g_free(*token);
-			*token = g_strdup(tmp3);
+			/* don't do g_strdup (s?s1:s2) as that doesn't work with
+			   certain gcc 2.96 versions */
+			*token = tmp3 ? g_strdup(tmp3) : g_strdup("");
 		}
 	}
 	expanded = g_strjoinv("/", tokens);

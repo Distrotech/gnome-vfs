@@ -303,7 +303,17 @@ typedef enum {
 	STATE_ON_VALUE
 } ParserState;
 
-#define APPEND_CHAR(gstr,c) g_string_insert_c ((gstr), -1, (c))
+/* #define APPEND_CHAR(gstr,c) g_string_insert_c ((gstr), -1, (c)) */
+
+#define APPEND_CHAR(gstr,c) \
+	G_STMT_START {                                     \
+		if (gstr->len + 1 < gstr->allocated_len) { \
+			gstr->str [gstr->len++] = c;       \
+			gstr->str [gstr->len] = '\0';      \
+		} else {                                   \
+			g_string_insert_c (gstr, -1, c);   \
+		}                                          \
+	} G_STMT_END
 
 typedef enum {
 	FORMAT_MIME,
@@ -352,7 +362,7 @@ load_type_info_from (const char *filename,
 			if (c == '\n') {
 				skip_line = FALSE;
 				column = -1;
-				g_string_assign (line, "");
+				g_string_truncate (line, 0);
 				key = lang = last_str_end = 0;
 			}
 			continue;
@@ -374,7 +384,7 @@ load_type_info_from (const char *filename,
 						 line->str + last_str_end);
 				key = lang = 0;
 			}
-			g_string_assign (line, "");
+			g_string_truncate (line, 0);
 			last_str_end = 0;
 			state = STATE_LOOKING_FOR_KEY;
 			continue;
@@ -478,7 +488,7 @@ load_type_info_from (const char *filename,
 				    language_level (line->str + lang) < 0) {
 					skip_line = TRUE;
 					key = lang = last_str_end = 0;
-					g_string_assign (line, "");
+					g_string_truncate (line, 0);
 					state = STATE_LOOKING_FOR_KEY;
 				}
 			} else {
@@ -685,20 +695,16 @@ reload_if_needed (void)
 	if (gnome_vfs_is_frozen > 0)
 		return;
 
-	if (now > last_checked + 5)
+	if (gnome_mime_dir.force_reload || user_mime_dir.force_reload)
 		need_reload = TRUE;
-
-	if (gnome_mime_dir.force_reload ||
-	    user_mime_dir.force_reload)
-		need_reload = TRUE;
-
-	if (stat (gnome_mime_dir.dirname, &s) != -1)
-		if (s.st_mtime != gnome_mime_dir.s.st_mtime)
+	else if (now > last_checked + 5) {
+		if (stat (gnome_mime_dir.dirname, &s) != -1 &&
+		    s.st_mtime != gnome_mime_dir.s.st_mtime)
 			need_reload = TRUE;
-
-	if (stat (user_mime_dir.dirname, &s) != -1)
-		if (s.st_mtime != user_mime_dir.s.st_mtime)
+		else if (stat (user_mime_dir.dirname, &s) != -1 &&
+			 s.st_mtime != user_mime_dir.s.st_mtime)
 			need_reload = TRUE;
+	}
 
 	last_checked = now;
 

@@ -28,7 +28,6 @@
 #include "gnome-vfs-thread-pool.h"
 #include "gnome-vfs-job-queue.h"
 #include <glib/gmessages.h>
-#include <pthread.h>
 #include <unistd.h>
 
 static volatile gboolean gnome_vfs_quitting = FALSE;
@@ -38,54 +37,50 @@ static volatile gboolean gnome_vfs_done_quitting = FALSE;
 static void *
 thread_routine (void *data)
 {
+	guint id;
 	GnomeVFSJob *job;
 	GnomeVFSAsyncHandle *job_handle;
 	gboolean complete;
 
 	job_handle = (GnomeVFSAsyncHandle *) data;
 
-	/* job map must always be locked before the job acces_lock if both locks are needed */
+	id = GPOINTER_TO_UINT (job_handle);
+	/* job map must always be locked before the job_lock
+	 * if both locks are needed */
 	gnome_vfs_async_job_map_lock ();
 	
 	job = gnome_vfs_async_job_map_get_job (job_handle);
 	
 	if (job == NULL) {
-		JOB_DEBUG (("job already dead, bail %u", GPOINTER_TO_UINT (job_handle)));
+		JOB_DEBUG (("job already dead, bail %u", id));
 		gnome_vfs_async_job_map_unlock ();
 		return NULL;
 	}
 	
-	JOB_DEBUG (("locking access_lock %u", GPOINTER_TO_UINT (job->job_handle)));
-	sem_wait (&job->access_lock);
+	JOB_DEBUG (("locking job_lock %u", id));
+	g_mutex_lock (job->job_lock);
 	gnome_vfs_async_job_map_unlock ();
 
 	gnome_vfs_job_execute (job);
 	complete = gnome_vfs_job_complete (job);
 	
-	JOB_DEBUG (("Unlocking access lock %u", GPOINTER_TO_UINT (job->job_handle)));
-	sem_post (&job->access_lock);
+	JOB_DEBUG (("Unlocking access lock %u", id));
+	g_mutex_unlock (job->job_lock);
 
 	if (complete) {
-		JOB_DEBUG (("job %u done, removing from map and destroying",
-			GPOINTER_TO_UINT (job_handle)));
 		gnome_vfs_async_job_map_lock ();
-		if (gnome_vfs_async_job_completed (job_handle)) {
-			/* job was still valid, it is our to destroy */
-			gnome_vfs_job_destroy (job);
-		} else {
-			JOB_DEBUG (("job destroyed by other thread %u", GPOINTER_TO_UINT (job_handle)));
-		}
+		JOB_DEBUG (("job %u done, removing from map and destroying", id));
+		gnome_vfs_async_job_completed (job_handle);
+		gnome_vfs_job_destroy (job);
 		gnome_vfs_async_job_map_unlock ();
 	}
-	
+
 	return NULL;
 }
 
 gboolean
 gnome_vfs_job_create_slave (GnomeVFSJob *job)
 {
-	pthread_t thread;
-	
 	g_return_val_if_fail (job != NULL, FALSE);
 
 	if (gnome_vfs_quitting) {
@@ -101,7 +96,7 @@ gnome_vfs_job_create_slave (GnomeVFSJob *job)
 		return FALSE;
 	}
 	
-	if (gnome_vfs_thread_create (&thread, thread_routine, job->job_handle) != 0) {
+	if (gnome_vfs_thread_create (thread_routine, job->job_handle) != 0) {
 		g_warning ("Impossible to allocate a new GnomeVFSJob thread.");
 		
 		/* thread did not start up, remove the job from the hash table */

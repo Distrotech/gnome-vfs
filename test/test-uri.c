@@ -647,8 +647,8 @@ main (int argc, char **argv)
 	test_uri_to_string ("glorp:", "NULL", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_parent ("glorp:", "URI NULL");
 
-	test_uri_to_string ("file:", "file:", GNOME_VFS_URI_HIDE_NONE);
-	test_uri_to_string ("http:", "http:", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("file:", "file:///", GNOME_VFS_URI_HIDE_NONE);
+	test_uri_to_string ("http:", "http:///", GNOME_VFS_URI_HIDE_NONE);
 	test_uri_to_string ("file:/", "file:///", GNOME_VFS_URI_HIDE_NONE);
 
 	/* FIXME bugzilla.eazel.com 6022: At least for http, we don't

@@ -24,11 +24,9 @@
 #include <config.h>
 #include "gnome-vfs-job-queue.h"
 #include "gnome-vfs-job-slave.h"
-#include "gnome-vfs-pthread.h"
 #include <libgnomevfs/gnome-vfs-job-limit.h>
 
 #include <glib/gtree.h>
-#include <pthread.h>
 #include <unistd.h>
 
 #undef QUEUE_DEBUG
@@ -62,19 +60,17 @@ static int thread_count_limit;
 /* This is the maximum number of threads reserved for higher priority jobs */
 static float max_decrease;
 
-static pthread_mutex_t job_queue_lock;
-static int running_job_count;
-static int job_id;
-
-static volatile gboolean gnome_vfs_quitting = FALSE;
-
 typedef GTree JobQueueType;
 
+/* This mutex protects these */
+static GStaticMutex job_queue_lock = G_STATIC_MUTEX_INIT;
 static JobQueueType *job_queue;
-
+static int running_job_count;
+static int job_id;
 #ifdef QUEUE_DEBUG
-static int job_queue_length;
+  static int job_queue_length;
 #endif
+/* end mutex guard */
 
 typedef struct JobQueueKey {
 	int job_id;
@@ -148,7 +144,10 @@ job_queue_get_first (void)
 {
 	GnomeVFSJob *job = NULL;
 
-	g_tree_foreach (job_queue, find_first_value, &job);
+	if (job_queue) {
+		g_tree_foreach (job_queue, find_first_value, &job);
+	}
+
 	return job;
 }
 
@@ -182,7 +181,6 @@ gnome_vfs_job_queue_init (void)
 		Q_DEBUG (("initializing the job queue (thread limit: %d)\n", DEFAULT_THREAD_COUNT_LIMIT));
 		thread_count_limit = DEFAULT_THREAD_COUNT_LIMIT;
 		max_decrease = (float)thread_count_limit - LIMIT_FUNCTION_LOWER_BOUND;
-		gnome_vfs_pthread_recursive_mutex_init (&job_queue_lock);
 		job_queue = job_queue_new ();
 		queue_initialized = TRUE;
 	}
@@ -266,11 +264,8 @@ gnome_vfs_job_queue_run (void)
 {
 	GnomeVFSJob *job_to_run;
 
-	if (gnome_vfs_quitting) {
-		return;
-	}
+	g_static_mutex_lock (&job_queue_lock);
 
-	pthread_mutex_lock (&job_queue_lock);
 	running_job_count--;
 	Q_DEBUG (("job finished;\t\t\t\t       %d jobs running, %d waiting\n",
 		 running_job_count,
@@ -287,10 +282,10 @@ gnome_vfs_job_queue_run (void)
 				 job_to_run->priority,
 				 running_job_count,
 				 job_queue_length));
-			pthread_mutex_unlock (&job_queue_lock);
+			g_static_mutex_unlock (&job_queue_lock);
 			gnome_vfs_job_create_slave (job_to_run);
 		} else {
-			pthread_mutex_unlock (&job_queue_lock);
+			g_static_mutex_unlock (&job_queue_lock);
 			Q_DEBUG (("waiting job is too low priority (%2d) to start;"
 				 " %d jobs running, %d waiting\n",
 				 job_to_run->priority,
@@ -298,7 +293,7 @@ gnome_vfs_job_queue_run (void)
 				 job_queue_length));
 		}
 	} else {
-		pthread_mutex_unlock (&job_queue_lock);
+		g_static_mutex_unlock (&job_queue_lock);
 		Q_DEBUG (("the queue is empty;\t\t\t       %d jobs running\n", running_job_count));
 	}
 }
@@ -306,7 +301,7 @@ gnome_vfs_job_queue_run (void)
 gboolean
 gnome_vfs_job_schedule (GnomeVFSJob *job)
 {
-	pthread_mutex_lock (&job_queue_lock);
+	g_static_mutex_lock (&job_queue_lock);
       	if (!job_can_start (job->priority)) {
 	  	job_queue_add (job);
 		Q_DEBUG (("adding a %2d priority job to the queue;"
@@ -314,14 +309,14 @@ gnome_vfs_job_schedule (GnomeVFSJob *job)
 			 job->priority,
 			 running_job_count,
 			 job_queue_length));
-		pthread_mutex_unlock (&job_queue_lock);
+		g_static_mutex_unlock (&job_queue_lock);
 	} else {
 		running_job_count++;
 		Q_DEBUG (("starting a %2d priority job;\t\t       %d jobs running, %d waiting\n",
 			job->priority,
 			running_job_count,
 			job_queue_length));
-		pthread_mutex_unlock (&job_queue_lock);
+		g_static_mutex_unlock (&job_queue_lock);
 		gnome_vfs_job_create_slave (job);
 	}
 	return TRUE;
@@ -335,11 +330,11 @@ gnome_vfs_async_set_job_limit (int limit)
 			   LIMIT_FUNCTION_LOWER_BOUND);
 		return;
 	}
-	pthread_mutex_lock (&job_queue_lock);
+	g_static_mutex_lock (&job_queue_lock);
 	thread_count_limit = limit;
 	max_decrease = (float)thread_count_limit - LIMIT_FUNCTION_LOWER_BOUND;
 	Q_DEBUG (("changing the thread count limit to %d\n", limit));
-	pthread_mutex_unlock (&job_queue_lock);
+	g_static_mutex_unlock (&job_queue_lock);
 }
 
 int
@@ -351,6 +346,9 @@ gnome_vfs_async_get_job_limit (void)
 void
 gnome_vfs_job_queue_shutdown (void)
 {
-	gnome_vfs_quitting = TRUE;
+	g_static_mutex_lock (&job_queue_lock);
+
 	job_queue_destroy ();
+
+	g_static_mutex_unlock (&job_queue_lock);
 }

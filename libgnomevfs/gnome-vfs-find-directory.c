@@ -34,7 +34,8 @@
  * @result: newly created URI of the directory we found
  * @create_if_needed: If directory we are looking for does not exist, try to create it
  * @find_if_needed: If we don't know where trash is yet, look for it.
- * @permissions: If creating, use these permissions
+ * @permissions: If creating, use these permissions.  This parameter is
+ *               ignored when creating the Trash directories, and 0700 is used.
  * 
  * Used to return well known directories such as Trash, Desktop, etc. from different
  * file systems.

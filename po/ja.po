@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS-20010708\n"
-"POT-Creation-Date: 2002-06-20 12:09-0700\n"
+"POT-Creation-Date: 2002-07-24 04:20-0400\n"
 "PO-Revision-Date: 2001-07-08 02:06+0900\n"
 "Last-Translator: Akira TAGOH <tagoh@gnome.gr.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
@@ -33,22 +33,22 @@ msgstr "%s:%d モジュール名がありません"
 msgid "Configuration file `%s' was not found: %s"
 msgstr "コンフィグファイル '%s' は見つかりません: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:714
+#: libgnomevfs/gnome-vfs-job.c:706
 #, c-format
 msgid "Unknown op type %u"
 msgstr "未知の op 種別 %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1005 libgnomevfs/gnome-vfs-job.c:1150
+#: libgnomevfs/gnome-vfs-job.c:995 libgnomevfs/gnome-vfs-job.c:1140
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "GIOChannel を開くためのパイプを作成することが出来ません: %s"
 
-#: libgnomevfs/gnome-vfs-job.c:1596
+#: libgnomevfs/gnome-vfs-job.c:1600
 #, c-format
 msgid "Unknown job kind %u"
 msgstr "未知のジョブ種別 %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1632
+#: libgnomevfs/gnome-vfs-job.c:1633
 msgid "Operation stopped"
 msgstr "操作を停止しました"
 

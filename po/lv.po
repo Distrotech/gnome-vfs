@@ -1,283 +1,284 @@
-# Copyright (C) 2002 Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-vfs package.
-# pclouds <pclouds@gmx.net>, 2002.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs VERSION\n"
+"Project-Id-Version: gnome-vfs\n"
 "POT-Creation-Date: 2002-07-24 04:20-0400\n"
-"PO-Revision-Date: 2002-05-03 17:37-0400\n"
-"Last-Translator: pclouds <pclouds@gmx.net>\n"
-"Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2002-07-13 14:33GMT+0200\n"
+"Last-Translator: Peteris Krisjanis <pecisk@inbox.lv>\n"
+"Language-Team: Latvian <ll10nt@inbox.lv>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.5\n"
 
 #: libgnomevfs/gnome-vfs-configuration.c:223
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d chứa ký tự NUL."
+msgstr "%s:%d satur NUL rakstzīmes."
 
 #: libgnomevfs/gnome-vfs-configuration.c:240
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d không chứa tên phương thức."
+msgstr "%s:%d nesatur metodes nosaukumu."
 
 #: libgnomevfs/gnome-vfs-configuration.c:269
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d không chứa tên module."
+msgstr "%s:%d nesatur moduļa nosaukumu."
 
 #: libgnomevfs/gnome-vfs-configuration.c:322
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr "Không tìm thấy tập tin cấu hình `%s': %s"
+msgstr "Konfigurācijas fails `%s' netika atrasts: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:706
 #, c-format
 msgid "Unknown op type %u"
-msgstr "Kiểu thao tác lạ %u"
+msgstr "Nezināms op tips %u"
 
 #: libgnomevfs/gnome-vfs-job.c:995 libgnomevfs/gnome-vfs-job.c:1140
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "Không thể tạo ống dẫn cho GIOChannel: %s"
+msgstr "Nevar izveidot kanālu lai atvērtu GIOChannel: %s"
 
 #: libgnomevfs/gnome-vfs-job.c:1600
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Kiểu công việc lạ %u"
+msgstr "Nezināms darba tips %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1633
 msgid "Operation stopped"
-msgstr "Thao tác đã dừng"
+msgstr "Operācija apturēta"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
 #, c-format
 msgid "Could not parse: %s"
-msgstr "Không thể phân tích: %s"
+msgstr "Nevarēju noparsēt: %s"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
-msgstr "Nhiều lỗi phân tích hơn sẽ bị bỏ qua."
+msgstr "Pārējās parsēšanas kļūdas tiks ignorētas."
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:35
 msgid "No error"
-msgstr "Không có lỗi"
+msgstr "Nav kļūdu"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:36
 msgid "File not found"
-msgstr "Không tìm thấy tập tin"
+msgstr "Fails nav atrasts"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:37
 msgid "Generic error"
-msgstr "Lỗi chung"
+msgstr "Parastā kļūda"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "Internal error"
-msgstr "Lỗi bên trong"
+msgstr "Iekšējā kļūda"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "Invalid parameters"
-msgstr "Tham số không hợp lệ"
+msgstr "Nepareizi parametri"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Unsupported operation"
-msgstr "Thao tác không được hỗ trợ"
+msgstr "Neatbalstīta operācija"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "I/O error"
-msgstr "Lỗi I/O"
+msgstr "I/O kļūda"
 
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Data corrupted"
-msgstr "Dữ liệu hỏng"
+msgstr "Dati bojāti"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Format not valid"
-msgstr "Dạng thức không hợp lệ"
+msgstr "Neatļauts formāts"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:44
 msgid "Bad file handle"
-msgstr "File handle sai"
+msgstr "Slikts faila handle"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "File too big"
-msgstr "Tập tin quá lớn"
+msgstr "Fails par lielu"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "No space left on device"
-msgstr "Không còn chỗ trên thiết bị"
+msgstr "Nav vietas uz iekārtas"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Read-only file system"
-msgstr "Hệ thống tập tin chỉ đọc"
+msgstr "Lasāmā failu sistēma"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "Invalid URI"
-msgstr "URI không hợp lệ"
+msgstr "Nepareizs URI"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "File not open"
-msgstr "Tập tin chưa mở"
+msgstr "Fails nav atvērts"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Open mode not valid"
-msgstr "Chế độ mở không hợp lệ"
+msgstr "Neatļauts atvērtais režīms"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Access denied"
-msgstr "Cấm truy xuất"
+msgstr "Pieeja liegta"
 
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "Too many open files"
-msgstr "Quá nhiều tập tin được mở"
+msgstr "Par daudz atvērtu failu"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "End of file"
-msgstr "Hết tập tin"
+msgstr "Faila Beigas (eof)"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:54
 msgid "Not a directory"
-msgstr "Không phải thư mục"
+msgstr "Nav direktorija"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Operation in progress"
-msgstr "Thao tác đang thực hiện"
+msgstr "Operācija progresā"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "Operation interrupted"
-msgstr "Thao tác bị ngắt"
+msgstr "Operācija pātraukta"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "File exists"
-msgstr "Tập tin đã tồn tại"
+msgstr "Fails eksistē"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Looping links encountered"
-msgstr "Phát hiện liên kết vòng"
+msgstr "Rinķojošās saites parādījušās"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation not permitted"
-msgstr "Thao tác không được phép"
+msgstr "Operācija nav atļauta"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "Is a directory"
-msgstr "là thư mục"
+msgstr "Ir direktorija"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Not enough memory"
-msgstr "Không đủ bộ nhớ"
+msgstr "Nepietiekami atmiņas"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Host not found"
-msgstr "Không tìm thấy host"
+msgstr "Resursdators nav atrasts"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Host name not valid"
-msgstr "Tên host không hợp lệ"
+msgstr "Resursdatora nosaukums nav pareizs"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Host has no address"
-msgstr "Host không có địa chỉ"
+msgstr "Resursdatoram nav adreses"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Login failed"
-msgstr "Đăng nhập thất bại"
+msgstr "Pieteikšanās neveiksmīga"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Operation cancelled"
-msgstr "Thao tác bị hủy bỏ"
+msgstr "Operācija atsaukta"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Directory busy"
-msgstr "Thư mục đang bận"
+msgstr "Direktorija aizņemta"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Directory not empty"
-msgstr "Thư mục không rỗng"
+msgstr "Direktorija nav tukša"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Too many links"
-msgstr "Quá nhiều liên kết"
+msgstr "Par daudz saišu"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Read only file system"
-msgstr "Hệ thống tập tin chỉ đọc"
+msgstr "Lasāmā failu sistēma"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Not on the same file system"
-msgstr "Không nàm trên cùng hệ thống tập tin"
+msgstr "Ne tā pati failu sistēma"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Name too long"
-msgstr "Tên quá dài"
+msgstr "Nosaukums par garu"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Service not available"
-msgstr "Dịch vụ không sẵn sàng"
+msgstr "Serviss nav pieejams"
 
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Request obsoletes service's data"
-msgstr "Yêu cầu dữ liệu của dịch vụ lỗi thời"
+msgstr "Pieprasījums atsauc servisa datus"
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Protocol error"
-msgstr "Lỗi giao thức"
+msgstr "Protokola kļūda"
 
 #: libgnomevfs/gnome-vfs-result.c:137
 msgid "Unknown error"
-msgstr "Lỗi lạ"
+msgstr "Nezināma kļūda"
 
 #: libgnomevfs/gnome-vfs-utils.c:65
 msgid "1 byte"
-msgstr "1 byte"
+msgstr "1 baits"
 
 #: libgnomevfs/gnome-vfs-utils.c:67
 #, c-format
 msgid "%u bytes"
-msgstr "%u byte"
+msgstr "%u baiti"
 
 #: libgnomevfs/gnome-vfs-utils.c:74
 #, c-format
@@ -297,31 +298,31 @@ msgstr "%.1f GB"
 #: modules/file-method.c:382
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "Không biết GnomeVFSSeekPosition %d"
+msgstr "Nezināms GnomeVFSSeekPosition %d"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
 #, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr "Không thể tìm tập tin thông số hợp lệ tại %s\n"
+msgstr "Nevarēju atrast pareizu uzstādijumu failu %s\n"
 
 #: modules/test-method.c:592
 #, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "Hãy dùng biến môi trười %s để xác định một vị trí khác.\n"
+msgstr "Lieto %s vides mainīgo lai norādītu citu atrašanās vietu.\n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "Moniker factory chuẩn"
+msgstr "Standarta Moniker ražotne"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr "MonikerExtender tập tin"
+msgstr "fails MonikerExtender"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr "moniker Gnome VFS chung"
+msgstr "parasts Gnome VFS moniker"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "moniker tập tin chung"
+msgstr "parasts faila moniker"

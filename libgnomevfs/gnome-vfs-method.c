@@ -44,21 +44,18 @@ struct _ModuleElement {
 typedef struct _ModuleElement ModuleElement;
 
 static gboolean method_already_initialized = FALSE;
-G_LOCK_DEFINE_STATIC (method_already_initialized);
 
 static GHashTable *module_hash = NULL;
-G_LOCK_DEFINE_STATIC (module_hash);
+G_LOCK_DEFINE_STATIC (gnome_vfs_method_init);
+GStaticRecMutex module_hash_lock = G_STATIC_REC_MUTEX_INIT;
 
 static GList *module_path_list = NULL;
-G_LOCK_DEFINE_STATIC (module_path_list);
 
 
 static gboolean
 init_hash_table (void)
 {
-	G_LOCK (module_hash);
 	module_hash = g_hash_table_new (g_str_hash, g_str_equal);
-	G_UNLOCK (module_hash);
 
 	return TRUE;
 }
@@ -101,15 +98,9 @@ static gboolean
 init_path_list (void)
 {
 	const gchar *user_path_list;
-	gboolean retval;
-
-	retval = TRUE;
-
-	G_LOCK (module_path_list);
 
 	if (module_path_list != NULL) {
-		retval = TRUE;
-		goto end;
+		return TRUE;
 	}
 
 	/* User-supplied path.  */
@@ -117,8 +108,7 @@ init_path_list (void)
 	user_path_list = getenv ("GNOME_VFS_MODULE_PATH");
 	if (user_path_list != NULL) {
 		if (! install_path_list (user_path_list)) {
-			retval = FALSE;
-			goto end;
+			return FALSE;
 		}
 	}
 
@@ -127,30 +117,32 @@ init_path_list (void)
 	module_path_list = g_list_append (module_path_list,
 					  g_strdup (GNOME_VFS_MODULE_DIR));
 
- end:
-	G_UNLOCK (module_path_list);
-	return retval;
+	return TRUE;
 }
 
 gboolean
 gnome_vfs_method_init (void)
 {
-	G_LOCK (method_already_initialized);
+	G_LOCK (gnome_vfs_method_init);
 
 	if (method_already_initialized) {
-		G_UNLOCK (method_already_initialized);
-		return TRUE;
+		goto gnome_vfs_method_init_out;
 	}
 
-	if (! init_hash_table ())
-		return FALSE;
-	if (! init_path_list ())
-		return FALSE;
+	if (! init_hash_table ()) {
+		goto gnome_vfs_method_init_out;
+	}
+
+	if (! init_path_list ()) {
+		goto gnome_vfs_method_init_out;
+	}
 
 	method_already_initialized = TRUE;
-	G_UNLOCK (method_already_initialized);
 
-	return TRUE;
+ gnome_vfs_method_init_out:
+	G_UNLOCK (gnome_vfs_method_init);
+
+	return method_already_initialized;
 }
 
 static void
@@ -270,7 +262,7 @@ load_module_in_path_list (const gchar *base_name, const char *method_name, const
 	}
 }
 
-static gboolean
+static ModuleElement *
 gnome_vfs_add_module_to_hash_table (const gchar *name)
 {
 	GnomeVFSMethod *method = NULL;
@@ -281,16 +273,18 @@ gnome_vfs_add_module_to_hash_table (const gchar *name)
 	gid_t saved_gid;
 	const char *args;
 
-	G_LOCK (module_hash);
-	module_element = g_hash_table_lookup (module_hash, name);
-	G_UNLOCK (module_hash);
+	g_static_rec_mutex_lock (&module_hash_lock);
 
-	if (module_element != NULL)
-		return TRUE;
+	module_element = g_hash_table_lookup (module_hash, name);
+
+	if (module_element != NULL) {
+		goto add_module_out;
+	}
 
 	module_name = gnome_vfs_configuration_get_module_path (name, &args);
-	if (module_name == NULL)
-		return FALSE;
+	if (module_name == NULL) {
+		goto add_module_out;
+	}
 
 	/* Set the effective UID/GID to the user UID/GID to prevent attacks to
            setuid/setgid executables.  */
@@ -308,19 +302,21 @@ gnome_vfs_add_module_to_hash_table (const gchar *name)
 	seteuid (saved_uid);
 	setegid (saved_gid);
 
-	if (method == NULL && transform == NULL)
-		return FALSE;
+	if (method == NULL && transform == NULL) {
+		goto add_module_out;
+	}
 
 	module_element = g_new (ModuleElement, 1);
 	module_element->name = g_strdup (name);
 	module_element->method = method;
 	module_element->transform = transform;
 
-	G_LOCK (module_hash);
 	g_hash_table_insert (module_hash, module_element->name, module_element);
-	G_UNLOCK (module_hash);
 
-	return TRUE;
+ add_module_out:
+	g_static_rec_mutex_unlock (&module_hash_lock);
+
+	return module_element;
 }
 
 GnomeVFSMethod *
@@ -330,23 +326,8 @@ gnome_vfs_method_get (const gchar *name)
 
 	g_return_val_if_fail (name != NULL, NULL);
 
-	G_LOCK (module_hash);
-	module_element = g_hash_table_lookup (module_hash, name);
-	G_UNLOCK (module_hash);
-
-	if (module_element != NULL)
-		return module_element->method;
-
-	if (gnome_vfs_add_module_to_hash_table (name)) {
-		G_LOCK (module_hash);
-		module_element = g_hash_table_lookup (module_hash, name);
-		G_UNLOCK (module_hash);
-		
-		if (module_element != NULL)
-			return module_element->method;
-	}
-
-	return NULL;
+	module_element = gnome_vfs_add_module_to_hash_table (name);
+	return module_element ? module_element->method : NULL;
 }
 
 GnomeVFSTransform *
@@ -356,21 +337,6 @@ gnome_vfs_transform_get (const gchar *name)
 
 	g_return_val_if_fail (name != NULL, NULL);
 
-	G_LOCK (module_hash);
-	module_element = g_hash_table_lookup (module_hash, name);
-	G_UNLOCK (module_hash);
-
-	if (module_element != NULL)
-		return module_element->transform;
-
-	if (gnome_vfs_add_module_to_hash_table (name)) {
-		G_LOCK (module_hash);
-		module_element = g_hash_table_lookup (module_hash, name);
-		G_UNLOCK (module_hash);
-		
-		if (module_element != NULL)
-			return module_element->transform;
-	}
-
-	return NULL;
+	module_element = gnome_vfs_add_module_to_hash_table (name);
+	return module_element ? module_element->transform : NULL;
 }

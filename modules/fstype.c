@@ -53,7 +53,7 @@ extern int errno;
 # define P_(s) ()
 #endif
 
-static char const *filesystem_type_uncached P_((char *path, char *relpath, struct stat *statp));
+static char *filesystem_type_uncached P_((char *path, char *relpath, struct stat *statp));
 
 void fstype_internal_error (int level, int num, char const *fmt, ...);
 
@@ -210,25 +210,26 @@ in_afs (path)
 /* Nonzero if the current filesystem's type is known.  */
 static int fstype_known = 0;
 
-char const *filesystem_type (char *path, char *relpath, struct stat *statp);
+char *filesystem_type (char *path, char *relpath, struct stat *statp);
 /* Return a static string naming the type of filesystem that the file PATH,
    described by STATP, is on.
    RELPATH is the file name relative to the current directory.
    Return "unknown" if its filesystem type is unknown.  */
 
-char const *
+char *
 filesystem_type (path, relpath, statp)
      char *path;
      char *relpath;
      struct stat *statp;
 {
-  static char const *current_fstype = NULL;
+  static char *current_fstype = NULL;
   static dev_t current_dev;
 
   if (current_fstype != NULL)
     {
       if (fstype_known && statp->st_dev == current_dev)
 	return current_fstype;	/* Cached value.  */
+      g_free (current_fstype);
     }
   current_dev = statp->st_dev;
   current_fstype = filesystem_type_uncached (path, relpath, statp);
@@ -245,13 +246,13 @@ fstype_internal_error (int level, int num, char const *fmt, ...)
    RELPATH is the file name relative to the current directory.
    Return "unknown" if its filesystem type is unknown.  */
 
-static char const *
+static char *
 filesystem_type_uncached (path, relpath, statp)
      char *path;
      char *relpath;
      struct stat *statp;
 {
-  char const *type = NULL;
+  char *type = NULL;
 
 #ifdef FSTYPE_MNTENT		/* 4.3BSD, SunOS, HP-UX, Dynix, Irix.  */
   char *table = MOUNTED;
@@ -295,8 +296,12 @@ filesystem_type_uncached (path, relpath, statp)
       else
 #endif /* not hpux */
 	{
-	  if (stat (mnt->mnt_dir, &disk_stats) == -1)
-	    fstype_internal_error (1, errno, "error in %s: %s", table, mnt->mnt_dir);
+	  if (stat (mnt->mnt_dir, &disk_stats) == -1) {
+	    if (errno == EACCES)
+	      continue;
+	    else
+	      fstype_internal_error (1, errno, "error in %s: %s", table, mnt->mnt_dir);
+	  }
 	  dev = disk_stats.st_dev;
 	}
 
@@ -384,7 +389,7 @@ filesystem_type_uncached (path, relpath, statp)
      Don't cache those values.  */
   fstype_known = (type != NULL);
 
-  return type ? type : "unknown";
+  return g_strdup (type ? type : "unknown");
 }
 
 #ifdef FSTYPE_MNTENT		/* 4.3BSD etc.  */
