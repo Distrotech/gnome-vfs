@@ -64,7 +64,7 @@
 #include "http-method.h"
 
 
-#if 0
+#if 1
 #include <stdio.h>
 #include <stdarg.h>
 #include <pthread.h>
@@ -1777,7 +1777,7 @@ propfind_href_to_vfs_uri (const gchar *propfind_href_uri)
 
 	if ( 0 == strncmp (propfind_href_uri, "https:", https_len)) {
 		gchar *new_uri;
-		new_uri = g_strconcat ("http:", https_len + propfind_href_uri);
+		new_uri = g_strconcat ("http:", https_len + propfind_href_uri, NULL);
 		ret = gnome_vfs_uri_new (new_uri);
 		g_free (new_uri);
 	} else {
