@@ -1880,7 +1880,8 @@ do_open_directory(GnomeVFSMethod *method,
 		}
 	}
 
-	if (GNOME_VFS_FILE_TYPE_DIRECTORY != handle->file_info->type) {
+	if ( GNOME_VFS_OK == result
+	     && GNOME_VFS_FILE_TYPE_DIRECTORY != handle->file_info->type) {
 		result = GNOME_VFS_ERROR_NOT_A_DIRECTORY;
 		http_handle_close (handle, context);
 		handle = NULL;

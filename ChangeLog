@@ -1,5 +1,10 @@
 2000-10-02  Mike Fleming  <mfleming@eazel.com>
 
+	* modules/http-method.c: (do_open_directory):
+	Fix foolish crasher
+
+2000-10-02  Mike Fleming  <mfleming@eazel.com>
+
 	* libgnomevfs/gnome-vfs-file-info.c: (gnome_vfs_file_info_clear),
 	(gnome_vfs_file_info_ref), (gnome_vfs_file_info_unref),
 	(gnome_vfs_file_info_copy):
