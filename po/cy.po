@@ -1,15 +1,19 @@
 # gnome-vfs yn Gymraeg.
-# Copyright (C) 2003 Free Software Foundation, Inc.
 # www.gyfieithu.co.uk <kyfieithu@kyfieithu.co.uk>, 2003.
-# Dafydd Harries <daf@parnassus.ath.cx>, 2003.
+# Dafydd Harries <daf@muse.19inch,net>, 2003 2004.
+# Rhys Jones <rhys@sucs.org>, 2003.
+#
+# (RJ) Bathiad: Memory stick -> tocyn cof
+# (RJ) Fe ddefnyddiais i 'gyrriant' yn hytrach na 'gyrrydd' - ceir
+#      enghreifftiau o'r ddau yn nautilus ar hyn o bryd.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-02-11 09:55+0100\n"
-"PO-Revision-Date: 2003-08-14 12:07+0100\n"
-"Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>>\n"
+"POT-Creation-Date: 2004-02-22 20:26+0000\n"
+"PO-Revision-Date: 2004-02-22 21:05+0000\n"
+"Last-Translator: Dafydd Harries <daf@muse.19inch.net>\n"
 "Language-Team: Welsh <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,17 +21,42 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: daemon/gnome-vfs-daemon.c:588
-#, fuzzy
 msgid "Could not initialize Bonobo"
-msgstr "Methu canfod y meistr-borwr"
+msgstr "Methwyd ymgychwyn Bonobo"
 
 #: daemon/gnome-vfs-daemon.c:594
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "Methwyd ymgychwyn gnome vfs"
 
-#: libgnomevfs/gnome-vfs-cdrom.c:180
-msgid "ISO 9660 Volume"
+#: gtk/gtkfilesystemgnomevfs.c:815 modules/computer-method.c:561
+msgid "Filesystem"
+msgstr "System Ffeil"
+
+#: gtk/gtkfilesystemgnomevfs.c:1458
+#, c-format
+msgid "Bookmark saving failed (%s)"
+msgstr "Methodd cadw llyfrnod (%s)"
+
+#: gtk/testfilechooser.c:176
+#, c-format
+msgid "Could not get information for file '%s': %s"
+msgstr "Methwyd cyrchu gwybodaeth ar gyfer ffeil '%s': %s"
+
+#: gtk/testfilechooser.c:189
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Methwyd agor ffeil '%s': %s"
+
+#: gtk/testfilechooser.c:228
+#, c-format
+msgid ""
+"Failed to load image '%s': reason not known, probably a corrupt image file"
 msgstr ""
+"Methwyd llwytho delwedd '%s': rheswm anhysbys, hwyrach ffeil delwedd annilys"
+
+#: libgnomevfs/gnome-vfs-cdrom.c:202
+msgid "ISO 9660 Volume"
+msgstr "Cyfrol ISO 9660"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
@@ -40,14 +69,14 @@ msgid "%s:%d contains no method name."
 msgstr "Nid yw %s:%d yn cynnwys enw modd."
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "Nid yw %s:%d yn cynnwys enw modd."
+msgstr "Nid yw %s:%d yn cynnwys marc i ddynodi diwedd yr opsiynau."
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "Mae gan %s:%d yr opsiynau anhysbys %s."
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
@@ -61,139 +90,139 @@ msgstr "Ni chanfodwyd y ffeil cyfluniad `%s': %s"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "Cyfrol AFFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "Cyfrol Rhwydwaith AFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "Cyfrol a Ganfodwyd yn Awtomatig"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "Chwaraewr CD-ROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "CD Sain Digidol"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "Cyfrol Dyfais Caledwedd"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
-msgid "Ext2 Linux Volume"
-msgstr ""
-
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
-msgid "Ext3 Linux Volume"
-msgstr ""
+msgid "Ext2 Linux Volume"
+msgstr "Cyfrol Linux Ext2"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
-#: libgnomevfs/gnome-vfs-filesystem-type.c:56
-#: libgnomevfs/gnome-vfs-filesystem-type.c:57
-msgid "MSDOS Volume"
-msgstr ""
+msgid "Ext3 Linux Volume"
+msgstr "Cyfrol Linux Ext3"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
-#: libgnomevfs/gnome-vfs-filesystem-type.c:48
-msgid "MacOS Volume"
-msgstr ""
+#: libgnomevfs/gnome-vfs-filesystem-type.c:57
+#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+msgid "MSDOS Volume"
+msgstr "Cyfrol MSDOS"
 
+#: libgnomevfs/gnome-vfs-filesystem-type.c:48
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
-msgid "CDROM Volume"
-msgstr ""
+msgid "MacOS Volume"
+msgstr "Cyfrol MacOS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
-msgid "Hsfs CDROM Volume"
-msgstr ""
+msgid "CDROM Volume"
+msgstr "Cyfrol CDROM"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
-msgid "JFS Volume"
-msgstr ""
+msgid "Hsfs CDROM Volume"
+msgstr "Cyfrol CDROM Hsfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
-#: libgnomevfs/gnome-vfs-filesystem-type.c:59
-msgid "Windows NT Volume"
-msgstr ""
+msgid "JFS Volume"
+msgstr "Cyfrol JFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
-#: libgnomevfs/gnome-vfs-filesystem-type.c:61
-#: libgnomevfs/gnome-vfs-filesystem-type.c:62
-msgid "System Volume"
-msgstr ""
+#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+msgid "Windows NT Volume"
+msgstr "Cyfrol Windows NT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
-msgid "Memory Volume"
-msgstr ""
+#: libgnomevfs/gnome-vfs-filesystem-type.c:62
+#: libgnomevfs/gnome-vfs-filesystem-type.c:63
+msgid "System Volume"
+msgstr "Cyfrol System"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
+msgid "Memory Volume"
+msgstr "Cyfrol Cof"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
-msgstr ""
+msgstr "Cyfrol Minix"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:58
+#: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "Cyfrol Rhwydwaith NFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:60
+#: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
-msgstr ""
-
-#: libgnomevfs/gnome-vfs-filesystem-type.c:63
-msgid "ReiserFS Linux Volume"
-msgstr ""
+msgstr "Cyfrol Netware"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
-msgid "Windows Shared Volume"
-msgstr ""
+msgid "ReiserFS Linux Volume"
+msgstr "Cyfrol Linux ReiserFS"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
-msgid "SuperMount Volume"
-msgstr ""
+msgid "Windows Shared Volume"
+msgstr "Cyfrol Rhannu Windows"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
-msgid "DVD Volume"
-msgstr ""
+msgid "SuperMount Volume"
+msgstr "Cyfrol SuperMount"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
-msgid "Solaris/BSD Volume"
-msgstr ""
+msgid "DVD Volume"
+msgstr "Cyfrol DVD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
-msgid "Udfs Solaris Volume"
-msgstr ""
+msgid "Solaris/BSD Volume"
+msgstr "Cyfrol Solaris/BSD"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
-msgid "Pcfs Solaris Volume"
-msgstr ""
+msgid "Udfs Solaris Volume"
+msgstr "Cyfrol Solaris Udfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
-msgid "Enhanced DOS Volume"
-msgstr ""
+msgid "Pcfs Solaris Volume"
+msgstr "Cyfrol Solaris Pcfs"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-msgid "Windows VFAT Volume"
-msgstr ""
+msgid "Enhanced DOS Volume"
+msgstr "Cyfrol DOS Gwell"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
-msgid "Xenix Volume"
-msgstr ""
+msgid "Windows VFAT Volume"
+msgstr "Cyfrol Windows VFAT"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
-msgid "XFS Linux Volume"
-msgstr ""
+msgid "Xenix Volume"
+msgstr "Cyfrol Xenix"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
-msgid "XIAFS Volume"
-msgstr ""
+msgid "XFS Linux Volume"
+msgstr "Cyfrol Linux XFS"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:102
-#, fuzzy
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+msgid "XIAFS Volume"
+msgstr "Cyfrol XIAFS"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
-msgstr "Gwall anhysbys"
+msgstr "Anhysbys"
 
 #: libgnomevfs/gnome-vfs-job.c:774
 #, c-format
@@ -208,11 +237,11 @@ msgstr "Ni ellir creu pibell ar gyfer GIOChannel agored: %s"
 #: libgnomevfs/gnome-vfs-job.c:1727
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "Math tasg anhysbys %u"
+msgstr "Tasg anhysbys, math %u"
 
 #: libgnomevfs/gnome-vfs-job.c:1760
 msgid "Operation stopped"
-msgstr "Atalwyd y gweithrediad"
+msgstr "Ataliwyd y gweithrediad"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:659
 #, c-format
@@ -241,7 +270,7 @@ msgstr "Gwall generig"
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:41
 msgid "Internal error"
-msgstr "Gwall fewnol"
+msgstr "Gwall mewnol"
 
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:42
@@ -281,7 +310,7 @@ msgstr "Ffeil rhy fawr"
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "No space left on device"
-msgstr "Dim lle ar ôl ar y dyfais"
+msgstr "Dim lle ar ôl ar y ddyfais"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:50
@@ -441,7 +470,7 @@ msgstr "Dim gweithred rhagosodedig wedi ei gysylltu"
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr "Dim trimydd ar gyfer y cynllun LAU"
+msgstr "Dim trinydd ar gyfer y cynllun LAU"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
@@ -458,16 +487,16 @@ msgid "Unknown error"
 msgstr "Gwall anhysbys"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u beit"
 msgstr[1] "%u beit"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f C"
+msgstr "%.1f CB"
 
 #: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
@@ -482,95 +511,99 @@ msgstr "%.1f GB"
 #: libgnomevfs/gnome-vfs-utils.c:1106
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:308
 msgid " (invalid Unicode)"
-msgstr "(Unicode annilys)"
+msgstr " (Unicode annilys)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:435
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:462
 msgid "Floppy"
-msgstr ""
+msgstr "Disg hyblyg"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:436
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:465
 msgid "CD-ROM"
-msgstr ""
+msgstr "CD-ROM"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:437
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:468
 msgid "Zip Drive"
-msgstr ""
+msgstr "Gyrriant Zip"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:438
 msgid "Memory Stick"
-msgstr ""
+msgstr "Tocyn Cof"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:439
 msgid "Camera"
-msgstr ""
+msgstr "Camera"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:655
 msgid "Root Volume"
-msgstr ""
+msgstr "Cyfrol Gwraidd"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:736
 msgid "Audio CD"
-msgstr ""
+msgstr "CD Sain"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:767
-#, fuzzy
 msgid "Unknown volume"
-msgstr "Gwall anhysbys"
+msgstr "Cyfrol anhysbys"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:947
 msgid "Network server"
-msgstr ""
+msgstr "Gweinydd rhwydwaith"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
+"Methu rhagosod y gyrriant disg hyblyg. Hwyrach nad oes disg yn y gyrriant."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "Methu rhagosod y gyfrol. Hwyrach nad oes dim yn y ddyfais."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Methu rhagosod y gyrriant disg hyblyg. Hwyrach fod y disg hyblyg mewn ffurf "
+"na ellir ei osod."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
 msgstr ""
+"Methu a gosod y gyfrol ddewisiwyd. Hwyrach ei fod mewn ffurf na ellir ei "
+"osod."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "Methu gosod y gyrriant disg hyblyg ddewisiwyd."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "Methu gosod y gyfrol ddewisiwyd."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "Methu dadosod y gyfrol ddewisiwyd."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:253
 #: libgnomevfs/gnome-vfs-volume-ops.c:296
 msgid "Failed to start command"
-msgstr ""
+msgstr "Methwyd a chychwyn y gorchymyn"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:289
 msgid "Unable to eject media"
-msgstr ""
+msgstr "Methu allfwrw'r disg neu'r modd"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:465
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "Methu dadosod y gweinydd sy'n gysylltiedig"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
@@ -622,23 +655,22 @@ msgstr "Offer"
 msgid "Windows"
 msgstr "Ffenestri"
 
-#: modules/computer-method.c:521
+#: modules/computer-method.c:525
 msgid "Network"
-msgstr ""
+msgstr "Rhwydwaith"
 
-#: modules/computer-method.c:539
+#: modules/computer-method.c:543
 msgid "Home"
-msgstr ""
-
-#: modules/computer-method.c:557
-#, fuzzy
-msgid "Filesystem"
-msgstr "Ffeiliau"
+msgstr "Cartref"
 
 #: modules/file-method.c:384
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "GnomeVFSSeekPosition anhysbys %d"
+
+#: modules/network-method.c:257
+msgid "Windows Network"
+msgstr "Rhwydwaith Windows"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -669,15 +701,15 @@ msgstr "moniker ffeil generig"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "Porwr cydran rhagosodedig"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "Rhaglen terfynell rhagosodedig"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "Ymresymiad exec ar gyfer y derfynell rhagosodedig"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -686,185 +718,244 @@ msgid ""
 "them. The parameter %s will be replaced by the file's URIs, the parameter %c "
 "will be replaced by the component IID."
 msgstr ""
+"Y rhaglen i'w ddefnyddio i bori ffeiliau sydd angen cydran er mwyn eu "
+"gwylio. Amnweidir y paramedr %s gan URI y ffeil, ac amnewidir y paramedr %c "
+"can IID y cydran."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
 msgstr ""
+"Y rhaglen derfynell rhagosodedig a ddefnyddir gan raglenni sydd angen "
+"terfynell."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
 msgstr ""
+"Yr ymresymiad exec i'w ddefnyddio ar gyfer y rhaglen derfynell rhagosodedig."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "H323 URL handler"
-msgstr ""
+msgid "Handle callto URLs"
+msgstr "Ymdrin â LAU \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "HTTP URL handler"
-msgstr ""
+msgid "Handle mailto URLs"
+msgstr "Ymdrin â LAU \"mailto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "HTTPS URL handler"
-msgstr ""
+msgid "Run command in terminal"
+msgstr "Rhedeg y gorchymyn mewn terfynell"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-#, fuzzy
-msgid "Handle H323 URLs"
-msgstr "Dim trimydd ar gyfer y cynllun LAU"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-#, fuzzy
-msgid "Handle HTTP URLs"
-msgstr "Dim trimydd ar gyfer y cynllun LAU"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "Handle HTTPS URLs"
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
-msgid "Handle callto URLs"
-msgstr "Dim trimydd ar gyfer y cynllun LAU"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-#, fuzzy
-msgid "Handle ghelp URLs"
-msgstr "Dim trimydd ar gyfer y cynllun LAU"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-#, fuzzy
-msgid "Handle info URLs"
-msgstr "Dim trimydd ar gyfer y cynllun LAU"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-#, fuzzy
-msgid "Handle mailto URLs"
-msgstr "Dim trimydd ar gyfer y cynllun LAU"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-#, fuzzy
-msgid "Handle man URLs"
-msgstr "Dim trimydd ar gyfer y cynllun LAU"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
-msgid "Handle trash URLs"
-msgstr "Dim trimydd ar gyfer y cynllun LAU"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Run program in terminal"
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
 "Set to true to have a program specified in \"command\" handle callto URLs."
 msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+"â LAU \"callto\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid ""
+"Set to true to have the command specified in \"command\" handle mailto URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+"â LAU \"mailto\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle H323 "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+"â LAU H323."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle "
+"HTTPS URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+"â LAU HTTPS."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle "
+"ghelp URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+"â LAU \"ghelp\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle http "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+"â LAU HTTP."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle info "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+"â LAU \"info\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle man "
+"URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+"â LAU \"man\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:12
+msgid ""
+"Set to true to have the command specified in the \"command\" key handle "
+"trash URLs."
+msgstr ""
+"Gosodwch hyn yn wir er mwyn i'r rhaglen a benodir yn \"command\" i ymdrin "
+"â LAU \"trash\"."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:13
+msgid "The command used to handle \"callto\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"callto\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:14
+msgid "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"ghelp\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid "The command used to handle \"info\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"info\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid "The command used to handle \"man\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"man\", os yn alluog."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid "The command used to handle \"trash\" URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU \"trash\", os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
+msgid "The command used to handle H323 URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU H323, os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
+msgid "The command used to handle HTTP URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTP, os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
+msgid "The command used to handle HTTPS URLs, if enabled."
+msgstr "Y gorchymyn a ddefnyddir i ymdrin â LAU HTTPS, os yn alluog."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
 msgstr ""
+"Gosodwch hyn yn wir os mai mewn terfynell y dylid rhedeg y rhaglen sy'n "
+"delio â'r math yma o LAU."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr ""
+msgid "URL handler for \"callto\" locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"callto\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
+msgid "URL handler for \"ghelp\" locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"ghelp\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid "callto URL handler"
-msgstr ""
+msgid "URL handler for \"info\" locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"info\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "ghelp URL handler"
-msgstr ""
+msgid "URL handler for \"man\" locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"man\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "info URL handler"
-msgstr ""
+msgid "URL handler for \"trash\" locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau \"trash\""
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
-msgid "mailto URL handler"
-msgstr "Dolen ffeil annilys"
+msgid "URL handler for H323 locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau H323"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "man URL handler"
-msgstr ""
+msgid "URL handler for HTTP locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau HTTP"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "trash URL handler"
-msgstr ""
+msgid "URL handler for HTTPS locations"
+msgstr "Trinydd LAU ar gyfer lleoliadau HTTPS"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
+msgid "Whether specified command should handle H323 URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU H323"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
+msgid "Whether specified command should handle HTTP URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTP"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
+msgid "Whether specified command should handle HTTPS URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU HTTPS"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:33
+msgid "Whether the specified command should handle ghelp URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"ghelp\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:34
+msgid "Whether the specified command should handle info URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"info\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:35
+msgid "Whether the specified command should handle man URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"man\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+msgid "Whether the specified command should handle trash URLs"
+msgstr "A ddylai'r gorchymyn penodedig ymdrin a LAU \"trash\""
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+msgid "mailto URL handler"
+msgstr "trinydd LAU \"mailto\""
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "Dilysu cysylltiadau â'r gweinydd dirprwy"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "LAU i gyflunio'r dirprwy'n awtomatig"
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "Galluogi'r gosodiadau dirprwy pan yn cyrchu HTTP dros y Rhyngrwyd."
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "Enw'r gweinydd dirprwy FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "Porth gweinydd dirprwy FTP"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "Enw'r gweinydd dirprwy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "Cyfrinair y dirprwy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "Porth gweinydd dirprwy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "Enw defnyddiwr y dirprwy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -872,80 +963,94 @@ msgid ""
 "username/password combo defined by \"/system/http_proxy/authentication_user"
 "\" and \"/system/http_proxy/authentication_password\"."
 msgstr ""
+"Os yn wir, bydd angen dilysu cysylltiadau â'r gweinydd dirprwy. Defnyddir y "
+"pâr enw defnyddiwr/cyfrinair a benodir gan "
+"\"/system/http_proxy/authentication_user\" a "
+"\"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "Gweinyddion di-ddirprwy"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
-msgstr ""
+msgstr "Cyfrinair i'w basio i'r dirprwy HTTP tra'n dilysu."
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "Modd cyfluniad y dirprwy"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "Enw gweinydd y dirprwy SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "Porth gweinydd dirprwy SOCKS"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "Enw'r gweinydd dirprwy HTTP diogel"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "Porth gweinydd dirprwy HTTP diogel"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
 msgstr ""
+"Dewiswch fodd rhagosod y dirprwy. Y gwerthoedd caniatier yw \"none\", "
+"\"manual\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr "Enw'r peiriant i'w ddefnyddio fel dirprwy FTP."
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "Enw'r peiriant i'w ddefnyddio fel dirprwy HTTP."
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "Enw'r peiriant i'w ddefnyddio fel dirprwy HTTP diogel."
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "Enw'r peiriant i'w ddefnyddio fel dirprwy SOCKS."
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
 "The port on the machine defined by \"/system/http_proxy/host\" that you "
 "proxy through."
 msgstr ""
+"Y porth ar y peiriant ddiffynir gan \"/system/http_proxy/host\" yr ydych "
+"yn ei ddefnyddio fel dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:24
 msgid ""
 "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
 "through."
 msgstr ""
+"Y porth ar y peiriant ddifynnir gan \"/system/proxy/ftp_host\" yr ydych "
+"yn ei ddefnyddio fel dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:25
 msgid ""
 "The port on the machine defined by \"/system/proxy/secure_host\" that you "
 "proxy through."
 msgstr ""
+"Y porth ar y peiriant ddifynnir gan \"/system/proxy/secure_host\" yr ydych "
+"yn ei ddefnyddio fel dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:26
 msgid ""
 "The port on the machine defined by \"/system/proxy/socks_host\" that you "
 "proxy through."
 msgstr ""
+"Y porth ar y peiriant ddifynnir gan \"/system/proxy/socks_host\" yr ydych "
+"yn ei ddefnyddio fel dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:27
 msgid ""
@@ -954,39 +1059,31 @@ msgid ""
 "(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
 "IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 msgstr ""
+"Mae'r allwedd hon yn cynnwys rhestr o weinyddion y cysylltir â hwy yn "
+"uniongyrchol, yn hytrach na thrwy'r dirprwy (os defnyddir). Medrwch roi fan "
+"hyn enwau gweinyddion, parth-enwau (gan ddefnyddio gwylltnod i ddechrau, fel "
+"*.foo.com), rhifau IP gweinyddion (IPv6 yn ogystal a IPv4) a rhifau "
+"rhwydwaith gyda masg rhwydwaith (tebyg i 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "URL sy'n rhoi manylion cyflunio y dirprwy."
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "Defnyddio dirprwy HTTP"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
-msgstr ""
-
-#: modules/network-method.c:257
-#, fuzzy
-msgid "Windows Network"
-msgstr "Ffenestri"
+msgstr "Enw'r defnyddiwr i'w basio i'r dirprwy HTTP tra'n dilysu"
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "Grŵp SMB"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
-
-#, fuzzy
-#~ msgid "URL handler for ghelp pages"
-#~ msgstr "Dim trimydd ar gyfer y cynllun LAU"
-
-#, fuzzy
-#~ msgid "URL handler for trash pages"
-#~ msgstr "Dim trimydd ar gyfer y cynllun LAU"
+msgstr "Y grŵp Windows mae'r defnyddiwr yn rhan ohoni"
 
 #~ msgid "1 byte"
 #~ msgstr "1 beit"
