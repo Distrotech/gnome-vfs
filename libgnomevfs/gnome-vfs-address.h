@@ -31,7 +31,7 @@
 
 G_BEGIN_DECLS
 
-typedef struct GnomeVFSAddress_ GnomeVFSAddress;
+typedef struct _GnomeVFSAddress GnomeVFSAddress;
 
 
 GnomeVFSAddress *gnome_vfs_address_new_from_string   (const char      *address);

@@ -1,3 +1,9 @@
+2004-07-17  Murray Cumming  <murrayc@murrayc.com>
+
+	* libgnomevfs/gnome-vfs-address.h: In the GnomeVFSAddres hidden-struct 
+	declaration, put the _ before rather than after, because that's what 
+	we normally do, and that's what gtkmm depends on.
+
 2004-07-16  Christian Kellner  <gicmo@gnome-de.org>
 
 	* libgnomevfs/gnome-vfs-result.c (gnome_vfs_result_from_errno_code):

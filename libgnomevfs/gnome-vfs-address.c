@@ -35,7 +35,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-struct GnomeVFSAddress_ {
+struct _GnomeVFSAddress {
 
 	   struct sockaddr *sa;
 };

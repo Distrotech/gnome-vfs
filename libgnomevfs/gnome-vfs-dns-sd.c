@@ -34,6 +34,7 @@
 #include <string.h>
 #include "gnome-vfs-dns-sd.h"
 #include <gconf/gconf-client.h>
+#include <unistd.h>
 
 #ifdef HAVE_HOWL
 #include <howl.h>
