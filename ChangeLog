@@ -1,3 +1,10 @@
+1999-10-08  Ettore Perazzoli  <ettore@gnu.org>
+
+	* libgnomevfs-corba/gnome-vfs-slave-process.c: #include
+	<sys/types.h> first, <sys/socket.h> afterwards as pointed out by
+	Michael.
+	* libgnomevfs-corba/gnome-vfs-slave-notify.c: Likewise.
+
 1999-10-07  Ettore Perazzoli  <ettore@gnu.org>
 
 	* libgnomevfs/gnome-vfs-process.c: If the
