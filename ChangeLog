@@ -1,3 +1,11 @@
+2002-04-22  Jody Goldberg <jody@gnome.org>
+
+	* Release 1.9.12
+
+2002-04-22  Jody Goldberg <jody@gnome.org>
+
+	* configure.in : bump version number in preparation for release.
+
 2002-04-21  Jody Goldberg <jody@gnome.org>
 
 	* libgnomevfs/gnome-vfs-application-registry.c

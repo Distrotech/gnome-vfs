@@ -21,9 +21,6 @@ INCLUDES =					\
 
 lib_LTLIBRARIES = libgnomevfs-2.la
 
-EXTRA_DIST =					\
-	getdelim.c
-
 libgnomevfs_2_la_LIBADD =			\
 	$(LIBGNOMEVFS_LIBS)			\
 	$(NULL)
@@ -158,3 +155,5 @@ libgnomevfsplatforminclude_HEADERS =		\
 	gnome-vfs-file-size.h
 
 TESTS = check-headers.pl
+EXTRA_DIST = check-headers.pl getdelim.c
+

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 1.9.4\n"
-"POT-Creation-Date: 2002-03-27 08:49-0800\n"
+"POT-Creation-Date: 2002-04-22 08:19-0400\n"
 "PO-Revision-Date: 2002-02-09 22:11+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@saunalahti.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -296,7 +296,7 @@ msgstr "%.1f Mt"
 msgid "%.1f GB"
 msgstr "%.1f Gt"
 
-#: modules/file-method.c:381
+#: modules/file-method.c:382
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Tuntematon GnomeVFSSeekPosition %d"
