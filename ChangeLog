@@ -1,3 +1,7 @@
+2004-01-20 Christian Kellner  <gicmo@xatom.net>
+	* libgnomevfs/gnome-vfs-unix-mounts.c: differ "user" from
+	"user_xattr" mount option
+	
 Tue Jan 20 14:57:26 2004  Jonathan Blandford  <jrb@gnome.org>
 
 	* libgnomevfs/xdg*.[ch]: Sync to upstream XDG changes.  Merged in

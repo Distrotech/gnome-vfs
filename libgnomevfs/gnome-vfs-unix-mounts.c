@@ -519,7 +519,8 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 
 		if ((mntent->mnt_type != NULL && strcmp ("supermount", mntent->mnt_type) == 0)
 #ifdef HAVE_HASMNTOPT
-		    || hasmntopt (mntent, "user") != NULL
+		    || (hasmntopt (mntent, "user") != NULL
+			&& hasmntopt (mntent, "user") != hasmntopt (mntent, "user_xattr"))
 		    || hasmntopt (mntent, "users") != NULL
 		    || hasmntopt (mntent, "owner") != NULL
 #endif
@@ -596,7 +597,8 @@ _gnome_vfs_get_unix_mount_table (GList **return_list)
 
 		if ((mntent.mnt_fstype != NULL)
 #ifdef HAVE_HASMNTOPT
-		    || hasmntopt (&mntent, "user") != NULL
+		    || (hasmntopt (&mntent, "user") != NULL
+			&& hasmntopt (&mntent, "user") != hasmntopt (&mntent, "user_xattr"))
 		    || hasmntopt (&mntent, "users") != NULL
 		    || hasmntopt (&mntent, "owner") != NULL
 #endif
