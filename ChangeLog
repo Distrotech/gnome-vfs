@@ -1,3 +1,7 @@
+2003-12-05  Mark McLoughlin  <mark@skynet.ie>
+
+	* schemas/Makefile.am: add desktop_gnome_url_handlers.schemas.
+
 2003-12-04  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs.h:
