@@ -573,6 +573,7 @@ gnome_vfs_mime_get_magic_table (void)
 		/* don't have a pre-parsed table, use original text file */
 
 	        filename = g_strconcat (GNOME_VFS_CONFDIR, "/gnome-vfs-mime-magic", NULL);
+		mime_magic_table = gnome_vfs_mime_magic_parse (filename, NULL);
 		g_free (filename);
   	}
 
@@ -587,7 +588,7 @@ gnome_vfs_mime_test_get_magic_table (const char *table_path)
 {
 	G_LOCK (mime_magic_table_mutex);
   	if (mime_magic_table == NULL) {
-		mime_magic_table = gnome_vfs_mime_magic_parse(table_path, NULL);
+		mime_magic_table = gnome_vfs_mime_magic_parse (table_path, NULL);
   	}
 	G_UNLOCK (mime_magic_table_mutex);
 

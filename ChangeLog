@@ -1,3 +1,10 @@
+2000-09-12  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c:
+	(gnome_vfs_mime_get_magic_table): Add the missing call to actually
+	parse the text file. We never noticed it was missing, because we
+	were getting the binary form of that table until recently.
+
 2000-09-12  Seth Nickell  <seth@eazel.com>
 
 	* modules/Makefile.am:
