@@ -1,3 +1,11 @@
+2001-04-25  Darin Adler  <darin@eazel.com>
+
+	reviewed by: Pavel Cisler <pavel@eazel.com>
+
+	* modules/file-method.c: (get_stat_info): Fix bug where it would
+	return GNOME_VFS_NOT_FOUND for broken links, even though it went
+	to the trouble of handling them properly.
+
 2001-04-23  John Sullivan  <sullivan@eazel.com>
 
 	* data/mime/gnome-vfs.keys.in: Added can_be_executable

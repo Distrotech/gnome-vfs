@@ -601,14 +601,12 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	       GnomeVFSFileInfoOptions options,
 	       struct stat *statptr)
 {
-	GnomeVFSResult result;
 	struct stat statbuf;
 	gboolean followed_symlink;
 	gboolean is_symlink;
 	gboolean recursive;
 	char *link_file_path;
 
-	result = GNOME_VFS_OK;
 	followed_symlink = FALSE;
 	
 	recursive = FALSE;
@@ -631,8 +629,6 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 				recursive = TRUE;
 			}
 
-			result = gnome_vfs_result_from_errno ();
-
 			/* It's a broken symlink, revert to the lstat. This is sub-optimal but
 			 * acceptable because it's not a common case.
 			 */
@@ -646,14 +642,15 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 
 	gnome_vfs_stat_to_file_info (file_info, statptr);
 
-	if (result == GNOME_VFS_OK && is_symlink) {
+	if (is_symlink) {
 		link_file_path = g_strdup (full_name);
 		
+		/* We will either successfully read the link name or return
+		 * NULL if read_link fails -- flag it as a valid field either
+		 * way.
+		 */
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
-			/* We will either successfully read the link name or return
-			 * NULL if read_link fails -- flag it as a valid field either
-			 * way.
-			 */
+
 		while (TRUE) {			
 			/* Deal with multiple-level symlinks by following them as
 			 * far as we can.
@@ -679,7 +676,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 		g_free (link_file_path);
 	}
 
-	return result;
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
