@@ -1,3 +1,9 @@
+2001-01-31  Rebecca Schulman  <rebecka@eazel.com>
+
+	* data/mime/gnome-vfs.keys.in:
+	Fixed a typo in this file that was making 
+	the vault unviewable by anything except mozilla.
+
 2001-01-31  Darin Adler  <darin@eazel.com>
 
 	* gnome-vfs.applications: Made check-mime happy by using a tab,
