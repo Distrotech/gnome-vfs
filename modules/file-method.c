@@ -311,7 +311,13 @@ do_read (GnomeVFSMethod *method,
 		return gnome_vfs_result_from_errno ();
 	} else {
 		*bytes_read = read_val;
-		return GNOME_VFS_OK;
+
+		/* Getting 0 from read() means EOF! */
+		if (read_val == 0) {
+			return GNOME_VFS_ERROR_EOF;
+		} else {
+			return GNOME_VFS_OK;
+		}
 	}
 }
 

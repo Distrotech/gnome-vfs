@@ -1,3 +1,7 @@
+2000-09-20  Maciej Stachowiak  <mjs@eazel.com>
+
+	* modules/file-method.c (do_read): Report EOF on EOF.
+
 2000-09-20  Ian McKellar  <yakk@yakk.net.au>
 
 	* modules/Makefile.am:
