@@ -1202,7 +1202,7 @@ gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
  * @extension: The extension to remove
  * @mime_type: The mime type to remove the extension from
  * 
- * Removes a file extension from the specificed MIME type in the MIME database.
+ * Removes a file extension from the specificied MIME type in the MIME database.
  * 
  * Return value: GnomeVFSResult indicating the success of the operation or any
  * errors that may have occurred.

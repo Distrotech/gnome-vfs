@@ -1,5 +1,13 @@
 2003-07-05  Christophe Fergeau  <teuf@users.sourceforge.net>
 
+	* configure.in:
+	* mime/mime-db.c: (read_mime_file), (get_mime_type_files),
+	(init_mime_db), (gnome_vfs_mime_info_reload), (get_user_filename),
+	(mime_type_save), (persist_user_changes):
+	* mime/mime.c: make user modifications to the mime database work again
+
+2003-07-05  Christophe Fergeau  <teuf@users.sourceforge.net>
+
 	* configure.in: disabled strict aliasing warnings
 	* mime/mime-db.c: (find_mime_type), (process_mime_type_node),
 	(read_mime_file), (file_name_from_mime_type),

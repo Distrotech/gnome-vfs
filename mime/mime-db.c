@@ -54,6 +54,8 @@
 //#define DEBUG(x) g_print x
 #define DEBUG(x)
 
+#define USER_RELATIVE_PATH ".gnome2/mime-info"
+
 #define MIME_SPEC_NAMESPACE (const xmlChar *)"http://www.freedesktop.org/standards/shared-mime-info"
 #define GNOME_VFS_NAMESPACE (const xmlChar *)"http://www.gnome.org/gnome-vfs/mime/1.0"
 
@@ -398,16 +400,6 @@ read_mime_file (const gchar *filename)
 
 	if (xmlStrcmp(cur->name, (const xmlChar *) "mime-type") == 0) {
 		result = process_mime_type_node (doc, cur);	 
-#ifdef COMPILE_OBSOLETE
-	} else if (xmlStrcmp(cur->name, (const xmlChar *) "mime-types") == 0) {
-		g_print ("%s: mime-types\n", filename);
-
-		cur = cur->xmlChildrenNode;
-		while (cur != NULL) {
-			process_mime_type_node (doc, cur);
-			cur = cur->next;
-		}
-#endif /* COMPILE_OBSOLETE */
 	} else {
 		fprintf(stderr,"document %s of the wrong type, root node != mime-type\n", filename);
 		xmlFreeDoc (doc);
@@ -493,139 +485,25 @@ get_mime_type_files (const gchar *mime_type)
 		it++;
 	}
 	
-	full_path = g_strconcat (g_get_home_dir (), "/.mime/", rel_path, NULL);
+	full_path = g_strjoin ("/", g_get_home_dir (), ".mime",
+			       rel_path, NULL);
 	if (g_file_test (full_path, G_FILE_TEST_EXISTS)) {
-		result = g_list_append (result, full_path);
+		result = g_list_prepend (result, full_path);
 	} else {
 		g_free (full_path);
 	}
 
+	full_path = g_strjoin ("/", g_get_home_dir (), USER_RELATIVE_PATH, 
+			       rel_path, NULL);
+	if (g_file_test (full_path, G_FILE_TEST_EXISTS)) {
+		result = g_list_prepend (result, full_path);
+	} else {
+		g_free (full_path);
+	}
+	
 	return result;
 }
 
-
-
-
-#ifdef COMPILE_OBSOLETE
-
-/* Find all .xml files in a dir, parses them and add the mime types they 
- * describe to the database
- */
-static void 
-read_mime_info_from_dir (const char *dirname)
-{
-	DIR *dir;
-	struct dirent *dent;
-	const int extlen = sizeof (".xml") - 1;
-
-	dir = opendir (dirname);
-	while ((dent = readdir (dir)) != NULL){
-		gchar *filename;
-		int len = strlen (dent->d_name);
-
-		if (len <= extlen)
-			continue;
-		if (strcmp (dent->d_name + len - extlen, ".xml")) {
-			continue;
-		}
-		filename = g_strconcat (dirname, "/", dent->d_name, 
-						NULL);
-		read_mime_file (filename);
-		g_free (filename);
-	}
-	closedir (dir);
-}
-
-/* Returns true if dirname is a directory */
-static gboolean 
-is_dir (const char *dirname)
-{
-	struct stat s;
-
-	stat (dirname, &s);
-	return S_ISDIR (s.st_mode);
-}
-
-static gboolean
-file_exists (const char *filename)
-{
-	struct stat s;
-
-	stat (filename, &s);
-	return S_ISREG (s.st_mode);
-}
-
-/* Load the whole mime database */
-static void 
-load_mime_database (void)
-{
-	GList *mime_paths = NULL;
-	GList *li;
-	gchar *user_dir = g_strconcat (g_get_home_dir (), "/.mime", NULL);
-	gchar *user_custom = g_strconcat (g_get_home_dir (), 
-					  "/.gnome2/mime-info/user.xml", NULL);
-	DIR *dir;
-	struct dirent *dent;
-
-	if (is_dir ("/usr/share/mime")) {
-		mime_paths = 
-			g_list_append (mime_paths, g_strdup("/usr/share/mime"));
-	}
-
-	if (is_dir ("/usr/local/share/mime")) {
-		mime_paths = 
-			g_list_append (mime_paths, g_strdup("/usr/local/share/mime"));
-	}
-
-	if (is_dir (user_dir)) {		
-		mime_paths = 
-			g_list_append (mime_paths, user_dir);
-	}
-
-	/* Maybe we should also check something like $GNOME2_PATH/share/mime 
-	   and we probably shoud also consider the prefix where gnome-vfs is
-	   installed
-	*/
-
-	for (li = mime_paths; li != NULL; li = li->next) {
-		gchar *dirname = (gchar*)li->data;
-		
-		dir = opendir (dirname);
-		if (dir == NULL) {
-			continue;
-		}
-		while ((dent = readdir (dir)) != NULL){
-			gchar *subdir;
-
-			if (!strcmp (dent->d_name, "packages")) {
-				continue;
-			}
-			if (!strcmp (dent->d_name, ".")) {
-				continue;
-			}
-			if (!strcmp (dent->d_name, "..")) {
-				continue;
-			}
-
-			subdir = g_strconcat (dirname, "/", dent->d_name, 
-					      NULL);
-			if (is_dir (subdir)) {
-				read_mime_info_from_dir (subdir);
-			}
-			g_free (subdir);
-		}
-		closedir (dir);
-	}
-
-	if (file_exists (user_custom)) {
-		g_print ("parsing user custom");
-		parse_mime_desc (user_custom);
-	}
-
-	g_free (user_custom);
-	g_list_foreach (mime_paths, (GFunc)g_free, NULL);
-}
-#endif /* COMPILE_OBSOLETE */
 
 static void 
 mime_type_print (struct MimeType *mime_type)
@@ -659,10 +537,6 @@ init_mime_db (void)
 {
 	current_lang = gnome_vfs_i18n_get_language_list ("LC_ALL");
 	mime_types = g_hash_table_new (g_str_hash, g_str_equal);
-#ifdef COMPILE_OBSOLETE
-	load_mime_database ();
-#endif /* COMPILE_OBSOLETE */
-	//	g_print ("nb of elems: %u\n", g_hash_table_size (mime_types));
 }
 
 
@@ -987,11 +861,6 @@ gnome_vfs_mime_info_reload (void)
 		g_hash_table_foreach (mime_types, (GHFunc)mime_type_free, 
 				      NULL);
 	}
-
-#ifdef COMPILE_OBSOLETE	
-	/* 2. Reload */
-	load_mime_database ();
-#endif /* COMPILE_OBSOLETE */
 }
 
 
@@ -1018,29 +887,106 @@ save_user_attributes (gchar *key, gchar *value, xmlNodePtr node)
 }
 
 
-static void
-mime_type_save (gchar *key, struct MimeType *mime_type, xmlNodePtr root)
+static gchar *get_user_filename (const gchar *mime_type)
 {
-	xmlNodePtr node;
-	xmlNodePtr user_node;
-	xmlNsPtr ns;
+	gchar *filename;
+	gchar *fullpath;
+	gchar *dirname;
+	gchar *slash_pos;
+
+	filename = file_name_from_mime_type (mime_type);
+	
+	if (filename == NULL) {
+		return NULL;
+	}
+	
+	fullpath = g_strjoin ("/", g_get_home_dir (),
+			      USER_RELATIVE_PATH, 
+			      filename, NULL);
+	g_free (filename);
+	dirname = g_strdup (fullpath);
+	slash_pos = strrchr (dirname, '/');
+	if (slash_pos == NULL) {
+		/* This should never happens ince file_name_from_mime_type
+		 * guarantee that filename contains a / 
+		 */
+		g_error ("Couldn't find '/' in %s\n", fullpath);
+		return NULL;
+	}
+	*slash_pos = '\0';
+
+	if (g_file_test (dirname, G_FILE_TEST_EXISTS)) {
+		if (g_file_test (dirname, G_FILE_TEST_IS_DIR)) {
+			g_free (dirname);		
+			return fullpath;
+		} else {
+			/* FIXME: should we try to remove the existing 
+			 * thing before failing ?
+			 */
+			g_free (dirname);
+			g_free (fullpath);
+			return NULL;
+		}
+	}
+
+	/* ~/USER_RELATIVE_PATH/media doesn't exist, create it */
+	if (mkdir (dirname, S_IRWXU) != 0) {
+		g_warning ("Couldn't create %s dir.", dirname);
+		g_free (dirname);
+		g_free (fullpath);
+		return NULL;
+	} else {
+		g_free (dirname);
+		return fullpath;
+	}
+
+	/* Should never be reached */
+	g_free (dirname);
+	g_free (fullpath);
+	
+	return NULL;
+}
+
+static void
+mime_type_save (gchar *key, struct MimeType *mime_type)
+{
+	xmlDocPtr doc;
+	xmlNodePtr root;
+	xmlNsPtr mime_ns;
+	xmlNsPtr gnome_ns;
 	GList *it;
+	gchar *filename;
+
+	g_assert (mime_type != NULL);
+	g_assert (key == mime_type->type);
+
 
 	if (mime_type->state == DEFAULT) {
 		return;
 	}
 
-	ns = xmlSearchNs (root->doc, root, "gnome");
-	if (ns == NULL) {
+	filename = get_user_filename (mime_type->type);
+	if (filename == NULL) {
 		return;
 	}
+		
+	xmlKeepBlanksDefault (0);
+	
+	doc = xmlNewDoc ("1.0");
+	root = xmlNewDocNode (doc, NULL, "mime-type", "");
+	mime_ns = xmlNewNs (root, MIME_SPEC_NAMESPACE, NULL);
+	gnome_ns = xmlNewNs (root, GNOME_VFS_NAMESPACE, "gnome");
+	xmlDocSetRootElement (doc, root);
 
-	node = xmlNewChild (root, NULL, "mime-type", NULL);
-	xmlNewProp (node, "type", mime_type->type);
-	xmlNewNsProp (node, ns, "state", 
+	xmlNewProp (root, "type", mime_type->type);
+	xmlNewNsProp (root, gnome_ns, "state", 
 		      modification_string[mime_type->state]);
 
 	if (mime_type->state == USER_REMOVED) {
+		xmlSaveFormatFile (filename, 
+				   doc, 1);
+		g_free (filename);
+		xmlFreeDoc (doc);
 		return;
 	}
 
@@ -1050,19 +996,21 @@ mime_type_save (gchar *key, struct MimeType *mime_type, xmlNodePtr root)
 	 * in the locale used when he modified the mime type
 	 */
 	if (mime_type->desc != NULL) {
-		xmlNewTextChild (node, NULL, "comment", mime_type->desc);
+		xmlNewTextChild (root, NULL, "comment", mime_type->desc);
 	}
 	/* It's pointless to save that since there is no API to change it...
 	 * Moreover, it adds problems when the user changes locale after
 	 * persisting some mime changes to disk...
 	 */
 	if (mime_type->category) {
-		xmlNewTextChild (node, ns, "category", mime_type->category);
+		xmlNewTextChild (root, gnome_ns, "category", 
+				 mime_type->category);
 	}
 	if (mime_type->default_action == GNOME_VFS_MIME_ACTION_TYPE_COMPONENT){
-		xmlNewTextChild (node, ns, "default_action_type", "component");
+		xmlNewTextChild (root, gnome_ns, "default_action_type",
+				 "component");
 	} else {
-		xmlNewTextChild (node, ns, "default_action_type", 
+		xmlNewTextChild (root, gnome_ns, "default_action_type", 
 				 "application");
 	}
 	
@@ -1073,17 +1021,20 @@ mime_type_save (gchar *key, struct MimeType *mime_type, xmlNodePtr root)
 		helper = (struct MimeHelper *)it->data;
 		if (helper->state != DEFAULT) {
 			gchar *relevance;
-			h_node = xmlNewChild (node, ns, "default-application", 
+			h_node = xmlNewChild (root, gnome_ns, 
+					      "default-application", 
 					      NULL);
-			xmlNewNsProp (node, ns, "state", 
+			xmlNewNsProp (h_node, gnome_ns, "state", 
 				      modification_string[mime_type->state]);
 
 			if (mime_type->state == USER_REMOVED) {
 				continue;
 			}
-			xmlNewTextChild (h_node, ns, "app-id", helper->app_id);
+			xmlNewTextChild (h_node, gnome_ns, "app-id", 
+					 helper->app_id);
 			relevance = g_strdup_printf ("%u", helper->relevance);
-			xmlNewTextChild (h_node, ns, "relevance", relevance);
+			xmlNewTextChild (h_node, gnome_ns, "relevance", 
+					 relevance);
 			g_free (relevance);
 		}
 	}
@@ -1093,11 +1044,17 @@ mime_type_save (gchar *key, struct MimeType *mime_type, xmlNodePtr root)
 	 * by gnome-vfs => maybe use a different namespace ? 
 	 */
 	if (mime_type->user_attributes != NULL) {
-		user_node = xmlNewChild (node, ns, "user-attributes", NULL);
+		xmlNodePtr user_node;
+		user_node = xmlNewChild (root, gnome_ns, "user-attributes", 
+					 NULL);
 		g_hash_table_foreach (mime_type->user_attributes, 
 				      (GHFunc)save_user_attributes, 
 				      user_node);
 	}
+
+	xmlSaveFormatFile (filename, doc, 1);
+	xmlFreeDoc (doc);
+	g_free (filename);
 }
 
 
@@ -1113,21 +1070,8 @@ mime_type_save (gchar *key, struct MimeType *mime_type, xmlNodePtr root)
 void
 persist_user_changes (void)
 {
-	xmlDocPtr doc;
-	xmlNodePtr root;
-	xmlNsPtr mime_ns;
-	xmlNsPtr gnome_ns;
+	g_assert (mime_types != NULL);
 
-	xmlKeepBlanksDefault (0);
-	
-	doc = xmlNewDoc ("1.0");
-	root = xmlNewDocNode (doc, NULL, "mime-types", "");
-	mime_ns = xmlNewNs (root, MIME_SPEC_NAMESPACE, NULL);
-	gnome_ns = xmlNewNs (root, GNOME_VFS_NAMESPACE, "gnome");
-	xmlDocSetRootElement (doc, root);
-
-	g_hash_table_foreach (mime_types, (GHFunc)mime_type_save, 
-			      doc->children);
-
-	xmlSaveFormatFile ("/home/teuf/.gnome2/mime-info/user.xml", doc, 1);
+	g_hash_table_foreach (mime_types, (GHFunc)mime_type_save, NULL);
 }
+ 
