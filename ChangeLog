@@ -1,3 +1,9 @@
+2001-02-28  Andy Hertzfeld  <andy@eazel.com>
+
+	* data/mime/gnome-vfs.keys.in:
+	fixed bug 7179, lots of text files are missing their embedded text;
+	fixed by deleting the icon-filename entry for around a dozen types.
+	
 2001-02-28  Eric Fischer  <eric@eazel.com>
 
 	reviewed by: Robin * Slomkowski <rslomkow@eazel.com>

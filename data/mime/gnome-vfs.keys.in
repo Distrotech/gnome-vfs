@@ -1107,15 +1107,12 @@ text/tex
 
 text/x-authors
 	_description=authors list
-	icon_filename=gnome-text-x-authors.png
 
 text/x-c
 	_description=C source code
-	icon_filename=gnome-application-x-c-source.png
 
 text/x-c++
 	_description=C++ source code
-	icon_filename=gnome-application-x-cc-source.png
 
 text/x-comma-separated-values
 	_description=comma-separated text document
@@ -1127,11 +1124,9 @@ text/x-comma-separated-values
 
 text/x-copying
 	_description=software license terms
-	icon_filename=gnome-text-x-copying.png
 
 text/x-credits
 	_description=software author credits
-	icon_filename=gnome-text-x-credits.png
 
 # also application/x-csh
 text/x-csh
@@ -1161,11 +1156,13 @@ text/x-idl
 
 text/x-install
 	_description=software installation instructions
-	icon_filename=gnome-text-x-install.png
 
 text/x-java
 	_description=Java source code
-	icon_filename=gnome-application-x-java-source.png
+	default_action_type=application
+	short_list_application_ids_for_novice_user_level=javac
+	short_list_application_ids_for_intermediate_user_level=javac
+	short_list_application_ids_for_advanced_user_level=javac
 
 text/x-ksh
 	can_be_executable=TRUE
@@ -1173,7 +1170,6 @@ text/x-ksh
 
 text/x-makefile
 	_description=makefile
-	icon_filename=gnome-text-x-makefile.png
 
 text/x-patch
 	_description=source code patch
@@ -1192,7 +1188,6 @@ text/x-readme
 
 text/x-scheme
 	_description=Scheme source code
-	icon_filename=gnome-application-x-scheme-source.png
 
 text/x-setext
 	_description=Setext document
@@ -1206,7 +1201,6 @@ text/x-speech
 
 text/x-sql
 	_description=SQL code
-	icon_filename=gnome-application-x-sql.png
 
 text/x-tcl
 	_description=Tcl script
@@ -1224,7 +1218,6 @@ text/x-troff
 
 text/x-troff-man
 	_description=manual page
-	icon_filename=manual.png
 
 # the acronym is not capitalized, per common usage
 text/x-troff-me
