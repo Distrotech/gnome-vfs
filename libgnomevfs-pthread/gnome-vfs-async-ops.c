@@ -159,22 +159,13 @@ pthread_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 	if (job == NULL) {
 		JOB_DEBUG (("job %u - job no longer exists", GPOINTER_TO_UINT (handle)));
 		/* have to cancel the callbacks because they still can be pending */
-		gnome_vfs_async_job_cancel_callbacks (handle);
+		gnome_vfs_async_job_cancel_job_and_callbacks (handle, NULL);
 	} else {
-		/* Cancel the job in progress. OK to do outside of job->access_lock. */
-		gnome_vfs_job_cancel (job);
-
-		JOB_DEBUG (("locking access lock %u", (int) job->job_handle));
-		sem_wait (&job->access_lock);
-	
-		/* The lock here is to make sure that either the job doesn't
-		 * get to execute anything or that any callbacks it schedules get cancelled
+		/* Cancel the job in progress. OK to do outside of job->access_lock,
+		 * job lifetime is protected by gnome_vfs_async_job_map_lock.
 		 */
-		gnome_vfs_async_job_cancel_callbacks (handle);
-				
-		job->cancelled = TRUE;
-		JOB_DEBUG (("unlocking access lock %u", (int) job->job_handle));
-		sem_post (&job->access_lock);
+		gnome_vfs_job_module_cancel (job);
+		gnome_vfs_async_job_cancel_job_and_callbacks (handle, job);
 	}
 
 	gnome_vfs_async_job_map_unlock ();

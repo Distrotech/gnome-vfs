@@ -30,6 +30,9 @@
 
 #define _LARGEFILE64_SOURCE
 
+#include <glib.h>
+#include <libgnome/gnome-defs.h>
+#include <libgnome/gnome-i18n.h>
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -44,7 +47,10 @@
 
 #include "gnome-vfs-mime.h"
 
+#include "gnome-vfs-cancellation.h"
+#include "gnome-vfs-context.h"
 #include "gnome-vfs-module.h"
+#include "gnome-vfs-method.h"
 #include "gnome-vfs-utils.h"
 #include "gnome-vfs-module-shared.h"
 #include "file-method.h"

@@ -25,7 +25,6 @@
 #define _GNOME_VFS_MODULE_H
 
 #include "gnome-vfs.h"
-#include "gnome-vfs-private.h"
 
 #define GNOME_VFS_MODULE_INIT      "vfs_module_init"
 #define GNOME_VFS_MODULE_TRANSFORM "vfs_module_transform"

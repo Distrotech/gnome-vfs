@@ -617,9 +617,25 @@ typedef void    (* GnomeVFSAsyncFindDirectoryCallback)
 typedef void    (* GnomeVFSStatusCallback)      (const gchar *message,
 						 gpointer     callback_data);
 
+/* VFS Transform */
+typedef struct GnomeVFSTransform GnomeVFSTransform;
 typedef struct GnomeVFSContext GnomeVFSContext;
+
+typedef GnomeVFSTransform * (* GnomeVFSTransformInitFunc)(const char *method_name, const char *config_args);
+
+typedef GnomeVFSResult (* GnomeVFSTransformFunc) (GnomeVFSTransform *transform,
+						  const gchar *old_uri,
+						  gchar **new_uri,
+						  GnomeVFSContext *context);
+
+struct GnomeVFSTransform {
+	GnomeVFSTransformFunc transform;
+};
+
 typedef struct GnomeVFSMessageCallbacks GnomeVFSMessageCallbacks;
 typedef struct GnomeVFSCancellation GnomeVFSCancellation;
 typedef gpointer GnomeVFSMethodHandle;
+typedef struct GnomeVFSIOBuf GnomeVFSIOBuf;
+typedef struct GnomeVFSInetConnection GnomeVFSInetConnection;
 
 #endif /* _GNOME_VFS_TYPES_H */

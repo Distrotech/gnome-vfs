@@ -36,6 +36,7 @@
 #include <gconf/gconf-client.h>
 
 #include "gnome-vfs-mime.h"
+#include "gnome-vfs-method.h"
 #include "gnome-vfs-module.h"
 
 #include "file-method.h"

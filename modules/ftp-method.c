@@ -49,9 +49,15 @@
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 
+#include "gnome-vfs-context.h"
+#include "gnome-vfs-types.h"
+#include "gnome-vfs-iobuf.h"
+#include "gnome-vfs-inet-connection.h"
+#include "gnome-vfs-method.h"
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-module-shared.h"
 #include "gnome-vfs-mime.h"
+#include "gnome-vfs-parse-ls.h"
 
 #include "ftp-method.h"
 

@@ -129,12 +129,12 @@ gnome_vfs_job_complete (GnomeVFSJob *job)
 static void
 job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
-	gnome_vfs_async_job_add_callback (notify_result);
-
-	JOB_DEBUG (("job %u, callback %u", GPOINTER_TO_UINT (notify_result->job_handle),
-		notify_result->callback_id));
-
-	g_idle_add (dispatch_job_callback, notify_result);
+	if (gnome_vfs_async_job_add_callback (job, notify_result)) {
+		JOB_DEBUG (("job %u, callback %u", GPOINTER_TO_UINT (notify_result->job_handle),
+			notify_result->callback_id));
+	
+		g_idle_add (dispatch_job_callback, notify_result);
+	}
 }
 
 /* This notifies the master threads, waiting until it acknowledges the
@@ -142,9 +142,9 @@ job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 static void
 job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
-	if (job->cancelled) {
+	if (!gnome_vfs_async_job_add_callback (job, notify_result)) {
 		JOB_DEBUG (("job cancelled, bailing %u",
-			    GPOINTER_TO_UINT (notify_result->job_handle)));
+			GPOINTER_TO_UINT (wakeup_context->job_handle)));
 		return;
 	}
 
@@ -156,7 +156,6 @@ job_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 	/* Send the notification.  This will wake up the master thread, which
          * will in turn signal the notify condition.
          */
-	gnome_vfs_async_job_add_callback (notify_result);
 	g_idle_add (dispatch_sync_job_callback, notify_result);
 
 	/* FIXME:
@@ -1173,7 +1172,6 @@ execute_read (GnomeVFSJob *job)
 									   &notify_result->specifics.read.bytes_read,
 									   job->op->context);
 
-
 	job_oneway_notify (job, notify_result);
 }
 
@@ -1494,7 +1492,6 @@ execute_xfer (GnomeVFSJob *job)
          */
 	if (result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_INTERRUPTED) {
 
-
 		info.status = GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR;
 		info.vfs_status = result;
 		info.phase = GNOME_VFS_XFER_PHASE_INITIAL;
@@ -1579,7 +1576,7 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 }
 
 void
-gnome_vfs_job_cancel (GnomeVFSJob *job)
+gnome_vfs_job_module_cancel (GnomeVFSJob *job)
 {
 	GnomeVFSCancellation *cancellation;
 

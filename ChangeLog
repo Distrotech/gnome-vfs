@@ -1,6 +1,60 @@
+2001-02-20  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Mike Fleming  <mfleming@eazel.com>
+		     (except for build breakage fixes)
+
+	Fix 5798 Cancelling a slow medusa search locks up nautilus
+	Fix 6309 Stopping Nautilus while navigating to an unreachable
+		 http server can block nautilus indefinitely.
+		 
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.c:
+	(gnome_vfs_async_job_add_callback),
+	(gnome_vfs_async_job_cancel_job_and_callbacks):
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_cancel):
+	Switch from using the job->access_lock to make setting
+	job->cancelled and cancelling the callbacks in the callback map
+	atomic to using the async_job_callback_map_lock.
+	
+	* libgnomevfs-pthread/gnome-vfs-async-ops.c:
+	(pthread_gnome_vfs_async_cancel):
+	No need to acquire job->access_lock -- this makes the cancellation
+	not block while the async job is executing.
+
+	* libgnomevfs-pthread/gnome-vfs-async-job-map.h:
+	* libgnomevfs-pthread/gnome-vfs-job.c: (job_oneway_notify),
+	(job_notify):
+	Use the result of gnome_vfs_async_job_add_callback to handle getting cancelled
+	while scheduling an idle callback.
+		
+	* libgnomevfs-pthread/gnome-vfs-job.c: (job_notify):
+	Fix a mistake where gnome_vfs_async_job_add_callback was being called twice.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_module_cancel):
+	* libgnomevfs-pthread/gnome-vfs-job.h:
+	Rename to make things clearer.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (execute_read), (execute_xfer):
+	Fix whitespace.
+	
+	
+	* libgnomevfs/gnome-vfs-method.c:
+	* libgnomevfs/gnome-vfs-method.h:
+	* libgnomevfs/gnome-vfs-module-shared.c:
+	* libgnomevfs/gnome-vfs-module.h:
+	* libgnomevfs/gnome-vfs-private-types.h:
+	* libgnomevfs/gnome-vfs-types.h:
+	* modules/file-method.c:
+	* modules/ftp-method.c:
+	* modules/gconf-method.c:
+	* modules/pipe-method.c:
+	* modules/translate-method.c:
+	
+	Fix build breakage, part 2.
+	
 2001-02-20  Mike Fleming  <mfleming@eazel.com>
 
-	reviewed by: Pavel <pavel@eazel.com>
+	reviewed by: Pavel Cisler<pavel@eazel.com>
 
 	Bug 6770 -- URI's with @'s in the path break split_toplevel_uri
 	Fixed and added test cases
@@ -8,7 +62,7 @@
 	* libgnomevfs/gnome-vfs-uri.c: (split_toplevel_uri):
 	* test/test-uri.c: (main):
 
-2001-02-20  Pavel  <pavel@eazel.com>
+2001-02-20  Pavel Cisler <pavel@eazel.com>
 
 	reviewed by: Rebecca Schulman <rebecka@eazel.com>
 
@@ -17,7 +71,7 @@
 	* libgnomevfs/gnome-vfs-private-types.h:
 	* libgnomevfs/gnome-vfs-types.h:
 	
-	Fixmore Medusa build breakage, part 1.
+	Fix Medusa build breakage, part 1.
 
 2001-02-20  Darin Adler  <darin@eazel.com>
 

@@ -193,9 +193,10 @@ gnome_vfs_async_job_callback_valid (guint callback_id, gboolean *valid,
 	pthread_mutex_unlock (&async_job_callback_map_lock);
 }
 
-void 
-gnome_vfs_async_job_add_callback (GnomeVFSNotifyResult *notify_result)
+gboolean 
+gnome_vfs_async_job_add_callback (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 {
+	gboolean cancelled;
 	g_assert (!async_job_map_shutting_down);
 
 	/* Assign a unique id to each job callback. Use unique IDs instead of the
@@ -212,9 +213,19 @@ gnome_vfs_async_job_add_callback (GnomeVFSNotifyResult *notify_result)
 	}
 
 	pthread_mutex_lock (&async_job_callback_map_lock);
-	g_hash_table_insert (async_job_callback_map, GUINT_TO_POINTER (notify_result->callback_id),
-		notify_result);
+	
+	/* we are using async_job_callback_map_lock to ensure atomicity of
+	 * checking/clearing job->cancelled and adding/cancelling callbacks
+	 */
+	cancelled = job->cancelled;
+	
+	if (!cancelled) {
+		g_hash_table_insert (async_job_callback_map, GUINT_TO_POINTER (notify_result->callback_id),
+			notify_result);
+	}
 	pthread_mutex_unlock (&async_job_callback_map_lock);
+	
+	return !cancelled;
 }
 
 void 
@@ -244,7 +255,7 @@ callback_map_cancel_one (gpointer key, gpointer value, gpointer user_data)
 }
 
 void
-gnome_vfs_async_job_cancel_callbacks (GnomeVFSAsyncHandle *job_handle)
+gnome_vfs_async_job_cancel_job_and_callbacks (GnomeVFSAsyncHandle *job_handle, GnomeVFSJob *job)
 {
 	if (async_job_callback_map == NULL) {
 		JOB_DEBUG (("job %u, no callbacks scheduled yet",
@@ -253,6 +264,11 @@ gnome_vfs_async_job_cancel_callbacks (GnomeVFSAsyncHandle *job_handle)
 	}
 
 	pthread_mutex_lock (&async_job_callback_map_lock);
+	
+	if (job != NULL) {
+		job->cancelled = TRUE;
+	}
+	
 	g_hash_table_foreach (async_job_callback_map,
 		callback_map_cancel_one, job_handle);
 	pthread_mutex_unlock (&async_job_callback_map_lock);
