@@ -1,3 +1,11 @@
+2004-07-23  Dafydd Harries  <daf@muse.19inch.net>
+
+	* Changelog: Converted entry for 2004-01-30 from ISO-8859-2 to UTF-8.
+
+	* schemas/desktop_gnome_url_handlers.schemas.in: Make improvements to
+	  schema documentation. The changes are similar to those proposed in
+	  #120740 and fix that bug.
+
 2004-07-22  Christophe Fergeau  <teuf@gnome.org>
 
 	* daemon/Makefile.am
@@ -1478,7 +1486,7 @@ Thu May 27 15:59:40 2004  Jonathan Blandford  <jrb@gnome.org>
 
 	* gtk/*: Moved files over from the gtkfilechooser module on CVS.
 
-2004-01-30  Tomasz K³oczko <kloczek@pld.org.pl>
+2004-01-30  Tomasz KÅ‚oczko <kloczek@pld.org.pl>
 
 	* daemon/Makefile.am: fixes for "make install DESTDIR=</install/prefix>".
 

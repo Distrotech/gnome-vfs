@@ -1,16 +1,15 @@
 <?xml version="1.0"?>
 <gconfschemafile>
   <schemalist>
-
-    <schema>   
+    <schema>
       <key>/schemas/desktop/gnome/url-handlers/trash/enabled</key>
       <applyto>/desktop/gnome/url-handlers/trash/enabled</applyto>
       <owner>gnome</owner>
       <type>bool</type>
       <default>true</default>
       <locale name="C">
-        <short>Handle trash URLs</short>
-        <long>Set to true to have a program specified in "command" handle trash URLs.</long>
+        <short>Whether the specified command should handle "trash" URLs</short>
+        <long>True if the command specified in the "command" key should handle "trash" URLs.</long>
       </locale>
     </schema>
     <schema>
@@ -20,8 +19,8 @@
       <type>string</type>
       <default>nautilus "%s"</default>
       <locale name="C">
-        <short>trash URL handler</short>
-        <long></long>
+        <short>The handler for "trash" URLs</short>
+        <long>The command used to handle "trash" URLs, if enabled.</long>
       </locale>
     </schema>
     <schema>
@@ -31,316 +30,315 @@
       <type>bool</type>
       <default>false</default>
       <locale name="C">
-        <short>Run program in terminal</short>
-        <long>True if the program to handle this URL should be run in a terminal.</long>
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
       </locale>
     </schema>
-    
-   <schema>   
-     <key>/schemas/desktop/gnome/url-handlers/ghelp/enabled</key>
-     <applyto>/desktop/gnome/url-handlers/ghelp/enabled</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>true</default>
-     <locale name="C">
-       <short>Handle ghelp URLs</short>
-       <long>Set to true to have a program specified in "command" handle ghelp URLs.</long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/ghelp/command</key>
-     <applyto>/desktop/gnome/url-handlers/ghelp/command</applyto>
-     <owner>gnome</owner>
-     <type>string</type>
-     <default>gnome-help "%s"</default>
-     <locale name="C">
-       <short>ghelp URL handler</short>
-       <long></long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/ghelp/needs_terminal</key>
-     <applyto>/desktop/gnome/url-handlers/ghelp/needs_terminal</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>false</default>
-     <locale name="C">
-       <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal.</long>
-     </locale>
-   </schema>
 
-   <schema>   
-     <key>/schemas/desktop/gnome/url-handlers/info/enabled</key>
-     <applyto>/desktop/gnome/url-handlers/info/enabled</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>true</default>
-     <locale name="C">
-       <short>Handle info URLs</short>
-       <long>Set to true to have a program specified in "command" handle info URLs.</long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/info/command</key>
-     <applyto>/desktop/gnome/url-handlers/info/command</applyto>
-     <owner>gnome</owner>
-     <type>string</type>
-     <default>gnome-help "%s"</default>
-     <locale name="C">
-       <short>info URL handler</short>
-       <long></long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/info/needs_terminal</key>
-     <applyto>/desktop/gnome/url-handlers/info/needs_terminal</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>false</default>
-     <locale name="C">
-       <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal.</long>
-     </locale>
-   </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/ghelp/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/ghelp/enabled</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether the specified command should handle "ghelp" URLs</short>
+        <long>True if the command specified in the "command" key should handle "ghelp" URLs.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/ghelp/command</key>
+      <applyto>/desktop/gnome/url-handlers/ghelp/command</applyto>
+      <owner>gnome</owner>
+      <type>string</type>
+      <default>gnome-help "%s"</default>
+      <locale name="C">
+        <short>The handler for "ghelp" URLs</short>
+        <long>The command used to handle "ghelp" URLs, if enabled.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/ghelp/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/ghelp/needs_terminal</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
+      </locale>
+    </schema>
 
-   <schema>   
-     <key>/schemas/desktop/gnome/url-handlers/man/enabled</key>
-     <applyto>/desktop/gnome/url-handlers/man/enabled</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>true</default>
-     <locale name="C">
-       <short>Handle man URLs</short>
-       <long>Set to true to have a program specified in "command" handle man URLs.</long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/man/command</key>
-     <applyto>/desktop/gnome/url-handlers/man/command</applyto>
-     <owner>gnome</owner>
-     <type>string</type>
-     <default>gnome-help "%s"</default>
-     <locale name="C">
-       <short>man URL handler</short>
-       <long></long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/man/needs_terminal</key>
-     <applyto>/desktop/gnome/url-handlers/man/needs_terminal</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>false</default>
-     <locale name="C">
-       <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal.</long>
-     </locale>
-   </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/info/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/info/enabled</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether the specified command should handle "info" URLs</short>
+        <long>True if the command specified in the "command" key should handle "info" URLs.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/info/command</key>
+      <applyto>/desktop/gnome/url-handlers/info/command</applyto>
+      <owner>gnome</owner>
+      <type>string</type>
+      <default>gnome-help "%s"</default>
+      <locale name="C">
+        <short>The handler for "info" URLs</short>
+        <long>The command used to handle "info" URLs, if enabled.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/info/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/info/needs_terminal</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
+      </locale>
+     </schema>
 
-   <schema>   
-     <key>/schemas/desktop/gnome/url-handlers/http/enabled</key>
-     <applyto>/desktop/gnome/url-handlers/http/enabled</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>true</default>
-     <locale name="C">
-       <short>Handle HTTP URLs</short>
-       <long>Set to true to have a program specified in "command" handle HTTP URLs.</long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/http/command</key>
-     <applyto>/desktop/gnome/url-handlers/http/command</applyto>
-     <owner>gnome</owner>
-     <type>string</type>
-     <default>epiphany %s</default>
-     <locale name="C">
-       <short>HTTP URL handler</short>
-       <long></long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/http/needs_terminal</key>
-     <applyto>/desktop/gnome/url-handlers/http/needs_terminal</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>false</default>
-     <locale name="C">
-       <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal.</long>
-     </locale>
-   </schema>
-   
-   <schema>   
-     <key>/schemas/desktop/gnome/url-handlers/https/enabled</key>
-     <applyto>/desktop/gnome/url-handlers/https/enabled</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>true</default>
-     <locale name="C">
-       <short>Handle HTTPS URLs</short>
-       <long>Set to true to have a program specified in "command" handle HTTPS URLs.</long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/https/command</key>
-     <applyto>/desktop/gnome/url-handlers/https/command</applyto>
-     <owner>gnome</owner>
-     <type>string</type>
-     <default>epiphany %s</default>
-     <locale name="C">
-       <short>HTTPS URL handler</short>
-       <long></long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/https/needs_terminal</key>
-     <applyto>/desktop/gnome/url-handlers/https/needs_terminal</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>false</default>
-     <locale name="C">
-       <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal.</long>
-     </locale>
-   </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/man/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/man/enabled</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether the specified command should handle "man" URLs</short>
+        <long>True if the command specified in the "command" key should handle "man" URLs.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/man/command</key>
+      <applyto>/desktop/gnome/url-handlers/man/command</applyto>
+      <owner>gnome</owner>
+      <type>string</type>
+      <default>gnome-help "%s"</default>
+      <locale name="C">
+        <short>The handler for "man" URLs</short>
+        <long>The command used to handle "man" URLs, if enabled.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/man/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/man/needs_terminal</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
+      </locale>
+    </schema>
 
-   <schema>   
-     <key>/schemas/desktop/gnome/url-handlers/mailto/enabled</key>
-     <applyto>/desktop/gnome/url-handlers/mailto/enabled</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>true</default>
-     <locale name="C">
-       <short>Handle mailto URLs</short>
-       <long>Set to true to have a program specified in "command" handle mailto URLs.</long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/mailto/command</key>
-     <applyto>/desktop/gnome/url-handlers/mailto/command</applyto>
-     <owner>gnome</owner>
-     <type>string</type>
-     <default>evolution %s</default>
-     <locale name="C">
-       <short>mailto URL handler</short>
-       <long></long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/mailto/needs_terminal</key>
-     <applyto>/desktop/gnome/url-handlers/mailto/needs_terminal</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>false</default>
-     <locale name="C">
-       <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal.</long>
-     </locale>
-   </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/http/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/http/enabled</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether the specified command should handle HTTP URLs</short>
+        <long>True if the command specified in the "command" key should handle HTTP URLs.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/http/command</key>
+      <applyto>/desktop/gnome/url-handlers/http/command</applyto>
+      <owner>gnome</owner>
+      <type>string</type>
+      <default>epiphany %s</default>
+      <locale name="C">
+        <short>The handler for HTTP URLs</short>
+        <long>The command used to handle HTTP URLs, if enabled.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/http/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/http/needs_terminal</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
+      </locale>
+    </schema>
 
-<schema>   
-     <key>/schemas/desktop/gnome/url-handlers/aim/enabled</key>
-     <applyto>/desktop/gnome/url-handlers/aim/enabled</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>true</default>
-     <locale name="C">
-       <short>Handle aim URLs</short>
-       <long>Set to true to have a program specified in "command" handle aim URLs.</long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/aim/command</key>
-     <applyto>/desktop/gnome/url-handlers/aim/command</applyto>
-     <owner>gnome</owner>
-     <type>string</type>
-     <default>gaim-remote uri "%s"</default>
-     <locale name="C">
-       <short>aim URL handler</short>
-       <long></long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/aim/need-terminal</key>
-     <applyto>/desktop/gnome/url-handlers/aim/need-terminal</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>false</default>
-     <locale name="C">
-       <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal.</long>
-     </locale>
-   </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/https/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/https/enabled</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether the specified command should handle HTTPS URLs</short>
+        <long>True if the command specified in the "command" key should handle HTTPS URLs.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/https/command</key>
+      <applyto>/desktop/gnome/url-handlers/https/command</applyto>
+      <owner>gnome</owner>
+      <type>string</type>
+      <default>epiphany %s</default>
+      <locale name="C">
+        <short>The handler for HTTPS URLs</short>
+        <long>The command used to handle HTTPS URLs, if enabled.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/https/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/https/needs_terminal</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
+      </locale>
+    </schema>
 
-   <schema>   
-     <key>/schemas/desktop/gnome/url-handlers/callto/enabled</key>
-     <applyto>/desktop/gnome/url-handlers/callto/enabled</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>true</default>
-     <locale name="C">
-       <short>Handle callto URLs</short>
-       <long>Set to true to have a program specified in "command" handle callto URLs.</long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/callto/command</key>
-     <applyto>/desktop/gnome/url-handlers/callto/command</applyto>
-     <owner>gnome</owner>
-     <type>string</type>
-     <default>gnomemeeting -c %s</default>
-     <locale name="C">
-       <short>callto URL handler</short>
-       <long></long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/callto/needs_terminal</key>
-     <applyto>/desktop/gnome/url-handlers/callto/needs_terminal</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>false</default>
-     <locale name="C">
-       <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal.</long>
-     </locale>
-   </schema>
-   
-   <schema>   
-     <key>/schemas/desktop/gnome/url-handlers/h323/enabled</key>
-     <applyto>/desktop/gnome/url-handlers/h323/enabled</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>true</default>
-     <locale name="C">
-       <short>Handle H323 URLs</short>
-       <long>Set to true to have a program specified in "command" handle H323 URLs.</long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/h323/command</key>
-     <applyto>/desktop/gnome/url-handlers/h323/command</applyto>
-     <owner>gnome</owner>
-     <type>string</type>
-     <default>gnomemeeting -c %s</default>
-     <locale name="C">
-       <short>H323 URL handler</short>
-       <long></long>
-     </locale>
-   </schema>
-   <schema>
-     <key>/schemas/desktop/gnome/url-handlers/h323/needs_terminal</key>
-     <applyto>/desktop/gnome/url-handlers/h323/needs_terminal</applyto>
-     <owner>gnome</owner>
-     <type>bool</type>
-     <default>false</default>
-     <locale name="C">
-       <short>Run program in terminal</short>
-       <long>True if the program to handle this URL should be run in a terminal.</long>
-     </locale>
-   </schema>
-   
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/mailto/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/mailto/enabled</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether the specified command should handle "mailto" URLs</short>
+        <long>True if the command specified in the "command" key should handle "mailto" URLs.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/mailto/command</key>
+      <applyto>/desktop/gnome/url-handlers/mailto/command</applyto>
+      <owner>gnome</owner>
+      <type>string</type>
+      <default>evolution %s</default>
+      <locale name="C">
+        <short>The handler for "mailto" URLs</short>
+        <long>The command used to handle "mailto" URLs, if enabled.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/mailto/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/mailto/needs_terminal</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/aim/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/aim/enabled</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether the specified command should handle "aim" URLs</short>
+        <long>True if the command specified in the "command" key should handle "aim" URLs.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/aim/command</key>
+      <applyto>/desktop/gnome/url-handlers/aim/command</applyto>
+      <owner>gnome</owner>
+      <type>string</type>
+      <default>gaim-remote uri "%s"</default>
+      <locale name="C">
+        <short>The handler for "aim" URLs</short>
+        <long>The command used to handle "aim" URLs, if enabled.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/aim/need-terminal</key>
+      <applyto>/desktop/gnome/url-handlers/aim/need-terminal</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/callto/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/callto/enabled</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether the specified command should handle "callto" URLs</short>
+        <long>True if the command specified in the "command" key should handle "callto" URLs.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/callto/command</key>
+      <applyto>/desktop/gnome/url-handlers/callto/command</applyto>
+      <owner>gnome</owner>
+      <type>string</type>
+      <default>gnomemeeting -c %s</default>
+      <locale name="C">
+        <short>The handler for "callto" URLs</short>
+        <long>The command used to handle "callto" URLs, if enabled.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/callto/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/callto/needs_terminal</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/h323/enabled</key>
+      <applyto>/desktop/gnome/url-handlers/h323/enabled</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>true</default>
+      <locale name="C">
+        <short>Whether the specified command should handle H323 URLs</short>
+        <long>True if the command specified in the "command" key should handle H323 URLs.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/h323/command</key>
+      <applyto>/desktop/gnome/url-handlers/h323/command</applyto>
+      <owner>gnome</owner>
+      <type>string</type>
+      <default>gnomemeeting -c %s</default>
+      <locale name="C">
+        <short>The handler for H323 URLs</short>
+        <long>The command used to handle H323 URLs, if enabled.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/desktop/gnome/url-handlers/h323/needs_terminal</key>
+      <applyto>/desktop/gnome/url-handlers/h323/needs_terminal</applyto>
+      <owner>gnome</owner>
+      <type>bool</type>
+      <default>false</default>
+      <locale name="C">
+        <short>Run the command in a terminal</short>
+        <long>True if the command used to handle this type of URL should be run in a terminal.</long>
+      </locale>
+    </schema>
   </schemalist>
 </gconfschemafile>
