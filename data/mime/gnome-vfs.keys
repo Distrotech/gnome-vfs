@@ -179,9 +179,6 @@ application/x-rpm
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_rpm_view:22ea002c-11e6-44fd-b13c-9445175a5e70
 
-application/x-sh
-	description=shell script
-
 application/x-shar
 	description=shell archive
 
@@ -211,9 +208,6 @@ application/x-tex
 
 application/x-texinfo
 	description=TeXInfo document
-
-application/x-tcl
-	description=Tcl script
 
 application/x-theme
 	description=theme
@@ -685,7 +679,7 @@ text/x-readme
 text/x-scheme
 	description=Scheme source code
 
-application/x-sh
+text/x-sh
 	description=shell script
 
 text/x-setext
