@@ -1,3 +1,7 @@
+2004-11-17  Mark McLoughlin  <mark@skynet.ie>
+
+	* POTFILES.in: remove cdemenu-desktop-method.c
+
 === gnome-vfs 2.8.3 ===
 
 2004-10-19  Alexander Shopov  <ash@contact.bg>

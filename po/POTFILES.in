@@ -16,7 +16,6 @@ libgnomevfs/gnome-vfs-result.c
 libgnomevfs/gnome-vfs-utils.c
 libgnomevfs/gnome-vfs-volume-monitor-daemon.c
 libgnomevfs/gnome-vfs-volume-ops.c
-modules/cdemenu-desktop-method.c
 modules/computer-method.c
 modules/file-method.c
 modules/ftp-method.c
