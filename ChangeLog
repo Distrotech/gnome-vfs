@@ -1,3 +1,8 @@
+2005-02-03  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	gnome_vfs_mime_set_value was declared twice
+	
 2005-03-01  Christian Kellner  <gicmo@gnome.org>
 
 	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_destination_is_writable):

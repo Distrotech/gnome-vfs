@@ -31,9 +31,6 @@ G_BEGIN_DECLS
 
 const char 	*gnome_vfs_mime_get_value        		(const char *mime_type,
 								 const char *key);
-GnomeVFSResult   gnome_vfs_mime_set_value                       (const char *mime_type, 
-								 const char *key, 
-								 const char *value);
 
 gboolean	 gnome_vfs_mime_type_is_known			(const char *mime_type);
 
