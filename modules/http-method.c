@@ -98,6 +98,7 @@ my_debug_printf(char *fmt, ...)
 #else
 static int nothing;
 #define DEBUG_HTTP(x) nothing = 1;
+#define ANALYZE_HTTP(x) nothing = 1;
 #endif
 
 #undef DAV_NO_CACHE

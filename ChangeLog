@@ -1,3 +1,8 @@
+2000-11-19  Michael K. Fleming  <mfleming@eazel.com>
+
+	* modules/http-method.c:
+	oops.  fixed debug macro that didn't have a disabled version
+
 2000-11-19  Mathieu Lacage  <mathieu@eazel.com>
 
 	Fix bug 4811
