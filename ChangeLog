@@ -1,5 +1,15 @@
 2005-01-11  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-volume-ops.c: (mount_unmount_thread),
+	(mount_unmount_operation), (gnome_vfs_volume_unmount),
+	(gnome_vfs_volume_eject), (gnome_vfs_drive_mount),
+	(gnome_vfs_drive_eject):
+	allow eject of unmounted volumes.
+
+	Patch from Magnus Damm <magnus.damm@gmail.com>
+
+2005-01-11  Alexander Larsson  <alexl@redhat.com>
+
 	* libgnomevfs/gnome-vfs-cdrom.c:
 	(_gnome_vfs_get_iso9660_volume_name):
 	* libgnomevfs/gnome-vfs-iso9660.h:

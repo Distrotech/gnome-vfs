@@ -88,6 +88,7 @@ typedef struct {
 	char *device_path;
 	GnomeVFSDeviceType device_type;
 	gboolean should_mount;
+	gboolean should_unmount;
 	gboolean should_eject;
 	GnomeVFSVolumeOpCallback callback;
 	gpointer user_data;
@@ -222,7 +223,11 @@ mount_unmount_thread (void *arg)
 
 	info = arg;
 
-	if (info != NULL) {
+	info->succeeded = TRUE;
+	info->error_message = NULL;
+	info->detailed_error_message = NULL;
+
+	if (info->should_mount || info->should_unmount) {
 		error = NULL;
 		if (g_spawn_sync (NULL,
 				   info->argv,
@@ -233,11 +238,7 @@ mount_unmount_thread (void *arg)
 				   &standard_error,
 				   &exit_status,
 				   &error)) {
-			if (exit_status == 0) {
-				info->succeeded = TRUE;
-				info->error_message = NULL;
-				info->detailed_error_message = NULL;
-			} else {
+			if (exit_status != 0) {
 				info->succeeded = FALSE;
 				if (info->should_mount) {
 					info->error_message = generate_mount_error_message (standard_error,
@@ -278,6 +279,7 @@ mount_unmount_thread (void *arg)
 		argv[1] = info->device_path?info->device_path:info->mount_point;
 #endif
 
+		error = NULL;
 		if (g_spawn_sync (NULL,
 				  argv,
 				  NULL,
@@ -286,8 +288,15 @@ mount_unmount_thread (void *arg)
 				  NULL, &standard_error,
 				  &exit_status,
 				  &error)) {
-			if (exit_status != 0 &&
-			    info->succeeded) {
+
+			if (info->succeeded == FALSE) {
+				g_free(info->error_message);
+				info->error_message = NULL;
+				g_free(info->detailed_error_message);
+				info->detailed_error_message = NULL;
+			}
+
+			if (exit_status != 0) {
 				info->succeeded = FALSE;
 				info->error_message = g_strdup (_("Unable to eject media"));
 				info->detailed_error_message = g_strdup (standard_error);
@@ -295,6 +304,8 @@ mount_unmount_thread (void *arg)
 				/* If the eject succeed then ignore the previous unmount error (if any) */
 				info->succeeded = TRUE;
 			}
+
+			g_free (standard_error);
 		} else {
 			/* Spawn failure */
 			if (info->succeeded) {
@@ -304,7 +315,6 @@ mount_unmount_thread (void *arg)
 			}
 			g_error_free (error);
 		}
-		g_free (standard_error);
 	}
 
 	g_idle_add (report_mount_result, info);	
@@ -320,11 +330,13 @@ mount_unmount_operation (const char *mount_point,
 			 const char *device_path,
 			 GnomeVFSDeviceType device_type,
 			 gboolean should_mount,
+			 gboolean should_unmount,
 			 gboolean should_eject,
 			 GnomeVFSVolumeOpCallback  callback,
 			 gpointer                  user_data)
 {
-	const char *command;
+	const char *command = NULL;
+	const char *argument = NULL;
 	MountThreadInfo *mount_info;
 	pthread_t mount_thread;
 	const char *name;
@@ -343,30 +355,36 @@ mount_unmount_operation (const char *mount_point,
 #endif
        
        if (should_mount) {
-               command = find_command (MOUNT_COMMAND);
-       } else {
-               command = find_command (UMOUNT_COMMAND);
+		command = find_command (MOUNT_COMMAND);
+#ifdef  MOUNT_ARGUMENT
+		argument = MOUNT_ARGUMENT;
+#endif
+       }
+
+       if (should_unmount) {
+		command = find_command (UMOUNT_COMMAND);
+#ifdef  UNMOUNT_ARGUMENT
+		argument = UNMOUNT_ARGUMENT;
+#endif
        }
 
 	mount_info = g_new0 (MountThreadInfo, 1);
-	i = 0;
-	mount_info->argv[i++] = g_strdup (command);
-	if (should_mount) {
-#ifdef  MOUNT_ARGUMENT
-		mount_info->argv[i++] = g_strdup (MOUNT_ARGUMENT);
-#endif
-	} else {
-#ifdef  UNMOUNT_ARGUMENT
-		mount_info->argv[i++] = g_strdup (UNMOUNT_ARGUMENT);
-#endif
+
+	if (command) {
+		i = 0;
+		mount_info->argv[i++] = g_strdup (command);
+		if (argument) {
+			mount_info->argv[i++] = g_strdup (argument);
+		}
+		mount_info->argv[i++] = g_strdup (name);
+		mount_info->argv[i++] = NULL;
 	}
-	mount_info->argv[i++] = g_strdup (name);
-	mount_info->argv[i++] = NULL;
 	
 	mount_info->mount_point = g_strdup (mount_point);
 	mount_info->device_path = g_strdup (device_path);
 	mount_info->device_type = device_type;
 	mount_info->should_mount = should_mount;
+	mount_info->should_unmount = should_unmount;
 	mount_info->should_eject = should_eject;
 	mount_info->callback = callback;
 	mount_info->user_data = user_data;
@@ -520,7 +538,7 @@ gnome_vfs_volume_unmount (GnomeVFSVolume *volume,
 		mount_unmount_operation (mount_path,
 					 device_path,
 					 gnome_vfs_volume_get_device_type (volume),
-					 FALSE, FALSE,
+					 FALSE, TRUE, FALSE,
 					 callback, user_data);
 		g_free (mount_path);
 		g_free (device_path);
@@ -559,7 +577,7 @@ gnome_vfs_volume_eject (GnomeVFSVolume *volume,
 		mount_unmount_operation (mount_path,
 					 device_path,
 					 gnome_vfs_volume_get_device_type (volume),
-					 FALSE, TRUE,
+					 FALSE, TRUE, TRUE,
 					 callback, user_data);
 		g_free (mount_path);
 		g_free (device_path);
@@ -592,7 +610,7 @@ gnome_vfs_drive_mount (GnomeVFSDrive  *drive,
 	mount_unmount_operation (mount_path,
 				 device_path,
 				 GNOME_VFS_DEVICE_TYPE_UNKNOWN,
-				 TRUE, FALSE,
+				 TRUE, FALSE, FALSE,
 				 callback, user_data);
 	g_free (mount_path);
 	g_free (device_path);
@@ -662,7 +680,7 @@ gnome_vfs_drive_eject (GnomeVFSDrive  *drive,
 		/* Check to see if this is the last volume */
 		/* If not simply unmount it */
 		/* If so the eject the media along with the unmount */
-		if (current_vol != NULL) { 
+		if (current_vol->next != NULL) { 
 			gnome_vfs_volume_unmount (vol,
 						  callback,
 						  user_data);
@@ -672,6 +690,22 @@ gnome_vfs_drive_eject (GnomeVFSDrive  *drive,
 						user_data);
 		}
 
+	}
+
+	if (vol_list == NULL) { /* no mounted volumes */
+		char *mount_path, *device_path, *uri;
+	
+		uri = gnome_vfs_drive_get_activation_uri (drive);
+		mount_path = gnome_vfs_get_local_path_from_uri (uri);
+		g_free (uri);
+		device_path = gnome_vfs_drive_get_device_path (drive);
+		mount_unmount_operation (mount_path,
+					 device_path,
+					 GNOME_VFS_DEVICE_TYPE_UNKNOWN,
+					 FALSE, FALSE, TRUE,
+					 callback, user_data);
+		g_free (mount_path);
+		g_free (device_path);
 	}
 
 	gnome_vfs_drive_volume_list_free (vol_list);
