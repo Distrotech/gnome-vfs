@@ -1,3 +1,9 @@
+2000-10-24  John Sullivan  <sullivan@eazel.com>
+
+	* data/mime/gnome-vfs.keys: Added entry for
+	audio/x-mpeg, which is returned by some web servers
+	instead of the audio/x-mp3 that gnome-vfs knew about.
+
 2000-10-23  Pavel Cisler  <pavel@eazel.com>
 
 	More work on 2989, this should conclud the GnomeVFS portion of the work.

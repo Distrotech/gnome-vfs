@@ -637,6 +637,7 @@ audio/x-mod
 	[sv]description=MOD-ljud
 	icon-filename=gnome-audio-x-mod.png
 
+# also image/x-mpeg
 audio/x-mp3
 	description=MP3 audio
 	[fr]description=Audio MP3
@@ -647,6 +648,13 @@ audio/x-mp3-playlist
 	description=MP3 audio playlist
 	[fr]description=Audio liste de lecture MP3
 	[sv]description=MP3-ljudspellista
+
+# also image/x-mp3
+audio/x-mpeg
+	description=MP3 audio
+	[fr]description=Audio MP3
+	[sv]description=MP3-ljud
+	icon-filename=i-music
 
 audio/x-pn-realaudio
 	description=PN RealAudio document
