@@ -1642,7 +1642,15 @@ do_create (GnomeVFSMethod        *method,
 	ssh_mode = SSH2_FXF_CREAT;
 	if (mode & GNOME_VFS_OPEN_READ) ssh_mode |= SSH2_FXF_READ;
 	if (mode & GNOME_VFS_OPEN_WRITE) ssh_mode |= SSH2_FXF_WRITE;
-	if (exclusive) ssh_mode |= SSH2_FXF_EXCL;
+	if (exclusive) {
+		ssh_mode |= SSH2_FXF_EXCL;
+	} else {
+		/* It might be ok to unconditionnally add this truncation flag,
+		 * but I'm not 100% sure that SSH2_FXF_EXCL takes precedence
+		 * over SSH2_FXF_TRUNC, so better be safe than sorry ;)
+		 */
+		ssh_mode |= SSH2_FXF_TRUNC;
+	}
 
 	buffer_write_gint32 (&msg, ssh_mode);
 
