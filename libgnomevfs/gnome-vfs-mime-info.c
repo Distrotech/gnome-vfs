@@ -1142,6 +1142,10 @@ GnomeVFSResult
 gnome_vfs_mime_set_extensions_list (const char *mime_type,
 				    const char *extensions_list)
 {
+	if (is_mime_type_deleted (mime_type)) {
+		gnome_vfs_mime_set_registered_type_key (mime_type, DELETED_KEY, "");
+	}
+
 	return gnome_vfs_mime_set_registered_type_key (mime_type, "ext", extensions_list);
 }
 

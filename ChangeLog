@@ -1,3 +1,9 @@
+2003-04-03  Kaushal Kumar  <kaushal.kumar@wipro.com>
+
+	* libgnomevfs/gnome-vfs-mime-info.c (gnome_vfs_mime_set_extensions_list):
+	Set the deleted key to "" if it exists before resetting ext key.
+	Fixes bug #109795.
+
 2003-04-02  Shailesh Mittal  <shailesh.mittal@wipro.com>
 
 	* configure.in :
