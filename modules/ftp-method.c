@@ -25,7 +25,6 @@
 
 /* SOME INVALID ASSUMPTIONS I HAVE MADE:
  * All FTP servers return UNIX ls style responses to LIST,
- * All FTP servers deal with LIST <full path>
  */
 
 /* TODO */
@@ -158,8 +157,10 @@ FTP_DEBUG (FtpConnection *conn,
 }
 
 static GnomeVFSResult 
-ftp_response_to_vfs_result (gint response) 
+ftp_response_to_vfs_result (FtpConnection *conn) 
 {
+	gint response = conn->response_code;
+
 	switch (response) {
 	case 421: 
 	case 426: 
@@ -176,11 +177,11 @@ ftp_response_to_vfs_result (gint response)
 	case 532:
 	  return GNOME_VFS_ERROR_LOGIN_FAILED;
 	case 450:
-	case 550:
-		/* NOTE: wu-ftpd returns 550 for MKD permission denied */
 	case 451:
 	case 551:
 	  return GNOME_VFS_ERROR_NOT_FOUND;
+	case 550:
+	  return conn->fivefifty;
 	case 452:
 	case 552:
 	  return GNOME_VFS_ERROR_NO_SPACE;
@@ -276,7 +277,7 @@ get_response (FtpConnection *conn)
 
 			g_free (line);
 
-			return ftp_response_to_vfs_result (conn->response_code);
+			return ftp_response_to_vfs_result (conn);
 
 		}
 
@@ -322,11 +323,13 @@ do_basic_command (FtpConnection *conn,
 {
 	GnomeVFSResult result = do_control_write(conn, command);
 
-	if(result != GNOME_VFS_OK) {
+	if (result != GNOME_VFS_OK) {
 		return result;
 	}
 
-	return get_response (conn);
+	result = get_response (conn);
+
+	return result;
 }
 
 static GnomeVFSResult 
@@ -362,7 +365,10 @@ do_path_command (FtpConnection *conn,
 }
 
 static GnomeVFSResult 
-do_path_command_completely (gchar *command, GnomeVFSURI *uri, GnomeVFSContext *context) 
+do_path_command_completely (gchar *command, 
+                            GnomeVFSURI *uri, 
+			    GnomeVFSContext *context,
+			    GnomeVFSResult fivefifty) 
 {
 	FtpConnection *conn;
 	GnomeVFSResult result;
@@ -372,6 +378,7 @@ do_path_command_completely (gchar *command, GnomeVFSURI *uri, GnomeVFSContext *c
 		return result;
 	}
 
+	conn->fivefifty = fivefifty;
 	result = do_path_command (conn, command, uri);
 	ftp_connection_release (conn);
 
@@ -517,6 +524,8 @@ ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContex
 	conn->response_buffer = g_string_new ("");
 	conn->response_message = NULL;
 	conn->response_code = -1;
+	conn->anonymous = TRUE;
+	conn->fivefifty = GNOME_VFS_ERROR_NOT_FOUND;
 
 	if (gnome_vfs_uri_get_host_port (uri)) {
 		port = gnome_vfs_uri_get_host_port (uri);
@@ -524,6 +533,7 @@ ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContex
 
 	if (gnome_vfs_uri_get_user_name (uri)) {
 		user = gnome_vfs_uri_get_user_name (uri);
+		conn->anonymous = FALSE;
 	}
 
 	if (gnome_vfs_uri_get_password (uri)) {
@@ -593,6 +603,11 @@ ftp_connection_create (FtpConnection **connptr, GnomeVFSURI *uri, GnomeVFSContex
 
 	do_basic_command (conn, "TYPE I");
 
+	/* Get the system type */
+
+	do_basic_command (conn, "SYST");
+	conn->server_type=g_strdup(conn->response_message);
+
 	*connptr = conn;
 
 	ftp_debug (conn, g_strdup ("created"));
@@ -618,6 +633,7 @@ ftp_connection_destroy (FtpConnection *conn)
 	if (conn->response_buffer) 
 	        g_string_free(conn->response_buffer, TRUE);
 	g_free (conn->response_message);
+	g_free (conn->server_type);
 
 	if (conn->data_connection) 
 		gnome_vfs_inet_connection_destroy(conn->data_connection, NULL);
@@ -743,6 +759,9 @@ ftp_connection_release (FtpConnection *conn)
 
 	g_return_if_fail (conn);
 
+	/* reset the 550 result */
+	conn->fivefifty = GNOME_VFS_ERROR_NOT_FOUND;
+
 	G_LOCK (spare_connections);
 	if (spare_connections == NULL) 
 		spare_connections = 
@@ -796,7 +815,9 @@ do_open (GnomeVFSMethod *method,
 		result = do_path_transfer_command (conn, "RETR", uri, context);
 	} else if (mode == GNOME_VFS_OPEN_WRITE) {
 		conn->operation = FTP_WRITE;
+		conn->fivefifty = GNOME_VFS_ERROR_ACCESS_DENIED;
 		result = do_path_transfer_command (conn, "STOR", uri, context);
+		conn->fivefifty = GNOME_VFS_ERROR_NOT_FOUND;
 	} else {
 		g_warning ("Unsupported open mode %d\n", mode);
 		ftp_connection_release (conn);
@@ -958,7 +979,12 @@ internal_get_file_info (GnomeVFSMethod *method,
 	g_print ("do_get_file_info()\n");
 #endif
 
-	do_path_transfer_command (conn, "LIST -ld", uri, context);
+	if(strstr(conn->server_type,"MACOS")) {
+		/* don't ask for symlinks from MacOS servers */
+		do_path_transfer_command (conn, "LIST -ld", uri, context);
+	} else {
+		do_path_transfer_command (conn, "LIST -ldL", uri, context);
+	}
 
 	result = gnome_vfs_iobuf_read (conn->data_iobuf, buffer, 
 				       num_bytes, &bytes_read);
@@ -1099,7 +1125,14 @@ do_open_directory (GnomeVFSMethod *method,
 
 	g_print ("do_open_directory () in uri: %s\n", gnome_vfs_uri_get_path(uri));
 
-	result = do_path_transfer_command (conn, "LIST", uri, context);
+	if(strstr(conn->server_type,"MACOS")) {
+		/* don't ask for symlinks from MacOS servers */
+		result = do_path_transfer_command (conn, 
+			"LIST", uri, context);
+	} else {
+		result = do_path_transfer_command (conn, 
+			"LIST -L", uri, context);
+	}
 
 	if (result != GNOME_VFS_OK) {
 		g_warning ("opendir failed because \"%s\"", 
@@ -1168,6 +1201,9 @@ do_read_directory (GnomeVFSMethod *method,
 	while (TRUE) {
 		gboolean success = ls_to_file_info (conn->dirlistptr, file_info, conn->file_info_options);
 
+		/* permissions aren't valid */
+		file_info->valid_fields &= ~GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS;
+
 		if ((conn->file_info_options & 
 					GNOME_VFS_FILE_INFO_FOLLOW_LINKS) && 
 				(file_info->type == 
@@ -1218,19 +1254,23 @@ do_check_same_fs (GnomeVFSMethod *method,
 static GnomeVFSResult
 do_make_directory (GnomeVFSMethod *method, GnomeVFSURI *uri, guint perm, GnomeVFSContext *context)
 {
-	/* FIXME bugzilla.eazel.com 1136: We ignore the perm parameter here. */
-	/* due to a bad error code mapping above, we translate the error code here */
-
 	GnomeVFSResult result;
+	gchar *chmod_command;
 
-	result = do_path_command_completely ("MKD", uri, context);
+	result = do_path_command_completely ("MKD", uri, context, 
+		GNOME_VFS_ERROR_ACCESS_DENIED);
 
-	if (result == GNOME_VFS_ERROR_NOT_FOUND) {
-		/* This was probably caused by a 550, so the real error code should be... */
-		return GNOME_VFS_ERROR_ACCESS_DENIED;
-	} else {
-		return result;
-	}	
+	if (result == GNOME_VFS_OK) {
+		/* try to set the permissions */
+		/* this is a non-standard extension, so we'll just do our
+		 * best. We can ignore error codes. */
+		chmod_command = g_strdup_printf("SITE CHMOD %o", perm);
+		do_path_command_completely (chmod_command, uri, context,
+			GNOME_VFS_ERROR_ACCESS_DENIED);
+		g_free(chmod_command);
+	}
+
+	return result;
 }
 
 
@@ -1239,7 +1279,8 @@ do_remove_directory (GnomeVFSMethod *method,
 		     GnomeVFSURI *uri,
 		     GnomeVFSContext *context)
 {
-	return do_path_command_completely ("RMD", uri, context);
+	return do_path_command_completely ("RMD", uri, context, 
+		GNOME_VFS_ERROR_ACCESS_DENIED);
 }
 
 
@@ -1276,7 +1317,9 @@ do_move (GnomeVFSMethod *method,
 		result = do_path_command (conn, "RNFR", old_uri);
 		
 		if (result == GNOME_VFS_OK) {
+			conn->fivefifty = GNOME_VFS_ERROR_ACCESS_DENIED;
 			result = do_path_command (conn, "RNTO", new_uri);
+			conn->fivefifty = GNOME_VFS_ERROR_NOT_FOUND;
 		}
 
 		ftp_connection_release (conn);
@@ -1290,7 +1333,8 @@ do_move (GnomeVFSMethod *method,
 static GnomeVFSResult
 do_unlink (GnomeVFSMethod *method, GnomeVFSURI *uri, GnomeVFSContext *context)
 {
-	return do_path_command_completely ("DELE", uri, context);
+	return do_path_command_completely ("DELE", uri, context,
+		GNOME_VFS_ERROR_ACCESS_DENIED);
 }
 
 static GnomeVFSResult

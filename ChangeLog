@@ -1,3 +1,25 @@
+2001-01-08  Ian McKellar  <ian@eazel.com>
+
+	reviewed by: mfleming@eazel.com
+
+	* modules/ftp-method.h:
+	* modules/ftp-method.c: (ftp_response_to_vfs_result),
+	(get_response), (do_basic_command), (do_path_command_completely),
+	(ftp_connection_release), (do_open), (do_make_directory),
+	(do_remove_directory), (do_move), (do_unlink):
+	The meaning of an FTP 550 response depends on what call was made.
+	The GnomeVFSError to be returned for a 550 may now be specified
+	at a higher level.
+
+	(ftp_connection_create), (ftp_connection_destroy),
+	(internal_get_file_info), (do_open_directory):
+	Store the response of SYST (operating system) for each connection.
+	Don't request server-side symlink expansion for MacOS servers,
+	because they get confused.
+
+	(do_read_directory):
+	Unset the permissions bit of file info valid fields.
+
 2001-01-08  Gene Z. Ragan  <gzr@eazel.com>
 
 	Fixed bug 3041, "Action" column text is confusing
