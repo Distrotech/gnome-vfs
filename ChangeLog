@@ -1,3 +1,8 @@
+2002-06-21  Stephen Browne <stephen.browne@sun.com>
+
+	* modules/cdemenu-desktop-method.c (find_all_included_files): fix for
+	bug #84967. Patch from ghee.teo@sun.com
+
 2002-06-21  Michael Meeks  <michael@ximian.com>
 
 	* configure.in: bin GTK_REQUIRED, upd. BONOBO_REQUIRED

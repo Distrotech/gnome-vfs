@@ -471,9 +471,9 @@ find_all_included_files(gchar *filename)
 			while (fgets(line,LINESIZE,file) !=NULL){
 				if (line[0] == '#') continue;
 				if (line[0] == '{') continue;
-				if (line[0] == ' ') continue;
 				else if (line[0] == '}') break;
 				tmp = g_strstrip(line);
+				if (tmp[0] == '\0') continue;
 				expanded = expand_env_vars(tmp);
 				if (g_file_test(expanded,G_FILE_TEST_EXISTS)){
                		cdemenufiles = g_slist_append(cdemenufiles, 
