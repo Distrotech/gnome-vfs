@@ -646,6 +646,9 @@ do_read_directory (GnomeVFSMethod *method,
 	GnomeVFSFileSize bytes_read;
 	struct stat st;
 	char *tempfilename, *filename, *linkname;
+	SshHandle *handle = (SshHandle *)method_handle;
+	const char *mime_type;
+	char *target_name, *parent;
 
 	for (;;) {
 		tempfilename = NULL;
@@ -655,15 +658,14 @@ do_read_directory (GnomeVFSMethod *method,
 		bytes_read = 0;
 
 		while (i<LINE_LENGTH) {
-			result = ssh_read ((SshHandle *)method_handle, &c,
+			result = ssh_read (handle, &c,
 					   sizeof(char), &bytes_read);
 			if (bytes_read == 0 || c == '\r' || c == '\n') {
 				break;
 			}
 
 			if (result != GNOME_VFS_OK) {
-				res_secondary = ssh_check_for_done
-					((SshHandle *)method_handle);
+				res_secondary = ssh_check_for_done (handle);
 				if (res_secondary != GNOME_VFS_OK) {
 					result = res_secondary;
 				} else {
@@ -700,16 +702,33 @@ do_read_directory (GnomeVFSMethod *method,
 		gnome_vfs_stat_to_file_info (file_info, &st);
 		file_info->name = filename;
 		if (linkname) {
+			GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, TRUE);
+			file_info->valid_fields
+				|= GNOME_VFS_FILE_INFO_FIELDS_SYMLINK_NAME;
 			file_info->symlink_name = linkname;
+			D(("symlink: %s\n", file_info->symlink_name));
 		}
 
-		/* FIXME: support symlinks correctly */
+		/* FIXME: support symlinks to directories correctly */
 
-		if (((SshHandle*)method_handle)->info_opts
-		    & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
-			file_info->mime_type = g_strdup 
-				(gnome_vfs_get_file_mime_type (filename, &st, 
-							       FALSE));
+		if (handle->info_opts & GNOME_VFS_FILE_INFO_GET_MIME_TYPE) {
+			if (file_info->type == GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK) {
+				if ((handle->info_opts & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0) {
+					mime_type = "x-special/symlink";
+				} else {
+					parent = gnome_vfs_uri_to_string (handle->uri, 0);
+					target_name = gnome_vfs_make_uri_full_from_relative (parent, file_info->symlink_name);
+					mime_type = gnome_vfs_get_file_mime_type (target_name, NULL, FALSE);
+					D(("Looking up mime-type for '%s'\n\n", target_name));
+					g_free (target_name);
+					g_free (parent);
+				}
+			} else {
+				mime_type = (gnome_vfs_get_file_mime_type
+					 (filename, &st, FALSE));
+			}
+
+			file_info->mime_type = g_strdup (mime_type);
 			file_info->valid_fields 
 				|= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 		}
@@ -718,10 +737,8 @@ do_read_directory (GnomeVFSMethod *method,
 			~GNOME_VFS_FILE_INFO_FIELDS_BLOCK_COUNT;
 		file_info->valid_fields &= 
 			~GNOME_VFS_FILE_INFO_FIELDS_IO_BLOCK_SIZE;
-		if (((SshHandle*)method_handle)->info_opts 
-		    & GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS) {
-			get_access_info (((SshHandle*)method_handle)->uri, 
-					 file_info);
+		if (handle->info_opts & GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS) {
+			get_access_info (handle->uri, file_info);
 		}
 
 		/* Break out.
