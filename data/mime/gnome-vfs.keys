@@ -66,7 +66,7 @@ application/msword
 	[no]description=Microsoft Word dokument
 	[sv]description=Microsoft Word-dokument
 	default_action_type=application
-	default_application_id=staroffice
+	default_application_id=abiword
 	short_list_application_ids_for_novice_user_level=staroffice,abiword,applix
 	short_list_application_ids_for_intermediate_user_level=staroffice,abiword,applix
 	short_list_application_ids_for_hacker_user_level=staroffice,abiword,applix
@@ -96,10 +96,10 @@ application/pdf
 	short_list_component_iids_for_novice_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_intermediate_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
 	short_list_component_iids_for_hacker_user_level=OAFIID:gpdf_component:892f2727-e2ec-423c-91ad-6f7b75fec6c8
-	#default_application_id=xpdf
-	short_list_application_ids_for_novice_user_level=gv,xpdf
-	short_list_application_ids_for_intermediate_user_level=gv,xpdf
-	short_list_application_ids_for_hacker_user_level=gv,xpdf
+	default_application_id=xpdf
+	short_list_application_ids_for_novice_user_level=gv,xpdf,acrobat
+	short_list_application_ids_for_intermediate_user_level=gv,xpdf,acrobat
+	short_list_application_ids_for_hacker_user_level=gv,xpdf,acrobat
 
 application/pgp
 	description=PGP message

@@ -246,3 +246,12 @@ applix
 	can_open_urls=false
 	requires_terminal=false
 	mime_types=application/x-applix-spreadsheet,application/x-applix-word,image/x-applix-graphic,application/msword,application/rtf,application/vnd.ms-excel
+
+acrobat
+	command=acrobat
+	name=Adobe Acrobat
+	can_open_multiple_files=false
+	can_open_urls=false
+	requires_terminal=false
+	mime_types=application/pdf
+	
