@@ -184,8 +184,6 @@ gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 	if (!gnome_vfs_mime_info_cache_dir_out_of_date (dir))
 		return;
 
-	mime_info_cache->should_ping_mime_monitor = TRUE;
-	
 	if (dir->mime_info_cache_map != NULL) {
 		g_hash_table_destroy (dir->mime_info_cache_map);
 	}
@@ -243,6 +241,8 @@ gnome_vfs_mime_info_cache_dir_load (GnomeVFSMimeInfoCacheDir *dir)
 	g_strfreev (mime_types);
 	egg_desktop_entries_free (entries);
 
+	mime_info_cache->should_ping_mime_monitor = TRUE;
+	
 	return;
 error:
 	if (filename)
@@ -274,8 +274,6 @@ gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 
 	if (!gnome_vfs_mime_info_cache_dir_defaults_list_out_of_date (dir))
 		return;
-
-	mime_info_cache->should_ping_mime_monitor = TRUE;
 
 	if (dir->defaults_list_map != NULL) {
 		g_hash_table_destroy (dir->defaults_list_map);
@@ -355,6 +353,8 @@ gnome_vfs_mime_info_cache_dir_load_defaults_list (GnomeVFSMimeInfoCacheDir *dir)
 
 	g_strfreev (mime_types);
 	egg_desktop_entries_free (entries);
+
+	mime_info_cache->should_ping_mime_monitor = TRUE;
 
 	return;
 error:

@@ -183,8 +183,8 @@ gnome_vfs_mime_get_default_application (const char *mime_type)
 	}
 
 	if (default_application == NULL) {
-		/* Failing that, try something from the complete list */
 
+		/* Failing that, try something from the complete list */
 		list = gnome_vfs_mime_get_all_desktop_entries (mime_type);
 
 		if (list != NULL) {

@@ -1,12 +1,22 @@
 2004-07-19  Ray Strode  <rstrode@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	ping mime monitor after successfully reading 
+	in cache, so it doesn't get pinged superfluously
+	for directories that lack cache files.
+
+	* test/test-mime-info-cache.c: update test file to
+	use mime monitor.	
+
+2004-07-19  Ray Strode  <rstrode@redhat.com>
+
 	* libgnomevfs/gnome-vfs-mime-handlers.c: 
 	(prune_ids_for_nonexistent_applications),
 	(application_known_to_be_nonexistent),
 	(gnome_vfs_mime_get_all_applications):
 	Get rid of unneeded pruning functions
 
-	* libgnomevfs/gnome-vfs-mime-info.c: 
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
 	ping mime monitor when caches are reread from disk.
 
 2004-07-19  Ray Strode  <rstrode@redhat.com>
