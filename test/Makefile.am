@@ -33,7 +33,18 @@ noinst_PROGRAMS =				\
 	test-shell				\
 	$(oaf_programs)
 
-TESTS = test-async-cancel test-escape
+test_files=		\
+	test.input	\
+	test.cmds	\
+	test.output
+
+if HAVE_LIBEFS
+auto_tests=auto-test
+else
+auto_tests=
+endif
+
+TESTS = test-async-cancel test-escape $(auto_tests)
 
 libraries =						\
 	$(top_builddir)/libgnomevfs/libgnomevfs.la	\
@@ -154,6 +165,7 @@ test_escape_LDADD = $(libraries)
 test_escape_LDFLAGS = 
 
 EXTRA_DIST =					\
+	$(test_files)				\
 	test-async-directory.c			\
 	test-async.c				\
 	test-channel.c				\

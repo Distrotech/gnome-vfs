@@ -48,28 +48,89 @@ static int    arg_cur  = 0;
 
 static char *cur_dir = NULL;
 
-#if 0
-static void
-show_result (GnomeVFSResult result, const gchar *what, const gchar *text_uri)
-{
-	fprintf (stderr, "%s `%s': %s\n",
-		 what, text_uri, gnome_vfs_result_to_string (result));
-	if (result != GNOME_VFS_OK)
-		exit (1);
-}
-#endif
+static GHashTable *files = NULL;
+
+FILE *vfserr = NULL;
+
 
 static gboolean
 show_if_error (GnomeVFSResult result, const char *what, const char *what2)
 {
 	if (result != GNOME_VFS_OK) {
-		fprintf (stderr, "%s%s: `%s'\n",
+		fprintf (vfserr, "%s%s `%s'\n",
 			 what, what2, gnome_vfs_result_to_string (result));
 		return TRUE;
 	} else
 		return FALSE;
 }
 
+static void
+register_file (const char *str, GnomeVFSHandle *handle)
+{
+	if (!str)
+		fprintf (vfserr, "Need a valid name");
+	else
+		g_hash_table_insert (files, g_strdup (str), handle);
+}
+
+static GnomeVFSHandle *
+lookup_file (const char *str)
+{
+	GnomeVFSHandle *handle;
+
+	if (!str) {
+		fprintf (vfserr, "Invalid handle '%s'\n", str);
+		return NULL;
+	}
+
+	handle = g_hash_table_lookup (files, str);
+	if (!handle)
+		fprintf (vfserr, "Can't find handle '%s'\n", str);
+
+	return handle;
+}
+
+static void
+close_file (const char *str)
+{
+	GnomeVFSResult result;
+	gpointer hash_key, value;
+
+	if (!str)
+		fprintf (vfserr, "Can't close NULL handles\n");
+
+	else if (g_hash_table_lookup_extended (files, str, &hash_key, &value)) {
+		g_hash_table_remove (files, str);
+
+		result = gnome_vfs_close ((GnomeVFSHandle *)value);
+		show_if_error (result, "closing ", (char *)hash_key);
+
+		g_free (hash_key);
+	} else
+
+		fprintf (vfserr, "Unknown file handle '%s'\n", str);
+}
+
+static gboolean
+kill_file_cb (gpointer	key,
+	      gpointer	value,
+	      gpointer	user_data)
+{
+	GnomeVFSResult result;
+
+	result = gnome_vfs_close (value);
+	show_if_error (result, "closing ", key);
+	g_free (key);
+
+	return TRUE;
+}
+
+static void
+close_files (void)
+{
+	g_hash_table_foreach_remove (files, kill_file_cb, NULL);
+	g_hash_table_destroy (files);
+}
 
 static void
 do_ls (void)
@@ -142,6 +203,7 @@ static void
 list_commands ()
 {
 	printf ("command can be one or all of:\n");
+	printf ("Main operations:\n");
 	printf (" * ls:                     list files\n");
 	printf (" * cd:                     enter storage\n");
 	printf (" * mv:                     move object\n");
@@ -153,6 +215,12 @@ list_commands ()
 	printf (" * dump:                   dump binary file to console\n");
 	printf (" * sync:                   for sinkers\n");
 	printf (" * quit,exit,bye:          exit\n");
+	printf ("File operations:\n");
+	printf (" * open <handle> <name>:   open a file\n");
+	printf (" * create <handle> <name>: create a file\n");
+	printf (" * close <handle>:         close a file\n");
+	printf (" * read <handle> <bytes>:  read bytes from stream\n");
+	printf (" * seek <handle> <pos>:    seek set position\n");
 }
 
 static gboolean
@@ -238,7 +306,7 @@ get_regexp_name (const char *regexp, const char *path, gboolean dir)
 					break;
 				}
 			} else {
-				fprintf (stderr, "Can't cope with no type data");
+				fprintf (vfserr, "Can't cope with no type data");
 				res = g_strdup (info->name);
 				break;
 			}
@@ -257,7 +325,7 @@ do_cd (void)
 	p = arg_data [arg_cur++];
 
 	if (!p) {
-		fprintf (stderr, "Takes a directory argument\n");
+		fprintf (vfserr, "Takes a directory argument\n");
 		return;
 	}
 
@@ -293,7 +361,7 @@ do_cd (void)
 			
 			ptr = get_regexp_name (p, cur_dir, TRUE);
 			if (!ptr) {
-				fprintf (stderr, "Can't find '%s'\n", p);
+				fprintf (vfserr, "Can't find '%s'\n", p);
 				return;
 			}
 
@@ -304,7 +372,7 @@ do_cd (void)
 			g_free (cur_dir);
 			cur_dir = newpath;
 		} else
-			fprintf (stderr, "Invalid path %s\n", newpath);
+			fprintf (vfserr, "Invalid path %s\n", newpath);
 	}
 }
 
@@ -422,7 +490,7 @@ do_mv (void)
 	from = get_fname ();
 	to = get_fname ();
 	if (!from || !to) {
-		fprintf (stderr, "mv <from> <to>\n");
+		fprintf (vfserr, "mv <from> <to>\n");
 		return;
 	}
 
@@ -512,7 +580,7 @@ do_cp (void)
 	if (from)
 		to = get_fname ();
 	else {
-		fprintf (stderr, "cp <from> <to>\n");
+		fprintf (vfserr, "cp <from> <to>\n");
 		goto out;
 	}
        
@@ -544,7 +612,7 @@ do_cp (void)
 			goto out;
 
 		if (bytes_read != bytes_written)
-			fprintf (stderr, "Didn't write it all");
+			fprintf (vfserr, "Didn't write it all");
 	}
 
  out:
@@ -620,6 +688,141 @@ do_dump (void)
 		return;
 }
 
+
+/*
+ * ---------------------------------------------------------------------
+ */
+
+static char *
+get_handle (void)
+{
+	if (!arg_data [arg_cur])
+		return NULL;
+
+	return arg_data [arg_cur++];
+}
+
+static int
+get_int (void)
+{
+	if (!arg_data [arg_cur])
+		return 0;
+
+	return atoi (arg_data [arg_cur++]);
+}
+
+static void
+do_open (void)
+{
+	char *from, *handle;
+	GnomeVFSHandle *from_handle;
+	GnomeVFSResult  result;
+
+	handle = get_handle ();
+	from = get_fname ();
+
+	if (!handle || !from) {
+		fprintf (vfserr, "open <handle> <filename>\n");
+		return;
+	}
+
+	result = gnome_vfs_open (&from_handle, from, GNOME_VFS_OPEN_READ);
+	if (show_if_error (result, "open ", from))
+		return;
+
+	register_file (handle, from_handle);
+}
+
+static void
+do_create (void)
+{
+	char *from, *handle;
+	GnomeVFSHandle *from_handle;
+	GnomeVFSResult  result;
+
+	handle = get_handle ();
+	from = get_fname ();
+
+	if (!handle || !from) {
+		fprintf (vfserr, "create <handle> <filename>\n");
+		return;
+	}
+
+	result = gnome_vfs_create (&from_handle, from, GNOME_VFS_OPEN_READ,
+				   FALSE, GNOME_VFS_PERM_USER_READ |
+				   GNOME_VFS_PERM_USER_WRITE);
+	if (show_if_error (result, "create ", from))
+		return;
+
+	register_file (handle, from_handle);
+}
+
+static void
+do_read (void)
+{
+	char            *handle;
+	int              length;
+	GnomeVFSHandle  *from_handle;
+	GnomeVFSResult   result;
+	GnomeVFSFileSize bytes_read;
+	guint8          *data;
+
+	handle = get_handle ();
+	length = get_int ();
+
+	if (length < 0) {
+		fprintf (vfserr, "Can't read %d bytes\n", length);
+		return;
+	}
+
+	from_handle = lookup_file (handle);
+	if (!from_handle)
+		return;
+
+	data = g_malloc (length);
+	result = gnome_vfs_read (from_handle, data, length, &bytes_read);
+	if (show_if_error (result, "read ", handle))
+		return;
+
+	ms_ole_dump (data, bytes_read, 0);
+}
+
+static void
+do_seek (void)
+{
+	char            *handle;
+	int              offset;
+	GnomeVFSHandle  *from_handle;
+	GnomeVFSResult   result;
+
+	handle = get_handle ();
+	offset = get_int ();
+
+	if (offset < 0) {
+		fprintf (vfserr, "Can't seek to %d bytes offset\n", offset);
+		return;
+	}
+
+	from_handle = lookup_file (handle);
+	if (!from_handle)
+		return;
+
+	result = gnome_vfs_seek (from_handle, GNOME_VFS_SEEK_START, offset);
+	if (show_if_error (result, "seek ", handle))
+		return;
+}
+
+static void
+do_close (void)
+{
+	close_file (get_handle ());
+}
+
+
+/*
+ * ---------------------------------------------------------------------
+ */
+
 int interactive = 0;
 const struct poptOption options [] = {
 	{ "interactive", 'i', POPT_ARG_NONE, &interactive, 0,
@@ -636,11 +839,18 @@ main (int argc, char **argv)
 	const char **args;
 	FILE *instream;
 
+	files = g_hash_table_new (g_str_hash, g_str_equal);
+
 	gnome_init_with_popt_table ("test-vfs", "0.0", argc, argv,
 				    options, 0, &popt_context);
 
+	if (interactive)
+		vfserr = stderr;
+	else
+		vfserr = stdout;
+
 	if (!gnome_vfs_init ()) {
-		fprintf (stderr, "Cannot initialize gnome-vfs.\n");
+		fprintf (vfserr, "Cannot initialize gnome-vfs.\n");
 		return 1;
 	}
 
@@ -667,6 +877,9 @@ main (int argc, char **argv)
 			fflush (stdout);
 		}
 		fgets (buffer, 1023, stdin);
+
+		if (!buffer || buffer [0] == '#')
+			continue;
 
 		arg_data = g_strsplit (g_strchomp (buffer), delim, -1);
 		arg_cur  = 0;
@@ -700,7 +913,7 @@ main (int argc, char **argv)
 			 g_strcasecmp (ptr, "stat") == 0)
 			do_info ();
 		else if (g_strcasecmp (ptr, "sync") == 0)
-			fprintf (stderr, "a shell is like a boat, it lists or syncs (RMS)\n");
+			fprintf (vfserr, "a shell is like a boat, it lists or syncs (RMS)\n");
 		else if (g_strcasecmp (ptr,"help") == 0 ||
 			 g_strcasecmp (ptr,"?")    == 0 ||
 			 g_strcasecmp (ptr,"info") == 0 ||
@@ -712,12 +925,29 @@ main (int argc, char **argv)
 			 g_strcasecmp (ptr,"bye") == 0)
 			exit = 1;
 
+		/* File ops */
+		else if (g_strcasecmp (ptr, "open") == 0)
+			do_open ();
+		else if (g_strcasecmp (ptr, "create") == 0)
+			do_create ();
+		else if (g_strcasecmp (ptr, "close") == 0)
+			do_close ();
+		else if (g_strcasecmp (ptr, "read") == 0)
+			do_read ();
+		else if (g_strcasecmp (ptr, "seek") == 0)
+			do_seek ();
+		
+		else
+			fprintf (vfserr, "Unknown command '%s'", ptr);
+
 		g_strfreev (arg_data);
 		arg_data = NULL;
 	} while (!exit);
 
 	g_free (buffer);
 	g_free (cur_dir);
+
+	close_files ();
 
 	return 0;
 }

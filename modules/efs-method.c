@@ -595,11 +595,6 @@ do_get_file_info (GnomeVFSMethod *method,
 	GnomeVFSResult result;
 
 	/*
-	 * FIXME: Much of this code should be done once centraly
-	 * for methods that support an embedded tree.
-	 */
-
-	/*
 	 * 1. Get the directory / file names split.
 	 */
 	dir_name = g_strdup (uri->text?uri->text:"");

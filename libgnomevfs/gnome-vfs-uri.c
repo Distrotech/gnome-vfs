@@ -215,30 +215,30 @@ static GnomeVFSURI *
 parse_uri_substring (const gchar *substring, GnomeVFSURI *parent)
 {
 	GnomeVFSMethod *method;
-	GnomeVFSURI *uri, *new_uri;
-	const gchar *p;
-	gchar *p1;
-	gchar *method_string;
+	GnomeVFSURI    *uri, *new_uri;
+	gchar          *method_string;
+	const gchar    *p;
+	gchar          *p1;
 
-	if (substring == NULL || *substring == '\000')
+	if (!substring || *substring == '\000')
 		return NULL;
 
 	p = get_method_string (substring, &method_string);
 
 	method = gnome_vfs_method_get (method_string);
-	if (method == NULL) {
+	if (!method) {
 		g_free (method_string);
 		return NULL;
 	}
 
 	uri = g_new0 (GnomeVFSURI, 1);
-	uri->method = method;
+	uri->method        = method;
 	uri->method_string = method_string;
-	uri->ref_count = 1;
-	uri->parent = parent;
+	uri->ref_count     = 1;
+	uri->parent        = parent;
 
 	p1 = strchr (p, GNOME_VFS_URI_MAGIC_CHR);
-	if (p1 == NULL) {
+	if (!p1) {
 		set_uri_element (uri, p, strlen (p));
 		return uri;
 	}
@@ -322,8 +322,7 @@ gnome_vfs_uri_new (const gchar *text_uri)
 	p2 = p1 + 1;
 		
 	if (*p2 == 0) {
-		if (uri->ref_count > 0)
-			gnome_vfs_uri_unref (uri);
+		gnome_vfs_uri_unref (uri);
 		g_free (new_uri_string);
 		return NULL;
 	}

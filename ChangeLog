@@ -1,3 +1,24 @@
+2000-06-26  Michael Meeks  <michael@helixcode.com>
+
+	* doc/uri.txt: update.
+
+	* test/Makefile.am: Add automatic regression testing.
+
+	* test/test.input: Plaintext to test vs.
+
+	* test/test.output: Standard good output
+
+	* test/test.cmds: test-shell commands to execute.
+
+	* test/test-shell.c (close_file, kill_file_cb, register_file),
+	(close_files): mange named file handles.
+	(get_handle, do_create, do_open, get_int, do_read, do_close): implement.
+	(do_seek): implement. (main): allow comments in the input stream,
+	s/stderr/vfserr/ (main): Setup vfserr to be stdout for regression tests.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_new): kill redundant
+	check on ref_count.
+
 2000-06-26  Pavel Cisler  <pavel@eazel.com>
 
 	* data/mime/gnome-vfs-mime-magic:
