@@ -1002,13 +1002,13 @@ gnome_vfs_mime_description (const char *mime_type)
 }
 
 /**
- * gnome_vfs_mime_extensions:
+ * gnome_vfs_mime_extensions_list:
  * @mime_type: the mime type
  *
- * Returns the description for this mime-type
+ * Returns a list of extensions for this mime-type
  */
 GList *
-gnome_vfs_mime_get_extensions (const char *mime_type)
+gnome_vfs_mime_get_extensions_list (const char *mime_type)
 {
 	GList *list;
 	const char *extensions;
@@ -1050,6 +1050,42 @@ gnome_vfs_mime_get_extensions (const char *mime_type)
 	}		
 	return list;
 }
+
+
+/**
+ * gnome_vfs_mime_extensions_string:
+ * @mime_type: the mime type
+ *
+ * Returns a string containing extensions for this mime-type
+ */
+char *
+gnome_vfs_mime_get_extensions_string (const char *mime_type)
+{
+	const char *extensions;
+	GnomeMimeContext *context;
+	
+	if (mime_type == NULL) {
+		return NULL;
+	}
+
+	if (!gnome_vfs_mime_inited) {
+		gnome_vfs_mime_init ();
+	}
+
+	maybe_reload ();
+	
+	context = g_hash_table_lookup (registered_types, mime_type);
+	if (context) {
+		extensions = g_hash_table_lookup (context->keys, "ext");		
+	}
+
+	if (extensions != NULL) {
+		return g_strdup (extensions);
+	}		
+
+	return NULL;
+}
+
 
 /**
  * gnome_vfs_mime_extension_list_free:

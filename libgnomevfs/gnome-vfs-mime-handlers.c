@@ -1323,7 +1323,7 @@ gnome_vfs_mime_add_extension (const char *mime_type, const char *extension)
 	extensions = NULL;
 	old_extensions = NULL;
 
-	list = gnome_vfs_mime_get_extensions (mime_type);	
+	list = gnome_vfs_mime_get_extensions_list (mime_type);	
 	if (list == NULL) {
 		return GNOME_VFS_OK;
 	}
@@ -1374,7 +1374,7 @@ gnome_vfs_mime_remove_extension (const char *mime_type, const char *extension)
 	old_extensions = NULL;
 	in_list = FALSE;
 	
-	list = gnome_vfs_mime_get_extensions (mime_type);	
+	list = gnome_vfs_mime_get_extensions_list (mime_type);	
 	if (list == NULL) {
 		return GNOME_VFS_OK;
 	}

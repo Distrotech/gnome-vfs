@@ -1,3 +1,41 @@
+2000-07-04  Gene Z. Ragan  <gzr@eazel.com>
+	More capplet work in progress.  Modifying applet and code
+	to support UI work done by Arlo.
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.c:
+	(gnome_vfs_mime_add_extension), (gnome_vfs_mime_remove_extension):
+	API changes to support new layout.
+
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-mime-info.h:
+	(gnome_vfs_mime_get_extensions_list),
+	(gnome_vfs_mime_get_extensions_string):
+	API changes to support new layout.
+	
+	* mime-type-capplet/Makefile.am:
+	Added dependency to GdkPixbuf.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(show_edit_components_dialog), (add_new_application),
+	(show_new_application_window), (show_edit_application_window):
+	API changes to support new layout.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	* mime-type-capplet/nautilus-mime-type-capplet.h:
+	(populate_extension_list), (extension_list_deselected),
+	(application_button_toggled), (viewer_button_toggled),
+	(icon_changed), (init_mime_capplet),
+	(nautilus_mime_type_capplet_update_info),
+	(populate_application_menu), (populate_viewer_menu),
+	(edit_default_clicked),
+	(nautilus_mime_type_capplet_update_application_info),
+	(nautilus_mime_type_capplet_update_viewer_info),
+	(insert_mime_vals_into_clist), (create_mime_list_and_scroller),
+	(nautilus_mime_type_capplet_get_selected_item_mime_type),
+	(make_path), (pixmap_file):
+	API changes to support new layout.
+	
+
 2000-07-03  Ettore Perazzoli  <ettore@helixcode.com>
 
 	* libgnomevfs-pthread/Makefile.am (INCLUDES): Add
