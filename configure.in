@@ -184,7 +184,7 @@ dnl Don't blindly #define them if they're typedef'ed in <sys/types.h>
 AM_GNOME_SIZE_T
 AM_GNOME_OFF_T
 
-ALL_LINGUAS="az ca da de el es fi fr ga gl hu it ja ko lt nl nn no pl pt pt_BR ro ru sk sl sv tr uk wa zh_TW"
+ALL_LINGUAS="az ca da de el es fi fr ga gl hu it ja ko lt nl nn no pl pt pt_BR ro ru sk sl sv tr uk wa, zh_TW"
 AM_GNOME_GETTEXT
 
 AC_FUNC_ALLOCA
@@ -306,14 +306,6 @@ GNOME_VFS_DIR=`(cd $srcdir; pwd)`
 AC_SUBST(GNOME_VFS_DIR)
 
 AM_CONDITIONAL(INSIDE_GNOME_DOCU, false)
-
-VFS_LIBS="-lgnomevfs $VFS_GLIB_LIBS"
-VFS_LIBDIR='-L${libdir}'
-VFS_INCLUDEDIR='-I${includedir}/gnome-vfs-1.0 -I${libdir}/gnome-vfs-1.0/include'" $VFS_GLIB_CFLAGS"
-AC_SUBST(VFS_LIBDIR)
-AC_SUBST(VFS_INCLUDEDIR)
-AC_SUBST(VFS_LIBS)
-
 
 dnl
 dnl gnome-xml libraries - for WebDAV support in modules/http-method.c
@@ -574,6 +566,18 @@ AC_SUBST(LDFLAGS)
 dnl This is needed by `test/vfs-run.in'
 TOP_BUILDDIR="`pwd`"
 AC_SUBST(TOP_BUILDDIR)
+
+dnl
+dnl Stuff for vfsConf.sh
+dnl
+
+VFS_LIBS="-lgnomevfs $XML_LIBS $OAF_LIBS $GCONF_LIBS $GLIB_LIBS"
+VFS_LIBDIR="-L${libdir}"
+VFS_INCLUDEDIR="-I${includedir}/gnome-vfs-1.0 -I${libdir}/gnome-vfs-1.0/include $XML_CFLAGS $OAF_CFLAGS $GCONF_CFLAGS $GLIB_CFLAGS"
+
+AC_SUBST(VFS_LIBDIR)
+AC_SUBST(VFS_INCLUDEDIR)
+AC_SUBST(VFS_LIBS)
 
 dnl Output files
 
