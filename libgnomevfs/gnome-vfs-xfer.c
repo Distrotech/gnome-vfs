@@ -456,7 +456,7 @@ create_xfer_file_list (GnomeVFSURI *source_dir_uri,
 	if (xfer_options & GNOME_VFS_XFER_FOLLOWLINKS)
 		info_options = GNOME_VFS_FILE_INFO_FOLLOWLINKS;
 	else
-		info_options = GNOME_VFS_FILE_INFO_NOOPTION;
+		info_options = GNOME_VFS_FILE_INFO_DEFAULT;
 
 	/* First add all the files to the list.  These will be all added at the
            head of the list.  */

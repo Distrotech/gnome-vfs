@@ -573,6 +573,7 @@ gnome_vfs_check_same_fs (const gchar *a,
 
 	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (b != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (same_fs_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	*same_fs_return = FALSE;
 
@@ -592,4 +593,53 @@ gnome_vfs_check_same_fs (const gchar *a,
 	gnome_vfs_uri_unref (b_uri);
 
 	return retval;
+}
+
+/**
+ * gnome_vfs_set_file_info_uri:
+ * @uri: A URI
+ * @info: Information that must be set for the file
+ * @mask: Bit mask representing which fields of @info need to be set 
+ * 
+ * Set file information for @uri; only the information for which the
+ * corresponding bit in @mask is set is actually modified.
+ * 
+ * Return value: An integer representing the result of the operation.
+ **/
+GnomeVFSResult
+gnome_vfs_set_file_info_uri (GnomeVFSURI *uri,
+			     GnomeVFSFileInfo *info,
+			     GnomeVFSSetFileInfoMask mask)
+{
+	return gnome_vfs_set_file_info_cancellable (uri, info, mask, NULL);
+}
+
+/**
+ * gnome_vfs_set_file_info:
+ * @text_uri: A URI
+ * @info: Information that must be set for the file
+ * @mask: Bit mask representing which fields of @info need to be set 
+ * 
+ * Set file information for @uri; only the information for which the
+ * corresponding bit in @mask is set is actually modified.
+ * 
+ * Return value: An integer representing the result of the operation.
+ **/
+GnomeVFSResult
+gnome_vfs_set_file_info (const gchar *text_uri,
+			 GnomeVFSFileInfo *info,
+			 GnomeVFSSetFileInfoMask mask)
+{
+	GnomeVFSURI *uri;
+	GnomeVFSResult result;
+
+	uri = gnome_vfs_uri_new (text_uri);
+	if (uri == NULL)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
+	result = gnome_vfs_set_file_info_uri (uri, info, mask);
+
+	gnome_vfs_uri_unref (uri);
+
+	return result;
 }

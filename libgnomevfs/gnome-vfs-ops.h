@@ -109,4 +109,11 @@ GnomeVFSResult	 gnome_vfs_check_same_fs	(const gchar *a,
 						 const gchar *b,
 						 gboolean *same_fs_return);
 
+GnomeVFSResult   gnome_vfs_set_file_info_uri    (GnomeVFSURI *uri,
+						 GnomeVFSFileInfo *info,
+						 GnomeVFSSetFileInfoMask mask);
+GnomeVFSResult   gnome_vfs_set_file_info        (const gchar *text_uri,
+						 GnomeVFSFileInfo *info,
+						 GnomeVFSSetFileInfoMask mask);
+
 #endif /* _GNOME_VFS_OPS_H */

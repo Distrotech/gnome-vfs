@@ -102,4 +102,10 @@ GnomeVFSResult gnome_vfs_check_same_fs_uris_cancellable
 					  gboolean *same_fs_return,
 					  GnomeVFSCancellation *cancellation);
 
+GnomeVFSResult gnome_vfs_set_file_info_cancellable
+					 (GnomeVFSURI *a,
+					  const GnomeVFSFileInfo *info,
+					  GnomeVFSSetFileInfoMask mask,
+					  GnomeVFSCancellation *cancellation);
+
 #endif /* _GNOME_VFS_PRIVATE_OPS_H */

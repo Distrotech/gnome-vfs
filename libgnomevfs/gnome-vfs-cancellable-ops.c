@@ -271,3 +271,15 @@ gnome_vfs_check_same_fs_uris_cancellable (GnomeVFSURI *a,
 
 	return a->method->check_same_fs (a, b, same_fs_return, cancellation);
 }
+
+GnomeVFSResult
+gnome_vfs_set_file_info_cancellable (GnomeVFSURI *a,
+				     const GnomeVFSFileInfo *info,
+				     GnomeVFSSetFileInfoMask mask,
+				     GnomeVFSCancellation *cancellation)
+{
+	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BADPARAMS);
+	g_return_val_if_fail (info != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	return a->method->set_file_info (a, info, mask, cancellation);
+}

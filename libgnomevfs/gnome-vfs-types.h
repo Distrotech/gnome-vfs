@@ -263,8 +263,7 @@ struct _GnomeVFSFileInfo {
            link points to.  */
 	gchar *symlink_name;
 
-	/* MIME type.  Although this is dynamically allocated, please DON'T
-           free this.  */
+	/* MIME type.  */
 	gchar *mime_type;
 
 	/* List of GnomeVFSFileMetadata elements, specifying the metadata for
@@ -277,12 +276,21 @@ struct _GnomeVFSFileInfo {
 typedef struct _GnomeVFSFileInfo GnomeVFSFileInfo;
 
 enum _GnomeVFSFileInfoOptions {
-	GNOME_VFS_FILE_INFO_NOOPTION = 0, /* FIXME name sucks */
+	GNOME_VFS_FILE_INFO_DEFAULT = 0, /* FIXME name sucks */
 	GNOME_VFS_FILE_INFO_GETMIMETYPE = 1 << 0,
 	GNOME_VFS_FILE_INFO_FASTMIMETYPE = 1 << 1,
 	GNOME_VFS_FILE_INFO_FOLLOWLINKS = 1 << 2
 };
 typedef enum _GnomeVFSFileInfoOptions GnomeVFSFileInfoOptions;
+
+enum _GnomeVFSSetFileInfoMask {
+	GNOME_VFS_SET_FILE_INFO_NONE = 0,
+	GNOME_VFS_SET_FILE_INFO_NAME = 1 << 0,
+	GNOME_VFS_SET_FILE_INFO_PERMISSIONS = 1 << 1,
+	GNOME_VFS_SET_FILE_INFO_OWNER = 1 << 2,
+	GNOME_VFS_SET_FILE_INFO_TIME = 1 << 3
+};
+typedef enum _GnomeVFSSetFileInfoMask GnomeVFSSetFileInfoMask;
 
 
 /* Directory stuff.  */

@@ -143,6 +143,12 @@ typedef GnomeVFSResult (* GnomeVFSMethodCheckSameFSFunc)
 					 gboolean *same_fs_return,
 					 GnomeVFSCancellation *cancellation);
 
+typedef GnomeVFSResult (* GnomeVFSMethodSetFileInfo)
+					(GnomeVFSURI *a,
+					 const GnomeVFSFileInfo *info,
+					 GnomeVFSSetFileInfoMask mask,
+					 GnomeVFSCancellation *cancellation);
+
 
 /* Structure defining an access method.	 This is also defined as an
    opaque type in `gnome-vfs-types.h'.	*/
@@ -166,6 +172,7 @@ struct _GnomeVFSMethod {
 	GnomeVFSMethodMoveFunc move;
 	GnomeVFSMethodUnlinkFunc unlink;
 	GnomeVFSMethodCheckSameFSFunc check_same_fs;
+	GnomeVFSMethodSetFileInfo set_file_info;
 };
 
 

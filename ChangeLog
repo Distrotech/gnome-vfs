@@ -1,3 +1,50 @@
+1999-11-18  Ettore Perazzoli  <ettore@gnu.org>
+
+	* modules/file-method.c: Removed the static function prototypes
+	and moved the method struct to the end of the file so that they
+	are not needed anymore.
+	(rename_helper): New helper function, cut & paste from
+	`do_move()'.
+	(do_move): Use it.
+	(do_set_file_info): New function, implementing the `set_file_info'
+	method.
+	(do_make_directory): Use `MAKE_ABSOLUTE' to make sure the path we
+	use is absolute.
+	(do_move): Likewise.
+	(do_unlink): Likewise.
+	(do_check_same_fs): Likewise.
+	(directory_handle_new): Likewise.
+	(do_get_file_info): Likewise.
+	(do_create): Likewise (forgot to use `file_name' instead of
+	`uri->text' here).
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_check_same_fs): Check
+	that `same_fs_return' is not NULL.
+
+	* libgnomevfs/gnome-vfs-ops.c (gnome_vfs_set_file_info_uri): New
+	function.
+	(gnome_vfs_set_file_info): New function.
+	* libgnomevfs/gnome-vfs-ops.h: Prototypes here.
+
+	* libgnomevfs/gnome-vfs-private-ops.c
+	(gnome_vfs_set_file_info_cancellable): New function.
+	* libgnomevfs/gnome-vfs-private-ops.h: Prototype here.
+
+	* libgnomevfs/gnome-vfs-private-types.h: New function typedef
+	`GnomeVFSMethodSetFileInfo'.  New member `set_file_info' in
+	`GnomeVFSMethod'.
+
+	* libgnomevfs/gnome-vfs-types.h: New enum
+	`GnomeVFSSetFileInfoMask'.
+
+	* libgnomevfs/gnome-vfs-types.h: Renamed
+	`GNOME_VFS_FILE_INFO_NOOPTION' to `GNOME_VFS_FILE_INFO_DEFAULT'.
+	* libgnomevfs/gnome-vfs-xfer.c (create_xfer_file_list): Updated
+	accordingly.
+
+	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_extract_dirname): New
+	function.
+
 1999-11-12  Ettore Perazzoli  <ettore@gnu.org>
 
 	* libgnomevfs/gnome-vfs-uri.c (gnome_vfs_uri_append_path): Make sure

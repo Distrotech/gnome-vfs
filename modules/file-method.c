@@ -36,121 +36,13 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <utime.h>
 
 #include <gnome.h>
 
 #include "gnome-vfs-module.h"
 #include "module-shared.h"
 #include "file-method.h"
-
-
-static GnomeVFSResult	do_open		(GnomeVFSMethodHandle **method_handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode,
-					 GnomeVFSCancellation *cancellation);
-static GnomeVFSResult	do_create 	(GnomeVFSMethodHandle **method_handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode,
-					 gboolean exclusive,
-					 guint perm,
-					 GnomeVFSCancellation *cancellation);
-static GnomeVFSResult	do_close	(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSCancellation *cancellation);
-static GnomeVFSResult	do_read		(GnomeVFSMethodHandle *method_handle,
-					 gpointer buffer,
-					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_read,
-					 GnomeVFSCancellation *cancellation);
-static GnomeVFSResult	do_write	(GnomeVFSMethodHandle *method_handle,
-					 gconstpointer buffer,
-					 GnomeVFSFileSize num_bytes,
-					 GnomeVFSFileSize *bytes_written,
-					 GnomeVFSCancellation *cancellation);
-static GnomeVFSResult   do_seek		(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSSeekPosition whence,
-					 GnomeVFSFileOffset offset,
-					 GnomeVFSCancellation *cancellation);
-static GnomeVFSResult	do_tell		(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileOffset *offset_return);
-static GnomeVFSResult	do_truncate 	(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileSize where,
-					 GnomeVFSCancellation *cancellation);
-
-static GnomeVFSResult	do_open_directory
-					(GnomeVFSMethodHandle **method_handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
-					 const GnomeVFSDirectoryFilter *filter,
-					 GnomeVFSCancellation *cancellation);
-static GnomeVFSResult	do_close_directory
-					(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSCancellation *cancellation);
-static GnomeVFSResult	do_read_directory
-					(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSCancellation *cancellation);
-
-static GnomeVFSResult	do_get_file_info
-					(GnomeVFSURI *uri,
-					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
-					 GnomeVFSCancellation *cancellation);
-
-static GnomeVFSResult	do_get_file_info_from_handle
-					(GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys,
-					 GnomeVFSCancellation *cancellation);
-
-static gboolean		do_is_local	(const GnomeVFSURI *uri);
-
-static GnomeVFSResult	do_make_directory
-                                        (GnomeVFSURI *uri,
-					 guint perm,
-					 GnomeVFSCancellation *cancellation);
-
-static GnomeVFSResult	do_remove_directory
-                                        (GnomeVFSURI *uri,
-					 GnomeVFSCancellation *cancellation);
-
-static GnomeVFSResult   do_move 	(GnomeVFSURI *old_uri,
-					 GnomeVFSURI *new_uri,
-					 gboolean force_replace,
-					 GnomeVFSCancellation *cancellation);
-
-static GnomeVFSResult   do_unlink       (GnomeVFSURI *uri,
-					 GnomeVFSCancellation *cancellation);
-
-static GnomeVFSResult   do_check_same_fs
-					(GnomeVFSURI *a,
-					 GnomeVFSURI *b,
-					 gboolean *same_fs_return,
-					 GnomeVFSCancellation *cancellation);
-
-static GnomeVFSMethod method = {
-	do_open,
-	do_create,
-	do_close,
-	do_read,
-	do_write,
-	do_seek,
-	do_tell,
-	do_truncate,
-	do_open_directory,
-	do_close_directory,
-	do_read_directory,
-	do_get_file_info,
-	do_get_file_info_from_handle,
-	do_is_local,
-	do_make_directory,
-	do_remove_directory,
-	do_move,
-	do_unlink,
-	do_check_same_fs
-};
 
 
 /* This is to make sure the path starts with `/', so that at least we
@@ -321,7 +213,7 @@ do_create (GnomeVFSMethodHandle **method_handle,
 	MAKE_ABSOLUTE (file_name, uri->text);
 
 	do
-		fd = OPEN (uri->text, unix_mode, perm);
+		fd = OPEN (file_name, unix_mode, perm);
 	while (fd == -1
 	       && errno == EINTR
 	       && ! gnome_vfs_cancellation_check (cancellation));
@@ -532,22 +424,24 @@ directory_handle_new (GnomeVFSURI *uri,
 		      const GnomeVFSDirectoryFilter *filter)
 {
 	DirectoryHandle *new;
-	guint uri_text_len;
+	gchar *full_name;
+	guint full_name_len;
 
 	new = g_new (DirectoryHandle, 1);
 
 	new->uri = gnome_vfs_uri_ref (uri);
 	new->dir = dir;
 
-	uri_text_len = strlen (uri->text);
+	MAKE_ABSOLUTE (full_name, uri->text);
+	full_name_len = strlen (full_name);
 
-	new->name_buffer = g_malloc (uri_text_len + GET_PATH_MAX () + 2);
-	memcpy (new->name_buffer, uri->text, uri_text_len);
+	new->name_buffer = g_malloc (full_name_len + GET_PATH_MAX () + 2);
+	memcpy (new->name_buffer, full_name, full_name_len);
 	
-	if (uri_text_len > 0 && uri->text[uri_text_len - 1] != '/')
-		new->name_buffer[uri_text_len++] = '/';
+	if (full_name_len > 0 && full_name[full_name_len - 1] != '/')
+		new->name_buffer[full_name_len++] = '/';
 
-	new->name_ptr = new->name_buffer + uri_text_len;
+	new->name_ptr = new->name_buffer + full_name_len;
 
 	new->options = options;
 	new->meta_keys = meta_keys;
@@ -852,7 +746,7 @@ do_get_file_info (GnomeVFSURI *uri,
 	gchar *full_name;
 	struct stat statbuf;
 
-	full_name = uri->text;
+	MAKE_ABSOLUTE (full_name, uri->text);
 
 	file_info->name = g_strdup (g_basename (full_name));
 
@@ -915,8 +809,10 @@ do_make_directory (GnomeVFSURI *uri,
 		   GnomeVFSCancellation *cancellation)
 {
 	gint retval;
+	gchar *full_name;
 
-	retval = mkdir (uri->text, perm);
+	MAKE_ABSOLUTE (full_name, uri->text);
+	retval = mkdir (full_name, perm);
 
 	if (retval == 0)
 		return GNOME_VFS_OK;
@@ -928,9 +824,11 @@ static GnomeVFSResult
 do_remove_directory (GnomeVFSURI *uri,
 		     GnomeVFSCancellation *cancellation)
 {
+	gchar *full_name;
 	gint retval;
 
-	retval = rmdir (uri->text);
+	MAKE_ABSOLUTE (full_name, uri->text);
+	retval = rmdir (full_name);
 
 	if (retval == 0)
 		return GNOME_VFS_OK;
@@ -939,16 +837,16 @@ do_remove_directory (GnomeVFSURI *uri,
 }
 
 static GnomeVFSResult
-do_move (GnomeVFSURI *old_uri,
-	 GnomeVFSURI *new_uri,
-	 gboolean force_replace,
-	 GnomeVFSCancellation *cancellation)
+rename_helper (const gchar *old_full_name,
+	       const gchar *new_full_name,
+	       gboolean force_replace,
+	       GnomeVFSCancellation *cancellation)
 {
 	gboolean old_exists;
-	gint retval;
 	struct stat statbuf;
+	gint retval;
 
-	retval = stat (new_uri->text, &statbuf);
+	retval = stat (new_full_name, &statbuf);
 	if (retval == 0) {
 		/* If we are not allowed to replace an existing file, return an
                    error.  */
@@ -962,7 +860,7 @@ do_move (GnomeVFSURI *old_uri,
 	if (gnome_vfs_cancellation_check (cancellation))
 		return GNOME_VFS_ERROR_CANCELLED;
 
-	retval = rename (old_uri->text, new_uri->text);
+	retval = rename (old_full_name, new_full_name);
 
 	/* FIXME?  The following assumes that, if `new_uri' and `old_uri' are
            on different file systems, `rename()' will always return `EXDEV'
@@ -978,7 +876,7 @@ do_move (GnomeVFSURI *old_uri,
 		if (S_ISDIR (statbuf.st_mode)) {
 			if (gnome_vfs_cancellation_check (cancellation))
 				return GNOME_VFS_ERROR_CANCELLED;
-			retval = rmdir (new_uri->text);
+			retval = rmdir (new_full_name);
 			if (retval != 0) {
 				/* FIXME: Maybe we could be more accurate
 				   here?  */
@@ -988,7 +886,7 @@ do_move (GnomeVFSURI *old_uri,
 			if (gnome_vfs_cancellation_check (cancellation))
 				return GNOME_VFS_ERROR_CANCELLED;
 
-			retval = rename (old_uri->text, new_uri->text);
+			retval = rename (old_full_name, new_full_name);
 		}
 	}
 
@@ -999,12 +897,30 @@ do_move (GnomeVFSURI *old_uri,
 }
 
 static GnomeVFSResult
+do_move (GnomeVFSURI *old_uri,
+	 GnomeVFSURI *new_uri,
+	 gboolean force_replace,
+	 GnomeVFSCancellation *cancellation)
+{
+	gchar *old_full_name;
+	gchar *new_full_name;
+
+	MAKE_ABSOLUTE (new_full_name, new_uri->text);
+	MAKE_ABSOLUTE (old_full_name, old_uri->text);
+
+	return rename_helper (old_full_name, new_full_name, force_replace,
+			      cancellation);
+}
+
+static GnomeVFSResult
 do_unlink (GnomeVFSURI *uri,
 	   GnomeVFSCancellation *cancellation)
 {
+	gchar *full_name;
 	gint retval;
 
-	retval = unlink (uri->text);
+	MAKE_ABSOLUTE (full_name, uri->text);
+	retval = unlink (full_name);
 	if (retval == 0)
 		return GNOME_VFS_OK;
 	else
@@ -1017,17 +933,22 @@ do_check_same_fs (GnomeVFSURI *a,
 		  gboolean *same_fs_return,
 		  GnomeVFSCancellation *cancellation)
 {
+	gchar *full_name_a, *full_name_b;
 	struct stat sa, sb;
 	gint retval;
 
-	retval = stat (a->text, &sa);
+	MAKE_ABSOLUTE (full_name_a, a->text);
+	MAKE_ABSOLUTE (full_name_b, b->text);
+
+	retval = stat (full_name_a, &sa);
 	if (retval != 0)
 		return gnome_vfs_result_from_errno ();
 
 	if (gnome_vfs_cancellation_check (cancellation))
 		return GNOME_VFS_ERROR_CANCELLED;
 
-	retval = stat (b->text, &sb);
+	retval = stat (full_name_b, &sb);
+
 	if (retval != 0)
 		return gnome_vfs_result_from_errno ();
 
@@ -1036,7 +957,91 @@ do_check_same_fs (GnomeVFSURI *a,
 	return GNOME_VFS_OK;
 }
 
+static GnomeVFSResult
+do_set_file_info (GnomeVFSURI *uri,
+		  const GnomeVFSFileInfo *info,
+		  GnomeVFSSetFileInfoMask mask,
+		  GnomeVFSCancellation *cancellation)
+{
+	gchar *full_name;
+
+	MAKE_ABSOLUTE (full_name, uri->text);
+
+	if (mask & GNOME_VFS_SET_FILE_INFO_NAME) {
+		GnomeVFSResult result;
+		gchar *dir;
+		gchar *new, *old;
+
+		old = full_name;
+
+		dir = gnome_vfs_uri_extract_dirname (uri);
+		new = g_concat_dir_and_file (dir, info->name);
+
+		result = rename_helper (old, new, FALSE, cancellation);
+
+		g_free (dir);
+		g_free (new);
+
+		if (result != GNOME_VFS_OK)
+			return result;
+	}
+
+	if (gnome_vfs_cancellation_check (cancellation))
+		return GNOME_VFS_ERROR_CANCELLED;
+
+	if (mask & GNOME_VFS_SET_FILE_INFO_PERMISSIONS) {
+		if (chmod (full_name, info->permissions) != 0)
+			return gnome_vfs_result_from_errno ();
+	}
+
+	if (gnome_vfs_cancellation_check (cancellation))
+		return GNOME_VFS_ERROR_CANCELLED;
+
+	if (mask & GNOME_VFS_SET_FILE_INFO_OWNER) {
+		if (chown (full_name, info->uid, info->gid) != 0)
+			return gnome_vfs_result_from_errno ();
+	}
+
+	if (gnome_vfs_cancellation_check (cancellation))
+		return GNOME_VFS_ERROR_CANCELLED;
+
+	if (mask & GNOME_VFS_SET_FILE_INFO_TIME) {
+		struct utimbuf utimbuf;
+
+		utimbuf.actime = info->atime;
+		utimbuf.modtime = info->mtime;
+
+		if (utime (full_name, &utimbuf) != 0)
+			return gnome_vfs_result_from_errno ();
+	}
+
+	return GNOME_VFS_OK;
+}
+
 
+static GnomeVFSMethod method = {
+	do_open,
+	do_create,
+	do_close,
+	do_read,
+	do_write,
+	do_seek,
+	do_tell,
+	do_truncate,
+	do_open_directory,
+	do_close_directory,
+	do_read_directory,
+	do_get_file_info,
+	do_get_file_info_from_handle,
+	do_is_local,
+	do_make_directory,
+	do_remove_directory,
+	do_move,
+	do_unlink,
+	do_check_same_fs,
+	do_set_file_info
+};
+
 GnomeVFSMethod *
 vfs_module_init (void)
 {

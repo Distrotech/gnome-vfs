@@ -990,6 +990,31 @@ gnome_vfs_uri_get_basename (const GnomeVFSURI *uri)
 	return g_strdup (p);
 }
 
+/**
+ * gnome_vfs_uri_extract_dirname:
+ * @uri: A GnomeVFSURI
+ * 
+ * Extract the name of the directory in which the file pointed to by @uri is
+ * stored as a newly allocated string.  The string will end with a
+ * `G_DIR_SEPARATOR'.
+ * 
+ * Return value: A pointer to the newly allocated string representing the
+ * parent directory.
+ **/
+gchar *
+gnome_vfs_uri_extract_dirname (const GnomeVFSURI *uri)
+{
+	const gchar *base;
+
+	g_return_val_if_fail (uri != NULL, NULL);
+
+	base = gnome_vfs_uri_get_basename (uri);
+	if (base == NULL || base == uri->text)
+		return g_strdup (G_DIR_SEPARATOR_S);
+
+	return g_strndup (uri->text, base - uri->text);
+}
+
 
 /* The following functions are useful for creating URI hash tables.  */
 
