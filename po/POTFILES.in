@@ -1,5 +1,5 @@
 libgnomevfs/gnome-vfs-configuration.c
-libgnomevfs/gnome-vfs-directory-list.c
+libgnomevfs/gnome-vfs-file-info.c
 libgnomevfs/gnome-vfs-init.c
 libgnomevfs/gnome-vfs-parse-ls.c
 libgnomevfs/gnome-vfs-result.c
@@ -8,7 +8,6 @@ libgnomevfs-corba/gnome-vfs-slave.c
 libgnomevfs-corba/gnome-vfs-slave-launch.c
 libgnomevfs-corba/gnome-vfs-slave-notify.c
 libgnomevfs-corba/gnome-vfs-slave-process.c
-libgnomevfs-corba/gnome-vfs-async-ops.c
 libgnomevfs-pthread/gnome-vfs-job.c
 modules/file-method.c
 modules/ftp-method.c

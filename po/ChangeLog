@@ -1,3 +1,7 @@
+2000-04-26  Kjartan Maraas  <kmaraas@online.no>
+
+	* POTFILES.in: Added one missing file.
+	
 2000-04-20  Pablo Saratxaga <pablo@mandrakesoft.com>
 
 	* lt.po: Updated Lithuanian file
