@@ -113,7 +113,8 @@ print_list (GnomeVFSDirectoryList *list, guint num_entries)
 
 	info = gnome_vfs_directory_list_current (list);
 	for (i = 0; i < num_entries && info != NULL; i++) {
-		printf ("  File `%s'%s (%s, %s), size %Ld, mode %04o\n",
+		printf ("  File `%s'%s (%s, %s), "
+			"size %"GNOME_VFS_SIZE_FORMAT_STR", mode %04o\n",
 			info->name,
 			(info->flags & GNOME_VFS_FILE_FLAGS_SYMLINK) ? " [link]" : "",
 			type_to_string (info->type),

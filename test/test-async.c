@@ -57,7 +57,9 @@ read_callback (GnomeVFSAsyncHandle *handle,
 	if (result != GNOME_VFS_OK) {
 		printf ("Read failed: %s", gnome_vfs_result_to_string (result));
 	} else {
-		printf ("%Ld/%Ld byte(s) read, callback data `%s'\n",
+		printf ("%"GNOME_VFS_SIZE_FORMAT_STR"/"
+			"%"GNOME_VFS_SIZE_FORMAT_STR" "
+			"byte(s) read, callback data `%s'\n",
 			bytes_read, bytes_requested, (gchar *) callback_data);
 		*((gchar *) buffer + bytes_read) = 0;
 		puts (buffer);

@@ -33,12 +33,14 @@
 #define GNOME_VFS_URI_PATH_CHR '/'
 #define GNOME_VFS_URI_PATH_STR "/"
 
-#ifdef G_HAVE_GINT64
-#define GNOME_VFS_SIZE_FORMAT_STR "Lu"
-#define GNOME_VFS_OFFSET_FORMAT_STR "Ld"
-#else
+/* In case the machine does not have a 64 bit type a long is used,
+ * however sometimes a 64 bit type is a long as well (alpha for example) */
+#if !defined(G_HAVE_GINT64) || G_MAXLONG == 9223372036854775807
 #define GNOME_VFS_SIZE_FORMAT_STR "lu"
 #define GNOME_VFS_OFFSET_FORMAT_STR "ld"
+#else
+#define GNOME_VFS_SIZE_FORMAT_STR "Lu"
+#define GNOME_VFS_OFFSET_FORMAT_STR "Ld"
 #endif
 
 #endif /* _GNOME_VFS_CONSTANTS_H */

@@ -1,3 +1,18 @@
+Fri Jun 16 12:11:32 2000  George Lebl <jirka@5z.com>
+
+	* libgnomevfs/gnome-vfs-constants.h:  When the long is actually
+	  64bit, use "ld" and "lu" for the format.
+
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:  Include <string.h>
+	  to fix warnings
+
+	* modules/gconf-method.c:  Include <string.h> and <alloca.h> to
+	  fix warnings
+
+	* test/test-async-directory.c (print_list):
+	  test/test-async.c (read_callback):  Use the
+	  GNOME_VFS_SIZE_FORMAT_STR format constant to print out sizes
+
 2000-06-16  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-mime-info.c: (gnome_vfs_mime_get_value),

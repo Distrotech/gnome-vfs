@@ -24,6 +24,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#include <string.h>
+
 #include "gnome-vfs-mime-sniff-buffer-private.h"
 #include "gnome-vfs-ops.h"
 
