@@ -43,6 +43,7 @@
 #endif
 
 #include <sys/time.h>
+#include <string.h>
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"

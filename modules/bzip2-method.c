@@ -29,6 +29,7 @@
 #include <stdio.h>
 #include <bzlib.h>
 #include <time.h>
+#include <string.h>
 
 #include "gnome-vfs-module.h"
 #include "gnome-vfs-mime.h"
