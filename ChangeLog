@@ -1,3 +1,21 @@
+2000-07-27  Seth Nickell  <seth@eazel.com>
+
+	* libgnomevfs/gnome-vfs-file-info.h:
+	Added SYMLINK macros.
+	
+	* libgnomevfs/gnome-vfs-types.h:
+	Added GNOME_VFS_FILE_FLAGS_SYMLINK	
+
+	* modules/file-method.c: (get_stat_info):
+	Changed code around to properly stat and lstat, and use flags.
+	
+	* test/gnome-file-selection/gnome-file-selection.c:
+	(populate_callback):
+	* test/test-async-directory.c: (print_list):
+	* test/test-directory-visit.c: (directory_visit_callback):
+	* test/test-directory.c: (print_list):
+	Changed to use flags properly.
+	
 2000-07-26  Gene Z. Ragan  <gzr@eazel.com>
 
 	* data/mime/gnome-vfs-mime-magic:

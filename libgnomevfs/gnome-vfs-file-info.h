@@ -26,6 +26,13 @@
 
 #include "gnome-vfs.h"
 
+#define GNOME_VFS_FILE_INFO_SYMLINK(info)		\
+	((info)->flags & GNOME_VFS_FILE_FLAGS_SYMLINK)
+
+#define GNOME_VFS_FILE_INFO_SET_SYMLINK(info, value)			\
+	(value ? ((info)->flags |= GNOME_VFS_FILE_FLAGS_SYMLINK)	\
+	       : ((info)->flags &= ~GNOME_VFS_FILE_FLAGS_SYMLINK))
+
 #define GNOME_VFS_FILE_INFO_LOCAL(info)			\
 	((info)->flags & GNOME_VFS_FILE_FLAGS_LOCAL)
 

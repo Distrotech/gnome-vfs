@@ -581,28 +581,40 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 	       struct stat *statptr)
 {
 	struct stat statbuf;
+	gboolean followed_symlink;
 
 	if (statptr == NULL) {
 		statptr = &statbuf;
 	}
 
-	if (options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) {
-		if (stat (full_name, statptr) != 0) {
-			/* failed to resolve the link or some other problem */
-			return gnome_vfs_result_from_errno ();
-		}
-	} else if (lstat (full_name, statptr) != 0) {
+	if (lstat (full_name, statptr) != 0) {
 		return gnome_vfs_result_from_errno ();
 	}
 
+	if ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) && S_ISLNK (statptr->st_mode)) {
+		if (stat (full_name, statptr) != 0) {
+			if (errno == ENOENT) {
+				/* its a broken symlink, revert to the lstat */
+				lstat (full_name, statptr);
+				followed_symlink = TRUE;
+			} else {
+				/* go straight to jail, do not pass GO, do not collect $200 */
+				return gnome_vfs_result_from_errno();
+			}
+		} else {
+			followed_symlink = TRUE;
+		}		
+	} else {
+		/* follow links wasn't on, or this wasn't a symlink */
+		followed_symlink = FALSE;
+	}
+
 	gnome_vfs_stat_to_file_info (file_info, statptr);
+	GNOME_VFS_FILE_INFO_SET_SYMLINK (file_info, followed_symlink);
+
 	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, TRUE);
 
 	if (S_ISLNK (statptr->st_mode)) {
-		/* we are dealing with a symlink and the follow flag is off */
-
-		g_assert ((options & GNOME_VFS_FILE_INFO_FOLLOW_LINKS) == 0);
-		
 		file_info->type = GNOME_VFS_FILE_TYPE_SYMBOLIC_LINK;
 		file_info->symlink_name = read_link (full_name);
 		if (file_info->symlink_name == NULL) {

@@ -211,6 +211,8 @@ typedef enum GnomeVFSURIHideOptions GnomeVFSURIHideOptions;
 /* File flags.  */
 enum GnomeVFSFileFlags {
 	GNOME_VFS_FILE_FLAGS_NONE = 0,
+	/* Whether the file is a symlink.  */
+	GNOME_VFS_FILE_FLAGS_SYMLINK = 1 << 0,
 	/* Whether the file is on a local file system.  */
 	GNOME_VFS_FILE_FLAGS_LOCAL = 1 << 1,
 };
