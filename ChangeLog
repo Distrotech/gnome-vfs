@@ -1,3 +1,29 @@
+2000-05-03  Dave Camp  <campd@oit.edu>
+
+	* modules/gconf-method.c (do_open): 
+	(do_create): 
+	(do_close): 
+	(do_open_directory): 
+	(do_close_directory): 
+	(do_read_directory): 
+	(do_get_file_info): Fixed prototypes to match the current gnome-vfs
+	api.
+	(MAKE_ABSOLUTE): Make sure there is no trailing '/', as gconf doesn't
+	like them.
+	(directory_handle_new): Create a mutex for accessing the pairs.
+	(directory_handle_destroy): Free the pair mutex.
+	(set_mime_type_value): Change the mime-types.
+	(set_stat_info_dir): 
+	(set_stat_info_value): Reflect changes in gnome-vfs api.
+	(do_get_file_info): 
+	(do_open_directory): Perform locking for gconf accesses, and reflect
+	gconf api changes.
+	(read_directory): Perform locking when accessing the pairs, and
+	correctly free the gconf pairs.
+	(vfs_module_init): Reflect gconf api changes, and initialize a mutex
+	for locking gconf.
+	(vfs_module_shutdown): Free the gconf mutex.
+
 2000-05-03  Michael Meeks  <michael@helixcode.com>
 
 	* libgnomevfs/gnome-vfs-file-info.c: s/strcasecmp/g_strcasecmp/

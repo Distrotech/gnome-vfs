@@ -34,84 +34,110 @@
 
 #include "file-method.h"
 
-static GnomeVFSResult   do_open         (GnomeVFSMethodHandle **method_handle,
-					 GnomeVFSURI *uri,
-					 GnomeVFSOpenMode mode);
-static GnomeVFSResult   do_create       (GnomeVFSMethodHandle **method_handle,
-                                         GnomeVFSURI *uri,
-                                         GnomeVFSOpenMode mode,
-                                         gboolean exclusive,
-                                         guint perm);
-static GnomeVFSResult   do_close        (GnomeVFSMethodHandle *method_handle);
-static GnomeVFSResult   do_read         (GnomeVFSMethodHandle *method_handle,
-                                         gpointer buffer,
-                                         GnomeVFSFileSize num_bytes,
-                                         GnomeVFSFileSize *bytes_read);
-static GnomeVFSResult   do_write        (GnomeVFSMethodHandle *method_handle,
-                                         gconstpointer buffer,
-                                         GnomeVFSFileSize num_bytes,
-                                         GnomeVFSFileSize *bytes_written);
-static GnomeVFSResult  do_open_directory
-                                        (GnomeVFSMethodHandle **method_handle,
+static GnomeVFSResult do_open           (GnomeVFSMethod *method,
+				         GnomeVFSMethodHandle **method_handle,
+				         GnomeVFSURI *uri,
+				         GnomeVFSOpenMode mode,
+				         GnomeVFSContext *context);
+static GnomeVFSResult do_create         (GnomeVFSMethod *method,
+				         GnomeVFSMethodHandle **method_handle,
+				         GnomeVFSURI *uri,
+				         GnomeVFSOpenMode mode,
+				         gboolean exclusive,
+				         guint perm,
+				         GnomeVFSContext *context);
+static GnomeVFSResult do_close          (GnomeVFSMethod *method,
+				         GnomeVFSMethodHandle *method_handle,
+				         GnomeVFSContext *context);
+static GnomeVFSResult do_read           (GnomeVFSMethodHandle *method_handle,
+				         gpointer buffer,
+				         GnomeVFSFileSize num_bytes,
+				         GnomeVFSFileSize *bytes_read);
+static GnomeVFSResult do_write          (GnomeVFSMethodHandle *method_handle,
+				         gconstpointer buffer,
+				         GnomeVFSFileSize num_bytes,
+				         GnomeVFSFileSize *bytes_written);
+static GnomeVFSResult do_open_directory (GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle **method_handle,
 					 GnomeVFSURI *uri,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys,
-					 const GnomeVFSDirectoryFilter *filter);
-static GnomeVFSResult  do_close_directory
-                                        (GnomeVFSMethodHandle *method_handle);
-static GnomeVFSResult  do_read_directory 
+					 const GnomeVFSDirectoryFilter *filter,
+					 GnomeVFSContext *context);
+static GnomeVFSResult do_close_directory(GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSContext *context);
+static GnomeVFSResult do_read_directory (GnomeVFSMethod *method,
+					 GnomeVFSMethodHandle *method_handle,
+					 GnomeVFSFileInfo *file_info,
+					 GnomeVFSContext *context);
+static GnomeVFSResult do_get_file_info  (GnomeVFSMethod *method,
+					 GnomeVFSURI *uri,
+					 GnomeVFSFileInfo *file_info,
+					 GnomeVFSFileInfoOptions options,
+					 const GList *meta_keys,
+					 GnomeVFSContext *context);
+static GnomeVFSResult do_get_file_info_from_handle
                                         (GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileInfo *file_info);
-static GnomeVFSResult  do_get_file_info
-                                        (GnomeVFSURI *uri,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys);
-static GnomeVFSResult  do_get_file_info_from_handle
-                                        (GnomeVFSMethodHandle *method_handle,
-					 GnomeVFSFileInfo *file_info,
-					 GnomeVFSFileInfoOptions options,
-					 const GList *meta_keys);
-static gboolean        do_is_local      (const GnomeVFSURI *uri);
-
+static gboolean       do_is_local       (GnomeVFSMethod *method,
+					 const GnomeVFSURI *uri);
 
 static GnomeVFSMethod method = {
         do_open,
-        do_create,
+        NULL, /* do_create */
         do_close,
-        do_read,
-        do_write,
-        NULL,
-        NULL,
-        NULL,
+        NULL, /* do_read */
+        NULL, /* do_write */
+        NULL, /* seek */
+        NULL, /* tell */
+        NULL, /* truncate */
         do_open_directory,
-        do_close_directory,
+	do_close_directory,
         do_read_directory,
         do_get_file_info,
-	do_get_file_info_from_handle, /* FIXME */
+	NULL, /* do_get_file_info_from_handle */
         do_is_local,
-        NULL,
-	NULL,
-        NULL,
-	NULL,
-	NULL, /* truncate */
-	NULL /* find_directory */
+        NULL, /* rename */
+	NULL, /* make directory */
+        NULL, /* remove directory */
+	NULL /* unlink */
 };
 
 static GConfClient *client = NULL;
 
+#ifdef G_THREADS_ENABLED 
+static GMutex *client_mutex;
+#endif
+
+
 /* This is to make sure the path starts with `/', so that at least we
-   get a predictable behavior when the leading `/' is not present.  */
+ * get a predictable behavior when the leading `/' is not present.  
+ * Also make sure there is no trailing '/', as gconf doesn't like trailing 
+ * slashes.
+ */
 #define MAKE_ABSOLUTE(dest, src)                        \
 G_STMT_START{                                           \
         if ((src)[0] != '/') {                          \
                 (dest) = alloca (strlen (src) + 2);     \
                 (dest)[0] = '/';                        \
                 strcpy ((dest), (src));                 \
-        } else {                                        \
+	} else {                                        \
                 (dest) = (src);                         \
         }                                               \
+       if (strlen(dest) > 1 && dest[strlen(dest) - 1] == '/') \
+                dest[strlen(dest) - 1] = '\0'; \
 }G_STMT_END
+
+#ifdef G_THREADS_ENABLED
+#define MUTEX_LOCK(a)   if ((a) != NULL) g_mutex_lock (a)
+#define MUTEX_UNLOCK(a) if ((a) != NULL) g_mutex_unlock (a)
+#else
+#define MUTEX_LOCK(a)
+#define MUTEX_UNLOCK(a)
+#endif
 
 typedef struct {
         GnomeVFSURI *uri;
@@ -121,6 +147,8 @@ typedef struct {
 
         GSList *subdirs;
         GSList *pairs;
+	
+	GMutex *mutex;
 } DirectoryHandle;
 
 static DirectoryHandle *
@@ -141,6 +169,10 @@ directory_handle_new (GnomeVFSURI *uri,
         retval->filter = filter;
         retval->pairs = pairs;
         retval->subdirs = subdirs;
+#ifdef G_THREADS_ENABLED
+        if (g_thread_supported ())
+		retval->mutex = g_mutex_new ();
+#endif
 
         return retval;
 }
@@ -150,6 +182,12 @@ directory_handle_destroy (DirectoryHandle *handle)
 {
         /* FIXME: Free unused pairs */
         gnome_vfs_uri_unref (handle->uri);
+
+#ifdef G_THREADS_ENABLED
+        if (g_thread_supported ()) {
+		g_mutex_free (handle->mutex);
+	}
+#endif
         g_free (handle);
 }
 
@@ -162,28 +200,28 @@ set_mime_type_value (GnomeVFSFileInfo *info,
         
         switch (value->type) {
         case GCONF_VALUE_INVALID :
-                mime_type = "X-GConf/invalid";
+                mime_type = "application/x-gconf-invalid";
                 break;
         case GCONF_VALUE_STRING :
-                mime_type = "X-GConf/string";
+                mime_type = "application/x-gconf-string";
                 break;
         case GCONF_VALUE_INT :
-                mime_type = "X-GConf/int";
+                mime_type = "application/x-gconf-int";
                 break;
         case GCONF_VALUE_FLOAT :
-                mime_type = "X-GConf/float";
+                mime_type = "application/x-gconf-float";
                 break;
         case GCONF_VALUE_BOOL :
-                mime_type = "X-GConf/bool";
+                mime_type = "application/x-gconf-bool";
                 break;
         case GCONF_VALUE_SCHEMA :
-                mime_type = "X-GConf/schema";
+                mime_type = "application/x-gconf-schema";
                 break;
         case GCONF_VALUE_LIST :
-                mime_type = "X-GConf/list";
+                mime_type = "application/x-gconf-list";
                 break;
         case GCONF_VALUE_PAIR :
-                mime_type = "X-GConf/pair";
+                mime_type = "application/x-gconf-pair";
                 break;
         default :
                 mime_type = "unknown/unknown";
@@ -298,28 +336,28 @@ set_stat_info_value (GnomeVFSFileInfo *info,
                      GnomeVFSFileInfoOptions options)
 {
 	GnomeVFSResult result;
-        info->is_symlink = FALSE;
-        info->type = GNOME_VFS_FILE_TYPE_UNKNOWN;
-        info->permissions = 0;
-        info->device = 0;
-        info->inode = 0;
-        info->link_count = 0;
-        info->uid = 0;
-        info->gid = 0;
-        
+	info->valid_fields = 0;
+	info->type = GNOME_VFS_FILE_TYPE_REGULAR;
+	info->permissions = 0444;
+	info->atime = 0;
+	info->mtime = 0;
+	info->metadata_list = NULL;
+
 	result = get_value_size (value, &info->size);
 	if (result != GNOME_VFS_OK) 
 		return result;
 
-        info->block_count = 0;
-        info->io_block_size = 0;
-        info->atime = 0;
-        info->ctime = 0;
-        info->mtime = 0;
-        info->is_local = TRUE;
-        info->is_suid = FALSE;
-        info->is_sgid = FALSE;
-        info->has_sticky_bit = FALSE;
+        GNOME_VFS_FILE_INFO_SET_LOCAL (info, TRUE);
+        GNOME_VFS_FILE_INFO_SET_SUID (info, FALSE);
+        GNOME_VFS_FILE_INFO_SET_SGID (info, FALSE);
+        GNOME_VFS_FILE_INFO_SET_STICKY (info, FALSE);
+        info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE | 
+                GNOME_VFS_FILE_INFO_FIELDS_FLAGS |
+                GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS |
+                GNOME_VFS_FILE_INFO_FIELDS_SIZE |
+                GNOME_VFS_FILE_INFO_FIELDS_ATIME |
+                GNOME_VFS_FILE_INFO_FIELDS_MTIME |
+                GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
 	return GNOME_VFS_OK;
 }
@@ -328,48 +366,55 @@ static GnomeVFSResult
 set_stat_info_dir (GnomeVFSFileInfo *info,
                    GnomeVFSFileInfoOptions options)
 {
-        info->is_symlink = FALSE;
-        info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-        info->permissions = 0;
-        info->device = 0;
-        info->inode = 0;
-        info->link_count = 0;
-        info->uid = 0;
-        info->gid = 0;
-        info->size = 0;
-        info->block_count = 0;
-        info->io_block_size = 0;
-        info->atime = 0;
-        info->ctime = 0;
-        info->mtime = 0;
-        info->is_local = TRUE;
-        info->is_suid = FALSE;
-        info->is_sgid = FALSE;
-        info->has_sticky_bit = FALSE;
+	info->valid_fields = 0;
+	info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
+	info->permissions = 0444;
+	info->atime = 0;
+	info->mtime = 0;
+	info->metadata_list = NULL;
+	info->size = 0;
+
+        GNOME_VFS_FILE_INFO_SET_LOCAL (info, TRUE);
+        GNOME_VFS_FILE_INFO_SET_SUID (info, FALSE);
+        GNOME_VFS_FILE_INFO_SET_SGID (info, FALSE);
+        GNOME_VFS_FILE_INFO_SET_STICKY (info, FALSE);
+        info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE | 
+                GNOME_VFS_FILE_INFO_FIELDS_FLAGS |
+                GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS |
+                GNOME_VFS_FILE_INFO_FIELDS_SIZE |
+                GNOME_VFS_FILE_INFO_FIELDS_ATIME |
+                GNOME_VFS_FILE_INFO_FIELDS_MTIME |
+                GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 
 	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
-do_open (GnomeVFSMethodHandle **method_handle,
+do_open (GnomeVFSMethod *method,
+	 GnomeVFSMethodHandle **method_handle,
 	 GnomeVFSURI *uri,
-	 GnomeVFSOpenMode mode)
+	 GnomeVFSOpenMode mode,
+	 GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_WRONGFORMAT;
 }
 
 static GnomeVFSResult   
-do_create (GnomeVFSMethodHandle **method_handle,
+do_create (GnomeVFSMethod *method,
+	   GnomeVFSMethodHandle **method_handle,
 	   GnomeVFSURI *uri,
 	   GnomeVFSOpenMode mode,
 	   gboolean exclusive,
-	   guint perm)
+	   guint perm,
+	   GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_WRONGFORMAT;
 }
 
 static GnomeVFSResult   
-do_close (GnomeVFSMethodHandle *method_handle)
+do_close (GnomeVFSMethod *method,
+	  GnomeVFSMethodHandle *method_handle,
+	  GnomeVFSContext *context)
 {
 	return GNOME_VFS_ERROR_WRONGFORMAT;
 }
@@ -393,20 +438,24 @@ do_write (GnomeVFSMethodHandle *method_handle,
 }
 
 static GnomeVFSResult 
-do_open_directory (GnomeVFSMethodHandle **method_handle,
+do_open_directory (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle **method_handle,
                    GnomeVFSURI *uri,
                    GnomeVFSFileInfoOptions options,
                    const GList *meta_keys,
-                   const GnomeVFSDirectoryFilter *filter)
+                   const GnomeVFSDirectoryFilter *filter,
+		   GnomeVFSContext *context)
 {
         GSList *pairs;
         GSList *subdirs;
         gchar *dirname;
 
         MAKE_ABSOLUTE (dirname, uri->text);
-        
-        subdirs = gconf_client_all_dirs (client, dirname);
-        pairs = gconf_client_all_entries (client, dirname);
+
+	MUTEX_LOCK (client_mutex);
+        subdirs = gconf_client_all_dirs (client, dirname, NULL);
+        pairs = gconf_client_all_entries (client, dirname, NULL);
+	MUTEX_UNLOCK (client_mutex);
         
         *method_handle = 
 		(GnomeVFSMethodHandle*)directory_handle_new (uri,
@@ -419,7 +468,9 @@ do_open_directory (GnomeVFSMethodHandle **method_handle,
 }
 
 static GnomeVFSResult 
-do_close_directory (GnomeVFSMethodHandle *method_handle)
+do_close_directory (GnomeVFSMethod *method,
+		    GnomeVFSMethodHandle *method_handle,
+		    GnomeVFSContext *context)
 {
         directory_handle_destroy ((DirectoryHandle *)method_handle);
         return GNOME_VFS_OK;
@@ -474,7 +525,7 @@ read_directory (DirectoryHandle *handle,
 	const GnomeVFSDirectoryFilter *filter;
 	GnomeVFSDirectoryFilterNeeds filter_needs;
 	gboolean filter_called;
-	
+
 	filter_called = FALSE;
         filter = handle->filter;
 
@@ -483,26 +534,30 @@ read_directory (DirectoryHandle *handle,
 	} else {
 		filter_needs = GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING;
 	}
+	
 
+	MUTEX_LOCK (handle->mutex);
 	/* Get the next key info */
         if (handle->subdirs != NULL) {
                 gchar *dirname = handle->subdirs->data;
                 result = file_info_dir (file_info, handle->options, dirname);
-                g_free (handle->subdirs->data);
+                g_free (dirname);
                 tmp = g_slist_next (handle->subdirs);
-                g_slist_free_1 (handle->subdirs);
+		g_slist_free_1 (handle->subdirs);
                 handle->subdirs = tmp;
         } else if (handle->pairs != NULL) {
-                GConfEntry *pair = handle->pairs->data;
+		GConfEntry *pair = handle->pairs->data;
                 result = file_info_value (file_info, handle->options,
                                           pair->value, pair->key);
-                g_free (handle->pairs->data);
+                gconf_entry_destroy (handle->pairs->data);
                 tmp = g_slist_next (handle->subdirs);
-                g_slist_free_1 (handle->pairs);
+                
+		g_slist_free_1 (handle->pairs);
                 handle->pairs = tmp;
         } else {
 		result = GNOME_VFS_ERROR_EOF;
 	}
+	MUTEX_UNLOCK (handle->mutex);
 	
 	if (result != GNOME_VFS_OK) {
 		return result;
@@ -528,8 +583,10 @@ read_directory (DirectoryHandle *handle,
 }
 
 static GnomeVFSResult 
-do_read_directory (GnomeVFSMethodHandle *method_handle,
-                   GnomeVFSFileInfo *file_info)
+do_read_directory (GnomeVFSMethod *method,
+		   GnomeVFSMethodHandle *method_handle,
+                   GnomeVFSFileInfo *file_info,
+		   GnomeVFSContext *context)
 {
 	GnomeVFSResult result;
 	gboolean skip;
@@ -544,25 +601,36 @@ do_read_directory (GnomeVFSMethodHandle *method_handle,
 			break;
 		if (skip)
 			gnome_vfs_file_info_clear (file_info);
+
 		
 	} while (skip);
-	
+
 	return result;	    
 }
 
 GnomeVFSResult
-do_get_file_info (GnomeVFSURI *uri,
+do_get_file_info (GnomeVFSMethod *method,
+		  GnomeVFSURI *uri,
                   GnomeVFSFileInfo *file_info,
                   GnomeVFSFileInfoOptions options,
-                  const GList *meta_keys)
+                  const GList *meta_keys,
+		  GnomeVFSContext *context)
 {
         GConfValue *value;
         gchar *key;
         
         MAKE_ABSOLUTE (key, uri->text);
         
-        value = gconf_client_get (client, key);
-        return file_info_value (file_info, options, value, key);
+	MUTEX_LOCK (client_mutex);
+	if (gconf_client_dir_exists (client, key, NULL)) {
+		MUTEX_UNLOCK (client_mutex);
+		return file_info_dir (file_info, options, key);
+	}
+
+        value = gconf_client_get (client, key, NULL);
+	
+	MUTEX_UNLOCK (client_mutex);
+	return file_info_value (file_info, options, value, key);
 }
 
 static GnomeVFSResult  
@@ -576,32 +644,39 @@ do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 
 
 gboolean 
-do_is_local (const GnomeVFSURI *uri)
+do_is_local (GnomeVFSMethod *method, const GnomeVFSURI *uri)
 {
         return TRUE;
 }
 
 GnomeVFSMethod *
-vfs_module_init (void)
+vfs_module_init (const char *method_name, const char *args)
 {
         char *argv[] = {"dummy"};
         int argc = 1;
 	
 	if (!gconf_is_initialized ()) {
 		/* auto-initializes OAF if necessary */
-		gconf_init (argc, argv);
+		gconf_init (argc, argv, NULL);
 	}
 
 	/* These just return and do nothing if GTK
 	   is already initialized. */
 	gtk_type_init();
 	gtk_signal_init();
-	
+
 	client = gconf_client_new();
 
 	gtk_object_ref(GTK_OBJECT(client));
 	gtk_object_sink(GTK_OBJECT(client));
 	
+#ifdef G_THREADS_ENABLED
+        if (g_thread_supported ())
+                client_mutex = g_mutex_new ();
+        else
+                client_mutex = NULL;
+#endif
+
         return &method;
 }
 
@@ -610,5 +685,10 @@ vfs_module_shutdown (GnomeVFSMethod *method)
 {
 	gtk_object_destroy(GTK_OBJECT(client));
 	gtk_object_unref(GTK_OBJECT(client));
+
+#ifdef G_THREADS_ENABLED
+	if (g_thread_supported ()) 
+		g_mutex_free (client_mutex);
+#endif
 	client = NULL;
 }
