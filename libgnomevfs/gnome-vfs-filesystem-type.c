@@ -42,6 +42,7 @@ static struct FSInfo fs_data[] = {
 	{ "cdrom"    , N_("CD-ROM Drive"), 0 },
 	{ "devfs"    , N_("Hardware Device Volume"), 0 },
 	{ "ext2"     , N_("Ext2 Linux Volume"), 1 },
+	{ "ext2fs"   , N_("Ext2 Linux Volume"), 1 },
 	{ "ext3"     , N_("Ext3 Linux Volume"), 1 },
 	{ "fat"      , N_("MSDOS Volume"), 1 },
 	{ "hfs"	     , N_("MacOS Volume"), 1 },
