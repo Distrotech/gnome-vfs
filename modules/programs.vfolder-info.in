@@ -39,24 +39,13 @@
       </Query>
     </Folder>
 
-    <!-- Development -->
+    <!-- Development Tools -->
     <Folder>
-      <Name>Development</Name>
+      <Name>Development Tools</Name>
       <Query>
         <And>
           <Keyword>Application</Keyword>
 	  <Keyword>Development</Keyword>
-        </And>
-      </Query>
-    </Folder>
-
-    <!-- Editors -->
-    <Folder>
-      <Name>Editors</Name>
-      <Query>
-        <And>
-          <Keyword>Application</Keyword>
-	  <Keyword>TextEditor</Keyword>
         </And>
       </Query>
     </Folder>
@@ -83,7 +72,7 @@
       </Query>
     </Folder>
 
-    <!-- Graphics -->
+    <!-- Internet -->
     <Folder>
       <Name>Internet</Name>
       <Query>
@@ -102,6 +91,23 @@
           <Keyword>Application</Keyword>
 	  <Keyword>AudioVideo</Keyword>
         </And>
+      </Query>
+    </Folder>
+
+    <!-- Office -->
+    <Folder>
+      <Name>Office</Name>
+      <Query>
+	<And>
+	  <Keyword>Application</Keyword>
+	  <Or>
+	    <Keyword>Office</Keyword>
+	    <Keyword>Spreadsheet</Keyword>
+	    <Keyword>WordProcessor</Keyword>
+	    <Keyword>Calendar</Keyword>
+	    <Keyword>ProjectManagement</Keyword>
+	  </Or>
+	</And>
       </Query>
     </Folder>
 
@@ -127,9 +133,9 @@
       </Query>
     </Folder>
 
-    <!-- Utility -->
+    <!-- Utilities -->
     <Folder>
-      <Name>Utility</Name>
+      <Name>Utilities</Name>
       <Query>
         <And>
           <Keyword>Application</Keyword>
