@@ -11,9 +11,19 @@
   <Folder>
     <Name>Root</Name>
 
+    <Query>
+      <Desktop>Settings.directory</Desktop>
+      <And>
+        <Keyword>Settings</Keyword>
+        <Not>
+          <Keyword>AdvancedSettings</Keyword>
+          <Keyword>System</Keyword>
+        </Not>
+      </And>
+    </Query>
+
     <!-- Other folders -->
 
-    <!-- Applications -->
     <Folder>
       <Name>Advanced</Name>
       <Desktop>Advanced.directory</Desktop>
@@ -35,16 +45,6 @@
       </Query>
       <DontShowIfEmpty/>
     </Folder>
-
-    <Query>
-      <And>
-        <Keyword>Settings</Keyword>
-        <Not>
-          <Keyword>AdvancedSettings</Keyword>
-          <Keyword>System</Keyword>
-        </Not>
-      </And>
-    </Query>
 
   </Folder>
 </VFolderInfo>

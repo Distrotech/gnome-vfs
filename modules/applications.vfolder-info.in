@@ -2,7 +2,11 @@
   <!-- Merge dirs optional -->
   <MergeDir>/etc/X11/applnk/</MergeDir>
   <MergeDir>@datadir@/gnome/apps/</MergeDir>
+
+  <!-- Control Center Merge Directories -->
   <MergeDir>@datadir@/control-center-2/capplets</MergeDir>
+  <MergeDir>@datadir@/control-center-2/capplets/Advanced</MergeDir>
+  <MergeDir>@datadir@/control-center-2/capplets/System</MergeDir>
 
   <DesktopDir>@datadir@/gnome/vfolders</DesktopDir>
 
@@ -115,14 +119,40 @@
 
     <!-- Settings -->
     <Folder>
-      <Name>Preferences</Name>
-      <Desktop>Settings.directory</Desktop>
+      <Name>Root</Name>
+      
       <Query>
-        <And>
-          <Keyword>Application</Keyword>
+	<Desktop>Settings.directory</Desktop>
+	<And>
 	  <Keyword>Settings</Keyword>
-        </And>
+	  <Not>
+	    <Keyword>AdvancedSettings</Keyword>
+	    <Keyword>System</Keyword>
+	  </Not>
+	</And>
       </Query>
+      
+      <Folder>
+	<Name>Advanced</Name>
+	<Desktop>Advanced.directory</Desktop>
+	<Query>
+	  <And>
+	    <Keyword>Settings</Keyword>
+	    <Keyword>AdvancedSettings</Keyword>
+	  </And>
+	</Query>
+      </Folder>
+      <Folder>
+	<Name>System</Name>
+	<Desktop>System.directory</Desktop>
+	<Query>
+	  <And>
+	    <Keyword>System</Keyword>
+	    <Keyword>Settings</Keyword>
+	  </And>
+	</Query>
+	<DontShowIfEmpty/>
+      </Folder>
     </Folder>
 
     <!-- System -->
@@ -130,14 +160,14 @@
       <Name>System</Name>
       <Desktop>System.directory</Desktop>
       <Query>
-        <And>
-          <Keyword>Application</Keyword>
+	<And>
+	  <Keyword>Application</Keyword>
 	  <Keyword>System</Keyword>
-        </And>
+	</And>
       </Query>
       <DontShowIfEmpty/>
     </Folder>
-
+    
     <!-- Utilities -->
     <Folder>
       <Name>Utilities</Name>

@@ -1,5 +1,12 @@
 2002-01-27  Seth Nickell  <snickell@stanford.edu>
 
+	* modules/applications.vfolder-info.in:
+	* modules/preferences.vfolder-info.in:
+
+	And Systems folder for XST.
+
+2002-01-27  Seth Nickell  <snickell@stanford.edu>
+
 	* modules/preferences.vfolder-info.in:
 
 	Add Advanced folder.
