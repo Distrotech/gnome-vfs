@@ -1072,6 +1072,7 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		if (io_status == G_IO_STATUS_NORMAL) {
 			buffer[len] = 0;
 			if (g_str_has_suffix (buffer, "password: ") ||
+			    g_str_has_suffix (buffer, "Password: ") ||
 			    g_str_has_prefix (buffer, "Enter passphrase for key")) {
 				if (invoke_full_auth (uri, done_auth, buffer, &password) && password != NULL) {
 					g_io_channel_write_chars (tty_channel, password, -1, &len, NULL);

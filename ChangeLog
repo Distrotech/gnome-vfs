@@ -1,3 +1,8 @@
+2004-04-15  Alexander Larsson  <alexl@redhat.com>
+
+        * modules/sftp-method.c (sftp_connect):
+        Handle ssh servers that ask "Password:" instead of "password:".
+
 2004-04-08  Guntupalli Karunakar  <karunakar@freedomink.org>
 
         * configure.in: Added "gu" (Gujarati) to ALL_LINGUAS.
