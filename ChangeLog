@@ -1,3 +1,8 @@
+2005-01-31  Alexander Larsson  <alexl@redhat.com>
+
+	* modules/dns-sd-method.c:
+	Browse for the new sftp-ssh service.
+
 2005-01-31  Christian Kellner  <gicmo@gnome.org>
 
 	* acinclude.m4: Correct neon version to 0.24.7 because this will
