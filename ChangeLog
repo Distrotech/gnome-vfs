@@ -1,3 +1,41 @@
+2002-01-20  Seth Nickell  <snickell@stanford.edu>
+
+	* modules/Makefile.am:
+	* modules/default-modules.conf:
+	* modules/nntp-method.c: (nntp_response_to_vfs_result),
+	(read_response_line), (get_response), (do_control_write),
+	(nntp_connection_reset_buffer), (do_basic_command),
+	(nntp_connection_create), (nntp_connection_destroy), (my_str_hash),
+	(my_str_equal), (nntp_connection_uri_hash),
+	(nntp_connection_uri_equal), (nntp_connection_acquire),
+	(nntp_connection_release), (is_number_or_space),
+	(all_numbers_or_spaces), (remove_numbers_between_dashes),
+	(remove_number_at_end), (trim_nonalpha_chars),
+	(remove_of_expressions), (filter_folder_name), (remove_commas),
+	(is_number), (parse_date_string), (parse_header),
+	(nntp_fragment_new), (nntp_fragment_destroy), (map_slashes),
+	(nntp_file_new), (nntp_file_destroy), (nntp_file_look_up_fragment),
+	(nntp_file_get_total_size), (nntp_file_add_part), (look_up_file),
+	(start_loading_article), (uu_decode_text), (base_64_map),
+	(base_64_decode_text), (line_in_decode_range), (load_from_article),
+	(load_file_fragment), (bytes_in_buffer), (copy_bytes_from_buffer),
+	(nntp_file_read), (free_nntp_file_list),
+	(get_files_from_newsgroup), (strip_slashes),
+	(extract_newsgroup_and_filename), (nntp_file_from_uri),
+	(has_all_fragments), (add_file_fragment), (remove_partial_files),
+	(update_file_sizes), (add_file_to_folder), (remove_file_from_list),
+	(remove_contained_files), (calculate_folder_mod_date),
+	(generate_folder_from_element), (generate_folders),
+	(destroy_element), (destroy_folder_hash), (assemble_folders),
+	(assemble_files_from_overview), (do_is_local),
+	(prepare_to_read_file), (do_open), (do_close), (do_read),
+	(do_get_file_info), (do_get_file_info_from_handle),
+	(do_open_directory), (do_close_directory), (do_read_directory),
+	(do_check_same_fs), (vfs_module_init), (vfs_module_shutdown):
+	* modules/nntp-method.h:
+
+	Port of Andy's NNTP module from GnomeVFS1.
+	
 2002-01-19  Hasbullah Bin Pit <sebol@ikhlas.com>
 
 	* configure.in: Added ms (Malay) at ALL_LINGUAS.

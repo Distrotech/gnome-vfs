@@ -40,6 +40,7 @@ modules_LTLIBRARIES =				\
 	libvfolder-desktop.la			\
 	libextfs.la				\
 	libfile.la				\
+	libnntp.la				\
 	libvfs-test.la				\
 	$(HTTP_LTLIBS)				\
 	libbzip2.la				\
@@ -83,6 +84,11 @@ libextfs_la_LDFLAGS = $(module_flags)
 libfile_la_SOURCES = file-method.c
 libfile_la_LDFLAGS = $(module_flags)
 libfile_la_LIBADD = $(FAM_LIBS) $(MODULES_FILE_LIBS)
+
+###  `nntp' method
+
+libnntp_la_SOURCES = nntp-method.c
+libnntp_la_LDFLAGS = $(module_flags)
 
 ###  `desktop' method
 
