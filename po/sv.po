@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
-"POT-Creation-Date: 2000-02-21 16:53-0500\n"
+"POT-Creation-Date: 2000-02-23 19:29+0100\n"
 "PO-Revision-Date: 1999-12-28 15:28+0100\n"
 "Last-Translator: Martin Norbäck <d95mback@dtek.chalmers.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -16,31 +16,30 @@ msgstr ""
 #: libgnomevfs/gnome-vfs-configuration.c:187
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr ""
+msgstr "%s:%d innehåller inga tecken."
 
 #: libgnomevfs/gnome-vfs-configuration.c:204
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr ""
+msgstr "%s:%d innehåller inget metodnamn"
 
 #: libgnomevfs/gnome-vfs-configuration.c:233
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr ""
+msgstr "%s:%d innehåller inget modulnamn"
 
 #: libgnomevfs/gnome-vfs-configuration.c:285
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
-msgstr ""
+msgstr "Konfigurationsfilen`%s' hittades inte: %s"
 
 #: libgnomevfs/gnome-vfs-init.c:55
 msgid "GNOME VFS already initialized."
 msgstr "GNOME VFS har redan initaliserats."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:652
-#, fuzzy, c-format
 msgid "Could not parse: %s"
-msgstr "Kan inte skriva: %s"
+msgstr ""
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:654
 msgid "More parsing errors will be ignored."
@@ -242,27 +241,27 @@ msgstr "Okänt fel"
 
 #: libgnomevfs/gnome-vfs-utils.c:40
 msgid "1 byte"
-msgstr ""
+msgstr "1 byte"
 
 #: libgnomevfs/gnome-vfs-utils.c:42
 #, c-format
 msgid "%u bytes"
-msgstr ""
+msgstr "%u bytes"
 
 #: libgnomevfs/gnome-vfs-utils.c:49
 #, c-format
 msgid "%.1fK"
-msgstr ""
+msgstr "%.1fK"
 
 #: libgnomevfs/gnome-vfs-utils.c:53
 #, c-format
 msgid "%.1fM"
-msgstr ""
+msgstr "%.1fM"
 
 #: libgnomevfs/gnome-vfs-utils.c:57
 #, c-format
 msgid "%.1fG"
-msgstr ""
+msgstr "%.1fG"
 
 #: libgnomevfs-corba/gnome-vfs-slave.c:336
 msgid "Dying."
@@ -350,12 +349,11 @@ msgstr "Kan inte extrahera IOR."
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:174
 #, c-format
 msgid "Got weird string from the slave process: `%s'"
-msgstr ""
+msgstr "Fick en konstig sträng från slavprocessen: `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
-#, fuzzy, c-format
 msgid "Cannot get object for `%s'"
-msgstr "Kan inte ta emot uppkopplingar på '%s': %s"
+msgstr "Kan inte få objektet för `%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:126
 #, c-format
@@ -363,9 +361,8 @@ msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
 msgstr ""
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:204
-#, fuzzy, c-format
 msgid "Cannot connect socket `%s': %s"
-msgstr "Kan inte skapa socket: %s"
+msgstr "Kan ansluta socket: `%s': %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:783
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
@@ -418,26 +415,25 @@ msgstr ""
 
 #: modules/ftp-method.c:353
 msgid "ftpfs: Invalid host name."
-msgstr ""
+msgstr "ftpfs: Ogiltigt värdnamn."
 
 #: modules/ftp-method.c:376
 msgid "ftpfs: Invalid host address."
-msgstr ""
+msgstr "ftpfs: Ogiltig värdadress."
 
 #: modules/ftp-method.c:396
 #, c-format
 msgid "ftpfs: making connection to %s"
-msgstr ""
+msgstr "ftpfs: ansluter till %s"
 
 #: modules/ftp-method.c:402
-#, fuzzy
 msgid "ftpfs: connection interrupted by user"
-msgstr "Operationen avbruten"
+msgstr "ftpfs: anslutning avbryten av användare"
 
 #: modules/ftp-method.c:404
 #, c-format
 msgid "ftpfs: connection to server failed: %s"
-msgstr ""
+msgstr "ftpfs: anslutning till server misslyckades: %s"
 
 #: modules/ftp-method.c:480
 #, c-format
@@ -446,28 +442,28 @@ msgstr ""
 
 #: modules/ftp-method.c:751
 msgid " FTP: Password required for "
-msgstr ""
+msgstr " FTP: Lösenord krävs för "
 
 #: modules/ftp-method.c:790
 msgid "ftpfs: sending login name"
-msgstr ""
+msgstr "ftpfs: skickar loginnamn"
 
 #: modules/ftp-method.c:796
 msgid "ftpfs: sending user password"
-msgstr ""
+msgstr "ftpfs: skickar användarlösenord"
 
 #: modules/ftp-method.c:802
 msgid "ftpfs: logged in"
-msgstr ""
+msgstr "ftpfs: inloggad"
 
 #: modules/ftp-method.c:814
 #, c-format
 msgid "ftpfs: Login incorrect for user %s "
-msgstr ""
+msgstr "ftpfs: Login ogiltig för användaren %s "
 
 #: modules/ftp-method.c:827
 msgid "ftpfs: aborting transfer."
-msgstr ""
+msgstr "ftpfs: avbryter överföring."
 
 #: modules/ftp-method.c:829
 #, c-format
@@ -485,7 +481,7 @@ msgstr ""
 #: modules/ftp-method.c:1088
 #, c-format
 msgid "ftpfs: storing file %d (%d)"
-msgstr ""
+msgstr "ftpfs: sparar filen %d (%d)"
 
 #: modules/ftp-method.c:1305 modules/ftp-method.c:1507
 msgid "ftpfs: CWD failed."
@@ -507,11 +503,11 @@ msgstr ""
 #: modules/ftp-method.c:1502
 #, c-format
 msgid "ftpfs: Reading FTP directory %s..."
-msgstr ""
+msgstr "ftpfs: Läser FTP katalogen %s..."
 
 #: modules/ftp-method.c:1568
 msgid "ftpfs: reading FTP directory interrupt by user"
-msgstr ""
+msgstr "ftpfs: läsning av FTP katalogen avbruten av användare"
 
 #: modules/ftp-method.c:1592
 msgid "ftpfs: got listing"
@@ -523,7 +519,7 @@ msgstr ""
 
 #: modules/ftp-method.c:2037
 msgid "Starting linear transfer..."
-msgstr ""
+msgstr "Startar linjär överföring"
 
 #: modules/ftp-method.c:2107
 msgid "Preparing reget..."
@@ -537,19 +533,19 @@ msgstr "Ogiltiga parametrar"
 #: modules/http-method.c:488
 #, c-format
 msgid "%s to retrieve"
-msgstr ""
+msgstr "%s att motta"
 
 #: modules/http-method.c:601
 #, c-format
 msgid "Closing connection to %s"
-msgstr ""
+msgstr "Stänger anslutning till %s"
 
 #: modules/http-method.c:686
 #, c-format
 msgid "%s of %s read"
-msgstr ""
+msgstr "%s av %s läst"
 
 #: modules/http-method.c:689
 #, c-format
 msgid "%s read"
-msgstr ""
+msgstr "%s läst"
