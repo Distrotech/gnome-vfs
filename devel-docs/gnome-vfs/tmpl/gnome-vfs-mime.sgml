@@ -51,58 +51,11 @@ MIME type of a given file (This database in usually kept in a
 pre-processed, easily readable format in
 <filename>$gnome_prefix/etc/mime-magic.dat</filename>).
 </para>
-    
+
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
-<!-- ##### FUNCTION gnome_mime_type ##### -->
-<para>
-
-</para>
-
-@filename: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gnome_mime_type_or_default ##### -->
-<para>
-
-</para>
-
-@filename: 
-@defaultv: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gnome_mime_type_of_file ##### -->
-<para>
-
-</para>
-
-@existing_filename: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gnome_mime_type_or_default_of_file ##### -->
-<para>
-
-</para>
-
-@existing_filename: 
-@defaultv: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gnome_mime_type_from_magic ##### -->
-<para>
-
-</para>
-
-@filename: 
-@Returns: 
-
 
 <!-- ##### FUNCTION gnome_uri_list_extract_filenames ##### -->
 <para>

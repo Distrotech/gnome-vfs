@@ -1,5 +1,20 @@
+2000-10-25  Mathieu Lacage  <mathieu@eazel.com>
+
+	* configure.in:
+	fix LIBEFS check. add gtkdoc check.
+	
+	* devel-docs/gnome-vfs/gnome-vfs-decl.txt:
+	* devel-docs/gnome-vfs/gnome-vfs-docs.sgml:
+	avoid an obvious error when compiling.
+	
+	* devel-docs/gnome-vfs/tmpl/gnome-vfs-mime-info.sgml:
+	* devel-docs/gnome-vfs/tmpl/gnome-vfs-mime.sgml:
+	* devel-docs/gnome-vfs/tmpl/libgnome-vfs.sgml:
+	regenerate templates...
+
 2000-10-25  Darin Adler  <darin@eazel.com>
 
+	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
 	* libgnomevfs/gnome-vfs-mime-sniff-buffer.c:
 	(gnome_vfs_mime_sniff_buffer_get): Oops, got it wrong. This fixes
 	another case that I missed.

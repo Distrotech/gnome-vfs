@@ -65,6 +65,10 @@ AC_SUBST(VFS_GNOMEUI_LIBS)
 AC_SUBST(VFS_CAPPLET_LIBS)
 
 
+AC_CHECK_PROG(GTKDOC, gtkdoc-mkdb, true, false)
+AM_CONDITIONAL(HAVE_GTK_DOC, $GTKDOC)
+AC_SUBST(HAVE_GTK_DOC)
+
 dnl Let people disable the gtk-doc stuff.
 AC_ARG_ENABLE(gtk-doc, [  --enable-gtk-doc  Use gtk-doc to build documentation [default=auto]], enable_gtk_doc="$enableval", enable_gtk_doc=auto)
 
@@ -294,7 +298,7 @@ dnl gnome-xml libraries - for WebDAV support in modules/http-method.c
 dnl
 
 AC_PATH_PROG(XML_CONFIG,xml-config,no)
-if test x$XML_CONFIG = xno; then
+if test x$XML_CONFIG = "xno"; then
   AC_MSG_ERROR(Couldn't find xml-config please install the gnome-xml package)
 fi
 XML_LIBS=`$XML_CONFIG --libs`
@@ -327,10 +331,10 @@ dnl 	LIBEFS_LIBS=`$LIBEFS_CONFIG --libs`
 dnl 	LIBEFS_CFLAGS=`$LIBEFS_CONFIG --cflags`
 dnl fi
 dnl 
-dnl AM_CONDITIONAL(HAVE_LIBEFS, test -n "$LIBEFS_LIBS") 
 
-AM_CONDITIONAL(HAVE_LIBEFS, no)
- 
+AM_CONDITIONAL(HAVE_LIBEFS, false) 
+LIBEFS_LIBS=""
+LIBEFS_CFLAGS=""
 AC_SUBST(LIBEFS_LIBS)
 AC_SUBST(LIBEFS_CFLAGS)
 

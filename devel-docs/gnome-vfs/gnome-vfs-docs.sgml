@@ -12,6 +12,5 @@
     <title>Gnome Library</title>
     &gnome-gnome-vfs-mime-info;
     &gnome-gnome-vfs-mime;
-    &gnome-libgnome-vfs;
   </chapter>
 </book>

@@ -16,12 +16,3 @@ this directory do not need to link with any GUI library.
 
 </para>
 
-<!-- ##### FUNCTION gnomelib_init ##### -->
-<para>
-
-</para>
-
-@app_id: 
-@app_version: 
-
-
