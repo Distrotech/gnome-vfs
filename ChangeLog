@@ -1,3 +1,13 @@
+1999-09-17  Ettore Perazzoli  <ettore@comm2000.it>
+
+	* libgnomevfs/gnome-vfs-constants.h: #include "gnome-vfs-types.h"
+	and <glibconfig.h>.  #define `GNOME_VFS_SIZE_FORMAT_STR' and
+	`GNOME_VFS_OFFSET_FORMAT_STR' according to the size of
+	`GnomeVFSFileSize' and `GnomeVFSFileOffset'
+	(i.e. according to whether gint64 exists or not).
+
+	* libgnomevfs/gnome-vfs-types.h: #include <glibconfig.h>.
+
 1999-09-16  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c

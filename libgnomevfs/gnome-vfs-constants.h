@@ -24,10 +24,21 @@
 #ifndef _GNOME_VFS_CONSTANTS_H
 #define _GNOME_VFS_CONSTANTS_H
 
+#include <glibconfig.h>
+#include "gnome-vfs-types.h"
+
 #define GNOME_VFS_URI_MAGIC_CHR	'#'
 #define GNOME_VFS_URI_MAGIC_STR "#"
 
 #define GNOME_VFS_URI_PATH_CHR '/'
 #define GNOME_VFS_URI_PATH_STR "/"
+
+#ifdef G_HAVE_GINT64
+#define GNOME_VFS_SIZE_FORMAT_STR "Lu"
+#define GNOME_VFS_OFFSET_FORMAT_STR "Ld"
+#else
+#define GNOME_VFS_SIZE_FORMAT_STR "Lu"
+#define GNOME_VFS_OFFSET_FORMAT_STR "Ld"
+#endif
 
 #endif /* _GNOME_VFS_CONSTANTS_H */
