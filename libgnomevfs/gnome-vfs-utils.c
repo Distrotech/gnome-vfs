@@ -836,6 +836,8 @@ gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri,
 			return GNOME_VFS_ERROR_NOT_SUPPORTED;
 		}
 	}
+#else 
+	g_free (unescaped_path);
 #endif
 
 	block_size = statfs_buffer.f_bsize; 
