@@ -58,6 +58,14 @@
 	make some descriptions more consistent, and sync some types
 	between the files where they differed.
 
+2000-05-31  Pablo Saratxaga  <pablo@mandrakesoft.com>
+
+	* data/mime/gnome-vfs-mime-magic: 
+	* data/mime/gnome-vfs.mime: 
+	* data/mime/gnome-vfs.keys: 
+	add new mime types.
+
+
 2000-05-31  Ramiro Estrugo  <ramiro@eazel.com>
 
 	* Makefile.am:
