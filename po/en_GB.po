@@ -2,19 +2,21 @@
 # Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-vfs package.
 # Gareth Owen <gowen72@yahoo.com> 2004
-#
+# David Lodge <dave@cirt.net> 2004
+# 
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-15 21:33-0400\n"
-"PO-Revision-Date: 2004-07-15 21:35-0400\n"
-"Last-Translator: Gareth Owen <gowen72@yahoo.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2004-07-24 13:39+0100\n"
+"PO-Revision-Date: 2004-07-24 13:40+0100\n"
+"Last-Translator: David Lodge <dave@cirt.net>\n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=n != 1;"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -23,6 +25,91 @@ msgstr "Could not initialise Bonobo"
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "Could not initialise gnome vfs"
+
+#: libgnomevfs/eggdesktopentries.c:226
+#, c-format
+msgid "File could not be opened: %s"
+msgstr "File could not be opened: %s"
+
+#: libgnomevfs/eggdesktopentries.c:325
+#, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Failed to open file '%s': %s"
+
+#: libgnomevfs/eggdesktopentries.c:338
+msgid "File is empty"
+msgstr "File is empty"
+
+#: libgnomevfs/eggdesktopentries.c:360
+#, c-format
+msgid "Failed to read from file '%s': %s"
+msgstr "Failed to read from file '%s': %s"
+
+#: libgnomevfs/eggdesktopentries.c:575
+#, c-format
+msgid ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+msgstr ""
+"desktop entries contain line '%s' which is not an entry, group, or comment"
+
+#: libgnomevfs/eggdesktopentries.c:651
+msgid "desktop entries file does not start with legal start group"
+msgstr "desktop entries file does not start with legal start group"
+
+#: libgnomevfs/eggdesktopentries.c:708
+#, c-format
+msgid "desktop entries contain line '%s' which is not UTF-8"
+msgstr "desktop entries contain line '%s' which is not UTF-8"
+
+#: libgnomevfs/eggdesktopentries.c:731
+#, c-format
+msgid "desktop entries contain unknown encoding '%s'"
+msgstr "desktop entries contain unknown encoding '%s'"
+
+#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
+#: libgnomevfs/eggdesktopentries.c:1217
+#, c-format
+msgid "desktop entries do not have group '%s'"
+msgstr "desktop entries do not have group '%s'"
+
+#: libgnomevfs/eggdesktopentries.c:1044
+#, c-format
+msgid "desktop entries do not have key '%s'"
+msgstr "desktop entries do not have key '%s'"
+
+#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
+#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#, c-format
+msgid ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+msgstr ""
+"desktop entries contain key '%s' which has value that cannot be interpreted."
+
+#: libgnomevfs/eggdesktopentries.c:1297
+#, c-format
+msgid ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+msgstr ""
+"desktop entries contain no translated value for key '%s' with locale '%s'."
+
+#: libgnomevfs/eggdesktopentries.c:2218
+#, c-format
+msgid "desktop entries contain invalid escape sequence '%s'"
+msgstr "desktop entries contain invalid escape sequence '%s'"
+
+#: libgnomevfs/eggdesktopentries.c:2235
+msgid "desktop entries contain escape character at end of line"
+msgstr "desktop entries contain escape character at end of line"
+
+#: libgnomevfs/eggdesktopentries.c:2260
+#, c-format
+msgid "Value '%s' cannot be interpreted as a number."
+msgstr "Value '%s' cannot be interpreted as a number."
+
+#: libgnomevfs/eggdesktopentries.c:2287
+#, c-format
+msgid "Value '%s' cannot be interpreted as a boolean."
+msgstr "Value '%s' cannot be interpreted as a boolean."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -171,26 +258,30 @@ msgid "Pcfs Solaris Volume"
 msgstr "Pcfs Solaris Volume"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
+msgid "Sun SAM-QFS Volume"
+msgstr "Sun SAM-QFS Volume"
+
+#: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
 msgstr "Enhanced DOS Volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:72
+#: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Windows VFAT Volume"
 msgstr "Windows VFAT Volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:73
+#: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "Xenix Volume"
 msgstr "Xenix Volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:74
+#: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XFS Linux Volume"
 msgstr "XFS Linux Volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:75
+#: libgnomevfs/gnome-vfs-filesystem-type.c:76
 msgid "XIAFS Volume"
 msgstr "XIAFS Volume"
 
-#: libgnomevfs/gnome-vfs-filesystem-type.c:103
+#: libgnomevfs/gnome-vfs-filesystem-type.c:104
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -320,6 +411,30 @@ msgstr "Unknown job kind %u"
 #: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
 msgstr "Operation stopped"
+
+#: libgnomevfs/gnome-vfs-mime-handlers.c:82
+#: libgnomevfs/gnome-vfs-mime-handlers.c:237
+#: libgnomevfs/gnome-vfs-mime-handlers.c:288
+#: libgnomevfs/gnome-vfs-mime-handlers.c:558
+#: libgnomevfs/gnome-vfs-mime-handlers.c:577
+#: libgnomevfs/gnome-vfs-mime-handlers.c:595
+#: libgnomevfs/gnome-vfs-mime-handlers.c:614
+#: libgnomevfs/gnome-vfs-mime-handlers.c:633
+#: libgnomevfs/gnome-vfs-mime-handlers.c:774
+#: libgnomevfs/gnome-vfs-mime-handlers.c:796
+#: libgnomevfs/gnome-vfs-mime-handlers.c:815
+#: libgnomevfs/gnome-vfs-mime-handlers.c:834
+#: libgnomevfs/gnome-vfs-mime-handlers.c:887
+#: libgnomevfs/gnome-vfs-mime-handlers.c:904
+#: libgnomevfs/gnome-vfs-mime-handlers.c:921
+#: libgnomevfs/gnome-vfs-mime-handlers.c:939
+#: libgnomevfs/gnome-vfs-mime-handlers.c:957
+msgid ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
+msgstr ""
+"Deprecated function.  User modifications to the MIME database are no longer "
+"supported."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -561,7 +676,7 @@ msgid "Error launching command"
 msgstr "Error launching command"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: libgnomevfs/gnome-vfs-result.c:84
+#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
 msgstr "Timeout reached"
 
@@ -570,7 +685,17 @@ msgstr "Timeout reached"
 msgid "Nameserver error"
 msgstr "Nameserver error"
 
-#: libgnomevfs/gnome-vfs-result.c:196
+#. GNOME_VFS_ERROR_LOCKED
+#: libgnomevfs/gnome-vfs-result.c:87
+msgid "The resource is locked"
+msgstr "The resource is locked"
+
+#. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
+#: libgnomevfs/gnome-vfs-result.c:88
+msgid "Function call deprecated"
+msgstr "Function call deprecated"
+
+#: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
 msgstr "Unknown error"
 
@@ -857,151 +982,212 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "The exec argument to use for the default terminal application."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-msgid "H323 URL handler"
-msgstr "H323 URL handler"
+msgid "Run the command in a terminal"
+msgstr "Run the command in a terminal"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
-msgid "HTTP URL handler"
-msgstr "HTTP URL handler"
+msgid "The command used to handle \"aim\" URLs, if enabled."
+msgstr "The command used to handle \"aim\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
-msgid "HTTPS URL handler"
-msgstr "HTTPS URL handler"
+msgid "The command used to handle \"callto\" URLs, if enabled."
+msgstr "The command used to handle \"callto\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
-msgid "Handle H323 URLs"
-msgstr "Handle H323 URLs"
+msgid "The command used to handle \"ghelp\" URLs, if enabled."
+msgstr "The command used to handle \"ghelp\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
-msgid "Handle HTTP URLs"
-msgstr "Handle HTTP URLs"
+msgid "The command used to handle \"info\" URLs, if enabled."
+msgstr "The command used to handle \"info\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
-msgid "Handle HTTPS URLs"
-msgstr "Handle HTTPS URLs"
+msgid "The command used to handle \"mailto\" URLs, if enabled."
+msgstr "The command used to handle \"mailto\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-msgid "Handle aim URLs"
-msgstr "Handle aim URLs"
+msgid "The command used to handle \"man\" URLs, if enabled."
+msgstr "The command used to handle \"man\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
-msgid "Handle callto URLs"
-msgstr "Handle callto URLs"
+msgid "The command used to handle \"trash\" URLs, if enabled."
+msgstr "The command used to handle \"trash\" URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "Handle ghelp URLs"
-msgstr "Handle ghelp URLs"
+msgid "The command used to handle H323 URLs, if enabled."
+msgstr "The command used to handle H323 URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "Handle info URLs"
-msgstr "Handle info URLs"
+msgid "The command used to handle HTTP URLs, if enabled."
+msgstr "The command used to handle HTTP URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Handle mailto URLs"
-msgstr "Handle mailto URLs"
+msgid "The command used to handle HTTPS URLs, if enabled."
+msgstr "The command used to handle HTTPS URLs, if enabled."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Handle man URLs"
-msgstr "Handle man URLs"
+msgid "The handler for \"aim\" URLs"
+msgstr "The handler for \"aim\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Handle trash URLs"
-msgstr "Handle wastebasket URLs"
+msgid "The handler for \"callto\" URLs"
+msgstr "The handler for \"callto\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Run program in terminal"
-msgstr "Run program in terminal"
+msgid "The handler for \"ghelp\" URLs"
+msgstr "The handler for \"ghelp\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-msgid ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
-msgstr ""
-"Set to true to have a program specified in \"command\" handle H323 URLs."
+msgid "The handler for \"info\" URLs"
+msgstr "The handler for \"info\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgid "The handler for \"mailto\" URLs"
+msgstr "The handler for \"mailto\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgid "The handler for \"man\" URLs"
+msgstr "The handler for \"man\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle aim URLs."
-msgstr ""
-"Set to true to have a program specified in \"command\" handle aim URLs."
+msgid "The handler for \"trash\" URLs"
+msgstr "The handler for \"trash\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
+msgid "The handler for H323 URLs"
+msgstr "The handler for H323 URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgid "The handler for HTTP URLs"
+msgstr "The handler for HTTP URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
-"Set to true to have a program specified in \"command\" handle info URLs."
+msgid "The handler for HTTPS URLs"
+msgstr "The handler for HTTPS URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
 msgstr ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
+"True if the command specified in the \"command\" key should handle \"aim\" "
+"URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
 msgstr ""
-"Set to true to have a program specified in \"command\" handle man URLs."
+"True if the command specified in the \"command\" key should handle \"callto"
+"\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
+"URLs."
 msgstr ""
-"Set to true to have a program specified in \"command\" handle wastebasket "
+"True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the program to handle this URL should be run in a terminal."
-msgstr "True if the program to handle this URL should be run in a terminal."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"info\" "
+"URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid "aim URL handler"
-msgstr "aim URL handler"
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "callto URL handler"
-msgstr "callto URL handler"
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "ghelp URL handler"
-msgstr "ghelp URL handler"
+msgid ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle \"trash\" "
+"URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "info URL handler"
-msgstr "info URL handler"
+msgid ""
+"True if the command specified in the \"command\" key should handle H323 URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle H323 URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "mailto URL handler"
-msgstr "mailto URL handler"
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTP URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle HTTP URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "man URL handler"
-msgstr "man URL handler"
+msgid ""
+"True if the command specified in the \"command\" key should handle HTTPS "
+"URLs."
+msgstr ""
+"True if the command specified in the \"command\" key should handle HTTPS "
+"URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid "trash URL handler"
-msgstr "wastebasket URL handler"
+msgid ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+msgstr ""
+"True if the command used to handle this type of URL should be run in a "
+"terminal."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:33
+msgid "Whether the specified command should handle \"aim\" URLs"
+msgstr "Whether the specified command should handle \"aim\" URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:34
+msgid "Whether the specified command should handle \"callto\" URLs"
+msgstr "Whether the specified command should handle \"callto\" URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:35
+msgid "Whether the specified command should handle \"ghelp\" URLs"
+msgstr "Whether the specified command should handle \"ghelp\" URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:36
+msgid "Whether the specified command should handle \"info\" URLs"
+msgstr "Whether the specified command should handle \"info\" URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:37
+msgid "Whether the specified command should handle \"mailto\" URLs"
+msgstr "Whether the specified command should handle \"mailto\" URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:38
+msgid "Whether the specified command should handle \"man\" URLs"
+msgstr "Whether the specified command should handle \"man\" URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:39
+msgid "Whether the specified command should handle \"trash\" URLs"
+msgstr "Whether the specified command should handle \"trash\" URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:40
+msgid "Whether the specified command should handle H323 URLs"
+msgstr "Whether the specified command should handle H323 URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:41
+msgid "Whether the specified command should handle HTTP URLs"
+msgstr "Whether the specified command should handle HTTP URLs"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:42
+msgid "Whether the specified command should handle HTTPS URLs"
+msgstr "Whether the specified command should handle HTTPS URLs"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1020,8 +1206,8 @@ msgid "How to display local DNS-SD service"
 msgstr "How to display local DNS-SD service"
 
 #: schemas/system_dns_sd.schemas.in.h:4
-msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr "Possible values are \"merged\", \"separate\" and \"disabled\""
+msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
+msgstr "Possible values are \"merged\", \"separate\" and \"disabled\"."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1184,3 +1370,33 @@ msgstr "SMB workgroup"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "The window workgroup the user is part of"
+
+#~ msgid "H323 URL handler"
+#~ msgstr "H323 URL handler"
+
+#~ msgid "HTTP URL handler"
+#~ msgstr "HTTP URL handler"
+
+#~ msgid "HTTPS URL handler"
+#~ msgstr "HTTPS URL handler"
+
+#~ msgid "aim URL handler"
+#~ msgstr "aim URL handler"
+
+#~ msgid "callto URL handler"
+#~ msgstr "callto URL handler"
+
+#~ msgid "ghelp URL handler"
+#~ msgstr "ghelp URL handler"
+
+#~ msgid "info URL handler"
+#~ msgstr "info URL handler"
+
+#~ msgid "mailto URL handler"
+#~ msgstr "mailto URL handler"
+
+#~ msgid "man URL handler"
+#~ msgstr "man URL handler"
+
+#~ msgid "trash URL handler"
+#~ msgstr "wastebasket URL handler"
