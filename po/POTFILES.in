@@ -7,9 +7,11 @@ libgnomevfs/gnome-vfs-job.c
 libgnomevfs/gnome-vfs-parse-ls.c
 libgnomevfs/gnome-vfs-result.c
 libgnomevfs/gnome-vfs-utils.c
+modules/cdemenu-desktop-method.c
 modules/file-method.c
 modules/ftp-method.c
 modules/http-method.c
 modules/test-method.c
-modules/cdemenu-desktop-method.c
 monikers/GNOME_VFS_Moniker_std.server.in.in
+schemas/desktop_default_applications.schemas.in
+schemas/system_http_proxy.schemas.in

@@ -1,3 +1,9 @@
+2003-09-22  Alexander Larsson  <alexl@redhat.com>
+
+	* schemas/Makefile.am:
+	Translate schemas files.
+	Patch from chris@gnome-de.org
+	
 2003-09-18  William Jon McCann  <mccann@jhu.edu>
 
 	* test/test-shell.c (main):
