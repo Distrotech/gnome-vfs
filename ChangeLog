@@ -1,3 +1,8 @@
+2003-04-11  Alexander Larsson  <alexl@redhat.com>
+
+	* test/test-async.c (file_control_callback):
+	Don't double free operation_data.
+
 2003-04-09  Michael Meeks  <michael@ximian.com>
 
 	* libgnomevfs/gnome-vfs-module-callback.h: add
