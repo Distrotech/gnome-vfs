@@ -1,53 +1,60 @@
+#
+# Nepali Translation of gnome-vfs
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-vfs package.
+# Pawan Chitrakar <pawan@nplinux.org>, 2004.
+#
+
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs 1.9.16\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2003-07-10 14:54-0300\n"
-"Last-Translator: Kshitij <obsession@enet.com.np>\n"
+"Project-Id-Version: gnome-vfs \n"
+"Report-Msgid-Bugs-To: <pawan@nplinux.org>\n"
+"POT-Creation-Date: 2004-06-25 04:06+0200\n"
+"PO-Revision-Date: 2003-07-10 14:54+0545\n"
+"Last-Translator: KU <info@ku.edu.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
 "MIME-Version: 1.0\n"
+"Plural Forms: nplurals=1;plural=0; \n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"First-Translator : Pawan Chitrakar<pawan@nplinux.org>\n"
+"First-Translator :  Kshitij <obsession@enet.com.np>\n"
+
+#: daemon/gnome-vfs-daemon.c:590
+msgid "Could not initialize Bonobo"
+msgstr "बोनोबोको शुरुवात भेटाउन सकिएन"
 
 #: daemon/gnome-vfs-daemon.c:596
-#, fuzzy
-msgid "Could not initialize Bonobo"
-msgstr "मास्टर ब्राउजर भेटाउन सकिएन"
-
-#: daemon/gnome-vfs-daemon.c:602
 msgid "Could not initialize gnome vfs"
-msgstr ""
+msgstr "जिनोम भिएफएसको शुरुवात भेटाउन सकिएन"
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
-msgstr ""
+msgstr "आइएसओ को आयतन ९६६०"
 
 #: libgnomevfs/gnome-vfs-configuration.c:227
 #, c-format
 msgid "%s:%d contains NUL characters."
-msgstr "%s:%d मा नल क्यारेक्टर छ।."
+msgstr "%s:%d मा नुल क्यारेक्टर रहनेछ।."
 
 #: libgnomevfs/gnome-vfs-configuration.c:244
 #, c-format
 msgid "%s:%d contains no method name."
-msgstr "%s:%d मा मेथड नेम छैन।"
+msgstr "%s:%d मा पद्दति नाम रहने छैन।"
 
 #: libgnomevfs/gnome-vfs-configuration.c:284
-#, fuzzy, c-format
+#, c-format
 msgid "%s:%d has no options endmarker."
-msgstr "%s:%d मा मेथड नेम छैन।"
+msgstr "%s:%d मा बैकल्पिक अन्त्य देखाइरहेको छैन।"
 
 #: libgnomevfs/gnome-vfs-configuration.c:295
 #, c-format
 msgid "%s:%d has unknown options %s."
-msgstr ""
+msgstr "%s:%d संग %s अज्ञात बिकल्प छ "
 
 #: libgnomevfs/gnome-vfs-configuration.c:314
 #, c-format
 msgid "%s:%d contains no module name."
-msgstr "%s:%d मा मोड्युल नाम छैन"
+msgstr "%s:%d मा नमुना नाम रहनेछैन"
 
 #: libgnomevfs/gnome-vfs-configuration.c:368
 #, c-format
@@ -56,183 +63,182 @@ msgstr "कन्फिगरेशन फाईल भेटाउन सकि
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:37
 msgid "AFFS Volume"
-msgstr ""
+msgstr "एएफएफएस आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:38
 msgid "AFS Network Volume"
-msgstr ""
+msgstr "एएफएस संजाल आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:39
 msgid "Auto-detected Volume"
-msgstr ""
+msgstr "आयतन आफैं खोजियो"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:40
 #: libgnomevfs/gnome-vfs-filesystem-type.c:42
 msgid "CD-ROM Drive"
-msgstr ""
+msgstr "सिडि-रोम ड्राईभ"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:41
 msgid "CD Digital Audio"
-msgstr ""
+msgstr "सिडि डिजिटल ध्वनि"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:43
 msgid "Hardware Device Volume"
-msgstr ""
+msgstr "फलामको सामानको यन्त्रको आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:44
 #: libgnomevfs/gnome-vfs-filesystem-type.c:45
 msgid "Ext2 Linux Volume"
-msgstr ""
+msgstr "लिनक्सको आयतन २ बढाउन सकिने"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:46
 msgid "Ext3 Linux Volume"
-msgstr ""
+msgstr "लिनक्सको आयतन ३ बढाउन सकिने"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:47
 #: libgnomevfs/gnome-vfs-filesystem-type.c:57
 #: libgnomevfs/gnome-vfs-filesystem-type.c:58
 msgid "MSDOS Volume"
-msgstr ""
+msgstr "एमएस डस को अयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:48
 #: libgnomevfs/gnome-vfs-filesystem-type.c:49
 msgid "MacOS Volume"
-msgstr ""
+msgstr "म्याकोस आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:50
 msgid "CDROM Volume"
-msgstr ""
+msgstr "सिडिरोम आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:51
 msgid "Hsfs CDROM Volume"
-msgstr ""
+msgstr "एचएसइफएस सिडिरोम आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:52
 msgid "JFS Volume"
-msgstr ""
+msgstr "जेएफएस आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:53
 #: libgnomevfs/gnome-vfs-filesystem-type.c:60
 msgid "Windows NT Volume"
-msgstr ""
+msgstr "एनटि द्वार आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:54
 #: libgnomevfs/gnome-vfs-filesystem-type.c:62
 #: libgnomevfs/gnome-vfs-filesystem-type.c:63
 msgid "System Volume"
-msgstr ""
+msgstr "पद्दति आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:55
 msgid "Memory Volume"
-msgstr ""
+msgstr "स्मरण शक्ति आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:56
 msgid "Minix Volume"
-msgstr ""
+msgstr "लेखपत्र राख्ने पद्दतिको आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:59
 msgid "NFS Network Volume"
-msgstr ""
+msgstr "एनएफएस संजाल आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:61
 msgid "Netware Volume"
-msgstr ""
+msgstr "संजाल आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:64
-msgid "ReiserFS Linux Volume"
+msgid "Reiser FS Linux Volume"
 msgstr ""
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:65
 msgid "Windows Shared Volume"
-msgstr ""
+msgstr "द्वारहरु बाँडिएको आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:66
 msgid "SuperMount Volume"
-msgstr ""
+msgstr "अति पहाडि आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:67
 msgid "DVD Volume"
-msgstr ""
+msgstr "डिभिडि आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:68
 msgid "Solaris/BSD Volume"
-msgstr ""
+msgstr "सौर्यहरु /बिएसडि आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:69
 msgid "Udfs Solaris Volume"
-msgstr ""
+msgstr "युडिएफएश सौर्यहरुको आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:70
 msgid "Pcfs Solaris Volume"
-msgstr ""
+msgstr "पिसिएफएस सौर्यहरुको आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
 msgid "Enhanced DOS Volume"
-msgstr ""
+msgstr "डसको आयतन ब्रिद्धि भयो"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Windows VFAT Volume"
-msgstr ""
+msgstr "द्वार भिएफएटि आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:73
 msgid "Xenix Volume"
-msgstr ""
+msgstr "जेनिक्स आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:74
 msgid "XFS Linux Volume"
-msgstr ""
+msgstr "एक्सएफएस लिनक्स आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:75
 msgid "XIAFS Volume"
-msgstr ""
+msgstr "एक्सआईएएफएस आयतन"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
-#, fuzzy
 msgid "Unknown"
-msgstr "थाहा नभएको एरर "
+msgstr "अज्ञात "
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
 msgid "Unknown op type %u"
-msgstr "थाहा नभएको ओ पि टाईप %u"
+msgstr "%u अज्ञात ओ पि किसिम "
 
 #: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
-msgstr "जि आई ओ च्यानल खोल्न पाईप बनाऊन सकेन: %s"
+msgstr "%s जि आई ओ प्रसारण पथ खोल्न को लागि पाईप बनाऊन सकेन: "
 
 #: libgnomevfs/gnome-vfs-job.c:1687
 #, c-format
 msgid "Unknown job kind %u"
-msgstr "थाहा नभएको खाले काम %u"
+msgstr "%u प्रकार को अज्ञत काम "
 
 #: libgnomevfs/gnome-vfs-job.c:1720
 msgid "Operation stopped"
-msgstr "अपरेशन रोकियो"
+msgstr "संचालन रोकियो"
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
 msgid "Could not parse: %s"
-msgstr "फ्रेजगर्न सकिएन: %s"
+msgstr "%s पदमिलान गर्न सकिएन: "
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:668
 msgid "More parsing errors will be ignored."
-msgstr "अरु पार्सिंग एररलाई छोडिने छ"
+msgstr "धेरै पदमिलान गल्तिलाई छोडिने छ"
 
 #. GNOME_VFS_OK
 #: libgnomevfs/gnome-vfs-result.c:38
 msgid "No error"
-msgstr "एरर छैन"
+msgstr "गल्ति छैन"
 
 #. GNOME_VFS_ERROR_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:39
 msgid "File not found"
-msgstr "फाईल भेटिएन"
+msgstr "लेखपत्र भेटिएन"
 
 #. GNOME_VFS_ERROR_GENERIC
 #: libgnomevfs/gnome-vfs-result.c:40
 msgid "Generic error"
-msgstr "जेनेरिक ऐरर"
+msgstr "सधारण गल्ति"
 
 #. GNOME_VFS_ERROR_INTERNAL
 #: libgnomevfs/gnome-vfs-result.c:41
@@ -242,12 +248,12 @@ msgstr "भित्री गल्ती"
 #. GNOME_VFS_ERROR_BAD_PARAMETERS
 #: libgnomevfs/gnome-vfs-result.c:42
 msgid "Invalid parameters"
-msgstr "ईनभ्यालिड प्यारामिटर्स"
+msgstr "अमान्य मुल्याङकन आधार"
 
 #. GNOME_VFS_ERROR_NOT_SUPPORTED
 #: libgnomevfs/gnome-vfs-result.c:43
 msgid "Unsupported operation"
-msgstr "सपोर्ट नगरिएको अपरेशन"
+msgstr "समर्थन नगरिएको संचालन"
 
 #. GNOME_VFS_ERROR_IO
 #: libgnomevfs/gnome-vfs-result.c:44
@@ -257,47 +263,47 @@ msgstr "अई/ओ गल्ती"
 #. GNOME_VFS_ERROR_CORRUPTED_DATA
 #: libgnomevfs/gnome-vfs-result.c:45
 msgid "Data corrupted"
-msgstr "डाटा करप्ट छ।"
+msgstr "डाटा खराब छ।"
 
 #. GNOME_VFS_ERROR_WRONG_FORMAT
 #: libgnomevfs/gnome-vfs-result.c:46
 msgid "Format not valid"
-msgstr "फर्मयाट भ्यालिड छैन"
+msgstr "तालिका अमान्य छ"
 
 #. GNOME_VFS_ERROR_BAD_FILE
 #: libgnomevfs/gnome-vfs-result.c:47
 msgid "Bad file handle"
-msgstr "ब्याड फाईल ह्यन्डल"
+msgstr "खराब लेखपत्र चलाउनु"
 
 #. GNOME_VFS_ERROR_TOO_BIG
 #: libgnomevfs/gnome-vfs-result.c:48
 msgid "File too big"
-msgstr "फाईल एकदम ठुलो छ।"
+msgstr "लेखपत्र एकदम ठुलो छ।"
 
 #. GNOME_VFS_ERROR_NO_SPACE
 #: libgnomevfs/gnome-vfs-result.c:49
 msgid "No space left on device"
-msgstr "डिभाईसमा ठाँउ छैन"
+msgstr "यन्त्रमा ठाँउ छाडिएको छैन"
 
 #. GNOME_VFS_ERROR_READ_ONLY
 #: libgnomevfs/gnome-vfs-result.c:50
 msgid "Read-only file system"
-msgstr "पढ्ने- मात्र  फाईल सिस्टम"
+msgstr "पढ्ने- मात्र  लेखपत्र पद्दति"
 
 #. GNOME_VFS_ERROR_INVALID_URI
 #: libgnomevfs/gnome-vfs-result.c:51
 msgid "Invalid URI"
-msgstr "ईनभ्यालिड यू आर आई"
+msgstr "अमान्य यू आर आई"
 
 #. GNOME_VFS_ERROR_NOT_OPEN
 #: libgnomevfs/gnome-vfs-result.c:52
 msgid "File not open"
-msgstr "फाईल खुल्ला छैन"
+msgstr "लेखपत्र खुल्दैन"
 
 #. GNOME_VFS_ERROR_INVALID_OPEN_MODE
 #: libgnomevfs/gnome-vfs-result.c:53
 msgid "Open mode not valid"
-msgstr "ओपन मोड भ्यालिड छैन"
+msgstr "खुल्ने शैलि अमान्य छ"
 
 #. GNOME_VFS_ERROR_ACCESS_DENIED
 #: libgnomevfs/gnome-vfs-result.c:54
@@ -307,107 +313,107 @@ msgstr "भित्र जान दिईएन"
 #. GNOME_VFS_ERROR_TOO_MANY_OPEN_FILES
 #: libgnomevfs/gnome-vfs-result.c:55
 msgid "Too many open files"
-msgstr "खुलेको फाईल धेरै भयो"
+msgstr "धेरै लेखपत्रहरु खुले"
 
 #. GNOME_VFS_ERROR_EOF
 #: libgnomevfs/gnome-vfs-result.c:56
 msgid "End of file"
-msgstr "फाईलको अन्त"
+msgstr "लेखपत्रको अन्तमा"
 
 #. GNOME_VFS_ERROR_NOT_A_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:57
 msgid "Not a directory"
-msgstr "डाईरेक्ट्रि होईन"
+msgstr "निर्देशिका होईन"
 
 #. GNOME_VFS_ERROR_IN_PROGRESS
 #: libgnomevfs/gnome-vfs-result.c:58
 msgid "Operation in progress"
-msgstr "अपरेशन अगाडि बड्दै छ"
+msgstr "संचालन प्रगतिमा छ"
 
 #. GNOME_VFS_ERROR_INTERRUPTED
 #: libgnomevfs/gnome-vfs-result.c:59
 msgid "Operation interrupted"
-msgstr "अपरेशनमा बाधा"
+msgstr "संचालनमा बाधा"
 
 #. GNOME_VFS_ERROR_FILE_EXISTS
 #: libgnomevfs/gnome-vfs-result.c:60
 msgid "File exists"
-msgstr "फाईल छ"
+msgstr "लेखपत्रको असतित्व"
 
 #. GNOME_VFS_ERROR_LOOP
 #: libgnomevfs/gnome-vfs-result.c:61
 msgid "Looping links encountered"
-msgstr "लुपिंग लिंक भेटियो"
+msgstr "अंकुसको जम्काभेतको सम्बन्ध"
 
 #. GNOME_VFS_ERROR_NOT_PERMITTED
 #: libgnomevfs/gnome-vfs-result.c:62
 msgid "Operation not permitted"
-msgstr "अपरेशन गर्न दिईएन"
+msgstr "संचालन गर्न अनुमति दिईएन"
 
 #. GNOME_VFS_ERROR_IS_DIRECTORY
 #: libgnomevfs/gnome-vfs-result.c:63
 msgid "Is a directory"
-msgstr "डाईरेक्ट्रि हो"
+msgstr "एउटा निर्देशिका हो"
 
 #. GNOME_VFS_ERROR_NO_MEMMORY
 #: libgnomevfs/gnome-vfs-result.c:64
 msgid "Not enough memory"
-msgstr "पुग्दो मेमोरि छैन"
+msgstr "प्रशस्त स्म्रिति क्षमता छैन"
 
 #. GNOME_VFS_ERROR_HOST_NOT_FOUND
 #: libgnomevfs/gnome-vfs-result.c:65
 msgid "Host not found"
-msgstr "होस्ट भेटिएन"
+msgstr "आधार भेटिएन"
 
 #. GNOME_VFS_ERROR_INVALID_HOST_NAME
 #: libgnomevfs/gnome-vfs-result.c:66
 msgid "Host name not valid"
-msgstr "होस्टको नाम भ्यालिड छैन"
+msgstr "आधार नाम मान्य छैन"
 
 #. GNOME_VFS_ERROR_HOST_HAS_NO_ADDRESS
 #: libgnomevfs/gnome-vfs-result.c:67
 msgid "Host has no address"
-msgstr "होस्टको ठेगाना छैन"
+msgstr "आधारसंग ठेगाना छैन"
 
 #. GNOME_VFS_ERROR_LOGIN_FAILED
 #: libgnomevfs/gnome-vfs-result.c:68
 msgid "Login failed"
-msgstr "लग ईन असफल"
+msgstr "भित्र पस्न असफल"
 
 #. GNOME_VFS_ERROR_CANCELLED
 #: libgnomevfs/gnome-vfs-result.c:69
 msgid "Operation cancelled"
-msgstr "अपरेशन क्यान्सल भयो"
+msgstr "संचालन खारेजि गरियो"
 
 #. GNOME_VFS_ERROR_DIRECTORY_BUSY
 #: libgnomevfs/gnome-vfs-result.c:70
 msgid "Directory busy"
-msgstr "डाईरेक्टरि बिजि छ।"
+msgstr "निर्देशिका ब्यस्त छ।"
 
 #. GNOME_VFS_ERROR_DIRECTORY_NOT_EMPTY
 #: libgnomevfs/gnome-vfs-result.c:71
 msgid "Directory not empty"
-msgstr "डाईरेक्टरि खाली छैन।"
+msgstr "निर्देशिका खाली छैन।"
 
 #. GNOME_VFS_ERROR_TOO_MANY_LINKS
 #: libgnomevfs/gnome-vfs-result.c:72
 msgid "Too many links"
-msgstr "धेरै लिंक भयो"
+msgstr "धेरै सम्पर्क सुत्र छन्"
 
 #. GNOME_VFS_ERROR_READ_ONLY_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:73
 msgid "Read only file system"
-msgstr "पढ्ने मात्र  फाईल सिस्टम"
+msgstr "पढ्ने मात्र  लेखपत्र पद्दति"
 
 #. GNOME_VFS_ERROR_NOT_SAME_FILE_SYSTEM
 #: libgnomevfs/gnome-vfs-result.c:74
 msgid "Not on the same file system"
-msgstr "ऊहि फाईल सिस्टममा छैन"
+msgstr "उस्ते लेखपत्र पद्दतिमा छैन"
 
 #. GNOME_VFS_ERROR_NAME_TOO_LONG
 #: libgnomevfs/gnome-vfs-result.c:75
 msgid "Name too long"
-msgstr "नाम लामो भयो"
+msgstr " धेरै लामो नाम"
 
 #. GNOME_VFS_ERROR_SERVICE_NOT_AVAILABLE
 #: libgnomevfs/gnome-vfs-result.c:76
@@ -417,53 +423,53 @@ msgstr "सेवा ऊपलब्ध छैन"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:77
 msgid "Request obsoletes service's data"
-msgstr "रिक्वेस्ट ओबसोलेटस सर्भिस डेटा "
+msgstr "अष्पस्ट सेवाको डाटा अनुरोध "
 
 #. GNOME_VFS_ERROR_PROTOCOL_ERROR
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "Protocol error"
-msgstr "प्रोटोकोल एरर"
+msgstr "प्रथम सम्झौतामा समस्या"
 
 #. GNOME_VFS_ERROR_NO_MASTER_BROWSER
 #: libgnomevfs/gnome-vfs-result.c:79
 msgid "Could not find master browser"
-msgstr "मास्टर ब्राउजर भेटाउन सकिएन"
+msgstr "मुख्य हेर्ने कुरा भेटाउन सकिएन"
 
 #. GNOME_VFS_ERROR_NO_DEFAULT
 #: libgnomevfs/gnome-vfs-result.c:80
 msgid "No default action associated"
-msgstr ""
+msgstr "पुर्वनिर्धारित कार्य जोडिएन"
 
 #. GNOME_VFS_ERROR_NO_HANDLER
 #: libgnomevfs/gnome-vfs-result.c:81
 msgid "No handler for URL scheme"
-msgstr ""
+msgstr "युएरएल रुपरेखाको लागि अंकुशे छैन"
 
 #. GNOME_VFS_ERROR_PARSE
 #: libgnomevfs/gnome-vfs-result.c:82
 msgid "Error parsing command line"
-msgstr ""
+msgstr "तोकिएअनुसार पदमिलानमा त्रुटि"
 
 #. GNOME_VFS_ERROR_LAUNCH
 #: libgnomevfs/gnome-vfs-result.c:83
 msgid "Error launching command"
-msgstr ""
+msgstr "शुरु गर्ने आदेशमा त्रुटि"
 
 #: libgnomevfs/gnome-vfs-result.c:179
 msgid "Unknown error"
-msgstr "थाहा नभएको एरर "
+msgstr "अज्ञात त्रुटि"
 
 #: libgnomevfs/gnome-vfs-utils.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "%u byte"
 msgid_plural "%u bytes"
 msgstr[0] "%u बाईट्स"
 msgstr[1] "%u बाईट्स"
 
 #: libgnomevfs/gnome-vfs-utils.c:91
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KB"
-msgstr "%.1f के"
+msgstr "%.1f केबि"
 
 #: libgnomevfs/gnome-vfs-utils.c:95
 #, c-format
@@ -478,233 +484,205 @@ msgstr "%.1f जि बि"
 #: libgnomevfs/gnome-vfs-utils.c:1114
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
 msgid " (invalid Unicode)"
-msgstr " (अबैध यूनिकोड)"
+msgstr " (अमान्य बिश्वब्यापि एकरुपता)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:471
 msgid "Floppy"
-msgstr ""
+msgstr "विद्युतिया प्लेट (फ्लपि)"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:474
 msgid "CD-ROM"
-msgstr ""
+msgstr "सिडि -रोम"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:477
 msgid "Zip Drive"
-msgstr ""
+msgstr "जिप ड्राईभ"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
 msgid "Memory Stick"
-msgstr ""
+msgstr "स्मरण शक्ति जोड्नु"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
 msgid "Camera"
-msgstr ""
+msgstr "क्यामेरा"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
-msgid "DVD"
-msgstr ""
-
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:664
 msgid "Root Volume"
-msgstr ""
+msgstr "बास्तबिक आयतन"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:745
 msgid "Audio CD"
-msgstr ""
+msgstr "ध्वनि सिडि"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
-#, fuzzy
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:776
+
 msgid "Unknown volume"
-msgstr "थाहा नभएको एरर "
+msgstr "अज्ञात आयतन "
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:956
 msgid "Network server"
-msgstr ""
+msgstr "सेवाप्रदायक संजाल"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
+msgstr "फ्लपि ड्राईभको परिणाम बढाउन अयोग्य छ। सायद ड्राईभमा फ्लपि नहुनसक्छ"
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
 msgid "Unable to mount the volume. There is probably no media in the device."
-msgstr ""
+msgstr "आयतनको परिणाम बढाउन अयोग्य छ। सायद यन्त्रमा साधन नहुनसक्छ"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
-msgstr ""
+msgstr "फ्लपि ड्राईभको परिणाम बढाउन अयोग्य छ। सायद  फ्लपि खालि छ त्यसकारण परिणाम बढाउन सकिदैन"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
-msgstr ""
+msgstr "छानिएको आयतनको परिणाम बढाउन अयोग्य छ। सायद  आयतन खालि छ त्यसकारण परिणाम बढाउन सकिदैन"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
-msgstr ""
+msgstr "छानिएको फ्लपि ड्राईभको परिणाम बढाउन अयोग्य छ।"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:133
 msgid "Unable to mount the selected volume."
-msgstr ""
+msgstr "छानिएको आयतनको परिणाम बढाउन अयोग्य छ। "
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:145
 msgid "Unable to unmount the selected volume."
-msgstr ""
+msgstr "छानिएको आयतनको परिणाम बढाउन अयोग्य छ। "
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:255
 #: libgnomevfs/gnome-vfs-volume-ops.c:301
 msgid "Failed to start command"
-msgstr ""
+msgstr "आदेस शुरु गर्न असफल"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:291
 msgid "Unable to eject media"
-msgstr ""
+msgstr "बाहिर निकाल्ने साधन अयोग्य"
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:480
 msgid "Unable to unmount connected server"
-msgstr ""
+msgstr "सेवाप्दायक परिणाम नबढाउन सम्बन्ध राख्न अयोग्य"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:175
 msgid "Applications"
-msgstr ""
+msgstr "प्रर्थनापत्रहरु"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:178
 msgid "Cards"
-msgstr ""
+msgstr "तासहरु"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:181
-#, fuzzy
 msgid "Files"
-msgstr "फाईल छ"
+msgstr "फाईलहरू"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:184
 msgid "Folders"
-msgstr ""
+msgstr "फाईल पत्रहरु"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:187
 msgid "Help"
-msgstr ""
+msgstr "सहयोग"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:190
 msgid "Hosts"
-msgstr ""
+msgstr "आधारहरु"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:193
 msgid "Links"
-msgstr ""
+msgstr "सम्पर्क सुत्र"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:196
 msgid "Mail"
-msgstr ""
+msgstr "चिठ्ठि"
 
 #. Translate  exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:199
 msgid "Tools"
-msgstr ""
+msgstr "उपकरण"
 
 #. Translate exactly the same in CDE's sys.dtwmrc file of the locale
 #: modules/cdemenu-desktop-method.c:202
 msgid "Windows"
-msgstr ""
+msgstr "द्वारहरु"
 
 #: modules/computer-method.c:542
 msgid "Network"
-msgstr ""
+msgstr "संजाल"
 
 #: modules/computer-method.c:560
 msgid "Home"
-msgstr ""
+msgstr "घर"
 
 #: modules/computer-method.c:578
-#, fuzzy
 msgid "Filesystem"
-msgstr "फाईल छ"
+msgstr "लेखपत्र पद्दति"
 
 #: modules/file-method.c:385
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
-msgstr "थाहा नभएको जिनोम भि एफ एस सिक पोजिसन%d"
+msgstr "%d जिनोम भि एफ एस सोधपुछ गर्ने स्थिति अज्ञात छ"
 
 #: modules/network-method.c:1395
 msgid "Windows Network"
-msgstr ""
-
-#: modules/sftp-method.c:1261
-#, c-format
-msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
-
-#: modules/sftp-method.c:1262
-#, c-format
-msgid ""
-"This happens when you log in to a computer the first time.\n"
-"\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely "
-"sure it is safe to continue, contact the system administrator."
-msgstr ""
-
-#: modules/sftp-method.c:1267
-msgid "Log In Anyway"
-msgstr ""
-
-#: modules/sftp-method.c:1268
-msgid "Cancel Login"
-msgstr ""
+msgstr "द्वार संजाल"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
-#, fuzzy, c-format
+#, c-format
 msgid "Didn't find a valid settings file at %s\n"
-msgstr " %s मा भ्यालिड सेटिंग फाईल भेटाउन सकिएन"
+msgstr " %s मा मान्य स्थापित गरिएको लेखपत्र भेटाउन सकिएन \n"
 
 #: modules/test-method.c:592
-#, fuzzy, c-format
+#, c-format
 msgid "Use the %s environment variable to specify a different location.\n"
-msgstr "आर्कै लोकेसन स्पेसिफाई गर्न %s  ईनभाईरोमेन्ट भएको भेरिएबल प्रयोग गर्नु "
+msgstr "भिन्नै स्थान बर्णन गर्न परिवर्तन सिल परिस्थिति भएको %s प्रयोग गर्नु \n"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:1
 msgid "Standard Moniker factory"
-msgstr "स्टयान्डर्ड मंकियर फ्याक्ट्रि"
+msgstr "स्तरिय मोनिकर कारखाना"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:2
 msgid "file MonikerExtender"
-msgstr "मंकियर एक्टेन्डर फाईल"
+msgstr "मोनिकर फैलाउने लेखपत्र"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:3
 msgid "generic Gnome VFS moniker"
-msgstr "जेनेरिक जिनोम भि एफ एस मंकियर"
+msgstr "सामान्य जिनोम भि एफ एस मोनिकर"
 
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
-msgstr "जेनेरिक फाईल मंकियर"
+msgstr "सामान्य  मोनिकर लेखपत्र"
 
 #: schemas/desktop_default_applications.schemas.in.h:1
 msgid "Default component viewer application"
-msgstr ""
+msgstr "पुर्वनिर्धारित पुरक प्रार्थनापत्र देखाउने"
 
 #: schemas/desktop_default_applications.schemas.in.h:2
 msgid "Default terminal application"
-msgstr ""
+msgstr "पुर्वनिर्धारित अन्तिम प्रार्थना पत्र"
 
 #: schemas/desktop_default_applications.schemas.in.h:3
 msgid "Exec argument for default terminal"
-msgstr ""
+msgstr "पुर्वनिर्धारित अन्त्यको लागि बहस कार्यक्रम"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
@@ -718,203 +696,172 @@ msgstr ""
 msgid ""
 "The default terminal application to use for applications that require a "
 "terminal."
-msgstr ""
+msgstr "प्रार्थना पत्रको एउटा अन्त्य चाहनको लागि पुर्वनिर्दारित प्रार्थना पत्रको अन्त्य प्रयोग गरिन्छ"
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
-msgstr ""
+msgstr "पुर्वनिर्धारित प्रार्थना पत्र अन्त्यको लागि बहस कार्यक्रम प्योग गरिन्छ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
 msgid "H323 URL handler"
-msgstr ""
+msgstr "एच ३२३ युआरएल प्रयोग कर्ता"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "HTTP URL handler"
-msgstr ""
+msgstr "एचटिटिपि युआरएल प्रयोग कर्ता"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "HTTPS URL handler"
-msgstr ""
+msgstr "एचटिटिपिएस युआरएल प्रयोग कर्ता"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "Handle H323 URLs"
-msgstr ""
+msgstr "एच ३२३ युआरएल प्रयोग गर्नु"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "Handle HTTP URLs"
-msgstr ""
+msgstr "एचटिटिपिएस युआरएल प्रयोग गर्नु"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "Handle HTTPS URLs"
-msgstr ""
+msgstr "एचटिटिपिएस युआरएलहरु प्रयोग गर्नु"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-msgid "Handle aim URLs"
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
 msgstr ""
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle ghelp URLs"
-msgstr ""
+msgstr "युआरएलहरु जि सहयोगि प्रयोग गर्नु"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
+msgid "Handle info URLs"
+msgstr "युआरएलहरु को जानकारि हरु प्रयोग गर्नु"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "Handle info URLs"
-msgstr ""
+msgid "Handle mailto URLs"
+msgstr "युआरएलहरु मिलतो प्रयोग गर्नु"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "Handle mailto URLs"
-msgstr ""
+msgid "Handle man URLs"
+msgstr "युआरएलहरु मानिसले प्रयोग गर्ने"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-msgid "Handle man URLs"
-msgstr ""
+msgid "Handle trash URLs"
+msgstr "युआरएलहरु ब्यर्थ कुरा प्रयोग गर्नु"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-msgid "Handle trash URLs"
-msgstr ""
+msgid "Run program in terminal"
+msgstr "कार्यक्रम अन्त्यमा चालु गर्नु"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-msgid "Run program in terminal"
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
 msgid ""
 "Set to true to have a program specified in \"command\" handle H323 URLs."
 msgstr ""
+"सत्य स्थापित गर्न एच ३२३ युआरएल प्रयोग गर्न \"आदेश\"मा कार्यक्रमको बर्णन गरिएको थियो"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid ""
+"Set to true to have a program specified in \"command\" handle HTTP URLs."
+msgstr "सत्य स्थापित गर्न एचटिटिपि युआरएलहरु प्रयोग गर्न \"आदेश\"मा कार्यक्रमको बर्णन गरिएको थियो"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
 msgid ""
-"Set to true to have a program specified in \"command\" handle HTTP URLs."
-msgstr ""
+"Set to true to have a program specified in \"command\" handle HTTPS URLs."
+msgstr "सत्य स्थापित गर्न एचटिटिपि युआरएलहरु प्रयोग गर्न \"आदेश\"मा कार्यक्रमको बर्णन गरिएको थियो"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
 msgid ""
-"Set to true to have a program specified in \"command\" handle HTTPS URLs."
-msgstr ""
+"Set to true to have a program specified in \"command\" handle callto URLs."
+msgstr "सत्य स्थापित गर्न क्याल्टो युआरएलहरु प्रयोग गर्न \"आदेश\"मा कार्यक्रमको बर्णन गरिएको थियो"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-msgid "Set to true to have a program specified in \"command\" handle aim URLs."
-msgstr ""
+msgid ""
+"Set to true to have a program specified in \"command\" handle ghelp URLs."
+msgstr "सत्य स्थापित गर्न जि सहयोगि युआरएलहरु प्रयोग गर्न \"आदेश\"मा कार्यक्रमको बर्णन गरिएको थियो"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
-"Set to true to have a program specified in \"command\" handle callto URLs."
-msgstr ""
+"Set to true to have a program specified in \"command\" handle info URLs."
+msgstr "सत्य स्थापित गर्न जानकारि युआरएलहरु प्रयोग गर्न \"आदेश\"मा कार्यक्रमको बर्णन गरिएको थियो"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid ""
-"Set to true to have a program specified in \"command\" handle ghelp URLs."
-msgstr ""
+"Set to true to have a program specified in \"command\" handle mailto URLs."
+msgstr "सत्य स्थापित गर्न मिलटो युआरएलहरु प्रयोग गर्न \"आदेश\"मा कार्यक्रमको बर्णन गरिएको थियो"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid ""
-"Set to true to have a program specified in \"command\" handle info URLs."
-msgstr ""
+msgid "Set to true to have a program specified in \"command\" handle man URLs."
+msgstr "सत्य स्थापित गर्न  युआरएलहरु मानिसले प्रयोग गर्न \"आदेश\"मा कार्यक्रमको बर्णन गरिएको थियो"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
-"Set to true to have a program specified in \"command\" handle mailto URLs."
-msgstr ""
+"Set to true to have a program specified in \"command\" handle trash URLs."
+msgstr "सत्य स्थापित गर्न युआरएलहरुको ब्यर्थ कुरा प्रयोग गर्न \"आदेश\"मा कार्यक्रमको बर्णन गरिएको थियो"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid "Set to true to have a program specified in \"command\" handle man URLs."
-msgstr ""
+msgid "True if the program to handle this URL should be run in a terminal."
+msgstr "सत्य हो यदि यो कार्यक्रम प्रयोग गर्न यो युआरएल अन्त्मा चालु हुनै पर्छ"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid ""
-"Set to true to have a program specified in \"command\" handle trash URLs."
-msgstr ""
+msgid "callto URL handler"
+msgstr "युआरएल क्यालटो प्रयोग कर्ता"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid "True if the program to handle this URL should be run in a terminal."
-msgstr ""
+msgid "ghelp URL handler"
+msgstr "युआरएल जि सहयोगि प्रयोग कर्ता"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
-msgid "aim URL handler"
-msgstr "ब्याड फाईल ह्यन्डल"
+msgid "info URL handler"
+msgstr "युआरएल जानकारि प्रयोग कर्ता"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid "callto URL handler"
-msgstr ""
+msgid "mailto URL handler"
+msgstr "युआरएल मेलटु प्रयोग कर्ता"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid "ghelp URL handler"
-msgstr ""
+msgid "man URL handler"
+msgstr "युआरएल मानिस प्रयोग कर्ता"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "info URL handler"
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
-msgid "mailto URL handler"
-msgstr "ब्याड फाईल ह्यन्डल"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid "man URL handler"
-msgstr ""
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid "trash URL handler"
-msgstr ""
-
-#: schemas/system_dns_sd.schemas.in.h:1
-msgid ""
-"Comma separated list of dns-sd domains that should be visible in the network "
-"location."
-msgstr ""
-
-#: schemas/system_dns_sd.schemas.in.h:2
-msgid "Extra domains to look for dns-sd services in"
-msgstr ""
-
-#: schemas/system_dns_sd.schemas.in.h:3
-msgid "How to display local DNS-SD service"
-msgstr ""
-
-#: schemas/system_dns_sd.schemas.in.h:4
-msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr ""
+msgstr "युआरएल ब्यर्थ कुरा प्रयोग कर्ता"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
-msgstr ""
+msgstr "सत्यता स्थापित गर्न क्रितिम सेवा प्रदायक सम्बन्ध गर्नु पर्छ"
 
 #: schemas/system_http_proxy.schemas.in.h:2
 msgid "Automatic proxy configuration URL"
-msgstr ""
+msgstr "सत्यता स्थापित गर्न क्रितिम युआरएल ढाँचा "
 
 #: schemas/system_http_proxy.schemas.in.h:3
 msgid "Enables the proxy settings when accessing HTTP over the Internet."
-msgstr ""
+msgstr "जब ईन्टरनेट माथि एचटिटिपि को पहुच हुन्छ प्रतिनिधित्व स्थापित गर्न सक्षम हुन्छ"
 
 #: schemas/system_http_proxy.schemas.in.h:4
 msgid "FTP proxy host name"
-msgstr ""
+msgstr "एफटिपि प्रतिनिधित्व सहयोगि नाम"
 
 #: schemas/system_http_proxy.schemas.in.h:5
 msgid "FTP proxy port"
-msgstr ""
+msgstr "एफटिपि प्रतिनिधित्व तार छिराउने प्वाल"
 
 #: schemas/system_http_proxy.schemas.in.h:6
 msgid "HTTP proxy host name"
-msgstr ""
+msgstr "एचटिटिपि प्रतिनिधित्व सहयोगि नाम"
 
 #: schemas/system_http_proxy.schemas.in.h:7
 msgid "HTTP proxy password"
-msgstr ""
+msgstr "एचटिटिपि प्रतिनिधित्व प्रवेश चिन्ह"
 
 #: schemas/system_http_proxy.schemas.in.h:8
 msgid "HTTP proxy port"
-msgstr ""
+msgstr "एचटिटिपि प्रतिनिधित्व तार छिराउने प्वाल"
 
 #: schemas/system_http_proxy.schemas.in.h:9
 msgid "HTTP proxy username"
-msgstr ""
+msgstr "एचटिटिपि प्रतिनिधित्व प्रयोग कर्ताको नाम"
 
 #: schemas/system_http_proxy.schemas.in.h:10
 msgid ""
@@ -925,7 +872,7 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
-msgstr ""
+msgstr "प्रतिनिधित्व नभएको सहयोगिहरु"
 
 #: schemas/system_http_proxy.schemas.in.h:12
 msgid "Password to pass as authentication when doing HTTP proxying."
@@ -933,45 +880,46 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:13
 msgid "Proxy configuration mode"
-msgstr ""
+msgstr "प्रतिनिधित्व ढाँचा बिधि"
 
 #: schemas/system_http_proxy.schemas.in.h:14
 msgid "SOCKS proxy host name"
-msgstr ""
+msgstr "एसोसिकेएस प्रतिनित्व सहयोगि नाम"
 
 #: schemas/system_http_proxy.schemas.in.h:15
 msgid "SOCKS proxy port"
-msgstr ""
+msgstr "सक्स प्रतिनिधित्व तार छिराउने प्वाल"
 
 #: schemas/system_http_proxy.schemas.in.h:16
 msgid "Secure HTTP proxy host name"
-msgstr ""
+msgstr "सुरक्षित एचटिटिपि प्रतिनिधित्व सहयोगि नाम"
 
 #: schemas/system_http_proxy.schemas.in.h:17
 msgid "Secure HTTP proxy port"
-msgstr ""
+msgstr "सुरक्षित एचटिटिपि प्रतिनिधित्व सहयोगि नाम"
 
 #: schemas/system_http_proxy.schemas.in.h:18
 msgid ""
 "Select the proxy configuration mode. Supported values are \"none\", \"manual"
 "\", \"auto\"."
-msgstr ""
+msgstr "प्रतिनिधित्व ढाँचा बिधि छान। \"कुनै पनि हैन\", \"हाते पुस्तिका\", \"आफै संचालन हुने\" समर्थन गरिएका मुल्यहारु हुन।"
+
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
-msgstr ""
+msgstr " एफटिपि बाट प्रतिनिधित्व लाई यन्त्रको नाम"
 
 #: schemas/system_http_proxy.schemas.in.h:20
 msgid "The machine name to proxy HTTP through."
-msgstr ""
+msgstr "एचटिटिपि बाट प्रतिनिधित्व लाई यन्त्रको नाम"
 
 #: schemas/system_http_proxy.schemas.in.h:21
 msgid "The machine name to proxy secure HTTP through."
-msgstr ""
+msgstr "एचटिटिपि बाट प्रतिनिधित्व सुरक्षा लाई यन्त्रको नाम"
 
 #: schemas/system_http_proxy.schemas.in.h:22
 msgid "The machine name to proxy socks through."
-msgstr ""
+msgstr "सक्स बाट प्रतिनिधित्व लाई यन्त्रको नाम"
 
 #: schemas/system_http_proxy.schemas.in.h:23
 msgid ""
@@ -1007,11 +955,11 @@ msgstr ""
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
-msgstr ""
+msgstr "प्रतिनिधित्वको ढाँचा मुल्य हरु युआरएल ले उपलब्ध गराउछ"
 
 #: schemas/system_http_proxy.schemas.in.h:29
 msgid "Use HTTP proxy"
-msgstr ""
+msgstr "एचटिटिपि प्रतिनिधित्व प्रयोग गर"
 
 #: schemas/system_http_proxy.schemas.in.h:30
 msgid "User name to pass as authentication when doing HTTP proxying."
@@ -1019,11 +967,12 @@ msgstr ""
 
 #: schemas/system_smb.schemas.in.h:1
 msgid "SMB workgroup"
-msgstr ""
+msgstr "एसएमबि वर्कग्रुप"
 
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
-msgstr ""
+msgstr "द्वार वर्कग्रुप प्रयोगकर्ताको एउटा भाग हो"
 
 #~ msgid "1 byte"
 #~ msgstr "1 बाईट"
+
