@@ -502,6 +502,35 @@ do_mv (void)
 }
 
 static void
+do_findtrash (void)
+{
+	char *from;
+	char *uri_as_string;
+	GnomeVFSResult    result;
+	GnomeVFSURI *from_uri;
+	GnomeVFSURI *result_vfs_uri;
+
+	from = get_fname ();
+
+	from_uri = gnome_vfs_uri_new (from);
+	result = gnome_vfs_find_directory (from_uri, 
+					   GNOME_VFS_DIRECTORY_KIND_TRASH, 
+					   &result_vfs_uri, 
+					   TRUE, TRUE, 0777);
+
+	if (result != GNOME_VFS_OK) {
+		fprintf (stdout, "couldn't find or create trash there, error code %d", result);
+	} else {
+		uri_as_string = gnome_vfs_uri_to_string (result_vfs_uri, GNOME_VFS_URI_HIDE_NONE);
+		fprintf (stdout, "trash found or created here: %s", uri_as_string);
+		g_free (uri_as_string);
+	}
+
+	gnome_vfs_uri_unref (from_uri);
+	gnome_vfs_uri_unref (result_vfs_uri);
+}
+
+static void
 do_info (void)
 {
 	char             *from;
@@ -873,7 +902,7 @@ main (int argc, char **argv)
 		char *ptr;
 
 		if (interactive) {
-			fprintf (stdout,"%s > ", cur_dir);
+			fprintf (stdout,"\n%s > ", cur_dir);
 			fflush (stdout);
 		}
 		fgets (buffer, 1023, stdin);
@@ -912,6 +941,8 @@ main (int argc, char **argv)
 		else if (g_strcasecmp (ptr, "info") == 0 ||
 			 g_strcasecmp (ptr, "stat") == 0)
 			do_info ();
+		else if (g_strcasecmp (ptr, "findtrash") == 0)
+			do_findtrash ();
 		else if (g_strcasecmp (ptr, "sync") == 0)
 			fprintf (vfserr, "a shell is like a boat, it lists or syncs (RMS)\n");
 		else if (g_strcasecmp (ptr,"help") == 0 ||

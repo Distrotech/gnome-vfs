@@ -212,6 +212,12 @@ gnome_vfs_file_info_compare_for_sort (const GnomeVFSFileInfo *a,
 	guint i;
 	gint retval;
 
+	/* Note that the sort direction is determined by a
+	 * "natural order" rather than a logical "small" to "large"
+	 * order. For instance, large sizes come before small ones,
+	 * because that is what the user probably cares about.
+	 */
+
 	for (i = 0; sort_rules[i] != GNOME_VFS_DIRECTORY_SORT_NONE; i++) {
 		switch (sort_rules[i]) {
 		case GNOME_VFS_DIRECTORY_SORT_DIRECTORYFIRST:
@@ -233,25 +239,30 @@ gnome_vfs_file_info_compare_for_sort (const GnomeVFSFileInfo *a,
 				return retval;
 			break;
 		case GNOME_VFS_DIRECTORY_SORT_BYSIZE:
+			/* Natural order of sorting by size is largest first */
 			if (a->size != b->size)
-				return (a->size < b->size) ? -1 : +1;
+				return (a->size > b->size) ? -1 : +1;
 			break;
 		case GNOME_VFS_DIRECTORY_SORT_BYBLOCKCOUNT:
+			/* Natural order of sorting by block count is largest first */
 			if (a->block_count != b->block_count)
-				return ((a->block_count < b->block_count)
+				return ((a->block_count > b->block_count)
 					? -1 : +1);
 			break;
 		case GNOME_VFS_DIRECTORY_SORT_BYATIME:
+			/* Natural order of sorting by date is most recent first */
 			if (a->atime != b->atime)
-				return (a->atime < b->atime) ? -1 : +1;
+				return (a->atime > b->atime) ? -1 : +1;
 			break;
 		case GNOME_VFS_DIRECTORY_SORT_BYMTIME:
+			/* Natural order of sorting by date is most recent first */
 			if (a->mtime != b->mtime)
-				return (a->mtime < b->mtime) ? -1 : +1;
+				return (a->mtime > b->mtime) ? -1 : +1;
 			break;
 		case GNOME_VFS_DIRECTORY_SORT_BYCTIME:
+			/* Natural order of sorting by date is most recent first */
 			if (a->ctime != b->ctime)
-				return (a->ctime < b->ctime) ? -1 : +1;
+				return (a->ctime > b->ctime) ? -1 : +1;
 			break;
 		case GNOME_VFS_DIRECTORY_SORT_BYMIMETYPE:
 			/* Directories (e.g.) don't have mime types, so

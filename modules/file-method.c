@@ -1186,17 +1186,22 @@ find_trash_directory (const char *full_name_near, dev_t near_device_id,
 			for (depth = 1; depth < MAX_TRASH_SEARCH_DEPTH; depth++) {
 				g_assert (*scanner == G_DIR_SEPARATOR);
 
-				scanner = strchr (scanner + 1, G_DIR_SEPARATOR);
-				if (scanner == NULL) {
-					break;
+				/* Special-case to handle "/" (and similar?) */
+				if (scanner == full_name_near) {
+					current_directory = g_strdup (G_DIR_SEPARATOR_S);
+				} else {
+					current_directory = g_strdup (full_name_near);
+					current_directory[scanner - full_name_near] = '\0';
 				}
-				
-				current_directory = g_strdup (full_name_near);
-				current_directory[scanner - full_name_near] = '\0';
 
 				trash_path = try_creating_trash_in (current_directory, permissions);
 				g_free (current_directory);
 				if (trash_path != NULL) {
+					break;
+				}
+
+				scanner = strchr (scanner + 1, G_DIR_SEPARATOR);
+				if (scanner == NULL) {
 					break;
 				}
 			}

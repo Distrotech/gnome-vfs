@@ -1,3 +1,22 @@
+2000-08-25  John Sullivan  <sullivan@eazel.com>
+
+	Fixed bug 2311 (sort by date should put most recent dates first).
+	Also made the same change for size.
+	Also fixed some bugs in trash-directory locating, and added
+	testing code for this.
+
+	* libgnomevfs/gnome-vfs-file-info.c:
+	(gnome_vfs_file_info_compare_for_sort): Added comment clarifying
+	that the sort order should be the natural order for each type,
+	not necessarily strict "small to large". Then changed size
+	and date orderings to go the opposite way.
+	* modules/file-method.c: (find_trash_directory): Fixed a couple
+	of problems Darin and I discovered that involved trying to
+	find Trash on "/".
+	* test/test-shell.c: (do_findtrash), (main): Added findtrash
+	command to test shell, and made it put the prompt on a new
+	line instead of appending it to the most recent output.
+
 Fri Aug 25 09:15:15 2000  Dietmar Maurer  <dietmar@maurer-it.com>
 
 	* modules/efs-method.c: minor changes for new libefs code.
