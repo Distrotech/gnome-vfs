@@ -1,3 +1,15 @@
+2001-05-16  Michael K. Fleming  <mfleming@eazel.com>
+
+	gnome_vfs_app_context_get_current was not addref'ing
+	the context it returned if it had to create a default context.
+	This caused crashes in async operations in apps that do not use
+	the app context mechanism.
+
+	* libgnomevfs/gnome-vfs-app-context.c:
+	(gnome_vfs_app_context_peek_current_internal),
+	(gnome_vfs_app_context_peek_current),
+	(gnome_vfs_app_context_get_current):
+
 2001-05-16  Darin Adler  <darin@eazel.com>
 
 	* libgnomevfs/gnome-vfs-app-context.c:

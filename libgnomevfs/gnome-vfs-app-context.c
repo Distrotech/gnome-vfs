@@ -286,8 +286,8 @@ gnome_vfs_app_context_set_callback_full (GnomeVFSAppContext* app_context,
 	}
 }
 
-const GnomeVFSAppContext*
-gnome_vfs_app_context_peek_current (void)
+static GnomeVFSAppContext *
+gnome_vfs_app_context_peek_current_internal (void)
 {
 	GnomeVFSAppContext* ret;
 
@@ -304,6 +304,12 @@ gnome_vfs_app_context_peek_current (void)
 	return ret;
 }
 
+const GnomeVFSAppContext*
+gnome_vfs_app_context_peek_current (void)
+{
+	return gnome_vfs_app_context_peek_current_internal ();
+}
+
 GnomeVFSAppContext *
 gnome_vfs_app_context_get_current (void)
 {
@@ -311,14 +317,8 @@ gnome_vfs_app_context_get_current (void)
 
 	GNOME_VFS_ASSERT_PRIMARY_THREAD;
 
-	if (app_context_stack == NULL) {
-		/* There's always an app context, even if its empty */
-		ret = gnome_vfs_app_context_new();
-		gnome_vfs_app_context_push_override_takesref (ret);
-	} else {
-		ret = (GnomeVFSAppContext *)app_context_stack->data;
-		gnome_vfs_app_context_ref (ret);
-	}
+	ret = gnome_vfs_app_context_peek_current_internal ();
+	gnome_vfs_app_context_ref (ret);
 
 	return ret;
 }
