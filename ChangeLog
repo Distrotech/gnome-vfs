@@ -1,6 +1,11 @@
 2004-01-12  Alexander Larsson  <alexl@redhat.com>
 
 	* Makefile.am (EXTRA_DIST): 
+	Add gtk-doc.make	
+
+2004-01-12  Alexander Larsson  <alexl@redhat.com>
+
+	* Makefile.am (EXTRA_DIST): 
 	Remove OrigTree.pl
 	
 	* configure.in: 

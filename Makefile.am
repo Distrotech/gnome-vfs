@@ -19,6 +19,7 @@ EXTRA_DIST =					\
 	gnome-vfs.spec				\
 	gnome-vfs-2.0.pc.in			\
 	gnome-vfs-module-2.0.pc.in		\
+	gtk-doc.make				\
 	intltool-extract.in			\
 	intltool-merge.in			\
 	intltool-update.in
