@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.5.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-05 10:32+0200\n"
-"PO-Revision-Date: 2004-02-24 23:45+0900\n"
+"POT-Creation-Date: 2004-07-15 06:15+0900\n"
+"PO-Revision-Date: 2004-07-15 06:20+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 msgid "Could not initialize Bonobo"
 msgstr "보노보를 초기화할 수 없습니다"
 
-#: daemon/gnome-vfs-daemon.c:602
+#: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
 msgstr "그놈 VFS를 초기화할 수 없습니다"
 
@@ -191,6 +191,114 @@ msgstr "XIAFS 볼륨"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "알 수 없음"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:601
+msgid "CD Disc"
+msgstr "CD 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:604
+msgid "Blank CD-R Disc"
+msgstr "빈 CD-R 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:606
+msgid "CD-R Disc"
+msgstr "CD-R 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:609
+msgid "Blank CD-RW Disc"
+msgstr "빈 CD-RW 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:611
+msgid "CD-RW Disc"
+msgstr "CD-RW 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+msgid "DVD-ROM Disc"
+msgstr "DVD-ROM 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:616
+msgid "Blank DVD-R Disc"
+msgstr "빈 DVD-R 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+msgid "DVD-R Disc"
+msgstr "DVD-R 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:621
+msgid "Blank DVD-RAM Disc"
+msgstr "빈 DVD-RAM 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:623
+msgid "DVD-RAM Disc"
+msgstr "DVD-RAM 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:626
+msgid "Blank DVD-RW Disc"
+msgstr "빈 DVD-RW 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:628
+msgid "DVD-RW Disc"
+msgstr "DVD-RW 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:631
+msgid "Blank DVD+RW Disc"
+msgstr "빈 DVD+RW 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:633
+msgid "DVD+RW Disc"
+msgstr "DVD+RW 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:636
+msgid "Blank DVD+R Disc"
+msgstr "빈 DVD+R 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:638
+msgid "DVD+R Disc"
+msgstr "DVD+R 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+msgid "Optical Disc"
+msgstr "광학 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:646
+msgid "Audio Disc"
+msgstr "오디오 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:650
+msgid "Compact Flash Media"
+msgstr "컴팩트 플래시 미디어"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:652
+msgid "Memory Stick Media"
+msgstr "메모리 스틱 미디어"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:654
+msgid "Smart Media Media"
+msgstr "스마트 미디어 미디어"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:656
+msgid "SD/MMC Media"
+msgstr "SD/MMC 미디어"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:658
+msgid "Floppy Disk"
+msgstr "플로피 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+msgid "Mac OS disk"
+msgstr "Mac OS 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+msgid "Mac OS X disk"
+msgstr "Mac OS X 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:681
+msgid "Windows Disk"
+msgstr "Windows 디스크"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:687
+msgid "Linux Disk"
+msgstr "리눅스 디스크"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -450,7 +558,12 @@ msgstr "명령 행을 분석하는 데 애러가 발생했습니다"
 msgid "Error launching command"
 msgstr "명령을 실행하는 데 애러가 발생했습니다"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+msgid "Timeout reached"
+msgstr "제한시간이 넘었습니다"
+
+#: libgnomevfs/gnome-vfs-result.c:180
 msgid "Unknown error"
 msgstr "알 수 없는 애러가 발생했습니다"
 
@@ -476,66 +589,66 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (잘못된 유니코드)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:524
 msgid "Floppy"
 msgstr "플로피"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:527
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:498
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:530
 msgid "Zip Drive"
 msgstr "Zip 드라이브"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:499
 msgid "Memory Stick"
 msgstr "메모리 스틱"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:500
 msgid "Camera"
 msgstr "카메라"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
 msgstr "루트 볼륨"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:798
 msgid "Audio CD"
 msgstr "음악 CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:829
 msgid "Unknown volume"
 msgstr "알 수 없는 볼륨"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1009
 msgid "Network server"
 msgstr "네트워크 서버"
 
 #. Handle floppy case
-#: libgnomevfs/gnome-vfs-volume-ops.c:113
+#: libgnomevfs/gnome-vfs-volume-ops.c:112
 msgid ""
 "Unable to mount the floppy drive. There is probably no floppy in the drive."
 msgstr ""
 "플로피 드라이브를 마운트할 수 없습니다. 드라이브에 플로피가 없을 것입니다."
 
 #. All others
-#: libgnomevfs/gnome-vfs-volume-ops.c:117
+#: libgnomevfs/gnome-vfs-volume-ops.c:116
 msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "해당 볼륨을 마운트할 수 없습니다. 해당 장치에 미디어가 없을 것입니다."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:123
+#: libgnomevfs/gnome-vfs-volume-ops.c:122
 msgid ""
 "Unable to mount the floppy drive. The floppy is probably in a format that "
 "cannot be mounted."
@@ -543,7 +656,7 @@ msgstr ""
 "플로피 드라이브를 마운트할 수 없습니다. 플로피가 마운트할 수 없는 형식일 것입"
 "니다."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:126
+#: libgnomevfs/gnome-vfs-volume-ops.c:125
 msgid ""
 "Unable to mount the selected volume. The volume is probably in a format that "
 "cannot be mounted."
@@ -551,28 +664,28 @@ msgstr ""
 "선택한 볼륨을 마운트할 수 없습니다. 해당 볼륨이 마운트할 수 없는 형식일 것입"
 "니다."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:131
+#: libgnomevfs/gnome-vfs-volume-ops.c:130
 msgid "Unable to mount the selected floppy drive."
 msgstr "선택한 플로피 드라이브를 마운트할 수 없습니다."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:133
+#: libgnomevfs/gnome-vfs-volume-ops.c:132
 msgid "Unable to mount the selected volume."
 msgstr "선택한 볼륨을 마운트할 수 없습니다."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:145
+#: libgnomevfs/gnome-vfs-volume-ops.c:144
 msgid "Unable to unmount the selected volume."
 msgstr "선택한 볼륨을 마운트 해제할 수 없습니다."
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:255
-#: libgnomevfs/gnome-vfs-volume-ops.c:301
+#: libgnomevfs/gnome-vfs-volume-ops.c:256
+#: libgnomevfs/gnome-vfs-volume-ops.c:302
 msgid "Failed to start command"
 msgstr "명령어를 시작하는 데 실패했습니다"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:291
+#: libgnomevfs/gnome-vfs-volume-ops.c:292
 msgid "Unable to eject media"
 msgstr "미디어를 꺼낼 수 없습니다"
 
-#: libgnomevfs/gnome-vfs-volume-ops.c:480
+#: libgnomevfs/gnome-vfs-volume-ops.c:481
 msgid "Unable to unmount connected server"
 msgstr "연결한 서버에서 마운트를 해제할 수 없습니다"
 
@@ -638,7 +751,7 @@ msgstr "홈"
 msgid "Filesystem"
 msgstr "파일시스템"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "알 수 없는 GnomeVFSSeekPosition %d"
@@ -650,7 +763,7 @@ msgstr "Windows 네트워크"
 #: modules/sftp-method.c:1261
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "원격 컴퓨터(%s)의 신원을 알 수 없습니다."
 
 #: modules/sftp-method.c:1262
 #, c-format
@@ -660,14 +773,17 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"이 현상은 첫 번째로 컴퓨터에 로그인할 때 발생합니다.\n"
+"\n"
+"원격 컴퓨터가 보낸 신원은 %s입니다. 계속해도 안전한지 철저하게 확인하려면, 시스템 관리자에게 물어보십시오."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
-msgstr ""
+msgstr "그래도 로그인"
 
 #: modules/sftp-method.c:1268
 msgid "Cancel Login"
-msgstr ""
+msgstr "로그인 취소"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -753,9 +869,8 @@ msgid "Handle HTTPS URLs"
 msgstr "HTTPS URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
-#, fuzzy
 msgid "Handle aim URLs"
-msgstr "man URL을 처리합니다"
+msgstr "aim URL을 처리합니다"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "Handle callto URLs"
@@ -801,9 +916,8 @@ msgid ""
 msgstr "참이면 \"command\"에 HTTPS URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "Set to true to have a program specified in \"command\" handle aim URLs."
-msgstr "참이면 \"command\"에 man URL을 처리하는 프로그램이 들어갑니다."
+msgstr "참이면 \"command\"에 aim URL을 처리하는 프로그램이 들어갑니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid ""
@@ -840,9 +954,8 @@ msgstr ""
 "참이면, 이 URL을 처리하는 프로그램을 터미널에서 실행해야 하는 경우입니다."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid "aim URL handler"
-msgstr "man URL 핸들러"
+msgstr "aim URL 핸들러"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid "callto URL handler"
@@ -872,19 +985,19 @@ msgstr "trash URL 핸들러"
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr ""
+msgstr "네트워크 위치에서 보여야 하는 dns-sd 도메인들의 쉼표로 구분한 목록."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "dns-sd 서비스를 찾아볼 추가 도메인"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "로컬 DNS-SD 서비스를 표시하는 법"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\""
-msgstr ""
+msgstr "쓸 수 있는 값은 \"merged\", \"separated\" 및 \"disabled\"입니다"
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1042,18 +1155,3 @@ msgstr "SMB 워크그룹"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "사용자가 속해 있는 Windows 워크그룹"
-
-#~ msgid "Bookmark saving failed (%s)"
-#~ msgstr "책갈피 저장이 실패했습니다 (%s)"
-
-#~ msgid "Could not get information for file '%s': %s"
-#~ msgstr "'%s' 파일의 정보를 알아낼 수 없습니다: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "'%s' 파일을 여는 데 실패했습니다: %s"
-
-#~ msgid ""
-#~ "Failed to load image '%s': reason not known, probably a corrupt image file"
-#~ msgstr ""
-#~ "'%s' 그림을 읽어들이는 데 실패했습니다: 이유를 알 수 없습니다. 이미지 파일"
-#~ "이 손상되었을 것입니다."
