@@ -193,6 +193,9 @@ application/x-lhz
 application/x-ms-dos-executable
 	description=DOS/Windows program
 
+application/x-nautilus-link
+	description=Nautilus link
+
 application/x-object-file
 	description=object code
 	icon-filename=gnome-objectfile.png

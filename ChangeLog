@@ -1,3 +1,9 @@
+2000-07-26  Gene Z. Ragan  <gzr@eazel.com>
+
+	* data/mime/gnome-vfs-mime-magic:
+	* data/mime/gnome-vfs.keys:
+	Added mime magic and mime type key for application/x-nautilus-link
+
 2000-07-25  Mike Fleming  <mfleming@eazel.com>
 
 	* modules/translate-method.c: (tr_exec_open_child),

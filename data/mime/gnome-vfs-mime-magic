@@ -65,6 +65,9 @@
 0	string		\x89PNG					image/png
 0	string		8BPS\ \ \000\000\000\000 &0xffffffff0000ffffffff image/x-psd
 
+# special Nautilus link type
+0:32	string		\<NAUTILUS_OBJECT\ NAUTILUS_LINK	application/x-nautilus-link
+
 # xpm rule needs to go before text/x-c
 0	string		/*\ XPM\ */				image/x-xpixmap
 
