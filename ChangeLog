@@ -1,3 +1,8 @@
+2000-04-11  Darin Adler  <darin@eazel.com>
+
+	* libgnomevfs/gnome-vfs-backend.c (gnome_vfs_async_create_uri):
+	Added another missing async. cover routine.
+
 2000-04-06  Pavel Cisler <pavel@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c:
