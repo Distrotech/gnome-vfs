@@ -158,37 +158,37 @@ http_file_handle_new (GnomeVFSInetConnection *connection,
 		      GnomeVFSIOBuf *iobuf,
 		      GnomeVFSURI *uri)
 {
-	HttpFileHandle *new;
+	HttpFileHandle *result;
 
-	new = g_new (HttpFileHandle, 1);
+	result = g_new (HttpFileHandle, 1);
 
-	new->connection = connection;
-	new->iobuf = iobuf;
-	new->uri_string = gnome_vfs_uri_to_string (uri, 0); /* FIXME bugzilla.eazel.com 1164 */
-	new->uri = uri;
+	result->connection = connection;
+	result->iobuf = iobuf;
+	result->uri_string = gnome_vfs_uri_to_string (uri, 0); /* FIXME bugzilla.eazel.com 1164 */
+	result->uri = uri;
 
-	new->location = NULL;
-	new->mime_type = NULL;
-	new->last_modified = 0;
-	new->size = 0;
-	new->size_is_known = FALSE;
-	new->bytes_read = 0;
-	new->to_be_written = NULL;
-	new->files = NULL;
-	new->server_status = 0;
+	result->location = NULL;
+	result->mime_type = NULL;
+	result->last_modified = 0;
+	result->size = 0;
+	result->size_is_known = FALSE;
+	result->bytes_read = 0;
+	result->to_be_written = NULL;
+	result->files = NULL;
+	result->server_status = 0;
 
-	return new;
+	return result;
 }
 
 static void
 http_file_handle_destroy (HttpFileHandle *handle)
 {
-	if(handle) {
+	if (handle) {
 		g_free (handle->uri_string);
 		g_free (handle->mime_type);
-		if(handle->to_be_written)
+		if (handle->to_be_written) {
 			g_byte_array_free(handle->to_be_written, TRUE);
-		/* this should work... */
+		}
 		g_list_foreach(handle->files, (GFunc)gnome_vfs_file_info_unref, NULL);
 		g_list_free(handle->files);
 		g_free (handle);
@@ -641,24 +641,23 @@ make_request (HttpFileHandle **handle_return,
 }
 
 static void
-http_handle_close (HttpFileHandle *handle,
-		   GnomeVFSContext *context)
+http_handle_close (HttpFileHandle *handle, GnomeVFSContext *context)
 {
-	if(handle) {
+	if (handle) {
 		gnome_vfs_iobuf_flush (handle->iobuf);
 		gnome_vfs_iobuf_destroy (handle->iobuf);
 		gnome_vfs_inet_connection_destroy (handle->connection,
 							 context ? gnome_vfs_context_get_cancellation(context) : NULL);
 
 		if (handle->uri_string) {
-			gchar* msg;
+			gchar *msg;
 
 			msg = g_strdup_printf(_("Closing connection to %s"),
 								handle->uri_string);
 
-			gnome_vfs_context_emit_message(context, msg);
+			gnome_vfs_context_emit_message (context, msg);
 
-			g_free(msg);
+			g_free (msg);
 		}
 		
 		http_file_handle_destroy (handle);
@@ -720,31 +719,19 @@ do_close (GnomeVFSMethod *method,
 	 * 1) there won't be a connection open, and
 	 * 2) there will be data to_be_written...
 	 */
-	if(handle->to_be_written) { /* != NULL */
+	if (handle->to_be_written != NULL) {
 		GnomeVFSURI *uri = handle->uri;
 		GByteArray *bytes = handle->to_be_written;
 
 		result = make_request(&handle, uri, "PUT", bytes, NULL, context);
 
-		http_file_handle_destroy(handle);
-
-		if(result != GNOME_VFS_OK) {
-			http_handle_close (handle, context);
-			return result;
+		if (result == GNOME_VFS_OK) {
+			result = gnome_vfs_iobuf_write (handle->iobuf, bytes->data,
+					bytes->len, NULL /* we don't care how big it was */);
 		}
-
-		result = gnome_vfs_iobuf_write (handle->iobuf, bytes->data,
-				bytes->len, NULL /* we don't care how big it was */);
-		if(result != GNOME_VFS_OK) {
-			return result;
-		}
-
-		g_byte_array_free(bytes, TRUE);
-		g_free(uri);
-
 	}
-	http_handle_close (handle, context);
 
+	http_handle_close (handle, context);
 	return result;
 }
 	
@@ -1227,7 +1214,8 @@ static GnomeVFSMethod method = {
 	NULL,
 	NULL,
 	NULL, /* truncate */
-	NULL /* find_directory */
+	NULL, /* find_directory */
+	NULL  /* create_symbolic_link */
 };
 
 GnomeVFSMethod *

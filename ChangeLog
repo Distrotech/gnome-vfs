@@ -1,3 +1,10 @@
+2000-06-21  Seth Nickell  <seth@eazel.com>
+
+	* modules/http-method.c: (http_file_handle_new),
+	(http_file_handle_destroy), (http_handle_close), (do_close):
+	Pavel here. Fixed a number of memory thrashers in http_handle_close.
+	Fixed some white space.
+
 2000-06-21  Gene Z. Ragan  <gzr@eazel.com>
 
 	Final stage in renaming.
