@@ -89,10 +89,20 @@ override system settings.
 
 [Known problem: is this ok?]
 
-[Need to correctly explain how other modules extend and override
-here. This is not completely accurate.] There can be multiple versions
-of each file. There is one system file, and applications can submit
-files to add to the system defaults. In addition, files exist per
+There can be multiple versions of each file.
+
+Gnome VFS ships a gnome-vfs.keys file that contains a basic set of
+information.  Other applications may install .keys files in the mime
+data directory.  Values in application files will override values
+provided in the Gnome VFS .keys file.  Users may also override system
+preferences.  Information in user files is the same as information in
+system files.  However, users specify their preferred applications and
+components by suggesting a default application, and additions or
+removals to the preferred list of components.
+
+[Need information about how .mime -magic and .applicatiosn files are overridden]
+
+In addition, files exist per
 user, to store individual user preferences.
 
 ----------------------------------------------------
@@ -307,6 +317,46 @@ Possible keys include the following:
        b.  test
        c.  compose
        d.  copiousoutput]
+
+
+User settable attributes may override these options.  Attributes
+(1)-(5) may be included in user files, and if these values are set,
+will override the system values for that user.  Users may also use the
+following attributes to change the list of preferred and default
+actions for mime types:
+
+7.  short_list_application_user_additions -- Applications that a user
+wants to be in the short list for this mime type.  It should be comma
+separated list in the same format as the short_list_applications for
+each user level.  Additions placed in this list that are already part
+of the short list will not be duplicated.
+
+ 
+8.  short_list_application_user_removals -- Applications that a user
+does not want to be in the short list for this mime type.  It should
+be comma separated list in the same format as the
+short_list_applications for each user level.  Applications placed in
+this list that are not otherwise part of the short list will have no
+effect.
+
+9.  default_application_id -- Specify the default application for this
+    mime type.  If a default is specified by the user, this
+    application will always be used for this mime type, and an error
+    will be given if the application is not available.  If this
+    default is not specified, the first available application on the
+    short list of viewers will be used.
+
+10. default_component_id -- Specify the default viewer for this
+    mime type.  If a default is specified by the user, this
+    viewer will always be used for this mime type, and an error
+    will be given if the viewer is not available.  If this
+    default is not specified, the first available viewer in the
+    short list of viewers will be used.
+
+[known problem: User and system mime files are parsed in the same
+manner.  This means that attributes supposed to be used only in the
+system file will be read and used if added to the user file, and vice
+versa (bugzilla.eazel.com 6152)]
 
 .applications files
 -------------------

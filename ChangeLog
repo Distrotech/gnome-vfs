@@ -1,3 +1,17 @@
+2001-01-30  Rebecca Schulman  <rebecka@eazel.com>
+        Removed all instances of "default_application_id"
+	and "default_component_id" from the system
+	gnome-vfs keys file, and fixed short list ordering
+	where the current order would incorrectly determine the
+	correct default application.
+	Added documentation to the mime data specification about
+	how exactly user and system configuration .keys files
+	are used.  We need to record this information about
+	other mime data files as well.
+
+	* data/mime/gnome-vfs.keys.in:
+	* doc/mime-data-specification.txt:
+
 2001-01-29  Mike Fleming  <mfleming@eazel.com>
 
 	reviewed by: <pavel@eazel.com>
