@@ -1,15 +1,16 @@
 # Bulgarian translation for gnome-vfs.
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004 Free Software Foundation, Inc.
 # Borislav Aleksandrov <B.Aleksandrov@cnsys.bg>, 2002.
 # Alexander Shopov <al_shopov@yahoo.com>, 2003.
+# Updated by Peter "Peshka" Slavov <pslavov@i-space.org>, 2004
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-vfs\n"
+"Project-Id-Version: gnome-vfs + gnome-vfs-extras\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-03-08 13:11+0100\n"
 "PO-Revision-Date: 2003-01-15 15:06+0200\n"
-"Last-Translator: Alexander Shopov <al_shopov@yahoo.com>\n"
+"Last-Translator: Updated by Peter \"Peshka\" Slavov <pslavov@i-space.org>,\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -974,6 +975,28 @@ msgstr ""
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr ""
+
+#. Translators: Use only ASCII characters for this,
+#. * or don't translate
+#: rio500-method.c:171 rio500-method.c:295 rio500-method.c:776
+#: rio500-method.c:865
+msgid "Internal"
+msgstr "Вътрешен"
+
+#. Translators: Use only ASCII characters for this,
+#. * or don't translate
+#: rio500-method.c:180 rio500-method.c:298 rio500-method.c:777
+#: rio500-method.c:868
+msgid "External"
+msgstr "Външен"
+
+#: smb.desktop.in.h:1
+msgid "Network neighborhood"
+msgstr "Локална·Мрежа"
+
+#: smb.desktop.in.h:2
+msgid "Windows Shares in your local network"
+msgstr "Поделени папки от Windows във вашата локална мрежа"
 
 #~ msgid "1 byte"
 #~ msgstr "1 байт"
