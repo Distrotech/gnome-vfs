@@ -91,7 +91,7 @@ foreach_pid_func (gpointer key,
 static void
 sigchld_handler (int signum)
 {
-	gboolean found;
+	gboolean found = FALSE;
 
 	g_hash_table_foreach (pid_to_process, foreach_pid_func, &found);
 

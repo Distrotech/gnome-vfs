@@ -1,3 +1,8 @@
+2001-02-13  Dan Winship  <danw@ximian.com>
+
+	* libgnomevfs/gnome-vfs-process.c (sigchld_handler): Initialize
+	found to FALSE.
+
 2001-02-07  Robin * Slomkowski  <rslomkow@eazel.com>
 
 	* configure.in: Changed version to 2.0
