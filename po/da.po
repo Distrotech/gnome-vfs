@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2000-04-19 15:50+0200\n"
-"PO-Revision-Date: 2000-04-19 19:03+01:00\n"
+"PO-Revision-Date: 2000-04-26 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,11 @@ msgstr "%s:%d indeholder intet modulnavn."
 #, c-format
 msgid "Configuration file `%s' was not found: %s"
 msgstr "Konfigurationsfilen '%s' fandtes ikke: %s"
+
+#: libgnomevfs/gnome-vfs-file-info.c:483
+#, c-format
+msgid "Unknown sort rule %d"
+msgstr "Ukendt cwisorteringsregel %d"
 
 #: libgnomevfs/gnome-vfs-init.c:55
 msgid "GNOME VFS already initialized."
@@ -266,86 +271,86 @@ msgstr "%.1fM"
 msgid "%.1fG"
 msgstr "%.1fG"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:336
+#: libgnomevfs-corba/gnome-vfs-slave.c:340
 msgid "Dying."
 msgstr "Døende."
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:501
+#: libgnomevfs-corba/gnome-vfs-slave.c:505
 #, c-format
 msgid "Error reading: %s"
 msgstr "Fejl ved læsning af: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:523
+#: libgnomevfs-corba/gnome-vfs-slave.c:527
 #, c-format
 msgid "Error writing: %s"
 msgstr "Fejl ved skrivning til: %s"
 
 #. FIXME
-#: libgnomevfs-corba/gnome-vfs-slave.c:572
+#: libgnomevfs-corba/gnome-vfs-slave.c:576
 #, c-format
 msgid "Cannot write: %s"
 msgstr "Kan ikke skrive: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:600
+#: libgnomevfs-corba/gnome-vfs-slave.c:604
 #, c-format
 msgid "Cannot create temporary file name `%s'"
 msgstr "Kan ikke oprette midlertidigt filnavn '%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:192
-#: libgnomevfs-corba/gnome-vfs-slave.c:614
+#: libgnomevfs-corba/gnome-vfs-slave.c:618
 #, c-format
 msgid "Cannot create socket: %s"
 msgstr "Kan ikke oprette sokkel: %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:632
+#: libgnomevfs-corba/gnome-vfs-slave.c:636
 #, c-format
 msgid "Cannot bind `%s': %s"
 msgstr "Kan ikke binde '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:639
+#: libgnomevfs-corba/gnome-vfs-slave.c:643
 #, c-format
 msgid "Cannot listen on `%s': %s"
 msgstr "Kan ikke lytte på '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:661
+#: libgnomevfs-corba/gnome-vfs-slave.c:665
 #, c-format
 msgid "Cannot accept connections on `%s': %s"
 msgstr "Kan ikke modtage forbindelser på '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1385
+#: libgnomevfs-corba/gnome-vfs-slave.c:1402
 msgid "Cannot initialize CORBA."
 msgstr "Kan ikke initialisere CORBA"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1392
+#: libgnomevfs-corba/gnome-vfs-slave.c:1409
 msgid "Cannot resolve initial reference to RootPOA."
 msgstr "Kan ikke læse første reference til RootPOA."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1399
+#: libgnomevfs-corba/gnome-vfs-slave.c:1416
 msgid "Cannot activate POA manager."
 msgstr "Kan ikke aktivere POA-håndtering"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1424
+#: libgnomevfs-corba/gnome-vfs-slave.c:1441
 #, c-format
 msgid "Usage: %s <ior> [<ior_fd>]\n"
 msgstr "Brug: %s <ior> [<ior_fd>]\n"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1435
+#: libgnomevfs-corba/gnome-vfs-slave.c:1452
 #, c-format
 msgid "Cannot open file descriptor %d."
 msgstr "Kan ikke åbne filbeskriver %d"
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1458
+#: libgnomevfs-corba/gnome-vfs-slave.c:1475
 #, c-format
 msgid "Notify interface for `%s' not found."
 msgstr "Meddelelsesgrænsesnit for '%s' ikke fundet."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1468
+#: libgnomevfs-corba/gnome-vfs-slave.c:1485
 msgid "Cannot setup Request object."
 msgstr "Kan ikke opsætte forespørgselsobjekt."
 
-#: libgnomevfs-corba/gnome-vfs-slave.c:1475
+#: libgnomevfs-corba/gnome-vfs-slave.c:1492
 msgid "Cannot extract IOR."
 msgstr "Kan ikke få IOR."
 
@@ -369,7 +374,7 @@ msgstr "Kan ikke dræbe GNOME::VFS::Slave::Notify -- undtagelse %s"
 msgid "Cannot connect socket `%s': %s"
 msgstr "Kan ikke forbinde sokkel: '%s': %s"
 
-#: libgnomevfs-corba/gnome-vfs-slave-notify.c:782
+#: libgnomevfs-corba/gnome-vfs-slave-notify.c:802
 msgid "Cannot initialize GNOME::VFS:Slave::Notify"
 msgstr "Kan ikke initialisere GNOME::VFS:Slave::Notify"
 
@@ -397,19 +402,19 @@ msgstr "Kan ikke dræbe GNOME::VFS::Slave (IOR ukendt) -- undtagelse %s"
 msgid "Error writing to the wakeup GnomeVFSJob channel."
 msgstr "Fejl ved skrivning til 'wakeup GnomeVFSJob' kanalen."
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:434
-#: libgnomevfs-pthread/gnome-vfs-job.c:1253
+#: libgnomevfs-pthread/gnome-vfs-job.c:445
+#: libgnomevfs-pthread/gnome-vfs-job.c:1282
 #, c-format
 msgid "Unknown job ID %d"
 msgstr "Ukendt job-ID %d"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:784
-#: libgnomevfs-pthread/gnome-vfs-job.c:879
+#: libgnomevfs-pthread/gnome-vfs-job.c:795
+#: libgnomevfs-pthread/gnome-vfs-job.c:890
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Kan ikke oprette pibe for åben GIOChannel: %s"
 
-#: libgnomevfs-pthread/gnome-vfs-job.c:1271
+#: libgnomevfs-pthread/gnome-vfs-job.c:1300
 msgid "Operation stopped"
 msgstr "Operation stoppet"
 
@@ -530,33 +535,33 @@ msgstr "Starter lineær overførsel..."
 msgid "Preparing reget..."
 msgstr "Forbereder fortryd..."
 
-#: modules/http-method.c:500
+#: modules/http-method.c:502
 #, c-format
 msgid "Invalid header `%s'"
 msgstr "Ugyldig header '%s'"
 
-#: modules/http-method.c:517
+#: modules/http-method.c:519
 #, c-format
 msgid "%s to retrieve"
 msgstr "%s tilbage at hente"
 
-#: modules/http-method.c:652
+#: modules/http-method.c:655
 #, c-format
 msgid "Closing connection to %s"
 msgstr "Lukker forbindelse til %s"
 
-#: modules/http-method.c:805
+#: modules/http-method.c:809
 #, c-format
 msgid "%s of %s read"
 msgstr "%s af %s læst"
 
-#: modules/http-method.c:808
+#: modules/http-method.c:812
 #, c-format
 msgid "%s read"
 msgstr "%s læst"
 
 #. Multi-Status
-#: modules/http-method.c:970
+#: modules/http-method.c:974
 msgid "HTTP server returned an invalid PROPFIND response"
 msgstr "HTTP-tjener returnerede et ugyldig PROPFIND-svar"
 
