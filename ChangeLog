@@ -1,3 +1,21 @@
+2002-06-25  Damon Chaplin  <damon@ximian.com>
+
+	* libgnomevfs/gnome-vfs-async-job-map.c (gnome_vfs_async_job_map_init):
+	initialize the async_job_callback_map_lock mutex here, instead of in
+	gnome_vfs_async_job_add_callback(), so we can use it even when
+	async_job_callback_map is NULL.
+	(gnome_vfs_async_job_add_callback): lock the above mutex before
+	checking & creating the async_job_callback_map hash table, to avoid
+	a tiny race condition.
+	(gnome_vfs_async_job_cancel_job_and_callbacks): lock the above mutex
+	first and set job->cancelled. Previously it was just returning if
+	async_job_callback_map was NULL, which meant that job->cancelled
+	didn't get set.
+	(async_job_callback_map_destroy): don't destroy the
+	async_job_callback_map_lock mutex here. We keep it around forever.
+
+	Fixes bug #74189.
+
 2002-06-25  Jody Goldberg <jody@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime.c (file_date_record_update_mtime) : track
