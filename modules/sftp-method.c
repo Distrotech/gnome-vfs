@@ -51,6 +51,7 @@
 
 #include <config.h>
 
+#include <libgnomevfs/gnome-vfs-i18n.h>
 #include <libgnomevfs/gnome-vfs-context.h>
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <libgnomevfs/gnome-vfs-module.h>
@@ -953,7 +954,10 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	GError         *error = NULL;
 
 	gchar          *args[20]; /* Enough for now, extend if you add more args */
-
+	gboolean invoked; 		  
+	GnomeVFSModuleCallbackQuestionIn in_args; 
+	GnomeVFSModuleCallbackQuestionOut out_args;
+	
 	DEBUG (gchar *tmp);
 
 	/* Fill in the first few args */
@@ -1055,7 +1059,13 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 		char buffer[1024];
 		gsize len;
 		char *password;
-
+		char *choices[3];
+		char *pos;
+		char *startpos;
+		char *endpos;
+		char hostname[256];
+		char fingerprint[256];
+		
 		FD_ZERO (&ifds);
 		FD_SET (in_fd, &ifds);
 		FD_SET (tty_fd, &ifds);
@@ -1092,12 +1102,83 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 					goto bail;
 				}
 				done_auth = TRUE;
-			} else if (g_str_has_prefix (buffer, "The authenticity of host")) {
-				/* FIXME: This should do a callback asking the user if the host id is ok */
-				/* For now we just fail */
-				res = GNOME_VFS_ERROR_ACCESS_DENIED;
-				goto bail;
-                        }
+			} else if (g_str_has_prefix (buffer, "The authenticity of host '")) {
+
+				pos = strchr (&buffer[26], '\'');
+				if (pos == NULL) {
+					res = GNOME_VFS_ERROR_GENERIC;
+					goto bail;
+				}
+
+				if (pos - (&buffer[26]) < 255) {
+					strncpy (hostname, &buffer[26], pos - (&buffer[26]));
+					hostname[pos-(&buffer[26])]='\0';
+				} else {
+					strncpy (hostname, &buffer[26], 255);
+					hostname[255]='\0';
+				}
+				
+				startpos = strstr (pos, "RSA key fingerprint is ");
+				if (startpos == NULL) {
+					res = GNOME_VFS_ERROR_GENERIC;
+					goto bail;
+				}
+			
+				startpos = startpos + 23;
+				endpos = strchr (startpos, '.');
+				if (endpos == NULL) {
+					res = GNOME_VFS_ERROR_GENERIC;
+					goto bail;
+				}
+				
+				if (endpos - startpos < 255) {
+					strncpy (fingerprint, startpos, endpos - startpos);
+					fingerprint[endpos - startpos]='\0';
+				} else {
+					strncpy (fingerprint, startpos, 255);
+					fingerprint[255]='\0';
+				}
+				
+				in_args.primary_message = g_strdup_printf (_("The identity of the remote computer (%s) is unknown."), hostname);
+				in_args.secondary_message = g_strdup_printf (_("This happens when you log in to a computer the first time.\n\n"
+									       "The identity sent by the remote computer is %s. "
+									       "If you want to be absolutely sure it is safe to continue, contact the system administrator."), fingerprint);
+
+				in_args.choices = choices;
+				in_args.choices[0] = _("Log In Anyway");
+				in_args.choices[1] = _("Cancel Login");
+				in_args.choices[2] = NULL;
+								
+				invoked = gnome_vfs_module_callback_invoke
+					(GNOME_VFS_MODULE_CALLBACK_QUESTION,
+					 &in_args, sizeof (in_args),
+					 &out_args, sizeof (out_args));
+				
+				if (invoked) {
+					if (out_args.answer == 0) {
+						g_io_channel_write_chars (tty_channel, "yes\n", -1, &len, NULL);
+					} else {
+						g_io_channel_write_chars (tty_channel, "no\n", -1, &len, NULL);
+						g_free (in_args.primary_message);
+						g_free (in_args.secondary_message);
+						res = GNOME_VFS_ERROR_ACCESS_DENIED;
+						goto bail;
+					}
+					g_io_channel_flush (tty_channel, NULL);
+					buffer[0]='\0';
+				} else {
+					g_io_channel_write_chars (tty_channel, "no\n", -1, &len, NULL);
+					g_io_channel_flush (tty_channel, NULL);
+					buffer[0]='\0';
+					g_free (in_args.primary_message);
+					g_free (in_args.secondary_message);
+					res = GNOME_VFS_ERROR_ACCESS_DENIED;
+					goto bail;
+				}
+				g_free (in_args.primary_message);
+				g_free (in_args.secondary_message);
+			}
+			
 		}
 	}
 
@@ -1141,7 +1222,6 @@ sftp_connect (SftpConnection **connection, const GnomeVFSURI *uri)
 	}
 
  bail:
-
 	buffer_free (&msg);
 
 	if (res != GNOME_VFS_OK) {

@@ -83,6 +83,15 @@ G_BEGIN_DECLS
  */
 #define GNOME_VFS_MODULE_CALLBACK_HTTP_PROXY_AUTHENTICATION "http:proxy-authentication"
 
+/*
+ * hook name: "ask-question"
+ * In arg: GnomeVFSModuleCallbackQuestionIn *
+ * Out arg: GnomeVFSModuleCallbackQuestionOut *
+ * 
+ * Called when access to a URI requires the user to make a choise
+ */
+#define GNOME_VFS_MODULE_CALLBACK_QUESTION "ask-question"
+
 typedef struct {
 	char *uri;		/* Full URI of operation */
 	char *protocol;         /* The protocol of the request */
@@ -299,6 +308,32 @@ typedef struct {
 	void *reserved1;
 	void *reserved2;
 } GnomeVFSModuleCallbackStatusMessageOut;
+
+typedef struct {
+	char *primary_message;	  /* A short message explaining the question to 
+				   * the user or NULL if there is no message
+				   */
+	char *secondary_message;  /* The long version of the message, containing
+				   * more details. Or Null if there is no message
+				   */
+	char **choices;		  /* NULL terminated list of choices the user have to choose from.
+				   * The first item in the list should be affermative, and
+				   * will be put on the right in a GUI dialog.
+				   */
+	
+	/* Reserved "padding" to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
+} GnomeVFSModuleCallbackQuestionIn;
+
+typedef struct {
+	int answer; /* The index of the choice in the choices list sent in 
+		       to the callback */
+
+	/* Reserved "padding" to avoid future breaks in ABI compatibility */
+	void *reserved1;
+	void *reserved2;
+} GnomeVFSModuleCallbackQuestionOut;
 
 G_END_DECLS
 

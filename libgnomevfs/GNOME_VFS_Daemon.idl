@@ -67,6 +67,14 @@ module GNOME {
 		
 		/* Standard module callbacks: */
 		
+		struct ModuleCallbackQuestionIn {
+			string primary_message;
+			string secondary_message;
+			sequence<string> choices;
+		};
+		struct ModuleCallbackQuestionOut {
+			short answer;
+		};
 		struct ModuleCallbackAuthenticationIn {
 			string uri;
 			string realm;
