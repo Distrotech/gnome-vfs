@@ -10,15 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs 2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 19:29-0400\n"
-"PO-Revision-Date: 2004-02-12 00:53+0100\n"
+"POT-Creation-Date: 2004-08-06 19:35+0200\n"
+"PO-Revision-Date: 2004-08-06 19:56+0200\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
-"Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
+"Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: daemon/gnome-vfs-daemon.c:596
 msgid "Could not initialize Bonobo"
@@ -27,12 +26,12 @@ msgstr "Не могу да покренем Бонобо"
 # Гномов Виртуелни Систем Датотека — ВСД? Или Гномово „опонашање система датотека“ — ОСД?
 #: daemon/gnome-vfs-daemon.c:603
 msgid "Could not initialize gnome vfs"
-msgstr "Не могу да покренем Гномов VFS"
+msgstr "Не могу да покренем Гномов ВСД"
 
 #: libgnomevfs/eggdesktopentries.c:226
-#, fuzzy, c-format
+#, c-format
 msgid "File could not be opened: %s"
-msgstr "Не могу обрадити: %s"
+msgstr "Датотека се не може отворити: %s"
 
 # bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
 #: libgnomevfs/eggdesktopentries.c:325
@@ -41,78 +40,87 @@ msgid "Failed to open file '%s': %s"
 msgstr "Неуспешно отварање датотеке „%s“: %s"
 
 #: libgnomevfs/eggdesktopentries.c:338
-#, fuzzy
 msgid "File is empty"
-msgstr "Датотека постоји"
+msgstr "Датотека је празна"
 
 # bug: inconsistent wording with above "Bookmark saving failed" [eg. "Failed to save a bookmark" would be one way to solve it]
 #: libgnomevfs/eggdesktopentries.c:360
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read from file '%s': %s"
-msgstr "Неуспешно отварање датотеке „%s“: %s"
+msgstr "Неуспешно читање датотеке „%s“: %s"
 
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #: libgnomevfs/eggdesktopentries.c:575
 #, c-format
 msgid ""
 "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr ""
+msgstr "„.desktop“ датотека садржи ред „%s“ који није унос, група ни примедба"
 
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #: libgnomevfs/eggdesktopentries.c:651
 msgid "desktop entries file does not start with legal start group"
-msgstr ""
+msgstr "„.desktop“ датотека не почиње са исправном почетном групом"
 
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #: libgnomevfs/eggdesktopentries.c:708
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
-msgstr ""
+msgstr "„.desktop“ датотека садржи ред „%s“ који није УТФ-8"
 
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #: libgnomevfs/eggdesktopentries.c:731
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
-msgstr ""
+msgstr "„.desktop“ датотека користи непознато кодирање „%s“"
 
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
 #: libgnomevfs/eggdesktopentries.c:1217
 #, c-format
 msgid "desktop entries do not have group '%s'"
-msgstr ""
+msgstr "„.desktop“ датотека нема групу „%s“"
 
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #: libgnomevfs/eggdesktopentries.c:1044
 #, c-format
 msgid "desktop entries do not have key '%s'"
-msgstr ""
+msgstr "„.desktop“ датотека нема кључ „%s“"
 
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
 #: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
 #, c-format
 msgid ""
 "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr ""
+msgstr "„.desktop“ датотека садржи кључ „%s“ који има вредност која се не може разумети."
 
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #: libgnomevfs/eggdesktopentries.c:1297
 #, c-format
 msgid ""
 "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr ""
+msgstr "„.desktop“ датотека не садржи превод вредности кључа „%s“ у локалитету „%s“."
 
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #: libgnomevfs/eggdesktopentries.c:2218
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
-msgstr ""
+msgstr "„.desktop“ датотека садржи неисправан знак за истицање „%s“"
 
+# bug: "desktop entries" sucks pretty much (it could be "entries in .desktop file")
 #: libgnomevfs/eggdesktopentries.c:2235
 msgid "desktop entries contain escape character at end of line"
-msgstr ""
+msgstr "„.desktop“ датотека садржи неисправан знак за истицање на крају реда"
 
 #: libgnomevfs/eggdesktopentries.c:2260
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
-msgstr ""
+msgstr "Вредност „%s“ се не може посматрати као број."
 
 #: libgnomevfs/eggdesktopentries.c:2287
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
-msgstr ""
+msgstr "Вредност „%s“ се не може посматрати као истинитосна вредност."
 
 #: libgnomevfs/gnome-vfs-cdrom.c:202
 msgid "ISO 9660 Volume"
@@ -262,9 +270,8 @@ msgid "Pcfs Solaris Volume"
 msgstr "Соларис Pcfs диск"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:71
-#, fuzzy
 msgid "Sun SAM-QFS Volume"
-msgstr "AFFS диск"
+msgstr "Sun SAM-QFS диск"
 
 #: libgnomevfs/gnome-vfs-filesystem-type.c:72
 msgid "Enhanced DOS Volume"
@@ -290,121 +297,116 @@ msgstr "XIAFS диск"
 msgid "Unknown"
 msgstr "Непознат"
 
+# bug: Compact Disk Disk?
 #: libgnomevfs/gnome-vfs-hal-mounts.c:601
 msgid "CD Disc"
-msgstr ""
+msgstr "ЦД диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:604
 msgid "Blank CD-R Disc"
-msgstr ""
+msgstr "Празан ЦД-Р диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:606
-#, fuzzy
 msgid "CD-R Disc"
-msgstr "ЦД уређај"
+msgstr "ЦД-Р диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:609
 msgid "Blank CD-RW Disc"
-msgstr ""
+msgstr "Празан ЦД-РВ диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:611
-#, fuzzy
 msgid "CD-RW Disc"
-msgstr "ЦД уређај"
+msgstr "ЦД-РВ диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:613
-#, fuzzy
 msgid "DVD-ROM Disc"
-msgstr "ЦД уређај"
+msgstr "ДВД-РОМ диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:616
 msgid "Blank DVD-R Disc"
-msgstr ""
+msgstr "Празан ДВД-Р диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:618
 msgid "DVD-R Disc"
-msgstr ""
+msgstr "ДВД-Р диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:621
 msgid "Blank DVD-RAM Disc"
-msgstr ""
+msgstr "Празан ДВД-РАМ диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:623
 msgid "DVD-RAM Disc"
-msgstr ""
+msgstr "ДВД-РАМ диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:626
 msgid "Blank DVD-RW Disc"
-msgstr ""
+msgstr "Празан ДВД-РВ диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:628
 msgid "DVD-RW Disc"
-msgstr ""
+msgstr "ДВД-РВ диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:631
 msgid "Blank DVD+RW Disc"
-msgstr ""
+msgstr "Празан ДВД+РВ диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:633
 msgid "DVD+RW Disc"
-msgstr ""
+msgstr "ДВД+РВ диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:636
 msgid "Blank DVD+R Disc"
-msgstr ""
+msgstr "Празан ДВД+Р диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:638
 msgid "DVD+R Disc"
-msgstr ""
+msgstr "ДВД+Р диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:640
 msgid "Optical Disc"
-msgstr ""
+msgstr "Оптички диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:646
-#, fuzzy
 msgid "Audio Disc"
-msgstr "Звучни ЦД"
+msgstr "Звучни диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:650
 msgid "Compact Flash Media"
-msgstr ""
+msgstr "Компактни-флеш (CF)"
 
 # Чаробни штапић? :)
 #: libgnomevfs/gnome-vfs-hal-mounts.c:652
-#, fuzzy
 msgid "Memory Stick Media"
-msgstr "Меморијски штапић"
+msgstr "Меморијски штапић (MS)"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:654
 msgid "Smart Media Media"
-msgstr ""
+msgstr "Мудри медиј (SM)"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:656
 msgid "SD/MMC Media"
-msgstr ""
+msgstr "SD/MMC медиј"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:658
-#, fuzzy
 msgid "Floppy Disk"
 msgstr "Дискета"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:665
 msgid "Mac OS disk"
-msgstr ""
+msgstr "Мекинтош диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:667
 msgid "Mac OS X disk"
-msgstr ""
+msgstr "Мекинтош ОС-Икс диск"
 
+# Транскрипција на нивоу ;-)
 #: libgnomevfs/gnome-vfs-hal-mounts.c:681
-#, fuzzy
 msgid "Windows Disk"
-msgstr "Прозори"
+msgstr "Виндуз диск"
 
 #: libgnomevfs/gnome-vfs-hal-mounts.c:687
 msgid "Linux Disk"
-msgstr ""
+msgstr "Линукс диск"
 
 # bug: "op" should be "operation"
 #: libgnomevfs/gnome-vfs-job.c:734
@@ -443,10 +445,16 @@ msgstr "Операција заустављена"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:921
 #: libgnomevfs/gnome-vfs-mime-handlers.c:939
 #: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr ""
+msgstr "Превазиђена функција.  Измене корисника у МИМЕ бази више нису подржане."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -691,23 +699,22 @@ msgstr "Грешка при покретању наредбе"
 #. GNOME_VFS_ERROR_TIMEOUT
 #: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
-msgstr ""
+msgstr "Достигнут рок"
 
 #. GNOME_VFS_ERROR_NAMESERVER
 #: libgnomevfs/gnome-vfs-result.c:85
-#, fuzzy
 msgid "Nameserver error"
-msgstr "Општа грешка"
+msgstr "Грешка са сервером назива"
 
 #. GNOME_VFS_ERROR_LOCKED
 #: libgnomevfs/gnome-vfs-result.c:87
 msgid "The resource is locked"
-msgstr ""
+msgstr "Ресурс је закључан"
 
 #. GNOME_VFS_ERROR_DEPRECATED_FUNCTION
 #: libgnomevfs/gnome-vfs-result.c:88
 msgid "Function call deprecated"
-msgstr ""
+msgstr "Позив функције је превазиђен"
 
 #: libgnomevfs/gnome-vfs-result.c:203
 msgid "Unknown error"
@@ -736,7 +743,7 @@ msgstr "%.1f МБ"
 msgid "%.1f GB"
 msgstr "%.1f ГБ"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1115
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (неисправан Уникод)"
@@ -767,7 +774,7 @@ msgstr "Фотоапарат"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:501
 msgid "DVD"
-msgstr ""
+msgstr "ДВД"
 
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:717
 msgid "Root Volume"
@@ -908,12 +915,12 @@ msgstr "Непознато GnomeVFSSeekPosition %d"
 msgid "Windows Network"
 msgstr "Виндоуз мрежа"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
-msgstr ""
+msgstr "Идентитет удаљеног рачунара (%s) није познат."
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -921,14 +928,17 @@ msgid ""
 "The identity sent by the remote computer is %s. If you want to be absolutely "
 "sure it is safe to continue, contact the system administrator."
 msgstr ""
+"Ово се догађа када се по први пут пријавите на рачунар.\n"
+"\n"
+"Идентитет који је послао удаљени рачунар је %s. Уколико желите да будете потпуно сигурни да је безбедно да наставите, ступите у везу са администратором система."
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
-msgstr ""
+msgstr "Ипак се пријави"
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
-msgstr ""
+msgstr "Откажи пријаву"
 
 #. FIXME: we probably shouldn't use printf to output the message
 #: modules/test-method.c:590
@@ -993,263 +1003,223 @@ msgid "The exec argument to use for the default terminal application."
 msgstr "Аргумент извршавања за подразумевани терминалски програм."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:1
-#, fuzzy
 msgid "Run the command in a terminal"
-msgstr "Покрени програм у терминалу"
+msgstr "Покрени наредбу у терминалу"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:2
 msgid "The command used to handle \"aim\" URLs, if enabled."
-msgstr ""
+msgstr "Наредба коришћена за баратање „aim“ адресама, ако је укључено."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:3
 msgid "The command used to handle \"callto\" URLs, if enabled."
-msgstr ""
+msgstr "Наредба коришћена за баратање „callto“ адресама, ако је укључено."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:4
 msgid "The command used to handle \"ghelp\" URLs, if enabled."
-msgstr ""
+msgstr "Наредба коришћена за баратање „ghelp“ адресама, ако је укључено."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
 msgid "The command used to handle \"info\" URLs, if enabled."
-msgstr ""
+msgstr "Наредба коришћена за баратање „info“ адресама, ако је укључено."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:6
 msgid "The command used to handle \"mailto\" URLs, if enabled."
-msgstr ""
+msgstr "Наредба коришћена за баратање „mailto“ адресама, ако је укључено."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:7
 msgid "The command used to handle \"man\" URLs, if enabled."
-msgstr ""
+msgstr "Наредба коришћена за баратање „man“ адресама, ако је укључено."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"trash\" URLs, if enabled."
-msgstr ""
+msgstr "Наредба коришћена за баратање „trash“ адресама, ако је укључено."
 
+# bug: inconsistent with other strings which use "...to handle \"h323\" URLs..."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle H323 URLs, if enabled."
-msgstr ""
+msgstr "Наредба коришћена за баратање „h323“ адресама, ако је укључено."
 
+# bug: inconsistent with other strings which use "...to handle \"h323\" URLs..."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle HTTP URLs, if enabled."
-msgstr ""
+msgstr "Наредба коришћена за баратање „http“ адресама, ако је укључено."
 
+# bug: inconsistent with other strings which use "...to handle \"h323\" URLs..."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr ""
+msgstr "Наредба коришћена за баратање „https“ адресама, ако је укључено."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
-#, fuzzy
 msgid "The handler for \"aim\" URLs"
-msgstr "Баратај man адресама"
+msgstr "Руковаоц „aim“ адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:13
-#, fuzzy
 msgid "The handler for \"callto\" URLs"
-msgstr "Руковаоц callto адресама"
+msgstr "Руковаоц „callto“ адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:14
-#, fuzzy
 msgid "The handler for \"ghelp\" URLs"
-msgstr "Руковаоц адресама за ghelp странице"
+msgstr "Руковаоц „ghelp“ адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
-#, fuzzy
 msgid "The handler for \"info\" URLs"
-msgstr "Руковаоц адресама за info странице"
+msgstr "Руковаоц „info“ адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:16
-#, fuzzy
 msgid "The handler for \"mailto\" URLs"
-msgstr "Руковаоц mailto адресама"
+msgstr "Руковаоц „mailto“ адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:17
-#, fuzzy
 msgid "The handler for \"man\" URLs"
-msgstr "Руковаоц адресама за man странице"
+msgstr "Руковаоц „man“ адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:18
-#, fuzzy
 msgid "The handler for \"trash\" URLs"
-msgstr "Руковаоц адресама за trash странице"
+msgstr "Руковаоц „trash“ адресама"
 
+# bug: inconsistent with other strings; should be "The handler for \"h323\" URLs"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-#, fuzzy
 msgid "The handler for H323 URLs"
-msgstr "Баратај H323 адресама"
+msgstr "Руковаоц „h323“ адресама"
 
+# bug: inconsistent with other strings; should be "The handler for \"http\" URLs"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-#, fuzzy
 msgid "The handler for HTTP URLs"
-msgstr "Баратај HTTP адресама"
+msgstr "Руковаоц „http“ адресама"
 
+# bug: inconsistent with other strings; should be "The handler for \"https\" URLs"
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-#, fuzzy
 msgid "The handler for HTTPS URLs"
-msgstr "Баратај HTTPS адресама"
+msgstr "Руковаоц „https“ адресама"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата man адресама."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „aim“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата callto адресама."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „callto“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата ghelp адресама."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „ghelp“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата info адресама."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „info“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"mailto"
 "\" URLs."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата mailto адресама."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „mailto“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"man\" "
 "URLs."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата man адресама."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „man“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата trash адресама."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „trash“ адресе."
 
+# bug: inconsistent; should be "...should handle \"h323\" URLs."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата H323 адресама."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „h323“ адресе."
 
+# bug: inconsistent; should be "...should handle \"http\" URLs."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата HTTP адресама."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „http“ адресе."
 
+# bug: inconsistent; should be "...should handle \"https\" URLs."
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-#, fuzzy
 msgid ""
 "True if the command specified in the \"command\" key should handle HTTPS "
 "URLs."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата HTTPS адресама."
+msgstr "Укључено ако наредба наведена у кључу „command“ треба да се користи за „https“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-#, fuzzy
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата terminal адресама."
+msgstr "Укључено ако наредба која се користи за ове адресе треба да се покреће у терминалу."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
-#, fuzzy
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата man адресама."
+msgstr "Да ли наведена наредба треба да се користи за „aim“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
-#, fuzzy
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата callto адресама."
+msgstr "Да ли наведена наредба треба да се користи за „callto“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
-#, fuzzy
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата ghelp адресама."
+msgstr "Да ли наведена наредба треба да се користи за „ghelp“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-#, fuzzy
 msgid "Whether the specified command should handle \"info\" URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата info адресама."
+msgstr "Да ли наведена наредба треба да се користи за „info“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-#, fuzzy
 msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата mailto адресама."
+msgstr "Да ли наведена наредба треба да се користи за „mailto“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-#, fuzzy
 msgid "Whether the specified command should handle \"man\" URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата man адресама."
+msgstr "Да ли наведена наредба треба да се користи за „man“ адресе."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-#, fuzzy
 msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата trash адресама."
+msgstr "Да ли наведена наредба треба да се користи за „trash“ адресе."
 
+# bug: inconsistent; should be "...should handle \"h323\" URLs".
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-#, fuzzy
 msgid "Whether the specified command should handle H323 URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата H323 адресама."
+msgstr "Да ли наведена наредба треба да се користи за „h323“ адресе."
 
+# bug: inconsistent; should be "...should handle \"http\" URLs".
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-#, fuzzy
 msgid "Whether the specified command should handle HTTP URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата HTTP адресама."
+msgstr "Да ли наведена наредба треба да се користи за „http“ адресе."
 
+# bug: inconsistent; should be "...should handle \"https\" URLs".
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-#, fuzzy
 msgid "Whether the specified command should handle HTTPS URLs"
-msgstr ""
-"Укључите ако желите да програм наведен у „command“ барата HTTPS адресама."
+msgstr "Да ли наведена наредба треба да се користи за „https“ адресе."
 
+# bug: perhaps s/dns-sd/DNS-SD/, and s/network location/"network" location/?
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr ""
+msgstr "Запетом раздвојен списак DNS-SD домена који су доступни у мрежној путањи."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
-msgstr ""
+msgstr "Допунски домени на којима да тражи DNS-SD услуге"
 
 #: schemas/system_dns_sd.schemas.in.h:3
 msgid "How to display local DNS-SD service"
-msgstr ""
+msgstr "Како да приказује локалну DNS-SD услугу"
 
 #: schemas/system_dns_sd.schemas.in.h:4
 msgid "Possible values are \"merged\", \"separate\" and \"disabled\"."
-msgstr ""
+msgstr "Допуштене вредности су „merged“, „separate“ и „disabled“."
 
 #: schemas/system_http_proxy.schemas.in.h:1
 msgid "Authenticate proxy server connections"
@@ -1436,10 +1406,6 @@ msgstr "Виндоуз радна група које је корисник чл
 
 #~ msgid "Handle trash URLs"
 #~ msgstr "Баратај trash адресама"
-
-#, fuzzy
-#~ msgid "aim URL handler"
-#~ msgstr "Руковалац man адресама"
 
 #~ msgid "callto URL handler"
 #~ msgstr "Руковалац callto адресама"
