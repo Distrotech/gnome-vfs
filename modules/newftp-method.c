@@ -496,12 +496,14 @@ static gchar *ftp_connection_uri_to_string(FtpConnectionUri *furi) {
 			furi->host, furi->port);
 }
 
+#if 0
 static gchar *ftp_uri_to_string(FtpUri *furi) {
 	gchar *cu = ftp_connection_uri_to_string(&furi->connection_uri),
 		*u = g_strdup_printf("%s%s", cu, furi->path);
 	g_free(cu);
 	return u;
 }
+#endif
 
 static FtpConnection *ftp_connection_aquire(FtpUri *furi) {
 	FtpConnectionUri *uri = &(furi->connection_uri);

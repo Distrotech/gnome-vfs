@@ -1,5 +1,10 @@
 2000-05-16  Ian McKellar  <yakk@yakk.net.au>
 
+	* modules/newftp-method.c:
+	Fixed warning.
+
+2000-05-16  Ian McKellar  <yakk@yakk.net.au>
+
 	* modules/Makefile.am:
 	* modules/default-modules.conf:
 	* modules/newftp-method.c:
