@@ -96,6 +96,16 @@ application/vnd.ms-excel
 	short_list_application_ids_for_intermediate_user_level=staroffice,applix,gnumeric
 	short_list_application_ids_for_hacker_user_level=staroffice,applix,gnumeric
 
+# also audio/x-pn-realaudio, audio/x-real-audio
+application/vnd.rn-realmedia
+	_description=RealAudio/Video document
+	icon_filename=gnome-audio-x-pn-realaudio.png
+	default_action_type=application
+	default_application_id=realplayer
+	short_list_application_ids_for_novice_user_level=realplayer
+	short_list_application_ids_for_intermediate_user_level=realplayer
+	short_list_application_ids_for_hacker_user_level=realplayer
+
 # also text/abiword
 application/x-abiword
 	_description=AbiWord document
@@ -473,6 +483,7 @@ audio/x-mpegurl
 	short_list_application_ids_for_intermediate_user_level=xmms
 	short_list_application_ids_for_hacker_user_level=xmms
 
+# also application/vnd.rn-realmedia, audio/x-real-audio
 audio/x-pn-realaudio
 	_description=PN RealAudio document
 	icon_filename=gnome-audio-x-pn-realaudio.png
@@ -482,6 +493,7 @@ audio/x-pn-realaudio
 	short_list_application_ids_for_intermediate_user_level=realplayer
 	short_list_application_ids_for_hacker_user_level=realplayer
 
+# also audio/x-pn-realaudio, application/vnd.rn-realmedia
 audio/x-real-audio
 	_description=RealAudio/Video document
 	icon_filename=gnome-audio-x-pn-realaudio.png

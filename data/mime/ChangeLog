@@ -1,3 +1,8 @@
+2001-01-26  Aaron Brick  <aaron@eazel.com>
+
+	* renamed realplayer executable "realplay"
+	* added duplicate realplayer type application/vnd.rn-realmedia
+
 2001-01-24  Aaron Brick  <aaron@eazel.com>
 
 	* renamed "acrobat" "acroread" per the executable's name

@@ -196,12 +196,12 @@ xmms
 	mime_types=audio/x-mp3,audio/x-mpeg,application/x-ogg,audio/x-mpegurl,audio/x-wav
 
 realplayer
-	command=realplayer
+        command=realplay
 	name=realplayer
 	can_open_multiple_files=false
 	expects_uris=true
 	requires_terminal=false
-	mime_types=audio/x-pn-realaudio,audio/x-real-audio,video/x-real-video
+	mime_types=audio/x-pn-realaudio,audio/x-real-audio,video/x-real-video,application/vnd.rn-realmedia
 
 soundtracker
 	command=soundtracker
