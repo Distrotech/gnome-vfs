@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-04 23:09+0200\n"
+"POT-Creation-Date: 2003-08-14 07:53+0200\n"
 "PO-Revision-Date: 2003-06-27 00:15--100\n"
 "Last-Translator: Gnome PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -302,30 +302,31 @@ msgstr "Błąd podczas uruchamiania polecenia"
 msgid "Unknown error"
 msgstr "Nieznany błąd"
 
-#: libgnomevfs/gnome-vfs-utils.c:83
-#, c-format
-msgid "%u byte"
-msgid_plural "%u bytes"
-msgstr[0] "%u bajt"
-msgstr[1] "%u bajty"
-msgstr[2] "%u bajtów"
+#: libgnomevfs/gnome-vfs-utils.c:84
+msgid "1 byte"
+msgstr "1 bajt"
 
-#: libgnomevfs/gnome-vfs-utils.c:89
+#: libgnomevfs/gnome-vfs-utils.c:86
+#, c-format
+msgid "%u bytes"
+msgstr "%u bajtów"
+
+#: libgnomevfs/gnome-vfs-utils.c:93
 #, c-format
 msgid "%.1f K"
 msgstr "%.1f K"
 
-#: libgnomevfs/gnome-vfs-utils.c:93
+#: libgnomevfs/gnome-vfs-utils.c:97
 #, c-format
 msgid "%.1f MB"
 msgstr "%.1f MB"
 
-#: libgnomevfs/gnome-vfs-utils.c:97
+#: libgnomevfs/gnome-vfs-utils.c:101
 #, c-format
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1081
+#: libgnomevfs/gnome-vfs-utils.c:1085
 msgid " (invalid Unicode)"
 msgstr " (niepoprawny Unicode)"
 
@@ -410,6 +411,3 @@ msgstr "ogólny moniker Gnome VFS"
 #: monikers/GNOME_VFS_Moniker_std.server.in.in.h:4
 msgid "generic file moniker"
 msgstr "ogólny moniker plikowy"
-
-#~ msgid "1 byte"
-#~ msgstr "1 bajt"
