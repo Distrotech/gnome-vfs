@@ -2266,38 +2266,34 @@ gnome_vfs_new_directory_with_unique_name (const GnomeVFSURI *target_dir_uri,
 }
 
 static GnomeVFSResult
-gnome_vfs_destination_is_writable (const GnomeVFSURI *uri)
+gnome_vfs_destination_is_writable (GnomeVFSURI *uri)
 {
-	GnomeVFSURI *test_uri;
 	GnomeVFSResult result;
-	GnomeVFSHandle *handle;
-
-	if (!gnome_vfs_uri_is_local (uri)) {
-		/* if destination is not local, do not test it for writability, just
-		 * assume it's writable
-		 */
-		return GNOME_VFS_OK;
-	}
-
-	/* test writability by creating and erasing a temporary file */
-	test_uri = gnome_vfs_uri_append_file_name (uri, ".vfs-write.tmp");
-	result = gnome_vfs_create_uri (&handle, test_uri, GNOME_VFS_OPEN_WRITE, TRUE, 0600);
-
-	if (result == GNOME_VFS_OK) {
-		gnome_vfs_close (handle);
-	}
+	GnomeVFSFileInfo *info;
 	
-	if (result == GNOME_VFS_OK || result == GNOME_VFS_ERROR_FILE_EXISTS) {
-		gnome_vfs_unlink_from_uri (test_uri);
-		result = GNOME_VFS_OK;
-	}
+	info   = gnome_vfs_file_info_new ();	    
+	result = gnome_vfs_get_file_info_uri (uri, info,
+					      GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS);
 	
-	/* some methods only allow certain filenames (e.g. .desktop files) */
-	if (result == GNOME_VFS_ERROR_INVALID_URI) {
-		result = GNOME_VFS_OK;
+		
+	if (result != GNOME_VFS_OK) {
+		gnome_vfs_file_info_unref (info);
+		return result;
 	}
 
-	gnome_vfs_uri_unref (test_uri);
+	/* Default to GNOME_VFS_OK so we return that if we don't have support
+	   for GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS */
+	result = GNOME_VFS_OK;
+	
+	if (info->valid_fields & GNOME_VFS_FILE_INFO_FIELDS_ACCESS) {
+		
+		if (! (info->permissions & GNOME_VFS_PERM_ACCESS_WRITABLE &&
+		       info->permissions & GNOME_VFS_PERM_ACCESS_EXECUTABLE)) {
+			result = GNOME_VFS_ERROR_ACCESS_DENIED;
+		}
+	}
+
+	gnome_vfs_file_info_unref (info);
 	return result;
 }
 

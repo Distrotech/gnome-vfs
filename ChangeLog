@@ -1,3 +1,10 @@
+2005-03-01  Christian Kellner  <gicmo@gnome.org>
+
+	* libgnomevfs/gnome-vfs-xfer.c (gnome_vfs_destination_is_writable):
+	Don't try to create a temporary file to check if the destination
+	is writable but use new GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS option
+	of gnome_vfs_get_file_info (). This should also fix bug #78486.
+
 2005-02-01  Christian Kellner  <gicmo@gnome.org>
 
 	* OUTSTANDING_API_ISSUES: Remove that file because
