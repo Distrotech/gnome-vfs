@@ -1,6 +1,10 @@
+2004-08-14   Ryan Lortie  <desrt@desrt.ca>
+
+	* libgnomevfs/gnome-vfs-xfer.c: fix small leaks
+
 2004-08-14  Joe Marcus Clarke  <marcus@freebsd.org>
 
-	* gnome-vfs-utils.c: fix free space calculation on FreeBSD.
+	* libgnomevfs/gnome-vfs-utils.c: fix free space calculation on FreeBSD.
 
 2004-08-13  Alexander Larsson  <alexl@redhat.com>
 

@@ -1856,13 +1856,12 @@ move_items (const GList *source_uri_list,
 						       GNOME_VFS_XFER_PHASE_COPYING);
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 
-				if (progress_result == GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
-					gnome_vfs_uri_unref (target_uri);
+				gnome_vfs_uri_unref (target_uri);
+
+				if (progress_result == GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT)
 					break;
-				}
+
 				conflict_count++;
-				result = GNOME_VFS_OK;
-				retry = TRUE;
 				continue;
 			}
 
@@ -1959,13 +1958,12 @@ link_items (const GList *source_uri_list,
 						       GNOME_VFS_XFER_PHASE_COPYING);
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 
-				if (progress_result == GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
-					gnome_vfs_uri_unref (target_uri);
+				gnome_vfs_uri_unref (target_uri);
+
+				if (progress_result == GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT)
 					break;
-				}
+
 				conflict_count++;
-				result = GNOME_VFS_OK;
-				retry = TRUE;
 				continue;
 			}
 			
