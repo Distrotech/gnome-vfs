@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-25 15:10+0100\n"
-"PO-Revision-Date: 2004-10-18 21:54+0100\n"
+"POT-Creation-Date: 2005-02-07 11:21+0000\n"
+"PO-Revision-Date: 2005-02-07 11:22+0100\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: English (British) <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -205,7 +205,8 @@ msgstr "Unknown"
 msgid "Unknown operation type %u"
 msgstr "Unknown operation type %u"
 
-#: libgnomevfs/gnome-vfs-job.c:1024 libgnomevfs/gnome-vfs-job.c:1169
+#: libgnomevfs/gnome-vfs-job.c:1024
+#: libgnomevfs/gnome-vfs-job.c:1169
 #, c-format
 msgid "Cannot create pipe for open GIOChannel: %s"
 msgstr "Cannot create pipe for open GIOChannel: %s"
@@ -236,18 +237,19 @@ msgstr "Operation stopped"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:970
 #: libgnomevfs/gnome-vfs-mime-handlers.c:988
 #: libgnomevfs/gnome-vfs-mime-handlers.c:1006
-#: libgnomevfs/gnome-vfs-mime-info.c:643 libgnomevfs/gnome-vfs-mime-info.c:650
-#: libgnomevfs/gnome-vfs-mime-info.c:658 libgnomevfs/gnome-vfs-mime-info.c:665
-#: libgnomevfs/gnome-vfs-mime-info.c:673 libgnomevfs/gnome-vfs-mime-info.c:690
-#: libgnomevfs/gnome-vfs-mime-info.c:697 libgnomevfs/gnome-vfs-mime-info.c:704
-#: libgnomevfs/gnome-vfs-mime-info.c:711 libgnomevfs/gnome-vfs-mime-info.c:719
+#: libgnomevfs/gnome-vfs-mime-info.c:643
+#: libgnomevfs/gnome-vfs-mime-info.c:650
+#: libgnomevfs/gnome-vfs-mime-info.c:658
+#: libgnomevfs/gnome-vfs-mime-info.c:665
+#: libgnomevfs/gnome-vfs-mime-info.c:673
+#: libgnomevfs/gnome-vfs-mime-info.c:690
+#: libgnomevfs/gnome-vfs-mime-info.c:697
+#: libgnomevfs/gnome-vfs-mime-info.c:704
+#: libgnomevfs/gnome-vfs-mime-info.c:711
+#: libgnomevfs/gnome-vfs-mime-info.c:719
 #: libgnomevfs/gnome-vfs-mime-info.c:726
-msgid ""
-"Deprecated function.  User modifications to the MIME database are no longer "
-"supported."
-msgstr ""
-"Deprecated function.  User modifications to the MIME database are no longer "
-"supported."
+msgid "Deprecated function.  User modifications to the MIME database are no longer supported."
+msgstr "Deprecated function.  User modifications to the MIME database are no longer supported."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -489,7 +491,8 @@ msgid "Error launching command"
 msgstr "Error launching command"
 
 #. GNOME_VFS_ERROR_TIMEOUT
-#: libgnomevfs/gnome-vfs-result.c:84 libgnomevfs/gnome-vfs-result.c:86
+#: libgnomevfs/gnome-vfs-result.c:84
+#: libgnomevfs/gnome-vfs-result.c:86
 msgid "Timeout reached"
 msgstr "Timeout reached"
 
@@ -534,7 +537,7 @@ msgstr "%.1f MB"
 msgid "%.1f GB"
 msgstr "%.1f GB"
 
-#: libgnomevfs/gnome-vfs-utils.c:1122
+#: libgnomevfs/gnome-vfs-utils.c:1131
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:369
 msgid " (invalid Unicode)"
 msgstr " (invalid Unicode)"
@@ -681,10 +684,8 @@ msgstr "Network server"
 
 #. Handle floppy case
 #: libgnomevfs/gnome-vfs-volume-ops.c:113
-msgid ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
-msgstr ""
-"Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgid "Unable to mount the floppy drive. There is probably no floppy in the drive."
+msgstr "Unable to mount the floppy drive. There is probably no floppy in the drive."
 
 #. All others
 #: libgnomevfs/gnome-vfs-volume-ops.c:117
@@ -692,20 +693,12 @@ msgid "Unable to mount the volume. There is probably no media in the device."
 msgstr "Unable to mount the volume. There is probably no media in the device."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:123
-msgid ""
-"Unable to mount the floppy drive. The floppy is probably in a format that "
-"cannot be mounted."
-msgstr ""
-"Unable to mount the floppy drive. The floppy is probably in a format that "
-"cannot be mounted."
+msgid "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
+msgstr "Unable to mount the floppy drive. The floppy is probably in a format that cannot be mounted."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:126
-msgid ""
-"Unable to mount the selected volume. The volume is probably in a format that "
-"cannot be mounted."
-msgstr ""
-"Unable to mount the selected volume. The volume is probably in a format that "
-"cannot be mounted."
+msgid "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
+msgstr "Unable to mount the selected volume. The volume is probably in a format that cannot be mounted."
 
 #: libgnomevfs/gnome-vfs-volume-ops.c:131
 msgid "Unable to mount the selected floppy drive."
@@ -763,13 +756,11 @@ msgstr "The identity of the remote computer (%s) is unknown."
 msgid ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely "
-"sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
 msgstr ""
 "This happens when you log in to a computer the first time.\n"
 "\n"
-"The identity sent by the remote computer is %s. If you want to be absolutely "
-"sure it is safe to continue, contact the system administrator."
+"The identity sent by the remote computer is %s. If you want to be absolutely sure it is safe to continue, contact the system administrator."
 
 #: modules/sftp-method.c:1347
 msgid "Log In Anyway"
@@ -820,22 +811,12 @@ msgstr "Exec argument for default terminal"
 
 #: schemas/desktop_default_applications.schemas.in.h:5
 #, no-c-format
-msgid ""
-"The application to use for viewing files that require a component to view "
-"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
-"will be replaced by the component IID."
-msgstr ""
-"The application to use for viewing files that require a component to view "
-"them. The parameter %s will be replaced by the file's URIs, the parameter %c "
-"will be replaced by the component IID."
+msgid "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
+msgstr "The application to use for viewing files that require a component to view them. The parameter %s will be replaced by the file's URIs, the parameter %c will be replaced by the component IID."
 
 #: schemas/desktop_default_applications.schemas.in.h:6
-msgid ""
-"The default terminal application to use for applications that require a "
-"terminal."
-msgstr ""
-"The default terminal application to use for applications that require a "
-"terminal."
+msgid "The default terminal application to use for applications that require a terminal."
+msgstr "The default terminal application to use for applications that require a terminal."
 
 #: schemas/desktop_default_applications.schemas.in.h:7
 msgid "The exec argument to use for the default terminal application."
@@ -926,92 +907,48 @@ msgid "The handler for \"trash\" URLs"
 msgstr "The handler for \"trash\" URLs"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
-msgid ""
-"True if the command specified in the \"command\" key should handle \"aim\" "
-"URLs."
-msgstr ""
-"True if the command specified in the \"command\" key should handle \"aim\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"aim\" URLs."
+msgstr "True if the command specified in the \"command\" key should handle \"aim\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
-msgid ""
-"True if the command specified in the \"command\" key should handle \"callto"
-"\" URLs."
-msgstr ""
-"True if the command specified in the \"command\" key should handle \"callto"
-"\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"callto\" URLs."
+msgstr "True if the command specified in the \"command\" key should handle \"callto\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
-msgid ""
-"True if the command specified in the \"command\" key should handle \"ghelp\" "
-"URLs."
-msgstr ""
-"True if the command specified in the \"command\" key should handle \"ghelp\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
+msgstr "True if the command specified in the \"command\" key should handle \"ghelp\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
-msgid ""
-"True if the command specified in the \"command\" key should handle \"h323\" "
-"URLs."
-msgstr ""
-"True if the command specified in the \"command\" key should handle \"h323\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"h323\" URLs."
+msgstr "True if the command specified in the \"command\" key should handle \"h323\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
-msgid ""
-"True if the command specified in the \"command\" key should handle \"http\" "
-"URLs."
-msgstr ""
-"True if the command specified in the \"command\" key should handle \"http\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"http\" URLs."
+msgstr "True if the command specified in the \"command\" key should handle \"http\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
-msgid ""
-"True if the command specified in the \"command\" key should handle \"https\" "
-"URLs."
-msgstr ""
-"True if the command specified in the \"command\" key should handle \"https\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"https\" URLs."
+msgstr "True if the command specified in the \"command\" key should handle \"https\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
-msgid ""
-"True if the command specified in the \"command\" key should handle \"info\" "
-"URLs."
-msgstr ""
-"True if the command specified in the \"command\" key should handle \"info\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"info\" URLs."
+msgstr "True if the command specified in the \"command\" key should handle \"info\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
+msgid "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
+msgstr "True if the command specified in the \"command\" key should handle \"mailto\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid ""
-"True if the command specified in the \"command\" key should handle \"man\" "
-"URLs."
-msgstr ""
-"True if the command specified in the \"command\" key should handle \"man\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"man\" URLs."
+msgstr "True if the command specified in the \"command\" key should handle \"man\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
-msgid ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
-"URLs."
-msgstr ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
-"URLs."
+msgid "True if the command specified in the \"command\" key should handle \"trash\" URLs."
+msgstr "True if the command specified in the \"command\" key should handle \"trash\" URLs."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
-msgid ""
-"True if the command used to handle this type of URL should be run in a "
-"terminal."
-msgstr ""
-"True if the command used to handle this type of URL should be run in a "
-"terminal."
+msgid "True if the command used to handle this type of URL should be run in a terminal."
+msgstr "True if the command used to handle this type of URL should be run in a terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
@@ -1054,12 +991,8 @@ msgid "Whether the specified command should handle \"trash\" URLs"
 msgstr "Whether the specified command should handle \"trash\" URLs"
 
 #: schemas/system_dns_sd.schemas.in.h:1
-msgid ""
-"Comma separated list of dns-sd domains that should be visible in the network "
-"location."
-msgstr ""
-"Comma separated list of dns-sd domains that should be visible in the network "
-"location."
+msgid "Comma separated list of dns-sd domains that should be visible in the network location."
+msgstr "Comma separated list of dns-sd domains that should be visible in the network location."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
@@ -1110,14 +1043,8 @@ msgid "HTTP proxy username"
 msgstr "HTTP proxy username"
 
 #: schemas/system_http_proxy.schemas.in.h:10
-msgid ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
-msgstr ""
-"If true, then connections to the proxy server require authentication. The "
-"username/password combo defined by \"/system/http_proxy/authentication_user"
-"\" and \"/system/http_proxy/authentication_password\"."
+msgid "If true, then connections to the proxy server require authentication. The username/password combo is defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
+msgstr "If true, then connections to the proxy server require authentication. The username/password combo is defined by \"/system/http_proxy/authentication_user\" and \"/system/http_proxy/authentication_password\"."
 
 #: schemas/system_http_proxy.schemas.in.h:11
 msgid "Non-proxy hosts"
@@ -1148,12 +1075,8 @@ msgid "Secure HTTP proxy port"
 msgstr "Secure HTTP proxy port"
 
 #: schemas/system_http_proxy.schemas.in.h:18
-msgid ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\"."
-msgstr ""
-"Select the proxy configuration mode. Supported values are \"none\", \"manual"
-"\", \"auto\"."
+msgid "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
+msgstr "Select the proxy configuration mode. Supported values are \"none\", \"manual\", \"auto\"."
 
 #: schemas/system_http_proxy.schemas.in.h:19
 msgid "The machine name to proxy FTP through."
@@ -1172,48 +1095,24 @@ msgid "The machine name to proxy socks through."
 msgstr "The machine name to proxy socks through."
 
 #: schemas/system_http_proxy.schemas.in.h:23
-msgid ""
-"The port on the machine defined by \"/system/http_proxy/host\" that you "
-"proxy through."
-msgstr ""
-"The port on the machine defined by \"/system/http_proxy/host\" that you "
-"proxy through."
+msgid "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
+msgstr "The port on the machine defined by \"/system/http_proxy/host\" that you proxy through."
 
 #: schemas/system_http_proxy.schemas.in.h:24
-msgid ""
-"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
-"through."
-msgstr ""
-"The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy "
-"through."
+msgid "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
+msgstr "The port on the machine defined by \"/system/proxy/ftp_host\" that you proxy through."
 
 #: schemas/system_http_proxy.schemas.in.h:25
-msgid ""
-"The port on the machine defined by \"/system/proxy/secure_host\" that you "
-"proxy through."
-msgstr ""
-"The port on the machine defined by \"/system/proxy/secure_host\" that you "
-"proxy through."
+msgid "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
+msgstr "The port on the machine defined by \"/system/proxy/secure_host\" that you proxy through."
 
 #: schemas/system_http_proxy.schemas.in.h:26
-msgid ""
-"The port on the machine defined by \"/system/proxy/socks_host\" that you "
-"proxy through."
-msgstr ""
-"The port on the machine defined by \"/system/proxy/socks_host\" that you "
-"proxy through."
+msgid "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
+msgstr "The port on the machine defined by \"/system/proxy/socks_host\" that you proxy through."
 
 #: schemas/system_http_proxy.schemas.in.h:27
-msgid ""
-"This key contains a list of hosts which are connected to directly, rather "
-"than via the proxy (if it is active). The values can be hostnames, domains "
-"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
-"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
-msgstr ""
-"This key contains a list of hosts which are connected to directly, rather "
-"than via the proxy (if it is active). The values can be hostnames, domains "
-"(using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and "
-"IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgid "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
+msgstr "This key contains a list of hosts which are connected to directly, rather than via the proxy (if it is active). The values can be hostnames, domains (using an initial wildcard like *.foo.com), IP host addresses (both IPv4 and IPv6) and network addresses with a netmask (something like 192.168.0.0/24)."
 
 #: schemas/system_http_proxy.schemas.in.h:28
 msgid "URL that provides proxy configuration values."
@@ -1235,172 +1134,3 @@ msgstr "SMB workgroup"
 msgid "The window workgroup the user is part of"
 msgstr "The window workgroup the user is part of"
 
-#~ msgid "CD-ROM Disc"
-#~ msgstr "CD-ROM Disc"
-
-#~ msgid "Blank CD-R Disc"
-#~ msgstr "Blank CD-R Disc"
-
-#~ msgid "CD-R Disc"
-#~ msgstr "CD-R Disc"
-
-#~ msgid "Blank CD-RW Disc"
-#~ msgstr "Blank CD-RW Disc"
-
-#~ msgid "CD-RW Disc"
-#~ msgstr "CD-RW Disc"
-
-#~ msgid "DVD-ROM Disc"
-#~ msgstr "DVD-ROM Disc"
-
-#~ msgid "Blank DVD-R Disc"
-#~ msgstr "Blank DVD-R Disc"
-
-#~ msgid "DVD-R Disc"
-#~ msgstr "DVD-R Disc"
-
-#~ msgid "Blank DVD-RAM Disc"
-#~ msgstr "Blank DVD-RAM Disc"
-
-#~ msgid "DVD-RAM Disc"
-#~ msgstr "DVD-RAM Disc"
-
-#~ msgid "Blank DVD-RW Disc"
-#~ msgstr "Blank DVD-RW Disc"
-
-#~ msgid "DVD-RW Disc"
-#~ msgstr "DVD-RW Disc"
-
-#~ msgid "Blank DVD+RW Disc"
-#~ msgstr "Blank DVD+RW Disc"
-
-#~ msgid "DVD+RW Disc"
-#~ msgstr "DVD+RW Disc"
-
-#~ msgid "Blank DVD+R Disc"
-#~ msgstr "Blank DVD+R Disc"
-
-#~ msgid "DVD+R Disc"
-#~ msgstr "DVD+R Disc"
-
-#~ msgid "Optical Disc"
-#~ msgstr "Optical Disc"
-
-#~ msgid "Audio Disc"
-#~ msgstr "Audio Disc"
-
-#~ msgid "Compact Flash Media"
-#~ msgstr "Compact Flash Media"
-
-#~ msgid "Memory Stick Media"
-#~ msgstr "Memory Stick Media"
-
-#~ msgid "Smart Media Media"
-#~ msgstr "Smart Media Media"
-
-#~ msgid "SD/MMC Media"
-#~ msgstr "SD/MMC Media"
-
-#~ msgid "Floppy Disk"
-#~ msgstr "Floppy Disk"
-
-#~ msgid "Mac OS disk"
-#~ msgstr "Mac OS disk"
-
-#~ msgid "Mac OS X disk"
-#~ msgstr "Mac OS X disk"
-
-#~ msgid "Windows Disk"
-#~ msgstr "Windows Disk"
-
-#~ msgid "Linux Disk"
-#~ msgstr "Linux Disk"
-
-#~ msgid "File could not be opened: %s"
-#~ msgstr "File could not be opened: %s"
-
-#~ msgid "Failed to open file '%s': %s"
-#~ msgstr "Failed to open file '%s': %s"
-
-#~ msgid "File is empty"
-#~ msgstr "File is empty"
-
-#~ msgid "Failed to read from file '%s': %s"
-#~ msgstr "Failed to read from file '%s': %s"
-
-#~ msgid ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-#~ msgstr ""
-#~ "desktop entries contain line '%s' which is not an entry, group, or comment"
-
-#~ msgid "desktop entries file does not start with legal start group"
-#~ msgstr "desktop entries file does not start with legal start group"
-
-#~ msgid "desktop entries contain line '%s' which is not UTF-8"
-#~ msgstr "desktop entries contain line '%s' which is not UTF-8"
-
-#~ msgid "desktop entries contain unknown encoding '%s'"
-#~ msgstr "desktop entries contain unknown encoding '%s'"
-
-#~ msgid "desktop entries do not have group '%s'"
-#~ msgstr "desktop entries do not have group '%s'"
-
-#~ msgid "desktop entries do not have key '%s'"
-#~ msgstr "desktop entries do not have key '%s'"
-
-#~ msgid ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-#~ msgstr ""
-#~ "desktop entries contain key '%s' which has value that cannot be "
-#~ "interpreted."
-
-#~ msgid ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-#~ msgstr ""
-#~ "desktop entries contain no translated value for key '%s' with locale '%s'."
-
-#~ msgid "desktop entries contain invalid escape sequence '%s'"
-#~ msgstr "desktop entries contain invalid escape sequence '%s'"
-
-#~ msgid "desktop entries contain escape character at end of line"
-#~ msgstr "desktop entries contain escape character at end of line"
-
-#~ msgid "Value '%s' cannot be interpreted as a number."
-#~ msgstr "Value '%s' cannot be interpreted as a number."
-
-#~ msgid "Value '%s' cannot be interpreted as a boolean."
-#~ msgstr "Value '%s' cannot be interpreted as a boolean."
-
-#~ msgid "Applications"
-#~ msgstr "Applications"
-
-#~ msgid "Cards"
-#~ msgstr "Cards"
-
-#~ msgid "Files"
-#~ msgstr "Files"
-
-#~ msgid "Folders"
-#~ msgstr "Folders"
-
-#~ msgid "Help"
-#~ msgstr "Help"
-
-#~ msgid "Hosts"
-#~ msgstr "Hosts"
-
-#~ msgid "Links"
-#~ msgstr "Links"
-
-#~ msgid "Mail"
-#~ msgstr "Mail"
-
-#~ msgid "Tools"
-#~ msgstr "Tools"
-
-#~ msgid "Windows"
-#~ msgstr "Windows"
-
-#~ msgid "desktop entry does not start with legal start group"
-#~ msgstr "desktop entry does not start with legal start group"
