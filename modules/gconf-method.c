@@ -20,6 +20,8 @@
 
    Author: Dave Camp <campd@oit.edu> */
 
+/* FIXME: More error checking */
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -61,6 +63,11 @@ static GnomeVFSResult  do_read_directory
 					 GnomeVFSFileInfo *file_info);
 static GnomeVFSResult  do_get_file_info
                                         (GnomeVFSURI *uri,
+					 GnomeVFSFileInfo *file_info,
+					 GnomeVFSFileInfoOptions options,
+					 const GList *meta_keys);
+static GnomeVFSResult  do_get_file_info_from_handle
+                                        (GnomeVFSMethodHandle *method_handle,
 					 GnomeVFSFileInfo *file_info,
 					 GnomeVFSFileInfoOptions options,
 					 const GList *meta_keys);
@@ -555,6 +562,16 @@ do_get_file_info (GnomeVFSURI *uri,
         return file_info_value (file_info, options, value, key);
 }
 
+static GnomeVFSResult  
+do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
+			      GnomeVFSFileInfo *file_info,
+			      GnomeVFSFileInfoOptions options,
+			      const GList *meta_keys)
+{
+	return GNOME_VFS_ERROR_WRONGFORMAT;	
+}
+
+
 gboolean 
 do_is_local (const GnomeVFSURI *uri)
 {
@@ -569,7 +586,7 @@ vfs_module_init (void)
 
 	if (!g_conf_is_initialized ()) {
 		g_conf_init_orb (&argc, argv);
-		g_conf_init ("gnome-vfs");
+		g_conf_init ();
 	}
 	
         conf = g_conf_new ();
