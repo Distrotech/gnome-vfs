@@ -7,6 +7,9 @@ Please do not check in changes with an approval.
 
 Please do not check in changes without a ChangeLog entry. 
 
+All ChangeLog entries go into the root ChangeLog except for entries for
+changes in the po and data/mime directories.
+
 Please make sure components that depend on Gnome VFS (eg Nautilus, Evolution) 
 do not break with your change or arrange that an update to the dependent
 components gets submitted at the same time. 

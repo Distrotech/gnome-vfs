@@ -1,3 +1,27 @@
+2001-01-19  Pavel Cisler  <pavel@eazel.com>
+
+	reviewed by: Michael Engber <engber@eazel.com>
+
+	Fix 1200: count_items_and_size needs to deal with errors.
+	Fix 4577: File copying that fills a partition will cause an unescapable
+	loop of error dialogs.
+	Fix 5518: Nautilus hits assert in build_error_string during some
+	large copy operation.
+
+	* libgnomevfs/gnome-vfs-xfer.c: (handle_name_conflicts),
+	(copy_file_data), (gnome_vfs_xfer_delete_items),
+	(gnome_vfs_xfer_uri_internal):
+	Make copy loop in copy_file_data properly bail when an error happens
+	and retry is not requested.
+	Make count_item_and_size ignore any errors except for cancellations of
+	the copy -- we will deal with all the errors nicely either in the other
+	parts of the preflight or during the copy itself.
+	Pass in the target directory uri to the error handling code that reports
+	that we have no space on the destination.
+	
+	HACKING:
+	Add some more comments.
+
 2001-01-19  Darin Adler  <darin@eazel.com>
 
 	reviewed by: John Sullivan  <sullivan@eazel.com>
