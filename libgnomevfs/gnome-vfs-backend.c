@@ -28,7 +28,6 @@
 #include <config.h>
 #include "gnome-vfs-backend.h"
 
-#include "gnome-vfs-backend-private.h"
 #include "gnome-vfs-callbacks.h"
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-result.h>

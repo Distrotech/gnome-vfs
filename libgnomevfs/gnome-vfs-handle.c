@@ -24,7 +24,6 @@
 #include <config.h>
 #include "gnome-vfs-handle.h"
 
-#include "gnome-vfs-seekable.h"
 #include <glib/gmessages.h>
 
 struct GnomeVFSHandle {
@@ -81,15 +80,6 @@ gnome_vfs_handle_new (GnomeVFSURI *uri,
 	new->uri = gnome_vfs_uri_ref (uri);
 	new->method_handle = method_handle;
 	new->open_mode = open_mode;
-
-	if ((open_mode & GNOME_VFS_OPEN_RANDOM) &&
-	    !VFS_METHOD_HAS_FUNC (uri->method, seek)) {
-		GnomeVFSMethodHandle *handle;
-		handle = gnome_vfs_seek_emulate (new->uri, method_handle,
-						 open_mode);
-		if (handle) /* Successfully wrapped */
-			new->method_handle = handle;
-	}
 
 	return new;
 }

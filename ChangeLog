@@ -1,3 +1,12 @@
+2001-09-03  Maciej Stachowiak  <mjs@noisehavoc.org>
+
+	Fix bug 8514 ([API] kill gnome-vfs-seekable)
+	
+	* libgnomevfs/Makefile.am:
+	* libgnomevfs/gnome-vfs-handle.c: (gnome_vfs_handle_new):
+	* libgnomevfs/gnome-vfs-seekable.c:
+	* libgnomevfs/gnome-vfs-seekable.h:
+
 2001-09-02  Maciej Stachowiak  <mjs@noisehavoc.org>
 
 	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init): Don't warn on
