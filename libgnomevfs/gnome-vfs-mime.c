@@ -143,7 +143,11 @@ add_to_key (char *mime_type, char *def)
 		if (!*def)
 			return;
 
-		mp = g_new (RegexMimePair, 1);
+		/* This was g_new instead of g_new0, but there seems
+		 * to be a bug in the Solaris? version of regcomp that
+		 * requires an initialized regex or it will crash.
+		 */
+		mp = g_new0 (RegexMimePair, 1);
 		if (regcomp (&mp->regex, def, REG_EXTENDED | REG_NOSUB)){
 			g_free (mp);
 			return;
