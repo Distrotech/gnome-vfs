@@ -1,3 +1,11 @@
+2000-08-31  Robey Pointer  <robey@eazel.com>
+
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_initialized):
+	* libgnomevfs/gnome-vfs-init.h:
+
+	Add gnome_vfs_initialized so you can check if gnome-vfs has been
+	initialized already, without it whining.
+	
 2000-08-31  Gene Z. Ragan  <gzr@eazel.com>
 
 	* libgnomevfs/gnome-vfs-backend.c: (gnome_vfs_backend_loadinit),

@@ -79,6 +79,17 @@ gnome_vfs_init (void)
 }
 
 
+gboolean
+gnome_vfs_initialized (void)
+{
+	gboolean out;
+
+	G_LOCK (vfs_already_initialized);
+	out = vfs_already_initialized;
+	G_UNLOCK (vfs_already_initialized);
+	return out;
+}
+
 void
 gnome_vfs_shutdown (void)
 {

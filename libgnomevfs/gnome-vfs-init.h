@@ -25,6 +25,7 @@
 #define _GNOME_VFS_INIT_H
 
 gboolean gnome_vfs_init(void);
+gboolean gnome_vfs_initialized (void);
 void gnome_vfs_shutdown(void);
 
 /* Stuff for use in a GnomeModuleInfo */
