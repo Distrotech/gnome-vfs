@@ -1,3 +1,12 @@
+2001-09-20  Havoc Pennington  <hp@redhat.com>
+
+	* modules/file-method.c (find_trash_in_hierarchy): remove the
+	trash search stuff
+	(create_trash_near): ditto
+
+	* modules/Makefile.am, desktop-method.c, desktop-module.conf: Add
+	desktop method for desktop URIs such as start-here
+
 2001-09-18  Havoc Pennington  <hp@redhat.com>
 
 	* modules/Makefile.am (INCLUDES): add gnome cflags

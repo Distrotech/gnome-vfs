@@ -16,6 +16,7 @@ INCLUDES =					\
 	-D_GNU_SOURCE				\
 	-D_REENTRANT				\
 	-D_POSIX_PTHREAD_SEMANTICS		\
+	-DSYSCONFDIR=\"$(sysconfdir)\"		\
 	-DPREFIX=\"$(prefix)\"
 
 EXTRA_DIST =					\
@@ -47,6 +48,7 @@ modules_LTLIBRARIES =				\
 	libftp.la				\
 	libvfs-pipe.la				\
 	libvfs-translate.la			\
+	libdesktop.la				\
 	$(NULL)
 
 # Disabled for now
@@ -87,6 +89,12 @@ libfile_la_SOURCES = 				\
 	file-method.c 				\
 	file-method.h
 libfile_la_LDFLAGS = $(module_flags)
+
+###  `desktop' method
+
+libdesktop_la_SOURCES = 				\
+	desktop-method.c
+libdesktop_la_LDFLAGS = $(module_flags)
 
 ###  `ssh' method
 
