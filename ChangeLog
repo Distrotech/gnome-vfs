@@ -1,3 +1,80 @@
+2003-10-17  Alexander Larsson  <alexl@redhat.com>
+
+        Merge the ALEX_DAEMON branch
+	
+	* Makefile.am:
+	Add daemon subdir
+	
+	* configure.in:
+	Add libbonobo req
+	
+	* daemon/GNOME_VFS_Daemon.server:
+	bonobo-activation file for the server
+	
+	* daemon/Makefile.am:
+	Makefiles
+		
+	* daemon/gnome-vfs-async-daemon.[ch]:
+	* daemon/gnome-vfs-daemon-dir-handle.[ch]:
+	* daemon/gnome-vfs-daemon-handle.[ch]:
+	* daemon/gnome-vfs-daemon.[ch]:
+	Implementation of the vfs daemon
+	
+	* libgnomevfs/GNOME_VFS_Daemon.idl:
+	The (internal) corba interface between daemon and clients
+	
+	* libgnomevfs/Makefile.am:
+	Add new files and required CFLAGS
+	
+	* libgnomevfs/gnome-vfs-cancellation-private.h:
+	Export some private cancellation ops
+	
+	* libgnomevfs/gnome-vfs-cancellation.c:
+	Fix locking for the pipes.
+	Add cancellation of the daemon side cancellation objects
+	on cancel.
+	Comment gnome_vfs_cancellation_ack crack.
+	
+	* libgnomevfs/gnome-vfs-client-call.[ch]:
+	Implement client callback object.
+	
+	* libgnomevfs/gnome-vfs-client.[ch]:
+	Client object for server lifecycle control and callbacks.
+	
+	* libgnomevfs/gnome-vfs-configuration.[ch]:
+	Handle config options. Add daemon config option.
+	
+	* libgnomevfs/gnome-vfs-context.c: (gnome_vfs_context_new):
+	Doesn't have to be in primary thread for daemon.
+	
+	* libgnomevfs/gnome-vfs-daemon-method.[ch]:
+	Implement proxy vfs method.
+	
+	* libgnomevfs/gnome-vfs-init.c: (gnome_vfs_init),
+	(gnome_vfs_shutdown):
+	Init and shutdown bonobo. Shutdown client stuff.
+	
+	* libgnomevfs/gnome-vfs-job.c:
+	Comment about bug.
+	
+	* libgnomevfs/gnome-vfs-method.c:
+	gnome_vfs_get/set_is_daemon.
+	Proxy to daemon if needed.
+	
+	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
+	* libgnomevfs/gnome-vfs-module-callback-private.h:
+	* libgnomevfs/gnome-vfs-module-callback.c:
+	Code to marshal callbacks over corba.
+	
+	* libgnomevfs/gnome-vfs-private.h:
+	get/set_is_daemon()
+	
+	* libgnomevfs/gnome-vfs-thread-pool.c:
+	Fix shutdown problems
+	
+	* programs/gnomevfs-cat.c:
+	Clean up on exit.
+
 2003-10-17  Christophe Fergeau  <teuf@gnome.org>
 
 	* configure.in: bump version number to 2.5.0

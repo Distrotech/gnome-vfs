@@ -58,8 +58,6 @@ gnome_vfs_context_new (void)
 {
         GnomeVFSContext *ctx;
 
-        GNOME_VFS_ASSERT_PRIMARY_THREAD;
-
         ctx = g_new0(GnomeVFSContext, 1);
 
         ctx->cancellation = gnome_vfs_cancellation_new();

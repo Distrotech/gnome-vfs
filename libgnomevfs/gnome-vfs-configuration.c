@@ -53,6 +53,9 @@ struct _ModulePathElement {
 	char *method_name;
 	char *path;
 	char *args;
+
+	/* options */
+	gboolean daemon;
 };
 
 typedef struct _VfsDirSource VfsDirSource;
@@ -211,9 +214,14 @@ parse_line (Configuration *configuration,
 	gchar *method_start;
 	char *module_name;
 	char *args = NULL;
+	char *option_start;
+	char *option;
 	GList *method_list;
 	GList *lp;
+	gboolean daemon;
 
+	daemon = FALSE;
+	
 	string_len = strlen (line_buffer);
 	if (string_len != line_len) {
 		g_warning (_("%s:%d contains NUL characters."),
@@ -260,6 +268,47 @@ parse_line (Configuration *configuration,
 	while (*p && g_ascii_isspace (*p))
 		p++;
 
+	if (*p == '[') {
+		p++;
+
+		while (TRUE) {
+			while (*p && g_ascii_isspace (*p))
+				p++;
+		
+			option_start = p;
+			while (*p && *p != ',' && *p != ']') {
+				p++;
+			}
+			
+			if (*p == '\0') {
+				g_warning (_("%s:%d has no options endmarker."),
+						   file_name, line_number);
+				retval = FALSE;
+				goto cleanup;
+			}
+
+			if (p != option_start) {
+				option = g_strndup (option_start, p - option_start);
+				if (strcmp (option, "daemon") == 0) {
+					daemon = TRUE;
+				} else {
+					g_warning (_("%s:%d has unknown options %s."),
+						   file_name, line_number, option);
+				}
+				g_free (option);
+			}
+
+			if (*p == ']') {
+				p++;
+				break;
+			}
+			p++;
+		}
+	}
+	
+	while (*p && g_ascii_isspace (*p))
+		p++;
+	
 	if (*p == '\0') {
 		if (method_list != NULL) {
 			g_warning (_("%s:%d contains no module name."),
@@ -289,6 +338,7 @@ parse_line (Configuration *configuration,
 
 		method_name = lp->data;
 		element = module_path_element_new (method_name, module_name, args);
+		element->daemon = daemon;
 		g_hash_table_insert (configuration->method_to_module_path,
 				     method_name, element);
 	}
@@ -527,7 +577,7 @@ maybe_reload (void)
 }
 
 const gchar *
-_gnome_vfs_configuration_get_module_path (const gchar *method_name, const char ** args)
+_gnome_vfs_configuration_get_module_path (const gchar *method_name, const char ** args, gboolean *daemon)
 {
 	ModulePathElement *element;
 
@@ -552,6 +602,8 @@ _gnome_vfs_configuration_get_module_path (const gchar *method_name, const char *
 
 	if (args)
 		*args = element->args;
+	if (daemon)
+		*daemon = element->daemon;
 	return element->path;
 }
 

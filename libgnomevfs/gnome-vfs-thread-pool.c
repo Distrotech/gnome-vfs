@@ -150,7 +150,7 @@ gnome_vfs_thread_pool_wait_for_work (GnomeVFSThreadState *state)
 		DEBUG_PRINT (("thread %p ready to work right away \n",
 			      state->thread));
 	} else {
-		while (state->entry_point == NULL) {
+		while (state->entry_point == NULL && !state->exit_requested) {
 			/* Don't have any work yet, wait till we get some. */
 			DEBUG_PRINT (("thread %p waiting for work \n", state->thread));
 			g_cond_wait (state->waiting_for_work_lock_condition,
@@ -168,13 +168,18 @@ thread_entry (void *cast_to_state)
 	GnomeVFSThreadState *state = (GnomeVFSThreadState *)cast_to_state;
 
 	for (;;) {
+		if (state->exit_requested) {
+			/* We have been explicitly asked to expire */
+			break;
+		}
+
+		gnome_vfs_thread_pool_wait_for_work (state);
 		
 		if (state->exit_requested) {
 			/* We have been explicitly asked to expire */
 			break;
 		}
 		
-		gnome_vfs_thread_pool_wait_for_work (state);
 		g_assert (state->entry_point);
 
 		/* Enter the actual thread entry point. */
@@ -241,6 +246,7 @@ void
 _gnome_vfs_thread_pool_shutdown (void)
 {
 	GnomeVFSThreadState *thread_state;
+
 	for (;;) {
 		thread_state = NULL;
 		
@@ -251,7 +257,7 @@ _gnome_vfs_thread_pool_shutdown (void)
 			available_threads = g_list_remove (available_threads, thread_state);
 		}
 		g_static_mutex_unlock (&thread_list_lock);
-		
+
 		if (thread_state == NULL) {
 			break;
 		}
@@ -261,6 +267,13 @@ _gnome_vfs_thread_pool_shutdown (void)
 		thread_state->exit_requested = TRUE;
 		g_cond_signal (thread_state->waiting_for_work_lock_condition);
 		g_mutex_unlock (thread_state->waiting_for_work_lock);
+
+		/* Give other thread a chance to quit.
+		 * This isn't guaranteed to work due to scheduler uncertainties and
+		 * the fact that the thread might be doing some work. But at least there
+		 * is a large chance that idle threads quit.
+		 */
+		g_thread_yield ();
 	}
 }
 

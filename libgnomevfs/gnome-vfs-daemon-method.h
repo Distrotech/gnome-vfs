@@ -1,9 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
+/* gnome-vfs-daemon-method.h - Method that proxies work to the daemon
 
-/* gnome-vfs-private.h - Private header file for the GNOME Virtual
-   File System.
-
-   Copyright (C) 1999 Free Software Foundation
+   Copyright (C) 2003 Red Hat Inc.
 
    The Gnome Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public License as
@@ -12,7 +10,7 @@
 
    The Gnome Library is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
    Library General Public License for more details.
 
    You should have received a copy of the GNU Library General Public
@@ -20,17 +18,21 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.
 
-   Author: Ettore Perazzoli <ettore@gnu.org> */
+   Author: Alexander Larsson <alexl@redhat.com> */
 
-#ifndef GNOME_VFS_PRIVATE_H
-#define GNOME_VFS_PRIVATE_H
+#ifndef GNOME_VFS_DAEMON_METHOD_H
+#define GNOME_VFS_DAEMON_METHOD_H
 
-#include <glib.h>
+#include <libgnomevfs/gnome-vfs-method.h>
+#include "GNOME_VFS_Daemon.h"
 
-#define GNOME_VFS_MODULE_DIR     LIBDIR "/gnome-vfs-2.0/modules"
-#define GNOME_VFS_MODULE_CFGDIR  SYSCONFDIR "/gnome-vfs-2.0/modules"
+G_BEGIN_DECLS
 
-void gnome_vfs_set_is_daemon (void);
-gboolean gnome_vfs_get_is_daemon (void);
+GnomeVFSMethod *_gnome_vfs_daemon_method_get (void);
 
-#endif /* GNOME_VFS_PRIVATE_H */
+void _gnome_vfs_daemon_convert_from_corba_file_info (const GNOME_VFS_FileInfo *corba_info, GnomeVFSFileInfo *file_info);
+void _gnome_vfs_daemon_convert_to_corba_file_info (const GnomeVFSFileInfo *file_info, GNOME_VFS_FileInfo *corba_info);
+
+G_END_DECLS
+
+#endif /* GNOME_VFS_DAEMON_METHOD_H */

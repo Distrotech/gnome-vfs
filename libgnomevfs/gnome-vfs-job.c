@@ -167,6 +167,8 @@ job_oneway_notify (GnomeVFSJob *job, GnomeVFSNotifyResult *notify_result)
 		JOB_DEBUG (("Barfing on oneway cancel %u (%d) type '%s'",
 			    GPOINTER_TO_UINT (notify_result->job_handle),
 			    job->op->type, JOB_DEBUG_TYPE (job->op->type)));
+		/* TODO: We can leak handle here, if an open succeded.
+		 * See bug #123472 */
 		_gnome_vfs_job_destroy_notify_result (notify_result);
 	}
 }

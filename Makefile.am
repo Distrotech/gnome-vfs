@@ -3,6 +3,7 @@ SUBDIRS_GNOME=monikers doc schemas
 SUBDIRS =					\
 	libgnomevfs				\
 	modules					\
+	daemon					\
 	schemas					\
 	devel-docs				\
 	doc					\

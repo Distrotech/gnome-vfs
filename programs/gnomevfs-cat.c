@@ -90,6 +90,7 @@ main (int argc, char **argv)
 
 	g_free (text_uri);
 
+	gnome_vfs_shutdown();
 	return 0;
 }
 
