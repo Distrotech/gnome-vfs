@@ -1,4 +1,9 @@
-2004-07-18  Ray Strode  <rstrode@redhat.com>
+2004-07-19  Ray Strode  <rstrode@redhat.com>
+
+	* libgnomevfs/gnome-vfs-mime-info-cache.c: 
+	Remove some nested G_LOCK nastiness.
+
+2004-07-19  Ray Strode  <rstrode@redhat.com>
 
 	Detect changes to cache files.  Note it's
 	still somehow broken cause nautilus locks
