@@ -1,4 +1,9 @@
-2004-07-05  Narayana Pattipati  <narayana.pattipati@wipro.com>
+2004-07-20  Christophe Fergeau <teuf@gnome.org>
+
+	* schemas/system_dns_sd_schemas.in: added missing period at the end of
+	  a long description. Fixes #145360
+
+2004-07-20  Narayana Pattipati  <narayana.pattipati@wipro.com>
 
         * libgnomevfs/gnome-vfs-filesystem-type.c:
           Add an entry for Sun SAM-QFS filesystem. Bugzilla bug#145442.

@@ -9,7 +9,7 @@
       <default>merged</default>
       <locale name="C">
         <short>How to display local DNS-SD service</short>
-        <long>Possible values are "merged", "separate" and "disabled"</long>
+        <long>Possible values are "merged", "separate" and "disabled".</long>
       </locale>
     </schema>
     <schema>
