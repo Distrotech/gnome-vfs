@@ -449,6 +449,7 @@ gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *
 
 	if (load_error != NULL) {
 		g_error_free (load_error);
+		g_key_file_free (key_file);
 		return FALSE;
 	}
 
@@ -492,6 +493,8 @@ gnome_vfs_mime_info_cache_dir_desktop_entry_is_valid (GnomeVFSMimeInfoCacheDir *
 
 		if (load_error != NULL) {
 			g_error_free (load_error);
+			g_strfreev (not_show_in_list);
+			g_key_file_free (key_file);
 			return FALSE;
 		}
 
