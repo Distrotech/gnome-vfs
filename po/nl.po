@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-06 04:24+0200\n"
-"PO-Revision-Date: 2004-07-06 14:13+0200\n"
+"POT-Creation-Date: 2004-07-14 04:32+0200\n"
+"PO-Revision-Date: 2004-07-14 12:42+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -198,6 +198,114 @@ msgstr "XIAFS volume"
 #: libgnomevfs/gnome-vfs-filesystem-type.c:103
 msgid "Unknown"
 msgstr "Onbekend"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:610
+msgid "CD Disc"
+msgstr "CD schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:613
+msgid "Blank CD-R Disc"
+msgstr "Blanco CD-R schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:615
+msgid "CD-R Disc"
+msgstr "CD-R schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:618
+msgid "Blank CD-RW Disc"
+msgstr "Blanco CD-RW schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:620
+msgid "CD-RW Disc"
+msgstr "CD-RW schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:622
+msgid "DVD-ROM Disc"
+msgstr "CD-ROM schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:625
+msgid "Blank DVD-R Disc"
+msgstr "Blanco DVD-R schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:627
+msgid "DVD-R Disc"
+msgstr "DVD-R schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:630
+msgid "Blank DVD-RAM Disc"
+msgstr "Blanco DVD-RAM schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:632
+msgid "DVD-RAM Disc"
+msgstr "DVD-RAM schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:635
+msgid "Blank DVD-RW Disc"
+msgstr "Blanco DVD-RW schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:637
+msgid "DVD-RW Disc"
+msgstr "DVD-RW schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:640
+msgid "Blank DVD+RW Disc"
+msgstr "Blanco DVD+RW schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:642
+msgid "DVD+RW Disc"
+msgstr "DVD+RW schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:645
+msgid "Blank DVD+R Disc"
+msgstr "Blanco DVD+R schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:647
+msgid "DVD+R Disc"
+msgstr "DVD+R schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:649
+msgid "Optical Disc"
+msgstr "Optische schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:655
+msgid "Audio Disc"
+msgstr "Audio CD"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:659
+msgid "Compact Flash Media"
+msgstr "Compact Flash"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:661
+msgid "Memory Stick Media"
+msgstr "Memory Stick"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:663
+msgid "Smart Media Media"
+msgstr "Smart Media"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:665
+msgid "SD/MMC Media"
+msgstr "SD/MMC"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:667
+msgid "Floppy Disk"
+msgstr "Floppy"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:674
+msgid "Mac OS disk"
+msgstr "Mac OS schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:676
+msgid "Mac OS X disk"
+msgstr "Mac OS X schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:690
+msgid "Windows Disk"
+msgstr "Windows schijf"
+
+#: libgnomevfs/gnome-vfs-hal-mounts.c:696
+msgid "Linux Disk"
+msgstr "Linux schijf"
 
 #: libgnomevfs/gnome-vfs-job.c:734
 #, c-format
@@ -457,7 +565,13 @@ msgstr "Fout bij analyseren opdrachtregel"
 msgid "Error launching command"
 msgstr "Fout bij starten opdracht"
 
-#: libgnomevfs/gnome-vfs-result.c:179
+# vertaling voor timeout?
+#. GNOME_VFS_ERROR_TIMEOUT
+#: libgnomevfs/gnome-vfs-result.c:84
+msgid "Timeout reached"
+msgstr "Timeout bereikt"
+
+#: libgnomevfs/gnome-vfs-result.c:180
 msgid "Unknown error"
 msgstr "Onbekende fout"
 
@@ -484,50 +598,50 @@ msgid "%.1f GB"
 msgstr "%.1f GB"
 
 #: libgnomevfs/gnome-vfs-utils.c:1114
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:317
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:364
 msgid " (invalid Unicode)"
 msgstr " (ongeldige Unicode)"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:444
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:472
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:492
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:520
 msgid "Floppy"
 msgstr "Floppy"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:445
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:475
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:493
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:523
 msgid "CD-ROM"
 msgstr "CD-ROM"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:446
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:478
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:494
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:526
 msgid "Zip Drive"
 msgstr "Zipdrive"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:447
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:495
 msgid "Memory Stick"
 msgstr "Draagbaar geheugen"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:448
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:496
 msgid "Camera"
 msgstr "Camera"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:449
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:497
 msgid "DVD"
 msgstr "DVD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:665
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:713
 msgid "Root Volume"
 msgstr "Hoofdvolume"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:746
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:794
 msgid "Audio CD"
 msgstr "Audio CD"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:777
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:825
 msgid "Unknown volume"
 msgstr "Onbekend volume"
 
-#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:957
+#: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:1005
 msgid "Network server"
 msgstr "Netwerkserver"
 
@@ -650,7 +764,7 @@ msgstr "Thuis"
 msgid "Filesystem"
 msgstr "Bestandssysteem"
 
-#: modules/file-method.c:385
+#: modules/file-method.c:386
 #, c-format
 msgid "Unknown GnomeVFSSeekPosition %d"
 msgstr "Onbekende GnomeVFSSeekPosition %d"
@@ -674,7 +788,9 @@ msgid ""
 msgstr ""
 "Dit gebeurt wanneer u zich voor de eerste keer bij een computer aanmeldt.\n"
 "\n"
-"De identiteit die door de computer op afstand is verzonden is %s. Indien u absoluut zeker wilt zijn dat het veilig is om door te gaan, neem dan contact op met de systeembeheerder."
+"De identiteit die door de computer op afstand is verzonden is %s. Indien u "
+"absoluut zeker wilt zijn dat het veilig is om door te gaan, neem dan contact "
+"op met de systeembeheerder."
 
 #: modules/sftp-method.c:1267
 msgid "Log In Anyway"
@@ -904,7 +1020,9 @@ msgstr "Actie voor trash URL"
 msgid ""
 "Comma separated list of dns-sd domains that should be visible in the network "
 "location."
-msgstr "Door komma's gescheiden lijst met dns-sd domeinen die zichtbaar zouden moeten zijn in de netwerklokatie."
+msgstr ""
+"Door komma's gescheiden lijst met dns-sd domeinen die zichtbaar zouden "
+"moeten zijn in de netwerklokatie."
 
 #: schemas/system_dns_sd.schemas.in.h:2
 msgid "Extra domains to look for dns-sd services in"
