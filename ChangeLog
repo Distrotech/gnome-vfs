@@ -1,3 +1,7 @@
+2001-09-18  Havoc Pennington  <hp@redhat.com>
+
+	* modules/Makefile.am (INCLUDES): add gnome cflags
+
 2001-09-15  Darin Adler  <darin@bentspoon.com>
 
 	* configure.in: Move AM_PROG_XML_I18N_TOOLS macro up.
