@@ -30,10 +30,14 @@
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
-#include <string.h>
-#include <ctype.h>
 
-
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/vfs.h>
+
 gchar*
 gnome_vfs_format_file_size_for_display (GnomeVFSFileSize bytes)
 {
@@ -449,31 +453,42 @@ str_has_prefix (const char *haystack, const char *needle)
 	return FALSE;
 }
 
-
+/* gnome_vfs_get_volume_free_space
+ * 
+ * Return total amount of free space on a volume.
+ * This only works for local file systems with
+ * the file: scheme.
+ */
 GnomeVFSResult
 gnome_vfs_get_volume_free_space (const GnomeVFSURI *vfs_uri, GnomeVFSFileSize *size)
 {	
-	//size_t total_blocks, block_size;
-	//struct statfs statfs_buffer;
-        //int statfs_result;
-	const char *base_name;
+	size_t total_blocks, block_size;
+	struct statfs statfs_buffer;
+       	int statfs_result;
+	const char *path, *scheme;
 
  	*size = 0;
-		
-        /* We only handle the file: scheme for now */
-	if (!str_has_prefix (gnome_vfs_uri_get_scheme (vfs_uri), "file://")) {
-		g_message ("Bad scheme: %s", gnome_vfs_uri_get_scheme (vfs_uri));
-		//return GNOME_VFS_ERROR_GENERIC;
+
+	/* We can't check non local systems */
+	if (!gnome_vfs_uri_is_local (vfs_uri)) {
+		return GNOME_VFS_ERROR_GENERIC;
 	}
 
-	base_name = gnome_vfs_uri_get_basename (vfs_uri);
-	g_message ("Base name: %s", base_name);
+	path = gnome_vfs_uri_get_path (vfs_uri);
+	scheme = gnome_vfs_uri_get_scheme (vfs_uri);
 	
-	//statfs_result = statfs (root_directory, &statfs_buffer);
-	//g_return_val_if_fail (statfs_result == 0, FALSE);
-	//block_size = statfs_buffer.f_bsize; 
-	//total_blocks_to_index = statfs_buffer.f_blocks;
-        
+        /* We only handle the file: scheme for now */
+	if (!str_has_prefix (scheme, "file") || !str_has_prefix (path, "/")) {
+		return GNOME_VFS_ERROR_GENERIC;
+	}
+
+	statfs_result = statfs ("/", &statfs_buffer);
+	g_return_val_if_fail (statfs_result == 0, FALSE);
+	block_size = statfs_buffer.f_bsize; 
+	total_blocks = statfs_buffer.f_blocks;
+
+	*size = block_size * total_blocks;
+
 	return GNOME_VFS_OK;
 }
 

@@ -1726,7 +1726,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 	GList *source_uri, *target_uri;
 	GnomeVFSURI *target_dir_uri;
 	gboolean move, link;
-	//GnomeVFSFileSize free_bytes;
+	GnomeVFSFileSize free_bytes;
 	
 	result = GNOME_VFS_OK;
 	move = FALSE;
@@ -1778,10 +1778,6 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 		}
 	}
 
-	if (target_dir_uri != NULL) {
-		gnome_vfs_uri_unref (target_dir_uri);
-	}
-
 	if (result == GNOME_VFS_OK) {
 
 		call_progress (progress, GNOME_VFS_XFER_PHASE_INITIAL);
@@ -1790,14 +1786,8 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 		result = count_items_and_size (source_uri_list, xfer_options, progress, move, link);
 		if (result == GNOME_VFS_OK) {
 
-			/* FIXME bugzilla.eazel.com 1214:
-			 * check if destination has enough space
-			 * and bail if not
-			 */
-
-#if 0
-			/* Calculate free space on destination. If we return an error, we just 
-			 * forge ahead and hope for the best 
+			/* Calculate free space on destination. If an error is returned, we have a non-local
+			 * file system, so we just forge ahead and hope for the best 
 			 */
 			result = gnome_vfs_get_volume_free_space (target_dir_uri, &free_bytes);
 			if (result == GNOME_VFS_OK) {
@@ -1805,7 +1795,7 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 					return GNOME_VFS_ERROR_NO_SPACE;
 				}
 			}
-#endif			
+			
 			if ((xfer_options & GNOME_VFS_XFER_USE_UNIQUE_NAMES) == 0) {
 				result = handle_name_conflicts (&source_uri_list, &target_uri_list,
 							        xfer_options, &error_mode, &overwrite_mode,
@@ -1849,6 +1839,10 @@ gnome_vfs_xfer_uri_internal (const GList *source_uris,
 				}
 			}
 		}
+	}
+
+	if (target_dir_uri != NULL) {
+		gnome_vfs_uri_unref (target_dir_uri);
 	}
 
 	/* Done, at last.  At this point, there is no chance to interrupt the

@@ -1,3 +1,18 @@
+2000-09-20  Gene Z. Ragan  <gzr@eazel.com>
+
+	Fixed bug 1214, check if copy destination has enough room.
+
+	This only works for local file systems.
+	
+	* libgnomevfs/gnome-vfs-uri.c:
+	* libgnomevfs/gnome-vfs-utils.c: 
+	(gnome_vfs_get_volume_free_space):
+	New function that gets free space on volume
+	
+	* libgnomevfs/gnome-vfs-xfer.c: 
+	(gnome_vfs_xfer_uri_internal):
+	Call gnome_vfs_get_volume_free_space () before copy.
+
 2000-09-20  Maciej Stachowiak  <mjs@eazel.com>
 
 	* modules/file-method.c (do_read): Report EOF on EOF.

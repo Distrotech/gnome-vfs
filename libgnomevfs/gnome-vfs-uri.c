@@ -1368,7 +1368,6 @@ gnome_vfs_uri_is_parent (const GnomeVFSURI *possible_parent,
 	return result;
 }
 
-
 /**
  * gnome_vfs_uri_get_path:
  * @uri: A GnomeVFSURI
