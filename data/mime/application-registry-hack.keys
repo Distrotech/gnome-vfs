@@ -6,33 +6,39 @@ x-application-registry-hack/emacs
 	name=GNU Emacs
 	can_open_multiple_files=true
 	can_open_uris=false
+	requires_terminal=false
 
 x-application-registry-hack/nedit
 	command=nedit
 	name=NEdit
 	can_open_multiple_files=true
 	can_open_uris=false
+	requires_terminal=false
 
 x-application-registry-hack/netscape
 	command=netscape
 	name=Netscape
 	can_open_multiple_files=true
 	can_open_uris=true
+	requires_terminal=false
 
 x-application-registry-hack/lynx
-	command=xterm -e lynx
+	command=lynx
 	name=Lynx
 	can_open_multiple_files=false
 	can_open_uris=true
+	requires_terminal=true
 
 x-application-registry-hack/gimp
 	command=gimp
 	name=The GIMP
 	can_open_multiple_files=true
 	can_open_uris=true
+	requires_terminal=false
 
 x-application-registry-hack/eog
 	command=eog
 	name=Eye of Gnome
 	can_open_multiple_files=true
 	can_open_uris=true
+	requires_terminal=false
