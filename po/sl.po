@@ -1367,7 +1367,7 @@ msgstr "Storitev ni na voljo"
 #. GNOME_VFS_ERROR_SERVICE_OBSOLETE
 #: libgnomevfs/gnome-vfs-result.c:78
 msgid "Request obsoletes service's data"
-msgstr "Zahtevek zastara podatke servisa"
+msgstr "Zahtevek zastara podatke storitve"
 
 #: libgnomevfs/gnome-vfs-result.c:141
 msgid "Unknown error"
