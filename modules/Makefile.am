@@ -11,8 +11,9 @@ module_flags = -export_dynamic -avoid-version
 
 modulesdir = $(prefix)/lib/vfs/modules
 
-modules_LTLIBRARIES = \
-	libfile.la \
+modules_LTLIBRARIES =	\
+	libfile.la	\
+#	libhttp.la	\
 	libgzip.la
 
 libfile_la_SOURCES = \
@@ -25,3 +26,9 @@ libgzip_la_SOURCES = \
 	gzip-method.h
 libgzip_la_LDFLAGS = $(module_flags)
 libgzip_la_LIBADD = -lz
+
+#libhttp_la_SOURCES =	\
+#	http-method.c	\
+#	http-method.h
+#libhttp_la_LDFLAGS = $(module_flags)
+#libhttp_la_LIBADD  = -lghttp

@@ -1,3 +1,12 @@
+1999-08-25  Michael Meeks  <michael@imaginator.com>
+
+	* http-method.[ch]: First pass at implementing.
+	
+	* modules/file-method.c: Add NULL RenameFunc to methods, and
+	remove const from do_make_directory's GnomeVFSURI.
+
+	* modules/Makefile.am: Add libhttp.la, commented out.
+
 1999-08-25  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* modules/file-method.c: Preconditions return `GNOME_VFS_INTERNAL'

@@ -93,7 +93,7 @@ static GnomeVFSResult	do_get_file_info
 static gboolean		do_is_local	(const GnomeVFSURI *uri);
 
 static GnomeVFSResult	do_make_directory
-					(const GnomeVFSURI *uri,
+                                        (GnomeVFSURI *uri,
 					 guint perm);
 
 static GnomeVFSMethod method = {
@@ -110,7 +110,8 @@ static GnomeVFSMethod method = {
 	do_read_directory,
 	do_get_file_info,
 	do_is_local,
-	do_make_directory
+	do_make_directory,
+	NULL
 };
 
 
@@ -879,7 +880,7 @@ do_is_local (const GnomeVFSURI *uri)
 
 
 static GnomeVFSResult
-do_make_directory (const GnomeVFSURI *uri,
+do_make_directory (GnomeVFSURI *uri,
 		   guint perm)
 {
 	gint retval;
