@@ -317,9 +317,9 @@ static void parse_ignore_host(gpointer data, gpointer user_data)
     struct in_addr host, mask;
 #ifdef ENABLE_IPV6
     struct in6_addr host6, mask6;
+    gint i;
 #endif
     ProxyHostAddr *elt;
-    gint i;
 
     input = (gchar *) data;
     elt = g_new0(ProxyHostAddr, 1);

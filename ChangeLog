@@ -1,3 +1,8 @@
+2005-02-16  Ryan Lortie  <desrt@desrt.ca>
+
+	* modules/http-proxy.c (parse_ignore_host): Fix for unused variable
+	'gint i' when ENABLE_IPV6 is undefined.
+
 2005-02-16  Nate Nielsen <nielsen@memberwebs.com>
 	
 	* modules/smb-method.c (prompt_authentication): Allow user name 
