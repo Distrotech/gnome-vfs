@@ -6,7 +6,7 @@ keys_files = $(keys_in_files:.keys.in=.keys)
 mimedir = $(datadir)/mime-info
 
 mime_DATA = \
-	$(KEYS_FILES) \
+	$(keys_files) \
 	gnome-vfs.mime \
 	$(NULL)
 

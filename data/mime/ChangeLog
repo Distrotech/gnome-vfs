@@ -1,5 +1,9 @@
 2001-01-19  Darin Adler  <darin@eazel.com>
 
+	* Makefile.am: Oops. Missed one.
+
+2001-01-19  Darin Adler  <darin@eazel.com>
+
 	* .cvsignore: Ignore the generated gnome-vfs.keys file.
 	* Makefile.am: Fix make rules to put NULL first, use lower-case
 	for variables (to match xml-i18n-tools/README recommendations),
