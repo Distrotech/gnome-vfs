@@ -1,3 +1,12 @@
+2003-12-09  Alexander Larsson  <alexl@redhat.com>
+
+	* test/test-shell.c (authentication_callback):
+	Fix warnings
+
+	* libgnomevfs/gnome-vfs-cdrom.c (_gnome_vfs_get_iso9660_volume_name):
+	Clear iso buffer before reading.
+	Based on patch from Joe Marcus Clarke	
+
 === gnome-vfs 2.5.3 ===
 
 2003-12-08  Alexander Larsson  <alexl@redhat.com>

@@ -165,6 +165,8 @@ _gnome_vfs_get_iso9660_volume_name (int fd)
 	struct iso_primary_descriptor iso_buffer;
 	int offset;
 
+	memset (&iso_buffer, 0, sizeof (struct iso_primary_descriptor));
+	
 #ifdef __linux__
 	offset = get_iso9660_volume_name_data_track_offset (fd);
 #else
