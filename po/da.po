@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-vfs CVS\n"
 "POT-Creation-Date: 2000-04-19 15:50+0200\n"
-"PO-Revision-Date: 2000-03-04 20:03+01:00\n"
+"PO-Revision-Date: 2000-04-19 19:03+01:00\n"
 "Last-Translator: Keld Simonsen <Keld@dkuug.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -357,12 +357,12 @@ msgstr "Modtog mærkelig streng fra slaveproces: '%s'"
 #: libgnomevfs-corba/gnome-vfs-slave-launch.c:181
 #, c-format
 msgid "Cannot get object for `%s'"
-msgstr "Kan ikke få objekt for '%s'"
+msgstr "Kan ikke finde objekt for '%s'"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:125
 #, c-format
 msgid "Cannot kill GNOME::VFS::Slave::Notify -- exception %s"
-msgstr "Kan ikke dræbe GNOME::VFS::Slave::Notify -- exception %s"
+msgstr "Kan ikke dræbe GNOME::VFS::Slave::Notify -- undtagelse %s"
 
 #: libgnomevfs-corba/gnome-vfs-slave-notify.c:203
 #, c-format
