@@ -771,6 +771,63 @@ gnome_vfs_sniff_buffer_looks_like_text (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	return TRUE;
 }
 
+static int bitrates[2][15] = {
+	{ 0, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320},
+	{ 0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160 }
+};	
+
+static int frequencies[2][3] = {
+	{ 44100, 48000, 32000 },
+	{ 22050, 24000, 16000 }	
+};	
+
+/*
+ * Return length of an MP3 frame using potential 32-bit header value.  See
+ * "http://www.dv.co.yu/mpgscript/mpeghdr.htm" for details on the header
+ * format.
+ *
+ * NOTE: As an optimization and because they are rare, this returns 0 for
+ * version 2.5 or free format MP3s.
+ */
+static size_t
+get_mp3_frame_length (unsigned long mp3_header)
+{
+	int ver = 4 - ((mp3_header >> 19) & 3u);
+	int br = (mp3_header >> 12) & 0xfu;
+	int srf = (mp3_header >> 10) & 3u;
+
+	/* are frame sync and layer 3 bits set? */
+	if (((mp3_header & 0xffe20000ul) == 0xffe20000ul)
+		/* good version? */
+		&& ((ver == 1) || (ver == 2))
+		/* good bitrate index (not free or invalid)? */
+		&& (br > 0) && (br < 15)
+		/* good sampling rate frequency index? */
+		&& (srf != 3)
+		/* not using reserved emphasis value? */
+		&& ((mp3_header & 3u) != 2)) {
+		/* then this is most likely the beginning of a valid frame */
+
+		size_t length = (size_t) bitrates[ver - 1][br] * 144000;
+		length /= frequencies[ver - 1][srf];
+		return length += ((mp3_header >> 9) & 1u) - 4;
+	}
+	return 0;
+}
+
+static unsigned long
+get_4_byte_value (const unsigned char *bytes)
+{
+	unsigned long value = 0;
+	int count;
+
+	for (count = 0; count < 4; ++count) {
+		value <<= 8;
+		value |= *bytes++;
+	}
+	return value;
+}
+
 enum {
 	GNOME_VFS_MP3_SNIFF_LENGTH = 256
 };
@@ -778,24 +835,10 @@ enum {
 gboolean
 gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 {
-	unsigned long mpeg_header;
+	unsigned long mp3_header;
 	int offset;
 	
 	if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, GNOME_VFS_MP3_SNIFF_LENGTH) != GNOME_VFS_OK) {
-		return FALSE;
-	}
-
-	/*
-	 * Ignore StarOffice and Microsoft Office files which contain seemingly
-	 * valid (but totally false) MPEG audio headers starting 68 bytes into
-	 * the file.  Even mpg123 will attempt to "play" them.  Go figure.
-	 */
-	if ((sniff_buffer->buffer[0] == 0xd0u)
-		&& (sniff_buffer->buffer[1] == 0xcfu)
-		&& (sniff_buffer->buffer[2] == 0x11u)
-		&& (sniff_buffer->buffer[3] == 0xe0u)
-		&& (sniff_buffer->buffer[4] == 0xa1u)
-		&& (sniff_buffer->buffer[5] == 0xb1u)) {
 		return FALSE;
 	}
 
@@ -823,33 +866,37 @@ gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 	}
 
 	/*
-	 * Scan through the first "GNOME_VFS_MP3_SNIFF_LENGTH" bytes of
-	 * potentially (and not all that uncommon) random junk to find a valid
-	 * 32-bit MPEG audio frame header.  See
-	 * "http://www.dv.co.yu/mpgscript/mpeghdr.htm" for details on the
-	 * header format.
-	 *
-	 * The following code was inspired by the "stream_head_shift" and
-	 * "head_check" functions from "mpg123".  See "http://www.mpg123.org/"
-	 * for source and details.
+	 * Scan through the first "GNOME_VFS_MP3_SNIFF_LENGTH" bytes of the
+	 * buffer to find a potential 32-bit MP3 frame header.
 	 */
-	mpeg_header = 0;
+	mp3_header = 0;
 	for (offset = 0; offset < GNOME_VFS_MP3_SNIFF_LENGTH; offset++) {
-		mpeg_header <<= 8;
-		mpeg_header |= sniff_buffer->buffer[offset];
-		mpeg_header &= 0xfffffffful;
-		/* are all 11 bits of the frame sync set? */
-		if (((mpeg_header & 0xffe00000ul) == 0xffe00000ul)
-			/* is the layer description NOT the reserved "00" pattern? */
-			&& ((mpeg_header >> 17) & 3u)
-			/* is the bitrate index NOT the invalid "1111" pattern? */
-			&& (((mpeg_header >> 12) & 0xfu) != 0xfu)
-			/* is the sampling frequency NOT the reserved "11" pattern? */
-			&& (((mpeg_header >> 10) & 3u) != 3)
-			/* is at least one bit set in the rest of the header? */
-			&& ((mpeg_header & 0xffff0000ul) != 0xfffe0000ul)) {
-			/* then this is most likely the beginning of a valid frame */
-			return TRUE;
+		size_t length;
+
+		mp3_header <<= 8;
+		mp3_header |= sniff_buffer->buffer[offset];
+		mp3_header &= 0xfffffffful;
+
+		length = get_mp3_frame_length (mp3_header);
+
+		if (length != 0) {
+			/*
+			 * Since one frame is available, is there another frame
+			 * just to be sure this is more likely to be a real MP3
+			 * buffer?
+			 */
+			offset += 1 + length;
+
+			if (gnome_vfs_mime_sniff_buffer_get (sniff_buffer, offset + 4) != GNOME_VFS_OK) {
+				return FALSE;
+			}
+			mp3_header = get_4_byte_value (&sniff_buffer->buffer[offset]);
+			length = get_mp3_frame_length (mp3_header);
+
+			if (length != 0) {
+				return TRUE;
+			}
+			break;
 		}
 	}
 

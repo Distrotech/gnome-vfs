@@ -1,3 +1,24 @@
+2001-03-01  Don Melton  <don@eazel.com>
+
+	reviewed by: Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-mime-magic.c: (get_mp3_frame_length),
+	(get_4_byte_value), (gnome_vfs_sniff_buffer_looks_like_mp3):
+
+	Re-fixed bug 6612 (Non-music files misidentified as MP3)
+	Fixed bug 7212 (".sys" file misidentified as MP3)
+	Fixed bug 7213 (".ico" file misidentified as MP3)
+	Fixed bug 7214 (".1st" file misidentified as MP3)
+
+	Rewrote "gnome_vfs_sniff_buffer_looks_like_mp3" to narrow MP3
+	sniffing to streams containing AT LEAST TWO frames of layer 3 MPEG
+	audio.  Note: free format and MPEG version 2.5 MP3s are ignored,
+
+	Removed the hack to ignore StarOffice and Microsoft Office files
+	which contain seemingly valid (but totally false) MPEG audio
+	headers starting 68 bytes into the file, because the new sniffing
+	code makes this unnecessary.
+
 2001-03-01  Gene Z. Ragan  <gzr@eazel.com>
 
 	reviewed by: Mike Engber <engber@eazel.com>
