@@ -1,3 +1,13 @@
+1999-09-27  Miguel de Icaza  <miguel@gnu.org>
+
+	* modules/module-shared.c (gnome_vfs_set_meta_for_list,
+	gnome_vfs_set_meta, gnome_vfs_stat_to_file_info,
+	gnome_vfs_mime_type_from_mode): moved here some code from the file
+	backend that can be reused by the ftp backend.
+	
+	* modules/ftp-method.c: directory listings work.  Still some work
+	is required.
+
 1999-09-27  Cody Russell  <bratsche@dfw.net>
 	* modules/bzip2-method.c: At Ettore's request, reformatted the
 	code to look more like the rest of the code. Function return

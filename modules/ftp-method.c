@@ -30,7 +30,9 @@
 #include <unistd.h>
 #include <time.h>
 #include "gnome-vfs-module.h"
-
+#include "module-shared.h"
+#include <libgnome/gnome-defs.h>
+#include <libgnome/gnome-mime.h>
 #include <netdb.h>		/* struct hostent */
 #include <sys/socket.h>		/* AF_INET */
 #include <netinet/in.h>		/* struct in_addr */
@@ -49,10 +51,10 @@
 #define logfile stdout		/* FIXME tmp */
 
 /* Seconds until directory contents are considered invalid */
-int ftpfs_directory_timeout = 600;
-int ftpfs_first_cd_then_ls = 1;
-int ftpfs_retry_seconds = 0;
-char *ftpfs_anonymous_passwd = "nothing@";
+int   ftpfs_directory_timeout = 600;
+int   ftpfs_first_cd_then_ls  = 1;
+int   ftpfs_retry_seconds     = 0;
+char *ftpfs_anonymous_passwd  = "nothing@";
 
 static GHashTable *connections_hash;
 
@@ -61,12 +63,12 @@ static GHashTable *connections_hash;
 /*  static int got_sigpipe; */
 /*  static char reply_str [80]; */
 
-static void ftpfs_dir_unref (ftpfs_dir_t *dir);
-static GnomeVFSResult login_server (ftpfs_connection_t *conn);
-static char *ftpfs_get_current_directory (ftpfs_connection_t *conn);
-static GnomeVFSResult get_file_entry (ftpfs_uri_t *uri, int flags,
-				      GnomeVFSOpenMode mode, gboolean exclusive,
-				      ftpfs_direntry_t **retval);
+static void            ftpfs_dir_unref (ftpfs_dir_t *dir);
+static GnomeVFSResult  login_server    (ftpfs_connection_t *conn);
+static GnomeVFSResult  get_file_entry  (ftpfs_uri_t *uri, int flags,
+					GnomeVFSOpenMode mode, gboolean exclusive,
+					ftpfs_direntry_t **retval);
+static char           *ftpfs_get_current_directory (ftpfs_connection_t *conn);
 
 void
 print_vfs_message (char *msg, ...)
@@ -1174,7 +1176,7 @@ resolve_symlink_without_ls_options (ftpfs_connection_t *conn, ftpfs_dir_t *dir)
 				continue;
 			} else {
 				fel->l_stat = g_new (struct stat, 1);
-				if ( S_ISLNK (fe->s.st_mode))
+				if (S_ISLNK (fe->s.st_mode))
 					*fel->l_stat = *fe->l_stat;
 				else
 					*fel->l_stat = fe->s;
@@ -1628,7 +1630,7 @@ get_file_entry (ftpfs_uri_t *uri, int flags,
 	int handle;
 	
 	*retval = NULL;
-	dir = retrieve_dir (uri->conn, *dirname ? dirname : "/", flags & FTPFS_DO_RESOLVE_SYMLINK);
+	dir = retrieve_dir (uri->conn, *dirname ? dirname : "/", (flags & FTPFS_DO_RESOLVE_SYMLINK) != 0);
 	g_free (dirname);
 	if (dir == NULL)
 		return GNOME_VFS_ERROR_IO;
@@ -2009,13 +2011,15 @@ static GnomeVFSResult
 ftpfs_tell (GnomeVFSMethodHandle *method_handle,
 	    GnomeVFSFileOffset *offset_return)
 {
+	g_error ("unimplemented routine reached (tell)");
 	return GNOME_VFS_ERROR_INTERNAL;
 }
 
 static GnomeVFSResult
 ftpfs_truncate (GnomeVFSMethodHandle *method_handle,
-		glong where)
+		GnomeVFSFileSize where)
 {
+	g_error ("unimplemented routine reached (truncate)");
 	return GNOME_VFS_ERROR_WRONGFORMAT;
 }
 
@@ -2026,20 +2030,175 @@ ftpfs_open_directory (GnomeVFSMethodHandle **method_handle,
 		      const GList *meta_keys,
 		      const GnomeVFSDirectoryFilter *filter)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	GnomeVFSResult ret;
+	ftpfs_dirent_t *dent;
+		
+	dent = g_new (ftpfs_dirent_t, 1);
+	if (!dent)
+		return GNOME_VFS_ERROR_NOMEM;
+
+	dent->uri = ftpfs_uri_new (uri, &ret);
+	if (!dent->uri){
+		g_free (dent);
+		return GNOME_VFS_ERROR_INVALIDURI;
+	}
+
+	dent->dir = retrieve_dir (dent->uri->conn, g_dirname (dent->uri->path), TRUE);
+	ftpfs_dir_ref (dent->dir);
+	dent->pos = NULL;
+	dent->options = options;
+	dent->meta_keys = meta_keys;
+	dent->filter = filter;
+	dent->pos = dent->dir->file_list;
+	
+	*method_handle = (GnomeVFSMethodHandle *) dent;
+	
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
 ftpfs_close_directory (GnomeVFSMethodHandle *method_handle)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	ftpfs_dirent_t *dent = (ftpfs_dirent_t *) method_handle;
+
+	ftpfs_dir_unref (dent->dir);
+	ftpfs_uri_destroy (dent->uri);
+	g_free (dent);
+	
+	return GNOME_VFS_OK;
+}
+
+static GnomeVFSResult
+_ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
+		       GnomeVFSFileInfo *info,
+		       gboolean *skip)
+{
+	const GnomeVFSDirectoryFilter *filter;
+	GnomeVFSDirectoryFilterNeeds filter_needs;
+	gboolean filter_called;
+	ftpfs_dirent_t *dent = (ftpfs_dirent_t *) method_handle;
+	ftpfs_direntry_t *dentry;
+	struct stat s;
+	
+	if (dent->pos == NULL)
+		return GNOME_VFS_ERROR_EOF;
+	
+	/* This makes sure we do try to filter the file more than
+           once.  */
+	filter_called = FALSE;
+
+	filter = dent->filter;
+	if (filter != NULL)
+		filter_needs = gnome_vfs_directory_filter_get_needs (filter);
+	else
+		filter_needs = GNOME_VFS_DIRECTORY_FILTER_NEEDS_NOTHING;
+	    
+	dentry = (ftpfs_direntry_t *) dent->pos->data;
+	dent->pos = dent->pos->next;
+
+	info->name = g_strdup (dentry->name);
+
+	if ((filter == NULL) &&
+	    (!filter_called) &&
+	    (filter_needs & (GNOME_VFS_DIRECTORY_FILTER_NEEDS_TYPE |
+			     GNOME_VFS_DIRECTORY_FILTER_NEEDS_STAT |
+			     GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE |
+			     GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA))){
+		if (!gnome_vfs_directory_filter_apply (filter, info)){
+			*skip = TRUE;
+			return GNOME_VFS_OK;
+		}
+
+		filter_called = TRUE;
+	}
+
+	/*
+	 * Stat information
+	 */
+	s = dentry->s;
+	if (dentry->l_stat){
+		info->is_symlink = TRUE;
+		info->symlink_name = g_strdup (dentry->linkname);
+		
+		if (dent->options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
+			s = dentry->s;
+	} 
+	gnome_vfs_stat_to_file_info (info, &s);
+
+	/*
+	 *
+	 */
+	if (filter != NULL
+	    && ! filter_called
+	    && ! (filter_needs
+		  & (GNOME_VFS_DIRECTORY_FILTER_NEEDS_MIMETYPE
+		     | GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA))) {
+		if (! gnome_vfs_directory_filter_apply (filter, info)) {
+			*skip = TRUE;
+			return GNOME_VFS_OK;
+		}
+		filter_called = TRUE;
+	}
+
+	if (dent->options & GNOME_VFS_FILE_INFO_GETMIMETYPE){
+		const char *mime_name;
+		const char *mime_type;
+		
+		if ((dent->options & GNOME_VFS_FILE_INFO_FOLLOWLINKS)
+		    && info->type != GNOME_VFS_FILE_TYPE_BROKENSYMLINK
+		    && info->symlink_name != NULL)
+			mime_name = info->symlink_name;
+		else
+			mime_name = info->name;
+		
+		mime_type = gnome_mime_type_or_default (mime_name, NULL);
+
+		if (mime_type == NULL)
+			mime_type = gnome_vfs_mime_type_from_mode (s.st_mode);
+	}
+
+	if (filter != NULL
+	    && ! filter_called
+	    && ! (filter_needs & GNOME_VFS_DIRECTORY_FILTER_NEEDS_METADATA)) {
+		if (! gnome_vfs_directory_filter_apply (filter, info)) {
+			*skip = TRUE;
+			return GNOME_VFS_OK;
+		}
+		filter_called = TRUE;
+	}
+
+	gnome_vfs_set_meta_for_list (info, info->name, dent->meta_keys);
+
+	
+	if (filter != NULL && ! filter_called) {
+		if (!gnome_vfs_directory_filter_apply (filter, info)) {
+			*skip = TRUE;
+			return GNOME_VFS_OK;
+		}
+		filter_called = TRUE;
+	}
+
+	*skip = FALSE;
+	return GNOME_VFS_OK;
 }
 
 static GnomeVFSResult
 ftpfs_read_directory (GnomeVFSMethodHandle *method_handle,
 		      GnomeVFSFileInfo *file_info)
 {
-	return GNOME_VFS_ERROR_WRONGFORMAT;
+	GnomeVFSResult result;
+	gboolean skip;
+
+	do {
+		result = _ftpfs_read_directory (
+			method_handle, file_info, &skip);
+		if (result != GNOME_VFS_OK)
+			break;
+		if (skip)
+			gnome_vfs_file_info_clear (file_info);
+	} while (skip);
+
+	return result;
 }
 
 
@@ -2049,6 +2208,17 @@ ftpfs_get_file_info (GnomeVFSURI *uri,
 		     GnomeVFSFileInfoOptions options,
 		     const GList *meta_keys)
 {
+	ftpfs_uri_t *ftpfs_uri;
+
+	ftpfs_uri = ftpfs_uri_new (uri, &ret);
+	if (!ftpfs_uri)
+		return GNOME_VFS_ERROR_INVALIDURI;
+
+	/*
+	 * We need to split get_file_entry in a routine that would
+	 * scan the cache only and use that in the current get-file-entry
+	 */
+	g_error ("Not finished");
 	return GNOME_VFS_ERROR_WRONGFORMAT;
 }
 
@@ -2065,12 +2235,14 @@ ftpfs_is_local (const GnomeVFSURI *uri)
 static GnomeVFSResult
 ftpfs_make_directory (GnomeVFSURI *uri, guint perm)
 {
+	g_error ("unimplemented routine reached (mkdir)");
 	return GNOME_VFS_ERROR_IO;
 }
 
 static GnomeVFSResult
 ftpfs_remove_directory (GnomeVFSURI *uri)
 {
+	g_error ("unimplemented routine reached (rmdir)");
 	return GNOME_VFS_ERROR_IO;
 }
 

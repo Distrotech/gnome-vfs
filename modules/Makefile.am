@@ -18,7 +18,9 @@ modules_LTLIBRARIES =				\
 
 libfile_la_SOURCES = 				\
 	file-method.c 				\
-	file-method.h
+	file-method.h				\
+	module-shared.c				\
+	module-shared.h
 
 libfile_la_LDFLAGS = $(module_flags)
 
@@ -37,6 +39,8 @@ libbzip2_la_LIBADD = -lbz2
 libftp_la_SOURCES = 				\
 	ftp-method.c				\
 	ftp-method.h				\
+	module-shared.c				\
+	module-shared.h				\
 	parse.c					\
 	parse.h
 

@@ -520,83 +520,9 @@ directory_handle_destroy (DirectoryHandle *directory_handle)
 }
 
 
-/* FIXME Thread safeness.  */
-static GnomeVFSResult
-set_meta (GnomeVFSFileInfo *info,
-	  const gchar *file_name,
-	  const gchar *meta_key)
-{
-	guint size;
-	gchar *buffer;
-	gint meta_result;
-
-	g_return_val_if_fail (file_name != NULL, GNOME_VFS_ERROR_INTERNAL);
-	g_return_val_if_fail (meta_key != NULL, GNOME_VFS_ERROR_INTERNAL);
-	g_return_val_if_fail (info != NULL, GNOME_VFS_ERROR_INTERNAL);
-
-	/* We use `metadata_get_fast' because we get the MIME type
-           another way.  */
-	meta_result = gnome_metadata_get_fast (file_name, meta_key, &
-					       size, &buffer);
-
-	if (meta_result == GNOME_METADATA_OK)
-		gnome_vfs_file_info_set_metadata (info, meta_key,
-						  buffer, size);
-	else
-		gnome_vfs_file_info_unset_metadata (info, meta_key);
-
-	return GNOME_VFS_OK;
-}
-
-static GnomeVFSResult
-set_meta_for_list (GnomeVFSFileInfo *info,
-		   const gchar *file_name,
-		   const GList *meta_keys)
-{
-	GnomeVFSResult result;
-	const GList *p;
-
-	if (meta_keys == NULL)
-		return GNOME_VFS_OK;
-
-	for (p = meta_keys; p != NULL; p = p->next) {
-		result = set_meta (info, file_name, p->data);
-		if (result != GNOME_VFS_OK)
-			break;
-	}
-
-	return result;
-}
-
-
 /* MIME detection code.  */
 
 /* Hm, this is a bit messy.  */
-
-static const gchar *
-mime_type_from_mode (mode_t mode)
-{
-	const gchar *mime_type;
-
-	if (S_ISREG (mode))
-		mime_type = NULL;
-	else if (S_ISDIR (mode))
-		mime_type = "special/directory";
-	else if (S_ISCHR (mode))
-		mime_type = "special/device-char";
-	else if (S_ISBLK (mode))
-		mime_type = "special/device-block";
-	else if (S_ISFIFO (mode))
-		mime_type = "special/fifo";
-	else if (S_ISLNK (mode))
-		mime_type = "special/symlink"; /* FIXME? */
-	else if (S_ISSOCK (mode))
-		mime_type = "special/socket";
-	else
-		mime_type = NULL;
-
-	return mime_type;
-}
 
 static void
 set_mime_type (GnomeVFSFileInfo *info,
@@ -619,7 +545,7 @@ set_mime_type (GnomeVFSFileInfo *info,
 		mime_type = gnome_mime_type_or_default (mime_name, NULL);
 
 		if (mime_type == NULL)
-			mime_type = mime_type_from_mode (statbuf->st_mode);
+			mime_type = gnome_vfs_mime_type_from_mode (statbuf->st_mode);
 	} else {
 		/* FIXME: This will also stat the file for us...  Which is
                    not good at all, as we already have the stat info when we
@@ -654,58 +580,6 @@ read_link (const gchar *full_name)
 	}
 }
 
-static void
-stat_to_file_info (GnomeVFSFileInfo *file_info,
-		   const struct stat *statptr)
-{
-	if (S_ISDIR (statptr->st_mode))
-		file_info->type = GNOME_VFS_FILE_TYPE_DIRECTORY;
-	else if (S_ISCHR (statptr->st_mode))
-		file_info->type = GNOME_VFS_FILE_TYPE_CHARDEVICE;
-	else if (S_ISBLK (statptr->st_mode))
-		file_info->type = GNOME_VFS_FILE_TYPE_BLOCKDEVICE;
-	else if (S_ISFIFO (statptr->st_mode))
-		file_info->type = GNOME_VFS_FILE_TYPE_FIFO;
-	else if (S_ISSOCK (statptr->st_mode))
-		file_info->type = GNOME_VFS_FILE_TYPE_SOCKET;
-	else if (S_ISREG (statptr->st_mode))
-		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
-	else if (! file_info->is_symlink)
-		file_info->type = GNOME_VFS_FILE_TYPE_UNKNOWN;
-
-	file_info->permissions
-		= statptr->st_mode & (S_IRUSR | S_IWUSR | S_IXUSR
-				     | S_IRGRP | S_IWGRP | S_IXGRP
-				     | S_IROTH | S_IWOTH | S_IXOTH);
-
-	file_info->device = statptr->st_dev;
-	file_info->inode = statptr->st_ino;
-
-	file_info->link_count = statptr->st_nlink;
-
-	file_info->uid = statptr->st_uid;
-	file_info->gid = statptr->st_gid;
-
-	file_info->size = statptr->st_size;
-	file_info->block_count = statptr->st_blocks;
-	file_info->io_block_size = statptr->st_blksize;
-
-	file_info->atime = statptr->st_atime;
-	file_info->ctime = statptr->st_ctime;
-	file_info->mtime = statptr->st_mtime;
-
-	file_info->is_local = TRUE;
-	file_info->is_suid = (statptr->st_mode & S_ISUID) ? TRUE : FALSE;
-	file_info->is_sgid = (statptr->st_mode & S_ISGID) ? TRUE : FALSE;
-
-#ifdef S_ISVTX
-	file_info->has_sticky_bit
-		= (statptr->st_mode & S_ISVTX) ? TRUE : FALSE;
-#else
-	file_info->has_sticky_bit = FALSE;
-#endif
-}
-
 static GnomeVFSResult
 get_stat_info (GnomeVFSFileInfo *file_info,
 	       const gchar *full_name,
@@ -731,7 +605,7 @@ get_stat_info (GnomeVFSFileInfo *file_info,
 		}
 	}
 
-	stat_to_file_info (file_info, statptr);
+	gnome_vfs_stat_to_file_info (file_info, statptr);
 
 	return GNOME_VFS_OK;
 }
@@ -750,7 +624,7 @@ get_stat_info_from_handle (GnomeVFSFileInfo *file_info,
 	if (fstat (handle->fd, statptr) != 0)
 		return gnome_vfs_result_from_errno ();
 
-	stat_to_file_info (file_info, statptr);
+	gnome_vfs_stat_to_file_info (file_info, statptr);
 
 	return GNOME_VFS_OK;
 }
@@ -877,7 +751,7 @@ read_directory (DirectoryHandle *handle,
 		filter_called = TRUE;
 	}
 
-	set_meta_for_list (info, full_name, handle->meta_keys);
+	gnome_vfs_set_meta_for_list (info, full_name, handle->meta_keys);
 
 	if (filter != NULL && ! filter_called) {
 		if (! gnome_vfs_directory_filter_apply (filter, info)) {
@@ -933,7 +807,7 @@ do_get_file_info (GnomeVFSURI *uri,
 	if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
 		set_mime_type (file_info, full_name, options, &statbuf);
 
-	set_meta_for_list (file_info, full_name, meta_keys);
+	gnome_vfs_set_meta_for_list (file_info, full_name, meta_keys);
 
 	return GNOME_VFS_OK;
 }
@@ -962,7 +836,7 @@ do_get_file_info_from_handle (GnomeVFSMethodHandle *method_handle,
 	if (options & GNOME_VFS_FILE_INFO_GETMIMETYPE)
 		set_mime_type (file_info, full_name, options, &statbuf);
 
-	set_meta_for_list (file_info, full_name, meta_keys);
+	gnome_vfs_set_meta_for_list (file_info, full_name, meta_keys);
 
 	return GNOME_VFS_OK;
 }

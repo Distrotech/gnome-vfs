@@ -96,6 +96,24 @@ typedef struct {
 	int               local_handle;
 } ftpfs_file_handle_t;
 
+/*
+ * Represents a directory listing being read.
+ *
+ * Used during opendir/readdir/closedir.
+ */
+typedef struct {
+	ftpfs_uri_t       *uri;
+	ftpfs_dir_t       *dir;
+	GList             *pos;	/* Position in the directory listing */
+
+	/*
+	 * Options set during opendir
+	 */
+	const GList *meta_keys;
+	GnomeVFSFileInfoOptions  options;
+	const GnomeVFSDirectoryFilter *filter;
+} ftpfs_dirent_t;
+
 /* Flags for get_file_entry */
 #define FTPFS_DO_RESOLVE_SYMLINK 1
 #define FTPFS_DO_OPEN            2
