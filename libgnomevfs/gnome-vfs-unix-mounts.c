@@ -203,6 +203,7 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 	char *stat_file;
 	struct stat sb;
 	GnomeVFSUnixMount *mount_entry;
+	GHashTable *mounts_hash;
 	
 	read_file = get_mtab_read_file ();
 	stat_file = get_mtab_monitor_file ();
@@ -227,13 +228,34 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 		return TRUE;
 	}
 
+	mounts_hash = g_hash_table_new (g_str_hash, g_str_equal);
+	
 	while ((mntent = getmntent (file)) != NULL) {
+		/* ignore any mnt_fsname that is repeated and begins with a '/'
+		 *
+		 * We do this to avoid being fooled by --bind mounts, since
+		 * these have the same device as the location they bind to.
+		 * Its not an ideal solution to the problem, but its likely that
+		 * the most important mountpoint is first and the --bind ones after
+		 * that aren't as important. So it should work.
+		 *
+		 * The '/' is to handle procfs, tmpfs and other no device mounts.
+		 */
+		if (mntent->mnt_fsname != NULL &&
+		    mntent->mnt_fsname[0] == '/' &&
+		    g_hash_table_lookup (mounts_hash, mntent->mnt_fsname)) {
+			continue;
+		}
+
 		mount_entry = g_new0 (GnomeVFSUnixMount, 1);
 
 		mount_entry->mount_path = g_strdup (mntent->mnt_dir);
 		mount_entry->device_path = g_strdup (mntent->mnt_fsname);
 		mount_entry->filesystem_type = g_strdup (mntent->mnt_type);
 		
+		g_hash_table_insert (mounts_hash,
+				     mount_entry->device_path,
+				     mount_entry->device_path);
 
 #if defined (HAVE_HASMNTOPT)
 		if (hasmntopt (mntent, MNTOPT_RO) != NULL) {
@@ -242,6 +264,7 @@ _gnome_vfs_get_current_unix_mounts (GList **return_list)
 #endif
 		*return_list = g_list_prepend (*return_list, mount_entry);
 	}
+	g_hash_table_destroy (mounts_hash);
 	
 	endmntent (file);
 	

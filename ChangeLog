@@ -1,3 +1,9 @@
+2004-08-24  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-unix-mounts.c (_gnome_vfs_get_current_unix_mounts):
+	Workaround for --bind mounts. Patch from Davyd Madeley <davyd@madeley.id.au>
+	Fixes bug #139854
+
 2004-08-19  Christophe Fergeau  <teuf@gnome.org>
 
 	* configure.in:
