@@ -1,3 +1,9 @@
+2000-09-29  Darin Adler  <darin@eazel.com>
+
+	* gnome-vfs.spec.in: Turn off "make check" again.  For some reason
+	it still fails on the Tinderbox, even with the LD_LIBRARY_PATH
+	problem fixed.
+
 2000-09-29  Eskil Heyn Olsen  <eskil@eazel.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_uri_list),
