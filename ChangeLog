@@ -1,3 +1,10 @@
+2000-09-25  John Sullivan  <sullivan@eazel.com>
+
+	* modules/http-method.c: (make_request):
+	This routine was assuming there was a valid hostname, but
+	for cases like "http://foo:" there was not. Now checks for
+	NULL hostname and returns GNOME_VFS_ERROR_INVALID_URI.
+
 2000-09-25  Pavel Cisler  <pavel@eazel.com>
 
 	* test/test-async-directory.c: (test_read_file_close_callback),

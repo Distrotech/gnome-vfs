@@ -756,7 +756,9 @@ make_request (HttpFileHandle **handle_return,
 	else
 		host_port = toplevel_uri->host_port;
 
-	if ( http_proxy_for_host_port (toplevel_uri->host_name, host_port, &proxy_host, &proxy_port)) {
+	if (toplevel_uri->host_name == NULL) {
+		result = GNOME_VFS_ERROR_INVALID_URI;
+	} else if ( http_proxy_for_host_port (toplevel_uri->host_name, host_port, &proxy_host, &proxy_port)) {
 		proxy_connect = TRUE;
 
 		DEBUG_HTTP (("Connecting to proxy '%s:%u'", proxy_host, (unsigned int) proxy_port));
