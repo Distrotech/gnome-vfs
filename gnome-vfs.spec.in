@@ -51,7 +51,7 @@ if [ ! -f configure ]; then
 else
 	CFLAGS="$MYCFLAGS" ./configure $MYARCH_FLAGS --enable-more-warnings --prefix=%prefix --localstatedir=/var/lib --sysconfdir=%{sysconfdir}
 fi
-make -k
+make -k check
 
 %install
 rm -rf $RPM_BUILD_ROOT

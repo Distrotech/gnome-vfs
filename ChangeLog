@@ -1,3 +1,11 @@
+2000-09-29  Darin Adler  <darin@eazel.com>
+
+	* gnome-vfs.spec.in: Turn "make check" back on.
+	* test/Makefile.am: Fix tests so they work even before gnome-vfs
+	is installed for the first time. This has a nice side effect of
+	making the test actually test the compiled code, not a previously
+	installed version.
+
 2000-09-29  J Shane Culpepper  <pepper@eazel.com>
 
 	* test/gnome-file-selection/gnome-file-selection-history.c:
