@@ -44,6 +44,7 @@
 
 #include <gnome-xml/parser.h>
 #include <gnome-xml/tree.h>
+#include <gnome-xml/xmlmemory.h>
 
 #include "gnome-vfs.h"
 #include "gnome-vfs-private.h"
@@ -932,6 +933,7 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 #endif
 
 				}
+				xmlFree(nc);
 			}
 			if(!strcmp((char *)l->name, "resourcetype")) {
 				file_info->valid_fields |= 
@@ -969,7 +971,9 @@ process_propfind_response(xmlNodePtr n, GnomeVFSURI *base_uri)
 	gnome_vfs_file_info_init(file_info);
 	while(n != NULL) {
 		if(!strcmp((char *)n->name, "href")) {
-			gchar *nodecontent = gnome_vfs_unescape_string(xmlNodeGetContent(n), "/");
+			gchar *nc = xmlNodeGetContent(n);
+			gchar *nodecontent = gnome_vfs_unescape_string(nc, "/");
+			xmlFree(nc);
 			if(nodecontent && *nodecontent) {
 				gint len;
 				GnomeVFSURI *uri = gnome_vfs_uri_new(nodecontent);
