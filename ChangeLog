@@ -1,3 +1,8 @@
+2000-03-02  Maciej Stachowiak  <mjs@eazel.com>
+
+	* modules/http-method.c (get_file_info_from_http_handle): Don't
+	pretend we know the file size when we don't.
+
 2000-02-24  Ettore Perazzoli  <ettore@helixcode.com>
 
 	* test/test-directory.c (print_list): Deal with a NULL MIME type.

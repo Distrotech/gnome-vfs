@@ -707,23 +707,29 @@ get_file_info_from_http_handle (HttpFileHandle *handle,
 				GnomeVFSFileInfo *file_info,
 				GnomeVFSFileInfoOptions options)
 {
+	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_NONE;
 	file_info->name = g_strdup (g_basename (handle->uri_string));
 	if (file_info->name == NULL)
 		file_info->name = g_strdup ("");
 	file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 	file_info->permissions = 0444;
-	file_info->size = handle->size;
+	
 	file_info->atime = handle->access_time;
 	file_info->mtime = handle->last_modified;
 	file_info->mime_type = g_strdup (handle->mime_type);
 	file_info->metadata_list = NULL;
+
+	if (handle->size_is_known) {
+		file_info->size = handle->size;
+		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_SIZE;		
+	}
 
 	GNOME_VFS_FILE_INFO_SET_LOCAL (file_info, FALSE);
 	GNOME_VFS_FILE_INFO_SET_SUID (file_info, FALSE);
 	GNOME_VFS_FILE_INFO_SET_SGID (file_info, FALSE);
 	GNOME_VFS_FILE_INFO_SET_STICKY (file_info, FALSE);
 
-	file_info->valid_fields = GNOME_VFS_FILE_INFO_FIELDS_TYPE | 
+	file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE | 
 		GNOME_VFS_FILE_INFO_FIELDS_FLAGS |
 		GNOME_VFS_FILE_INFO_FIELDS_PERMISSIONS |
 		GNOME_VFS_FILE_INFO_FIELDS_SIZE |
