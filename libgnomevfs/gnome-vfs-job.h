@@ -243,6 +243,9 @@ struct GnomeVFSJob {
 	/* Whether this job wants the notification acknowledged.  */
 	gboolean want_notify_ack;
 
+	/* Whether this job is done.  */
+	gboolean done;
+
 	/* Pointer to the callback for this job.  */
 	gpointer callback;
 

@@ -1,3 +1,31 @@
+2000-05-05  Darin Adler  <darin@eazel.com>
+
+	Fixed the leak of a ton of objects and 4 file descriptors for
+	every async. call.
+
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c: (thread_routine):
+	Destroy jobs when we are done with them.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.c: (dispatch_close_callback):
+	Took out the bogus call to destroy the job in here.
+	(dispatch_job_callback): Added logic to get rid of the callback
+	when we are done with it. Since there's no remove call, we need
+	to send an additional notify just to get the call to remove
+	itself.
+	(gnome_vfs_job_new): Initialize want_notify_ack which had a
+	random value in the old code. Also initialize the new "done"
+	flag which is used to kill the above callback.
+	(gnome_vfs_job_destroy): Got rid of bogus code in here that
+	acquired the access lock, since this is only called from code
+	that already has it. Added a call to job_notify so the callback
+	can release itself. Removed the call to cancel the slave since
+	the job is destroyed by the slave. Uncommented the code to free
+	the execution condition, since that was an artifact of the old
+	bad way the code was structured.
+	* libgnomevfs-pthread/gnome-vfs-job.h: Added the "done" field.
+	
+	* libgnomevfs/.cvsignore: Ignore gnome-vfs-gen-mimedb.
+
 2000-05-05  John Sullivan  <sullivan@eazel.com>
 
 	* libgnomevfs/gnome-vfs-gen-mimedb: Removed from CVS. This

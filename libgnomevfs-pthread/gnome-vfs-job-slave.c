@@ -46,7 +46,8 @@ thread_routine (void *data)
 	while (gnome_vfs_job_execute (slave->job))
 		;
 
-	/* FIXME: What cleanup?  */
+	/* FIXME: Is more cleanup needed here?  */
+	gnome_vfs_job_destroy (slave->job);
 
 	return NULL;
 }

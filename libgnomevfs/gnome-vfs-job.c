@@ -289,8 +289,6 @@ dispatch_close_callback (GnomeVFSJob *job)
 	(* callback) ((GnomeVFSAsyncHandle *) job,
 		      close_job->notify.result,
 		      job->callback_data);
-
-	gnome_vfs_job_destroy (job);
 }
 
 static void
@@ -397,17 +395,23 @@ dispatch_job_callback (GIOChannel *source,
 	GnomeVFSJob *job;
 	gchar c;
 	guint bytes_read;
-	gboolean retval;
 
 	job = (GnomeVFSJob *) data;
 
 	g_io_channel_read (job->wakeup_channel_in, &c, 1, &bytes_read);
 
-	/* First check if we are being cancelled.  If so, we have to kill the
-           job (i.e. return FALSE) and we are done.  */
-	if (gnome_vfs_cancellation_check (gnome_vfs_context_get_cancellation(job->context))) {
+	/* The last notify is the one that tells us to go away. */
+	if (job->done) {
 		job_ack_notify (job);
 		return FALSE;
+	}
+
+	/* Check if we are being cancelled.
+	 * If so, we don't want to do the callback.
+	 */
+	if (gnome_vfs_cancellation_check (gnome_vfs_context_get_cancellation (job->context))) {
+		job_ack_notify (job);
+		return TRUE;
 	}
 
 	switch (job->type) {
@@ -443,7 +447,6 @@ dispatch_job_callback (GIOChannel *source,
 		break;
 	default:
 		g_warning (_("Unknown job ID %d"), job->type);
-		retval = FALSE;
 	}
 
 	job_ack_notify (job);
@@ -481,6 +484,9 @@ gnome_vfs_job_new (void)
 	new->wakeup_channel_out = g_io_channel_unix_new (pipefd[1]);
 	new->wakeup_channel_lock = g_mutex_new ();
 
+	new->want_notify_ack = FALSE;
+	new->done = FALSE;
+
 	new->context = gnome_vfs_context_new ();
 
 	g_io_add_watch_full (new->wakeup_channel_in, G_PRIORITY_LOW, G_IO_IN,
@@ -505,24 +511,14 @@ gnome_vfs_job_new (void)
 gboolean
 gnome_vfs_job_destroy (GnomeVFSJob *job)
 {
-	if (! g_mutex_trylock (job->access_lock))
-		return FALSE;
+	job->done = TRUE;
+	job_notify (job);
 
-	if (! job->is_empty) {
-		g_mutex_unlock (job->access_lock);
-		return FALSE;
-	}
-
-	g_mutex_unlock (job->access_lock);
-
-	gnome_vfs_job_slave_cancel (job->slave);
+	g_assert (job->is_empty);
 
 	g_mutex_free (job->access_lock);
 
-	/* This needs to be fixed.  Basically, we might still have the slave
-           thread waiting on this condition, and we cannot just free it
-	   in this case.  */
-	/*  g_cond_free (job->execution_condition); FIXME */
+	g_cond_free (job->execution_condition);
 
 	g_cond_free (job->notify_ack_condition);
 	g_mutex_free (job->notify_ack_lock);
