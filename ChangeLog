@@ -1,3 +1,13 @@
+2000-07-25  Mike Fleming  <mfleming@eazel.com>
+
+	* modules/translate-method.c: (tr_exec_open_child),
+	(tr_exec_pass_uri), (tr_exec_do_retain), (tr_handle_exec),
+	(tr_exec_init), (tr_exec_cleanup), (tr_args_parse),
+	(vfs_module_init), (vfs_module_shutdown):
+
+	Added -retain option to translate's -exec mode
+	Fixed method-table initialization problem
+
 2000-07-25  Dan Winship  <danw@helixcode.com>
 
 	* libgnomevfs/gnome-vfs-mime-handlers.c

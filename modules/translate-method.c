@@ -31,15 +31,25 @@ typedef struct {
 		struct {
 			int argc;
 			char **argv;
-			char *orig_string;	/* this string gets chopped up--it exists for freeing only */
+			char *orig_string;	/* this string gets chopped up into argv--it exists for freeing only */
+			gboolean retain;
 		} exec;
 	}u;
 } ParsedArgs;
+
+/* State used for -exec -retain */
+typedef struct {
+	GMutex * retain_lock;
+	FILE * retain_to;		/* pipe to child */
+	FILE * retain_from;		/* pipe from child */
+	pid_t retain_pid;		/* PID of child */				
+} ExecState;
 
 typedef struct {
 	GnomeVFSMethod base_method;
 	ParsedArgs pa;
 	GnomeVFSMethod *real_method;
+	ExecState exec_state;
 } TranslateMethod;
 
 static void
@@ -93,6 +103,92 @@ static void /* GnomeVFSProcessInitFunc */ tr_forkexec_cb (gpointer data)
 
 }
 
+
+static pid_t tr_exec_open_child (char **argv, /*OUT*/ FILE ** p_from_stream, /*OUT*/ FILE ** p_to_stream)
+{
+	pid_t ret;
+	int err;
+	TrForkCBData cb_data;
+	void *sigpipe_old;
+	int pipe_to_child[2] 	= { -1, -1 };
+	int pipe_to_parent[2] 	= { -1, -1 };
+
+	g_assert ( NULL != p_from_stream );
+	g_assert ( NULL != p_to_stream );
+
+	*p_to_stream = NULL;
+	*p_from_stream = NULL;
+
+	/* Blocking SIGPIPE here is probably unnecessary --
+	 * GnomeVFS already does this on init
+	 */
+	sigpipe_old = signal (SIGPIPE, SIG_IGN);
+
+	err = pipe (pipe_to_child);
+
+	if ( 0 != err ) {
+		g_warning ("pipe returned error %d", errno);
+		ret = -1;
+		goto error;
+	}
+
+	err = pipe (pipe_to_parent);
+
+	if ( 0 != err ) {
+		g_warning ("pipe returned error %d", errno);
+		ret = -1;
+		goto error;
+	}
+
+	cb_data.child_out_fd = pipe_to_parent[1];
+	cb_data.child_in_fd = pipe_to_child[0];
+
+	/* Strictly speaking, this is unnecessary since these handles will be closed anyway*/
+	err = fcntl ( pipe_to_parent[0], F_SETFD, FD_CLOEXEC ) ;
+	g_assert (0 == err );
+	err = fcntl ( pipe_to_child[1], F_SETFD, FD_CLOEXEC ) ;
+	g_assert (0 == err );
+
+	ret = gnome_vfs_forkexec (	argv[0],
+					(const char * const*)argv,
+					GNOME_VFS_PROCESS_SETSID 
+						| GNOME_VFS_PROCESS_CLOSEFDS,
+					tr_forkexec_cb,
+					(gpointer) &cb_data
+	);
+
+	close (pipe_to_parent[1]);
+	pipe_to_parent[1] = -1;
+	close (pipe_to_child[0]);
+	pipe_to_child[0] = -1;
+			
+	if ( -1 == ret ) {
+		g_warning ("fork returned error %d", errno);
+		goto error;
+	}
+
+	*p_to_stream = fdopen (pipe_to_child[1], "w");
+	g_assert ( NULL != *p_to_stream );
+	pipe_to_child[1] = -1;
+
+	*p_from_stream = fdopen (pipe_to_parent[0], "r");
+	g_assert ( NULL != *p_from_stream );
+	pipe_to_parent[0] = -1;
+
+	setvbuf (*p_to_stream, NULL, _IOLBF, 0);
+	setvbuf (*p_from_stream, NULL, _IOLBF, 0);
+
+error:
+	if ( -1 != pipe_to_parent[0] ) { close ( pipe_to_parent[0]); }
+	if ( -1 != pipe_to_parent[1] ) { close ( pipe_to_parent[1]); }
+	if ( -1 != pipe_to_child[0] ) { close ( pipe_to_child[0]); }
+	if ( -1 != pipe_to_child[1] ) { close ( pipe_to_child[1]); }
+	
+	signal (SIGPIPE, sigpipe_old);
+	
+	return ret;
+}
+
 #define GETLINE_DELTA 256
 static char * tr_getline (FILE* stream)
 {
@@ -128,55 +224,93 @@ static char * tr_getline (FILE* stream)
 		return NULL;
 	}
 }
+#undef GETLINE_DELTA
+
+static void tr_exec_pass_uri (char *uri_string, FILE * out_stream)
+{
+	char *tmpstr;
+
+	/*shave off the scheme--pass only the right hand side to the child*/
+	tmpstr = strchr (uri_string, ':');
+	fprintf (out_stream, "%s\n", tmpstr ? tmpstr + 1 : uri_string);
+	fflush (out_stream);
+	
+	tmpstr = NULL;
+
+}
+
+static char * tr_exec_do_retain (TranslateMethod *tm, char * uri_string)
+{
+	char * child_result = NULL;
+	
+	g_mutex_lock (tm->exec_state.retain_lock);
+
+	if ( 0 == tm->exec_state.retain_pid ) {
+		tm->exec_state.retain_pid = tr_exec_open_child (tm->pa.u.exec.argv, &(tm->exec_state.retain_from), &(tm->exec_state.retain_to));
+		if ( -1 == tm->exec_state.retain_pid ) {
+			tm->exec_state.retain_pid = 0;
+			goto error;
+		}
+	}
+
+	g_assert (uri_string);
+	tr_exec_pass_uri (uri_string, tm->exec_state.retain_to);
+
+	child_result = tr_getline (tm->exec_state.retain_from);
+
+error:
+	g_mutex_unlock (tm->exec_state.retain_lock);
+
+	return child_result;
+}
 
 /*
- * -exec spawns a child process with given arguments
- * It passes a URI minus the scheme (right of the colon) into standard in and
- * then closes the pipe
+ * -exec
  * 
- * It expects a translated URI minus the scheme to appear on standard out,
- * and the exit code of the filter process to be 0.
+ * USAGE: -exec <exec_string> -real-method <method> [-retain]
  * 
- * Use example: (in config file)
+ * -exec allows a child process to filter and translate URI's passed to GNOME-VFS.
+ * -exec requires a URI scheme to be specified via -real-method, and does not
+ * allow the child process to change that method
+ *
+ * <exec_string> is a string that will be tokenized and passed to execv()
+ * <method> is the URI scheme that all requests will be translated to.
+ * 
+ * Without -retain: 
+ *	The child process is exec()'d.  The URI minus the scheme is presented
+ *	as standard input.  On success, the child is expected to print out
+ *	a translated URI minus the scheme and exit(0).  On failure, the child
+ *	should print out ":\n" or exit with a non-zero value
+ *
+ * With -retain
+ * 	The child process is exec()'d and fed multiple URI's, each newline terminated,
+ * 	via standard in.  For each URI, the child must print to standard out a
+ * 	translated URI followed by a newline or a ":" followed by a newline on error.
+ * 	
+ * 	Note than children written to work with -retain that use stdio need
+ * 	to set their stdin and stdout buffering discipline to "line" instead of "block" 
+ * 	like this:
+ *		setvbuf (stdin, NULL, _IOLBF, 0);
+ *		setvbuf (stdout, NULL, _IOLBF, 0);
+ *
+ * Config file example:
  * 
  * foo: libvfs-translate.so -real-method http -exec "/bin/sed -e s/\/\/www.microsoft.com/\/\/www.eazel.com/"
- */ 
+ * 
+ * (note that sed won't work with -retain)
+ */
 
 /* FIXME: this may be broken when the child produces compound URI's */
 static GnomeVFSURI *tr_handle_exec (TranslateMethod *tm, const GnomeVFSURI * uri)
 {
 
-	pid_t pid;	
-	TrForkCBData cb_data;
 	int err;
 	char *tmpstr;
 
-	void *sigpipe_old;
 	int child_status;
-	int pipe_to_child[2] 	= { -1, -1 };
-	int pipe_to_parent[2] 	= { -1, -1 };
-	FILE *out_stream 	= NULL;
-	FILE *in_stream 	= NULL;
 	char *uri_string	= NULL;
 	char *child_result 	= NULL;
 	GnomeVFSURI * retval 	= NULL;
-
-	/* This is probably unnecessary -- GnomeVFS already does this on init */
-	sigpipe_old = signal (SIGPIPE, SIG_IGN);
-
-	err = pipe (pipe_to_child);
-
-	if ( 0 != err ) {
-		g_warning ("pipe returned error %d", errno);
-		goto error;
-	}
-
-	err = pipe (pipe_to_parent);
-
-	if ( 0 != err ) {
-		g_warning ("pipe returned error %d", errno);
-		goto error;
-	}
 
 	/*
 	 * Note that normally having a parent and child communicate
@@ -186,102 +320,101 @@ static GnomeVFSURI *tr_handle_exec (TranslateMethod *tm, const GnomeVFSURI * uri
 	 * up their output pipe's buffer before the parent is done writing.
 	 */
 
-	cb_data.child_out_fd = pipe_to_parent[1];
-	cb_data.child_in_fd = pipe_to_child[0];
-
-	/* Strictly speaking, this is unnecessary since they will be closed anyway*/
-	err = fcntl ( pipe_to_parent[0], F_SETFD, FD_CLOEXEC ) ;
-	g_assert (0 == err );
-	err = fcntl ( pipe_to_child[1], F_SETFD, FD_CLOEXEC ) ;
-	g_assert (0 == err );
-		
-	pid = gnome_vfs_forkexec (tm->pa.u.exec.argv[0],
-					(const char * const*)tm->pa.u.exec.argv,
-					GNOME_VFS_PROCESS_SETSID 
-						| GNOME_VFS_PROCESS_USEPATH
-						| GNOME_VFS_PROCESS_CLOSEFDS,
-					tr_forkexec_cb,
-					(gpointer) &cb_data);
-
-	close (pipe_to_parent[1]);
-	pipe_to_parent[1] = -1;
-	close (pipe_to_child[0]);
-	pipe_to_child[0] = -1;
-	
-	if ( -1 == pid ) {
-		g_warning ("fork returned error %d", errno);
-		goto error;
-	}
-
-	out_stream = fdopen (pipe_to_child[1], "w");
-	if ( NULL == out_stream ) {
-		goto error;
-	}
-	pipe_to_child[1] = -1;
-
 	uri_string = gnome_vfs_uri_to_string (uri, 0);
 
-	/*shave off the scheme--pass only the right hand side to the child*/
-	tmpstr = strchr (uri_string, ':');
-	fprintf (out_stream, "%s\n", tmpstr ? tmpstr + 1 : uri_string);
-	tmpstr = NULL;
-	fflush (out_stream);
-	fclose (out_stream);
-	out_stream = NULL;
-
-	in_stream = fdopen (pipe_to_parent[0], "r");
-	if ( NULL == in_stream ) {
+	if ( NULL == uri_string ) {
 		goto error;
 	}
-	pipe_to_parent[0] = -1;
-	setvbuf (in_stream, NULL, _IOLBF, 0);
 
-	child_result = tr_getline (in_stream);
+	if (tm->pa.u.exec.retain) {
+		child_result = tr_exec_do_retain (tm, uri_string);
+	} else {
+		pid_t child_pid;
+		FILE *from_stream, *to_stream;
+
+		child_pid = tr_exec_open_child (tm->pa.u.exec.argv, &from_stream, &to_stream);
+
+		if ( -1 == child_pid ) {
+			goto error;
+		}
 	
-	if (NULL == child_result) {
-		g_warning ("Child produced no result");
-		goto error;
+		uri_string = gnome_vfs_uri_to_string (uri, 0);
+		g_assert (uri_string);
+		tr_exec_pass_uri (uri_string, to_stream);
+
+		fclose (to_stream);
+		to_stream = NULL;
+
+		child_result = tr_getline (from_stream);
+		
+		err = waitpid (child_pid, &child_status, 0);
+
+		g_assert ( child_pid == err );
+
+		if (! WIFEXITED (child_status) ) {
+			goto error;
+		}
+
+		if (NULL == child_result) {
+			g_warning ("Child produced no result");
+			goto error;
+		}
 	}
 
-	/* append the real scheme */
-	tmpstr = g_strconcat (tm->pa.real_method_name, ":", child_result, NULL);
-	g_free (child_result);
-	child_result = tmpstr;
-	tmpstr = NULL;
-
-	err = waitpid (pid, &child_status, 0);
-
-	g_assert ( pid == err );
-
-	if (! WIFEXITED (child_status) ) {
-		goto error;
-	}
 
 	/* FIXME: just because we've appended the same scheme, doesn't mean
 	 * we're going to get the same method from gnome_vfs_uri_new
 	 */
 
-	retval = gnome_vfs_uri_new (child_result);
+	/* A child result that ends in a :\n indicates an error */
+	if ( ':' != child_result[ strlen(child_result) - 1 ]) {
+		/* append the real scheme */
+		tmpstr = g_strconcat (tm->pa.real_method_name, ":", child_result, NULL);
+		g_free (child_result);
+		child_result = tmpstr;
+		tmpstr = NULL;		
 
-	if ( NULL == retval ) {
-		g_warning ("Unable to make URI from child process's result '%s'", child_result);
-		goto error;
+		retval = gnome_vfs_uri_new (child_result);
+
+		if ( NULL == retval ) {
+			g_warning ("Unable to make URI from child process's result '%s'", child_result);
+			goto error;
+		}
 	}
 
-error:
-	if ( -1 != pipe_to_parent[0] ) { close ( pipe_to_parent[0]); }
-	if ( -1 != pipe_to_parent[1] ) { close ( pipe_to_parent[1]); }
-	if ( -1 != pipe_to_child[0] ) { close ( pipe_to_child[0]); }
-	if ( -1 != pipe_to_child[1] ) { close ( pipe_to_child[1]); }
-	if ( NULL != in_stream ) { fclose (in_stream); }
-	if ( NULL != out_stream ) { fclose (out_stream); }
 
+error:
 	g_free (child_result);
 	g_free (uri_string);
-
-	signal (SIGPIPE, sigpipe_old);
 	
 	return retval;
+}
+
+static void tr_exec_init (ExecState *exec_state)
+{
+	exec_state->retain_lock = g_mutex_new();
+}
+
+static void tr_exec_cleanup (ExecState *exec_state)
+{
+	if (NULL != exec_state->retain_lock) {
+		g_mutex_free (exec_state->retain_lock);
+	}
+
+	if (NULL != exec_state->retain_to) {
+		fclose (exec_state->retain_to);
+	}
+	if (NULL != exec_state->retain_from) {
+		fclose (exec_state->retain_from);
+	}
+
+	if ( 0 != exec_state->retain_pid ) {
+		int child_status, err;
+		
+		kill (exec_state->retain_pid, SIGTERM);
+		err = waitpid (exec_state->retain_pid, &child_status, 0);		
+		g_assert (err == exec_state->retain_pid);
+	}
 }
 
 static GnomeVFSURI *tr_uri_translate(TranslateMethod * tm,
@@ -905,6 +1038,9 @@ static gboolean tr_args_parse(ParsedArgs * pa, const char *args)
 			CHECK_ARG();
 			CHECK_MODE(MODE_EXEC);
 			pa->u.exec.orig_string = g_strdup(argv[i]);
+		} else if (g_strcasecmp(argv[i], "-retain") == 0) {
+			CHECK_MODE(MODE_EXEC);
+			pa->u.exec.retain = TRUE;
 		} else if (g_strcasecmp(argv[i], "-default-mime-type") == 0) {
 			CHECK_ARG();
 			pa->default_mime_type = g_strdup(argv[i]);
@@ -978,7 +1114,14 @@ static GnomeVFSMethod base_vfs_method = {
 	tr_do_set_file_info,
 	tr_do_truncate,
 	tr_do_find_directory,
-	NULL
+	NULL				/* create_symbolic_link can't be supported */
+	/* Hey YOU!  If you add a GnomeVFS method, you need to do two things
+	 * in the translate-method module:
+	 * 
+	 * 1. Add a line to the CHECK_NULL_METHOD list in vfs_module_init
+	 * 2. Implement the function in this module.  This is pretty simple--
+	 *    just follow the pattern of existing functions
+	 */ 
 };
 
 static void tr_args_free(ParsedArgs * pa)
@@ -1011,8 +1154,10 @@ GnomeVFSMethod *vfs_module_init(const char *method_name, const char *args)
 		return NULL;
 	}
 
-	retval->base_method = base_vfs_method;
+	tr_exec_init(&(retval->exec_state));
 
+	retval->base_method = base_vfs_method;
+ 
 #define CHECK_NULL_METHOD(x) if(!retval->real_method->x) retval->base_method.x = NULL
 	CHECK_NULL_METHOD(open);
 	CHECK_NULL_METHOD(create);
@@ -1035,6 +1180,9 @@ GnomeVFSMethod *vfs_module_init(const char *method_name, const char *args)
 	CHECK_NULL_METHOD(check_same_fs);
 	CHECK_NULL_METHOD(set_file_info);
 	CHECK_NULL_METHOD(truncate_handle);
+	CHECK_NULL_METHOD(find_directory);
+	/*CHECK_NULL_METHOD(create_symbolic_link);*/
+	retval->base_method.create_symbolic_link = NULL;
 #undef CHECK_NULL_METHOD
 
 	return (GnomeVFSMethod *) retval;
@@ -1043,6 +1191,8 @@ GnomeVFSMethod *vfs_module_init(const char *method_name, const char *args)
 void vfs_module_shutdown(GnomeVFSMethod * method)
 {
 	TranslateMethod *tmethod = (TranslateMethod *) method;
+
+	tr_exec_cleanup (&(tmethod->exec_state));
 
 	tr_args_free(&tmethod->pa);
 
