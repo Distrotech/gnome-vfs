@@ -1,5 +1,19 @@
 2001-02-13  Gene Z. Ragan  <gzr@eazel.com>
 
+	Fixed bug 6579, Clicking on a column for sorting performs
+	descending sort first.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(init_mime_capplet):
+	Create a global array that tracks the initial first time click
+	state of the columns.
+		
+	(column_clicked):
+	Check click state of column and decide initial sort mode based
+	on value.
+
+2001-02-13  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug 6577, New mime type isn't highlighted after creation.
 	
 	* mime-type-capplet/nautilus-mime-type-capplet.c:	
