@@ -58,6 +58,8 @@
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-module-shared.h>
 
+#define DOT_GNOME ".gnome2"
+
 typedef struct _VFolderInfo VFolderInfo;
 typedef struct _Query Query;
 typedef struct _QueryKeyword QueryKeyword;
@@ -74,8 +76,7 @@ typedef struct _StatLoc StatLoc;
 /* FIXME: also check/monitor desktop_dirs like we do the vfolder
  * file and the item dirs */
 /* FIXME: check if thread locks are not completely on crack which
- * is likely given my experience with threads, in fact I know it
- * is wrong, we need to reduce it all to one lock */
+ * is likely given my experience with threads */
 /* FIXME: use filename locking, currently we are full of races if
  * multiple processes write to this filesystem */
 /* FIXME: implement monitors */
@@ -145,6 +146,8 @@ struct _Entry {
 		      of times this is queried in some directory,
 		      used for the Unallocated query type */
 	char *name;
+
+	/* FIXME: */GSList *monitors;
 };
 
 struct _EntryFile {
@@ -241,6 +244,18 @@ struct _VFolderInfo {
 	GnomeVFSMonitorHandle *filename_monitor;
 	GnomeVFSMonitorHandle *user_filename_monitor;
 
+	/* stat locations (in case we aren't monitoring) */
+	StatLoc *filename_statloc;
+	StatLoc *user_filename_statloc;
+
+	/* for .directory dirs */
+	/* FIXME: */GnomeVFSMonitorHandle *desktop_dir_monitor;
+	/* FIXME: */GnomeVFSMonitorHandle *user_desktop_dir_monitor;
+
+	/* stat locations (in case we aren't monitoring) */
+	/* FIXME: */StatLoc *desktop_dir_statloc;
+	/* FIXME: */StatLoc *user_desktop_dir_statloc;
+
 	/* FIXME: */GSList *file_monitors; /* FileMonitor */
 	/* FIXME: */GSList *folder_monitors; /* FolderMonitor */
 
@@ -248,9 +263,6 @@ struct _VFolderInfo {
 
 	/* item dirs to stat */
 	GSList *stat_dirs;
-	/* stat locations (in case we aren't monitoring) */
-	StatLoc *filename_statloc;
-	StatLoc *user_filename_statloc;
 
 	/* ctime for folders */
 	time_t modification_time;
@@ -260,19 +272,12 @@ struct _VFolderInfo {
 
 struct _FolderMonitor {
 	char *path;
-	Folder *folder;
 };
 
 struct _FileMonitor {
 	char *name;
 	char *path;
-	/* Only existing files have these two set,
-	 * a not yet existing file will be noticed by
-	 * watching the item dirs */
 	GnomeVFSMonitorHandle *handle;
-	GnomeVFSMonitorHandle *user_handle;
-	EntryFile *file;
-	Folder *folder;
 };
 
 #define ALL_SCHEME_P(scheme)	((scheme) != NULL && strncmp ((scheme), "all-", 4) == 0)
@@ -1043,6 +1048,26 @@ queue_reread_in (VFolderInfo *info, int msec)
 }
 
 static void
+vfolder_desktop_dir_monitor (GnomeVFSMonitorHandle *handle,
+			     const gchar *monitor_uri,
+			     const gchar *info_uri,
+			     GnomeVFSMonitorEventType event_type,
+			     gpointer user_data)
+{
+	/* FIXME: implement */
+}
+
+static void
+vfolder_user_desktop_dir_monitor (GnomeVFSMonitorHandle *handle,
+				  const gchar *monitor_uri,
+				  const gchar *info_uri,
+				  GnomeVFSMonitorEventType event_type,
+				  gpointer user_data)
+{
+	/* FIXME: implement */
+}
+
+static void
 vfolder_filename_monitor (GnomeVFSMonitorHandle *handle,
 			  const gchar *monitor_uri,
 			  const gchar *info_uri,
@@ -1190,6 +1215,7 @@ static gboolean
 monitor_setup (VFolderInfo *info,
 	       gboolean setup_filenames,
 	       gboolean setup_itemdirs,
+	       gboolean setup_desktop_dirs,
 	       GnomeVFSResult *result,
 	       GnomeVFSContext *context)
 {
@@ -1257,7 +1283,39 @@ monitor_setup (VFolderInfo *info,
 		}
 	}
 
-	/* FIXME: monitor logic for the desktop_dir's */
+	if (setup_desktop_dirs) {
+		uri = gnome_vfs_get_uri_from_local_path
+			(info->desktop_dir);
+
+		if (gnome_vfs_monitor_add (&info->desktop_dir_monitor,
+					   uri,
+					   GNOME_VFS_MONITOR_FILE,
+					   vfolder_desktop_dir_monitor,
+					   info) != GNOME_VFS_OK) {
+			info->desktop_dir_monitor = NULL;
+			info->desktop_dir_statloc =
+				bake_statloc (info->desktop_dir,
+					      time (NULL));
+		}
+		g_free (uri);
+	}
+	if (setup_desktop_dirs &&
+	    info->user_desktop_dir != NULL) {
+		uri = gnome_vfs_get_uri_from_local_path
+			(info->user_desktop_dir);
+		if (gnome_vfs_monitor_add (&info->user_desktop_dir_monitor,
+					   uri,
+					   GNOME_VFS_MONITOR_DIRECTORY,
+					   vfolder_user_desktop_dir_monitor,
+					   info) != GNOME_VFS_OK) {
+			info->user_desktop_dir_monitor = NULL;
+			info->user_desktop_dir_statloc =
+				bake_statloc (info->user_desktop_dir,
+					      time (NULL));
+		}
+
+		g_free (uri);
+	}
 
 	return TRUE;
 }
@@ -1275,14 +1333,14 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 				      scheme, ".vfolder-info",
 				      NULL);
 	info->user_filename = g_strconcat (g_get_home_dir (),
-					   "/.gnome/vfolders/",
+					   "/" DOT_GNOME "vfolders/",
 					   scheme, ".vfolder-info",
 					   NULL);
 	info->desktop_dir = g_strconcat (SYSCONFDIR,
 					 "/gnome-vfs-2.0/vfolders/",
 					 NULL);
 	info->user_desktop_dir = g_strconcat (g_get_home_dir (),
-					      "/.gnome/vfolders/",
+					      "/" DOT_GNOME "vfolders/",
 					      NULL);
 
 	/* Init the desktop paths */
@@ -1303,7 +1361,7 @@ vfolder_info_init (VFolderInfo *info, const char *scheme)
 	info->item_dirs = g_slist_reverse (list);
 
 	info->user_item_dir = g_strconcat (g_get_home_dir (),
-					   "/.gnome/vfolders/",
+					   "/" DOT_GNOME "vfolders/",
 					   scheme,
 					   NULL);
 
@@ -1329,6 +1387,30 @@ vfolder_info_free_internals_unlocked (VFolderInfo *info)
 		gnome_vfs_monitor_cancel (info->user_filename_monitor);
 		info->user_filename_monitor = NULL;
 	}
+
+	g_free (info->filename_statloc);
+	info->filename_statloc = NULL;
+
+	g_free (info->user_filename_statloc);
+	info->user_filename_statloc = NULL;
+
+
+	if (info->desktop_dir_monitor != NULL) {
+		gnome_vfs_monitor_cancel (info->desktop_dir_monitor);
+		info->desktop_dir_monitor = NULL;
+	}
+
+	if (info->user_desktop_dir_monitor != NULL) {
+		gnome_vfs_monitor_cancel (info->user_desktop_dir_monitor);
+		info->user_desktop_dir_monitor = NULL;
+	}
+
+	g_free (info->desktop_dir_statloc);
+	info->desktop_dir_statloc = NULL;
+
+	g_free (info->user_desktop_dir_statloc);
+	info->user_desktop_dir_statloc = NULL;
+
 
 	g_slist_foreach (info->item_dir_monitors,
 			 (GFunc)gnome_vfs_monitor_cancel, NULL);
@@ -1381,12 +1463,6 @@ vfolder_info_free_internals_unlocked (VFolderInfo *info)
 	g_slist_foreach (info->stat_dirs, (GFunc)g_free, NULL);
 	g_slist_free (info->stat_dirs);
 	info->stat_dirs = NULL;
-
-	g_free (info->filename_statloc);
-	info->filename_statloc = NULL;
-
-	g_free (info->user_filename_statloc);
-	info->user_filename_statloc = NULL;
 
 	if (info->reread_queue != 0)
 		g_source_remove (info->reread_queue);
@@ -2502,6 +2578,7 @@ vfolder_info_reload_unlocked (VFolderInfo *info,
 	monitor_setup (info,
 		       setup_filenames,
 		       setup_itemdirs,
+		       /* FIXME: setup_desktop_dirs */ TRUE,
 		       NULL, NULL);
 
 	/* FIXME: make sure if this was enough, I think it was */
@@ -2637,6 +2714,7 @@ get_vfolder_info_unlocked (const char *scheme,
 	if ( ! monitor_setup (info,
 			      TRUE /* setup_filenames */,
 			      TRUE /* setup_itemdirs */,
+			      TRUE /* setup_desktop_dirs */,
 			      result, context)) {
 		vfolder_info_destroy (info);
 		return NULL;
@@ -2777,7 +2855,7 @@ make_file_private (VFolderInfo *info, EntryFile *efile)
 		return TRUE;
 
 	newfname = g_build_filename (g_get_home_dir (),
-				     ".gnome",
+				     DOT_GNOME,
 				     "vfolders",
 				     info->scheme,
 				     efile->entry.name,
@@ -4161,7 +4239,7 @@ read_directory_again:
 		file_info->type = GNOME_VFS_FILE_TYPE_REGULAR;
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_TYPE;
 
-		/* FIXME: there should be a mime-type for these */
+		/* FIXME: Is this correct? isn't there an xdg mime type? */
 		file_info->mime_type = g_strdup ("application/x-gnome-app-info");
 		file_info->valid_fields |= GNOME_VFS_FILE_INFO_FIELDS_MIME_TYPE;
 

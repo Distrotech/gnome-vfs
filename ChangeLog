@@ -1,3 +1,9 @@
+Fri Jan 11 02:22:26 2002  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c: define structure fields for
+	  monitors, start support for monitoring the desktop_dir's and
+	  use .gnome2 and not .gnome for user vfolder storage
+
 Thu Jan 10 23:17:41 2002  George Lebl <jirka@5z.com>
 
 	* modules/file-method.c: don't do g_warning on the last 4 fam events,
