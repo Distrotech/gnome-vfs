@@ -1,3 +1,7 @@
+2002-04-16  Jody Goldberg <jody@gnome.org>
+
+	* modules/file-method.c (do_monitor_cancel) : really cancel things.
+
 2002-04-12  Jody Goldberg <jody@gnome.org>
 
 	* libgnomevfs/gnome-vfs-mime-info.c (set_value_real) : just use
