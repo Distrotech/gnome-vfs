@@ -15,7 +15,9 @@ Group: System Environment/Libraries
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/%name/%name-%{ver}.tar.gz
 URL: http://www.gnome.org/
 BuildRoot: /var/tmp/%{name}-root
-Requires: gtk+ >= 1.2.4
+Requires: glib >= 1.2.4
+Requires: GConf >= 0.5
+Requires: oaf >= 0.3.0
 Docdir: %{prefix}/doc
 
 %description
@@ -25,6 +27,8 @@ GNOME VFS Description here
 Summary: Libraries and include files for developing GNOME VFS applications.
 Group: Development/Libraries
 Requires: %name = %{PACKAGE_VERSION}
+Requires: GConf-devel
+Requires: oaf-devel
 
 %description devel
 GNOME VFS development descirptionn here
@@ -71,12 +75,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
+%{prefix}/bin/*
 %{prefix}/lib/lib*.so.*
 %{prefix}/lib/vfs/extfs/*
 %{prefix}/lib/vfs/modules/lib*.so.*
-%{prefix}/bin/*
-%{prefix}/share/mime-info/gnome-vfs.mime
-%{prefix}/share/mime-info/gnome-vfs.keys
+%{prefix}/man/man5/*
+%{prefix}/share/gnome/apps/Settings/*
+%{prefix}/share/gnome/html/*
+%{prefix}/share/control-center/*
+%{prefix}/share/mime-info/*
 %config %{sysconfdir}/*
 
 %files devel
