@@ -1,10 +1,10 @@
-#ifndef GNOME_VFS_BACKEND_H
-#define GNOME_VFS_BACKEND_H 1
+#ifndef _GNOME_VFS_BACKEND_H_
+#define _GNOME_VFS_BACKEND_H_ 1
 
 #include <glib.h>
 
-void gnome_vfs_backend_loadinit (gpointer app, gpointer modinfo);
-const char *gnome_vfs_backend_name (void);
-gboolean gnome_vfs_backend_init (gboolean init_deps);
+void        gnome_vfs_backend_loadinit (gpointer app, gpointer modinfo);
+const char *gnome_vfs_backend_name     (void);
+gboolean    gnome_vfs_backend_init     (gboolean init_deps);
 
 #endif

@@ -662,7 +662,7 @@ corba_gnome_vfs_async_cancel (GnomeVFSAsyncHandle *handle)
 
 	gnome_vfs_slave_process_destroy (slave);
 	
-	// return GNOME_VFS_OK;
+	/* return GNOME_VFS_OK; */
 
 	return GNOME_VFS_ERROR_NOTSUPPORTED;
 }
