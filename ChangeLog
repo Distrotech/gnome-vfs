@@ -1,3 +1,10 @@
+2004-08-14  Danilo Šegan  <dsegan@gmx.net>
+
+	* schemas/desktop_gnome_url_handlers.schemas.in: 
+	s/HTTP URLs/"http" URLs/, s/HTTPS URLs/"https" URLs/, 
+	s/H323 URLs/"h323" URLs/ to make messages more consistent with
+	other messages (fixes bug #149519).
+
 2004-08-14  Christophe Fergeau  <teuf@gnome.org>
 
 	* libgnomevfs/gnome-vfs-xfer.c: plug more leaks

@@ -144,8 +144,8 @@
       <type>bool</type>
       <default>true</default>
       <locale name="C">
-        <short>Whether the specified command should handle HTTP URLs</short>
-        <long>True if the command specified in the "command" key should handle HTTP URLs.</long>
+        <short>Whether the specified command should handle "http" URLs</short>
+        <long>True if the command specified in the "command" key should handle "http" URLs.</long>
       </locale>
     </schema>
     <schema>
@@ -155,8 +155,8 @@
       <type>string</type>
       <default>epiphany %s</default>
       <locale name="C">
-        <short>The handler for HTTP URLs</short>
-        <long>The command used to handle HTTP URLs, if enabled.</long>
+        <short>The handler for "http" URLs</short>
+        <long>The command used to handle "http" URLs, if enabled.</long>
       </locale>
     </schema>
     <schema>
@@ -178,8 +178,8 @@
       <type>bool</type>
       <default>true</default>
       <locale name="C">
-        <short>Whether the specified command should handle HTTPS URLs</short>
-        <long>True if the command specified in the "command" key should handle HTTPS URLs.</long>
+        <short>Whether the specified command should handle "https" URLs</short>
+        <long>True if the command specified in the "command" key should handle "https" URLs.</long>
       </locale>
     </schema>
     <schema>
@@ -189,8 +189,8 @@
       <type>string</type>
       <default>epiphany %s</default>
       <locale name="C">
-        <short>The handler for HTTPS URLs</short>
-        <long>The command used to handle HTTPS URLs, if enabled.</long>
+        <short>The handler for "https" URLs</short>
+        <long>The command used to handle "https" URLs, if enabled.</long>
       </locale>
     </schema>
     <schema>
@@ -314,8 +314,8 @@
       <type>bool</type>
       <default>true</default>
       <locale name="C">
-        <short>Whether the specified command should handle H323 URLs</short>
-        <long>True if the command specified in the "command" key should handle H323 URLs.</long>
+        <short>Whether the specified command should handle "h323" URLs</short>
+        <long>True if the command specified in the "command" key should handle "h323" URLs.</long>
       </locale>
     </schema>
     <schema>
@@ -325,8 +325,8 @@
       <type>string</type>
       <default>gnomemeeting -c %s</default>
       <locale name="C">
-        <short>The handler for H323 URLs</short>
-        <long>The command used to handle H323 URLs, if enabled.</long>
+        <short>The handler for "h323" URLs</short>
+        <long>The command used to handle "h323" URLs, if enabled.</long>
       </locale>
     </schema>
     <schema>
