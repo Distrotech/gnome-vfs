@@ -1,3 +1,45 @@
+2001-02-20  John Sullivan  <sullivan@eazel.com>
+
+	reviewed by: Seth Nickell  <seth@eazel.com>
+
+	Fixed various small capplet bugs while pondering the
+	big scary icon-related ones, including:
+
+	Fixed bug 4768 (hardcoded icon file name in 
+	nautilus-mime-type-capplet.c)
+
+	Fixed bug 6636 (Text descenders clipped for selected item in mime list)
+
+	Fixed bug 6641 (Icons clipped in mime list)
+
+	Fixed bug 6647 ("Change Icon" dialog has silly title)
+
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(nautilus_mime_type_capplet_show_new_mime_window): Simplified
+	widgetry, tweaked layout and wording to look halfway decent and
+	be clear.
+	
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	Added constants for icon height/width in list. Added FIXME for
+	huge hunks of copy/pasted code.
+	(init_mime_capplet): Removed two set_usize calls; replaced one
+	with a gtk_misc_set_padding call so "Edit List" button isn't
+	too cramped.
+	(add_mime_clicked),
+	(nautilus_mime_type_capplet_update_mime_list_icon_and_description):
+	Use icon size constants instead of magic numbers.
+	(update_mime_list_action), (populate_mime_list):
+	 Use icon size constants; use
+	 gnome_vfs_icon_path_from_filename to avoid hard-coded path.
+	(mime_list_reset_row_height): New function, sets the row height
+	based on font size and image height.
+	(create_mime_list_and_scroller): Reset row height at the right time.
+	
+	* mime-type-capplet/nautilus-mime-type-icon-entry.c:
+	(nautilus_mime_type_show_icon_selection): Set icon selection window
+	title; add FIXME for (at long last discovered) code that prevents 
+	user from choosing icons in arbitrary directories.
+
 2001-02-20  Rebecca Schulman  <rebecka@eazel.com>
 	Fix build issues caused by making gnome-vfs-process.h
 	private
