@@ -1,3 +1,9 @@
+2000-06-27  Pavel Cisler  <pavel@eazel.com>
+
+	* data/mime/gnome-vfs-mime-magic:
+	* data/mime/gnome-vfs.keys:
+	Fix magic rules and mime type for image/x-xpixmap
+
 2000-06-27  Michael Meeks  <michael@helixcode.com>
 
 	* modules/efs-method.c: Kill redundant fields.

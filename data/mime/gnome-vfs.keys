@@ -354,7 +354,7 @@ image/tiff
 	short_list_application_ids_for_hacker_user_level=gimp,eog
 	system_all_application_ids=gimp,eog
 
-image/xpm
+image/x-xpixmap
 	description=XPM image	
 	default_action_type=component
 	default_component_iid=OAFIID:eog-image-viewer:f67c01c8-a44d-4c50-8ce1-dc893c961876
