@@ -2017,7 +2017,7 @@ expand_parameters (gpointer                 action,
 	switch (type) {
 	case GNOME_VFS_MIME_ACTION_TYPE_APPLICATION:
 		app = (GnomeVFSMimeApplication *) action;
-		command = app->command;
+		command = g_strdup (app->command);
 		break;
 		
 	case GNOME_VFS_MIME_ACTION_TYPE_COMPONENT:
@@ -2033,7 +2033,7 @@ expand_parameters (gpointer                 action,
 		command = gconf_client_get_string (client, GCONF_DEFAULT_VIEWER_EXEC_PATH, NULL);
 		g_object_unref (client);
 		
-		if (command != NULL) {
+		if (command == NULL) {
 			g_warning ("No default component viewer set\n");
 			return GNOME_VFS_ERROR_INTERNAL;
 		}
@@ -2052,7 +2052,8 @@ expand_parameters (gpointer                 action,
 				 NULL)) {
 		return GNOME_VFS_ERROR_PARSE;
 	}
-	
+	g_free (command);
+
 	/* figure out how many parameters we can max have */
 	max_r_argc = g_list_length (uris) + c_argc + 1;
 	r_argv = g_new0 (char *, max_r_argc + 1);
