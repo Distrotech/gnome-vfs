@@ -1,3 +1,8 @@
+2000-11-02  Robin * Slomkowski  <rslomkow@eazel.com>
+
+	* gnome-vfs.spec.in: updated summary and added
+	junk fields for vendor and distribution
+
 2000-11-02  Pavel Cisler  <pavel@eazel.com>
 
 	* gnome-vfs.spec.in:
