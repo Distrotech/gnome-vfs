@@ -1,3 +1,16 @@
+2003-11-15  Christophe Fergeau  <teuf@gnome.org>
+
+	* docs/*
+	* configure.in: added version number to the API docs start page
+	  (fixes #126027)
+	* libgnomevfs/gnome-vfs-utils.c: make copying/moving files to ncpfs
+  	  file systems work again (fixes #97789), patch by radu@netsoft.ro
+	* modules/http-method.c: don't print warning on empty PROPFIND
+	  responses (fixes #125469, patch by Jan Kratochvil)
+	* programs/gnomevfs-ls.c: don't print an error about EOF since EOF on
+	  a directory listing only indicates that we finished reading the
+	  directory
+
 2003-11-14  Christophe Fergeau  <teuf@gnome.org>
 
 	* configure.in: removed GNOME_PLATFORM_GNOME_2 since it's deprecated

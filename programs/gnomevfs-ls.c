@@ -101,7 +101,7 @@ list (void)
 
 	gnome_vfs_file_info_unref (info);
 
-	if (result != GNOME_VFS_OK) {
+	if ((result != GNOME_VFS_OK) && (result != GNOME_VFS_ERROR_EOF)) {
 		g_print ("Error: %s\n", gnome_vfs_result_to_string (result));
 		return;
 	}

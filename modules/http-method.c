@@ -2218,6 +2218,13 @@ make_propfind_request (HttpFileHandle **handle_return,
 		DEBUG_HTTP (("HTTP server returned an invalid PROPFIND response: %d", (*handle_return)->server_status));
 		result = GNOME_VFS_ERROR_NOT_SUPPORTED;
 	}
+	/* Some servers (download.microsoft.com) will just close
+	 * the connection (EOF) without returning any HTTP status.
+	 */
+	if (result == GNOME_VFS_ERROR_EOF) {
+		DEBUG_HTTP (("HTTP server returned an empty PROPFIND response"));
+		result = GNOME_VFS_ERROR_NOT_SUPPORTED;
+	}
 	
 	if (result == GNOME_VFS_OK) {
 		do {
