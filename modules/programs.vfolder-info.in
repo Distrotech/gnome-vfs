@@ -21,20 +21,7 @@
       <Query>
         <And>
           <Keyword>Application</Keyword>
-          <Not>
-            <Or>
-              <Keyword>Core</Keyword>
-              <Keyword>Development</Keyword>
-              <Keyword>TextEditor</Keyword>
-              <Keyword>Game</Keyword>
-              <Keyword>Graphics</Keyword>
-              <Keyword>Network</Keyword>
-              <Keyword>AudoView</Keyword>
-              <Keyword>Settings</Keyword>
-              <Keyword>System</Keyword>
-              <Keyword>Utility</Keyword>
-            </Or>
-          </Not>
+	  <Unallocated/>
         </And>
       </Query>
       <DontShowIfEmpty/>
