@@ -1,5 +1,11 @@
 2002-05-07  Seth Nickell  <snickell@stanford.edu>
 
+	* configure.in:
+
+	Bump version number to 1.9.15 and release.
+
+2002-05-07  Seth Nickell  <snickell@stanford.edu>
+
 	* modules/vfolder-desktop-method.c:
 	(vfolder_info_read_items_merge):
 
