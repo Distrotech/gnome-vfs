@@ -1,5 +1,7 @@
 1999-11-29  Elliot Lee  <sopwith@redhat.com>
 
+	* libgnomevfs/gnome-vfs-method.c: If init_path_list() has already been called, return TRUE to indicate success.
+
 	* libgnomevfs/gnome-vfs-result.c: I declare the errno->GnomeVFSResult translation function "complete enough".
 
 1999-11-24  Elliot Lee  <sopwith@redhat.com>

@@ -104,7 +104,7 @@ init_path_list (void)
 	G_LOCK (module_path_list);
 
 	if (module_path_list != NULL) {
-		retval = FALSE;
+		retval = TRUE;
 		goto end;
 	}
 
