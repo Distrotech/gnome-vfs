@@ -62,6 +62,7 @@ struct _Application {
 	 * file */
 	gboolean    user_owned;
 	GHashTable *keys;
+	GnomeVFSMimeApplicationArgumentType expects_uris;
 	GList      *mime_types;
 	GList      *supported_uri_schemes;
 	/* The user_owned version of this if this is a system
@@ -170,6 +171,7 @@ application_new (const char *app_id, gboolean user_owned)
 	application = g_new0 (Application, 1);
 	application->app_id = g_strdup(app_id);
 	application->ref_count = 1;
+	application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS;
 	application->user_owned = user_owned;
 
 	return application;
@@ -286,6 +288,21 @@ unset_key (Application *application, const char *key)
 }
 
 static gboolean
+value_looks_true (const char *value)
+{
+	if (value &&
+	    (value[0] == 'T' ||
+	     value[0] == 't' ||
+	     value[0] == 'Y' ||
+	     value[0] == 'y' ||
+	     atoi (value) != 0)) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+static gboolean
 get_bool_value (const Application *application, const char *key,
 		gboolean *got_key)
 {
@@ -296,15 +313,8 @@ get_bool_value (const Application *application, const char *key,
 		else
 			*got_key = FALSE;
 	}
-	if (value &&
-	    (value[0] == 'T' ||
-	     value[0] == 't' ||
-	     value[0] == 'Y' ||
-	     value[0] == 'y' ||
-	     atoi (value) != 0))
-		return TRUE;
-	else
-		return FALSE;
+	return value_looks_true (value);
+
 }
 
 static void
@@ -602,6 +612,17 @@ application_add_key (Application *application, const char *key,
 		}
 		g_free(value_copy);
 		return;		   
+	}
+	else if (strcmp (key, "expects_uris") == 0) {
+		if (strcmp (value, "non-file") == 0) {
+			application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES;
+		}
+		else if (value_looks_true (value)) {
+			application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS;
+		}
+		else {
+			application->expects_uris = GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS;
+		}
 	}
 
 	lang_level = language_level (lang);
@@ -1522,11 +1543,7 @@ gnome_vfs_application_registry_get_mime_application (const char *app_id)
 			(i_application,
 			 GNOME_VFS_APPLICATION_REGISTRY_CAN_OPEN_MULTIPLE_FILES,
 			 NULL);
-	application->expects_uris =
-		real_get_bool_value
-			(i_application,
-			 GNOME_VFS_APPLICATION_REGISTRY_EXPECTS_URIS,
-			 NULL);
+	application->expects_uris = i_application->expects_uris;
 	application->supported_uri_schemes = 
 		supported_uri_scheme_list_copy (i_application->supported_uri_schemes);
 
@@ -1557,8 +1574,7 @@ gnome_vfs_application_registry_save_mime_application (const GnomeVFSMimeApplicat
 		   application->command);
 	set_bool_value (i_application, GNOME_VFS_APPLICATION_REGISTRY_CAN_OPEN_MULTIPLE_FILES,
 			application->can_open_multiple_files);
-	set_bool_value (i_application, GNOME_VFS_APPLICATION_REGISTRY_EXPECTS_URIS,
-			application->expects_uris);
+	i_application->expects_uris = application->expects_uris;
 	set_bool_value (i_application, GNOME_VFS_APPLICATION_REGISTRY_REQUIRES_TERMINAL,
 			application->requires_terminal);
 	/* FIXME: Need to save supported_uri_schemes information */

@@ -59,7 +59,6 @@ format_supported_uri_schemes_for_display (GList *supported_uri_schemes)
 	return string;
 }
 
-#if 0
 static const char *
 format_mime_application_argument_type_for_display (GnomeVFSMimeApplicationArgumentType argument_type)
 {
@@ -76,7 +75,6 @@ format_mime_application_argument_type_for_display (GnomeVFSMimeApplicationArgume
 	}
 	return NULL;
 }
-#endif
 
 static void
 print_application (GnomeVFSMimeApplication *application)
@@ -87,10 +85,7 @@ print_application (GnomeVFSMimeApplication *application)
 	        printf ("name: %s\ncommand: %s\ncan_open_multiple_files: %s\nexpects_uris: %s\nsupported_uri_schemes: %s\nrequires_terminal: %s\n", 
 			application->name, application->command, 
 			(application->can_open_multiple_files ? "TRUE" : "FALSE"),
-			"TRUE",
-#if 0
 			format_mime_application_argument_type_for_display (application->expects_uris),
-#endif
 			format_supported_uri_schemes_for_display (application->supported_uri_schemes),
 			(application->requires_terminal ? "TRUE" : "FALSE"));
 	}

@@ -176,15 +176,16 @@ ogg123
 	can_open_multiple_files=true
 	expects_uris=true
 	requires_terminal=false
+	supported_uri_schemes=http,ftp,file
 	mime_types=application/x-ogg
 
 mpg123
 	command=mpg123
 	name=mpg123
 	can_open_multiple_files=true
-	expects_uris=true
+	expects_uris=non-file
 	requires_terminal=false
-	supported_uri_schemes=http,file
+	supported_uri_schemes=http,ftp,file
 	mime_types=audio/x-mp3,audio/x-mpeg
 
 xmms
@@ -193,6 +194,7 @@ xmms
 	can_open_multiple_files=true
 	expects_uris=true
 	requires_terminal=false
+	supported_uri_schemes=http,ftp,file
 	mime_types=audio/x-mp3,audio/x-mpeg,application/x-ogg,audio/x-mpegurl,audio/x-wav
 
 realplayer
@@ -201,6 +203,7 @@ realplayer
 	can_open_multiple_files=false
 	expects_uris=true
 	requires_terminal=false
+	supported_uri_schemes=http,ftp,file
 	mime_types=audio/x-pn-realaudio,audio/x-real-audio,video/x-real-video,application/vnd.rn-realmedia
 
 soundtracker

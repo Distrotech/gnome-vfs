@@ -42,7 +42,6 @@ extern "C" {
 
 /* These are the standard boolean keys to get */
 #define GNOME_VFS_APPLICATION_REGISTRY_CAN_OPEN_MULTIPLE_FILES "can_open_multiple_files"
-#define GNOME_VFS_APPLICATION_REGISTRY_EXPECTS_URIS "expects_uris"
 #define GNOME_VFS_APPLICATION_REGISTRY_REQUIRES_TERMINAL "requires_terminal"
 	
 /*

@@ -1,6 +1,48 @@
+2001-01-29  Rebecca Schulman  <rebecka@eazel.com>
+	Change the value of the "expects_uris" attribute
+	of applications to have 3 possible values:
+	"yes", "no", and "non-file".  This change will
+	allow applications to understand how to launch programs
+	that expect local paths for local files, but uris
+	for non-file locations.
+
+	reviewed by: Darin Adler <darin@eazel.com>
+
+	* data/mime/gnome-vfs.applications:
+	Change expects_uris to "non-file" where appropriate
+	(for now mpg123), and added supported_uri_schemes
+	in places where "expects_uris" was "yes" but no
+	supported uri schemes were listed.  This information
+	is not yet complete.
+	
+	* doc/mime-data-specification.txt: Remove the "[to be
+	implemented]" tag from fields that are now fully implemented
+	(supported_uri_schemes and expects_uris)
+	
+	* libgnomevfs/gnome-vfs-mime-handlers.h:
+	* libgnomevfs/gnome-vfs-application-registry.h:
+	* libgnomevfs/gnome-vfs-application-registry.c: (application_new),
+	(value_looks_true), (get_bool_value), (application_add_key),
+	(gnome_vfs_application_registry_get_mime_application),
+	(gnome_vfs_application_registry_save_mime_application):
+	Parse, set and get the new "expects_uris"
+	attribute, and represent its set of possible values using
+	an enum, rather than a gboolean.
+
+	* mime-type-capplet/nautilus-mime-type-capplet-dialogs.c:
+	(show_new_application_window), (show_edit_application_window):
+	Add the right bug number to fixmes about updates need in the capplet 
+	to reflect the new application attributes
+	
+	* test/test-mime-handlers.c:
+	(format_mime_application_argument_type_for_display),
+	(print_application):
+	Print the "expects_uris" attribute as part of the test 
+	program for application information parsing.
+
 2001-01-29  Gene Z. Ragan  <gzr@eazel.com>
 
-	Fixed bug 5847, MIME type capplet alphabetical oder case sensitive
+	Fixed bug 5847, MIME type capplet alphabetical order case sensitive
 	
 	* mime-type-capplet/nautilus-mime-type-capplet.c:
 	(sort_case_insensitive), (column_clicked),

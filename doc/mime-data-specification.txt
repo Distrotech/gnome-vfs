@@ -341,7 +341,7 @@ The key value pairs for a .application file are as follows:
    "false" (default), GNOME VFS clients should not attempt to open
    multiple files at once with this application.
 
-4. [to be implemented] expects_uris: If "false" (default), all file
+4. expects_uris: If "false" (default), all file
    names should be passed on the command line as path names, and no
    non-"file:" URIs can be opened by this application, regardless of
    the value of other values (like supported_uri_schemes). If "true",
@@ -383,7 +383,7 @@ options]
    application might know how to "handle" MIME types in some
    non-"Open" way and those types would be omitted from this list.
 
-8. [to be implemented] supported_uri_schemes - A comma-separated list
+8. supported_uri_schemes - A comma-separated list
    of schemes that this application can accept in a command-line
    URI. If this is omitted, the default list is "file". Note that all
    schemes supported by GNOME VFS are also included if

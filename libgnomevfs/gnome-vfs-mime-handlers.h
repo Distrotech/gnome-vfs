@@ -35,12 +35,18 @@ typedef enum {
 	GNOME_VFS_MIME_ACTION_TYPE_COMPONENT
 } GnomeVFSMimeActionType;
 
+typedef enum {
+	GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS,
+	GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_PATHS,
+	GNOME_VFS_MIME_APPLICATION_ARGUMENT_TYPE_URIS_FOR_NON_FILES
+} GnomeVFSMimeApplicationArgumentType;
+
 typedef struct {
 	char *id;
 	char *name;
 	char *command;
 	gboolean can_open_multiple_files;
-	gboolean expects_uris;
+	GnomeVFSMimeApplicationArgumentType expects_uris;
 	GList *supported_uri_schemes;
 	gboolean requires_terminal;
 } GnomeVFSMimeApplication;
