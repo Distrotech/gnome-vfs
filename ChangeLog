@@ -1,3 +1,9 @@
+2003-05-05  Xan Lopez  <xan@masilla.org>
+
+	* modules/cdda-cddb.c: (CDDBConnect):
+
+	Init sock variable to -1, fixes warning compilation.
+
 ==== gnome-vfs 2.3.1 ====
 
 2003-05-05  Alexander Larsson  <alexl@redhat.com>

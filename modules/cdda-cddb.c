@@ -151,7 +151,7 @@ int CDDBGenreValue(char *genre)
 static int 
 CDDBConnect (CDDBServer *server)
 {
-	int sock;
+	int sock = -1;
 #ifdef ENABLE_IPV6
 	struct sockaddr_in6 sin6;
 	struct addrinfo hints, *result, *res;  /*info abt the IP of node*/
