@@ -1,5 +1,15 @@
 2000-05-08  Darin Adler  <darin@eazel.com>
 
+	A fix for canceling. Cancels can still be done until the caller
+	is notified, even if the work is done.
+
+	* libgnomevfs-pthread/gnome-vfs-job.c: (gnome_vfs_job_cancel):
+	Allow the caller to cancel a task even if we are done with it.
+	
+	* test/test-async-cancel.c: (test_get_file_info): Tweak message.
+
+2000-05-08  Darin Adler  <darin@eazel.com>
+
 	Another cut at fixing the pthread back end for GNOME VFS.
 	
 	* libgnomevfs-pthread/gnome-vfs-async-ops.c:

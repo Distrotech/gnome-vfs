@@ -227,7 +227,7 @@ test_get_file_info (void)
 	TEST_ASSERT (wait_for_boolean (&test_done), ("get_file_info 1: callback was not called"));
 	TEST_ASSERT (wait_until_vfs_threads_gone (), ("get_file_info 1: thread never went away"));
 	TEST_ASSERT (get_used_file_descriptor_count () == 0,
-		     ("get_file_info: %d file descriptors leaked", get_used_file_descriptor_count ()));
+		     ("get_file_info 1: %d file descriptors leaked", get_used_file_descriptor_count ()));
 	free_at_start = get_free_file_descriptor_count ();
 
 	/* Cancel one right after starting it. */

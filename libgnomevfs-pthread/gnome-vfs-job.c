@@ -1368,12 +1368,19 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 GnomeVFSResult
 gnome_vfs_job_cancel (GnomeVFSJob *job)
 {
+	GnomeVFSOp *op;
 	GnomeVFSCancellation *cancellation;
 	
 	g_return_val_if_fail (job != NULL, GNOME_VFS_ERROR_BADPARAMS);
-	g_return_val_if_fail (job->current_op != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	cancellation = gnome_vfs_context_get_cancellation (job->current_op->context);
+	op = job->current_op;
+	if (op == NULL) {
+		op = job->notify_op;
+	}
+
+	g_return_val_if_fail (op != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	cancellation = gnome_vfs_context_get_cancellation (op->context);
 	if (cancellation != NULL)
 		gnome_vfs_cancellation_cancel (cancellation);
 
