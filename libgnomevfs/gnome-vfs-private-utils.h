@@ -45,7 +45,7 @@ pid_t	 	 gnome_vfs_forkexec 	(const gchar *file_name,
 					 GnomeVFSProcessOptions options,
 					 GnomeVFSProcessInitFunc init_func,
 					 gpointer data);
-GnomeVFSProcessRunResult
+GnomeVFSProcessResult
 	 	gnome_vfs_process_run_cancellable
 					(const gchar *file_name,
 					 const gchar * const argv[],

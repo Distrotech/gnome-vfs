@@ -37,7 +37,10 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+/* AIX #defines h_errno */
+#ifndef h_errno
 extern int h_errno;
+#endif
 
 struct GnomeVFSInetConnection {
 #ifdef ENABLE_IPV6
