@@ -33,8 +33,8 @@ System (version for POSIX threads).
 #include "gnome-vfs-async-job-map.h"
 #include "gnome-vfs-job-slave.h"
 #include "gnome-vfs-job-queue.h"
+#include "gnome-vfs-private-utils.h"
 #include <errno.h>
-#include <fcntl.h>
 #include <glib/gmessages.h>
 #include <glib/gstrfuncs.h>
 #include <libgnomevfs/gnome-vfs-cancellable-ops.h>
@@ -77,46 +77,6 @@ static gboolean dispatch_sync_job_callback          (gpointer              data)
 
 static void	clear_current_job 		    (void);
 static void	set_current_job 		    (GnomeVFSJob *context);
-
-static void
-set_fl (int fd, int flags)
-{
-	int val;
-
-	val = fcntl (fd, F_GETFL, 0);
-	if (val < 0) {
-		g_warning ("fcntl() F_GETFL failed: %s", strerror (errno));
-		return;
-	}
-
-	val |= flags;
-	
-	val = fcntl (fd, F_SETFL, val);
-	if (val < 0) {
-		g_warning ("fcntl() F_SETFL failed: %s", strerror (errno));
-		return;
-	}
-}
-
-static void
-clr_fl (int fd, int flags)
-{
-	int val;
-
-	val = fcntl (fd, F_GETFL, 0);
-	if (val < 0) {
-		g_warning ("fcntl() F_GETFL failed: %s", strerror (errno));
-		return;
-	}
-
-	val &= ~flags;
-	
-	val = fcntl (fd, F_SETFL, val);
-	if (val < 0) {
-		g_warning ("fcntl() F_SETFL failed: %s", strerror (errno));
-		return;
-	}
-}
 
 /*
  *   Find out whether or not a given job should be left in
@@ -887,7 +847,7 @@ serve_channel_read (GnomeVFSHandle *handle,
 
 					fd = g_io_channel_unix_get_fd (channel_out);
 					
-					clr_fl (fd, O_NONBLOCK);
+					_gnome_vfs_clear_fd_flags (fd, O_NONBLOCK);
 				} else {
 					if (written_bytes_in_buffer > 0) {
 						/* Need to shift the unwritten bytes
@@ -1074,7 +1034,7 @@ execute_open_as_channel (GnomeVFSJob *job)
 	 * thread is blocking for some reason the slave can keep
 	 * reading data.
 	 */
-	set_fl (pipefd[1], O_NONBLOCK);
+	_gnome_vfs_set_fd_flags (pipefd[1], O_NONBLOCK);
 	
 	channel_in = g_io_channel_unix_new (pipefd[0]);
 	channel_out = g_io_channel_unix_new (pipefd[1]);

@@ -88,6 +88,11 @@ gboolean       _gnome_vfs_use_handler_for_scheme          (const char   *scheme)
 gboolean       _gnome_vfs_prepend_terminal_to_vector      (int          *argc,
 							   char       ***argv);
 
+gboolean       _gnome_vfs_set_fd_flags                    (int           fd,
+                                                           int           flags);
+gboolean       _gnome_vfs_clear_fd_flags                  (int           fd,
+                                                           int           flags);
+
 G_END_DECLS
 
 #endif /* _GNOME_VFS_PRIVATE_UTILS_H */

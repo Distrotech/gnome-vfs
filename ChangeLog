@@ -1,3 +1,10 @@
+2004-04-01  Christian Kellner  <gicmo@xatom.net>
+
+	* libgnomevfs/gnome-vfs-job.c: 
+	* libgnomevfs/gnome-vfs-private-utils.[ch]:
+	Moved set_fl and clr_fl to gnome-vfs-private-utils
+	as _gnome_vfs_set_fd_flags and _gnome_vfs_clear_fd_flags.
+
 2004-03-31  Alexander Larsson  <alexl@redhat.com>
 
 	* configure.in:

@@ -43,6 +43,7 @@
 #include <sys/wait.h>
 #include <time.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 #define GCONF_URL_HANDLER_PATH      	 "/desktop/gnome/url-handlers/"
 #define GCONF_DEFAULT_TERMINAL_EXEC_PATH "/desktop/gnome/applications/terminal/exec"
@@ -847,4 +848,75 @@ _gnome_vfs_prepend_terminal_to_vector (int    *argc,
 
 	return TRUE;
 }		  
+
+/**
+ * _gnome_vfs_set_fd_flags:
+ * @fd: a valid file descriptor
+ * @flags: file status flags to set
+ *
+ * Set the file status flags part of the descriptor’s flags to the
+ * value specified by @flags.
+ *
+ * Return value: TRUE if successful, FALSE otherwise.
+ *
+ * Since: 2.7
+ */
+
+gboolean
+_gnome_vfs_set_fd_flags (int fd, int flags)
+{
+	int val;
+
+	val = fcntl (fd, F_GETFL, 0);
+	if (val < 0) {
+		g_warning ("fcntl() F_GETFL failed: %s", strerror (errno));
+		return FALSE;
+	}
+
+	val |= flags;
+	
+	val = fcntl (fd, F_SETFL, val);
+	if (val < 0) {
+		g_warning ("fcntl() F_SETFL failed: %s", strerror (errno));
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+/**
+ * _gnome_vfs_clear_fd_flags:
+ * @fd: a valid file descriptor
+ * @flags: file status flags to clear
+ *
+ * Clear the flags sepcified by @flags of the file status flags part of the 
+ * descriptor’s flags. 
+ *
+ * Return value: TRUE if successful, FALSE otherwise.
+ *
+ * Since: 2.7
+ */
+
+gboolean
+_gnome_vfs_clear_fd_flags (int fd, int flags)
+{
+	int val;
+
+	val = fcntl (fd, F_GETFL, 0);
+	if (val < 0) {
+		g_warning ("fcntl() F_GETFL failed: %s", strerror (errno));
+		return FALSE;
+	}
+
+	val &= ~flags;
+	
+	val = fcntl (fd, F_SETFL, val);
+	if (val < 0) {
+		g_warning ("fcntl() F_SETFL failed: %s", strerror (errno));
+		return FALSE;
+	}
+	
+	return TRUE;
+
+}
 
