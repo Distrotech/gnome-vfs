@@ -30,17 +30,17 @@ gnome_vfs_mime_type_from_mode (mode_t mode)
 	if (S_ISREG (mode))
 		mime_type = NULL;
 	else if (S_ISDIR (mode))
-		mime_type = "special/directory";
+		mime_type = "x-special/directory";
 	else if (S_ISCHR (mode))
-		mime_type = "special/device-char";
+		mime_type = "x-special/device-char";
 	else if (S_ISBLK (mode))
-		mime_type = "special/device-block";
+		mime_type = "x-special/device-block";
 	else if (S_ISFIFO (mode))
-		mime_type = "special/fifo";
+		mime_type = "x-special/fifo";
 	else if (S_ISLNK (mode))
-		mime_type = "special/symlink";
+		mime_type = "x-special/symlink";
 	else if (S_ISSOCK (mode))
-		mime_type = "special/socket";
+		mime_type = "x-special/socket";
 	else
 		mime_type = NULL;
 
@@ -68,15 +68,15 @@ gnome_vfs_get_special_mime_type (GnomeVFSURI *uri)
 	 */
 	switch (info.type) {
 	case GNOME_VFS_FILE_TYPE_DIRECTORY:
-		return "special/directory";
+		return "x-special/directory";
 	case GNOME_VFS_FILE_TYPE_CHARDEVICE:
-		return "special/device-char";
+		return "x-special/device-char";
 	case GNOME_VFS_FILE_TYPE_BLOCKDEVICE:
-		return "special/device-block";
+		return "x-special/device-block";
 	case GNOME_VFS_FILE_TYPE_FIFO:
-		return "special/fifo";
+		return "x-special/fifo";
 	case GNOME_VFS_FILE_TYPE_SOCKET:
-		return "special/socket";
+		return "x-special/socket";
 	default:
 		break;
 	}

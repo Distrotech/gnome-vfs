@@ -565,15 +565,15 @@ gnome_vfs_mime_type_from_magic (const gchar *filename)
 		return NULL;
 	if (!S_ISREG(sbuf.st_mode)) {
 		if (S_ISDIR(sbuf.st_mode))
-			return "special/directory";
+			return "x-special/directory";
 		else if (S_ISCHR(sbuf.st_mode))
-			return "special/device-char";
+			return "x-special/device-char";
 		else if (S_ISBLK(sbuf.st_mode))
-			return "special/device-block";
+			return "x-special/device-block";
 		else if (S_ISFIFO(sbuf.st_mode))
-			return "special/fifo";
+			return "x-special/fifo";
 		else if (S_ISSOCK(sbuf.st_mode))
-			return "special/socket";
+			return "x-special/socket";
 		else
 			return NULL;
 	}

@@ -25,7 +25,9 @@
 # The values in this file are kept in alphabetical order for convenience.
 # Please maintain this when adding new types. Also consider adding a
 # human-readable description to gnome-vfs.keys when adding a new type here.
-
+#
+# Also please do not add illegal mime types, observe the mime standard when
+# adding new types. 
 
 application/andrew-inset
 	ext: ez
@@ -48,7 +50,7 @@ application/pgp
 application/rtf
 	ext: rtf
 
-application/smil
+application/x-smil
 	ext: smil smi sml
 
 application/x-applix-spreadsheet
@@ -105,6 +107,27 @@ application/x-dvi
 
 application/x-e-theme
         ext: etheme ETHEME
+
+application/x-font-afm
+	ext: afm
+
+application/x-font-linux-psf
+	ext: psf
+
+application/x-font-ttf
+	ext: ttf TTF
+
+application/x-font-type1
+	ext: pfa pfb
+
+application/x-font-bdf
+	ext: bdf
+
+application/x-font-pcf
+	ext: pcf
+
+application/x-font-speedo
+	ext: spd
 
 application/x-gnome-app-info
 	ext: desktop
@@ -233,29 +256,6 @@ audio/x-xi
 
 audio/x-xm
 	ext: xm XM
-
-
-
-font/afm
-	ext: afm
-
-font/linux-psf
-	ext: psf
-
-font/ttf
-	ext: ttf TTF
-
-font/type1
-	ext: pfa pfb
-
-font/x-bdf
-	ext: bdf
-
-font/x-pcf
-	ext: pcf
-
-font/x-speedo
-	ext: spd
 
 
 

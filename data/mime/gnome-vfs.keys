@@ -553,7 +553,7 @@ multipart/report
 multipart/signed
 	description=signed message
 
-special/directory
+x-special/directory
 	description=directory
 	default_action_type=component
 	default_component_iid=OAFIID:ntl_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058
@@ -561,7 +561,7 @@ special/directory
 	short_list_component_iids_for_intermediate_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
 	short_list_component_iids_for_hacker_user_level=OAFIID:nautilus_file_manager_icon_view:42681b21-d5ca-4837-87d2-394d88ecc058,OAFIID:nautilus_file_manager_list_view:521e489d-0662-4ad7-ac3a-832deabe111c,OAFIID:nautilus_music_view:9456b5d2-60a8-407f-a56e-d561e1821391
 
-special/webdav-directory
+x-special/webdav-directory
 	description=web directory
 	default_action_type=component
 	default_component_iid=OAFIID:ntl_web_browser:0ce1a736-c939-4ac7-b12c-19d72bf1510b
@@ -574,7 +574,7 @@ special/webdav-directory
 	short_list_application_ids_for_hacker_user_level=netscape,lynx
 	system_all_application_ids=netscape,lynx
 
-special/symlink
+x-special/symlink
 	description=link
 
 text/calendar

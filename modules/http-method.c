@@ -872,12 +872,12 @@ process_propfind_propstat(xmlNodePtr node, GnomeVFSFileInfo *file_info)
 					  "collection")) {
 					file_info->type = 
 						GNOME_VFS_FILE_TYPE_DIRECTORY;
-					/* mjs wants me to set the mime-type to special/webdav-directory */
-					if(file_info->mime_type) g_free(file_info->mime_type);
-					file_info->mime_type = g_strdup("special/webdav-directory");
+					g_free(file_info->mime_type);
+					file_info->mime_type = g_strdup("x-special/webdav-directory");
 				}
 			}
-			/* TODO: all date related properties:
+			/* FIXME: 
+			 * all date related properties:
 			 * creationdate
 			 * getlastmodified
 			 */

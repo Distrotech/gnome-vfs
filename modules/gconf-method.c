@@ -245,7 +245,7 @@ set_mime_type_dir (GnomeVFSFileInfo *info,
                    const gchar *dirname,
                    GnomeVFSFileInfoOptions options)
 {
-        info->mime_type = g_strdup ("special/directory");
+        info->mime_type = g_strdup ("x-special/directory");
 
 	return GNOME_VFS_OK;
 }
