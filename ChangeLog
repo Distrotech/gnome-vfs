@@ -1,3 +1,14 @@
+2000-09-15  Ali Abdin  <aliabdin@aucegypt.edu>
+
+	* modules/pipe-method.c,
+	* modules/translate-method.c:
+	Added a comment at the top saying it is licensed under the LGPL and
+	Copyright to Red Hat Inc. (I checked with Sopwith first)
+
+	* AUTHORS:
+	"help" method is in Nautilus, not gnome-vfs so we shouldn't mention it
+	here.
+
 2000-09-14  Mathieu Lacage  <mathieu@eazel.com>
 
 	Fix bug 2758. remove a bunch of unused functions

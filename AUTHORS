@@ -29,9 +29,6 @@ VFS engine contributors:
 "pipe" and "translate" methods:
 	Elliot Lee <sopwith@redhat.com>
 
-"help" method.
-	Jonathan Blandford  <jrb@redhat.com>
-
 MIME API and the MIME capplet:
 	John Sullivan <sullivan@eazel.com>
 	Pavel Cisler <pavel@eazel.com>
