@@ -285,8 +285,10 @@ handle_error (GnomeVFSResult *result,
 		return FALSE;
 
 	case GNOME_VFS_XFER_ERROR_MODE_QUERY:
+		progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR;
 		progress->progress_info->vfs_status = *result;
-		action = call_progress (progress, GNOME_VFS_XFER_PROGRESS_STATUS_VFSERROR);
+		action = call_progress (progress, progress->progress_info->phase);
+		progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 
 		switch (action) {
 		case GNOME_VFS_XFER_ERROR_ACTION_RETRY:
@@ -333,7 +335,8 @@ handle_overwrite (GnomeVFSResult *result,
 		return FALSE;
 	case GNOME_VFS_XFER_OVERWRITE_MODE_QUERY:
 		progress->progress_info->vfs_status = *result;
-		action = call_progress (progress, GNOME_VFS_XFER_PROGRESS_STATUS_OVERWRITE);
+		progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OVERWRITE;
+		action = call_progress (progress, progress->progress_info->phase);
 		progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 
 		switch (action) {
@@ -1124,6 +1127,7 @@ copy_items (const GnomeVFSURI *source_dir_uri,
 		GnomeVFSFileInfo info;
 		gboolean skip;
 		int count;
+		int progress_result;
 
 		skip = FALSE;
 		target_uri = NULL;
@@ -1191,10 +1195,11 @@ copy_items (const GnomeVFSURI *source_dir_uri,
 				progress->progress_info->duplicate_count = count;
 				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_DUPLICATE;
 				progress->progress_info->vfs_status = result;
+				progress_result = call_progress_uri (progress, source_uri, target_uri, 
+						       GNOME_VFS_XFER_PHASE_COPYING);
+				progress->progress_info->status = GNOME_VFS_XFER_PROGRESS_STATUS_OK;
 
-				if (call_progress_uri (progress, source_uri, target_uri, 
-						       GNOME_VFS_XFER_PHASE_COPYING) 
-					== GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
+				if (progress_result == GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT) {
 					break;
 				}
 
@@ -1257,6 +1262,7 @@ move_items (const GnomeVFSURI *source_dir_uri,
 		skip = FALSE;
 		
 		do {
+			result = GNOME_VFS_OK;
 			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
 			progress->progress_info->bytes_copied = 0;
 			if (call_progress_with_uris_often (progress, source_uri,
