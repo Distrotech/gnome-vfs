@@ -24,7 +24,7 @@
 #ifndef GNOME_VFS_METAFILE_SERVER_IDL_INCLUDED
 #define GNOME_VFS_METAFILE_SERVER_IDL_INCLUDED
 
-#include <Bonobo.idl>
+#include <Bonobo_Unknown.idl>
 module GNOME {
 module VFS {
 

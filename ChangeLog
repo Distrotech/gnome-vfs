@@ -1,5 +1,15 @@
-2001-08-19  Sri Ramkrishna <sri@aracnet.com>
+2001-08-20  Maciej Stachowiak  <mjs@noisehavoc.org>
 
+	* configure.in: Check for bonobo-activation's IDL directory, not
+	libbonobo's.
+
+	* idl/Makefile.am, idl/gnome-vfs-slave.idl,
+	idl/gnome-vfs-types.idl: Remove obsolete idl files. 
+
+	* idl/gnome-vfs-metafile-server.idl: Include Bonobo_Unknown.idl,
+	not all of Bonobo.idl.
+
+2001-08-19  Sri Ramkrishna <sri@aracnet.com>
 
 	* libgnomevfs/gnome-vfs-xfer.c: (gnome_vfs_xfer_private),
 	(gnome_vfs_xfer_uri):

@@ -66,7 +66,7 @@ AC_SUBST(TEST_CFLAGS)
 ORBIT_IDL="`$PKG_CONFIG --variable=orbit_idl ORBit-2.0`"
 AC_SUBST(ORBIT_IDL)
 
-BONOBO_IDLDIR="`$PKG_CONFIG --variable=idldir libbonobo-2.0`"
+BONOBO_IDLDIR="`$PKG_CONFIG --variable=idldir bonobo-activation-2.0`"
 AC_SUBST(BONOBO_IDLDIR)
 
 GNOME_GTKDOC_CHECK
