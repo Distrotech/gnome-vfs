@@ -21,10 +21,19 @@
    Author: Ian McKellar <yakk@yakk.net>
 */
 
+#include <sys/time.h>
+#include <string.h>
 #include <libgnomevfs/gnome-vfs-monitor.h>
 #include <libgnomevfs/gnome-vfs-monitor-private.h>
 #include <libgnomevfs/gnome-vfs-method.h>
 #include <glib.h>
+
+typedef enum {
+	CALLBACK_STATE_NOT_SENT,
+	CALLBACK_STATE_SENDING,
+	CALLBACK_STATE_SENT
+} CallbackState;
+	
 
 struct GnomeVFSMonitorHandle {
 	GnomeVFSURI *uri; /* the URI being monitored */
@@ -34,14 +43,19 @@ struct GnomeVFSMonitorHandle {
 	gpointer user_data; /* FIXME - how does this get freed */
 
 	gboolean cancelled;
-	GList *pending_callbacks;
+	
+	GList *pending_callbacks; /* protected by handle_hash */
+	guint pending_timeout; /* protected by handle_hash */
 };
 
 struct GnomeVFSMonitorCallbackData {
-	GnomeVFSMonitorHandle *monitor_handle;
 	char *info_uri;
 	GnomeVFSMonitorEventType event_type;
+	CallbackState send_state;
+	guint32 send_at;
 };
+
+#define CONSECUTIVE_CALLBACK_DELAY 2
 
 typedef struct GnomeVFSMonitorCallbackData GnomeVFSMonitorCallbackData;
 
@@ -59,6 +73,13 @@ init_hash_table (void)
 	}
 
 	G_UNLOCK (handle_hash);
+}
+
+static void
+free_callback_data (GnomeVFSMonitorCallbackData *callback_data)
+{
+	g_free (callback_data->info_uri);
+	g_free (callback_data);
 }
 
 GnomeVFSResult
@@ -91,8 +112,8 @@ _gnome_vfs_monitor_do_add (GnomeVFSMethod *method,
 	} else {
 		G_LOCK (handle_hash);
 		g_hash_table_insert (handle_hash, 
-				monitor_handle->method_handle,
-				monitor_handle);
+				     monitor_handle->method_handle,
+				     monitor_handle);
 		G_UNLOCK (handle_hash);
 	}
 
@@ -101,10 +122,36 @@ _gnome_vfs_monitor_do_add (GnomeVFSMethod *method,
 	return result;
 }
 
+static gboolean
+no_live_callbacks (GnomeVFSMonitorHandle *monitor_handle)
+{
+	GList *l;
+	GnomeVFSMonitorCallbackData *callback_data;
+	
+	l = monitor_handle->pending_callbacks;
+	while (l != NULL) {
+		callback_data = l->data;
+
+		if (callback_data->send_state == CALLBACK_STATE_NOT_SENT ||
+		    callback_data->send_state == CALLBACK_STATE_SENDING) {
+			return FALSE;
+		}
+		
+		l = l->next;
+	}
+	return TRUE;
+}
+
 static void
 destroy_monitor_handle (GnomeVFSMonitorHandle *handle)
 {
 	gboolean res;
+
+	g_assert (no_live_callbacks (handle));
+	
+	g_list_foreach (handle->pending_callbacks, (GFunc) free_callback_data, NULL);
+	g_list_free (handle->pending_callbacks);
+	handle->pending_callbacks = NULL;
 	
 	res = g_hash_table_remove (handle_hash, handle->method_handle);
 	if (!res) {
@@ -130,18 +177,18 @@ _gnome_vfs_monitor_do_cancel (GnomeVFSMonitorHandle *handle)
 	}
 
 	result = handle->uri->method->monitor_cancel (handle->uri->method,
-			handle->method_handle);
+						      handle->method_handle);
 
 	if (result == GNOME_VFS_OK) {
 		/* mark this monitor as cancelled */
 		handle->cancelled = TRUE;
 
 		/* destroy the handle if there are no outstanding callbacks */
-		if (handle->pending_callbacks == NULL) {
-			G_LOCK (handle_hash);
+		G_LOCK (handle_hash);
+		if (no_live_callbacks (handle)) {
 			destroy_monitor_handle (handle);
-			G_UNLOCK (handle_hash);
 		}
+		G_UNLOCK (handle_hash);
 	}
 
 	return result;
@@ -150,47 +197,147 @@ _gnome_vfs_monitor_do_cancel (GnomeVFSMonitorHandle *handle)
 static gint
 actually_dispatch_callback (gpointer data)
 {
-	GnomeVFSMonitorCallbackData *callback_data = data;
+	GnomeVFSMonitorHandle *monitor_handle = data;
+	GnomeVFSMonitorCallbackData *callback_data;
 	gchar *uri;
+	GList *l, *next;
+	GList *dispatch;
+	struct timeval tv;
+	guint32 now;
 
-	if (!callback_data->monitor_handle->cancelled) {
-		uri = gnome_vfs_uri_to_string 
-			(callback_data->monitor_handle->uri, 
-			 GNOME_VFS_URI_HIDE_NONE);
+	/* This function runs on the main loop, so it won't reenter,
+	 * although other threads may add stuff to the pending queue
+	 * while we don't have the lock
+	 */
 
-		/* actually run app code */
-		callback_data->monitor_handle->callback(
-				callback_data->monitor_handle, uri,
-				callback_data->info_uri, 
-				callback_data->event_type,
-				callback_data->monitor_handle->user_data);
-
-		g_free (uri);
-	}
+	gettimeofday (&tv, NULL);
+	now = tv.tv_sec;
 
 	G_LOCK (handle_hash);
+	
+	if (!monitor_handle->cancelled) {
+		/* Find all callbacks that needs to be dispatched */
+		dispatch = NULL;
+		l = monitor_handle->pending_callbacks;
+		while (l != NULL) {
+			callback_data = l->data;
+			
+			g_assert (callback_data->send_state != CALLBACK_STATE_SENDING);
+			
+			if (callback_data->send_state == CALLBACK_STATE_NOT_SENT &&
+			    callback_data->send_at <= now) {
+				callback_data->send_state = CALLBACK_STATE_SENDING;
+				dispatch = g_list_prepend (dispatch, callback_data);
+			}
 
-	/* remove the callback from the pending queue */
-	callback_data->monitor_handle->pending_callbacks = g_list_remove
-		(callback_data->monitor_handle->pending_callbacks, 
-		 callback_data);
+			l = l->next;
+		}
+
+		dispatch = g_list_reverse (dispatch);
+		
+		G_UNLOCK (handle_hash);
+		
+		l = dispatch;
+		while (l != NULL) {
+			callback_data = l->data;
+			
+			uri = gnome_vfs_uri_to_string 
+				(monitor_handle->uri, 
+				 GNOME_VFS_URI_HIDE_NONE);
+
+			/* actually run app code */
+			monitor_handle->callback (monitor_handle, uri,
+						  callback_data->info_uri, 
+						  callback_data->event_type,
+						  monitor_handle->user_data);
+			
+			g_free (uri);
+			callback_data->send_state = CALLBACK_STATE_SENT;
+
+			l = l->next;
+		}
+			
+		g_list_free (dispatch);
+		
+		G_LOCK (handle_hash);
+
+		l = monitor_handle->pending_callbacks;
+		while (l != NULL) {
+			callback_data = l->data;
+			next = l->next;
+			
+			g_assert (callback_data->send_state != CALLBACK_STATE_SENDING);
+
+			/* If we've sent the event, and its not affecting coming events, free it */
+			if (callback_data->send_state == CALLBACK_STATE_SENT &&
+			    callback_data->send_at + CONSECUTIVE_CALLBACK_DELAY <= now) {
+				/* free the callback_data */
+				free_callback_data (callback_data);
+				
+				monitor_handle->pending_callbacks =
+					g_list_delete_link (monitor_handle->pending_callbacks,
+							    l);
+			}
+
+			l = next;
+		}
+
+	}
 
 	/* if we were waiting for this callback to be dispatched to free
 	 * this monitor, then do it now.
 	 */
-	if (callback_data->monitor_handle->cancelled &&
-	    callback_data->monitor_handle->pending_callbacks ==	NULL) {
-		destroy_monitor_handle (callback_data->monitor_handle);
+	if (monitor_handle->cancelled &&
+	    no_live_callbacks (monitor_handle)) {
+		destroy_monitor_handle (monitor_handle);
 	}
 
-	/* free the callback_data */
-	g_free (callback_data->info_uri);
-	g_free (callback_data);
+	monitor_handle->pending_timeout = 0;
 
 	G_UNLOCK (handle_hash);
 
 	return FALSE;
 }
+
+static void
+send_uri_changes_now (GnomeVFSMonitorHandle *monitor_handle,
+		      const char *uri,
+		      gint32 now)
+{
+	GList *l;
+	GnomeVFSMonitorCallbackData *callback_data;
+	
+	l = monitor_handle->pending_callbacks;
+	while (l != NULL) {
+		callback_data = l->data;
+		if (strcmp (callback_data->info_uri, uri) == 0) {
+			callback_data->send_at = now;
+		}
+		l = l->next;
+	}
+}
+
+static guint32
+get_min_delay  (GList *list, gint32 now)
+{
+	guint32 min_send_at;
+	GnomeVFSMonitorCallbackData *callback_data;
+
+	min_send_at = G_MAXINT;
+
+	while (list != NULL) {
+		callback_data = list->data;
+
+		if (callback_data->send_state == CALLBACK_STATE_NOT_SENT) {
+			min_send_at = MIN (min_send_at, callback_data->send_at);
+		}
+
+		list = list->next;
+	}
+
+	return MAX (min_send_at - now, 0);
+}
+
 
 /* for modules to send callbacks to the app */
 void
@@ -198,9 +345,15 @@ gnome_vfs_monitor_callback (GnomeVFSMethodHandle *method_handle,
                             GnomeVFSURI *info_uri, /* GList of uris */
                             GnomeVFSMonitorEventType event_type)
 {
-	GnomeVFSMonitorCallbackData *callback_data =
-		g_new0(GnomeVFSMonitorCallbackData, 1);
+	GnomeVFSMonitorCallbackData *callback_data, *other_data, *last_data;
 	GnomeVFSMonitorHandle *monitor_handle;
+	char *uri;
+	struct timeval tv;
+	guint32 now;
+	guint32 delay;
+	GList *l;
+
+	g_return_if_fail (info_uri != NULL);
 
 	init_hash_table ();
 
@@ -214,19 +367,61 @@ gnome_vfs_monitor_callback (GnomeVFSMethodHandle *method_handle,
 			G_UNLOCK (handle_hash);
 		}
 	} while (monitor_handle == NULL);
-	
-	callback_data->monitor_handle = monitor_handle;
-	if (info_uri != NULL) {
-		callback_data->info_uri = gnome_vfs_uri_to_string
-			(info_uri, GNOME_VFS_URI_HIDE_NONE);
-	} else {
-		callback_data->info_uri = NULL;
-	}
-	callback_data->event_type = event_type;
-	monitor_handle->pending_callbacks = 
-		g_list_append(monitor_handle->pending_callbacks, callback_data);
-	G_UNLOCK (handle_hash);
 
-	g_idle_add (actually_dispatch_callback, callback_data);
+	gettimeofday (&tv, NULL);
+	now = tv.tv_sec;
+
+	uri = gnome_vfs_uri_to_string (info_uri, GNOME_VFS_URI_HIDE_NONE);
+
+	last_data = NULL;
+	l = monitor_handle->pending_callbacks;
+	while (l != NULL) {
+		other_data = l->data;
+		if (strcmp (other_data->info_uri, uri) == 0) {
+			last_data = l->data;
+		}
+		l = l->next;
+	}
+
+	if (last_data == NULL ||
+	    (last_data->event_type != event_type ||
+	     last_data->send_state == CALLBACK_STATE_SENT)) {
+		callback_data = g_new0 (GnomeVFSMonitorCallbackData, 1);
+		callback_data->info_uri = g_strdup (uri);
+		callback_data->event_type = event_type;
+		callback_data->send_state = CALLBACK_STATE_NOT_SENT;
+		if (last_data == NULL) {
+			callback_data->send_at = now;
+		} else {
+			if (last_data->event_type != event_type) {
+				/* New type, flush old events */
+				send_uri_changes_now (monitor_handle, uri, now);
+				callback_data->send_at = now;
+			} else {
+				callback_data->send_at = last_data->send_at + CONSECUTIVE_CALLBACK_DELAY;
+			}
+		}
+		
+		monitor_handle->pending_callbacks = 
+			g_list_append(monitor_handle->pending_callbacks, callback_data);
+		
+		delay = get_min_delay (monitor_handle->pending_callbacks, now);
+
+		if (monitor_handle->pending_timeout) {
+			g_source_remove (monitor_handle->pending_timeout);
+		}
+		if (delay == 0) {
+			monitor_handle->pending_timeout = g_idle_add (actually_dispatch_callback,
+								      monitor_handle);
+		} else {
+			monitor_handle->pending_timeout = g_timeout_add (delay * 1000,
+									 actually_dispatch_callback,
+									 monitor_handle);
+		}
+	} 
+	
+	g_free (uri);
+	
+	G_UNLOCK (handle_hash);
 
 }

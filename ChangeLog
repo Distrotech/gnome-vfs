@@ -1,3 +1,10 @@
+2003-03-14  Alexander Larsson  <alexl@redhat.com>
+
+	* Makefile.am:
+	Remove hardcoded ACLOCAL_AMFLAGS.
+	Please do not make changes to modules without
+	permission from the maintainer.
+
 ==== gnome-vfs 2.2.3 ====
 	
 2003-03-10  Alexander Larsson  <alexl@redhat.com>
