@@ -1,5 +1,16 @@
 2000-06-20  Gene Z. Ragan  <gzr@eazel.com>
 
+	* mime-type-capplet/nautilus-mime-type-capplet.c:
+	(mime_list_selected_row_callback), (none_button_toggled),
+	(application_button_toggled), (component_button_toggled),
+	(init_mime_capplet), (nautilus_mime_type_capplet_update_info):
+	Added frame and set of radio buttons to indicate and allow the 
+	user to change the default action that will occur when a file
+	is clicked/double-clicked in Nautilus.  We have three choices that
+	map to the three types of actions we currently support.
+
+2000-06-20  Gene Z. Ragan  <gzr@eazel.com>
+
 	Fixed bug #1221
 	
 	* mime-type-capplet/nautilus-mime-type-capplet.c:
