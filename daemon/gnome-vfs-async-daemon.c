@@ -265,23 +265,23 @@ gnome_vfs_async_daemon_get_file_info (PortableServer_Servant _servant,
 	GnomeVFSContext *context;
 	GnomeVFSFileInfo *file_info;
 
-	*corba_info = NULL;
+	*corba_info = GNOME_VFS_FileInfo__alloc ();
+	
+	file_info = gnome_vfs_file_info_new ();
 
 	uri = gnome_vfs_uri_new (uri_str);
 	if (uri == NULL) {
+		gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
+		gnome_vfs_file_info_unref (file_info);
 		return GNOME_VFS_ERROR_INVALID_URI;
 	}
 
 	context = gnome_vfs_async_daemon_get_context (client_call, client);
-	file_info = gnome_vfs_file_info_new ();
 	
 	res = gnome_vfs_get_file_info_uri_cancellable (uri, file_info,
 						   options, context);
 
-	if (res == GNOME_VFS_OK) {
-		*corba_info = GNOME_VFS_FileInfo__alloc ();
-		gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
-	}
+	gnome_vfs_daemon_convert_to_corba_file_info (file_info, *corba_info);
 	
 	gnome_vfs_async_daemon_drop_context (client_call, client, context);
 

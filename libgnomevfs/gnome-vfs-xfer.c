@@ -820,7 +820,9 @@ move_source_is_in_target (GnomeVFSURI *source, GnomeVFSURI *target)
 		gnome_vfs_uri_unref (parent);
 		parent = tmp;
 	}
-	gnome_vfs_uri_unref (parent);
+	if (parent != NULL) {
+		gnome_vfs_uri_unref (parent);
+	}
 	
 	return res;
 }

@@ -1,3 +1,14 @@
+2003-12-15  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c (move_source_is_in_target):
+	Don't unref NULL.
+
+	* libgnomevfs/gnome-vfs-daemon-method.c (do_get_file_info):
+	Never return NULL corba strings or structures
+
+	* daemon/gnome-vfs-async-daemon.c (gnome_vfs_async_daemon_get_file_info):
+	Handle failures better.
+
 2003-12-10  Alexander Larsson  <alexl@redhat.com>
 
 	* libgnomevfs/gnome-vfs-module-callback-marshall.c:
