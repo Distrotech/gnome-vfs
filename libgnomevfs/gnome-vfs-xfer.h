@@ -73,7 +73,7 @@ typedef enum {
 /**
  * GnomeVFSXferOverwriteAction:
  * @GNOME_VFS_XFER_OVERWRITE_ACTION_ABORT: abort the transfer
- * @GONME_VFS_XFER_OVERWRITE_ACTION_REPLACE: replace the existing file
+ * @GNOME_VFS_XFER_OVERWRITE_ACTION_REPLACE: replace the existing file
  * @GNOME_VFS_XFER_OVERWRITE_ACTION_REPLACE_ALL: replace the existing file, and all future files
  * without prompting the callback.
  * @GNOME_VFS_XFER_OVERWRITE_ACTION_SKIP: don't copy over the existing file

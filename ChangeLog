@@ -1,3 +1,30 @@
+2002-06-17  Seth Nickell  <snickell@stanford.edu>
+
+	* libgnomevfs/gnome-vfs-application-registry.h:
+
+	Document a few special key types.
+	
+	* libgnomevfs/gnome-vfs-async-ops.c:
+	* libgnomevfs/gnome-vfs-async-ops.h:
+
+	Document all the AsyncCallbacks.
+	
+	* libgnomevfs/gnome-vfs-mime-info.c:
+	* libgnomevfs/gnome-vfs-mime-monitor.c:
+	* libgnomevfs/gnome-vfs-mime-utils.h:
+
+	Finish documenting these files.
+	
+	* libgnomevfs/gnome-vfs-uri.h:
+	* libgnomevfs/gnome-vfs-utils.h:
+
+	Add documentation for a few data types.
+	
+	* libgnomevfs/gnome-vfs-xfer.h:
+
+	Improve documentation of Xfer data types
+	and enumerations.
+
 2002-06-16  Seth Nickell  <snickell@stanford.edu>
 
 	* doc/tmpl/gnome-vfs-context.sgml:

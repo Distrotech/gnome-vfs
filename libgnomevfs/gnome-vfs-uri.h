@@ -95,10 +95,31 @@ typedef enum {
 } GnomeVFSURIHideOptions;
 
 
-/* CONSTANTS */
+/**
+ * GNOME_VFS_URI_MAGIC_CHR:
+ *
+ * The character used to divide location from
+ * extra "arguments" passed to the method.
+ **/
+/**
+ * GNOME_VFS_URI_MAGIC_STR:
+ *
+ * The character used to divide location from
+ * extra "arguments" passed to the method.
+ **/
 #define GNOME_VFS_URI_MAGIC_CHR	'#'
 #define GNOME_VFS_URI_MAGIC_STR "#"
 
+/**
+ * GNOME_VFS_URI_PATH_CHR:
+ *
+ * Defines the path seperator character.
+ **/
+/**
+ * GNOME_VFS_URI_PATH_STR:
+ *
+ * Defines the path seperator string.
+ **/
 #define GNOME_VFS_URI_PATH_CHR '/'
 #define GNOME_VFS_URI_PATH_STR "/"
 

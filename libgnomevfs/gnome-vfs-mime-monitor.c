@@ -149,7 +149,13 @@ gnome_vfs_mime_monitor_finalize (GObject *object)
 	g_free (GNOME_VFS_MIME_MONITOR (object)->priv);
 }
 
-/* Return a pointer to the single global monitor. */
+/**
+ * gnome_vfs_mime_monitor_get:
+ *
+ * Get access to the single global monitor. 
+ *
+ * Return value: the global #GnomeVFSMIMEMonitor
+ **/
 GnomeVFSMIMEMonitor *
 gnome_vfs_mime_monitor_get (void)
 {

@@ -383,7 +383,8 @@ gnome_vfs_async_create (GnomeVFSAsyncHandle **handle_return,
  * @handle_return: A pointer to a pointer to a GnomeVFSHandle object
  * @text_uri: string of the URI to open as a #GIOChannel, creating it as necessary
  * @open_mode: open for reading, writing, random, etc
- * @advised_block_size: the preferred block size for #GIOChannel to use
+ * @exclusive: replace the file if it already exists
+ * @perm: standard POSIX-style permissions bitmask, permissions of created file
  * @priority: a value from %GNOME_VFS_PRIORITY_MIN to %GNOME_VFS_PRIORITY_MAX (normally
  * should be %GNOME_VFS_PRIORITY_DEFAULT) indicating the priority to assign this job
  * in allocating threads from the thread pool.

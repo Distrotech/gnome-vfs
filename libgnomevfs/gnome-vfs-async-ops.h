@@ -261,7 +261,7 @@ typedef struct {
  * @data: user data defined when the operation was established
  *
  * Callback for the gnome_vfs_async_find_directory() function.
- **
+ **/
 typedef void    (* GnomeVFSAsyncFindDirectoryCallback)
 						(GnomeVFSAsyncHandle *handle,
 						 GList *results /* GnomeVFSFindDirectoryResult */,

@@ -116,10 +116,20 @@ char *gnome_vfs_icon_path_from_filename       (const char *filename);
 /* TRUE if the current thread is the thread with the main glib event loop */
 gboolean	gnome_vfs_is_primary_thread (void);
 
-/* Asserts that the current thread is the thread with the main glib event loop */
+/**
+ * GNOME_VFS_ASSERT_PRIMARY_THREAD:
+ *
+ * Asserts that the current thread is the thread with 
+ * the main glib event loop 
+ **/
 #define GNOME_VFS_ASSERT_PRIMARY_THREAD g_assert (gnome_vfs_is_primary_thread())
 
-/* Asserts that the current thread is NOT the thread with the main glib event loop */
+/**
+ * GNOME_VFS_ASSERT_SECONDARY_THREAD:
+ *
+ * Asserts that the current thread is NOT the thread with
+ * the main glib event loop 
+ **/
 #define GNOME_VFS_ASSERT_SECONDARY_THREAD g_assert (!gnome_vfs_is_primary_thread())
 
 /* Reads the contents of an entire file into memory */

@@ -724,6 +724,11 @@ gnome_vfs_mime_info_clear (void)
 	}
 }
 
+/**
+ * gnome_vfs_mime_info_shutdown:
+ * 
+ * Remove the MIME database from memory.
+ **/
 void
 gnome_vfs_mime_info_shutdown (void)
 {
@@ -747,6 +752,12 @@ gnome_vfs_mime_info_shutdown (void)
 	}
 }
 
+/**
+ * gnome_vfs_mime_info_reload:
+ *
+ * Reload the MIME database from disk and notify any listeners
+ * holding active #GnomeVFSMIMEMonitor objects.
+ **/
 void
 gnome_vfs_mime_info_reload (void)
 {
@@ -770,7 +781,7 @@ gnome_vfs_mime_info_reload (void)
 
 
 /**
- * gnome_vfs_mime_freeze
+ * gnome_vfs_mime_freeze:
  *
  * Freezes the mime data so that you can do multiple
  * updates to the dat in one batch without needing
@@ -785,7 +796,7 @@ gnome_vfs_mime_freeze (void)
 
 
 /**
- * gnome_vfs_mime_thaw
+ * gnome_vfs_mime_thaw:
  *
  * UnFreezes the mime data so that you can do multiple
  * updates to the dat in one batch without needing
@@ -1039,11 +1050,13 @@ assemble_list (gpointer key, gpointer value, gpointer user_data)
 
 /**
  * gnome_vfs_mime_get_key_list:
- * @mime_type: the mime type to lookup.
+ * @mime_type: the MIME type to lookup
  *
- * Return value: a GList that contains private strings with all of the keys
- * associated with the @mime_type.
- */
+ * Gets a list of all keys associated with @mime_type.
+ *
+ * Return value: a GList of const char * representing keys associated
+ * with @mime_type
+ **/
 GList *
 gnome_vfs_mime_get_key_list (const char *mime_type)
 {
@@ -1129,10 +1142,12 @@ gnome_vfs_mime_set_extensions_list (const char *mime_type,
 
 /**
  * gnome_vfs_mime_get_extensions_list:
- * @mime_type: the mime type
+ * @mime_type: type to get the extensions of
  *
- * Return value: a list of extensions for this mime-type
- */
+ * Get the file extensions associated with mime type @mime_type.
+ *
+ * Return value: a GList of char *s
+ **/
 GList *
 gnome_vfs_mime_get_extensions_list (const char *mime_type)
 {
@@ -1205,7 +1220,10 @@ gnome_vfs_mime_get_extensions_list (const char *mime_type)
  * gnome_vfs_mime_get_extensions_string:
  * @mime_type: the mime type
  *
- * Returns a string containing extensions for this mime-type
+ * Retrieves the extensions associated with @mime_type as a single
+ * space seperated string.
+ *
+ * Return value: a string containing space seperated extensions for @mime_type
  */
 char *
 gnome_vfs_mime_get_extensions_string (const char *mime_type)
@@ -1245,8 +1263,10 @@ gnome_vfs_mime_get_extensions_string (const char *mime_type)
  * gnome_vfs_mime_get_extensions_pretty_string:
  * @mime_type: the mime type
  *
- * Returns a string containing comma seperated extensions for this mime-type
- */
+ * Returns the supported extensions for @mime_type as a comma-seperated list.
+ *
+ * Return value: a string containing comma seperated extensions for this mime-type
+ **/
 char *
 gnome_vfs_mime_get_extensions_pretty_string (const char *mime_type)
 {
