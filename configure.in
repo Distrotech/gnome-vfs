@@ -62,7 +62,7 @@ dnl gconf-method.c
 dnl
 AC_PATH_PROG(GCONF_CONFIG, gconf-config, no)
 if test x$GCONF_CONFIG = xno; then
-  AC_MSG_WARN([*** \`gconf' method will not be build ***])
+  AC_MSG_WARN([*** \`gconf' method will not be built ***])
   GCONF_LIBS=
   GCONF_CFLAGS=
 else

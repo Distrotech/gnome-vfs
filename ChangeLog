@@ -1,3 +1,13 @@
+1999-09-18  Cody Russell  <bratsche@dfw.net>
+	* modules/bzip2-method.[ch]: Added. Note that this method is not
+	currently finished, and so I've disabled building of it for now.
+
+	* modules/Makefile.am: Added Bzip2, but it's currently commented
+	out.
+
+	* configure.in: Fixed a typo. "gconf will not be build"
+	s/build/built.
+
 1999-09-18  Ettore Perazzoli  <ettore@comm2000.it>
 
 	* libgnomevfs-pthread/gnome-vfs-job.c (gnome_vfs_job_new):
