@@ -45,6 +45,9 @@ gnome_vfs_open_uri_cancellable (GnomeVFSHandle **handle,
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (uri->method != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
 	if (uri->method->open == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
@@ -80,6 +83,9 @@ gnome_vfs_create_uri_cancellable (GnomeVFSHandle **handle,
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
 	if (uri->method->create == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
@@ -99,6 +105,9 @@ gnome_vfs_close_cancellable (GnomeVFSHandle *handle,
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
 	return gnome_vfs_handle_do_close (handle, context);
 }
 
@@ -110,6 +119,9 @@ gnome_vfs_read_cancellable (GnomeVFSHandle *handle,
 			    GnomeVFSContext *context)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
 
 	return gnome_vfs_handle_do_read (handle, buffer, bytes, bytes_written,
 					 context);
@@ -124,6 +136,9 @@ gnome_vfs_write_cancellable (GnomeVFSHandle *handle,
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
 	return gnome_vfs_handle_do_write (handle, buffer, bytes,
 					  bytes_written, context);
 }
@@ -135,6 +150,9 @@ gnome_vfs_seek_cancellable (GnomeVFSHandle *handle,
 			    GnomeVFSContext *context)
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
 
 	return gnome_vfs_handle_do_seek (handle, whence, offset, context);
 }
@@ -148,6 +166,9 @@ gnome_vfs_get_file_info_uri_cancellable (GnomeVFSURI *uri,
 {
 	GnomeVFSResult result;
 	GList *meta_list;
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
 
 	if (uri->method->get_file_info == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
@@ -174,6 +195,9 @@ gnome_vfs_get_file_info_from_handle_cancellable (GnomeVFSHandle *handle,
 
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
 	meta_list = gnome_vfs_string_list_from_string_array (meta_keys);
 
 	result =  gnome_vfs_handle_do_get_file_info (handle, info,
@@ -192,7 +216,10 @@ gnome_vfs_truncate_uri_cancellable (GnomeVFSURI *uri,
 {
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
-	if(uri->method->truncate == NULL)
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
+	if (uri->method->truncate == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
 	return uri->method->truncate(uri->method, uri, length, context);
@@ -205,6 +232,9 @@ gnome_vfs_truncate_handle_cancellable (GnomeVFSHandle *handle,
 {
 	g_return_val_if_fail (handle != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
 	return gnome_vfs_handle_do_truncate (handle, length, context);
 }
 
@@ -216,6 +246,9 @@ gnome_vfs_make_directory_for_uri_cancellable (GnomeVFSURI *uri,
 	GnomeVFSResult result;
 
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
 
 	if (uri->method->make_directory == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
@@ -235,6 +268,9 @@ gnome_vfs_find_directory_cancellable (GnomeVFSURI *near_uri,
 	GnomeVFSResult result;
 
 	g_return_val_if_fail (result_uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
 
 	if (near_uri != NULL) {
 		gnome_vfs_uri_ref (near_uri);
@@ -262,6 +298,9 @@ gnome_vfs_remove_directory_from_uri_cancellable (GnomeVFSURI *uri,
 
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
 	if (uri->method->remove_directory == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
 
@@ -274,6 +313,9 @@ gnome_vfs_unlink_from_uri_cancellable (GnomeVFSURI *uri,
 				       GnomeVFSContext *context)
 {
 	g_return_val_if_fail (uri != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
 
 	if (uri->method->unlink == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
@@ -302,6 +344,9 @@ gnome_vfs_move_uri_cancellable (GnomeVFSURI *old,
 	g_return_val_if_fail (old != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (new != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
+
 	if (! check_same_fs_in_uri (old, new))
 		return GNOME_VFS_ERROR_NOTSAMEFS;
 
@@ -320,6 +365,9 @@ gnome_vfs_check_same_fs_uris_cancellable (GnomeVFSURI *a,
 	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (b != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (same_fs_return != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
 
 	if (! check_same_fs_in_uri (a, b)) {
 		*same_fs_return = FALSE;
@@ -342,6 +390,9 @@ gnome_vfs_set_file_info_cancellable (GnomeVFSURI *a,
 {
 	g_return_val_if_fail (a != NULL, GNOME_VFS_ERROR_BADPARAMS);
 	g_return_val_if_fail (info != NULL, GNOME_VFS_ERROR_BADPARAMS);
+
+	if (gnome_vfs_context_check_cancellation (context))
+		return GNOME_VFS_ERROR_CANCELLED;
 
 	if (a->method->set_file_info == NULL)
 		return GNOME_VFS_ERROR_NOTSUPPORTED;
