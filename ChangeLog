@@ -1,5 +1,10 @@
 2003-02-18  Alexander Larsson  <alexl@redhat.com>
 
+	* libgnomevfs/gnome-vfs-mime-magic.c (_gnome_vfs_sniff_buffer_looks_like_mp3):
+	Don't interpret vorbis files with ID3 tags as mp3.
+
+2003-02-18  Alexander Larsson  <alexl@redhat.com>
+
 	* configure.in:
 	Define HAVE_SYS_PARAM_H. Patch from jmmv@hispabsd.org.
 

@@ -855,6 +855,12 @@ _gnome_vfs_sniff_buffer_looks_like_mp3 (GnomeVFSMimeSniffBuffer *sniff_buffer)
 		&& (sniff_buffer->buffer[7] < 0x80u)
 		&& (sniff_buffer->buffer[8] < 0x80u)
 		&& (sniff_buffer->buffer[9] < 0x80u)) {
+		/* checks for existance of vorbis identification header */
+		if (g_strstr_len (sniff_buffer->buffer + 10,
+				  GNOME_VFS_MP3_SNIFF_LENGTH - 10,
+				  "\x01vorbis") != NULL) {
+			return FALSE;
+		}
 		return TRUE;
 	}
 
