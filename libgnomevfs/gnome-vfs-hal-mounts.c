@@ -598,7 +598,7 @@ _hal_get_vol_name (GnomeVFSHalVolume *vol, GnomeVFSHalDrive *drive,
 
 		/* If it's a optical disc, use the disc type */
 		if (strcmp (vol->disc_type, "cd_rom") == 0) {
-			name = g_strdup (_("CD Disc"));
+			name = g_strdup (_("CD-ROM Disc"));
 		} else if (strcmp (vol->disc_type, "cd_r") == 0) {
 			if (vol->disc_is_blank)
 				name = g_strdup (_("Blank CD-R Disc"));

@@ -731,7 +731,7 @@ gnome_vfs_op_destroy (GnomeVFSOp *op)
 		g_free (op->specifics.file_control.operation);
 		break;
 	default:
-		g_warning (_("Unknown op type %u"), op->type);
+		g_warning (_("Unknown operation type %u"), op->type);
 	}
 	
 	g_assert (gnome_vfs_context_get_cancellation (op->context) != NULL);

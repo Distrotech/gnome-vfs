@@ -1,3 +1,9 @@
+2004-08-15  Christophe Fergeau  <teuf@gnome.org>
+
+	* libgnomevfs/gnome-vfs-hal-mounts.c: (_hal_get_vol_name):
+	* libgnomevfs/gnome-vfs-job.c: (gnome_vfs_op_destroy): modified 2
+	  strings, fixes #149520 and #149522.
+
 2004-08-14  Danilo Šegan  <dsegan@gmx.net>
 
 	* schemas/desktop_gnome_url_handlers.schemas.in: 
