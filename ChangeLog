@@ -1,3 +1,12 @@
+2003-02-24  Alexander Larsson  <alexl@redhat.com>
+
+	* libgnomevfs/gnome-vfs-monitor.c (destroy_monitor_handle):
+	Warn if the handle was not in the hash table.
+	(gnome_vfs_monitor_callback):
+	Loop to get the hashtable. This fixes a possible race where
+	there is a callback before the add_monitor code has added the
+	monitor to the hashtable. (#106758)
+
 2003-02-21  Alexander Larsson  <alexl@redhat.com>
 
 	* monikers/Makefile.am:

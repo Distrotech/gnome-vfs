@@ -102,8 +102,17 @@ _gnome_vfs_monitor_do_add (GnomeVFSMethod *method,
 }
 
 static void
-destroy_monitor_handle (GnomeVFSMonitorHandle *handle) {
-	g_hash_table_remove (handle_hash, handle->method_handle);
+destroy_monitor_handle (GnomeVFSMonitorHandle *handle)
+{
+	gboolean res;
+	
+	res = g_hash_table_remove (handle_hash, handle->method_handle);
+	if (!res) {
+		g_warning ("gnome-vfs-monitor.c: A monitor handle was destroyed "
+			   "before it was added to the method hash table. This "
+			   "is a bug in the application and can cause crashed. "
+			   "It is probably a race-condition.");
+	}
 
 	gnome_vfs_uri_unref (handle->uri);
 	g_free (handle);
@@ -170,8 +179,7 @@ actually_dispatch_callback (gpointer data)
 	 * this monitor, then do it now.
 	 */
 	if (callback_data->monitor_handle->cancelled &&
-			callback_data->monitor_handle->pending_callbacks ==
-								NULL) {
+	    callback_data->monitor_handle->pending_callbacks ==	NULL) {
 		destroy_monitor_handle (callback_data->monitor_handle);
 	}
 
@@ -196,9 +204,17 @@ gnome_vfs_monitor_callback (GnomeVFSMethodHandle *method_handle,
 
 	init_hash_table ();
 
-	G_LOCK (handle_hash);
-	monitor_handle = g_hash_table_lookup (handle_hash, method_handle);
-	g_assert (monitor_handle != NULL);
+	/* We need to loop here, because there is a race after we add the
+	 * handle and when we add it to the hash table.
+	 */
+	do  {
+		G_LOCK (handle_hash);
+		monitor_handle = g_hash_table_lookup (handle_hash, method_handle);
+		if (monitor_handle == NULL) {
+			G_UNLOCK (handle_hash);
+		}
+	} while (monitor_handle == NULL);
+	
 	callback_data->monitor_handle = monitor_handle;
 	if (info_uri != NULL) {
 		callback_data->info_uri = gnome_vfs_uri_to_string
