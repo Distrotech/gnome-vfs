@@ -1328,25 +1328,23 @@ move_items (const GnomeVFSURI *source_dir_uri,
 		skip = FALSE;
 		
 		do {
-			result = GNOME_VFS_OK;
 			progress->progress_info->file_size = DEFAULT_SIZE_OVERHEAD;
 			progress->progress_info->bytes_copied = 0;
-			if (call_progress_with_uris_often (progress, source_uri,
-						target_uri, GNOME_VFS_XFER_PHASE_MOVING) == 0) {
-				result = GNOME_VFS_ERROR_INTERRUPTED;
-			}
 
-			if (result == GNOME_VFS_OK) {
-				/* no matter what the replace mode, just overwrite the destination
-				 * handle_name_conflicts took care of conflicting files
-				 */
-				result = gnome_vfs_move_uri (source_uri, target_uri, 
-							     GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE);
-			}
+			/* no matter what the replace mode, just overwrite the destination
+			 * handle_name_conflicts took care of conflicting files
+			 */
+			result = gnome_vfs_move_uri (source_uri, target_uri, 
+						     GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE);
 
 			if (result != GNOME_VFS_OK) {
 				retry = handle_error (&result, progress,
 						      error_mode, &skip);
+			}
+			if (call_progress_with_uris_often (progress, source_uri,
+						target_uri, GNOME_VFS_XFER_PHASE_MOVING) == 0) {
+				result = GNOME_VFS_ERROR_INTERRUPTED;
+				break;
 			}
 		} while (retry);
 		

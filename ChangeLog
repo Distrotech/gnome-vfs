@@ -1,6 +1,15 @@
+2000-04-20  Pavel Cisler  <pavel@eazel.com>
+
+	* libgnomevfs/gnome-vfs-xfer.c:
+	(move_items):
+	Move the call_progress call after where the file was moved, that way the
+	file is in guaranteed to be in it's final destination when the callback 
+	kicks in for it.
+	
+
 2000-04-19  Pavel Cisler  <pavel@eazel.com>
 
-	* gnome-vfs-file-info.c:
+	* libgnomevfs/gnome-vfs-file-info.c:
 	* libgnomevfs/gnome-vfs-file-info.h:
 	(gnome_vfs_file_info_matches):
 	Added a new call.
