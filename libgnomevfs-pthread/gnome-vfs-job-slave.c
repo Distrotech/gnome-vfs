@@ -26,6 +26,7 @@
 #endif
 
 #include <glib.h>
+#include <libgnorba/gnorba.h>
 #include <unistd.h>
 
 #include "gnome-vfs.h"
@@ -39,6 +40,7 @@
 static GMutex *gnome_vfs_thread_count_mutex = NULL;
 static volatile int gnome_vfs_slave_thread_count = 0;
 static volatile gboolean gnome_vfs_quitting = FALSE;
+static volatile gboolean gnome_vfs_done_quitting = FALSE;
 
 static void *
 thread_routine (void *data)
@@ -86,8 +88,12 @@ gnome_vfs_job_slave_new (GnomeVFSJob *job)
 		gnome_vfs_thread_count_mutex = g_mutex_new ();
 	}
 
+	if (gnome_vfs_quitting) {
+		g_warning ("Someone still starting up GnomeVFS async calls after quit.");
+	}
+
 	g_mutex_lock (gnome_vfs_thread_count_mutex);
-	abort_early = gnome_vfs_quitting;
+	abort_early = gnome_vfs_done_quitting;
 	if (!abort_early) {
 		/* count the new thread */
 		gnome_vfs_slave_thread_count++;
@@ -154,6 +160,10 @@ gnome_vfs_thread_backend_shutdown (void)
 	
 	done = FALSE;
 
+	gnome_vfs_quitting = TRUE;
+
+	JOB_DEBUG (("###### shutting down"));
+
 	if (gnome_vfs_thread_count_mutex == NULL) {
 		/* must have never used a single async call */
 		return;
@@ -164,25 +174,23 @@ gnome_vfs_thread_backend_shutdown (void)
 		 * are still trying to quit.
 		 */
 		g_mutex_lock (gnome_vfs_thread_count_mutex);
-		g_assert (!gnome_vfs_quitting);
+		g_assert (!gnome_vfs_done_quitting);
 		if (gnome_vfs_slave_thread_count == 0) {
 			done = TRUE;
-			gnome_vfs_quitting = TRUE;
+			gnome_vfs_done_quitting = TRUE;
 		}
 		debug_outstanding_count = gnome_vfs_slave_thread_count;
 		g_mutex_unlock (gnome_vfs_thread_count_mutex);
-		
+
 		if (done) {
 			return;
 		}
 
-		g_message ("gnome_vfs_wait_for_slave_threads - still waiting for %d threads to quit", 
-			debug_outstanding_count);
-
 		/* Some threads are still trying to quit, wait a bit until they
 		 * are done.
 		 */
-		usleep (100000);
+		gtk_main_iteration_do (FALSE);
+		usleep (20000);		
 	}
 }
 
@@ -199,7 +207,7 @@ gnome_vfs_debug_get_thread_count (void)
 	}
 		
 	g_mutex_lock (gnome_vfs_thread_count_mutex);
-	if (gnome_vfs_quitting) {
+	if (gnome_vfs_done_quitting) {
 		result = 0;
 	} else {
 		result = gnome_vfs_slave_thread_count;

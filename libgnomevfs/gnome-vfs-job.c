@@ -101,6 +101,17 @@ clr_fl(int fd, int flags)
 }
 
 
+
+static void
+job_signal_ack_condition (GnomeVFSJob *job)
+{
+	g_mutex_lock (job->notify_ack_lock);
+	JOB_DEBUG (("Ack needed: signaling condition. %p", job));
+	g_cond_signal (job->notify_ack_condition);
+	JOB_DEBUG (("Ack needed: unlocking notify ack. %p", job));
+	g_mutex_unlock (job->notify_ack_lock);
+}
+
 /* This is used by the master thread to notify the slave thread that it got the
    notification.  */
 static void
@@ -109,11 +120,7 @@ job_ack_notify (GnomeVFSJob *job)
 	JOB_DEBUG (("Checking if ack is needed. %p", job));
 	if (job->want_notify_ack) {
 		JOB_DEBUG (("Ack needed: lock notify ack. %p", job));
-		g_mutex_lock (job->notify_ack_lock);
-		JOB_DEBUG (("Ack needed: signaling condition. %p", job));
-		g_cond_signal (job->notify_ack_condition);
-		JOB_DEBUG (("Ack needed: unlocking notify ack. %p", job));
-		g_mutex_unlock (job->notify_ack_lock);
+		job_signal_ack_condition (job);
 	}
 
 	JOB_DEBUG (("unlocking wakeup channel. %p", job));
@@ -184,7 +191,12 @@ job_notify (GnomeVFSJob *job)
 {
 	gboolean retval;
 
-	JOB_DEBUG (("Locking wakeup channel %p", job));
+	if (gnome_vfs_context_check_cancellation (job->current_op->context)) {
+		JOB_DEBUG (("job cancelled, bailing %p", job));
+		return FALSE;
+	}
+
+	JOB_DEBUG (("Locking wakeup channel - %p", job));
 	g_mutex_lock (job->wakeup_channel_lock);
 
 	/* Record which op we want notified. */
@@ -617,7 +629,6 @@ gnome_vfs_job_destroy (GnomeVFSJob *job)
 static void
 gnome_vfs_job_finish_destroy (GnomeVFSJob *job)
 {
-	JOB_DEBUG (("job %p", job));
 	g_assert (job->is_empty);
 
 	g_mutex_free (job->access_lock);
@@ -633,6 +644,8 @@ gnome_vfs_job_finish_destroy (GnomeVFSJob *job)
 	g_io_channel_unref (job->wakeup_channel_out);
 
 	g_mutex_free (job->wakeup_channel_lock);
+
+	JOB_DEBUG (("job %p terminated cleanly", job));
 
 	g_free (job);
 }
@@ -684,6 +697,7 @@ gnome_vfs_job_prepare (GnomeVFSJob *job,
 
 	gnome_vfs_job_release_current_op (job);
 	job->current_op = op;
+	JOB_DEBUG (("%p %d", job, job->current_op->type));
 }
 
 void
@@ -1113,6 +1127,7 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 	GnomeVFSResult result;
 	guint count;
 
+	JOB_DEBUG (("%p", job));
 	load_directory_op = &job->current_op->specifics.load_directory;
 
 	result = gnome_vfs_directory_open_from_uri
@@ -1136,6 +1151,13 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 	count = 0;
 	while (1) {
 		info = gnome_vfs_file_info_new ();
+
+		if (gnome_vfs_context_check_cancellation (job->current_op->context)) {
+			JOB_DEBUG (("cancelled, bailing %p", job));
+			result = GNOME_VFS_ERROR_CANCELLED;
+			break;
+		}
+		
 		result = gnome_vfs_directory_read_next (handle, info);
 
 		if (result == GNOME_VFS_OK) {
@@ -1160,7 +1182,10 @@ execute_load_directory_not_sorted (GnomeVFSJob *job,
 			else
 				gnome_vfs_directory_list_next (directory_list);
 
-			job_notify (job);
+			if (!job_notify (job)) {
+				break;
+			}
+			
 
 			if (result != GNOME_VFS_OK)
 				break;
@@ -1187,6 +1212,7 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 	GnomeVFSResult result;
 	guint count;
 
+	JOB_DEBUG (("%p", job));
 	load_directory_op = &job->current_op->specifics.load_directory;
 
 	result = gnome_vfs_directory_list_load_from_uri
@@ -1235,7 +1261,9 @@ execute_load_directory_sorted (GnomeVFSJob *job,
 			else
 				load_directory_op->notify.result = GNOME_VFS_OK;
 			load_directory_op->notify.entries_read = count;
-			job_notify (job);
+			if (!job_notify (job)) {
+				break;
+			}
 			count = 0;
 			previous_p = p;
 		}
@@ -1393,7 +1421,7 @@ gnome_vfs_job_execute (GnomeVFSJob *job)
 		g_cond_wait (job->execution_condition, job->access_lock);
 	}
 
-	JOB_DEBUG (("executing %p", job));
+	JOB_DEBUG (("executing %p %d", job, job->current_op->type));
 
 	switch (job->current_op->type) {
 	case GNOME_VFS_OP_OPEN:
@@ -1441,9 +1469,15 @@ gnome_vfs_job_cancel (GnomeVFSJob *job)
 	g_return_val_if_fail (op != NULL, GNOME_VFS_ERROR_BADPARAMS);
 
 	cancellation = gnome_vfs_context_get_cancellation (op->context);
-	if (cancellation != NULL)
+	if (cancellation != NULL) {
+		JOB_DEBUG (("cancelling %p", job));
 		gnome_vfs_cancellation_cancel (cancellation);
+	}
 
+	/* handle the case when the job is stuck waiting in job_notify */
+	JOB_DEBUG (("unlock job_notify %p", job));
+	job_signal_ack_condition (job);
+	
 	gnome_vfs_context_emit_message (op->context, _("Operation stopped"));
 
 	/* Since we are cancelling, we won't have anyone respond to notifications;

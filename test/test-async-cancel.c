@@ -24,7 +24,10 @@
 
 #include <config.h>
 
+#include <glib.h>
+#include <signal.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <fcntl.h>
 #include <libgnorba/gnorba.h>
 #include <unistd.h>
@@ -41,6 +44,27 @@ static gpointer test_callback_data;
 static gboolean test_done;
 
 #define MAX_THREAD_WAIT 100
+
+static void
+stop_after_log (const char *domain, GLogLevelFlags level, 
+	const char *message, gpointer data)
+{
+	void (* saved_handler)(int);
+	
+	g_log_default_handler(domain, level, message, data);
+
+	saved_handler = signal (SIGINT, SIG_IGN);
+	raise(SIGINT);
+	signal(SIGINT, saved_handler);
+}
+
+static void
+make_asserts_break (const char *domain)
+{
+	g_log_set_handler(domain, 
+		(GLogLevelFlags)(G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING),
+		stop_after_log, NULL);
+}
 
 static int
 get_free_file_descriptor_count (void)
@@ -302,6 +326,16 @@ file_read_callback (GnomeVFSAsyncHandle *handle,
 }
 
 static void
+directory_load_callback (GnomeVFSAsyncHandle *handle,
+			 GnomeVFSResult result,
+			 GnomeVFSDirectoryList *list,
+			 guint entries_read,
+			 gpointer callback_data)
+{
+	usleep(1000);
+}
+
+static void
 test_open_read_cancel_close (void)
 {
 	file_open_flag = FALSE;
@@ -366,11 +400,47 @@ test_open_cancel (void)
 	TEST_ASSERT (!file_open_flag, ("open cancel 2: open callback was called"));
 }
 
+static void
+yield (int count)
+{
+	for (; count >= 0; count--) {
+		usleep (1000);
+		gtk_main_iteration_do (FALSE);
+	}
+}
+
+static void
+test_load_directory_cancel (int delay_till_cancel)
+{
+	GnomeVFSAsyncHandle *handle;
+	guint num_entries;
+	printf("testing load directory cancel\n");
+	gnome_vfs_async_load_directory (&handle,
+					"file:///etc",
+					GNOME_VFS_FILE_INFO_GETMIMETYPE
+		 			 | GNOME_VFS_FILE_INFO_FASTMIMETYPE
+		 			 | GNOME_VFS_FILE_INFO_FOLLOWLINKS,
+					NULL,
+					NULL,
+					FALSE,
+					GNOME_VFS_DIRECTORY_FILTER_NONE,
+					0,
+					NULL,
+					1,
+					directory_load_callback,
+					&num_entries);
+	if (delay_till_cancel > 0)
+		yield (delay_till_cancel);
+	gnome_vfs_async_cancel (handle);
+	TEST_ASSERT (wait_until_vfs_threads_gone (), ("open cancel 1: thread never went away"));
+}
+
 int
 main (int argc, char **argv)
 {
 	CORBA_Environment ev;
 
+	make_asserts_break("GnomeVFS");
 	/* Initialize the libraries we use. */
 	g_thread_init (NULL);
 	CORBA_exception_init (&ev);
@@ -396,6 +466,11 @@ main (int argc, char **argv)
 	test_open_read_cancel_close ();
 	test_open_read_cancel_close ();
 
+	test_load_directory_cancel (0);
+	test_load_directory_cancel (1);
+	test_load_directory_cancel (10);
+
+	gnome_vfs_shutdown ();
 	/* Report to "make check" on whether it all worked or not. */
 	return at_least_one_test_failed ? EXIT_FAILURE : EXIT_SUCCESS;
 }

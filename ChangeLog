@@ -1,3 +1,35 @@
+2000-05-27  Pavel Cisler <pavel@eazel.com>
+
+	* libgnomevfs-pthread/gnome-vfs-job-slave.c:
+	(gnome_vfs_job_slave_new), (gnome_vfs_thread_backend_shutdown),
+	(gnome_vfs_debug_get_thread_count):
+	Made gnome_vfs_thread_backend_shutdown work properly by adding the
+	right call to yield to the gtk idle task that is needed to allow 
+	all the task callbacks to finish. This simplifies the application
+	quit. 
+	Tweaked some debugging messages.
+	
+	* libgnomevfs-pthread/gnome-vfs-job.c: (job_signal_ack_condition),
+	(job_ack_notify), (job_notify), (gnome_vfs_job_finish_destroy),
+	(gnome_vfs_job_prepare), (execute_load_directory_not_sorted),
+	(execute_load_directory_sorted), (gnome_vfs_job_execute),
+	(gnome_vfs_job_cancel):
+	Added a cancel check to job_notify to make sure someone is still
+	expecting a notification before we start notifying. Add checks
+	to the return value of job_notify, bailing from all the calls
+	during cancel.
+	Added the same check to execute_load_directory_not_sorted to make
+	it bail out earlier during a cancel.
+	When cancelling, signal to the possibly waiting job_ack_notify
+	to make it give up waiting. 
+	Added a lot more debugging code to help me chase down the problems.
+	
+	* test/test-async-cancel.c: (stop_after_log), (make_asserts_break),
+	(directory_load_callback), (yield), (test_load_directory_cancel),
+	(main):
+	Made the test stop in the debugger during an assert.
+	Added tests for load_directory cancellations.
+	
 2000-05-27  Dan Winship  <danw@helixcode.com>
 
 	* libgnomevfs-corba/gnome-vfs-slave-notify.c
