@@ -2,7 +2,8 @@
 
 	* modules/http-authn.c: (http_authn_self_test):
 	* test/test-uri.c: (main):
-	Fix bogus warnings in later gcc.
+	Fix bogus warnings in later gcc (#156505).
+	Patch from Thomas Fitzsimmons
 
 2004-10-29  Ray Strode <rstrode@redhat.com>
 
