@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-26 19:29-0400\n"
-"PO-Revision-Date: 2004-07-31 10:49+0200\n"
+"POT-Creation-Date: 2004-08-15 00:37+0200\n"
+"PO-Revision-Date: 2004-08-15 00:41+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -36,81 +36,91 @@ msgstr "No se pudo inicializar Bonobo"
 msgid "Could not initialize gnome vfs"
 msgstr "No se pudo inicializar gnome vfs"
 
-#: libgnomevfs/eggdesktopentries.c:226
+#: libgnomevfs/eggdesktopentries.c:229
 #, c-format
 msgid "File could not be opened: %s"
 msgstr "El archivo no pudo abrirse: %s"
 
-#: libgnomevfs/eggdesktopentries.c:325
+#: libgnomevfs/eggdesktopentries.c:328
 #, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Falló al abrir el archivo «%s»: %s"
 
-#: libgnomevfs/eggdesktopentries.c:338
+#: libgnomevfs/eggdesktopentries.c:341
 msgid "File is empty"
 msgstr "El archivo está vacío"
 
-#: libgnomevfs/eggdesktopentries.c:360
+#: libgnomevfs/eggdesktopentries.c:363
 #, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Falló al leer del archivo «%s»: %s"
 
-#: libgnomevfs/eggdesktopentries.c:575
+#: libgnomevfs/eggdesktopentries.c:578
 #, c-format
 msgid "desktop entries contain line '%s' which is not an entry, group, or comment"
-msgstr "las entradas del escritorio contienen la línea «%s» que no es una entrada, grupo o comentario"
+msgstr ""
+"las entradas del escritorio contienen la línea «%s» que no es una entrada, "
+"grupo o comentario"
 
-#: libgnomevfs/eggdesktopentries.c:651
+#: libgnomevfs/eggdesktopentries.c:654
 msgid "desktop entries file does not start with legal start group"
-msgstr "el archivo de las entradas del escritorio no empieza con un grupo de inicio legal"
+msgstr ""
+"el archivo de las entradas del escritorio no empieza con un grupo de inicio "
+"legal"
 
-#: libgnomevfs/eggdesktopentries.c:708
+#: libgnomevfs/eggdesktopentries.c:711
 #, c-format
 msgid "desktop entries contain line '%s' which is not UTF-8"
 msgstr "las entradas del escritorio contienen la línea «%s» que no es UTF-8"
 
-#: libgnomevfs/eggdesktopentries.c:731
+#: libgnomevfs/eggdesktopentries.c:734
 #, c-format
 msgid "desktop entries contain unknown encoding '%s'"
 msgstr "las entradas del escritorio contienen una codificación desconocida «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:920 libgnomevfs/eggdesktopentries.c:1032
-#: libgnomevfs/eggdesktopentries.c:1217
+#: libgnomevfs/eggdesktopentries.c:923 libgnomevfs/eggdesktopentries.c:1035
+#: libgnomevfs/eggdesktopentries.c:1220
 #, c-format
 msgid "desktop entries do not have group '%s'"
 msgstr "las entradas del escritorio no tienen un grupo «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:1044
+#: libgnomevfs/eggdesktopentries.c:1047
 #, c-format
 msgid "desktop entries do not have key '%s'"
 msgstr "las entradas del escritorio no tienen la clave «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:1100 libgnomevfs/eggdesktopentries.c:1272
-#: libgnomevfs/eggdesktopentries.c:1414 libgnomevfs/eggdesktopentries.c:1539
+#: libgnomevfs/eggdesktopentries.c:1103 libgnomevfs/eggdesktopentries.c:1275
+#: libgnomevfs/eggdesktopentries.c:1417 libgnomevfs/eggdesktopentries.c:1542
 #, c-format
 msgid "desktop entries contain key '%s' which has value that cannot be interpreted."
-msgstr "las entradas del escritorio contienen la clave «%s» la cual tiene un valor que no puede ser interpretado."
+msgstr ""
+"las entradas del escritorio contienen la clave «%s» la cual tiene un valor "
+"que no puede ser interpretado."
 
-#: libgnomevfs/eggdesktopentries.c:1297
+#: libgnomevfs/eggdesktopentries.c:1300
 #, c-format
 msgid "desktop entries contain no translated value for key '%s' with locale '%s'."
-msgstr "las entradas del escritorio no contienen ningún valor traducido para la clave «%s» en el idioma «%s»"
+msgstr ""
+"las entradas del escritorio no contienen ningún valor traducido para la "
+"clave «%s» en el idioma «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:2218
+#: libgnomevfs/eggdesktopentries.c:2221
 #, c-format
 msgid "desktop entries contain invalid escape sequence '%s'"
 msgstr "las entradas del escritorio contienen una secuencia de escape inválida «%s»"
 
-#: libgnomevfs/eggdesktopentries.c:2235
+#: libgnomevfs/eggdesktopentries.c:2238
 msgid "desktop entries contain escape character at end of line"
-msgstr "las entradas del escritorio contienen un carácter de escape al final de la línea"
+msgstr ""
+"las entradas del escritorio contienen un carácter de escape al final de la "
+"línea"
 
-#: libgnomevfs/eggdesktopentries.c:2260
+#: libgnomevfs/eggdesktopentries.c:2263
 #, c-format
 msgid "Value '%s' cannot be interpreted as a number."
 msgstr "El valor «%s» no se puede interpretar como un número."
 
-#: libgnomevfs/eggdesktopentries.c:2287
+#: libgnomevfs/eggdesktopentries.c:2290
 #, c-format
 msgid "Value '%s' cannot be interpreted as a boolean."
 msgstr "El valor «%s» no se puede interpretar como un booleano."
@@ -433,10 +443,18 @@ msgstr "La operación ha sido detenida"
 #: libgnomevfs/gnome-vfs-mime-handlers.c:921
 #: libgnomevfs/gnome-vfs-mime-handlers.c:939
 #: libgnomevfs/gnome-vfs-mime-handlers.c:957
+#: libgnomevfs/gnome-vfs-mime-info.c:630 libgnomevfs/gnome-vfs-mime-info.c:637
+#: libgnomevfs/gnome-vfs-mime-info.c:645 libgnomevfs/gnome-vfs-mime-info.c:652
+#: libgnomevfs/gnome-vfs-mime-info.c:660 libgnomevfs/gnome-vfs-mime-info.c:677
+#: libgnomevfs/gnome-vfs-mime-info.c:684 libgnomevfs/gnome-vfs-mime-info.c:691
+#: libgnomevfs/gnome-vfs-mime-info.c:698 libgnomevfs/gnome-vfs-mime-info.c:706
+#: libgnomevfs/gnome-vfs-mime-info.c:713
 msgid ""
 "Deprecated function.  User modifications to the MIME database are no longer "
 "supported."
-msgstr "Función obsoleta. Las modificaciones del usuario a la base de datos MIME no se soportan a partir de ahora."
+msgstr ""
+"Función obsoleta. Las modificaciones del usuario a la base de datos MIME no "
+"se soportan a partir de ahora."
 
 #: libgnomevfs/gnome-vfs-parse-ls.c:666
 #, c-format
@@ -723,7 +741,7 @@ msgstr "%.1f MiB"
 msgid "%.1f GB"
 msgstr "%.1f Gib"
 
-#: libgnomevfs/gnome-vfs-utils.c:1114
+#: libgnomevfs/gnome-vfs-utils.c:1119
 #: libgnomevfs/gnome-vfs-volume-monitor-daemon.c:368
 msgid " (invalid Unicode)"
 msgstr " (Unicode inválido)"
@@ -897,12 +915,12 @@ msgstr "GnomeVFSSeekPosition %d desconocida"
 msgid "Windows Network"
 msgstr "Red de Windows"
 
-#: modules/sftp-method.c:1261
+#: modules/sftp-method.c:1339
 #, c-format
 msgid "The identity of the remote computer (%s) is unknown."
 msgstr "La identidad de la computadora remota (%s) es desconocida."
 
-#: modules/sftp-method.c:1262
+#: modules/sftp-method.c:1340
 #, c-format
 msgid ""
 "This happens when you log in to a computer the first time.\n"
@@ -916,11 +934,11 @@ msgstr ""
 "absolutamente seguro de que es seguro continuar, consulte con el "
 "administrador del sistema."
 
-#: modules/sftp-method.c:1267
+#: modules/sftp-method.c:1348
 msgid "Log In Anyway"
 msgstr "Iniciar sesión de todas formas"
 
-#: modules/sftp-method.c:1268
+#: modules/sftp-method.c:1349
 msgid "Cancel Login"
 msgstr "Cancelar inicio de sesión"
 
@@ -1003,32 +1021,32 @@ msgid "The command used to handle \"ghelp\" URLs, if enabled."
 msgstr "El comando usado para manipular las URLs «ghelp», si están activadas."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:5
+msgid "The command used to handle \"h323\" URLs, if enabled."
+msgstr "El comando usado para manipular las URLs «h323», si están activadas."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+msgid "The command used to handle \"http\" URLs, if enabled."
+msgstr "El comando usado para manipular las URLs «http», si están activadas."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+msgid "The command used to handle \"https\" URLs, if enabled."
+msgstr "El comando usado para manipular las URLs «https», si están activadas."
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
 msgid "The command used to handle \"info\" URLs, if enabled."
 msgstr "El comando usado para manipular las URLs «info», si están activadas."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:6
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
 msgid "The command used to handle \"mailto\" URLs, if enabled."
 msgstr "El comando usado para manipular las URLs «mailto», si están activadas."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:7
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
 msgid "The command used to handle \"man\" URLs, if enabled."
 msgstr "El comando usado para manipular las URLs «man», si están activadas."
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:8
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
 msgid "The command used to handle \"trash\" URLs, if enabled."
 msgstr "El comando usado para manipular las URLs «trash», si están activadas."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:9
-msgid "The command used to handle H323 URLs, if enabled."
-msgstr "El comando usado para manipular las URLs H323, si están activadas."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:10
-msgid "The command used to handle HTTP URLs, if enabled."
-msgstr "El comando usado para manipular las URLs HTTP, si están activadas."
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:11
-msgid "The command used to handle HTTPS URLs, if enabled."
-msgstr "El comando usado para manipular las URLs HTTPS, si están activadas."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:12
 msgid "The handler for \"aim\" URLs"
@@ -1043,136 +1061,160 @@ msgid "The handler for \"ghelp\" URLs"
 msgstr "El manipulador para las URLs «ghelp»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:15
+msgid "The handler for \"h323\" URLs"
+msgstr "El manipulador para las URLs «h323»"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+msgid "The handler for \"http\" URLs"
+msgstr "El manipulador para las URLs «http»"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+msgid "The handler for \"https\" URLs"
+msgstr "El manipulador para las URLs «https»"
+
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
 msgid "The handler for \"info\" URLs"
 msgstr "El manipulador para las URLs «info»"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:16
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
 msgid "The handler for \"mailto\" URLs"
 msgstr "El manipulador para las URLs «mailto»"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:17
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
 msgid "The handler for \"man\" URLs"
 msgstr "El manipulador para las URLs «man»"
 
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:18
+#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
 msgid "The handler for \"trash\" URLs"
 msgstr "El manipulador para las URLs «trash»"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:19
-msgid "The handler for H323 URLs"
-msgstr "El manipulador para las URLs H323"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:20
-msgid "The handler for HTTP URLs"
-msgstr "El manipulador para las URLs HTTP"
-
-#: schemas/desktop_gnome_url_handlers.schemas.in.h:21
-msgid "The handler for HTTPS URLs"
-msgstr "El manipulador para las URLs HTTPS"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:22
 msgid ""
 "True if the command specified in the \"command\" key should handle \"aim\" "
 "URLs."
-msgstr "Establecer a «true» si el programa especificado en la clave «comando» debería manipular las URLs «aim»."
+msgstr ""
+"Establecer a «true» si el programa especificado en la clave «comando» "
+"debería manipular las URLs «aim»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:23
 msgid ""
 "True if the command specified in the \"command\" key should handle \"callto"
 "\" URLs."
-msgstr "Establecer a «true» si el programa especificado en la clave «comando» debería manipular las URLs «callto»."
+msgstr ""
+"Establecer a «true» si el programa especificado en la clave «comando» "
+"debería manipular las URLs «callto»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:24
 msgid ""
 "True if the command specified in the \"command\" key should handle \"ghelp\" "
 "URLs."
-msgstr "Establecer a «true» si el programa especificado en la clave «comando» debería manipular las URLs «ghelp»."
+msgstr ""
+"Establecer a «true» si el programa especificado en la clave «comando» "
+"debería manipular las URLs «ghelp»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:25
 msgid ""
-"True if the command specified in the \"command\" key should handle \"info\" "
+"True if the command specified in the \"command\" key should handle \"h323\" "
 "URLs."
-msgstr "Establecer a «true» si el programa especificado en la clave «comando» debería manipular las URLs «info»."
+msgstr ""
+"Establecer a «true» si el programa especificado en la clave «comando» "
+"debería manipular las URLs «h323»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:26
 msgid ""
-"True if the command specified in the \"command\" key should handle \"mailto"
-"\" URLs."
-msgstr "Establecer a «true» si el programa especificado en la clave «comando» debería manipular las URLs «mailto»."
+"True if the command specified in the \"command\" key should handle \"http\" "
+"URLs."
+msgstr ""
+"Establecer a «true» si el programa especificado en la clave «comando» "
+"debería manipular las URLs «http»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:27
 msgid ""
-"True if the command specified in the \"command\" key should handle \"man\" "
+"True if the command specified in the \"command\" key should handle \"https\" "
 "URLs."
-msgstr "Establecer a «true» si el programa especificado en la clave «comando» debería manipular las URLs «man»."
+msgstr ""
+"Establecer a «true» si el programa especificado en la clave «comando» "
+"debería manipular las URLs «https»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:28
 msgid ""
-"True if the command specified in the \"command\" key should handle \"trash\" "
+"True if the command specified in the \"command\" key should handle \"info\" "
 "URLs."
-msgstr "Establecer a «true» si el programa especificado en la clave «comando» debería manipular las URLs «trash»."
+msgstr ""
+"Establecer a «true» si el programa especificado en la clave «comando» "
+"debería manipular las URLs «info»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:29
-msgid "True if the command specified in the \"command\" key should handle H323 URLs."
-msgstr "Establecer a «true» si el programa especificado en la clave «comando» debería manipular las URLs «H323»."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"mailto"
+"\" URLs."
+msgstr ""
+"Establecer a «true» si el programa especificado en la clave «comando» "
+"debería manipular las URLs «mailto»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:30
-msgid "True if the command specified in the \"command\" key should handle HTTP URLs."
-msgstr "Establecer a «true» si el programa especificado en la clave «comando» debería manipular las URLs HTTP."
+msgid ""
+"True if the command specified in the \"command\" key should handle \"man\" "
+"URLs."
+msgstr ""
+"Establecer a «true» si el programa especificado en la clave «comando» "
+"debería manipular las URLs «man»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:31
 msgid ""
-"True if the command specified in the \"command\" key should handle HTTPS "
+"True if the command specified in the \"command\" key should handle \"trash\" "
 "URLs."
-msgstr "Establecer a «true» si el programa especificado en la clave «comando» debería manipular las URLs HTTPS."
+msgstr ""
+"Establecer a «true» si el programa especificado en la clave «comando» "
+"debería manipular las URLs «trash»."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:32
 msgid ""
 "True if the command used to handle this type of URL should be run in a "
 "terminal."
 msgstr ""
-"Establecer a «true» si el programa que manipula esta URL debe ejecutarse en un "
-"terminal."
+"Establecer a «true» si el programa que manipula esta URL debe ejecutarse en "
+"un terminal."
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:33
 msgid "Whether the specified command should handle \"aim\" URLs"
-msgstr "Indica si el comando especificado debe manipulas las URLs «aim»"
+msgstr "Indica si el comando especificado debe manipular las URLs «aim»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:34
 msgid "Whether the specified command should handle \"callto\" URLs"
-msgstr "Indica si el comando especificado debe manipulas las URLs «callto»"
+msgstr "Indica si el comando especificado debe manipular las URLs «callto»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:35
 msgid "Whether the specified command should handle \"ghelp\" URLs"
-msgstr "Indica si el comando especificado debe manipulas las URLs «ghelp»"
+msgstr "Indica si el comando especificado debe manipular las URLs «ghelp»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:36
-msgid "Whether the specified command should handle \"info\" URLs"
-msgstr "Indica si el comando especificado debe manipulas las URLs «info»"
+msgid "Whether the specified command should handle \"h323\" URLs"
+msgstr "Indica si el comando especificado debe manipular las URLs «h323»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:37
-msgid "Whether the specified command should handle \"mailto\" URLs"
-msgstr "Indica si el comando especificado debe manipulas las URLs «mailto»"
+msgid "Whether the specified command should handle \"http\" URLs"
+msgstr "Indica si el comando especificado debe manipular las URLs «http»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:38
-msgid "Whether the specified command should handle \"man\" URLs"
-msgstr "Indica si el comando especificado debe manipulas las URLs «man»"
+msgid "Whether the specified command should handle \"https\" URLs"
+msgstr "Indica si el comando especificado debe manipular las URLs «https»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:39
-msgid "Whether the specified command should handle \"trash\" URLs"
-msgstr "Indica si el comando especificado debe manipulas las URLs «trash»"
+msgid "Whether the specified command should handle \"info\" URLs"
+msgstr "Indica si el comando especificado debe manipular las URLs «info»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:40
-msgid "Whether the specified command should handle H323 URLs"
-msgstr "Indica si el comando especificado debe manipulas las URLs H323"
+msgid "Whether the specified command should handle \"mailto\" URLs"
+msgstr "Indica si el comando especificado debe manipular las URLs «mailto»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:41
-msgid "Whether the specified command should handle HTTP URLs"
-msgstr "Indica si el comando especificado debe manipulas las URLs HTTP"
+msgid "Whether the specified command should handle \"man\" URLs"
+msgstr "Indica si el comando especificado debe manipular las URLs «man»"
 
 #: schemas/desktop_gnome_url_handlers.schemas.in.h:42
-msgid "Whether the specified command should handle HTTPS URLs"
-msgstr "Indica si el comando especificado debe manipulas las URLs HTTPS"
+msgid "Whether the specified command should handle \"trash\" URLs"
+msgstr "Indica si el comando especificado debe manipular las URLs «trash»"
 
 #: schemas/system_dns_sd.schemas.in.h:1
 msgid ""
@@ -1357,6 +1399,38 @@ msgstr "Grupo de trabajo SMB"
 #: schemas/system_smb.schemas.in.h:2
 msgid "The window workgroup the user is part of"
 msgstr "El grupo de trabajo de windows del que el usuario es parte"
+
+#~ msgid "The command used to handle HTTP URLs, if enabled."
+#~ msgstr "El comando usado para manipular las URLs HTTP, si están activadas."
+
+#~ msgid "The command used to handle HTTPS URLs, if enabled."
+#~ msgstr "El comando usado para manipular las URLs HTTPS, si están activadas."
+
+#~ msgid "The handler for HTTP URLs"
+#~ msgstr "El manipulador para las URLs HTTP"
+
+#~ msgid "The handler for HTTPS URLs"
+#~ msgstr "El manipulador para las URLs HTTPS"
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTP "
+#~ "URLs."
+#~ msgstr ""
+#~ "Establecer a «true» si el programa especificado en la clave «comando» "
+#~ "debería manipular las URLs HTTP."
+
+#~ msgid ""
+#~ "True if the command specified in the \"command\" key should handle HTTPS "
+#~ "URLs."
+#~ msgstr ""
+#~ "Establecer a «true» si el programa especificado en la clave «comando» "
+#~ "debería manipular las URLs HTTPS."
+
+#~ msgid "Whether the specified command should handle HTTP URLs"
+#~ msgstr "Indica si el comando especificado debe manipulas las URLs HTTP"
+
+#~ msgid "Whether the specified command should handle HTTPS URLs"
+#~ msgstr "Indica si el comando especificado debe manipulas las URLs HTTPS"
 
 #~ msgid "H323 URL handler"
 #~ msgstr "Manipulador URL H323"
