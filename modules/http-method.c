@@ -64,6 +64,11 @@
 #include <unistd.h>
 #include <netdb.h>
 
+/* This doesn't exist on HP/UX for example */
+#ifndef INET_ADDRSTRLEN
+#define INET_ADDRSTRLEN 16
+#endif
+
 #ifdef DEBUG_HTTP_ENABLE
 void
 http_debug_printf (char *fmt, ...)
