@@ -1,3 +1,11 @@
+Sat Oct 13 01:47:44 2001  George Lebl <jirka@5z.com>
+
+	* modules/vfolder-desktop-method.c:  A piece of not-yet-working
+	  code to do the "programs:" scheme but with vfolders.  Aimed
+	  to complement the desktop-method, not to replace it for
+	  everything.  Doesn't even compile, but I'm paranoid so I want
+	  to commit things.
+
 2001-10-07  Maciej Stachowiak  <mjs@noisehavoc.org>
  
  	* modules/nfs-method.c: (rpc_init_tcp): Fix bug 55805 (mistake in
