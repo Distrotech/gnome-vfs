@@ -1,5 +1,14 @@
 gnome-vfs 2.5.7
 	* Bugs fixed:
+	        + Text mimetype sniffing
+		+ portability fixes
+	* Features
+		+ Added gtk file chooser backend (experimental)
+		  Note that this introduces a circular build dependency.
+		  This will have to be fixed later, but isn't a huge
+		  problem atm since nothing is using the backend.
+gnome-vfs 2.5.7
+	* Bugs fixed:
 	        + proxy mask parsing bug fixed
 		+ Eject code on freebsd
 		+ Fixed leaks
